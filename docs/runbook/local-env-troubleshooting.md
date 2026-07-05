@@ -3,7 +3,7 @@
 ## bootstrap 失败
 
 - 检查 Git 是否安装；
-- 检查当前目录是否为 `yijie-workspace`；
+- 检查当前目录是否为 `yijie`；
 - 确认脚本有执行权限。
 
 ## dev-up 无动作

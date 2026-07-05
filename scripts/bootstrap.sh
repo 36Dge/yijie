@@ -4,7 +4,7 @@ set -euo pipefail
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$root"
 
-echo "Bootstrapping yijie-workspace..."
+echo "Bootstrapping yijie..."
 
 required=(git)
 optional=(go node pnpm rustc cargo docker make)

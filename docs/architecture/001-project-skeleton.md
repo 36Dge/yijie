@@ -22,7 +22,7 @@
 本文不是某一个仓库的 README，而是整个易界 AI 多仓项目的**骨架说明文档**。建议将本文放入：
 
 ```text
-yijie-workspace/docs/architecture/001-project-skeleton.md
+yijie/docs/architecture/001-project-skeleton.md
 ```
 
 同时可以将其中的模板拆分到各个仓库的 `README.md`、`AGENTS.md`、`CONTRIBUTING.md`、`SECURITY.md`、`docs/adr/` 中。
@@ -35,7 +35,7 @@ yijie-workspace/docs/architecture/001-project-skeleton.md
 
 ```text
 yijie-ai/
-  01. yijie-workspace       # 项目元仓库 / 多仓入口 / 文档中心 / submodule 管理
+  01. yijie                 # 项目元仓库 / 多仓入口 / 文档中心 / submodule 管理
   02. yijie-codex           # Codex 上游 fork / Agent Runtime 内核
   03. yijie-desktop         # 易界 AI Mac 桌面端，Tauri + Vue
   04. yijie-admin-web       # Admin 管理后台，Vue
@@ -98,7 +98,7 @@ Yijie Infra         = 云资源、部署、安全、观测
 建议放置在：
 
 ```text
-yijie-workspace/README.md
+yijie/README.md
 ```
 
 示例内容如下。
@@ -130,7 +130,7 @@ yijie-workspace/README.md
 
 ```text
 yijie-ai/
-  yijie-workspace
+  yijie
   yijie-codex
   yijie-desktop
   yijie-admin-web
@@ -176,8 +176,8 @@ Contract & Infra Layer
 ## 本地启动
 
 ```bash
-git clone <yijie-workspace-repo>
-cd yijie-workspace
+git clone https://github.com/36Dge/yijie.git
+cd yijie
 ./scripts/bootstrap.sh
 ./scripts/dev-up.sh
 ```
@@ -233,7 +233,7 @@ Codex 修改代码时必须遵循对应仓库的 `AGENTS.md`。
 
 | 仓库 | Owner |
 |---|---|
-| yijie-workspace | Platform Team |
+| yijie | Platform Team |
 | yijie-codex | Agent Runtime Team |
 | yijie-desktop | Client Team |
 | yijie-admin-web | Admin Platform Team |
@@ -248,11 +248,11 @@ Codex 修改代码时必须遵循对应仓库的 `AGENTS.md`。
 
 ---
 
-## 5. 项目元仓库：`yijie-workspace`
+## 5. 项目元仓库：`yijie`
 
 ### 5.1 仓库职责
 
-`yijie-workspace` 是整个易界 AI 的项目入口，不放具体业务代码，主要负责：
+`yijie` 是整个易界 AI 的项目入口，不放具体业务代码，主要负责：
 
 1. 管理多仓结构；
 2. 管理 submodule 或 repo manifest；
@@ -264,7 +264,7 @@ Codex 修改代码时必须遵循对应仓库的 `AGENTS.md`。
 
 ### 5.2 不负责
 
-`yijie-workspace` 不负责：
+`yijie` 不负责：
 
 - 具体业务代码；
 - Codex Runtime 源码；
@@ -276,7 +276,7 @@ Codex 修改代码时必须遵循对应仓库的 `AGENTS.md`。
 ### 5.3 推荐目录
 
 ```text
-yijie-workspace/
+yijie/
   README.md
   AGENTS.md
   CONTRIBUTING.md
@@ -2013,7 +2013,7 @@ ADR 是 Architecture Decision Record，用于记录关键架构决策。
 放置在：
 
 ```text
-yijie-workspace/docs/adr/
+yijie/docs/adr/
 ```
 
 用于记录跨仓、跨团队、长期影响的架构决策。
@@ -2268,8 +2268,8 @@ Make
 ### 19.2 多仓初始化
 
 ```bash
-git clone <yijie-workspace-repo>
-cd yijie-workspace
+git clone https://github.com/36Dge/yijie.git
+cd yijie
 ./scripts/bootstrap.sh
 ./scripts/checkout-all.sh
 ```
@@ -2585,7 +2585,7 @@ prod
 推荐按以下顺序建设：
 
 ```text
-1. yijie-workspace
+1. yijie
 2. yijie-contracts
 3. yijie-codex
 4. yijie-agent-host
@@ -2631,7 +2631,7 @@ prod
 
 ## 27. 首批必须创建的文档清单
 
-### 27.1 yijie-workspace
+### 27.1 yijie
 
 ```text
 README.md
@@ -2994,7 +2994,7 @@ yijie-codex 不能依赖 yijie-api / yijie-connectors / yijie-skills / yijie-kno
 项目初始化完成后，应满足：
 
 - [ ] 11 个仓库已创建；
-- [ ] `yijie-workspace` 已能拉取所有子仓；
+- [ ] `yijie` 已能拉取所有子仓；
 - [ ] 每个仓库都有 `README.md`；
 - [ ] 每个仓库都有 `AGENTS.md`；
 - [ ] 每个仓库都有 `SECURITY.md`；
@@ -3033,7 +3033,7 @@ yijie-desktop      管 卖家产品入口
 yijie-admin-web    管 内部管理后台
 yijie-contracts    管 多仓契约
 yijie-infra        管 部署和基础设施
-yijie-workspace    管 项目入口和架构治理
+yijie              管 项目入口和架构治理
 ```
 
 这样拆分后，易界 AI 可以在不自研完整 agent platform 的前提下，充分复用 Codex Runtime，同时把真正有商业壁垒的跨境电商能力沉淀在 `yijie-skills`、`yijie-connectors` 和 `yijie-knowledge` 中。

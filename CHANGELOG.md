@@ -1,7 +1,7 @@
 # Changelog
 
-All notable workspace-level changes will be documented in this file.
+All notable meta-repository changes will be documented in this file.
 
 ## Unreleased
 
-- Initialize yijie-workspace project skeleton.
+- Initialize yijie project skeleton.

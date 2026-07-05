@@ -6,7 +6,7 @@
 
 | 仓库 | 职责 |
 |---|---|
-| yijie-workspace | 元仓库、多仓入口、架构治理 |
+| yijie | 元仓库、多仓入口、架构治理 |
 | yijie-codex | Codex 上游 fork 和 Runtime 内核 |
 | yijie-desktop | Mac 桌面端，Tauri + Vue |
 | yijie-admin-web | 内部管理后台，Vue |

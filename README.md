@@ -21,7 +21,7 @@
 
 ```text
 yijie-ai/
-  yijie-workspace
+  yijie
   yijie-codex
   yijie-desktop
   yijie-admin-web
@@ -122,7 +122,7 @@ Codex 修改代码时必须遵循对应仓库的 `AGENTS.md`。
 
 | 仓库 | Owner |
 |---|---|
-| yijie-workspace | Platform Team |
+| yijie | Platform Team |
 | yijie-codex | Agent Runtime Team |
 | yijie-desktop | Client Team |
 | yijie-admin-web | Admin Platform Team |
