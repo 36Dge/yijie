@@ -1,0 +1,50 @@
+repos:
+  - name: yijie-codex
+    path: codex/yijie-codex
+    type: runtime
+    owner: agent-runtime-team
+
+  - name: yijie-desktop
+    path: apps/yijie-desktop
+    type: app
+    owner: client-team
+
+  - name: yijie-admin-web
+    path: apps/yijie-admin-web
+    type: app
+    owner: admin-platform-team
+
+  - name: yijie-api
+    path: services/yijie-api
+    type: backend
+    owner: backend-team
+
+  - name: yijie-agent-host
+    path: services/yijie-agent-host
+    type: runtime-adapter
+    owner: agent-runtime-team
+
+  - name: yijie-skills
+    path: packages/yijie-skills
+    type: ai-capabilities
+    owner: ai-product-team
+
+  - name: yijie-connectors
+    path: services/yijie-connectors
+    type: platform-connectors
+    owner: integration-team
+
+  - name: yijie-knowledge
+    path: services/yijie-knowledge
+    type: rag
+    owner: data-ai-team
+
+  - name: yijie-contracts
+    path: packages/yijie-contracts
+    type: contracts
+    owner: platform-team
+
+  - name: yijie-infra
+    path: platform/yijie-infra
+    type: infra
+    owner: devops-team

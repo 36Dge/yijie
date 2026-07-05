@@ -1,0 +1,17 @@
+[workspace]
+name = "yijie-workspace"
+description = "Yijie AI multi-repository workspace and architecture governance."
+
+[codex]
+read_before_work = [
+  "README.md",
+  "AGENTS.md",
+  "CONTRIBUTING.md",
+  "SECURITY.md",
+  "docs/architecture/000-overview.md"
+]
+
+[rules]
+no_secrets = true
+contract_first = true
+approval_required_for_high_risk_tools = true

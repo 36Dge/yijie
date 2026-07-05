@@ -1,0 +1,19 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# Local runtime state
+.idea/
+.vscode/
+node_modules/
+dist/
+build/
+coverage/
+tmp/
+logs/
+
+# Generated artifacts
+*.log
+*.pid
+*.tmp
