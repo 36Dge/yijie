@@ -2,13 +2,15 @@
 
 ## 开发流程
 
-1. 从 `main` 拉分支；
+1. 从 `develop` 拉功能、修复或文档分支；
 2. 修改代码或文档；
 3. 运行测试和脚本检查；
 4. 更新相关文档；
 5. 提交 PR；
 6. Code Review；
 7. CI 通过后合并。
+
+长期分支晋升与 hotfix 流程以 `docs/dev/branch-and-release.md` 为准。
 
 ## 分支命名
 

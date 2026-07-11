@@ -4,21 +4,15 @@ set -euo pipefail
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$root"
 
-awk '/path: / { print $2 }' repos.yaml | while read -r repo_path; do
-  sibling_path="../$(basename "$repo_path")"
-  actual_path="$repo_path"
-  if [ ! -d "$actual_path/.git" ] && [ -d "$sibling_path/.git" ]; then
-    actual_path="$sibling_path"
+while IFS=$'\t' read -r name repo_path _url _branch; do
+  if [ ! -d "$repo_path/.git" ] || [ ! -f "$repo_path/Makefile" ]; then
+    echo "Repository is not available: $name ($repo_path)" >&2
+    exit 1
   fi
-
-  if [ -f "$actual_path/Makefile" ]; then
-    if make -C "$actual_path" -n generate >/dev/null 2>&1; then
-      echo "generate: $actual_path"
-      make -C "$actual_path" generate
-    else
-      echo "skip generate: $actual_path"
-    fi
+  if make -C "$repo_path" -n generate >/dev/null 2>&1; then
+    echo "generate: $name"
+    make -C "$repo_path" generate
   else
-    echo "skip generate: $actual_path"
+    echo "no generated artifacts: $name"
   fi
-done
+done < <(node scripts/repo-manifest.mjs list)

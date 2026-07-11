@@ -8,7 +8,7 @@
 
 ## dev-up 无动作
 
-`platform/yijie-infra/docker-compose.local.yml` 尚未配置时，`dev-up` 只会提示，不会启动服务。
+`dev-up` 固定读取兄弟目录中的 `../yijie-infra/docker-compose.local.yml`。文件或 Docker 缺失时命令会失败并返回非零状态。
 
 ## 子仓缺失
 

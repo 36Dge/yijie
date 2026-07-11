@@ -4,24 +4,18 @@ set -euo pipefail
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$root"
 
-echo "Checking shell syntax..."
+echo "Checking workspace shell syntax..."
 bash -n scripts/*.sh
 
-echo "Checking repository lint commands..."
-awk '/path: / { print $2 }' repos.yaml | while read -r repo_path; do
-  sibling_path="../$(basename "$repo_path")"
-  actual_path="$repo_path"
-  if [ ! -d "$actual_path/.git" ] && [ -d "$sibling_path/.git" ]; then
-    actual_path="$sibling_path"
+while IFS=$'\t' read -r name repo_path _url _branch; do
+  if [ ! -d "$repo_path/.git" ]; then
+    echo "Missing repository: $name ($repo_path)" >&2
+    exit 1
   fi
-
-  if [ -f "$actual_path/Makefile" ]; then
-    echo "lint: $actual_path"
-    make -C "$actual_path" lint
-  elif [ -f "$actual_path/package.json" ] && command -v pnpm >/dev/null 2>&1; then
-    echo "lint: $actual_path"
-    (cd "$actual_path" && pnpm lint)
-  else
-    echo "skip lint: $actual_path"
+  if [ ! -f "$repo_path/Makefile" ]; then
+    echo "Missing Makefile: $name" >&2
+    exit 1
   fi
-done
+  echo "lint: $name"
+  make -C "$repo_path" lint
+done < <(node scripts/repo-manifest.mjs list)

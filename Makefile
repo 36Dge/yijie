@@ -1,13 +1,10 @@
-.PHONY: bootstrap checkout update-submodules dev-up dev-down lint test generate
+.PHONY: bootstrap checkout dev-up dev-down lint test generate
 
 bootstrap:
 	./scripts/bootstrap.sh
 
 checkout:
 	./scripts/checkout-all.sh
-
-update-submodules:
-	./scripts/update-submodules.sh
 
 dev-up:
 	./scripts/dev-up.sh
@@ -16,9 +13,11 @@ dev-down:
 	./scripts/dev-down.sh
 
 lint:
+	pnpm lint
 	./scripts/lint-all.sh
 
 test:
+	pnpm test
 	./scripts/test-all.sh
 
 generate:

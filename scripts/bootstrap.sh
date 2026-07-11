@@ -4,11 +4,7 @@ set -euo pipefail
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$root"
 
-echo "Bootstrapping yijie..."
-
-required=(git)
-optional=(go node pnpm rustc cargo docker make)
-
+required=(git node pnpm go rustc cargo make)
 for cmd in "${required[@]}"; do
   if ! command -v "$cmd" >/dev/null 2>&1; then
     echo "Missing required command: $cmd" >&2
@@ -16,11 +12,15 @@ for cmd in "${required[@]}"; do
   fi
 done
 
-for cmd in "${optional[@]}"; do
-  if ! command -v "$cmd" >/dev/null 2>&1; then
-    echo "Optional command not found: $cmd"
-  fi
-done
+echo "Installing workspace tooling..."
+pnpm install --frozen-lockfile
 
-echo "Workspace root: $root"
-echo "Next: add repository remotes or submodules, then run ./scripts/checkout-all.sh"
+echo "Checking out child repositories..."
+./scripts/checkout-all.sh
+
+if ! command -v docker >/dev/null 2>&1; then
+  echo "Docker is required for local infrastructure but is not installed." >&2
+  echo "Repository checkout is complete; install Docker before running make dev-up." >&2
+fi
+
+echo "Workspace bootstrap complete: $root"

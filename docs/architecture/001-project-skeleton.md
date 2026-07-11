@@ -1,5 +1,7 @@
 # 易界 AI 项目骨架说明
 
+> 本文是最初的骨架设计输入，保留用于追溯。当前仓库拓扑、分支和开发命令以 `repos.yaml`、`docs/architecture/002-repo-strategy.md` 和 `docs/dev/` 下的现行文档为准。
+
 > 文档版本：v0.1  
 > 适用对象：产品、研发、AI Agent、后端、前端、桌面端、连接器、知识库、DevOps 团队  
 > 项目定位：服务跨境电商卖家的 AI native TOB 产品，基于 Codex Runtime 构建跨境电商领域智能体应用  

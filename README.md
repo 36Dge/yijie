@@ -15,7 +15,7 @@
 - 连接器：Go + MCP 工具服务
 - 知识库：RAG 架构
 - API 契约：OpenAPI / Protobuf / JSON Schema
-- 基础设施：Kubernetes / Terraform / Helm / CI/CD / OpenTelemetry
+- 基础设施：本地 Docker Compose；生产 IaC、观测和云环境待部署方案确认后引入
 
 ## 仓库结构
 
@@ -68,14 +68,15 @@ Contract & Infra Layer
 
 ```bash
 ./scripts/bootstrap.sh
-./scripts/checkout-all.sh
 ./scripts/dev-up.sh
 ```
+
+`bootstrap.sh` 会校验本机工具、安装元仓库依赖，并根据 `repos.yaml` 将缺失仓库克隆到 `yijie` 的兄弟目录。已有仓库只执行 remote 校验和 fetch，不会覆盖工作区。
 
 常用命令：
 
 ```bash
-./scripts/update-submodules.sh
+./scripts/checkout-all.sh
 ./scripts/dev-down.sh
 ./scripts/lint-all.sh
 ./scripts/test-all.sh

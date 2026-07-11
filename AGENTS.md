@@ -26,7 +26,8 @@
 - `docs/runbook/`：本地和服务故障排查；
 - `docs/release/`：发布规范；
 - `scripts/`：多仓开发入口脚本；
-- `apps/`、`services/`、`packages/`、`codex/`、`platform/`：未来 submodule 或本地仓库挂载位置。
+- `repos.yaml`：兄弟目录多仓清单、远端 URL、默认分支和 Owner 的唯一数据源。
+- `apps/`、`services/`、`packages/`、`codex/`、`platform/`：仅保留职责索引，不作为仓库挂载位置。
 
 ## 开发命令
 

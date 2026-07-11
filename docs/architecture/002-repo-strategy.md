@@ -35,3 +35,7 @@ infra -> deploys all service repos
 ```
 
 `yijie-codex` 不依赖任何易界业务仓。
+
+## 本地拓扑
+
+11 个仓库在同一个父目录下以兄弟目录存在，不使用 Git submodule。`yijie/repos.yaml` 是仓库 URL、路径和默认分支的唯一数据源，`yijie/scripts/bootstrap.sh` 负责初始化缺失仓库。

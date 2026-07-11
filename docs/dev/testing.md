@@ -16,8 +16,11 @@
 ## Workspace 检查
 
 ```bash
-./scripts/lint-all.sh
-./scripts/test-all.sh
+make lint
+make test
+make generate
 ```
 
-在子仓尚未初始化前，脚本会跳过未配置测试命令的仓库。
+统一脚本要求 `repos.yaml` 中的仓库和 Makefile 全部存在；缺失仓库或缺失质量命令会失败，不再静默跳过。Infra 始终执行静态 Compose 模型校验，有 Docker 时额外执行 `docker compose config`。
+
+Codex fork 管理骨架与 Runtime 源码测试分开：`make test` 校验当前管理骨架，源码接入后使用 `make runtime-test` 执行兼容性测试。
