@@ -81,7 +81,12 @@ Contract & Infra Layer
 ./scripts/lint-all.sh
 ./scripts/test-all.sh
 ./scripts/generate-all.sh
+make contract-governance
 ```
+
+`make contract-governance` 要求十个兄弟仓库都存在，并校验中央规范、PR 模板和每个
+仓库 `AGENTS.md` 的 Contract First 最小门禁。独立元仓 CI 只能验证中央文件，不能
+替代下游仓的版本锁、生成漂移和 conformance CI。
 
 ## 文档入口
 
@@ -90,7 +95,7 @@ docs/
   architecture/      # 架构文档
   adr/               # 架构决策记录
   product/           # 产品与跨境电商 SOP
-  dev/               # 开发说明
+  dev/               # 开发说明；contract-first.md 是跨仓契约操作规范
   security/          # 安全规范
   runbook/           # 运维手册
   release/           # 发布规范
@@ -117,7 +122,8 @@ Codex 修改代码时必须遵循对应仓库的 `AGENTS.md`。
 - 高风险写操作必须经过 approval policy；
 - 所有外部平台 API 调用必须有审计日志；
 - 所有日志必须做 PII 和密钥脱敏；
-- 所有 API 契约变更必须先更新 `yijie-contracts`。
+- 所有跨仓契约变更必须遵循 [`docs/dev/contract-first.md`](docs/dev/contract-first.md)，
+  先形成权威契约和不可变引用，再合并或启用下游实现。
 
 ## 仓库 Owner
 

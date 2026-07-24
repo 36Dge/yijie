@@ -16,6 +16,11 @@ Accepted
 
 所有 HTTP API、事件、工具 schema 和 SDK 变更优先在 `yijie-contracts` 中定义，再由下游仓库实现。
 
+[`ADR-0011`](ADR-0011-enforce-contract-first-governance.md) 将本决策的“优先”
+明确为易界公共边界的强制合并/发布规范，并补充执行边界、权威源特例、合并/部署
+顺序和例外机制。现行操作规范见
+[`docs/dev/contract-first.md`](../dev/contract-first.md)。
+
 ## 备选方案
 
 各仓独立定义 DTO 可以短期加速，但会造成协议漂移和联调成本。
@@ -32,6 +37,7 @@ Accepted
 
 ## 后续动作
 
-- [ ] 初始化 `yijie-contracts`；
-- [ ] 定义 breaking change 检查；
-- [ ] 建立 SDK 生成脚本。
+- [x] 初始化 `yijie-contracts`；
+- [x] 定义 OpenAPI、Protobuf、JSON Schema 和 AsyncAPI breaking change 检查；
+- [x] 建立 Go/TypeScript SDK 和 AsyncAPI bundle 生成脚本；
+- [x] 由 ADR-0011 补齐项目级执行门禁。

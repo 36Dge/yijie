@@ -1,4 +1,4 @@
-.PHONY: bootstrap checkout dev-up dev-down lint test generate
+.PHONY: bootstrap checkout dev-up dev-down lint test generate contract-governance
 
 bootstrap:
 	./scripts/bootstrap.sh
@@ -22,3 +22,6 @@ test:
 
 generate:
 	./scripts/generate-all.sh
+
+contract-governance:
+	node scripts/check-contract-governance.mjs --require-siblings

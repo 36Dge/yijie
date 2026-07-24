@@ -22,8 +22,21 @@ feature/fix -> develop -> staging -> main -> version tag
 hotfix      -> main -> staging + develop
 ```
 
-每次晋升都使用 PR，不在长期分支间直接 push。跨仓功能按 `yijie-contracts`、服务端、客户端的依赖顺序分别晋升。
+每次晋升都使用 PR，不在长期分支间直接 push。跨仓功能遵循
+`docs/dev/contract-first.md`：契约先形成不可变可消费引用，每个下游 PR 在自身合并前
+固定引用；功能启用和 producer 发值顺序按请求/响应/事件方向决定。
+Codex Runtime 和第三方平台协议按各自上游权威源先形成候选，再进入易界兼容投影。
 
 ## PR 与发布
 
-PR 必须说明影响仓库、安全影响、API 契约影响、测试和发布说明。所有仓库独立发布；破坏性契约变更必须先设计迁移方案，不能通过跳过质量门禁发布。
+PR 必须说明影响仓库、安全影响、`contract-impact` 分类、权威源、不可变引用、
+producer/consumers、测试和发布说明。公共跨仓 wire 边界还必须列出契约 tag/完整
+commit 和全部适用 breaking 基线（尚无发布版本时为已登记 fallback 完整 commit）；
+其它边界列出相应 migration/data/runtime/deployment compatibility，并把不适用的
+contracts 字段写为 `N/A + 理由`。所有仓库独立发布；下游实现 PR 在适用权威源可消费
+并在该 PR 中完成精确 pin 前不得合并。
+
+增量请求能力按“provider 先支持、consumer 后使用”发布；新增响应字段、枚举和事件
+必须先确认旧 consumer 容忍或先升级 consumer。兼容的 semantic 变化需人工评审和
+分阶段发布；若使任一受支持交互失效则升级为 breaking，并采用 expand/新版本、双轨、
+consumer 迁移、观测、弃用和清理，不能通过跳过门禁或多仓硬切发布。

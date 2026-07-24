@@ -9,7 +9,7 @@
     "pnpm": ">=11 <12"
   },
   "scripts": {
-    "lint": "node scripts/repo-manifest.mjs validate",
+    "lint": "node scripts/repo-manifest.mjs validate && node scripts/check-contract-governance.mjs",
     "test": "node --test tests/*.test.mjs"
   },
   "dependencies": {

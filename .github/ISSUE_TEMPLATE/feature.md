@@ -18,7 +18,11 @@ assignees: ""
 
 ## 影响仓库
 
-## API 变更
+## Contract Impact
+
+填写 `none | additive | semantic | breaking`，并说明权威源、producer、consumers、
+输入/输出方向、适用不可变引用/兼容基线和发布顺序。公共 wire 使用 contracts
+引用；私有存储、部署接口、Runtime/第三方使用各自权威源。`none` 也必须说明理由。
 
 ## 安全影响
 
