@@ -1,0 +1,53 @@
+schema_version: 1
+
+feature:
+  id: "FEAT-123"
+  slug: "task-history-export"
+  title: "TBD"
+  status: "draft"
+  created_at: "2026-07-26"
+  requirement_owner: "TBD"
+  technical_owner: "TBD"
+  reviewer: "TBD"
+  release_owner: "TBD"
+
+scope:
+  risk_level: "TBD" # low | medium | high | critical
+  data_classification: "TBD" # public | internal | confidential | restricted
+  contract_impact: "TBD" # none | additive | semantic | breaking
+  database_change: "TBD" # none | expand | migrate | contract
+  ai_behavior_change: "TBD" # none | prompt | model | retrieval | tool | eval
+
+repositories: []
+
+immutable_references:
+  baseline_commits: []
+  contracts:
+    version: "N/A"
+    full_commit: "N/A"
+    digest: "N/A"
+    generator: "N/A"
+  release_artifacts: []
+
+gates:
+  G0_intake: "pending"
+  G1_design_ready: "pending"
+  G2_implementation_ready: "pending"
+  G2A_contract_ready: "pending"
+  G3_slice_complete: "pending"
+  G4_code_complete: "pending"
+  G5_production_ready: "pending"
+  G6_delivery_complete: "pending"
+
+documents:
+  brief: "00-feature-brief.md"
+  requirements: "01-requirements.md"
+  impact: "02-impact-assessment.md"
+  decisions_and_risks: "03-decisions-and-risks.md"
+  contract_plan: "04-contract-change-plan.md"
+  technical_design: "05-technical-design.md"
+  test_plan: "06-test-plan.md"
+  implementation_plan: "07-implementation-plan.md"
+  verification: "08-verification-report.md"
+  release_and_rollback: "09-release-and-rollback.md"
+  delivery_summary: "10-delivery-summary.md"
