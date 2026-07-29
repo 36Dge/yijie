@@ -1,0 +1,70 @@
+schema_version: 1
+
+feature:
+  id: "FEAT-124"
+  slug: "desktop-post-login-home"
+  title: "易界桌面端登录后首页"
+  status: "g2a-ready-for-owner-review"
+  created_at: "2026-07-29"
+  requirement_owner: "段成威"
+  technical_owner: "段成威"
+  reviewer: "段成威"
+  release_owner: "段成威"
+
+scope:
+  risk_level: "medium"
+  data_classification: "internal"
+  contract_impact: "additive"
+  database_change: "none"
+  ai_behavior_change: "none"
+
+repositories:
+  - name: "yijie"
+    role: "feature-package and cross-repository governance"
+    branch: "develop"
+    baseline_full_commit: "82f39ee97e40f5932c6f59a5567342ee4c8aaf04"
+  - name: "yijie-desktop"
+    role: "target implementation repository"
+    branch: "develop"
+    baseline_full_commit: "09d987f09c2f2eac2575187ef57b9b65d1e89ae3"
+
+immutable_references:
+  visual_reference:
+    path: "/Users/jack/Downloads/Personal_Info/易界文档/00yiyjie_fronted/01_index.html"
+    status: "local visual reference; not production source"
+  contracts:
+    version: "N/A - no public wire contract change"
+    full_commit: "N/A - no public wire contract change"
+    digest: "N/A - no public wire contract change"
+    generator: "N/A - no public wire contract change"
+  local_persistence:
+    authority: "yijie-desktop/docs/design/docs/design/05-patterns/01-app-shell-navigation.md"
+    schema_version: "sidebar-preference-v1"
+    key: "yijie.desktop.ui.sidebar.v1"
+    design_full_commit: "4480f4a93eac59b3277fb0650e25f156e7fbc6a9"
+    implementation_full_commit: "b937eb8fdace6e4a2fcb53c158660ffa92fcf79e"
+    status: "candidate committed and conformance passed; owner G2A approval pending"
+  release_artifacts: []
+
+gates:
+  G0_intake: "passed - 2026-07-30"
+  G1_design_ready: "passed - 2026-07-30"
+  G2_implementation_ready: "passed - approved by 段成威 on 2026-07-30"
+  G2A_contract_ready: "ready-for-owner-review - S0 committed and all planned checks passed"
+  G3_slice_complete: "pending"
+  G4_code_complete: "pending"
+  G5_production_ready: "pending"
+  G6_delivery_complete: "pending"
+
+documents:
+  brief: "00-feature-brief.md"
+  requirements: "01-requirements.md"
+  impact: "02-impact-assessment.md"
+  decisions_and_risks: "03-decisions-and-risks.md"
+  contract_plan: "04-contract-change-plan.md"
+  technical_design: "05-technical-design.md"
+  test_plan: "06-test-plan.md"
+  implementation_plan: "07-implementation-plan.md"
+  verification: "08-verification-report.md"
+  release_and_rollback: "09-release-and-rollback.md"
+  delivery_summary: "10-delivery-summary.md"

@@ -12,6 +12,11 @@ SECURITY.md
 docs/architecture.md
 ```
 
+在易界项目中起草需求、设计或实施计划前，还必须读取
+`docs/dev/codex-project-memory.md`，执行其中的需求起草前强制高质量协议。
+默认角色为：需求负责人、Product/Design 决策人、技术负责人、Reviewer 和发布负责人
+均为段成威；某个需求有最新明确覆盖时除外。
+
 涉及 API 时必须先读取 `yijie-contracts` 中的 OpenAPI、Protobuf 或 JSON Schema。
 任何功能、修复或重构都先按 `docs/dev/contract-first.md` 标记
 `contract-impact = none | additive | semantic | breaking`；语义变化不能因为 DTO
