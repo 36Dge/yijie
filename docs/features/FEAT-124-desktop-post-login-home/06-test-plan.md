@@ -128,6 +128,7 @@ Feature 文档只记录语义，不复制生产用户数据。
 | Full lint | `yijie-desktop` | `make lint` | Node/pnpm/Rust | baseline、G2A、G4 |
 | Full test | `yijie-desktop` | `make test` | Node/pnpm/Rust | baseline、G2A、G4 |
 | Frontend build | `yijie-desktop` | `make build` | Node/pnpm | baseline、G2A、G4 |
+| Production dependency audit | `yijie-desktop` | `pnpm audit --prod` | npm advisory service | 新增/更新依赖、G4/G5 |
 | Design docs | `yijie-desktop` | `pnpm docs:build` | VitePress | 设计/G2/G4 |
 | Native visual smoke | `yijie-desktop` | `pnpm tauri:dev` | macOS GUI | S5/G4；人工记录 |
 | Release build CI | GitHub Actions | `pnpm tauri:build --debug` + audits | macOS runner | G5 |

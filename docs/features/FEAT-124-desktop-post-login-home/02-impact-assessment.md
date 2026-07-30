@@ -102,7 +102,8 @@ YjSidebar toggle
 | Codex Runtime | N/A | 本需求不接入 | N/A | N/A | N/A |
 | Agent Host | N/A | 本需求不接入 | N/A | N/A | N/A |
 | 平台 API | N/A | 本需求不调用 | N/A | N/A | N/A |
-| Lucide | 设计规范批准但活跃 registry 未完整迁移 | 需在实现计划中核对现有依赖/参考实现 | N/A | 本地 UI | 不引入第二图标体系 |
+| Lucide | `@lucide/vue@1.27.0` exact；S1 `efa1e465b478d131f769654075c057132d01a747` | registry、typecheck、test、build 已验证；ISC、Vue peer `>=3.0.1` | N/A | 本地 UI | 不引入第二图标体系 |
+| PostCSS security resolution | workspace override `8.5.18`；S1 `efa1e465b478d131f769654075c057132d01a747` | `pnpm why postcss` 仅一个版本；`pnpm audit --prod` 0 known vulnerabilities | N/A | 构建链 | 上游全部约束到修复版本后再评估移除 override |
 
 ## 9. 现有测试、构建与发布入口
 

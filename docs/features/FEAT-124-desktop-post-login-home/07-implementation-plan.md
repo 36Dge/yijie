@@ -30,7 +30,7 @@ Accepted requirements + App Shell 2.0.0 + Chat 1.1.0 + Navigation 1.1.0
 | Slice | 主要意图 | AC/NFR | Repository | 允许修改 | 禁止修改 | 前置 | 验证 | 回滚 |
 |---|---|---|---|---|---|---|---|---|
 | S0 | 建立 sidebar preference v1 权威投影 | AC-010、NFR-005 | yijie-desktop | `src/domain/sidebar-preference.ts`、对应 test | Vue 页面、store、路由、package 依赖 | G2 人工批准 | `pnpm exec vitest run src/domain/sidebar-preference.test.ts`；`make lint/test/build` | 删除两个新增文件 |
-| S1 | 迁入最小 token、Naive theme、Logo、YjIcon | AC-002/003/006、NFR-002/004 | yijie-desktop | `src/styles/variables.css`、`src/design/theme/`、`src/assets/brand/`、`src/icons/`、`src/components/yijie/YjIcon.vue`、`YjLogo.vue`、`package.json`、`pnpm-lock.yaml` | 其它依赖、exports runtime import、页面业务 | G2A passed | `pnpm add -E @lucide/vue@1.27.0` 后 `make lint/test/build`；lockfile/diff review | 回退 S1 commit 和依赖 |
+| S1 | 迁入最小 token、Naive theme、Logo、YjIcon | AC-002/003/006、NFR-002/004 | yijie-desktop | `src/styles/variables.css`、`src/design/theme/`、`src/assets/brand/`、`src/icons/`、`src/components/yijie/YjIcon.vue`、`YjLogo.vue`、`package.json`、`pnpm-workspace.yaml`、`pnpm-lock.yaml` | 其它依赖、exports runtime import、页面业务 | G2A passed | exact Lucide + PostCSS security override；audit；`make lint/test/build`；lockfile/diff review | 回退 S1 commit 和依赖/override |
 | S2 | 建立全局 App Shell、导航和 sidebar store | AC-002/003/005/010 | yijie-desktop | `YjAppShell.vue`、`YjSidebar.vue`、`YjNavItem.vue`、`src/navigation/app-nav.ts` + tests、`src/stores/sidebar.store.ts`、`App.vue` | 真实权限 API、禁用模块路由、任务提交 | S0/S1 + G2A | nav/store unit；`make lint/test/build` | 回退 S2，恢复旧 RouterView |
 | S3 | 实现 `/chat` 新建任务入口和轮播 | AC-001/004/007/009 | yijie-desktop | `placeholder-rotation.ts` + test、`useRotatingPlaceholder.ts`、`ChatPage.vue`、必要 scoped CSS | 发送、附件、草稿持久化、API/Agent/Runtime | S2 | PH tests；`make lint/test/build`；浏览器输入检查 | 回退 S3，保留新 Shell |
 | S4 | 整合三条真实路由和窗口基线 | AC-001/005、NFR-001 | yijie-desktop | `router/index.ts` + test、`TasksPage.vue`、`SettingsPage.vue`、`src-tauri/tauri.conf.json` 的 minWidth/minHeight | 新业务路由、capability/CSP/command、Tasks 业务重构 | S2/S3 | router tests；`make lint/test/build`；direct-route smoke | 回退 S4；旧路由表恢复 |
@@ -50,6 +50,7 @@ Accepted requirements + App Shell 2.0.0 + Chat 1.1.0 + Navigation 1.1.0
 
 - 只迁移本页实际使用的 token 和批准品牌 SVG；保留来源记录。
 - `@lucide/vue@1.27.0` 是唯一计划新增的运行依赖：registry 查询于 2026-07-30，peer `vue >=3.0.1`、ISC license；必须用 exact pin 和 lockfile。
+- `postcss@8.5.18` 不是新增直接依赖；它是段成威单独批准的 workspace override，用于修复 baseline `8.5.16` 的高危公告，必须以 audit 0 known vulnerabilities 为通过条件。
 - 页面不得直接 import Lucide；图标必须先进入 `src/icons/registry.ts`。
 - 停止条件：需要第二图标库、远程字体、未知品牌资产、CSS filter、从 exports 运行时 import，或 package peer/build 不兼容。
 
@@ -89,7 +90,7 @@ Accepted requirements + App Shell 2.0.0 + Chat 1.1.0 + Navigation 1.1.0
 | Governance docs | yijie | develop / `82f39ee97e40f5932c6f59a5567342ee4c8aaf04` | FEAT-124 00—07 | Feature ID/path | 段成威 |
 | Design authority | yijie-desktop | develop / `4480f4a93eac59b3277fb0650e25f156e7fbc6a9` | App Shell 2.0.0、Chat 1.1.0、Navigation 1.1.0 | Accepted 设计完整 SHA | 段成威 |
 | Private contract candidate | yijie-desktop | design `4480f4a93eac59b3277fb0650e25f156e7fbc6a9` / implementation `b937eb8fdace6e4a2fcb53c158660ffa92fcf79e` | `sidebar-preference-v1` + tests | 实现完整 SHA；无 generator/digest | 段成威 |
-| UI consumer | yijie-desktop | G2A-approved preference commit | S1—S4 | 同仓精确前置 commit | 段成威 |
+| UI consumer | yijie-desktop | G2A-approved preference commit `b937eb8fdace6e4a2fcb53c158660ffa92fcf79e` | S1—S4 | 同仓精确前置 commit | 段成威 |
 | Activation/evidence | yijie-desktop + yijie | code candidate commit | Desktop candidate + verification | 两仓 commit 互相引用 | 段成威 |
 
 公共 contracts/provider/consumer 阶段为 N/A；无 `yijie-contracts`、API、Agent Host 或 Runtime 改动。
@@ -110,7 +111,7 @@ Accepted requirements + App Shell 2.0.0 + Chat 1.1.0 + Navigation 1.1.0
 | C1-yijie | 完成 FEAT-124 G2 文档与长期协作规则 | `yijie/docs/features/FEAT-124-*`、Codex memory docs | package G2、meta lint/test | FEAT-124 |
 | C1-desktop | 接受 FEAT-124 Design Pattern | 三份 design docs | `pnpm docs:build` | FEAT-124 |
 | C2-desktop | sidebar preference v1 + conformance | S0 files | PREF-*、full lint/test/build | G2A evidence |
-| C3-desktop | token/theme/logo/icon foundation | S1 files + lockfile | lint/test/build、dependency diff | App Shell 2.0.0 |
+| C3-desktop | token/theme/logo/icon foundation | S1 files + workspace override + lockfile；`efa1e465b478d131f769654075c057132d01a747` | lint/test/build/docs、audit、dependency diff | App Shell 2.0.0 |
 | C4-desktop | global App Shell/nav/sidebar | S2 files | NAV/PREF + full gates | FEAT-124 AC-002/003/005/010 |
 | C5-desktop | `/chat` entry + placeholder | S3 files | PH/INPUT + full gates | FEAT-124 AC-004/009 |
 | C6-desktop | route/window/visual completion | S4/S5 files | router/full gates/visual matrix | Verification report |
@@ -122,9 +123,9 @@ Accepted requirements + App Shell 2.0.0 + Chat 1.1.0 + Navigation 1.1.0
 
 | Slice | Base full SHA | Actual diff | Test result | Review | Status |
 |---|---|---|---|---|---|
-| S0 | `4480f4a93eac59b3277fb0650e25f156e7fbc6a9` | `b937eb8fdace6e4a2fcb53c158660ffa92fcf79e`：`src/domain/sidebar-preference.ts` + test | local 9/9；full frontend 10/10；Rust 0 tests；lint/build/docs PASS | Codex self-check complete；Owner G2A pending | Committed；ready for G2A review |
-| S1 | S0/G2A commit | none | NOT RUN | Pending | Blocked by G2A |
-| S2 | S1 commit | none | NOT RUN | Pending | Blocked |
+| S0 | `4480f4a93eac59b3277fb0650e25f156e7fbc6a9` | `b937eb8fdace6e4a2fcb53c158660ffa92fcf79e`：`src/domain/sidebar-preference.ts` + test | local 9/9；full frontend 10/10；Rust 0 tests；lint/build/docs PASS | G2A Approved by 段成威 | Complete |
+| S1 | `b937eb8fdace6e4a2fcb53c158660ffa92fcf79e` | `efa1e465b478d131f769654075c057132d01a747`：exact Lucide + PostCSS 8.5.18 override + token/theme/brand/icon foundations | audit 0 known vulnerabilities；lint、3 files/12 frontend tests、Rust、build、docs、asset/import checks PASS | Codex self-check complete；Owner G3 review pending | Committed |
+| S2 | `efa1e465b478d131f769654075c057132d01a747` | none | NOT RUN | Pending | Blocked by G3 owner review |
 | S3 | S2 commit | none | NOT RUN | Pending | Blocked |
 | S4 | S2/S3 commits | none | NOT RUN | Pending | Blocked |
 | S5 | S0—S4 | none | NOT RUN | Pending | Blocked |
@@ -164,5 +165,6 @@ Repository / branch / base full SHA:
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
 | 技术负责人 | 段成威 | G2 Approved；明确授权执行 S0 | 2026-07-30 |
+| Contract/Consumer Owner | 段成威 | G2A Approved；明确授权执行 S1 | 2026-07-30 |
 | Reviewer | 段成威 | 实现后必须进行与实现阶段分离的结构化审查 | 2026-07-30 |
 | 发布负责人 | 段成威 | 当前只批准计划，不批准提交、push 或发布 | 2026-07-30 |

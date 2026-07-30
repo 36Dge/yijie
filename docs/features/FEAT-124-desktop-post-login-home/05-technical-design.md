@@ -18,7 +18,7 @@
 | 当前输入有预填正文和“创建本地任务”按钮 | `ChatPage.vue` | 改为空 textarea + 轮播 placeholder；删除提交动作 |
 | `TasksPage`、`SettingsPage` 各自全屏布局并带“返回 Chat” | 对应页面 | 移除重复全屏 Shell 语义，保留独立路由内容 |
 | 当前只有纯 TS Vitest 测试，没有组件测试环境 | `src/domain/tasks.test.ts`、`package.json` | 领域/配置逻辑用纯 TS 测试；渲染与可访问性用实际浏览器/Tauri 验证 |
-| Lucide 已是 Accepted 设计决策，但 `@lucide/vue` 未安装 | Design P0-06、`package.json` | 实施切片中新增并锁定唯一图标依赖；不引入第二图标库 |
+| Lucide 已是 Accepted 设计决策 | Design P0-06、S1 `package.json` | 已精确锁定 `@lucide/vue@1.27.0`，只通过 registry 暴露；不引入第二图标库 |
 | 活跃 `src/` 没有 token、YjIcon、YjLogo、YjAppShell | 文件扫描 | 只迁移当前首页必需的最小集合 |
 
 ## 3. 组件职责与依赖方向
@@ -185,7 +185,7 @@ permission projection (future/upstream) ──────→ app-nav visible fl
 | Sidebar 切换 | CSS token 动效 ≤240ms，无 layout 卡死 | 实际窗口操作 | 关闭非必要动效 |
 | Placeholder | 4000ms 间隔；最多一个 timer | fake timer 单测 + 实际检查 | 固定第一条 |
 | Storage | 每次 hydrate 读一个 key、toggle 写一个 key | Storage stub 断言调用次数 | 读写异常回退内存态 |
-| 新依赖 | 只允许已接受的 `@lucide/vue`，由 lockfile 固定 | package/lockfile diff + build | 出现第二图标库即阻断 |
+| 新依赖 | 只允许已接受的 `@lucide/vue@1.27.0`；PostCSS 仅作 `8.5.18` 安全 override | package/workspace/lockfile diff + audit + build | 出现第二图标库或审计高危即阻断 |
 | 外部费用 | 0 | 无 API/模型调用 | N/A |
 
 ## 13. 配置、发布与回滚

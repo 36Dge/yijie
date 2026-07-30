@@ -4,7 +4,7 @@ feature:
   id: "FEAT-124"
   slug: "desktop-post-login-home"
   title: "易界桌面端登录后首页"
-  status: "g2a-ready-for-owner-review"
+  status: "s1-committed-awaiting-owner-review"
   created_at: "2026-07-29"
   requirement_owner: "段成威"
   technical_owner: "段成威"
@@ -43,15 +43,20 @@ immutable_references:
     key: "yijie.desktop.ui.sidebar.v1"
     design_full_commit: "4480f4a93eac59b3277fb0650e25f156e7fbc6a9"
     implementation_full_commit: "b937eb8fdace6e4a2fcb53c158660ffa92fcf79e"
-    status: "candidate committed and conformance passed; owner G2A approval pending"
+    status: "approved at G2A for pinned internal consumer use"
+  design_foundation:
+    full_commit: "efa1e465b478d131f769654075c057132d01a747"
+    lucide_version: "1.27.0"
+    postcss_override: "8.5.18"
+    status: "committed; owner G3 review pending"
   release_artifacts: []
 
 gates:
   G0_intake: "passed - 2026-07-30"
   G1_design_ready: "passed - 2026-07-30"
   G2_implementation_ready: "passed - approved by 段成威 on 2026-07-30"
-  G2A_contract_ready: "ready-for-owner-review - S0 committed and all planned checks passed"
-  G3_slice_complete: "pending"
+  G2A_contract_ready: "passed - approved by 段成威 on 2026-07-30"
+  G3_slice_complete: "ready-for-owner-review - S1 committed at efa1e465b478d131f769654075c057132d01a747"
   G4_code_complete: "pending"
   G5_production_ready: "pending"
   G6_delivery_complete: "pending"

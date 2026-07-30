@@ -4,13 +4,13 @@
 
 | 字段 | 内容 |
 |---|---|
-| 状态 | Requirements Complete / G0—G2 Passed / S0 Validated / G2A Pending |
+| 状态 | Requirements Complete / G0—G2A Passed / S1 Committed / G3 Ready for Owner Review |
 | 需求负责人 | 段成威 |
 | 技术负责人 | 段成威 |
 | Reviewer | 段成威 |
 | 发布负责人 | 段成威 |
 | 创建日期 | 2026-07-29 |
-| 最后更新 | 2026-07-30 |
+| 最后更新 | 2026-07-31 |
 | 原始需求来源 | 用户提供的登录后首页视觉稿 |
 | 视觉参考 | `/Users/jack/Downloads/Personal_Info/易界文档/00yiyjie_fronted/01_index.html` |
 
@@ -107,7 +107,7 @@
 | G0 需求建档 | 2026-07-30 | 段成威 | Passed |
 | G1 设计就绪 | 2026-07-30 | 段成威 | Passed |
 | G2 可开始实现 | 2026-07-30 | 段成威 | Passed；用户明确批准 |
-| G2A 私有契约就绪 | 2026-07-30 | 段成威 | Ready for Owner Review；S0 已提交并登记完整 SHA |
+| G2A 私有契约就绪 | 2026-07-30 | 段成威 | Passed；用户明确批准并授权执行 S1 |
 | G4 Code Complete | 2026-07-30 | 段成威 | Pending |
 | G5 Production Ready | 2026-07-30 | 段成威 | Pending |
 | G6 Delivery Complete | 2026-07-30 | 段成威 | Pending |

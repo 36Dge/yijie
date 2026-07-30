@@ -126,4 +126,4 @@
 |---|---|---|---|
 | Product/Design / 段成威 | Approved design semantics | 2026-07-30 | App Shell 2.0.0、Chat 1.1.0、Navigation 1.1.0 |
 | Technical / 段成威 | G2 Approved | 2026-07-30 | 用户明确指令“批准 G2，执行 S0 侧栏偏好契约切片” |
-| Local reader/writer consumer / 段成威 | Ready for G2A review | 2026-07-30 | S0 full SHA、测试、完整门禁和回滚检查均已登记；等待 Owner 明确批准 |
+| Local reader/writer consumer / 段成威 | G2A Approved | 2026-07-30 | 用户明确指令“批准 G2A，继续执行 S1”；固定 S0 `b937eb8fdace6e4a2fcb53c158660ffa92fcf79e` |

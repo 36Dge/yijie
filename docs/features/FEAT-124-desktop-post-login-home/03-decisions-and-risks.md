@@ -13,7 +13,7 @@
 | DEC-007 | 设计系统落地 | 页面局部硬编码 / 迁移最小 token 与基础组件 | 迁移最小可复用基础能力 | 避免继续扩大设计系统债务 | 段成威 | Approved at G2；实施仍受 G2A/Slice 门禁约束 |
 | DEC-008 | 侧栏宽度与控制 | 仅 240px / 240px + 72px / 自适应 | 默认 240px、可收起 72px；按钮固定右边界并与品牌区垂直居中 | 两种宽度已有 token；固定边界位置在两种模式下均可发现 | 段成威授权 Codex | Documented |
 | DEC-009 | 导航可用性与位置 | 全部可用 / 占位 / 禁用或隐藏 | “任务记录”紧随“新建任务”；未实现模块禁用；无权限模块隐藏；Settings 置底 | 保持任务创建/历史的邻近关系，避免与工作台、定时任务混淆 | 段成威授权 Codex | Documented |
-| DEC-010 | 侧栏状态生命周期 | 仅当前组件 / 跨路由 / 跨应用重启 | 使用 `yijie.desktop.ui.sidebar.v1 = expanded｜collapsed` 跨路由和重启持久化 | 侧栏是低风险个人 UI 偏好；默认/损坏回退均为展开，回滚安全 | 段成威授权 Codex | S0 committed and validated；G2A ready for Owner review |
+| DEC-010 | 侧栏状态生命周期 | 仅当前组件 / 跨路由 / 跨应用重启 | 使用 `yijie.desktop.ui.sidebar.v1 = expanded｜collapsed` 跨路由和重启持久化 | 侧栏是低风险个人 UI 偏好；默认/损坏回退均为展开，回滚安全 | 段成威授权 Codex | S0 committed and validated；G2A Approved |
 | DEC-011 | Placeholder 播放 | 静态 / 随机 / 固定轮播 | 5 条文案固定顺序每 4 秒轮播；聚焦/输入暂停；reduced-motion 固定第一条 | 可预测、可测试，并减少输入和辅助技术干扰 | 段成威提供文案并授权 Codex 交互设计 | Documented |
 
 ## 2. ADR 判定
@@ -42,6 +42,7 @@
 | R-009 | 需求包的本机绝对参考路径在其他开发机不可访问 | 高 | 中 | 入库前登记参考资产的可共享、合规位置或保存批准截图/摘要 | CI/Reviewer 路径检查 | 使用仓库内批准设计资产引用 | Requirement Owner | 中 |
 | R-010 | 侧栏偏好值损坏、不可用或回滚后遗留 | 低-中 | 低-中 | 版本化 key、封闭枚举、未知值回退展开；旧版本忽略 | reader 单测、重启 smoke、存储检查 | 删除单一 key，恢复默认展开 | 段成威 | 低 |
 | R-011 | 轮播 placeholder 干扰输入或辅助技术 | 中 | 中 | 聚焦/输入暂停；稳定 label；无 aria-live；reduced-motion 固定第一条 | 组件计时测试、键盘/读屏检查 | 关闭轮播并保留第一条 | 段成威 | 低 |
+| R-012 | 锁定的传递依赖 `postcss@8.5.16` 命中 GHSA-r28c-9q8g-f849 | 已发生，候选已修复 | 高 | 段成威批准 workspace root override 固定 `8.5.18`；不把构建绿色替代依赖审计 | `pnpm why postcss` 仅 8.5.18；`pnpm audit --prod` 0 known vulnerabilities | 保留 override，直到上游解析天然不低于修复版本；移除前复跑审计 | 段成威 | 低 |
 
 ## 4. 威胁建模
 
@@ -95,5 +96,5 @@
 |---|---|---|---|---|
 | 业务范围 | 段成威 | Approved：需求范围、五条文案与里程碑 | 2026-07-30 | 用户确认 |
 | 产品/设计 Pattern | 段成威授权 Codex 定稿 | Approved | 2026-07-30 | DEC-006、DEC-008—DEC-011 及三份 Accepted 设计文档 |
-| 架构/Contract Impact | 段成威 | `additive` design approved：仅 Desktop 私有侧栏偏好 | 2026-07-30 | S0 完整 SHA 与验证已登记；等待 Owner G2A 批准 |
+| 架构/Contract Impact | 段成威 | `additive` / G2A Approved：仅 Desktop 私有侧栏偏好 | 2026-07-30 | 固定实现 `b937eb8fdace6e4a2fcb53c158660ffa92fcf79e`；允许 S1 consumer foundation |
 | 安全/数据 | 段成威 | UI 呈现已确认；既有服务端授权不变 | 2026-07-30 | 无权限模块隐藏、输入正文不持久化/不记录 |
