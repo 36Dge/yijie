@@ -128,8 +128,8 @@ Accepted requirements + App Shell 2.0.0 + Chat 1.1.0 + Navigation 1.1.0
 | S1 | `b937eb8fdace6e4a2fcb53c158660ffa92fcf79e` | `efa1e465b478d131f769654075c057132d01a747`：exact Lucide + PostCSS 8.5.18 override + token/theme/brand/icon foundations | audit 0 known vulnerabilities；lint、3 files/12 frontend tests、Rust、build、docs、asset/import checks PASS | G3 Approved by 段成威 | Complete |
 | S2 | `efa1e465b478d131f769654075c057132d01a747` | `e488259fe31a21c4e691646a971b812c00760863`：global App Shell/nav/sidebar/store + theme runtime bridge fix；已推送 `origin/develop` | nav/store/theme 11 tests；full 6 files/23 tests；Rust/lint/build/docs/audit PASS；1180×760 browser smoke PASS | Implementer self-check complete；段成威已授权提交与推送 | Complete |
 | S3 | `e488259fe31a21c4e691646a971b812c00760863` | `7a1220ea3087e152bf07b40a6fb1a7361dacd12e`：placeholder domain/composable/tests + Chat entry + 4 Accepted semantic tokens；本地提交，未请求 push | red 2 suites expected fail；PH 2 files/7 tests；full 8 files/30 tests；Rust/lint/build/docs/audit PASS；1180×760 browser PASS | Implementer self-check complete；段成威已授权提交 | Complete |
-| S4 | `7a1220ea3087e152bf07b40a6fb1a7361dacd12e` | none | NOT RUN | 段成威已授权执行 | Ready |
-| S5 | S0—S4 | none | NOT RUN | Pending | Blocked |
+| S4 | `7a1220ea3087e152bf07b40a6fb1a7361dacd12e` | `be01cc2d0a1c9c4b057de616be201a4843d0a035`：router meta/title/focus + Tasks/Settings shell integration + Tauri min window | ROUTE 1 file/7 tests；full 9 files/37 tests；Rust/lint/build/docs/audit/Tauri build/browser PASS | Implementer self-check complete；段成威已授权提交 | Complete |
+| S5 | `be01cc2d0a1c9c4b057de616be201a4843d0a035` | verification/evidence working tree | 12 组合视觉、reduced-motion、Tauri native 与全门禁待执行 | 段成威已批准执行 | In progress |
 
 ## 9. 每个 Codex 实现任务固定 Context
 
@@ -170,5 +170,6 @@ Repository / branch / base full SHA:
 | S1/G3 Owner Reviewer | 段成威 | G3 Approved；明确授权执行 S2 | 2026-07-31 |
 | S3 Owner | 段成威 | S2 已提交推送；明确授权执行 S3 | 2026-07-31 |
 | S4 Owner | 段成威 | 明确授权提交 S3、登记完整 SHA 并执行 S4 | 2026-07-31 |
+| S5 Owner | 段成威 | 明确授权提交 S4、登记完整 SHA 并执行 S5 完整视觉与原生窗口验证矩阵 | 2026-07-31 |
 | Reviewer | 段成威 | 实现后必须进行与实现阶段分离的结构化审查 | 2026-07-30 |
 | 发布负责人 | 段成威 | 当前只批准计划，不批准提交、push 或发布 | 2026-07-30 |
