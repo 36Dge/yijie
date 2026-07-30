@@ -31,7 +31,7 @@ Accepted requirements + App Shell 2.0.0 + Chat 1.1.0 + Navigation 1.1.0
 |---|---|---|---|---|---|---|---|---|
 | S0 | 建立 sidebar preference v1 权威投影 | AC-010、NFR-005 | yijie-desktop | `src/domain/sidebar-preference.ts`、对应 test | Vue 页面、store、路由、package 依赖 | G2 人工批准 | `pnpm exec vitest run src/domain/sidebar-preference.test.ts`；`make lint/test/build` | 删除两个新增文件 |
 | S1 | 迁入最小 token、Naive theme、Logo、YjIcon | AC-002/003/006、NFR-002/004 | yijie-desktop | `src/styles/variables.css`、`src/design/theme/`、`src/assets/brand/`、`src/icons/`、`src/components/yijie/YjIcon.vue`、`YjLogo.vue`、`package.json`、`pnpm-workspace.yaml`、`pnpm-lock.yaml` | 其它依赖、exports runtime import、页面业务 | G2A passed | exact Lucide + PostCSS security override；audit；`make lint/test/build`；lockfile/diff review | 回退 S1 commit 和依赖/override |
-| S2 | 建立全局 App Shell、导航和 sidebar store | AC-002/003/005/010 | yijie-desktop | `YjAppShell.vue`、`YjSidebar.vue`、`YjNavItem.vue`、`src/navigation/app-nav.ts` + tests、`src/stores/sidebar.store.ts`、`App.vue` | 真实权限 API、禁用模块路由、任务提交 | S0/S1 + G2A | nav/store unit；`make lint/test/build` | 回退 S2，恢复旧 RouterView |
+| S2 | 建立全局 App Shell、导航和 sidebar store | AC-002/003/005/010 | yijie-desktop | `YjAppShell.vue`、`YjSidebar.vue`、`YjNavItem.vue`、`src/navigation/app-nav.ts` + tests、`src/stores/sidebar.store.ts` + tests、`App.vue`；`ChatPage.vue` 只允许移除旧内嵌 shell；`src/styles/main.css` 只允许把旧全局硬编码值切到既有 token | 真实权限 API、禁用模块路由、任务提交、S3 首页内容 | S0/S1 + G2A/G3 | nav/store unit；`make lint/test/build`；browser smoke | 回退 S2，恢复旧 RouterView/Chat 内嵌 shell |
 | S3 | 实现 `/chat` 新建任务入口和轮播 | AC-001/004/007/009 | yijie-desktop | `placeholder-rotation.ts` + test、`useRotatingPlaceholder.ts`、`ChatPage.vue`、必要 scoped CSS | 发送、附件、草稿持久化、API/Agent/Runtime | S2 | PH tests；`make lint/test/build`；浏览器输入检查 | 回退 S3，保留新 Shell |
 | S4 | 整合三条真实路由和窗口基线 | AC-001/005、NFR-001 | yijie-desktop | `router/index.ts` + test、`TasksPage.vue`、`SettingsPage.vue`、`src-tauri/tauri.conf.json` 的 minWidth/minHeight | 新业务路由、capability/CSP/command、Tasks 业务重构 | S2/S3 | router tests；`make lint/test/build`；direct-route smoke | 回退 S4；旧路由表恢复 |
 | S5 | 完成主题、键盘、视觉矩阵和证据 | AC-002/006/007/008、全部 NFR | yijie-desktop + yijie evidence | FEAT-124 对应修复、`08-verification-report.md` | 降低断言、跳过暗色/最小窗口、无关重构 | S0—S4 | 全门禁、`pnpm docs:build`、`pnpm tauri:dev`、12 组合视觉检查 | 失败回到对应 slice，不进入 G4 |
@@ -57,6 +57,7 @@ Accepted requirements + App Shell 2.0.0 + Chat 1.1.0 + Navigation 1.1.0
 ### S2 — App Shell/Nav
 
 - App Shell 上移至 `App.vue`，避免每个页面重复 sidebar。
+- 代码事实显示旧 `ChatPage` 内嵌 220px sidebar；S2 只移除该旧壳层并保留主内容，避免双侧栏，标题/输入/轮播仍由 S3 重做。
 - 导航顺序：新建任务、任务记录、分隔、五个 disabled 模块；Settings 底部。
 - `visible=false` 在纯 resolver 阶段过滤；当前不实现权限服务。
 - disabled 项无 route、无点击/键盘动作；enabled route meta 驱动 selected。
@@ -124,9 +125,9 @@ Accepted requirements + App Shell 2.0.0 + Chat 1.1.0 + Navigation 1.1.0
 | Slice | Base full SHA | Actual diff | Test result | Review | Status |
 |---|---|---|---|---|---|
 | S0 | `4480f4a93eac59b3277fb0650e25f156e7fbc6a9` | `b937eb8fdace6e4a2fcb53c158660ffa92fcf79e`：`src/domain/sidebar-preference.ts` + test | local 9/9；full frontend 10/10；Rust 0 tests；lint/build/docs PASS | G2A Approved by 段成威 | Complete |
-| S1 | `b937eb8fdace6e4a2fcb53c158660ffa92fcf79e` | `efa1e465b478d131f769654075c057132d01a747`：exact Lucide + PostCSS 8.5.18 override + token/theme/brand/icon foundations | audit 0 known vulnerabilities；lint、3 files/12 frontend tests、Rust、build、docs、asset/import checks PASS | Codex self-check complete；Owner G3 review pending | Committed |
-| S2 | `efa1e465b478d131f769654075c057132d01a747` | none | NOT RUN | Pending | Blocked by G3 owner review |
-| S3 | S2 commit | none | NOT RUN | Pending | Blocked |
+| S1 | `b937eb8fdace6e4a2fcb53c158660ffa92fcf79e` | `efa1e465b478d131f769654075c057132d01a747`：exact Lucide + PostCSS 8.5.18 override + token/theme/brand/icon foundations | audit 0 known vulnerabilities；lint、3 files/12 frontend tests、Rust、build、docs、asset/import checks PASS | G3 Approved by 段成威 | Complete |
+| S2 | `efa1e465b478d131f769654075c057132d01a747` | `e488259fe31a21c4e691646a971b812c00760863`：global App Shell/nav/sidebar/store + theme runtime bridge fix；已推送 `origin/develop` | nav/store/theme 11 tests；full 6 files/23 tests；Rust/lint/build/docs/audit PASS；1180×760 browser smoke PASS | Implementer self-check complete；段成威已授权提交与推送 | Complete |
+| S3 | `e488259fe31a21c4e691646a971b812c00760863` | none | NOT RUN | Pending；等待段成威授权执行 | Ready |
 | S4 | S2/S3 commits | none | NOT RUN | Pending | Blocked |
 | S5 | S0—S4 | none | NOT RUN | Pending | Blocked |
 
@@ -166,5 +167,6 @@ Repository / branch / base full SHA:
 |---|---|---|---|
 | 技术负责人 | 段成威 | G2 Approved；明确授权执行 S0 | 2026-07-30 |
 | Contract/Consumer Owner | 段成威 | G2A Approved；明确授权执行 S1 | 2026-07-30 |
+| S1/G3 Owner Reviewer | 段成威 | G3 Approved；明确授权执行 S2 | 2026-07-31 |
 | Reviewer | 段成威 | 实现后必须进行与实现阶段分离的结构化审查 | 2026-07-30 |
 | 发布负责人 | 段成威 | 当前只批准计划，不批准提交、push 或发布 | 2026-07-30 |

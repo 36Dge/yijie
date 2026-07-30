@@ -4,7 +4,7 @@ feature:
   id: "FEAT-124"
   slug: "desktop-post-login-home"
   title: "易界桌面端登录后首页"
-  status: "s1-committed-awaiting-owner-review"
+  status: "s2-complete-awaiting-s3"
   created_at: "2026-07-29"
   requirement_owner: "段成威"
   technical_owner: "段成威"
@@ -48,7 +48,11 @@ immutable_references:
     full_commit: "efa1e465b478d131f769654075c057132d01a747"
     lucide_version: "1.27.0"
     postcss_override: "8.5.18"
-    status: "committed; owner G3 review pending"
+    status: "committed; G3 approved by 段成威 on 2026-07-31"
+  app_shell_slice:
+    full_commit: "e488259fe31a21c4e691646a971b812c00760863"
+    remote_ref: "origin/develop"
+    status: "committed and pushed on 2026-07-31"
   release_artifacts: []
 
 gates:
@@ -56,7 +60,7 @@ gates:
   G1_design_ready: "passed - 2026-07-30"
   G2_implementation_ready: "passed - approved by 段成威 on 2026-07-30"
   G2A_contract_ready: "passed - approved by 段成威 on 2026-07-30"
-  G3_slice_complete: "ready-for-owner-review - S1 committed at efa1e465b478d131f769654075c057132d01a747"
+  G3_slice_complete: "passed - approved by 段成威 on 2026-07-31"
   G4_code_complete: "pending"
   G5_production_ready: "pending"
   G6_delivery_complete: "pending"
