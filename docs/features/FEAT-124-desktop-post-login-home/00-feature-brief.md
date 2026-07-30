@@ -4,7 +4,7 @@
 
 | 字段 | 内容 |
 |---|---|
-| 状态 | Requirements Complete / G0—G3 Passed / S2 Complete / Awaiting S3 |
+| 状态 | Requirements Complete / G0—G3 Passed / S2—S3 Complete / S4 Authorized |
 | 需求负责人 | 段成威 |
 | 技术负责人 | 段成威 |
 | Reviewer | 段成威 |
