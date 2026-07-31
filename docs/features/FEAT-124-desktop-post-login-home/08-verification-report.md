@@ -2,15 +2,15 @@
 
 > 本报告记录固定在 `yijie-desktop`
 > `be01cc2d0a1c9c4b057de616be201a4843d0a035` 上的 S5 实际验证结果。
-> S5 未产生 Desktop 代码修复。与实现阶段分离的 G4 Reviewer pass 仍为
-> `NOT RUN`，因此不宣称 FEAT-124 Full Code Complete 或 Production Ready。
+> S5 未产生 Desktop 代码修复。与实现阶段分离的 G4 Reviewer pass 已执行；
+> G4-001（P2）仍开放，因此不宣称 FEAT-124 Full Code Complete 或 Production Ready。
 
 ## 1. 验证上下文
 
 | Repository | Branch | Base / HEAD | Worktree | Runtime/toolchain | 时间 |
 |---|---|---|---|---|---|
-| `yijie-desktop` | `develop` | S5 candidate `be01cc2d0a1c9c4b057de616be201a4843d0a035` | clean；相对 `origin/develop` ahead 2 | Node 26.0.0、pnpm 11.9.0、Rust/Cargo 1.95.0、Vitest 4.1.10、Vite 8.1.3 | 2026-07-31 |
-| `yijie` | `develop` | S4 evidence HEAD `e640d9965bbcd8ffccf3cd7571d69df1f1281516` | 本报告、计划与 feature 状态为未提交 evidence diff；相对 `origin/develop` ahead 2 | Node 26.0.0、pnpm 11.9.0 | 2026-07-31 |
+| `yijie-desktop` | `develop` | S5 candidate `be01cc2d0a1c9c4b057de616be201a4843d0a035` | clean；与 `origin/develop` 一致 | Node 26.0.0、pnpm 11.9.0、Rust/Cargo 1.95.0、Vitest 4.1.10、Vite 8.1.3 | 2026-07-31 |
+| `yijie` | `develop` | S5 evidence HEAD `11d81d6df296402afcd7a48af2608a01fad4dd97` | G4 review evidence diff；修改前与 `origin/develop` 一致 | Node 26.0.0、pnpm 11.9.0 | 2026-07-31 |
 
 ## 2. 固定实现基线
 
@@ -128,14 +128,34 @@ System Settings、Tauri debug binary、Vite server 和浏览器验证会话均�
 | 业务副作用 | none | 首页输入仅本地；无 fetch/invoke/submit |
 | 敏感数据 | none | 只使用合成测试文本；无 token、PII、商家数据 |
 
-## 8. Review Findings 与残余项
+## 8. G4 独立结构化审查
 
-| Finding / item | Severity | 状态 |
-|---|---|---|
-| Implementer verification 未发现未关闭代码 finding | N/A | Closed |
-| 原生截图未生成（macOS screen recording permission） | Low | 已由 browser screenshot + native AX/window/settings 证据替代；未伪报 |
-| 与实现阶段分离的 G4 Reviewer pass | Medium | `NOT RUN`；阻断 G4 |
-| push、PR、签名、公证、发布验证 | N/A for S5 | 未获本轮授权；阻断 G5/G6 |
+### 8.1 审查范围与方法
+
+- Reviewer 角色与 Implementer 验证阶段分离；本次只读审查 Desktop candidate，未修改
+  `yijie-desktop`。
+- 固定范围：baseline `09d987f09c2f2eac2575187ef57b9b65d1e89ae3` 到
+  candidate `be01cc2d0a1c9c4b057de616be201a4843d0a035`，共 6 个提交、
+  39 个文件、2188 additions / 212 deletions。
+- 审查输入：需求、契约/兼容计划、技术设计、测试计划、完整 diff、测试实现、
+  lockfile、Tauri 配置和 S5 证据。
+- 优先检查：错误结果、越权/数据泄漏、回滚、Must AC、测试共享错误假设、
+  placeholder/mock 进入生产、失败恢复与证据真实性。
+- 独立复跑：`make lint`、`make test`、`make build`、`pnpm docs:build`、
+  `pnpm audit --prod`、`pnpm exec tauri build --debug --no-bundle --ci` 全部 exit 0；
+  前端 9 files/37 tests，Rust 0 tests，prod audit 0 known vulnerabilities。
+- 远端固定：`origin/develop` 已核对为 Desktop candidate 完整 SHA。
+
+### 8.2 Findings
+
+| ID | Severity | 证据 | 触发条件与影响 | 建议与状态 |
+|---|---|---|---|---|
+| G4-001 | P2 / G4 blocking | BR-016、AC-003/005 和 SEC-004 要求实际无权限项不渲染；`App.vue` 创建 `YjAppShell` 时未传权限投影，`YjAppShell` 的 `navigationVisibility` 默认 `{}`；当前测试只对 `resolveAppNavigation(..., { item: false })` 做纯函数断言 | 当服务端/既有权限层判定某模块不可见时，生产 App Shell 没有消费该结果，条目仍按静态配置显示。当前未实现项没有 route 且保持 disabled，因此不构成服务端授权绕过，但违反已批准的可见性 Must AC，且 SEC-004 没有生产集成证据 | 接入已存在且权威的权限投影并增加 App Shell 组件/集成测试；如果权限层确实不在本需求可用范围，则由段成威明确批准把 BR-016/相关 AC 拆到后续 Feature 并修订本需求。Open，阻断 G4 |
+| G4-002 | P3 / residual | `feature.yaml` 和 Brief 仍引用 `/Users/jack/.../01_index.html`；当前文件可读，SHA-256 为 `a27526155a7390f1afd0b9eafdf72f86d7331982dc68069b5cf63cf897bd74c1`，但其他开发机无法访问 | 后续 Reviewer 无法从仓库重放原始视觉参考；不影响构建或当前运行行为 | 保存合规的共享快照/批准摘要，或由 Requirement Owner 明确接受只以仓内 Accepted Pattern 和摘要为权威。已登记 R-009，不单独阻断 G4 |
+| G4-003 | P3 / residual | macOS 未授予屏幕录制权限，原生窗口没有截图 | 不能复核原生像素级差异；浏览器视觉截图和原生 AX/window/settings 证据仍覆盖本次功能行为 | G5 前如要求原生像素制品，授权屏幕录制后补拍。当前不阻断 G4-001 之外的结论 |
+
+P0：0；P1：0；P2：1 open；P3：2 registered。未发现降低断言、手改生成物、
+新增网络/原生权限、任务正文持久化或 secret/PII 泄漏。
 
 ## 9. 结论
 
@@ -143,8 +163,12 @@ System Settings、Tauri debug binary、Vite server 和浏览器验证会话均�
   `be01cc2d0a1c9c4b057de616be201a4843d0a035`，未产生 Desktop 代码改动。
 - 12 组合矩阵：在跳过指令到达前已完成；收到指令后未重复。
 - 第 4 步真实原生验证：PASS，包括最小窗口、reduced-motion、键盘、主题热切换和重启偏好。
-- FEAT-124 Full Code Complete：否；独立 G4 Reviewer pass 尚未执行。
-- Production Ready / Delivery Complete：否；G5/G6、push、发布与 macOS 发布链路均未批准或执行。
-- 验证人：Codex Implementer；Owner/Reviewer 为段成威。
+- G4 结构化审查：已执行；P0/P1 为 0，但 G4-001（P2）仍开放，因此 G4
+  `BLOCKED`，不得宣称 FEAT-124 Full Code Complete。
+- 两仓 `develop` 已推送；Production Ready / Delivery Complete：否，G5/G6、PR、
+  签名、公证与发布链路均未批准或执行。
+- 验证人：Codex Implementer；G4 Reviewer pass：Codex Reviewer；
+  Owner/业务 Reviewer 为段成威。
 - 日期：2026-07-31。
-- 下一步：由段成威批准并执行与实现阶段分离的 G4 结构化代码审查。
+- 下一步：段成威选择并批准 G4-001 的处理方式：接入权威权限投影，或明确拆分/
+  接受本需求范围调整；关闭后复跑 G4。

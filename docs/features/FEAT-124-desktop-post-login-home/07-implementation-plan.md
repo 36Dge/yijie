@@ -127,9 +127,9 @@ Accepted requirements + App Shell 2.0.0 + Chat 1.1.0 + Navigation 1.1.0
 | S0 | `4480f4a93eac59b3277fb0650e25f156e7fbc6a9` | `b937eb8fdace6e4a2fcb53c158660ffa92fcf79e`：`src/domain/sidebar-preference.ts` + test | local 9/9；full frontend 10/10；Rust 0 tests；lint/build/docs PASS | G2A Approved by 段成威 | Complete |
 | S1 | `b937eb8fdace6e4a2fcb53c158660ffa92fcf79e` | `efa1e465b478d131f769654075c057132d01a747`：exact Lucide + PostCSS 8.5.18 override + token/theme/brand/icon foundations | audit 0 known vulnerabilities；lint、3 files/12 frontend tests、Rust、build、docs、asset/import checks PASS | G3 Approved by 段成威 | Complete |
 | S2 | `efa1e465b478d131f769654075c057132d01a747` | `e488259fe31a21c4e691646a971b812c00760863`：global App Shell/nav/sidebar/store + theme runtime bridge fix；已推送 `origin/develop` | nav/store/theme 11 tests；full 6 files/23 tests；Rust/lint/build/docs/audit PASS；1180×760 browser smoke PASS | Implementer self-check complete；段成威已授权提交与推送 | Complete |
-| S3 | `e488259fe31a21c4e691646a971b812c00760863` | `7a1220ea3087e152bf07b40a6fb1a7361dacd12e`：placeholder domain/composable/tests + Chat entry + 4 Accepted semantic tokens；本地提交，未请求 push | red 2 suites expected fail；PH 2 files/7 tests；full 8 files/30 tests；Rust/lint/build/docs/audit PASS；1180×760 browser PASS | Implementer self-check complete；段成威已授权提交 | Complete |
-| S4 | `7a1220ea3087e152bf07b40a6fb1a7361dacd12e` | `be01cc2d0a1c9c4b057de616be201a4843d0a035`：router meta/title/focus + Tasks/Settings shell integration + Tauri min window | ROUTE 1 file/7 tests；full 9 files/37 tests；Rust/lint/build/docs/audit/Tauri build/browser PASS | Implementer self-check complete；段成威已授权提交 | Complete |
-| S5 | `be01cc2d0a1c9c4b057de616be201a4843d0a035` | 无 Desktop 代码改动；本文件、`feature.yaml`、`08-verification-report.md` 为未提交 evidence diff | 12 组合在跳过指令到达前已完成且未重复；真实 OS reduced-motion、Tauri 原生窗口/键盘/重启偏好、主题热切换、全门禁 PASS | Implementer verification complete；段成威要求跳过后续矩阵动作并直接完成第 4 步 | Complete；G4 pending |
+| S3 | `e488259fe31a21c4e691646a971b812c00760863` | `7a1220ea3087e152bf07b40a6fb1a7361dacd12e`：placeholder domain/composable/tests + Chat entry + 4 Accepted semantic tokens；已推送 `origin/develop` | red 2 suites expected fail；PH 2 files/7 tests；full 8 files/30 tests；Rust/lint/build/docs/audit PASS；1180×760 browser PASS | Implementer self-check complete；段成威已授权提交与推送 | Complete |
+| S4 | `7a1220ea3087e152bf07b40a6fb1a7361dacd12e` | `be01cc2d0a1c9c4b057de616be201a4843d0a035`：router meta/title/focus + Tasks/Settings shell integration + Tauri min window；已推送 `origin/develop` | ROUTE 1 file/7 tests；full 9 files/37 tests；Rust/lint/build/docs/audit/Tauri build/browser PASS | Implementer self-check complete；段成威已授权提交与推送 | Complete |
+| S5 | `be01cc2d0a1c9c4b057de616be201a4843d0a035` | 无 Desktop 代码改动；S5 evidence 已提交并推送为 `11d81d6df296402afcd7a48af2608a01fad4dd97` | 12 组合在跳过指令到达前已完成且未重复；真实 OS reduced-motion、Tauri 原生窗口/键盘/重启偏好、主题热切换、全门禁 PASS | Implementer verification complete；独立 G4 review 已执行并登记 G4-001 | Complete；G4 blocked |
 
 ## 9. 每个 Codex 实现任务固定 Context
 
@@ -171,5 +171,6 @@ Repository / branch / base full SHA:
 | S3 Owner | 段成威 | S2 已提交推送；明确授权执行 S3 | 2026-07-31 |
 | S4 Owner | 段成威 | 明确授权提交 S3、登记完整 SHA 并执行 S4 | 2026-07-31 |
 | S5 Owner | 段成威 | 明确授权提交 S4、登记完整 SHA 并执行 S5 完整视觉与原生窗口验证矩阵 | 2026-07-31 |
+| G4 Codex Reviewer | Codex（与 Implementer 阶段分离的只读 pass） | P0/P1=0；G4-001 P2 open，Code Complete blocked | 2026-07-31 |
 | Reviewer | 段成威 | 实现后必须进行与实现阶段分离的结构化审查 | 2026-07-30 |
-| 发布负责人 | 段成威 | 当前只批准计划，不批准提交、push 或发布 | 2026-07-30 |
+| 发布负责人 | 段成威 | 已批准并完成本轮 add/commit/push；未批准 PR、tag 或发布 | 2026-07-31 |

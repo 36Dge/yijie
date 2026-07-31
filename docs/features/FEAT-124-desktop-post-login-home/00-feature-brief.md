@@ -4,7 +4,7 @@
 
 | 字段 | 内容 |
 |---|---|
-| 状态 | Requirements Complete / G0—G3 Passed / S2—S4 Complete / S5 Authorized |
+| 状态 | Requirements Complete / G0—G3 Passed / S0—S5 Complete / G4 Review Blocked |
 | 需求负责人 | 段成威 |
 | 技术负责人 | 段成威 |
 | Reviewer | 段成威 |
@@ -108,7 +108,7 @@
 | G1 设计就绪 | 2026-07-30 | 段成威 | Passed |
 | G2 可开始实现 | 2026-07-30 | 段成威 | Passed；用户明确批准 |
 | G2A 私有契约就绪 | 2026-07-30 | 段成威 | Passed；用户明确批准并授权执行 S1 |
-| G4 Code Complete | 2026-07-30 | 段成威 | Pending |
+| G4 Code Complete | 2026-07-30 | 段成威 | Blocked：G4-001 权限投影未接入生产 App Shell |
 | G5 Production Ready | 2026-07-30 | 段成威 | Pending |
 | G6 Delivery Complete | 2026-07-30 | 段成威 | Pending |
 
@@ -119,3 +119,4 @@
 | 2026-07-29 | Codex | 创建 Brief，写入已验证事实与阻塞项 | 用户要求创建 Feature Package |
 | 2026-07-30 | Codex | 写入默认路由、标题、输入范围、导航、顶部状态、侧栏、Settings、Tasks 与权限呈现决策 | 用户逐项确认 |
 | 2026-07-30 | Codex | 补齐 Owner/里程碑，定稿 placeholder、任务记录位置、侧栏偏好，并同步 Desktop 设计 Pattern | 段成威提供信息并授权 Codex 设计 |
+| 2026-07-31 | Codex Reviewer | 独立审查固定 Desktop candidate；登记 G4-001 并阻断 G4 | 生产 App Shell 未接入权限可见性投影 |
