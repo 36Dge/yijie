@@ -129,7 +129,7 @@ Accepted requirements + App Shell 2.0.0 + Chat 1.1.0 + Navigation 1.1.0
 | S2 | `efa1e465b478d131f769654075c057132d01a747` | `e488259fe31a21c4e691646a971b812c00760863`：global App Shell/nav/sidebar/store + theme runtime bridge fix；已推送 `origin/develop` | nav/store/theme 11 tests；full 6 files/23 tests；Rust/lint/build/docs/audit PASS；1180×760 browser smoke PASS | Implementer self-check complete；段成威已授权提交与推送 | Complete |
 | S3 | `e488259fe31a21c4e691646a971b812c00760863` | `7a1220ea3087e152bf07b40a6fb1a7361dacd12e`：placeholder domain/composable/tests + Chat entry + 4 Accepted semantic tokens；本地提交，未请求 push | red 2 suites expected fail；PH 2 files/7 tests；full 8 files/30 tests；Rust/lint/build/docs/audit PASS；1180×760 browser PASS | Implementer self-check complete；段成威已授权提交 | Complete |
 | S4 | `7a1220ea3087e152bf07b40a6fb1a7361dacd12e` | `be01cc2d0a1c9c4b057de616be201a4843d0a035`：router meta/title/focus + Tasks/Settings shell integration + Tauri min window | ROUTE 1 file/7 tests；full 9 files/37 tests；Rust/lint/build/docs/audit/Tauri build/browser PASS | Implementer self-check complete；段成威已授权提交 | Complete |
-| S5 | `be01cc2d0a1c9c4b057de616be201a4843d0a035` | verification/evidence working tree | 12 组合视觉、reduced-motion、Tauri native 与全门禁待执行 | 段成威已批准执行 | In progress |
+| S5 | `be01cc2d0a1c9c4b057de616be201a4843d0a035` | 无 Desktop 代码改动；本文件、`feature.yaml`、`08-verification-report.md` 为未提交 evidence diff | 12 组合在跳过指令到达前已完成且未重复；真实 OS reduced-motion、Tauri 原生窗口/键盘/重启偏好、主题热切换、全门禁 PASS | Implementer verification complete；段成威要求跳过后续矩阵动作并直接完成第 4 步 | Complete；G4 pending |
 
 ## 9. 每个 Codex 实现任务固定 Context
 
