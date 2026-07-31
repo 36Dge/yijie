@@ -1,0 +1,101 @@
+schema_version: 1
+
+feature:
+  id: "FEAT-125"
+  slug: "authoritative-permission-projection"
+  title: "权威身份与权限投影"
+  status: "contracts-candidate-ready-g2a-pending"
+  created_at: "2026-07-31"
+  requirement_owner: "段成威"
+  technical_owner: "段成威"
+  reviewer: "段成威"
+  release_owner: "段成威"
+
+scope:
+  risk_level: "high"
+  data_classification: "confidential"
+  contract_impact: "semantic"
+  database_change: "expand"
+  ai_behavior_change: "none"
+
+repositories:
+  - name: "yijie"
+    role: "feature package, ADR coordination, cross-repository gates and FEAT-124 linkage"
+    branch: "develop"
+    baseline_full_commit: "ef0f50e41128c44ea91bf2e581e1fecf14c7b95c"
+    remote_ref: "origin/develop"
+  - name: "yijie-contracts"
+    role: "authoritative Public OpenAPI source and generated SDK producer"
+    branch: "develop"
+    baseline_full_commit: "5320c302f5c00f4080e9c3662a3f21cc1c4b813e"
+    remote_ref: "origin/develop"
+  - name: "yijie-api"
+    role: "direct IdP RS256 JWT verifier, tenant membership/RBAC authority and capability projection producer"
+    branch: "develop"
+    baseline_full_commit: "2834b412ad565651215bd12458276c4e0d8fecf5"
+    remote_ref: "origin/develop"
+  - name: "yijie-desktop"
+    role: "native OIDC/Keychain and operation-scoped authenticated transport boundary, generated contract consumer, fail-closed permission state, navigation and route enforcement"
+    branch: "develop"
+    baseline_full_commit: "be01cc2d0a1c9c4b057de616be201a4843d0a035"
+    remote_ref: "origin/develop"
+
+immutable_references:
+  architecture_decision:
+    id: "ADR-0012"
+    path: "../../adr/ADR-0012-authoritative-identity-tenant-and-permission-boundary.md"
+    status: "accepted - 2026-07-31 - 段成威"
+  supported_contract_baseline:
+    version: "contracts-v0.2.0"
+    full_commit: "f16a497e1377f45747f8ff9292b4b60cf2027f88"
+    tag_object: "c6e8577dc68c0962bb16bfed0550b48c18fc9f47"
+    status: "supported; remote tag provenance re-verified 2026-08-01"
+  current_public_contract:
+    full_commit: "5320c302f5c00f4080e9c3662a3f21cc1c4b813e"
+    source: "openapi/public/public.yaml"
+    sha256: "a1033e382495dbc1aa7eaac0a49c4de5712e01264d1d26b3e56125c667acf6a4"
+    security: "global security empty; no production identity contract"
+  planned_contract:
+    version: "0.3.0 candidate"
+    planned_tag: "contracts-v0.3.0"
+    s1_source_full_commit: "ab5e71db6e4d61eb9c761446066142de2edbb444"
+    full_commit: "9ec34abd6e7dfb5a23b0154d467694167224ebbb"
+    remote_status: "origin/develop verified at 9ec34abd6e7dfb5a23b0154d467694167224ebbb on 2026-08-01; tag not created"
+    public_source_sha256: "7bd40dd1c5a53cc1dcd317e3a64bf7189170fd7f575b25bb07f0eb243d0319ed"
+    typescript_generated_sha256: "77babb215608c6ace4468d37b72fc8e43f5758231c7807a4301063cb156ae8e0"
+    go_generated_sha256: "01d31efc1b1c3fb69e18c853d67ea12cdc313c2709f2a02d02e2a01b6ff4d253"
+    runtime_manifest_sha256: "5d374eb1b3012e08a10f8b8ce629a9ab12bbea6a11de379425cd8feaefdb8ea1"
+    sdk_tarball_sha256: "43a54d7f9f01edd6b50adcebb8c3b4b645dab7ec8cf4aafe20b62d7d98718565"
+    generator: "openapi-typescript@7.13.0 and oapi-codegen@v2.7.2"
+  linked_blocker:
+    feature: "FEAT-124-desktop-post-login-home"
+    implementation_full_commit: "be01cc2d0a1c9c4b057de616be201a4843d0a035"
+    finding: "G4-001"
+    status: "must remain blocked until FEAT-125 producer, consumer and cross-tenant evidence pass"
+  release_artifacts:
+    - name: "yijie-contracts-0.3.0.tgz"
+      status: "local candidate artifact only; not published"
+      sha256: "43a54d7f9f01edd6b50adcebb8c3b4b645dab7ec8cf4aafe20b62d7d98718565"
+
+gates:
+  G0_intake: "passed - 2026-07-31 - package created from verified repository facts"
+  G1_design_ready: "passed - 2026-07-31 - 段成威 approved A1-A6 identity, tenant, RBAC, Settings core and Tasks isolation decisions"
+  G2_implementation_ready: "passed - 2026-07-31 - semantic contract and cross-repository design approved; Contracts candidate work may start, API/Desktop remain gated by G2A"
+  G2A_contract_ready: "pending - candidate, S1/S2 evidence and remote availability complete 2026-08-01; requires explicit 段成威 approval"
+  G3_slice_complete: "pending"
+  G4_code_complete: "pending"
+  G5_production_ready: "pending"
+  G6_delivery_complete: "pending"
+
+documents:
+  brief: "00-feature-brief.md"
+  requirements: "01-requirements.md"
+  impact: "02-impact-assessment.md"
+  decisions_and_risks: "03-decisions-and-risks.md"
+  contract_plan: "04-contract-change-plan.md"
+  technical_design: "05-technical-design.md"
+  test_plan: "06-test-plan.md"
+  implementation_plan: "07-implementation-plan.md"
+  verification: "08-verification-report.md"
+  release_and_rollback: "09-release-and-rollback.md"
+  delivery_summary: "10-delivery-summary.md"

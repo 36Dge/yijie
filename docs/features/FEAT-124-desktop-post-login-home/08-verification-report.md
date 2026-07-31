@@ -150,7 +150,7 @@ System Settings、Tauri debug binary、Vite server 和浏览器验证会话均�
 
 | ID | Severity | 证据 | 触发条件与影响 | 建议与状态 |
 |---|---|---|---|---|
-| G4-001 | P2 / G4 blocking | BR-016、AC-003/005 和 SEC-004 要求实际无权限项不渲染；`App.vue` 创建 `YjAppShell` 时未传权限投影，`YjAppShell` 的 `navigationVisibility` 默认 `{}`；当前测试只对 `resolveAppNavigation(..., { item: false })` 做纯函数断言 | 当服务端/既有权限层判定某模块不可见时，生产 App Shell 没有消费该结果，条目仍按静态配置显示。当前未实现项没有 route 且保持 disabled，因此不构成服务端授权绕过，但违反已批准的可见性 Must AC，且 SEC-004 没有生产集成证据 | 接入已存在且权威的权限投影并增加 App Shell 组件/集成测试；如果权限层确实不在本需求可用范围，则由段成威明确批准把 BR-016/相关 AC 拆到后续 Feature 并修订本需求。Open，阻断 G4 |
+| G4-001 | P2 / G4 blocking | BR-016、AC-003/005 和 SEC-004 要求实际无权限项不渲染；`App.vue` 创建 `YjAppShell` 时未传权限投影，`YjAppShell` 的 `navigationVisibility` 默认 `{}`；当前测试只对 `resolveAppNavigation(..., { item: false })` 做纯函数断言 | 当服务端/既有权限层判定某模块不可见时，生产 App Shell 没有消费该结果，条目仍按静态配置显示。当前未实现项没有 route 且保持 disabled，因此不构成服务端授权绕过，但违反已批准的可见性 Must AC，且 SEC-004 没有生产集成证据 | 由 `FEAT-125-authoritative-permission-projection` 建立受信身份、活动租户、服务端 RBAC、Public contract 和 Desktop fail-closed 生产接入；只有真实 producer/consumer、多角色多租户集成通过后，才更新本 Feature 的 Desktop SHA 并独立复跑 G4。Open，阻断 G4 |
 | G4-002 | P3 / residual | `feature.yaml` 和 Brief 仍引用 `/Users/jack/.../01_index.html`；当前文件可读，SHA-256 为 `a27526155a7390f1afd0b9eafdf72f86d7331982dc68069b5cf63cf897bd74c1`，但其他开发机无法访问 | 后续 Reviewer 无法从仓库重放原始视觉参考；不影响构建或当前运行行为 | 保存合规的共享快照/批准摘要，或由 Requirement Owner 明确接受只以仓内 Accepted Pattern 和摘要为权威。已登记 R-009，不单独阻断 G4 |
 | G4-003 | P3 / residual | macOS 未授予屏幕录制权限，原生窗口没有截图 | 不能复核原生像素级差异；浏览器视觉截图和原生 AX/window/settings 证据仍覆盖本次功能行为 | G5 前如要求原生像素制品，授权屏幕录制后补拍。当前不阻断 G4-001 之外的结论 |
 
@@ -170,5 +170,8 @@ P0：0；P1：0；P2：1 open；P3：2 registered。未发现降低断言、手�
 - 验证人：Codex Implementer；G4 Reviewer pass：Codex Reviewer；
   Owner/业务 Reviewer 为段成威。
 - 日期：2026-07-31。
-- 下一步：段成威选择并批准 G4-001 的处理方式：接入权威权限投影，或明确拆分/
-  接受本需求范围调整；关闭后复跑 G4。
+- 下一步：`FEAT-125-authoritative-permission-projection` 的 A1—A6、G1/G2 已于
+  2026-07-31 批准；Contracts local candidate `9ec34abd6e7dfb5a23b0154d467694167224ebbb`
+  已于 2026-08-01 完成门禁并推送到远端，仍需段成威单独通过 G2A，再完成 API/Desktop
+  实现、真实集成和生产 Tasks 双隔离负向证据。在这些证据齐备前保持 G4-001 Open；之后
+  更新固定 Desktop SHA、关闭 finding 并重新执行独立 G4。

@@ -120,3 +120,7 @@
 | 2026-07-30 | Codex | 写入默认路由、标题、输入范围、导航、顶部状态、侧栏、Settings、Tasks 与权限呈现决策 | 用户逐项确认 |
 | 2026-07-30 | Codex | 补齐 Owner/里程碑，定稿 placeholder、任务记录位置、侧栏偏好，并同步 Desktop 设计 Pattern | 段成威提供信息并授权 Codex 设计 |
 | 2026-07-31 | Codex Reviewer | 独立审查固定 Desktop candidate；登记 G4-001 并阻断 G4 | 生产 App Shell 未接入权限可见性投影 |
+| 2026-07-31 | Codex | 将 G4-001 remediation 关联到 `FEAT-125-authoritative-permission-projection` | 保持 G4 阻断，不以硬编码权限关闭 finding |
+| 2026-07-31 | Codex | 同步 FEAT-125 G1/G2 已批准、G2A 与实现仍待完成 | 设计批准不等于生产权限投影或 Tasks 隔离证据完成，G4-001 继续阻断 |
+| 2026-08-01 | Codex | 同步 FEAT-125 S1/S2 local contracts candidate `9ec34abd...` 与门禁 PASS | 远端 push、G2A、API/Desktop 生产接入、集成与 Tasks 隔离证据仍缺，G4-001 继续阻断 |
+| 2026-08-01 | Codex | 同步 FEAT-125 candidate 已推送，yijie-contracts origin/develop = `9ec34abd...` | G2A、API/Desktop 生产接入、集成与 Tasks 隔离证据仍缺，G4-001 继续阻断 |
