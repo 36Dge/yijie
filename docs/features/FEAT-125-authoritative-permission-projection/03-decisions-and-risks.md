@@ -18,6 +18,7 @@
 | DEC-012 | 数据与审计 | 无持久化 / session store / PostgreSQL expand | PostgreSQL expand；`authorization_revision` int64、wire 范围 `1..9007199254740991`、投影最长 5 分钟；无 Redis 权限缓存、无 sessions 表；授权写与通用 append-only audit 同事务 | PostgreSQL 是唯一事实源，失败整体回滚 | 段成威 | Accepted / A4 |
 | DEC-013 | Public API 错误 | 复用任意 HTTP 状态 / 固定安全语义 | 仅 400/401/403/500/503；不使用 409；200-empty 表示合法零权限 | consumer 可稳定 fail-closed 且不混淆无权限与依赖故障 | 段成威 | Accepted / A3、A4 |
 | DEC-014 | 当前无云资源时如何完成工程集成 | 等待云资源 / HTTP mock / 本地类生产环境 | G3-NP-LOCAL：loopback-only Keycloak + 专用 PostgreSQL + Caddy HTTPS + synthetic data；IdP/API 为 `localhost` 独立端口；Desktop 显式 CA pin 与 Keychain issuer/client/environment binding | 不等待云资源，同时保留真实 OIDC/TLS/RBAC/隔离语义；禁止 mock 或 insecure TLS 冒充集成 | 段成威 | Accepted / A7；offline ready/core online/final gates PASS |
+| DEC-015 | S7 外部前置暂不可得时是否阻断后续业务开发 | 无限继续本地模拟 / 完全阻断业务 / 分离本地工程与生产激活里程碑 | `Local Engineering Baseline Complete / Production Activation Blocked`；冻结 S7 到真实部署准备，允许首页/聊天/Tasks 使用合成身份与权限继续开发；flags 默认关闭 | 当前无生产资源、生产 IdP 或 Apple 签名能力；现有契约/API/consumer/local 安全基线足以支持业务编码，但不足以宣称生产完成 | 段成威 | Approved 2026-08-01；不改变 ADR/契约；G4/G5/G6 保持未通过 |
 
 段成威已于 2026-07-31 明确批准 A1—A6。G1 需求/架构决策与 G2 设计门通过；2026-08-01
 已执行并完成获特别授权的 S1/S2 Contracts candidate；段成威已于 2026-08-01 通过 G2A，
@@ -32,6 +33,9 @@ two fixed users/password reset/refresh revocation `invalid_grant` live conforman
 HTTPS synthetic user provisioning、offline ready 与 synthetic API bootstrap 已完成。API
 local-only 显式 CA PEM + lowercase SHA-256 pin 已通过结构化审查（P0/P1/P2=0），最终 core
 online 与三仓门禁 PASS，因此 G3 PASS；随后 S5B 已单独批准、完成并远端核验。
+S7 已留下真实 blocker 证据，段成威随后批准 DEC-015：当前停止扩展 S7并登记本地工程基线
+完成；生产 IdP、Apple 签名/Keychain、refresh family、2×2 bearer/performance 与生产运维证据
+转为真实部署前强制恢复项，不作为当前业务代码开发的前置。
 
 ## 2. ADR 判定
 
@@ -43,8 +47,9 @@ online 与三仓门禁 PASS，因此 G3 PASS；随后 S5B 已单独批准、完�
   operation-scoped Rust authenticated transport、`X-Yijie-Tenant-ID`、RBAC 数据权威、
   bootstrap、审计、Tasks 双隔离/FEAT-126 与 Infra/CSP 责任。
 - 架构 Owner：段成威。
-- 当前状态：Accepted；G1/G2/G2A Passed；S1—S4 与 S5A complete and remote verified。
-  S5B consumer/store 与 S6 UI 已完成并远端核验；S7 集成已获执行授权，生产激活仍需 G5/G6。
+- 当前状态：Accepted；G1/G2/G2A Passed；S1—S6 complete and remote verified；G3-NP-LOCAL
+  PASS；Local Engineering Baseline Complete。S7 已执行到真实 blocker 后冻结，真实部署准备时
+  恢复；生产激活仍需完整 S7/G4/G5/G6。
 
 ## 3. 风险登记
 
@@ -67,8 +72,10 @@ online 与三仓门禁 PASS，因此 G3 PASS；随后 S5B 已单独批准、完�
 | R-015 | 本地 CA 或 local-integration 配置泄漏到生产/扩大信任 | low-medium | critical | local profile 显式开启；仅允许 `localhost`；CA regular-file/no-symlink/权限/大小/digest 校验；默认 WebPKI；local secrets/CA private key ignored | config negative tests、artifact/env/Git scan、启动 fail-fast | 关闭 local profile、清理本地凭证/CA trust、重新登录 | 段成威 | low |
 | R-016 | Keycloak native redirect 注册只放宽动态端口时意外放宽 path | medium | high | 必须以真实 authorize request 证明动态端口下仅接受 `/oauth/callback`；禁止 `*` 或任意 path；不满足则 G3 FAIL 并重新评审 provider | offline realm validator + online positive/negative redirect preflight | 保持 exact callback 配置与 drift 负测，不降低 callback 要求 | 段成威 | runtime proof PASS；correct path accepted / wrong path rejected |
 | R-017 | API 启动期 JWKS HTTPS 无本地 CA trust | closed | critical | API local-profile-only explicit CA、exact localhost、single PEM/≤64KiB/0400或0600/regular non-symlink、lowercase SHA-256 pin、isolated proxy-free/no-redirect client；default/production fail closed | API startup/readiness + core online | 删除 local env 即安全回退；不修改系统 Keychain | 段成威 | closed；P0/P1/P2=0，P3 测试增强非阻断 |
-| R-020 | refresh rotation 后 Keychain save fail 未撤销新 token；非法 refresh response 未撤销当前 token | medium | high | 登记 `S5A-REV-OPEN-001`，不得误报完整 token-family cleanup | S7 auth lifecycle/fault E2E | 修复后重跑 signed native auth lifecycle | 段成威 | open P2；不阻断 G3/S5B，阻断 S7/G5/生产 |
-| R-018 | Keycloak rotation 被误报为 reuse-revokes-family | high if wording not constrained | high | 本地 config 固定 `provider_limit_documented`；G3 只记录 rotation，不记录 A2 family PASS | S7 provider auth-lifecycle E2E | 换用满足要求的 provider/补偿控制并重新走安全评审 | 段成威 | blocks S7/G5, not S5B implementation |
+| R-020 | refresh rotation 后 Keychain save fail 未撤销新 token；非法 refresh response 未撤销当前 token | closed in Desktop `155854cf3662384caa2c8bffe0a47935ef4a70b5` | high | 非法 refresh 先撤销当前 token；rotated token 落盘失败先撤销新 token，再清本地会话；两条故障测试覆盖 exact token | Desktop 全量 Rust/Clippy + fault tests PASS；远端 SHA 已核验；signed lifecycle 仍受 R-021/R-022 阻断 | 保持 feature off；真实部署前复跑 signed lifecycle | 段成威 | `S5A-REV-OPEN-001` resolved and remote verified；不再是 S7 blocker |
+| R-018 | Keycloak rotation 被误报为 reuse-revokes-family | high if wording not constrained | high | 本地 config 固定 `provider_limit_documented`；G3 只记录 rotation，不记录 A2 family PASS | 生产恢复时执行 provider auth-lifecycle E2E | 换用满足要求的 provider/补偿控制并重新走安全评审 | 段成威 | deferred production-activation blocker；不阻断本地业务开发 |
+| R-021 | pinned Keycloak 26.7 access JWT 缺少已批准 API 契约要求的 `nbf` | high | high | S7 harness 在发送 bearer 前严格校验 `iss/sub/aud/alg/kid/iat/nbf/exp`；不得放宽 API 或伪造 claim | 真实系统浏览器 Code+PKCE/loopback/code exchange 后稳定得到 `not_before_missing`；API 对同 token 返回 401 | 选择原生支持 `nbf` 的获批 IdP，或由段成威另行批准修改身份契约/ADR 后重做 API/provider conformance | 段成威 | open；deferred blocker for resumed S7/G4/G5，不阻断本地业务开发 |
+| R-022 | 当前 Mac 无有效 code-signing identity/entitlement，Data Protection Keychain 真机写入失败 | high | high | 只执行隔离 synthetic service 的 ignored smoke；失败后确认无残留；不得降级普通 Keychain、文件或 LocalStorage | macOS error `-34018`；`security find-identity -v -p codesigning` 为 0 | 配置匹配的 Apple Development provisioning/entitlement，生成签名 native candidate 后复跑完整 Keychain/browser/Rust lifecycle | 段成威 | open；deferred blocker for resumed S7/G4/G5，不阻断本地业务开发 |
 | R-019 | local bootstrap 误连共享或真实数据库 | high before guard | critical | `feat-125-local-lab` 在任何 DB 访问前锁死 exact issuer、credentialed `postgres://<credentials>@127.0.0.1:5432/yijie_api_feat125_local?sslmode=disable` 结构及固定 tracked 2×2 manifests；错误脱敏 | profile/DSN/manifest 负测 + 空库 inventory + 首次/幂等 bootstrap 对账 | unknown/drift fail closed；禁止写操作 | 段成威 | resolved in API `faeb78019d95aaf9dcfbd8493f8bc2ecf7e4bf34`；dedicated DB runtime proof PASS |
 
 ## 4. 威胁建模

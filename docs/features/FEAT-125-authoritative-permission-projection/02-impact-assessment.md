@@ -199,7 +199,7 @@ G1/G2 已于 2026-07-31 批准 A1—A6。具体 migration 字段、索引、FK�
 | API unit/lint | `make lint && make test` | Go/race/coverage | S3/S4 auth/RBAC/endpoint/fault/metrics PASS；staging 不在该命令内 |
 | API PostgreSQL integration | `make test-integration` / `make test-all` | 临时 schema/migration | S3/S4 migration、复合 FK、2×2 RBAC projection PASS；G3 synthetic bootstrap 首次/幂等/audit/revision PASS；staging 待 S7 |
 | API generate | `make generate-check` | Go OpenAPI types | exact `9ec34abd...` + oapi-codegen v2.7.2 drift check PASS |
-| Desktop quality | `make lint && make test && make build` | Vue/TS/Rust | S5A—S6 remote PASS；S6 18 files/113 frontend + 36 Rust tests、browser、docs、debug Tauri 与 audits PASS；final `688fb72ddf...` |
+| Desktop quality | `make lint && make test && make build` | Vue/TS/Rust | S5A—S6 remote PASS；S7 refresh cleanup 113 frontend + 38 Rust PASS/1 ignored；freeze baseline `155854cf...` remote verified；signed Keychain remains production blocker |
 | Desktop docs/native | `pnpm docs:build`、`pnpm tauri:build --debug`、cargo/npm/license audit | design/native | S5A 本地 `.app/.dmg` 与审计 PASS；真实 API origin/CSP、签名/公证未定 |
 | Feature package | `check-feature-package.sh` | 文档结构 | 不替代人工批准 |
 
@@ -232,7 +232,7 @@ G1/G2 已于 2026-07-31 批准 A1—A6。具体 migration 字段、索引、FK�
 
 | ID | 未知项 | 允许的只读/隔离验证 | 禁止副作用 | Owner | 结论 |
 |---|---|---|---|---|---|
-| SPIKE-001 | direct IdP RS256 JWT 与 Desktop login flow | G3 只验证固定本地 Keycloak metadata、issuer/client/JWKS 与 API startup/readiness；完整 Tauri login/refresh/Keychain 属于 S7/G5 | 不注册生产应用、不写 secret | 段成威 | A1/A2/A7 Approved；live realm/offline ready/core online PASS；本地 family reuse 未证明；production provider 仍待 G5 |
+| SPIKE-001 | direct IdP RS256 JWT 与 Desktop login flow | G3 只验证固定本地 Keycloak metadata、issuer/client/JWKS 与 API startup/readiness；完整 Tauri login/refresh/Keychain 在真实部署前恢复 S7/G5 | 不注册生产应用、不写 secret | 段成威 | A1/A2/A7 Approved；live realm/offline ready/core online PASS；本地 family reuse 未证明；当前 local baseline complete，production provider 仍待 G5 |
 | SPIKE-002 | required `X-Yijie-Tenant-ID` 与 membership/status 验证 | 用合成状态图/测试替身验证 missing/invalid/denied | 不把 request tenant 当授权事实 | 段成威 | A3 Approved；S4 header/endpoint、原子 projection 与 400/403 负测 PASS；跨仓 E2E 待 S7 |
 | SPIKE-003 | RBAC schema 与 bootstrap | 临时 schema migration rehearsal | 不写真实用户/租户，不建 API session 表 | 段成威 | A4 Approved；G3 local DB migration 2 与可审计幂等 synthetic bootstrap candidate PASS；生产 bootstrap 仍待 G5 |
 | SPIKE-004 | 现有 Tasks API production disposition | 验证本地 `feat-125-local-lab` profile + Caddy 双隔离并创建 FEAT-126 | 不静默改 Tasks wire contract 或默认 API profile | 段成威 | A6 Approved；local runtime direct+edge 404 PASS；未来生产宿主 API profile/ingress 方案待 G5 |

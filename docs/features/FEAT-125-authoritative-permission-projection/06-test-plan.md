@@ -20,6 +20,12 @@ Tasks edge/direct `404`；随后 S5B consumer/store 已完成。G3 只验 TLS、
 API startup/readiness、bootstrap、未认证 `401` 和 Tasks edge/direct `404`；完整系统浏览器、
 Rust bearer、refresh/Keychain E2E 只能在 S7/G5 记录。
 
+当前里程碑已由段成威定义为 `Local Engineering Baseline Complete / Production Activation
+Blocked`。S7 停止继续扩展并冻结；现有 BLOCKED/NOT RUN 结果原样保留。首页、聊天、Tasks
+等业务代码可以使用本地合成 identity/tenant/RBAC/capability 数据继续开发，但不得删除、跳过
+或降低下列生产测试。真实部署准备启动时，必须恢复 S7，补齐兼容 IdP、签名 Keychain、
+refresh-family、2 roles × 2 tenants bearer、性能与运维验证后再进入 G4/G5/G6。
+
 ## 2. AC → 测试追踪矩阵
 
 | AC/NFR | 风险 | Test ID | 层级 | 场景 | 环境 | 预期证据 |
@@ -178,7 +184,9 @@ N/A。不能用对话主观体验替代身份/RBAC/contract/security 测试。
 | API generate drift | yijie-api | `make generate-check` | exact contracts checkout `9ec34abd...` + oapi-codegen v2.7.2 | <5m |
 | Desktop quality | yijie-desktop | `make lint && make test && make build` | Node/pnpm/Rust | <10m |
 | Desktop docs/native | yijie-desktop | `pnpm docs:build` 加仓库现有 Tauri checks | Tauri/macOS | <15m |
-| Cross-repo E2E | test harness location at S7 | S7 提交真实命令后登记 | test IdP+Postgres+API+Desktop | 未建立 |
+| Cross-repo E2E | yijie-infra | `make feat-125-s7-bearer-matrix` | pinned Keycloak+Caddy、dedicated API/PostgreSQL、系统浏览器、精确 CA trust | BLOCKED：真实 Code+PKCE/loopback/code exchange 与 access JWT RS256/issuer/audience/sub 已到达；Keycloak 26.7 access JWT 缺少 required `nbf`，在任何 tenant API 请求前 fail closed；2×2/perf 未执行 |
+| S7 native Keychain | yijie-desktop | `cargo test --manifest-path src-tauri/Cargo.toml protected_data_keychain_s7_round_trip -- --ignored --nocapture` + `security find-identity -v -p codesigning` | signed/provisioned macOS native candidate | BLOCKED：Data Protection Keychain 返回 `-34018`，本机 0 valid code-signing identities；隔离 synthetic item 未残留，未降级存储 |
+| S7 refresh fault cleanup | yijie-desktop | `make lint && make test && make build` | `155854cf3662384caa2c8bffe0a47935ef4a70b5` | PASS：非法 refresh 撤销当前 token；旋转 token Keychain save failure 撤销新 token；2 条新故障测试，38 Rust PASS/1 intentional ignored；origin/develop verified |
 | G3-NP-LOCAL static/offline gates | yijie-infra + API + Desktop | owning-repo lint/test/build、`make feat-125-local-template`、Compose config、local validators、`make feat-125-local-ready` | Docker Compose config、loopback model、exact reviewed refs、explicit CA file | completed for the exact trees now committed and remote verified；offline ready PASS |
 | G3-NP-LOCAL local dependencies | yijie-infra | `make feat-125-local-up/status/provision-users/prepare` | pinned Docker profile、fixed HTTPS endpoints、synthetic-only secrets | containers healthy；two fixed synthetic users provisioned over pinned HTTPS；CA/config exported |
 | G3-NP-LOCAL dedicated API DB/bootstrap | yijie-infra + yijie-api | `make feat-125-local-api-db`；API final profile + four tracked manifests × first/idempotent runs | loopback PostgreSQL `yijie_api_feat125_local`、migration CLI、bootstrap CLI | pre-migration tables=0；pre-bootstrap rows=0；migration 1→2；4 changed + 4 unchanged；final inventory/revision/audit exact；tasks=0 |
@@ -214,5 +222,5 @@ PASS；该完整提交已推送并核验，但不包含系统浏览器、
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
-| 测试/技术 Owner | 段成威 | G2/G2A/S4/S5A/S5B/S6 Approved；G3-NP-LOCAL 与 core online PASS；S6 18 files/113 frontend tests、36 Rust tests、browser fail-closed/DOM/AX/72px persistence、全部 Desktop 门禁与 review PASS；S7 未批准或未执行 | 2026-08-01 |
-| 安全/数据 Owner | 段成威 | S3/S4 JWT/JWKS、精确 audience、atomic projection 与 S5A local security matrix PASS；API local-only 显式 CA pin 已实现；Keycloak family reuse limitation 与正式 Keychain/browser/Rust bearer E2E 留在 S7/G5；生产配置继续 `NOT RUN` | 2026-08-01 |
+| 测试/技术 Owner | 段成威 | G2/G2A/S4/S5A/S5B/S6 Approved；G3-NP-LOCAL 与 core online PASS；批准 Local Engineering Baseline Complete，冻结 S7；现有 `nbf`/signed Keychain/2×2/perf 缺口在真实部署前恢复验证 | 2026-08-01 |
+| 安全/数据 Owner | 段成威 | API 严格 JWT 契约不降级；Keycloak 26.7 缺 `nbf`、family-reuse 未证明、macOS `-34018`/0 signing identities 均继续阻断生产激活，但不阻断使用合成数据开展本地业务开发 | 2026-08-01 |

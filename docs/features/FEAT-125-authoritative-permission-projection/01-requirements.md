@@ -194,4 +194,4 @@
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
-| 需求负责人 | 段成威 | Approved：A1—A7，G1/G2/G2A Passed；S3/S4 API、S5A/S5B/S6 Desktop 已远端核验；G3-NP-LOCAL PASS；S7 2×2/bearer/Keychain integration 已获执行授权。生产 IdP/config 继续为 G5 `NOT RUN` | 2026-08-01 |
+| 需求负责人 | 段成威 | Approved：A1—A7，G1/G2/G2A Passed；S3/S4 API、S5A/S5B/S6 Desktop 已远端核验；G3-NP-LOCAL PASS；当前定义为 Local Engineering Baseline Complete / Production Activation Blocked，S7 冻结。允许使用本地合成权限继续首页/聊天/Tasks 开发；flags 默认关闭；生产部署前恢复完整 S7/G4/G5/G6 | 2026-08-01 |

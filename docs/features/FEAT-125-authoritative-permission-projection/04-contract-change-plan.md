@@ -235,13 +235,13 @@ Feature 目录只引用这些 fixture，不复制 JSON。
 | API exact source/generated pin | `make generate-check` | yijie-api | contracts `9ec34abd...` / oapi-codegen v2.7.2 | 0 | PASS | source `7bd40dd...`；API types `a1801a...`；CI exact checkout |
 | producer conformance | canonical fixtures + handler/fault/integration tests | yijie-api | `360a526b679147472e7cc82ca7ac9db9d18a371d` | 0 | PASS | 0/1/multiple tenants、ready/empty、400/401/403/500/503、no-store/challenge/retry、2×2 DB projection |
 | Desktop native auth/transport boundary | `make lint/test/build`、docs/native build、npm/cargo/license audits、structured review | yijie-desktop | `3798c67d260237928730758c7ec4c1fbe6fcf7d2` | 0 | PASS | exact loopback/PKCE/state/nonce、Keychain lifecycle、fixed two GET operations、zero token IPC/generic proxy；真实 provider/cross-repo NOT RUN |
-| consumer conformance | `pnpm generate:check` + canonical fixture/fault/concurrency/security tests | Desktop | `f94ac343881b0f7df59c0f5f4169372e612fd019` | 0 | PASS | exact contracts `9ec34abd...`；generated TS `77babb...`；80 frontend tests；S7 cross-repo still NOT RUN |
+| consumer conformance | `pnpm generate:check` + canonical fixture/fault/concurrency/security tests | Desktop | `f94ac343881b0f7df59c0f5f4169372e612fd019` | 0 | PASS | exact contracts `9ec34abd...`；generated TS `77babb...`；80 frontend tests；S7 partial real evidence frozen at production prerequisites |
 
 ## 10. Consumer Owner 评审
 
 | Consumer/Owner | 结论 | 日期 | 证据/例外 |
 |---|---|---|---|
 | yijie-api / 段成威 | G2A/S4 approved；exact pin、foundation、endpoints 与 producer/fault conformance committed/reviewed/remote verified | 2026-08-01 | `360a526b679147472e7cc82ca7ac9db9d18a371d`；staging/cross-repo remains S7 |
-| yijie-desktop / 段成威 | S5A native OIDC/Keychain/operation-scoped transport 与 S5B exact generated consumer/store 均 approved、reviewed、remote verified | 2026-08-01 | S5A `3798c67d...`；S5B final `f94ac343881b0f7df59c0f5f4169372e612fd019`；consumer conformance PASS；S6/S7 NOT RUN |
+| yijie-desktop / 段成威 | S5A native OIDC/Keychain/operation-scoped transport、S5B exact generated consumer/store、S6 UI 与 S7 refresh cleanup 均 reviewed/remote verified；S7 frozen | 2026-08-01 | S5A `3798c67d...`；S5B `f94ac343...`；S6 `688fb72d...`；freeze baseline `155854cf...`；local baseline complete；production conformance remains blocked |
 | unknown-public / 段成威 | Conservative structural/semantic compatibility PASS | 2026-08-01 | all existing Public operations/schemas unchanged |
 | yijie-agent-host / Runtime Owner | Regression comparison PASS；no migration | 2026-08-01 | projection identical except bundle version；Host remains v0.2.0 |

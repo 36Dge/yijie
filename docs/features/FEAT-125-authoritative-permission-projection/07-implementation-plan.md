@@ -18,6 +18,11 @@
   PASS；S5B 已单独批准、完成并远端核验，feature 仍关闭；生产
   IdP/config、tag 与激活仍需后续对应 gate/指令。
 
+2026-08-01 段成威批准当前里程碑为 `Local Engineering Baseline Complete / Production
+Activation Blocked`：S7 在真实 blocker 证据处冻结，不继续扩展本地模拟。首页、聊天、Tasks
+等业务需求可以在 flags 默认关闭且仅使用合成 identity/tenant/permission 数据的边界内继续；
+真实部署整个 yijie 前必须恢复 S7 并完成生产级身份安全链路，之后才可进入 G4/G5/G6。
+
 ## 2. 依赖 DAG
 
 ```text
@@ -37,7 +42,8 @@ S4 + S5A
         → S5B Desktop exact pin + permission client/store（Complete: f94ac343881b...）
           → S6 Desktop nav/router/AppShell/Settings production wiring
 S4 + S6
-  → S7 cross-repo security/E2E against final candidate
+  → Local Engineering Baseline（Complete；business development may continue；flags off）
+  → S7 cross-repo security/E2E（FROZEN：真实部署准备时恢复；当前有 `nbf` + signed Keychain/provider family blockers）
   → contracts-v0.3.0 immutable tag + tag provenance
   → API provider first + Desktop canary
   → S8 FEAT-124 G4-001 close + independent G4
@@ -56,7 +62,7 @@ S4 + S6
 | G3-NP-LOCAL | 建立本地类生产依赖并证明 ready | AC-003/013/014/021/022；AC-017/018 完整 E2E 留在 S7 | yijie-infra+yijie-api+yijie-desktop+yijie evidence | pinned Keycloak+dedicated PostgreSQL+Caddy loopback profile；API exact issuer/dedicated DB/tracked 2×2 guard、empty inventory、migration、bootstrap revision/audit；exact native redirect config；local CA/export/pin；`feat-125-local-lab` Tasks no-handler+proxy deny；offline/online preflight；Keychain environment binding | production config/activation、真实/共享数据、insecure TLS、宽泛 redirect、S5B/UI、Tasks wire/default-profile hardening、完整 browser/Rust bearer/refresh/Keychain E2E | S4+S5A+A7；当前 CA trust 需另批 | owning repo gates + dedicated DB inventory/migration/bootstrap idempotency + Docker readiness + TLS/discovery/JWKS/API startup/readiness/unauth 401/redirect/Tasks edge+direct 404 | 停止独占宿主 API；清其 local env；flags/profile off；停止 local containers但保留 volumes；删除 local credential；不动 default API profile/production |
 | S5B | Desktop exact pin、generated contract adapter/store | AC-006/007/011/012/014 | yijie-desktop | generate/pin、生成 TypeScript 类型/固定 adapter、tenant discovery、0 tenant→Settings/1 tenant auto/multiple chooser、capability domain/store/tests、operation intent 与 tenant UUID adapter | hand-written wire DTO、读取/传递 access token、LocalStorage token/cap、server-session tenant switch、通用 proxy | G3-NP-LOCAL PASS + separate S5B approval + S4 + S5A | make lint/test/build | keep feature off |
 | S6 | Nav/router/AppShell/Settings production wiring | AC-008—012/019 | yijie-desktop | navigation/router/AppShell/Settings recovery/tenant chooser/denied pages/tests/design docs；root 按 `task.create→/chat`、`task.read→/tasks`、else `/settings` | backend policy、未批准 native surface、无条件 `/chat`、实例化 denied protected page | S5B | Desktop quality + browser/Tauri | feature off/roll-forward |
-| S7 | 最终 candidate 的 2 roles × 2 tenants E2E、native-auth/security、migration、performance | all Must/NFR | all affected repos | test harness/evidence only + fixes in slice scope | skip/only/weaken assertions；用前端布尔假装权威 E2E | S4+S6 | full matrix | no tag/release |
+| S7 | 真实部署前恢复：最终 candidate 的 2 roles × 2 tenants E2E、native-auth/security、migration、performance | all Must/NFR | all affected repos | test harness/evidence only + fixes in slice scope | skip/only/weaken assertions；用前端布尔假装权威 E2E | Local Engineering Baseline + production IdP/signing resources | full matrix | no tag/release |
 | S8 | Tag/provenance、provider-first release evidence、FEAT-124 G4 | AC-016 | contracts/API/Desktop/yijie | release docs/pins/evidence/FEAT-124 report | move tag、提前关闭 G4 | S7 PASS + G5 approval | tag digest + smoke + independent G4 | stop rollout/keep G4 blocked |
 
 S0/G1/G2 已批准 direct IdP JWT、native opener、精确 ephemeral loopback listener、Rust
@@ -65,8 +71,8 @@ token memory、macOS Keychain 与对应最小依赖方向。S3/S5A 实现时仍�
 URL opener、非 loopback listener、WebView token、生产 IdP/API origin/CSP 或 yijie-infra
 变更必须回到 scope approval；access JWT audience 已固定 `https://api.yijie.ai`，具体生产
 生产 IdP vendor、issuer、client ID、JWKS、domain/TLS/CSP 保持 G5 决策；本地值由 A7 固定。
-本地 Keycloak 仅能形成 rotation 证据，reuse-revokes-family 仍是 S7/G5 blocker，不阻断 S5B
-代码实现。
+本地 Keycloak 仅能形成 rotation 证据，reuse-revokes-family 是恢复 S7/G5 时的生产激活
+blocker，不阻断当前本地工程基线与后续业务代码开发。
 
 ## 4. 跨仓顺序
 
@@ -75,10 +81,10 @@ URL opener、非 loopback listener、WebView token、生产 IdP/API origin/CSP �
 | Governance | yijie | develop / `ef0f50e...` | approved feature+ADR | all PRs link Feature | 段成威 |
 | Contract | yijie-contracts | develop / base `5320c302...` → remote `9ec34abd...` | 0.3.0 candidate SHA/digest/generators；origin/develop verified | API/Desktop exact SHA | 段成威 |
 | Provider | yijie-api | develop / S3 remote `fff0cbcba601...` → S4 remote `360a526b6791...` | tenant discovery/projection endpoints、stable faults、metrics、producer conformance；flag off | exact `9ec34abd...` | 段成威 |
-| Consumer | yijie-desktop | develop / S5B base `f94ac343...` → S6 implementation `cf0e080e...` → final `688fb72ddf...` remote | native auth/generated store/S6 UI complete；S7 integration in progress | exact contracts candidate unchanged；UI flag default off | 段成威 |
+| Consumer | yijie-desktop | develop / S6 final `688fb72ddf...` → S7 freeze baseline `155854cf3662384caa2c8bffe0a47935ef4a70b5` remote | native auth/generated store/S6 UI + refresh cleanup complete；local engineering baseline complete；S7 frozen at provider/signing prerequisites | exact contracts candidate unchanged；UI flag default off | 段成威 |
 | Nonproduction preparation | yijie-infra | develop / remote `2f01f22b46f313f8ff0b9973e417f7ccae654318` | safe generic template、strict/online preflight、runbook；local migration/flag-off smoke PASS | contracts/API/Desktop fixed full SHA | 段成威 |
 | Local production-like environment | Infra+API+Desktop | Infra `298192e386...` / API `faeb78019d...` / Desktop `446b4d6085...`；完整 SHA 见 `feature.yaml` | static implementation/gates + local stack + HTTPS synthetic user provisioning + offline ready + synthetic API bootstrap complete；API local-only explicit CA pin 与 core online PASS | A7 + same contracts candidate；三个 `origin/develop` 已核验 | 段成威 |
-| Integration | all | fixed candidates | conformance/E2E/perf evidence | planned tag resolves same SHA | 段成威 |
+| Integration | all | API `faeb780...` + Desktop `155854cf...` + Infra `f040492e...` remote | local baseline recorded；refresh fault fix PASS；bearer/Keychain blocker evidence；2×2/perf deferred until deployment preparation | no planned tag until resumed S7 PASS | 段成威 |
 | Activation | contracts→API→Desktop | release manifests | v0.3.0 supported + canary | tag/digest verified | 段成威 |
 | Linked review | yijie + Desktop | final Desktop SHA | FEAT-124 G4-001 closed/reviewed | final SHA | 段成威 |
 
@@ -138,7 +144,10 @@ Feature 的 00—07；先检查 `git status --short --branch`、branch、remote�
 | C9-feat124 | close G4-001 and independent G4 | yijie + fixed Desktop SHA | review commands | FEAT-124 |
 
 用户已授权并完成 S1/S2 的 C1/C2 提交与 push；最终 candidate 已远端核对。S3 C3、S4 C4、
-S5A C5A、S5B C5B 与 S6 C6 均已实现、结构化审查、提交、push 并远端核验。S7 C7 已获授权进入本地跨仓集成执行；PR、tag、部署以及 S8 未执行。
+S5A C5A、S5B C5B 与 S6 C6 均已实现、结构化审查、提交、push 并远端核验。S7 C7 已执行到
+本地真实 bearer/Keychain 前置并判定 BLOCKED；现按批准的本地工程里程碑冻结，真实部署准备
+时恢复。S7 收口实现已提交并远端核验为 Desktop `155854cf3662384caa2c8bffe0a47935ef4a70b5`
+与 Infra `f040492e7c4af4aa7cc94a343140c58befae3af2`；tag、部署以及 S8 未执行。
 
 ## 8. Slice 完成记录
 
@@ -154,7 +163,7 @@ S5A C5A、S5B C5B 与 S6 C6 均已实现、结构化审查、提交、push 并�
 | G3-NP-LOCAL | API `faeb78019d...` / Desktop `446b4d6085...` / Infra `298192e386...` | pinned local images/config、API exact local profile/dedicated DB/tracked-matrix guard + audited/idempotent bootstrap + local Tasks profile、Desktop explicit CA + Keychain environment binding、Infra strict local profile/preflight | API/Desktop gates and Infra 71/71 + lint/Compose/shell/diff PASS；Keycloak/PostgreSQL/Caddy healthy；exact realm + two clients + canonicalized scope sets + explicit `userinfo.token.claim=false` mapper + strict managed `data_classification` user profile（Keycloak 26.7 REST omitted field = unmanaged disabled）+ exactly two synthetic users + password resets + refresh revocation `invalid_grant` conform；dedicated API DB empty inventory/migration 1→2/fixed 2×2 first+idempotent/revision/audit PASS；HTTPS provisioning/final offline ready PASS | API local-only explicit CA pin；core online discovery/JWKS/callback、health/ready、两个 401、Tasks edge+direct 404 PASS；provider family reuse `NOT RUN` in S7/G5；三仓 remote verified | PASS；S5B subsequently approved and complete |
 | S5B | final `f94ac343881b0f7df59c0f5f4169372e612fd019`（implementation `5c4600f...`；CI path fix `942df58...`） | exact contract/generator lock、generated TypeScript、fixed adapter、0/1/multiple tenant state、operation intent、revision/expiry/context validation、memory fail-closed store | generation drift + canonical contract/fault/concurrency/security；frontend 12 files/80 tests；Rust 36 tests；lint/build/docs/debug app+dmg/audits/peers PASS | S5B-REV-001—006 resolved；open P0/P1/P2=0；S5A-REV-OPEN-001 remains outside S5B | Complete / remote verified；feature off；no S6/UI/Tasks/Rust lifecycle/production change |
 | S6 | implementation `cf0e080e4cf2fa10e1394aead67c669574714a4d`；final `688fb72ddf3f9c8ba0f8edea55a0c3f66cdf364c` | exact default-off UI flag、total capability nav policy、lazy guarded `/chat`/`/tasks`、Settings 0/1/multiple tenant recovery、denied page、foreground refresh | generation drift；18 frontend files/113 tests；36 Rust tests；lint/build/docs/browser/debug app+dmg/npm+RustSec+license PASS | S6-REV-001—005 resolved；open P0/P1/P2=0；real bearer/Keychain/cross-repo remains S7 | Complete / remote verified；no Tasks/Rust lifecycle/production change |
-| S7 | N/A | No integration changes | NOT RUN | N/A | Pending |
+| S7 | Desktop `155854cf3662384caa2c8bffe0a47935ef4a70b5` / Infra `f040492e7c4af4aa7cc94a343140c58befae3af2` | real system-browser Code+PKCE/exact loopback bearer harness；CA trust 修正；Keycloak `basic/sub` 与 synthetic names migration；refresh fail-closed cleanup；isolated Keychain smoke | Desktop lint/test/build PASS（113 frontend、38 Rust PASS + 1 intentional ignored）；Infra lint/test PASS（76 tests）；API lint/race unit+integration PASS；offline/online preflight PASS；bearer fails before API matrix on access JWT `not_before_missing`；Keychain fails `-34018`/0 signing identities | `S5A-REV-OPEN-001` resolved；P0=0；provider `nbf`、signed Keychain、family reuse remain production blockers；两个 origin/develop SHA verified | FROZEN after BLOCKED evidence / remote verified / resume before deployment / no tag or release |
 | S8 | N/A | No release/FEAT-124 changes | NOT RUN | N/A | Pending |
 
 ## 9. 变更控制
@@ -182,3 +191,4 @@ S5A C5A、S5B C5B 与 S6 C6 均已实现、结构化审查、提交、push 并�
 | 技术负责人 | 段成威 | 批准 A7 / G3-NP-LOCAL：允许 loopback/Docker/synthetic Keycloak、专用 PostgreSQL、Caddy、本地 CA、API bootstrap/Tasks profile 与 Desktop Keychain binding；禁止 insecure TLS、真实数据、生产配置/激活；全部门禁与 offline/online preflight PASS 后才可另行批准 S5B | 2026-08-01 |
 | 技术负责人 | 段成威 | G3 收口时点：静态实现/门禁、local stack/live realm、HTTPS synthetic user provisioning、offline ready 与 API bootstrap 已完成；core online 与最终门禁 PASS，登记 G3 PASS；该时点 S5B 仍须单独批准 | 2026-08-01 |
 | 技术负责人 | 段成威 | S5B/S6 已远端核验；随后授权 S7 本地 2×2/bearer/Keychain 集成。Tasks 契约、生产配置/激活与 S8 继续禁止 | 2026-08-01 |
+| 技术负责人 | 段成威 | 批准 Local Engineering Baseline Complete / Production Activation Blocked；冻结 S7，允许首页/聊天/Tasks 使用本地合成权限继续开发；flags 默认关闭；真实部署前恢复完整生产身份链路和 S7/G4/G5/G6 | 2026-08-01 |

@@ -10,20 +10,27 @@
 > `feat-125-local-lab` 使用严格显式 CA PEM + lowercase SHA-256 pin，未修改系统 Keychain；
 > core online 的 discovery/JWKS/callback、API health/ready、两个 unauthenticated `401` 与
 > Tasks edge/direct `404` 全部 PASS。随后 S5B 已单独批准、完成并远端核验；feature 仍关闭。
+> S6 亦已远端核验。S7 已实际执行，但结论为 `BLOCKED`：真实系统浏览器 Code+PKCE 与
+> exact loopback 到达 access-JWT 验证后，Keycloak 26.7 token 缺少批准契约要求的 `nbf`；
+> Data Protection Keychain smoke 同时因缺少签名 entitlement 返回 macOS `-34018`，本机
+> code-signing identities 为 0。未降低 API/JWT/存储安全约束，2×2/performance 未被伪报为 PASS。
+> 段成威据此批准当前状态为 `Local Engineering Baseline Complete / Production Activation
+> Blocked`：S7 冻结到真实部署准备，允许使用合成身份/租户/权限继续首页、聊天和 Tasks
+> 业务开发；所有权限 flags 默认关闭，G4/G5/G6 与生产发布仍未通过。
 
 ## 1. 验证上下文
 
 | Repository | Branch | Verified full commit | Worktree/remote | Runtime/toolchain | 时间 |
 |---|---|---|---|---|---|
-| yijie | develop | `9c732e0a8f8c7eb9d31d371300225ea105018879` | FEAT-125/ADR G3-NP-LOCAL evidence dirty；HEAD equals origin/develop before this worktree | Git/Bash | 2026-08-01 |
+| yijie | develop | governance base `7c3d6ff4b0a9596f0f270403f5dbd50e1401501b` | 本报告所属治理提交的最终 SHA 由 Git 历史与交付 handoff 登记，不自引用 | Git/Bash | 2026-08-01 |
 | yijie-contracts | develop | `9ec34abd6e7dfb5a23b0154d467694167224ebbb` | clean；origin/develop verified equal | Node 26.0.0 / pnpm 11.9.0 / Go 1.26.5 | 2026-08-01 |
 | yijie-api | develop | `faeb78019d95aaf9dcfbd8493f8bc2ecf7e4bf34` | clean；`origin/develop` verified equal | Go 1.26.5 / PostgreSQL 16 | 2026-08-01 |
-| yijie-desktop | develop | `446b4d608546fca8f53f4582201d6b43ef6f762d` | clean；`origin/develop` verified equal | Vue 3/Tauri 2/pnpm 11/Rust | 2026-08-01 |
-| yijie-infra | develop | `298192e386a7f7b81e8f0f8fe733c1f79f096ab4` | clean tracked worktree；`origin/develop` verified equal；ignored local runtime files retained | Node 26 / pnpm 11 / Docker Compose | 2026-08-01 |
+| yijie-desktop | develop | `155854cf3662384caa2c8bffe0a47935ef4a70b5` | clean；origin/develop verified equal；precommit candidate `a1718bb0900a...` | Vue 3/Tauri 2/pnpm 11/Rust | 2026-08-01 |
+| yijie-infra | develop | `f040492e7c4af4aa7cc94a343140c58befae3af2` | clean tracked worktree；origin/develop verified equal；precommit candidate `2595b01baa9d...`；ignored local runtime files retained | Node 26 / pnpm 11 / Docker Compose | 2026-08-01 |
 
-提交前使用的三个 `candidate:<base-full-sha>:<deterministic-tree-sha256>` 已完成结构化审查、
-最终门禁和 runtime preflight；对应 exact trees 随后形成上表三个完整提交并推送。当前权威实现
-引用只使用远端核验后的完整 SHA，不再使用 candidate ref。
+G3 与 S7 提交前都使用 `candidate:<base-full-sha>:<deterministic-tree-sha256>` 防止把 base
+HEAD 误称为本轮实现。S7 两个 reviewed trees 已原样形成上表完整提交、推送并经
+`git ls-remote` 核验；外部 blocker 结论不因提交而变成 PASS。
 
 ## 2. Baseline
 
@@ -52,7 +59,8 @@
 | G3-NP-LOCAL / static+offline+bootstrap | verified full commits above | pinned images/profile/config、strict validators、API exact local issuer/dedicated DB/tracked 2×2 guard + audited bootstrap、Desktop CA+Keychain environment binding；owning-repo gates；local up/status/provision/prepare/ready | 0 | PASS / REMOTE VERIFIED | API/Desktop gates and Infra 71/71 + lint/Compose/shell/diff recorded below；containers healthy；exact Keycloak realm/client/scope-set/explicit mapper/strict user-profile/two-user/password-reset/refresh-revocation conformance over pinned HTTPS and final offline ready PASS；dedicated API DB empty inventory/migration 1→2/fixed first+idempotent bootstrap/inventory/revision/audit PASS |
 | G3-NP-LOCAL / API startup+online preflight | exact trees committed by the verified full SHAs above | dedicated API startup/readiness + local online preflight | 0 | PASS | strict explicit CA pin；TLS/discovery/JWKS/callback、health/ready、两个 401、Tasks edge+direct 404 PASS；no system trust mutation |
 | S6 / Desktop UI policy wiring | implementation `cf0e080e4cf2fa10e1394aead67c669574714a4d`；final `688fb72ddf3f9c8ba0f8edea55a0c3f66cdf364c` | default-off total policy→lazy route guard→AppShell/Settings recovery→DOM/AX/router/browser/Tauri gates | 0 | PASS / REMOTE VERIFIED | 18 frontend files/113 tests + 36 Rust；S6-REV-001—005 resolved；no Tasks/Rust lifecycle/production change |
-| S7—S8 / integration, release | N/A | outside current authorization | N/A | NOT RUN | no cross-repo E2E/release changes |
+| S7 / cross-repo bearer+Keychain | Desktop `155854cf...` / Infra `f040492e...`；API `faeb78019d...` | real system-browser Code+PKCE/exact loopback；strict access JWT；isolated Data Protection Keychain；refresh fault cleanup；all owning-repo gates | mixed | BLOCKED / FROZEN / REMOTE VERIFIED | refresh cleanup + offline/online PASS；access JWT fails `not_before_missing` before tenant calls；Keychain fails `-34018` with 0 signing identities；2×2/perf NOT RUN；no release/tag |
+| S8 / release | N/A | requires S7 PASS + G5 approval | N/A | NOT RUN | no tag/release changes |
 
 ## 4. 最终命令记录
 
@@ -95,7 +103,13 @@
 | V-G3L-PROVISION | local Keycloak through Caddy | `make feat-125-local-provision-users` | Node/HTTPS | 0 | PASS | before any mutation, read-only checks proved exact realm/clients、full two-user inventory 及 core/attribute state；profile migration was allowed only from exact default profile + empty attributes，unexpected profile/attributes fail before PUT/reset；final canonicalized scope sets、explicit `userinfo.token.claim=false` audience mapper、strict managed `data_classification` user profile（omitted field means unmanaged disabled under Keycloak 26.7 REST）与 exactly two fixed identities conformed；password resets/HTTPS provisioning PASS；admin refresh revocation returned `invalid_grant`；credentials not printed/committed |
 | V-G3L-OFFLINE-READY | local Infra + exact API/Desktop trees | `make feat-125-local-prepare ...` + `make feat-125-local-ready ...` using final reviewed refs | Docker/Node/X.509 | 0 | PASS | public CA `07a3bb2ef51a5b559fe42b423339f6c886c5e17903b1cf2d8ca26bf1b5574650`, 627 bytes, owner `jack`, mode `0600`；single-PEM/path/digest, loopback DNS/origins, exact refs, pinned images/config/profile and no-insecure/no-secret policies passed；trees now equal committed SHAs |
 | V-G3L-RUNTIME-ONLINE | local Keycloak/Caddy/API | `make feat-125-local-online ...` using final reviewed refs | Docker/Node/HTTPS | 0 | PASS | discovery/JWKS、exact callback accept/wrong-path reject、health/ready、两个 unauth 401、Tasks edge/direct 404 PASS；trees now equal committed SHAs |
-| V-E2E | cross-repo | `tenant_owner`/`tenant_member` × 2 tenants + auth/migration/perf | no harness yet | N/A | NOT RUN | S7 |
+| V-S7-DESKTOP | yijie-desktop `155854cf3662384caa2c8bffe0a47935ef4a70b5` | `make lint && make test && make build` | pnpm/Rust/Tauri | 0 | PASS | generation pin clean；113 frontend tests；38 Rust PASS + 1 intentional ignored；Clippy `-D warnings`/build PASS；refresh cleanup fault tests PASS；remote verified |
+| V-S7-INFRA | yijie-infra `f040492e7c4af4aa7cc94a343140c58befae3af2` | `make lint && make test` | Node 26 / Docker Compose | 0 | PASS | 76 tests；Keycloak `basic/sub`/synthetic-name reconciliation、CA user-domain trust verification、strict bearer harness assets PASS；remote verified |
+| V-S7-API | yijie-api `faeb78019d95aaf9dcfbd8493f8bc2ecf7e4bf34` | `make lint && make test && make test-integration` | Go 1.26.5 / PostgreSQL 16 | 0 | PASS | vet、race unit、integration PASS；worktree clean |
+| V-S7-PREFLIGHT | yijie-infra + local stack/API | exact candidate double-sample；`make feat-125-local-ready`；`make feat-125-local-online` | Node/Docker/HTTPS | 0 | PASS | Desktop candidate digest stable；local-lab ready + discovery/JWKS/callback/health/ready/unauth 401/Tasks 404 PASS |
+| V-S7-BEARER | cross-repo real local OIDC | `make feat-125-s7-bearer-matrix` | system browser + pinned Keycloak/Caddy/API | non-zero expected blocker | BLOCKED | user-a real Code+PKCE/exact callback/code exchange；ID token and access JWT RS256/issuer/subject/exact audience reached；access token lacks required `nbf` and is rejected before tenant API calls；refresh revoked；2×2/perf NOT RUN |
+| V-S7-KEYCHAIN | yijie-desktop/macOS | ignored isolated Keychain smoke + `security find-identity -v -p codesigning` | Data Protection Keychain | non-zero expected blocker | BLOCKED | write fails `-34018: A required entitlement isn't present`；0 valid identities；no smoke/production credential persisted |
+| V-S7-CA-CLEAN | yijie-infra/macOS | exact fingerprint `make feat-125-local-untrust-ca`；then `make feat-125-local-ca-status` | user login Keychain trust settings | remove=0；status=non-zero expected | PASS | exact SHA-1 trust entry removed；no broad certificate/Keychain deletion；API explicit CA pin unchanged |
 
 ## 5. 契约与版本兼容
 
@@ -113,7 +127,7 @@
 | Producer conformance | canonical contract fixtures + generated types | API endpoint/fault/integration tests | PASS | S4 remote；staging remains S7 |
 | Desktop native boundary | contract operation semantics + fixed Rust command/HTTP allowlist | S5A unit/security/native build | LOCAL PASS | no token IPC/generic proxy；real API/IdP remains S7/G3/G5 |
 | Consumer conformance | exact candidate `9ec34abd...` + generated TS `77babb...` | Desktop generated adapter/store canonical/fault/concurrency/security tests | PASS | S5B final `f94ac34...` remote verified；cross-repo remains S7 |
-| Agent Host/Runtime regression | Agent Host remains v0.2.0 | structured manifest comparison | CONTRACT PASS / integration NOT RUN | Runtime semantics unchanged；S7 仍需真实集成 |
+| Agent Host/Runtime regression | Agent Host remains v0.2.0 | structured manifest comparison | CONTRACT PASS / integration deferred | Runtime semantics unchanged；真实部署前恢复 S7 集成 |
 
 ## 6. AC → 实现 → 证据追踪
 
@@ -127,8 +141,8 @@
 | AC-013/015 | endpoint auth + tenant/RBAC authority；Tasks isolation/cross E2E pending | SEC-002/003/E2E-001 | API endpoint + 2×2 DB matrix PASS；local host profile/Caddy online edge+direct 404 PASS；cross-repo NOT RUN | PARTIAL |
 | AC-014 | v0.3.0 source/generated candidate + exact provenance | CT-002/SUP-001 | S1/S2 contract gates + API and Desktop exact pin/drift | CONTRACT+API+DESKTOP PIN PASS |
 | AC-016 | FEAT-124 verification report | REV-001 | FEAT-125 incomplete | NOT RUN |
-| AC-017/018 | Desktop native system-browser OIDC、exact loopback、state/PKCE/nonce、Keychain/token lifecycle、operation-scoped authenticated transport | OIDC-001/SEC-005/011/012 | S5A baseline + G3 local CA/Keychain binding/401-refresh race fix 36 Rust tests、native build、storage/IPC/scope scan；完整 browser/provider/Rust bearer/refresh/Keychain E2E 未联调，Keycloak family reuse 未证明 | STATIC CANDIDATE PASS / S7/G5 NOT RUN |
-| AC-019/020 | exact 7-capability/2-role matrix + root/deep-link policy | API-004/E2E/DESK | API DB/bootstrap 2×2 PASS；Desktop root `task.create→/chat`、`task.read→/tasks`、else `/settings` 与 denied lazy guard PASS；live cross-repo NOT RUN | PARTIAL |
+| AC-017/018 | Desktop native system-browser OIDC、exact loopback、state/PKCE/nonce、Keychain/token lifecycle、operation-scoped authenticated transport | OIDC-001/SEC-005/011/012 | S5A baseline + G3 local CA/Keychain binding/401-refresh race fix；S7 真实 code+PKCE 已到达 access JWT 校验，但 provider 缺 required `nbf`；Data Protection Keychain 因 `-34018`/0 signing identities 阻断；family reuse 未证明 | STATIC CANDIDATE PASS / S7 EXECUTED BLOCKED |
+| AC-019/020 | exact 7-capability/2-role matrix + root/deep-link policy | API-004/E2E/DESK | API DB/bootstrap 2×2 PASS；Desktop root `task.create→/chat`、`task.read→/tasks`、else `/settings` 与 denied lazy guard PASS；S7 live matrix 未越过 JWT/Keychain 前置 | PARTIAL / S7 BLOCKED |
 | AC-021 | ingress deny + approved host service profile handler non-registration + Desktop non-use | SEC/DEPLOY/E2E | local `feat-125-local-lab`/Caddy online edge+direct 404 PASS；default legacy profile unchanged | LOCAL G3 PASS / production pending |
 | AC-022 | local environment integrity | G3L-001—007 | pinned/config/static gates + dedicated API DB empty inventory/migration/tracked bootstrap + local dependencies/live realm/HTTPS provisioning/offline ready PASS；core online discovery/JWKS/callback、health/ready、两个 401、Tasks edge/direct 404 PASS | G3 PASS |
 | NFR-001/002/006/007 | fail-closed endpoints、tenant FK、exact pin、secret-free diff | SEC/DB/SUP | S3/S4 unit/integration/drift/audit | API PRODUCER PASS |
@@ -138,8 +152,8 @@
 
 | 专项 | 范围 | 环境/版本组合 | 结果 | Evidence |
 |---|---|---|---|---|
-| E2E | API→Desktop | `tenant_owner`（7 capabilities）/`tenant_member`（仅 task.create/task.read）×2 tenants | NOT RUN | S7 |
-| Native auth/security | exact `/oauth/callback`、state/PKCE、ID-token nonce、10m access、single-flight refresh、Keychain rotation/reuse、固定两 GET operations、zero token IPC/generic proxy | S5A local mocks/unit + G3 CA/Keychain binding static candidate | STATIC PASS | complete system-browser、Rust bearer、signed Keychain and provider refresh family E2E are S7/G5 NOT RUN；not a G3 condition |
+| E2E | API→Desktop | `tenant_owner`（7 capabilities）/`tenant_member`（仅 task.create/task.read）×2 tenants | BLOCKED before 2×2 calls | S7 real system-browser/code+PKCE reached strict access-JWT validation；provider omitted required `nbf` |
+| Native auth/security | exact `/oauth/callback`、state/PKCE、ID-token nonce、10m access、single-flight refresh、Keychain rotation/reuse、固定两 GET operations、zero token IPC/generic proxy | S5A local mocks/unit + G3 CA/Keychain binding + S7 real-browser/isolated Keychain smoke | STATIC PASS / S7 BLOCKED | code+PKCE reached access JWT；signed Keychain smoke failed `-34018` with 0 signing identities；provider refresh family still unproven |
 | Security/tenant | API access-JWT verifier、JWKS、identity/active membership、atomic RBAC projection | generated RSA keys + PostgreSQL 16；local Keycloak/Caddy HTTPS healthy；dedicated API ready | S4 API PRODUCER + G3 live realm/offline ready/discovery/JWKS/bootstrap PASS | API startup/readiness and Tasks edge/direct isolation PASS；signed bearer lifecycle remains S7/G5 |
 | Failure/resilience | 400/401/403/500/503、no-store/challenge/retry、dependency faults | canonical/fake dependency matrix | S4 API + S5A transport + S5B adapter/store fail-closed PASS | cross-repo remains S7 |
 | Migration rehearsal | 00001→expand/rollback metadata + synthetic bootstrap | PostgreSQL 16 local | PASS | existing task/audit retained；generic locator/append-only/FK/down refusal + bootstrap first/idempotent/audit/revision verified；production bootstrap remains G5 |
@@ -222,14 +236,29 @@ Generic preparation review 后开放 P0/P1/P2 findings = 0；该结论只对应�
 | G3L-REV-006 | P3 / resolved | 未来 macOS trust helper 原未复用严格 CA 校验 | 任何 install/status/remove 前均校验 owner/mode/64 KiB/single CA PEM/渲染配置 SHA-256 pin；helper 本轮仍未执行、不计入 G3 PASS |
 | G3L-REV-007 | P3 / resolved | 文档仍保留修复前的 Desktop/Infra 测试数 | 最终稳定工作树复跑并统一登记 Desktop frontend 37 + Rust 36、Infra 71/71；Infra lint/Compose/shell/diff 同步 PASS |
 | G3L-REV-008 | P1 / resolved | local bootstrap 只校验 nonproduction/非空 DSN，可能误连共享或真实数据库；ignored manifests 也不能进入候选 provenance | `feat-125-local-lab` 在 DB 访问前锁死 exact issuer、credentialed loopback `yijie_api_feat125_local` DSN 结构与四份 tracked 2×2 tuple；unknown/drift/no-credential fail closed 且不泄漏 DSN；专用空库 migration/inventory/首次+幂等 bootstrap 对账 PASS |
-| G3L-LIM-001 | S7/G5 blocker | Keycloak 可证明 rotation，但现有 provider 证据不证明 reuse 自动撤销整个 token family | 固定 `provider_limit_documented`；不阻断 S5B implementation，不得写成 A2/S7/G5 PASS |
+| G3L-LIM-001 | deferred production S7/G5 blocker | Keycloak 可证明 rotation，但现有 provider 证据不证明 reuse 自动撤销整个 token family | 固定 `provider_limit_documented`；不阻断本地业务开发，不得写成 A2/S7/G5 PASS |
 | G3L-DOC-001 | documentation correctness | Compose `feat-125-local`、API `feat-125-local-lab`、Desktop `local-integration` 原容易被混称；默认 API profile 仍保留 legacy Tasks wire | 文档统一按各自 namespace 命名；只宣称 local host profile 不注册 Tasks，online edge/direct 404 PASS |
 | G3L-DOC-002 | rollback safety | 仅停止 containers 不会停止运行于宿主的独占 API，可能残留 projection/local issuer 环境 | 回滚明确先停止 `127.0.0.1:18080` 宿主 API、清 local env，再停止 Compose；不得停止其它用户宿主 API 进程 |
 | G3L-PROV-001 | provenance / resolved | dirty worktree 的 base HEAD 不能登记为本轮完整 SHA | 提交前使用 `candidate:<base>:<tree-digest>`；提交后已替换为 API `faeb78019d...`、Desktop `446b4d6085...`、Infra `298192e386...` 并远端核验 |
 
 结构化复审发现的 3 个 P1、3 个 P2 和 2 个 P3 实现/证据问题均已修复并复验；
 API G3 可修复 P0/P1/P2 开放数为 0；`G3L-BLK-001` 已关闭，P3 测试增强不阻断。
-开放 Desktop P2 `S5A-REV-OPEN-001` 不阻断 G3/S5B，但阻断 S7/G5/生产。
+历史 Desktop P2 `S5A-REV-OPEN-001` 不属于 G3 PASS；已在 Desktop `155854cf...` 修复、复验并远端核验。
+
+结构化 S7 review findings：
+
+| Finding | Severity | 结论 | 处理/证据 |
+|---|---|---|---|
+| S5A-REV-OPEN-001 | P2 / resolved in `155854cf...` | invalid refresh 未撤销当前 token；rotated token Keychain save failure 未撤销新 token | 两条路径统一 revoke+clear fail closed；两条 exact-token fault tests；Desktop 全门禁与 remote SHA PASS |
+| S7-INT-001 | blocker / provider compatibility | Keycloak 26.7 access JWT 缺少 API/ADR 已批准的 required `nbf` | strict harness 在 bearer 使用前拒绝 `not_before_missing`；未修改 API、契约或关闭验证；需要获批兼容 IdP 或另行审批契约变更 |
+| S7-INT-002 | blocker / native signing | 当前 Mac 没有匹配 entitlement/code-signing identity，Data Protection Keychain 无法建立真实 item | isolated smoke `-34018`；0 valid identities；需签名/provisioned native candidate 后复跑 |
+| S7-INT-003 | blocker / provider lifecycle | pinned Keycloak 仍只证明 rotation，不证明 reuse 自动撤销 family | 保持 `provider_limit_documented`，不得作为 S7/G5 PASS |
+| S7-REV-001 | P1 / resolved | 初始 Keycloak client 缺内建 `basic` scope，access JWT 没有 `sub`；synthetic users 缺姓名会触发首次登录 profile update | exact built-in scope/mappers 与 legacy migration fail closed；fixed names + drift tests；真实 code flow 已越过 `sub`/profile blocker |
+| S7-REV-002 | P1 / resolved | macOS trust helper 将 admin trust domain 与 user Keychain 混用，且只检查证书存在会产生 false PASS | 改为 user-domain trust；同时核验 exact cert fingerprint 与 trust-settings entry；有/无 trust 回归测试和 live status PASS |
+| S7-CLEAN-001 | cleanup / complete | 浏览器联调所需 local CA user trust 不应在阻断后遗留 | 按 exact SHA-1 删除唯一 trust entry；删除命令 exit 0，随后 status 按预期非零；未删除其它证书或 Keychain 项 |
+
+S7 review 后本轮实现开放 P0/P1/P2 finding = 0；上述三个 blocker 是未满足的 provider/签名
+前置，不是已接受例外。S7/G4/G5 继续关闭。
 
 结构化 S5B review findings：
 
@@ -257,27 +286,31 @@ S5B review 后开放 P0/P1/P2 findings = 0；结构化复审未冒充独立 G4�
 - Reviewer 是否独立于实现上下文：设计阶段采用 Contracts、API、Desktop 三个并行只读
   reviewer pass；本轮按六维清单重新读取最终 implementation diff 并完成 structured review。由于仍在同一
   Codex 任务内，它不冒充最终独立 G4；G4 继续 Pending。
-- P0/P1 G3 阻断已清零；G3L-BLK-001 已关闭。开放 Desktop P2
-  `S5A-REV-OPEN-001` 不阻断 G3/S5B，但阻断 S7/G5/生产。
+- P0/P1 G3 阻断已清零；G3L-BLK-001 已关闭。Desktop P2
+  `S5A-REV-OPEN-001` 已在 Desktop `155854cf...` 修复；`S7-INT-001/002/003` 作为真实部署前
+  恢复 S7 的强制阻断项保留，当前本地业务开发不受其阻断。
 - P2 例外批准：无；不允许用例外关闭 FEAT-124 G4-001。
 
 ## 10. 未验证项与残余风险
 
 | Item | 原因 | 风险 | 补验证条件 | Owner | 是否阻断 |
 |---|---|---|---|---|---|
-| direct JWT/native auth/tenant | API S4、Desktop S5A 与 G3 local stack/offline/core online PASS | high | 完整 browser/Rust bearer/Keychain 留 S7 | 段成威 | blocks S7/G5, not G3/S5B |
+| direct JWT/native auth/tenant | S7 real browser/code exchange reached access JWT validation；Keycloak token lacks required `nbf` | high | before real deployment: approved IdP with conformant access JWT, then rerun full 2×2 | 段成威 | deferred production blocker；not local business-dev blocker |
 | RBAC/migration/audit | S3 migration + S4 projection + G3 synthetic bootstrap first/idempotent/audit/revision PASS；生产 writer/admin path 未实现 | high | S7/G5 production-control evidence | 段成威 | yes |
 | API producer | endpoint/conformance/metrics recorder 已远端核验；staging/performance/exporter 未验证 | high | S7/G5 | 段成威 | yes |
-| Desktop consumer | S5A—S6 已远端核验；live bearer/Keychain/cross-repo 正进入 S7 | high | S7 | 段成威 | yes |
+| Desktop consumer | S5A—S6 已远端核验；refresh fault cleanup candidate PASS；signed Keychain smoke `-34018` | high | before real deployment: signed/provisioned native candidate + full S7 rerun | 段成威 | deferred production blocker；not local business-dev blocker |
 | G3 local runtime | local issuer/client/JWKS/API origins、explicit CA pin、offline ready 与 core online PASS | low | N/A；G3 complete | 段成威 | no |
 | Tasks 双隔离/FEAT-126 | default legacy profile/wire unchanged；local host profile/Caddy static deny PASS but online 404 PASS；production isolation not implemented | critical | G3 online local 404；G5 approved host profile/ingress evidence；FEAT-126 production enablement before deadline | 段成威 | yes |
-| Provider refresh family | local Keycloak proves rotation but not automatic reuse-revokes-family | high | S7 auth-lifecycle against selected provider or approved compensating/provider change | 段成威 | blocks S7/G5, not S5B implementation |
+| Provider refresh family | local Keycloak proves rotation but not automatic reuse-revokes-family | high | resumed S7 auth-lifecycle against selected provider or approved compensating/provider change | 段成威 | deferred production blocker；not local business-dev blocker |
+| Provider `nbf` compatibility | Keycloak 26.7 access JWT omits required claim even though code flow/RS256/audience/sub pass | high | before deployment select conformant provider or separately approve ADR/contract/API change | 段成威 | deferred production blocker；not local business-dev blocker |
+| Native signing entitlement | current host has 0 valid code-signing identities; Protected Data Keychain returns `-34018` | high | Apple Development provisioning/entitlement and signed native candidate | 段成威 | deferred production blocker；not local business-dev blocker |
 | Production IdP/infra/signing | local A7 values fixed；production issuer/client ID/JWKS、DNS/TLS/API origin/CSP/control plane remain undefined | high | G5 production plan+evidence | 段成威 | yes |
 | Desktop RSA dependency advisory | `openidconnect 4.0.1`→`rsa 0.9.10` 无修复版本；当前仅公钥验签 | medium if scope drifts | EXC-125-002；每次 audit；G5/上游修复时移除 | 段成威 | yes for production review |
 
 ## 11. 结论
 
-- Code Complete：否。
+- Local Engineering Baseline Complete：是；允许在合成数据、flags 默认关闭和服务端安全边界不降级的前提下继续业务开发。
+- Production Code Complete / Activation Ready：否；G4/G5/G6 均未通过。
 - 验证人：Codex（需求/设计只读审核）；业务/技术/安全 Owner 为段成威。
 - 日期：2026-08-01。
 - 结论依据：A1—A7 已由段成威批准，G1/G2 于 2026-07-31 Passed，G2A 于 2026-08-01
@@ -295,8 +328,14 @@ S5B review 后开放 P0/P1/P2 findings = 0；结构化复审未冒充独立 G4�
   core online 中 discovery/JWKS/callback、API readiness、
   两个未认证 401 与 Tasks edge/direct 404 PASS。G3 为 PASS。S5B Desktop exact pin、generated
   adapter 与内存 fail-closed store 已通过全门禁和结构化审查，并远端核验为
-  `f94ac343881b0f7df59c0f5f4169372e612fd019`。完整浏览器、Rust bearer、refresh/Keychain E2E
-  与 provider family reuse 是 S7/G5，生产配置/激活继续禁止。S6 UI 已基于 `f94ac343...`
-  完成本地实现、结构化审查与全部门禁，提交/远端 SHA 待单独授权；S7—S8 跨仓集成和发布仍
-  `NOT RUN`。
+  `f94ac343881b0f7df59c0f5f4169372e612fd019`。S6 UI final
+  `688fb72ddf3f9c8ba0f8edea55a0c3f66cdf364c` 已远端核验。S7 已执行：Desktop
+  `155854cf3662384caa2c8bffe0a47935ef4a70b5` 与 Infra
+  `f040492e7c4af4aa7cc94a343140c58befae3af2` 的全部仓门与 offline/online preflight PASS，
+  两个 origin/develop SHA 已核验，历史 refresh cleanup P2 已修复；
+  真实浏览器 Code+PKCE/exact callback/code exchange 到达 access JWT 后，因 Keycloak 26.7
+  缺 required `nbf` fail closed；正式 Data Protection Keychain 因 `-34018` 与 0 signing identities
+  无法运行，provider family reuse 仍未证明。因此 S7 以真实 `BLOCKED` 证据冻结、
+  2×2/performance=`NOT RUN`；真实部署准备时必须恢复；
+  S8/生产配置/激活继续禁止。
   FEAT-124 G4-001 继续阻断，直到 FEAT-125 producer/consumer/E2E 与独立 G4 证据完成。

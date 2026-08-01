@@ -418,7 +418,10 @@ local-lab 证据。
   Accepted，G1/G2/G2A Passed，S1—S4 contract/API 与 S5A Desktop native boundary 均已
   commit/test/review/remote verified。S5B generated consumer/store 也已在 Desktop
   `f94ac343881b0f7df59c0f5f4169372e612fd019` 完成并远端核验；S6 UI final
-  `688fb72ddf3f9c8ba0f8edea55a0c3f66cdf364c` 已远端核验；S7 跨仓已获授权进入执行，尚未形成
-  PASS 证据。G3 local IdP/client/JWKS/API origin 已固定，local stack/offline ready/HTTPS synthetic
+  `688fb72ddf3f9c8ba0f8edea55a0c3f66cdf364c` 已远端核验；S7 已执行到真实 IdP/Keychain
+  blocker 并按 Local Engineering Baseline Complete 冻结。安全收口已远端核验为 Desktop
+  `155854cf3662384caa2c8bffe0a47935ef4a70b5` 与 Infra
+  `f040492e7c4af4aa7cc94a343140c58befae3af2`，但尚未形成生产 PASS 证据。G3 local IdP/client/JWKS/API origin 已固定，local stack/offline ready/HTTPS synthetic
   user provisioning、API bootstrap 与 core online PASS。G3 与 S5B PASS，feature 继续关闭。
-  生产 IdP、域名/TLS、Secret Manager 与 ingress 配置保持 G5 Blocked。
+  生产 IdP、域名/TLS、Secret Manager、Apple 签名与 ingress 配置保持 G5 Blocked；真实部署前
+  必须恢复完整生产级身份安全链路和 S7/G4/G5/G6。

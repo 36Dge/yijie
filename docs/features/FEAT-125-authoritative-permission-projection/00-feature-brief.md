@@ -4,7 +4,7 @@
 
 | 字段 | 内容 |
 |---|---|
-| 状态 | G0/G1/G2/G2A Passed / S1—S6 Remote Verified / G3-NP-LOCAL PASS / S7 In Progress / G4 Pending |
+| 状态 | Local Engineering Baseline Complete / Production Activation Blocked；S7 Frozen；G4/G5/G6 Not Passed |
 | 需求负责人 | 段成威 |
 | 技术负责人 | 段成威 |
 | Reviewer | 段成威 |
@@ -17,6 +17,15 @@
 
 建立由 `yijie-api` 基于受信身份、活动租户和服务端 RBAC 生成的权限投影，让 Desktop
 默认拒绝地控制导航与路由，同时确保前端呈现绝不替代服务端业务授权。
+
+### 当前阶段里程碑
+
+段成威于 2026-08-01 批准把 FEAT-125 定义为
+`Local Engineering Baseline Complete / Production Activation Blocked`。从现在起停止继续扩展
+S7，可以开始首页、聊天、Tasks 等业务需求开发，并使用本地合成身份、租户和权限数据验证；
+三个权限 feature flag 继续默认关闭。本状态不代表生产就绪、发布完成或 FEAT-124 G4-001
+关闭。真正部署整个 yijie、准备生产资源/IdP 或签名 Desktop 时，必须恢复并补齐生产 IdP、
+Apple 签名/Data Protection Keychain、refresh-family 与完整 S7/G4/G5/G6 证据。
 
 ## 3. 问题与用户价值
 
@@ -164,3 +173,5 @@
 | 2026-08-01 | Codex | 以 API local-only 显式 CA PEM + SHA-256 pin 关闭历史 502 阻断，复跑 offline ready、core online 和最终三仓门禁 | G3-NP-LOCAL PASS；系统 Keychain/生产配置未改 |
 | 2026-08-01 | 段成威/Codex | 单独批准并完成 S5B：固定 contracts-v0.3.0 candidate/generator，生成并接入 tenants/capabilities 类型与固定 adapter，实现 0/1/多租户状态、operation intent、revision/expiry/context 校验和内存 fail-closed permission store | Desktop implementation `5c4600f...`，CI path fix `942df58...`，final `f94ac343881b0f7df59c0f5f4169372e612fd019` 已推送并远端核验；80 frontend + 36 Rust tests、生成漂移、contract/fault/concurrency/security、结构化审查、全部本地门禁与 GitHub Actions run `30695055988` PASS；S6/UI/Tasks/Rust token lifecycle/生产配置未改，feature off |
 | 2026-08-01 | 段成威/Codex | 单独批准并执行 S6：接入 Desktop AppShell/nav/router/Settings，固定 UI flag、root priority、denied lazy guard、0/1/多租户恢复和前台刷新 | implementation `cf0e080e...`、final `688fb72ddf...` 已推送并远端核验；18 frontend files/113 tests + 36 Rust tests、browser fail-closed/72px persistence、lint/build/docs/debug app+dmg/audits 与 review PASS；S7 随后获授权进入执行 |
+| 2026-08-01 | 段成威 | 定义 FEAT-125 为 `Local Engineering Baseline Complete / Production Activation Blocked`，停止继续扩展并冻结 S7 | 允许首页/聊天/Tasks 使用本地合成身份与权限继续开发；flags 默认关闭；不宣称生产就绪；真实部署整个 yijie 前恢复 IdP、Apple 签名、Keychain、refresh-family、完整 S7/G4/G5/G6 |
+| 2026-08-01 | Codex | 提交并推送 S7 本地安全收口与 blocker harness，登记远端完整 SHA | Desktop `155854cf3662384caa2c8bffe0a47935ef4a70b5`；Infra `f040492e7c4af4aa7cc94a343140c58befae3af2`；两者 origin/develop verified；提交不改变 S7 Frozen/Production Activation Blocked |

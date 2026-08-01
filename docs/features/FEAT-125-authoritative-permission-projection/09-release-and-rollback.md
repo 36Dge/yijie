@@ -5,9 +5,21 @@
 > Desktop native boundary 与 S5B consumer/store 已远端核验但默认关闭，尚未进入 staging/production。当前
 > G3-NP-LOCAL 静态实现/仓内门禁、local stack、HTTPS synthetic user provisioning、offline
 > ready、synthetic API bootstrap 与 core online 已完成。API 仅 local profile 使用严格显式
-> CA PEM + lowercase SHA-256 pin，未修改系统 Keychain。因此 G3 PASS；S5B 随后已单独
-> 批准并完成。完整系统浏览器、Rust bearer、refresh/Keychain E2E 属于 S7/G5；
+> CA PEM + lowercase SHA-256 pin，未修改系统 Keychain。因此 G3 PASS；S5B/S6 随后已单独
+> 批准并完成。S7 已执行并在真实 access JWT `nbf` 与签名 Keychain 前置处 BLOCKED；
+> 当前按批准的 `Local Engineering Baseline Complete / Production Activation Blocked` 冻结；
 > 生产平台、配置、命令和 artifact 继续由 G5 单独审批。
+
+## 0. 当前里程碑与恢复触发
+
+- 当前允许：首页、聊天、Tasks 等业务代码开发；仅使用本地合成 identity/tenant/RBAC/
+  capability 数据验证。
+- 当前禁止：打开任一权限 feature flag、创建生产 tag、把本地证据描述为生产 PASS、暴露
+  legacy Tasks，或执行真实部署。
+- 恢复触发：准备真实部署整个 yijie、购买/分配服务器数据库公网资源、选择生产 IdP，或
+  准备签名 Desktop 发布时，先恢复 S7。
+- 恢复完成条件：生产 IdP/JWT 契约、Apple 签名与 Data Protection Keychain、refresh-family、
+  2 roles × 2 tenants bearer、性能/监控/回滚全部通过，再依次批准 G4、G5、G6。
 
 ## 1. Release Manifest
 
@@ -15,11 +27,11 @@
 |---|---|---|---|---|---|
 | yijie-contracts | 0.3.0 candidate；planned `contracts-v0.3.0` tag | `9ec34abd6e7dfb5a23b0154d467694167224ebbb` | source `7bd40dd1c5a53cc1dcd317e3a64bf7189170fd7f575b25bb07f0eb243d0319ed`；TS `77babb215608c6ace4468d37b72fc8e43f5758231c7807a4301063cb156ae8e0`；Go `01d31efc1b1c3fb69e18c853d67ea12cdc313c2709f2a02d02e2a01b6ff4d253`；tarball `43a54d7f9f01edd6b50adcebb8c3b4b645dab7ec8cf4aafe20b62d7d98718565` | openapi-typescript 7.13.0 / oapi-codegen 2.7.2 | origin/develop verified；tag/publish pending |
 | yijie-api | S4 remote candidate；no release | `360a526b679147472e7cc82ca7ac9db9d18a371d`；origin/develop verified | generated types `a1801a...` | exact contracts `9ec34abd...` / oapi-codegen v2.7.2 | local producer/conformance/fault PASS；flag off；staging/production NOT RUN |
-| yijie-desktop | S5B remote candidate；no release | final `f94ac343881b0f7df59c0f5f4169372e612fd019`；origin/develop verified | generated TS `77babb21...`；pnpm lock `d80424b8...`；debug artifact unsigned/unpublished | exact contracts `9ec34abd...` / openapi-typescript 7.13.0 + TypeScript 5.9.3 | S5A native + S5B consumer/security gates PASS；feature off；S6 UI、sign/notarize、staging/production NOT RUN |
+| yijie-desktop | local engineering freeze baseline；no release | `155854cf3662384caa2c8bffe0a47935ef4a70b5`；origin/develop verified；S6 base `688fb72d...` | generated TS `77babb21...`；debug artifact unsigned/unpublished | exact contracts `9ec34abd...` / openapi-typescript 7.13.0 + TypeScript 5.9.3 | S5A—S6 gates + S7 refresh cleanup PASS；feature flags off；signed Keychain BLOCKED；sign/notarize/staging/production NOT RUN |
 | DB schema | goose v2 expand candidate | yijie-api `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf` | `51c4ced9b6e6fa447326c29ead582e0568541e7ffca7084ae706d71ad4cb3bc9` | N/A | local PostgreSQL 16.14 PASS；staging/production NOT RUN |
 | yijie-api G3-NP-LOCAL | committed / no release | `faeb78019d95aaf9dcfbd8493f8bc2ecf7e4bf34`；origin/develop verified | Git commit | exact contracts `9ec34abd...` | exact local issuer/JWKS、dedicated DB/tracked 2×2 guard、strict explicit CA PEM+lowercase SHA-256 pin 与 bootstrap/reconciliation tests PASS；core online PASS |
 | yijie-desktop G3-NP-LOCAL | committed / superseded by S5B candidate | `446b4d608546fca8f53f4582201d6b43ef6f762d`；origin/develop verified | Git commit | pre-S5B baseline | static gates 37 frontend + 36 Rust PASS；S5B builds on this exact baseline |
-| yijie-infra G3-NP-LOCAL | committed / no deployment | `298192e386a7f7b81e8f0f8fe733c1f79f096ab4`；origin/develop verified | pinned image digests validated；public CA `07a3bb2ef51a5b559fe42b423339f6c886c5e17903b1cf2d8ca26bf1b5574650` | exact API/Desktop trees recorded in local ignored runtime manifest during preflight | 71/71 tests + lint/Compose/shell/diff PASS；local stack/DB/offline ready/core online PASS |
+| yijie-infra G3/S7 local baseline | committed / no deployment | `f040492e7c4af4aa7cc94a343140c58befae3af2`；origin/develop verified；G3 base `298192e...` | pinned image digests validated；public CA `07a3bb2ef51a5b559fe42b423339f6c886c5e17903b1cf2d8ca26bf1b5574650`；bearer harness `c0725416...` | exact API/Desktop trees recorded in local ignored runtime manifest during preflight | 76 tests + lint/Compose/shell/diff PASS；local stack/DB/offline ready/core online PASS；S7 bearer remains BLOCKED by provider `nbf` |
 | yijie evidence | FEAT-125 / FEAT-124 G4 | final docs SHA | N/A | final manifests | governance |
 
 三个实现仓的 precommit worktree references 已重算并用于最终 ready/online；随后完全相同的 trees
@@ -39,7 +51,7 @@ artifact，也不得把 develop 分支当作生产 release manifest。
       通过 slice 结构化审查、全部门禁和 producer conformance/fault tests，已 push 并远端核验；未发布
 - [x] S5A Desktop native boundary 已由段成威批准；`3798c67d260237928730758c7ec4c1fbe6fcf7d2`
       通过 OIDC/loopback/Keychain/IPC/transport security matrix、全部门禁和结构化审查，已 push
-      并远端核验；native flag 默认 false；S5B consumer/store 其后已完成，S6 UI、真实 IdP/API、正式 Keychain provisioning 未执行
+      并远端核验；native flag 默认 false；S5B/S6 其后已完成；S7 真实 IdP code flow 已到 JWT 校验，但正式 Keychain provisioning 未满足
 - [x] A7 / G3-NP-LOCAL 范围已批准；API/Desktop/Infra 实现已提交并远端核验，仓内门禁、local
       stack、HTTPS synthetic user provisioning、offline ready 与 synthetic API bootstrap 已完成；
       只使用 loopback、Docker、合成数据，无生产配置/激活
@@ -60,6 +72,8 @@ artifact，也不得把 develop 分支当作生产 release manifest。
       authorization revision/audit/inventory 完整，无真实数据
 - [ ] S7/G5 provider refresh lifecycle PASS；本地 Keycloak 仅证明 rotation，未证明 reuse
       自动撤销整个 token family（`provider_limit_documented`）
+- [ ] S7 兼容 IdP access JWT 包含已批准的 required `nbf`；当前 Keycloak 26.7 token 缺失并被 strict harness fail closed
+- [ ] S7 使用具备 entitlement 的签名 Desktop candidate 完成 Data Protection Keychain；当前宿主 0 valid signing identities，smoke 返回 `-34018`
 - [ ] Dashboard、告警、runbook、on-call/rollback 责任人存在
 - [ ] API/Desktop feature flags 默认安全关闭
 - [ ] 现有 `/v1/tasks` 与 `/v1/tasks/*` 已通过获批 production 宿主 API profile handler
@@ -76,7 +90,7 @@ artifact，也不得把 develop 分支当作生产 release manifest。
 | 2 | 已批准并实现最小本地 API JWKS CA trust（local-profile-only explicit CA + digest pin；不安装系统信任） | G3 local | 段成威 | G3L-BLK-001；不得扩大生产/default profile | negative config + API startup PASS | remove local CA env/client config；projection off |
 | 3 | 使用本地 Keycloak/Caddy，启动独占宿主 API 并完成 G3 online | G3 loopback | 段成威 | step 2 + exact reviewed refs + offline ready PASS | TLS/discovery/JWKS/API startup/readiness/redirect/unauth 401/Tasks edge+direct 404 PASS；`:9443` 证明 Caddy→host gateway→`127.0.0.1:18080` 可达 | stop exact host API first；clear its local env；stop local Compose；可达失败不得改 bind 为 `0.0.0.0` |
 | 4 | 登记 G3-NP-LOCAL PASS，并由段成威单独决定是否批准 S5B | yijie evidence | 段成威 | exact runtime evidence；no fake PASS | full evidence review | Complete；S5B subsequently approved |
-| 5 | Desktop S5B consumer + S6 UI candidate | local/S7 staging-equivalent | 段成威 | S5B/S6 remote verified；S7 execution approved | consumer/UI gates PASS；2×2 E2E in S7 | do not release；flags off |
+| 5 | Desktop S5B consumer + S6 UI candidate；执行 S7 preflight | local/S7 staging-equivalent | 段成威 | S5B/S6 remote verified；S7 execution approved | consumer/UI gates PASS；real code+PKCE reached JWT validation；2×2 E2E blocked by `nbf`/signed Keychain | do not release；flags off |
 | 6 | 创建不可移动 v0.3.0 tag | contracts | 段成威 | candidate E2E PASS | tag→same SHA/digest | never move tag |
 | 7 | API/Desktop 切 tag provenance | repos | 段成威 | tag verified | regenerate clean | retain candidate commit |
 | 8 | 生产 expand migration | production | approved operator | G5 rehearsal+backup/runbook | schema/status | pause/roll-forward |
@@ -100,6 +114,12 @@ artifact，也不得把 develop 分支当作生产 release manifest。
 
 Infra Compose profile `feat-125-local`、API service profile `feat-125-local-lab` 与 Desktop auth
 environment `local-integration` 是三个不同命名空间；不得互换或以一个值隐式启用另一个边界。
+
+S7 为真实系统浏览器验证临时将 exact local CA 加入当前用户 login Keychain trust settings；
+该动作不写 token/refresh credential，也不改变 API 的显式 CA pin。验证结束已仅按证书 SHA-1
+`F28D5A365401A53BBAE447BEE43C923362BFB787` 调用 `make feat-125-local-untrust-ca`，随后
+`make feat-125-local-ca-status` 按预期非零，确认 trust entry 已删除。未来复跑仍须使用同一精确
+流程，不得按名称或 Keychain 范围批量删除。
 
 Kill switch 禁止切回静态全显示、默认 `{}` 或硬编码 admin。若 API 关闭而 Desktop 已发布，
 Desktop 必须进入 permission-unavailable 并保留 retry/logout，不显示受保护模块。
@@ -236,4 +256,5 @@ projection 环境；再关闭 Desktop local flags、撤销本地 session/清除�
 | A7 / G3-NP-LOCAL scope | 段成威 | Approved local loopback/Docker/synthetic implementation；static gates/local stack/live realm/HTTPS user provisioning/offline ready/API bootstrap complete；core online PASS with local-only explicit CA pin；G3 PASS；该时点 S5B 尚未单独批准 | 2026-08-01 | 08 full commits/gates/runtime/bootstrap evidence |
 | API local CA trust | 段成威 | Approved minimal local-profile-only scope；implemented and verified | 2026-08-01 | API `faeb78019d...`；offline ready/core online PASS；system Keychain unchanged |
 | S5B | 段成威 | Approved / complete / remote verified | 2026-08-01 | Desktop final `f94ac343881b0f7df59c0f5f4169372e612fd019`；feature off；S6/G4 separate |
+| Local engineering milestone | 段成威 | Complete；S7 frozen；production activation blocked | 2026-08-01 | 允许本地合成数据业务开发；flags 默认关闭；真实部署前恢复完整生产身份安全链路 |
 | Go/No-Go | 段成威 | Pending | G5 后 | final manifest/runbook/rehearsal |
