@@ -47,7 +47,7 @@
 | S3 / API foundation | `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf` | TDD red→exact pin/expand migration/RS256 JWT/JWKS/identity/tenancy/RBAC→all S3 gates | 0 | PASS | remote SHA verified；no production values or activation |
 | S4 / API producer | `360a526b679147472e7cc82ca7ac9db9d18a371d` | TDD red→tenant/capability endpoints、atomic projection、stable faults/headers、metrics→all S4 gates | 0 | PASS | canonical producer conformance；flag default false；no production values/activation；remote verified |
 | S5A / Desktop native auth+transport | `3798c67d260237928730758c7ec4c1fbe6fcf7d2` | system-browser OIDC、exact loopback、PKCE/state/nonce、Keychain lifecycle、two fixed authenticated operations→security matrix/all gates | 0 | PASS | native flag default false；no S5B/UI/Tasks/production values；remote verified；real provider/provisioning NOT RUN |
-| S5B / Desktop contract consumer+store | `5c4600f8308d55be5596e7c45215e88c7411f286` | exact candidate/generator→generated TypeScript/fixed adapter→0/1/multiple tenant domain state→revision/expiry/context validation→memory fail-closed store→all gates | 0 | PASS | 12 frontend files/80 tests + 36 Rust tests；S5B-REV-001—004 resolved；feature off；no S6/UI/Tasks/Rust lifecycle/production values；remote verified |
+| S5B / Desktop contract consumer+store | final `f94ac343881b0f7df59c0f5f4169372e612fd019` | exact candidate/generator→generated TypeScript/fixed adapter→0/1/multiple tenant domain state→revision/expiry/context validation→memory fail-closed store→all gates | 0 | PASS | implementation `5c4600f...` + CI fixes `942df58...`/`f94ac34...`；12 frontend files/80 tests + 36 Rust tests；S5B-REV-001—006 resolved；GitHub Actions `30695055988` PASS；feature off；no S6/UI/Tasks/Rust lifecycle/production values；remote verified |
 | G3-NP / generic preparation | `yijie-infra@2f01f22b46f313f8ff0b9973e417f7ccae654318` | strict safe template/ready validation + bounded online preflight tests + local Compose/migration/API flag-off smoke | 0 | PREPARED | historical 19 tests/migration 2/health/ready/flag-off 404 PASS；remote verified；not G3-NP-LOCAL PASS |
 | G3-NP-LOCAL / static+offline+bootstrap | verified full commits above | pinned images/profile/config、strict validators、API exact local issuer/dedicated DB/tracked 2×2 guard + audited bootstrap、Desktop CA+Keychain environment binding；owning-repo gates；local up/status/provision/prepare/ready | 0 | PASS / REMOTE VERIFIED | API/Desktop gates and Infra 71/71 + lint/Compose/shell/diff recorded below；containers healthy；exact Keycloak realm/client/scope-set/explicit mapper/strict user-profile/two-user/password-reset/refresh-revocation conformance over pinned HTTPS and final offline ready PASS；dedicated API DB empty inventory/migration 1→2/fixed first+idempotent bootstrap/inventory/revision/audit PASS |
 | G3-NP-LOCAL / API startup+online preflight | exact trees committed by the verified full SHAs above | dedicated API startup/readiness + local online preflight | 0 | PASS | strict explicit CA pin；TLS/discovery/JWKS/callback、health/ready、两个 401、Tasks edge+direct 404 PASS；no system trust mutation |
@@ -110,7 +110,7 @@
 | API generated consumer pin | exact candidate + source/generated digest + generator module | `make generate-check` | PASS | S3/S4 clean regenerate |
 | Producer conformance | canonical contract fixtures + generated types | API endpoint/fault/integration tests | PASS | S4 remote；staging remains S7 |
 | Desktop native boundary | contract operation semantics + fixed Rust command/HTTP allowlist | S5A unit/security/native build | LOCAL PASS | no token IPC/generic proxy；real API/IdP remains S7/G3/G5 |
-| Consumer conformance | exact candidate `9ec34abd...` + generated TS `77babb...` | Desktop generated adapter/store canonical/fault/concurrency/security tests | PASS | S5B `5c4600f...` remote verified；cross-repo remains S7 |
+| Consumer conformance | exact candidate `9ec34abd...` + generated TS `77babb...` | Desktop generated adapter/store canonical/fault/concurrency/security tests | PASS | S5B final `f94ac34...` remote verified；cross-repo remains S7 |
 | Agent Host/Runtime regression | Agent Host remains v0.2.0 | structured manifest comparison | CONTRACT PASS / integration NOT RUN | Runtime semantics unchanged；S7 仍需真实集成 |
 
 ## 6. AC → 实现 → 证据追踪
@@ -159,7 +159,8 @@
 - [x] S5A lock digests：`src-tauri/Cargo.lock`=`94b1ee21ed1bd9e4e97528622971da9241c43c4e497181ec83f77f2da6a5b973`；`pnpm-lock.yaml`=`aaa0a300afb760c0a768aebefcf338bdbbb66dd6a62a3a907d456d0246fedc0c`
 - [x] S5A dependency exception EXC-125-002 已限定为 `openidconnect→rsa` 的 RS256 公钥验签路径；无 RSA 私钥/签名/解密，G5 或上游修复时必须重审/移除
 - [x] S5B exact contract lock=`9ec34abd6e7dfb5a23b0154d467694167224ebbb`；source=`7bd40dd1...`；generated TypeScript=`77babb21...`；generator=`openapi-typescript 7.13.0` + isolated TypeScript `5.9.3`
-- [x] S5B Desktop `5c4600f8308d55be5596e7c45215e88c7411f286` 已推送并由 `git ls-remote` 核验；S6/UI/Tasks/Rust lifecycle diff 不存在
+- [x] S5B Desktop final `f94ac343881b0f7df59c0f5f4169372e612fd019` 已推送并由 `git ls-remote` 核验；implementation 为 `5c4600f...`，CI contracts path fix 为 `942df58...`；S6/UI/Tasks/Rust lifecycle diff 不存在
+- [x] S5B GitHub Actions run `30695055988` 对 final SHA 完整执行并 PASS；exact contracts checkout、Desktop-only test discovery、build、native bundle 与 audits 均通过
 - [x] 历史 generic G3 template digest `b7d1eb27...`、validator `2e59197e...`、online CLI `1b541ab9...`、runbook `f819fa2f...` 仍可追溯；当前 G3-NP-LOCAL 使用远端完整提交且不伪造 image/CA/runtime digest
 - [x] Compose profile namespace `feat-125-local`、API service profile `feat-125-local-lab` 与 Desktop auth environment `local-integration` 保持三个不同边界；文档不再互相混称
 - [x] 本轮文档未写入 secret、PII、本机外部引用、调试后门或临时文件
@@ -235,6 +236,8 @@ API G3 可修复 P0/P1/P2 开放数为 0；`G3L-BLK-001` 已关闭，P3 测试�
 | S5B-REV-002 | P2 / resolved | 调用前已取消的 operation intent 仍可能触发 native request | pre-aborted signal 在 invoke 前 fail closed；定向负测 PASS |
 | S5B-REV-003 | P2 / resolved | 相同 revision 但 capability 集变化可能绕过 rollback-only 检查 | 同 revision 必须保持 canonical known capability set 一致；drift 负测 PASS |
 | S5B-REV-004 | P2 / resolved | 仅使用 `Date.parse` 会接受被规范化的非法日期 | 强制严格 RFC3339 日历往返校验、未来且不超过 5 分钟；日期/expiry 负测 PASS |
+| S5B-REV-005 | P1 / resolved | 首次远端 CI 的脚本级 contracts 变量被 Makefile 默认路径覆盖 | workflow 使用正式 `CONTRACTS_DIR=.contracts-source` 输入；exact checkout 检查在 CI PASS |
+| S5B-REV-006 | P1 / resolved | 仓内 contracts checkout 被 Vitest 默认发现，误执行未安装依赖的 Contracts tests | Desktop test command 排除 `**/.contracts-source/**`；本仓 12 files/80 tests 保持 PASS |
 
 S5B review 后开放 P0/P1/P2 findings = 0；结构化复审未冒充独立 G4。
 
@@ -289,7 +292,7 @@ S5B review 后开放 P0/P1/P2 findings = 0；结构化复审未冒充独立 G4�
   core online 中 discovery/JWKS/callback、API readiness、
   两个未认证 401 与 Tasks edge/direct 404 PASS。G3 为 PASS。S5B Desktop exact pin、generated
   adapter 与内存 fail-closed store 已通过全门禁和结构化审查，并远端核验为
-  `5c4600f8308d55be5596e7c45215e88c7411f286`。完整浏览器、Rust bearer、refresh/Keychain E2E
+  `f94ac343881b0f7df59c0f5f4169372e612fd019`。完整浏览器、Rust bearer、refresh/Keychain E2E
   与 provider family reuse 是 S7/G5，生产配置/激活继续禁止。S6—S8 的 UI、跨仓集成和发布仍
   `NOT RUN`。
   FEAT-124 G4-001 继续阻断，直到 FEAT-125 producer/consumer/E2E 与独立 G4 证据完成。

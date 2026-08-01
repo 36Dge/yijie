@@ -35,9 +35,9 @@
 | 事实 | 不可变证据 | 结果 | 剩余边界 |
 |---|---|---|---|
 | S4 API producer 已远端可用 | `yijie-api@360a526b679147472e7cc82ca7ac9db9d18a371d`，`origin/develop` 相等 | tenants/capabilities、逐请求 tenant 验证、稳定错误、revision、metrics 与 producer/fault conformance PASS；flag 默认 false | staging/performance/exporter、生产配置与激活未执行 |
-| S5A/S5B Desktop boundary 与 consumer 已远端可用 | S5A `3798c67d260237928730758c7ec4c1fbe6fcf7d2`；S5B `5c4600f8308d55be5596e7c45215e88c7411f286`；`origin/develop` 已核验 | system-browser OIDC、operation-scoped transport、exact generated types/adapter、0/1/多租户状态与内存 fail-closed store 全部门禁 PASS；flag 关闭 | S6 UI、真实 IdP/API/正式 Keychain provisioning 未执行 |
+| S5A/S5B Desktop boundary 与 consumer 已远端可用 | S5A `3798c67d260237928730758c7ec4c1fbe6fcf7d2`；S5B final `f94ac343881b0f7df59c0f5f4169372e612fd019`；`origin/develop` 已核验 | system-browser OIDC、operation-scoped transport、exact generated types/adapter、0/1/多租户状态与内存 fail-closed store 全部门禁 PASS；flag 关闭 | S6 UI、真实 IdP/API/正式 Keychain provisioning 未执行 |
 | G3 通用准备层已远端可用 | `yijie-infra@2f01f22b46f313f8ff0b9973e417f7ccae654318`；`yijie@9c732e0a8f8c7eb9d31d371300225ea105018879` | strict template/ready validator、bounded online preflight、runbook 与本地 flag-off baseline 已提交并推送 | A7 已把外部资源前置替换为 G3-NP-LOCAL；历史首次 online 的 API health 502 已由 local-only 显式 CA pin 修复关闭 |
-| G3-NP-LOCAL 已提交基线 | API `faeb78019d...`、Desktop `446b4d6085...`、Infra `298192e386...`；三个 `origin/develop` 完整 SHA 已核验 | API/Desktop/Infra 最终门禁 PASS；Keycloak/PostgreSQL/Caddy、专用 DB/2×2 bootstrap、offline ready PASS；API 仅 local profile 使用严格显式 CA PEM+SHA-256 pin且未改系统 Keychain；core online 的 discovery/JWKS/callback、health/ready、两个 401、Tasks edge/direct 404 全部 PASS | G3 PASS；随后 S5B 已单独批准并以 Desktop `5c4600f...` 完成；signed app/Keychain/full auth E2E 与生产配置仍 NOT RUN |
+| G3-NP-LOCAL 已提交基线 | API `faeb78019d...`、Desktop `446b4d6085...`、Infra `298192e386...`；三个 `origin/develop` 完整 SHA 已核验 | API/Desktop/Infra 最终门禁 PASS；Keycloak/PostgreSQL/Caddy、专用 DB/2×2 bootstrap、offline ready PASS；API 仅 local profile 使用严格显式 CA PEM+SHA-256 pin且未改系统 Keychain；core online 的 discovery/JWKS/callback、health/ready、两个 401、Tasks edge/direct 404 全部 PASS | G3 PASS；随后 S5B 已单独批准并以 Desktop `f94ac34...` 完成；signed app/Keychain/full auth E2E 与生产配置仍 NOT RUN |
 
 ## 3. 仓库与组件影响矩阵
 

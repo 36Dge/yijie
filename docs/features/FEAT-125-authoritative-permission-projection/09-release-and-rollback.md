@@ -15,7 +15,7 @@
 |---|---|---|---|---|---|
 | yijie-contracts | 0.3.0 candidate；planned `contracts-v0.3.0` tag | `9ec34abd6e7dfb5a23b0154d467694167224ebbb` | source `7bd40dd1c5a53cc1dcd317e3a64bf7189170fd7f575b25bb07f0eb243d0319ed`；TS `77babb215608c6ace4468d37b72fc8e43f5758231c7807a4301063cb156ae8e0`；Go `01d31efc1b1c3fb69e18c853d67ea12cdc313c2709f2a02d02e2a01b6ff4d253`；tarball `43a54d7f9f01edd6b50adcebb8c3b4b645dab7ec8cf4aafe20b62d7d98718565` | openapi-typescript 7.13.0 / oapi-codegen 2.7.2 | origin/develop verified；tag/publish pending |
 | yijie-api | S4 remote candidate；no release | `360a526b679147472e7cc82ca7ac9db9d18a371d`；origin/develop verified | generated types `a1801a...` | exact contracts `9ec34abd...` / oapi-codegen v2.7.2 | local producer/conformance/fault PASS；flag off；staging/production NOT RUN |
-| yijie-desktop | S5B remote candidate；no release | `5c4600f8308d55be5596e7c45215e88c7411f286`；origin/develop verified | generated TS `77babb21...`；pnpm lock `d80424b8...`；debug artifact unsigned/unpublished | exact contracts `9ec34abd...` / openapi-typescript 7.13.0 + TypeScript 5.9.3 | S5A native + S5B consumer/security gates PASS；feature off；S6 UI、sign/notarize、staging/production NOT RUN |
+| yijie-desktop | S5B remote candidate；no release | final `f94ac343881b0f7df59c0f5f4169372e612fd019`；origin/develop verified | generated TS `77babb21...`；pnpm lock `d80424b8...`；debug artifact unsigned/unpublished | exact contracts `9ec34abd...` / openapi-typescript 7.13.0 + TypeScript 5.9.3 | S5A native + S5B consumer/security gates PASS；feature off；S6 UI、sign/notarize、staging/production NOT RUN |
 | DB schema | goose v2 expand candidate | yijie-api `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf` | `51c4ced9b6e6fa447326c29ead582e0568541e7ffca7084ae706d71ad4cb3bc9` | N/A | local PostgreSQL 16.14 PASS；staging/production NOT RUN |
 | yijie-api G3-NP-LOCAL | committed / no release | `faeb78019d95aaf9dcfbd8493f8bc2ecf7e4bf34`；origin/develop verified | Git commit | exact contracts `9ec34abd...` | exact local issuer/JWKS、dedicated DB/tracked 2×2 guard、strict explicit CA PEM+lowercase SHA-256 pin 与 bootstrap/reconciliation tests PASS；core online PASS |
 | yijie-desktop G3-NP-LOCAL | committed / superseded by S5B candidate | `446b4d608546fca8f53f4582201d6b43ef6f762d`；origin/develop verified | Git commit | pre-S5B baseline | static gates 37 frontend + 36 Rust PASS；S5B builds on this exact baseline |
@@ -48,7 +48,7 @@ artifact，也不得把 develop 分支当作生产 release manifest。
       exact reviewed implementation refs 与 no-insecure/no-secret 策略已严格校验
 - [x] G3 dedicated API startup/readiness + core online PASS：TLS、discovery/JWKS、dynamic
       redirect 正/负、health/ready、两个未认证 401、Tasks Caddy edge + direct host API 404 全部通过
-- [x] G3-NP-LOCAL PASS 后由段成威单独批准 S5B；Desktop `5c4600f8308d55be5596e7c45215e88c7411f286` remote verified
+- [x] G3-NP-LOCAL PASS 后由段成威单独批准 S5B；Desktop final `f94ac343881b0f7df59c0f5f4169372e612fd019` remote verified
 - [ ] G4 Code Complete 通过，P0/P1/P2 security findings 为 0
 - [ ] Release artifact 来自干净、远端可获取、不可变 source
 - [ ] v0.3.0 tag 解析到已做 API/Desktop conformance 的同一 candidate；digest 不变
@@ -235,5 +235,5 @@ projection 环境；再关闭 Desktop local flags、撤销本地 session/清除�
 | G3 generic preparation | 段成威 | Approved/complete；供应商中立、默认关闭、合成数据准备已提交；不等于 G3-NP-LOCAL PASS | 2026-08-01 | yijie-infra `2f01f22...`、历史 migration/flag-off smoke |
 | A7 / G3-NP-LOCAL scope | 段成威 | Approved local loopback/Docker/synthetic implementation；static gates/local stack/live realm/HTTPS user provisioning/offline ready/API bootstrap complete；core online PASS with local-only explicit CA pin；G3 PASS；该时点 S5B 尚未单独批准 | 2026-08-01 | 08 full commits/gates/runtime/bootstrap evidence |
 | API local CA trust | 段成威 | Approved minimal local-profile-only scope；implemented and verified | 2026-08-01 | API `faeb78019d...`；offline ready/core online PASS；system Keychain unchanged |
-| S5B | 段成威 | Approved / complete / remote verified | 2026-08-01 | Desktop `5c4600f8308d55be5596e7c45215e88c7411f286`；feature off；S6/G4 separate |
+| S5B | 段成威 | Approved / complete / remote verified | 2026-08-01 | Desktop final `f94ac343881b0f7df59c0f5f4169372e612fd019`；feature off；S6/G4 separate |
 | Go/No-Go | 段成威 | Pending | G5 后 | final manifest/runbook/rehearsal |

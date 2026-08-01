@@ -10,7 +10,7 @@
 ## 1. 最终结果
 
 - 用户可观察行为：尚未变化；Desktop 仓当前为 S5B
-  `5c4600f8308d55be5596e7c45215e88c7411f286`，
+  `f94ac343881b0f7df59c0f5f4169372e612fd019`，
   但 native flag 默认关闭且没有 S6 UI
   接线；FEAT-124 业务界面 candidate 仍以 `be01cc2d0a1c9c4b057de616be201a4843d0a035` 为阻断基线。
 - 原目标是否达成：部分；已完成 A1—A7、S1/S2 Contracts remote candidate、S3 API
@@ -28,9 +28,9 @@
 |---|---|---|---|---|---|
 | yijie-contracts | repository remote candidate | 0.3.0 candidate；no release/tag | `9ec34abd6e7dfb5a23b0154d467694167224ebbb` | source `7bd40dd...`；tarball `43a54d7...` | candidate 0.3.0；supported release 仍 v0.2.0 |
 | yijie-api | repository remote candidate / local test | S4 commit；no release | `360a526b679147472e7cc82ca7ac9db9d18a371d`；origin/develop verified | generated `a1801a...`；migration `51c4ced9...` | exact candidate `9ec34abd...` / oapi-codegen v2.7.2；feature flag false |
-| yijie-desktop | repository remote candidate / local native test | S5B commit；no release | `5c4600f8308d55be5596e7c45215e88c7411f286`；origin/develop verified | generated TS `77babb21...`；pnpm lock `d80424b8...`；unsigned debug `.app/.dmg` only | native flag false；S5B exact contract pin/consumer complete；S6 UI absent |
+| yijie-desktop | repository remote candidate / local native test | S5B final；no release | `f94ac343881b0f7df59c0f5f4169372e612fd019`；origin/develop verified | generated TS `77babb21...`；pnpm lock `d80424b8...`；unsigned debug `.app/.dmg` only | implementation `5c4600f...` + CI fixes `942df58...`/`f94ac34...`；native flag false；S6 UI absent |
 | yijie-api G3-NP-LOCAL | repository commit / no release | exact local profile/dedicated DB/tracked bootstrap/service-profile/explicit-CA implementation | `faeb78019d95aaf9dcfbd8493f8bc2ecf7e4bf34`；origin/develop verified | Git commit | exact contracts `9ec34abd...` |
-| yijie-desktop G3-NP-LOCAL | repository commit / no release | local CA/Keychain environment-binding baseline | `446b4d608546fca8f53f4582201d6b43ef6f762d`；origin/develop verified | Git commit | superseded by S5B candidate `5c4600f...` |
+| yijie-desktop G3-NP-LOCAL | repository commit / no release | local CA/Keychain environment-binding baseline | `446b4d608546fca8f53f4582201d6b43ef6f762d`；origin/develop verified | Git commit | superseded by S5B final `f94ac34...` |
 | yijie-infra G3-NP-LOCAL | repository commit / no deployment | pinned local-lab/dedicated API DB/preflight implementation | `298192e386a7f7b81e8f0f8fe733c1f79f096ab4`；origin/develop verified | pinned image digests；public CA `07a3bb2ef51a5b559fe42b423339f6c886c5e17903b1cf2d8ca26bf1b5574650` | 71/71 tests + lint/Compose/shell/diff PASS；exact implementation refs verified |
 | database | dedicated local PostgreSQL 16 DB `yijie_api_feat125_local` | empty inventory + goose migration 1→2 + tracked synthetic bootstrap；not deployed | API `faeb78019d...` | migration `51c4ced9...` | final users2/identities2/tenants2/memberships4/roles4/role_permissions18/role_bindings4/tasks0；8 synthetic-only audits；no session/real seed/shared DB evidence |
 
@@ -44,7 +44,7 @@
 | S5A Desktop native boundary | LOCAL SLICE PASS | committed S5A：system-browser OIDC、exact loopback、PKCE/state/nonce、Rust-memory access、Protected Data Keychain refresh lifecycle、two fixed GET operations；37 frontend + 27 Rust tests | none；full browser/provider/provisioned Keychain NOT RUN；flag default false |
 | G3-NP-LOCAL static/offline commits | PASS / REMOTE VERIFIED | API generate/lint/race unit+integration/module/diff PASS（nonprodbootstrap integration 83.2%）+ exact local DB guard/dedicated empty DB migration/tracked bootstrap first+idempotent/inventory/audit/revision；Desktop 37 frontend + 36 Rust/local CA+Keychain binding/401-refresh race fix；Infra 71/71 + lint/Compose/shell/diff PASS；three containers healthy；read-only-before-mutation exact realm/two clients/canonicalized scope sets/explicit `userinfo.token.claim=false` mapper/strict managed `data_classification` user profile（omitted field = unmanaged disabled under Keycloak 26.7 REST）/two fixed users/password resets/refresh revocation `invalid_grant` over pinned HTTPS；final offline ready PASS | API/Desktop/Infra full commits remote verified；no release artifact or production evidence |
 | G3-NP-LOCAL dedicated API/online | PASS | exit 0 | strict local-only CA pin；discovery/JWKS/callback、health/ready、两个 unauth 401、Tasks edge+direct 404 PASS |
-| S5B Desktop consumer/store | PASS | Desktop `5c4600f8308d55be5596e7c45215e88c7411f286` | exact generation drift、canonical contract/fault/concurrency/security；80 frontend + 36 Rust tests；all gates/review/remote verification PASS；feature off |
+| S5B Desktop consumer/store | PASS | Desktop final `f94ac343881b0f7df59c0f5f4169372e612fd019` | exact generation drift、canonical contract/fault/concurrency/security；80 frontend + 36 Rust tests；all local gates/review/remote SHA + GitHub Actions `30695055988` PASS；feature off |
 | remaining AC/NFR | NOT RUN | S6 Desktop UI、S7 cross-repo and production slices pending | none |
 
 ## 4. 生产 Smoke 与观察
@@ -116,7 +116,7 @@ CA trust 也是待批准 blocker，不是已接受风险。
 | Desktop S5A security matrix | `yijie-desktop/docs/security/FEAT-125-S5A-security-matrix.md` | 段成威 | S5A remote candidate 2026-08-01 |
 | G3 generic runbook | `yijie-infra/docs/feat-125-nonproduction.md` | 段成威 | remote preparation `2f01f22...` |
 | G3-NP-LOCAL runbook | `yijie-infra/docs/feat-125-local-lab.md` + local profile/validator/preflight scripts | 段成威 | Infra `298192e386...` remote verified；offline ready/core online PASS |
-| Desktop S5B consumer evidence | `yijie-desktop/docs/security/FEAT-125-S5B-consumer-matrix.md` | 段成威 | `5c4600f8308d55be5596e7c45215e88c7411f286` remote verified；S6/release runbook not created |
+| Desktop S5B consumer evidence | `yijie-desktop/docs/security/FEAT-125-S5B-consumer-matrix.md` | 段成威 | final `f94ac343881b0f7df59c0f5f4169372e612fd019` remote verified；S6/release runbook not created |
 | FEAT-124 G4 report | existing FEAT-124 `08-verification-report.md` | 段成威 | G4-001 remains open |
 
 ## 10. 复盘

@@ -145,7 +145,7 @@ online 与三仓门禁 PASS，因此 G3 PASS；随后 S5B 已单独批准、完�
 | Settings/root（DEC-002/004/008） | 段成威 | Approved；G2 Passed | 2026-07-31 | A5 |
 | Tasks 双隔离与 FEAT-126（DEC-009/010、EXC-125-001） | 段成威 | Approved；G2 Passed | 2026-07-31 | A6 |
 | Contracts S1/S2 授权 | 段成威 | Approved and executed；candidate/gates/remote verification PASS | 2026-08-01 | 用户明确指令；`9ec34abd...` |
-| Provider/consumer 实施授权 | 段成威 | G2A Passed；S3/S4 API provider、S5A Desktop native boundary 与 S5B generated consumer/store 均已单独授权并完成；S6+ 与生产激活仍按后续 slice/gate | 2026-08-01 | 用户明确指令；S4 `360a526...`；S5A `3798c67...`；S5B `5c4600f...` |
+| Provider/consumer 实施授权 | 段成威 | G2A Passed；S3/S4 API provider、S5A Desktop native boundary 与 S5B generated consumer/store 均已单独授权并完成；S6+ 与生产激活仍按后续 slice/gate | 2026-08-01 | 用户明确指令；S4 `360a526...`；S5A `3798c67...`；S5B final `f94ac34...` |
 | S5A dependency exception | 段成威 | Accepted for non-production S5A candidate；G5 必须重审，禁止扩大到 RSA 私钥运算 | 2026-08-01 | EXC-125-002、Desktop security matrix、`cargo audit` PASS with documented ignore |
 | 生产 IdP 与生产配置 | 段成威 | Pending；G5 blocker | 2026-07-31 | production issuer/client ID/domain/TLS/secret 尚未登记 |
 | A7 / G3-NP-LOCAL | 段成威 | PASS；最小显式 CA 方案、offline ready、core online 与最终三仓门禁完成；随后 S5B 已单独批准并完成 | 2026-08-01 | local-only CA pin evidence；不修改系统 Keychain/生产配置 |
