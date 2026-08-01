@@ -199,7 +199,7 @@ G1/G2 已于 2026-07-31 批准 A1—A6。具体 migration 字段、索引、FK�
 | API unit/lint | `make lint && make test` | Go/race/coverage | S3/S4 auth/RBAC/endpoint/fault/metrics PASS；staging 不在该命令内 |
 | API PostgreSQL integration | `make test-integration` / `make test-all` | 临时 schema/migration | S3/S4 migration、复合 FK、2×2 RBAC projection PASS；G3 synthetic bootstrap 首次/幂等/audit/revision PASS；staging 待 S7 |
 | API generate | `make generate-check` | Go OpenAPI types | exact `9ec34abd...` + oapi-codegen v2.7.2 drift check PASS |
-| Desktop quality | `make lint && make test && make build` | Vue/TS/Rust | S5A/S5B PASS；generated contract consumer/store 已远端核验；S6 UI pending |
+| Desktop quality | `make lint && make test && make build` | Vue/TS/Rust | S5A—S6 remote PASS；S6 18 files/113 frontend + 36 Rust tests、browser、docs、debug Tauri 与 audits PASS；final `688fb72ddf...` |
 | Desktop docs/native | `pnpm docs:build`、`pnpm tauri:build --debug`、cargo/npm/license audit | design/native | S5A 本地 `.app/.dmg` 与审计 PASS；真实 API origin/CSP、签名/公证未定 |
 | Feature package | `check-feature-package.sh` | 文档结构 | 不替代人工批准 |
 

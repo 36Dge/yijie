@@ -194,4 +194,4 @@
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
-| 需求负责人 | 段成威 | Approved：A1—A7，G1/G2/G2A Passed；S3/S4 API、S5A native boundary 与 S5B generated consumer/store 已验证并远端核验；G3-NP-LOCAL PASS。S6 UI/导航/路由未批准，S5A signed app/Keychain/full auth E2E 与生产 IdP/config 继续为 S7/G5 `NOT RUN` | 2026-08-01 |
+| 需求负责人 | 段成威 | Approved：A1—A7，G1/G2/G2A Passed；S3/S4 API、S5A/S5B/S6 Desktop 已远端核验；G3-NP-LOCAL PASS；S7 2×2/bearer/Keychain integration 已获执行授权。生产 IdP/config 继续为 G5 `NOT RUN` | 2026-08-01 |

@@ -364,7 +364,8 @@ local-lab 证据。
   G5 blocker。本地 API 仅在 `feat-125-local-lab` 使用严格显式 CA PEM + lowercase pin；
   default/production/disabled projection fail closed，系统 Keychain 未修改。
 - Desktop native auth flag：S5A 已固定 `YIJIE_DESKTOP_NATIVE_AUTH_ENABLED`，默认 false；
-  S5B authoritative permission consumer/store 已固定并保持未接入 UI；S6 UI flag/wiring 仍须在其 slice 固定。任何 flag 都不能
+  S6 已固定 `VITE_YIJIE_AUTHORITATIVE_PERMISSION_UI_ENABLED`，仅精确 `true` 启用，默认 false；
+  S5B authoritative permission consumer/store 已由 S6 接入 UI。任何 flag 都不能
   提供“静态显示全部”的 fallback。
 - 默认值：off。
 - 安全关闭行为：API endpoint 不启用；Desktop protected entries 为 0，仅保留 login/core
@@ -416,7 +417,8 @@ local-lab 证据。
 - 结论与日期：三路只读设计审核于 2026-07-31 完成；段成威已批准 A1—A7，ADR
   Accepted，G1/G2/G2A Passed，S1—S4 contract/API 与 S5A Desktop native boundary 均已
   commit/test/review/remote verified。S5B generated consumer/store 也已在 Desktop
-  `f94ac343881b0f7df59c0f5f4169372e612fd019` 完成并远端核验；S6 UI 和 S7 跨仓仍
-  NOT RUN。G3 local IdP/client/JWKS/API origin 已固定，local stack/offline ready/HTTPS synthetic
+  `f94ac343881b0f7df59c0f5f4169372e612fd019` 完成并远端核验；S6 UI final
+  `688fb72ddf3f9c8ba0f8edea55a0c3f66cdf364c` 已远端核验；S7 跨仓已获授权进入执行，尚未形成
+  PASS 证据。G3 local IdP/client/JWKS/API origin 已固定，local stack/offline ready/HTTPS synthetic
   user provisioning、API bootstrap 与 core online PASS。G3 与 S5B PASS，feature 继续关闭。
   生产 IdP、域名/TLS、Secret Manager 与 ingress 配置保持 G5 Blocked。

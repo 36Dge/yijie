@@ -215,7 +215,7 @@ Feature 目录只引用这些 fixture，不复制 JSON。
 | 5 | API exact pin、migration、provider 非生产实现 | yijie-api | Complete/remote：S3 `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf` + S4 `360a526b679147472e7cc82ca7ac9db9d18a371d`；structured review PASS | flag default off；无生产配置，app rollback + retain expand schema |
 | 6 | Desktop native OIDC/Keychain 与 operation-scoped transport | yijie-desktop | Complete/remote：S5A `3798c67d260237928730758c7ec4c1fbe6fcf7d2`；local security matrix + structured review PASS | native flag default off；撤销/删除 Keychain family；不发布 |
 | 7 | 建立 G3-NP-LOCAL 并通过 offline ready/online preflight | Infra+API+Desktop | PASS：API local-only explicit CA PEM + lowercase SHA-256 pin、exact issuer/JWKS、isolated proxy-free/no-redirect client、静态/最终门禁、local stack、专用 DB/bootstrap、offline ready 与 core online（discovery/JWKS/callback、health/ready、两个 401、Tasks edge/direct 404）全部通过；公共 wire/contracts 变更 N/A，属于 semantic deployment trust | 全部 local flags off、停止精确本轮宿主 API并清其环境，再停止 local profile；不改变 default profile/production |
-| 8 | Desktop exact pin、generated adapter/store；fail-closed UI 留 S6 | yijie-desktop | S5B exact pin/generated adapter/store 已在 final `f94ac34...` PASS；S6 UI pending | feature off；不发布 Desktop |
+| 8 | Desktop exact pin、generated adapter/store 与 fail-closed S6 UI | yijie-desktop | S5B `f94ac34...`；S6 implementation `cf0e080...` / final `688fb72...` remote verified | UI flag 默认 off；不发布 Desktop |
 | 9 | API/Desktop candidate conformance 与两租户 E2E | 三仓 | full SHA/digest equal | 修复后重测 |
 | 10 | 创建不可移动 contracts-v0.3.0 | yijie-contracts | 同一 candidate 已验证 | 不移动 tag |
 | 11 | 两端验证 tag provenance 并切 release pin | API/Desktop | digest 不变 | 回退未发布 consumer |

@@ -44,7 +44,7 @@ online 与三仓门禁 PASS，因此 G3 PASS；随后 S5B 已单独批准、完�
   bootstrap、审计、Tasks 双隔离/FEAT-126 与 Infra/CSP 责任。
 - 架构 Owner：段成威。
 - 当前状态：Accepted；G1/G2/G2A Passed；S1—S4 与 S5A complete and remote verified。
-  S5B consumer/store 已完成；S6 UI、S7 集成和生产激活仍需对应 slice/gate。
+  S5B consumer/store 与 S6 UI 已完成并远端核验；S7 集成已获执行授权，生产激活仍需 G5/G6。
 
 ## 3. 风险登记
 

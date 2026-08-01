@@ -51,7 +51,8 @@
 | G3-NP / generic preparation | `yijie-infra@2f01f22b46f313f8ff0b9973e417f7ccae654318` | strict safe template/ready validation + bounded online preflight tests + local Compose/migration/API flag-off smoke | 0 | PREPARED | historical 19 tests/migration 2/health/ready/flag-off 404 PASS；remote verified；not G3-NP-LOCAL PASS |
 | G3-NP-LOCAL / static+offline+bootstrap | verified full commits above | pinned images/profile/config、strict validators、API exact local issuer/dedicated DB/tracked 2×2 guard + audited bootstrap、Desktop CA+Keychain environment binding；owning-repo gates；local up/status/provision/prepare/ready | 0 | PASS / REMOTE VERIFIED | API/Desktop gates and Infra 71/71 + lint/Compose/shell/diff recorded below；containers healthy；exact Keycloak realm/client/scope-set/explicit mapper/strict user-profile/two-user/password-reset/refresh-revocation conformance over pinned HTTPS and final offline ready PASS；dedicated API DB empty inventory/migration 1→2/fixed first+idempotent bootstrap/inventory/revision/audit PASS |
 | G3-NP-LOCAL / API startup+online preflight | exact trees committed by the verified full SHAs above | dedicated API startup/readiness + local online preflight | 0 | PASS | strict explicit CA pin；TLS/discovery/JWKS/callback、health/ready、两个 401、Tasks edge+direct 404 PASS；no system trust mutation |
-| S6—S8 / UI, integration, release | N/A | outside current authorization | N/A | NOT RUN | no UI/navigation/routing/cross-repo/release changes |
+| S6 / Desktop UI policy wiring | implementation `cf0e080e4cf2fa10e1394aead67c669574714a4d`；final `688fb72ddf3f9c8ba0f8edea55a0c3f66cdf364c` | default-off total policy→lazy route guard→AppShell/Settings recovery→DOM/AX/router/browser/Tauri gates | 0 | PASS / REMOTE VERIFIED | 18 frontend files/113 tests + 36 Rust；S6-REV-001—005 resolved；no Tasks/Rust lifecycle/production change |
+| S7—S8 / integration, release | N/A | outside current authorization | N/A | NOT RUN | no cross-repo E2E/release changes |
 
 ## 4. 最终命令记录
 
@@ -74,11 +75,12 @@
 | V-API-AUDIT | yijie-api | `govulncheck v1.6.0 ./...` + direct license read | Go vulnerability DB | 0 | PASS | 0 called/package vulnerabilities；unreferenced x/crypto/openpgp module advisory GO-2026-5932；jwx/httprc MIT、generator Apache-2.0 |
 | V-API-S3-REVIEW | yijie-api | structured review：scope→contract→authn→migration/RBAC→tests/CI→dependencies | Codex separated review pass | 0 | PASS | P0/P1/P2=0；S3-REV-001 non-hex full SHA validation fixed+tested |
 | V-API-S4-REVIEW | yijie-api | structured review：scope→contract/errors→authn→tenant consistency→lifecycle/metrics→CI/supply chain | Codex separated review pass | 0 | PASS | P1=1/P2=2 resolved；最终开放 P0/P1/P2=0；默认关闭与生产边界保留 |
-| V-DESKTOP-INSTALL | yijie-desktop | `pnpm install --frozen-lockfile` | pnpm 11 | 0 | PASS | 2 workspaces；frozen lockfile install |
-| V-DESKTOP-LINT | yijie-desktop | `make lint` | ESLint/Vue TSC/rustfmt/Clippy `-D warnings` | 0 | PASS | frontend + Rust native boundary clean |
-| V-DESKTOP-TEST | yijie-desktop | `make test` | Vitest/Cargo | 0 | PASS | S5A committed baseline：frontend 9 files/37 tests；Rust 27 tests + doc-tests |
-| V-DESKTOP-BUILD | yijie-desktop | `make build` + `pnpm docs:build` + `pnpm tauri:build --debug` | Vite/VitePress/Tauri macOS | 0 | PASS | production web/docs；debug `.app` + aarch64 `.dmg` |
-| V-DESKTOP-AUDIT | yijie-desktop | `pnpm audit --audit-level high` + `cargo audit --file src-tauri/Cargo.lock` + Cargo license metadata audit | npm/RustSec/Cargo metadata | 0 | PASS | npm 0 known；RUSTSEC-2023-0071 documented verifier-only ignore；504 third-party packages license metadata present，no prohibited strong license |
+| V-DESKTOP-INSTALL | yijie-desktop | `pnpm install --frozen-lockfile` | pnpm 11 | 0 | PASS | S6 exact lockfile install；no peer failure |
+| V-DESKTOP-LINT | yijie-desktop | `make lint` | ESLint/Vue TSC/rustfmt/Clippy `-D warnings` | 0 | PASS | S6 frontend + unchanged Rust boundary clean |
+| V-DESKTOP-TEST | yijie-desktop | `make test` | Vitest/Cargo | 0 | PASS | S6 frontend 18 files/113 tests；Rust 36 tests + doc-tests |
+| V-DESKTOP-BUILD | yijie-desktop | `make build` + `pnpm docs:build` + `pnpm tauri:build --debug` | Vite/VitePress/Tauri macOS | 0 | PASS | production web/docs；lazy business chunks；debug `.app` + aarch64 `.dmg` |
+| V-DESKTOP-AUDIT | yijie-desktop | `pnpm audit --audit-level high` + `cargo audit --file src-tauri/Cargo.lock` + JS license scan | npm/RustSec/pnpm | 0 | PASS | npm 0 known；Rust 0 vulnerabilities/17 allowed warnings；11 license groups/no prohibited group |
+| V-DESKTOP-S6-BROWSER | yijie-desktop | real Vite browser flag-off + flag-on unavailable; route/collapse/reload/layout/log checks | in-app browser 1280×720 | 0 | PASS | `/`/`/chat` fail closed to Settings；protected links/input=0；72px persists；no overflow or browser error/warn |
 | V-DESKTOP-S5A-REVIEW | yijie-desktop | structured review：scope→OIDC→token lifecycle/concurrency→Keychain→IPC/HTTP→dependencies/failure | Codex separated review pass | 0 | PASS | 6 类 findings resolved；最终开放 P0/P1/P2=0；EXC-125-002；真实 IdP/provisioning NOT RUN |
 | V-INFRA-TEMPLATE | yijie-infra | `pnpm validate:feat-125-template` | Node 26 / yaml 2.9.0 | 0 | PASS | historical generic nonproduction template evidence：保留域名、public-client placeholder、合成数据、三端 flags false |
 | V-INFRA-TEST | yijie-infra | `pnpm test` | Node test runner | 0 | PASS | historical generic preparation：19/19；remote commit `2f01f22...`；不代表 local runtime PASS |
@@ -121,16 +123,16 @@
 | AC-004 | canonical tenant header + atomic active user/tenant/membership/RBAC query | SEC-002 | 400 invalid、403 denied、2×2 PostgreSQL integration | API PRODUCER PASS |
 | AC-002/005 | tenant discovery/projection endpoints + stable HTTP faults | API/RES | canonical 0/1/multiple、ready/empty、400/401/403/500/503 fixtures | API PRODUCER PASS |
 | AC-006/007/011/012 | Desktop generated permission client/store | DESK/RES/SEC | exact generated types、fixed operations、canonical fixtures、0/1/multiple、revision/expiry/context、concurrency/fault/security | S5B PASS |
-| AC-008—010 | Desktop nav/router/AppShell/Settings recovery | DESK/A11Y | no S6 implementation | NOT RUN |
+| AC-008—010 | Desktop nav/router/AppShell/Settings recovery | DESK/A11Y | total capability projection；allowed-published link、allowed-unpublished disabled “即将开放”、denied DOM/AX absence；denied deep-link loader call=0 | S6 LOCAL PASS |
 | AC-013/015 | endpoint auth + tenant/RBAC authority；Tasks isolation/cross E2E pending | SEC-002/003/E2E-001 | API endpoint + 2×2 DB matrix PASS；local host profile/Caddy online edge+direct 404 PASS；cross-repo NOT RUN | PARTIAL |
 | AC-014 | v0.3.0 source/generated candidate + exact provenance | CT-002/SUP-001 | S1/S2 contract gates + API and Desktop exact pin/drift | CONTRACT+API+DESKTOP PIN PASS |
 | AC-016 | FEAT-124 verification report | REV-001 | FEAT-125 incomplete | NOT RUN |
 | AC-017/018 | Desktop native system-browser OIDC、exact loopback、state/PKCE/nonce、Keychain/token lifecycle、operation-scoped authenticated transport | OIDC-001/SEC-005/011/012 | S5A baseline + G3 local CA/Keychain binding/401-refresh race fix 36 Rust tests、native build、storage/IPC/scope scan；完整 browser/provider/Rust bearer/refresh/Keychain E2E 未联调，Keycloak family reuse 未证明 | STATIC CANDIDATE PASS / S7/G5 NOT RUN |
-| AC-019/020 | exact 7-capability/2-role matrix + planned root/deep-link policy | API-004/E2E/DESK | API DB integration + actual synthetic bootstrap 2 users×2 tenants/audit/revision PASS；Desktop/cross-repo NOT RUN | PARTIAL |
+| AC-019/020 | exact 7-capability/2-role matrix + root/deep-link policy | API-004/E2E/DESK | API DB/bootstrap 2×2 PASS；Desktop root `task.create→/chat`、`task.read→/tasks`、else `/settings` 与 denied lazy guard PASS；live cross-repo NOT RUN | PARTIAL |
 | AC-021 | ingress deny + approved host service profile handler non-registration + Desktop non-use | SEC/DEPLOY/E2E | local `feat-125-local-lab`/Caddy online edge+direct 404 PASS；default legacy profile unchanged | LOCAL G3 PASS / production pending |
 | AC-022 | local environment integrity | G3L-001—007 | pinned/config/static gates + dedicated API DB empty inventory/migration/tracked bootstrap + local dependencies/live realm/HTTPS provisioning/offline ready PASS；core online discovery/JWKS/callback、health/ready、两个 401、Tasks edge/direct 404 PASS | G3 PASS |
 | NFR-001/002/006/007 | fail-closed endpoints、tenant FK、exact pin、secret-free diff | SEC/DB/SUP | S3/S4 unit/integration/drift/audit | API PRODUCER PASS |
-| NFR-003—005/008 | endpoint fault recorder、Desktop native auth/transport security；staging perf/UI accessibility pending | mapped in 06 | S4 faults + S5A local native security PASS；staging/S6 outside scope | PARTIAL |
+| NFR-003—005/008 | endpoint fault recorder、Desktop native auth/transport security；staging perf pending | mapped in 06 | S4 faults + S5A native security + S6 browser/component accessibility PASS；staging perf/cross-repo NOT RUN | PARTIAL |
 
 ## 7. 专项验证
 
@@ -143,7 +145,7 @@
 | Migration rehearsal | 00001→expand/rollback metadata + synthetic bootstrap | PostgreSQL 16 local | PASS | existing task/audit retained；generic locator/append-only/FK/down refusal + bootstrap first/idempotent/audit/revision verified；production bootstrap remains G5 |
 | Performance | projection 50 RPS candidate | staging | NOT RUN | S7 |
 | AI Eval | no AI behavior | N/A | N/A | scope |
-| Visual/accessibility | hidden/disabled/recovery | browser+Tauri light/dark/min | NOT RUN | S6/S7 |
+| Visual/accessibility | hidden/disabled/recovery | component DOM/AX + Vite browser 1280×720 + Tauri debug build | S6 LOCAL PASS | flag off/on-unavailable fail closed；72px persisted；no overflow/error log；ready role matrix covered by component tests；signed native E2E remains S7 |
 
 ## 8. Diff 与制品完整性
 
@@ -159,8 +161,9 @@
 - [x] S5A lock digests：`src-tauri/Cargo.lock`=`94b1ee21ed1bd9e4e97528622971da9241c43c4e497181ec83f77f2da6a5b973`；`pnpm-lock.yaml`=`aaa0a300afb760c0a768aebefcf338bdbbb66dd6a62a3a907d456d0246fedc0c`
 - [x] S5A dependency exception EXC-125-002 已限定为 `openidconnect→rsa` 的 RS256 公钥验签路径；无 RSA 私钥/签名/解密，G5 或上游修复时必须重审/移除
 - [x] S5B exact contract lock=`9ec34abd6e7dfb5a23b0154d467694167224ebbb`；source=`7bd40dd1...`；generated TypeScript=`77babb21...`；generator=`openapi-typescript 7.13.0` + isolated TypeScript `5.9.3`
-- [x] S5B Desktop final `f94ac343881b0f7df59c0f5f4169372e612fd019` 已推送并由 `git ls-remote` 核验；implementation 为 `5c4600f...`，CI contracts path fix 为 `942df58...`；S6/UI/Tasks/Rust lifecycle diff 不存在
+- [x] S5B Desktop final `f94ac343881b0f7df59c0f5f4169372e612fd019` 已推送并由 `git ls-remote` 核验；它是 S6 基线；S6 只改前端 UI/nav/router/store initialization/tests/docs/package lock，未改 Tasks/Rust lifecycle/contracts generated/production config
 - [x] S5B GitHub Actions run `30695055988` 对 final SHA 完整执行并 PASS；exact contracts checkout、Desktop-only test discovery、build、native bundle 与 audits 均通过
+- [x] S6 implementation `cf0e080e4cf2fa10e1394aead67c669574714a4d`、final `688fb72ddf3f9c8ba0f8edea55a0c3f66cdf364c` 已远端核验；`pnpm-lock.yaml`=`649b6c2c...`；debug DMG=`207757ad...`
 - [x] 历史 generic G3 template digest `b7d1eb27...`、validator `2e59197e...`、online CLI `1b541ab9...`、runbook `f819fa2f...` 仍可追溯；当前 G3-NP-LOCAL 使用远端完整提交且不伪造 image/CA/runtime digest
 - [x] Compose profile namespace `feat-125-local`、API service profile `feat-125-local-lab` 与 Desktop auth environment `local-integration` 保持三个不同边界；文档不再互相混称
 - [x] 本轮文档未写入 secret、PII、本机外部引用、调试后门或临时文件
@@ -247,7 +250,7 @@ S5B review 后开放 P0/P1/P2 findings = 0；结构化复审未冒充独立 G4�
 |---|---|---|---|---|---|
 | G1-001 | P1 / local boundaries resolved, integration pending | Contracts/API/Desktop auth scan | 原基线无可信身份或活动租户 | API S3/S4、Desktop S5A/S5B 与 G3 local config/offline/core online PASS；跨仓链路仍待 S7 | S7 |
 | G1-002 | P1 / release control | API Tasks handler/repository/migration | legacy Tasks 仍无资源级授权，不能随 FEAT-125 暴露 | A6：默认 legacy profile/wire 不变；local host profile+Caddy static deny rules PASS 且 Caddy 健康，但 online edge/direct 404 PASS；生产宿主 profile/ingress 待 G5，资源授权由 FEAT-126 完成 | G3 online/G5/FEAT-126 |
-| G1-003 | P2 / FEAT-124 blocking | Desktop AppShell/nav/router | default `{}` + missing→visible、无 guard | S5B store 已 fail closed；S6 UI/nav/router 接入仍 Open | S6/S7/FEAT-124 G4 |
+| G1-003 | P2 / FEAT-124 blocking | Desktop AppShell/nav/router | default `{}` + missing→visible、无 guard | S6 已删除 optional/default projection、完成 total policy/lazy guard并远端核验；等待 S7/独立 G4 关闭验证 | S7/FEAT-124 G4 |
 | G1-004 | P2 / delivery blocking | API/Desktop generation | floating sibling 与 placeholder generate，无法追溯 wire | API S3 与 Desktop S5B 均已固定 exact source/generated SHA+generator+CI drift | Closed in S5B；S7 复用 |
 | G1-005 | P2 / write-path pending | API database/audit | 无 RBAC tables；audit resource FK 只支持 task | S3 migration + S4 atomic projection + G3 synthetic bootstrap first/idempotent/audit/revision PASS；production writer/admin path remains later | S7/G5 |
 
@@ -265,7 +268,7 @@ S5B review 后开放 P0/P1/P2 findings = 0；结构化复审未冒充独立 G4�
 | direct JWT/native auth/tenant | API S4、Desktop S5A 与 G3 local stack/offline/core online PASS | high | 完整 browser/Rust bearer/Keychain 留 S7 | 段成威 | blocks S7/G5, not G3/S5B |
 | RBAC/migration/audit | S3 migration + S4 projection + G3 synthetic bootstrap first/idempotent/audit/revision PASS；生产 writer/admin path 未实现 | high | S7/G5 production-control evidence | 段成威 | yes |
 | API producer | endpoint/conformance/metrics recorder 已远端核验；staging/performance/exporter 未验证 | high | S7/G5 | 段成威 | yes |
-| Desktop consumer | S5A native auth/transport 与 S5B exact pin/generated adapter/store 已远端核验；nav/router 尚未实现 | high | S6/S7 | 段成威 | yes |
+| Desktop consumer | S5A—S6 已远端核验；live bearer/Keychain/cross-repo 正进入 S7 | high | S7 | 段成威 | yes |
 | G3 local runtime | local issuer/client/JWKS/API origins、explicit CA pin、offline ready 与 core online PASS | low | N/A；G3 complete | 段成威 | no |
 | Tasks 双隔离/FEAT-126 | default legacy profile/wire unchanged；local host profile/Caddy static deny PASS but online 404 PASS；production isolation not implemented | critical | G3 online local 404；G5 approved host profile/ingress evidence；FEAT-126 production enablement before deadline | 段成威 | yes |
 | Provider refresh family | local Keycloak proves rotation but not automatic reuse-revokes-family | high | S7 auth-lifecycle against selected provider or approved compensating/provider change | 段成威 | blocks S7/G5, not S5B implementation |
@@ -293,6 +296,7 @@ S5B review 后开放 P0/P1/P2 findings = 0；结构化复审未冒充独立 G4�
   两个未认证 401 与 Tasks edge/direct 404 PASS。G3 为 PASS。S5B Desktop exact pin、generated
   adapter 与内存 fail-closed store 已通过全门禁和结构化审查，并远端核验为
   `f94ac343881b0f7df59c0f5f4169372e612fd019`。完整浏览器、Rust bearer、refresh/Keychain E2E
-  与 provider family reuse 是 S7/G5，生产配置/激活继续禁止。S6—S8 的 UI、跨仓集成和发布仍
+  与 provider family reuse 是 S7/G5，生产配置/激活继续禁止。S6 UI 已基于 `f94ac343...`
+  完成本地实现、结构化审查与全部门禁，提交/远端 SHA 待单独授权；S7—S8 跨仓集成和发布仍
   `NOT RUN`。
   FEAT-124 G4-001 继续阻断，直到 FEAT-125 producer/consumer/E2E 与独立 G4 证据完成。

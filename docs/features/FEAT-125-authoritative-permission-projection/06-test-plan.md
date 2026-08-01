@@ -214,5 +214,5 @@ PASS；该完整提交已推送并核验，但不包含系统浏览器、
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
-| 测试/技术 Owner | 段成威 | G2/G2A/S4/S5A/S5B Approved；G3-NP-LOCAL 与 core online PASS；S5B 生成漂移、canonical contract/fault、0/1/多租户、revision/expiry/context、并发和安全测试及全部 Desktop 门禁 PASS；S6/S7 未批准或未执行 | 2026-08-01 |
+| 测试/技术 Owner | 段成威 | G2/G2A/S4/S5A/S5B/S6 Approved；G3-NP-LOCAL 与 core online PASS；S6 18 files/113 frontend tests、36 Rust tests、browser fail-closed/DOM/AX/72px persistence、全部 Desktop 门禁与 review PASS；S7 未批准或未执行 | 2026-08-01 |
 | 安全/数据 Owner | 段成威 | S3/S4 JWT/JWKS、精确 audience、atomic projection 与 S5A local security matrix PASS；API local-only 显式 CA pin 已实现；Keycloak family reuse limitation 与正式 Keychain/browser/Rust bearer E2E 留在 S7/G5；生产配置继续 `NOT RUN` | 2026-08-01 |

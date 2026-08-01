@@ -1,25 +1,20 @@
 # FEAT-125 交付总结与关闭记录
 
-> 当前已到 S4 API producer + S5A Desktop native boundary + S5B consumer/store remote candidate
+> 当前已到 S4 API producer + S5A Desktop native boundary + S5B consumer/store remote candidate + S6 UI local candidate
 > 阶段，不是业务功能交付完成记录。S1—S5B 已推送并远端核验；G3-NP-LOCAL 三仓静态实现/门禁、
 > local stack/live realm、HTTPS synthetic user provisioning、offline ready、synthetic API bootstrap 与
 > core online 已完成。因此 G3-NP-LOCAL PASS；S5B generated consumer/store 已单独批准、
-> 完成并远端核验；S6 UI、S7 E2E、发布和生产栏位继续保持 `NOT RUN / Not
-> delivered`。
+> 完成并远端核验；S6 已单独批准、完成并远端核验；S7 E2E 已获授权进入执行，发布和生产栏位继续保持 `NOT RUN / Not delivered`。
 
 ## 1. 最终结果
 
-- 用户可观察行为：尚未变化；Desktop 仓当前为 S5B
-  `f94ac343881b0f7df59c0f5f4169372e612fd019`，
-  但 native flag 默认关闭且没有 S6 UI
-  接线；FEAT-124 业务界面 candidate 仍以 `be01cc2d0a1c9c4b057de616be201a4843d0a035` 为阻断基线。
+- 用户可观察行为：S6 已接入权限 UI，但 UI flag 默认关闭，因此默认仅显示 Settings login/core recovery；显式开启后按当前租户 capability 显示/禁用/隐藏导航并守卫深链。Desktop final 为 `688fb72ddf3f9c8ba0f8edea55a0c3f66cdf364c`。
 - 原目标是否达成：部分；已完成 A1—A7、S1/S2 Contracts remote candidate、S3 API
   foundation、S4 tenants/capabilities HTTP producer、S5A system-browser OIDC/native boundary，
   以及已提交并远端核验的 G3 local CA/Keychain binding、bootstrap、Infra local profile 和完整
-  dedicated API/core-online 链，以及 S5B Desktop generated consumer/store。尚无 S6 UI、S7 完整 auth lifecycle、
-  跨仓业务 E2E 或生产链路。
+  dedicated API/core-online 链、S5B Desktop generated consumer/store，以及 S6 Desktop UI policy local candidate。尚无 S7 完整 auth lifecycle、跨仓业务 E2E 或生产链路。
 - 最终范围与非目标：见 00—07；G1/G2 于 2026-07-31 Passed，G2A 于 2026-08-01 Passed。
-- 交付状态：`S1—S5B Remote Verified / G3-NP-LOCAL PASS / S6+ Pending / Not delivered`。
+- 交付状态：`S1—S6 Remote Verified / G3-NP-LOCAL PASS / S7 In Progress / Not delivered`。
 - FEAT-124：G4-001 继续 Open，不得关闭。
 
 ## 2. 实际发布版本
@@ -28,7 +23,7 @@
 |---|---|---|---|---|---|
 | yijie-contracts | repository remote candidate | 0.3.0 candidate；no release/tag | `9ec34abd6e7dfb5a23b0154d467694167224ebbb` | source `7bd40dd...`；tarball `43a54d7...` | candidate 0.3.0；supported release 仍 v0.2.0 |
 | yijie-api | repository remote candidate / local test | S4 commit；no release | `360a526b679147472e7cc82ca7ac9db9d18a371d`；origin/develop verified | generated `a1801a...`；migration `51c4ced9...` | exact candidate `9ec34abd...` / oapi-codegen v2.7.2；feature flag false |
-| yijie-desktop | repository remote candidate / local native test | S5B final；no release | `f94ac343881b0f7df59c0f5f4169372e612fd019`；origin/develop verified | generated TS `77babb21...`；pnpm lock `d80424b8...`；unsigned debug `.app/.dmg` only | implementation `5c4600f...` + CI fixes `942df58...`/`f94ac34...`；native flag false；S6 UI absent |
+| yijie-desktop | repository remote S6 candidate | S6 final；no release | implementation `cf0e080e...`；final `688fb72ddf3f9c8ba0f8edea55a0c3f66cdf364c` remote verified | generated TS `77babb21...` unchanged；S6 pnpm lock `649b6c2c...`；unsigned debug DMG `207757ad...` | S6 UI flag false；total nav policy/lazy guard/Settings recovery PASS |
 | yijie-api G3-NP-LOCAL | repository commit / no release | exact local profile/dedicated DB/tracked bootstrap/service-profile/explicit-CA implementation | `faeb78019d95aaf9dcfbd8493f8bc2ecf7e4bf34`；origin/develop verified | Git commit | exact contracts `9ec34abd...` |
 | yijie-desktop G3-NP-LOCAL | repository commit / no release | local CA/Keychain environment-binding baseline | `446b4d608546fca8f53f4582201d6b43ef6f762d`；origin/develop verified | Git commit | superseded by S5B final `f94ac34...` |
 | yijie-infra G3-NP-LOCAL | repository commit / no deployment | pinned local-lab/dedicated API DB/preflight implementation | `298192e386a7f7b81e8f0f8fe733c1f79f096ab4`；origin/develop verified | pinned image digests；public CA `07a3bb2ef51a5b559fe42b423339f6c886c5e17903b1cf2d8ca26bf1b5574650` | 71/71 tests + lint/Compose/shell/diff PASS；exact implementation refs verified |
@@ -45,7 +40,8 @@
 | G3-NP-LOCAL static/offline commits | PASS / REMOTE VERIFIED | API generate/lint/race unit+integration/module/diff PASS（nonprodbootstrap integration 83.2%）+ exact local DB guard/dedicated empty DB migration/tracked bootstrap first+idempotent/inventory/audit/revision；Desktop 37 frontend + 36 Rust/local CA+Keychain binding/401-refresh race fix；Infra 71/71 + lint/Compose/shell/diff PASS；three containers healthy；read-only-before-mutation exact realm/two clients/canonicalized scope sets/explicit `userinfo.token.claim=false` mapper/strict managed `data_classification` user profile（omitted field = unmanaged disabled under Keycloak 26.7 REST）/two fixed users/password resets/refresh revocation `invalid_grant` over pinned HTTPS；final offline ready PASS | API/Desktop/Infra full commits remote verified；no release artifact or production evidence |
 | G3-NP-LOCAL dedicated API/online | PASS | exit 0 | strict local-only CA pin；discovery/JWKS/callback、health/ready、两个 unauth 401、Tasks edge+direct 404 PASS |
 | S5B Desktop consumer/store | PASS | Desktop final `f94ac343881b0f7df59c0f5f4169372e612fd019` | exact generation drift、canonical contract/fault/concurrency/security；80 frontend + 36 Rust tests；all local gates/review/remote SHA + GitHub Actions `30695055988` PASS；feature off |
-| remaining AC/NFR | NOT RUN | S6 Desktop UI、S7 cross-repo and production slices pending | none |
+| S6 Desktop UI policy | PASS / REMOTE VERIFIED | 18 frontend files/113 tests + 36 Rust；browser DOM/route/fail-closed/72px persistence；debug app+dmg/audits/review PASS | none；not release evidence |
+| remaining AC/NFR | NOT RUN | S7 cross-repo and production slices pending | none |
 
 ## 4. 生产 Smoke 与观察
 
@@ -59,7 +55,7 @@
 
 | 项目 | Trace/request/task/session 标识 | 结果 | Evidence |
 |---|---|---|---|
-| 授权/租户/审计/脱敏 | synthetic S3/S4 + local G3 + Desktop S5B candidates | PASS for foundation/producer/native boundary/bootstrap/consumer store：fail-closed reads、cross-tenant FK、逐请求 membership/RBAC projection、稳定错误、token IPC/transport allowlist、revision/expiry/context 与并发 stale-response 防护；S6 UI/cross-repo pending | 08 verification report + Desktop/Infra owning-repo evidence |
+| 授权/租户/审计/脱敏 | synthetic S3/S4 + local G3 + Desktop S5B/S6 candidates | PASS for foundation/producer/native boundary/bootstrap/consumer/UI policy：fail-closed reads、cross-tenant FK、逐请求 membership/RBAC projection、稳定错误、token IPC/transport allowlist、revision/expiry/context、DOM/AX omission 与 denied lazy route；cross-repo pending | 08 verification report + Desktop/Infra owning-repo evidence |
 
 ## 6. 发布事件、回滚与数据状态
 
@@ -79,10 +75,10 @@
 
 | Item | 影响 | Owner | 批准 | 截止/复查 |
 |---|---|---|---|---|
-| direct IdP JWT/native auth/tenant/RBAC | API S3/S4 + Desktop S5A/S5B + G3 live realm/offline/discovery/JWKS/callback PASS；API local-only explicit CA pin implemented，core online PASS；browser/bearer/Keychain/cross-repo 未验证 | 段成威 | G2A/S3/S4/S5A/S5B/A7 approved；G3 passed | S6 UI→S7/G5 |
+| direct IdP JWT/native auth/tenant/RBAC | API S3/S4 + Desktop S5A/S5B/S6 + G3 live realm/offline/discovery/JWKS/callback PASS；API local-only explicit CA pin implemented；bearer/Keychain/cross-repo 进入 S7 | 段成威 | G2A/S3/S4/S5A/S5B/S6/S7/A7 approved；G3 passed | S7/G5 |
 | migration/bootstrap/audit | expand migration/rehearsal + local synthetic bootstrap first/idempotent/audit/revision PASS；production writer/admin control absent | 段成威 | S3/A7 local | S7/G5 |
 | contracts v0.3.0 downstream pin | API 与 Desktop exact pin PASS；immutable tag 尚未形成 | 段成威 | G2A/S5B Passed | S8 tag/release |
-| API/Desktop implementation | API producer、Desktop S5A native boundary 与 S5B generated store 为 remote candidates；S6 UI 与生产链路未实现 | 段成威 | S4/S5A/S5B approved；其余 Pending | S6/G4 |
+| API/Desktop implementation | API producer、Desktop S5A—S6 为 remote candidates；S7 integration in progress；生产链路未实现 | 段成威 | S4/S5A/S5B/S6/S7 approved | S7→G4 |
 | Tasks 双重隔离与 FEAT-126 | A6 已批准；default legacy profile/wire unchanged；local host profile+Caddy static deny PASS 且 Caddy 健康；online edge/direct 404 PASS；FEAT-125 不提供资源级授权 | 段成威 | Approved temporary exception | G3 online + G5 host profile/ingress；FEAT-126 生产启用或 2026-09-30 较早者 |
 | G3 local IdP/infra | local vendor/issuer/client/JWKS/TLS/API origins 已固定；static gates/local stack/live realm/HTTPS user provisioning/offline ready/discovery/JWKS/callback PASS；API local-only explicit CA pin implemented，core online PASS | 段成威 | A7 scope only；G3 PASS | retain for S7；not production evidence |
 | Provider refresh family | local Keycloak proves rotation but not automatic reuse-revokes-family | 段成威 | `provider_limit_documented`；not an exception PASS | S7/G5；不阻断 S5B implementation |
@@ -99,7 +95,7 @@ CA trust 也是待批准 blocker，不是已接受风险。
 
 | Issue | 内容 | 触发条件 | Owner | 截止 |
 |---|---|---|---|---|
-| CLEAN-001 | 删除旧 Desktop optional/default visibility 接口 | 新 total policy 完成并兼容验证 | 段成威 | S6 后 |
+| CLEAN-001 | 删除旧 Desktop optional/default visibility 接口 | S6 已删除并通过兼容/DOM/router/browser 验证 | 段成威 | Complete in S6 |
 | CLEAN-002 | 移除 candidate SHA provenance，切不可移动 tag | tag/digest verification PASS | 段成威 | S8 |
 | CLEAN-003 | 评估 capability alias/deprecation | 未来 key 改名/删除 | 段成威 | future feature |
 | CLEAN-004 | 以 FEAT-126 完成 Tasks resource-level auth/tenant hardening 并移除临时隔离例外 | FEAT-126 生产启用；若未完成则保持 Tasks 阻断并重新审批 | 段成威 | FEAT-126 生产启用或 2026-09-30 较早者 |
@@ -116,7 +112,8 @@ CA trust 也是待批准 blocker，不是已接受风险。
 | Desktop S5A security matrix | `yijie-desktop/docs/security/FEAT-125-S5A-security-matrix.md` | 段成威 | S5A remote candidate 2026-08-01 |
 | G3 generic runbook | `yijie-infra/docs/feat-125-nonproduction.md` | 段成威 | remote preparation `2f01f22...` |
 | G3-NP-LOCAL runbook | `yijie-infra/docs/feat-125-local-lab.md` + local profile/validator/preflight scripts | 段成威 | Infra `298192e386...` remote verified；offline ready/core online PASS |
-| Desktop S5B consumer evidence | `yijie-desktop/docs/security/FEAT-125-S5B-consumer-matrix.md` | 段成威 | final `f94ac343881b0f7df59c0f5f4169372e612fd019` remote verified；S6/release runbook not created |
+| Desktop S5B consumer evidence | `yijie-desktop/docs/security/FEAT-125-S5B-consumer-matrix.md` | 段成威 | final `f94ac343881b0f7df59c0f5f4169372e612fd019` remote verified |
+| Desktop S6 UI evidence | `yijie-desktop/docs/security/FEAT-125-S6-ui-policy-matrix.md` | 段成威 | implementation `cf0e080e...`；final `688fb72ddf...` remote verified；not release evidence |
 | FEAT-124 G4 report | existing FEAT-124 `08-verification-report.md` | 段成威 | G4-001 remains open |
 
 ## 10. 复盘
@@ -133,6 +130,6 @@ CA trust 也是待批准 blocker，不是已接受风险。
 | Gate | Owner | Decision | Date | Evidence |
 |---|---|---|---|---|
 | G3-NP-LOCAL | 段成威 | PASS | 2026-08-01 | strict explicit CA pin、offline ready、core online 与最终三仓门禁 PASS；随后 S5B complete |
-| G6 Delivery Complete | 段成威 | Not approved / feature open | 2026-08-01 | S1—S5B remote；G3 passed；S6—S8/G4/G5/G6 Pending |
+| G6 Delivery Complete | 段成威 | Not approved / feature open | 2026-08-01 | S1—S6 remote；G3 passed；S7 in progress；S8/G4/G5/G6 Pending |
 
 - 正式关闭时间：N/A。

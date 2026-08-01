@@ -76,7 +76,7 @@ artifact，也不得把 develop 分支当作生产 release manifest。
 | 2 | 已批准并实现最小本地 API JWKS CA trust（local-profile-only explicit CA + digest pin；不安装系统信任） | G3 local | 段成威 | G3L-BLK-001；不得扩大生产/default profile | negative config + API startup PASS | remove local CA env/client config；projection off |
 | 3 | 使用本地 Keycloak/Caddy，启动独占宿主 API 并完成 G3 online | G3 loopback | 段成威 | step 2 + exact reviewed refs + offline ready PASS | TLS/discovery/JWKS/API startup/readiness/redirect/unauth 401/Tasks edge+direct 404 PASS；`:9443` 证明 Caddy→host gateway→`127.0.0.1:18080` 可达 | stop exact host API first；clear its local env；stop local Compose；可达失败不得改 bind 为 `0.0.0.0` |
 | 4 | 登记 G3-NP-LOCAL PASS，并由段成威单独决定是否批准 S5B | yijie evidence | 段成威 | exact runtime evidence；no fake PASS | full evidence review | Complete；S5B subsequently approved |
-| 5 | Desktop S5B consume candidate；S6 UI 另行审批 | local/S7 staging-equivalent | 段成威 | S5B approval complete；S6 requires separate approval | consumer PASS；2×2 E2E in S7 | do not release；flags off |
+| 5 | Desktop S5B consumer + S6 UI candidate | local/S7 staging-equivalent | 段成威 | S5B/S6 remote verified；S7 execution approved | consumer/UI gates PASS；2×2 E2E in S7 | do not release；flags off |
 | 6 | 创建不可移动 v0.3.0 tag | contracts | 段成威 | candidate E2E PASS | tag→same SHA/digest | never move tag |
 | 7 | API/Desktop 切 tag provenance | repos | 段成威 | tag verified | regenerate clean | retain candidate commit |
 | 8 | 生产 expand migration | production | approved operator | G5 rehearsal+backup/runbook | schema/status | pause/roll-forward |
@@ -94,7 +94,7 @@ artifact，也不得把 develop 分支当作生产 release manifest。
 |---|---|---|---|---|---|
 | `YIJIE_API_PERMISSION_PROJECTION_ENABLED` | false | process environment；tenant 灰度控制面待 G5 | config validation→internal tenant→canary | set false；endpoint 不注册 | 段成威 |
 | `YIJIE_DESKTOP_NATIVE_AUTH_ENABLED` | false | S5A process environment | G3 config validation→native test→S7 | false + revoke/delete Keychain family + clear memory | 段成威 |
-| Desktop authoritative permission UI flag（S6 固定；S5B store 当前未接入 UI） | off / name pending | build/channel/user cohort | provider smoke→canary manifest | protected items=0 + recovery only | 段成威 |
+| `VITE_YIJIE_AUTHORITATIVE_PERMISSION_UI_ENABLED` | false；仅精确 `true` 启用 | S6 build/channel；per-user/cohort control 待 G5 | provider smoke→S7→canary build | false：protected items=0 + Settings login/core recovery only | 段成威 |
 | `YIJIE_API_SERVICE_PROFILE` | default/legacy | API handler namespace | local runtime only: exact `feat-125-local-lab` | stop dedicated host API；clear env；do not start default profile as substitute | 段成威 |
 | `YIJIE_DESKTOP_AUTH_ENVIRONMENT` | production | Desktop credential namespace | local code only: exact `local-integration` | sign out/purge mismatched envelope；restore production | 段成威 |
 
