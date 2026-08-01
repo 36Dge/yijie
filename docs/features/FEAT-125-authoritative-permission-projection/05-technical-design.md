@@ -14,7 +14,7 @@
   `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`、S4 producer
   `360a526b679147472e7cc82ca7ac9db9d18a371d` 与 S5A Desktop native boundary
   `3798c67d260237928730758c7ec4c1fbe6fcf7d2` 均已远端核验且门禁/审查 PASS；Desktop
-  exact contracts pin/generated store/UI 仍待 S5B/S6；tenant header 只作选择提示并逐请求验证；
+  exact contracts pin/generated store 已由 S5B 完成，UI 仍待 S6；tenant header 只作选择提示并逐请求验证；
   无普通前端持久化；provider first。
 - 明确不做：角色/UI schema 下发、离线授权、Admin UI、Agent Host/Runtime、AI 变化、
   静默硬化既有 Tasks contract。
@@ -364,7 +364,7 @@ local-lab 证据。
   G5 blocker。本地 API 仅在 `feat-125-local-lab` 使用严格显式 CA PEM + lowercase pin；
   default/production/disabled projection fail closed，系统 Keychain 未修改。
 - Desktop native auth flag：S5A 已固定 `YIJIE_DESKTOP_NATIVE_AUTH_ENABLED`，默认 false；
-  S5B/S6 的 authoritative permission consumer/UI flag 仍须在其 slice 固定。任何 flag 都不能
+  S5B authoritative permission consumer/store 已固定并保持未接入 UI；S6 UI flag/wiring 仍须在其 slice 固定。任何 flag 都不能
   提供“静态显示全部”的 fallback。
 - 默认值：off。
 - 安全关闭行为：API endpoint 不启用；Desktop protected entries 为 0，仅保留 login/core
@@ -415,7 +415,8 @@ local-lab 证据。
 - 安全/数据 Owner：段成威。
 - 结论与日期：三路只读设计审核于 2026-07-31 完成；段成威已批准 A1—A7，ADR
   Accepted，G1/G2/G2A Passed，S1—S4 contract/API 与 S5A Desktop native boundary 均已
-  commit/test/review/remote verified。S5B generated consumer/store、S6 UI 和 S7 跨仓仍
+  commit/test/review/remote verified。S5B generated consumer/store 也已在 Desktop
+  `5c4600f8308d55be5596e7c45215e88c7411f286` 完成并远端核验；S6 UI 和 S7 跨仓仍
   NOT RUN。G3 local IdP/client/JWKS/API origin 已固定，local stack/offline ready/HTTPS synthetic
-  user provisioning、API bootstrap 与 core online PASS。G3 PASS，S5B 未批准。
+  user provisioning、API bootstrap 与 core online PASS。G3 与 S5B PASS，feature 继续关闭。
   生产 IdP、域名/TLS、Secret Manager 与 ingress 配置保持 G5 Blocked。

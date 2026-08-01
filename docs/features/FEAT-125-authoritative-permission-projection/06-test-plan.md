@@ -16,7 +16,7 @@
 当前 G3-NP-LOCAL 为 PASS：三仓最终门禁、local stack、HTTPS synthetic provisioning、
 offline ready、synthetic bootstrap 与 core online 全部通过；API local-only 显式 CA pin 未修改
 系统 Keychain。Online 覆盖 discovery/JWKS/callback、health/ready、两个未认证 `401` 与
-Tasks edge/direct `404`；S5B 未批准。G3 只验 TLS、discovery/JWKS、
+Tasks edge/direct `404`；随后 S5B consumer/store 已完成。G3 只验 TLS、discovery/JWKS、
 API startup/readiness、bootstrap、未认证 `401` 和 Tasks edge/direct `404`；完整系统浏览器、
 Rust bearer、refresh/Keychain E2E 只能在 S7/G5 记录。
 
@@ -91,7 +91,7 @@ Rust bearer、refresh/Keychain E2E 只能在 S7/G5 记录。
 | SEC-011 | token 生命周期/logout | access 10 分钟、剩余不足 2 分钟 single-flight refresh、refresh idle 30 天/absolute 90 天、rotation/reuse、重复 logout | access 只驻内存；refresh 只驻 Keychain；reuse 撤销 token family；logout 撤销 refresh、删除 Keychain 并清 auth/tenant/projection；重复执行幂等。该项只可在 S7/G5 判定，G3 本地 Keycloak 固定为 `provider_limit_documented` |
 | SEC-012 | native authenticated transport 越权 | 枚举未知 operation，注入任意 URL/method/Authorization header/body，篡改 API origin/path，诱导 redirect，检查 IPC output 与错误 | Rust 只允许固定 HTTPS origin 上的 `listMyTenants`/`getMyCapabilities` GET；仅后者接受 tenant UUID；内部附加 bearer；不跟随越界 redirect；IPC 永不返回 token；无通用 proxy |
 | G3L-001 | 本地 TLS 降级/CA 扩权 | 缺 CA、错误 digest、symlink、宽权限/超限文件、非 localhost origin、HTTP、证书 hostname 不匹配 | offline/online/Desktop 均 fail closed；不得出现 accept-invalid-certs |
-| G3L-002 | OIDC 本地配置漂移 | discovery issuer/endpoints、exact realm、RS256、PKCE S256、two clients、canonicalized scope sets、audience mapper 缺少或漂移显式 `userinfo.token.claim=false`、strict managed `data_classification` user profile 漂移（Keycloak 26.7 REST omitted field 应解释为 unmanaged disabled）、full two-user inventory/core/attributes、TTL/public-client、password-reset 或 refresh-revocation 语义错误 | 任何 mutation 前先执行全量只读核验；仅 exact default profile + empty attributes 可迁移；unexpected profile/attributes 在 PUT/reset 前拒绝；admin refresh revocation 必须返回 `invalid_grant`；S5B 保持阻断 |
+| G3L-002 | OIDC 本地配置漂移 | discovery issuer/endpoints、exact realm、RS256、PKCE S256、two clients、canonicalized scope sets、audience mapper 缺少或漂移显式 `userinfo.token.claim=false`、strict managed `data_classification` user profile 漂移（Keycloak 26.7 REST omitted field 应解释为 unmanaged disabled）、full two-user inventory/core/attributes、TTL/public-client、password-reset 或 refresh-revocation 语义错误 | 任何 mutation 前先执行全量只读核验；仅 exact default profile + empty attributes 可迁移；unexpected profile/attributes 在 PUT/reset 前拒绝；admin refresh revocation 必须返回 `invalid_grant`；任何回归均使后续 S7 fail closed |
 | G3L-003 | loopback redirect 放宽 | 动态正确端口+`/oauth/callback`，以及同端口错误 path/非 127.0.0.1 | 正确 path 被 provider 接受；错误 path/host 被拒绝 |
 | G3L-004 | synthetic bootstrap 不一致 | 首次、重复、第二 user 加入已有 tenant、issuer mismatch、runner rejection、audit failure | 首次原子写+revision/audit；重复 no-op；后续授权变化 revision+1；前置 issuer/manifest 错误无写并返回稳定失败；Runner rejection 有 failure audit；audit unavailable 整体回滚 |
 | G3L-005 | legacy Tasks 暴露 | direct host API、Caddy `/v1/tasks` 与 `/v1/tasks/<id>` | FEAT-125 profile 无 handler；proxy 也拒绝；现有 legacy profile wire 不变 |
@@ -190,7 +190,8 @@ S5A 已在 `yijie-desktop@3798c67d260237928730758c7ec4c1fbe6fcf7d2` 实际执行
 `cargo audit --file src-tauri/Cargo.lock` 与 Cargo license metadata audit。结果为前端
 9 files/37 tests、Rust 27 tests/doc-tests、debug `.app/.dmg` 及结构化安全审查 PASS。
 `cargo audit` 的 `RUSTSEC-2023-0071` 仅按 EXC-125-002 对 verifier-only candidate 作有理由
-ignore；真实 IdP、正式 Keychain provisioning、S5B consumer 与跨仓 E2E 仍 NOT RUN。
+ignore；真实 IdP、正式 Keychain provisioning 与跨仓 E2E 仍 NOT RUN。S5B consumer 已通过
+生成漂移、canonical conformance、异常、并发与安全测试。
 
 当前 Desktop local-integration commit `446b4d608546fca8f53f4582201d6b43ef6f762d` 在 S5A 基线上新增 CA/Keychain environment binding，
 仓内门禁为前端 9 files/37 tests、Rust 36 tests/doc-tests、lint/build/docs/debug native/audits
@@ -213,5 +214,5 @@ PASS；该完整提交已推送并核验，但不包含系统浏览器、
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
-| 测试/技术 Owner | 段成威 | G2/G2A/S4/S5A Approved；G3-NP-LOCAL API/Desktop gates、Infra 71/71 + lint/Compose/shell/diff、local stack、exact Keycloak realm/client/scope-set/mapper/user-profile/two-user/password-reset/refresh-revocation conformance、HTTPS synthetic user provisioning、final offline ready 与 synthetic API bootstrap PASS；core online PASS，G3 PASS、S5B/S6/S7 未批准或未执行 | 2026-08-01 |
+| 测试/技术 Owner | 段成威 | G2/G2A/S4/S5A/S5B Approved；G3-NP-LOCAL 与 core online PASS；S5B 生成漂移、canonical contract/fault、0/1/多租户、revision/expiry/context、并发和安全测试及全部 Desktop 门禁 PASS；S6/S7 未批准或未执行 | 2026-08-01 |
 | 安全/数据 Owner | 段成威 | S3/S4 JWT/JWKS、精确 audience、atomic projection 与 S5A local security matrix PASS；API local-only 显式 CA pin 已实现；Keycloak family reuse limitation 与正式 Keychain/browser/Rust bearer E2E 留在 S7/G5；生产配置继续 `NOT RUN` | 2026-08-01 |

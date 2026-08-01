@@ -31,7 +31,7 @@ explicit `userinfo.token.claim=false` mapper/strict managed `data_classification
 two fixed users/password reset/refresh revocation `invalid_grant` live conformance、
 HTTPS synthetic user provisioning、offline ready 与 synthetic API bootstrap 已完成。API
 local-only 显式 CA PEM + lowercase SHA-256 pin 已通过结构化审查（P0/P1/P2=0），最终 core
-online 与三仓门禁 PASS，因此 G3 PASS；S5B 仅具备单独审批条件、仍未批准。
+online 与三仓门禁 PASS，因此 G3 PASS；随后 S5B 已单独批准、完成并远端核验。
 
 ## 2. ADR 判定
 
@@ -44,7 +44,7 @@ online 与三仓门禁 PASS，因此 G3 PASS；S5B 仅具备单独审批条件�
   bootstrap、审计、Tasks 双隔离/FEAT-126 与 Infra/CSP 责任。
 - 架构 Owner：段成威。
 - 当前状态：Accepted；G1/G2/G2A Passed；S1—S4 与 S5A complete and remote verified。
-  S5B/S6 consumer/UI、S7 集成和生产激活仍需对应 slice/gate。
+  S5B consumer/store 已完成；S6 UI、S7 集成和生产激活仍需对应 slice/gate。
 
 ## 3. 风险登记
 
@@ -145,8 +145,8 @@ online 与三仓门禁 PASS，因此 G3 PASS；S5B 仅具备单独审批条件�
 | Settings/root（DEC-002/004/008） | 段成威 | Approved；G2 Passed | 2026-07-31 | A5 |
 | Tasks 双隔离与 FEAT-126（DEC-009/010、EXC-125-001） | 段成威 | Approved；G2 Passed | 2026-07-31 | A6 |
 | Contracts S1/S2 授权 | 段成威 | Approved and executed；candidate/gates/remote verification PASS | 2026-08-01 | 用户明确指令；`9ec34abd...` |
-| Provider/consumer 实施授权 | 段成威 | G2A Passed；S3/S4 API provider 已授权并完成；S5A Desktop native boundary 已单独授权并完成；S5B+ 与生产激活仍按后续 slice/gate | 2026-08-01 | 用户明确指令；S4 `360a526...`；S5A `3798c67...` |
+| Provider/consumer 实施授权 | 段成威 | G2A Passed；S3/S4 API provider、S5A Desktop native boundary 与 S5B generated consumer/store 均已单独授权并完成；S6+ 与生产激活仍按后续 slice/gate | 2026-08-01 | 用户明确指令；S4 `360a526...`；S5A `3798c67...`；S5B `5c4600f...` |
 | S5A dependency exception | 段成威 | Accepted for non-production S5A candidate；G5 必须重审，禁止扩大到 RSA 私钥运算 | 2026-08-01 | EXC-125-002、Desktop security matrix、`cargo audit` PASS with documented ignore |
 | 生产 IdP 与生产配置 | 段成威 | Pending；G5 blocker | 2026-07-31 | production issuer/client ID/domain/TLS/secret 尚未登记 |
-| A7 / G3-NP-LOCAL | 段成威 | PASS；最小显式 CA 方案、offline ready、core online 与最终三仓门禁完成；S5B 仍待单独批准 | 2026-08-01 | local-only CA pin evidence；不修改系统 Keychain/生产配置 |
+| A7 / G3-NP-LOCAL | 段成威 | PASS；最小显式 CA 方案、offline ready、core online 与最终三仓门禁完成；随后 S5B 已单独批准并完成 | 2026-08-01 | local-only CA pin evidence；不修改系统 Keychain/生产配置 |
 | 生产环境与激活 | 段成威 | Deferred；本地 G3 PASS 不替代 G5/G6 | 2026-08-01 | A7 明确保留门 |

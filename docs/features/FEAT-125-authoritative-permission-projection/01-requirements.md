@@ -172,7 +172,7 @@
 - 不把 capability 投影当作离线授权票据或业务 API 凭证。
 - 不修改 Agent Host owner-only bearer 或 Runtime compatibility。
 - G2 已于 2026-07-31 通过，G2A 已于 2026-08-01 通过；仍禁止 production mock 权限；
-  S3/S4 与 S5A 已按各自单独批准完成并远端核验，S5B+、真实 provider 集成和生产配置必须
+  S3/S4、S5A 与 S5B 已按各自单独批准完成并远端核验，S6+、真实 provider 集成和生产配置必须
   遵守后续 slice/gate。
 
 ## 10. 已批准决策与剩余生产配置
@@ -194,4 +194,4 @@
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
-| 需求负责人 | 段成威 | Approved：A1—A7，G1/G2/G2A Passed；S3/S4 API 与 S5A Desktop native boundary 已验证并远端核验；最小显式 CA 修复、offline ready、core online 与最终三仓门禁 PASS，故 G3-NP-LOCAL PASS。S5B 仅具备单独审批条件、仍未批准；S5A signed app/Keychain/full auth E2E 与生产 IdP/config 继续为 S7/G5 `NOT RUN` | 2026-08-01 |
+| 需求负责人 | 段成威 | Approved：A1—A7，G1/G2/G2A Passed；S3/S4 API、S5A native boundary 与 S5B generated consumer/store 已验证并远端核验；G3-NP-LOCAL PASS。S6 UI/导航/路由未批准，S5A signed app/Keychain/full auth E2E 与生产 IdP/config 继续为 S7/G5 `NOT RUN` | 2026-08-01 |
