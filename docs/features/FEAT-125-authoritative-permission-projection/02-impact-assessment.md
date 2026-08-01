@@ -8,6 +8,7 @@
 | yijie-contracts | AGENTS、README、SECURITY、CONTRIBUTING、contract/version policies | develop | `5320c302f5c00f4080e9c3662a3f21cc1c4b813e` | clean / remote equal | Node 24–26、pnpm 11、Go |
 | yijie-api | AGENTS、README、SECURITY、CONTRIBUTING、architecture/API/DB docs | develop | `2834b412ad565651215bd12458276c4e0d8fecf5` | clean / remote equal | Go 1.26.5、PostgreSQL 16 |
 | yijie-desktop | AGENTS、README、SECURITY、CONTRIBUTING、design navigation rule | develop | `be01cc2d0a1c9c4b057de616be201a4843d0a035` | clean / remote equal | Vue 3、Tauri 2、pnpm 11 |
+| yijie-infra | AGENTS、README、SECURITY、CONTRIBUTING、environment/deployment/rollback docs | develop | `47c9e826d1f860d872958b05bafa44b1c3232f62` | clean / remote equal before G3 preparation | Node 26、pnpm 11、Docker Compose |
 
 ## 2. 初始已验证行为（2026-07-31）
 
@@ -35,6 +36,7 @@
 |---|---|---|---|
 | S4 API producer 已远端可用 | `yijie-api@360a526b679147472e7cc82ca7ac9db9d18a371d`，`origin/develop` 相等 | tenants/capabilities、逐请求 tenant 验证、稳定错误、revision、metrics 与 producer/fault conformance PASS；flag 默认 false | staging/performance/exporter、生产配置与激活未执行 |
 | S5A Desktop native boundary 已远端可用 | `yijie-desktop@3798c67d260237928730758c7ec4c1fbe6fcf7d2`，`origin/develop` 相等 | system-browser OIDC、精确 loopback、PKCE/state/nonce、Keychain lifecycle、两个固定 GET operations 与本地安全矩阵 PASS；flag 默认 false | S5B generated consumer/store、S6 UI、真实 IdP/API/正式 Keychain provisioning 未执行 |
+| G3 非生产准备层已形成 | `yijie-infra@47c9e826d1f860d872958b05bafa44b1c3232f62` + uncommitted G3 diff；模板 SHA-256 `b7d1eb27...` | strict template/ready validator、bounded read-only online preflight、runbook 与 19 tests PASS；local PostgreSQL migration 2、API health/ready、关闭态 endpoint 404 PASS | 真实非生产 IdP/DNS/TLS/API origin 未分配；synthetic bootstrap 与 online preflight NOT RUN；不构成 G3 PASS |
 
 ## 3. 仓库与组件影响矩阵
 
@@ -47,7 +49,7 @@
 | yijie-desktop / native auth+transport | OIDC public client、凭证保管与受限 authenticated transport | direct | system-browser PKCE、loopback、Keychain、logout；token 不跨 IPC 时由 Rust 仅执行两个固定 GET operations | 段成威 | Rust/Tauri modules、固定 API origin/method/path allowlist、最小 capability、tests |
 | yijie-desktop / API+store | contract consumer | direct | exact pin、生成类型/adapter、fail-closed state | 段成威 | api/domain/store/tests；禁止通用 native proxy |
 | yijie-desktop / navigation+router | 呈现与 UX guard | direct | deny-by-default、深链与恢复 | 段成威 | nav/router/AppShell/pages/tests |
-| yijie-infra | local/production dependencies | indirect/conditional | direct IdP RS256 JWT 架构已批准；具体 issuer/client/JWKS、API origin、secret 与 TLS 配置仍待落地 | 段成威 | G3/G5 前单独确认；当前不改 |
+| yijie-infra | local/nonproduction/production dependencies | direct for G3 preparation | 固定供应商中立公开配置 schema、默认关闭/合成数据策略、离线与在线预检；真实 issuer/client/JWKS、API origin、secret backend 与 TLS 仍待外部落地 | 段成威 | G3 template/validator/runbook；不创建生产或云资源 |
 | yijie-admin-web | RBAC 管理 UI | none for first slice | 首版只允许受控 bootstrap，不做管理 UI | 段成威 | N/A |
 | yijie-agent-host | local Runtime boundary | none | 不消费平台身份；继续固定 contracts-v0.2.0 | Agent Runtime Owner | N/A |
 | yijie-codex/Runtime | Runtime source | none | 无 Runtime/AI 协议变化 | Runtime Owner | N/A |
@@ -197,8 +199,8 @@ G1/G2 已于 2026-07-31 批准 A1—A6。具体 migration 字段、索引、FK�
 
 | ID | 未知项 | 允许的只读/隔离验证 | 禁止副作用 | Owner | 结论 |
 |---|---|---|---|---|---|
-| SPIKE-001 | direct IdP RS256 JWT 与 Desktop login flow | 固定 provider metadata、issuer/client/JWKS 并验证 Tauri flow | 不注册生产应用、不写 secret | 段成威 | A1/A2 Approved；S5A 本地 OIDC/loopback/PKCE/nonce/JWKS 负测 PASS；真实 provider 配置验证待 G3/G5/S7 |
+| SPIKE-001 | direct IdP RS256 JWT 与 Desktop login flow | 固定 provider metadata、issuer/client/JWKS 并验证 Tauri flow | 不注册生产应用、不写 secret | 段成威 | A1/A2 Approved；S5A 本地矩阵与 G3 strict/online preflight 工具 PASS；真实 provider 分配和联调待 G3 completion/G5/S7 |
 | SPIKE-002 | required `X-Yijie-Tenant-ID` 与 membership/status 验证 | 用合成状态图/测试替身验证 missing/invalid/denied | 不把 request tenant 当授权事实 | 段成威 | A3 Approved；S4 header/endpoint、原子 projection 与 400/403 负测 PASS；跨仓 E2E 待 S7 |
-| SPIKE-003 | RBAC schema 与 bootstrap | 临时 schema migration rehearsal | 不写真实用户/租户，不建 API session 表 | 段成威 | A4 Approved；S3 00001→00002 expand rehearsal 与 2×2 RBAC 通过；bootstrap 待后续 slice |
+| SPIKE-003 | RBAC schema 与 bootstrap | 临时 schema migration rehearsal | 不写真实用户/租户，不建 API session 表 | 段成威 | A4 Approved；G3 再次对现有 local DB 应用/核验 migration 2；可审计幂等 synthetic bootstrap CLI 仍待实现 |
 | SPIKE-004 | 现有 Tasks API production disposition | 验证 ingress + handler 双隔离并创建 FEAT-126 | 不静默改 Tasks wire contract | 段成威 | A6 Approved；到期为 FEAT-126 生产启用或 2026-09-30 较早者；隔离证据待 G5 |
-| SPIKE-005 | API origin/CSP/Keychain | local/staging 配置验证 | 不新增生产 URL/capability | 段成威 | S5A local config validation、Protected Data Keychain adapter 与 operation allowlist PASS；正式 provisioning、staging API origin/CSP 和真实 Keychain E2E 仍 Open / G3/G5 |
+| SPIKE-005 | API origin/CSP/Keychain | local/staging 配置验证 | 不新增生产 URL/capability | 段成威 | G3 已固定可信 HTTPS、same-origin IdP endpoints、exact callback 与 untracked config 规则；正式 IdP/DNS/TLS/API origin、Keychain provisioning 和真实 E2E 仍 Open |

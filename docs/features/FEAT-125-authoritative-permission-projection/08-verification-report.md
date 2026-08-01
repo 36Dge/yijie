@@ -2,17 +2,19 @@
 
 > 本文件记录 2026-07-31 的需求/设计基线，以及 2026-08-01 的 S1/S2 Contracts
 > candidate、S3/S4 API provider 与 S5A Desktop native boundary 实现/验证。API 与 Desktop
-> native flags 默认关闭；不含 S5B/UI、真实 IdP/正式 Keychain provisioning、部署或生产
-> 激活，G3/G4/G5 保持 Pending。
+> native flags 默认关闭；G3 已完成供应商中立非生产模板/预检与本地 migration/关闭态基线，
+> 但不含真实 IdP/DNS/TLS/API origin、synthetic bootstrap、online preflight、S5B/UI 或生产
+> 激活。因此 G3 preparation 为 Complete，G3 PASS/G4/G5 保持 Pending。
 
 ## 1. 验证上下文
 
 | Repository | Branch | Full HEAD SHA | Worktree | Runtime/toolchain | 时间 |
 |---|---|---|---|---|---|
-| yijie | develop | base/remote `28c6f503f2c66a0dc5964d85cc5865fcb4ae2794` | S5A evidence update expected dirty | Git/Bash | 2026-08-01 |
+| yijie | develop | `874620a7f8b4ea9756bc774903d04bd1df62c8c6` | G3 evidence update dirty；local ahead origin by one pre-existing S5A evidence commit | Git/Bash | 2026-08-01 |
 | yijie-contracts | develop | `9ec34abd6e7dfb5a23b0154d467694167224ebbb` | clean；origin/develop verified equal | Node 26.0.0 / pnpm 11.9.0 / Go 1.26.5 | 2026-08-01 |
 | yijie-api | develop | `360a526b679147472e7cc82ca7ac9db9d18a371d` | clean；origin/develop verified equal | Go 1.26.5 / PostgreSQL 16.14 | 2026-08-01 |
 | yijie-desktop | develop | `3798c67d260237928730758c7ec4c1fbe6fcf7d2` | clean；origin/develop verified equal | Vue 3/Tauri 2/pnpm 11/Rust | 2026-08-01 |
+| yijie-infra | develop | base `47c9e826d1f860d872958b05bafa44b1c3232f62` | G3 preparation diff dirty；未提交/未推送 | Node 26 / pnpm 11 / Docker Compose | 2026-08-01 |
 
 ## 2. Baseline
 
@@ -36,6 +38,7 @@
 | S3 / API foundation | `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf` | TDD red→exact pin/expand migration/RS256 JWT/JWKS/identity/tenancy/RBAC→all S3 gates | 0 | PASS | remote SHA verified；no production values or activation |
 | S4 / API producer | `360a526b679147472e7cc82ca7ac9db9d18a371d` | TDD red→tenant/capability endpoints、atomic projection、stable faults/headers、metrics→all S4 gates | 0 | PASS | canonical producer conformance；flag default false；no production values/activation；remote verified |
 | S5A / Desktop native auth+transport | `3798c67d260237928730758c7ec4c1fbe6fcf7d2` | system-browser OIDC、exact loopback、PKCE/state/nonce、Keychain lifecycle、two fixed authenticated operations→security matrix/all gates | 0 | PASS | native flag default false；no S5B/UI/Tasks/production values；remote verified；real provider/provisioning NOT RUN |
+| G3-NP / nonproduction preparation | `yijie-infra@47c9e826...` + G3 worktree | strict safe template/ready validation + bounded online preflight tests + local Compose/migration/API flag-off smoke | 0 | PREPARED | template/19 tests/migration 2/health/ready/404 PASS；external IdP/DNS/TLS/API origin、bootstrap、online preflight NOT RUN；not G3 PASS |
 | S5B—S8 / generated consumer, UI, integration, release | N/A | outside current authorization | N/A | NOT RUN | no generated permission store/UI/cross-repo/release changes |
 
 ## 4. 最终命令记录
@@ -65,6 +68,11 @@
 | V-DESKTOP-BUILD | yijie-desktop | `make build` + `pnpm docs:build` + `pnpm tauri:build --debug` | Vite/VitePress/Tauri macOS | 0 | PASS | production web/docs；debug `.app` + aarch64 `.dmg` |
 | V-DESKTOP-AUDIT | yijie-desktop | `pnpm audit --audit-level high` + `cargo audit --file src-tauri/Cargo.lock` + Cargo license metadata audit | npm/RustSec/Cargo metadata | 0 | PASS | npm 0 known；RUSTSEC-2023-0071 documented verifier-only ignore；504 third-party packages license metadata present，no prohibited strong license |
 | V-DESKTOP-S5A-REVIEW | yijie-desktop | structured review：scope→OIDC→token lifecycle/concurrency→Keychain→IPC/HTTP→dependencies/failure | Codex separated review pass | 0 | PASS | 6 类 findings resolved；最终开放 P0/P1/P2=0；EXC-125-002；真实 IdP/provisioning NOT RUN |
+| V-INFRA-TEMPLATE | yijie-infra | `pnpm validate:feat-125-template` | Node 26 / yaml 2.9.0 | 0 | PASS | 保留域名、public-client placeholder、合成数据、exact candidate/API/Desktop SHA、三端 flags false |
+| V-INFRA-TEST | yijie-infra | `pnpm test` | Node test runner | 0 | PASS | 19/19；拒绝生产/真实数据/secret/HTTP/cross-origin/wrong audience-SHA-migration/提前激活、错误 API environment、discovery drift 与 >256 KiB response；online fault cases PASS |
+| V-G3-MIGRATION | yijie-api + local PostgreSQL | `make migrate-up && make migrate-status` | Go 1.26.5 / PostgreSQL 16 | 0 | PASS | migration `00002_expand_identity_tenancy_rbac.sql` applied；schema version 2 |
+| V-G3-FLAG-OFF | yijie-api + local dependencies | temporary `YIJIE_ENV=nonproduction` server, API/Desktop projection flags false；GET health/ready/tenants | Go / curl | 0 | PASS | health database connected、ready；`GET /v1/me/tenants`=`404`；server stopped after smoke |
+| V-G3-ONLINE | real nonproduction IdP/API | `make feat-125-nonprod-online CONFIG=...` | Node/HTTPS | N/A | NOT RUN | external nonproduction IdP/DNS/TLS/API origin not assigned；must pass before G3/S5B approval |
 | V-E2E | cross-repo | `tenant_owner`/`tenant_member` × 2 tenants + auth/migration/perf | no harness yet | N/A | NOT RUN | S7 |
 
 ## 5. 契约与版本兼容
@@ -119,7 +127,7 @@
 
 - [x] `git status` 已在最终文档编辑后逐仓复核
 - [x] tracked + untracked 文档 whitespace 检查通过
-- [x] diff/status 范围复核：本轮 yijie 仅 FEAT-125/ADR evidence 更新；S4 API 与 S5A Desktop owning-repo commits 已分别远端核验；Contracts/Tasks wire 未改
+- [x] diff/status 范围复核：本轮 yijie 仅 FEAT-125 evidence 更新；yijie-infra 仅 G3 template/validator/tests/runbook 与入口文档；yijie-api 只执行生成/测试/本地 migration 和临时 flag-off smoke，tracked diff 为 0；Desktop/Contracts/Tasks wire 未改
 - [x] 完整文档 diff 已审阅
 - [x] 生成物来自锁定 generator：openapi-typescript 7.13.0 / oapi-codegen 2.7.2，重生成漂移检查 PASS
 - [x] Go module/lock 变化仅为 exact oapi-codegen v2.7.2 tool 与 jwx v3.2.0/httprc v3.0.6 及其解析依赖；advisory/license 已审计
@@ -127,6 +135,7 @@
 - [x] 新增 3 个 contract tests 与 12 个 fixture；无 `.skip`、`.only`、弱化断言或关闭门禁
 - [x] S5A lock digests：`src-tauri/Cargo.lock`=`94b1ee21ed1bd9e4e97528622971da9241c43c4e497181ec83f77f2da6a5b973`；`pnpm-lock.yaml`=`aaa0a300afb760c0a768aebefcf338bdbbb66dd6a62a3a907d456d0246fedc0c`
 - [x] S5A dependency exception EXC-125-002 已限定为 `openidconnect→rsa` 的 RS256 公钥验签路径；无 RSA 私钥/签名/解密，G5 或上游修复时必须重审/移除
+- [x] G3 template digest `b7d1eb27...`，strict validator `2e59197e...`，online CLI `1b541ab9...`，runbook `f819fa2f...`；公开配置无 secret/token/PII，真实 local config 被 Git 排除
 - [x] 本轮文档未写入 secret、PII、本机外部引用、调试后门或临时文件
 
 结构化 S3 review finding：
@@ -159,6 +168,16 @@ S4 review 后开放 P0/P1/P2 findings = 0；以上均在 commit 前关闭，未�
 S5A review 后开放 P0/P1/P2 findings = 0；RUSTSEC-2023-0071 仅作为 EXC-125-002 的
 verifier-only candidate 残余风险，不构成生产批准。
 
+结构化 G3 preparation review findings：
+
+| Finding | Severity | 结论 | 修复/证据 |
+|---|---|---|---|
+| G3-REV-001 | P1 | 初版 online preflight 只读 JWKS，未证明 discovery issuer/endpoints 与获批配置一致 | 增加 discovery exact-match，并要求 code、PKCE S256、RS256；drift 负测 PASS |
+| G3-REV-002 | P2 | 初版 256 KiB 上限在 `arrayBuffer()` 后检查，超大响应可能先占用无界内存 | 改为 ReadableStream 分块读取，超过 256 KiB 立即 cancel；负测 PASS |
+| G3-REV-003 | P2 | 初版 health/ready 只要求 JSON object，错误服务或 production endpoint 可能误通过 | health 必须精确识别 `yijie-api`、`nonproduction`、DB connected/status ok，ready 必须为 ready；production 负测 PASS |
+
+G3 preparation review 后开放 P0/P1/P2 findings = 0；真实环境缺失是明确 blocker，不作为例外关闭。
+
 ## 9. 独立 Review Findings
 
 | Finding | Severity | 文件/位置 | 触发与影响 | 处理 | 复验 |
@@ -180,13 +199,13 @@ verifier-only candidate 残余风险，不构成生产批准。
 
 | Item | 原因 | 风险 | 补验证条件 | Owner | 是否阻断 |
 |---|---|---|---|---|---|
-| direct JWT/native auth/tenant | API S4 producer与 Desktop S5A native boundary PASS；真实 provider/provisioned Keychain/跨仓未验证 | critical | S7 + G3/G5 config | 段成威 | yes |
-| RBAC/migration/audit | S3 migration + S4 consistent read projection PASS；bootstrap/writer transaction 未实现 | high | S7 | 段成威 | yes |
+| direct JWT/native auth/tenant | API S4 producer、Desktop S5A native boundary 与 G3 config/preflight harness PASS；真实 provider/provisioned Keychain/跨仓未验证 | critical | 分配 nonproduction IdP/DNS/TLS/API origin，online preflight + S7 | 段成威 | yes |
+| RBAC/migration/audit | S3 migration + S4 consistent read projection PASS；G3 local DB 已在 version 2；bootstrap/writer transaction 未实现 | high | synthetic audited idempotent bootstrap + S7 | 段成威 | yes |
 | API producer | endpoint/conformance/metrics recorder 已远端核验；staging/performance/exporter 未验证 | high | S7/G5 | 段成威 | yes |
 | Desktop consumer | S5A native auth/transport 已远端核验；exact pin/generated adapter/store/nav/router 尚未实现 | high | S5B/S6/S7 | 段成威 | yes |
-| Cross-repo/staging | 环境/harness 未建立 | critical | S7 | 段成威 | yes |
+| Cross-repo/staging | 配置 schema、离线/在线预检工具和 local flag-off baseline 已建立；真实共享环境/identity 未建立 | critical | G3 online PASS then S5B/S7 | 段成威 | yes |
 | Tasks 双隔离/FEAT-126 | A6 已批准但生产隔离未实施；资源级授权不在 FEAT-125 | critical | G5 isolation evidence；FEAT-126 production enablement（不晚于例外期限） | 段成威 | yes |
-| Production IdP/infra/signing | vendor、issuer、client ID、JWKS、TLS/CSP 等未定义；audience 已固定 | high | G3/G5 plan+evidence | 段成威 | yes |
+| Nonproduction/production IdP/infra/signing | 供应商中立约束已固定；真实 issuer/client ID/JWKS、DNS/TLS/API origin/CSP 与生产控制面未定义 | high | G3 external assignment/online evidence；G5 production plan+evidence | 段成威 | yes |
 | Desktop RSA dependency advisory | `openidconnect 4.0.1`→`rsa 0.9.10` 无修复版本；当前仅公钥验签 | medium if scope drifts | EXC-125-002；每次 audit；G5/上游修复时移除 | 段成威 | yes for production review |
 
 ## 11. 结论
@@ -203,6 +222,9 @@ verifier-only candidate 残余风险，不构成生产批准。
   `360a526b679147472e7cc82ca7ac9db9d18a371d`。S5A Desktop system-browser OIDC、exact
   loopback、PKCE/state/nonce、Keychain token lifecycle 与 operation-scoped transports 已通过
   全部门禁/安全矩阵/结构化审查并远端核验为
-  `3798c67d260237928730758c7ec4c1fbe6fcf7d2`。两端 flags 默认关闭，无生产 IdP 配置或
-  激活。S5B—S8 的 generated consumer/UI、跨仓集成和发布仍 `NOT RUN`。FEAT-124
+  `3798c67d260237928730758c7ec4c1fbe6fcf7d2`。G3 已在 yijie-infra 建立默认关闭/仅合成
+  数据的配置模板、strict/online preflight 和 runbook，并以现有 local dependencies 验证
+  migration 2、health/ready 与 projection 404；真实非生产 IdP/DNS/TLS/API origin、bootstrap
+  和 online preflight 仍 `NOT RUN`，故不能标记 G3 PASS。两端 flags 默认关闭，无生产 IdP
+  配置或激活。S5B—S8 的 generated consumer/UI、跨仓集成和发布仍 `NOT RUN`。FEAT-124
   G4-001 继续阻断，直到 FEAT-125 真实 producer/consumer/E2E 与独立 G4 证据完成。

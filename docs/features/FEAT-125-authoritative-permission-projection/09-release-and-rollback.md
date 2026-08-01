@@ -2,10 +2,11 @@
 
 > 本 Runbook 是候选计划，不是部署授权。A1—A6 已批准 direct IdP RS256 JWT、required
 > `X-Yijie-Tenant-ID`、RBAC/Settings core 与 Tasks isolation 边界；S4 API producer 与 S5A
-> Desktop native boundary 已远端核验但默认关闭，尚未进入 staging/production。具体 IdP
-> provider、issuer/client/JWKS、生产平台、domain、
-> secret、命令和 artifact 尚未形成，G3/G5 前必须固定并替换为真实、经段成威确认的配置
-> 与控制面操作。
+> Desktop native boundary 已远端核验但默认关闭，尚未进入 staging/production。G3 已形成
+> 供应商中立、仅合成数据、默认关闭的非生产模板/预检/runbook，并完成 local migration 与
+> flag-off smoke；真实 IdP provider、issuer/client/JWKS、DNS/TLS、API origin、Secret Manager
+> 和 synthetic bootstrap 尚未形成，必须先通过 online preflight 才能批准 G3/S5B。生产平台、
+> 命令和 artifact 继续由 G5 单独审批。
 
 ## 1. Release Manifest
 
@@ -15,6 +16,7 @@
 | yijie-api | S4 remote candidate；no release | `360a526b679147472e7cc82ca7ac9db9d18a371d`；origin/develop verified | generated types `a1801a...` | exact contracts `9ec34abd...` / oapi-codegen v2.7.2 | local producer/conformance/fault PASS；flag off；staging/production NOT RUN |
 | yijie-desktop | S5A remote candidate；no release | `3798c67d260237928730758c7ec4c1fbe6fcf7d2`；origin/develop verified | Cargo lock `94b1ee21...`；pnpm lock `aaa0a300...`；debug artifact unsigned/unpublished | S5A has no generated contract pin；S5B must pin exact `9ec34abd...` | local native/security gates PASS；real IdP/API、sign/notarize、staging/production NOT RUN |
 | DB schema | goose v2 expand candidate | yijie-api `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf` | `51c4ced9b6e6fa447326c29ead582e0568541e7ffca7084ae706d71ad4cb3bc9` | N/A | local PostgreSQL 16.14 PASS；staging/production NOT RUN |
+| yijie-infra | G3 nonproduction preparation；no deployment | base `47c9e826d1f860d872958b05bafa44b1c3232f62` + uncommitted G3 worktree | template `b7d1eb27b92f152b9f130bb8ae533aaca6a6c3c2ad45a6e12a29186751ae26af` | exact contracts/API/Desktop full SHA in strict manifest | offline template/19 tests + local migration/flag-off smoke PASS；online/remote environment NOT RUN |
 | yijie evidence | FEAT-125 / FEAT-124 G4 | final docs SHA | N/A | final manifests | governance |
 
 ## 2. 发布前提
@@ -31,6 +33,8 @@
 - [x] S5A Desktop native boundary 已由段成威批准；`3798c67d260237928730758c7ec4c1fbe6fcf7d2`
       通过 OIDC/loopback/Keychain/IPC/transport security matrix、全部门禁和结构化审查，已 push
       并远端核验；native flag 默认 false；S5B/UI、真实 IdP/API、正式 Keychain provisioning 未执行
+- [x] G3 nonproduction preparation 已完成：safe template、strict/online preflight、runbook、
+      local migration 2、health/ready 与 projection endpoint 404；API/Desktop flags 保持 false
 - [ ] G4 Code Complete 通过，P0/P1/P2 security findings 为 0
 - [ ] Release artifact 来自干净、远端可获取、不可变 source
 - [ ] v0.3.0 tag 解析到已做 API/Desktop conformance 的同一 candidate；digest 不变
@@ -51,18 +55,19 @@
 | Order | Action | Component/Environment | Operator | Preconditions | Verification | Rollback point |
 |---:|---|---|---|---|---|---|
 | 1 | 合并/push final contracts candidate | contracts | 段成威 | S2 checks PASS | remote SHA/digest | remain on v0.2.0 |
-| 2 | 非生产 API/DB consume candidate | staging | 段成威 | G2A | migration+producer tests | app rollback/flag off |
-| 3 | 非生产 Desktop consume candidate | staging/native | 段成威 | provider ready | consumer+2×2 E2E | do not release |
-| 4 | 创建不可移动 v0.3.0 tag | contracts | 段成威 | candidate E2E PASS | tag→same SHA/digest | never move tag |
-| 5 | API/Desktop 切 tag provenance | repos | 段成威 | tag verified | regenerate clean | retain candidate commit |
-| 6 | 生产 expand migration | production | approved operator | rehearsal+backup/runbook | schema/status | pause/roll-forward |
-| 7 | 对 `/v1/tasks`、`/v1/tasks/*` 启用 ingress 拒绝和 handler 不注册/关闭双隔离 | production | approved operator | FEAT-126 已登记；wire 不变；例外到期为 FEAT-126 生产启用或 2026-09-30 较早者 | 外部路径与服务内路由负向 smoke | 到期未完成不得开放 Tasks，保持隔离并重新审批 |
-| 8 | 部署 API provider，flag off | production | approved operator | dependencies healthy + Tasks 双隔离 PASS | health/auth smoke | rollback API；保持 Tasks 隔离 |
-| 9 | 对 internal tenant 开 API flag | production | 段成威 | metrics ready | projection/security smoke | flag off |
-| 10 | 发布 Desktop canary，consumer flag scoped | canary | 段成威 | provider stable | UI/direct API smoke | stop rollout/flag off |
-| 11 | 分阶段扩量并观察 | production | 段成威 | thresholds green | dashboards/audit | stop/rollback |
-| 12 | 登记 supported baseline | contracts/yijie | 段成威 | rollout evidence | provenance registry | do not deprecate 0.2.0 |
-| 13 | 更新 FEAT-124 candidate 并独立复跑 G4 | yijie/Desktop | Codex Reviewer + 段成威 | FEAT-125 G4 evidence | G4 report | keep finding open |
+| 2 | 分配非生产 IdP public client、DNS/TLS、API origin 与 Secret Manager；完成 synthetic bootstrap/online preflight | nonproduction | 段成威 | G3 preparation complete | strict ready + online preflight + audit | flags remain off；revoke synthetic sessions |
+| 3 | 非生产 API/DB consume candidate | staging | 段成威 | G3 online PASS | migration+producer tests | app rollback/flag off |
+| 4 | 非生产 Desktop consume candidate | staging/native | 段成威 | provider ready + S5B/S6 | consumer+2×2 E2E | do not release |
+| 5 | 创建不可移动 v0.3.0 tag | contracts | 段成威 | candidate E2E PASS | tag→same SHA/digest | never move tag |
+| 6 | API/Desktop 切 tag provenance | repos | 段成威 | tag verified | regenerate clean | retain candidate commit |
+| 7 | 生产 expand migration | production | approved operator | rehearsal+backup/runbook | schema/status | pause/roll-forward |
+| 8 | 对 `/v1/tasks`、`/v1/tasks/*` 启用 ingress 拒绝和 handler 不注册/关闭双隔离 | production | approved operator | FEAT-126 已登记；wire 不变；例外到期为 FEAT-126 生产启用或 2026-09-30 较早者 | 外部路径与服务内路由负向 smoke | 到期未完成不得开放 Tasks，保持隔离并重新审批 |
+| 9 | 部署 API provider，flag off | production | approved operator | dependencies healthy + Tasks 双隔离 PASS | health/auth smoke | rollback API；保持 Tasks 隔离 |
+| 10 | 对 internal tenant 开 API flag | production | 段成威 | metrics ready | projection/security smoke | flag off |
+| 11 | 发布 Desktop canary，consumer flag scoped | canary | 段成威 | provider stable | UI/direct API smoke | stop rollout/flag off |
+| 12 | 分阶段扩量并观察 | production | 段成威 | thresholds green | dashboards/audit | stop/rollback |
+| 13 | 登记 supported baseline | contracts/yijie | 段成威 | rollout evidence | provenance registry | do not deprecate 0.2.0 |
+| 14 | 更新 FEAT-124 candidate 并独立复跑 G4 | yijie/Desktop | Codex Reviewer + 段成威 | FEAT-125 G4 evidence | G4 report | keep finding open |
 
 ## 4. Feature Flag
 
@@ -161,6 +166,8 @@ exporter、dashboard 或告警接线。不得以进程内单元测试信号推�
 | Contract checks | 见 06-test-plan 第 11 节仓内命令 | repository maintainer | exit 0 + clean diff | S2 evidence |
 | API producer checks | `make generate-check`、`make lint`、`make test`、`make test-integration`、`go mod verify`、`govulncheck ./...` | repository maintainer | exit 0；canonical conformance/fault fixtures PASS | S4 evidence |
 | Desktop S5A checks | `make lint`、`make test`、`make build`、`pnpm docs:build`、`pnpm tauri:build --debug`、npm/cargo/license audits | repository maintainer | exit 0；37 frontend + 27 Rust tests；debug `.app/.dmg`；security matrix PASS | S5A `3798c67...` + owning-repo security matrix |
+| G3 safe template/offline ready | `make feat-125-nonprod-template`；真实公开值写入 ignored local file 后执行 `make feat-125-nonprod-ready CONFIG=...` | repository maintainer | template/ready strict validation exit 0 | yijie-infra runbook + G3 evidence |
+| G3 online preflight | `make feat-125-nonprod-online CONFIG=...` | nonproduction operator | OIDC discovery exact-match/code/S256/RS256 + JWKS RSA/RS256 + health/ready PASS；projection endpoint remains 404 | G3 completion evidence；currently NOT RUN |
 | Desktop S5B—S7 checks | 见 06-test-plan 与后续 owning-repo commands | repository maintainer | exit 0 | S5B—S7 evidence |
 | Deploy | N/A：生产控制面尚未选择 | approved release role | G5 前必须登记 | release manifest |
 | Disable | N/A：真实 flag/config backend 尚未批准 | approved operator | G5 前必须登记 | runbook |
@@ -171,6 +178,7 @@ exporter、dashboard 或告警接线。不得以进程内单元测试信号推�
 | 日期 | Environment | Artifact/data versions | Steps | Result | Gaps |
 |---|---|---|---|---|---|
 | 2026-08-01 | isolated local PostgreSQL 16.14 | contracts `9ec34abd...`；API `fff0cbcba601...`；schema 00001→00002 | migrate existing task/audit→validate tables/catalog/FKs/append-only→reject down and retain v2 | PASS / data rehearsal only | old binary smoke、bootstrap、staging/platform deployment remain NOT RUN |
+| 2026-08-01 | existing local Compose PostgreSQL/Redis/pgvector | API `360a526b...`；schema v2；flags false | start existing dependencies→migrate/status→temporary nonproduction API→health/ready→verify tenants endpoint 404→stop API | PASS / G3 flag-off baseline | IdP/DNS/TLS/API origin、synthetic bootstrap、online preflight remain NOT RUN；Compose dependencies left healthy |
 
 ## 12. 沟通、职责与批准
 
@@ -185,4 +193,5 @@ exporter、dashboard 或告警接线。不得以进程内单元测试信号推�
 | G2A | 段成威 | Passed；固定 `9ec34abd...` 并授权 S3，不生产激活 | 2026-08-01 | 用户批准记录、04/08 contract/API evidence |
 | S4 | 段成威 | Approved API producer only；禁止 Desktop/Tasks/生产 IdP 与生产激活 | 2026-08-01 | 用户批准记录、API `360a526b679147472e7cc82ca7ac9db9d18a371d`、08 S4 evidence |
 | S5A | 段成威 | Approved Desktop Rust/Tauri native auth/transport only；禁止 S5B/UI、Tasks、生产 IdP 配置与激活 | 2026-08-01 | 用户批准记录、Desktop `3798c67d260237928730758c7ec4c1fbe6fcf7d2`、owning-repo security matrix、08 S5A evidence |
+| G3 preparation | 段成威 | Approved execution；供应商中立、默认关闭、合成数据准备完成；外部 HTTPS 值与 online preflight 未通过前不得批准 S5B/激活 | 2026-08-01 | yijie-infra G3 diff、08 G3 evidence、本地 migration/flag-off smoke |
 | Go/No-Go | 段成威 | Pending | G5 后 | final manifest/runbook/rehearsal |

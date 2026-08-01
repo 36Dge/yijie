@@ -4,7 +4,7 @@
 
 | 字段 | 内容 |
 |---|---|
-| 状态 | G0/G1/G2/G2A Passed / S1—S4 Remote Verified / S5A Desktop Native Boundary Remote Verified + Structured Review PASS |
+| 状态 | G0/G1/G2/G2A Passed / S1—S4 Remote Verified / S5A Remote Verified / G3 Nonproduction Preparation Complete（external values pending） |
 | 需求负责人 | 段成威 |
 | 技术负责人 | 段成威 |
 | Reviewer | 段成威 |
@@ -95,6 +95,7 @@
 | Fact | `0.3.0` candidate 已新增 operation-level `userBearer`、tenant discovery 与 capability projection；全局 `security: []` 和旧 operations 保持不变 | `9ec34abd6e7dfb5a23b0154d467694167224ebbb` + remote/semantic equality checks | 段成威 | S1/S2 + remote Complete；G2A Passed |
 | Fact | API 初始基线没有 auth/session/users/tenants/RBAC 表或 middleware；S3/S4 已建立 direct JWT、tenancy/RBAC 与只读 projection producer | `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`、`360a526b679147472e7cc82ca7ac9db9d18a371d` | 段成威 | S3/S4 Remote Verified |
 | Fact | Desktop S5A 已实现 Rust 原生 OIDC/Keychain 与两个 operation-scoped transports；exact contract pin、generated adapter、permission store 和 route guard 仍待 S5B/S6 | `3798c67d260237928730758c7ec4c1fbe6fcf7d2`、`yijie-desktop/docs/security/FEAT-125-S5A-security-matrix.md` | 段成威 | S5A Remote Verified；S5B/S6 Pending |
+| Fact | yijie-infra 已形成供应商中立、默认关闭、仅合成数据的 FEAT-125 非生产模板、strict validator 与只读 online preflight；本地 PostgreSQL migration 2、API health/ready 及关闭态 404 已验证 | `yijie-infra@47c9e826d1f860d872958b05bafa44b1c3232f62` + G3 worktree；`docs/feat-125-nonproduction.md`；模板 SHA-256 `b7d1eb27...` | 段成威 | G3 preparation Complete；真实 IdP/DNS/TLS/API origin 与 online preflight Pending |
 | Fact | FEAT-124 G4-001 仍是阻断 finding | FEAT-124 `08-verification-report.md` | 段成威 | Confirmed |
 | Decision | 外部 OIDC native public client；系统浏览器 Code+PKCE S256，精确 `http://127.0.0.1:<ephemeral-port>/oauth/callback`、state/nonce；Desktop 校验 auth response/state/PKCE 与 ID token nonce，API 以 audience `https://api.yijie.ai` 严格验证 IdP RS256 access JWT；不采用 opaque session | 段成威 A1/A2 | 段成威 | Approved / G1 |
 | Decision | Desktop 通过 `X-Yijie-Tenant-ID` 表达当前租户选择；header 不是授权事实，API 每个请求重新验证 membership | 段成威 A3 | 段成威 | Approved / G1 |
@@ -102,7 +103,7 @@
 | Decision | 初始 vocabulary 固定 7 个点号 capability；`tenant_owner` 拥有全部 7 项，`tenant_member` 仅有 `task.create`/`task.read`；以 2 角色×2 租户验证，bootstrap 与变更必须审计 | 段成威 A4 | 段成威 | Approved / G2 |
 | Decision | Settings core 对已登录用户常显；`/` 按 `task.create`→`/chat`、否则 `task.read`→`/tasks`、否则 `/settings`；denied deep-link 不实例化页面 | 段成威 A5 | 段成威 | Approved / G2 |
 | Decision | `/v1/tasks` 契约不变，生产 public ingress 拒绝且 service 不注册 legacy Tasks handlers；独立 `FEAT-126` 承接 hardening；例外于 FEAT-126 生产启用或 2026-09-30 较早者到期 | 段成威 A6 | 段成威 | Approved / G2 |
-| Unknown | 具体 IdP vendor/issuer/client ID/JWKS 生产值、TLS/CSP、签名与发布环境配置；API audience 已固定为 `https://api.yijie.ai` | 尚未选择生产基础设施 | 段成威 | Open / G3-G5 blocker；不阻断 G1/G2 |
+| Unknown | 具体 IdP vendor/issuer/client ID/JWKS 的真实非生产与生产值、TLS/CSP、签名与发布环境配置；API audience 已固定为 `https://api.yijie.ai` | G3 已固定公开配置 schema 与预检命令，但外部资源尚未分配 | 段成威 | 非生产外部值阻断 G3 PASS/S5B；生产值继续阻断 G5 |
 
 ## 8. 初始仓库基线
 
@@ -112,6 +113,7 @@
 | yijie-contracts | https://github.com/36Dge/yijie-contracts.git | develop | `5320c302f5c00f4080e9c3662a3f21cc1c4b813e` | clean；与远端一致 | N/A |
 | yijie-api | https://github.com/36Dge/yijie-api.git | develop | `2834b412ad565651215bd12458276c4e0d8fecf5` | clean；与远端一致 | N/A |
 | yijie-desktop | https://github.com/36Dge/yijie-desktop.git | develop | `be01cc2d0a1c9c4b057de616be201a4843d0a035` | clean；与远端一致 | N/A |
+| yijie-infra | https://github.com/36Dge/yijie-infra.git | develop | `47c9e826d1f860d872958b05bafa44b1c3232f62` | G3 scope entry baseline；当时与远端一致 | N/A |
 
 远端 `origin/develop` 与上述 SHA 已在 2026-07-31 使用 `git ls-remote` 复核。
 
@@ -123,6 +125,7 @@
 | G1 设计就绪 | 2026-07-31 | 段成威 | Passed：A1—A3/A6 身份、凭证、租户与隔离边界已批准 |
 | G2 可开始实现 | 2026-07-31 | 段成威 | Passed：A4—A6 RBAC、Settings/root route 与实施范围已批准 |
 | G2A Contract Ready | 2026-08-01 | 段成威 | Passed：固定 candidate `9ec34abd6e7dfb5a23b0154d467694167224ebbb`，授权执行 S3 |
+| G3 Slice/Nonproduction Ready | 外部非生产值与在线预检完成后 | 段成威 | Prepared：模板、validator、runbook、本地 migration/关闭态 smoke 完成；真实 IdP/DNS/TLS/API origin、synthetic bootstrap 与 online preflight Pending |
 | G4 Code Complete | 跨仓实现与独立 review 后 | 段成威 | Pending |
 | G5 Production Ready | 类生产安全验证后 | 段成威 | Pending |
 | G6 Delivery Complete | 灰度与观察完成后 | 段成威 | Pending |
@@ -145,3 +148,4 @@
 | 2026-08-01 | Codex | 将 S4 API 与治理证据推送并远端核验 | yijie-api `360a526b679147472e7cc82ca7ac9db9d18a371d`；yijie `28c6f503f2c66a0dc5964d85cc5865fcb4ae2794` |
 | 2026-08-01 | 段成威/Codex | 批准并完成 S5A Desktop Rust 原生系统浏览器 OIDC、精确 loopback、PKCE/state/nonce、Keychain token 生命周期与两个固定 authenticated operations | Desktop 完整提交 `3798c67d260237928730758c7ec4c1fbe6fcf7d2` 已推送并远端核验；功能默认关闭，无 S5B/UI、Tasks 或生产配置/激活 |
 | 2026-08-01 | Codex | 对 S5A 做 scope、OIDC、token 生命周期、并发、Keychain、IPC/HTTP、依赖与失败语义结构化审查并复跑全部门禁 | 修复 6 类问题；开放 P0/P1/P2=0；前端 37 tests、Rust 27 tests、debug `.app/.dmg`、npm/cargo/license audit PASS；真实 IdP/正式 Keychain provisioning/生产联调仍为 G3/G5/S7 |
+| 2026-08-01 | 段成威/Codex | 执行 G3 非生产环境准备：新增供应商中立、默认关闭、仅合成数据的 infra 模板、strict/online preflight 与 runbook；启动现有 local dependencies，应用 migration 2 并验证 API health/ready 和权限端点 404 | Preparation Complete；未选择/伪造 IdP 厂商或真实 HTTPS 值，未激活 API/Desktop，G3 PASS 仍等待外部资源、synthetic bootstrap 与在线预检 |

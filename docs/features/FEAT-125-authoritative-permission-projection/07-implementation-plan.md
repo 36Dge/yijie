@@ -10,8 +10,9 @@
 - 范围、身份、tenant、错误或 migration 语义变化时回到设计，不静默扩张。
 - G1/G2 已批准本计划列明的代码与 expand migration 范围；S1/S2 已完成不可变 Contracts
   candidate，G2A 已于 2026-08-01 通过。S3/S4 API 与 S5A Desktop native boundary 均已
-  分别批准、提交、结构化审查、推送并远端核验。S5B+、生产 IdP 注册/config、tag 与部署
-  仍需后续对应 gate/指令。
+  分别批准、提交、结构化审查、推送并远端核验。G3 已完成供应商中立非生产模板、预检和
+  本地关闭态运行验证，但真实非生产 IdP/DNS/TLS/API origin 与 synthetic bootstrap 仍待
+  外部分配/实现。S5B+、生产 IdP 注册/config、tag 与部署仍需后续对应 gate/指令。
 
 ## 2. 依赖 DAG
 
@@ -25,7 +26,9 @@ S0 security decisions + ADR（Complete）
   ├─→ S3 API exact pin + expand migration + authn/tenancy/RBAC（Complete: fff0cbcba601...）
   │     → S4 API capability endpoint + producer conformance（Complete: 360a526b6791...）
   └─→ S5A Desktop native OIDC/loopback/Keychain + operation-scoped transport boundary（Complete: 3798c67d2602...）
-        → S5B Desktop exact pin + permission client/store
+S4 + S5A
+  → G3-NP template/preflight/local flag-off baseline（Prepared: external HTTPS values pending）
+        → S5B Desktop exact pin + permission client/store（requires G3-NP online PASS）
           → S6 Desktop nav/router/AppShell/Settings production wiring
 S4 + S6
   → S7 cross-repo security/E2E against final candidate
@@ -44,7 +47,8 @@ S4 + S6
 | S3 | API exact pin、expand migration、direct IdP RS256 JWT Principal、tenancy/RBAC | AC-001/003/004/013/015/020 | yijie-api | pin/check scripts、JWT/JWKS verifier（含固定 audience `https://api.yijie.ai`）、identity/tenancy/authorization modules、migration、tests | opaque Yijie session、client-trusted tenant、Tasks contract change、生产 secret | G2A | make lint/test/test-all + drift | flag off / app rollback |
 | S4 | 实现 `GET /v1/me/tenants`、read-only projection、tenant header、稳定错误与 metrics | AC-001—005/013/014/020 | yijie-api | tenant discovery、0/1/multiple membership 结果、`X-Yijie-Tenant-ID` 逐请求校验、`authorization_revision`、`400 invalid_tenant_context`/403、Authorization Service projection、tests | role/menu leak、header 直信、partial projection、fail-open | S3 | API + producer conformance/fault tests | disable endpoints |
 | S5A | Desktop Rust native auth + operation-scoped transport boundary | AC-003/012/017/018 | yijie-desktop | `src-tauri` auth modules、Cargo manifests/lock、native opener、精确 `http://127.0.0.1:<ephemeral-port>/oauth/callback` listener、PKCE/state/ID-token nonce validation、10m access + <2m single-flight refresh、Keychain service `ai.yijie.desktop.auth`（30d idle/90d absolute、rotation/reuse-revokes-family）、固定 API HTTPS origin/method/path 的 `listMyTenants`/`getMyCapabilities` transport、tests | deep-link/embedded login、opaque session、Desktop 充当 access-JWT 权威 verifier、token IPC/普通存储、任意 URL/method/header/body、通用 native proxy、非 loopback/错误 path、生产 IdP/API origin 值 | G2A | Rust lint/test + auth/transport security matrix + Tauri smoke | revoke/delete Keychain item、feature off |
-| S5B | Desktop exact pin、generated contract adapter/store | AC-006/007/011/012/014 | yijie-desktop | generate/pin、生成 TypeScript 类型/固定 adapter、tenant discovery、0 tenant→Settings/1 tenant auto/multiple chooser、capability domain/store/tests、operation intent 与 tenant UUID adapter | hand-written wire DTO、读取/传递 access token、LocalStorage token/cap、server-session tenant switch、通用 proxy | G2A + S4 staging + S5A | make lint/test/build | keep feature off |
+| G3-NP | 准备供应商中立、默认关闭、仅合成数据的非生产配置与预检 | AC-003/013/014/017/018 | yijie-infra+yijie evidence | public configuration template、strict offline validator、bounded read-only OIDC discovery/JWKS/API online preflight、runbook、现有 local dependencies/migration/flag-off smoke | 选择生产厂商、提交 secret/token、真实业务数据、关闭 TLS 验证、提前激活 API/Desktop、修改 Tasks | S4+S5A | infra lint/test/template；migration status；API health/ready + projection 404；真实配置 online preflight | flags false；撤销测试会话；保留 expand schema |
+| S5B | Desktop exact pin、generated contract adapter/store | AC-006/007/011/012/014 | yijie-desktop | generate/pin、生成 TypeScript 类型/固定 adapter、tenant discovery、0 tenant→Settings/1 tenant auto/multiple chooser、capability domain/store/tests、operation intent 与 tenant UUID adapter | hand-written wire DTO、读取/传递 access token、LocalStorage token/cap、server-session tenant switch、通用 proxy | G3-NP online PASS + S4 + S5A | make lint/test/build | keep feature off |
 | S6 | Nav/router/AppShell/Settings production wiring | AC-008—012/019 | yijie-desktop | navigation/router/AppShell/Settings recovery/tenant chooser/denied pages/tests/design docs；root 按 `task.create→/chat`、`task.read→/tasks`、else `/settings` | backend policy、未批准 native surface、无条件 `/chat`、实例化 denied protected page | S5B | Desktop quality + browser/Tauri | feature off/roll-forward |
 | S7 | 最终 candidate 的 2 roles × 2 tenants E2E、native-auth/security、migration、performance | all Must/NFR | all affected repos | test harness/evidence only + fixes in slice scope | skip/only/weaken assertions；用前端布尔假装权威 E2E | S4+S6 | full matrix | no tag/release |
 | S8 | Tag/provenance、provider-first release evidence、FEAT-124 G4 | AC-016 | contracts/API/Desktop/yijie | release docs/pins/evidence/FEAT-124 report | move tag、提前关闭 G4 | S7 PASS + G5 approval | tag digest + smoke + independent G4 | stop rollout/keep G4 blocked |
@@ -64,6 +68,7 @@ IdP vendor、issuer、client ID、JWKS、domain/TLS/CSP 保持 G3/G5 决策。
 | Contract | yijie-contracts | develop / base `5320c302...` → remote `9ec34abd...` | 0.3.0 candidate SHA/digest/generators；origin/develop verified | API/Desktop exact SHA | 段成威 |
 | Provider | yijie-api | develop / S3 remote `fff0cbcba601...` → S4 remote `360a526b6791...` | tenant discovery/projection endpoints、stable faults、metrics、producer conformance；flag off | exact `9ec34abd...` | 段成威 |
 | Consumer | yijie-desktop | develop / base `be01cc2d...` → S5A remote `3798c67d2602...` | native auth boundary complete；generated adapter/store/UI pending | same contracts candidate in S5B | 段成威 |
+| Nonproduction preparation | yijie-infra | develop / base `47c9e826...` + G3 worktree | safe template、strict/online preflight、runbook；local migration/flag-off smoke PASS；external values pending | contracts/API/Desktop fixed full SHA | 段成威 |
 | Integration | all | fixed candidates | conformance/E2E/perf evidence | planned tag resolves same SHA | 段成威 |
 | Activation | contracts→API→Desktop | release manifests | v0.3.0 supported + canary | tag/digest verified | 段成威 |
 | Linked review | yijie + Desktop | final Desktop SHA | FEAT-124 G4-001 closed/reviewed | final SHA | 段成威 |
@@ -116,6 +121,7 @@ Feature 的 00—07；先检查 `git status --short --branch`、branch、remote�
 | C3-api | exact contracts pin + authoritative direct IdP access-JWT/RBAC foundation | yijie-api | lint/test/test-all/drift | candidate SHA |
 | C4-api | tenant discovery + projection endpoints + conformance/observability | yijie-api | auth/tenant/fault tests | contract operations |
 | C5A-desktop | native system-browser OIDC/exact loopback/Keychain/token lifecycle + operation-scoped transport boundary | yijie-desktop Rust/Tauri | auth/transport security、unit、native smoke | approved A1/A2 |
+| C-G3-infra | nonproduction public-config contract + offline/online preflight + runbook | yijie-infra | lint/test/template + local migration/flag-off smoke | contracts/API/Desktop full SHA |
 | C5B-desktop | exact pin + generated contract adapter + tenant selection + permission store | yijie-desktop | unit/contract/concurrency | candidate SHA |
 | C6-desktop | deny-by-default nav/router/AppShell/recovery | yijie-desktop | DOM/router/browser/Tauri | FEAT-124 |
 | C7-integration | cross-repo evidence and required fixes | scoped repos+yijie | 2×2/E2E/migration/perf | final candidates |
@@ -135,6 +141,7 @@ Feature 的 00—07；先检查 `git status --short --branch`、branch、remote�
 | S3 | `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf` | exact pin/CI、migration v2、bounded RS256 JWT/JWKS、identity/tenancy/authorization modules、tests | `make generate-check/lint/test/test-integration` + govulncheck PASS；source/generated/migration digests fixed | six-dimension structured review：P0/P1/P2=0；P3 SHA-format hardening resolved；independent G4 pending | Complete / remote verified |
 | S4 | `360a526b679147472e7cc82ca7ac9db9d18a371d` | default-off access endpoints、tenant discovery、atomic RBAC projection、stable errors/headers、revision/expiry、bounded metrics、CI fixture path | generate/lint/race/coverage/PostgreSQL integration/canonical producer+fault conformance/govulncheck PASS | P1 lifecycle context + P2 duplicate Authorization/exact audience fixed；open P0/P1/P2=0；independent G4 pending | Complete / remote verified |
 | S5A | `3798c67d260237928730758c7ec4c1fbe6fcf7d2` | system-browser OIDC、exact loopback、PKCE/state/nonce/RS256/at_hash、Rust-memory access、Protected Data Keychain refresh lifecycle、two operation-scoped transports、default-off flag | frontend 37 + Rust 27 tests；lint/build/docs/debug `.app/.dmg`；npm/cargo/license/security matrix PASS | 6 类 review finding 已修复；open P0/P1/P2=0；EXC-125-002 限定 verifier-only candidate；independent G4 pending | Complete / remote verified；real IdP/provisioning NOT RUN |
+| G3-NP | `yijie-infra@47c9e826...` + uncommitted G3 worktree | safe template、exact full-SHA pins、strict template/ready validator、bounded read-only online preflight、runbook；existing local Compose dependencies and migration 2 | template validation + 19 tests PASS；PostgreSQL migration/status PASS；nonproduction API health/ready PASS；projection endpoint 404 PASS | 生产/真实数据/secret/activation 均未进入；真实 IdP/DNS/TLS/API origin、bootstrap、online preflight remain open | Preparation Complete / G3 PASS Pending external values |
 | S5B | N/A | No Desktop permission client/store changes | NOT RUN | N/A | Pending |
 | S6 | N/A | No Desktop changes | NOT RUN | N/A | Pending |
 | S7 | N/A | No integration changes | NOT RUN | N/A | Pending |
@@ -161,3 +168,4 @@ Feature 的 00—07；先检查 `git status --short --branch`、branch、remote�
 | 技术负责人 | 段成威 | G2A Passed；固定 candidate `9ec34abd6e7dfb5a23b0154d467694167224ebbb`，授权 S3；不生产激活 | 2026-08-01 |
 | 技术负责人 | 段成威 | 授权 S3 push 与 S4 provider；S4 仅 yijie-api endpoints/conformance/metrics，禁止 Desktop、Tasks contract、生产 IdP 配置与激活 | 2026-08-01 |
 | 技术负责人 | 段成威 | 授权 S5A；仅 yijie-desktop Rust/Tauri native OIDC/Keychain/operation-scoped transport，完成安全矩阵、结构化审查、全部门禁并 push；禁止 S5B/UI、Tasks、生产 IdP 配置与激活 | 2026-08-01 |
+| 技术负责人 | 段成威 | 授权执行 G3 非生产环境准备；完成供应商中立、默认关闭、合成数据模板/预检、本地 migration 与关闭态 smoke；真实 IdP/DNS/TLS/API origin 和 online preflight 不得伪造为通过 | 2026-08-01 |

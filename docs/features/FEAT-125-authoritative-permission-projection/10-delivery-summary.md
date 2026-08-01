@@ -1,8 +1,10 @@
 # FEAT-125 交付总结与关闭记录
 
 > 当前已到 S4 API producer + S5A Desktop native boundary remote candidate 阶段，不是业务
-> 功能交付完成记录。S1—S4 与 S5A 已推送并远端核验；S5B generated consumer/store、S6 UI、
-> 跨仓集成、发布和生产栏位仍保持明确 `NOT RUN / Not delivered`。
+> 功能交付完成记录。S1—S4 与 S5A 已推送并远端核验；G3 非生产准备层和 local flag-off
+> baseline 已完成，但真实 IdP/DNS/TLS/API origin、synthetic bootstrap 与 online preflight
+> 仍未执行。S5B generated consumer/store、S6 UI、跨仓集成、发布和生产栏位继续保持明确
+> `NOT RUN / Not delivered`。
 
 ## 1. 最终结果
 
@@ -14,7 +16,7 @@
   loopback、PKCE/state/nonce、Keychain lifecycle 和 two operation-scoped transports；尚无
   Desktop generated consumer/store/UI、跨仓或生产链路。
 - 最终范围与非目标：见 00—07；G1/G2 于 2026-07-31 Passed，G2A 于 2026-08-01 Passed。
-- 交付状态：`S1—S4 Remote / S5A Remote + Structured Review PASS / Not delivered`。
+- 交付状态：`S1—S4 Remote / S5A Remote / G3 Preparation Complete（external values pending） / Not delivered`。
 - FEAT-124：G4-001 继续 Open，不得关闭。
 
 ## 2. 实际发布版本
@@ -24,6 +26,7 @@
 | yijie-contracts | repository remote candidate | 0.3.0 candidate；no release/tag | `9ec34abd6e7dfb5a23b0154d467694167224ebbb` | source `7bd40dd...`；tarball `43a54d7...` | candidate 0.3.0；supported release 仍 v0.2.0 |
 | yijie-api | repository remote candidate / local test | S4 commit；no release | `360a526b679147472e7cc82ca7ac9db9d18a371d`；origin/develop verified | generated `a1801a...`；migration `51c4ced9...` | exact candidate `9ec34abd...` / oapi-codegen v2.7.2；feature flag false |
 | yijie-desktop | repository remote candidate / local native test | S5A commit；no release | `3798c67d260237928730758c7ec4c1fbe6fcf7d2`；origin/develop verified | Cargo lock `94b1ee21...`；pnpm lock `aaa0a300...`；unsigned debug `.app/.dmg` only | native flag false；S5B exact contract pin not formed |
+| yijie-infra | repository G3 worktree / local dependencies | nonproduction preparation；no deployment | base `47c9e826d1f860d872958b05bafa44b1c3232f62`；G3 diff uncommitted | template `b7d1eb27b92f152b9f130bb8ae533aaca6a6c3c2ad45a6e12a29186751ae26af` | exact candidate/API/Desktop pins；all flags false；real values/online preflight absent |
 | database | isolated local PostgreSQL 16.14 | goose migration v2 candidate；not deployed | API `fff0cbcba601...` | `51c4ced9...` | expand-only / no sessions or real seed |
 
 ## 3. 验收结果
@@ -34,6 +37,7 @@
 | AC-014 contract candidate/pin | CONTRACT + API PIN PASS / Desktop pending | S1/S2 gates + S3 exact source/generated/generator checks | none |
 | S4 API producer slice | PASS | `/v1/me/tenants`、`/v1/me/capabilities`、header 逐请求验证、稳定错误、revision、metrics recorder、canonical conformance/fault tests | none；flag default false |
 | S5A Desktop native boundary | LOCAL SLICE PASS | system-browser OIDC、exact loopback、PKCE/state/nonce、Rust-memory access、Protected Data Keychain refresh lifecycle、two fixed GET operations；37 frontend + 27 Rust tests、native build、npm/cargo/license/security review | none；real IdP/API/provisioned Keychain NOT RUN；flag default false |
+| G3 nonproduction preparation | PREPARED / NOT G3 PASS | safe template、strict offline/online preflight、19 tests、runbook；local migration 2、API health/ready、projection 404 PASS | real IdP/DNS/TLS/API origin、synthetic bootstrap and online preflight NOT RUN；no activation |
 | remaining AC/NFR | NOT RUN | S5B/S6 Desktop consumer/UI、cross-repo/production slices pending | none |
 
 ## 4. 生产 Smoke 与观察
@@ -63,12 +67,12 @@
 
 | Item | 影响 | Owner | 批准 | 截止/复查 |
 |---|---|---|---|---|
-| direct IdP JWT/native auth/tenant/RBAC | API S3/S4 + Desktop S5A local boundary PASS；真实 IdP/正式 Keychain provisioning/cross-repo 未验证 | 段成威 | G2A/S3/S4/S5A approved | S5B—S7/G3/G5 |
+| direct IdP JWT/native auth/tenant/RBAC | API S3/S4 + Desktop S5A + G3 preparation/local flag-off baseline PASS；真实 IdP/正式 Keychain provisioning/cross-repo 未验证 | 段成威 | G2A/S3/S4/S5A/G3 preparation approved | G3 online then S5B—S7/G5 |
 | migration/bootstrap/audit | expand migration/rehearsal PASS；bootstrap/writer transaction 未实现 | 段成威 | S3 foundation | S7 |
 | contracts v0.3.0 downstream pin | API exact pin PASS；Desktop pin/tag 尚未形成 | 段成威 | G2A Passed | S5B/S8 |
 | API/Desktop implementation | API producer 与 Desktop S5A native boundary 为 remote candidates；generated store/UI 与生产链路未实现 | 段成威 | S4/S5A approved；其余 Pending | G4 |
 | Tasks 双重隔离与 FEAT-126 | A6 已批准；ingress deny + service 不注册 handlers 尚未验证；FEAT-125 不提供 Tasks 资源级授权 | 段成威 | Approved temporary exception | G5；FEAT-126 生产启用或 2026-09-30 较早者 |
-| production IdP/infra | audience 已固定 `https://api.yijie.ai`；vendor、issuer、client ID、JWKS、TLS/CSP 等仍待确定 | 段成威 | Pending | G3/G5 |
+| nonproduction/production IdP/infra | audience、safe schema 与 preflight 已固定；真实 vendor、issuer、client ID、JWKS、DNS/TLS/API origin/CSP 等仍待确定 | 段成威 | preparation complete；external assignment pending | G3 completion/G5 |
 | `rsa 0.9.10` advisory | S5A 仅使用 RS256 公钥验签；`RUSTSEC-2023-0071` 无修复版本并有 scoped ignore | 段成威 | EXC-125-002 candidate-only；G5 重审 | G5 或上游修复，取较早者 |
 
 当前只有两项有边界的临时例外：A6/EXC-125-001 只允许 legacy Tasks 保持不可达，不允许
@@ -95,6 +99,7 @@ gate。
 | Public API/release docs | `yijie-contracts/openapi/public/public.yaml` + `docs/releases/contracts-v0.3.0.md` | 段成威 | remote candidate 2026-08-01 |
 | API producer docs | `yijie-api` owning-repo docs/tests | 段成威 | S4 remote candidate 2026-08-01 |
 | Desktop S5A security matrix | `yijie-desktop/docs/security/FEAT-125-S5A-security-matrix.md` | 段成威 | S5A remote candidate 2026-08-01 |
+| G3 nonproduction runbook | `yijie-infra/docs/feat-125-nonproduction.md` + strict template/preflight scripts | 段成威 | preparation worktree 2026-08-01；commit/remote pending |
 | Desktop S5B+/release runbooks | planned in owning repo | 段成威 | not created |
 | FEAT-124 G4 report | existing FEAT-124 `08-verification-report.md` | 段成威 | G4-001 remains open |
 
@@ -111,6 +116,6 @@ gate。
 
 | Gate | Owner | Decision | Date | Evidence |
 |---|---|---|---|---|
-| G6 Delivery Complete | 段成威 | Not approved / feature open | 2026-08-01 | S1—S4 与 S5A remote/review/gates complete；S5B—S8/G3/G4/G5/G6 Pending |
+| G6 Delivery Complete | 段成威 | Not approved / feature open | 2026-08-01 | S1—S4 与 S5A remote；G3 preparation complete but external values/online pending；S5B—S8/G3 PASS/G4/G5/G6 Pending |
 
 - 正式关闭时间：N/A。
