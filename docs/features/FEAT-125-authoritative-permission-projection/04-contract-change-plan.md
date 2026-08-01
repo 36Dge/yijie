@@ -176,8 +176,9 @@ Capability projection 错误与 header：
 | yijie-desktop release | contracts-v0.3.0 | tag 解析完整 SHA | 验证与 candidate 相同 | 同 candidate | 段成威 |
 | yijie-agent-host | contracts-v0.2.0 | `f16a497...` | 既有固定值 | oapi-codegen v2.7.2 | Agent Runtime Owner |
 
-API 当前 floating sibling generate 和 Desktop 的 placeholder generate 必须被 exact pin +
-generate-drift CI 取代；不允许用手写影子 DTO 或 floating sibling 例外代替。
+API floating sibling generate 已在 S3 被 exact pin + generate-drift CI 取代；Desktop 的
+placeholder generate 与 generated adapter 仍必须在 S5B 取代，不允许用手写影子 DTO 或
+floating sibling 例外代替。
 
 ## 7. Fixtures 与 Conformance
 
@@ -201,13 +202,14 @@ Feature 目录只引用这些 fixture，不复制 JSON。
 | 2 | 创建 0.3.0 source+generated candidate | yijie-contracts | Complete：S1 `ab5e71db6e4d61eb9c761446066142de2edbb444` | 回退 contracts commits |
 | 3 | generate/lint/test/build/pack/baseline+人工 semantic review | yijie-contracts | Complete：S2 local `9ec34abd6e7dfb5a23b0154d467694167224ebbb` | 不晋升 G2A |
 | 4 | 推送最终 candidate full SHA | yijie-contracts | Complete 2026-08-01；origin/develop = `9ec34abd6e7dfb5a23b0154d467694167224ebbb` | 保留 0.2.0 |
-| 5 | API exact pin、migration、provider 非生产实现 | yijie-api | Complete：S3 `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf` + S4 `360a526b679147472e7cc82ca7ac9db9d18a371d`；structured review PASS | flag default off；无生产配置，app rollback + retain expand schema |
-| 6 | Desktop exact pin、fail-closed consumer | yijie-desktop | provider staging ready | 不发布 Desktop |
-| 7 | API/Desktop candidate conformance 与两租户 E2E | 三仓 | full SHA/digest equal | 修复后重测 |
-| 8 | 创建不可移动 contracts-v0.3.0 | yijie-contracts | 同一 candidate 已验证 | 不移动 tag |
-| 9 | 两端验证 tag provenance 并切 release pin | API/Desktop | digest 不变 | 回退未发布 consumer |
-| 10 | API provider first，Desktop 灰度 | release owner | G5 approval | flag off / safe rollback |
-| 11 | 登记 supported baseline 并复跑 FEAT-124 G4 | yijie/contracts | 观察通过 | G4 保持 blocked |
+| 5 | API exact pin、migration、provider 非生产实现 | yijie-api | Complete/remote：S3 `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf` + S4 `360a526b679147472e7cc82ca7ac9db9d18a371d`；structured review PASS | flag default off；无生产配置，app rollback + retain expand schema |
+| 6 | Desktop native OIDC/Keychain 与 operation-scoped transport | yijie-desktop | Complete/remote：S5A `3798c67d260237928730758c7ec4c1fbe6fcf7d2`；local security matrix + structured review PASS | native flag default off；撤销/删除 Keychain family；不发布 |
+| 7 | Desktop exact pin、generated adapter/store 与 fail-closed UI | yijie-desktop | S4 staging + S5A；S5B/S6 pending | 不发布 Desktop |
+| 8 | API/Desktop candidate conformance 与两租户 E2E | 三仓 | full SHA/digest equal | 修复后重测 |
+| 9 | 创建不可移动 contracts-v0.3.0 | yijie-contracts | 同一 candidate 已验证 | 不移动 tag |
+| 10 | 两端验证 tag provenance 并切 release pin | API/Desktop | digest 不变 | 回退未发布 consumer |
+| 11 | API provider first，Desktop 灰度 | release owner | G5 approval | flag off / safe rollback |
+| 12 | 登记 supported baseline 并复跑 FEAT-124 G4 | yijie/contracts | 观察通过 | G4 保持 blocked |
 
 ## 9. 实际检查证据
 
@@ -221,13 +223,14 @@ Feature 目录只引用这些 fixture，不复制 JSON。
 | semantic equality | Node structured comparison | yijie-contracts | candidate vs v0.2.0 | 0 | PASS | old paths/schemas/security/servers unchanged；Runtime projection only bundle version changed |
 | API exact source/generated pin | `make generate-check` | yijie-api | contracts `9ec34abd...` / oapi-codegen v2.7.2 | 0 | PASS | source `7bd40dd...`；API types `a1801a...`；CI exact checkout |
 | producer conformance | canonical fixtures + handler/fault/integration tests | yijie-api | `360a526b679147472e7cc82ca7ac9db9d18a371d` | 0 | PASS | 0/1/multiple tenants、ready/empty、400/401/403/500/503、no-store/challenge/retry、2×2 DB projection |
-| consumer conformance | approved commands | Desktop | implementation absent | N/A | NOT RUN | S5/S7 |
+| Desktop native auth/transport boundary | `make lint/test/build`、docs/native build、npm/cargo/license audits、structured review | yijie-desktop | `3798c67d260237928730758c7ec4c1fbe6fcf7d2` | 0 | PASS | exact loopback/PKCE/state/nonce、Keychain lifecycle、fixed two GET operations、zero token IPC/generic proxy；真实 provider/cross-repo NOT RUN |
+| consumer conformance | approved S5B commands | Desktop | generated contract consumer/store absent | N/A | NOT RUN | S5B/S7 |
 
 ## 10. Consumer Owner 评审
 
 | Consumer/Owner | 结论 | 日期 | 证据/例外 |
 |---|---|---|---|
-| yijie-api / 段成威 | G2A/S4 approved；exact pin、foundation、endpoints 与 producer/fault conformance committed/reviewed | 2026-08-01 | `360a526b679147472e7cc82ca7ac9db9d18a371d`；staging/cross-repo remains S7 |
-| yijie-desktop / 段成威 | G2A approved for authorized downstream slices；implementation not started | 2026-08-01 | consumer conformance NOT RUN |
+| yijie-api / 段成威 | G2A/S4 approved；exact pin、foundation、endpoints 与 producer/fault conformance committed/reviewed/remote verified | 2026-08-01 | `360a526b679147472e7cc82ca7ac9db9d18a371d`；staging/cross-repo remains S7 |
+| yijie-desktop / 段成威 | S5A native OIDC/Keychain/operation-scoped transport approved、reviewed、remote verified；S5B generated consumer/store conformance pending | 2026-08-01 | `3798c67d260237928730758c7ec4c1fbe6fcf7d2`；security matrix PASS；consumer conformance NOT RUN |
 | unknown-public / 段成威 | Conservative structural/semantic compatibility PASS | 2026-08-01 | all existing Public operations/schemas unchanged |
 | yijie-agent-host / Runtime Owner | Regression comparison PASS；no migration | 2026-08-01 | projection identical except bundle version；Host remains v0.2.0 |

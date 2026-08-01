@@ -163,6 +163,14 @@ N/A。不能用对话主观体验替代身份/RBAC/contract/security 测试。
 | Desktop docs/native | yijie-desktop | `pnpm docs:build` 加仓库现有 Tauri checks | Tauri/macOS | <15m |
 | Cross-repo E2E | test harness location at S7 | S7 提交真实命令后登记 | test IdP+Postgres+API+Desktop | 未建立 |
 
+S5A 已在 `yijie-desktop@3798c67d260237928730758c7ec4c1fbe6fcf7d2` 实际执行并通过
+`pnpm install --frozen-lockfile`、`make lint/test/build`、`pnpm docs:build`、
+`pnpm tauri:build --debug`、`pnpm audit --audit-level high`、
+`cargo audit --file src-tauri/Cargo.lock` 与 Cargo license metadata audit。结果为前端
+9 files/37 tests、Rust 27 tests/doc-tests、debug `.app/.dmg` 及结构化安全审查 PASS。
+`cargo audit` 的 `RUSTSEC-2023-0071` 仅按 EXC-125-002 对 verifier-only candidate 作有理由
+ignore；真实 IdP、正式 Keychain provisioning、S5B consumer 与跨仓 E2E 仍 NOT RUN。
+
 不存在的 generate-drift、load 或 E2E 命令必须作为对应 slice 的工程产物提交后再执行；
 本计划不编造命令。
 
@@ -179,5 +187,5 @@ N/A。不能用对话主观体验替代身份/RBAC/contract/security 测试。
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
-| 测试/技术 Owner | 段成威 | G2/G2A/S4 Approved；S1/S2 contract、S3 foundation 与 S4 producer lint/unit/race/integration/drift/conformance PASS；S5+/Desktop NOT RUN | 2026-08-01 |
-| 安全/数据 Owner | 段成威 | S3/S4 JWT/JWKS、精确 audience、重复 auth header、原子 projection、跨租户/RBAC 与 govulncheck PASS；生产 IdP/config 和跨仓 E2E NOT RUN | 2026-08-01 |
+| 测试/技术 Owner | 段成威 | G2/G2A/S4/S5A Approved；S1/S2 contract、S3/S4 provider 与 S5A Desktop native boundary 全部门禁 PASS；S5B/S6/S7 NOT RUN | 2026-08-01 |
+| 安全/数据 Owner | 段成威 | S3/S4 JWT/JWKS、精确 audience、atomic projection 与 S5A OIDC/loopback/Keychain/IPC/transport security matrix PASS；EXC-125-002 限定 verifier-only candidate；生产 IdP/config、正式 Keychain provisioning 和跨仓 E2E NOT RUN | 2026-08-01 |

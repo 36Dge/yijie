@@ -9,7 +9,7 @@
 | yijie-api | AGENTS、README、SECURITY、CONTRIBUTING、architecture/API/DB docs | develop | `2834b412ad565651215bd12458276c4e0d8fecf5` | clean / remote equal | Go 1.26.5、PostgreSQL 16 |
 | yijie-desktop | AGENTS、README、SECURITY、CONTRIBUTING、design navigation rule | develop | `be01cc2d0a1c9c4b057de616be201a4843d0a035` | clean / remote equal | Vue 3、Tauri 2、pnpm 11 |
 
-## 2. 已验证的当前行为
+## 2. 初始已验证行为（2026-07-31）
 
 | 事实 | 文件/符号/行号或命令 | 结果 | 事实/推断 |
 |---|---|---|---|
@@ -28,6 +28,13 @@
 | LocalStorage 仅有 sidebar 偏好 | sidebar preference/store | 不得混入权限或凭证 | Fact |
 | supported contracts baseline 可远端解析 | `git ls-remote` | v0.2.0→`f16a497...` | Fact |
 | FEAT-124 G4 被 G4-001 阻断 | FEAT-124 verification report | 必须保持阻断 | Fact |
+
+### 2.1 已完成切片后的事实（2026-08-01）
+
+| 事实 | 不可变证据 | 结果 | 剩余边界 |
+|---|---|---|---|
+| S4 API producer 已远端可用 | `yijie-api@360a526b679147472e7cc82ca7ac9db9d18a371d`，`origin/develop` 相等 | tenants/capabilities、逐请求 tenant 验证、稳定错误、revision、metrics 与 producer/fault conformance PASS；flag 默认 false | staging/performance/exporter、生产配置与激活未执行 |
+| S5A Desktop native boundary 已远端可用 | `yijie-desktop@3798c67d260237928730758c7ec4c1fbe6fcf7d2`，`origin/develop` 相等 | system-browser OIDC、精确 loopback、PKCE/state/nonce、Keychain lifecycle、两个固定 GET operations 与本地安全矩阵 PASS；flag 默认 false | S5B generated consumer/store、S6 UI、真实 IdP/API/正式 Keychain provisioning 未执行 |
 
 ## 3. 仓库与组件影响矩阵
 
@@ -142,10 +149,10 @@ G1/G2 已于 2026-07-31 批准 A1—A6。具体 migration 字段、索引、FK�
 
 | 依赖 | 固定版本/完整 SHA | 能力是否已验证 | 费用/限流 | Sandbox | Fallback |
 |---|---|---|---|---|---|
-| Identity provider | direct IdP RS256 JWT architecture approved；具体 provider/issuer/client ID/JWKS 待 G3/G5 固定；audience 固定 `https://api.yijie.ai` | 否 | 配置形成后评估 | staging tenant | auth unavailable→deny |
-| PostgreSQL | 16 / yijie-api 当前基线 | 现有任务链路已验证，RBAC 未验证 | 需容量测试 | 临时 schema integration | endpoint disable |
+| Identity provider | direct IdP RS256 JWT architecture approved；具体 provider/issuer/client ID/JWKS 待 G3/G5 固定；audience 固定 `https://api.yijie.ai` | S5A 本地协议/失败矩阵 PASS；真实 provider 否 | 配置形成后评估 | staging tenant | auth unavailable→deny |
+| PostgreSQL | 16 / yijie-api S4 candidate | local migration/RBAC 2×2 integration PASS；staging/performance 未验证 | 需容量测试 | 临时 schema integration | endpoint disable |
 | Contracts generator | openapi-typescript 7.13.0；oapi-codegen 2.7.2 | 当前生成链存在 | N/A | repo CI | pin candidate |
-| Tauri network/CSP | Tauri 2 / Desktop candidate | operation-scoped transport 设计已批准；生产 API origin 未验证 | N/A | local/staging | 不新增普通 fetch command 或通用 native proxy |
+| Tauri network/CSP | Tauri 2 / Desktop `3798c67d...` | S5A operation-scoped transport/config/redirect/IPC 本地矩阵 PASS；生产 API origin/CSP 未验证 | N/A | local/staging | native flag off；不新增普通 fetch command 或通用 native proxy |
 | Codex Runtime/AI | N/A | 不受影响 | N/A | N/A | N/A |
 
 ## 9. 现有测试、构建与发布入口
@@ -154,11 +161,11 @@ G1/G2 已于 2026-07-31 批准 A1—A6。具体 migration 字段、索引、FK�
 |---|---|---|---|
 | Contracts generate/lint/test/build | `make generate/lint/test/build` | 源、SDK、schema | CI breaking 仅 origin/main |
 | Contracts baseline check | `./scripts/check-breaking.sh <full SHA>` | OpenAPI/AsyncAPI/JSON Schema | 必须显式用 v0.2.0 full SHA |
-| API unit/lint | `make lint && make test` | Go/race/coverage | 当前无 auth/RBAC tests |
-| API PostgreSQL integration | `make test-integration` / `make test-all` | 临时 schema/migration | 当前只覆盖 tasks |
-| API generate | `make generate` | Go OpenAPI types | 当前读取 floating sibling |
-| Desktop quality | `make lint && make test && make build` | Vue/TS/Rust | generate 仍是 placeholder |
-| Desktop docs/native | `pnpm docs:build`、Tauri checks | design/native | API origin/CSP 未定 |
+| API unit/lint | `make lint && make test` | Go/race/coverage | S3/S4 auth/RBAC/endpoint/fault/metrics PASS；staging 不在该命令内 |
+| API PostgreSQL integration | `make test-integration` / `make test-all` | 临时 schema/migration | S3/S4 migration、复合 FK、2×2 RBAC projection PASS；bootstrap/staging 待 S7 |
+| API generate | `make generate-check` | Go OpenAPI types | exact `9ec34abd...` + oapi-codegen v2.7.2 drift check PASS |
+| Desktop quality | `make lint && make test && make build` | Vue/TS/Rust | S5A PASS；generated contract consumer/store 仍待 S5B |
+| Desktop docs/native | `pnpm docs:build`、`pnpm tauri:build --debug`、cargo/npm/license audit | design/native | S5A 本地 `.app/.dmg` 与审计 PASS；真实 API origin/CSP、签名/公证未定 |
 | Feature package | `check-feature-package.sh` | 文档结构 | 不替代人工批准 |
 
 ## 10. 初步交付顺序
@@ -190,8 +197,8 @@ G1/G2 已于 2026-07-31 批准 A1—A6。具体 migration 字段、索引、FK�
 
 | ID | 未知项 | 允许的只读/隔离验证 | 禁止副作用 | Owner | 结论 |
 |---|---|---|---|---|---|
-| SPIKE-001 | direct IdP RS256 JWT 与 Desktop login flow | 固定 provider metadata、issuer/client/JWKS 并验证 Tauri flow | 不注册生产应用、不写 secret | 段成威 | A1/A2 Approved；配置验证待 G3/G5 |
+| SPIKE-001 | direct IdP RS256 JWT 与 Desktop login flow | 固定 provider metadata、issuer/client/JWKS 并验证 Tauri flow | 不注册生产应用、不写 secret | 段成威 | A1/A2 Approved；S5A 本地 OIDC/loopback/PKCE/nonce/JWKS 负测 PASS；真实 provider 配置验证待 G3/G5/S7 |
 | SPIKE-002 | required `X-Yijie-Tenant-ID` 与 membership/status 验证 | 用合成状态图/测试替身验证 missing/invalid/denied | 不把 request tenant 当授权事实 | 段成威 | A3 Approved；S4 header/endpoint、原子 projection 与 400/403 负测 PASS；跨仓 E2E 待 S7 |
 | SPIKE-003 | RBAC schema 与 bootstrap | 临时 schema migration rehearsal | 不写真实用户/租户，不建 API session 表 | 段成威 | A4 Approved；S3 00001→00002 expand rehearsal 与 2×2 RBAC 通过；bootstrap 待后续 slice |
 | SPIKE-004 | 现有 Tasks API production disposition | 验证 ingress + handler 双隔离并创建 FEAT-126 | 不静默改 Tasks wire contract | 段成威 | A6 Approved；到期为 FEAT-126 生产启用或 2026-09-30 较早者；隔离证据待 G5 |
-| SPIKE-005 | API origin/CSP/Keychain | local/staging 配置验证 | 不新增生产 URL/capability | 段成威 | Open / G3 |
+| SPIKE-005 | API origin/CSP/Keychain | local/staging 配置验证 | 不新增生产 URL/capability | 段成威 | S5A local config validation、Protected Data Keychain adapter 与 operation allowlist PASS；正式 provisioning、staging API origin/CSP 和真实 Keychain E2E 仍 Open / G3/G5 |

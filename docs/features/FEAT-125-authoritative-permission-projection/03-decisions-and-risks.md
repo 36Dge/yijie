@@ -20,9 +20,11 @@
 
 段成威已于 2026-07-31 明确批准 A1—A6。G1 需求/架构决策与 G2 设计门通过；2026-08-01
 已执行并完成获特别授权的 S1/S2 Contracts candidate；段成威已于 2026-08-01 通过 G2A，
-S3 API foundation 已推送为 `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`；S4 provider 已提交为
-`360a526b679147472e7cc82ca7ac9db9d18a371d` 并通过本地门禁与结构化审查。具体 IdP 产品、issuer、client ID、生产域名/TLS
-与 secret 配置属于 G3/G5 前置条件。
+S3 API foundation 已推送为 `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`；S4 provider 已推送并
+远端核验为 `360a526b679147472e7cc82ca7ac9db9d18a371d`。S5A Desktop native boundary 已推送并
+远端核验为 `3798c67d260237928730758c7ec4c1fbe6fcf7d2`，本地门禁与结构化审查开放
+P0/P1/P2=0。具体 IdP 产品、issuer、client ID、生产域名/TLS 与 secret 配置属于 G3/G5
+前置条件。
 
 ## 2. ADR 判定
 
@@ -34,8 +36,8 @@ S3 API foundation 已推送为 `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`；S4 p
   operation-scoped Rust authenticated transport、`X-Yijie-Tenant-ID`、RBAC 数据权威、
   bootstrap、审计、Tasks 双隔离/FEAT-126 与 Infra/CSP 责任。
 - 架构 Owner：段成威。
-- 当前状态：Accepted；G1/G2/G2A Passed；S1/S2 candidate complete and remote verified；S3
-  API foundation remote verified，S4 provider locally verified。S5+、Desktop 和生产激活仍需对应 slice/gate。
+- 当前状态：Accepted；G1/G2/G2A Passed；S1—S4 与 S5A complete and remote verified。
+  S5B/S6 consumer/UI、S7 集成和生产激活仍需对应 slice/gate。
 
 ## 3. 风险登记
 
@@ -54,6 +56,7 @@ S3 API foundation 已推送为 `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`；S4 p
 | R-011 | floating contracts 产生 wire drift | high | high | exact tag/SHA/digest/generator + drift CI | clean regenerate | 回退到 pinned artifact | 段成威 | low |
 | R-012 | 单人多角色导致自我批准掩盖缺陷 | medium | high | 分离 Codex Planner/Implementer/Reviewer pass，批准证据单独记录 | G4 review | 回到前一 gate | 段成威 | medium |
 | R-013 | Rust authenticated transport 被滥用为通用代理或泄漏 bearer | medium | critical | 只暴露两个 operation intent；固定 API HTTPS origin/GET/path；Rust 内附加 bearer；IPC schema 不接受 URL/method/header/body且不返回 token | command allowlist/redirect/IPC fuzz + token scan | disable native commands、撤销 token、feature off | 段成威 | low |
+| R-014 | `openidconnect` 传递依赖 `rsa 0.9.10` 命中 RUSTSEC-2023-0071 | low in current verifier-only path | high if private-key operations introduced | S5A 只做 RS256 公钥验签，不含 RSA 私钥签名/解密；锁定依赖树并在 `.cargo/audit.toml` 记录可移除 ignore；禁止引入 private-key path | 每次 `cargo audit` + dependency tree/security review；上游修复监测 | 上游修复后升级并删除 ignore；若范围出现私钥运算立即阻断 | 段成威 | low for S5A candidate；G5 复核 |
 
 ## 4. 威胁建模
 
@@ -100,6 +103,7 @@ S3 API foundation 已推送为 `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`；S4 p
 | Exception ID | 原因 | 范围 | Owner | 批准证据 | 到期日 | 补偿控制 | 移除条件 |
 |---|---|---|---|---|---|---|---|
 | EXC-125-001 | 旧 `/v1/tasks` 尚未迁移到权威身份/租户/RBAC | 仅旧 Tasks handlers 与生产暴露；不覆盖 capability endpoint | 段成威 | A6 | FEAT-126 生产启用或 2026-09-30，取较早者 | service config 不注册 task handlers + 生产 ingress 拒绝；独立 handler registration 断言 + internet/Desktop/untrusted network 三来源负测 | FEAT-126 完成并生产启用；到期未完成不得开放 Tasks，必须重新审批 |
+| EXC-125-002 | `rsa 0.9.10` 暂无修复版本且仅由 `openidconnect 4.0.1` 传递引入 | 仅 S5A RS256 公钥验签 candidate；不覆盖任何 RSA 私钥、签名或解密 | 段成威 | S5A commit、安全矩阵与审查记录 | G5 复核或上游修复可用时，取较早者 | exact lock、`.cargo/audit.toml` 有理由 ignore、每次 audit、禁止 private-key operation | 升级到修复链并删除 ignore；若不能证明 verifier-only 则停止发布 |
 
 ## 8. Codex 停止条件
 
@@ -127,5 +131,6 @@ S3 API foundation 已推送为 `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`；S4 p
 | Settings/root（DEC-002/004/008） | 段成威 | Approved；G2 Passed | 2026-07-31 | A5 |
 | Tasks 双隔离与 FEAT-126（DEC-009/010、EXC-125-001） | 段成威 | Approved；G2 Passed | 2026-07-31 | A6 |
 | Contracts S1/S2 授权 | 段成威 | Approved and executed；candidate/gates/remote verification PASS | 2026-08-01 | 用户明确指令；`9ec34abd...` |
-| Provider/consumer 实施授权 | 段成威 | G2A Passed；S3/S4 API provider 已授权并完成；Desktop 与生产激活仍按后续 slice/gate | 2026-08-01 | 用户明确指令；S4 `360a526...` |
+| Provider/consumer 实施授权 | 段成威 | G2A Passed；S3/S4 API provider 已授权并完成；S5A Desktop native boundary 已单独授权并完成；S5B+ 与生产激活仍按后续 slice/gate | 2026-08-01 | 用户明确指令；S4 `360a526...`；S5A `3798c67...` |
+| S5A dependency exception | 段成威 | Accepted for non-production S5A candidate；G5 必须重审，禁止扩大到 RSA 私钥运算 | 2026-08-01 | EXC-125-002、Desktop security matrix、`cargo audit` PASS with documented ignore |
 | 具体 IdP 与生产配置 | 段成威 | Pending；G3/G5 blocker | 2026-07-31 | issuer/client ID/domain/TLS/secret 尚未登记 |

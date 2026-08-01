@@ -201,8 +201,12 @@ JWKS、生产域名和生产控制面配置不由本 ADR 虚构，仍是 G3/G5 �
       structured review PASS；无生产激活）；
 - [x] 完成 S4 provider：tenant discovery/capability endpoints、逐请求 tenant 验证、稳定错误、
       producer conformance 与 metrics（2026-08-01；`360a526b679147472e7cc82ca7ac9db9d18a371d`；
-      默认关闭、未 push、无生产 IdP 配置或激活）；
-- [ ] 按 provider-first 顺序完成 Desktop consumer；
+      默认关闭、已 push 并远端核验、无生产 IdP 配置或激活）；
+- [x] 完成 S5A Desktop native boundary：系统浏览器 OIDC、精确 loopback、PKCE/state/nonce、
+      Protected Data Keychain token lifecycle 与两个 operation-scoped transports（2026-08-01；
+      `3798c67d260237928730758c7ec4c1fbe6fcf7d2`；全部门禁/结构化审查 PASS、默认关闭、
+      已 push 并远端核验；真实 IdP/正式 Keychain provisioning/生产配置未执行）；
+- [ ] 按 provider-first 顺序完成 S5B generated contract consumer/store 与 S6 fail-closed UI；
 - [ ] 在 G5 前完成 Tasks ingress + handler 双隔离和三来源负向验证；
 - [ ] 创建并实施 `FEAT-126-public-task-authorization-hardening`；
 - [ ] 完成 FEAT-125 跨仓集成后回到 FEAT-124，独立关闭并复验 `G4-001`。

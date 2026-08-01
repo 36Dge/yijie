@@ -4,7 +4,7 @@
 
 | 字段 | 内容 |
 |---|---|
-| 状态 | G0/G1/G2/G2A Passed / S1/S2 Candidate Remote Verified / S3 Remote Verified / S4 API Producer Committed + Structured Review PASS |
+| 状态 | G0/G1/G2/G2A Passed / S1—S4 Remote Verified / S5A Desktop Native Boundary Remote Verified + Structured Review PASS |
 | 需求负责人 | 段成威 |
 | 技术负责人 | 段成威 |
 | Reviewer | 段成威 |
@@ -93,8 +93,8 @@
 | Fact | yijie-api 是用户、租户与 RBAC 的业务权威仓 | `yijie-api/AGENTS.md` 与 README | 段成威 | Confirmed |
 | Fact | 基线 `5320c302...` 的 Public OpenAPI 全局 `security: []`，没有正式身份契约 | `yijie-contracts` baseline scan | 段成威 | Confirmed |
 | Fact | `0.3.0` candidate 已新增 operation-level `userBearer`、tenant discovery 与 capability projection；全局 `security: []` 和旧 operations 保持不变 | `9ec34abd6e7dfb5a23b0154d467694167224ebbb` + remote/semantic equality checks | 段成威 | S1/S2 + remote Complete；G2A Passed |
-| Fact | API 当前没有 auth/session/users/tenants/RBAC 表或 middleware | `yijie-api/internal` 与 migration 扫描 | 段成威 | Confirmed |
-| Fact | Desktop 缺真实 API client、contract pin、permission store 和 route guard | `src/api/client.ts`、`package.json`、router | 段成威 | Confirmed |
+| Fact | API 初始基线没有 auth/session/users/tenants/RBAC 表或 middleware；S3/S4 已建立 direct JWT、tenancy/RBAC 与只读 projection producer | `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`、`360a526b679147472e7cc82ca7ac9db9d18a371d` | 段成威 | S3/S4 Remote Verified |
+| Fact | Desktop S5A 已实现 Rust 原生 OIDC/Keychain 与两个 operation-scoped transports；exact contract pin、generated adapter、permission store 和 route guard 仍待 S5B/S6 | `3798c67d260237928730758c7ec4c1fbe6fcf7d2`、`yijie-desktop/docs/security/FEAT-125-S5A-security-matrix.md` | 段成威 | S5A Remote Verified；S5B/S6 Pending |
 | Fact | FEAT-124 G4-001 仍是阻断 finding | FEAT-124 `08-verification-report.md` | 段成威 | Confirmed |
 | Decision | 外部 OIDC native public client；系统浏览器 Code+PKCE S256，精确 `http://127.0.0.1:<ephemeral-port>/oauth/callback`、state/nonce；Desktop 校验 auth response/state/PKCE 与 ID token nonce，API 以 audience `https://api.yijie.ai` 严格验证 IdP RS256 access JWT；不采用 opaque session | 段成威 A1/A2 | 段成威 | Approved / G1 |
 | Decision | Desktop 通过 `X-Yijie-Tenant-ID` 表达当前租户选择；header 不是授权事实，API 每个请求重新验证 membership | 段成威 A3 | 段成威 | Approved / G1 |
@@ -142,3 +142,6 @@
 | 2026-08-01 | Codex | 将 S3 API 与治理证据推送并远端核验 | yijie-api `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`；yijie `cd365ad095c4af6983b345794f0efef565efddbe` |
 | 2026-08-01 | 段成威/Codex | 批准并完成 S4 tenant/capability endpoints、逐请求 tenant 验证、稳定错误、revision、metrics 与 producer/fault tests | API 完整提交 `360a526b679147472e7cc82ca7ac9db9d18a371d`；默认关闭、未 push、无生产配置/激活 |
 | 2026-08-01 | Codex | 对 S4 做范围/契约/认证/租户一致性/生命周期/CI 六维结构化审查 | P1=1/P2=2 均修复；最终开放 P0/P1/P2=0；不代替最终独立 G4 |
+| 2026-08-01 | Codex | 将 S4 API 与治理证据推送并远端核验 | yijie-api `360a526b679147472e7cc82ca7ac9db9d18a371d`；yijie `28c6f503f2c66a0dc5964d85cc5865fcb4ae2794` |
+| 2026-08-01 | 段成威/Codex | 批准并完成 S5A Desktop Rust 原生系统浏览器 OIDC、精确 loopback、PKCE/state/nonce、Keychain token 生命周期与两个固定 authenticated operations | Desktop 完整提交 `3798c67d260237928730758c7ec4c1fbe6fcf7d2` 已推送并远端核验；功能默认关闭，无 S5B/UI、Tasks 或生产配置/激活 |
+| 2026-08-01 | Codex | 对 S5A 做 scope、OIDC、token 生命周期、并发、Keychain、IPC/HTTP、依赖与失败语义结构化审查并复跑全部门禁 | 修复 6 类问题；开放 P0/P1/P2=0；前端 37 tests、Rust 27 tests、debug `.app/.dmg`、npm/cargo/license audit PASS；真实 IdP/正式 Keychain provisioning/生产联调仍为 G3/G5/S7 |
