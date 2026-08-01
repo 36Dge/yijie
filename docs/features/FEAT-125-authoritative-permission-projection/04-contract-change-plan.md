@@ -201,7 +201,7 @@ Feature 目录只引用这些 fixture，不复制 JSON。
 | 2 | 创建 0.3.0 source+generated candidate | yijie-contracts | Complete：S1 `ab5e71db6e4d61eb9c761446066142de2edbb444` | 回退 contracts commits |
 | 3 | generate/lint/test/build/pack/baseline+人工 semantic review | yijie-contracts | Complete：S2 local `9ec34abd6e7dfb5a23b0154d467694167224ebbb` | 不晋升 G2A |
 | 4 | 推送最终 candidate full SHA | yijie-contracts | Complete 2026-08-01；origin/develop = `9ec34abd6e7dfb5a23b0154d467694167224ebbb` | 保留 0.2.0 |
-| 5 | API exact pin、migration、provider 非生产实现 | yijie-api | G2A | flag off / rollback API |
+| 5 | API exact pin、migration、provider 非生产实现 | yijie-api | Complete：`fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`；structured review PASS | 未接 endpoint/生产配置，app rollback + retain expand schema |
 | 6 | Desktop exact pin、fail-closed consumer | yijie-desktop | provider staging ready | 不发布 Desktop |
 | 7 | API/Desktop candidate conformance 与两租户 E2E | 三仓 | full SHA/digest equal | 修复后重测 |
 | 8 | 创建不可移动 contracts-v0.3.0 | yijie-contracts | 同一 candidate 已验证 | 不移动 tag |
@@ -219,13 +219,14 @@ Feature 目录只引用这些 fixture，不复制 JSON。
 | lint/test/build/pack | repository commands | yijie-contracts | `9ec34abd6e7dfb5a23b0154d467694167224ebbb` | 0 | PASS | Node 16/16、Go PASS、tarball `43a54d7f9f01edd6b50adcebb8c3b4b645dab7ec8cf4aafe20b62d7d98718565` |
 | breaking | baseline command above | yijie-contracts | `9ec34abd6e7dfb5a23b0154d467694167224ebbb` vs `f16a497e1377f45747f8ff9292b4b60cf2027f88` | 0 | PASS | no breaking in all four check families |
 | semantic equality | Node structured comparison | yijie-contracts | candidate vs v0.2.0 | 0 | PASS | old paths/schemas/security/servers unchanged；Runtime projection only bundle version changed |
-| producer/consumer conformance | approved commands | API/Desktop | implementation absent | N/A | NOT RUN | S6 |
+| API exact source/generated pin | `make generate-check` | yijie-api | contracts `9ec34abd...` / oapi-codegen v2.7.2 | 0 | PASS | source `7bd40dd...`；API types `a1801a...`；CI exact checkout |
+| producer/consumer conformance | approved commands | API/Desktop | API types pin formed；endpoint/Desktop absent | N/A | PARTIAL / NOT RUN | S4/S5/S7 |
 
 ## 10. Consumer Owner 评审
 
 | Consumer/Owner | 结论 | 日期 | 证据/例外 |
 |---|---|---|---|
-| yijie-api / 段成威 | G2 semantics approved；candidate review/G2A pending | 2026-08-01 | exact candidate formed；producer conformance NOT RUN |
-| yijie-desktop / 段成威 | G2 semantics approved；candidate review/G2A pending | 2026-08-01 | exact candidate formed；consumer conformance NOT RUN |
+| yijie-api / 段成威 | G2A approved；exact candidate pin/generation and S3 foundation committed/reviewed | 2026-08-01 | `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`；endpoint producer conformance remains S4/S7 |
+| yijie-desktop / 段成威 | G2A approved for authorized downstream slices；implementation not started | 2026-08-01 | consumer conformance NOT RUN |
 | unknown-public / 段成威 | Conservative structural/semantic compatibility PASS | 2026-08-01 | all existing Public operations/schemas unchanged |
 | yijie-agent-host / Runtime Owner | Regression comparison PASS；no migration | 2026-08-01 | projection identical except bundle version；Host remains v0.2.0 |

@@ -4,7 +4,7 @@
 
 | 字段 | 内容 |
 |---|---|
-| 状态 | G0/G1/G2 Passed / S1/S2 Candidate Remote Verified / G2A Pending |
+| 状态 | G0/G1/G2/G2A Passed / S1/S2 Candidate Remote Verified / S3 API Foundation Committed + Structured Review PASS |
 | 需求负责人 | 段成威 |
 | 技术负责人 | 段成威 |
 | Reviewer | 段成威 |
@@ -92,7 +92,7 @@
 |---|---|---|---|---|
 | Fact | yijie-api 是用户、租户与 RBAC 的业务权威仓 | `yijie-api/AGENTS.md` 与 README | 段成威 | Confirmed |
 | Fact | 基线 `5320c302...` 的 Public OpenAPI 全局 `security: []`，没有正式身份契约 | `yijie-contracts` baseline scan | 段成威 | Confirmed |
-| Fact | `0.3.0` candidate 已新增 operation-level `userBearer`、tenant discovery 与 capability projection；全局 `security: []` 和旧 operations 保持不变 | `9ec34abd6e7dfb5a23b0154d467694167224ebbb` + remote/semantic equality checks | 段成威 | S1/S2 + remote Complete；G2A Pending |
+| Fact | `0.3.0` candidate 已新增 operation-level `userBearer`、tenant discovery 与 capability projection；全局 `security: []` 和旧 operations 保持不变 | `9ec34abd6e7dfb5a23b0154d467694167224ebbb` + remote/semantic equality checks | 段成威 | S1/S2 + remote Complete；G2A Passed |
 | Fact | API 当前没有 auth/session/users/tenants/RBAC 表或 middleware | `yijie-api/internal` 与 migration 扫描 | 段成威 | Confirmed |
 | Fact | Desktop 缺真实 API client、contract pin、permission store 和 route guard | `src/api/client.ts`、`package.json`、router | 段成威 | Confirmed |
 | Fact | FEAT-124 G4-001 仍是阻断 finding | FEAT-124 `08-verification-report.md` | 段成威 | Confirmed |
@@ -122,7 +122,7 @@
 | G0 需求建档 | 2026-07-31 | 段成威 | Passed |
 | G1 设计就绪 | 2026-07-31 | 段成威 | Passed：A1—A3/A6 身份、凭证、租户与隔离边界已批准 |
 | G2 可开始实现 | 2026-07-31 | 段成威 | Passed：A4—A6 RBAC、Settings/root route 与实施范围已批准 |
-| G2A Contract Ready | Candidate review 后 | 段成威 | Pending：candidate/门禁/远端可用性已完成；需由段成威单独批准 |
+| G2A Contract Ready | 2026-08-01 | 段成威 | Passed：固定 candidate `9ec34abd6e7dfb5a23b0154d467694167224ebbb`，授权执行 S3 |
 | G4 Code Complete | 跨仓实现与独立 review 后 | 段成威 | Pending |
 | G5 Production Ready | 类生产安全验证后 | 段成威 | Pending |
 | G6 Delivery Complete | 灰度与观察完成后 | 段成威 | Pending |
@@ -136,3 +136,6 @@
 | 2026-07-31 | 段成威 | 批准 A1—A6 并通过 G1/G2；固定 direct IdP JWT、loopback+Keychain、tenant header、7-key/2-role、Settings/root route 与 Tasks 双隔离 | 用户明确批准；G2A 仍待 Contracts candidate |
 | 2026-08-01 | Codex | 执行 S1/S2，形成 `0.3.0` local candidate `9ec34abd6e7dfb5a23b0154d467694167224ebbb`，完成生成、pack、breaking 与 semantic/security review | 用户明确要求执行 S1/S2；未 push、未批准 G2A、未进入 API/Desktop |
 | 2026-08-01 | Codex | 将 candidate 推送到 yijie-contracts `origin/develop`，远端核对为 `9ec34abd6e7dfb5a23b0154d467694167224ebbb` | 用户明确要求 push；G2A 仍需段成威单独批准 |
+| 2026-08-01 | 段成威 | 批准 G2A，固定 `9ec34abd6e7dfb5a23b0154d467694167224ebbb` 并授权 S3 | 生产 IdP 厂商/issuer/client ID/JWKS/配置仍为 G3/G5 前置，不生产激活 |
+| 2026-08-01 | Codex | 完成 S3：API exact pin、migration v2、RS256 JWT/JWKS、identity/tenancy/RBAC 与单元/数据库集成/安全审计 | API 完整提交 `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`；未加入生产 IdP 值、endpoint 或生产激活 |
+| 2026-08-01 | Codex | 对 S3 执行契约/认证/迁移/租户隔离/CI 依赖/范围六维结构化审查 | P0/P1/P2=0；P3 SHA 格式校验缺口已修复并复验；不代替最终独立 G4 |

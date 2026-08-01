@@ -9,8 +9,9 @@
   `X-Yijie-Tenant-ID`、membership 和 PostgreSQL RBAC 计算
   `GET /v1/me/capabilities` 投影；Desktop 使用内存 fail-closed 状态机统一驱动导航与
   Router。
-- 关键约束：ADR-0012 与 G1/G2 已批准；S1/S2 Contracts candidate/test/remote verification PASS；
-  API/Desktop/migration implementation/test NOT RUN，G2A 尚未批准；
+- 关键约束：ADR-0012 与 G1/G2/G2A 已批准；S1/S2 Contracts candidate/test/remote verification PASS；
+  S3 API exact pin、migration、authn/identity/tenancy/RBAC commit `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf` 与门禁 PASS；S4 endpoint
+  和 Desktop implementation/test NOT RUN；
   exact contracts pin；tenant header 只作选择提示并逐请求验证；无普通前端持久化；
   provider first。
 - 明确不做：角色/UI schema 下发、离线授权、Admin UI、Agent Host/Runtime、AI 变化、
@@ -176,8 +177,8 @@ core/recovery 不属于这 7 个 capability，不因 ready-empty/error 而消失
 - 是否涉及数据库/缓存/持久化：是，使用已批准的 PostgreSQL expand migration。
   PostgreSQL 是 RBAC 唯一事实源；第一版不引入 Redis 权限缓存，也不创建 API sessions
   表。
-- 状态：schema/索引/FK/audit/roll-forward 方案已通过 G2；implementation NOT RUN，必须等
-  G2A 后才写 migration。
+- 状态：schema/索引/FK/audit/roll-forward 方案已通过 G2；S3 migration v2 已实现，并在
+  PostgreSQL 16.14 完成空路径、00001 existing data upgrade、append-only 与 expand-only 演练。
 
 已批准最小模型：
 
@@ -286,8 +287,9 @@ tenant、identity、`tenant_owner` assignment 和审计。
 
 ## 11. 配置、Feature Flag 与部署
 
-- API flag：计划使用 `YIJIE_API_PERMISSION_PROJECTION_ENABLED` 且默认 off，精确名称由 S3
-  provider implementation 固定并回写，不把候选名冒充现有配置；具体 IdP issuer/client
+- API flag：计划使用 `YIJIE_API_PERMISSION_PROJECTION_ENABLED` 且默认 off，精确名称由 S4
+  endpoint wiring 固定并回写，不把候选名冒充现有配置；S3 未注册新 endpoint、未激活
+  provider；具体 IdP issuer/client
   ID、JWKS discovery、API/redirect origin、TLS 与 secret 配置仍是 G3/G5 blocker。
 - Desktop flag：build/release manifest 中默认 off；不能提供“静态显示全部”的 fallback。
 - 默认值：off。
@@ -322,7 +324,7 @@ tenant、identity、`tenant_owner` assignment 和审计。
 - 技术负责人：段成威。
 - 安全/数据 Owner：段成威。
 - 结论与日期：三路只读设计审核于 2026-07-31 完成；段成威已批准 A1—A6，ADR
-  Accepted，G1/G2 Passed，S1/S2 Contracts candidate/test/remote verification PASS。API/Desktop/migration
-  implementation/test NOT RUN，G2A Pending；具体 IdP 产品、issuer、
+  Accepted，G1/G2/G2A Passed，S1/S2 Contracts candidate/test/remote verification PASS。S3 API
+  foundation 与 migration commit/test/review PASS；S4 endpoint 和 Desktop implementation/test NOT RUN。具体 IdP 产品、issuer、
   client ID、JWKS、生产域名/TLS、Secret Manager 与 ingress 配置保持 G3/G5 Blocked，在其
   固定并验证前不得生产启用。

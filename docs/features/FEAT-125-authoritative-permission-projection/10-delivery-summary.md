@@ -1,17 +1,17 @@
 # FEAT-125 交付总结与关闭记录
 
-> 当前已到 Contracts remote candidate 阶段，不是业务功能交付完成记录。S1/S2
-> 证据已写入；API、Desktop、migration、集成、发布和生产栏位仍保持明确
+> 当前已到 S3 API foundation committed candidate 阶段，不是业务功能交付完成记录。
+> S1/S2/S3 本地证据已写入；S4 endpoint、Desktop、跨仓集成、发布和生产栏位仍保持明确
 > `NOT RUN / Not delivered`。
 
 ## 1. 最终结果
 
 - 用户可观察行为：尚未变化；Desktop 仍是 FEAT-124 candidate
   `be01cc2d0a1c9c4b057de616be201a4843d0a035`。
-- 原目标是否达成：否；已完成推荐方案审核、A1—A6 批准、生产级需求包，以及
-  S1/S2 Contracts 0.3.0 candidate 并完成远端核对；尚无 API/Desktop 实现。
-- 最终范围与非目标：见 00—07；G1/G2 已于 2026-07-31 Passed，G2A Pending。
-- 交付状态：`S1/S2 Complete / Remote Verified / G2A Pending / Not delivered`。
+- 原目标是否达成：否；已完成 A1—A6、S1/S2 Contracts remote candidate，以及 S3 API
+  exact pin、migration、authn/identity/tenancy/RBAC foundation；尚无 HTTP endpoint/Desktop 链路。
+- 最终范围与非目标：见 00—07；G1/G2 于 2026-07-31 Passed，G2A 于 2026-08-01 Passed。
+- 交付状态：`S1/S2 Complete / S3 Local Commit + Structured Review PASS / Not delivered`。
 - FEAT-124：G4-001 继续 Open，不得关闭。
 
 ## 2. 实际发布版本
@@ -19,17 +19,17 @@
 | Component | Environment | Version/tag | Full commit | Artifact digest | Contract version/pin |
 |---|---|---|---|---|---|
 | yijie-contracts | repository remote candidate | 0.3.0 candidate；no release/tag | `9ec34abd6e7dfb5a23b0154d467694167224ebbb` | source `7bd40dd...`；tarball `43a54d7...` | candidate 0.3.0；supported release 仍 v0.2.0 |
-| yijie-api | none | no FEAT-125 release | N/A | N/A | no FEAT-125 pin |
+| yijie-api | local test only | S3 commit；no release | `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`；not pushed | generated `a1801a...`；migration `51c4ced9...` | exact candidate `9ec34abd...` / oapi-codegen v2.7.2 |
 | yijie-desktop | none | no FEAT-125 release | `be01cc2d0a1c9c4b057de616be201a4843d0a035` remains current | N/A | no FEAT-125 pin |
-| database | none | no auth/RBAC migration | N/A | N/A | N/A |
+| database | isolated local PostgreSQL 16.14 | goose migration v2 candidate；not deployed | API `fff0cbcba601...` | `51c4ced9...` | expand-only / no sessions or real seed |
 
 ## 3. 验收结果
 
 | AC/NFR | 结果 | 自动化/人工证据 | Production evidence |
 |---|---|---|---|
-| AC-001—013/015—021 | NOT RUN | approved design/test plan only | none |
-| AC-014 contract candidate slice | CONTRACT PASS / downstream pending | S1/S2 generate/gates/breaking/semantic/digest evidence | none |
-| NFR-001—008 | NOT RUN | approved risk model only | none |
+| AC-001/003/004/013/015/020 S3 foundation | PARTIAL PASS | JWT/JWKS、identity/tenancy/RBAC、2×2 matrix、migration integration | none |
+| AC-014 contract candidate/pin | CONTRACT + API PIN PASS / Desktop pending | S1/S2 gates + S3 exact source/generated/generator checks | none |
+| remaining AC/NFR | NOT RUN | endpoint/Desktop/cross-repo/production slices pending | none |
 
 ## 4. 生产 Smoke 与观察
 
@@ -43,23 +43,25 @@
 
 | 项目 | Trace/request/task/session 标识 | 结果 | Evidence |
 |---|---|---|---|
-| 授权/租户/审批/审计/脱敏 | no implementation | NOT RUN | 08 verification report |
+| 授权/租户/审计/脱敏 | synthetic S3 only | PASS for foundation：fail-closed reads、cross-tenant FK、append-only、secret-free diff；write/bootstrap/HTTP pending | 08 verification report |
 
 ## 6. 发布事件、回滚与数据状态
 
 - Incident/异常：N/A；未部署。
 - 是否触发停止或回滚：否；没有可回滚 FEAT-125 artifact。
-- 数据/队列/缓存最终状态：未产生 auth/RBAC 数据、队列或缓存。
-- 回滚路径当前是否仍有效：仅文档删除可回退；应用/数据回滚尚未建立。
+- 数据/队列/缓存最终状态：只在隔离临时 PostgreSQL 创建并清理合成 auth/RBAC 数据；未触碰
+  staging/production，未新增 session/cache。
+- 回滚路径当前是否仍有效：应用可回退到 base `2834b412...`；expand schema 按设计保留并
+  roll-forward，destructive down 明确拒绝；生产回滚尚未演练。
 
 ## 7. 未验证项、已知限制与接受风险
 
 | Item | 影响 | Owner | 批准 | 截止/复查 |
 |---|---|---|---|---|
-| direct IdP JWT/native auth/tenant/RBAC | A1—A5 设计已批准；尚无实现和真实证据 | 段成威 | Approved design | S3—S7 |
-| migration/bootstrap/audit | expand/bootstrap 设计已批准；尚无 migration/rehearsal | 段成威 | Approved design | S3/S7 |
-| contracts v0.3.0 G2A/downstream pin | wire/source/generated candidate 已形成并在 origin/develop 可获取；尚未 tag 或被 API/Desktop exact pin | 段成威 | S1/S2 + remote complete；G2A Pending | explicit G2A |
-| API/Desktop implementation | 无生产链路 | 段成威 | Pending | G4 |
+| direct IdP JWT/native auth/tenant/RBAC | API S3 foundation PASS；真实 IdP、Desktop native auth 与 endpoint 未实现 | 段成威 | G2A/S3 approved | S4—S7/G3/G5 |
+| migration/bootstrap/audit | expand migration/rehearsal PASS；bootstrap/writer transaction 未实现 | 段成威 | S3 foundation | S7 |
+| contracts v0.3.0 downstream pin | API exact pin PASS；Desktop pin/tag 尚未形成 | 段成威 | G2A Passed | S5B/S8 |
+| API/Desktop implementation | API foundation only；无生产链路 | 段成威 | Pending | G4 |
 | Tasks 双重隔离与 FEAT-126 | A6 已批准；ingress deny + service 不注册 handlers 尚未验证；FEAT-125 不提供 Tasks 资源级授权 | 段成威 | Approved temporary exception | G5；FEAT-126 生产启用或 2026-09-30 较早者 |
 | production IdP/infra | audience 已固定 `https://api.yijie.ai`；vendor、issuer、client ID、JWKS、TLS/CSP 等仍待确定 | 段成威 | Pending | G3/G5 |
 
@@ -99,6 +101,6 @@ A6 是唯一已批准的有期限临时例外，只允许 legacy Tasks 保持不
 
 | Gate | Owner | Decision | Date | Evidence |
 |---|---|---|---|---|
-| G6 Delivery Complete | 段成威 | Not approved / feature open | 2026-08-01 | S1/S2 + remote complete；G2A/G4/G5/G6 Pending；no application implementation |
+| G6 Delivery Complete | 段成威 | Not approved / feature open | 2026-08-01 | S1/S2 + remote、G2A、S3 commit/review complete；push/S4—S8/G4/G5/G6 Pending |
 
 - 正式关闭时间：N/A。

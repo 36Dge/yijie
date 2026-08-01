@@ -169,7 +169,8 @@
 - 不实现 Admin Web 权限管理页面。
 - 不把 capability 投影当作离线授权票据或业务 API 凭证。
 - 不修改 Agent Host owner-only bearer 或 Runtime compatibility。
-- G2 已于 2026-07-31 通过；仍禁止 production mock 权限，provider/consumer 实现必须等 G2A。
+- G2 已于 2026-07-31 通过，G2A 已于 2026-08-01 通过并仅授权 S3 API foundation；
+  仍禁止 production mock 权限，S4+、Desktop 和生产配置必须遵守后续 slice/gate。
 
 ## 10. 已批准决策与剩余生产配置
 
@@ -190,4 +191,4 @@
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
-| 需求负责人 | 段成威 | Approved：A1—A6，G1/G2 Passed；G2A Pending | 2026-07-31 |
+| 需求负责人 | 段成威 | Approved：A1—A6，G1/G2/G2A Passed；S3 API foundation 已验证，生产 IdP/config 仍阻断 | 2026-08-01 |

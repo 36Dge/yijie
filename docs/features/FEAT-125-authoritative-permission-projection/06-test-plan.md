@@ -114,7 +114,8 @@ rotation/reuse detection 在 IdP 测试替身中撤销 token family；不得伪�
 | roll-forward | prior failed deploy | fixed new API | 使用同一 schema safely resume | migration status + smoke |
 
 任何需要删表/列或回退真实授权数据的 down migration 默认不执行；已批准策略为 app
-rollback + 保留 expand schema + roll-forward。实现和演练仍为 NOT RUN，等待 G2A。
+rollback + 保留 expand schema + roll-forward。S3 已完成 00001 existing data→00002 expand、
+拒绝 destructive down、保留 goose version 2 的自动化演练；bootstrap/old-binary smoke 仍待 S7。
 
 ## 8. 性能与容量
 
@@ -126,7 +127,8 @@ rollback + 保留 expand schema + roll-forward。实现和演练仍为 NOT RUN�
 | Desktop active request | rapid foreground/switch | 0 baseline | ≤1/current context | stale commit >0 |
 | capability size | 256 unique keys | N/A | contract-valid且受限 | unbounded/截断成功 |
 
-这些数字已在 G2 作为测试目标批准；G2A 后实现，G5 必须用类生产数据量建立真实基线后
+这些数字已在 G2 作为测试目标批准；S3 未实现 projection endpoint，因此性能仍 NOT RUN；
+G5 必须用类生产数据量建立真实基线后
 才能判定 PASS。
 
 ## 9. AI Eval 专项
@@ -156,7 +158,7 @@ N/A。不能用对话主观体验替代身份/RBAC/contract/security 测试。
 | contract baseline | yijie-contracts | `./scripts/check-breaking.sh f16a497e1377f45747f8ff9292b4b60cf2027f88` | git baseline | <5m |
 | API unit/lint | yijie-api | `make lint && make test` | Go | <5m |
 | API DB integration | yijie-api | `make test-all` | PostgreSQL 16 test DSN | <10m |
-| API generate drift | yijie-api | 由 S3 新增 exact-pin generate/check 命令后登记 | fixed contracts checkout | 未建立 |
+| API generate drift | yijie-api | `make generate-check` | exact contracts checkout `9ec34abd...` + oapi-codegen v2.7.2 | <5m |
 | Desktop quality | yijie-desktop | `make lint && make test && make build` | Node/pnpm/Rust | <10m |
 | Desktop docs/native | yijie-desktop | `pnpm docs:build` 加仓库现有 Tauri checks | Tauri/macOS | <15m |
 | Cross-repo E2E | test harness location at S7 | S7 提交真实命令后登记 | test IdP+Postgres+API+Desktop | 未建立 |
@@ -177,5 +179,5 @@ N/A。不能用对话主观体验替代身份/RBAC/contract/security 测试。
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
-| 测试/技术 Owner | 段成威 | G2 plan Approved；S1/S2 contract tests PASS；API/Desktop tests NOT RUN；G2A Pending | 2026-08-01 |
-| 安全/数据 Owner | 段成威 | G2 plan Approved；S1/S2 semantic/security review PASS；provider/consumer tests NOT RUN；G2A Pending | 2026-08-01 |
+| 测试/技术 Owner | 段成威 | G2/G2A Approved；S1/S2 contract 与 S3 API lint/unit/integration/drift PASS；S4+/Desktop NOT RUN | 2026-08-01 |
+| 安全/数据 Owner | 段成威 | S3 JWT/JWKS、migration、跨租户/RBAC 与 govulncheck PASS；生产 IdP/config 和跨仓 E2E NOT RUN | 2026-08-01 |

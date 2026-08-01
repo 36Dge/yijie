@@ -26,8 +26,8 @@ RBAC 权威数据；既有 `/v1/tasks*` 仍信任客户端提交的租户信息�
 权限会造成默认放行、跨租户复用和直接调用 API 绕过。
 
 本 ADR 固定 FEAT-125 G1/G2 所需的架构与安全决策。具体 IdP 厂商、issuer、client ID、
-JWKS、生产域名和生产控制面配置不由本 ADR 虚构，仍是 G3/G5 前置；G2A 仍需在
-`contracts-v0.3.0` candidate 形成并通过契约门禁后由段成威单独批准。
+JWKS、生产域名和生产控制面配置不由本 ADR 虚构，仍是 G3/G5 前置。G2A 已在
+`contracts-v0.3.0` candidate 形成并通过契约门禁后由段成威于 2026-08-01 单独批准。
 
 ## 决策
 
@@ -148,8 +148,8 @@ JWKS、生产域名和生产控制面配置不由本 ADR 虚构，仍是 G3/G5 �
   registration、开发/测试 API origin，以及依赖版本/audit 证据。
 - G5 前必须固定并验证：生产 tenant/client、生产 issuer/JWKS/domain/TLS、secret/config
   控制面、ingress 双隔离、Desktop 签名公证和 release/rollback 操作。
-- G2A 仍是独立人工门：`contracts-v0.3.0` candidate 必须先具备 source、生成物、完整 SHA、
-  digest、generator、breaking check 和 semantic review 证据。
+- G2A 是独立人工门，已于 2026-08-01 依据 `contracts-v0.3.0` candidate 的 source、生成物、
+  完整 SHA、digest、generator、breaking check 和 semantic review 证据通过；它不批准生产配置。
 
 ## 备选方案
 
@@ -194,9 +194,12 @@ JWKS、生产域名和生产控制面配置不由本 ADR 虚构，仍是 G3/G5 �
 - [x] 在 `yijie-contracts` 形成 `contracts-v0.3.0` local candidate
       `9ec34abd6e7dfb5a23b0154d467694167224ebbb`，执行生成、lint、test、build、
       pack、baseline breaking check 与 semantic review（2026-08-01 PASS；已 push，未 tag）；
-- [ ] 候选证据完成后由段成威单独批准 G2A；
+- [x] 候选证据完成后由段成威单独批准 G2A（2026-08-01）；
 - [ ] 在 G3 前固定 IdP 厂商、issuer、client ID、JWKS、redirect 和依赖审计；
-- [ ] 在 G2A 后按 provider-first 顺序实现 API 与 Desktop；
+- [x] 在 G2A 后完成 S3 API exact pin、expand migration、JWT/JWKS、identity/tenancy/RBAC
+      foundation 与依赖审计（2026-08-01；`fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`；
+      structured review PASS；无生产激活）；
+- [ ] 按 provider-first 顺序完成 S4 endpoint 与 Desktop；
 - [ ] 在 G5 前完成 Tasks ingress + handler 双隔离和三来源负向验证；
 - [ ] 创建并实施 `FEAT-126-public-task-authorization-hardening`；
 - [ ] 完成 FEAT-125 跨仓集成后回到 FEAT-124，独立关闭并复验 `G4-001`。

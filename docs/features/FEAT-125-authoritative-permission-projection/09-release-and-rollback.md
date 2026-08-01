@@ -10,9 +10,9 @@
 | Component | Version/tag | Full commit | Artifact digest | Contract pin/generator | Environment |
 |---|---|---|---|---|---|
 | yijie-contracts | 0.3.0 candidate；planned `contracts-v0.3.0` tag | `9ec34abd6e7dfb5a23b0154d467694167224ebbb` | source `7bd40dd1c5a53cc1dcd317e3a64bf7189170fd7f575b25bb07f0eb243d0319ed`；TS `77babb215608c6ace4468d37b72fc8e43f5758231c7807a4301063cb156ae8e0`；Go `01d31efc1b1c3fb69e18c853d67ea12cdc313c2709f2a02d02e2a01b6ff4d253`；tarball `43a54d7f9f01edd6b50adcebb8c3b4b645dab7ec8cf4aafe20b62d7d98718565` | openapi-typescript 7.13.0 / oapi-codegen 2.7.2 | origin/develop verified；tag/publish pending |
-| yijie-api | release version 未形成 | implementation 后登记 | build 后登记 | exact v0.3.0 SHA/digest | staging→production |
+| yijie-api | S3 local candidate；no release | `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`；not pushed | generated types `a1801a...` | exact contracts `9ec34abd...` / oapi-codegen v2.7.2 | local test only；no activation |
 | yijie-desktop | release version 未形成 | implementation 后登记 | signed artifact 后登记 | exact v0.3.0 SHA/digest | canary→production |
-| DB schema | approved expand direction；具体 migration version 待 S3 形成 | migration commit 后登记 | migration digest | N/A | staging→production |
+| DB schema | goose v2 expand candidate | yijie-api `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf` | `51c4ced9b6e6fa447326c29ead582e0568541e7ffca7084ae706d71ad4cb3bc9` | N/A | local PostgreSQL 16.14 PASS；staging/production NOT RUN |
 | yijie evidence | FEAT-125 / FEAT-124 G4 | final docs SHA | N/A | final manifests | governance |
 
 ## 2. 发布前提
@@ -22,7 +22,7 @@
 - [x] S1/S2 已形成本地 0.3.0 candidate，并通过 generate/lint/test/build/pack、
       supported-baseline breaking check 与 structured semantic review（2026-08-01）
 - [x] final candidate 已 push 且能从远端以完整 SHA 获取（2026-08-01）
-- [ ] G2A contract candidate、生成物、基线与 consumer review 由段成威批准
+- [x] G2A contract candidate、生成物与 S3 API foundation 由段成威批准（2026-08-01）
 - [ ] G4 Code Complete 通过，P0/P1/P2 security findings 为 0
 - [ ] Release artifact 来自干净、远端可获取、不可变 source
 - [ ] v0.3.0 tag 解析到已做 API/Desktop conformance 的同一 candidate；digest 不变
@@ -60,7 +60,7 @@
 
 | Flag | Default | Scope | Enable steps | Kill switch | Owner |
 |---|---|---|---|---|---|
-| API permission projection flag（最终名在 S3 固定） | off | environment/tenant | config validation→internal tenant→canary | disable endpoint/return safe unavailable | 段成威 |
+| API permission projection flag（最终名在 S4 endpoint wiring 固定） | off | environment/tenant | config validation→internal tenant→canary | disable endpoint/return safe unavailable | 段成威 |
 | Desktop authoritative permission flag（最终名在 S5 固定） | off | build/channel/user cohort | provider smoke→canary manifest | protected items=0 + recovery only | 段成威 |
 
 Kill switch 禁止切回静态全显示、默认 `{}` 或硬编码 admin。若 API 关闭而 Desktop 已发布，
@@ -70,7 +70,7 @@ Desktop 必须进入 permission-unavailable 并保留 retry/logout，不显示�
 
 | Phase | Command/job | Batch/lock controls | Validation | Pause/resume | Recovery |
 |---|---|---|---|---|---|
-| Expand schema | 由 S3 仓内 migration command 固定 | goose lock/short DDL；无真实 data seed | version+tables+constraints | deployment job control | app rollback，schema retained |
+| Expand schema | `go run ./cmd/migrate up` / `make migrate-up`；goose v2 | goose lock/short DDL；无真实 data seed | version+tables+constraints；S3 local rehearsal PASS | deployment job control | app rollback，schema retained；down 明确拒绝 |
 | Synthetic/staging bootstrap | 由批准的幂等 CLI 固定 | one tenant/user per invocation | audit+repeat run | stop safely | revoke/compensate |
 | Production bootstrap | 真实命令尚未批准 | explicit environment/actor/confirmation | tenant/user/role/audit smoke | one object at a time | revoke/roll-forward |
 | Contract cleanup | first release N/A | N/A | N/A | N/A | 后续独立 feature |
@@ -157,7 +157,7 @@ Desktop 必须进入 permission-unavailable 并保留 retry/logout，不显示�
 
 | 日期 | Environment | Artifact/data versions | Steps | Result | Gaps |
 |---|---|---|---|---|---|
-| 未执行 | N/A | local contracts candidate `9ec34abd...`；no application/deploy artifacts | no rehearsal | NOT RUN | 身份、migration、flags、platform 均未实现 |
+| 2026-08-01 | isolated local PostgreSQL 16.14 | contracts `9ec34abd...`；API `fff0cbcba601...`；schema 00001→00002 | migrate existing task/audit→validate tables/catalog/FKs/append-only→reject down and retain v2 | PASS / data rehearsal only | old binary smoke、bootstrap、staging/platform deployment remain NOT RUN |
 
 ## 12. 沟通、职责与批准
 
@@ -169,5 +169,5 @@ Desktop 必须进入 permission-unavailable 并保留 retry/logout，不显示�
 | Approval | Approver | Decision | Time | Evidence |
 |---|---|---|---|---|
 | G1/G2 | 段成威 | Approved A1—A6 | 2026-07-31 | 用户批准记录、03 与 05 的已批准决策 |
-| G2A | 段成威 | Pending；contract evidence 与 remote availability 已完成 | 待段成威单独批准 | 04/08 contract evidence |
+| G2A | 段成威 | Passed；固定 `9ec34abd...` 并授权 S3，不生产激活 | 2026-08-01 | 用户批准记录、04/08 contract/API evidence |
 | Go/No-Go | 段成威 | Pending | G5 后 | final manifest/runbook/rehearsal |
