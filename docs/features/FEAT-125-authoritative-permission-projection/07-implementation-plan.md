@@ -9,8 +9,9 @@
 - 每个仓库独立分支、提交、PR、review 和远端完整 SHA。
 - 范围、身份、tenant、错误或 migration 语义变化时回到设计，不静默扩张。
 - G1/G2 已批准本计划列明的代码与 expand migration 范围；S1/S2 已完成不可变 Contracts
-  candidate，G2A 已于 2026-08-01 通过并授权 S3。S3 已提交并完成结构化审查；push、S4+、
-  生产 IdP 注册/config、tag 与部署仍需后续对应 gate/指令。
+  candidate，G2A 已于 2026-08-01 通过并授权 S3。S3 已提交、审查、推送并远端核验；S4
+  已单独批准、提交并完成结构化审查但尚未 push。S5+、生产 IdP 注册/config、tag 与部署
+  仍需后续对应 gate/指令。
 
 ## 2. 依赖 DAG
 
@@ -22,7 +23,7 @@ S0 security decisions + ADR（Complete）
   → remote candidate availability（Complete: origin/develop = 9ec34abd...）
   → G2A（Passed 2026-08-01）
   ├─→ S3 API exact pin + expand migration + authn/tenancy/RBAC（Complete: fff0cbcba601...）
-  │     → S4 API capability endpoint + producer conformance
+  │     → S4 API capability endpoint + producer conformance（Complete: 360a526b6791...）
   └─→ S5A Desktop native OIDC/loopback/Keychain + operation-scoped transport boundary
         → S5B Desktop exact pin + permission client/store
           → S6 Desktop nav/router/AppShell/Settings production wiring
@@ -61,7 +62,7 @@ IdP vendor、issuer、client ID、JWKS、domain/TLS/CSP 保持 G3/G5 决策。
 |---|---|---|---|---|---|
 | Governance | yijie | develop / `ef0f50e...` | approved feature+ADR | all PRs link Feature | 段成威 |
 | Contract | yijie-contracts | develop / base `5320c302...` → remote `9ec34abd...` | 0.3.0 candidate SHA/digest/generators；origin/develop verified | API/Desktop exact SHA | 段成威 |
-| Provider | yijie-api | develop / base `2834b412...` → local `fff0cbcba601...` | S3 migration+authn/RBAC commit；S4 endpoint pending | exact `9ec34abd...` | 段成威 |
+| Provider | yijie-api | develop / S3 remote `fff0cbcba601...` → S4 local `360a526b6791...` | tenant discovery/projection endpoints、stable faults、metrics、producer conformance；flag off | exact `9ec34abd...` | 段成威 |
 | Consumer | yijie-desktop | develop / `be01cc2d...` | native auth + fail-closed UI candidate | same contracts candidate | 段成威 |
 | Integration | all | fixed candidates | conformance/E2E/perf evidence | planned tag resolves same SHA | 段成威 |
 | Activation | contracts→API→Desktop | release manifests | v0.3.0 supported + canary | tag/digest verified | 段成威 |
@@ -121,8 +122,9 @@ Feature 的 00—07；先检查 `git status --short --branch`、branch、remote�
 | C8-release | tag pins/supported baseline/release evidence | contracts/API/Desktop/yijie | provenance+smoke | G5/G6 |
 | C9-feat124 | close G4-001 and independent G4 | yijie + fixed Desktop SHA | review commands | FEAT-124 |
 
-用户已授权并完成 S1/S2 的 C1/C2 提交与 push；两个完整 SHA 已形成，最终 candidate 已经
-远端核对。本轮另行授权 S3 实现、结构化审查与 C3 commit；C3 push、PR、tag 和部署未执行。
+用户已授权并完成 S1/S2 的 C1/C2 提交与 push；最终 candidate 已远端核对。S3 C3 已实现、
+审查、提交、push 并远端核验。本轮另行授权并完成 S4 C4 实现、结构化审查与 commit；C4
+push、PR、tag 和部署未执行。
 
 ## 8. Slice 完成记录
 
@@ -131,8 +133,8 @@ Feature 的 00—07；先检查 `git status --short --branch`、branch、remote�
 | S0 | N/A | A1—A6 architecture/security/scope decisions approved；no implementation | package G0 + human approval evidence | three-way design audit complete | Complete；G1/G2 Passed |
 | S1 | `ab5e71db6e4d61eb9c761446066142de2edbb444` | Public OpenAPI 0.3.0、fixtures、contract tests、TS/Go generated SDK、release draft | generate/lint/test/build PASS | 新 operations 的 auth/tenant/error/cache/schema 语义审查 PASS | Complete / local commit |
 | S2 | `9ec34abd6e7dfb5a23b0154d467694167224ebbb` | candidate provenance、supported baseline、SHA/digest/generator 证据 | pack + `f16a497...` breaking check + structured semantic review PASS | 旧 Public paths/schemas/global security/servers 不变；Runtime 仅 bundle version 0.2.0→0.3.0 | Complete / remote verified |
-| S3 | `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf` | exact pin/CI、migration v2、bounded RS256 JWT/JWKS、identity/tenancy/authorization modules、tests | `make generate-check/lint/test/test-integration` + govulncheck PASS；source/generated/migration digests fixed | six-dimension structured review：P0/P1/P2=0；P3 SHA-format hardening resolved；independent G4 pending | Complete / local commit；push pending |
-| S4 | N/A | No API changes | NOT RUN | N/A | Pending |
+| S3 | `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf` | exact pin/CI、migration v2、bounded RS256 JWT/JWKS、identity/tenancy/authorization modules、tests | `make generate-check/lint/test/test-integration` + govulncheck PASS；source/generated/migration digests fixed | six-dimension structured review：P0/P1/P2=0；P3 SHA-format hardening resolved；independent G4 pending | Complete / remote verified |
+| S4 | `360a526b679147472e7cc82ca7ac9db9d18a371d` | default-off access endpoints、tenant discovery、atomic RBAC projection、stable errors/headers、revision/expiry、bounded metrics、CI fixture path | generate/lint/race/coverage/PostgreSQL integration/canonical producer+fault conformance/govulncheck PASS | P1 lifecycle context + P2 duplicate Authorization/exact audience fixed；open P0/P1/P2=0；independent G4 pending | Complete / local commit；push pending |
 | S5A | N/A | No Desktop native auth changes | NOT RUN | N/A | Pending |
 | S5B | N/A | No Desktop permission client/store changes | NOT RUN | N/A | Pending |
 | S6 | N/A | No Desktop changes | NOT RUN | N/A | Pending |
@@ -158,3 +160,4 @@ Feature 的 00—07；先检查 `git status --short --branch`、branch、remote�
 | 技术负责人 | 段成威 | Approved A1—A6；G1/G2 Passed，授权按本计划进入 S1；G2A Pending | 2026-07-31 |
 | 技术负责人 | 段成威 | 授权执行 S1/S2 并 push；candidate、门禁与远端可用性完成；G2A 仍 Pending | 2026-08-01 |
 | 技术负责人 | 段成威 | G2A Passed；固定 candidate `9ec34abd6e7dfb5a23b0154d467694167224ebbb`，授权 S3；不生产激活 | 2026-08-01 |
+| 技术负责人 | 段成威 | 授权 S3 push 与 S4 provider；S4 仅 yijie-api endpoints/conformance/metrics，禁止 Desktop、Tasks contract、生产 IdP 配置与激活 | 2026-08-01 |

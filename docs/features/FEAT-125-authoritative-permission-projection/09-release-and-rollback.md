@@ -1,16 +1,17 @@
 # FEAT-125 发布、灰度与回滚 Runbook
 
 > 本 Runbook 是候选计划，不是部署授权。A1—A6 已批准 direct IdP RS256 JWT、required
-> `X-Yijie-Tenant-ID`、RBAC/Settings core 与 Tasks isolation 边界；具体 IdP provider、
-> issuer/client/JWKS、生产平台、domain、secret、命令和 artifact 尚未形成，G3/G5 前必须
-> 固定并替换为真实、经段成威确认的配置与控制面操作。
+> `X-Yijie-Tenant-ID`、RBAC/Settings core 与 Tasks isolation 边界；S4 API producer 已实现但
+> 默认关闭且仅为本地 candidate。具体 IdP provider、issuer/client/JWKS、生产平台、domain、
+> secret、命令和 artifact 尚未形成，G3/G5 前必须固定并替换为真实、经段成威确认的配置
+> 与控制面操作。
 
 ## 1. Release Manifest
 
 | Component | Version/tag | Full commit | Artifact digest | Contract pin/generator | Environment |
 |---|---|---|---|---|---|
 | yijie-contracts | 0.3.0 candidate；planned `contracts-v0.3.0` tag | `9ec34abd6e7dfb5a23b0154d467694167224ebbb` | source `7bd40dd1c5a53cc1dcd317e3a64bf7189170fd7f575b25bb07f0eb243d0319ed`；TS `77babb215608c6ace4468d37b72fc8e43f5758231c7807a4301063cb156ae8e0`；Go `01d31efc1b1c3fb69e18c853d67ea12cdc313c2709f2a02d02e2a01b6ff4d253`；tarball `43a54d7f9f01edd6b50adcebb8c3b4b645dab7ec8cf4aafe20b62d7d98718565` | openapi-typescript 7.13.0 / oapi-codegen 2.7.2 | origin/develop verified；tag/publish pending |
-| yijie-api | S3 local candidate；no release | `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`；not pushed | generated types `a1801a...` | exact contracts `9ec34abd...` / oapi-codegen v2.7.2 | local test only；no activation |
+| yijie-api | S4 local candidate；no release | `360a526b679147472e7cc82ca7ac9db9d18a371d`；not pushed | generated types `a1801a...` | exact contracts `9ec34abd...` / oapi-codegen v2.7.2 | local producer/conformance/fault test only；flag off；no activation |
 | yijie-desktop | release version 未形成 | implementation 后登记 | signed artifact 后登记 | exact v0.3.0 SHA/digest | canary→production |
 | DB schema | goose v2 expand candidate | yijie-api `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf` | `51c4ced9b6e6fa447326c29ead582e0568541e7ffca7084ae706d71ad4cb3bc9` | N/A | local PostgreSQL 16.14 PASS；staging/production NOT RUN |
 | yijie evidence | FEAT-125 / FEAT-124 G4 | final docs SHA | N/A | final manifests | governance |
@@ -23,6 +24,9 @@
       supported-baseline breaking check 与 structured semantic review（2026-08-01）
 - [x] final candidate 已 push 且能从远端以完整 SHA 获取（2026-08-01）
 - [x] G2A contract candidate、生成物与 S3 API foundation 由段成威批准（2026-08-01）
+- [x] S3 API `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf` 已 push 且远端完整 SHA 核验一致
+- [x] S4 API producer 已由段成威批准；本地 commit `360a526b679147472e7cc82ca7ac9db9d18a371d`
+      通过 slice 结构化审查、全部门禁和 producer conformance/fault tests；尚未 push/发布
 - [ ] G4 Code Complete 通过，P0/P1/P2 security findings 为 0
 - [ ] Release artifact 来自干净、远端可获取、不可变 source
 - [ ] v0.3.0 tag 解析到已做 API/Desktop conformance 的同一 candidate；digest 不变
@@ -60,7 +64,7 @@
 
 | Flag | Default | Scope | Enable steps | Kill switch | Owner |
 |---|---|---|---|---|---|
-| API permission projection flag（最终名在 S4 endpoint wiring 固定） | off | environment/tenant | config validation→internal tenant→canary | disable endpoint/return safe unavailable | 段成威 |
+| `YIJIE_API_PERMISSION_PROJECTION_ENABLED` | false | process environment；tenant 灰度控制面待 G5 | config validation→internal tenant→canary | set false；endpoint 不注册 | 段成威 |
 | Desktop authoritative permission flag（最终名在 S5 固定） | off | build/channel/user cohort | provider smoke→canary manifest | protected items=0 + recovery only | 段成威 |
 
 Kill switch 禁止切回静态全显示、默认 `{}` 或硬编码 admin。若 API 关闭而 Desktop 已发布，
@@ -116,7 +120,9 @@ Desktop 必须进入 permission-unavailable 并保留 retry/logout，不显示�
 | DB/resource | pool/query/lock | staging | within capacity | saturation/lock timeout |
 | security/audit | audit completeness/forbidden direct calls | 100% writes audited | no leak/bypass | any leak/bypass |
 
-若 telemetry SDK 尚未批准，不以缺少 signal 推断成功；G5 必须选择获批的观测方式。
+S4 已提供进程内、低基数 recorder（request count/duration 与 authorization denial）；尚无
+exporter、dashboard 或告警接线。不得以进程内单元测试信号推断部署成功；G5 必须选择获批
+的观测后端并验证真实查询。
 
 ## 9. 回滚决策
 
@@ -148,7 +154,8 @@ Desktop 必须进入 permission-unavailable 并保留 retry/logout，不显示�
 | Purpose | Exact command/control plane action | Required role | Expected output | Evidence location |
 |---|---|---|---|---|
 | Contract checks | 见 06-test-plan 第 11 节仓内命令 | repository maintainer | exit 0 + clean diff | S2 evidence |
-| API/Desktop checks | 见各仓 Makefile/package scripts | repository maintainer | exit 0 | S3—S7 evidence |
+| API producer checks | `make generate-check`、`make lint`、`make test`、`make test-integration`、`go mod verify`、`govulncheck ./...` | repository maintainer | exit 0；canonical conformance/fault fixtures PASS | S4 evidence |
+| Desktop checks | 见仓内 package scripts | repository maintainer | exit 0 | S5—S7 evidence |
 | Deploy | N/A：生产控制面尚未选择 | approved release role | G5 前必须登记 | release manifest |
 | Disable | N/A：真实 flag/config backend 尚未批准 | approved operator | G5 前必须登记 | runbook |
 | Rollback | N/A：artifact/deploy platform 尚未批准 | approved operator | G5 前必须登记 | rehearsal |
@@ -170,4 +177,5 @@ Desktop 必须进入 permission-unavailable 并保留 retry/logout，不显示�
 |---|---|---|---|---|
 | G1/G2 | 段成威 | Approved A1—A6 | 2026-07-31 | 用户批准记录、03 与 05 的已批准决策 |
 | G2A | 段成威 | Passed；固定 `9ec34abd...` 并授权 S3，不生产激活 | 2026-08-01 | 用户批准记录、04/08 contract/API evidence |
+| S4 | 段成威 | Approved API producer only；禁止 Desktop/Tasks/生产 IdP 与生产激活 | 2026-08-01 | 用户批准记录、API `360a526b679147472e7cc82ca7ac9db9d18a371d`、08 S4 evidence |
 | Go/No-Go | 段成威 | Pending | G5 后 | final manifest/runbook/rehearsal |

@@ -199,7 +199,10 @@ JWKS、生产域名和生产控制面配置不由本 ADR 虚构，仍是 G3/G5 �
 - [x] 在 G2A 后完成 S3 API exact pin、expand migration、JWT/JWKS、identity/tenancy/RBAC
       foundation 与依赖审计（2026-08-01；`fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`；
       structured review PASS；无生产激活）；
-- [ ] 按 provider-first 顺序完成 S4 endpoint 与 Desktop；
+- [x] 完成 S4 provider：tenant discovery/capability endpoints、逐请求 tenant 验证、稳定错误、
+      producer conformance 与 metrics（2026-08-01；`360a526b679147472e7cc82ca7ac9db9d18a371d`；
+      默认关闭、未 push、无生产 IdP 配置或激活）；
+- [ ] 按 provider-first 顺序完成 Desktop consumer；
 - [ ] 在 G5 前完成 Tasks ingress + handler 双隔离和三来源负向验证；
 - [ ] 创建并实施 `FEAT-126-public-task-authorization-hardening`；
 - [ ] 完成 FEAT-125 跨仓集成后回到 FEAT-124，独立关闭并复验 `G4-001`。

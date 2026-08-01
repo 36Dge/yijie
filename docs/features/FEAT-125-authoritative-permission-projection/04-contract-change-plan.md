@@ -183,13 +183,13 @@ generate-drift CI 取代；不允许用手写影子 DTO 或 floating sibling 例
 
 | Fixture | 唯一权威位置 | Producer test | Consumer test | 结果 |
 |---|---|---|---|---|
-| tenant-list-v1-empty.json | yijie-contracts/tests/fixtures/public/access/ | active memberships only | Settings core/recovery | Contract validation PASS；consumer NOT RUN |
-| tenant-list-v1-single.json | 同上 | tenant id + display name only | auto-select then projection | Contract validation PASS；consumer NOT RUN |
-| tenant-list-v1-multiple.json | 同上 | no role/capability leakage | explicit selection | Contract validation PASS；consumer NOT RUN |
-| capability-v1-ready.json | yijie-contracts/tests/fixtures/public/access/ | API response validation | Desktop generated decoder | Contract validation PASS；consumer NOT RUN |
-| capability-v1-empty.json | 同上 | 200-empty | Settings core-only navigation | Contract validation PASS；consumer NOT RUN |
+| tenant-list-v1-empty.json | yijie-contracts/tests/fixtures/public/access/ | active memberships only | Settings core/recovery | Contract + API producer conformance PASS；consumer NOT RUN |
+| tenant-list-v1-single.json | 同上 | tenant id + display name only | auto-select then projection | Contract + API producer conformance PASS；consumer NOT RUN |
+| tenant-list-v1-multiple.json | 同上 | no role/capability leakage | explicit selection | Contract + API producer conformance PASS；consumer NOT RUN |
+| capability-v1-ready.json | yijie-contracts/tests/fixtures/public/access/ | API response validation | Desktop generated decoder | Contract + API producer conformance PASS；consumer NOT RUN |
+| capability-v1-empty.json | 同上 | 200-empty | Settings core-only navigation | Contract + API producer conformance PASS；consumer NOT RUN |
 | capability-v1-unknown.json | 同上 | schema-valid open value | unknown-ignore | Contract validation PASS；consumer NOT RUN |
-| six public access error fixtures | 同上 | 400/401/403/500/503 stable codes | error adapter/state machine | Contract validation PASS；consumer NOT RUN |
+| six public access error fixtures | 同上 | 400/401/403/500/503 stable codes | error adapter/state machine | Contract + API producer/fault conformance PASS；consumer NOT RUN |
 
 Feature 目录只引用这些 fixture，不复制 JSON。
 
@@ -201,7 +201,7 @@ Feature 目录只引用这些 fixture，不复制 JSON。
 | 2 | 创建 0.3.0 source+generated candidate | yijie-contracts | Complete：S1 `ab5e71db6e4d61eb9c761446066142de2edbb444` | 回退 contracts commits |
 | 3 | generate/lint/test/build/pack/baseline+人工 semantic review | yijie-contracts | Complete：S2 local `9ec34abd6e7dfb5a23b0154d467694167224ebbb` | 不晋升 G2A |
 | 4 | 推送最终 candidate full SHA | yijie-contracts | Complete 2026-08-01；origin/develop = `9ec34abd6e7dfb5a23b0154d467694167224ebbb` | 保留 0.2.0 |
-| 5 | API exact pin、migration、provider 非生产实现 | yijie-api | Complete：`fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`；structured review PASS | 未接 endpoint/生产配置，app rollback + retain expand schema |
+| 5 | API exact pin、migration、provider 非生产实现 | yijie-api | Complete：S3 `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf` + S4 `360a526b679147472e7cc82ca7ac9db9d18a371d`；structured review PASS | flag default off；无生产配置，app rollback + retain expand schema |
 | 6 | Desktop exact pin、fail-closed consumer | yijie-desktop | provider staging ready | 不发布 Desktop |
 | 7 | API/Desktop candidate conformance 与两租户 E2E | 三仓 | full SHA/digest equal | 修复后重测 |
 | 8 | 创建不可移动 contracts-v0.3.0 | yijie-contracts | 同一 candidate 已验证 | 不移动 tag |
@@ -220,13 +220,14 @@ Feature 目录只引用这些 fixture，不复制 JSON。
 | breaking | baseline command above | yijie-contracts | `9ec34abd6e7dfb5a23b0154d467694167224ebbb` vs `f16a497e1377f45747f8ff9292b4b60cf2027f88` | 0 | PASS | no breaking in all four check families |
 | semantic equality | Node structured comparison | yijie-contracts | candidate vs v0.2.0 | 0 | PASS | old paths/schemas/security/servers unchanged；Runtime projection only bundle version changed |
 | API exact source/generated pin | `make generate-check` | yijie-api | contracts `9ec34abd...` / oapi-codegen v2.7.2 | 0 | PASS | source `7bd40dd...`；API types `a1801a...`；CI exact checkout |
-| producer/consumer conformance | approved commands | API/Desktop | API types pin formed；endpoint/Desktop absent | N/A | PARTIAL / NOT RUN | S4/S5/S7 |
+| producer conformance | canonical fixtures + handler/fault/integration tests | yijie-api | `360a526b679147472e7cc82ca7ac9db9d18a371d` | 0 | PASS | 0/1/multiple tenants、ready/empty、400/401/403/500/503、no-store/challenge/retry、2×2 DB projection |
+| consumer conformance | approved commands | Desktop | implementation absent | N/A | NOT RUN | S5/S7 |
 
 ## 10. Consumer Owner 评审
 
 | Consumer/Owner | 结论 | 日期 | 证据/例外 |
 |---|---|---|---|
-| yijie-api / 段成威 | G2A approved；exact candidate pin/generation and S3 foundation committed/reviewed | 2026-08-01 | `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`；endpoint producer conformance remains S4/S7 |
+| yijie-api / 段成威 | G2A/S4 approved；exact pin、foundation、endpoints 与 producer/fault conformance committed/reviewed | 2026-08-01 | `360a526b679147472e7cc82ca7ac9db9d18a371d`；staging/cross-repo remains S7 |
 | yijie-desktop / 段成威 | G2A approved for authorized downstream slices；implementation not started | 2026-08-01 | consumer conformance NOT RUN |
 | unknown-public / 段成威 | Conservative structural/semantic compatibility PASS | 2026-08-01 | all existing Public operations/schemas unchanged |
 | yijie-agent-host / Runtime Owner | Regression comparison PASS；no migration | 2026-08-01 | projection identical except bundle version；Host remains v0.2.0 |

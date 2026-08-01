@@ -11,7 +11,7 @@
   Router。
 - 关键约束：ADR-0012 与 G1/G2/G2A 已批准；S1/S2 Contracts candidate/test/remote verification PASS；
   S3 API exact pin、migration、authn/identity/tenancy/RBAC commit `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf` 与门禁 PASS；S4 endpoint
-  和 Desktop implementation/test NOT RUN；
+  producer commit `360a526b679147472e7cc82ca7ac9db9d18a371d` 与门禁/审查 PASS；Desktop implementation/test NOT RUN；
   exact contracts pin；tenant header 只作选择提示并逐请求验证；无普通前端持久化；
   provider first。
 - 明确不做：角色/UI schema 下发、离线授权、Admin UI、Agent Host/Runtime、AI 变化、
@@ -287,9 +287,8 @@ tenant、identity、`tenant_owner` assignment 和审计。
 
 ## 11. 配置、Feature Flag 与部署
 
-- API flag：计划使用 `YIJIE_API_PERMISSION_PROJECTION_ENABLED` 且默认 off，精确名称由 S4
-  endpoint wiring 固定并回写，不把候选名冒充现有配置；S3 未注册新 endpoint、未激活
-  provider；具体 IdP issuer/client
+- API flag：S4 已固定 `YIJIE_API_PERMISSION_PROJECTION_ENABLED`，默认 `false` 时不注册新
+  endpoint；显式开启才要求 issuer/JWKS 配置。本候选没有生产值、Desktop consumer 或激活；具体 IdP issuer/client
   ID、JWKS discovery、API/redirect origin、TLS 与 secret 配置仍是 G3/G5 blocker。
 - Desktop flag：build/release manifest 中默认 off；不能提供“静态显示全部”的 fallback。
 - 默认值：off。
@@ -325,6 +324,6 @@ tenant、identity、`tenant_owner` assignment 和审计。
 - 安全/数据 Owner：段成威。
 - 结论与日期：三路只读设计审核于 2026-07-31 完成；段成威已批准 A1—A6，ADR
   Accepted，G1/G2/G2A Passed，S1/S2 Contracts candidate/test/remote verification PASS。S3 API
-  foundation 与 migration commit/test/review PASS；S4 endpoint 和 Desktop implementation/test NOT RUN。具体 IdP 产品、issuer、
+  foundation/migration 与 S4 endpoint commit/test/review PASS；Desktop implementation/test NOT RUN。具体 IdP 产品、issuer、
   client ID、JWKS、生产域名/TLS、Secret Manager 与 ingress 配置保持 G3/G5 Blocked，在其
   固定并验证前不得生产启用。

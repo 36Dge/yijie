@@ -191,7 +191,7 @@ G1/G2 已于 2026-07-31 批准 A1—A6。具体 migration 字段、索引、FK�
 | ID | 未知项 | 允许的只读/隔离验证 | 禁止副作用 | Owner | 结论 |
 |---|---|---|---|---|---|
 | SPIKE-001 | direct IdP RS256 JWT 与 Desktop login flow | 固定 provider metadata、issuer/client/JWKS 并验证 Tauri flow | 不注册生产应用、不写 secret | 段成威 | A1/A2 Approved；配置验证待 G3/G5 |
-| SPIKE-002 | required `X-Yijie-Tenant-ID` 与 membership/status 验证 | 用合成状态图/测试替身验证 missing/invalid/denied | 不把 request tenant 当授权事实 | 段成威 | A3 Approved；S3 membership/status repository 通过合成 integration；header/endpoint 待 S4 |
+| SPIKE-002 | required `X-Yijie-Tenant-ID` 与 membership/status 验证 | 用合成状态图/测试替身验证 missing/invalid/denied | 不把 request tenant 当授权事实 | 段成威 | A3 Approved；S4 header/endpoint、原子 projection 与 400/403 负测 PASS；跨仓 E2E 待 S7 |
 | SPIKE-003 | RBAC schema 与 bootstrap | 临时 schema migration rehearsal | 不写真实用户/租户，不建 API session 表 | 段成威 | A4 Approved；S3 00001→00002 expand rehearsal 与 2×2 RBAC 通过；bootstrap 待后续 slice |
 | SPIKE-004 | 现有 Tasks API production disposition | 验证 ingress + handler 双隔离并创建 FEAT-126 | 不静默改 Tasks wire contract | 段成威 | A6 Approved；到期为 FEAT-126 生产启用或 2026-09-30 较早者；隔离证据待 G5 |
 | SPIKE-005 | API origin/CSP/Keychain | local/staging 配置验证 | 不新增生产 URL/capability | 段成威 | Open / G3 |

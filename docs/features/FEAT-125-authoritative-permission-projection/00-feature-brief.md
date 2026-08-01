@@ -4,7 +4,7 @@
 
 | 字段 | 内容 |
 |---|---|
-| 状态 | G0/G1/G2/G2A Passed / S1/S2 Candidate Remote Verified / S3 API Foundation Committed + Structured Review PASS |
+| 状态 | G0/G1/G2/G2A Passed / S1/S2 Candidate Remote Verified / S3 Remote Verified / S4 API Producer Committed + Structured Review PASS |
 | 需求负责人 | 段成威 |
 | 技术负责人 | 段成威 |
 | Reviewer | 段成威 |
@@ -139,3 +139,6 @@
 | 2026-08-01 | 段成威 | 批准 G2A，固定 `9ec34abd6e7dfb5a23b0154d467694167224ebbb` 并授权 S3 | 生产 IdP 厂商/issuer/client ID/JWKS/配置仍为 G3/G5 前置，不生产激活 |
 | 2026-08-01 | Codex | 完成 S3：API exact pin、migration v2、RS256 JWT/JWKS、identity/tenancy/RBAC 与单元/数据库集成/安全审计 | API 完整提交 `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`；未加入生产 IdP 值、endpoint 或生产激活 |
 | 2026-08-01 | Codex | 对 S3 执行契约/认证/迁移/租户隔离/CI 依赖/范围六维结构化审查 | P0/P1/P2=0；P3 SHA 格式校验缺口已修复并复验；不代替最终独立 G4 |
+| 2026-08-01 | Codex | 将 S3 API 与治理证据推送并远端核验 | yijie-api `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`；yijie `cd365ad095c4af6983b345794f0efef565efddbe` |
+| 2026-08-01 | 段成威/Codex | 批准并完成 S4 tenant/capability endpoints、逐请求 tenant 验证、稳定错误、revision、metrics 与 producer/fault tests | API 完整提交 `360a526b679147472e7cc82ca7ac9db9d18a371d`；默认关闭、未 push、无生产配置/激活 |
+| 2026-08-01 | Codex | 对 S4 做范围/契约/认证/租户一致性/生命周期/CI 六维结构化审查 | P1=1/P2=2 均修复；最终开放 P0/P1/P2=0；不代替最终独立 G4 |

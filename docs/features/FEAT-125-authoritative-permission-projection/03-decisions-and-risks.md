@@ -20,7 +20,8 @@
 
 段成威已于 2026-07-31 明确批准 A1—A6。G1 需求/架构决策与 G2 设计门通过；2026-08-01
 已执行并完成获特别授权的 S1/S2 Contracts candidate；段成威已于 2026-08-01 通过 G2A，
-S3 API foundation 已提交为 `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf` 并通过本地门禁与结构化审查。具体 IdP 产品、issuer、client ID、生产域名/TLS
+S3 API foundation 已推送为 `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`；S4 provider 已提交为
+`360a526b679147472e7cc82ca7ac9db9d18a371d` 并通过本地门禁与结构化审查。具体 IdP 产品、issuer、client ID、生产域名/TLS
 与 secret 配置属于 G3/G5 前置条件。
 
 ## 2. ADR 判定
@@ -34,7 +35,7 @@ S3 API foundation 已提交为 `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf` 并通
   bootstrap、审计、Tasks 双隔离/FEAT-126 与 Infra/CSP 责任。
 - 架构 Owner：段成威。
 - 当前状态：Accepted；G1/G2/G2A Passed；S1/S2 candidate complete and remote verified；S3
-  API foundation locally verified。S4+、Desktop 和生产激活仍需对应 slice/gate。
+  API foundation remote verified，S4 provider locally verified。S5+、Desktop 和生产激活仍需对应 slice/gate。
 
 ## 3. 风险登记
 
@@ -102,7 +103,7 @@ S3 API foundation 已提交为 `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf` 并通
 
 ## 8. Codex 停止条件
 
-- 未经相应 slice 授权要求越过 S3 修改 yijie-api endpoint、Desktop consumer 或生产配置；
+- 未经相应 slice 授权要求越过 S4 修改 Desktop consumer 或生产配置；
   S1/S2 contracts source/generated candidate 可按已批准 G2 计划执行，但不得激活 provider；
 - 要求在未重分类时修改既有 Tasks auth/tenant/error 语义；
 - 不能从已验证凭证和 membership 导出 user+active tenant；
@@ -126,5 +127,5 @@ S3 API foundation 已提交为 `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf` 并通
 | Settings/root（DEC-002/004/008） | 段成威 | Approved；G2 Passed | 2026-07-31 | A5 |
 | Tasks 双隔离与 FEAT-126（DEC-009/010、EXC-125-001） | 段成威 | Approved；G2 Passed | 2026-07-31 | A6 |
 | Contracts S1/S2 授权 | 段成威 | Approved and executed；candidate/gates/remote verification PASS | 2026-08-01 | 用户明确指令；`9ec34abd...` |
-| Provider/consumer 实施授权 | 段成威 | G2A Passed；授权 S3 API foundation；Desktop 与生产激活仍按后续 slice/gate | 2026-08-01 | 用户明确指令 |
+| Provider/consumer 实施授权 | 段成威 | G2A Passed；S3/S4 API provider 已授权并完成；Desktop 与生产激活仍按后续 slice/gate | 2026-08-01 | 用户明确指令；S4 `360a526...` |
 | 具体 IdP 与生产配置 | 段成威 | Pending；G3/G5 blocker | 2026-07-31 | issuer/client ID/domain/TLS/secret 尚未登记 |

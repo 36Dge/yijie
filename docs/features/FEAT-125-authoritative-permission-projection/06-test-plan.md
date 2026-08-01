@@ -127,8 +127,8 @@ rollback + 保留 expand schema + roll-forward。S3 已完成 00001 existing dat
 | Desktop active request | rapid foreground/switch | 0 baseline | ≤1/current context | stale commit >0 |
 | capability size | 256 unique keys | N/A | contract-valid且受限 | unbounded/截断成功 |
 
-这些数字已在 G2 作为测试目标批准；S3 未实现 projection endpoint，因此性能仍 NOT RUN；
-G5 必须用类生产数据量建立真实基线后
+这些数字已在 G2 作为测试目标批准；S4 已加入进程内请求/延迟 recorder，但 50 RPS staging
+性能与真实 exporter/dashboard 仍 NOT RUN；G5 必须用类生产数据量建立真实基线后
 才能判定 PASS。
 
 ## 9. AI Eval 专项
@@ -179,5 +179,5 @@ N/A。不能用对话主观体验替代身份/RBAC/contract/security 测试。
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
-| 测试/技术 Owner | 段成威 | G2/G2A Approved；S1/S2 contract 与 S3 API lint/unit/integration/drift PASS；S4+/Desktop NOT RUN | 2026-08-01 |
-| 安全/数据 Owner | 段成威 | S3 JWT/JWKS、migration、跨租户/RBAC 与 govulncheck PASS；生产 IdP/config 和跨仓 E2E NOT RUN | 2026-08-01 |
+| 测试/技术 Owner | 段成威 | G2/G2A/S4 Approved；S1/S2 contract、S3 foundation 与 S4 producer lint/unit/race/integration/drift/conformance PASS；S5+/Desktop NOT RUN | 2026-08-01 |
+| 安全/数据 Owner | 段成威 | S3/S4 JWT/JWKS、精确 audience、重复 auth header、原子 projection、跨租户/RBAC 与 govulncheck PASS；生产 IdP/config 和跨仓 E2E NOT RUN | 2026-08-01 |

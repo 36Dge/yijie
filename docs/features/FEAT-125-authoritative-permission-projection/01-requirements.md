@@ -170,7 +170,7 @@
 - 不把 capability 投影当作离线授权票据或业务 API 凭证。
 - 不修改 Agent Host owner-only bearer 或 Runtime compatibility。
 - G2 已于 2026-07-31 通过，G2A 已于 2026-08-01 通过并仅授权 S3 API foundation；
-  仍禁止 production mock 权限，S4+、Desktop 和生产配置必须遵守后续 slice/gate。
+  仍禁止 production mock 权限；S4 已按单独批准完成，S5+、Desktop 和生产配置必须遵守后续 slice/gate。
 
 ## 10. 已批准决策与剩余生产配置
 
