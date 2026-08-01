@@ -9,22 +9,29 @@
 | DEC-003 | capability wire 类型 | 封闭 enum / 开放 namespaced string | 开放字符串 | 新 key 不使旧 consumer 崩溃；未知值默认忽略 | 段成威 | Accepted / A4 |
 | DEC-004 | Desktop 默认策略 | 缺失即显示 / 缺失即拒绝 | deny-by-default | loading/error/context mismatch 不能泄露导航或页面 | 段成威 | Accepted / A5 |
 | DEC-005 | 身份方式 | 自建账户 / 外部 OIDC / opaque API session | 外部 OIDC；仅系统浏览器 Authorization Code + PKCE S256；精确 ephemeral `127.0.0.1` loopback + state/nonce；禁 WebView/implicit/plain/secret/`localhost`；API 直接验证 audience=`https://api.yijie.ai` 的 RS256 access JWT，以 `(issuer, subject)` 映射 user；无 opaque API session | 使用标准原生应用登录流；不自建密码和 API session/token authority | 段成威 | Accepted / A1 |
-| DEC-006 | 凭证生命周期与 Desktop 原生边界 | LocalStorage / cookie / memory+OS secure storage | access token 仅 Rust 内存；refresh token 仅 macOS Keychain `ai.yijie.desktop.auth`；10 分钟 access、30 天 idle/90 天 absolute refresh、旋转与 reuse detection；logout 撤销 refresh、删 Keychain 并清空内存/context；WebView 仅能调用固定 API HTTPS origin 上的 `listMyTenants`/`getMyCapabilities`，Rust 内附加 bearer，token 不跨 IPC，不提供通用 native proxy | 最小化凭证驻留与暴露，把刷新/撤销交给 IdP，同时避免 privileged Rust transport 成为 confused deputy | 段成威 | Accepted / A2 |
+| DEC-006 | 凭证生命周期与 Desktop 原生边界 | LocalStorage / cookie / memory+OS secure storage | access token 仅 Rust 内存；refresh token 仅 macOS Keychain `ai.yijie.desktop.auth`；10 分钟 access、30 天 idle/90 天 absolute refresh、旋转与 reuse detection；logout 撤销 refresh、删 Keychain 并清空内存/context；WebView 仅能调用固定 API HTTPS origin 上的 `listMyTenants`/`getMyCapabilities`，Rust 内附加 bearer，token 不跨 IPC，不提供通用 native proxy | 最小化凭证驻留与暴露，把刷新/撤销交给 IdP，同时避免 privileged Rust transport 成为 confused deputy | 段成威 | Accepted / A2；本地 Keycloak family-reuse 证据受限，完整验证留在 S7/G5 |
 | DEC-007 | 活动租户 | 客户端任意 tenant / token 固定 / 逐请求选择并验证 | 必需 `X-Yijie-Tenant-ID`；它只是选择提示，API 每次验证 user/tenant/membership；0 个进入 recovery、1 个自动选、多个必须用户选，切换 abort+epoch+clear 后原子加载；v1 不持久化 last tenant，重启重选 | 无服务端 active-tenant session，避免把客户端 tenant 当授权事实 | 段成威 | Accepted / A3 |
 | DEC-008 | Settings 与根路由 | 整页受 capability 控制 / core 常显 | Settings core/recovery 常显；`/` 在 ready 后选择首个允许入口 | 零权限、错误或被撤权时仍有 retry/logout/recovery | 段成威 | Accepted / A5 |
-| DEC-009 | 现有 Tasks API | 本需求静默加 auth / 独立 breaking 轨 / 双隔离 | FEAT-125 不改 Tasks wire；service config 不注册 task handlers 且生产 ingress 拒绝；由 FEAT-126 独立改造 | 避免破坏匿名 consumer，也不让旧 Tasks 随 API 上线 | 段成威 | Accepted / A6 |
+| DEC-009 | 现有 Tasks API | 本需求静默加 auth / 独立 breaking 轨 / 双隔离 | FEAT-125 不改 Tasks wire 或默认 API profile；本地 `feat-125-local-lab`/未来获批宿主 profile 不注册 task handlers，且 ingress 拒绝；由 FEAT-126 独立改造 | 避免破坏匿名 consumer，也不让旧 Tasks 随权限 API 上线 | 段成威 | Accepted / A6 |
 | DEC-010 | Contract 版本与影响 | additive 0.3 / semantic 0.3 / breaking 1.0 | semantic 0.3 | 新 operation 首次建立身份、租户和权限语义；既有 operation 不变且被隔离 | 段成威 | Accepted / A6 |
 | DEC-011 | RBAC v1 | deny/allow、单/多角色、动态策略 | PostgreSQL allow-only、deny-by-default、多角色 union；`tenant_owner` 全 7 个点号 key，`tenant_member` 仅 `task.create`/`task.read`；user/tenant/membership 为 `active\|suspended` | 最小可解释、可审计并保持租户约束 | 段成威 | Accepted / A4 |
 | DEC-012 | 数据与审计 | 无持久化 / session store / PostgreSQL expand | PostgreSQL expand；`authorization_revision` int64、wire 范围 `1..9007199254740991`、投影最长 5 分钟；无 Redis 权限缓存、无 sessions 表；授权写与通用 append-only audit 同事务 | PostgreSQL 是唯一事实源，失败整体回滚 | 段成威 | Accepted / A4 |
 | DEC-013 | Public API 错误 | 复用任意 HTTP 状态 / 固定安全语义 | 仅 400/401/403/500/503；不使用 409；200-empty 表示合法零权限 | consumer 可稳定 fail-closed 且不混淆无权限与依赖故障 | 段成威 | Accepted / A3、A4 |
+| DEC-014 | 当前无云资源时如何完成工程集成 | 等待云资源 / HTTP mock / 本地类生产环境 | G3-NP-LOCAL：loopback-only Keycloak + 专用 PostgreSQL + Caddy HTTPS + synthetic data；IdP/API 为 `localhost` 独立端口；Desktop 显式 CA pin 与 Keychain issuer/client/environment binding | 不等待云资源，同时保留真实 OIDC/TLS/RBAC/隔离语义；禁止 mock 或 insecure TLS 冒充集成 | 段成威 | Accepted / A7；offline ready/core online/final gates PASS |
 
 段成威已于 2026-07-31 明确批准 A1—A6。G1 需求/架构决策与 G2 设计门通过；2026-08-01
 已执行并完成获特别授权的 S1/S2 Contracts candidate；段成威已于 2026-08-01 通过 G2A，
 S3 API foundation 已推送为 `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`；S4 provider 已推送并
 远端核验为 `360a526b679147472e7cc82ca7ac9db9d18a371d`。S5A Desktop native boundary 已推送并
 远端核验为 `3798c67d260237928730758c7ec4c1fbe6fcf7d2`，本地门禁与结构化审查开放
-P0/P1/P2=0。具体 IdP 产品、issuer、client ID、生产域名/TLS 与 secret 配置属于 G3/G5
-前置条件。
+P0/P1/P2=0。本地 IdP/issuer/client/JWKS 已由 A7 固定；生产 IdP、域名/TLS 与 secret
+配置仍属于 G5 前置。G3-NP-LOCAL 的静态实现、仓内门禁（Infra 71/71 +
+lint/Compose/shell/diff）、local stack 与 exact realm/two clients/canonicalized scope sets/
+explicit `userinfo.token.claim=false` mapper/strict managed `data_classification` user profile/
+two fixed users/password reset/refresh revocation `invalid_grant` live conformance、
+HTTPS synthetic user provisioning、offline ready 与 synthetic API bootstrap 已完成。API
+local-only 显式 CA PEM + lowercase SHA-256 pin 已通过结构化审查（P0/P1/P2=0），最终 core
+online 与三仓门禁 PASS，因此 G3 PASS；S5B 仅具备单独审批条件、仍未批准。
 
 ## 2. ADR 判定
 
@@ -52,24 +59,30 @@ P0/P1/P2=0。具体 IdP 产品、issuer、client ID、生产域名/TLS 与 secre
 | R-007 | RBAC 数据跨租户串线 | medium | critical | 复合 FK/唯一约束、tenant-scoped repository | 两租户 integration | 禁用写入口、roll-forward | 段成威 | low |
 | R-008 | auth/RBAC 依赖故障被解释为零权限 | medium | medium | 503 与 200-empty 分离 | fault injection/metrics | retry、provider rollback | 段成威 | low |
 | R-009 | 新 endpoint 以 additive 名义绕过安全评审 | medium | high | semantic 分类、G2/G2A/ADR | Reviewer checklist | 阻断 merge/tag | 段成威 | low |
-| R-010 | 现有 Tasks 匿名/跨租户风险随 API 一同上线 | high | critical | FEAT-125 中 service config 不注册 task handlers + 生产 ingress 拒绝双隔离；FEAT-126 才修改 auth/tenant contract | 独立验证 service config 未注册 handlers；从 internet、Desktop、untrusted network 三来源负测 | 阻断生产或关闭整个 API 暴露 | 段成威 | low-medium |
+| R-010 | 现有 Tasks 匿名/跨租户风险随 API 一同上线 | high | critical | 默认 legacy profile/wire 不变；FEAT-125 local/未来获批宿主 profile 不注册 task handlers + 对应 ingress 拒绝双隔离；FEAT-126 才修改 auth/tenant contract | 独立验证获批宿主 profile 未注册 handlers；从 internet、Desktop、untrusted network 三来源负测 | 阻断生产或关闭整个 API 暴露 | 段成威 | low-medium |
 | R-011 | floating contracts 产生 wire drift | high | high | exact tag/SHA/digest/generator + drift CI | clean regenerate | 回退到 pinned artifact | 段成威 | low |
 | R-012 | 单人多角色导致自我批准掩盖缺陷 | medium | high | 分离 Codex Planner/Implementer/Reviewer pass，批准证据单独记录 | G4 review | 回到前一 gate | 段成威 | medium |
 | R-013 | Rust authenticated transport 被滥用为通用代理或泄漏 bearer | medium | critical | 只暴露两个 operation intent；固定 API HTTPS origin/GET/path；Rust 内附加 bearer；IPC schema 不接受 URL/method/header/body且不返回 token | command allowlist/redirect/IPC fuzz + token scan | disable native commands、撤销 token、feature off | 段成威 | low |
 | R-014 | `openidconnect` 传递依赖 `rsa 0.9.10` 命中 RUSTSEC-2023-0071 | low in current verifier-only path | high if private-key operations introduced | S5A 只做 RS256 公钥验签，不含 RSA 私钥签名/解密；锁定依赖树并在 `.cargo/audit.toml` 记录可移除 ignore；禁止引入 private-key path | 每次 `cargo audit` + dependency tree/security review；上游修复监测 | 上游修复后升级并删除 ignore；若范围出现私钥运算立即阻断 | 段成威 | low for S5A candidate；G5 复核 |
+| R-015 | 本地 CA 或 local-integration 配置泄漏到生产/扩大信任 | low-medium | critical | local profile 显式开启；仅允许 `localhost`；CA regular-file/no-symlink/权限/大小/digest 校验；默认 WebPKI；local secrets/CA private key ignored | config negative tests、artifact/env/Git scan、启动 fail-fast | 关闭 local profile、清理本地凭证/CA trust、重新登录 | 段成威 | low |
+| R-016 | Keycloak native redirect 注册只放宽动态端口时意外放宽 path | medium | high | 必须以真实 authorize request 证明动态端口下仅接受 `/oauth/callback`；禁止 `*` 或任意 path；不满足则 G3 FAIL 并重新评审 provider | offline realm validator + online positive/negative redirect preflight | 保持 exact callback 配置与 drift 负测，不降低 callback 要求 | 段成威 | runtime proof PASS；correct path accepted / wrong path rejected |
+| R-017 | API 启动期 JWKS HTTPS 无本地 CA trust | closed | critical | API local-profile-only explicit CA、exact localhost、single PEM/≤64KiB/0400或0600/regular non-symlink、lowercase SHA-256 pin、isolated proxy-free/no-redirect client；default/production fail closed | API startup/readiness + core online | 删除 local env 即安全回退；不修改系统 Keychain | 段成威 | closed；P0/P1/P2=0，P3 测试增强非阻断 |
+| R-020 | refresh rotation 后 Keychain save fail 未撤销新 token；非法 refresh response 未撤销当前 token | medium | high | 登记 `S5A-REV-OPEN-001`，不得误报完整 token-family cleanup | S7 auth lifecycle/fault E2E | 修复后重跑 signed native auth lifecycle | 段成威 | open P2；不阻断 G3/S5B，阻断 S7/G5/生产 |
+| R-018 | Keycloak rotation 被误报为 reuse-revokes-family | high if wording not constrained | high | 本地 config 固定 `provider_limit_documented`；G3 只记录 rotation，不记录 A2 family PASS | S7 provider auth-lifecycle E2E | 换用满足要求的 provider/补偿控制并重新走安全评审 | 段成威 | blocks S7/G5, not S5B implementation |
+| R-019 | local bootstrap 误连共享或真实数据库 | high before guard | critical | `feat-125-local-lab` 在任何 DB 访问前锁死 exact issuer、credentialed `postgres://<credentials>@127.0.0.1:5432/yijie_api_feat125_local?sslmode=disable` 结构及固定 tracked 2×2 manifests；错误脱敏 | profile/DSN/manifest 负测 + 空库 inventory + 首次/幂等 bootstrap 对账 | unknown/drift fail closed；禁止写操作 | 段成威 | resolved in API `faeb78019d95aaf9dcfbd8493f8bc2ecf7e4bf34`；dedicated DB runtime proof PASS |
 
 ## 4. 威胁建模
 
 | 资产/边界 | 威胁 | 攻击路径 | 服务端控制 | 安全测试 | 残余风险 |
 |---|---|---|---|---|---|
-| access/refresh credential | 窃取与重放 | LocalStorage、日志、redirect 泄漏 | 系统浏览器、PKCE S256、10 分钟 access、Keychain、refresh rotation/reuse detection、TLS | storage/log/redirect；验证有效 bearer 在到期前的残余重放窗口 | IdP/OS 风险；无 DPoP，access JWT 最长 10 分钟可重放 |
+| access/refresh credential | 窃取与重放 | LocalStorage、日志、redirect 泄漏 | 系统浏览器、PKCE S256、10 分钟 access、Keychain、refresh rotation/reuse detection、TLS | storage/log/redirect；验证有效 bearer 在到期前的残余重放窗口 | IdP/OS 风险；无 DPoP，access JWT 最长 10 分钟可重放；本地 Keycloak family reuse 未证明 |
 | Desktop authenticated transport | confused deputy/SSRF/token IPC | 任意 operation/URL/method/header/body、redirect 越界、command/event 泄漏 | 固定两 GET operations 与 API HTTPS origin/path；Rust 内附加 bearer；IPC 无 token/Authorization 输入 | SEC-005/012 allowlist、redirect、IPC fuzz | 已批准 API origin 或 Rust dependency compromise |
 | Principal | 伪造 issuer/subject | 错签名、错误 audience、alg confusion、未知 kid | 严格 issuer/aud/alg/time/JWKS 验证 | auth matrix | IdP compromise |
 | active tenant | 越权切租户 | 缺失或伪造 `X-Yijie-Tenant-ID` | header 只作选择提示；user/tenant/membership 每请求验证；repository 显式 tenant | 0/1/多租户、header 与 two-tenant forgery | 管理员错误授权 |
 | RBAC tables | 跨租户角色注入 | 跨 tenant role assignment | 复合 FK、事务、最小权限 DB role | DB constraint/integration | DB operator risk |
 | capability endpoint | 枚举/缓存/泄漏 | CDN/browser cache、角色结构回传 | no-store、最小响应、rate limit | header/schema/log tests | 肩窥/UI 泄漏 |
 | Desktop state | stale/篡改 | 修改 Pinia、迟到 response、离线重放 | UI 非安全边界；epoch/context/expiry | concurrency/E2E | 本地受控设备 |
-| business API | IDOR/跨租户读取 | 猜 task ID、绕过 router | FEAT-125 通过 service config 不注册 task handlers 且生产 ingress 拒绝；FEAT-126 实施 server-side tenant/resource/action check | 独立 handler registration 断言 + internet/Desktop/untrusted network 三来源负测；FEAT-126 direct authorization tests | FEAT-126 完成前不得开放旧 Tasks |
+| business API | IDOR/跨租户读取 | 猜 task ID、绕过 router | 默认 legacy profile 保持兼容；FEAT-125 获批宿主 profile 不注册 task handlers 且对应 ingress 拒绝；FEAT-126 实施 server-side tenant/resource/action check | 宿主 profile handler registration 断言 + internet/Desktop/untrusted network 三来源负测；FEAT-126 direct authorization tests | FEAT-126 完成前不得开放旧 Tasks |
 | JWKS/redirect URL | SSRF/重定向劫持 | 动态 URL、宽泛 redirect | 固定 allowlist、TLS、配置验证 | malicious URL tests | provider outage |
 | logs/audit | 敏感泄漏或伪造 | 记录 token/subject、换行注入 | 结构化日志、字段 allowlist、append-only | log scan/injection | privileged operator |
 | dependency supply chain | 恶意 SDK/plugin | 未固定 generator/依赖 | lockfile、digest、audit、CODEOWNERS | generate drift/audit | upstream compromise |
@@ -102,7 +115,7 @@ P0/P1/P2=0。具体 IdP 产品、issuer、client ID、生产域名/TLS 与 secre
 
 | Exception ID | 原因 | 范围 | Owner | 批准证据 | 到期日 | 补偿控制 | 移除条件 |
 |---|---|---|---|---|---|---|---|
-| EXC-125-001 | 旧 `/v1/tasks` 尚未迁移到权威身份/租户/RBAC | 仅旧 Tasks handlers 与生产暴露；不覆盖 capability endpoint | 段成威 | A6 | FEAT-126 生产启用或 2026-09-30，取较早者 | service config 不注册 task handlers + 生产 ingress 拒绝；独立 handler registration 断言 + internet/Desktop/untrusted network 三来源负测 | FEAT-126 完成并生产启用；到期未完成不得开放 Tasks，必须重新审批 |
+| EXC-125-001 | 旧 `/v1/tasks` 尚未迁移到权威身份/租户/RBAC | 仅旧 Tasks handlers 与生产暴露；不覆盖 capability endpoint；默认 legacy profile/wire 保持不变 | 段成威 | A6 | FEAT-126 生产启用或 2026-09-30，取较早者 | 获批宿主 profile 不注册 task handlers + production ingress 拒绝；独立 handler registration 断言 + internet/Desktop/untrusted network 三来源负测 | FEAT-126 完成并生产启用；到期未完成不得开放 Tasks，必须重新审批 |
 | EXC-125-002 | `rsa 0.9.10` 暂无修复版本且仅由 `openidconnect 4.0.1` 传递引入 | 仅 S5A RS256 公钥验签 candidate；不覆盖任何 RSA 私钥、签名或解密 | 段成威 | S5A commit、安全矩阵与审查记录 | G5 复核或上游修复可用时，取较早者 | exact lock、`.cargo/audit.toml` 有理由 ignore、每次 audit、禁止 private-key operation | 升级到修复链并删除 ignore；若不能证明 verifier-only 则停止发布 |
 
 ## 8. Codex 停止条件
@@ -113,7 +126,8 @@ P0/P1/P2=0。具体 IdP 产品、issuer、client ID、生产域名/TLS 与 secre
 - 不能从已验证凭证和 membership 导出 user+active tenant；
 - 需要把 token/capability 写入前端普通存储或日志；
 - 实现拟偏离已批准 migration、复合 FK、`authorization_revision` 或通用 append-only audit；
-- 具体 IdP 产品/issuer/client ID、API origin、CSP、JWKS、TLS 或 secret 未在 G3/G5 配置并验证却要求生产启用；
+- 生产 IdP/client/API
+  origin/CSP/JWKS/TLS/secret 未在 G5 配置并验证却要求生产启用；
 - candidate 来自 dirty/floating sibling 或没有远端完整 SHA/digest；
 - 任一安全测试出现默认放行、跨租户泄漏或弱化断言；
 - API/Desktop 没有真实 candidate 集成却要求关闭 FEAT-124 G4-001；
@@ -133,4 +147,6 @@ P0/P1/P2=0。具体 IdP 产品、issuer、client ID、生产域名/TLS 与 secre
 | Contracts S1/S2 授权 | 段成威 | Approved and executed；candidate/gates/remote verification PASS | 2026-08-01 | 用户明确指令；`9ec34abd...` |
 | Provider/consumer 实施授权 | 段成威 | G2A Passed；S3/S4 API provider 已授权并完成；S5A Desktop native boundary 已单独授权并完成；S5B+ 与生产激活仍按后续 slice/gate | 2026-08-01 | 用户明确指令；S4 `360a526...`；S5A `3798c67...` |
 | S5A dependency exception | 段成威 | Accepted for non-production S5A candidate；G5 必须重审，禁止扩大到 RSA 私钥运算 | 2026-08-01 | EXC-125-002、Desktop security matrix、`cargo audit` PASS with documented ignore |
-| 具体 IdP 与生产配置 | 段成威 | Pending；G3/G5 blocker | 2026-07-31 | issuer/client ID/domain/TLS/secret 尚未登记 |
+| 生产 IdP 与生产配置 | 段成威 | Pending；G5 blocker | 2026-07-31 | production issuer/client ID/domain/TLS/secret 尚未登记 |
+| A7 / G3-NP-LOCAL | 段成威 | PASS；最小显式 CA 方案、offline ready、core online 与最终三仓门禁完成；S5B 仍待单独批准 | 2026-08-01 | local-only CA pin evidence；不修改系统 Keychain/生产配置 |
+| 生产环境与激活 | 段成威 | Deferred；本地 G3 PASS 不替代 G5/G6 | 2026-08-01 | A7 明确保留门 |

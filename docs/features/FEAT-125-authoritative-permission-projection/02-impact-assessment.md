@@ -36,7 +36,8 @@
 |---|---|---|---|
 | S4 API producer 已远端可用 | `yijie-api@360a526b679147472e7cc82ca7ac9db9d18a371d`，`origin/develop` 相等 | tenants/capabilities、逐请求 tenant 验证、稳定错误、revision、metrics 与 producer/fault conformance PASS；flag 默认 false | staging/performance/exporter、生产配置与激活未执行 |
 | S5A Desktop native boundary 已远端可用 | `yijie-desktop@3798c67d260237928730758c7ec4c1fbe6fcf7d2`，`origin/develop` 相等 | system-browser OIDC、精确 loopback、PKCE/state/nonce、Keychain lifecycle、两个固定 GET operations 与本地安全矩阵 PASS；flag 默认 false | S5B generated consumer/store、S6 UI、真实 IdP/API/正式 Keychain provisioning 未执行 |
-| G3 非生产准备层已形成 | `yijie-infra@47c9e826d1f860d872958b05bafa44b1c3232f62` + uncommitted G3 diff；模板 SHA-256 `b7d1eb27...` | strict template/ready validator、bounded read-only online preflight、runbook 与 19 tests PASS；local PostgreSQL migration 2、API health/ready、关闭态 endpoint 404 PASS | 真实非生产 IdP/DNS/TLS/API origin 未分配；synthetic bootstrap 与 online preflight NOT RUN；不构成 G3 PASS |
+| G3 通用准备层已远端可用 | `yijie-infra@2f01f22b46f313f8ff0b9973e417f7ccae654318`；`yijie@9c732e0a8f8c7eb9d31d371300225ea105018879` | strict template/ready validator、bounded online preflight、runbook 与本地 flag-off baseline 已提交并推送 | A7 已把外部资源前置替换为 G3-NP-LOCAL；历史首次 online 的 API health 502 已由 local-only 显式 CA pin 修复关闭 |
+| G3-NP-LOCAL 已提交基线 | API `faeb78019d...`、Desktop `446b4d6085...`、Infra `298192e386...`；三个 `origin/develop` 完整 SHA 已核验 | API/Desktop/Infra 最终门禁 PASS；Keycloak/PostgreSQL/Caddy、专用 DB/2×2 bootstrap、offline ready PASS；API 仅 local profile 使用严格显式 CA PEM+SHA-256 pin且未改系统 Keychain；core online 的 discovery/JWKS/callback、health/ready、两个 401、Tasks edge/direct 404 全部 PASS | G3 PASS；S5B 仅具备单独审批条件、仍未批准；signed app/Keychain/full auth E2E 与生产配置仍 NOT RUN |
 
 ## 3. 仓库与组件影响矩阵
 
@@ -49,7 +50,7 @@
 | yijie-desktop / native auth+transport | OIDC public client、凭证保管与受限 authenticated transport | direct | system-browser PKCE、loopback、Keychain、logout；token 不跨 IPC 时由 Rust 仅执行两个固定 GET operations | 段成威 | Rust/Tauri modules、固定 API origin/method/path allowlist、最小 capability、tests |
 | yijie-desktop / API+store | contract consumer | direct | exact pin、生成类型/adapter、fail-closed state | 段成威 | api/domain/store/tests；禁止通用 native proxy |
 | yijie-desktop / navigation+router | 呈现与 UX guard | direct | deny-by-default、深链与恢复 | 段成威 | nav/router/AppShell/pages/tests |
-| yijie-infra | local/nonproduction/production dependencies | direct for G3 preparation | 固定供应商中立公开配置 schema、默认关闭/合成数据策略、离线与在线预检；真实 issuer/client/JWKS、API origin、secret backend 与 TLS 仍待外部落地 | 段成威 | G3 template/validator/runbook；不创建生产或云资源 |
+| yijie-infra | local/nonproduction dependencies | direct for G3-NP-LOCAL | 固定本地 Keycloak、专用 PostgreSQL、Caddy HTTPS、loopback ports、合成数据与 offline/online preflight；生产资源继续 N/A/deferred | 段成威 | local-lab Compose profile、realm/Caddy public config、validator/preflight/runbook；不创建生产或云资源 |
 | yijie-admin-web | RBAC 管理 UI | none for first slice | 首版只允许受控 bootstrap，不做管理 UI | 段成威 | N/A |
 | yijie-agent-host | local Runtime boundary | none | 不消费平台身份；继续固定 contracts-v0.2.0 | Agent Runtime Owner | N/A |
 | yijie-codex/Runtime | Runtime source | none | 无 Runtime/AI 协议变化 | Runtime Owner | N/A |
@@ -57,7 +58,7 @@
 ## 4. 调用链与数据流
 
 ```text
-approved external IdP → direct RS256 JWT
+approved local or production IdP → direct RS256 JWT
   → Desktop Rust credential boundary
   → operation-scoped authenticated transport
     (fixed API HTTPS origin + listMyTenants/getMyCapabilities; bearer attached in Rust)
@@ -88,6 +89,36 @@ tampered Desktop / direct API call
 | RBAC data | DB read/write | yijie-api migration/domain | authorization module | projection + business checks | transaction rollback/503 |
 | Capability→UI | process-local | Desktop mapping policy | Permission Store | nav/router | error/recovery state |
 
+### 4.1 G3-NP-LOCAL 本地拓扑
+
+```text
+system browser / Desktop Rust
+  → https://localhost:8443 → Caddy → Keycloak → dedicated PostgreSQL
+  → https://localhost:9443 → Caddy → host-loopback yijie-api
+      → dedicated API DB yijie_api_feat125_local on 127.0.0.1:5432
+
+OIDC callback remains http://127.0.0.1:{ephemeral-port}/oauth/callback
+```
+
+两个 HTTPS 入口使用同一持久化本地 CA；preflight 与 Desktop 必须显式加载并校验该 CA，
+不能关闭证书或 hostname 校验。只有 `feat-125-local-lab` API service profile 不注册 legacy
+Tasks handlers，默认 profile 的 legacy wire 保持不变；Caddy 再拒绝本地 Tasks 路径。本地
+环境只处理 synthetic identities/tenants，不改变固定 API audience。`feat-125-local-lab`
+bootstrap profile 在读取 manifest、检查 migration 或访问数据库之前，必须同时验证 exact
+issuer、专用 loopback DB 结构和四份 tracked manifest 的固定 subject/tenant/role/actor tuple；
+unknown profile 或任一漂移 fail closed，且错误不得回显 DSN。
+
+该拓扑已形成部分运行时证据：Keycloak/PostgreSQL/Caddy 容器健康；live Keycloak 已证明
+exact realm、两个 clients、canonicalized scope sets、显式 `userinfo.token.claim=false` 的
+audience mapper、strict managed `data_classification` user profile（Keycloak 26.7 REST 中
+omitted field = unmanaged disabled）、两名固定合成用户、password resets 与 refresh
+revocation `invalid_grant`。两名用户已经固定 HTTPS 置密；API 专用 DB 已证明空库起步、migration 1→2、bootstrap 前零业务行，
+最终仅含固定 2×2 合成授权矩阵且 tasks=0；公开 CA 已导出并通过 offline ready 严格校验。
+API 已仅在 `feat-125-local-lab` 使用绝对 CA PEM 路径、lowercase SHA-256 pin 与隔离的
+proxy-free/no-redirect TLS client；default/production/disabled projection 对这些变量 fail closed，
+没有安装系统信任。最终 startup/readiness 与 core online preflight PASS；禁止将该部署信任
+接口扩展到生产或解释为公共 wire/contracts 变更。
+
 ## 5. Contract Impact
 
 - 分类：`semantic`。
@@ -112,10 +143,10 @@ tampered Desktop / direct API call
 |---|---|---|---|---|---|
 | users | yijie-api | expand candidate | 无现有用户表 | 旧 API 忽略；新 identity 读取内部 user/status | 空表先部署；不写真实用户 |
 | user_identities | yijie-api | expand candidate | 无外部 identity mapping | 新 authn 用 `(issuer, subject)` 映射 user | 与 users 分表；不把 email/display name 当真相 |
-| tenants/memberships | yijie-api | expand candidate | 现有 tasks tenant_id 无 FK | 新 tenancy 读取 active/suspended 与 `authorization_revision` | bootstrap 与历史 task 归属另审 |
+| tenants/memberships | yijie-api | expand candidate | 现有 tasks tenant_id 无 FK | 新 tenancy 读取 active/suspended 与 `authorization_revision` | synthetic bootstrap candidate 已验证；生产 bootstrap 与历史 task 归属另审 |
 | roles/permissions/assignments | yijie-api | expand candidate | 无旧数据 | 新 authorization 读取 | 可禁用新 endpoint；保留 expand 表 |
 | API session table | yijie-api | none / prohibited in this feature | direct IdP RS256 JWT 不需要本地 API session | yijie-api 只验证 IdP JWT，不签发或持久化 API session | N/A；不得创建 session 表 |
-| audit_logs | yijie-api | semantic schema candidate | 当前 resource_id FK 仅指 tasks | 新授权变更无法直接复用 | 需独立 migration 设计并保持 append-only |
+| audit_logs | yijie-api | semantic expand in migration v2 | 00001 resource_id FK 仅指 tasks；旧 rows 保留 | v2 支持授权资源标识并保持 append-only；G3 bootstrap 已写 success audits | app rollback 保留 expand schema/audit；禁止 destructive down |
 | Desktop memory | yijie-desktop | ephemeral state | 无旧权限状态 | 新进程内 store | logout/restart 即清空 |
 
 G1/G2 已于 2026-07-31 批准 A1—A6。具体 migration 字段、索引、FK、保留期和 down
@@ -138,6 +169,8 @@ G1/G2 已于 2026-07-31 批准 A1—A6。具体 migration 字段、索引、FK�
   不进入前端持久化、URL 或日志。IdP access JWT 最大有效期为 10 分钟；refresh 撤销或
   重用检测在下一次 refresh 时失败，不承诺即时撤销已签发 JWT；内部 user/membership
   suspension 由 API 实时返回 403。
+- Provider limitation：本地 Keycloak 配置证明 rotation，但未证明 reuse 自动撤销整个 token
+  family；完整 A2 生命周期证据必须留在 S7/G5，本地 G3 不得宣称通过。
 - 原生传输：Rust 只接受 `listMyTenants` 与 `getMyCapabilities` 两个 operation intent 以及
   后者所需的 tenant UUID，并使用固定的已批准 API HTTPS origin、GET method 和 path；
   WebView 不能提交任意 URL/method/header/body，IPC 不返回 token，不建立通用代理。
@@ -151,7 +184,7 @@ G1/G2 已于 2026-07-31 批准 A1—A6。具体 migration 字段、索引、FK�
 
 | 依赖 | 固定版本/完整 SHA | 能力是否已验证 | 费用/限流 | Sandbox | Fallback |
 |---|---|---|---|---|---|
-| Identity provider | direct IdP RS256 JWT architecture approved；具体 provider/issuer/client ID/JWKS 待 G3/G5 固定；audience 固定 `https://api.yijie.ai` | S5A 本地协议/失败矩阵 PASS；真实 provider 否 | 配置形成后评估 | staging tenant | auth unavailable→deny |
+| Identity provider | local engineering provider fixed to pinned Keycloak under A7；production provider remains open；audience fixed `https://api.yijie.ai` | G3-NP-LOCAL live realm/offline ready/core online PASS；family reuse limitation 留在 S7/G5 | 本地无外部费用 | synthetic realm | auth unavailable→deny |
 | PostgreSQL | 16 / yijie-api S4 candidate | local migration/RBAC 2×2 integration PASS；staging/performance 未验证 | 需容量测试 | 临时 schema integration | endpoint disable |
 | Contracts generator | openapi-typescript 7.13.0；oapi-codegen 2.7.2 | 当前生成链存在 | N/A | repo CI | pin candidate |
 | Tauri network/CSP | Tauri 2 / Desktop `3798c67d...` | S5A operation-scoped transport/config/redirect/IPC 本地矩阵 PASS；生产 API origin/CSP 未验证 | N/A | local/staging | native flag off；不新增普通 fetch command 或通用 native proxy |
@@ -164,7 +197,7 @@ G1/G2 已于 2026-07-31 批准 A1—A6。具体 migration 字段、索引、FK�
 | Contracts generate/lint/test/build | `make generate/lint/test/build` | 源、SDK、schema | CI breaking 仅 origin/main |
 | Contracts baseline check | `./scripts/check-breaking.sh <full SHA>` | OpenAPI/AsyncAPI/JSON Schema | 必须显式用 v0.2.0 full SHA |
 | API unit/lint | `make lint && make test` | Go/race/coverage | S3/S4 auth/RBAC/endpoint/fault/metrics PASS；staging 不在该命令内 |
-| API PostgreSQL integration | `make test-integration` / `make test-all` | 临时 schema/migration | S3/S4 migration、复合 FK、2×2 RBAC projection PASS；bootstrap/staging 待 S7 |
+| API PostgreSQL integration | `make test-integration` / `make test-all` | 临时 schema/migration | S3/S4 migration、复合 FK、2×2 RBAC projection PASS；G3 synthetic bootstrap 首次/幂等/audit/revision PASS；staging 待 S7 |
 | API generate | `make generate-check` | Go OpenAPI types | exact `9ec34abd...` + oapi-codegen v2.7.2 drift check PASS |
 | Desktop quality | `make lint && make test && make build` | Vue/TS/Rust | S5A PASS；generated contract consumer/store 仍待 S5B |
 | Desktop docs/native | `pnpm docs:build`、`pnpm tauri:build --debug`、cargo/npm/license audit | design/native | S5A 本地 `.app/.dmg` 与审计 PASS；真实 API origin/CSP、签名/公证未定 |
@@ -199,8 +232,8 @@ G1/G2 已于 2026-07-31 批准 A1—A6。具体 migration 字段、索引、FK�
 
 | ID | 未知项 | 允许的只读/隔离验证 | 禁止副作用 | Owner | 结论 |
 |---|---|---|---|---|---|
-| SPIKE-001 | direct IdP RS256 JWT 与 Desktop login flow | 固定 provider metadata、issuer/client/JWKS 并验证 Tauri flow | 不注册生产应用、不写 secret | 段成威 | A1/A2 Approved；S5A 本地矩阵与 G3 strict/online preflight 工具 PASS；真实 provider 分配和联调待 G3 completion/G5/S7 |
+| SPIKE-001 | direct IdP RS256 JWT 与 Desktop login flow | G3 只验证固定本地 Keycloak metadata、issuer/client/JWKS 与 API startup/readiness；完整 Tauri login/refresh/Keychain 属于 S7/G5 | 不注册生产应用、不写 secret | 段成威 | A1/A2/A7 Approved；live realm/offline ready/core online PASS；本地 family reuse 未证明；production provider 仍待 G5 |
 | SPIKE-002 | required `X-Yijie-Tenant-ID` 与 membership/status 验证 | 用合成状态图/测试替身验证 missing/invalid/denied | 不把 request tenant 当授权事实 | 段成威 | A3 Approved；S4 header/endpoint、原子 projection 与 400/403 负测 PASS；跨仓 E2E 待 S7 |
-| SPIKE-003 | RBAC schema 与 bootstrap | 临时 schema migration rehearsal | 不写真实用户/租户，不建 API session 表 | 段成威 | A4 Approved；G3 再次对现有 local DB 应用/核验 migration 2；可审计幂等 synthetic bootstrap CLI 仍待实现 |
-| SPIKE-004 | 现有 Tasks API production disposition | 验证 ingress + handler 双隔离并创建 FEAT-126 | 不静默改 Tasks wire contract | 段成威 | A6 Approved；到期为 FEAT-126 生产启用或 2026-09-30 较早者；隔离证据待 G5 |
-| SPIKE-005 | API origin/CSP/Keychain | local/staging 配置验证 | 不新增生产 URL/capability | 段成威 | G3 已固定可信 HTTPS、same-origin IdP endpoints、exact callback 与 untracked config 规则；正式 IdP/DNS/TLS/API origin、Keychain provisioning 和真实 E2E 仍 Open |
+| SPIKE-003 | RBAC schema 与 bootstrap | 临时 schema migration rehearsal | 不写真实用户/租户，不建 API session 表 | 段成威 | A4 Approved；G3 local DB migration 2 与可审计幂等 synthetic bootstrap candidate PASS；生产 bootstrap 仍待 G5 |
+| SPIKE-004 | 现有 Tasks API production disposition | 验证本地 `feat-125-local-lab` profile + Caddy 双隔离并创建 FEAT-126 | 不静默改 Tasks wire contract 或默认 API profile | 段成威 | A6 Approved；local runtime direct+edge 404 PASS；未来生产宿主 API profile/ingress 方案待 G5 |
+| SPIKE-005 | API origin/CSP/Keychain | local 配置验证 | 不新增生产 URL/capability | 段成威 | A7 固定 `localhost` HTTPS、本地 CA 显式注入与环境绑定；本机当前无有效 code-sign identity/provisioning profile，正式 Keychain native evidence 与生产配置仍 Open |

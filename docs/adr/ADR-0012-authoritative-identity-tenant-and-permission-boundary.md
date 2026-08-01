@@ -2,7 +2,7 @@
 
 ## 状态
 
-Accepted
+Accepted；2026-08-01 增补 A7 本地类生产工程环境决策
 
 ## 日期
 
@@ -111,7 +111,7 @@ JWKS、生产域名和生产控制面配置不由本 ADR 虚构，仍是 G3/G5 �
 8. 现有只绑定 task 的 `audit_logs` 边界必须泛化，或新增独立的 append-only authorization
    audit；授权写与审计同事务。读取 projection 不逐请求写业务审计，只记录脱敏状态、
    指标和 trace，不记录 token 或完整 capability 集。
-9. `bootstrap-owner` 必须受控、幂等、可审计；migration 不写真实 user/tenant。FEAT-125
+9. `bootstrap-nonprod-authz` 必须受控、幂等、可审计；migration 不写真实 user/tenant。FEAT-125
    不提供角色管理 UI 或公开角色管理 API。
 
 ### A5. Settings recovery 与默认路由
@@ -150,6 +150,79 @@ JWKS、生产域名和生产控制面配置不由本 ADR 虚构，仍是 G3/G5 �
   控制面、ingress 双隔离、Desktop 签名公证和 release/rollback 操作。
 - G2A 是独立人工门，已于 2026-08-01 依据 `contracts-v0.3.0` candidate 的 source、生成物、
   完整 SHA、digest、generator、breaking check 和 semantic review 证据通过；它不批准生产配置。
+
+### A7. G3-NP-LOCAL 本地类生产工程环境
+
+段成威于 2026-08-01 确认当前阶段不购买或使用云服务器、托管数据库、公网 IP、生产域名
+或其它线上资源，并批准以本地类生产环境完成 FEAT-125 的工程实现与集成验证：
+
+1. 当前工程门使用 `G3-NP-LOCAL`，替代此前等待真实外部非生产资源的
+   `G3-NP-EXT`。环境仅使用 loopback、Docker、本地持久 volume 与合成数据；不得写入真实
+   用户、租户、token 或商家经营数据。
+2. 本地身份提供方固定为标准 OIDC Keycloak，使用独立 PostgreSQL；本地 TLS ingress 固定为
+   Caddy。API bootstrap 另固定到 loopback PostgreSQL 的专用数据库
+   `yijie_api_feat125_local`，不得连接共享开发库或生产库。具体镜像必须使用经审查的精确
+   版本或 digest，所有 published port 只绑定 loopback，CA 私钥与密码不得进入 Git；2×2
+   synthetic bootstrap manifests 必须作为受审查、可追溯的无凭证配置进入候选证据。
+3. 本地入口使用 `localhost` 的独立 HTTPS 端口，避免修改系统 DNS/hosts；系统浏览器和
+   Desktop 都必须执行真实 TLS 验证。Desktop 只允许在显式 `local-integration` 模式加载经
+   路径、权限、大小和 SHA-256 校验的本地 CA，并继续执行 hostname/SAN 校验；禁止 HTTP
+   fallback、忽略证书错误或全局关闭 TLS 校验。
+4. Keycloak client 仍遵循 A1/A2：public native client、Authorization Code + PKCE S256、
+   精确 `http://127.0.0.1:{ephemeral-port}/oauth/callback`、RS256、固定 API audience
+   `https://api.yijie.ai` 和 refresh rotation；本地 API origin 不改变 audience 语义。本地
+   live conformance 还必须锁定 exact realm、两个 client、规范化后的 scope set、显式
+   `userinfo.token.claim=false` 的 audience mapper，以及 strict managed
+   `data_classification` user profile；Keycloak 26.7 REST 中省略该字段表示 unmanaged
+   disabled，不得把省略误判为漂移或宽松配置。Provisioner 在任何 PUT、password reset 或
+   refresh revocation 前，必须只读核验 exact realm/clients、完整两用户 inventory 及其
+   core/attribute state；只有 exact default user profile 且 attributes 为空时才允许迁移到目标
+   profile，任何意外 profile/attribute 必须在写操作前 fail closed。必须仅有两名固定合成用户，
+   并证明置密、password reset 与 refresh revocation 返回 `invalid_grant`。本地
+   Keycloak 当前证据不宣称 reuse 自动撤销整个 token family，固定登记为
+   `provider_limit_documented`；这不阻断 S5B 实现，但继续阻断 S7 auth-lifecycle、G5 与
+   生产激活，不能把 rotation 证据误写为 A2 完整通过。
+5. Desktop Keychain envelope 必须绑定 schema version、issuer、client ID 与 environment；旧版
+   或不匹配记录必须删除并要求重新登录，禁止把本地 refresh credential 发送给未来生产
+   issuer。正式 Data Protection Keychain 验证仍需要匹配的 Apple Development provisioning
+   profile，未执行时必须标记 `NOT RUN`。
+6. legacy Tasks 在本地也必须执行双隔离：`feat-125-local-lab` service profile 不注册
+   handlers，Caddy 同时拒绝 `/v1/tasks` 与其子路径；默认 API profile 的既有 Tasks wire
+   保持不变。未来生产必须由获批宿主 API profile 和 public ingress 提供同等双隔离，不得
+   因为没有公网入口或默认 profile 可用而省略 A6。
+7. `G3-NP-LOCAL PASS` 只证明本地环境 ready，可以进入 S5B；它不代表 G5 Production Ready
+   或 G6 Delivery Complete。生产 IdP、生产 DNS/TLS、secret/control plane、签名公证、部署、
+   smoke 和观察继续保持未来前置，不得标记 PASS。
+
+本补充不改变 `contracts-v0.3.0` 的 Public API wire 形状；其 contract-impact 仍为
+`semantic`，变化的权威源是本 ADR、API 私有持久化/服务 profile、Infra deployment
+interface 与 Desktop 本地凭证 envelope。
+
+### A7 当前执行状态（2026-08-01）
+
+API/Desktop/Infra 静态实现与仓内门禁、专用 `yijie_api_feat125_local` 数据库的 migration
+1→2 与 2 users × 2 tenants synthetic API bootstrap、本地 Keycloak/PostgreSQL/Caddy
+健康启动，以及 Infra 71/71 tests + lint/Compose/shell/diff 已通过。Live Keycloak 已证明
+exact realm、两个 clients、canonicalized scope sets、显式 `userinfo.token.claim=false` 的
+audience mapper、strict managed `data_classification` user profile（Keycloak 26.7 REST 中
+omitted field = unmanaged disabled）、两名固定合成用户、password resets 与 refresh
+revocation `invalid_grant`；profile migration 只在全量只读核验后且仅对 exact default
+profile + empty attributes 执行，意外 profile/attributes 在 PUT/reset 前 fail closed。固定 HTTPS
+置密和最终 offline ready 已完成。该专用数据库
+在 migration 前 public tables 为 0、bootstrap 前授权与 Tasks 表行数为 0；最终只含固定合成
+授权矩阵、tasks 为 0。段成威随后批准并完成最小充分 G3 修复：`yijie-api` 仅在
+`feat-125-local-lab` 使用绝对路径 `YIJIE_API_LOCAL_CA_PEM_PATH` 与 lowercase
+`YIJIE_API_LOCAL_CA_SHA256`，将信任严格限制到 exact `https://localhost:8443` issuer/JWKS；
+CA 必须是单 PEM、≤64 KiB、0400/0600、regular non-symlink，并由隔离、禁代理、禁重定向
+的 TLS client 使用。default/production/disabled projection 遇到这些本地变量均 fail closed，
+且未修改 macOS 系统 Keychain 信任。API CA 结构化审查 P0/P1/P2=0，P3 仅为非阻断测试增强。
+Offline ready 与最终 core online preflight 均 PASS：discovery/JWKS/callback、API health/ready、
+两个未认证 `401`、Tasks edge/direct `404` 全部通过。因此 `G3-NP-LOCAL PASS`；S5B 仅具备
+单独审批条件，仍未批准。最初 API `/healthz` 502 阻断已由上述显式 CA 修复关闭。
+
+G3 运行验证边界仅包括 TLS、OIDC discovery/JWKS、API startup/readiness、synthetic
+bootstrap、未认证 `401` 与 Tasks edge/direct `404`。完整系统浏览器登录、Rust bearer、
+refresh rotation/reuse 与 Keychain E2E 属于 S7/G5；A7 不把这些证据前移到 G3。
 
 ## 备选方案
 
@@ -195,7 +268,7 @@ JWKS、生产域名和生产控制面配置不由本 ADR 虚构，仍是 G3/G5 �
       `9ec34abd6e7dfb5a23b0154d467694167224ebbb`，执行生成、lint、test、build、
       pack、baseline breaking check 与 semantic review（2026-08-01 PASS；已 push，未 tag）；
 - [x] 候选证据完成后由段成威单独批准 G2A（2026-08-01）；
-- [ ] 在 G3 前固定 IdP 厂商、issuer、client ID、JWKS、redirect 和依赖审计；
+- [x] 为 G3-NP-LOCAL 固定本地 IdP、issuer、client、JWKS、redirect、显式 CA pin 和依赖审计；生产值仍留 G5；
 - [x] 在 G2A 后完成 S3 API exact pin、expand migration、JWT/JWKS、identity/tenancy/RBAC
       foundation 与依赖审计（2026-08-01；`fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`；
       structured review PASS；无生产激活）；

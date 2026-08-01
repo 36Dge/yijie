@@ -31,13 +31,14 @@
 | BR-015 | 若 FEAT-125 改动既有 `/v1/tasks` 认证或 `tenant_id` 语义，必须先升级影响分类并另走兼容迁移 | Contracts/API 审核 / 段成威 | Must |
 | BR-016 | 未解决现有 Tasks API 的生产暴露策略前，不得宣称整个 yijie-api 已完成生产授权闭环 | API 审核 / 段成威 | Must |
 | BR-017 | Desktop 使用系统默认浏览器完成 Authorization Code + PKCE S256；Rust 先绑定精确 `http://127.0.0.1:<ephemeral-port>/oauth/callback`，每次生成一次性 CSPRNG state/nonce，opener 只允许精确 IdP HTTPS origin；禁止 embedded WebView 和 custom deep-link 回调 | A1/A2 / 段成威 | Must |
-| BR-018 | access token 有效期 10 分钟并只驻留 Rust 进程内存；不足 2 分钟时 single-flight refresh。refresh token 仅存 macOS Data Protection Keychain service `ai.yijie.desktop.auth`，30 天 idle/90 天 absolute，必须 rotation，reuse 时撤销整个 token family；ID token 仅驻留 Rust 内存。禁止通过 Tauri event/command result 暴露 token，禁止普通前端存储、文件或日志 fallback | A2 / 段成威 | Must |
+| BR-018 | access token 有效期 10 分钟并只驻留 Rust 进程内存；不足 2 分钟时 single-flight refresh。refresh token 仅存 macOS Data Protection Keychain service `ai.yijie.desktop.auth`，30 天 idle/90 天 absolute，必须 rotation，reuse 时撤销整个 token family；ID token 仅驻留 Rust 内存。禁止通过 Tauri event/command result 暴露 token，禁止普通前端存储、文件或日志 fallback。该条是生产目标；G3 本地 Keycloak 只证明 rotation，未证明 family reuse，故 S7/G5 必须保持 `NOT RUN` | A2 / 段成威 | Must |
 | BR-019 | `/` 在 ready 投影下依次选择：有 `task.create` 进入 `/chat`；否则有 `task.read` 进入 `/tasks`；否则进入常显 `/settings`。显式 denied deep-link 必须进入 denied 状态且不实例化受保护页面 | A5 / 段成威 | Must |
 | BR-020 | 初始 capability 仅为 `task.create`、`task.read`、`store.read`、`workspace.use`、`schedule.read`、`plugin.read`、`knowledge.read`；`tenant_owner` 拥有全部 7 项，`tenant_member` 仅拥有前 2 项 | A4 / 段成威 | Must |
 | BR-021 | FEAT-125 不改变既有 Tasks 契约；生产必须同时保持 public ingress 拒绝 legacy Tasks 路由、`yijie-api` 服务不注册 legacy Tasks handlers，FEAT-125 Desktop 也不得调用 Tasks。例外在 `FEAT-126` 生产启用或 2026-09-30（取较早者）到期，到期未完成不得开放 Tasks 且必须重新审批 | A6 / 段成威 | Must |
 | BR-022 | Desktop 负责验证 authorization response 的 state、PKCE 绑定和 ID-token nonce；`yijie-api` 是 access JWT issuer/audience/signature/alg/time/kid 的权威验证者，固定 audience 为 `https://api.yijie.ai`。撤销 refresh token 不会即时撤销已经签发的 access JWT，最大残余有效期为 10 分钟 | A1/A2 / 段成威 | Must |
 | BR-023 | v1 不持久化 last tenant 或 capability projection；每次 Desktop 进程启动都重新调用 `GET /v1/me/tenants` 并按 0/1/multiple 规则恢复选择，随后重新拉取 capability。禁止从上次运行恢复 tenant/capability 作为当前授权事实 | A3 / 段成威 | Must |
 | BR-024 | Rust 持有 access token 时，WebView 只通过两个 operation-scoped native calls 访问 `GET /v1/me/tenants` 与 `GET /v1/me/capabilities`；Rust 使用固定 API HTTPS origin/method/path 并在内部附加 bearer。IPC 不返回 token，也不接受任意 URL、method、Authorization header 或通用代理 payload；响应由固定 contract 生成类型/adapter 消费 | A2 的最小暴露实现 / 段成威 | Must |
+| BR-025 | 当前工程环境只使用 loopback、Docker 与合成数据：本地 Keycloak public client、专用 PostgreSQL 和 Caddy HTTPS；API local profile 必须在任何 manifest/migration/DB 访问前锁死 exact issuer、`127.0.0.1:5432/yijie_api_feat125_local`、唯一 `sslmode=disable` query 与固定 tracked 2×2 synthetic matrix，禁止连接共享/生产库。API 仅在 `feat-125-local-lab` 接受绝对 CA PEM 路径与 lowercase SHA-256 pin，要求单 PEM/≤64KiB/0400或0600/regular non-symlink，并使用禁代理禁重定向的隔离 TLS client；default/production/disabled projection fail closed，禁止 insecure TLS 或系统 Keychain 修改；Desktop local-integration Keychain envelope 必须绑定 issuer/client/environment。本地通过不代表生产配置或激活通过 | A7 / 段成威 | Must |
 
 ## 3. 用户流程
 
@@ -110,10 +111,11 @@
 | AC-015 | 两角色×两租户测试矩阵 | 执行跨仓 E2E | 允许/拒绝与 RBAC 一致，跨租户泄漏为 0 | 合成前端布尔测试冒充 E2E | 段成威 |
 | AC-016 | FEAT-125 全部 Must AC 与 G4 通过 | 回到 FEAT-124 | 更新 Desktop SHA、关闭 G4-001 并重新独立 G4 | 仅创建文档或 unit test 就关闭 | 段成威 |
 | AC-017 | 未登录 Desktop | 发起登录 | 系统浏览器 Code+PKCE S256 使用精确 `http://127.0.0.1:<ephemeral-port>/oauth/callback`；state/nonce 每次唯一；Desktop 验证 state/PKCE 和 ID-token nonce | embedded WebView、deep-link、固定端口、复用 state/nonce 或接受非 loopback/非精确 path callback | 段成威 |
-| AC-018 | OIDC code exchange 成功 | 建立、刷新认证状态并调用 tenant/capability endpoints | 10 分钟 access token 和 ID token 仅 Rust 内存；不足 2 分钟 single-flight refresh；refresh 仅 Keychain service `ai.yijie.desktop.auth`，30 天 idle/90 天 absolute、rotation、reuse-revokes-family；operation-scoped Rust transport 内附加 bearer，WebView/IPC/存储/日志中 token 为 0 | token 经 IPC 返回、generic native proxy、任意 URL/header、LocalStorage/file fallback、并发 refresh 风暴、复用旧 refresh token或 Keychain 失败时继续已登录 | 段成威 |
+| AC-018 | OIDC code exchange 成功 | 建立、刷新认证状态并调用 tenant/capability endpoints | 10 分钟 access token 和 ID token 仅 Rust 内存；不足 2 分钟 single-flight refresh；refresh 仅 Keychain service `ai.yijie.desktop.auth`，30 天 idle/90 天 absolute、rotation、reuse-revokes-family；operation-scoped Rust transport 内附加 bearer，WebView/IPC/存储/日志中 token 为 0。完整 provider/浏览器/Rust bearer/refresh/Keychain 证据属于 S7/G5 | token 经 IPC 返回、generic native proxy、任意 URL/header、LocalStorage/file fallback、并发 refresh 风暴、复用旧 refresh token或 Keychain 失败时继续已登录 | 段成威 |
 | AC-019 | ready 投影包含不同 task capability | 打开 `/` 或 denied deep-link | `task.create`→`/chat`；否则 `task.read`→`/tasks`；否则 `/settings`；denied 页面不实例化 | 无条件 `/chat`、重定向到无权页面或仅 CSS 隐藏 | 段成威 |
 | AC-020 | `tenant_owner`、`tenant_member` × 2 tenants | 执行跨仓矩阵 | owner 精确 7 key；member 精确 `task.create/task.read`；跨租户泄漏为 0 | 冒号 key、额外隐式 key、角色名直接驱动前端或跨租户 union | 段成威 |
-| AC-021 | FEAT-126 未生产启用且日期早于例外期限 | FEAT-125 发布 | Tasks 契约不变；public ingress 拒绝 legacy 路由、服务不注册 handlers、Desktop 不调用；到期自动阻断 Tasks | 用 FEAT-125 静默修改/暴露 Tasks、只做客户端隔离或无限延期例外 | 段成威 |
+| AC-021 | FEAT-126 未生产启用且日期早于例外期限 | FEAT-125 发布 | Tasks 契约和默认 API profile 的 legacy wire 不变；获批的 FEAT-125 宿主 profile 不注册 handlers，public ingress 拒绝 legacy 路由，Desktop 不调用；到期自动阻断 Tasks | 用 FEAT-125 静默修改/暴露 Tasks、误称默认 profile 已关闭、只做客户端隔离或无限延期例外 | 段成威 |
+| AC-022 | G3-NP-LOCAL 配置与本地依赖已准备 | 创建并盘点专用 API DB，执行 offline ready、启动本地栈并执行 online preflight | 专用 DB migration 前 public tables=0、bootstrap 前业务行=0；Keycloak exact realm/two clients/canonicalized scope sets/explicit `userinfo.token.claim=false` mapper/strict managed `data_classification` user profile（Keycloak 26.7 REST omitted field = unmanaged disabled）/two fixed users/password resets/refresh revocation `invalid_grant`、discovery/JWKS、Caddy TLS、API health/ready、tracked synthetic bootstrap 首次/幂等与 Tasks ingress+handler 双隔离均以真实本地组合通过；Keycloak 必须在任何写操作前只读核验 realm/clients/full two-user inventory/core/attributes，仅 exact default profile + empty attributes 可迁移，意外状态在 PUT/reset 前拒绝；CA/密码/token/真实数据不进入 Git | 连接共享/生产 DB、HTTP issuer/API、关闭证书校验、mock JWT 冒充集成、把本地 PASS 写成生产 PASS | 段成威 |
 
 ## 5. 状态与错误语义
 
@@ -152,7 +154,7 @@
 | NFR-005 | 可访问性 | hidden 项不进入 AX tree；错误恢复可键盘操作且有焦点 | 键盘不可恢复即阻断 |
 | NFR-006 | 可追溯 | contract、generator、producer、consumer 均有完整 SHA/digest | 任一浮动引用即阻断 |
 | NFR-007 | 隐私 | token、外部 subject、完整 capability 不进入日志/fixture | 任一泄漏即阻断 |
-| NFR-008 | 原生认证安全 | callback 仅为精确 `http://127.0.0.1:<ephemeral-port>/oauth/callback`；state/PKCE/ID-token nonce 验证；Keychain service 和 token 生命周期符合 BR-018；native opener/listener/transport 最小权限且 transport 仅允许两个固定 GET operations | 任一 deep-link/embedded login、非 loopback/错误 path、generic proxy、任意 URL/header、普通存储 fallback、refresh reuse 未撤销 family 或 token IPC 泄漏即阻断 |
+| NFR-008 | 原生认证安全 | callback 仅为精确 `http://127.0.0.1:<ephemeral-port>/oauth/callback`；state/PKCE/ID-token nonce 验证；Keychain service 和 token 生命周期符合 BR-018；native opener/listener/transport 最小权限且 transport 仅允许两个固定 GET operations | 任一 deep-link/embedded login、非 loopback/错误 path、generic proxy、任意 URL/header、普通存储 fallback、refresh reuse 未撤销 family 或 token IPC 泄漏即阻断 S7/G5；G3 不得伪造该证据 |
 
 ## 8. 外部副作用与审批
 
@@ -178,13 +180,13 @@
 | ID | 问题 | 为什么阻塞 | Owner | 截止日期 | 结论 |
 |---|---|---|---|---|---|
 | Q-001 | 身份由自建账户还是外部 OIDC 提供？ | 决定 token 验证、供应商、迁移和责任边界 | 段成威 | G1 | Resolved：外部 OIDC；API 直接验证 IdP RS256 access JWT，不采用 opaque session |
-| Q-002 | Desktop 凭证与刷新如何承载？ | 决定 PKCE、Keychain、撤销、Tauri 权限与 CSP | 段成威 | G1 | Resolved：系统浏览器 Code+PKCE S256、精确 `/oauth/callback` ephemeral loopback；access/ID Rust memory；refresh Keychain service `ai.yijie.desktop.auth`；10m access、<2m single-flight、30d idle/90d absolute、rotation/reuse-revokes-family |
+| Q-002 | Desktop 凭证与刷新如何承载？ | 决定 PKCE、Keychain、撤销、Tauri 权限与 CSP | 段成威 | G1 | Design Resolved：系统浏览器 Code+PKCE S256、精确 `/oauth/callback` ephemeral loopback；access/ID Rust memory；refresh Keychain service `ai.yijie.desktop.auth`；10m access、<2m single-flight、30d idle/90d absolute、rotation/reuse-revokes-family。Evidence Open：本地 Keycloak 的 family reuse 未证明，留在 S7/G5 |
 | Q-003 | 多 membership 下如何选择 tenant？ | 决定 context、错误、并发和数据库约束 | 段成威 | G1 | Resolved：先调 `GET /v1/me/tenants`；0 个进入 Settings recovery，1 个自动选，多个由用户选；`X-Yijie-Tenant-ID` 是选择提示；API 每请求验证 membership；missing/invalid=400、denied=403 |
 | Q-004 | 初始 role→capability 矩阵是什么？ | 无矩阵无法验证权威判定 | 段成威 | G2 | Resolved：7 个点号 key；`tenant_owner` 全部，`tenant_member` 仅 task.create/task.read |
 | Q-005 | Settings 是否始终作为 recovery/core 可见？ | 决定零权限用户能否 logout/retry | 段成威 | G2 | Resolved：已登录用户常显，敏感 section 单独 gate |
 | Q-006 | 权限快照最大时效是多少？ | 决定撤权可见性和刷新负载 | 段成威 | G2 | Resolved：服务端 `expires_at` 上限 5 分钟，过期先清空再刷新 |
-| Q-007 | 现有匿名 Tasks API 如何处置？ | 部署 API 时不能误称授权闭环 | 段成威 | G2 | Resolved：contract unchanged；public ingress deny + service 不注册 handlers 双隔离，Desktop 亦不调用；FEAT-126 或 2026-09-30 较早到期 |
-| Q-008 | 生产 IdP vendor/issuer/client ID/JWKS、TLS、Secret Manager 与 CSP 是什么？ | 决定 Infra/Desktop 安全配置 | 段成威 | G3/G5 | Open；access JWT audience 已固定 `https://api.yijie.ai`，其余具体生产值禁止 Codex 自行选择 |
+| Q-007 | 现有匿名 Tasks API 如何处置？ | 部署 API 时不能误称授权闭环 | 段成威 | G2 | Resolved：contract 与默认 API profile legacy wire unchanged；本地 `feat-125-local-lab`/未来获批宿主 profile 不注册 handlers，public ingress deny，Desktop 不调用；FEAT-126 或 2026-09-30 较早到期 |
+| Q-008 | 本地与生产 IdP/issuer/client/JWKS、TLS、Secret Manager 与 CSP 如何处置？ | 决定 Infra/Desktop 安全配置 | 段成威 | G3/G5 | Local Resolved：A7 固定 Keycloak + Caddy + `localhost` HTTPS + synthetic-only；Production Open：生产 IdP/domain/TLS/secret/CSP 继续禁止 Codex 自行选择；audience 固定 `https://api.yijie.ai` |
 | Q-009 | 首个 tenant/owner 与 RBAC 如何 bootstrap？ | 不能在 migration 写真实用户，也不能无审计授权 | 段成威 | G2 | Resolved：显式幂等、可审计运维命令；生产参数仍需 G5 审批 |
 | Q-010 | tenant 错误语义如何分界？ | 影响契约、恢复 UI 与监控 | 段成威 | G2 | Resolved：missing/invalid header=`400 invalid_tenant_context`；membership denied=`403 tenant_access_denied`；不使用 409 active-session 语义 |
 
@@ -192,4 +194,4 @@
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
-| 需求负责人 | 段成威 | Approved：A1—A6，G1/G2/G2A Passed；S3/S4 API 与 S5A Desktop native boundary 已验证并远端核验；S5B/S6/S7、生产 IdP/config 仍阻断 | 2026-08-01 |
+| 需求负责人 | 段成威 | Approved：A1—A7，G1/G2/G2A Passed；S3/S4 API 与 S5A Desktop native boundary 已验证并远端核验；最小显式 CA 修复、offline ready、core online 与最终三仓门禁 PASS，故 G3-NP-LOCAL PASS。S5B 仅具备单独审批条件、仍未批准；S5A signed app/Keychain/full auth E2E 与生产 IdP/config 继续为 S7/G5 `NOT RUN` | 2026-08-01 |

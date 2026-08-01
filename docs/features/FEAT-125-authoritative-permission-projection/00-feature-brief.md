@@ -4,7 +4,7 @@
 
 | 字段 | 内容 |
 |---|---|
-| 状态 | G0/G1/G2/G2A Passed / S1—S4 Remote Verified / S5A Remote Verified / G3 Nonproduction Preparation Complete（external values pending） |
+| 状态 | G0/G1/G2/G2A Passed / S1—S4 Remote Verified / S5A Remote Verified / G3-NP-LOCAL PASS / S5B Eligible for Separate Approval, Not Approved |
 | 需求负责人 | 段成威 |
 | 技术负责人 | 段成威 |
 | Reviewer | 段成威 |
@@ -46,6 +46,9 @@
   `ai.yijie.desktop.auth`；access 最长 10 分钟、剩余不足 2 分钟时 single-flight refresh，
   refresh idle 30 天/absolute 90 天且每次旋转，reuse 时撤销整个 token family；
   token、授权码和 verifier 不进入 WebView、普通前端存储、URL 日志或应用日志。
+- 上一条是最终产品安全要求。本地 Keycloak 当前只能证明 refresh rotation/旧 refresh 失效，
+  没有证据证明 reuse 会自动撤销整个 token family；该 provider limitation 不阻断 S5B 代码
+  实现，但必须保持 `S7 auth-lifecycle / G5 NOT RUN`，不得把本地 rotation 写成 A2 全量 PASS。
 - WebView 仅能调用 Rust 暴露的 `listMyTenants`/`getMyCapabilities` 两个 operation-scoped
   authenticated operations；Rust 对已批准的固定 API HTTPS origin、method 与 path
   附加 bearer。IPC 不返回 token，也不接受任意 URL、method、Authorization header 或
@@ -55,13 +58,16 @@
 
 ### Out of Scope
 
-- 由 Codex 擅自选择具体 OIDC 厂商、生产域名、TLS、Secret Manager 或云基础设施。
+- 生产 OIDC 厂商、生产域名/TLS、Secret Manager、云基础设施与生产激活；当前只使用已批准
+  的本地 Keycloak、专用 PostgreSQL、Caddy、loopback 和合成数据。
 - 把角色名、菜单文案、排序、`disabled` 产品状态或内部策略表达式返回给 Desktop。
 - 在 LocalStorage、SessionStorage、IndexedDB 或普通日志中保存 token、租户或 capability。
 - Admin RBAC 管理 UI、批量授权 UI、计费 entitlement、第三方平台 access token。
 - 修改既有 `/v1/tasks` 的契约、匿名访问、`tenant_id` 或错误语义；它保持 contract
-  unchanged，并在生产同时由 public ingress 拒绝且 service 不注册 legacy Tasks handlers，后续由
-  `FEAT-126` 完成独立 breaking hardening。该临时例外在 FEAT-126 生产启用或
+  unchanged。现有默认 API profile 继续保留 legacy Tasks wire；只有本轮
+  `feat-125-local-lab` profile 不注册 handlers，并由本地 Caddy 再拒绝该路径。未来生产必须
+  用获批的宿主 API profile + public ingress 完成同等双隔离，后续由 `FEAT-126` 完成独立
+  breaking hardening。该临时例外在 FEAT-126 生产启用或
   2026-09-30（取较早者）到期，到期未完成不得开放 Tasks且必须重新审批。
 - Agent Host、Codex Runtime、AI prompt/model/retrieval/tool 行为。
 
@@ -85,6 +91,9 @@
 - 合规/隐私：主体、租户、角色和 capability 为 Confidential；token/外部 subject
   不进入响应、fixture、文档或日志。
 - 可用性/性能：授权依赖故障 fail-closed；UI 必须保留 retry、logout 和安全恢复入口。
+- G3/S7 边界：G3-NP-LOCAL 只验证 TLS、OIDC discovery/JWKS、API startup/readiness、
+  synthetic bootstrap、未认证 `401` 与 Tasks edge/direct `404`；完整系统浏览器登录、Rust
+  bearer 调用、refresh/Keychain E2E 属于 S7/G5，不是 G3 PASS 条件。
 
 ## 7. 已确认事实、假设与未知项
 
@@ -95,15 +104,17 @@
 | Fact | `0.3.0` candidate 已新增 operation-level `userBearer`、tenant discovery 与 capability projection；全局 `security: []` 和旧 operations 保持不变 | `9ec34abd6e7dfb5a23b0154d467694167224ebbb` + remote/semantic equality checks | 段成威 | S1/S2 + remote Complete；G2A Passed |
 | Fact | API 初始基线没有 auth/session/users/tenants/RBAC 表或 middleware；S3/S4 已建立 direct JWT、tenancy/RBAC 与只读 projection producer | `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf`、`360a526b679147472e7cc82ca7ac9db9d18a371d` | 段成威 | S3/S4 Remote Verified |
 | Fact | Desktop S5A 已实现 Rust 原生 OIDC/Keychain 与两个 operation-scoped transports；exact contract pin、generated adapter、permission store 和 route guard 仍待 S5B/S6 | `3798c67d260237928730758c7ec4c1fbe6fcf7d2`、`yijie-desktop/docs/security/FEAT-125-S5A-security-matrix.md` | 段成威 | S5A Remote Verified；S5B/S6 Pending |
-| Fact | yijie-infra 已形成供应商中立、默认关闭、仅合成数据的 FEAT-125 非生产模板、strict validator 与只读 online preflight；本地 PostgreSQL migration 2、API health/ready 及关闭态 404 已验证 | `yijie-infra@47c9e826d1f860d872958b05bafa44b1c3232f62` + G3 worktree；`docs/feat-125-nonproduction.md`；模板 SHA-256 `b7d1eb27...` | 段成威 | G3 preparation Complete；真实 IdP/DNS/TLS/API origin 与 online preflight Pending |
+| Fact | G3-NP-LOCAL 的 API/Desktop/Infra 实现与仓内门禁已完成；Infra 71/71 + lint/Compose/shell/diff PASS；API local profile 在数据库访问前锁死 exact issuer、专用 loopback DB `yijie_api_feat125_local` 与 tracked 2 users × 2 tenants synthetic manifests；空库 migration 1→2、首次写入、幂等复跑及 inventory/revision/audit 已通过；Keycloak/PostgreSQL/Caddy 容器健康，live Keycloak 已证明 exact realm、两个 clients、canonicalized scope sets、显式 `userinfo.token.claim=false` mapper、strict managed `data_classification` user profile（Keycloak 26.7 REST 中 omitted field = unmanaged disabled）、两名固定合成用户、password resets 与 refresh revocation `invalid_grant`；固定 HTTPS 置密和最终 offline ready PASS | API `faeb78019d95aaf9dcfbd8493f8bc2ecf7e4bf34`、Desktop `446b4d608546fca8f53f4582201d6b43ef6f762d`、Infra `298192e386a7f7b81e8f0f8fe733c1f79f096ab4`；三个 `origin/develop` 已核验 | 段成威 | Dedicated DB、local dependencies、bootstrap、offline ready 与 core online PASS；G3 remote verified |
+| Fact | 最小充分 G3 已用 API local-profile-only 显式 CA PEM + lowercase SHA-256 pin 关闭启动期 JWKS 信任阻断；默认/生产/disabled profile fail closed，未修改系统 Keychain | `yijie-api@faeb78019d95aaf9dcfbd8493f8bc2ecf7e4bf34` + final offline/core-online evidence | 段成威 | API CA review P0/P1/P2=0；G3 PASS；S5B 仍需单独批准 |
 | Fact | FEAT-124 G4-001 仍是阻断 finding | FEAT-124 `08-verification-report.md` | 段成威 | Confirmed |
 | Decision | 外部 OIDC native public client；系统浏览器 Code+PKCE S256，精确 `http://127.0.0.1:<ephemeral-port>/oauth/callback`、state/nonce；Desktop 校验 auth response/state/PKCE 与 ID token nonce，API 以 audience `https://api.yijie.ai` 严格验证 IdP RS256 access JWT；不采用 opaque session | 段成威 A1/A2 | 段成威 | Approved / G1 |
 | Decision | Desktop 通过 `X-Yijie-Tenant-ID` 表达当前租户选择；header 不是授权事实，API 每个请求重新验证 membership | 段成威 A3 | 段成威 | Approved / G1 |
-| Decision | access/ID token 仅 Rust 内存；refresh token 仅 Keychain service `ai.yijie.desktop.auth`；access 最长 10 分钟、<2 分钟 single-flight refresh，refresh 30 天 idle/90 天 absolute、rotation+reuse family revoke；native opener/listener 与仅允许两个固定 GET 的 operation-scoped transport 构成 A2 的最小原生边界，token 不跨 IPC | 段成威 A2 | 段成威 | Approved / G1 |
+| Decision | access/ID token 仅 Rust 内存；refresh token 仅 Keychain service `ai.yijie.desktop.auth`；access 最长 10 分钟、<2 分钟 single-flight refresh，refresh 30 天 idle/90 天 absolute、rotation+reuse family revoke；native opener/listener 与仅允许两个固定 GET 的 operation-scoped transport 构成 A2 的最小原生边界，token 不跨 IPC | 段成威 A2 | 段成威 | Approved / G1；本地 Keycloak 仅证明 rotation，family reuse 继续阻断 S7/G5 |
 | Decision | 初始 vocabulary 固定 7 个点号 capability；`tenant_owner` 拥有全部 7 项，`tenant_member` 仅有 `task.create`/`task.read`；以 2 角色×2 租户验证，bootstrap 与变更必须审计 | 段成威 A4 | 段成威 | Approved / G2 |
 | Decision | Settings core 对已登录用户常显；`/` 按 `task.create`→`/chat`、否则 `task.read`→`/tasks`、否则 `/settings`；denied deep-link 不实例化页面 | 段成威 A5 | 段成威 | Approved / G2 |
-| Decision | `/v1/tasks` 契约不变，生产 public ingress 拒绝且 service 不注册 legacy Tasks handlers；独立 `FEAT-126` 承接 hardening；例外于 FEAT-126 生产启用或 2026-09-30 较早者到期 | 段成威 A6 | 段成威 | Approved / G2 |
-| Unknown | 具体 IdP vendor/issuer/client ID/JWKS 的真实非生产与生产值、TLS/CSP、签名与发布环境配置；API audience 已固定为 `https://api.yijie.ai` | G3 已固定公开配置 schema 与预检命令，但外部资源尚未分配 | 段成威 | 非生产外部值阻断 G3 PASS/S5B；生产值继续阻断 G5 |
+| Decision | `/v1/tasks` 契约不变；默认 API profile 保留 legacy wire；本地 `feat-125-local-lab` 不注册 handlers 且 Caddy 拒绝；未来生产需由获批宿主 profile + ingress 同样双隔离。独立 `FEAT-126` 承接 hardening；例外于 FEAT-126 生产启用或 2026-09-30 较早者到期 | 段成威 A6 | 段成威 | Approved / G2；最终 online edge/direct `404` PASS |
+| Decision | 当前工程验证固定本地 Keycloak + 专用 PostgreSQL + Caddy；API bootstrap 只允许专用 loopback DB `yijie_api_feat125_local` 与固定 tracked synthetic matrix；issuer/API 使用 `localhost` 独立 HTTPS 端口，API 仅 local profile 使用严格显式 CA pin | 段成威批准 A7 / G3-NP-LOCAL | 段成威 | Approved；offline ready 与 core online PASS；不安装系统信任 |
+| Unknown | 生产 IdP vendor/issuer/client ID/JWKS、生产 TLS/CSP、签名公证与发布环境配置；API audience 已固定为 `https://api.yijie.ai` | A7 只替代当前工程验证环境，不批准生产配置 | 段成威 | 不阻断本地 G3/S5B；继续阻断 G5/G6 |
 
 ## 8. 初始仓库基线
 
@@ -125,7 +136,7 @@
 | G1 设计就绪 | 2026-07-31 | 段成威 | Passed：A1—A3/A6 身份、凭证、租户与隔离边界已批准 |
 | G2 可开始实现 | 2026-07-31 | 段成威 | Passed：A4—A6 RBAC、Settings/root route 与实施范围已批准 |
 | G2A Contract Ready | 2026-08-01 | 段成威 | Passed：固定 candidate `9ec34abd6e7dfb5a23b0154d467694167224ebbb`，授权执行 S3 |
-| G3 Slice/Nonproduction Ready | 外部非生产值与在线预检完成后 | 段成威 | Prepared：模板、validator、runbook、本地 migration/关闭态 smoke 完成；真实 IdP/DNS/TLS/API origin、synthetic bootstrap 与 online preflight Pending |
+| G3 Slice/Nonproduction Ready | 2026-08-01 | 段成威 | Passed：最小显式 CA 修复、offline ready、core online 与最终三仓门禁 PASS；S5B 仍未批准，仅具备单独审批条件 |
 | G4 Code Complete | 跨仓实现与独立 review 后 | 段成威 | Pending |
 | G5 Production Ready | 类生产安全验证后 | 段成威 | Pending |
 | G6 Delivery Complete | 灰度与观察完成后 | 段成威 | Pending |
@@ -147,5 +158,7 @@
 | 2026-08-01 | Codex | 对 S4 做范围/契约/认证/租户一致性/生命周期/CI 六维结构化审查 | P1=1/P2=2 均修复；最终开放 P0/P1/P2=0；不代替最终独立 G4 |
 | 2026-08-01 | Codex | 将 S4 API 与治理证据推送并远端核验 | yijie-api `360a526b679147472e7cc82ca7ac9db9d18a371d`；yijie `28c6f503f2c66a0dc5964d85cc5865fcb4ae2794` |
 | 2026-08-01 | 段成威/Codex | 批准并完成 S5A Desktop Rust 原生系统浏览器 OIDC、精确 loopback、PKCE/state/nonce、Keychain token 生命周期与两个固定 authenticated operations | Desktop 完整提交 `3798c67d260237928730758c7ec4c1fbe6fcf7d2` 已推送并远端核验；功能默认关闭，无 S5B/UI、Tasks 或生产配置/激活 |
-| 2026-08-01 | Codex | 对 S5A 做 scope、OIDC、token 生命周期、并发、Keychain、IPC/HTTP、依赖与失败语义结构化审查并复跑全部门禁 | 修复 6 类问题；开放 P0/P1/P2=0；前端 37 tests、Rust 27 tests、debug `.app/.dmg`、npm/cargo/license audit PASS；真实 IdP/正式 Keychain provisioning/生产联调仍为 G3/G5/S7 |
-| 2026-08-01 | 段成威/Codex | 执行 G3 非生产环境准备：新增供应商中立、默认关闭、仅合成数据的 infra 模板、strict/online preflight 与 runbook；启动现有 local dependencies，应用 migration 2 并验证 API health/ready 和权限端点 404 | Preparation Complete；未选择/伪造 IdP 厂商或真实 HTTPS 值，未激活 API/Desktop，G3 PASS 仍等待外部资源、synthetic bootstrap 与在线预检 |
+| 2026-08-01 | Codex | 对 S5A 做 scope、OIDC、token 生命周期、并发、Keychain、IPC/HTTP、依赖与失败语义结构化审查并复跑全部门禁 | 修复 6 类问题；开放 P0/P1/P2=0；前端 37 tests、Rust 27 tests、debug `.app/.dmg`、npm/cargo/license audit PASS；完整浏览器/Rust bearer/refresh/正式 Keychain provisioning 仍为 S7/G5 |
+| 2026-08-01 | 段成威/Codex | 执行 G3 非生产环境准备：新增供应商中立、默认关闭、仅合成数据的 infra 模板、strict/online preflight 与 runbook；启动现有 local dependencies，应用 migration 2 并验证 API health/ready 和权限端点 404 | 当时仅完成通用 Preparation，未选择/伪造 IdP 厂商或真实 HTTPS 值，也未激活 API/Desktop；其外部资源前置随后由 A7 的 G3-NP-LOCAL 路径取代 |
+| 2026-08-01 | 段成威 | 批准 A7 / G3-NP-LOCAL：以 loopback、Docker、合成数据、本地 Keycloak/专用 PostgreSQL/Caddy 和显式本地 CA 完成工程环境；生产资源、配置与激活继续禁止 | 不再等待云资源；本地门通过不等于 G5/G6 生产就绪 |
+| 2026-08-01 | Codex | 以 API local-only 显式 CA PEM + SHA-256 pin 关闭历史 502 阻断，复跑 offline ready、core online 和最终三仓门禁 | G3-NP-LOCAL PASS；S5B 仅具备单独审批条件、仍未批准；系统 Keychain/生产配置未改 |

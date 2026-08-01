@@ -26,8 +26,15 @@
 | Authentication scheme | central contract + security ADR | `public.yaml#/components/securitySchemes/userBearer`（direct IdP RS256 JWT） | 段成威 | external IdP/yijie-api | Desktop |
 | RBAC/membership | private DB/domain | yijie-api migration + authorization module | 段成威 | yijie-api | yijie-api only |
 | Navigation mapping | consumer policy | yijie-desktop domain/navigation | 段成威 | Desktop domain | AppShell/router |
+| G3-NP-LOCAL deployment interface | owning service/infra config + ADR-0012 A7 | `yijie-infra` local profile、`yijie-api` service profile、`yijie-desktop` local-integration config | 段成威 | Infra/API/Desktop | local operator/test harness |
 
 生成物、SDK、handler 类型、Pinia state、fixture 和数据库行都不是第二权威源。
+
+本轮 A7 不修改上述 Public OpenAPI source 或 0.3.0 candidate。新增的本地服务、端口、CA
+配置、bootstrap issuer pin、Tasks handler registration profile 与 Keychain envelope 属于
+deployment/private-persistence interface；它们沿用本需求最高风险 `semantic` 分类，证据为
+精确配置/镜像 pin、负向 validator、数据兼容与受影响 API/Desktop/Infra 验证，而不是伪造
+新的 contracts tag 或 generator。
 
 ## 3. 语义设计
 
@@ -49,9 +56,12 @@
 - IdP access JWT 最大有效期为 10 分钟。refresh credential 撤销或重用检测只保证下一次
   refresh 失败，不承诺使已签发 access JWT 即时失效；已签发 JWT 最迟在自身 expiry 后
   失效。内部 user suspension 或 membership/status suspension 必须由 API 实时返回 403。
+  本地 Keycloak 仅形成 rotation/旧 refresh 失效证据，未证明 reuse 自动撤销整个 family；
+  `provider_limit_documented` 继续阻断 S7/G5，G3 不得把它写成 A2 完整 PASS。
 - 现有全局 `security: []` 和旧 operations 保持不变。
-- 现有 `/v1/tasks` wire contract 保持不变；在 FEAT-126 完成前，生产必须同时通过 ingress
-  拒绝和 handler 不注册/关闭完成双隔离，不能把 capability projection 误称为 Tasks 授权。
+- 现有 `/v1/tasks` wire contract 与默认 API profile 保持不变；本地
+  `feat-125-local-lab` 和未来获批的生产宿主 profile 必须不注册 handlers，并分别由 Caddy/
+  production ingress 拒绝，不能把 capability projection 误称为 Tasks 授权。
   该临时例外在 FEAT-126 生产启用或 `2026-09-30` 中较早者到期；到期仍未完成时不得开放
   Tasks，必须继续隔离并由段成威重新审批。
 
@@ -204,12 +214,13 @@ Feature 目录只引用这些 fixture，不复制 JSON。
 | 4 | 推送最终 candidate full SHA | yijie-contracts | Complete 2026-08-01；origin/develop = `9ec34abd6e7dfb5a23b0154d467694167224ebbb` | 保留 0.2.0 |
 | 5 | API exact pin、migration、provider 非生产实现 | yijie-api | Complete/remote：S3 `fff0cbcba601181058ac3ab9151d2d7bbe06dcbf` + S4 `360a526b679147472e7cc82ca7ac9db9d18a371d`；structured review PASS | flag default off；无生产配置，app rollback + retain expand schema |
 | 6 | Desktop native OIDC/Keychain 与 operation-scoped transport | yijie-desktop | Complete/remote：S5A `3798c67d260237928730758c7ec4c1fbe6fcf7d2`；local security matrix + structured review PASS | native flag default off；撤销/删除 Keychain family；不发布 |
-| 7 | Desktop exact pin、generated adapter/store 与 fail-closed UI | yijie-desktop | S4 staging + S5A；S5B/S6 pending | 不发布 Desktop |
-| 8 | API/Desktop candidate conformance 与两租户 E2E | 三仓 | full SHA/digest equal | 修复后重测 |
-| 9 | 创建不可移动 contracts-v0.3.0 | yijie-contracts | 同一 candidate 已验证 | 不移动 tag |
-| 10 | 两端验证 tag provenance 并切 release pin | API/Desktop | digest 不变 | 回退未发布 consumer |
-| 11 | API provider first，Desktop 灰度 | release owner | G5 approval | flag off / safe rollback |
-| 12 | 登记 supported baseline 并复跑 FEAT-124 G4 | yijie/contracts | 观察通过 | G4 保持 blocked |
+| 7 | 建立 G3-NP-LOCAL 并通过 offline ready/online preflight | Infra+API+Desktop | PASS：API local-only explicit CA PEM + lowercase SHA-256 pin、exact issuer/JWKS、isolated proxy-free/no-redirect client、静态/最终门禁、local stack、专用 DB/bootstrap、offline ready 与 core online（discovery/JWKS/callback、health/ready、两个 401、Tasks edge/direct 404）全部通过；公共 wire/contracts 变更 N/A，属于 semantic deployment trust | 全部 local flags off、停止精确本轮宿主 API并清其环境，再停止 local profile；不改变 default profile/production |
+| 8 | Desktop exact pin、generated adapter/store 与 fail-closed UI | yijie-desktop | G3-NP-LOCAL PASS + S4 + S5A；S5B/S6 pending | 不发布 Desktop |
+| 9 | API/Desktop candidate conformance 与两租户 E2E | 三仓 | full SHA/digest equal | 修复后重测 |
+| 10 | 创建不可移动 contracts-v0.3.0 | yijie-contracts | 同一 candidate 已验证 | 不移动 tag |
+| 11 | 两端验证 tag provenance 并切 release pin | API/Desktop | digest 不变 | 回退未发布 consumer |
+| 12 | API provider first，Desktop 灰度 | release owner | G5 approval | flag off / safe rollback |
+| 13 | 登记 supported baseline 并复跑 FEAT-124 G4 | yijie/contracts | 观察通过 | G4 保持 blocked |
 
 ## 9. 实际检查证据
 

@@ -59,9 +59,71 @@ business request
   → repository scoped by tenant
 ```
 
-business-request 分支是目标授权架构。现有 `/v1/tasks` 不由 FEAT-125 静默改造：service
-config 不注册 task handlers，且生产 ingress 显式拒绝，直到 FEAT-126 完成 breaking
-auth/tenant migration。
+business-request 分支是目标授权架构。现有 `/v1/tasks` 不由 FEAT-125 静默改造：默认
+API profile 继续保留 legacy wire；本地 `feat-125-local-lab` 与未来获批宿主 profile 不注册
+task handlers，并由对应 ingress 显式拒绝，直到 FEAT-126 完成 breaking auth/tenant
+migration。
+
+### 2.1 G3-NP-LOCAL 拓扑
+
+```text
+Desktop / system browser
+  ├─ HTTPS https://localhost:8443
+  │    → Caddy → Keycloak 26.7.0 → dedicated local PostgreSQL
+  └─ HTTPS https://localhost:9443
+       → Caddy → host-loopback yijie-api
+            → dedicated yijie_api_feat125_local on 127.0.0.1:5432
+
+OIDC callback
+  → http://127.0.0.1:{ephemeral-port}/oauth/callback
+  → one-shot Desktop Rust listener
+```
+
+- Keycloak、其 PostgreSQL 与 Caddy 只在显式 local profile 启动；镜像使用精确 tag+digest、
+  healthcheck、命名 volume 和最小网络，published ports 只绑定 `127.0.0.1`。
+- Caddy local CA data 使用持久 volume；只把公开 root certificate 导出到 ignored 本地目录，
+  CA private key 不离开 volume。Node/Desktop 的显式 CA 路径已获批；API 的
+  local-profile-only CA client 尚未获批，系统用户信任库安装也未获批。API 获批后必须用
+  single PEM、owner-only file、大小限制与 lowercase SHA-256 pin 验证 TLS，禁止 insecure
+  verifier。
+- Keycloak realm import 只包含公开 client/mapper/policy 结构，不包含用户密码、admin secret
+  或 token。Live validator 必须锁定 exact realm、两个 client、规范化后的 scope set、显式
+  `userinfo.token.claim=false` 的 audience mapper 与 strict managed `data_classification` user
+  profile；Keycloak 26.7 REST 中 omitted field 表示 unmanaged disabled。Provisioner 在任何
+  mutation 前先只读核验 exact realm/clients、完整 two-user inventory 及 core/attribute state；
+  若目标 profile 尚未存在，只允许 exact default profile + empty attributes 迁移，unexpected
+  profile/attributes 必须在 PUT/password reset 前 fail closed。synthetic user/subject 与 2×2
+  tenant/role 由受控本地 bootstrap 生成，且只能存在两名固定用户；HTTPS password resets
+  与 admin refresh revocation 返回 `invalid_grant` 必须形成运行证据。
+- API `feat-125-local-lab` bootstrap profile 在读取 manifest、检查 migration 或访问数据库前，
+  锁死 exact local issuer、credentialed PostgreSQL URL（`127.0.0.1:5432`、database
+  `yijie_api_feat125_local`、唯一 query `sslmode=disable`）和四份 tracked 2×2 manifest 的 subject/tenant/
+  role/actor tuple。unknown profile、共享 DB、query/issuer/tuple 漂移均 fail closed；错误不回显
+  DSN。空 profile 只保留 generic nonproduction 行为，不获得 local-lab 身份。
+- Keycloak 将 `http://127.0.0.1/oauth/callback` 作为 native loopback redirect 基准；运行时只
+  忽略 loopback port，path 仍精确匹配。online preflight 必须同时证明正确 path 接受、错误
+  path 拒绝。
+- Caddy 对 `/v1/tasks` 和其子路径拒绝；API `feat-125-local-lab` profile 同时不注册相应
+  handlers；默认 profile 不受本地 profile 改动。
+- Caddy 通过 Docker Desktop host gateway 访问宿主 `127.0.0.1:18080` 的可达性必须由真实
+  `https://localhost:9443` preflight 证明；失败即 G3 FAIL，不得把 API bind 放宽到
+  `0.0.0.0`、host network 或公网接口。
+
+当前拓扑状态为 PASS。Keycloak/PostgreSQL/Caddy 容器已健康启动，
+Infra 71/71 tests + lint/Compose/shell/diff PASS；live Keycloak 的 exact realm、two clients、
+canonicalized scope sets、explicit `userinfo.token.claim=false` mapper、strict managed
+`data_classification` user profile、two fixed users、password resets 与 refresh revocation
+`invalid_grant` 已验证；profile migration 仅在全量 read-only checks 后对 exact default
+profile + empty attributes 执行，profile/attribute drift 在 PUT/reset 前 fail closed。两名固定
+合成用户已经固定 HTTPS 置密；API 专用 DB 已从 public tables=0 完成 migration 1→2，
+bootstrap 前授权/Tasks 行数为 0，首次 4 次写入与第二轮 4 次幂等复跑、最终 inventory/
+revision/audit 均 PASS；final offline ready 也已 PASS。
+但 API 在 projection 开启时于 startup 同步获取 HTTPS JWKS，缺少获批 CA trust。
+Online preflight 已执行，trusted discovery/JWKS 和 callback 正/负检查通过后在
+历史首次 `API /healthz` 502 已关闭；最终 API readiness、两个未认证 `401` 和 Tasks
+edge/direct `404` 全部 PASS。
+G3 只覆盖 TLS、discovery/JWKS、API startup/readiness、bootstrap、未认证 `401` 与 Tasks
+edge/direct `404`；完整浏览器、Rust bearer、refresh/Keychain E2E 仍属于 S7/G5。
 
 ## 3. 关键时序
 
@@ -220,14 +282,20 @@ permission key，使用 CHECK 保证二者至少一个存在；保留 append-onl
 audit 可读性与现有索引，并为 `(tenant_id, resource_type, resource_id/resource_key)` 增加查找
 索引；
 bootstrap、membership/status/role/permission 变更与 audit 在同一事务，audit 失败则业务写
-整体回滚。被拒绝且没有业务写的授权 mutation 通过独立 append-only failure audit 记录，
-不得为写失败审计而提交部分业务状态。migration 不写真实 user/tenant；幂等
-`bootstrap-owner` 受控命令创建首个
-tenant、identity、`tenant_owner` assignment 和审计。
+整体回滚。进入 Runner/数据库边界后的、被拒绝且没有业务写的授权 mutation 通过独立
+append-only failure audit 记录；CLI 环境、issuer 或 manifest 的前置校验失败发生在 actor/
+事务建立前，只返回脱敏稳定错误，不得误称已有审计行。不得为写失败审计而提交部分业务
+状态。migration 不写真实 user/tenant；幂等
+`bootstrap-nonprod-authz` 受控命令创建明确 manifest 中的
+tenant、identity、`tenant_owner`/`tenant_member` assignment 和审计。显式
+`feat-125-local-lab` profile 还必须在任何 DB 访问前锁死 exact local issuer、专用 loopback
+database、唯一 query 与固定 tracked 2×2 tuple；generic nonproduction profile 不得被误报为
+local-lab 证据。
 
-现有 Tasks tenant/auth wire 不在本 semantic slice 修改：service config 默认不注册旧
-`/v1/tasks` handlers，生产 ingress 同时显式拒绝该路径。双隔离例外在 FEAT-126 生产启用
-或 2026-09-30（取较早者）到期；到期未完成不得开放 Tasks，必须重新审批。
+现有 Tasks tenant/auth wire 不在本 semantic slice 修改：默认 API profile 保持既有
+`/v1/tasks` handlers；本地 `feat-125-local-lab`/未来获批宿主 profile 不注册旧 handlers，
+对应 ingress 同时显式拒绝该路径。双隔离例外在 FEAT-126 生产启用或 2026-09-30（取较早者）
+到期；到期未完成不得开放 Tasks，必须重新审批。
 
 ## 7. 一致性与韧性
 
@@ -257,7 +325,8 @@ tenant、identity、`tenant_owner` assignment 和审计。
   Keychain `ai.yijie.desktop.auth`；public client 无 secret。access 为 10 分钟，剩余不足
   2 分钟 single-flight refresh；refresh idle 30 天、absolute 90 天、每次 rotation，reuse
   撤销 token family；logout 撤销 refresh、删除 Keychain 并清空 token/auth/tenant/projection；
-  不进入 Git/env 前端包/日志。
+  不进入 Git/env 前端包/日志。该 family 语义是最终要求；本地 Keycloak 只证明 rotation，
+  `provider_limit_documented` 继续阻断 S7/G5。
 - PII/日志脱敏：只记录内部 opaque IDs、revision、状态、latency；不记录 token/subject/集合。
 - 高风险审批：授权写默认拒绝，bootstrap/assignment 走受控且可审计路径。
 - 审计：授权变化成功与失败、actor、tenant、对象、diff、revision、request/trace。
@@ -291,7 +360,9 @@ tenant、identity、`tenant_owner` assignment 和审计。
 
 - API flag：S4 已固定 `YIJIE_API_PERMISSION_PROJECTION_ENABLED`，默认 `false` 时不注册新
   endpoint；显式开启才要求 issuer/JWKS 配置。本候选没有生产值、Desktop consumer 或激活；具体 IdP issuer/client
-  ID、JWKS discovery、API/redirect origin、TLS 与 secret 配置仍是 G3/G5 blocker。
+  ID、JWKS discovery、API/redirect origin、TLS 与 secret 配置的本地值由 A7 固定；生产值仍是
+  G5 blocker。本地 API 仅在 `feat-125-local-lab` 使用严格显式 CA PEM + lowercase pin；
+  default/production/disabled projection fail closed，系统 Keychain 未修改。
 - Desktop native auth flag：S5A 已固定 `YIJIE_DESKTOP_NATIVE_AUTH_ENABLED`，默认 false；
   S5B/S6 的 authoritative permission consumer/UI flag 仍须在其 slice 固定。任何 flag 都不能
   提供“静态显示全部”的 fallback。
@@ -303,6 +374,22 @@ tenant、identity、`tenant_owner` assignment 和审计。
   secret，任何生产 secret 不进入前端。
 - 新旧版本共存窗口：API provider 必须覆盖所有已发布 FEAT-125 Desktop；不能先回滚 endpoint。
 - CSP/外部 URL：只有批准的 HTTPS API/IdP origin；普通 fetch 不新增 Tauri command。
+- G3-NP-LOCAL local identity origin：`https://localhost:8443/realms/yijie-local`；local API
+  origin：`https://localhost:9443/`。这两个值仅属于 ignored local runtime config，不能作为
+  production default。
+- Desktop local CA：只有显式 local-integration mode 且两个 origin 都为 `localhost` 时才
+  接受；CA 文件需 regular/no-symlink、权限/大小与 SHA-256 pin 验证，并同时注入 OIDC 与
+  operation transport client。生产/普通 native-auth 模式继续只使用默认 WebPKI roots。
+- Keychain envelope：schema version + issuer + client ID + environment + token lifecycle；旧版
+  或绑定不匹配时删除并重新登录，禁止跨环境 refresh。
+- 本机于 2026-08-01 检查为 `0 valid identities` 且没有 provisioning profiles；因此
+  G3-NP-LOCAL 在修复 CA blocker 后只验证 TLS/OIDC/API readiness；Protected Data Keychain
+  的正式签名 App、完整浏览器/refresh/Rust bearer smoke 必须保持 S7/G5 `NOT RUN`，不伪造
+  为本地 G3 PASS。
+- 本地回滚必须停止独占 `127.0.0.1:18080` 宿主 API 进程、清除其
+  `YIJIE_API_SERVICE_PROFILE=feat-125-local-lab` 与本地 issuer/JWKS 环境，关闭 local Compose
+  profile，并恢复 Desktop local flags/凭证；不得把 default API profile 当作回滚目标启动，
+  也不得停止或修改用户其它宿主 API 进程。
 
 ## 12. AI 功能专项
 
@@ -326,8 +413,9 @@ tenant、identity、`tenant_owner` assignment 和审计。
   `yijie/docs/adr/ADR-0012-authoritative-identity-tenant-and-permission-boundary.md`。
 - 技术负责人：段成威。
 - 安全/数据 Owner：段成威。
-- 结论与日期：三路只读设计审核于 2026-07-31 完成；段成威已批准 A1—A6，ADR
+- 结论与日期：三路只读设计审核于 2026-07-31 完成；段成威已批准 A1—A7，ADR
   Accepted，G1/G2/G2A Passed，S1—S4 contract/API 与 S5A Desktop native boundary 均已
   commit/test/review/remote verified。S5B generated consumer/store、S6 UI 和 S7 跨仓仍
-  NOT RUN。具体 IdP 产品、issuer、client ID、JWKS、生产域名/TLS、Secret Manager 与
-  ingress 配置保持 G3/G5 Blocked，在其固定并验证前不得生产启用。
+  NOT RUN。G3 local IdP/client/JWKS/API origin 已固定，local stack/offline ready/HTTPS synthetic
+  user provisioning、API bootstrap 与 core online PASS。G3 PASS，S5B 未批准。
+  生产 IdP、域名/TLS、Secret Manager 与 ingress 配置保持 G5 Blocked。
