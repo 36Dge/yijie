@@ -1,9 +1,9 @@
 # FEAT-126 验证证据与独立审查报告
 
 > LIA-126-002第二轮独立审查已把S4–S6从Complete调整为`Conditional / Corrective Closure Required`。
-> 四仓仅本地WIP checkpoint已建立；Runtime、业务源码和远端均未修改。DEC-126-023方案C已Accepted、
-> Q-017已关闭；本地contracts replacement `29317b6426578749dc698fc2ad32b986ee5c8e9f`已通过post-commit门禁，
-> 现提交DEC-126-024最终G2A审批，代码纠偏继续暂停。
+> 四仓仅本地WIP checkpoint已建立；Runtime、业务源码和远端均未修改。DEC-126-023/024已Accepted、
+> Q-017已关闭；contracts replacement `29317b6426578749dc698fc2ad32b986ee5c8e9f`已通过post-commit门禁，
+> 成为新的唯一source-contract candidate，G2A重审通过。LIA-126-002未自动恢复，代码纠偏继续暂停。
 > 没有调用MiniMax、真实数据或生产环境；S7–S11与完整E2E仍为`NOT RUN`。
 
 ## 1. 验证上下文
@@ -33,7 +33,7 @@
 | G2 Runtime title/raw-reasoning capability | Accepted ADR-0015/0016/DEC-126-016/017 + exact Runtime SHA | canonical schema/source + prior 5 fake fixtures + raw delta/history/interleaving/interruption fixed fixtures 4/4 + historical `MM-126-001/002` harness | 0 for local fixtures；2 historical external calls；本轮0 provider calls | fixed raw primitives PASS / title PASS / historical public-summary FAIL / raw observed | DESIGN-126-003 accepted；不证明Host/Desktop实现、raw跨输入稳定性或生产安全 |
 | G2 Public Tasks investigation | exact sibling SHAs in `feature.yaml` | Public OpenAPI/API/Infra/Desktop/Host/admin/connectors/knowledge/skills source scan | 0 for read commands | COMPLETE for repo-local inventory | Q-010 Resolved；unknown external保留为safe compatibility category；DEC-126-011/012 Accepted |
 | G2 Chat/App Shell Pattern | yijie-desktop baseline + Accepted docs-only FEAT-126 Pattern | current Accepted Pattern comparison + docs build | 0 | PASS as approved design evidence | 只取代FEAT-126冲突段落；无业务source |
-| G2A source contract candidate | `yijie-contracts@29317b6426578749dc698fc2ad32b986ee5c8e9f` | DEC-126-023 content-free replacement + post-commit source/fixture/generated/breaking/equality/digest review | 0 | READY FOR OWNER APPROVAL | parent=`c000a024`；old candidate/PR/remote unchanged；DEC-126-024 Pending；not implementation authorization |
+| G2A source contract candidate | `yijie-contracts@29317b6426578749dc698fc2ad32b986ee5c8e9f` | DEC-126-023 content-free replacement + post-commit source/fixture/generated/breaking/equality/digest review + DEC-126-024 Owner approval | 0 | PASS / APPROVED | parent=`c000a024`；new sole candidate；old candidate/PR/remote unchanged；not implementation authorization |
 | LIA-126-001 implementation | API/Host/Desktop foundation checkpoints | exact contract locks, historical repository tests and LIA-126-002 review | 0 final | CONDITIONAL | flags/routes default off；current P1 open；local checkpoint commits exist；no remote action |
 
 ## 4. 最终命令记录
@@ -45,8 +45,8 @@
 | V-G0 | yijie | same checker with `--gate G0` | project shell script | 0 | PASS | G0 document scope only; human Gate recorded separately |
 | V-G1 | yijie | same checker with `--gate G1` | project shell script | 0 | PASS | G1 document scope has no incomplete markers；human approval recorded in `feature.yaml`/`01`/`03` |
 | V-G2 | yijie | same checker with `--gate G2` | project shell script | 0 | PASS | G2文档结构与Owner Passed状态一致；不代表G2A/业务实现 |
-| V-G2A | yijie | same checker with `--gate G2A` | project shell script | 0 | STRUCTURE PASS / HUMAN APPROVAL PENDING | checker only proves lexical completeness；DEC-126-024 remains Ready for Owner Approval |
-| V-LOCAL-STRATEGY | yijie FEAT-126 package | package + strict + G2A checker、YAML parse、cross-document review including DEC-126-023/024/LIA-126-002 | docs + conditional foundations | 0 | PASS 2026-08-02 | Q-017 closed、G2A final approval pending、S4–S6 Conditional、G3 Partial与S7–S11 prohibition一致；does not approve DEC-126-024 |
+| V-G2A | yijie | same checker with `--gate G2A` | project shell script | 0 | STRUCTURE PASS / HUMAN APPROVAL RECORDED | checker proves lexical completeness；DEC-126-024 Owner approval separately recorded，G2A Re-review Passed |
+| V-LOCAL-STRATEGY | yijie FEAT-126 package | package + strict + G2A checker、YAML parse、cross-document review including DEC-126-023/024/LIA-126-002 | docs + conditional foundations | 0 | PASS 2026-08-02 | Q-017 closed、G2A Re-review Passed、S4–S6 Conditional、LIA-126-002 Paused、G3 Partial与S7–S11 prohibition一致；does not resume implementation |
 | V-YAML | yijie | Ruby safe load + root map assertion | local Ruby | 0 | PASS | `YAML OK` |
 | V-DIFF | yijie | per-new-file `git diff --no-index --check` loop + tracked `git diff --check` | Git | 0 | PASS | FEAT-126/ADR-0013/ADR-0014/ADR-0015/ADR-0016 additions and tracked diff have no whitespace/conflict diagnostics |
 | V-DESKTOP-DOCS | yijie-desktop | `pnpm docs:build` | pnpm + VitePress 1.6.4 | 0 | PASS | FEAT-126 Pattern and SUMMARY rendered；no business source modified |
@@ -93,7 +93,7 @@
 | 源结构与生成无漂移 | `0.3.0 local replacement candidate` / `29317b6426578749dc698fc2ad32b986ee5c8e9f` / digests见`feature.yaml` | post-commit generate/current/lint/test/build/pack | PASS | worktree clean；未远端写入/merge/tag/发布/downstream pin |
 | Draft PR merge readiness | PR #1 / exact candidate head | remote CI + dependency attribution | FAIL / HOLD | source/generate/test/pack步骤通过，但high audit失败且两个后续步骤未执行；DEC-126-021已Accepted/HOLD，当前不批准merge |
 | Supported baseline breaking check | `f16a497…` sole supported baseline | check-breaking + legacy structural equality | PASS | 自动工具+人工语义；v1错误enum隔离缺陷已修复 |
-| Producer conformance | replacement source + API/Host local checkpoints | source tests + handler/repository + Host schema/fake tests | SOURCE PASS / RUNTIME NOT RUN | source conflict resolved；API/Host仍锁旧candidate且本轮禁止修改，flags/routes remain off；DEC-126-024/LIA resume required |
+| Producer conformance | replacement source + API/Host local checkpoints | source tests + handler/repository + Host schema/fake tests | SOURCE PASS / RUNTIME NOT RUN | source conflict resolved and approved；API/Host仍锁旧candidate且本轮禁止修改，flags/routes remain off；LIA-126-002 resume required |
 | Consumer conformance | API/Host/Desktop exact locks and generated projections | generate checks + source digest verification | PROJECTION PASS | Desktop reducer/transport behavior remains S7 |
 | Runtime canonical capability | `yijie-codex@3aa317...` / `codex-cli 0.144.6` artifact | source inspection + fake title/summary/raw/history fixtures + isolated exact artifact delete/restart | raw upstream 4/4 PASS；title/summary primitives PASS；raw observed once；delete functional；forensic erase NOT PROVIDED | 未证明Host/Desktop mapping、raw稳定性/安全性；Runtime WAL/log residue recorded |
 | Host v2 title/raw-reasoning compatibility | Host local checkpoint + candidate `c000a024...` | contract-check/race/fake Runtime/title/raw/no-log + LIA-126-002 review | CONDITIONAL | v1 unchanged；partial cleanup/title/lease P1 open；v2 flags off |
@@ -170,7 +170,7 @@
 | Finding | Severity | 事实 | 要求/状态 |
 |---|---|---|---|
 | LIA2-API-001 | P1 | secure Tasks只在成功create事务写business audit；401/403/404/409/503、get及拒绝路径未形成完整content-free审计矩阵 | S4 closure required；需先冻结pre-auth/unresolved-tenant审计语义 |
-| LIA2-CONTRACT-001 | P1 source issue resolved / implementation stop remains | 历史candidate的`CreateTaskV2Request.input`/`TaskV2.input`为arbitrary object；canonical conversation fixture携带并回显`input.text` | DEC-126-023方案C形成`29317b...`并从schema/fixture关闭；DEC-126-024批准及LIA-126-002恢复前，业务checkpoint仍不得切换或继续 |
+| LIA2-CONTRACT-001 | P1 source issue resolved and G2A-approved / implementation stop remains | 历史candidate的`CreateTaskV2Request.input`/`TaskV2.input`为arbitrary object；canonical conversation fixture携带并回显`input.text` | DEC-126-023方案C形成`29317b...`并从schema/fixture关闭，DEC-126-024已批准；LIA-126-002恢复前，业务checkpoint仍不得切换或继续 |
 | LIA2-API-002 | P1 | API及Desktop远端CI仍checkout旧contracts SHA；API `generate-check`实际执行generate并重写，不能证明只读drift | S4 closure required；当前不做远端写入 |
 | LIA2-HOST-001 | P1 | Runtime delete成功而通知/Host落库失败时没有durable intermediate state；同operation retry可能永久卡在Runtime NotFound | S5 closure required；可恢复operation状态机和fault/restart tests |
 | LIA2-HOST-002 | P1 | cleanup与StartTurn缺少原子lease；并发starting turn可能与mapping删除竞态 | S5 closure required；race tests |
@@ -179,8 +179,8 @@
 | LIA2-DESKTOP-002 | P1 | sidecar spawn后只接受固定loopback health JSON，不能证明是本次实例；旧/同用户进程可伪装ready | S6 closure required；instance nonce/process identity及Runtime-ready分层 |
 
 - LIA-126-002执行结论：已完成状态校正与四仓local WIP checkpoint；在`LIA2-CONTRACT-001`处依Owner预设停止条件暂停，没有继续修改API/Host/Desktop业务源码。
-- Contract impact：`breaking`。DEC-126-023 C已形成新source commit而未amend既有candidate；重新执行的source G2A证据已就绪，等待DEC-126-024。
-- S7A responsibility freeze：尚未完成；只有DEC-126-024批准并另行恢复closure后，才可冻结Rust-owned Host bearer/token/SSE bridge，当前不得实现。
+- Contract impact：`breaking`。DEC-126-023 C已形成新source commit而未amend既有candidate；DEC-126-024已批准，G2A重审通过。
+- S7A responsibility freeze：尚未完成；只有Owner另行恢复Foundation Corrective Closure并完成S4–S6后，才可冻结Rust-owned Host bearer/token/SSE bridge，当前不得实现。
 
 - Reviewer 是否独立于主起草上下文：否；本轮是 Owner 前的设计候选自检，最终独立 Reviewer 为段成威。
 - P0/P1 是否清零：否。未发现P0；上表P1仍Open，S4–S6均不得标记Complete。
@@ -190,9 +190,9 @@
 
 | Item | 原因 | 风险 | 补验证条件 | Owner | 是否阻断 |
 |---|---|---|---|---|---|
-| DEC-126-024 final G2A | replacement source证据已完成但Owner尚未最终批准 | 未经批准切换下游会绕过Contract First gate | Owner基于`29317b...`、digests、breaking/v1 equality和source conformance批准或退回；之后仍需另行恢复LIA-126-002 | 段成威 | blocks LIA-126-002 continuation and S7–S11 |
+| Foundation Corrective Closure resume | DEC-126-024已批准source candidate，但LIA-126-002仍暂停 | 把G2A通过误作实施授权会越过Owner边界 | Owner另行明确恢复LIA-126-002后，只继续S4–S6 corrective closure；S7–S11仍须单独授权 | 段成威 | blocks LIA-126-002 continuation and S7–S11 |
 | Draft PR dependency audit / merge approval | PR #1 exact head CI在`brace-expansion 2.1.2` high失败；candidate本身未改依赖；后续`govulncheck`与`origin/main` breaking未运行 | 若豁免红灯会留下已知high dependency并缺两项远端证据 | DEC-126-021 Accepted/HOLD；保持Draft，不rerun/waive/fix/push；未来需本地E2E、audit修复、全绿CI与单独Owner批准 | 段成威 | blocks merge only；不阻断未来明确批准的local draft implementation |
-| Public/Host runtime conformance | API/Host/Desktop foundations Conditional；Desktop reducer未实现 | contract drift、IDOR/raw leak/cleanup disagreement | 先批准DEC-126-024、恢复并关闭S4–S6 P1；随后才可评审S7–S10 | 段成威 | blocks closure/G4/local G6 |
+| Public/Host runtime conformance | API/Host/Desktop foundations Conditional；Desktop reducer未实现 | contract drift、IDOR/raw leak/cleanup disagreement | 另行恢复LIA-126-002并关闭S4–S6 P1；随后才可评审S7–S10 | 段成威 | blocks closure/G4/local G6 |
 | DB/encryption/delete E2E | SQLCipher/migration/cascade/checkpoint单仓PASS；完整saga未运行 | cross-surface partial delete/recovery | S7/S10实现job/receipt orchestration并做restart/fault E2E | 段成威 | blocks G4/local G6 |
 | Runtime raw-reasoning/title/delete | Host bridge foundation与fake fixtures PASS；真实Runtime跨Host/Desktop未运行 | raw UX/residual/inconsistent history | keep flags off until S7–S10 conformance/Eval；历史FAIL不改写 | 段成威 | blocks G4/local G6 |
 | Desktop sidecar/Keychain | supervisor/static safety与synthetic bookmark PASS；真实signed Keychain和actual Host child未运行 | packaged/native lifecycle unknown | authorized signed-like local E2E | 段成威 | blocks G4/local G6 |
@@ -200,7 +200,7 @@
 
 ## 11. 结论
 
-- Requirements package：G1/G2 Passed；原G2A作为历史批准保留。DEC-126-023方案C Accepted、Q-017 Resolved、replacement source complete；DEC-126-024 final G2A Pending。DEC-126-021/022仍Accepted；Draft PR #1与`c000a024`保持不变。
+- Requirements package：G1/G2 Passed；DEC-126-023/024 Accepted、Q-017 Resolved，`29317b6426578749dc698fc2ad32b986ee5c8e9f`为新的唯一candidate，G2A Re-review Passed。DEC-126-021/022仍Accepted；Draft PR #1与历史远端候选`c000a024`保持不变。
 - Code Complete：No。S4–S6 Conditional / Corrective Closure Required，G3 Partial；LIA-126-002已暂停，S7–S11、四组件E2E、G4与Owner G6均未完成。
 - 验证人：Codex（文档事实与结构）；最终 Reviewer 为段成威。
 - 日期：2026-08-02。

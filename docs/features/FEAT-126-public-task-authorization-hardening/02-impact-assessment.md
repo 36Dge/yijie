@@ -4,7 +4,7 @@
 
 初始扫描时间：2026-08-01；G2 补充扫描：2026-08-02，Asia/Shanghai。所有 sibling 仓库只读；未 fetch、checkout、generate 或修改。
 
-LIA-126-002于2026-08-02进行了第二轮跨仓审查并建立仅本地WIP checkpoint。该审查发现S4–S6存在未覆盖P1，因此三者均调整为`Conditional / Corrective Closure Required`；同时确认Public Tasks canonical `conversation input.text` fixture与content-free数据边界冲突。DEC-126-023方案C现已Accepted、Q-017已关闭，本地replacement candidate已形成；实现仍暂停，等待DEC-126-024最终G2A批准。
+LIA-126-002于2026-08-02进行了第二轮跨仓审查并建立仅本地WIP checkpoint。该审查发现S4–S6存在未覆盖P1，因此三者均调整为`Conditional / Corrective Closure Required`；Public Tasks source冲突已由DEC-126-023/024关闭，`29317b6426578749dc698fc2ad32b986ee5c8e9f`成为新的唯一candidate并通过G2A重审。实现仍暂停，等待另行恢复LIA-126-002。
 
 | Repository | Rules/read sources | Branch | Full HEAD SHA | Worktree | Toolchain/lock |
 |---|---|---|---|---|---|
@@ -50,7 +50,7 @@ LIA-126-002于2026-08-02进行了第二轮跨仓审查并建立仅本地WIP chec
 | Repository/Component | 职责 | 影响 | 原因 | Owner | 候选未来改动 |
 |---|---|---|---|---|---|
 | yijie | 多仓治理 | direct now | 创建需求包并维护 ADR/Feature 链路 | 段成威 | 本轮仅本目录；G1 后可能更新关联索引 |
-| yijie-contracts | 公共 wire 权威源 | prior remote candidate/Draft PR保持HOLD；local replacement complete；DEC-126-024 Pending | Public Tasks versioned hardening + Agent session-event v2 + Host title/cleanup/events operations | platform-team | `c000a0245acb5c3f7ead5d2a877fb60c281c588c`保持immutable/remote-available；本地`29317b6426578749dc698fc2ad32b986ee5c8e9f`已收窄为content-free-only并通过门禁，但最终G2A前不得作为S4恢复依据 |
+| yijie-contracts | 公共 wire 权威源 | G2A replacement approved；prior remote/Draft PR保持HOLD | Public Tasks versioned hardening + Agent session-event v2 + Host title/cleanup/events operations | platform-team | `29317b6426578749dc698fc2ad32b986ee5c8e9f`为新的唯一candidate；`c000a024`仅为历史远端候选。当前仍不得恢复S4，须另行授权LIA-126-002 |
 | yijie-api | Public Tasks provider | direct future | bearer、tenant/resource auth、list/mutate/delete/审计 | backend-team | auth middleware/application/repository/migration/tests |
 | yijie-agent-host | Runtime adapter | direct future | Desktop lifecycle、versioned raw-reasoning projection、cleanup/title operation 候选 | agent-runtime-team | 先走 Runtime/contract candidate；正文不进logs/bbolt，不持有业务主 DB |
 | yijie-desktop | 产品 consumer/local data owner | direct future | UI、native picker、local DB、sidecar transport、states | client-team | Pattern/contract pin/Tauri/domain/store/components/E2E |
@@ -162,7 +162,7 @@ Authenticated consumer
 
 1. G1 已于 2026-08-01 通过：段成威关闭产品问题 Q-001–Q-005/Q-011–Q-014；批准的产品规则由需求包承接。
 2. G2 评审于 2026-08-02 启动：ADR-0013 已冻结 Desktop 数据权威；继续冻结 Desktop Pattern、Public Tasks breaking、Agent Host additive/semantic 契约、SQLite protection/backup 与跨进程删除设计。
-3. Contracts既有candidate曾通过G2A且保持immutable；DEC-126-023方案C已将`input`数据边界迁到新本地candidate，现等待DEC-126-024最终批准。DEC-126-021仍保持Draft PR/HOLD，远端红色CI继续只阻断旧PR merge。
+3. DEC-126-024已批准新本地candidate并通过G2A重审；DEC-126-021仍保持旧Draft PR/HOLD，远端红色CI继续只阻断旧PR merge，不影响新候选的本地契约身份，也不授权任何远端动作。
 4. LIA-126-001形成了Public Tasks、Host v2与Desktop local repository/sidecar基础；LIA-126-002将S4–S6统一降为Conditional并在contract conflict处暂停。所有flags/routes仍默认关闭，S7–S11继续禁止。
 5. 下游只固定完整SHA或已核验本地投影；先实现consumer tolerance，再启用本地provider新events；浮动branch不得作为契约身份。
 6. 完成security/migration/resilience/visual、四组件本地E2E和结构化审查后，提交Owner本地G6验收；不讨论线上activation。

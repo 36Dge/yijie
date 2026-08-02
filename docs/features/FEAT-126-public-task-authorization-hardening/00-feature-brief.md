@@ -4,7 +4,7 @@
 
 | 字段 | 内容 |
 |---|---|
-| 状态 | G1 Passed / G2 Passed / DEC-126-024 Final G2A Approval Pending / S4–S6 Conditional / G3 Partial |
+| 状态 | G1 Passed / G2 Passed / G2A Re-review Passed / S4–S6 Conditional / LIA-126-002 Paused / G3 Partial |
 | 需求负责人 | 段成威 |
 | Product/Design 决策人 | 段成威 |
 | 技术负责人 | 段成威 |
@@ -147,7 +147,7 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 | G0 需求建档 | 2026-08-01 | 段成威 | Passed |
 | G1 需求/范围/产品安全语义确认 | 2026-08-01 | 段成威 | Passed：推荐产品方案获明确批准 |
 | G2 可开始契约候选 | 2026-08-02 | 段成威 | Passed：DEC-126-017、DEC-126-011/012与Chat/App Shell Pattern Accepted；允许进入G2A source-contract candidate评审，不授权业务编码 |
-| G2A 契约就绪 | 2026-08-02 | 段成威 | Historical Passed；DEC-126-023方案C已Accepted且Q-017 Resolved；replacement `29317b6426578749dc698fc2ad32b986ee5c8e9f`已通过post-commit门禁，等待DEC-126-024最终批准；`c000a024`与Draft PR/远端保持不变 |
+| G2A 契约就绪 | 2026-08-02 | 段成威 | Re-review Passed：DEC-126-024 Accepted，`29317b6426578749dc698fc2ad32b986ee5c8e9f`为新的唯一source-contract candidate；`c000a024`仅为历史remote candidate，Draft PR/远端不变；不恢复LIA-126-002 |
 | Contract Draft PR / merge readiness | 2026-08-02 | 段成威 | DEC-126-021 Accepted/HOLD：Draft PR #1固定SHA且保持Draft；红色CI只阻断merge，不回退G2/G2A；未来需本地跨仓E2E、audit修复、远端CI全绿及单独merge批准 |
 | Local-only Delivery Strategy | 2026-08-02 | 段成威 | DEC-126-022 Accepted；目标改为Local Runtime Ready；tag/publish/deploy/G5均N/A；LIA-126-001后续仅授权S4–S6 |
 | G3 本地切片完成 | 未排期 | 段成威 | Partial：S4–S6有基础实现但均为Conditional / Corrective Closure Required；LIA-126-002已按契约停止条件暂停，S7–S11仍未授权/未实施 |
@@ -181,3 +181,4 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 | 2026-08-02 | Codex | 按LIA-126-001完成S4 API授权加固、S5 Host v2 raw/title/cleanup基础、S6 Desktop SQLCipher/project/sidecar基础；三仓契约生成、lint、race/unit、migration/integration与Desktop build通过并完成结构化安全审查 | 仅本地未提交draft，所有新能力默认关闭；无MiniMax、Runtime/Infra修改、远端写入、merge/tag/publish/deploy或S7–S11 |
 | 2026-08-02 | Codex | 按LIA-126-002建立四仓仅本地closure分支/WIP checkpoint；独立复审把S4–S6降为Conditional，并发现Public Tasks任意`input`及`conversation input.text` fixture与content-free-only数据边界冲突；依预设停止条件暂停代码修复，提交DEC-126-023/G2A复审 | 未修改contracts/Runtime，未调用MiniMax，未push/merge/tag/publish/deploy；FEAT-123删除未进入checkpoint |
 | 2026-08-02 | Codex | 按Owner批准接受DEC-126-023方案C并关闭Q-017；从未修改的`c000a024`形成本地replacement `yijie-contracts@29317b6426578749dc698fc2ad32b986ee5c8e9f`，将Public Tasks v2收窄为closed content-free request/success/error，更新fixtures/generated SDK与迁移说明并完成post-commit全门禁 | 旧candidate、Draft PR #1和远端不变；无业务源码、MiniMax、push/merge/tag/publish/deploy；提交DEC-126-024最终G2A审批，LIA-126-002继续暂停 |
+| 2026-08-02 | Codex | 将DEC-126-024标为Accepted并记录FEAT-126 G2A Re-review Passed；确认`yijie-contracts@29317b6426578749dc698fc2ad32b986ee5c8e9f`为新的唯一source-contract candidate | Owner明确批准；`c000a024`仅保留历史远端身份，Draft PR #1不变；不授权恢复LIA-126-002、业务源码、远端动作、MiniMax或S7–S11 |

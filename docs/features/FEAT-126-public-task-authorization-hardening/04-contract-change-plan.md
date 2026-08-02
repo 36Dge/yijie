@@ -1,6 +1,6 @@
 # FEAT-126 契约与兼容变更计划
 
-> 本文设计已于2026-08-02通过G2并曾通过G2A。LIA-126-002发现历史commit `c000a0245acb5c3f7ead5d2a877fb60c281c588c`的Public Tasks `input`语义与content-free-only边界冲突。DEC-126-023方案C现已Accepted并关闭Q-017；本地replacement `29317b6426578749dc698fc2ad32b986ee5c8e9f`已完成全部source门禁，等待DEC-126-024最终G2A批准。旧commit、Draft PR #1和远端均保持不变；S4–S6为Conditional，S7–S11继续禁止。
+> 本文设计已于2026-08-02通过G2。LIA-126-002发现历史commit `c000a0245acb5c3f7ead5d2a877fb60c281c588c`的Public Tasks `input`语义与content-free-only边界冲突。DEC-126-023方案C与DEC-126-024现均已Accepted，Q-017关闭，G2A重审通过；`29317b6426578749dc698fc2ad32b986ee5c8e9f`是新的唯一source-contract candidate。旧commit仅保留为历史远端候选，Draft PR #1和远端均保持不变；LIA-126-002仍暂停，S4–S6为Conditional，S7–S11继续禁止。
 
 ## 1. Contract Impact 结论
 
@@ -33,7 +33,7 @@
 - 使用严格 `X-Yijie-Tenant-ID` 作为 untrusted selector；API 独立验证 principal、active membership 与 tenant scope。
 - Create request 移除权威 `tenant_id`。若迁移期暂保留，只允许与 verified scope 精确一致且不参与授权；最终删除。
 - **LIA-126-002发现的阻断冲突**：历史candidate把`CreateTaskV2Request.input`与`TaskV2.input`定义为`additionalProperties:true`，canonical fixture使用`task_type=conversation`和`input.text`，response继续回显。它不能证明prompt/message/raw reasoning/title派生正文/项目路径不会进入Public Tasks或PostgreSQL。DEC-126-023方案C已接受，旧`c000a024`未amend。
-- 新source已冻结为closed、content-free `task_type=conversation`与`TaskContentReferenceV2(schema_version=1, content_mode=local_only, opaque UUID)`；request/success不含title/result/error正文，v2 error body只含closed code。replacement完整commit为`29317b6426578749dc698fc2ad32b986ee5c8e9f`；在DEC-126-024前仍不恢复S4。
+- 新source已冻结为closed、content-free `task_type=conversation`与`TaskContentReferenceV2(schema_version=1, content_mode=local_only, opaque UUID)`；request/success不含title/result/error正文，v2 error body只含closed code。replacement完整commit `29317b6426578749dc698fc2ad32b986ee5c8e9f`已由DEC-126-024批准为唯一candidate；该批准不自动恢复S4，LIA-126-002须另行明确授权。
 - 明确 task ownership。推荐 `created_by_user_id` 由 verified principal 写入，不由 client 提供。
 - operation 至少覆盖 create/get；list/rename/pin/delete 只有在决定由 Public API 管理 metadata 时才进入该契约。本地-only 操作不得伪造为 public capability。
 - 资源操作调用 `AuthorizationService.Check(user, tenant, resource, action)`；unknown action 默认拒绝。
@@ -136,7 +136,7 @@ retirement全过程保持双隔离。
 | `contracts-v0.2.0` | `f16a497e1377f45747f8ff9292b4b60cf2027f88` | supported until explicitly changed | `./scripts/check-breaking.sh f16a497e1377f45747f8ff9292b4b60cf2027f88` | PASS 2026-08-02；OpenAPI/Buf/AsyncAPI/JSON Schema无breaking；修复v2 error schema隔离后无v1 enum warnings |
 | all G2A-time supported/deprecating baselines | only the row above per `docs/supported-baselines.md` | per registry | one check per full commit | PASS；无其它supported/deprecating baseline |
 | prior 0.3.0 candidate | `c000a0245acb5c3f7ead5d2a877fb60c281c588c`（parent `9ec34abd6e7dfb5a23b0154d467694167224ebbb`） | immutable remote-available historical candidate, not release baseline | historical semantic/clean-clone gates + LIA-126-002 data-boundary review | historical SOURCE/CLEAN-CLONE PASS；REMOTE CI FAIL；arbitrary `input`问题由DEC-126-023 replacement修复；旧commit/PR仍未修改/merge/tag/发布/pin |
-| DEC-126-023 replacement | `29317b6426578749dc698fc2ad32b986ee5c8e9f`（parent `c000a0245acb5c3f7ead5d2a877fb60c281c588c`） | local immutable candidate, not release baseline | post-commit generate/lint/test/build/pack + supported baseline breaking + v1 reference closure + fixture/schema/SDK conformance | PASS；worktree clean；DEC-126-024 final G2A Pending；未push/merge/tag/publish/pin |
+| DEC-126-023 replacement | `29317b6426578749dc698fc2ad32b986ee5c8e9f`（parent `c000a0245acb5c3f7ead5d2a877fb60c281c588c`） | sole source-contract candidate, local immutable, not release baseline | post-commit generate/lint/test/build/pack + supported baseline breaking + v1 reference closure + fixture/schema/SDK conformance | PASS；worktree clean；DEC-126-024 Accepted / G2A Re-review Passed；未push/merge/tag/publish/pin |
 
 结构性 checker 预计会把直接修改既有 Tasks auth/request 标为 breaking；采用 versioned expand 后仍必须人工审核 auth、error、default、tenant 和 idempotency 语义。
 
@@ -149,7 +149,7 @@ retirement全过程保持双隔离。
 | yijie-agent-host Host/events | `0.3.0 local replacement candidate` | `29317b6426578749dc698fc2ad32b986ee5c8e9f` | Host `d3bb9f33…2c71`；event JSON `b7a6494f…f424`；Proto `a18c08df…f383`（unchanged from parent） | oapi-codegen 2.7.2 + Buf 1.71.0 + JSON Schema generator | agent-runtime-team / 段成威；runtime conformance待后续授权 |
 | yijie-desktop Host/events | `0.3.0 local replacement candidate` | `29317b6426578749dc698fc2ad32b986ee5c8e9f` | Host TS `6eeb8a77…bed4`；SDK tarball `21b17b50…b082` | locked contracts generators | client-team / 段成威；runtime conformance待后续授权 |
 
-DEC-126-024所需的version、full commit、per-source SHA-256、SDK digest和generator identity已回填如下，并已在本地commit后复验。DEC-126-020 clean clone只证明历史`c000a024`，不证明本replacement远端可用。LIA-126-001下的API、Host、Desktop仍固定旧SHA；因本轮禁止修改业务源码，新的下游pin/runtime conformance明确为NOT RUN，批准DEC-126-024后仍须另行恢复LIA-126-002。实际证据见`08-verification-report.md`。
+DEC-126-024所需的version、full commit、per-source SHA-256、SDK digest和generator identity已回填如下，并已在本地commit后复验、由Owner批准。DEC-126-020 clean clone只证明历史`c000a024`，不证明本replacement远端可用。LIA-126-001下的API、Host、Desktop仍固定旧SHA；因本轮禁止修改业务源码，新的下游pin/runtime conformance明确为NOT RUN。G2A重审通过后仍须另行恢复LIA-126-002。实际证据见`08-verification-report.md`。
 
 | Artifact | SHA-256 |
 |---|---|
@@ -212,7 +212,7 @@ Feature 包只引用上述唯一权威位置，不复制业务 fixtures。
 
 | Consumer/Owner | 结论 | 日期 | 证据/例外 |
 |---|---|---|---|
-| yijie-desktop / 段成威 | Replacement source evidence ready；DEC-126-024 final approval pending | 2026-08-02 | closed content-free DTO/fixtures generated；Desktop runtime transport未授权、未声称通过 |
-| yijie-api / 段成威 | Replacement source evidence ready；DEC-126-024 final approval pending | 2026-08-02 | schema从权威源强制拒绝正文；provider runtime conformance未授权、未声称通过 |
-| yijie-agent-host / 段成威 | Historical Host/event source review remains valid；overall DEC-126-024 pending | 2026-08-02 | raw/title/cleanup部分未改变，但S5仍有独立P1 closure |
+| yijie-desktop / 段成威 | Replacement source approved；G2A Re-review Passed | 2026-08-02 | closed content-free DTO/fixtures generated；Desktop runtime transport仍未授权、未声称通过 |
+| yijie-api / 段成威 | Replacement source approved；G2A Re-review Passed | 2026-08-02 | schema从权威源强制拒绝正文；provider runtime conformance仍未授权、未声称通过 |
+| yijie-agent-host / 段成威 | Host/event source review有效；replacement overall G2A Passed | 2026-08-02 | raw/title/cleanup部分未改变，但S5仍有独立P1 closure且LIA-126-002暂停 |
 | unknown Public API consumers | Safe compatibility category accepted | 2026-08-02 | Q-010 Resolved；不声明为零；DEC-126-011 window Accepted |

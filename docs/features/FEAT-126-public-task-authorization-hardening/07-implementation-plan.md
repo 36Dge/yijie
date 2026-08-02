@@ -1,8 +1,8 @@
-# FEAT-126 Local-only 原子实施计划（DEC-126-024前暂停）
+# FEAT-126 Local-only 原子实施计划（G2A重审通过，Foundation Closure暂停）
 
 ## 1. 当前执行边界
 
-- G2已于2026-08-02通过；原G2A批准保留为历史事实。DEC-126-023方案C与Q-017现已关闭，本地replacement candidate已完成；继续实施所需的G2A readiness等待DEC-126-024最终批准。
+- G2已于2026-08-02通过；DEC-126-023/024与Q-017现已关闭，`29317b6426578749dc698fc2ad32b986ee5c8e9f`是新的唯一source-contract candidate，G2A重审通过。`c000a024...`仅保留为历史远端候选，Draft PR #1不变。
 - DEC-126-022 Local-only Delivery Strategy已Accepted；LIA-126-001已于2026-08-02批准，且只允许S4–S6本地基础切片。
 - S4–S6已有本地基础并保持flags/routes默认关闭，但独立复审发现未覆盖P1，现统一为`Conditional / Corrective Closure Required`。LIA-126-002已建立仅本地WIP checkpoint，并依预设contract-conflict停止条件暂停；未调用MiniMax，未修改Runtime/Infra或远端。
 - S7–S11仍是未来评审候选；开始前必须获得下一次明确授权并重新核对full SHA/worktree。
@@ -10,7 +10,7 @@
 ## 2. 实施原则
 
 - 一次只完成一个可独立验证的行为；contract-first；provider/consumer/activation 分离。
-- Public Tasks安全轨与local conversation产品轨已有S4–S6基础，但不能记为完成；DEC-126-024批准并另行恢复LIA-126-002前不得继续S4或进入S7。
+- Public Tasks安全轨与local conversation产品轨已有S4–S6基础，但不能记为完成；DEC-126-024虽已批准，Owner另行恢复LIA-126-002前仍不得继续S4–S6或进入S7。
 - 先 consumer tolerance，再 producer 发新 output/event；先 schema expand，再 writer/switch，最后 cleanup。
 - message body 只进入批准的 local DB/Runtime/provider，不进入 Public Tasks DB、普通日志或 fixture。
 - 每个 repo 独立 commit/PR；不混入当前 yijie 的 FEAT-123 删除。
@@ -115,8 +115,8 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 | S0 | no implementation SHA | requirement package + G1/G2 decision record + Accepted Desktop Pattern | package/links/docs build evidence in `08` | Owner approved G2 | G1/G2 Complete |
 | S1 | no implementation SHA | read-only Runtime/Host/Public Tasks/storage investigation；fixed fake tests；historical bounded MiniMax evidence；no source diff | raw upstream 4/4 + prior title/summary/delete evidence | bounded facts complete；no implementation claim | Investigation Complete |
 | S2 | no implementation SHA | DESIGN-126-003、Public Tasks inventory、DEC-126-017/011/012 | design consistency/package validation | Owner Approved | Complete / G2 Passed |
-| S3 | prior remote `c000a0245acb5c3f7ead5d2a877fb60c281c588c` + local replacement `29317b6426578749dc698fc2ad32b986ee5c8e9f` | source/fixtures/generated SDK/docs only | replacement post-commit gates PASS；old Draft PR remote CI audit FAIL | DEC-126-023/Q-017 closed；DEC-126-024 final approval pending | replacement not implementation-ready until explicit approval |
-| S4 | local checkpoint `yijie-api@b5e601764357512208cc09bfb2b30b244a1b82ac` | secure v2 foundation；default-off local-lab route | historical repository gates PASS but current audit matrix/idempotency/drift gaps and new-candidate runtime conformance not covered | P1 + DEC-126-024 blocker | Conditional / Corrective Closure Required；paused |
+| S3 | prior remote `c000a0245acb5c3f7ead5d2a877fb60c281c588c` + sole candidate `29317b6426578749dc698fc2ad32b986ee5c8e9f` | source/fixtures/generated SDK/docs only | replacement post-commit gates PASS；old Draft PR remote CI audit FAIL | DEC-126-023/024/Q-017 closed；G2A Re-review Passed | Complete at source level；no remote or implementation authorization |
+| S4 | local checkpoint `yijie-api@b5e601764357512208cc09bfb2b30b244a1b82ac` | secure v2 foundation；default-off local-lab route | historical repository gates PASS but current audit matrix/idempotency/drift gaps and new-candidate runtime conformance not covered | P1 + paused LIA-126-002 | Conditional / Corrective Closure Required；paused |
 | S5 | local checkpoint `yijie-agent-host@f6e4a5902d8f25632408c1c699ba17b8c66ef214` | Host/event v2 raw/title/cleanup foundation；flags off | historical race/fake fixtures PASS but partial cleanup/title isolation/lease gaps not covered | P1 closure required | Conditional / Corrective Closure Required；paused with LIA-126-002 |
 | S6 | local checkpoint `yijie-desktop@40413b409a467a133d178137651622e167d512de` | SQLCipher/project/sidecar foundation；flags off | historical TS/Rust/lint/build PASS but reasoning invariants/migration/sidecar identity gaps not covered | P1 closure required | Conditional / Corrective Closure Required；paused with LIA-126-002 |
 | S7–S11 | N/A | none | NOT RUN | Not reviewed | Pending separate authorization |
@@ -139,10 +139,10 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 |---|---|---|---|
 | Product/G1 | 段成威 | Approved recommended product scheme；G1 Passed；no business slice authorized | 2026-08-01 |
 | 技术负责人/G2 | 段成威 | Passed — DEC-126-017、DEC-126-011/012与FEAT-126 Pattern Accepted；进入G2A，仍不开始业务编码 | 2026-08-02 |
-| Contracts/G2A/remote | 段成威 | Historical DEC-126-018/019/020保持；DEC-126-023方案C Accepted并形成local `29317b...`；DEC-126-024 Pending；旧remote/PR不变，未merge/tag/发布/pin，不开始业务编码 | 2026-08-02 |
+| Contracts/G2A/remote | 段成威 | DEC-126-023/024 Accepted，`29317b...`为新的唯一candidate，G2A Re-review Passed；`c000a024...`仅为历史远端候选，旧remote/PR不变，未push/merge/tag/发布/pin，不开始业务编码 | 2026-08-02 |
 | Contracts Draft PR / merge | 段成威 | DEC-126-021 Accepted/HOLD；CI failed dependency audit；merge不是local draft前置但当前仍不批准 | 2026-08-02 |
 | Local-only delivery strategy | 段成威 | DEC-126-022 Accepted；Local Runtime Ready目标，tag/publish/deploy/G5 N/A | 2026-08-02 |
-| Local Implementation Authorization | 段成威 | LIA-126-001已执行；LIA-126-002已批准并建立checkpoint，但仍等待DEC-126-024及单独恢复指令。S4–S6 Conditional，S7–S11仍禁止 | 2026-08-02 |
+| Local Implementation Authorization | 段成威 | LIA-126-001已执行；LIA-126-002已批准并建立checkpoint，DEC-126-024已通过但未自动恢复，仍等待单独恢复指令。S4–S6 Conditional，S7–S11仍禁止 | 2026-08-02 |
 
 ## 12. Local Implementation Authorization 审批候选
 
@@ -163,5 +163,5 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - 批准范围：仅S4–S6 Foundation Corrective Closure和四仓本地checkpoint；S7–S11继续禁止。
 - 已执行：创建四个`feat/feat-126-foundation-closure`本地分支及WIP checkpoint；元仓checkpoint未纳入FEAT-123删除。
 - 停止事实：历史`c000a024`将Public Tasks v2 `input`定义为任意对象，canonical `conversation` fixture携带`input.text`并在response回显，与content-free-only边界冲突。
-- 当前动作：DEC-126-023方案C已执行，新source `29317b6426578749dc698fc2ad32b986ee5c8e9f`完成；不修改旧candidate，不继续provider代码，不执行S5/S6代码纠偏；提交DEC-126-024 final G2A review。
-- 恢复条件：Owner批准DEC-126-024，并另行明确恢复LIA-126-002；批准本身仍不授权S7–S11、MiniMax或远端动作。
+- 当前动作：DEC-126-023方案C已执行，新source `29317b6426578749dc698fc2ad32b986ee5c8e9f`已由DEC-126-024批准，G2A重审通过；不修改旧candidate，不继续provider代码，不执行S5/S6代码纠偏。
+- 恢复条件：Owner另行明确恢复LIA-126-002；DEC-126-024批准本身不授权业务源码、S7–S11、MiniMax或远端动作。

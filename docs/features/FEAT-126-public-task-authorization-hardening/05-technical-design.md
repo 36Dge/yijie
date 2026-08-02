@@ -1,6 +1,6 @@
-# FEAT-126 技术设计（G2保持通过，DEC-126-024待批，S4–S6待纠偏）
+# FEAT-126 技术设计（G2A重审通过，LIA-126-002暂停，S4–S6待纠偏）
 
-> 本文产品/架构设计保持G2 Passed。LIA-126-002复审把S4–S6调整为Conditional，并因Public Tasks `input`与content-free-only边界冲突触发停止条件。DEC-126-023方案C已Accepted并关闭Q-017，本地replacement source已通过门禁；继续实施所需的G2A readiness等待DEC-126-024。S7–S11、MiniMax与远端/发布动作仍未授权。
+> 本文产品/架构设计保持G2 Passed。LIA-126-002复审把S4–S6调整为Conditional，并因Public Tasks `input`与content-free-only边界冲突触发停止条件。DEC-126-023/024已Accepted，Q-017关闭，`29317b6426578749dc698fc2ad32b986ee5c8e9f`成为新的唯一source-contract candidate，G2A重审通过。LIA-126-002仍暂停；S7–S11、MiniMax与远端/发布动作仍未授权。
 
 ## 1. 设计摘要
 
@@ -14,7 +14,7 @@
 ### 1.1 Local-only Operating Profile
 
 - 目标：在Owner本机启动`yijie-api`、`yijie-agent-host`、`yijie-desktop`与固定`yijie-codex` Runtime，使用本地合成身份/租户和fake provider完成完整E2E。
-- 契约：`c000a0245acb5c3f7ead5d2a877fb60c281c588c`保持immutable历史remote candidate；本地replacement为`29317b6426578749dc698fc2ad32b986ee5c8e9f`，但DEC-126-024批准前不得作为S4继续实现依据。后续只能消费Owner重新批准的完整SHA或其已核验本地投影，浮动branch不能充当不可变身份。
+- 契约：`29317b6426578749dc698fc2ad32b986ee5c8e9f`是新的唯一source-contract candidate；`c000a0245acb5c3f7ead5d2a877fb60c281c588c`仅保留为immutable历史remote candidate。后续只有在Owner另行恢复LIA-126-002后，才可将批准的完整SHA或其已核验本地投影用于S4–S6纠偏；浮动branch不能充当不可变身份。
 - 分发：`contracts-v0.3.0` tag、SDK/package publish和registry均N/A；本地生成物或已核验tarball不等于已发布制品。
 - 生产：线上部署、生产灰度/启用、云数据库和真实用户数据均N/A；G5不适用，Local-only G6不代表Production Ready。
 - 模型：实现/回归先用fake provider和固定fixtures；本文档调整不调用MiniMax，完整本地链路后的一次bounded smoke需Owner另行批准。
@@ -86,7 +86,7 @@ authenticated client → secure versioned API → identity/tenant/authz → scop
 只暂存重试所需 technical IDs；完成后 raw IDs 被移除，receipt 候选保留 30 天再以 secure-delete +
 checkpoint 清理。完成态只证明当前 Yijie app-managed live stores 不可重新打开/resume；Runtime 隔离验证
 已发现 WAL/log 字节残留，因此不得承诺 SSD/APFS/Runtime log/OS backup 的法证抹除。上述候选需
-该边界已由 ADR-0014/DEC-126-006 于 2026-08-02 接受；仍需 G2/G2A 与后续实现验证，不得把设计批准写成已实现保证。
+该边界已由 ADR-0014/DEC-126-006 于 2026-08-02 接受；G2/G2A已通过，但仍需后续实现验证，不得把设计批准写成已实现保证。
 
 ### 3.5 Public Tasks hardening
 
@@ -409,7 +409,7 @@ Runtime/Host pin、临时 `CODEX_HOME`/空 cwd/pathless ephemeral thread，title
 - Title schema：strict object `{title:string}`；post-parse NFC single plain-text title，1–40 grapheme，no newline/control/bidi/Markdown/HTML；fixed `title-v1`；first user input≤8KiB and treated as untrusted data。
 - Title trigger：first valid terminal answer only；job isolated from conversation thread；same session/job idempotent；人工 rename cancels/ignores model result。
 - Fallback：first non-empty user line normalized/safely truncated；generic “新任务”只在无可用文本时使用。
-- Reasoning：versioned v2只投影受控raw text delta/finalized reconciliation；纯文本、不可信、不进logs/telemetry/audit；missing/invalid不能静默降级，reasoning Gate失败。S4–S6历史checkpoint仍锁定旧`c000a024`，不得在DEC-126-024批准及恢复LIA-126-002前切换；Host projection与Desktop SQLCipher repository基础已验证，流式reducer/历史UI仍属S7–S8。
+- Reasoning：versioned v2只投影受控raw text delta/finalized reconciliation；纯文本、不可信、不进logs/telemetry/audit；missing/invalid不能静默降级，reasoning Gate失败。S4–S6历史checkpoint仍锁定旧`c000a024`；尽管DEC-126-024已批准新candidate，仍不得在Owner另行恢复LIA-126-002前切换。Host projection与Desktop SQLCipher repository基础已有checkpoint证据，流式reducer/历史UI仍属S7–S8。
 - 无答案/拒答：assistant refusal persists as answer state；title still bounded；不能自动提升 permission/tool。
 - 提示注入：adversarial title/reasoning dataset must prove schema/sanitization and no secret/system prompt leakage。
 - Eval 引用：`06-test-plan.md` §9。
@@ -428,8 +428,8 @@ Runtime/Host pin、临时 `CODEX_HOME`/空 cwd/pathless ephemeral thread，title
 - ADR：现有ADR-0012继续约束Public Tasks；ADR-0013/0014/0015/0016于2026-08-02 Accepted。ADR-0016取代ADR-0015的public-summary-only/raw-drop/时长降级部分；title隔离继续有效。
 - Delete/security：DEC-126-006 Accepted，Q-006/Q-015 Resolved；本文状态机仍不是已实现保证。
 - Runtime/MiniMax：canonical delete/name/summary/raw reasoning/outputSchema已确认；两次历史MiniMax预算已执行，title PASS，MM-126-002在旧summary门槛FAIL且观察到raw事件；Host raw bridge基础已用fake Runtime实现，raw flag默认off，本轮未调用MiniMax。
-- Public Tasks：仓内consumer inventory完成，unknown external按safe compatibility category处理，Q-010 Resolved；DEC-126-011/012已Accepted，v1全程双隔离。DEC-126-023方案C与Q-017已关闭，`29317b...`从schema层拒绝conversation正文；DEC-126-024最终G2A仍是实施阻断。
+- Public Tasks：仓内consumer inventory完成，unknown external按safe compatibility category处理，Q-010 Resolved；DEC-126-011/012已Accepted，v1全程双隔离。DEC-126-023/024与Q-017已关闭，`29317b...`从schema层拒绝conversation正文并通过G2A重审；实施仍由暂停的LIA-126-002阻断。
 - Desktop Pattern：FEAT-126 Chat/App Shell Pattern已Accepted，只取代Chat 1.1.0/App Shell 2.0.0中的FEAT-126冲突段落。
-- 技术负责人：段成威 — G2 Passed；原G2A为历史Passed，DEC-126-023 Accepted，当前DEC-126-024 final approval pending；S4–S6 Conditional / Corrective Closure Required；S7–S11 Pending。
+- 技术负责人：段成威 — G2 Passed；DEC-126-023/024 Accepted，G2A Re-review Passed；S4–S6 Conditional / Corrective Closure Required，LIA-126-002 Paused；S7–S11 Pending。
 - 安全/数据 Owner：段成威 — ADR-0013/0014/0015/0016与DEC-126-005/006/007/011/012/014/015/016/017 Approved；Q-006/Q-007/Q-008/Q-009/Q-010/Q-015/Q-016 Resolved；Pattern Accepted。
-- 结论与日期：2026-08-02 G2保持Passed，Local-only Delivery Strategy与DEC-126-023方案C Accepted；LIA-126-002已在contract-conflict停止条件处暂停。当前不得继续S4代码纠偏或进入S7，等待DEC-126-024最终G2A结论。
+- 结论与日期：2026-08-02 G2保持Passed，Local-only Delivery Strategy与DEC-126-023/024 Accepted，G2A重审通过；LIA-126-002仍保持Paused。当前不得继续S4–S6代码纠偏或进入S7；恢复Foundation Corrective Closure需Owner另行明确授权。
