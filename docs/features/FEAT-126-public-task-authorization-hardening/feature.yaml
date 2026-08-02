@@ -4,7 +4,7 @@ feature:
   id: "FEAT-126"
   slug: "public-task-authorization-hardening"
   title: "安全的新建任务对话、任务记录与 Public Tasks 授权加固"
-  status: "g2-passed-g2a-rereview-required-s4-s6-conditional-lia-126-002-paused"
+  status: "g2-passed-dec-126-024-final-g2a-pending-s4-s6-conditional-lia-126-002-paused"
   created_at: "2026-08-01"
   requirement_owner: "段成威"
   technical_owner: "段成威"
@@ -92,7 +92,7 @@ immutable_references:
     version: "contracts-v0.2.0"
     full_commit: "f16a497e1377f45747f8ff9292b4b60cf2027f88"
     status: "supported; future FEAT-126 breaking checks must include this baseline"
-  current_contract_candidate:
+  prior_remote_contract_candidate:
     version: "0.3.0 candidate; no release tag"
     base_full_commit: "9ec34abd6e7dfb5a23b0154d467694167224ebbb"
     feat_126_full_commit: "c000a0245acb5c3f7ead5d2a877fb60c281c588c"
@@ -101,7 +101,7 @@ immutable_references:
     remote_full_commit: "c000a0245acb5c3f7ead5d2a877fb60c281c588c"
     remote_verification: "clean clone PASS 2026-08-02: exact HEAD, locked install, 29 generated files current, lint, Node 27/27, Go, build, supported-baseline breaking, Public v1 2-path and Host v1 7-path equality, nine digests and clean status"
     generator: "openapi-typescript@7.13.0 and oapi-codegen@v2.7.2"
-    source_shape_status: "DEC-126-018/019/020 remain historical accepted decisions and c000a024 remains immutable/remote-available; LIA-126-002 review found arbitrary Public Tasks input plus canonical conversation input.text conflicts with the content-free-only authority boundary; DEC-126-023 and G2A re-review now block implementation continuation; Draft PR #1 and origin/develop remain unchanged"
+    source_shape_status: "historical candidate only: DEC-126-018/019/020 remain recorded and c000a024 remains immutable/remote-available; LIA-126-002 later found its arbitrary Public Tasks input conflict; DEC-126-023 option C resolved the source issue in a new local commit; this prior candidate, Draft PR #1 and origin/develop remain unchanged"
     draft_pr:
       number: 1
       url: "https://github.com/36Dge/yijie-contracts/pull/1"
@@ -115,6 +115,19 @@ immutable_references:
       ci_result: "failure - source generate/diff/lint/test and SDK pack passed; pnpm audit failed on brace-expansion 2.1.2 / GHSA-mh99-v99m-4gvg; govulncheck and origin/main breaking check were skipped after the audit failure"
       dependency_attribution: "candidate changed neither package.json nor pnpm-lock.yaml relative to base; locked chain is openapi-typescript 7.13.0 -> @redocly/openapi-core 1.34.17 -> minimatch 5.1.9 -> brace-expansion 2.1.2; this is an existing toolchain dependency baseline blocker, not a FEAT-126 contract-diff dependency addition"
       merge_readiness: "hold accepted under DEC-126-021 - keep Draft PR #1 and exact candidate unchanged; no rerun, waiver, remediation or additional push; merge is deferred until local cross-repository E2E passes, the dependency audit is remediated, remote CI is fully green and Owner separately approves merge"
+  current_contract_candidate:
+    version: "0.3.0 local replacement candidate; no release tag"
+    base_full_commit: "c000a0245acb5c3f7ead5d2a877fb60c281c588c"
+    feat_126_full_commit: "29317b6426578749dc698fc2ad32b986ee5c8e9f"
+    branch: "feat/feat-126-content-free-candidate"
+    availability: "local immutable commit only; worktree clean; no remote write, push, merge, tag, publish, deploy or downstream pin authorized or performed"
+    generator: "openapi-typescript@7.13.0 and oapi-codegen@v2.7.2"
+    source_shape_status: "DEC-126-023 option C accepted and Q-017 resolved; Public Tasks v2 request/success/error are closed and content-free; DEC-126-024 final G2A approval pending; LIA-126-002 remains paused"
+    contract_shape: "task_type is closed to conversation; input is TaskContentReferenceV2 with schema_version=1, content_mode=local_only and an opaque UUID; title/result/error detail and all conversation/path fields are absent; Desktop SQLCipher remains the sole durable conversation/title authority; v1 wire unchanged"
+    digest: "public=c8d9e6742802e0f0392ea8221a5fdd028f76107df893ab4c531da75f9e9e354b; public-ts=e84b70be6505dc5c0fc1e4702018fad2839e1a3fe74d7730883151e49928b678; public-go=c3d6e58ee37157aaeeb7f9dbaf216881ba2ef3057a01f74c169a28467f3fc697; create-fixture=7d366b3e44a9bd86a5c02638b152ac52d79580257ab735d634b01bc5bc73a178; success-fixture=b08848c4ec8b617cadf3024b723dc2067b84829091d102889a7b2b7eb249200e; access-denied-fixture=5333a781ddd9a81a290519f2948020eeec01889808b5d94e5e2f5f4d1438326f; not-found-fixture=db2778cfce53c59b68c140d0c74a95ffa648e7cf20382ef74cf257039b2d0191; sdk-tarball=21b17b50ee265e1ebbd7a5248880c7874c88def65c538f1216d0413e85fab082"
+    post_commit_verification: "PASS 2026-08-02: exact parent c000a0245acb5c3f7ead5d2a877fb60c281c588c; make generate/lint/test/build; 29 generated files current; Node 27/27; Go PASS; pnpm pack:sdk; supported contracts-v0.2.0 breaking PASS; Public Tasks v1 2 paths and Agent Host v1 7 paths plus reference closure equal; Public Tasks targeted source/schema/fixture conformance 3/3; digests stable; worktree clean"
+    downstream_runtime_conformance: "NOT RUN by authorization boundary; API/Host/Desktop business sources and their prior candidate locks remain unchanged; source-level PASS is not implementation evidence"
+    g2a_status: "DEC-126-024 Ready for Owner Approval; not approved and not an implementation or remote-action authorization"
   runtime:
     repository_commit: "3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f"
     upstream: "codex-cli 0.144.6 / rust-v0.144.6 / 5d1fbf26c43abc65a203928b2e31561cb039e06d"
@@ -152,9 +165,12 @@ immutable_references:
     compatibility: "secure /v2/tasks expand; keep /v1/tasks dual-denied; retire only after at least 30 calendar days, 2 Desktop release candidates, owner attestation and zero approved/authenticated v1 use"
     decisions: "DEC-126-011/012 accepted 2026-08-02"
   contracts:
-    version: "0.3.0 immutable remote-available candidate; unpublished; no release tag"
-    full_commit: "c000a0245acb5c3f7ead5d2a877fb60c281c588c"
-    digest: "public=c7ab2577b26a0776a7c204d3b9ee38b424cbaf0b9b0dc33d99a6806dfced998b; agent-host=d3bb9f33f89f03b7a2cd124e5528d3fbf72e0b88b35711d2d295f8e6959d2c71; asyncapi=17dc8f7042570c63140de8f388872a7b77668051e9080ecec662d2e284559248; event-json=b7a6494f58e274964ef5520c790f3891836c2f2cf69391ce67e5cfa00211f424; event-proto=a18c08df2e2805147768e9e1b7eed4f97e4b7d0aebde5b59170c7ff248f1f383; public-ts=d3493a79ade649a17a78573ae0f9da3fa261f76c4472a151fbabd7056614d03b; agent-host-ts=6eeb8a77615095aa51daa74e9dc7a84006808381b46b778324d30a375742bed4; asyncapi-bundle=f6b0e7d25b399d1fd4bf42f080fc5a379f21422482f3251b3087aeade5b65ac5; sdk-tarball=334db01424e5038ac8d5431c32fa5a08ee3e3f6febeed0ad1639e325add29404"
+    version: "0.3.0 local replacement candidate; unpublished; no release tag"
+    full_commit: "29317b6426578749dc698fc2ad32b986ee5c8e9f"
+    parent_full_commit: "c000a0245acb5c3f7ead5d2a877fb60c281c588c"
+    digest: "public=c8d9e6742802e0f0392ea8221a5fdd028f76107df893ab4c531da75f9e9e354b; agent-host=d3bb9f33f89f03b7a2cd124e5528d3fbf72e0b88b35711d2d295f8e6959d2c71; asyncapi=17dc8f7042570c63140de8f388872a7b77668051e9080ecec662d2e284559248; event-json=b7a6494f58e274964ef5520c790f3891836c2f2cf69391ce67e5cfa00211f424; event-proto=a18c08df2e2805147768e9e1b7eed4f97e4b7d0aebde5b59170c7ff248f1f383; public-ts=e84b70be6505dc5c0fc1e4702018fad2839e1a3fe74d7730883151e49928b678; public-go=c3d6e58ee37157aaeeb7f9dbaf216881ba2ef3057a01f74c169a28467f3fc697; agent-host-ts=6eeb8a77615095aa51daa74e9dc7a84006808381b46b778324d30a375742bed4; asyncapi-bundle=f6b0e7d25b399d1fd4bf42f080fc5a379f21422482f3251b3087aeade5b65ac5; sdk-tarball=21b17b50ee265e1ebbd7a5248880c7874c88def65c538f1216d0413e85fab082"
+    prior_remote_full_commit: "c000a0245acb5c3f7ead5d2a877fb60c281c588c"
+    status: "DEC-126-024 final G2A pending; old remote candidate and Draft PR #1 unchanged"
     generator: "openapi-typescript@7.13.0; oapi-codegen@v2.7.2; buf@1.71.0; json-schema-to-typescript@15.0.4"
   local_delivery:
     decision: "DEC-126-022 accepted 2026-08-02"
@@ -167,7 +183,7 @@ immutable_references:
     package_publish_policy: "N/A; do not publish SDK/package or configure a registry"
     deployment_policy: "N/A; no online deployment, production canary, production activation, cloud database integration or real user data"
     model_validation: "fake provider and fixed fixtures first; no MiniMax call in this documentation adjustment; one bounded local MiniMax smoke requires separate Owner approval after the local chain is complete; keys never enter logs, databases, documents or frontend storage"
-    implementation_authorization: "LIA-126-002 approved 2026-08-02 for S4-S6 corrective closure only, then paused by the explicit contract-conflict stop condition; S7-S11, MiniMax and all remote/release actions remain unauthorized"
+    implementation_authorization: "LIA-126-002 approved 2026-08-02 for S4-S6 corrective closure only, then paused by the explicit contract-conflict stop condition; DEC-126-023 source correction is complete but DEC-126-024 approval and a separate resume instruction are still required; S7-S11, MiniMax and all remote/release actions remain unauthorized"
   local_foundation_implementation:
     authorization: "LIA-126-001 foundation plus LIA-126-002 corrective closure; LIA-126-002 currently paused"
     status: "S4-S6 Conditional / Corrective Closure Required on local WIP checkpoint commits; feature flags and routes remain off by default; S7-S11 not started"
@@ -199,7 +215,7 @@ gates:
   G0_intake: "passed - 2026-08-01 - Feature ID and source requirements supplied by 段成威"
   G1_design_ready: "passed - 2026-08-01 - 段成威 approved the FEAT-126 recommended product scope and closed Q-001–Q-005/Q-011–Q-014"
   G2_implementation_ready: "passed - 2026-08-02 - 段成威 accepted DEC-126-017, DEC-126-011/012 and FEAT-126 Chat/App Shell Pattern; Q-010 resolved; LIA-126-001 later authorized S4-S6 only"
-  G2A_contract_ready: "re-review-required - 2026-08-02 - historical DEC-126-019/020 approval remains recorded, but DEC-126-023 must resolve the Public Tasks arbitrary-input versus content-free-only conflict before implementation can continue; c000a024 and Draft PR #1 remain unchanged"
+  G2A_contract_ready: "pending-owner-approval - 2026-08-02 - DEC-126-023 option C accepted and Q-017 resolved; local replacement 29317b6426578749dc698fc2ad32b986ee5c8e9f passed post-commit source/generated/fixture/breaking/v1-equality gates; DEC-126-024 final approval pending; c000a024, Draft PR #1 and remote state remain unchanged"
   G3_slice_complete: "partial - 2026-08-02 - S4-S6 have local foundations but are Conditional / Corrective Closure Required; LIA-126-002 is paused at its contract-conflict stop condition and S7-S11 are unauthorized"
   G4_code_complete: "pending - requires local API, Agent Host, Desktop and Runtime builds plus the complete local conversation E2E"
   G5_production_ready: "not-applicable - DEC-126-022 excludes online deployment and production activation; any future production intent must reopen and pass the production track"

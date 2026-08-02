@@ -1,6 +1,6 @@
 # FEAT-126 契约与兼容变更计划
 
-> 本文设计已于2026-08-02通过G2并曾通过G2A。LIA-126-002复审确认immutable commit `c000a0245acb5c3f7ead5d2a877fb60c281c588c`的Public Tasks `input`语义与content-free-only数据边界冲突，故继续实施所需的G2A readiness已重开，等待DEC-126-023。该commit、Draft PR #1和远端均保持不变；S4–S6为Conditional，S7–S11继续禁止。
+> 本文设计已于2026-08-02通过G2并曾通过G2A。LIA-126-002发现历史commit `c000a0245acb5c3f7ead5d2a877fb60c281c588c`的Public Tasks `input`语义与content-free-only边界冲突。DEC-126-023方案C现已Accepted并关闭Q-017；本地replacement `29317b6426578749dc698fc2ad32b986ee5c8e9f`已完成全部source门禁，等待DEC-126-024最终G2A批准。旧commit、Draft PR #1和远端均保持不变；S4–S6为Conditional，S7–S11继续禁止。
 
 ## 1. Contract Impact 结论
 
@@ -32,8 +32,8 @@
 - 使用 `Authorization: Bearer <user token>`；token 只在 native/service transport 层存在。
 - 使用严格 `X-Yijie-Tenant-ID` 作为 untrusted selector；API 独立验证 principal、active membership 与 tenant scope。
 - Create request 移除权威 `tenant_id`。若迁移期暂保留，只允许与 verified scope 精确一致且不参与授权；最终删除。
-- **LIA-126-002发现的阻断冲突**：当前candidate把`CreateTaskV2Request.input`与`TaskV2.input`定义为`additionalProperties:true`，canonical fixture使用`task_type=conversation`和`input.text`，response继续回显。它不能证明prompt/message/raw reasoning/title派生正文/项目路径不会进入Public Tasks或PostgreSQL。provider不得在不更新源契约的情况下私自收窄字段；DEC-126-023批准前S4暂停。
-- 推荐的新source方向是closed、content-free metadata/reference；`c000a024`不得amend。任何新shape必须形成新完整commit、重生成SDK/fixtures、重跑supported-baseline与consumer conformance并重新取得G2A批准。
+- **LIA-126-002发现的阻断冲突**：历史candidate把`CreateTaskV2Request.input`与`TaskV2.input`定义为`additionalProperties:true`，canonical fixture使用`task_type=conversation`和`input.text`，response继续回显。它不能证明prompt/message/raw reasoning/title派生正文/项目路径不会进入Public Tasks或PostgreSQL。DEC-126-023方案C已接受，旧`c000a024`未amend。
+- 新source已冻结为closed、content-free `task_type=conversation`与`TaskContentReferenceV2(schema_version=1, content_mode=local_only, opaque UUID)`；request/success不含title/result/error正文，v2 error body只含closed code。replacement完整commit为`29317b6426578749dc698fc2ad32b986ee5c8e9f`；在DEC-126-024前仍不恢复S4。
 - 明确 task ownership。推荐 `created_by_user_id` 由 verified principal 写入，不由 client 提供。
 - operation 至少覆盖 create/get；list/rename/pin/delete 只有在决定由 Public API 管理 metadata 时才进入该契约。本地-only 操作不得伪造为 public capability。
 - 资源操作调用 `AuthorizationService.Check(user, tenant, resource, action)`；unknown action 默认拒绝。
@@ -135,7 +135,8 @@ retirement全过程保持双隔离。
 |---|---|---|---|---|
 | `contracts-v0.2.0` | `f16a497e1377f45747f8ff9292b4b60cf2027f88` | supported until explicitly changed | `./scripts/check-breaking.sh f16a497e1377f45747f8ff9292b4b60cf2027f88` | PASS 2026-08-02；OpenAPI/Buf/AsyncAPI/JSON Schema无breaking；修复v2 error schema隔离后无v1 enum warnings |
 | all G2A-time supported/deprecating baselines | only the row above per `docs/supported-baselines.md` | per registry | one check per full commit | PASS；无其它supported/deprecating baseline |
-| prior 0.3.0 candidate | `c000a0245acb5c3f7ead5d2a877fb60c281c588c`（parent `9ec34abd6e7dfb5a23b0154d467694167224ebbb`） | immutable remote-available candidate, not release baseline | historical semantic/clean-clone gates + LIA-126-002 data-boundary review | historical SOURCE/CLEAN-CLONE PASS；REMOTE CI FAIL；DEC-126-023 now blocks implementation readiness because arbitrary `input` conflicts with content-free-only semantics；未修改/merge/tag/发布/pin |
+| prior 0.3.0 candidate | `c000a0245acb5c3f7ead5d2a877fb60c281c588c`（parent `9ec34abd6e7dfb5a23b0154d467694167224ebbb`） | immutable remote-available historical candidate, not release baseline | historical semantic/clean-clone gates + LIA-126-002 data-boundary review | historical SOURCE/CLEAN-CLONE PASS；REMOTE CI FAIL；arbitrary `input`问题由DEC-126-023 replacement修复；旧commit/PR仍未修改/merge/tag/发布/pin |
+| DEC-126-023 replacement | `29317b6426578749dc698fc2ad32b986ee5c8e9f`（parent `c000a0245acb5c3f7ead5d2a877fb60c281c588c`） | local immutable candidate, not release baseline | post-commit generate/lint/test/build/pack + supported baseline breaking + v1 reference closure + fixture/schema/SDK conformance | PASS；worktree clean；DEC-126-024 final G2A Pending；未push/merge/tag/publish/pin |
 
 结构性 checker 预计会把直接修改既有 Tasks auth/request 标为 breaking；采用 versioned expand 后仍必须人工审核 auth、error、default、tenant 和 idempotency 语义。
 
@@ -143,24 +144,25 @@ retirement全过程保持双隔离。
 
 | Consumer | Contract version/tag | Full commit | Digest | Generator/version | Owner |
 |---|---|---|---|---|---|
-| yijie-api Public Tasks | `0.3.0 immutable remote candidate` | `c000a0245acb5c3f7ead5d2a877fb60c281c588c` | Public source `c7ab2577…998b`；Go generated produced | oapi-codegen 2.7.2 | backend-team / 段成威 |
-| yijie-desktop Public API | `0.3.0 immutable remote candidate` | `c000a0245acb5c3f7ead5d2a877fb60c281c588c` | Public TS `d3493a79…03b` | openapi-typescript 7.13.0 | client-team / 段成威 |
-| yijie-agent-host Host/events | `0.3.0 immutable remote candidate` | `c000a0245acb5c3f7ead5d2a877fb60c281c588c` | Host `d3bb9f33…2c71`；event JSON `b7a6494f…f424`；Proto `a18c08df…f383` | oapi-codegen 2.7.2 + Buf 1.71.0 + JSON Schema generator | agent-runtime-team / 段成威 |
-| yijie-desktop Host/events | `0.3.0 immutable remote candidate` | `c000a0245acb5c3f7ead5d2a877fb60c281c588c` | Host TS `6eeb8a77…bed4`；SDK tarball `334db014…9404` | locked contracts generators | client-team / 段成威 |
+| yijie-api Public Tasks | `0.3.0 local replacement candidate` | `29317b6426578749dc698fc2ad32b986ee5c8e9f` | Public source `c8d9e674…354b`；Go `c3d6e58e…c697` | oapi-codegen 2.7.2 | backend-team / 段成威；runtime conformance待后续授权 |
+| yijie-desktop Public API | `0.3.0 local replacement candidate` | `29317b6426578749dc698fc2ad32b986ee5c8e9f` | Public TS `e84b70be…b678` | openapi-typescript 7.13.0 | client-team / 段成威；runtime conformance待后续授权 |
+| yijie-agent-host Host/events | `0.3.0 local replacement candidate` | `29317b6426578749dc698fc2ad32b986ee5c8e9f` | Host `d3bb9f33…2c71`；event JSON `b7a6494f…f424`；Proto `a18c08df…f383`（unchanged from parent） | oapi-codegen 2.7.2 + Buf 1.71.0 + JSON Schema generator | agent-runtime-team / 段成威；runtime conformance待后续授权 |
+| yijie-desktop Host/events | `0.3.0 local replacement candidate` | `29317b6426578749dc698fc2ad32b986ee5c8e9f` | Host TS `6eeb8a77…bed4`；SDK tarball `21b17b50…b082` | locked contracts generators | client-team / 段成威；runtime conformance待后续授权 |
 
-Final G2A 所需的 version、full commit、per-source SHA-256、SDK digest 和 generator identity 已回填如下。DEC-126-020 clean clone从专用远端branch复验了相同摘要。LIA-126-001下的API、Host、Desktop均已用锁文件/生成检查固定同一完整SHA；未使用浮动branch或影子DTO。实际下游生成摘要见`08-verification-report.md`。
+DEC-126-024所需的version、full commit、per-source SHA-256、SDK digest和generator identity已回填如下，并已在本地commit后复验。DEC-126-020 clean clone只证明历史`c000a024`，不证明本replacement远端可用。LIA-126-001下的API、Host、Desktop仍固定旧SHA；因本轮禁止修改业务源码，新的下游pin/runtime conformance明确为NOT RUN，批准DEC-126-024后仍须另行恢复LIA-126-002。实际证据见`08-verification-report.md`。
 
 | Artifact | SHA-256 |
 |---|---|
-| Public OpenAPI | `c7ab2577b26a0776a7c204d3b9ee38b424cbaf0b9b0dc33d99a6806dfced998b` |
+| Public OpenAPI | `c8d9e6742802e0f0392ea8221a5fdd028f76107df893ab4c531da75f9e9e354b` |
 | Agent Host OpenAPI | `d3bb9f33f89f03b7a2cd124e5528d3fbf72e0b88b35711d2d295f8e6959d2c71` |
 | Agent session AsyncAPI | `17dc8f7042570c63140de8f388872a7b77668051e9080ecec662d2e284559248` |
 | AgentSessionEventV2 JSON Schema | `b7a6494f58e274964ef5520c790f3891836c2f2cf69391ce67e5cfa00211f424` |
 | AgentSessionEventV2 Protobuf | `a18c08df2e2805147768e9e1b7eed4f97e4b7d0aebde5b59170c7ff248f1f383` |
-| Public generated TypeScript | `d3493a79ade649a17a78573ae0f9da3fa261f76c4472a151fbabd7056614d03b` |
+| Public generated TypeScript | `e84b70be6505dc5c0fc1e4702018fad2839e1a3fe74d7730883151e49928b678` |
+| Public generated Go | `c3d6e58ee37157aaeeb7f9dbaf216881ba2ef3057a01f74c169a28467f3fc697` |
 | Agent Host generated TypeScript | `6eeb8a77615095aa51daa74e9dc7a84006808381b46b778324d30a375742bed4` |
 | AsyncAPI bundle | `f6b0e7d25b399d1fd4bf42f080fc5a379f21422482f3251b3087aeade5b65ac5` |
-| SDK tarball | `334db01424e5038ac8d5431c32fa5a08ee3e3f6febeed0ad1639e325add29404` |
+| SDK tarball | `21b17b50ee265e1ebbd7a5248880c7874c88def65c538f1216d0413e85fab082` |
 
 ## 7. Fixtures 与 Conformance
 
@@ -194,11 +196,11 @@ Feature 包只引用上述唯一权威位置，不复制业务 fixtures。
 
 | 检查 | Command | CWD | SHA/版本 | Exit code | 结果 | 证据位置 |
 |---|---|---|---|---:|---|---|
-| generate | `make generate` | yijie-contracts | `c000a0245acb5c3f7ead5d2a877fb60c281c588c` | 0 | PASS；29 generated files current；no drift | immutable local commit；no tag/pin |
+| generate | `make generate` | yijie-contracts | `29317b6426578749dc698fc2ad32b986ee5c8e9f` | 0 | PASS；29 generated files current；post-commit no drift | local replacement；no remote/tag/pin |
 | lint | `make lint` | yijie-contracts | Node 26.0.0 / pnpm 11.9.0 / Go 1.26.5 | 0 | PASS | Redocly/JSON Schema/Buf/TS/Go vet |
-| test/build/pack | `make test && make build && pnpm pack:sdk` | yijie-contracts | `c000a0245acb5c3f7ead5d2a877fb60c281c588c` | 0 | PASS；Node 27/27、Go PASS、SDK digest `334db014…9404` | synthetic fixtures only；no provider |
-| breaking | `./scripts/check-breaking.sh f16a497e1377f45747f8ff9292b4b60cf2027f88` | yijie-contracts | sole supported baseline | 0 | PASS；legacy Public 2 paths/Host 7 paths equality PASS | automatic + semantic v1 check |
-| conformance | source-schema fixtures and operation assertions only | yijie-contracts | `c000a0245acb5c3f7ead5d2a877fb60c281c588c` | 0 | source-level 11/11 PASS；provider/consumer runtime NOT RUN | no business code/pin；blocks G4, not misreported as implementation |
+| test/build/pack | `make test && make build && pnpm pack:sdk` | yijie-contracts | `29317b6426578749dc698fc2ad32b986ee5c8e9f` | 0 | PASS；Node 27/27、Go PASS、SDK digest `21b17b50…b082` | synthetic fixtures only；no provider |
+| breaking | `./scripts/check-breaking.sh f16a497e1377f45747f8ff9292b4b60cf2027f88` + `pnpm check:v1-wire <full-baseline>` | yijie-contracts | sole supported baseline | 0 | PASS；legacy Public 2 paths/Host 7 paths及reference closure equality PASS | automatic + repeatable semantic v1 check |
+| conformance | source-schema fixtures and operation assertions only | yijie-contracts | `29317b6426578749dc698fc2ad32b986ee5c8e9f` | 0 | Public Tasks定向3/3、全仓Node 27/27、generated TS/Go current；provider/consumer runtime NOT RUN | no business code/pin；blocks G4, not misreported as implementation |
 | Draft PR remote CI | GitHub Actions run 30741466028 / job 91479562558 | yijie-contracts PR #1 | exact head `c000a0245acb5c3f7ead5d2a877fb60c281c588c` | 1 | FAIL；generate/diff/lint/test/pack PASS，`pnpm audit`命中`brace-expansion 2.1.2` high；`govulncheck`与`origin/main` breaking skipped | merge blocked；candidate未改manifest/lockfile；no rerun/waiver/fix/push |
 | Runtime fake title capability | `cargo test -p codex-app-server --test all <test> -- --nocapture` for `thread_start_ephemeral_remains_pathless`、`turn_start_accepts_output_schema_v2`、`turn_start_output_schema_is_per_turn_v2` | yijie-codex/codex-rs | `3aa317ce...` / 0.144.6 | 0 each | PASS | local mock Responses only；keys removed；no source diff |
 | Runtime fake public-summary capability | `RUST_MIN_STACK=33554432 cargo test -p codex-core --test all <test> -- --nocapture` for `configured_reasoning_summary_is_sent`、`reasoning_content_delta_has_item_metadata` | yijie-codex/codex-rs | `3aa317ce...` / 0.144.6 | 0 each | PASS after one documented default-stack abort | local mock Responses only；no MiniMax |
@@ -210,7 +212,7 @@ Feature 包只引用上述唯一权威位置，不复制业务 fixtures。
 
 | Consumer/Owner | 结论 | 日期 | 证据/例外 |
 |---|---|---|---|
-| yijie-desktop / 段成威 | Historical source review approved；current G2A re-review pending | 2026-08-02 | Desktop必须证明不会把local conversation正文送入Public Tasks；DEC-126-023 |
-| yijie-api / 段成威 | Historical source review approved；current G2A re-review pending | 2026-08-02 | provider不得在source外私自收窄arbitrary `input`；DEC-126-023 |
-| yijie-agent-host / 段成威 | Historical Host/event source review remains valid；overall candidate re-review pending | 2026-08-02 | raw/title/cleanup部分未触发此次source冲突，但S5仍有独立P1 closure |
+| yijie-desktop / 段成威 | Replacement source evidence ready；DEC-126-024 final approval pending | 2026-08-02 | closed content-free DTO/fixtures generated；Desktop runtime transport未授权、未声称通过 |
+| yijie-api / 段成威 | Replacement source evidence ready；DEC-126-024 final approval pending | 2026-08-02 | schema从权威源强制拒绝正文；provider runtime conformance未授权、未声称通过 |
+| yijie-agent-host / 段成威 | Historical Host/event source review remains valid；overall DEC-126-024 pending | 2026-08-02 | raw/title/cleanup部分未改变，但S5仍有独立P1 closure |
 | unknown Public API consumers | Safe compatibility category accepted | 2026-08-02 | Q-010 Resolved；不声明为零；DEC-126-011 window Accepted |

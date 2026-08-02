@@ -1,6 +1,6 @@
 # FEAT-126 测试与 Eval 计划
 
-> 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。G2保持通过，继续实施所需的G2A readiness因DEC-126-023进入复审。
+> 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。G2保持通过；DEC-126-023方案C已Accepted并关闭Q-017，replacement source门禁已完成，继续实施所需的G2A readiness等待DEC-126-024最终批准。
 > LIA-126-001形成了S4–S6基础，LIA-126-002复审后均为Conditional；既有绿色测试未覆盖当前P1。S7–S11和完整E2E仍为`NOT RUN`。本轮没有调用MiniMax，
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
@@ -228,6 +228,6 @@
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
-| 测试/技术 Owner | 段成威 | LIA-126-002 Approved but Paused；S4–S6 corrective tests与DEC-126-023仍待关闭，S7–S11与完整E2E禁止 | 2026-08-02 |
+| 测试/技术 Owner | 段成威 | LIA-126-002 Approved but Paused；DEC-126-023/Q-017已关闭，DEC-126-024与S4–S6 corrective tests仍待关闭；S7–S11与完整E2E禁止 | 2026-08-02 |
 | 安全/数据 Owner | 段成威 | 当前P1及Public Tasks正文边界阻断closure；既有auth/delete/no-log/migration结果仅作foundation evidence | 2026-08-02 |
 | Runtime/模型 Owner | 段成威 | DEC-126-021 HOLD与DEC-126-022 Local-only已Accepted；先用fake provider/fixtures，raw reasoning须具体显示并持久化/删除；历史MM-126-001/002不重跑，未来一次local smoke仅可另行提交审批 | 2026-08-02 |

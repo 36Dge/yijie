@@ -1,6 +1,6 @@
 # FEAT-126 需求与验收标准
 
-> 段成威已于2026-08-01通过G1，并于2026-08-02通过G2及当时的G2A。LIA-126-002复审确认immutable candidate允许任意`input`，且canonical conversation fixture把`input.text`写入Public Tasks并在response回显；这与本需求的content-free-only边界冲突。原G2A结论保留为历史事实，但继续实施所需的G2A readiness现已进入DEC-126-023复审；S4–S6均为Conditional，G3 Partial，G4/G6 Pending。本轮未调用MiniMax或修改candidate。
+> 段成威已于2026-08-01通过G1，并于2026-08-02通过G2及当时的G2A。LIA-126-002发现历史candidate的arbitrary `input`与content-free-only边界冲突后暂停；段成威现已批准DEC-126-023方案C并关闭Q-017。本地replacement candidate `29317b6426578749dc698fc2ad32b986ee5c8e9f`已形成并通过post-commit门禁，DEC-126-024最终G2A仍待批准；S4–S6为Conditional，G3 Partial，G4/G6 Pending。本轮未调用MiniMax、未修改业务源码或远端。
 
 ## 1. 用户与场景
 
@@ -282,7 +282,7 @@
 | Q-014 | 项目与 session 是截图 4 的树形导航，还是项目列表与“任务记录”两个独立视图？ | Chat 导航区按项目树形展示最近 sessions；`/tasks` 继续提供跨项目完整记录，两处共享同一 metadata/query 规则 | 决定 App Shell/Chat rail、懒加载与最小窗口布局 | 段成威 | G1 | Resolved — 推荐结论获批，2026-08-01 |
 | Q-015 | SQLite driver/migration、文件保护/加密、app/OS backup、卸载与 WAL 删除证明如何冻结？ | 精确锁定 `rusqlite 0.40.1 + bundled-sqlcipher`、`rusqlite_migration 2.6.0`；Keychain 32-byte key、0700/0600、WAL/FULL/fullfsync、`secure_delete=ON`、成功前 `wal_checkpoint(TRUNCATE)`；无 app backup、OS backup/普通卸载限定披露 | 新依赖、磁盘恢复边界和“永久删除”真实性 | 段成威 | G2 | Resolved — ADR-0014 Accepted，2026-08-02；Rust 1.95 build PASS，Refinery 因 native links 冲突拒绝 |
 | Q-016 | raw reasoning 仅当前流式内存展示，还是写入 Desktop 本地加密 SQLite并随历史加载/物理删除？ | 写入 ADR-0013/0014 已冻结的 Desktop SQLCipher，作为历史 UI 唯一权威；流式在内存展示，terminal/显式incomplete record落库；不写Host业务DB/日志/云端，独立表随session FK cascade并纳入secure-delete/checkpoint | 数据分类、schema/migration、history一致性、容量、backup披露和删除范围 | 段成威 | G2 | Resolved — DEC-126-016 Accepted 2026-08-02；不授权实现 |
-| Q-017 | Public Tasks v2的`input`是任意task正文，还是仅content-free metadata/reference？ | 推荐仅content-free，并以新immutable candidate收窄request/response/fixtures；`c000a024`不修改。备选是明确Public Tasks完全不属于local conversation数据面且Desktop永不调用，但仍需处理现有conversation fixture误导 | ADR-0013/DEC-126-014数据权威、PostgreSQL内容边界、provider conformance、G2A identity | 段成威 | G2A re-review | Open — DEC-126-023 Ready for Owner Approval；blocks LIA-126-002/S4 continuation |
+| Q-017 | Public Tasks v2的`input`是任意task正文，还是仅content-free metadata/reference？ | 仅content-free；以新immutable candidate收窄request/response/fixtures，`c000a024`保持不变。Public Tasks不是local conversation正文数据面，Desktop SQLCipher继续是正文/自动标题权威 | ADR-0013/DEC-126-014数据权威、PostgreSQL内容边界、provider conformance、G2A identity | 段成威 | G2A re-review | Resolved 2026-08-02 — DEC-126-023方案C Accepted；replacement `29317b6426578749dc698fc2ad32b986ee5c8e9f`已形成；等待DEC-126-024最终G2A |
 
 ## 11. 需求确认
 
@@ -294,8 +294,9 @@
 | 架构/数据删除 | 段成威 | Approved — ADR-0014/DEC-126-006 Accepted，Q-006/Q-015 Resolved；G2 仍未通过、不授权实现 | 2026-08-02 |
 | Runtime/模型能力与raw历史 | 段成威 | Approved — ADR-0016/DEC-126-015/016/017 Accepted，展示raw reasoning且禁止静默时长降级；Desktop SQLCipher历史持久化、懒加载和session级联删除；Q-009/Q-016 Resolved。G2/G2A Passed，仍无业务编码授权 | 2026-08-02 |
 | G2 Closure | 段成威 | Approved / Passed — DEC-126-017、DEC-126-011/012与Chat/App Shell Pattern Accepted；进入G2A，仍不开始业务编码 | 2026-08-02 |
-| G2A source contract | 段成威 | Approved / Passed — DEC-126-018/019 Accepted；`c000a0245acb5c3f7ead5d2a877fb60c281c588c`是唯一candidate；DEC-126-020专用branch远端可用性已完成；不授权merge/tag/发布、downstream pin、业务编码或生产启用 | 2026-08-02 |
+| G2A source contract（历史） | 段成威 | Approved / Passed at DEC-126-019 — `c000a0245acb5c3f7ead5d2a877fb60c281c588c`当时为唯一candidate且DEC-126-020远端可用；LIA-126-002后发现数据边界冲突，当前实施readiness由DEC-126-024复审取代 | 2026-08-02 |
 | Contract Draft PR / merge readiness | 段成威 | DEC-126-021 Accepted/HOLD；PR #1 exact head保持Draft，CI红灯只阻断merge，不回退G2/G2A | 2026-08-02 |
 | Local-only Delivery Strategy | 段成威 | DEC-126-022 Accepted；Local Runtime Ready为目标，tag/publish/deploy/G5 N/A；G6为本地Owner验收 | 2026-08-02 |
 | Local Implementation Authorization | 段成威 | LIA-126-001已执行；LIA-126-002已批准但依contract-conflict停止条件暂停。S4–S6为Conditional / Corrective Closure Required，S7–S11/MiniMax/远端与发布动作仍禁止 | 2026-08-02 |
-| DEC-126-023 / G2A re-review | 段成威 | Pending — 决定Public Tasks `input`的数据边界与是否形成新immutable candidate | N/A |
+| DEC-126-023 / Q-017 | 段成威 | Approved — 方案C Accepted；Q-017 Resolved；旧candidate/PR/远端不变，本地replacement candidate已形成 | 2026-08-02 |
+| DEC-126-024 / final G2A re-review | 段成威 | Pending — 基于`29317b6426578749dc698fc2ad32b986ee5c8e9f`与post-commit摘要批准或退回新的唯一candidate；不预先授权实现或远端动作 | N/A |
