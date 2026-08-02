@@ -16,7 +16,7 @@ Accepted；2026-08-01 增补 A7 本地类生产工程环境决策
 
 - `FEAT-125-authoritative-permission-projection`
 - `FEAT-124-desktop-post-login-home` / `G4-001`
-- 后续需求：`FEAT-126-public-task-authorization-hardening`（仅登记，尚未创建）
+- 后续需求：`FEAT-126-public-task-authorization-hardening`（需求包已于 2026-08-01 创建并通过 G1 产品评审；G2 与实施尚未批准）
 
 ## 背景
 
@@ -281,5 +281,6 @@ refresh rotation/reuse 与 Keychain E2E 属于 S7/G5；A7 不把这些证据前�
       已 push 并远端核验；真实 IdP/正式 Keychain provisioning/生产配置未执行）；
 - [ ] 按 provider-first 顺序完成 S5B generated contract consumer/store 与 S6 fail-closed UI；
 - [ ] 在 G5 前完成 Tasks ingress + handler 双隔离和三来源负向验证；
-- [ ] 创建并实施 `FEAT-126-public-task-authorization-hardening`；
+- [x] 创建 `FEAT-126-public-task-authorization-hardening` 需求包并通过 G1 产品评审（2026-08-01；不代表 G2 或实施批准）；
+- [ ] 实施并生产启用 `FEAT-126-public-task-authorization-hardening`，完成 Tasks 资源级授权、租户硬化和临时隔离退出；
 - [ ] 完成 FEAT-125 跨仓集成后回到 FEAT-124，独立关闭并复验 `G4-001`。
