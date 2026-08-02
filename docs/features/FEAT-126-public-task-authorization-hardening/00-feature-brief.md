@@ -4,7 +4,7 @@
 
 | 字段 | 内容 |
 |---|---|
-| 状态 | G1 Passed / G2 Passed / G2A Passed / LIA-126-001 S4–S6 Complete / G3 Partial |
+| 状态 | G1 Passed / G2 Passed / G2A Re-review Required / S4–S6 Conditional / G3 Partial |
 | 需求负责人 | 段成威 |
 | Product/Design 决策人 | 段成威 |
 | 技术负责人 | 段成威 |
@@ -147,10 +147,10 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 | G0 需求建档 | 2026-08-01 | 段成威 | Passed |
 | G1 需求/范围/产品安全语义确认 | 2026-08-01 | 段成威 | Passed：推荐产品方案获明确批准 |
 | G2 可开始契约候选 | 2026-08-02 | 段成威 | Passed：DEC-126-017、DEC-126-011/012与Chat/App Shell Pattern Accepted；允许进入G2A source-contract candidate评审，不授权业务编码 |
-| G2A 契约就绪 | 2026-08-02 | 段成威 | Passed：DEC-126-019 Accepted；确认`c000a0245acb5c3f7ead5d2a877fb60c281c588c`为唯一source-contract candidate；DEC-126-020已单独授权并完成专用branch远端可用性，未授权merge/tag/发布、downstream pin、业务编码或生产启用 |
+| G2A 契约就绪 | 2026-08-02 | 段成威 | Historical Passed；LIA-126-002发现`input.text` fixture与content-free数据边界冲突，现为Re-review Required，等待DEC-126-023；`c000a024`保持immutable且未修改 |
 | Contract Draft PR / merge readiness | 2026-08-02 | 段成威 | DEC-126-021 Accepted/HOLD：Draft PR #1固定SHA且保持Draft；红色CI只阻断merge，不回退G2/G2A；未来需本地跨仓E2E、audit修复、远端CI全绿及单独merge批准 |
 | Local-only Delivery Strategy | 2026-08-02 | 段成威 | DEC-126-022 Accepted；目标改为Local Runtime Ready；tag/publish/deploy/G5均N/A；LIA-126-001后续仅授权S4–S6 |
-| G3 本地切片完成 | 未排期 | 段成威 | Partial：S4–S6本地基础切片与逐仓门禁已完成；S7–S11仍未授权/未实施，故G3整体不通过 |
+| G3 本地切片完成 | 未排期 | 段成威 | Partial：S4–S6有基础实现但均为Conditional / Corrective Closure Required；LIA-126-002已按契约停止条件暂停，S7–S11仍未授权/未实施 |
 | G4 Local Code Complete | 未排期 | 段成威 | Pending：需API/Host/Desktop/Runtime本地构建与完整对话E2E |
 | G5 Production Ready | N/A | 段成威 | Out of Scope；未来上线必须重开生产轨 |
 | G6 Local-only Delivery Complete | 未排期 | 段成威 | Pending：Owner验收本地启动和功能链路；不代表Production Ready |
@@ -179,3 +179,4 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 | 2026-08-02 | Codex | 按Owner授权创建[yijie-contracts Draft PR #1](https://github.com/36Dge/yijie-contracts/pull/1)，base=`develop`、head=`feat/feat-126-contract-candidate`、head SHA固定为`c000a024…588c`；登记9项摘要并观察CI到终态 | run 30741466028在传递依赖`brace-expansion 2.1.2` high audit失败；候选未改manifest/lockfile，source门禁先行PASS，但`govulncheck`/`origin/main` breaking skipped；未重跑/豁免/修复/push/merge，提交DEC-126-021 HOLD建议 |
 | 2026-08-02 | Codex | 按Owner指令接受DEC-126-021 HOLD并新增/接受DEC-126-022，将FEAT-126调整为Local-only Delivery：本机四组件启动与完整E2E是目标；merge延后单审，tag/publish/deploy/G5 N/A | 仅更新需求包；红色CI只阻断merge；Local Implementation Authorization仍Pending；无业务代码、MiniMax、push、tag、publish或线上动作 |
 | 2026-08-02 | Codex | 按LIA-126-001完成S4 API授权加固、S5 Host v2 raw/title/cleanup基础、S6 Desktop SQLCipher/project/sidecar基础；三仓契约生成、lint、race/unit、migration/integration与Desktop build通过并完成结构化安全审查 | 仅本地未提交draft，所有新能力默认关闭；无MiniMax、Runtime/Infra修改、远端写入、merge/tag/publish/deploy或S7–S11 |
+| 2026-08-02 | Codex | 按LIA-126-002建立四仓仅本地closure分支/WIP checkpoint；独立复审把S4–S6降为Conditional，并发现Public Tasks任意`input`及`conversation input.text` fixture与content-free-only数据边界冲突；依预设停止条件暂停代码修复，提交DEC-126-023/G2A复审 | 未修改contracts/Runtime，未调用MiniMax，未push/merge/tag/publish/deploy；FEAT-123删除未进入checkpoint |

@@ -1,6 +1,6 @@
 # FEAT-126 需求与验收标准
 
-> 段成威已于2026-08-01通过G1，并于2026-08-02通过G2/G2A，确认`yijie-contracts@c000a0245acb5c3f7ead5d2a877fb60c281c588c`为唯一source-contract candidate。DEC-126-021现已Accepted/HOLD：Draft PR #1保持Draft，红色dependency audit只阻断merge。DEC-126-022已Accepted并把交付目标调整为Local Runtime Ready；tag/package publish/registry/线上部署/G5均N/A。LIA-126-001已批准且S4–S6本地基础切片完成；S7–S11、本地完整E2E和Owner G6仍未授权/未完成。本轮未调用MiniMax。
+> 段成威已于2026-08-01通过G1，并于2026-08-02通过G2及当时的G2A。LIA-126-002复审确认immutable candidate允许任意`input`，且canonical conversation fixture把`input.text`写入Public Tasks并在response回显；这与本需求的content-free-only边界冲突。原G2A结论保留为历史事实，但继续实施所需的G2A readiness现已进入DEC-126-023复审；S4–S6均为Conditional，G3 Partial，G4/G6 Pending。本轮未调用MiniMax或修改candidate。
 
 ## 1. 用户与场景
 
@@ -79,6 +79,7 @@
 | BR-038 | FEAT-125 的 host-profile + ingress 双隔离在新契约、consumer migration、安全测试和 activation 证据齐全前继续有效；不得因 Desktop 本地对话完成而提前开放 legacy route | ADR-0012 / FEAT-125 | Must |
 | BR-039 | conversation data 按 OS user + authenticated user + tenant 隔离；切换账户/tenant 先清空内存与请求，再加载新 scope | 数据隔离 | Must |
 | BR-040 | 云端存储后续通过 versioned storage port/migration 接入；不得把“以后改配置”描述为已证明的 local/cloud 语义兼容 | 用户备注细化 | Must |
+| BR-042 | Public Tasks `/v2/tasks`及PostgreSQL不得接收或回显prompt、message、raw reasoning、title派生正文或项目路径；`input`若保留，只能是closed、content-free metadata/reference。本地对话正文只进入Desktop SQLCipher与受控Runtime/provider链 | LIA-126-002明确冻结的数据边界 / ADR-0013 / DEC-126-014 | Must |
 
 ## 3. 用户流程
 
@@ -189,7 +190,8 @@
 | AC-040 | session包含Desktop records、Host mapping/replay和独占Runtime thread tree | 用户确认永久删除并重启应用 | 按DEC-126-006完成跨表面清理、SQLCipher cascade/secure-delete/checkpoint；历史和深链不可恢复，receipt不含正文/raw ID/path | UI-only/soft delete、跨session误删或承诺清除OS备份/所有磁盘痕迹 | 段成威 |
 | AC-041 | 下游本地draft实现获得单独授权 | 解析契约依赖 | 只使用完整SHA、已核验sibling path、workspace/path、生成SDK或已核验tarball，并核对digest；浮动branch不是契约身份 | 创建tag、publish package、配置registry或复制影子DTO | 段成威 |
 | AC-042 | 本地链路仍在实现/回归阶段 | 运行模型相关测试 | fake provider与固定fixture覆盖成功、缺raw、断流、partial/completed冲突和重启；MiniMax调用数保持0 | 为“跑通”擅自使用key、真实数据或付费请求 | 段成威 |
-| AC-043 | AC-001–042适用项、仓库级测试、本地构建和完整E2E均有真实证据 | Owner执行G6本地验收 | 可标记`Local-only Delivery Complete`；同时明确G5=N/A且不是Production Ready | 把本地验收写成已上线、已发布或生产安全已证明 | 段成威 |
+| AC-043 | AC-001–042及AC-044适用项、仓库级测试、本地构建和完整E2E均有真实证据 | Owner执行G6本地验收 | 可标记`Local-only Delivery Complete`；同时明确G5=N/A且不是Production Ready | 把本地验收写成已上线、已发布或生产安全已证明 | 段成威 |
+| AC-044 | canonical Public Tasks source、fixtures、provider repository及Desktop consumer均可检查 | 创建或读取v2 task | request/response/DB只含批准的content-free metadata/reference；正文/path/raw canary在全部Public Tasks表面为0 | arbitrary `input`、`conversation input.text` fixture、response回显或仅靠Desktop约定避免泄漏 | 段成威 |
 
 ## 5. 状态与错误语义
 
@@ -280,6 +282,7 @@
 | Q-014 | 项目与 session 是截图 4 的树形导航，还是项目列表与“任务记录”两个独立视图？ | Chat 导航区按项目树形展示最近 sessions；`/tasks` 继续提供跨项目完整记录，两处共享同一 metadata/query 规则 | 决定 App Shell/Chat rail、懒加载与最小窗口布局 | 段成威 | G1 | Resolved — 推荐结论获批，2026-08-01 |
 | Q-015 | SQLite driver/migration、文件保护/加密、app/OS backup、卸载与 WAL 删除证明如何冻结？ | 精确锁定 `rusqlite 0.40.1 + bundled-sqlcipher`、`rusqlite_migration 2.6.0`；Keychain 32-byte key、0700/0600、WAL/FULL/fullfsync、`secure_delete=ON`、成功前 `wal_checkpoint(TRUNCATE)`；无 app backup、OS backup/普通卸载限定披露 | 新依赖、磁盘恢复边界和“永久删除”真实性 | 段成威 | G2 | Resolved — ADR-0014 Accepted，2026-08-02；Rust 1.95 build PASS，Refinery 因 native links 冲突拒绝 |
 | Q-016 | raw reasoning 仅当前流式内存展示，还是写入 Desktop 本地加密 SQLite并随历史加载/物理删除？ | 写入 ADR-0013/0014 已冻结的 Desktop SQLCipher，作为历史 UI 唯一权威；流式在内存展示，terminal/显式incomplete record落库；不写Host业务DB/日志/云端，独立表随session FK cascade并纳入secure-delete/checkpoint | 数据分类、schema/migration、history一致性、容量、backup披露和删除范围 | 段成威 | G2 | Resolved — DEC-126-016 Accepted 2026-08-02；不授权实现 |
+| Q-017 | Public Tasks v2的`input`是任意task正文，还是仅content-free metadata/reference？ | 推荐仅content-free，并以新immutable candidate收窄request/response/fixtures；`c000a024`不修改。备选是明确Public Tasks完全不属于local conversation数据面且Desktop永不调用，但仍需处理现有conversation fixture误导 | ADR-0013/DEC-126-014数据权威、PostgreSQL内容边界、provider conformance、G2A identity | 段成威 | G2A re-review | Open — DEC-126-023 Ready for Owner Approval；blocks LIA-126-002/S4 continuation |
 
 ## 11. 需求确认
 
@@ -294,4 +297,5 @@
 | G2A source contract | 段成威 | Approved / Passed — DEC-126-018/019 Accepted；`c000a0245acb5c3f7ead5d2a877fb60c281c588c`是唯一candidate；DEC-126-020专用branch远端可用性已完成；不授权merge/tag/发布、downstream pin、业务编码或生产启用 | 2026-08-02 |
 | Contract Draft PR / merge readiness | 段成威 | DEC-126-021 Accepted/HOLD；PR #1 exact head保持Draft，CI红灯只阻断merge，不回退G2/G2A | 2026-08-02 |
 | Local-only Delivery Strategy | 段成威 | DEC-126-022 Accepted；Local Runtime Ready为目标，tag/publish/deploy/G5 N/A；G6为本地Owner验收 | 2026-08-02 |
-| Local Implementation Authorization | 段成威 | Approved — LIA-126-001仅授权S4–S6；本地基础实现与逐仓验证完成，S7–S11/MiniMax/远端与发布动作仍禁止 | 2026-08-02 |
+| Local Implementation Authorization | 段成威 | LIA-126-001已执行；LIA-126-002已批准但依contract-conflict停止条件暂停。S4–S6为Conditional / Corrective Closure Required，S7–S11/MiniMax/远端与发布动作仍禁止 | 2026-08-02 |
+| DEC-126-023 / G2A re-review | 段成威 | Pending — 决定Public Tasks `input`的数据边界与是否形成新immutable candidate | N/A |

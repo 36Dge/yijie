@@ -1,20 +1,21 @@
-# FEAT-126 本地启动、停止与恢复 Runbook（S4–S6 基础已实现）
+# FEAT-126 本地启动、停止与恢复 Runbook（Foundation Closure 暂停）
 
-> DEC-126-022将本需求冻结为Local-only Delivery。LIA-126-001的S4–S6基础已实现，但S7–S11与四组件启动/E2E仍未授权；因此本文仍不是可执行的完整启动runbook。不包含线上部署、生产灰度/启用、tag、package publish或registry。
+> DEC-126-022将本需求冻结为Local-only Delivery。S4–S6已有基础但均为Conditional；LIA-126-002因DEC-126-023/G2A contract conflict暂停。因此本文不是可执行的完整启动runbook，也不包含线上部署、生产灰度/启用、tag、package publish或registry。
 
 ## 1. Release Manifest
 
 | Component | Version/tag | Full commit | Artifact digest | Contract pin/generator | Environment |
 |---|---|---|---|---|---|
 | contracts | `0.3.0 immutable remote candidate` / tag N/A | `c000a0245acb5c3f7ead5d2a877fb60c281c588c` | SDK `334db014…9404` | future local exact projection only；openapi-typescript 7.13.0 / oapi-codegen 2.7.2 / Buf 1.71.0 | Draft PR/HOLD；remote CI red blocks merge only；not merged/tagged/published |
-| yijie-api | local uncommitted S4 draft | baseline `faeb78019d95aaf9dcfbd8493f8bc2ecf7e4bf34` | generated Go `05d417…af51`；migration `ee5a3a…f86c` | exact candidate lock / oapi-codegen 2.7.2 | local-lab only；secure route default off |
-| yijie-agent-host | local uncommitted S5 draft | baseline `34e94acf293f6daad61c4d42fa47028a2d1318e4` | generated Go `629ddf…63b0` | exact candidate lock / oapi-codegen 2.7.2 | local only；v2 raw/title/cleanup flags default off |
-| yijie-desktop | local uncommitted S6 draft | baseline `155854cf3662384caa2c8bffe0a47935ef4a70b5` | public TS `d3493a…03b`；SQL migration digests in `feature.yaml` | exact candidate lock / openapi-typescript 7.13.0 | local only；foundation and sidecar default off；no final Vue flow |
+| yijie-api | local conditional S4 checkpoint | `b5e601764357512208cc09bfb2b30b244a1b82ac` | generated Go `05d417…af51`；migration `ee5a3a…f86c` | prior candidate lock；DEC-126-023 blocks continuation | local-lab only；secure route default off |
+| yijie-agent-host | local conditional S5 checkpoint | `f6e4a5902d8f25632408c1c699ba17b8c66ef214` | generated Go `629ddf…63b0` | prior candidate lock / oapi-codegen 2.7.2 | local only；v2 flags off；P1 closure pending |
+| yijie-desktop | local conditional S6 checkpoint | `40413b409a467a133d178137651622e167d512de` | public TS `d3493a…03b`；SQL migration digests in `feature.yaml` | prior candidate lock / openapi-typescript 7.13.0 | local only；foundation off；P1 closure pending；no final Vue flow |
 | yijie-infra | no activation | N/A | N/A | N/A | none |
 
 ## 2. Local Runtime Ready 前提
 
-- [x] G1/G2/G2A与LIA-126-001真实通过并有段成威批准
+- [x] G1/G2与历史G2A/LIA-126-001真实通过并有段成威批准
+- [ ] DEC-126-023关闭并重新形成当前可实施的G2A readiness
 - [ ] G4需S7–S10与完整本地E2E后另行通过
 - [ ] Contracts/Runtime/app本地输入来自clean immutable source，full SHA/digest/generator可追溯；tag为N/A
 - [ ] 本地合成identity/tenant/permission链路通过；FEAT-125 production prerequisites不属于Local-only G6
@@ -28,16 +29,16 @@
 - [x] Public Tasks仓内consumer inventory完成并关闭Q-010；DEC-126-011/012已Accepted，unknown external按safe compatibility category处理
 - [x] FEAT-126 Chat/App Shell Pattern已Accepted，只取代现有Pattern中的FEAT-126冲突段落
 - [x] Owner明确批准DEC-126-017、DEC-126-011/012和Pattern并给出G2通过结论
-- [x] G2A local source shape、generated SDK、fixtures、pack、supported-baseline breaking与legacy wire equality已PASS
+- [x] 历史G2A source/generate/fixtures/pack/supported-baseline与legacy wire equality曾PASS
 - [x] DEC-126-018获得Owner批准；已形成并复验immutable source/generated full commit `c000a0245acb5c3f7ead5d2a877fb60c281c588c`
-- [x] DEC-126-019最终G2A获得Owner批准；确认唯一source-contract candidate为`c000a0245acb5c3f7ead5d2a877fb60c281c588c`
+- [x] DEC-126-019历史G2A曾获Owner批准；`c000a0245acb5c3f7ead5d2a877fb60c281c588c`保持immutable
 - [x] DEC-126-020仅授权并完成专用candidate branch远端可用性；remote SHA与clean clone证据PASS，`origin/develop`未移动
 - [x] Draft PR #1按`develop <- feat/feat-126-contract-candidate@c000a024…588c`创建，完整摘要与CI证据已回填
 - [x] DEC-126-021已Accepted/HOLD；Draft PR保持不变，不rerun/waive/fix/push；CI红灯只阻断merge
 - [x] DEC-126-022已Accepted；tag/package publish/registry/线上部署/G5明确N/A
-- [x] LIA-126-001已批准且S4–S6本地基础实现/逐仓验证完成；授权不延伸到S7–S11
+- [ ] LIA-126-002关闭S4–S6当前P1；现因DEC-126-023停止条件暂停，S7–S11仍禁止
 - [ ] Owner另行授权任何后续远端变更，包括更新/删除candidate branch、移动`origin/develop`、merge、tag或package发布
-- [x] S4–S6实际本地consumer记录exact SHA、generated digest和generator；未使用浮动branch
+- [x] S4–S6 checkpoint记录prior exact SHA、generated digest和generator；未使用浮动branch；该记录不代表current G2A readiness
 - [ ] 删除/卸载文案只承诺当前 app-managed live store 不可恢复，披露 Time Machine/APFS/第三方副本与 Application Support/Keychain 普通卸载残留
 - [ ] 本地diagnostics、security assertions、startup/stop/recovery runbook已存在；生产dashboard/alerts为N/A
 - [ ] Feature flags 默认 false，unsafe config fail closed
@@ -152,7 +153,7 @@ stop threshold
 
 | 日期 | Environment | Artifact/data versions | Steps | Result | Gaps |
 |---|---|---|---|---|---|
-| 2026-08-02 | local synthetic foundations | API migration v3；Desktop SQLCipher schema v2；Host bbolt schema v2 | isolated PostgreSQL migrate/tests；SQLCipher wrong-key/drift/future/cascade/WAL；Host v1→v2 receipt migration/symlink tests | PASS for S4–S6 | four-component startup/delete/restart saga NOT RUN；blocks G4/local G6 |
+| 2026-08-02 | local synthetic foundations | API migration v3；Desktop SQLCipher schema v2；Host bbolt schema v2 | isolated PostgreSQL migrate/tests；SQLCipher wrong-key/drift/future/cascade/WAL；Host v1→v2 receipt migration/symlink tests | HISTORICAL FOUNDATION PASS / closure incomplete | current P1 + DEC-126-023 + four-component saga block G4/local G6 |
 
 ## 12. 沟通、职责与批准
 

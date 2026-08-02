@@ -1,6 +1,6 @@
-# FEAT-126 技术设计（G2/G2A 已冻结，S4–S6 已实现）
+# FEAT-126 技术设计（G2保持通过，G2A重审，S4–S6待纠偏）
 
-> 本文设计已通过G2/G2A；LIA-126-001仅授权并完成S4–S6本地基础实现。S7–S11、MiniMax与远端/发布动作仍未授权。DEC-126-022把交付环境冻结为Owner本机；涉及数据库、Runtime、公共契约和安全边界的选择仍以 `03-decisions-and-risks.md` 为准。
+> 本文产品/架构设计保持G2 Passed。LIA-126-002复审把S4–S6调整为Conditional，并因Public Tasks `input`与content-free-only边界冲突触发停止条件；继续实施所需的G2A readiness等待DEC-126-023。S7–S11、MiniMax与远端/发布动作仍未授权。
 
 ## 1. 设计摘要
 
@@ -14,7 +14,7 @@
 ### 1.1 Local-only Operating Profile
 
 - 目标：在Owner本机启动`yijie-api`、`yijie-agent-host`、`yijie-desktop`与固定`yijie-codex` Runtime，使用本地合成身份/租户和fake provider完成完整E2E。
-- 契约：后续获批的本地draft实现只消费`c000a0245acb5c3f7ead5d2a877fb60c281c588c`或其已核验本地投影；浮动branch不能充当不可变身份。
+- 契约：`c000a0245acb5c3f7ead5d2a877fb60c281c588c`保持immutable历史candidate，但在DEC-126-023关闭前不得作为S4继续实现依据；后续只能消费Owner重新批准的完整SHA或其已核验本地投影，浮动branch不能充当不可变身份。
 - 分发：`contracts-v0.3.0` tag、SDK/package publish和registry均N/A；本地生成物或已核验tarball不等于已发布制品。
 - 生产：线上部署、生产灰度/启用、云数据库和真实用户数据均N/A；G5不适用，Local-only G6不代表Production Ready。
 - 模型：实现/回归先用fake provider和固定fixtures；本文档调整不调用MiniMax，完整本地链路后的一次bounded smoke需Owner另行批准。
@@ -428,8 +428,8 @@ Runtime/Host pin、临时 `CODEX_HOME`/空 cwd/pathless ephemeral thread，title
 - ADR：现有ADR-0012继续约束Public Tasks；ADR-0013/0014/0015/0016于2026-08-02 Accepted。ADR-0016取代ADR-0015的public-summary-only/raw-drop/时长降级部分；title隔离继续有效。
 - Delete/security：DEC-126-006 Accepted，Q-006/Q-015 Resolved；本文状态机仍不是已实现保证。
 - Runtime/MiniMax：canonical delete/name/summary/raw reasoning/outputSchema已确认；两次历史MiniMax预算已执行，title PASS，MM-126-002在旧summary门槛FAIL且观察到raw事件；Host raw bridge基础已用fake Runtime实现，raw flag默认off，本轮未调用MiniMax。
-- Public Tasks：仓内consumer inventory完成，unknown external按safe compatibility category处理，Q-010 Resolved；DEC-126-011/012已Accepted，G2A local v2 source shape PASS，v1全程双隔离。
+- Public Tasks：仓内consumer inventory完成，unknown external按safe compatibility category处理，Q-010 Resolved；DEC-126-011/012已Accepted，v1全程双隔离。LIA-126-002确认既有v2 source shape允许arbitrary `input`且fixture携带conversation正文，DEC-126-023/G2A re-review现为实施阻断。
 - Desktop Pattern：FEAT-126 Chat/App Shell Pattern已Accepted，只取代Chat 1.1.0/App Shell 2.0.0中的FEAT-126冲突段落。
-- 技术负责人：段成威 — G2/G2A Passed / DEC-126-018/019/020/021/022 Accepted / LIA-126-001 S4–S6 Complete / S7–S11 Pending。
+- 技术负责人：段成威 — G2 Passed；原G2A为历史Passed，当前DEC-126-023 re-review pending；S4–S6 Conditional / Corrective Closure Required；S7–S11 Pending。
 - 安全/数据 Owner：段成威 — ADR-0013/0014/0015/0016与DEC-126-005/006/007/011/012/014/015/016/017 Approved；Q-006/Q-007/Q-008/Q-009/Q-010/Q-015/Q-016 Resolved；Pattern Accepted。
-- 结论与日期：2026-08-02 G2/G2A Passed，Local-only Delivery Strategy Accepted；merge不是未来本地draft实现前置，红色CI仍阻断merge。业务实现与一次MiniMax local smoke均须另行批准。
+- 结论与日期：2026-08-02 G2保持Passed，Local-only Delivery Strategy Accepted；LIA-126-002已在contract-conflict停止条件处暂停。当前不得继续S4代码纠偏或进入S7，等待DEC-126-023与新的G2A结论。

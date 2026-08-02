@@ -88,6 +88,9 @@ bbolt 只保存 task/session/thread/turn 映射，Runtime 自有状态也不应�
   业务正文。
 - `yijie-api` 的 Public Tasks hardening 可独立使用 PostgreSQL，不因 Desktop 会话完成而上传正文
   或提前开放 legacy routes。
+- 2026-08-02 LIA-126-002 conformance note：既有`c000a024`候选的Public Tasks v2允许任意
+  `input`，且canonical fixture携带并回显conversation `input.text`。该shape不能作为本ADR第3项
+  “不上传conversation正文”的实现证据；DEC-126-023/G2A复审关闭前，相关provider/consumer实现暂停。
 - Redis 与 pgvector 保持现有平台职责，避免为没有明确价值的本地会话增加服务依赖。
 - 未来云同步不是存储 adapter 替换，而是新的产品、安全、契约、迁移和发布问题。
 

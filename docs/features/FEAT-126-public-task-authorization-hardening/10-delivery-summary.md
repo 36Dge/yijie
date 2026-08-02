@@ -2,38 +2,38 @@
 
 ## 1. 当前结果
 
-- 用户可观察行为：无变化；S4–S6基础代码已实现但所有新routes/features默认关闭，S7–S8 UI未开始。
-- 原目标是否达成：未达成。S4–S6基础完成；S7–S11、完整本地对话E2E与Owner验收仍未完成。
+- 用户可观察行为：无变化；S4–S6只有Conditional基础，所有新routes/features默认关闭，S7–S8 UI未开始。
+- 原目标是否达成：未达成。LIA-126-002在Public Tasks contract/data-boundary冲突处暂停；S4–S6纠偏、S7–S11、完整本地对话E2E与Owner验收均未完成。
 - 当前范围：安全的新建任务对话、任务记录、聊天项目、本地持久化及Public Tasks hardening的完整Local-only需求/设计/测试/实施候选。
 - 非目标：见`00-feature-brief.md`；没有文件/图片/工具/云同步；tag/package publish/registry/线上部署/生产灰度/云数据库/真实用户数据均N/A。
-- 交付状态：`G1 Passed / G2 Passed / G2A Passed / LIA-126-001 S4–S6 Complete / G3 Partial`。DEC-126-021继续HOLD；三仓已固定唯一candidate并完成本地基础实现与验证。当前仍无S7–S11、完整本地E2E或Owner G6验收，也不是Code Complete、Production Ready或Local-only Delivery Complete。
+- 交付状态：`G1 Passed / G2 Passed / G2A Re-review Required / S4–S6 Conditional / G3 Partial`。DEC-126-021继续HOLD；`c000a024`保持immutable但其Public Tasks `input`边界等待DEC-126-023。当前不是Code Complete、Production Ready或Local-only Delivery Complete。
 
 ## 2. 实际版本与本地候选（未发布）
 
 | Component | Environment | Version/tag | Full commit | Artifact digest | Contract version/pin |
 |---|---|---|---|---|---|
 | yijie-contracts remote candidate | dedicated branch + Draft PR #1 | `0.3.0 candidate` / tag N/A | `c000a0245acb5c3f7ead5d2a877fb60c281c588c` | SDK `334db014…9404`；source digests见`feature.yaml`/contract release note | clean-clone verified；remote CI failed dependency audit；merge HOLD；not merged/tagged/published |
-| yijie-api S4 local draft | local only / no release | tag N/A | baseline `faeb78019d95aaf9dcfbd8493f8bc2ecf7e4bf34` + uncommitted diff | Go `05d417…af51`；migration `ee5a3a…f86c` | exact candidate lock；default off |
-| yijie-agent-host S5 local draft | local only / no release | tag N/A | baseline `34e94acf293f6daad61c4d42fa47028a2d1318e4` + uncommitted diff | Go `629ddf…63b0` | exact candidate lock；v2 flags off |
-| yijie-desktop S6 local draft | local only / no release | tag N/A | baseline `155854cf3662384caa2c8bffe0a47935ef4a70b5` + uncommitted diff | TS `d3493a…03b`；SQL/Cargo digests见`feature.yaml` | exact candidate lock；foundation off |
+| yijie-api S4 local checkpoint | local only / no release | tag N/A | `b5e601764357512208cc09bfb2b30b244a1b82ac` | Go `05d417…af51`；migration `ee5a3a…f86c` | prior candidate lock；Conditional/default off |
+| yijie-agent-host S5 local checkpoint | local only / no release | tag N/A | `f6e4a5902d8f25632408c1c699ba17b8c66ef214` | Go `629ddf…63b0` | Conditional；v2 flags off |
+| yijie-desktop S6 local checkpoint | local only / no release | tag N/A | `40413b409a467a133d178137651622e167d512de` | TS `d3493a…03b`；SQL/Cargo digests见`feature.yaml` | Conditional；foundation off |
 
 ## 3. 验收结果
 
 | AC/NFR | 结果 | 自动化/人工证据 | Production evidence |
 |---|---|---|---|
-| S4 AC-025–030 foundation | PASS | API auth/tenant/permission/creator-private/idempotency/audit/migration tests | none / production N/A |
-| S5 raw/title/cleanup foundation AC subset | PASS | Host contract/race/fake Runtime/no-log/store tests | none / production N/A |
-| S6 local DB/project/sidecar foundation AC subset | PASS | Desktop 113 TS + 51 Rust, SQLCipher/migration/path/cascade/sidecar tests | none / production N/A |
+| S4 AC-025–030 foundation | CONDITIONAL / NOT CLOSED | prior API tests pass but rejection audit, content boundary, TTL and drift gate have open findings | none / production N/A |
+| S5 raw/title/cleanup foundation AC subset | CONDITIONAL / NOT CLOSED | prior tests pass but partial cleanup recovery, atomic lease and title isolation/idempotency P1 remain | none / production N/A |
+| S6 local DB/project/sidecar foundation AC subset | CONDITIONAL / NOT CLOSED | prior tests pass but reasoning terminal invariants and sidecar instance identity P1 remain | none / production N/A |
 | Remaining AC/NFR / S7–S11 | NOT RUN | not authorized；full traceability in `08` | none / production N/A |
 | Requirement package/G0/G1 | G1 product scope approved；structure evidence in `08` | user approval + default/G0/G1/strict package, YAML and diff checks | N/A |
 | G2 data authority | ACCEPTED DESIGN | ADR-0013 + 段成威 2026-08-02 approval；SQLite/PostgreSQL/Redis/pgvector/bbolt 职责已冻结 | N/A |
 | G2 SQLite/delete design | ACCEPTED DESIGN | ADR-0014/DEC-126-006 + Rust dependency build + fixed Runtime functional/restart delete evidence；Q-006/Q-015 Resolved，forensic WAL/log residue remains explicit limitation | N/A |
-| G2 Runtime title/raw-reasoning capability | S5/S6 FOUNDATION PASS / E2E NOT RUN | Host bounded v2/title/cleanup + Desktop terminal SQLCipher repository；historical MiniMax evidence retained；本轮0 provider calls | N/A |
+| G2 Runtime title/raw-reasoning capability | ACCEPTED DESIGN / CONDITIONAL IMPLEMENTATION | Host/Desktop foundations exist；LIA-126-002 P1 remain；historical MiniMax evidence retained；本轮0 provider calls | N/A |
 | G2 DESIGN-126-003 | ACCEPTED DESIGN | exact v2 raw variants、SQLCipher schema、caps、aggregation/reconciliation、history/migration/cascade frozen；fixed raw upstream fixtures 4/4 PASS；DEC-126-017 Accepted | N/A |
 | G2 Public Tasks/Pattern | ACCEPTED DESIGN | repo-local consumer inventory complete、Q-010 Resolved、DEC-126-011/012和Desktop Pattern Accepted | N/A |
-| G2A source contract | PASSED | DEC-126-018/019 Accepted；Public Tasks v2、Host title/cleanup/events v2、AgentSessionEventV2、fixtures/generated SDK绑定到唯一candidate `c000a0245acb5c3f7ead5d2a877fb60c281c588c`；提交后27/27、build/pack、breaking与v1 equality PASS | N/A |
+| G2A source contract | RE-REVIEW REQUIRED | historical gates passed, but DEC-126-023 must resolve arbitrary Public Tasks `input` and canonical `conversation input.text` versus content-free-only authority | N/A |
 | Contract Draft PR / remote CI | PR CREATED / CI FAILED / MERGE BLOCKED | [PR #1](https://github.com/36Dge/yijie-contracts/pull/1)为OPEN/DRAFT，base/head/SHA精确匹配；run 30741466028的generate/diff/lint/test/pack PASS，`pnpm audit`因`brace-expansion 2.1.2` high失败，后续`govulncheck`/`origin/main` breaking skipped；candidate未改依赖文件 | N/A |
-| Local-only Delivery Strategy | ACCEPTED / S4–S6 COMPLETE | DEC-126-021 HOLD、DEC-126-022与LIA-126-001；exact SHA/fake-first/default-off；G5/tag/publish/deploy N/A | N/A |
+| Local-only Delivery Strategy | ACCEPTED / S4–S6 CONDITIONAL | DEC-126-021 HOLD、DEC-126-022与LIA-126-002 pause；fake-first/default-off；G5/tag/publish/deploy N/A | N/A |
 
 ## 4. 本地 Smoke 与观察
 
@@ -46,7 +46,7 @@
 
 | 项目 | Trace/request/task/session 标识 | 结果 | Evidence |
 |---|---|---|---|
-| 授权/租户/审计 | synthetic IDs only | API auth/tenant/permission/creator-private/404/idempotency与atomic audit PASS | API tests + isolated PostgreSQL integration；full E2E pending |
+| 授权/租户/审计 | synthetic IDs only | creator-private foundation exists；rejection/read audit matrix and content-free boundary NOT CLOSED | prior API tests + LIA-126-002 source/handler review |
 | raw/no-log/secret | synthetic canaries only | Host raw正文不进logs/bbolt；Desktop key/error redaction与sidecar env allowlist PASS | Host/Desktop tests + logger/source scan；future UI/E2E pending |
 
 ## 6. 本地执行事件、恢复与数据状态
@@ -55,7 +55,7 @@
 - 是否触发停止或回滚：N/A。
 - 数据/队列/缓存最终状态：只创建过隔离的synthetic PostgreSQL/SQLCipher/Host temp stores，测试后停止并清理；真实业务数据未触碰。
 - 回滚路径当前是否仍有效：新能力默认off；API migration为expand-only，Desktop/Host按forward repair；完整跨进程rollback尚待S10。
-- Workspace：yijie既有FEAT-123删除保持原样；API/Host/Desktop含未提交S4–S6 diffs；contracts candidate、Runtime与Infra未改。
+- Workspace：yijie既有FEAT-123删除保持未暂存/未提交；yijie/API/Host/Desktop均有仅本地closure branch与WIP checkpoint；contracts candidate、Runtime与Infra未改。
 
 ## 7. 未验证项、已知限制与接受风险
 
@@ -63,7 +63,7 @@
 |---|---|---|---|---|
 | Host/Desktop title/raw-reasoning integration | Host bridge与Desktop SQLCipher基础PASS；reducer/UI/full E2E未实现 | 段成威 | flags off；按S7–S10实施/验证 | before G4 |
 | Raw reasoning schema/caps | immutable source + Host caps/reconciliation + Desktop terminal schema基础PASS | 段成威 | S4–S6 accepted as implementation evidence only | S7/S9/S10 |
-| Next local implementation | LIA-126-001已耗尽，S7–S11仍禁止 | 段成威 | requires new explicit authorization | next decision |
+| DEC-126-023 / next implementation | LIA-126-002因contract-conflict停止条件暂停，S7–S11仍禁止 | 段成威 | Owner先决定Public Tasks数据边界并形成当前G2A readiness | next decision |
 | Draft PR dependency audit / merge readiness | 当前CI红灯，且两个后续job steps未运行；当前candidate/PR保持不变 | 段成威 | DEC-126-021 Accepted/HOLD；只阻断merge，无audit waiver/rerun/fix/push授权 | before any future merge approval |
 | Public Tasks anonymous/IDOR debt | production route must remain isolated | 段成威 | inherited controlled exception only | FEAT-126 production or 2026-09-30 earlier |
 | SQLite/SQLCipher 与 delete/backup boundary | 单仓wrong-key/migration/cascade/checkpoint/backup exclusion基础PASS；完整删除saga/OS副本语义未E2E | 段成威 | flags off；不承诺forensic erase | future G4/local G6 |
@@ -116,11 +116,12 @@
 | G0 Intake | 段成威 | Passed — requested requirement creation | 2026-08-01 | user request + `00` |
 | G1 Design Ready | 段成威 | Passed — approved FEAT-126 recommended product scheme | 2026-08-01 | user statement + resolved G1 Q/accepted product DEC |
 | G2 Design Review | 段成威 | Passed — DEC-126-017/011/012与FEAT-126 Pattern Accepted；进入G2A/no business coding | 2026-08-02 | Owner statement + `03`/`04`/`05`/`08` |
-| G2A Source Contract + Remote Availability | 段成威 | Passed/Complete — DEC-126-018/019/020 Accepted；唯一candidate已在专用branch远端可用并clean-clone复验；no merge/tag/publish/pin/business coding | 2026-08-02 | Owner statement + remote refs + contracts release note + `03`/`04`/`08` |
+| G2A Source Contract + Remote Availability | 段成威 | Historical Passed/remote availability complete；current implementation readiness reopened for DEC-126-023 because candidate input semantics conflict with data authority | 2026-08-02 | source/fixture review + `03`/`04`/`08` |
 | Contract Merge Readiness | 段成威 | DEC-126-021 Accepted/HOLD；PR #1 CI red，not approved for merge；merge不是local draft前置 | 2026-08-02 | PR #1 + run 30741466028 + `03`/`08`/`09` |
 | Local-only Delivery Strategy | 段成威 | DEC-126-022 Accepted；Local Runtime Ready目标；tag/publish/deploy/G5 N/A | 2026-08-02 | Owner statement + `03`/`07`/`09` |
-| LIA-126-001 | 段成威 | Approved / Executed — only S4–S6 local foundations；S7–S11/MiniMax/remote/release actions prohibited | 2026-08-02 | repository gates + digests + structured review in `07`/`08` |
+| LIA-126-001 | 段成威 | Approved / Executed — produced S4–S6 foundations；later review supersedes Complete claim | 2026-08-02 | repository gates + digests + structured review in `07`/`08` |
+| LIA-126-002 | 段成威 | Approved / Paused by contract-conflict stop condition；local checkpoints complete，S4–S6 remain Conditional | 2026-08-02 | DEC-126-023 candidate + `07`/`08` |
 | G5 Production Ready | 段成威 | N/A / Out of Scope under DEC-126-022 | 2026-08-02 | no deployment/tag/publish/production environment |
 | G6 Local-only Delivery Complete | 段成威 | Pending Owner local startup and functional acceptance | N/A | requires G4 + AC-043；not Production Ready |
 
-- 正式关闭时间：N/A；feature remains active at post-LIA-126-001 / G3-partial boundary。当前等待Owner审查S4–S6证据并另行决定下一批切片；dependency remediation/merge与一次MiniMax local smoke分别单审，tag/publish/deploy不在本期范围。
+- 正式关闭时间：N/A；feature remains active at DEC-126-023 / G2A-re-review and G3-partial boundary。当前先等待Owner决定Public Tasks数据边界；在此之前不得恢复LIA-126-002或进入S7。dependency remediation/merge与一次MiniMax local smoke继续分别单审，tag/publish/deploy不在本期范围。

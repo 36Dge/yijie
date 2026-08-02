@@ -1,6 +1,6 @@
 # FEAT-126 契约与兼容变更计划
 
-> 本文设计已于2026-08-02通过G2和G2A。唯一source-contract candidate为immutable commit `c000a0245acb5c3f7ead5d2a877fb60c281c588c`。DEC-126-021已接受HOLD：Draft PR #1保持Draft，远端CI红灯只阻断merge；LIA-126-001随后仅授权并完成S4–S6本地基础消费/实现。tag/package publish/registry/线上部署仍为N/A，S7–S11仍待另行授权。
+> 本文设计已于2026-08-02通过G2并曾通过G2A。LIA-126-002复审确认immutable commit `c000a0245acb5c3f7ead5d2a877fb60c281c588c`的Public Tasks `input`语义与content-free-only数据边界冲突，故继续实施所需的G2A readiness已重开，等待DEC-126-023。该commit、Draft PR #1和远端均保持不变；S4–S6为Conditional，S7–S11继续禁止。
 
 ## 1. Contract Impact 结论
 
@@ -32,6 +32,8 @@
 - 使用 `Authorization: Bearer <user token>`；token 只在 native/service transport 层存在。
 - 使用严格 `X-Yijie-Tenant-ID` 作为 untrusted selector；API 独立验证 principal、active membership 与 tenant scope。
 - Create request 移除权威 `tenant_id`。若迁移期暂保留，只允许与 verified scope 精确一致且不参与授权；最终删除。
+- **LIA-126-002发现的阻断冲突**：当前candidate把`CreateTaskV2Request.input`与`TaskV2.input`定义为`additionalProperties:true`，canonical fixture使用`task_type=conversation`和`input.text`，response继续回显。它不能证明prompt/message/raw reasoning/title派生正文/项目路径不会进入Public Tasks或PostgreSQL。provider不得在不更新源契约的情况下私自收窄字段；DEC-126-023批准前S4暂停。
+- 推荐的新source方向是closed、content-free metadata/reference；`c000a024`不得amend。任何新shape必须形成新完整commit、重生成SDK/fixtures、重跑supported-baseline与consumer conformance并重新取得G2A批准。
 - 明确 task ownership。推荐 `created_by_user_id` 由 verified principal 写入，不由 client 提供。
 - operation 至少覆盖 create/get；list/rename/pin/delete 只有在决定由 Public API 管理 metadata 时才进入该契约。本地-only 操作不得伪造为 public capability。
 - 资源操作调用 `AuthorizationService.Check(user, tenant, resource, action)`；unknown action 默认拒绝。
@@ -133,7 +135,7 @@ retirement全过程保持双隔离。
 |---|---|---|---|---|
 | `contracts-v0.2.0` | `f16a497e1377f45747f8ff9292b4b60cf2027f88` | supported until explicitly changed | `./scripts/check-breaking.sh f16a497e1377f45747f8ff9292b4b60cf2027f88` | PASS 2026-08-02；OpenAPI/Buf/AsyncAPI/JSON Schema无breaking；修复v2 error schema隔离后无v1 enum warnings |
 | all G2A-time supported/deprecating baselines | only the row above per `docs/supported-baselines.md` | per registry | one check per full commit | PASS；无其它supported/deprecating baseline |
-| current 0.3.0 candidate | `c000a0245acb5c3f7ead5d2a877fb60c281c588c`（parent `9ec34abd6e7dfb5a23b0154d467694167224ebbb`） | immutable remote-available candidate, not release baseline | semantic diff + candidate migration review + post-commit and clean-clone gates + Draft PR remote CI | SOURCE/CLEAN-CLONE PASS；REMOTE CI FAIL on dependency audit；DEC-126-018/019/020 Accepted，G2A Passed；唯一candidate；PR #1 merge blocked，未merge/tag/发布/pin |
+| prior 0.3.0 candidate | `c000a0245acb5c3f7ead5d2a877fb60c281c588c`（parent `9ec34abd6e7dfb5a23b0154d467694167224ebbb`） | immutable remote-available candidate, not release baseline | historical semantic/clean-clone gates + LIA-126-002 data-boundary review | historical SOURCE/CLEAN-CLONE PASS；REMOTE CI FAIL；DEC-126-023 now blocks implementation readiness because arbitrary `input` conflicts with content-free-only semantics；未修改/merge/tag/发布/pin |
 
 结构性 checker 预计会把直接修改既有 Tasks auth/request 标为 breaking；采用 versioned expand 后仍必须人工审核 auth、error、default、tenant 和 idempotency 语义。
 
@@ -208,7 +210,7 @@ Feature 包只引用上述唯一权威位置，不复制业务 fixtures。
 
 | Consumer/Owner | 结论 | 日期 | 证据/例外 |
 |---|---|---|---|
-| yijie-desktop / 段成威 | Approved for source-contract readiness；G2A Passed | 2026-08-02 | generated Public/Host/event shapes + future private DB consumer；DEC-126-018/019；实现另行授权 |
-| yijie-api / 段成威 | Approved for source-contract readiness；G2A Passed | 2026-08-02 | creator-private/auth/idempotency/error semantics；DEC-126-018/019；实现另行授权 |
-| yijie-agent-host / 段成威 | Approved for source-contract readiness；G2A Passed | 2026-08-02 | raw/title/cleanup v2、caps/no-durable-raw与Runtime authority；DEC-126-018/019；实现另行授权 |
+| yijie-desktop / 段成威 | Historical source review approved；current G2A re-review pending | 2026-08-02 | Desktop必须证明不会把local conversation正文送入Public Tasks；DEC-126-023 |
+| yijie-api / 段成威 | Historical source review approved；current G2A re-review pending | 2026-08-02 | provider不得在source外私自收窄arbitrary `input`；DEC-126-023 |
+| yijie-agent-host / 段成威 | Historical Host/event source review remains valid；overall candidate re-review pending | 2026-08-02 | raw/title/cleanup部分未触发此次source冲突，但S5仍有独立P1 closure |
 | unknown Public API consumers | Safe compatibility category accepted | 2026-08-02 | Q-010 Resolved；不声明为零；DEC-126-011 window Accepted |

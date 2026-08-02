@@ -1,16 +1,16 @@
-# FEAT-126 Local-only 原子实施计划（S4–S6 已完成）
+# FEAT-126 Local-only 原子实施计划（Foundation Corrective Closure 暂停）
 
 ## 1. 当前执行边界
 
-- G2/G2A已于2026-08-02通过；DEC-126-021 Accepted/HOLD，Draft PR #1保持exact head，红色CI只阻断merge。
+- G2已于2026-08-02通过；原G2A批准保留为历史事实，但LIA-126-002发现Public Tasks `input` contract/data-authority冲突，继续实施所需的G2A readiness进入DEC-126-023复审。
 - DEC-126-022 Local-only Delivery Strategy已Accepted；LIA-126-001已于2026-08-02批准，且只允许S4–S6本地基础切片。
-- S4–S6已在API/Host/Desktop本地未提交工作树完成并保持flags/routes默认关闭；未调用MiniMax，未修改Runtime/Infra，未commit/push/merge/tag/publish/deploy。
+- S4–S6已有本地基础并保持flags/routes默认关闭，但独立复审发现未覆盖P1，现统一为`Conditional / Corrective Closure Required`。LIA-126-002已建立仅本地WIP checkpoint，并依预设contract-conflict停止条件暂停；未调用MiniMax，未修改Runtime/Infra或远端。
 - S7–S11仍是未来评审候选；开始前必须获得下一次明确授权并重新核对full SHA/worktree。
 
 ## 2. 实施原则
 
 - 一次只完成一个可独立验证的行为；contract-first；provider/consumer/activation 分离。
-- Public Tasks安全轨与local conversation产品轨的S4–S6基础已完成，但G4/Local-only G6不因基础切片完成而通过。
+- Public Tasks安全轨与local conversation产品轨已有S4–S6基础，但不能记为完成；DEC-126-023关闭前不得继续S4或进入S7。
 - 先 consumer tolerance，再 producer 发新 output/event；先 schema expand，再 writer/switch，最后 cleanup。
 - message body 只进入批准的 local DB/Runtime/provider，不进入 Public Tasks DB、普通日志或 fixture。
 - 每个 repo 独立 commit/PR；不混入当前 yijie 的 FEAT-123 删除。
@@ -115,10 +115,10 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 | S0 | no implementation SHA | requirement package + G1/G2 decision record + Accepted Desktop Pattern | package/links/docs build evidence in `08` | Owner approved G2 | G1/G2 Complete |
 | S1 | no implementation SHA | read-only Runtime/Host/Public Tasks/storage investigation；fixed fake tests；historical bounded MiniMax evidence；no source diff | raw upstream 4/4 + prior title/summary/delete evidence | bounded facts complete；no implementation claim | Investigation Complete |
 | S2 | no implementation SHA | DESIGN-126-003、Public Tasks inventory、DEC-126-017/011/012 | design consistency/package validation | Owner Approved | Complete / G2 Passed |
-| S3 | `c000a0245acb5c3f7ead5d2a877fb60c281c588c`；remote candidate branch；Draft PR #1 | source/fixtures/generated SDK/docs only；no business code | clean clone 29 generated current、27/27、Go/lint/build/breaking/v1 equality与九项摘要PASS；remote CI audit FAIL | DEC-126-018/019/020/021/022 Accepted；G2A Passed；merge HOLD | Source candidate complete；red CI blocks merge only；tag/publish N/A；S4–S6已用exact SHA投影 |
-| S4 | uncommitted draft on `yijie-api@faeb78019d95aaf9dcfbd8493f8bc2ecf7e4bf34` | secure v2 auth/tenant/permission/creator-private repo、idempotency/audit与expand migration；default-off local-lab route | generate-check/race/unit/vet/lint + isolated PostgreSQL migration/integration PASS | structured security/migration review；no blocker | Complete under LIA-126-001 |
-| S5 | uncommitted draft on `yijie-agent-host@34e94acf293f6daad61c4d42fa47028a2d1318e4` | exact Host/event v2 projection、bounded raw、isolated title、Runtime cleanup、content-free receipt与bbolt v1→v2 migration | contract-check/race/unit/vet/lint PASS；fake Runtime/no-log/no-bbolt/symlink tests PASS | structured Runtime/delete/secret review；no blocker | Complete under LIA-126-001 |
-| S6 | uncommitted draft on `yijie-desktop@155854cf3662384caa2c8bffe0a47935ef4a70b5` | exact Public projection、SQLCipher forward migrations/repository、Keychain、native project、serialized DB worker、local sidecar supervisor；default off | 113 TS + 51 Rust PASS；fmt/Clippy/lint/build PASS | structured DB/scope/path/sidecar/no-secret review；no blocker | Complete under LIA-126-001 |
+| S3 | `c000a0245acb5c3f7ead5d2a877fb60c281c588c`；remote candidate branch；Draft PR #1 | historical source/fixtures/generated SDK/docs only | historical clean-clone gates PASS；remote CI audit FAIL；LIA-126-002 source/fixture review found arbitrary-input conflict | DEC-126-023 Ready for Owner Approval；G2A re-review required | prior candidate remains immutable；not implementation-ready for S4 |
+| S4 | local checkpoint `yijie-api@b5e601764357512208cc09bfb2b30b244a1b82ac` | secure v2 foundation；default-off local-lab route | historical repository gates PASS but current audit matrix/data-boundary/idempotency/drift gaps not covered | P1 + DEC-126-023 blocker | Conditional / Corrective Closure Required；paused |
+| S5 | local checkpoint `yijie-agent-host@f6e4a5902d8f25632408c1c699ba17b8c66ef214` | Host/event v2 raw/title/cleanup foundation；flags off | historical race/fake fixtures PASS but partial cleanup/title isolation/lease gaps not covered | P1 closure required | Conditional / Corrective Closure Required；paused with LIA-126-002 |
+| S6 | local checkpoint `yijie-desktop@40413b409a467a133d178137651622e167d512de` | SQLCipher/project/sidecar foundation；flags off | historical TS/Rust/lint/build PASS but reasoning invariants/migration/sidecar identity gaps not covered | P1 closure required | Conditional / Corrective Closure Required；paused with LIA-126-002 |
 | S7–S11 | N/A | none | NOT RUN | Not reviewed | Pending separate authorization |
 
 ## 10. 变更控制
@@ -142,7 +142,7 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 | Contracts/G2A/remote | 段成威 | Approved / Passed — DEC-126-018/019/020 Accepted；`c000a0245acb5c3f7ead5d2a877fb60c281c588c`为唯一candidate并已在专用branch远端可用；未merge/tag/发布/pin，不开始业务编码 | 2026-08-02 |
 | Contracts Draft PR / merge | 段成威 | DEC-126-021 Accepted/HOLD；CI failed dependency audit；merge不是local draft前置但当前仍不批准 | 2026-08-02 |
 | Local-only delivery strategy | 段成威 | DEC-126-022 Accepted；Local Runtime Ready目标，tag/publish/deploy/G5 N/A | 2026-08-02 |
-| Local Implementation Authorization | 段成威 | Approved — LIA-126-001仅授权S4–S6；实现与证据完成，S7–S11仍禁止 | 2026-08-02 |
+| Local Implementation Authorization | 段成威 | LIA-126-001已执行；LIA-126-002已批准并建立checkpoint，但依DEC-126-023停止条件暂停。S4–S6 Conditional，S7–S11仍禁止 | 2026-08-02 |
 
 ## 12. Local Implementation Authorization 审批候选
 
@@ -157,3 +157,11 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 - 首批完成后：提交S4–S6结构化review与证据；未获下一次批准前不启动S7–S11。
 
 Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；继续禁止MiniMax、远端写入、merge/tag/publish/deploy及S7–S11。`执行结果与摘要见`08-verification-report.md`；该授权现已耗尽，不自动延伸到下一切片。
+
+### LIA-126-002（Approved / Paused by Stop Condition）
+
+- 批准范围：仅S4–S6 Foundation Corrective Closure和四仓本地checkpoint；S7–S11继续禁止。
+- 已执行：创建四个`feat/feat-126-foundation-closure`本地分支及WIP checkpoint；元仓checkpoint未纳入FEAT-123删除。
+- 停止事实：`c000a024`将Public Tasks v2 `input`定义为任意对象，canonical `conversation` fixture携带`input.text`并在response回显，与content-free-only边界冲突。
+- 当前动作：不修改immutable candidate，不继续provider私有收窄，不执行S5/S6代码纠偏；提交DEC-126-023与G2A re-review。
+- 恢复条件：Owner批准DEC-126-023，并在需要时批准形成新source candidate；新的完整SHA、generated/fixture/breaking/conformance摘要通过G2A后，另行恢复LIA-126-002。
