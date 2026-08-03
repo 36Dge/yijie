@@ -4,14 +4,14 @@
 
 | 字段 | 内容 |
 |---|---|
-| 状态 | G1 Passed / G2 Passed / G2A Re-review Passed / S4–S8B Closure Passed / DEC-126-034 Accepted / DEC-126-035 Candidate / G3 Partial |
+| 状态 | G1 Passed / G2 Passed / G2A Re-review Passed / S4–S8B Closure Passed / DEC-126-035 Accepted / S9 Closure Candidate / DEC-126-036 Pending / G3 Partial |
 | 需求负责人 | 段成威 |
 | Product/Design 决策人 | 段成威 |
 | 技术负责人 | 段成威 |
 | Reviewer | 段成威 |
 | 发布负责人 | 段成威 |
 | 创建日期 | 2026-08-01 |
-| 最后更新 | 2026-08-03 |
+| 最后更新 | 2026-08-04 |
 | 原始需求来源 | 段成威 2026-08-01 对话需求及 4 张 Codex 局部交互截图 |
 
 ## 2. 一句话目标
@@ -61,7 +61,7 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 - 云端会话同步、多设备合并、共享协作、导入导出、归档与回收站。
 - 项目编辑、Finder 展示、归档或删除本地目录/仓库文件。
 - Admin Web、Connectors、Knowledge、Skills 或商业平台能力接入。
-- LIA-126-001/002与DEC-126-026已完成S4–S6；DEC-126-027/028/030/031/033/034已接受S7A–S8B Closure。Owner随后明确授权将已接受的yijie/API/Host/Desktop checkpoints推送到各自专用候选分支，远端SHA已复验；这只改变可达性，不改变G3/G4/G6、flag、merge或发布状态。S9–S11、MiniMax、Runtime/Infra源码、feature activation及一切新增远端动作仍不在授权范围。
+- LIA-126-001/002与DEC-126-026已完成S4–S6；DEC-126-027/028/030/031/033/034已接受S7A–S8B Closure。Owner随后明确授权将已接受的yijie/API/Host/Desktop checkpoints推送到各自专用候选分支，远端SHA已复验并由DEC-126-035接受；这只改变可达性，不改变G3/G4/G6、flag、merge或发布状态。LIA-126-007已完成test-only S9并提交DEC-126-036 Closure候选；S10–S11、MiniMax、Runtime/Infra生产源码、feature activation及一切新增远端动作仍不在授权范围。
 - FEAT-126本期不创建`contracts-v0.3.0` tag、不发布SDK/package、不配置registry，不进行线上部署、生产灰度/启用、云数据库接入或真实用户数据处理。
 
 ## 6. 候选成功指标
@@ -153,11 +153,11 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 | G2A 契约就绪 | 2026-08-02 | 段成威 | Re-review Passed：DEC-126-024 Accepted，`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate；现已精确推送到`origin/feat/feat-126-content-free-candidate`，`origin/develop`、历史`c000a024`与Draft PR #1均不变；远端可达不等于merge/发布/实现完成 |
 | Contract Draft PR / merge readiness | 2026-08-02 | 段成威 | DEC-126-021 Accepted/HOLD：Draft PR #1固定SHA且保持Draft；红色CI只阻断merge，不回退G2/G2A；未来需本地跨仓E2E、audit修复、远端CI全绿及单独merge批准 |
 | Local-only Delivery Strategy | 2026-08-02 | 段成威 | DEC-126-022 Accepted；目标改为Local Runtime Ready；tag/publish/deploy/G5均N/A；LIA-126-001后续仅授权S4–S6 |
-| G3 本地切片完成 | 未排期 | 段成威 | Partial：S4–S8B Closure已接受；S9–S11仍未授权/未实施 |
+| G3 本地切片完成 | 未排期 | 段成威 | Partial：S4–S8B Closure已接受；S9已执行并提交DEC-126-036 Closure候选；S10–S11仍未授权/未实施 |
 | S8B0 UI Integration Readiness Review | 2026-08-03 | 段成威 | DESIGN-126-006/DEC-126-032与DEC-126-033 Accepted；LIA-126-005 / S8B0 Closure Passed |
 | S8B Vue UI Closure Review | 2026-08-03 | 段成威 | DEC-126-034 Accepted / S8B Closure Passed；不自动授权S9/S10/activation，VoiceOver人工项保留到S11/G6 |
-| Remote State Reconciliation | 2026-08-03 | 段成威 | DEC-126-035候选：五仓候选ref/clean clone精确PASS；四个S4–S8B checkpoints已按Owner明确授权远端可达；不改变G3/G4/G6或后续切片授权 |
-| S9 fake-provider Eval Authorization | 未排期 | 段成威 | LIA-126-007仅为授权建议，尚未批准/执行；禁止MiniMax、真实数据、flag和S10 |
+| Remote State Reconciliation | 2026-08-04 | 段成威 | DEC-126-035 Accepted：五仓候选ref/clean clone精确PASS；四个S4–S8B checkpoints已按Owner明确授权远端可达；不改变G3/G4/G6或后续切片授权 |
+| S9 fake-provider Eval Closure | 2026-08-04 | 段成威 | LIA-126-007已授权并执行；Host/Desktop本地checkpoint与DEC-126-036 Closure候选已提交；禁止MiniMax、真实数据、flag和S10 |
 | G4 Local Code Complete | 未排期 | 段成威 | Pending：需API/Host/Desktop/Runtime本地构建与完整对话E2E |
 | G5 Production Ready | N/A | 段成威 | Out of Scope；未来上线必须重开生产轨 |
 | G6 Local-only Delivery Complete | 未排期 | 段成威 | Pending：Owner验收本地启动和功能链路；不代表Production Ready |
@@ -207,3 +207,5 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 | 2026-08-03 | 段成威 | 批准DEC-126-034并接受S8B Closure Review | S8B Closure Passed；G3继续Partial；不授权S9–S11、feature activation、MiniMax、四组件E2E或远端/发布动作；VoiceOver未声明人工通过并保留到S11/G6 |
 | 2026-08-03 | 段成威 / Codex | Owner明确授权推送所有涉及改动的仓库；Codex将yijie/API/Host/Desktop既有FEAT-126 commits推送到各自`feat/feat-126-foundation-closure`并复验远端SHA | 四仓当时worktree均clean，无需新增或空commit；contracts候选已远端可达；未merge/tag/publish/deploy/activation |
 | 2026-08-03 | Codex | 完成五仓`ls-remote`和临时clean clone复验，校正远端事实并提交DEC-126-035候选及LIA-126-007/S9授权建议 | 仅治理文档；未执行S9–S11、MiniMax或任何新增远端写入 |
+| 2026-08-04 | 段成威 | 批准DEC-126-035并单独授权LIA-126-007 / S9 fake-provider Eval | 只允许Host权威dataset/runner、Desktop exact fixture消费与本地checkpoint；禁止MiniMax、flag、S10及远端/发布动作 |
+| 2026-08-04 | Codex | 完成`feat126-title-raw-v1`确定性Eval并提交DEC-126-036 Closure Review候选 | Host `8707dea…c9378`、Desktop `adfdb5b…af9cb`均仅本地；title/raw/security gates PASS；G3仍Partial，S10–S11未授权 |

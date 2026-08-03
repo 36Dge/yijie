@@ -1,6 +1,6 @@
 # FEAT-126 契约与兼容变更计划
 
-> 本文central contract设计已通过G2/G2A重审。DEC-126-034已接受S8B Closure；DEC-126-035候选仅登记Owner授权后的checkpoint远端可达性，不修改central source、22个commands、7个events、Host/Public Tasks wire或Runtime pin。旧`c000a024`、Draft PR #1和各`origin/develop`保持不变。
+> 本文central contract设计已通过G2/G2A重审。DEC-126-034已接受S8B Closure，DEC-126-035已接受远端事实；LIA-126-007/S9只增加test-only dataset/runner/consumer fixtures，不修改central source、22个commands、7个events、Host/Public Tasks wire或Runtime pin。旧`c000a024`、Draft PR #1和各`origin/develop`保持不变。
 
 ## 1. Contract Impact 结论
 
@@ -257,3 +257,10 @@ Feature 包只引用上述唯一权威位置，不复制业务 fixtures。
 | Production bundle | PASS：test harness、`axe-core`、synthetic fixture与test global不存在于`dist/` | test-only依赖不改变发布consumer |
 
 S8B切片contract impact为`semantic Desktop-private`，不改变central feature总体`breaking`分类。若后续UI需要新command/event/error/cursor或让WebView猜Host/Runtime状态，必须停止并重新进入private IPC设计评审；本轮没有触发该条件。
+
+## 12. LIA-126-007 Eval fixture conformance
+
+- Host `desktop-events.sse`与Desktop vendored副本SHA-256均为`e8c2d5ebca2182b7b07ad30761c07b5986139f2ff8ec9bbbf9b4ecaae6d6a0e6`。
+- Host `desktop-consumer.json`与Desktop vendored副本SHA-256均为`5ad29b750693ecf95a0cabab4fe7c2ada6f6dbb9b10f9f99c3d5c25654d32cf1`。
+- Desktop authority lock固定Host local checkpoint `8707dea552cff74121b89aa8045f27da2c8c9378`；Rust test在消费前重算摘要并fail closed。
+- S9没有生成新的central/private IPC/wire contract；它只验证Accepted producer/consumer语义，因此不形成第二个source candidate。

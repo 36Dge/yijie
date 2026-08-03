@@ -4,7 +4,7 @@
 
 初始扫描时间：2026-08-01；G2 补充扫描：2026-08-02，Asia/Shanghai。所有 sibling 仓库只读；未 fetch、checkout、generate 或修改。
 
-LIA-126-002于2026-08-02形成S4–S6 checkpoint并完成Corrective Closure；Public Tasks source冲突已由DEC-126-023/024关闭，`29317b6426578749dc698fc2ad32b986ee5c8e9f`是唯一candidate。DEC-126-026/027/028/030/031/033/034已接受S4–S8B Closure。Owner随后明确授权将yijie/API/Host/Desktop checkpoints推送到专用候选分支；DEC-126-035只校正该远端可达事实。flag仍关闭，S9–S11仍未开始。
+LIA-126-002于2026-08-02形成S4–S6 checkpoint并完成Corrective Closure；Public Tasks source冲突已由DEC-126-023/024关闭，`29317b6426578749dc698fc2ad32b986ee5c8e9f`是唯一candidate。DEC-126-026/027/028/030/031/033/034已接受S4–S8B Closure，DEC-126-035已接受远端可达事实。LIA-126-007仅在Host/Desktop新增test-only Eval authority/consumer并形成DEC-126-036候选；production行为和flag未改变，S10–S11仍未开始。
 
 | Repository | Rules/read sources | Branch | Full HEAD SHA | Worktree | Toolchain/lock |
 |---|---|---|---|---|---|
@@ -177,7 +177,7 @@ Authenticated consumer
 
 ## 9. 现有测试、构建与发布入口
 
-以下是仓库入口及初始风险基线；DEC-126-026/027/028/030已关闭S4–S7C列明P1。LIA-126-004已补齐Desktop private IPC与TypeScript ViewModel，但没有新增Vue页面/路由/样式或feature activation；完整四组件本地链路、S8B与S9–S11仍未启动。
+以下是仓库入口及初始风险基线；DEC-126-026/027/028/030已关闭S4–S7C列明P1，DEC-126-031/033/034已关闭S8A–S8B。LIA-126-007仅增加test-only Host Eval authority与Desktop fixture consumer；完整四组件本地链路和S10–S11仍未启动，feature activation仍禁止。
 
 | 目的 | 真实命令/配置来源 | 作用范围 | 已知限制 |
 |---|---|---|---|
@@ -195,12 +195,12 @@ Authenticated consumer
 1. G1 已于 2026-08-01 通过：段成威关闭产品问题 Q-001–Q-005/Q-011–Q-014；批准的产品规则由需求包承接。
 2. G2 评审于 2026-08-02 启动：ADR-0013 已冻结 Desktop 数据权威；继续冻结 Desktop Pattern、Public Tasks breaking、Agent Host additive/semantic 契约、SQLite protection/backup 与跨进程删除设计。
 3. DEC-126-024批准的sole candidate已精确推送到新专用远端分支；DEC-126-021仍保持旧Draft PR/HOLD，远端红色CI继续只阻断旧PR merge。新分支可达不等于merge、tag、publish、deploy、生产启用或实现完成。
-4. LIA-126-001/002形成并关闭了Public Tasks、Host v2与Desktop local repository/sidecar基础；DEC-126-027/028/030/031接受S7A/S7B/S7C/S8A，DEC-126-033/034接受S8B0/S8B。所有flags仍默认关闭；S9–S11、完整四组件E2E和activation继续禁止。
+4. LIA-126-001/002形成并关闭了Public Tasks、Host v2与Desktop local repository/sidecar基础；DEC-126-027/028/030/031接受S7A/S7B/S7C/S8A，DEC-126-033/034接受S8B0/S8B；LIA-126-007的S9 test-only Eval已完成并形成DEC-126-036候选。所有flags仍默认关闭；S10–S11、完整四组件E2E和activation继续禁止。
 5. 下游只固定完整SHA或已核验本地投影；先实现consumer tolerance，再启用本地provider新events；浮动branch不得作为契约身份。
 6. 完成security/migration/resilience/visual、四组件本地E2E和结构化审查后，提交Owner本地G6验收；不讨论线上activation。
 7. 如未来需要把源码纳入共享`develop`，必须先修复dependency audit、取得远端全绿CI并另行审批merge；merge不等于部署。
 
-### DEC-126-035 远端影响候选
+### DEC-126-035 远端影响（Accepted）
 
 - 五仓候选分支已通过`git ls-remote`与临时single-branch clean clone精确复验；所有clone worktree clean。
 - yijie/API/Host/Desktop候选SHA分别为`650254b3…139fa`、`a64f9f59…3264`、`3e8df026…f3d9`、`35f27447…7cbd`；contracts仍为唯一`29317b64…8e9f`。
@@ -249,3 +249,14 @@ Authenticated consumer
 | 远端/运行 | Desktop仅本地commit，feature flag unset/false | 无push/merge/tag/publish/deploy/MiniMax/真实数据 | 用户可观察默认行为不变 |
 
 Contract impact for S8B：`semantic`（Desktop-private UI consumer）。它改变default-off候选页面的可观察交互，但不改变任何跨仓/跨进程shape；central feature的最高风险分类仍保持`breaking`，G2A不回退也不重开。
+
+## 13. S9 实际影响差异（LIA-126-007）
+
+| Repository | 实际变化 | 未变化 | 结论 |
+|---|---|---|---|
+| yijie-agent-host | test-only generator、250条合成dataset、split/schema/lock、deterministic Go test runner、Make target | session/title/reasoning production实现、Host/Public Tasks wire、Runtime pin | Host为唯一Eval authority；local checkpoint `8707dea…c9378` |
+| yijie-desktop | vend exact Host SSE/consumer fixtures、authority lock、Rust SQLCipher lifecycle test、Vue plaintext consumer test | private IPC、Rust production domain、Vue production组件、dependencies/lockfiles、flags | 第二套评分标准未产生；local checkpoint `adfdb5b…af9cb` |
+| yijie | feature package与DEC-126-036 Closure证据 | contracts/API/Infra/Runtime | governance only |
+| 外部系统 | 无调用 | MiniMax、registry、remote Git、production/real data | side effect=0 |
+
+S9自身contract impact为`additive-test-only`；FEAT-126总体仍保持`breaking`，无需G2A重审。

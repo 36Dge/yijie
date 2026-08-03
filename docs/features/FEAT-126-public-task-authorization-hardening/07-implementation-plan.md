@@ -1,4 +1,4 @@
-# FEAT-126 Local-only 原子实施计划（S8B Closure Passed，G3 Partial）
+# FEAT-126 Local-only 原子实施计划（S9 Closure Candidate，G3 Partial）
 
 ## 1. 当前执行边界
 
@@ -6,7 +6,7 @@
 - DEC-126-022 Local-only Delivery Strategy已Accepted；LIA-126-001已于2026-08-02批准，且只允许S4–S6本地基础切片。
 - S4–S6已有远端checkpoint并保持flags/routes默认关闭；DEC-126-026已接受其Closure并单独授权S7A Desktop Rust Host Bridge/Domain。
 - DEC-126-027已接受S7A；DEC-126-028已接受S7B durable outbox、strict/coalesced reducer、history orchestration、title precedence与fake Host应用链。
-- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；DEC-126-030/031已接受S7C/S8A，DEC-126-032/033已接受S8B0，DEC-126-034已接受S8B。S9–S11仍须逐切片获得明确授权并重新核对full SHA/worktree。
+- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；DEC-126-030/031已接受S7C/S8A，DEC-126-032/033已接受S8B0，DEC-126-034已接受S8B。DEC-126-035已接受，LIA-126-007/S9已单独授权、执行并提交DEC-126-036 Closure候选；S10–S11仍须逐切片获得明确授权。
 
 ## 2. 实施原则
 
@@ -139,7 +139,8 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 | DESIGN-126-006 / DEC-126-032 | accepted design | S8B0 UI gate/route/lifecycle/store/readiness/tasks/scroll contract | feature package/static source inventory | DEC-126-032 Accepted | LIA-126-005 separately executed |
 | S8B0 | ancestor of remote candidate `yijie-desktop@35f27447398529cca4dec85fa1f67e779c7a7cbd`（slice checkpoint `5dab02a1ad5f03fead236aa7060fa6a75a234d85`） | 22-command closed IPC、Rust readiness/storage probe、exact-off gate、routes/lifecycle/store/Tasks metadata；不含完整Chat Vue visual | 135 TS；96 Rust（95 pass/1 existing ignored）；generate/lint/type/build/fmt/clippy/no-log PASS | LIA-126-005 / DEC-126-033 | Closure Passed / included in exact remote candidate；未merge/启用 |
 | S8B | remote candidate checkpoint `yijie-desktop@35f27447398529cca4dec85fa1f67e779c7a7cbd` | production Vue Chat/App Shell/composer/reasoning/menus/scroll/a11y；27 files | 164 TS、95/96 Rust、lint/build/audit/bundle/security/browser/axe PASS；VoiceOver checklist retained for S11/G6 | DEC-126-034 Accepted；Owner-authorized push后经`ls-remote`与clean clone复验 | Closure Passed / exact remote candidate；未merge/启用 |
-| S9–S11 | N/A | none | NOT RUN | LIA-126-007仅为S9待批候选；S10/S11未授权 | Pending separate sequential authorization |
+| S9 | Host `8707dea552cff74121b89aa8045f27da2c8c9378`；Desktop `adfdb5b24b3277ba39bd76a8cdc63fc138caf9cb` | test-only runner/dataset/fixtures/consumer tests；production behavior unchanged | Host gates 250/250 title、210/210 valid raw、40/40 negative；Desktop exact fixture/history/delete/plaintext projection；repo gates PASS | LIA-126-007 executed；DEC-126-036 Closure candidate | Pending Owner acceptance；local only / not pushed |
+| S10–S11 | N/A | none | NOT RUN | not authorized | Pending separate sequential authorization |
 
 ## 10. 变更控制
 
@@ -162,7 +163,7 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 | Contracts/G2A/remote | 段成威 | DEC-126-023/024/025 Accepted，`29317b...`为唯一candidate并已远端可达；`c000a024...`仅为历史远端候选，旧PR与develop不变；未merge/tag/发布/启用 | 2026-08-02 |
 | Contracts Draft PR / merge | 段成威 | DEC-126-021 Accepted/HOLD；CI failed dependency audit；merge不是local draft前置但当前仍不批准 | 2026-08-02 |
 | Local-only delivery strategy | 段成威 | DEC-126-022 Accepted；Local Runtime Ready目标，tag/publish/deploy/G5 N/A | 2026-08-02 |
-| Local Implementation Authorization | 段成威 | S7A–S8B已接受；DEC-126-034接受S8B Closure。Owner另行授权的checkpoint push已完成并只形成精确远端候选；S9–S11、MiniMax/flag activation与新增远端动作仍禁止 | 2026-08-03 |
+| Local Implementation Authorization | 段成威 | S7A–S8B已接受；DEC-126-034接受S8B Closure。Owner另行授权的checkpoint push已完成并只形成精确远端候选；LIA-126-007/S9已完成本地Closure候选；S10–S11、MiniMax/flag activation与新增远端动作仍禁止 | 2026-08-04 |
 
 ## 12. Local Implementation Authorization 审批候选
 
@@ -216,7 +217,7 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - `LIA-126-006 / S8B`结果：Owner在DEC-126-033接受后单独授权Vue页面、交互、视觉与可访问性；实现消费真实authoritative store，fake投影只存在test harness；DEC-126-034已接受Closure，feature flag activation不随之授权。
 - S7C结果：Owner已接受DEC-126-030，S7C Closure Passed。
 - S8A结果：20个versioned commands、closed Schema/fixtures、Rust-bound context/event/cursors、TS validator/client/store已实现；Desktop `make lint/test/build`及安全扫描PASS；DEC-126-031已接受S8A Closure，G3仍Partial。
-- 当前状态：S4–S8B Closure已由Owner接受。G3仍Partial；S9–S11实现/测试保持`NOT RUN`并继续未授权。
+- 当前状态：S4–S8B Closure已由Owner接受，S9形成DEC-126-036 Closure候选。G3仍Partial；S10–S11保持`NOT RUN`并继续未授权。
 
 ### LIA-126-005 / S8B0（Approved / Executed / DEC-126-033 Closure Passed）
 
@@ -238,22 +239,23 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - 依赖：仅新增fixed devDependency `axe-core@4.10.3`；lockfile已记录，npm audit 0 known vulnerabilities；production dependencies/bundle无axe。
 - 验证：29/29 test files、164/164 tests、axe 0 serious/critical、lint/type/build、95/95 Rust（另1既有ignored）、1180×760 light/dark、200% zoom等价、dialog focus、reduced-motion/scroll unit及security/bundle scans PASS。
 - 人工项：VoiceOver checklist已提交但未声称执行；DEC-126-034将其保留到S11/G6，不阻断S8B Closure。
-- 限制：flag仍unset/false；无MiniMax/真实数据/S9–S11/四组件E2E。后续Owner-authorized checkpoint push不改变此切片Closure；下一切片仍须由Owner另行授权S9。
+- 限制：该切片完成时flag仍unset/false，且无MiniMax/真实数据/S9–S11/四组件E2E。后续Owner-authorized checkpoint push不改变此切片Closure；S9后来由LIA-126-007单独授权并完成候选，未追溯扩大S8B授权。
 
-### DEC-126-035 Remote State Reconciliation（Candidate / Pending Owner Approval）
+### DEC-126-035 Remote State Reconciliation（Accepted）
 
 - 目的：只把Owner已明确授权并已发生的checkpoint push校正为可审计事实，不重开S4–S8B Closure，也不扩大G3/G4/G6。
 - 只读证据：五个candidate refs经`git ls-remote`与临时single-branch/no-tags clean clone复验，HEAD分别为`650254b3c009c4098f7d7b2d415ed8082b0139fa`、`a64f9f591fb594818c1778e30c6941e2574b3264`、`3e8df026110f0c895262329c2384d3896598f3d9`、`35f27447398529cca4dec85fa1f67e779c7a7cbd`、`29317b6426578749dc698fc2ad32b986ee5c8e9f`；clone全部clean。
 - 不变项：各`origin/develop`、Draft PR #1、历史`c000a024...`、sole contracts candidate内容、merge/tag/publish/deploy/feature activation均未改变。
 - 本轮动作：仅更新FEAT-126 package并创建yijie本地治理checkpoint；不追加push，不修改API/Host/Desktop/contracts/Runtime源码。
-- 推荐结论：接受“remote exact candidate availability”；明确其不代表Code Complete、G4、G6、发布或生产启用。
+- Owner结论：接受“remote exact candidate availability”；明确其不代表Code Complete、G4、G6、发布或生产启用。
 
-### LIA-126-007 / S9 fake-provider Eval（Proposed / Not Authorized / NOT RUN）
+### LIA-126-007 / S9 fake-provider Eval（Authorized / Executed / DEC-126-036 Candidate）
 
 - Authority：`yijie-agent-host`持有版本化Eval runner与dataset manifest；`yijie-desktop`只消费相同fixtures做exact sequence/final/history/plaintext projection validation，不建立第二套评分authority。
 - Pins：contracts=`29317b6426578749dc698fc2ad32b986ee5c8e9f`、Host=`3e8df026110f0c895262329c2384d3896598f3d9`、Desktop=`35f27447398529cca4dec85fa1f67e779c7a7cbd`、Runtime=`3aa317ce...`固定；不得修改wire/IPC/Runtime pin。
-- Dataset：只用合成多语言first prompts与adversarial/injection cases；候选ID=`feat126-title-raw-v1`，至少200普通样本、50对抗样本、holdout≥20%；运行前冻结完整dataset hash、split hash、runner SHA和schema version。
-- Title gates：strict schema/sanitizer 100%，语义识别率≥95%，late result覆盖用户rename=0，正文/secret/path泄露=0，额外actions=0。
-- Raw gates：每个要求raw的fixture必须产生非空具体纯文本；delta sequence/content index/final snapshot与terminal/incomplete reconciliation exact；missing/gap/invalid/oversize均Gate FAIL；HTML/Markdown执行=0，正文进入log/bbolt/telemetry/audit=0。
+- Dataset：`feat126-title-raw-v1`固定200普通、50对抗、train=200/holdout=50；manifest/schema/dataset/split/runner/generator/fixtures的SHA-256由Host lock在每次运行前校验。
+- Title gates：PASS；strict schema/sanitizer 250/250，语义200/200，unsafe拒绝50/50，late result覆盖用户rename=0，泄漏/额外actions=0。
+- Raw gates：PASS；valid 210/210，missing/gap/invalid/oversize 40/40明确识别；delta/final exact，HTML/Markdown执行=0，Host log/bbolt和Desktop bundle正文泄漏=0。
 - 环境与禁止项：仅fixed fake provider、fixed fixtures、临时SQLCipher/CODEX_HOME和合成数据；不调用MiniMax、不处理真实数据、不启用任何flag、不修改central contracts/Host wire/private IPC/Runtime pin、不执行远端写入、不进入S10。
-- 退出：生成可复验的dataset/runner摘要、逐指标结果、失败样本分类和no-log/injection证据，提交S9 Closure Review；没有Owner明确批准前不得执行。
+- Checkpoints：Host `8707dea552cff74121b89aa8045f27da2c8c9378`；Desktop `adfdb5b24b3277ba39bd76a8cdc63fc138caf9cb`；均仅本地且未push。
+- 退出：DEC-126-036 Closure Review已提交；未经Owner接受不得进入S10，S9授权不延伸到MiniMax、flag、真实数据或远端动作。

@@ -1,7 +1,7 @@
 # FEAT-126 测试与 Eval 计划
 
 > 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。DEC-126-023/024完成G2A重审，DEC-126-025登记sole candidate与checkpoint远端ref并恢复LIA-126-002，仅执行S4–S6 Corrective Closure。
-> DEC-126-026/027/028/030/031/033/034已关闭S4–S8B；LIA-126-006 / S8B使用生产Vue组件、真实Pinia reducer和test-only固定合成harness完成并获Owner接受。S9–S11仍为`NOT RUN`。本轮未调用MiniMax，
+> DEC-126-026/027/028/030/031/033/034已关闭S4–S8B；DEC-126-035已接受。LIA-126-007 / S9使用Host权威deterministic runner与Desktop exact fixture consumer完成并提交DEC-126-036；S10–S11仍为`NOT RUN`。本轮未调用MiniMax，
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
 ## 1. 测试策略
@@ -161,14 +161,14 @@
 
 | 项目 | 固定值/版本候选 |
 |---|---|
-| Dataset | ≥200 synthetic multilingual first prompts; ≥50 injection/adversarial; holdout ≥20% |
-| Model/provider | pinned MiniMax-M3/Responses config and exact Runtime/Host commits |
+| Dataset | `feat126-title-raw-v1`：200 synthetic multilingual normal + 50 injection/adversarial；train=200/holdout=50 |
+| Model/provider | deterministic fake provider；固定Runtime/Host基线；MiniMax/外部provider调用=0 |
 | Title prompt/schema | `title-v1` + strict `{title:string}`；first user input≤8KiB；post-parse NFC plain single-line title 1–40 grapheme |
-| Runner | deterministic validation; provider parameters recorded; no real user data |
-| 结构通过率 | 100% after sanitizer；raw invalid rate separately reported |
-| 任务成功率 | ≥95% titles semantically identify first task on labeled set |
-| 人工覆盖优先 | 100% late model result cannot overwrite user title |
-| Prompt injection | 0 HTML/control/system-prompt/secret leakage; 0 extra actions |
+| Runner | Host唯一权威Go test runner；摘要锁覆盖manifest/schema/dataset/split/runner/generator/fixtures；no real user data |
+| 结构通过率 | PASS 250/250；unsafe title拒绝50/50 |
+| 任务成功率 | PASS 200/200（100%，阈值≥95%） |
+| 人工覆盖优先 | PASS；late model覆盖用户title=0 |
+| Prompt injection | PASS；HTML/control/system-prompt/secret leakage=0；extra action=0 |
 | Raw reasoning | v2 raw delta + finalized reconciliation；固定pin/数据集必须提供非空具体文本；plain-text/no-execution/no-log；missing/gap/invalid/oversize为Gate FAIL，不允许状态/时长冒充；DESIGN-126-003 caps=16KiB/delta、64KiB/part、128KiB/item、256KiB/turn、8 parts/item、8 items/turn；SQLCipher lifecycle/schema与DEC-126-017已Accepted；local source fixtures PASS，业务conformance仍待G4 |
 | 延迟与成本 | title 不阻塞主回答；production P95/timeout 在 G4 benchmark 冻结；≤2 calls/session；actual token/cost recorded before G4 |
 | 相对基线 | deterministic fallback remains available; enabling model title cannot reduce conversation success |
@@ -181,7 +181,7 @@
 | Agent raw/title/cleanup events | `yijie-contracts/tests/fixtures/agent/` | internal synthetic | generated safe text/canaries | Host producer、Desktop S7A Rust consumer与S7B application reducer positive/negative assertions PASS；UI/runtime process E2E pending |
 | Desktop DB versions/corruption | yijie-desktop test fixtures | internal synthetic | generated temp DB, no user data | Rust repository |
 | Project tree/symlink cases | runtime temp directories | internal synthetic | mktemp fixtures only | Tauri path boundary |
-| Title/reasoning Eval dataset | future approved yijie-agent-host or eval authority | internal synthetic | invented prompts, versioned hash/split | AI runner |
+| Title/reasoning Eval dataset | `yijie-agent-host/internal/session/testdata/feat126-title-raw-v1/` | internal synthetic | 250 invented prompts，versioned SHA-256 lock与固定split | Host唯一runner；Desktop消费exact SSE/consumer fixtures |
 | Desktop private IPC v1 | `yijie-desktop/src-tauri/schemas/chat-ipc-v1.schema.json` + `src-tauri/fixtures/chat-ipc-v1/` | internal synthetic | fixed opaque UUID/context/cursor和正文/secret/path canaries；无真实token/path | Rust serde/commands/events + TS validator/client/store；DEC-126-031 Accepted，S8A Closure Passed |
 
 ### 10.1 本次固定 capability fixture
@@ -231,10 +231,10 @@
 | MiniMax `MM-126-002` public summary | isolated narrow harness | exactly 1 synthetic 57-char reasoning request；high+concise、answer≤80 chars、≤120s | same pin/key；title call did not donate retries | FAIL；1 call/0 retry，9,256 ms，answer completed但0 public-summary event；7 raw delta + 1 raw completed part，0 tool/secret leak，temp removed |
 | Desktop | yijie-desktop | `make lint && make test && make build` | Node 26.0.0 / pnpm 11.9.0 / Rust 1.95.0；bundled SQLCipher；fake Host | RUN 2026-08-03；PASS；21/21 files、127 TS tests；94 Rust tests（93 pass、1个既有signed Keychain integration ignored）；Clippy/fmt/Vite build PASS；含S7C既有链及S8A schema/serde/TS、auth、event caps/backpressure/cancel、stale selection、tenant/logout、restart/resync/delete cleanup和no-log扫描 |
 | Meta docs | yijie | feature checker, YAML parse, `git diff --check` | local shell/Ruby | current package only |
-| Accepted checkpoints / remote reconciliation | yijie/API/Host/Desktop/contracts | repository gates + scope/no-log/diff + owner-authorized candidate push；`git ls-remote` + exact-branch temporary clean clone | synthetic/fake/temp only；remote verification is read-only | RUN 2026-08-03；PASS；remote exact `650254b…139fa`、`a64f9f5…3264`、`3e8df02…f3d9`、`35f2744…7cbd`、`29317b6…e9f`；all clean clones，develop/Draft PR/merge/tag/publish/deploy未改变；DEC-126-035候选 |
+| Accepted checkpoints / remote reconciliation | yijie/API/Host/Desktop/contracts | repository gates + scope/no-log/diff + owner-authorized candidate push；`git ls-remote` + exact-branch temporary clean clone | synthetic/fake/temp only；remote verification is read-only | RUN 2026-08-03；PASS；remote exact `650254b…139fa`、`a64f9f5…3264`、`3e8df02…f3d9`、`35f2744…7cbd`、`29317b6…e9f`；all clean clones，develop/Draft PR/merge/tag/publish/deploy未改变；DEC-126-035 Accepted |
 | S8B0/S8B conformance | yijie + yijie-desktop | DESIGN-126-006/DEC-126-032 + schema/Rust/TS/router/store/Tasks + production Vue/unit/axe/browser/security/bundle/package/strict/G2A/YAML/lint/test/build/diff | fake/fixed/temp only；no runtime provider | DEC-126-033/034 Accepted；S8B Closure Passed at `35f2744…7cbd`；VoiceOver人工项保留到S11/G6 |
 | Local four-component E2E/security/perf/eval | affected repos | exact orchestration and commands must be added by authorized slices before G4 | local PostgreSQL/temp homes/DB/pinned Runtime/fake provider | command/harness absent — blocks G4/local G6；does not affect accepted G2/G2A |
-| LIA-126-007 / S9 fake-provider Eval | approved Host authority + Desktop consumer（候选） | versioned runner、exact dataset hash/split、title schema/semantic与raw sequence/final/no-log/injection gates | fixed fake provider、fixed Runtime/Host pins、synthetic data only | PROPOSED / NOT RUN；等待Owner单独授权，不调用MiniMax、不启用flag、不进入S10 |
+| LIA-126-007 / S9 fake-provider Eval | Host authority + Desktop consumer | versioned runner、exact dataset hash/split、title schema/semantic与raw sequence/final/no-log/injection gates | fixed fake provider、fixed pins、synthetic data only | RUN 2026-08-04 / PASS；DEC-126-036 Closure candidate；不调用MiniMax、不启用flag、不进入S10 |
 
 ## 12. 通过、失败与 Flaky 策略
 
@@ -263,7 +263,7 @@
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
-| 测试/技术 Owner | 段成威 | DEC-126-034已接受S8B Closure；S4–S8B已关闭。S9–S11/MiniMax/flag activation与完整E2E仍禁止 | 2026-08-03 |
+| 测试/技术 Owner | 段成威 | DEC-126-035已接受并单独授权LIA-126-007/S9；S9已形成DEC-126-036 Closure候选。S10–S11/MiniMax/flag activation与完整E2E仍禁止 | 2026-08-04 |
 | 安全/数据 Owner | 段成威 | 当前P1及Public Tasks正文边界阻断closure；既有auth/delete/no-log/migration结果仅作foundation evidence | 2026-08-02 |
 | Runtime/模型 Owner | 段成威 | DEC-126-021 HOLD与DEC-126-022 Local-only已Accepted；先用fake provider/fixtures，raw reasoning须具体显示并持久化/删除；历史MM-126-001/002不重跑，未来一次local smoke仅可另行提交审批 | 2026-08-02 |
 
@@ -281,3 +281,17 @@
 | Security/boundary | `git diff --check` + source/bundle/no-log/path/secret/flag scans | PASS：无direct client/invoke/v-html、无enabled flag、无secret/path/raw-wire/test artifact production leak |
 
 VoiceOver：仅完成并提交人工清单，未声称由真人执行；DEC-126-034将其接受为保留到S11/G6的人工项。完整fake-provider Eval、四组件E2E和Owner local G6分别保留在S9/S10/S11，不能用本节结果替代。
+
+## 15. LIA-126-007 实际结果
+
+| Gate | 结果 |
+|---|---|
+| Dataset/split | PASS：250 cases；normal=200、adversarial=50、train=200、holdout=50；schema与SHA lock自校验 |
+| Title | PASS：schema/sanitizer 250/250；semantic 200/200；unsafe rejected 50/50；late overwrite/leak/extra action=0 |
+| Raw | PASS：valid 210/210；negative 40/40（gap/invalid/missing/oversize各10）；delta/final exact |
+| Host security | PASS：raw body进入log/bbolt=0；contract-check、race/coverage、lint/vet、build、diff均通过 |
+| Desktop lifecycle | PASS：exact fixture hash、production SSE decoder、authoritative reducer、terminal SQLCipher、restart/history、user-title priority、cascade delete |
+| Desktop UI/security | PASS：production Vue组件literal plaintext；script/link=0；fixture/canary不进入production bundle；TS/Rust全量门禁通过 |
+| Flaky分类 | 首次Rust full run有1个既有cleanup test使用stale `now`的跨秒波动；该文件不在S9 diff，单测与第二次full run均PASS；不豁免、不改production源码 |
+
+DEC-126-036接受前不得进入S10；S9结果不等于四组件E2E、G4或G6。

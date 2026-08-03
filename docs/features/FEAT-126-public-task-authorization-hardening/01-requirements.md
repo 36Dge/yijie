@@ -1,6 +1,6 @@
 # FEAT-126 需求与验收标准
 
-> 段成威已通过G1/G2/G2A重审，`29317b6426578749dc698fc2ad32b986ee5c8e9f`是唯一source-contract candidate。DEC-126-026/027/028/030/031/033/034已接受S4–S8B Closure；Owner随后明确授权的yijie/API/Host/Desktop候选分支push已精确复验。DEC-126-035仍为远端事实校正候选；G3仍Partial，G4/G6 Pending；S9–S11、MiniMax、feature activation与新增远端写入仍禁止。
+> 段成威已通过G1/G2/G2A重审，`29317b6426578749dc698fc2ad32b986ee5c8e9f`是唯一source-contract candidate。DEC-126-026/027/028/030/031/033/034已接受S4–S8B Closure，DEC-126-035已接受远端事实校正。LIA-126-007 / S9 fake-provider Eval已完成并形成DEC-126-036 Closure候选；G3仍Partial，G4/G6 Pending；S10–S11、MiniMax、feature activation与新增远端写入仍禁止。
 
 ## 1. 用户与场景
 
@@ -315,7 +315,7 @@
 | G2A source contract（历史） | 段成威 | Approved / Passed at DEC-126-019 — `c000a0245acb5c3f7ead5d2a877fb60c281c588c`当时为唯一candidate且DEC-126-020远端可用；LIA-126-002后发现数据边界冲突，当前实施readiness由DEC-126-024复审取代 | 2026-08-02 |
 | Contract Draft PR / merge readiness | 段成威 | DEC-126-021 Accepted/HOLD；PR #1 exact head保持Draft，CI红灯只阻断merge，不回退G2/G2A | 2026-08-02 |
 | Local-only Delivery Strategy | 段成威 | DEC-126-022 Accepted；Local Runtime Ready为目标，tag/publish/deploy/G5 N/A；G6为本地Owner验收 | 2026-08-02 |
-| Local Implementation Authorization | 段成威 | S4–S8B已关闭；DEC-126-034接受LIA-126-006 S8B Closure。S9–S11/MiniMax/flag activation与新增远端/发布动作仍禁止 | 2026-08-03 |
+| Local Implementation Authorization | 段成威 | S4–S8B已关闭；DEC-126-034接受LIA-126-006 S8B Closure。LIA-126-007随后单独授权并完成S9 test-only Eval，DEC-126-036待Owner；S10–S11/MiniMax/flag activation与新增远端/发布动作仍禁止 | 2026-08-04 |
 | DEC-126-023 / Q-017 | 段成威 | Approved — 方案C Accepted；Q-017 Resolved；旧candidate/PR/远端不变，本地replacement candidate已形成 | 2026-08-02 |
 | DEC-126-024 / final G2A re-review | 段成威 | Approved / Passed — `29317b6426578749dc698fc2ad32b986ee5c8e9f`是新的唯一source-contract candidate；不授权恢复LIA-126-002、业务源码、远端动作、MiniMax或S7–S11 | 2026-08-02 |
 | Remote State Reconciliation / LIA-126-002 Resume | 段成威 | Approved — sole candidate与四个checkpoint分支的远端可达事实已登记；单独恢复S4–S6纠偏，不改变merge/tag/publish/deploy或S7–S11禁令 | 2026-08-02 |
@@ -327,8 +327,8 @@
 | S8B0 Closure Review | 段成威 | Accepted — DEC-126-033接受Desktop `5dab02a1…34d85`的gate/route/lifecycle/store/readiness/storage/Tasks与全量门禁证据；S8B0 Closure Passed，不自动授权S8B | 2026-08-03 |
 | S8B Implementation Authorization | 段成威 | Approved — LIA-126-006只授权真实Vue Chat页面、交互、视觉与可访问性；不授权flag activation、S9–S11、MiniMax、IPC/Rust/contracts/Host/Runtime或远端动作 | 2026-08-03 |
 | S8B Closure Review | 段成威 | Accepted — DEC-126-034接受Desktop checkpoint `35f27447398529cca4dec85fa1f67e779c7a7cbd`及自动化/browser/a11y证据；S8B Closure Passed，G3仍Partial；VoiceOver人工通过未被声明 | 2026-08-03 |
-| DEC-126-035 Remote State Reconciliation | 段成威 | Pending — 五仓候选ref/develop与临时clean clone已精确复验；只校正远端可达事实，不代表merge/tag/publish/deploy/activation/G4/G6 | 2026-08-03 |
-| LIA-126-007 / S9 Authorization | 段成威 | Proposed only — 固定fake provider/pins、合成versioned dataset/runner、title/raw/no-log/injection Gate；未经单独批准不得执行 | 2026-08-03 |
+| DEC-126-035 Remote State Reconciliation | 段成威 | Accepted — 五仓候选ref/develop与临时clean clone已精确复验；只校正远端可达事实，不代表merge/tag/publish/deploy/activation/G4/G6 | 2026-08-04 |
+| LIA-126-007 / S9 Authorization | 段成威 | Approved / Executed — 固定fake provider/pins、合成versioned dataset/runner、title/raw/no-log/injection Gate；结果提交DEC-126-036，未授权S10 | 2026-08-04 |
 
 ## 12. LIA-126-006 验收追踪
 
@@ -339,3 +339,15 @@
 | BR-033–045 / AC-031–043 | session/project菜单、分页、48/160滚动、light/dark、1180×760、200% zoom、keyboard/focus/reduced-motion | PASS（自动化+浏览器）；VoiceOver人工清单已提供，Owner执行未声称完成 |
 | BR-046–051 | exact-off gate、route/lifecycle/readiness/storage/Tasks真实metadata边界 | 继续由Accepted S8B0实现提供；S8B未修改其IPC/Rust shape |
 | 排除项 | attachment/model/effort/voice/copy/edit/like/dislike/fork/window-pin/chat-sidebar-toggle | PASS：生产DOM/源码无这些入口 |
+
+## 13. LIA-126-007 / S9 验收追踪
+
+| Requirement | 证据 | 状态 |
+|---|---|---|
+| ≥200普通多语言、≥50对抗、holdout≥20% | `feat126-title-raw-v1`固定为200 normal + 50 adversarial，train=200/holdout=50 | PASS |
+| title结构/清洗100%、语义≥95% | Host权威runner：250/250结构与sanitizer，200/200语义，50/50不安全title拒绝 | PASS |
+| 人工标题不被late model覆盖 | Desktop同一fixture的model→user→late model流程，覆盖次数0 | PASS |
+| raw具体文本与delta/final严格对账 | 有效样本210/210；Desktop production SSE decoder/reducer/SQLCipher restart/history一致 | PASS |
+| missing/gap/invalid/oversize明确失败 | 40/40负例识别；四类各10 | PASS |
+| no execution/no body leak/delete | Vue文本节点无script/link；Host log/bbolt与Desktop production bundle无正文；SQLCipher session级联删除PASS | PASS |
+| 实施边界 | 仅test runner/dataset/fixtures/harness和治理文档；0 MiniMax/外部模型/真实数据/flag/S10/远端动作 | PASS |
