@@ -1,16 +1,17 @@
-# FEAT-126 Local-only 原子实施计划（G2A重审通过，Foundation Closure暂停）
+# FEAT-126 Local-only 原子实施计划（S4–S8A Closure通过，G3 Partial）
 
 ## 1. 当前执行边界
 
-- G2已于2026-08-02通过；DEC-126-023/024与Q-017现已关闭，`29317b6426578749dc698fc2ad32b986ee5c8e9f`是新的唯一source-contract candidate，G2A重审通过。`c000a024...`仅保留为历史远端候选，Draft PR #1不变。
+- G2/G2A已于2026-08-02通过；DEC-126-023/024与Q-017已关闭，`29317b6426578749dc698fc2ad32b986ee5c8e9f`是唯一source-contract candidate并在专用远端分支精确可达。`c000a024...`仅保留为历史远端候选，Draft PR #1与各`origin/develop`不变。
 - DEC-126-022 Local-only Delivery Strategy已Accepted；LIA-126-001已于2026-08-02批准，且只允许S4–S6本地基础切片。
-- S4–S6已有本地基础并保持flags/routes默认关闭，但独立复审发现未覆盖P1，现统一为`Conditional / Corrective Closure Required`。LIA-126-002已建立仅本地WIP checkpoint，并依预设contract-conflict停止条件暂停；未调用MiniMax，未修改Runtime/Infra或远端。
-- S7–S11仍是未来评审候选；开始前必须获得下一次明确授权并重新核对full SHA/worktree。
+- S4–S6已有远端checkpoint并保持flags/routes默认关闭；DEC-126-026已接受其Closure并单独授权S7A Desktop Rust Host Bridge/Domain。
+- DEC-126-027已接受S7A；DEC-126-028已接受S7B durable outbox、strict/coalesced reducer、history orchestration、title precedence与fake Host应用链。
+- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；DEC-126-030已接受S7C，DEC-126-031已接受LIA-126-004 S8A Closure。S8B及S9–S11仍须逐切片获得明确授权并重新核对full SHA/worktree。
 
 ## 2. 实施原则
 
 - 一次只完成一个可独立验证的行为；contract-first；provider/consumer/activation 分离。
-- Public Tasks安全轨与local conversation产品轨已有S4–S6基础，但不能记为完成；DEC-126-024虽已批准，Owner另行恢复LIA-126-002前仍不得继续S4–S6或进入S7。
+- Public Tasks安全轨与local conversation产品轨的S4–S8A Closure已批准；S8A在Rust/TypeScript补齐private IPC、validator/client和store，但仍不提供Vue UI。DEC-126-031不自动授权S8B。
 - 先 consumer tolerance，再 producer 发新 output/event；先 schema expand，再 writer/switch，最后 cleanup。
 - message body 只进入批准的 local DB/Runtime/provider，不进入 Public Tasks DB、普通日志或 fixture。
 - 每个 repo 独立 commit/PR；不混入当前 yijie 的 FEAT-123 删除。
@@ -26,9 +27,12 @@ S0 G1 product decisions (Passed) + G2 Pattern/ADR design (Passed)
             ├─ S4 Public Tasks provider hardening
             ├─ S5 Agent Host provider/events/cleanup/title
             └─ S6 Desktop Rust local DB/project/sidecar foundation
-                  → S7 Desktop domain/outbox/event reducer/history
-                       → S8 production UI/a11y
-                            → S9 fake-provider title/raw-reasoning Eval
+                  → S7A Desktop Rust Host Bridge/wire domain
+                       → S7B session/outbox/event reducer/history/title precedence
+                            → S7C Rust actions/delete/interrupt/coordinator
+                                 → S8A private IPC + TypeScript store/view-model
+                                      → S8B production Vue UI/a11y
+                                           → S9 fake-provider title/raw-reasoning Eval
                                  → S10 local cross-repo security/resilience/migration E2E
                                       → S11 Owner Local Runtime Ready acceptance (local G6)
 ```
@@ -44,9 +48,12 @@ S0 G1 product decisions (Passed) + G2 Pattern/ADR design (Passed)
 | S4 | Public Tasks identity/tenant/owner/resource hardening本地draft | AC-025–030 | yijie-api | auth middleware, tasks domain/repo, local migrations/tests, exact contract projection | Desktop/Host；任何production route/legacy retirement | LIA-126-001 + exact candidate | lint/unit/local integration/security/migration | local flags/routes off; forward schema |
 | S5 | Host raw-reasoning/title/cleanup与对账边界本地draft | AC-007/010/011/013/014/017/020/021 | yijie-agent-host | exact contract projection、raw adapter/no-log tests、fake Runtime fixtures | conversation DB、raw正文落bbolt/log、unapproved tools、MiniMax | LIA-126-001 + exact Runtime/candidate | contract-check/lint/test/fake runtime raw fixtures | keep raw/title flags off |
 | S6 | Desktop Rust local DB、narrow commands、native project、sidecar supervisor本地draft | AC-001–006/015/020–024/029/030/034/035/037 | yijie-desktop | SQLCipher migrations/repository/Rust commands/native picker/local transport/tests | final Vue UI、token in WebView、arbitrary path/SQL、线上配置 | LIA-126-001 + exact candidate/DEC | Rust unit/local integration/migration/path/secret tests | chat flag off; forward repair |
-| S7 | Session state/outbox/SSE reducer/history/title precedence | AC-003/005/007/013–018/025/029 | yijie-desktop | domain/store/composables/generated types/tests | CSS redesign/model picker/files | S5/S6 provider contracts | TS unit/component + fake Host E2E | flag off; no DB contract drop |
-| S8 | 极简production-grade UI与可访问性（仅本地运行） | AC-001/002/004/006/008–013/019/022/031–034 | yijie-desktop | approved components/pages/tokens/tests/Pattern implementation | excluded actions/attachments/right panel/unrelated shell refactor | S0 Pattern + S7 + later authorization | lint/test/build/visual/a11y/manual | disable local chat UI flag |
-| S9 | fake-provider title/raw-reasoning Eval | AC-010/011/017/018/042; NFR-007 | Host/Desktop + eval authority | fixed pin/dataset/runner；raw availability、sequence、content/security、no-log metrics | real data、MiniMax、unbounded calls、事后改写旧MM结果 | S5/S7/S8 + later authorization | local fake Eval；future MM-126-003 separately approved only | title/raw flags off；missing raw blocks local G6 |
+| S7A | Desktop Rust Host Bridge/wire domain | AC-003/007/013/017/020/021 | yijie-desktop | owner-only bearer、exact loopback HTTP/SSE、spawn nonce readiness、strict v2 schema/cursor、typed session/turn/reasoning/cleanup domain与Rust tests | Tauri invoke、Vue/composables、outbox/reducer/history orchestration、title call、flag activation | DEC-126-026 + S5/S6 contracts | Rust fake Host/canonical fixture/security/fault + full Desktop lint/test/build | drop local bridge diff；flags remain off |
+| S7B | Session state/outbox/SSE reducer/history/title precedence | AC-003/005/007/013–018/025/029 | yijie-desktop | Rust application/domain orchestration、outbox、event reducer、history/title precedence及tests | Tauri invoke、CSS/model picker/files、Vue UI、title Host call | DEC-126-027 + separate authorization | Rust/TS unit + fake Host domain E2E | flag off; no DB contract drop |
+| S7C | Rust session/project actions、delete/interrupt与coordinator | AC-013/019–024/039/040/046/047 | yijie-desktop Rust | Rust-bound authorization context；session/project pin；interrupt；durable delete/cleanup status；background dispatch/subscribe/restart/resync projection source及tests | Tauri invoke/event、TypeScript/Vue、route/flag、central contracts/Runtime | DESIGN-126-005 + DEC-126-029 Accepted + separate S7C authorization | Rust repository/application + fake Host fault/race/restart/no-log | drop S7C diff；保持S7B DB/flags off |
+| S8A | Private Tauri IPC与TypeScript store/view-model | AC-003/005/007/013/015/016/022/034/045–047; NFR-008/009 | yijie-desktop Rust + TS | authoritative IPC schema/fixtures、closed commands/events、runtime validators/client、Pinia store/view-model、selection/backpressure/resync tests | Vue页面/样式/route activation、mock production transport、central contracts/Runtime | S7C Closure + separate S8A authorization | schema↔serde↔TS conformance、security/no-log/restart/race、lint/test/build | drop S8A diff；无UI/flag |
+| S8B | 极简production-grade Vue UI、交互与可访问性（仅本地运行） | AC-001/002/004/006/008–013/019/022/031–034/036 | yijie-desktop Vue | approved components/pages/tokens、真实S8A store接线、visual/a11y/tests/Pattern implementation | mock transport作为真实链、excluded actions/attachments/right panel/unrelated shell refactor、未经批准flag activation | S8A Closure + Accepted Pattern + separate S8B authorization | lint/test/build/visual/a11y/manual + real local chain | disable local chat UI flag；revert Vue slice |
+| S9 | fake-provider title/raw-reasoning Eval | AC-010/011/017/018/042; NFR-007 | Host/Desktop + eval authority | fixed pin/dataset/runner；raw availability、sequence、content/security、no-log metrics | real data、MiniMax、unbounded calls、事后改写旧MM结果 | S5/S7C/S8A/S8B + later authorization | local fake Eval；future MM-126-003 separately approved only | title/raw flags off；missing raw blocks local G6 |
 | S10 | 本地跨仓E2E/security/resilience/performance/delete rehearsal | all Must AC/NFR incl. AC-035–042 | API/Host/Desktop/pinned Runtime | local harness/runbook/evidence | production activation、real user data、tag/publish | S4–S9 + later authorization | full local matrix in 06/08 | stop local processes；fix/revert failing slice；flags off |
 | S11 | Owner Local Runtime Ready验收 | AC-043 | all local | local startup guide、exact refs、evidence summary | merge/tag/publish/deploy/Production Ready声明 | G4 evidence + Owner review | local startup + complete functional chain | keep feature disabled until accepted；reopen failed slice |
 
@@ -101,8 +108,11 @@ secret/real-data/paid-call policy:
 | LOCAL-126-API-EXPAND | owner/auth/schema/secure route flag off | yijie-api local draft | unit/integration/security/migration | exact contract projection |
 | LOCAL-126-HOST | raw-reasoning/title/cleanup provider flags off | yijie-agent-host local draft | contract/conformance/fault/runtime/no-log | Runtime+contract refs |
 | LOCAL-126-DESKTOP-DATA | Rust DB/project/sidecar foundation flag off | yijie-desktop local draft | Rust migration/path/secret tests | exact contract projection |
-| PR-126-DESKTOP-DOMAIN | session/outbox/event/history domain | yijie-desktop | reducer/DB/component tests | data/Host PRs |
-| PR-126-DESKTOP-UI | approved UI/a11y | yijie-desktop | visual/a11y/build | Pattern version |
+| LOCAL-126-DESKTOP-BRIDGE | S7A exact Host transport + typed wire domain | yijie-desktop Rust local draft | bearer/nonce/SSE/schema/unknown/fault tests | data/Host contract refs |
+| PR-126-DESKTOP-DOMAIN | S7B session/outbox/event/history application domain | yijie-desktop | reducer/DB/component tests | S7A/data/Host refs |
+| LOCAL-126-DESKTOP-ACTIONS | S7C Rust actions/delete/interrupt/coordinator | yijie-desktop Rust | fake Host fault/race/restart/no-log | S7B + DESIGN-126-005 |
+| LOCAL-126-DESKTOP-IPC | S8A schema/Tauri/TS store-view-model | yijie-desktop Rust/TS | IPC conformance/security/backpressure/restart | S7C Closure |
+| LOCAL-126-DESKTOP-UI | S8B approved Vue UI/a11y | yijie-desktop Vue | visual/a11y/build/real-store assertions | S8A Closure + Pattern version |
 | PR-126-EVAL | title/raw-reasoning dataset/runner/results | approved repo(s) | fixed Eval | prompt/model/runtime pins |
 | LOCAL-126-E2E | local startup/readiness/E2E evidence | API/Host/Desktop/pinned Runtime | full fake-provider local matrix | Local-only G6 |
 
@@ -116,10 +126,15 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 | S1 | no implementation SHA | read-only Runtime/Host/Public Tasks/storage investigation；fixed fake tests；historical bounded MiniMax evidence；no source diff | raw upstream 4/4 + prior title/summary/delete evidence | bounded facts complete；no implementation claim | Investigation Complete |
 | S2 | no implementation SHA | DESIGN-126-003、Public Tasks inventory、DEC-126-017/011/012 | design consistency/package validation | Owner Approved | Complete / G2 Passed |
 | S3 | prior remote `c000a0245acb5c3f7ead5d2a877fb60c281c588c` + sole candidate `29317b6426578749dc698fc2ad32b986ee5c8e9f` | source/fixtures/generated SDK/docs only | replacement post-commit gates PASS；old Draft PR remote CI audit FAIL | DEC-126-023/024/Q-017 closed；G2A Re-review Passed | Complete at source level；no remote or implementation authorization |
-| S4 | local checkpoint `yijie-api@b5e601764357512208cc09bfb2b30b244a1b82ac` | secure v2 foundation；default-off local-lab route | historical repository gates PASS but current audit matrix/idempotency/drift gaps and new-candidate runtime conformance not covered | P1 + paused LIA-126-002 | Conditional / Corrective Closure Required；paused |
-| S5 | local checkpoint `yijie-agent-host@f6e4a5902d8f25632408c1c699ba17b8c66ef214` | Host/event v2 raw/title/cleanup foundation；flags off | historical race/fake fixtures PASS but partial cleanup/title isolation/lease gaps not covered | P1 closure required | Conditional / Corrective Closure Required；paused with LIA-126-002 |
-| S6 | local checkpoint `yijie-desktop@40413b409a467a133d178137651622e167d512de` | SQLCipher/project/sidecar foundation；flags off | historical TS/Rust/lint/build PASS but reasoning invariants/migration/sidecar identity gaps not covered | P1 closure required | Conditional / Corrective Closure Required；paused with LIA-126-002 |
-| S7–S11 | N/A | none | NOT RUN | Not reviewed | Pending separate authorization |
+| S4 | checkpoint `yijie-api@b5e601764357512208cc09bfb2b30b244a1b82ac` + uncommitted closure diff | secure v2 foundation；default-off local-lab route | exact `29317b...` projection、generate drift、race/unit/lint、isolated PostgreSQL integration PASS；audit/nil tenant/idempotency/content-free P1 closed | DEC-126-026 Accepted | Corrective Closure Passed |
+| S5 | checkpoint `yijie-agent-host@f6e4a5902d8f25632408c1c699ba17b8c66ef214` + uncommitted closure diff | Host/event v2 raw/title/cleanup foundation；flags off | contract/race/lint/fixed Runtime PASS；cleanup recovery/lease/title isolation+idempotency/receipt/schema/no-log P1 closed | DEC-126-026 Accepted | Corrective Closure Passed |
+| S6 | checkpoint `yijie-desktop@40413b409a467a133d178137651622e167d512de` + uncommitted closure diff | SQLCipher/project/sidecar foundation；flags off | exact `29317b...` projection、TS/Rust/lint/build PASS；reasoning/history/cascade/migration/nonce-readiness P1 closed | DEC-126-026 Accepted | Corrective Closure Passed |
+| S7A | same Desktop checkpoint + uncommitted S7A Rust diff | HostBridge、HostEventStream、strict typed domain、nonce-bound readiness与owner-only token；无Tauri/Vue | S7A门禁与canonical reasoning/multi-frame chunk/fake Host/security/fault coverage PASS | DEC-126-027 Accepted | Closure Passed |
+| S7B | same Desktop checkpoint + uncommitted S4–S7B Rust diff | schema v3、transactional session/message/outbox、lease/unknown-outcome controls、coalesced reducer/terminal commit、20/50 history、title CAS；无Tauri/Vue | `make lint/test/build` PASS；113 TS；79 Rust（78 pass/1 existing ignored）；10,000 deltas、restart/mixup/reasoning reconciliation、fake Host→SSE→SQLCipher | DEC-126-028 Accepted | Closure Passed |
+| DESIGN-126-005 | no implementation SHA | ConversationApplication/Tauri/TS gap inventory、private IPC v1、fixed fixture matrix与S7C/S8A/S8B重切 | feature docs validation | DEC-126-029 Accepted | Design Accepted；S7C/S8A later separately authorized |
+| S7C | same Desktop checkpoint + uncommitted S4–S7C Rust diff | schema v4、300s Rust-bound context/revision/capability facade、session/project actions、stable interrupt、durable cleanup/receipt、coordinator/restart/resync/live raw source；无Tauri/TS/Vue | `make lint/test/build` PASS；113 TS；88 Rust（87 pass/1 existing ignored）；fake Host cleanup、v1-v4 migration、restart/idempotency/race/cascade/WAL/receipt-expiry/auth/no-log | DEC-126-030 Accepted | Closure Passed / G3 Partial |
+| S8A | same Desktop checkpoint + uncommitted S4–S8A Rust/TS diff | 20 versioned commands、listen-only event、closed schema/fixtures、native auth binding、opaque cursors、strict TS validators/real Tauri client/authoritative Pinia reducer；无Vue | `make lint/test/build` PASS；127 TS；94 Rust（93 pass/1 existing ignored）；schema↔serde↔TS、auth/expiry/tenant、caps/backpressure/cancel/stale/restart/resync/no-log | DEC-126-031 Accepted | Closure Passed / G3 Partial |
+| S8B、S9–S11 | N/A | none | NOT RUN | Not authorized | Pending separate sequential authorization |
 
 ## 10. 变更控制
 
@@ -139,10 +154,10 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 |---|---|---|---|
 | Product/G1 | 段成威 | Approved recommended product scheme；G1 Passed；no business slice authorized | 2026-08-01 |
 | 技术负责人/G2 | 段成威 | Passed — DEC-126-017、DEC-126-011/012与FEAT-126 Pattern Accepted；进入G2A，仍不开始业务编码 | 2026-08-02 |
-| Contracts/G2A/remote | 段成威 | DEC-126-023/024 Accepted，`29317b...`为新的唯一candidate，G2A Re-review Passed；`c000a024...`仅为历史远端候选，旧remote/PR不变，未push/merge/tag/发布/pin，不开始业务编码 | 2026-08-02 |
+| Contracts/G2A/remote | 段成威 | DEC-126-023/024/025 Accepted，`29317b...`为唯一candidate并已远端可达；`c000a024...`仅为历史远端候选，旧PR与develop不变；未merge/tag/发布/启用 | 2026-08-02 |
 | Contracts Draft PR / merge | 段成威 | DEC-126-021 Accepted/HOLD；CI failed dependency audit；merge不是local draft前置但当前仍不批准 | 2026-08-02 |
 | Local-only delivery strategy | 段成威 | DEC-126-022 Accepted；Local Runtime Ready目标，tag/publish/deploy/G5 N/A | 2026-08-02 |
-| Local Implementation Authorization | 段成威 | LIA-126-001已执行；LIA-126-002已批准并建立checkpoint，DEC-126-024已通过但未自动恢复，仍等待单独恢复指令。S4–S6 Conditional，S7–S11仍禁止 | 2026-08-02 |
+| Local Implementation Authorization | 段成威 | DEC-126-027/028/030/031接受S7A/S7B/S7C/S8A；S8B、S9–S11、MiniMax/flag activation与新增远端动作仍禁止 | 2026-08-03 |
 
 ## 12. Local Implementation Authorization 审批候选
 
@@ -158,10 +173,41 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 
 Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；继续禁止MiniMax、远端写入、merge/tag/publish/deploy及S7–S11。`执行结果与摘要见`08-verification-report.md`；该授权现已耗尽，不自动延伸到下一切片。
 
-### LIA-126-002（Approved / Paused by Stop Condition）
+### LIA-126-002（Approved / Closure Accepted by DEC-126-026）
 
-- 批准范围：仅S4–S6 Foundation Corrective Closure和四仓本地checkpoint；S7–S11继续禁止。
+- 批准范围：仅S4–S6 Foundation Corrective Closure和四仓本地checkpoint；已由DEC-126-026接受。
 - 已执行：创建四个`feat/feat-126-foundation-closure`本地分支及WIP checkpoint；元仓checkpoint未纳入FEAT-123删除。
 - 停止事实：历史`c000a024`将Public Tasks v2 `input`定义为任意对象，canonical `conversation` fixture携带`input.text`并在response回显，与content-free-only边界冲突。
-- 当前动作：DEC-126-023方案C已执行，新source `29317b6426578749dc698fc2ad32b986ee5c8e9f`已由DEC-126-024批准，G2A重审通过；不修改旧candidate，不继续provider代码，不执行S5/S6代码纠偏。
-- 恢复条件：Owner另行明确恢复LIA-126-002；DEC-126-024批准本身不授权业务源码、S7–S11、MiniMax或远端动作。
+- Remote State Reconciliation：sole candidate与四个checkpoint分支已远端可达且SHA精确匹配；旧candidate/PR、各`origin/develop`、merge/tag/publish/deploy均不变。
+- 退出结果：S4–S6 P1逐项以真实测试和安全/migration/no-log证据关闭；DEC-126-026 Accepted。该LIA不自动授权后续切片。
+
+### S7A Desktop Rust Host Bridge/Domain（Authorized / Executed / Closure Accepted）
+
+- 授权来源：Owner接受DEC-126-026并明确“单独授权S7A Desktop Rust Host Bridge/Domain实现”。
+- 允许范围：owner-only bearer/token、exact IPv4 loopback HTTP/SSE、Host instance nonce/readiness、v2 schema/cursor及typed wire/domain adapter；仅Desktop Rust。
+- 实际结果：新增`host_bridge.rs`、`host_domain.rs`并由`ChatRuntime`内部持有；支持session/turn/interrupt/cleanup/v2 event stream；不实现title operation；未知非terminal event丢payload、未知terminal fail closed。
+- 安全边界：token以`O_NOFOLLOW`和owner/mode/nlink约束读取；no-proxy/no-redirect；错误和Debug不含Host message、token、project path或raw正文；没有新增Tauri command/invoke handler或Vue diff。
+- 验证（S7A获批时）：Desktop全量门禁与fake Host/canonical fixture通过；只用fake Host和固定contract fixtures，MiniMax/provider call为0。
+- 未授权：S8–S11、Vue/UI、feature flag activation、MiniMax、远端写入、push/merge/tag/publish/deploy；S7B仅由后续DEC-126-027单独授权。
+- 退出状态：DEC-126-027已Accepted；G3保持Partial；Owner另行授权S7B。
+
+### S7B Desktop Rust Application Orchestration/Domain（Authorized / Executed / Closure Accepted）
+
+- 授权来源：Owner接受DEC-126-027并明确“单独授权S7B Desktop Application Orchestration/Domain Integration”。
+- 允许范围：仅Rust侧outbox、事件reducer、历史加载编排和标题优先级；不新增Tauri/WebView/Vue入口。
+- 实际结果：新增schema v3索引与`ConversationApplication`；create/turn幂等outbox、lease恢复/unknown-outcome fail closed、严格cursor reducer、批量checkpoint、terminal原子对账、20/50 turn history和user-wins title CAS。
+- 验证：`make lint && make test && make build` PASS；113 TS tests；79 Rust tests（78 passed、1个既有signed Keychain integration ignored）；10,000 ordered deltas及fake TCP Host→SSE→SQLCipher完整Rust应用链PASS；MiniMax/provider call为0。
+- 契约：本切片为Desktop私有durable/application semantic change，不修改Host/Public Tasks wire或唯一source candidate。
+- 未授权：S8–S11、Vue/UI、Tauri invoke、feature flag activation、MiniMax、远端写入、push/merge/tag/publish/deploy。
+- 退出状态：DEC-126-028已Accepted；G3保持Partial，未授权进入S7C/S8A/S8B或S9–S11。
+
+### DEC-126-029至DEC-126-031逐切片授权（S8A Closure Accepted）
+
+- 设计输入：DESIGN-126-005已完成ConversationApplication/Tauri invoke/TypeScript gap inventory，并冻结private IPC v1、安全边界、capacity、event/backpressure/cancel/stale/restart语义。
+- Owner决定：DESIGN-126-005与DEC-126-029已接受；G3继续Partial，不启用flag，不改central contracts或Runtime pin。
+- `LIA-126-003 / S7C`：已单独授权Desktop Rust authorization context、session/project actions、interrupt、durable delete/cleanup status、background coordinator与restart/resync projection source；仅使用fake Host、固定fixture、临时SQLCipher和临时CODEX_HOME；禁止Tauri invoke/event、TS/Vue、MiniMax、远端动作。退出需Rust fault/race/restart/no-log Closure Review。
+- `LIA-126-004 / S8A`：Owner接受DEC-126-030后已单独授权authoritative IPC schema/fixtures、窄Tauri commands/events、TS validators/client/Pinia store/view-model；禁止Vue页面/样式/route activation和production mock transport。退出需schema↔serde↔TS、auth/no-log/backpressure/stale/restart/race Closure Review。
+- `S8B`授权候选：只在S8A Closure被Owner接受后另行授权Vue页面、交互、视觉与可访问性；必须消费真实S8A store，mock只可存在test harness；feature flag activation仍不随S8B自动授权。
+- S7C结果：Owner已接受DEC-126-030，S7C Closure Passed。
+- S8A结果：20个versioned commands、closed Schema/fixtures、Rust-bound context/event/cursors、TS validator/client/store已实现；Desktop `make lint/test/build`及安全扫描PASS；DEC-126-031已接受S8A Closure，G3仍Partial。
+- 当前状态：S8A是本地Closure候选且G3仍Partial；S8B相关Vue实现/测试保持`NOT RUN`并继续未授权。

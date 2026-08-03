@@ -1,6 +1,6 @@
 # FEAT-126 契约与兼容变更计划
 
-> 本文设计已于2026-08-02通过G2。LIA-126-002发现历史commit `c000a0245acb5c3f7ead5d2a877fb60c281c588c`的Public Tasks `input`语义与content-free-only边界冲突。DEC-126-023方案C与DEC-126-024现均已Accepted，Q-017关闭，G2A重审通过；`29317b6426578749dc698fc2ad32b986ee5c8e9f`是新的唯一source-contract candidate。旧commit仅保留为历史远端候选，Draft PR #1和远端均保持不变；LIA-126-002仍暂停，S4–S6为Conditional，S7–S11继续禁止。
+> 本文central contract设计已通过G2/G2A重审。DEC-126-026/027/028/030/031已接受S4–S8A Closure。S8A只增加Desktop-private schema/commands/events与TypeScript consumer，不修改central source、Host/Public Tasks wire或Runtime pin。S8B仍未授权；旧`c000a024`、Draft PR #1和各`origin/develop`保持不变。
 
 ## 1. Contract Impact 结论
 
@@ -18,7 +18,7 @@
 | Agent Host local HTTP | central contract | `yijie-contracts/openapi/agent-host/agent-host.yaml` | platform-team/agent-runtime-team | yijie-agent-host | yijie-desktop |
 | Agent session events | central contract | `jsonschema/agent/session-event-v2.schema.json` + AsyncAPI + `yijie.events.v2` Proto local candidate | platform-team | yijie-agent-host | yijie-desktop |
 | Runtime app-server | runtime canonical | pinned yijie-codex app-server schema | agent-runtime-team | yijie-codex | yijie-agent-host |
-| WebView↔Rust commands | private published IPC | future yijie-desktop command/schema source | client-team | Tauri Rust | Vue/TypeScript |
+| WebView↔Rust commands/events | private Desktop IPC | DESIGN-126-005；`yijie-desktop/src-tauri/schemas/chat-ipc-v1.schema.json`为source，Rust serde DTO与TS runtime validators由golden conformance绑定 | client-team | Tauri Rust | TypeScript store/view-model；未来Vue |
 | conversation DB | private durable schema | future Desktop migrations | client-team | Tauri Rust repository | current/future Desktop versions |
 | MiniMax Responses | third-party | provider official protocol + locked Runtime config | provider/runtime owner | MiniMax | yijie-codex |
 
@@ -71,10 +71,19 @@
 - 至少一次交付；consumer先解析envelope。future unknown variant只记录content-free metric并推进delivery cursor，避免replay loop；但不得推进business terminal、创建正文或执行动作。
 - terminal turn 仍只有一个；warning/error 不自动结束 turn。
 
-### 3.5 Desktop IPC/private DB 候选
+### 3.5 Desktop IPC/private DB（S8A本地实现候选）
 
-- Vue 只传 opaque project/session IDs 与经长度校验文本，不传任意 SQL、token 或任意 filesystem path。
-- Rust command 返回稳定 typed error，不返回原始 path/DB/provider error。
+- 所有私有IPC对象均为`schemaVersion: 1`、camelCase、closed object/union；未知字段、未知command/event kind或越限值fail closed。authoritative JSON Schema、Rust serde DTO、TypeScript类型及运行时validator由固定fixtures和allowlist/ref测试证明同形，禁止手写宽松影子DTO。该私有IPC不进入`yijie-contracts@29317b...`，不改变G2A source identity。
+- Rust建立`ChatAuthorizationContext`：`chat_bind_context_v1`只接受不可信tenant selector，Rust调用native auth authority复验signed-in、tenant membership、capability revision/expiry，并绑定本地`ChatScope`。owner user identity只来自Rust-owned authority，永不接受/回显WebView值。成功只返回随机opaque `contextId`、`expiresAtEpochSeconds`和allowlisted `allowedActions`；不返回tenant/owner/revision。context最多5分钟且不超过权威projection expiry，logout、tenant切换、同revision重新绑定、revision回退/到期立即使旧context失效并清空订阅。
+- Local-only action policy固定为：list/history需`task.read`；create/send、rename/session pin、interrupt和delete需`task.create + task.read`；project choose/revalidate/pin/remove另需`workspace.use`。这是Desktop local conversation policy，不给Public Tasks增加新action，也不允许UI capability取代Rust检查；unknown action、foreign ID或scope mismatch一律拒绝。
+- command名固定为：`chat_bind_context_v1`、`chat_list_projects_v1`、`chat_pick_project_v1`、`chat_revalidate_project_v1`、`chat_create_session_v1`、`chat_submit_turn_v1`、`chat_list_sessions_v1`、`chat_load_history_v1`、`chat_load_reasoning_v1`、`chat_rename_session_v1`、`chat_set_session_pinned_v1`、`chat_set_project_pinned_v1`、`chat_remove_project_v1`、`chat_interrupt_turn_v1`、`chat_delete_session_v1`、`chat_get_cleanup_status_v1`、`chat_subscribe_session_v1`、`chat_resync_session_v1`、`chat_cancel_request_v1`与`chat_unsubscribe_session_v1`。现有unversioned foundation invokes不得作为S8真实conversation链继续扩散；内部迁移/移除另行测试。
+- 普通request envelope精确为`{schemaVersion, requestId, contextId, payload}`；bootstrap `chat_bind_context_v1`是唯一例外，精确为`{schemaVersion, requestId, payload:{tenantSelector}}`且成功后才取得`contextId`。`requestId/contextId`为UUID，write payload另含client-generated UUID `operationId`并服从Rust持久幂等。请求不得含owner/user ID、canonical path、Host bearer、SQLCipher key、Host/Runtime ID、provider/model/effort、任意SQL或Host原始payload。响应精确为`{schemaVersion, requestId, data}`，只返回stable UI DTO与opaque resource ID。
+- stable error精确为`{schemaVersion, requestId?, code, retryable, recovery, retryAfterMs?}`；`recovery`仅允许`none|sign_in|rebind_context|request_permission|fix_request|reload|resync|retry|start_host|wait_cleanup|reduce_input|reselect_project`，`retryAfterMs`为0..60000。`code`来自DESIGN-126-005 closed allowlist（auth/context/capability/resource/project/cursor/request/cancel/conflict/turn/host/storage/protocol/limit/cleanup/temporary）；不得返回message/detail、path、SQL/provider/Host body、token或正文。未来Vue只把code映射为本地化文案，不能显示Host原始错误。
+- pagination cursor是Rust生成的opaque base64url string，最多256 bytes，绑定context、scope、query和process epoch，最多10分钟；进程重启、scope变化、篡改或过期返回`chat_cursor_invalid`并要求从首页重载。session页最多50项/512KiB；history默认20、最多50 turn且总响应最多4MiB（至少允许1个符合单turn上限的record）；reasoning正文一次只加载单turn、最多256KiB；resync snapshot最多包含1MiB assistant文本和256KiB raw reasoning。
+- 唯一Tauri event channel为`yijie.chat.event.v1`。closed envelope包含`schemaVersion`、`subscriptionId`、`contextId`、`sessionId`、可选`turnId`、十进制字符串`projectionSequence`、UUID `eventId`、`kind`与closed `payload`。kind仅为`assistant_append`、`reasoning_append`、`turn_state`、`turn_terminal`、`cleanup_state`、`resync_required`、`context_invalidated`；Host envelope/message/ID/sequence/error不得透传。reasoning只含local item ordinal、content index和validated plain text。
+- 单subscription Rust队列最多64 events或256KiB，连续append在上限内合并并最多20Hz投递；单assistant append≤64KiB、reasoning append≤16KiB。overflow/drop/gap后停止普通progress，投递不可丢的`resync_required`；`turn_terminal`与`context_invalidated`同样不可丢。Tauri event无ack，因此TS store要求sequence精确连续，duplicate可忽略，gap/mismatch必须丢弃增量并调用`chat_resync_session_v1`。
+- 每个read/subscription request都可由request ID取消；Rust接受后的durable write不能被`chat_cancel_request_v1`回滚，UI改用operation ID查状态。停止生成只能调用interrupt。TS store维护`contextId + subscriptionId + selectionEpoch`，切tenant/session时同步清内存并取消旧读；任何late response/event不满足三元绑定都丢弃。WebView永不直接调用outbox dispatch或Host retry。
+- Desktop/Host进程重启使context、subscription和process-bound cursor失效；Rust S7C coordinator从SQLCipher恢复pending/expired outbox、active turn、cleanup operation与last cursor，unknown outcome继续fail closed。S8A store重新bind并通过新subscription/resync从Desktop权威历史及content-free cleanup状态恢复；Host replay 409不允许猜测拼接，必须进入明确reconcile/resync状态。
 - private DB source 维护 schema version、migration checksum、FK/unique/index constraints；所有 top-level reads 带 owner user+tenant scope。DESIGN-126-003 固定 `0001_chat_core` 与 `0002_chat_reasoning_v2` 两个 forward-only migration；旧 app 只读/忽略其不支持的新 private schema，不执行 down migration，新 app 对 future version/checksum drift/`foreign_key_check` failure fail closed。
 - delta 只在 Desktop 内存 reducer 聚合；finalized 或受控 interruption 以一个 SQLCipher transaction 更新 `chat_turns.reasoning_status/reason_code` 并替换对应 reasoning item/parts。history session list 不读取正文；turn page 默认 20、最大 50，只批量返回 reasoning metadata；用户展开时一次加载单 turn raw body，最大 256 KiB，避免 N+1。
 - session 永久删除返回按 data surface 分项的 completion；只要 Host/Runtime required cleanup 或 Desktop `wal_checkpoint(TRUNCATE)` 未完成，UI 不显示全部成功。成功语义仅为当前 app-managed live stores 不可重新打开/resume，不得升级为所有磁盘痕迹抹除。
@@ -136,7 +145,7 @@ retirement全过程保持双隔离。
 | `contracts-v0.2.0` | `f16a497e1377f45747f8ff9292b4b60cf2027f88` | supported until explicitly changed | `./scripts/check-breaking.sh f16a497e1377f45747f8ff9292b4b60cf2027f88` | PASS 2026-08-02；OpenAPI/Buf/AsyncAPI/JSON Schema无breaking；修复v2 error schema隔离后无v1 enum warnings |
 | all G2A-time supported/deprecating baselines | only the row above per `docs/supported-baselines.md` | per registry | one check per full commit | PASS；无其它supported/deprecating baseline |
 | prior 0.3.0 candidate | `c000a0245acb5c3f7ead5d2a877fb60c281c588c`（parent `9ec34abd6e7dfb5a23b0154d467694167224ebbb`） | immutable remote-available historical candidate, not release baseline | historical semantic/clean-clone gates + LIA-126-002 data-boundary review | historical SOURCE/CLEAN-CLONE PASS；REMOTE CI FAIL；arbitrary `input`问题由DEC-126-023 replacement修复；旧commit/PR仍未修改/merge/tag/发布/pin |
-| DEC-126-023 replacement | `29317b6426578749dc698fc2ad32b986ee5c8e9f`（parent `c000a0245acb5c3f7ead5d2a877fb60c281c588c`） | sole source-contract candidate, local immutable, not release baseline | post-commit generate/lint/test/build/pack + supported baseline breaking + v1 reference closure + fixture/schema/SDK conformance | PASS；worktree clean；DEC-126-024 Accepted / G2A Re-review Passed；未push/merge/tag/publish/pin |
+| DEC-126-023 replacement | `29317b6426578749dc698fc2ad32b986ee5c8e9f`（parent `c000a0245acb5c3f7ead5d2a877fb60c281c588c`） | sole source-contract candidate, immutable remote-available, not release baseline | post-commit generate/lint/test/build/pack + supported baseline breaking + v1 reference closure + fixture/schema/SDK conformance | PASS；remote branch SHA精确匹配；DEC-126-024/025 Accepted；未merge/tag/publish或启用 |
 
 结构性 checker 预计会把直接修改既有 Tasks auth/request 标为 breaking；采用 versioned expand 后仍必须人工审核 auth、error、default、tenant 和 idempotency 语义。
 
@@ -149,7 +158,7 @@ retirement全过程保持双隔离。
 | yijie-agent-host Host/events | `0.3.0 local replacement candidate` | `29317b6426578749dc698fc2ad32b986ee5c8e9f` | Host `d3bb9f33…2c71`；event JSON `b7a6494f…f424`；Proto `a18c08df…f383`（unchanged from parent） | oapi-codegen 2.7.2 + Buf 1.71.0 + JSON Schema generator | agent-runtime-team / 段成威；runtime conformance待后续授权 |
 | yijie-desktop Host/events | `0.3.0 local replacement candidate` | `29317b6426578749dc698fc2ad32b986ee5c8e9f` | Host TS `6eeb8a77…bed4`；SDK tarball `21b17b50…b082` | locked contracts generators | client-team / 段成威；runtime conformance待后续授权 |
 
-DEC-126-024所需的version、full commit、per-source SHA-256、SDK digest和generator identity已回填如下，并已在本地commit后复验、由Owner批准。DEC-126-020 clean clone只证明历史`c000a024`，不证明本replacement远端可用。LIA-126-001下的API、Host、Desktop仍固定旧SHA；因本轮禁止修改业务源码，新的下游pin/runtime conformance明确为NOT RUN。G2A重审通过后仍须另行恢复LIA-126-002。实际证据见`08-verification-report.md`。
+DEC-126-024所需的version、full commit、per-source SHA-256、SDK digest和generator identity已回填并复验。DEC-126-025确认replacement远端ref精确匹配，但没有为它创建新PR或运行远端CI；API、Host、Desktop checkpoint仍锁旧SHA，现按已恢复的LIA-126-002切换到sole candidate并补runtime conformance。实际证据见`08-verification-report.md`。
 
 | Artifact | SHA-256 |
 |---|---|
@@ -170,9 +179,10 @@ DEC-126-024所需的version、full commit、per-source SHA-256、SDK digest和ge
 |---|---|---|---|---|
 | secure task create/get/error | `yijie-contracts/tests/fixtures/public/tasks-v2/` | yijie-api handler/conformance | Desktop transport parser | source + API producer PASS；Desktop runtime consumer留待S7 |
 | tenant/IDOR deny matrix | contracts security fixtures + API synthetic DB fixture | yijie-api integration | Desktop error mapping | API auth/tenant/permission/creator-private/404与PostgreSQL integration PASS；Desktop error mapping留待S7 |
-| Host raw-reasoning/title/cleanup | `tests/fixtures/agent/session-event-v2/` + `tests/fixtures/agent/host-v2/` | Host exact raw mapping/caps/finalized/no-log serialization | Desktop reducer/dedupe/plain-text/SQLCipher history/unavailable Gate | Host producer/no-log/fake Runtime与Desktop SQLCipher terminal/cascade基础 PASS；reducer/UI留待S7–S8 |
-| unknown event/field | closed v2 schema negative assertions；future consumer compatibility fixture | producer emit disabled | Desktop tolerant parser | source closed-union rejection PASS；consumer tolerance NOT RUN |
+| Host raw-reasoning/title/cleanup | `tests/fixtures/agent/session-event-v2/` + `tests/fixtures/agent/host-v2/` | Host exact raw mapping/caps/finalized/no-log serialization | Desktop Rust strict SSE/domain/application reducer + future UI plain-text rendering Gate | Host producer/no-log/fake Runtime、Desktop SQLCipher terminal/cascade、S7A parser与S7B reducer/restart/fake Host integration PASS；Vue rendering留待S8 |
+| unknown event/field | closed v2 schema negative assertions；future consumer compatibility fixture | producer emit disabled | Desktop tolerant parser | source closed-union rejection PASS；S7A仅接受未知非terminal event、丢弃payload并推进cursor，未知terminal fail-closed；UI NOT RUN |
 | Desktop private DB migrations | yijie-desktop embedded SQL + checksum ledger | Rust repository migration | current/future/drift/wrong-key/scope/cascade tests | PASS for S6；已执行数据库不支持down migration，按forward-only修复 |
+| Desktop private IPC v1 | `src-tauri/schemas/chat-ipc-v1.schema.json` + `src-tauri/fixtures/chat-ipc-v1/` fixed corpus | Rust serde/command/event projection | TS runtime validator/client/store/view-model | S8A Closure Passed：20/20 command request/response refs、7/7 event variants、closed payloads、golden fixtures、capacity/auth/restart/race tests；DEC-126-031 Accepted |
 
 Feature 包只引用上述唯一权威位置，不复制业务 fixtures。
 
@@ -185,10 +195,12 @@ Feature 包只引用上述唯一权威位置，不复制业务 fixtures。
 | 3 | 保持source candidate/fixtures/generators不可变且PR为Draft | yijie-contracts | DEC-126-018/019/020/021 | 不merge、不tag、不publish；保留exact SHA |
 | 4 | consumer tolerance/private DB expand本地draft | Desktop | LIA-126-001 + exact SHA/核验本地投影 | Complete for S6；flag off / rollback local app |
 | 5 | secure Public provider + Host provider本地draft | API/Host | LIA-126-001 + provider conformance/security | Complete for S4/S5；local route/feature flags off |
-| 6 | Desktop behavior/UI本地draft | Desktop | provider + consumer matrix | disable local chat feature |
-| 7 | API/Host/Desktop/Runtime本地构建、启动与完整E2E | all local | security/delete/resilience/eval/fake provider | stop local processes；保留FEAT-125生产隔离 |
-| 8 | Owner Local-only G6验收 | all local | AC-001–043适用项与真实证据 | 不声明Production Ready |
-| 9 | 可选未来merge审批 | Contracts及受影响仓 | local E2E + dependency audit修复 + remote CI全绿 + Owner单独批准 | 保持feature branches/Draft PR |
+| 6 | S7C Rust actions/delete/interrupt/coordinator本地draft | Desktop Rust | DEC-126-029 Accepted + separate S7C authorization + S7B Closure | Complete/DEC-126-030 Accepted；flags off |
+| 7 | S8A private IPC + TS store/view-model本地draft | Desktop Rust/TS | S7C Closure + LIA-126-004 + fixed IPC fixtures | DEC-126-031 Accepted / S8A Closure Passed；无Vue/route activation |
+| 8 | S8B真实Vue交互/视觉/a11y本地draft | Desktop Vue | S8A Closure + separate S8B authorization + Accepted Pattern | disable local chat UI flag；不得fallback mock transport |
+| 9 | API/Host/Desktop/Runtime本地构建、启动与完整E2E | all local | security/delete/resilience/eval/fake provider | stop local processes；保留FEAT-125生产隔离 |
+| 10 | Owner Local-only G6验收 | all local | AC-001–047适用项与真实证据 | 不声明Production Ready |
+| 11 | 可选未来merge审批 | Contracts及受影响仓 | local E2E + dependency audit修复 + remote CI全绿 + Owner单独批准 | 保持feature branches/Draft PR |
 
 本期不创建`contracts-v0.3.0` tag、不publish SDK/package、不配置registry、不迁移线上流量、不做生产灰度/启用或legacy生产清理。未来如产生线上意图，必须重开生产轨与G5。
 
@@ -200,7 +212,7 @@ Feature 包只引用上述唯一权威位置，不复制业务 fixtures。
 | lint | `make lint` | yijie-contracts | Node 26.0.0 / pnpm 11.9.0 / Go 1.26.5 | 0 | PASS | Redocly/JSON Schema/Buf/TS/Go vet |
 | test/build/pack | `make test && make build && pnpm pack:sdk` | yijie-contracts | `29317b6426578749dc698fc2ad32b986ee5c8e9f` | 0 | PASS；Node 27/27、Go PASS、SDK digest `21b17b50…b082` | synthetic fixtures only；no provider |
 | breaking | `./scripts/check-breaking.sh f16a497e1377f45747f8ff9292b4b60cf2027f88` + `pnpm check:v1-wire <full-baseline>` | yijie-contracts | sole supported baseline | 0 | PASS；legacy Public 2 paths/Host 7 paths及reference closure equality PASS | automatic + repeatable semantic v1 check |
-| conformance | source-schema fixtures and operation assertions only | yijie-contracts | `29317b6426578749dc698fc2ad32b986ee5c8e9f` | 0 | Public Tasks定向3/3、全仓Node 27/27、generated TS/Go current；provider/consumer runtime NOT RUN | no business code/pin；blocks G4, not misreported as implementation |
+| conformance | source-schema fixtures and operation assertions + S7A–S8A local consumer/application/IPC adapter | yijie-contracts + Desktop Rust/TS | `29317b6426578749dc698fc2ad32b986ee5c8e9f` | 0 | Public Tasks定向3/3、全仓Node 27/27、generated TS/Go current；S7A wire/domain、S7B/S7C application和S8A schema↔serde↔TS/store conformance PASS；full process runtime E2E NOT RUN | no source-contract mutation/pin/activation；blocks G4, not misreported as code complete |
 | Draft PR remote CI | GitHub Actions run 30741466028 / job 91479562558 | yijie-contracts PR #1 | exact head `c000a0245acb5c3f7ead5d2a877fb60c281c588c` | 1 | FAIL；generate/diff/lint/test/pack PASS，`pnpm audit`命中`brace-expansion 2.1.2` high；`govulncheck`与`origin/main` breaking skipped | merge blocked；candidate未改manifest/lockfile；no rerun/waiver/fix/push |
 | Runtime fake title capability | `cargo test -p codex-app-server --test all <test> -- --nocapture` for `thread_start_ephemeral_remains_pathless`、`turn_start_accepts_output_schema_v2`、`turn_start_output_schema_is_per_turn_v2` | yijie-codex/codex-rs | `3aa317ce...` / 0.144.6 | 0 each | PASS | local mock Responses only；keys removed；no source diff |
 | Runtime fake public-summary capability | `RUST_MIN_STACK=33554432 cargo test -p codex-core --test all <test> -- --nocapture` for `configured_reasoning_summary_is_sent`、`reasoning_content_delta_has_item_metadata` | yijie-codex/codex-rs | `3aa317ce...` / 0.144.6 | 0 each | PASS after one documented default-stack abort | local mock Responses only；no MiniMax |
@@ -212,7 +224,7 @@ Feature 包只引用上述唯一权威位置，不复制业务 fixtures。
 
 | Consumer/Owner | 结论 | 日期 | 证据/例外 |
 |---|---|---|---|
-| yijie-desktop / 段成威 | Replacement source approved；G2A Re-review Passed | 2026-08-02 | closed content-free DTO/fixtures generated；Desktop runtime transport仍未授权、未声称通过 |
-| yijie-api / 段成威 | Replacement source approved；G2A Re-review Passed | 2026-08-02 | schema从权威源强制拒绝正文；provider runtime conformance仍未授权、未声称通过 |
-| yijie-agent-host / 段成威 | Host/event source review有效；replacement overall G2A Passed | 2026-08-02 | raw/title/cleanup部分未改变，但S5仍有独立P1 closure且LIA-126-002暂停 |
+| yijie-desktop / 段成威 | Replacement source approved；LIA-126-002 consumer projection closure resumed | 2026-08-02 | closed content-free DTO/fixtures generated；S6 runtime transport仍限Rust foundation，不进入UI |
+| yijie-api / 段成威 | Replacement source approved；LIA-126-002 producer conformance resumed | 2026-08-02 | schema从权威源强制拒绝正文；S4 provider conformance必须在Closure Review真实回填 |
+| yijie-agent-host / 段成威 | Host/event source review有效；LIA-126-002 projection closure candidate complete | 2026-08-02 | raw/title/cleanup形状不变；S5列明P1本地证据已关闭并等待DEC-126-026，flags保持off |
 | unknown Public API consumers | Safe compatibility category accepted | 2026-08-02 | Q-010 Resolved；不声明为零；DEC-126-011 window Accepted |

@@ -1,6 +1,6 @@
 # FEAT-126 需求与验收标准
 
-> 段成威已于2026-08-01通过G1，并于2026-08-02通过G2。LIA-126-002发现历史candidate的arbitrary `input`冲突后暂停；DEC-126-023方案C/Q-017现已关闭，DEC-126-024已批准`29317b6426578749dc698fc2ad32b986ee5c8e9f`为新的唯一source-contract candidate，G2A重审通过。S4–S6仍为Conditional，LIA-126-002继续暂停，G3 Partial，G4/G6 Pending；本批准未修改业务源码或远端。
+> 段成威已通过G1/G2/G2A重审，`29317b6426578749dc698fc2ad32b986ee5c8e9f`是唯一source-contract candidate。DEC-126-026/027/028/030/031已接受S4–S8A Closure。G3仍Partial，G4/G6 Pending；S8B及S9–S11、Vue UI、MiniMax、feature activation与新增远端写入仍禁止。
 
 ## 1. 用户与场景
 
@@ -80,6 +80,9 @@
 | BR-039 | conversation data 按 OS user + authenticated user + tenant 隔离；切换账户/tenant 先清空内存与请求，再加载新 scope | 数据隔离 | Must |
 | BR-040 | 云端存储后续通过 versioned storage port/migration 接入；不得把“以后改配置”描述为已证明的 local/cloud 语义兼容 | 用户备注细化 | Must |
 | BR-042 | Public Tasks `/v2/tasks`及PostgreSQL不得接收或回显prompt、message、raw reasoning、title派生正文或项目路径；`input`若保留，只能是closed、content-free metadata/reference。本地对话正文只进入Desktop SQLCipher与受控Runtime/provider链 | LIA-126-002明确冻结的数据边界 / ADR-0013 / DEC-126-014 | Must |
+| BR-043 | WebView只能通过versioned、closed的Desktop private IPC提交意图；active identity、owner、tenant、capability和资源scope由Rust绑定并复验。请求不得携带owner/user identity、Host bearer、SQLCipher key、canonical project path、Host/Runtime ID或原始Host wire | DESIGN-126-005 | Must |
+| BR-044 | 只有经过Rust校验、纯文本化和容量限制的assistant/raw reasoning projection可以进入Vue。event必须有session/subscription/sequence绑定；重复、gap、overflow、stale selection、logout/context切换或进程重启均不得把旧scope内容提交到当前store | DESIGN-126-005 | Must |
+| BR-045 | 写操作使用稳定operation ID；读请求可取消，但写操作一旦Rust接受不能用前端取消冒充回滚。停止生成必须走interrupt；未知结果、重连和删除cleanup通过Rust coordinator/status/resync对账，WebView不得直接驱动outbox或Host重试 | DESIGN-126-005 | Must |
 
 ## 3. 用户流程
 
@@ -190,8 +193,11 @@
 | AC-040 | session包含Desktop records、Host mapping/replay和独占Runtime thread tree | 用户确认永久删除并重启应用 | 按DEC-126-006完成跨表面清理、SQLCipher cascade/secure-delete/checkpoint；历史和深链不可恢复，receipt不含正文/raw ID/path | UI-only/soft delete、跨session误删或承诺清除OS备份/所有磁盘痕迹 | 段成威 |
 | AC-041 | 下游本地draft实现获得单独授权 | 解析契约依赖 | 只使用完整SHA、已核验sibling path、workspace/path、生成SDK或已核验tarball，并核对digest；浮动branch不是契约身份 | 创建tag、publish package、配置registry或复制影子DTO | 段成威 |
 | AC-042 | 本地链路仍在实现/回归阶段 | 运行模型相关测试 | fake provider与固定fixture覆盖成功、缺raw、断流、partial/completed冲突和重启；MiniMax调用数保持0 | 为“跑通”擅自使用key、真实数据或付费请求 | 段成威 |
-| AC-043 | AC-001–042及AC-044适用项、仓库级测试、本地构建和完整E2E均有真实证据 | Owner执行G6本地验收 | 可标记`Local-only Delivery Complete`；同时明确G5=N/A且不是Production Ready | 把本地验收写成已上线、已发布或生产安全已证明 | 段成威 |
+| AC-043 | AC-001–042及AC-044–047适用项、仓库级测试、本地构建和完整E2E均有真实证据 | Owner执行G6本地验收 | 可标记`Local-only Delivery Complete`；同时明确G5=N/A且不是Production Ready | 把本地验收写成已上线、已发布或生产安全已证明 | 段成威 |
 | AC-044 | canonical Public Tasks source、fixtures、provider repository及Desktop consumer均可检查 | 创建或读取v2 task | request/response/DB只含批准的content-free metadata/reference；正文/path/raw canary在全部Public Tasks表面为0 | arbitrary `input`、`conversation input.text` fixture、response回显或仅靠Desktop约定避免泄漏 | 段成威 |
+| AC-045 | fixed private IPC fixtures同时进入Rust serde与TypeScript runtime validator | 校验所有command/response/event/error/cursor样本及unknown字段/variant | v1 closed shape双端一致；未知字段、未知event kind、越限文本、非法cursor和非UUID request/operation ID均fail closed | 手写Rust/TS影子DTO、只做TypeScript编译而无运行时校验 | 段成威 |
+| AC-046 | 用户快速A→B切换session、取消A请求、发生event gap/queue overflow或Host/Desktop重启 | late response/event到达或store重连 | contextId+subscriptionId+selectionEpoch+sequence不匹配的结果被丢弃；Rust发`resync_required`，store从SQLCipher受控snapshot恢复，不串session/tenant | 把late event附到当前session、无限loading或直接透传Host replay | 段成威 |
+| AC-047 | WebView、Tauri command/event和日志均可注入secret/path/body canary | 执行create/stream/history/rename/pin/interrupt/delete/restart/race矩阵 | WebView只收到批准DTO和bounded纯文本；Host bearer、DB key、canonical path、Host raw error/wire及其他session内容为0，日志/错误/Debug不含正文 | 前端持有token/key/path，或把Host message/raw envelope当UI错误/事件 | 段成威 |
 
 ## 5. 状态与错误语义
 
@@ -236,6 +242,7 @@
 | NFR-006 | 容量 | 1 MiB UTF-8 Host 硬上限保持；产品候选软上限 64 KiB 并显示计数/错误 | 绕过硬上限或 UI 卡死 |
 | NFR-007 | 成本 | 每 session 自动标题最多首次 + 1 次受控重试；不随列表加载重算 | 无界模型调用 |
 | NFR-008 | 恢复 | Host 重启、SSE replay loss、DB 重启后进入确定状态，不无限 loading | 无恢复动作或错误状态不一致 |
+| NFR-009 | IPC容量与背压 | 单subscription队列最多64 events或256KiB；append投影合并且最多20Hz；assistant append≤64KiB、reasoning append≤16KiB，overflow转`resync_required` | 无界队列、WebView卡死、静默drop/gap或正文进入非批准sink |
 
 ## 8. 外部副作用与审批
 
@@ -297,6 +304,12 @@
 | G2A source contract（历史） | 段成威 | Approved / Passed at DEC-126-019 — `c000a0245acb5c3f7ead5d2a877fb60c281c588c`当时为唯一candidate且DEC-126-020远端可用；LIA-126-002后发现数据边界冲突，当前实施readiness由DEC-126-024复审取代 | 2026-08-02 |
 | Contract Draft PR / merge readiness | 段成威 | DEC-126-021 Accepted/HOLD；PR #1 exact head保持Draft，CI红灯只阻断merge，不回退G2/G2A | 2026-08-02 |
 | Local-only Delivery Strategy | 段成威 | DEC-126-022 Accepted；Local Runtime Ready为目标，tag/publish/deploy/G5 N/A；G6为本地Owner验收 | 2026-08-02 |
-| Local Implementation Authorization | 段成威 | LIA-126-001已执行；LIA-126-002已批准但依contract-conflict停止条件暂停。S4–S6为Conditional / Corrective Closure Required，S7–S11/MiniMax/远端与发布动作仍禁止 | 2026-08-02 |
+| Local Implementation Authorization | 段成威 | DEC-126-026/027/028/030/031已关闭S4–S8A；S8B、S9–S11/Vue/MiniMax/flag activation与新增远端/发布动作仍禁止 | 2026-08-03 |
 | DEC-126-023 / Q-017 | 段成威 | Approved — 方案C Accepted；Q-017 Resolved；旧candidate/PR/远端不变，本地replacement candidate已形成 | 2026-08-02 |
 | DEC-126-024 / final G2A re-review | 段成威 | Approved / Passed — `29317b6426578749dc698fc2ad32b986ee5c8e9f`是新的唯一source-contract candidate；不授权恢复LIA-126-002、业务源码、远端动作、MiniMax或S7–S11 | 2026-08-02 |
+| Remote State Reconciliation / LIA-126-002 Resume | 段成威 | Approved — sole candidate与四个checkpoint分支的远端可达事实已登记；单独恢复S4–S6纠偏，不改变merge/tag/publish/deploy或S7–S11禁令 | 2026-08-02 |
+| LIA-126-002 Closure Review | 段成威 | Approved — DEC-126-026 Accepted；S4–S6通过并仅授权S7A Rust，不授权UI | 2026-08-02 |
+| S7A Closure Review | 段成威 | Accepted — DEC-126-027接受exact loopback/nonce/owner-token/typed SSE-domain证据；G3保持Partial并单独授权S7B | 2026-08-03 |
+| S7B Closure Review | 段成威 | Accepted — DEC-126-028接受durable outbox、strict/coalesced reducer、batched history、title CAS与全量Desktop门禁证据；不自动授权S8/UI或activation | 2026-08-03 |
+| S7C Closure Review | 段成威 | Accepted — DEC-126-030接受Rust-bound auth/actions/cleanup/coordinator/restart-resync证据；G3保持Partial并单独授权LIA-126-004/S8A | 2026-08-03 |
+| S8A Closure Review | 段成威 | Accepted — DEC-126-031接受20个private commands、closed schema/fixtures、Rust auth/event bridge、TS validators/client/Pinia reducer及restart/race/no-log证据；S8A Closure Passed，不自动授权S8B | 2026-08-03 |

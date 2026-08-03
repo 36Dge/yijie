@@ -4,7 +4,7 @@
 
 初始扫描时间：2026-08-01；G2 补充扫描：2026-08-02，Asia/Shanghai。所有 sibling 仓库只读；未 fetch、checkout、generate 或修改。
 
-LIA-126-002于2026-08-02进行了第二轮跨仓审查并建立仅本地WIP checkpoint。该审查发现S4–S6存在未覆盖P1，因此三者均调整为`Conditional / Corrective Closure Required`；Public Tasks source冲突已由DEC-126-023/024关闭，`29317b6426578749dc698fc2ad32b986ee5c8e9f`成为新的唯一candidate并通过G2A重审。实现仍暂停，等待另行恢复LIA-126-002。
+LIA-126-002于2026-08-02形成S4–S6 checkpoint并完成Corrective Closure；Public Tasks source冲突已由DEC-126-023/024关闭，`29317b6426578749dc698fc2ad32b986ee5c8e9f`是唯一candidate。DEC-126-026/027/028/030/031已接受S4–S8A Closure。远端checkpoint未被改写，S8B Vue UI与S9–S11仍未开始。
 
 | Repository | Rules/read sources | Branch | Full HEAD SHA | Worktree | Toolchain/lock |
 |---|---|---|---|---|---|
@@ -50,7 +50,7 @@ LIA-126-002于2026-08-02进行了第二轮跨仓审查并建立仅本地WIP chec
 | Repository/Component | 职责 | 影响 | 原因 | Owner | 候选未来改动 |
 |---|---|---|---|---|---|
 | yijie | 多仓治理 | direct now | 创建需求包并维护 ADR/Feature 链路 | 段成威 | 本轮仅本目录；G1 后可能更新关联索引 |
-| yijie-contracts | 公共 wire 权威源 | G2A replacement approved；prior remote/Draft PR保持HOLD | Public Tasks versioned hardening + Agent session-event v2 + Host title/cleanup/events operations | platform-team | `29317b6426578749dc698fc2ad32b986ee5c8e9f`为新的唯一candidate；`c000a024`仅为历史远端候选。当前仍不得恢复S4，须另行授权LIA-126-002 |
+| yijie-contracts | 公共 wire 权威源 | G2A replacement approved and remote-available；prior remote/Draft PR保持HOLD | Public Tasks versioned hardening + Agent session-event v2 + Host title/cleanup/events operations | platform-team | `29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一candidate并位于`origin/feat/feat-126-content-free-candidate`；`c000a024`仅为历史远端候选。LIA-126-002已单独恢复 |
 | yijie-api | Public Tasks provider | direct future | bearer、tenant/resource auth、list/mutate/delete/审计 | backend-team | auth middleware/application/repository/migration/tests |
 | yijie-agent-host | Runtime adapter | direct future | Desktop lifecycle、versioned raw-reasoning projection、cleanup/title operation 候选 | agent-runtime-team | 先走 Runtime/contract candidate；正文不进logs/bbolt，不持有业务主 DB |
 | yijie-desktop | 产品 consumer/local data owner | direct future | UI、native picker、local DB、sidecar transport、states | client-team | Pattern/contract pin/Tauri/domain/store/components/E2E |
@@ -60,6 +60,23 @@ LIA-126-002于2026-08-02进行了第二轮跨仓审查并建立仅本地WIP chec
 | yijie-skills | AI capability | none | 纯文本通用 turn，不新增 skill/tool | ai-product-team | N/A |
 | yijie-connectors | 平台适配 | none | 无平台调用或副作用 | integration-team | N/A |
 | yijie-knowledge | RAG | none | 无检索/embedding | data-ai-team | N/A |
+
+### 3.1 DESIGN-126-005前置能力差距盘点（历史基线，2026-08-03）
+
+本表记录DESIGN-126-005形成时的S4–S7B事实输入，用于解释为何必须按S7C→S8A→S8B切分；它不是当前实现状态。其列明的S7C缺口已由DEC-126-030接受，S8A缺口已在LIA-126-004本地候选中实现并通过门禁。
+
+| 能力 | 当前已存在 | 到可用private IPC仍缺少 | 归属切片 |
+|---|---|---|---|
+| 创建session与提交turn | Rust application已有transactional create、enqueue与create/start outbox dispatch | Rust-bound authorization context、versioned command DTO、coordinator自动派发/结果对账、稳定response/error | S7C coordinator；S8A IPC/store |
+| session列表与历史分页 | Rust已有metadata排序和20/50-turn batched history | IPC-safe DTO、opaque scoped cursor、aggregate response cap、取消和stale-selection约束；raw reasoning正文仍需按单turn窄加载 | S8A |
+| assistant/raw reasoning流投影 | HostBridge与Rust reducer已有strict wire/domain、coalesced checkpoint和terminal reconciliation | reducer到Tauri event的bounded projection、subscription/sequence、backpressure/resync与restart snapshot；不得透传Host envelope | S7C projection source；S8A bridge/store |
+| rename、pin/unpin、interrupt | Rust已有rename和HostBridge interrupt；DB已有`pinned_at`字段/outbox kind | session/project pin mutation、interrupt application orchestration、幂等和授权映射、versioned commands | S7C；S8A exposure |
+| project pin/remove | native project list/remove foundation存在，schema有project pin字段 | Rust application pin action、context/scope检查、conversation-safe command；移除与active send竞态规则 | S7C；S8A exposure |
+| session物理删除与cleanup状态 | SQLCipher有local cascade helper；Host已有cleanup domain；migration已有job/receipt表 | durable跨Desktop/Host/Runtime deletion saga、lease/retry/receipt/status、active stream exclusion、restart recovery与UI-safe状态 | S7C；S8A exposure |
+| restart/reconnect与错误恢复 | durable DB/outbox/cursor、sidecar nonce与Host replay 409基础存在 | Rust coordinator startup recovery、subscription/cursor invalidation、resync snapshot、context rebind、closed stable recovery error；TS store恢复状态机 | S7C；S8A |
+| Tauri/TypeScript/Vue consumer | foundation invokes和FEAT-124 textarea存在 | 无conversation invoke/event、无TS runtime validator/client/store/view-model、无真实Vue链路；不得用mock UI冒充 | S8A；S8B仅在其后 |
+
+当前结论：S4–S8A Closure已由Owner接受；S8A已实现20个versioned private commands、listen-only event bridge、closed schema/fixtures、Rust-bound authorization/cursors以及TypeScript client/store。Vue仍未修改，S8B仍须Owner另行明确授权。
 
 ## 4. 调用链与数据流
 
@@ -145,7 +162,7 @@ Authenticated consumer
 
 ## 9. 现有测试、构建与发布入口
 
-以下是仓库真实入口；LIA-126-001已运行API、Host、Desktop的既有门禁，但LIA-126-002复审证明这些绿色结果未覆盖当前P1。S4–S6不再记为Complete，完整本地链路与S7–S11均未启动。
+以下是仓库入口及初始风险基线；DEC-126-026/027/028/030已关闭S4–S7C列明P1。LIA-126-004已补齐Desktop private IPC与TypeScript ViewModel，但没有新增Vue页面/路由/样式或feature activation；完整四组件本地链路、S8B与S9–S11仍未启动。
 
 | 目的 | 真实命令/配置来源 | 作用范围 | 已知限制 |
 |---|---|---|---|
@@ -162,8 +179,8 @@ Authenticated consumer
 
 1. G1 已于 2026-08-01 通过：段成威关闭产品问题 Q-001–Q-005/Q-011–Q-014；批准的产品规则由需求包承接。
 2. G2 评审于 2026-08-02 启动：ADR-0013 已冻结 Desktop 数据权威；继续冻结 Desktop Pattern、Public Tasks breaking、Agent Host additive/semantic 契约、SQLite protection/backup 与跨进程删除设计。
-3. DEC-126-024已批准新本地candidate并通过G2A重审；DEC-126-021仍保持旧Draft PR/HOLD，远端红色CI继续只阻断旧PR merge，不影响新候选的本地契约身份，也不授权任何远端动作。
-4. LIA-126-001形成了Public Tasks、Host v2与Desktop local repository/sidecar基础；LIA-126-002将S4–S6统一降为Conditional并在contract conflict处暂停。所有flags/routes仍默认关闭，S7–S11继续禁止。
+3. DEC-126-024批准的sole candidate已精确推送到新专用远端分支；DEC-126-021仍保持旧Draft PR/HOLD，远端红色CI继续只阻断旧PR merge。新分支可达不等于merge、tag、publish、deploy、生产启用或实现完成。
+4. LIA-126-001/002形成并关闭了Public Tasks、Host v2与Desktop local repository/sidecar基础；DEC-126-027/028/030/031接受S7A/S7B/S7C/S8A。所有flags/routes仍默认关闭，S8B、S9–S11与UI继续禁止。
 5. 下游只固定完整SHA或已核验本地投影；先实现consumer tolerance，再启用本地provider新events；浮动branch不得作为契约身份。
 6. 完成security/migration/resilience/visual、四组件本地E2E和结构化审查后，提交Owner本地G6验收；不讨论线上activation。
 7. 如未来需要把源码纳入共享`develop`，必须先修复dependency audit、取得远端全绿CI并另行审批merge；merge不等于部署。

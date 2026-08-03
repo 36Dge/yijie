@@ -1,7 +1,7 @@
 # FEAT-126 测试与 Eval 计划
 
-> 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。G2保持通过；DEC-126-023/024已Accepted，Q-017关闭，`29317b6426578749dc698fc2ad32b986ee5c8e9f`成为新的唯一source-contract candidate，G2A重审通过。该批准不恢复LIA-126-002。
-> LIA-126-001形成了S4–S6基础，LIA-126-002复审后均为Conditional；既有绿色测试未覆盖当前P1。S7–S11和完整E2E仍为`NOT RUN`。本轮没有调用MiniMax，
+> 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。DEC-126-023/024完成G2A重审，DEC-126-025登记sole candidate与checkpoint远端ref并恢复LIA-126-002，仅执行S4–S6 Corrective Closure。
+> DEC-126-026/027/028/030/031已关闭S4–S8A；LIA-126-004 S8A private IPC/TypeScript ViewModel已使用fake Host、固定fixtures和临时SQLCipher完成本地验证。S8B UI实现测试仍为`NOT RUN`。本轮未调用MiniMax，
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
 ## 1. 测试策略
@@ -43,6 +43,10 @@
 | AC-041 | local contract provenance | CON-010–014 | provenance/conformance | exact SHA/sibling path/workspace/path/generated/tarball | clean local worktrees | digest/generator match；no floating ref/shadow DTO |
 | AC-042 | fake-first模型策略 | AI-013–018 | fixture/Eval | raw success/missing/gap/partial/conflict | fake provider only | zero MiniMax calls/zero key exposure |
 | AC-043 | Local-only G6 | LOCAL-005 | Owner acceptance | startup + full functional chain evidence review | Owner machine | Local-only Delivery Complete；explicitly not Production Ready |
+| AC-044 | Public Tasks content-free | CON-015–018、API-011–014 | schema/provider/DB | prompt/raw/title/path canary create/get/list/error | exact contract + isolated PostgreSQL | request/response/rows zero body/path hits |
+| AC-045 | private IPC closed conformance | IPC-CON-001–006 | schema/Rust/TS | positive/negative commands/events/errors/cursors、unknown field/kind | fixed Desktop-owned fixtures | schema↔serde↔TS runtime equality；invalid fail closed |
+| AC-046/NFR-008/009 | event backpressure/stale/restart | IPC-SEQ-001–006、IPC-CANCEL-001–004、IPC-RESTART-001–004 | Rust/TS/fault | duplicate/gap/overflow、A→B、cancel、restart/rebind/resync | fake Host + temp SQLCipher | no cross-selection text；bounded queue；deterministic resync |
+| AC-047/NFR-004 | IPC scope/secret/no-log | IPC-AUTH-001–008、IPC-LOG-001–006 | Rust/TS/security | signed-out/foreign scope/revision expiry、token/key/path/wire canaries | fixed fixtures + fake Host | deny and zero non-approved sink hits |
 
 ## 3. 领域与边界测试
 
@@ -65,6 +69,7 @@
 - Canonical fixture：secure Tasks/errors、Agent raw-reasoning/title/cleanup/unknown events只在yijie-contracts存一份；原summary fixtures保留为历史Runtime能力证据，不作为新产品契约。
 - Runtime：canonical yijie-codex已确认`thread/delete`、summary/raw reasoning notifications、`thread/name/set`与turn `outputSchema`；fake fixtures证明ephemeral/outputSchema/summary primitives；fixed provider evidence证明当前pin有raw事件。Host仍必须验证exact pin、bbolt/replay清理和ADR-0016 v2 raw projection/no-log；不通过则raw flag保持off。
 - MiniMax：Responses baseline/title/public-summary历史验证不等于raw reasoning跨输入稳定性、安全或持久化PASS；两次调用预算已耗尽，任何新增真实验证需Owner另行批准。
+- Desktop private IPC：`src-tauri/schemas/chat-ipc-v1.schema.json`与同目录外的固定fixtures是Desktop-owned contract authority；S8A已用同一golden corpus核对Rust serde与TS runtime validator，unknown field/kind、invalid cursor和oversize UTF-8 body均fail closed。TypeScript typecheck没有替代runtime validation。
 
 ## 5. 安全与隐私测试
 
@@ -96,7 +101,10 @@
 | SEC-024 | backup/卸载误导 | 验证不创建 app backup、每个 DB/WAL/SHM backup-exclusion flag、Time Machine/local snapshot/第三方副本披露，以及拖弃 `.app` 后 Application Support/Keychain 行为 | UI/文档只承诺当前 app-managed live store；普通卸载不被称为数据擦除；不可控 backup 不被称为同步删除 |
 | SEC-025 | title thread 污染/项目读取 | fake provider 注入 tool/file item，并检查 main thread/event/path/temp cwd | operation interrupt + fallback；main thread无隐藏 turn，ephemeral `path=null`，project 内容/路径零命中 |
 | SEC-026 | raw reasoning sequence/caps/partial | duplicate/out-of-order delta、multiple content indexes、finalized reconciliation、invalid UTF-8、missing/gap/oversize/interrupt | valid raw纯文本精确一次；invalid进入incomplete/unavailable并使reasoning Gate失败，answer可独立terminal；不得时长-only/answer冒充、不得静默截断；正文不进非授权sink |
+| SEC-027 | Host loopback impersonation/token exposure | wrong spawn nonce、proxy/redirect、0644或symlink token、Host error/raw canary进入Debug | wrong nonce在读取token/受保护请求前失败；只连exact IPv4 loopback且no-proxy/no-redirect；token必须owner-only regular single-link；domain error/Debug零正文/token/path |
 | SEC-028 | Runtime functional delete vs residue | fixed artifact + temp `CODEX_HOME` synthetic canary，delete 后同进程/重启 read、row/rollout/index 与 byte scan | functional/restart absence 必须通过；发现 WAL/log 字节只能记录为 forensic limitation，不能放宽/伪造 zero-hit |
+| IPC-AUTH-001–008 | private IPC scope escalation | signed-out、tenant mismatch、foreign resource ID、missing capability、expired/revision-regressed context、logout/tenant switch与伪造owner字段 | Rust在repository/Host调用前拒绝；owner字段不在schema；context失效并清空订阅，不泄露资源存在性 |
+| IPC-LOG-001–006 | private IPC secret/path/body扩散 | bearer、SQLCipher key、canonical path、Host raw error/envelope、prompt/raw/title canary贯穿command/event/error/Debug/log | bearer/key/path/raw wire为0；assistant/raw正文只在批准response/event payload与SQLCipher边界出现，其他sink为0 |
 
 ## 6. 韧性与故障测试
 
@@ -112,6 +120,11 @@
 | RES-008 | title provider timeout/429 | fake provider/approved limited real call | fallback; max retry cap | title outcome/call count |
 | RES-009 | auth DB unavailable | stop synthetic DB | 503/fail closed; legacy not exposed | auth unavailable metric |
 | RES-010 | project permission revoked | chmod/bookmark invalidation | history readable per policy, new turn blocked | project invalid state |
+| RES-011 | Host v2 SSE protocol drift | wrong schema header/stream cursor、duplicate sequence、unknown event、oversize/malformed JSON | known event严格解析；未知非terminal仅推进cursor并丢payload；unknown terminal、header/cursor/sequence/cap错误fail closed | typed protocol error，无Host message/raw正文回显 |
+| IPC-SEQ-001–006 | Tauri projection duplicate/gap/overflow | duplicate sequence、跳号、64 events/256KiB queue overflow、terminal与resync竞争 | duplicate忽略；gap/overflow停止progress并发不可丢`resync_required`；terminal不会丢；从SQLCipher snapshot恢复 | queue high-water、stable content-free code、store sequence |
+| IPC-CANCEL-001–004 | stale selection/cancel race | slow A history/event后切B，cancel read，durable write已accepted，interrupt与terminal并发 | A结果不commit到B；read取消；write按operation对账而非回滚；interrupt只产生一个terminal | selection epoch/context/subscription assertions |
+| IPC-RESTART-001–004 | Desktop/Host restart | old context/subscription/cursor跨process重用，pending outbox/cleanup与active turn恢复 | old tokens明确invalid；重新bind/resync；Rust coordinator恢复且unknown outcome不猜测重试 | DB/outbox/cleanup invariant与fake Host call count |
+| IPC-RACE-001–006 | action concurrency | interrupt vs terminal、delete vs stream、project remove vs send、pin vs list、rename vs late title、logout vs write | session lease/CAS/scope保证单一确定结果；无复活、串scope或late title覆盖user | operation/state rows + store snapshot |
 
 ## 7. Migration 演练
 
@@ -160,10 +173,11 @@
 | Fixture/Dataset | 权威位置候选 | 数据分类 | 合成/脱敏方式 | Consumer |
 |---|---|---|---|---|
 | Public Tasks auth/error matrix | `yijie-contracts/tests/fixtures/public/tasks-v2/` | internal synthetic | fixed UUID users/tenants/tasks | API/Desktop；source validation PASS，runtime conformance pending |
-| Agent raw/title/cleanup events | `yijie-contracts/tests/fixtures/agent/` | internal synthetic | generated safe text/canaries | Host/Desktop；source positive/negative assertions PASS，runtime conformance pending |
+| Agent raw/title/cleanup events | `yijie-contracts/tests/fixtures/agent/` | internal synthetic | generated safe text/canaries | Host producer、Desktop S7A Rust consumer与S7B application reducer positive/negative assertions PASS；UI/runtime process E2E pending |
 | Desktop DB versions/corruption | yijie-desktop test fixtures | internal synthetic | generated temp DB, no user data | Rust repository |
 | Project tree/symlink cases | runtime temp directories | internal synthetic | mktemp fixtures only | Tauri path boundary |
 | Title/reasoning Eval dataset | future approved yijie-agent-host or eval authority | internal synthetic | invented prompts, versioned hash/split | AI runner |
+| Desktop private IPC v1 | `yijie-desktop/src-tauri/schemas/chat-ipc-v1.schema.json` + `src-tauri/fixtures/chat-ipc-v1/` | internal synthetic | fixed opaque UUID/context/cursor和正文/secret/path canaries；无真实token/path | Rust serde/commands/events + TS validator/client/store；DEC-126-031 Accepted，S8A Closure Passed |
 
 ### 10.1 本次固定 capability fixture
 
@@ -178,9 +192,12 @@
 | FIX-126-RAW-UPSTREAM-002 | fixed `builds_multiple_turns_with_reasoning_items` history fixture | PASS | completed raw `content[]`进入正确turn/item history | Host/Desktop source contract实现 |
 | FIX-126-RAW-UPSTREAM-003 | fixed `splits_reasoning_when_interleaved` fixture | PASS | interleaved reasoning形成独立items而非错误合并 | v2 caps/sequence conformance |
 | FIX-126-RAW-UPSTREAM-004 | fixed `marks_turn_as_interrupted_when_aborted` fixture | PASS | aborted rollout产生interrupted turn事实 | SQLCipher explicit-incomplete实现 |
-| FIX-126-RAW-001 | synthetic raw text deltas + complete/incomplete/unavailable finalized fixtures | SOURCE + HOST PASS；Desktop reducer NOT RUN | Host closed v2 mapping、content-index/final snapshot/caps/partial规则 | yijie-contracts + Host fake Runtime；Desktop reducer pending S7 |
+| FIX-126-RAW-001 | synthetic raw text deltas + complete/incomplete/unavailable finalized fixtures | SOURCE + HOST + DESKTOP RUST S7A/S7B PASS；Vue render NOT RUN | Host closed v2 mapping、content-index/final snapshot/caps/partial规则；Desktop strict SSE/domain、coalesced cursor、terminal reconciliation与redacted Debug | yijie-contracts + Host fake Runtime + Desktop fake Host；Vue rendering pending S8 |
 | FIX-126-RAW-002 | malformed status/reason/index/oversize + closed-union assertions | SOURCE + HOST PASS | invalid/oversize转explicit unavailable；raw canary不进Host logs/bbolt | contracts negative + Host race/unit/no-log assertions；Desktop UI安全留待S7–S9 |
 | FIX-126-RAW-003 | accepted SQLCipher history/delete path | S6 FOUNDATION PASS / E2E NOT RUN | terminal事务、wrong-key、secure_delete、WAL truncate、DB canary absence与FK cascade已测；live stream/restart全链路待S10 | Desktop Rust synthetic SQLCipher tests；不构成G4 evidence |
+| FIX-126-IPC-001 | closed command/response/error/cursor golden与unknown-field negatives | S8A Closure Passed | 20/20 command contract refs、closed request/response/error、opaque cursor与Rust/TS fixture equality | 不证明Vue或四组件E2E；DEC-126-031 Accepted |
+| FIX-126-IPC-002 | assistant/reasoning append、terminal、cleanup、resync/context-invalidated与gap/overflow序列 | S8A PASS | 7/7 event variants、UTF-8 byte caps、duplicate/gap/backpressure/resync和listen-only capability | 不证明真实Runtime多进程delivery；S10仍待授权 |
+| FIX-126-IPC-003 | A→B stale、logout/revision expiry、restart、interrupt/delete/project races | S7C + S8A PASS | newest tenant bind、context invalidation、late response/event drop、restart cleanup resync、delete-vs-turn与remove-vs-send已测 | 不能替代Vue/四组件E2E；S8B/S10仍待授权 |
 
 ## 11. 实际执行与未来计划
 
@@ -197,7 +214,7 @@
 | Runtime delete fixture | yijie-agent-host/yijie-codex temp home | fixed `codex-cli 0.144.6` isolated harness recorded in `08` | pinned binary；no provider key | RUN 2026-08-02；functional PASS/residue FOUND |
 | MiniMax `MM-126-001` title | isolated narrow harness | exactly 1 synthetic title request；pathless ephemeral、strict schema、≤120s | pinned Runtime/Host candidate + owner-only test key | PASS；1 call/0 retry，1,853 ms，strict object + 18-grapheme sanitizer，0 tool/secret leak，temp removed |
 | MiniMax `MM-126-002` public summary | isolated narrow harness | exactly 1 synthetic 57-char reasoning request；high+concise、answer≤80 chars、≤120s | same pin/key；title call did not donate retries | FAIL；1 call/0 retry，9,256 ms，answer completed但0 public-summary event；7 raw delta + 1 raw completed part，0 tool/secret leak，temp removed |
-| Desktop | yijie-desktop | `make lint && make test && make build` | Node/pnpm/Rust pins；bundled SQLCipher | RUN 2026-08-02；PASS；18/18 files、113 TS tests、51 Rust tests、Clippy/fmt/build；1个既有S7 Keychain test ignored |
+| Desktop | yijie-desktop | `make lint && make test && make build` | Node 26.0.0 / pnpm 11.9.0 / Rust 1.95.0；bundled SQLCipher；fake Host | RUN 2026-08-03；PASS；21/21 files、127 TS tests；94 Rust tests（93 pass、1个既有signed Keychain integration ignored）；Clippy/fmt/Vite build PASS；含S7C既有链及S8A schema/serde/TS、auth、event caps/backpressure/cancel、stale selection、tenant/logout、restart/resync/delete cleanup和no-log扫描 |
 | Meta docs | yijie | feature checker, YAML parse, `git diff --check` | local shell/Ruby | current package only |
 | Local four-component E2E/security/perf/eval | affected repos | exact orchestration and commands must be added by authorized slices before G4 | local PostgreSQL/temp homes/DB/pinned Runtime/fake provider | command/harness absent — blocks G4/local G6；does not affect accepted G2/G2A |
 
@@ -228,6 +245,6 @@
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
-| 测试/技术 Owner | 段成威 | LIA-126-002 Approved but Paused；DEC-126-023/024与Q-017已关闭，G2A重审通过；S4–S6 corrective tests仍待恢复授权和关闭，S7–S11与完整E2E禁止 | 2026-08-02 |
+| 测试/技术 Owner | 段成威 | S4–S8A已由DEC-126-026/027/028/030/031接受；S8B、S9–S11/UI/MiniMax与完整E2E仍禁止 | 2026-08-03 |
 | 安全/数据 Owner | 段成威 | 当前P1及Public Tasks正文边界阻断closure；既有auth/delete/no-log/migration结果仅作foundation evidence | 2026-08-02 |
 | Runtime/模型 Owner | 段成威 | DEC-126-021 HOLD与DEC-126-022 Local-only已Accepted；先用fake provider/fixtures，raw reasoning须具体显示并持久化/删除；历史MM-126-001/002不重跑，未来一次local smoke仅可另行提交审批 | 2026-08-02 |

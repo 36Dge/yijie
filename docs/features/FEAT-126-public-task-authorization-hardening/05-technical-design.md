@@ -1,6 +1,6 @@
-# FEAT-126 技术设计（G2A重审通过，LIA-126-002暂停，S4–S6待纠偏）
+# FEAT-126 技术设计（S4–S8A Closure通过，G3 Partial）
 
-> 本文产品/架构设计保持G2 Passed。LIA-126-002复审把S4–S6调整为Conditional，并因Public Tasks `input`与content-free-only边界冲突触发停止条件。DEC-126-023/024已Accepted，Q-017关闭，`29317b6426578749dc698fc2ad32b986ee5c8e9f`成为新的唯一source-contract candidate，G2A重审通过。LIA-126-002仍暂停；S7–S11、MiniMax与远端/发布动作仍未授权。
+> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。DEC-126-026/027/028/030/031已接受S4–S8A Closure。G3仍Partial；S8B及S9–S11、Vue UI、MiniMax、flag activation与新增远端/发布动作仍未授权。
 
 ## 1. 设计摘要
 
@@ -14,7 +14,7 @@
 ### 1.1 Local-only Operating Profile
 
 - 目标：在Owner本机启动`yijie-api`、`yijie-agent-host`、`yijie-desktop`与固定`yijie-codex` Runtime，使用本地合成身份/租户和fake provider完成完整E2E。
-- 契约：`29317b6426578749dc698fc2ad32b986ee5c8e9f`是新的唯一source-contract candidate；`c000a0245acb5c3f7ead5d2a877fb60c281c588c`仅保留为immutable历史remote candidate。后续只有在Owner另行恢复LIA-126-002后，才可将批准的完整SHA或其已核验本地投影用于S4–S6纠偏；浮动branch不能充当不可变身份。
+- 契约：`29317b6426578749dc698fc2ad32b986ee5c8e9f`是唯一source-contract candidate并已远端可达；`c000a0245acb5c3f7ead5d2a877fb60c281c588c`仅保留为immutable历史remote candidate。已恢复的LIA-126-002要求S4–S6只消费该完整SHA或其已核验投影；远端branch仅提供可达性，不能替代不可变SHA身份。
 - 分发：`contracts-v0.3.0` tag、SDK/package publish和registry均N/A；本地生成物或已核验tarball不等于已发布制品。
 - 生产：线上部署、生产灰度/启用、云数据库和真实用户数据均N/A；G5不适用，Local-only G6不代表Production Ready。
 - 模型：实现/回归先用fake provider和固定fixtures；本文档调整不调用MiniMax，完整本地链路后的一次bounded smoke需Owner另行批准。
@@ -27,7 +27,8 @@
 | Tauri Chat Commands / Desktop | identity scope binding、validation、transaction/outbox/project bookmark | opaque IDs/text/user intent | typed domain result/error | provider raw API、公共授权 authority |
 | LocalConversationRepository / Desktop | schema migration、metadata/history、cursor/outbox、physical cascade | scoped domain commands | durable records | Runtime thread authority、cloud sync |
 | Native ProjectRepository / Desktop | native picker、canonicalize/bookmark/revalidate | user-selected directory | opaque project ID + safe display | 上传/删除项目文件 |
-| SidecarSupervisor / Desktop | package/start/ready/token/SSE/shutdown | approved binary/config | typed Host client | 直接调用 Runtime、Key 暴露给 Vue |
+| SidecarSupervisor + HostBridge / Desktop Rust | package/start/nonce-bound ready/owner-token/exact loopback HTTP/SSE/shutdown；strict wire→domain | approved binary/config + Host wire | typed Host session/turn/reasoning/cleanup domain | 直接调用 Runtime、Key/path/raw token 暴露给 Vue；S7A不提供Tauri command |
+| ConversationApplication / Desktop Rust | transactional session/message/outbox、Host dispatch、strict event reducer、history pagination、title precedence | repository + typed Host domain | Rust-only application projections/terminal records | Tauri/WebView API、Vue state/render、title Host invocation、feature activation |
 | yijie-agent-host | thread/turn adapter、event projection、mapping/status、approved cleanup/title op；G2A候选可保留30天content-free cleanup operation receipt | local bearer + task/session/turn | sanitized HTTP/SSE | conversation business DB、tenant authority、raw body/title/path receipt |
 | yijie-codex | canonical app-server Runtime | stable stdio requests | canonical responses/events | Yijie business policy/storage |
 | MiniMax | model generation | text/prompt via Runtime | answer/raw reasoning events when emitted | Yijie authorization |
@@ -46,6 +47,78 @@ Public Tasks security track:
 authenticated client → secure versioned API → identity/tenant/authz → scoped repository + audit
 ```
 
+### 2.1 S7A Rust Host Bridge冻结结果
+
+- `HostBridge`只能由本次`SidecarSupervisor`产生的`HostConnection`构造；origin固定为`http://127.0.0.1:<port>`，client禁用系统代理和redirect。
+- 每次受保护HTTP/SSE前先请求`/readyz`，要求`X-Yijie-Host-Instance-Nonce`精确匹配spawn UUID、`Cache-Control: no-store`、严格JSON与`runtime_state=ready`。
+- bearer只在Rust中从Host home的`api-token`读取：`O_NOFOLLOW|O_CLOEXEC`、regular file、当前euid、单硬链接、group/other无权限、≤1KiB、43字符base64url；token/path不进入领域错误、Debug、Tauri或WebView。
+- 请求面只覆盖现有start/resume/get session、纯文本turn、interrupt、cleanup和v2 events；不提供title method，避免固定Runtime无法能力级禁用tools时被误调用。
+- v2 SSE要求schema response header、stream UUID、canonical cursor和严格递增sequence；已知event严格解析，未知非terminal event只推进delivery cursor并丢弃payload，未知terminal/畸形/cap越界fail closed。
+- 该切片是现有Host contract的additive local consumer；未修改`yijie-contracts@29317b...`、Host producer、Tauri invoke列表或Vue源码，所有flag仍为false。
+
+### 2.2 S7B Rust Application Orchestration冻结结果
+
+- schema v3仅增加私有唯一/ready索引；session、首条user message与create-session outbox在一个SQLCipher事务创建，同一operation+同一payload幂等返回，payload冲突拒绝。
+- outbox以30秒lease恢复pending/过期inflight，最多16次；Host明确接受turn后将记录挂起且不自动重放，transport/结果未知时fail closed，避免重复模型调用。
+- reducer严格绑定task/session/thread/turn/stream/event/sequence；精确重复忽略，gap或identity mixup拒绝。assistant与cursor按16 events或50ms合并checkpoint；terminal在单事务提交assistant、reasoning、cursor和outbox。
+- raw reasoning在内存按既定caps聚合；completed snapshot为权威。冲突、受控中断或缺失分别落`incomplete/protocol_error`、validated-prefix incomplete或`unavailable/reasoning_not_emitted`，不伪造正文。
+- session列表只读metadata并按pinned/activity/stable ID排序；history按turn分页，默认20/最大50，messages/reasoning metadata批量装配，raw正文仍通过既有窄加载边界读取。
+- title采用model/fallback/user来源与CAS：人工rename取消job并永远覆盖迟到模型结果；模型结果NFC/plain/no control/bidi/HTML-like且≤40 grapheme，总尝试上限2。固定Runtime不能禁用tools，因此S7B不派发title Host operation，title flag继续关闭。
+- 本切片未新增Tauri command/invoke或Vue源码，不修改Host/Public Tasks wire和唯一source candidate；属于私有durable/application semantic change。
+
+### 2.3 DESIGN-126-005 — Desktop IPC/ViewModel Contract（S8A实现候选）
+
+状态：DESIGN-126-005/DEC-126-029、DEC-126-030/031 Accepted；S8A Closure Passed，G3仍Partial。已创建private schema/fixtures、Rust DTO/commands/events和TypeScript validators/client/store；没有修改Vue页面/组件/路由/样式，也没有启用feature flag。
+
+#### 2.3.1 Current gap与目标边界
+
+| Surface | DESIGN-126-005目标 | S8A本地结果 |
+|---|---|---|
+| ConversationApplication | 只在authorized facade之上增加窄IPC adapter，不把协调、identity或retry责任交给WebView | PASS：DB-only读与resync可离线使用；需要Host的durable writes在写入前fail closed；coordinator仍在Rust |
+| Tauri invoke | 只增加versioned、closed、scope-bound conversation commands/events | PASS：20个`*_v1` private commands；旧unversioned project invokes从handler移除；event仅允许WebView listen/unlisten |
+| Streaming | Rust将受控state投影为单一bounded event channel，WebView永不接触Host wire | PASS：`yijie.chat.event.v1`、closed 7-kind envelope、sequence/caps/backpressure/resync/context invalidation |
+| TypeScript | fixed fixtures建立validator/client/store，负责selection与UI state而非业务重试 | PASS：strict validators、真实Tauri transport client、单一authoritative Pinia reducer、stale/restart/race tests |
+| Vue | S8B只消费真实S8A store；production source禁止mock transport | 未授权/未修改；S8A没有页面、组件、路由、样式diff |
+
+#### 2.3.2 Authority与authorization context
+
+- authoritative private IPC source为Desktop-owned `src-tauri/schemas/chat-ipc-v1.schema.json`；20个command contract ref、7个互斥event variant与closed payload definitions由Rust/TypeScript双端测试核对，golden fixtures再验证实际serde/parser投影。schema、fixtures与validators只属于S8A，不复制到central contracts。
+- Rust-only `ChatAuthorizationContext`由`chat_bind_context_v1`建立。WebView只提供untrusted tenant selector；Rust向native auth authority取得最新projection并验证signed-in、tenant、revision、expiry，再与固定local `ChatScope`相交。owner identity不进request/response，不能由WebView选择。
+- `contextId`为随机UUID、最多5分钟且不晚于authority expiry；绑定auth generation、tenant、owner scope与process epoch。logout、tenant切换、capability revision回退/expiry、app restart均使其失效；先同步清空TS store，再发`context_invalidated`。
+- Desktop local action policy：`task.read`允许list/history；`task.create + task.read`允许create/send/rename/session pin/interrupt/delete；项目选择/revalidate/pin/remove另需`workspace.use`。每个command仍需resource owner+tenant check；unknown command/action或foreign opaque ID拒绝。本地policy不新增或模拟Public Tasks capability。
+
+#### 2.3.3 Command、response、cursor与error
+
+完整command allowlist和closed envelope见`04-contract-change-plan.md §3.5`。关键规则如下：
+
+- request=`{schemaVersion:1, requestId, contextId, payload}`；bootstrap bind唯一省略`contextId`并只含untrusted tenant selector；write额外要求`operationId`。response=`{schemaVersion:1, requestId, data}`。全部object/union closed；UUID和字符串在Rust与TS runtime同时校验。
+- WebView只能传opaque project/session/turn ID、分页cursor、bool pin intent及已验证长度的纯文本。禁止owner/user/tenant authority值、canonical path、Host/Runtime ID、SQL、bearer/key、provider config和raw Host payload。
+- cursor是≤256-byte随机opaque、server-side解析且绑定context/query/process epoch的token，最多10分钟；restart、unknown、scope/query不匹配或过期返回`chat_cursor_invalid`，不能fallback offset或猜测DB row key。
+- stable error shape固定为`{schemaVersion, requestId?, code, retryable, recovery, retryAfterMs?}`。`code` closed allowlist：`chat_unauthenticated`、`chat_context_invalid`、`chat_capability_denied`、`chat_resource_not_found`、`chat_project_invalid`、`chat_cursor_invalid`、`chat_request_invalid`、`chat_request_cancelled`、`chat_conflict`、`chat_turn_active`、`chat_host_not_ready`、`chat_storage_unavailable`、`chat_protocol_error`、`chat_limit_exceeded`、`chat_cleanup_incomplete`、`chat_temporarily_unavailable`。error不含自由文本/detail；Vue以code本地化。
+- session list最大50项/512KiB；history默认20/最大50 turn且总响应≤4MiB；raw reasoning一次单turn≤256KiB；resync最多1MiB assistant + 256KiB reasoning。单条user/assistant durable正文仍服从现有1MiB hard cap和64KiB产品soft cap策略。
+
+#### 2.3.4 Event sequence、backpressure与projection safety
+
+- 唯一channel为`yijie.chat.event.v1`；event绑定`subscriptionId/contextId/sessionId/turnId?`，以十进制字符串携带严格递增`projectionSequence`，避免JavaScript整数精度丢失。
+- kind只允许`assistant_append|reasoning_append|turn_state|turn_terminal|cleanup_state|resync_required|context_invalidated`。projection不能含Host envelope/message/error/ID、Runtime thread/item ID、canonical path、token/key或其他session内容。
+- assistant/reasoning只投影Unicode-valid plain text；不渲染为HTML/Markdown。assistant append≤64KiB、reasoning append≤16KiB；reasoning身份只用Desktop local item ordinal和content index。
+- 每subscription queue≤64 events或256KiB，连续append可在caps内合并，向WebView最多20Hz。overflow/drop/gap立即停止progress并投递不可丢的`resync_required`；terminal/context-invalidated同为不可丢。TS发现duplicate时忽略，发现gap、context/subscription/session mismatch时丢弃未提交projection并resync。
+
+#### 2.3.5 Cancellation、stale selection与restart
+
+- read/subscription可由request ID取消；Rust接受后的durable write不能被cancel回滚。write结果以operation ID查询/恢复；停止生成是独立interrupt command。
+- store维护`contextId + subscriptionId + selectionEpoch`。选择A→B、logout或context更新时先同步清空旧正文与pending view state，再取消旧read/订阅；late A response/event一律不能commit到B。
+- S7C coordinator独占outbox dispatch、Host subscribe/reconnect、interrupt/delete saga与startup recovery。WebView不能触发低层dispatch/retry或自己合并Host cursor。
+- app/sidecar重启后旧context、subscription和cursor失效；S8A重新bind，S7C从SQLCipher恢复outbox/active turn/cleanup状态并生成resync snapshot。Host 409 replay loss进入`resync_required`/reconcile，不能把本地buffer和新stream猜测拼接。
+
+#### 2.3.6 S7C/S8A/S8B授权顺序
+
+1. `S7C`：只允许Desktop Rust补session/project pin、interrupt、跨表面delete/cleanup status、Rust authorization context、background coordinator与restart/resync projection source；不新增Tauri invoke/event、TypeScript或Vue。
+2. `S8A`：在S7C Closure后，增加authoritative IPC schema/fixtures、窄Tauri commands/event bridge、TypeScript runtime validators/client及Pinia store/view-model；不修改Vue页面、视觉、route activation或feature flag。
+3. `S8B`：在S8A Closure后，按Accepted Pattern实现Vue页面、interaction、visual/a11y及visual tests；只使用真实S8A store，mock transport仅限test harness，不能存在于production path。feature activation仍需独立批准。
+
+Owner已接受DEC-126-030，并以DEC-126-031接受`LIA-126-004` S8A Closure。S8B仍未被预授权，须另行评审并明确授权Vue UI。
+
 ## 3. 关键时序
 
 ### 3.1 新建与首 turn
@@ -56,7 +129,7 @@ authenticated client → secure versioned API → identity/tenant/authz → scop
 4. Vue 仅在 commit 成功后进入 `/chat/:sessionId`。
 5. Sidecar client 用 local task UUID 创建 Agent session；Host canonicalizes cwd and starts persistent Runtime thread。
 6. Outbox starts text turn with request/trace correlation；Host response binds turn ID；Desktop subscribes SSE。
-7. Desktop reducer validates session/stream/sequence/event ID，transactionally appends assistant deltas and cursor；raw-reasoning deltas are rendered as untrusted plain text，then terminal reconciled or explicit incomplete records are persisted to SQLCipher per DEC-126-016。
+7. Desktop reducer validates session/stream/sequence/event ID，以批量checkpoint持久化assistant/cursor；raw-reasoning在Rust内存聚合，并在terminal对账或受控中断时按DEC-126-016单事务持久化。S8未来只负责把已验证projection按纯文本渲染。
 8. 唯一 terminal event closes turn/outbox，updates `last_activity_at`；独立 title job 在首个有效 answer 后触发。
 
 ### 3.2 后续 turn
@@ -409,7 +482,7 @@ Runtime/Host pin、临时 `CODEX_HOME`/空 cwd/pathless ephemeral thread，title
 - Title schema：strict object `{title:string}`；post-parse NFC single plain-text title，1–40 grapheme，no newline/control/bidi/Markdown/HTML；fixed `title-v1`；first user input≤8KiB and treated as untrusted data。
 - Title trigger：first valid terminal answer only；job isolated from conversation thread；same session/job idempotent；人工 rename cancels/ignores model result。
 - Fallback：first non-empty user line normalized/safely truncated；generic “新任务”只在无可用文本时使用。
-- Reasoning：versioned v2只投影受控raw text delta/finalized reconciliation；纯文本、不可信、不进logs/telemetry/audit；missing/invalid不能静默降级，reasoning Gate失败。S4–S6历史checkpoint仍锁定旧`c000a024`；尽管DEC-126-024已批准新candidate，仍不得在Owner另行恢复LIA-126-002前切换。Host projection与Desktop SQLCipher repository基础已有checkpoint证据，流式reducer/历史UI仍属S7–S8。
+- Reasoning：versioned v2只投影受控raw text delta/finalized reconciliation；纯文本、不可信、不进logs/telemetry/audit；missing/invalid不能静默降级。API/Host/Desktop投影统一锁定`29317b...`；S7A Rust SSE/domain parser与S7B reducer/restart/terminal persistence已通过，Vue纯文本展示仍属S8。
 - 无答案/拒答：assistant refusal persists as answer state；title still bounded；不能自动提升 permission/tool。
 - 提示注入：adversarial title/reasoning dataset must prove schema/sanitization and no secret/system prompt leakage。
 - Eval 引用：`06-test-plan.md` §9。
@@ -426,10 +499,10 @@ Runtime/Host pin、临时 `CODEX_HOME`/空 cwd/pathless ephemeral thread，title
 ## 14. ADR 与批准
 
 - ADR：现有ADR-0012继续约束Public Tasks；ADR-0013/0014/0015/0016于2026-08-02 Accepted。ADR-0016取代ADR-0015的public-summary-only/raw-drop/时长降级部分；title隔离继续有效。
-- Delete/security：DEC-126-006 Accepted，Q-006/Q-015 Resolved；本文状态机仍不是已实现保证。
+- Delete/security：DEC-126-006 Accepted，Q-006/Q-015 Resolved；S7C已在Desktop Rust/SQLCipher schema v4实现持久化cleanup job、独立receipt HMAC、原子delete/turn lease、restart coordinator、级联删除/WAL checkpoint与30天content-free receipt；跨四组件E2E仍未执行。
 - Runtime/MiniMax：canonical delete/name/summary/raw reasoning/outputSchema已确认；两次历史MiniMax预算已执行，title PASS，MM-126-002在旧summary门槛FAIL且观察到raw事件；Host raw bridge基础已用fake Runtime实现，raw flag默认off，本轮未调用MiniMax。
-- Public Tasks：仓内consumer inventory完成，unknown external按safe compatibility category处理，Q-010 Resolved；DEC-126-011/012已Accepted，v1全程双隔离。DEC-126-023/024与Q-017已关闭，`29317b...`从schema层拒绝conversation正文并通过G2A重审；实施仍由暂停的LIA-126-002阻断。
+- Public Tasks：仓内consumer inventory完成，unknown external按safe compatibility category处理，Q-010 Resolved；DEC-126-011/012已Accepted，v1全程双隔离。DEC-126-023/024与Q-017已关闭，`29317b...`从schema层拒绝conversation正文并通过G2A重审；LIA-126-002现已恢复，仅允许关闭S4–S6 P1。
 - Desktop Pattern：FEAT-126 Chat/App Shell Pattern已Accepted，只取代Chat 1.1.0/App Shell 2.0.0中的FEAT-126冲突段落。
-- 技术负责人：段成威 — G2 Passed；DEC-126-023/024 Accepted，G2A Re-review Passed；S4–S6 Conditional / Corrective Closure Required，LIA-126-002 Paused；S7–S11 Pending。
+- 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–031 Accepted；S4–S8A Closure Passed；S8B与S9–S11 Pending/Unauthorized。
 - 安全/数据 Owner：段成威 — ADR-0013/0014/0015/0016与DEC-126-005/006/007/011/012/014/015/016/017 Approved；Q-006/Q-007/Q-008/Q-009/Q-010/Q-015/Q-016 Resolved；Pattern Accepted。
-- 结论与日期：2026-08-02 G2保持Passed，Local-only Delivery Strategy与DEC-126-023/024 Accepted，G2A重审通过；LIA-126-002仍保持Paused。当前不得继续S4–S6代码纠偏或进入S7；恢复Foundation Corrective Closure需Owner另行明确授权。
+- 结论与日期：2026-08-03 G2/G2A保持Passed，DEC-126-030接受S7C，DEC-126-031接受S8A Closure。G3仍Partial；不得开始S8B或S9–S11、调用MiniMax、启用flag或追加远端动作。
