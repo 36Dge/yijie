@@ -1,6 +1,6 @@
-# FEAT-126 技术设计（S4–S8A Closure通过，G3 Partial）
+# FEAT-126 技术设计（S4–S8A Closure通过，S8B0 Closure候选，G3 Partial）
 
-> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。DEC-126-026/027/028/030/031已接受S4–S8A Closure。DESIGN-126-006/DEC-126-032待审。G3仍Partial；S8B0/S8B及S9–S11、Vue UI、MiniMax、flag activation与新增远端/发布动作仍未授权。
+> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。DEC-126-026/027/028/030/031已接受S4–S8A Closure；DESIGN-126-006/DEC-126-032已接受，LIA-126-005只授权的S8B0已形成仅本地Closure候选。G3仍Partial；DEC-126-033尚待Owner，S8B及S9–S11、完整Vue UI、MiniMax、flag activation与新增远端/发布动作仍未授权。
 
 ## 1. 设计摘要
 
@@ -117,11 +117,11 @@ authenticated client → secure versioned API → identity/tenant/authz → scop
 2. `S8A`：在S7C Closure后，增加authoritative IPC schema/fixtures、窄Tauri commands/event bridge、TypeScript runtime validators/client及Pinia store/view-model；不修改Vue页面、视觉、route activation或feature flag。
 3. `S8B`：在S8A Closure后，按Accepted Pattern实现Vue页面、interaction、visual/a11y及visual tests；只使用真实S8A store，mock transport仅限test harness，不能存在于production path。feature activation仍需独立批准。
 
-Owner已接受DEC-126-030，并以DEC-126-031接受`LIA-126-004` S8A Closure。S8B0/S8B均未被预授权，须按DESIGN-126-006顺序另行评审。
+Owner已接受DEC-126-030/031及DEC-126-032；LIA-126-005已完成S8B0本地候选。DEC-126-033 Closure Review尚待批准，S8B不得提前进入。
 
-### 2.4 DESIGN-126-006 — S8B0 UI Integration Readiness（Candidate）
+### 2.4 DESIGN-126-006 — S8B0 UI Integration Readiness（Accepted / Implemented Candidate）
 
-状态：设计完成并提交DEC-126-032候选；尚未获Owner接受，未授权任何S8B0/S8B源码。本轮只读盘点确认S8A reducer已经实现，但生产UI消费仍有以下必须先关闭的集成缝隙。
+状态：DESIGN-126-006/DEC-126-032已获Owner接受，LIA-126-005已在`yijie-desktop@5dab02a1ad5f03fead236aa7060fa6a75a234d85`关闭以下S8B0集成缝隙并提交DEC-126-033。完整S8B Vue UI仍未授权。
 
 #### 2.4.1 Default-off gate与route authorization
 
@@ -148,7 +148,7 @@ S8A `phase=ready`只证明context/list加载完成，不证明本次Host child�
 - `chat_get_local_readiness_v1`只读返回Host/Runtime/storage/lifecycle、`canSend`、stable issue/recovery；每次发送仍由Rust submit command再次权威校验，避免check/use race。
 - `chat_request_local_recovery_v1`只接受`start_or_retry`和stable operation ID；Rust coordinator独占binary/env/token/loopback/start/backoff。Vue不能调用旧`chat_start_local_host`或自行循环。
 - storage issue稳定区分`read_only|full|corrupt|migration_failed|unavailable`，但只投影content-free code与受控recovery，不回显路径、SQL、key或SQLite/Host message。corrupt/migration失败保持writer关闭，不自动破坏性修复。
-- DEC-126-032 Accepted后仍需Owner单独授权S8B0，才能同步改Schema、Rust serde/registry、TS validator/client/store及fixed fixtures；否则所有flags继续off。
+- Schema、Rust serde/registry、TS validator/client/store及fixed fixtures已按单独LIA-126-005完成；所有flags继续off，DEC-126-033通过也不自动启用。
 
 #### 2.4.5 Scroll、a11y与后续切片
 
@@ -542,6 +542,6 @@ Runtime/Host pin、临时 `CODEX_HOME`/空 cwd/pathless ephemeral thread，title
 - Runtime/MiniMax：canonical delete/name/summary/raw reasoning/outputSchema已确认；两次历史MiniMax预算已执行，title PASS，MM-126-002在旧summary门槛FAIL且观察到raw事件；Host raw bridge基础已用fake Runtime实现，raw flag默认off，本轮未调用MiniMax。
 - Public Tasks：仓内consumer inventory完成，unknown external按safe compatibility category处理，Q-010 Resolved；DEC-126-011/012已Accepted，v1全程双隔离。DEC-126-023/024与Q-017已关闭，`29317b...`从schema层拒绝conversation正文并通过G2A重审；LIA-126-002现已恢复，仅允许关闭S4–S6 P1。
 - Desktop Pattern：FEAT-126 Chat/App Shell Pattern已Accepted，只取代Chat 1.1.0/App Shell 2.0.0中的FEAT-126冲突段落。
-- 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–031 Accepted；S4–S8A Closure Passed；DESIGN-126-006/DEC-126-032为Proposed，S8B0/S8B与S9–S11 Pending/Unauthorized。
+- 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–032 Accepted；S4–S8A Closure Passed；S8B0 Closure候选已完成并提交DEC-126-033，S8B与S9–S11 Pending/Unauthorized。
 - 安全/数据 Owner：段成威 — ADR-0013/0014/0015/0016与DEC-126-005/006/007/011/012/014/015/016/017 Approved；Q-006/Q-007/Q-008/Q-009/Q-010/Q-015/Q-016 Resolved；Pattern Accepted。
-- 结论与日期：2026-08-03 G2/G2A保持Passed，DEC-126-030接受S7C，DEC-126-031接受S8A Closure。DESIGN-126-006已完成但DEC-126-032尚待Owner；G3仍Partial。不得开始S8B0/S8B或S9–S11、调用MiniMax、启用flag或追加远端动作。
+- 结论与日期：2026-08-03 G2/G2A保持Passed，DEC-126-030/031接受S7C/S8A，DEC-126-032接受S8B0设计并授权后形成本地Closure候选。G3仍Partial；DEC-126-033批准前不得开始S8B，且继续禁止S9–S11、MiniMax、flag启用与追加远端动作。

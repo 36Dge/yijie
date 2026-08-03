@@ -1,6 +1,6 @@
 # FEAT-126 契约与兼容变更计划
 
-> 本文central contract设计已通过G2/G2A重审。DEC-126-026/027/028/030/031已接受S4–S8A Closure。S8A只增加Desktop-private schema/commands/events与TypeScript consumer，不修改central source、Host/Public Tasks wire或Runtime pin。DESIGN-126-006/DEC-126-032为待审Desktop-private extension；S8B0/S8B仍未授权；旧`c000a024`、Draft PR #1和各`origin/develop`保持不变。
+> 本文central contract设计已通过G2/G2A重审。S4–S8A Closure已接受；DESIGN-126-006/DEC-126-032已接受并以LIA-126-005实现Desktop-private S8B0 extension。该扩展不修改central source、Host/Public Tasks wire或Runtime pin；DEC-126-033待审，S8B仍未授权；旧`c000a024`、Draft PR #1和各`origin/develop`保持不变。
 
 ## 1. Contract Impact 结论
 
@@ -101,7 +101,7 @@
 - `issueCode`仅允许`null|chat_host_starting|chat_host_unavailable|chat_runtime_starting|chat_runtime_unavailable|chat_runtime_version_mismatch|chat_storage_read_only|chat_storage_full|chat_storage_corrupt|chat_storage_migration_failed|chat_storage_unavailable`；不含message/detail。
 - 新增recovery allowlist仅为`none|retry|start_or_retry|free_space|repair_or_restore|restart_app|rebind_context`；Vue本地化固定文案，不能执行任意命令。对storage corrupt/migration failed不自动写修复；保持writer关闭并引导受控恢复。
 - 本extension必须同步更新Desktop-owned JSON Schema、Rust `deny_unknown_fields` serde DTO、command registry/capability、TypeScript exact validator/client/store与golden fixtures。旧20 commands/7 events的fixture equality必须继续PASS；新命令必须有unknown-field/enum/size/auth/expiry/revision/no-log/duplicate operation/restart测试。
-- 这是本次盘点触发的private IPC停止条件与`semantic` Desktop-private contract candidate。DEC-126-032批准及S8B0单独授权前，不得实现、复用旧`chat_start_local_host`、让Vue轮询裸command或猜测ready。
+- 这是本次盘点触发并已由DEC-126-032/LIA-126-005关闭的private IPC停止条件与`semantic` Desktop-private contract。实现固定为两个closed commands；旧`chat_start_local_host`未进入TypeScript/Vue，S8B不得轮询裸command或猜测ready。
 
 ### 3.7 审批与审计
 

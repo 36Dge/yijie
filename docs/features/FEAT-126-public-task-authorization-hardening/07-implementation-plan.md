@@ -1,4 +1,4 @@
-# FEAT-126 Local-only 原子实施计划（S4–S8A Closure通过，G3 Partial）
+# FEAT-126 Local-only 原子实施计划（S8B0 Closure Review候选，G3 Partial）
 
 ## 1. 当前执行边界
 
@@ -136,8 +136,9 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 | DESIGN-126-005 | no implementation SHA | ConversationApplication/Tauri/TS gap inventory、private IPC v1、fixed fixture matrix与S7C/S8A/S8B重切 | feature docs validation | DEC-126-029 Accepted | Design Accepted；S7C/S8A later separately authorized |
 | S7C | included in `3adcb0380561c294412bc24767e4651ca872455a` | schema v4、300s Rust-bound context/revision/capability facade、session/project actions、stable interrupt、durable cleanup/receipt、coordinator/restart/resync/live raw source；无Vue | `make lint/test/build` PASS；fake Host cleanup、v1-v4 migration、restart/idempotency/race/cascade/WAL/receipt-expiry/auth/no-log | DEC-126-030 Accepted | Closure Passed / G3 Partial |
 | S8A | included in `3adcb0380561c294412bc24767e4651ca872455a` | 20 versioned commands、listen-only event、closed schema/fixtures、native auth binding、opaque cursors、strict TS validators/real Tauri client/authoritative Pinia reducer；无Vue | `make lint/test/build` PASS；127 TS；94 Rust（93 pass/1 existing ignored）；schema↔serde↔TS、auth/expiry/tenant、caps/backpressure/cancel/stale/restart/resync/no-log | DEC-126-031 Accepted | Closure Passed / G3 Partial |
-| DESIGN-126-006 / DEC-126-032 | no implementation SHA | S8B0 UI gate/route/lifecycle/store/readiness/tasks/scroll design only | feature package/static source inventory；implementation tests NOT RUN | DEC-126-032 Proposed | Ready for Owner Review / no source authorization |
-| S8B0、S8B、S9–S11 | N/A | none | NOT RUN | Not authorized | Pending separate sequential authorization |
+| DESIGN-126-006 / DEC-126-032 | accepted design | S8B0 UI gate/route/lifecycle/store/readiness/tasks/scroll contract | feature package/static source inventory | DEC-126-032 Accepted | LIA-126-005 separately executed |
+| S8B0 | local checkpoint `yijie-desktop@5dab02a1ad5f03fead236aa7060fa6a75a234d85` | 22-command closed IPC、Rust readiness/storage probe、exact-off gate、routes/lifecycle/store/Tasks metadata；不含完整Chat Vue visual | 135 TS；96 Rust（95 pass/1 existing ignored）；generate/lint/type/build/fmt/clippy/no-log PASS | LIA-126-005 | Closure candidate / DEC-126-033 Proposed / not pushed |
+| S8B、S9–S11 | N/A | none | NOT RUN | Not authorized | Pending separate sequential authorization |
 
 ## 10. 变更控制
 
@@ -160,7 +161,7 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 | Contracts/G2A/remote | 段成威 | DEC-126-023/024/025 Accepted，`29317b...`为唯一candidate并已远端可达；`c000a024...`仅为历史远端候选，旧PR与develop不变；未merge/tag/发布/启用 | 2026-08-02 |
 | Contracts Draft PR / merge | 段成威 | DEC-126-021 Accepted/HOLD；CI failed dependency audit；merge不是local draft前置但当前仍不批准 | 2026-08-02 |
 | Local-only delivery strategy | 段成威 | DEC-126-022 Accepted；Local Runtime Ready目标，tag/publish/deploy/G5 N/A | 2026-08-02 |
-| Local Implementation Authorization | 段成威 | DEC-126-027/028/030/031接受S7A/S7B/S7C/S8A；DESIGN-126-006/DEC-126-032待审；S8B0/S8B、S9–S11、MiniMax/flag activation与新增远端动作仍禁止 | 2026-08-03 |
+| Local Implementation Authorization | 段成威 | S7A–S8A已接受；DEC-126-032 Accepted并以LIA-126-005完成S8B0；DEC-126-033待审。S8B、S9–S11、MiniMax/flag activation与新增远端动作仍禁止 | 2026-08-03 |
 
 ## 12. Local Implementation Authorization 审批候选
 
@@ -210,17 +211,19 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - Owner决定：DESIGN-126-005与DEC-126-029已接受；G3继续Partial，不启用flag，不改central contracts或Runtime pin。
 - `LIA-126-003 / S7C`：已单独授权Desktop Rust authorization context、session/project actions、interrupt、durable delete/cleanup status、background coordinator与restart/resync projection source；仅使用fake Host、固定fixture、临时SQLCipher和临时CODEX_HOME；禁止Tauri invoke/event、TS/Vue、MiniMax、远端动作。退出需Rust fault/race/restart/no-log Closure Review。
 - `LIA-126-004 / S8A`：Owner接受DEC-126-030后已单独授权authoritative IPC schema/fixtures、窄Tauri commands/events、TS validators/client/Pinia store/view-model；禁止Vue页面/样式/route activation和production mock transport。退出需schema↔serde↔TS、auth/no-log/backpressure/stale/restart/race Closure Review。
-- `S8B0`授权候选：先由Owner接受DEC-126-032，再单独授权exact-off gate、route/permission lifecycle、store consumption和closed readiness/storage private IPC extension；不实现完整Vue visual page，不启用flag。
+- `S8B0`结果：Owner接受DEC-126-032后单独授权LIA-126-005；exact-off gate、route/permission lifecycle、store consumption和closed readiness/storage private IPC已在`5dab02a1…34d85`完成；未实现完整Vue visual page，flag未启用。
 - `S8B`授权候选：只在S8B0 Closure被Owner接受后另行授权Vue页面、交互、视觉与可访问性；必须消费真实authoritative store，mock只可存在test harness；feature flag activation仍不随S8B自动授权。
 - S7C结果：Owner已接受DEC-126-030，S7C Closure Passed。
 - S8A结果：20个versioned commands、closed Schema/fixtures、Rust-bound context/event/cursors、TS validator/client/store已实现；Desktop `make lint/test/build`及安全扫描PASS；DEC-126-031已接受S8A Closure，G3仍Partial。
-- 当前状态：S8A Closure已由DEC-126-031 Accepted；四仓Accepted变更已保存为仅本地checkpoint。DESIGN-126-006/DEC-126-032为review candidate，G3仍Partial；S8B0/S8B相关实现/测试保持`NOT RUN`并继续未授权。
+- 当前状态：S8A Closure已由DEC-126-031 Accepted；DEC-126-032 Accepted且S8B0已形成本地Closure candidate，DEC-126-033等待Owner。G3仍Partial；S8B实现/测试保持`NOT RUN`并继续未授权。
 
-### LIA-126-005 / S8B0（Approved / In Progress）
+### LIA-126-005 / S8B0（Approved / Executed / Closure Review Proposed）
 
 - 授权来源：Owner明确批准DEC-126-032，并要求其后单独授权S8B0、不得直接进入S8B。
 - 允许范围：Desktop private readiness/storage schema、Rust serde/commands/coordinator intent、TS validators/client/Pinia消费；exact-off UI gate、Chat/Tasks route和capability guard、permission bind/clear/dispose、project pick/revalidate、session追加分页、cleanup完成后的reload/clear/navigation disposition、production Tasks真实metadata/default-off。
 - 禁止范围：完整Vue Chat页面/组件/视觉样式、App Shell项目/session树、composer、conversation flow、reasoning/menu/dialog/delete视觉交互及S8B a11y/visual实现；不得启用任何flag。
+- 实施结果：`yijie-desktop@5dab02a1ad5f03fead236aa7060fa6a75a234d85`仅包含27个S8B0文件；新增2个closed commands后总数22，7个events不变；default-off gate、深链guard、permission lifecycle、store paging/project/readiness/cleanup与真实Tasks metadata接线完成；`sampleTasks`生产文件删除。
+- 验证结果：135/135 TS，95/95 Rust（另1既有Keychain ignored），generate-check、lint、vue-tsc、Vite build、cargo fmt/clippy全绿；无production dependency、MiniMax、flag activation、central pin或远端动作。
 - 环境：只使用fake Host、固定fixtures、临时SQLCipher/CODEX_HOME和test harness；不调用MiniMax或处理真实数据。
 - 依赖/远端：不修改central contracts、Host/Public Tasks wire或Runtime pin；不新增production dependency；不push/merge/tag/publish/deploy。
-- 退出：Desktop schema↔serde↔TS、gate/route/lifecycle/store/readiness/storage/no-log/race以及全量lint/test/build通过后，提交DEC-126-033 / S8B0 Closure Review；S8B继续等待Owner。
+- 退出：上述门禁已通过并提交DEC-126-033 / S8B0 Closure Review；Owner接受前S8B继续等待。

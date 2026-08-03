@@ -97,7 +97,7 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 | Fact | FEAT-126 已被 Accepted ADR-0012 预留给 Public Tasks hardening | `docs/adr/ADR-0012-*.md` §上下文/后续行动 | 段成威 | Confirmed |
 | Fact | FEAT-124 `/chat` 当前只有本地 textarea，无发送/网络/持久化 | `yijie-desktop/src/pages/chat/ChatPage.vue` | client-team | Confirmed |
 | Fact | DESIGN-126-005形成时`ConversationApplication`仍是Rust内部对象；随后S8A已实现20个private commands、单一listen-only event、strict TS client与authoritative Pinia reducer | `yijie-desktop/src-tauri/src/chat/ipc.rs`、`src/domain/chat-ipc.ts`、`src/api/chat-client.ts`、`src/stores/chat.store.ts` | client-team | DEC-126-031 Accepted；S8A Closure Passed |
-| Fact | S8B0只读盘点确认仍缺独立UI gate、动态session路由guard、permission↔chat生命周期、store project pick/revalidate与session追加分页、cleanup完成导航、closed readiness/storage projection；`/tasks`仍使用`sampleTasks` | Desktop router/navigation/permission/store/pages只读盘点 | client-team | DESIGN-126-006/DEC-126-032 candidate；禁止源码修改 |
+| Fact | S8B0只读盘点发现的UI gate、session路由guard、permission↔chat生命周期、store project/paging/cleanup、closed readiness/storage projection与`sampleTasks`生产路径缺口，已在LIA-126-005本地checkpoint`5dab02a1ad5f03fead236aa7060fa6a75a234d85`关闭 | Desktop schema/Rust/TS/router/store/Tasks实现与全量门禁 | client-team | DEC-126-033 Closure Review Proposed；不授权S8B |
 | Fact | Agent Host 已支持 text turn、interrupt、resume 和 8 类 SSE 投影，但不保存正文 | `yijie-agent-host/README.md`、`docs/runtime-baseline-2.md` | agent-runtime-team | Confirmed |
 | Fact | 当前 Host 固定 read-only、`approvalPolicy=never`，reasoning summary 默认 `none` | `internal/codex/provider.go`、compatibility manifest | agent-runtime-team | Confirmed |
 | Fact | MiniMax 配置使用中国站 `/v1` + `wire_api="responses"`；既有真实 turn 测试曾通过 | Host provider code + 2026-08-01 本地 `make runtime-turn-test` 结果 | agent-runtime-team | Confirmed for baseline only |
@@ -153,8 +153,8 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 | G2A 契约就绪 | 2026-08-02 | 段成威 | Re-review Passed：DEC-126-024 Accepted，`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate；现已精确推送到`origin/feat/feat-126-content-free-candidate`，`origin/develop`、历史`c000a024`与Draft PR #1均不变；远端可达不等于merge/发布/实现完成 |
 | Contract Draft PR / merge readiness | 2026-08-02 | 段成威 | DEC-126-021 Accepted/HOLD：Draft PR #1固定SHA且保持Draft；红色CI只阻断merge，不回退G2/G2A；未来需本地跨仓E2E、audit修复、远端CI全绿及单独merge批准 |
 | Local-only Delivery Strategy | 2026-08-02 | 段成威 | DEC-126-022 Accepted；目标改为Local Runtime Ready；tag/publish/deploy/G5均N/A；LIA-126-001后续仅授权S4–S6 |
-| G3 本地切片完成 | 未排期 | 段成威 | Partial：DEC-126-026/027/028/030/031已接受S4–S8A Closure；S8B0/S8B及S9–S11仍未授权/未实施 |
-| S8B0 UI Integration Readiness Review | 2026-08-03 | 段成威 | DESIGN-126-006与DEC-126-032候选已提交；发现private IPC readiness/storage gap并按停止条件保持源码不变，等待Owner审批 |
+| G3 本地切片完成 | 未排期 | 段成威 | Partial：S4–S8A Closure已接受；DEC-126-032已接受，S8B0本地Closure候选完成；S8B及S9–S11仍未授权/未实施 |
+| S8B0 UI Integration Readiness Review | 2026-08-03 | 段成威 | DESIGN-126-006/DEC-126-032 Accepted；LIA-126-005执行完成并提交DEC-126-033，等待Owner且不得直接进入S8B |
 | G4 Local Code Complete | 未排期 | 段成威 | Pending：需API/Host/Desktop/Runtime本地构建与完整对话E2E |
 | G5 Production Ready | N/A | 段成威 | Out of Scope；未来上线必须重开生产轨 |
 | G6 Local-only Delivery Complete | 未排期 | 段成威 | Pending：Owner验收本地启动和功能链路；不代表Production Ready |
@@ -198,3 +198,4 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 | 2026-08-03 | Codex | 完成LIA-126-004 / S8A本地切片并提交DEC-126-031 Closure Review | 20个versioned commands、listen-only event、closed Schema/fixtures、Rust-bound context/cursor、strict TS validators、真实Tauri client和authoritative Pinia reducer完成；Desktop `make lint/test/build` PASS，127 TS + 94 Rust（93 pass/1既有ignored）；secret/path/raw-wire no-log与无Vue diff扫描PASS；G3仍Partial，S8B未授权 |
 | 2026-08-03 | 段成威 | 批准DEC-126-031，接受S8A Closure Review | S8A Closure Passed；G3继续Partial；不自动授权S8B、feature activation、MiniMax或远端/发布动作 |
 | 2026-08-03 | Codex | 保存四仓Accepted本地checkpoint并完成S8B0 UI Integration Readiness Review；提交DESIGN-126-006/DEC-126-032候选 | yijie/API/Host/Desktop分别形成仅本地commit；逐仓门禁与scope/no-log/diff检查通过。识别出closed readiness/storage private IPC缺口后停止源码实施；未push、未改contracts/Runtime、未开发Vue或启用flag |
+| 2026-08-03 | 段成威 / Codex | Owner批准DEC-126-032并单独授权LIA-126-005；Codex完成S8B0本地实现并提交DEC-126-033 Closure Review候选 | Desktop `5dab02a1…34d85`：22个closed commands、exact-off gate、route/lifecycle/store/readiness/storage/Tasks接线；135 TS与95/96 Rust通过（1既有ignored）；未进入S8B、未启用flag、未调用MiniMax、未远端写入 |
