@@ -4,7 +4,7 @@
 
 初始扫描时间：2026-08-01；G2 补充扫描：2026-08-02，Asia/Shanghai。所有 sibling 仓库只读；未 fetch、checkout、generate 或修改。
 
-LIA-126-002于2026-08-02形成S4–S6 checkpoint并完成Corrective Closure；Public Tasks source冲突已由DEC-126-023/024关闭，`29317b6426578749dc698fc2ad32b986ee5c8e9f`是唯一candidate。S4–S8A Closure已接受，DEC-126-032/033已接受LIA-126-005 / S8B0设计与Closure。远端checkpoint未被改写，完整S8B Vue UI与S9–S11仍未开始。
+LIA-126-002于2026-08-02形成S4–S6 checkpoint并完成Corrective Closure；Public Tasks source冲突已由DEC-126-023/024关闭，`29317b6426578749dc698fc2ad32b986ee5c8e9f`是唯一candidate。S4–S8B0 Closure已接受；Owner单独授权LIA-126-006/S8B，完整Vue UI已在Desktop本地checkpoint`35f27447398529cca4dec85fa1f67e779c7a7cbd`实现并提交DEC-126-034候选。远端checkpoint未被改写，flag仍关闭，S9–S11仍未开始。
 
 | Repository | Rules/read sources | Branch | Full HEAD SHA | Worktree | Toolchain/lock |
 |---|---|---|---|---|---|
@@ -195,7 +195,7 @@ Authenticated consumer
 1. G1 已于 2026-08-01 通过：段成威关闭产品问题 Q-001–Q-005/Q-011–Q-014；批准的产品规则由需求包承接。
 2. G2 评审于 2026-08-02 启动：ADR-0013 已冻结 Desktop 数据权威；继续冻结 Desktop Pattern、Public Tasks breaking、Agent Host additive/semantic 契约、SQLite protection/backup 与跨进程删除设计。
 3. DEC-126-024批准的sole candidate已精确推送到新专用远端分支；DEC-126-021仍保持旧Draft PR/HOLD，远端红色CI继续只阻断旧PR merge。新分支可达不等于merge、tag、publish、deploy、生产启用或实现完成。
-4. LIA-126-001/002形成并关闭了Public Tasks、Host v2与Desktop local repository/sidecar基础；DEC-126-027/028/030/031接受S7A/S7B/S7C/S8A，LIA-126-005完成S8B0。所有flags仍默认关闭，S8B、S9–S11与完整Chat UI继续禁止。
+4. LIA-126-001/002形成并关闭了Public Tasks、Host v2与Desktop local repository/sidecar基础；DEC-126-027/028/030/031接受S7A/S7B/S7C/S8A，LIA-126-005完成S8B0。Owner随后以LIA-126-006单独授权S8B，真实Chat Vue UI已形成仅本地checkpoint并提交DEC-126-034候选。所有flags仍默认关闭；S9–S11、完整四组件E2E和activation继续禁止。
 5. 下游只固定完整SHA或已核验本地投影；先实现consumer tolerance，再启用本地provider新events；浮动branch不得作为契约身份。
 6. 完成security/migration/resilience/visual、四组件本地E2E和结构化审查后，提交Owner本地G6验收；不讨论线上activation。
 7. 如未来需要把源码纳入共享`develop`，必须先修复dependency audit、取得远端全绿CI并另行审批merge；merge不等于部署。
@@ -229,3 +229,16 @@ Authenticated consumer
 | SPIKE-126-005 | Public Tasks consumers/legacy usage | 2026-08-02 source inventory：Desktop无active call；API为不安全legacy provider；Infra仅deny；Host同名route为不同contract；admin/connectors/knowledge/skills无active ref；generated SDK仅artifact。外部因Public OpenAPI按`unknown-public`安全类别处理 | 不开放route、不访问production；不虚构“external=0” | platform-team | Complete：Q-010 Resolved；DEC-126-011/012 Accepted |
 | SPIKE-126-006 | Chat/App Shell sidebar information architecture | 已将G1语义、DESIGN-126-003 history/raw states与1180×760/a11y要求写入Desktop FEAT-126 Pattern | 不改业务代码；仅取代Accepted 01/02中的FEAT-126冲突段落；不把临时截图当发布资产 | client-team | Complete / Accepted 2026-08-02 |
 | SPIKE-126-008 | S8B0 UI consumption/readiness | 只读盘点后按Accepted DESIGN实现router/nav/permission/chat store/private IPC/pages接线，关闭readiness/storage缺口 | 不改central contract/Host/Runtime；不启用flag或启动provider；不做完整Chat Vue/visual | client-team | DESIGN/DEC-126-032 Accepted；LIA-126-005 complete；DEC-126-033 Accepted / Closure Passed |
+
+## 12. S8B 实际影响差异（LIA-126-006）
+
+| 边界 | 实际变化 | 未变化 | 结论 |
+|---|---|---|---|
+| Desktop Vue | 新增Chat composer、reasoning disclosure、project/session tree、scroll composable、稳定UI projection和真实页面测试 | 无mock/static production data | 当前切片唯一业务实现边界 |
+| App Shell | Chat active时固定展开且不暴露侧栏显示/隐藏；1180×760及200% zoom等价视口下主要操作可达 | 其它页面既有sidebar store仍保留 | FEAT-126排除功能未泄露 |
+| Pinia/private IPC | Vue仅调用Accepted authoritative store actions | 22 commands、7 events、cursor/error、Rust domain均未修改 | 未触发private IPC停止条件 |
+| 数据/安全 | assistant/raw reasoning仅文本插值；stable readiness/cleanup/error本地化；无路径/secret/raw wire | SQLCipher schema、Host/Public Tasks/Runtime无变化 | 无migration/G2A重审 |
+| 依赖 | 新增固定`axe-core@4.10.3` devDependency及lockfile证据 | production dependencies与bundle均无新增 | npm advisory为0；test-only |
+| 远端/运行 | Desktop仅本地commit，feature flag unset/false | 无push/merge/tag/publish/deploy/MiniMax/真实数据 | 用户可观察默认行为不变 |
+
+Contract impact for S8B：`semantic`（Desktop-private UI consumer）。它改变default-off候选页面的可观察交互，但不改变任何跨仓/跨进程shape；central feature的最高风险分类仍保持`breaking`，G2A不回退也不重开。

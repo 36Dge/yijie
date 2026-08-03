@@ -1,6 +1,6 @@
-# FEAT-126 技术设计（S4–S8B0 Closure通过，G3 Partial）
+# FEAT-126 技术设计（S8B Closure Review候选，G3 Partial）
 
-> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。DEC-126-026/027/028/030/031已接受S4–S8A Closure；DESIGN-126-006/DEC-126-032与DEC-126-033已接受，LIA-126-005 / S8B0 Closure Passed。G3仍Partial；S8B及S9–S11、完整Vue UI、MiniMax、flag activation与新增远端/发布动作仍未授权。
+> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。DEC-126-026/027/028/030/031/033已接受S4–S8B0 Closure；LIA-126-006已单独授权并完成S8B本地候选，DEC-126-034等待Owner接受。G3仍Partial；S9–S11、MiniMax、flag activation与新增远端/发布动作仍未授权。
 
 ## 1. 设计摘要
 
@@ -78,7 +78,7 @@ authenticated client → secure versioned API → identity/tenant/authz → scop
 | Tauri invoke | 只增加versioned、closed、scope-bound conversation commands/events | PASS：20个`*_v1` private commands；旧unversioned project invokes从handler移除；event仅允许WebView listen/unlisten |
 | Streaming | Rust将受控state投影为单一bounded event channel，WebView永不接触Host wire | PASS：`yijie.chat.event.v1`、closed 7-kind envelope、sequence/caps/backpressure/resync/context invalidation |
 | TypeScript | fixed fixtures建立validator/client/store，负责selection与UI state而非业务重试 | PASS：strict validators、真实Tauri transport client、单一authoritative Pinia reducer、stale/restart/race tests |
-| Vue | S8B只消费真实S8A store；production source禁止mock transport | 未授权/未修改；S8A没有页面、组件、路由、样式diff |
+| Vue | S8B只消费真实S8A store；production source禁止mock transport | LIA-126-006已按此边界实现；fake transport仅存在test harness，production bundle扫描无mock/harness |
 
 #### 2.3.2 Authority与authorization context
 
@@ -121,7 +121,7 @@ Owner已接受DEC-126-030/031/032/033；LIA-126-005 / S8B0 Closure Passed。S8B�
 
 ### 2.4 DESIGN-126-006 — S8B0 UI Integration Readiness（Accepted / Implemented Candidate）
 
-状态：DESIGN-126-006/DEC-126-032已获Owner接受，LIA-126-005已在`yijie-desktop@5dab02a1ad5f03fead236aa7060fa6a75a234d85`关闭以下S8B0集成缝隙，DEC-126-033已接受其Closure。完整S8B Vue UI仍未授权。
+状态：DESIGN-126-006/DEC-126-032已获Owner接受，LIA-126-005已在`yijie-desktop@5dab02a1ad5f03fead236aa7060fa6a75a234d85`关闭以下S8B0集成缝隙，DEC-126-033已接受其Closure。Owner随后单独授权LIA-126-006；完整S8B Vue UI已在`35f27447398529cca4dec85fa1f67e779c7a7cbd`实现并提交DEC-126-034候选。
 
 #### 2.4.1 Default-off gate与route authorization
 
@@ -542,6 +542,26 @@ Runtime/Host pin、临时 `CODEX_HOME`/空 cwd/pathless ephemeral thread，title
 - Runtime/MiniMax：canonical delete/name/summary/raw reasoning/outputSchema已确认；两次历史MiniMax预算已执行，title PASS，MM-126-002在旧summary门槛FAIL且观察到raw事件；Host raw bridge基础已用fake Runtime实现，raw flag默认off，本轮未调用MiniMax。
 - Public Tasks：仓内consumer inventory完成，unknown external按safe compatibility category处理，Q-010 Resolved；DEC-126-011/012已Accepted，v1全程双隔离。DEC-126-023/024与Q-017已关闭，`29317b...`从schema层拒绝conversation正文并通过G2A重审；LIA-126-002现已恢复，仅允许关闭S4–S6 P1。
 - Desktop Pattern：FEAT-126 Chat/App Shell Pattern已Accepted，只取代Chat 1.1.0/App Shell 2.0.0中的FEAT-126冲突段落。
-- 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–033 Accepted；S4–S8B0 Closure Passed；S8B与S9–S11 Pending/Unauthorized。
+- 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–033 Accepted；S4–S8B0 Closure Passed；LIA-126-006 S8B已实施且DEC-126-034 Pending；S9–S11 Unauthorized。
 - 安全/数据 Owner：段成威 — ADR-0013/0014/0015/0016与DEC-126-005/006/007/011/012/014/015/016/017 Approved；Q-006/Q-007/Q-008/Q-009/Q-010/Q-015/Q-016 Resolved；Pattern Accepted。
-- 结论与日期：2026-08-03 G2/G2A保持Passed，DEC-126-030/031接受S7C/S8A，DEC-126-032接受S8B0设计，DEC-126-033接受S8B0 Closure。G3仍Partial；S8B须另行授权，且继续禁止S9–S11、MiniMax、flag启用与追加远端动作。
+- 结论与日期：2026-08-03 G2/G2A保持Passed，DEC-126-030/031接受S7C/S8A，DEC-126-032/033接受S8B0；LIA-126-006 S8B已保存为`35f27447398529cca4dec85fa1f67e779c7a7cbd`并提交DEC-126-034候选。G3仍Partial；继续禁止S9–S11、MiniMax、flag启用与追加远端动作。
+
+## 15. S8B Vue projection implementation
+
+```text
+YjAppShell fixed Chat sidebar
+  -> ChatSidebarTree
+     -> authoritative Pinia session/project actions
+  -> ChatPage /chat | /chat/:sessionId
+     -> ChatComposer (pure text + project + read-only policy)
+     -> ChatReasoningDisclosure (literal raw text)
+     -> useChatScroll (48px follow / 160px control)
+     -> stable readiness/error/cleanup projections
+```
+
+- 页面不持有owner、tenant、bearer、SQLCipher key、canonical project path、Host/Runtime ID或raw wire；authority/context继续由Rust和Pinia生命周期绑定。
+- 新建与回复统一通过store action；sequence gap、stale selection、late event、restart/resync、delete/interrupt race继续由Accepted reducer处理，Vue不复制第二状态机。
+- reasoning历史按turn展开后懒加载；live reasoning流式展开；terminal/incomplete/unavailable明确区分，所有正文使用`white-space: pre-wrap`文本节点。
+- 删除确认不乐观移除；store的`DeleteDisposition`仍是唯一导航依据。项目只有pin/remove，session只有select/rename/pin/delete。
+- Chat active时App Shell固定展开且不展示sidebar toggle，避免引入需求明确排除的显示/隐藏功能；200% zoom等价视口使用窄sidebar和纵向滚动保持操作可达。
+- 测试视觉harness位于独立test Vite root，仅挂载生产组件/真实Pinia与固定合成投影；production entry和bundle均不可达。

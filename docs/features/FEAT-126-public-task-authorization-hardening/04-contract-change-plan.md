@@ -1,6 +1,6 @@
 # FEAT-126 契约与兼容变更计划
 
-> 本文central contract设计已通过G2/G2A重审。S4–S8A Closure已接受；DESIGN-126-006/DEC-126-032已接受并以LIA-126-005实现Desktop-private S8B0 extension，DEC-126-033已接受其Closure。该扩展不修改central source、Host/Public Tasks wire或Runtime pin；S8B仍未授权；旧`c000a024`、Draft PR #1和各`origin/develop`保持不变。
+> 本文central contract设计已通过G2/G2A重审。S4–S8B0 Closure已接受；LIA-126-006/S8B已在Desktop本地实现并提交DEC-126-034候选。该切片仅消费既有private IPC，不修改central source、22个commands、7个events、Host/Public Tasks wire或Runtime pin；旧`c000a024`、Draft PR #1和各`origin/develop`保持不变。
 
 ## 1. Contract Impact 结论
 
@@ -245,3 +245,15 @@ Feature 包只引用上述唯一权威位置，不复制业务 fixtures。
 | yijie-api / 段成威 | Replacement source approved；LIA-126-002 producer conformance resumed | 2026-08-02 | schema从权威源强制拒绝正文；S4 provider conformance必须在Closure Review真实回填 |
 | yijie-agent-host / 段成威 | Host/event source review有效；LIA-126-002 projection closure candidate complete | 2026-08-02 | raw/title/cleanup形状不变；S5列明P1本地证据已关闭并等待DEC-126-026，flags保持off |
 | unknown Public API consumers | Safe compatibility category accepted | 2026-08-02 | Q-010 Resolved；不声明为零；DEC-126-011 window Accepted |
+
+## 11. LIA-126-006 Desktop-private consumer conformance
+
+| 检查 | 结果 | 解释 |
+|---|---|---|
+| Vue direct boundary scan | PASS：Chat页面/组件无`chatClient`、raw`invoke`、Host调用或`v-html` | Vue只消费authoritative Pinia actions与validated projections |
+| IPC/Rust diff stop condition | PASS：LIA-126-006 commit无`src-tauri`、schema、client/store wire shape修改 | 22个commands、7个events、cursor/error及authority binding保持S8B0 Accepted语义 |
+| Plain-text projection | PASS：assistant/raw reasoning使用Vue插值；浏览器检查正文容器HTML后代为0 | 不引入Markdown/HTML执行语义 |
+| Central contract identity | PASS：仍为`29317b6426578749dc698fc2ad32b986ee5c8e9f` | 不形成新G2A candidate或downstream floating pin |
+| Production bundle | PASS：test harness、`axe-core`、synthetic fixture与test global不存在于`dist/` | test-only依赖不改变发布consumer |
+
+S8B切片contract impact为`semantic Desktop-private`，不改变central feature总体`breaking`分类。若后续UI需要新command/event/error/cursor或让WebView猜Host/Runtime状态，必须停止并重新进入private IPC设计评审；本轮没有触发该条件。
