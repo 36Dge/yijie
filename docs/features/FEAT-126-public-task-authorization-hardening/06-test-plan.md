@@ -1,7 +1,7 @@
 # FEAT-126 测试与 Eval 计划
 
 > 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。DEC-126-023/024完成G2A重审，DEC-126-025登记sole candidate与checkpoint远端ref并恢复LIA-126-002，仅执行S4–S6 Corrective Closure。
-> DEC-126-026/027/028/030/031/033/034已关闭S4–S8B；DEC-126-035已接受远端事实，DEC-126-036已接受LIA-126-007 / S9 Host权威deterministic runner与Desktop exact fixture consumer Closure；S10–S11仍为`NOT RUN`。本轮未调用MiniMax，
+> DEC-126-026/027/028/030/031/033/034已关闭S4–S8B；DEC-126-035已接受远端事实，DEC-126-036已接受LIA-126-007 / S9 Closure。S10A只读readiness review已形成DESIGN-126-007与DEC-126-037候选；S10B/S11仍为`NOT RUN`且未授权。本轮未调用MiniMax，
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
 ## 1. 测试策略
@@ -197,7 +197,7 @@
 | FIX-126-RAW-UPSTREAM-002 | fixed `builds_multiple_turns_with_reasoning_items` history fixture | PASS | completed raw `content[]`进入正确turn/item history | Host/Desktop source contract实现 |
 | FIX-126-RAW-UPSTREAM-003 | fixed `splits_reasoning_when_interleaved` fixture | PASS | interleaved reasoning形成独立items而非错误合并 | v2 caps/sequence conformance |
 | FIX-126-RAW-UPSTREAM-004 | fixed `marks_turn_as_interrupted_when_aborted` fixture | PASS | aborted rollout产生interrupted turn事实 | SQLCipher explicit-incomplete实现 |
-| FIX-126-RAW-001 | synthetic raw text deltas + complete/incomplete/unavailable finalized fixtures | SOURCE + HOST + DESKTOP RUST + VUE S8B PASS | Host closed v2 mapping、content-index/final snapshot/caps/partial规则；Desktop strict SSE/domain、coalesced cursor、terminal reconciliation、redacted Debug与Vue纯文本展开/折叠渲染 | yijie-contracts + Host fake Runtime + Desktop fake Host/test harness；不构成四组件E2E，S10仍未授权 |
+| FIX-126-RAW-001 | synthetic raw text deltas + complete/incomplete/unavailable finalized fixtures | SOURCE + HOST + DESKTOP RUST + VUE S8B PASS | Host closed v2 mapping、content-index/final snapshot/caps/partial规则；Desktop strict SSE/domain、coalesced cursor、terminal reconciliation、redacted Debug与Vue纯文本展开/折叠渲染 | 不构成四组件E2E；S10A已评审，S10B仍未授权 |
 | FIX-126-RAW-002 | malformed status/reason/index/oversize + closed-union assertions | SOURCE + HOST + DESKTOP UI SAFETY PASS | invalid/oversize转explicit unavailable；raw canary不进Host logs/bbolt；Vue不使用`v-html`且只消费容量受限projection | contracts negative + Host race/unit/no-log + S8B production-component assertions；S9 Eval与S10 E2E仍待授权 |
 | FIX-126-RAW-003 | accepted SQLCipher history/delete path | S6 FOUNDATION PASS / E2E NOT RUN | terminal事务、wrong-key、secure_delete、WAL truncate、DB canary absence与FK cascade已测；live stream/restart全链路待S10 | Desktop Rust synthetic SQLCipher tests；不构成G4 evidence |
 | FIX-126-IPC-001 | closed command/response/error/cursor golden与unknown-field negatives | S8A Closure Passed | 20/20 command contract refs、closed request/response/error、opaque cursor与Rust/TS fixture equality | 不证明Vue或四组件E2E；DEC-126-031 Accepted |
@@ -233,7 +233,8 @@
 | Meta docs | yijie | feature checker, YAML parse, `git diff --check` | local shell/Ruby | current package only |
 | Accepted checkpoints / remote reconciliation | yijie/API/Host/Desktop/contracts | repository gates + scope/no-log/diff + owner-authorized candidate push；`git ls-remote` + exact-branch temporary clean clone | synthetic/fake/temp only；remote verification is read-only | RUN 2026-08-03；PASS；remote exact `650254b…139fa`、`a64f9f5…3264`、`3e8df02…f3d9`、`35f2744…7cbd`、`29317b6…e9f`；all clean clones，develop/Draft PR/merge/tag/publish/deploy未改变；DEC-126-035 Accepted |
 | S8B0/S8B conformance | yijie + yijie-desktop | DESIGN-126-006/DEC-126-032 + schema/Rust/TS/router/store/Tasks + production Vue/unit/axe/browser/security/bundle/package/strict/G2A/YAML/lint/test/build/diff | fake/fixed/temp only；no runtime provider | DEC-126-033/034 Accepted；S8B Closure Passed at `35f2744…7cbd`；VoiceOver人工项保留到S11/G6 |
-| Local four-component E2E/security/perf/eval | affected repos | exact orchestration and commands must be added by authorized slices before G4 | local PostgreSQL/temp homes/DB/pinned Runtime/fake provider | command/harness absent — blocks G4/local G6；does not affect accepted G2/G2A |
+| S10A readiness/test-profile review | yijie governance + affected repos read-only | exact SHA/worktree/tool/port/source inventory；DESIGN-126-007/DEC-126-037/LIA-126-008 draft | no component startup/provider/flag/Keychain write | RUN 2026-08-04；HOLD；5 blockers recorded；not E2E |
+| Local four-component E2E/security/perf/eval | affected repos | exact orchestration in DESIGN-126-007; only after all blockers close and LIA-126-008 becomes approvable | local PostgreSQL/temp homes/DB/pinned Runtime/fake provider | S10B NOT RUN — blocks G4/local G6；does not affect accepted G2/G2A/S4–S9 |
 | LIA-126-007 / S9 fake-provider Eval | Host authority + Desktop consumer | versioned runner、exact dataset hash/split、title schema/semantic与raw sequence/final/no-log/injection gates | fixed fake provider、fixed pins、synthetic data only | RUN 2026-08-04 / PASS；DEC-126-036 Accepted；不调用MiniMax、不启用flag、不进入S10 |
 
 ## 12. 通过、失败与 Flaky 策略
@@ -263,7 +264,7 @@
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
-| 测试/技术 Owner | 段成威 | DEC-126-035已接受并单独授权LIA-126-007/S9；DEC-126-036已接受S9 Closure。S10–S11/MiniMax/flag activation与完整E2E仍禁止 | 2026-08-04 |
+| 测试/技术 Owner | 段成威 | DEC-126-036已接受S9 Closure；Owner已授权S10A只读评审。DEC-126-037待批，推荐HOLD LIA-126-008；S10B–S11/MiniMax/flag activation与完整E2E仍禁止 | 2026-08-04 |
 | 安全/数据 Owner | 段成威 | 当前P1及Public Tasks正文边界阻断closure；既有auth/delete/no-log/migration结果仅作foundation evidence | 2026-08-02 |
 | Runtime/模型 Owner | 段成威 | DEC-126-021 HOLD与DEC-126-022 Local-only已Accepted；先用fake provider/fixtures，raw reasoning须具体显示并持久化/删除；历史MM-126-001/002不重跑，未来一次local smoke仅可另行提交审批 | 2026-08-02 |
 
@@ -294,4 +295,42 @@ VoiceOver：仅完成并提交人工清单，未声称由真人执行；DEC-126-
 | Desktop UI/security | PASS：production Vue组件literal plaintext；script/link=0；fixture/canary不进入production bundle；TS/Rust全量门禁通过 |
 | Flaky分类 | 首次Rust full run有1个既有cleanup test使用stale `now`的跨秒波动；该文件不在S9 diff，单测与第二次full run均PASS；不豁免、不改production源码 |
 
-DEC-126-036已接受，但S10仍须另行明确授权；S9结果不等于四组件E2E、G4或G6。
+DEC-126-036已接受；S10A只读评审不等于四组件E2E，S10B仍须关闭blocker并另行明确授权。
+
+## 16. DESIGN-126-007 / S10A Readiness Review 结果
+
+### 16.1 只读环境结果
+
+| Check | Result | 判定 |
+|---|---|---|
+| 六仓分支/SHA/worktree | 全部与Owner固定值精确相等，clean | PASS |
+| Runtime artifact | version 0.144.6；binary/manifest SHA-256与manifest一致 | PASS（未启动app-server） |
+| Docker/Compose | Docker 29.6.1存在；Compose v2 plugin不存在 | `ENVIRONMENT_BLOCKED` |
+| 当前服务 | 5432/6379/8080/18080/1420未观察到listener | no existing isolated stack |
+| fake provider process profile | Host仅blank/MiniMax，thread要求MiniMax，base URL硬编码 | `CONFIG_UNREPRESENTABLE` |
+| Desktop child flags/logs | sidecar env allowlist强制v2 flags=false，stdout/stderr=null | `CONFIG_UNREPRESENTABLE` |
+| secure local storage isolation | Chat/native-auth Keychain namespaces fixed | `SECURE_STORAGE_NOT_ISOLATED` |
+| Public Tasks main-chain consumer | Desktop无`/v2/tasks` production call | `CHAIN_NOT_CONNECTED` |
+
+### 16.2 冻结E2E矩阵
+
+S10B必须以`S10B-001–012`作为同一run的不可分割矩阵：provenance/startup；项目选择与content-free task create；assistant/raw valid与incomplete对账；SQLCipher分页/restart；fallback title/user rename/pin/sort；interrupt/gap/reconnect/resync；Desktop/Host/Runtime物理删除与receipt；Public Tasks/PostgreSQL正文零命中；log/bbolt/audit/telemetry/URL/process-output泄漏零命中；performance/capacity/fault；最终无PID/listener且default-off。详细输入类别、证据与失败分类见`05 §17.6`。
+
+### 16.3 证据规则
+
+- process manifest必须含role/PID/PPID/binary SHA/port/nonce-ready摘要/start-end/exit/cleanup，不含argv secret或env value。
+- case证据只含baseline ID、fixture hash、计数、枚举、布尔断言、耗时和失败分类。不保存prompt/assistant/raw/title、bearer/DSN/key或真实路径。
+- 安全扫描只保存scanner version、pattern SHA-256和hit count；任一非预期命中为Gate FAIL。
+- 任一用例使用mock Vue、单仓fixture、手工数据库状态或独立API curl替代真实主链，整个S10B不得声称PASS。
+
+### 16.4 LIA-126-008 / S10B 单独授权建议（Blocked Draft）
+
+**当前推荐：不批准执行。** 下列前置须全部关闭并回填新checkpoint与逐仓门禁：
+
+1. Owner单独批准并补齐Compose v2，或提供经等价复验的isolated PostgreSQL + exact Keycloak/Caddy/TLS profile；
+2. Host有受审查、test-only、loopback的fake Responses process injection，不改默认MiniMax行为且不需真实key；
+3. Desktop sidecar能在本次子进程向Host传递批准的raw/cleanup exact-true、生成content-free child log/PID evidence，退出后默认仍off；
+4. Desktop Chat/native-auth使用test-only Keychain namespace与isolated app-data，不触碰真实条目；
+5. 真实Desktop create action有content-free `/v2/tasks`编排，并与同一local session/Host operation可追踪，无正文上传。
+
+前置关闭前，DEC-126-037应接受`HOLD`，LIA-126-008状态保持`Blocked Draft / NOT AUTHORIZED`；G3 Partial、G4/G6 Pending。

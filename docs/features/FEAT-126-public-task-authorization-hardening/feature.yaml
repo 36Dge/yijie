@@ -4,7 +4,7 @@ feature:
   id: "FEAT-126"
   slug: "public-task-authorization-hardening"
   title: "安全的新建任务对话、任务记录与 Public Tasks 授权加固"
-  status: "g2-passed-g2a-rereview-passed-s4-s9-closure-passed-dec-126-036-accepted-g3-partial"
+  status: "g2-passed-g2a-rereview-passed-s4-s9-closure-passed-s10a-review-complete-dec-126-037-candidate-g3-partial"
   created_at: "2026-08-01"
   requirement_owner: "段成威"
   technical_owner: "段成威"
@@ -129,13 +129,13 @@ immutable_references:
     digest: "public=c8d9e6742802e0f0392ea8221a5fdd028f76107df893ab4c531da75f9e9e354b; public-ts=e84b70be6505dc5c0fc1e4702018fad2839e1a3fe74d7730883151e49928b678; public-go=c3d6e58ee37157aaeeb7f9dbaf216881ba2ef3057a01f74c169a28467f3fc697; create-fixture=7d366b3e44a9bd86a5c02638b152ac52d79580257ab735d634b01bc5bc73a178; success-fixture=b08848c4ec8b617cadf3024b723dc2067b84829091d102889a7b2b7eb249200e; access-denied-fixture=5333a781ddd9a81a290519f2948020eeec01889808b5d94e5e2f5f4d1438326f; not-found-fixture=db2778cfce53c59b68c140d0c74a95ffa648e7cf20382ef74cf257039b2d0191; sdk-tarball=21b17b50ee265e1ebbd7a5248880c7874c88def65c538f1216d0413e85fab082"
     post_commit_verification: "PASS 2026-08-02: exact parent c000a0245acb5c3f7ead5d2a877fb60c281c588c; make generate/lint/test/build; 29 generated files current; Node 27/27; Go PASS; pnpm pack:sdk; supported contracts-v0.2.0 breaking PASS; Public Tasks v1 2 paths and Agent Host v1 7 paths plus reference closure equal; Public Tasks targeted source/schema/fixture conformance 3/3; digests stable; worktree clean"
     downstream_runtime_conformance: "PASS as local uncommitted LIA-126-002 closure evidence: API and Desktop projections/locks resolve exact 29317b6426578749dc698fc2ad32b986ee5c8e9f; Host lock resolves the same source commit and unchanged Agent Host source digests; generate drift and contract-check gates pass. This is not a merge, release or activation artifact"
-    g2a_status: "DEC-126-024 Accepted 2026-08-02 / G2A Re-review Passed; DEC-126-025 reconciled remote availability; DEC-126-026/027/028/030/031/032/033/034 accepted S4-S8B closure. LIA-126-007 S9 only adds test authority/fixtures and does not change central contracts, production Host/Desktop behavior or Runtime pin. No MiniMax, S10-S11, merge, tag, publish, deploy or activation"
+    g2a_status: "DEC-126-024 Accepted / G2A Re-review Passed; S4-S9 Closure accepted. S10A docs/read-only review has no source-contract impact; DEC-126-037 is pending and recommends HOLD. No MiniMax, S10P/S10B/S11, merge, tag, publish, deploy or activation"
   runtime:
     repository_commit: "3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f"
     upstream: "codex-cli 0.144.6 / rust-v0.144.6 / 5d1fbf26c43abc65a203928b2e31561cb039e06d"
     model_provider: "MiniMax China Responses API"
     model: "MiniMax-M3"
-    status: "current read-only Runtime baseline; canonical thread/delete, thread/name/set, reasoning summary/raw notifications and turn outputSchema confirmed; one isolated exact-binary delete check passed functional/restart absence but found byte residue in Runtime WAL/log; five local fake-provider fixtures passed; MM-126-001 title passed once; MM-126-002 remains FAIL under the historical public-summary gate and observed seven raw deltas plus one raw completed part; this does not prove raw stability/security/persistence; provider call hard cap exhausted; Host business bridge pending and raw flag must remain off"
+    status: "current read-only Runtime baseline; artifact binary sha256=1ef4f1daba0c5ac267e9bf661d129c3dfc59ffe5cd9ab7767b22a1e9508df1fe and manifest sha256=2560a3171625765b0a62c685950e0c5df3cebfbe2b00635d3a13db2354276682 verified in S10A. S4-S9 Host/Desktop layered conformance passed, but real process E2E is blocked because Host has no fake-provider process injection and Desktop forces child v2 flags false. Historical MiniMax evidence/call cap unchanged; no provider call in S10A"
   visual_references:
     - id: "VIS-126-001"
       sha256: "f56a1638f28efe2c4084e7418022d24595eee2d34c70aaa5fb0a9c4c468884f0"
@@ -165,9 +165,14 @@ immutable_references:
       status: "accepted by Owner with DEC-126-029 on 2026-08-03; DEC-126-030/031 accepted S7C/S8A; DEC-126-032/033 accepted S8B0; LIA-126-006 separately authorized S8B and DEC-126-034 accepted its Closure Review on 2026-08-03"
       scope: "versioned closed Tauri command/event envelopes, Rust-bound authorization context, opaque cursors, stable content-free errors, bounded assistant/raw-reasoning projections, sequence/backpressure/cancellation/stale-selection/reconnect semantics and S7C/S8A/S8B re-slicing"
     - id: "DESIGN-126-006"
-      status: "accepted by Owner with DEC-126-032 on 2026-08-03; LIA-126-005/DEC-126-033 closed S8B0; LIA-126-006/DEC-126-034 closed S8B; LIA-126-007 later authorized S9 fake-provider Eval. Feature activation and S10-S11 remain unauthorized"
+      status: "accepted by Owner with DEC-126-032; S8B0/S8B/S9 later closed. Feature activation and S10P/S10B/S11 remain unauthorized; S10A is read-only design only"
       scope: "default-off local Chat UI gate, route/capability/deep-link lifecycle, permission-to-chat bind/dispose, Pinia consumption gaps, Host/Runtime readiness and storage-failure closed projections, Tasks sample removal strategy, cleanup navigation, scroll thresholds and S8B0/S8B/S9/S10/S11 re-slicing"
       contract_stop: "resolved locally under LIA-126-005 at yijie-desktop@5dab02a1ad5f03fead236aa7060fa6a75a234d85: the two closed readiness/recovery commands and storage projections are implemented and conformant. LIA-126-006 consumed them without changing private IPC, Rust domain, central contracts, Host wire or Runtime pin"
+    - id: "DESIGN-126-007"
+      status: "complete as S10A read-only design candidate on 2026-08-04; DEC-126-037 Ready for Owner Approval with recommended HOLD; LIA-126-008 blocked draft"
+      scope: "exact local process/start-stop manifest, PostgreSQL/OIDC alternatives, child-only exact-true profile, fixed loopback ports, content-free evidence format, S10B-001-012 E2E matrix and stop conditions"
+      blockers: "BLK-001 missing Compose v2/current stack; BLK-002 no Host fake Responses process injection; BLK-003 Desktop supervisor forces raw/title/cleanup false and discards child output; BLK-004 fixed Chat/native-auth Keychain namespaces; BLK-005 Desktop production flow does not call Public Tasks v2"
+      contract_impact: "none for S10A docs/read-only review; closing BLK-002 through BLK-005 may affect deployment interface, private IPC or production orchestration and therefore requires a separate S10P design/authorization"
   public_tasks_consumer_inventory:
     status: "complete for repository-local source; Q-010 resolved 2026-08-02"
     result: "no active repository-local consumer observed; generated SDKs are artifacts; agent-host same-name route is a different contract; external consumers remain unknown-public safe compatibility category"
@@ -192,10 +197,11 @@ immutable_references:
     package_publish_policy: "N/A; do not publish SDK/package or configure a registry"
     deployment_policy: "N/A; no online deployment, production canary, production activation, cloud database integration or real user data"
     model_validation: "fake provider and fixed fixtures first; no MiniMax call in this documentation adjustment; one bounded local MiniMax smoke requires separate Owner approval after the local chain is complete; keys never enter logs, databases, documents or frontend storage"
-    implementation_authorization: "DEC-126-030/031 accepted S7C/S8A, DEC-126-032/033 accepted S8B0 and DEC-126-034 accepted LIA-126-006/S8B. DEC-126-035 is Accepted and records the Owner-authorized remote availability. Owner separately authorized LIA-126-007/S9 and accepted its deterministic fake-provider Eval Closure with DEC-126-036. S10-S11, MiniMax, feature activation, any additional push and merge/tag/publish/deploy remain unauthorized"
+    implementation_authorization: "S4-S9 Closure passed and DEC-126-036 is Accepted. Owner authorized S10A read-only review only; DESIGN-126-007 is complete, DEC-126-037 is a pending HOLD candidate, and LIA-126-008/S10B is a Blocked Draft. S10P/S10B/S11, MiniMax, feature activation, any additional push and merge/tag/publish/deploy remain unauthorized"
   local_foundation_implementation:
     authorization: "LIA-126-001 foundation plus LIA-126-002 corrective closure; LIA-126-002 resumed under DEC-126-025; LIA-126-003 separately authorized S7C Rust-only implementation after DESIGN-126-005/DEC-126-029 acceptance"
-    status: "S4-S9 Closure passed under DEC-126-026/027/028/030/031/033/034/036. LIA-126-007/S9 remains limited to test-specific Host/Desktop files and its local checkpoints; G3 remains Partial because S10-S11 are unauthorized and unimplemented. All flags remain default-off"
+    status: "S4-S9 Closure passed under DEC-126-026/027/028/030/031/033/034/036. S10A review completed without business/process mutation and found five open readiness blockers; G3 remains Partial because S10B-S11 are not runnable or authorized. All flags remain default-off"
+    s10a_governance_baseline_full_commit: "276f88718eb4146ff5d82cc88a04548d3e1ce1d0"
     contract_full_commit: "29317b6426578749dc698fc2ad32b986ee5c8e9f"
     governance_checkpoint:
       accepted_baseline_local_full_commit: "6de641f715751bb8ca94ce6804e5a33ff18d9569"
@@ -342,7 +348,19 @@ immutable_references:
       raw_gate: "PASS: valid required 210/210; negative detection 40/40 with gap=10, invalid=10, missing=10, oversize=10; exact sequence/item/content-index and delta/final reconciliation; HTML/Markdown execution and Host log/bbolt/Desktop bundle body leak count 0; Desktop SQLCipher restart/history/terminal/delete lifecycle PASS"
       repository_gates: "Host make feat126-eval/lint/test/go build/diff/security PASS; Desktop pnpm lint/test/build, targeted fixture tests, cargo fmt/clippy/build and full Rust rerun 96 pass/0 fail/1 pre-existing ignored PASS. Initial full Rust run observed one pre-existing cleanup test stale-now timing failure; isolated and second full rerun passed, and application.rs is outside the S9 diff"
       exclusions: "no MiniMax or external provider call; no real data; no feature activation; no IPC, central contracts, Host/Public Tasks wire or Runtime pin change; no S10; no remote write until separately authorized"
-    exclusions: "no MiniMax call; no Runtime, Infra, production Rust/private IPC, Host/Public Tasks wire or contracts source change; no additional remote write or push, merge, tag, publish or deploy; no feature flag activation; no S10-S11 implementation or complete local four-component E2E"
+    s10a_local_e2e_readiness_review:
+      authorization: "Owner explicitly authorized read-only inventory, test orchestration design and governance updates only on 2026-08-04"
+      status: "DESIGN-126-007 complete; DEC-126-037 Ready for Owner Approval with recommended HOLD; LIA-126-008/S10B Blocked Draft / NOT AUTHORIZED"
+      fixed_baselines: "Governance 276f88718eb4146ff5d82cc88a04548d3e1ce1d0; Contracts 29317b6426578749dc698fc2ad32b986ee5c8e9f; API a64f9f591fb594818c1778e30c6941e2574b3264; Host 8707dea552cff74121b89aa8045f27da2c8c9378; Desktop adfdb5b24b3277ba39bd76a8cdc63fc138caf9cb; Runtime 3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f"
+      environment: "Docker 29.6.1 present; Compose v2 absent; psql/pg_isready/lsof present; no observed listener on the frozen local ports; no install/download/container/service action"
+      process_ports: "PostgreSQL 5432; OIDC 8443; API edge 9443; API direct 18080; Host 18081; fake Responses reserved 18082; Vite 1420/1421; loopback only"
+      blockers: "S10A-BLK-001 through 005 open: Compose/local stack, Host fake process provider config, Desktop effective child flags/log/PID, test-only Keychain/app-data namespace, and connected Desktop-to-Public-Tasks content-free orchestration"
+      evidence: "S10B-001 through 012 frozen; evidence stores only process role/PID/PPID/SHA/nonce/port/time/exit, fixture and pattern hashes, counts, enums, booleans, duration and failure class; no prompt/assistant/raw/title/secret/DSN/key/real path"
+      provider_calls: 0
+      process_start_count: 0
+      keychain_access_count: 0
+      recommendation: "accept DEC-126-037 option C and hold S10B; separately review S10P corrective and environment preparation, then resubmit LIA-126-008 only after every blocker closes"
+    exclusions: "no MiniMax call; no install/download/container/service start; no Keychain or database write; no Runtime, Infra, production Rust/private IPC, Host/Public Tasks wire or contracts source change; no additional remote write or push, merge, tag, publish or deploy; no feature flag activation; no S10P/S10B-S11 implementation or complete local four-component E2E"
     aggregate_workspace_gate: "PARTIAL / ENVIRONMENT BLOCKED: package, strict, G2A, YAML and all affected FEAT-126 repository gates pass; workspace make lint/test reaches yijie-infra after prior repositories pass, then exits 125 because installed Docker 29.6.1 has no Compose plugin. Infra static validation and 76 Node tests pass before that point; no waiver or full-green claim"
   release_artifacts: []
 
@@ -351,8 +369,8 @@ gates:
   G1_design_ready: "passed - 2026-08-01 - 段成威 approved the FEAT-126 recommended product scope and closed Q-001–Q-005/Q-011–Q-014"
   G2_implementation_ready: "passed - 2026-08-02 - 段成威 accepted DEC-126-017, DEC-126-011/012 and FEAT-126 Chat/App Shell Pattern; Q-010 resolved; LIA-126-001 later authorized S4-S6 only"
   G2A_contract_ready: "passed - 2026-08-02 - DEC-126-023/024/025 accepted and Q-017 resolved; 29317b6426578749dc698fc2ad32b986ee5c8e9f is the sole source-contract candidate, post-commit gates passed and dedicated remote ref matches exactly; c000a024, Draft PR #1 and origin/develop unchanged; LIA-126-002 separately resumed only for S4-S6"
-  G3_slice_complete: "partial - 2026-08-04 - DEC-126-026/027/028/030/031/033/034/036 accepted S4-S9 Closure. S10-S11 remain unauthorized and unimplemented"
-  G4_code_complete: "pending - requires local API, Agent Host, Desktop and Runtime builds plus the complete local conversation E2E"
+  G3_slice_complete: "partial - 2026-08-04 - S4-S9 Closure accepted; S10A readiness review complete with DEC-126-037 candidate and five blockers. S10P/S10B-S11 remain unauthorized and unimplemented"
+  G4_code_complete: "pending - LIA-126-008 is blocked until S10A-BLK-001 through 005 close; then requires exact local API, Agent Host, Desktop and Runtime builds plus S10B-001 through 012"
   G5_production_ready: "not-applicable - DEC-126-022 excludes online deployment and production activation; any future production intent must reopen and pass the production track"
   G6_delivery_complete: "pending - FEAT-126 local-only scope; requires Owner acceptance of local service startup and the complete local functional chain; does not mean Production Ready"
 

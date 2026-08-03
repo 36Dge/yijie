@@ -47,14 +47,15 @@
 | DEC-126-034 | S8B Vue UI Closure Review | A. 接受S8B并保持G3 Partial、之后单独评审S9；B. 退回指定Vue/a11y P1；C. 扩大到flag activation、MiniMax或四组件E2E | **Owner采用A**：接受LIA-126-006本地checkpoint`yijie-desktop@35f27447398529cca4dec85fa1f67e779c7a7cbd`的真实`/chat`/`/chat/:sessionId`页面、App Shell项目/session树、纯文本composer、assistant/raw reasoning、session/project菜单、delete/cleanup closed navigation、48/160滚动与production-grade light/dark/a11y；继续保持flag off和G3 Partial | 29/29个TS测试文件、164/164 tests、axe 0 serious/critical、Vite production build、Rust 95/95（另1既有ignored）、npm audit 0 known vulnerabilities；浏览器1180×760 light/dark、200% zoom等价视口、permission/delete焦点恢复和plaintext DOM检查PASS。无IPC/Rust/contracts/Host/Runtime/MiniMax/远端变化。VoiceOver人工清单已提供但不伪称已人工执行，保留到S11/G6 | 段成威 | **Accepted 2026-08-03 / S8B Closure Passed / G3 Partial**；不自动授权S9/S10/activation |
 | DEC-126-035 | Owner授权push后的Remote State Reconciliation | A. 将远端可达误写为merge/release完成；B. 回退已授权push；C. 只登记精确remote refs/clean clones并保持全部Gate与activation边界 | **Owner接受C**：登记yijie/API/Host/Desktop accepted checkpoints及sole contracts candidate；五仓候选/develop refs和临时clean clone均精确PASS | 远端可达只提高检出/审计能力；不改变`origin/develop`、Draft PR #1、candidate identity、G3/G4/G6、flags、merge/tag/publish/deploy | 段成威 | **Accepted 2026-08-04**；另行授权LIA-126-007/S9，不授权S10–S11 |
 | DEC-126-036 | LIA-126-007 / S9 fake-provider Eval Closure Review | A. 接受S9并保持G3 Partial、之后单独评审S10；B. 退回指定Eval P1；C. 扩大到MiniMax/flag/四组件E2E | **Owner接受A**：接受Host唯一版本化authority、250条锁定合成dataset、title/raw逐指标PASS，以及Desktop exact fixture→reducer→SQLCipher→restart/history/delete→plaintext Vue链；接受两个仅本地checkpoint，保持所有production source/wire/flags不变 | 摘要锁、逐仓全量门禁与no-log/bundle证据均通过；一次既有cleanup test跨秒波动已由单测和第二次full rerun归类，不在S9 diff。S9不能替代S10多进程E2E | 段成威 | **Accepted 2026-08-04**；G3 Partial，不授权S10 |
+| DEC-126-037 | S10A Local E2E readiness与LIA-126-008是否可授权 | A. 忽略缺口直接启动S10B；B. 用S9 runner/独立curl/单仓fixture代替四组件；C. 接受DESIGN-126-007但HOLD S10B，先关闭test-profile/chain缺口 | **推荐C**：Compose v2缺失；Host只能以硬编码MiniMax配置启动可创建thread的Runtime；Desktop sidecar清空env并强制raw/title/cleanup=false、丢弃child输出；Chat/native-auth Keychain namespace固定；Desktop实际未消费Public Tasks `/v2/tasks`。因此LIA-126-008保持Blocked Draft，先单独设计S10P corrective与环境准备 | 上述缺口分别触发用户冻结的environment、provider config、private deployment interface、secure-storage与production orchestration停止条件。直接启动要么会调MiniMax/碰真实Keychain，要么只能得到虚假的“已开flag”或空Tasks表证据。HOLD不回退S4–S9 Closure、G2/G2A或Local-only战略 | 段成威 | **Ready for Owner Approval 2026-08-04 / Recommended HOLD**；S10B未授权 |
 
 ## 3. ADR 判定
 
 - 是否改变既有 Accepted ADR：不削弱 ADR-0012；Accepted DEC-126-001 保留其 FEAT-126 安全责任。若未来改成迁号，必须重开 G1、形成新 Accepted ADR 并同步全部 FEAT-125 引用。
 - 是否改变跨仓职责/数据权威：是。ADR-0013 已接受 Desktop embedded SQLite 为 confidential conversation authority，并明确 PostgreSQL/Redis/pgvector/bbolt 的非替代职责；ADR-0015 冻结隔离标题，ADR-0016/DEC-126-016 冻结 Host raw-reasoning展示与Desktop SQLCipher历史权威。DESIGN-126-003/DEC-126-017现已提交 exact v2/schema/caps候选；Public Tasks ownership/auth由DEC-126-011/012提交批准。
 - 是否改变 Accepted Design Pattern：是。Chat 1.1.0 的 active state 要附件/右侧面板，App Shell 2.0.0 有全局收起；必须在代码前形成新候选版本并由段成威接受。
-- ADR/Decision 结论：ADR-0013/0014/0015/0016与DEC-126-011/012/016–036均已Accepted。Chat/App Shell Pattern已批准，S4–S9 Closure通过；G3仍Partial。
-- G2A/local 结论：`29317b6426578749dc698fc2ad32b986ee5c8e9f`仍是唯一source-contract candidate；yijie/API/Host/Desktop accepted checkpoints也已在专用候选分支精确可达。`c000a0245acb5c3f7ead5d2a877fb60c281c588c`仅为历史remote candidate，Draft PR #1与各`origin/develop`不变。G4/G6 Pending、flags关闭；S9已按LIA-126-007形成本地Closure候选，S10–S11须另行授权。
+- ADR/Decision 结论：ADR-0013/0014/0015/0016与DEC-126-011/012/016–036均已Accepted；DEC-126-037为Ready for Owner Approval的HOLD候选，不得预写为Accepted。Chat/App Shell Pattern已批准，S4–S9 Closure通过；G3仍Partial。
+- G2A/local 结论：`29317b6426578749dc698fc2ad32b986ee5c8e9f`仍是唯一source-contract candidate；远端候选/develop/Draft PR不变。G4/G6 Pending、flags关闭；S10A只读评审完成，DEC-126-037为HOLD候选，S10P/S10B/S11须另行授权。
 - 架构 Owner：段成威。
 
 ## 4. 风险登记
@@ -83,6 +84,10 @@
 | R-126-020 | WebView伪造tenant/owner/resource，或取得Host bearer、DB key、项目真实路径/原始Host wire | medium | critical | Rust-bound短期context、command capability/resource复验、opaque IDs、closed DTO、secret/path/raw-wire denylist | IPC auth negative matrix、foreign ID、logout/revision expiry、secret/path/wire canary与no-log scan | context立即失效、清空store、停止订阅、保持feature flag off并旋转本地token/key（如实际泄漏） | 段成威 | low for S8A local conformance；process E2E仍待S10 |
 | R-126-021 | Tauri event无背压或late event在切换/重启后写入错误session，导致内存放大或跨scope正文闪现 | high | critical | per-subscription 64 events/256KiB queue、20Hz合并、严格sequence/context/subscription/selection epoch、overflow/gap强制resync | fixed event fixture、10k delta、A→B race、queue overflow、restart/reconnect/fake Host fault tests | 丢弃stale projection、发`resync_required`、从SQLCipher重新加载受控snapshot | 段成威 | low-medium after S8A store PASS；真实process/UI E2E仍待S8B/S10 |
 | R-126-022 | UI flag只隐藏导航但深链/loader仍可实例化，或Vue从旧command/错误猜Host/Runtime ready而错误发送 | high | critical | 独立exact-true/default-off gate覆盖nav/route/deep-link/loader；route capability；Rust closed readiness/recovery；页面只调store | flag truth-table、route lazy-loader spy、deep-link auth、schema/serde/TS readiness fixtures、ready/send race | 保持flag off；丢弃S8B0 checkpoint并回到S8A；清空旧context/store | 段成威 | low after S8B0 local gates；真实S8B组件与S10进程链仍待验证 |
+| R-126-023 | 将S9 in-process fake runner或独立curl冒充Host→Runtime→Desktop→API多进程E2E | high | critical | DESIGN-126-007 process manifest、父子PID/nonce/SHA、同一run ID和真实production components；禁止mock Vue/单仓fixture冒充 | S10B-001–003 + process tree/readiness/route evidence | HOLD S10B；先形成可启动fake HTTP provider与实际Public Tasks consumer | 段成威 | **open / blocks S10B, G4, G6** |
+| R-126-024 | 临时flag被Desktop sidecar强制改回false，但证据仅记录父进程env而误报已开启 | high | critical | child effective-env allowlist、route/readiness probe与flag-exit scan；不依赖shell声明 | child manifest + raw/cleanup route conformance + default-off scan | HOLD；修复受审查的test-profile注入面 | 段成威 | **open / blocks S10B** |
+| R-126-025 | S10使用固定Keychain namespace触碰真实DB/auth密钥或留下本机条目 | medium | critical | test-only namespace、owner-only app-data、启动前后inventory digest、明确cleanup owner | S10B-001/012 + namespace diff（不记录secret） | 不启动Desktop；本轮不读/写/删Keychain | 段成威 | **open / blocks S10B** |
+| R-126-026 | 把空Public Tasks表当成content-free集成PASS，掩盖Desktop根本未调`/v2/tasks` | high | critical | 同一user action/run ID必须产生closed create/get/audit/DB证据；body/title/path denylist零命中 | S10B-002/009 + scoped row/audit counts/hash | HOLD；单独评审content-free orchestration实现 | 段成威 | **open / blocks S10B, G4, G6** |
 
 ## 5. 威胁建模
 
@@ -105,7 +110,7 @@
 |---|---|---|---|---|---|---|---|
 | 用户/模型正文 | 明确发送/stream | 对话展示与恢复 | Desktop local DB；Runtime 自有 rollout | MiniMax 处理；不写 yijie-api DB | 至 session 永久删除 | DB transaction + approved Runtime cleanup | 不记录正文 |
 | raw reasoning | Runtime raw reasoning event/completed content | 展示具体“模型推理记录” | Desktop SQLCipher独立records；terminal/显式incomplete落库；不得用localStorage/Host log/Runtime rollout替代 | 不额外共享；不进云端/日志/遥测/审计正文 | 同session | FK cascade + ADR-0014 checkpoint/限定披露 | 仅event/bytes/duration/status/outcome，不含正文 |
-| title | model/fallback/user | 列表与路由标题 | Desktop local DB | Public Task 是否同步为 Open | 同 session | cascade | source/version/outcome |
+| title | model/fallback/user | 列表与路由标题 | Desktop local DB | 不进Public Tasks/PostgreSQL；当前Desktop也无`/v2/tasks` consumer | 同 session | cascade | source/version/outcome |
 | project reference | native picker | cwd 与列表 | app data/bookmark | Host 只收 canonical cwd | 至移除/卸载 | revoke/remove；目录不删 | ID/outcome，无 path |
 | mapping/cursor | Host/Runtime | resume/dedupe | Host bbolt + Desktop DB | local processes | 同 session | cleanup/delete | IDs/outcome |
 | security audit/deletion receipt | authority/Desktop/Host cleanup candidate | 追责/删除恢复控制 | append-only API audit；Desktop encrypted job/receipt；Host独立content-free operation receipt只为丢失响应幂等 | authorized local owner only | receipts 候选30天 | 正文随session删除；receipts到期物理删除/适用checkpoint | 无正文/title/path/raw session/thread ID；仅keyed hash/surface outcome |
@@ -167,7 +172,7 @@
 | Source-contract Draft PR与CI观察 | 段成威 | Approved scope / Executed；PR #1固定历史candidate，CI已到终态并回填 | 2026-08-02 | Draft PR `develop <- feat/feat-126-contract-candidate`；head精确匹配旧`c000a024`；run 30741466028在dependency audit失败；未重跑/豁免/修复/push/merge |
 | Source-contract merge readiness | 段成威 | Approved DEC-126-021 / HOLD；当前不批准merge | 2026-08-02 | CI red；`brace-expansion 2.1.2` high；`govulncheck`与`origin/main` breaking skipped；不回退G2/G2A |
 | Local-only Delivery Strategy | 段成威 | Approved / DEC-126-022 Accepted；交付目标改为Local Runtime Ready | 2026-08-02 | tag/publish/deploy/G5均N/A；G6为Owner本地验收；业务编码与一次MiniMax local smoke仍分别待批准 |
-| Local Implementation Authorization | 段成威 | LIA-126-001/002 Executed；DEC-126-027/028/030接受S7A/S7B/S7C；LIA-126-004/005完成S8A/S8B0；DEC-126-034接受LIA-126-006 S8B Closure；DEC-126-036接受LIA-126-007 S9 Closure | 2026-08-04 | S4–S8B accepted checkpoints已远端精确复验；S9 checkpoints仅本地；无MiniMax/flag activation/merge/tag/publish/deploy；S10–S11仍禁止 |
+| Local Implementation Authorization | 段成威 | LIA-126-001–007已完成S4–S9并被接受；S10A只读评审已授权；LIA-126-008为Blocked Draft | 2026-08-04 | 无MiniMax/flag activation/merge/tag/publish/deploy；S10P/S10B/S11仍禁止 |
 | Public Tasks input / G2A re-review | 段成威 | DEC-126-023/024 Accepted；Q-017 Resolved；G2A Re-review Passed | 2026-08-02 | `29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一candidate；`c000a024`仅为历史远端候选；后续由DEC-126-025恢复LIA-126-002 |
 | Remote State Reconciliation / LIA resume | 段成威 | DEC-126-025 Accepted；远端事实已核对；LIA-126-002仅S4–S6恢复 | 2026-08-02 | exact remote refs；旧PR/develop/merge/tag/publish/deploy不变；S7–S11/UI/MiniMax/追加push禁止 |
 | LIA-126-002 Closure Review / S7A Authorization | 段成威 | DEC-126-026 Accepted；S4–S6 Foundation Corrective Closure通过；单独授权S7A Desktop Rust Host Bridge/Domain | 2026-08-02 | S8/UI、MiniMax、flag activation、远端写入、merge/tag/publish/deploy继续禁止 |
@@ -184,6 +189,7 @@
 | DEC-126-035 Remote State Reconciliation | 段成威 | Accepted；只接受精确远端可达事实并保持Gate/发布边界 | 2026-08-04 | 五仓`ls-remote`+临时clean clone PASS；develop/旧PR/sole candidate不变；治理checkpoint `1e7a312…6353`不push |
 | LIA-126-007 / S9 Authorization | 段成威 | Approved / Executed；仅test authority/fixtures/harness与本地checkpoint | 2026-08-04 | 固定pins、250条合成dataset、title/raw/no-log/injection Gate；0 MiniMax/flag/S10/远端动作 |
 | DEC-126-036 S9 Closure Review | 段成威 | Accepted；Owner接受方案A并保持G3 Partial | 2026-08-04 | Host `8707dea…c9378`、Desktop `adfdb5b…af9cb`；逐指标和逐仓门禁PASS；不授权S10 |
+| S10A Readiness & Test Profile Review | 段成威 | 已授权只读盘点/测试编排与治理文档；DEC-126-037仍待Owner决策 | 2026-08-04 | DESIGN-126-007、Compose/provider/sidecar/Keychain/Public Tasks五项blocker；未启动进程/flag或修改业务码 |
 
 ### DEC-126-034 残余风险判定
 

@@ -6,7 +6,7 @@
 - DEC-126-022 Local-only Delivery Strategy已Accepted；LIA-126-001已于2026-08-02批准，且只允许S4–S6本地基础切片。
 - S4–S6已有远端checkpoint并保持flags/routes默认关闭；DEC-126-026已接受其Closure并单独授权S7A Desktop Rust Host Bridge/Domain。
 - DEC-126-027已接受S7A；DEC-126-028已接受S7B durable outbox、strict/coalesced reducer、history orchestration、title precedence与fake Host应用链。
-- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；DEC-126-030/031已接受S7C/S8A，DEC-126-032/033已接受S8B0，DEC-126-034已接受S8B。DEC-126-035已接受远端事实，DEC-126-036已接受LIA-126-007/S9 Closure；S10–S11仍须逐切片获得明确授权。
+- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；DEC-126-030/031/033/034已接受S7C–S8B，DEC-126-036已接受S9。S10A只读评审形成DESIGN-126-007/DEC-126-037候选，当前推荐HOLD LIA-126-008；S10B–S11仍须逐切片明确授权。
 
 ## 2. 实施原则
 
@@ -56,7 +56,9 @@ S0 G1 product decisions (Passed) + G2 Pattern/ADR design (Passed)
 | S8B0 | UI integration readiness，不含完整Vue视觉页 | AC-048–052；AC-002/016/028/029/034 subset | yijie-desktop Rust + TS integration | exact-off UI config、route/meta guards、permission lifecycle adapter、Pinia project/paging/cleanup actions、Tasks real/default-off、DESIGN-126-006 readiness schema/serde/TS fixtures/commands | 完整Chat Vue页面/组件/样式、visual design、flag activation、production mock、central contract/Runtime | DEC-126-032 Accepted + separate S8B0 authorization | gate truth table、route/loader/auth、schema conformance、store/restart/race/no-log、lint/test/build | drop S8B0 diff；all flags false |
 | S8B | 极简production-grade Vue UI、交互与可访问性（仅本地运行） | AC-001/002/004/006/008–013/019/022/031–034/036/048–052 | yijie-desktop Vue | approved components/pages/tokens、真实S8B0 store接线、visual/a11y/tests/Pattern implementation | mock transport作为真实链、excluded actions/attachments/right panel/unrelated shell refactor、未经批准flag activation | S8B0 Closure + Accepted Pattern + separate S8B authorization | lint/test/build/visual/a11y/manual + real local chain | disable local chat UI flag；revert Vue slice |
 | S9 | fake-provider title/raw-reasoning Eval | AC-010/011/017/018/042; NFR-007 | Host/Desktop + eval authority | fixed pin/dataset/runner；raw availability、sequence、content/security、no-log metrics | real data、MiniMax、unbounded calls、事后改写旧MM结果 | S5/S7C/S8A/S8B + later authorization | local fake Eval；future MM-126-003 separately approved only | title/raw flags off；missing raw blocks local G6 |
-| S10 | 本地跨仓E2E/security/resilience/performance/delete rehearsal | all Must AC/NFR incl. AC-035–042 | API/Host/Desktop/pinned Runtime | local harness/runbook/evidence | production activation、real user data、tag/publish | S4–S9 + later authorization | full local matrix in 06/08 | stop local processes；fix/revert failing slice；flags off |
+| S10A | Local E2E readiness/test-profile review | AC-035–042 planning only | yijie docs + affected repos read-only | DESIGN-126-007、DEC-126-037、process/evidence matrix | process startup、flag、business source | DEC-126-036 + Owner S10A instruction | exact SHA/tool/source inventory + docs gates | no process/data mutation |
+| S10P | Test Profile/Chain Corrective（future candidate） | only S10A-BLK-002–005 | Host/Desktop plus exact consumer owner to be reviewed | fake HTTP provider injection、sidecar temp flags/log/PID、test Keychain namespace、Public Tasks orchestration | MiniMax、default-on、real data | DEC-126-037 Accepted + separate design/authorization | repo/security/no-log/default-off/conformance | revert narrow candidate；flags off |
+| S10B | 本地跨仓E2E/security/resilience/performance/delete rehearsal | all Must AC/NFR incl. AC-035–044 | API/Host/Desktop/pinned Runtime | local process harness/runbook/content-free evidence | production activation、real user data、tag/publish | BLK-001–005 closed + LIA-126-008 separately approved | S10B-001–012 full matrix | stop local processes；clean temp data；flags off |
 | S11 | Owner Local Runtime Ready验收 | AC-043 | all local | local startup guide、exact refs、evidence summary | merge/tag/publish/deploy/Production Ready声明 | G4 evidence + Owner review | local startup + complete functional chain | keep feature disabled until accepted；reopen failed slice |
 
 ## 5. 跨仓顺序
@@ -140,7 +142,9 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 | S8B0 | ancestor of remote candidate `yijie-desktop@35f27447398529cca4dec85fa1f67e779c7a7cbd`（slice checkpoint `5dab02a1ad5f03fead236aa7060fa6a75a234d85`） | 22-command closed IPC、Rust readiness/storage probe、exact-off gate、routes/lifecycle/store/Tasks metadata；不含完整Chat Vue visual | 135 TS；96 Rust（95 pass/1 existing ignored）；generate/lint/type/build/fmt/clippy/no-log PASS | LIA-126-005 / DEC-126-033 | Closure Passed / included in exact remote candidate；未merge/启用 |
 | S8B | remote candidate checkpoint `yijie-desktop@35f27447398529cca4dec85fa1f67e779c7a7cbd` | production Vue Chat/App Shell/composer/reasoning/menus/scroll/a11y；27 files | 164 TS、95/96 Rust、lint/build/audit/bundle/security/browser/axe PASS；VoiceOver checklist retained for S11/G6 | DEC-126-034 Accepted；Owner-authorized push后经`ls-remote`与clean clone复验 | Closure Passed / exact remote candidate；未merge/启用 |
 | S9 | Host `8707dea552cff74121b89aa8045f27da2c8c9378`；Desktop `adfdb5b24b3277ba39bd76a8cdc63fc138caf9cb` | test-only runner/dataset/fixtures/consumer tests；production behavior unchanged | Host gates 250/250 title、210/210 valid raw、40/40 negative；Desktop exact fixture/history/delete/plaintext projection；repo gates PASS | LIA-126-007 executed；DEC-126-036 Accepted | Closure Passed；local only / not pushed |
-| S10–S11 | N/A | none | NOT RUN | not authorized | Pending separate sequential authorization |
+| S10A | governance candidate | read-only repo/environment/source inventory + DESIGN-126-007/DEC-126-037/LIA-126-008 draft | docs/static checks only；no process startup | Owner authorized review；DEC-126-037 Pending | Complete as review candidate / HOLD S10B |
+| S10P | N/A | none | NOT RUN | not authorized | Required by recommended DEC-126-037 before S10B |
+| S10B–S11 | N/A | none | NOT RUN | not authorized | Pending blocker closure and separate sequential authorization |
 
 ## 10. 变更控制
 
@@ -163,7 +167,7 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 | Contracts/G2A/remote | 段成威 | DEC-126-023/024/025 Accepted，`29317b...`为唯一candidate并已远端可达；`c000a024...`仅为历史远端候选，旧PR与develop不变；未merge/tag/发布/启用 | 2026-08-02 |
 | Contracts Draft PR / merge | 段成威 | DEC-126-021 Accepted/HOLD；CI failed dependency audit；merge不是local draft前置但当前仍不批准 | 2026-08-02 |
 | Local-only delivery strategy | 段成威 | DEC-126-022 Accepted；Local Runtime Ready目标，tag/publish/deploy/G5 N/A | 2026-08-02 |
-| Local Implementation Authorization | 段成威 | S7A–S8B已接受；DEC-126-034接受S8B Closure。Owner另行授权的checkpoint push已完成并只形成精确远端候选；LIA-126-007/S9已完成本地Closure候选；S10–S11、MiniMax/flag activation与新增远端动作仍禁止 | 2026-08-04 |
+| Local Implementation Authorization | 段成威 | S4–S9 Closure已接受；S10A只读评审已授权并形成候选。DEC-126-037未Accepted，LIA-126-008/S10B当前Blocked Draft；S10P/S10B/S11、MiniMax/flag activation与新增远端动作仍禁止 | 2026-08-04 |
 
 ## 12. Local Implementation Authorization 审批候选
 
@@ -217,7 +221,7 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - `LIA-126-006 / S8B`结果：Owner在DEC-126-033接受后单独授权Vue页面、交互、视觉与可访问性；实现消费真实authoritative store，fake投影只存在test harness；DEC-126-034已接受Closure，feature flag activation不随之授权。
 - S7C结果：Owner已接受DEC-126-030，S7C Closure Passed。
 - S8A结果：20个versioned commands、closed Schema/fixtures、Rust-bound context/event/cursors、TS validator/client/store已实现；Desktop `make lint/test/build`及安全扫描PASS；DEC-126-031已接受S8A Closure，G3仍Partial。
-- 当前状态：S4–S9 Closure已由Owner接受。G3仍Partial；S10–S11保持`NOT RUN`并继续未授权。
+- 当前状态：S4–S9 Closure已由Owner接受。G3仍Partial；S10A review完成但DEC-126-037待批，S10P/S10B/S11保持`NOT RUN`并未授权。
 
 ### LIA-126-005 / S8B0（Approved / Executed / DEC-126-033 Closure Passed）
 
@@ -259,3 +263,13 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - 环境与禁止项：仅fixed fake provider、fixed fixtures、临时SQLCipher/CODEX_HOME和合成数据；不调用MiniMax、不处理真实数据、不启用任何flag、不修改central contracts/Host wire/private IPC/Runtime pin、不执行远端写入、不进入S10。
 - Checkpoints：Host `8707dea552cff74121b89aa8045f27da2c8c9378`；Desktop `adfdb5b24b3277ba39bd76a8cdc63fc138caf9cb`；均仅本地且未push。
 - 退出：DEC-126-036 Closure Review已由Owner接受；S10仍须另行明确授权，S9授权不延伸到MiniMax、flag、真实数据或远端动作。
+
+### LIA-126-008 / S10B 四组件本地E2E（Blocked Draft / Not Authorized）
+
+- 候选基线：Governance=`276f88718eb4146ff5d82cc88a04548d3e1ce1d0`；Contracts=`29317b6426578749dc698fc2ad32b986ee5c8e9f`；API=`a64f9f591fb594818c1778e30c6941e2574b3264`；Host=`8707dea552cff74121b89aa8045f27da2c8c9378`；Desktop=`adfdb5b24b3277ba39bd76a8cdc63fc138caf9cb`；Runtime=`3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`。
+- 当前结论：不建议Owner现在授权。DESIGN-126-007证明Compose v2、fake provider process config、Desktop child flags/log/PID、test-only Keychain namespace和Public Tasks production consumer五项前置未满足。
+- 升级条件：五项blocker必须分别经设计/contract-impact审查、单独授权实现、逐仓门禁通过并形成新的clean local checkpoint；随后再更新此LIA为`Ready for Owner Approval`。
+- 未来允许范围：只在owner-only临时目录、synthetic identities/tenant/project、fixed fake Responses provider和pinned Runtime上启动API/Host/Desktop/Runtime，临时exact-true运行`S10B-001–012`，保留content-free evidence。
+- 永久禁止：MiniMax/外部模型、真实key/真实数据/真实项目、`.env`/CI/default config开flag、mock Vue/单仓fixture冒充、跳过migration、复用真实DB/Keychain、修改fixed contracts/Runtime pin、远端写入、push/merge/tag/publish/deploy。
+- 失败与退出：任一SHA/nonce/version/sequence/persistence/delete/content-free/no-log/default-off断言失败即停止全链，终止进程、保留最小content-free failure manifest、清理临时数据，不得通过重跑/降级断言直到绿灯。
+- 批准语义：即使未来Owner批准此LIA，也只是一次受控本地test-profile activation，不是默认feature activation、G4/G6自动通过、MiniMax授权或远端/发布授权。

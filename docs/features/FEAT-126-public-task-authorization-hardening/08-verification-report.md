@@ -5,17 +5,18 @@
 > 分支均已精确远端可达，旧Draft PR #1与各`origin/develop`不变。DEC-126-026已接受S4–S6
 > Foundation Corrective Closure并单独授权S7A Desktop Rust Host Bridge/Domain；DEC-126-027已由
 > Owner接受。随后单独授权的S7B Rust Application Orchestration/Domain已完成并由Owner通过DEC-126-028接受；远端可达不等于merge、发布或生产启用。
-> 随后Owner接受DESIGN-126-005/DEC-126-029、DEC-126-030及DEC-126-031，S8A Desktop private IPC与TypeScript ViewModel Closure Passed。Owner又接受DESIGN-126-006/DEC-126-032和DEC-126-033，S8B0 Closure Passed；之后单独授权LIA-126-006/S8B，并以DEC-126-034接受其Closure。DEC-126-035已接受远端事实；Owner单独授权的LIA-126-007/S9使用deterministic fake provider完成，并以DEC-126-036接受Closure。没有调用MiniMax、真实数据或生产环境；S10–S11与完整四组件E2E仍为`NOT RUN`。
+> 随后Owner接受DESIGN-126-005/006和S7C–S9 Closure。S10A只读readiness review已形成DESIGN-126-007、DEC-126-037与LIA-126-008 draft；代码/环境盘点发现五项阻断，因此推荐HOLD S10B。没有调用MiniMax、真实数据、Keychain、生产环境或任何业务进程；S10B–S11与完整四组件E2E仍为`NOT RUN`。
 
 ## 1. 验证上下文
 
 | Repository | Branch | Full HEAD SHA | Worktree | Runtime/toolchain | 时间 |
 |---|---|---|---|---|---|
-| yijie | `feat/feat-126-foundation-closure` | DEC-126-036候选治理baseline `ea33f7c23ef9583f8829e9aa456920c0d04afc0c`；Accepted状态checkpoint在最终门禁后另行回报 | 当前仅FEAT-126 package文件；0 FEAT-123/unrelated；本轮不push | zsh/macOS；feature package checker | 2026-08-04 Asia/Shanghai |
+| yijie | `feat/feat-126-foundation-closure` | S10A fixed baseline `276f88718eb4146ff5d82cc88a04548d3e1ce1d0`；本轮governance checkpoint在最终门禁后回报 | 开始时clean；仅FEAT-126 package diff；0 FEAT-123/unrelated；不push | zsh/macOS；feature package checker | 2026-08-04 Asia/Shanghai |
 | yijie-api | `feat/feat-126-foundation-closure` | local/remote exact `a64f9f591fb594818c1778e30c6941e2574b3264` | clean after 16-file Accepted checkpoint；candidate branch exact | Go 1.26.5 + isolated PostgreSQL | 2026-08-03 |
 | yijie-agent-host | `feat/feat-126-foundation-closure` | local S9 checkpoint `8707dea552cff74121b89aa8045f27da2c8c9378`；accepted remote parent `3e8df026110f0c895262329c2384d3896598f3d9` | clean；S9仅test runner/dataset/fixtures；not pushed | Go 1.26.5 + deterministic fake provider | 2026-08-04 |
 | yijie-desktop | `feat/feat-126-foundation-closure` | local S9 checkpoint `adfdb5b24b3277ba39bd76a8cdc63fc138caf9cb`；accepted remote parent `35f27447398529cca4dec85fa1f67e779c7a7cbd` | clean；S9仅fixtures/test harness；not pushed | Node 26/pnpm 11/Rust 1.95/SQLCipher/fake fixture | 2026-08-04 |
 | yijie-contracts | `feat/feat-126-content-free-candidate` | `29317b6426578749dc698fc2ad32b986ee5c8e9f` local/remote exact | clean；unchanged during review | locked generators | 2026-08-03 |
+| yijie-codex | `develop` | `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f` | clean；unchanged | Runtime 0.144.6；binary `1ef4f1…8df1fe`；manifest `2560a3‧6682` | 2026-08-04 |
 
 ## 2. Baseline
 
@@ -48,6 +49,7 @@
 | LIA-126-005 / S8B0 | Desktop `5dab02a1ad5f03fead236aa7060fa6a75a234d85` | exact-off gate、guarded route/lazy loader、permission lifecycle、project/session/cleanup store consumption、Rust-owned readiness/recovery/storage projection、真实Tasks metadata接线 | 0 final | DEC-126-033 ACCEPTED / CLOSURE PASS | 135 TS、95/96 Rust（1既有ignored）及lint/build/fmt/clippy通过；full Chat Vue page/visual、flag activation、MiniMax与远端动作均未发生；G3 Partial |
 | LIA-126-006 / S8B | Desktop `35f27447398529cca4dec85fa1f67e779c7a7cbd` | production Vue pages/App Shell/composer/reasoning/menus/scroll/a11y + real Pinia reducer + test-only harness | 0 final | DEC-126-034 ACCEPTED / S8B CLOSURE PASS | 29 TS test files/164 tests、axe 0 serious/critical、build、95/96 Rust、audit/security/bundle/browser证据；flag off；no IPC/Rust/central wire/MiniMax/remote action；G3 Partial |
 | DEC-126-035 Remote State Reconciliation | five exact candidate refs | `git ls-remote` + temporary single-branch/no-tags clean clones；HEAD/status/develop refs核对 | 0 | PASS / OWNER ACCEPTED | exact `650254b…139fa`、`a64f9f5…3264`、`3e8df02…f3d9`、`35f2744…7cbd`、`29317b6…e9f`；Owner-authorized historical push；reconciliation轮0 remote write |
+| DESIGN-126-007 / S10A | six fixed baselines + local tool/source/port inventory | branch/SHA/worktree exact；Runtime digest/version；Docker/Compose/PostgreSQL/listener；Host provider；Desktop sidecar/Keychain/Public Tasks consumer scan | 0 for read-only commands | REVIEW COMPLETE / S10B HOLD RECOMMENDED | BLK-001–005详见§9.12；无process/flag/provider/Keychain/business-source mutation |
 
 ## 4. 最终命令记录
 
@@ -66,6 +68,11 @@
 | V-S9-HOST | yijie-agent-host `8707dea552cff74121b89aa8045f27da2c8c9378` | `make feat126-eval`；`make lint`；`make test`；`go build ./...`；security/diff/hash checks | Go 1.26.5；deterministic fake provider | 0 | PASS 2026-08-04 | 250 cases；title 250/250 + semantic 200/200 + unsafe 50/50；raw 210/210 + negative 40/40；session coverage 77.8%；body leak=0 |
 | V-S9-DESKTOP | yijie-desktop `adfdb5b24b3277ba39bd76a8cdc63fc138caf9cb` | targeted Rust/TS fixture tests；`pnpm lint/test/build`；`cargo fmt --check`；`cargo clippy --all-targets -- -D warnings`；`cargo test --all-targets`；`cargo build --all-targets`；bundle/security/diff checks | Node 26 / pnpm 11 / Rust 1.95 / SQLCipher | 0 final | PASS 2026-08-04 | 30 TS files/165 tests；Rust final rerun 96 pass/0 fail/1 existing ignored；exact Host fixture hash、restart/history/delete/title/plaintext PASS；production bundle canary=0 |
 | V-S9-FLAKY-AUDIT | yijie-desktop unchanged `application.rs` test | first full Rust run → isolated rerun → second full rerun | same source/environment | 1 then 0/0 | CLASSIFIED NON-S9 TIMING FLAKE | first run only: existing cleanup test reused pre-bind `now` across a second boundary and saw no outbox；targeted rerun and second full run PASS；file absent from S9 diff，no waiver or product-code change |
+| V-S10A-BASELINES | six repositories | `git rev-parse --abbrev-ref HEAD` + `git rev-parse HEAD` + `git status --short` + remote/config read | Git | 0 | PASS | all six exact fixed SHAs/branches and clean worktrees at start；no checkout/reset/pull/fetch/push |
+| V-S10A-RUNTIME | yijie-codex artifact | manifest read + `shasum -a 256` + `codex --version` | codex-cli 0.144.6 | 0 | PASS READ-ONLY | artifact/manifest digest exact；app-server not started；no model/provider call |
+| V-S10A-ENV | local machine | `docker --version`; `docker compose version`; `command -v psql/pg_isready/lsof`; fixed-port listener scan | Docker 29.6.1 | Compose command non-zero expected | ENVIRONMENT BLOCKED | Compose v2 absent；psql/pg_isready present；no observed service listeners；no install/container/service action |
+| V-S10A-SOURCE | API/Host/Desktop read-only | exact config/start/sidecar/keychain/provider/Public Tasks consumer source inventory | rg/sed | 0 | HOLD FINDINGS | fake provider unrepresentable；child flags forced false/log null；fixed Keychain；Desktop `/v2/tasks` call absent |
+| V-S10A-GOV | yijie | feature package default/`--strict`/`--gate G2A`；Node YAML parse；`pnpm lint`；`pnpm test`；shell `bash -n`；`git diff --check` | project scripts / Node / pnpm / Git | 0 | PASS 2026-08-04 | DESIGN-126-007、DEC-126-037 Candidate与LIA-126-008 Blocked Draft结构/语法/治理一致；不代表DEC已批准或S10B已执行 |
 | V-YAML | yijie | Node ESM + `yaml` parse | Node/pnpm workspace dependency | 0 | PASS | `PASS: feature.yaml parsed` |
 | V-YIJIE-LOCAL | yijie | `pnpm lint && pnpm test` | Node/pnpm project scripts | 0 | PASS 2026-08-03 | repository manifest/contract governance valid；1/1 Node test PASS |
 | V-AGGREGATE-LINT-TEST | yijie | `make lint` and `make test` after package/strict/G2A/YAML | workspace aggregate scripts | 2 | PARTIAL / ENVIRONMENT BLOCKED | all repositories reached before Infra passed lint/tests；Infra static validators and 76 Node tests passed, then `scripts/plan.sh` called `docker compose -f ...` but installed Docker 29.6.1 lacks the Compose plugin (`unknown command: docker compose`, exit 125). Affected FEAT-126 API/Host/Desktop/Contracts gates separately PASS；no waiver or false green recorded |
@@ -137,13 +144,14 @@
 | AC-045–052/NFR-008/009 S8B0 subset | Desktop gate/router/lifecycle/store/readiness/recovery/storage/Tasks metadata | S8B0 conformance/auth/race/default-off/no-log matrix | V-S8B0-DESKTOP | DEC-126-033 ACCEPTED / CLOSURE PASS；no full Vue or activation claim |
 | S8B Vue UI/a11y subset | production Vue components + authoritative Pinia store + test-only harness | V-S8B-DESKTOP + browser/axe/security/bundle evidence | LIA-126-006 authorized commands | DEC-126-034 ACCEPTED / CLOSURE PASS；VoiceOver manual remains not run |
 | S9 title/raw Eval subset | Host versioned authority/runner/dataset + Desktop exact fixture consumer | V-S9-HOST / V-S9-DESKTOP / V-S9-FLAKY-AUDIT | LIA-126-007 authorized commands | PASS / DEC-126-036 Accepted；test-only，no production behavior claim |
-| remaining AC/NFR | S10–S11 | matrix in `06-test-plan.md` | no authorized command | NOT RUN |
+| S10A planning/readiness | process/test-profile/evidence design only | V-S10A-BASELINES/RUNTIME/ENV/SOURCE | Owner read-only authorization | COMPLETE / DEC-126-037 CANDIDATE / S10B HOLD |
+| remaining AC/NFR | S10B–S11 | S10B-001–012 matrix in `05/06` | no authorized command | NOT RUN |
 
 ## 7. 专项验证
 
 | 专项 | 范围 | 环境/版本组合 | 结果 | Evidence |
 |---|---|---|---|---|
-| Local four-component E2E | API/Host/Desktop/pinned Runtime create/stream/raw/history/actions/delete/restart | S4–S9 foundations/Eval only | NOT RUN | S10 unauthorized；blocks G4/Local-only G6 |
+| Local four-component E2E | API/Host/Desktop/pinned Runtime create/stream/raw/history/actions/delete/restart | S4–S9 foundations/Eval + S10A read-only review | NOT RUN / READINESS HOLD | BLK-001–005 block LIA-126-008；blocks G4/Local-only G6 |
 | Security/tenant | Public/local auth/IDOR/path/secret | synthetic tests + source/fixture review + fake Host/IPC/store + production Vue consumer | CURRENT AUTHORIZED SLICES PASS | nonce/token/loopback/error/application/context/IPC scope/cleanup receipt、plaintext rendering和no-log/bundle scan通过；process E2E仍待S10 |
 | Failure/resilience | DB/SSE/Host/Runtime/provider faults | repository fault tests + fake TCP Host/TS store + S8B production components | PARTIAL PASS | wrong nonce/token/SSE/error、outbox expiry/unknown outcome、event gap/backpressure/cancel/stale/restart、cleanup lease及UI closed states PASS；full process crash/reconnect/E2E still blocks G4 |
 | Migration rehearsal | Desktop SQLCipher + API Tasks owner | embedded SQLCipher + API PostgreSQL foundations | FOUNDATION PASS | populated Desktop v1→current与v2→v3、repeated/read-only/corrupt cases及API idempotency expiry migration PASS；full app rollback/startup E2E pending |
@@ -231,7 +239,7 @@
 - S7A授权结果：DEC-126-026另行授权Desktop Rust拥有Host bearer/token注入、loopback HTTP/SSE、schema header与nonce校验、typed wire/domain adapter；DEC-126-027已接受该closure并单独授权S7B，不授权Tauri/WebView或Vue UI。
 
 - Reviewer 是否独立于主起草上下文：否；本轮是 Owner 前的设计候选自检，最终独立 Reviewer 为段成威。
-- P0/P1 是否清零：对已授权并实现的S4–S9范围为是。未发现P0；各切片列明P1均有关闭证据，DEC-126-034已接受S8B Closure，DEC-126-036已接受S9 Closure。FEAT-126全需求仍未清零，因为S10–S11/G4/G6未开始；这不回退已接受的S4–S9 Closure结论。
+- P0/P1 是否清零：对已实现的S4–S9范围为是。FEAT-126全需求仍未清零；S10A发现5个S10B readiness P1，不回退已接受的S4–S9 Closure，但继续阻断S10B/G4/G6。
 - P2 例外批准：无；不是 accepted risk。
 
 ### 9.3 S7A Desktop Rust Host Bridge/Domain Closure Review
@@ -380,6 +388,22 @@
 - 本地checkpoints：Host `8707dea552cff74121b89aa8045f27da2c8c9378`；Desktop `adfdb5b24b3277ba39bd76a8cdc63fc138caf9cb`；均clean、未push。
 - Owner结论：接受DEC-126-036，S9授权范围未发现残余P0/P1。G3继续Partial；该接受不授权S10、MiniMax、feature activation、真实数据、远端动作或四组件E2E。
 
+### 9.12 DEC-126-037 / S10A Readiness Review（Candidate）
+
+| Finding | Severity | 事实/证据 | 状态 |
+|---|---|---|---|
+| S10A-REV-001 | P1 environment | Docker存在但Compose v2 plugin缺失；当前无isolated PostgreSQL/Keycloak/Caddy listeners | OPEN / blocks S10B |
+| S10A-REV-002 | P1 provider | Host只有blank/MiniMax config，创建thread必须MiniMax，且base URL硬编码；无fixed fake HTTP provider process注入 | OPEN / stop condition |
+| S10A-REV-003 | P1 effective profile | Desktop supervisor `env_clear`后强制Host raw/title/cleanup flags=false，并丢弃child stdout/stderr | OPEN / stop condition |
+| S10A-REV-004 | P1 data isolation | Chat DB/receipt与native-auth Keychain service/account固定，无test namespace | OPEN / stop condition |
+| S10A-REV-005 | P1 chain integrity | Desktop无`/v2/tasks` production call；生成SDK不是consumer，空PostgreSQL rows不能证明content-free create | OPEN / stop condition |
+| S10A-REV-006 | P2 title capability | Host title flag因Runtime无法capability-disable tools持续fail closed | DOCUMENTED LIMIT；S10只验fallback/user precedence |
+| S10A-REV-007 | boundary | 本轮未安装/下载/启动任何服务，未开flag，未读写Keychain，未修改业务码，未调provider，未远端写 | CLOSED for S10A scope |
+
+- 备选方案：补齐Compose v2并用权威local profile是推荐方案；“已有PostgreSQL”只在同时具备empty dedicated DB、current migrations、exact local IdP/TLS/CA时才等价。当前两者都不可执行。
+- process/evidence冻结：端口为API 18080、Host 18081、fake Responses 18082、OIDC 8443、API edge 9443、Vite 1420/1421、PostgreSQL 5432，全部loopback；用例为S10B-001–012；证据只保留PID/SHA/nonce/count/hash/state/duration/failure class，不保留正文/secret/path/key。
+- 结构化结论：DEC-126-037推荐选项C，接受DESIGN-126-007但HOLD S10B。LIA-126-008为`Blocked Draft / NOT AUTHORIZED`；先审查S10P corrective并单独准备Compose环境。
+
 ## 10. 未验证项与残余风险
 
 | Item | 原因 | 风险 | 补验证条件 | Owner | 是否阻断 |
@@ -390,12 +414,13 @@
 | DB/encryption/delete E2E | SQLCipher v4 job/receipt、independent HMAC key、migration/cascade/checkpoint、restart和fake Host cleanup单仓PASS | 跨Desktop/Host/Runtime真实进程partial delete仍未运行 | S10验证完整多进程job/receipt/restart/fault E2E | 段成威 | blocks G4/local G6 |
 | Runtime raw-reasoning/title/delete | Host producer、Desktop wire/reducer/UI及S9 deterministic fake Eval PASS；真实Runtime跨Host/Desktop未运行 | raw UX/residual/inconsistent history | keep flags off until S10；历史MiniMax public-summary FAIL不改写 | 段成威 | blocks G4/local G6 |
 | Desktop sidecar/Keychain | supervisor/static safety与synthetic bookmark PASS；真实signed Keychain和actual Host child未运行 | packaged/native lifecycle unknown | authorized signed-like local E2E | 段成威 | blocks G4/local G6 |
+| S10B test profile/chain readiness | Compose缺失；provider无fake process config；child flags/log与Keychain不隔离；Desktop未调Public Tasks | 直接启动会调真实provider/触碰本机Keychain，或产生虚假E2E证据 | 关闭S10A-BLK-001–005并重新提交LIA-126-008 | 段成威 | blocks S10B/G4/local G6；does not reopen S4–S9 |
 | production identity/infra | FEAT-125 deferred | no production safety | N/A for DEC-126-022 local-only scope；future online intent must reopen production track and FEAT-125 prerequisites | 段成威 | does not block local G6；blocks any production claim |
 
 ## 11. 结论
 
-- Requirements package：G1/G2/G2A Re-review Passed；DEC-126-023–036 Accepted；S4–S9 Closure Passed；五仓先前checkpoint/candidate精确远端可达。Draft PR #1、历史`c000a024`与各`origin/develop`保持不变，S9 checkpoints仅本地。
-- Code Complete：No。G3仍Partial；S10–S11、四组件E2E、G4与Owner G6均未完成。
+- Requirements package：G1/G2/G2A Re-review Passed；DEC-126-023–036 Accepted；DEC-126-037为Ready for Owner Approval的HOLD候选；S4–S9 Closure Passed。
+- Code Complete：No。G3仍Partial；S10A评审完成但readiness HOLD，S10B–S11、四组件E2E、G4与Owner G6均未完成。
 - 验证人：Codex（文档事实与结构）；最终 Reviewer 为段成威。
 - 日期：2026-08-04。
-- 结论依据：replacement source/fixture/generated三向核对、S4–S8B accepted链、DEC-126-035远端事实，以及S9 Host唯一authority/dataset/runner和Desktop exact fixture/SQLCipher/UI consumer证据。无MiniMax、外部provider、production behavior/Runtime/central contract/private IPC修改、flag activation、追加push/merge/tag/publish/deploy或生产证据。
+- 结论依据：S4–S9 accepted链、六仓fixed baseline、Runtime artifact digest、环境工具/端口检查与API/Host/Desktop exact source inventory。无MiniMax/外部provider、production behavior/Runtime/central contract/private IPC修改、flag activation、Keychain/DB/service写入、push/merge/tag/publish/deploy或生产证据。
