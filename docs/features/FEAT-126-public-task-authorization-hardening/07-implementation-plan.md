@@ -127,19 +127,19 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 | S0 | no implementation SHA | requirement package + G1/G2 decision record + Accepted Desktop Pattern | package/links/docs build evidence in `08` | Owner approved G2 | G1/G2 Complete |
 | S1 | no implementation SHA | read-only Runtime/Host/Public Tasks/storage investigation；fixed fake tests；historical bounded MiniMax evidence；no source diff | raw upstream 4/4 + prior title/summary/delete evidence | bounded facts complete；no implementation claim | Investigation Complete |
 | S2 | no implementation SHA | DESIGN-126-003、Public Tasks inventory、DEC-126-017/011/012 | design consistency/package validation | Owner Approved | Complete / G2 Passed |
-| S3 | prior remote `c000a0245acb5c3f7ead5d2a877fb60c281c588c` + sole candidate `29317b6426578749dc698fc2ad32b986ee5c8e9f` | source/fixtures/generated SDK/docs only | replacement post-commit gates PASS；old Draft PR remote CI audit FAIL | DEC-126-023/024/Q-017 closed；G2A Re-review Passed | Complete at source level；no remote or implementation authorization |
-| S4 | local checkpoint `yijie-api@a64f9f591fb594818c1778e30c6941e2574b3264` | secure v2 foundation；default-off local-lab route；16 files | exact `29317b...` projection、generate drift、race/unit/lint、isolated PostgreSQL migration 1–4/integration PASS；audit/nil tenant/idempotency/content-free P1 closed | DEC-126-026 Accepted；checkpoint scope re-audited | Corrective Closure Passed / local commit / not pushed |
-| S5 | local checkpoint `yijie-agent-host@3e8df026110f0c895262329c2384d3896598f3d9` | Host/event v2 raw/title/cleanup foundation；flags off；11 files | contract/race/lint/fixed Runtime PASS；cleanup recovery/lease/title isolation+idempotency/receipt/schema/no-log P1 closed | DEC-126-026 Accepted；checkpoint scope re-audited | Corrective Closure Passed / local commit / not pushed |
-| S6–S8A | local checkpoint `yijie-desktop@3adcb0380561c294412bc24767e4651ca872455a` | SQLCipher v1–v4、Host/domain/application/actions/IPC/TS store；38 files；无Vue/router/style | exact `29317b...` projection、127 TS、93/94 Rust、clippy/fmt/build、migration/no-log/race/restart PASS | DEC-126-026/027/028/030/031 Accepted；checkpoint scope re-audited | Closure Passed through S8A / local commit / not pushed |
+| S3 | prior remote `c000a0245acb5c3f7ead5d2a877fb60c281c588c` + sole candidate `29317b6426578749dc698fc2ad32b986ee5c8e9f` | source/fixtures/generated SDK/docs only | replacement post-commit gates PASS；old Draft PR remote CI audit FAIL；sole candidate clean-clone exact | DEC-126-023/024/Q-017 closed；G2A Re-review Passed | Complete at source/remote-candidate level；no merge/tag/publish/activation |
+| S4 | remote candidate checkpoint `yijie-api@a64f9f591fb594818c1778e30c6941e2574b3264` | secure v2 foundation；default-off local-lab route；16 files | exact `29317b...` projection、generate drift、race/unit/lint、isolated PostgreSQL migration 1–4/integration PASS；audit/nil tenant/idempotency/content-free P1 closed | DEC-126-026 Accepted；Owner-authorized push后经`ls-remote`与clean clone复验 | Corrective Closure Passed / exact remote candidate；未merge/启用 |
+| S5 | remote candidate checkpoint `yijie-agent-host@3e8df026110f0c895262329c2384d3896598f3d9` | Host/event v2 raw/title/cleanup foundation；flags off；11 files | contract/race/lint/fixed Runtime PASS；cleanup recovery/lease/title isolation+idempotency/receipt/schema/no-log P1 closed | DEC-126-026 Accepted；Owner-authorized push后经`ls-remote`与clean clone复验 | Corrective Closure Passed / exact remote candidate；未merge/启用 |
+| S6–S8A | ancestor of remote candidate `yijie-desktop@35f27447398529cca4dec85fa1f67e779c7a7cbd` | SQLCipher v1–v4、Host/domain/application/actions/IPC/TS store；38 files；当时无Vue/router/style | exact `29317b...` projection、127 TS、93/94 Rust、clippy/fmt/build、migration/no-log/race/restart PASS | DEC-126-026/027/028/030/031 Accepted；最终S8B checkpoint经远端复验 | Closure Passed through S8A / included in exact remote candidate；未merge/启用 |
 | S7A | included in `3adcb0380561c294412bc24767e4651ca872455a` | HostBridge、HostEventStream、strict typed domain、nonce-bound readiness与owner-only token；无Vue | S7A门禁与canonical reasoning/multi-frame chunk/fake Host/security/fault coverage PASS | DEC-126-027 Accepted | Closure Passed |
 | S7B | included in `3adcb0380561c294412bc24767e4651ca872455a` | schema v3、transactional session/message/outbox、lease/unknown-outcome controls、coalesced reducer/terminal commit、20/50 history、title CAS；无Vue | `make lint/test/build` PASS；10,000 deltas、restart/mixup/reasoning reconciliation、fake Host→SSE→SQLCipher | DEC-126-028 Accepted | Closure Passed |
 | DESIGN-126-005 | no implementation SHA | ConversationApplication/Tauri/TS gap inventory、private IPC v1、fixed fixture matrix与S7C/S8A/S8B重切 | feature docs validation | DEC-126-029 Accepted | Design Accepted；S7C/S8A later separately authorized |
 | S7C | included in `3adcb0380561c294412bc24767e4651ca872455a` | schema v4、300s Rust-bound context/revision/capability facade、session/project actions、stable interrupt、durable cleanup/receipt、coordinator/restart/resync/live raw source；无Vue | `make lint/test/build` PASS；fake Host cleanup、v1-v4 migration、restart/idempotency/race/cascade/WAL/receipt-expiry/auth/no-log | DEC-126-030 Accepted | Closure Passed / G3 Partial |
 | S8A | included in `3adcb0380561c294412bc24767e4651ca872455a` | 20 versioned commands、listen-only event、closed schema/fixtures、native auth binding、opaque cursors、strict TS validators/real Tauri client/authoritative Pinia reducer；无Vue | `make lint/test/build` PASS；127 TS；94 Rust（93 pass/1 existing ignored）；schema↔serde↔TS、auth/expiry/tenant、caps/backpressure/cancel/stale/restart/resync/no-log | DEC-126-031 Accepted | Closure Passed / G3 Partial |
 | DESIGN-126-006 / DEC-126-032 | accepted design | S8B0 UI gate/route/lifecycle/store/readiness/tasks/scroll contract | feature package/static source inventory | DEC-126-032 Accepted | LIA-126-005 separately executed |
-| S8B0 | local checkpoint `yijie-desktop@5dab02a1ad5f03fead236aa7060fa6a75a234d85` | 22-command closed IPC、Rust readiness/storage probe、exact-off gate、routes/lifecycle/store/Tasks metadata；不含完整Chat Vue visual | 135 TS；96 Rust（95 pass/1 existing ignored）；generate/lint/type/build/fmt/clippy/no-log PASS | LIA-126-005 / DEC-126-033 | Closure Passed / Accepted / not pushed |
-| S8B | local checkpoint `yijie-desktop@35f27447398529cca4dec85fa1f67e779c7a7cbd` | production Vue Chat/App Shell/composer/reasoning/menus/scroll/a11y；27 files | 164 TS、95/96 Rust、lint/build/audit/bundle/security/browser/axe PASS；VoiceOver checklist retained for S11/G6 | DEC-126-034 Accepted | Closure Passed / local commit / not pushed |
-| S9–S11 | N/A | none | NOT RUN | Not authorized | Pending separate sequential authorization |
+| S8B0 | ancestor of remote candidate `yijie-desktop@35f27447398529cca4dec85fa1f67e779c7a7cbd`（slice checkpoint `5dab02a1ad5f03fead236aa7060fa6a75a234d85`） | 22-command closed IPC、Rust readiness/storage probe、exact-off gate、routes/lifecycle/store/Tasks metadata；不含完整Chat Vue visual | 135 TS；96 Rust（95 pass/1 existing ignored）；generate/lint/type/build/fmt/clippy/no-log PASS | LIA-126-005 / DEC-126-033 | Closure Passed / included in exact remote candidate；未merge/启用 |
+| S8B | remote candidate checkpoint `yijie-desktop@35f27447398529cca4dec85fa1f67e779c7a7cbd` | production Vue Chat/App Shell/composer/reasoning/menus/scroll/a11y；27 files | 164 TS、95/96 Rust、lint/build/audit/bundle/security/browser/axe PASS；VoiceOver checklist retained for S11/G6 | DEC-126-034 Accepted；Owner-authorized push后经`ls-remote`与clean clone复验 | Closure Passed / exact remote candidate；未merge/启用 |
+| S9–S11 | N/A | none | NOT RUN | LIA-126-007仅为S9待批候选；S10/S11未授权 | Pending separate sequential authorization |
 
 ## 10. 变更控制
 
@@ -162,7 +162,7 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 | Contracts/G2A/remote | 段成威 | DEC-126-023/024/025 Accepted，`29317b...`为唯一candidate并已远端可达；`c000a024...`仅为历史远端候选，旧PR与develop不变；未merge/tag/发布/启用 | 2026-08-02 |
 | Contracts Draft PR / merge | 段成威 | DEC-126-021 Accepted/HOLD；CI failed dependency audit；merge不是local draft前置但当前仍不批准 | 2026-08-02 |
 | Local-only delivery strategy | 段成威 | DEC-126-022 Accepted；Local Runtime Ready目标，tag/publish/deploy/G5 N/A | 2026-08-02 |
-| Local Implementation Authorization | 段成威 | S7A–S8B已接受；DEC-126-034接受S8B Closure。S9–S11、MiniMax/flag activation与新增远端动作仍禁止 | 2026-08-03 |
+| Local Implementation Authorization | 段成威 | S7A–S8B已接受；DEC-126-034接受S8B Closure。Owner另行授权的checkpoint push已完成并只形成精确远端候选；S9–S11、MiniMax/flag activation与新增远端动作仍禁止 | 2026-08-03 |
 
 ## 12. Local Implementation Authorization 审批候选
 
@@ -234,8 +234,26 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - 固定基线：governance=`090f0b0a2351d4a144e823aebab64b5d762593b1`；Desktop=`5dab02a1ad5f03fead236aa7060fa6a75a234d85`；contracts=`29317b6426578749dc698fc2ad32b986ee5c8e9f`；开始时两仓干净。
 - 允许范围：真实`/chat`/`/chat/:sessionId`、项目/session树、纯文本composer、assistant/raw reasoning、rename/pin/remove/delete、cleanup/paging/scroll、light/dark/zoom/keyboard/focus/a11y。
 - 停止条件核对：无需新增/修改private IPC、Rust domain、central contract、Host wire或Runtime pin；因此未触发停止。
-- 代码checkpoint：`yijie-desktop@35f27447398529cca4dec85fa1f67e779c7a7cbd`，parent=`5dab02a1ad5f03fead236aa7060fa6a75a234d85`，27个文件，工作树clean，not pushed。
+- 代码checkpoint：`yijie-desktop@35f27447398529cca4dec85fa1f67e779c7a7cbd`，parent=`5dab02a1ad5f03fead236aa7060fa6a75a234d85`，27个文件，工作树clean；后续经Owner明确授权push至专用候选分支并复验exact，仍未merge/启用。
 - 依赖：仅新增fixed devDependency `axe-core@4.10.3`；lockfile已记录，npm audit 0 known vulnerabilities；production dependencies/bundle无axe。
 - 验证：29/29 test files、164/164 tests、axe 0 serious/critical、lint/type/build、95/95 Rust（另1既有ignored）、1180×760 light/dark、200% zoom等价、dialog focus、reduced-motion/scroll unit及security/bundle scans PASS。
 - 人工项：VoiceOver checklist已提交但未声称执行；DEC-126-034将其保留到S11/G6，不阻断S8B Closure。
-- 限制：flag仍unset/false；无MiniMax/真实数据/S9–S11/四组件E2E/远端动作。下一切片仍须由Owner另行授权S9。
+- 限制：flag仍unset/false；无MiniMax/真实数据/S9–S11/四组件E2E。后续Owner-authorized checkpoint push不改变此切片Closure；下一切片仍须由Owner另行授权S9。
+
+### DEC-126-035 Remote State Reconciliation（Candidate / Pending Owner Approval）
+
+- 目的：只把Owner已明确授权并已发生的checkpoint push校正为可审计事实，不重开S4–S8B Closure，也不扩大G3/G4/G6。
+- 只读证据：五个candidate refs经`git ls-remote`与临时single-branch/no-tags clean clone复验，HEAD分别为`650254b3c009c4098f7d7b2d415ed8082b0139fa`、`a64f9f591fb594818c1778e30c6941e2574b3264`、`3e8df026110f0c895262329c2384d3896598f3d9`、`35f27447398529cca4dec85fa1f67e779c7a7cbd`、`29317b6426578749dc698fc2ad32b986ee5c8e9f`；clone全部clean。
+- 不变项：各`origin/develop`、Draft PR #1、历史`c000a024...`、sole contracts candidate内容、merge/tag/publish/deploy/feature activation均未改变。
+- 本轮动作：仅更新FEAT-126 package并创建yijie本地治理checkpoint；不追加push，不修改API/Host/Desktop/contracts/Runtime源码。
+- 推荐结论：接受“remote exact candidate availability”；明确其不代表Code Complete、G4、G6、发布或生产启用。
+
+### LIA-126-007 / S9 fake-provider Eval（Proposed / Not Authorized / NOT RUN）
+
+- Authority：`yijie-agent-host`持有版本化Eval runner与dataset manifest；`yijie-desktop`只消费相同fixtures做exact sequence/final/history/plaintext projection validation，不建立第二套评分authority。
+- Pins：contracts=`29317b6426578749dc698fc2ad32b986ee5c8e9f`、Host=`3e8df026110f0c895262329c2384d3896598f3d9`、Desktop=`35f27447398529cca4dec85fa1f67e779c7a7cbd`、Runtime=`3aa317ce...`固定；不得修改wire/IPC/Runtime pin。
+- Dataset：只用合成多语言first prompts与adversarial/injection cases；候选ID=`feat126-title-raw-v1`，至少200普通样本、50对抗样本、holdout≥20%；运行前冻结完整dataset hash、split hash、runner SHA和schema version。
+- Title gates：strict schema/sanitizer 100%，语义识别率≥95%，late result覆盖用户rename=0，正文/secret/path泄露=0，额外actions=0。
+- Raw gates：每个要求raw的fixture必须产生非空具体纯文本；delta sequence/content index/final snapshot与terminal/incomplete reconciliation exact；missing/gap/invalid/oversize均Gate FAIL；HTML/Markdown执行=0，正文进入log/bbolt/telemetry/audit=0。
+- 环境与禁止项：仅fixed fake provider、fixed fixtures、临时SQLCipher/CODEX_HOME和合成数据；不调用MiniMax、不处理真实数据、不启用任何flag、不修改central contracts/Host wire/private IPC/Runtime pin、不执行远端写入、不进入S10。
+- 退出：生成可复验的dataset/runner摘要、逐指标结果、失败样本分类和no-log/injection证据，提交S9 Closure Review；没有Owner明确批准前不得执行。

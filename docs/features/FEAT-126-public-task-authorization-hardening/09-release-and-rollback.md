@@ -1,6 +1,6 @@
 # FEAT-126 本地启动、停止与恢复 Runbook（S8B Closure Passed，G3 Partial）
 
-> DEC-126-022将本需求冻结为Local-only Delivery。DEC-126-034已接受S8B Closure。本文仍不是可执行的完整四组件启动runbook，也不包含feature activation、S9–S11、线上部署、生产灰度/启用、tag、package publish或registry。
+> DEC-126-022将本需求冻结为Local-only Delivery。DEC-126-034已接受S8B Closure；DEC-126-035候选只登记Owner-authorized checkpoints的远端精确可达性。本文仍不是可执行的完整四组件启动runbook，也不包含feature activation、S9–S11、线上部署、生产灰度/启用、tag、package publish或registry。
 
 ## 1. Release Manifest
 
@@ -8,10 +8,10 @@
 |---|---|---|---|---|---|
 | contracts replacement | `0.3.0 sole source candidate` / tag N/A | `29317b6426578749dc698fc2ad32b986ee5c8e9f` | SDK `21b17b50…b082`；Public `c8d9e674…354b` | DEC-126-024/025 Approved；openapi-typescript 7.13.0 / oapi-codegen 2.7.2 / Buf 1.71.0 | `origin/feat/feat-126-content-free-candidate` exact；not merged/tagged/published/activated |
 | contracts prior remote | `0.3.0 historical candidate` / tag N/A | `c000a0245acb5c3f7ead5d2a877fb60c281c588c` | SDK `334db014…9404` | historical exact projection only | Draft PR/HOLD；remote CI red blocks merge only；unchanged |
-| yijie-api | S4 Accepted local checkpoint / no tag | `a64f9f591fb594818c1778e30c6941e2574b3264` | generated Go `438b084d…ab33`；migration v4 `b56f7f5a…ee14` | exact `29317b...` lock；DEC-126-026 Accepted | local-lab only；secure route default off；not pushed |
-| yijie-agent-host | S5 Accepted local checkpoint / no tag | `3e8df026110f0c895262329c2384d3896598f3d9` | generated Go `629ddf…63b0`；store schema v3 | exact `29317b...` source lock / oapi-codegen 2.7.2 | local only；v2 flags off；title flag forced off；not pushed |
-| yijie-desktop | LIA-126-006 S8B local checkpoint / no tag | `35f27447398529cca4dec85fa1f67e779c7a7cbd` | UI/source/lock digests in `feature.yaml`；public TS/SQL/IPC pins unchanged | exact `29317b...` lock / reqwest 0.12.28 | local only；all flags off；DEC-126-034 Accepted；not pushed |
-| yijie governance | DEC-126-034 approval docs parent / no tag | `a66f2f2419436fd496eaf24e92322cbc982372cf` | approval-only package diff; final local checkpoint reported after validation | feature package | S8B Closure Passed；not pushed |
+| yijie-api | S4 Accepted remote candidate checkpoint / no tag | `a64f9f591fb594818c1778e30c6941e2574b3264` | generated Go `438b084d…ab33`；migration v4 `b56f7f5a…ee14` | exact `29317b...` lock；DEC-126-026 Accepted | `origin/feat/feat-126-foundation-closure` exact；local-lab only；secure route default off；not merged/activated |
+| yijie-agent-host | S5 Accepted remote candidate checkpoint / no tag | `3e8df026110f0c895262329c2384d3896598f3d9` | generated Go `629ddf…63b0`；store schema v3 | exact `29317b...` source lock / oapi-codegen 2.7.2 | `origin/feat/feat-126-foundation-closure` exact；v2 flags off；title flag forced off；not merged/activated |
+| yijie-desktop | LIA-126-006 S8B remote candidate checkpoint / no tag | `35f27447398529cca4dec85fa1f67e779c7a7cbd` | UI/source/lock digests in `feature.yaml`；public TS/SQL/IPC pins unchanged | exact `29317b...` lock / reqwest 0.12.28 | `origin/feat/feat-126-foundation-closure` exact；all flags off；DEC-126-034 Accepted；not merged/activated |
+| yijie governance | accepted remote baseline + DEC-126-035 local docs candidate / no tag | remote `650254b3c009c4098f7d7b2d415ed8082b0139fa`；本轮local SHA另行回报 | feature package diff only | feature package | remote candidate exact；本轮不追加push；S8B Closure Passed，G3 Partial |
 | yijie-infra | no activation | N/A | N/A | N/A | none |
 
 ## 2. Local Runtime Ready 前提
@@ -42,6 +42,7 @@
 - [x] DEC-126-027/028已接受S7A/S7B Closure
 - [x] DESIGN-126-005/DEC-126-029与DEC-126-030已获Owner批准；LIA-126-004只授权S8A，DEC-126-031已接受S8A Closure
 - [x] DEC-126-033/034已Accepted；S8B0/S8B Closure Passed；S9–S11和flag activation仍禁止
+- [x] Owner另行授权的yijie/API/Host/Desktop checkpoint push已完成；连同contracts候选共五仓经`ls-remote`和临时clean clone复验为exact SHA；这不代表merge、tag、publish、deploy、activation、G4或G6
 - [ ] Owner另行授权任何后续远端变更，包括更新/删除candidate branch、移动`origin/develop`、merge、tag或package发布
 - [x] S4–S6 checkpoint记录prior exact SHA、generated digest和generator；未使用浮动branch；该记录不代表current G2A readiness
 - [ ] 删除/卸载文案只承诺当前 app-managed live store 不可恢复，披露 Time Machine/APFS/第三方副本与 Application Support/Keychain 普通卸载残留
@@ -61,7 +62,7 @@
 | 6 | S7C Closure后单独批准S8A private IPC + TS store/view-model | Desktop Rust/TS local draft | approved implementer | LIA-126-004 | schema↔serde↔TS、auth/backpressure/stale/restart；no Vue/flag | DEC-126-031 Accepted / S8A Closure Passed；flags off |
 | 7 | S8A Closure后单独执行S8B0 integration | Desktop Rust/TS local draft | approved implementer | DEC-126-032 Accepted + LIA-126-005 | exact-off gate、route/lifecycle/store/readiness schema↔serde↔TS；no full Vue/flag | DEC-126-033 Accepted / Closure Passed |
 | 8 | S8B0 Closure后单独批准S8B Vue UI/a11y | Desktop Vue local draft | approved implementer | LIA-126-006 | real store、UI/unit/visual/a11y；不得启用flag或使用production mock | implemented at `35f2744…7cbd`; DEC-126-034 Accepted / Closure Passed |
-| 9 | S9 fake-provider title/raw Eval | local fixed harness | test owner | S8B Closure + explicit S9 authorization | no MiniMax/key；raw/title/no-log matrix | not authorized / NOT RUN |
+| 9 | S9 fake-provider title/raw Eval | versioned Host runner/dataset + Desktop exact consumer validation（候选） | test owner | DEC-126-035 accepted（如Owner接受）+ explicit LIA-126-007 authorization + recorded dataset/split hash | fixed fake provider/pins/synthetic data；title schema/semantic + raw sequence/final/plaintext/no-log/injection gates | LIA-126-007 PROPOSED / not authorized / NOT RUN |
 | 10 | S10临时test profile启动local API/Host/pinned Runtime/Desktop并跑完整E2E | Owner machine + synthetic tenant/project | approved operator/test owner | exact local startup manifest + explicit S10 authorization | AC-001–052/security/delete/restart/process/config/SHA | stop processes；delete temp data；default flags unchanged |
 | 11 | S11 Owner Local-only G6验收 | Owner machine | 段成威 | G4 evidence | AC-043 + evidence review | do not mark complete；return failing slice |
 | 12 | optional future merge review | remote repos | separately approved owner | local E2E + audit fix + green CI | PR/SHA/checks | keep Draft/feature branches |
@@ -82,7 +83,7 @@
 | `YIJIE_CHAT_LOCAL_HOST_ENABLED` | false | Desktop sidecar supervisor | local only；absolute safe Host/Home paths | false leaves supervisor disabled | 段成威 |
 | `YIJIE_AGENT_HOST_V2_RAW_REASONING_ENABLED` / `...TITLE_ENABLED` / `...CLEANUP_ENABLED` | false | Host S5 v2 surfaces | only after later cross-process authorization | false keeps v2 routes/events unavailable | 段成威 |
 
-`YIJIE_CHAT_LOCAL_ENABLED`与`YIJIE_CHAT_LOCAL_HOST_ENABLED`是现有Rust exact-true gates；新的Vite UI flag仅为DESIGN-126-006候选。其它`YIJIE_DESKTOP_*`名称仍是未来产品级候选，不能据此认为已有实现。任何重命名需同步docs/schema/tests并重新评审。
+`YIJIE_CHAT_LOCAL_ENABLED`与`YIJIE_CHAT_LOCAL_HOST_ENABLED`是现有Rust exact-true gates；Vite UI flag已在S8B0实现为unset/default-false且未启用。其它`YIJIE_DESKTOP_*`名称仍是未来产品级候选，不能据此认为已有实现。任何重命名需同步docs/schema/tests并重新评审。
 
 ## 5. Migration/Backfill
 
@@ -159,6 +160,7 @@ stop threshold
 | Stop/recover local processes | Not defined until orchestration exists | local owner | blocks G4/local G6 | future recovery drill |
 | Migrate temp local DB | API `make test-integration`; Desktop embedded migration tests | data owner | foundation PASS；populated release/E2E still blocks G4 | evidence in `08` |
 | Deploy/tag/publish | N/A under DEC-126-022 | N/A | must not execute | N/A record only |
+| Verify candidate provenance | `git ls-remote` + temporary exact single-branch clean clone | read-only reviewer | exact HEAD + clean status；no remote mutation | DEC-126-035 evidence in `08` |
 
 ## 11. 回滚演练
 

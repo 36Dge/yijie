@@ -1,6 +1,6 @@
 # FEAT-126 技术设计（S8B Closure Passed，G3 Partial）
 
-> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。DEC-126-026/027/028/030/031/033/034已接受S4–S8B Closure。G3仍Partial；S9–S11、MiniMax、flag activation与新增远端/发布动作仍未授权。
+> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。DEC-126-026/027/028/030/031/033/034已接受S4–S8B Closure；DEC-126-035只校正Owner授权后的远端可达事实。G3仍Partial；S9–S11、MiniMax、flag activation与新增远端/发布动作仍未授权。
 
 ## 1. 设计摘要
 
@@ -542,9 +542,9 @@ Runtime/Host pin、临时 `CODEX_HOME`/空 cwd/pathless ephemeral thread，title
 - Runtime/MiniMax：canonical delete/name/summary/raw reasoning/outputSchema已确认；两次历史MiniMax预算已执行，title PASS，MM-126-002在旧summary门槛FAIL且观察到raw事件；Host raw bridge基础已用fake Runtime实现，raw flag默认off，本轮未调用MiniMax。
 - Public Tasks：仓内consumer inventory完成，unknown external按safe compatibility category处理，Q-010 Resolved；DEC-126-011/012已Accepted，v1全程双隔离。DEC-126-023/024与Q-017已关闭，`29317b...`从schema层拒绝conversation正文并通过G2A重审；LIA-126-002现已恢复，仅允许关闭S4–S6 P1。
 - Desktop Pattern：FEAT-126 Chat/App Shell Pattern已Accepted，只取代Chat 1.1.0/App Shell 2.0.0中的FEAT-126冲突段落。
-- 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–034 Accepted；S4–S8B Closure Passed；S9–S11 Unauthorized。
+- 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–034 Accepted；DEC-126-035 Pending；S4–S8B Closure Passed；S9–S11 Unauthorized。
 - 安全/数据 Owner：段成威 — ADR-0013/0014/0015/0016与DEC-126-005/006/007/011/012/014/015/016/017 Approved；Q-006/Q-007/Q-008/Q-009/Q-010/Q-015/Q-016 Resolved；Pattern Accepted。
-- 结论与日期：2026-08-03 G2/G2A保持Passed，DEC-126-030/031接受S7C/S8A，DEC-126-032/033接受S8B0，DEC-126-034接受S8B。G3仍Partial；继续禁止S9–S11、MiniMax、flag启用与追加远端动作。
+- 结论与日期：2026-08-03 G2/G2A保持Passed，DEC-126-030/031接受S7C/S8A，DEC-126-032/033接受S8B0，DEC-126-034接受S8B。Owner后续授权的checkpoint push已复验并提交DEC-126-035候选。G3仍Partial；继续禁止S9–S11、MiniMax、flag启用与追加远端动作。
 
 ## 15. S8B Vue projection implementation
 
@@ -565,3 +565,12 @@ YjAppShell fixed Chat sidebar
 - 删除确认不乐观移除；store的`DeleteDisposition`仍是唯一导航依据。项目只有pin/remove，session只有select/rename/pin/delete。
 - Chat active时App Shell固定展开且不展示sidebar toggle，避免引入需求明确排除的显示/隐藏功能；200% zoom等价视口使用窄sidebar和纵向滚动保持操作可达。
 - 测试视觉harness位于独立test Vite root，仅挂载生产组件/真实Pinia与固定合成投影；production entry和bundle均不可达。
+
+## 16. DEC-126-035 remote state 与 LIA-126-007/S9 候选设计
+
+- Remote state：五仓候选ref和`develop`以`git ls-remote`复验；每个候选分支另做临时single-branch clean clone，HEAD精确且worktree clean。远端可达不是runtime pin，也不构成merge/release/activation。
+- Eval authority：若Owner后续批准LIA-126-007，由Host仓维护`feat126-title-raw-v1`版本化合成dataset manifest与deterministic fake-provider runner；Desktop只消费exact event corpus验证下游链，不形成第二套provider语义。
+- Dataset freeze：≥200 multilingual、≥50 adversarial、holdout≥20%；runner在首次执行前打印并校验manifest/dataset/runner SHA-256、split与四个exact pins，漂移即停止。
+- Title metrics：`title-v1` strict schema/sanitizer 100%，labeled semantic success≥95%，late result overwrite=0，injection/HTML/control/secret/extra action=0。
+- Raw metrics：具体非空plaintext、sequence/item/content-index连续、delta/final snapshot对账；missing/gap/invalid/oversize为Gate FAIL；no execution/no-log/no-bbolt/no-telemetry/no-audit-body为0泄漏。
+- 授权停止线：本DEC只形成建议；没有Owner明确LIA-126-007前，不创建runner/dataset、不执行Eval、不调用MiniMax、不进入S10。

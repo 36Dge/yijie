@@ -45,14 +45,15 @@
 | DEC-126-032 | S8B0 UI Integration Readiness与private IPC停止条件 | A. 让Vue复用裸start command并从错误猜ready；B. 直接做完整S8B页面；C. 接受DESIGN-126-006并先单独实现default-off S8B0 integration | **Owner接受C**：冻结exact-true/default-false的`VITE_YIJIE_CHAT_LOCAL_UI_ENABLED`，route/capability/deep-link、permission bind/dispose、Pinia project/paging/cleanup、Tasks真实metadata/default-off和48/160滚动契约。新增`chat_get_local_readiness_v1`与`chat_request_local_recovery_v1` closed commands；Rust独占process start/retry；新增content-free storage issue/recovery codes及schema/serde/TS fixtures；现有20 commands与7 events不静默改义 | Owner在接受本决定后另行给出LIA-126-005，只授权S8B0 source；S8B0不做完整Vue视觉页面。S8B、S9、S10、S11继续逐切审批；flag始终off | 段成威 | **Accepted 2026-08-03 / LIA-126-005 S8B0 Authorized / G3 Partial**；不授权S8B |
 | DEC-126-033 | S8B0 Closure Review | 接受S8B0并保持G3 Partial、另行评审S8B / 退回指定P1 / 扩大到完整Vue UI或activation | **Owner接受第一项**：本地checkpoint`yijie-desktop@5dab02a1ad5f03fead236aa7060fa6a75a234d85`实现exact-off gate、受保护`/chat`/`/chat/:sessionId`/Tasks route与lazy loader、permission→chat dispose-before-bind lifecycle、authoritative store project/paging/readiness/cleanup navigation、真实session metadata Tasks接线，以及Rust-owned closed readiness/recovery/storage probe。private IPC命令由20增至22，既有20个命令语义和7个event variants不变 | Desktop 135/135 TS、95/95 Rust（另1既有Keychain ignored）、generate/lint/type/build/fmt/clippy全绿；read-only/full/corrupt/migration、auth/expiry/race、default-off loader、send readiness、paging dedupe、delete disposition和no-log边界有证据。未修改完整Chat Vue页面/视觉样式，未启用flag，未调用MiniMax，未改central contract/Host/Runtime pin，未远端写入。接受本Closure不自动授权S8B | 段成威 | **Accepted 2026-08-03 / S8B0 Closure Passed / G3 Partial**；S8B仍未授权 |
 | DEC-126-034 | S8B Vue UI Closure Review | A. 接受S8B并保持G3 Partial、之后单独评审S9；B. 退回指定Vue/a11y P1；C. 扩大到flag activation、MiniMax或四组件E2E | **Owner采用A**：接受LIA-126-006本地checkpoint`yijie-desktop@35f27447398529cca4dec85fa1f67e779c7a7cbd`的真实`/chat`/`/chat/:sessionId`页面、App Shell项目/session树、纯文本composer、assistant/raw reasoning、session/project菜单、delete/cleanup closed navigation、48/160滚动与production-grade light/dark/a11y；继续保持flag off和G3 Partial | 29/29个TS测试文件、164/164 tests、axe 0 serious/critical、Vite production build、Rust 95/95（另1既有ignored）、npm audit 0 known vulnerabilities；浏览器1180×760 light/dark、200% zoom等价视口、permission/delete焦点恢复和plaintext DOM检查PASS。无IPC/Rust/contracts/Host/Runtime/MiniMax/远端变化。VoiceOver人工清单已提供但不伪称已人工执行，保留到S11/G6 | 段成威 | **Accepted 2026-08-03 / S8B Closure Passed / G3 Partial**；不自动授权S9/S10/activation |
+| DEC-126-035 | Owner授权push后的Remote State Reconciliation | A. 将远端可达误写为merge/release完成；B. 回退已授权push；C. 只登记精确remote refs/clean clones并保持全部Gate与activation边界 | **Codex推荐C，等待Owner决定**：登记yijie/API/Host/Desktop已按Owner明确授权推送的accepted checkpoints，以及既有sole contracts candidate；五仓候选/develop refs和临时clean clone均精确PASS；校正`not pushed`与S8B过期验证描述 | 远端可达只提高检出/审计能力；不改变`origin/develop`、Draft PR #1、candidate identity、G3/G4/G6、flags、merge/tag/publish/deploy。当前校正文档只创建本地checkpoint且不追加push | 段成威 | **Proposed 2026-08-03 / Pending Owner**；不授权S9–S11 |
 
 ## 3. ADR 判定
 
 - 是否改变既有 Accepted ADR：不削弱 ADR-0012；Accepted DEC-126-001 保留其 FEAT-126 安全责任。若未来改成迁号，必须重开 G1、形成新 Accepted ADR 并同步全部 FEAT-125 引用。
 - 是否改变跨仓职责/数据权威：是。ADR-0013 已接受 Desktop embedded SQLite 为 confidential conversation authority，并明确 PostgreSQL/Redis/pgvector/bbolt 的非替代职责；ADR-0015 冻结隔离标题，ADR-0016/DEC-126-016 冻结 Host raw-reasoning展示与Desktop SQLCipher历史权威。DESIGN-126-003/DEC-126-017现已提交 exact v2/schema/caps候选；Public Tasks ownership/auth由DEC-126-011/012提交批准。
 - 是否改变 Accepted Design Pattern：是。Chat 1.1.0 的 active state 要附件/右侧面板，App Shell 2.0.0 有全局收起；必须在代码前形成新候选版本并由段成威接受。
-- ADR/Decision 结论：ADR-0013/0014/0015/0016与DEC-126-011/012/016–034均已Accepted；Chat/App Shell Pattern已批准。S4–S8B Closure通过；G3仍Partial。
-- G2A/local 结论：`29317b6426578749dc698fc2ad32b986ee5c8e9f`是唯一source-contract candidate并已在专用远端分支精确可达；`c000a0245acb5c3f7ead5d2a877fb60c281c588c`仅为历史remote candidate，Draft PR #1与各`origin/develop`不变。G3仍Partial，G4/G6 Pending；S8B checkpoint仅本地且flag关闭；S9–S11及activation继续禁止，须另行授权。
+- ADR/Decision 结论：ADR-0013/0014/0015/0016与DEC-126-011/012/016–034均已Accepted；DEC-126-035为事实校正候选。Chat/App Shell Pattern已批准，S4–S8B Closure通过；G3仍Partial。
+- G2A/local 结论：`29317b6426578749dc698fc2ad32b986ee5c8e9f`仍是唯一source-contract candidate；yijie/API/Host/Desktop accepted checkpoints也已在专用候选分支精确可达。`c000a0245acb5c3f7ead5d2a877fb60c281c588c`仅为历史remote candidate，Draft PR #1与各`origin/develop`不变。G4/G6 Pending、flags关闭；S9–S11须另行授权。
 - 架构 Owner：段成威。
 
 ## 4. 风险登记
@@ -165,13 +166,13 @@
 | Source-contract Draft PR与CI观察 | 段成威 | Approved scope / Executed；PR #1固定历史candidate，CI已到终态并回填 | 2026-08-02 | Draft PR `develop <- feat/feat-126-contract-candidate`；head精确匹配旧`c000a024`；run 30741466028在dependency audit失败；未重跑/豁免/修复/push/merge |
 | Source-contract merge readiness | 段成威 | Approved DEC-126-021 / HOLD；当前不批准merge | 2026-08-02 | CI red；`brace-expansion 2.1.2` high；`govulncheck`与`origin/main` breaking skipped；不回退G2/G2A |
 | Local-only Delivery Strategy | 段成威 | Approved / DEC-126-022 Accepted；交付目标改为Local Runtime Ready | 2026-08-02 | tag/publish/deploy/G5均N/A；G6为Owner本地验收；业务编码与一次MiniMax local smoke仍分别待批准 |
-| Local Implementation Authorization | 段成威 | LIA-126-001/002 Executed；DEC-126-027/028/030接受S7A/S7B/S7C；LIA-126-004/005完成S8A/S8B0；DEC-126-034接受LIA-126-006 S8B Closure | 2026-08-03 | S4–S8B Accepted checkpoints保持；S8B为Desktop `35f2744…7cbd`；均未push。无MiniMax/flag activation/新增远端动作；S9–S11仍禁止 |
+| Local Implementation Authorization | 段成威 | LIA-126-001/002 Executed；DEC-126-027/028/030接受S7A/S7B/S7C；LIA-126-004/005完成S8A/S8B0；DEC-126-034接受LIA-126-006 S8B Closure | 2026-08-03 | S4–S8B accepted checkpoints已按Owner后续明确授权推送并精确复验；无MiniMax/flag activation/merge/tag/publish/deploy；S9–S11仍禁止 |
 | Public Tasks input / G2A re-review | 段成威 | DEC-126-023/024 Accepted；Q-017 Resolved；G2A Re-review Passed | 2026-08-02 | `29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一candidate；`c000a024`仅为历史远端候选；后续由DEC-126-025恢复LIA-126-002 |
 | Remote State Reconciliation / LIA resume | 段成威 | DEC-126-025 Accepted；远端事实已核对；LIA-126-002仅S4–S6恢复 | 2026-08-02 | exact remote refs；旧PR/develop/merge/tag/publish/deploy不变；S7–S11/UI/MiniMax/追加push禁止 |
 | LIA-126-002 Closure Review / S7A Authorization | 段成威 | DEC-126-026 Accepted；S4–S6 Foundation Corrective Closure通过；单独授权S7A Desktop Rust Host Bridge/Domain | 2026-08-02 | S8/UI、MiniMax、flag activation、远端写入、merge/tag/publish/deploy继续禁止 |
 | S7A Closure Review | 段成威 | DEC-126-027 Accepted；S7A Closure Passed；G3保持Partial并单独授权S7B Rust application domain | 2026-08-03 | exact loopback+nonce+owner token+typed v2 SSE/domain；无Tauri/Vue接口、无flag/MiniMax/远端动作 |
 | S7B Closure Review | 段成威 | DEC-126-028 Accepted；S7B Closure Passed；G3保持Partial | 2026-08-03 | durable outbox、strict/coalesced reducer、batched history、title CAS；113 TS + 78/79 Rust pass；无Tauri/Vue接口、无flag/MiniMax/远端动作 |
-| Desktop IPC/ViewModel Contract Review | 段成威 | DESIGN-126-005 + DEC-126-029 Accepted；LIA-126-003与LIA-126-004依次授权S7C/S8A | 2026-08-03 | private IPC v1与S7C/S8A/S8B顺序冻结；S8B仍NOT RUN |
+| Desktop IPC/ViewModel Contract Review | 段成威 | DESIGN-126-005 + DEC-126-029 Accepted；LIA-126-003与LIA-126-004依次授权S7C/S8A | 2026-08-03 | 当时冻结private IPC v1与S7C/S8A/S8B顺序；S8B后来已由DEC-126-034接受，不改写该历史授权边界 |
 | S7C Closure Review | 段成威 | DEC-126-030 Accepted；S7C Closure Passed；G3保持Partial | 2026-08-03 | 300s Rust auth context/facade、actions/interrupt、SQLCipher v4 cleanup、receipt HMAC、coordinator/restart/resync；113 TS + 87/88 Rust；无Tauri/TS/Vue/flag/MiniMax/远端动作 |
 | S8A Closure Review | 段成威 | DEC-126-031 Accepted；S8A Closure Passed；G3保持Partial；不授权S8B | 2026-08-03 | 20 private commands、closed schema/fixtures、Rust event bridge、TS client/store；127 TS + 93/94 Rust；无Vue/flag/MiniMax/central pin/远端动作 |
 | S8B0 UI Integration Readiness Review | 段成威 | DESIGN-126-006完成；DEC-126-032 Accepted | 2026-08-03 | UI gate/route/lifecycle/store/tasks/scroll方案及private IPC stop condition获批；随后单独LIA-126-005 |
@@ -179,6 +180,8 @@
 | S8B0 Closure Review | 段成威 | DEC-126-033 Accepted；S8B0 Closure Passed，G3仍Partial；不自动进入S8B | 2026-08-03 | Desktop `5dab02a1…34d85`；135 TS、95/96 Rust（1既有ignored）、full lint/test/build/fmt/clippy；flag off/no MiniMax/no remote |
 | S8B Implementation Authorization | 段成威 | LIA-126-006 Approved；只允许Vue页面/交互/视觉/a11y，不授权activation、S9–S11或IPC/Rust/central边界变化 | 2026-08-03 | Owner当前明确指令 |
 | S8B Closure Review | 段成威 | Accepted；DEC-126-034采用方案A，S8B Closure Passed，G3仍Partial；不自动授权S9/S10/activation | 2026-08-03 | Desktop `35f2744…7cbd`与29个TS测试文件/164 tests、axe、build、Rust、audit、browser/security evidence；VoiceOver人工项保留到S11/G6 |
+| DEC-126-035 Remote State Reconciliation | 段成威 | Pending；Codex推荐只接受精确远端可达事实并保持Gate/发布边界 | 2026-08-03 | 五仓`ls-remote`+临时clean clone PASS；develop/旧PR/sole candidate不变；本轮文档checkpoint不push |
+| LIA-126-007 / S9 Authorization | 段成威 | Proposed only；Owner未批准，不得执行 | 2026-08-03 | Host为fake Eval authority，Desktop做exact fixture/SQLCipher/UI conformance；固定pins/合成dataset/hash/split/title/raw/no-log/injection Gate；0 MiniMax/flag/S10 |
 
 ### DEC-126-034 残余风险判定
 
@@ -186,3 +189,12 @@
 - 组合链：当前证明真实Vue组件消费真实Pinia reducer，未证明四进程链；该缺口归S10并继续阻断G4/G6，不回退S8B单仓Closure候选。
 - feature activation：flag继续unset/false，默认用户行为无变化；开启、test profile与完整E2E均需后续单独授权。
 - 依赖：`axe-core@4.10.3`为exact devDependency，npm audit为0且production依赖/bundle扫描不存在；若未来升级须重新audit和lockfile评审。
+
+### DEC-126-035 / LIA-126-007 候选边界
+
+- DEC-126-035只接受或退回远端事实校正，不重新评审已接受的S4–S8B实现。
+- LIA-126-007建议选择`yijie-agent-host`作为versioned fake-provider Eval dataset/runner authority；Desktop只消费锁定事件fixture并验证reducer、SQLCipher和plaintext projection。
+- 数据集候选为`feat126-title-raw-v1`：≥200多语言合成首轮prompt、≥50 injection/adversarial、holdout≥20%；执行前必须冻结manifest/dataset/runner SHA-256和split，任何漂移fail closed。
+- title Gate：strict schema/sanitizer 100%、语义成功≥95%、人工标题被late result覆盖=0、extra action/HTML/control/system prompt/secret leak=0。
+- raw Gate：非空具体纯文本、sequence/item/content-index和delta/final一致；missing/gap/invalid/oversize明确FAIL；HTML/Markdown执行与log/bbolt/telemetry/audit正文泄漏=0。
+- 本轮不执行runner、不新增dataset文件、不调用MiniMax、不修改Host/Desktop业务源码或任何契约/Runtime pin。

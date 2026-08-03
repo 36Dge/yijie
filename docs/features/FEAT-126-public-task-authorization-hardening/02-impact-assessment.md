@@ -4,7 +4,7 @@
 
 初始扫描时间：2026-08-01；G2 补充扫描：2026-08-02，Asia/Shanghai。所有 sibling 仓库只读；未 fetch、checkout、generate 或修改。
 
-LIA-126-002于2026-08-02形成S4–S6 checkpoint并完成Corrective Closure；Public Tasks source冲突已由DEC-126-023/024关闭，`29317b6426578749dc698fc2ad32b986ee5c8e9f`是唯一candidate。DEC-126-026/027/028/030/031/033/034已接受S4–S8B Closure；完整Vue UI位于Desktop本地checkpoint`35f27447398529cca4dec85fa1f67e779c7a7cbd`。远端checkpoint未被改写，flag仍关闭，S9–S11仍未开始。
+LIA-126-002于2026-08-02形成S4–S6 checkpoint并完成Corrective Closure；Public Tasks source冲突已由DEC-126-023/024关闭，`29317b6426578749dc698fc2ad32b986ee5c8e9f`是唯一candidate。DEC-126-026/027/028/030/031/033/034已接受S4–S8B Closure。Owner随后明确授权将yijie/API/Host/Desktop checkpoints推送到专用候选分支；DEC-126-035只校正该远端可达事实。flag仍关闭，S9–S11仍未开始。
 
 | Repository | Rules/read sources | Branch | Full HEAD SHA | Worktree | Toolchain/lock |
 |---|---|---|---|---|---|
@@ -199,6 +199,13 @@ Authenticated consumer
 5. 下游只固定完整SHA或已核验本地投影；先实现consumer tolerance，再启用本地provider新events；浮动branch不得作为契约身份。
 6. 完成security/migration/resilience/visual、四组件本地E2E和结构化审查后，提交Owner本地G6验收；不讨论线上activation。
 7. 如未来需要把源码纳入共享`develop`，必须先修复dependency audit、取得远端全绿CI并另行审批merge；merge不等于部署。
+
+### DEC-126-035 远端影响候选
+
+- 五仓候选分支已通过`git ls-remote`与临时single-branch clean clone精确复验；所有clone worktree clean。
+- yijie/API/Host/Desktop候选SHA分别为`650254b3…139fa`、`a64f9f59…3264`、`3e8df026…f3d9`、`35f27447…7cbd`；contracts仍为唯一`29317b64…8e9f`。
+- 五仓`develop`保持既有baseline SHA，Draft PR #1与历史`c000a024`保持不变。
+- 影响仅为审计/检出可达性；不扩大运行面、数据面、feature flags、G4/G6或发布面。
 
 ### 本地启动与功能验证顺序
 

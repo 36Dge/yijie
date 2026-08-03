@@ -2,11 +2,11 @@
 
 ## 1. 当前结果
 
-- 用户可观察行为：默认配置下无变化；S8B真实Vue Chat页面、App Shell项目/session区、composer、conversation/reasoning、菜单/删除、稳定错误投影和可访问性已保存为Desktop仅本地checkpoint`35f27447398529cca4dec85fa1f67e779c7a7cbd`。UI flag仍unset/false，未push、未激活。
+- 用户可观察行为：默认配置下无变化；S8B真实Vue Chat页面、App Shell项目/session区、composer、conversation/reasoning、菜单/删除、稳定错误投影和可访问性已保存为Desktop checkpoint `35f27447398529cca4dec85fa1f67e779c7a7cbd`，并在Owner授权的专用远端候选分支精确可达。UI flag仍unset/false，未merge、未激活。
 - 原目标是否达成：未达成。DEC-126-034已接受S8B Closure；S4–S8B Closure Passed。S9–S11、完整本地对话E2E与Owner验收均未完成。
 - 当前范围：安全的新建任务对话、任务记录、聊天项目、本地持久化及Public Tasks hardening的完整Local-only需求/设计/测试/实施候选。
 - 非目标：见`00-feature-brief.md`；没有文件/图片/工具/云同步；tag/package publish/registry/线上部署/生产灰度/云数据库/真实用户数据均N/A。
-- 交付状态：`G1 Passed / G2 Passed / G2A Re-review Passed / S4–S8B Closure Passed / DEC-126-034 Accepted / G3 Partial`。DEC-126-021继续HOLD；sole contract candidate远端可达，新local checkpoints未push；当前不是Code Complete、Production Ready或Local-only Delivery Complete。
+- 交付状态：`G1 Passed / G2 Passed / G2A Re-review Passed / S4–S8B Closure Passed / DEC-126-034 Accepted / G3 Partial`。DEC-126-035 Remote State Reconciliation为待Owner审批候选；DEC-126-021继续HOLD。五仓候选SHA均远端精确可达，但未merge/tag/publish/deploy/activation；当前不是Code Complete、Production Ready或Local-only Delivery Complete。
 
 ## 2. 实际版本与本地候选（未发布）
 
@@ -14,10 +14,10 @@
 |---|---|---|---|---|---|
 | yijie-contracts sole source candidate | dedicated remote branch | `0.3.0 candidate` / tag N/A | `29317b6426578749dc698fc2ad32b986ee5c8e9f` | SDK `21b17b50…b082`；Public `c8d9e674…354b`；TS `e84b70be…b678`；Go `c3d6e58e…c697` | `origin/feat/feat-126-content-free-candidate` exact；G2A Passed；not merged/tagged/published/activated |
 | yijie-contracts prior remote candidate | dedicated branch + Draft PR #1 | `0.3.0 historical candidate` / tag N/A | `c000a0245acb5c3f7ead5d2a877fb60c281c588c` | SDK `334db014…9404` | unchanged；remote CI failed dependency audit；merge HOLD |
-| yijie governance S8B documentation parent | local only / no release | tag N/A | `090f0b0a2351d4a144e823aebab64b5d762593b1` | S8B closure package manifest见`08` | final documentation checkpoint在门禁后记录；parent remote unchanged；not pushed |
-| yijie-api S4 Accepted checkpoint | local only / no release | tag N/A | `a64f9f591fb594818c1778e30c6941e2574b3264` | Go `438b084d…ab33`；migration v4 `b56f7f5a…ee14` | parent remote unchanged；`29317b...` lock；default off；not pushed |
-| yijie-agent-host S5 Accepted checkpoint | local only / no release | tag N/A | `3e8df026110f0c895262329c2384d3896598f3d9` | Go `629ddf…63b0`；store v3 | parent remote unchanged；`29317b...` source；v2 flags off；not pushed |
-| yijie-desktop S8B implementation checkpoint | local only / no release | tag N/A | `35f27447398529cca4dec85fa1f67e779c7a7cbd` | Vue UI/domain/scroll/docs/package/lock digests见`feature.yaml`与`08` | parent `5dab02a1ad5f03fead236aa7060fa6a75a234d85`；`29317b...` lock；flags off；not pushed |
+| yijie governance accepted baseline | dedicated remote candidate / no release | tag N/A | remote `650254b3c009c4098f7d7b2d415ed8082b0139fa`；本轮DEC-126-035 local docs commit另行回报 | package manifest见`08` | exact remote candidate；本轮不追加push；develop/merge/activation不变 |
+| yijie-api S4 Accepted checkpoint | dedicated remote candidate / no release | tag N/A | `a64f9f591fb594818c1778e30c6941e2574b3264` | Go `438b084d…ab33`；migration v4 `b56f7f5a…ee14` | exact remote candidate；`29317b...` lock；default off；not merged/activated |
+| yijie-agent-host S5 Accepted checkpoint | dedicated remote candidate / no release | tag N/A | `3e8df026110f0c895262329c2384d3896598f3d9` | Go `629ddf…63b0`；store v3 | exact remote candidate；`29317b...` source；v2 flags off；not merged/activated |
+| yijie-desktop S8B implementation checkpoint | dedicated remote candidate / no release | tag N/A | `35f27447398529cca4dec85fa1f67e779c7a7cbd` | Vue UI/domain/scroll/docs/package/lock digests见`feature.yaml`与`08` | exact remote candidate；parent `5dab02a…34d85`；`29317b...` lock；flags off；not merged/activated |
 
 ## 3. 验收结果
 
@@ -34,6 +34,7 @@
 | DESIGN-126-006 / DEC-126-032 | DESIGN ACCEPTED | default-off gate、dynamic route/auth、permission lifecycle、store paging/cleanup、readiness/storage private IPC、Tasks/scroll方案 | none / local-only |
 | S8B0 / DEC-126-033 | CLOSURE PASS / OWNER ACCEPTED | Desktop `5dab02a1…34d85`；22 closed commands、gate/routes/lifecycle/store/readiness/storage/Tasks；135 TS + 95/96 Rust全绿 | none / flag off |
 | S8B / LIA-126-006 / DEC-126-034 | CLOSURE PASS / OWNER ACCEPTED | Desktop `35f27447…7cbd`；29个TS测试文件/164 tests、95/96 Rust（1项既有Keychain ignored）、lint/build/audit/security/bundle/diff、axe和light/dark/1180×760/200%等价reflow/reduced-motion验证PASS；VoiceOver人工清单保留到S11/G6 | none / flag off |
+| DEC-126-035 Remote State Reconciliation | CANDIDATE / OWNER DECISION PENDING | five `git ls-remote` + temporary clean-clone checks exact：`650254b…139fa`、`a64f9f5…3264`、`3e8df02…f3d9`、`35f2744…7cbd`、`29317b6…e9f`；push曾由Owner明确授权，本轮只读 | no merge/tag/publish/deploy/activation/G4/G6 claim |
 | Remaining AC/NFR / S9–S11 | NOT RUN | not authorized；full traceability in `08` | none / production N/A |
 | Requirement package/G0/G1 | G1 product scope approved；structure evidence in `08` | user approval + default/G0/G1/strict package, YAML and diff checks | N/A |
 | G2 data authority | ACCEPTED DESIGN | ADR-0013 + 段成威 2026-08-02 approval；SQLite/PostgreSQL/Redis/pgvector/bbolt 职责已冻结 | N/A |
@@ -43,7 +44,7 @@
 | G2 Public Tasks/Pattern | ACCEPTED DESIGN | repo-local consumer inventory complete、Q-010 Resolved、DEC-126-011/012和Desktop Pattern Accepted | N/A |
 | G2A source contract | PASSED / APPROVED | DEC-126-023/024与Q-017 closed；replacement `29317b...`及source/generated/fixtures/digests/post-commit gates approved；sole candidate confirmed | N/A |
 | Contract Draft PR / remote CI | PR CREATED / CI FAILED / MERGE BLOCKED | [PR #1](https://github.com/36Dge/yijie-contracts/pull/1)为OPEN/DRAFT，base/head/SHA精确匹配；run 30741466028的generate/diff/lint/test/pack PASS，`pnpm audit`因`brace-expansion 2.1.2` high失败，后续`govulncheck`/`origin/main` breaking skipped；candidate未改依赖文件 | N/A |
-| Local-only Delivery Strategy | ACCEPTED / G3 PARTIAL | DEC-126-021 HOLD、DEC-126-022/026/027/028/029/030/031/032/033 accepted；S8B0 flag-off Closure Passed；G5/tag/publish/deploy N/A | N/A |
+| Local-only Delivery Strategy | ACCEPTED / G3 PARTIAL | DEC-126-021 HOLD、DEC-126-022/026/027/028/029/030/031/032/033/034 accepted；S8B flag-off Closure Passed；remote candidates exact；G5/tag/publish/deploy N/A | N/A |
 
 ## 4. 本地 Smoke 与观察
 
@@ -66,7 +67,7 @@
 - 是否触发停止或回滚：N/A。
 - 数据/队列/缓存最终状态：只创建过隔离的synthetic PostgreSQL/SQLCipher/Host temp stores，测试后停止并清理；真实业务数据未触碰。
 - 回滚路径当前是否仍有效：新能力默认off；API migration为expand-only，Desktop/Host按forward repair；完整跨进程rollback尚待S10。
-- Workspace：本轮checkpoint未包含任何FEAT-123删除或无关改动；yijie/API/Host/Desktop均有仅本地Accepted checkpoint，未push；contracts candidate、Runtime与Infra未改。
+- Workspace：本轮DEC-126-035 checkpoint仅包含12个FEAT-126治理文件，不含FEAT-123删除或无关改动；Owner-authorized checkpoint push已在此前完成并经只读复验，当前contracts candidate、Runtime与Infra未改，本轮不追加push。
 
 ## 7. 未验证项、已知限制与接受风险
 
@@ -105,7 +106,9 @@
 | DESIGN-126-006 / DEC-126-032 | S8B0 default-off gate、route/lifecycle/store/readiness/tasks/scroll integration contract | S8A Accepted + read-only UI consumption audit | 段成威 | Accepted；LIA-126-005 separately authorized |
 | LIA-126-005 / S8B0 / DEC-126-033 | gate/router/lifecycle/store/private IPC readiness integration，不做完整Vue页面 | DEC-126-032/033 Accepted；fake/fixed/temp only | 段成威 | Local checkpoint complete / Closure Passed |
 | LIA-126-006 / S8B / DEC-126-034 | 真实Vue页面、App Shell/session树、composer/conversation/reasoning/menu/delete/visual/a11y | DEC-126-033 Accepted后由Owner单独授权；只允许production Vue消费既有Pinia/private IPC边界 | 段成威 | Closure Passed at Desktop `35f27447…7cbd`；DEC-126-034 Accepted |
-| S9–S11 | fake-provider Eval、四组件本地E2E和Owner G6验收 | 仍须逐切片单独授权 | 段成威 | Not authorized / NOT RUN |
+| DEC-126-035 | Remote State Reconciliation：登记五仓exact remote refs与不扩展Gate的边界 | `ls-remote` + temporary clean clones已完成；本轮治理文档校正 | 段成威 | Candidate / Pending Owner approval；本轮不追加push |
+| LIA-126-007 / S9 | fixed fake-provider title/raw Eval；版本化authority/runner/dataset hash/split与closed metrics | 仅在DEC-126-035接受后由Owner另行明确授权 | 段成威 | Proposed / Not authorized / NOT RUN；不调用MiniMax、不启用flag、不进入S10 |
+| S10–S11 | 四组件本地E2E和Owner G6验收 | 仍须逐切片单独授权 | 段成威 | Not authorized / NOT RUN |
 | CLEAN-125-004 | 完成 Public Tasks hardening并退出 FEAT-125 临时隔离例外 | G5/G6 | 段成威 | FEAT-126 production or 2026-09-30 earlier |
 
 ## 9. 文档与运维交接
@@ -136,21 +139,22 @@
 | G0 Intake | 段成威 | Passed — requested requirement creation | 2026-08-01 | user request + `00` |
 | G1 Design Ready | 段成威 | Passed — approved FEAT-126 recommended product scheme | 2026-08-01 | user statement + resolved G1 Q/accepted product DEC |
 | G2 Design Review | 段成威 | Passed — DEC-126-017/011/012与FEAT-126 Pattern Accepted；进入G2A/no business coding | 2026-08-02 | Owner statement + `03`/`04`/`05`/`08` |
-| G2A Source Contract + Remote Availability | 段成威 | DEC-126-023/024 Accepted，G2A Re-review Passed；`29317b...`为唯一candidate；old remote availability仅适用于历史`c000a024...`，Draft PR #1不变 | 2026-08-02 | `29317b...` post-commit source/fixture/generated/digest review + `03`/`04`/`08` |
+| G2A Source Contract + Remote Availability | 段成威 | DEC-126-023/024 Accepted，G2A Re-review Passed；`29317b...`为唯一candidate且专用远端分支exact；历史`c000a024...`与Draft PR #1不变 | 2026-08-02 | `29317b...` post-commit source/fixture/generated/digest review + `03`/`04`/`08` |
 | Contract Merge Readiness | 段成威 | DEC-126-021 Accepted/HOLD；PR #1 CI red，not approved for merge；merge不是local draft前置 | 2026-08-02 | PR #1 + run 30741466028 + `03`/`08`/`09` |
 | Local-only Delivery Strategy | 段成威 | DEC-126-022 Accepted；Local Runtime Ready目标；tag/publish/deploy/G5 N/A | 2026-08-02 | Owner statement + `03`/`07`/`09` |
 | LIA-126-001 | 段成威 | Approved / Executed — produced S4–S6 foundations；later review supersedes Complete claim | 2026-08-02 | repository gates + digests + structured review in `07`/`08` |
 | LIA-126-002 / S7A Authorization | 段成威 | DEC-126-026 Accepted；S4–S6 Passed；S7A only authorized and executed locally | 2026-08-02 | DEC-126-023/024/025/026 + `07`/`08` |
 | S7A Closure Review / S7B Authorization | 段成威 | DEC-126-027 Accepted；S7A Closure Passed；S7B Rust application only authorized and executed locally；G3仍Partial | 2026-08-03 | Desktop S7A gates + Owner statement；no S8/UI/flag/MiniMax/remote action |
 | S7B Closure Review | 段成威 | DEC-126-028 Accepted；S7B Closure Passed，G3仍Partial | 2026-08-03 | Desktop 113 TS + 78/79 Rust、fake Host application chain、structured review；no Tauri/Vue/flag/MiniMax/remote action |
-| Desktop IPC/ViewModel Contract Review | 段成威 | DESIGN-126-005、DEC-126-029 Accepted；LIA-126-003/004依次授权S7C/S8A | 2026-08-03 | closed private IPC与S7C/S8A/S8B顺序；S8B implementation NOT RUN |
+| Desktop IPC/ViewModel Contract Review | 段成威 | DESIGN-126-005、DEC-126-029 Accepted；LIA-126-003/004依次授权S7C/S8A | 2026-08-03 | 当时冻结closed private IPC与S7C/S8A/S8B顺序；S8B后来已由DEC-126-034接受 |
 | S7C Closure Review | 段成威 | DEC-126-030 Accepted；S7C Closure Passed；G3仍Partial | 2026-08-03 | Desktop 113 TS + 87/88 Rust、fake Host cleanup/restart/race链；no Tauri conversation IPC/TS/Vue/flag/MiniMax/remote action |
 | S8A Closure Review | 段成威 | DEC-126-031 Accepted；S8A Closure Passed；G3仍Partial | 2026-08-03 | Desktop 127 TS + 93/94 Rust、closed IPC/TS store/auth/event/restart/no-log链；no Vue/flag/MiniMax/central pin/remote action |
 | S8B0 UI Integration Readiness Review | 段成威 | DESIGN-126-006 complete；DEC-126-032 Accepted | 2026-08-03 | read-only UI audit与private IPC stop condition获批；no flag/MiniMax/remote action |
-| S8B0 Implementation Authorization | 段成威 | DEC-126-032 Accepted；LIA-126-005只授权S8B0；S8B仍未授权 | 2026-08-03 | gate/route/lifecycle/store/readiness/storage/Tasks integration only；no full Vue UI/activation/remote action |
+| S8B0 Implementation Authorization | 段成威 | DEC-126-032 Accepted；LIA-126-005当时只授权S8B0；S8B后来由LIA-126-006单独授权 | 2026-08-03 | gate/route/lifecycle/store/readiness/storage/Tasks integration only；该切片本身无full Vue UI/activation/remote action |
 | S8B0 Closure Review | 段成威 | DEC-126-033 Accepted；S8B0 Closure Passed，G3仍Partial；S8B不得开始 | 2026-08-03 | Desktop `5dab02a1…34d85`；135 TS + 95/96 Rust；no full Chat Vue/flag/MiniMax/remote action |
 | S8B Implementation Authorization | 段成威 | LIA-126-006 Approved / Executed；只授权真实Vue页面、交互、视觉与可访问性；不授权activation或S9–S11 | 2026-08-03 | Desktop parent `5dab02a1…34d85`、checkpoint `35f27447…7cbd`；fake/fixed/temp only；no private IPC/Rust/central wire change |
 | S8B Closure Review | 段成威 | DEC-126-034 Accepted；S8B Closure Passed；G3仍Partial | 2026-08-03 | 164 TS + 95/96 Rust、lint/build/audit/bundle/security/diff、axe/visual/reflow证据；VoiceOver人工清单保留到S11/G6 |
+| Remote State Reconciliation | 段成威 | DEC-126-035 candidate；五仓远端精确可达事实已复验，等待Owner接受；不改变G3/G4/G6或任何activation/merge状态 | Pending | read-only `ls-remote` + five temporary clean clones；本轮no push |
 | G5 Production Ready | 段成威 | N/A / Out of Scope under DEC-126-022 | 2026-08-02 | no deployment/tag/publish/production environment |
 | G6 Local-only Delivery Complete | 段成威 | Pending Owner local startup and functional acceptance | N/A | requires G4 + AC-043；not Production Ready |
 

@@ -197,8 +197,8 @@
 | FIX-126-RAW-UPSTREAM-002 | fixed `builds_multiple_turns_with_reasoning_items` history fixture | PASS | completed raw `content[]`进入正确turn/item history | Host/Desktop source contract实现 |
 | FIX-126-RAW-UPSTREAM-003 | fixed `splits_reasoning_when_interleaved` fixture | PASS | interleaved reasoning形成独立items而非错误合并 | v2 caps/sequence conformance |
 | FIX-126-RAW-UPSTREAM-004 | fixed `marks_turn_as_interrupted_when_aborted` fixture | PASS | aborted rollout产生interrupted turn事实 | SQLCipher explicit-incomplete实现 |
-| FIX-126-RAW-001 | synthetic raw text deltas + complete/incomplete/unavailable finalized fixtures | SOURCE + HOST + DESKTOP RUST S7A/S7B PASS；Vue render NOT RUN | Host closed v2 mapping、content-index/final snapshot/caps/partial规则；Desktop strict SSE/domain、coalesced cursor、terminal reconciliation与redacted Debug | yijie-contracts + Host fake Runtime + Desktop fake Host；Vue rendering pending S8 |
-| FIX-126-RAW-002 | malformed status/reason/index/oversize + closed-union assertions | SOURCE + HOST PASS | invalid/oversize转explicit unavailable；raw canary不进Host logs/bbolt | contracts negative + Host race/unit/no-log assertions；Desktop UI安全留待S7–S9 |
+| FIX-126-RAW-001 | synthetic raw text deltas + complete/incomplete/unavailable finalized fixtures | SOURCE + HOST + DESKTOP RUST + VUE S8B PASS | Host closed v2 mapping、content-index/final snapshot/caps/partial规则；Desktop strict SSE/domain、coalesced cursor、terminal reconciliation、redacted Debug与Vue纯文本展开/折叠渲染 | yijie-contracts + Host fake Runtime + Desktop fake Host/test harness；不构成四组件E2E，S10仍未授权 |
+| FIX-126-RAW-002 | malformed status/reason/index/oversize + closed-union assertions | SOURCE + HOST + DESKTOP UI SAFETY PASS | invalid/oversize转explicit unavailable；raw canary不进Host logs/bbolt；Vue不使用`v-html`且只消费容量受限projection | contracts negative + Host race/unit/no-log + S8B production-component assertions；S9 Eval与S10 E2E仍待授权 |
 | FIX-126-RAW-003 | accepted SQLCipher history/delete path | S6 FOUNDATION PASS / E2E NOT RUN | terminal事务、wrong-key、secure_delete、WAL truncate、DB canary absence与FK cascade已测；live stream/restart全链路待S10 | Desktop Rust synthetic SQLCipher tests；不构成G4 evidence |
 | FIX-126-IPC-001 | closed command/response/error/cursor golden与unknown-field negatives | S8A Closure Passed | 20/20 command contract refs、closed request/response/error、opaque cursor与Rust/TS fixture equality | 不证明Vue或四组件E2E；DEC-126-031 Accepted |
 | FIX-126-IPC-002 | assistant/reasoning append、terminal、cleanup、resync/context-invalidated与gap/overflow序列 | S8A PASS | 7/7 event variants、UTF-8 byte caps、duplicate/gap/backpressure/resync和listen-only capability | 不证明真实Runtime多进程delivery；S10仍待授权 |
@@ -208,9 +208,9 @@
 
 | Fixture/Test set | 内容 | Production rule | 当前状态 |
 |---|---|---|---|
-| `FIX-126-UI-GATE-001` | six-value env truth table、nav/routes/lazy loader spy | only exact true；no default env/CI/build activation | DESIGN ONLY / NOT RUN |
-| `FIX-126-UI-AUTH-001` | create/read route meta、deleted/foreign/denied/stale、tenant/revision/logout sequencing | Rust action/resource check remains authoritative | DESIGN ONLY / NOT RUN |
-| `FIX-126-UI-STORE-001` | pick/revalidate、session append paging、cursor invalid、cleanup complete/incomplete disposition | use production Pinia reducer；fake client only dependency injection in tests | DESIGN ONLY / NOT RUN |
+| `FIX-126-UI-GATE-001` | six-value env truth table、nav/routes/lazy loader spy | only exact true；no default env/CI/build activation | S8B0 PASS / DEC-126-033 Accepted |
+| `FIX-126-UI-AUTH-001` | create/read route meta、deleted/foreign/denied/stale、tenant/revision/logout sequencing | Rust action/resource check remains authoritative | S8B0 PASS / DEC-126-033 Accepted |
+| `FIX-126-UI-STORE-001` | pick/revalidate、session append paging、cursor invalid、cleanup complete/incomplete disposition | use production Pinia reducer；fake client only dependency injection in tests | S8B0 PASS / DEC-126-033 Accepted |
 | `FIX-126-IPC-READY-001` | two new command request/response golden、unknown fields/enums、auth/expiry/operation retry | schema↔Rust serde↔TS validator exact；20个旧命令与7个events语义不漂移，总命令22 | PASS under LIA-126-005 |
 | `FIX-126-UI-A11Y-001` | light/dark、1180×760、200% zoom、reduced-motion、keyboard、IME、focus/menu/dialog、48/160 scroll、reasoning、axe/snapshot/VoiceOver | production components + real Pinia reducer；test-only harness；`axe-core@4.10.3` fixed devDependency with audit/lock evidence | S8B automated/browser portions PASS；VoiceOver checklist only，人工未执行 |
 
@@ -231,9 +231,10 @@
 | MiniMax `MM-126-002` public summary | isolated narrow harness | exactly 1 synthetic 57-char reasoning request；high+concise、answer≤80 chars、≤120s | same pin/key；title call did not donate retries | FAIL；1 call/0 retry，9,256 ms，answer completed但0 public-summary event；7 raw delta + 1 raw completed part，0 tool/secret leak，temp removed |
 | Desktop | yijie-desktop | `make lint && make test && make build` | Node 26.0.0 / pnpm 11.9.0 / Rust 1.95.0；bundled SQLCipher；fake Host | RUN 2026-08-03；PASS；21/21 files、127 TS tests；94 Rust tests（93 pass、1个既有signed Keychain integration ignored）；Clippy/fmt/Vite build PASS；含S7C既有链及S8A schema/serde/TS、auth、event caps/backpressure/cancel、stale selection、tenant/logout、restart/resync/delete cleanup和no-log扫描 |
 | Meta docs | yijie | feature checker, YAML parse, `git diff --check` | local shell/Ruby | current package only |
-| Accepted checkpoints | yijie/API/Host/Desktop | repository gates + scope/no-log/diff + local commit | synthetic/fake/temp only | RUN 2026-08-03；PASS；`6de641f…9569`、`a64f9f5…3264`、`3e8df02…f3d9`、`3adcb03…455a`；all local, no push |
+| Accepted checkpoints / remote reconciliation | yijie/API/Host/Desktop/contracts | repository gates + scope/no-log/diff + owner-authorized candidate push；`git ls-remote` + exact-branch temporary clean clone | synthetic/fake/temp only；remote verification is read-only | RUN 2026-08-03；PASS；remote exact `650254b…139fa`、`a64f9f5…3264`、`3e8df02…f3d9`、`35f2744…7cbd`、`29317b6…e9f`；all clean clones，develop/Draft PR/merge/tag/publish/deploy未改变；DEC-126-035候选 |
 | S8B0/S8B conformance | yijie + yijie-desktop | DESIGN-126-006/DEC-126-032 + schema/Rust/TS/router/store/Tasks + production Vue/unit/axe/browser/security/bundle/package/strict/G2A/YAML/lint/test/build/diff | fake/fixed/temp only；no runtime provider | DEC-126-033/034 Accepted；S8B Closure Passed at `35f2744…7cbd`；VoiceOver人工项保留到S11/G6 |
 | Local four-component E2E/security/perf/eval | affected repos | exact orchestration and commands must be added by authorized slices before G4 | local PostgreSQL/temp homes/DB/pinned Runtime/fake provider | command/harness absent — blocks G4/local G6；does not affect accepted G2/G2A |
+| LIA-126-007 / S9 fake-provider Eval | approved Host authority + Desktop consumer（候选） | versioned runner、exact dataset hash/split、title schema/semantic与raw sequence/final/no-log/injection gates | fixed fake provider、fixed Runtime/Host pins、synthetic data only | PROPOSED / NOT RUN；等待Owner单独授权，不调用MiniMax、不启用flag、不进入S10 |
 
 ## 12. 通过、失败与 Flaky 策略
 

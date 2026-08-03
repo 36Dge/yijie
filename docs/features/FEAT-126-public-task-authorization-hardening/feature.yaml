@@ -4,7 +4,7 @@ feature:
   id: "FEAT-126"
   slug: "public-task-authorization-hardening"
   title: "安全的新建任务对话、任务记录与 Public Tasks 授权加固"
-  status: "g2-passed-g2a-rereview-passed-s4-s8b-closure-passed-g3-partial"
+  status: "g2-passed-g2a-rereview-passed-s4-s8b-closure-passed-dec-126-035-candidate-g3-partial"
   created_at: "2026-08-01"
   requirement_owner: "段成威"
   technical_owner: "段成威"
@@ -192,10 +192,10 @@ immutable_references:
     package_publish_policy: "N/A; do not publish SDK/package or configure a registry"
     deployment_policy: "N/A; no online deployment, production canary, production activation, cloud database integration or real user data"
     model_validation: "fake provider and fixed fixtures first; no MiniMax call in this documentation adjustment; one bounded local MiniMax smoke requires separate Owner approval after the local chain is complete; keys never enter logs, databases, documents or frontend storage"
-    implementation_authorization: "DEC-126-030/031 accepted S7C/S8A, DEC-126-032/033 accepted S8B0 and DEC-126-034 accepted the separately authorized LIA-126-006/S8B Closure on 2026-08-03. S9-S11, MiniMax, feature activation, additional push and merge/tag/publish/deploy remain unauthorized"
+    implementation_authorization: "DEC-126-030/031 accepted S7C/S8A, DEC-126-032/033 accepted S8B0 and DEC-126-034 accepted LIA-126-006/S8B. Owner later explicitly authorized one push of the accepted yijie/API/Host/Desktop checkpoints; DEC-126-035 records the resulting remote availability as a candidate factual reconciliation. S9-S11, MiniMax, feature activation, any additional push and merge/tag/publish/deploy remain unauthorized"
   local_foundation_implementation:
     authorization: "LIA-126-001 foundation plus LIA-126-002 corrective closure; LIA-126-002 resumed under DEC-126-025; LIA-126-003 separately authorized S7C Rust-only implementation after DESIGN-126-005/DEC-126-029 acceptance"
-    status: "S4-S8B Closure passed under DEC-126-026/027/028/030/031/033/034. LIA-126-006 S8B is accepted at local checkpoint 35f27447398529cca4dec85fa1f67e779c7a7cbd. G3 remains Partial; the UI flag is default-off and S9-S11 remain unauthorized and unimplemented"
+    status: "S4-S8B Closure passed under DEC-126-026/027/028/030/031/033/034. LIA-126-006 S8B is accepted at checkpoint 35f27447398529cca4dec85fa1f67e779c7a7cbd and that exact SHA is available on the Owner-authorized remote candidate branch. G3 remains Partial; the UI flag is default-off and S9-S11 remain unauthorized and unimplemented"
     contract_full_commit: "29317b6426578749dc698fc2ad32b986ee5c8e9f"
     governance_checkpoint:
       accepted_baseline_local_full_commit: "6de641f715751bb8ca94ce6804e5a33ff18d9569"
@@ -203,8 +203,8 @@ immutable_references:
       accepted_baseline_files: 12
       working_tree_status_at_checkpoint: "clean; only FEAT-126 feature package files were committed; no FEAT-123 or unrelated files"
       remote_ref: "refs/heads/feat/feat-126-foundation-closure"
-      remote_full_commit: "ec393c2414ea35336f82a1f1db833052b7a40975"
-      remote_status: "unchanged; local accepted baseline commit is not pushed"
+      remote_full_commit: "650254b3c009c4098f7d7b2d415ed8082b0139fa"
+      remote_status: "Owner-authorized remote checkpoint available exactly at the accepted DEC-126-034 governance commit; origin/develop remains 6c23dc3d9fa0d979948dbb10356fc5929ac2513b; this DEC-126-035 documentation reconciliation remains local and is not pushed"
     repositories:
       yijie_api:
         baseline_full_commit: "faeb78019d95aaf9dcfbd8493f8bc2ecf7e4bf34"
@@ -212,8 +212,8 @@ immutable_references:
         local_checkpoint_parent_full_commit: "b5e601764357512208cc09bfb2b30b244a1b82ac"
         local_checkpoint_files: 16
         remote_ref: "refs/heads/feat/feat-126-foundation-closure"
-        remote_checkpoint_full_commit: "b5e601764357512208cc09bfb2b30b244a1b82ac"
-        working_tree_status: "clean after local Accepted checkpoint; checkpoint not pushed"
+        remote_checkpoint_full_commit: "a64f9f591fb594818c1778e30c6941e2574b3264"
+        working_tree_status: "clean; local HEAD equals the Owner-authorized remote candidate checkpoint; origin/develop unchanged"
         lock_sha256: "a46392c0c643071496cce568b77558b7e08cb31883428c4c66bbf9c40a94755c"
         generated_sha256: "438b084d65a925ebb7ccef6d7ab5d16fdc9d0990dc14ab536ee073ff298fab33"
         migration_sha256: "b56f7f5adc92a71b3092abd617c0c30e42f4e7524334984597e0a3f5beceee14"
@@ -224,8 +224,8 @@ immutable_references:
         local_checkpoint_parent_full_commit: "f6e4a5902d8f25632408c1c699ba17b8c66ef214"
         local_checkpoint_files: 11
         remote_ref: "refs/heads/feat/feat-126-foundation-closure"
-        remote_checkpoint_full_commit: "f6e4a5902d8f25632408c1c699ba17b8c66ef214"
-        working_tree_status: "clean after local Accepted checkpoint; checkpoint not pushed"
+        remote_checkpoint_full_commit: "3e8df026110f0c895262329c2384d3896598f3d9"
+        working_tree_status: "clean; local HEAD equals the Owner-authorized remote candidate checkpoint; origin/develop unchanged"
         lock_sha256: "d1796bbd8756b196f1cc632ef1285222aec2b64964608a1431daee61d8f7364c"
         generated_sha256: "629ddf2090a584a286ab32aae603f4f4c3efcf601df478196634352e39ba63b0"
         store_sha256: "1eacde7e5ce3eec9e93b7b2e3f60c21465573849e96fbec1d99789229dd31823"
@@ -236,8 +236,8 @@ immutable_references:
         local_checkpoint_parent_full_commit: "5dab02a1ad5f03fead236aa7060fa6a75a234d85"
         local_checkpoint_files: 27
         remote_ref: "refs/heads/feat/feat-126-foundation-closure"
-        remote_checkpoint_full_commit: "40413b409a467a133d178137651622e167d512de"
-        working_tree_status: "clean after local LIA-126-006 S8B checkpoint accepted by DEC-126-034; checkpoint not pushed"
+        remote_checkpoint_full_commit: "35f27447398529cca4dec85fa1f67e779c7a7cbd"
+        working_tree_status: "clean; local HEAD equals the Owner-authorized DEC-126-034 remote candidate checkpoint; origin/develop unchanged"
         lock_sha256: "ff75e27e0691d8ca5bcc922469a5df6012e5f717ddfb6ba23967290d12b429ed"
         generated_sha256: "e84b70be6505dc5c0fc1e4702018fad2839e1a3fe74d7730883151e49928b678"
         migration_0001_sha256: "3ed7f9661f4d85360670cce524599e2f3cad991581f4dc407a5c38dfd7dadc2b"
@@ -305,12 +305,12 @@ immutable_references:
       lifecycle: "exact sequence and duplicate handling; gap/overflow/protocol error triggers resync; read cancellation; stale selection and late response rejection; latest tenant bind wins; logout/context expiry clears projections; restart resync restores history and content-free cleanup status"
       safety_boundary: "fake Host/fixed fixtures/temp SQLCipher/temp CODEX_HOME only; Tauri capability permits event listen/unlisten but not WebView emit; no Vue page/component/router/style, mock production transport, feature activation, provider or remote operation"
       test_evidence: "schema/fixture/serde/TypeScript allowlists; command authorization, context expiry/revision/tenant switch; projection byte caps; duplicate/gap/backpressure/cancel/reconnect; stale selection/restart/delete cleanup; no-log/secret/path/raw-wire scans; Desktop lint/test/build all PASS with 127 TS and 93/94 Rust pass"
-      authorization_recommendation: "Owner accepted DEC-126-031 while keeping G3 Partial. S8B Vue UI still requires separate explicit authorization"
+      authorization_recommendation: "Historical S8A exit boundary: Owner accepted DEC-126-031 while keeping G3 Partial and S8B then required separate explicit authorization; that later authorization and closure were completed under LIA-126-006/DEC-126-034"
     s8b0_ui_integration_readiness_review:
-      status: "DESIGN-126-006 and DEC-126-032 Accepted 2026-08-03; LIA-126-005 S8B0 implemented locally at 5dab02a1ad5f03fead236aa7060fa6a75a234d85; DEC-126-033 Accepted and S8B0 Closure Passed; S8B remains unauthorized"
+      status: "DESIGN-126-006 and DEC-126-032 Accepted 2026-08-03; LIA-126-005 S8B0 implemented at 5dab02a1ad5f03fead236aa7060fa6a75a234d85; DEC-126-033 Accepted and S8B0 Closure Passed; later LIA-126-006/DEC-126-034 separately completed S8B"
       contract_impact: "semantic Desktop-private candidate only; central contracts, Host/Public Tasks wire and Runtime pin unchanged"
       gate: "VITE_YIJIE_CHAT_LOCAL_UI_ENABLED must be exact true, default false, and protect Chat navigation, /chat, /chat/:sessionId, /tasks local task history and component instantiation; it must not be true in env, CI, default development or build configuration"
-      findings: "All S8B0 P1 integration gaps are closed in the DEC-126-033 Accepted local checkpoint: project pick/revalidate, append/dedup session paging, cleanup clear/reload/navigation, permission tenant/revision/logout lifecycle, guarded routes/loaders, Rust-owned local readiness/start-retry/storage projections and removal of production sampleTasks. Full Chat Vue components and visual/a11y behavior remain S8B"
+      findings: "All S8B0 P1 integration gaps were closed in the DEC-126-033 Accepted slice checkpoint: project pick/revalidate, append/dedup session paging, cleanup clear/reload/navigation, permission tenant/revision/logout lifecycle, guarded routes/loaders, Rust-owned local readiness/start-retry/storage projections and removal of production sampleTasks. Full Chat Vue components and automated/browser visual/a11y behavior were subsequently completed and accepted under DEC-126-034; VoiceOver manual remains S11/G6"
       private_ipc_candidate: "implemented under LIA-126-005: chat_get_local_readiness_v1 and chat_request_local_recovery_v1 plus stable content-free readiness/storage issue codes are closed across schema, Rust serde, fixtures and TypeScript validators/client/store. Existing 20 S8A commands and seven event shapes retain semantics; total command allowlist is now 22. Rust owns process start/retry"
       slices: "S8B0 integration/gates first; S8B production Vue UI/a11y second; S9 fake-provider title/raw Eval; S10 temporary test-profile four-component local E2E; S11 Owner local G6 acceptance. Each needs separate authorization"
       scroll_contract: "Accepted Pattern 1.0.0 wins: follow at <=48px, show bottom control at >160px, aria-label exactly 滚动到对话底部"
@@ -322,6 +322,21 @@ immutable_references:
       safety_boundary: "Vue calls Pinia actions only; no chatClient/raw Tauri/Host access; no v-html/Markdown execution; no bearer/key/path/authority/raw-wire exposure; feature flag remains exact-true/default-false and unset"
       test_evidence: "29 TS test files / 164 tests, axe serious/critical 0, production build, 95/96 Rust with one pre-existing ignored, npm audit clean, browser light/dark/1180x760/200%-equivalent/focus checks, production bundle and no-log/path/secret scans"
       manual_handoff: "VoiceOver checklist added; DEC-126-034 accepted the S8B Closure without claiming human VoiceOver execution. Manual VoiceOver remains an explicit S11/G6 acceptance item"
+    remote_state_reconciliation:
+      decision_candidate: "DEC-126-035 Remote State Reconciliation; Proposed 2026-08-03 / Pending Owner"
+      authorization_fact: "Owner explicitly authorized git add/commit/push for all modified repositories after DEC-126-034; the affected worktrees were already clean and committed, so no empty commits were created"
+      candidate_refs: "yijie@650254b3c009c4098f7d7b2d415ed8082b0139fa; yijie-api@a64f9f591fb594818c1778e30c6941e2574b3264; yijie-agent-host@3e8df026110f0c895262329c2384d3896598f3d9; yijie-desktop@35f27447398529cca4dec85fa1f67e779c7a7cbd; yijie-contracts@29317b6426578749dc698fc2ad32b986ee5c8e9f"
+      verification: "PASS: git ls-remote candidate/develop refs and five temporary single-branch clean clones matched exact HEAD with clean worktrees; temporary root removed"
+      develop_refs: "yijie=6c23dc3d9fa0d979948dbb10356fc5929ac2513b; contracts=9ec34abd6e7dfb5a23b0154d467694167224ebbb; API=faeb78019d95aaf9dcfbd8493f8bc2ecf7e4bf34; Host=34e94acf293f6daad61c4d42fa47028a2d1318e4; Desktop=155854cf3662384caa2c8bffe0a47935ef4a70b5"
+      boundary: "remote availability only; no merge, tag, publish, deploy, feature activation, G4 or G6 implication; Draft PR #1 and sole contracts candidate identity remain unchanged"
+    s9_fake_provider_eval_authorization_recommendation:
+      authorization: "LIA-126-007 / S9 recommendation only; Pending Owner; do not execute under DEC-126-035"
+      eval_authority: "yijie-agent-host owns the versioned fake-provider title/raw Eval dataset manifest and runner; yijie-desktop consumes only exact generated event fixtures and validates authoritative reducer, SQLCipher lifecycle and plaintext UI projections"
+      pins: "Runtime 3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f; Host 3e8df026110f0c895262329c2384d3896598f3d9; Desktop 35f27447398529cca4dec85fa1f67e779c7a7cbd; contracts 29317b6426578749dc698fc2ad32b986ee5c8e9f"
+      dataset_contract: "feat126-title-raw-v1; at least 200 synthetic multilingual prompts plus at least 50 injection/adversarial cases; deterministic split with at least 20 percent holdout; exact manifest/dataset/runner SHA-256 recorded before the first Eval run and mismatch must fail closed"
+      title_gate: "strict title-v1 object; sanitizer structure 100 percent; labeled semantic success at least 95 percent; late model title overwrites user title 0; extra action, HTML/control/system-prompt/secret leakage 0"
+      raw_gate: "non-empty concrete plaintext; exact sequence/item/content-index and delta/final reconciliation; missing/gap/invalid/oversize is explicit Gate FAIL; no HTML/Markdown execution and body/no-log/bbolt/telemetry/audit leak count 0"
+      exclusions: "no MiniMax or external provider call; no real data; no feature activation; no IPC, central contracts, Host/Public Tasks wire or Runtime pin change; no S10; no remote write until separately authorized"
     exclusions: "no MiniMax call; no Runtime, Infra, Rust/private IPC, Host/Public Tasks wire or contracts source change; no additional remote write or push, merge, tag, publish or deploy; no feature flag activation; no S9-S11 implementation or complete local four-component E2E"
     aggregate_workspace_gate: "PARTIAL / ENVIRONMENT BLOCKED: package, strict, G2A, YAML and all affected FEAT-126 repository gates pass; workspace make lint/test reaches yijie-infra after prior repositories pass, then exits 125 because installed Docker 29.6.1 has no Compose plugin. Infra static validation and 76 Node tests pass before that point; no waiver or full-green claim"
   release_artifacts: []

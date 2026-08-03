@@ -1,6 +1,6 @@
 # FEAT-126 需求与验收标准
 
-> 段成威已通过G1/G2/G2A重审，`29317b6426578749dc698fc2ad32b986ee5c8e9f`是唯一source-contract candidate。DEC-126-026/027/028/030/031/033/034已接受S4–S8B Closure；Desktop S8B本地checkpoint为`35f27447398529cca4dec85fa1f67e779c7a7cbd`。G3仍Partial，G4/G6 Pending；S9–S11、MiniMax、feature activation与新增远端写入仍禁止。
+> 段成威已通过G1/G2/G2A重审，`29317b6426578749dc698fc2ad32b986ee5c8e9f`是唯一source-contract candidate。DEC-126-026/027/028/030/031/033/034已接受S4–S8B Closure；Owner随后明确授权的yijie/API/Host/Desktop候选分支push已精确复验。DEC-126-035仍为远端事实校正候选；G3仍Partial，G4/G6 Pending；S9–S11、MiniMax、feature activation与新增远端写入仍禁止。
 
 ## 1. 用户与场景
 
@@ -327,6 +327,8 @@
 | S8B0 Closure Review | 段成威 | Accepted — DEC-126-033接受Desktop `5dab02a1…34d85`的gate/route/lifecycle/store/readiness/storage/Tasks与全量门禁证据；S8B0 Closure Passed，不自动授权S8B | 2026-08-03 |
 | S8B Implementation Authorization | 段成威 | Approved — LIA-126-006只授权真实Vue Chat页面、交互、视觉与可访问性；不授权flag activation、S9–S11、MiniMax、IPC/Rust/contracts/Host/Runtime或远端动作 | 2026-08-03 |
 | S8B Closure Review | 段成威 | Accepted — DEC-126-034接受Desktop checkpoint `35f27447398529cca4dec85fa1f67e779c7a7cbd`及自动化/browser/a11y证据；S8B Closure Passed，G3仍Partial；VoiceOver人工通过未被声明 | 2026-08-03 |
+| DEC-126-035 Remote State Reconciliation | 段成威 | Pending — 五仓候选ref/develop与临时clean clone已精确复验；只校正远端可达事实，不代表merge/tag/publish/deploy/activation/G4/G6 | 2026-08-03 |
+| LIA-126-007 / S9 Authorization | 段成威 | Proposed only — 固定fake provider/pins、合成versioned dataset/runner、title/raw/no-log/injection Gate；未经单独批准不得执行 | 2026-08-03 |
 
 ## 12. LIA-126-006 验收追踪
 
