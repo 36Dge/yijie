@@ -1,6 +1,6 @@
 # FEAT-126 契约与兼容变更计划
 
-> 本文central contract设计已通过G2/G2A重审。S4–S8B0 Closure已接受；LIA-126-006/S8B已在Desktop本地实现并提交DEC-126-034候选。该切片仅消费既有private IPC，不修改central source、22个commands、7个events、Host/Public Tasks wire或Runtime pin；旧`c000a024`、Draft PR #1和各`origin/develop`保持不变。
+> 本文central contract设计已通过G2/G2A重审。DEC-126-034已接受S8B Closure；该切片仅消费既有private IPC，不修改central source、22个commands、7个events、Host/Public Tasks wire或Runtime pin。旧`c000a024`、Draft PR #1和各`origin/develop`保持不变。
 
 ## 1. Contract Impact 结论
 

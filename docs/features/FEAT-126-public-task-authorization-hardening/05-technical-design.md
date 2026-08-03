@@ -1,6 +1,6 @@
-# FEAT-126 技术设计（S8B Closure Review候选，G3 Partial）
+# FEAT-126 技术设计（S8B Closure Passed，G3 Partial）
 
-> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。DEC-126-026/027/028/030/031/033已接受S4–S8B0 Closure；LIA-126-006已单独授权并完成S8B本地候选，DEC-126-034等待Owner接受。G3仍Partial；S9–S11、MiniMax、flag activation与新增远端/发布动作仍未授权。
+> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。DEC-126-026/027/028/030/031/033/034已接受S4–S8B Closure。G3仍Partial；S9–S11、MiniMax、flag activation与新增远端/发布动作仍未授权。
 
 ## 1. 设计摘要
 
@@ -121,7 +121,7 @@ Owner已接受DEC-126-030/031/032/033；LIA-126-005 / S8B0 Closure Passed。S8B�
 
 ### 2.4 DESIGN-126-006 — S8B0 UI Integration Readiness（Accepted / Implemented Candidate）
 
-状态：DESIGN-126-006/DEC-126-032已获Owner接受，LIA-126-005已在`yijie-desktop@5dab02a1ad5f03fead236aa7060fa6a75a234d85`关闭以下S8B0集成缝隙，DEC-126-033已接受其Closure。Owner随后单独授权LIA-126-006；完整S8B Vue UI已在`35f27447398529cca4dec85fa1f67e779c7a7cbd`实现并提交DEC-126-034候选。
+状态：DESIGN-126-006/DEC-126-032已获Owner接受，LIA-126-005已在`yijie-desktop@5dab02a1ad5f03fead236aa7060fa6a75a234d85`关闭以下S8B0集成缝隙，DEC-126-033已接受其Closure。完整S8B Vue UI已在`35f27447398529cca4dec85fa1f67e779c7a7cbd`实现，并由DEC-126-034接受Closure。
 
 #### 2.4.1 Default-off gate与route authorization
 
@@ -542,9 +542,9 @@ Runtime/Host pin、临时 `CODEX_HOME`/空 cwd/pathless ephemeral thread，title
 - Runtime/MiniMax：canonical delete/name/summary/raw reasoning/outputSchema已确认；两次历史MiniMax预算已执行，title PASS，MM-126-002在旧summary门槛FAIL且观察到raw事件；Host raw bridge基础已用fake Runtime实现，raw flag默认off，本轮未调用MiniMax。
 - Public Tasks：仓内consumer inventory完成，unknown external按safe compatibility category处理，Q-010 Resolved；DEC-126-011/012已Accepted，v1全程双隔离。DEC-126-023/024与Q-017已关闭，`29317b...`从schema层拒绝conversation正文并通过G2A重审；LIA-126-002现已恢复，仅允许关闭S4–S6 P1。
 - Desktop Pattern：FEAT-126 Chat/App Shell Pattern已Accepted，只取代Chat 1.1.0/App Shell 2.0.0中的FEAT-126冲突段落。
-- 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–033 Accepted；S4–S8B0 Closure Passed；LIA-126-006 S8B已实施且DEC-126-034 Pending；S9–S11 Unauthorized。
+- 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–034 Accepted；S4–S8B Closure Passed；S9–S11 Unauthorized。
 - 安全/数据 Owner：段成威 — ADR-0013/0014/0015/0016与DEC-126-005/006/007/011/012/014/015/016/017 Approved；Q-006/Q-007/Q-008/Q-009/Q-010/Q-015/Q-016 Resolved；Pattern Accepted。
-- 结论与日期：2026-08-03 G2/G2A保持Passed，DEC-126-030/031接受S7C/S8A，DEC-126-032/033接受S8B0；LIA-126-006 S8B已保存为`35f27447398529cca4dec85fa1f67e779c7a7cbd`并提交DEC-126-034候选。G3仍Partial；继续禁止S9–S11、MiniMax、flag启用与追加远端动作。
+- 结论与日期：2026-08-03 G2/G2A保持Passed，DEC-126-030/031接受S7C/S8A，DEC-126-032/033接受S8B0，DEC-126-034接受S8B。G3仍Partial；继续禁止S9–S11、MiniMax、flag启用与追加远端动作。
 
 ## 15. S8B Vue projection implementation
 

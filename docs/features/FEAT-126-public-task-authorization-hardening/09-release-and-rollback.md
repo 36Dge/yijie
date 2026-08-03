@@ -1,6 +1,6 @@
-# FEAT-126 本地启动、停止与恢复 Runbook（S8B Closure Review Pending，G3 Partial）
+# FEAT-126 本地启动、停止与恢复 Runbook（S8B Closure Passed，G3 Partial）
 
-> DEC-126-022将本需求冻结为Local-only Delivery。S4–S8B0 Closure已接受；LIA-126-006 S8B已实施并提交DEC-126-034候选。本文仍不是可执行的完整四组件启动runbook，也不包含feature activation、S9–S11、线上部署、生产灰度/启用、tag、package publish或registry。
+> DEC-126-022将本需求冻结为Local-only Delivery。DEC-126-034已接受S8B Closure。本文仍不是可执行的完整四组件启动runbook，也不包含feature activation、S9–S11、线上部署、生产灰度/启用、tag、package publish或registry。
 
 ## 1. Release Manifest
 
@@ -10,8 +10,8 @@
 | contracts prior remote | `0.3.0 historical candidate` / tag N/A | `c000a0245acb5c3f7ead5d2a877fb60c281c588c` | SDK `334db014…9404` | historical exact projection only | Draft PR/HOLD；remote CI red blocks merge only；unchanged |
 | yijie-api | S4 Accepted local checkpoint / no tag | `a64f9f591fb594818c1778e30c6941e2574b3264` | generated Go `438b084d…ab33`；migration v4 `b56f7f5a…ee14` | exact `29317b...` lock；DEC-126-026 Accepted | local-lab only；secure route default off；not pushed |
 | yijie-agent-host | S5 Accepted local checkpoint / no tag | `3e8df026110f0c895262329c2384d3896598f3d9` | generated Go `629ddf…63b0`；store schema v3 | exact `29317b...` source lock / oapi-codegen 2.7.2 | local only；v2 flags off；title flag forced off；not pushed |
-| yijie-desktop | LIA-126-006 S8B local checkpoint / no tag | `35f27447398529cca4dec85fa1f67e779c7a7cbd` | UI/source/lock digests in `feature.yaml`；public TS/SQL/IPC pins unchanged | exact `29317b...` lock / reqwest 0.12.28 | local only；all flags off；DEC-126-034 pending；not pushed |
-| yijie governance | LIA-126-006 docs parent / no tag | `090f0b0a2351d4a144e823aebab64b5d762593b1` | this 12-file package diff; final local checkpoint reported after validation | feature package | DEC-126-034 candidate only；not pushed |
+| yijie-desktop | LIA-126-006 S8B local checkpoint / no tag | `35f27447398529cca4dec85fa1f67e779c7a7cbd` | UI/source/lock digests in `feature.yaml`；public TS/SQL/IPC pins unchanged | exact `29317b...` lock / reqwest 0.12.28 | local only；all flags off；DEC-126-034 Accepted；not pushed |
+| yijie governance | DEC-126-034 approval docs parent / no tag | `a66f2f2419436fd496eaf24e92322cbc982372cf` | approval-only package diff; final local checkpoint reported after validation | feature package | S8B Closure Passed；not pushed |
 | yijie-infra | no activation | N/A | N/A | N/A | none |
 
 ## 2. Local Runtime Ready 前提
@@ -19,7 +19,7 @@
 - [x] G1/G2、DEC-126-024 G2A重审与LIA-126-001真实通过并有段成威批准
 - [x] DEC-126-023方案C Accepted、Q-017 Resolved；本地replacement source/generated/fixtures与post-commit证据已形成
 - [x] DEC-126-024批准`29317b6426578749dc698fc2ad32b986ee5c8e9f`为新的唯一candidate；DEC-126-025随后单独恢复LIA-126-002的S4–S6范围
-- [ ] G4仍需Owner接受DEC-126-034、完成S9–S10与完整本地E2E后另行通过；LIA-126-006实现不等于G4
+- [ ] G4仍需完成另行授权的S9–S10与完整本地E2E后另行通过；DEC-126-034不等于G4
 - [ ] Contracts/Runtime/app本地输入来自clean immutable source，full SHA/digest/generator可追溯；tag为N/A
 - [ ] 本地合成identity/tenant/permission链路通过；FEAT-125 production prerequisites不属于Local-only G6
 - [ ] Public Tasks consumer inventory、secure version migration 和 legacy retirement plan 完成
@@ -41,7 +41,7 @@
 - [x] DEC-126-022已Accepted；tag/package publish/registry/线上部署/G5明确N/A
 - [x] DEC-126-027/028已接受S7A/S7B Closure
 - [x] DESIGN-126-005/DEC-126-029与DEC-126-030已获Owner批准；LIA-126-004只授权S8A，DEC-126-031已接受S8A Closure
-- [x] DEC-126-033已Accepted；LIA-126-006 S8B已实施但DEC-126-034仍Pending；S9–S11和flag activation仍禁止
+- [x] DEC-126-033/034已Accepted；S8B0/S8B Closure Passed；S9–S11和flag activation仍禁止
 - [ ] Owner另行授权任何后续远端变更，包括更新/删除candidate branch、移动`origin/develop`、merge、tag或package发布
 - [x] S4–S6 checkpoint记录prior exact SHA、generated digest和generator；未使用浮动branch；该记录不代表current G2A readiness
 - [ ] 删除/卸载文案只承诺当前 app-managed live store 不可恢复，披露 Time Machine/APFS/第三方副本与 Application Support/Keychain 普通卸载残留
@@ -60,7 +60,7 @@
 | 5 | 实现并验证S7C Rust actions/delete/interrupt/coordinator | Desktop Rust local draft | approved implementer | DEC-126-029 accepted + LIA-126-003 | fixed fixture/fake Host fault/race/restart/no-log；no Tauri/TS/Vue | complete/DEC-126-030 accepted；flags off |
 | 6 | S7C Closure后单独批准S8A private IPC + TS store/view-model | Desktop Rust/TS local draft | approved implementer | LIA-126-004 | schema↔serde↔TS、auth/backpressure/stale/restart；no Vue/flag | DEC-126-031 Accepted / S8A Closure Passed；flags off |
 | 7 | S8A Closure后单独执行S8B0 integration | Desktop Rust/TS local draft | approved implementer | DEC-126-032 Accepted + LIA-126-005 | exact-off gate、route/lifecycle/store/readiness schema↔serde↔TS；no full Vue/flag | DEC-126-033 Accepted / Closure Passed |
-| 8 | S8B0 Closure后单独批准S8B Vue UI/a11y | Desktop Vue local draft | approved implementer | LIA-126-006 | real store、UI/unit/visual/a11y；不得启用flag或使用production mock | implemented at `35f2744…7cbd`; DEC-126-034 Pending |
+| 8 | S8B0 Closure后单独批准S8B Vue UI/a11y | Desktop Vue local draft | approved implementer | LIA-126-006 | real store、UI/unit/visual/a11y；不得启用flag或使用production mock | implemented at `35f2744…7cbd`; DEC-126-034 Accepted / Closure Passed |
 | 9 | S9 fake-provider title/raw Eval | local fixed harness | test owner | S8B Closure + explicit S9 authorization | no MiniMax/key；raw/title/no-log matrix | not authorized / NOT RUN |
 | 10 | S10临时test profile启动local API/Host/pinned Runtime/Desktop并跑完整E2E | Owner machine + synthetic tenant/project | approved operator/test owner | exact local startup manifest + explicit S10 authorization | AC-001–052/security/delete/restart/process/config/SHA | stop processes；delete temp data；default flags unchanged |
 | 11 | S11 Owner Local-only G6验收 | Owner machine | 段成威 | G4 evidence | AC-043 + evidence review | do not mark complete；return failing slice |
@@ -165,8 +165,8 @@ stop threshold
 | 日期 | Environment | Artifact/data versions | Steps | Result | Gaps |
 |---|---|---|---|---|---|
 | 2026-08-03 | local synthetic foundations + S7A–S8A Desktop domain/IPC | API migration v4；Desktop SQLCipher schema v4 + Rust Host/application/IPC + TS ViewModel；Host bbolt schema v3 | S4–S7C matrix + S8A schema/serde/TS/auth/event/store/restart/no-log and full Desktop gates | DEC-126-026/027/028/030/031 Accepted；S4–S8A Closure Passed | historical checkpoint；later S8B0/S8B rows supersede UI gaps；S9–S11/four-component saga remain |
-| 2026-08-03 | S8B0 Desktop integration | Desktop private IPC 22 commands + exact-off UI gate/routes/lifecycle/store/readiness/Tasks metadata | 135 TS、95/96 Rust、lint/type/build/fmt/clippy/no-log | DEC-126-032/033 Accepted；S8B0 Closure Passed | S8B later implemented under LIA-126-006；DEC-126-034/S9–S11/activation/four-component saga remain |
-| 2026-08-03 | LIA-126-006 S8B Desktop Vue UI | Desktop `35f2744…7cbd`；real Vue pages/App Shell/composer/reasoning/menus/scroll/a11y；flag off | 29/164 TS、axe 0 serious/critical、build、95/96 Rust、npm audit、browser/security scans | DEC-126-034 Closure Review candidate；not Owner Accepted | VoiceOver Owner review、S9–S11、flag activation and four-component saga still block later gates |
+| 2026-08-03 | S8B0 Desktop integration | Desktop private IPC 22 commands + exact-off UI gate/routes/lifecycle/store/readiness/Tasks metadata | 135 TS、95/96 Rust、lint/type/build/fmt/clippy/no-log | DEC-126-032/033 Accepted；S8B0 Closure Passed | S8B later implemented under LIA-126-006；S9–S11/activation/four-component saga remain |
+| 2026-08-03 | LIA-126-006 S8B Desktop Vue UI | Desktop `35f2744…7cbd`；real Vue pages/App Shell/composer/reasoning/menus/scroll/a11y；flag off | 29/164 TS、axe 0 serious/critical、build、95/96 Rust、npm audit、browser/security scans | DEC-126-034 Accepted / S8B Closure Passed | VoiceOver manual remains for S11/G6；S9–S11、flag activation and four-component saga still block later gates |
 
 ## 12. 沟通、职责与批准
 

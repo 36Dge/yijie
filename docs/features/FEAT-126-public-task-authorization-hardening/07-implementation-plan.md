@@ -1,4 +1,4 @@
-# FEAT-126 Local-only 原子实施计划（S8B Closure Review Pending，G3 Partial）
+# FEAT-126 Local-only 原子实施计划（S8B Closure Passed，G3 Partial）
 
 ## 1. 当前执行边界
 
@@ -6,7 +6,7 @@
 - DEC-126-022 Local-only Delivery Strategy已Accepted；LIA-126-001已于2026-08-02批准，且只允许S4–S6本地基础切片。
 - S4–S6已有远端checkpoint并保持flags/routes默认关闭；DEC-126-026已接受其Closure并单独授权S7A Desktop Rust Host Bridge/Domain。
 - DEC-126-027已接受S7A；DEC-126-028已接受S7B durable outbox、strict/coalesced reducer、history orchestration、title precedence与fake Host应用链。
-- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；DEC-126-030/031已接受S7C/S8A，DEC-126-032/033已接受S8B0。Owner随后单独授权LIA-126-006/S8B；实现与本地checkpoint已完成，DEC-126-034等待Owner接受。S9–S11仍须逐切片获得明确授权并重新核对full SHA/worktree。
+- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；DEC-126-030/031已接受S7C/S8A，DEC-126-032/033已接受S8B0，DEC-126-034已接受S8B。S9–S11仍须逐切片获得明确授权并重新核对full SHA/worktree。
 
 ## 2. 实施原则
 
@@ -138,8 +138,8 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 | S8A | included in `3adcb0380561c294412bc24767e4651ca872455a` | 20 versioned commands、listen-only event、closed schema/fixtures、native auth binding、opaque cursors、strict TS validators/real Tauri client/authoritative Pinia reducer；无Vue | `make lint/test/build` PASS；127 TS；94 Rust（93 pass/1 existing ignored）；schema↔serde↔TS、auth/expiry/tenant、caps/backpressure/cancel/stale/restart/resync/no-log | DEC-126-031 Accepted | Closure Passed / G3 Partial |
 | DESIGN-126-006 / DEC-126-032 | accepted design | S8B0 UI gate/route/lifecycle/store/readiness/tasks/scroll contract | feature package/static source inventory | DEC-126-032 Accepted | LIA-126-005 separately executed |
 | S8B0 | local checkpoint `yijie-desktop@5dab02a1ad5f03fead236aa7060fa6a75a234d85` | 22-command closed IPC、Rust readiness/storage probe、exact-off gate、routes/lifecycle/store/Tasks metadata；不含完整Chat Vue visual | 135 TS；96 Rust（95 pass/1 existing ignored）；generate/lint/type/build/fmt/clippy/no-log PASS | LIA-126-005 / DEC-126-033 | Closure Passed / Accepted / not pushed |
-| S8B | local checkpoint `yijie-desktop@35f27447398529cca4dec85fa1f67e779c7a7cbd` | production Vue Chat/App Shell/composer/reasoning/menus/scroll/a11y；27 files | 164 TS、95/96 Rust、lint/build/audit/bundle/security/browser/axe PASS；VoiceOver checklist pending | DEC-126-034 Proposed | Implemented / Closure Review Pending / not pushed |
-| S9–S11 | N/A | none | NOT RUN | Not authorized | Pending separate sequential authorization after DEC-126-034 acceptance |
+| S8B | local checkpoint `yijie-desktop@35f27447398529cca4dec85fa1f67e779c7a7cbd` | production Vue Chat/App Shell/composer/reasoning/menus/scroll/a11y；27 files | 164 TS、95/96 Rust、lint/build/audit/bundle/security/browser/axe PASS；VoiceOver checklist retained for S11/G6 | DEC-126-034 Accepted | Closure Passed / local commit / not pushed |
+| S9–S11 | N/A | none | NOT RUN | Not authorized | Pending separate sequential authorization |
 
 ## 10. 变更控制
 
@@ -162,7 +162,7 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 | Contracts/G2A/remote | 段成威 | DEC-126-023/024/025 Accepted，`29317b...`为唯一candidate并已远端可达；`c000a024...`仅为历史远端候选，旧PR与develop不变；未merge/tag/发布/启用 | 2026-08-02 |
 | Contracts Draft PR / merge | 段成威 | DEC-126-021 Accepted/HOLD；CI failed dependency audit；merge不是local draft前置但当前仍不批准 | 2026-08-02 |
 | Local-only delivery strategy | 段成威 | DEC-126-022 Accepted；Local Runtime Ready目标，tag/publish/deploy/G5 N/A | 2026-08-02 |
-| Local Implementation Authorization | 段成威 | S7A–S8B0已接受；LIA-126-006已单独授权并完成S8B本地候选。DEC-126-034待Owner接受；S9–S11、MiniMax/flag activation与新增远端动作仍禁止 | 2026-08-03 |
+| Local Implementation Authorization | 段成威 | S7A–S8B已接受；DEC-126-034接受S8B Closure。S9–S11、MiniMax/flag activation与新增远端动作仍禁止 | 2026-08-03 |
 
 ## 12. Local Implementation Authorization 审批候选
 
@@ -213,10 +213,10 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - `LIA-126-003 / S7C`：已单独授权Desktop Rust authorization context、session/project actions、interrupt、durable delete/cleanup status、background coordinator与restart/resync projection source；仅使用fake Host、固定fixture、临时SQLCipher和临时CODEX_HOME；禁止Tauri invoke/event、TS/Vue、MiniMax、远端动作。退出需Rust fault/race/restart/no-log Closure Review。
 - `LIA-126-004 / S8A`：Owner接受DEC-126-030后已单独授权authoritative IPC schema/fixtures、窄Tauri commands/events、TS validators/client/Pinia store/view-model；禁止Vue页面/样式/route activation和production mock transport。退出需schema↔serde↔TS、auth/no-log/backpressure/stale/restart/race Closure Review。
 - `S8B0`结果：Owner接受DEC-126-032后单独授权LIA-126-005；exact-off gate、route/permission lifecycle、store consumption和closed readiness/storage private IPC已在`5dab02a1…34d85`完成；未实现完整Vue visual page，flag未启用。
-- `LIA-126-006 / S8B`结果：Owner在DEC-126-033接受后已单独授权Vue页面、交互、视觉与可访问性；实现消费真实authoritative store，fake投影只存在test harness；feature flag activation不随S8B自动授权。当前为DEC-126-034 Pending候选。
+- `LIA-126-006 / S8B`结果：Owner在DEC-126-033接受后单独授权Vue页面、交互、视觉与可访问性；实现消费真实authoritative store，fake投影只存在test harness；DEC-126-034已接受Closure，feature flag activation不随之授权。
 - S7C结果：Owner已接受DEC-126-030，S7C Closure Passed。
 - S8A结果：20个versioned commands、closed Schema/fixtures、Rust-bound context/event/cursors、TS validator/client/store已实现；Desktop `make lint/test/build`及安全扫描PASS；DEC-126-031已接受S8A Closure，G3仍Partial。
-- 当前状态：S4–S8B0 Closure已由Owner接受；S8B已实施并通过本地代码门禁，但DEC-126-034尚未接受。G3仍Partial；S9–S11实现/测试保持`NOT RUN`并继续未授权。
+- 当前状态：S4–S8B Closure已由Owner接受。G3仍Partial；S9–S11实现/测试保持`NOT RUN`并继续未授权。
 
 ### LIA-126-005 / S8B0（Approved / Executed / DEC-126-033 Closure Passed）
 
@@ -229,7 +229,7 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - 依赖/远端：不修改central contracts、Host/Public Tasks wire或Runtime pin；不新增production dependency；不push/merge/tag/publish/deploy。
 - 退出：上述门禁与DEC-126-033 / S8B0 Closure Review已通过；Owner随后通过LIA-126-006单独授权S8B，没有把授权追溯写入S8B0本身。
 
-### LIA-126-006 / S8B（Approved / Executed / DEC-126-034 Pending）
+### LIA-126-006 / S8B（Approved / Executed / DEC-126-034 Accepted）
 
 - 固定基线：governance=`090f0b0a2351d4a144e823aebab64b5d762593b1`；Desktop=`5dab02a1ad5f03fead236aa7060fa6a75a234d85`；contracts=`29317b6426578749dc698fc2ad32b986ee5c8e9f`；开始时两仓干净。
 - 允许范围：真实`/chat`/`/chat/:sessionId`、项目/session树、纯文本composer、assistant/raw reasoning、rename/pin/remove/delete、cleanup/paging/scroll、light/dark/zoom/keyboard/focus/a11y。
@@ -237,5 +237,5 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - 代码checkpoint：`yijie-desktop@35f27447398529cca4dec85fa1f67e779c7a7cbd`，parent=`5dab02a1ad5f03fead236aa7060fa6a75a234d85`，27个文件，工作树clean，not pushed。
 - 依赖：仅新增fixed devDependency `axe-core@4.10.3`；lockfile已记录，npm audit 0 known vulnerabilities；production dependencies/bundle无axe。
 - 验证：29/29 test files、164/164 tests、axe 0 serious/critical、lint/type/build、95/95 Rust（另1既有ignored）、1180×760 light/dark、200% zoom等价、dialog focus、reduced-motion/scroll unit及security/bundle scans PASS。
-- 人工项：VoiceOver checklist已提交但未声称执行；Owner在DEC-126-034审查时决定接受或退回。
-- 限制：flag仍unset/false；无MiniMax/真实数据/S9–S11/四组件E2E/远端动作。下一切片只能在Owner接受DEC-126-034后另行授权S9。
+- 人工项：VoiceOver checklist已提交但未声称执行；DEC-126-034将其保留到S11/G6，不阻断S8B Closure。
+- 限制：flag仍unset/false；无MiniMax/真实数据/S9–S11/四组件E2E/远端动作。下一切片仍须由Owner另行授权S9。

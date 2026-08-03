@@ -4,7 +4,7 @@
 
 | 字段 | 内容 |
 |---|---|
-| 状态 | G1 Passed / G2 Passed / G2A Re-review Passed / S4–S8B0 Closure Passed / LIA-126-006 S8B Implemented / DEC-126-034 Closure Review Pending / G3 Partial |
+| 状态 | G1 Passed / G2 Passed / G2A Re-review Passed / S4–S8B Closure Passed / DEC-126-034 Accepted / G3 Partial |
 | 需求负责人 | 段成威 |
 | Product/Design 决策人 | 段成威 |
 | 技术负责人 | 段成威 |
@@ -61,7 +61,7 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 - 云端会话同步、多设备合并、共享协作、导入导出、归档与回收站。
 - 项目编辑、Finder 展示、归档或删除本地目录/仓库文件。
 - Admin Web、Connectors、Knowledge、Skills 或商业平台能力接入。
-- LIA-126-001/002与DEC-126-026已完成S4–S6；DEC-126-027/028/030/031/033已接受S7A–S8B0 Closure。Owner随后单独授权LIA-126-006/S8B；真实Vue页面、交互、视觉和a11y已保存为Desktop本地checkpoint`35f27447398529cca4dec85fa1f67e779c7a7cbd`，DEC-126-034 Closure Review等待Owner接受。G3仍为Partial；S9–S11、MiniMax、Runtime/Infra源码、feature flag activation及一切新增远端/发布动作仍不在授权范围。
+- LIA-126-001/002与DEC-126-026已完成S4–S6；DEC-126-027/028/030/031/033/034已接受S7A–S8B Closure。真实Vue页面、交互、视觉和a11y已保存为Desktop本地checkpoint`35f27447398529cca4dec85fa1f67e779c7a7cbd`并通过S8B Closure。G3仍为Partial；S9–S11、MiniMax、Runtime/Infra源码、feature flag activation及一切新增远端/发布动作仍不在授权范围。
 - FEAT-126本期不创建`contracts-v0.3.0` tag、不发布SDK/package、不配置registry，不进行线上部署、生产灰度/启用、云数据库接入或真实用户数据处理。
 
 ## 6. 候选成功指标
@@ -153,9 +153,9 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 | G2A 契约就绪 | 2026-08-02 | 段成威 | Re-review Passed：DEC-126-024 Accepted，`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate；现已精确推送到`origin/feat/feat-126-content-free-candidate`，`origin/develop`、历史`c000a024`与Draft PR #1均不变；远端可达不等于merge/发布/实现完成 |
 | Contract Draft PR / merge readiness | 2026-08-02 | 段成威 | DEC-126-021 Accepted/HOLD：Draft PR #1固定SHA且保持Draft；红色CI只阻断merge，不回退G2/G2A；未来需本地跨仓E2E、audit修复、远端CI全绿及单独merge批准 |
 | Local-only Delivery Strategy | 2026-08-02 | 段成威 | DEC-126-022 Accepted；目标改为Local Runtime Ready；tag/publish/deploy/G5均N/A；LIA-126-001后续仅授权S4–S6 |
-| G3 本地切片完成 | 未排期 | 段成威 | Partial：S4–S8B0 Closure已接受；S8B已按LIA-126-006实施并提交DEC-126-034候选，但尚未获Owner Closure接受；S9–S11仍未授权/未实施 |
+| G3 本地切片完成 | 未排期 | 段成威 | Partial：S4–S8B Closure已接受；S9–S11仍未授权/未实施 |
 | S8B0 UI Integration Readiness Review | 2026-08-03 | 段成威 | DESIGN-126-006/DEC-126-032与DEC-126-033 Accepted；LIA-126-005 / S8B0 Closure Passed |
-| S8B Vue UI Closure Review | 2026-08-03 | 段成威 | LIA-126-006已授权并形成Desktop本地checkpoint；DEC-126-034为Pending候选，不代表Owner已接受，不授权S9/S10/activation |
+| S8B Vue UI Closure Review | 2026-08-03 | 段成威 | DEC-126-034 Accepted / S8B Closure Passed；不自动授权S9/S10/activation，VoiceOver人工项保留到S11/G6 |
 | G4 Local Code Complete | 未排期 | 段成威 | Pending：需API/Host/Desktop/Runtime本地构建与完整对话E2E |
 | G5 Production Ready | N/A | 段成威 | Out of Scope；未来上线必须重开生产轨 |
 | G6 Local-only Delivery Complete | 未排期 | 段成威 | Pending：Owner验收本地启动和功能链路；不代表Production Ready |
@@ -202,3 +202,4 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 | 2026-08-03 | 段成威 / Codex | Owner批准DEC-126-032并单独授权LIA-126-005；Codex完成S8B0本地实现并提交DEC-126-033 Closure Review候选 | Desktop `5dab02a1…34d85`：22个closed commands、exact-off gate、route/lifecycle/store/readiness/storage/Tasks接线；135 TS与95/96 Rust通过（1既有ignored）；未进入S8B、未启用flag、未调用MiniMax、未远端写入 |
 | 2026-08-03 | 段成威 | 批准DEC-126-033并接受S8B0 Closure Review | S8B0 Closure Passed；G3继续Partial；不授权S8B、S9–S11、feature activation、MiniMax或远端/发布动作 |
 | 2026-08-03 | 段成威 / Codex | Owner单独授权LIA-126-006 / S8B；Codex实现真实`/chat`与`/chat/:sessionId`、App Shell项目/session树、纯文本composer、assistant/raw reasoning、菜单/删除/scroll及light/dark/zoom/keyboard/focus/a11y，并提交DEC-126-034 Closure Review候选 | Desktop local checkpoint=`35f27447398529cca4dec85fa1f67e779c7a7cbd`；29/29个TS测试文件、164/164 tests、axe 0 serious/critical、Vite build、95/95 Rust（另1既有ignored）、npm audit与安全/bundle扫描PASS；flag仍off，0 IPC/Rust/contracts/Host/Runtime改动，0 MiniMax/远端动作；G3仍Partial、等待Owner接受DEC-126-034 |
+| 2026-08-03 | 段成威 | 批准DEC-126-034并接受S8B Closure Review | S8B Closure Passed；G3继续Partial；不授权S9–S11、feature activation、MiniMax、四组件E2E或远端/发布动作；VoiceOver未声明人工通过并保留到S11/G6 |
