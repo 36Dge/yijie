@@ -1,6 +1,6 @@
 # FEAT-126 契约与兼容变更计划
 
-> 本文central contract设计已通过G2/G2A重审。DEC-126-026/027/028/030/031已接受S4–S8A Closure。S8A只增加Desktop-private schema/commands/events与TypeScript consumer，不修改central source、Host/Public Tasks wire或Runtime pin。S8B仍未授权；旧`c000a024`、Draft PR #1和各`origin/develop`保持不变。
+> 本文central contract设计已通过G2/G2A重审。DEC-126-026/027/028/030/031已接受S4–S8A Closure。S8A只增加Desktop-private schema/commands/events与TypeScript consumer，不修改central source、Host/Public Tasks wire或Runtime pin。DESIGN-126-006/DEC-126-032为待审Desktop-private extension；S8B0/S8B仍未授权；旧`c000a024`、Draft PR #1和各`origin/develop`保持不变。
 
 ## 1. Contract Impact 结论
 
@@ -71,7 +71,7 @@
 - 至少一次交付；consumer先解析envelope。future unknown variant只记录content-free metric并推进delivery cursor，避免replay loop；但不得推进business terminal、创建正文或执行动作。
 - terminal turn 仍只有一个；warning/error 不自动结束 turn。
 
-### 3.5 Desktop IPC/private DB（S8A本地实现候选）
+### 3.5 Desktop IPC/private DB（S8A Accepted implementation）
 
 - 所有私有IPC对象均为`schemaVersion: 1`、camelCase、closed object/union；未知字段、未知command/event kind或越限值fail closed。authoritative JSON Schema、Rust serde DTO、TypeScript类型及运行时validator由固定fixtures和allowlist/ref测试证明同形，禁止手写宽松影子DTO。该私有IPC不进入`yijie-contracts@29317b...`，不改变G2A source identity。
 - Rust建立`ChatAuthorizationContext`：`chat_bind_context_v1`只接受不可信tenant selector，Rust调用native auth authority复验signed-in、tenant membership、capability revision/expiry，并绑定本地`ChatScope`。owner user identity只来自Rust-owned authority，永不接受/回显WebView值。成功只返回随机opaque `contextId`、`expiresAtEpochSeconds`和allowlisted `allowedActions`；不返回tenant/owner/revision。context最多5分钟且不超过权威projection expiry，logout、tenant切换、同revision重新绑定、revision回退/到期立即使旧context失效并清空订阅。
@@ -88,7 +88,22 @@
 - delta 只在 Desktop 内存 reducer 聚合；finalized 或受控 interruption 以一个 SQLCipher transaction 更新 `chat_turns.reasoning_status/reason_code` 并替换对应 reasoning item/parts。history session list 不读取正文；turn page 默认 20、最大 50，只批量返回 reasoning metadata；用户展开时一次加载单 turn raw body，最大 256 KiB，避免 N+1。
 - session 永久删除返回按 data surface 分项的 completion；只要 Host/Runtime required cleanup 或 Desktop `wal_checkpoint(TRUNCATE)` 未完成，UI 不显示全部成功。成功语义仅为当前 app-managed live stores 不可重新打开/resume，不得升级为所有磁盘痕迹抹除。
 
-### 3.6 审批与审计
+### 3.6 DESIGN-126-006 Desktop-private readiness extension candidate
+
+现有20个S8A commands与7个`yijie.chat.event.v1` variants保持原shape和语义；本候选不静默扩展event channel，也不改变central contracts。只新增两个closed Desktop-private command：
+
+| Command | Request payload | Response data | Side effect/authority |
+|---|---|---|---|
+| `chat_get_local_readiness_v1` | `{}`；普通context-bound request envelope | `{lifecycle,host,runtime,storage,canSend,issueCode,retryable,recovery,retryAfterMs?}` | read-only；Rust按本次process nonce、Host preflight、Runtime ready与SQLCipher状态计算；不返回endpoint、PID、path、version原文或底层错误 |
+| `chat_request_local_recovery_v1` | `{operationId,intent:"start_or_retry"}` | 同一readiness projection | Rust验证context/capability与stable operation ID后，由Rust coordinator负责start/retry/backoff；WebView不能指定binary、URL、token、cwd、env或任意action |
+
+- `lifecycle`: `starting|ready|blocked|recovering`；`host`: `starting|ready|unavailable`；`runtime`: `starting|ready|unavailable|version_mismatch`；`storage`: `ready|read_only|full|corrupt|migration_failed|unavailable`。`canSend=true`当且仅当Host、Runtime、storage均ready且context仍有效。
+- `issueCode`仅允许`null|chat_host_starting|chat_host_unavailable|chat_runtime_starting|chat_runtime_unavailable|chat_runtime_version_mismatch|chat_storage_read_only|chat_storage_full|chat_storage_corrupt|chat_storage_migration_failed|chat_storage_unavailable`；不含message/detail。
+- 新增recovery allowlist仅为`none|retry|start_or_retry|free_space|repair_or_restore|restart_app|rebind_context`；Vue本地化固定文案，不能执行任意命令。对storage corrupt/migration failed不自动写修复；保持writer关闭并引导受控恢复。
+- 本extension必须同步更新Desktop-owned JSON Schema、Rust `deny_unknown_fields` serde DTO、command registry/capability、TypeScript exact validator/client/store与golden fixtures。旧20 commands/7 events的fixture equality必须继续PASS；新命令必须有unknown-field/enum/size/auth/expiry/revision/no-log/duplicate operation/restart测试。
+- 这是本次盘点触发的private IPC停止条件与`semantic` Desktop-private contract candidate。DEC-126-032批准及S8B0单独授权前，不得实现、复用旧`chat_start_local_host`、让Vue轮询裸command或猜测ready。
+
+### 3.7 审批与审计
 
 - 本期 permission entry 是 fixed policy projection，不是写审批 command。
 - 未覆盖的工具/文件/platform write reverse request 继续 method-not-found/deny。
@@ -197,10 +212,12 @@ Feature 包只引用上述唯一权威位置，不复制业务 fixtures。
 | 5 | secure Public provider + Host provider本地draft | API/Host | LIA-126-001 + provider conformance/security | Complete for S4/S5；local route/feature flags off |
 | 6 | S7C Rust actions/delete/interrupt/coordinator本地draft | Desktop Rust | DEC-126-029 Accepted + separate S7C authorization + S7B Closure | Complete/DEC-126-030 Accepted；flags off |
 | 7 | S8A private IPC + TS store/view-model本地draft | Desktop Rust/TS | S7C Closure + LIA-126-004 + fixed IPC fixtures | DEC-126-031 Accepted / S8A Closure Passed；无Vue/route activation |
-| 8 | S8B真实Vue交互/视觉/a11y本地draft | Desktop Vue | S8A Closure + separate S8B authorization + Accepted Pattern | disable local chat UI flag；不得fallback mock transport |
-| 9 | API/Host/Desktop/Runtime本地构建、启动与完整E2E | all local | security/delete/resilience/eval/fake provider | stop local processes；保留FEAT-125生产隔离 |
-| 10 | Owner Local-only G6验收 | all local | AC-001–047适用项与真实证据 | 不声明Production Ready |
-| 11 | 可选未来merge审批 | Contracts及受影响仓 | local E2E + dependency audit修复 + remote CI全绿 + Owner单独批准 | 保持feature branches/Draft PR |
+| 8 | S8B0 default-off gate、route/lifecycle/store/readiness integration | Desktop Rust/TS integration | DEC-126-032 Accepted + separate S8B0 authorization；fixed private fixtures | flag remains false；no visual Chat page |
+| 9 | S8B真实Vue交互/视觉/a11y本地draft | Desktop Vue | S8B0 Closure + separate S8B authorization + Accepted Pattern | disable local chat UI flag；不得fallback mock transport |
+| 10 | S9 fake-provider title/raw reasoning Eval | Desktop/Host/Runtime test harness | S8B Closure + separate S9 authorization | no MiniMax；keep flags off |
+| 11 | S10临时test profile四组件本地E2E | all local | S9 pass + separate S10 authorization | stop local processes；delete temp data；不改变默认config |
+| 12 | S11 Owner Local-only G6验收 | all local | AC-001–052适用项与真实证据 | 不声明Production Ready |
+| 13 | 可选未来merge审批 | Contracts及受影响仓 | local E2E + dependency audit修复 + remote CI全绿 + Owner单独批准 | 保持feature branches/Draft PR |
 
 本期不创建`contracts-v0.3.0` tag、不publish SDK/package、不配置registry、不迁移线上流量、不做生产灰度/启用或legacy生产清理。未来如产生线上意图，必须重开生产轨与G5。
 

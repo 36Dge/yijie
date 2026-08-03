@@ -76,7 +76,22 @@ LIA-126-002于2026-08-02形成S4–S6 checkpoint并完成Corrective Closure；Pu
 | restart/reconnect与错误恢复 | durable DB/outbox/cursor、sidecar nonce与Host replay 409基础存在 | Rust coordinator startup recovery、subscription/cursor invalidation、resync snapshot、context rebind、closed stable recovery error；TS store恢复状态机 | S7C；S8A |
 | Tauri/TypeScript/Vue consumer | foundation invokes和FEAT-124 textarea存在 | 无conversation invoke/event、无TS runtime validator/client/store/view-model、无真实Vue链路；不得用mock UI冒充 | S8A；S8B仅在其后 |
 
-当前结论：S4–S8A Closure已由Owner接受；S8A已实现20个versioned private commands、listen-only event bridge、closed schema/fixtures、Rust-bound authorization/cursors以及TypeScript client/store。Vue仍未修改，S8B仍须Owner另行明确授权。
+当前结论：S4–S8A Closure已由Owner接受；S8A已实现20个versioned private commands、listen-only event bridge、closed schema/fixtures、Rust-bound authorization/cursors以及TypeScript client/store。Vue仍未修改；DEC-126-032与S8B0/S8B仍须Owner分别审批。
+
+### 3.2 DESIGN-126-006 S8B0消费就绪盘点（当前事实）
+
+| Surface | 已存在 | 当前缺口/风险 | DESIGN-126-006冻结方向 |
+|---|---|---|---|
+| UI activation | native `YIJIE_CHAT_LOCAL_ENABLED`与`YIJIE_CHAT_LOCAL_HOST_ENABLED`均exact true才运行；permission UI另有独立flag | 没有Chat UI专属flag；当前`/chat` loader可被实例化 | 新增`VITE_YIJIE_CHAT_LOCAL_UI_ENABLED`，exact true/default false，并同时gate导航、route、deep-link和component loader；任何默认env/CI/build不得设true |
+| routes/auth | `/chat`与`/tasks`通过当前permission policy | 只有exact-path lookup；没有`/chat/:sessionId`，动态path可能绕过或错误套用create权限 | route meta固定capability；`/chat`=`task.create`，session深链=`task.read`；Rust仍做resource/action复验；deleted/foreign不枚举 |
+| permission lifecycle | permission store有tenant/revision/expiry/logout fail-closed | Chat store尚未由app lifecycle统一bind/clear/dispose | 先dispose旧scope再bind新scope；logout、revision/tenant变化、过期均清正文、取消read、退订并使late结果失效 |
+| store consumption | S8A authoritative reducer、真实Tauri client、历史加载与session reload存在 | store未暴露project pick/revalidate；session cursor没有append action；cleanup complete后未完成clear/reload/navigation | S8B0只补view-model消费能力；Vue只调store，不直接调client/invoke；删除返回closed disposition供router使用 |
+| readiness/recovery | Rust有sidecar nonce、HostBridge preflight与`chat_host_not_ready` | WebView无closed Host/Runtime/storage readiness；`ready` phase只表示store绑定，不证明可发送；旧foundation start command不可复用 | private IPC stop condition已触发：设计新增read-only readiness与窄化recovery intent，Rust独占start/retry；DEC-126-032与单独授权前不实现 |
+| local storage UX | Rust内部可区分migration/key/unsafe/unavailable的一部分错误 | private IPC将多类错误压成`chat_storage_unavailable`，无法稳定表达read-only/full/corrupt/migration | 冻结content-free issue/recovery枚举及schema/serde/TS fixture；不暴露path/SQL/key/底层message |
+| task records | `/tasks`页面存在 | production直接渲染`sampleTasks`，会冒充真实记录 | 使用同一Pinia session metadata追加分页；若S8B未就绪则route/nav随UI flag default-off隐藏，sample只可留test fixture |
+| scroll | Accepted Pattern有48/160阈值 | requirements仍留96px冲突 | Pattern 1.0.0优先：follow≤48px、button>160px、`aria-label="滚动到对话底部"` |
+
+Contract impact分类为`semantic` Desktop-private candidate：中央`yijie-contracts@29317b...`、Host/Public Tasks wire与Runtime pin均不变。当前closed IPC gap需要未来修改Desktop schema/Rust serde/TS validators，故本轮按停止条件只提交设计，源码保持checkpoint不变。
 
 ## 4. 调用链与数据流
 
@@ -180,7 +195,7 @@ Authenticated consumer
 1. G1 已于 2026-08-01 通过：段成威关闭产品问题 Q-001–Q-005/Q-011–Q-014；批准的产品规则由需求包承接。
 2. G2 评审于 2026-08-02 启动：ADR-0013 已冻结 Desktop 数据权威；继续冻结 Desktop Pattern、Public Tasks breaking、Agent Host additive/semantic 契约、SQLite protection/backup 与跨进程删除设计。
 3. DEC-126-024批准的sole candidate已精确推送到新专用远端分支；DEC-126-021仍保持旧Draft PR/HOLD，远端红色CI继续只阻断旧PR merge。新分支可达不等于merge、tag、publish、deploy、生产启用或实现完成。
-4. LIA-126-001/002形成并关闭了Public Tasks、Host v2与Desktop local repository/sidecar基础；DEC-126-027/028/030/031接受S7A/S7B/S7C/S8A。所有flags/routes仍默认关闭，S8B、S9–S11与UI继续禁止。
+4. LIA-126-001/002形成并关闭了Public Tasks、Host v2与Desktop local repository/sidecar基础；DEC-126-027/028/030/031接受S7A/S7B/S7C/S8A。所有flags/routes仍默认关闭，S8B0/S8B、S9–S11与UI继续禁止。
 5. 下游只固定完整SHA或已核验本地投影；先实现consumer tolerance，再启用本地provider新events；浮动branch不得作为契约身份。
 6. 完成security/migration/resilience/visual、四组件本地E2E和结构化审查后，提交Owner本地G6验收；不讨论线上activation。
 7. 如未来需要把源码纳入共享`develop`，必须先修复dependency audit、取得远端全绿CI并另行审批merge；merge不等于部署。
@@ -213,3 +228,4 @@ Authenticated consumer
 | SPIKE-126-004 | Desktop local DB technology/encryption/bookmark | 临时 Rust 1.95/macOS arm64 `cargo check --locked` 验证 rusqlite 0.40.1 bundled-sqlcipher + rusqlite_migration 2.6.0；review SQLCipher/SQLite/Apple 官方边界 | 不加 repo 依赖、不写真实 project/message | client-team | Complete：build PASS；Refinery 0.9.2 与 rusqlite 0.40.1 `libsqlite3-sys` links 冲突而拒绝；ADR-0014 Accepted/Q-015 Resolved |
 | SPIKE-126-005 | Public Tasks consumers/legacy usage | 2026-08-02 source inventory：Desktop无active call；API为不安全legacy provider；Infra仅deny；Host同名route为不同contract；admin/connectors/knowledge/skills无active ref；generated SDK仅artifact。外部因Public OpenAPI按`unknown-public`安全类别处理 | 不开放route、不访问production；不虚构“external=0” | platform-team | Complete：Q-010 Resolved；DEC-126-011/012 Accepted |
 | SPIKE-126-006 | Chat/App Shell sidebar information architecture | 已将G1语义、DESIGN-126-003 history/raw states与1180×760/a11y要求写入Desktop FEAT-126 Pattern | 不改业务代码；仅取代Accepted 01/02中的FEAT-126冲突段落；不把临时截图当发布资产 | client-team | Complete / Accepted 2026-08-02 |
+| SPIKE-126-008 | S8B0 UI consumption/readiness | 只读盘点router/nav/permission/chat store/private IPC/pages/env/CI；验证S8A reducer已存在，确认readiness/storage closed projection缺口 | 不改business source、Vue、IPC schema、flag或配置；不启动真实组件/provider | client-team | DESIGN-126-006 complete for review；private IPC stop condition triggered；DEC-126-032 Proposed，等待Owner |

@@ -1,6 +1,6 @@
 # FEAT-126 技术设计（S4–S8A Closure通过，G3 Partial）
 
-> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。DEC-126-026/027/028/030/031已接受S4–S8A Closure。G3仍Partial；S8B及S9–S11、Vue UI、MiniMax、flag activation与新增远端/发布动作仍未授权。
+> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。DEC-126-026/027/028/030/031已接受S4–S8A Closure。DESIGN-126-006/DEC-126-032待审。G3仍Partial；S8B0/S8B及S9–S11、Vue UI、MiniMax、flag activation与新增远端/发布动作仍未授权。
 
 ## 1. 设计摘要
 
@@ -66,7 +66,7 @@ authenticated client → secure versioned API → identity/tenant/authz → scop
 - title采用model/fallback/user来源与CAS：人工rename取消job并永远覆盖迟到模型结果；模型结果NFC/plain/no control/bidi/HTML-like且≤40 grapheme，总尝试上限2。固定Runtime不能禁用tools，因此S7B不派发title Host operation，title flag继续关闭。
 - 本切片未新增Tauri command/invoke或Vue源码，不修改Host/Public Tasks wire和唯一source candidate；属于私有durable/application semantic change。
 
-### 2.3 DESIGN-126-005 — Desktop IPC/ViewModel Contract（S8A实现候选）
+### 2.3 DESIGN-126-005 — Desktop IPC/ViewModel Contract（S8A Accepted）
 
 状态：DESIGN-126-005/DEC-126-029、DEC-126-030/031 Accepted；S8A Closure Passed，G3仍Partial。已创建private schema/fixtures、Rust DTO/commands/events和TypeScript validators/client/store；没有修改Vue页面/组件/路由/样式，也没有启用feature flag。
 
@@ -117,7 +117,44 @@ authenticated client → secure versioned API → identity/tenant/authz → scop
 2. `S8A`：在S7C Closure后，增加authoritative IPC schema/fixtures、窄Tauri commands/event bridge、TypeScript runtime validators/client及Pinia store/view-model；不修改Vue页面、视觉、route activation或feature flag。
 3. `S8B`：在S8A Closure后，按Accepted Pattern实现Vue页面、interaction、visual/a11y及visual tests；只使用真实S8A store，mock transport仅限test harness，不能存在于production path。feature activation仍需独立批准。
 
-Owner已接受DEC-126-030，并以DEC-126-031接受`LIA-126-004` S8A Closure。S8B仍未被预授权，须另行评审并明确授权Vue UI。
+Owner已接受DEC-126-030，并以DEC-126-031接受`LIA-126-004` S8A Closure。S8B0/S8B均未被预授权，须按DESIGN-126-006顺序另行评审。
+
+### 2.4 DESIGN-126-006 — S8B0 UI Integration Readiness（Candidate）
+
+状态：设计完成并提交DEC-126-032候选；尚未获Owner接受，未授权任何S8B0/S8B源码。本轮只读盘点确认S8A reducer已经实现，但生产UI消费仍有以下必须先关闭的集成缝隙。
+
+#### 2.4.1 Default-off gate与route authorization
+
+- `VITE_YIJIE_CHAT_LOCAL_UI_ENABLED`只在值exact等于`true`时开启，缺失、空、`TRUE`、`1`或其它值均为false。它与native `YIJIE_CHAT_LOCAL_ENABLED`、`YIJIE_CHAT_LOCAL_HOST_ENABLED`及authoritative permission状态分别承担UI可达、Rust domain/DB、sidecar和授权职责，不得互相隐式开启。
+- flag=false时不生成Chat/Tasks导航项、不注册`/chat`或`/chat/:sessionId`业务route（或在loader之前立即安全重定向）、不调用lazy component loader、不bind Chat store、不启动Host。`.env*`、CI、Vite default/dev/build配置都不得写true。
+- route以meta而不是exact path map声明capability：`/chat`要求`task.create`；`/chat/:sessionId`要求`task.read`。每个mutation仍以Rust context `allowedActions`和resource scope复验。session参数只接受opaque UUID，不能成为DB/Runtime ID。
+- 深链结果：未登录/context invalid→permission recovery；缺capability→`/access-denied`；not-found/deleted/foreign统一generic unavailable后replace到`/chat`，不得泄露存在性；stale selection先取消read、退订、清正文、resync，若新scope仍存在才恢复。
+
+#### 2.4.2 Permission与Chat lifecycle
+
+App-level integration adapter监听permission store的`phase/tenant/revision/expiry`，而不是由页面各自bind。状态顺序固定：`permission not ready/logout/expiry`→同步clear正文和selection→取消read/退订→dispose context；`tenant/revision changed`→完成旧dispose→以当前selector调用一次`chat.bind`；较慢旧bind由generation拒绝。页面unmount只释放页面局部focus/scroll，不得擅自销毁仍属同scope的authoritative store；app logout必须销毁。
+
+#### 2.4.3 Pinia consumption additions
+
+- 暴露store-owned `pickProject`、`revalidateProject`，成功后刷新安全project DTO；Vue不得接触bookmark/path或直接调用client。
+- 增加`loadMoreSessions`：使用当前`nextCursor`，按`sessionId`去重并追加，保留server pinned/activity稳定顺序；context/generation变化丢弃旧页，cursor invalid从首页reload。
+- `deleteSelected`继续使用stable operation ID并返回closed `DeleteDisposition={state,nextSessionId?}`。`complete`时store清除被删session的history/live/reasoning/cleanup/selection，reload sessions/projects并选择Rust返回/排序后的相邻opaque session；无剩余则返回`/chat`。`pending/incomplete`保持status和当前安全metadata，禁止UI先移除冒充成功。
+- `/tasks`与App Shell session树使用同一metadata page/store；production `sampleTasks`不得被import。若真实接线未完成，route/nav保持default-off而不是显示样例。
+
+#### 2.4.4 Readiness、start/retry与storage projection停止条件
+
+S8A `phase=ready`只证明context/list加载完成，不证明本次Host child、spawn nonce、Runtime protocol和SQLCipher writer均ready。现有20-command schema也没有UI可消费的closed readiness。因此DESIGN-126-006触发用户规定的停止条件：本轮不改源码，候选shape见`04-contract-change-plan.md §3.6`。
+
+- `chat_get_local_readiness_v1`只读返回Host/Runtime/storage/lifecycle、`canSend`、stable issue/recovery；每次发送仍由Rust submit command再次权威校验，避免check/use race。
+- `chat_request_local_recovery_v1`只接受`start_or_retry`和stable operation ID；Rust coordinator独占binary/env/token/loopback/start/backoff。Vue不能调用旧`chat_start_local_host`或自行循环。
+- storage issue稳定区分`read_only|full|corrupt|migration_failed|unavailable`，但只投影content-free code与受控recovery，不回显路径、SQL、key或SQLite/Host message。corrupt/migration失败保持writer关闭，不自动破坏性修复。
+- DEC-126-032 Accepted后仍需Owner单独授权S8B0，才能同步改Schema、Rust serde/registry、TS validator/client/store及fixed fixtures；否则所有flags继续off。
+
+#### 2.4.5 Scroll、a11y与后续切片
+
+- Accepted Pattern 1.0.0优先：距离底部≤48px跟随；>48px不抢滚动；>160px或有未读显示按钮；按钮`aria-label="滚动到对话底部"`。reduced-motion下即时滚动。
+- S8B0只做gate/router/lifecycle/store/readiness/cleanup/tasks integration及其非视觉测试；S8B才实现真实Vue App Shell/session树/composer/conversation/reasoning/menu/dialog/visual/a11y。S9为fake-provider Eval，S10为临时test profile四组件E2E，S11为Owner G6；每段另行授权。
+- 未来S8B测试必须使用生产Pinia reducer和production components；fake ChatClient只能由test harness注入且通过bundle deny测试。覆盖light/dark、1180×760、200% zoom、reduced-motion、keyboard、IME、focus restore、menus/dialogs、scroll/reasoning、axe、visual snapshot与VoiceOver人工记录；如需devDependency必须固定版本、提供audit/lockfile证据，production dependency不得新增。
 
 ## 3. 关键时序
 
@@ -442,7 +479,7 @@ No metric/log label may contain title, message, raw reasoning, project name/path
 |---|---:|---:|---|---|
 | session metadata list | static sample | 1,000 rows P95 ≤200ms, page ≤50 | temp DB benchmark/query plan | smaller page, no body join |
 | history first page | none | P95 ≤300ms；default 20/max 50 turns；metadata batch不读raw body | local integration benchmark/query count | page 20, defer raw expand |
-| raw reasoning | fixed Runtime primitives PASS；Host bounded v2 projection与Desktop SQLCipher terminal repository PASS，UI reducer未实现 | 16KiB/delta、64KiB/part、128KiB/item、256KiB/turn；8 parts/item、8 items/turn | fake events + SQLCipher temp DB/fault benchmark | explicit incomplete/unavailable；no silent truncation |
+| raw reasoning | fixed Runtime primitives、Host bounded v2、Desktop SQLCipher terminal repository及S8A authoritative reducer PASS；Vue rendering未实现 | 16KiB/delta、64KiB/part、128KiB/item、256KiB/turn；8 parts/item、8 items/turn | fake events + SQLCipher temp DB/fault benchmark；S8B visual/a11y later | explicit incomplete/unavailable；no silent truncation |
 | input | Host hard 1 MiB | UI soft 64 KiB; hard remains 1 MiB | Unicode/byte boundary tests | block with count/error |
 | event durability | process cache only | delta in memory；finalized/controlled interruption单transaction提交；no duplicate | fault injection | pause UI/reconcile |
 | title | fixed fake-provider capability PASS；`MM-126-001` 单次 strict title PASS，production quality/stability仍待 Eval | ≤2 calls/session, input≤8KiB, output≤40 grapheme；production timeout在 G4 benchmark 冻结 | fake clock/provider + approved fixed Eval dataset | deterministic fallback |
@@ -452,7 +489,9 @@ No metric/log label may contain title, message, raw reasoning, project name/path
 
 | Flag | Default | Scope | Safe-off behavior |
 |---|---|---|---|
-| `YIJIE_DESKTOP_CHAT_SESSIONS_ENABLED` | false | Desktop UI/domain | retain FEAT-124 local textarea or show unavailable, no network/persistence |
+| `VITE_YIJIE_CHAT_LOCAL_UI_ENABLED` | false / candidate not implemented | Desktop nav/router/component/store integration | no Chat/Tasks nav or route/loader/store bind；exact `true` only；不得在env/CI/default build设true |
+| `YIJIE_CHAT_LOCAL_ENABLED` | false | Desktop Rust domain/SQLCipher | chat DB/domain unavailable；does not enable UI |
+| `YIJIE_CHAT_LOCAL_HOST_ENABLED` | false | Desktop Rust sidecar | no Host child process；does not enable UI |
 | `YIJIE_DESKTOP_CHAT_RAW_REASONING_ENABLED` | false | Desktop/Host | raw capability unavailable；不以状态/时长冒充功能通过 |
 | `YIJIE_DESKTOP_CHAT_TITLE_MODEL_ENABLED` | false | Host/Desktop | deterministic fallback only |
 | `YIJIE_DESKTOP_CHAT_DELETE_ENABLED` | false | Desktop/Host | hide/disable destructive operation with reason |
@@ -503,6 +542,6 @@ Runtime/Host pin、临时 `CODEX_HOME`/空 cwd/pathless ephemeral thread，title
 - Runtime/MiniMax：canonical delete/name/summary/raw reasoning/outputSchema已确认；两次历史MiniMax预算已执行，title PASS，MM-126-002在旧summary门槛FAIL且观察到raw事件；Host raw bridge基础已用fake Runtime实现，raw flag默认off，本轮未调用MiniMax。
 - Public Tasks：仓内consumer inventory完成，unknown external按safe compatibility category处理，Q-010 Resolved；DEC-126-011/012已Accepted，v1全程双隔离。DEC-126-023/024与Q-017已关闭，`29317b...`从schema层拒绝conversation正文并通过G2A重审；LIA-126-002现已恢复，仅允许关闭S4–S6 P1。
 - Desktop Pattern：FEAT-126 Chat/App Shell Pattern已Accepted，只取代Chat 1.1.0/App Shell 2.0.0中的FEAT-126冲突段落。
-- 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–031 Accepted；S4–S8A Closure Passed；S8B与S9–S11 Pending/Unauthorized。
+- 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–031 Accepted；S4–S8A Closure Passed；DESIGN-126-006/DEC-126-032为Proposed，S8B0/S8B与S9–S11 Pending/Unauthorized。
 - 安全/数据 Owner：段成威 — ADR-0013/0014/0015/0016与DEC-126-005/006/007/011/012/014/015/016/017 Approved；Q-006/Q-007/Q-008/Q-009/Q-010/Q-015/Q-016 Resolved；Pattern Accepted。
-- 结论与日期：2026-08-03 G2/G2A保持Passed，DEC-126-030接受S7C，DEC-126-031接受S8A Closure。G3仍Partial；不得开始S8B或S9–S11、调用MiniMax、启用flag或追加远端动作。
+- 结论与日期：2026-08-03 G2/G2A保持Passed，DEC-126-030接受S7C，DEC-126-031接受S8A Closure。DESIGN-126-006已完成但DEC-126-032尚待Owner；G3仍Partial。不得开始S8B0/S8B或S9–S11、调用MiniMax、启用flag或追加远端动作。

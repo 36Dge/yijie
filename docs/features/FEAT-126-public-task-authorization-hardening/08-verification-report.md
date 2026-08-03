@@ -4,16 +4,18 @@
 > DEC-126-025现已完成Remote State Reconciliation：sole candidate与yijie/API/Host/Desktop checkpoint
 > 分支均已精确远端可达，旧Draft PR #1与各`origin/develop`不变。DEC-126-026已接受S4–S6
 > Foundation Corrective Closure并单独授权S7A Desktop Rust Host Bridge/Domain；DEC-126-027已由
-> Owner接受。随后单独授权的S7B Rust Application Orchestration/Domain已在未提交Desktop本地diff
-> 中完成，并由Owner通过DEC-126-028接受；远端可达不等于merge、发布或生产启用。
-> 随后Owner接受DESIGN-126-005/DEC-126-029、DEC-126-030及DEC-126-031，S8A Desktop private IPC与TypeScript ViewModel Closure Passed。没有调用MiniMax、真实数据或生产环境；S8B Vue UI、S9–S11与完整四组件E2E仍为`NOT RUN`。
+> Owner接受。随后单独授权的S7B Rust Application Orchestration/Domain已完成并由Owner通过DEC-126-028接受；远端可达不等于merge、发布或生产启用。
+> 随后Owner接受DESIGN-126-005/DEC-126-029、DEC-126-030及DEC-126-031，S8A Desktop private IPC与TypeScript ViewModel Closure Passed。Accepted变更现已保存为四个仅本地checkpoint。DESIGN-126-006/DEC-126-032只完成S8B0 readiness设计；没有调用MiniMax、真实数据或生产环境；S8B0/S8B、S9–S11与完整四组件E2E仍为`NOT RUN`。
 
 ## 1. 验证上下文
 
 | Repository | Branch | Full HEAD SHA | Worktree | Runtime/toolchain | 时间 |
 |---|---|---|---|---|---|
-| yijie | `feat/feat-126-foundation-closure` | `ec393c2414ea35336f82a1f1db833052b7a40975` | uncommitted FEAT-126 DEC-126-030/LIA-126-004/S8A Closure docs diff；无FEAT-123删除进入本轮diff | zsh/macOS；feature package checker | 2026-08-03 Asia/Shanghai |
-| sibling repos | remote-available closure/candidate branches | Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`；API `b5e601764357512208cc09bfb2b30b244a1b82ac`；Host `f6e4a5902d8f25632408c1c699ba17b8c66ef214`；Desktop `40413b409a467a133d178137651622e167d512de`；yijie `ec393c2414ea35336f82a1f1db833052b7a40975` | branch HEAD仍与remote checkpoint精确相等；contracts clean，其他四仓存在未提交本地closure diff，Desktop另含授权S7A–S8A Rust/TS diff；Runtime/Infra未改；no push/merge/tag/publish/deploy | rev-parse + status/diff-check；GitHub Actions仍仅为旧PR历史run | 2026-08-03 |
+| yijie | `feat/feat-126-foundation-closure` | Accepted baseline local checkpoint `6de641f715751bb8ca94ce6804e5a33ff18d9569`；remote remains `ec393c2414ea35336f82a1f1db833052b7a40975` | 12 FEAT-126 package files committed locally；DESIGN-126-006 docs diff在其后形成；0 FEAT-123/unrelated | zsh/macOS；feature package checker | 2026-08-03 Asia/Shanghai |
+| yijie-api | `feat/feat-126-foundation-closure` | local `a64f9f591fb594818c1778e30c6941e2574b3264`；remote remains `b5e601764357512208cc09bfb2b30b244a1b82ac` | clean after 16-file Accepted checkpoint；not pushed | Go 1.26.5 + isolated PostgreSQL | 2026-08-03 |
+| yijie-agent-host | `feat/feat-126-foundation-closure` | local `3e8df026110f0c895262329c2384d3896598f3d9`；remote remains `f6e4a5902d8f25632408c1c699ba17b8c66ef214` | clean after 11-file Accepted checkpoint；not pushed | Go 1.26.5 + fixed Runtime/temp CODEX_HOME | 2026-08-03 |
+| yijie-desktop | `feat/feat-126-foundation-closure` | local `3adcb0380561c294412bc24767e4651ca872455a`；remote remains `40413b409a467a133d178137651622e167d512de` | clean after 38-file S6–S8A Accepted checkpoint；no Vue/router/style additions；not pushed | Node 26/pnpm 11/Rust 1.95/SQLCipher/fake Host | 2026-08-03 |
+| yijie-contracts | `feat/feat-126-content-free-candidate` | `29317b6426578749dc698fc2ad32b986ee5c8e9f` local/remote exact | clean；unchanged during review | locked generators | 2026-08-03 |
 
 ## 2. Baseline
 
@@ -36,12 +38,13 @@
 | G2 Public Tasks investigation | exact sibling SHAs in `feature.yaml` | Public OpenAPI/API/Infra/Desktop/Host/admin/connectors/knowledge/skills source scan | 0 for read commands | COMPLETE for repo-local inventory | Q-010 Resolved；unknown external保留为safe compatibility category；DEC-126-011/012 Accepted |
 | G2 Chat/App Shell Pattern | yijie-desktop baseline + Accepted docs-only FEAT-126 Pattern | current Accepted Pattern comparison + docs build | 0 | PASS as approved design evidence | 只取代FEAT-126冲突段落；无业务source |
 | G2A source contract candidate | `yijie-contracts@29317b6426578749dc698fc2ad32b986ee5c8e9f` | DEC-126-023 content-free replacement + post-commit source/fixture/generated/breaking/equality/digest review + DEC-126-024 Owner approval | 0 | PASS / APPROVED | parent=`c000a024`；new sole candidate；old candidate/PR/remote unchanged；not implementation authorization |
-| LIA-126-002 corrective closure | API/Host/Desktop checkpoint branches + uncommitted local diff | exact `29317b...` locks, repository gates, isolated PostgreSQL, fixed Runtime, migration/security/no-log evidence and structured review | 0 final | CLOSURE PASS / OWNER ACCEPTED | listed S4–S6 P1 closed；DEC-126-026 Accepted；flags/routes default off |
-| S7A Desktop Rust Host Bridge/Domain | Desktop checkpoint + uncommitted S7A Rust diff | exact loopback/bearer/nonce/v2 SSE/domain implementation + fake Host/canonical fixture/full repo gates | 0 final | CLOSURE PASS / OWNER ACCEPTED | no Tauri/Vue surface, no flag/MiniMax/remote action；DEC-126-027 Accepted；G3 Partial |
-| S7B Desktop Rust Application Orchestration/Domain | same Desktop checkpoint + uncommitted S4–S7B Rust diff | durable outbox、strict/coalesced reducer、batched history、title CAS、migration/fault/fake Host application integration | 0 final | CLOSURE PASS / OWNER ACCEPTED | no Tauri/Vue surface, no flag/MiniMax/remote action；DEC-126-028 Accepted；G3 Partial |
+| LIA-126-002 corrective closure | API `a64f9f5…3264`、Host `3e8df02…f3d9`、Desktop `3adcb03…455a` | exact `29317b...` locks, repository gates, isolated PostgreSQL, fixed Runtime, migration/security/no-log evidence and structured review | 0 final | CLOSURE PASS / OWNER ACCEPTED / CHECKPOINTED LOCAL | listed S4–S6 P1 closed；DEC-126-026 Accepted；flags/routes default off；no push |
+| S7A Desktop Rust Host Bridge/Domain | Desktop `3adcb0380561c294412bc24767e4651ca872455a` | exact loopback/bearer/nonce/v2 SSE/domain implementation + fake Host/canonical fixture/full repo gates | 0 final | CLOSURE PASS / OWNER ACCEPTED / CHECKPOINTED LOCAL | no Vue surface, no flag/MiniMax/remote action；DEC-126-027 Accepted；G3 Partial |
+| S7B Desktop Rust Application Orchestration/Domain | Desktop `3adcb0380561c294412bc24767e4651ca872455a` | durable outbox、strict/coalesced reducer、batched history、title CAS、migration/fault/fake Host application integration | 0 final | CLOSURE PASS / OWNER ACCEPTED / CHECKPOINTED LOCAL | no Vue surface, no flag/MiniMax/remote action；DEC-126-028 Accepted；G3 Partial |
 | DESIGN-126-005 Desktop IPC/ViewModel Review | no implementation SHA | read-only ConversationApplication/Tauri/TS gap inventory + private IPC commands/events/cursor/error/security/recovery contract + S7C/S8A/S8B plan | 0 for read/docs checks | DESIGN ACCEPTED / DEC-126-029 ACCEPTED | S7C/S8A later separately authorized；G3 Partial |
-| LIA-126-003 / S7C Desktop Rust Actions/Coordinator | Desktop checkpoint + uncommitted S4–S7C Rust diff | auth context/facade、session/project actions、interrupt、SQLCipher v4 cleanup/receipt、background coordinator、restart/resync/live raw source + fake Host/migration/race/no-log/full gates | 0 final | CLOSURE PASS / DEC-126-030 OWNER ACCEPTED | 113 TS + 87/88 Rust；no conversation Tauri invoke/event、TS/Vue、flag/MiniMax/pin/remote action；G3 Partial |
-| LIA-126-004 / S8A Desktop IPC/ViewModel | Desktop checkpoint + uncommitted S4–S8A Rust/TS diff | 20 private commands、closed schema/fixtures、Rust native auth/event/cursor、strict TS validators、real Tauri client、authoritative Pinia reducer + auth/caps/backpressure/stale/restart/no-log/full gates | 0 final | DEC-126-031 ACCEPTED / S8A CLOSURE PASS | 127 TS + 93/94 Rust；no Vue/flag/MiniMax/central pin/remote action；G3 Partial |
+| LIA-126-003 / S7C Desktop Rust Actions/Coordinator | Desktop `3adcb0380561c294412bc24767e4651ca872455a` | auth context/facade、session/project actions、interrupt、SQLCipher v4 cleanup/receipt、background coordinator、restart/resync/live raw source + fake Host/migration/race/no-log/full gates | 0 final | CLOSURE PASS / DEC-126-030 OWNER ACCEPTED / CHECKPOINTED LOCAL | no Vue、flag/MiniMax/pin/remote action；G3 Partial |
+| LIA-126-004 / S8A Desktop IPC/ViewModel | Desktop `3adcb0380561c294412bc24767e4651ca872455a` | 20 private commands、closed schema/fixtures、Rust native auth/event/cursor、strict TS validators、real Tauri client、authoritative Pinia reducer + auth/caps/backpressure/stale/restart/no-log/full gates | 0 final | DEC-126-031 ACCEPTED / S8A CLOSURE PASS / CHECKPOINTED LOCAL | 127 TS + 93/94 Rust；no Vue/flag/MiniMax/central pin/remote action；G3 Partial |
+| DESIGN-126-006 / S8B0 Readiness Review | yijie docs after `6de641f715751bb8ca94ce6804e5a33ff18d9569` | read-only Desktop router/nav/permission/store/IPC/pages/env/CI inventory + closed design/stop condition | 0 for read/docs checks | DESIGN READY / DEC-126-032 PROPOSED | no business source or Vue change；private IPC readiness/storage gap prevents implementation；G3 Partial |
 
 ## 4. 最终命令记录
 
@@ -53,7 +56,7 @@
 | V-G1 | yijie | same checker with `--gate G1` | project shell script | 0 | PASS | G1 document scope has no incomplete markers；human approval recorded in `feature.yaml`/`01`/`03` |
 | V-G2 | yijie | same checker with `--gate G2` | project shell script | 0 | PASS | G2文档结构与Owner Passed状态一致；不代表G2A/业务实现 |
 | V-G2A | yijie | same checker with `--gate G2A` | project shell script | 0 | STRUCTURE PASS / HUMAN APPROVAL RECORDED | checker proves lexical completeness；DEC-126-024 Owner approval separately recorded，G2A Re-review Passed |
-| V-LOCAL-STRATEGY | yijie FEAT-126 package | package + strict + G2A checker、YAML parse、`pnpm lint/test`、diff check，cross-document review including DEC-126-023–031 | docs + closure/design candidate | 0 | PASS 2026-08-03 | package/default/strict/G2A、YAML、governance lint与1 Node test PASS；G2A与S4–S8A Closure保持Passed；S8A不冒充S8B/UI；G3 Partial |
+| V-LOCAL-STRATEGY | yijie FEAT-126 package | package + strict + G2A checker、YAML parse、`pnpm lint/test`、diff check，cross-document review including DEC-126-023–032 | docs + closure/design candidate | 0 | PASS 2026-08-03 after final rerun | package/default/strict/G2A、YAML、governance lint/test PASS；G2A与S4–S8A Closure保持Passed；DEC-126-032仅Proposed；G3 Partial |
 | V-S8A-DESKTOP | yijie-desktop | `cargo fmt && make lint && make test && make build` | Node 26.0.0 / pnpm 11.9.0 / Rust 1.95.0；SQLCipher；fake Host | 0 | PASS 2026-08-03 | generate exact `29317b...`；21 TS files/127 tests；94 Rust（93 pass/1 existing ignored）；fmt/clippy `-D warnings`/Vite build PASS；schema/serde/TS、auth/events/cancel/stale/restart/no-log覆盖 |
 | V-YAML | yijie | Ruby safe load + root map assertion | local Ruby | 0 | PASS | `YAML OK` |
 | V-YIJIE-LOCAL | yijie | `pnpm lint && pnpm test` | Node/pnpm project scripts | 0 | PASS 2026-08-03 | repository manifest/contract governance valid；1/1 Node test PASS |
@@ -88,9 +91,9 @@
 | V-CONTRACT-PR | GitHub PR #1 | create Draft PR with base `develop`, head `feat/feat-126-contract-candidate`; verify draft/state/base/head/OID/commit count/files and backfill CI result | GitHub/`gh` | 0 | PASS | [Draft PR #1](https://github.com/36Dge/yijie-contracts/pull/1) OPEN/DRAFT；head=`c000a0245acb5c3f7ead5d2a877fb60c281c588c`；1 commit、39 files；完整9项摘要与授权边界已登记；无candidate mutation或push |
 | V-CONTRACT-CI | GitHub Actions | observe [run 30741466028](https://github.com/36Dge/yijie-contracts/actions/runs/30741466028) / [job 91479562558](https://github.com/36Dge/yijie-contracts/actions/runs/30741466028/job/91479562558) to terminal; read failure logs only | CI on exact PR head | 1 | FAIL / MERGE BLOCKED | PASS至checkout、locked install、Go modules、generate、generated diff、lint、test、SDK pack；`pnpm audit --audit-level high`发现`brace-expansion 2.1.2`高危GHSA-mh99-v99m-4gvg（patched `>=2.1.3`）；后续`govulncheck`与`./scripts/check-breaking.sh origin/main` SKIPPED；未rerun/waive/fix/push |
 | V-CONTRACT-DEPENDENCY-ATTRIBUTION | yijie-contracts | `git diff --exit-code 9ec34abd... c000a024... -- package.json pnpm-lock.yaml` + `pnpm why brace-expansion` | Git/pnpm lock graph | 0 | PASS attribution | candidate未修改manifest/lockfile；锁定链为`openapi-typescript@7.13.0 -> @redocly/openapi-core@1.34.17 -> minimatch@5.1.9 -> brace-expansion@2.1.2`。这是既有工具链dependency baseline blocker，不是FEAT-126契约diff新增依赖；仍不能绕过红色CI |
-| V-WORKTREE | all sibling repos | `git status --short --branch && git diff --check && git diff --stat` | Git | 0 | PASS scoped to LIA-126-002 | contracts clean；yijie/API/Host/Desktop仅有授权的未提交closure diff；Runtime/Infra未改；0 push/merge/tag/publish/deploy |
+| V-WORKTREE | yijie/contracts/API/Host/Desktop | status/name-only/untracked/diff-check + FEAT-123/sensitive-path scan before commit；status after commit | Git | 0 | PASS scoped to Accepted FEAT-126 | contracts unchanged/clean；four Accepted checkpoints contain only manifest §8.1 files；no FEAT-123/unrelated；0 push/merge/tag/publish/deploy |
 | V-GENERATE | API/Host/Desktop | exact candidate lock + read-only generate/check scripts | oapi-codegen 2.7.2 / openapi-typescript 7.13.0 | 0 | PASS | API Go `438b084d…ab33`；Host Go `629ddf20…63b0`；Desktop TS `e84b70be…b678`；all locks resolve `29317b...`；API generate-check uses temp output + byte comparison |
-| V-API | yijie-api | `make generate-check && make test && make lint`；fresh trust-only loopback PostgreSQL 16 `make test-integration` on isolated DB | Go 1.26.5 / race / synthetic local PostgreSQL | 0 final | PASS | API coverage incl. publicapi 72.5%；PostgreSQL task repo 70.3%、migration and auth packages PASS；audit 401/403/404/409/503/read/create、nil tenant、24h idempotency expiry/bounded cleanup、migration v4 and content-free request/response covered；route default off |
+| V-API | yijie-api | `make generate-check && make test && make lint`；fresh trust-only loopback PostgreSQL on 127.0.0.1:55432执行`make migrate-up/status`与`make test-integration` | Go 1.26.5 / race / synthetic local PostgreSQL | 0 final | PASS 2026-08-03 | migration 1–4 applied；publicapi 72.5%、PostgreSQL task repo 70.3%、migration/auth packages PASS；并行integration曾因information_schema未限定schema产生subquery多行，测试已限定`current_schema()`后完整race suite PASS；临时实例停止/清理 |
 | V-HOST | yijie-agent-host | `make contract-check && make test && make lint && make runtime-test` | Go 1.26.5 / race + fixed Runtime + temp CODEX_HOME | 0 | PASS | app 67.7%、codex 70.8%、session 77.6%；persisted cleanup/restart/fault injection、atomic lease、title key/isolation/forced-off safety、receipt expiry/schema header、nonce、raw log+bbolt canary covered；no model turn/provider call |
 | V-DESKTOP | yijie-desktop | `make lint && make test && make build` | Node 26.0.0 / pnpm 11.9.0 / Rust 1.95.0 / bundled SQLCipher | 0 | PASS 2026-08-03 | 21 files/127 TS；94 Rust tests（93 PASS、1既有signed Keychain integration ignored）；Clippy/fmt/Vite build PASS；no Vue UI source changed |
 | V-DESKTOP-S7A | yijie-desktop | targeted bridge/domain + full repository gates | reqwest 0.12.28 rustls/stream；fake TCP Host；canonical `29317b...` fixtures | 0 | PASS / DEC-126-027 ACCEPTED | exact loopback/nonce/owner-token/text-only/strict SSE/domain/error redaction；no invoke/Vue/flag |
@@ -123,7 +126,7 @@
 | AC-003/005/007/013–018/025/029 S7B subset | Desktop `ConversationApplication`、outbox/reducer/history/title repository | DOM/RES/DB/SEC Rust tests | V-DESKTOP-S7B | Closure PASS / DEC-126-028 Accepted；no WebView/UI behavior claim |
 | AC-003/005/007/013–018/020/021/029/030 S7C subset | Desktop `AuthorizedConversationApplication`、authorization context、session/project actions、interrupt、SQLCipher v4 cleanup/receipt、coordinator与restart/resync projection | S7C auth/action/interrupt/delete/restart/migration/race/no-log Rust tests | S7C historical full gates | CLOSURE PASS / DEC-126-030 Accepted；no Vue or feature activation claim |
 | AC-045–047/NFR-008/009 S8A subset | Desktop private schema/fixtures、Tauri commands/events、TS validators/client/Pinia store | IPC-CON/SEQ/CANCEL/RESTART/AUTH/LOG/RACE matrix | V-S8A-DESKTOP | DEC-126-031 Accepted / S8A Closure Passed；no Vue or feature activation claim |
-| remaining AC/NFR | S8B、S9–S11 | matrix in `06-test-plan.md` | no authorized command | NOT RUN |
+| remaining AC/NFR | S8B0/S8B、S9–S11 | matrix in `06-test-plan.md` | no authorized command | NOT RUN |
 
 ## 7. 专项验证
 
@@ -142,14 +145,30 @@
 
 ## 8. Diff 与制品完整性
 
-- [x] `git status` 已复核：只有既有 FEAT-123 删除、新 FEAT-126 目录和 ADR-0012 的创建状态/未实施 checklist 事实更新
-- [x] 范围统计已复核：FEAT-126文档/ADR、S4–S6 API/Host/Desktop源码及单独授权的Desktop S7A–S7C Rust源码；Runtime/Infra/contracts candidate未改
-- [x] untracked new files 已用逐文件 `git diff --no-index --check` 验证
+- [x] commit前后`git status`、tracked/untracked name-only和`git diff --check`已复核；四仓checkpoint只有下表Accepted FEAT-126文件，FEAT-123和其它无关修改均为0
+- [x] 范围统计已复核：yijie 12、API 16、Host 11、Desktop 38个文件；Runtime/Infra/contracts candidate未改
+- [x] commit前untracked文件已纳入精确清单并通过仓库门禁；commit后API/Host/Desktop worktree clean，yijie Accepted baseline clean后才开始本设计文档diff
 - [x] FEAT-126内容与跨文档Gate/ADR/AC已由Codex执行结构化review；最终独立人工Reviewer仍为段成威
-- [x] S4–S6新增本地contract locks/generated projections、Go/Rust代码、PostgreSQL/SQLCipher migrations；S7A新增Desktop Rust bridge/domain及reqwest stream lock变化；均未提交或远端写入
+- [x] S4–S8A Accepted本地变更已形成四个checkpoint commit；均未push或修改远端。contracts candidate仍为clean exact `29317b...`
 - [x] 本轮MiniMax调用为0；历史两次bounded请求不重跑；无生产资源或其它外部写操作
 - [x] 未修改、恢复或覆盖 FEAT-123 既有删除
 - [x] 文档未写入 key、token、真实 message、真实 project path 或商家数据
+
+### 8.1 Accepted checkpoint manifest
+
+| Repository | Full local checkpoint SHA | Parent | Files | Validation summary | Remote |
+|---|---|---|---:|---|---|
+| yijie | `6de641f715751bb8ca94ce6804e5a33ff18d9569` | `ec393c2414ea35336f82a1f1db833052b7a40975` | 12 | package/strict/G2A/YAML/pnpm lint/test/diff PASS at Accepted S8A baseline | not pushed；remote remains parent |
+| yijie-api | `a64f9f591fb594818c1778e30c6941e2574b3264` | `b5e601764357512208cc09bfb2b30b244a1b82ac` | 16 | generate-check、vet/lint、race/unit、isolated PostgreSQL migration 1–4/integration、scope/no-log/diff PASS | not pushed；remote remains parent |
+| yijie-agent-host | `3e8df026110f0c895262329c2384d3896598f3d9` | `f6e4a5902d8f25632408c1c699ba17b8c66ef214` | 11 | contract-check、lint、race/unit、fixed Runtime runtime-test、scope/no-log/diff PASS | not pushed；remote remains parent |
+| yijie-desktop | `3adcb0380561c294412bc24767e4651ca872455a` | `40413b409a467a133d178137651622e167d512de` | 38 | generate-check、eslint/vue-tsc、127 TS、93/94 Rust、fmt/clippy、Vite build、migration/no-log/scope/diff PASS | not pushed；remote remains parent |
+
+文件清单（相对各仓库根）：
+
+- yijie：`docs/features/FEAT-126-public-task-authorization-hardening/{feature.yaml,00-feature-brief.md,01-requirements.md,02-impact-assessment.md,03-decisions-and-risks.md,04-contract-change-plan.md,05-technical-design.md,06-test-plan.md,07-implementation-plan.md,08-verification-report.md,09-release-and-rollback.md,10-delivery-summary.md}`。
+- yijie-api：`.github/workflows/ci.yml`、`Makefile`、`contracts/public-api.lock.json`、`internal/interfaces/publicapi/{access_handler.go,secure_task_handler.go,secure_task_handler_test.go,types.gen.go}`、`internal/modules/tasks/application/{secure_service.go,secure_service_test.go}`、`internal/modules/tasks/domain/task.go`、`internal/modules/tasks/infrastructure/postgres/{repository.go,repository_integration_test.go}`、`internal/platform/database/database.go`、`internal/platform/migrations/{migrations.go,migrations_integration_test.go,sql/00004_harden_secure_task_audit_and_idempotency.sql}`。
+- yijie-agent-host：`api/contracts.lock`、`internal/app/{app.go,app_test.go}`、`internal/codex/{runtime_test.go,session_protocol.go,title.go}`、`internal/session/{service.go,service_test.go,store.go,store_test.go,title.go}`。
+- yijie-desktop：`.github/workflows/ci.yml`、`contracts/public-api.lock.json`、`scripts/{generate-public-api.mjs,generate-public-api.test.mjs}`、`src-tauri/{Cargo.lock,Cargo.toml,capabilities/default.json}`、`src-tauri/fixtures/chat-ipc-v1/{bind-request.json,context-response.json,error.json,event-corpus.json,reasoning-event.json,response-corpus.json}`、`src-tauri/migrations/chat/{0003_chat_application_domain.sql,0004_chat_s7c_orchestration.sql}`、`src-tauri/schemas/chat-ipc-v1.schema.json`、`src-tauri/src/chat/{application.rs,authorization.rs,database.rs,error.rs,host_bridge.rs,host_domain.rs,ipc.rs,keychain.rs,migrations.rs,mod.rs,sidecar.rs,worker.rs}`、`src-tauri/src/{lib.rs,native_auth/mod.rs,native_auth/runtime.rs}`、`src/api/{chat-client.test.ts,chat-client.ts,generated/public.gen.ts}`、`src/domain/{chat-ipc.test.ts,chat-ipc.ts}`、`src/stores/{chat.store.test.ts,chat.store.ts}`。
 
 ## 9. 独立 Requirements Review Findings
 
@@ -195,12 +214,12 @@
 | LIA2-DESKTOP-001 | P1 / CLOSED | reasoning commit未强制terminal turn及turn/item一致终态 | terminal_at/status与aggregate/item/reason-code一致性强制；joined history消除item N+1；negative and populated-history tests PASS |
 | LIA2-DESKTOP-002 | P1 / CLOSED | sidecar spawn后只接受固定loopback health JSON，不能证明是本次实例；旧/同用户进程可伪装ready | 每次spawn生成UUID nonce并要求health/ready响应头匹配；Host liveness与Runtime ready分层；wrong nonce/liveness-only/503/ready tests PASS |
 
-- LIA-126-002执行结论：前轮在`LIA2-CONTRACT-001`处暂停；DEC-126-025完成远端状态校正后，S4–S6 Corrective Closure已在checkpoint分支上形成未提交本地diff并通过逐仓/隔离验证；DEC-126-026已由Owner接受。
+- LIA-126-002执行结论：前轮在`LIA2-CONTRACT-001`处暂停；DEC-126-025完成远端状态校正后，S4–S6 Corrective Closure通过逐仓/隔离验证并获DEC-126-026接受；其Accepted diff现已保存为仅本地checkpoint且未push。
 - Contract impact：`breaking`。DEC-126-023 C已形成新source commit而未amend既有candidate；DEC-126-024已批准，G2A重审通过。
 - S7A授权结果：DEC-126-026另行授权Desktop Rust拥有Host bearer/token注入、loopback HTTP/SSE、schema header与nonce校验、typed wire/domain adapter；DEC-126-027已接受该closure并单独授权S7B，不授权Tauri/WebView或Vue UI。
 
 - Reviewer 是否独立于主起草上下文：否；本轮是 Owner 前的设计候选自检，最终独立 Reviewer 为段成威。
-- P0/P1 是否清零：对已授权的S4–S8A范围为是。未发现P0；各切片列明P1均有关闭证据。FEAT-126全需求仍未清零，因为S8B、S9–S11/G4/G6未开始，这不回退已接受的S4–S8A Closure结论。
+- P0/P1 是否清零：对已授权的S4–S8A范围为是。未发现P0；各切片列明P1均有关闭证据。FEAT-126全需求仍未清零，因为S8B0/S8B、S9–S11/G4/G6未开始，这不回退已接受的S4–S8A Closure结论。
 - P2 例外批准：无；不是 accepted risk。
 
 ### 9.3 S7A Desktop Rust Host Bridge/Domain Closure Review
@@ -246,7 +265,7 @@
 | IPC-REV-006 | P1 / DESIGN CLOSED | 前端cancel若被当作已接受写操作回滚，会产生重复turn/delete不确定状态 | 仅read/subscription可cancel；durable write按operation对账，stop只走interrupt，delete走Rust saga/status。实现证据NOT RUN |
 
 - Contract impact：DESIGN-126-005是Desktop private additive/semantic contract候选，不改变central `yijie-contracts@29317b...`或Runtime pin，不触发新G2A source candidate。
-- 审查结论：本节保留DESIGN-126-005当时的差距快照。随后DEC-126-030/031已Accepted，LIA-126-004 S8A Closure Passed；实现关闭证据见§9.7。S8B仍须单独授权。
+- 审查结论：本节保留DESIGN-126-005当时的差距快照。随后DEC-126-030/031已Accepted，LIA-126-004 S8A Closure Passed；实现关闭证据见§9.7。S8B0/S8B仍须按DESIGN-126-006分别授权。
 - 设计评审变更边界当时仅为需求包；后续S7C修改Desktop Rust/SQLCipher，S8A再按LIA-126-004修改private Tauri IPC与TypeScript ViewModel；两者均不含Vue、feature flag、MiniMax、contracts/Runtime或远端状态。
 
 ### 9.6 LIA-126-003 / S7C Closure Review
@@ -286,13 +305,31 @@
 - 环境/调用：仅fake Host、固定fixture、临时SQLCipher/temp目录；0 MiniMax/provider、0真实数据、0 flag activation、0远端写入。
 - 结论：Owner已接受DEC-126-031；S8A范围未发现残余P0/P1，S8A Closure Passed。G3仍Partial，接受不自动授权S8B。
 
+### 9.8 DESIGN-126-006 / DEC-126-032 S8B0 Readiness Review
+
+| Finding | Severity | Evidence | Candidate closure | Status |
+|---|---|---|---|---|
+| S8B0-REV-001 | P1 | 没有`VITE_YIJIE_CHAT_LOCAL_UI_ENABLED`；当前router/nav会创建`/chat` loader | exact-true/default-false gate覆盖nav、`/chat`、`/chat/:sessionId`、Tasks和component instantiation；不得由env/CI/default build开启 | DESIGN CLOSED / SOURCE STOPPED |
+| S8B0-REV-002 | P1 | permission policy按exact path查找且无session deep route | route meta冻结create/read capability；deleted/foreign不枚举、denied明确、stale先resync；Rust resource check不变 | DESIGN CLOSED / SOURCE STOPPED |
+| S8B0-REV-003 | P1 | permission tenant/revision/logout未与Chat bind/clear/dispose形成唯一app lifecycle | app-level adapter先清/取消/退订/dispose旧scope，再generation-bound bind新scope | DESIGN CLOSED / SOURCE STOPPED |
+| S8B0-REV-004 | P1 | S8A reducer已存在，但store未暴露project pick/revalidate；session分页替换而非追加；delete完成不清/reload/navigate | S8B0补store-owned actions、dedupe append与closed DeleteDisposition；Vue不得调用client/invoke | DESIGN CLOSED / SOURCE STOPPED |
+| S8B0-REV-005 | P1 / PRIVATE IPC STOP | S8A `phase=ready`不证明Host/Runtime/storage ready；现有20-command closed v1无ready/start-retry projection | DESIGN-126-006提出两个closed commands、Rust-owned start/retry与stable readiness/storage enums；须DEC-126-032 + separate S8B0 auth | OWNER APPROVAL REQUIRED |
+| S8B0-REV-006 | P1 | `/tasks` production页面直接使用`sampleTasks` | 接真实Pinia metadata分页；未接线时随UI gate隐藏，mock只可test fixture | DESIGN CLOSED / SOURCE STOPPED |
+| S8B0-REV-007 | P2 | requirements 96px与Accepted Pattern 48/160冲突 | Pattern 1.0.0优先：follow≤48px、button>160px、exact aria-label | CLOSED IN DOCS |
+| S8B0-REV-008 | P1 governance | 用户仅授权baseline commit与设计文档，不授权Vue/IPC源码 | 四仓Accepted checkpoint完成；发现IPC gap后未修改新业务源码 | PASS |
+
+- Contract impact：`semantic` Desktop-private candidate；central `yijie-contracts@29317b...`、Host/Public Tasks wire和Runtime pin均未变，不触发G2A重审。
+- 实施状态：`NOT RUN`。DEC-126-032仍是Proposed；不得把本设计或checkpoint冒充S8B0 Closure。
+- 测试依赖：本轮未新增dependency。未来若S8B测试需要依赖，只允许fixed devDependency并提供audit/lockfile证据；production dependency保持0新增。
+- 结论：DESIGN-126-006已准备好供Owner评审；推荐先接受DEC-126-032，再单独授权S8B0；S8B在S8B0 Closure后再审。
+
 ## 10. 未验证项与残余风险
 
 | Item | 原因 | 风险 | 补验证条件 | Owner | 是否阻断 |
 |---|---|---|---|---|---|
-| S8A/S8B authorization | S4–S8A已接受；仍无Vue UI surface，S8B未授权 | 把IPC/store通过误作UI、四组件E2E或G4会越过Owner边界 | S8B仍需单独明确授权 | 段成威 | blocks G3 completion/G4；not a local S8A gate failure |
+| S8B0/S8B authorization | S4–S8A已接受；S8B0 readiness设计完成但DEC-126-032未接受，仍无Vue UI surface | 把设计/checkpoint或IPC/store通过误作UI、四组件E2E或G4会越过Owner边界 | Owner先审DEC-126-032，再分别授权S8B0与S8B | 段成威 | blocks G3 completion/G4；not a local S8A gate failure |
 | Draft PR dependency audit / merge approval | PR #1 exact head CI在`brace-expansion 2.1.2` high失败；candidate本身未改依赖；后续`govulncheck`与`origin/main` breaking未运行 | 若豁免红灯会留下已知high dependency并缺两项远端证据 | DEC-126-021 Accepted/HOLD；保持Draft，不rerun/waive/fix/push；未来需本地E2E、audit修复、全绿CI与单独Owner批准 | 段成威 | blocks merge only；不阻断未来明确批准的local draft implementation |
-| Public/Host runtime conformance | S4–S6 producer/storage、S7A transport、S7B/S7C application和S8A IPC/store单仓fake链PASS | Vue或真实多进程链仍可能产生scope/raw/cleanup disagreement | S8B及S9–S10继续分批授权；保持flags off | 段成威 | blocks G4/local G6, not S8A closure |
+| Public/Host runtime conformance | S4–S6 producer/storage、S7A transport、S7B/S7C application和S8A IPC/store单仓fake链PASS | readiness/private IPC、Vue或真实多进程链仍可能产生scope/raw/cleanup disagreement | S8B0/S8B及S9–S10继续分批授权；保持flags off | 段成威 | blocks G4/local G6, not S8A closure |
 | DB/encryption/delete E2E | SQLCipher v4 job/receipt、independent HMAC key、migration/cascade/checkpoint、restart和fake Host cleanup单仓PASS | 跨Desktop/Host/Runtime真实进程partial delete仍未运行 | S10验证完整多进程job/receipt/restart/fault E2E | 段成威 | blocks G4/local G6 |
 | Runtime raw-reasoning/title/delete | Host producer与Desktop S7A wire/S7B reducer fake链PASS；真实Runtime跨Host/Desktop未运行 | raw UX/residual/inconsistent history | keep flags off until S8–S10 conformance/Eval；历史FAIL不改写 | 段成威 | blocks G4/local G6 |
 | Desktop sidecar/Keychain | supervisor/static safety与synthetic bookmark PASS；真实signed Keychain和actual Host child未运行 | packaged/native lifecycle unknown | authorized signed-like local E2E | 段成威 | blocks G4/local G6 |
@@ -300,8 +337,8 @@
 
 ## 11. 结论
 
-- Requirements package：G1/G2/G2A Re-review Passed；DEC-126-023–031 Accepted；S4–S8A Closure Passed；`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一candidate且远端可达。Draft PR #1、历史`c000a024`与各`origin/develop`保持不变。
-- Code Complete：No。S4–S8A Closure Passed，G3仍Partial；S8B、S9–S11、四组件E2E、G4与Owner G6均未完成。
+- Requirements package：G1/G2/G2A Re-review Passed；DEC-126-023–031 Accepted；S4–S8A Closure Passed；DESIGN-126-006/DEC-126-032为待审候选；`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一candidate且远端可达。Draft PR #1、历史`c000a024`与各`origin/develop`保持不变。
+- Code Complete：No。S4–S8A Closure Passed，G3仍Partial；S8B0/S8B、S9–S11、四组件E2E、G4与Owner G6均未完成。
 - 验证人：Codex（文档事实与结构）；最终 Reviewer 为段成威。
 - 日期：2026-08-03。
-- 结论依据：replacement source/fixture/generated三向核对、API/Host/Desktop S4–S6门禁、S7A transport/domain、S7B/S7C application，以及S8A closed schema/serde/TS/auth/event/store/restart/no-log链与Desktop全量lint/test/build。列明S8A P1已关闭；无MiniMax、Runtime/central contract/Vue修改、flag activation、追加push/merge/tag/publish/deploy或生产证据。
+- 结论依据：replacement source/fixture/generated三向核对、API/Host/Desktop S4–S6门禁、S7A transport/domain、S7B/S7C application，以及S8A closed schema/serde/TS/auth/event/store/restart/no-log链与Desktop全量lint/test/build。Accepted变更已固定为四个local-only checkpoint；S8B0只完成read-only inventory与设计。无MiniMax、Runtime/central contract/Vue修改、flag activation、追加push/merge/tag/publish/deploy或生产证据。

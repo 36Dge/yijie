@@ -1,6 +1,6 @@
 # FEAT-126 需求与验收标准
 
-> 段成威已通过G1/G2/G2A重审，`29317b6426578749dc698fc2ad32b986ee5c8e9f`是唯一source-contract candidate。DEC-126-026/027/028/030/031已接受S4–S8A Closure。G3仍Partial，G4/G6 Pending；S8B及S9–S11、Vue UI、MiniMax、feature activation与新增远端写入仍禁止。
+> 段成威已通过G1/G2/G2A重审，`29317b6426578749dc698fc2ad32b986ee5c8e9f`是唯一source-contract candidate。DEC-126-026/027/028/030/031已接受S4–S8A Closure。DESIGN-126-006/DEC-126-032为待审候选。G3仍Partial，G4/G6 Pending；S8B0/S8B及S9–S11、Vue UI、MiniMax、feature activation与新增远端写入仍禁止。
 
 ## 1. 用户与场景
 
@@ -40,7 +40,7 @@
 | BR-015 | 会话页不提供页头“切换置顶”；session 置顶只存在于任务记录菜单 | 用户需求 | Must |
 | BR-016 | “不提供显示/隐藏侧边栏”指不新增 Chat 二级侧栏显隐；保留 FEAT-124 全局 240/72 App Shell 收起能力 | 用户需求 + G1 产品决策 | Must |
 | BR-017 | 用户处于底部阈值内时自动跟随流；用户上滚后停止抢夺位置，并显示回到底部按钮；点击后到最新消息并恢复跟随 | 用户截图 | Must |
-| BR-018 | 回到底部按钮只在离底部超过候选 96px 或有未读增量时出现，位于 composer 上方且不遮挡内容，具有“回到对话底部”名称 | 生产级交互 | Must |
+| BR-018 | Accepted Pattern 1.0.0优先：离底部不超过48px时保持follow；超过48px停止自动跟随；超过160px或有未读增量时显示按钮。按钮位于composer上方且不遮挡内容，`aria-label`固定为“滚动到对话底部” | DESIGN-126-006 / Accepted Pattern 1.0.0 | Must |
 | BR-019 | 每个模型 turn 可显示折叠处理入口；运行中、完成、失败、中断显示对应状态和持续时间，默认终态折叠 | 用户截图 | Must |
 | BR-020 | 处理区必须以纯文本展示固定 Runtime/model 实际提供的 raw reasoning，并标注“模型推理记录”；不得声称完整、稳定或等同模型全部内部思维。不得把内容当 HTML/Markdown、命令、tool、approval 或权限授予；不得进入日志/遥测/审计正文 | 段成威 2026-08-02 明确变更 / ADR-0016 | Must |
 | BR-041 | reasoning-enabled turn 若没有至少一个非空 raw reasoning item，或 stream gap/invalid/completion conflict 导致内容不可验证，则该 pin/turn 的 reasoning 能力不通过验收；不得用 answer、伪造文本或仅状态/时长冒充，相关 feature flag 不得通过发布 Gate | 段成威 2026-08-02 明确变更 / ADR-0016 | Must |
@@ -83,6 +83,12 @@
 | BR-043 | WebView只能通过versioned、closed的Desktop private IPC提交意图；active identity、owner、tenant、capability和资源scope由Rust绑定并复验。请求不得携带owner/user identity、Host bearer、SQLCipher key、canonical project path、Host/Runtime ID或原始Host wire | DESIGN-126-005 | Must |
 | BR-044 | 只有经过Rust校验、纯文本化和容量限制的assistant/raw reasoning projection可以进入Vue。event必须有session/subscription/sequence绑定；重复、gap、overflow、stale selection、logout/context切换或进程重启均不得把旧scope内容提交到当前store | DESIGN-126-005 | Must |
 | BR-045 | 写操作使用稳定operation ID；读请求可取消，但写操作一旦Rust接受不能用前端取消冒充回滚。停止生成必须走interrupt；未知结果、重连和删除cleanup通过Rust coordinator/status/resync对账，WebView不得直接驱动outbox或Host重试 | DESIGN-126-005 | Must |
+| BR-046 | 新增独立`VITE_YIJIE_CHAT_LOCAL_UI_ENABLED`；仅字符串exact `true`生效且默认false。它必须同时保护Chat导航、`/chat`、`/chat/:sessionId`、本地任务记录路由及页面组件实例化，且不得在env、CI、默认开发或构建配置中预置true | DESIGN-126-006 | Must |
+| BR-047 | `/chat`要求`task.create`，`/chat/:sessionId`要求`task.read`，所有动作仍由Rust `allowedActions`与resource scope复验。已删除和foreign/不可见session统一为不可枚举的资源不可用；capability denied进入access-denied；stale selection先取消/退订并resync，仍无资源则回到`/chat` | DESIGN-126-006 | Must |
+| BR-048 | permission ready、tenant、revision和logout是Chat context生命周期唯一驱动源：旧scope必须先clear/dispose/取消订阅，再绑定新scope；Vue页面不得直接调用`chatClient`、裸Tauri command或持有第二套reducer | DESIGN-126-006 | Must |
+| BR-049 | Pinia authoritative store在UI接入前必须提供project pick/revalidate、session metadata追加分页去重、cleanup完成后的selection/history/live clear、列表reload与closed navigation disposition；production `/tasks`不得使用`sampleTasks`，只能接同一真实metadata分页或在gate关闭时隐藏 | DESIGN-126-006 | Must |
+| BR-050 | 发送前必须消费Rust权威的Host liveness、Runtime ready、storage ready与`canSend` closed projection；process start/retry由Rust拥有，Vue只能提交窄化recovery intent。不得复用旧裸command或从普通错误/spinner猜ready | DESIGN-126-006 / private IPC stop condition | Must |
+| BR-051 | storage read-only、full、corrupt、migration-failed必须映射为稳定、content-free UI issue与恢复动作，不能回显路径、SQL、key或底层错误。当前private IPC v1未覆盖该shape，任何源码实现须等待DEC-126-032和单独S8B0授权 | DESIGN-126-006 | Must |
 
 ## 3. 用户流程
 
@@ -139,7 +145,7 @@
 |---|---|---|---|---|---|
 | AC-007 | 首 turn 已接受 | SSE 持续返回增量和 terminal | 单一回答按序流式显示并 durable persist；重复 event 不重复文字 | 乱序、双字、terminal 后继续追加 | 段成威 |
 | AC-008 | 用户靠近底部 | 模型继续输出 | 视图跟随最新内容且不抢焦点 | 每 token 触发屏幕阅读器或页面抖动 | 段成威 |
-| AC-009 | 用户上滚离开候选 96px 阈值 | 新增内容到达 | 不强制下拉；显示不遮挡内容的“回到对话底部”按钮，点击后恢复跟随 | 抢回滚动位置或按钮常驻遮挡 | 段成威 |
+| AC-009 | 用户离底部超过48px且继续上滚；或离底部超过160px/出现未读增量 | 新增内容到达 | 超过48px不强制下拉；超过160px或有未读时显示不遮挡内容且`aria-label="滚动到对话底部"`的按钮，点击后恢复follow | 抢回滚动位置、阈值回退为96px或按钮常驻遮挡 | 段成威 |
 | AC-010 | 固定 Runtime/model 为 reasoning-enabled turn 返回非空 raw reasoning | 展开/折叠“处理中/已处理” | `aria-expanded/controls` 正确，以纯文本显示状态、时长和具体“模型推理记录”；流式去重且不执行富文本/链接/命令 | 只显示时长、把 answer 冒充 reasoning、执行模型文本或声称完整真实思维链 | 段成威 |
 | AC-011 | raw reasoning 缺失、断流、无效、超限或 completion 对账失败 | 处理 turn/发布 Gate | answer 可独立完成，但 reasoning 明确进入 unavailable/incomplete，验收不通过并阻止相关 flag 发布；不得静默时长-only | 伪造/复用 answer、把 partial 冒充完整、为过 Gate 降低断言 | 段成威 |
 | AC-012 | 查看任一用户/模型消息 | hover、键盘或菜单操作 | 不出现被排除的动作按钮/快捷键；原生选择与 `⌘C` 仍可用 | 禁止系统复制导致无障碍退化 | 段成威 |
@@ -193,11 +199,16 @@
 | AC-040 | session包含Desktop records、Host mapping/replay和独占Runtime thread tree | 用户确认永久删除并重启应用 | 按DEC-126-006完成跨表面清理、SQLCipher cascade/secure-delete/checkpoint；历史和深链不可恢复，receipt不含正文/raw ID/path | UI-only/soft delete、跨session误删或承诺清除OS备份/所有磁盘痕迹 | 段成威 |
 | AC-041 | 下游本地draft实现获得单独授权 | 解析契约依赖 | 只使用完整SHA、已核验sibling path、workspace/path、生成SDK或已核验tarball，并核对digest；浮动branch不是契约身份 | 创建tag、publish package、配置registry或复制影子DTO | 段成威 |
 | AC-042 | 本地链路仍在实现/回归阶段 | 运行模型相关测试 | fake provider与固定fixture覆盖成功、缺raw、断流、partial/completed冲突和重启；MiniMax调用数保持0 | 为“跑通”擅自使用key、真实数据或付费请求 | 段成威 |
-| AC-043 | AC-001–042及AC-044–047适用项、仓库级测试、本地构建和完整E2E均有真实证据 | Owner执行G6本地验收 | 可标记`Local-only Delivery Complete`；同时明确G5=N/A且不是Production Ready | 把本地验收写成已上线、已发布或生产安全已证明 | 段成威 |
+| AC-043 | AC-001–042及AC-044–052适用项、仓库级测试、本地构建和完整E2E均有真实证据 | Owner执行G6本地验收 | 可标记`Local-only Delivery Complete`；同时明确G5=N/A且不是Production Ready | 把本地验收写成已上线、已发布或生产安全已证明 | 段成威 |
 | AC-044 | canonical Public Tasks source、fixtures、provider repository及Desktop consumer均可检查 | 创建或读取v2 task | request/response/DB只含批准的content-free metadata/reference；正文/path/raw canary在全部Public Tasks表面为0 | arbitrary `input`、`conversation input.text` fixture、response回显或仅靠Desktop约定避免泄漏 | 段成威 |
 | AC-045 | fixed private IPC fixtures同时进入Rust serde与TypeScript runtime validator | 校验所有command/response/event/error/cursor样本及unknown字段/variant | v1 closed shape双端一致；未知字段、未知event kind、越限文本、非法cursor和非UUID request/operation ID均fail closed | 手写Rust/TS影子DTO、只做TypeScript编译而无运行时校验 | 段成威 |
 | AC-046 | 用户快速A→B切换session、取消A请求、发生event gap/queue overflow或Host/Desktop重启 | late response/event到达或store重连 | contextId+subscriptionId+selectionEpoch+sequence不匹配的结果被丢弃；Rust发`resync_required`，store从SQLCipher受控snapshot恢复，不串session/tenant | 把late event附到当前session、无限loading或直接透传Host replay | 段成威 |
 | AC-047 | WebView、Tauri command/event和日志均可注入secret/path/body canary | 执行create/stream/history/rename/pin/interrupt/delete/restart/race矩阵 | WebView只收到批准DTO和bounded纯文本；Host bearer、DB key、canonical path、Host raw error/wire及其他session内容为0，日志/错误/Debug不含正文 | 前端持有token/key/path，或把Host message/raw envelope当UI错误/事件 | 段成威 |
+| AC-048 | UI flag缺失、空、大小写不同或为任意非exact true值 | 构建并访问Chat/Tasks路径 | Chat/Tasks导航与路由不可达，Chat页面loader和production component不实例化；native chat flags仍不被启动 | 仅隐藏按钮但可深链、默认dev/CI打开或bundle启动sidecar | 段成威 |
+| AC-049 | permission tenant/revision/logout变化，或用户直接打开session深链 | guard与Chat lifecycle运行 | 旧context/subscription/store先失效；新scope重新bind。已删除/foreign统一generic unavailable，无权进入access-denied，stale selection经resync后恢复或回到`/chat` | 旧scope正文闪现、仅按exact path检查导致动态路由绕过 | 段成威 |
+| AC-050 | 多页project/session metadata与cleanup complete/incomplete fixture | 使用store actions和删除流程 | project pick/revalidate可调用；session分页稳定追加去重；cleanup complete清空被删selection/history/live并reload，返回closed next route；incomplete保留可恢复状态 | Vue直接调用client、替换整页丢分页、删除后仍停留在已删深链 | 段成威 |
+| AC-051 | Host starting/down、Runtime not-ready/version-mismatch及storage read-only/full/corrupt/migration failure fixture | 页面判断发送或用户请求重试 | Rust closed readiness决定`canSend`；只允许窄recovery intent；UI显示稳定issue/recovery且不含底层路径/错误。schema/serde/TS fixture三端一致 | Vue猜ready、循环裸start、把所有错误压成通用spinner | 段成威 |
+| AC-052 | production bundle与test harness同时构建 | 检查依赖和bundle | production只使用真实Pinia reducer/Tauri client；fake ChatClient仅test injection，不进入production bundle；无production dependency新增 | mock transport或`sampleTasks`冒充真实链路 | 段成威 |
 
 ## 5. 状态与错误语义
 
@@ -304,7 +315,7 @@
 | G2A source contract（历史） | 段成威 | Approved / Passed at DEC-126-019 — `c000a0245acb5c3f7ead5d2a877fb60c281c588c`当时为唯一candidate且DEC-126-020远端可用；LIA-126-002后发现数据边界冲突，当前实施readiness由DEC-126-024复审取代 | 2026-08-02 |
 | Contract Draft PR / merge readiness | 段成威 | DEC-126-021 Accepted/HOLD；PR #1 exact head保持Draft，CI红灯只阻断merge，不回退G2/G2A | 2026-08-02 |
 | Local-only Delivery Strategy | 段成威 | DEC-126-022 Accepted；Local Runtime Ready为目标，tag/publish/deploy/G5 N/A；G6为本地Owner验收 | 2026-08-02 |
-| Local Implementation Authorization | 段成威 | DEC-126-026/027/028/030/031已关闭S4–S8A；S8B、S9–S11/Vue/MiniMax/flag activation与新增远端/发布动作仍禁止 | 2026-08-03 |
+| Local Implementation Authorization | 段成威 | DEC-126-026/027/028/030/031已关闭S4–S8A；DESIGN-126-006/DEC-126-032待审；S8B0/S8B、S9–S11/Vue/MiniMax/flag activation与新增远端/发布动作仍禁止 | 2026-08-03 |
 | DEC-126-023 / Q-017 | 段成威 | Approved — 方案C Accepted；Q-017 Resolved；旧candidate/PR/远端不变，本地replacement candidate已形成 | 2026-08-02 |
 | DEC-126-024 / final G2A re-review | 段成威 | Approved / Passed — `29317b6426578749dc698fc2ad32b986ee5c8e9f`是新的唯一source-contract candidate；不授权恢复LIA-126-002、业务源码、远端动作、MiniMax或S7–S11 | 2026-08-02 |
 | Remote State Reconciliation / LIA-126-002 Resume | 段成威 | Approved — sole candidate与四个checkpoint分支的远端可达事实已登记；单独恢复S4–S6纠偏，不改变merge/tag/publish/deploy或S7–S11禁令 | 2026-08-02 |
