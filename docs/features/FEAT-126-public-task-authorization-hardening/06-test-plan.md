@@ -1,7 +1,7 @@
 # FEAT-126 测试与 Eval 计划
 
 > 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。DEC-126-023/024完成G2A重审，DEC-126-025登记sole candidate与checkpoint远端ref并恢复LIA-126-002，仅执行S4–S6 Corrective Closure。
-> DEC-126-026/027/028/030/031/033/034已关闭S4–S8B；DEC-126-035已接受。LIA-126-007 / S9使用Host权威deterministic runner与Desktop exact fixture consumer完成并提交DEC-126-036；S10–S11仍为`NOT RUN`。本轮未调用MiniMax，
+> DEC-126-026/027/028/030/031/033/034已关闭S4–S8B；DEC-126-035已接受远端事实，DEC-126-036已接受LIA-126-007 / S9 Host权威deterministic runner与Desktop exact fixture consumer Closure；S10–S11仍为`NOT RUN`。本轮未调用MiniMax，
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
 ## 1. 测试策略
@@ -234,7 +234,7 @@
 | Accepted checkpoints / remote reconciliation | yijie/API/Host/Desktop/contracts | repository gates + scope/no-log/diff + owner-authorized candidate push；`git ls-remote` + exact-branch temporary clean clone | synthetic/fake/temp only；remote verification is read-only | RUN 2026-08-03；PASS；remote exact `650254b…139fa`、`a64f9f5…3264`、`3e8df02…f3d9`、`35f2744…7cbd`、`29317b6…e9f`；all clean clones，develop/Draft PR/merge/tag/publish/deploy未改变；DEC-126-035 Accepted |
 | S8B0/S8B conformance | yijie + yijie-desktop | DESIGN-126-006/DEC-126-032 + schema/Rust/TS/router/store/Tasks + production Vue/unit/axe/browser/security/bundle/package/strict/G2A/YAML/lint/test/build/diff | fake/fixed/temp only；no runtime provider | DEC-126-033/034 Accepted；S8B Closure Passed at `35f2744…7cbd`；VoiceOver人工项保留到S11/G6 |
 | Local four-component E2E/security/perf/eval | affected repos | exact orchestration and commands must be added by authorized slices before G4 | local PostgreSQL/temp homes/DB/pinned Runtime/fake provider | command/harness absent — blocks G4/local G6；does not affect accepted G2/G2A |
-| LIA-126-007 / S9 fake-provider Eval | Host authority + Desktop consumer | versioned runner、exact dataset hash/split、title schema/semantic与raw sequence/final/no-log/injection gates | fixed fake provider、fixed pins、synthetic data only | RUN 2026-08-04 / PASS；DEC-126-036 Closure candidate；不调用MiniMax、不启用flag、不进入S10 |
+| LIA-126-007 / S9 fake-provider Eval | Host authority + Desktop consumer | versioned runner、exact dataset hash/split、title schema/semantic与raw sequence/final/no-log/injection gates | fixed fake provider、fixed pins、synthetic data only | RUN 2026-08-04 / PASS；DEC-126-036 Accepted；不调用MiniMax、不启用flag、不进入S10 |
 
 ## 12. 通过、失败与 Flaky 策略
 
@@ -263,7 +263,7 @@
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
-| 测试/技术 Owner | 段成威 | DEC-126-035已接受并单独授权LIA-126-007/S9；S9已形成DEC-126-036 Closure候选。S10–S11/MiniMax/flag activation与完整E2E仍禁止 | 2026-08-04 |
+| 测试/技术 Owner | 段成威 | DEC-126-035已接受并单独授权LIA-126-007/S9；DEC-126-036已接受S9 Closure。S10–S11/MiniMax/flag activation与完整E2E仍禁止 | 2026-08-04 |
 | 安全/数据 Owner | 段成威 | 当前P1及Public Tasks正文边界阻断closure；既有auth/delete/no-log/migration结果仅作foundation evidence | 2026-08-02 |
 | Runtime/模型 Owner | 段成威 | DEC-126-021 HOLD与DEC-126-022 Local-only已Accepted；先用fake provider/fixtures，raw reasoning须具体显示并持久化/删除；历史MM-126-001/002不重跑，未来一次local smoke仅可另行提交审批 | 2026-08-02 |
 
@@ -294,4 +294,4 @@ VoiceOver：仅完成并提交人工清单，未声称由真人执行；DEC-126-
 | Desktop UI/security | PASS：production Vue组件literal plaintext；script/link=0；fixture/canary不进入production bundle；TS/Rust全量门禁通过 |
 | Flaky分类 | 首次Rust full run有1个既有cleanup test使用stale `now`的跨秒波动；该文件不在S9 diff，单测与第二次full run均PASS；不豁免、不改production源码 |
 
-DEC-126-036接受前不得进入S10；S9结果不等于四组件E2E、G4或G6。
+DEC-126-036已接受，但S10仍须另行明确授权；S9结果不等于四组件E2E、G4或G6。

@@ -4,7 +4,7 @@ feature:
   id: "FEAT-126"
   slug: "public-task-authorization-hardening"
   title: "安全的新建任务对话、任务记录与 Public Tasks 授权加固"
-  status: "g2-passed-g2a-rereview-passed-s4-s8b-closure-passed-s9-closure-candidate-dec-126-036-g3-partial"
+  status: "g2-passed-g2a-rereview-passed-s4-s9-closure-passed-dec-126-036-accepted-g3-partial"
   created_at: "2026-08-01"
   requirement_owner: "段成威"
   technical_owner: "段成威"
@@ -192,10 +192,10 @@ immutable_references:
     package_publish_policy: "N/A; do not publish SDK/package or configure a registry"
     deployment_policy: "N/A; no online deployment, production canary, production activation, cloud database integration or real user data"
     model_validation: "fake provider and fixed fixtures first; no MiniMax call in this documentation adjustment; one bounded local MiniMax smoke requires separate Owner approval after the local chain is complete; keys never enter logs, databases, documents or frontend storage"
-    implementation_authorization: "DEC-126-030/031 accepted S7C/S8A, DEC-126-032/033 accepted S8B0 and DEC-126-034 accepted LIA-126-006/S8B. DEC-126-035 is Accepted and records the Owner-authorized remote availability. Owner separately authorized LIA-126-007/S9; its deterministic fake-provider Eval is complete as a local DEC-126-036 Closure candidate. S10-S11, MiniMax, feature activation, any additional push and merge/tag/publish/deploy remain unauthorized"
+    implementation_authorization: "DEC-126-030/031 accepted S7C/S8A, DEC-126-032/033 accepted S8B0 and DEC-126-034 accepted LIA-126-006/S8B. DEC-126-035 is Accepted and records the Owner-authorized remote availability. Owner separately authorized LIA-126-007/S9 and accepted its deterministic fake-provider Eval Closure with DEC-126-036. S10-S11, MiniMax, feature activation, any additional push and merge/tag/publish/deploy remain unauthorized"
   local_foundation_implementation:
     authorization: "LIA-126-001 foundation plus LIA-126-002 corrective closure; LIA-126-002 resumed under DEC-126-025; LIA-126-003 separately authorized S7C Rust-only implementation after DESIGN-126-005/DEC-126-029 acceptance"
-    status: "S4-S8B Closure passed under DEC-126-026/027/028/030/031/033/034. LIA-126-007/S9 is implemented only in test-specific Host/Desktop files and forms DEC-126-036 Closure candidate checkpoints; G3 remains Partial pending Owner acceptance and S10-S11. All flags remain default-off"
+    status: "S4-S9 Closure passed under DEC-126-026/027/028/030/031/033/034/036. LIA-126-007/S9 remains limited to test-specific Host/Desktop files and its local checkpoints; G3 remains Partial because S10-S11 are unauthorized and unimplemented. All flags remain default-off"
     contract_full_commit: "29317b6426578749dc698fc2ad32b986ee5c8e9f"
     governance_checkpoint:
       accepted_baseline_local_full_commit: "6de641f715751bb8ca94ce6804e5a33ff18d9569"
@@ -329,8 +329,8 @@ immutable_references:
       verification: "PASS: git ls-remote candidate/develop refs and five temporary single-branch clean clones matched exact HEAD with clean worktrees; temporary root removed"
       develop_refs: "yijie=6c23dc3d9fa0d979948dbb10356fc5929ac2513b; contracts=9ec34abd6e7dfb5a23b0154d467694167224ebbb; API=faeb78019d95aaf9dcfbd8493f8bc2ecf7e4bf34; Host=34e94acf293f6daad61c4d42fa47028a2d1318e4; Desktop=155854cf3662384caa2c8bffe0a47935ef4a70b5"
       boundary: "remote availability only; no merge, tag, publish, deploy, feature activation, G4 or G6 implication; Draft PR #1 and sole contracts candidate identity remain unchanged"
-    s9_fake_provider_eval_closure_candidate:
-      authorization: "LIA-126-007 / S9 explicitly authorized by Owner on 2026-08-04 after DEC-126-035 Accepted; DEC-126-036 Closure Review is Proposed and pending Owner"
+    s9_fake_provider_eval_closure:
+      authorization: "LIA-126-007 / S9 explicitly authorized by Owner on 2026-08-04 after DEC-126-035 Accepted; DEC-126-036 Closure Review accepted by Owner on 2026-08-04"
       eval_authority: "yijie-agent-host owns the versioned fake-provider title/raw Eval dataset manifest and runner; yijie-desktop consumes only exact generated event fixtures and validates authoritative reducer, SQLCipher lifecycle and plaintext UI projections"
       pins: "Runtime 3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f; Host 3e8df026110f0c895262329c2384d3896598f3d9; Desktop 35f27447398529cca4dec85fa1f67e779c7a7cbd; contracts 29317b6426578749dc698fc2ad32b986ee5c8e9f"
       host_checkpoint: "yijie-agent-host@8707dea552cff74121b89aa8045f27da2c8c9378 local only; parent accepted remote baseline 3e8df026110f0c895262329c2384d3896598f3d9; not pushed"
@@ -351,7 +351,7 @@ gates:
   G1_design_ready: "passed - 2026-08-01 - 段成威 approved the FEAT-126 recommended product scope and closed Q-001–Q-005/Q-011–Q-014"
   G2_implementation_ready: "passed - 2026-08-02 - 段成威 accepted DEC-126-017, DEC-126-011/012 and FEAT-126 Chat/App Shell Pattern; Q-010 resolved; LIA-126-001 later authorized S4-S6 only"
   G2A_contract_ready: "passed - 2026-08-02 - DEC-126-023/024/025 accepted and Q-017 resolved; 29317b6426578749dc698fc2ad32b986ee5c8e9f is the sole source-contract candidate, post-commit gates passed and dedicated remote ref matches exactly; c000a024, Draft PR #1 and origin/develop unchanged; LIA-126-002 separately resumed only for S4-S6"
-  G3_slice_complete: "partial - 2026-08-04 - DEC-126-026/027/028/030/031/033/034 accepted S4-S8B; LIA-126-007 S9 is implemented and submitted as DEC-126-036 Closure candidate. S10-S11 remain unauthorized and unimplemented"
+  G3_slice_complete: "partial - 2026-08-04 - DEC-126-026/027/028/030/031/033/034/036 accepted S4-S9 Closure. S10-S11 remain unauthorized and unimplemented"
   G4_code_complete: "pending - requires local API, Agent Host, Desktop and Runtime builds plus the complete local conversation E2E"
   G5_production_ready: "not-applicable - DEC-126-022 excludes online deployment and production activation; any future production intent must reopen and pass the production track"
   G6_delivery_complete: "pending - FEAT-126 local-only scope; requires Owner acceptance of local service startup and the complete local functional chain; does not mean Production Ready"

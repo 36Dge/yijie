@@ -1,6 +1,6 @@
 # FEAT-126 需求与验收标准
 
-> 段成威已通过G1/G2/G2A重审，`29317b6426578749dc698fc2ad32b986ee5c8e9f`是唯一source-contract candidate。DEC-126-026/027/028/030/031/033/034已接受S4–S8B Closure，DEC-126-035已接受远端事实校正。LIA-126-007 / S9 fake-provider Eval已完成并形成DEC-126-036 Closure候选；G3仍Partial，G4/G6 Pending；S10–S11、MiniMax、feature activation与新增远端写入仍禁止。
+> 段成威已通过G1/G2/G2A重审，`29317b6426578749dc698fc2ad32b986ee5c8e9f`是唯一source-contract candidate。DEC-126-026/027/028/030/031/033/034已接受S4–S8B Closure，DEC-126-035已接受远端事实校正，DEC-126-036已接受S9 fake-provider Eval Closure；G3仍Partial，G4/G6 Pending；S10–S11、MiniMax、feature activation与新增远端写入仍禁止。
 
 ## 1. 用户与场景
 
@@ -315,7 +315,7 @@
 | G2A source contract（历史） | 段成威 | Approved / Passed at DEC-126-019 — `c000a0245acb5c3f7ead5d2a877fb60c281c588c`当时为唯一candidate且DEC-126-020远端可用；LIA-126-002后发现数据边界冲突，当前实施readiness由DEC-126-024复审取代 | 2026-08-02 |
 | Contract Draft PR / merge readiness | 段成威 | DEC-126-021 Accepted/HOLD；PR #1 exact head保持Draft，CI红灯只阻断merge，不回退G2/G2A | 2026-08-02 |
 | Local-only Delivery Strategy | 段成威 | DEC-126-022 Accepted；Local Runtime Ready为目标，tag/publish/deploy/G5 N/A；G6为本地Owner验收 | 2026-08-02 |
-| Local Implementation Authorization | 段成威 | S4–S8B已关闭；DEC-126-034接受LIA-126-006 S8B Closure。LIA-126-007随后单独授权并完成S9 test-only Eval，DEC-126-036待Owner；S10–S11/MiniMax/flag activation与新增远端/发布动作仍禁止 | 2026-08-04 |
+| Local Implementation Authorization | 段成威 | S4–S9已关闭；DEC-126-034接受LIA-126-006 S8B Closure，DEC-126-036接受LIA-126-007 S9 Closure；S10–S11/MiniMax/flag activation与新增远端/发布动作仍禁止 | 2026-08-04 |
 | DEC-126-023 / Q-017 | 段成威 | Approved — 方案C Accepted；Q-017 Resolved；旧candidate/PR/远端不变，本地replacement candidate已形成 | 2026-08-02 |
 | DEC-126-024 / final G2A re-review | 段成威 | Approved / Passed — `29317b6426578749dc698fc2ad32b986ee5c8e9f`是新的唯一source-contract candidate；不授权恢复LIA-126-002、业务源码、远端动作、MiniMax或S7–S11 | 2026-08-02 |
 | Remote State Reconciliation / LIA-126-002 Resume | 段成威 | Approved — sole candidate与四个checkpoint分支的远端可达事实已登记；单独恢复S4–S6纠偏，不改变merge/tag/publish/deploy或S7–S11禁令 | 2026-08-02 |
