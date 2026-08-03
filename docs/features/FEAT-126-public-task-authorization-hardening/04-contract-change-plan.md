@@ -1,6 +1,6 @@
 # FEAT-126 契约与兼容变更计划
 
-> 本文central contract设计已通过G2/G2A重审。S4–S8A Closure已接受；DESIGN-126-006/DEC-126-032已接受并以LIA-126-005实现Desktop-private S8B0 extension。该扩展不修改central source、Host/Public Tasks wire或Runtime pin；DEC-126-033待审，S8B仍未授权；旧`c000a024`、Draft PR #1和各`origin/develop`保持不变。
+> 本文central contract设计已通过G2/G2A重审。S4–S8A Closure已接受；DESIGN-126-006/DEC-126-032已接受并以LIA-126-005实现Desktop-private S8B0 extension，DEC-126-033已接受其Closure。该扩展不修改central source、Host/Public Tasks wire或Runtime pin；S8B仍未授权；旧`c000a024`、Draft PR #1和各`origin/develop`保持不变。
 
 ## 1. Contract Impact 结论
 

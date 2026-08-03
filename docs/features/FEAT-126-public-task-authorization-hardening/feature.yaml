@@ -4,7 +4,7 @@ feature:
   id: "FEAT-126"
   slug: "public-task-authorization-hardening"
   title: "安全的新建任务对话、任务记录与 Public Tasks 授权加固"
-  status: "g2-passed-g2a-rereview-passed-s4-s8a-closure-passed-s8b0-closure-review-g3-partial"
+  status: "g2-passed-g2a-rereview-passed-s4-s8b0-closure-passed-g3-partial"
   created_at: "2026-08-01"
   requirement_owner: "段成威"
   technical_owner: "段成威"
@@ -167,7 +167,7 @@ immutable_references:
     - id: "DESIGN-126-006"
       status: "accepted by Owner with DEC-126-032 on 2026-08-03; LIA-126-005 separately authorizes S8B0 only; S8B remains unauthorized"
       scope: "default-off local Chat UI gate, route/capability/deep-link lifecycle, permission-to-chat bind/dispose, Pinia consumption gaps, Host/Runtime readiness and storage-failure closed projections, Tasks sample removal strategy, cleanup navigation, scroll thresholds and S8B0/S8B/S9/S10/S11 re-slicing"
-      contract_stop: "resolved locally under LIA-126-005 at yijie-desktop@5dab02a1ad5f03fead236aa7060fa6a75a234d85: the two closed readiness/recovery commands and storage projections are implemented and conformant; DEC-126-033 remains Proposed, so this does not authorize S8B"
+      contract_stop: "resolved locally under LIA-126-005 at yijie-desktop@5dab02a1ad5f03fead236aa7060fa6a75a234d85: the two closed readiness/recovery commands and storage projections are implemented and conformant; DEC-126-033 Accepted the S8B0 Closure but does not authorize S8B"
   public_tasks_consumer_inventory:
     status: "complete for repository-local source; Q-010 resolved 2026-08-02"
     result: "no active repository-local consumer observed; generated SDKs are artifacts; agent-host same-name route is a different contract; external consumers remain unknown-public safe compatibility category"
@@ -195,7 +195,7 @@ immutable_references:
     implementation_authorization: "DEC-126-030 accepted S7C and DEC-126-031 accepted S8A Closure. Owner accepted DESIGN-126-006/DEC-126-032 on 2026-08-03, then separately authorized LIA-126-005/S8B0 only: default-off gate, route/authorization, permission lifecycle, authoritative-store consumption, closed readiness/storage private IPC and production Tasks metadata/default-off integration. Complete Vue UI/S8B and S9-S11, MiniMax, feature activation, additional push and merge/tag/publish/deploy remain unauthorized"
   local_foundation_implementation:
     authorization: "LIA-126-001 foundation plus LIA-126-002 corrective closure; LIA-126-002 resumed under DEC-126-025; LIA-126-003 separately authorized S7C Rust-only implementation after DESIGN-126-005/DEC-126-029 acceptance"
-    status: "S4-S6 Corrective Closure passed under DEC-126-026, S7A under DEC-126-027, S7B under DEC-126-028, S7C under DEC-126-030 and S8A under DEC-126-031. DEC-126-032 is Accepted and LIA-126-005 S8B0 is implemented at local checkpoint 5dab02a1ad5f03fead236aa7060fa6a75a234d85; DEC-126-033 Closure Review is Proposed. G3 remains Partial; the UI flag is default-off and full S8B/S9-S11 remain unauthorized and unimplemented"
+    status: "S4-S6 Corrective Closure passed under DEC-126-026, S7A under DEC-126-027, S7B under DEC-126-028, S7C under DEC-126-030 and S8A under DEC-126-031. DEC-126-032 is Accepted and LIA-126-005 S8B0 is implemented at local checkpoint 5dab02a1ad5f03fead236aa7060fa6a75a234d85; DEC-126-033 Accepted the S8B0 Closure. G3 remains Partial; the UI flag is default-off and full S8B/S9-S11 remain unauthorized and unimplemented"
     contract_full_commit: "29317b6426578749dc698fc2ad32b986ee5c8e9f"
     governance_checkpoint:
       accepted_baseline_local_full_commit: "6de641f715751bb8ca94ce6804e5a33ff18d9569"
@@ -237,7 +237,7 @@ immutable_references:
         local_checkpoint_files: 27
         remote_ref: "refs/heads/feat/feat-126-foundation-closure"
         remote_checkpoint_full_commit: "40413b409a467a133d178137651622e167d512de"
-        working_tree_status: "clean after local S8B0 Closure candidate checkpoint; checkpoint not pushed"
+        working_tree_status: "clean after local S8B0 Closure checkpoint accepted by DEC-126-033; checkpoint not pushed"
         lock_sha256: "ff75e27e0691d8ca5bcc922469a5df6012e5f717ddfb6ba23967290d12b429ed"
         generated_sha256: "e84b70be6505dc5c0fc1e4702018fad2839e1a3fe74d7730883151e49928b678"
         migration_0001_sha256: "3ed7f9661f4d85360670cce524599e2f3cad991581f4dc407a5c38dfd7dadc2b"
@@ -299,10 +299,10 @@ immutable_references:
       test_evidence: "schema/fixture/serde/TypeScript allowlists; command authorization, context expiry/revision/tenant switch; projection byte caps; duplicate/gap/backpressure/cancel/reconnect; stale selection/restart/delete cleanup; no-log/secret/path/raw-wire scans; Desktop lint/test/build all PASS with 127 TS and 93/94 Rust pass"
       authorization_recommendation: "Owner accepted DEC-126-031 while keeping G3 Partial. S8B Vue UI still requires separate explicit authorization"
     s8b0_ui_integration_readiness_review:
-      status: "DESIGN-126-006 and DEC-126-032 Accepted 2026-08-03; LIA-126-005 S8B0 implemented locally at 5dab02a1ad5f03fead236aa7060fa6a75a234d85; DEC-126-033 Closure Review Proposed; S8B remains unauthorized"
+      status: "DESIGN-126-006 and DEC-126-032 Accepted 2026-08-03; LIA-126-005 S8B0 implemented locally at 5dab02a1ad5f03fead236aa7060fa6a75a234d85; DEC-126-033 Accepted and S8B0 Closure Passed; S8B remains unauthorized"
       contract_impact: "semantic Desktop-private candidate only; central contracts, Host/Public Tasks wire and Runtime pin unchanged"
       gate: "VITE_YIJIE_CHAT_LOCAL_UI_ENABLED must be exact true, default false, and protect Chat navigation, /chat, /chat/:sessionId, /tasks local task history and component instantiation; it must not be true in env, CI, default development or build configuration"
-      findings: "All S8B0 P1 integration gaps are closed in the local candidate: project pick/revalidate, append/dedup session paging, cleanup clear/reload/navigation, permission tenant/revision/logout lifecycle, guarded routes/loaders, Rust-owned local readiness/start-retry/storage projections and removal of production sampleTasks. Full Chat Vue components and visual/a11y behavior remain S8B"
+      findings: "All S8B0 P1 integration gaps are closed in the DEC-126-033 Accepted local checkpoint: project pick/revalidate, append/dedup session paging, cleanup clear/reload/navigation, permission tenant/revision/logout lifecycle, guarded routes/loaders, Rust-owned local readiness/start-retry/storage projections and removal of production sampleTasks. Full Chat Vue components and visual/a11y behavior remain S8B"
       private_ipc_candidate: "implemented under LIA-126-005: chat_get_local_readiness_v1 and chat_request_local_recovery_v1 plus stable content-free readiness/storage issue codes are closed across schema, Rust serde, fixtures and TypeScript validators/client/store. Existing 20 S8A commands and seven event shapes retain semantics; total command allowlist is now 22. Rust owns process start/retry"
       slices: "S8B0 integration/gates first; S8B production Vue UI/a11y second; S9 fake-provider title/raw Eval; S10 temporary test-profile four-component local E2E; S11 Owner local G6 acceptance. Each needs separate authorization"
       scroll_contract: "Accepted Pattern 1.0.0 wins: follow at <=48px, show bottom control at >160px, aria-label exactly 滚动到对话底部"
@@ -315,7 +315,7 @@ gates:
   G1_design_ready: "passed - 2026-08-01 - 段成威 approved the FEAT-126 recommended product scope and closed Q-001–Q-005/Q-011–Q-014"
   G2_implementation_ready: "passed - 2026-08-02 - 段成威 accepted DEC-126-017, DEC-126-011/012 and FEAT-126 Chat/App Shell Pattern; Q-010 resolved; LIA-126-001 later authorized S4-S6 only"
   G2A_contract_ready: "passed - 2026-08-02 - DEC-126-023/024/025 accepted and Q-017 resolved; 29317b6426578749dc698fc2ad32b986ee5c8e9f is the sole source-contract candidate, post-commit gates passed and dedicated remote ref matches exactly; c000a024, Draft PR #1 and origin/develop unchanged; LIA-126-002 separately resumed only for S4-S6"
-  G3_slice_complete: "partial - 2026-08-03 - DEC-126-026/027/028/030/031 accepted S4-S8A; DEC-126-032 accepted DESIGN-126-006 and LIA-126-005 S8B0 is implemented at local checkpoint 5dab02a1ad5f03fead236aa7060fa6a75a234d85 with DEC-126-033 Closure Review Proposed. S8B and S9-S11 remain unauthorized and unimplemented, so G3 is not complete"
+  G3_slice_complete: "partial - 2026-08-03 - DEC-126-026/027/028/030/031 accepted S4-S8A; DEC-126-032 accepted DESIGN-126-006 and DEC-126-033 accepted the LIA-126-005 S8B0 Closure at local checkpoint 5dab02a1ad5f03fead236aa7060fa6a75a234d85. S8B and S9-S11 remain unauthorized and unimplemented, so G3 is not complete"
   G4_code_complete: "pending - requires local API, Agent Host, Desktop and Runtime builds plus the complete local conversation E2E"
   G5_production_ready: "not-applicable - DEC-126-022 excludes online deployment and production activation; any future production intent must reopen and pass the production track"
   G6_delivery_complete: "pending - FEAT-126 local-only scope; requires Owner acceptance of local service startup and the complete local functional chain; does not mean Production Ready"

@@ -1,6 +1,6 @@
 # FEAT-126 需求与验收标准
 
-> 段成威已通过G1/G2/G2A重审，`29317b6426578749dc698fc2ad32b986ee5c8e9f`是唯一source-contract candidate。S4–S8A Closure已接受，DESIGN-126-006/DEC-126-032已接受并以LIA-126-005完成S8B0本地候选。G3仍Partial，DEC-126-033待审，G4/G6 Pending；S8B及S9–S11、完整Vue Chat UI、MiniMax、feature activation与新增远端写入仍禁止。
+> 段成威已通过G1/G2/G2A重审，`29317b6426578749dc698fc2ad32b986ee5c8e9f`是唯一source-contract candidate。S4–S8A Closure已接受，DESIGN-126-006/DEC-126-032与DEC-126-033已接受，LIA-126-005 / S8B0 Closure Passed。G3仍Partial，G4/G6 Pending；S8B及S9–S11、完整Vue Chat UI、MiniMax、feature activation与新增远端写入仍禁止。
 
 ## 1. 用户与场景
 
@@ -315,7 +315,7 @@
 | G2A source contract（历史） | 段成威 | Approved / Passed at DEC-126-019 — `c000a0245acb5c3f7ead5d2a877fb60c281c588c`当时为唯一candidate且DEC-126-020远端可用；LIA-126-002后发现数据边界冲突，当前实施readiness由DEC-126-024复审取代 | 2026-08-02 |
 | Contract Draft PR / merge readiness | 段成威 | DEC-126-021 Accepted/HOLD；PR #1 exact head保持Draft，CI红灯只阻断merge，不回退G2/G2A | 2026-08-02 |
 | Local-only Delivery Strategy | 段成威 | DEC-126-022 Accepted；Local Runtime Ready为目标，tag/publish/deploy/G5 N/A；G6为本地Owner验收 | 2026-08-02 |
-| Local Implementation Authorization | 段成威 | S4–S8A已关闭；DEC-126-032 Accepted并以LIA-126-005只完成S8B0；DEC-126-033待审。S8B、S9–S11/MiniMax/flag activation与新增远端/发布动作仍禁止 | 2026-08-03 |
+| Local Implementation Authorization | 段成威 | S4–S8A已关闭；DEC-126-032/033 Accepted，LIA-126-005 / S8B0 Closure Passed。S8B、S9–S11/MiniMax/flag activation与新增远端/发布动作仍禁止 | 2026-08-03 |
 | DEC-126-023 / Q-017 | 段成威 | Approved — 方案C Accepted；Q-017 Resolved；旧candidate/PR/远端不变，本地replacement candidate已形成 | 2026-08-02 |
 | DEC-126-024 / final G2A re-review | 段成威 | Approved / Passed — `29317b6426578749dc698fc2ad32b986ee5c8e9f`是新的唯一source-contract candidate；不授权恢复LIA-126-002、业务源码、远端动作、MiniMax或S7–S11 | 2026-08-02 |
 | Remote State Reconciliation / LIA-126-002 Resume | 段成威 | Approved — sole candidate与四个checkpoint分支的远端可达事实已登记；单独恢复S4–S6纠偏，不改变merge/tag/publish/deploy或S7–S11禁令 | 2026-08-02 |
@@ -324,4 +324,4 @@
 | S7B Closure Review | 段成威 | Accepted — DEC-126-028接受durable outbox、strict/coalesced reducer、batched history、title CAS与全量Desktop门禁证据；不自动授权S8/UI或activation | 2026-08-03 |
 | S7C Closure Review | 段成威 | Accepted — DEC-126-030接受Rust-bound auth/actions/cleanup/coordinator/restart-resync证据；G3保持Partial并单独授权LIA-126-004/S8A | 2026-08-03 |
 | S8A Closure Review | 段成威 | Accepted — DEC-126-031接受20个private commands、closed schema/fixtures、Rust auth/event bridge、TS validators/client/Pinia reducer及restart/race/no-log证据；S8A Closure Passed，不自动授权S8B | 2026-08-03 |
-| S8B0 Closure Review | 段成威 | Proposed — Desktop `5dab02a1…34d85`关闭gate/route/lifecycle/store/readiness/storage/Tasks P1并全量门禁通过；等待DEC-126-033，不自动授权S8B | 2026-08-03 |
+| S8B0 Closure Review | 段成威 | Accepted — DEC-126-033接受Desktop `5dab02a1…34d85`的gate/route/lifecycle/store/readiness/storage/Tasks与全量门禁证据；S8B0 Closure Passed，不自动授权S8B | 2026-08-03 |

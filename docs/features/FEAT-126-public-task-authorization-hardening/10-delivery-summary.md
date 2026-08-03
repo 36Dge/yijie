@@ -3,10 +3,10 @@
 ## 1. 当前结果
 
 - 用户可观察行为：默认配置下无变化；S8B0已保存为Desktop仅本地checkpoint`5dab02a1ad5f03fead236aa7060fa6a75a234d85`且UI flag仍unset/false、未push。受保护routes/lifecycle/store/readiness/Tasks metadata已接线，但完整Chat Vue页面/组件/视觉仍未实现。
-- 原目标是否达成：未达成。S4–S8A Closure已接受；DEC-126-032已接受并完成S8B0候选，DEC-126-033仍待Owner。S8B、S9–S11、完整本地对话E2E与Owner验收均未完成。
+- 原目标是否达成：未达成。S4–S8B0 Closure已接受；S8B、S9–S11、完整本地对话E2E与Owner验收均未完成。
 - 当前范围：安全的新建任务对话、任务记录、聊天项目、本地持久化及Public Tasks hardening的完整Local-only需求/设计/测试/实施候选。
 - 非目标：见`00-feature-brief.md`；没有文件/图片/工具/云同步；tag/package publish/registry/线上部署/生产灰度/云数据库/真实用户数据均N/A。
-- 交付状态：`G1 Passed / G2 Passed / G2A Re-review Passed / S4–S8A Closure Passed / S8B0 Closure Review Proposed / G3 Partial`。DEC-126-032已Accepted；DEC-126-033为Proposed且不授权S8B。DEC-126-021继续HOLD；sole contract candidate远端可达，新local checkpoint未push；当前不是Code Complete、Production Ready或Local-only Delivery Complete。
+- 交付状态：`G1 Passed / G2 Passed / G2A Re-review Passed / S4–S8B0 Closure Passed / G3 Partial`。DEC-126-032/033已Accepted；S8B仍未授权。DEC-126-021继续HOLD；sole contract candidate远端可达，新local checkpoint未push；当前不是Code Complete、Production Ready或Local-only Delivery Complete。
 
 ## 2. 实际版本与本地候选（未发布）
 
@@ -32,7 +32,7 @@
 | S7C Rust Actions/Coordinator subset | CLOSURE PASS / OWNER ACCEPTED | auth context/facade、actions/interrupt、SQLCipher v4 cleanup/receipt、coordinator/restart/resync/live raw；Desktop 113 TS + 87/88 Rust；DEC-126-030 Accepted | none / local-only |
 | S8A private IPC/TypeScript ViewModel subset | DEC-126-031 ACCEPTED / CLOSURE PASS | 20 commands、closed schema/fixtures、Rust auth/event/cursor、TS validators/client/store；Desktop 127 TS + 93/94 Rust | none / local-only |
 | DESIGN-126-006 / DEC-126-032 | DESIGN ACCEPTED | default-off gate、dynamic route/auth、permission lifecycle、store paging/cleanup、readiness/storage private IPC、Tasks/scroll方案 | none / local-only |
-| S8B0 / DEC-126-033 | CLOSURE CANDIDATE / OWNER REVIEW PENDING | Desktop `5dab02a1…34d85`；22 closed commands、gate/routes/lifecycle/store/readiness/storage/Tasks；135 TS + 95/96 Rust全绿 | none / flag off |
+| S8B0 / DEC-126-033 | CLOSURE PASS / OWNER ACCEPTED | Desktop `5dab02a1…34d85`；22 closed commands、gate/routes/lifecycle/store/readiness/storage/Tasks；135 TS + 95/96 Rust全绿 | none / flag off |
 | Remaining AC/NFR / S8B、S9–S11 | NOT RUN | not authorized；full traceability in `08` | none / production N/A |
 | Requirement package/G0/G1 | G1 product scope approved；structure evidence in `08` | user approval + default/G0/G1/strict package, YAML and diff checks | N/A |
 | G2 data authority | ACCEPTED DESIGN | ADR-0013 + 段成威 2026-08-02 approval；SQLite/PostgreSQL/Redis/pgvector/bbolt 职责已冻结 | N/A |
@@ -42,7 +42,7 @@
 | G2 Public Tasks/Pattern | ACCEPTED DESIGN | repo-local consumer inventory complete、Q-010 Resolved、DEC-126-011/012和Desktop Pattern Accepted | N/A |
 | G2A source contract | PASSED / APPROVED | DEC-126-023/024与Q-017 closed；replacement `29317b...`及source/generated/fixtures/digests/post-commit gates approved；sole candidate confirmed | N/A |
 | Contract Draft PR / remote CI | PR CREATED / CI FAILED / MERGE BLOCKED | [PR #1](https://github.com/36Dge/yijie-contracts/pull/1)为OPEN/DRAFT，base/head/SHA精确匹配；run 30741466028的generate/diff/lint/test/pack PASS，`pnpm audit`因`brace-expansion 2.1.2` high失败，后续`govulncheck`/`origin/main` breaking skipped；candidate未改依赖文件 | N/A |
-| Local-only Delivery Strategy | ACCEPTED / G3 PARTIAL | DEC-126-021 HOLD、DEC-126-022/026/027/028/029/030/031/032 accepted；DEC-126-033 Proposed；S8B0 flag-off local candidate；G5/tag/publish/deploy N/A | N/A |
+| Local-only Delivery Strategy | ACCEPTED / G3 PARTIAL | DEC-126-021 HOLD、DEC-126-022/026/027/028/029/030/031/032/033 accepted；S8B0 flag-off Closure Passed；G5/tag/publish/deploy N/A | N/A |
 
 ## 4. 本地 Smoke 与观察
 
@@ -73,7 +73,7 @@
 |---|---|---|---|---|
 | Host/Desktop title/raw-reasoning integration | Host producer、Desktop SQLCipher、S7A transport/domain与S7B reducer/history PASS；Vue UI/full E2E未实现 | 段成威 | flags off；按S8–S10实施/验证 | before G4 |
 | Raw reasoning schema/caps | immutable source + Host caps/reconciliation + Desktop terminal schema基础PASS | 段成威 | S4–S6 accepted as implementation evidence only | S7/S9/S10 |
-| S8B authorization | S8B0已按LIA-126-005完成Closure候选；DEC-126-033尚未接受，S8B及S9–S11仍禁止 | 段成威 | 先批准DEC-126-033，再单独决定是否授权S8B | before S8B |
+| S8B authorization | S8B0已按LIA-126-005完成并由DEC-126-033接受；S8B及S9–S11仍禁止 | 段成威 | 单独决定是否授权S8B | before S8B |
 | Draft PR dependency audit / merge readiness | 当前CI红灯，且两个后续job steps未运行；当前candidate/PR保持不变 | 段成威 | DEC-126-021 Accepted/HOLD；只阻断merge，无audit waiver/rerun/fix/push授权 | before any future merge approval |
 | Public Tasks anonymous/IDOR debt | production route must remain isolated | 段成威 | inherited controlled exception only | FEAT-126 production or 2026-09-30 earlier |
 | SQLite/SQLCipher 与 delete/backup boundary | 单仓wrong-key/migration/cascade/checkpoint/backup exclusion基础PASS；完整删除saga/OS副本语义未E2E | 段成威 | flags off；不承诺forensic erase | future G4/local G6 |
@@ -102,7 +102,7 @@
 | LIA-126-003 / S7C / DEC-126-030 | Rust authorization、session/project actions、delete/interrupt/coordinator/restart-resync | Owner明确授权；fake Host/fixed fixtures/temp SQLCipher；no Tauri/TS/Vue/flag | 段成威 | Closure Passed / DEC-126-030 Accepted |
 | LIA-126-004 / S8A / DEC-126-031 | private Tauri IPC、Rust auth/event/cursor、TS validators/client/Pinia ViewModel | Owner明确授权；fake Host/fixed fixtures/temp SQLCipher/CODEX_HOME；no Vue/flag | 段成威 | DEC-126-031 Accepted / S8A Closure Passed；S8B不随之授权 |
 | DESIGN-126-006 / DEC-126-032 | S8B0 default-off gate、route/lifecycle/store/readiness/tasks/scroll integration contract | S8A Accepted + read-only UI consumption audit | 段成威 | Accepted；LIA-126-005 separately authorized |
-| LIA-126-005 / S8B0 / DEC-126-033 | gate/router/lifecycle/store/private IPC readiness integration，不做完整Vue页面 | DEC-126-032 Accepted；fake/fixed/temp only | 段成威 | Local checkpoint complete / Closure Review Proposed |
+| LIA-126-005 / S8B0 / DEC-126-033 | gate/router/lifecycle/store/private IPC readiness integration，不做完整Vue页面 | DEC-126-032/033 Accepted；fake/fixed/temp only | 段成威 | Local checkpoint complete / Closure Passed |
 | S8B | 真实Vue页面、App Shell/session树、composer/conversation/reasoning/menu/delete/visual/a11y | S8B0 Closure Accepted后另行授权 | 段成威 | Not authorized / NOT RUN |
 | CLEAN-125-004 | 完成 Public Tasks hardening并退出 FEAT-125 临时隔离例外 | G5/G6 | 段成威 | FEAT-126 production or 2026-09-30 earlier |
 
@@ -146,8 +146,8 @@
 | S8A Closure Review | 段成威 | DEC-126-031 Accepted；S8A Closure Passed；G3仍Partial | 2026-08-03 | Desktop 127 TS + 93/94 Rust、closed IPC/TS store/auth/event/restart/no-log链；no Vue/flag/MiniMax/central pin/remote action |
 | S8B0 UI Integration Readiness Review | 段成威 | DESIGN-126-006 complete；DEC-126-032 Accepted | 2026-08-03 | read-only UI audit与private IPC stop condition获批；no flag/MiniMax/remote action |
 | S8B0 Implementation Authorization | 段成威 | DEC-126-032 Accepted；LIA-126-005只授权S8B0；S8B仍未授权 | 2026-08-03 | gate/route/lifecycle/store/readiness/storage/Tasks integration only；no full Vue UI/activation/remote action |
-| S8B0 Closure Review | 段成威 | DEC-126-033 Proposed；G3仍Partial；S8B不得开始 | 2026-08-03 | Desktop `5dab02a1…34d85`；135 TS + 95/96 Rust；no full Chat Vue/flag/MiniMax/remote action |
+| S8B0 Closure Review | 段成威 | DEC-126-033 Accepted；S8B0 Closure Passed，G3仍Partial；S8B不得开始 | 2026-08-03 | Desktop `5dab02a1…34d85`；135 TS + 95/96 Rust；no full Chat Vue/flag/MiniMax/remote action |
 | G5 Production Ready | 段成威 | N/A / Out of Scope under DEC-126-022 | 2026-08-02 | no deployment/tag/publish/production environment |
 | G6 Local-only Delivery Complete | 段成威 | Pending Owner local startup and functional acceptance | N/A | requires G4 + AC-043；not Production Ready |
 
-- 正式关闭时间：N/A；feature remains active at G2A Re-review Passed / G3-partial boundary。S4–S8A Closure已由Owner接受；DEC-126-033及S8B、S9–S11仍须分别审批。dependency remediation/merge与MiniMax local smoke继续分别单审，tag/publish/deploy不在本期范围。
+- 正式关闭时间：N/A；feature remains active at G2A Re-review Passed / G3-partial boundary。S4–S8B0 Closure已由Owner接受；S8B、S9–S11仍须分别审批。dependency remediation/merge与MiniMax local smoke继续分别单审，tag/publish/deploy不在本期范围。

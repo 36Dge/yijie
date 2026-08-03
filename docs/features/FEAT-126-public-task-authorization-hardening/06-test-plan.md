@@ -1,7 +1,7 @@
 # FEAT-126 测试与 Eval 计划
 
 > 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。DEC-126-023/024完成G2A重审，DEC-126-025登记sole candidate与checkpoint远端ref并恢复LIA-126-002，仅执行S4–S6 Corrective Closure。
-> DEC-126-026/027/028/030/031已关闭S4–S8A；DESIGN-126-006/DEC-126-032已接受，LIA-126-005 S8B0使用fake Host、固定fixtures和临时SQLCipher完成本地验证并提交DEC-126-033。S8B视觉/a11y与S9–S11仍为`NOT RUN`。本轮未调用MiniMax，
+> DEC-126-026/027/028/030/031已关闭S4–S8A；DESIGN-126-006/DEC-126-032与DEC-126-033已接受，LIA-126-005 / S8B0使用fake Host、固定fixtures和临时SQLCipher完成本地验证并通过Closure。S8B视觉/a11y与S9–S11仍为`NOT RUN`。本轮未调用MiniMax，
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
 ## 1. 测试策略
@@ -232,7 +232,7 @@
 | Desktop | yijie-desktop | `make lint && make test && make build` | Node 26.0.0 / pnpm 11.9.0 / Rust 1.95.0；bundled SQLCipher；fake Host | RUN 2026-08-03；PASS；21/21 files、127 TS tests；94 Rust tests（93 pass、1个既有signed Keychain integration ignored）；Clippy/fmt/Vite build PASS；含S7C既有链及S8A schema/serde/TS、auth、event caps/backpressure/cancel、stale selection、tenant/logout、restart/resync/delete cleanup和no-log扫描 |
 | Meta docs | yijie | feature checker, YAML parse, `git diff --check` | local shell/Ruby | current package only |
 | Accepted checkpoints | yijie/API/Host/Desktop | repository gates + scope/no-log/diff + local commit | synthetic/fake/temp only | RUN 2026-08-03；PASS；`6de641f…9569`、`a64f9f5…3264`、`3e8df02…f3d9`、`3adcb03…455a`；all local, no push |
-| S8B0 conformance | yijie + yijie-desktop | DESIGN-126-006/DEC-126-032 + schema/Rust/TS/router/store/Tasks + package/strict/G2A/YAML/lint/test/build/diff | fake/fixed/temp only；no runtime provider | implementation suites PASS；DEC-126-033待Owner；S8B visual suites remain NOT RUN |
+| S8B0 conformance | yijie + yijie-desktop | DESIGN-126-006/DEC-126-032 + schema/Rust/TS/router/store/Tasks + package/strict/G2A/YAML/lint/test/build/diff | fake/fixed/temp only；no runtime provider | implementation suites PASS；DEC-126-033 Accepted / Closure Passed；S8B visual suites remain NOT RUN |
 | Local four-component E2E/security/perf/eval | affected repos | exact orchestration and commands must be added by authorized slices before G4 | local PostgreSQL/temp homes/DB/pinned Runtime/fake provider | command/harness absent — blocks G4/local G6；does not affect accepted G2/G2A |
 
 ## 12. 通过、失败与 Flaky 策略
@@ -262,6 +262,6 @@
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
-| 测试/技术 Owner | 段成威 | S4–S8A已接受；DEC-126-032 Accepted，S8B0本地套件PASS并提交DEC-126-033；S8B、S9–S11/MiniMax/flag activation与完整E2E仍禁止 | 2026-08-03 |
+| 测试/技术 Owner | 段成威 | S4–S8A已接受；DEC-126-032/033 Accepted，S8B0本地套件与Closure PASS；S8B、S9–S11/MiniMax/flag activation与完整E2E仍禁止 | 2026-08-03 |
 | 安全/数据 Owner | 段成威 | 当前P1及Public Tasks正文边界阻断closure；既有auth/delete/no-log/migration结果仅作foundation evidence | 2026-08-02 |
 | Runtime/模型 Owner | 段成威 | DEC-126-021 HOLD与DEC-126-022 Local-only已Accepted；先用fake provider/fixtures，raw reasoning须具体显示并持久化/删除；历史MM-126-001/002不重跑，未来一次local smoke仅可另行提交审批 | 2026-08-02 |

@@ -4,7 +4,7 @@
 
 初始扫描时间：2026-08-01；G2 补充扫描：2026-08-02，Asia/Shanghai。所有 sibling 仓库只读；未 fetch、checkout、generate 或修改。
 
-LIA-126-002于2026-08-02形成S4–S6 checkpoint并完成Corrective Closure；Public Tasks source冲突已由DEC-126-023/024关闭，`29317b6426578749dc698fc2ad32b986ee5c8e9f`是唯一candidate。S4–S8A Closure已接受，DEC-126-032已接受并以LIA-126-005形成S8B0本地Closure候选。远端checkpoint未被改写，完整S8B Vue UI与S9–S11仍未开始。
+LIA-126-002于2026-08-02形成S4–S6 checkpoint并完成Corrective Closure；Public Tasks source冲突已由DEC-126-023/024关闭，`29317b6426578749dc698fc2ad32b986ee5c8e9f`是唯一candidate。S4–S8A Closure已接受，DEC-126-032/033已接受LIA-126-005 / S8B0设计与Closure。远端checkpoint未被改写，完整S8B Vue UI与S9–S11仍未开始。
 
 | Repository | Rules/read sources | Branch | Full HEAD SHA | Worktree | Toolchain/lock |
 |---|---|---|---|---|---|
@@ -76,7 +76,7 @@ LIA-126-002于2026-08-02形成S4–S6 checkpoint并完成Corrective Closure；Pu
 | restart/reconnect与错误恢复 | durable DB/outbox/cursor、sidecar nonce与Host replay 409基础存在 | Rust coordinator startup recovery、subscription/cursor invalidation、resync snapshot、context rebind、closed stable recovery error；TS store恢复状态机 | S7C；S8A |
 | Tauri/TypeScript/Vue consumer | foundation invokes和FEAT-124 textarea存在 | 无conversation invoke/event、无TS runtime validator/client/store/view-model、无真实Vue链路；不得用mock UI冒充 | S8A；S8B仅在其后 |
 
-当前结论：S4–S8A Closure已由Owner接受；S8B0在S8A的20个命令上新增2个closed readiness/recovery commands，并实现default-off gate、route/lifecycle/store/Tasks接线。完整Chat Vue页面/组件/视觉仍未修改；DEC-126-033待审，S8B须其后单独授权。
+当前结论：S4–S8A Closure已由Owner接受；DEC-126-033已接受S8B0 Closure。S8B0在S8A的20个命令上新增2个closed readiness/recovery commands，并实现default-off gate、route/lifecycle/store/Tasks接线。完整Chat Vue页面/组件/视觉仍未修改；S8B须另行明确授权。
 
 ### 3.2 DESIGN-126-006 S8B0消费就绪盘点（当前事实）
 
@@ -228,4 +228,4 @@ Authenticated consumer
 | SPIKE-126-004 | Desktop local DB technology/encryption/bookmark | 临时 Rust 1.95/macOS arm64 `cargo check --locked` 验证 rusqlite 0.40.1 bundled-sqlcipher + rusqlite_migration 2.6.0；review SQLCipher/SQLite/Apple 官方边界 | 不加 repo 依赖、不写真实 project/message | client-team | Complete：build PASS；Refinery 0.9.2 与 rusqlite 0.40.1 `libsqlite3-sys` links 冲突而拒绝；ADR-0014 Accepted/Q-015 Resolved |
 | SPIKE-126-005 | Public Tasks consumers/legacy usage | 2026-08-02 source inventory：Desktop无active call；API为不安全legacy provider；Infra仅deny；Host同名route为不同contract；admin/connectors/knowledge/skills无active ref；generated SDK仅artifact。外部因Public OpenAPI按`unknown-public`安全类别处理 | 不开放route、不访问production；不虚构“external=0” | platform-team | Complete：Q-010 Resolved；DEC-126-011/012 Accepted |
 | SPIKE-126-006 | Chat/App Shell sidebar information architecture | 已将G1语义、DESIGN-126-003 history/raw states与1180×760/a11y要求写入Desktop FEAT-126 Pattern | 不改业务代码；仅取代Accepted 01/02中的FEAT-126冲突段落；不把临时截图当发布资产 | client-team | Complete / Accepted 2026-08-02 |
-| SPIKE-126-008 | S8B0 UI consumption/readiness | 只读盘点后按Accepted DESIGN实现router/nav/permission/chat store/private IPC/pages接线，关闭readiness/storage缺口 | 不改central contract/Host/Runtime；不启用flag或启动provider；不做完整Chat Vue/visual | client-team | DESIGN/DEC-126-032 Accepted；LIA-126-005 complete；DEC-126-033 Proposed |
+| SPIKE-126-008 | S8B0 UI consumption/readiness | 只读盘点后按Accepted DESIGN实现router/nav/permission/chat store/private IPC/pages接线，关闭readiness/storage缺口 | 不改central contract/Host/Runtime；不启用flag或启动provider；不做完整Chat Vue/visual | client-team | DESIGN/DEC-126-032 Accepted；LIA-126-005 complete；DEC-126-033 Accepted / Closure Passed |
