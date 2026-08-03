@@ -6,7 +6,7 @@
 - DEC-126-022 Local-only Delivery Strategy已Accepted；LIA-126-001已于2026-08-02批准，且只允许S4–S6本地基础切片。
 - S4–S6已有远端checkpoint并保持flags/routes默认关闭；DEC-126-026已接受其Closure并单独授权S7A Desktop Rust Host Bridge/Domain。
 - DEC-126-027已接受S7A；DEC-126-028已接受S7B durable outbox、strict/coalesced reducer、history orchestration、title precedence与fake Host应用链。
-- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；DEC-126-030已接受S7C，DEC-126-031已接受LIA-126-004 S8A Closure。DESIGN-126-006进一步把UI接入切为S8B0/S8B；DEC-126-032仍是Proposed。S8B0/S8B及S9–S11须逐切片获得明确授权并重新核对full SHA/worktree。
+- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；DEC-126-030已接受S7C，DEC-126-031已接受LIA-126-004 S8A Closure。Owner现已接受DESIGN-126-006/DEC-126-032并单独授权LIA-126-005/S8B0；S8B及S9–S11仍须逐切片获得明确授权并重新核对full SHA/worktree。
 
 ## 2. 实施原则
 
@@ -215,3 +215,12 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - S7C结果：Owner已接受DEC-126-030，S7C Closure Passed。
 - S8A结果：20个versioned commands、closed Schema/fixtures、Rust-bound context/event/cursors、TS validator/client/store已实现；Desktop `make lint/test/build`及安全扫描PASS；DEC-126-031已接受S8A Closure，G3仍Partial。
 - 当前状态：S8A Closure已由DEC-126-031 Accepted；四仓Accepted变更已保存为仅本地checkpoint。DESIGN-126-006/DEC-126-032为review candidate，G3仍Partial；S8B0/S8B相关实现/测试保持`NOT RUN`并继续未授权。
+
+### LIA-126-005 / S8B0（Approved / In Progress）
+
+- 授权来源：Owner明确批准DEC-126-032，并要求其后单独授权S8B0、不得直接进入S8B。
+- 允许范围：Desktop private readiness/storage schema、Rust serde/commands/coordinator intent、TS validators/client/Pinia消费；exact-off UI gate、Chat/Tasks route和capability guard、permission bind/clear/dispose、project pick/revalidate、session追加分页、cleanup完成后的reload/clear/navigation disposition、production Tasks真实metadata/default-off。
+- 禁止范围：完整Vue Chat页面/组件/视觉样式、App Shell项目/session树、composer、conversation flow、reasoning/menu/dialog/delete视觉交互及S8B a11y/visual实现；不得启用任何flag。
+- 环境：只使用fake Host、固定fixtures、临时SQLCipher/CODEX_HOME和test harness；不调用MiniMax或处理真实数据。
+- 依赖/远端：不修改central contracts、Host/Public Tasks wire或Runtime pin；不新增production dependency；不push/merge/tag/publish/deploy。
+- 退出：Desktop schema↔serde↔TS、gate/route/lifecycle/store/readiness/storage/no-log/race以及全量lint/test/build通过后，提交DEC-126-033 / S8B0 Closure Review；S8B继续等待Owner。

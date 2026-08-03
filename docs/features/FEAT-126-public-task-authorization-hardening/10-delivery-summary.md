@@ -144,6 +144,7 @@
 | S7C Closure Review | 段成威 | DEC-126-030 Accepted；S7C Closure Passed；G3仍Partial | 2026-08-03 | Desktop 113 TS + 87/88 Rust、fake Host cleanup/restart/race链；no Tauri conversation IPC/TS/Vue/flag/MiniMax/remote action |
 | S8A Closure Review | 段成威 | DEC-126-031 Accepted；S8A Closure Passed；G3仍Partial | 2026-08-03 | Desktop 127 TS + 93/94 Rust、closed IPC/TS store/auth/event/restart/no-log链；no Vue/flag/MiniMax/central pin/remote action |
 | S8B0 UI Integration Readiness Review | 段成威 | DESIGN-126-006 complete；DEC-126-032 Proposed，等待Owner；不授权source | 2026-08-03 | four local Accepted checkpoints + read-only UI audit；private IPC stop condition；no Vue/flag/MiniMax/remote action |
+| S8B0 Implementation Authorization | 段成威 | DEC-126-032 Accepted；LIA-126-005只授权S8B0；S8B仍未授权 | 2026-08-03 | gate/route/lifecycle/store/readiness/storage/Tasks integration only；no full Vue UI/activation/remote action |
 | G5 Production Ready | 段成威 | N/A / Out of Scope under DEC-126-022 | 2026-08-02 | no deployment/tag/publish/production environment |
 | G6 Local-only Delivery Complete | 段成威 | Pending Owner local startup and functional acceptance | N/A | requires G4 + AC-043；not Production Ready |
 
