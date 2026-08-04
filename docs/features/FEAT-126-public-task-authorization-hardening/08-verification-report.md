@@ -5,7 +5,7 @@
 > 分支均已精确远端可达，旧Draft PR #1与各`origin/develop`不变。DEC-126-026已接受S4–S6
 > Foundation Corrective Closure并单独授权S7A Desktop Rust Host Bridge/Domain；DEC-126-027已由
 > Owner接受。随后单独授权的S7B Rust Application Orchestration/Domain已完成并由Owner通过DEC-126-028接受；远端可达不等于merge、发布或生产启用。
-> 随后Owner接受DESIGN-126-005/006和S7C–S9 Closure。DESIGN-126-007/DEC-126-037方案C、DESIGN-126-008/DEC-126-038方案B与S10E/DEC-126-039现均已接受；S10E Closure Passed并关闭BLK-001。Owner又以LIA-126-009单独授权S10P1；Host/Desktop本地实现与门禁已完成，DEC-126-040 Closure候选建议关闭BLK-002/003。S10B继续HOLD，LIA-126-008保持Blocked Draft。没有调用MiniMax、真实数据、Keychain、生产环境或业务四组件；S10P2/P3/S10B–S11仍为`NOT RUN`。
+> 随后Owner接受DESIGN-126-005/006和S7C–S9 Closure。DESIGN-126-007/DEC-126-037方案C、DESIGN-126-008/DEC-126-038方案B、S10E/DEC-126-039与S10P1/DEC-126-040现均已接受；BLK-001/002/003关闭。S10B继续HOLD，LIA-126-008保持Blocked Draft。没有调用MiniMax、真实数据、Keychain、生产环境或业务四组件；S10P2/P3/S10B–S11仍为`NOT RUN`。
 
 ## 1. 验证上下文
 
@@ -165,7 +165,7 @@
 
 | 专项 | 范围 | 环境/版本组合 | 结果 | Evidence |
 |---|---|---|---|---|
-| Local four-component E2E | API/Host/Desktop/pinned Runtime create/stream/raw/history/actions/delete/restart | S4–S9 foundations/Eval + accepted S10E + S10P1 closure candidate | NOT RUN / READINESS HOLD | BLK-001 closed；BLK-002/003 Owner-pending；BLK-004/005 open；blocks G4/Local-only G6 |
+| Local four-component E2E | API/Host/Desktop/pinned Runtime create/stream/raw/history/actions/delete/restart | S4–S9 foundations/Eval + accepted S10E + accepted S10P1 | NOT RUN / READINESS HOLD | BLK-001/002/003 closed；BLK-004/005 open；blocks G4/Local-only G6 |
 | Security/tenant | Public/local auth/IDOR/path/secret | synthetic tests + source/fixture review + fake Host/IPC/store + production Vue consumer | CURRENT AUTHORIZED SLICES PASS | nonce/token/loopback/error/application/context/IPC scope/cleanup receipt、plaintext rendering和no-log/bundle scan通过；process E2E仍待S10 |
 | Failure/resilience | DB/SSE/Host/Runtime/provider faults | repository fault tests + fake TCP Host/TS store + S8B production components | PARTIAL PASS | wrong nonce/token/SSE/error、outbox expiry/unknown outcome、event gap/backpressure/cancel/stale/restart、cleanup lease及UI closed states PASS；full process crash/reconnect/E2E still blocks G4 |
 | Migration rehearsal | Desktop SQLCipher + API Tasks owner | embedded SQLCipher + API PostgreSQL foundations | FOUNDATION PASS | populated Desktop v1→current与v2→v3、repeated/read-only/corrupt cases及API idempotency expiry migration PASS；full app rollback/startup E2E pending |
@@ -407,8 +407,8 @@
 | Finding | Severity | 事实/证据 | 状态 |
 |---|---|---|---|
 | S10A-REV-001 | P1 environment | S10A观察到Docker存在但`docker compose`不可用；S10P0定位为stale link；S10E现已完成Compose discovery与isolated PostgreSQL/Keycloak/Caddy profile验证 | CLOSED BY DEC-126-039 |
-| S10A-REV-002 | P1 provider | S10A原缺口已由LIA-126-009的exact/keyless loopback fake Responses、fixed fixture和Runtime turn证据覆盖 | CLOSURE-ELIGIBLE / DEC-126-040 PENDING |
-| S10A-REV-003 | P1 effective profile | S10A原缺口已由LIA-126-009的closed child allowlist、raw/cleanup=true/title=false、bounded logs和PID/run/nonce证据覆盖 | CLOSURE-ELIGIBLE / DEC-126-040 PENDING |
+| S10A-REV-002 | P1 provider | S10A原缺口已由LIA-126-009的exact/keyless loopback fake Responses、fixed fixture和Runtime turn证据覆盖 | CLOSED BY DEC-126-040 |
+| S10A-REV-003 | P1 effective profile | S10A原缺口已由LIA-126-009的closed child allowlist、raw/cleanup=true/title=false、bounded logs和PID/run/nonce证据覆盖 | CLOSED BY DEC-126-040 |
 | S10A-REV-004 | P1 data isolation | Chat DB/receipt与native-auth Keychain service/account固定，无test namespace | OPEN / stop condition |
 | S10A-REV-005 | P1 chain integrity | Desktop无`/v2/tasks` production call；生成SDK不是consumer，空PostgreSQL rows不能证明content-free create | OPEN / stop condition |
 | S10A-REV-006 | P2 title capability | Host title flag因Runtime无法capability-disable tools持续fail closed | DOCUMENTED LIMIT；S10只验fallback/user precedence |
@@ -416,7 +416,7 @@
 
 - 备选方案：S10A原建议补齐Compose；S10P0细化为可恢复地修复用户级link并使用摘要固定的bundled Compose v5，再建权威run-scoped profile。该方案已在S10E单独授权下执行并验证；不再把“已有PostgreSQL”作为等价替代。
 - process/evidence冻结：端口为API 18080、Host 18081、fake Responses 18082、OIDC 8443、API edge 9443、Vite 1420/1421、PostgreSQL 5432，全部loopback；用例为S10B-001–012；证据只保留PID/SHA/nonce/count/hash/state/duration/failure class，不保留正文/secret/path/key。
-- 结构化结论：Owner已接受DEC-126-037选项C与DESIGN-126-007，并继续HOLD S10B。DEC-126-039关闭BLK-001；LIA-126-009现已完成S10P1，等待DEC-126-040接受后正式关闭BLK-002/003。LIA-126-008仍为`Blocked Draft / NOT AUTHORIZED`，S10P2/P3仍须逐项明确授权。
+- 结构化结论：Owner已接受DEC-126-037选项C与DESIGN-126-007，并继续HOLD S10B。DEC-126-039关闭BLK-001；DEC-126-040接受LIA-126-009/S10P1 Closure并正式关闭BLK-002/003。LIA-126-008仍为`Blocked Draft / NOT AUTHORIZED`，S10P2/P3仍须逐项明确授权。
 
 ### 9.13 DESIGN-126-008 / DEC-126-038 S10P0 Corrective Design Review（Accepted / Option B）
 
@@ -424,7 +424,7 @@
 |---|---|---|---|
 | S10P0-REV-001 | P1 environment | Compose二进制并非缺失；用户plugin symlink指向失效AppTranslocation路径。Docker Desktop bundled v5.3.0摘要为`2642b635…d265`，direct read-only config/features PASS；官方说明v5与v2功能等价 | CLOSED BY DEC-126-039 |
 | S10P0-REV-002 | P1 isolation | 新run-scoped profile只用三个pinned image digests、四个volumes和API-local CA pin，不启Redis/pgvector；runtime verifier PASS | CLOSED BY DEC-126-039 |
-| S10P0-REV-003 | P1 provider/profile | Host默认MiniMax保持不变；exact master+run ID+loopback keyless Responses及Desktop child raw/cleanup=true/title=false已按LIA-126-009实现并全绿 | CLOSURE-ELIGIBLE / DEC-126-040 PENDING |
+| S10P0-REV-003 | P1 provider/profile | Host默认MiniMax保持不变；exact master+run ID+loopback keyless Responses及Desktop child raw/cleanup=true/title=false已按LIA-126-009实现并全绿 | CLOSED BY DEC-126-040 |
 | S10P0-REV-004 | P1 secure storage | 三个test Keychain service只从run ID派生，native-auth无legacy fallback，pre/post只检exact tuple状态，不枚举/读取真实Keychain | DESIGN FROZEN / S10P2 not authorized |
 | S10P0-REV-005 | P1 main chain | `29317b...`能表达content-free create/idempotency；候选SQLCipher v5绑定local/public/Host operation，先Public bind后Host start，提交独立closed control-plane command/channel | PRIVATE IPC CANDIDATE / S10P3 not authorized |
 | S10P0-REV-006 | P1 deletion disclosure | contract明确permanent delete不在candidate；Owner已接受本地session delete不删PostgreSQL content-free Public Task row；未来若改变要求必须转G2A缺口 | DESIGN BOUNDARY ACCEPTED / implementation evidence pending S10P3 |
@@ -434,7 +434,7 @@
 
 Contract impact结论：S10P0自身`none`；S10E为Infra/deployment-only；S10P1为Host/Desktop private deployment config additive；S10P2为Desktop private storage config additive；S10P3为Desktop semantic orchestration + SQLCipher v5 + additive private IPC，central Public Tasks/Host wire与Runtime pin仍`none`。这些分类只是设计候选，不授权代码变更。
 
-结构化结论：Owner已接受DESIGN-126-008和DEC-126-038方案B，包括Public Task retained-row边界；DEC-126-039随后接受S10E Closure并关闭BLK-001。S10P1已由LIA-126-009单独授权完成并形成DEC-126-040候选；S10P2/P3/S10B/S11仍`NOT AUTHORIZED / NOT RUN`，LIA-126-008仍Blocked Draft，G3 Partial、G4/G6 Pending。
+结构化结论：Owner已接受DESIGN-126-008和DEC-126-038方案B，包括Public Task retained-row边界；DEC-126-039随后接受S10E Closure并关闭BLK-001，DEC-126-040接受S10P1 Closure并关闭BLK-002/003。S10P2/P3/S10B/S11仍`NOT AUTHORIZED / NOT RUN`，LIA-126-008仍Blocked Draft，G3 Partial、G4/G6 Pending。
 
 ### 9.14 DEC-126-039 / S10E Closure Review（Accepted / Option A）
 
@@ -452,18 +452,18 @@ Infra checkpoint为`99e50d8b47e13fc3e3b7501617a307e1ba5d6baf`，parent=`f040492e
 
 停止后的八个named volumes与两个owner-only ignored run root是明确披露的保留物：它们没有active container/network/listener，删除仍需单独Owner授权。Owner已按DEC-126-039方案A只接受S10E并关闭BLK-001；该决定不授权S10P1或S10B。
 
-### 9.15 DEC-126-040 / S10P1 Closure Review（Candidate / Recommended Option A）
+### 9.15 DEC-126-040 / S10P1 Closure Review（Accepted / Option A）
 
 | Finding | Severity | 实际证据 | 状态 |
 |---|---|---|---|
-| S10P1-REV-001 | P1 provider config | exact master、canonical run UUID、fixed IPv4 loopback/port/path、local/raw+cleanup/title、parent PID/log manifest、MiniMax key冲突均有正负测试 | CLOSED TECHNICALLY / OWNER PENDING |
-| S10P1-REV-002 | P1 fake protocol | frozen S9 dataset SHA、complete/incomplete/http-error/disconnect/oversize、request/call cap、no reflection/content-free counters | CLOSED TECHNICALLY / OWNER PENDING |
-| S10P1-REV-003 | P1 Runtime | fixed Runtime artifact实际产生assistant与raw reasoning delta/final并完成turn/delete；未用key/外网 | CLOSED TECHNICALLY / OWNER PENDING |
-| S10P1-REV-004 | P1 effective child profile | `env_clear` closed allowlist，raw/cleanup=true、title=false，PID/run/nonce readiness；wrong nonce/port、crash/restart/stale fail closed | CLOSED TECHNICALLY / OWNER PENDING |
-| S10P1-REV-005 | P1 evidence/no-log | 0700 directories、0600 files、256 KiB cap、content-free manifest、unique atomic temp；raw/secret/path/bearer/DB-key covered hits=0 | CLOSED TECHNICALLY / OWNER PENDING |
+| S10P1-REV-001 | P1 provider config | exact master、canonical run UUID、fixed IPv4 loopback/port/path、local/raw+cleanup/title、parent PID/log manifest、MiniMax key冲突均有正负测试 | CLOSED / OWNER ACCEPTED |
+| S10P1-REV-002 | P1 fake protocol | frozen S9 dataset SHA、complete/incomplete/http-error/disconnect/oversize、request/call cap、no reflection/content-free counters | CLOSED / OWNER ACCEPTED |
+| S10P1-REV-003 | P1 Runtime | fixed Runtime artifact实际产生assistant与raw reasoning delta/final并完成turn/delete；未用key/外网 | CLOSED / OWNER ACCEPTED |
+| S10P1-REV-004 | P1 effective child profile | `env_clear` closed allowlist，raw/cleanup=true、title=false，PID/run/nonce readiness；wrong nonce/port、crash/restart/stale fail closed | CLOSED / OWNER ACCEPTED |
+| S10P1-REV-005 | P1 evidence/no-log | 0700 directories、0600 files、256 KiB cap、content-free manifest、unique atomic temp；raw/secret/path/bearer/DB-key covered hits=0 | CLOSED / OWNER ACCEPTED |
 | S10P1-REV-006 | boundary | private IPC/TS/Vue/contracts/Public Tasks wire/DB schema/Runtime pin/default config均未变；MiniMax/external/Keychain/real data/remote actions=0 | CLOSED FOR S10P1 SCOPE |
 
-结构化结论：两个本地checkpoint均clean且未push；S10P1范围无剩余P1，推荐Owner选择DEC-126-040方案A并正式关闭BLK-002/003。BLK-004/005仍Open；本Review不授权S10P2/P3/S10B/S11或默认activation。
+结构化结论：两个本地checkpoint均clean且未push；Owner选择DEC-126-040方案A，接受S10P1 Closure并正式关闭BLK-002/003。BLK-004/005仍Open；本Review不授权S10P2/P3/S10B/S11或默认activation。
 
 ## 10. 未验证项与残余风险
 
@@ -475,13 +475,13 @@ Infra checkpoint为`99e50d8b47e13fc3e3b7501617a307e1ba5d6baf`，parent=`f040492e
 | DB/encryption/delete E2E | SQLCipher v4 job/receipt、independent HMAC key、migration/cascade/checkpoint、restart和fake Host cleanup单仓PASS | 跨Desktop/Host/Runtime真实进程partial delete仍未运行 | S10验证完整多进程job/receipt/restart/fault E2E | 段成威 | blocks G4/local G6 |
 | Runtime raw-reasoning/title/delete | S9 deterministic Eval与S10P1 Host→fixed Runtime assistant/raw真实turn PASS；完整Desktop turn/history/delete多进程链仍未运行 | raw UX/residual/inconsistent history | keep default flags off until S10B；历史MiniMax public-summary FAIL不改写 | 段成威 | blocks G4/local G6 |
 | Desktop sidecar/Keychain | actual Desktop supervisor→Host→fixed Runtime child readiness/stop PASS；Keychain仍未隔离或访问 | signed storage lifecycle unknown | separately authorize/close S10P2, then S10B | 段成威 | blocks G4/local G6 |
-| S10B test profile/chain readiness | BLK-001 closed；BLK-002/003等待DEC-126-040接受；Keychain隔离与Desktop Public Tasks主链仍缺失 | 直接启动完整链仍可能触碰默认Keychain，且不能证明Public Tasks主链 | 接受DEC-126-040后逐项授权并关闭S10P2/P3与BLK-004/005，再重新提交LIA-126-008 | 段成威 | blocks S10B/G4/local G6；does not reopen earlier closures |
+| S10B test profile/chain readiness | BLK-001/002/003 closed；Keychain隔离与Desktop Public Tasks主链仍缺失 | 直接启动完整链仍可能触碰默认Keychain，且不能证明Public Tasks主链 | 逐项授权并关闭S10P2/P3与BLK-004/005，再重新提交LIA-126-008 | 段成威 | blocks S10B/G4/local G6；does not reopen earlier closures |
 | production identity/infra | FEAT-125 deferred | no production safety | N/A for DEC-126-022 local-only scope；future online intent must reopen production track and FEAT-125 prerequisites | 段成威 | does not block local G6；blocks any production claim |
 
 ## 11. 结论
 
-- Requirements package：G1/G2/G2A Re-review Passed；DEC-126-023–039 Accepted；DEC-126-040为Owner待审批候选。DEC-126-039关闭BLK-001，LIA-126-009证据支持关闭BLK-002/003；DEC-126-037方案C继续HOLD S10B；S4–S9与S10E Closure Passed。
-- Code Complete：No。G3仍Partial；S10P1本地实现/验证已完成但Closure待Owner接受，S10P2/P3/S10B–S11、四组件E2E、G4与Owner G6均未完成。
+- Requirements package：G1/G2/G2A Re-review Passed；DEC-126-023–040 Accepted。DEC-126-039关闭BLK-001，DEC-126-040接受S10P1 Closure并关闭BLK-002/003；DEC-126-037方案C继续HOLD S10B；S4–S9、S10E与S10P1 Closure Passed。
+- Code Complete：No。G3仍Partial；S10P2/P3/S10B–S11、四组件E2E、G4与Owner G6均未完成。
 - 验证人：Codex（文档事实与结构）；最终 Reviewer 为段成威。
 - 日期：2026-08-04。
 - 结论依据：S4–S9 accepted链、七仓fixed baseline、Runtime artifact digest、S10E环境证据，以及S10P1 Host/Desktop checkpoints、仓库全量门禁和两条fixed loopback集成。S10P1无MiniMax/外部provider、Keychain、真实数据、API/Runtime/central contract/private IPC/DB schema修改、default activation、push/merge/tag/publish/deploy或生产证据。

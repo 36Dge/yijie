@@ -1,7 +1,7 @@
 # FEAT-126 测试与 Eval 计划
 
 > 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。DEC-126-023/024完成G2A重审，DEC-126-025登记sole candidate与checkpoint远端ref并恢复LIA-126-002，仅执行S4–S6 Corrective Closure。
-> DEC-126-026/027/028/030/031/033/034已关闭S4–S8B；DEC-126-035已接受远端事实，DEC-126-036已接受LIA-126-007 / S9 Closure。DESIGN-126-007/DEC-126-037方案C、DESIGN-126-008/DEC-126-038方案B及S10E/DEC-126-039均已接受并继续HOLD S10B；BLK-001已关闭。LIA-126-009已完成S10P1，DEC-126-040候选建议关闭BLK-002/003；S10P2/P3/S10B/S11仍为`NOT RUN`且未授权。本轮未调用MiniMax，
+> DEC-126-026/027/028/030/031/033/034已关闭S4–S8B；DEC-126-035已接受远端事实，DEC-126-036已接受LIA-126-007 / S9 Closure。DESIGN-126-007/DEC-126-037方案C、DESIGN-126-008/DEC-126-038方案B、S10E/DEC-126-039及S10P1/DEC-126-040均已接受并继续HOLD S10B；BLK-001/002/003已关闭。S10P2/P3/S10B/S11仍为`NOT RUN`且未授权。本轮未调用MiniMax，
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
 ## 1. 测试策略
@@ -264,8 +264,8 @@
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
-| 测试/技术 Owner | 段成威 | DEC-126-036/037/038/039已Accepted并HOLD LIA-126-008；S10E Closure Passed、BLK-001 Closed；S10P1/P2/P3/S10B–S11/MiniMax/flag activation与完整E2E仍须单独授权 | 2026-08-04 |
-| 安全/数据 Owner | 段成威 | 当前P1及Public Tasks正文边界阻断closure；既有auth/delete/no-log/migration结果仅作foundation evidence | 2026-08-02 |
+| 测试/技术 Owner | 段成威 | DEC-126-036/037/038/039/040已Accepted并HOLD LIA-126-008；S10E/S10P1 Closure Passed、BLK-001/002/003 Closed；S10P2/P3/S10B–S11/MiniMax/flag activation与完整E2E仍须单独授权 | 2026-08-04 |
+| 安全/数据 Owner | 段成威 | BLK-004/005仍阻断S10B；既有auth/delete/no-log/migration及S10P1结果仅作分层证据 | 2026-08-04 |
 | Runtime/模型 Owner | 段成威 | DEC-126-021 HOLD与DEC-126-022 Local-only已Accepted；先用fake provider/fixtures，raw reasoning须具体显示并持久化/删除；历史MM-126-001/002不重跑，未来一次local smoke仅可另行提交审批 | 2026-08-02 |
 
 ## 14. LIA-126-006 实际结果
@@ -307,8 +307,8 @@ DEC-126-036已接受；S10A只读评审不等于四组件E2E，S10B仍须关闭b
 | Runtime artifact | version 0.144.6；binary/manifest SHA-256与manifest一致 | PASS（未启动app-server） |
 | Docker/Compose | Docker 29.6.1；用户plugin symlink已可恢复地修复到固定bundled Compose v5.3.0；S10E profile/static/runtime/migration/TLS/cleanup验证PASS | `S10E CLOSURE PASSED / BLK-001 CLOSED` |
 | 当前服务 | 5432/6379/8080/18080/1420未观察到listener | no existing isolated stack |
-| fake provider process profile | S10A时不可表达；LIA-126-009现已实现exact-master/fixed-loopback/keyless Responses profile并通过固定Runtime turn | `DEC-126-040 CLOSURE-ELIGIBLE` |
-| Desktop child flags/logs | S10A时不可表达；LIA-126-009现已实现closed allowlist、raw/cleanup=true、title=false、bounded owner-only logs和PID/run/nonce evidence | `DEC-126-040 CLOSURE-ELIGIBLE` |
+| fake provider process profile | S10A时不可表达；LIA-126-009现已实现exact-master/fixed-loopback/keyless Responses profile并通过固定Runtime turn | `CLOSED BY DEC-126-040` |
+| Desktop child flags/logs | S10A时不可表达；LIA-126-009现已实现closed allowlist、raw/cleanup=true、title=false、bounded owner-only logs和PID/run/nonce evidence | `CLOSED BY DEC-126-040` |
 | secure local storage isolation | Chat/native-auth Keychain namespaces fixed | `SECURE_STORAGE_NOT_ISOLATED` |
 | Public Tasks main-chain consumer | Desktop无`/v2/tasks` production call | `CHAIN_NOT_CONNECTED` |
 
@@ -327,9 +327,9 @@ S10B必须以`S10B-001–012`作为同一run的不可分割矩阵：provenance/s
 
 **当前推荐：不批准执行。** 下列前置须全部关闭并回填新checkpoint与逐仓门禁：
 
-1. DEC-126-039已接受S10E Closure并关闭BLK-001；任何S10P1工作仍须Owner另行明确授权；
-2. Host受审查的test-only loopback fake Responses已由LIA-126-009实现并验证；须Owner接受DEC-126-040后才正式关闭BLK-002；
-3. Desktop sidecar child allowlist、raw/cleanup exact-true、content-free log/PID evidence已实现并验证；须Owner接受DEC-126-040后才正式关闭BLK-003；
+1. DEC-126-039已接受S10E Closure并关闭BLK-001；
+2. Host受审查的test-only loopback fake Responses已由LIA-126-009实现并验证，DEC-126-040已正式关闭BLK-002；
+3. Desktop sidecar child allowlist、raw/cleanup exact-true、content-free log/PID evidence已实现并验证，DEC-126-040已正式关闭BLK-003；
 4. Desktop Chat/native-auth使用test-only Keychain namespace与isolated app-data，不触碰真实条目；
 5. 真实Desktop create action有content-free `/v2/tasks`编排，并与同一local session/Host operation可追踪，无正文上传。
 
@@ -337,7 +337,7 @@ DEC-126-037已接受`HOLD`。前置关闭前，LIA-126-008状态保持`Blocked D
 
 ## 17. DESIGN-126-008 / S10P0 corrective 测试冻结
 
-S10P0本身只运行了只读环境/源码检查与治理门禁。DEC-126-038已接受；S10E随后完成并获DEC-126-039接受，S10P1随后按LIA-126-009完成并提交DEC-126-040候选。下表继续作为S10P2/P3及最终S10B的冻结门禁：
+S10P0本身只运行了只读环境/源码检查与治理门禁。DEC-126-038已接受；S10E随后完成并获DEC-126-039接受，S10P1随后按LIA-126-009完成并获DEC-126-040接受。下表继续作为S10P2/P3及最终S10B的冻结门禁：
 
 | Slice | 正常路径 | 安全/负向 | migration/restart/race | 退出Gate |
 |---|---|---|---|---|
@@ -366,7 +366,7 @@ Public Tasks删除验收要同时证明两件事：（1）Desktop/Host/Runtime�
 
 本表只证明S10E环境切片，不证明Host fake provider、Desktop child profile/Keychain/Public Tasks主链或四组件E2E。DEC-126-039不授权S10P1；S10B继续HOLD。
 
-## 19. S10P1实际测试结果（DEC-126-040候选）
+## 19. S10P1实际测试结果（DEC-126-040 Accepted）
 
 | Gate | 方法 | 结果 |
 |---|---|---|
@@ -381,4 +381,4 @@ Public Tasks删除验收要同时证明两件事：（1）Desktop/Host/Runtime�
 | security/no-log | synthetic raw、secret/key names、temporary paths、bearer/DB-key patterns扫Host session tests、bbolt、child stdout/stderr、process evidence和process output | PASS；hit=0；Keychain access=0；真实数据=0 |
 | scope/default-off | diff检查`.env`/CI/build config、IPC/TS/Vue/contracts/wire/schema/Runtime pin | PASS；仅Host private fake transport/fixtures/tests及Desktop Rust child profile；默认flags未启用 |
 
-结论：BLK-002/003在LIA-126-009授权范围内无剩余P1，建议Owner以DEC-126-040方案A接受Closure并关闭二者。该结论不覆盖BLK-004/005，不授权S10P2/P3/S10B/S11，也不构成G4/G6证据。
+结论：Owner已按DEC-126-040方案A接受S10P1 Closure并关闭BLK-002/003。该结论不覆盖BLK-004/005，不授权S10P2/P3/S10B/S11，也不构成G4/G6证据。

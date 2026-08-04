@@ -1,6 +1,6 @@
 # FEAT-126 技术设计（S10P0 Design Accepted，G3 Partial）
 
-> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。S4–S9 Closure与S10E/DEC-126-039已接受；LIA-126-009已单独完成S10P1并形成DEC-126-040 Closure候选，技术证据支持关闭S10A-BLK-002/003但仍待Owner接受。S10B继续HOLD，G3仍Partial；S10P2/P3/S10B/S11、MiniMax、默认flag activation与新增远端/发布动作未授权。
+> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。S4–S9、S10E与S10P1 Closure均已接受；DEC-126-040正式关闭S10A-BLK-002/003。S10B继续HOLD，G3仍Partial；S10P2/P3/S10B/S11、MiniMax、默认flag activation与新增远端/发布动作未授权。
 
 ## 1. 设计摘要
 
@@ -626,7 +626,7 @@ S10B必须在owner-only `RUN_ROOT=$(mktemp -d "${TMPDIR%/}/feat126-s10b.XXXXXX")
 | 2 | migration/bootstrap | API `YIJIE_API_POSTGRES_DSN=<ignored DSN> make migrate-up`；四个tracked synthetic manifest逐一`make bootstrap-nonprod-authz BOOTSTRAP_PROFILE=feat-125-local-lab INPUT=<manifest>` | DB only | migration status + exact inventory/revision | 不手工回写schema |
 | 3 | API | `go build -trimpath -o <RUN_ROOT>/bin/yijie-api ./cmd/api-server`；以local-lab profile、port 18080、permission/secure Tasks exact true、pinned issuer/JWKS/CA/DSN启动 | 18080 | `/healthz` + `/readyz` + signed synthetic auth | process-group SIGTERM，10s deadline |
 | 4 | fake Responses | 后续批准的versioned loopback HTTP runner；当前**无命令** | reserved 18082 | health + fixture manifest hash | 记录call count/category only |
-| 5 | Host binary | `go build -trimpath -o <RUN_ROOT>/bin/yijie-agent-host ./cmd/desktop-host`；Host由Desktop supervisor启动 | 18081 | health/ready + spawn nonce/version | 需先关闭BLK-002/003 |
+| 5 | Host binary | `go build -trimpath -o <RUN_ROOT>/bin/yijie-agent-host ./cmd/desktop-host`；Host由Desktop supervisor启动 | 18081 | health/ready + spawn nonce/version | BLK-002/003已由DEC-126-040关闭；完整启动仍待S10B授权 |
 | 6 | Desktop + Runtime child | Desktop以UI/native-auth/chat/host临时exact true及临时路径执行`pnpm tauri dev`；Host启动pinned Runtime | Vite 1420/1421；Host 18081 | closed readiness=`ready`，Runtime version/SHA exact | Desktop process-group SIGTERM；确认无残留child |
 
 端口全部loopback；任一端口已被占用即fail closed，不随机漂移。process manifest记录role、PID/PPID、binary SHA-256、start/end monotonic time、port、ready摘要、exit code和cleanup result；不记录env value、bearer、DSN、DB key、正文或真实路径。
@@ -833,7 +833,7 @@ fresh run证据：四服务healthy；exact image/label/security/network/volume/p
 
 DEC-126-039已按方案A接受S10E并关闭BLK-001。该接受不自动授权S10P1、S10P2、S10P3、S10B、S11、MiniMax、flag activation或任何远端动作。
 
-## 20. S10P1 Host Fake Provider与Desktop Child Test Profile实际实现（DEC-126-040候选）
+## 20. S10P1 Host Fake Provider与Desktop Child Test Profile实际实现（DEC-126-040 Accepted）
 
 ### 20.1 Source与contract-impact
 
@@ -859,4 +859,4 @@ DEC-126-039已按方案A接受S10E并关闭BLK-001。该接受不自动授权S10
 
 Host contract-check/lint/vet/shell、全量`go test -race -cover ./...`、build和固定Runtime集成通过；Desktop generated-contract check、ESLint/vue-tsc/fmt/clippy、165/165 TypeScript、101/101 Rust（另1个既有且未执行的Keychain integration）、Vite build、Rust build和真实Desktop→Host→固定Runtime child启动通过。raw/secret/path/bearer/database-key在已覆盖Host log、bbolt、Desktop child stdout/stderr、process output和evidence中命中为0。
 
-因此S10P1授权范围内没有剩余P1，DEC-126-040推荐关闭BLK-002/003；在Owner接受前其治理状态仍是`closure-eligible / pending`。BLK-004（test-only Keychain/app-data）和BLK-005（Desktop→Public Tasks主链）完全未触碰，S10P2/P3/S10B/S11仍未授权，LIA-126-008继续HOLD。
+因此S10P1授权范围内没有剩余P1；Owner已正式接受DEC-126-040，S10P1 Closure Passed，BLK-002/003 Closed。BLK-004（test-only Keychain/app-data）和BLK-005（Desktop→Public Tasks主链）完全未触碰，S10P2/P3/S10B/S11仍未授权，LIA-126-008继续HOLD。
