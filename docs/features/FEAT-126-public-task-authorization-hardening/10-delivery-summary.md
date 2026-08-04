@@ -3,10 +3,10 @@
 ## 1. 当前结果
 
 - 用户可观察行为：默认配置下无变化；S8B真实Vue Chat页面、App Shell项目/session区、composer、conversation/reasoning、菜单/删除、稳定错误投影和可访问性已保存为Desktop checkpoint `35f27447398529cca4dec85fa1f67e779c7a7cbd`，并在Owner授权的专用远端候选分支精确可达。UI flag仍unset/false，未merge、未激活。
-- 原目标是否达成：未达成。S4–S9 Closure Passed；DESIGN-126-007/DEC-126-037方案C、DESIGN-126-008/DEC-126-038方案B、S10E/DEC-126-039、S10P1/DEC-126-040与DEC-126-041 Option B均已接受；BLK-001/002/003关闭。DEC-126-041的source checkpoint与entitlement失败作为历史Accepted事实保留。DEC-126-042 Option A现已由Owner安全/G2正式接受，但它未实施、不关闭BLK-004、不授权S10P2F。S10P2F/P3、S10B四组件E2E与S11 Owner验收均未完成。
+- 原目标是否达成：未达成。S4–S9 Closure Passed；DESIGN-126-007/DEC-126-037方案C、DESIGN-126-008/DEC-126-038方案B、S10E/DEC-126-039、S10P1/DEC-126-040与DEC-126-041 Option B均已接受；BLK-001/002/003关闭。DEC-126-041的source checkpoint与entitlement失败作为历史Accepted事实保留。DEC-126-042 Option A已接受，LIA-126-011也已完成S10P2F实现与验证，但DEC-126-043尚未获Owner接受，故BLK-004仍Open。S10P3、S10B四组件E2E与S11 Owner验收均未完成。
 - 当前范围：安全的新建任务对话、任务记录、聊天项目、本地持久化及Public Tasks hardening的完整Local-only需求/设计/测试/实施候选。
 - 非目标：见`00-feature-brief.md`；没有文件/图片/工具/云同步；tag/package publish/registry/线上部署/生产灰度/云数据库/真实用户数据均N/A。
-- 交付状态：`G1 Passed / G2 Passed / G2A Re-review Passed / S4–S9 + S10E + S10P1 Closure Passed / DEC-126-041 Historical Source Accepted / DEC-126-042 Option A Accepted / S10P2F Not Authorized / BLK-001/002/003 Closed, BLK-004/005 Open / G3 Partial`。DEC-126-021与LIA-126-008继续HOLD，S10B继续HOLD。未安装Xcode、未访问Keychain、未实施S10P2F，未merge/tag/publish/deploy/default activation；当前不是Code Complete、Production Ready或Local-only Delivery Complete。
+- 交付状态：`G1 Passed / G2 Passed / G2A Re-review Passed / S4–S9 + S10E + S10P1 Closure Passed / DEC-126-041 Historical Source Accepted / DEC-126-042 Accepted / LIA-126-011 S10P2F Implementation Passed / DEC-126-043 Pending / BLK-001/002/003 Closed, BLK-004/005 Open / G3 Partial`。DEC-126-021与LIA-126-008继续HOLD，S10B继续HOLD。未安装Xcode、未访问Keychain，未merge/tag/publish/deploy/default activation；当前不是Code Complete、Production Ready或Local-only Delivery Complete。
 
 ## 2. 实际版本与本地候选（未发布）
 
@@ -43,6 +43,7 @@
 | LIA-126-009 / S10P1 / DEC-126-040 | CLOSURE PASS / OWNER ACCEPTED / BLK-002/003 CLOSED | Host exact keyless loopback fake Responses、parent watchdog与fixed Runtime raw turn；Desktop closed child allowlist、pre-spawn evidence、PID/run/nonce readiness、bounded owner-only logs、crash/restart；full repo/no-log gates | Host `e0a8d3d…5674`、Desktop `fba934c…7285` local/clean/not pushed；not S10B |
 | LIA-126-010 / S10P2 / DEC-126-041 | OPTION B ACCEPTED / SOURCE PASS / CLOSURE HOLD / BLK-004 OPEN | double exact gate、run-derived three namespaces、legacy disabled、run manifest/app-data/Home/project binding、exact no-secret inventory、cleanup/recovery/race；native write blocked by missing identity/profile/entitlement | Desktop `c863b2a…5dc68` local/clean/not pushed；pre/post tuples absent、temp root removed；not S10P3/S10B |
 | DEC-126-042 Local-only Secret Adjustment | DESIGN ACCEPTED / OPTION A / SECURITY-G2 PASSED | double-exact ephemeral flag、CSPRNG三secret、0700/0600、O_EXCL/O_NOFOLLOW、owner/nlink/canonical、restart/cross-run/exact cleanup/no-log已冻结；Apple signed Keychain转Deferred Native Hardening | docs-only；Desktop `c863b2a…5dc68` unchanged；0 Xcode/Keychain/secret/process/provider/flag/remote action；not S10P2F Closure evidence |
+| LIA-126-011 / DEC-126-043 S10P2F | IMPLEMENTATION PASS / CLOSURE CANDIDATE / BLK-004 OPEN PENDING OWNER | double-exact、schema-v2 manifest、CSPRNG三role、0700/0600、O_EXCL/O_NOFOLLOW、owner/mode/nlink/inode/device/canonical、restart/cross-run/fault/exact cleanup/no-log | Desktop `46107ee…0036` local/clean/not pushed；19 targeted pass/1 native ignored；124 full pass/2 native ignored；165 TS；0 Keychain/MiniMax/real data/remote write |
 | Remaining AC/NFR / S10B–S11 | NOT RUN | LIA-126-008 Blocked Draft；full traceability in `05/06/08` | none / production N/A |
 | Requirement package/G0/G1 | G1 product scope approved；structure evidence in `08` | user approval + default/G0/G1/strict package, YAML and diff checks | N/A |
 | G2 data authority | ACCEPTED DESIGN | ADR-0013 + 段成威 2026-08-02 approval；SQLite/PostgreSQL/Redis/pgvector/bbolt 职责已冻结 | N/A |
@@ -71,7 +72,7 @@
 ## 6. 本地执行事件、恢复与数据状态
 
 - Incident/异常：无发布、无feature runtime incident；评审期远端CI dependency audit只作为merge blocker登记，不属于生产事故或G2/G2A回退。
-- 本地工具限制：Docker 29.6.1与摘要固定的Compose v5.3.0现可通过可恢复的用户级link发现。S10E isolated stack已验证并停止，当前无listener；DEC-126-039已关闭BLK-001。S10P1临时Host/Runtime/fake进程已停止。S10P2历史probe因缺entitlement失败，post inventory全absent且临时root已删除。DEC-126-042评审本轮没有新增Xcode/signing/Keychain write attempt、ephemeral secret file、container或业务进程。
+- 本地工具限制：Docker 29.6.1与摘要固定的Compose v5.3.0现可通过可恢复的用户级link发现。S10E isolated stack已验证并停止，当前无listener；DEC-126-039已关闭BLK-001。S10P1临时Host/Runtime/fake进程已停止。S10P2历史probe因缺entitlement失败，post inventory全absent且临时root已删除。S10P2F只创建合成临时secret并已按manifest受控清理，最终matching temp root=0；没有新增Xcode/signing/Keychain write attempt、container或业务四组件进程。
 - 是否触发停止或回滚：N/A。
 - 数据/队列/缓存最终状态：只创建过隔离的synthetic PostgreSQL/SQLCipher/Host temp stores，测试后停止并清理；真实业务数据未触碰。
 - 回滚路径当前是否仍有效：新能力默认off；API migration为expand-only，Desktop/Host按forward repair；完整跨进程rollback尚待S10。
@@ -88,8 +89,8 @@
 | Public Tasks anonymous/IDOR debt | production route must remain isolated | 段成威 | inherited controlled exception only | FEAT-126 production or 2026-09-30 earlier |
 | SQLite/SQLCipher 与 delete/backup boundary | 单仓wrong-key/migration/cascade/checkpoint/backup exclusion基础PASS；完整删除saga/OS副本语义未E2E | 段成威 | flags off；不承诺forensic erase | future G4/local G6 |
 | Host raw/title/Runtime cleanup | fake foundation、S9 Eval与S10P1真实fixed Runtime raw turn PASS；完整Desktop history/delete链仍未验证 | 段成威 | v2/UI default flags off | S10B |
-| Desktop sidecar/secret storage | actual Host child readiness/stop、nonce/PID/log/crash/restart已验证；run-derived Keychain source/inventory/cleanup已实现；DEC-126-042 Option A已接受但S10P2F未实现 | 段成威 | 单独授权S10P2F；必须通过三个CSPRNG secret、restart/cross-run/no-log/exact cleanup/default-off矩阵；native只登记Deferred/NOT RUN | before S10P3/S10B |
-| S10B chain readiness | BLK-001/002/003关闭；BLK-004/005仍不满足；DEC-126-042已改变BLK-004退出设计但未关闭Gate | 段成威 | 先接受S10P2F Closure关闭BLK-004，再单独授权S10P3并关闭BLK-005；不用mock/curl/空DB冒充 | before any S10B authorization |
+| Desktop sidecar/secret storage | actual Host child readiness/stop、nonce/PID/log/crash/restart已验证；S10P2F CSPRNG/restart/cross-run/no-log/exact cleanup/default-off实现和证据PASS | 段成威 | Owner审查DEC-126-043；native继续登记Deferred/NOT RUN；Accepted前BLK-004不关闭 | before S10P3/S10B |
+| S10B chain readiness | BLK-001/002/003关闭；S10P2F candidate PASS但BLK-004仍待Owner，BLK-005仍不满足 | 段成威 | 先接受DEC-126-043关闭BLK-004，再单独授权S10P3并关闭BLK-005；不用mock/curl/空DB冒充 | before any S10B authorization |
 | Public Tasks delete limitation | local session删除不能删除contract无API的PostgreSQL content-free row；误写“全表面物理删除”会过度承诺 | 段成威 | DEC-126-038已接受retained-row边界；未来若要求同删则重开G2A delete contract评审 | before S10P3 Closure |
 | production identity/infra absent | no production activation | 段成威 | N/A for DEC-126-022 local-only scope；future online intent reopens production track | does not block local G6 |
 
@@ -123,7 +124,7 @@
 | S10E | bundled Compose discovery + run-scoped pinned PostgreSQL/Keycloak/Caddy/TLS | DEC-126-038 Accepted + separate authorization | 段成威 | DEC-126-039 Accepted / Closure Passed / BLK-001 Closed |
 | S10P1 | loopback fake Responses + Host/Desktop child profile/log/PID | S10E Closure + LIA-126-009 | 段成威 | DEC-126-040 Accepted / Closure Passed / BLK-002/003 Closed |
 | S10P2 | run-derived Keychain/app-data isolation | S10P1 Closure + LIA-126-010 | 段成威 | DEC-126-041 Option B Accepted；source checkpoint accepted；Closure HOLD/native proof blocked；BLK-004 Open |
-| DEC-126-042 / S10P2F | Local-only ephemeral secret backend决策与待授权实施 | DEC-126-042 Option A已接受；之后仍须另行明确授权S10P2F | 段成威 | DESIGN ACCEPTED / S10P2F NOT AUTHORIZED / BLK-004 Open |
+| LIA-126-011 / DEC-126-043 S10P2F | Local-only ephemeral secret backend实现与Closure决定 | 实现与授权范围门禁已通过；等待Owner接受DEC-126-043 | 段成威 | IMPLEMENTATION PASS / CLOSURE CANDIDATE / BLK-004 Open |
 | S10P3 | Desktop content-free Public Tasks主链 + SQLCipher v5 + closed private projection | Local-only BLK-004通过Owner-accepted路径关闭 + Owner accepts retained Public row + separate authorization | 段成威 | Not authorized / NOT RUN |
 | LIA-126-008 / S10B | 四组件本地E2E | BLK-001–005 closed并重新提交 | 段成威 | Blocked Draft / NOT RUN |
 | S11 | Owner G6验收 | G4 evidence + separate authorization | 段成威 | Not authorized / NOT RUN |
@@ -180,7 +181,8 @@
 | S10P1 Closure Review | 段成威 | DEC-126-040 Accepted；接受LIA-126-009 Closure并关闭BLK-002/003 | 2026-08-04 | Host `e0a8d3d…5674`、Desktop `fba934c…7285`；full repo gates + two fixed loopback integrations；0 MiniMax/Keychain/remote write |
 | S10P2 Closure Review | 段成威 | DEC-126-041 Option B Accepted；source checkpoint accepted，Closure HOLD；BLK-004保持Open | 2026-08-04 | Desktop `c863b2a…5dc68`；source/full gates PASS；native Protected Data write identity/profile/entitlement FAIL；批准后只读准备确认0 identities/profiles且无新增write；0 MiniMax/remote write |
 | Local-only Secure Storage Adjustment Review | 段成威 | DEC-126-042 Option A Accepted / Security-G2 Design Passed；不授权S10P2F | 2026-08-04 | docs-only double-exact/CSPRNG/file-integrity/lifecycle/cleanup/no-log/default-off冻结；central G2A N/A；0 Xcode/Keychain/business source/remote write |
+| S10P2F Closure Review | 段成威 | DEC-126-043 Candidate / Pending Owner；BLK-004保持Open | 2026-08-04 | Desktop `46107ee…0036`；6 Rust files；targeted/full/TS/security gates PASS；0 Xcode/Keychain/MiniMax/real data/remote write；不授权S10P3/S10B |
 | G5 Production Ready | 段成威 | N/A / Out of Scope under DEC-126-022 | 2026-08-02 | no deployment/tag/publish/production environment |
 | G6 Local-only Delivery Complete | 段成威 | Pending Owner local startup and functional acceptance | N/A | requires G4 + AC-043；not Production Ready |
 
-- 正式关闭时间：N/A；feature remains active at G2A Re-review Passed / G3-partial boundary。S4–S9、S10E与S10P1 Closure、DEC-126-037 Option C、DEC-126-038 Option B及DEC-126-039–042已Accepted。BLK-001/002/003 Closed，BLK-004/005 Open；S10P2F/P3/B/S11仍未授权。dependency remediation/merge与MiniMax local smoke继续分别单审，tag/publish/deploy不在本期范围。
+- 正式关闭时间：N/A；feature remains active at G2A Re-review Passed / G3-partial boundary。S4–S9、S10E与S10P1 Closure、DEC-126-037 Option C、DEC-126-038 Option B及DEC-126-039–042已Accepted；LIA-126-011实现PASS，DEC-126-043 Pending。BLK-001/002/003 Closed，BLK-004/005 Open；S10P3/B/S11仍未授权。dependency remediation/merge与MiniMax local smoke继续分别单审，tag/publish/deploy不在本期范围。

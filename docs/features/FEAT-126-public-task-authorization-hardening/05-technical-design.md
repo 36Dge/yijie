@@ -1,6 +1,6 @@
 # FEAT-126 技术设计（DEC-126-042 Local-only Secret Adjustment Accepted，G3 Partial）
 
-> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。S4–S9、S10E与S10P1 Closure均已接受；DEC-126-041的source checkpoint与entitlement失败作为历史Accepted事实保留。DEC-126-042 Option A已获Owner安全/G2正式接受：Local-only将double-exact、run-scoped ephemeral file secret backend作为本地E2E安全门禁，Apple signed Protected Data证明转为Deferred Native Hardening。BLK-004仍Open，必须等S10P2F被单独授权、通过并获Owner Closure接受才能关闭；S10P2F/S10P3/S10B/S11、MiniMax、默认flag activation与新增远端/发布动作均未授权。
+> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。S4–S9、S10E与S10P1 Closure均已接受；DEC-126-041的source checkpoint与entitlement失败作为历史Accepted事实保留。DEC-126-042 Option A已获Owner安全/G2正式接受：Local-only将double-exact、run-scoped ephemeral file secret backend作为本地E2E安全门禁，Apple signed Protected Data证明转为Deferred Native Hardening。LIA-126-011已完成S10P2F实现与证据，但DEC-126-043仍待Owner，故BLK-004保持Open；S10P3/S10B/S11、MiniMax、默认flag activation与新增远端/发布动作均未授权。
 
 ## 1. 设计摘要
 
@@ -600,11 +600,11 @@ Runtime现有artifact为`codex-cli 0.144.6`，binary SHA-256=`1ef4f1daba0c5ac267
 | S10A-BLK-001 | S10A历史观察为`docker compose`不可用；S10P0定位stale link，S10E完成discovery/profile/migration/identity/TLS/no-log/cleanup | isolated PostgreSQL + Keycloak + Caddy拓扑已可复验 | **Closed by DEC-126-039**；不等于S10P1/S10B授权 |
 | S10A-BLK-002 | Host只接受空provider或`minimax`；`StartThread`在MiniMax未配置时fail closed，MiniMax base URL硬编码为`https://api.minimaxi.com/v1` | 固定fake Responses provider无进程级注入面；S9 in-process runner不是真实Host→Runtime provider | 触发provider-config停止条件；不使用MiniMax/真实key绕过 |
 | S10A-BLK-003 | Desktop sidecar使用`env_clear()`，并把Host raw/title/cleanup三个flag设为`false`；stdout/stderr丢弃到null | 父进程临时exact-true不会到达Host child，且无法生成Host日志/进程证据 | 触发private deployment-interface停止条件；不“假开启” |
-| S10A-BLK-004 | S10P2源码已把Chat DB/receipt/native-auth切到run-derived test namespace，独立gate、manifest、exact inventory与cleanup已通过仓内门禁；但本机没有Apple Development identity/profile/entitlement，Protected Data写入返回required entitlement missing | DEC-126-042已判定Local-only Docker/宿主机组合目标不应被native signing阻断；但新file backend未实施也未验证 | **DEC-126-042 Accepted**；由另行授权的S10P2F严格ephemeral backend矩阵关闭Local-only BLK-004，signed proof为Deferred Native Hardening；S10P2F Closure前仍Open |
+| S10A-BLK-004 | S10P2源码已把Chat DB/receipt/native-auth切到run-derived test namespace，独立gate、manifest、exact inventory与cleanup已通过仓内门禁；但本机没有Apple Development identity/profile/entitlement，Protected Data写入返回required entitlement missing | DEC-126-042判定Local-only目标不应被native signing阻断；LIA-126-011现已完成严格file backend实现与验证 | **DEC-126-043 Pending**；只有Owner接受后才关闭Local-only BLK-004；signed proof保持Deferred Native Hardening / NOT RUN |
 | S10A-BLK-005 | Desktop chat流使用本地UUID作task/session ID并调Host `/v1/tasks/{id}/agent-sessions`；`/v2/tasks`只有generated types，无consumer call | 不能声称“Desktop新建→Public Tasks/PostgreSQL→Host”同一主链；空Tasks表不是content-free create证据 | 触发production orchestration停止条件；不用独立curl或fixture冒充UI主链 |
 | S10A-LIM-001 | title v2因固定Runtime无法capability-disable tools而必定fail closed | S10只能验证deterministic fallback + user rename precedence，不能声称model title E2E | 不阻断fallback用例；title flag必须false |
 
-结论：`S10B readiness = HOLD / NOT READY`。DEC-126-039已关闭BLK-001，DEC-126-040已关闭BLK-002/003；BLK-004/005仍Open。DEC-126-042已重定义Local-only BLK-004退出路径，但不会自动关闭blocker或授权代码；只有S10P2F被另行授权、完成并获Owner Closure接受后，Local-only链才可继续。该调整不回退G2/G2A、S4–S9、S10E或S10P1 Closure。
+结论：`S10B readiness = HOLD / NOT READY`。DEC-126-039已关闭BLK-001，DEC-126-040已关闭BLK-002/003；BLK-004/005仍Open。LIA-126-011已执行并通过Local-only S10P2F门禁，但不会自动关闭blocker；只有Owner接受DEC-126-043后才能继续申请S10P3。该状态不回退G2/G2A、S4–S9、S10E或S10P1 Closure。
 
 ### 17.3 PostgreSQL / OIDC 方案比较
 
@@ -788,10 +788,10 @@ event: { schemaVersion: 1, sequence, sessionId,
 | S10E | BLK-001 | deployment/Infra config only；central/private wire none | 新profile显式选择，普通`dev-up`不启动 | Compose version/hash/config，digest images，run-scoped project/volume，migration/identity/TLS/no-real-data/cleanup | 恢复plugin link，只停本run project，不删未列入manifest的volume |
 | S10P1 | BLK-002/003 | additive Host/Desktop private deployment config；IPC/central/Runtime none | master exact-true + local + run ID三重门禁；default MiniMax不变 | fake protocol/oversize/nonloopback/key-conflict，child env/log/PID/nonce，no-log，crash/restart/default-off | 关闭master profile，恢复Host默认config和null/no-start路径 |
 | S10P2 | BLK-004 | additive Desktop-private storage/deployment interface；DB schema/IPC/central none | master与secure-storage必须分别exact `true`；任一缺失/false使用原固定namespace | pre/post exact inventory，wrong run ID，legacy-no-fallback，abnormal-exit/restart/cleanup/no-real-item-access，signed Protected Data write/read/delete | 只删manifest中本run items和run root，默认namespace不动 |
-| S10P2F（设计已接受/实施未授权） | Local-only BLK-004 | `semantic` Desktop-private test storage/deployment；central contracts/G2A N/A | S10 master与`YIJIE_FEAT126_S10_EPHEMERAL_SECRET_BACKEND_ENABLED`必须分别exact `true`；任一缺失/false完全保持当前Protected Data默认 | 三个CSPRNG synthetic secrets、same-run restart、cross-run、wrong owner/mode/nlink/symlink/manifest、partial write/crash/recovery、no-log/process-output/evidence、exact cleanup/default-off | 关闭独立flag即回到当前Protected Data路径；只unlink匹配manifest的三个test files和run root；不承诺法证擦除 |
+| S10P2F（LIA-126-011已实施/DEC-126-043候选） | Local-only BLK-004 | `semantic` Desktop-private test storage/deployment；central contracts/G2A N/A | S10 master与`YIJIE_FEAT126_S10_EPHEMERAL_SECRET_BACKEND_ENABLED`必须分别exact `true`；任一缺失/false完全保持当前Protected Data默认 | 三个CSPRNG synthetic secrets、same-run restart、cross-run、wrong owner/mode/nlink/symlink/manifest、partial write/crash/recovery、no-log/process-output/evidence、exact cleanup/default-off均PASS | 关闭独立flag即回到当前Protected Data路径；只unlink匹配manifest的三个test files和run root；不承诺法证擦除 |
 | S10P3 | BLK-005 | semantic Desktop orchestration + SQLCipher v5 + additive private command/channel；central wire none | Chat flags仍default-off；API secure Tasks只在local profile exact true | schema/serde/TS conformance，auth/tenant/revision，idempotency/unknown/restart/race，Public DB/no-log/migration/cascade/retained-row disclosure | flag off；forward migration保留；停coordinator；不删或猜测Public row |
 
-DEC-126-038–042已由Owner接受；S10E/S10P1 Closure Passed，详见§19/20。DEC-126-042只接受安全/G2设计，S10P2F仍未授权；必须另行授权S10P2F并以Desktop本地checkpoint及完整安全矩阵关闭Local-only BLK-004。之后S10P3仍须单独授权；BLK-004/005全部Closed后才能重新提交LIA-126-008/S10B。
+DEC-126-038–042已由Owner接受；S10E/S10P1 Closure Passed，详见§19/20。LIA-126-011已单独授权S10P2F并形成Desktop本地checkpoint及完整安全矩阵；DEC-126-043仍待Owner，因此Local-only BLK-004保持Open。之后S10P3仍须单独授权；BLK-004/005全部Closed后才能重新提交LIA-126-008/S10B。
 
 ### 18.7 安全、migration、restart、cleanup与race矩阵
 
@@ -900,7 +900,7 @@ Host contract-check/lint/vet/shell、全量`go test -race -cover ./...`、build�
 - `contract-impact = semantic`：已接受的调整改变S10本地test profile中三个secret的存储解释和BLK-004退出条件，但不改变production/default行为、公共wire、private IPC、SQLCipher业务schema或跨仓持久化格式。
 - central G2A：`N/A`。`yijie-contracts@29317b6426578749dc698fc2ad32b986ee5c8e9f`、Public Tasks/Host wire、Runtime pin、API与TS/Vue均不变；权威源是Desktop-private test deployment/storage配置和本Feature Package的安全决定。
 - DEC-126-041保持历史Accepted：其source checkpoint与原生失败事实不被改写。DEC-126-042已把signed proof从Local-only blocker移为`Deferred Native Hardening`；不得写成已通过、豁免或文件backend的等价证明。
-- 本轮只登记安全/G2设计批准与`S10P2F`单独实施授权建议，不修改Desktop源码、环境、Keychain或进程，不安装Xcode，不授权S10P2F/S10P3/S10B。
+- DEC-126-042当轮只登记安全/G2设计；Owner随后单独授权LIA-126-011。该实施严格限定为Desktop Rust test-only backend与测试，没有修改Keychain、跨仓协议、TS/Vue或默认配置，也未授权S10P3/S10B。
 
 ### 22.2 Backend选择与双门禁
 
@@ -939,12 +939,36 @@ Host contract-check/lint/vet/shell、全量`go test -race -cover ./...`、build�
 
 ### 22.6 BLK-004现行退出与Deferred Native Hardening
 
-若且仅若S10P2F另行授权并通过以下证据，Local-only BLK-004才可关闭：双flag/default-off、CSPRNG生成、same-run Desktop restart恢复、cross-run隔离、wrong owner/mode/nlink/symlink/manifest/partial-file fail-closed、crash与cleanup重试、三个exact file post-absent、production/default路径不变，以及secret/path在source之外的logs/process output/evidence/WebView/bundle命中为0。
+LIA-126-011已完成以下实现证据：双flag/default-off、CSPRNG生成、same-run Desktop restart恢复、cross-run隔离、wrong owner/mode/nlink/symlink/manifest/partial-file fail-closed、crash与cleanup重试、三个exact file post-absent、production/default路径不变，以及secret/path在source之外的logs/process output/evidence/WebView/bundle命中为0。治理门禁仍要求Owner接受DEC-126-043后，Local-only BLK-004才能标记为Closed。
 
 Apple signed Protected Data lifecycle转为`Deferred Native Hardening`，在未来准备Desktop签名发布或production activation前强制恢复并通过；它不计入当前Local-only G4/G6 PASS证据，也不得被表述为已验证、已豁免或文件backend的等价替代。
 
-### 22.7 S10P2F单独实施授权建议（未授权）
+### 22.7 S10P2F单独实施授权（LIA-126-011已执行）
 
-允许范围仅为Desktop Rust test-only secret backend、其unit/integration/fault tests及FEAT-126治理证据；禁止修改central contracts、Public Tasks/Host wire、private IPC、Tauri commands/events、TS/Pinia/Vue、SQLCipher业务schema、API、Host、Runtime pin、依赖默认值或production路径。只允许合成secret、临时目录、fake provider和本地checkpoint；不安装Xcode、不访问Keychain、不启动S10P3/S10B、不push/merge/tag/publish/deploy。
+Owner单独授权的允许范围仅为Desktop Rust test-only secret backend、其unit/integration/fault tests及FEAT-126治理证据；禁止修改central contracts、Public Tasks/Host wire、private IPC、Tauri commands/events、TS/Pinia/Vue、SQLCipher业务schema、API、Host、Runtime pin、依赖默认值或production路径。实施只使用合成secret、临时目录和本地checkpoint；未安装Xcode、未访问Keychain、未启动S10P3/S10B、未push/merge/tag/publish/deploy。
 
 停止条件：若实现需要让WebView/shell指定secret路径、把secret传给Host/container、改变现有serializer/DB schema/IPC、修改production/default选择逻辑，或无法在不枚举/读取真实Keychain的情况下证明default路径未触碰，立即停止并提交新的安全/G2缺口。
+
+## 23. S10P2F实际实现（DEC-126-043 Closure Review Candidate）
+
+### 23.1 Source、选择器与兼容边界
+
+- Desktop checkpoint：`46107eec1e9cba0257252cae8678a4233ef20036`，parent=`c863b2ab30d185201bff5736a308d7078ee5dc68`，branch=`feat/feat-126-foundation-closure`，仅6个Rust文件，clean、local-only、not pushed。
+- `ephemeral`只有master与独立flag均为exact `"true"`、canonical run UUID与现有S10 run manifest一致时才可选择。独立secure-storage selector与ephemeral selector同时为true会fail closed；missing、`false`、`TRUE`、`1`和孤立flag均保持既有Protected Data路径。
+- protected manifest保持schema v1和既有输出；ephemeral使用closed schema v2。没有新增Cargo/pnpm依赖，没有改SQLCipher业务migration、IPC、TS/Vue、Host/API/Runtime或central contracts。
+
+### 23.2 Secret envelope与文件系统不变量
+
+- 三个role/basename由Rust固定，WebView、shell与Host无指定权。Chat SQLCipher与receipt HMAC均为32-byte OS CSPRNG；native-auth沿用严格`StoredRefreshToken` JSON serializer，token只使用合成随机值并限制`LocalIntegration`环境。
+- 创建使用`create_new`（O_EXCL）、O_NOFOLLOW、O_CLOEXEC与0600；目录为0700。每次读、覆写和删除都复验canonical parent、regular file、effective UID、0600、`nlink == 1`、inode/device一致性，以及magic/version/role/length/schema。
+- 已存在但损坏的文件不会被静默重生；partial、symlink、hardlink、错误mode、unknown entry、manifest mismatch与foreign/cross-run均fail closed。更新原文件前先验证现有envelope，不产生多余secret temp file。
+
+### 23.3 生命周期、恢复与cleanup实现
+
+- 首次启动创建三个exact files；同run重启读取相同secret，真实SQLCipher reopen与native-auth rotate/restart fixture通过；不同run不得读取、写入或删除对方文件。
+- active PID lease、目录或manifest异常时cleanup删除计数为0。正常cleanup先验证全部exact targets安全，再逐个unlink；missing幂等，unknown entry阻断；最终只用非递归`rmdir`删除已验证为空的known directories/run root。
+- 一次sandbox-only SQLCipher诊断在macOS backup-attribute限制处失败并留下合成临时run；随后使用正确manifest run ID与受控cleanup恢复，最终`feat126-s10p2f-*` matching root count=0。没有递归删除，也没有真实数据。
+
+### 23.4 Closure候选与停止边界
+
+授权范围内P1为0，S10P2F-001–012与全仓门禁证据见`06-test-plan.md`和`08-verification-report.md`。DEC-126-043仍是候选：在Owner接受前，BLK-004保持Open，G3保持Partial，禁止申请或开始S10P3/S10B/S11。Apple signed Protected Data生命周期仍为`Deferred Native Hardening / NOT RUN`，文件backend不构成其PASS、豁免或生产等价替代。
