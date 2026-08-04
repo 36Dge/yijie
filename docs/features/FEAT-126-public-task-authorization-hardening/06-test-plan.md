@@ -1,7 +1,7 @@
 # FEAT-126 测试与 Eval 计划
 
 > 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。DEC-126-023/024完成G2A重审，DEC-126-025登记sole candidate与checkpoint远端ref并恢复LIA-126-002，仅执行S4–S6 Corrective Closure。
-> DEC-126-026/027/028/030/031/033/034已关闭S4–S8B；DEC-126-035已接受远端事实，DEC-126-036已接受LIA-126-007 / S9 Closure。DESIGN-126-007/DEC-126-037方案C与DESIGN-126-008/DEC-126-038方案B均已接受并继续HOLD S10B。S10E已被单独授权、执行并形成DEC-126-039 Closure候选；S10P1/P2/P3/S10B/S11仍为`NOT RUN`且未授权。本轮未调用MiniMax，
+> DEC-126-026/027/028/030/031/033/034已关闭S4–S8B；DEC-126-035已接受远端事实，DEC-126-036已接受LIA-126-007 / S9 Closure。DESIGN-126-007/DEC-126-037方案C、DESIGN-126-008/DEC-126-038方案B及S10E/DEC-126-039均已接受并继续HOLD S10B；BLK-001已关闭。S10P1/P2/P3/S10B/S11仍为`NOT RUN`且未授权。本轮未调用MiniMax，
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
 ## 1. 测试策略
@@ -264,7 +264,7 @@
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
-| 测试/技术 Owner | 段成威 | DEC-126-036/037/038已Accepted并HOLD LIA-126-008；S10E为DEC-126-039 Closure候选；S10P1/P2/P3/S10B–S11/MiniMax/flag activation与完整E2E仍须单独授权 | 2026-08-04 |
+| 测试/技术 Owner | 段成威 | DEC-126-036/037/038/039已Accepted并HOLD LIA-126-008；S10E Closure Passed、BLK-001 Closed；S10P1/P2/P3/S10B–S11/MiniMax/flag activation与完整E2E仍须单独授权 | 2026-08-04 |
 | 安全/数据 Owner | 段成威 | 当前P1及Public Tasks正文边界阻断closure；既有auth/delete/no-log/migration结果仅作foundation evidence | 2026-08-02 |
 | Runtime/模型 Owner | 段成威 | DEC-126-021 HOLD与DEC-126-022 Local-only已Accepted；先用fake provider/fixtures，raw reasoning须具体显示并持久化/删除；历史MM-126-001/002不重跑，未来一次local smoke仅可另行提交审批 | 2026-08-02 |
 
@@ -305,7 +305,7 @@ DEC-126-036已接受；S10A只读评审不等于四组件E2E，S10B仍须关闭b
 |---|---|---|
 | 六仓分支/SHA/worktree | 全部与Owner固定值精确相等，clean | PASS |
 | Runtime artifact | version 0.144.6；binary/manifest SHA-256与manifest一致 | PASS（未启动app-server） |
-| Docker/Compose | Docker 29.6.1；用户plugin symlink已可恢复地修复到固定bundled Compose v5.3.0；S10E profile/static/runtime/migration/TLS/cleanup验证PASS | `S10E CLOSURE CANDIDATE`（待DEC-126-039接受） |
+| Docker/Compose | Docker 29.6.1；用户plugin symlink已可恢复地修复到固定bundled Compose v5.3.0；S10E profile/static/runtime/migration/TLS/cleanup验证PASS | `S10E CLOSURE PASSED / BLK-001 CLOSED` |
 | 当前服务 | 5432/6379/8080/18080/1420未观察到listener | no existing isolated stack |
 | fake provider process profile | Host仅blank/MiniMax，thread要求MiniMax，base URL硬编码 | `CONFIG_UNREPRESENTABLE` |
 | Desktop child flags/logs | sidecar env allowlist强制v2 flags=false，stdout/stderr=null | `CONFIG_UNREPRESENTABLE` |
@@ -327,7 +327,7 @@ S10B必须以`S10B-001–012`作为同一run的不可分割矩阵：provenance/s
 
 **当前推荐：不批准执行。** 下列前置须全部关闭并回填新checkpoint与逐仓门禁：
 
-1. S10E已被单独授权并形成DEC-126-039 Closure候选；Owner接受该决定后，BLK-001才转为Closed并允许另行申请S10P1；
+1. DEC-126-039已接受S10E Closure并关闭BLK-001；任何S10P1工作仍须Owner另行明确授权；
 2. Host有受审查、test-only、loopback的fake Responses process injection，不改默认MiniMax行为且不需真实key；
 3. Desktop sidecar能在本次子进程向Host传递批准的raw/cleanup exact-true、生成content-free child log/PID evidence，退出后默认仍off；
 4. Desktop Chat/native-auth使用test-only Keychain namespace与isolated app-data，不触碰真实条目；
@@ -350,7 +350,7 @@ S10P3 private IPC conformance必须锁定`chat_get_session_control_plane_v1`和`
 
 Public Tasks删除验收要同时证明两件事：（1）Desktop/Host/Runtime和本地binding已按DEC-126-006清理；（2）由于`29317b...`无delete operation，PostgreSQL的Public Task row仍存在且仅包含closed content-free fields。DEC-126-038已接受第（2）项边界；不得把它隐藏为“全表面物理删除”，未来若改变该要求必须重开G2A。
 
-## 18. S10E实际测试结果（DEC-126-039候选）
+## 18. S10E实际测试结果（DEC-126-039 Accepted）
 
 | Gate | 方法 | 结果 |
 |---|---|---|
@@ -364,4 +364,4 @@ Public Tasks删除验收要同时证明两件事：（1）Desktop/Host/Runtime�
 | contaminated-run handling | 初始diagnostic run因process output展开synthetic DB credential被整轮拒绝；fresh run重建证据；旧run写入owner-only `REJECTED` marker | PASS；污染值未进入source/Git/docs，不计入接受证据；config/provision/migration/verify均fail closed |
 | stop/cleanup | 两个exact project停止；container/network/listener inventory；禁止volume delete/prune | PASS；active=0；八个named volumes和两个owner-only ignored run root按未授权删除边界保留 |
 
-本表只证明S10E环境切片，不证明Host fake provider、Desktop child profile/Keychain/Public Tasks主链或四组件E2E。DEC-126-039接受前不得进入S10P1；S10B继续HOLD。
+本表只证明S10E环境切片，不证明Host fake provider、Desktop child profile/Keychain/Public Tasks主链或四组件E2E。DEC-126-039不授权S10P1；S10B继续HOLD。

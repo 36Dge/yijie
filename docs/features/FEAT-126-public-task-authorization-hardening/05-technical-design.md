@@ -1,6 +1,6 @@
 # FEAT-126 技术设计（S10P0 Design Accepted，G3 Partial）
 
-> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。S4–S9 Closure已接受；DESIGN-126-007/DEC-126-037方案C和DESIGN-126-008/DEC-126-038方案B均已由Owner接受，S10B继续HOLD。S10E后来被单独授权并已形成DEC-126-039 Closure候选；G3仍Partial。DEC-126-039接受前不得进入S10P1，S10P2/P3/S10B/S11、MiniMax、flag activation与新增远端/发布动作未授权。
+> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。S4–S9 Closure已接受；DESIGN-126-007/DEC-126-037方案C、DESIGN-126-008/DEC-126-038方案B和S10E/DEC-126-039均已由Owner接受，S10A-BLK-001关闭，S10B继续HOLD。G3仍Partial；S10P1/P2/P3/S10B/S11、MiniMax、flag activation与新增远端/发布动作未授权。
 
 ## 1. 设计摘要
 
@@ -544,7 +544,7 @@ Runtime/Host pin、临时 `CODEX_HOME`/空 cwd/pathless ephemeral thread，title
 - Desktop Pattern：FEAT-126 Chat/App Shell Pattern已Accepted，只取代Chat 1.1.0/App Shell 2.0.0中的FEAT-126冲突段落。
 - 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–037 Accepted；S4–S9 Closure Passed；S10B–S11 Unauthorized。
 - 安全/数据 Owner：段成威 — ADR-0013/0014/0015/0016与DEC-126-005/006/007/011/012/014/015/016/017 Approved；Q-006/Q-007/Q-008/Q-009/Q-010/Q-015/Q-016 Resolved；Pattern Accepted。
-- 结论与日期：2026-08-04 G2/G2A保持Passed，S4–S9 Closure、DEC-126-037方案C和DEC-126-038方案B已Accepted；S10E为DEC-126-039 Closure候选，S10B继续HOLD。G3仍Partial；继续禁止S10P1/P2/P3/S10B/S11、MiniMax、flag启用与追加远端动作。
+- 结论与日期：2026-08-04 G2/G2A保持Passed，S4–S9 Closure、DEC-126-037方案C、DEC-126-038方案B和DEC-126-039均已Accepted；S10E Closure Passed、BLK-001 Closed，S10B继续HOLD。G3仍Partial；继续禁止S10P1/P2/P3/S10B/S11、MiniMax、flag启用与追加远端动作。
 
 ## 15. S8B Vue projection implementation
 
@@ -597,14 +597,14 @@ Runtime现有artifact为`codex-cli 0.144.6`，binary SHA-256=`1ef4f1daba0c5ac267
 
 | ID | 只读事实 | 对S10B的影响 | 处置 |
 |---|---|---|---|
-| S10A-BLK-001 | Docker CLI 29.6.1存在，但`docker compose version`返回unknown command；5432/6379/8080/18080/1420无已观察listener | 无法执行已批准的Compose v2 PostgreSQL + Keycloak + Caddy拓扑 | 环境阻断；本轮不安装、不拉镜像、不启容器 |
+| S10A-BLK-001 | S10A历史观察为`docker compose`不可用；S10P0定位stale link，S10E完成discovery/profile/migration/identity/TLS/no-log/cleanup | isolated PostgreSQL + Keycloak + Caddy拓扑已可复验 | **Closed by DEC-126-039**；不等于S10P1/S10B授权 |
 | S10A-BLK-002 | Host只接受空provider或`minimax`；`StartThread`在MiniMax未配置时fail closed，MiniMax base URL硬编码为`https://api.minimaxi.com/v1` | 固定fake Responses provider无进程级注入面；S9 in-process runner不是真实Host→Runtime provider | 触发provider-config停止条件；不使用MiniMax/真实key绕过 |
 | S10A-BLK-003 | Desktop sidecar使用`env_clear()`，并把Host raw/title/cleanup三个flag设为`false`；stdout/stderr丢弃到null | 父进程临时exact-true不会到达Host child，且无法生成Host日志/进程证据 | 触发private deployment-interface停止条件；不“假开启” |
 | S10A-BLK-004 | Chat DB/receipt Keychain namespace固定为`com.yijie.ai.chat-db/default-v1`与`com.yijie.ai.chat-receipt/default-v1`；native auth也是固定namespace | 不能满足“临时Keychain namespace、不碰真实条目” | 触发secure-storage停止条件；本轮不读/改/删Keychain条目 |
 | S10A-BLK-005 | Desktop chat流使用本地UUID作task/session ID并调Host `/v1/tasks/{id}/agent-sessions`；`/v2/tasks`只有generated types，无consumer call | 不能声称“Desktop新建→Public Tasks/PostgreSQL→Host”同一主链；空Tasks表不是content-free create证据 | 触发production orchestration停止条件；不用独立curl或fixture冒充UI主链 |
 | S10A-LIM-001 | title v2因固定Runtime无法capability-disable tools而必定fail closed | S10只能验证deterministic fallback + user rename precedence，不能声称model title E2E | 不阻断fallback用例；title flag必须false |
 
-结论：`S10B readiness = HOLD / NOT READY`。BLK-001已有S10E技术Closure候选、仍待DEC-126-039接受；BLK-002–005保持Open。任何一项未关闭都不能批准真实四组件E2E；它们不回退G2/G2A或S4–S9 Closure。
+结论：`S10B readiness = HOLD / NOT READY`。DEC-126-039已关闭BLK-001；BLK-002–005保持Open。任何一项未关闭都不能批准真实四组件E2E；它们不回退G2/G2A、S4–S9或S10E Closure。
 
 ### 17.3 PostgreSQL / OIDC 方案比较
 
@@ -662,7 +662,7 @@ S10B必须在owner-only `RUN_ROOT=$(mktemp -d "${TMPDIR%/}/feat126-s10b.XXXXXX")
 
 - DEC-126-037已采用方案C并`HOLD S10B`：Owner接受本设计和阻断事实，但未批准LIA-126-008开始四组件运行。
 - 先另行设计和授权S10P Test Profile/Chain Corrective，仅解决BLK-002–005：fake Responses进程注入、Desktop sidecar flags/log/PID、test-only Keychain/app-data namespace和Public Tasks content-free orchestration。它们可能修改production config/private IPC/业务编排，必须重走contract-impact审查，不能在S10A静默实现。
-- BLK-001由Owner单独批准环境准备。只有BLK-001–005全部关闭并有本地checkpoint、逐仓门禁、安全/no-log证据后，LIA-126-008才可从`Blocked Draft`升级为`Ready for Owner Approval`。
+- BLK-001已由DEC-126-039关闭。只有后续BLK-002–005经各自单独授权、Closure和逐仓安全/no-log门禁全部关闭后，LIA-126-008才可从`Blocked Draft`升级为`Ready for Owner Approval`。
 
 ## 18. DESIGN-126-008 — S10P0 Test Profile & Main-Chain Corrective（DEC-126-038 Accepted）
 
@@ -679,7 +679,7 @@ S10P0仅作只读源码/环境盘点、设计冻结和治理文档更新；`cont
 | Desktop | `adfdb5b24b3277ba39bd76a8cdc63fc138caf9cb` | `feat/feat-126-foundation-closure` | clean / exact |
 | Runtime | `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f` | `develop` | clean / exact |
 
-DEC-126-037 Option C、S4–S9 Closure Passed与G3 Partial保持不变。LIA-126-008仍为`Blocked Draft`；S10E已单独授权并形成DEC-126-039 Closure候选，S10P1、S10P2、S10P3、S10B、S11和所有activation仍必须逐项单独授权。
+DEC-126-037 Option C、S4–S9 Closure Passed与G3 Partial保持不变。DEC-126-039已接受S10E Closure并只关闭BLK-001；LIA-126-008仍为`Blocked Draft`，S10P1、S10P2、S10P3、S10B、S11和所有activation仍必须逐项单独授权。
 
 ### 18.2 S10A-BLK-001：Compose/隔离身份环境
 
@@ -693,7 +693,7 @@ DEC-126-037 Option C、S4–S9 Closure Passed与G3 Partial保持不变。LIA-126
 
 未来S10E必须先把旧symlink移到run-scoped owner-only backup，再建立指向上述精确Docker Desktop二进制的新symlink；修复后重跑version/hash/config/features。任一值漂移即停止；回滚删除新link并原子恢复备份，不修改Docker Desktop app或系统目录。
 
-S10E不得复用普通`yijie_postgres_data`、`yijie_api`或任何现有数据库。实现候选是新的exact `feat-126-s10` Compose profile，不声明固定`container_name`，以canonical run UUID派生Compose project/resource名；只包含：
+S10E不得复用普通`yijie_postgres_data`、`yijie_api`或任何现有数据库。已接受实施方案使用新的exact `feat-126-s10` Compose profile，不声明固定`container_name`，以canonical run UUID派生Compose project/resource名；只包含：
 
 - API PostgreSQL和Keycloak PostgreSQL：`postgres:16.13-alpine@sha256:4e6e670bb069649261c9c18031f0aded7bb249a5b6664ddec29c013a89310d50`；
 - Keycloak：`quay.io/keycloak/keycloak:26.7.0@sha256:0f198be292568439d700cdbfb893e69a6009bb43a94a06a945b1d3d506c76b13`；
@@ -790,7 +790,7 @@ event: { schemaVersion: 1, sequence, sessionId,
 | S10P2 | BLK-004 | additive Desktop-private storage/deployment interface；DB schema/IPC/central none | 无master+run ID则使用原固定namespace | pre/post exact inventory，wrong run ID，legacy-no-fallback，abnormal-exit/restart/cleanup/no-real-item-access | 只删manifest中本run items和run root，默认namespace不动 |
 | S10P3 | BLK-005 | semantic Desktop orchestration + SQLCipher v5 + additive private command/channel；central wire none | Chat flags仍default-off；API secure Tasks只在local profile exact true | schema/serde/TS conformance，auth/tenant/revision，idempotency/unknown/restart/race，Public DB/no-log/migration/cascade/retained-row disclosure | flag off；forward migration保留；停coordinator；不删或猜测Public row |
 
-DEC-126-038已由Owner接受；S10E被单独授权并已创建本地Infra checkpoint，详见§19。S10P1/P2/P3仍须分别授权并仅建本地checkpoint；逐仓lint/test/build、migration/no-log/security/restart/race/default-off全绿，且BLK-001–005全部Closed后，才能重新提交LIA-126-008/S10B；其中任一失败则保持Blocked Draft。
+DEC-126-038/039已由Owner接受；S10E Closure Passed，详见§19。S10P1/P2/P3仍须分别授权并仅建本地checkpoint；逐仓lint/test/build、migration/no-log/security/restart/race/default-off全绿，且剩余BLK-002–005全部Closed后，才能重新提交LIA-126-008/S10B；其中任一失败则保持Blocked Draft。
 
 ### 18.7 安全、migration、restart、cleanup与race矩阵
 
@@ -805,9 +805,9 @@ DEC-126-038已由Owner接受；S10E被单独授权并已创建本地Infra checkp
 
 ### 18.8 审批出口
 
-Owner已批准DEC-126-038方案B，随后又单独授权S10E。S10E实现和证据已完成，但仍须Owner接受DEC-126-039才算Closure Passed。后续仍须按`DEC-126-039 Accepted → S10P1 → S10P2 → S10P3 → LIA-126-008/S10B`逐项单独授权和接受Closure；不允许并跳。
+Owner已批准DEC-126-038方案B并接受DEC-126-039/S10E Closure，只关闭BLK-001。后续仍须按`S10P1 → S10P2 → S10P3 → LIA-126-008/S10B`逐项单独授权和接受Closure；不允许并跳。
 
-## 19. S10E Compose/Isolated Identity Environment 实际实现（DEC-126-039候选）
+## 19. S10E Compose/Isolated Identity Environment 实际实现（DEC-126-039 Accepted）
 
 ### 19.1 Source与运行边界
 
@@ -831,4 +831,4 @@ fresh run证据：四服务healthy；exact image/label/security/network/volume/p
 
 停止后两次run均为0 container、0 network、0 `5432/8443/9443` listener。因没有volume/secret删除授权，八个project-scoped named volumes与两个owner-only ignored run root保留；未执行`down --volumes`、volume rm或prune。污染run root含`0600 REJECTED` marker，Compose start/config/export、provision、migration与runtime verification均fail closed，仅status/stop可用于围堵。它们不是活动服务，但在Owner另行精确授权清理前必须保留并披露。
 
-DEC-126-039建议只接受S10E并关闭BLK-001。该接受不自动授权S10P1、S10P2、S10P3、S10B、S11、MiniMax、flag activation或任何远端动作。
+DEC-126-039已按方案A接受S10E并关闭BLK-001。该接受不自动授权S10P1、S10P2、S10P3、S10B、S11、MiniMax、flag activation或任何远端动作。
