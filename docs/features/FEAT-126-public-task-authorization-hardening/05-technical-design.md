@@ -811,7 +811,7 @@ Owner已批准DEC-126-038方案B，随后又单独授权S10E。S10E实现和证�
 
 ### 19.1 Source与运行边界
 
-- Infra authority：本地分支`feat/feat-126-s10e`，checkpoint `cc56b65ae61e91e5451768a25a9e4a840cb76e79`，parent `f040492e7c4af4aa7cc94a343140c58befae3af2`；worktree clean、未push。
+- Infra authority：本地分支`feat/feat-126-s10e`，checkpoint `99e50d8b47e13fc3e3b7501617a307e1ba5d6baf`，parent `f040492e7c4af4aa7cc94a343140c58befae3af2`；worktree clean、未push。
 - private deployment interface为additive：新增显式`feat-126-s10` profile、runbook、secret/static/runtime validators；普通`dev-up`不会启动该profile。central contracts、API/Host/Desktop业务源码、private IPC、Host/Public Tasks wire与Runtime pin均未修改。
 - Compose discovery只修复当前用户级link：旧stale link进入owner-only `0700`备份，新的link指向Docker Desktop bundled Compose `v5.3.0`；固定size=`30,780,320`、SHA-256=`2642b6354b323be90cf28460ac186499fbc85381b9ce5e6681fdefb2d0a7d265`。未修改Docker Desktop application或系统目录。
 - 所有镜像均从本地exact digest解析，`up --pull never`；没有pull/download。PostgreSQL exact content只补了固定`16.13-alpine`本地tag，使digest-qualified reference可被Compose fail-closed解析。
@@ -829,6 +829,6 @@ Owner已批准DEC-126-038方案B，随后又单独授权S10E。S10E实现和证�
 
 fresh run证据：四服务healthy；exact image/label/security/network/volume/port inventory PASS；public CA单证书且无private key；OIDC issuer精确为`https://localhost:8443/realms/yijie-local`；Caddy legacy Tasks边界返回404；两名synthetic users连续两次provision一致；固定API `a64f9f591fb594818c1778e30c6941e2574b3264`从empty DB应用`00001–00004`到v4，第二次migration为no-op；candidate files与container logs中generated credential命中为0。
 
-停止后两次run均为0 container、0 network、0 `5432/8443/9443` listener。因没有volume/secret删除授权，八个project-scoped named volumes与两个owner-only ignored run root保留；未执行`down --volumes`、volume rm或prune。它们不是活动服务，但在Owner另行精确授权清理前必须保留并披露。
+停止后两次run均为0 container、0 network、0 `5432/8443/9443` listener。因没有volume/secret删除授权，八个project-scoped named volumes与两个owner-only ignored run root保留；未执行`down --volumes`、volume rm或prune。污染run root含`0600 REJECTED` marker，Compose start/config/export、provision、migration与runtime verification均fail closed，仅status/stop可用于围堵。它们不是活动服务，但在Owner另行精确授权清理前必须保留并披露。
 
 DEC-126-039建议只接受S10E并关闭BLK-001。该接受不自动授权S10P1、S10P2、S10P3、S10B、S11、MiniMax、flag activation或任何远端动作。

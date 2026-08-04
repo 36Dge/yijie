@@ -154,7 +154,7 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 | S9 | Host `8707dea552cff74121b89aa8045f27da2c8c9378`；Desktop `adfdb5b24b3277ba39bd76a8cdc63fc138caf9cb` | test-only runner/dataset/fixtures/consumer tests；production behavior unchanged | Host gates 250/250 title、210/210 valid raw、40/40 negative；Desktop exact fixture/history/delete/plaintext projection；repo gates PASS | LIA-126-007 executed；DEC-126-036 Accepted | Closure Passed；local only / not pushed |
 | S10A | governance checkpoint | read-only repo/environment/source inventory + DESIGN-126-007/DEC-126-037/LIA-126-008 draft | docs/static checks only；no process startup | DEC-126-037 Accepted / Option C | Complete as accepted review / HOLD S10B |
 | S10P0 | design checkpoint `514559265ac4a675115984650a0782f09b481748`；approval checkpoint待最终门禁后回报 | DESIGN-126-008 + DEC-126-038 Accepted；FEAT-126 governance files only | package/strict/G2A/YAML/lint/test/shell/diff gates PASS | Owner Accepted Option B | Design Accepted / no corrective implementation |
-| S10E | yijie-infra `cc56b65ae61e91e5451768a25a9e4a840cb76e79` | local checkpoint only | IMPLEMENTED / VERIFIED | DEC-126-039 Closure Candidate | Owner acceptance required before S10P1 authorization |
+| S10E | yijie-infra `99e50d8b47e13fc3e3b7501617a307e1ba5d6baf` | local checkpoint only | IMPLEMENTED / VERIFIED | DEC-126-039 Closure Candidate | Owner acceptance required before S10P1 authorization |
 | S10P1 | N/A | none | NOT RUN | not authorized | Requires S10E Closure + separate authorization |
 | S10P2 | N/A | none | NOT RUN | not authorized | Requires S10P1 Closure + separate authorization |
 | S10P3 | N/A | none | NOT RUN | not authorized | Requires S10P2 Closure + retained-Public-row acceptance + separate authorization |
@@ -300,7 +300,7 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - 已实现：旧stale symlink移入owner-only备份，当前用户CLI恢复到固定Docker Desktop bundled Compose v5.3.0；完整SHA-256、config与`--wait` capability均通过，未改系统目录/Docker Desktop app。
 - 已实现：新`feat-126-s10` default-off Infra profile/runbook/static+runtime validators；两个pinned PostgreSQL、pinned Keycloak/Caddy、四个run-scoped volumes、loopback ports、empty migration、synthetic identity与API-local public CA。普通volume/DB和production/default profile不变。
 - 网络结果：所需exact image content均已本地存在，使用`--pull never`，下载/pull=0；PostgreSQL exact content只补固定本地tag。API DB为Docker Desktop loopback publisher加入project-scoped host bridge，但仍只绑定127.0.0.1且无host/shared network。
-- 交付：Infra本地checkpoint `cc56b65ae61e91e5451768a25a9e4a840cb76e79`；static 80/80、migration v4/idempotency、identity/TLS/runtime/no-log/stop验证PASS；未push。八个named volumes与两个owner-only run root因无删除授权而保留。
+- 交付：Infra本地checkpoint `99e50d8b47e13fc3e3b7501617a307e1ba5d6baf`；static 80/80、migration v4/idempotency、identity/TLS/runtime/no-log/rejected-run/stop验证PASS；未push。八个named volumes与两个owner-only run root因无删除授权而保留，污染run由`REJECTED` marker阻止复用。
 - 停止：等待Owner接受DEC-126-039；本节不授权S10P1或S10B。
 
 ### S10P1 Host fake-provider / Desktop Child Profile（Authorization Candidate / NOT AUTHORIZED）

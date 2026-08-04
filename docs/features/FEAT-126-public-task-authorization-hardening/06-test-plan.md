@@ -361,7 +361,7 @@ Public Tasks删除验收要同时证明两件事：（1）Desktop/Host/Runtime�
 | Identity/TLS | public CA file mode/single-cert/no-private-key；OIDC discovery issuer；两次synthetic user provisioning；Tasks denial | PASS；issuer exact；provision 2+2 idempotent；Tasks HTTP 404 |
 | API migration | API `a64f9f…3264` migration against dedicated empty DB；立即重复 | PASS；00001–00004→v4；second run no-op |
 | no-log/no-source-secret | fresh run generated values精确扫描container logs；两次run secret扫描candidate tracked/untracked files | PASS；hit=0 |
-| contaminated-run handling | 初始diagnostic run因process output展开synthetic DB credential被整轮拒绝；fresh run重建证据 | PASS；污染值未进入source/Git/docs，不计入接受证据 |
+| contaminated-run handling | 初始diagnostic run因process output展开synthetic DB credential被整轮拒绝；fresh run重建证据；旧run写入owner-only `REJECTED` marker | PASS；污染值未进入source/Git/docs，不计入接受证据；config/provision/migration/verify均fail closed |
 | stop/cleanup | 两个exact project停止；container/network/listener inventory；禁止volume delete/prune | PASS；active=0；八个named volumes和两个owner-only ignored run root按未授权删除边界保留 |
 
 本表只证明S10E环境切片，不证明Host fake provider、Desktop child profile/Keychain/Public Tasks主链或四组件E2E。DEC-126-039接受前不得进入S10P1；S10B继续HOLD。

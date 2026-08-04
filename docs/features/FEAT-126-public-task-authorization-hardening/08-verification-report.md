@@ -12,7 +12,7 @@
 | Repository | Branch | Full HEAD SHA | Worktree | Runtime/toolchain | 时间 |
 |---|---|---|---|---|---|
 | yijie | `feat/feat-126-foundation-closure` | S10E governance baseline `12983c63d0fef31c11474e673f2ef03d94370eab`；本轮governance checkpoint在最终门禁后回报 | 开始时clean；仅FEAT-126 package diff；0 FEAT-123/unrelated；不push | zsh/macOS；feature package checker | 2026-08-04 Asia/Shanghai |
-| yijie-infra | `feat/feat-126-s10e` | `cc56b65ae61e91e5451768a25a9e4a840cb76e79`；parent `f040492e7c4af4aa7cc94a343140c58befae3af2` | clean；16-file local checkpoint；not pushed | Docker 29.6.1；Compose 5.3.0；Node 26/pnpm 11 | 2026-08-04 Asia/Shanghai |
+| yijie-infra | `feat/feat-126-s10e` | `99e50d8b47e13fc3e3b7501617a307e1ba5d6baf`；parent `f040492e7c4af4aa7cc94a343140c58befae3af2` | clean；16-file local checkpoint；not pushed | Docker 29.6.1；Compose 5.3.0；Node 26/pnpm 11 | 2026-08-04 Asia/Shanghai |
 | yijie-api | `feat/feat-126-foundation-closure` | local/remote exact `a64f9f591fb594818c1778e30c6941e2574b3264` | clean after 16-file Accepted checkpoint；candidate branch exact | Go 1.26.5 + isolated PostgreSQL | 2026-08-03 |
 | yijie-agent-host | `feat/feat-126-foundation-closure` | local S9 checkpoint `8707dea552cff74121b89aa8045f27da2c8c9378`；accepted remote parent `3e8df026110f0c895262329c2384d3896598f3d9` | clean；S9仅test runner/dataset/fixtures；not pushed | Go 1.26.5 + deterministic fake provider | 2026-08-04 |
 | yijie-desktop | `feat/feat-126-foundation-closure` | local S9 checkpoint `adfdb5b24b3277ba39bd76a8cdc63fc138caf9cb`；accepted remote parent `35f27447398529cca4dec85fa1f67e779c7a7cbd` | clean；S9仅fixtures/test harness；not pushed | Node 26/pnpm 11/Rust 1.95/SQLCipher/fake fixture | 2026-08-04 |
@@ -52,7 +52,7 @@
 | DEC-126-035 Remote State Reconciliation | five exact candidate refs | `git ls-remote` + temporary single-branch/no-tags clean clones；HEAD/status/develop refs核对 | 0 | PASS / OWNER ACCEPTED | exact `650254b…139fa`、`a64f9f5…3264`、`3e8df02…f3d9`、`35f2744…7cbd`、`29317b6…e9f`；Owner-authorized historical push；reconciliation轮0 remote write |
 | DESIGN-126-007 / S10A | six fixed baselines + local tool/source/port inventory | branch/SHA/worktree exact；Runtime digest/version；Docker/Compose/PostgreSQL/listener；Host provider；Desktop sidecar/Keychain/Public Tasks consumer scan | 0 for read-only commands | REVIEW ACCEPTED / S10B HOLD | BLK-001–005详见§9.12；DEC-126-037 Option C Accepted；无process/flag/provider/Keychain/business-source mutation |
 | DESIGN-126-008 / S10P0 | six fixed baselines + Infra/Host/Desktop/contracts read-only inventory | Compose stale-link/root cause and bundled v5 hash/config；pinned image/volume choice；fake child profile；run-derived secure storage；Public Tasks idempotency/delete/private IPC shape | 0 for read-only commands | OWNER ACCEPTED / IMPLEMENTATION HOLD | DEC-126-038 Option B Accepted；0 process/container/flag/provider/Keychain/DB/business-source/remote writes |
-| S10E / DEC-126-039 candidate | Infra parent `f040492…af2` + fixed API `a64f9f…3264` + local Docker/Compose/image content | recoverable plugin discovery；default-off exact-digest profile；synthetic identity/TLS；migration v4；runtime/no-secret-log；stop/retained-resource inventory | 0 | CLOSURE CANDIDATE | Infra `cc56b65…6e79` local/clean/not pushed；Owner acceptance pending；not S10P1/S10B evidence |
+| S10E / DEC-126-039 candidate | Infra parent `f040492…af2` + fixed API `a64f9f…3264` + local Docker/Compose/image content | recoverable plugin discovery；default-off exact-digest profile；synthetic identity/TLS；migration v4；runtime/no-secret-log/rejected-run；stop/retained-resource inventory | 0 | CLOSURE CANDIDATE | Infra `99e50d8…6baf` local/clean/not pushed；Owner acceptance pending；not S10P1/S10B evidence |
 
 ## 4. 最终命令记录
 
@@ -440,10 +440,10 @@ Contract impact结论：S10P0自身`none`；S10E为Infra/deployment-only；S10P1
 | S10E-REV-003 | P1 migration/identity | API exact SHA对empty dedicated DB执行00001–00004到v4，second run no-op；synthetic users连续两次provision；OIDC issuer/TLS/public CA exact | CLOSED CANDIDATE |
 | S10E-REV-004 | P1 no-log/security | fresh run runtime verifier检查exact image/health/labels/security/resources/ports；generated secret在container logs和candidate files命中0 | CLOSED CANDIDATE |
 | S10E-REV-005 | P1 cleanup | 两次run停止后container/network/listener=0；未做未授权volume/prune删除 | CLOSED CANDIDATE WITH DISCLOSED RETENTION |
-| S10E-REV-006 | P1 evidence integrity | 初始diagnostic run发生synthetic credential process-output展开，整轮证据作废；fresh run重新生成全部Gate，不以补扫掩盖 | CLOSED CANDIDATE |
+| S10E-REV-006 | P1 evidence integrity | 初始diagnostic run发生synthetic credential process-output展开，整轮证据作废；fresh run重新生成全部Gate；污染run有owner-only `REJECTED` marker且config/provision/migration/verify均fail closed | CLOSED CANDIDATE |
 | S10E-REV-007 | boundary | MiniMax/外部provider=0、Keychain=0、业务四组件=0、flag=0、远端写入=0；contracts/Runtime/API/Host/Desktop业务源码不变 | CLOSED FOR S10E SCOPE |
 
-Infra checkpoint为`cc56b65ae61e91e5451768a25a9e4a840cb76e79`，parent=`f040492e7c4af4aa7cc94a343140c58befae3af2`，local branch clean且未push。Infra static gate为80/80；fresh runtime/migration/identity/TLS/no-log均PASS。
+Infra checkpoint为`99e50d8b47e13fc3e3b7501617a307e1ba5d6baf`，parent=`f040492e7c4af4aa7cc94a343140c58befae3af2`，local branch clean且未push。Infra static gate为80/80；fresh runtime/migration/identity/TLS/no-log及rejected-run fail-closed均PASS。
 
 停止后的八个named volumes与两个owner-only ignored run root是明确披露的保留物：它们没有active container/network/listener，删除仍需单独Owner授权。DEC-126-039推荐方案A只接受S10E并关闭BLK-001；未接受前以及接受后，都不能自动进入S10P1或S10B。
 

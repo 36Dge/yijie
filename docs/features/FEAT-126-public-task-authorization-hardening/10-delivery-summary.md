@@ -18,7 +18,7 @@
 | yijie-api S4 Accepted checkpoint | dedicated remote candidate / no release | tag N/A | `a64f9f591fb594818c1778e30c6941e2574b3264` | Go `438b084d…ab33`；migration v4 `b56f7f5a…ee14` | exact remote candidate；`29317b...` lock；default off；not merged/activated |
 | yijie-agent-host S9 Eval checkpoint | local only over dedicated remote candidate / no release | tag N/A | local `8707dea552cff74121b89aa8045f27da2c8c9378`；remote `3e8df026110f0c895262329c2384d3896598f3d9` | authority/runner/dataset/split/fixture digests见`feature.yaml`与`08`；store v3 unchanged | local only/not pushed；`29317b...` source；v2 flags off；not merged/activated |
 | yijie-desktop S9 consumer checkpoint | local only over S8B remote candidate / no release | tag N/A | local `adfdb5b24b3277ba39bd76a8cdc63fc138caf9cb`；remote `35f27447398529cca4dec85fa1f67e779c7a7cbd` | exact fixture/Rust/TS test digests见`feature.yaml`与`08`；production UI/IPC unchanged | local only/not pushed；`29317b...` lock；flags off；not merged/activated |
-| yijie-infra S10E checkpoint | local only / no release | tag N/A | `cc56b65ae61e91e5451768a25a9e4a840cb76e79` | Compose `2642b635…d265`；images `4e6e670…0d50`/`0f198be…6b13`/`5f5c864…58648` | additive private deployment interface；clean/not pushed；DEC-126-039 candidate |
+| yijie-infra S10E checkpoint | local only / no release | tag N/A | `99e50d8b47e13fc3e3b7501617a307e1ba5d6baf` | Compose `2642b635…d265`；images `4e6e670…0d50`/`0f198be…6b13`/`5f5c864…58648` | additive private deployment interface；clean/not pushed；DEC-126-039 candidate |
 
 ## 3. 验收结果
 
@@ -39,7 +39,7 @@
 | LIA-126-007 / S9 / DEC-126-036 | CLOSURE PASS / OWNER ACCEPTED | `feat126-title-raw-v1` 250 synthetic samples、20% holdout；title 250/250 schema、200/200 semantic、50/50 unsafe；raw 210/210 valid、40/40 negative；late overwrite/leak/execution/action均0；Desktop exact history/delete/plaintext consumer PASS | no production behavior/provider/flag/remote change；not S10 E2E |
 | DESIGN-126-007 / DEC-126-037 | ACCEPTED OPTION C / S10B HOLD | six exact baselines、Runtime artifact、Docker/Compose/ports、Host provider、Desktop sidecar/Keychain/Public Tasks consumer inventory | no process/flag/provider/Keychain/business-code mutation |
 | DESIGN-126-008 / DEC-126-038 | OWNER ACCEPTED OPTION B | stale Compose link与bundled v5.3.0、run-scoped pinned identity stack、loopback fake provider、child allowlist/log/PID、run-derived Keychain、Public Tasks main-chain/private IPC/delete limitation | S10E后来被单独授权并形成Closure候选；P1/P2/P3仍NOT AUTHORIZED/NOT RUN |
-| S10E / DEC-126-039 | CLOSURE CANDIDATE / OWNER ACCEPTANCE PENDING | Compose discovery、default-off exact-digest stack、synthetic identity/TLS、API migration v4、runtime/no-log、stop/retention | Infra `cc56b65…6e79` local/clean/not pushed；not S10P1/S10B evidence |
+| S10E / DEC-126-039 | CLOSURE CANDIDATE / OWNER ACCEPTANCE PENDING | Compose discovery、default-off exact-digest stack、synthetic identity/TLS、API migration v4、runtime/no-log/rejected-run、stop/retention | Infra `99e50d8…6baf` local/clean/not pushed；not S10P1/S10B evidence |
 | Remaining AC/NFR / S10B–S11 | NOT RUN | LIA-126-008 Blocked Draft；full traceability in `05/06/08` | none / production N/A |
 | Requirement package/G0/G1 | G1 product scope approved；structure evidence in `08` | user approval + default/G0/G1/strict package, YAML and diff checks | N/A |
 | G2 data authority | ACCEPTED DESIGN | ADR-0013 + 段成威 2026-08-02 approval；SQLite/PostgreSQL/Redis/pgvector/bbolt 职责已冻结 | N/A |
@@ -172,7 +172,7 @@
 | S9 fake-provider Eval Closure Review | 段成威 | DEC-126-036 Accepted；S9 test-only authority/dataset/runner和Desktop exact consumer全部P1关闭；不授权S10 | 2026-08-04 | Host `8707dea…9378`、Desktop `adfdb5b…f9cb` local only；0 provider/flag/remote action |
 | S10A Local E2E Readiness Review | 段成威 | DESIGN-126-007与DEC-126-037 Option C已接受；继续HOLD LIA-126-008 | 2026-08-04 | 六仓exact/clean + Runtime/tool/source inventory；5 blockers；0 process/flag/provider/Keychain/remote write |
 | S10P0 Corrective Design Review | 段成威 | DEC-126-038 Accepted / Option B；未授权S10E/P1/P2/P3 | 2026-08-04 | DESIGN-126-008；Compose v5、closed test profile/storage/main-chain/private IPC和Public row retention限制 |
-| S10E Environment Closure | 段成威 | DEC-126-039 Candidate；仅S10E已授权执行 | 2026-08-04 | Infra `cc56b65…6e79`；80/80、migration v4、identity/TLS/runtime/no-log/cleanup；0 active resources，8 volumes retained |
+| S10E Environment Closure | 段成威 | DEC-126-039 Candidate；仅S10E已授权执行 | 2026-08-04 | Infra `99e50d8…6baf`；80/80、migration v4、identity/TLS/runtime/no-log/rejected-run/cleanup；0 active resources，8 volumes retained |
 | G5 Production Ready | 段成威 | N/A / Out of Scope under DEC-126-022 | 2026-08-02 | no deployment/tag/publish/production environment |
 | G6 Local-only Delivery Complete | 段成威 | Pending Owner local startup and functional acceptance | N/A | requires G4 + AC-043；not Production Ready |
 
