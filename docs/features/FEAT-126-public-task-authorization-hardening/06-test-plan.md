@@ -1,7 +1,7 @@
 # FEAT-126 测试与 Eval 计划
 
 > 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。DEC-126-023/024完成G2A重审，DEC-126-025登记sole candidate与checkpoint远端ref并恢复LIA-126-002，仅执行S4–S6 Corrective Closure。
-> DEC-126-026/027/028/030/031/033/034已关闭S4–S8B；DEC-126-035已接受远端事实，DEC-126-036已接受LIA-126-007 / S9 Closure。DESIGN-126-007/DEC-126-037方案C、DESIGN-126-008/DEC-126-038方案B、S10E/DEC-126-039及S10P1/DEC-126-040均已接受并继续HOLD S10B；BLK-001/002/003已关闭。DEC-126-041已接受S10P2 source checkpoint与Option B，但Closure HOLD、BLK-004 Open不变。签名准备盘点确认0 signing identities和0 provisioning profiles，因此本轮未增加Keychain写入，S10P3/S10B/S11仍未授权。本轮未调用MiniMax，
+> DEC-126-026/027/028/030/031/033/034已关闭S4–S8B；DEC-126-035已接受远端事实，DEC-126-036已接受LIA-126-007 / S9 Closure。DESIGN-126-007/DEC-126-037方案C、DESIGN-126-008/DEC-126-038方案B、S10E/DEC-126-039及S10P1/DEC-126-040均已接受并继续HOLD S10B；BLK-001/002/003已关闭。DEC-126-041历史决定继续Accepted，S10P2 Closure HOLD与BLK-004 Open不变。DEC-126-042现仅是Local-only调整候选：如未来被Owner安全/G2接受，可在另行授权的S10P2F中用double-exact、run-scoped ephemeral file backend证明本地合成secret生命周期，Apple signed Keychain则转为Deferred Native Hardening。本轮不安装Xcode、不访问Keychain、不执行S10P2F/P3/B/S11，不调用MiniMax，
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
 ## 1. 测试策略
@@ -264,8 +264,8 @@
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
-| 测试/技术 Owner | 段成威 | DEC-126-036–041已Accepted并HOLD LIA-126-008；S10E/S10P1 Closure Passed、BLK-001/002/003 Closed；DEC-126-041只接受S10P2 source checkpoint并保持Closure HOLD，S10P3/S10B–S11/MiniMax/flag activation与完整E2E仍须单独授权 | 2026-08-04 |
-| 安全/数据 Owner | 段成威 | BLK-004/005仍阻断S10B；BLK-004只缺signed Protected Data create/use/restart/delete，不得由unit/mock豁免 | 2026-08-04 |
+| 测试/技术 Owner | 段成威 | DEC-126-036–041已Accepted并HOLD LIA-126-008；DEC-126-042仅为待接受的设计候选，不授权S10P2F/P3/B/S11/MiniMax/flag activation或完整E2E | 2026-08-04 |
+| 安全/数据 Owner | 段成威 | 当前DEC-126-041下BLK-004/005仍阻断S10B；如未来接受DEC-126-042，BLK-004须由另行授权的S10P2F完整ephemeral lifecycle/no-log/cleanup矩阵关闭，signed Keychain只能登记为Deferred Native Hardening，不得写成PASS或等价代替 | 2026-08-04 |
 | Runtime/模型 Owner | 段成威 | DEC-126-021 HOLD与DEC-126-022 Local-only已Accepted；先用fake provider/fixtures，raw reasoning须具体显示并持久化/删除；历史MM-126-001/002不重跑，未来一次local smoke仅可另行提交审批 | 2026-08-02 |
 
 ## 14. LIA-126-006 实际结果
@@ -397,3 +397,24 @@ Public Tasks删除验收要同时证明两件事：（1）Desktop/Host/Runtime�
 | native Protected Data | 随机run三tuple、沙箱外显式ignored probe；结束后exact inventory与root清理 | **BLOCKED**：pre/post全absent、cleanup PASS；首次写返回required entitlement missing；本机0 signing identities |
 
 判定：DEC-126-041已接受Option B和仓内实现，但`create/use/restart/delete`真实Protected Data生命周期未完成，故S10A-BLK-004不能关闭，S10P2 Closure保持HOLD。批准后的准备盘点确认bundle=`com.yijie.ai`、有效codesigning identity=0、installed provisioning profile=0、仓库entitlements/profile=0；没有新增Keychain write attempt。退出条件仍是提供匹配bundle/team/access-group的Apple Development identity/provisioning，在不改业务源码/namespace的情况下完成三条合成item的write/load/restart/delete，并证明post absent、default/legacy/foreign访问与删除均0。此前不得进入S10P3或S10B。
+
+## 21. DEC-126-042 / S10P2F 测试候选（DESIGN ONLY）
+
+DEC-126-042未被Owner接受，S10P2F也未授权。下表只冻结未来实施必须通过的证据；本轮不创建secret文件、不读写Keychain、不启动Desktop/Host/Runtime。
+
+| Test ID | 场景 | PASS条件 |
+|---|---|---|
+| S10P2F-001 | master与ephemeral独立flag的missing/empty/false/TRUE/1/true真值表 | 只有两者均exact `true`且run UUID/root合法才可进入file backend；其它组合不得创建/读取文件，production/default仍是Protected Data Keychain |
+| S10P2F-002 | 首次三role生成 | Chat SQLCipher、receipt HMAC、native-auth均由OS CSPRNG生成，三者不相等、非固定值、非run-ID/seed/env派生；evidence不包含secret/hash |
+| S10P2F-003 | owner-only创建 | root/secret dir=`0700`，file=`0600`；`create_new/O_EXCL`与`O_NOFOLLOW`生效，owner、regular file、`nlink == 1`、canonical parent和schema/length均通过 |
+| S10P2F-004 | symlink/hardlink/wrong owner/mode/path/partial file/role duplicate | 全部fail closed；不读、不替换、不删除，不静默重生secret |
+| S10P2F-005 | 同run Desktop重启 | SQLCipher历史、receipt校验和合成native-auth均使用原三secret恢复；manifest/owner/schema漂移时fail closed |
+| S10P2F-006 | cross-run与并发run | run A/B无法解析、读取、覆盖或删除对方文件；活跃PID/session lease冲突时拒绝 |
+| S10P2F-007 | crash、部分创建、cleanup中断、同run重试 | phase可恢复；partial状态不进入业务链；missing item幂等成功，不发生跨run删除 |
+| S10P2F-008 | 精确cleanup | Desktop→Host/Runtime→SQLCipher句柄按序停止后，只unlink manifest的三个exact files；post inventory全absent，verified empty root才可移除，未知文件不递归删除 |
+| S10P2F-009 | no-log/no-output/no-WebView | secret及其全文在logs、process output、evidence、Git、bundle和WebView命中均0；真实路径不进治理证据 |
+| S10P2F-010 | production/default回归 | 独立flag未设时Desktop当前行为逐字节/逐分支不变；`.env`/CI/build default不设`true`；不产生file-backend artifact |
+| S10P2F-011 | Docker/宿主边界 | PostgreSQL/Keycloak/Caddy/API可使用隔离Docker profile；Desktop/Host/Runtime仍在宿主机；不把macOS Keychain或Desktop伪装成container service |
+| S10P2F-012 | signed native状态披露 | Apple signed Protected Data标记`Deferred Native Hardening / NOT RUN`，不写成PASS、waived或与file backend等价，并在production/signing activation前重新成为强制门禁 |
+
+候选Local-only BLK-004只能在DEC-126-042 Accepted、S10P2F被单独授权、上述12项及Desktop全量lint/test/build/security/diff全部PASS并获Owner Closure接受后关闭。任一失败或需改private IPC/TS/Vue/SQLCipher业务schema/central contracts/Host/API/Runtime，必须停止并重开安全/G2评审。
