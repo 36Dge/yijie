@@ -1,7 +1,7 @@
 # FEAT-126 测试与 Eval 计划
 
 > 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。DEC-126-023/024完成G2A重审，DEC-126-025登记sole candidate与checkpoint远端ref并恢复LIA-126-002，仅执行S4–S6 Corrective Closure。
-> DEC-126-026/027/028/030/031/033/034已关闭S4–S8B；DEC-126-035已接受远端事实，DEC-126-036已接受LIA-126-007 / S9 Closure。DESIGN-126-007/DEC-126-037方案C、DESIGN-126-008/DEC-126-038方案B、S10E/DEC-126-039及S10P1/DEC-126-040均已接受并继续HOLD S10B；BLK-001/002/003已关闭。DEC-126-041继续作为历史source checkpoint与entitlement失败事实。DEC-126-042 Option A已由Owner安全/G2正式接受，LIA-126-011随后单独授权并完成S10P2F实现。Apple signed Keychain保持Deferred Native Hardening / NOT RUN；DEC-126-043仍待Owner，故BLK-004仍Open，S10P3/B/S11仍未授权。本轮不安装Xcode、不访问Keychain、不调用MiniMax。
+> DEC-126-026/027/028/030/031/033/034已关闭S4–S8B；DEC-126-035已接受远端事实，DEC-126-036已接受LIA-126-007 / S9 Closure。DESIGN-126-007/DEC-126-037方案C、DESIGN-126-008/DEC-126-038方案B、S10E/DEC-126-039及S10P1/DEC-126-040均已接受并继续HOLD S10B；BLK-001/002/003已关闭。DEC-126-041继续作为历史source checkpoint与entitlement失败事实。DEC-126-042 Option A、LIA-126-011和DEC-126-043 Option A现已完成S10P2F Closure并关闭Local-only BLK-004。Apple signed Keychain保持Deferred Native Hardening / NOT RUN；S10P3/B/S11仍未授权。本轮不安装Xcode、不访问Keychain、不调用MiniMax。
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
 ## 1. 测试策略
@@ -264,8 +264,8 @@
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
-| 测试/技术 Owner | 段成威 | DEC-126-036–042已Accepted并HOLD LIA-126-008；LIA-126-011已授权并完成S10P2F测试契约，DEC-126-043待Owner；不授权S10P3/B/S11/MiniMax/flag activation或完整E2E | 2026-08-04 |
-| 安全/数据 Owner | 段成威 | BLK-004/005仍阻断S10B；S10P2F完整ephemeral lifecycle/no-log/cleanup矩阵已PASS，但BLK-004须待Owner接受DEC-126-043才关闭；signed Keychain登记为Deferred Native Hardening，不得写成PASS或等价代替 | 2026-08-04 |
+| 测试/技术 Owner | 段成威 | DEC-126-036–043已Accepted并HOLD LIA-126-008；LIA-126-011/S10P2F Closure Passed，BLK-004 Closed；不授权S10P3/B/S11/MiniMax/flag activation或完整E2E | 2026-08-04 |
+| 安全/数据 Owner | 段成威 | BLK-005仍阻断S10B；S10P2F完整ephemeral lifecycle/no-log/cleanup矩阵已PASS且DEC-126-043已关闭Local-only BLK-004；signed Keychain登记为Deferred Native Hardening，不得写成PASS或等价代替 | 2026-08-04 |
 | Runtime/模型 Owner | 段成威 | DEC-126-021 HOLD与DEC-126-022 Local-only已Accepted；先用fake provider/fixtures，raw reasoning须具体显示并持久化/删除；历史MM-126-001/002不重跑，未来一次local smoke仅可另行提交审批 | 2026-08-02 |
 
 ## 14. LIA-126-006 实际结果
@@ -396,9 +396,9 @@ Public Tasks删除验收要同时证明两件事：（1）Desktop/Host/Runtime�
 | dependency/security | offline RustSec、online pnpm audit、source/bundle/no-log/diff扫描 | RustSec 0 unallowed vulnerabilities/17 allowed warnings；production依赖/lockfile本轮0变更；pnpm报告既有dev-tool `brace-expansion 5.0.8` high，需独立依赖修复；新Rust路径无日志sink，frontend bundle无gate/namespace |
 | native Protected Data | 随机run三tuple、沙箱外显式ignored probe；结束后exact inventory与root清理 | **BLOCKED**：pre/post全absent、cleanup PASS；首次写返回required entitlement missing；本机0 signing identities |
 
-判定：DEC-126-041已接受Option B和仓内实现，但`create/use/restart/delete`真实Protected Data生命周期未完成，故S10P2 Closure保持HOLD。批准后的准备盘点确认bundle=`com.yijie.ai`、有效codesigning identity=0、installed provisioning profile=0、仓库entitlements/profile=0；没有新增Keychain write attempt。该签名矩阵现由Accepted DEC-126-042转为Deferred Native Hardening / NOT RUN，不再是Local-only BLK-004前置；当前退出条件是另行授权并完整通过S10P2F矩阵及Owner Closure接受。在此之前仍不得进入S10P3或S10B。
+判定：DEC-126-041已接受Option B和仓内实现，但`create/use/restart/delete`真实Protected Data生命周期未完成，故历史native S10P2 Closure保持HOLD。批准后的准备盘点确认bundle=`com.yijie.ai`、有效codesigning identity=0、installed provisioning profile=0、仓库entitlements/profile=0；没有新增Keychain write attempt。该签名矩阵由DEC-126-042转为Deferred Native Hardening / NOT RUN，不再是Local-only BLK-004前置；DEC-126-043后来接受S10P2F Closure并关闭Local-only BLK-004，但不把本历史native矩阵写成PASS，也不授权S10P3/S10B。
 
-## 21. LIA-126-011 / S10P2F 实际测试结果（DEC-126-043 Candidate）
+## 21. LIA-126-011 / S10P2F 实际测试结果（DEC-126-043 Accepted）
 
 Owner已单独授权LIA-126-011。实现checkpoint为Desktop `46107eec1e9cba0257252cae8678a4233ef20036`，只含6个Rust文件且未push。下表记录现行12项证据；Keychain、MiniMax、外部模型、真实数据和完整四组件均未访问或启动。
 
@@ -419,4 +419,4 @@ Owner已单独授权LIA-126-011。实现checkpoint为Desktop `46107eec1e9cba0257
 
 仓库级结果：targeted storage矩阵19 pass/1 native ignored；全量Rust 124 pass/0 fail/2 native ignored；TypeScript 30 files/165 tests；`generate:check`、lint、production build、`cargo fmt/check/clippy/build`、RustSec、no-log/security/bundle与diff均通过。RustSec为0 vulnerability加17项允许的既有warning；`pnpm audit --prod`报告1项既有moderate PostCSS advisory，依赖与lockfile未改，独立作为P2处理。
 
-授权范围内P1为0，但Local-only BLK-004只能在Owner接受DEC-126-043后关闭。任何S10P3/S10B、private IPC/TS/Vue/SQLCipher业务schema/central contracts/Host/API/Runtime变更仍须新的单独授权。
+授权范围内P1为0，Owner已接受DEC-126-043 Option A并关闭Local-only BLK-004。该决定不授权S10P3/S10B；private IPC/TS/Vue/SQLCipher业务schema/central contracts/Host/API/Runtime变更仍须新的单独授权。
