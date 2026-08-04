@@ -4,7 +4,7 @@ feature:
   id: "FEAT-126"
   slug: "public-task-authorization-hardening"
   title: "安全的新建任务对话、任务记录与 Public Tasks 授权加固"
-  status: "g2-passed-g2a-rereview-passed-s4-s10p1-closure-passed-dec-126-041-accepted-dec-126-042-candidate-g3-partial"
+  status: "g2-passed-g2a-rereview-passed-s4-s10p1-closure-passed-dec-126-042-accepted-g3-partial"
   created_at: "2026-08-01"
   requirement_owner: "段成威"
   technical_owner: "段成威"
@@ -129,7 +129,7 @@ immutable_references:
     digest: "public=c8d9e6742802e0f0392ea8221a5fdd028f76107df893ab4c531da75f9e9e354b; public-ts=e84b70be6505dc5c0fc1e4702018fad2839e1a3fe74d7730883151e49928b678; public-go=c3d6e58ee37157aaeeb7f9dbaf216881ba2ef3057a01f74c169a28467f3fc697; create-fixture=7d366b3e44a9bd86a5c02638b152ac52d79580257ab735d634b01bc5bc73a178; success-fixture=b08848c4ec8b617cadf3024b723dc2067b84829091d102889a7b2b7eb249200e; access-denied-fixture=5333a781ddd9a81a290519f2948020eeec01889808b5d94e5e2f5f4d1438326f; not-found-fixture=db2778cfce53c59b68c140d0c74a95ffa648e7cf20382ef74cf257039b2d0191; sdk-tarball=21b17b50ee265e1ebbd7a5248880c7874c88def65c538f1216d0413e85fab082"
     post_commit_verification: "PASS 2026-08-02: exact parent c000a0245acb5c3f7ead5d2a877fb60c281c588c; make generate/lint/test/build; 29 generated files current; Node 27/27; Go PASS; pnpm pack:sdk; supported contracts-v0.2.0 breaking PASS; Public Tasks v1 2 paths and Agent Host v1 7 paths plus reference closure equal; Public Tasks targeted source/schema/fixture conformance 3/3; digests stable; worktree clean"
     downstream_runtime_conformance: "PASS as local uncommitted LIA-126-002 closure evidence: API and Desktop projections/locks resolve exact 29317b6426578749dc698fc2ad32b986ee5c8e9f; Host lock resolves the same source commit and unchanged Agent Host source digests; generate drift and contract-check gates pass. This is not a merge, release or activation artifact"
-    g2a_status: "DEC-126-024 Accepted / G2A Re-review Passed; S4-S9, S10E and S10P1 Closure accepted. DEC-126-041 Option B accepted the Desktop-private S10P2 source checkpoint while keeping Closure HOLD and BLK-004 open. DEC-126-042 is a Desktop-private semantic local-test storage/deployment candidate only; central contracts, Public Tasks/Host wire, private IPC and Runtime pin are unchanged, so central G2A re-review is N/A. S10P2F/P3/B/S11 remain unauthorized"
+    g2a_status: "DEC-126-024 Accepted / G2A Re-review Passed; S4-S9, S10E and S10P1 Closure accepted. DEC-126-041 Option B accepted the Desktop-private S10P2 source checkpoint while keeping Closure HOLD and BLK-004 open. DEC-126-042 Option A is now Accepted for Desktop-private semantic local-test storage/deployment only; central contracts, Public Tasks/Host wire, private IPC and Runtime pin are unchanged, so central G2A re-review is N/A. Acceptance does not close BLK-004 or authorize S10P2F/P3/B/S11"
   runtime:
     repository_commit: "3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f"
     upstream: "codex-cli 0.144.6 / rust-v0.144.6 / 5d1fbf26c43abc65a203928b2e31561cb039e06d"
@@ -171,18 +171,18 @@ immutable_references:
     - id: "DESIGN-126-007"
       status: "complete and accepted as S10A read-only design on 2026-08-04; DEC-126-037 Option C Accepted with S10B HOLD; BLK-001 is closed and DEC-126-040 accepted S10P1 Closure and closed BLK-002/003; LIA-126-008 remains blocked"
       scope: "exact local process/start-stop manifest, PostgreSQL/OIDC alternatives, child-only exact-true profile, fixed loopback ports, content-free evidence format, S10B-001-012 E2E matrix and stop conditions"
-      blockers: "BLK-001 closed by DEC-126-039; BLK-002/003 closed by DEC-126-040; BLK-004 source controls are implemented at Desktop c863b2ab30d185201bff5736a308d7078ee5dc68 but signed Protected Data lifecycle is blocked by missing entitlement; BLK-005 missing Desktop Public Tasks v2 main chain remains open"
+      blockers: "BLK-001 closed by DEC-126-039; BLK-002/003 closed by DEC-126-040; BLK-004 source controls are implemented at Desktop c863b2ab30d185201bff5736a308d7078ee5dc68 but its Local-only exit now requires a separately authorized and accepted S10P2F Closure under DEC-126-042; signed Protected Data lifecycle is Deferred Native Hardening / NOT RUN; BLK-005 missing Desktop Public Tasks v2 main chain remains open"
       contract_impact: "none for S10A docs/read-only review; DESIGN-126-008 classifies future S10E as deployment-only, S10P1/P2 as private config/storage additive, and S10P3 as Desktop semantic orchestration plus additive private IPC without central-contract change"
     - id: "DESIGN-126-008"
       status: "accepted by Owner with DEC-126-038 Option B on 2026-08-04; S10E was accepted by DEC-126-039; DEC-126-040 accepted S10P1. DEC-126-041 Option B accepted the separately authorized S10P2 source checkpoint while keeping Closure HOLD because native proof is blocked. S10P3/S10B remain unauthorized"
       scope: "Docker Desktop bundled Compose discovery and isolated identity profile; exact loopback fake Responses and Desktop child allowlist/log/PID; run-derived Keychain/app-data namespace; Desktop-to-Public-Tasks content-free binding/outbox/main-chain and closed private control-plane projection"
       contract_impact: "none for S10P0 review; future S10E deployment-only, S10P1 private deployment-config additive, S10P2 private storage-config additive, S10P3 Desktop semantic orchestration plus SQLCipher v5 and additive private IPC; central contracts/Host wire/Runtime pin unchanged"
       owner_stop: "resolved by DEC-126-038 Option B: Owner accepts that local session deletion removes Desktop/Host/Runtime/local binding but retains the content-free Public Task row in PostgreSQL because 29317b... has no permanent delete operation; any future change requires a new G2A delete-contract review"
-    - id: "DEC-126-042-CANDIDATE"
-      status: "candidate 2026-08-04; recommended Option A; pending Owner security/G2 acceptance; S10P2F not authorized"
-      scope: "Local-only double-exact run-scoped ephemeral file secret backend for three synthetic Desktop secrets; signed Protected Data lifecycle becomes Deferred Native Hardening only if this decision is accepted and S10P2F later closes"
+    - id: "DEC-126-042"
+      status: "accepted 2026-08-04; Option A; Owner security/G2 design acceptance; S10P2F not authorized and BLK-004 remains open"
+      scope: "Local-only double-exact run-scoped ephemeral file secret backend for three synthetic Desktop secrets; signed Protected Data lifecycle is Deferred Native Hardening / NOT RUN and must return as a mandatory future native-signing/production gate"
       contract_impact: "semantic Desktop-private local-test storage/deployment semantics and Local-only BLK-004 exit criteria; central G2A N/A because contracts, HTTP/SSE/private IPC, SQLCipher business schema, API, Host and Runtime are unchanged"
-      historical_boundary: "DEC-126-041 remains Accepted and BLK-004 stays open until DEC-126-042 is explicitly accepted and a separately authorized S10P2F Closure passes; native hardening is NOT RUN, not PASS or an equivalent replacement"
+      historical_boundary: "DEC-126-041 remains Accepted as the S10P2 source checkpoint and entitlement-failure record. DEC-126-042 changes only the Local-only exit design; BLK-004 stays open until a separately authorized S10P2F Closure passes and is accepted. Native hardening is NOT RUN, not PASS or an equivalent replacement"
   public_tasks_consumer_inventory:
     status: "complete for repository-local source; Q-010 resolved 2026-08-02"
     result: "no active repository-local consumer observed; generated SDKs are artifacts; agent-host same-name route is a different contract; external consumers remain unknown-public safe compatibility category"
@@ -207,10 +207,10 @@ immutable_references:
     package_publish_policy: "N/A; do not publish SDK/package or configure a registry"
     deployment_policy: "N/A; no online deployment, production canary, production activation, cloud database integration or real user data"
     model_validation: "fake provider and fixed fixtures first; no MiniMax call in this documentation adjustment; one bounded local MiniMax smoke requires separate Owner approval after the local chain is complete; keys never enter logs, databases, documents or frontend storage"
-    implementation_authorization: "S4-S9, S10E and S10P1 Closure passed; DEC-126-036 through DEC-126-041 are Accepted. DEC-126-042 is a design candidate only and does not authorize S10P2F. DEC-126-041 remains the current Accepted storage decision and BLK-004 stays open. LIA-126-008 remains Blocked Draft; S10P2F, S10P3, S10B, S11, MiniMax, feature activation, Xcode/Apple signing/Keychain access, remote write and merge/tag/publish/deploy remain unauthorized"
+    implementation_authorization: "S4-S9, S10E and S10P1 Closure passed; DEC-126-036 through DEC-126-042 are Accepted. DEC-126-042 accepts only the Local-only ephemeral secret design and does not authorize S10P2F or close BLK-004. DEC-126-041 remains the historical S10P2 source/entitlement decision. LIA-126-008 remains Blocked Draft; S10P2F, S10P3, S10B, S11, MiniMax, feature activation, Xcode/Apple signing/Keychain access, remote write and merge/tag/publish/deploy remain unauthorized"
   local_foundation_implementation:
     authorization: "LIA-126-001 foundation plus LIA-126-002 corrective closure; LIA-126-002 resumed under DEC-126-025; LIA-126-003 separately authorized S7C Rust-only implementation after DESIGN-126-005/DEC-126-029 acceptance"
-    status: "S4-S9 Closure passed under DEC-126-026/027/028/030/031/033/034/036; S10E Closure passed under DEC-126-039; S10P1 Closure passed under DEC-126-040 and BLK-002/003 are closed. DEC-126-041 Option B accepted the S10P2 source checkpoint but S10P2 Closure/BLK-004 remain open. DEC-126-042 is a design candidate and does not change any gate. G3 remains Partial because BLK-004/005 and S10P2F/P3/B/S11 are incomplete or unauthorized. All default flags remain off"
+    status: "S4-S9 Closure passed under DEC-126-026/027/028/030/031/033/034/036; S10E Closure passed under DEC-126-039; S10P1 Closure passed under DEC-126-040 and BLK-002/003 are closed. DEC-126-041 Option B accepted the S10P2 source checkpoint but S10P2 Closure/BLK-004 remain open. DEC-126-042 Option A accepts the replacement Local-only exit design only; it does not authorize S10P2F or close BLK-004. G3 remains Partial because BLK-004/005 and S10P2F/P3/B/S11 are incomplete or unauthorized. All default flags remain off"
     s10a_governance_baseline_full_commit: "276f88718eb4146ff5d82cc88a04548d3e1ce1d0"
     contract_full_commit: "29317b6426578749dc698fc2ad32b986ee5c8e9f"
     governance_checkpoint:
@@ -364,12 +364,12 @@ immutable_references:
       fixed_baselines: "Governance 276f88718eb4146ff5d82cc88a04548d3e1ce1d0; Contracts 29317b6426578749dc698fc2ad32b986ee5c8e9f; API a64f9f591fb594818c1778e30c6941e2574b3264; Host 8707dea552cff74121b89aa8045f27da2c8c9378; Desktop adfdb5b24b3277ba39bd76a8cdc63fc138caf9cb; Runtime 3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f"
       environment: "Historical S10A saw docker compose unavailable. S10P0 refined the cause to a stale user plugin symlink while Docker Desktop bundles Compose v5.3.0 (officially v2-functional-equivalent); no observed listener on frozen ports and no install/download/container/service action"
       process_ports: "PostgreSQL 5432; OIDC 8443; API edge 9443; API direct 18080; Host 18081; fake Responses reserved 18082; Vite 1420/1421; loopback only"
-      blockers: "S10A-BLK-001 closed by DEC-126-039; BLK-002/003 closed by DEC-126-040; BLK-004 remains open only for signed Protected Data create/use/restart/delete evidence after source isolation implementation; BLK-005 remains open for connected Desktop-to-Public-Tasks content-free orchestration"
+      blockers: "S10A-BLK-001 closed by DEC-126-039; BLK-002/003 closed by DEC-126-040; BLK-004 remains open until a separately authorized and accepted S10P2F ephemeral-backend Closure; signed Protected Data lifecycle is Deferred Native Hardening / NOT RUN; BLK-005 remains open for connected Desktop-to-Public-Tasks content-free orchestration"
       evidence: "S10B-001 through 012 frozen; evidence stores only process role/PID/PPID/SHA/nonce/port/time/exit, fixture and pattern hashes, counts, enums, booleans, duration and failure class; no prompt/assistant/raw/title/secret/DSN/key/real path"
       provider_calls: 0
       process_start_count: 0
       keychain_access_count: 0
-      recommendation: "Continue holding S10B. BLK-004 may close only through an Owner-accepted path: current DEC-126-041 signed native proof, or future DEC-126-042 acceptance plus separately authorized/accepted S10P2F Closure. Then S10P3 must separately close BLK-005 before resubmitting LIA-126-008"
+      recommendation: "Continue holding S10B. Under accepted DEC-126-042, Local-only BLK-004 may close only through a separately authorized, passed and Owner-accepted S10P2F Closure. Then S10P3 must separately close BLK-005 before resubmitting LIA-126-008. Signed native proof remains Deferred Native Hardening, not a Local-only prerequisite"
     s10p0_corrective_design_review:
       authorization: "Owner authorized read-only inventory, design freeze and governance updates only on 2026-08-04; no corrective implementation or S10B"
       status: "DESIGN-126-008 and DEC-126-038 Option B Accepted on 2026-08-04; S10E accepted by DEC-126-039; S10P1 accepted by DEC-126-040; DEC-126-041 Option B accepted the S10P2 source checkpoint while retaining Closure HOLD; S10P3/S10B remain NOT AUTHORIZED / NOT RUN"
@@ -432,16 +432,16 @@ immutable_references:
       protected_data_created_items: 0
       default_legacy_foreign_keychain_access_count: 0
       remote_write_count: 0
-      remaining_p1: "signed Apple Development bundle with matching provisioning/access-group must complete exact three-item create/use/restart/delete and post-absent proof; until then BLK-004 and S10P2 Closure remain open"
+      remaining_p1: "historical DEC-126-041 native P1 remains NOT RUN and is now Deferred Native Hardening under DEC-126-042. For Local-only delivery, BLK-004 and S10P2 Closure remain open until a separately authorized and accepted S10P2F Closure passes"
       native_signing_preparation: "read-only readiness completed after Option B acceptance: canonical bundle com.yijie.ai; valid codesigning identities=0; installed provisioning profiles=0; repository macOS entitlements/embedded profiles=0; active developer directory is Command Line Tools only. Team/ApplicationIdentifierPrefix cannot be verified or invented, so no CSR, certificate, profile, entitlement file or Keychain item was created and protected-data write attempts remain 2"
       required_signing_contract: "Apple Development identity and unexpired macOS development provisioning must share one Team Identifier, authorize bundle com.yijie.ai and an effective keychain access group exactly derived as <ApplicationIdentifierPrefix>com.yijie.ai; signed temporary app/harness effective entitlements and embedded profile must match before any synthetic write"
-      next_gate: "Under current DEC-126-041, obtain matching Apple Development signing material and rerun only the exact native matrix. Alternatively, Owner may first accept DEC-126-042 and later separately authorize S10P2F. Neither path currently authorizes S10P3"
-    s10p2f_local_ephemeral_secret_adjustment_candidate:
-      authorization: "DEC-126-042 documentation/design review only; implementation is NOT AUTHORIZED. Owner must first accept DEC-126-042, then issue a separate S10P2F authorization"
-      status: "DEC-126-042 CANDIDATE / SECURITY-G2 REVIEW PENDING / S10P2F NOT AUTHORIZED / S10A-BLK-004 OPEN"
-      fixed_baselines: "Governance 6d75f1ff8b95c10f89f529a1295c0da954e2ad46; Desktop c863b2ab30d185201bff5736a308d7078ee5dc68; Contracts 29317b6426578749dc698fc2ad32b986ee5c8e9f; API a64f9f591fb594818c1778e30c6941e2574b3264; Host e0a8d3d29a335571d1654d95e1e262c240755674; Runtime 3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f; Infra 99e50d8b47e13fc3e3b7501617a307e1ba5d6baf"
+      next_gate: "DEC-126-042 supersedes the signed native matrix as the Local-only exit path. Await a separately explicit S10P2F implementation authorization; neither DEC-126-041 nor DEC-126-042 authorizes S10P3"
+    s10p2f_local_ephemeral_secret_adjustment:
+      authorization: "DEC-126-042 Option A and its security/G2 design are Accepted; implementation remains NOT AUTHORIZED. Owner must issue a separate S10P2F implementation authorization"
+      status: "DEC-126-042 ACCEPTED / SECURITY-G2 DESIGN ACCEPTED / S10P2F NOT AUTHORIZED / S10A-BLK-004 OPEN"
+      fixed_baselines: "Governance approval baseline 35cbf8e75f5ad88d392d164cb529ee5789e52667; Desktop c863b2ab30d185201bff5736a308d7078ee5dc68; Contracts 29317b6426578749dc698fc2ad32b986ee5c8e9f; API a64f9f591fb594818c1778e30c6941e2574b3264; Host e0a8d3d29a335571d1654d95e1e262c240755674; Runtime 3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f; Infra 99e50d8b47e13fc3e3b7501617a307e1ba5d6baf"
       contract_impact: "semantic Desktop-private local-test storage/deployment semantics and Local-only BLK-004 exit criteria; central contracts/G2A re-review N/A because Public Tasks/Host HTTP/SSE, private IPC, SQLCipher business schema, API, Host, Runtime and production/default behavior are unchanged"
-      decision_history: "DEC-126-041 remains Accepted, its source checkpoint and entitlement failure remain historical fact, and its Closure HOLD stays current until DEC-126-042 is accepted and a later S10P2F Closure passes"
+      decision_history: "DEC-126-041 remains Accepted and its source checkpoint plus entitlement failure remain historical fact. DEC-126-042 is now Accepted, but S10P2 Closure/BLK-004 remain on HOLD until a later separately authorized and accepted S10P2F Closure passes"
       objective: "permit Local-only synthetic E2E without Xcode by using a strictly isolated run-scoped ephemeral file backend; this is not a production secret store and is not equivalent to Protected Data Keychain"
       exact_flags: "YIJIE_FEAT126_S10_TEST_PROFILE_ENABLED == true AND YIJIE_FEAT126_S10_EPHEMERAL_SECRET_BACKEND_ENABLED == true; missing/false/typo/TRUE/1 leaves current Protected Data behavior unchanged and creates no file-backend artifact"
       secret_roles: "exactly three roles: chat_sqlcipher, receipt_hmac and native_auth; all secret material uses OS CSPRNG; fixed, run-ID-derived, shared-seed, environment-value and real-user secrets are forbidden"
@@ -449,7 +449,7 @@ immutable_references:
       lifecycle: "first start generates three random synthetic secrets; same-run Desktop restart recovers the exact secrets; cross-run read/write/delete is denied; manifest mismatch, active lease, symlink or permissions drift fails closed; crash and interrupted cleanup are resumable"
       cleanup: "after Desktop, Host/Runtime and SQLCipher are stopped, unlink only the three exact manifest files for the current validated run; missing is idempotent; mismatch or unknown files causes delete count 0; remove only a verified-empty run root; no recursive foreign cleanup and no forensic-erase promise"
       docker_boundary: "PostgreSQL, Keycloak, Caddy and API may run in the isolated Docker profile; Desktop GUI, Host and fixed Runtime remain host processes; Desktop or macOS Keychain is not represented as a Docker service; fake provider and synthetic data only"
-      local_blk004_exit_candidate: "DEC-126-042 Accepted + separate S10P2F authorization + S10P2F-001 through S10P2F-012 + full Desktop lint/test/build/security/diff + Owner Closure acceptance; then and only then Local-only BLK-004 may close"
+      local_blk004_exit: "separate S10P2F authorization + S10P2F-001 through S10P2F-012 + full Desktop lint/test/build/security/diff + Owner Closure acceptance; then and only then Local-only BLK-004 may close"
       native_hardening: "Deferred Native Hardening / NOT RUN; signed Protected Data lifecycle must be restored as a mandatory gate before native signing, distribution or production activation; never record it as PASS, waived or equivalent"
       stop_conditions: "stop and reopen security/G2 if implementation needs central contracts, Public Tasks/Host wire, private IPC/Tauri commands/events, TypeScript/Pinia/Vue, SQLCipher business schema, API/Host/Runtime pin, production/default selector change, WebView/shell path authority, real Keychain access or secret transfer to Host/container"
       provider_calls: 0
@@ -458,9 +458,9 @@ immutable_references:
       secret_file_create_count: 0
       process_start_count: 0
       remote_write_count: 0
-      next_gate: "Owner security/G2 acceptance of DEC-126-042, followed by a separately explicit S10P2F implementation authorization; do not start S10P3 or S10B"
+      next_gate: "separately explicit S10P2F implementation authorization; do not start S10P3 or S10B"
     exclusions: "no Xcode, Apple certificate/CSR/provisioning or Keychain access; no MiniMax/external-model call; no real data or ephemeral secret file in this design review; no API, Runtime, central contracts, private IPC, TypeScript/Vue, Host/Public Tasks wire or database-schema change; no remote write or push, merge, tag, publish or deploy; no default feature activation; no S10P2F/P3/S10B-S11 implementation or complete local four-component E2E"
-    aggregate_workspace_gate: "DEC-126-041 OPTION B ACCEPTED / DEC-126-042 DESIGN CANDIDATE ONLY / S10P2 SOURCE PASSED / CLOSURE HOLD: BLK-004/005 remain open and S10B remains blocked. The candidate does not authorize S10P2F or count as G4/G6 evidence; central G2A remains passed and unaffected"
+    aggregate_workspace_gate: "DEC-126-041 OPTION B ACCEPTED / DEC-126-042 OPTION A SECURITY-G2 DESIGN ACCEPTED / S10P2 SOURCE PASSED / CLOSURE HOLD: BLK-004/005 remain open and S10B remains blocked. Design acceptance does not authorize S10P2F or count as G4/G6 evidence; central G2A remains passed and unaffected"
   release_artifacts: []
 
 gates:
@@ -468,8 +468,8 @@ gates:
   G1_design_ready: "passed - 2026-08-01 - 段成威 approved the FEAT-126 recommended product scope and closed Q-001–Q-005/Q-011–Q-014"
   G2_implementation_ready: "passed - 2026-08-02 - 段成威 accepted DEC-126-017, DEC-126-011/012 and FEAT-126 Chat/App Shell Pattern; Q-010 resolved; LIA-126-001 later authorized S4-S6 only"
   G2A_contract_ready: "passed - 2026-08-02 - DEC-126-023/024/025 accepted and Q-017 resolved; 29317b6426578749dc698fc2ad32b986ee5c8e9f is the sole source-contract candidate, post-commit gates passed and dedicated remote ref matches exactly; c000a024, Draft PR #1 and origin/develop unchanged; LIA-126-002 separately resumed only for S4-S6"
-  G3_slice_complete: "partial - 2026-08-04 - S4-S9, S10E and S10P1 Closure passed; BLK-001/002/003 closed. DEC-126-041 Option B accepted the S10P2 source checkpoint but retained Closure HOLD and BLK-004 open. DEC-126-042 is a candidate only; S10P2F/P3/B/S11 remain unauthorized"
-  G4_code_complete: "pending - BLK-004 must close through an Owner-accepted path: either signed S10P2 native Closure, or DEC-126-042 acceptance followed by separately authorized and accepted S10P2F Closure. Then separately authorized/accepted S10P3 must close BLK-005 before LIA-126-008 can be resubmitted; S10B-001 through 012 must still pass"
+  G3_slice_complete: "partial - 2026-08-04 - S4-S9, S10E and S10P1 Closure passed; BLK-001/002/003 closed. DEC-126-041 Option B accepted the S10P2 source checkpoint but retained Closure HOLD and BLK-004 open. DEC-126-042 Option A is Accepted for security/G2 design only; S10P2F/P3/B/S11 remain unauthorized"
+  G4_code_complete: "pending - Local-only BLK-004 must close through a separately authorized, passed and Owner-accepted S10P2F Closure under DEC-126-042. Then separately authorized/accepted S10P3 must close BLK-005 before LIA-126-008 can be resubmitted; S10B-001 through 012 must still pass. Signed native Keychain proof is Deferred Native Hardening / NOT RUN"
   G5_production_ready: "not-applicable - DEC-126-022 excludes online deployment and production activation; any future production intent must reopen and pass the production track"
   G6_delivery_complete: "pending - FEAT-126 local-only scope; requires Owner acceptance of local service startup and the complete local functional chain; does not mean Production Ready"
 
