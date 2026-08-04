@@ -1,7 +1,7 @@
 # FEAT-126 测试与 Eval 计划
 
 > 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。DEC-126-023/024完成G2A重审，DEC-126-025登记sole candidate与checkpoint远端ref并恢复LIA-126-002，仅执行S4–S6 Corrective Closure。
-> DEC-126-026/027/028/030/031/033/034已关闭S4–S8B；DEC-126-035已接受远端事实，DEC-126-036已接受LIA-126-007 / S9 Closure。DESIGN-126-007/DEC-126-037方案C、DESIGN-126-008/DEC-126-038方案B、S10E/DEC-126-039及S10P1/DEC-126-040均已接受并继续HOLD S10B；BLK-001/002/003已关闭。DEC-126-041继续作为历史source checkpoint与entitlement失败事实。DEC-126-042 Option A、LIA-126-011和DEC-126-043 Option A现已完成S10P2F Closure并关闭Local-only BLK-004。Apple signed Keychain保持Deferred Native Hardening / NOT RUN；S10P3/B/S11仍未授权。本轮不安装Xcode、不访问Keychain、不调用MiniMax。
+> S4–S9与S10E/P1/P2F Closure已接受，BLK-001–004关闭。Owner已授权LIA-126-012并接受DEC-126-044 Option A/S10I；Desktop S10P3仓内门禁、dynamic numeric `nbf` profile与真实identity/Public Tasks主链均PASS。DEC-126-045 Closure Review等待Owner，故BLK-005仍Open。Apple signed Keychain保持Deferred Native Hardening / NOT RUN；S10B/S11仍未授权。本轮未安装Xcode、访问Keychain或调用MiniMax。
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
 ## 1. 测试策略
@@ -420,3 +420,23 @@ Owner已单独授权LIA-126-011。实现checkpoint为Desktop `46107eec1e9cba0257
 仓库级结果：targeted storage矩阵19 pass/1 native ignored；全量Rust 124 pass/0 fail/2 native ignored；TypeScript 30 files/165 tests；`generate:check`、lint、production build、`cargo fmt/check/clippy/build`、RustSec、no-log/security/bundle与diff均通过。RustSec为0 vulnerability加17项允许的既有warning；`pnpm audit --prod`报告1项既有moderate PostCSS advisory，依赖与lockfile未改，独立作为P2处理。
 
 授权范围内P1为0，Owner已接受DEC-126-043 Option A并关闭Local-only BLK-004。该决定不授权S10P3/S10B；private IPC/TS/Vue/SQLCipher业务schema/central contracts/Host/API/Runtime变更仍须新的单独授权。
+
+## 22. LIA-126-012 / S10I / S10P3执行矩阵（DEC-126-045 Closure候选）
+
+| Gate | 方法 | 结果 |
+|---|---|---|
+| contract/runtime conformance | 固定`29317b...`生成物检查；Rust closed DTO/状态码/UUID idempotency；无Public delete | PASS；central wire无需变化，G2A N/A |
+| SQLCipher v5 | embedded checksum；populated v1/v2/v3/v4→v5；重复启动、只读/损坏；binding/outbox content-free列与cascade | PASS；历史session获得non-replayable terminal control-plane projection；正文/path列为0 |
+| orchestration/fault | Public bind-before-Host；201/400/401/403/409/500/503/transport unknown；stable operation、retry/lease/restart、authority变化、delete/interrupt race | PASS（fixed provider/unit）；Host identity改为已绑定Public task ID |
+| private projection | Rust serde↔JSON Schema↔TS validator/client↔Pinia；pending/bound/blocked_auth/retry_wait/denied/failed；gap/resync/stale | PASS；WebView projection无Public ID/bearer/authority/path/raw wire |
+| Desktop TS | `pnpm test`、lint、production build | PASS；30 files / 167 tests；build成功 |
+| Desktop Rust | `cargo fmt`、`cargo clippy --all-targets -- -D warnings`、宿主权限全量test | PASS；129 passed / 0 failed / 3明确ignored |
+| isolated S10E startup | 新run启动PostgreSQL/Keycloak/Caddy/API、synthetic provisioning、API migration | PASS；全服务healthy，migration v4；结束后API与containers停止，run volumes保留 |
+| S10I realm/static/live | exact audience + built-in user-session-note `AUTH_TIME`→numeric `nbf`；拒绝missing/static/extra/drift | PASS；Infra 81 tests，static hardcoded negative与live provision conformance通过；API verifier unchanged |
+| native OIDC→API | Desktop production Rust path执行Authorization Code + PKCE，真实token调用capability/Public Tasks | PASS；标准token含numeric `nbf`；1个ignored real-main-chain test在显式S10 profile下1/1通过；无手工bearer/mock signer/curl |
+| real Public create/retention/PostgreSQL denylist | 真实201/bind、local delete后Public row retained及正文/path 0命中；错误/unknown继续由已通过fixed fault matrix覆盖，本次按Owner指令不扩大重跑 | PASS；task 1/closed 1/forbidden 0/path 0，audit 5/forbidden 0/path 0，idempotency 1 |
+| default/remote/model | `.env`/CI/default flag、MiniMax、Keychain、真实数据、remote write | PASS：全部0/未启用 |
+
+沙箱内第一次Rust全量运行因临时SQLCipher、loopback bind与macOS bookmark权限统一失败；同一代码在批准的宿主权限下129/129可运行项全绿，因此只作为环境诊断，不列为产品失败。历史真实S10E 401保留为S10I触发证据；DEC-126-044批准后fresh run已经证明其由dynamic numeric `nbf` profile关闭，未放宽API。
+
+DEC-126-045推荐接受S10P3 Closure并关闭BLK-005。Owner接受前保持BLK-005 Open、G3 Partial与S10B HOLD；接受后也只能另行申请LIA-126-008，不自动进入S10B/S11、MiniMax、activation或远端动作。

@@ -1,6 +1,6 @@
-# FEAT-126 技术设计（DEC-126-042 Local-only Secret Adjustment Accepted，G3 Partial）
+# FEAT-126 技术设计（DEC-126-044 S10I Accepted，DEC-126-045 Closure Review Pending，G3 Partial）
 
-> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。S4–S9、S10E与S10P1 Closure均已接受；DEC-126-041的source checkpoint与entitlement失败作为历史Accepted事实保留。DEC-126-042 Option A已获Owner安全/G2正式接受，LIA-126-011完成S10P2F实现，DEC-126-043 Option A接受Closure并仅关闭Local-only BLK-004。Apple signed Protected Data证明保持Deferred Native Hardening / NOT RUN；S10P3/S10B/S11、MiniMax、默认flag activation与新增远端/发布动作均未授权。
+> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。S4–S9、S10E、S10P1与S10P2F Closure均已接受，BLK-001–004 Closed。Owner已批准DEC-126-044方案A并单独授权S10I；Keycloak动态numeric `nbf` profile与真实Desktop identity/Public Tasks主链已通过，API verifier保持不变。DEC-126-045 S10P3 Closure Review等待Owner，故BLK-005仍Open、G3 Partial。S10B/S11、MiniMax、默认flag activation与远端/发布动作未授权。
 
 ## 1. 设计摘要
 
@@ -791,7 +791,7 @@ event: { schemaVersion: 1, sequence, sessionId,
 | S10P2F（LIA-126-011实施/DEC-126-043 Accepted） | Local-only BLK-004 Closed | `semantic` Desktop-private test storage/deployment；central contracts/G2A N/A | S10 master与`YIJIE_FEAT126_S10_EPHEMERAL_SECRET_BACKEND_ENABLED`必须分别exact `true`；任一缺失/false完全保持当前Protected Data默认 | 三个CSPRNG synthetic secrets、same-run restart、cross-run、wrong owner/mode/nlink/symlink/manifest、partial write/crash/recovery、no-log/process-output/evidence、exact cleanup/default-off均PASS | 关闭独立flag即回到当前Protected Data路径；只unlink匹配manifest的三个test files和run root；不承诺法证擦除 |
 | S10P3 | BLK-005 | semantic Desktop orchestration + SQLCipher v5 + additive private command/channel；central wire none | Chat flags仍default-off；API secure Tasks只在local profile exact true | schema/serde/TS conformance，auth/tenant/revision，idempotency/unknown/restart/race，Public DB/no-log/migration/cascade/retained-row disclosure | flag off；forward migration保留；停coordinator；不删或猜测Public row |
 
-DEC-126-038–043已由Owner接受；S10E/S10P1/S10P2F Closure Passed，详见§19/20/23，BLK-001–004 Closed。S10P3仍须单独授权并关闭BLK-005；不得因DEC-126-043直接进入实现。只有BLK-005也Closed后才能重新提交LIA-126-008/S10B。
+DEC-126-038–044已由Owner接受；S10E/S10P1/S10P2F Closure Passed，详见§19/20/23，BLK-001–004 Closed。S10P3与S10I已单独授权并完成；DEC-126-045仍须由Owner接受后才能关闭BLK-005。只有BLK-005 Closed后才能重新提交LIA-126-008/S10B。
 
 ### 18.7 安全、migration、restart、cleanup与race矩阵
 
@@ -972,3 +972,33 @@ Owner单独授权的允许范围仅为Desktop Rust test-only secret backend、�
 ### 23.4 Closure候选与停止边界
 
 授权范围内P1为0，S10P2F-001–012与全仓门禁证据见`06-test-plan.md`和`08-verification-report.md`。Owner已接受DEC-126-043 Option A，S10P2F Closure Passed并关闭Local-only BLK-004；G3仍保持Partial。该接受不授权S10P3/S10B/S11。Apple signed Protected Data生命周期仍为`Deferred Native Hardening / NOT RUN`，文件backend不构成其PASS、豁免或生产等价替代。
+
+## 24. LIA-126-012 / S10I执行结果与S10P3 Closure候选
+
+### 24.1 Desktop candidate已实现的边界
+
+- SQLCipher forward-only schema v5新增content-free Public Task binding/outbox状态；仅保存local/public/operation ID、authority revision、closed state、lease/retry/error enum与时间，不复制prompt/message/assistant/raw/title/path。
+- Rust native authority使用既有`NativeAuthRuntime`调用固定contract的`POST /v2/tasks`；同一create operation复用UUID idempotency key，只有201响应的tenant/creator/reference全部匹配并原子bind后才允许Host start。
+- unknown/timeout/409/restart、logout/tenant/revision、create/delete/interrupt/Host-start race由持久化状态机处理；本地删除级联清binding，已创建Public row按DEC-126-038保留。
+- additive private projection固定为`chat_get_session_control_plane_v1`与`yijie.chat.control-plane.event.v1`；WebView只见closed状态和稳定issue/recovery，不见Public ID、bearer、owner/tenant authority、路径、Host/Runtime ID或raw wire。
+- fixed contract candidate足以表达上述request/response/idempotency/error；central contract、API/Host wire与Runtime pin无需改变，G2A重审为N/A。
+
+### 24.2 仓内证据
+
+Desktop TypeScript 30 files / 167 tests、generate-check、lint和production build通过；Rust在宿主权限下129 pass / 0 fail / 3明确ignored，`cargo fmt`与`clippy -D warnings`通过。migration覆盖populated v1/v2/v3/v4→v5、重复启动、只读/损坏；fake transport覆盖closed request/response/error、authority/idempotency/restart/race/no-log。第一次沙箱内Rust运行因临时SQLCipher、loopback和macOS bookmark权限产生环境性失败，不计为产品回归；同一代码在受控宿主权限下全绿。
+
+### 24.3 DEC-126-044 / S10I：真实OIDC claim纠偏
+
+Owner接受DEC-126-044 Option A并只授权S10I。`yijie-infra@8d7c84dc963141931c6c5d3c3aded3218247df0b`在Desktop public client增加Keycloak内置`oidc-usersessionmodel-note-mapper`，把numeric user-session note `AUTH_TIME`投影为access-token `nbf`。static realm validator与live provisioner要求exact audience + dynamic nbf两个mapper；缺失、额外、静态hardcoded或配置漂移均fail closed。
+
+API `verifier.go`和required claims未改；未使用静态`nbf=0`、script mapper、手工bearer、备用signer、curl或mock。该变化只属于default-off、synthetic-only S10E identity profile，不改变central contracts、Public Tasks/Host wire、Runtime pin或production/default identity行为，G2A重审为N/A。
+
+### 24.4 真实main-chain复验
+
+fresh run `90dc0dd9-140d-4ec0-b918-e24faab98aeb`使用exact-digest PostgreSQL/Keycloak/Caddy、合成用户与API migration v4。Desktop production Rust authority完成标准Authorization Code + PKCE，access token含numeric `nbf`；unchanged API verifier接受capability与content-free `POST /v2/tasks`。随后Public binding先于Host start落库，本地session删除完成，Public Task row按DEC-126-038保留。
+
+隔离PostgreSQL content-free汇总为：`task_rows=1`、`closed_input_rows=1`、task forbidden/path rows=`0/0`；`audit_rows=5`、audit forbidden/path rows=`0/0`；`idempotency_rows=1`。API与四个容器/网络已停止，named volumes按既定删除边界保留；MiniMax、Keychain、真实数据、默认flag与远端写入均为0。
+
+### 24.5 DEC-126-045 Closure Review停止条件
+
+S10P3实现已保存为本地Desktop checkpoint `ed9eb14f3829f6e8fee427de40f76a2c549fb78c`；S10I保存为本地Infra checkpoint `8d7c84dc963141931c6c5d3c3aded3218247df0b`，均未push。DEC-126-045推荐接受Closure并关闭BLK-005，但在Owner接受前BLK-005仍Open、G3 Partial，LIA-126-008/S10B继续HOLD。该Closure即使获批，也只允许另行提交S10B授权，不自动授权S10B/S11、MiniMax、activation或任何远端动作。
