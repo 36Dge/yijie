@@ -1,7 +1,7 @@
 # FEAT-126 测试与 Eval 计划
 
 > 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。DEC-126-023/024完成G2A重审，DEC-126-025登记sole candidate与checkpoint远端ref并恢复LIA-126-002，仅执行S4–S6 Corrective Closure。
-> DEC-126-026/027/028/030/031/033/034已关闭S4–S8B；DEC-126-035已接受远端事实，DEC-126-036已接受LIA-126-007 / S9 Closure。DESIGN-126-007与DEC-126-037方案C已接受并继续HOLD S10B；S10B/S11仍为`NOT RUN`且未授权。本轮未调用MiniMax，
+> DEC-126-026/027/028/030/031/033/034已关闭S4–S8B；DEC-126-035已接受远端事实，DEC-126-036已接受LIA-126-007 / S9 Closure。DESIGN-126-007与DEC-126-037方案C已接受并继续HOLD S10B；DESIGN-126-008/DEC-126-038为Owner审批候选。S10E/P1/P2/P3/S10B/S11仍为`NOT RUN`且未授权。本轮未调用MiniMax，
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
 ## 1. 测试策略
@@ -264,7 +264,7 @@
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
-| 测试/技术 Owner | 段成威 | DEC-126-036已接受S9 Closure；DEC-126-037已采用方案C并HOLD LIA-126-008；S10P/S10B–S11/MiniMax/flag activation与完整E2E仍须单独授权 | 2026-08-04 |
+| 测试/技术 Owner | 段成威 | DEC-126-036/037已Accepted并HOLD LIA-126-008；DEC-126-038待审批；S10E/P1/P2/P3/S10B–S11/MiniMax/flag activation与完整E2E仍须单独授权 | 2026-08-04 |
 | 安全/数据 Owner | 段成威 | 当前P1及Public Tasks正文边界阻断closure；既有auth/delete/no-log/migration结果仅作foundation evidence | 2026-08-02 |
 | Runtime/模型 Owner | 段成威 | DEC-126-021 HOLD与DEC-126-022 Local-only已Accepted；先用fake provider/fixtures，raw reasoning须具体显示并持久化/删除；历史MM-126-001/002不重跑，未来一次local smoke仅可另行提交审批 | 2026-08-02 |
 
@@ -305,7 +305,7 @@ DEC-126-036已接受；S10A只读评审不等于四组件E2E，S10B仍须关闭b
 |---|---|---|
 | 六仓分支/SHA/worktree | 全部与Owner固定值精确相等，clean | PASS |
 | Runtime artifact | version 0.144.6；binary/manifest SHA-256与manifest一致 | PASS（未启动app-server） |
-| Docker/Compose | Docker 29.6.1存在；Compose v2 plugin不存在 | `ENVIRONMENT_BLOCKED` |
+| Docker/Compose | Docker 29.6.1存在；S10A时`docker compose`不可用，S10P0进一步定位为用户plugin symlink失效；Docker Desktop bundled Compose v5.3.0只读校验PASS | `ENVIRONMENT_BLOCKED`（discovery/profile尚未获授权） |
 | 当前服务 | 5432/6379/8080/18080/1420未观察到listener | no existing isolated stack |
 | fake provider process profile | Host仅blank/MiniMax，thread要求MiniMax，base URL硬编码 | `CONFIG_UNREPRESENTABLE` |
 | Desktop child flags/logs | sidecar env allowlist强制v2 flags=false，stdout/stderr=null | `CONFIG_UNREPRESENTABLE` |
@@ -327,10 +327,25 @@ S10B必须以`S10B-001–012`作为同一run的不可分割矩阵：provenance/s
 
 **当前推荐：不批准执行。** 下列前置须全部关闭并回填新checkpoint与逐仓门禁：
 
-1. Owner单独批准并补齐Compose v2，或提供经等价复验的isolated PostgreSQL + exact Keycloak/Caddy/TLS profile；
+1. Owner接受DEC-126-038并单独授权S10E：可恢复地修复用户级plugin link，使用已固定摘要的Docker Desktop bundled Compose v5.3.0，建立run-scoped isolated PostgreSQL + exact Keycloak/Caddy/TLS profile；
 2. Host有受审查、test-only、loopback的fake Responses process injection，不改默认MiniMax行为且不需真实key；
 3. Desktop sidecar能在本次子进程向Host传递批准的raw/cleanup exact-true、生成content-free child log/PID evidence，退出后默认仍off；
 4. Desktop Chat/native-auth使用test-only Keychain namespace与isolated app-data，不触碰真实条目；
 5. 真实Desktop create action有content-free `/v2/tasks`编排，并与同一local session/Host operation可追踪，无正文上传。
 
 DEC-126-037已接受`HOLD`。前置关闭前，LIA-126-008状态保持`Blocked Draft / NOT AUTHORIZED`；G3 Partial、G4/G6 Pending。
+
+## 17. DESIGN-126-008 / S10P0 corrective 测试冻结
+
+S10P0本轮只运行只读环境/源码检查与治理门禁，corrective代码和多进程case均为`NOT RUN`。下表是Owner批准DEC-126-038后供各切片独立授权使用的最小门禁：
+
+| Slice | 正常路径 | 安全/负向 | migration/restart/race | 退出Gate |
+|---|---|---|---|---|
+| S10E | bundled Compose v5.3.0 version/hash/config；四个digest-pinned services ready；empty API DB migration；synthetic OIDC/TLS/CA | stale/foreign symlink、mutable tag、旧volume/DB reuse、非loopback port、镜像缺失 | 重复profile prepare/status/stop；run project/volume清单不串run | plugin可恢复；无真实DB/Keychain；无未列入manifest的删除 |
+| S10P1 | fake `/v1/responses`→fixed Runtime→Host raw/cleanup；nonce/PID/log | master false/typo、nonloopback URL、userinfo/query/redirect/proxy、fake+MiniMax key同存、oversize/unknown fixture | Host/Desktop/fake任意崩溃与重启；child effective env与default-off scan | external call=0；title=false；body/secret/path log hit=0；不改IPC/Runtime pin |
+| S10P2 | 三个run-derived Keychain item创建/使用/删除；app-data/Host/CODEX home同run | 不枚举Keychain；legacy account不fallback；foreign/malformed run ID、symlink/root mode错 | Desktop崩溃、cleanup中断、missing item、同run恢复、异run并发 | pre absent/post absent；真实namespace access/delete=0；manifest mismatch不删 |
+| S10P3 | local session transaction→content-free create→bind public ID→Host start→turn；closed UI projection | 400/401/403/409/500/503、response tenant/creator/reference mismatch、body/path/title canary，cross-scope ID | v1–v4→v5、重复启动、inflight/unknown/late 201、logout/tenant/revision、create-vs-delete/Host-start | schema/serde/TS/golden全绿；同op无重复Public/Host；PostgreSQL/audit正文=0；retained Public row仅closed fields |
+
+S10P3 private IPC conformance必须锁定`chat_get_session_control_plane_v1`和`yijie.chat.control-plane.event.v1`的closed corpus；Rust、JSON Schema、TypeScript validator、client、Pinia reducer和页面稳定投影必须在同一checkpoint中通过。未知field/state/error、sequence gap、duplicate、stale selection/context必须fail closed/resync，Vue不得收到Public task/client reference/operation/owner/tenant/Host ID或raw HTTP body。
+
+Public Tasks删除验收要同时证明两件事：（1）Desktop/Host/Runtime和本地binding已按DEC-126-006清理；（2）由于`29317b...`无delete operation，PostgreSQL的Public Task row仍存在且仅包含closed content-free fields。不得把第（2）隐藏为“全表面物理删除”；Owner若不接受，则S10P3 Gate直接FAIL并转G2A。

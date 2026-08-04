@@ -1,6 +1,6 @@
-# FEAT-126 技术设计（S9 Closure Passed，G3 Partial）
+# FEAT-126 技术设计（S10P0 Design Candidate，G3 Partial）
 
-> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。S4–S9 Closure已接受；DESIGN-126-007与DEC-126-037方案C已由Owner接受并继续HOLD S10B。G3仍Partial；S10P/S10B/S11、MiniMax、flag activation与新增远端/发布动作未授权。
+> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。S4–S9 Closure已接受；DESIGN-126-007与DEC-126-037方案C已由Owner接受并继续HOLD S10B。DESIGN-126-008/DEC-126-038现为Owner审批候选，不是实现授权。G3仍Partial；S10E/P1/P2/P3/S10B/S11、MiniMax、flag activation与新增远端/发布动作未授权。
 
 ## 1. 设计摘要
 
@@ -544,7 +544,7 @@ Runtime/Host pin、临时 `CODEX_HOME`/空 cwd/pathless ephemeral thread，title
 - Desktop Pattern：FEAT-126 Chat/App Shell Pattern已Accepted，只取代Chat 1.1.0/App Shell 2.0.0中的FEAT-126冲突段落。
 - 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–037 Accepted；S4–S9 Closure Passed；S10B–S11 Unauthorized。
 - 安全/数据 Owner：段成威 — ADR-0013/0014/0015/0016与DEC-126-005/006/007/011/012/014/015/016/017 Approved；Q-006/Q-007/Q-008/Q-009/Q-010/Q-015/Q-016 Resolved；Pattern Accepted。
-- 结论与日期：2026-08-04 G2/G2A保持Passed，S4–S9 Closure与DEC-126-037方案C已Accepted；S10B继续HOLD。G3仍Partial；继续禁止未单独授权的S10P/S10B/S11、MiniMax、flag启用与追加远端动作。
+- 结论与日期：2026-08-04 G2/G2A保持Passed，S4–S9 Closure与DEC-126-037方案C已Accepted；S10B继续HOLD。DESIGN-126-008/DEC-126-038仅为候选。G3仍Partial；继续禁止未单独授权的S10E/P1/P2/P3/S10B/S11、MiniMax、flag启用与追加远端动作。
 
 ## 15. S8B Vue projection implementation
 
@@ -663,3 +663,146 @@ S10B必须在owner-only `RUN_ROOT=$(mktemp -d "${TMPDIR%/}/feat126-s10b.XXXXXX")
 - DEC-126-037已采用方案C并`HOLD S10B`：Owner接受本设计和阻断事实，但未批准LIA-126-008开始四组件运行。
 - 先另行设计和授权S10P Test Profile/Chain Corrective，仅解决BLK-002–005：fake Responses进程注入、Desktop sidecar flags/log/PID、test-only Keychain/app-data namespace和Public Tasks content-free orchestration。它们可能修改production config/private IPC/业务编排，必须重走contract-impact审查，不能在S10A静默实现。
 - BLK-001由Owner单独批准环境准备。只有BLK-001–005全部关闭并有本地checkpoint、逐仓门禁、安全/no-log证据后，LIA-126-008才可从`Blocked Draft`升级为`Ready for Owner Approval`。
+
+## 18. DESIGN-126-008 — S10P0 Test Profile & Main-Chain Corrective（Owner审批候选）
+
+### 18.1 评审边界、基线与结论
+
+S10P0仅作只读源码/环境盘点、设计冻结和治理文档更新；`contract-impact = none for this review`。本评审没有安装软件、启动进程/容器、打开flag、读写Keychain/数据库、修改业务源码或远端写入。
+
+| Component | 固定完整SHA | 分支 | S10P0开始状态 |
+|---|---|---|---|
+| Governance | `0ceb04765f46a3ef1b992d859c3d1c6a83b43cfb` | `feat/feat-126-foundation-closure` | clean / exact |
+| Contracts | `29317b6426578749dc698fc2ad32b986ee5c8e9f` | `feat/feat-126-content-free-candidate` | clean / exact |
+| API | `a64f9f591fb594818c1778e30c6941e2574b3264` | `feat/feat-126-foundation-closure` | clean / exact |
+| Host | `8707dea552cff74121b89aa8045f27da2c8c9378` | `feat/feat-126-foundation-closure` | clean / exact |
+| Desktop | `adfdb5b24b3277ba39bd76a8cdc63fc138caf9cb` | `feat/feat-126-foundation-closure` | clean / exact |
+| Runtime | `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f` | `develop` | clean / exact |
+
+DEC-126-037 Option C、S4–S9 Closure Passed与G3 Partial保持不变。LIA-126-008仍为`Blocked Draft`；S10E、S10P1、S10P2、S10P3、S10B、S11和所有activation都必须逐项单独授权。
+
+### 18.2 S10A-BLK-001：Compose/隔离身份环境
+
+只读检查证明：Docker CLI `29.6.1`存在，当前用户CLI plugin entry是指向已失效AppTranslocation目标的symlink；Docker Desktop application bundle内的相对位置`Contents/Resources/cli-plugins/docker-compose`实际存在，版本`v5.3.0`，SHA-256=`2642b6354b323be90cf28460ac186499fbc85381b9ce5e6681fdefb2d0a7d265`。治理证据不记录当前用户的绝对路径或旧symlink target。直接调用该二进制的`version`、`config --no-interpolate --quiet`、`config --profiles`、`config --services`和`up --help`均通过；没有连接daemon或改变容器/镜像/volume。Docker官方的[Compose安装概览](https://docs.docker.com/compose/install/)将Docker Desktop列为macOS推荐获取方式，[Compose FAQ](https://docs.docker.com/compose/support-and-feedback/faq/)说明2025年发布的Compose v5使用同一`docker compose`命令且与v2功能等价；手动plugin安装文档只面向Linux。
+
+| 方案 | 优点 | 风险 | 结论 |
+|---|---|---|---|
+| A. 下载/安装独立Compose v2 | 表面满足旧runbook版本用词 | macOS非官方推荐plugin安装路径，引入第二份二进制与新下载信任 | 拒绝 |
+| B. 恢复Docker Desktop bundled plugin发现 | 无下载，可固定version/hash，与现有script的`docker compose`一致 | 需修改用户级symlink，必须可恢复且单独授权 | **唯一推荐** |
+| C. 永久绕过CLI直调absolute binary或复用已有PostgreSQL | 不改symlink | scripts/make不同路；PostgreSQL不提供IdP/TLS/CA，且当前无等价listener | 拒绝 |
+
+未来S10E必须先把旧symlink移到run-scoped owner-only backup，再建立指向上述精确Docker Desktop二进制的新symlink；修复后重跑version/hash/config/features。任一值漂移即停止；回滚删除新link并原子恢复备份，不修改Docker Desktop app或系统目录。
+
+S10E不得复用普通`yijie_postgres_data`、`yijie_api`或任何现有数据库。实现候选是新的exact `feat-126-s10` Compose profile，不声明固定`container_name`，以canonical run UUID派生Compose project/resource名；只包含：
+
+- API PostgreSQL和Keycloak PostgreSQL：`postgres:16.13-alpine@sha256:4e6e670bb069649261c9c18031f0aded7bb249a5b6664ddec29c013a89310d50`；
+- Keycloak：`quay.io/keycloak/keycloak:26.7.0@sha256:0f198be292568439d700cdbfb893e69a6009bb43a94a06a945b1d3d506c76b13`；
+- Caddy：`caddy:2.11.4-alpine@sha256:5f5c8640aae01df9654968d946d8f1a56c497f1dd5c5cda4cf95ab7c14d58648`；
+- 四个run-scoped volume：API DB、Keycloak DB、Caddy data、Caddy config。Redis/pgvector不在FEAT-126 S10运行链，不启动。
+
+API DB从空库跑全部current migration；Keycloak只导入固定synthetic realm/user matrix。Caddy只绑定loopback 8443/9443，CA私钥保留在run volume；只把公开CA certificate导出到owner-only run root，API使用已有local-profile CA path+hash校验，Desktop使用显式CA配置，不写macOS系统/用户trust store。若本地缺少任一固定digest镜像，S10E必须报告精确缺口；未被S10E授权明确包含时不得pull。
+
+### 18.3 S10A-BLK-002/003：Host fake Responses与Desktop child profile
+
+Host线上默认仍只接受`minimax`/`MiniMax-M3`，默认base URL、key读取与Runtime pin均不改。S10P1候选只在以下条件全部成立时进入test transport：
+
+```text
+YIJIE_FEAT126_S10_TEST_PROFILE_ENABLED=true
+YIJIE_FEAT126_S10_RUN_ID=<canonical non-zero UUID>
+YIJIE_FEAT126_FAKE_RESPONSES_BASE_URL=http://127.0.0.1:18082/v1
+```
+
+URL必须精确为`http`、IP literal `127.0.0.1`、固定port 18082、path `/v1`，不得含userinfo/query/fragment或DNS hostname；任一非loopback值、未设run ID、同时出现MiniMax key、非local environment或单独设置子开关都fail closed。此profile继续使用on-wire provider/model identity `minimax`/`MiniMax-M3`，但Host写入managed CODEX_HOME的test-only provider config使用上述base URL、`wire_api=responses`、`requires_openai_auth=false`且不声明`env_key`；Runtime现有custom provider能力足够，不改pin。
+
+fake HTTP authority仍由`yijie-agent-host`维护，只消费S9已锁定`feat126-title-raw-v1`fixture/manifest，对loopback提供`/healthz`与`POST /v1/responses`。它必须校验request上限、固定model/input category、调用次数和run ID，只记录fixture ID/hash、计数与稳定failure class，不记录request/response正文。不需要真实或合成API key。
+
+Desktop supervisor保留`env_clear()`，只在同一exact test profile/run ID下向Host child增加closed allowlist：上述3个test变量、已有binary/manifest/home/port/instance nonce，以及
+`YIJIE_AGENT_HOST_V2_RAW_REASONING_ENABLED=true`、`YIJIE_AGENT_HOST_V2_CLEANUP_ENABLED=true`、`YIJIE_AGENT_HOST_V2_TITLE_ENABLED=false`。title因固定Runtime无法能力级禁用tools而继续强制off。父进程只能从Rust验证过的run manifest得到路径/端口；WebView不接触flag、PID、Host/Runtime ID或路径。
+
+Host stdout/stderr不再丢到null，而写入Rust在run root内创建的owner-only regular files（directory `0700`、file `0600`、no symlink/hardlink）。Desktop记录child PID/PPID、binary hash、nonce、start/end/exit到content-free manifest；不写env value、project path或正文。本方案不需新增/修改Tauri command、event、cursor或error；如S10P1实现时发现必须修改private IPC，立即停止并另提schema。
+
+### 18.4 S10A-BLK-004：test-only Keychain/app-data
+
+S10P2只接受与18.3相同的canonical run UUID，不接受WebView或shell任意指定Keychain service/account。Rust内部由run ID派生并限长：
+
+```text
+com.yijie.ai.test.feat126.<run-id>.chat-db / default-v1
+com.yijie.ai.test.feat126.<run-id>.chat-receipt / default-v1
+com.yijie.ai.test.feat126.<run-id>.native-auth / refresh-token-family-v2
+```
+
+test namespace禁止native-auth legacy account fallback，防止读取真实`refresh-token-family`。`RUN_ROOT`是Rust校验的absolute、canonical、owner-only `0700`、non-symlink directory；Desktop app-data/Chat SQLCipher、Host Home、CODEX_HOME、receipt HMAC、native auth和临时项目都必须在同一run manifest中绑定该run ID。
+
+启动前后inventory只检查上述三个精确service/account的`present/absent/schema-valid`，不枚举整个Keychain、不读取或hash secret。证据是namespace descriptor与status tuple的SHA-256；启动前必须全absent。正常退出顺序为Desktop→Host/Runtime→关闭SQLCipher→只删精确test Keychain items→再删run root；missing item幂等成功，任一namespace/run ID不一致则停止而不删。异常退出依赖owner-only cleanup manifest重试，绝不读/覆盖/删除无该run ID的现有Keychain条目。
+
+S10P2是Desktop-private deployment/storage interface的additive改动，不改SQLCipher business schema、central contracts或private IPC。default profile的固定service/account行为保持不变，且受exact test profile的双重门禁。
+
+### 18.5 S10A-BLK-005：Desktop→Public Tasks→Host主链
+
+`29317b6426578749dc698fc2ad32b986ee5c8e9f`已能表达本主链的create/read、UUID `Idempotency-Key`、closed `TaskContentReferenceV2`与stable content-free error；无需修改central contract。它也明确声明permanent delete不在candidate内。DEC-126-038候选因此只修正DEC-126-014的“运行独立”部分：会话正文/标题/路径仍绝对local-first且不上传，但每个新会话在Host start前必须成功创建一条content-free control-plane Public Task。
+
+#### Authority与持久化
+
+SQLCipher新schema候选`v5`增加`chat_public_task_bindings`，以`session_id`主键/FK cascade，只保存：
+
+- 独立生成的`client_reference_id`（不等于local session/operation/path/body hash）；
+- Desktop `create_operation_id`，同时作Public `Idempotency-Key`与Host trace operation ID；
+- server返回后的`public_task_id`；
+- closed state `pending|inflight|bound|blocked_auth|retry_wait|denied|failed`、attempt/lease/next retry/stable error code/timestamps；
+- 不存bearer、prompt/message/raw/title/path、provider数据或HTTP body。
+
+local session ID是Desktop唯一UI/history authority；Public task ID是API/PostgreSQL authority；Host的`task_id`必须精确使用已绑定的Public task ID；Host request trace使用同一`create_operation_id`。owner/tenant/capability由Rust的active native-auth context绑定并在每次调用前重验；bearer只由`NativeAuthRuntime`内部获取，不进SQLCipher/outbox/WebView/log。API 201响应的tenant必须匹配scope，creator必须匹配Rust-bound owner，input reference必须逐字段匹配，否则protocol fail closed。
+
+#### 幂等、失败、恢复与删除
+
+create transaction先写local session/user message、binding和已有create outbox；coordinator先POST `/v2/tasks`，只有binding=`bound`后才解析bookmark并启动Host。transport/503/500/unknown outcome使用相同idempotency key与canonical request重试；401进`blocked_auth`并等待同owner/tenant重登录；403进`denied`；400/409/schema mismatch进terminal `failed`；201返回后原子bind Public task ID。应用重启时只在同owner/tenant/revision重验后恢复pending/inflight/retry，不猜测unknown outcome。
+
+delete-vs-create由现有session lease串行。删除开始后任何late Public Task响应都不得触发Host start；Desktop/Host/Runtime完成清理后级联删除本地binding/outbox。由于contract没有Public Task delete，API/PostgreSQL中已创建的content-free row和audit/idempotency retention依provider策略保留，不计入DEC-126-006的Desktop/Host/Runtime物理删除承诺。若Owner不接受这一限制，DEC-126-038必须退回并提交G2A delete缺口，S10P3不得开始。
+
+#### Desktop-private closed projection（等待DEC-126-038批准）
+
+现有`ChatSession`和7个chat event variants无法稳定表达异步control-plane状态；不得让Vue从`queued`或readiness猜测。S10P3因此是`additive Desktop-private IPC impact`，提交不改现有22个command/7个event语义的窄方案：
+
+```text
+command: chat_get_session_control_plane_v1
+request: { schemaVersion: 1, requestId, contextId,
+           payload: { sessionId } }
+response.data: { sessionId,
+  state: pending|bound|blocked_auth|retry_wait|denied|failed,
+  issueCode: null|chat_unauthenticated|chat_capability_denied|
+             chat_temporarily_unavailable|chat_conflict|chat_protocol_error,
+  retryable: boolean,
+  recovery: none|sign_in|retry|resync }
+
+channel: yijie.chat.control-plane.event.v1
+event: { schemaVersion: 1, sequence, sessionId,
+  state, issueCode, retryable, recovery }
+```
+
+两个object都`deny_unknown_fields`/closed，`sequence`在Rust侧单调，gap/duplicate/stale context强制command resync；不包含Public task/client reference/operation/owner/tenant/Host ID、path、body或raw wire。Rust serde、JSON Schema、golden corpus、TS validator/client/Pinia authoritative reducer和UI稳定文案必须同一切片实现；Vue仍只调Pinia action。任何超出上述schema的需求先停止并重新审批。
+
+### 18.6 切片影响、门禁与退出条件
+
+| Slice | 关闭blocker | Contract-impact | Production/default-off | 必须证据 | 回滚 |
+|---|---|---|---|---|---|
+| S10E | BLK-001 | deployment/Infra config only；central/private wire none | 新profile显式选择，普通`dev-up`不启动 | Compose version/hash/config，digest images，run-scoped project/volume，migration/identity/TLS/no-real-data/cleanup | 恢复plugin link，只停本run project，不删未列入manifest的volume |
+| S10P1 | BLK-002/003 | additive Host/Desktop private deployment config；IPC/central/Runtime none | master exact-true + local + run ID三重门禁；default MiniMax不变 | fake protocol/oversize/nonloopback/key-conflict，child env/log/PID/nonce，no-log，crash/restart/default-off | 关闭master profile，恢复Host默认config和null/no-start路径 |
+| S10P2 | BLK-004 | additive Desktop-private storage/deployment interface；DB schema/IPC/central none | 无master+run ID则使用原固定namespace | pre/post exact inventory，wrong run ID，legacy-no-fallback，abnormal-exit/restart/cleanup/no-real-item-access | 只删manifest中本run items和run root，默认namespace不动 |
+| S10P3 | BLK-005 | semantic Desktop orchestration + SQLCipher v5 + additive private command/channel；central wire none | Chat flags仍default-off；API secure Tasks只在local profile exact true | schema/serde/TS conformance，auth/tenant/revision，idempotency/unknown/restart/race，Public DB/no-log/migration/cascade/retained-row disclosure | flag off；forward migration保留；停coordinator；不删或猜测Public row |
+
+每个切片只能在Owner接受DEC-126-038后单独授权，并只能建本地checkpoint。本轮未创建任何corrective source diff。S10P1/P2/P3逐仓lint/test/build、migration/no-log/security/restart/race/default-off全绿，S10E环境证据全绿，且BLK-001–005全部Closed后，才能重新提交LIA-126-008/S10B；其中任一失败则保持Blocked Draft。
+
+### 18.7 安全、migration、restart、cleanup与race矩阵
+
+| 类别 | 必测情形 | Gate |
+|---|---|---|
+| closed config | master false/missing/typo，run ID invalid，nonloopback/hostname/redirect/proxy，MiniMax key与fake同时存在 | 全部fail closed；默认行为逐字段不变 |
+| no-log | synthetic prompt/raw/title/path/token/DB-key canary扫Host/Desktop/API logs、bbolt、audit、URL、process output和evidence | 正文/secret/path命中数`0` |
+| migration | clean v5、populated v1–v4→v5、重复启动、只读/满/损坏/wrong-key，FK/cascade/foreign_key_check | 无正文进binding，失败不绕过/不降级 |
+| restart | Public create前、request inflight、201后未bind、bind后Host未start，Keychain cleanup中断，child崩溃 | 同operation恢复，无重复Public/Host session，无真实namespace触达 |
+| race | create-vs-delete、logout/tenant/revision-vs-retry、late 201、Host start-vs-delete、同run ID重启/异run ID并发 | 只有Rust authority能推进；delete后不启Host；cross-run/cross-tenant零可见 |
+| cleanup | normal/abnormal exit，missing item/volume，manifest mismatch，stale PID/listener，Public row retention | 只处理manifest target；无残留process/port/test Keychain；Public retained row仅closed fields |
+
+### 18.8 审批出口
+
+DEC-126-038候选推荐Owner一次性接受本设计，包括：Compose v5与v2功能等价的版本语义修正、S10E/P1/P2/P3顺序、S10P3的Desktop-private closed projection，以及“本地session删除不删Public Tasks PostgreSQL content-free row”限制。接受只代表设计可用，不自动授权任何切片。推荐的后续单独授权顺序是`S10E → S10P1 → S10P2 → S10P3 → LIA-126-008/S10B`；不允许并跳。
