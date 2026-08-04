@@ -837,7 +837,7 @@ DEC-126-039已按方案A接受S10E并关闭BLK-001。该接受不自动授权S10
 
 ### 20.1 Source与contract-impact
 
-- Host checkpoint：`yijie-agent-host@d547e1e36e6f9a13877e3be6d1756b49a9f247c5`，parent `8707dea552cff74121b89aa8045f27da2c8c9378`；Desktop checkpoint：`yijie-desktop@fc08bdf6ad4320defb2212329164bcf1e8891df7`，parent `adfdb5b24b3277ba39bd76a8cdc63fc138caf9cb`。两者均在`feat/feat-126-foundation-closure`、clean、仅本地、未push。
+- Host checkpoint：`yijie-agent-host@e0a8d3d29a335571d1654d95e1e262c240755674`，parent `8707dea552cff74121b89aa8045f27da2c8c9378`；Desktop checkpoint：`yijie-desktop@fba934c524852719904657d0a4155142040e7285`，parent `adfdb5b24b3277ba39bd76a8cdc63fc138caf9cb`。两者均在`feat/feat-126-foundation-closure`、clean、仅本地、未push。
 - `contract-impact = additive private test deployment configuration`。没有新增或修改Tauri command/event/cursor/error、TypeScript validator、Vue、central contracts、Public Tasks/Host wire、数据库schema或Runtime pin。
 - default路径逐字段保持：test master缺失或不为exact `true`时 subordinate变量fail closed；Host原MiniMax配置和Desktop原raw/title/cleanup=false、stdout/stderr=null路径不变；`.env`、CI、默认开发/构建配置未改。
 
@@ -853,7 +853,7 @@ DEC-126-039已按方案A接受S10E并关闭BLK-001。该接受不自动授权S10
 - Rust supervisor保留`env_clear()`，只向Host child传递批准的local/port/Home/Runtime artifact、instance nonce、test master/run ID/fixed loopback、parent PID、run-scoped log/process manifest及raw=true、cleanup=true、title=false。allowlist中不存在MiniMax key、bearer、SQLCipher key或WebView authority。
 - `RUN_ROOT`、Host Home、CODEX_HOME和日志目录必须absolute canonical、non-symlink、当前owner且目录`0700`；child stdout/stderr文件为`0600`、各最多256 KiB，超额继续drain但只记`truncated=true`。
 - `process.json`只含schema、run ID、role、PID/PPID、Host binary SHA、instance nonce、start/end、closed state/exit、字节数和truncation；原子临时文件使用唯一UUID，crash遗留不会阻断下一次更新。manifest不含路径、env value或正文。
-- readiness同时核对本次child PID（Host通过parent PID校验）、run ID（Host test config）、instance nonce（health/ready header）；旧nonce、旧port、端口占用、非法run root、活跃stale PID均fail closed。正常stop、spawn失败、启动超时、unexpected exit、Desktop restart stale reconciliation与同supervisor重启均有测试。
+- readiness同时核对本次child PID（Host通过parent PID校验）、run ID（Host test config）、instance nonce（health/ready header）；旧nonce、旧port、端口占用、非法run root、活跃stale PID均fail closed。Desktop在spawn前先写`prepared` evidence；Host test profile每100ms校验父PID，Desktop被强制终止后Host主动退出，下一次启动再把stale evidence闭合。正常stop、spawn失败、启动超时、unexpected exit、Desktop restart与同supervisor重启均有测试。
 
 ### 20.4 Closure判定与剩余边界
 
