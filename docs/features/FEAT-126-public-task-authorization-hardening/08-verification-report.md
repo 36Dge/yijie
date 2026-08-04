@@ -5,7 +5,7 @@
 > 分支均已精确远端可达，旧Draft PR #1与各`origin/develop`不变。DEC-126-026已接受S4–S6
 > Foundation Corrective Closure并单独授权S7A Desktop Rust Host Bridge/Domain；DEC-126-027已由
 > Owner接受。随后单独授权的S7B Rust Application Orchestration/Domain已完成并由Owner通过DEC-126-028接受；远端可达不等于merge、发布或生产启用。
-> 随后Owner接受DESIGN-126-005/006和S7C–S9 Closure。DESIGN-126-007与DEC-126-037方案C现已接受；S10P0又以只读方式形成DESIGN-126-008和DEC-126-038候选，但没有批准corrective实现。S10B继续HOLD，LIA-126-008保持Blocked Draft。没有调用MiniMax、真实数据、Keychain、生产环境或任何业务进程；S10E/P1/P2/P3/S10B–S11均为`NOT RUN`。
+> 随后Owner接受DESIGN-126-005/006和S7C–S9 Closure。DESIGN-126-007/DEC-126-037方案C与DESIGN-126-008/DEC-126-038方案B现均已接受，但没有批准corrective实现。S10B继续HOLD，LIA-126-008保持Blocked Draft。没有调用MiniMax、真实数据、Keychain、生产环境或任何业务进程；S10E/P1/P2/P3/S10B–S11均为`NOT RUN`。
 
 ## 1. 验证上下文
 
@@ -50,7 +50,7 @@
 | LIA-126-006 / S8B | Desktop `35f27447398529cca4dec85fa1f67e779c7a7cbd` | production Vue pages/App Shell/composer/reasoning/menus/scroll/a11y + real Pinia reducer + test-only harness | 0 final | DEC-126-034 ACCEPTED / S8B CLOSURE PASS | 29 TS test files/164 tests、axe 0 serious/critical、build、95/96 Rust、audit/security/bundle/browser证据；flag off；no IPC/Rust/central wire/MiniMax/remote action；G3 Partial |
 | DEC-126-035 Remote State Reconciliation | five exact candidate refs | `git ls-remote` + temporary single-branch/no-tags clean clones；HEAD/status/develop refs核对 | 0 | PASS / OWNER ACCEPTED | exact `650254b…139fa`、`a64f9f5…3264`、`3e8df02…f3d9`、`35f2744…7cbd`、`29317b6…e9f`；Owner-authorized historical push；reconciliation轮0 remote write |
 | DESIGN-126-007 / S10A | six fixed baselines + local tool/source/port inventory | branch/SHA/worktree exact；Runtime digest/version；Docker/Compose/PostgreSQL/listener；Host provider；Desktop sidecar/Keychain/Public Tasks consumer scan | 0 for read-only commands | REVIEW ACCEPTED / S10B HOLD | BLK-001–005详见§9.12；DEC-126-037 Option C Accepted；无process/flag/provider/Keychain/business-source mutation |
-| DESIGN-126-008 / S10P0 | six fixed baselines + Infra/Host/Desktop/contracts read-only inventory | Compose stale-link/root cause and bundled v5 hash/config；pinned image/volume choice；fake child profile；run-derived secure storage；Public Tasks idempotency/delete/private IPC shape | 0 for read-only commands | CANDIDATE READY / IMPLEMENTATION HOLD | DEC-126-038 Ready for Owner Approval；0 process/container/flag/provider/Keychain/DB/business-source/remote writes |
+| DESIGN-126-008 / S10P0 | six fixed baselines + Infra/Host/Desktop/contracts read-only inventory | Compose stale-link/root cause and bundled v5 hash/config；pinned image/volume choice；fake child profile；run-derived secure storage；Public Tasks idempotency/delete/private IPC shape | 0 for read-only commands | OWNER ACCEPTED / IMPLEMENTATION HOLD | DEC-126-038 Option B Accepted；0 process/container/flag/provider/Keychain/DB/business-source/remote writes |
 
 ## 4. 最终命令记录
 
@@ -74,7 +74,8 @@
 | V-S10A-ENV | local machine | `docker --version`; `docker compose version`; `command -v psql/pg_isready/lsof`; fixed-port listener scan | Docker 29.6.1 | Compose command non-zero expected | ENVIRONMENT BLOCKED | S10A当时仅观察到`docker compose`不可用；S10P0后来定位为用户plugin symlink失效且bundled v5存在；psql/pg_isready present；no observed service listeners；no install/container/service action |
 | V-S10A-SOURCE | API/Host/Desktop read-only | exact config/start/sidecar/keychain/provider/Public Tasks consumer source inventory | rg/sed | 0 | HOLD FINDINGS | fake provider unrepresentable；child flags forced false/log null；fixed Keychain；Desktop `/v2/tasks` call absent |
 | V-S10A-GOV | yijie | feature package default/`--strict`/`--gate G2A`；Node YAML parse；`pnpm lint`；`pnpm test`；shell `bash -n`；`git diff --check` | project scripts / Node / pnpm / Git | 0 | PASS 2026-08-04 | DESIGN-126-007与DEC-126-037 Option C Accepted；LIA-126-008仍为Blocked Draft；不代表S10B已执行 |
-| V-S10P0-GOV | yijie | feature package default/`--strict`/`--gate G2A`；Node YAML parse；`pnpm lint`；`pnpm test`；shell `bash -n`；`git diff --check` | project scripts / Node / pnpm / Git | 0 | PASS 2026-08-04 | DESIGN-126-008与DEC-126-038候选结构/状态一致；8个FEAT-126治理文件；不代表DEC已批准或S10E/P1/P2/P3/S10B已执行 |
+| V-S10P0-GOV | yijie | feature package default/`--strict`/`--gate G2A`；Node YAML parse；`pnpm lint`；`pnpm test`；shell `bash -n`；`git diff --check` | project scripts / Node / pnpm / Git | 0 | PASS 2026-08-04 | design checkpoint `514559265ac4a675115984650a0782f09b481748`形成DESIGN-126-008/DEC-126-038候选；该轮不代表Owner批准或任何corrective执行 |
+| V-DEC-126-038-APPROVAL | yijie | Owner approval state reconciliation；feature package default/`--strict`/`--gate G2A`；YAML；`pnpm lint/test`；shell；diff/personal-path scan | project scripts / Node / pnpm / Git | 0 | PASS 2026-08-04 | DEC-126-038 Option B与retained-Public-row边界已登记为Accepted；S10E/P1/P2/P3/S10B仍NOT AUTHORIZED/NOT RUN；0 business/runtime/remote mutation |
 | V-YAML | yijie | Node ESM + `yaml` parse | Node/pnpm workspace dependency | 0 | PASS | `PASS: feature.yaml parsed` |
 | V-YIJIE-LOCAL | yijie | `pnpm lint && pnpm test` | Node/pnpm project scripts | 0 | PASS 2026-08-03 | repository manifest/contract governance valid；1/1 Node test PASS |
 | V-AGGREGATE-LINT-TEST | yijie | historical `make lint` and `make test` after package/strict/G2A/YAML | workspace aggregate scripts | 2 | PARTIAL / ENVIRONMENT BLOCKED | all repositories reached before Infra passed lint/tests；Infra static validators and 76 Node tests passed, then `scripts/plan.sh` failed at `docker compose` discovery（exit 125）。S10P0 later identified a stale user plugin symlink while bundled v5 exists；aggregate not rerun because S10E is unauthorized。Affected FEAT-126 API/Host/Desktop/Contracts gates separately PASS；no waiver or false green recorded |
@@ -404,9 +405,9 @@
 
 - 备选方案：S10A原建议补齐Compose；S10P0已细化为可恢复地修复用户级link并使用摘要固定的bundled Compose v5，再建权威run-scoped profile。“已有PostgreSQL”只在同时具备empty dedicated DB、current migrations、exact local IdP/TLS/CA时才等价。当前两者都未获执行授权。
 - process/evidence冻结：端口为API 18080、Host 18081、fake Responses 18082、OIDC 8443、API edge 9443、Vite 1420/1421、PostgreSQL 5432，全部loopback；用例为S10B-001–012；证据只保留PID/SHA/nonce/count/hash/state/duration/failure class，不保留正文/secret/path/key。
-- 结构化结论：Owner已接受DEC-126-037选项C与DESIGN-126-007，并继续HOLD S10B。LIA-126-008为`Blocked Draft / NOT AUTHORIZED`；S10P0随后只形成DESIGN-126-008/DEC-126-038候选，S10E/P1/P2/P3仍须逐项明确授权。
+- 结构化结论：Owner已接受DEC-126-037选项C与DESIGN-126-007，并继续HOLD S10B。S10P0随后形成DESIGN-126-008/DEC-126-038方案B，现亦已由Owner接受；LIA-126-008仍为`Blocked Draft / NOT AUTHORIZED`，S10E/P1/P2/P3仍须逐项明确授权。
 
-### 9.13 DESIGN-126-008 / DEC-126-038 S10P0 Corrective Design Review（Candidate）
+### 9.13 DESIGN-126-008 / DEC-126-038 S10P0 Corrective Design Review（Accepted / Option B）
 
 | Finding | Severity | 只读事实/设计处置 | 状态 |
 |---|---|---|---|
@@ -415,14 +416,14 @@
 | S10P0-REV-003 | P1 provider/profile | Host继续保持默认MiniMax；候选master exact-true + canonical run ID + exact loopback `/v1`三重门禁，managed Runtime provider无key、Responses wire，Desktop child raw/cleanup=true/title=false | DESIGN FROZEN / S10P1 not authorized |
 | S10P0-REV-004 | P1 secure storage | 三个test Keychain service只从run ID派生，native-auth无legacy fallback，pre/post只检exact tuple状态，不枚举/读取真实Keychain | DESIGN FROZEN / S10P2 not authorized |
 | S10P0-REV-005 | P1 main chain | `29317b...`能表达content-free create/idempotency；候选SQLCipher v5绑定local/public/Host operation，先Public bind后Host start，提交独立closed control-plane command/channel | PRIVATE IPC CANDIDATE / S10P3 not authorized |
-| S10P0-REV-006 | P1 deletion disclosure | contract明确permanent delete不在candidate；本地session delete不删PostgreSQL content-free Public Task row。若Owner不接受，必须转G2A缺口 | OWNER DECISION REQUIRED / blocks S10P3 |
+| S10P0-REV-006 | P1 deletion disclosure | contract明确permanent delete不在candidate；Owner已接受本地session delete不删PostgreSQL content-free Public Task row；未来若改变要求必须转G2A缺口 | DESIGN BOUNDARY ACCEPTED / implementation evidence pending S10P3 |
 | S10P0-REV-007 | boundary | 六仓exact/clean开始；本轮只读并只修改FEAT-126治理文档；0 process/container/provider/flag/Keychain/DB/business-source/remote writes | CLOSED for S10P0 scope |
 
 只读环境摘要：Docker CLI=`29.6.1`；bundled Compose=`v5.3.0`、size=`30,780,320`、SHA-256=`2642b6354b323be90cf28460ac186499fbc85381b9ce5e6681fdefb2d0a7d265`；现有Infra固定Keycloak=`0f198be…b13`、PostgreSQL=`4e6e670…d50`、Caddy=`5f5c864…58648`，Compose/Caddy/profile/script摘要已记录于S10P0 working evidence。本轮仅运行二进制version/config/help等静态命令，未使用daemon状态作实施证据。
 
 Contract impact结论：S10P0自身`none`；S10E为Infra/deployment-only；S10P1为Host/Desktop private deployment config additive；S10P2为Desktop private storage config additive；S10P3为Desktop semantic orchestration + SQLCipher v5 + additive private IPC，central Public Tasks/Host wire与Runtime pin仍`none`。这些分类只是设计候选，不授权代码变更。
 
-结构化结论：DESIGN-126-008和DEC-126-038已形成`Ready for Owner Approval`候选。审批前S10E/S10P1/P2/P3/S10B/S11仍`NOT AUTHORIZED / NOT RUN`；LIA-126-008仍Blocked Draft，G3 Partial、G4/G6 Pending。
+结构化结论：Owner已接受DESIGN-126-008和DEC-126-038方案B，包括Public Task retained-row边界。该批准不授权实现；S10E/S10P1/P2/P3/S10B/S11仍`NOT AUTHORIZED / NOT RUN`，LIA-126-008仍Blocked Draft，G3 Partial、G4/G6 Pending。
 
 ## 10. 未验证项与残余风险
 
@@ -434,12 +435,12 @@ Contract impact结论：S10P0自身`none`；S10E为Infra/deployment-only；S10P1
 | DB/encryption/delete E2E | SQLCipher v4 job/receipt、independent HMAC key、migration/cascade/checkpoint、restart和fake Host cleanup单仓PASS | 跨Desktop/Host/Runtime真实进程partial delete仍未运行 | S10验证完整多进程job/receipt/restart/fault E2E | 段成威 | blocks G4/local G6 |
 | Runtime raw-reasoning/title/delete | Host producer、Desktop wire/reducer/UI及S9 deterministic fake Eval PASS；真实Runtime跨Host/Desktop未运行 | raw UX/residual/inconsistent history | keep flags off until S10；历史MiniMax public-summary FAIL不改写 | 段成威 | blocks G4/local G6 |
 | Desktop sidecar/Keychain | supervisor/static safety与synthetic bookmark PASS；真实signed Keychain和actual Host child未运行 | packaged/native lifecycle unknown | authorized signed-like local E2E | 段成威 | blocks G4/local G6 |
-| S10B test profile/chain readiness | Compose discovery/profile未关闭；provider无fake process config；child flags/log与Keychain不隔离；Desktop未调Public Tasks | 直接启动会调真实provider/触碰本机Keychain，或产生虚假E2E证据 | Owner接受DEC-126-038后逐项授权并关闭S10E/P1/P2/P3，再重新提交LIA-126-008 | 段成威 | blocks S10B/G4/local G6；does not reopen S4–S9 |
+| S10B test profile/chain readiness | Compose discovery/profile未关闭；provider无fake process config；child flags/log与Keychain不隔离；Desktop未调Public Tasks | 直接启动会调真实provider/触碰本机Keychain，或产生虚假E2E证据 | DEC-126-038已接受；仍须逐项授权并关闭S10E/P1/P2/P3，再重新提交LIA-126-008 | 段成威 | blocks S10B/G4/local G6；does not reopen S4–S9 |
 | production identity/infra | FEAT-125 deferred | no production safety | N/A for DEC-126-022 local-only scope；future online intent must reopen production track and FEAT-125 prerequisites | 段成威 | does not block local G6；blocks any production claim |
 
 ## 11. 结论
 
-- Requirements package：G1/G2/G2A Re-review Passed；DEC-126-023–037 Accepted；DEC-126-038为`Ready for Owner Approval`候选；DEC-126-037方案C继续HOLD S10B；S4–S9 Closure Passed。
+- Requirements package：G1/G2/G2A Re-review Passed；DEC-126-023–038 Accepted；DEC-126-037方案C继续HOLD S10B，DEC-126-038方案B不授权实现；S4–S9 Closure Passed。
 - Code Complete：No。G3仍Partial；S10A/S10P0评审完成但readiness HOLD，S10E/P1/P2/P3/S10B–S11、四组件E2E、G4与Owner G6均未完成。
 - 验证人：Codex（文档事实与结构）；最终 Reviewer 为段成威。
 - 日期：2026-08-04。

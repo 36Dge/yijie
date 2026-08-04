@@ -3,10 +3,10 @@
 ## 1. 当前结果
 
 - 用户可观察行为：默认配置下无变化；S8B真实Vue Chat页面、App Shell项目/session区、composer、conversation/reasoning、菜单/删除、稳定错误投影和可访问性已保存为Desktop checkpoint `35f27447398529cca4dec85fa1f67e779c7a7cbd`，并在Owner授权的专用远端候选分支精确可达。UI flag仍unset/false，未merge、未激活。
-- 原目标是否达成：未达成。S4–S9 Closure Passed；DESIGN-126-007与DEC-126-037方案C已接受。S10P0已形成DESIGN-126-008/DEC-126-038候选，但Owner尚未批准，S10E/P1/P2/P3与S10B仍未执行。S10B四组件E2E与S11 Owner验收均未完成。
+- 原目标是否达成：未达成。S4–S9 Closure Passed；DESIGN-126-007/DEC-126-037方案C与DESIGN-126-008/DEC-126-038方案B均已接受，但S10E/P1/P2/P3与S10B仍未授权或执行。S10B四组件E2E与S11 Owner验收均未完成。
 - 当前范围：安全的新建任务对话、任务记录、聊天项目、本地持久化及Public Tasks hardening的完整Local-only需求/设计/测试/实施候选。
 - 非目标：见`00-feature-brief.md`；没有文件/图片/工具/云同步；tag/package publish/registry/线上部署/生产灰度/云数据库/真实用户数据均N/A。
-- 交付状态：`G1 Passed / G2 Passed / G2A Re-review Passed / S4–S9 Closure Passed / DEC-126-037 Accepted / DEC-126-038 Candidate / G3 Partial`。DEC-126-021继续HOLD；LIA-126-008为Blocked Draft，S10B继续HOLD。未merge/tag/publish/deploy/activation；当前不是Code Complete、Production Ready或Local-only Delivery Complete。
+- 交付状态：`G1 Passed / G2 Passed / G2A Re-review Passed / S4–S9 Closure Passed / DEC-126-037 Accepted / DEC-126-038 Accepted / G3 Partial`。DEC-126-021继续HOLD；LIA-126-008为Blocked Draft，S10B继续HOLD。未merge/tag/publish/deploy/activation；当前不是Code Complete、Production Ready或Local-only Delivery Complete。
 
 ## 2. 实际版本与本地候选（未发布）
 
@@ -14,7 +14,7 @@
 |---|---|---|---|---|---|
 | yijie-contracts sole source candidate | dedicated remote branch | `0.3.0 candidate` / tag N/A | `29317b6426578749dc698fc2ad32b986ee5c8e9f` | SDK `21b17b50…b082`；Public `c8d9e674…354b`；TS `e84b70be…b678`；Go `c3d6e58e…c697` | `origin/feat/feat-126-content-free-candidate` exact；G2A Passed；not merged/tagged/published/activated |
 | yijie-contracts prior remote candidate | dedicated branch + Draft PR #1 | `0.3.0 historical candidate` / tag N/A | `c000a0245acb5c3f7ead5d2a877fb60c281c588c` | SDK `334db014…9404` | unchanged；remote CI failed dependency audit；merge HOLD |
-| yijie governance S10P0 baseline/checkpoint | local only over dedicated remote candidate / no release | tag N/A | fixed baseline `0ceb04765f46a3ef1b992d859c3d1c6a83b43cfb`；remote `650254b3c009c4098f7d7b2d415ed8082b0139fa`；S10P0 docs checkpoint待门禁后生成 | package manifest见`08` | remote candidate unchanged；本轮不push；develop/merge/activation不变 |
+| yijie governance S10P0 baseline/checkpoint | local only over dedicated remote candidate / no release | tag N/A | fixed baseline `0ceb04765f46a3ef1b992d859c3d1c6a83b43cfb`；design checkpoint `514559265ac4a675115984650a0782f09b481748`；approval checkpoint待门禁后生成；remote `650254b3c009c4098f7d7b2d415ed8082b0139fa` | package manifest见`08` | remote candidate unchanged；本轮不push；develop/merge/activation不变 |
 | yijie-api S4 Accepted checkpoint | dedicated remote candidate / no release | tag N/A | `a64f9f591fb594818c1778e30c6941e2574b3264` | Go `438b084d…ab33`；migration v4 `b56f7f5a…ee14` | exact remote candidate；`29317b...` lock；default off；not merged/activated |
 | yijie-agent-host S9 Eval checkpoint | local only over dedicated remote candidate / no release | tag N/A | local `8707dea552cff74121b89aa8045f27da2c8c9378`；remote `3e8df026110f0c895262329c2384d3896598f3d9` | authority/runner/dataset/split/fixture digests见`feature.yaml`与`08`；store v3 unchanged | local only/not pushed；`29317b...` source；v2 flags off；not merged/activated |
 | yijie-desktop S9 consumer checkpoint | local only over S8B remote candidate / no release | tag N/A | local `adfdb5b24b3277ba39bd76a8cdc63fc138caf9cb`；remote `35f27447398529cca4dec85fa1f67e779c7a7cbd` | exact fixture/Rust/TS test digests见`feature.yaml`与`08`；production UI/IPC unchanged | local only/not pushed；`29317b...` lock；flags off；not merged/activated |
@@ -37,7 +37,7 @@
 | DEC-126-035 Remote State Reconciliation | ACCEPTED | five `git ls-remote` + temporary clean-clone checks exact：`650254b…139fa`、`a64f9f5…3264`、`3e8df02…f3d9`、`35f2744…7cbd`、`29317b6…e9f`；push曾由Owner明确授权，本轮只读 | no merge/tag/publish/deploy/activation/G4/G6 claim |
 | LIA-126-007 / S9 / DEC-126-036 | CLOSURE PASS / OWNER ACCEPTED | `feat126-title-raw-v1` 250 synthetic samples、20% holdout；title 250/250 schema、200/200 semantic、50/50 unsafe；raw 210/210 valid、40/40 negative；late overwrite/leak/execution/action均0；Desktop exact history/delete/plaintext consumer PASS | no production behavior/provider/flag/remote change；not S10 E2E |
 | DESIGN-126-007 / DEC-126-037 | ACCEPTED OPTION C / S10B HOLD | six exact baselines、Runtime artifact、Docker/Compose/ports、Host provider、Desktop sidecar/Keychain/Public Tasks consumer inventory | no process/flag/provider/Keychain/business-code mutation |
-| DESIGN-126-008 / DEC-126-038 | READY FOR OWNER APPROVAL / IMPLEMENTATION HOLD | stale Compose link与bundled v5.3.0、run-scoped pinned identity stack、loopback fake provider、child allowlist/log/PID、run-derived Keychain、Public Tasks main-chain/private IPC/delete limitation | docs-only；S10E/P1/P2/P3全部NOT AUTHORIZED/NOT RUN |
+| DESIGN-126-008 / DEC-126-038 | OWNER ACCEPTED OPTION B / IMPLEMENTATION HOLD | stale Compose link与bundled v5.3.0、run-scoped pinned identity stack、loopback fake provider、child allowlist/log/PID、run-derived Keychain、Public Tasks main-chain/private IPC/delete limitation | docs-only；S10E/P1/P2/P3全部NOT AUTHORIZED/NOT RUN |
 | Remaining AC/NFR / S10B–S11 | NOT RUN | LIA-126-008 Blocked Draft；full traceability in `05/06/08` | none / production N/A |
 | Requirement package/G0/G1 | G1 product scope approved；structure evidence in `08` | user approval + default/G0/G1/strict package, YAML and diff checks | N/A |
 | G2 data authority | ACCEPTED DESIGN | ADR-0013 + 段成威 2026-08-02 approval；SQLite/PostgreSQL/Redis/pgvector/bbolt 职责已冻结 | N/A |
@@ -84,8 +84,8 @@
 | SQLite/SQLCipher 与 delete/backup boundary | 单仓wrong-key/migration/cascade/checkpoint/backup exclusion基础PASS；完整删除saga/OS副本语义未E2E | 段成威 | flags off；不承诺forensic erase | future G4/local G6 |
 | Host raw/title/Runtime cleanup | fake Runtime foundation、IPC/store/S8B production Vue consumer与S9 deterministic Eval PASS；真实Runtime跨Desktop仍未验证 | 段成威 | v2/UI flags off | S10 |
 | Desktop sidecar | supervisor/health/env/path基础已实现；真实child与signed Keychain未运行 | 段成威 | foundation only | S10 |
-| S10B chain readiness | Compose discovery/isolated profile未关闭；provider无fake process config；child flags/log、Keychain namespace与Public Tasks consumer不满足 | 段成威 | DEC-126-037 Option C已接受并HOLD；按DEC-126-038候选依序关闭S10E/P1/P2/P3，不用mock/curl/空DB冒充 | before any S10B authorization |
-| Public Tasks delete limitation | local session删除不能删除contract无API的PostgreSQL content-free row；误写“全表面物理删除”会过度承诺 | 段成威 | DEC-126-038候选要求Owner显式接受；不接受则转G2A delete gap | before S10P3 authorization |
+| S10B chain readiness | Compose discovery/isolated profile未关闭；provider无fake process config；child flags/log、Keychain namespace与Public Tasks consumer不满足 | 段成威 | DEC-126-037 Option C与DEC-126-038 Option B已接受；仍须逐项授权并关闭S10E/P1/P2/P3，不用mock/curl/空DB冒充 | before any S10B authorization |
+| Public Tasks delete limitation | local session删除不能删除contract无API的PostgreSQL content-free row；误写“全表面物理删除”会过度承诺 | 段成威 | DEC-126-038已接受retained-row边界；未来若要求同删则重开G2A delete contract评审 | before S10P3 Closure |
 | production identity/infra absent | no production activation | 段成威 | N/A for DEC-126-022 local-only scope；future online intent reopens production track | does not block local G6 |
 
 ## 8. 后续工作
@@ -114,7 +114,7 @@
 | DEC-126-035 | Remote State Reconciliation：登记五仓exact remote refs与不扩展Gate的边界 | `ls-remote` + temporary clean clones已完成；本轮治理文档校正 | 段成威 | Accepted 2026-08-04；本轮不追加push |
 | LIA-126-007 / S9 / DEC-126-036 | fixed fake-provider title/raw Eval；版本化authority/runner/dataset hash/split与closed metrics | DEC-126-035接受后由Owner明确授权；Host/Desktop test-only执行完成 | 段成威 | Closure Passed / Owner Accepted；不调用MiniMax、不启用flag、不进入S10 |
 | DESIGN-126-007 / DEC-126-037 | S10A process/test-profile/evidence冻结与readiness判定 | Owner只读S10A授权 + DEC-126-037 Option C | 段成威 | Accepted / S10B HOLD |
-| DESIGN-126-008 / DEC-126-038 | Compose/identity、fake provider/child profile、test secure storage、Public Tasks main-chain及删除限制 | S10P0只读评审完成；等Owner决策 | 段成威 | Ready for Owner Approval / no implementation authorization |
+| DESIGN-126-008 / DEC-126-038 | Compose/identity、fake provider/child profile、test secure storage、Public Tasks main-chain及删除限制 | Owner已接受Option B及retained-row边界 | 段成威 | Accepted / no implementation authorization |
 | S10E | bundled Compose discovery + run-scoped pinned PostgreSQL/Keycloak/Caddy/TLS | DEC-126-038 Accepted + separate authorization | 段成威 | Not authorized / NOT RUN |
 | S10P1 | loopback fake Responses + Host/Desktop child profile/log/PID | S10E Closure + separate authorization | 段成威 | Not authorized / NOT RUN |
 | S10P2 | run-derived Keychain/app-data isolation | S10P1 Closure + separate authorization | 段成威 | Not authorized / NOT RUN |
@@ -169,8 +169,8 @@
 | Remote State Reconciliation | 段成威 | DEC-126-035 Accepted；五仓远端精确可达事实已复验并接受；不改变G3/G4/G6或任何activation/merge状态 | 2026-08-04 | read-only `ls-remote` + five temporary clean clones；no new push |
 | S9 fake-provider Eval Closure Review | 段成威 | DEC-126-036 Accepted；S9 test-only authority/dataset/runner和Desktop exact consumer全部P1关闭；不授权S10 | 2026-08-04 | Host `8707dea…9378`、Desktop `adfdb5b…f9cb` local only；0 provider/flag/remote action |
 | S10A Local E2E Readiness Review | 段成威 | DESIGN-126-007与DEC-126-037 Option C已接受；继续HOLD LIA-126-008 | 2026-08-04 | 六仓exact/clean + Runtime/tool/source inventory；5 blockers；0 process/flag/provider/Keychain/remote write |
-| S10P0 Corrective Design Review | 段成威 | DEC-126-038 Ready for Owner Approval；未批准、不授权S10E/P1/P2/P3 | Pending | DESIGN-126-008；Compose v5候选、closed test profile/storage/main-chain/private IPC和Public row retention限制 |
+| S10P0 Corrective Design Review | 段成威 | DEC-126-038 Accepted / Option B；未授权S10E/P1/P2/P3 | 2026-08-04 | DESIGN-126-008；Compose v5、closed test profile/storage/main-chain/private IPC和Public row retention限制 |
 | G5 Production Ready | 段成威 | N/A / Out of Scope under DEC-126-022 | 2026-08-02 | no deployment/tag/publish/production environment |
 | G6 Local-only Delivery Complete | 段成威 | Pending Owner local startup and functional acceptance | N/A | requires G4 + AC-043；not Production Ready |
 
-- 正式关闭时间：N/A；feature remains active at G2A Re-review Passed / G3-partial boundary。S4–S9 Closure与DEC-126-037 Option C已Accepted；DESIGN-126-008/DEC-126-038待Owner批准，S10E/P1/P2/P3/S10B/S11均未授权。dependency remediation/merge与MiniMax local smoke继续分别单审，tag/publish/deploy不在本期范围。
+- 正式关闭时间：N/A；feature remains active at G2A Re-review Passed / G3-partial boundary。S4–S9 Closure、DEC-126-037 Option C与DEC-126-038 Option B已Accepted；S10E/P1/P2/P3/S10B/S11均未授权。dependency remediation/merge与MiniMax local smoke继续分别单审，tag/publish/deploy不在本期范围。

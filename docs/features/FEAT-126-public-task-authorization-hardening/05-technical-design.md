@@ -1,6 +1,6 @@
-# FEAT-126 技术设计（S10P0 Design Candidate，G3 Partial）
+# FEAT-126 技术设计（S10P0 Design Accepted，G3 Partial）
 
-> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。S4–S9 Closure已接受；DESIGN-126-007与DEC-126-037方案C已由Owner接受并继续HOLD S10B。DESIGN-126-008/DEC-126-038现为Owner审批候选，不是实现授权。G3仍Partial；S10E/P1/P2/P3/S10B/S11、MiniMax、flag activation与新增远端/发布动作未授权。
+> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。S4–S9 Closure已接受；DESIGN-126-007/DEC-126-037方案C和DESIGN-126-008/DEC-126-038方案B均已由Owner接受，S10B继续HOLD。DEC-126-038只批准设计与Public Task retained-row边界，不是实现授权。G3仍Partial；S10E/P1/P2/P3/S10B/S11、MiniMax、flag activation与新增远端/发布动作未授权。
 
 ## 1. 设计摘要
 
@@ -544,7 +544,7 @@ Runtime/Host pin、临时 `CODEX_HOME`/空 cwd/pathless ephemeral thread，title
 - Desktop Pattern：FEAT-126 Chat/App Shell Pattern已Accepted，只取代Chat 1.1.0/App Shell 2.0.0中的FEAT-126冲突段落。
 - 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–037 Accepted；S4–S9 Closure Passed；S10B–S11 Unauthorized。
 - 安全/数据 Owner：段成威 — ADR-0013/0014/0015/0016与DEC-126-005/006/007/011/012/014/015/016/017 Approved；Q-006/Q-007/Q-008/Q-009/Q-010/Q-015/Q-016 Resolved；Pattern Accepted。
-- 结论与日期：2026-08-04 G2/G2A保持Passed，S4–S9 Closure与DEC-126-037方案C已Accepted；S10B继续HOLD。DESIGN-126-008/DEC-126-038仅为候选。G3仍Partial；继续禁止未单独授权的S10E/P1/P2/P3/S10B/S11、MiniMax、flag启用与追加远端动作。
+- 结论与日期：2026-08-04 G2/G2A保持Passed，S4–S9 Closure、DEC-126-037方案C和DEC-126-038方案B已Accepted；S10B继续HOLD。G3仍Partial；继续禁止未单独授权的S10E/P1/P2/P3/S10B/S11、MiniMax、flag启用与追加远端动作。
 
 ## 15. S8B Vue projection implementation
 
@@ -664,7 +664,7 @@ S10B必须在owner-only `RUN_ROOT=$(mktemp -d "${TMPDIR%/}/feat126-s10b.XXXXXX")
 - 先另行设计和授权S10P Test Profile/Chain Corrective，仅解决BLK-002–005：fake Responses进程注入、Desktop sidecar flags/log/PID、test-only Keychain/app-data namespace和Public Tasks content-free orchestration。它们可能修改production config/private IPC/业务编排，必须重走contract-impact审查，不能在S10A静默实现。
 - BLK-001由Owner单独批准环境准备。只有BLK-001–005全部关闭并有本地checkpoint、逐仓门禁、安全/no-log证据后，LIA-126-008才可从`Blocked Draft`升级为`Ready for Owner Approval`。
 
-## 18. DESIGN-126-008 — S10P0 Test Profile & Main-Chain Corrective（Owner审批候选）
+## 18. DESIGN-126-008 — S10P0 Test Profile & Main-Chain Corrective（DEC-126-038 Accepted）
 
 ### 18.1 评审边界、基线与结论
 
@@ -739,7 +739,7 @@ S10P2是Desktop-private deployment/storage interface的additive改动，不改SQ
 
 ### 18.5 S10A-BLK-005：Desktop→Public Tasks→Host主链
 
-`29317b6426578749dc698fc2ad32b986ee5c8e9f`已能表达本主链的create/read、UUID `Idempotency-Key`、closed `TaskContentReferenceV2`与stable content-free error；无需修改central contract。它也明确声明permanent delete不在candidate内。DEC-126-038候选因此只修正DEC-126-014的“运行独立”部分：会话正文/标题/路径仍绝对local-first且不上传，但每个新会话在Host start前必须成功创建一条content-free control-plane Public Task。
+`29317b6426578749dc698fc2ad32b986ee5c8e9f`已能表达本主链的create/read、UUID `Idempotency-Key`、closed `TaskContentReferenceV2`与stable content-free error；无需修改central contract。它也明确声明permanent delete不在candidate内。DEC-126-038已接受对DEC-126-014“运行独立”部分的窄修正：会话正文/标题/路径仍绝对local-first且不上传，但每个新会话在Host start前必须成功创建一条content-free control-plane Public Task。
 
 #### Authority与持久化
 
@@ -757,9 +757,9 @@ local session ID是Desktop唯一UI/history authority；Public task ID是API/Post
 
 create transaction先写local session/user message、binding和已有create outbox；coordinator先POST `/v2/tasks`，只有binding=`bound`后才解析bookmark并启动Host。transport/503/500/unknown outcome使用相同idempotency key与canonical request重试；401进`blocked_auth`并等待同owner/tenant重登录；403进`denied`；400/409/schema mismatch进terminal `failed`；201返回后原子bind Public task ID。应用重启时只在同owner/tenant/revision重验后恢复pending/inflight/retry，不猜测unknown outcome。
 
-delete-vs-create由现有session lease串行。删除开始后任何late Public Task响应都不得触发Host start；Desktop/Host/Runtime完成清理后级联删除本地binding/outbox。由于contract没有Public Task delete，API/PostgreSQL中已创建的content-free row和audit/idempotency retention依provider策略保留，不计入DEC-126-006的Desktop/Host/Runtime物理删除承诺。若Owner不接受这一限制，DEC-126-038必须退回并提交G2A delete缺口，S10P3不得开始。
+delete-vs-create由现有session lease串行。删除开始后任何late Public Task响应都不得触发Host start；Desktop/Host/Runtime完成清理后级联删除本地binding/outbox。由于contract没有Public Task delete，API/PostgreSQL中已创建的content-free row和audit/idempotency retention依provider策略保留，不计入DEC-126-006的Desktop/Host/Runtime物理删除承诺。Owner已通过DEC-126-038接受这一限制；未来若要求Public row同删，必须重开G2A delete contract评审。
 
-#### Desktop-private closed projection（等待DEC-126-038批准）
+#### Desktop-private closed projection（shape已由DEC-126-038接受，实施未授权）
 
 现有`ChatSession`和7个chat event variants无法稳定表达异步control-plane状态；不得让Vue从`queued`或readiness猜测。S10P3因此是`additive Desktop-private IPC impact`，提交不改现有22个command/7个event语义的窄方案：
 
@@ -790,7 +790,7 @@ event: { schemaVersion: 1, sequence, sessionId,
 | S10P2 | BLK-004 | additive Desktop-private storage/deployment interface；DB schema/IPC/central none | 无master+run ID则使用原固定namespace | pre/post exact inventory，wrong run ID，legacy-no-fallback，abnormal-exit/restart/cleanup/no-real-item-access | 只删manifest中本run items和run root，默认namespace不动 |
 | S10P3 | BLK-005 | semantic Desktop orchestration + SQLCipher v5 + additive private command/channel；central wire none | Chat flags仍default-off；API secure Tasks只在local profile exact true | schema/serde/TS conformance，auth/tenant/revision，idempotency/unknown/restart/race，Public DB/no-log/migration/cascade/retained-row disclosure | flag off；forward migration保留；停coordinator；不删或猜测Public row |
 
-每个切片只能在Owner接受DEC-126-038后单独授权，并只能建本地checkpoint。本轮未创建任何corrective source diff。S10P1/P2/P3逐仓lint/test/build、migration/no-log/security/restart/race/default-off全绿，S10E环境证据全绿，且BLK-001–005全部Closed后，才能重新提交LIA-126-008/S10B；其中任一失败则保持Blocked Draft。
+DEC-126-038已由Owner接受，但每个切片仍须单独授权并只能建本地checkpoint。本轮未创建任何corrective source diff。S10P1/P2/P3逐仓lint/test/build、migration/no-log/security/restart/race/default-off全绿，S10E环境证据全绿，且BLK-001–005全部Closed后，才能重新提交LIA-126-008/S10B；其中任一失败则保持Blocked Draft。
 
 ### 18.7 安全、migration、restart、cleanup与race矩阵
 
@@ -805,4 +805,4 @@ event: { schemaVersion: 1, sequence, sessionId,
 
 ### 18.8 审批出口
 
-DEC-126-038候选推荐Owner一次性接受本设计，包括：Compose v5与v2功能等价的版本语义修正、S10E/P1/P2/P3顺序、S10P3的Desktop-private closed projection，以及“本地session删除不删Public Tasks PostgreSQL content-free row”限制。接受只代表设计可用，不自动授权任何切片。推荐的后续单独授权顺序是`S10E → S10P1 → S10P2 → S10P3 → LIA-126-008/S10B`；不允许并跳。
+Owner已批准DEC-126-038方案B，接受Compose v5与v2功能等价的版本语义修正、S10E/P1/P2/P3顺序、S10P3的Desktop-private closed projection，以及“本地session删除不删Public Tasks PostgreSQL content-free row”限制。该批准只代表设计可用，不自动授权任何切片。后续仍须按`S10E → S10P1 → S10P2 → S10P3 → LIA-126-008/S10B`逐项单独授权和接受Closure；不允许并跳。
