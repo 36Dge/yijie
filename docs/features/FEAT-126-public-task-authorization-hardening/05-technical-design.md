@@ -1,6 +1,6 @@
-# FEAT-126 技术设计（S10P0 Design Accepted，G3 Partial）
+# FEAT-126 技术设计（S10P2 Source Implemented / Native Proof Blocked，G3 Partial）
 
-> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。S4–S9、S10E与S10P1 Closure均已接受；DEC-126-040正式关闭S10A-BLK-002/003。S10B继续HOLD，G3仍Partial；S10P2/P3/S10B/S11、MiniMax、默认flag activation与新增远端/发布动作未授权。
+> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。S4–S9、S10E与S10P1 Closure均已接受；LIA-126-010已形成S10P2本地源码checkpoint，但DEC-126-041仍是待Owner审批候选，且signed Protected Data Keychain写入因本机缺entitlement而失败，因此BLK-004未关闭。S10B继续HOLD，G3仍Partial；S10P3/S10B/S11、MiniMax、默认flag activation与新增远端/发布动作未授权。
 
 ## 1. 设计摘要
 
@@ -600,11 +600,11 @@ Runtime现有artifact为`codex-cli 0.144.6`，binary SHA-256=`1ef4f1daba0c5ac267
 | S10A-BLK-001 | S10A历史观察为`docker compose`不可用；S10P0定位stale link，S10E完成discovery/profile/migration/identity/TLS/no-log/cleanup | isolated PostgreSQL + Keycloak + Caddy拓扑已可复验 | **Closed by DEC-126-039**；不等于S10P1/S10B授权 |
 | S10A-BLK-002 | Host只接受空provider或`minimax`；`StartThread`在MiniMax未配置时fail closed，MiniMax base URL硬编码为`https://api.minimaxi.com/v1` | 固定fake Responses provider无进程级注入面；S9 in-process runner不是真实Host→Runtime provider | 触发provider-config停止条件；不使用MiniMax/真实key绕过 |
 | S10A-BLK-003 | Desktop sidecar使用`env_clear()`，并把Host raw/title/cleanup三个flag设为`false`；stdout/stderr丢弃到null | 父进程临时exact-true不会到达Host child，且无法生成Host日志/进程证据 | 触发private deployment-interface停止条件；不“假开启” |
-| S10A-BLK-004 | Chat DB/receipt Keychain namespace固定为`com.yijie.ai.chat-db/default-v1`与`com.yijie.ai.chat-receipt/default-v1`；native auth也是固定namespace | 不能满足“临时Keychain namespace、不碰真实条目” | 触发secure-storage停止条件；本轮不读/改/删Keychain条目 |
+| S10A-BLK-004 | S10P2源码已把Chat DB/receipt/native-auth切到run-derived test namespace，独立gate、manifest、exact inventory与cleanup已通过仓内门禁；但本机没有Apple Development identity/entitlement，Protected Data写入返回required entitlement missing | 不能证明真实三条item的create/use/restart/delete lifecycle | **Source implemented / native proof blocked**；DEC-126-041候选保持BLK-004 Open，禁止用普通文件、默认Keychain或mock豁免 |
 | S10A-BLK-005 | Desktop chat流使用本地UUID作task/session ID并调Host `/v1/tasks/{id}/agent-sessions`；`/v2/tasks`只有generated types，无consumer call | 不能声称“Desktop新建→Public Tasks/PostgreSQL→Host”同一主链；空Tasks表不是content-free create证据 | 触发production orchestration停止条件；不用独立curl或fixture冒充UI主链 |
 | S10A-LIM-001 | title v2因固定Runtime无法capability-disable tools而必定fail closed | S10只能验证deterministic fallback + user rename precedence，不能声称model title E2E | 不阻断fallback用例；title flag必须false |
 
-结论：`S10B readiness = HOLD / NOT READY`。DEC-126-039已关闭BLK-001；BLK-002–005保持Open。任何一项未关闭都不能批准真实四组件E2E；它们不回退G2/G2A、S4–S9或S10E Closure。
+结论：`S10B readiness = HOLD / NOT READY`。DEC-126-039已关闭BLK-001，DEC-126-040已关闭BLK-002/003；S10P2源码已实现但原生证明被entitlement阻断，BLK-004仍Open，BLK-005仍Open。任一未关闭都不能批准真实四组件E2E；它们不回退G2/G2A、S4–S9、S10E或S10P1 Closure。
 
 ### 17.3 PostgreSQL / OIDC 方案比较
 
@@ -723,7 +723,7 @@ Host stdout/stderr不再丢到null，而写入Rust在run root内创建的owner-o
 
 ### 18.4 S10A-BLK-004：test-only Keychain/app-data
 
-S10P2只接受与18.3相同的canonical run UUID，不接受WebView或shell任意指定Keychain service/account。Rust内部由run ID派生并限长：
+S10P2只在`YIJIE_FEAT126_S10_TEST_PROFILE_ENABLED=true`与独立`YIJIE_FEAT126_S10_SECURE_STORAGE_ENABLED=true`同时exact成立时接受与18.3相同的canonical run UUID；缺失/`false`保持S10P1/生产默认namespace，拼写错误或孤立子开关fail closed。不接受WebView或shell任意指定Keychain service/account。Rust内部由run ID派生并限长：
 
 ```text
 com.yijie.ai.test.feat126.<run-id>.chat-db / default-v1
@@ -787,7 +787,7 @@ event: { schemaVersion: 1, sequence, sessionId,
 |---|---|---|---|---|---|
 | S10E | BLK-001 | deployment/Infra config only；central/private wire none | 新profile显式选择，普通`dev-up`不启动 | Compose version/hash/config，digest images，run-scoped project/volume，migration/identity/TLS/no-real-data/cleanup | 恢复plugin link，只停本run project，不删未列入manifest的volume |
 | S10P1 | BLK-002/003 | additive Host/Desktop private deployment config；IPC/central/Runtime none | master exact-true + local + run ID三重门禁；default MiniMax不变 | fake protocol/oversize/nonloopback/key-conflict，child env/log/PID/nonce，no-log，crash/restart/default-off | 关闭master profile，恢复Host默认config和null/no-start路径 |
-| S10P2 | BLK-004 | additive Desktop-private storage/deployment interface；DB schema/IPC/central none | 无master+run ID则使用原固定namespace | pre/post exact inventory，wrong run ID，legacy-no-fallback，abnormal-exit/restart/cleanup/no-real-item-access | 只删manifest中本run items和run root，默认namespace不动 |
+| S10P2 | BLK-004 | additive Desktop-private storage/deployment interface；DB schema/IPC/central none | master与secure-storage必须分别exact `true`；任一缺失/false使用原固定namespace | pre/post exact inventory，wrong run ID，legacy-no-fallback，abnormal-exit/restart/cleanup/no-real-item-access，signed Protected Data write/read/delete | 只删manifest中本run items和run root，默认namespace不动 |
 | S10P3 | BLK-005 | semantic Desktop orchestration + SQLCipher v5 + additive private command/channel；central wire none | Chat flags仍default-off；API secure Tasks只在local profile exact true | schema/serde/TS conformance，auth/tenant/revision，idempotency/unknown/restart/race，Public DB/no-log/migration/cascade/retained-row disclosure | flag off；forward migration保留；停coordinator；不删或猜测Public row |
 
 DEC-126-038/039已由Owner接受；S10E Closure Passed，详见§19。S10P1/P2/P3仍须分别授权并仅建本地checkpoint；逐仓lint/test/build、migration/no-log/security/restart/race/default-off全绿，且剩余BLK-002–005全部Closed后，才能重新提交LIA-126-008/S10B；其中任一失败则保持Blocked Draft。
@@ -859,4 +859,26 @@ DEC-126-039已按方案A接受S10E并关闭BLK-001。该接受不自动授权S10
 
 Host contract-check/lint/vet/shell、全量`go test -race -cover ./...`、build和固定Runtime集成通过；Desktop generated-contract check、ESLint/vue-tsc/fmt/clippy、165/165 TypeScript、101/101 Rust（另1个既有且未执行的Keychain integration）、Vite build、Rust build和真实Desktop→Host→固定Runtime child启动通过。raw/secret/path/bearer/database-key在已覆盖Host log、bbolt、Desktop child stdout/stderr、process output和evidence中命中为0。
 
-因此S10P1授权范围内没有剩余P1；Owner已正式接受DEC-126-040，S10P1 Closure Passed，BLK-002/003 Closed。BLK-004（test-only Keychain/app-data）和BLK-005（Desktop→Public Tasks主链）完全未触碰，S10P2/P3/S10B/S11仍未授权，LIA-126-008继续HOLD。
+因此S10P1授权范围内没有剩余P1；Owner已正式接受DEC-126-040，S10P1 Closure Passed，BLK-002/003 Closed。该决定当时未触碰BLK-004/005；后续LIA-126-010的S10P2结果见§21。S10P3/S10B/S11仍未授权，LIA-126-008继续HOLD。
+
+## 21. S10P2 Test-only Secure Storage实际实现（DEC-126-041 Candidate）
+
+### 21.1 Source与默认兼容
+
+- Desktop本地checkpoint：`c863b2ab30d185201bff5736a308d7078ee5dc68`，parent=`fba934c524852719904657d0a4155142040e7285`，分支`feat/feat-126-foundation-closure`，未push。
+- `contract-impact = additive Desktop-private storage/deployment interface`。未修改SQLCipher business schema、Tauri command/event/cursor/error、TypeScript/Pinia/Vue、central contracts、Public Tasks/Host wire、API、Host或Runtime pin；Cargo/pnpm依赖与lockfile未改。
+- 独立`YIJIE_FEAT126_S10_SECURE_STORAGE_ENABLED`只在S10P1 master也为exact `true`时生效；默认、`false`或master-only均继续使用`com.yijie.ai.chat-*`和`ai.yijie.desktop.auth`，不会因S10P1自动访问Keychain。
+
+### 21.2 Run manifest、namespace与cleanup
+
+- Rust从canonical non-nil lower-case UUID派生三条固定后缀namespace；native-auth test store根本不构建legacy entry，因此legacy读取/修改/删除路径计数为0。
+- `RUN_ROOT`必须位于canonical临时目录之下且为当前owner、`0700`、non-symlink；固定创建`desktop-app-data/host-home/codex-home/project/secure-storage`。Chat SQLCipher只取run-scoped app-data，sidecar要求Host/CODEX Home精确匹配，项目选择/重验只能命中同run project。
+- manifest为`0600`、closed schema，保存run ID、owner UID、目录role、namespace descriptor SHA、phase、Desktop PID与recovery count；不保存secret、真实路径或service/account正文。wrong owner/run/schema/path、symlink、mode、活跃同run PID均fail closed。
+- inventory调用Protected Data store的exact `service+account` attribute search，只返回三条role的`absent|present`和namespace-schema-valid；不全量枚举、不调用`get_secret`、不hash secret。正常业务store才读取并严格解码自身合成secret。
+- cleanup先验证manifest和Desktop PID已停止，阶段转`cleanup_pending`，逐条exact existence-check/delete；missing幂等成功，中断可同run重试，全部absent后标记complete并删除唯一run root。manifest mismatch时delete调用数为0。
+
+### 21.3 Native proof停止事实
+
+仓内fake backend覆盖pre absent、同run恢复、异run隔离、stale PID、cleanup中断/重试、missing item、manifest mismatch拒删、精确root删除和content-free evidence。一次沙箱外随机Protected Data probe只访问三条run-derived tuple；pre/post均为absent，cleanup完成且临时root已删除，但首次`set_secret`返回`A required entitlement isn't present`。本机`security find-identity -p codesigning`为`0 valid identities found`。
+
+该失败不是源码降级理由。普通未签名测试、普通文件、默认Keychain或mock inventory都不能替代Apple Development signed bundle的真实create/use/restart/delete证据。因此DEC-126-041推荐Option B：接受源码checkpoint与仓库证据，但S10P2 Closure保持HOLD、BLK-004保持Open；取得匹配local bundle identifier/access group的签名身份与provisioning后，只重跑这一原生矩阵并重新提交Closure，不进入S10P3/S10B。

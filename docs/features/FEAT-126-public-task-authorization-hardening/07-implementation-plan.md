@@ -1,4 +1,4 @@
-# FEAT-126 Local-only 原子实施计划（S10P1 Closure Passed，G3 Partial）
+# FEAT-126 Local-only 原子实施计划（S10P2 Source Implemented / Native Proof Blocked，G3 Partial）
 
 ## 1. 当前执行边界
 
@@ -6,7 +6,7 @@
 - DEC-126-022 Local-only Delivery Strategy已Accepted；LIA-126-001已于2026-08-02批准，且只允许S4–S6本地基础切片。
 - S4–S6已有远端checkpoint并保持flags/routes默认关闭；DEC-126-026已接受其Closure并单独授权S7A Desktop Rust Host Bridge/Domain。
 - DEC-126-027已接受S7A；DEC-126-028已接受S7B durable outbox、strict/coalesced reducer、history orchestration、title precedence与fake Host应用链。
-- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；DEC-126-030/031/033/034已接受S7C–S8B，DEC-126-036已接受S9。DESIGN-126-007/DEC-126-037方案C、DESIGN-126-008/DEC-126-038方案B、S10E/DEC-126-039与S10P1/DEC-126-040均已接受并继续HOLD LIA-126-008；BLK-001/002/003关闭。S10P2、S10P3、S10B与S11仍须逐切片明确授权。
+- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；DEC-126-030/031/033/034已接受S7C–S8B，DEC-126-036已接受S9。DESIGN-126-007/DEC-126-037方案C、DESIGN-126-008/DEC-126-038方案B、S10E/DEC-126-039与S10P1/DEC-126-040均已接受并继续HOLD LIA-126-008；BLK-001/002/003关闭。LIA-126-010已执行并形成S10P2源码checkpoint，但DEC-126-041仍待审批且BLK-004因signed Keychain proof缺失保持Open。S10P3、S10B与S11仍须逐切片明确授权。
 
 ## 2. 实施原则
 
@@ -66,7 +66,7 @@ S0 G1 product decisions (Passed) + G2 Pattern/ADR design (Passed)
 | S10P0 | Test Profile/Main-Chain Corrective设计评审 | S10A-BLK-001–005 planning only | yijie docs + affected repos read-only | DESIGN-126-008、DEC-126-038、closed config/schema/test/rollback | corrective source、environment mutation、activation | DEC-126-037 Accepted + Owner S10P0 instruction | exact baseline/source/environment inventory + governance gates | docs-only；无runtime rollback |
 | S10E | Compose/isolated identity环境准备 | S10A-BLK-001 | yijie-infra + user-level Compose discovery | recoverable plugin link、run-scoped pinned PostgreSQL/Keycloak/Caddy/TLS profile | real DB/common volume/system trust/default profile | DEC-126-038 Accepted + separate S10E authorization | version/hash/config/digest/migration/identity/TLS/cleanup | restore link backup；stop only this run |
 | S10P1 | Host fake-provider与Desktop child test profile | S10A-BLK-002/003 | Host/Desktop private deployment config | loopback fake Responses、exact test profile、child env/log/PID/nonce allowlist | MiniMax/default behavior、IPC/contracts/Runtime pin | S10E Closure + separate S10P1 authorization | protocol/nonloopback/default-off/no-log/crash/restart | master profile false；terminate only this run |
-| S10P2 | test-only Keychain/app-data隔离 | S10A-BLK-004 | Desktop private storage/deployment | run-derived Keychain services、app-data/Home/CODEX_HOME manifest、cleanup recovery | real namespace、Keychain enumeration、DB/private IPC schema | S10P1 Closure + separate S10P2 authorization | pre/post inventory、wrong-run/crash/restart/cleanup/no-real-access | delete only exact run manifest entries |
+| S10P2 | test-only Keychain/app-data隔离 | S10A-BLK-004 | Desktop private storage/deployment | 双exact gate、run-derived Keychain services、app-data/Home/CODEX_HOME/project manifest、cleanup recovery | real/default namespace、Keychain enumeration、DB/private IPC schema | S10P1 Closure + LIA-126-010 | 仓内矩阵PASS；signed Protected Data probe缺entitlement，DEC-126-041候选HOLD | delete only exact run manifest entries；native proof前不关BLK-004 |
 | S10P3 | Desktop→Public Tasks content-free主链 | S10A-BLK-005 | Desktop Rust/TS/Vue private domain | SQLCipher v5 binding/outbox、idempotent Public create、Host start sequencing、closed private projection | central contracts/Host wire/Runtime pin；Public row delete guess | DEC-126-038 accepts retained Public row + S10P2 Closure + separate authorization | migration/schema/serde/TS/auth/idempotency/race/no-log/retention disclosure | flags off；forward reader；never guess/delete Public row |
 | S10B | 本地跨仓E2E/security/resilience/performance/delete rehearsal | all Must AC/NFR incl. AC-035–044 | API/Host/Desktop/pinned Runtime | local process harness/runbook/content-free evidence | production activation、real user data、tag/publish | BLK-001–005 closed + LIA-126-008 separately approved | S10B-001–012 full matrix | stop local processes；clean temp data；flags off |
 | S11 | Owner Local Runtime Ready验收 | AC-043 | all local | local startup guide、exact refs、evidence summary | merge/tag/publish/deploy/Production Ready声明 | G4 evidence + Owner review | local startup + complete functional chain | keep feature disabled until accepted；reopen failed slice |
@@ -156,7 +156,7 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 | S10P0 | design checkpoint `514559265ac4a675115984650a0782f09b481748`；approval checkpoint待最终门禁后回报 | DESIGN-126-008 + DEC-126-038 Accepted；FEAT-126 governance files only | package/strict/G2A/YAML/lint/test/shell/diff gates PASS | Owner Accepted Option B | Design Accepted / no corrective implementation |
 | S10E | yijie-infra `99e50d8b47e13fc3e3b7501617a307e1ba5d6baf` | local checkpoint only | IMPLEMENTED / VERIFIED | DEC-126-039 Accepted / Closure Passed | S10P1 still requires separate Owner authorization |
 | S10P1 | Host `e0a8d3d29a335571d1654d95e1e262c240755674`；Desktop `fba934c524852719904657d0a4155142040e7285` | exact/keyless loopback fake Responses、fixed fixture、Desktop closed child allowlist、bounded owner-only logs、spawn前PID/run/nonce evidence与Host parent watchdog；无IPC/TS/Vue/schema/pin变化 | CLOSURE PASSED | DEC-126-040 Accepted / BLK-002/003 Closed | S10P2仍需单独授权 |
-| S10P2 | N/A | none | NOT RUN | not authorized | Requires S10P1 Closure + separate authorization |
+| S10P2 | Desktop `c863b2ab30d185201bff5736a308d7078ee5dc68` | Desktop Rust test-only run manifest、double exact gate、run-derived Chat DB/receipt HMAC/native-auth Keychain namespaces、app-data/Home/project binding、exact inventory、cleanup/recovery/race；无IPC/TS/Vue/schema/pin变化 | source/repository gates PASS；signed Protected Data native write BLOCKED by missing entitlement | LIA-126-010 executed；DEC-126-041 Candidate recommends Option B / BLK-004 Open | Source checkpoint complete / Closure HOLD；requires signed native proof and Owner acceptance |
 | S10P3 | N/A | none | NOT RUN | not authorized | Requires S10P2 Closure + retained-Public-row acceptance + separate authorization |
 | S10B–S11 | N/A | none | NOT RUN | not authorized | Pending blocker closure and separate sequential authorization |
 
@@ -181,7 +181,7 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 | Contracts/G2A/remote | 段成威 | DEC-126-023/024/025 Accepted，`29317b...`为唯一candidate并已远端可达；`c000a024...`仅为历史远端候选，旧PR与develop不变；未merge/tag/发布/启用 | 2026-08-02 |
 | Contracts Draft PR / merge | 段成威 | DEC-126-021 Accepted/HOLD；CI failed dependency audit；merge不是local draft前置但当前仍不批准 | 2026-08-02 |
 | Local-only delivery strategy | 段成威 | DEC-126-022 Accepted；Local Runtime Ready目标，tag/publish/deploy/G5 N/A | 2026-08-02 |
-| Local Implementation Authorization | 段成威 | S4–S9 Closure、DEC-126-037方案C、DEC-126-038方案B、DEC-126-039/040已接受；S10E/S10P1 Closure Passed、BLK-001/002/003 Closed；LIA-126-008/S10B继续Blocked Draft。S10P2/P3/S10B/S11、MiniMax/default flag activation与远端动作仍未授权 | 2026-08-04 |
+| Local Implementation Authorization | 段成威 | S4–S9 Closure、DEC-126-037方案C、DEC-126-038方案B、DEC-126-039/040已接受；S10E/S10P1 Closure Passed、BLK-001/002/003 Closed。LIA-126-010已执行并形成S10P2 source checkpoint，但native proof blocked、DEC-126-041仍为候选、BLK-004 Open；LIA-126-008/S10B继续Blocked Draft。S10P3/S10B/S11、MiniMax/default flag activation与远端动作仍未授权 | 2026-08-04 |
 
 ## 12. Local Implementation Authorization 审批候选
 
@@ -235,7 +235,7 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - `LIA-126-006 / S8B`结果：Owner在DEC-126-033接受后单独授权Vue页面、交互、视觉与可访问性；实现消费真实authoritative store，fake投影只存在test harness；DEC-126-034已接受Closure，feature flag activation不随之授权。
 - S7C结果：Owner已接受DEC-126-030，S7C Closure Passed。
 - S8A结果：20个versioned commands、closed Schema/fixtures、Rust-bound context/event/cursors、TS validator/client/store已实现；Desktop `make lint/test/build`及安全扫描PASS；DEC-126-031已接受S8A Closure，G3仍Partial。
-- 当前状态：S4–S9 Closure、DEC-126-037方案C、DEC-126-038方案B与DEC-126-039/040已由Owner接受。S10E/S10P1 Closure Passed、BLK-001/002/003 Closed。G3仍Partial，S10B继续HOLD，S10P2/P3/S10B/S11保持`NOT RUN`并未授权。
+- 当前状态：S4–S9 Closure、DEC-126-037方案C、DEC-126-038方案B与DEC-126-039/040已由Owner接受。S10E/S10P1 Closure Passed、BLK-001/002/003 Closed。LIA-126-010已完成S10P2源码与仓内门禁，但signed Protected Data原生证明因缺entitlement阻断；DEC-126-041仍为候选，BLK-004保持Open。G3仍Partial，S10B继续HOLD，S10P3/S10B/S11保持`NOT RUN`并未授权。
 
 ### LIA-126-005 / S8B0（Approved / Executed / DEC-126-033 Closure Passed）
 
@@ -310,19 +310,21 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - 未改private IPC/central contracts/Runtime pin；停止条件未触发。Host/Desktop local checkpoints及fixed Runtime/fault/restart/default-off/no-log证据均PASS；未push。
 - DEC-126-040已接受并关闭BLK-002/003；S10P2仍不得自动开始，必须另行明确授权。
 
-### S10P2 Test-only Secure Storage（Authorization Candidate / NOT AUTHORIZED）
+### S10P2 Test-only Secure Storage（LIA-126-010 Executed / DEC-126-041 Candidate HOLD）
 
-- 以Rust从canonical run ID派生Chat DB、receipt、native-auth三个Keychain service；test native-auth禁止legacy account fallback；app-data/Host Home/CODEX_HOME绑同一run manifest。
-- 只查三个exact service/account的存在/状态，不枚举Keychain、不读或hash secret；异常退出只按manifest删本run entries。
-- 不改SQLCipher schema/private IPC/central contracts/default namespace。
-- 交付：Desktop本地checkpoint，pre/post inventory digest，legacy-no-fallback/cross-run/crash/recovery/cleanup/no-real-item-access证据；不push。
+- Desktop `c863b2ab30d185201bff5736a308d7078ee5dc68`已实现独立secure-storage exact gate；master-only/default/false继续走固定namespace，typo/orphan fail closed。
+- Rust从canonical run ID派生Chat DB、receipt、native-auth三个Keychain service；test native-auth不构建legacy entry；Chat app-data、Host Home、CODEX_HOME与project绑同一closed run manifest。
+- exact inventory使用属性搜索且只查3组service/account，不枚举Keychain、不读或hash secret；异常退出/中断/missing/restart只按匹配manifest删本run entries，mismatch delete=0。
+- 仓内12项S10P2测试与Desktop全门禁PASS；未改SQLCipher schema/private IPC/central contracts/default namespace/依赖，未push。
+- 随机原生probe确认pre/post exact tuples全absent、临时root已删除，但Protected Data首次写入因required entitlement missing失败；本机无codesigning identity。因此DEC-126-041推荐接受源码但保持Closure HOLD，BLK-004未关闭。
+- 退出条件：提供匹配local bundle/access-group的Apple Development identity/provisioning，只重跑三条合成item create/use/restart/delete与default/legacy/foreign=0矩阵；Owner接受Closure前不得开始S10P3。
 
 ### S10P3 Desktop → Public Tasks Main Chain（Authorization Candidate / NOT AUTHORIZED）
 
-- 前置：DEC-126-038已接受“Public row保留”限制，S10E/P1/P2 Closure均通过。
+- 前置：DEC-126-038已接受“Public row保留”限制；S10E/P1 Closure已通过，S10P2 Closure尚未通过。
 - 只实现SQLCipher v5 content-free binding/outbox、Rust-native bearer/tenant/revision authority、先Public create/bind再Host start的幂等编排，以及`chat_get_session_control_plane_v1`/`yijie.chat.control-plane.event.v1`的closed Rust↔schema↔TS↔Pinia/UI消费。
 - request/response/PostgreSQL/audit只能是既有closed metadata/reference；prompt/message/raw/title/path/bearer不得离开Desktop SQLCipher/Rust authority。不修改`29317b...`、API/Host wire或Runtime pin。
 - 删除只清Desktop/Host/Runtime和local binding；Public Task row保留且必须证明正文零命中。若实现需Public delete或其他central shape，立即停止转G2A。
 - 交付：Desktop本地checkpoint、v1–v4→v5 migration、schema/serde/TS conformance、auth/idempotency/unknown/restart/delete-race/no-log/PostgreSQL boundary证据；不push。
 
-只有S10P2和S10P3逐项Closure被Owner接受且剩余S10A-BLK-004/005全部Closed，才能将LIA-126-008重新提交为`Ready for Owner Approval`。DEC-126-040的接受不自动授权这些后续切片。
+只有S10P2和S10P3逐项Closure被Owner接受且剩余S10A-BLK-004/005全部Closed，才能将LIA-126-008重新提交为`Ready for Owner Approval`。DEC-126-041当前只是候选，不能授权S10P3或S10B。
