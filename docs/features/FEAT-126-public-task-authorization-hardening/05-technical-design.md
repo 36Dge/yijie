@@ -1,6 +1,6 @@
 # FEAT-126 技术设计（S10P0 Design Accepted，G3 Partial）
 
-> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。S4–S9 Closure已接受；DESIGN-126-007/DEC-126-037方案C、DESIGN-126-008/DEC-126-038方案B和S10E/DEC-126-039均已由Owner接受，S10A-BLK-001关闭，S10B继续HOLD。G3仍Partial；S10P1/P2/P3/S10B/S11、MiniMax、flag activation与新增远端/发布动作未授权。
+> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。S4–S9 Closure与S10E/DEC-126-039已接受；LIA-126-009已单独完成S10P1并形成DEC-126-040 Closure候选，技术证据支持关闭S10A-BLK-002/003但仍待Owner接受。S10B继续HOLD，G3仍Partial；S10P2/P3/S10B/S11、MiniMax、默认flag activation与新增远端/发布动作未授权。
 
 ## 1. 设计摘要
 
@@ -832,3 +832,31 @@ fresh run证据：四服务healthy；exact image/label/security/network/volume/p
 停止后两次run均为0 container、0 network、0 `5432/8443/9443` listener。因没有volume/secret删除授权，八个project-scoped named volumes与两个owner-only ignored run root保留；未执行`down --volumes`、volume rm或prune。污染run root含`0600 REJECTED` marker，Compose start/config/export、provision、migration与runtime verification均fail closed，仅status/stop可用于围堵。它们不是活动服务，但在Owner另行精确授权清理前必须保留并披露。
 
 DEC-126-039已按方案A接受S10E并关闭BLK-001。该接受不自动授权S10P1、S10P2、S10P3、S10B、S11、MiniMax、flag activation或任何远端动作。
+
+## 20. S10P1 Host Fake Provider与Desktop Child Test Profile实际实现（DEC-126-040候选）
+
+### 20.1 Source与contract-impact
+
+- Host checkpoint：`yijie-agent-host@d547e1e36e6f9a13877e3be6d1756b49a9f247c5`，parent `8707dea552cff74121b89aa8045f27da2c8c9378`；Desktop checkpoint：`yijie-desktop@fc08bdf6ad4320defb2212329164bcf1e8891df7`，parent `adfdb5b24b3277ba39bd76a8cdc63fc138caf9cb`。两者均在`feat/feat-126-foundation-closure`、clean、仅本地、未push。
+- `contract-impact = additive private test deployment configuration`。没有新增或修改Tauri command/event/cursor/error、TypeScript validator、Vue、central contracts、Public Tasks/Host wire、数据库schema或Runtime pin。
+- default路径逐字段保持：test master缺失或不为exact `true`时 subordinate变量fail closed；Host原MiniMax配置和Desktop原raw/title/cleanup=false、stdout/stderr=null路径不变；`.env`、CI、默认开发/构建配置未改。
+
+### 20.2 Host test-only fake Responses
+
+- 只有`YIJIE_FEAT126_S10_TEST_PROFILE_ENABLED=true`、canonical non-zero run UUID、`YIJIE_ENV=local`、exact `http://127.0.0.1:18082/v1`、raw/cleanup=true且title=false同时成立才启用；hostname、非loopback、端口/path/query变化、父PID/log manifest不匹配、MiniMax key/provider共存全部拒绝。
+- managed临时CODEX_HOME继续以`minimax`/`MiniMax-M3`作为固定Runtime所需on-wire identity，但`requires_openai_auth=false`、无`env_key`、无Authorization；只附带run ID和固定fixture ID header，因此不会读取真实或合成MiniMax key。
+- `yijie-agent-host`新增唯一fake HTTP authority，嵌入并校验S9 `feat126-title-raw-v1` manifest/dataset SHA；loopback handler只接受bounded JSON/stream/fixed model/input category/call cap，提供complete、incomplete、HTTP error、disconnect与oversize固定行为。Snapshot只含fixture ID、dataset SHA和接受/拒绝计数。
+- 固定Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`实际完成一次合成turn：assistant delta、raw reasoning delta/final、item completed、turn completed和thread delete全部通过；调用MiniMax/外部网络次数为0。
+
+### 20.3 Desktop child profile与进程证据
+
+- Rust supervisor保留`env_clear()`，只向Host child传递批准的local/port/Home/Runtime artifact、instance nonce、test master/run ID/fixed loopback、parent PID、run-scoped log/process manifest及raw=true、cleanup=true、title=false。allowlist中不存在MiniMax key、bearer、SQLCipher key或WebView authority。
+- `RUN_ROOT`、Host Home、CODEX_HOME和日志目录必须absolute canonical、non-symlink、当前owner且目录`0700`；child stdout/stderr文件为`0600`、各最多256 KiB，超额继续drain但只记`truncated=true`。
+- `process.json`只含schema、run ID、role、PID/PPID、Host binary SHA、instance nonce、start/end、closed state/exit、字节数和truncation；原子临时文件使用唯一UUID，crash遗留不会阻断下一次更新。manifest不含路径、env value或正文。
+- readiness同时核对本次child PID（Host通过parent PID校验）、run ID（Host test config）、instance nonce（health/ready header）；旧nonce、旧port、端口占用、非法run root、活跃stale PID均fail closed。正常stop、spawn失败、启动超时、unexpected exit、Desktop restart stale reconciliation与同supervisor重启均有测试。
+
+### 20.4 Closure判定与剩余边界
+
+Host contract-check/lint/vet/shell、全量`go test -race -cover ./...`、build和固定Runtime集成通过；Desktop generated-contract check、ESLint/vue-tsc/fmt/clippy、165/165 TypeScript、101/101 Rust（另1个既有且未执行的Keychain integration）、Vite build、Rust build和真实Desktop→Host→固定Runtime child启动通过。raw/secret/path/bearer/database-key在已覆盖Host log、bbolt、Desktop child stdout/stderr、process output和evidence中命中为0。
+
+因此S10P1授权范围内没有剩余P1，DEC-126-040推荐关闭BLK-002/003；在Owner接受前其治理状态仍是`closure-eligible / pending`。BLK-004（test-only Keychain/app-data）和BLK-005（Desktop→Public Tasks主链）完全未触碰，S10P2/P3/S10B/S11仍未授权，LIA-126-008继续HOLD。
