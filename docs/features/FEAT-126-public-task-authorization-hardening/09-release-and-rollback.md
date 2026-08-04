@@ -1,6 +1,6 @@
 # FEAT-126 本地启动、停止与恢复 Runbook（S10P2 Native Proof Blocked，G3 Partial）
 
-> DEC-126-022将本需求冻结为Local-only Delivery。S4–S9 Closure、DEC-126-037方案C、DEC-126-038方案B、S10E/DEC-126-039与S10P1/DEC-126-040已接受；BLK-001/002/003关闭。LIA-126-010已执行，但DEC-126-041仍为候选且BLK-004因signed Keychain proof缺失保持Open。本文不授权S10P3、default feature activation、S10B–S11、线上部署、tag/package publish/registry。
+> DEC-126-022将本需求冻结为Local-only Delivery。S4–S9 Closure、DEC-126-037方案C、DEC-126-038方案B、S10E/DEC-126-039、S10P1/DEC-126-040与DEC-126-041 Option B已接受；BLK-001/002/003关闭。DEC-126-041只接受S10P2 source checkpoint并保持Closure HOLD，BLK-004因signed Keychain proof缺失保持Open。本文不授权S10P3、default feature activation、S10B–S11、线上部署、tag/package publish/registry。
 
 ## 1. Release Manifest
 
@@ -45,7 +45,7 @@
 - [x] DEC-126-038方案B已由Owner接受；Public Task retained-row删除边界已冻结，但不授权实现
 - [x] DEC-126-039已接受S10E Closure并关闭BLK-001；本地Infra checkpoint未push
 - [x] DEC-126-040接受LIA-126-009/S10P1 Closure并正式关闭BLK-002/003
-- [ ] DEC-126-041尚未接受且BLK-004未关闭；S10P3/S10B/S11和default flag activation仍未授权
+- [x] DEC-126-041 Option B已接受source checkpoint与Closure HOLD；[ ] BLK-004仍未关闭；S10P3/S10B/S11和default flag activation仍未授权
 - [x] Owner另行授权的yijie/API/Host/Desktop checkpoint push已完成；连同contracts候选共五仓经`ls-remote`和临时clean clone复验为exact SHA；这不代表merge、tag、publish、deploy、activation、G4或G6
 - [ ] Owner另行授权任何后续远端变更，包括更新/删除candidate branch、移动`origin/develop`、merge、tag或package发布
 - [x] S4–S6 checkpoint记录prior exact SHA、generated digest和generator；未使用浮动branch；该记录不代表current G2A readiness
@@ -77,7 +77,7 @@
 | 17 | S11 Owner Local-only G6验收 | Owner machine | 段成威 | G4 evidence | AC-043 + evidence review | do not mark complete；return failing slice |
 | 18 | optional future merge review | remote repos | separately approved owner | local E2E + audit fix + green CI | PR/SHA/checks | keep Draft/feature branches |
 
-代码实现、环境准备、schema migration、本地进程启动、临时test flag、默认feature activation、merge和部署是不同动作。DEC-126-039只接受S10E；DEC-126-040只接受LIA-126-009/S10P1 Closure。LIA-126-010只形成S10P2本地source checkpoint；DEC-126-041未被Owner接受且native proof未完成。S10P3/S10B/S11仍须依序单独授权，不能因源码完成自动开始。
+代码实现、环境准备、schema migration、本地进程启动、临时test flag、默认feature activation、merge和部署是不同动作。DEC-126-039只接受S10E；DEC-126-040只接受LIA-126-009/S10P1 Closure；DEC-126-041 Option B只接受S10P2本地source checkpoint与HOLD结论，native proof仍未完成。S10P3/S10B/S11仍须依序单独授权，不能因源码或HOLD决定被接受而自动开始。
 
 ## 4. Feature Flags
 
@@ -188,7 +188,7 @@ stop threshold
 | 2026-08-04 | S10P0 corrective design review | Governance `0ceb047…b43cfb` + design checkpoint `5145592…1748` + fixed Contracts/API/Host/Desktop/Runtime；Infra read-only inventory | bundled Compose direct version/config only；Host/Desktop/Public Tasks source inspection；governance docs | DESIGN-126-008/DEC-126-038 Option B Accepted；0 runtime mutation | S10E/P1/P2/P3均NOT RUN，无可执行rollback |
 | 2026-08-04 | S10E isolated environment | Infra parent `f040492…af2` + API exact `a64f9f…3264`；local Compose/images | recoverable user plugin link；default-off profile；two isolated synthetic runs；migration/identity/TLS/runtime/no-log/rejected-run/stop | DEC-126-039 Accepted / Closure Passed / BLK-001 Closed；Infra `99e50d8…6baf` local/clean/not pushed | zero active container/network/listener；8 volumes + 2 ignored run roots retained；polluted run marked REJECTED；restore old link or delete exact resources only after separate approval |
 | 2026-08-04 | LIA-126-009 S10P1 | Host `e0a8d3d…5674` + Desktop `fba934c…7285` + fixed Runtime | exact keyless loopback fake turn；actual Desktop child readiness/stop；pre-spawn evidence、parent watchdog、crash/restart/stale/log cap/no-log；default-off scan | DEC-126-040 Accepted；S10P1 Closure Passed；BLK-002/003 Closed；local clean/not pushed | close master returns default path；no Keychain/DB schema/IPC/remote state；S10P2/P3/S10B remain blocked |
-| 2026-08-04 | LIA-126-010 S10P2 | Desktop `c863b2a…5dc68` | double exact gate、run-derived namespaces、manifest、app-data/Home/project binding、exact inventory、cleanup/recovery/race；165 TS + 113 Rust | source PASS；native probe BLOCKED by missing entitlement；DEC-126-041 Candidate / BLK-004 Open；local clean/not pushed | close secure-storage gate returns fixed namespace；post exact tuples absent，temp root removed；no S10P3/S10B |
+| 2026-08-04 | LIA-126-010 S10P2 | Desktop `c863b2a…5dc68` | double exact gate、run-derived namespaces、manifest、app-data/Home/project binding、exact inventory、cleanup/recovery/race；165 TS + 113 Rust | source PASS；DEC-126-041 Option B Accepted / Closure HOLD；native probe BLOCKED by missing identity/profile/entitlement；BLK-004 Open；local clean/not pushed | close secure-storage gate returns fixed namespace；post exact tuples absent，temp root removed；no S10P3/S10B |
 
 DESIGN-126-008对未来corrective的回滚语义冻结如下：
 

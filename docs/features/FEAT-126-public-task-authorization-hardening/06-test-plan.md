@@ -1,7 +1,7 @@
 # FEAT-126 测试与 Eval 计划
 
 > 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。DEC-126-023/024完成G2A重审，DEC-126-025登记sole candidate与checkpoint远端ref并恢复LIA-126-002，仅执行S4–S6 Corrective Closure。
-> DEC-126-026/027/028/030/031/033/034已关闭S4–S8B；DEC-126-035已接受远端事实，DEC-126-036已接受LIA-126-007 / S9 Closure。DESIGN-126-007/DEC-126-037方案C、DESIGN-126-008/DEC-126-038方案B、S10E/DEC-126-039及S10P1/DEC-126-040均已接受并继续HOLD S10B；BLK-001/002/003已关闭。LIA-126-010已完成S10P2源码与仓内测试，但signed Protected Data Keychain原生写入缺entitlement，DEC-126-041仍为候选且BLK-004保持Open。S10P3/S10B/S11仍未授权。本轮未调用MiniMax，
+> DEC-126-026/027/028/030/031/033/034已关闭S4–S8B；DEC-126-035已接受远端事实，DEC-126-036已接受LIA-126-007 / S9 Closure。DESIGN-126-007/DEC-126-037方案C、DESIGN-126-008/DEC-126-038方案B、S10E/DEC-126-039及S10P1/DEC-126-040均已接受并继续HOLD S10B；BLK-001/002/003已关闭。DEC-126-041已接受S10P2 source checkpoint与Option B，但Closure HOLD、BLK-004 Open不变。签名准备盘点确认0 signing identities和0 provisioning profiles，因此本轮未增加Keychain写入，S10P3/S10B/S11仍未授权。本轮未调用MiniMax，
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
 ## 1. 测试策略
@@ -264,7 +264,7 @@
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
-| 测试/技术 Owner | 段成威 | DEC-126-036/037/038/039/040已Accepted并HOLD LIA-126-008；S10E/S10P1 Closure Passed、BLK-001/002/003 Closed；LIA-126-010源码完成但DEC-126-041待审批，S10P3/S10B–S11/MiniMax/flag activation与完整E2E仍须单独授权 | 2026-08-04 |
+| 测试/技术 Owner | 段成威 | DEC-126-036–041已Accepted并HOLD LIA-126-008；S10E/S10P1 Closure Passed、BLK-001/002/003 Closed；DEC-126-041只接受S10P2 source checkpoint并保持Closure HOLD，S10P3/S10B–S11/MiniMax/flag activation与完整E2E仍须单独授权 | 2026-08-04 |
 | 安全/数据 Owner | 段成威 | BLK-004/005仍阻断S10B；BLK-004只缺signed Protected Data create/use/restart/delete，不得由unit/mock豁免 | 2026-08-04 |
 | Runtime/模型 Owner | 段成威 | DEC-126-021 HOLD与DEC-126-022 Local-only已Accepted；先用fake provider/fixtures，raw reasoning须具体显示并持久化/删除；历史MM-126-001/002不重跑，未来一次local smoke仅可另行提交审批 | 2026-08-02 |
 
@@ -383,7 +383,7 @@ Public Tasks删除验收要同时证明两件事：（1）Desktop/Host/Runtime�
 
 结论：Owner已按DEC-126-040方案A接受S10P1 Closure并关闭BLK-002/003。该结论不覆盖BLK-004/005，不授权S10P2/P3/S10B/S11，也不构成G4/G6证据。
 
-## 20. S10P2实际测试结果（DEC-126-041 Candidate）
+## 20. S10P2实际测试结果（DEC-126-041 Option B Accepted / Closure HOLD）
 
 | Gate | 方法 | 结果 |
 |---|---|---|
@@ -396,4 +396,4 @@ Public Tasks删除验收要同时证明两件事：（1）Desktop/Host/Runtime�
 | dependency/security | offline RustSec、online pnpm audit、source/bundle/no-log/diff扫描 | RustSec 0 unallowed vulnerabilities/17 allowed warnings；production依赖/lockfile本轮0变更；pnpm报告既有dev-tool `brace-expansion 5.0.8` high，需独立依赖修复；新Rust路径无日志sink，frontend bundle无gate/namespace |
 | native Protected Data | 随机run三tuple、沙箱外显式ignored probe；结束后exact inventory与root清理 | **BLOCKED**：pre/post全absent、cleanup PASS；首次写返回required entitlement missing；本机0 signing identities |
 
-判定：仓内实现与安全控制满足候选，但`create/use/restart/delete`真实Protected Data生命周期未完成，故S10A-BLK-004不能关闭。DEC-126-041推荐Option B；S10P2 Closure保持HOLD。退出条件是提供匹配本地bundle/access-group的Apple Development identity/provisioning，在不改源码/namespace的情况下完成三条合成item的write/load/restart/delete，并证明post absent、default/legacy/foreign访问与删除均0。此前不得进入S10P3或S10B。
+判定：DEC-126-041已接受Option B和仓内实现，但`create/use/restart/delete`真实Protected Data生命周期未完成，故S10A-BLK-004不能关闭，S10P2 Closure保持HOLD。批准后的准备盘点确认bundle=`com.yijie.ai`、有效codesigning identity=0、installed provisioning profile=0、仓库entitlements/profile=0；没有新增Keychain write attempt。退出条件仍是提供匹配bundle/team/access-group的Apple Development identity/provisioning，在不改业务源码/namespace的情况下完成三条合成item的write/load/restart/delete，并证明post absent、default/legacy/foreign访问与删除均0。此前不得进入S10P3或S10B。

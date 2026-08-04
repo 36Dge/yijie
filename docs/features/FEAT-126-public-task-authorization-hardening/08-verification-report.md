@@ -5,7 +5,7 @@
 > 分支均已精确远端可达，旧Draft PR #1与各`origin/develop`不变。DEC-126-026已接受S4–S6
 > Foundation Corrective Closure并单独授权S7A Desktop Rust Host Bridge/Domain；DEC-126-027已由
 > Owner接受。随后单独授权的S7B Rust Application Orchestration/Domain已完成并由Owner通过DEC-126-028接受；远端可达不等于merge、发布或生产启用。
-> 随后Owner接受DESIGN-126-005/006和S7C–S9 Closure。DESIGN-126-007/DEC-126-037方案C、DESIGN-126-008/DEC-126-038方案B、S10E/DEC-126-039与S10P1/DEC-126-040现均已接受；BLK-001/002/003关闭。LIA-126-010已完成S10P2源码与仓内验证，但原生Protected Data写入因required entitlement missing失败，DEC-126-041仍为候选且BLK-004保持Open。S10B继续HOLD，LIA-126-008保持Blocked Draft。没有调用MiniMax、真实数据、生产环境或业务四组件；S10P3/S10B–S11仍未授权。
+> 随后Owner接受DESIGN-126-005/006和S7C–S9 Closure。DESIGN-126-007/DEC-126-037方案C、DESIGN-126-008/DEC-126-038方案B、S10E/DEC-126-039、S10P1/DEC-126-040及DEC-126-041 Option B现均已接受；BLK-001/002/003关闭。DEC-126-041只接受S10P2源码checkpoint并保持Closure HOLD；原生Protected Data证明仍因缺Apple Development identity/provisioning而阻断，BLK-004保持Open。S10B继续HOLD，LIA-126-008保持Blocked Draft。没有调用MiniMax、真实数据、生产环境或业务四组件；S10P3/S10B–S11仍未授权。
 
 ## 1. 验证上下文
 
@@ -468,7 +468,7 @@ Infra checkpoint为`99e50d8b47e13fc3e3b7501617a307e1ba5d6baf`，parent=`f040492e
 
 结构化结论：两个本地checkpoint均clean且未push；Owner选择DEC-126-040方案A，接受S10P1 Closure并正式关闭BLK-002/003。BLK-004/005仍Open；本Review不授权S10P2/P3/S10B/S11或默认activation。
 
-### 9.16 DEC-126-041 / S10P2 Closure Review（Candidate / 推荐Option B）
+### 9.16 DEC-126-041 / S10P2 Closure Review（Option B Accepted / Closure HOLD）
 
 | Finding | Severity | 实际证据 | 状态 |
 |---|---|---|---|
@@ -480,7 +480,9 @@ Infra checkpoint为`99e50d8b47e13fc3e3b7501617a307e1ba5d6baf`，parent=`f040492e
 | S10P2-REV-006 | P1 native lifecycle | random Protected Data create/use/restart/delete probe | **OPEN / ENVIRONMENT BLOCKED**：required entitlement missing；0 signing identities |
 | S10P2-REV-007 | boundary | SQLCipher schema/private IPC/TS/Vue/contracts/Host/API/Runtime/dependencies/default flags/remote均未改 | CLOSED FOR SOURCE SCOPE |
 
-结构化结论：Desktop checkpoint clean且未push；仓内source P1均关闭，但原生create/use/restart/delete是BLK-004的不可豁免证据，当前无法执行。DEC-126-041推荐Option B，只接受source checkpoint并保持Closure HOLD；Owner不得把该候选视为BLK-004 Closed，也不得授权S10P3/S10B。
+结构化结论：Desktop checkpoint clean且未push；仓内source P1均关闭，但原生create/use/restart/delete是BLK-004的不可豁免证据。Owner已接受DEC-126-041 Option B，只接受source checkpoint并保持Closure HOLD；不得把该决定写成BLK-004 Closed，也不得授权S10P3/S10B。
+
+批准后的native signing readiness复验：canonical bundle为`com.yijie.ai`；`security find-identity -v -p codesigning`为0；`profiles show -type provisioning`确认没有已安装profile；仓库无macOS entitlements/embedded profile；active developer directory只有Command Line Tools。因此无法验证Team Identifier/Application Identifier Prefix，也不能安全形成effective keychain access group。此次复验只读，新增certificate/CSR/profile/entitlements/Keychain item均为0，Protected Data write attempt保持2，Desktop仍为`c863b2a…5dc68` clean。
 
 ## 10. 未验证项与残余风险
 
@@ -491,13 +493,13 @@ Infra checkpoint为`99e50d8b47e13fc3e3b7501617a307e1ba5d6baf`，parent=`f040492e
 | Public/Host runtime conformance | S4–S8B分层实现与S9 Host→Desktop exact fixture/SQLCipher/plaintext consumer Eval PASS | 真实多进程链仍可能产生scope/raw/cleanup disagreement | S10须另行授权；保持flags off | 段成威 | blocks G4/local G6, not S9 Closure candidate |
 | DB/encryption/delete E2E | SQLCipher v4 job/receipt、independent HMAC key、migration/cascade/checkpoint、restart和fake Host cleanup单仓PASS | 跨Desktop/Host/Runtime真实进程partial delete仍未运行 | S10验证完整多进程job/receipt/restart/fault E2E | 段成威 | blocks G4/local G6 |
 | Runtime raw-reasoning/title/delete | S9 deterministic Eval与S10P1 Host→fixed Runtime assistant/raw真实turn PASS；完整Desktop turn/history/delete多进程链仍未运行 | raw UX/residual/inconsistent history | keep default flags off until S10B；历史MiniMax public-summary FAIL不改写 | 段成威 | blocks G4/local G6 |
-| Desktop sidecar/Keychain | actual Desktop supervisor→Host→fixed Runtime child readiness/stop PASS；run-derived隔离源码与exact inventory/cleanup PASS | signed storage create/use/restart/delete因本机无entitlement未验证 | 提供Apple Development identity/provisioning，重跑唯一native probe并接受DEC-126-041 | 段成威 | blocks BLK-004/S10P3/S10B/G4/local G6 |
+| Desktop sidecar/Keychain | actual Desktop supervisor→Host→fixed Runtime child readiness/stop PASS；run-derived隔离源码与exact inventory/cleanup PASS；DEC-126-041 Option B Accepted | signed storage create/use/restart/delete因本机无identity/profile/entitlement未验证 | 提供匹配`com.yijie.ai`及team/access-group的Apple Development identity/provisioning，只重跑native matrix并重新提交S10P2 Closure | 段成威 | blocks BLK-004/S10P3/S10B/G4/local G6 |
 | S10B test profile/chain readiness | BLK-001/002/003 closed；BLK-004 source ready但native proof blocked；BLK-005仍缺Desktop Public Tasks主链 | 直接启动完整链仍无法建立signed Keychain与Public Tasks主链证据 | 关闭BLK-004并另行授权/关闭S10P3与BLK-005，再重新提交LIA-126-008 | 段成威 | blocks S10B/G4/local G6；does not reopen earlier closures |
 | production identity/infra | FEAT-125 deferred | no production safety | N/A for DEC-126-022 local-only scope；future online intent must reopen production track and FEAT-125 prerequisites | 段成威 | does not block local G6；blocks any production claim |
 
 ## 11. 结论
 
-- Requirements package：G1/G2/G2A Re-review Passed；DEC-126-023–040 Accepted，DEC-126-041 Candidate。DEC-126-039关闭BLK-001，DEC-126-040关闭BLK-002/003；S10P2 source complete但native proof blocked，BLK-004保持Open；DEC-126-037方案C继续HOLD S10B。
+- Requirements package：G1/G2/G2A Re-review Passed；DEC-126-023–041 Accepted。DEC-126-039关闭BLK-001，DEC-126-040关闭BLK-002/003；DEC-126-041接受S10P2 source checkpoint但保持Closure HOLD，native proof blocked、BLK-004 Open；DEC-126-037方案C继续HOLD S10B。
 - Code Complete：No。G3仍Partial；S10P2 Closure、S10P3/S10B–S11、四组件E2E、G4与Owner G6均未完成。
 - 验证人：Codex（文档事实与结构）；最终 Reviewer 为段成威。
 - 日期：2026-08-04。

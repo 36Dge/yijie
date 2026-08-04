@@ -1,6 +1,6 @@
 # FEAT-126 技术设计（S10P2 Source Implemented / Native Proof Blocked，G3 Partial）
 
-> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。S4–S9、S10E与S10P1 Closure均已接受；LIA-126-010已形成S10P2本地源码checkpoint，但DEC-126-041仍是待Owner审批候选，且signed Protected Data Keychain写入因本机缺entitlement而失败，因此BLK-004未关闭。S10B继续HOLD，G3仍Partial；S10P3/S10B/S11、MiniMax、默认flag activation与新增远端/发布动作未授权。
+> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。S4–S9、S10E与S10P1 Closure均已接受；DEC-126-041已接受S10P2本地源码checkpoint与Option B，但明确保持Closure HOLD。signed Protected Data Keychain写入仍因本机缺Apple Development identity/provisioning而阻断，BLK-004未关闭。S10B继续HOLD，G3仍Partial；S10P3/S10B/S11、MiniMax、默认flag activation与新增远端/发布动作未授权。
 
 ## 1. 设计摘要
 
@@ -600,7 +600,7 @@ Runtime现有artifact为`codex-cli 0.144.6`，binary SHA-256=`1ef4f1daba0c5ac267
 | S10A-BLK-001 | S10A历史观察为`docker compose`不可用；S10P0定位stale link，S10E完成discovery/profile/migration/identity/TLS/no-log/cleanup | isolated PostgreSQL + Keycloak + Caddy拓扑已可复验 | **Closed by DEC-126-039**；不等于S10P1/S10B授权 |
 | S10A-BLK-002 | Host只接受空provider或`minimax`；`StartThread`在MiniMax未配置时fail closed，MiniMax base URL硬编码为`https://api.minimaxi.com/v1` | 固定fake Responses provider无进程级注入面；S9 in-process runner不是真实Host→Runtime provider | 触发provider-config停止条件；不使用MiniMax/真实key绕过 |
 | S10A-BLK-003 | Desktop sidecar使用`env_clear()`，并把Host raw/title/cleanup三个flag设为`false`；stdout/stderr丢弃到null | 父进程临时exact-true不会到达Host child，且无法生成Host日志/进程证据 | 触发private deployment-interface停止条件；不“假开启” |
-| S10A-BLK-004 | S10P2源码已把Chat DB/receipt/native-auth切到run-derived test namespace，独立gate、manifest、exact inventory与cleanup已通过仓内门禁；但本机没有Apple Development identity/entitlement，Protected Data写入返回required entitlement missing | 不能证明真实三条item的create/use/restart/delete lifecycle | **Source implemented / native proof blocked**；DEC-126-041候选保持BLK-004 Open，禁止用普通文件、默认Keychain或mock豁免 |
+| S10A-BLK-004 | S10P2源码已把Chat DB/receipt/native-auth切到run-derived test namespace，独立gate、manifest、exact inventory与cleanup已通过仓内门禁；但本机没有Apple Development identity/profile/entitlement，Protected Data写入返回required entitlement missing | 不能证明真实三条item的create/use/restart/delete lifecycle | **Source accepted / Closure HOLD / native proof blocked**；DEC-126-041 Option B保持BLK-004 Open，禁止用普通文件、默认Keychain或mock豁免 |
 | S10A-BLK-005 | Desktop chat流使用本地UUID作task/session ID并调Host `/v1/tasks/{id}/agent-sessions`；`/v2/tasks`只有generated types，无consumer call | 不能声称“Desktop新建→Public Tasks/PostgreSQL→Host”同一主链；空Tasks表不是content-free create证据 | 触发production orchestration停止条件；不用独立curl或fixture冒充UI主链 |
 | S10A-LIM-001 | title v2因固定Runtime无法capability-disable tools而必定fail closed | S10只能验证deterministic fallback + user rename precedence，不能声称model title E2E | 不阻断fallback用例；title flag必须false |
 
@@ -861,7 +861,7 @@ Host contract-check/lint/vet/shell、全量`go test -race -cover ./...`、build�
 
 因此S10P1授权范围内没有剩余P1；Owner已正式接受DEC-126-040，S10P1 Closure Passed，BLK-002/003 Closed。该决定当时未触碰BLK-004/005；后续LIA-126-010的S10P2结果见§21。S10P3/S10B/S11仍未授权，LIA-126-008继续HOLD。
 
-## 21. S10P2 Test-only Secure Storage实际实现（DEC-126-041 Candidate）
+## 21. S10P2 Test-only Secure Storage实际实现（DEC-126-041 Option B Accepted / Closure HOLD）
 
 ### 21.1 Source与默认兼容
 
@@ -881,4 +881,13 @@ Host contract-check/lint/vet/shell、全量`go test -race -cover ./...`、build�
 
 仓内fake backend覆盖pre absent、同run恢复、异run隔离、stale PID、cleanup中断/重试、missing item、manifest mismatch拒删、精确root删除和content-free evidence。一次沙箱外随机Protected Data probe只访问三条run-derived tuple；pre/post均为absent，cleanup完成且临时root已删除，但首次`set_secret`返回`A required entitlement isn't present`。本机`security find-identity -p codesigning`为`0 valid identities found`。
 
-该失败不是源码降级理由。普通未签名测试、普通文件、默认Keychain或mock inventory都不能替代Apple Development signed bundle的真实create/use/restart/delete证据。因此DEC-126-041推荐Option B：接受源码checkpoint与仓库证据，但S10P2 Closure保持HOLD、BLK-004保持Open；取得匹配local bundle identifier/access group的签名身份与provisioning后，只重跑这一原生矩阵并重新提交Closure，不进入S10P3/S10B。
+该失败不是源码降级理由。普通未签名测试、普通文件、默认Keychain或mock inventory都不能替代Apple Development signed bundle的真实create/use/restart/delete证据。DEC-126-041已接受Option B：接受源码checkpoint与仓库证据，但S10P2 Closure保持HOLD、BLK-004保持Open；取得匹配local bundle identifier/access group的签名身份与provisioning后，只重跑这一原生矩阵并重新提交Closure，不进入S10P3/S10B。
+
+### 21.4 Native signing preparation现状与停止边界
+
+- Desktop canonical bundle identifier固定为`com.yijie.ai`；当前仓库没有macOS entitlements或embedded provisioning profile。
+- 本机`security find-identity -v -p codesigning`返回`0 valid identities found`，`profiles show -type provisioning`返回没有已安装profile；active developer directory仅为Command Line Tools，不能使用Xcode automatic signing。
+- Protected Data store的本地依赖文档明确要求客户端由provisioning profile签名；未签名CLI出现`-34018 / required entitlement missing`是预期fail-closed行为。
+- 目标access group必须从获批profile的Application Identifier Prefix/Team Identifier导出，并精确匹配`<prefix>com.yijie.ai`；在profile不存在时禁止猜测prefix、生成通配组或使用foreign/default group。
+- 准备完成的退出证据必须同时包含：profile未过期且bundle/team匹配、signed temporary app/harness的embedded profile与effective entitlements匹配、只启动run-scoped synthetic matrix、三条item create/read/restart/read/delete成功、post inventory全absent、default/legacy/foreign访问修改删除均为0。
+- 本次准备盘点没有新建证书、CSR、profile、entitlements文件或Keychain item，没有修改Desktop源码/配置，原生write attempt仍为2。签名材料需要具备Apple Developer Team权限的Owner在系统外部提供或安装后才能继续。
