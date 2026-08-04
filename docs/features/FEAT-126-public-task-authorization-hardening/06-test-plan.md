@@ -1,7 +1,7 @@
 # FEAT-126 测试与 Eval 计划
 
 > 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。DEC-126-023/024完成G2A重审，DEC-126-025登记sole candidate与checkpoint远端ref并恢复LIA-126-002，仅执行S4–S6 Corrective Closure。
-> DEC-126-026/027/028/030/031/033/034已关闭S4–S8B；DEC-126-035已接受远端事实，DEC-126-036已接受LIA-126-007 / S9 Closure。S10A只读readiness review已形成DESIGN-126-007与DEC-126-037候选；S10B/S11仍为`NOT RUN`且未授权。本轮未调用MiniMax，
+> DEC-126-026/027/028/030/031/033/034已关闭S4–S8B；DEC-126-035已接受远端事实，DEC-126-036已接受LIA-126-007 / S9 Closure。DESIGN-126-007与DEC-126-037方案C已接受并继续HOLD S10B；S10B/S11仍为`NOT RUN`且未授权。本轮未调用MiniMax，
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
 ## 1. 测试策略
@@ -233,7 +233,7 @@
 | Meta docs | yijie | feature checker, YAML parse, `git diff --check` | local shell/Ruby | current package only |
 | Accepted checkpoints / remote reconciliation | yijie/API/Host/Desktop/contracts | repository gates + scope/no-log/diff + owner-authorized candidate push；`git ls-remote` + exact-branch temporary clean clone | synthetic/fake/temp only；remote verification is read-only | RUN 2026-08-03；PASS；remote exact `650254b…139fa`、`a64f9f5…3264`、`3e8df02…f3d9`、`35f2744…7cbd`、`29317b6…e9f`；all clean clones，develop/Draft PR/merge/tag/publish/deploy未改变；DEC-126-035 Accepted |
 | S8B0/S8B conformance | yijie + yijie-desktop | DESIGN-126-006/DEC-126-032 + schema/Rust/TS/router/store/Tasks + production Vue/unit/axe/browser/security/bundle/package/strict/G2A/YAML/lint/test/build/diff | fake/fixed/temp only；no runtime provider | DEC-126-033/034 Accepted；S8B Closure Passed at `35f2744…7cbd`；VoiceOver人工项保留到S11/G6 |
-| S10A readiness/test-profile review | yijie governance + affected repos read-only | exact SHA/worktree/tool/port/source inventory；DESIGN-126-007/DEC-126-037/LIA-126-008 draft | no component startup/provider/flag/Keychain write | RUN 2026-08-04；HOLD；5 blockers recorded；not E2E |
+| S10A readiness/test-profile review | yijie governance + affected repos read-only | exact SHA/worktree/tool/port/source inventory；DESIGN-126-007/DEC-126-037/LIA-126-008 draft | no component startup/provider/flag/Keychain write | COMPLETE / DEC-126-037 ACCEPTED OPTION C；HOLD；5 blockers recorded；not E2E |
 | Local four-component E2E/security/perf/eval | affected repos | exact orchestration in DESIGN-126-007; only after all blockers close and LIA-126-008 becomes approvable | local PostgreSQL/temp homes/DB/pinned Runtime/fake provider | S10B NOT RUN — blocks G4/local G6；does not affect accepted G2/G2A/S4–S9 |
 | LIA-126-007 / S9 fake-provider Eval | Host authority + Desktop consumer | versioned runner、exact dataset hash/split、title schema/semantic与raw sequence/final/no-log/injection gates | fixed fake provider、fixed pins、synthetic data only | RUN 2026-08-04 / PASS；DEC-126-036 Accepted；不调用MiniMax、不启用flag、不进入S10 |
 
@@ -264,7 +264,7 @@
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
-| 测试/技术 Owner | 段成威 | DEC-126-036已接受S9 Closure；Owner已授权S10A只读评审。DEC-126-037待批，推荐HOLD LIA-126-008；S10B–S11/MiniMax/flag activation与完整E2E仍禁止 | 2026-08-04 |
+| 测试/技术 Owner | 段成威 | DEC-126-036已接受S9 Closure；DEC-126-037已采用方案C并HOLD LIA-126-008；S10P/S10B–S11/MiniMax/flag activation与完整E2E仍须单独授权 | 2026-08-04 |
 | 安全/数据 Owner | 段成威 | 当前P1及Public Tasks正文边界阻断closure；既有auth/delete/no-log/migration结果仅作foundation evidence | 2026-08-02 |
 | Runtime/模型 Owner | 段成威 | DEC-126-021 HOLD与DEC-126-022 Local-only已Accepted；先用fake provider/fixtures，raw reasoning须具体显示并持久化/删除；历史MM-126-001/002不重跑，未来一次local smoke仅可另行提交审批 | 2026-08-02 |
 
@@ -333,4 +333,4 @@ S10B必须以`S10B-001–012`作为同一run的不可分割矩阵：provenance/s
 4. Desktop Chat/native-auth使用test-only Keychain namespace与isolated app-data，不触碰真实条目；
 5. 真实Desktop create action有content-free `/v2/tasks`编排，并与同一local session/Host operation可追踪，无正文上传。
 
-前置关闭前，DEC-126-037应接受`HOLD`，LIA-126-008状态保持`Blocked Draft / NOT AUTHORIZED`；G3 Partial、G4/G6 Pending。
+DEC-126-037已接受`HOLD`。前置关闭前，LIA-126-008状态保持`Blocked Draft / NOT AUTHORIZED`；G3 Partial、G4/G6 Pending。

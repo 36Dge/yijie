@@ -1,6 +1,6 @@
 # FEAT-126 技术设计（S9 Closure Passed，G3 Partial）
 
-> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。S4–S9 Closure已接受；S10A只读评审已形成DESIGN-126-007/DEC-126-037候选并推荐HOLD S10B。G3仍Partial；S10P/S10B/S11、MiniMax、flag activation与新增远端/发布动作未授权。
+> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。S4–S9 Closure已接受；DESIGN-126-007与DEC-126-037方案C已由Owner接受并继续HOLD S10B。G3仍Partial；S10P/S10B/S11、MiniMax、flag activation与新增远端/发布动作未授权。
 
 ## 1. 设计摘要
 
@@ -542,9 +542,9 @@ Runtime/Host pin、临时 `CODEX_HOME`/空 cwd/pathless ephemeral thread，title
 - Runtime/MiniMax：canonical delete/name/summary/raw reasoning/outputSchema已确认；两次历史MiniMax预算已执行，title PASS，MM-126-002在旧summary门槛FAIL且观察到raw事件；Host raw bridge基础已用fake Runtime实现，raw flag默认off，本轮未调用MiniMax。
 - Public Tasks：仓内consumer inventory完成，unknown external按safe compatibility category处理，Q-010 Resolved；DEC-126-011/012已Accepted，v1全程双隔离。DEC-126-023/024与Q-017已关闭，`29317b...`从schema层拒绝conversation正文并通过G2A重审；LIA-126-002现已恢复，仅允许关闭S4–S6 P1。
 - Desktop Pattern：FEAT-126 Chat/App Shell Pattern已Accepted，只取代Chat 1.1.0/App Shell 2.0.0中的FEAT-126冲突段落。
-- 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–036 Accepted；DEC-126-037 Pending；S4–S9 Closure Passed；S10B–S11 Unauthorized。
+- 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–037 Accepted；S4–S9 Closure Passed；S10B–S11 Unauthorized。
 - 安全/数据 Owner：段成威 — ADR-0013/0014/0015/0016与DEC-126-005/006/007/011/012/014/015/016/017 Approved；Q-006/Q-007/Q-008/Q-009/Q-010/Q-015/Q-016 Resolved；Pattern Accepted。
-- 结论与日期：2026-08-04 G2/G2A保持Passed，S4–S9 Closure已Accepted；S10A设计完成，DEC-126-037仍待Owner批准。G3仍Partial；继续禁止S10P/S10B/S11、MiniMax、flag启用与追加远端动作。
+- 结论与日期：2026-08-04 G2/G2A保持Passed，S4–S9 Closure与DEC-126-037方案C已Accepted；S10B继续HOLD。G3仍Partial；继续禁止未单独授权的S10P/S10B/S11、MiniMax、flag启用与追加远端动作。
 
 ## 15. S8B Vue projection implementation
 
@@ -576,7 +576,7 @@ YjAppShell fixed Chat sidebar
 - 实际结果：title schema/sanitizer 250/250、语义200/200、unsafe拒绝50/50；raw valid 210/210、四类负例40/40；Desktop decoder/reducer/SQLCipher restart/history/delete与Vue plaintext projection通过。
 - 授权停止线：S9已耗尽授权；DEC-126-036已接受但不自动授权S10。MiniMax、flags、production行为、central/private wire和远端动作仍禁止。
 
-## 17. DESIGN-126-007 — S10A Local E2E Readiness & Test Profile（Candidate）
+## 17. DESIGN-126-007 — S10A Local E2E Readiness & Test Profile（Accepted by DEC-126-037）
 
 ### 17.1 目标、基线与影响
 
@@ -660,6 +660,6 @@ S10B必须在owner-only `RUN_ROOT=$(mktemp -d "${TMPDIR%/}/feat126-s10b.XXXXXX")
 
 ### 17.7 决策与授权出口
 
-- DEC-126-037推荐`HOLD S10B`：接受本设计和阻断事实，但不批准LIA-126-008开始四组件运行。
+- DEC-126-037已采用方案C并`HOLD S10B`：Owner接受本设计和阻断事实，但未批准LIA-126-008开始四组件运行。
 - 先另行设计和授权S10P Test Profile/Chain Corrective，仅解决BLK-002–005：fake Responses进程注入、Desktop sidecar flags/log/PID、test-only Keychain/app-data namespace和Public Tasks content-free orchestration。它们可能修改production config/private IPC/业务编排，必须重走contract-impact审查，不能在S10A静默实现。
 - BLK-001由Owner单独批准环境准备。只有BLK-001–005全部关闭并有本地checkpoint、逐仓门禁、安全/no-log证据后，LIA-126-008才可从`Blocked Draft`升级为`Ready for Owner Approval`。

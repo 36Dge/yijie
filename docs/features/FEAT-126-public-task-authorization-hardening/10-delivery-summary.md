@@ -3,10 +3,10 @@
 ## 1. 当前结果
 
 - 用户可观察行为：默认配置下无变化；S8B真实Vue Chat页面、App Shell项目/session区、composer、conversation/reasoning、菜单/删除、稳定错误投影和可访问性已保存为Desktop checkpoint `35f27447398529cca4dec85fa1f67e779c7a7cbd`，并在Owner授权的专用远端候选分支精确可达。UI flag仍unset/false，未merge、未激活。
-- 原目标是否达成：未达成。S4–S9 Closure Passed；S10A只读readiness review已完成并形成DESIGN-126-007/DEC-126-037候选，但因五项blocker推荐HOLD S10B。S10B四组件E2E与S11 Owner验收均未完成。
+- 原目标是否达成：未达成。S4–S9 Closure Passed；DESIGN-126-007与DEC-126-037方案C已接受，五项blocker继续HOLD S10B。S10B四组件E2E与S11 Owner验收均未完成。
 - 当前范围：安全的新建任务对话、任务记录、聊天项目、本地持久化及Public Tasks hardening的完整Local-only需求/设计/测试/实施候选。
 - 非目标：见`00-feature-brief.md`；没有文件/图片/工具/云同步；tag/package publish/registry/线上部署/生产灰度/云数据库/真实用户数据均N/A。
-- 交付状态：`G1 Passed / G2 Passed / G2A Re-review Passed / S4–S9 Closure Passed / S10A Review Complete / DEC-126-037 Candidate / G3 Partial`。DEC-126-021继续HOLD；LIA-126-008为Blocked Draft。未merge/tag/publish/deploy/activation；当前不是Code Complete、Production Ready或Local-only Delivery Complete。
+- 交付状态：`G1 Passed / G2 Passed / G2A Re-review Passed / S4–S9 Closure Passed / S10A Review Accepted / DEC-126-037 Option C Accepted / G3 Partial`。DEC-126-021继续HOLD；LIA-126-008为Blocked Draft，S10B继续HOLD。未merge/tag/publish/deploy/activation；当前不是Code Complete、Production Ready或Local-only Delivery Complete。
 
 ## 2. 实际版本与本地候选（未发布）
 
@@ -36,7 +36,7 @@
 | S8B / LIA-126-006 / DEC-126-034 | CLOSURE PASS / OWNER ACCEPTED | Desktop `35f27447…7cbd`；29个TS测试文件/164 tests、95/96 Rust（1项既有Keychain ignored）、lint/build/audit/security/bundle/diff、axe和light/dark/1180×760/200%等价reflow/reduced-motion验证PASS；VoiceOver人工清单保留到S11/G6 | none / flag off |
 | DEC-126-035 Remote State Reconciliation | ACCEPTED | five `git ls-remote` + temporary clean-clone checks exact：`650254b…139fa`、`a64f9f5…3264`、`3e8df02…f3d9`、`35f2744…7cbd`、`29317b6…e9f`；push曾由Owner明确授权，本轮只读 | no merge/tag/publish/deploy/activation/G4/G6 claim |
 | LIA-126-007 / S9 / DEC-126-036 | CLOSURE PASS / OWNER ACCEPTED | `feat126-title-raw-v1` 250 synthetic samples、20% holdout；title 250/250 schema、200/200 semantic、50/50 unsafe；raw 210/210 valid、40/40 negative；late overwrite/leak/execution/action均0；Desktop exact history/delete/plaintext consumer PASS | no production behavior/provider/flag/remote change；not S10 E2E |
-| DESIGN-126-007 / DEC-126-037 Candidate | READINESS REVIEW COMPLETE / S10B HOLD RECOMMENDED | six exact baselines、Runtime artifact、Docker/Compose/ports、Host provider、Desktop sidecar/Keychain/Public Tasks consumer inventory | no process/flag/provider/Keychain/business-code mutation |
+| DESIGN-126-007 / DEC-126-037 | ACCEPTED OPTION C / S10B HOLD | six exact baselines、Runtime artifact、Docker/Compose/ports、Host provider、Desktop sidecar/Keychain/Public Tasks consumer inventory | no process/flag/provider/Keychain/business-code mutation |
 | Remaining AC/NFR / S10B–S11 | NOT RUN | LIA-126-008 Blocked Draft；full traceability in `05/06/08` | none / production N/A |
 | Requirement package/G0/G1 | G1 product scope approved；structure evidence in `08` | user approval + default/G0/G1/strict package, YAML and diff checks | N/A |
 | G2 data authority | ACCEPTED DESIGN | ADR-0013 + 段成威 2026-08-02 approval；SQLite/PostgreSQL/Redis/pgvector/bbolt 职责已冻结 | N/A |
@@ -83,7 +83,7 @@
 | SQLite/SQLCipher 与 delete/backup boundary | 单仓wrong-key/migration/cascade/checkpoint/backup exclusion基础PASS；完整删除saga/OS副本语义未E2E | 段成威 | flags off；不承诺forensic erase | future G4/local G6 |
 | Host raw/title/Runtime cleanup | fake Runtime foundation、IPC/store/S8B production Vue consumer与S9 deterministic Eval PASS；真实Runtime跨Desktop仍未验证 | 段成威 | v2/UI flags off | S10 |
 | Desktop sidecar | supervisor/health/env/path基础已实现；真实child与signed Keychain未运行 | 段成威 | foundation only | S10 |
-| S10B chain readiness | Compose缺失；provider无fake process config；child flags/log、Keychain namespace与Public Tasks consumer不满足 | 段成威 | DEC-126-037推荐HOLD；不用mock/curl/空DB冒充 | before any S10B authorization |
+| S10B chain readiness | Compose缺失；provider无fake process config；child flags/log、Keychain namespace与Public Tasks consumer不满足 | 段成威 | DEC-126-037 Option C已接受并HOLD；不用mock/curl/空DB冒充 | before any S10B authorization |
 | production identity/infra absent | no production activation | 段成威 | N/A for DEC-126-022 local-only scope；future online intent reopens production track | does not block local G6 |
 
 ## 8. 后续工作
@@ -111,7 +111,7 @@
 | LIA-126-006 / S8B / DEC-126-034 | 真实Vue页面、App Shell/session树、composer/conversation/reasoning/menu/delete/visual/a11y | DEC-126-033 Accepted后由Owner单独授权；只允许production Vue消费既有Pinia/private IPC边界 | 段成威 | Closure Passed at Desktop `35f27447…7cbd`；DEC-126-034 Accepted |
 | DEC-126-035 | Remote State Reconciliation：登记五仓exact remote refs与不扩展Gate的边界 | `ls-remote` + temporary clean clones已完成；本轮治理文档校正 | 段成威 | Accepted 2026-08-04；本轮不追加push |
 | LIA-126-007 / S9 / DEC-126-036 | fixed fake-provider title/raw Eval；版本化authority/runner/dataset hash/split与closed metrics | DEC-126-035接受后由Owner明确授权；Host/Desktop test-only执行完成 | 段成威 | Closure Passed / Owner Accepted；不调用MiniMax、不启用flag、不进入S10 |
-| DESIGN-126-007 / DEC-126-037 | S10A process/test-profile/evidence冻结与readiness判定 | Owner只读S10A授权 | 段成威 | Design complete / decision candidate / HOLD recommended |
+| DESIGN-126-007 / DEC-126-037 | S10A process/test-profile/evidence冻结与readiness判定 | Owner只读S10A授权 + DEC-126-037 Option C | 段成威 | Accepted / S10B HOLD |
 | S10P | 关闭fake provider、sidecar profile/log/PID、Keychain namespace与Public Tasks orchestration缺口 | DEC-126-037 Accepted + separate authorization | 段成威 | Not authorized / NOT RUN |
 | LIA-126-008 / S10B | 四组件本地E2E | BLK-001–005 closed并重新提交 | 段成威 | Blocked Draft / NOT RUN |
 | S11 | Owner G6验收 | G4 evidence + separate authorization | 段成威 | Not authorized / NOT RUN |
@@ -162,8 +162,8 @@
 | S8B Closure Review | 段成威 | DEC-126-034 Accepted；S8B Closure Passed；G3仍Partial | 2026-08-03 | 164 TS + 95/96 Rust、lint/build/audit/bundle/security/diff、axe/visual/reflow证据；VoiceOver人工清单保留到S11/G6 |
 | Remote State Reconciliation | 段成威 | DEC-126-035 Accepted；五仓远端精确可达事实已复验并接受；不改变G3/G4/G6或任何activation/merge状态 | 2026-08-04 | read-only `ls-remote` + five temporary clean clones；no new push |
 | S9 fake-provider Eval Closure Review | 段成威 | DEC-126-036 Accepted；S9 test-only authority/dataset/runner和Desktop exact consumer全部P1关闭；不授权S10 | 2026-08-04 | Host `8707dea…9378`、Desktop `adfdb5b…f9cb` local only；0 provider/flag/remote action |
-| S10A Local E2E Readiness Review | 段成威 | Owner已授权只读评审；DESIGN-126-007完成；DEC-126-037待批，推荐HOLD LIA-126-008 | 2026-08-04 | 六仓exact/clean + Runtime/tool/source inventory；5 blockers；0 process/flag/provider/Keychain/remote write |
+| S10A Local E2E Readiness Review | 段成威 | DESIGN-126-007与DEC-126-037 Option C已接受；继续HOLD LIA-126-008 | 2026-08-04 | 六仓exact/clean + Runtime/tool/source inventory；5 blockers；0 process/flag/provider/Keychain/remote write |
 | G5 Production Ready | 段成威 | N/A / Out of Scope under DEC-126-022 | 2026-08-02 | no deployment/tag/publish/production environment |
 | G6 Local-only Delivery Complete | 段成威 | Pending Owner local startup and functional acceptance | N/A | requires G4 + AC-043；not Production Ready |
 
-- 正式关闭时间：N/A；feature remains active at G2A Re-review Passed / G3-partial boundary。S4–S9 Closure已Accepted；S10A review完成但DEC-126-037待批，S10P/S10B/S11均未授权。dependency remediation/merge与MiniMax local smoke继续分别单审，tag/publish/deploy不在本期范围。
+- 正式关闭时间：N/A；feature remains active at G2A Re-review Passed / G3-partial boundary。S4–S9 Closure与DEC-126-037 Option C已Accepted；S10B继续HOLD，S10P/S10B/S11均未授权。dependency remediation/merge与MiniMax local smoke继续分别单审，tag/publish/deploy不在本期范围。

@@ -6,7 +6,7 @@
 - DEC-126-022 Local-only Delivery Strategy已Accepted；LIA-126-001已于2026-08-02批准，且只允许S4–S6本地基础切片。
 - S4–S6已有远端checkpoint并保持flags/routes默认关闭；DEC-126-026已接受其Closure并单独授权S7A Desktop Rust Host Bridge/Domain。
 - DEC-126-027已接受S7A；DEC-126-028已接受S7B durable outbox、strict/coalesced reducer、history orchestration、title precedence与fake Host应用链。
-- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；DEC-126-030/031/033/034已接受S7C–S8B，DEC-126-036已接受S9。S10A只读评审形成DESIGN-126-007/DEC-126-037候选，当前推荐HOLD LIA-126-008；S10B–S11仍须逐切片明确授权。
+- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；DEC-126-030/031/033/034已接受S7C–S8B，DEC-126-036已接受S9。DESIGN-126-007/DEC-126-037方案C已接受并继续HOLD LIA-126-008；S10P/S10B–S11仍须逐切片明确授权。
 
 ## 2. 实施原则
 
@@ -142,8 +142,8 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 | S8B0 | ancestor of remote candidate `yijie-desktop@35f27447398529cca4dec85fa1f67e779c7a7cbd`（slice checkpoint `5dab02a1ad5f03fead236aa7060fa6a75a234d85`） | 22-command closed IPC、Rust readiness/storage probe、exact-off gate、routes/lifecycle/store/Tasks metadata；不含完整Chat Vue visual | 135 TS；96 Rust（95 pass/1 existing ignored）；generate/lint/type/build/fmt/clippy/no-log PASS | LIA-126-005 / DEC-126-033 | Closure Passed / included in exact remote candidate；未merge/启用 |
 | S8B | remote candidate checkpoint `yijie-desktop@35f27447398529cca4dec85fa1f67e779c7a7cbd` | production Vue Chat/App Shell/composer/reasoning/menus/scroll/a11y；27 files | 164 TS、95/96 Rust、lint/build/audit/bundle/security/browser/axe PASS；VoiceOver checklist retained for S11/G6 | DEC-126-034 Accepted；Owner-authorized push后经`ls-remote`与clean clone复验 | Closure Passed / exact remote candidate；未merge/启用 |
 | S9 | Host `8707dea552cff74121b89aa8045f27da2c8c9378`；Desktop `adfdb5b24b3277ba39bd76a8cdc63fc138caf9cb` | test-only runner/dataset/fixtures/consumer tests；production behavior unchanged | Host gates 250/250 title、210/210 valid raw、40/40 negative；Desktop exact fixture/history/delete/plaintext projection；repo gates PASS | LIA-126-007 executed；DEC-126-036 Accepted | Closure Passed；local only / not pushed |
-| S10A | governance candidate | read-only repo/environment/source inventory + DESIGN-126-007/DEC-126-037/LIA-126-008 draft | docs/static checks only；no process startup | Owner authorized review；DEC-126-037 Pending | Complete as review candidate / HOLD S10B |
-| S10P | N/A | none | NOT RUN | not authorized | Required by recommended DEC-126-037 before S10B |
+| S10A | governance checkpoint | read-only repo/environment/source inventory + DESIGN-126-007/DEC-126-037/LIA-126-008 draft | docs/static checks only；no process startup | DEC-126-037 Accepted / Option C | Complete as accepted review / HOLD S10B |
+| S10P | N/A | none | NOT RUN | not authorized | Required by Accepted DEC-126-037 before S10B |
 | S10B–S11 | N/A | none | NOT RUN | not authorized | Pending blocker closure and separate sequential authorization |
 
 ## 10. 变更控制
@@ -167,7 +167,7 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 | Contracts/G2A/remote | 段成威 | DEC-126-023/024/025 Accepted，`29317b...`为唯一candidate并已远端可达；`c000a024...`仅为历史远端候选，旧PR与develop不变；未merge/tag/发布/启用 | 2026-08-02 |
 | Contracts Draft PR / merge | 段成威 | DEC-126-021 Accepted/HOLD；CI failed dependency audit；merge不是local draft前置但当前仍不批准 | 2026-08-02 |
 | Local-only delivery strategy | 段成威 | DEC-126-022 Accepted；Local Runtime Ready目标，tag/publish/deploy/G5 N/A | 2026-08-02 |
-| Local Implementation Authorization | 段成威 | S4–S9 Closure已接受；S10A只读评审已授权并形成候选。DEC-126-037未Accepted，LIA-126-008/S10B当前Blocked Draft；S10P/S10B/S11、MiniMax/flag activation与新增远端动作仍禁止 | 2026-08-04 |
+| Local Implementation Authorization | 段成威 | S4–S9 Closure与DEC-126-037方案C已接受；LIA-126-008/S10B继续Blocked Draft。S10P/S10B/S11、MiniMax/flag activation与新增远端动作仍未授权 | 2026-08-04 |
 
 ## 12. Local Implementation Authorization 审批候选
 
@@ -221,7 +221,7 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - `LIA-126-006 / S8B`结果：Owner在DEC-126-033接受后单独授权Vue页面、交互、视觉与可访问性；实现消费真实authoritative store，fake投影只存在test harness；DEC-126-034已接受Closure，feature flag activation不随之授权。
 - S7C结果：Owner已接受DEC-126-030，S7C Closure Passed。
 - S8A结果：20个versioned commands、closed Schema/fixtures、Rust-bound context/event/cursors、TS validator/client/store已实现；Desktop `make lint/test/build`及安全扫描PASS；DEC-126-031已接受S8A Closure，G3仍Partial。
-- 当前状态：S4–S9 Closure已由Owner接受。G3仍Partial；S10A review完成但DEC-126-037待批，S10P/S10B/S11保持`NOT RUN`并未授权。
+- 当前状态：S4–S9 Closure与DEC-126-037方案C已由Owner接受。G3仍Partial；S10B继续HOLD，S10P/S10B/S11保持`NOT RUN`并未授权。
 
 ### LIA-126-005 / S8B0（Approved / Executed / DEC-126-033 Closure Passed）
 
