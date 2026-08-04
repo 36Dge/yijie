@@ -1,6 +1,6 @@
 # FEAT-126 本地启动、停止与恢复 Runbook（S10P0 Design Accepted，G3 Partial）
 
-> DEC-126-022将本需求冻结为Local-only Delivery。S4–S9 Closure、DEC-126-037方案C与DEC-126-038方案B已接受，五项停止条件继续HOLD S10B。DEC-126-038只批准DESIGN-126-008和Public Task retained-row边界；本文冻结的未来runbook当前不可执行，不授权S10E/P1/P2/P3、feature activation、S10B–S11、线上部署、tag/package publish/registry。
+> DEC-126-022将本需求冻结为Local-only Delivery。S4–S9 Closure、DEC-126-037方案C与DEC-126-038方案B已接受，五项停止条件继续HOLD S10B。S10E已被单独授权并形成DEC-126-039 Closure候选；DEC-126-039接受前不得进入S10P1。本文不授权S10P1/P2/P3、feature activation、S10B–S11、线上部署、tag/package publish/registry。
 
 ## 1. Release Manifest
 
@@ -43,7 +43,8 @@
 - [x] DESIGN-126-005/DEC-126-029与DEC-126-030已获Owner批准；LIA-126-004只授权S8A，DEC-126-031已接受S8A Closure
 - [x] S4–S9 Closure Passed；S10A read-only review complete；DEC-126-037 Option C Accepted；S10P0只读设计候选已形成
 - [x] DEC-126-038方案B已由Owner接受；Public Task retained-row删除边界已冻结，但不授权实现
-- [ ] S10E/P1/P2/P3/S10B/S11和flag activation仍未授权
+- [x] S10E单独授权已执行；DEC-126-039 Closure候选已形成，本地Infra checkpoint未push
+- [ ] S10P1/P2/P3/S10B/S11和flag activation仍未授权
 - [x] Owner另行授权的yijie/API/Host/Desktop checkpoint push已完成；连同contracts候选共五仓经`ls-remote`和临时clean clone复验为exact SHA；这不代表merge、tag、publish、deploy、activation、G4或G6
 - [ ] Owner另行授权任何后续远端变更，包括更新/删除candidate branch、移动`origin/develop`、merge、tag或package发布
 - [x] S4–S6 checkpoint记录prior exact SHA、generated digest和generator；未使用浮动branch；该记录不代表current G2A readiness
@@ -67,7 +68,7 @@
 | 9 | S9 fake-provider title/raw Eval | versioned Host runner/dataset + Desktop exact consumer validation | test owner | DEC-126-035 Accepted + explicit LIA-126-007 authorization + frozen dataset/split/runner/fixture hashes | fixed fake provider/pins/synthetic data；title 250/250 schema、200/200 semantic、50/50 unsafe；raw 210/210 valid、40/40 negative；plaintext/no-log/injection gates PASS | EXECUTED / DEC-126-036 Accepted；Host `8707dea…9378`、Desktop `adfdb5b…f9cb` local only |
 | 10 | S10A只读readiness/test-profile评审 | yijie docs + affected repos | Codex/reviewer | DEC-126-036 + Owner S10A scope | exact SHA/tool/source/port inventory + DESIGN-126-007 | COMPLETE / DEC-126-037 Option C Accepted；no process/flag/data write |
 | 11 | S10P0 corrective设计评审 | yijie docs + affected repos read-only | Codex/reviewer | Owner S10P0 scope | DESIGN-126-008/DEC-126-038 Option B Accepted + governance gates | docs-only；no runtime rollback |
-| 12 | S10E Compose/isolated identity准备（未授权） | local Infra + user-level plugin discovery | separately approved operator | DEC-126-038 Accepted + explicit S10E authorization | version/hash/digests/migration/identity/TLS/cleanup | restore link backup；stop only this run |
+| 12 | S10E Compose/isolated identity准备 | local Infra + user-level plugin discovery | separately approved operator | DEC-126-038 Accepted + explicit S10E authorization | PASS；DEC-126-039 Closure Candidate，Infra `cc56b65…6e79` | restore link backup；stop exact run；volume deletion separately approved |
 | 13 | S10P1 fake provider/child profile（未授权） | Host/Desktop private config | separately approved implementer | S10E Closure + explicit S10P1 authorization | loopback/fail-closed/default-off/no-log/crash/restart | master false；terminate only this run |
 | 14 | S10P2 secure-storage isolation（未授权） | Desktop private storage config | separately approved implementer | S10P1 Closure + explicit S10P2 authorization | exact namespace inventory/restart/cleanup/no-real-access | remove only exact run manifest items |
 | 15 | S10P3 Public Tasks main chain（未授权） | Desktop Rust/TS/Vue private domain | separately approved implementer | S10P2 Closure + retained-row acceptance + explicit S10P3 authorization | migration/schema/serde/TS/idempotency/race/no-log | flags off；forward reader；do not delete Public row |
@@ -75,7 +76,7 @@
 | 17 | S11 Owner Local-only G6验收 | Owner machine | 段成威 | G4 evidence | AC-043 + evidence review | do not mark complete；return failing slice |
 | 18 | optional future merge review | remote repos | separately approved owner | local E2E + audit fix + green CI | PR/SHA/checks | keep Draft/feature branches |
 
-代码实现、环境准备、schema migration、本地进程启动、临时test flag、默认feature activation、merge和部署是不同动作。S10A/S10P0与DEC-126-038不授权其中任何写动作；S10E/P1/P2/P3/S10B/S11仍须依序单独授权。
+代码实现、环境准备、schema migration、本地进程启动、临时test flag、默认feature activation、merge和部署是不同动作。S10E只获得并执行了环境切片授权；其Closure仍待DEC-126-039接受。S10P1/P2/P3/S10B/S11仍须依序单独授权。
 
 ## 4. Feature Flags
 
@@ -163,9 +164,9 @@ stop threshold
 
 | Purpose | Exact command/control plane action | Required role | Expected output | Evidence location |
 |---|---|---|---|---|
-| Preflight local stack | `docker compose version`；六仓SHA/status；Runtime digest；fixed-port listener scan | local owner | CLI discovery当前因stale symlink失败；Docker Desktop bundled Compose v5.3.0的direct version/config/help只读检查PASS | DESIGN-126-007/008 evidence |
-| Prepare S10E environment | 备份/修复用户Compose plugin link；新`feat-126-s10`run-scoped profile的validate/prepare/status/stop | local owner | **DEC-126-038及S10E单独授权前不得执行** | future S10E manifest |
-| Start local dependencies | future S10E exact profile；digest-pinned API DB/Keycloak DB/Keycloak/Caddy | local owner | **blocked / do not run until S10E authorization** | future S10E/S10B process manifest |
+| Preflight local stack | `docker compose version`；六仓SHA/status；Runtime digest；fixed-port listener scan | local owner | Compose v5.3.0 discovery修复、hash/config PASS；停止后fixed ports无listener | DEC-126-039 candidate evidence |
+| Prepare S10E environment | 备份/修复用户Compose plugin link；新`feat-126-s10`run-scoped profile的validate/prepare/status/stop | local owner | EXECUTED / PASS；DEC-126-039 acceptance pending | Infra `cc56b65…6e79` + S10E manifest |
+| Start local dependencies | S10E exact profile；digest-pinned API DB/Keycloak DB/Keycloak/Caddy | local owner | EXECUTED FOR S10E ONLY / stopped after verification | runtime verifier + stop inventory；not S10B evidence |
 | Migrate/bootstrap API | API `make migrate-up`；4 tracked manifests via`make bootstrap-nonprod-authz BOOTSTRAP_PROFILE=feat-125-local-lab INPUT=<manifest>` | data owner | **blocked / do not run** | future S10B case evidence |
 | Build/start API | `go build -trimpath -o <RUN_ROOT>/bin/yijie-api ./cmd/api-server`；approved local-lab child env | local owner | command frozen；process not started | future S10B process manifest |
 | Build Host/start Desktop/Runtime | Host `go build -trimpath -o <RUN_ROOT>/bin/yijie-agent-host ./cmd/desktop-host`；Desktop `pnpm tauri dev`；Host/Runtime children by supervisor | local owner | **blocked by provider/flags/Keychain gaps** | future S10B process manifest |
@@ -184,6 +185,7 @@ stop threshold
 | 2026-08-04 | LIA-126-007 S9 deterministic fake Eval | Host `8707dea…9378` + Desktop `adfdb5b…f9cb`；`feat126-title-raw-v1` 250 synthetic samples；flags off | Host title/raw authority gates、Desktop exact SSE→reducer→SQLCipher→history/delete→plain-text Vue consumer、repo/security/no-log gates | DEC-126-036 Accepted；all S9 P1 closed | no process startup/rollback drill；S10–S11、activation and four-component saga remain |
 | 2026-08-04 | S10A read-only readiness review | six fixed SHAs + Runtime artifact + local tool/source inventory | no process startup；Compose/provider/sidecar/Keychain/Public Tasks checks | DESIGN-126-007 + DEC-126-037 Option C Accepted；S10B HOLD | S10A-BLK-001–005 open；no rollback action because no mutable runtime state was created |
 | 2026-08-04 | S10P0 corrective design review | Governance `0ceb047…b43cfb` + design checkpoint `5145592…1748` + fixed Contracts/API/Host/Desktop/Runtime；Infra read-only inventory | bundled Compose direct version/config only；Host/Desktop/Public Tasks source inspection；governance docs | DESIGN-126-008/DEC-126-038 Option B Accepted；0 runtime mutation | S10E/P1/P2/P3均NOT RUN，无可执行rollback |
+| 2026-08-04 | S10E isolated environment | Infra parent `f040492…af2` + API exact `a64f9f…3264`；local Compose/images | recoverable user plugin link；default-off profile；two isolated synthetic runs；migration/identity/TLS/runtime/no-log/stop | DEC-126-039 Closure Candidate；Infra `cc56b65…6e79` local/clean/not pushed | zero active container/network/listener；8 volumes + 2 ignored run roots retained；restore old link or delete exact resources only after separate approval |
 
 DESIGN-126-008对未来corrective的回滚语义冻结如下：
 

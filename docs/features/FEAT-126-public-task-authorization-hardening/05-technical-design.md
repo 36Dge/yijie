@@ -1,6 +1,6 @@
 # FEAT-126 技术设计（S10P0 Design Accepted，G3 Partial）
 
-> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。S4–S9 Closure已接受；DESIGN-126-007/DEC-126-037方案C和DESIGN-126-008/DEC-126-038方案B均已由Owner接受，S10B继续HOLD。DEC-126-038只批准设计与Public Task retained-row边界，不是实现授权。G3仍Partial；S10E/P1/P2/P3/S10B/S11、MiniMax、flag activation与新增远端/发布动作未授权。
+> 本文产品/架构设计保持G2 Passed。`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate。S4–S9 Closure已接受；DESIGN-126-007/DEC-126-037方案C和DESIGN-126-008/DEC-126-038方案B均已由Owner接受，S10B继续HOLD。S10E后来被单独授权并已形成DEC-126-039 Closure候选；G3仍Partial。DEC-126-039接受前不得进入S10P1，S10P2/P3/S10B/S11、MiniMax、flag activation与新增远端/发布动作未授权。
 
 ## 1. 设计摘要
 
@@ -544,7 +544,7 @@ Runtime/Host pin、临时 `CODEX_HOME`/空 cwd/pathless ephemeral thread，title
 - Desktop Pattern：FEAT-126 Chat/App Shell Pattern已Accepted，只取代Chat 1.1.0/App Shell 2.0.0中的FEAT-126冲突段落。
 - 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–037 Accepted；S4–S9 Closure Passed；S10B–S11 Unauthorized。
 - 安全/数据 Owner：段成威 — ADR-0013/0014/0015/0016与DEC-126-005/006/007/011/012/014/015/016/017 Approved；Q-006/Q-007/Q-008/Q-009/Q-010/Q-015/Q-016 Resolved；Pattern Accepted。
-- 结论与日期：2026-08-04 G2/G2A保持Passed，S4–S9 Closure、DEC-126-037方案C和DEC-126-038方案B已Accepted；S10B继续HOLD。G3仍Partial；继续禁止未单独授权的S10E/P1/P2/P3/S10B/S11、MiniMax、flag启用与追加远端动作。
+- 结论与日期：2026-08-04 G2/G2A保持Passed，S4–S9 Closure、DEC-126-037方案C和DEC-126-038方案B已Accepted；S10E为DEC-126-039 Closure候选，S10B继续HOLD。G3仍Partial；继续禁止S10P1/P2/P3/S10B/S11、MiniMax、flag启用与追加远端动作。
 
 ## 15. S8B Vue projection implementation
 
@@ -604,7 +604,7 @@ Runtime现有artifact为`codex-cli 0.144.6`，binary SHA-256=`1ef4f1daba0c5ac267
 | S10A-BLK-005 | Desktop chat流使用本地UUID作task/session ID并调Host `/v1/tasks/{id}/agent-sessions`；`/v2/tasks`只有generated types，无consumer call | 不能声称“Desktop新建→Public Tasks/PostgreSQL→Host”同一主链；空Tasks表不是content-free create证据 | 触发production orchestration停止条件；不用独立curl或fixture冒充UI主链 |
 | S10A-LIM-001 | title v2因固定Runtime无法capability-disable tools而必定fail closed | S10只能验证deterministic fallback + user rename precedence，不能声称model title E2E | 不阻断fallback用例；title flag必须false |
 
-结论：`S10B readiness = HOLD / NOT READY`。BLK-001–005任一项未关闭都不能批准真实四组件E2E；它们不回退G2/G2A或S4–S9 Closure。
+结论：`S10B readiness = HOLD / NOT READY`。BLK-001已有S10E技术Closure候选、仍待DEC-126-039接受；BLK-002–005保持Open。任何一项未关闭都不能批准真实四组件E2E；它们不回退G2/G2A或S4–S9 Closure。
 
 ### 17.3 PostgreSQL / OIDC 方案比较
 
@@ -679,7 +679,7 @@ S10P0仅作只读源码/环境盘点、设计冻结和治理文档更新；`cont
 | Desktop | `adfdb5b24b3277ba39bd76a8cdc63fc138caf9cb` | `feat/feat-126-foundation-closure` | clean / exact |
 | Runtime | `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f` | `develop` | clean / exact |
 
-DEC-126-037 Option C、S4–S9 Closure Passed与G3 Partial保持不变。LIA-126-008仍为`Blocked Draft`；S10E、S10P1、S10P2、S10P3、S10B、S11和所有activation都必须逐项单独授权。
+DEC-126-037 Option C、S4–S9 Closure Passed与G3 Partial保持不变。LIA-126-008仍为`Blocked Draft`；S10E已单独授权并形成DEC-126-039 Closure候选，S10P1、S10P2、S10P3、S10B、S11和所有activation仍必须逐项单独授权。
 
 ### 18.2 S10A-BLK-001：Compose/隔离身份环境
 
@@ -790,7 +790,7 @@ event: { schemaVersion: 1, sequence, sessionId,
 | S10P2 | BLK-004 | additive Desktop-private storage/deployment interface；DB schema/IPC/central none | 无master+run ID则使用原固定namespace | pre/post exact inventory，wrong run ID，legacy-no-fallback，abnormal-exit/restart/cleanup/no-real-item-access | 只删manifest中本run items和run root，默认namespace不动 |
 | S10P3 | BLK-005 | semantic Desktop orchestration + SQLCipher v5 + additive private command/channel；central wire none | Chat flags仍default-off；API secure Tasks只在local profile exact true | schema/serde/TS conformance，auth/tenant/revision，idempotency/unknown/restart/race，Public DB/no-log/migration/cascade/retained-row disclosure | flag off；forward migration保留；停coordinator；不删或猜测Public row |
 
-DEC-126-038已由Owner接受，但每个切片仍须单独授权并只能建本地checkpoint。本轮未创建任何corrective source diff。S10P1/P2/P3逐仓lint/test/build、migration/no-log/security/restart/race/default-off全绿，S10E环境证据全绿，且BLK-001–005全部Closed后，才能重新提交LIA-126-008/S10B；其中任一失败则保持Blocked Draft。
+DEC-126-038已由Owner接受；S10E被单独授权并已创建本地Infra checkpoint，详见§19。S10P1/P2/P3仍须分别授权并仅建本地checkpoint；逐仓lint/test/build、migration/no-log/security/restart/race/default-off全绿，且BLK-001–005全部Closed后，才能重新提交LIA-126-008/S10B；其中任一失败则保持Blocked Draft。
 
 ### 18.7 安全、migration、restart、cleanup与race矩阵
 
@@ -805,4 +805,30 @@ DEC-126-038已由Owner接受，但每个切片仍须单独授权并只能建本�
 
 ### 18.8 审批出口
 
-Owner已批准DEC-126-038方案B，接受Compose v5与v2功能等价的版本语义修正、S10E/P1/P2/P3顺序、S10P3的Desktop-private closed projection，以及“本地session删除不删Public Tasks PostgreSQL content-free row”限制。该批准只代表设计可用，不自动授权任何切片。后续仍须按`S10E → S10P1 → S10P2 → S10P3 → LIA-126-008/S10B`逐项单独授权和接受Closure；不允许并跳。
+Owner已批准DEC-126-038方案B，随后又单独授权S10E。S10E实现和证据已完成，但仍须Owner接受DEC-126-039才算Closure Passed。后续仍须按`DEC-126-039 Accepted → S10P1 → S10P2 → S10P3 → LIA-126-008/S10B`逐项单独授权和接受Closure；不允许并跳。
+
+## 19. S10E Compose/Isolated Identity Environment 实际实现（DEC-126-039候选）
+
+### 19.1 Source与运行边界
+
+- Infra authority：本地分支`feat/feat-126-s10e`，checkpoint `cc56b65ae61e91e5451768a25a9e4a840cb76e79`，parent `f040492e7c4af4aa7cc94a343140c58befae3af2`；worktree clean、未push。
+- private deployment interface为additive：新增显式`feat-126-s10` profile、runbook、secret/static/runtime validators；普通`dev-up`不会启动该profile。central contracts、API/Host/Desktop业务源码、private IPC、Host/Public Tasks wire与Runtime pin均未修改。
+- Compose discovery只修复当前用户级link：旧stale link进入owner-only `0700`备份，新的link指向Docker Desktop bundled Compose `v5.3.0`；固定size=`30,780,320`、SHA-256=`2642b6354b323be90cf28460ac186499fbc85381b9ce5e6681fdefb2d0a7d265`。未修改Docker Desktop application或系统目录。
+- 所有镜像均从本地exact digest解析，`up --pull never`；没有pull/download。PostgreSQL exact content只补了固定`16.13-alpine`本地tag，使digest-qualified reference可被Compose fail-closed解析。
+
+### 19.2 隔离拓扑
+
+- 每个canonical UUIDv4 run派生独立Compose project、owner-only ignored run root、四个named volumes和四个networks；不设置`container_name`，不复用普通/FEAT-125 DB或volume。
+- API PostgreSQL只发布`127.0.0.1:5432`；它同时加入private DB network和project-scoped host bridge，因为Docker Desktop不会为internal-only network建立host publisher。仍不使用host network、shared external network或非loopback bind。
+- Keycloak DB无published port；Keycloak只在identity/proxy internal network；Caddy只发布`127.0.0.1:8443/9443`，read-only root、drop all caps后仅保留`NET_BIND_SERVICE`，不安装系统/用户CA trust。
+- secret为五个互异256-bit值、owner-only regular file `0600`；runtime verifier不读取/输出container env，只在进程内比对exact secret是否进入container logs。
+
+### 19.3 失败、恢复与接受证据
+
+一次初始诊断run因ad-hoc rendered Compose输出展开了synthetic API DB credential，被整轮判为无效。它未进入source/Git/governance；该run立即停止并移除containers/networks，credential弃用。新的fresh run重新生成secret和全部接受证据，避免用“后补扫描”掩盖污染。
+
+fresh run证据：四服务healthy；exact image/label/security/network/volume/port inventory PASS；public CA单证书且无private key；OIDC issuer精确为`https://localhost:8443/realms/yijie-local`；Caddy legacy Tasks边界返回404；两名synthetic users连续两次provision一致；固定API `a64f9f591fb594818c1778e30c6941e2574b3264`从empty DB应用`00001–00004`到v4，第二次migration为no-op；candidate files与container logs中generated credential命中为0。
+
+停止后两次run均为0 container、0 network、0 `5432/8443/9443` listener。因没有volume/secret删除授权，八个project-scoped named volumes与两个owner-only ignored run root保留；未执行`down --volumes`、volume rm或prune。它们不是活动服务，但在Owner另行精确授权清理前必须保留并披露。
+
+DEC-126-039建议只接受S10E并关闭BLK-001。该接受不自动授权S10P1、S10P2、S10P3、S10B、S11、MiniMax、flag activation或任何远端动作。
