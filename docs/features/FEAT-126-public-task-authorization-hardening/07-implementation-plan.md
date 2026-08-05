@@ -1,4 +1,4 @@
-# FEAT-126 Local-only 原子实施计划（S10BD1 Closure Passed / S10B-R4 Unauthorized，G3 Partial）
+# FEAT-126 Local-only 原子实施计划（S10B-R4 Closure Fail / S10B-BLK-005 Open，G3 Partial）
 
 ## 1. 当前执行边界
 
@@ -6,7 +6,7 @@
 - DEC-126-022 Local-only Delivery Strategy已Accepted；LIA-126-001已于2026-08-02批准，且只允许S4–S6本地基础切片。
 - S4–S6已有远端checkpoint并保持flags/routes默认关闭；DEC-126-026已接受其Closure并单独授权S7A Desktop Rust Host Bridge/Domain。
 - DEC-126-027已接受S7A；DEC-126-028已接受S7B durable outbox、strict/coalesced reducer、history orchestration、title precedence与fake Host应用链。
-- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；S4–S9及S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1 Closure已接受，BLK-001–005及S10B-BLK-001–004关闭。LIA-126-016/S10B-R3在S10B-001 fail closed；DEC-126-053–055已Accepted。S10B-R4/S11未授权。
+- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；S4–S9及S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1 Closure已接受，BLK-001–005及S10B-BLK-001–004关闭。LIA-126-018/S10B-R4已消费并在S10B-001的fake fixture identity readiness处fail closed；S10B-BLK-005 Open，DEC-126-056待Owner；S11仍未授权。
 
 ## 2. 实施原则
 
@@ -406,3 +406,13 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - 分类：S10BD0 docs-only=`none`；已实施S10BD1为local deployment-interface `semantic`；central contracts/HTTP/SSE/private IPC/DB schema/Runtime pin均`none`，G2A=N/A。
 - 交付：DESIGN-126-011完成；DEC-126-054 Option A已Accepted；`LIA-126-017 / S10BD1`已消费并完成，Infra clean checkpoint与live证据已固定；DEC-126-055待Owner。
 - 退出链：DEC-126-054 Accepted → LIA-126-017 explicit consumption → Infra实现/测试/live probe PASS → DEC-126-055 Owner Accepted → BLK-004 Closed。当前停在“等待新的S10B-R4单独授权”，不得自动跳过。
+
+## 21. LIA-126-018 / S10B-R4执行与退出
+
+- 状态：`CONSUMED / EXECUTED-BLOCKED / CLOSURE FAIL`。固定七仓基线与工作树均精确通过，run=`96a0a80d-27d4-4022-a470-4a7f004d9c4c`。
+- S10B-001已完成S10BD1 Docker capability/identity/resolver、fresh隔离依赖、TLS/OIDC、synthetic users、migration v4、closed bootstrap与API readiness；没有复用历史run、volume、token或状态。
+- fake-provider readiness失败：Host source固定请求fixture为`normal-000`，本次手工编排却使用S9 dataset bundle名称`feat126-title-raw-v1`。正确canonical run ID下返回403，因此停止；先前一条run-header大小写漂移请求同样被拒绝，只作为负向记录，不作为readiness证据。
+- 停止边界：没有改成`normal-000`后继续，没有启动Host/Desktop/Runtime，没有进入S10B-002–012，没有调用MiniMax/外部模型或访问Keychain/真实数据，也没有修改源码、schema、wire、pin、默认flag或远端。
+- cleanup：API/fake停止；四container和四network移除；受控端口释放；临时process root删除；Docker恢复执行前stopped；四named volumes和ignored Infra run record按既定边界保留。
+- 登记`S10B-BLK-005`：S10B手工步骤没有单一machine-readable fixture/orchestrator authority，S9 bundle identity与Host request fixture identity可被混用。contract-impact=`none`（本轮仅执行/治理事实），central G2A N/A。
+- DEC-126-056 Option A候选：接受fail-closed事实、拒绝S10B-R4 Closure、保持BLK-005 Open，并在任何新run前单独评审/授权corrective。不得现场修正、直接重跑、进入S11或调用MiniMax。

@@ -1,7 +1,7 @@
 # FEAT-126 测试与 Eval 计划
 
 > 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。DEC-126-023/024完成G2A重审，DEC-126-025登记sole candidate与checkpoint远端ref并恢复LIA-126-002，仅执行S4–S6 Corrective Closure。
-> S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1 Closure已接受，BLK-001–005及S10B-BLK-001–004关闭。LIA-126-016/S10B-R3在S10B-001 fail closed；DEC-126-053–055已Accepted。S10B-R4、S11与MiniMax仍未授权。
+> S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1 Closure已接受，BLK-001–005及S10B-BLK-001–004关闭。LIA-126-018/S10B-R4已获一次授权并在S10B-001 fail closed；S10B-BLK-005 Open，DEC-126-056等待Owner。S11与MiniMax仍未授权。
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
 ## 1. 测试策略
@@ -577,3 +577,24 @@ S10BD0只读差分实际执行项：现有verifier在Docker endpoint不可达时
 | S10BD1-012 | regression | Infra validate/lint/test、Compose pins与`--pull never`逐字节、feat125回归、diff/security scans | PASS / full 99 of 99 |
 
 Owner已接受DEC-126-054 Option A并消费LIA-126-017。Governance执行基线为`075a5051b538ce8f28834db70de8f4f544ce4484`，Infra clean候选为`2a643caef210e32cab80242ede46b96927b2097a`。focused 12/12与full 99/99 PASS；live run `12600000-0000-4000-8000-000000000055`验证3 identity/3 no-start probes，未pull且后置资源为0。DEC-126-055 Option A已接受Closure并关闭BLK-004；不得自动进入S10B-R4。
+
+## 27. LIA-126-018 / S10B-R4 fresh execution matrix（DEC-126-056 Candidate）
+
+固定provenance：Governance `02cf06b2993ee18aefe4b7e4d6d40e2d19b2c4c1`、Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`、API `c5f334e88d54d9e04f388d0349f4f5925124abd6`、Host `e0a8d3d29a335571d1654d95e1e262c240755674`、Desktop `ed9eb14f3829f6e8fee427de40f76a2c549fb78c`、Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`、Infra `2a643caef210e32cab80242ede46b96927b2097a`；七仓均clean。run为`96a0a80d-27d4-4022-a470-4a7f004d9c4c`。
+
+| Test ID | 实际结果 | content-free证据 | 判定 |
+|---|---|---|---|
+| S10B-001 | 七仓SHA/worktree、固定端口、Docker capability、3个immutable identity与3个no-start resolver probe、fresh四依赖、TLS/OIDC/Tasks denial、2 synthetic users、API migration v4、closed bootstrap及API health/readiness均PASS；fake readiness以正确run ID但错误fixture ID请求后返回403，按停止条件结束 | failure class=`fake_provider_fixture_identity_mismatch`；expected request fixture=`normal-000`；supplied bundle identity=`feat126-title-raw-v1`；accepted fake calls=`0` | **FAIL** |
+| S10B-002 | 真实Desktop Public Task/session链未启动 | Public create/Desktop/Host=`0` | NOT RUN |
+| S10B-003 | assistant/raw stream未启动 | Host/Runtime/model accepted call=`0` | NOT RUN |
+| S10B-004 | incomplete/interrupt未启动 | operation=`0` | NOT RUN |
+| S10B-005 | SQLCipher history/page/restart未启动 | Desktop app-data/SQLCipher未进入业务链 | NOT RUN |
+| S10B-006 | title/rename/pin/sort未启动 | title operation=`0` | NOT RUN |
+| S10B-007 | gap/reconnect/resync/race未启动 | event/cursor=`0` | NOT RUN |
+| S10B-008 | session delete/Host/Runtime cleanup未启动 | cleanup/receipt=`0` | NOT RUN |
+| S10B-009 | Public Tasks/PostgreSQL正文边界未进入 | E2E task request=`0`；DB denylist scan NOT RUN | NOT RUN |
+| S10B-010 | fake仅拒绝身份不匹配请求；没有业务正文进入Host/Runtime/Desktop链 | accepted fake/model call、MiniMax、Keychain、真实数据、源码/远端写入=`0` | PARTIAL SAFETY ONLY |
+| S10B-011 | backpressure/capacity/fault未启动 | sample=`0` | NOT RUN |
+| S10B-012 | API/fake停止；四container/四network移除；临时process root删除；固定端口释放；Docker恢复此前stopped；四named volumes和ignored Infra record按既定边界保留 | active process/container/network/listener=`0/0/0/0`；retained volume=`4` | ABORT CLEANUP PASS；整体case NOT RUN |
+
+LIA-126-018的一次授权已消费。没有把header纠正为`normal-000`后继续，没有直接重跑，也没有修改任何源码或默认配置。`S10B-BLK-005`登记为Open：S10B编排缺少单一machine-readable fixture identity authority，人工将S9 dataset bundle identity与Host request fixture identity混用。DEC-126-056 Option A为候选而非Accepted；G3保持Partial，G4/G6 Pending，S11/MiniMax未授权。
