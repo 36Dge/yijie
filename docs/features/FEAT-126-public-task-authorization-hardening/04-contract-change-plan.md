@@ -279,3 +279,13 @@ S8B切片contract impact为`semantic Desktop-private`，不改变central feature
 - central contracts、Public Tasks/Host wire、Desktop private IPC、SQLCipher业务schema与Runtime pin无diff；唯一source-contract candidate仍为`29317b6426578749dc698fc2ad32b986ee5c8e9f`，central G2A=`N/A`。
 - private deployment interface的consumer已与verifier在同一Infra checkpoint原子更新；Compose原始`version-tag@digest`、repository pin和`--pull never`均未改变，也没有第二pin authority、floating tag或image-ID bypass。
 - Owner已接受Option A、S10BD1 Closure并关闭`S10B-BLK-004`。该接受只证明纠偏切片，不能推导S10B-R4、S11、feature activation、发布或部署授权。
+
+## 15. DESIGN-126-012 / LIA-126-021 deployment-interface conformance
+
+- 影响分类：`semantic`，仅限FEAT-126 private local deployment interface。R5 preflight曾以FEAT-125 runtime profile启动API；纠偏后专用FEAT-126 runtime profile成为唯一允许的S10 API process语义。
+- 权威源：API对profile的closed validation位于`yijie-api`；跨preflight/continuation的唯一machine-readable authority、environment builder与summary reader位于`yijie-infra`。两者是受影响方实现，不创建新的`yijie-contracts`源或影子公共DTO。
+- API兼容：default与既有`feat-125-local-lab`分支、错误语义和route isolation保持不变；新profile要求exact `nonproduction`、双exact flags、专用loopback DSN、issuer/JWKS、CA path/pin与canonical port，并同样隔离legacy `/v1/tasks`。
+- Infra兼容：preflight不再硬编码或接受caller profile；authority closed keys/value漂移、extra key、wrong run/status/scope均fail closed。未来完整链必须从同一reviewed Infra commit消费builder和preflight summary reader，禁止shell重建。
+- Central contracts：Public Tasks request/response、Host HTTP/SSE、Desktop private IPC、PostgreSQL/SQLCipher业务schema与Runtime pin均无变化；sole candidate仍为`29317b6426578749dc698fc2ad32b986ee5c8e9f`，central G2A=`N/A`。
+- 当前证据：API `make lint/test`与Infra `pnpm validate`、`make lint/test`、113/113测试通过；preflight以双快照生成summary `api_binary_sha256`，唯一continuation launcher安全open并复核digest及dev/inode/mode/size/mtime，再证明同run summary reader→builder→固定API child；6类负向与binary drift在spawn前fail closed。DEC-126-059已接受并关闭`S10B-BLK-006`；immutable local checkpoints为API `d1c72b29ffc567abdb4521343a73ceef9ac9da34`、Infra `8f9b8965dbd32bb7273059a80bb818d4344e7135`。没有执行S10B-002–012，central G2A仍为N/A。
+- 回滚：保持本地flags关闭并继续HOLD S10B；若撤销候选，API/Infra必须作为一组回到各自父基线，不能保留只有一侧的profile/authority，也不能回退到FEAT-125 profile冒充FEAT-126。

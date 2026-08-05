@@ -1,6 +1,6 @@
-# FEAT-126 技术设计（S10B-R5 Closure Fail / S10B-BLK-006 Open，G3 Partial）
+# FEAT-126 技术设计（S10BRP1 Closure Passed / S10B-R6 Authorized Not Executed，G3 Partial）
 
-> 本文产品/架构设计保持G2 Passed。DEC-126-057已接受S10BF1 Closure并关闭`S10B-BLK-005`；Owner随后单独授权并消费LIA-126-020/S10B-R5。R5的S10B-001通过，但S10B-002在API readiness前因runtime service-profile authority不一致而fail closed；`S10B-BLK-006` Open，DEC-126-058等待Owner决定。S11/MiniMax/默认flag activation与远端动作仍未授权。
+> 本文产品/架构设计保持G2 Passed。DEC-126-057已接受S10BF1 Closure并关闭`S10B-BLK-005`；Owner随后单独授权并消费LIA-126-020/S10B-R5。R5的S10B-001通过，但S10B-002在API readiness前因runtime service-profile authority不一致而fail closed；DEC-126-058 Option A已Accepted并拒绝R5 Closure，Owner随后单独授权、消费LIA-126-021/S10BRP1。Owner于2026-08-06批准DEC-126-059 Option A，S10BRP1 Closure Passed并关闭`S10B-BLK-006`；API/Infra已形成clean local checkpoints。LIA-126-022/S10B-R6已单独授权但未消费、未执行；S11/MiniMax/默认flag activation与远端动作仍未授权。
 
 ## 1. 设计摘要
 
@@ -1256,3 +1256,54 @@ Infra新增唯一`make feat-126-s10b-preflight`入口。调用者只提供fresh 
 - `feat-126-s10-local-lab`只存在于synthetic bootstrap authority，不等同于API runtime service profile。R5冻结要求后者，因此不能把bootstrap profile的成功推导为002–012 runtime authority成立。
 - 正确设计方向是建立一个closed FEAT-126 runtime service profile，并让preflight与continuation从同一machine-readable authority派生；必须保持issuer、loopback DSN、synthetic-only identity、numeric `nbf`、content-free Public Tasks及default-off语义。
 - 本次没有修改API/Infra/Host/Desktop/contracts/Runtime。任何corrective必须单独设计、分类、测试、授权；不得在R5现场补丁或复用旧profile继续。
+
+## 36. DESIGN-126-012 — Closed API Runtime Profile Authority
+
+### 36.1 决策与授权
+
+Owner于2026-08-06明确要求“API runtime正式增加closed `feat-126-s10-local-lab`支持，并让preflight与后续完整链统一消费这一profile；不能只改字符串或绕过校验”。该指令接受DEC-126-058 Option A并单独授权、消费LIA-126-021/S10BRP1；不是S10B rerun授权。
+
+### 36.2 API closed profile
+
+`yijie-api`新增独立`ServiceProfileFeat126S10LocalLab`，并以API已有`nonprodbootstrap.ValidateExecutionProfile`作为environment、issuer和专用PostgreSQL DSN的authority。profile只有在以下条件全部满足时才通过：
+
+- `YIJIE_ENV=nonproduction`；
+- permission projection与secure tasks环境值均为exact `true`；
+- DSN精确指向`127.0.0.1:5432/yijie_api_feat126_s10?sslmode=disable`且user/password非空；
+- issuer/JWKS为冻结local realm端点；local CA path无首尾漂移且SHA-256为64位lowercase hex；
+- API port是canonical TCP port。
+
+通过后API只绑定`127.0.0.1`，使用pinned local CA client，暴露既有access/secure v2 handlers并继续隔离legacy `/v1/tasks`。`IsClosedLocalLabServiceProfile`统一上述server/route规则。既有default与`feat-125-local-lab`验证分支、错误和可观察行为保持不变，不能借新profile放宽旧路径。
+
+### 36.3 Infra单一authority与continuation
+
+`yijie-infra/scripts/feat-126-s10-api-runtime-profile.mjs`定义唯一closed、versioned authority，固定environment、service profile、API/DB loopback地址与端口、数据库名、issuer/JWKS和两个gate。它：
+
+1. 拒绝missing/extra/drift字段；
+2. 只从受控password、CA path与CA digest构建API child environment；
+3. 由唯一S10B preflight直接导入并把同一`api_runtime_authority`写入content-free summary；
+4. 通过`readApiRuntimeAuthorityFromPreflightSummary`要求canonical run ID、schema v1、`status=passed`和`scope=S10B-001-combined-preflight`完全匹配；
+5. preflight对已构建API binary执行启动前双快照，将SHA-256写入closed summary的`api_binary_sha256`；
+6. 提供唯一`make feat-126-s10b-api-continuation`：只接收canonical run ID与七仓完整SHA，从固定run目录读取owner-only 0600 summary/secrets、CA与preflight-built API binary，安全open/hash并要求summary digest及dev/inode/mode/size/mtime二次快照一致，强制summary reader→builder后才启动foreground child；
+7. 拒绝shell复制env、caller指定profile/endpoint/database/issuer/gate/binary/path/secret、错误七SHA、artifact权限/link/size/digest/identity漂移或复用FEAT-125 profile；child raw output只计容量不落证据，launcher转发signal和exit code。
+
+launcher已通过真实harness子进程验证：child收到`feat-126-s10-local-lab`、`nonproduction`和port `18080`，退出码被原样传播；6类summary/override/artifact负向与binary digest drift均在spawn前停止。它只启动API child，不启动Compose或其它组件，因此不宣称S10B-002–012已消费或通过。
+
+### 36.4 Contract、安全与回滚
+
+- `contract-impact=semantic`，范围仅为private FEAT-126 local deployment interface；central contracts、Public Tasks/Host wire、Desktop IPC、业务schema和Runtime pin不变，G2A=N/A。
+- profile投影不含password、token、DSN正文或真实路径；错误保持closed/content-free。
+- API与Infra候选分别基于`c5f334e88d54d9e04f388d0349f4f5925124abd6`和`5723ffdaa3f2c4b63914a6fd6ef7bac9f15bc0c9`；Accepted clean local checkpoints分别为API `d1c72b29ffc567abdb4521343a73ceef9ac9da34`与Infra `8f9b8965dbd32bb7273059a80bb818d4344e7135`，均未push。Governance将以本次文档收口commit形成clean local checkpoint，并在commit后记录完整SHA。
+- 回滚必须成组撤销API profile与Infra authority并继续HOLD S10B；不得只撤一侧、改用floating profile或放宽validator。
+
+### 36.5 Closure结论
+
+API `make lint`、`make test`通过；Infra `pnpm validate`、`make lint`、`make test`与113/113测试通过，包括launcher真实child、6项负向矩阵与binary drift binding。Owner已批准DEC-126-059 Option A，S10BRP1 Closure Passed且`S10B-BLK-006` Closed。该结论不是S10B-002–012或G4证据。
+
+### 36.6 LIA-126-022 / S10B-R6 授权边界
+
+- 状态：`Authorized 2026-08-06 / Not Consumed / Not Executed`；授权本身不自动启动Docker、服务或测试。
+- 固定候选：Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`、API `d1c72b29ffc567abdb4521343a73ceef9ac9da34`、Host `1ca4ee555586e5243f7101b9fe056c6fa117a560`、Desktop `ed9eb14f3829f6e8fee427de40f76a2c549fb78c`、Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`、Infra `8f9b8965dbd32bb7273059a80bb818d4344e7135`；Governance以本次clean checkpoint的完整HEAD为准。
+- 执行必须建立fresh canonical run UUID、fresh volume/run root/token/数据库与应用状态，并严格消费既有单一preflight/continuation authority完成S10B-001–012。
+- 任一SHA、authority、identity、migration、E2E、content-free、no-log、cleanup或default-off断言失败立即fail closed，不现场修复、继续或直接重跑。
+- 不授权S11、MiniMax/外部模型、真实数据/Keychain、业务源码修改、default activation、push、merge、tag、publish或deploy。

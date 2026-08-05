@@ -1,6 +1,6 @@
-# FEAT-126 本地启动、停止与恢复 Runbook（S10B-R5 Closure Fail / S10B-BLK-006 Open，G3 Partial）
+# FEAT-126 本地启动、停止与恢复 Runbook（S10BRP1 Closure Passed / S10B-R6 Authorized Not Executed，G3 Partial）
 
-> DEC-126-022将本需求冻结为Local-only Delivery。DEC-126-057 Option A已接受；Owner随后单独授权并消费LIA-126-020/S10B-R5。R5在S10B-001 PASS后因API runtime-profile authority冲突fail closed；DEC-126-058候选待Owner决定。本文不授权纠偏、重跑、S11、MiniMax、default activation或发布。
+> DEC-126-022将本需求冻结为Local-only Delivery。Owner已接受DEC-126-058/059 Option A，S10BRP1 Closure Passed且`S10B-BLK-006` Closed；API/Infra clean local checkpoints已形成。LIA-126-022/S10B-R6已单独授权但未消费、未执行。本文不自动启动该run，也不授权S11、MiniMax、default activation或发布。
 
 ## 1. Release Manifest
 
@@ -14,9 +14,11 @@
 | yijie-desktop | S10P3 local Closure candidate / no tag | local `ed9eb14f3829f6e8fee427de40f76a2c549fb78c`；parent `46107eec1e9cba0257252cae8678a4233ef20036`；remote remains `35f27447398529cca4dec85fa1f67e779c7a7cbd` | SQLCipher v5 + Public-before-Host + closed control-plane IPC/TS；repo + real main-chain PASS | exact `29317b...` lock；Cargo/pnpm locks unchanged | clean local checkpoint/no push；all default flags off |
 | yijie governance | S10BF1 Closure accepted / no tag | execution baseline `db12fe6ce4a8c1f84ac90781191d8a1b26dbcc4d`；remote remains `650254b3c009c4098f7d7b2d415ed8082b0139fa` | FEAT-126 governance only | DEC-126-053–057 Accepted；package/strict/G2A/YAML/lint/test/shell/diff required | local/not pushed；S10B-BLK-005 Closed；no R5/S11 authorization |
 | yijie-api | LIA-126-013 accepted local checkpoint / no tag | local `c5f334e88d54d9e04f388d0349f4f5925124abd6` | exact FEAT-126 profile/matrix, atomic batch, verifier, tests | lint/vet/race/unit PASS；historical fresh-v4 integration PASS | clean local checkpoint；no central wire/schema；not pushed |
+| yijie-api | S10BRP1 accepted local checkpoint / no tag | local `d1c72b29ffc567abdb4521343a73ceef9ac9da34`；parent `c5f334e88d54d9e04f388d0349f4f5925124abd6` | closed API runtime profile + strict config/route/address regression | `make lint/test` PASS | clean local/not pushed/activated；not S10B evidence |
 | yijie-infra | S10BM1 corrective local checkpoint / no tag | local `bb96333df908d6fea72ec0a1f57a64477c2428e4` | accepted bootstrap/image helpers + migration/bootstrap shared run-scoped full API SHA authority | validate/lint/test 87/87 + security/shell/Node/diff PASS | clean local checkpoint；not pushed；no S10B rerun/resource start |
 | yijie-infra | S10BD1 corrective local checkpoint / no tag | local `2a643caef210e32cab80242ede46b96927b2097a`；parent `bb96333df908d6fea72ec0a1f57a64477c2428e4` | capability-first closed classifier + exact immutable identity + bounded no-start resolver | focused 12/12、full 99/99、validate/lint/shell/security/diff与live 3 identity/3 probe PASS | clean local/not pushed；no pull；post resources 0；Docker restored stopped |
 | yijie-infra | S10BF1 single-preflight checkpoint / no tag | local `5723ffdaa3f2c4b63914a6fd6ef7bac9f15bc0c9`；parent `2a643caef210e32cab80242ede46b96927b2097a` | single seven-SHA runner consuming Host-owned probe；no fixture input | full 103/103 + fresh combined preflight PASS | clean local/not pushed；R5=false；Docker restored stopped |
+| yijie-infra | S10BRP1 accepted local checkpoint / no tag | local `8f9b8965dbd32bb7273059a80bb818d4344e7135`；parent `5723ffdaa3f2c4b63914a6fd6ef7bac9f15bc0c9` | single runtime authority、preflight summary `api_binary_sha256`、same-run closed continuation launcher | validate/lint/test 113/113 + launcher child/negative/binary-drift conformance PASS | clean local；no service/Docker run；not pushed |
 | yijie-infra | S10I local identity-profile checkpoint / no tag | local `8d7c84dc963141931c6c5d3c3aded3218247df0b`；parent `99e50d8b47e13fc3e3b7501617a307e1ba5d6baf` | exact dynamic numeric nbf mapper/static-live conformance；Compose/image digests unchanged | private default-off profile | DEC-126-044 Accepted；not pushed/activated |
 
 ## 2. Local Runtime Ready 前提
@@ -24,7 +26,7 @@
 - [x] G1/G2、DEC-126-024 G2A重审与LIA-126-001真实通过并有段成威批准
 - [x] DEC-126-023方案C Accepted、Q-017 Resolved；本地replacement source/generated/fixtures与post-commit证据已形成
 - [x] DEC-126-024批准`29317b6426578749dc698fc2ad32b986ee5c8e9f`为新的唯一candidate；DEC-126-025随后单独恢复LIA-126-002的S4–S6范围
-- [ ] G4仍需完整fresh S10B Closure；S10B-R5已执行但仅S10B-001通过，S10B-002在API readiness前fail closed；`S10B-BLK-006`须经独立纠偏Closure后再申请fresh run
+- [ ] G4仍需完整fresh S10B Closure；S10B-R5已执行但仅S10B-001通过。DEC-126-059 Option A已接受并关闭`S10B-BLK-006`，API/Infra clean checkpoints已形成；LIA-126-022/S10B-R6已授权但未消费、未执行
 - [ ] Contracts/Runtime/app本地输入来自clean immutable source，full SHA/digest/generator可追溯；tag为N/A
 - [x] 本地合成identity/tenant/permission链路通过；standard Authorization Code + PKCE含numeric `nbf`，unchanged API capability/Public create通过；FEAT-125 production prerequisites不属于Local-only G6
 - [ ] Public Tasks consumer inventory、secure version migration 和 legacy retirement plan 完成
@@ -182,6 +184,8 @@ stop threshold
 | Start local dependencies | S10E exact profile；digest-pinned API DB/Keycloak DB/Keycloak/Caddy | local owner | EXECUTED FOR S10E ONLY / stopped after verification | runtime verifier + stop inventory；not S10B evidence |
 | Migrate/bootstrap API | `feat-126-s10-local-lab`权威wrapper已由DEC-126-048接受，内部固定4份reviewed manifests及API-owned atomic batch/verifier | data owner | 只允许隔离验证；不得用于未授权S10B，不得使用generic/manual SQL | S10BP1 Closure Passed；not S10B evidence |
 | Build/start API | host process on fixed loopback with S10E DB/OIDC/TLS profile | local owner | S10I fresh run started and stopped；standard native token accepted；Public create/bind/delete-retention PASS | DEC-126-045 Accepted Closure evidence；not S10B evidence |
+| Inspect FEAT-126 API runtime authority | `make feat-126-s10-api-runtime-profile` | read-only reviewer | closed content-free authority only；无profile override | DEC-126-059 Accepted；Infra `8f9b8965…7135` |
+| Continue after accepted preflight | `make feat-126-s10b-api-continuation`只接收canonical run ID与七仓SHA；从固定run路径读summary/secrets/CA/binary，校验`api_binary_sha256`与文件身份双快照后由同一reader/builder产生profile/env | LIA-126-022 authorized local operator | 当前仅授权、未消费；执行时须完成S10B-002–012，不能把launcher conformance冒充E2E | LIA-126-022 / S10B-R6；Governance exact HEAD须在执行前固定 |
 | Build Host/start Desktop/Runtime | Host/fake临时binary已build；Desktop `pnpm tauri dev`与Host/Runtime child因bootstrap stop condition未执行 | local owner | S10B-001 fail closed；业务进程启动数0 | DEC-126-046 Accepted / rejected Closure evidence |
 | Stop local stack | process-group SIGTERM/deadline；Infra `make feat-125-local-stop && make dev-down`；verify no PID/listener/default-on | local owner | command frozen；not executed | future cleanup manifest |
 | Migrate temp local DB | API `make test-integration`; Desktop embedded migration tests | data owner | foundation PASS；populated release/E2E still blocks G4 | evidence in `08` |

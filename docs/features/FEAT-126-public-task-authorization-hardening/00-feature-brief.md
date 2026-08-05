@@ -4,14 +4,14 @@
 
 | 字段 | 内容 |
 |---|---|
-| 状态 | G1/G2/G2A Passed / S4–S10BF1 Closure Passed / S10B-R5 Closure Fail / DEC-126-058 Candidate / S10B-BLK-006 Open / G3 Partial |
+| 状态 | G1/G2/G2A Passed / S4–S10BRP1 Closure Passed / DEC-126-059 Accepted / S10B-BLK-001–006 Closed / S10B-R6 Authorized Not Executed / G3 Partial |
 | 需求负责人 | 段成威 |
 | Product/Design 决策人 | 段成威 |
 | 技术负责人 | 段成威 |
 | Reviewer | 段成威 |
 | 发布负责人 | 段成威 |
 | 创建日期 | 2026-08-01 |
-| 最后更新 | 2026-08-05 |
+| 最后更新 | 2026-08-06 |
 | 原始需求来源 | 段成威 2026-08-01 对话需求及 4 张 Codex 局部交互截图 |
 
 ## 2. 一句话目标
@@ -61,7 +61,7 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 - 云端会话同步、多设备合并、共享协作、导入导出、归档与回收站。
 - 项目编辑、Finder 展示、归档或删除本地目录/仓库文件。
 - Admin Web、Connectors、Knowledge、Skills 或商业平台能力接入。
-- LIA-126-001/002与DEC-126-026已完成S4–S6；DEC-126-027/028/030/031/033/034已接受S7A–S8B Closure。Owner随后明确授权将已接受的yijie/API/Host/Desktop checkpoints推送到各自专用候选分支，远端SHA已复验并由DEC-126-035接受；这只改变可达性，不改变G3/G4/G6、flag、merge或发布状态。LIA-126-007的test-only S9已由DEC-126-036接受；S10–S11、MiniMax、Runtime/Infra生产源码、feature activation及一切新增远端动作仍不在授权范围。
+- LIA-126-001/002与DEC-126-026已完成S4–S6；DEC-126-027/028/030/031/033/034已接受S7A–S8B Closure。Owner随后明确授权将已接受的yijie/API/Host/Desktop checkpoints推送到各自专用候选分支，远端SHA已复验并由DEC-126-035接受；这只改变可达性，不改变G3/G4/G6、flag、merge或发布状态。LIA-126-007的test-only S9已由DEC-126-036接受。Owner于2026-08-06接受DEC-126-059 Option A与S10BRP1 Closure，API/Infra形成clean local checkpoints并关闭`S10B-BLK-006`；同一指令另行授权LIA-126-022/S10B-R6，但本轮不消费、不启动。S11、MiniMax、feature activation及一切新增远端动作仍不在授权范围。
 - FEAT-126本期不创建`contracts-v0.3.0` tag、不发布SDK/package、不配置registry，不进行线上部署、生产灰度/启用、云数据库接入或真实用户数据处理。
 
 ## 6. 候选成功指标
@@ -153,7 +153,7 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 | G2A 契约就绪 | 2026-08-02 | 段成威 | Re-review Passed：DEC-126-024 Accepted，`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate；现已精确推送到`origin/feat/feat-126-content-free-candidate`，`origin/develop`、历史`c000a024`与Draft PR #1均不变；远端可达不等于merge/发布/实现完成 |
 | Contract Draft PR / merge readiness | 2026-08-02 | 段成威 | DEC-126-021 Accepted/HOLD：Draft PR #1固定SHA且保持Draft；红色CI只阻断merge，不回退G2/G2A；未来需本地跨仓E2E、audit修复、远端CI全绿及单独merge批准 |
 | Local-only Delivery Strategy | 2026-08-02 | 段成威 | DEC-126-022 Accepted；目标改为Local Runtime Ready；tag/publish/deploy/G5均N/A；LIA-126-001后续仅授权S4–S6 |
-| G3 本地切片完成 | 未排期 | 段成威 | Partial：LIA-126-020/S10B-R5已消费；S10B-001 PASS，S10B-002在API readiness前fail closed，003–012与S11未运行；S10B-BLK-006 Open、DEC-126-058候选待批，G4/G6仍Pending |
+| G3 本地切片完成 | 未排期 | 段成威 | Partial：DEC-126-059 Option A已接受，S10BRP1 Closure Passed，`S10B-BLK-001–006`均Closed；API `d1c72b29ffc567abdb4521343a73ceef9ac9da34`与Infra `8f9b8965dbd32bb7273059a80bb818d4344e7135`为clean local checkpoints。LIA-126-022/S10B-R6已单独授权但未消费，S10B-002–012与S11仍未运行，G4/G6 Pending |
 | S8B0 UI Integration Readiness Review | 2026-08-03 | 段成威 | DESIGN-126-006/DEC-126-032与DEC-126-033 Accepted；LIA-126-005 / S8B0 Closure Passed |
 | S8B Vue UI Closure Review | 2026-08-03 | 段成威 | DEC-126-034 Accepted / S8B Closure Passed；不自动授权S9/S10/activation，VoiceOver人工项保留到S11/G6 |
 | Remote State Reconciliation | 2026-08-04 | 段成威 | DEC-126-035 Accepted：五仓候选ref/clean clone精确PASS；四个S4–S8B checkpoints已按Owner明确授权远端可达；不改变G3/G4/G6或后续切片授权 |
@@ -219,3 +219,5 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 | 2026-08-05 | Codex | 消费LIA-126-018：七仓SHA、S10BD1 resolver、fresh依赖、TLS/OIDC、synthetic users、migration/bootstrap与API readiness通过；fake-provider readiness因请求fixture身份错误返回403并按停止条件结束 | run `96a0a80d-27d4-4022-a470-4a7f004d9c4c`；正确run ID仍把S9 dataset bundle `feat126-title-raw-v1`误作Host固定fixture `normal-000`；S10B-001 FAIL、002–012 NOT RUN；登记S10B-BLK-005和DEC-126-056候选；清理后0 listener/container/network，4 volumes按边界保留，Docker恢复停止；0 MiniMax/Keychain/真实数据/源码/远端写入 |
 | 2026-08-05 | 段成威 / Codex | Owner接受DEC-126-056 Option A并单独授权LIA-126-019；Codex实现Host-owned fake readiness与Infra唯一preflight runner并执行fresh组合预检；Owner随后接受DEC-126-057 Option A | Host `1ca4ee5…a560`、Infra `5723ffd…c0c9`；run `ed22fc82…f3f4`通过七SHA、依赖、identity、migration/bootstrap、API/fake readiness与no-log，summary `8198442e…f7d9`；S10BF1 Closure Passed、BLK-005 Closed；资源归零、Docker恢复停止，`s10b_r5_executed=false`；fresh R5仍须单独授权 |
 | 2026-08-05 | 段成威 / Codex | Owner单独授权并消费LIA-126-020/S10B-R5；唯一组合preflight通过，但继续完整run时发现API runtime service-profile authority不一致，按停止条件fail closed并提交DEC-126-058候选 | run `24ae14b7…ad6`；S10B-001 PASS，summary `b3e4b833…b1f8`；S10B-002在API readiness前停止，003–012 NOT RUN；登记S10B-BLK-006 Open；0 Public Task/conversation/MiniMax/Keychain/真实数据/源码/远端写入；容器/网络/端口清理，4 volumes披露保留，Docker恢复停止 |
+| 2026-08-06 | 段成威 / Codex | Owner以“正式增加closed `feat-126-s10-local-lab`并统一preflight/后续完整链消费、不得只改字符串或绕过校验”的明确指令接受DEC-126-058 Option A并单独授权/消费LIA-126-021/S10BRP1；API与Infra形成未提交本地corrective候选，提交DEC-126-059 Closure Review | API严格校验nonproduction、双exact flag、专用DSN、issuer/JWKS、CA pin、canonical port、loopback与v1隔离，FEAT-125语义保持；Infra以单一closed authority驱动preflight，由summary的`api_binary_sha256`绑定preflight-built binary，并由唯一continuation入口实际消费同run summary、reader与builder。Infra 113/113及launcher真实harness/负向矩阵通过，但未启动Docker/服务或执行S10B-002–012；BLK-006在Owner接受DEC-126-059前仍Open |
+| 2026-08-06 | 段成威 / Codex | Owner批准DEC-126-059 Option A；S10BRP1 Closure Passed并关闭`S10B-BLK-006`。随后形成API与Infra clean local checkpoints，并单独授权LIA-126-022/S10B-R6 | API `d1c72b29ffc567abdb4521343a73ceef9ac9da34`、Infra `8f9b8965dbd32bb7273059a80bb818d4344e7135`，均clean/not pushed；fresh R6仅为Authorized / Not Consumed / Not Executed，本轮未启动Docker/服务，S10B-002–012、S11、MiniMax、activation与远端动作均未执行 |

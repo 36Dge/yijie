@@ -271,3 +271,15 @@ S9自身contract impact为`additive-test-only`；FEAT-126总体仍保持`breakin
 | 其它仓库/系统 | 无源码变化 | Contracts/API/Desktop/Runtime pin、MiniMax、真实数据、Keychain、远端Git | side effect=0；S10B-R5未执行 |
 
 S10BF1 contract impact为private test/deployment tooling `semantic`，central G2A=`N/A`。它只消除预检身份与人工编排歧义，不改变产品行为或对外兼容面。
+
+## 15. DESIGN-126-012 / S10BRP1 实际影响差异
+
+| 边界 | 当前候选变化 | 兼容与停止结论 |
+|---|---|---|
+| API runtime config | 新增正式closed `feat-126-s10-local-lab`分支，复用API-owned bootstrap authority校验专用DSN/environment/issuer，并增加exact flags、JWKS、CA pin、canonical port与loopback限制 | private local deployment语义由错误的FEAT-125 profile切换到专用FEAT-126 profile，故`contract-impact=semantic`；default与FEAT-125路径保持既有行为 |
+| API route exposure | 新profile启用既有secure v2 tasks/access projection并隔离legacy `/v1/tasks` | 不新增或修改Public Tasks HTTP wire；仅改变何种closed local profile可启动现有handler集合 |
+| Infra authority | 新增唯一versioned `FEAT_126_S10_API_RUNTIME_AUTHORITY`；preflight从其构建child env并把完整closed投影写入summary | 不接受operator profile/endpoint/database/issuer/gate override；drift、extra key或错误run/scope/status fail closed |
+| Continuation | 唯一`make feat-126-s10b-api-continuation`从固定run路径读取安全工件，以summary `api_binary_sha256`和安全open前后双快照绑定preflight-built binary，实际调用同一Infra module的runtime env builder与summary reader后启动foreground child | 接口只接收run ID与七仓SHA，拒绝profile/path/secret/binary override与digest/dev/inode/mode/size/mtime漂移；launcher conformance已通过但没有执行S10B-002–012，不把harness写成完整链PASS |
+| Central contracts/schema | 无source、generated SDK、Public Tasks/Host wire、Desktop IPC、PostgreSQL/SQLCipher业务schema或Runtime pin变更 | central G2A=`N/A`；唯一contracts candidate仍为`29317b6426578749dc698fc2ad32b986ee5c8e9f` |
+
+父基线仍为API `c5f334e88d54d9e04f388d0349f4f5925124abd6`、Infra `5723ffdaa3f2c4b63914a6fd6ef7bac9f15bc0c9`和Governance `bcae57085b4fcb21a9d83f2ab08bc6c308228510`。DEC-126-059 Option A接受后形成API `d1c72b29ffc567abdb4521343a73ceef9ac9da34`与Infra `8f9b8965dbd32bb7273059a80bb818d4344e7135` clean local checkpoints，均未push；`S10B-BLK-006` Closed。LIA-126-022仅改变一次fresh local E2E的授权状态，不改变central contracts、wire、schema、Runtime pin、默认行为或生产范围。

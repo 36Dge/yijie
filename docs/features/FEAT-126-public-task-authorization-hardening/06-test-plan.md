@@ -1,7 +1,7 @@
 # FEAT-126 测试与 Eval 计划
 
 > 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。DEC-126-023/024完成G2A重审，DEC-126-025登记sole candidate与checkpoint远端ref并恢复LIA-126-002，仅执行S4–S6 Corrective Closure。
-> S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1/S10BF1 Closure已接受，S10B-BLK-001–005关闭。LIA-126-020/S10B-R5已消费但Closure失败：S10B-001 PASS，S10B-002在API readiness前fail closed，003–012 NOT RUN；S10B-BLK-006 Open，DEC-126-058候选等待Owner决定。S11与MiniMax仍未授权。
+> S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1/S10BF1/S10BRP1 Closure已接受，S10B-BLK-001–006关闭。LIA-126-020/S10B-R5已消费但Closure失败；DEC-126-059 Option A已接受，API/Infra corrective形成clean local checkpoints。LIA-126-022/S10B-R6已单独授权但未消费、未执行；S10B-002–012、S11与MiniMax仍未运行。
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
 ## 1. 测试策略
@@ -626,4 +626,30 @@ LIA-126-018的一次授权已消费。没有把header纠正为`normal-000`后继
 | S10B-012 abort cleanup subset | PASS / overall NOT RUN | API/fake/containers/networks/listeners为0；Docker恢复停止；4个run-scoped named volumes按非破坏边界披露保留 |
 | safety/default-off | PASS | 6个日志/证据文件对本run生成secret值扫描0命中；未创建Desktop app-data/SQLCipher/secure-storage/Host Home/CODEX_HOME；默认开启flag扫描0 |
 
-`S10B-BLK-006`关闭前，新增测试必须证明：FEAT-126 runtime profile由同一authority同时驱动combined preflight和full continuation；旧`feat-125-local-lab`不能隐式兼容；missing/wrong/generic profile必须在数据库和业务进程访问前fail closed。
+`S10B-BLK-006`的关闭条件已满足：测试证明FEAT-126 runtime profile由同一authority同时驱动combined preflight和full continuation；旧`feat-125-local-lab`不能隐式兼容；missing/wrong/generic profile必须在数据库和业务进程访问前fail closed。DEC-126-059 Option A已接受该证据并关闭blocker。
+
+## 30. LIA-126-021 / S10BRP1 测试矩阵
+
+| Case | 预期与当前结果 |
+|---|---|
+| S10BRP1-001 API exact profile positive | exact nonproduction、双exact flag、专用DSN、issuer/JWKS、CA path/pin、canonical port通过 |
+| S10BRP1-002 API environment/flag negatives | local/production、missing/case-drift flag全部fail closed |
+| S10BRP1-003 API DSN authority negatives | 错host/port/database/query、空user/password、localhost替代127.0.0.1全部fail closed |
+| S10BRP1-004 API identity/TLS negatives | 错issuer/JWKS、missing/whitespace CA path、非lowercase或错误长度pin全部fail closed |
+| S10BRP1-005 API route/address | 专用profile只绑定loopback，secure v2可接线，legacy `/v1/tasks`隔离 |
+| S10BRP1-006 FEAT-125/default regression | 既有profile的环境、flag、错误、route与address语义保持 |
+| S10BRP1-007 Infra authority closure | authority keys/value必须exact；missing/extra/drift/profile override失败 |
+| S10BRP1-008 preflight consumption | preflight只从同一authority构建API child env，并把相同投影及启动前双快照`api_binary_sha256`写入passed summary |
+| S10BRP1-009 continuation consumption | 可执行closed continuation launcher从同run passed summary调用reader+builder；安全open/hash与summary digest、dev/inode/mode/size/mtime必须一致；wrong run/status/scope/authority、operator override或binary drift均在spawn前失败 |
+| S10BRP1-010 no-log/default/pin | 输出与错误不含password、DSN、token或真实路径；central contracts/wire/schema/Runtime pin/default-on均无变化 |
+
+API全量lint/test与Infra validate/lint/test 113/113、launcher真实子进程、summary负向矩阵及binary digest drift均已通过；DEC-126-059 Option A已接受。该矩阵不是S10B-002–012：不得把launcher conformance冒充API readiness、真实Vue对话或G4证据。
+
+## 31. LIA-126-022 / S10B-R6 授权测试矩阵
+
+- 状态：`AUTHORIZED / NOT CONSUMED / NOT EXECUTED`。本次治理收口不启动Docker、服务或S10B用例。
+- 执行时必须使用新的canonical run UUID、fresh PostgreSQL volume、临时CODEX_HOME/Host Home/Desktop app-data/SQLCipher/项目与合成secret，不复用R5或历史run。
+- S10B-001必须消费Infra唯一preflight；S10B-002–012必须在同一run中消费accepted continuation authority，并完整覆盖真实Vue/Pinia/Tauri/Desktop Rust、API、Host、Runtime、content-free Public Tasks、流式assistant/raw reasoning、历史恢复、title/rename/pin、interrupt/resync、物理删除/cleanup、no-log与default-off恢复。
+- 固定候选为Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`、API `d1c72b29ffc567abdb4521343a73ceef9ac9da34`、Host `1ca4ee555586e5243f7101b9fe056c6fa117a560`、Desktop `ed9eb14f3829f6e8fee427de40f76a2c549fb78c`、Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`、Infra `8f9b8965dbd32bb7273059a80bb818d4344e7135`及本次Governance clean checkpoint。
+- 任一SHA、resolver、identity、migration、authority、E2E、content-free、no-log、cleanup或default-off断言失败立即停止；不现场修复、继续剩余用例或直接重跑。
+- 不调用MiniMax/外部模型，不处理真实数据或访问真实Keychain，不进入S11，不改源码，不执行远端动作。

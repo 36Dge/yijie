@@ -5,7 +5,7 @@
 > 分支均已精确远端可达，旧Draft PR #1与各`origin/develop`不变。DEC-126-026已接受S4–S6
 > Foundation Corrective Closure并单独授权S7A Desktop Rust Host Bridge/Domain；DEC-126-027已由
 > Owner接受。随后单独授权的S7B Rust Application Orchestration/Domain已完成并由Owner通过DEC-126-028接受；远端可达不等于merge、发布或生产启用。
-> 随后Owner接受S7C–S9及S10E/P1/P2F/P3/S10BD1/S10BF1 Closure，BLK-001/002/003/004/005及S10B-BLK-001–005关闭。LIA-126-020/S10B-R5现已消费：S10B-001 PASS，S10B-002在API readiness前fail closed，003–012 NOT RUN；S10B-BLK-006 Open且DEC-126-058候选待Owner决定。G3仍Partial，G4/G6 Pending，S11未授权。
+> 随后Owner接受S7C–S9及S10E/P1/P2F/P3/S10BD1/S10BF1/S10BRP1 Closure，BLK-001/002/003/004/005及S10B-BLK-001–006关闭。LIA-126-020/S10B-R5已消费并fail closed；Owner已接受DEC-126-058与DEC-126-059 Option A。API `d1c72b29ffc567abdb4521343a73ceef9ac9da34`与Infra `8f9b8965dbd32bb7273059a80bb818d4344e7135`为clean local checkpoints。LIA-126-022/S10B-R6已授权但未消费、未执行，S10B-002–012未运行。G3仍Partial，G4/G6 Pending，S11未授权。
 
 ## 1. 验证上下文
 
@@ -736,7 +736,7 @@ DESIGN-126-011冻结capability-first、closed failure classes、原Compose pin e
 | DB/encryption/delete E2E | SQLCipher v4 job/receipt、independent HMAC key、migration/cascade/checkpoint、restart和fake Host cleanup单仓PASS | 跨Desktop/Host/Runtime真实进程partial delete仍未运行 | S10验证完整多进程job/receipt/restart/fault E2E | 段成威 | blocks G4/local G6 |
 | Runtime raw-reasoning/title/delete | S9 deterministic Eval与S10P1 Host→fixed Runtime assistant/raw真实turn PASS；完整Desktop turn/history/delete多进程链仍未运行 | raw UX/residual/inconsistent history | keep default flags off until S10B；历史MiniMax public-summary FAIL不改写 | 段成威 | blocks G4/local G6 |
 | Desktop sidecar/secret storage | actual Desktop supervisor→Host→fixed Runtime child readiness/stop PASS；S10P2F file integrity/isolation/restart/no-log/exact cleanup实现与证据PASS；DEC-126-043 Accepted | signed native仍Deferred Native Hardening/NOT RUN，不等于PASS | Local-only BLK-004已关闭；未来native signing/production intent恢复native hardening门禁 | 段成威 | no longer blocks Local-only BLK-004；does not authorize S10P3/S10B |
-| S10B runtime-profile/orchestration readiness | S10BF1 Host/Infra corrective与R5组合preflight PASS | R5在S10B-002 API readiness前发现preflight/continuation runtime-profile authority不一致；003–012未运行 | DEC-126-058 Owner处置；独立closed runtime-profile corrective及fresh run均须另行授权 | 段成威 | **S10B-BLK-006 Open；G4/local G6仍由完整S10B与Owner验收阻断** |
+| S10B runtime-profile/orchestration readiness | S10BF1组合preflight PASS；DEC-126-058/059 Accepted；S10BRP1 API strict profile与Infra唯一preflight/continuation launcher仓内conformance PASS；API/Infra clean checkpoints已形成 | S10B-002–012仍未运行；授权不能替代execution evidence | 消费LIA-126-022执行一次fresh S10B-R6 | 段成威 | **S10B-BLK-006 Closed；G4/local G6仍由完整S10B与Owner验收阻断** |
 | S10E image-reference precheck | exact repository-digest verifier、85/85自动化和fresh no-pull四依赖up/stop PASS | 局部启动不能冒充S10B | DEC-126-050 Accepted；保持无floating tag/pull | 段成威 | S10B-BLK-002 Closed |
 | production identity/infra | FEAT-125 deferred | no production safety | N/A for DEC-126-022 local-only scope；future online intent must reopen production track and FEAT-125 prerequisites | 段成威 | does not block local G6；blocks any production claim |
 
@@ -764,3 +764,31 @@ DESIGN-126-011冻结capability-first、closed failure classes、原Compose pin e
 | Governance gates | feature package default/strict/G2A、unique-key YAML、`pnpm lint`、`pnpm test`、checker shell syntax与`git diff --check` PASS |
 
 结构化结论：LIA-126-020的一次授权已消费，S10B-R5 Closure不成立。`S10B-BLK-006`为新的P1，DEC-126-058 Option A建议接受事实但拒绝Closure，并要求独立runtime-profile authority纠偏评审。Owner决定前不得修复、重跑、进入S11或调用MiniMax。
+
+### 9.31 LIA-126-021 / S10BRP1 Closure Review（Accepted）
+
+Owner于2026-08-06接受DEC-126-058 Option A并以明确实施指令授权、消费LIA-126-021，随后批准DEC-126-059 Option A。父基线为Governance `bcae57085b4fcb21a9d83f2ab08bc6c308228510`、API `c5f334e88d54d9e04f388d0349f4f5925124abd6`与Infra `5723ffdaa3f2c4b63914a6fd6ef7bac9f15bc0c9`；clean local checkpoints为API `d1c72b29ffc567abdb4521343a73ceef9ac9da34`与Infra `8f9b8965dbd32bb7273059a80bb818d4344e7135`，均未push。
+
+| Evidence | Result |
+|---|---|
+| API source scope | `cmd/api-server/main.go`、`internal/app/app.go`、`internal/app/app_test.go` only；正式closed FEAT-126 runtime profile、pinned CA client、loopback/v1 isolation与strict config matrix |
+| API conformance | `make lint`、`make test` PASS；专用profile positive/negative、FEAT-125/default compatibility、secure-v2/legacy-v1 route与loopback assertions PASS |
+| Infra source scope | 单一versioned runtime authority、preflight authority consumption/summary、closed continuation launcher、bootstrap/result validators、tests/docs/Make入口；无Compose pin或业务wire变更 |
+| Infra conformance | `pnpm validate`、`make lint`、`make test`、Node/shell/diff checks PASS；113/113；preflight summary绑定`api_binary_sha256`，launcher安全open/hash并复核digest与dev/inode/mode/size/mtime；真实child收到FEAT-126/nonproduction/18080并传播exit code，6类spawn前negative与binary drift PASS |
+| Contract/security | `contract-impact=semantic` private local deployment only；central contracts/Host wire/Desktop IPC/业务schema/Runtime pin无diff；G2A N/A；secret/DSN/token/path不进入closed evidence |
+| Runtime execution | Docker、API/Host/Desktop/Runtime与S10B-002–012均NOT RUN；未调用MiniMax、未处理真实数据、未启用默认flag、未远端写入 |
+
+结构化结论：S10BRP1解决了“只改字符串”“reader未消费”与“binary未绑定summary”三类缺口：API本身执行closed验证；Infra preflight与可执行continuation launcher消费同一authority、同run passed summary、reader和builder，并以`api_binary_sha256`及文件身份双快照绑定实际child。DEC-126-059 Option A已接受该证据，S10BRP1 Closure Passed且`S10B-BLK-006` Closed；它仍不是fresh S10B/G4证据。
+
+### 9.32 LIA-126-022 / S10B-R6 Authorization Evidence
+
+| Evidence | Result |
+|---|---|
+| Authorization | Owner于2026-08-06单独授权一次fresh S10B-R6 |
+| Consumption | `NOT CONSUMED / NOT EXECUTED`；未启动Docker、服务或S10B用例 |
+| Fixed source candidates | Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`；API `d1c72b29ffc567abdb4521343a73ceef9ac9da34`；Host `1ca4ee555586e5243f7101b9fe056c6fa117a560`；Desktop `ed9eb14f3829f6e8fee427de40f76a2c549fb78c`；Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`；Infra `8f9b8965dbd32bb7273059a80bb818d4344e7135` |
+| Governance identity | 本次文档commit形成的clean local HEAD；commit后记录并在执行时作为完整SHA输入 |
+| Scope | 一次fresh S10B-001–012；fake provider、合成数据、临时exact-true profile与隔离run资源 |
+| Exclusions | S11、MiniMax/外部模型、真实数据/Keychain、业务源码修改、default activation与所有远端动作 |
+
+结构化结论：授权已存在，但没有被本次治理收口自动消费。G3继续Partial，G4/G6继续Pending。

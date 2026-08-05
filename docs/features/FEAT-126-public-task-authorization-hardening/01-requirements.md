@@ -351,3 +351,22 @@
 | missing/gap/invalid/oversize明确失败 | 40/40负例识别；四类各10 | PASS |
 | no execution/no body leak/delete | Vue文本节点无script/link；Host log/bbolt与Desktop production bundle无正文；SQLCipher session级联删除PASS | PASS |
 | 实施边界 | 仅test runner/dataset/fixtures/harness和治理文档；0 MiniMax/外部模型/真实数据/flag/S10/远端动作 | PASS |
+
+## 14. DESIGN-126-012 / S10BRP1 验收追踪
+
+Owner于2026-08-06以明确实施指令接受DEC-126-058 Option A并单独授权、消费LIA-126-021/S10BRP1。该纠偏只关闭API runtime profile authority的实现缺口，不改变产品需求或授权完整E2E：
+
+- API必须正式接受closed `feat-126-s10-local-lab`，且只在`YIJIE_ENV=nonproduction`、permission projection与secure tasks均为exact `true`、专用loopback PostgreSQL DSN、exact issuer/JWKS、有效local CA path与lowercase SHA-256 pin、canonical port全部匹配时启动；错误或generic profile必须fail closed。
+- `feat-125-local-lab`现有环境、flag、错误与路由语义保持不变；两个closed local-lab profile均只绑定loopback并隔离legacy `/v1/tasks`。
+- Infra必须只维护一个versioned、closed、machine-readable API runtime authority；S10B-001 preflight从该authority构建API child environment并把同一投影写入summary。
+- 后续完整链只能经唯一`make feat-126-s10b-api-continuation`继续；该launcher只接收canonical run ID与七仓完整SHA，从固定run路径读取0600 summary/secrets/CA及preflight binary，要求summary的`api_binary_sha256`与安全open后二次快照完全一致，并实际调用同一Infra commit的同run/同scope summary reader与builder。禁止shell重建、binary替换、operator profile/path/secret override、旧FEAT-125 profile、generic/default/unknown profile或仅替换字符串。
+- 本切片只允许仓内conformance、lint/test/build与治理验证，不启动Docker、API/Host/Desktop/Runtime，不执行S10B-002–012，不调用MiniMax，不启用默认flag，不修改central contracts、wire、schema或Runtime pin。
+- DEC-126-059 Option A已由Owner接受，S10BRP1 Closure Passed且`S10B-BLK-006` Closed；API `d1c72b29ffc567abdb4521343a73ceef9ac9da34`与Infra `8f9b8965dbd32bb7273059a80bb818d4344e7135`为clean local checkpoints。G3仍Partial、G4/G6仍Pending，因为完整S10B-002–012尚未执行。
+
+## 15. LIA-126-022 / S10B-R6 独立授权边界
+
+- 状态：`Authorized / Not Consumed / Not Executed`。本次批准允许后续执行一次fresh S10B-001–012，但本轮只登记授权，不启动Docker、API、Host、Desktop或Runtime。
+- 固定实现基线：Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`、API `d1c72b29ffc567abdb4521343a73ceef9ac9da34`、Host `1ca4ee555586e5243f7101b9fe056c6fa117a560`、Desktop `ed9eb14f3829f6e8fee427de40f76a2c549fb78c`、Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`、Infra `8f9b8965dbd32bb7273059a80bb818d4344e7135`；Governance使用本次批准形成的clean checkpoint完整SHA，并在执行前写入process manifest。
+- R6必须使用fresh canonical run UUID、fresh volumes/run roots/token/data、唯一preflight和closed continuation launcher；不得复用R5 summary、binary、volume或状态。
+- 继续禁止MiniMax、外部模型、真实数据、真实Keychain、默认feature activation、源码现场修改、push/merge/tag/publish/deploy和S11。
+- 任一SHA、identity、migration、authority、binary digest、E2E、content-free、no-log、cleanup或default-off断言失败即fail closed；不得现场修复、继续或直接重跑。

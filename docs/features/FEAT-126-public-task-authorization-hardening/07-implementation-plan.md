@@ -1,4 +1,4 @@
-# FEAT-126 Local-only 原子实施计划（S10B-R5 Closure Fail / S10B-BLK-006 Open，G3 Partial）
+# FEAT-126 Local-only 原子实施计划（S10BRP1 Closure Passed / S10B-R6 Authorized Not Executed，G3 Partial）
 
 ## 1. 当前执行边界
 
@@ -6,7 +6,7 @@
 - DEC-126-022 Local-only Delivery Strategy已Accepted；LIA-126-001已于2026-08-02批准，且只允许S4–S6本地基础切片。
 - S4–S6已有远端checkpoint并保持flags/routes默认关闭；DEC-126-026已接受其Closure并单独授权S7A Desktop Rust Host Bridge/Domain。
 - DEC-126-027已接受S7A；DEC-126-028已接受S7B durable outbox、strict/coalesced reducer、history orchestration、title precedence与fake Host应用链。
-- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；S4–S9及S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1/S10BF1 Closure已接受，BLK-001–005及S10B-BLK-001–005关闭。LIA-126-020/S10B-R5已消费并fail closed；S10B-BLK-006 Open，DEC-126-058候选待Owner决定；纠偏、重跑与S11均未授权。
+- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；S4–S9及S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1/S10BF1/S10BRP1 Closure已接受，BLK-001–005及S10B-BLK-001–006关闭。LIA-126-020/S10B-R5已消费并fail closed；DEC-126-059 Option A已接受，API/Infra clean local checkpoints已形成。LIA-126-022/S10B-R6已单独授权但未消费、未执行；S11仍未授权。
 
 ## 2. 实施原则
 
@@ -433,3 +433,20 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 3. 当前唯一允许的下一动作是Owner评审DEC-126-058。不得把文档候选当作corrective授权。
 4. 若Owner接受Option A，后续仍须依次完成：closed runtime-profile设计评审 → 单独corrective LIA → corrective Closure → 新clean checkpoint → 单独fresh E2E授权。任何一步都不自动导出下一步。
 5. 本轮没有业务源码checkpoint；只允许形成FEAT-126治理文档本地checkpoint，不push。
+
+## 24. LIA-126-021 / S10BRP1执行与退出
+
+1. Owner最新明确指令接受DEC-126-058 Option A，并授权、消费本切片；范围仅为API closed runtime profile、Infra单一authority/preflight/continuation接线、测试与治理。
+2. API在既有`c5f334e88d54d9e04f388d0349f4f5925124abd6`之上增加`feat-126-s10-local-lab`严格分支；不得改写`feat-125-local-lab`或default语义，不得放宽secure route、issuer、DSN、CA或loopback边界。
+3. Infra在既有`5723ffdaa3f2c4b63914a6fd6ef7bac9f15bc0c9`之上建立唯一closed authority。组合preflight、machine-readable summary和唯一`make feat-126-s10b-api-continuation`由同一module/commit连接；launcher只收run ID与七仓SHA并从固定run路径读取安全工件，operator不能提供profile、endpoint、database、issuer、gate、binary、path或secret override。
+4. 验证包括API lint/full tests及FEAT-125回归，Infra validate/lint/full 113/113 tests、authority/summary/artifact负向矩阵、preflight `api_binary_sha256`绑定、binary drift拒绝与launcher真实子进程消费/exit-code传播。任何需要修改central contracts、业务wire/schema、Desktop IPC或Runtime pin的缺口立即停止。
+5. 当前Accepted clean local checkpoints为API `d1c72b29ffc567abdb4521343a73ceef9ac9da34`与Infra `8f9b8965dbd32bb7273059a80bb818d4344e7135`，均未push；本轮不启动Docker/服务，不执行S10B-002–012，不进入S11或调用MiniMax。
+6. DEC-126-059 Option A已接受，`S10B-BLK-006` Closed；该接受不等于S10B或G4 PASS。
+
+## 25. LIA-126-022 / S10B-R6 授权但未消费
+
+1. 状态：`Authorized 2026-08-06 / Not Consumed / Not Executed`；本次只记录授权，不启动run。
+2. 固定候选：Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`、API `d1c72b29ffc567abdb4521343a73ceef9ac9da34`、Host `1ca4ee555586e5243f7101b9fe056c6fa117a560`、Desktop `ed9eb14f3829f6e8fee427de40f76a2c549fb78c`、Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`、Infra `8f9b8965dbd32bb7273059a80bb818d4344e7135`与本次Governance clean checkpoint。
+3. 消费授权时只允许一次fresh S10B-001–012，必须使用新run UUID、fresh隔离资源、accepted preflight/continuation authority、fake provider与合成数据。
+4. 任一硬门禁失败立即fail closed；不现场修改源码、继续、直接重跑或转入S11。
+5. 不授权MiniMax、真实数据/Keychain、default activation、push、merge、tag、publish或deploy。
