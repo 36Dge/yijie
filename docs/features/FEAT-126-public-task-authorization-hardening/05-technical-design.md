@@ -1,6 +1,6 @@
-# FEAT-126 技术设计（LIA-126-016/S10B-R3 Authorized / NOT RUN，G3 Partial）
+# FEAT-126 技术设计（S10B-R3 Closure Fail / LIA-126-017 Approved-Held-Not-Started，G3 Partial）
 
-> 本文产品/架构设计保持G2 Passed。Owner已接受DEC-126-052 Option A并关闭S10B-BLK-003；随后形成clean Governance checkpoint `441663faf7d505015f03d572c8e9f30b3ba1a2df`，Owner再单独批准LIA-126-016/S10B-R3一次fresh执行。当前Authorized / NOT RUN，G3 Partial、G4/G6 Pending；S11、MiniMax、默认flag activation与远端动作未授权。
+> 本文产品/架构设计保持G2 Passed。LIA-126-016/S10B-R3已消费并Closure Fail；Owner通过DEC-126-053 Option A接受失败事实、拒绝Closure并校正根因。DESIGN-126-011/S10BD0与DEC-126-054 Option A已Accepted；LIA-126-017已单独批准但Held / Not Started，不能自动进入实施。`S10B-BLK-004` Open，S10B-R4/S11/MiniMax/默认flag activation与远端动作未授权。
 
 ## 1. 设计摘要
 
@@ -542,9 +542,9 @@ Runtime/Host pin、临时 `CODEX_HOME`/空 cwd/pathless ephemeral thread，title
 - Runtime/MiniMax：canonical delete/name/summary/raw reasoning/outputSchema已确认；两次历史MiniMax预算已执行，title PASS，MM-126-002在旧summary门槛FAIL且观察到raw事件；Host raw bridge基础已用fake Runtime实现，raw flag默认off，本轮未调用MiniMax。
 - Public Tasks：仓内consumer inventory完成，unknown external按safe compatibility category处理，Q-010 Resolved；DEC-126-011/012已Accepted，v1全程双隔离。DEC-126-023/024与Q-017已关闭，`29317b...`从schema层拒绝conversation正文并通过G2A重审；LIA-126-002现已恢复，仅允许关闭S4–S6 P1。
 - Desktop Pattern：FEAT-126 Chat/App Shell Pattern已Accepted，只取代Chat 1.1.0/App Shell 2.0.0中的FEAT-126冲突段落。
-- 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–052 Accepted；S4–S9及S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure Passed；LIA-126-016/S10B-R3 Authorized / NOT RUN；S11 Unauthorized。
+- 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–054 Accepted；S4–S9及S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure Passed；LIA-126-016/S10B-R3 Closure Fail；DESIGN-126-011/DEC-126-054 Accepted；LIA-126-017 Approved-Held-Not-Started；S11 Unauthorized。
 - 安全/数据 Owner：段成威 — ADR-0013/0014/0015/0016与DEC-126-005/006/007/011/012/014/015/016/017 Approved；Q-006/Q-007/Q-008/Q-009/Q-010/Q-015/Q-016 Resolved；Pattern Accepted。
-- 当前结论与日期：2026-08-05 G2/G2A保持Passed，S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure Passed、BLK-001–005及S10B-BLK-001/002/003 Closed；DEC-126-052 Accepted、clean Governance `441663faf7d505015f03d572c8e9f30b3ba1a2df`、LIA-126-016 Authorized / NOT RUN、G3 Partial。S11、MiniMax、默认flag启用与追加远端动作继续禁止。
+- 当前结论与日期：2026-08-05 G2/G2A保持Passed，S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure Passed、BLK-001–005及S10B-BLK-001/002/003 Closed；LIA-126-016已消费并Closure Fail，DEC-126-053/054 Accepted，DESIGN-126-011 Accepted，LIA-126-017 Approved-Held-Not-Started，`S10B-BLK-004` Open、G3 Partial。S10B-R4/S11、MiniMax、默认flag启用与追加远端动作继续禁止。
 
 ## 15. S8B Vue projection implementation
 
@@ -1138,4 +1138,74 @@ S10B-001判定为`FAIL / baseline-deployment-authority mismatch`，S10B-002–01
 
 本地checkpoint为`yijie-infra@bb96333df908d6fea72ec0a1f57a64477c2428e4`。Infra validate/lint/test、87/87自动化、Node/shell syntax与diff检查全部PASS；同run复用、wrong/drift/dirty、mode/hardlink/symlink负向矩阵已覆盖。执行未启动container/service/API/Desktop/Host/Runtime，未读取secret/DB/Keychain，未调用模型、处理真实数据、启用默认flag或写远端。
 
-DEC-126-052 Option A已接受S10BM1 Closure并关闭`S10B-BLK-003`，但该接受不是S10B证据。Accepted治理overlay随后形成clean checkpoint `441663faf7d505015f03d572c8e9f30b3ba1a2df`，Owner再单独批准`LIA-126-016 / S10B-R3`：只允许一次fresh S10B-001–012，任一失败立即停止，不进入S11或MiniMax。当前Authorized / NOT RUN。
+DEC-126-052 Option A已接受S10BM1 Closure并关闭`S10B-BLK-003`，但该接受不是S10B证据。Accepted治理overlay随后形成clean checkpoint `441663faf7d505015f03d572c8e9f30b3ba1a2df`，Owner再单独批准`LIA-126-016 / S10B-R3`：只允许一次fresh S10B-001–012，任一失败立即停止，不进入S11或MiniMax。该授权后来已消费，结果见§31。
+
+## 31. LIA-126-016 / S10B-R3 immutable-image preflight结果
+
+fresh run `6c1d8652-7b99-4ca8-8c0e-f9a61e7ca4a5`完成七仓exact-clean、Compose 5.3.0、Docker 29.6.1、端口、ignored secret init与Compose config预检后，accepted image verifier在Compose `up`前返回`required immutable image is unavailable locally`。没有container/network/volume/listener被创建，S10B-001判定FAIL，002–012未运行；run被标记`REJECTED`并执行exact stop。
+
+Owner通过DEC-126-053 Option A接受该fail-closed事实、拒绝S10B-R3 Closure并保持`S10B-BLK-004` Open，同时校正根因：失败事实不能证明Docker 29.6.1永久无法解析`repository@digest`。现有verifier把Docker CLI/endpoint/permission/daemon/image/reference失败压成同一错误；正确pin在Docker capability可用时已只读解析成功，containerd reference metadata状态仅是待复验因素，不得写成已确认Docker bug。
+
+## 32. DESIGN-126-011 — Docker Execution Capability & Immutable Image Resolver Corrective
+
+### 32.1 评审范围与contract impact
+
+- S10BD0只执行只读源码/环境盘点和治理文档更新；未修改`yijie-infra`、API、Host、Desktop、Runtime或contracts源码，未启动Docker Desktop、container、服务或S10B。
+- 本轮文档变化`contract-impact=none`：不改变跨进程、跨仓、持久化或Runtime行为。
+- 拟议`LIA-126-017 / S10BD1`会改变FEAT-126本地verifier的失败分类、校验顺序并增加可清理的test-only resolver probe，故按最高风险归类为local deployment-interface `semantic`。central contracts、Public Tasks/Host/private IPC wire、数据库业务schema、Runtime pin和production/default配置不变，central G2A=`N/A`。
+- 唯一配置authority仍是`FEAT_126_S10_IMAGES`及Compose中的原始`version-tag@digest`；不得建立第二套pin、接受floating tag、使用image ID绕过或放宽`--pull never`。
+
+### 32.2 已确认事实与诊断边界
+
+当前`inspectLocalDigest`把`spawnSync`的任意`error`或非零status统一转换为`required immutable image is unavailable locally`，没有先证明Docker daemon/socket可达，也没有保存closed failure class。S10BD0只读差分得到：
+
+1. 在Docker endpoint不可达的执行上下文中，verifier返回上述generic image error；同上下文`docker version`实际显示`desktop-linux`指向的socket不存在。
+2. 本次评审前的只读获准上下文中，正确PostgreSQL pin `sha256:4e6e670bb069649261c9c18031f0aded7bb249a5b6664ddec29c013a89310d50`曾由`repository@digest`与`version-tag@digest`成功解析，Id/RepoDigests/Descriptor一致；未pull、retag或重启。
+3. 因此capability失败时不得生成image缺失结论；capability成功后的reference状态仍须按独立类别验证。没有官方或本地充分证据把现象定性为Docker 29.6.1永久缺陷。
+
+### 32.3 capability-first状态机
+
+未来S10BD1必须在同一Node进程环境、同一Docker context中按以下顺序执行：
+
+1. `docker_cli_probe`：无shell调用固定Docker CLI；ENOENT/exec错误归类`docker_cli_unavailable`。
+2. `docker_server_probe`：读取容量受限的Server version/info投影；权限/策略拒绝归类`docker_permission_denied`，endpoint/socket缺失、daemon停止或超时归类`docker_daemon_unavailable`。此步失败后image inspect/create调用次数必须为0。
+3. `image_identity_probe`：只消费原始Compose `version-tag@digest`及其派生的expected repository/digest；任何失败均为closed code，不输出原始stderr、context endpoint、socket/path、token或环境变量。
+4. `runtime_resolver_probe`：仅在全部identity通过且Owner单独授权S10BD1时执行；使用原始pin与`--pull=never`创建但不启动probe container，随后精确reconcile/删除。
+
+稳定failure classes冻结为：`docker_cli_unavailable`、`docker_permission_denied`、`docker_daemon_unavailable`、`image_not_found`、`image_reference_unresolved`、`image_identity_invalid`、`image_repository_mismatch`、`image_digest_mismatch`、`image_platform_mismatch`、`inspect_payload_invalid`、`resolver_probe_failed`、`resolver_probe_cleanup_incomplete`。治理证据只保存class、pin的reviewed hash/短摘要、计数与PASS/FAIL，不保存原始stderr或主机路径。
+
+`image_not_found`与`image_reference_unresolved`的诊断规则为：原始exact ref返回not-found后，仅允许对同一authority的`repository:version-tag`做read-only诊断，不作为PASS fallback；tag也不存在则为`image_not_found`，tag存在且其Descriptor/RepoDigest仍精确等于pin则为`image_reference_unresolved`，tag内容漂移则按digest/repository mismatch失败。
+
+### 32.4 immutable identity Gate
+
+每个唯一原始`version-tag@digest`都必须满足：
+
+- `Id`为完整`sha256:<64 lowercase hex>`；
+- `Descriptor.digest`必须存在并精确等于pin，不再以缺失descriptor作为可接受分支；
+- `RepoDigests`必须包含从同一pin派生的exact `repository@digest`；
+- repository归一化后必须等于配置authority，不接受镜像ID、别名仓库或不同registry替代；
+- `Os=linux`，`Architecture`必须等于已验证Docker server architecture；当前本机候选为`arm64`，但实现从server capability读取而非硬编码；
+- 输出必须为单个、容量受限、无换行的closed JSON object；空、多行、oversize、extra process output或非法JSON均fail closed。
+
+bounded retry不能改变failure结果：同一快照最多允许一次立即重复用于判定state stability；两次结果不一致归类`image_reference_unresolved`并停止，不通过sleep/restart/pull修复现场。
+
+### 32.5 no-pull resolver probe与精确清理
+
+S10BD1候选probe对三个唯一pin逐一执行，且不启动container：
+
+- 名称与labels绑定canonical test run UUID、`ai.yijie.feature=FEAT-126`、`ai.yijie.slice=S10BD1`和唯一pin index；已有同名对象立即停止，不删除。
+- 使用`docker create --pull=never --network none <exact version-tag@digest>`；不传业务secret、端口、Host mount、privileged或capability。
+- 根据已验证inspect payload中的`Config.Volumes`为每个绝对destination显式使用tmpfs覆盖，避免PostgreSQL/Caddy image声明volume产生anonymous volume；未知、相对、重复或危险destination在create前拒绝。
+- create返回后核对container Image ID、labels、name、`State.Status=created`、network/port/host-mount为空；从未执行`docker start`。
+- 成功、失败和unknown outcome都先按exact name查询；只有ID/name/labels/run/pin全部匹配才允许`docker rm`。身份不匹配时删除数必须为0并返回`resolver_probe_cleanup_incomplete`。
+- pre/post inventory要求本probe container、anonymous volume、network与listener增量均为0；不删除S10E保留named volumes或任何非本run对象。
+
+该probe只证明本机Docker resolver能在no-pull条件消费Compose exact pin，不证明四组件ready或S10B/G4通过。
+
+### 32.6 S10BD1测试、回滚与退出
+
+S10BD1至少覆盖：CLI missing、socket/endpoint missing、permission denied、daemon timeout、image missing、tag存在但exact ref unresolved、invalid/oversize JSON、Id/RepoDigest/Descriptor/repository/OS/architecture drift、两次快照不一致、create失败/响应丢失/同名冲突、tmpfs覆盖、identity mismatch时零删除、精确cleanup与`--pull never`静态扫描。capability负向必须断言image/create调用为0，日志/证据的endpoint/path/secret/raw stderr命中为0。
+
+回滚只允许移除新capability/classifier/probe调用并恢复accepted S10BR1 helper，同时继续HOLD S10B；回滚不能通过pull、retag、Docker restart、store切换、prune、floating tag或删除volume获得绿色结果。
+
+`LIA-126-017 / S10BD1`范围仅限`yijie-infra`本地verifier、测试、FEAT-126 runbook与`yijie`治理文档。Owner已单独批准LIA-126-017，但明确本轮不能自动进入实施；当前为Approved / Held / Not Started，须后续明确执行指令才消费。实施完成须提交逐类测试、只读/可清理live probe、no-pull/no-log/cleanup证据与Closure Review。Closure被Owner接受并形成clean Infra/Governance完整SHA后，才可申请一次fresh S10B-R4；不得自动重跑。

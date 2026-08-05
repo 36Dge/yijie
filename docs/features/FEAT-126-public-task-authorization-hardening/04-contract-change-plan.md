@@ -264,3 +264,12 @@ S8B切片contract impact为`semantic Desktop-private`，不改变central feature
 - Host `desktop-consumer.json`与Desktop vendored副本SHA-256均为`5ad29b750693ecf95a0cabab4fe7c2ada6f6dbb9b10f9f99c3d5c25654d32cf1`。
 - Desktop authority lock固定Host local checkpoint `8707dea552cff74121b89aa8045f27da2c8c9378`；Rust test在消费前重算摘要并fail closed。
 - S9没有生成新的central/private IPC/wire contract；它只验证Accepted producer/consumer语义，因此不形成第二个source candidate。
+
+## 13. DESIGN-126-011 / S10BD1 deployment-interface impact
+
+- S10BD0只是文档与只读调查，`contract-impact=none`。
+- 拟议S10BD1改变FEAT-126本地Docker preflight的执行顺序和失败语义，并增加test-only create/remove resolver probe，按部署接口最高风险归类为`semantic`；权威源为`yijie-infra`的Compose model、verifier、helper与测试，不进入`yijie-contracts`。
+- central source candidate继续固定`29317b6426578749dc698fc2ad32b986ee5c8e9f`；Public Tasks HTTP、Host SSE、Desktop private IPC、SQLCipher业务schema与Runtime pin均不变，因此central G2A重审为N/A。
+- 唯一consumer是同仓FEAT-126 S10E/S10B本地helper；成功路径仍消费原Compose `version-tag@digest`与`--pull never`。变化只把CLI/permission/daemon/image/reference/platform错误闭合分类，并在单独授权时增加实际no-pull resolver证明。
+- 兼容/回滚：仓库caller与tests须在同一checkpoint更新；回滚可移除新classifier/probe并继续HOLD S10B，不能以pull、retag、Docker restart、floating tag、image-store切换或volume删除替代。
+- 状态：DESIGN-126-011 complete；DEC-126-054 Option A Accepted；LIA-126-017已批准但Held / Not Started，runtime probe仍为NOT RUN。
