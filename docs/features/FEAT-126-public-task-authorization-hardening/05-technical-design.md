@@ -1,6 +1,6 @@
-# FEAT-126 技术设计（DEC-126-052 Accepted / S10BM1 Closure Passed，G3 Partial）
+# FEAT-126 技术设计（LIA-126-016/S10B-R3 Authorized / NOT RUN，G3 Partial）
 
-> 本文产品/架构设计保持G2 Passed。Owner已接受DEC-126-052 Option A：接受LIA-126-015/S10BM1 Closure并关闭S10B-BLK-003，但不把corrective写成S10B证据。G3 Partial、G4/G6 Pending；下一步先形成clean Governance checkpoint和完整SHA，再单独审批LIA-126-016/S10B-R3。当前rerun、S11、MiniMax、默认flag activation与远端动作未授权。
+> 本文产品/架构设计保持G2 Passed。Owner已接受DEC-126-052 Option A并关闭S10B-BLK-003；随后形成clean Governance checkpoint `441663faf7d505015f03d572c8e9f30b3ba1a2df`，Owner再单独批准LIA-126-016/S10B-R3一次fresh执行。当前Authorized / NOT RUN，G3 Partial、G4/G6 Pending；S11、MiniMax、默认flag activation与远端动作未授权。
 
 ## 1. 设计摘要
 
@@ -542,9 +542,9 @@ Runtime/Host pin、临时 `CODEX_HOME`/空 cwd/pathless ephemeral thread，title
 - Runtime/MiniMax：canonical delete/name/summary/raw reasoning/outputSchema已确认；两次历史MiniMax预算已执行，title PASS，MM-126-002在旧summary门槛FAIL且观察到raw事件；Host raw bridge基础已用fake Runtime实现，raw flag默认off，本轮未调用MiniMax。
 - Public Tasks：仓内consumer inventory完成，unknown external按safe compatibility category处理，Q-010 Resolved；DEC-126-011/012已Accepted，v1全程双隔离。DEC-126-023/024与Q-017已关闭，`29317b...`从schema层拒绝conversation正文并通过G2A重审；LIA-126-002现已恢复，仅允许关闭S4–S6 P1。
 - Desktop Pattern：FEAT-126 Chat/App Shell Pattern已Accepted，只取代Chat 1.1.0/App Shell 2.0.0中的FEAT-126冲突段落。
-- 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–052 Accepted；S4–S9及S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure Passed；S10B Executed / Blocked / Closure Fail；LIA-126-016仍Draft/HOLD，fresh rerun与S11 Unauthorized。
+- 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–052 Accepted；S4–S9及S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure Passed；LIA-126-016/S10B-R3 Authorized / NOT RUN；S11 Unauthorized。
 - 安全/数据 Owner：段成威 — ADR-0013/0014/0015/0016与DEC-126-005/006/007/011/012/014/015/016/017 Approved；Q-006/Q-007/Q-008/Q-009/Q-010/Q-015/Q-016 Resolved；Pattern Accepted。
-- 当前结论与日期：2026-08-05 G2/G2A保持Passed，S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure Passed、BLK-001–005及S10B-BLK-001/002/003 Closed；DEC-126-052 Accepted、G3 Partial。形成clean Governance SHA并单独批准LIA-126-016前，S10B重跑、S11、MiniMax、默认flag启用与追加远端动作继续禁止。
+- 当前结论与日期：2026-08-05 G2/G2A保持Passed，S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure Passed、BLK-001–005及S10B-BLK-001/002/003 Closed；DEC-126-052 Accepted、clean Governance `441663faf7d505015f03d572c8e9f30b3ba1a2df`、LIA-126-016 Authorized / NOT RUN、G3 Partial。S11、MiniMax、默认flag启用与追加远端动作继续禁止。
 
 ## 15. S8B Vue projection implementation
 
@@ -1138,4 +1138,4 @@ S10B-001判定为`FAIL / baseline-deployment-authority mismatch`，S10B-002–01
 
 本地checkpoint为`yijie-infra@bb96333df908d6fea72ec0a1f57a64477c2428e4`。Infra validate/lint/test、87/87自动化、Node/shell syntax与diff检查全部PASS；同run复用、wrong/drift/dirty、mode/hardlink/symlink负向矩阵已覆盖。执行未启动container/service/API/Desktop/Host/Runtime，未读取secret/DB/Keychain，未调用模型、处理真实数据、启用默认flag或写远端。
 
-DEC-126-052 Option A已接受S10BM1 Closure并关闭`S10B-BLK-003`，但该接受不是S10B证据，也不自动授权rerun或S11。条件式`LIA-126-016 / S10B-R3`授权草案只申请一次fresh S10B-001–012；下一步必须先把本次Accepted治理overlay形成clean完整SHA，再基于该SHA单独登记Owner审批。当前仍为Draft/HOLD/NOT RUN。
+DEC-126-052 Option A已接受S10BM1 Closure并关闭`S10B-BLK-003`，但该接受不是S10B证据。Accepted治理overlay随后形成clean checkpoint `441663faf7d505015f03d572c8e9f30b3ba1a2df`，Owner再单独批准`LIA-126-016 / S10B-R3`：只允许一次fresh S10B-001–012，任一失败立即停止，不进入S11或MiniMax。当前Authorized / NOT RUN。

@@ -69,7 +69,7 @@
 - 是否改变既有 Accepted ADR：不削弱 ADR-0012；Accepted DEC-126-001 保留其 FEAT-126 安全责任。若未来改成迁号，必须重开 G1、形成新 Accepted ADR 并同步全部 FEAT-125 引用。
 - 是否改变跨仓职责/数据权威：是。ADR-0013 已接受 Desktop embedded SQLite 为 confidential conversation authority，并明确 PostgreSQL/Redis/pgvector/bbolt 的非替代职责；ADR-0015 冻结隔离标题，ADR-0016/DEC-126-016 冻结 Host raw-reasoning展示与Desktop SQLCipher历史权威。DESIGN-126-003/DEC-126-017现已提交 exact v2/schema/caps候选；Public Tasks ownership/auth由DEC-126-011/012提交批准。
 - 是否改变 Accepted Design Pattern：是。Chat 1.1.0 的 active state 要附件/右侧面板，App Shell 2.0.0 有全局收起；必须在代码前形成新候选版本并由段成威接受。
-- ADR/Decision 结论：ADR-0013/0014/0015/0016与DEC-126-011/012/016–052均已Accepted。DEC-126-052接受LIA-126-015/S10BM1 Closure并关闭`S10B-BLK-003`，但不改变S10B-R2 Closure Fail事实。G3 Partial、G4/G6 Pending；先形成clean Governance checkpoint，再单独审批LIA-126-016，当前rerun与S11未授权。
+- ADR/Decision 结论：ADR-0013/0014/0015/0016与DEC-126-011/012/016–052均已Accepted。DEC-126-052接受LIA-126-015/S10BM1 Closure并关闭`S10B-BLK-003`，但不改变S10B-R2 Closure Fail事实。clean Governance checkpoint `441663faf7d505015f03d572c8e9f30b3ba1a2df`形成后，Owner已单独批准LIA-126-016/S10B-R3；当前Authorized / NOT RUN。G3 Partial、G4/G6 Pending，S11未授权。
 - G2A/local 结论：`29317b6426578749dc698fc2ad32b986ee5c8e9f`仍是唯一source-contract candidate；远端候选/develop/Draft PR不变。该bootstrap deployment/profile缺口不改变central contract，G2A重审为N/A；G4/G6保持Pending，所有默认flags关闭，S10B Executed / Blocked / Closure Fail，S11未授权。
 - 架构 Owner：段成威。
 
@@ -195,7 +195,7 @@
 | Source-contract Draft PR与CI观察 | 段成威 | Approved scope / Executed；PR #1固定历史candidate，CI已到终态并回填 | 2026-08-02 | Draft PR `develop <- feat/feat-126-contract-candidate`；head精确匹配旧`c000a024`；run 30741466028在dependency audit失败；未重跑/豁免/修复/push/merge |
 | Source-contract merge readiness | 段成威 | Approved DEC-126-021 / HOLD；当前不批准merge | 2026-08-02 | CI red；`brace-expansion 2.1.2` high；`govulncheck`与`origin/main` breaking skipped；不回退G2/G2A |
 | Local-only Delivery Strategy | 段成威 | Approved / DEC-126-022 Accepted；交付目标改为Local Runtime Ready | 2026-08-02 | tag/publish/deploy/G5均N/A；G6为Owner本地验收；业务编码与一次MiniMax local smoke仍分别待批准 |
-| Local Implementation Authorization | 段成威 | LIA-126-001–007已完成S4–S9并被接受；S10E/P1/P2F/P3已接受；LIA-126-008与LIA-126-014两次S10B均fail closed；DEC-126-048/050/052关闭S10B-BLK-001/002/003 | 2026-08-05 | S10BM1 Closure Passed；先形成clean Governance checkpoint，再单独审批LIA-126-016；当前不授权rerun、MiniMax、S11、default activation或远端动作 |
+| Local Implementation Authorization | 段成威 | LIA-126-001–007已完成S4–S9并被接受；S10E/P1/P2F/P3已接受；LIA-126-008与LIA-126-014两次S10B均fail closed；DEC-126-048/050/052关闭S10B-BLK-001/002/003 | 2026-08-05 | S10BM1 Closure Passed；clean Governance `441663faf7d505015f03d572c8e9f30b3ba1a2df`后单独批准LIA-126-016一次fresh S10B-R3；NOT RUN；不含MiniMax、S11、default activation或远端动作 |
 | Public Tasks input / G2A re-review | 段成威 | DEC-126-023/024 Accepted；Q-017 Resolved；G2A Re-review Passed | 2026-08-02 | `29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一candidate；`c000a024`仅为历史远端候选；后续由DEC-126-025恢复LIA-126-002 |
 | Remote State Reconciliation / LIA resume | 段成威 | DEC-126-025 Accepted；远端事实已核对；LIA-126-002仅S4–S6恢复 | 2026-08-02 | exact remote refs；旧PR/develop/merge/tag/publish/deploy不变；S7–S11/UI/MiniMax/追加push禁止 |
 | LIA-126-002 Closure Review / S7A Authorization | 段成威 | DEC-126-026 Accepted；S4–S6 Foundation Corrective Closure通过；单独授权S7A Desktop Rust Host Bridge/Domain | 2026-08-02 | S8/UI、MiniMax、flag activation、远端写入、merge/tag/publish/deploy继续禁止 |
@@ -226,7 +226,7 @@
 | DESIGN-126-010 / DEC-126-049/050 | 段成威 | exact repository-digest corrective accepted、implemented并由Owner接受Closure | 2026-08-05 | Infra 85/85 + fresh no-pull dependency up/stop PASS；BLK-002 Closed；S10B未重跑，S11未授权 |
 | LIA-126-014 / DEC-126-051 | 段成威 | fresh S10B-R2授权已消费；migration preflight fail closed；Owner接受失败事实并拒绝Closure | 2026-08-05 | checkpoint：Governance `9db41b0...`、API `c5f334e...`、Infra `597acb3...`；run `4ffa07b9...`未创建资源；`S10B-BLK-003` Open；不授权rerun/S11 |
 | LIA-126-015 / DEC-126-052 | 段成威 | Owner单独授权migration/bootstrap共享完整API SHA authority corrective；Infra实现/验证完成并接受Closure | 2026-08-05 | Infra `bb96333df908d6fea72ec0a1f57a64477c2428e4`；87/87 + validate/lint/shell/Node/diff PASS；0 runtime resource；BLK-003 Closed；不自动授权rerun/S11 |
-| LIA-126-016 / S10B-R3 draft | 段成威 | 条件式一次fresh S10B-001–012授权申请已提交；DEC-126-052前置已满足，但尚未批准/执行 | 2026-08-05 | 先将本次Accepted治理overlay形成clean完整SHA；再基于该SHA单独Owner审批；七仓exact clean；其余pin固定；不含MiniMax/S11/远端动作 |
+| LIA-126-016 / S10B-R3 | 段成威 | Owner在DEC-126-052 Accepted与clean Governance checkpoint后单独批准一次fresh S10B-001–012；尚未执行 | 2026-08-05 | approval baseline `441663faf7d505015f03d572c8e9f30b3ba1a2df`；执行前七仓exact clean；其余pin固定；任一失败单次停止；不含MiniMax/S11/远端动作 |
 
 ### DEC-126-034 残余风险判定
 
