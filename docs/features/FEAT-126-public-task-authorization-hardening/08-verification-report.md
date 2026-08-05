@@ -5,7 +5,7 @@
 > 分支均已精确远端可达，旧Draft PR #1与各`origin/develop`不变。DEC-126-026已接受S4–S6
 > Foundation Corrective Closure并单独授权S7A Desktop Rust Host Bridge/Domain；DEC-126-027已由
 > Owner接受。随后单独授权的S7B Rust Application Orchestration/Domain已完成并由Owner通过DEC-126-028接受；远端可达不等于merge、发布或生产启用。
-> 随后Owner接受S7C–S9及S10E/P1/P2F/P3/S10BD1 Closure，BLK-001/002/003/004/005及S10B-BLK-001–004关闭。DEC-126-056已接受；LIA-126-019/S10BF1实现和S10B-001组合预检PASS，DEC-126-057等待Owner，S10B-BLK-005暂保持Open。G3仍Partial，G4/G6 Pending，S10B-R5/S11未授权。
+> 随后Owner接受S7C–S9及S10E/P1/P2F/P3/S10BD1/S10BF1 Closure，BLK-001/002/003/004/005及S10B-BLK-001–005关闭。DEC-126-057 Option A已接受。G3仍Partial，G4/G6 Pending，S10B-R5/S11未授权。
 
 ## 1. 验证上下文
 
@@ -119,7 +119,7 @@
 | V-S10BM1-INFRA | yijie-infra `bb96333df908d6fea72ec0a1f57a64477c2428e4` | shared API authority unit/negative matrix；`pnpm validate`；`make lint/test`；Node/shell syntax；diff | Node/pnpm/Git | 0 | PASS 2026-08-05 | 87/87；migration/bootstrap one full clean SHA；wrong/dirty/drift/corrupt/mode/symlink/hardlink fail closed before secret/DB；private old CLI intentionally rejected；not S10B |
 | V-S10BM1-GOV | yijie accepted closure checkpoint `441663faf7d505015f03d572c8e9f30b3ba1a2df` | feature package default/strict/G2A；YAML parse；`pnpm lint/test`；checker syntax；diff | project scripts / Node / pnpm / Git | 0 | PASS 2026-08-05 | DEC-126-052 Option A Accepted；BLK-003 Closed；checkpoint clean/local/not pushed；subsequent LIA-126-016 approval does not rewrite this SHA |
 | V-S10B-R4-GOV | yijie governance overlay over `02cf06b2993ee18aefe4b7e4d6d40e2d19b2c4c1` | feature package default/strict/G2A；unique-key YAML；`pnpm lint/test`；checker syntax；`git diff --check` | project scripts / Node / pnpm / Git | 0 | PASS 2026-08-05 | LIA-126-018 consumed；S10B-001 fail closed；S10B-BLK-005 Open；DEC-126-056 later Accepted；002–012/S11/MiniMax NOT RUN；no source or remote write |
-| V-S10BF1-CLOSURE | Host `1ca4ee5…a560` + Infra `5723ffd…c0c9` + Governance baseline `db12fe6…cc4d` | Host full race/contract/lint；Infra 103 tests/validate/lint；fresh single-runner S10B-001 combined preflight；no-log/cleanup/default-off | Go 1.26.5 / Node 26 / Docker 29.6.1 / Compose 5.3.0 | 0 | PASS 2026-08-05 | run `ed22fc82…f3f4`；summary `8198442e…f7d9`；dataset/case explicit；0 process/container/network/listener；4 volumes disclosed；Docker restored stopped；R5=false；DEC-126-057 Candidate |
+| V-S10BF1-CLOSURE | Host `1ca4ee5…a560` + Infra `5723ffd…c0c9` + Governance baseline `db12fe6…cc4d` | Host full race/contract/lint；Infra 103 tests/validate/lint；fresh single-runner S10B-001 combined preflight；no-log/cleanup/default-off | Go 1.26.5 / Node 26 / Docker 29.6.1 / Compose 5.3.0 | 0 | PASS 2026-08-05 | run `ed22fc82…f3f4`；summary `8198442e…f7d9`；dataset/case explicit；0 process/container/network/listener；4 volumes disclosed；Docker restored stopped；R5=false；DEC-126-057 Accepted / BLK-005 Closed |
 | V-DIFF | yijie | per-new-file `git diff --no-index --check` loop + tracked `git diff --check` | Git | 0 | PASS | FEAT-126/ADR-0013/ADR-0014/ADR-0015/ADR-0016 additions and tracked diff have no whitespace/conflict diagnostics |
 | V-DESKTOP-DOCS | yijie-desktop | `pnpm docs:build` | pnpm + VitePress 1.6.4 | 0 | PASS | FEAT-126 Pattern and SUMMARY rendered；no business source modified |
 | V-ADR | yijie | `git diff --check -- docs/adr/ADR-0012-authoritative-identity-tenant-and-permission-boundary.md` | Git | 0 | PASS | only factual create/not-implemented linkage changed |
@@ -711,7 +711,7 @@ DESIGN-126-011冻结capability-first、closed failure classes、原Compose pin e
 
 结构化结论：LIA-126-018的一次授权已消费；S10B-R4 Closure不成立。新`S10B-BLK-005`为P1，原因是执行编排没有把Host request fixture身份作为单一machine-readable authority，导致S9 dataset bundle名称被误作fixture。Owner已接受DEC-126-056 Option A并单独授权S10BF1；R4失败历史不变。
 
-### 9.30 LIA-126-019 / S10BF1 Closure Review候选
+### 9.30 LIA-126-019 / S10BF1 Closure Review（Accepted）
 
 | Review | 实际证据 | 判定 |
 |---|---|---|
@@ -724,7 +724,7 @@ DESIGN-126-011冻结capability-first、closed failure classes、原Compose pin e
 | Evidence | run `ed22fc82…f3f4`；0600 summary SHA-256 `8198442e…f7d9`；`s10b_r5_executed=false` | PASS |
 | Contract impact | private test/deployment tooling `semantic`；central contract/wire/IPC/schema/Runtime pin unchanged | PASS / G2A N/A |
 
-结构化结论：S10BF1范围P1=0，DEC-126-057 Option A推荐接受；Owner接受前BLK-005保持Open。该证据不是S10B-R5/G4，不能自动授权fresh E2E、S11或MiniMax。
+结构化结论：S10BF1范围P1=0，Owner已接受DEC-126-057 Option A；S10BF1 Closure Passed，BLK-005 Closed。该证据不是S10B-R5/G4，不能自动授权fresh E2E、S11或MiniMax。
 
 ## 10. 未验证项与残余风险
 
@@ -736,13 +736,13 @@ DESIGN-126-011冻结capability-first、closed failure classes、原Compose pin e
 | DB/encryption/delete E2E | SQLCipher v4 job/receipt、independent HMAC key、migration/cascade/checkpoint、restart和fake Host cleanup单仓PASS | 跨Desktop/Host/Runtime真实进程partial delete仍未运行 | S10验证完整多进程job/receipt/restart/fault E2E | 段成威 | blocks G4/local G6 |
 | Runtime raw-reasoning/title/delete | S9 deterministic Eval与S10P1 Host→fixed Runtime assistant/raw真实turn PASS；完整Desktop turn/history/delete多进程链仍未运行 | raw UX/residual/inconsistent history | keep default flags off until S10B；历史MiniMax public-summary FAIL不改写 | 段成威 | blocks G4/local G6 |
 | Desktop sidecar/secret storage | actual Desktop supervisor→Host→fixed Runtime child readiness/stop PASS；S10P2F file integrity/isolation/restart/no-log/exact cleanup实现与证据PASS；DEC-126-043 Accepted | signed native仍Deferred Native Hardening/NOT RUN，不等于PASS | Local-only BLK-004已关闭；未来native signing/production intent恢复native hardening门禁 | 段成威 | no longer blocks Local-only BLK-004；does not authorize S10P3/S10B |
-| S10B fixture/orchestration readiness | S10BF1 Host/Infra corrective、负向矩阵与fresh组合preflight全部PASS | DEC-126-057尚未由Owner接受；S10B-R5/002–012仍未运行 | Owner先处置DEC-126-057；即使接受也另批fresh R5 | 段成威 | **S10B-BLK-005 Open pending Owner；blocks S10B Closure, G4, local G6** |
+| S10B fixture/orchestration readiness | S10BF1 Host/Infra corrective、负向矩阵与fresh组合preflight全部PASS；DEC-126-057已接受 | S10B-R5/002–012仍未运行 | fresh R5须另行明确授权并完整通过 | 段成威 | **S10B-BLK-005 Closed；G4/local G6仍由完整S10B与Owner验收阻断** |
 | S10E image-reference precheck | exact repository-digest verifier、85/85自动化和fresh no-pull四依赖up/stop PASS | 局部启动不能冒充S10B | DEC-126-050 Accepted；保持无floating tag/pull | 段成威 | S10B-BLK-002 Closed |
 | production identity/infra | FEAT-125 deferred | no production safety | N/A for DEC-126-022 local-only scope；future online intent must reopen production track and FEAT-125 prerequisites | 段成威 | does not block local G6；blocks any production claim |
 
 ## 11. 结论
 
-- Requirements package：G1/G2/G2A Re-review Passed；DEC-126-023–056 Accepted；DEC-126-057为Closure候选。S10BF1组合预检PASS，S10B-BLK-001–004 Closed，S10B-BLK-005 Open pending Owner。
+- Requirements package：G1/G2/G2A Re-review Passed；DEC-126-023–057 Accepted。S10BF1 Closure Passed，S10B-BLK-001–005 Closed。
 - Code Complete：No。G3仍Partial；S10BF1不是S10B-R5，S10B-002–012、G4与Owner G6均未完成。
 - 验证人：Codex（文档事实与结构）；最终 Reviewer 为段成威。
 - 日期：2026-08-05。

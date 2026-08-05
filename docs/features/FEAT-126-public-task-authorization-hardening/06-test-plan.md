@@ -1,7 +1,7 @@
 # FEAT-126 测试与 Eval 计划
 
 > 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。DEC-126-023/024完成G2A重审，DEC-126-025登记sole candidate与checkpoint远端ref并恢复LIA-126-002，仅执行S4–S6 Corrective Closure。
-> S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1 Closure已接受，BLK-001–005及S10B-BLK-001–004关闭。DEC-126-056已接受；LIA-126-019/S10BF1实现和S10B-001组合预检PASS，DEC-126-057等待Owner，S10B-BLK-005暂保持Open。S10B-R5、S11与MiniMax仍未授权。
+> S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1/S10BF1 Closure已接受，BLK-001–005及S10B-BLK-001–005关闭。DEC-126-057 Option A已接受；S10B-R5、S11与MiniMax仍未授权。
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
 ## 1. 测试策略
@@ -599,7 +599,7 @@ Owner已接受DEC-126-054 Option A并消费LIA-126-017。Governance执行基线�
 
 LIA-126-018的一次授权已消费。没有把header纠正为`normal-000`后继续，没有直接重跑，也没有修改任何源码或默认配置。`S10B-BLK-005`登记为Open：S10B编排缺少单一machine-readable fixture identity authority，人工将S9 dataset bundle identity与Host request fixture identity混用。Owner已接受DEC-126-056 Option A并另行授权S10BF1；R4的Closure Fail历史不变。
 
-## 28. LIA-126-019 / S10BF1 测试结果（DEC-126-057 Candidate）
+## 28. LIA-126-019 / S10BF1 测试结果（DEC-126-057 Accepted）
 
 | Test ID | 断言 | 结果 |
 |---|---|---|
@@ -614,4 +614,4 @@ LIA-126-018的一次授权已消费。没有把header纠正为`normal-000`后继
 | S10BF1-009 | API/fake日志generated-secret命中0，summary content-free/0600 | PASS |
 | S10BF1-010 | API/fake/container/network/listener归零；4 named volumes披露；Docker恢复停止 | PASS |
 
-逐仓门禁：Host lint/vet/contract-check/full race+coverage PASS；Infra validate/lint/full `103/103`、Node/shell/diff PASS。fresh run=`ed22fc82-4837-4a3e-a60e-7f7c8ab6f3f4`，summary SHA-256=`8198442e1c8f28a28c01fe0807b10fa0c7485ef6f808b0a24ead75a04e36f7d9`。本表是S10BF1 Closure候选，不是S10B-R5/G4证据；`s10b_r5_executed=false`，BLK-005在Owner接受DEC-126-057前保持Open。
+逐仓门禁：Host lint/vet/contract-check/full race+coverage PASS；Infra validate/lint/full `103/103`、Node/shell/diff PASS。fresh run=`ed22fc82-4837-4a3e-a60e-7f7c8ab6f3f4`，summary SHA-256=`8198442e1c8f28a28c01fe0807b10fa0c7485ef6f808b0a24ead75a04e36f7d9`。Owner已接受DEC-126-057 Option A，本表支持S10BF1 Closure Passed和BLK-005 Closed；它不是S10B-R5/G4证据，`s10b_r5_executed=false`。

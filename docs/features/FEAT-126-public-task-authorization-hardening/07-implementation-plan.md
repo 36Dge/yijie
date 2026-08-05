@@ -1,4 +1,4 @@
-# FEAT-126 Local-only 原子实施计划（S10BF1 Closure Review Candidate / S10B-BLK-005 Open，G3 Partial）
+# FEAT-126 Local-only 原子实施计划（S10BF1 Closure Passed / S10B-BLK-005 Closed，G3 Partial）
 
 ## 1. 当前执行边界
 
@@ -6,7 +6,7 @@
 - DEC-126-022 Local-only Delivery Strategy已Accepted；LIA-126-001已于2026-08-02批准，且只允许S4–S6本地基础切片。
 - S4–S6已有远端checkpoint并保持flags/routes默认关闭；DEC-126-026已接受其Closure并单独授权S7A Desktop Rust Host Bridge/Domain。
 - DEC-126-027已接受S7A；DEC-126-028已接受S7B durable outbox、strict/coalesced reducer、history orchestration、title precedence与fake Host应用链。
-- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；S4–S9及S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1 Closure已接受，BLK-001–005及S10B-BLK-001–004关闭。DEC-126-056已接受；LIA-126-019/S10BF1已实现并通过S10B-001组合预检，DEC-126-057等待Owner，S10B-BLK-005暂保持Open；S10B-R5/S11仍未授权。
+- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；S4–S9及S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1/S10BF1 Closure已接受，BLK-001–005及S10B-BLK-001–005关闭。DEC-126-057 Option A已接受；S10B-R5/S11仍未授权。
 
 ## 2. 实施原则
 
@@ -424,4 +424,4 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - authority：Host内部选择case并输出明确的dataset/case/digest；Infra和操作者没有dataset/fixture参数，所有headers由probe生成。
 - 验证：Host full race/contract/lint PASS；Infra 103/103 + validate/lint/diff PASS；fresh run `ed22fc82-4837-4a3e-a60e-7f7c8ab6f3f4`完成七SHA、resolver、dependencies、identity、migration/bootstrap、API/fake readiness与no-log。
 - cleanup：API/fake、container、network、listener归零；4 named volumes/ignored run record披露；Docker恢复stopped；summary=`8198442e…f7d9`且明确`S10B-R5=false`。
-- 退出：提交DEC-126-057 Option A Closure候选；Owner接受前BLK-005保持Open。接受后仍不得自动执行S10B-R5/S11/MiniMax或远端动作。
+- 退出：DEC-126-057 Option A已接受，S10BF1 Closure Passed且BLK-005 Closed。仍不得自动执行S10B-R5/S11/MiniMax或远端动作；fresh R5必须另行明确授权。

@@ -1247,4 +1247,4 @@ Infra新增唯一`make feat-126-s10b-preflight`入口。调用者只提供fresh 
 
 ### 34.3 Closure与停止边界
 
-上述只证明S10BF1 corrective与`S10B-001 combined preflight`，不证明S10B-R5、真实Vue对话链或G4。`s10b_r5_executed=false`；S10B-002–012、S11、MiniMax、真实数据/Keychain、default activation和远端动作均未执行。DEC-126-057 Option A现提交Owner；在其接受前`S10B-BLK-005`保持Open。即使接受，也只关闭该blocker，fresh S10B-R5仍须单独明确授权。
+上述只证明S10BF1 corrective与`S10B-001 combined preflight`，不证明S10B-R5、真实Vue对话链或G4。`s10b_r5_executed=false`；S10B-002–012、S11、MiniMax、真实数据/Keychain、default activation和远端动作均未执行。Owner已接受DEC-126-057 Option A，S10BF1 Closure Passed且`S10B-BLK-005` Closed；该接受只关闭该blocker，fresh S10B-R5仍须单独明确授权。
