@@ -1,6 +1,6 @@
-# FEAT-126 技术设计（LIA-126-008/S10B Executed-Blocked，G3 Partial）
+# FEAT-126 技术设计（DEC-126-052 Accepted / S10BM1 Closure Passed，G3 Partial）
 
-> 本文产品/架构设计保持G2 Passed。Owner已接受DEC-126-048与DEC-126-050，S10BP1/S10BR1 Closure Passed并关闭S10B-BLK-001/002。首次S10B Closure Fail事实不变，G3 Partial、G4/G6 Pending；fresh S10B重跑、S11、MiniMax、默认flag activation与远端动作未授权。
+> 本文产品/架构设计保持G2 Passed。Owner已接受DEC-126-052 Option A：接受LIA-126-015/S10BM1 Closure并关闭S10B-BLK-003，但不把corrective写成S10B证据。G3 Partial、G4/G6 Pending；下一步先形成clean Governance checkpoint和完整SHA，再单独审批LIA-126-016/S10B-R3。当前rerun、S11、MiniMax、默认flag activation与远端动作未授权。
 
 ## 1. 设计摘要
 
@@ -542,9 +542,9 @@ Runtime/Host pin、临时 `CODEX_HOME`/空 cwd/pathless ephemeral thread，title
 - Runtime/MiniMax：canonical delete/name/summary/raw reasoning/outputSchema已确认；两次历史MiniMax预算已执行，title PASS，MM-126-002在旧summary门槛FAIL且观察到raw事件；Host raw bridge基础已用fake Runtime实现，raw flag默认off，本轮未调用MiniMax。
 - Public Tasks：仓内consumer inventory完成，unknown external按safe compatibility category处理，Q-010 Resolved；DEC-126-011/012已Accepted，v1全程双隔离。DEC-126-023/024与Q-017已关闭，`29317b...`从schema层拒绝conversation正文并通过G2A重审；LIA-126-002现已恢复，仅允许关闭S4–S6 P1。
 - Desktop Pattern：FEAT-126 Chat/App Shell Pattern已Accepted，只取代Chat 1.1.0/App Shell 2.0.0中的FEAT-126冲突段落。
-- 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–050 Accepted；S4–S9及S10E/P1/P2F/P3/S10BP1/S10BR1 Closure Passed；S10B Executed / Blocked / Closure Fail；fresh rerun与S11 Unauthorized。
+- 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–052 Accepted；S4–S9及S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure Passed；S10B Executed / Blocked / Closure Fail；LIA-126-016仍Draft/HOLD，fresh rerun与S11 Unauthorized。
 - 安全/数据 Owner：段成威 — ADR-0013/0014/0015/0016与DEC-126-005/006/007/011/012/014/015/016/017 Approved；Q-006/Q-007/Q-008/Q-009/Q-010/Q-015/Q-016 Resolved；Pattern Accepted。
-- 当前结论与日期：2026-08-05 G2/G2A保持Passed，S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1 Closure Passed、BLK-001–005及S10B-BLK-001/002 Closed；G3 Partial。S10B重跑、S11、MiniMax、默认flag启用与追加远端动作继续禁止。
+- 当前结论与日期：2026-08-05 G2/G2A保持Passed，S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure Passed、BLK-001–005及S10B-BLK-001/002/003 Closed；DEC-126-052 Accepted、G3 Partial。形成clean Governance SHA并单独批准LIA-126-016前，S10B重跑、S11、MiniMax、默认flag启用与追加远端动作继续禁止。
 
 ## 15. S8B Vue projection implementation
 
@@ -791,7 +791,7 @@ event: { schemaVersion: 1, sequence, sessionId,
 | S10P2F（LIA-126-011实施/DEC-126-043 Accepted） | Local-only BLK-004 Closed | `semantic` Desktop-private test storage/deployment；central contracts/G2A N/A | S10 master与`YIJIE_FEAT126_S10_EPHEMERAL_SECRET_BACKEND_ENABLED`必须分别exact `true`；任一缺失/false完全保持当前Protected Data默认 | 三个CSPRNG synthetic secrets、same-run restart、cross-run、wrong owner/mode/nlink/symlink/manifest、partial write/crash/recovery、no-log/process-output/evidence、exact cleanup/default-off均PASS | 关闭独立flag即回到当前Protected Data路径；只unlink匹配manifest的三个test files和run root；不承诺法证擦除 |
 | S10P3 | BLK-005 | semantic Desktop orchestration + SQLCipher v5 + additive private command/channel；central wire none | Chat flags仍default-off；API secure Tasks只在local profile exact true | schema/serde/TS conformance，auth/tenant/revision，idempotency/unknown/restart/race，Public DB/no-log/migration/cascade/retained-row disclosure | flag off；forward migration保留；停coordinator；不删或猜测Public row |
 
-DEC-126-038–050已由Owner接受；S10E/S10P1/S10P2F/S10P3/S10BP1/S10BR1 Closure Passed，详见§19/20/23/24/27/28，BLK-001–005及S10B-BLK-001/002 Closed。LIA-126-008/S10B首次执行仍在S10B-001 fail closed；完整fresh S10B未授权、未重跑。
+DEC-126-038–052已由Owner接受；S10E/S10P1/S10P2F/S10P3/S10BP1/S10BR1/S10BM1 Closure Passed，详见§19/20/23/24/27/28/30，BLK-001–005及S10B-BLK-001/002/003 Closed。LIA-126-014 fresh S10B-R2在S10B-001 migration wrapper candidate门禁处fail closed；该历史Closure Fail不变。LIA-126-016必须在clean Governance SHA形成后单独审批。
 
 ### 18.7 安全、migration、restart、cleanup与race矩阵
 
@@ -1105,3 +1105,37 @@ DEC-126-049采用以下closed方案：
 fresh compatibility run `ae1c892a-4819-40bc-9ce9-d72f6ea2fcd7`只启动S10E四个隔离依赖：preflight核验3个exact repository digest，Compose未pull，PostgreSQL/Keycloak/Caddy四服务全部healthy。随后权威stop移除4 containers与4 networks；四个project-scoped named volumes及owner-only ignored run record按既定边界保留。本run没有启动API、Desktop、Host、Runtime或fake provider，不是S10B重跑，也不构成G4/G6证据。
 
 DESIGN-126-010与DEC-126-049已由Owner“单独评审并修复”指令接受；实现和验证形成DEC-126-050 Closure Review，Owner现已正式接受Option A并关闭S10B-BLK-002。该接受不自动授权重跑S10B或进入S11。
+
+## 29. LIA-126-014 / S10B-R2 fresh preflight执行结果
+
+### 29.1 冻结候选
+
+本轮先把所有已批准且未提交的FEAT-126变更形成仅本地checkpoint，未push：Governance `9db41b03072f5d427c61fa832d22e94f3e8ce02c`、API `c5f334e88d54d9e04f388d0349f4f5925124abd6`、Host `e0a8d3d29a335571d1654d95e1e262c240755674`、Desktop `ed9eb14f3829f6e8fee427de40f76a2c549fb78c`、Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`、Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`、Infra `597acb34588cc519d2482bffbf4fb3298bacc734`。checkpoint后三仓工作树均clean；Governance package/strict/G2A/YAML/lint/test、API lint/race tests、Infra 85/85与Compose validation均通过。
+
+### 29.2 fail-closed事实
+
+fresh run ID为`4ffa07b9-6e4c-45d4-b5d5-3b3be5d7d818`。在创建run root、secret、Docker资源或连接数据库之前，权威`make feat-126-s10-api-migrate`调用的`feat-126-s10-api-migration.sh`要求API HEAD精确等于历史`a64f9f591fb594818c1778e30c6941e2574b3264`；当前S10BP1 closed bootstrap实现只存在于已冻结的`c5f334e...`，因此门禁以`unexpected yijie-api commit`拒绝。退回旧API会丢失closed profile，绕过wrapper或直接运行migration会破坏accepted no-bypass authority，均未执行。
+
+S10B-001判定为`FAIL / baseline-deployment-authority mismatch`，S10B-002–012均`NOT RUN`。run root、container、network、volume、API、Desktop、Host、fake provider、Runtime和模型调用均为0；无需清理业务数据。
+
+### 29.3 新blocker与纠偏候选
+
+历史`S10B-BLK-003`为migration wrapper与bootstrap wrapper没有共享同一显式完整API SHA authority。Owner已接受DEC-126-052方案A与LIA-126-015/S10BM1 Closure；实现见§30，blocker现已Closed。不得只替换硬编码、使用浮动branch、caller自选generic profile、退回旧API或直接执行migration；fresh rerun仍需单独授权。
+
+## 30. LIA-126-015 / S10BM1 shared API candidate authority
+
+### 30.1 唯一authority与顺序
+
+`make feat-126-s10-api-migrate`与`make feat-126-s10-api-bootstrap`现在都强制接收同一完整小写40字符`API_SHA`，并在读取run secret或访问PostgreSQL前调用唯一`feat-126-s10-api-candidate.mjs`。helper先验证canonical UUIDv4、owner-only且canonical的run root、API工作树HEAD精确等于caller SHA且worktree clean；随后在run root以`O_EXCL`/`O_NOFOLLOW`等价的create-new语义写入0600 `api-candidate-authority.json`。closed document只允许`schema_version`、`run_id`和`api_full_commit`三个字段。
+
+首次命令建立authority，后续命令只能复用完全相同的run ID与API SHA。missing/short/wrong SHA、dirty worktree、candidate drift、corrupt/extra-key document、wrong owner/mode、symlink、hardlink、noncanonical root全部fail closed；失败发生在secret文件读取与数据库访问之前。没有branch/floating identity、第二套hardcoded pin、repository path、DSN、credential、manifest正文或conversation正文进入authority。
+
+### 30.2 兼容与contract impact
+
+这是对FEAT-126私有本地deployment helper的有意breaking收紧：旧的migration两参数调用不再兼容并会fail closed；仓库Make target与runbook在同一checkpoint中同步要求`API_SHA`。central source contract、Public Tasks/Host/private IPC wire、数据库业务schema、Runtime pin、production/default配置和现有`feat-125-local-lab`语义均未改变，因此central G2A impact为`none`。
+
+### 30.3 证据与停止边界
+
+本地checkpoint为`yijie-infra@bb96333df908d6fea72ec0a1f57a64477c2428e4`。Infra validate/lint/test、87/87自动化、Node/shell syntax与diff检查全部PASS；同run复用、wrong/drift/dirty、mode/hardlink/symlink负向矩阵已覆盖。执行未启动container/service/API/Desktop/Host/Runtime，未读取secret/DB/Keychain，未调用模型、处理真实数据、启用默认flag或写远端。
+
+DEC-126-052 Option A已接受S10BM1 Closure并关闭`S10B-BLK-003`，但该接受不是S10B证据，也不自动授权rerun或S11。条件式`LIA-126-016 / S10B-R3`授权草案只申请一次fresh S10B-001–012；下一步必须先把本次Accepted治理overlay形成clean完整SHA，再基于该SHA单独登记Owner审批。当前仍为Draft/HOLD/NOT RUN。

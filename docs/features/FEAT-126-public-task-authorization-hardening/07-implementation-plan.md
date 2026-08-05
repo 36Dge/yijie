@@ -1,4 +1,4 @@
-# FEAT-126 Local-only 原子实施计划（LIA-126-008/S10B Executed-Blocked，G3 Partial）
+# FEAT-126 Local-only 原子实施计划（DEC-126-052 Accepted / LIA-126-016 Draft，G3 Partial）
 
 ## 1. 当前执行边界
 
@@ -6,7 +6,7 @@
 - DEC-126-022 Local-only Delivery Strategy已Accepted；LIA-126-001已于2026-08-02批准，且只允许S4–S6本地基础切片。
 - S4–S6已有远端checkpoint并保持flags/routes默认关闭；DEC-126-026已接受其Closure并单独授权S7A Desktop Rust Host Bridge/Domain。
 - DEC-126-027已接受S7A；DEC-126-028已接受S7B durable outbox、strict/coalesced reducer、history orchestration、title precedence与fake Host应用链。
-- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；S4–S9及S10E/P1/P2F/P3/S10BP1/S10BR1 Closure已接受，BLK-001–005及S10B-BLK-001/002关闭。Owner已接受DEC-126-046–050；fresh S10B重跑与S11仍须分别明确授权。
+- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；S4–S9及S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure已接受，BLK-001–005及S10B-BLK-001/002/003关闭。Owner已接受DEC-126-052 Option A；下一步先形成clean Governance checkpoint与完整SHA，再单独审批LIA-126-016。当前rerun/S11未授权。
 
 ## 2. 实施原则
 
@@ -167,7 +167,9 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 | S10P2 | Desktop `c863b2ab30d185201bff5736a308d7078ee5dc68` | Desktop Rust test-only run manifest、double exact gate、run-derived Chat DB/receipt HMAC/native-auth Keychain namespaces、app-data/Home/project binding、exact inventory、cleanup/recovery/race；无IPC/TS/Vue/schema/pin变化 | source/repository gates PASS；signed Protected Data native write BLOCKED by missing identity/profile/entitlement | LIA-126-010 executed；DEC-126-041 Option B historical native HOLD；Local-only successor later closed BLK-004 under DEC-126-043 | Native hardening Deferred/NOT RUN；not S10P3 authorization |
 | S10P2F | Desktop `46107eec1e9cba0257252cae8678a4233ef20036` | double-exact ephemeral backend、CSPRNG三secret、same-run恢复/cross-run隔离/exact cleanup | CLOSURE PASSED | DEC-126-043 Option A Accepted / BLK-004 Closed | Native hardening Deferred/NOT RUN |
 | S10P3/S10I | Desktop `ed9eb14f3829f6e8fee427de40f76a2c549fb78c` + Infra `8d7c84dc963141931c6c5d3c3aded3218247df0b` local-only | SQLCipher v5、content-free Public create/bind-before-Host、outbox/recovery、closed IPC/TS/Pinia；dynamic numeric `AUTH_TIME`→`nbf` | repository PASS；standard native OIDC + unchanged API + real create/bind/delete-retention PASS | LIA-126-012 + DEC-126-044/045 Option A Accepted | Closure Passed；BLK-005 Closed；S10B unauthorized |
-| S10B–S11 | S10B abort evidence only | no business-source change | first S10B-001 FAIL；002–012 NOT RUN；S11 NOT RUN | first S10B授权已消费；fresh重跑/S11未授权 | DEC-126-050 Accepted；next requires separate fresh S10B authorization |
+| S10BM1 | Infra `bb96333df908d6fea72ec0a1f57a64477c2428e4` | migration/bootstrap shared run-scoped full API SHA authority；Make/runbook/tests；无业务wire/schema变化 | Infra validate/lint/test 87/87、Node/shell/diff PASS；runtime resources=0 | LIA-126-015 Closure Passed；BLK-003 Closed | DEC-126-052 Accepted；no rerun authorization |
+| S10B-R3 | no execution checkpoint | conditional one-time fresh S10B-001–012 request；same accepted matrix | NOT RUN | LIA-126-016 Draft/HOLD；DEC-126-052/BLK-003前置已满足；new clean Governance SHA仍待形成 | not authorized；S11 remains separate |
+| S10B–S11 | two S10B abort evidence sets only | no business-source change during executions | LIA-126-014 S10B-R2-001 FAIL；002–012 NOT RUN；S11 NOT RUN | second authorization consumed；all corrective blockers Closed；LIA-126-016 draft only | rerun/S11 not authorized |
 | S10BP0 | current uncommitted yijie governance overlay | DESIGN-126-009 + DEC-126-047 Accepted + LIA-126-013 recommendation | package/strict/G2A/YAML/lint/test/diff；0 source/process | DEC-126-046/047 Accepted | Design Accepted；implementation/rerun not authorized |
 
 ## 10. 变更控制
@@ -191,7 +193,7 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 | Contracts/G2A/remote | 段成威 | DEC-126-023/024/025 Accepted，`29317b...`为唯一candidate并已远端可达；`c000a024...`仅为历史远端候选，旧PR与develop不变；未merge/tag/发布/启用 | 2026-08-02 |
 | Contracts Draft PR / merge | 段成威 | DEC-126-021 Accepted/HOLD；CI failed dependency audit；merge不是local draft前置但当前仍不批准 | 2026-08-02 |
 | Local-only delivery strategy | 段成威 | DEC-126-022 Accepted；Local Runtime Ready目标，tag/publish/deploy/G5 N/A | 2026-08-02 |
-| Local Implementation Authorization | 段成威 | S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1 Closure Passed；DEC-126-046–050 Accepted；BLK-001/002 Closed | 2026-08-05 | S10B EXECUTED / BLOCKED / CLOSURE FAIL；fresh重跑/S11/MiniMax/default activation与远端动作未授权 |
+| Local Implementation Authorization | 段成威 | S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure Passed；DEC-126-046–052 Accepted；S10B-BLK-001/002/003 Closed | 2026-08-05 | S10B-R2 CLOSURE FAIL；LIA-126-016 Draft/HOLD，待clean Governance SHA后单独审批；S11/MiniMax/default activation与远端动作未授权 |
 
 ## 12. Local Implementation Authorization 审批候选
 
@@ -245,7 +247,7 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - `LIA-126-006 / S8B`结果：Owner在DEC-126-033接受后单独授权Vue页面、交互、视觉与可访问性；实现消费真实authoritative store，fake投影只存在test harness；DEC-126-034已接受Closure，feature flag activation不随之授权。
 - S7C结果：Owner已接受DEC-126-030，S7C Closure Passed。
 - S8A结果：20个versioned commands、closed Schema/fixtures、Rust-bound context/event/cursors、TS validator/client/store已实现；Desktop `make lint/test/build`及安全扫描PASS；DEC-126-031已接受S8A Closure，G3仍Partial。
-- 当前状态：S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1 Closure Passed、BLK-001–005及S10B-BLK-001/002 Closed。LIA-126-012 Desktop与S10I Infra checkpoint、真实identity/Public Tasks主链均PASS；G3 Partial。S10B保持`EXECUTED / BLOCKED / CLOSURE FAIL`直到fresh rerun通过；S11保持`NOT AUTHORIZED / NOT RUN`，signed Protected Data仍Deferred Native Hardening。
+- 当前状态：S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure Passed、BLK-001–005及S10B-BLK-001/002/003 Closed。DEC-126-052已接受；G3 Partial。S10B保持`EXECUTED / BLOCKED / CLOSURE FAIL`；LIA-126-016须在clean Governance SHA形成后单独审批，S11保持`NOT AUTHORIZED / NOT RUN`，signed Protected Data仍Deferred Native Hardening。
 
 ### LIA-126-005 / S8B0（Approved / Executed / DEC-126-033 Closure Passed）
 
@@ -345,7 +347,7 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - 删除只清Desktop/Host/Runtime和local binding；Public Task row保留且必须证明正文零命中。若实现需Public delete或其他central shape，立即停止转G2A。
 - 已完成：v1–v4→v5 migration、schema/serde/TS conformance、fixed auth/idempotency/unknown/restart/delete-race/no-log与仓内门禁；当前变更保持未提交，未创建完成checkpoint、未push。
 - 已完成：fresh isolated run的standard Authorization Code + PKCE、capability、真实201/Public bind、本地delete/Public row retained，以及PostgreSQL task/audit正文/路径零命中；fixed error/unknown matrix继续由仓内测试覆盖。无手工bearer、mock signer或curl替代。
-- Owner结论：DEC-126-045推荐方案A已批准，S10P3 Closure Passed，BLK-005 Closed；Owner随后单独批准并执行LIA-126-008。S10B仍为Executed / Blocked / Closure Fail；S10B-BLK-001/002后来由DEC-126-048/050关闭，fresh重跑仍未授权。
+- Owner结论：DEC-126-045推荐方案A已批准，S10P3 Closure Passed，BLK-005 Closed；Owner随后单独批准并执行LIA-126-008。历史S10B-BLK-001/002由DEC-126-048/050关闭；Owner再单独授权LIA-126-014，但S10B-R2在新BLK-003处停止，Closure仍未通过。
 
 ### DESIGN-126-009 / DEC-126-047（Accepted Option A）
 
@@ -361,3 +363,28 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - `S10BP1-001–013`、API全量/integration、Infra 83/83/static/security及fresh-v4 run均PASS；临时容器、anonymous volume、secret和candidate已清理。
 - Owner已接受DEC-126-048 Option A，S10BP1 Closure Passed并关闭S10B-BLK-001；该决定不授权S10B rerun。
 - 验证发现的独立`S10B-BLK-002`已在DESIGN-126-010/DEC-126-049单独评审并实现：保留Compose version+digest authority，以派生的repository@digest做local availability验证，继续`--pull never`。Infra自动化和fresh四依赖no-pull up/stop通过，Owner已接受DEC-126-050 Closure并关闭BLK-002；fresh S10B rerun仍须另行授权。
+
+## 17. LIA-126-014 / S10B-R2执行与退出
+
+- Owner已单独授权一次fresh S10B-R2。开始前完成三项仅本地checkpoint：Governance `9db41b03072f5d427c61fa832d22e94f3e8ce02c`、API `c5f334e88d54d9e04f388d0349f4f5925124abd6`、Infra `597acb34588cc519d2482bffbf4fb3298bacc734`；Host/Desktop/Runtime/Contracts保持既有clean pin；未push。
+- S10B-001在资源创建前执行权威migration preflight。Infra wrapper仍固定旧API `a64f9f...`，与当前必须使用的closed bootstrap API `c5f334e...`不一致，因此run `4ffa07b9-6e4c-45d4-b5d5-3b3be5d7d818`按设计fail closed。
+- S10B-002–012未运行；run root、secret、container、network、volume、数据库、API/Desktop/Host/fake/Runtime均未创建或启动。没有需要删除的run资源。
+- 登记`S10B-BLK-003`。Owner已接受DEC-126-051并拒绝Closure；不得现场替换hardcoded SHA、退回旧API、绕过wrapper或直接重跑。Owner随后单独授权LIA-126-015，纠偏结果见§18。
+- 当前下一步不是S11或MiniMax smoke，而是为已接受的DEC-126-052形成clean Governance checkpoint与完整SHA，再基于该SHA单独审批LIA-126-016。G3保持Partial，G4/G6 Pending。
+
+## 18. LIA-126-015 / S10BM1执行与退出
+
+- 授权范围：只纠正migration/bootstrap共享完整API SHA authority；不启动容器、服务或S10B，不修改API/Desktop/Host/Runtime/contracts/wire/schema/default flag。
+- 实现：migration Make target和wrapper新增强制`API_SHA`；migration/bootstrap统一调用run-scoped authority helper。helper校验canonical run、0700 owner-only root、exact clean API HEAD，并以create-new/O_EXCL/O_NOFOLLOW创建0600 closed document；另一命令只能复用同一run/SHA。
+- 兼容：private FEAT-126 migration helper属于有意breaking；旧两参数调用fail closed。central contract/G2A、production/default配置与现有feat125 profile无变化。
+- checkpoint：`yijie-infra@bb96333df908d6fea72ec0a1f57a64477c2428e4`，仅本地、未push、工作树clean。
+- 验证：Infra validate/lint/test 87/87、Node/shell syntax、diff与负向authority矩阵PASS；container/service/secret/DB/model/Keychain/remote write均为0。
+- 退出：DEC-126-052 Option A已接受，BLK-003 Closed。该接受不自动重跑S10B；先形成clean Governance SHA，再单独授权LIA-126-016。
+
+## 19. LIA-126-016 / S10B-R3条件式授权申请
+
+- 状态：`DRAFT / HOLD / NOT AUTHORIZED / NOT RUN`；DEC-126-052/BLK-003前置已满足，clean Governance SHA仍待形成。
+- 申请：在clean Governance SHA形成并由Owner单独批准后，只执行一次全新的S10B-001–012，不进入S11、不调用MiniMax。
+- 固定pin：Contracts `29317b...e9f`、API `c5f334e...abd6`、Host `e0a8d3...5674`、Desktop `ed9eb14...78c`、Runtime `3aa317...d6f`、Infra `bb96333...28e4`；Governance必须在DEC-126-052接受后形成新的FEAT-126-only clean checkpoint并记录完整SHA。
+- 执行边界：new canonical run/fresh volumes+roots+secrets+token+project、fake loopback provider、temporary exact-true flags、真实Vue/Pinia/Tauri/Desktop/API/Host/Runtime主链；不得用curl、手工SQL、mock UI或旧run替代。
+- 停止：任一precondition、SHA、identity、migration、authority、no-log、cleanup或用例失败立即停止并登记新blocker；不得现场修复或直接重跑。

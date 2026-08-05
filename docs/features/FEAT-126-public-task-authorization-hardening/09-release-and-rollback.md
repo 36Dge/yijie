@@ -1,6 +1,6 @@
-# FEAT-126 本地启动、停止与恢复 Runbook（LIA-126-008/S10B Executed-Blocked，G3 Partial）
+# FEAT-126 本地启动、停止与恢复 Runbook（DEC-126-052 Accepted / LIA-126-016 Draft，G3 Partial）
 
-> DEC-126-022将本需求冻结为Local-only Delivery。Owner已接受DEC-126-048/050，S10BP1/S10BR1 Closure Passed并关闭S10B-BLK-001/002。本文不授权fresh S10B重跑、default activation、S11、MiniMax或发布。
+> DEC-126-022将本需求冻结为Local-only Delivery。Owner已接受DEC-126-052 Option A：S10BM1 Closure Passed、S10B-BLK-003 Closed。LIA-126-016/S10B-R3仍是条件式Draft/HOLD；下一步先形成clean Governance checkpoint与完整SHA，再单独审批。本文不授权rerun、default activation、S11、MiniMax或发布。
 
 ## 1. Release Manifest
 
@@ -11,9 +11,9 @@
 | yijie-api | S4 Accepted remote candidate checkpoint / no tag | `a64f9f591fb594818c1778e30c6941e2574b3264` | generated Go `438b084d…ab33`；migration v4 `b56f7f5a…ee14` | exact `29317b...` lock；DEC-126-026 Accepted | `origin/feat/feat-126-foundation-closure` exact；local-lab only；secure route default off；not merged/activated |
 | yijie-agent-host | S10P1 local test-profile checkpoint over S9 / no tag | local `e0a8d3d29a335571d1654d95e1e262c240755674`；parent `8707dea552cff74121b89aa8045f27da2c8c9378`；remote remains `3e8df026110f0c895262329c2384d3896598f3d9` | S9 fixture authority + fixed loopback fake Responses + parent watchdog；store schema v3 unchanged | exact `29317b...` source lock / fixed Runtime `3aa317ce...` | local/not pushed；default MiniMax/v2/title paths unchanged；not merged/activated |
 | yijie-desktop | S10P3 local Closure candidate / no tag | local `ed9eb14f3829f6e8fee427de40f76a2c549fb78c`；parent `46107eec1e9cba0257252cae8678a4233ef20036`；remote remains `35f27447398529cca4dec85fa1f67e779c7a7cbd` | SQLCipher v5 + Public-before-Host + closed control-plane IPC/TS；repo + real main-chain PASS | exact `29317b...` lock；Cargo/pnpm locks unchanged | clean local checkpoint/no push；all default flags off |
-| yijie governance | DEC-126-048/050 Accepted / no tag | baseline `85a62835dd8f5993f5c98f8f6e89342c726914b6`；remote `650254b3c009c4098f7d7b2d415ed8082b0139fa` | FEAT-126 governance files only | final package/strict/G2A/YAML/lint/test/diff in `08` | dirty local docs/no checkpoint/no push；G3 Partial；first S10B Closure Fail；fresh rerun not authorized |
-| yijie-api | LIA-126-013 local candidate / no tag | baseline `a64f9f591fb594818c1778e30c6941e2574b3264` | exact FEAT-126 profile/matrix, atomic batch, verifier, tests | lint/vet/race/unit/generate-check/fresh-v4 integration PASS | local diff only；no central wire/schema; no commit/push |
-| yijie-infra | LIA-126-013 local candidate / no tag | baseline `8d7c84dc963141931c6c5d3c3aded3218247df0b` | authoritative wrapper/result verifier/tests/docs/Make target | 83/83 + Compose/security/shell/Node + live isolated wrapper PASS | local diff only；no commit/push |
+| yijie governance | pre-DEC-126-052 checkpoint / no tag | local parent `9db41b03072f5d427c61fa832d22e94f3e8ce02c`；remote remains `650254b3c009c4098f7d7b2d415ed8082b0139fa` | FEAT-126 governance files only | package/strict/G2A/YAML/lint/test/diff PASS for Accepted overlay | DEC-126-052 Accepted；new clean checkpoint to be formed before LIA-126-016 approval；not pushed |
+| yijie-api | LIA-126-013 accepted local checkpoint / no tag | local `c5f334e88d54d9e04f388d0349f4f5925124abd6` | exact FEAT-126 profile/matrix, atomic batch, verifier, tests | lint/vet/race/unit PASS；historical fresh-v4 integration PASS | clean local checkpoint；no central wire/schema；not pushed |
+| yijie-infra | S10BM1 corrective local checkpoint / no tag | local `bb96333df908d6fea72ec0a1f57a64477c2428e4` | accepted bootstrap/image helpers + migration/bootstrap shared run-scoped full API SHA authority | validate/lint/test 87/87 + security/shell/Node/diff PASS | clean local checkpoint；not pushed；no S10B rerun/resource start |
 | yijie-infra | S10I local identity-profile checkpoint / no tag | local `8d7c84dc963141931c6c5d3c3aded3218247df0b`；parent `99e50d8b47e13fc3e3b7501617a307e1ba5d6baf` | exact dynamic numeric nbf mapper/static-live conformance；Compose/image digests unchanged | private default-off profile | DEC-126-044 Accepted；not pushed/activated |
 
 ## 2. Local Runtime Ready 前提
@@ -21,7 +21,7 @@
 - [x] G1/G2、DEC-126-024 G2A重审与LIA-126-001真实通过并有段成威批准
 - [x] DEC-126-023方案C Accepted、Q-017 Resolved；本地replacement source/generated/fixtures与post-commit证据已形成
 - [x] DEC-126-024批准`29317b6426578749dc698fc2ad32b986ee5c8e9f`为新的唯一candidate；DEC-126-025随后单独恢复LIA-126-002的S4–S6范围
-- [ ] G4仍需另行授权fresh S10B完整E2E并取得Closure；DEC-126-048/050已关闭两个corrective blocker，但S10BP1/S10BR1验证都不等于S10B或G4
+- [ ] G4仍需形成clean Governance SHA、单独批准LIA-126-016并通过完整fresh S10B Closure；DEC-126-052已关闭BLK-003但不自动授权rerun
 - [ ] Contracts/Runtime/app本地输入来自clean immutable source，full SHA/digest/generator可追溯；tag为N/A
 - [x] 本地合成identity/tenant/permission链路通过；standard Authorization Code + PKCE含numeric `nbf`，unchanged API capability/Public create通过；FEAT-125 production prerequisites不属于Local-only G6
 - [ ] Public Tasks consumer inventory、secure version migration 和 legacy retirement plan 完成
@@ -208,6 +208,8 @@ stop threshold
 | 2026-08-05 | LIA-126-013 S10BP1 implementation | API/Infra/yijie local diffs + fresh isolated PostgreSQL | exact profile/order negatives；migration v4；two atomic passes；exact counts/audits；rollback injection；full repo/governance gates | S10BP1-001–013 PASS；DEC-126-048 Accepted；BLK-001 Closed；S10B not rerun | temporary container/anonymous volume/candidate/secret removed；three 0600 content-free summaries retained ignored；no commit/push |
 | 2026-08-05 | S10B-BLK-002 observation | accepted S10E helper + local Docker 29.6.1 image inventory | exact local ID/digest exists；tag/tag@digest `docker image inspect`曾失败，Docker重启后恢复；helper因此存在状态敏感假阴性 | historical OPEN / outside LIA-126-013 | 后续由DESIGN-126-010/DEC-126-049/050单独纠偏并Closed |
 | 2026-08-05 | DESIGN-126-010 / S10BR1 image corrective | Infra local diff + fresh run `ae1c892a-4819-40bc-9ce9-d72f6ea2fcd7` | 从唯一Compose pin派生3个repository@digest；85/85与negative matrix PASS；`--pull never`四服务healthy；权威stop | DEC-126-050 Accepted / S10BR1 Closure Passed / BLK-002 Closed | 0 image pull/API/Desktop/Host/Runtime；container/network=0；4 volumes与ignored run record保留；无commit/push |
+| 2026-08-05 | LIA-126-014 / S10B-R2 fresh preflight | clean seven-repository checkpoint + run `4ffa07b9-6e4c-45d4-b5d5-3b3be5d7d818` | migration wrapper固定旧API `a64f9f...`并在secret/run/Docker/DB前拒绝当前`c5f334e...` | S10B-001 FAIL / 002–012 NOT RUN / S10B-BLK-003 Open / DEC-126-051 Accepted、Closure Rejected | run root/container/network/volume/process/model/keychain/real-data/remote-write=0；不修复、不重跑 |
+| 2026-08-05 | DEC-126-051/052 / LIA-126-015 / S10BM1 | Owner接受fail-closed事实并拒绝S10B-R2 Closure；随后接受shared API authority corrective Closure | migration/bootstrap统一full API SHA + run-scoped closed authority；private old two-arg helper fail closed | Infra `bb96333d...`；87/87 + validate/lint/shell/Node/diff PASS；DEC-126-052 Accepted | runtime resource=0；BLK-003 Closed；先形成Governance SHA再单独审批LIA-126-016 |
 
 DESIGN-126-008对未来corrective的回滚语义冻结如下：
 

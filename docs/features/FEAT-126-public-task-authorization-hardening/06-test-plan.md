@@ -1,7 +1,7 @@
 # FEAT-126 测试与 Eval 计划
 
 > 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。DEC-126-023/024完成G2A重审，DEC-126-025登记sole candidate与checkpoint远端ref并恢复LIA-126-002，仅执行S4–S6 Corrective Closure。
-> S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1 Closure已接受，BLK-001–005及S10B-BLK-001/002关闭。Owner已接受DEC-126-044–050。S10B首次执行仍为Closure Fail；Apple signed Keychain保持Deferred Native Hardening / NOT RUN，fresh S10B重跑、S11与MiniMax仍未授权。
+> S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure已接受，BLK-001–005及S10B-BLK-001/002/003关闭。Owner已接受DEC-126-052 Option A；corrective不是S10B证据。Apple signed Keychain保持Deferred Native Hardening / NOT RUN；先形成clean Governance SHA并单独审批LIA-126-016，当前rerun、S11与MiniMax仍未授权。
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
 ## 1. 测试策略
@@ -234,7 +234,7 @@
 | Accepted checkpoints / remote reconciliation | yijie/API/Host/Desktop/contracts | repository gates + scope/no-log/diff + owner-authorized candidate push；`git ls-remote` + exact-branch temporary clean clone | synthetic/fake/temp only；remote verification is read-only | RUN 2026-08-03；PASS；remote exact `650254b…139fa`、`a64f9f5…3264`、`3e8df02…f3d9`、`35f2744…7cbd`、`29317b6…e9f`；all clean clones，develop/Draft PR/merge/tag/publish/deploy未改变；DEC-126-035 Accepted |
 | S8B0/S8B conformance | yijie + yijie-desktop | DESIGN-126-006/DEC-126-032 + schema/Rust/TS/router/store/Tasks + production Vue/unit/axe/browser/security/bundle/package/strict/G2A/YAML/lint/test/build/diff | fake/fixed/temp only；no runtime provider | DEC-126-033/034 Accepted；S8B Closure Passed at `35f2744…7cbd`；VoiceOver人工项保留到S11/G6 |
 | S10A readiness/test-profile review | yijie governance + affected repos read-only | exact SHA/worktree/tool/port/source inventory；DESIGN-126-007/DEC-126-037/LIA-126-008 draft | no component startup/provider/flag/Keychain write | COMPLETE / DEC-126-037 ACCEPTED OPTION C；HOLD；5 blockers recorded；not E2E |
-| Local four-component E2E/security/perf/eval | affected repos | exact orchestration in DESIGN-126-007/008；historical/current corrective blockers closed；LIA-126-008 first authorization consumed | local PostgreSQL/temp homes/DB/pinned Runtime/fake provider | S10B EXECUTED / BLOCKED — first S10B-001 FAIL、002–012 NOT RUN；BLK-001/002 later Closed；fresh rerun still blocks G4/local G6；does not affect accepted G2/G2A/S4–S9 |
+| Local four-component E2E/security/perf/eval | affected repos | exact orchestration in DESIGN-126-007/008；LIA-126-008与LIA-126-014授权均已消费；LIA-126-015只纠偏Infra | local PostgreSQL/temp homes/DB/pinned Runtime/fake provider | S10B-R2 EXECUTED / BLOCKED — S10B-001 FAIL、002–012 NOT RUN；BLK-001/002/003 Closed；LIA-126-016 still Draft/HOLD；fresh complete E2E still blocks G4/local G6 |
 | LIA-126-007 / S9 fake-provider Eval | Host authority + Desktop consumer | versioned runner、exact dataset hash/split、title schema/semantic与raw sequence/final/no-log/injection gates | fixed fake provider、fixed pins、synthetic data only | RUN 2026-08-04 / PASS；DEC-126-036 Accepted；不调用MiniMax、不启用flag、不进入S10 |
 
 ## 12. 通过、失败与 Flaky 策略
@@ -500,3 +500,38 @@ S10BP1-001–013均PASS且P1=0。Owner已正式接受DEC-126-048 Option A，S10B
 | S10BR1-010 | regression | Infra test/validate/shell/diff | 85/85，全部validation PASS | **PASS** |
 
 S10BR1范围没有API/Desktop/Host/Runtime进程、业务正文、MiniMax、真实数据、default flag或远端写入。该矩阵证明corrective有效，不是S10B-001–012重跑；DEC-126-050已接受，S10B-BLK-002 Closed。
+
+## 23. LIA-126-014 / S10B-R2 fresh execution matrix（DEC-126-051 Accepted）
+
+| Test ID | 实际结果 | content-free证据 | 判定 |
+|---|---|---|---|
+| S10B-001 | 七仓clean checkpoint与Contracts/Runtime pin PASS；权威migration wrapper要求旧API `a64f9f...`，拒绝当前closed bootstrap API `c5f334e...` | run ID；7个完整SHA；failure class=`migration_wrapper_api_candidate_mismatch`；secret/DB/Docker access=`0/0/0` | **FAIL** |
+| S10B-002 | Public Task→local session→Host链未启动 | Public/API/Desktop/Host process=`0` | NOT RUN |
+| S10B-003 | assistant/raw stream未启动 | fake/Runtime call=`0` | NOT RUN |
+| S10B-004 | incomplete/interrupt未启动 | operation=`0` | NOT RUN |
+| S10B-005 | history/page/restart未启动 | Desktop SQLCipher/run root=`0` | NOT RUN |
+| S10B-006 | title/rename/pin/sort未启动 | title operation=`0` | NOT RUN |
+| S10B-007 | gap/reconnect/race未启动 | cursor/event=`0` | NOT RUN |
+| S10B-008 | session delete未启动 | conversation/receipt=`0` | NOT RUN |
+| S10B-009 | Public Tasks/PostgreSQL边界未进入 | task/audit/idempotency rows未创建 | NOT RUN |
+| S10B-010 | 没有业务正文sink或secret生成 | MiniMax/Keychain/real-data/default flag/remote write=`0` | PARTIAL SAFETY ONLY |
+| S10B-011 | perf/capacity/fault未启动 | sample count=`0` | NOT RUN |
+| S10B-012 | 失败发生在run root/资源创建前 | run root/container/network/volume/listener=`0` | ABORT CLEANUP PASS；整体case NOT RUN |
+
+S10B-R2使用run `4ffa07b9-6e4c-45d4-b5d5-3b3be5d7d818`，未现场修复、退回API、绕过wrapper或直接运行migration。Owner已接受DEC-126-051 Option A：接受上述fail-closed事实但不接受Closure，`S10B-BLK-003`保持Open。其后单独授权的corrective见§24；不得据此自动重跑。
+
+## 24. LIA-126-015 / S10BM1 shared API authority corrective matrix（DEC-126-052 Accepted）
+
+| Test ID | 类别 | 断言 | 结果 |
+|---|---|---|---|
+| S10BM1-001 | CLI/Make | migration和bootstrap都要求第三参数完整小写40字符`API_SHA`；旧两参数调用fail closed | **PASS** |
+| S10BM1-002 | shared identity | same run首次create-new，第二命令以相同run/SHA复用同一closed authority | **PASS** |
+| S10BM1-003 | worktree | exact clean HEAD接受；wrong SHA、dirty/untracked worktree拒绝 | **PASS** |
+| S10BM1-004 | document | 只允许schema version/run ID/API full commit；extra/corrupt/oversize拒绝 | **PASS** |
+| S10BM1-005 | filesystem | canonical owner-only 0700 root、0600 regular file、`nlink=1`；wrong mode/owner/symlink/hardlink拒绝 | **PASS** |
+| S10BM1-006 | ordering | authority validation发生在secret validator与PostgreSQL migration/bootstrap前 | **PASS** |
+| S10BM1-007 | no-log | authority/error/output不含repo path、DSN、credential、token、manifest或conversation正文 | **PASS** |
+| S10BM1-008 | regression | Infra validate/lint/test、87/87、Node/shell syntax与diff | **PASS** |
+| S10BM1-009 | boundary | container/service/secret/DB/API/Desktop/Host/Runtime/model/Keychain/default flag/remote write | **0 / NOT RUN** |
+
+本地checkpoint为`yijie-infra@bb96333df908d6fea72ec0a1f57a64477c2428e4`，工作树clean、未push。artifact SHA-256：authority `a8ba0234...08dc`、migration `9efa08b3...3f11`、bootstrap `37f70ac6...626`、tests `38ebde88...819`、runbook `853a62af...25cc`。该矩阵只证明corrective，不是S10B-001–012 rerun，也没有启动本地服务。DEC-126-052 Option A已接受Closure并关闭BLK-003；`LIA-126-016 / S10B-R3`仍须等待本次治理overlay形成clean完整SHA后单独审批，当前HOLD/NOT RUN。
