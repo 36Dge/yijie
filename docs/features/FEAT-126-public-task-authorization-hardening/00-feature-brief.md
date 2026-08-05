@@ -4,7 +4,7 @@
 
 | 字段 | 内容 |
 |---|---|
-| 状态 | G1/G2/G2A Passed / S4–S10BM1 Closure Passed / S10B-R3 Closure Fail / DEC-126-053/054 Accepted / LIA-126-017 Approved-Held-Not-Started / S10B-BLK-004 Open / G3 Partial |
+| 状态 | G1/G2/G2A Passed / S4–S10BM1 Closure Passed / S10B-R3 Closure Fail / LIA-126-017 S10BD1 Implemented-Verified / DEC-126-055 Closure Candidate / S10B-BLK-004 Open pending Owner / G3 Partial |
 | 需求负责人 | 段成威 |
 | Product/Design 决策人 | 段成威 |
 | 技术负责人 | 段成威 |
@@ -153,7 +153,7 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 | G2A 契约就绪 | 2026-08-02 | 段成威 | Re-review Passed：DEC-126-024 Accepted，`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate；现已精确推送到`origin/feat/feat-126-content-free-candidate`，`origin/develop`、历史`c000a024`与Draft PR #1均不变；远端可达不等于merge/发布/实现完成 |
 | Contract Draft PR / merge readiness | 2026-08-02 | 段成威 | DEC-126-021 Accepted/HOLD：Draft PR #1固定SHA且保持Draft；红色CI只阻断merge，不回退G2/G2A；未来需本地跨仓E2E、audit修复、远端CI全绿及单独merge批准 |
 | Local-only Delivery Strategy | 2026-08-02 | 段成威 | DEC-126-022 Accepted；目标改为Local Runtime Ready；tag/publish/deploy/G5均N/A；LIA-126-001后续仅授权S4–S6 |
-| G3 本地切片完成 | 未排期 | 段成威 | Partial：S4–S10BM1 prior Closure已接受；三次S10B均fail closed；DEC-126-053/054 Accepted，S10BD0完成，BLK-004 Open；LIA-126-017已批准但Held/Not Started，S10B-R4/S11未授权 |
+| G3 本地切片完成 | 未排期 | 段成威 | Partial：S4–S10BM1 prior Closure已接受；三次S10B均fail closed；LIA-126-017/S10BD1已消费且实现、001–012和exact-commit live resolver证据通过；DEC-126-055待Owner接受，故BLK-004仍Open；S10B-R4/S11未授权 |
 | S8B0 UI Integration Readiness Review | 2026-08-03 | 段成威 | DESIGN-126-006/DEC-126-032与DEC-126-033 Accepted；LIA-126-005 / S8B0 Closure Passed |
 | S8B Vue UI Closure Review | 2026-08-03 | 段成威 | DEC-126-034 Accepted / S8B Closure Passed；不自动授权S9/S10/activation，VoiceOver人工项保留到S11/G6 |
 | Remote State Reconciliation | 2026-08-04 | 段成威 | DEC-126-035 Accepted：五仓候选ref/clean clone精确PASS；四个S4–S8B checkpoints已按Owner明确授权远端可达；不改变G3/G4/G6或后续切片授权 |
@@ -213,3 +213,4 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 | 2026-08-05 | 段成威 / Codex | Owner批准DEC-126-053 Option A并校正R3根因；Codex完成DESIGN-126-011/S10BD0只读Docker execution capability与immutable resolver设计，提交DEC-126-054候选和LIA-126-017建议 | R3 fail-closed事实接受、Closure拒绝、BLK-004保持Open；current daemon endpoint不可达被existing verifier误报为image unavailable；未启动Docker/container/S10B，未修改Infra/业务源码，未授权LIA-126-017/S10B-R4/S11/远端动作 |
 | 2026-08-05 | 段成威 | 批准DEC-126-054 Option A | 接受DESIGN-126-011的capability-first、closed failure classes、原始Compose pin identity与单独授权resolver probe方案；只批准设计决策，LIA-126-017仍未授权，BLK-004保持Open，未授权源码、Docker/probe、S10B-R4、S11或远端动作 |
 | 2026-08-05 | 段成威 | 单独批准LIA-126-017，并明确不能自动进入实施 | S10BD1授权状态为Approved / Held / Not Started；本轮未修改Infra或业务源码，未启动Docker/probe，授权未消费；BLK-004保持Open，S10B-R4/S11/MiniMax/远端动作仍未授权 |
+| 2026-08-05 | 段成威 / Codex | Owner随后明确指令开始并消费LIA-126-017；完成S10BD1 capability-first verifier、immutable identity与no-start resolver实现和验证，提交DEC-126-055 Closure候选 | Governance执行基线`075a5051b538ce8f28834db70de8f4f544ce4484`；Infra clean checkpoint `2a643caef210e32cab80242ede46b96927b2097a`；S10BD1-001–012、Infra 99/99与live 3 identity/3 probe PASS，资源归零且Docker恢复停止；BLK-004在Owner接受DEC-126-055前仍Open，未授权S10B-R4/S11/MiniMax/远端动作 |

@@ -1,6 +1,6 @@
-# FEAT-126 本地启动、停止与恢复 Runbook（S10B-R3 Closure Fail / S10B-BLK-004 Open，G3 Partial）
+# FEAT-126 本地启动、停止与恢复 Runbook（S10BD1 Closure Candidate / S10B-BLK-004 Owner Pending，G3 Partial）
 
-> DEC-126-022将本需求冻结为Local-only Delivery。LIA-126-016/S10B-R3的一次fresh授权已消费：run `6c1d8652-7b99-4ca8-8c0e-f9a61e7ca4a5`在S10B-001 immutable-image preflight处fail closed；002–012未开始。DEC-126-053已接受失败事实、拒绝Closure并校正根因；`S10B-BLK-004` Open。DESIGN-126-011/S10BD0与DEC-126-054 Option A已Accepted；LIA-126-017已批准但Held / Not Started，本文不自动进入纠偏、Docker启动、probe create/remove、重跑、S11、MiniMax、default activation或发布。
+> DEC-126-022将本需求冻结为Local-only Delivery。LIA-126-016/S10B-R3在S10B-001 fail closed；DEC-126-053/054已Accepted。Owner随后明确开始并消费LIA-126-017，S10BD1在Infra clean SHA上实现并完成全部自动化与exact-commit live no-start resolver验证。DEC-126-055 Closure候选仍待Owner，故`S10B-BLK-004` Open；本文不自动进入S10B-R4、S11、MiniMax、default activation或发布。
 
 ## 1. Release Manifest
 
@@ -11,9 +11,10 @@
 | yijie-api | S4 Accepted remote candidate checkpoint / no tag | `a64f9f591fb594818c1778e30c6941e2574b3264` | generated Go `438b084d…ab33`；migration v4 `b56f7f5a…ee14` | exact `29317b...` lock；DEC-126-026 Accepted | `origin/feat/feat-126-foundation-closure` exact；local-lab only；secure route default off；not merged/activated |
 | yijie-agent-host | S10P1 local test-profile checkpoint over S9 / no tag | local `e0a8d3d29a335571d1654d95e1e262c240755674`；parent `8707dea552cff74121b89aa8045f27da2c8c9378`；remote remains `3e8df026110f0c895262329c2384d3896598f3d9` | S9 fixture authority + fixed loopback fake Responses + parent watchdog；store schema v3 unchanged | exact `29317b...` source lock / fixed Runtime `3aa317ce...` | local/not pushed；default MiniMax/v2/title paths unchanged；not merged/activated |
 | yijie-desktop | S10P3 local Closure candidate / no tag | local `ed9eb14f3829f6e8fee427de40f76a2c549fb78c`；parent `46107eec1e9cba0257252cae8678a4233ef20036`；remote remains `35f27447398529cca4dec85fa1f67e779c7a7cbd` | SQLCipher v5 + Public-before-Host + closed control-plane IPC/TS；repo + real main-chain PASS | exact `29317b...` lock；Cargo/pnpm locks unchanged | clean local checkpoint/no push；all default flags off |
-| yijie governance | S10B-R3 + S10BD0 provenance / no tag | execution HEAD `784c970a7d6330fc2c2432f0ae9bf7bca400b15c`；approval Closure checkpoint `441663faf7d505015f03d572c8e9f30b3ba1a2df`；remote remains `650254b3c009c4098f7d7b2d415ed8082b0139fa` | FEAT-126 governance only | R3 S10B-001 FAIL；DEC-126-053/054 Accepted；S10BD0 package/strict/G2A/YAML/lint/test/shell/diff PASS | local/not pushed；working overlay includes accepted DESIGN-126-011/DEC-126-054 governance |
+| yijie governance | S10BD1 execution/Closure-candidate provenance / no tag | execution baseline `075a5051b538ce8f28834db70de8f4f544ce4484`；remote remains `650254b3c009c4098f7d7b2d415ed8082b0139fa` | FEAT-126 governance only | DEC-126-053/054 Accepted；DEC-126-055 candidate；package/strict/G2A/YAML/lint/test/shell/diff required | local/not pushed；BLK-004 remains Open pending Owner |
 | yijie-api | LIA-126-013 accepted local checkpoint / no tag | local `c5f334e88d54d9e04f388d0349f4f5925124abd6` | exact FEAT-126 profile/matrix, atomic batch, verifier, tests | lint/vet/race/unit PASS；historical fresh-v4 integration PASS | clean local checkpoint；no central wire/schema；not pushed |
 | yijie-infra | S10BM1 corrective local checkpoint / no tag | local `bb96333df908d6fea72ec0a1f57a64477c2428e4` | accepted bootstrap/image helpers + migration/bootstrap shared run-scoped full API SHA authority | validate/lint/test 87/87 + security/shell/Node/diff PASS | clean local checkpoint；not pushed；no S10B rerun/resource start |
+| yijie-infra | S10BD1 corrective local checkpoint / no tag | local `2a643caef210e32cab80242ede46b96927b2097a`；parent `bb96333df908d6fea72ec0a1f57a64477c2428e4` | capability-first closed classifier + exact immutable identity + bounded no-start resolver | focused 12/12、full 99/99、validate/lint/shell/security/diff与live 3 identity/3 probe PASS | clean local/not pushed；no pull；post resources 0；Docker restored stopped |
 | yijie-infra | S10I local identity-profile checkpoint / no tag | local `8d7c84dc963141931c6c5d3c3aded3218247df0b`；parent `99e50d8b47e13fc3e3b7501617a307e1ba5d6baf` | exact dynamic numeric nbf mapper/static-live conformance；Compose/image digests unchanged | private default-off profile | DEC-126-044 Accepted；not pushed/activated |
 
 ## 2. Local Runtime Ready 前提
@@ -21,7 +22,7 @@
 - [x] G1/G2、DEC-126-024 G2A重审与LIA-126-001真实通过并有段成威批准
 - [x] DEC-126-023方案C Accepted、Q-017 Resolved；本地replacement source/generated/fixtures与post-commit证据已形成
 - [x] DEC-126-024批准`29317b6426578749dc698fc2ad32b986ee5c8e9f`为新的唯一candidate；DEC-126-025随后单独恢复LIA-126-002的S4–S6范围
-- [ ] G4仍需完整fresh S10B Closure；LIA-126-016已消费并在R3 S10B-001 fail closed，`S10B-BLK-004` Open；DEC-126-054与LIA-126-017已批准，但LIA-126-017保持Held / Not Started，S10B-R4未批准
+- [ ] G4仍需完整fresh S10B Closure；LIA-126-017/S10BD1证据已完成，但DEC-126-055未获Owner接受，`S10B-BLK-004`仍Open；S10B-R4未批准
 - [ ] Contracts/Runtime/app本地输入来自clean immutable source，full SHA/digest/generator可追溯；tag为N/A
 - [x] 本地合成identity/tenant/permission链路通过；standard Authorization Code + PKCE含numeric `nbf`，unchanged API capability/Public create通过；FEAT-125 production prerequisites不属于Local-only G6
 - [ ] Public Tasks consumer inventory、secure version migration 和 legacy retirement plan 完成
@@ -213,6 +214,7 @@ stop threshold
 | 2026-08-05 | Governance checkpoint / LIA-126-016 | DEC-126-052 Accepted overlay形成clean local checkpoint，随后Owner单独批准并已消费S10B-R3 | Governance `441663faf7d505015f03d572c8e9f30b3ba1a2df`；six implementation pins unchanged | CONSUMED / CLOSURE FAIL | actual run见下一行；S11仍未授权 |
 | 2026-08-05 | LIA-126-016 / S10B-R3 single execution | execution Governance `784c970a7d6330fc2c2432f0ae9bf7bca400b15c` + exact six implementation pins + run `6c1d8652-7b99-4ca8-8c0e-f9a61e7ca4a5` | seven clean SHA/tool/port/init/config PASS；generic immutable-image verifier FAIL before Compose up | S10B-001 FAIL；002–012 NOT RUN；S10B-BLK-004 Open；DEC-126-053 Accepted/Closure rejected | owner-only REJECTED + exact stop；container/network/volume/listener=0；ignored run root/secret retained；no pull/retag/restart workaround/rerun/model/remote action |
 | 2026-08-05 | DESIGN-126-011 / S10BD0 / LIA-126-017 approval | Infra read-only verifier/Compose/test inventory + Docker capability differential + governance update | endpoint unavailable被generic verifier误报；此前capability可用时correct pin可解析；capability-first/closed classes/exact original pin/no-pull resolver probe设计冻结 | DESIGN/DECISION ACCEPTED；LIA-126-017 APPROVED / HELD / NOT STARTED | 未启动Docker/container/service；未修改Infra源码；未执行create/remove、pull/retag/restart或S10B；授权未消费 |
+| 2026-08-05 | LIA-126-017 / S10BD1 execution | Governance `075a5051…4484` + Infra `2a643cae…97a` + live run `12600000-0000-4000-8000-000000000055` | capability-first、12 closed classes、exact Compose identity与no-start resolver | 12/12 + 99/99 + 3 identity/3 probe PASS；DEC-126-055 candidate | labeled resources=0；Docker restored stopped；no pull/retag/workaround/S10B/model/remote action；BLK-004 Owner Pending |
 
 DESIGN-126-008对未来corrective的回滚语义冻结如下：
 

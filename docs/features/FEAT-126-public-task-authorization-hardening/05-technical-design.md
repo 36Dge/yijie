@@ -1,6 +1,6 @@
-# FEAT-126 技术设计（S10B-R3 Closure Fail / LIA-126-017 Approved-Held-Not-Started，G3 Partial）
+# FEAT-126 技术设计（S10B-R3 Closure Fail / S10BD1 Closure Candidate，G3 Partial）
 
-> 本文产品/架构设计保持G2 Passed。LIA-126-016/S10B-R3已消费并Closure Fail；Owner通过DEC-126-053 Option A接受失败事实、拒绝Closure并校正根因。DESIGN-126-011/S10BD0与DEC-126-054 Option A已Accepted；LIA-126-017已单独批准但Held / Not Started，不能自动进入实施。`S10B-BLK-004` Open，S10B-R4/S11/MiniMax/默认flag activation与远端动作未授权。
+> 本文产品/架构设计保持G2 Passed。LIA-126-016/S10B-R3已消费并Closure Fail；Owner通过DEC-126-053 Option A接受失败事实、拒绝Closure并校正根因。DESIGN-126-011/S10BD0与DEC-126-054 Option A已Accepted；Owner随后明确开始并消费LIA-126-017，S10BD1实现与授权证据已通过，DEC-126-055 Closure候选待Owner接受。`S10B-BLK-004`因此仍Open，S10B-R4/S11/MiniMax/默认flag activation与远端动作未授权。
 
 ## 1. 设计摘要
 
@@ -542,9 +542,9 @@ Runtime/Host pin、临时 `CODEX_HOME`/空 cwd/pathless ephemeral thread，title
 - Runtime/MiniMax：canonical delete/name/summary/raw reasoning/outputSchema已确认；两次历史MiniMax预算已执行，title PASS，MM-126-002在旧summary门槛FAIL且观察到raw事件；Host raw bridge基础已用fake Runtime实现，raw flag默认off，本轮未调用MiniMax。
 - Public Tasks：仓内consumer inventory完成，unknown external按safe compatibility category处理，Q-010 Resolved；DEC-126-011/012已Accepted，v1全程双隔离。DEC-126-023/024与Q-017已关闭，`29317b...`从schema层拒绝conversation正文并通过G2A重审；LIA-126-002现已恢复，仅允许关闭S4–S6 P1。
 - Desktop Pattern：FEAT-126 Chat/App Shell Pattern已Accepted，只取代Chat 1.1.0/App Shell 2.0.0中的FEAT-126冲突段落。
-- 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–054 Accepted；S4–S9及S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure Passed；LIA-126-016/S10B-R3 Closure Fail；DESIGN-126-011/DEC-126-054 Accepted；LIA-126-017 Approved-Held-Not-Started；S11 Unauthorized。
+- 技术负责人：段成威 — G2/G2A Re-review Passed；DEC-126-023–054 Accepted；S4–S9及S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure Passed；LIA-126-016/S10B-R3 Closure Fail；LIA-126-017/S10BD1 Implemented-Verified，DEC-126-055 Owner Pending；S11 Unauthorized。
 - 安全/数据 Owner：段成威 — ADR-0013/0014/0015/0016与DEC-126-005/006/007/011/012/014/015/016/017 Approved；Q-006/Q-007/Q-008/Q-009/Q-010/Q-015/Q-016 Resolved；Pattern Accepted。
-- 当前结论与日期：2026-08-05 G2/G2A保持Passed，S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure Passed、BLK-001–005及S10B-BLK-001/002/003 Closed；LIA-126-016已消费并Closure Fail，DEC-126-053/054 Accepted，DESIGN-126-011 Accepted，LIA-126-017 Approved-Held-Not-Started，`S10B-BLK-004` Open、G3 Partial。S10B-R4/S11、MiniMax、默认flag启用与追加远端动作继续禁止。
+- 当前结论与日期：2026-08-05 G2/G2A保持Passed，S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure Passed、BLK-001–005及S10B-BLK-001/002/003 Closed；LIA-126-016已消费并Closure Fail。LIA-126-017/S10BD1已消费、实现和验证，DEC-126-055 Closure候选待Owner，故`S10B-BLK-004`仍Open、G3 Partial。S10B-R4/S11、MiniMax、默认flag启用与追加远端动作继续禁止。
 
 ## 15. S8B Vue projection implementation
 
@@ -1208,4 +1208,22 @@ S10BD1至少覆盖：CLI missing、socket/endpoint missing、permission denied�
 
 回滚只允许移除新capability/classifier/probe调用并恢复accepted S10BR1 helper，同时继续HOLD S10B；回滚不能通过pull、retag、Docker restart、store切换、prune、floating tag或删除volume获得绿色结果。
 
-`LIA-126-017 / S10BD1`范围仅限`yijie-infra`本地verifier、测试、FEAT-126 runbook与`yijie`治理文档。Owner已单独批准LIA-126-017，但明确本轮不能自动进入实施；当前为Approved / Held / Not Started，须后续明确执行指令才消费。实施完成须提交逐类测试、只读/可清理live probe、no-pull/no-log/cleanup证据与Closure Review。Closure被Owner接受并形成clean Infra/Governance完整SHA后，才可申请一次fresh S10B-R4；不得自动重跑。
+`LIA-126-017 / S10BD1`范围仅限`yijie-infra`本地verifier、测试、FEAT-126 runbook与`yijie`治理文档。Owner先单独批准，后又明确指令开始并消费该授权。实现已形成Infra clean checkpoint `2a643caef210e32cab80242ede46b96927b2097a`，逐类测试、可清理live probe、no-pull/no-log/cleanup证据已完成。DEC-126-055 Closure仍须Owner接受；接受后也只能另行申请一次fresh S10B-R4，不得自动重跑。
+
+## 33. S10BD1 implementation result / DEC-126-055 candidate
+
+### 33.1 实现
+
+- verifier在任何image inspect/create前，于同一Node进程和Docker context执行CLI/server capability检查，并把失败闭合为DESIGN-126-011冻结的12类之一；raw stderr、socket、环境正文和secret不出现在对外结果。
+- identity authority仍只来自Compose原始`version-tag@digest`；逐项校验Id、mandatory Descriptor digest、RepoDigests、repository、Linux与daemon architecture，两次快照必须稳定。tag-only查询仅区分missing与unresolved，不产生PASS。
+- resolver只在capability/identity全PASS后执行`docker create --pull=never --network none`；container永不启动，image声明volume全部tmpfs覆盖，name/label/run UUID/pin必须exact。unknown outcome先按exact name reconcile，foreign/mismatch删除数为0。
+
+### 33.2 不可变证据
+
+- 执行治理基线：`yijie@075a5051b538ce8f28834db70de8f4f544ce4484`；Infra实现：`yijie-infra@2a643caef210e32cab80242ede46b96927b2097a`；Contracts/Runtime pins分别保持`29317b6426578749dc698fc2ad32b986ee5c8e9f`与`3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`。
+- S10BD1-001–012为12/12 PASS；Infra全量99/99、validate、lint、shell、security/no-log与diff均PASS；Compose pins和`--pull never`未改变。
+- exact-commit live run `12600000-0000-4000-8000-000000000055`在Docker Desktop 4.82.0 / Engine 29.6.1 / linux-arm64验证3个immutable identities与3个no-start probes；未pull。后置S10BD1 labeled containers、running containers、networks、volumes均为0，Docker Desktop恢复执行前停止状态。
+
+### 33.3 Gate
+
+实现侧P1为0，但Codex不能自批Closure。DEC-126-055推荐Option A；Owner接受前`S10B-BLK-004`仍Open。无论DEC-126-055结果如何，本切片均不自动授权S10B-R4、S11、MiniMax、feature activation或远端动作。

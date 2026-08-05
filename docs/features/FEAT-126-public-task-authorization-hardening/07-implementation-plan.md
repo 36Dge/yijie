@@ -1,4 +1,4 @@
-# FEAT-126 Local-only 原子实施计划（S10B-R3 Closure Fail / S10B-BLK-004 Open，G3 Partial）
+# FEAT-126 Local-only 原子实施计划（S10BD1 Closure Candidate / S10B-BLK-004 Owner Pending，G3 Partial）
 
 ## 1. 当前执行边界
 
@@ -6,7 +6,7 @@
 - DEC-126-022 Local-only Delivery Strategy已Accepted；LIA-126-001已于2026-08-02批准，且只允许S4–S6本地基础切片。
 - S4–S6已有远端checkpoint并保持flags/routes默认关闭；DEC-126-026已接受其Closure并单独授权S7A Desktop Rust Host Bridge/Domain。
 - DEC-126-027已接受S7A；DEC-126-028已接受S7B durable outbox、strict/coalesced reducer、history orchestration、title precedence与fake Host应用链。
-- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；S4–S9及S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure已接受，BLK-001–005及S10B-BLK-001/002/003关闭。LIA-126-016/S10B-R3已消费并在S10B-001 immutable-image preflight处fail closed，002–012未开始；DEC-126-053已接受失败事实、拒绝Closure并校正根因。`S10B-BLK-004`仍Open；DESIGN-126-011与DEC-126-054 Option A已Accepted，LIA-126-017已批准但Held / Not Started，S10B-R4/S11未授权。
+- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；S4–S9及S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure已接受，BLK-001–005及S10B-BLK-001/002/003关闭。LIA-126-016/S10B-R3在S10B-001 fail closed；DEC-126-053/054已Accepted。Owner随后明确消费LIA-126-017，S10BD1实现、001–012与exact-commit live resolver证据均PASS；DEC-126-055待Owner，故`S10B-BLK-004`仍Open，S10B-R4/S11未授权。
 
 ## 2. 实施原则
 
@@ -81,7 +81,7 @@ S0 G1 product decisions (Passed) + G2 Pattern/ADR design (Passed)
 | S10BP1 | Closed bootstrap profile纠偏 | S10B-BLK-001 | yijie-api + yijie-infra | exact profile/matrix、atomic four-manifest batch、closed verifier、权威wrapper、v4/idempotency/no-log evidence | generic API入口变化、feat125规则、manual SQL、central wire/schema | DEC-126-047 + LIA-126-013 | S10BP1-001–013 PASS；DEC-126-048 Accepted；BLK-001 Closed | disable/remove only new local profile command；保留既有profile |
 | S10BR1 | Exact repository-digest availability纠偏 | S10B-BLK-002 | yijie-infra | 从Compose pin派生repository@digest、identity/mismatch负向、live no-pull up/stop | floating tag、pull、第二套pin、业务组件或S10B重跑 | DESIGN-126-010 + DEC-126-049 | DEC-126-050 Accepted；Closure Passed；BLK-002 Closed | 移除verifier调用并恢复旧precheck；不删保留volume |
 | S10BD0 | Docker execution capability/resolver纠偏设计 | S10B-BLK-004 planning only | yijie docs + Infra read-only | DESIGN-126-011、DEC-126-054 Accepted、LIA-126-017建议、read-only差分 | Infra源码、Docker启动、container/create、S10B | DEC-126-053 Accepted + Owner S10BD0 instruction | source/error/order/identity/probe/cleanup/contract-impact inventory + governance gates | docs-only；无runtime rollback |
-| S10BD1 | capability-first与immutable resolver纠偏 | S10B-BLK-004 | yijie-infra local test/deployment helper | closed capability/failure classifier、原pin exact identity、no-pull create/remove probe、负向/cleanup/no-log tests | pull/retag/restart/store switch/floating pin、业务源码、S10B | DEC-126-054 Accepted + LIA-126-017 Approved-Held + explicit execution instruction | S10BD1-001–012、只读与可清理live probe、Infra gates | 移除新classifier/probe并保持S10B HOLD；不删保留volume |
+| S10BD1 | capability-first与immutable resolver纠偏 | S10B-BLK-004 | yijie-infra local test/deployment helper | closed capability/failure classifier、原pin exact identity、no-pull create/remove probe、负向/cleanup/no-log tests | pull/retag/restart/store switch/floating pin、业务源码、S10B | DEC-126-054 Accepted + LIA-126-017 explicit start/consumption | S10BD1-001–012、live probe、Infra 99/99均PASS；DEC-126-055待批 | 候选保持clean并HOLD S10B；不删foreign/既有资源 |
 | S11 | Owner Local Runtime Ready验收 | AC-043 | all local | local startup guide、exact refs、evidence summary | merge/tag/publish/deploy/Production Ready声明 | G4 evidence + Owner review | local startup + complete functional chain | keep feature disabled until accepted；reopen failed slice |
 
 ## 5. 跨仓顺序
@@ -175,6 +175,7 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 | S10BM1 | Infra `bb96333df908d6fea72ec0a1f57a64477c2428e4` | migration/bootstrap shared run-scoped full API SHA authority；Make/runbook/tests；无业务wire/schema变化 | Infra validate/lint/test 87/87、Node/shell/diff PASS；runtime resources=0 | LIA-126-015 Closure Passed；BLK-003 Closed | DEC-126-052 Accepted；no rerun authorization |
 | S10B-R3 | approval baseline Governance `441663faf7d505015f03d572c8e9f30b3ba1a2df`；execution Governance `784c970a7d6330fc2c2432f0ae9bf7bca400b15c` | one-time fresh run `6c1d8652-7b99-4ca8-8c0e-f9a61e7ca4a5` | S10B-001 FAIL；002–012 NOT RUN；resource containment PASS | LIA-126-016 consumed；S10B-BLK-004 Open；DEC-126-053 Accepted/Closure rejected | S10BD0 design only；no corrective/rerun；S11 remains separate |
 | S10BD0 | Governance `784c970...` + existing uncommitted R3 overlay | read-only Infra source + Docker context/capability differential | current endpoint unavailable→generic verifier misclassification；0 source/container/service | DESIGN-126-011 complete；DEC-126-054 Accepted | LIA-126-017 Approved-Held-Not-Started；no S10B-R4 |
+| S10BD1 | Governance execution baseline `075a5051…4484` + Infra `2a643cae…97a` | focused 12/12 + full 99/99 + exact-commit live run `12600000-0000-4000-8000-000000000055` | 3 immutable identities + 3 no-start probes PASS；post resources=0；Docker restored stopped | IMPLEMENTED / VERIFIED / DEC-126-055 CANDIDATE | BLK-004 remains Open until Owner accepts；no S10B-R4/S11 |
 | S10B–S11 | three S10B abort evidence sets | no business-source change during executions | R3 immutable-image preflight FAIL；S11 NOT RUN | S10B-BLK-001/002/003 Closed；004 Open | S11 not authorized |
 | S10BP0 | current uncommitted yijie governance overlay | DESIGN-126-009 + DEC-126-047 Accepted + LIA-126-013 recommendation | package/strict/G2A/YAML/lint/test/diff；0 source/process | DEC-126-046/047 Accepted | Design Accepted；implementation/rerun not authorized |
 
@@ -199,7 +200,7 @@ No commit/push/PR is authorized by this document。上述`LOCAL-*`只是未来�
 | Contracts/G2A/remote | 段成威 | DEC-126-023/024/025 Accepted，`29317b...`为唯一candidate并已远端可达；`c000a024...`仅为历史远端候选，旧PR与develop不变；未merge/tag/发布/启用 | 2026-08-02 |
 | Contracts Draft PR / merge | 段成威 | DEC-126-021 Accepted/HOLD；CI failed dependency audit；merge不是local draft前置但当前仍不批准 | 2026-08-02 |
 | Local-only delivery strategy | 段成威 | DEC-126-022 Accepted；Local Runtime Ready目标，tag/publish/deploy/G5 N/A | 2026-08-02 |
-| Local Implementation Authorization | 段成威 | S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure Passed；DEC-126-046–054 Accepted；S10B-BLK-001/002/003 Closed、004 Open | 2026-08-05 | LIA-126-016已消费，R3 Closure Fail；LIA-126-017已批准但Held / Not Started，等待明确执行指令；S10B重跑、S11/MiniMax/default activation与远端动作未授权 |
+| Local Implementation Authorization | 段成威 | S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure Passed；DEC-126-046–054 Accepted；LIA-126-017/S10BD1已消费并形成Closure候选；S10B-BLK-001/002/003 Closed、004 Owner Pending | 2026-08-05 | Infra `2a643cae…97a`全部门禁通过；DEC-126-055待批；S10B重跑、S11/MiniMax/default activation与远端动作未授权 |
 
 ## 12. Local Implementation Authorization 审批候选
 
@@ -253,7 +254,7 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - `LIA-126-006 / S8B`结果：Owner在DEC-126-033接受后单独授权Vue页面、交互、视觉与可访问性；实现消费真实authoritative store，fake投影只存在test harness；DEC-126-034已接受Closure，feature flag activation不随之授权。
 - S7C结果：Owner已接受DEC-126-030，S7C Closure Passed。
 - S8A结果：20个versioned commands、closed Schema/fixtures、Rust-bound context/event/cursors、TS validator/client/store已实现；Desktop `make lint/test/build`及安全扫描PASS；DEC-126-031已接受S8A Closure，G3仍Partial。
-- 当前状态：S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure Passed、BLK-001–005及S10B-BLK-001/002/003 Closed。LIA-126-016已消费且S10B-R3 Closure Fail；DEC-126-053/054 Accepted、`S10B-BLK-004` Open。DESIGN-126-011已完成并接受；LIA-126-017为`APPROVED / HELD / NOT STARTED`，S10B-R4/S11保持`NOT AUTHORIZED / NOT RUN`，signed Protected Data仍Deferred Native Hardening。
+- 当前状态：S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure Passed、BLK-001–005及S10B-BLK-001/002/003 Closed。LIA-126-016已消费且S10B-R3 Closure Fail；LIA-126-017/S10BD1为`CONSUMED / IMPLEMENTED / VERIFIED / CLOSURE CANDIDATE`。DEC-126-055待Owner，故`S10B-BLK-004` Open；S10B-R4/S11保持`NOT AUTHORIZED / NOT RUN`，signed Protected Data仍Deferred Native Hardening。
 
 ### LIA-126-005 / S8B0（Approved / Executed / DEC-126-033 Closure Passed）
 
@@ -376,7 +377,7 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - S10B-001在资源创建前执行权威migration preflight。Infra wrapper仍固定旧API `a64f9f...`，与当前必须使用的closed bootstrap API `c5f334e...`不一致，因此run `4ffa07b9-6e4c-45d4-b5d5-3b3be5d7d818`按设计fail closed。
 - S10B-002–012未运行；run root、secret、container、network、volume、数据库、API/Desktop/Host/fake/Runtime均未创建或启动。没有需要删除的run资源。
 - 登记`S10B-BLK-003`。Owner已接受DEC-126-051并拒绝Closure；不得现场替换hardcoded SHA、退回旧API、绕过wrapper或直接重跑。Owner随后单独授权LIA-126-015，纠偏结果见§18。
-- 当前下一步不是S11、MiniMax smoke或S10B重跑。LIA-126-017已批准但Held，须由Owner另行给出明确执行指令后才进入S10BD1；只有完成并接受S10BD1 Closure，才形成clean Infra/Governance SHA并申请一次fresh S10B-R4。G3保持Partial，G4/G6 Pending。
+- 当前下一步不是S11、MiniMax smoke或S10B重跑，而是Owner评审DEC-126-055。只有Owner接受S10BD1 Closure并关闭BLK-004后，才可另行申请一次fresh S10B-R4；不得自动执行。G3保持Partial，G4/G6 Pending。
 
 ## 18. LIA-126-015 / S10BM1执行与退出
 
@@ -396,12 +397,12 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - 停止：任一precondition、SHA、identity、migration、authority、no-log、cleanup或用例失败立即停止并登记新blocker；不得现场修复或直接重跑。
 - 实际执行：七仓exact-clean、Compose 5.3.0、Docker 29.6.1、受控端口空闲、ignored secret init与Compose config通过；accepted image verifier随后无法直接inspect冻结PostgreSQL `repository@digest`，在Compose up前fail closed。
 - containment：为run `6c1d8652-7b99-4ca8-8c0e-f9a61e7ca4a5`写入owner-only `REJECTED`，执行exact stop；container/network/volume/listener=`0/0/0/0`，ignored run root与secret record保留。未调用MiniMax、未访问Keychain/真实数据、未修改源码或远端。
-- 退出：S10B-001 FAIL，002–012 NOT RUN；登记新独立`S10B-BLK-004`。Owner已接受DEC-126-053/054，并单独批准LIA-126-017但要求不能自动进入实施。在收到明确执行指令前，不pull/retag/重启Docker workaround、不改helper/pin、不运行probe、不重跑、不进入S11。
+- 退出：S10B-001 FAIL，002–012 NOT RUN；登记新独立`S10B-BLK-004`。Owner接受DEC-126-053/054后又明确开始并消费LIA-126-017；S10BD1证据现已通过。BLK-004仍等待DEC-126-055 Owner决定；不pull/retag/重启Docker workaround、不重跑、不进入S11。
 
 ## 20. DESIGN-126-011 / S10BD0退出与后续授权建议
 
 - 只读事实：现有verifier在Docker endpoint/socket不可达时仍返回generic image-unavailable；本轮未启动Docker Desktop。此前获准只读上下文中正确PostgreSQL exact pin可解析，故不能把R3永久归因于Docker 29.6.1或digest内容错误。
 - 设计冻结：capability-first、closed/content-free failure classes、原Compose pin的Id/Descriptor/RepoDigests/repository/platform校验，以及单独授权的`docker create --pull=never`创建但不启动/精确清理probe。
-- 分类：S10BD0 docs-only=`none`；拟议S10BD1为local deployment-interface `semantic`；central contracts/HTTP/SSE/private IPC/DB schema/Runtime pin均`none`，G2A=N/A。
-- 交付：DESIGN-126-011完成；DEC-126-054 Option A已Accepted；`LIA-126-017 / S10BD1`已批准但当前为HELD / NOT STARTED，授权未消费。
-- 退出链：DEC-126-054 Accepted → LIA-126-017 Approved-Held → Owner明确执行指令 → Infra实现/测试/live probe → Closure Review Accepted → clean Infra/Governance SHA → Owner另批一次S10B-R4。任一环节不得自动跳过。
+- 分类：S10BD0 docs-only=`none`；已实施S10BD1为local deployment-interface `semantic`；central contracts/HTTP/SSE/private IPC/DB schema/Runtime pin均`none`，G2A=N/A。
+- 交付：DESIGN-126-011完成；DEC-126-054 Option A已Accepted；`LIA-126-017 / S10BD1`已消费并完成，Infra clean checkpoint与live证据已固定；DEC-126-055待Owner。
+- 退出链：DEC-126-054 Accepted → LIA-126-017 explicit consumption → Infra实现/测试/live probe PASS → DEC-126-055 Owner Accepted → BLK-004 Closed → clean Governance记录 → Owner另批一次S10B-R4。当前停在DEC-126-055，任一后续环节不得自动跳过。

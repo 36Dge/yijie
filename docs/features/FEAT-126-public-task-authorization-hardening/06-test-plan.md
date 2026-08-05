@@ -1,7 +1,7 @@
 # FEAT-126 测试与 Eval 计划
 
 > 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。DEC-126-023/024完成G2A重审，DEC-126-025登记sole candidate与checkpoint远端ref并恢复LIA-126-002，仅执行S4–S6 Corrective Closure。
-> S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure已接受，BLK-001–005及S10B-BLK-001/002/003关闭。LIA-126-016/S10B-R3已按唯一授权执行，在S10B-001 immutable-image preflight处fail closed；002–012未开始。DEC-126-053已接受失败事实、拒绝Closure并校正根因；`S10B-BLK-004`保持Open。DESIGN-126-011/S10BD0与DEC-126-054 Option A已Accepted；LIA-126-017已批准但Held / Not Started，S10B-R4、S11与MiniMax仍未授权。
+> S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure已接受，BLK-001–005及S10B-BLK-001/002/003关闭。LIA-126-016/S10B-R3在S10B-001 fail closed；DEC-126-053/054已Accepted。Owner随后明确消费LIA-126-017，S10BD1-001–012、Infra全量与exact-commit live no-start resolver均通过；DEC-126-055 Closure候选待Owner，故`S10B-BLK-004`仍Open。S10B-R4、S11与MiniMax仍未授权。
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
 ## 1. 测试策略
@@ -563,17 +563,17 @@ S10BD0只读差分实际执行项：现有verifier在Docker endpoint不可达时
 
 | Test ID | 类别 | S10BD1必须断言 | S10BD0状态 |
 |---|---|---|---|
-| S10BD1-001 | CLI capability | CLI missing/exec error→`docker_cli_unavailable`；image/create调用0 | DESIGNED / NOT RUN |
-| S10BD1-002 | daemon capability | permission denied与socket/endpoint/daemon unavailable分成closed classes；image/create调用0 | current endpoint-unavailable差分 OBSERVED |
-| S10BD1-003 | exact authority | 只消费Compose原`version-tag@digest`；3个唯一pin；无第二清单/floating/image-ID bypass | DESIGNED / existing static source reviewed |
-| S10BD1-004 | identity | Id、mandatory Descriptor、RepoDigests、repository、linux/server architecture全部exact | DESIGNED / NOT RUN |
-| S10BD1-005 | missing vs unresolved | exact ref not-found后tag-only只作诊断；tag absent=`image_not_found`，tag exact=`image_reference_unresolved`，不得fallback PASS | DESIGNED / NOT RUN |
-| S10BD1-006 | payload | empty/multiline/oversize/invalid JSON/extra output→`inspect_payload_invalid` | DESIGNED / NOT RUN |
-| S10BD1-007 | drift | Id/repository/digest/descriptor/OS/architecture mismatch及双快照不一致全部fail closed | DESIGNED / NOT RUN |
-| S10BD1-008 | resolver | `docker create --pull=never --network none <exact pin>`创建但不启动；Image ID/label/name/run/pin exact | AUTHORIZED / HELD / NOT RUN |
-| S10BD1-009 | volume/network | inspect声明volume全部用tmpfs覆盖；anonymous volume/network/port/listener增量0 | AUTHORIZED / HELD / NOT RUN |
-| S10BD1-010 | unknown outcome | exact-name reconcile；只有ID/name/labels/run/pin全匹配才rm；mismatch删除0 | AUTHORIZED / HELD / NOT RUN |
-| S10BD1-011 | no-log | raw stderr、socket/context/path、credential/token/正文不进入日志/evidence；只输出closed class与计数 | DESIGNED / NOT RUN |
-| S10BD1-012 | regression | Infra validate/lint/test、Compose pins与`--pull never`逐字节、feat125回归、diff/security scans | DESIGNED / NOT RUN |
+| S10BD1-001 | CLI capability | CLI missing/exec error→`docker_cli_unavailable`；image/create调用0 | PASS |
+| S10BD1-002 | daemon capability | permission denied与socket/endpoint/daemon unavailable分成closed classes；image/create调用0 | PASS |
+| S10BD1-003 | exact authority | 只消费Compose原`version-tag@digest`；3个唯一pin；无第二清单/floating/image-ID bypass | PASS |
+| S10BD1-004 | identity | Id、mandatory Descriptor、RepoDigests、repository、linux/server architecture全部exact | PASS |
+| S10BD1-005 | missing vs unresolved | exact ref not-found后tag-only只作诊断；tag absent=`image_not_found`，tag exact=`image_reference_unresolved`，不得fallback PASS | PASS |
+| S10BD1-006 | payload | empty/multiline/oversize/invalid JSON/extra output→`inspect_payload_invalid` | PASS |
+| S10BD1-007 | drift | Id/repository/digest/descriptor/OS/architecture mismatch及双快照不一致全部fail closed | PASS |
+| S10BD1-008 | resolver | `docker create --pull=never --network none <exact pin>`创建但不启动；Image ID/label/name/run/pin exact | PASS / unit + live exact-commit |
+| S10BD1-009 | volume/network | inspect声明volume全部用tmpfs覆盖；anonymous volume/network/port/listener增量0 | PASS / live labeled resources=0 |
+| S10BD1-010 | unknown outcome | exact-name reconcile；只有ID/name/labels/run/pin全匹配才rm；mismatch删除0 | PASS |
+| S10BD1-011 | no-log | raw stderr、socket/context/path、credential/token/正文不进入日志/evidence；只输出closed class与计数 | PASS |
+| S10BD1-012 | regression | Infra validate/lint/test、Compose pins与`--pull never`逐字节、feat125回归、diff/security scans | PASS / full 99 of 99 |
 
-Owner已接受DEC-126-054 Option A并单独批准LIA-126-017，但明确不能由批准自动进入实施。当前授权Held / Not Started，必须收到后续明确执行指令后才可修改Infra verifier/测试并运行create/remove probe。S10BD1 Closure接受、clean Infra/Governance SHA和新的Owner授权缺一不可；不得自动进入S10B-R4。
+Owner已接受DEC-126-054 Option A并在之后给出明确执行指令，LIA-126-017已消费。Governance执行基线为`075a5051b538ce8f28834db70de8f4f544ce4484`，Infra clean候选为`2a643caef210e32cab80242ede46b96927b2097a`。focused 12/12与full 99/99 PASS；live run `12600000-0000-4000-8000-000000000055`验证3 identity/3 no-start probes，未pull且后置资源为0。DEC-126-055仍须Owner接受；不得自动进入S10B-R4。

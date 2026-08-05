@@ -5,7 +5,7 @@
 > 分支均已精确远端可达，旧Draft PR #1与各`origin/develop`不变。DEC-126-026已接受S4–S6
 > Foundation Corrective Closure并单独授权S7A Desktop Rust Host Bridge/Domain；DEC-126-027已由
 > Owner接受。随后单独授权的S7B Rust Application Orchestration/Domain已完成并由Owner通过DEC-126-028接受；远端可达不等于merge、发布或生产启用。
-> 随后Owner接受S7C–S9及S10E/P1/P2F/P3 Closure，BLK-001/002/003/004/005关闭。LIA-126-016/S10B-R3已作为第三次fresh执行消费并在S10B-001 immutable-image preflight处fail closed；002–012未运行。DEC-126-053已接受失败事实、拒绝Closure并校正根因，`S10B-BLK-004`保持Open。DESIGN-126-011/S10BD0与DEC-126-054 Option A已Accepted；LIA-126-017已批准但Held / Not Started，G3仍Partial，G4/G6 Pending。
+> 随后Owner接受S7C–S9及S10E/P1/P2F/P3 Closure，BLK-001/002/003/004/005关闭。LIA-126-016/S10B-R3在S10B-001 fail closed；DEC-126-053/054已Accepted。Owner之后明确开始并消费LIA-126-017；S10BD1实现、001–012、全量Infra与exact-commit live no-start resolver证据全部通过。DEC-126-055 Closure候选待Owner，故`S10B-BLK-004`保持Open；G3仍Partial，G4/G6 Pending。
 
 ## 1. 验证上下文
 
@@ -679,6 +679,21 @@ artifact SHA-256：authority `a8ba0234d4c1ea13bfaa48ca955f6d5d7ab17c43216fdfa689
 
 DESIGN-126-011冻结capability-first、closed failure classes、原Compose pin exact identity与单独授权的no-pull create/remove resolver probe。DEC-126-054 Option A已Accepted；LIA-126-017已批准但Held / Not Started，授权尚未消费。本节不是S10BD1实现/Closure、S10B/G4或local G6证据。
 
+### 9.28 LIA-126-017 / S10BD1 Closure Review Candidate
+
+| Review | 实际证据 | 判定 |
+|---|---|---|
+| Provenance | Governance execution checkpoint `075a5051b538ce8f28834db70de8f4f544ce4484`；Infra exact clean checkpoint `2a643caef210e32cab80242ede46b96927b2097a`；Contracts/Runtime pins unchanged | PASS |
+| Closed capability classes | CLI、permission、daemon、image missing/reference unresolved、identity/repository/digest/platform/payload、resolver/cleanup失败均闭合；capability失败时image/create=0 | PASS / S10BD1-001–007 |
+| Immutable authority | 只消费Compose原始3个`version-tag@digest`；Id、Descriptor、RepoDigests、repository、OS/server arch与双快照稳定性均校验；tag-only不产生PASS | PASS |
+| Resolver safety | `create --pull=never --network none`；never start；run-scoped name/labels；全部声明volume用tmpfs；unknown outcome exact reconcile；foreign/mismatch delete=0 | PASS / S10BD1-008–010 |
+| Automated gates | focused S10BD1 12/12；Infra full 99/99；validate/lint/shell/security/no-log/diff；Compose pins与`--pull never` unchanged | PASS |
+| Exact-commit live probe | run `12600000-0000-4000-8000-000000000055`；Docker Desktop 4.82.0 / Engine 29.6.1 / linux-arm64；3 immutable identities + 3 no-start probes | PASS / no pull |
+| Cleanup/state restoration | labeled containers=0、running=0、networks=0、volumes=0；Docker由本轮启动并恢复执行前stopped | PASS |
+| Scope | API/Host/Desktop/Runtime/contracts/wire/schema/MiniMax/Keychain/real data/default flag/remote write/S10B-R4/S11=0 | PASS |
+
+结构化结论：S10BD1授权范围内P1=0，推荐DEC-126-055 Option A接受Closure。该候选不具备自批准效力；Owner接受前`S10B-BLK-004`仍Open，且不得自动申请或执行S10B-R4。
+
 ## 10. 未验证项与残余风险
 
 | Item | 原因 | 风险 | 补验证条件 | Owner | 是否阻断 |
@@ -689,14 +704,14 @@ DESIGN-126-011冻结capability-first、closed failure classes、原Compose pin e
 | DB/encryption/delete E2E | SQLCipher v4 job/receipt、independent HMAC key、migration/cascade/checkpoint、restart和fake Host cleanup单仓PASS | 跨Desktop/Host/Runtime真实进程partial delete仍未运行 | S10验证完整多进程job/receipt/restart/fault E2E | 段成威 | blocks G4/local G6 |
 | Runtime raw-reasoning/title/delete | S9 deterministic Eval与S10P1 Host→fixed Runtime assistant/raw真实turn PASS；完整Desktop turn/history/delete多进程链仍未运行 | raw UX/residual/inconsistent history | keep default flags off until S10B；历史MiniMax public-summary FAIL不改写 | 段成威 | blocks G4/local G6 |
 | Desktop sidecar/secret storage | actual Desktop supervisor→Host→fixed Runtime child readiness/stop PASS；S10P2F file integrity/isolation/restart/no-log/exact cleanup实现与证据PASS；DEC-126-043 Accepted | signed native仍Deferred Native Hardening/NOT RUN，不等于PASS | Local-only BLK-004已关闭；未来native signing/production intent恢复native hardening门禁 | 段成威 | no longer blocks Local-only BLK-004；does not authorize S10P3/S10B |
-| S10B immutable image/startup readiness | BLK-001–005及S10B-BLK-001/002/003 closed；R3 exact-clean/tool/port/config PASS；DEC-126-053/054 Accepted；DESIGN-126-011 complete；LIA-126-017 Approved-Held | accepted verifier无法区分Docker capability、permission、daemon、image和reference failure；containerd state仍待S10BD1复验 | 等待Owner明确执行指令；随后才执行capability-first + exact identity + no-pull resolver/cleanup矩阵；不得直接重跑 | 段成威 | **S10B-BLK-004 Open；blocks G4/local G6** |
+| S10B immutable image/startup readiness | BLK-001–005及S10B-BLK-001/002/003 closed；S10BD1 candidate在Infra `2a643cae…97a`完成capability/identity/resolver/cleanup，001–012、99/99与live evidence PASS | Codex不能自批Closure；DEC-126-055尚未由Owner接受 | Owner决定DEC-126-055；即使接受也须另批S10B-R4，不得直接重跑 | 段成威 | **S10B-BLK-004 Open pending Owner；blocks G4/local G6** |
 | S10E image-reference precheck | exact repository-digest verifier、85/85自动化和fresh no-pull四依赖up/stop PASS | 局部启动不能冒充S10B | DEC-126-050 Accepted；保持无floating tag/pull | 段成威 | S10B-BLK-002 Closed |
 | production identity/infra | FEAT-125 deferred | no production safety | N/A for DEC-126-022 local-only scope；future online intent must reopen production track and FEAT-125 prerequisites | 段成威 | does not block local G6；blocks any production claim |
 
 ## 11. 结论
 
-- Requirements package：G1/G2/G2A Re-review Passed；DEC-126-023–054 Accepted；DESIGN-126-011完成并接受；LIA-126-017 Approved-Held-Not-Started。S10BP1/S10BR1/S10BM1 Closure Passed，S10B-BLK-001/002/003 Closed，S10B-BLK-004 Open。
+- Requirements package：G1/G2/G2A Re-review Passed；DEC-126-023–054 Accepted；DESIGN-126-011完成并接受；LIA-126-017/S10BD1已消费并形成DEC-126-055 Closure候选。S10BP1/S10BR1/S10BM1 Closure Passed，S10B-BLK-001/002/003 Closed，S10B-BLK-004 Open pending Owner。
 - Code Complete：No。G3仍Partial；LIA-126-016已消费并在S10B-001 fail closed，完整四组件E2E、G4与Owner G6均未完成。
 - 验证人：Codex（文档事实与结构）；最终 Reviewer 为段成威。
 - 日期：2026-08-05。
-- 结论依据：既有accepted链与七仓fixed baseline；Desktop/Infra local checkpoints；fresh S10E/S10P3证据；S10BM1共享SHA authority验证；S10B-R3在任何container创建前fail closed的事实；以及S10BD0证明generic verifier failure不能区分Docker capability与image/reference状态的只读差分。无Xcode/Keychain/MiniMax/真实数据/远端动作；没有把历史tag metadata、当前daemon-unavailable或abort安全事实冒充immutable resolver PASS或完整S10B E2E。
+- 结论依据：既有accepted链与七仓fixed baseline；Desktop/Infra local checkpoints；fresh S10E/S10P3证据；S10BM1共享SHA authority验证；S10B-R3 fail-closed事实；以及S10BD1在exact clean Infra SHA上的closed classifier、99/99与live 3 identity/3 no-start probe证据。无Xcode/Keychain/MiniMax/真实数据/远端动作；S10BD1 PASS没有被冒充完整S10B E2E。
