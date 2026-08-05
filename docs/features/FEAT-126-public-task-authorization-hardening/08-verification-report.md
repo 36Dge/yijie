@@ -5,7 +5,7 @@
 > 分支均已精确远端可达，旧Draft PR #1与各`origin/develop`不变。DEC-126-026已接受S4–S6
 > Foundation Corrective Closure并单独授权S7A Desktop Rust Host Bridge/Domain；DEC-126-027已由
 > Owner接受。随后单独授权的S7B Rust Application Orchestration/Domain已完成并由Owner通过DEC-126-028接受；远端可达不等于merge、发布或生产启用。
-> 随后Owner接受S7C–S9及S10E/P1/P2F/P3 Closure，BLK-001/002/003/004/005关闭。LIA-126-016/S10B-R3在S10B-001 fail closed；DEC-126-053/054已Accepted。Owner之后明确开始并消费LIA-126-017；S10BD1实现、001–012、全量Infra与exact-commit live no-start resolver证据全部通过。DEC-126-055 Closure候选待Owner，故`S10B-BLK-004`保持Open；G3仍Partial，G4/G6 Pending。
+> 随后Owner接受S7C–S9及S10E/P1/P2F/P3/S10BD1 Closure，BLK-001/002/003/004/005及S10B-BLK-001–004关闭。LIA-126-016/S10B-R3在S10B-001 fail closed；DEC-126-053–055已Accepted。G3仍Partial，G4/G6 Pending，S10B-R4未授权。
 
 ## 1. 验证上下文
 
@@ -692,7 +692,7 @@ DESIGN-126-011冻结capability-first、closed failure classes、原Compose pin e
 | Cleanup/state restoration | labeled containers=0、running=0、networks=0、volumes=0；Docker由本轮启动并恢复执行前stopped | PASS |
 | Scope | API/Host/Desktop/Runtime/contracts/wire/schema/MiniMax/Keychain/real data/default flag/remote write/S10B-R4/S11=0 | PASS |
 
-结构化结论：S10BD1授权范围内P1=0，推荐DEC-126-055 Option A接受Closure。该候选不具备自批准效力；Owner接受前`S10B-BLK-004`仍Open，且不得自动申请或执行S10B-R4。
+结构化结论：S10BD1授权范围内P1=0；Owner已接受DEC-126-055 Option A，S10BD1 Closure Passed并关闭`S10B-BLK-004`。不得自动申请或执行S10B-R4。
 
 ## 10. 未验证项与残余风险
 
@@ -704,13 +704,13 @@ DESIGN-126-011冻结capability-first、closed failure classes、原Compose pin e
 | DB/encryption/delete E2E | SQLCipher v4 job/receipt、independent HMAC key、migration/cascade/checkpoint、restart和fake Host cleanup单仓PASS | 跨Desktop/Host/Runtime真实进程partial delete仍未运行 | S10验证完整多进程job/receipt/restart/fault E2E | 段成威 | blocks G4/local G6 |
 | Runtime raw-reasoning/title/delete | S9 deterministic Eval与S10P1 Host→fixed Runtime assistant/raw真实turn PASS；完整Desktop turn/history/delete多进程链仍未运行 | raw UX/residual/inconsistent history | keep default flags off until S10B；历史MiniMax public-summary FAIL不改写 | 段成威 | blocks G4/local G6 |
 | Desktop sidecar/secret storage | actual Desktop supervisor→Host→fixed Runtime child readiness/stop PASS；S10P2F file integrity/isolation/restart/no-log/exact cleanup实现与证据PASS；DEC-126-043 Accepted | signed native仍Deferred Native Hardening/NOT RUN，不等于PASS | Local-only BLK-004已关闭；未来native signing/production intent恢复native hardening门禁 | 段成威 | no longer blocks Local-only BLK-004；does not authorize S10P3/S10B |
-| S10B immutable image/startup readiness | BLK-001–005及S10B-BLK-001/002/003 closed；S10BD1 candidate在Infra `2a643cae…97a`完成capability/identity/resolver/cleanup，001–012、99/99与live evidence PASS | Codex不能自批Closure；DEC-126-055尚未由Owner接受 | Owner决定DEC-126-055；即使接受也须另批S10B-R4，不得直接重跑 | 段成威 | **S10B-BLK-004 Open pending Owner；blocks G4/local G6** |
+| S10B immutable image/startup readiness | BLK-001–005及S10B-BLK-001–004 closed；S10BD1在Infra `2a643cae…97a`完成capability/identity/resolver/cleanup，001–012、99/99与live evidence PASS；DEC-126-055 Accepted | 尚未执行新的完整fresh E2E | 另行明确授权S10B-R4；不得直接重跑 | 段成威 | **corrective blockers closed；fresh E2E still blocks G4/local G6** |
 | S10E image-reference precheck | exact repository-digest verifier、85/85自动化和fresh no-pull四依赖up/stop PASS | 局部启动不能冒充S10B | DEC-126-050 Accepted；保持无floating tag/pull | 段成威 | S10B-BLK-002 Closed |
 | production identity/infra | FEAT-125 deferred | no production safety | N/A for DEC-126-022 local-only scope；future online intent must reopen production track and FEAT-125 prerequisites | 段成威 | does not block local G6；blocks any production claim |
 
 ## 11. 结论
 
-- Requirements package：G1/G2/G2A Re-review Passed；DEC-126-023–054 Accepted；DESIGN-126-011完成并接受；LIA-126-017/S10BD1已消费并形成DEC-126-055 Closure候选。S10BP1/S10BR1/S10BM1 Closure Passed，S10B-BLK-001/002/003 Closed，S10B-BLK-004 Open pending Owner。
+- Requirements package：G1/G2/G2A Re-review Passed；DEC-126-023–055 Accepted；DESIGN-126-011与LIA-126-017/S10BD1 Closure已接受。S10BP1/S10BR1/S10BM1/S10BD1 Closure Passed，S10B-BLK-001–004 Closed。
 - Code Complete：No。G3仍Partial；LIA-126-016已消费并在S10B-001 fail closed，完整四组件E2E、G4与Owner G6均未完成。
 - 验证人：Codex（文档事实与结构）；最终 Reviewer 为段成威。
 - 日期：2026-08-05。

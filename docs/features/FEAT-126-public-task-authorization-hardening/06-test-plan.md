@@ -1,7 +1,7 @@
 # FEAT-126 测试与 Eval 计划
 
 > 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。DEC-126-023/024完成G2A重审，DEC-126-025登记sole candidate与checkpoint远端ref并恢复LIA-126-002，仅执行S4–S6 Corrective Closure。
-> S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1 Closure已接受，BLK-001–005及S10B-BLK-001/002/003关闭。LIA-126-016/S10B-R3在S10B-001 fail closed；DEC-126-053/054已Accepted。Owner随后明确消费LIA-126-017，S10BD1-001–012、Infra全量与exact-commit live no-start resolver均通过；DEC-126-055 Closure候选待Owner，故`S10B-BLK-004`仍Open。S10B-R4、S11与MiniMax仍未授权。
+> S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1 Closure已接受，BLK-001–005及S10B-BLK-001–004关闭。LIA-126-016/S10B-R3在S10B-001 fail closed；DEC-126-053–055已Accepted。S10B-R4、S11与MiniMax仍未授权。
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
 ## 1. 测试策略
@@ -576,4 +576,4 @@ S10BD0只读差分实际执行项：现有verifier在Docker endpoint不可达时
 | S10BD1-011 | no-log | raw stderr、socket/context/path、credential/token/正文不进入日志/evidence；只输出closed class与计数 | PASS |
 | S10BD1-012 | regression | Infra validate/lint/test、Compose pins与`--pull never`逐字节、feat125回归、diff/security scans | PASS / full 99 of 99 |
 
-Owner已接受DEC-126-054 Option A并在之后给出明确执行指令，LIA-126-017已消费。Governance执行基线为`075a5051b538ce8f28834db70de8f4f544ce4484`，Infra clean候选为`2a643caef210e32cab80242ede46b96927b2097a`。focused 12/12与full 99/99 PASS；live run `12600000-0000-4000-8000-000000000055`验证3 identity/3 no-start probes，未pull且后置资源为0。DEC-126-055仍须Owner接受；不得自动进入S10B-R4。
+Owner已接受DEC-126-054 Option A并消费LIA-126-017。Governance执行基线为`075a5051b538ce8f28834db70de8f4f544ce4484`，Infra clean候选为`2a643caef210e32cab80242ede46b96927b2097a`。focused 12/12与full 99/99 PASS；live run `12600000-0000-4000-8000-000000000055`验证3 identity/3 no-start probes，未pull且后置资源为0。DEC-126-055 Option A已接受Closure并关闭BLK-004；不得自动进入S10B-R4。

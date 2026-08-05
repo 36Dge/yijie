@@ -272,10 +272,10 @@ S8B切片contract impact为`semantic Desktop-private`，不改变central feature
 - central source candidate继续固定`29317b6426578749dc698fc2ad32b986ee5c8e9f`；Public Tasks HTTP、Host SSE、Desktop private IPC、SQLCipher业务schema与Runtime pin均不变，因此central G2A重审为N/A。
 - 唯一consumer是同仓FEAT-126 S10E/S10B本地helper；成功路径仍消费原Compose `version-tag@digest`与`--pull never`。变化只把CLI/permission/daemon/image/reference/platform错误闭合分类，并在单独授权时增加实际no-pull resolver证明。
 - 兼容/回滚：仓库caller与tests须在同一checkpoint更新；回滚可移除新classifier/probe并继续HOLD S10B，不能以pull、retag、Docker restart、floating tag、image-store切换或volume删除替代。
-- 状态：DESIGN-126-011 complete；DEC-126-054 Option A Accepted；LIA-126-017已由Owner明确开始并消费。Infra checkpoint=`2a643caef210e32cab80242ede46b96927b2097a`，S10BD1-001–012、99/99全量与exact-commit live no-start resolver均PASS；DEC-126-055 Closure候选待Owner接受，故`S10B-BLK-004`仍Open。
+- 状态：DESIGN-126-011 complete；DEC-126-054/055 Option A Accepted；LIA-126-017已消费。Infra checkpoint=`2a643caef210e32cab80242ede46b96927b2097a`，S10BD1-001–012、99/99全量与exact-commit live no-start resolver均PASS；S10BD1 Closure Passed，`S10B-BLK-004` Closed。
 
-## 14. DEC-126-055 compatibility conclusion candidate
+## 14. DEC-126-055 compatibility conclusion
 
 - central contracts、Public Tasks/Host wire、Desktop private IPC、SQLCipher业务schema与Runtime pin无diff；唯一source-contract candidate仍为`29317b6426578749dc698fc2ad32b986ee5c8e9f`，central G2A=`N/A`。
 - private deployment interface的consumer已与verifier在同一Infra checkpoint原子更新；Compose原始`version-tag@digest`、repository pin和`--pull never`均未改变，也没有第二pin authority、floating tag或image-ID bypass。
-- 推荐Option A：Owner接受S10BD1 Closure并关闭`S10B-BLK-004`。该接受只证明纠偏切片，不能推导S10B-R4、S11、feature activation、发布或部署授权。
+- Owner已接受Option A、S10BD1 Closure并关闭`S10B-BLK-004`。该接受只证明纠偏切片，不能推导S10B-R4、S11、feature activation、发布或部署授权。
