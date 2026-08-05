@@ -260,3 +260,14 @@ Contract impact for S8B：`semantic`（Desktop-private UI consumer）。它改�
 | 外部系统 | 无调用 | MiniMax、registry、remote Git、production/real data | side effect=0 |
 
 S9自身contract impact为`additive-test-only`；FEAT-126总体仍保持`breaking`，无需G2A重审。
+
+## 14. S10BF1 实际影响差异（LIA-126-019）
+
+| Repository | 实际变化 | 未变化 | 结论 |
+|---|---|---|---|
+| yijie-agent-host | test-only fake health显式拆分dataset/case；新增Host-owned closed readiness probe与负向测试 | default MiniMax/provider、Host业务HTTP/SSE、bbolt/session、Runtime pin | local checkpoint `1ca4ee5…a560`；操作者不再提供fixture identity |
+| yijie-infra | 新增唯一S10B-001组合preflight runner、七SHA/fresh-run/default-off/no-log/cleanup验证与103项回归 | Compose pins、API/Host/Public wire、业务schema、既有S10E命令语义 | local checkpoint `5723ffd…c0c9`；不构造fake header或复制case常量 |
+| yijie | DEC-126-056 Accepted、LIA-126-019执行与DEC-126-057 Closure候选证据 | G2/G2A、S10B-R4失败历史、G4/G6 | governance only；执行基线`db12fe6…cc4d` |
+| 其它仓库/系统 | 无源码变化 | Contracts/API/Desktop/Runtime pin、MiniMax、真实数据、Keychain、远端Git | side effect=0；S10B-R5未执行 |
+
+S10BF1 contract impact为private test/deployment tooling `semantic`，central G2A=`N/A`。它只消除预检身份与人工编排歧义，不改变产品行为或对外兼容面。

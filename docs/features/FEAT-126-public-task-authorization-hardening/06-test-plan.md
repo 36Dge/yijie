@@ -1,7 +1,7 @@
 # FEAT-126 测试与 Eval 计划
 
 > 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。DEC-126-023/024完成G2A重审，DEC-126-025登记sole candidate与checkpoint远端ref并恢复LIA-126-002，仅执行S4–S6 Corrective Closure。
-> S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1 Closure已接受，BLK-001–005及S10B-BLK-001–004关闭。LIA-126-018/S10B-R4已获一次授权并在S10B-001 fail closed；S10B-BLK-005 Open，DEC-126-056等待Owner。S11与MiniMax仍未授权。
+> S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1 Closure已接受，BLK-001–005及S10B-BLK-001–004关闭。DEC-126-056已接受；LIA-126-019/S10BF1实现和S10B-001组合预检PASS，DEC-126-057等待Owner，S10B-BLK-005暂保持Open。S10B-R5、S11与MiniMax仍未授权。
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
 ## 1. 测试策略
@@ -578,7 +578,7 @@ S10BD0只读差分实际执行项：现有verifier在Docker endpoint不可达时
 
 Owner已接受DEC-126-054 Option A并消费LIA-126-017。Governance执行基线为`075a5051b538ce8f28834db70de8f4f544ce4484`，Infra clean候选为`2a643caef210e32cab80242ede46b96927b2097a`。focused 12/12与full 99/99 PASS；live run `12600000-0000-4000-8000-000000000055`验证3 identity/3 no-start probes，未pull且后置资源为0。DEC-126-055 Option A已接受Closure并关闭BLK-004；不得自动进入S10B-R4。
 
-## 27. LIA-126-018 / S10B-R4 fresh execution matrix（DEC-126-056 Candidate）
+## 27. LIA-126-018 / S10B-R4 fresh execution matrix（DEC-126-056 Accepted disposition）
 
 固定provenance：Governance `02cf06b2993ee18aefe4b7e4d6d40e2d19b2c4c1`、Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`、API `c5f334e88d54d9e04f388d0349f4f5925124abd6`、Host `e0a8d3d29a335571d1654d95e1e262c240755674`、Desktop `ed9eb14f3829f6e8fee427de40f76a2c549fb78c`、Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`、Infra `2a643caef210e32cab80242ede46b96927b2097a`；七仓均clean。run为`96a0a80d-27d4-4022-a470-4a7f004d9c4c`。
 
@@ -597,4 +597,21 @@ Owner已接受DEC-126-054 Option A并消费LIA-126-017。Governance执行基线�
 | S10B-011 | backpressure/capacity/fault未启动 | sample=`0` | NOT RUN |
 | S10B-012 | API/fake停止；四container/四network移除；临时process root删除；固定端口释放；Docker恢复此前stopped；四named volumes和ignored Infra record按既定边界保留 | active process/container/network/listener=`0/0/0/0`；retained volume=`4` | ABORT CLEANUP PASS；整体case NOT RUN |
 
-LIA-126-018的一次授权已消费。没有把header纠正为`normal-000`后继续，没有直接重跑，也没有修改任何源码或默认配置。`S10B-BLK-005`登记为Open：S10B编排缺少单一machine-readable fixture identity authority，人工将S9 dataset bundle identity与Host request fixture identity混用。DEC-126-056 Option A为候选而非Accepted；G3保持Partial，G4/G6 Pending，S11/MiniMax未授权。
+LIA-126-018的一次授权已消费。没有把header纠正为`normal-000`后继续，没有直接重跑，也没有修改任何源码或默认配置。`S10B-BLK-005`登记为Open：S10B编排缺少单一machine-readable fixture identity authority，人工将S9 dataset bundle identity与Host request fixture identity混用。Owner已接受DEC-126-056 Option A并另行授权S10BF1；R4的Closure Fail历史不变。
+
+## 28. LIA-126-019 / S10BF1 测试结果（DEC-126-057 Candidate）
+
+| Test ID | 断言 | 结果 |
+|---|---|---|
+| S10BF1-001 | Host authority明确拆分dataset/case并锁定dataset digest | PASS |
+| S10BF1-002 | probe只接受canonical run和fixed loopback；自行生成header；dataset-as-case、digest/endpoint/run drift fail closed | PASS |
+| S10BF1-003 | health/probe closed shape拒绝legacy ambiguous/unknown/oversize字段 | PASS |
+| S10BF1-004 | Infra唯一Make runner且没有dataset/fixture/operator endpoint输入 | PASS |
+| S10BF1-005 | 七仓full SHA、clean worktree、fresh run root与fixed ports | PASS |
+| S10BF1-006 | immutable resolver、fresh依赖、TLS/OIDC、2 synthetic users | PASS |
+| S10BF1-007 | migration v4、closed bootstrap、API health/readiness | PASS |
+| S10BF1-008 | Host-owned fake readiness返回不同的dataset/case身份及锁定SHA | PASS |
+| S10BF1-009 | API/fake日志generated-secret命中0，summary content-free/0600 | PASS |
+| S10BF1-010 | API/fake/container/network/listener归零；4 named volumes披露；Docker恢复停止 | PASS |
+
+逐仓门禁：Host lint/vet/contract-check/full race+coverage PASS；Infra validate/lint/full `103/103`、Node/shell/diff PASS。fresh run=`ed22fc82-4837-4a3e-a60e-7f7c8ab6f3f4`，summary SHA-256=`8198442e1c8f28a28c01fe0807b10fa0c7485ef6f808b0a24ead75a04e36f7d9`。本表是S10BF1 Closure候选，不是S10B-R5/G4证据；`s10b_r5_executed=false`，BLK-005在Owner接受DEC-126-057前保持Open。

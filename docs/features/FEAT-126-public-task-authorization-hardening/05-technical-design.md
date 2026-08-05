@@ -1227,3 +1227,24 @@ S10BD1至少覆盖：CLI missing、socket/endpoint missing、permission denied�
 ### 33.3 Gate
 
 实现侧P1为0；Owner已接受DEC-126-055 Option A，S10BD1 Closure Passed并关闭`S10B-BLK-004`。该接受不自动授权S10B-R4、S11、MiniMax、feature activation或远端动作。
+
+## 34. LIA-126-019 / S10BF1 Host-owned fake readiness与单一preflight
+
+### 34.1 Authority与contract impact
+
+Owner已接受DEC-126-056 Option A并单独授权LIA-126-019。Host是dataset/case/digest的唯一authority：`FrozenReadinessAuthority`从已锁定的S9 bundle读取`dataset_id`、固定case和dataset SHA；test-only health与probe使用显式`fixture_case_id`，不再输出歧义字段。probe只接受canonical run UUID和固定`127.0.0.1:18082/healthz`，自行附加run/case header，禁止redirect、proxy、hostname、query、unknown field、oversize或identity drift。
+
+Infra新增唯一`make feat-126-s10b-preflight`入口。调用者只提供fresh run UUID与七个完整候选SHA；不存在dataset、fixture或endpoint参数/env/Make变量。runner从固定sibling repos校验exact clean候选，依次组合accepted resolver、S10E、TLS/OIDC、synthetic identity、migration/bootstrap、API health/readiness和Host probe，并只接受Host返回的closed projection。它不复制第二套case/dataset常量，也不构造fake请求header。
+
+该变更只影响private test/deployment tooling，分类为`semantic`；central contracts、Public Tasks与Host业务wire、Desktop private IPC、SQLCipher/PostgreSQL业务schema、API/Desktop/Runtime行为及Runtime pin均未改变，G2A=N/A。fake health是test-only private probe surface，不是生产Host API。
+
+### 34.2 自动化与fresh组合预检
+
+- Host checkpoint：`1ca4ee555586e5243f7101b9fe056c6fa117a560`。Host全量race/coverage、lint/vet、contract snapshot PASS；authority、exact endpoint/run、unknown/oversize、dataset-as-case、digest drift测试PASS。独立loopback live probe返回`dataset_id=feat126-title-raw-v1`、`fixture_case_id=normal-000`和锁定dataset SHA。
+- Infra checkpoint：`5723ffdaa3f2c4b63914a6fd6ef7bac9f15bc0c9`。Infra validate/lint、103/103 tests、Node/shell/diff PASS；测试证明单一Make入口、七SHA authority、无operator fixture/dataset输入、closed projection和全组合gate。
+- fresh run：`ed22fc82-4837-4a3e-a60e-7f7c8ab6f3f4`，Governance执行基线`db12fe6ce4a8c1f84ac90781191d8a1b26dbcc4d`。resolver、fresh dependencies、TLS/OIDC、2个synthetic users、migration v4、closed bootstrap、API health/ready、Host-owned fake readiness及generated-secret日志扫描全部PASS。
+- content-free summary模式`0600`，SHA-256=`8198442e1c8f28a28c01fe0807b10fa0c7485ef6f808b0a24ead75a04e36f7d9`。API/fake已停止，container/network/listener均0；四个run-scoped named volumes和ignored run record按既定边界保留；Docker Desktop恢复执行前停止状态。
+
+### 34.3 Closure与停止边界
+
+上述只证明S10BF1 corrective与`S10B-001 combined preflight`，不证明S10B-R5、真实Vue对话链或G4。`s10b_r5_executed=false`；S10B-002–012、S11、MiniMax、真实数据/Keychain、default activation和远端动作均未执行。DEC-126-057 Option A现提交Owner；在其接受前`S10B-BLK-005`保持Open。即使接受，也只关闭该blocker，fresh S10B-R5仍须单独明确授权。

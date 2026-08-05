@@ -4,7 +4,7 @@
 
 | 字段 | 内容 |
 |---|---|
-| 状态 | G1/G2/G2A Passed / S4–S10BD1 Closure Passed / S10B-R4 Closure Fail / S10B-BLK-005 Open / DEC-126-056 Candidate / G3 Partial |
+| 状态 | G1/G2/G2A Passed / S4–S10BD1 Closure Passed / S10B-R4 Closure Fail / DEC-126-056 Accepted / S10BF1 Combined Preflight Passed / DEC-126-057 Candidate / S10B-BLK-005 Open / G3 Partial |
 | 需求负责人 | 段成威 |
 | Product/Design 决策人 | 段成威 |
 | 技术负责人 | 段成威 |
@@ -153,7 +153,7 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 | G2A 契约就绪 | 2026-08-02 | 段成威 | Re-review Passed：DEC-126-024 Accepted，`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate；现已精确推送到`origin/feat/feat-126-content-free-candidate`，`origin/develop`、历史`c000a024`与Draft PR #1均不变；远端可达不等于merge/发布/实现完成 |
 | Contract Draft PR / merge readiness | 2026-08-02 | 段成威 | DEC-126-021 Accepted/HOLD：Draft PR #1固定SHA且保持Draft；红色CI只阻断merge，不回退G2/G2A；未来需本地跨仓E2E、audit修复、远端CI全绿及单独merge批准 |
 | Local-only Delivery Strategy | 2026-08-02 | 段成威 | DEC-126-022 Accepted；目标改为Local Runtime Ready；tag/publish/deploy/G5均N/A；LIA-126-001后续仅授权S4–S6 |
-| G3 本地切片完成 | 未排期 | 段成威 | Partial：S4–S10BD1 Closure已接受；LIA-126-018/S10B-R4已消费并在S10B-001的fake fixture identity readiness处fail closed；S10B-BLK-001–004仍Closed，新S10B-BLK-005 Open；DEC-126-056待Owner，002–012/S11未运行 |
+| G3 本地切片完成 | 未排期 | 段成威 | Partial：DEC-126-056已接受；LIA-126-019/S10BF1实现和S10B-001组合预检PASS，DEC-126-057等待Owner，S10B-BLK-005暂保持Open；S10B-R5、002–012及S11未运行 |
 | S8B0 UI Integration Readiness Review | 2026-08-03 | 段成威 | DESIGN-126-006/DEC-126-032与DEC-126-033 Accepted；LIA-126-005 / S8B0 Closure Passed |
 | S8B Vue UI Closure Review | 2026-08-03 | 段成威 | DEC-126-034 Accepted / S8B Closure Passed；不自动授权S9/S10/activation，VoiceOver人工项保留到S11/G6 |
 | Remote State Reconciliation | 2026-08-04 | 段成威 | DEC-126-035 Accepted：五仓候选ref/clean clone精确PASS；四个S4–S8B checkpoints已按Owner明确授权远端可达；不改变G3/G4/G6或后续切片授权 |
@@ -217,3 +217,4 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 | 2026-08-05 | 段成威 | 批准DEC-126-055推荐方案A，接受S10BD1 Closure并关闭S10B-BLK-004 | S10B-BLK-001–004现均Closed；G3仍Partial、G4/G6 Pending；此次接受不自动授权S10B-R4、S11、MiniMax、activation或远端动作 |
 | 2026-08-05 | 段成威 | 单独授权LIA-126-018 / S10B-R4一次fresh四组件本地E2E | 仅S10B-001–012；不授权S11、MiniMax、源码修改、重跑或远端动作 |
 | 2026-08-05 | Codex | 消费LIA-126-018：七仓SHA、S10BD1 resolver、fresh依赖、TLS/OIDC、synthetic users、migration/bootstrap与API readiness通过；fake-provider readiness因请求fixture身份错误返回403并按停止条件结束 | run `96a0a80d-27d4-4022-a470-4a7f004d9c4c`；正确run ID仍把S9 dataset bundle `feat126-title-raw-v1`误作Host固定fixture `normal-000`；S10B-001 FAIL、002–012 NOT RUN；登记S10B-BLK-005和DEC-126-056候选；清理后0 listener/container/network，4 volumes按边界保留，Docker恢复停止；0 MiniMax/Keychain/真实数据/源码/远端写入 |
+| 2026-08-05 | 段成威 / Codex | Owner接受DEC-126-056 Option A并单独授权LIA-126-019；Codex实现Host-owned fake readiness与Infra唯一preflight runner并执行fresh组合预检 | Host `1ca4ee5…a560`、Infra `5723ffd…c0c9`；run `ed22fc82…f3f4`通过七SHA、依赖、identity、migration/bootstrap、API/fake readiness与no-log，summary `8198442e…f7d9`；资源归零、Docker恢复停止，`s10b_r5_executed=false`；提交DEC-126-057候选，BLK-005待Owner |

@@ -3,10 +3,10 @@
 ## 1. 当前结果
 
 - 用户可观察行为：默认配置下无变化；S8B真实Vue Chat页面、App Shell项目/session区、composer、conversation/reasoning、菜单/删除、稳定错误投影和可访问性已保存为Desktop checkpoint `35f27447398529cca4dec85fa1f67e779c7a7cbd`，并在Owner授权的专用远端候选分支精确可达。UI flag仍unset/false，未merge、未激活。
-- 原目标是否达成：未达成。LIA-126-018/S10B-R4已执行，但在S10B-001 fake-provider fixture identity readiness处fail closed；S10B-002–012未运行。S10B-BLK-001–004保持Closed，新S10B-BLK-005 Open；DEC-126-056等待Owner处置，S11未授权。
+- 原目标是否达成：未达成。DEC-126-056已接受；LIA-126-019/S10BF1实现和S10B-001组合预检PASS，但这不是S10B-R5。S10B-002–012未运行，S10B-BLK-005在DEC-126-057 Owner处置前保持Open，S11未授权。
 - 当前范围：安全的新建任务对话、任务记录、聊天项目、本地持久化及Public Tasks hardening的完整Local-only需求/设计/测试/实施候选。
 - 非目标：见`00-feature-brief.md`；没有文件/图片/工具/云同步；tag/package publish/registry/线上部署/生产灰度/云数据库/真实用户数据均N/A。
-- 交付状态：`G1/G2/G2A Passed / S4–S10BD1 Closure Passed / S10B-BLK-001–004 Closed / S10B-BLK-005 Open / S10B-R4 Closure Fail / DEC-126-056 Candidate / G3 Partial / G4/G6 Pending`。未安装Xcode、未访问真实Keychain、未调用MiniMax，未merge/tag/publish/deploy/default activation或push。
+- 交付状态：`G1/G2/G2A Passed / S4–S10BD1 Closure Passed / S10B-R4 Closure Fail / DEC-126-056 Accepted / S10BF1 Combined Preflight Passed / DEC-126-057 Candidate / S10B-BLK-005 Open pending Owner / G3 Partial / G4/G6 Pending`。未安装Xcode、未访问真实Keychain、未调用MiniMax，未merge/tag/publish/deploy/default activation或push。
 
 ## 2. 实际版本与本地候选（未发布）
 
@@ -198,8 +198,9 @@
 | S10BP0/S10BP1 Closed Bootstrap | 段成威 | DESIGN-126-009 / DEC-126-047 Accepted；LIA-126-013执行完成；DEC-126-048 Accepted | 2026-08-05 | API/Infra local candidate；S10BP1-001–013 PASS；BLK-001 Closed；0 S10B rerun/MiniMax/remote action |
 | S10BR1 Image Availability Corrective | 段成威 | DESIGN-126-010 / DEC-126-049/050 Accepted | 2026-08-05 | Infra local candidate；85/85 + live no-pull dependency startup/stop PASS；BLK-002 Closed；0 S10B rerun/remote action |
 | S10BD1 Docker Capability/Resolver Closure Review | 段成威 | DEC-126-055 Accepted / Option A / Closure Passed / BLK-004 Closed | 2026-08-05 | Governance `075a5051…4484`、Infra `2a643cae…97a`；12/12、99/99、live no-pull 3 identity/3 no-start probe与cleanup PASS；不授权S10B-R4 |
-| S10B-R4 / DEC-126-056 Candidate | 段成威 | LIA-126-018一次授权已消费；S10B-001 fail closed；Closure未达到；DEC-126-056待Owner | 2026-08-05 | run `96a0a80d…c4c`；前置至API ready PASS，fake fixture identity 403；002–012 NOT RUN；BLK-005 Open；环境清理完成；0 MiniMax/Keychain/真实数据/源码/远端动作 |
+| S10B-R4 / DEC-126-056 | 段成威 | LIA-126-018一次授权已消费；S10B-001 fail closed；Closure未达到；DEC-126-056 Option A Accepted | 2026-08-05 | run `96a0a80d…c4c`；前置至API ready PASS，fake fixture identity 403；002–012 NOT RUN；BLK-005 Open；环境清理完成 |
+| S10BF1 / DEC-126-057 Candidate | 段成威 | LIA-126-019 consumed；Host-owned authority + Infra single runner + combined preflight PASS；Owner Closure pending | 2026-08-05 | Host `1ca4ee5…a560`、Infra `5723ffd…c0c9`、run `ed22fc82…f3f4`、summary `8198442e…f7d9`；R5=false；资源归零/4 volumes披露/Docker恢复停止 |
 | G5 Production Ready | 段成威 | N/A / Out of Scope under DEC-126-022 | 2026-08-02 | no deployment/tag/publish/production environment |
 | G6 Local-only Delivery Complete | 段成威 | Pending Owner local startup and functional acceptance | N/A | requires G4 + AC-043；not Production Ready |
 
-- 正式关闭时间：N/A；feature remains at G3 Partial。LIA-126-018/S10B-R4 Closure Fail，`S10B-BLK-005` Open，DEC-126-056待Owner；S10B correction/rerun与S11未授权；G4/G6 Pending，MiniMax local smoke继续单审。
+- 正式关闭时间：N/A；feature remains at G3 Partial。S10B-R4 Closure Fail历史不变；S10BF1 Closure候选已完成，`S10B-BLK-005`在DEC-126-057 Owner处置前Open；S10B-R5与S11未授权；G4/G6 Pending，MiniMax local smoke继续单审。

@@ -1,4 +1,4 @@
-# FEAT-126 Local-only 原子实施计划（S10B-R4 Closure Fail / S10B-BLK-005 Open，G3 Partial）
+# FEAT-126 Local-only 原子实施计划（S10BF1 Closure Review Candidate / S10B-BLK-005 Open，G3 Partial）
 
 ## 1. 当前执行边界
 
@@ -6,7 +6,7 @@
 - DEC-126-022 Local-only Delivery Strategy已Accepted；LIA-126-001已于2026-08-02批准，且只允许S4–S6本地基础切片。
 - S4–S6已有远端checkpoint并保持flags/routes默认关闭；DEC-126-026已接受其Closure并单独授权S7A Desktop Rust Host Bridge/Domain。
 - DEC-126-027已接受S7A；DEC-126-028已接受S7B durable outbox、strict/coalesced reducer、history orchestration、title precedence与fake Host应用链。
-- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；S4–S9及S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1 Closure已接受，BLK-001–005及S10B-BLK-001–004关闭。LIA-126-018/S10B-R4已消费并在S10B-001的fake fixture identity readiness处fail closed；S10B-BLK-005 Open，DEC-126-056待Owner；S11仍未授权。
+- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；S4–S9及S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1 Closure已接受，BLK-001–005及S10B-BLK-001–004关闭。DEC-126-056已接受；LIA-126-019/S10BF1已实现并通过S10B-001组合预检，DEC-126-057等待Owner，S10B-BLK-005暂保持Open；S10B-R5/S11仍未授权。
 
 ## 2. 实施原则
 
@@ -415,4 +415,13 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - 停止边界：没有改成`normal-000`后继续，没有启动Host/Desktop/Runtime，没有进入S10B-002–012，没有调用MiniMax/外部模型或访问Keychain/真实数据，也没有修改源码、schema、wire、pin、默认flag或远端。
 - cleanup：API/fake停止；四container和四network移除；受控端口释放；临时process root删除；Docker恢复执行前stopped；四named volumes和ignored Infra run record按既定边界保留。
 - 登记`S10B-BLK-005`：S10B手工步骤没有单一machine-readable fixture/orchestrator authority，S9 bundle identity与Host request fixture identity可被混用。contract-impact=`none`（本轮仅执行/治理事实），central G2A N/A。
-- DEC-126-056 Option A候选：接受fail-closed事实、拒绝S10B-R4 Closure、保持BLK-005 Open，并在任何新run前单独评审/授权corrective。不得现场修正、直接重跑、进入S11或调用MiniMax。
+- DEC-126-056 Option A已接受：接受fail-closed事实、拒绝S10B-R4 Closure并单独授权S10BF1。不得现场修正或把corrective当R5。
+
+## 22. LIA-126-019 / S10BF1执行与退出
+
+- 实现边界：Host-only test readiness authority/probe + Infra唯一组合runner；未修改业务行为、contracts、IPC、schema或Runtime pin。
+- checkpoint：Host `1ca4ee555586e5243f7101b9fe056c6fa117a560`；Infra `5723ffdaa3f2c4b63914a6fd6ef7bac9f15bc0c9`；Governance执行基线`db12fe6ce4a8c1f84ac90781191d8a1b26dbcc4d`。
+- authority：Host内部选择case并输出明确的dataset/case/digest；Infra和操作者没有dataset/fixture参数，所有headers由probe生成。
+- 验证：Host full race/contract/lint PASS；Infra 103/103 + validate/lint/diff PASS；fresh run `ed22fc82-4837-4a3e-a60e-7f7c8ab6f3f4`完成七SHA、resolver、dependencies、identity、migration/bootstrap、API/fake readiness与no-log。
+- cleanup：API/fake、container、network、listener归零；4 named volumes/ignored run record披露；Docker恢复stopped；summary=`8198442e…f7d9`且明确`S10B-R5=false`。
+- 退出：提交DEC-126-057 Option A Closure候选；Owner接受前BLK-005保持Open。接受后仍不得自动执行S10B-R5/S11/MiniMax或远端动作。
