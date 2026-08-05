@@ -1,6 +1,6 @@
-# FEAT-126 技术设计（S10BD1 Closure Passed / S10B-R4 Unauthorized，G3 Partial）
+# FEAT-126 技术设计（S10B-R5 Closure Fail / S10B-BLK-006 Open，G3 Partial）
 
-> 本文产品/架构设计保持G2 Passed。LIA-126-016/S10B-R3已消费并Closure Fail；Owner通过DEC-126-053/054校正根因并接受设计，随后消费LIA-126-017。DEC-126-055 Option A现已接受S10BD1 Closure并关闭`S10B-BLK-004`。S10B-BLK-001–004均Closed，但S10B-R4/S11/MiniMax/默认flag activation与远端动作未授权。
+> 本文产品/架构设计保持G2 Passed。DEC-126-057已接受S10BF1 Closure并关闭`S10B-BLK-005`；Owner随后单独授权并消费LIA-126-020/S10B-R5。R5的S10B-001通过，但S10B-002在API readiness前因runtime service-profile authority不一致而fail closed；`S10B-BLK-006` Open，DEC-126-058等待Owner决定。S11/MiniMax/默认flag activation与远端动作仍未授权。
 
 ## 1. 设计摘要
 
@@ -1248,3 +1248,11 @@ Infra新增唯一`make feat-126-s10b-preflight`入口。调用者只提供fresh 
 ### 34.3 Closure与停止边界
 
 上述只证明S10BF1 corrective与`S10B-001 combined preflight`，不证明S10B-R5、真实Vue对话链或G4。`s10b_r5_executed=false`；S10B-002–012、S11、MiniMax、真实数据/Keychain、default activation和远端动作均未执行。Owner已接受DEC-126-057 Option A，S10BF1 Closure Passed且`S10B-BLK-005` Closed；该接受只关闭该blocker，fresh S10B-R5仍须单独明确授权。
+
+## 35. LIA-126-020 / S10B-R5 runtime-profile authority finding
+
+- 唯一S10B-001 authority仍为Infra `make feat-126-s10b-preflight`，其闭合输入仅包含fresh run ID和七仓完整SHA；本次summary SHA-256为`b3e4b833283bf0102edfc4100cd0339002d769d839b7903a2a4426c531b6b1f8`。
+- preflight内部使用`YIJIE_API_SERVICE_PROFILE=feat-125-local-lab`；API runtime validator目前也只支持这一runtime service profile。
+- `feat-126-s10-local-lab`只存在于synthetic bootstrap authority，不等同于API runtime service profile。R5冻结要求后者，因此不能把bootstrap profile的成功推导为002–012 runtime authority成立。
+- 正确设计方向是建立一个closed FEAT-126 runtime service profile，并让preflight与continuation从同一machine-readable authority派生；必须保持issuer、loopback DSN、synthetic-only identity、numeric `nbf`、content-free Public Tasks及default-off语义。
+- 本次没有修改API/Infra/Host/Desktop/contracts/Runtime。任何corrective必须单独设计、分类、测试、授权；不得在R5现场补丁或复用旧profile继续。

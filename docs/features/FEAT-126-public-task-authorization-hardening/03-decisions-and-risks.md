@@ -257,3 +257,18 @@
 - title Gate实际PASS：250/250结构、200/200语义、50/50 unsafe拒绝；late overwrite、extra action和泄漏均0。
 - raw Gate实际PASS：valid 210/210、四类负例40/40；HTML/Markdown执行、Host log/bbolt和Desktop production bundle正文泄漏均0。
 - DEC-126-036已由Owner接受；该决定不调用MiniMax、不修改production Host/Desktop业务源码或任何契约/Runtime pin，也不授权进入S10。
+
+## 11. DEC-126-058 — S10B-R5 Fail-closed Disposition Candidate
+
+| 项目 | 结论 |
+|---|---|
+| 状态 | `Ready for Owner Approval / Option A Recommended`；尚未Accepted |
+| 事实 | LIA-126-020已消费。fresh run `24ae14b7-46d1-4fd5-a7ac-a30932586ad6`的唯一`make feat-126-s10b-preflight`通过，S10B-001为PASS；继续S10B-002时，在API readiness与任何业务数据创建前发现runtime profile authority不一致，随即停止；S10B-003–012 NOT RUN |
+| 根因 | accepted preflight以`feat-125-local-lab`启动API；Owner冻结的R5完整链要求`feat-126-s10-local-lab`；当前API runtime service-profile validator仅暴露前者。bootstrap profile虽然支持FEAT-126，但不是runtime service-profile authority，二者不能静默等同 |
+| Option A（推荐） | 接受fail-closed事实但拒绝R5 Closure；保持`S10B-BLK-006 Open`；单独设计并授权closed FEAT-126 API runtime profile corrective，使组合preflight和002–012 continuation共享同一authority；之后再申请fresh run |
+| Option B（不推荐） | 把`feat-125-local-lab`视为R5隐式兼容authority并继续；会绕过冻结基线且掩盖profile语义分裂 |
+| Option C（不推荐） | 弱化/删除runtime profile校验；会扩大本地测试入口并破坏fail-closed边界 |
+| Contract impact | 本次执行与治理记录为`none`；未来纠偏预期仅为private local deployment semantic，若发现central contract影响必须停止并重开G2A |
+| 禁止 | 不现场替换profile、不修改源码、不重跑、不进入S11、不调用MiniMax、不启用默认flag、不push/merge/tag/publish/deploy |
+
+新增风险`R-126-035`：S10B组合preflight与完整链continuation若不共享唯一runtime profile authority，preflight PASS不能证明后续进程以Owner冻结的安全配置启动。严重度P1；当前通过`S10B-BLK-006`与停止条件控制，Owner接受DEC-126-058及另行批准纠偏前不得重跑。

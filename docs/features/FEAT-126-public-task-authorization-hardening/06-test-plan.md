@@ -1,7 +1,7 @@
 # FEAT-126 测试与 Eval 计划
 
 > 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。DEC-126-023/024完成G2A重审，DEC-126-025登记sole candidate与checkpoint远端ref并恢复LIA-126-002，仅执行S4–S6 Corrective Closure。
-> S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1/S10BF1 Closure已接受，BLK-001–005及S10B-BLK-001–005关闭。DEC-126-057 Option A已接受；S10B-R5、S11与MiniMax仍未授权。
+> S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1/S10BF1 Closure已接受，S10B-BLK-001–005关闭。LIA-126-020/S10B-R5已消费但Closure失败：S10B-001 PASS，S10B-002在API readiness前fail closed，003–012 NOT RUN；S10B-BLK-006 Open，DEC-126-058候选等待Owner决定。S11与MiniMax仍未授权。
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
 ## 1. 测试策略
@@ -615,3 +615,15 @@ LIA-126-018的一次授权已消费。没有把header纠正为`normal-000`后继
 | S10BF1-010 | API/fake/container/network/listener归零；4 named volumes披露；Docker恢复停止 | PASS |
 
 逐仓门禁：Host lint/vet/contract-check/full race+coverage PASS；Infra validate/lint/full `103/103`、Node/shell/diff PASS。fresh run=`ed22fc82-4837-4a3e-a60e-7f7c8ab6f3f4`，summary SHA-256=`8198442e1c8f28a28c01fe0807b10fa0c7485ef6f808b0a24ead75a04e36f7d9`。Owner已接受DEC-126-057 Option A，本表支持S10BF1 Closure Passed和BLK-005 Closed；它不是S10B-R5/G4证据，`s10b_r5_executed=false`。
+
+## 29. LIA-126-020 / S10B-R5 执行矩阵
+
+| Case | 结果 | 证据/说明 |
+|---|---|---|
+| S10B-001 combined preflight | PASS | run `24ae14b7…ad6`；scope、七仓SHA、resolver、依赖、TLS/OIDC、identity、migration/bootstrap、API/fake readiness与no-log全PASS；summary SHA-256 `b3e4b833…b1f8` |
+| S10B-002 full-process readiness/main-chain entry | FAIL-CLOSED | API runtime profile authority冲突在API readiness和业务数据创建前被识别；没有Public Task、session、turn或provider call |
+| S10B-003–011 | NOT RUN | 遵循单次授权停止条件，不继续、修复或重试 |
+| S10B-012 abort cleanup subset | PASS / overall NOT RUN | API/fake/containers/networks/listeners为0；Docker恢复停止；4个run-scoped named volumes按非破坏边界披露保留 |
+| safety/default-off | PASS | 6个日志/证据文件对本run生成secret值扫描0命中；未创建Desktop app-data/SQLCipher/secure-storage/Host Home/CODEX_HOME；默认开启flag扫描0 |
+
+`S10B-BLK-006`关闭前，新增测试必须证明：FEAT-126 runtime profile由同一authority同时驱动combined preflight和full continuation；旧`feat-125-local-lab`不能隐式兼容；missing/wrong/generic profile必须在数据库和业务进程访问前fail closed。

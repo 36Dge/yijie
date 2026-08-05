@@ -5,13 +5,13 @@
 > 分支均已精确远端可达，旧Draft PR #1与各`origin/develop`不变。DEC-126-026已接受S4–S6
 > Foundation Corrective Closure并单独授权S7A Desktop Rust Host Bridge/Domain；DEC-126-027已由
 > Owner接受。随后单独授权的S7B Rust Application Orchestration/Domain已完成并由Owner通过DEC-126-028接受；远端可达不等于merge、发布或生产启用。
-> 随后Owner接受S7C–S9及S10E/P1/P2F/P3/S10BD1/S10BF1 Closure，BLK-001/002/003/004/005及S10B-BLK-001–005关闭。DEC-126-057 Option A已接受。G3仍Partial，G4/G6 Pending，S10B-R5/S11未授权。
+> 随后Owner接受S7C–S9及S10E/P1/P2F/P3/S10BD1/S10BF1 Closure，BLK-001/002/003/004/005及S10B-BLK-001–005关闭。LIA-126-020/S10B-R5现已消费：S10B-001 PASS，S10B-002在API readiness前fail closed，003–012 NOT RUN；S10B-BLK-006 Open且DEC-126-058候选待Owner决定。G3仍Partial，G4/G6 Pending，S11未授权。
 
 ## 1. 验证上下文
 
 | Repository | Branch | Full HEAD SHA | Worktree | Runtime/toolchain | 时间 |
 |---|---|---|---|---|---|
-| yijie | `feat/feat-126-foundation-closure` | R4 execution baseline `02cf06b2993ee18aefe4b7e4d6d40e2d19b2c4c1` | clean before S10B-R4；only accepted FEAT-126 governance；local/not pushed | zsh/macOS；feature package checker | 2026-08-05 Asia/Shanghai |
+| yijie | `feat/feat-126-foundation-closure` | R5 execution baseline `fdc4659a999768819d0f55c3fcc8098766240250` | clean before S10B-R5；only accepted FEAT-126 governance；local/not pushed | zsh/macOS；feature package checker | 2026-08-05 Asia/Shanghai |
 | yijie-infra | `feat/feat-126-s10e` | S10BD1 checkpoint `2a643caef210e32cab80242ede46b96927b2097a` | clean before S10B-R4；contains accepted bootstrap/image/API-authority corrections plus capability-first immutable resolver；local/not pushed | Docker Desktop 4.82.0 / Engine 29.6.1 / Compose 5.3.0；Node/pnpm | 2026-08-05 Asia/Shanghai |
 | yijie-api | `feat/feat-126-foundation-closure` | checkpoint `c5f334e88d54d9e04f388d0349f4f5925124abd6` | clean before S10B-R2；closed profile/batch/verifier committed locally/not pushed | Go 1.26.5 + isolated PostgreSQL 16.13 | 2026-08-05 |
 | yijie-agent-host | `feat/feat-126-foundation-closure` | S10P1 local checkpoint `e0a8d3d29a335571d1654d95e1e262c240755674`；parent S9 `8707dea552cff74121b89aa8045f27da2c8c9378` | clean；15-file S10P1 private test profile/fake authority/watchdog diff；not pushed | Go 1.26.5 + deterministic fake Responses + fixed Runtime | 2026-08-04 |
@@ -736,14 +736,31 @@ DESIGN-126-011冻结capability-first、closed failure classes、原Compose pin e
 | DB/encryption/delete E2E | SQLCipher v4 job/receipt、independent HMAC key、migration/cascade/checkpoint、restart和fake Host cleanup单仓PASS | 跨Desktop/Host/Runtime真实进程partial delete仍未运行 | S10验证完整多进程job/receipt/restart/fault E2E | 段成威 | blocks G4/local G6 |
 | Runtime raw-reasoning/title/delete | S9 deterministic Eval与S10P1 Host→fixed Runtime assistant/raw真实turn PASS；完整Desktop turn/history/delete多进程链仍未运行 | raw UX/residual/inconsistent history | keep default flags off until S10B；历史MiniMax public-summary FAIL不改写 | 段成威 | blocks G4/local G6 |
 | Desktop sidecar/secret storage | actual Desktop supervisor→Host→fixed Runtime child readiness/stop PASS；S10P2F file integrity/isolation/restart/no-log/exact cleanup实现与证据PASS；DEC-126-043 Accepted | signed native仍Deferred Native Hardening/NOT RUN，不等于PASS | Local-only BLK-004已关闭；未来native signing/production intent恢复native hardening门禁 | 段成威 | no longer blocks Local-only BLK-004；does not authorize S10P3/S10B |
-| S10B fixture/orchestration readiness | S10BF1 Host/Infra corrective、负向矩阵与fresh组合preflight全部PASS；DEC-126-057已接受 | S10B-R5/002–012仍未运行 | fresh R5须另行明确授权并完整通过 | 段成威 | **S10B-BLK-005 Closed；G4/local G6仍由完整S10B与Owner验收阻断** |
+| S10B runtime-profile/orchestration readiness | S10BF1 Host/Infra corrective与R5组合preflight PASS | R5在S10B-002 API readiness前发现preflight/continuation runtime-profile authority不一致；003–012未运行 | DEC-126-058 Owner处置；独立closed runtime-profile corrective及fresh run均须另行授权 | 段成威 | **S10B-BLK-006 Open；G4/local G6仍由完整S10B与Owner验收阻断** |
 | S10E image-reference precheck | exact repository-digest verifier、85/85自动化和fresh no-pull四依赖up/stop PASS | 局部启动不能冒充S10B | DEC-126-050 Accepted；保持无floating tag/pull | 段成威 | S10B-BLK-002 Closed |
 | production identity/infra | FEAT-125 deferred | no production safety | N/A for DEC-126-022 local-only scope；future online intent must reopen production track and FEAT-125 prerequisites | 段成威 | does not block local G6；blocks any production claim |
 
 ## 11. 结论
 
 - Requirements package：G1/G2/G2A Re-review Passed；DEC-126-023–057 Accepted。S10BF1 Closure Passed，S10B-BLK-001–005 Closed。
-- Code Complete：No。G3仍Partial；S10BF1不是S10B-R5，S10B-002–012、G4与Owner G6均未完成。
+- Code Complete：No。G3仍Partial；S10B-R5 Closure失败，S10B-002–012未完成，G4与Owner G6均未完成。
 - 验证人：Codex（文档事实与结构）；最终 Reviewer 为段成威。
 - 日期：2026-08-05。
 - 结论依据：既有accepted链、R4 fail-closed历史、Host/Infra clean checkpoints与fresh S10BF1组合preflight。无Xcode/Keychain/MiniMax/真实数据/业务源码或远端动作；corrective PASS没有被冒充完整S10B E2E。
+
+### 9.30 LIA-126-020 / S10B-R5 fail-closed evidence
+
+| Evidence | Result |
+|---|---|
+| Seven baselines/worktrees | exact full SHA and clean before run |
+| Fresh run | `24ae14b7-46d1-4fd5-a7ac-a30932586ad6` |
+| S10B-001 | PASS via sole Infra runner; summary SHA-256 `b3e4b833283bf0102edfc4100cd0339002d769d839b7903a2a4426c531b6b1f8` |
+| S10B-002 | FAIL-CLOSED before API readiness: preflight/current API runtime supports `feat-125-local-lab`, while frozen R5 continuation requires `feat-126-s10-local-lab` |
+| S10B-003–012 | NOT RUN; only abort cleanup subset executed |
+| Data/model | Public Task/session/turn=0；MiniMax/external model/real data/Keychain=0 |
+| Secret/no-log | 6 files scanned against generated secret values, hits=0；forbidden Desktop/Host/Runtime run dirs=0；tracked default-on flags=0 |
+| Cleanup | API/fake/process/container/network/listener=0；Docker stopped；4 named volumes retained and disclosed |
+| Contract/diff | business source, contracts, IPC, wire, schema and Runtime pin unchanged；seven worktrees clean before governance edit |
+| Governance gates | feature package default/strict/G2A、unique-key YAML、`pnpm lint`、`pnpm test`、checker shell syntax与`git diff --check` PASS |
+
+结构化结论：LIA-126-020的一次授权已消费，S10B-R5 Closure不成立。`S10B-BLK-006`为新的P1，DEC-126-058 Option A建议接受事实但拒绝Closure，并要求独立runtime-profile authority纠偏评审。Owner决定前不得修复、重跑、进入S11或调用MiniMax。

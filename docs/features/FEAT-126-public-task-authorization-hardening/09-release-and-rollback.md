@@ -1,6 +1,6 @@
-# FEAT-126 本地启动、停止与恢复 Runbook（S10BF1 Closure Passed / S10B-BLK-005 Closed，G3 Partial）
+# FEAT-126 本地启动、停止与恢复 Runbook（S10B-R5 Closure Fail / S10B-BLK-006 Open，G3 Partial）
 
-> DEC-126-022将本需求冻结为Local-only Delivery。DEC-126-057 Option A已接受；LIA-126-019/S10BF1 Closure Passed，S10B-BLK-005 Closed。本文不授权S10B-R5、S11、MiniMax、default activation或发布。
+> DEC-126-022将本需求冻结为Local-only Delivery。DEC-126-057 Option A已接受；Owner随后单独授权并消费LIA-126-020/S10B-R5。R5在S10B-001 PASS后因API runtime-profile authority冲突fail closed；DEC-126-058候选待Owner决定。本文不授权纠偏、重跑、S11、MiniMax、default activation或发布。
 
 ## 1. Release Manifest
 
@@ -24,7 +24,7 @@
 - [x] G1/G2、DEC-126-024 G2A重审与LIA-126-001真实通过并有段成威批准
 - [x] DEC-126-023方案C Accepted、Q-017 Resolved；本地replacement source/generated/fixtures与post-commit证据已形成
 - [x] DEC-126-024批准`29317b6426578749dc698fc2ad32b986ee5c8e9f`为新的唯一candidate；DEC-126-025随后单独恢复LIA-126-002的S4–S6范围
-- [ ] G4仍需完整fresh S10B Closure；S10B-R4已执行但在S10B-001失败，S10BF1已关闭`S10B-BLK-005`；fresh S10B-R5仍须另行明确授权并完整通过
+- [ ] G4仍需完整fresh S10B Closure；S10B-R5已执行但仅S10B-001通过，S10B-002在API readiness前fail closed；`S10B-BLK-006`须经独立纠偏Closure后再申请fresh run
 - [ ] Contracts/Runtime/app本地输入来自clean immutable source，full SHA/digest/generator可追溯；tag为N/A
 - [x] 本地合成identity/tenant/permission链路通过；standard Authorization Code + PKCE含numeric `nbf`，unchanged API capability/Public create通过；FEAT-125 production prerequisites不属于Local-only G6
 - [ ] Public Tasks consumer inventory、secure version migration 和 legacy retirement plan 完成
@@ -244,3 +244,11 @@ DESIGN-126-008对未来corrective的回滚语义冻结如下：
 |---|---|---|---|---|
 | G5 Production Ready | 段成威 | N/A / Out of Scope under DEC-126-022 | 2026-08-02 | no deployment/tag/publish/production environment |
 | G6 Local-only Delivery Complete | 段成威 | Pending Owner local startup and functional acceptance | N/A | requires G4 + AC-043；does not mean Production Ready |
+
+### S10B-R5 abort/restore记录
+
+- run：`24ae14b7-46d1-4fd5-a7ac-a30932586ad6`；S10B-001 summary SHA-256：`b3e4b833283bf0102edfc4100cd0339002d769d839b7903a2a4426c531b6b1f8`。
+- stop trigger：完整链要求的FEAT-126 runtime service-profile authority不能由当前API表达；不得用旧FEAT-125 profile替代。
+- restore：停止API/fake；移除本run四个containers和四个networks；确认受控端口free；恢复Docker Desktop为stopped；四个named volumes按已接受非破坏边界保留，不执行volume删除或prune。
+- default/security：没有Desktop/Host/Runtime业务状态；没有Public Task/conversation；没有Keychain/MiniMax/真实数据；生成secret在日志/证据中0命中；默认flag仍off。
+- recovery gate：仅Owner接受DEC-126-058并另行批准corrective后，才可修改private local profile；corrective Closure与新的fresh E2E仍分别单审。

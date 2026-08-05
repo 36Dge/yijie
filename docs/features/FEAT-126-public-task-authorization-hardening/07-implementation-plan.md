@@ -1,4 +1,4 @@
-# FEAT-126 Local-only 原子实施计划（S10BF1 Closure Passed / S10B-BLK-005 Closed，G3 Partial）
+# FEAT-126 Local-only 原子实施计划（S10B-R5 Closure Fail / S10B-BLK-006 Open，G3 Partial）
 
 ## 1. 当前执行边界
 
@@ -6,7 +6,7 @@
 - DEC-126-022 Local-only Delivery Strategy已Accepted；LIA-126-001已于2026-08-02批准，且只允许S4–S6本地基础切片。
 - S4–S6已有远端checkpoint并保持flags/routes默认关闭；DEC-126-026已接受其Closure并单独授权S7A Desktop Rust Host Bridge/Domain。
 - DEC-126-027已接受S7A；DEC-126-028已接受S7B durable outbox、strict/coalesced reducer、history orchestration、title precedence与fake Host应用链。
-- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；S4–S9及S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1/S10BF1 Closure已接受，BLK-001–005及S10B-BLK-001–005关闭。DEC-126-057 Option A已接受；S10B-R5/S11仍未授权。
+- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；S4–S9及S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1/S10BF1 Closure已接受，BLK-001–005及S10B-BLK-001–005关闭。LIA-126-020/S10B-R5已消费并fail closed；S10B-BLK-006 Open，DEC-126-058候选待Owner决定；纠偏、重跑与S11均未授权。
 
 ## 2. 实施原则
 
@@ -425,3 +425,11 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 - 验证：Host full race/contract/lint PASS；Infra 103/103 + validate/lint/diff PASS；fresh run `ed22fc82-4837-4a3e-a60e-7f7c8ab6f3f4`完成七SHA、resolver、dependencies、identity、migration/bootstrap、API/fake readiness与no-log。
 - cleanup：API/fake、container、network、listener归零；4 named volumes/ignored run record披露；Docker恢复stopped；summary=`8198442e…f7d9`且明确`S10B-R5=false`。
 - 退出：DEC-126-057 Option A已接受，S10BF1 Closure Passed且BLK-005 Closed。仍不得自动执行S10B-R5/S11/MiniMax或远端动作；fresh R5必须另行明确授权。
+
+## 23. LIA-126-020 / S10B-R5执行与退出
+
+1. 一次性授权已由fresh run `24ae14b7-46d1-4fd5-a7ac-a30932586ad6`消费。
+2. S10B-001通过；S10B-002在API readiness前因`feat-125-local-lab`与冻结的`feat-126-s10-local-lab`runtime authority冲突而停止；003–012未运行。
+3. 当前唯一允许的下一动作是Owner评审DEC-126-058。不得把文档候选当作corrective授权。
+4. 若Owner接受Option A，后续仍须依次完成：closed runtime-profile设计评审 → 单独corrective LIA → corrective Closure → 新clean checkpoint → 单独fresh E2E授权。任何一步都不自动导出下一步。
+5. 本轮没有业务源码checkpoint；只允许形成FEAT-126治理文档本地checkpoint，不push。
