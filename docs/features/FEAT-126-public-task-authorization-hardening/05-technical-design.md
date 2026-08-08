@@ -1,6 +1,6 @@
-# FEAT-126 技术设计（S10BRP1 Closure Passed / S10B-R6 Authorized Not Executed，G3 Partial）
+# FEAT-126 技术设计（DEC-126-063 Accepted / S10BEP1 Clean Checkpoints Formed / BLK-007 Closed）
 
-> 本文产品/架构设计保持G2 Passed。DEC-126-057已接受S10BF1 Closure并关闭`S10B-BLK-005`；Owner随后单独授权并消费LIA-126-020/S10B-R5。R5的S10B-001通过，但S10B-002在API readiness前因runtime service-profile authority不一致而fail closed；DEC-126-058 Option A已Accepted并拒绝R5 Closure，Owner随后单独授权、消费LIA-126-021/S10BRP1。Owner于2026-08-06批准DEC-126-059 Option A，S10BRP1 Closure Passed并关闭`S10B-BLK-006`；API/Infra已形成clean local checkpoints。LIA-126-022/S10B-R6已单独授权但未消费、未执行；S11/MiniMax/默认flag activation与远端动作仍未授权。
+> 本文产品/架构设计保持G2 Passed。DEC-126-057已接受S10BF1 Closure并关闭`S10B-BLK-005`；Owner随后单独授权并消费LIA-126-020/S10B-R5。R5的S10B-001通过，但S10B-002在API readiness前因runtime service-profile authority不一致而fail closed；DEC-126-058 Option A已Accepted并拒绝R5 Closure，Owner随后单独授权、消费LIA-126-021/S10BRP1。Owner于2026-08-06批准DEC-126-059 Option A，S10BRP1 Closure Passed并关闭`S10B-BLK-006`；API/Infra已形成clean local checkpoints。LIA-126-022/S10B-R6随后被正式消费，但在S10B-001 image resolver阶段以`preflight_image_resolver_failed`停止；S10B-002–012未运行。DEC-126-060/061 Option A均已Accepted；LIA-126-023/S10BEP1 repository implementation、2026-08-09的S10BEP1-014 isolated live验证及Infra/Governance全量门禁均PASS。Owner通过DEC-126-062接受Corrective Closure并关闭`S10B-BLK-007`，随后通过DEC-126-063仅形成Infra/Governance本地clean checkpoints。G3保持Partial，fresh R7、S11/MiniMax、默认flag activation与远端动作仍未授权。
 
 ## 1. 设计摘要
 
@@ -1302,8 +1302,73 @@ API `make lint`、`make test`通过；Infra `pnpm validate`、`make lint`、`mak
 
 ### 36.6 LIA-126-022 / S10B-R6 授权边界
 
-- 状态：`Authorized 2026-08-06 / Not Consumed / Not Executed`；授权本身不自动启动Docker、服务或测试。
+- 状态：`Consumed 2026-08-06 / Executed-Blocked / R6 Closure Rejected`；DEC-126-060 Option A已Accepted，`S10B-BLK-007`保持Open。
 - 固定候选：Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`、API `d1c72b29ffc567abdb4521343a73ceef9ac9da34`、Host `1ca4ee555586e5243f7101b9fe056c6fa117a560`、Desktop `ed9eb14f3829f6e8fee427de40f76a2c549fb78c`、Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`、Infra `8f9b8965dbd32bb7273059a80bb818d4344e7135`；Governance以本次clean checkpoint的完整HEAD为准。
 - 执行必须建立fresh canonical run UUID、fresh volume/run root/token/数据库与应用状态，并严格消费既有单一preflight/continuation authority完成S10B-001–012。
 - 任一SHA、authority、identity、migration、E2E、content-free、no-log、cleanup或default-off断言失败立即fail closed，不现场修复、继续或直接重跑。
 - 不授权S11、MiniMax/外部模型、真实数据/Keychain、业务源码修改、default activation、push、merge、tag、publish或deploy。
+
+## 37. DESIGN-126-013 — Closed Resolver Error Propagation
+
+### 37.1 评审边界与工程事实
+
+- 本次只读评审固定Governance `d5d05a137338e4d72cf69173073fe49858a9a6e3`与Infra `8f9b8965dbd32bb7273059a80bb818d4344e7135`；Infra工作树干净，未执行resolver、Docker create或S10B。
+- resolver已有12个权威leaf class：`docker_cli_unavailable`、`docker_permission_denied`、`docker_daemon_unavailable`、`image_not_found`、`image_reference_unresolved`、`image_identity_invalid`、`image_repository_mismatch`、`image_digest_mismatch`、`image_platform_mismatch`、`inspect_payload_invalid`、`resolver_probe_failed`、`resolver_probe_cleanup_incomplete`。
+- 唯一父preflight的通用`runCommand()`只观察子进程退出码，并把所有resolver失败折叠成`preflight_image_resolver_failed`；子stderr没有进入父错误或REJECTED证据。
+- `contract-impact=semantic`，仅覆盖private FEAT-126 local deployment interface的失败语义与证据投影。central contracts、Public Tasks/Host wire、Desktop IPC、业务schema、Compose pins和Runtime pin均不变，central G2A=`N/A`。
+
+### 37.2 方案比较
+
+| 方案 | 结论 | 取舍 |
+|---|---|---|
+| A. versioned closed child result + strict parent projection | **推荐** | 保持child进程隔离与唯一preflight；可方向性测试12个leaf class、phase和cleanup；需要成组修改resolver/parent/tests |
+| B. parent直接import resolver并捕获typed error | 不推荐 | 代码较少，但不再验证真实child CLI/exit/output边界，独立Make调用与父路径可能再次漂移 |
+| C. 从当前human stderr提取最后一个token或直接重试 | 拒绝 | 文本不closed/versioned，Make包装和raw stderr可能污染或泄漏；重试不能恢复R6丢失的事实 |
+
+### 37.3 唯一权威与closed result v1
+
+1. `verify-feat-126-s10-images.mjs`继续是Docker leaf class、phase、target与result validator的唯一权威；parent以namespace import消费并先执行`validateResolverProtocolExports`，不复制第二套枚举；old child缺少协议exports时映射parent-only `preflight_image_resolver_result_invalid`。
+2. parent仍只能从`make feat-126-s10b-preflight`进入；operator输入仍只有canonical run UUID和七仓完整SHA。parent内部用固定`process.execPath`、固定脚本路径和固定`--closed-result-v1`调用child，不接受env/Make变量指定mode、path、target、phase或failure class。
+3. 既有`make feat-126-s10-verify-images`与无flag CLI保持原有human-readable成功/失败行为，保证old parent→new child仍走旧通道；closed mode只供同commit parent消费。closed envelope和evidence通过后，parent先重跑只读`feat-126-s10-config`（复验Compose 5.3.0、secret、REJECTED guard和rendered config），再从同一Compose profile/service authority构造固定`up --pull never`调用，避免再经human `up`路径重复执行resolver；该顺序由测试锁定。
+4. closed mode只向stdout写一行UTF-8 JSON并保持stderr为空，且必须有单个末尾LF；最大2048 bytes、总spawn buffer 4096 bytes、总timeout 120 seconds。NUL、CR、多行、empty、duplicate JSON key、extra/missing key、unknown enum、错误run ID或状态/exit-code不一致全部fail closed。
+5. 成功variant exact keys：`schema_version=1`、`status=passed`、`run_id`、`image_count=3`、`probe_count=3`。
+6. 失败variant exact keys：`schema_version=1`、`status=failed`、`run_id`、`failure_class`、`phase`、`target`、`cleanup_state`。
+7. `target`只允许`docker|postgres|keycloak|caddy`；它是Compose权威pin的content-free类别，不携带repository、tag、digest、container ID或路径。
+8. `phase`只允许`capability|identity_parse|identity_inspect|identity_validate|identity_stability|probe_precheck|probe_create|probe_reconcile|probe_validate|probe_cleanup`。
+9. `cleanup_state`只允许`not_applicable|absent|removed|incomplete|unknown`；它只描述本run probe资源处置状态，不授权父进程删除资源。每个failure class绑定显式合法tuple，不接受phase/target/cleanup的笛卡尔积；validation leaf在owned cleanup成功后使用`probe_validate/.../removed`，opaque cleanup故障归一化为`resolver_probe_cleanup_incomplete`。
+
+### 37.4 Parent映射、证据与停止语义
+
+- 已验证leaf映射为`preflight_image_resolver_<leaf>`并作为既有REJECTED v1的`failure_class`；因此REJECTED继续只有`schema_version/run_id/failure_class`三个字段，不把路径、命令、raw stderr或完整child payload复制到顶层。
+- parent把已验证child envelope以create-new、0600写入固定`preflight-evidence/image-resolver-result.v1.json`；写入失败视为`preflight_image_resolver_evidence_failed`，不得继续dependencies。
+- parent-only protocol class固定为：`preflight_image_resolver_process_failed`、`preflight_image_resolver_timeout`、`preflight_image_resolver_result_invalid`、`preflight_image_resolver_result_oversize`、`preflight_image_resolver_evidence_failed`。不得把raw spawn error、signal、socket、image pin或stderr拼进错误。
+- 只有`status=passed`、exit 0、stderr empty、counts exact、证据成功落盘后，才允许把`images`加入completed并进入dependencies。任何failure variant或protocol class都立即停止S10B-001。
+- `resolver_probe_cleanup_incomplete`、`cleanup_state=incomplete|unknown`或protocol timeout只记录并停止；parent不得猜测归属、批量remove、pull、retag、prune、切换store或重启Docker。
+
+### 37.5 兼容、安全与回滚
+
+| 组合 | 结果 |
+|---|---|
+| old parent + old child | 现有generic失败行为不变 |
+| old parent + new child | old parent仍调用默认Make/human mode，行为不变 |
+| new parent + new child | closed v1通过，leaf/phase/target/cleanup可复验 |
+| new parent + old child | closed mode或shape不匹配，`preflight_image_resolver_result_invalid`，不得误判PASS |
+
+- child envelope、parent REJECTED和治理证据禁止secret、DSN、token、Docker socket、真实路径、raw command/stderr、image reference/digest和container ID；只允许run ID、closed enum、计数和hash。
+- Compose中的原始`version-tag@digest`、`--pull never`、network none、tmpfs覆盖、foreign resource delete=0与现有S10BD1权威全部保持。
+- 回滚必须成组撤销parent closed invocation与child closed mode；旧human Make通道继续可用，但回滚后S10B保持HOLD。已产生的ignored v1 evidence可保留，不由continuation消费。
+
+### 37.6 S10BEP1实施与退出
+
+- 后续切片为`LIA-126-023 / S10BEP1 Closed Resolver Result Propagation Corrective`；Owner于2026-08-08另行授权并已消费。
+- 实施只能修改Infra resolver、parent preflight、对应tests与Infra文档；不得修改API、Host、Desktop、Runtime、contracts、business wire/schema、Compose pins或默认feature flags。
+- Closure必须通过S10BEP1-001–014、Infra validate/lint/full tests、no-log/diff、一次单独的exact no-start live resolver验证及资源归零；该live验证不是S10B-R7。
+- Owner已通过DEC-126-062接受corrective Closure并关闭BLK-007；DEC-126-063已仅形成clean Infra/Governance checkpoints。fresh S10B-R7仍须后续单独授权；MiniMax、S11与真实数据继续未授权。
+
+### 37.7 LIA-126-023实施状态
+
+- child closed mode、同源validator/allowlist、12 leaf上下文、合法tuple与cleanup leaf保留、parent namespace protocol guard/fixed spawn/timeout/buffer、duplicate-key/末尾LF framing、leaf映射、0600 evidence、固定依赖启动参数与old/new兼容已在Infra工作树实现；默认human Make/Compose pin未改，parent不会二次调用human resolver。
+- Infra `pnpm test`为128/128 PASS，`pnpm validate`、targeted 34/34、Node syntax、diff、完整`make lint/test`与Compose语义尾门禁PASS；自动化覆盖S10BEP1-001–013并复用原S10BD1-001–012回归。
+- 2026-08-09在Docker client/server 29.6.1、Compose 5.3.0及daemon access均通过后，仅调用一次导出的parent resolver。canonical run `624bd64c-b378-4d53-97c0-05790e7e4657`返回exact passed v1 envelope（3 identity/3 probe）；0600 evidence SHA-256为`e13f633fb331e3b0c0d08f22e16f7126980555ae849a73766a7bcc2259be6b34`，仅含五个success字段且无log/敏感payload。
+- run级container/network/volume/listener前后均为0，daemon仍为6 containers/0 running/6 images，三项exact image Id/RepoDigest/platform前后逐项一致；没有pull或服务启动。Governance default/strict/G2A/YAML/lint/test/diff全PASS。
+- DEC-126-062已接受S10BEP1 Corrective Closure并关闭BLK-007；DEC-126-063形成Infra checkpoint `0842ff2dcf9be6fce7aa6b19adbb6ea475607136`及包含该决策的Governance本地checkpoint。S10B-R7、MiniMax、Keychain、真实数据、feature activation或远端动作均未执行；`s10b_r7_executed=false`，G3保持Partial、G4/G6 Pending。

@@ -1,4 +1,4 @@
-# FEAT-126 Local-only 原子实施计划（S10BRP1 Closure Passed / S10B-R6 Authorized Not Executed，G3 Partial）
+# FEAT-126 Local-only 原子实施计划（DEC-126-063 Accepted / S10BEP1 Clean Checkpoints Formed / G3 Partial）
 
 ## 1. 当前执行边界
 
@@ -6,7 +6,7 @@
 - DEC-126-022 Local-only Delivery Strategy已Accepted；LIA-126-001已于2026-08-02批准，且只允许S4–S6本地基础切片。
 - S4–S6已有远端checkpoint并保持flags/routes默认关闭；DEC-126-026已接受其Closure并单独授权S7A Desktop Rust Host Bridge/Domain。
 - DEC-126-027已接受S7A；DEC-126-028已接受S7B durable outbox、strict/coalesced reducer、history orchestration、title precedence与fake Host应用链。
-- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；S4–S9及S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1/S10BF1/S10BRP1 Closure已接受，BLK-001–005及S10B-BLK-001–006关闭。LIA-126-020/S10B-R5已消费并fail closed；DEC-126-059 Option A已接受，API/Infra clean local checkpoints已形成。LIA-126-022/S10B-R6已单独授权但未消费、未执行；S11仍未授权。
+- DESIGN-126-005把原S8重新拆为S7C/S8A/S8B；S4–S9及S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1/S10BF1/S10BRP1 Closure已接受。LIA-126-022/S10B-R6已消费并在S10B-001 resolver步骤fail closed；DEC-126-060/061 Option A已Accepted。LIA-126-023/S10BEP1 repository implementation及S10BEP1-014 isolated live验证已PASS，DEC-126-062已接受Corrective Closure并关闭`S10B-BLK-007`；DEC-126-063已形成Infra/Governance本地clean checkpoints。`S10B-BLK-001–007`现均Closed，G3保持Partial，fresh R7与S11仍未授权。
 
 ## 2. 实施原则
 
@@ -443,10 +443,35 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 5. 当前Accepted clean local checkpoints为API `d1c72b29ffc567abdb4521343a73ceef9ac9da34`与Infra `8f9b8965dbd32bb7273059a80bb818d4344e7135`，均未push；本轮不启动Docker/服务，不执行S10B-002–012，不进入S11或调用MiniMax。
 6. DEC-126-059 Option A已接受，`S10B-BLK-006` Closed；该接受不等于S10B或G4 PASS。
 
-## 25. LIA-126-022 / S10B-R6 授权但未消费
+## 25. LIA-126-022 / S10B-R6 授权消费结果
 
-1. 状态：`Authorized 2026-08-06 / Not Consumed / Not Executed`；本次只记录授权，不启动run。
+1. 状态：`Consumed 2026-08-06 / Executed-Blocked / Closure Fail`；fresh run为`28afba8b-573a-46ec-b9d1-8a635c7b9cf0`。
 2. 固定候选：Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`、API `d1c72b29ffc567abdb4521343a73ceef9ac9da34`、Host `1ca4ee555586e5243f7101b9fe056c6fa117a560`、Desktop `ed9eb14f3829f6e8fee427de40f76a2c549fb78c`、Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`、Infra `8f9b8965dbd32bb7273059a80bb818d4344e7135`与本次Governance clean checkpoint。
-3. 消费授权时只允许一次fresh S10B-001–012，必须使用新run UUID、fresh隔离资源、accepted preflight/continuation authority、fake provider与合成数据。
-4. 任一硬门禁失败立即fail closed；不现场修改源码、继续、直接重跑或转入S11。
+3. 唯一`make feat-126-s10b-preflight`返回`preflight_image_resolver_failed`；S10B-001 FAIL，S10B-002–012 NOT RUN。
+4. 已按硬门禁停止；未现场修改源码、继续、直接重跑或转入S11。
 5. 不授权MiniMax、真实数据/Keychain、default activation、push、merge、tag、publish或deploy。
+
+## 26. S10B-BLK-007 退出顺序
+
+1. DEC-126-060 Option A已Accepted：确认R6失败事实并拒绝Closure，不自动授权纠偏。
+2. Owner已单独授权并完成DESIGN-126-013/S10BEP0设计评审；DEC-126-061 Option A于2026-08-08获批。父runner只能消费closed/versioned/content-free子结果，禁止raw stderr或路径/命令正文。
+3. `LIA-126-023 / S10BEP1` Infra corrective已单独授权、消费并完成repository实现；S10BEP1-014 isolated live验证及Infra/Governance全量门禁已PASS。不得改变Compose pins、`--pull never`、contracts、业务wire/schema或Runtime pin。
+4. corrective Closure已由Owner通过DEC-126-062接受并关闭BLK-007；DEC-126-063已仅形成clean Infra/Governance checkpoints。fresh R7仍须另行授权。
+
+## 27. S10BEP0/S10BEP1切片
+
+| Slice | 范围 | 允许仓库/文件 | 前置 | 验证 | 状态 |
+|---|---|---|---|---|---|
+| S10BEP0 / DESIGN-126-013 | 只读调查、closed result v1、failure mapping、安全/兼容/测试冻结 | yijie治理文档 | DEC-126-060 Accepted + Owner单独授权设计评审 | package/strict/G2A/YAML/lint/test/diff | **Completed / DEC-126-061 Accepted** |
+| S10BEP1 / LIA-126-023 | resolver closed child mode、parent strict projection、0600 evidence、directional tests与单独live closure | yijie-infra resolver/preflight/tests/docs + yijie治理 | DEC-126-061 Accepted + Owner明确实施授权 | S10BEP1-001–014 + Infra full gates + isolated live resolver | **Corrective Closure Passed / DEC-126-063 Clean Checkpoints Formed / S10B-BLK-007 Closed** |
+| S10B-R7 | fresh S10B-001–012 | 既有七仓候选与新clean Infra/Governance checkpoints | S10BEP1 Closure由Owner接受 + 独立一次性授权 | 完整权威矩阵 | **Not Authorized / Not Started** |
+
+停止条件：S10BEP1如需改API/Host/Desktop/Runtime/contracts、业务wire/schema、Compose pin或引入operator可选resolver参数，立即停止并提交新设计缺口；不得把unit test、human CLI或单独live resolver写成S10B-R7/G4证据。
+
+## 28. LIA-126-023 / S10BEP1执行与退出
+
+1. Owner于2026-08-08接受DEC-126-061 Option A并单独授权执行corrective；授权范围只含Infra resolver/preflight/tests/docs与FEAT-126治理。
+2. 实现已完成closed result v1、同源枚举/显式合法tuple validator、12 leaf映射与cleanup leaf保留、namespace protocol guard、fixed child process、120秒timeout、2048/4096容量、strict UTF-8/单末尾LF/duplicate-key/framing/exit/stderr/run binding、create-new 0600 evidence、closed resolver后config recheck→fixed direct up顺序与human CLI兼容。
+3. Infra 128/128 tests、`pnpm validate`、targeted 34/34 S10BD1/S10BF1/S10BEP1、Node syntax/diff与完整`make lint/test` PASS；未修改Compose pin、API/Host/Desktop/Runtime/contracts、business wire/schema或默认flag。
+4. Docker client/server 29.6.1、Compose 5.3.0与daemon access通过后，canonical run `624bd64c-b378-4d53-97c0-05790e7e4657`完成isolated 3 identity/3 no-start probe、exact closed parent、0600 evidence、no-log与资源归零；三项exact image identity前后一致且image count均为6，`s10b_r7_executed=false`。Governance default/strict/G2A/YAML/lint/test/diff PASS。
+5. DEC-126-062已接受S10BEP1 Corrective Closure并关闭`S10B-BLK-007`；DEC-126-063已形成Infra checkpoint `0842ff2dcf9be6fce7aa6b19adbb6ea475607136`及包含本决策的Governance本地checkpoint。fresh R7仍须Owner明确授权；当前为Not Authorized。

@@ -1,7 +1,7 @@
 # FEAT-126 测试与 Eval 计划
 
 > 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。DEC-126-023/024完成G2A重审，DEC-126-025登记sole candidate与checkpoint远端ref并恢复LIA-126-002，仅执行S4–S6 Corrective Closure。
-> S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1/S10BF1/S10BRP1 Closure已接受，S10B-BLK-001–006关闭。LIA-126-020/S10B-R5已消费但Closure失败；DEC-126-059 Option A已接受，API/Infra corrective形成clean local checkpoints。LIA-126-022/S10B-R6已单独授权但未消费、未执行；S10B-002–012、S11与MiniMax仍未运行。
+> S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1/S10BF1/S10BRP1 Closure已接受。LIA-126-022/S10B-R6已消费但在S10B-001 image resolver阶段fail closed；S10B-002–012未运行。DEC-126-060/061 Option A已Accepted；LIA-126-023/S10BEP1 repository implementation、S10BEP1-014 isolated live验证及全量Infra/Governance门禁已完成。DEC-126-062已接受Corrective Closure并关闭`S10B-BLK-007`，DEC-126-063已形成Infra/Governance本地clean checkpoints；fresh R7、S11与MiniMax仍未授权。
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
 ## 1. 测试策略
@@ -645,11 +645,50 @@ LIA-126-018的一次授权已消费。没有把header纠正为`normal-000`后继
 
 API全量lint/test与Infra validate/lint/test 113/113、launcher真实子进程、summary负向矩阵及binary digest drift均已通过；DEC-126-059 Option A已接受。该矩阵不是S10B-002–012：不得把launcher conformance冒充API readiness、真实Vue对话或G4证据。
 
-## 31. LIA-126-022 / S10B-R6 授权测试矩阵
+## 31. LIA-126-022 / S10B-R6 授权测试矩阵（已消费）
 
-- 状态：`AUTHORIZED / NOT CONSUMED / NOT EXECUTED`。本次治理收口不启动Docker、服务或S10B用例。
+- 状态：`CONSUMED / EXECUTED-BLOCKED / CLOSURE FAIL`。唯一fresh run在S10B-001 resolver步骤停止。
 - 执行时必须使用新的canonical run UUID、fresh PostgreSQL volume、临时CODEX_HOME/Host Home/Desktop app-data/SQLCipher/项目与合成secret，不复用R5或历史run。
 - S10B-001必须消费Infra唯一preflight；S10B-002–012必须在同一run中消费accepted continuation authority，并完整覆盖真实Vue/Pinia/Tauri/Desktop Rust、API、Host、Runtime、content-free Public Tasks、流式assistant/raw reasoning、历史恢复、title/rename/pin、interrupt/resync、物理删除/cleanup、no-log与default-off恢复。
 - 固定候选为Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`、API `d1c72b29ffc567abdb4521343a73ceef9ac9da34`、Host `1ca4ee555586e5243f7101b9fe056c6fa117a560`、Desktop `ed9eb14f3829f6e8fee427de40f76a2c549fb78c`、Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`、Infra `8f9b8965dbd32bb7273059a80bb818d4344e7135`及本次Governance clean checkpoint。
 - 任一SHA、resolver、identity、migration、authority、E2E、content-free、no-log、cleanup或default-off断言失败立即停止；不现场修复、继续剩余用例或直接重跑。
 - 不调用MiniMax/外部模型，不处理真实数据或访问真实Keychain，不进入S11，不改源码，不执行远端动作。
+
+## 32. S10B-R6 实际执行矩阵
+
+| Case | 结果 | Content-free evidence |
+|---|---|---|
+| Baseline/capability | PASS | 七仓SHA与worktree exact/clean；Docker client/server `29.6.1`、Compose `5.3.0`、context `desktop-linux` |
+| S10B-001 authority/ports/secret/config | PASS before resolver | run `28afba8b-573a-46ec-b9d1-8a635c7b9cf0`；fresh 0700 root；固定端口可用；两个ignored 0600文件 |
+| S10B-001 immutable image resolver | **FAIL-CLOSED** | 顶层class=`preflight_image_resolver_failed`；REJECTED SHA-256=`7c7c5f61d03614f41dec86fd051bda8668bebf208ff53349fe5535ba5f765e11` |
+| Read-only post-failure classification | PARTIAL | 三项exact image Id/Descriptor/RepoDigest/OS/architecture匹配；没有重跑no-start probe，不能判断create/validation/cleanup leaf class |
+| S10B-002–011 | NOT RUN | 遵循一次授权停止条件；未启动依赖、API、Host、Desktop或Runtime业务链 |
+| S10B-012 abort cleanup subset | PASS / overall NOT RUN | run-labeled container/network/volume=`0/0/0`；固定listeners=`0`；Docker保持执行前running状态 |
+| no-log/data/model | PASS for reached scope | 5个合成secret对REJECTED命中0；Public Task/session/turn/provider/MiniMax/Keychain/真实数据/远端写入=`0` |
+
+`S10B-BLK-007`：唯一父runner只保留步骤级失败，丢失子resolver的closed leaf class。不得用只读image identity PASS代替no-start resolver PASS，不得现场修复或直接重跑。DEC-126-060 Option A已Accepted；下一步须单独冻结versioned/content-free leaf-class传播，再分别审批corrective和fresh run。
+
+## 33. DESIGN-126-013 / S10BEP1 Resolver Error Propagation矩阵
+
+> 本表是DEC-126-061 Accepted后的corrective验收权威。LIA-126-023 repository implementation与S10BEP1-014 live resolver均已执行；DEC-126-062已接受整体Corrective Closure。
+
+| Case | 预期 |
+|---|---|
+| S10BEP1-001 closed success | child只输出一行exact v1 JSON；run ID、`image_count=3`、`probe_count=3`与exit 0一致；stderr empty |
+| S10BEP1-002 leaf directionality | 12个现有Docker leaf class逐一通过child producer→parent validator→`preflight_image_resolver_<leaf>`→REJECTED映射，不折叠、不改义 |
+| S10BEP1-003 phase/target/cleanup | 每个leaf只能与显式合法phase/`docker|postgres|keycloak|caddy`/cleanup tuple组合，不接受独立allowlist笛卡尔积；validation后owned cleanup成功保留原leaf和`removed`，opaque cleanup映射cleanup leaf |
+| S10BEP1-004 closed shape | missing/extra key、wrong schema/status/run ID、unknown leaf/phase/target/cleanup全部`result_invalid` |
+| S10BEP1-005 capacity/framing | empty、NUL、CR、多行、缺少或多于单个末尾LF、duplicate JSON key、invalid UTF-8/JSON、>2048 bytes、buffer overflow全部fail closed且不继续dependencies |
+| S10BEP1-006 process relation | passed+非0、failed+0、signal、spawn error、nonempty stderr和unexpected stdout channel均按closed parent-only class停止 |
+| S10BEP1-007 timeout | 120秒timeout映射`preflight_image_resolver_timeout`；不自动重试、不猜测cleanup、不删foreign resource |
+| S10BEP1-008 evidence writer | validated envelope以create-new 0600写入固定ignored evidence；existing/symlink/wrong mode/write failure停止且不覆盖 |
+| S10BEP1-009 REJECTED compatibility | 顶层REJECTED仍为v1 exact三字段；只含mapped closed class，无raw child payload/path/command/stderr |
+| S10BEP1-010 version matrix | old/old与old/new保持原human Make行为；new/new closed PASS；new/old缺protocol exports由namespace guard映射`result_invalid`，无false PASS |
+| S10BEP1-011 S10BD1 regression | capability、identity、no-pull create、validation、unknown outcome、owned cleanup与foreign delete=0原12项全部继续通过 |
+| S10BEP1-012 security/no-log | secret、DSN、token、socket、真实路径、image pin/digest、container ID和raw stderr在stdout/REJECTED/evidence/Git命中0 |
+| S10BEP1-013 authority/default | Compose pins、`--pull never`、唯一preflight输入、default Make/CLI、contracts/Runtime/default flags保持不变；锁定closed resolver→只读config recheck→固定profile/services direct up的顺序与完整参数 |
+| S10BEP1-014 isolated live closure | 单独canonical run完成3 identity/3 no-start probe；parent得到passed closed result；container/network/volume/listener归零，Docker恢复原状态；明确`S10B-R7 executed=false` |
+
+逐仓门禁：仅Infra `pnpm validate`、`make lint`、`make test`、Node/shell安全/no-log与`git diff --check`，再运行FEAT-126 package/strict/G2A/YAML/治理lint/test。任一失败保持BLK-007 Open，不得现场重试或进入R7。
+
+实际结果（2026-08-09）：Docker client/server 29.6.1、Compose 5.3.0与daemon access均PASS。canonical run `624bd64c-b378-4d53-97c0-05790e7e4657`完成S10BEP1-014：exact closed parent envelope、3 identity/3 no-start probe、0600五字段evidence（SHA-256 `e13f633fb331e3b0c0d08f22e16f7126980555ae849a73766a7bcc2259be6b34`）、no-log/敏感payload命中0及container/network/volume/listener归零均PASS；三项exact image Id/RepoDigest/platform前后逐项一致且全局image count均为6。S10BEP1-001–013、原S10BD1-001–012、Infra 128/128、targeted 34/34、`pnpm validate`、完整`make lint/test`、Node syntax/diff与Governance default/strict/G2A/YAML/lint/test/diff全PASS。DEC-126-062已接受Corrective Closure并关闭BLK-007；DEC-126-063提交前复跑相同门禁并形成Infra/Governance本地clean checkpoints，`s10b_r7_executed=false`，fresh R7未授权。

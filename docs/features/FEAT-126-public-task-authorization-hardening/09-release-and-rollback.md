@@ -1,6 +1,6 @@
-# FEAT-126 本地启动、停止与恢复 Runbook（S10BRP1 Closure Passed / S10B-R6 Authorized Not Executed，G3 Partial）
+# FEAT-126 本地启动、停止与恢复 Runbook（DEC-126-063 Accepted / S10BEP1 Checkpoints Clean / BLK-007 Closed）
 
-> DEC-126-022将本需求冻结为Local-only Delivery。Owner已接受DEC-126-058/059 Option A，S10BRP1 Closure Passed且`S10B-BLK-006` Closed；API/Infra clean local checkpoints已形成。LIA-126-022/S10B-R6已单独授权但未消费、未执行。本文不自动启动该run，也不授权S11、MiniMax、default activation或发布。
+> DEC-126-022将本需求冻结为Local-only Delivery。LIA-126-022/S10B-R6已消费并在S10B-001 resolver阶段fail closed；DEC-126-060/061 Option A已Accepted。LIA-126-023/S10BEP1 repository implementation与S10BEP1-014 isolated live验证已PASS，DEC-126-062已接受Corrective Closure并关闭`S10B-BLK-007`，DEC-126-063已仅形成Infra/Governance本地clean checkpoints。G3保持Partial；本文不授权fresh R7、S11、MiniMax、default activation或发布。
 
 ## 1. Release Manifest
 
@@ -26,7 +26,7 @@
 - [x] G1/G2、DEC-126-024 G2A重审与LIA-126-001真实通过并有段成威批准
 - [x] DEC-126-023方案C Accepted、Q-017 Resolved；本地replacement source/generated/fixtures与post-commit证据已形成
 - [x] DEC-126-024批准`29317b6426578749dc698fc2ad32b986ee5c8e9f`为新的唯一candidate；DEC-126-025随后单独恢复LIA-126-002的S4–S6范围
-- [ ] G4仍需完整fresh S10B Closure；S10B-R5已执行但仅S10B-001通过。DEC-126-059 Option A已接受并关闭`S10B-BLK-006`，API/Infra clean checkpoints已形成；LIA-126-022/S10B-R6已授权但未消费、未执行
+- [ ] G4仍需完整fresh S10B Closure；LIA-126-022/S10B-R6已消费并在S10B-001 image resolver阶段fail closed，S10B-002–012未运行；DEC-126-062已接受S10BEP1 Corrective Closure并关闭`S10B-BLK-007`，但fresh R7仍未授权
 - [ ] Contracts/Runtime/app本地输入来自clean immutable source，full SHA/digest/generator可追溯；tag为N/A
 - [x] 本地合成identity/tenant/permission链路通过；standard Authorization Code + PKCE含numeric `nbf`，unchanged API capability/Public create通过；FEAT-125 production prerequisites不属于Local-only G6
 - [ ] Public Tasks consumer inventory、secure version migration 和 legacy retirement plan 完成
@@ -185,7 +185,7 @@ stop threshold
 | Migrate/bootstrap API | `feat-126-s10-local-lab`权威wrapper已由DEC-126-048接受，内部固定4份reviewed manifests及API-owned atomic batch/verifier | data owner | 只允许隔离验证；不得用于未授权S10B，不得使用generic/manual SQL | S10BP1 Closure Passed；not S10B evidence |
 | Build/start API | host process on fixed loopback with S10E DB/OIDC/TLS profile | local owner | S10I fresh run started and stopped；standard native token accepted；Public create/bind/delete-retention PASS | DEC-126-045 Accepted Closure evidence；not S10B evidence |
 | Inspect FEAT-126 API runtime authority | `make feat-126-s10-api-runtime-profile` | read-only reviewer | closed content-free authority only；无profile override | DEC-126-059 Accepted；Infra `8f9b8965…7135` |
-| Continue after accepted preflight | `make feat-126-s10b-api-continuation`只接收canonical run ID与七仓SHA；从固定run路径读summary/secrets/CA/binary，校验`api_binary_sha256`与文件身份双快照后由同一reader/builder产生profile/env | LIA-126-022 authorized local operator | 当前仅授权、未消费；执行时须完成S10B-002–012，不能把launcher conformance冒充E2E | LIA-126-022 / S10B-R6；Governance exact HEAD须在执行前固定 |
+| Continue after accepted preflight | `make feat-126-s10b-api-continuation`只接收canonical run ID与七仓SHA；从固定run路径读summary/secrets/CA/binary，校验`api_binary_sha256`与文件身份双快照后由同一reader/builder产生profile/env | future separately authorized local operator | R6已在preflight resolver失败并消费，continuation未运行；DEC-126-063已形成clean checkpoints，但fresh run仍须另行授权方可执行 | LIA-126-022 consumed / R6 Closure Rejected；DEC-126-063 Accepted / BLK-007 Closed / fresh R7 unauthorized |
 | Build Host/start Desktop/Runtime | Host/fake临时binary已build；Desktop `pnpm tauri dev`与Host/Runtime child因bootstrap stop condition未执行 | local owner | S10B-001 fail closed；业务进程启动数0 | DEC-126-046 Accepted / rejected Closure evidence |
 | Stop local stack | process-group SIGTERM/deadline；Infra `make feat-125-local-stop && make dev-down`；verify no PID/listener/default-on | local owner | command frozen；not executed | future cleanup manifest |
 | Migrate temp local DB | API `make test-integration`; Desktop embedded migration tests | data owner | foundation PASS；populated release/E2E still blocks G4 | evidence in `08` |
@@ -256,3 +256,24 @@ DESIGN-126-008对未来corrective的回滚语义冻结如下：
 - restore：停止API/fake；移除本run四个containers和四个networks；确认受控端口free；恢复Docker Desktop为stopped；四个named volumes按已接受非破坏边界保留，不执行volume删除或prune。
 - default/security：没有Desktop/Host/Runtime业务状态；没有Public Task/conversation；没有Keychain/MiniMax/真实数据；生成secret在日志/证据中0命中；默认flag仍off。
 - recovery gate：仅Owner接受DEC-126-058并另行批准corrective后，才可修改private local profile；corrective Closure与新的fresh E2E仍分别单审。
+
+### S10B-R6 abort/restore记录
+
+- run：`28afba8b-573a-46ec-b9d1-8a635c7b9cf0`；授权已消费。
+- stop trigger：唯一preflight在image resolver返回`preflight_image_resolver_failed`；S10B-001 FAIL，S10B-002–012 NOT RUN。
+- safe diagnosis：三项冻结image只读identity/descriptor/repository/platform匹配；未重跑no-start create probe，父runner未保存子leaf class，因此根因不猜测。
+- restore：没有run-labeledcontainer/network/volume；七个固定端口无listener；Docker执行前后均running；不删除保留的owner-only ignored run root。
+- evidence：run root 0700；`infra-secrets.env`与`REJECTED`为ignored 0600；REJECTED SHA-256=`7c7c5f61d03614f41dec86fd051bda8668bebf208ff53349fe5535ba5f765e11`；secret evidence hits=0。
+- recovery gate：DEC-126-060/061 Option A已Accepted，LIA-126-023 repository corrective与S10BEP1-014 isolated live验证已PASS；DEC-126-062已接受Corrective Closure并关闭BLK-007，DEC-126-063已形成本地clean checkpoints。当前仍不得直接重跑或进入S11；fresh R7仍须另行授权。
+
+### BLK-007 corrective恢复边界
+
+- 默认`make feat-126-s10-verify-images`/human CLI必须保持；新closed mode只能由同commit父preflight内部固定调用，不能成为operator override。
+- new parent以namespace export guard识别old/invalid child并必须以closed protocol class停止；禁止回退到stderr scraping、generic PASS或自动重试。
+- failure context按每个leaf的显式合法phase/target/cleanup tuple校验；validation后owned cleanup成功须保留原leaf与`removed`，opaque cleanup失败须归一化为cleanup leaf，不得折叠成generic protocol error。
+- corrective回滚必须成组撤销parent/child；回滚后继续HOLD S10B。任何ignored resolver evidence均不被continuation消费，也不得含raw stderr、路径或image pin。
+- timeout、cleanup incomplete/unknown或foreign identity时parent删除数量必须为0；资源处置只能沿S10BD1 exact ownership边界另行评审。
+- closed PASS/evidence后必须按固定顺序重跑只读config guard，再以同源profile/services和`--pull never`直接启动；不得回退到会二次调用human resolver的公开`up`路径。
+- 2026-08-09已在Docker client/server 29.6.1、Compose 5.3.0和daemon access通过后，使用canonical run `624bd64c-b378-4d53-97c0-05790e7e4657`完成S10BEP1-014。exact closed parent、3 identity/3 no-start probe、0600五字段evidence、no-log、三项exact image identity前后一致、image count均为6及container/network/volume/listener归零均PASS；该动作不是S10B-R7，`s10b_r7_executed=false`。
+- Infra 128/128、targeted 34/34、validate、完整`make lint/test`及Governance门禁PASS。证据SHA-256=`e13f633fb331e3b0c0d08f22e16f7126980555ae849a73766a7bcc2259be6b34`；S10BEP1-014当时未授权commit/push，未形成checkpoint。
+- DEC-126-062已接受Corrective Closure并关闭`S10B-BLK-007`；DEC-126-063随后形成Infra checkpoint `0842ff2dcf9be6fce7aa6b19adbb6ea475607136`与Governance本地checkpoint。continuation或fresh R7仍未授权；S11、MiniMax、activation、真实数据与远端动作继续禁止。

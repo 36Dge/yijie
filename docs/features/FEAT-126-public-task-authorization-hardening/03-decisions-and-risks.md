@@ -70,13 +70,17 @@
 | DEC-126-057 | 是否接受LIA-126-019 / S10BF1 Closure并关闭S10B-BLK-005 | A. **采用**：接受Host-owned authority/probe、Infra唯一runner、S10B-001组合预检及清理证据，关闭BLK-005；B. 指定S10BF1 P1退回；C. 把本次corrective冒充S10B-R5/G4 PASS | Host `1ca4ee555586e5243f7101b9fe056c6fa117a560`把health/probe字段明确拆成`dataset_id`与`fixture_case_id`，探针内部生成header且拒绝endpoint/identity漂移；Infra `5723ffdaa3f2c4b63914a6fd6ef7bac9f15bc0c9`只有一个runner，不接受dataset/fixture输入 | fresh run `ed22fc82-4837-4a3e-a60e-7f7c8ab6f3f4`通过七仓SHA、resolver、依赖、TLS/OIDC、identity、migration/bootstrap、API health/ready、Host-owned fake readiness与secret scan；summary SHA-256=`8198442e…f7d9`；API/fake/container/network/listener=0，4 volumes按边界保留，Docker恢复停止，`s10b_r5_executed=false` | 段成威 | **Accepted 2026-08-05 / Option A / S10BF1 Closure Passed / S10B-BLK-005 Closed / S10B-R5 separately unauthorized** |
 | DEC-126-058 | LIA-126-020 / S10B-R5 runtime-profile authority失败处置 | A. **采用**：接受fail-closed事实、不接受R5 Closure、保持`S10B-BLK-006 Open`，单独建立closed FEAT-126 API runtime profile及preflight/continuation共享authority；B. 复用FEAT-125 profile；C. 放宽profile校验 | **Owner以最新明确执行指令接受A并单独授权/消费LIA-126-021/S10BRP1**：API必须正式增加closed `feat-126-s10-local-lab`；Infra preflight与后续完整链必须消费同一machine-readable authority，不能只替换字符串、shell重建或绕过校验 | R5历史保持S10B-001 PASS、002 fail closed、003–012 NOT RUN；该接受只授权corrective，不是fresh rerun。纠偏属于private local deployment `semantic`，central contracts/wire/schema/Runtime pin无影响，G2A N/A | 段成威 | **Accepted 2026-08-06 / Option A / R5 Closure Rejected / LIA-126-021 Authorized and Consumed / S10B-BLK-006 Open** |
 | DEC-126-059 | LIA-126-021 / S10BRP1 Closed API Runtime Profile Authority Closure Review | A. **采用**：接受API/Infra候选与仓内验证，关闭BLK-006并形成clean local checkpoints；B. 指定S10BRP1 P1退回；C. 把corrective直接写成S10B/G4 PASS | API正式支持专用profile并严格冻结nonproduction、双exact flag、专用DSN、issuer/JWKS、CA pin、canonical port、loopback、legacy v1隔离；FEAT-125行为不变。Infra以单一closed authority构建preflight child env，把authority与`api_binary_sha256`写入summary；唯一continuation launcher实际消费同run summary、reader、builder并复核fixed binary digest/identity，无operator override | **Owner接受A**。API `d1c72b29ffc567abdb4521343a73ceef9ac9da34`、Infra `8f9b8965dbd32bb7273059a80bb818d4344e7135`为clean local checkpoints；API gates与Infra 113/113 PASS。Closure接受只关闭BLK-006，不是S10B-002–012或G4证据 | 段成威 | **Accepted 2026-08-06 / Option A / S10BRP1 Closure Passed / S10B-BLK-006 Closed**；Owner另行授权LIA-126-022/S10B-R6，但本轮未消费 |
+| DEC-126-060 | LIA-126-022 / S10B-R6 image-resolver fail-closed处置 | A. **采用**：接受单次授权已消费和fail-closed事实，拒绝R6 Closure，保持`S10B-BLK-007 Open`；单独设计父preflight对子resolver closed class与content-free诊断证据的无损传播，之后再分别审批纠偏与fresh run；B. 以只读image inspect成功直接把S10B-001判PASS；C. 直接重跑resolver/R6 | R6七仓exact/clean与Docker capability通过；S10B-001在resolver返回`preflight_image_resolver_failed`后停止。事后只读检查证明三项冻结镜像的Id/Descriptor/RepoDigest/OS/arch精确匹配，但不能证明no-start create/validation/cleanup通过。现有父runner丢弃子进程closed stderr并只保留步骤级失败，无法区分`image_*`、`resolver_probe_failed`或`resolver_probe_cleanup_incomplete`，直接修复或重跑会绕过一次性停止条件 | run `28afba8b-573a-46ec-b9d1-8a635c7b9cf0`；S10B-001 FAIL、002–012 NOT RUN；container/network/volume/listener=0；owner-only run root保留2个ignored 0600文件，REJECTED SHA-256=`7c7c5f61d03614f41dec86fd051bda8668bebf208ff53349fe5535ba5f765e11`，secret→REJECTED hits=0。`contract-impact=none` for execution/governance；未来错误投影纠偏预计为private deployment-interface `semantic`、central G2A N/A | 段成威 | **Accepted 2026-08-06 / Option A / S10B-R6 Closure Rejected / S10B-BLK-007 Open**；不自动授权纠偏、fresh R7、S11或MiniMax |
+| DEC-126-061 | DESIGN-126-013 / S10BEP0 resolver错误透传方案 | A. **采用**：child提供内部专用closed result v1，parent复用同源validator、严格校验并映射leaf class，同时落0600 content-free evidence；默认Make/human CLI保持；B. parent直接import resolver并捕获typed error；C. 抓取human stderr或直接重试 | Owner于2026-08-08以继续执行指令接受A，并单独授权/消费LIA-126-023。A保留真实child process/exit/output边界和唯一preflight，可复验12个leaf、phase/target/cleanup及old/new兼容；parent仍只接收run ID与七仓SHA，不增加operator override | Infra repository implementation、128/128 tests与static validate PASS；2026-08-09在Docker client/server 29.6.1、Compose 5.3.0及daemon access通过后，S10BEP1-014 canonical run `624bd64c…4657`完成3 identity/3 no-start probe、closed parent、no-log与资源归零，Infra/Governance门禁全绿，`s10b_r7_executed=false`。`contract-impact=semantic`仅限private local deployment interface；central G2A=N/A | 段成威 | **Accepted 2026-08-08 / Option A / LIA-126-023 Consumed / S10BEP1-014 PASS / Closure later accepted by DEC-126-062 / BLK-007 Closed** |
+| DEC-126-062 | LIA-126-023 / S10BEP1 Corrective Closure Review | A. **采用**：接受repository corrective、S10BEP1-014 isolated live与全量Infra/Governance证据，关闭`S10B-BLK-007`；B. Hold并指定额外content-free证据；C. 拒绝Closure并保持blocker | **Owner明确接受A**。closed parent exact v1、3 identity/3 no-start probe、0600五字段evidence、no-log、三项exact image identity前后一致、container/network/volume/listener归零及所有门禁均PASS；决策登记后Governance default/strict/G2A/unique-key YAML/lint/test/shell/diff复跑PASS；`s10b_r7_executed=false` | 本决定仅接受corrective Closure并关闭BLK-007；`contract-impact=none` for governance disposition。G3保持Partial，G4/G6 Pending；不形成clean checkpoint，不授权fresh R7、S11、MiniMax、activation、真实数据、commit/push或其他远端写入 | 段成威 | **Accepted 2026-08-09 / Option A / S10BEP1 Corrective Closure Passed / S10B-BLK-007 Closed** |
+| DEC-126-063 | DEC-126-062后Local Clean Checkpoint Closure | A. **采用**：仅在范围与门禁通过后形成Infra/Governance两个本地clean checkpoints；B. 保持dirty候选；C. 同时启动fresh R7 | **Owner明确采用A**。七仓候选范围/clean状态与冻结SHA复核通过；Infra validate、128/128、targeted 34/34、完整make lint/test、Compose semantic、Node/Shell/diff及Governance default/strict/G2A/YAML/lint/test/shell/diff均PASS | Infra checkpoint=`0842ff2dcf9be6fce7aa6b19adbb6ea475607136`；Governance checkpoint为包含本决策的本地commit。仅授权这两个local commits，不授权push/远端动作或fresh R7；G3 Partial、G4/G6 Pending不变 | 段成威 | **Accepted 2026-08-09 / Local Clean Checkpoints Formed / Fresh R7 Not Authorized** |
 
 ## 3. ADR 判定
 
 - 是否改变既有 Accepted ADR：不削弱 ADR-0012；Accepted DEC-126-001 保留其 FEAT-126 安全责任。若未来改成迁号，必须重开 G1、形成新 Accepted ADR 并同步全部 FEAT-125 引用。
 - 是否改变跨仓职责/数据权威：是。ADR-0013 已接受 Desktop embedded SQLite 为 confidential conversation authority，并明确 PostgreSQL/Redis/pgvector/bbolt 的非替代职责；ADR-0015 冻结隔离标题，ADR-0016/DEC-126-016 冻结 Host raw-reasoning展示与Desktop SQLCipher历史权威。DESIGN-126-003/DEC-126-017现已提交 exact v2/schema/caps候选；Public Tasks ownership/auth由DEC-126-011/012提交批准。
 - 是否改变 Accepted Design Pattern：是。Chat 1.1.0 的 active state 要附件/右侧面板，App Shell 2.0.0 有全局收起；必须在代码前形成新候选版本并由段成威接受。
-- ADR/Decision 结论：ADR-0013/0014/0015/0016与DEC-126-011/012/016–059均已Accepted。DEC-126-058接受R5 fail-closed事实、拒绝Closure并授权专用runtime-profile authority纠偏；DEC-126-059接受DESIGN-126-012/LIA-126-021 Closure，关闭`S10B-BLK-006`并形成API/Infra clean local checkpoints。LIA-126-022/S10B-R6已授权但未消费、未执行；G3 Partial、G4/G6 Pending。
+- ADR/Decision 结论：ADR-0013/0014/0015/0016与DEC-126-011/012/016–063均已Accepted。DEC-126-062接受LIA-126-023/S10BEP1 Corrective Closure并关闭`S10B-BLK-007`；DEC-126-063随后仅形成Infra/Governance本地clean checkpoints。fresh R7仍未授权，G3 Partial、G4/G6 Pending。
 - G2A/local 结论：`29317b6426578749dc698fc2ad32b986ee5c8e9f`仍是唯一source-contract candidate；远端候选/develop/Draft PR不变。该bootstrap deployment/profile缺口不改变central contract，G2A重审为N/A；G4/G6保持Pending，所有默认flags关闭，S10B Executed / Blocked / Closure Fail，S11未授权。
 - 架构 Owner：段成威。
 
@@ -119,6 +123,7 @@
 | R-126-031 | Infra migration wrapper把已接受的API候选身份硬编码为旧SHA，导致后续closed bootstrap checkpoint无法进入fresh S10B | high | critical | migration与bootstrap必须消费同一run-scoped closed authority中的显式完整API SHA并在secret/DB前校验clean exact worktree；不得维护两套硬编码pin | CLI/Make正负矩阵：missing/short/wrong/dirty拒绝；exact same SHA成功；candidate drift、corrupt document、mode/owner/symlink/hardlink拒绝；Infra/feat125回归 | fail closed、container/service start=0；LIA-126-015只形成corrective checkpoint，不自动重跑 | 段成威 | **Mitigated / DEC-126-052 Accepted / S10B-BLK-003 Closed / Infra `bb96333d...`** |
 | R-126-032 | Docker execution capability未先验证且verifier把CLI/socket/daemon/permission/image/reference失败统一映射为“镜像不可用”，可能把环境不可达或containerd状态问题误判为digest缺失 | high | critical | DESIGN-126-011：同进程capability-first；closed failure classes；原Compose pin的Id/Descriptor/RepoDigests/repository/platform校验；受控no-pull create/remove resolver probe；保留exact pin与`--pull never` | S10BD1-001–012覆盖无CLI/daemon/permission、missing/unresolved、payload、identity/platform drift及unknown outcome/foreign cleanup；全量99/99；exact-commit live验证3 identity/3 probe并归零 | 保留R3 `REJECTED`历史；不自动pull/retag/restart/switch store；probe资源身份不匹配时删除数为0；fresh E2E仍须Owner另批 | 段成威 | **Mitigated / DEC-126-055 Accepted / S10BD1 Closure Passed / S10B-BLK-004 Closed** |
 | R-126-033 | S10B没有单一machine-readable编排authority时，S9 dataset bundle ID与Host请求fixture case ID可能被人工混用，导致环境健康但fake readiness错误或不同执行者产生不同请求 | high | critical | Host内部冻结dataset/case/digest并生成请求header；对外closed readiness分别命名`dataset_id`与`fixture_case_id`；Infra只消费Host探针且不提供identity输入；不一致在Host/Desktop启动前fail closed | Host authority/endpoint/run/payload/dataset/case/digest负向；Infra seven-SHA、single-runner、no-operator-input、组合preflight、default-off/no-log/cleanup；fresh live probe | LIA-126-019实现与组合预检已通过；DEC-126-057 Option A接受Closure并关闭blocker。S10B-R5仍未执行且须单独授权 | 段成威 | **Mitigated / DEC-126-057 Accepted / S10B-BLK-005 Closed** |
+| R-126-036 | 唯一S10B父runner把子resolver的closed失败类别折叠为步骤级`preflight_image_resolver_failed`，导致无法判断image identity、probe create、probe validation或cleanup哪一项失败 | high | critical | DEC-126-061/LIA-126-023已实现child closed result v1、parent同源validator、mapped leaf class与0600 evidence；保留run绑定/容量并禁止raw stderr、socket/path或command payload | S10BEP1自动化、S10BD1回归及S10BEP1-014 isolated live 3 identity/3 probe已通过；证据为exact五字段0600文件且资源归零 | DEC-126-062接受Corrective Closure并关闭BLK-007；DEC-126-063形成clean checkpoints并保留R6 REJECTED历史。fresh R7仍须Owner单独授权 | 段成威 | **Mitigated / DEC-126-063 Accepted / S10BEP1 Checkpoints Clean / S10B-BLK-007 Closed** |
 
 ## 5. 威胁建模
 
@@ -292,8 +297,67 @@
 
 | 项目 | 结论 |
 |---|---|
-| 状态 | `Authorized 2026-08-06 / Not Consumed / Not Executed` |
+| 状态 | `Consumed 2026-08-06 / Executed-Blocked / R6 Closure Rejected by DEC-126-060` |
 | 固定候选 | Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`；API `d1c72b29ffc567abdb4521343a73ceef9ac9da34`；Host `1ca4ee555586e5243f7101b9fe056c6fa117a560`；Desktop `ed9eb14f3829f6e8fee427de40f76a2c549fb78c`；Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`；Infra `8f9b8965dbd32bb7273059a80bb818d4344e7135`；Governance为本次批准形成的clean checkpoint HEAD |
 | 范围 | 一次fresh S10B-001–012；canonical新run UUID、fresh隔离资源、synthetic identity/data、fake provider、test-only ephemeral secret backend与临时exact-true flags |
-| 未授权 | 本轮不执行；不调用MiniMax/外部模型，不使用真实数据/Keychain，不现场改源码/contract/wire/schema/pin，不进入S11，不push/merge/tag/publish/deploy |
+| 未授权 | 授权已消费且不得重用；不调用MiniMax/外部模型，不使用真实数据/Keychain，不现场改源码/contract/wire/schema/pin，不进入S11，不push/merge/tag/publish/deploy |
 | 停止 | 任一基线、authority、binary digest、identity、migration、E2E、content-free、no-log、cleanup或default-off失败即终止；不得现场修复、续跑或直接重试 |
+
+## 14. DEC-126-060 — S10B-R6 Fail-closed Disposition（Accepted）
+
+| 项目 | 结论 |
+|---|---|
+| 状态 | `Accepted 2026-08-06 / Option A / R6 Closure Rejected / BLK-007 Open` |
+| 执行事实 | LIA-126-022已消费；run `28afba8b-573a-46ec-b9d1-8a635c7b9cf0`在唯一S10B-001 preflight的image resolver步骤失败；S10B-002–012 NOT RUN |
+| 可确认 | 七仓完整SHA/clean、Docker daemon/Compose capability、端口、secret init与Compose config先行通过；三个exact image的只读Id/Descriptor/RepoDigest/linux-arm64匹配 |
+| 不可确认 | 父runner未保留子resolver leaf class；no-start create/validation/cleanup哪一步失败未知，不得从image inspect PASS推导resolver PASS |
+| 接受处置 | 接受fail-closed事实但拒绝R6 Closure；保持`S10B-BLK-007 Open`。错误分类/证据传播设计、纠偏实施和fresh R7继续分别授权，本决定本身不启动任何一项 |
+| 安全与清理 | container/network/volume/listener=0；run root 0700，2个ignored 0600文件；REJECTED hash `7c7c5f61…5e11`；secret evidence hits=0；MiniMax/Keychain/真实数据/业务进程/远端动作=0 |
+
+## 15. DEC-126-061 — Closed Resolver Result Propagation（Accepted）
+
+| 项目 | 结论 |
+|---|---|
+| 状态 | `Accepted 2026-08-08 / Option A / LIA-126-023 Separately Authorized and Consumed` |
+| Option A（推荐） | resolver提供内部专用closed result v1；parent通过同一module导出的validator/allowlist消费，映射12个leaf class并保存固定0600 evidence；默认Make/human CLI不改义 |
+| Option B | parent直接import并调用resolver函数；能保留typed error，但失去真实child process/exit/framing验证，未来独立CLI容易再次漂移 |
+| Option C | 解析human stderr或直接重试；拒绝，因为文本可能受Make包装/本地化/路径污染且不versioned，重试不能补回R6证据 |
+| Closed shape | success exact五字段；failure exact七字段；phase、target、cleanup均closed enum；stdout一行≤2048 bytes、stderr empty、exit/status严格一致、120秒timeout |
+| Parent evidence | REJECTED保持v1 exact三字段，`failure_class=preflight_image_resolver_<leaf>`；validated child envelope另以create-new 0600写入固定ignored evidence；protocol错误只使用五个parent-only closed class |
+| 安全 | 禁止secret、DSN、token、socket、真实路径、image pin/digest、container ID、command和raw stderr；cleanup incomplete/unknown只停止，不授权parent删除资源 |
+| Contract impact | `semantic` only for private FEAT-126 local deployment interface；central contracts、business wire/schema、Compose pins和Runtime pin不变，G2A=N/A |
+| 下一门禁 | DEC-126-063已形成Infra/Governance本地clean checkpoints；fresh R7、S11/MiniMax仍分别未授权 |
+
+## 16. LIA-126-023 — S10BEP1 Corrective Execution
+
+| 项目 | 结论 |
+|---|---|
+| 状态 | `Consumed / Repository Implemented / S10BEP1-014 Isolated Live PASS / DEC-126-062 Accepted / Corrective Closure Passed / BLK-007 Closed` |
+| 授权解释 | Owner连续“继续执行”指令按本任务已声明边界，先接受DEC-126-061 Option A，再单独授权执行下一推荐corrective；不包含fresh R7、S11、MiniMax、activation或远端写入 |
+| 实现 | resolver新增固定`--closed-result-v1`，同源12 leaf与显式合法phase/target/cleanup tuple validator；parent以namespace protocol guard固定Node/script/timeout/buffer调用，严格校验UTF-8、单末尾LF、duplicate-key/framing/exit/stderr/run binding，映射leaf并create-new写0600 evidence；closed resolver后重验只读Compose config，再走固定profile/services的`up --pull never`，默认human Make/Compose pin保持 |
+| 通过证据 | Docker client/server 29.6.1、Compose 5.3.0与daemon access PASS；canonical run `624bd64c-b378-4d53-97c0-05790e7e4657`返回exact passed v1 envelope，3 identity/3 no-start probe；0600 evidence SHA-256=`e13f633fb331e3b0c0d08f22e16f7126980555ae849a73766a7bcc2259be6b34`且仅五个success字段；无log/secret/path/image/container payload；三项exact image Id/RepoDigest/platform前后逐项一致且全局image count均为6，container/network/volume/listener=0；Infra 128/128、targeted 34/34、validate、`make lint/test`及Governance default/strict/G2A/YAML/lint/test/diff全PASS |
+| 后继checkpoint | DEC-126-063仅形成Infra/Governance本地clean checkpoints；Infra=`0842ff2dcf9be6fce7aa6b19adbb6ea475607136`，Governance为包含DEC-126-063的本地commit。S10B-R7、S11、MiniMax、activation与远端动作均未执行 |
+| 结论 | DEC-126-062已接受S10BEP1 Corrective Closure并关闭`S10B-BLK-007`；G3保持Partial、G4/G6 Pending；`s10b_r7_executed=false`，fresh R7未授权 |
+
+## 17. DEC-126-062 — S10BEP1 Corrective Closure（Accepted）
+
+| 项目 | 结论 |
+|---|---|
+| Owner决定 | 接受LIA-126-023/S10BEP1 Corrective Closure；确认S10BEP1-014 isolated live、Infra全量门禁和Governance门禁PASS |
+| Blocker | `S10B-BLK-007 Closed`；`S10B-BLK-001–007`现均Closed |
+| 保持状态 | G3 Partial、G4/G6 Pending；S10B-002–012仍无完整PASS run |
+| 未授权 | fresh R7、S11、MiniMax、feature activation、真实数据、commit、push及其他远端写入 |
+| Contract impact | `none` for governance disposition；private deployment corrective的既有`semantic`分类不变，central G2A=N/A |
+| Post-decision gates | feature package default/strict/G2A、unique-key YAML、`pnpm lint/test`、checker shell syntax及`git diff --check`全部PASS |
+
+## 18. DEC-126-063 — Local Clean Checkpoint Closure（Accepted）
+
+| 项目 | 结论 |
+|---|---|
+| Owner决定 | 仅执行DEC-126-062后的local clean checkpoint closure；不得执行fresh R7 |
+| 范围核对 | Contracts/API/Host/Desktop/Runtime clean且SHA分别保持`29317b6…e9f`、`d1c72b2…a34`、`1ca4ee5…560`、`ed9eb14…b78c`、`3aa317c…d6f`；Infra仅5个S10BEP1 corrective文件，Governance仅9个FEAT-126文件 |
+| 提交前门禁 | Infra validate、128/128、targeted 34/34、完整make lint/test、Compose semantic、Node/Shell/diff PASS；Governance default/strict/G2A、unique-key YAML、lint/test、checker Shell及diff PASS |
+| Clean checkpoints | Infra=`0842ff2dcf9be6fce7aa6b19adbb6ea475607136`；Governance=包含本决策的本地commit；两个worktree提交后必须clean |
+| Contract impact | checkpoint governance=`none`；corrective既有`semantic`仅限private local deployment interface，central contracts/G2A仍N/A |
+| 未授权 | fresh R7、S11、MiniMax、feature activation、真实数据、push、merge、tag、publish、deploy及其他远端写入；不得prune或删除volume |
+| 保持状态 | `S10B-BLK-001–007 Closed`；G3 Partial、G4/G6 Pending；完整S10B-001–012仍未PASS |
