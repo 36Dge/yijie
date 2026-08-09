@@ -2,6 +2,7 @@
 
 > 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。DEC-126-023/024完成G2A重审，DEC-126-025登记sole candidate与checkpoint远端ref并恢复LIA-126-002，仅执行S4–S6 Corrective Closure。
 > S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1/S10BF1/S10BRP1 Closure已接受。LIA-126-022/S10B-R6已消费但在S10B-001 image resolver阶段fail closed；S10B-002–012未运行。DEC-126-060/061 Option A已Accepted；LIA-126-023/S10BEP1 repository implementation、S10BEP1-014 isolated live验证及全量Infra/Governance门禁已完成。DEC-126-062已接受Corrective Closure并关闭`S10B-BLK-007`，DEC-126-063已形成Infra/Governance本地clean checkpoints；fresh R7、S11与MiniMax仍未授权。
+> 后续LIA-126-024/S10B-R7已单独授权和消费；当前矩阵见§34。Owner已接受DEC-126-064/065/066并完成DESIGN-126-014、LIA-126-025/S10BO1 repository corrective及Corrective Closure，`S10B-BLK-008 Closed`。DEC-126-067随后形成API/Host/Desktop/Infra/Governance本地clean checkpoints；isolated live/fresh R8/S11/MiniMax仍未授权。
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
 ## 1. 测试策略
@@ -692,3 +693,71 @@ API全量lint/test与Infra validate/lint/test 113/113、launcher真实子进程�
 逐仓门禁：仅Infra `pnpm validate`、`make lint`、`make test`、Node/shell安全/no-log与`git diff --check`，再运行FEAT-126 package/strict/G2A/YAML/治理lint/test。任一失败保持BLK-007 Open，不得现场重试或进入R7。
 
 实际结果（2026-08-09）：Docker client/server 29.6.1、Compose 5.3.0与daemon access均PASS。canonical run `624bd64c-b378-4d53-97c0-05790e7e4657`完成S10BEP1-014：exact closed parent envelope、3 identity/3 no-start probe、0600五字段evidence（SHA-256 `e13f633fb331e3b0c0d08f22e16f7126980555ae849a73766a7bcc2259be6b34`）、no-log/敏感payload命中0及container/network/volume/listener归零均PASS；三项exact image Id/RepoDigest/platform前后逐项一致且全局image count均为6。S10BEP1-001–013、原S10BD1-001–012、Infra 128/128、targeted 34/34、`pnpm validate`、完整`make lint/test`、Node syntax/diff与Governance default/strict/G2A/YAML/lint/test/diff全PASS。DEC-126-062已接受Corrective Closure并关闭BLK-007；DEC-126-063提交前复跑相同门禁并形成Infra/Governance本地clean checkpoints，`s10b_r7_executed=false`，fresh R7未授权。
+
+## 34. LIA-126-024 / S10B-R7实际执行矩阵
+
+| Case | 结果 | Content-free evidence |
+|---|---|---|
+| Baseline/capability | PASS | 七仓固定full SHA与worktree exact/clean；Docker client/server `29.6.1`、Compose `5.3.0`、daemon access PASS |
+| S10B-001 combined preflight | PASS | run `d553e6ea-e10f-4470-b357-a41807d6fb06`；3 immutable identity/3 no-start probe、fresh dependencies、TLS/OIDC、synthetic identity、migration/bootstrap、API/fake readiness、no-log PASS；summary `de994e3d…12b80`，resolver evidence `c424a4e8…177e9e` |
+| S10B-002 full-process readiness/main-chain entry | **FAIL-CLOSED** | 唯一accepted continuation只启动API；runbook明确不启动Compose或其他组件；治理process manifest不是可执行authority；七仓没有绑定API/Host/Desktop/Runtime与case/evidence/cleanup的完整orchestrator |
+| S10B-003–011 | NOT RUN | 按一次性授权停止；未调用API continuation，未启动Host/Desktop/Runtime，未创建Public Task/session/turn/provider业务调用 |
+| S10B-012 abort cleanup subset | PASS / overall NOT RUN | exact run stop完成；container/network/process/listener=`0/0/0/0`；4个named volumes与ignored run root保留；daemon=`6 containers / 0 running / 6 images` |
+| no-log/content-free | PASS for reached scope | 8 files×5 generated secrets hits=0；8 files×664 frozen payload values hits=0；bearer/DSN/private-key hits=0；fake log empty；continuation log absent |
+| default/source/remote boundary | PASS for reached scope | 七仓在治理编辑前仍为固定SHA且clean；无源码/default flag/contract/wire/schema/Runtime pin变化；无retry、prune、volume deletion、MiniMax、Keychain、真实数据或远端写入 |
+
+结构化结论：`LIA-126-024`已消费，`s10b_r7_executed=true`，但完整R7 Closure不成立。Owner已接受DEC-126-064 Option A并拒绝R7 Closure；当时登记`S10B-BLK-008 Open`。DESIGN-126-014只读设计评审见§35，DEC-126-065/066随后完成LIA-126-025/S10BO1 Corrective Closure并关闭`S10B-BLK-008`；DEC-126-067进一步形成五个本地clean checkpoints。G3保持Partial，G4/G6 Pending；不得自动isolated live、fresh R8或S11。
+
+## 35. DESIGN-126-014 / S10BO1 Orchestrator Corrective验证矩阵
+
+> 本节冻结S10BO1的验收权威。LIA-126-025已授权并完成repository corrective；`S10BO1-001–014 targeted = PASS`。下列矩阵不等同于isolated live或fresh R8证据。
+
+| Case | 必须证明 | Stop condition |
+|---|---|---|
+| S10BO1-001 single entry/input | 唯一Infra Make入口只接受canonical run ID与七full SHA；path/port/profile/flag/binary/fixture/mode/case/resume/retry override不存在 | missing/extra/env override在run root或child前拒绝 |
+| S10BO1-002 same-run preflight | 入口内部调用唯一preflight并严格验证summary/resolver/run/repositories/API digest/dataset/fixture/cleanup | stale/wrong/missing/extra summary或preflight non-pass不得启动continuation |
+| S10BO1-003 state order | versioned closed state只允许DESIGN-126-014主路径与固定S10B-002–012顺序；case不可skip/reorder/repeat | 任一非法transition立即closed fail |
+| S10BO1-004 ownership | Infra→Desktop→Host→Runtime父子链；Infra只直接拥有dependencies/API/fake/Desktop；实际PID/PPID/binary/port/nonce/profile/manifest全部一致 | direct Host/Runtime spawn、PID reuse或listener owner不明即失败且不误kill |
+| S10BO1-005 Desktop driver/default | 独立non-publishable test build运行真实Vue/Pinia/production Tauri commands和组件；普通build不注册driver IPC且default flags逐项off | mock client/Rust直调替代主链、production bundle含driver或WebView获得bearer/path authority |
+| S10BO1-006 auth/project | synthetic authorization-code+PKCE使用same-run专用credential file；fixed project仍经过Rust canonical/scope校验 | password grant、手写bearer、人工browser/dialog、其它path或credential泄漏 |
+| S10BO1-007 fake generations | complete/incomplete/disconnect/oversize按固定case表切换；旧listener先释放，新health绑定run/mode/generation/call cap | operator mode input、generation漂移、accepted call超cap或不明listener |
+| S10BO1-008 API verifier | API-owned verifier以同一profile/DSN authority返回Tasks/audit/idempotency计数/hash/denylist零命中 | Infra ad hoc SQL、业务正文输出或schema/row不一致 |
+| S10BO1-009 planned restart | S10B-005由同一live orchestrator完成Desktop→Host→Runtime有序停机和same-binary relaunch；checkpoint closed且无duplicate | unexpected exit、operator resume或跨run checkpoint |
+| S10BO1-010 crash/parent death | API/fake/Desktop parent watchdog、Desktop→Host watchdog、Host→Runtime shutdown、partial-start和orchestrator crash均收敛；existing run只reconcile | case续跑、foreign process/resource删除或cleanup不确定却报PASS |
+| S10BO1-011 evidence/no-log | artifacts为0700/0600、no-follow/single-link/bounded closed JSON；所有logs/bbolt/DB verifier/process output对secret与固定payload扫描0命中 | 任一secret/body/title/path/bearer/DSN/private-key意外命中 |
+| S10BO1-012 exact cleanup | Desktop/Host/Runtime/fake/API/dependencies按固定顺序停止；run PID/process-group/listener/container/network为0；4 named volumes保留 | prune、volume删除、foreign mutation或任一资源未归零 |
+| S10BO1-013 compatibility | old preflight/API-only launcher/default Desktop/Host行为保持；new orchestrator只在新入口生效；Runtime/Contracts/API business wire/schema不变 | default behavior、Runtime pin或public/private business wire漂移 |
+| S10BO1-014 repository closure | Infra/API/Host/Desktop全量lint/test/build、targeted negative matrix、Governance全部门禁PASS；isolated live若另批只测startup/abort并记录`s10b_r8_executed=false` | 任一门禁失败不得形成Closure/commit/fresh R8 |
+
+DESIGN-126-014确认完整corrective不能是Infra-only：Desktop driver、Host Runtime/fake evidence与API-owned verifier均为前置。DEC-126-065 Option A已接受并授权LIA-126-025；S10BO1-001–014 targeted matrix 14/14及API/Host/Desktop/Infra全量lint/test/build均PASS。DEC-126-066现已接受Corrective Closure并关闭`S10B-BLK-008`；isolated live与fresh R8仍须分别获得一次性Owner授权。
+
+## 36. LIA-126-025 / S10BO1 实施验证结论
+
+- Infra：唯一`make feat-126-s10b-orchestrator`入口、canonical UUIDv4与七仓SHA校验、same-run preflight消费、closed S10B-002–012 state machine、ownership/no-retry/reconcile/0700/0600/no-log/exact cleanup实现完成；`S10BO1-001–014 = PASS`。
+- Desktop：non-publishable `feat126-s10-driver`真实Vue/Pinia/Tauri driver、synthetic authorization-code + PKCE agent、fixed project projection/test-driver IPC实现；默认production build不注册driver。
+- Host：Runtime child PID/PPID/binary/nonce/profile/manifest与fake mode/generation/call-cap证据实现；默认`/healthz` wire保持不变。
+- API：API-owned content-free Tasks/audit/idempotency verifier实现；输出仅count/enum/hash/denylist结果，不输出正文、secret、bearer、DSN或固定payload。
+- Contracts、Runtime源码、公共wire、durable schema、Compose pins、默认flags未修改；contract-impact=`semantic`，central G2A=`N/A`。
+- API/Host全量lint/race/build PASS；Desktop默认clippy缺失cfg已按单独授权最小修复，最终30/167 TS、129 PASS/3 ignored Rust、production/default/feature build、feature clippy、driver 2/2与driver-absent PASS；Infra validate/lint/test、Compose semantic、142/142及S10BO1 14/14 PASS。
+- Governance default、strict、G2A、unique-key YAML、`pnpm lint/test`、checker shell syntax与`git diff --check`最终复跑PASS；该结果不替代上述实现仓全量门禁。
+- 当前结论：`DEC-126-067 Accepted / S10BO1 Local Clean Checkpoints Formed / S10B-BLK-008 Closed / G3 Partial / G4/G6 Pending`；本次五个本地checkpoint已形成，禁止额外commit和任何live/fresh R8动作。
+
+## 37. DEC-126-066 / S10BO1 Corrective Closure Acceptance
+
+| 验收项 | 结论 |
+|---|---|
+| Capability preflight | PASS：Docker 29.6.1、Compose 5.3.0、daemon、loopback、0700/0600、subprocess、bookmark、SQLCipher/file security |
+| Repository gates | PASS：API/Host完整门禁；Desktop 167 TS、129 Rust/3 ignored、default/feature与driver边界；Infra 142/142及S10BO1 14/14 |
+| Owner decision | ACCEPTED：LIA-126-025/S10BO1 Corrective Closure Passed，`S10B-BLK-008 Closed` |
+| Remaining gates | G3 Partial、G4/G6 Pending；isolated live、fresh R8、S11、MiniMax、真实数据/Keychain及默认启用未授权 |
+| Post-decision Governance | PASS：default/strict/G2A、unique-key YAML、lint/test、shell syntax及`git diff --check`均已重新执行并通过 |
+
+## 38. DEC-126-067 / S10BO1 Local Clean Checkpoint Closure
+
+| 验收项 | 结论 |
+|---|---|
+| Pre-commit scope | 七仓HEAD精确匹配；Contracts/Runtime clean；Governance仅九份文件；API/Host/Desktop/Infra仅S10BO1 corrective |
+| Reverification | API/Host完整contract/lint/race/build PASS；Desktop 167 TS、default 129/3 ignored、feature 131/3 ignored、driver 2/2及bundle absent PASS；Infra validate/Compose semantic/142/142、S10BO1 14/14 PASS |
+| Local checkpoints | API `451940b282d8dd3e232ed414bd44b0677897f4c4`；Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`；Desktop `d51e435cb8ea224e69f9707831ee71022d0a7b6e`；Infra `0b05ab3270b9d00fa2aec1c85a8c3bee7f33c25c`；Governance为包含本节的本地commit |
+| Governance | default、strict、G2A、unique-key YAML、lint、test、shell syntax与七仓`git diff --check`均PASS |
+| Remaining gates | `S10B-BLK-008 Closed`；G3 Partial、G4/G6 Pending；isolated live、fresh R8、S11、MiniMax、真实数据/Keychain及默认启用未授权 |
