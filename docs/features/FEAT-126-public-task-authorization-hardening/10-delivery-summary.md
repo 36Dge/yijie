@@ -230,11 +230,12 @@
 | Item | Current fact |
 |---|---|
 | Decision | `DEC-126-068 Accepted Option A / DESIGN-126-015 Complete` |
-| Implementation | `LIA-126-026/S10BO2 Implemented / Pending Owner Corrective Closure` |
+| Implementation | `LIA-126-026/S10BO2 Corrective Closure Accepted` |
 | Desktop | `95f19ad557da0bf4cead90ed55d1e3ec60aefbc4`；actual non-publishable bootstrap、OIDC/PKCE、trusted project bind/bookmark、Vue/Pinia/Tauri driver、FD3/FD4 startup/abort；all gates PASS |
 | Infra | `0fed8187d6051c011e67142d90feff89de326cfe`；closed startup/abort runner、ownership/identity/cleanup controls；162/162与S10BO1/S10BO2 34/34 PASS |
 | Unchanged | Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`、API `451940b282d8dd3e232ed414bd44b0677897f4c4`、Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`、Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f` |
-| Safety state | `S10B-BLK-009 Open`；G3 Partial、G4/G6 Pending；Docker/isolated live、fresh R8和业务调用NOT RUN；`s10b_r8_executed=false` |
+| Safety state | `S10B-BLK-009 Closed`；G3 Partial、G4/G6 Pending；Docker/isolated live、fresh R8和业务调用NOT RUN；`s10b_r8_executed=false` |
 | Publication | Owner已明确授权提交并推送现有Governance/API/Host/Desktop/Infra FEAT-126候选；远端可达不等于Closure、merge、release或activation |
+| Closure governance | Owner决定登记后default/strict/G2A、unique-key YAML、lint/test、shell syntax与`git diff --check`首轮及证据回填后最终复跑均PASS；本轮不commit/push |
 
-本次交付仍未关闭FEAT-126。下一治理决策是Owner对S10BO2 Corrective Closure的接受或拒绝；在接受前`S10B-BLK-009`保持Open，isolated live与fresh R8不得自动执行。
+本次交付仍未关闭FEAT-126。Owner已接受S10BO2 Corrective Closure并关闭`S10B-BLK-009`，但这不是isolated live、fresh R8、完整S10B-001–012、G4或G6证据；后续动作仍须单独授权。

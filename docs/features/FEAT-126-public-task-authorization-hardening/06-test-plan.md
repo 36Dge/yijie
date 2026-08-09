@@ -772,4 +772,5 @@ DESIGN-126-014确认完整corrective不能是Infra-only：Desktop driver、Host 
 | Containment | spawn order、abnormal exit、strict termination identity、PID reuse、parent death、cleanup unknown、no retry和existing-run reconcile均有repository test证据；no-log PASS |
 | Scope | Desktop/Infra only；Contracts/API/Host/Runtime本轮源码不变；public wire、schema、Runtime pin、Compose pin与default flags不变 |
 | Live status | Docker live、isolated live、fresh R8与业务case均NOT RUN；`s10b_r8_executed=false` |
-| Closure | `LIA-126-026/S10BO2 Implemented / Pending Owner Corrective Closure`；`S10B-BLK-009 Open`；G3 Partial、G4/G6 Pending |
+| Closure | Owner Accepted：Desktop feature Rust 143 PASS/0 FAIL/3 ignored、Infra 162/162、S10BO1+S10BO2 34/34与no-log/driver-absent/ownership/cleanup证据充分；`S10B-BLK-009 Closed`；G3 Partial、G4/G6 Pending |
+| Post-decision Governance | default、strict、G2A、unique-key YAML、lint、test、shell syntax与`git diff --check`首轮及最终证据回填后复跑均PASS |

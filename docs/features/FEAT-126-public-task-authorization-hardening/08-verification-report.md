@@ -941,4 +941,5 @@ Owner disposition：DEC-126-062于2026-08-09明确接受LIA-126-023/S10BEP1 Corr
 | Corrective details | durable content-free cleanup outbox claim race使用`now.max(unix_seconds())`关闭跨秒竞争；strict termination identity在有界观察后仅reap已知exit，对unknown identity/status保持`CleanupIncomplete`且不signal未知PID |
 | Scope/security | Contracts/API/Host/Runtime本轮源码不变；content-free/no-log、production driver-absent和`git diff --check` PASS；contract-impact仅private semantic，central G2A=N/A |
 | Runtime evidence | 未执行Docker live、isolated live、fresh R8、业务调用、真实数据/Keychain或默认启用；`s10b_r8_executed=false` |
-| Closure state | `LIA-126-026/S10BO2 Implemented / Pending Owner Corrective Closure`；`S10B-BLK-009 Open`；G3 Partial、G4/G6 Pending |
+| Closure state | Owner Accepted `LIA-126-026/S10BO2 Corrective Closure`；Desktop feature Rust 143 PASS/0 FAIL/3 ignored与其余记录门禁获确认；`S10B-BLK-009 Closed`；G3 Partial、G4/G6 Pending |
+| Post-decision Governance | default、strict、G2A、unique-key YAML、lint、test、shell syntax和`git diff --check`首轮及本行回填后最终复跑均全部PASS |

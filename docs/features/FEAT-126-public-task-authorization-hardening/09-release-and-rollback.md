@@ -320,4 +320,5 @@ DESIGN-126-008对未来corrective的回滚语义冻结如下：
 - S10BO2 repository candidates为Desktop `95f19ad557da0bf4cead90ed55d1e3ec60aefbc4`与Infra `0fed8187d6051c011e67142d90feff89de326cfe`；Contracts/API/Host/Runtime本轮源码不变。
 - Owner本轮明确授权将Governance、API、Host、Desktop与Infra的现有FEAT-126提交推送到对应候选分支；这是source candidate availability，不是merge、tag、publish、deploy或默认功能启用。
 - 回滚必须分别撤销Desktop feature-only bootstrap/control channel与Infra startup/abort runner；不得只删除hard stop、手工拼接组件、让Infra直接启动Host/Runtime或弱化strict termination identity。
-- `S10B-BLK-009 Open`且Corrective Closure Pending。isolated live和fresh R8仍需各自的新Owner授权与new canonical run ID；本轮`s10b_r8_executed=false`，没有live资源可回滚。
+- Owner已接受S10BO2 Corrective Closure并关闭`S10B-BLK-009`；该决定不构成live/release授权。isolated live和fresh R8仍需各自的新Owner授权与new canonical run ID；本轮`s10b_r8_executed=false`，没有live资源可回滚。
+- Owner决定登记后的Governance default/strict/G2A、unique-key YAML、lint/test、shell syntax与`git diff --check`首轮及最终证据回填后复跑均PASS。没有commit、push、merge、tag、publish或deploy。

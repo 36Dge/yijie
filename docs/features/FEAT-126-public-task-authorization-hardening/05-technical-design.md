@@ -1540,5 +1540,7 @@ created -> preflight_running -> preflight_passed -> dependencies_ready
 
 - Desktop checkpoint `95f19ad557da0bf4cead90ed55d1e3ec60aefbc4`，Infra checkpoint `0fed8187d6051c011e67142d90feff89de326cfe`；Contracts/API/Host/Runtime本轮源码未修改。
 - Desktop 174/174 TS、default Rust 134 PASS/3 ignored、feature Rust 143 PASS/3 ignored、driver TS 7/7、driver Rust 6/6及production driver-absent PASS。Infra 162/162与S10BO1/S10BO2 34/34 PASS。
-- `DESIGN-126-015 Complete`；`LIA-126-026/S10BO2 Implemented / Pending Owner Corrective Closure`；`S10B-BLK-009 Open`。没有Docker/isolated live，`s10b_r8_executed=false`，G3 Partial、G4/G6 Pending。
+- `DESIGN-126-015 Complete`；Owner已接受`LIA-126-026/S10BO2 Corrective Closure`并关闭`S10B-BLK-009`。没有Docker/isolated live，`s10b_r8_executed=false`，G3 Partial、G4/G6 Pending。
 - contract-impact=`semantic`，仅private local deployment/test与non-publishable driver IPC；central contracts/G2A=N/A。
+- Closure接受仅覆盖repository corrective及其门禁证据；不授权isolated live、fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用、commit或远端写入。
+- Owner决定登记后的Governance default/strict/G2A、unique-key YAML、lint/test、shell syntax与`git diff --check`首轮及证据回填后最终复跑均全部PASS。

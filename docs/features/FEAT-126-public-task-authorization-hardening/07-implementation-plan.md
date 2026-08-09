@@ -522,4 +522,5 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 2. Desktop全量/default/feature/driver/production-absent门禁PASS，形成checkpoint `95f19ad557da0bf4cead90ed55d1e3ec60aefbc4`。
 3. Infra validate/lint/test 162/162与S10BO1/S10BO2 targeted 34/34 PASS，形成checkpoint `0fed8187d6051c011e67142d90feff89de326cfe`。
 4. 治理门禁通过后，本轮Owner明确授权将Governance、API、Host、Desktop与Infra现有FEAT-126提交推送至各自候选分支；Contracts/Runtime无新提交，不创建空commit。
-5. `S10B-BLK-009`保持Open；下一阶段必须先由Owner决定是否接受S10BO2 Corrective Closure。isolated live和fresh R8仍是独立授权，不能由本轮repository push自动触发。
+5. Owner已接受S10BO2 Corrective Closure并关闭`S10B-BLK-009`；G3保持Partial、G4/G6 Pending。下一阶段不得自动启动，isolated live和fresh R8仍需各自独立授权。
+6. Owner决定登记后的Governance default/strict/G2A、unique-key YAML、lint/test、shell syntax与`git diff --check`首轮及证据回填后最终复跑均PASS；治理变更保持本地未提交状态。

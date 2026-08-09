@@ -435,6 +435,8 @@
 | Checkpoints | Desktop `95f19ad557da0bf4cead90ed55d1e3ec60aefbc4`；Infra `0fed8187d6051c011e67142d90feff89de326cfe`；Contracts/API/Host/Runtime本轮源码不变 |
 | Contract impact | `semantic`，仅private local deployment/test与non-publishable driver IPC；public wire、durable schema、Runtime源码/pin、Compose pin和默认flags不变；central contracts/G2A=N/A |
 | 验证 | Desktop完整lint/test/build、default/feature Cargo与driver/bundle门禁PASS；Infra validate/lint/test 162/162，S10BO1 14/14 + S10BO2 20/20 targeted PASS；no-log与`git diff --check` PASS |
-| 当前风险 | `S10B-BLK-009 Open`：repository corrective尚未获得Owner Corrective Closure接受，也没有isolated live startup/abort证据；`s10b_r8_executed=false` |
+| 当前风险 | `S10B-BLK-009 Closed`：Owner已接受repository Corrective Closure；isolated live startup/abort与fresh R8仍无执行证据，且均未授权；`s10b_r8_executed=false` |
 | 当前授权 | Owner本轮另行允许将现有FEAT-126候选commit推送至对应远端分支；该授权不包含merge/tag/publish/deploy、isolated live、fresh R8、业务调用、S11、MiniMax、真实数据/Keychain或默认启用 |
-| 状态 | `LIA-126-026/S10BO2 Implemented / Pending Owner Corrective Closure`；G3 Partial、G4/G6 Pending |
+| 状态 | `LIA-126-026/S10BO2 Corrective Closure Accepted`；`S10B-BLK-009 Closed`；G3 Partial、G4/G6 Pending |
+| Owner Closure | Desktop feature Rust 143 PASS/0 FAIL/3 ignored、Infra 162/162、S10BO1+S10BO2 34/34及no-log/driver-absent/ownership/cleanup证据获接受；不等于isolated live、fresh R8、G4或G6 PASS |
+| Post-decision Governance | default、strict、G2A、unique-key YAML、lint、test、shell syntax与`git diff --check`全部PASS |
