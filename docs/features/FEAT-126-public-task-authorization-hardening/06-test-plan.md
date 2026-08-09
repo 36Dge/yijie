@@ -761,3 +761,15 @@ DESIGN-126-014确认完整corrective不能是Infra-only：Desktop driver、Host 
 | Local checkpoints | API `451940b282d8dd3e232ed414bd44b0677897f4c4`；Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`；Desktop `d51e435cb8ea224e69f9707831ee71022d0a7b6e`；Infra `0b05ab3270b9d00fa2aec1c85a8c3bee7f33c25c`；Governance为包含本节的本地commit |
 | Governance | default、strict、G2A、unique-key YAML、lint、test、shell syntax与七仓`git diff --check`均PASS |
 | Remaining gates | `S10B-BLK-008 Closed`；G3 Partial、G4/G6 Pending；isolated live、fresh R8、S11、MiniMax、真实数据/Keychain及默认启用未授权 |
+
+## 27. S10BO2 Corrective Matrix Result
+
+| Gate | Result |
+|---|---|
+| Desktop production/default | driver absent；frontend/native lint、test、build与release bundle PASS；default Rust 134 PASS/3 ignored |
+| Desktop feature | actual bootstrap、OIDC/PKCE、trusted bind、native bookmark、FD framing与startup/abort tests PASS；feature Rust 143 PASS/3 ignored；driver TS 7/7、Rust 6/6 |
+| Infra | validate/lint/test PASS，162/162；S10BO1 14/14 + S10BO2 20/20，合计34/34 targeted PASS |
+| Containment | spawn order、abnormal exit、strict termination identity、PID reuse、parent death、cleanup unknown、no retry和existing-run reconcile均有repository test证据；no-log PASS |
+| Scope | Desktop/Infra only；Contracts/API/Host/Runtime本轮源码不变；public wire、schema、Runtime pin、Compose pin与default flags不变 |
+| Live status | Docker live、isolated live、fresh R8与业务case均NOT RUN；`s10b_r8_executed=false` |
+| Closure | `LIA-126-026/S10BO2 Implemented / Pending Owner Corrective Closure`；`S10B-BLK-009 Open`；G3 Partial、G4/G6 Pending |

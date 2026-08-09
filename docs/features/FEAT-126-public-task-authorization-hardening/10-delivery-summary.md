@@ -224,3 +224,17 @@
 | G6 Local-only Delivery Complete | 段成威 | Pending Owner local startup and functional acceptance | N/A | requires G4 + AC-043；not Production Ready |
 
 - 正式关闭时间：N/A；feature remains at G3 Partial。DEC-126-066已接受`LIA-126-025/S10BO1 Corrective Closure`并关闭`S10B-BLK-008`；isolated live、fresh R8、S11与MiniMax未授权，G4/G6 Pending。
+
+## 12. S10BO2 Current Delivery State
+
+| Item | Current fact |
+|---|---|
+| Decision | `DEC-126-068 Accepted Option A / DESIGN-126-015 Complete` |
+| Implementation | `LIA-126-026/S10BO2 Implemented / Pending Owner Corrective Closure` |
+| Desktop | `95f19ad557da0bf4cead90ed55d1e3ec60aefbc4`；actual non-publishable bootstrap、OIDC/PKCE、trusted project bind/bookmark、Vue/Pinia/Tauri driver、FD3/FD4 startup/abort；all gates PASS |
+| Infra | `0fed8187d6051c011e67142d90feff89de326cfe`；closed startup/abort runner、ownership/identity/cleanup controls；162/162与S10BO1/S10BO2 34/34 PASS |
+| Unchanged | Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`、API `451940b282d8dd3e232ed414bd44b0677897f4c4`、Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`、Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f` |
+| Safety state | `S10B-BLK-009 Open`；G3 Partial、G4/G6 Pending；Docker/isolated live、fresh R8和业务调用NOT RUN；`s10b_r8_executed=false` |
+| Publication | Owner已明确授权提交并推送现有Governance/API/Host/Desktop/Infra FEAT-126候选；远端可达不等于Closure、merge、release或activation |
+
+本次交付仍未关闭FEAT-126。下一治理决策是Owner对S10BO2 Corrective Closure的接受或拒绝；在接受前`S10B-BLK-009`保持Open，isolated live与fresh R8不得自动执行。

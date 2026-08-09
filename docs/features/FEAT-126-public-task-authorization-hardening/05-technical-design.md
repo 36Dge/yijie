@@ -1521,3 +1521,24 @@ created -> preflight_running -> preflight_passed -> dependencies_ready
 - API checkpoint=`451940b282d8dd3e232ed414bd44b0677897f4c4`，Host checkpoint=`c5939b4d8b5ebc318a7beeb49b20f343802e59b9`，Desktop checkpoint=`d51e435cb8ea224e69f9707831ee71022d0a7b6e`，Infra checkpoint=`0b05ab3270b9d00fa2aec1c85a8c3bee7f33c25c`；Governance为包含DEC-126-067的本地commit。
 - checkpoint前API/Host/Desktop/Infra全量门禁、S10BO1 14/14、Governance全门禁及七仓`git diff --check`均PASS；治理更新后Governance门禁再次PASS。
 - `S10B-BLK-008 Closed`、G3 Partial、G4/G6 Pending保持不变；isolated live、fresh R8、S11、MiniMax、真实数据/Keychain、默认启用及所有远端写入仍未授权。
+
+## 41. DESIGN-126-015 S10BO2 Startup/Abort Bootstrap
+
+### 41.1 Authority and ownership
+
+- DEC-126-068接受Option A：Infra只启动依赖、API、fake和Desktop；Desktop启动Host，Host启动Runtime。Infra不得直接启动Host/Runtime。
+- Desktop non-publishable feature build注册实际bootstrap；production build不导入、注册或打包driver。bootstrap执行真实synthetic authorization-code + PKCE、same-run trusted tenant bind、native project bookmark和实际opaque project ID。
+- Vue/Pinia/Tauri链路固定为`login -> register project -> bind -> revalidate -> requestLocalRecovery -> Host ready -> Runtime ready`；S10B-002–011业务case继续硬禁止。
+
+### 41.2 Closed control and containment
+
+- Infra与Desktop仅通过继承匿名FD3/FD4交换bounded、versioned、single-line NDJSON；frame严格拒绝unknown field并绑定run ID、nonce和单调sequence。
+- EOF、abort或parent death沿Desktop -> Host -> Runtime停止，再由Infra清理Desktop、fake、API与Compose；existing run只允许exact reconcile，禁止resume、continue、retry、reorder或skip。
+- PID/start identity不确定、PID reuse或cleanup outcome unknown时不得signal未知进程；状态保持fail closed。证据保持0700/0600、content-free、no-log和named-volume retention。
+
+### 41.3 Implementation result
+
+- Desktop checkpoint `95f19ad557da0bf4cead90ed55d1e3ec60aefbc4`，Infra checkpoint `0fed8187d6051c011e67142d90feff89de326cfe`；Contracts/API/Host/Runtime本轮源码未修改。
+- Desktop 174/174 TS、default Rust 134 PASS/3 ignored、feature Rust 143 PASS/3 ignored、driver TS 7/7、driver Rust 6/6及production driver-absent PASS。Infra 162/162与S10BO1/S10BO2 34/34 PASS。
+- `DESIGN-126-015 Complete`；`LIA-126-026/S10BO2 Implemented / Pending Owner Corrective Closure`；`S10B-BLK-009 Open`。没有Docker/isolated live，`s10b_r8_executed=false`，G3 Partial、G4/G6 Pending。
+- contract-impact=`semantic`，仅private local deployment/test与non-publishable driver IPC；central contracts/G2A=N/A。

@@ -314,3 +314,10 @@ DESIGN-126-008对未来corrective的回滚语义冻结如下：
 - Governance为包含DEC-126-067、上述精确SHA与post-update Governance PASS证据的本地commit；Contracts=`29317b6426578749dc698fc2ad32b986ee5c8e9f`、Runtime=`3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`保持clean/unchanged。
 - 所有checkpoint均local/not pushed；不得将其视为isolated live、fresh R8、完整S10B-001–012、G4或G6证据。
 - 后续若授权isolated live或fresh R8，必须使用新的canonical run ID和这组clean exact SHAs；本节本身不授权启动、重试、prune、volume删除或任何远端动作。
+
+## 14. S10BO2 Candidate Publication Boundary
+
+- S10BO2 repository candidates为Desktop `95f19ad557da0bf4cead90ed55d1e3ec60aefbc4`与Infra `0fed8187d6051c011e67142d90feff89de326cfe`；Contracts/API/Host/Runtime本轮源码不变。
+- Owner本轮明确授权将Governance、API、Host、Desktop与Infra的现有FEAT-126提交推送到对应候选分支；这是source candidate availability，不是merge、tag、publish、deploy或默认功能启用。
+- 回滚必须分别撤销Desktop feature-only bootstrap/control channel与Infra startup/abort runner；不得只删除hard stop、手工拼接组件、让Infra直接启动Host/Runtime或弱化strict termination identity。
+- `S10B-BLK-009 Open`且Corrective Closure Pending。isolated live和fresh R8仍需各自的新Owner授权与new canonical run ID；本轮`s10b_r8_executed=false`，没有live资源可回滚。

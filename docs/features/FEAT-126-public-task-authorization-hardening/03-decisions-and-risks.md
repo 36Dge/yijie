@@ -425,3 +425,16 @@
 | Gate证据 | API/Host完整contract/lint/race/build；Desktop 167/167 TS、default 129 PASS/3 ignored、feature 131 PASS/3 ignored、driver 2/2与bundle absent；Infra validate/Compose semantic/142/142、S10BO1 14/14；Governance全部门禁PASS |
 | 保留状态 | Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`与Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f` unchanged/clean；`S10B-BLK-008 Closed`；G3 Partial、G4/G6 Pending |
 | 未授权 | isolated live、fresh R8、S11、MiniMax、真实数据/Keychain、默认功能启用、prune、volume删除、push、merge、tag、publish、deploy及其他远端写入 |
+
+## 27. DEC-126-068 / DESIGN-126-015 / LIA-126-026 S10BO2
+
+| 项目 | 决定与证据 |
+|---|---|
+| Owner决定 | DEC-126-068接受Desktop + Infra跨仓corrective评审Option A；DESIGN-126-015 Complete；LIA-126-026/S10BO2仅授权repository corrective |
+| 实现状态 | Desktop实际feature-only bootstrap、OIDC authorization-code + PKCE、trusted tenant/project native bookmark、Vue/Pinia/Tauri driver与FD3/FD4控制通道完成；Infra startup/abort runner、closed frame/state、ownership与cleanup完成 |
+| Checkpoints | Desktop `95f19ad557da0bf4cead90ed55d1e3ec60aefbc4`；Infra `0fed8187d6051c011e67142d90feff89de326cfe`；Contracts/API/Host/Runtime本轮源码不变 |
+| Contract impact | `semantic`，仅private local deployment/test与non-publishable driver IPC；public wire、durable schema、Runtime源码/pin、Compose pin和默认flags不变；central contracts/G2A=N/A |
+| 验证 | Desktop完整lint/test/build、default/feature Cargo与driver/bundle门禁PASS；Infra validate/lint/test 162/162，S10BO1 14/14 + S10BO2 20/20 targeted PASS；no-log与`git diff --check` PASS |
+| 当前风险 | `S10B-BLK-009 Open`：repository corrective尚未获得Owner Corrective Closure接受，也没有isolated live startup/abort证据；`s10b_r8_executed=false` |
+| 当前授权 | Owner本轮另行允许将现有FEAT-126候选commit推送至对应远端分支；该授权不包含merge/tag/publish/deploy、isolated live、fresh R8、业务调用、S11、MiniMax、真实数据/Keychain或默认启用 |
+| 状态 | `LIA-126-026/S10BO2 Implemented / Pending Owner Corrective Closure`；G3 Partial、G4/G6 Pending |

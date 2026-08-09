@@ -930,3 +930,15 @@ Owner disposition：DEC-126-062于2026-08-09明确接受LIA-126-023/S10BEP1 Corr
 | Exact checkpoints | API `451940b282d8dd3e232ed414bd44b0677897f4c4`; Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`; Desktop `d51e435cb8ea224e69f9707831ee71022d0a7b6e`; Infra `0b05ab3270b9d00fa2aec1c85a8c3bee7f33c25c`; Governance local commit containing DEC-126-067 |
 | Governance rerun | default, strict, G2A, unique-key YAML, lint, test, shell syntax and seven-repository `git diff --check` PASS |
 | Retained boundary | `S10B-BLK-008 Closed`; G3 Partial; G4/G6 Pending; no isolated live, fresh R8, S11, MiniMax, real data/Keychain, default activation, prune, volume deletion or remote write |
+
+## 35. S10BO2 Repository Corrective Verification
+
+| Evidence | Result |
+|---|---|
+| Decision/design | DEC-126-068 Accepted Option A；DESIGN-126-015 Complete |
+| Desktop | checkpoint `95f19ad557da0bf4cead90ed55d1e3ec60aefbc4`；完整lint/test/build PASS；174/174 TS；default 134 PASS/3 ignored；feature 143 PASS/3 ignored；driver TS 7/7、Rust 6/6；production frontend/native driver absent；WebView sensitive scan 0 hits |
+| Infra | checkpoint `0fed8187d6051c011e67142d90feff89de326cfe`；validate、完整lint/test PASS；162/162；S10BO1 14/14 + S10BO2 20/20 targeted PASS；Compose semantic PASS |
+| Corrective details | durable content-free cleanup outbox claim race使用`now.max(unix_seconds())`关闭跨秒竞争；strict termination identity在有界观察后仅reap已知exit，对unknown identity/status保持`CleanupIncomplete`且不signal未知PID |
+| Scope/security | Contracts/API/Host/Runtime本轮源码不变；content-free/no-log、production driver-absent和`git diff --check` PASS；contract-impact仅private semantic，central G2A=N/A |
+| Runtime evidence | 未执行Docker live、isolated live、fresh R8、业务调用、真实数据/Keychain或默认启用；`s10b_r8_executed=false` |
+| Closure state | `LIA-126-026/S10BO2 Implemented / Pending Owner Corrective Closure`；`S10B-BLK-009 Open`；G3 Partial、G4/G6 Pending |
