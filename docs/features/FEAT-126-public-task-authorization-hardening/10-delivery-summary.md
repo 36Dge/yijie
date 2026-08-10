@@ -340,7 +340,7 @@
 | Infra scope | orchestrator plus S10BO2/S10BO3 tests only; FD4 frame/child-exit ordering, exact Docker authority, runtime-log-scan v3 stable role/pair digests and value-aware no-log |
 | Excluded | Contracts/API/Host/Runtime source, public wire, durable schema, Compose pins, default flags, business cases, Docker/live, fresh R8, S11, MiniMax, Keychain, real data and remote actions |
 | Contract impact | semantic private local deployment/test interface; central G2A=N/A |
-| Verification | Desktop `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd`：TS `178/178`、default Rust `134/3 ignored`、feature Rust `149/3 ignored`、targeted各`11/11`及lint/build/clippy PASS。Infra `5fdba2b22b343237683f383f098fa2ffaea5bc54`：targeted `50/50`、full `192/192`、syntax/validate/diff PASS；独立review的两个P1已关闭。Compose wrapper因discovery exit 125且no-Docker边界未重试，不宣称PASS。Governance default/strict/G2A/YAML/lint/test/shell/diff最终复跑PASS |
+| Verification | Desktop `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd`：TS `178/178`、default Rust `134/3 ignored`、feature Rust `149/3 ignored`、targeted各`11/11`及lint/build/clippy PASS。Infra `5fdba2b22b343237683f383f098fa2ffaea5bc54`：targeted `50/50`、full `192/192`、syntax/validate/diff PASS；独立review的两个P1已关闭。原corrective的Compose discovery exit 125保留为历史事实；后续config-only门禁中Compose 5.3.0 direct config、Infra `make lint`和`make test` `192/192`全部PASS，无lifecycle/live。Governance default/strict/G2A/YAML/lint/test/shell/diff最终复跑PASS |
 | State | Implementation Complete / Review Ready / Pending Owner Acceptance；G3 Partial；G4/G6 Pending；s10b_r8_executed=false |
 
 This record proves the repository corrective checkpoints, not a live startup. It does not claim Corrective Closure Owner acceptance. Historical evidence and retained volumes remain untouched.

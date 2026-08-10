@@ -165,6 +165,8 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 
 ## 12. 变更日志
 
+> 2026-08-11：单独config-only授权已补齐LIA-126-033唯一未通过的Infra Compose semantic环境门禁。Compose `5.3.0`、直接`config --no-interpolate --quiet`、Infra `make lint`与`make test` `192/192`均PASS；未执行任何lifecycle或live，`s10b_r8_executed=false`。Corrective Closure仍为Review Ready / Pending Owner Acceptance，本门禁不授权isolated-live。
+
 | 日期 | 修改人 | 变化 | 原因/批准 |
 |---|---|---|---|
 | 2026-08-01 | Codex | 创建 00–10 需求设计包；未改业务代码 | 段成威要求完善并创建需求，不做执行 |

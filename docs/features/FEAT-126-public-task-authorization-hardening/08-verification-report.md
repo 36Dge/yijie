@@ -1072,3 +1072,16 @@ Owner disposition：DEC-126-062于2026-08-09明确接受LIA-126-023/S10BEP1 Corr
 | Runtime boundary | no Docker/live/fresh R8/business/MiniMax/Keychain/remote; s10b_r8_executed=false | PASS for boundary：未启动容器或真实组件；一次`make lint`在Compose discovery处退出125后停止；其余禁止动作均NOT RUN，`s10b_r8_executed=false` |
 
 Implementation checkpoints are Desktop `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd` and Infra `5fdba2b22b343237683f383f098fa2ffaea5bc54`, both local clean/not pushed. This section records repository corrective evidence only: no live evidence/digest was generated. Corrective Closure is Review Ready / Pending Owner Acceptance；真实Tauri `AppHandle/setup` direct fixture与Docker Compose semantic wrapper分别保留为P2/live和environment-bound gap，不得伪写为PASS。
+
+## 46. LIA-126-033 Infra Compose Semantic Gate Completion
+
+| Evidence | Actual result |
+|---|---|
+| Fixed checkpoints | Governance `a3175981a97ec8228f774d00de48959b3dd4854e` before this record; Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`; API `451940b282d8dd3e232ed414bd44b0677897f4c4`; Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`; Desktop `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd`; Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`; Infra `5fdba2b22b343237683f383f098fa2ffaea5bc54`; all seven worktrees clean before execution |
+| Compose authority | `docker compose version --short` returned `5.3.0` |
+| Direct semantic gate | `docker compose -f docker-compose.local.yml config --no-interpolate --quiet` PASS with exit 0 |
+| Canonical repository gates | Infra `make lint` PASS including `Docker Compose semantic validation passed.`; Infra `make test` PASS with `192/192` and a second semantic validation PASS |
+| Governance gates | Feature package default/strict/G2A, unique-key YAML, `pnpm lint`, `pnpm test`, checker Shell syntax and `git diff --check` PASS before and after this evidence record |
+| Execution boundary | Config-only validation; no `up`, `start`, `run`, `create`, `stop`, `down`, `rm`, image pull, container/process startup, volume-content access, isolated-live, fresh R8, business case, MiniMax, Keychain or remote operation was executed |
+| State | The environment-bound Docker Compose semantic wrapper gap from section 45 is closed. The real Tauri `AppHandle/setup` direct fixture remains P2/live. Corrective Closure remains Review Ready / Pending Owner Acceptance; no isolated-live is authorized by this gate |
+| R8 boundary | `s10b_r8_executed=false`; no run ID or live evidence was created or reused |
