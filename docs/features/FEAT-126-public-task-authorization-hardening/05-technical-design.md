@@ -1632,3 +1632,31 @@ created -> preflight_running -> preflight_passed -> dependencies_ready
 - Infra local clean checkpoint=`c7edbc344daecb84553efafe86dfe335a5c0c72d`，包含四个reviewed corrective文件，未push。
 - Governance checkpoint是包含本节和Infra精确SHA的本地commit；Contracts/API/Host/Desktop/Runtime保持既定clean SHA。
 - 此checkpoint不产生新的runtime evidence。获得新的Governance SHA与另一份isolated-live一次性授权前不得再次执行live；fresh R8和业务case仍未授权。
+
+## 48. LIA-126-031 Offline Root-Cause Record
+
+- run `056a4dab-6afc-45ff-bfff-d1fcc67d2394`已形成0600 preclaim、attempt与failure；primary=`orchestrator_control_eof`，phase=`desktop_spawned`，process roles仅`api/fake/desktop`，Host/Runtime/readiness/abort evidence不存在。
+- canonical Infra root是`yijie-infra/environments/local/generated/feat-126-s10/<run_id>`；Desktop旧`validate_run_root`只允许macOS temp root，因此feature Desktop在控制frame前退出。
+- runtime scan完成并记录`hit_count=1`与known scope；旧closure truth table拒绝failure class与known scope同时存在，导致closure write被`orchestrator_attempt_evidence_invalid`拒绝。
+- v1 scan没有命中来源/规则指纹，且containers已删除；离线审计不能恢复准确类别。该unknown不得以读取retained volume内容、猜测或模拟结果补齐。
+- business boundary证据证明API before/after摘要相同、fake accepted/rejected calls均为0、`s10b_r8_executed=false`。四个retained volumes只读inspect后保持原样。
+
+## 49. DESIGN-126-018 Minimal Corrective
+
+### 49.1 Desktop canonical ephemeral run root
+
+- `validate_profile_run_root`先复用owner/mode/no-symlink/canonical directory校验，再允许原有temp child。
+- repository root例外编译期绑定`feat126-s10-driver`，运行期绑定`EphemeralFile`、canonical UUIDv4及精确`yijie-infra/environments/local/generated/feat-126-s10/<run_id>` suffix。
+- prepare、inventory与所有root deletion路径复用同一profile validator；Protected Data Keychain与default build不接受repository例外。
+
+### 49.2 Failure closure and content-free no-log v2
+
+- failed closure/reconcile的cleanup与no-log各要求至少一个failure class或known scope；允许completed operation同时保留known scope与validation failure，仍拒绝两者均null。
+- `runtime-log-scan.v2`对命中的container identity set和closed rule-name set去重、排序后写SHA-256；空命中必须绑定empty-set digest，非空命中必须绑定两个非空set digest。
+- evidence只包含counts与digests；不写raw content、token、secret、业务文本、path或规则名称。validator兼容历史v1，旧run保持原样。
+
+## 50. DEC-126-074 Checkpoint Manifest
+
+- Desktop local clean checkpoint=`9771da11c47406e45526dea104f3d7de05701fba`；Infra local clean checkpoint=`61062143fa3c81b90792ec6f48aea7d6408ed06d`；均未push。
+- Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`、API `451940b282d8dd3e232ed414bd44b0677897f4c4`、Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`与Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`保持clean/unchanged。
+- Governance checkpoint包含本节和两个实现SHA；其精确SHA在commit后报告。此checkpoint不产生live证据，失败run与四个retained volumes不变。

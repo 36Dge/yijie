@@ -289,3 +289,11 @@ S8B切片contract impact为`semantic Desktop-private`，不改变central feature
 - Central contracts：Public Tasks request/response、Host HTTP/SSE、Desktop private IPC、PostgreSQL/SQLCipher业务schema与Runtime pin均无变化；sole candidate仍为`29317b6426578749dc698fc2ad32b986ee5c8e9f`，central G2A=`N/A`。
 - 当前证据：API `make lint/test`与Infra `pnpm validate`、`make lint/test`、113/113测试通过；preflight以双快照生成summary `api_binary_sha256`，唯一continuation launcher安全open并复核digest及dev/inode/mode/size/mtime，再证明同run summary reader→builder→固定API child；6类负向与binary drift在spawn前fail closed。DEC-126-059已接受并关闭`S10B-BLK-006`；immutable local checkpoints为API `d1c72b29ffc567abdb4521343a73ceef9ac9da34`、Infra `8f9b8965dbd32bb7273059a80bb818d4344e7135`。没有执行S10B-002–012，central G2A仍为N/A。
 - 回滚：保持本地flags关闭并继续HOLD S10B；若撤销候选，API/Infra必须作为一组回到各自父基线，不能保留只有一侧的profile/authority，也不能回退到FEAT-125 profile冒充FEAT-126。
+
+## 16. DESIGN-126-018 Private Deployment/Test Compatibility
+
+- 本轮最高影响仍为`semantic` private local deployment/test interface：Desktop test driver的run-root authority和Infra failure/no-log evidence shape同步收紧。
+- Desktop repository-root例外只有在`feat126-s10-driver`编译、`EphemeralFile` backend、canonical UUIDv4与精确Infra generated suffix同时满足时成立；default与Protected Data Keychain不接受该例外。
+- Infra `runtime-log-scan.v2`新增`hit_origin_set_sha256`与`hit_rule_set_sha256`，不持久化日志正文、路径、token、secret或规则文本；reader继续接受历史v1 evidence。
+- Public Tasks HTTP、Host SSE、Desktop业务IPC、PostgreSQL/SQLCipher durable schema、Runtime source/pin与Compose pins无变化；sole central candidate仍为`29317b6426578749dc698fc2ad32b986ee5c8e9f`，G2A=`N/A`。
+- Desktop `9771da11c47406e45526dea104f3d7de05701fba`与Infra `61062143fa3c81b90792ec6f48aea7d6408ed06d`必须作为同一新checkpoint manifest消费；旧失败run只保留审计，不得由新reader resume或升级为PASS。

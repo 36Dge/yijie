@@ -520,3 +520,41 @@
 | Verification | Infra full `188/188`、targeted `67/67`及全部静态门禁PASS；Governance default、strict、G2A、unique-key YAML、lint、test、shell syntax与diff PASS |
 | Retained state | 两个isolated-live失败run均永久不可复用；`S10B-BLK-009/010/011 Closed`；G3 Partial、G4/G6 Pending；`s10b_r8_executed=false` |
 | Stop | 不授权新的live、fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用、push、merge、tag、publish或deploy |
+
+## 34. LIA-126-031 / Third S10BO3 Isolated-Live Failure Audit
+
+| 项目 | 事实与处置 |
+|---|---|
+| Authorization | 单次startup/abort isolated-live授权已消费；run `056a4dab-6afc-45ff-bfff-d1fcc67d2394`不得重试、续跑或复用 |
+| Fixed references | Governance `b89982af406f849aa3c6ab023ff405068ebbae3d`；Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`；API `451940b282d8dd3e232ed414bd44b0677897f4c4`；Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`；Desktop `95f19ad557da0bf4cead90ed55d1e3ec60aefbc4`；Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`；Infra `c7edbc344daecb84553efafe86dfe335a5c0c72d` |
+| Primary failure | `orchestrator_control_eof` at `desktop_spawned`；Desktop process record存在，但Host/Runtime/readiness/abort未建立 |
+| Root cause 1 | Desktop secure-storage profile仅接受`std::env::temp_dir()`下的run root，而canonical Infra root位于repository generated tree；driver在Tauri/WebView与Host启动前以invalid configuration退出 |
+| Root cause 2 | completed no-log scan以`hit_count=1`失败且保留known `run_artifacts` scope；closure/reconcile validator错误拒绝“failure class + known scope”，产生`orchestrator_attempt_evidence_invalid`并使closure缺失 |
+| Evidence gap | legacy `runtime-log-scan.v1.json`只有aggregate hit count；containers已移除，命中规则类别与来源无法离线可靠恢复，不得猜测或输出业务日志正文 |
+| Durable facts | preclaim/attempt/failure均0600；attempt SHA-256=`aeda68a329e6d68c7d7a47c65c58668fbc5d61c2a76e40199366940b90729a8a`；failure SHA-256=`7f5afa4f4804ff193537589ff5fb88440f8059e5c7f520f003e057237722ed7d`；business boundary前后摘要相同且provider calls=0 |
+| Retained resources | run对应四个Compose named volumes仍存在且labels/project identity精确；本次审计只读，未start/stop/reconcile/delete/prune或读取volume内容 |
+| State | business cases disabled；Public Tasks/conversation/turn/provider calls=0；`s10b_r8_executed=false`；Closure FAIL事实保留 |
+
+## 35. DEC-126-073 / DESIGN-126-018 / LIA-126-032 Minimal Corrective
+
+| 项目 | 决策与证据 |
+|---|---|
+| Owner decision | 在离线根因与文件范围确定后，单独授权并完成最小Desktop + Infra repository corrective；不得再次live |
+| Desktop scope | 仅`src-tauri/src/feat126_secure_storage.rs`：feature-gated、ephemeral-only、UUIDv4-bound canonical Infra suffix；default/Keychain保持fail closed，cleanup使用同一校验 |
+| Infra scope | 仅orchestrator与S10BO3测试：修复known-scope failure closure/reconcile；runtime log scan写v2 content-free unique source/rule set digests并兼容legacy v1 |
+| Verification | Desktop lint/test/build PASS：TS `174/174`、default Rust `134/134` + 3 ignored、feature Rust `144/144` + 3 ignored；Infra validate/lint/Compose semantic与`189/189` PASS；S10BO3 `27/27` PASS |
+| Contract impact | `semantic`，仅private FEAT-126 local deployment/test interface；central contracts、public wire、durable schema、Runtime/Compose pins和default flags unchanged；G2A=N/A |
+| Closure | repository Corrective Closure Accepted；`S10B-BLK-012 Closed`；没有产生新的runtime/live evidence，G3 Partial、G4/G6 Pending |
+| Checkpoints | Desktop `9771da11c47406e45526dea104f3d7de05701fba`；Infra `61062143fa3c81b90792ec6f48aea7d6408ed06d`；均local、clean、not pushed |
+| Stop | run `056a4dab-6afc-45ff-bfff-d1fcc67d2394`永久不可复用；another isolated live、fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用与远端动作均未授权 |
+
+## 36. DEC-126-074 / Desktop, Infra and Governance Clean Checkpoints
+
+| 项目 | 决策与证据 |
+|---|---|
+| Owner decision | corrective全门禁通过后，仅形成Desktop、Infra和Governance三个local clean checkpoints |
+| Exact SHAs | Desktop `9771da11c47406e45526dea104f3d7de05701fba`；Infra `61062143fa3c81b90792ec6f48aea7d6408ed06d`；Governance为包含本记录的本地commit，精确SHA在commit后报告 |
+| Unchanged | Contracts/API/Host/Runtime保持既定exact clean SHA；失败run evidence与四个retained volumes保持原样 |
+| Verification | Desktop与Infra完整门禁、targeted回归和diff PASS；Governance default/strict/G2A、unique-key YAML、lint/test、checker shell syntax与diff PASS |
+| State | `S10B-BLK-009/010/011/012 Closed`；G3 Partial、G4/G6 Pending；`s10b_r8_executed=false` |
+| Stop | no automatic live；新的isolated-live必须使用本轮全部新exact SHA并取得另一份一次性授权；fresh R8与所有远端/发布动作未授权 |

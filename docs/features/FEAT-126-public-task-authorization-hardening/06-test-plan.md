@@ -848,3 +848,36 @@ DESIGN-126-014确认完整corrective不能是Infra-only：Desktop driver、Host 
 | Infra | `c7edbc344daecb84553efafe86dfe335a5c0c72d`；local、clean、not pushed |
 | Governance | default、strict、G2A、unique-key YAML、lint/test、checker shell syntax与diff PASS；checkpoint为包含本记录的本地commit |
 | Stop condition | 在取得新Governance SHA和另一份isolated-live授权前不再live；fresh R8、业务case和远端动作未授权 |
+
+## 34. LIA-126-031 Offline Evidence Audit
+
+| Gate | Actual result |
+|---|---|
+| Attempt authority | PASS：preclaim/attempt/failure存在、0600、canonical run与七SHA绑定；attempt digest与failure引用一致 |
+| Primary phase | FAIL-CLOSED：`orchestrator_control_eof` at `desktop_spawned`；Host/Runtime/readiness/abort NOT ESTABLISHED |
+| Desktop cause | CONFIRMED：canonical repository run root被旧temp-only secure-storage validator拒绝 |
+| Closure cause | CONFIRMED：known no-log scope + failure class被旧closure/reconcile truth table拒绝，closure文件缺失 |
+| No-log detail | NOT RECOVERABLE：v1仅有`hit_count=1`；已删除container使准确origin/rule未知，不以模拟或raw retained data替代 |
+| Business boundary | PASS：API before/after digest equal；fake accepted/rejected calls=0；`s10b_r8_executed=false` |
+| Retained volumes | PASS for preservation only：四个exact Compose volumes存在且labels匹配；未读取内容或执行mutation |
+
+## 35. DESIGN-126-018 / LIA-126-032 Corrective Verification
+
+| Gate | Actual result |
+|---|---|
+| Desktop authority | PASS：feature + ephemeral + UUIDv4 + Infra suffix accepted；Keychain、wrong suffix、wrong run与UUIDv7拒绝 |
+| Desktop full | PASS：lint/test/build；TS `174/174`；default Rust `134` pass/3 ignored；feature Rust `144` pass/3 ignored；default/feature Clippy PASS |
+| Closure truth table | PASS：failed completed no-log保留known scope；failure+scope closure/reconcile接受；null+null拒绝 |
+| No-log v2 | PASS：empty与leak digests、重复命中set去重、v1 compatibility、raw-content absence均覆盖 |
+| Infra full | PASS：Node syntax、`pnpm validate`、`make lint`、Compose semantic、`make test` `189/189` |
+| Targeted | PASS：S10BO3 `27/27` |
+| Runtime boundary | canonical live target NOT RUN；fresh R8/business cases NOT RUN；`s10b_r8_executed=false` |
+
+## 36. DEC-126-074 Checkpoint Verification
+
+| Gate | Actual result |
+|---|---|
+| Scope | Desktop 1 file、Infra 2 files、Governance 9 existing FEAT-126 files；Contracts/API/Host/Runtime unchanged |
+| Implementation checkpoints | Desktop `9771da11c47406e45526dea104f3d7de05701fba`；Infra `61062143fa3c81b90792ec6f48aea7d6408ed06d`；local/clean/not pushed |
+| Governance | default、strict、G2A、unique-key YAML、lint/test、checker shell syntax与diff PASS；checkpoint为包含本记录的本地commit |
+| Stop condition | no automatic live；another isolated live需要全部新exact SHA与单独一次性授权；fresh R8与远端动作未授权 |

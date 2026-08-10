@@ -575,3 +575,25 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 2. Governance全门禁复跑PASS后形成包含该Infra SHA的本地checkpoint；精确SHA在commit后报告。
 3. Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`、API `451940b282d8dd3e232ed414bd44b0677897f4c4`、Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`、Desktop `95f19ad557da0bf4cead90ed55d1e3ec60aefbc4`与Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`保持clean/unchanged。
 4. 两个checkpoint均不push；在新SHA与另一份isolated-live授权前不得再次live，fresh R8和业务case仍未授权。
+
+## 31. LIA-126-031 Failure Disposition
+
+1. 第三次isolated-live授权仅消费run `056a4dab-6afc-45ff-bfff-d1fcc67d2394`；不得重试、续跑或复用。
+2. 离线只读审计确认Desktop temp-only run-root拒绝是`orchestrator_control_eof`主因；closure truth table与v1 no-log detail是两个独立证据缺口。
+3. 保留preclaim/attempt/failure/run root和四个retained volumes；不修改旧evidence，不读取volume内容，不执行Docker lifecycle/reconcile。
+4. business cases disabled，Public Tasks/conversation/turn/provider calls=0，`s10b_r8_executed=false`。
+
+## 32. LIA-126-032 Corrective Execution and Exit
+
+1. Desktop仅修改`src-tauri/src/feat126_secure_storage.rs`；Infra仅修改orchestrator与S10BO3测试。
+2. Desktop repository-root authority只在feature driver + ephemeral + UUIDv4 + canonical Infra suffix下开放，cleanup复用同一校验。
+3. Infra闭合known-scope failure closure/reconcile，并用content-free v2 unique origin/rule set digests补足未来no-log diagnosis，legacy v1保持兼容。
+4. Desktop完整门禁及default/feature测试PASS；Infra `189/189`、S10BO3 `27/27`、syntax/validate/lint/Compose semantic全部PASS。
+5. 形成Desktop `9771da11c47406e45526dea104f3d7de05701fba`与Infra `61062143fa3c81b90792ec6f48aea7d6408ed06d` local clean checkpoints；未push。
+
+## 33. DEC-126-074 Local Checkpoint Exit
+
+1. Governance仅更新既有九份FEAT-126文件，登记失败审计、corrective scope、门禁和两个实现SHA。
+2. Governance全门禁PASS后形成包含本记录的单一本地checkpoint；精确SHA在commit后报告。
+3. Contracts/API/Host/Runtime保持既定exact clean SHA；失败run与retained volumes不变。
+4. 不自动执行新的isolated live；fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用、push、merge、tag、publish和deploy均未授权。

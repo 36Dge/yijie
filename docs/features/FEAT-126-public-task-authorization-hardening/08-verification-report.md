@@ -1023,3 +1023,36 @@ Owner disposition：DEC-126-062于2026-08-09明确接受LIA-126-023/S10BEP1 Corr
 | Unchanged | Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`；API `451940b282d8dd3e232ed414bd44b0677897f4c4`；Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`；Desktop `95f19ad557da0bf4cead90ed55d1e3ec60aefbc4`；Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f` |
 | Governance | only nine existing FEAT-126 files；default/strict/G2A/YAML/lint/test/shell/diff PASS；checkpoint SHA reported after commit |
 | Stop | no new live until another isolated-live authorization using the new exact SHAs；fresh R8/business/remote actions unauthorized |
+
+## 42. LIA-126-031 Third Isolated-Live Offline Audit
+
+| Evidence | Actual result |
+|---|---|
+| Run | `056a4dab-6afc-45ff-bfff-d1fcc67d2394`；single authorization consumed；no retry/resume/reuse |
+| Ledger | preclaim/attempt/failure 0600；preclaim SHA `9747f77ae7a2aa3fb31aa90c6f838ce5b70892334fcbefb03fa384c87bcdb20a`；attempt SHA `aeda68a329e6d68c7d7a47c65c58668fbc5d61c2a76e40199366940b90729a8a`；failure SHA `7f5afa4f4804ff193537589ff5fb88440f8059e5c7f520f003e057237722ed7d` |
+| Failure | primary `orchestrator_control_eof`；phase `desktop_spawned`；roles `api/fake/desktop`；cleanup secondary unknown |
+| Desktop diagnosis | old secure-storage root validator accepted only a temp child; canonical Infra generated root was rejected before Tauri/WebView and Host startup |
+| Closure diagnosis | completed scan retained known scope but failed validation; old closure/reconcile truth table rejected failure class + scope and no closure file was persisted |
+| No-log evidence | v1 SHA `8a32ddb1d055f6c376cf2541eff5cbed6ca890d8f5ed6915d14c2bfd141bbae3`；source_count=4、row_count=68、hit_count=1；exact rule/source unavailable after container removal |
+| Business | API before/after digest identical；fake accepted/rejected=0；Public Tasks/conversation/turn/provider=0；`s10b_r8_executed=false` |
+| Volumes | exact four run-scoped volumes and labels still present；read-only list/inspect only；contents unchanged/unread |
+
+## 43. DESIGN-126-018 / LIA-126-032 Corrective Verification
+
+| Evidence | Result |
+|---|---|
+| Desktop | one-file minimal change；checkpoint `9771da11c47406e45526dea104f3d7de05701fba`；default/Keychain closed, driver ephemeral canonical root accepted |
+| Desktop gates | lint/test/build PASS；TS `174/174`；default Rust `134` pass/3 ignored；feature Rust `144` pass/3 ignored；feature secure-storage `20` pass/1 ignored |
+| Infra | two-file minimal change；checkpoint `61062143fa3c81b90792ec6f48aea7d6408ed06d`；known-scope closure and runtime-log-scan v2 fingerprints |
+| Infra gates | Node syntax、validate、lint、Compose semantic PASS；full `189/189`；S10BO3 `27/27` |
+| Security review | no production/default expansion；no raw log/path/token/secret persistence；v1 read compatibility；null failure+null scope remains rejected |
+| Runtime boundary | no live/reconcile/fresh R8/business case；failed run and four volumes preserved；`s10b_r8_executed=false` |
+
+## 44. DEC-126-074 Local Checkpoint Verification
+
+| Evidence | Result |
+|---|---|
+| Exact implementation SHAs | Desktop `9771da11c47406e45526dea104f3d7de05701fba`；Infra `61062143fa3c81b90792ec6f48aea7d6408ed06d`；both local clean/not pushed |
+| Unchanged | Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`；API `451940b282d8dd3e232ed414bd44b0677897f4c4`；Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`；Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f` |
+| Governance | nine existing FEAT-126 files；default/strict/G2A/YAML/lint/test/shell/diff PASS；checkpoint SHA reported after commit |
+| Stop | no new live until all new exact SHAs and another isolated-live authorization exist；fresh R8/business/remote actions unauthorized |

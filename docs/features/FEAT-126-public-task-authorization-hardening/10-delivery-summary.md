@@ -309,3 +309,24 @@
 | Governance | nine existing FEAT-126 files；local commit containing this record and exact Infra SHA |
 | Unchanged | Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`；API `451940b282d8dd3e232ed414bd44b0677897f4c4`；Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`；Desktop `95f19ad557da0bf4cead90ed55d1e3ec60aefbc4`；Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f` |
 | Boundary | no further live before a separate isolated-live authorization using the new exact SHAs；fresh R8/business/remote actions unauthorized |
+
+## 19. Third Isolated-Live Failure Audit
+
+| Item | Current fact |
+|---|---|
+| Run | `LIA-126-031` consumed once；`056a4dab-6afc-45ff-bfff-d1fcc67d2394` permanently non-reusable |
+| Primary | `orchestrator_control_eof` at `desktop_spawned`；Host/Runtime/readiness/abort not reached |
+| Causes | Desktop temp-only run-root rejection；closure validator rejected failure+known scope；v1 no-log omitted exact hit origin/rule fingerprints |
+| Preserved evidence | 0600 preclaim/attempt/failure and full run root unchanged；closure absent；four retained volumes present and untouched |
+| Business boundary | business cases disabled；Public Tasks/conversation/turn/provider calls=0；`s10b_r8_executed=false` |
+
+## 20. Minimal Corrective and Clean Checkpoints
+
+| Item | Current fact |
+|---|---|
+| Decision | `DEC-126-073 Accepted / DESIGN-126-018 Complete / LIA-126-032 Corrective Closure Accepted / S10B-BLK-012 Closed` |
+| Desktop | canonical Infra root accepted only by feature driver + ephemeral backend + UUIDv4；checkpoint `9771da11c47406e45526dea104f3d7de05701fba` |
+| Infra | known-scope failure closure fixed；content-free runtime-log-scan v2 unique origin/rule set digests with v1 compatibility；checkpoint `61062143fa3c81b90792ec6f48aea7d6408ed06d` |
+| Verification | Desktop TS `174/174`、default Rust `134`、feature Rust `144`及lint/build PASS；Infra `189/189`、S10BO3 `27/27`及全部静态门禁PASS |
+| Governance | `DEC-126-074` forms the local Governance checkpoint containing this record and both exact implementation SHAs |
+| State | Contracts/API/Host/Runtime unchanged；G3 Partial、G4/G6 Pending；no new live/fresh R8/business/remote action |

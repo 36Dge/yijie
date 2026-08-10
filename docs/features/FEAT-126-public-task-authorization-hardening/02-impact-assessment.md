@@ -283,3 +283,14 @@ S10BF1 contract impact为private test/deployment tooling `semantic`，central G2
 | Central contracts/schema | 无source、generated SDK、Public Tasks/Host wire、Desktop IPC、PostgreSQL/SQLCipher业务schema或Runtime pin变更 | central G2A=`N/A`；唯一contracts candidate仍为`29317b6426578749dc698fc2ad32b986ee5c8e9f` |
 
 父基线仍为API `c5f334e88d54d9e04f388d0349f4f5925124abd6`、Infra `5723ffdaa3f2c4b63914a6fd6ef7bac9f15bc0c9`和Governance `bcae57085b4fcb21a9d83f2ab08bc6c308228510`。DEC-126-059 Option A接受后形成API `d1c72b29ffc567abdb4521343a73ceef9ac9da34`与Infra `8f9b8965dbd32bb7273059a80bb818d4344e7135` clean local checkpoints，均未push；`S10B-BLK-006` Closed。LIA-126-022仅改变一次fresh local E2E的授权状态，不改变central contracts、wire、schema、Runtime pin、默认行为或生产范围。
+
+## 16. DESIGN-126-018 / LIA-126-032 实际影响差异
+
+| Repository | 实际变化 | 未变化 | 结论 |
+|---|---|---|---|
+| yijie-desktop | `feat126-s10-driver` + `EphemeralFile`仅接受以canonical UUIDv4绑定的Infra generated run root；cleanup复用同一校验 | default build、Protected Data Keychain、业务IPC、SQLCipher schema、发布bundle语义 | private local test-driver `semantic`；checkpoint `9771da11c47406e45526dea104f3d7de05701fba` |
+| yijie-infra | failure closure/reconcile允许“failure class + 已知scope”；runtime no-log v2持久化去重后的命中来源集与规则集SHA-256并兼容v1读取 | Compose pins、业务case、公共wire、真实日志正文、默认flags | private deployment/test `semantic`；checkpoint `61062143fa3c81b90792ec6f48aea7d6408ed06d` |
+| yijie | LIA-126-031失败审计、DEC-126-073 corrective与DEC-126-074 checkpoint记录 | central contract source、G2A与产品代码 | governance only |
+| Contracts/API/Host/Runtime | 无源码变化 | exact SHA保持既定checkpoint | central G2A=`N/A` |
+
+第三次失败run `056a4dab-6afc-45ff-bfff-d1fcc67d2394`永久不可复用；其四个retained volumes仅只读inspect并原样保留。corrective阶段未执行live、fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用或远端写入，`s10b_r8_executed=false`。
