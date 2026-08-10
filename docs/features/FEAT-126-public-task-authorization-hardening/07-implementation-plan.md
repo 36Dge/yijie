@@ -1,4 +1,4 @@
-# FEAT-126 Local-only 原子实施计划（DEC-126-067 Accepted / S10BO1 Checkpoints Clean / BLK-008 Closed / G3 Partial）
+# FEAT-126 Local-only 原子实施计划（DESIGN-126-016 Complete / S10BO3 Corrective Closure Accepted / BLK-008/009/010 Closed / G3 Partial）
 
 ## 1. 当前执行边界
 
@@ -524,3 +524,32 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 4. 治理门禁通过后，本轮Owner明确授权将Governance、API、Host、Desktop与Infra现有FEAT-126提交推送至各自候选分支；Contracts/Runtime无新提交，不创建空commit。
 5. Owner已接受S10BO2 Corrective Closure并关闭`S10B-BLK-009`；G3保持Partial、G4/G6 Pending。下一阶段不得自动启动，isolated live和fresh R8仍需各自独立授权。
 6. Owner决定登记后的Governance default/strict/G2A、unique-key YAML、lint/test、shell syntax与`git diff --check`首轮及证据回填后最终复跑均PASS；治理变更保持本地未提交状态。
+
+## 25. LIA-126-027 Failure Disposition
+
+1. 单次isolated live授权已消费，run `b68804f0-aaf9-4da4-95e1-aa3b605bfada`不得重试、续跑或复用。
+2. 执行在preflight authority forwarding处fail closed；最终`orchestrator_cleanup_unknown`，startup/abort Closure未形成。
+3. 不进行现场源码修复。该历史失败事实已由DESIGN-126-016与LIA-126-028/S10BO3 corrective处理，run永久不可重用。
+4. corrective至少覆盖：子Make七SHA变量原子传递、pre-run cleanup不误标attempted、保留original primary leaf、无run-root失败的content-free evidence及exact zero-resource closure。
+5. `S10B-BLK-009 Closed`、G3 Partial、G4/G6 Pending与`s10b_r8_executed=false`保持；fresh R8仍未授权。
+6. Governance default、strict、G2A、unique-key YAML、lint、test、shell syntax与`git diff --check`首轮及本条回写后的最终复跑均PASS。
+
+## 26. LIA-126-028 / S10BO3 Corrective Implementation
+
+1. `DEC-126-069 Accepted Option A`：保留原isolated live FAIL、禁止复用run ID，采用DESIGN-126-016完整Infra failure-safe corrective。
+2. 单一authority修复七SHA到nested Make assignments；preflight closed frame只允许JSON及唯一精确Make trailer。
+3. 增加single-use attempt marker、immutable failure/closure、marker digest和script/binary/start identity绑定；existing run仅reconcile cleanup。
+4. 分离attempted与cleanup-required，保持primary failure，持久化cleanup/no-log/evidence/parent secondary；partial startup/root和unknown outcome均fail closed。
+5. 增加scope-aware cleanup/no-log、exact volume set、phase/process-role descendant完整性、fresh Docker/listener inventory及no-resume测试。
+6. Infra Node syntax、validate、lint、`make test` `186/186`、targeted `65/65`及diff PASS；`S10BO3-001–020`全部PASS，Owner已接受`LIA-126-028/S10BO3 Corrective Closure`。
+7. `S10B-BLK-010 Closed`；不形成因本决定而产生的新live证据，不运行Docker live、isolated live、fresh R8或业务case，不commit/push。
+8. Governance default、strict、G2A、unique-key YAML、lint、test、shell syntax与`git diff --check`在本次证据回填后全部PASS。
+
+## 27. DEC-126-070 S10BO3 Local Clean Checkpoint Closure
+
+1. 七仓scope复核通过后，仅提交Infra五个S10BO3 corrective文件与Governance既有九份FEAT-126治理文件。
+2. Infra `186/186`、四文件targeted `65/65`、validate/lint/Compose semantic/diff门禁全部PASS，形成local clean checkpoint `91f7ec03372b1528abb93818abfad432a83327c4`。
+3. Governance在回填该精确SHA后重新运行default、strict、G2A、unique-key YAML、lint、test、shell syntax与diff；全部PASS后形成包含本记录的单一本地checkpoint。
+4. Governance checkpoint精确SHA在提交后报告；同一commit不能把自身最终SHA写入自身内容。
+5. 两个checkpoint均不push；不得自动进入isolated live、fresh R8、业务case、S11或任何发布/远端动作。
+6. `S10B-BLK-009/010 Closed`、G3 Partial、G4/G6 Pending与`s10b_r8_executed=false`保持。

@@ -4,14 +4,14 @@
 
 | 字段 | 内容 |
 |---|---|
-| 状态 | G1/G2/G2A Passed / DEC-126-067 Accepted / S10BO1 Local Clean Checkpoints Formed / S10B-BLK-008 Closed / G3 Partial / G4/G6 Pending |
+| 状态 | G1/G2/G2A Passed / DESIGN-126-016 Complete / LIA-126-028 S10BO3 Corrective Closure Accepted / S10B-BLK-009/010 Closed / G3 Partial / G4/G6 Pending |
 | 需求负责人 | 段成威 |
 | Product/Design 决策人 | 段成威 |
 | 技术负责人 | 段成威 |
 | Reviewer | 段成威 |
 | 发布负责人 | 段成威 |
 | 创建日期 | 2026-08-01 |
-| 最后更新 | 2026-08-09 |
+| 最后更新 | 2026-08-10 |
 | 原始需求来源 | 段成威 2026-08-01 对话需求及 4 张 Codex 局部交互截图 |
 
 ## 2. 一句话目标
@@ -154,7 +154,7 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 | G2A 契约就绪 | 2026-08-02 | 段成威 | Re-review Passed：DEC-126-024 Accepted，`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate；现已精确推送到`origin/feat/feat-126-content-free-candidate`，`origin/develop`、历史`c000a024`与Draft PR #1均不变；远端可达不等于merge/发布/实现完成 |
 | Contract Draft PR / merge readiness | 2026-08-02 | 段成威 | DEC-126-021 Accepted/HOLD：Draft PR #1固定SHA且保持Draft；红色CI只阻断merge，不回退G2/G2A；未来需本地跨仓E2E、audit修复、远端CI全绿及单独merge批准 |
 | Local-only Delivery Strategy | 2026-08-02 | 段成威 | DEC-126-022 Accepted；目标改为Local Runtime Ready；tag/publish/deploy/G5均N/A；LIA-126-001后续仅授权S4–S6 |
-| G3 本地切片完成 | 未排期 | 段成威 | Partial：DEC-126-066已接受LIA-126-025/S10BO1 Corrective Closure并关闭`S10B-BLK-008`；repository corrective、targeted 14/14和四仓/Governance全量门禁PASS，但完整fresh S10B-001–012未PASS，G4/G6 Pending |
+| G3 本地切片完成 | 未排期 | 段成威 | Partial：Owner已接受LIA-126-028/S10BO3 Corrective Closure并关闭`S10B-BLK-010`；S10BO3-001–020、Infra 186/186、targeted 65/65及Governance全量门禁PASS，但完整fresh S10B-001–012未PASS，G4/G6 Pending |
 | S8B0 UI Integration Readiness Review | 2026-08-03 | 段成威 | DESIGN-126-006/DEC-126-032与DEC-126-033 Accepted；LIA-126-005 / S8B0 Closure Passed |
 | S8B Vue UI Closure Review | 2026-08-03 | 段成威 | DEC-126-034 Accepted / S8B Closure Passed；不自动授权S9/S10/activation，VoiceOver人工项保留到S11/G6 |
 | Remote State Reconciliation | 2026-08-04 | 段成威 | DEC-126-035 Accepted：五仓候选ref/clean clone精确PASS；四个S4–S8B checkpoints已按Owner明确授权远端可达；不改变G3/G4/G6或后续切片授权 |
@@ -238,3 +238,8 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 | 2026-08-09 | 段成威 / Codex | Owner接受Desktop + Infra跨仓corrective评审Option A并形成DEC-126-068 / DESIGN-126-015；授权并完成LIA-126-026 / S10BO2 repository corrective | Desktop non-publishable feature build实际bootstrap、真实authorization-code + PKCE synthetic agent、trusted tenant/project native bookmark、Vue/Pinia/Tauri driver及FD3/FD4 closed控制通道完成；Infra startup/abort runner与ownership/termination/cleanup state machine完成。Desktop全量门禁、174/174 TS、default 134 PASS/3 ignored、feature 143 PASS/3 ignored、driver TS 7/7与Rust 6/6 PASS；Infra validate/lint/test 162/162及S10BO1+S10BO2 targeted 34/34 PASS。Desktop checkpoint `95f19ad557da0bf4cead90ed55d1e3ec60aefbc4`，Infra checkpoint `0fed8187d6051c011e67142d90feff89de326cfe`；`S10B-BLK-009 Open`，G3 Partial、G4/G6 Pending，`s10b_r8_executed=false`。Corrective Closure仍待Owner接受；未执行Docker live、isolated live、fresh R8或业务调用 |
 | 2026-08-09 | 段成威 | 授权更新FEAT-126治理文档、提交所有相关本地改动并推送对应远端分支 | 本次远端授权仅覆盖Governance、API、Host、Desktop与Infra现有FEAT-126候选提交；Contracts/Runtime无新提交，不制造空commit。不得据此执行merge、tag、publish、deploy、isolated live、fresh R8、S11、MiniMax、真实数据/Keychain或默认功能启用 |
 | 2026-08-09 | 段成威 | 接受LIA-126-026/S10BO2 Corrective Closure并关闭S10B-BLK-009 | 确认Desktop完整门禁、feature Rust 143 PASS/0 FAIL/3 ignored、Infra 162/162、S10BO1+S10BO2 targeted 34/34、no-log、production driver-absent及ownership/cleanup门禁全部PASS；决策登记后Governance default/strict/G2A、unique-key YAML、lint/test、shell syntax与`git diff --check`复跑PASS。G3保持Partial、G4/G6 Pending；`s10b_r8_executed=false`；isolated live、fresh R8、业务调用、S11、MiniMax、真实数据/Keychain、默认启用、commit、push及其他远端写入仍未授权 |
+| 2026-08-09 | 段成威 / Codex | Owner单独授权并消费LIA-126-027 / S10BO2 isolated live startup/abort | 七仓exact/clean、Docker client/server 29.6.1、Compose 5.3.0、daemon、loopback、SQLCipher/0600、native bookmark及subprocess能力PASS。canonical run `b68804f0-aaf9-4da4-95e1-aa3b605bfada`在preflight创建run root前fail closed，最终closed frame=`orchestrator_cleanup_unknown`；只读诊断确认orchestrator未把七个SHA作为子Make要求的`GOVERNANCE_SHA`等变量传入，随后absent-run stop把cleanup标记unknown并覆盖原始preflight leaf。run root/五进程身份/no-log证据不存在，故isolated live Closure FAIL并登记`S10B-BLK-010 Open`、`DEC-126-069 Pending Owner Review`。该project container/network/volume=0，六端口listener=0，daemon恢复6 containers/0 running/6 images；无服务、业务case或provider调用，`s10b_r8_executed=false`；Governance八项门禁首轮及证据回写后最终复跑均PASS；不重试、不修复、不commit/push |
+| 2026-08-09 | 段成威 / Codex | 接受DEC-126-069 Option A，完成DESIGN-126-016并实施LIA-126-028 / S10BO3 Infra corrective | 保留失败run不可复用且不重跑live；修复七SHA单一Make authority、primary/secondary failure projection、attempt ledger、pre-run/partial-run cleanup与no-log scopes、phase/process-role reconcile和exact volume/listener inventory。Infra Node syntax、validate、lint、180/180 full tests、四个targeted文件59/59及`git diff --check`全部PASS；S10BO3-001–014全部PASS。`S10B-BLK-010`在Owner Corrective Closure前保持Open，G3 Partial、G4/G6 Pending，`s10b_r8_executed=false`；isolated live、fresh R8、业务case、commit和远端写入均未执行 |
+| 2026-08-10 | 段成威 / Codex | 完成S10BO3 Corrective Closure Review准备 | Infra `make test` 在最小Darwin vmmap能力提升下 `186/186 PASS`；S10BO3 targeted 扩展为 `65/65 PASS`（含015–020：成功immutable closure、preflight failure-class绑定、Compose日志抓取/泄漏拒绝、API/fake前后投影不变、marker-only reconcile、Host/Runtime持久证据）；`pnpm validate`、`make lint`、Compose semantic、Node syntax、`git diff --check`全部PASS。未执行Docker live、isolated live、fresh R8、业务调用或远端写入；状态仍为Review Ready / Pending Owner Acceptance，`S10B-BLK-010 Open`，`s10b_r8_executed=false` |
+| 2026-08-10 | 段成威 | 接受LIA-126-028 / S10BO3 Corrective Closure | 确认DESIGN-126-016完成、Infra `186/186`、S10BO3-001–020及targeted `65/65`、Node syntax、`pnpm validate`、`make lint`、Compose semantic、`git diff --check`与Governance全部门禁PASS，关闭`S10B-BLK-010`；保留`b68804f0-aaf9-4da4-95e1-aa3b605bfada`失败且不可重用，`s10b_r8_executed=false`、G3 Partial、G4/G6 Pending；未授权live、fresh R8、业务调用、commit或远端写入 |
+| 2026-08-10 | 段成威 / Codex | Owner仅授权S10BO3后的Infra + Governance local clean checkpoint closure并形成DEC-126-070 | 七仓HEAD/scope复核通过，仅Infra五个S10BO3 corrective文件与Governance既有九份治理文件进入候选；Infra `186/186`、targeted `65/65`与Governance全门禁PASS。Infra形成clean local checkpoint `91f7ec03372b1528abb93818abfad432a83327c4`，Governance由包含本记录的本地commit形成checkpoint；不push。G3 Partial、G4/G6 Pending、`s10b_r8_executed=false`保持，未执行live、fresh R8或业务case |

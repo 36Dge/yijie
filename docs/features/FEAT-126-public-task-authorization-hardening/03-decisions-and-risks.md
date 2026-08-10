@@ -84,8 +84,8 @@
 - 是否改变既有 Accepted ADR：不削弱 ADR-0012；Accepted DEC-126-001 保留其 FEAT-126 安全责任。若未来改成迁号，必须重开 G1、形成新 Accepted ADR 并同步全部 FEAT-125 引用。
 - 是否改变跨仓职责/数据权威：是。ADR-0013 已接受 Desktop embedded SQLite 为 confidential conversation authority，并明确 PostgreSQL/Redis/pgvector/bbolt 的非替代职责；ADR-0015 冻结隔离标题，ADR-0016/DEC-126-016 冻结 Host raw-reasoning展示与Desktop SQLCipher历史权威。DESIGN-126-003/DEC-126-017现已提交 exact v2/schema/caps候选；Public Tasks ownership/auth由DEC-126-011/012提交批准。
 - 是否改变 Accepted Design Pattern：是。Chat 1.1.0 的 active state 要附件/右侧面板，App Shell 2.0.0 有全局收起；必须在代码前形成新候选版本并由段成威接受。
-- ADR/Decision 结论：ADR-0013/0014/0015/0016与DEC-126-011/012/016–067均已Accepted；DESIGN-126-014 Complete，LIA-126-025/S10BO1 repository implementation、Corrective Closure与local clean checkpoints均完成；`S10B-BLK-008 Closed`，G3 Partial、G4/G6 Pending。
-- G2A/local 结论：`29317b6426578749dc698fc2ad32b986ee5c8e9f`仍是唯一source-contract candidate；远端候选/develop/Draft PR不变。该bootstrap deployment/profile缺口不改变central contract，G2A重审为N/A；G4/G6保持Pending，所有默认flags关闭，S10B Executed / Blocked / Closure Fail，S11未授权。
+- ADR/Decision 结论：ADR-0013/0014/0015/0016与DEC-126-011/012/016–070均已Accepted；DESIGN-126-016 Complete，Owner已接受LIA-126-028/S10BO3 Corrective Closure并形成后续Infra/Governance本地clean checkpoints；`S10B-BLK-008/009/010 Closed`，G3 Partial、G4/G6 Pending。
+- G2A/local 结论：`29317b6426578749dc698fc2ad32b986ee5c8e9f`仍是唯一source-contract candidate；远端候选/develop/Draft PR不变。该bootstrap deployment/profile缺口不改变central contract，G2A重审为N/A；S10BO3 Corrective Closure已接受，但完整fresh S10B仍未PASS；G3 Partial、G4/G6保持Pending，所有默认flags关闭，S11未授权。
 - 架构 Owner：段成威。
 
 ## 4. 风险登记
@@ -440,3 +440,44 @@
 | 状态 | `LIA-126-026/S10BO2 Corrective Closure Accepted`；`S10B-BLK-009 Closed`；G3 Partial、G4/G6 Pending |
 | Owner Closure | Desktop feature Rust 143 PASS/0 FAIL/3 ignored、Infra 162/162、S10BO1+S10BO2 34/34及no-log/driver-absent/ownership/cleanup证据获接受；不等于isolated live、fresh R8、G4或G6 PASS |
 | Post-decision Governance | default、strict、G2A、unique-key YAML、lint、test、shell syntax与`git diff --check`全部PASS |
+
+## 28. LIA-126-027 / S10BO2 Isolated Live Failure
+
+| 项目 | 事实与处置 |
+|---|---|
+| Authorization | 单次startup/abort isolated live授权已消费；run `b68804f0-aaf9-4da4-95e1-aa3b605bfada`不得重试、续跑或复用 |
+| Preconditions | 七仓exact/clean；Docker client/server 29.6.1、Compose 5.3.0、daemon、loopback、SQLCipher/文件属性、native bookmark、subprocess全部PASS |
+| Closed result | `orchestrator_cleanup_unknown`；isolated live Closure FAIL；`DEC-126-069 Pending Owner Review` |
+| Root cause | `executePreflight`只向子进程环境提供`FEAT126_S10B_*`，却调用要求`GOVERNANCE_SHA`等Make变量的`feat-126-s10b-preflight`；子Make在run root创建前拒绝。初始cleanup仍设置`composeAttempted=true`，absent-run stop失败后cleanup leaf覆盖原始preflight leaf |
+| Evidence gap | run root、五份process identity与no-log roots不存在；因此不得声明精确process cleanup或完整no-log PASS，也不得手工kill未知PID |
+| Observed containment | run project container/network/volume=0；5432/8443/9443/18080/18081/18082 listener=0；daemon前后均6 containers/0 running/6 images；未启动服务或业务调用 |
+| Blocker | `S10B-BLK-010 Open`：需要独立Infra corrective评审，同时修复preflight authority forwarding、原始failure preservation与pre-run cleanup evidence semantics |
+| Retained state | `S10B-BLK-009 Closed`；G3 Partial、G4/G6 Pending；`s10b_r8_executed=false`；fresh R8/S11/MiniMax/真实数据/Keychain/默认启用未授权 |
+| Governance verification | default、strict、G2A、unique-key YAML、lint、test、shell syntax和`git diff --check`首轮及本行回写后的最终复跑均PASS |
+
+## 29. DEC-126-069 / DESIGN-126-016 / LIA-126-028 S10BO3 Corrective
+
+| 项目 | 决策与证据 |
+|---|---|
+| Decision | Owner采用Option A：保留LIA-126-027失败事实和不可复用run ID，接受完整Infra corrective设计并授权实施；不得直接重跑isolated live |
+| Root-cause set | 七SHA跨Make边界丢失是触发原因；同时确认provisional Compose状态、primary failure覆盖、pre-run evidence、attempt reuse、partial startup、partial run-root、Make trailer、phase descendant及secondary failure持久化九类闭合缺口 |
+| DESIGN-126-016 | 七SHA作为唯一Make assignments传递；严格解析JSON加唯一已知Make trailer；分离`composeAttempted`与`composeCleanupRequired`；primary始终权威，cleanup/no-log/evidence/parent仅作为secondary |
+| Durable authority | canonical run attempt以`O_EXCL`消费，0700目录/0600 canonical JSON；marker、failure、closure由SHA-256绑定并拒绝symlink、hardlink、mode、script/binary drift及覆盖 |
+| Cleanup/no-log | 区分`pre_run_absence`、`preflight_artifacts`、`run_artifacts`及`attempt_only` coverage；named volume按exact before/after set验证；未知Docker/listener/process identity或不完整descendant证据保持fail closed |
+| Retry boundary | existing run只允许phase-aware exact reconcile cleanup，不resume、continue、retry或进入业务case；失败run `b68804f0-aaf9-4da4-95e1-aa3b605bfada`永久不可复用 |
+| Verification | Node syntax PASS；Infra `pnpm validate`、`make lint`、`make test` `186/186 PASS`（严格Darwin vmmap能力提升后）；四个targeted文件 `65/65 PASS`，S10BO3-001–020全部PASS；Compose semantic与`git diff --check` PASS；Docker live NOT RUN |
+| Contract impact | `semantic`，仅private FEAT-126 local deployment/test interface；central contracts、Public Tasks/Host wire、durable schema、Runtime源码/pin、Compose pin及default flags不变，G2A=N/A |
+| Current state | `DEC-126-069 Accepted Option A`；`DESIGN-126-016 Complete`；Owner已接受`LIA-126-028/S10BO3 Corrective Closure`；`S10B-BLK-010 Closed` |
+| Retained gates | `S10B-BLK-009 Closed`；G3 Partial、G4/G6 Pending；`s10b_r8_executed=false`；isolated live、fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用、commit及远端写入未授权 |
+| Governance verification | 本节证据登记后，Governance default、strict、G2A、unique-key YAML、lint、test、shell syntax与`git diff --check`全部PASS |
+
+## 30. DEC-126-070 / S10BO3 Local Clean Checkpoint Closure
+
+| 项目 | 决策与证据 |
+|---|---|
+| Owner决定 | 仅执行S10BO3 Corrective Closure后的Infra与Governance local clean checkpoint closure；不得执行isolated live或fresh R8 |
+| Scope | 七仓HEAD与worktree复核通过；仅Infra五个S10BO3 corrective文件及Governance既有九份FEAT-126治理文件进入提交，Contracts/API/Host/Desktop/Runtime保持既定clean checkpoint |
+| Verification | Infra Node syntax、`pnpm validate`、`make lint`、`make test` `186/186`、四文件targeted `65/65`、Compose semantic与diff PASS；Governance default、strict、G2A、unique-key YAML、lint、test、shell syntax与diff PASS |
+| Clean checkpoints | Infra=`91f7ec03372b1528abb93818abfad432a83327c4`；Governance=包含本记录与Infra精确SHA的本地commit，精确SHA在提交后报告，因为commit不能嵌入自身SHA |
+| Retained state | `S10B-BLK-009/010 Closed`；G3 Partial、G4/G6 Pending；`s10b_r8_executed=false`；失败run永久不可复用 |
+| Exclusions | 未执行Docker live、isolated live、fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用、prune或volume删除；两个checkpoint均local/not pushed，无其他远端写入 |

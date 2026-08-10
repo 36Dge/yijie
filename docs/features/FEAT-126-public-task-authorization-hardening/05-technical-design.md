@@ -1,4 +1,4 @@
-# FEAT-126 技术设计（DEC-126-067 Accepted / S10BO1 Checkpoints Clean / BLK-008 Closed）
+# FEAT-126 技术设计（DESIGN-126-016 Complete / S10BO3 Corrective Closure Accepted / BLK-008/009/010 Closed）
 
 > 本文产品/架构设计保持G2 Passed。DEC-126-057已接受S10BF1 Closure并关闭`S10B-BLK-005`；Owner随后单独授权并消费LIA-126-020/S10B-R5。R5的S10B-001通过，但S10B-002在API readiness前因runtime service-profile authority不一致而fail closed；DEC-126-058 Option A已Accepted并拒绝R5 Closure，Owner随后单独授权、消费LIA-126-021/S10BRP1。Owner于2026-08-06批准DEC-126-059 Option A，S10BRP1 Closure Passed并关闭`S10B-BLK-006`；API/Infra已形成clean local checkpoints。LIA-126-022/S10B-R6随后被正式消费，但在S10B-001 image resolver阶段以`preflight_image_resolver_failed`停止；S10B-002–012未运行。DEC-126-060/061 Option A均已Accepted；LIA-126-023/S10BEP1 repository implementation、2026-08-09的S10BEP1-014 isolated live验证及Infra/Governance全量门禁均PASS。Owner通过DEC-126-062接受Corrective Closure并关闭`S10B-BLK-007`，随后通过DEC-126-063仅形成Infra/Governance本地clean checkpoints。G3保持Partial，fresh R7、S11/MiniMax、默认flag activation与远端动作仍未授权。
 > 本文产品/架构设计保持G2 Passed。DEC-126-057已接受S10BF1 Closure并关闭`S10B-BLK-005`；Owner随后单独授权并消费LIA-126-020/S10B-R5。R5的S10B-001通过，但S10B-002在API readiness前因runtime service-profile authority不一致而fail closed；DEC-126-058 Option A已Accepted并拒绝R5 Closure，Owner随后单独授权、消费LIA-126-021/S10BRP1。Owner于2026-08-06批准DEC-126-059 Option A，S10BRP1 Closure Passed并关闭`S10B-BLK-006`；API/Infra已形成clean local checkpoints。LIA-126-022/S10B-R6随后被正式消费，但在S10B-001 image resolver阶段以`preflight_image_resolver_failed`停止；S10B-002–012未运行。DEC-126-060/061 Option A均已Accepted；LIA-126-023/S10BEP1 repository implementation、2026-08-09的S10BEP1-014 isolated live验证及Infra/Governance全量门禁均PASS。Owner通过DEC-126-062接受Corrective Closure并关闭`S10B-BLK-007`，随后通过DEC-126-063仅形成Infra/Governance本地clean checkpoints。Owner继续接受DEC-126-065 Option A并授权LIA-126-025/S10BO1；四仓repository corrective、S10BO1-001–014及全部实现/Governance门禁PASS，DEC-126-066现已接受Corrective Closure并关闭`S10B-BLK-008`。G3保持Partial，isolated live、fresh R8、S11/MiniMax、默认flag activation与远端动作仍未授权。
@@ -1544,3 +1544,58 @@ created -> preflight_running -> preflight_passed -> dependencies_ready
 - contract-impact=`semantic`，仅private local deployment/test与non-publishable driver IPC；central contracts/G2A=N/A。
 - Closure接受仅覆盖repository corrective及其门禁证据；不授权isolated live、fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用、commit或远端写入。
 - Owner决定登记后的Governance default/strict/G2A、unique-key YAML、lint/test、shell syntax与`git diff --check`首轮及证据回填后最终复跑均全部PASS。
+
+## 42. S10BO2 Isolated Live Fail-Closed Record
+
+### 42.1 Execution boundary
+
+- LIA-126-027只授权一次startup/abort live，未授权S10B业务case或fresh R8；canonical run为`b68804f0-aaf9-4da4-95e1-aa3b605bfada`。
+- 七仓SHA/clean、Docker 29.6.1、Compose 5.3.0、daemon及四项本地能力全部PASS；失败不是环境能力阻断。
+
+### 42.2 Failure projection
+
+- `executePreflight`调用子Make时只传`RUN_ID` argument；七仓SHA以`FEAT126_S10B_*`环境名存在，但Make target的前置检查要求`GOVERNANCE_SHA`、`CONTRACTS_SHA`、`API_SHA`、`HOST_SHA`、`DESKTOP_SHA`、`RUNTIME_SHA`、`INFRA_SHA`，因此在run root建立前立即拒绝。
+- cleanup初始context将`composeAttempted`固定为true；preflight尚未创建run时仍调用`feat-126-s10-stop`，其失败设置cleanup unknown。state machine按cleanup优先覆盖primary failure，最终仅投影`orchestrator_cleanup_unknown`。
+- run root与五进程证据不存在，existing-run reconcile无法建立完整身份authority；禁止手工命令拼接、manual kill、retry或复用run ID。
+
+### 42.3 Closure state
+
+- project container/network/volume=0；六个固定listener=0；daemon恢复6 containers/0 running/6 images。该观测不等同于精确process/no-log Closure，因为证据根不存在。
+- Desktop复验174/174 TS、default 134/0/3、feature 143/0/3、driver TS 7/7、Rust 6/6及production driver-absent PASS；Infra 162/162与targeted 34/34 PASS。
+- isolated live Closure FAIL；`b68804f0-aaf9-4da4-95e1-aa3b605bfada`永久不可重试、续跑或复用；Owner已接受LIA-126-028/S10BO3 Corrective Closure并关闭`S10B-BLK-010`；`S10B-BLK-009 Closed`、G3 Partial、G4/G6 Pending、`s10b_r8_executed=false`保持。
+- Governance default、strict、G2A、unique-key YAML、lint、test、shell syntax和`git diff --check`首轮及本条证据回写后的最终复跑均PASS。
+
+## 43. DESIGN-126-016 S10BO3 Failure-safe Orchestrator Closure
+
+### 43.1 Authority and attempt consumption
+
+- Orchestrator只接收canonical run ID与七仓exact SHA；同一authority在嵌套Make边界转换为固定`GOVERNANCE_SHA`、`CONTRACTS_SHA`、`API_SHA`、`HOST_SHA`、`DESKTOP_SHA`、`RUNTIME_SHA`、`INFRA_SHA` assignments，不从第二环境命名空间重建。
+- canonical run ID在任何执行前写入`.orchestrator-attempts/<run>.attempt.v1.json`；0700真实目录和0600 create-new canonical JSON为强制条件。marker绑定owner PID/PPID/start identity、binary/script SHA与七仓SHA；failure/closure绑定marker digest且不可覆盖。
+- 已存在attempt只进入reconcile，拒绝script/binary drift、active owner、缺失或不一致failure/closure；不会resume preflight、startup、abort或业务case。
+
+### 43.2 Failure projection
+
+- child preflight失败只接受一行closed JSON，或该行后跟唯一精确Make `Error 1` trailer；其它stderr、额外行、CRLF、oversize、未知字段或非canonical结果统一拒绝。
+- `composeAttempted`只表示启动尝试发生；`composeCleanupRequired`单独决定是否调用Compose cleanup。依赖spawn前先设置cleanup eligibility，从而覆盖partial startup unknown outcome。
+- 原始preflight/startup/abort failure始终是primary；cleanup、no-log、evidence write与parent death分别持久化并出现在最终closed envelope，不得覆盖primary。
+
+### 43.3 Evidence, reconcile and cleanup
+
+- preflight在partial owner-only run root上补齐受保护的`logs`与`preflight-evidence`目录并写closed failure evidence；未建立run root时使用attempt-only evidence，不能伪装成完整run artifacts。
+- cleanup scopes固定为`pre_run_absence`、`preflight_artifacts`、`run_artifacts`；no-log scopes固定为`attempt_only`、`preflight_artifacts`、`run_artifacts`并带coverage/file count。四个named volumes按exact before/after name set验证且永不删除。
+- phase决定required/possible process roles。Desktop可能已启动Host/Runtime的phase若缺少完整descendant identity，只能保持cleanup unknown；PID reuse、binary/start identity不确定、listener或Docker inventory unknown均不得signal未知进程或声明PASS。
+- `s10b_r8_executed=false`为marker、failure、closure与成功projection的固定字段；S10B-002–011业务case仍硬禁止。
+
+### 43.4 Verification and scope
+
+- S10BO3-001–020覆盖authority forwarding、strict frame/trailer、primary/secondary precedence、single-use ledger、artifact tamper、digest binding、pre-run no-log、phase role、volume set、partial dependency/root、unknown inventory、no-resume、immutable success closure、failure-class binding、Compose log leak rejection、API/fake boundary immutability、marker-only reconcile及Host/Runtime persisted evidence。
+- Infra Node syntax、`pnpm validate`、`make lint`、full `make test` `186/186 PASS`、四个targeted文件 `65/65 PASS`和`git diff --check` PASS；未执行Docker live、isolated live或fresh R8。
+- contract-impact=`semantic`，仅private local deployment/test interface；central contracts、业务wire、durable schema、Runtime源码/pin、Compose pin与default flags无变化，G2A=N/A。
+- Owner已接受`LIA-126-028/S10BO3 Corrective Closure`并关闭`S10B-BLK-010`。该接受仅覆盖repository corrective；不构成isolated live、fresh R8、完整S10B-001–012、G4或G6证据。后续任何isolated live仍需新的clean checkpoint和单独一次性授权。
+
+## 44. DEC-126-070 S10BO3 Checkpoint Manifest
+
+- Infra corrective以五个已评审文件形成local clean checkpoint `91f7ec03372b1528abb93818abfad432a83327c4`；该提交不改变Compose pin、central contracts、Runtime、default flags或业务wire。
+- Governance checkpoint是包含本节、Infra精确SHA和全部门禁证据的本地commit；其精确SHA在commit形成后外部报告，避免不可实现的commit自引用。
+- Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`、API `451940b282d8dd3e232ed414bd44b0677897f4c4`、Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`、Desktop `95f19ad557da0bf4cead90ed55d1e3ec60aefbc4`与Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`保持clean/unchanged。
+- 此checkpoint只固化repository corrective，不产生新的runtime evidence；G3 Partial、G4/G6 Pending及`s10b_r8_executed=false`不变。

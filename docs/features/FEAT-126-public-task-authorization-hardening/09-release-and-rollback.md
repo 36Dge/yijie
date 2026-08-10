@@ -1,6 +1,6 @@
-# FEAT-126 本地启动、停止与恢复 Runbook（DEC-126-067 Accepted / S10BO1 Checkpoints Clean / BLK-008 Closed）
+# FEAT-126 本地启动、停止与恢复 Runbook（DESIGN-126-016 Complete / S10BO3 Corrective Closure Accepted / BLK-008/009/010 Closed）
 
-> DEC-126-022将本需求冻结为Local-only Delivery。DEC-126-062/063关闭BLK-007并形成clean checkpoints后，LIA-126-024/S10B-R7已单独授权和消费：S10B-001 PASS，S10B-002因缺少完整四组件orchestrator fail closed，003–011 NOT RUN，012仅abort cleanup subset。Owner已接受DEC-126-064/065/066并完成DESIGN-126-014、LIA-126-025/S10BO1 Corrective Closure及`S10B-BLK-008`关闭；DEC-126-067进一步形成API/Host/Desktop/Infra/Governance本地clean checkpoints。G3保持Partial。本文不授权isolated live、fresh R8、S11、MiniMax、default activation或发布。
+> DEC-126-022将本需求冻结为Local-only Delivery。DEC-126-062/063关闭BLK-007并形成clean checkpoints后，LIA-126-024/S10B-R7已单独授权和消费：S10B-001 PASS，S10B-002因缺少完整四组件orchestrator fail closed，003–011 NOT RUN，012仅abort cleanup subset。Owner已接受DEC-126-064/065/066并完成DESIGN-126-014、LIA-126-025/S10BO1 Corrective Closure及`S10B-BLK-008`关闭；DEC-126-067进一步形成API/Host/Desktop/Infra/Governance本地clean checkpoints。LIA-126-027 isolated live 的失败事实保留且run不可复用；Owner已接受DESIGN-126-016与LIA-126-028/S10BO3 Corrective Closure并关闭`S10B-BLK-010`。G3保持Partial。本文不授权isolated live、fresh R8、S11、MiniMax、default activation或发布。
 
 ## 1. Release Manifest
 
@@ -322,3 +322,27 @@ DESIGN-126-008对未来corrective的回滚语义冻结如下：
 - 回滚必须分别撤销Desktop feature-only bootstrap/control channel与Infra startup/abort runner；不得只删除hard stop、手工拼接组件、让Infra直接启动Host/Runtime或弱化strict termination identity。
 - Owner已接受S10BO2 Corrective Closure并关闭`S10B-BLK-009`；该决定不构成live/release授权。isolated live和fresh R8仍需各自的新Owner授权与new canonical run ID；本轮`s10b_r8_executed=false`，没有live资源可回滚。
 - Owner决定登记后的Governance default/strict/G2A、unique-key YAML、lint/test、shell syntax与`git diff --check`首轮及最终证据回填后复跑均PASS。没有commit、push、merge、tag、publish或deploy。
+
+## 15. Failed Isolated Live Containment
+
+- LIA-126-027已消费且Closure FAIL；run `b68804f0-aaf9-4da4-95e1-aa3b605bfada`不得重试或复用。
+- 失败发生在run root建立前；无候选run资源可通过existing-run reconcile验证。不得通过创建伪process evidence、手工kill、直接调用preflight或删除hard stop恢复。
+- 观测到project container/network/volume=0、fixed listener=0及daemon基线恢复；因身份/no-log证据缺失，rollback状态保持fail closed而非PASS。
+- `S10B-BLK-010 Closed`：LIA-126-028/S10BO3 Corrective Closure已由Owner接受；这不授权再次isolated live或fresh R8，后续仍需新的clean checkpoint和单独Owner授权。
+- Governance default、strict、G2A、unique-key YAML、lint、test、shell syntax与`git diff --check`首轮及本条回写后的最终复跑均PASS。本轮无commit、push或远端写入。
+
+## 16. S10BO3 Corrective Rollback Boundary
+
+- Corrective只改变Infra private local test/deployment scripts与tests；central contracts、API/Host/Desktop/Runtime、Compose pins、named volumes和default flags未改变。
+- 回滚必须整体撤销七SHA Make authority、attempt ledger、failure/closure projection、scope-aware cleanup/no-log及S10BO3 tests，不能只删除attempt claim、放宽strict parser或恢复cleanup覆盖primary的旧行为。
+- 失败run ID永久不可复用；回滚或corrective review都不授权手工拼接组件、manual kill、resume或业务case。
+- 当前repository corrective Closure已由Owner接受；`S10B-BLK-010 Closed`。在新的clean checkpoint和单独Owner授权前不得授权下一次isolated live。
+- 本轮没有Docker live、prune、volume删除、commit、push、merge、tag、publish或deploy；没有运行态资源需要回滚。
+
+## 17. DEC-126-070 Local Checkpoint Boundary
+
+- Infra local clean checkpoint=`91f7ec03372b1528abb93818abfad432a83327c4`；仅包含五个S10BO3 corrective文件，worktree clean，未push。
+- Governance local checkpoint为包含本节与Infra精确SHA的单一commit；精确SHA只能在commit形成后报告，不能写入commit自身。
+- Contracts/API/Host/Desktop/Runtime保持既定clean checkpoint；本次没有部署、发布、默认启用或运行态配置变化。
+- 如需撤销，只能按仓撤销上述local commits；不得prune、删除named volumes或影响foreign resources。
+- `s10b_r8_executed=false`、G3 Partial、G4/G6 Pending保持；本checkpoint不授权isolated live、fresh R8、业务case、push或其他远端动作。

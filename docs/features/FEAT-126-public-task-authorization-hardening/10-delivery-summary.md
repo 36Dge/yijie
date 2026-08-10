@@ -6,7 +6,7 @@
 - 原目标是否达成：未达成。LIA-126-024/S10B-R7已消费；S10B-001 PASS，但S10B-002因缺少完整四组件可执行orchestrator fail closed，S10B-003–011未运行，012仅完成abort cleanup subset。S10BO1 Corrective Closure已由DEC-126-066接受并关闭`S10B-BLK-008`，但完整fresh S10B仍未PASS。
 - 当前范围：安全的新建任务对话、任务记录、聊天项目、本地持久化及Public Tasks hardening的完整Local-only需求/设计/测试/实施候选。
 - 非目标：见`00-feature-brief.md`；没有文件/图片/工具/云同步；tag/package publish/registry/线上部署/生产灰度/云数据库/真实用户数据均N/A。
-- 交付状态：`G1/G2/G2A Passed / DEC-126-067 Accepted / DESIGN-126-014 Complete / LIA-126-025/S10BO1 Corrective Closure Passed / Local Clean Checkpoints Formed / S10B-BLK-008 Closed / G3 Partial / G4/G6 Pending`。API `451940b2…f4c4`、Host `c5939b4d…59b9`、Desktop `d51e435c…7b6e`、Infra `0b05ab32…c25c`及Governance本地checkpoint已形成；未执行Docker live、isolated live、fresh R8、S11、真实Keychain、MiniMax、merge/tag/publish/deploy/default activation或远端写入。
+- 交付状态：`G1/G2/G2A Passed / DESIGN-126-016 Complete / LIA-126-028 S10BO3 Corrective Closure Accepted / S10B-BLK-008/009/010 Closed / G3 Partial / G4/G6 Pending`。S10BO3 Infra `186/186`、targeted `65/65`及Governance全部门禁PASS；失败run `b68804f0-aaf9-4da4-95e1-aa3b605bfada`永久不可重用，`s10b_r8_executed=false`；未执行Docker live、isolated live、fresh R8、S11、真实Keychain、MiniMax、业务调用、merge/tag/publish/deploy/default activation或远端写入。
 
 ## 2. 实际版本与本地候选（未发布）
 
@@ -239,3 +239,43 @@
 | Closure governance | Owner决定登记后default/strict/G2A、unique-key YAML、lint/test、shell syntax与`git diff --check`首轮及证据回填后最终复跑均PASS；本轮不commit/push |
 
 本次交付仍未关闭FEAT-126。Owner已接受S10BO2 Corrective Closure并关闭`S10B-BLK-009`，但这不是isolated live、fresh R8、完整S10B-001–012、G4或G6证据；后续动作仍须单独授权。
+
+## 13. S10BO2 Isolated Live Failure
+
+| Item | Current fact |
+|---|---|
+| Authorization | `LIA-126-027` consumed once；run `b68804f0-aaf9-4da4-95e1-aa3b605bfada` |
+| Result | isolated live startup/abort Closure FAIL；final class `orchestrator_cleanup_unknown` |
+| Cause | seven SHA authority was not forwarded under the Make variable names required by the child preflight；absent-run cleanup overwrote the original leaf |
+| Reached scope | no run root、service startup、Desktop/Host/Runtime、component_ready、abort or business case |
+| Containment | project container/network/volume/listener=0；daemon restored；exact process/no-log proof NOT ESTABLISHED |
+| Gates | Desktop full/default/feature/driver/production absent PASS；Infra 162/162 and targeted 34/34 PASS |
+| Governance | isolated live FAIL事实保留；Owner已接受LIA-126-028/S10BO3 Corrective Closure；`S10B-BLK-010 Closed`；`S10B-BLK-009 Closed`；G3 Partial、G4/G6 Pending；`s10b_r8_executed=false` |
+| Governance gates | default、strict、G2A、unique-key YAML、lint、test、shell syntax and `git diff --check` initial and final post-record runs PASS |
+
+该“下一步只能设计评审”状态已由Owner后续指令消费：DEC-126-069 Option A已接受，DESIGN-126-016与LIA-126-028/S10BO3 repository corrective已完成；原失败run仍不可复用，且不得直接重跑isolated live或进入fresh R8。
+
+## 14. S10BO3 Corrective Delivery
+
+| Item | Current fact |
+|---|---|
+| Decision/design | `DEC-126-069 Accepted Option A`；`DESIGN-126-016 Complete` |
+| Implementation | `LIA-126-028/S10BO3 Implemented / Corrective Closure Accepted` |
+| Main fix | seven-SHA Make forwarding、single-use attempt ledger、primary/secondary failure closure、partial-run evidence、scope-aware no-log/cleanup、phase-aware reconcile |
+| Verification | Infra Node syntax/validate/lint PASS；full `186/186 PASS`；four targeted files `65/65`；S10BO3-001–020 PASS；Compose semantic及diff check PASS |
+| Live boundary | no Docker live、isolated live rerun、fresh R8 or business call；old run remains FAIL/non-reusable；`s10b_r8_executed=false` |
+| Governance | `S10B-BLK-010 Closed`；`S10B-BLK-009 Closed`；G3 Partial、G4/G6 Pending；Governance default/strict/G2A/unique-key YAML/lint/test/shell syntax/diff全部PASS |
+| Next gate | No automatic continuation; a new clean checkpoint and separate Owner authorization are required for isolated live or fresh R8 |
+
+## 15. DEC-126-070 S10BO3 Local Clean Checkpoints
+
+| Item | Current fact |
+|---|---|
+| Authorization | Owner仅授权S10BO3后的Infra + Governance local clean checkpoint closure |
+| Scope | Infra五个S10BO3 corrective文件；Governance九份FEAT-126治理文件；其余五仓clean/unchanged |
+| Infra gates | full `186/186 PASS`；targeted `65/65 PASS`；Node syntax、validate、lint、Compose semantic、diff PASS |
+| Infra checkpoint | `91f7ec03372b1528abb93818abfad432a83327c4`；local、clean、not pushed |
+| Governance checkpoint | 包含本记录与Infra精确SHA的本地commit；精确SHA在commit后报告 |
+| Governance gates | default、strict、G2A、unique-key YAML、lint、test、shell syntax与`git diff --check`全部PASS |
+| State | `S10B-BLK-009/010 Closed`；G3 Partial、G4/G6 Pending；`s10b_r8_executed=false` |
+| Boundary | no Docker/isolated live、fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用或远端写入 |
