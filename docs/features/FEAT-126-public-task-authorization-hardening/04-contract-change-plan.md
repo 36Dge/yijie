@@ -297,3 +297,13 @@ S8B切片contract impact为`semantic Desktop-private`，不改变central feature
 - Infra `runtime-log-scan.v2`新增`hit_origin_set_sha256`与`hit_rule_set_sha256`，不持久化日志正文、路径、token、secret或规则文本；reader继续接受历史v1 evidence。
 - Public Tasks HTTP、Host SSE、Desktop业务IPC、PostgreSQL/SQLCipher durable schema、Runtime source/pin与Compose pins无变化；sole central candidate仍为`29317b6426578749dc698fc2ad32b986ee5c8e9f`，G2A=`N/A`。
 - Desktop `9771da11c47406e45526dea104f3d7de05701fba`与Infra `61062143fa3c81b90792ec6f48aea7d6408ed06d`必须作为同一新checkpoint manifest消费；旧失败run只保留审计，不得由新reader resume或升级为PASS。
+
+## 17. DESIGN-126-019 Private Startup/No-log Compatibility
+
+- `contract-impact=semantic`：Desktop feature-only producer新增ready前`startup_failed` terminal，Infra consumer接受该terminal并优先保留closed Desktop leaf；这改变private startup failure解释与evidence语义，即使不改变任何公共HTTP/SSE shape也不能分类为`none`。
+- 权威源仅为同一corrective内的Desktop Rust/TypeScript driver和Infra orchestrator；该协议不可发布、不可由业务consumer使用，也不进入`yijie-contracts`。central G2A=`N/A`，理由是Public Tasks、Host、业务IPC、durable schema与Runtime协议均无变化。
+- 兼容方向：Desktop与Infra必须作为一组形成新checkpoint。新Infra reader继续接受历史control EOF及runtime-log-scan v1/v2；新Desktop只在feature driver中发v1 `startup_failed`。不得部署或消费只有一侧的新语义。
+- startup terminal闭集为`component_ready`或`startup_failed`，first terminal wins；ready后的abort/late failure不得倒写startup failure。malformed authority、unknown class、extra key、错误run/nonce/sequence均fail closed且不泄露原始错误。
+- runtime-log-scan v3新增`hit_origin_rule_set_sha256`并将source identity稳定为closed Compose service role；writer必须绑定完整Docker label authority，reader保留v1/v2/v3。空命中时origin、rule及pair三个摘要都绑定SHA-256(empty set)，非空时三者都与实际closed sets一致。
+- no-log分类改为structured/value-aware：允许经closed schema证明无内容的健康/ready字段，继续拒绝敏感值、凭据、DSN、private key、绝对本机路径和未分类高风险payload。摘要证据不得持久化raw value、日志正文、规则文本或路径。
+- Contracts/API/Host/Runtime conformance=`N/A / no source change`。Desktop↔Infra targeted conformance通过：Desktop targeted TS/Rust各`11/11`、Infra S10BO2/S10BO3 `50/50`；full gates分别为Desktop TS `178/178`、default Rust `134 pass/3 ignored`、feature Rust `149 pass/3 ignored`及Infra `192/192`。独立审查的两个Infra P1已关闭；新checkpoint为Desktop `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd`与Infra `5fdba2b22b343237683f383f098fa2ffaea5bc54`，均local clean/not pushed。Corrective Closure为Review Ready / Pending Owner Acceptance。

@@ -881,3 +881,24 @@ DESIGN-126-014确认完整corrective不能是Infra-only：Desktop driver、Host 
 | Implementation checkpoints | Desktop `9771da11c47406e45526dea104f3d7de05701fba`；Infra `61062143fa3c81b90792ec6f48aea7d6408ed06d`；local/clean/not pushed |
 | Governance | default、strict、G2A、unique-key YAML、lint/test、checker shell syntax与diff PASS；checkpoint为包含本记录的本地commit |
 | Stop condition | no automatic live；another isolated live需要全部新exact SHA与单独一次性授权；fresh R8与远端动作未授权 |
+
+## 37. DESIGN-126-019 / LIA-126-033 Unified Corrective Matrix
+
+本矩阵只证明 repository corrective，不消费任何 live 授权。以下结果来自本轮离线命令；它们不构成live/startup PASS或Owner Closure acceptance。
+
+| ID | Layer | Required case | Evidence / exit criterion |
+|---|---|---|---|
+| S10BO4-001 | Desktop Rust | encode bounded startup_failed with closed class, exact six keys, UUIDv4 run/nonce, sequence=1; reject unknown class | unit PASS; no raw error/path/token/secret |
+| S10BO4-002 | Desktop Rust | first startup failure wins; second failure and post-ready failure do not emit another startup terminal | unit PASS; exactly one frame |
+| S10BO4-003 | Desktop Rust | app-data/Tauri setup/control-monitor/bootstrap failure before ready writes corresponding leaf; ready path emits no failure | Rust feature unit/source gates PASS；真实Tauri `AppHandle/setup`分支保留P2并等待下一次authorized live |
+| S10BO4-004 | Desktop TypeScript | stage errors map to closed allowlist, unknown/sensitive exception is sanitized, and ready is not awaited after failed stage | targeted TS PASS; no error detail crosses invoke |
+| S10BO4-005 | Infra parser | malformed authority and malformed startup frame fail closed without TypeError | S10BO2 targeted PASS; mapped error code stable |
+| S10BO4-006 | Infra reader | complete startup_failed frame written before child exit wins race; true empty FD4 EOF remains fallback | deterministic reader test PASS; no retry/resume/ownership continuation |
+| S10BO4-007 | Infra projection | Desktop startup leaf is primary; control EOF is secondary/fallback only; closure retains secondary cleanup/no-log facts | state-machine tests PASS; canonical closure ordering preserved |
+| S10BO4-008 | Infra Docker authority | exact project/feature/slice/run/data labels and exactly four allowed roles; missing/foreign/duplicate/unknown/extra role rejected | negative matrix PASS; no caller-selected role authority |
+| S10BO4-009 | Infra digest | stable role source digest unchanged under temporary container-ID rotation; ASCII sorting deterministic | targeted digest assertions PASS |
+| S10BO4-010 | Infra runtime scan | v3 empty/nonempty origin/rule/pair digests bind exact sets; v1/v2 readers remain compatible | S10BO3 targeted PASS; zero hit binds empty SHA-256 |
+| S10BO4-011 | Infra no-log | health/local/empty argv/content-free ready JSON passes; token/secret/DSN/private-key/path/unclassified values fail | JSON/value-aware matrix PASS; evidence has no raw body/path/rule text |
+| S10BO4-012 | Cross-repo offline gates | Desktop, Infra and Governance lint/test/build/diff and independent review; Contracts/API/Host/Runtime unchanged | Desktop/Infra checkpoints `e8e56df...`/`5fdba2b...` clean；full/targeted gates PASS；Infra Docker-backed Compose wrapper NOT RUN after discovery failure；no live evidence |
+
+Actual reruns：Desktop `make lint/test/build`、feature frontend build、feature Rust test/clippy、fmt/diff PASS；TS `178/178`、default Rust `134 pass/3 ignored`、feature Rust `149 pass/3 ignored`、targeted TS/Rust各`11/11`。Infra三文件`node --check`、S10BO2+S10BO3 `50/50`、`pnpm validate`、`pnpm test` `192/192`及diff PASS；`make lint`在validate后因Compose discovery退出125，未启动容器且未在no-Docker边界下重试。独立审查提出的v3 canonical source reader与acronym/plural/pretty JSON扫描两个P1均已关闭；无open P0/P1。Governance default/strict/G2A/YAML/lint/test/shell/diff在本记录后最终复跑PASS。

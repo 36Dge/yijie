@@ -1660,3 +1660,31 @@ created -> preflight_running -> preflight_passed -> dependencies_ready
 - Desktop local clean checkpoint=`9771da11c47406e45526dea104f3d7de05701fba`；Infra local clean checkpoint=`61062143fa3c81b90792ec6f48aea7d6408ed06d`；均未push。
 - Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`、API `451940b282d8dd3e232ed414bd44b0677897f4c4`、Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`与Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`保持clean/unchanged。
 - Governance checkpoint包含本节和两个实现SHA；其精确SHA在commit后报告。此checkpoint不产生live证据，失败run与四个retained volumes不变。
+
+## 51. DESIGN-126-019 Unified Startup-Surface Corrective
+
+### 51.1 Desktop ready boundary
+
+- feat126_s10_driver.rs 维护 ready-resolution 原子边界和 closed startup-failure allowlist；native bootstrap、app-data/Tauri setup、control-monitor 初始化及 driver 阶段失败只发送一次受限 startup_failed frame（run ID、nonce、sequence、kind、failure class）。
+- lib.rs 在 driver 构造或 Tauri setup 失败时从受信环境发送受限 leaf；start_control_monitor 及 Tauri run 返回错误在 component_ready 前投影为 startup failure。成功写出 component_ready 后标记 startup 已解决，abort 或迟到错误不得重新打开 startup 阶段。
+- s10b-driver.ts 按 stage 将未知异常归类为 closed failure class 并丢弃 native 错误正文；main.ts 包住 root/bootstrap 入口，保证 ready 前初始化失败走同一 fail-closed 路径。Frontend 仅可向 Tauri 发送 allowlisted class。
+- Rust 和 TS allowlist 必须同源对齐，至少包含 driver_control_monitor_invalid；unknown class、malformed frame、错误 run/nonce 或多余字段均不能穿越 FD4。默认构建和 Protected Data Keychain 路径不启用该例外。
+
+### 51.2 Infra frame/child ordering
+
+- validateStartupFailureControlFrame 先验证 authority 形状，再验证 frame；任何 null、extra key、错误 UUID、sequence 或 allowed-kind 集合都映射为单一 closed invalid leaf，不能触发 TypeError 或把外层 EOF 当作 primary。
+- Desktop FD4 reader 以有限缓冲和 child lifecycle 协同：先消费已到达的完整 frame，再处理同一 tick 的 child exit；合法 startup_failed 优先作为 primary，只有 FD4 确实无合法 frame 时才使用 orchestrator_control_eof fallback。无 startup continuation、retry、resume 或业务 case。
+- primary failure、secondary cleanup/no-log/closure 状态和 single-use attempt ledger 沿用既有 content-free envelope；startup failure 仍进入 canonical one-shot cleanup/closure 流程，但不会启动未到达的 ownership 阶段。
+
+### 51.3 Runtime log authority and classification
+
+- runtime source listing 必须返回且严格验证四个 closed service roles：feat126-s10-api-db、feat126-s10-keycloak-db、feat126-s10-keycloak、feat126-s10-caddy；每项同时匹配 run-derived project、FEAT-126、S10E、canonical run ID 和 synthetic-only data classification。unknown、duplicate、missing、extra 或 foreign labels fail closed。
+- source digest 使用稳定 compose:<service_role> origin 并按 ASCII deterministic sort；container ID 仅用于读取日志，不进入 stable source identity，因此临时 ID 轮换不改变 source digest。命中摘要绑定去重后的 origin set、rule set 及 origin-rule pair set。
+- schema v3 reader 必须保持 v1/v2 正向读取；hit_count=0 强制三组 hit 摘要均为 SHA-256(empty set)，非空命中必须存在对应的非空集合和 pair 绑定。evidence 只含 counts/digests。
+- no-log 扫描使用 JSON/value-aware 分类：无内容的 health/ready 结构和空 argv 通过；token、secret、DSN、private key、绝对本机路径及未分类高风险值失败。规则名称只参与 digest，不写入 evidence 正文。
+
+### 51.4 Scope and rollback
+
+- Product scope closes over four Desktop files listed above plus their targeted test; Infra closes over the existing orchestrator and S10BO2/S10BO3 tests. Contracts/API/Host/Runtime files are explicitly out of scope.
+- contract-impact=semantic is private deployment/test only; central G2A is N/A. No Docker, real process, isolated live, fresh R8, business case, S11, MiniMax, Keychain, real data or remote action is part of this corrective.
+- Rollback is per repository and must remove the paired Desktop/Infra authority together; do not restore relative Node, temp-only root validation, race-prone EOF projection or broad value-blind no-log rules. Implementation checkpoints are Desktop `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd` and Infra `5fdba2b22b343237683f383f098fa2ffaea5bc54`, both local clean/not pushed. Repository tests, targeted matrices, syntax, build, clippy, validate and diff gates passed; the Docker-backed Compose semantic wrapper was not retried after discovery exit 125 because this corrective does not authorize Docker. Corrective Closure remains Pending Owner Acceptance.

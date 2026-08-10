@@ -558,3 +558,18 @@
 | Verification | Desktop与Infra完整门禁、targeted回归和diff PASS；Governance default/strict/G2A、unique-key YAML、lint/test、checker shell syntax与diff PASS |
 | State | `S10B-BLK-009/010/011/012 Closed`；G3 Partial、G4/G6 Pending；`s10b_r8_executed=false` |
 | Stop | no automatic live；新的isolated-live必须使用本轮全部新exact SHA并取得另一份一次性授权；fresh R8与所有远端/发布动作未授权 |
+
+## 37. DEC-126-075 / DESIGN-126-019 / LIA-126-033 Unified Startup-Surface Corrective
+
+| 项目 | Owner决定与边界 |
+|---|---|
+| Status | `DEC-126-075 Accepted as authorization / DESIGN-126-019 Complete / LIA-126-033 Implementation Complete / Corrective Closure Review Ready / Owner Acceptance Pending` |
+| Scope choice | 采用一次性Desktop + Infra最小corrective，覆盖同一startup阶段中已知的failure projection、frame race、Docker log authority与no-log误报/漏报边界；不再为每个已知leaf拆分一轮repository corrective |
+| Desktop | 产品范围严格为`feat126_s10_driver.rs`、`lib.rs`、`s10b-driver.ts`、`main.ts`。所有ready前失败只能投影closed class，包含`driver_control_monitor_invalid`；frame不得包含错误正文、path、token、secret或业务内容；first terminal wins。成功写出`component_ready`后不得再发`startup_failed` |
+| Infra control | 严格校验`startup_failed`及其authority，即使authority malformed也只能返回closed invalid class；Desktop写完整frame后立即退出时，reader必须先drain/判定frame，不能被child-exit race折叠为`orchestrator_control_eof`；合法Desktop leaf作为primary failure，EOF仅在没有合法frame时fallback |
+| Infra no-log | writer使用`runtime-log-scan.v3`；Docker source必须同时匹配exact project、`FEAT-126`、`S10E`、run ID、`synthetic-only`和四个closed service roles，拒绝unknown/duplicate/malformed source；摘要按ASCII顺序绑定stable role origins、rule set和origin-rule pair set，container ID轮换不改变source digest |
+| Value awareness | `/healthz`、`local`、空`argv`和content-free ready payload可通过；token、secret、DSN、private key、绝对本机路径及无法归类的高风险字段值仍失败。v3 evidence仅存counts/digests，不存raw log、规则正文、路径或业务内容；reader保持v1/v2/v3兼容 |
+| Contract impact | `semantic`，仅不可发布的Desktop↔Infra private local deployment/test control/evidence interface；`yijie-contracts`不适用。Public Tasks HTTP、Host SSE、业务IPC、durable schema、Runtime source/pin、Compose pins和default flags不变，central G2A=`N/A` |
+| Repository boundary | Contracts/API/Host/Runtime不得修改；若测试暴露其源码必须变化，立即停止并按超出最小corrective报告。历史failed runs、evidence和retained volumes不得修改、resume、reconcile或读取业务内容 |
+| Verification/checkpoints | Desktop `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd`：TS `178/178`、default Rust `134/3 ignored`、feature Rust `149/3 ignored`、targeted TS/Rust各`11/11`及lint/build/clippy/fmt/diff PASS。Infra `5fdba2b22b343237683f383f098fa2ffaea5bc54`：targeted `50/50`、full `192/192`、Node syntax、`pnpm validate`及diff PASS；独立审查的两个P1已关闭，无open P0/P1。Infra `make lint`在静态validate后因本机Compose discovery退出125，未启动容器，且在no-Docker边界下未重试/绕过。Governance default/strict/G2A/YAML/lint/test/shell/diff最终复跑PASS |
+| Stop | 本轮严格offline repository work：禁止Docker、真实组件、isolated live、fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用、push、merge、tag、publish和deploy；`s10b_r8_executed=false` |

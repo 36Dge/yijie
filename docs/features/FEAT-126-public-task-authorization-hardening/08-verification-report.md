@@ -1056,3 +1056,19 @@ Owner disposition：DEC-126-062于2026-08-09明确接受LIA-126-023/S10BEP1 Corr
 | Unchanged | Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`；API `451940b282d8dd3e232ed414bd44b0677897f4c4`；Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`；Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f` |
 | Governance | nine existing FEAT-126 files；default/strict/G2A/YAML/lint/test/shell/diff PASS；checkpoint SHA reported after commit |
 | Stop | no new live until all new exact SHAs and another isolated-live authorization exist；fresh R8/business/remote actions unauthorized |
+
+## 45. DESIGN-126-019 / LIA-126-033 Corrective Verification
+
+| Gate | Required evidence | Current result |
+|---|---|---|
+| Desktop startup projection | four-file feature-only diff; closed pre-ready leaves including driver_control_monitor_invalid; one-shot first-terminal and no post-ready failure | PASS：targeted TS/Rust各`11/11`；feature Rust `149 pass/3 ignored`；checkpoint `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd` clean/not pushed |
+| Infra frame ordering | malformed authority defensive rejection; complete FD4 startup_failed wins over same-tick child exit; true EOF fallback | PASS：exact allowed-kind authority、early-exit frame race与EOF fallback均由S10BO2覆盖 |
+| Ownership/continuation | Desktop leaf remains primary; no ownership continuation, retry or resume after startup failure; canonical cleanup/closure only | PASS：closed leaf phase=`desktop_starting`；partial roles仅该closed class可接受；任一Host artifact保持cleanup unknown |
+| Runtime source authority | exact project/feature/slice/run/data labels; exactly four closed service roles; duplicate/foreign/extra sources rejected | PASS：writer与v3 reader均绑定canonical四角色和stable source digest；negative matrix通过 |
+| Runtime scan v3 | stable role digest under container-ID rotation; empty/nonempty origin/rule/pair SHA binding; v1/v2 read compatibility | PASS：container-ID rotation digest稳定；三组empty/nonempty摘要与v1/v2 compatibility覆盖 |
+| Value-aware no-log | benign structured health/ready/local/empty argv accepted; token/secret/DSN/private key/path/unclassified values rejected; no raw body/path/rule evidence | PASS：acronym/plural/pretty JSON、invalid UTF-8、file URI与benign pretty JSON均有回归；evidence仍仅counts/digests |
+| Repository gates | Desktop, Infra, Governance targeted/full static gates and independent diff review | Desktop full/targeted/build/clippy PASS；Infra targeted `50/50`、full `192/192`、syntax/validate/diff PASS；独立review的两个P1已关闭，无open P0/P1；Governance最终复跑见本checkpoint记录 |
+| Scope | Contracts/API/Host/Runtime untouched; no public wire/schema or default flag change | PASS：四仓保持既定SHA且clean；仅Desktop 5、Infra 3、Governance 11个授权文件 |
+| Runtime boundary | no Docker/live/fresh R8/business/MiniMax/Keychain/remote; s10b_r8_executed=false | PASS for boundary：未启动容器或真实组件；一次`make lint`在Compose discovery处退出125后停止；其余禁止动作均NOT RUN，`s10b_r8_executed=false` |
+
+Implementation checkpoints are Desktop `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd` and Infra `5fdba2b22b343237683f383f098fa2ffaea5bc54`, both local clean/not pushed. This section records repository corrective evidence only: no live evidence/digest was generated. Corrective Closure is Review Ready / Pending Owner Acceptance；真实Tauri `AppHandle/setup` direct fixture与Docker Compose semantic wrapper分别保留为P2/live和environment-bound gap，不得伪写为PASS。

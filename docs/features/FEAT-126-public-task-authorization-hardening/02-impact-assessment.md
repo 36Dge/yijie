@@ -294,3 +294,14 @@ S10BF1 contract impact为private test/deployment tooling `semantic`，central G2
 | Contracts/API/Host/Runtime | 无源码变化 | exact SHA保持既定checkpoint | central G2A=`N/A` |
 
 第三次失败run `056a4dab-6afc-45ff-bfff-d1fcc67d2394`永久不可复用；其四个retained volumes仅只读inspect并原样保留。corrective阶段未执行live、fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用或远端写入，`s10b_r8_executed=false`。
+
+## 17. DESIGN-126-019 / LIA-126-033 一次性综合corrective影响
+
+| Repository | 最小文件范围 | 语义影响 | 明确不变 |
+|---|---|---|---|
+| yijie-desktop | 产品文件仅`src-tauri/src/feat126_s10_driver.rs`、`src-tauri/src/lib.rs`、`src/feat126/s10b-driver.ts`、`src/main.ts`；允许同步更新`src/feat126/s10b-driver.test.ts` | `component_ready`前的native、Tauri setup与frontend启动失败投影为一次性、closed、content-free `startup_failed`；`component_ready`成功后该startup终态不可再被failure覆盖 | production/default build、Protected Data Keychain、业务IPC、SQLCipher schema和业务数据流 |
+| yijie-infra | `scripts/feat-126-s10b-orchestrator.mjs`及S10BO2/S10BO3 targeted tests | FD4完整frame优先于并发child exit；Desktop leaf成为primary failure，EOF仅为无frame fallback；runtime-log-scan writer升级到v3，绑定exact Docker labels、stable service roles和origin-rule pair digest；no-log改为JSON/value-aware closed分类 | Compose pins、Public Tasks/Host wire、业务case、默认flags、历史evidence字节 |
+| yijie | 现有FEAT-126 package内的design/test/verification/release记录 | governance only；本轮结果、checkpoint和SHA在真实执行后回填 | 不改变中央契约或产品源码 |
+| Contracts/API/Host/Runtime | 无文件 | 无实现影响 | 精确既有checkpoint保持；若实现发现必须修改任一仓，立即超出本corrective并停止 |
+
+本轮最高影响为`semantic`，但仅限不可发布的Desktop↔Infra private local deployment/test control与evidence interface；central G2A=`N/A`。实施形成Desktop `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd`与Infra `5fdba2b22b343237683f383f098fa2ffaea5bc54`两个local clean/not-pushed checkpoint；Contracts/API/Host/Runtime保持既定SHA且clean。离线阶段未启动Docker容器、真实组件、isolated live、fresh R8、业务case、S11、MiniMax、真实数据、Keychain或远端动作；历史run/evidence/retained volumes保持不变。Corrective Closure为Review Ready / Pending Owner Acceptance。

@@ -330,3 +330,17 @@
 | Verification | Desktop TS `174/174`、default Rust `134`、feature Rust `144`及lint/build PASS；Infra `189/189`、S10BO3 `27/27`及全部静态门禁PASS |
 | Governance | `DEC-126-074` forms the local Governance checkpoint containing this record and both exact implementation SHAs |
 | State | Contracts/API/Host/Runtime unchanged；G3 Partial、G4/G6 Pending；no new live/fresh R8/business/remote action |
+
+## 21. DESIGN-126-019 / LIA-126-033 One-shot Corrective State
+
+| Item | Current state |
+|---|---|
+| Authorization | Owner separately authorized one combined offline repository corrective; no live authorization is implied or consumed |
+| Desktop scope | feat126_s10_driver.rs、lib.rs、s10b-driver.ts、main.ts plus targeted test only; ready-before startup failure is closed and one-shot, ready-after failure is not projected as startup failure |
+| Infra scope | orchestrator plus S10BO2/S10BO3 tests only; FD4 frame/child-exit ordering, exact Docker authority, runtime-log-scan v3 stable role/pair digests and value-aware no-log |
+| Excluded | Contracts/API/Host/Runtime source, public wire, durable schema, Compose pins, default flags, business cases, Docker/live, fresh R8, S11, MiniMax, Keychain, real data and remote actions |
+| Contract impact | semantic private local deployment/test interface; central G2A=N/A |
+| Verification | Desktop `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd`：TS `178/178`、default Rust `134/3 ignored`、feature Rust `149/3 ignored`、targeted各`11/11`及lint/build/clippy PASS。Infra `5fdba2b22b343237683f383f098fa2ffaea5bc54`：targeted `50/50`、full `192/192`、syntax/validate/diff PASS；独立review的两个P1已关闭。Compose wrapper因discovery exit 125且no-Docker边界未重试，不宣称PASS。Governance default/strict/G2A/YAML/lint/test/shell/diff最终复跑PASS |
+| State | Implementation Complete / Review Ready / Pending Owner Acceptance；G3 Partial；G4/G6 Pending；s10b_r8_executed=false |
+
+This record proves the repository corrective checkpoints, not a live startup. It does not claim Corrective Closure Owner acceptance. Historical evidence and retained volumes remain untouched.
