@@ -1,4 +1,4 @@
-# FEAT-126 Local-only 原子实施计划（DESIGN-126-016 Complete / S10BO3 Corrective Closure Accepted / BLK-008/009/010 Closed / G3 Partial）
+# FEAT-126 Local-only 原子实施计划（DESIGN-126-017 Complete / Preclaim Corrective Closure Accepted / BLK-008/009/010/011 Closed / G3 Partial）
 
 ## 1. 当前执行边界
 
@@ -553,3 +553,25 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 4. Governance checkpoint精确SHA在提交后报告；同一commit不能把自身最终SHA写入自身内容。
 5. 两个checkpoint均不push；不得自动进入isolated live、fresh R8、业务case、S11或任何发布/远端动作。
 6. `S10B-BLK-009/010 Closed`、G3 Partial、G4/G6 Pending与`s10b_r8_executed=false`保持。
+
+## 28. LIA-126-029 Failure Disposition
+
+1. 第二次isolated-live授权仅消费run `8b94dc6d-5984-4579-9e0c-bed43a4b872f`；该run不得重试、续跑或复用。
+2. 相对Node入口无法在Darwin取得absolute process identity，orchestrator在attempt marker与preflight前以`orchestrator_process_identity_unknown`停止。
+3. 不创建模拟ledger、no-log或cleanup结果；外部container/network/volume/listener为0只作观测，正式Closure保持NOT ESTABLISHED。
+4. Public Tasks/conversation/turn/provider调用为0，business cases disabled，`s10b_r8_executed=false`。
+
+## 29. LIA-126-030 Corrective Execution and Exit
+
+1. 仅修改Infra `Makefile`、orchestrator和两个测试文件；Contracts/API/Host/Desktop/Runtime源码不变。
+2. Make解析绝对Node后启动；orchestrator在identity/script检查前创建single-use preclaim，并为marker前失败持久化content-free、digest-bound failure。
+3. failed/incomplete preclaim fail closed；concurrent claim不产生两个fresh owner；legacy marker-only attempt保持reconcile兼容；preclaim纳入no-log。
+4. Infra Node syntax、validate、lint、Compose semantic、full `188/188`、targeted `67/67`、absolute Node self identity与diff全部PASS。
+5. Owner后续checkpoint授权接受Corrective Closure并关闭`S10B-BLK-011`；没有执行new live、fresh R8或业务case。
+
+## 30. DEC-126-072 Local Checkpoint Exit
+
+1. Infra形成local clean checkpoint `c7edbc344daecb84553efafe86dfe335a5c0c72d`；Governance只提交既有九份FEAT-126文件。
+2. Governance全门禁复跑PASS后形成包含该Infra SHA的本地checkpoint；精确SHA在commit后报告。
+3. Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`、API `451940b282d8dd3e232ed414bd44b0677897f4c4`、Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`、Desktop `95f19ad557da0bf4cead90ed55d1e3ec60aefbc4`与Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`保持clean/unchanged。
+4. 两个checkpoint均不push；在新SHA与另一份isolated-live授权前不得再次live，fresh R8和业务case仍未授权。

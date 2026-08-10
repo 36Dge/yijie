@@ -6,7 +6,7 @@
 - 原目标是否达成：未达成。LIA-126-024/S10B-R7已消费；S10B-001 PASS，但S10B-002因缺少完整四组件可执行orchestrator fail closed，S10B-003–011未运行，012仅完成abort cleanup subset。S10BO1 Corrective Closure已由DEC-126-066接受并关闭`S10B-BLK-008`，但完整fresh S10B仍未PASS。
 - 当前范围：安全的新建任务对话、任务记录、聊天项目、本地持久化及Public Tasks hardening的完整Local-only需求/设计/测试/实施候选。
 - 非目标：见`00-feature-brief.md`；没有文件/图片/工具/云同步；tag/package publish/registry/线上部署/生产灰度/云数据库/真实用户数据均N/A。
-- 交付状态：`G1/G2/G2A Passed / DESIGN-126-016 Complete / LIA-126-028 S10BO3 Corrective Closure Accepted / S10B-BLK-008/009/010 Closed / G3 Partial / G4/G6 Pending`。S10BO3 Infra `186/186`、targeted `65/65`及Governance全部门禁PASS；失败run `b68804f0-aaf9-4da4-95e1-aa3b605bfada`永久不可重用，`s10b_r8_executed=false`；未执行Docker live、isolated live、fresh R8、S11、真实Keychain、MiniMax、业务调用、merge/tag/publish/deploy/default activation或远端写入。
+- 交付状态：`G1/G2/G2A Passed / DESIGN-126-017 Complete / LIA-126-030 Corrective Closure Accepted / DEC-126-072 Infra/Governance Checkpoints Clean / S10B-BLK-008/009/010/011 Closed / G3 Partial / G4/G6 Pending`。第二次isolated live run `8b94dc6d-5984-4579-9e0c-bed43a4b872f`在preflight前fail closed并永久不可复用；corrective Infra `188/188`、targeted `67/67`及Governance全部门禁PASS，checkpoint为`c7edbc344daecb84553efafe86dfe335a5c0c72d`。`s10b_r8_executed=false`；在另一份isolated-live授权前不再live，fresh R8、业务调用、merge/tag/publish/deploy/default activation或远端写入未授权。
 
 ## 2. 实际版本与本地候选（未发布）
 
@@ -279,3 +279,33 @@
 | Governance gates | default、strict、G2A、unique-key YAML、lint、test、shell syntax与`git diff --check`全部PASS |
 | State | `S10B-BLK-009/010 Closed`；G3 Partial、G4/G6 Pending；`s10b_r8_executed=false` |
 | Boundary | no Docker/isolated live、fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用或远端写入 |
+
+## 16. Second Isolated-Live Failure
+
+| Item | Current fact |
+|---|---|
+| Authorization/run | `LIA-126-029` consumed once；`8b94dc6d-5984-4579-9e0c-bed43a4b872f` permanently non-reusable |
+| Result | `orchestrator_process_identity_unknown` before attempt marker/preflight |
+| Cause | canonical Make used relative `node`；Darwin `ps comm=` returned non-absolute `node`；old ledger claim happened after identity inspection |
+| Reached scope | no preflight/startup/readiness/ownership/abort/business case；Public Tasks/conversation/turn/provider calls=0 |
+| Evidence | resources observed zero；formal no-log and cleanup NOT ESTABLISHED because ledger/run evidence is absent |
+| State | `s10b_r8_executed=false`；no retry/resume/reuse |
+
+## 17. Absolute Node and Preclaim Corrective
+
+| Item | Current fact |
+|---|---|
+| Decision | `DEC-126-071 Accepted / DESIGN-126-017 Complete / LIA-126-030 Corrective Closure Accepted` |
+| Fix | absolute Node Make entry；0600/O_EXCL preclaim before identity；digest-bound content-free pre-marker failure；failed/incomplete preclaim fail closed；no-log coverage |
+| Verification | Infra full `188/188`；targeted `67/67`；Node syntax、validate、lint、Compose semantic、absolute self identity、diff PASS |
+| Scope | Infra private deployment/test `semantic` only；central contract/wire/schema/Runtime pin/Compose pin/default flags unchanged |
+| Runtime | no new live、fresh R8 or business call；`S10B-BLK-011 Closed` |
+
+## 18. DEC-126-072 New Local Clean Checkpoints
+
+| Item | Current fact |
+|---|---|
+| Infra | `c7edbc344daecb84553efafe86dfe335a5c0c72d`；4 corrective files；local clean；not pushed |
+| Governance | nine existing FEAT-126 files；local commit containing this record and exact Infra SHA |
+| Unchanged | Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`；API `451940b282d8dd3e232ed414bd44b0677897f4c4`；Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`；Desktop `95f19ad557da0bf4cead90ed55d1e3ec60aefbc4`；Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f` |
+| Boundary | no further live before a separate isolated-live authorization using the new exact SHAs；fresh R8/business/remote actions unauthorized |

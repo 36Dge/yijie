@@ -1,4 +1,4 @@
-# FEAT-126 技术设计（DESIGN-126-016 Complete / S10BO3 Corrective Closure Accepted / BLK-008/009/010 Closed）
+# FEAT-126 技术设计（DESIGN-126-017 Complete / Preclaim Corrective Closure Accepted / BLK-008/009/010/011 Closed）
 
 > 本文产品/架构设计保持G2 Passed。DEC-126-057已接受S10BF1 Closure并关闭`S10B-BLK-005`；Owner随后单独授权并消费LIA-126-020/S10B-R5。R5的S10B-001通过，但S10B-002在API readiness前因runtime service-profile authority不一致而fail closed；DEC-126-058 Option A已Accepted并拒绝R5 Closure，Owner随后单独授权、消费LIA-126-021/S10BRP1。Owner于2026-08-06批准DEC-126-059 Option A，S10BRP1 Closure Passed并关闭`S10B-BLK-006`；API/Infra已形成clean local checkpoints。LIA-126-022/S10B-R6随后被正式消费，但在S10B-001 image resolver阶段以`preflight_image_resolver_failed`停止；S10B-002–012未运行。DEC-126-060/061 Option A均已Accepted；LIA-126-023/S10BEP1 repository implementation、2026-08-09的S10BEP1-014 isolated live验证及Infra/Governance全量门禁均PASS。Owner通过DEC-126-062接受Corrective Closure并关闭`S10B-BLK-007`，随后通过DEC-126-063仅形成Infra/Governance本地clean checkpoints。G3保持Partial，fresh R7、S11/MiniMax、默认flag activation与远端动作仍未授权。
 > 本文产品/架构设计保持G2 Passed。DEC-126-057已接受S10BF1 Closure并关闭`S10B-BLK-005`；Owner随后单独授权并消费LIA-126-020/S10B-R5。R5的S10B-001通过，但S10B-002在API readiness前因runtime service-profile authority不一致而fail closed；DEC-126-058 Option A已Accepted并拒绝R5 Closure，Owner随后单独授权、消费LIA-126-021/S10BRP1。Owner于2026-08-06批准DEC-126-059 Option A，S10BRP1 Closure Passed并关闭`S10B-BLK-006`；API/Infra已形成clean local checkpoints。LIA-126-022/S10B-R6随后被正式消费，但在S10B-001 image resolver阶段以`preflight_image_resolver_failed`停止；S10B-002–012未运行。DEC-126-060/061 Option A均已Accepted；LIA-126-023/S10BEP1 repository implementation、2026-08-09的S10BEP1-014 isolated live验证及Infra/Governance全量门禁均PASS。Owner通过DEC-126-062接受Corrective Closure并关闭`S10B-BLK-007`，随后通过DEC-126-063仅形成Infra/Governance本地clean checkpoints。Owner继续接受DEC-126-065 Option A并授权LIA-126-025/S10BO1；四仓repository corrective、S10BO1-001–014及全部实现/Governance门禁PASS，DEC-126-066现已接受Corrective Closure并关闭`S10B-BLK-008`。G3保持Partial，isolated live、fresh R8、S11/MiniMax、默认flag activation与远端动作仍未授权。
@@ -1599,3 +1599,36 @@ created -> preflight_running -> preflight_passed -> dependencies_ready
 - Governance checkpoint是包含本节、Infra精确SHA和全部门禁证据的本地commit；其精确SHA在commit形成后外部报告，避免不可实现的commit自引用。
 - Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`、API `451940b282d8dd3e232ed414bd44b0677897f4c4`、Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`、Desktop `95f19ad557da0bf4cead90ed55d1e3ec60aefbc4`与Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`保持clean/unchanged。
 - 此checkpoint只固化repository corrective，不产生新的runtime evidence；G3 Partial、G4/G6 Pending及`s10b_r8_executed=false`不变。
+
+## 45. LIA-126-029 Process-Identity Failure Record
+
+- 第二次startup/abort isolated live只消费run `8b94dc6d-5984-4579-9e0c-bed43a4b872f`，未授权fresh R8或业务case。
+- Make以相对`node`启动；Darwin `ps comm=`只提供`node`，无法满足orchestrator要求的absolute executable identity，因此在attempt marker、preflight与run root前返回`orchestrator_process_identity_unknown`。
+- 旧claim顺序先解析process identity、后创建attempt marker；所以此失败没有run-scoped ledger、failure、no-log或cleanup证据。零container/network/volume/listener只是一项外部观测，不得升级为正式Closure。
+- Public Tasks、conversation、turn与provider调用全部为0，`s10b_r8_executed=false`；该run永久不可重试、续跑或复用。
+
+## 46. DESIGN-126-017 Absolute Node and Preclaim Authority
+
+### 46.1 Canonical process identity
+
+- `make feat-126-s10b-orchestrator`在同一recipe shell中用`command -v node`取得路径，要求其以`/`开头，并用该绝对路径执行orchestrator。
+- Orchestrator仍以实际PID/PPID/start identity与binary SHA-256建立最终attempt marker；absolute launcher只关闭macOS `comm=node`歧义，不放宽identity validator。
+
+### 46.2 Preclaim before fallible identity inspection
+
+- 0700 attempt目录中先以`O_EXCL|O_NOFOLLOW`创建0600 canonical `<run>.preclaim.v1.json`，字段仅为run、七仓SHA、PID/PPID、reserved状态与`s10b_r8_executed=false`。
+- 只有preclaim创建成功后才检查absolute process identity和script digest。marker成功后同时绑定preclaim PID/PPID与SHA-256；preclaim failure文件必须不存在。
+- marker前失败以create-new 0600 `<run>.preclaim-failure.v1.json`持久化，内容仅含run、failure class、preclaim digest、failed状态与`s10b_r8_executed=false`。写证据失败保持原primary并投影evidence secondary。
+- 已有terminal failed preclaim直接返回`orchestrator_existing_preclaim_failed`；并发claim等待同一marker/failure，有界等待后以`orchestrator_preclaim_incomplete`停止。任何路径都不resume、retry或进入preflight/业务case。
+
+### 46.3 Compatibility, no-log and scope
+
+- 新preclaim加入attempt-only、preflight-artifact与run-artifact no-log文件集合及file-count coverage；legacy marker-only attempt继续兼容读取/reconcile。
+- Corrective只改Infra Make/orchestrator/tests四文件；central contracts、业务wire、durable schema、Runtime source/pin、Compose pin与default flags不变，contract-impact=`semantic` private interface，G2A=N/A。
+- Infra `make test` `188/188`、四文件targeted `67/67`、Node syntax、`pnpm validate`、`make lint`、Compose semantic、absolute Node self identity与diff均PASS；未执行新live。
+
+## 47. DEC-126-072 Checkpoint Manifest
+
+- Infra local clean checkpoint=`c7edbc344daecb84553efafe86dfe335a5c0c72d`，包含四个reviewed corrective文件，未push。
+- Governance checkpoint是包含本节和Infra精确SHA的本地commit；Contracts/API/Host/Desktop/Runtime保持既定clean SHA。
+- 此checkpoint不产生新的runtime evidence。获得新的Governance SHA与另一份isolated-live一次性授权前不得再次执行live；fresh R8和业务case仍未授权。

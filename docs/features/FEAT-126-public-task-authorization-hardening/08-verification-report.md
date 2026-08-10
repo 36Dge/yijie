@@ -7,6 +7,7 @@
 > Owner接受。随后单独授权的S7B Rust Application Orchestration/Domain已完成并由Owner通过DEC-126-028接受；远端可达不等于merge、发布或生产启用。
 > 随后Owner接受S7C–S9及S10E/P1/P2F/P3/S10BD1/S10BF1/S10BRP1 Closure。DEC-126-062/063关闭BLK-007并形成Infra/Governance clean checkpoints后，Owner单独授权并消费LIA-126-024/S10B-R7。R7的S10B-001 PASS，但S10B-002因七仓不存在完整四组件可执行orchestrator而在任何continuation/业务进程启动前fail closed；003–011未运行，012仅完成abort cleanup subset。Owner已接受DEC-126-064/065/066并完成DESIGN-126-014、LIA-126-025/S10BO1 Corrective Closure及`S10B-BLK-008`关闭；DEC-126-067进一步形成API/Host/Desktop/Infra/Governance本地clean checkpoints。G3仍Partial，G4/G6 Pending，isolated live与S11未授权。
 > 随后Owner接受S7C–S9及S10E/P1/P2F/P3/S10BD1/S10BF1/S10BRP1 Closure。DEC-126-062/063关闭BLK-007并形成Infra/Governance clean checkpoints后，Owner单独授权并消费LIA-126-024/S10B-R7。R7的S10B-001 PASS，但S10B-002因七仓不存在完整四组件可执行orchestrator而在任何continuation/业务进程启动前fail closed；003–011未运行，012仅完成abort cleanup subset。Owner已接受DEC-126-064/065/066并完成DESIGN-126-014、LIA-126-025/S10BO1 Corrective Closure及`S10B-BLK-008`关闭；DEC-126-067进一步形成API/Host/Desktop/Infra/Governance本地clean checkpoints。随后LIA-126-027 isolated live 保留为不可复用的 fail-closed 历史事实，Owner已接受DESIGN-126-016与LIA-126-028/S10BO3 Corrective Closure并关闭`S10B-BLK-010`。G3仍Partial，G4/G6 Pending，新的isolated live、fresh R8与S11未授权。
+> LIA-126-029第二次isolated live同样保留为不可复用历史事实：相对Node在Darwin无法提供absolute process identity，失败发生在attempt marker/preflight前。Owner随后单独授权DESIGN-126-017/LIA-126-030 corrective并接受Closure，DEC-126-072仅形成新的Infra/Governance local clean checkpoints。没有新的live PASS或fresh R8证据。
 
 ## 1. 验证上下文
 
@@ -988,3 +989,37 @@ Owner disposition：DEC-126-062于2026-08-09明确接受LIA-126-023/S10BEP1 Corr
 | Governance commit | 包含本记录与Infra精确SHA的本地commit；精确SHA在commit形成后报告，文档不声明自引用SHA |
 | Preserved state | LIA-126-027历史FAIL及run不可复用；`S10B-BLK-009/010 Closed`；G3 Partial、G4/G6 Pending；`s10b_r8_executed=false` |
 | Prohibited actions | no Docker/isolated live、fresh R8、业务case、prune、volume deletion、push或其他远端写入 |
+
+## 39. LIA-126-029 Second Isolated-Live Verification
+
+| Evidence | Actual result |
+|---|---|
+| Run/fixed SHAs | run `8b94dc6d-5984-4579-9e0c-bed43a4b872f`；Governance `f7532cc9d138a2215f75441a737be4079642ed0e`、Infra `91f7ec03372b1528abb93818abfad432a83327c4`及其余五仓既定SHA exact/clean |
+| Failure | `orchestrator_process_identity_unknown` before attempt marker/preflight；relative `node` + Darwin `ps comm=node`不能建立absolute binary identity |
+| Reached scope | no run root、preflight、component process、readiness、ownership or abort |
+| Business boundary | business cases disabled；Public Tasks/conversation/turn/provider calls=0；fresh R8=false；`s10b_r8_executed=false` |
+| Observation | project container/network/volume=0；fixed listener=0 |
+| Evidence limit | attempt/failure/closure/no-log/cleanup artifacts absent；formal no-log and cleanup NOT ESTABLISHED |
+| Disposition | authorization consumed once；no retry/resume/reuse；`S10B-BLK-011`由后续corrective关闭 |
+
+## 40. DESIGN-126-017 / LIA-126-030 Corrective Verification
+
+| Evidence | Result |
+|---|---|
+| Files | Infra `Makefile`、`scripts/feat-126-s10b-orchestrator.mjs`及两个S10BO2/S10BO3测试文件 |
+| Absolute identity | Make解析/校验绝对Node并据此启动；real self PID/PPID/start identity/binary SHA PASS |
+| Durable preclaim | 0600/O_EXCL/no-follow canonical preclaim先于identity；marker绑定preclaim；pre-marker failure为content-free且SHA-bound |
+| Fail-closed | failed/incomplete/tampered preclaim不执行；concurrent run仅一个fresh；legacy marker-only reconcile保持兼容 |
+| No-log | preclaim覆盖attempt-only/preflight/full-run三类扫描；required file count和missing-source negative tests PASS |
+| Gates | targeted `67/67`；full `188/188`；Node syntax、`pnpm validate`、`make lint`、Compose semantic、`git diff --check` PASS |
+| Contract/scope | private deployment/test `semantic`；central contracts、wire/schema、Runtime/Compose pins和default flags unchanged；new live NOT RUN |
+| Closure | Owner accepted through DEC-126-072 checkpoint authorization；`S10B-BLK-011 Closed`；G3 Partial、G4/G6 Pending |
+
+## 41. DEC-126-072 Local Checkpoint Verification
+
+| Evidence | Result |
+|---|---|
+| Infra checkpoint | `c7edbc344daecb84553efafe86dfe335a5c0c72d`；4 files；local clean；not pushed |
+| Unchanged | Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`；API `451940b282d8dd3e232ed414bd44b0677897f4c4`；Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`；Desktop `95f19ad557da0bf4cead90ed55d1e3ec60aefbc4`；Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f` |
+| Governance | only nine existing FEAT-126 files；default/strict/G2A/YAML/lint/test/shell/diff PASS；checkpoint SHA reported after commit |
+| Stop | no new live until another isolated-live authorization using the new exact SHAs；fresh R8/business/remote actions unauthorized |

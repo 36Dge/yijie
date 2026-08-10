@@ -2,7 +2,7 @@
 
 > 本文定义什么证据可以证明FEAT-126达到DEC-126-022的Local Runtime Ready。DEC-126-023/024完成G2A重审，DEC-126-025登记sole candidate与checkpoint远端ref并恢复LIA-126-002，仅执行S4–S6 Corrective Closure。
 > S4–S9与S10E/P1/P2F/P3/S10BP1/S10BR1/S10BM1/S10BD1/S10BF1/S10BRP1 Closure已接受。LIA-126-022/S10B-R6已消费但在S10B-001 image resolver阶段fail closed；S10B-002–012未运行。DEC-126-060/061 Option A已Accepted；LIA-126-023/S10BEP1 repository implementation、S10BEP1-014 isolated live验证及全量Infra/Governance门禁已完成。DEC-126-062已接受Corrective Closure并关闭`S10B-BLK-007`，DEC-126-063已形成Infra/Governance本地clean checkpoints；fresh R7、S11与MiniMax仍未授权。
-> 后续LIA-126-024/S10B-R7已单独授权和消费；当前矩阵见§34。Owner已接受DEC-126-064/065/066并完成DESIGN-126-014、LIA-126-025/S10BO1 repository corrective及Corrective Closure，`S10B-BLK-008 Closed`。DEC-126-067随后形成API/Host/Desktop/Infra/Governance本地clean checkpoints；isolated live/fresh R8/S11/MiniMax仍未授权。Owner现已接受DESIGN-126-016与LIA-126-028/S10BO3 Corrective Closure，`S10B-BLK-010 Closed`；G3 Partial、G4/G6 Pending，`s10b_r8_executed=false`。
+> 后续LIA-126-024/S10B-R7已单独授权和消费；当前矩阵见§34。Owner已接受DEC-126-064/065/066并完成DESIGN-126-014、LIA-126-025/S10BO1 repository corrective及Corrective Closure，`S10B-BLK-008 Closed`。DEC-126-067随后形成API/Host/Desktop/Infra/Governance本地clean checkpoints。Owner已接受DESIGN-126-016与LIA-126-028/S10BO3 Corrective Closure，`S10B-BLK-010 Closed`；随后LIA-126-029第二次isolated live在preflight前fail closed，DESIGN-126-017/LIA-126-030关闭Node absolute identity与preclaim证据缺口，DEC-126-072形成新checkpoints。G3 Partial、G4/G6 Pending，`s10b_r8_executed=false`。
 > 历史`MM-126-001/002`预算已耗尽且不得重跑；完整本地链路后如需一次新local smoke，必须另行审批。
 
 ## 1. 测试策略
@@ -814,3 +814,37 @@ DESIGN-126-014确认完整corrective不能是Infra-only：Desktop driver、Host 
 | Infra checkpoint | `91f7ec03372b1528abb93818abfad432a83327c4`；local、clean、not pushed |
 | Governance | default、strict、G2A、unique-key YAML、lint、test、shell syntax与`git diff --check`全部PASS；checkpoint为包含本记录的本地commit |
 | Runtime boundary | Docker live、isolated live、fresh R8与业务case NOT RUN；`s10b_r8_executed=false`；G3 Partial、G4/G6 Pending |
+
+## 31. LIA-126-029 Second Isolated-Live Result
+
+| Gate | Actual result |
+|---|---|
+| Fixed authority | PASS：七仓exact/clean；Governance `f7532cc9d138a2215f75441a737be4079642ed0e`，Infra `91f7ec03372b1528abb93818abfad432a83327c4` |
+| Run | `8b94dc6d-5984-4579-9e0c-bed43a4b872f`；single authorization consumed；no retry/resume/reuse |
+| Process identity | FAIL-CLOSED：relative `node` + Darwin `ps comm=node`无法建立absolute binary identity；class=`orchestrator_process_identity_unknown` |
+| Reached phases | attempt marker、preflight、startup、readiness、ownership、abort均NOT RUN；run root absent |
+| Business boundary | business cases disabled；Public Tasks/conversation/turn/provider calls=0；`s10b_r8_executed=false` |
+| External observation | project container/network/volume=0；fixed listener=0 |
+| Formal evidence | NOT ESTABLISHED：attempt/failure/closure、no-log与cleanup artifacts absent；不得将外部零观测写成Closure PASS |
+
+## 32. DESIGN-126-017 / LIA-126-030 Corrective Verification
+
+| Gate | Actual result |
+|---|---|
+| Absolute launcher | PASS：Make只调用`command -v node`取得并校验的绝对路径；真实self identity PID/PPID/start/binary SHA均PASS |
+| Preclaim success | PASS：0600/O_EXCL/no-follow canonical preclaim先于identity；marker绑定preclaim digest和PID/PPID |
+| Preclaim failure | PASS：identity失败生成0600 content-free failure并绑定preclaim SHA-256；marker不存在，失败run后续拒绝 |
+| Race/incomplete/legacy | PASS：并发claim仅一方fresh；terminal failure和incomplete preclaim fail closed；legacy marker-only reconcile兼容 |
+| No-log | PASS：preclaim纳入attempt-only、preflight与full-run required source sets及strict file counts |
+| Targeted | PASS：preflight、orchestrator、S10BO2、S10BO3四文件 `67/67` |
+| Infra full | PASS：Node syntax、`pnpm validate`、`make lint`、Compose semantic、`make test` `188/188`、`git diff --check` |
+| Runtime boundary | new live NOT RUN；fresh R8/business cases NOT RUN；`s10b_r8_executed=false` |
+
+## 33. DEC-126-072 Checkpoint Verification
+
+| Gate | Actual result |
+|---|---|
+| Scope | Infra四个corrective文件、Governance九个既有FEAT-126文件；其余五仓unchanged/clean |
+| Infra | `c7edbc344daecb84553efafe86dfe335a5c0c72d`；local、clean、not pushed |
+| Governance | default、strict、G2A、unique-key YAML、lint/test、checker shell syntax与diff PASS；checkpoint为包含本记录的本地commit |
+| Stop condition | 在取得新Governance SHA和另一份isolated-live授权前不再live；fresh R8、业务case和远端动作未授权 |

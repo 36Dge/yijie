@@ -1,4 +1,4 @@
-# FEAT-126 本地启动、停止与恢复 Runbook（DESIGN-126-016 Complete / S10BO3 Corrective Closure Accepted / BLK-008/009/010 Closed）
+# FEAT-126 本地启动、停止与恢复 Runbook（DESIGN-126-017 Complete / Preclaim Corrective Closure Accepted / BLK-008/009/010/011 Closed）
 
 > DEC-126-022将本需求冻结为Local-only Delivery。DEC-126-062/063关闭BLK-007并形成clean checkpoints后，LIA-126-024/S10B-R7已单独授权和消费：S10B-001 PASS，S10B-002因缺少完整四组件orchestrator fail closed，003–011 NOT RUN，012仅abort cleanup subset。Owner已接受DEC-126-064/065/066并完成DESIGN-126-014、LIA-126-025/S10BO1 Corrective Closure及`S10B-BLK-008`关闭；DEC-126-067进一步形成API/Host/Desktop/Infra/Governance本地clean checkpoints。LIA-126-027 isolated live 的失败事实保留且run不可复用；Owner已接受DESIGN-126-016与LIA-126-028/S10BO3 Corrective Closure并关闭`S10B-BLK-010`。G3保持Partial。本文不授权isolated live、fresh R8、S11、MiniMax、default activation或发布。
 
@@ -346,3 +346,21 @@ DESIGN-126-008对未来corrective的回滚语义冻结如下：
 - Contracts/API/Host/Desktop/Runtime保持既定clean checkpoint；本次没有部署、发布、默认启用或运行态配置变化。
 - 如需撤销，只能按仓撤销上述local commits；不得prune、删除named volumes或影响foreign resources。
 - `s10b_r8_executed=false`、G3 Partial、G4/G6 Pending保持；本checkpoint不授权isolated live、fresh R8、业务case、push或其他远端动作。
+
+## 18. Second Failed Isolated-Live Containment
+
+- LIA-126-029已消费；run `8b94dc6d-5984-4579-9e0c-bed43a4b872f`在attempt marker/preflight前以`orchestrator_process_identity_unknown`停止并永久不可复用。
+- 不得用manual Node路径、直接script调用、手工preflight或复用run ID绕过canonical入口；不得创建补写的模拟ledger/no-log/cleanup evidence。
+- 外部观测container/network/volume/listener为0，但正式cleanup/no-log保持NOT ESTABLISHED；Public Tasks/conversation/turn/provider均为0，`s10b_r8_executed=false`。
+
+## 19. Absolute Node / Preclaim Corrective Rollback Boundary
+
+- Corrective同时包含绝对Node入口与preclaim-before-identity，二者共同关闭BLK-011；不得只回滚其中一个、恢复相对`node`或把claim重新移到identity之后。
+- preclaim与preclaim-failure为run single-use authority。删除、覆盖或忽略这些文件不能恢复run；failed/incomplete preclaim只能保持fail closed。
+- Legacy marker-only reconcile兼容必须保留；central contracts、Runtime/Compose pins、default flags与named volumes不受本corrective影响。
+
+## 20. DEC-126-072 Checkpoint Boundary
+
+- Infra checkpoint=`c7edbc344daecb84553efafe86dfe335a5c0c72d`；Governance checkpoint为包含该SHA和本节的本地commit；均未push。
+- 如需撤销，只能按仓对这两个local commit执行独立、可审查的revert；不得prune、删除named volumes或影响foreign resources。
+- 在获得新Governance SHA和另一份isolated-live明确授权前，不得运行`make feat-126-s10b-orchestrator`。fresh R8、业务case、S11、MiniMax和远端动作仍禁止。

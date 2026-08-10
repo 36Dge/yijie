@@ -84,7 +84,7 @@
 - 是否改变既有 Accepted ADR：不削弱 ADR-0012；Accepted DEC-126-001 保留其 FEAT-126 安全责任。若未来改成迁号，必须重开 G1、形成新 Accepted ADR 并同步全部 FEAT-125 引用。
 - 是否改变跨仓职责/数据权威：是。ADR-0013 已接受 Desktop embedded SQLite 为 confidential conversation authority，并明确 PostgreSQL/Redis/pgvector/bbolt 的非替代职责；ADR-0015 冻结隔离标题，ADR-0016/DEC-126-016 冻结 Host raw-reasoning展示与Desktop SQLCipher历史权威。DESIGN-126-003/DEC-126-017现已提交 exact v2/schema/caps候选；Public Tasks ownership/auth由DEC-126-011/012提交批准。
 - 是否改变 Accepted Design Pattern：是。Chat 1.1.0 的 active state 要附件/右侧面板，App Shell 2.0.0 有全局收起；必须在代码前形成新候选版本并由段成威接受。
-- ADR/Decision 结论：ADR-0013/0014/0015/0016与DEC-126-011/012/016–070均已Accepted；DESIGN-126-016 Complete，Owner已接受LIA-126-028/S10BO3 Corrective Closure并形成后续Infra/Governance本地clean checkpoints；`S10B-BLK-008/009/010 Closed`，G3 Partial、G4/G6 Pending。
+- ADR/Decision 结论：ADR-0013/0014/0015/0016与DEC-126-011/012/016–072均已Accepted；DESIGN-126-017 Complete，Owner已接受LIA-126-030 corrective并形成新的Infra/Governance本地clean checkpoints；`S10B-BLK-008/009/010/011 Closed`，G3 Partial、G4/G6 Pending。
 - G2A/local 结论：`29317b6426578749dc698fc2ad32b986ee5c8e9f`仍是唯一source-contract candidate；远端候选/develop/Draft PR不变。该bootstrap deployment/profile缺口不改变central contract，G2A重审为N/A；S10BO3 Corrective Closure已接受，但完整fresh S10B仍未PASS；G3 Partial、G4/G6保持Pending，所有默认flags关闭，S11未授权。
 - 架构 Owner：段成威。
 
@@ -481,3 +481,42 @@
 | Clean checkpoints | Infra=`91f7ec03372b1528abb93818abfad432a83327c4`；Governance=包含本记录与Infra精确SHA的本地commit，精确SHA在提交后报告，因为commit不能嵌入自身SHA |
 | Retained state | `S10B-BLK-009/010 Closed`；G3 Partial、G4/G6 Pending；`s10b_r8_executed=false`；失败run永久不可复用 |
 | Exclusions | 未执行Docker live、isolated live、fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用、prune或volume删除；两个checkpoint均local/not pushed，无其他远端写入 |
+
+## 31. LIA-126-029 / Second S10BO3 Isolated-Live Failure
+
+| 项目 | 事实与处置 |
+|---|---|
+| Authorization | 单次startup/abort isolated-live授权已消费；run `8b94dc6d-5984-4579-9e0c-bed43a4b872f`不得重试、续跑或复用 |
+| Fixed references | Governance `f7532cc9d138a2215f75441a737be4079642ed0e`；Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`；API `451940b282d8dd3e232ed414bd44b0677897f4c4`；Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`；Desktop `95f19ad557da0bf4cead90ed55d1e3ec60aefbc4`；Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`；Infra `91f7ec03372b1528abb93818abfad432a83327c4`；执行前均exact/clean |
+| Closed result | `orchestrator_process_identity_unknown`；失败发生在attempt marker与preflight之前；component startup、ownership、readiness和abort均NOT RUN |
+| Root cause | canonical Make target用相对`node`启动orchestrator；Darwin `ps -p <pid> -o comm=`返回`node`而非绝对可执行文件路径，absolute binary identity无法建立。旧claim顺序又在身份解析后才创建attempt marker，导致此类早期失败没有持久证据 |
+| Business boundary | Public Tasks、conversation、turn、provider调用均为0；business cases disabled；fresh R8 NOT RUN；`s10b_r8_executed=false` |
+| Observed containment | run project container/network/volume与固定listener观测均为0；run root、attempt/failure/closure文件均不存在 |
+| Evidence limit | 正式cleanup与no-log Closure均NOT ESTABLISHED；零资源观测不得替代缺失的identity、ledger、no-log或cleanup证据 |
+| Blocker | `S10B-BLK-011 Open`：canonical Node必须提供绝对身份，且run须在可能失败的进程身份检查前形成不可变预占与content-free failure evidence |
+| Stop | 本次授权已消费；不得现场修复后重跑、resume、复用run ID或进入业务case |
+
+## 32. DEC-126-071 / DESIGN-126-017 / LIA-126-030 Corrective
+
+| 项目 | 决策与证据 |
+|---|---|
+| Owner decision | 单独授权一个repository corrective，修复canonical Node绝对身份获取与ledger创建前失败无持久证据；后续checkpoint授权表明Corrective Closure已接受 |
+| DESIGN-126-017 | Make入口用`command -v node`解析并校验绝对路径，再以该路径启动orchestrator；run在进程身份与script digest检查前写0600、O_EXCL、canonical preclaim |
+| Failure evidence | marker前失败写入严格content-free `preclaim-failure.v1.json`，只含run、status、failure class、`s10b_r8_executed=false`与preclaim SHA-256；失败preclaim永久阻断执行，不完整preclaim保持fail closed |
+| Compatibility/no-log | preclaim纳入attempt-only、preflight与full-run no-log source set；legacy marker-only attempt仍可读取/reconcile，不改变既有公共或业务接口 |
+| Verification | Infra Node syntax、`pnpm validate`、`make lint`、Compose semantic、`make test` `188/188`、四文件targeted `67/67`、绝对Node self identity、`git diff --check`全部PASS |
+| Contract impact | `semantic`，仅private FEAT-126 local deployment/test interface；central contracts、Public Tasks/Host wire、durable schema、Runtime source/pin、Compose pins和default flags unchanged；G2A=N/A |
+| Closure | `LIA-126-030 Corrective Closure Accepted`；`S10B-BLK-011 Closed`；没有新live/runtime evidence，G3 Partial、G4/G6 Pending |
+| Exclusions | 未执行Docker/isolated live、fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用或远端动作 |
+
+## 33. DEC-126-072 / Infra and Governance Clean Checkpoints
+
+| 项目 | 决策与证据 |
+|---|---|
+| Owner decision | 仅形成新的Infra/Governance local clean checkpoint；在获得新SHA和另一份isolated-live授权前不得再次live |
+| Scope | Infra仅`Makefile`、orchestrator及两个测试文件；Governance仅既有九份FEAT-126文件；Contracts/API/Host/Desktop/Runtime不变 |
+| Infra checkpoint | `c7edbc344daecb84553efafe86dfe335a5c0c72d`；local、clean、not pushed |
+| Governance checkpoint | 包含本记录与Infra精确SHA的本地commit；精确SHA在commit后报告，因为commit不能嵌入自身SHA |
+| Verification | Infra full `188/188`、targeted `67/67`及全部静态门禁PASS；Governance default、strict、G2A、unique-key YAML、lint、test、shell syntax与diff PASS |
+| Retained state | 两个isolated-live失败run均永久不可复用；`S10B-BLK-009/010/011 Closed`；G3 Partial、G4/G6 Pending；`s10b_r8_executed=false` |
+| Stop | 不授权新的live、fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用、push、merge、tag、publish或deploy |
