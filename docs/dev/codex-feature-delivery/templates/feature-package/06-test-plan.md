@@ -1,111 +1,59 @@
-# {{FEATURE_ID}} 测试与 Eval 计划
+# {{FEATURE_ID}} 测试计划
 
-## 1. 测试策略
+> **Purpose**：把 AC、Boundary 和风险映射为可重复验证。
+>
+> **Authority**：本文件定义测试设计；执行事实只在 `evidence.yaml`，Gate 决策只在 `decisions.yaml`。
+>
+> **适用 Profile / Target**：全部 Profile 与 Target，深度按风险裁剪。
+>
+> **完成时点**：G2 前；AC、Boundary、风险或验证阈值变化时修订。
 
-- 风险等级：TBD
-- 阻断质量门槛：TBD
-- 类生产依赖：TBD
-- 不可执行环境：TBD
+本文进入 G2 `build_digest`；每个 Boundary 的实际兼容证据绑定其 `boundary_digest`，每个 Slice 的成功测试证据必须与其 code refs 一致并覆盖声明 AC。
 
-## 2. AC → 测试追踪矩阵
+## 1. 验证策略
 
-| AC/NFR | 风险 | Test ID | 层级 | 场景 | 环境 | 预期证据 |
-|---|---|---|---|---|---|---|
-| AC-001 | TBD | T-001 | unit/integration/contract/E2E | TBD | TBD | TBD |
+- 权威输入：{{AUTHORITATIVE_INPUT_REFS}}
+- 不变量与最高风险：{{INVARIANTS_AND_TOP_RISKS}}
+- 环境限制及处置：{{ENVIRONMENT_LIMITS_AND_DISPOSITION}}
 
-每个 Must AC 和高风险项至少映射一个可重复证据。
+`passed` 必须来自完整且断言满足的 Evidence record。`not_run`、skip、截断输出、未结束进程或不等价环境不得转绿；Flaky 不得靠重跑到绿；snapshot、视觉 diff 与 AI 输出必须语义审阅。
 
-## 3. 领域与边界测试
+## 2. 最小追踪矩阵
 
-| 类别 | 正常 | 边界 | 非法/失败 | Test IDs |
-|---|---|---|---|---|
-| 核心业务规则 | TBD | TBD | TBD | TBD |
-| 公共 API/事件 | TBD | TBD | TBD | TBD |
-| 数据库/事务 | TBD | TBD | TBD | TBD |
-| 外部服务 | TBD | TBD | TBD | TBD |
-| UI/可访问性 | TBD | TBD | TBD | TBD |
+每个 Must AC、NFR、受影响 Boundary 与高风险项至少一行。按需增行，不适用专项不预建空表。
 
-## 4. 兼容与 Conformance
+| Claim/Risk/Boundary | Test ID | 层级与场景 | Oracle/阈值 | 环境 | Evidence kind |
+|---|---|---|---|---|---|
+{{TEST_MATRIX_ROWS}}
 
-- 未知字段：TBD
-- 未知 enum/event：TBD
-- 新旧 producer/consumer：TBD
-- 生成漂移：TBD
-- Canonical fixture：TBD
-- Runtime/第三方兼容：TBD
+层级按证明对象选择：纯规则用 unit/property；真实驱动与事务用 integration；公共语义用 contract/conformance；关键用户路径用 E2E；风险触发 security、resilience、migration、performance 或 AI eval。
 
-## 5. 安全与隐私测试
+公共边界按需覆盖未知字段/enum、重复乱序、旧新 producer/consumer、生成漂移、runtime 版本和 canonical fixture。涉及数据迁移、权限/租户、外部副作用、AI 行为或容量阈值时，矩阵必须列出失败路径和恢复 oracle。
 
-| Test ID | 威胁 | 场景 | 预期结果 |
-|---|---|---|---|
-| SEC-001 | 未认证/越权/跨租户/注入/泄漏 | TBD | TBD |
+## 3. Baseline 与命令
 
-## 6. 韧性与故障测试
+| ID | 比较/验证对象 | 权威命令来源与 CWD | 比较规则 | Evidence kind | 失效条件 |
+|---|---|---|---|---|---|
+{{BASELINE_AND_COMMAND_ROWS}}
 
-| Test ID | 故障 | 注入方式 | 恢复预期 | 观测信号 |
-|---|---|---|---|---|
-| RES-001 | 超时/限流/断线/重启/部分失败 | TBD | TBD | TBD |
+Baseline 用于区分既有失败与新增回归，不能替代通过证据。代码、fixture、依赖、配置、环境、模型或 runner 改变后不得静默复用。
 
-## 7. Migration 演练
+命令必须来自仓库脚本、构建定义或 CI。真实 command、工具版本、CWD、SHA、时间、退出码、结果和日志只追加到 `evidence.yaml`，不回填本文。
 
-| 组合 | 数据状态 | Reader/Writer | 预期 | 校验 |
-|---|---|---|---|---|
-| old app + expanded schema | TBD | TBD | TBD | TBD |
-| new app + old/new data | TBD | TBD | TBD | TBD |
-| rollback/roll-forward | TBD | TBD | TBD | TBD |
+## 4. 数据与专项说明
 
-无数据库变化：`N/A + 理由`。
+- Fixture/dataset、分类、脱敏与清理：{{TEST_DATA_RULES}}
+- 条件专项及不适用依据：{{CONDITIONAL_TEST_NOTES}}
 
-## 8. 性能与容量
+AI 变化需固定 dataset/holdout、模型与 prompt/tool schema、runner、seed/temperature、质量/安全/成本阈值；少量主观对话不能替代 Eval。真实生产数据必须已有授权、最小化、脱敏、审计和清理规则。
 
-| Metric | Workload | Baseline | Pass threshold | Stop threshold |
-|---|---|---:|---:|---:|
-| TBD | TBD | TBD | TBD | TBD |
+`controlled` 至少增加 static analysis 和 security review 证据设计；受限数据增加 data review。这些证据必须有持久 artifact、digest 和覆盖决策有效窗口的保留期。
 
-## 9. AI Eval 专项
+## 5. G2 可评估条件
 
-| 项目 | 固定值/版本 |
-|---|---|
-| Dataset 与 holdout | TBD |
-| Model/prompt/skill/knowledge/tool schema | TBD |
-| Seed/temperature/runner | TBD |
-| 结构通过率 | TBD |
-| 任务成功率 | TBD |
-| 工具选择/参数正确率 | TBD |
-| 引用/无答案/安全 | TBD |
-| 延迟与成本 | TBD |
-| 相对基线不可退化阈值 | TBD |
+- 所有必须声明均能追踪到 Test ID、oracle、环境和允许的 Evidence kind；
+- 风险越高，验证越接近真实依赖，且失败与不可执行处置明确；
+- baseline 比较算法、命令权威来源和证据失效条件明确；
+- 缺口有 Risk/Exception ID 及有效 Decision ID。
 
-非 AI 功能：`N/A + 理由`。禁止用少量主观对话替代固定 Eval。
-
-## 10. Fixture 与测试数据
-
-| Fixture/Dataset | 权威位置 | 数据分类 | 合成/脱敏方式 | Consumer |
-|---|---|---|---|---|
-| TBD | TBD | TBD | TBD | TBD |
-
-## 11. 实际执行命令
-
-| 层级 | Repository/CWD | Command | 环境依赖 | 预期时长 |
-|---|---|---|---|---|
-| lint/typecheck/build | TBD | TBD | TBD | TBD |
-| unit/integration | TBD | TBD | TBD | TBD |
-| contract/conformance | TBD | TBD | TBD | TBD |
-| E2E/security/eval | TBD | TBD | TBD | TBD |
-
-命令必须来自仓库脚本或 CI 配置；示例命令不能被当作真实能力。
-
-## 12. 通过、失败与 Flaky 策略
-
-- PASS：命令完成、退出码与断言符合预期；
-- FAIL：任何阻断断言失败；
-- NOT RUN：环境缺失、被跳过、输出截断或进程未完成；
-- Flaky：先调查根因，不允许“重跑到绿”作为通过证据；
-- Snapshot/golden：必须人工审阅语义 diff。
-
-## 13. 测试计划批准
-
-| 角色 | 姓名 | 结论 | 日期 |
-|---|---|---|---|
-| 测试/技术 Owner | TBD | Approve/Reject | TBD |
-| 安全/数据 Owner | TBD | Approve/Reject/N/A | TBD |
+本文件不能自证 Gate；evaluator 结合 policy、manifest 和 ledgers 计算资格。

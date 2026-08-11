@@ -1,692 +1,397 @@
-# Codex 生产级需求全生命周期实践手册
+# Codex Feature Delivery v2 完整手册
 
-## 一、工作方式
+## 1. 这套体系解决什么
 
-### 1. AI 的正确定位
+V2 把一次需求交付拆成三个互不替代的层次：
 
-在生产工程中，Codex 应被视为：
+1. **工程工作**：调查、设计、实现、测试、审查、发布与观察；
+2. **执行事实**：谁在什么版本、环境和目录执行了什么，实际结果是什么；
+3. **有权决策**：谁基于哪些精确事实，批准或拒绝哪个 Gate 实例。
 
-- 高速代码调查员；
-- 设计与文档草拟者；
-- 在明确边界内工作的实现者；
-- 测试与验证执行者；
-- 可以发现问题、但不能自我批准的 Reviewer。
+Codex 擅长第一层并可帮助整理第二层，但没有证据就不能声称结果，没有有权决策就不能声称 Gate 通过。机器 evaluator 对适用 Gate 只判断 `ELIGIBLE` 或 `BLOCKED`，对 policy 裁剪实例输出 `NOT_APPLICABLE`；它不产生 APPROVED。
 
-Codex 不是业务 Owner、安全批准人、生产事实来源或测试结果的替代品。
+## 2. 不可破坏的原则
 
-### 2. 证据优先
+### 2.1 契约与边界优先
 
-以下内容必须由可复核证据支持：
+跨进程、跨仓、跨团队或跨信任域的行为先建立 boundary。每个受影响 boundary 有独立 G2C，分别绑定权威源、producer、consumer、语义基线、兼容证据和演进顺序。不得以影子 DTO、手工复制 Schema 或“应该兼容”替代。
 
-- “仓库是干净的”需要 `git status`；
-- “测试通过”需要实际命令和输出；
-- “契约兼容”需要基线检查和 consumer 验证；
-- “数据库可回滚”需要 migration/reader 兼容和回滚演练；
-- “生产可用”需要部署、探针、指标和关键路径 smoke；
-- “模型效果变好”需要固定数据集、模型版本和 Eval 对比。
+### 2.2 计划事实与执行事实分离
 
-没有执行的验证必须写成“未执行”，不能用推断替代。
+- 计划执行的命令写在测试、实施或发布计划中；
+- 实际执行的命令只追加到 `evidence.yaml`；
+- `08-verification-report.md` 解释证据覆盖和缺口，不成为第二证据账本；
+- `not_run` 是未执行，不得计为成功；
+- 未来 tag、commit、digest、环境状态和批准不得预填为事实。
 
-### 3. 文档不是事后说明
+### 2.3 授权窄于计划
 
-需求交付目录是 Codex 的上下文包，也是工程审查和发布证据。文档随着事实变化持续更新：
+G2 表示构建计划获准，不表示获得任意文件、账户和环境的写权限。一个有界 G2 Authorization Packet 可以覆盖多个明确列出的 Slice；每个 Slice 的范围仍须被 packet 精确覆盖，开工前都要确认 packet 未过期、未失效，不额外制造逐 Slice 人工批准。外部写、真实数据、付费服务、部署、migration 和不可逆操作总是针对精确目标重新授权。
 
-```text
-需求事实 → 设计约束 → 实现切片 → 验证证据 → 发布与回滚
-```
+### 2.4 历史追加，不覆盖
 
-不要求为低风险任务制造大量文档，但任何被省略的材料都必须有“为何不适用”的理由。
+`evidence.yaml` 与已签名/已登记的 `decisions.yaml` 记录是 append-only。`attestation: null` 的待审记录只是尚未成立的草案；签名并登记后，错误通过后续纠正/失效记录处理，不原地改写。`feature.yaml` 是当前声明，可随已确认事实更新；evaluator 负责检查其当前状态是否能由账本支持。
 
----
+### 2.5 一人多角色不等于独立评审
 
-## 步骤 0：建立需求交付工作区
+单人项目允许同一位负责人承担 Business、Technical、Verifier、Release 等角色，并在一次 decision 中列出其在 `feature.yaml.feature.owners.role_assignments` 中真实已分配的 `roles`。`passed` 的 actor 必须是可追溯的人，且完整 Decision 必须由包外 `approval-trust.yaml` 中 scope 匹配的 Ed25519 key 验签；YAML 自报 `human` 不构成身份。私钥只能存在于 Codex/待审代码不可访问的受保护审批面，CI 使用受保护 base 或独立 mount 的 trust root。不得为满足形式伪造第二个人。Codex Review、另一个 Agent 的审查、静态分析和 CI 都是 evidence；如果组织要求独立人审，必须由真实独立人完成，否则 Gate 保持阻塞或明确降级决策。
 
-### 目标
+## 3. 权威源与优先级
 
-为需求建立唯一身份、责任人和可持续更新的上下文目录，避免需求散落在聊天记录里。
+出现冲突时按下列顺序处理，而不是静默挑一个方便的版本：
 
-### 要做什么
+1. 组织/仓库适用的安全、合规和授权规则；
+2. `gate-policy.yaml`、其 `policies/<sha256>.yaml` 内容寻址快照与 JSON Schema；
+3. Accepted 决策、契约权威源和真实代码/环境事实；
+4. `feature.yaml` 当前声明；
+5. Feature Package Markdown 的解释；
+6. 聊天记录和个人推断。
 
-1. 分配 Feature ID 和简短名称。
-2. 创建 feature package。
-3. 记录仓库、分支和已有工作区改动。
-4. 明确谁负责需求、技术、评审和发布。
+发现矛盾后停止受影响工作，记录冲突、影响和需要的有权选择。决定后更新当前声明；旧 evidence/decision 保留并追加失效关系。
 
-### 输出文档
+### 3.1 Gate Policy 内容寻址与升级
 
-| 文档 | 作用 | 如何生成 |
-|---|---|---|
-| `00-feature-brief.md` | 保存需求入口、目标、非目标、Owner 和当前状态 | 由需求负责人提供事实，Codex 按模板整理 |
-| 初始 Git 状态记录 | 防止覆盖用户改动和在错误分支开发 | Codex 实际运行 `git status`、`git branch`、`git remote` 后填写 |
+`gate-policy.yaml` 只是供新 Feature 使用的 active 指针，不是历史 Package 的浮动依赖。每个策略版本必须按原始文件 bytes 计算 SHA-256，并在 `policies/<64-lowercase-hex>.yaml` 保存完全相同的不可变快照。运行时先严格校验 active policy，再要求 active bytes 与同 digest 快照逐字节一致；解析 Package 时，digest 命中 active 就使用 active，否则只允许读取同名历史快照。快照的实际 digest、Gate Policy Schema、`policy.id` 和 `policy.version` 任一不匹配都 fail closed。
 
-### 退出门禁
+升级顺序固定为：准备新策略 bytes → 计算 digest → 新增同名快照 → 在同一个受治理、外部 digest 批准的 TCB 变更中把 active 切到相同 bytes → 通过 registry/schema/回归 → 合并。历史快照只增不改、禁止删除；已有 Package/Decision 不改 digest、不重新签名，继续由历史 verifier 语义复核。新 Package 的 id/version/digest 由 `new-feature.sh` 从已归档的 active policy 读取，不从模板硬编码。若 active 改了 bytes 却没有匹配快照，生成器、evaluator、签名器和 Summary materializer 全部停止。当前 `gate-policy.schema.json` 必须保持能严格验证所有仍受支持的历史快照；需要破坏性 Schema 演进时，应先引入显式 schema registry/版本路由，不能直接让旧快照失效。
 
-- Feature ID 唯一；
-- Owner 明确；
-- 工作区已有改动已记录；
-- 未在未知 dirty worktree 上直接开始批量修改。
+## 4. 核心模型
 
----
+### 4.1 Profile：风险控制深度
 
-## 步骤 1：澄清需求与验收标准
+- `lite`：低风险、小范围、边界清晰；保留最小可验证材料；
+- `standard`：常规产品和工程需求；完整设计、测试和集成链；
+- `controlled`：高风险、受监管、敏感数据、breaking、复杂 migration、跨仓/多消费者、外部副作用或难回滚。
 
-### 目标
+Profile 由 G0/G1 的事实选择，并受策略中的风险信号约束。实施中出现更高风险时先提升 Profile、补产物并使受影响决定失效；不得为了减少文档而降级。降级必须有可审计理由和有权决策。
 
-把“想要一个功能”变成可判定是否完成的需求。
+`controlled` 会改变机器要求，而不只是文档语气：授权有效期更短，必须提供更强的 static analysis、security review，涉及受限数据时还需 data review；证据制品必须持久、有 digest 且保留期覆盖决策有效窗口。
 
-### 要做什么
+### 4.2 Target：生命周期终点
 
-1. 写清用户、场景、触发条件和用户价值。
-2. 区分目标与非目标。
-3. 把验收标准写成可观察行为。
-4. 覆盖成功、失败、权限不足、空数据、超时和部分成功。
-5. 记录性能、合规、可访问性、兼容性和成本约束。
-6. 把未决问题列出来，不让 Codex自行猜测。
+- `local_engineering`：到 G4，证明工程完成但未发布；
+- `staging`：在 staging 完成发布与结果验证，到 G6；
+- `production`：在 production 完成发布、观察和业务结果验证，到 G6。
 
-### 输出文档
+Target 与 Profile 正交。改变 Target 会改变 artifact 和 Gate 适用性，并使依赖目标环境的旧决定失效。
 
-| 文档 | 作用 | 如何生成 |
-|---|---|---|
-| `01-requirements.md` | 需求真相源，指导设计、测试和验收 | 人提供业务语义，Codex 将自然语言转成场景和 Given/When/Then |
-| Open Questions | 阻止隐含假设进入实现 | Codex 从歧义、缺失字段和冲突规则中提取，人逐项确认 |
+### 4.3 Artifact manifest：物理裁剪
 
-### 文档质量要求
+模板目录是能力全集，不是每个包的固定十二件套。初始生成器按 Profile 与 Target 写入 `feature.yaml.artifacts` 并物理创建所需 Markdown；后续风险/Boundary 变化先更新 manifest，再由 evaluator 与 materializer fail-closed 路由。规则是：
 
-好的验收标准：
+- 核心三件套 `feature.yaml`、`evidence.yaml`、`decisions.yaml` 永远存在；
+- 被策略要求的文档必须存在且非占位；
+- 省略文档必须由 artifact manifest 给出策略依据与理由；
+- 新风险触发新文档时，先更新 manifest/生成文档，再继续实施；
+- 不创建空文件来假装适用，也不静默删除已承载历史事实的文件。
 
-```text
-Given 用户有 report:read 权限且存在 50 条任务
-When 用户按最近 7 天导出 CSV
-Then 返回 UTF-8 CSV，包含 50 条授权范围内的记录，审计一次导出行为
-```
+### 4.4 Boundary 与 Slice
 
-坏的验收标准：
+Boundary 是跨职责/契约/信任边界的接口，例如 API、event、database、authorization、external-service、AI-tool。每个有影响的 boundary 建 G2C 实例。
+
+Slice 是可独立验证、可回滚、可审查的实现单元。每个 slice 建 G3 实例，并声明依赖 boundary 与其他 slice。一个 Feature 可以有多个仓库，但 slice 的修改范围必须精确到仓库和路径。
+
+### 4.5 Gate 状态机
 
 ```text
-导出功能正常、体验良好、没有 Bug
+pending → ready → in_review → passed
+    │         │          │       │
+    └──────→ blocked/failed      └→ stale
+
+policy 对 Target/实例派生：not_applicable（不追加 N/A decision）
 ```
 
-### 退出门禁
+唯一状态集合为 `pending|blocked|ready|in_review|passed|failed|stale|not_applicable`。状态不是由作者随意涂色：当前 `passed` 必须能追溯到有效 decision；变化导致 subject 不再相同时，旧决定转为 `stale`。
 
-- 每个验收标准都可通过测试或人工步骤判定；
-- 非目标明确；
-- 阻塞性问题已回答；
-- 需求负责人确认。
+### 4.6 分段 digest 与实例隔离
 
----
+evaluator 不用一个“全包 digest”迫使无关实例一起失效，而是按决策对象计算：
 
-## 步骤 2：扫描现状与评估影响
-
-### 目标
-
-理解真实代码和系统边界，避免 Codex 根据目录名或文档想象实现。
-
-### 要做什么
-
-1. 阅读每个受影响仓库的 `AGENTS.md`、README、SECURITY、CONTRIBUTING、架构与 ADR。
-2. 检查分支、远端、工作区状态和最近提交。
-3. 找到真实入口、调用链、持久化、测试和发布脚本。
-4. 识别 producer、consumers、数据方向和权威源。
-5. 识别 API、事件、SDK、数据库、缓存、配置、Runtime、第三方和 UI 状态影响。
-6. 搜索占位实现、TODO、mock、重复 DTO 和未接通路径。
-7. 标记依赖的环境、外部服务、真实账户和成本。
-
-### 输出文档
-
-| 文档 | 作用 | 如何生成 |
+| Gate | 绑定 digest | 覆盖范围 |
 |---|---|---|
-| `02-impact-assessment.md` | 记录受影响仓库、边界、风险和现状证据 | Codex 只读扫描后草拟，技术负责人核对 |
-| Repository Status Snapshot | 保护已有改动，明确分支与基线 | 由实际 Git 命令生成 |
-| Dependency/Data-flow Map | 找出跨组件发布顺序和失败传播 | 从代码调用与契约生成，不能只依赖架构图 |
+| G0 | `intake_digest` | 当前声明与 `00-feature-brief.md` |
+| G1 | `scope_digest` | Intake、requirements、impact 和边界/规模声明 |
+| G2 | `build_digest` | Scope、当前 baseline/依赖状态、决策/设计/测试/切片计划 |
+| G2C | `boundary_digest[ID]` | 一个 Boundary 声明及其独立 `boundary_spec` |
+| G3 | `slice_digest[ID]` + `code_refs` | digest 覆盖一个 Slice 声明、相关 Boundary/Slice 与 repo baseline；Decision 另行绑定当前代码 |
+| G4 | `engineering_digest` + `code_refs` + Evidence refs | digest 覆盖 build、全部实例和 08；Decision 另行绑定最终代码与逐仓验证 |
+| G5/G6 | `release_digest` + code/artifact/environment/account refs | digest 覆盖 engineering 与 09；Decision 另行绑定当前 G4、代码、制品与目标环境，G6 精确继承 G5 |
 
-### Contract Impact 分类
+某个 Boundary 变化会使它的 G2C、依赖它的 Slice 及后续集成失效，不应让无关 Boundary/Slice 一起过期。当前 baseline、依赖解决状态或 G2 计划改变时，`build_digest` 必须改变，不能用稳定声明 digest 绕过重新授权。
 
-每个需求必须选择一个最高风险分类：
+### 4.7 Gate-aware 完成度
 
-| 分类 | 判断 |
-|---|---|
-| `none` | 不改变跨进程、跨仓、跨版本、持久化或重放边界的可观察行为 |
-| `additive` | 增加能力，不改变既有交互解释，并已验证方向兼容 |
-| `semantic` | 形状可能不变，但默认值、错误、权限、顺序或行为语义改变 |
-| `breaking` | 任一仍受支持 producer/consumer 可能失败或错误解释 |
+Schema、引用、路径和 ledger 完整性始终检查；Markdown 占位符则只在它已成为当前 Gate 输入时阻塞。G0 不因未填的发布计划失败，G2C 只检查该 Boundary 的独立规范。`--strict` 或 `lifecycle: completed` 必须验证全部适用 Gate、已到期文档以及终点后生成的 Summary，不允许用 `completed` 跳过闭环。
 
-不要因为 DTO 没变就选择 `none`。
+## 5. 从 Intake 到工程完成
 
-### 退出门禁
+### 阶段 A：G0 Intake Accepted
 
-- 受影响仓库没有遗漏；
-- 现状事实有文件或命令证据；
-- contract-impact 已分类并说明方向；
-- 未把占位实现当成已完成能力。
+#### 目标
 
----
+先决定“是否值得且允许调查”，不急于决定实现方案。
 
-## 步骤 3：关闭关键决策与风险
+#### 必须完成
 
-### 目标
+- 创建 v2 包，显式选择 Profile 与 Target；
+- 写清问题、用户价值、目标、非目标、Owner、成功指标；
+- 声明初始数据分类、真实账户、外部副作用、费用和不可逆风险；
+- 列出已知仓库线索、未知项、只读调查范围和禁止动作；
+- 检查 artifact manifest 与策略路由一致。
 
-在写代码前解决会改变架构、安全或数据语义的决策。
+#### 允许做什么
 
-### 必须停下来确认的事项
+可以读取公开/授权的仓库与文档，检查无副作用状态。除非另有精确授权，不得修改业务代码、访问真实敏感数据或触发外部副作用。
 
-- 认证、会话、租户与 RBAC；
-- 数据库 schema、保留期、回填和删除；
-- token、secret、PII 与数据出境；
-- 高风险操作、审批、幂等与审计；
-- 新基础设施、队列、缓存、云服务和外部依赖；
-- 第三方 API、SDK、许可、费用和生产账户；
-- Runtime、模型、embedding 与 Eval 阈值；
-- breaking change、兼容窗口和发布顺序。
+#### Gate
 
-### 输出文档
+evaluator 确认资料是否 `ELIGIBLE`；有权 Owner 对当前 Intake subject 追加决策。决定绑定 Profile、Target 和 brief 版本，任何一个变化都需重新判断。
 
-| 文档 | 作用 | 如何生成 |
-|---|---|---|
-| `03-decisions-and-risks.md` | 集中记录已确认决定、风险和批准 | Codex 列选项与权衡，Owner 选择并签认 |
-| ADR（条件性） | 保存高成本、跨团队或难回滚决定 | Codex 从决策记录起草，架构 Owner 审核 |
-| Threat/Data Review（条件性） | 明确信任边界、数据等级和攻击面 | 安全负责人提供策略，Codex映射到数据流 |
+### 阶段 B：G1 Scope Ready
 
-### 风险处理格式
+#### 只读事实调查
 
-每项风险包含：
+逐仓执行：
 
-- 风险事件；
-- 触发条件；
-- 影响；
-- 预防控制；
-- 检测方式；
-- 回滚或恢复；
-- Owner。
+1. 读取当前路径适用的 `AGENTS.md`、README、SECURITY、CONTRIBUTING、ADR 和 CI；
+2. 记录 remote、branch、完整 HEAD、工具链、工作区状态及用户已有改动；
+3. 定位入口、调用链、数据存储、测试、生成器、配置和发布控制面；
+4. 画出 producer、consumer、数据、权限、外部系统和 AI tool 边界；
+5. 区分 `Fact / Assumption / Unknown`，不按目录名猜所有权。
 
-### 退出门禁
+#### Baseline
 
-- 阻塞性决策均有明确结论；
-- 安全和数据分类已确认；
-- 未决项不会迫使实现者自行发明业务语义。
+G2 前必须对每个受影响仓库运行最小且可重复的 baseline。记录 cwd、命令、完整 SHA、工具版本、时间、退出码和日志引用。baseline 失败时：
 
----
+- 确认是否在当前 HEAD 可重复；
+- 与需求引入的失败分开；
+- 给出 Owner、影响和后续处置；
+- 未被有权人接受前，不把“原本就失败”当作绿色。
 
-## 步骤 4：先完成契约设计与兼容计划
+#### Size 与依赖
 
-### 目标
+评估范围、仓库数、boundary 数、slice 数、未知量、关键路径、外部团队/平台、迁移和回滚难度。若 Feature 无法在一个可理解的评审单元内闭环，拆成 Epic 和多个 v2 Feature Package：每个子 Feature 有独立 AC、Gate 和证据，Epic 只管理依赖和共同结果，不共享一个总 G3/G4。
 
-让所有独立发布单元在实现前共享同一边界语义。
+#### G1 结论
 
-### 适用内容
+批准 subject 必须包含 requirements、impact、size/dependency 与 boundary 清单的精确版本。新增 consumer、仓库或敏感数据会使 G1 及依赖 Gate 失效。
 
-- HTTP/RPC/SSE/WebSocket；
-- 事件、队列和 durable payload；
-- MCP/tool schema；
-- SDK 公共签名；
-- 认证、权限、幂等、错误和审计语义；
-- 跨版本持久化/重放格式。
+### 阶段 C：G2 Build Authorized
 
-服务私有数据库、部署配置、Runtime 上游和第三方协议使用各自权威源与兼容方法，不能伪造中央契约。
+#### 先关闭决策
 
-### 要做什么
+对架构、安全、数据、第三方、AI、兼容、migration、成本和发布选项记录：事实、可选项、取舍、选择权人、截止时间和 decision ID。未决项如果会改变实现，则保持 blocked；不能让 Codex暗自选择后继续。
 
-1. 确定权威源、Owner、producer 和全部 consumers。
-2. 设计请求/响应、错误、权限、幂等、分页、顺序和重试。
-3. 分析请求、响应和事件的兼容方向。
-4. 列出所有 supported baselines、generator 和实际检查命令。
-5. 规划 SDK/类型生成、漂移检查和下游 pin 格式。
-6. 取得业务语义、Contracts Owner 和 Consumer Owner 的设计评审。
-7. 写清合并、部署、启用、兼容窗口和回滚顺序。
+#### 技术设计
 
-本步骤只冻结设计，不把尚未生成的 commit、tag、digest 或检查结果写成事实。权威源落地、generate、breaking check 和不可变候选引用在步骤 9 的第一个切片执行。
+设计至少覆盖适用项：
 
-### 输出文档
+- 模块职责、依赖方向和状态机；
+- 正常、失败、并发、幂等、超时、取消、重试和部分成功；
+- 认证、资源授权、租户隔离、审计、secret 和日志脱敏；
+- 数据生命周期、新旧 reader/writer 共存、校验和恢复；
+- contract 演进与 consumer 兼容；
+- 观测、容量、成本、kill switch、rollout 和 rollback；
+- AI 的模型/prompt/tool/retrieval 版本、Eval 与安全边界。
 
-| 文档 | 作用 | 如何生成 |
-|---|---|---|
-| `04-contract-change-plan.md` | 保存契约分类、权威源、consumer 和方向性发布计划 | Codex 根据影响扫描起草，Contracts/Consumer Owner 评审 |
-| OpenAPI/Proto/Schema/Event 设计稿 | 让各方在编码前审查边界语义 | 从权威源结构起草；在此阶段不手写下游 DTO |
-| Compatibility Test Plan | 规定如何证明结构与实现方向兼容 | 列出真实 breaking、generate-drift、producer/consumer conformance 命令和基线 |
+#### 测试设计
 
-### 退出门禁
+建立 `AC / 风险 → 测试层 → fixture/dataset → 环境 → 判定阈值 → evidence kind` 映射。测试与实现共享同一 mock 不能证明真实集成；breaking checker 不能替代语义兼容；少量主观 prompt 试验不能替代 Eval。
 
-- 契约草案和失败语义完整；
-- breaking/semantic 影响已完成人工设计评审；
-- 不可变引用、generator、baseline 和 consumer pin 方案明确；
-- 不允许“先写临时 DTO，之后再补契约”；
-- 尚未执行的 generate/breaking/conformance 明确标记为 `NOT RUN`。
+#### Walking skeleton
 
----
+`controlled` 或跨仓 Feature 在大规模实现前先安排最窄端到端路径：使用最小契约、provider、consumer 和观测接通一条无危险副作用的路径，尽早验证生成、版本 pin、身份、环境和回滚假设。它仍是一个 slice，在 G2 Packet 中有独立 scope，并有自己的证据和 G3；不得用“骨架能跑”跳过剩余验证。
 
-## 步骤 5：完成技术设计
+#### Slice 图
 
-### 目标
+每个 slice 写清：目标、允许/禁止范围、依赖、关联 AC/boundary、验证命令、回滚、停止条件和覆盖它的 G2 Authorization Packet ID；多个 Slice 可以引用同一有界 ID。尽量按依赖图组织，避免一个 slice 同时新增契约、migration、API、UI 和启用开关。
 
-把需求和契约转成可实现、可运行、可恢复的系统设计。
+#### G2 结论
 
-### 设计必须回答
+G2 是对整个 Feature 当前 `build_digest` 的一次有界构建授权，必须覆盖要执行的 slice instance、repository/base SHA、路径、允许/排除 capability、`environment: local_engineering`、数据分类、预算、有效期、所需 evidence、停止条件和重新授权触发器；`account` 保持 `null`，明确不授权真实外部账号。G2 不授权生产、外部写、真实数据、付费调用或不可逆动作，也不代替各 G2C/G3 实例。先通过 G2，再由每个 G2C 逐边界解锁依赖 Slice；生产/预发布账号只能由新的 G5 授权精确绑定。
 
-- 模块职责与依赖方向；
-- 关键流程和状态机；
-- 数据模型、事务和一致性；
-- 并发、幂等、超时、取消、重试和部分失败；
-- 权限、租户、数据隔离和脱敏；
-- 日志、指标、trace、告警和审计；
-- migration、双读/双写、回填和回滚；
-- 容量、性能、费用和降级；
-- feature flag、灰度和兼容窗口。
+Repository checkout identity 与 repo 内修改 scope 是两层事实：`identity={kind,name,url,root}` 标识 checkout，`kind=managed` 必须精确匹配中央 `repos.yaml`，`current` 只能是当前 repo 的 `.`，显式 external 只允许一个命名 sibling；`repositories[].path`、`slices[].paths` 与 Authorization `paths` 才表示 repo 内 scope。Slice/Authorization path 使用 `{repository,path}`，拒绝绝对路径、`..`、空段、反斜杠和 glob，且 Authorization 必须精确等于 Slice scope 的并集。`.` 是整仓授权，不是通配符简写：必须写 justification；`controlled` 或 high/critical 风险还必须在 G2 引用 subject 为该 repository 的成功 `exception` Evidence。
 
-### 输出文档
+## 6. Boundary 交付：每实例 G2C
 
-| 文档 | 作用 | 如何生成 |
-|---|---|---|
-| `05-technical-design.md` | 实现的技术真相源 | Codex 基于已确认需求/契约起草，技术负责人审查 |
-| Sequence/State/Data Diagram | 揭示时序、状态和故障传播 | 从真实调用链生成并逐节点核对 |
-| Migration Plan（条件性） | 保证新旧版本和数据可共存 | 数据 Owner 提供约束，Codex形成 expand/migrate/contract 步骤 |
+### 建立实例
 
-### 退出门禁
+对每个受影响 boundary 分别声明：ID、类型、影响分类、Owner、权威源、producer、consumers、支持基线、版本/digest、生成器、fixture 和关联 slice。有 Boundary 时，`04-contract-change-plan.md` 只是索引；每个已声明 Boundary 在 manifest 中引用唯一 `boundary_spec` artifact，路径为 `boundaries/<BND-ID>.md`，通过以下命令建立：
 
-- 正常与失败路径都能解释；
-- 新旧版本共存期间行为明确；
-- 没有把授权、事务或审批留给 UI/prompt；
-- 回滚不依赖临时现场猜测。
+```bash
+node ./scripts/materialize-boundary.mjs <package> BND-001
+```
 
----
+在运行前，`BND-001.artifact_id` 写约定 forward ref `ART-BOUNDARY-BND-001`。该 ID 暂时尚无 artifact 的中间态必须 fail-closed，不得提交或进入 Gate；materializer 原子创建文件/artifact 并回写同 ID。索引不成为多个 Boundary 的共享规范，一个 artifact 也不能被多个 Boundary 复用。无受影响 Boundary 时，索引不 materialize，不创建假 G2C。
 
-## 步骤 6：在实现前设计测试
+### 兼容证明
 
-### 目标
+- `none`：没有实例，不创建假通过记录；
+- `additive`：验证旧 consumer 对新增字段/事件/枚举的容忍和语义；
+- `semantic`：即使结构不 breaking，也需人工语义评审和行为测试；
+- `breaking`：明确版本策略、迁移窗口、双轨/适配、consumer pin 和退出旧版本条件。
 
-先明确什么证据能证明功能正确，再写实现。
+数据库、权限策略、外部 API 和 AI tool schema 同样是 boundary；不要只把 HTTP OpenAPI 当契约。
 
-### 测试分层
+### G2C 决策
 
-| 类型 | 证明什么 |
-|---|---|
-| Unit | 纯领域规则、边界和错误分类 |
-| Integration | 数据库、队列、文件、网络适配和事务 |
-| Contract | 源结构、生成漂移、版本兼容 |
-| Conformance | producer/consumer 实际行为符合契约 |
-| E2E | 关键用户路径在真实组合中工作 |
-| Security | 越权、跨租户、注入、秘密泄漏和审批绕过 |
-| Failure/Resilience | 超时、取消、重试、断线、部分成功和恢复 |
-| Migration | 空库、旧数据、新旧 reader/writer 和回滚 |
-| AI Eval | 固定模型/数据/参数下的质量、安全和回归 |
-| Visual/Accessibility | 目标视口、键盘、焦点、主题和可读性 |
+决策绑定一个 boundary 的 `boundary_digest` 和精确 subject。权威源、consumer 基线、generator、digest 或兼容矩阵变化时，该 G2C、引用它的 G3 和后续 G4 变 `stale`；无关 Boundary/Slice 保持独立。G2C 是 Boundary readiness，不扩大 G2 Authorization Packet 的文件、账户或环境权限。
 
-### 输出文档
+## 7. Slice 实施：每实例 G3
 
-| 文档 | 作用 | 如何生成 |
-|---|---|---|
-| `06-test-plan.md` | 将验收标准映射到测试和环境 | Codex 从需求/设计生成矩阵，测试 Owner 补充真实环境 |
-| Test Fixtures Plan | 防止真实敏感数据进入测试 | 按数据分类使用公开、授权或合成数据 |
-| Eval Plan（AI 功能） | 防止用主观体验宣称模型效果 | 固定数据集、模型、参数、指标和通过阈值 |
+### 7.1 Authorization packet
 
-### 退出门禁
+执行前由有权人确认：
 
-- 每条验收标准都有测试或明确人工验证；
-- 负向、安全和失败场景不是事后补充；
-- 外部服务、真实账户和不可执行项已标注；
-- 测试不会访问未知生产资源。
+- Feature/slice ID 和有效期；
+- 精确 canonical repository identity、branch/base SHA、结构化 repo 内路径与 capability；
+- 明确禁止范围；
+- 可用环境、账户、数据分类和预算；
+- 前置 Gate、contract/digest 和用户已有改动；
+- 必须运行的验证及 evidence；
+- 停止、升级和失效条件。
 
----
+范围、SHA、依赖、环境、数据或副作用变化即停止，追加失效记录并申请新 packet。授权包不是“只要有助于完成需求就可以做”的泛化许可。
 
-## 步骤 7：拆分实现计划
+`allowed_actions` 与 `excluded_actions` 只能取自 `gate-policy.yaml` 的 canonical capability enum。有效能力是 packet 允许集与 Gate 的 `permitted_capabilities` 交集，再扣除 `prohibited_capabilities`/显式 excluded 集；自由文本近义词、允许/排除重叠和未进入禁止集的高副作用能力一律 fail-closed。
 
-### 目标
-
-将大需求拆成小而可验证、可回滚的切片，控制 Codex 的改动范围。
-
-### 推荐切片顺序
-
-1. 权威契约/类型；
-2. 纯领域逻辑；
-3. provider 接受能力；
-4. 持久化和 migration；
-5. adapter/handler；
-6. consumer 接入；
-7. UI 与状态；
-8. 集成/E2E；
-9. 观测与发布开关；
-10. 清理与文档。
-
-实际顺序必须服从数据方向。例如新请求字段先 provider，新增响应 enum 先 consumer 容忍。
-
-### 输出文档
-
-| 文档 | 作用 | 如何生成 |
-|---|---|---|
-| `07-implementation-plan.md` | 定义切片、文件范围、依赖和验证命令 | Codex 根据设计生成，技术负责人调整依赖 |
-| Per-slice Acceptance | 防止切片“代码写了但不可证明” | 每个切片绑定测试、命令和预期 diff |
-
-### 每个切片应满足
-
-- 通常只跨一个清晰边界；
-- 可以独立验证；
-- 不夹带无关重构；
-- 失败时可以回退；
-- 明确允许和禁止修改的文件；
-- 完成后有可观察结果。
-
-### 退出门禁
-
-- 没有“大包实现整个功能”的任务；
-- 关键依赖和跨仓顺序明确；
-- 每个切片都有验证方法。
-
----
-
-## 步骤 8：建立可重复的开发基线
-
-### 目标
-
-证明开始编码前仓库本身可构建、可测试，并分离既有失败与本次回归。
-
-### 要做什么
-
-1. 再次记录 `git status`。
-2. 确认工具链和依赖版本。
-3. 运行与需求相关的 baseline lint/test/build。
-4. 检查本地服务 readiness，而非只看启动命令退出码。
-5. 记录无法执行的验证和原因。
-
-### 输出
-
-将命令、版本、结果、时间和环境写入 `08-verification-report.md` 的 Baseline 部分。
-
-### 退出门禁
-
-- 既有失败已记录并与本需求区分；
-- 不在错误工具链或未知数据库上继续；
-- 不自动清理、reset 或覆盖用户工作区。
-
----
-
-## 步骤 9：执行 Codex 小步实现循环
-
-### 目标
-
-让每轮 AI 修改都可理解、可验证、可恢复。
-
-### 固定循环
+### 7.2 单切片闭环
 
 ```text
-读取上下文
-  → 复述当前切片与边界
-  → 检查相关代码和测试
-  → 先补证明行为的测试
-  → 实现最小改动
-  → 运行局部验证
-  → 检查完整 diff/status
-  → 更新验证证据
-  → 再进入下一切片
+复核 subject
+  → 建立/运行能揭示错误的测试
+  → 最小实现
+  → 局部 lint/test/build/generate
+  → 完整 diff 与工作区审查
+  → 追加 evidence
+  → 独立视角 Review
+  → G3 决策
 ```
 
-### 契约影响需求的第一个切片
+Review 优先寻找错误结果、越权、数据损坏、不可回滚、契约/migration 顺序、真实路径未验证及测试与实现同源偏差。另一个 Codex 会话可增加独立视角，但仍是 evidence，不是人类批准。
 
-当 `contract-impact != none` 时，业务 provider/consumer 代码之前先完成：
+### 7.3 外部状态变化
 
-```text
-修改权威契约源
-  → 使用锁定 generator 重新生成
-  → lint + test + 全部支持基线 breaking check
-  → 人工语义兼容与 Consumer Owner 评审
-  → 形成不可变完整 commit/tag/digest
-  → 下游固定 version + full commit + digest + generator
-```
+以下动作必须在执行前取得新的、精确授权，即使 G2/G3 资料已齐：
 
-这一步必须在步骤 8 已记录的干净、可重复基线上执行。只有上述证据齐全，才通过 Gate 2A 并进入 provider/consumer 业务实现。
+- 向 Git 远端 push、创建 PR/tag/release；
+- 调用真实外部写接口或使用付费服务；
+- 访问真实个人/商业敏感数据；
+- 部署、改变 feature flag、secret、权限或流量；
+- 执行 migration、回填、删除、批量覆盖或其他不可逆动作。
 
-### Codex 必须报告
+授权必须指明目标、范围、环境、账户、预算、回滚和有效期。无法确认就停止，不以“用户想完成需求”为推定授权。
 
-- 修改了什么以及为什么；
-- 实际运行了哪些命令；
-- 成功、失败和跳过项；
-- 是否生成或修改了 lockfile、SDK、migration；
-- 剩余风险和下一切片；
-- 是否遇到需要人确认的新决定。
+## 8. G4 Engineering Complete
 
-### 停止条件
+G4 是工程集成结论，不是各 slice 勾选的简单相加。形成候选 `engineering_digest` 后：
 
-遇到以下情况立即暂停当前切片：
+- 固定全部仓库/契约/制品的精确版本；
+- 确认所有适用 G2C/G3 仍有效；
+- 运行跨 slice 集成、conformance、E2E/Eval、安全和恢复验证；
+- 映射每条 Must AC/NFR 与风险到 evidence；
+- 复核 diff、生成物、lockfile、migration、工作区和用户已有改动；
+- 处置 Review findings；P0/P1 清零，剩余风险有接受记录；
+- 更新验证报告；Delivery Summary 不是 G4 输入。
 
-- 需求与代码事实冲突；
-- 需要改变认证、安全、数据或架构决定；
-- 需要新增高成本依赖或生产资源；
-- 工作区出现未知改动；
-- 契约权威源或版本不可用；
-- 测试只能通过降低断言、关闭门禁或修改生成物；
-- 修复范围明显超出当前切片。
+`local_engineering` 在 G4 后结束。G5/G6 由 target policy 派生 `not_applicable`，不在 ledger 追加 N/A decision。G4 有效通过之后才由机器生成交付总结，其 `terminal_subject_digest` 绑定当前 `engineering_digest`，并明确未部署、未验证线上结果。Summary 是派生导航，生成后不手改；主体改变后先追加新 terminal decision，在受审查的变更中移除可由 Git 恢复的旧派生 Summary，再重新 materialize；脚本本身不覆盖已有文件。
 
-### 输出
+## 9. 发布与结果验证
 
-- 小步代码与测试；
-- 可审查的 diff；
-- `08-verification-report.md` 持续证据；
-- 需要时更新设计和决策记录；
-- 小而单一目的的提交。
+### 9.1 发布 DAG，而非固定顺序
 
----
+`staging`/`production` 先建立节点和依赖，例如 build、publish contract、consumer tolerant、expand schema、deploy provider、backfill、enable、observe、contract cleanup。实际顺序由安全不变量推导：
 
-## 步骤 10：完成跨组件集成
+- 任一时刻旧/新 reader 与 writer 的兼容组合；
+- request producer 不早于 receiver 接受，response/event producer 不早于 consumer 容忍；
+- migration/回填可暂停、重试、校验和恢复；
+- 不可逆节点前置备份/PITR、审批和停止条件；
+- 每节点都有验证、补偿或 roll-forward。
 
-### 目标
+因此不能把 `deploy → migrate`、`migrate → deploy` 或其他固定模板当通用答案。
 
-证明单个模块的绿色测试在真实组合中仍然成立。
+### 9.2 G5 Release Authorized
 
-### 要做什么
+G5 subject 包含 `release_digest`、目标环境、目标账号、精确制品、配置/权限、DAG、灰度阶段、指标阈值、观察窗口、kill switch、回滚/前向修复和执行负责人。它的 environment 必须与 Target 一致，`account_ref` 必须等于 authorization account；release/rollback evidence 也必须绑定同一 environment、account 和 artifact refs，rollback ref 指向真实演练 evidence。G5 通过后，每个真实外部动作仍按 authorization packet 执行和留证。
 
-1. 根据依赖顺序同步不可变契约和生成物。
-2. 执行 provider/consumer conformance。
-3. 运行数据库、队列、sidecar、Runtime 或第三方 sandbox 集成。
-4. 验证 trace、错误传播、取消和重试。
-5. 验证 unknown 字段、enum、事件和版本不兼容路径。
-6. 运行关键用户 E2E。
-7. 检查所有仓库生成前后状态。
+### 9.3 G6 Outcome Verified
 
-### 输出
+发布命令 exit 0 只说明命令返回，不说明服务 ready 或用户结果正确。G6 必须与当前 G5 的 `release_digest`、artifact refs、environment 和 account 精确连续，并基于目标环境真实 evidence：smoke、业务结果、错误/延迟/资源/成本、安全审计、适用 AI 指标、观察窗口及事件处置。所有 G6 Evidence 必须在当前有效 G5 之后；时间链满足 `release_execution.finished_at ≤ smoke.started_at`、`smoke.finished_at ≤ observation/owner_acceptance|outcome_metric.started_at`，且每个实际使用的 kind 分别覆盖全部 AC。未完成观察时状态保持 `pending/in_review`，不得提前关闭。G6 通过后才生成 Summary；Summary 不是 G6 证据。
 
-| 文档 | 作用 | 如何生成 |
-|---|---|---|
-| Integration Evidence | 证明跨边界真实组合工作 | 记录实际环境、版本、命令、日志摘要和结果 |
-| Compatibility Matrix | 证明部署窗口内版本组合可用 | 测试旧/新 producer、consumer、reader、writer |
+## 10. Evidence 与 Decision 质量
 
-### 退出门禁
+### Evidence 必须可复现
 
-- 不用 mock-only 测试冒充集成完成；
-- 跳过的 sibling、数据库、Runtime 或 sandbox 检查明确标记；
-- 端到端失败可以通过 trace 定位。
+至少记录：稳定 ID、kind、被验证 subject、repository/cwd、完整命令或工具动作、环境、开始/结束/记录时间、完整代码/制品版本、工具版本、exit code、`passed|failed|not_run` 和日志/artifact 引用。时间必须满足 `started_at ≤ finished_at ≤ recorded_at ≤ 当前合理时间`；被 passed Decision 引用的成功证据必须声明至少一个 immutable URI、digest，且 `retention_until` 不早于 Decision 的 `valid_until`。Evaluator 校验元数据及绑定；URI 可访问性与 artifact bytes/digest 的一致性由受保护 CI/审批面外部核验并出具 receipt。
 
----
+证据有层级边界：
 
-## 步骤 11：独立审查与加固
+- lint 不能证明业务行为；
+- unit 不能证明跨服务集成；
+- mock E2E 不能证明真实依赖；
+- breaking check 不能证明语义兼容；
+- Review 不能证明测试已执行；
+- 部署成功不能证明 outcome。
 
-### 目标
+### Decision 必须绑定 subject
 
-打破实现对话中的共同盲点，主动寻找“能跑但不安全、不兼容或不可运维”的问题。
+至少记录：稳定 ID、Gate/instance、state、人类 actor、其在 manifest 已分配的真实 roles、时间、分段 subject digest、`evidence_refs`、有效期/失效条件、`attestation` 和适用的 `supersedes`。`passed` 必须让签名 key 的 actor/roles/Gate/Profile/Target/有效期 scope 全部匹配，并验证对“Feature ID + 精确 policy bytes digest + 除 attestation 外完整 Decision”的签名；未签名只算草案。所有 state（不只 `passed`）的 `decided_at` 都不得在未来，非空 `valid_until` 必须晚于 `decided_at`。一个批准只对当前 subject 有效，不能引用“最新版”“当前分支”或 floating sibling。G3/G4 的 `code_refs` 逐仓包含 `sha + base_sha`；`controlled` G3 的 `static_analysis`，以及 G4 的 `review`、`security_review` 和适用 `data_review`，必须对每个 code ref 精确匹配 repository/code/base，不能用一仓结果覆盖多仓。
 
-### 推荐审查层次
+避免 SHA 自引用：绑定实现/契约/制品等被判断对象，不要求包含 decision 的治理提交引用自身 SHA。治理提交可以由外部 Git/CI provenance 追踪。
 
-1. Codex 自查当前 diff；
-2. 新会话/独立 Agent 只读审查；
-3. 领域 Reviewer 审查业务语义；
-4. Consumer Owner 审查兼容；
-5. 安全/数据/基础设施 Owner 条件性审查。
+## 11. 变更、失效与重新批准
 
-### 必查问题
+发生以下变化时先停止受影响工作：需求/AC、设计、风险/Profile、Target、仓库/consumer、boundary 语义、代码 SHA、制品 digest、依赖、环境、授权范围、关键证据或策略。
 
-- 是否真的满足每条验收标准；
-- 是否跨越仓库职责边界；
-- 是否存在越权、跨租户、PII 或 secret 泄漏；
-- 是否遗漏事务、幂等、并发和部分失败；
-- 是否对未知 enum/event 采取错误穷举；
-- 是否把固定响应、mock 或占位留在生产路径；
-- 是否手改生成物或复制 DTO；
-- 测试是否只证明实现本身，而未证明需求；
-- migration 是否可在滚动发布期间共存；
-- 日志、指标、告警和 runbook 是否能支撑故障定位。
+处理顺序：
 
-### 输出
+1. 更新 `feature.yaml` 当前声明和受影响文档；
+2. 在账本追加新 evidence，并追加 `stale` 或带 `supersedes` 的替代 decision；
+3. 由 evaluator 计算受影响 Gate/实例为 `BLOCKED` 或可重新送审；
+4. 从最早失效 Gate 开始重新批准；
+5. 只有新 authorization packet 生效后才继续执行。
 
-- 带严重级别、证据和复现方式的 review findings；
-- 修复提交；
-- 无法修复的已接受风险和批准记录。
+不得修改旧账本记录来维持绿色，也不得让后置 Gate 的旧批准遮蔽失效前置。
 
-### 退出门禁
+## 12. Legacy v1
 
-- P0/P1 问题清零；
-- P2 问题已修复或有 Owner、期限和跟踪项；
-- Reviewer 未发现通过降低门禁掩盖问题的行为。
+- v1 包只读保留，是历史材料，不是 v2 Gate 证据；
+- registry 固定四个历史包的 basename 与规范化 tree digest（相对路径 + 字节内容，忽略 `.DS_Store`，不依赖 mtime）；
+- 默认 checker 拒绝 v1；`--allow-legacy` 即使精确识别也保持 `valid=false` 和非零退出，只返回 `LEGACY_RECOGNIZED` inventory，不是 Gate PASS；
+- 新增 v1、目录改名、普通文件增删/重命名/改写或符号链接都会 fail closed；
+- 旧需求若继续开发，创建新 v2 Feature Package，通过只读引用关联旧包；
+- 不反向填造过去不存在的 baseline、evidence、decision、SHA 或批准；
+- 如需迁移事实，只复制可验证的当前事实并注明来源和重新验证状态。
 
----
+## 13. Changed-files 与 governance trust
 
-## 步骤 12：形成最终验证报告
+合并检查不能只证明“仓库里存在一个 v2 包”。target base 必须是 candidate head 的祖先；变更集合取 `merge-base(target base, head)...head`，但 merge-base 只用于 diff，不能替代 G2 的当前 target base。沿无 merge 的 first-parent 链，最后一个修改 Feature root 外普通路径的提交定义为 implementation commit C；C 后只能修改 evaluator 识别的 Package 管理文件，最终普通路径 tree 必须与 C 一致。G3/G4 code ref 绑定 C，签名账本可在后续 D 提交追加而不产生 head SHA 自引用；metadata-only diff 的 `code_sha=null`。报告同时给出 `target_base_sha`、`diff_base_sha`、`head_sha`、`code_sha`。
 
-### 目标
+每个实现路径必须能追到当前 Package、G2 Authorization 的 repository/path/current target-base ref，以及命中最具体 Slice path scope 的 G3（按仓策略也可要求 G4）。Feature 包内只允许 core 文件和 manifest artifacts，未声明路径与重复 v2 `feature.id` 都 fail closed。Evaluator 负责判断 Gate；changed-files checker 负责证明本次 diff 没有游离在这些边界之外。
 
-用一份可复核记录证明“代码完成”。
+base/head CI 模式用 lexical repo-relative path 从 target-base Git blob 读取 coverage policy 与 approval trust root，拒绝 symlink、tree、submodule mode；不能因 head worktree 的 `realpath` 把 repo 内信任源改判为外部文件。change-set v3 digest 还绑定 blob mode（`100644`/`100755`）。既有 v2 包按 target base→每个后续 commit 逐步比较 `decisions.yaml` 与 `evidence.yaml`：root identity 不变、entries 不得缩短、旧 entry canonical 值不变，只能尾部追加；因此“先追加、下一提交再改写”同样失败。这项历史保护先于 exemption。
 
-### 要做什么
+`approval-trust.yaml` 首 key/轮换以及下一轮会执行的 runtime TCB（workflow、framework scripts/schemas、gate/change/versioned policies、legacy pin、package/lock/workspace、pnpm hooks、`repos.yaml`）采用独立两通道。候选 change set 必须全部命中受保护 base policy 的 `external_digest_only`，管理员再在 PR 外把精确摘要写入 `CFD_FEATURE_DELIVERY_GOVERNANCE_DIGEST`；checker 对 trust root、coverage/gate policy、YAML/JSON 等执行适用的候选结构校验。普通 Feature、G4、exemption 和 head 自证都不能替代任一通道。Gate policy 演进必须把新 snapshot 与 active 切换作为一个隔离 TCB 变更；Package/ledger 不混入该变更，历史 Package 继续解析其不可变 snapshot，从而避免旧 base verifier 与新 digest 互相等待。
 
-1. 从干净工作区运行最终 lint/test/build/generate。
-2. 检查生成物漂移和完整 diff。
-3. 运行适用 integration、contract、E2E、安全、migration 和 Eval。
-4. 验证最小/目标视口与可访问性。
-5. 复核依赖、许可证、漏洞和制品内容。
-6. 确认没有 secret、真实 PII、调试后门和本地路径。
+首次接入时 base 尚无 policy，只允许与 bootstrap registry 完全一致的一次性 rewrite；摘要只规范化 exemption 自身的 `head_content_digest` 字段，policy 其余内容与所有候选文件字节都参与摘要。head policy 不能自证，管理员还必须在 PR 不可写的 repository variable `CFD_FEATURE_DELIVERY_BOOTSTRAP_DIGEST` 中预先 pin 同一摘要，workflow 映射为 `CFD_BOOTSTRAP_APPROVAL_DIGEST` 后才可通过。若 base 尚无该 workflow，head 新增的 `pull_request_target` 文件不会在本 PR 自动取得 base trust；必须由平台级 required workflow 或管理员从已审查的不可变 verifier 独立复算 pin。一次性 bootstrap 合并后，CI 永远优先使用 target-base 版本。
 
-### 输出文档
+required workflow 使用 `pull_request_target`，只 checkout target-base SHA 并核对 checkout commit，从该 base 执行 verifier/schema/policy；候选 PR ref 必须精确等于 event head，之后只作为 Git objects 解析，不 checkout、不执行 head package scripts。专用 GitHub App 的短期 token 从受分支限制的 `feature-delivery-trusted` Environment 签发，只具备 Commit statuses: write；默认 `GITHUB_TOKEN` 保持只读。workflow 向精确 head 发布独立 context `feature-delivery/trusted-coverage-status` 的 pending 与最终 success/failure。
 
-`08-verification-report.md`，至少包括：
+`edited` 事件覆盖 PR retarget，pending 在 App token 签发后立即写到 event head。Commit status 仍以 SHA 为键；禁止在旧状态尚未被新事件覆盖时跨 PR/base 复用同一 head，并始终启用 branch up-to-date。需要完全消除事件竞态时，改用专用 App webhook 或平台级 required workflow 执行同一 base-trusted 算法。
 
-- commit/tag/digest；
-- 环境和工具版本；
-- 命令与结果；
-- 验收标准映射；
-- 覆盖的失败路径；
-- 未执行项及原因；
-- 已知限制；
-- Reviewer 结论。
+该 workflow 当前只覆盖 `pull_request_target` 与精确 PR head，没有实现 `merge_group`。启用 merge queue 前必须先部署同等 base-trusted 的 `merge_group` verifier/status；在此之前保持 merge queue 禁用，否则 required context 缺失会 fail closed 并阻塞队列。
 
-### 退出门禁
+管理员在 branch protection 中只要求该独立 context，将 expected source pin 到专用 App，开启 require branches up to date，并禁止 bypass；不要把归属 base SHA 的 `Feature Delivery Coverage / base-trusted` job check 当 required。Environment 配置 `CFD_STATUS_APP_CLIENT_ID`、`CFD_STATUS_APP_PRIVATE_KEY`，bootstrap/governance variables 也必须由 PR 不可写的管理员面保护。token/status 发布失败时 required context 缺失，门禁 fail closed。显式 `--file` 只是本地诊断；每个 sibling 仓仍需安装自己的 base-trusted workflow 和保护规则。
 
-- 任何“通过”都能找到证据；
-- 工作区干净；
-- 未执行项不会被描述为已验证；
-- Definition of Done 通过。
+## 14. 可以使用的完成用语
 
----
+必须按证据精确表达：
 
-## 步骤 13：准备并执行发布
+- “结构校验通过，Gate 尚未批准”；
+- “G3/SLC-001 已通过，SLC-002 仍 blocked”；
+- “G4 Engineering Complete，Target 为 local_engineering，未发布”；
+- “G5 已批准，尚未执行发布”；
+- “已部署，G6 观察中”；
+- “G6 Outcome Verified，Feature 可关闭”。
 
-### 目标
-
-把代码安全地变成生产行为，并可以快速停止或回退。
-
-### 发布计划必须包含
-
-- 制品、版本、commit、tag 和 digest；
-- 合并、部署、migration 和功能启用顺序；
-- feature flag 与默认状态；
-- 配置、secret、权限和手工步骤；
-- 灰度范围和扩量条件；
-- 指标、日志、告警和 dashboard；
-- smoke 场景；
-- 回滚触发器、执行人、命令和数据处理；
-- 不可逆步骤和恢复方案。
-
-### 输出文档
-
-| 文档 | 作用 | 如何生成 |
-|---|---|---|
-| `09-release-and-rollback.md` | 发布运行手册和故障止损方案 | Codex 从设计和验证草拟，发布负责人填真实环境 |
-| Release Notes | 告知行为、兼容和限制 | 从 diff、契约、migration 和用户影响生成 |
-| Change/Approval Record | 记录谁批准何时发布 | 来自组织真实流程，Codex 不得伪造 |
-
-### 发布执行
-
-```text
-plan → review → backup/readiness → deploy → migrate → verify → enable
-→ observe → expand or rollback
-```
-
-不能因为部署命令退出码为 0 就宣布成功。必须检查 readiness、smoke 和关键指标。
-
-### 退出门禁
-
-- 回滚可执行且责任人在线；
-- 告警和 dashboard 在启用前可用；
-- 灰度成功标准与停止条件明确；
-- 生产变更获得真实批准。
-
----
-
-## 步骤 14：线上验证与关闭需求
-
-### 目标
-
-确认生产中的用户结果，而不只确认部署完成。
-
-### 要做什么
-
-1. 执行生产 smoke，避免真实高风险副作用。
-2. 观察错误率、延迟、资源、业务成功率和审计。
-3. 验证无越权、跨租户、重复执行和数据异常。
-4. 在灰度窗口内决定扩量、保持或回滚。
-5. 更新 runbook、架构、ADR、契约支持窗口和用户文档。
-6. 关闭临时 flag、兼容代码和例外时建立后续任务。
-7. 复盘实际问题和流程改进。
-
-### 输出文档
-
-`10-delivery-summary.md`：
-
-- 最终用户行为；
-- 发布版本与环境；
-- 验收结果；
-- 线上指标与观察窗口；
-- 回滚状态；
-- 已知限制与后续 Issue；
-- 文档与 Owner；
-- 正式关闭时间。
-
-### 完成定义
-
-只有在以下条件同时满足时，需求才算“全部开发完成”：
-
-- 需求验收完成；
-- 代码、测试、契约和文档合并；
-- 生产发布和 smoke 成功；
-- 关键指标稳定；
-- 审计与安全证据完整；
-- 回滚方案仍有效；
-- 遗留问题已明确归档而非隐藏。
-
----
-
-## 二、按风险裁剪流程
-
-| 变更类型 | 可以合并的材料 | 不能省略 |
-|---|---|---|
-| 纯文案/内部小改 | Brief + Requirements + Impact 可合并 | 验收、diff、验证、交付总结 |
-| 单仓内部逻辑 | Decisions/Design 可合并 | 影响分类、测试计划、验证、回滚 |
-| 公共 API/事件/SDK | 不建议合并 Contract 文档 | 权威源、基线、consumer、conformance、发布顺序 |
-| 数据库/migration | Design 与 Migration 可同文档 | 旧数据兼容、回填、回滚、集成验证 |
-| 高风险写操作 | 不裁剪 | 权限、审批、幂等、审计、安全测试 |
-| AI/Prompt/RAG | Design 与 Eval 可组合 | 固定数据/模型、基线、负向用例、质量阈值 |
-| Runtime/基础设施 | 使用专属升级/部署 runbook | 不可变来源、环境验证、观测、恢复 |
-
-裁剪应降低文档重复，不得降低工程证据。
-
-## 三、最常见的失败模式
-
-1. 只给 Codex 一句话，让它跨仓实现整个功能。
-2. 没有验收标准，最后用“看起来能用”判断完成。
-3. 根据文档声称能力存在，不检查真实代码。
-4. 先写实现，再补契约和 migration。
-5. 只测 happy path，遗漏权限、超时、取消和部分失败。
-6. 使用 mock 绿色冒充真实集成。
-7. 让 Codex修改测试以迁就错误实现。
-8. 手改生成文件或复制 DTO。
-9. 把 localStorage、日志或 fixture 当临时 secret 存储。
-10. 多仓同时硬切，没有兼容窗口。
-11. 发布前没有指标、告警和回滚触发器。
-12. 部署成功后不做业务 smoke 和观察。
-13. 把 Codex 的总结当成命令执行证据。
-14. 大范围格式化或重构掩盖业务 diff。
-15. 在 dirty worktree 上 reset、覆盖用户改动。
+禁止只写“完成”“生产就绪”“全部绿色”而不给 Target、Gate、instance、subject 与 evidence。

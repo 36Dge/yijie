@@ -1,127 +1,58 @@
-# {{FEATURE_ID}} 技术设计
+# {{FEATURE_ID}} — 技术设计
 
-## 1. 设计摘要
+| 元数据 | 值 |
+|---|---|
+| Purpose | 定义可实现、可验证、可撤回的方案及安全不变量 |
+| Authority | 本文权威描述技术方案；当前 Profile、Target、Gate 与 revision 以 `feature.yaml` 为准 |
+| 适用范围 | `standard`、`controlled` / 全部 Target；`lite` 在 Feature Brief 写最小设计 |
+| 完成时点 | G2 决策前；Boundary 专项在对应 G2C 前完整 |
 
-- 要解决的问题：TBD
-- 选择的方案：TBD
-- 关键约束：TBD
-- 明确不做：TBD
+> 运行结果与批准分别只写入 `evidence.yaml`、`decisions.yaml`；本文不复制状态或 SHA。
 
-## 2. 组件职责与依赖方向
+本文进入 G2 `build_digest`。Boundary 专项不混写在本文：`04-contract-change-plan.md` 是索引，每个 `boundaries/<BND-ID>.md` 独立进入其 `boundary_digest`。
 
-| Component/Repository | 职责 | 输入 | 输出 | 不负责 |
-|---|---|---|---|---|
-| TBD | TBD | TBD | TBD | TBD |
+## 1. 方案与组件
 
-```text
-TBD client
-  → TBD API/host
-  → TBD domain/connector
-  → TBD storage/external boundary
-```
+{{SOLUTION_AND_COMPONENTS}}
 
-## 3. 关键时序
+用最短文字说明选择、权衡、不负责内容，并按需增加
+`CMP-* | 仓库/组件 | 职责 | 输入/输出 Boundary | owner`。依赖只能指向能力/数据权威方，禁止复制第二权威源。
 
-### 正常路径
+## 2. 依赖 DAG
 
-1. TBD
+{{DEPENDENCY_DAG}}
 
-### 失败、取消与恢复
+每步使用 `DAG-* | code/contract/data/deploy/enable/cleanup | 动作 | requires | 完成判据 | 失败动作`。
+合并、迁移、部署、启用和清理由 DAG 决定，不固定 `deploy → migrate`，每个节点须可独立验证和撤回/前滚。
 
-1. TBD
+## 3. 时序、状态与不变量
 
-## 4. 状态模型
+{{SEQUENCES_STATES_INVARIANTS}}
 
-| 当前状态 | 事件 | 条件 | 新状态 | 副作用 | 非法处理 |
-|---|---|---|---|---|---|
-| TBD | TBD | TBD | TBD | TBD | TBD |
+只展开会改变验收或安全性的路径；状态行使用
+`ST-* | state | event/guard | next | side effect | 非法/重复处理`，不变量使用
+`INV-* | domain/auth/tenant/data/effect | 规则 | 服务端强制点 | 失败行为 | Test ID`。
+客户端隐藏、提示词或调用方自律不能替代服务端认证/授权、租户隔离、输入、secret、日志和审计控制。
 
-必须覆盖加载、空态、失败、超时、取消、断线、重试、重复、乱序和终态。
+## 4. 数据迁移（适用时）
 
-## 5. 领域模型与不变量
+{{MIGRATION_OR_NA}}
 
-| Entity/Value | Owner/tenant scope | ID/幂等键 | 不变量 | 生命周期 |
-|---|---|---|---|---|
-| TBD | TBD | TBD | TBD | TBD |
+涉及持久化时按 `expand → backfill → switch → contract` 说明旧/新 reader/writer、验证和撤回/前滚，
+并映射到 DAG；不得在一个不可回退节点中删旧格式、全量迁移并强制所有调用方切换。
 
-## 6. 数据与 Migration 专项
+## 5. 韧性、可观测性与预算
 
-- 是否涉及数据库/缓存/持久化：TBD
-- 结论：TBD；不涉及时写 `N/A + 理由`
+{{RESILIENCE_OBSERVABILITY_BUDGETS}}
 
-| Phase | Schema/Data change | Old app compatibility | New app compatibility | Validation | Rollback/roll-forward |
-|---|---|---|---|---|---|
-| Expand | TBD | TBD | TBD | TBD | TBD |
-| Backfill | TBD | TBD | TBD | TBD | TBD |
-| Switch | TBD | TBD | TBD | TBD | TBD |
-| Contract | TBD | TBD | TBD | TBD | TBD |
+只记录会阻断 Gate 的事务/并发/幂等、超时/重试、限流/降级/补偿、资源释放、信号与性能/成本上限；
+每项使用 `RES/OBS/BUD-* | 设计或指标 | 上限/停止条件 | Test/Baseline Evidence ID`。
 
-不得在同一不可回退发布中同时删旧字段、迁全量数据并硬切全部调用方。
+## 6. 配置、AI 与方案决策
 
-## 7. 一致性与韧性
+{{CONFIG_AI_AND_DECISIONS}}
 
-- 事务边界：TBD
-- 并发冲突：TBD
-- 幂等：TBD
-- 超时/取消：TBD
-- 重试/退避/上限：TBD
-- 限流/熔断/降级：TBD
-- 部分失败与补偿：TBD
-- 资源释放：TBD
+按需说明 Flag 默认/关闭行为与共存窗口；AI 功能补充固定 prompt/model/retrieval/tool ref、拒答/降级、
+注入/工具授权和 Eval ID。最后只引用技术、安全/数据及 ADR Decision ID，不在本文表示批准已发生。
 
-## 8. 安全设计
-
-- 认证入口：TBD
-- 资源级授权：TBD
-- 租户隔离：TBD
-- 输入验证：TBD
-- Secret/token 边界：TBD
-- PII/日志脱敏：TBD
-- 高风险审批：TBD
-- 审计：TBD
-
-## 9. 可观测性
-
-| Signal | 名称/字段 | 成功基线 | 告警阈值 | Runbook 动作 |
-|---|---|---:|---:|---|
-| Metric/Log/Trace/Audit | TBD | TBD | TBD | TBD |
-
-跨服务至少关联适用的 `trace_id`、`request_id`、`tenant_id`、`user_id`、`task_id` 和 session/thread ID。
-
-## 10. 性能、容量与成本
-
-| 项目 | 基线 | 目标/上限 | 测试方法 | 降级 |
-|---|---:|---:|---|---|
-| TBD | TBD | TBD | TBD | TBD |
-
-## 11. 配置、Feature Flag 与部署
-
-- Flag：TBD
-- 默认值：TBD
-- 安全关闭行为：TBD
-- 配置验证：TBD
-- 新旧版本共存窗口：TBD
-
-## 12. AI 功能专项
-
-- 是否改变 prompt/model/retrieval/tool schema：TBD
-- 固定版本：TBD
-- 结构化输出 Schema：TBD
-- 无答案/拒答：TBD
-- 提示注入和越权工具控制：TBD
-- Eval 计划引用：TBD
-- 非 AI 功能写 `N/A + 理由`。
-
-## 13. 方案比较
-
-| 方案 | 优点 | 缺点 | 风险 | 结论 |
-|---|---|---|---|---|
-| A | TBD | TBD | TBD | TBD |
-| B | TBD | TBD | TBD | TBD |
-
-## 14. ADR 与批准
-
-- ADR：TBD
-- 技术负责人：TBD
-- 安全/数据 Owner：TBD
-- 结论与日期：TBD
+`controlled` 还必须明确安全/数据 review 边界、walking skeleton、故障注入/恢复和不可逆节点的额外控制。

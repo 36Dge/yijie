@@ -1,106 +1,70 @@
-# {{FEATURE_ID}} 发布、灰度与回滚 Runbook
+# {{FEATURE_ID}} 发布与恢复 Runbook
 
-## 1. Release Manifest
+> **Purpose**：为精确制品—环境主体定义发布 DAG、安全不变量、停止与恢复。
+>
+> **Authority**：本文是计划；G5 主体/批准在 `decisions.yaml`，且 `passed` 必须由包外 trust root 验签；执行 journal 在 `evidence.yaml`。
+>
+> **适用 Profile / Target**：仅 `staging`、`production`；`local_engineering` 不生成。
+>
+> **完成时点**：G4 后、G5 前；主体或 DAG 改变时重新批准。
 
-| Component | Version/tag | Full commit | Artifact digest | Contract pin/generator | Environment |
-|---|---|---|---|---|---|
-| TBD | TBD | TBD | TBD | TBD | TBD |
+## 1. Release Subject 与不变量
 
-## 2. 发布前提
+- G5 Subject：{{RELEASE_SUBJECT_REQUIREMENTS}}
+- 安全不变量、检测信号与违反动作：{{SAFETY_INVARIANTS}}
 
-- [ ] G4 Code Complete 通过
-- [ ] Release artifact 可追溯且来自干净不可变 source
-- [ ] Config、secret、权限和容量准备完成
-- [ ] Migration/回填已在类生产环境演练
-- [ ] Dashboard、告警与 Runbook 已存在
-- [ ] Feature Flag 默认安全
-- [ ] 回滚责任人在线
-- [ ] 真实变更批准已取得
+Subject 必须绑定 `release_digest`、当前 G4 `engineering_decision_ref`、每个 repository 的 `sha + base_sha`、artifact digest/provenance、contract/generator pin、与 Target 相等的精确 environment/account/config/data state、rollback 或 roll-forward 主体、授权动作与窗口。每仓 `release_artifact` Evidence 必须把同一 code/base 连到同一制品；标签、分支、`latest` 或“当前版本”不够精确，任一字段变化使旧 G5 决策失效。
 
-## 3. 合并、部署、迁移与启用顺序
+不变量至少覆盖适用的身份/租户、不可逆数据、consumer 兼容、队列/缓存、secret/config、审计、Flag 安全默认值和资源上限。
 
-| Order | Action | Component/Environment | Operator | Preconditions | Verification | Rollback point |
-|---:|---|---|---|---|---|---|
-| 1 | TBD | TBD | TBD | TBD | TBD | TBD |
-
-代码合并、部署和功能激活是三个独立动作，不得混为一谈。
-
-## 4. Feature Flag
-
-| Flag | Default | Scope | Enable steps | Kill switch | Owner |
-|---|---|---|---|---|---|
-| TBD | off/on | TBD | TBD | TBD | TBD |
-
-## 5. Migration/Backfill
-
-| Phase | Command/job | Batch/lock controls | Validation | Pause/resume | Recovery |
-|---|---|---|---|---|---|
-| TBD | TBD | TBD | TBD | TBD | TBD |
-
-无数据库变化：`N/A + 理由`。
-
-## 6. 灰度计划
-
-| Stage | Scope/tenant/% | Observation window | Success criteria | Stop threshold | Decision owner |
-|---|---|---|---|---|---|
-| Internal | TBD | TBD | TBD | TBD | TBD |
-| Canary | TBD | TBD | TBD | TBD | TBD |
-| Expand | TBD | TBD | TBD | TBD | TBD |
-
-## 7. Smoke
-
-| Smoke ID | 用户路径 | 输入/租户 | 预期 | 避免真实副作用方式 |
-|---|---|---|---|---|
-| SMOKE-001 | TBD | TBD | TBD | TBD |
-
-## 8. 观测与告警
-
-| Signal | Dashboard/query | Baseline | Continue threshold | Stop/Rollback threshold | Owner |
-|---|---|---:|---:|---:|---|
-| 业务成功率 | TBD | TBD | TBD | TBD | TBD |
-| 错误率/延迟 | TBD | TBD | TBD | TBD | TBD |
-| 资源/队列 | TBD | TBD | TBD | TBD | TBD |
-| 安全/审计 | TBD | TBD | TBD | TBD | TBD |
-| AI 质量/成本 | TBD | TBD | TBD | TBD | TBD |
-
-## 9. 回滚决策
+## 2. 发布 DAG
 
 ```text
-触发停止阈值
-  → 停止扩量
-  → 关闭 Feature Flag / 隔离流量
-  → 判断仅回退应用是否安全
-  → 回退制品或执行 roll-forward
-  → 校验数据、队列与审计
-  → 重新 smoke 并持续观察
+{{RELEASE_DAG}}
 ```
 
-| Trigger | Immediate action | Code rollback | Data action | Verification | Escalation |
-|---|---|---|---|---|---|
-| TBD | TBD | TBD | TBD | TBD | TBD |
-
-## 10. 可执行命令与权限
-
-| Purpose | Exact command/control plane action | Required role | Expected output | Evidence location |
+| Step | 主体/动作 | 依赖与角色 | 成功/停止判据 | Undo 或 roll-forward |
 |---|---|---|---|---|
-| Deploy | TBD | TBD | TBD | TBD |
-| Disable | TBD | TBD | TBD | TBD |
-| Rollback | TBD | TBD | TBD | TBD |
+{{RELEASE_STEP_ROWS}}
 
-命令必须来自实际平台并经发布负责人确认；Codex 不得编造生产命令或 secret。
+合并、构建、配置、schema expand、backfill、consumer 更新、部署、流量切换、Flag 激活和 schema contract 是独立节点，按真实依赖排序；禁止固定套用 `deploy → migrate`。节点成功不自动授权下一节点。
 
-## 11. 回滚演练
+## 3. 操作与数据恢复
 
-| 日期 | Environment | Artifact/data versions | Steps | Result | Gaps |
-|---|---|---|---|---|---|
-| TBD | TBD | TBD | TBD | NOT RUN | TBD |
+- 权威命令/控制面、最小角色、secret 引用和 dry-run：{{OPERATIONS_AND_ACCESS}}
+- Reader/Writer 组合、批次/锁/限流、不可逆点与恢复：{{DATA_RECOVERY_PLAN}}
 
-## 12. 沟通、职责与批准
+命令必须来自真实平台或仓库 Runbook。本文不存 secret；Codex 不得推测生产命令、权限或环境标识。无法安全回滚时必须预先定义 roll-forward、修复和批准，不能假设回退制品即可恢复数据或外部副作用。
 
-| Role | Person | Contact path | Responsibility |
-|---|---|---|---|
-| Commander/Release/SRE/Business | TBD | TBD | TBD |
+## 4. 灰度、Smoke 与阈值
 
-| Approval | Approver | Decision | Time | Evidence |
+| Stage/Signal | Scope 与进入条件 | 最小窗口/样本 | Continue | Stop/Rollback |
 |---|---|---|---|---|
-| Go/No-Go | TBD | TBD | TBD | TBD |
+{{ROLLOUT_AND_SIGNAL_ROWS}}
+
+- Flag/流量控制、kill switch 与传播校验：{{TRAFFIC_CONTROLS}}
+- Smoke 用户路径、身份/租户、断言与副作用清理：{{SMOKE_PLAN}}
+
+阈值必须有分母、窗口、查询和数据延迟；至少覆盖适用的业务成功、错误/延迟、资源/队列、数据、安全/审计及 AI 质量/成本。没有报警不等于满足扩量条件。
+
+## 5. 停止与演练
+
+```text
+阈值或不变量违反
+  → 冻结扩量和不可逆动作
+  → 隔离流量并检查数据/事件/缓存/队列/外部副作用
+  → 执行制品回退、数据恢复、补偿或 roll-forward
+  → 复验不变量、Smoke 与观察窗口
+  → 新 Decision 决定继续或终止
+```
+
+- 触发器、恢复节点与升级路径：{{RECOVERY_TRIGGERS}}
+- 演练环境、故障注入与成功 oracle：{{DRILL_PLAN}}
+
+演练被跳过、环境不等价或恢复未完成时只能在 ledger 记录 canonical 值 `not_run`/`failed`，并在 `notes` 写明原因和补验证条件。
+
+## 6. Execution Journal
+
+每个 DAG 节点追加 Evidence record，绑定 Release Subject/Step ID、operator/授权、精确 action/environment、时间/工具/结果、前后制品/config/data、观察窗口与样本，以及失败/暂停/补偿关联 ID。Markdown 不维护第二份执行状态。
+
+G6 只消费 ledger 中与当前 G5 具有相同 `release_digest`、code refs、`engineering_decision_ref`、artifact/environment/account refs 的 release execution、smoke、observation 与 outcome evidence；Runbook 自身不能证明发布已发生。Delivery Summary 仅在 G6 有效通过后生成，不是 G6 输入。

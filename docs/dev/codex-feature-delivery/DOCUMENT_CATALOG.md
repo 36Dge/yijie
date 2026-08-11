@@ -1,34 +1,73 @@
-# 文档产物目录
+# 文档与机器产物目录
 
-这张表回答三个问题：什么时候生成、解决什么问题、事实从哪里来。Codex 可以起草内容，但不得生成业务批准、commit、tag、digest、测试结果或生产状态等不存在的事实。
+v2 只有三个事实层：当前声明、追加账本、解释性文档。相同事实只设一个权威位置，其他文件用 ID 引用，避免状态漂移。
 
-| 产物 | 生成时点 | 作用 | 生成方法 | 主要批准人 |
+## 机器权威源
+
+| 文件 | 性质 | 职责 | 禁止事项 |
+|---|---|---|---|
+| `gate-policy.yaml` | active 体系策略 | 新 Feature 使用的 Gate、Profile、Target、适用性、前置和失效规则 | 把 active 当成历史 Package 的浮动依赖；改 bytes 却不归档 |
+| `policies/<sha256>.yaml` | 不可变策略注册表 | 按原始 bytes SHA-256 保存 active 与历史 Gate Policy 快照 | 覆盖、删除、重命名快照；文件名 digest 与内容不一致 |
+| `approval-trust.yaml` | 外部审批信任根 | 受信 Ed25519 公钥、actor/role/Gate/Profile/Target 范围与有效期 | 从待审 head 自增 key 后自批；把私钥提交入仓 |
+| `change-coverage-policy.yaml` | diff 覆盖策略 | repo、Feature root、最低 Gate、protected governance path 与精确 exemption | 用 PR 自由文本或环境变量临时豁免；用 head policy 验证自身 |
+| `legacy-v1-allowlist.txt` | v1 只读 pin registry | 固定 basename 与规范化 tree digest | 把新 v1 加入“白名单”；修改历史包后重算 pin 掩盖漂移 |
+| `schemas/feature-package.schema.json` | 结构契约 | `feature.yaml` 字段、枚举和引用格式 | 用 Markdown 代替机器必填字段 |
+| `schemas/gate-policy.schema.json` | 策略契约 | Gate/Override/Profile/Target 的闭合字段、类型与安全关键必填项 | 删除或拼错控制字段后依赖运行时默认值 |
+| `feature.yaml` | 当前声明 | Feature 身份、Profile/Target、Owner、风险、仓库、boundary、slice 和 artifact manifest | 保存 Gate 状态或历史；复制 evidence/decision 内容 |
+| `evidence.yaml` | append-only 事实账本 | 命令、环境、时间、SHA、退出码、制品、日志和实际结果 | 预写未来结果；原地改写旧记录；用计划冒充执行 |
+| `decisions.yaml` | append-only 决策账本 | Gate 实例、decision、actor/roles、精确 subject、evidence、时间、期限、外部签名和失效关系 | Codex 自批；无 subject 的“同意”；仅写 `human` 不验签；伪造独立 Reviewer |
+
+机器 evaluator 对三者和策略做一致性判断：适用 Gate 只输出 `ELIGIBLE` / `BLOCKED`，policy 裁剪实例输出 `NOT_APPLICABLE`。`passed` 来自有效决策，不来自脚本自动写入。
+
+`scripts/policy-registry.mjs` 是 evaluator、签名器、Summary materializer 与生成器共享的策略解析入口；`tests/policy-registry.test.mjs` 固定 active/archive 字节一致、缺失/篡改拒绝和 active 切换后历史 Package/Decision 仍可验证的回归。
+
+### 避免 SHA 自引用
+
+决策绑定被判断对象，而不是“包含该决策记录的最终提交 SHA”。例如 G3 subject 绑定实现 commit、测试输入、契约 digest 和授权包版本；决策账本所在提交可另行追踪，但不要求其 SHA 出现在自身内容中。若 subject 变化，追加失效/替代记录，不覆盖旧记录。
+
+## Feature Package 文档
+
+| 产物 | 生成时点 | 唯一职责 | 主要事实来源 | 默认适用性 |
 |---|---|---|---|---|
-| `feature.yaml` | 步骤 0，持续更新 | 机器可读地索引 Owner、风险、仓库、不可变版本和门禁状态 | 脚本创建；从 Git、契约仓、CI 和发布平台回填真实值 | 技术负责人 |
-| `00-feature-brief.md` | 步骤 0 | 固定问题、价值、范围、非目标和成功指标 | 需求负责人给事实，Codex 结构化整理 | 需求负责人 |
-| `01-requirements.md` | 步骤 1 | 保存业务规则、状态、错误、数据和编号化 AC | 访谈/需求原文 → Codex 转为 Given/When/Then → 人确认 | 需求负责人 |
-| `02-impact-assessment.md` | 步骤 2 | 防止改错仓、漏 consumer 或基于想象设计 | Codex 只读扫描规则、代码、Git、CI、契约和调用链 | 技术负责人/仓库 Owner |
-| `03-decisions-and-risks.md` | 步骤 3 | 关闭安全、数据、架构、第三方和生产决策 | Codex列事实、选项与风险；有权 Owner 做选择并留证 | 架构/安全/数据 Owner |
-| ADR（条件性） | 步骤 3/5 | 保存跨团队、高成本、难回滚的架构决策 | 与 Accepted ADR 比对；Codex 起草；架构 Owner 接受 | 架构 Owner |
-| `04-contract-change-plan.md` | 步骤 4 | 固定权威源、语义、兼容方向、consumer 和发布顺序 | 从真实 Schema、owner、支持基线和生成器起草；逐 consumer 评审 | Contracts/Consumer Owner |
-| 契约 Schema 与生成物 | 步骤 9 的首个切片 | 成为机器可验证的跨边界真相源 | 步骤 4 先评审设计；建立基线后只改权威源，用锁定 generator 生成并检查 drift/breaking | Contracts Owner |
-| `05-technical-design.md` | 步骤 5 | 说明职责、数据流、状态、失败、安全、观测和恢复 | Codex 基于批准需求与真实代码起草；Owner 审查取舍 | 技术负责人 |
-| Migration Plan（在 05 中） | 步骤 5 | 保证新旧应用/数据共存，并能暂停、恢复、前向修复 | 读取实际 schema/migration；采用 expand/backfill/switch/contract | 数据库 Owner |
-| AI 行为设计（在 05 中） | 步骤 5 | 固定 model/prompt/tool/retrieval 边界和安全控制 | 从锁定版本与实际 runner 起草；禁止主观“试几次”定结论 | AI/业务 Owner |
-| `06-test-plan.md` | 步骤 6 | 先定义如何证明正确，建立 AC→风险→测试映射 | Codex从 AC/风险/设计提取矩阵；独立测试视角补反例 | 测试/技术 Owner |
-| Fixture/Dataset Manifest | 步骤 6 | 固定合成数据、canonical fixture 和 Eval 数据版本 | 在唯一权威位置创建，Feature 包只保存索引/引用 | 数据/测试 Owner |
-| `07-implementation-plan.md` | 步骤 7 | 将大需求拆成可验证、可回滚的 Codex 原子切片 | Planner 只计划不改代码；按 contract→provider→consumer→activation 排序 | 技术负责人 |
-| `08-verification-report.md` | 步骤 8–12，持续更新 | 防止口头“已通过”，保存 baseline、命令、退出码、SHA、AC 证据和独立审查 | 由真实终端/CI/Eval/测试输出回填；Codex 只总结，不伪造 | Verifier/Reviewer |
-| Review Findings（在 08 中） | 步骤 11 | 打破实现上下文的确认偏误 | 新会话或独立 Agent 只读审查完整 diff、调用链和证据 | 独立 Reviewer |
-| `09-release-and-rollback.md` | 步骤 13 | 控制制品、迁移、灰度、监控、停止和恢复 | 从目标环境真实配置、Dashboard 和控制面起草并演练 | 发布负责人 |
-| Release Notes/Approval | 步骤 13 | 说明用户影响并保存组织审批 | 从最终 diff/版本生成；批准来自真实流程 | 业务/发布负责人 |
-| `10-delivery-summary.md` | 步骤 14 | 保存实际生产版本、验收、观察、审计、遗留和关闭 | 从部署平台、监控、trace、审计和 Issue 系统汇总 | 需求/发布负责人 |
+| `00-feature-brief.md` | Intake | 问题、价值、范围、非目标、成功指标 | 需求 Owner | 全部 |
+| `01-requirements.md` | Scope | 编号化规则、AC/NFR、状态与错误语义 | 业务决定 | 全部 |
+| `02-impact-assessment.md` | 调查 | 仓库、baseline、size、依赖、边界、数据流、已有改动 | 只读代码/CI/Git 证据 | 全部 |
+| `03-decisions-and-risks.md` | 设计前后 | 选项、风险、Open Question 及决策 ID 索引 | `decisions.yaml` 与 Owner 输入 | standard/controlled；风险触发升级后按新 Profile 路由 |
+| `04-contract-change-plan.md` | Scope/G2 | Boundary ID 到独立 artifact 的导航索引；不承载共享语义 | `feature.yaml.boundaries[].artifact_id` | 有 Boundary 时 required；无实例时不 materialize |
+| `boundaries/<BND-ID>.md` | 该 G2C 前 | 一个 boundary 的权威源、兼容、consumer、版本与演进 | Schema/生成器/consumer 基线 | 每个已声明 boundary 独立一份 |
+| `05-technical-design.md` | G2 前 | 架构、状态、失败、安全、数据、观测与恢复 | 已确认需求和真实代码 | standard/controlled；复杂度触发升级后按新 Profile 路由 |
+| `06-test-plan.md` | G2 前 | AC/风险到验证层级、fixture、环境和判定阈值的映射 | 需求、风险与设计 | 全部；lite 使用精简内容 |
+| `07-implementation-plan.md` | G2 前 | Epic/slice、walking skeleton、依赖和 authorization packet 索引 | 设计与实际依赖 | 全部 |
+| `08-verification-report.md` | 实施期间 | 对 evidence 的可读解释、覆盖矩阵、缺口和 Review findings | `evidence.yaml` | 全部 |
+| `09-release-and-rollback.md` | G5 前 | 目标环境、发布 DAG、安全不变量、灰度、停止和恢复 | 真实制品与控制面 | staging/production；local 按需 |
+| `10-delivery-summary.md` | Target 终点有效通过后 | 机器绑定完整 terminal Decision record digest 的闭环导航；派生正文不是 Gate 证据 | 当前 manifest、账本和 terminal Gate | 初始 conditional；从 manifest/ledger canonical 重建并逐字校验；不是 G4/G6 输入 |
 
-## 文档生成的统一规则
+## 物理裁剪规则
 
-1. 先引用事实，再写结论：仓库、commit、文件、符号、命令、版本和 Owner 尽量精确。
-2. 区分 `Fact / Assumption / Unknown`；未知项不得被 Codex 自动补成业务规则。
-3. 条件性文档不能静默删除；写 `N/A + 理由`。
-4. 计划和事实分开：计划中的命令、tag、环境不能被写成“已执行”。
-5. 真实证据至少记录：时间、repository/cwd、完整 SHA、工具版本、命令、退出码、结果和日志/artifact 位置。
-6. 文档与代码发生冲突时，停止并重新确认权威源；不能让实现悄悄改变需求。
+1. 风险信号先决定最低允许 Profile；再由 `profile + target + 是否存在 Boundary` 决定最低产物集合。Boundary 类型决定独立规范内容，不绕过 Profile 路由。
+2. 实际文件由 `feature.yaml.artifacts` 索引；存在即必须满足相应模板，省略必须有策略允许的理由。
+3. 条件在实施中出现时，先更新 manifest 并生成新增文档，再继续；不能把缺失文档当隐含 `not_applicable`。
+4. Markdown 中不复制 Gate 当前状态、完整 evidence 或批准正文，只引用稳定 ID，避免多处漂移。
+5. 计划命令只写在 06/07/09；执行结果只进入 `evidence.yaml`，08/10 负责解释和汇总。
+
+`materialize-boundary.mjs <package> <BND-ID>` 只为已声明的 Boundary 建立独立规范，不复制一份全局 Contract 文档。`materialize-delivery-summary.mjs` 只在 Target 终点有效通过后运行，生成绑定 terminal Decision record digest 的严格 frontmatter；evaluator 从当前 manifest/ledger canonical 重建正文逐字校验，不把 `summary_body_digest` 当作唯一事实。Summary 生成后不手改；主体变化时先追加新 terminal decision，在受审查的变更中移除可由 Git 恢复的旧派生 Summary，再运行 materializer；脚本本身不覆盖已有文件。
+
+## Gate 与 digest 输入
+
+| Gate | Digest | 主要文档输入 |
+|---|---|---|
+| G0 | `intake_digest` | 00 |
+| G1 | `scope_digest` | 00–02 |
+| G2 | `build_digest` | Scope + 03/05/06/07 + 当前 baseline/依赖 |
+| G2C | `boundary_digest[ID]` | 该 `boundaries/<BND-ID>.md` |
+| G3 | `slice_digest[ID]` + code refs | 该 Slice 声明与对应 ledger Evidence；08 不作单 Slice Gate 输入 |
+| G4 | `engineering_digest` + code refs | 全部工程实例与 08 |
+| G5/G6 | `release_digest` + code/engineering-decision/artifact/environment/account refs | 09、当前 G4 与目标环境证据 |
+
+Markdown 完成度按上表的阶段检查；未到阶段的文档占位不阻塞早期 Gate。`--strict` 和 `lifecycle: completed` 要求全部适用文档、Gate 与终点摘要完整。
+
+## 记录最小字段
+
+一条 evidence 至少包含：稳定 ID、kind、subject、repository/cwd、完整命令或工具动作、开始/结束/记录时间、环境、代码/制品精确版本、exit code、`passed|failed|not_run`、日志或 artifact 引用。时间不得倒置或落在未来；被决策引用的成功 evidence 需有 digest 与未过期保留期的持久 artifact。`not_run` 必须有原因和补验证条件，且永不算绿色。
+
+一条 decision 至少包含：稳定 ID、Gate 与存在的 instance、`state`（Decision 枚举不含 `not_applicable`）、可追溯人类 actor、其在 manifest 已分配的真实 roles、decided_at、精确 `policy_digest`、分段 subject digest、evidence refs、有效期或失效条件、`attestation`，以及可选 `supersedes`。`passed` 的 attestation 必须由包外 trust root 中 scope 匹配的 Ed25519 key 验证；仅自报 actor/role 不成立。一个人可声明多个 roles，但不得声称不存在的独立人审；Codex Review 只作为 evidence 引用。失效或替代通过追加 `stale`/新记录表达，不发明 schema 外的 decision 值。

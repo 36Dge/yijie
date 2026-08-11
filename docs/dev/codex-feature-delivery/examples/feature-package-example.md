@@ -1,126 +1,181 @@
-# 简化示例：只读任务历史导出
+# V2 示例：任务列表按状态筛选
 
-> 这是演示文档如何串联的虚构示例，不代表任何真实仓库、接口、测试或发布结果。示例只展示内容质量，实际 Feature 必须从真实工具输出取得 SHA、命令和证据。
+> **Purpose**：展示一个 `standard + local_engineering` 小型 Feature 的声明、Boundary、Slice、Evidence、Decision 与 evaluator 关系。
+>
+> **Authority**：这是虚构教学快照，不是实际批准或完整物理 package；字段以 v2 policy/schema/templates 为准。
+>
+> **适用 Profile / Target**：`standard` / `local_engineering`。
+>
+> **完成时点**：快照停在 G2 已通过、G2C 具备决策条件但尚未批准。
 
-## 0. Brief
+## 1. 需求与物理形态
 
-- Feature ID：`FEAT-123`
-- 用户结果：有 `task:read` 权限的租户管理员可以把最近 7 天任务历史导出为 UTF-8 CSV。
-- 非目标：不支持定时导出、不跨租户、不导出请求/响应正文。
-- 成功指标：95% 的 10,000 行以内导出在 10 秒内完成；导出失败率低于 1%。
+`FEAT-204` 让有 `task:read` 权限的租户成员按 `running|succeeded|failed` 筛选任务；不改变默认列表，不发布到 staging/production。
 
-## 1. Requirements 与 AC
+真实目录由生成器创建。当前快照包含 core ledgers、`00`–`08` 的适用文档和独立 `boundaries/BND-001.md`；`04-contract-change-plan.md` 只导航该规范，不是共享 Contract 正文。以下两个文件缺席：
 
-| AC | Given | When | Then |
+- `09-release-and-rollback.md`：target 为 `local_engineering`，不适用；
+- `10-delivery-summary.md`：初始为 `conditional`，仅在终点 G4 通过后 materialize。
+
+本文只展示关键片段，不能复制为新的需求包。
+
+## 2. `feature.yaml` 关键声明
+
+```yaml
+schema_version: 2
+kind: FeaturePackage
+policy: {id: codex-feature-delivery/v2, version: 2.0.0, digest: "sha256:d55f4d0a53d2f7170b16bc84bcfca7c7c97aaa6a3791b2ce32f8561edac6bcfb"}
+
+feature:
+  id: FEAT-204
+  slug: task-status-filter
+  title: 任务列表按状态筛选
+  summary: 租户成员可选择一个允许状态并获得租户隔离结果
+  lifecycle: active
+  profile: standard
+  delivery_target: local_engineering
+  created_at: 2026-08-11
+  updated_at: 2026-08-11
+  owners:
+    accountable: duan.chengwei
+    role_assignments:
+      - actor: duan.chengwei
+        roles: [accountable_owner, requirement_owner, technical_owner, reviewer]
+
+classification:
+  risk: medium
+  data: internal
+  risk_factors: [contract_change]
+
+size: {class: medium, repositories: 3, boundaries: 1, acceptance_criteria: 3, slices: 4, estimated_active_days: 2}
+
+acceptance_criteria:
+  - {id: AC-001, statement: 筛选结果仅含本租户指定状态任务且保持分页语义}
+  - {id: AC-002, statement: 未提供 status 时行为与当前列表一致}
+  - {id: AC-003, statement: 非法 status 返回稳定错误且不执行查询}
+
+repositories:
+  - id: contracts
+    identity: {kind: managed, name: yijie-contracts, url: "https://github.com/36Dge/yijie-contracts.git", root: ../yijie-contracts}
+    path: openapi/internal
+    root_scope_justification: null
+    root_scope_exception_evidence_id: null
+    role: authority
+    baseline: {sha: 3333333333333333333333333333333333333333, evidence_id: EV-BASE-CONTRACTS-001}
+  - id: api
+    identity: {kind: managed, name: yijie-api, url: "https://github.com/36Dge/yijie-api.git", root: ../yijie-api}
+    path: src
+    root_scope_justification: null
+    root_scope_exception_evidence_id: null
+    role: producer
+    baseline: {sha: 1111111111111111111111111111111111111111, evidence_id: EV-BASE-API-001}
+  - id: web
+    identity: {kind: managed, name: yijie-desktop, url: "https://github.com/36Dge/yijie-desktop.git", root: ../yijie-desktop}
+    path: src
+    root_scope_justification: null
+    root_scope_exception_evidence_id: null
+    role: consumer
+    baseline: {sha: 2222222222222222222222222222222222222222, evidence_id: EV-BASE-WEB-001}
+
+boundaries:
+  - id: BND-001
+    type: generated_schema
+    impact: additive
+    owner: duan.chengwei
+    authority: yijie-contracts@3333333333333333333333333333333333333333:openapi/internal/task-api.openapi.yaml
+    producers: [api]
+    consumers: [web]
+    known_unknowns: [旧 consumer 忽略可选参数, 未知 enum 使用稳定错误 envelope]
+    artifact_id: ART-BOUNDARY-BND-001
+
+slices:
+  - id: SLC-001
+    title: 状态 enum 与纯验证规则
+    outcome: 非法状态在访问 repository 前失败
+    depends_on: []
+    boundary_ids: []
+    acceptance_criteria: [AC-003]
+    repositories: [api]
+    paths: [{repository: api, path: src}]
+    authorization_decision_id: DEC-G2-001
+  - id: SLC-002
+    title: Contract First 参数与生成兼容检查
+    outcome: 中央权威契约声明可选 status 且生成物通过兼容校验
+    depends_on: []
+    boundary_ids: [BND-001]
+    acceptance_criteria: [AC-002, AC-003]
+    repositories: [contracts]
+    paths: [{repository: contracts, path: openapi/internal}]
+    authorization_decision_id: DEC-G2-001
+  - id: SLC-003
+    title: 租户隔离 API 筛选
+    outcome: API 仅返回本租户匹配任务
+    depends_on: [SLC-001, SLC-002]
+    boundary_ids: [BND-001]
+    acceptance_criteria: [AC-001, AC-002, AC-003]
+    repositories: [api]
+    paths: [{repository: api, path: src}]
+    authorization_decision_id: DEC-G2-001
+  - id: SLC-004
+    title: Web 筛选交互
+    outcome: 用户可选择和清除筛选
+    depends_on: [SLC-003]
+    boundary_ids: [BND-001]
+    acceptance_criteria: [AC-001, AC-002]
+    repositories: [web]
+    paths: [{repository: web, path: src}]
+    authorization_decision_id: DEC-G2-001
+
+# 完整 manifest 还含 dependencies 与全部 artifact 声明；这里仅展示条件项。
+artifacts:
+  - {id: ART-CONTRACT, kind: contract_change_plan, path: 04-contract-change-plan.md, authority: index, applicability: required, reason: boundaries_present}
+  - {id: ART-BOUNDARY-BND-001, kind: boundary_spec, path: boundaries/BND-001.md, authority: normative, applicability: required, reason: boundary_BND-001}
+  - {id: ART-RELEASE, kind: release_and_rollback, path: 09-release-and-rollback.md, authority: normative, applicability: not_applicable, reason: local_engineering_target}
+  - {id: ART-SUMMARY, kind: delivery_summary, path: 10-delivery-summary.md, authority: summary, applicability: conditional, reason: materialize after G4}
+```
+
+## 3. 具体 Evidence 与 Decision ID
+
+真实 ledgers 保存完整 digest、subject、command、工具版本、时间和 artifact；这里用索引避免重复原始事实。
+
+| Evidence ID | kind | subject/result | 用途 |
 |---|---|---|---|
-| AC-001 | 管理员有 `task:read` 且租户有 50 条任务 | 导出最近 7 天 | CSV 恰好包含授权租户的 50 行、稳定表头和 UTF-8 编码 |
-| AC-002 | 用户无 `task:read` | 请求导出 | 返回统一拒绝错误，不生成文件，并记录拒绝审计 |
-| AC-003 | 存在其他租户记录 | 请求本租户导出 | 结果中无跨租户行，日志不含任务正文 |
-| AC-004 | 查询超过 10,000 行 | 请求导出 | 返回可识别限制错误，提示缩小时间范围 |
+| `EV-BASE-CONTRACTS-001` | baseline | `contracts@333…333 / passed` | G2 Contract authority baseline |
+| `EV-BASE-API-001` | baseline | `api@111…111 / passed` | G2 baseline |
+| `EV-BASE-WEB-001` | baseline | `web@222…222 / passed` | G2 baseline |
+| `EV-BND-001` | boundary_validation | `BND-001 / passed` | 使 G2C 具备决策条件，不自动批准 |
 
-## 2. Impact
+| Decision ID | Gate/instance | state | 绑定与授权 |
+|---|---|---|---|
+| `DEC-G0-001` | `G0/feature` | passed | 当前 `intake_digest`；允许影响分析 |
+| `DEC-G1-001` | `G1/feature` | passed | 当前 `scope_digest`；允许设计与测试计划 |
+| `DEC-G2-001` | `G2/feature` | passed | 当前 `build_digest` + 三条 baseline；精确授权 SLC-001..004/repository/base/path，禁止 deploy |
 
-- API 服务：新增只读导出 use case 和 handler。
-- 数据库：只增加参数化只读查询，不改 schema。
-- Web：新增导出按钮及 loading/error 状态。
-- 公共边界：新增响应类型 `text/csv` 和稳定错误，分类为 `additive`；需要确认 SDK/代理是否能接受非 JSON 响应。
-- 安全：资源授权、租户过滤、CSV 注入、敏感日志和导出审计。
+三条 `passed` 都包含由受保护 trust root 中 `duan.chengwei` key 生成的 `ed25519-v1` attestation；表格省略 signature/payload digest 只是为了可读性，不能据此构造真实账本。没有 G2C Decision。G2 先用一个有范围、期限和失效条件的 packet 授权四个 Slice；随后每个受影响 Boundary 单独过 G2C。只有引用该 Boundary 的 Slice 被 G2C 阻塞，无 Boundary 的 SLC-001 可在具备测试证据后独立流动。跨仓 schema 的唯一权威始终是 `yijie-contracts` 的不可变 ref，API/Desktop 不维护影子契约。
 
-这个步骤发现“返回 CSV 不是普通 JSON DTO”，因此不能仅凭“新增 endpoint”就宣称无兼容影响。
-
-## 3. Decisions/Risks
-
-| Decision/Risk | 结论/控制 |
-|---|---|
-| 同步还是异步 | v1 在 10,000 行内同步；超限拒绝，不隐式创建后台任务 |
-| CSV 公式注入 | 以 `= + - @` 开头的单元格按批准规则转义，并有测试 |
-| 敏感字段 | 不导出请求/响应正文，只导出 ID、状态、时间和安全摘要 |
-| 大查询 | 限制时间范围与行数，使用只读超时，记录资源指标 |
-
-## 4. Contract Plan
-
-- 权威源：公共 API Schema。
-- Producer：API 服务。
-- Consumers：Web 客户端、SDK、网关。
-- 顺序：API Schema 与 consumer 容忍测试 → provider 实现 → Web 启用。
-- 兼容证据：generate drift、supported baseline breaking、SDK 对 `text/csv` 的 conformance。
-
-## 5. Technical Design
+## 4. Evaluator 输出
 
 ```text
-Web export button
-  → authenticated API handler
-  → authorization + tenant-scoped export use case
-  → read-only repository with limit/timeout
-  → streaming CSV encoder
-  → audit event + metrics
+VALID: FEAT-204 profile=standard target=local_engineering
+DIGEST intake_digest=sha256:1010…1010 scope_digest=sha256:2020…2020 build_digest=sha256:3030…3030
+DIGEST boundary_digest/BND-001=sha256:4040…4040
+DIGEST slice_digest/SLC-001=sha256:5151…5151 slice_digest/SLC-002=sha256:5252…5252 slice_digest/SLC-003=sha256:5353…5353 slice_digest/SLC-004=sha256:5454…5454
+DIGEST engineering_digest=sha256:6060…6060 release_digest=sha256:7070…7070
+GATE G0 instance=feature state=passed eligibility=ELIGIBLE decision=DEC-G0-001
+GATE G1 instance=feature state=passed eligibility=ELIGIBLE decision=DEC-G1-001
+GATE G2 instance=feature state=passed eligibility=ELIGIBLE decision=DEC-G2-001
+GATE G2C instance=BND-001 state=pending eligibility=ELIGIBLE decision=none
+GATE G3 instance=SLC-001 state=pending eligibility=BLOCKED decision=none
+  - SLC-001 缺少成功测试 Evidence
+GATE G3 instance=SLC-002 state=pending eligibility=BLOCKED decision=none
+  - 前置 G2C/BND-001 未通过（pending）
+GATE G3 instance=SLC-003 state=pending eligibility=BLOCKED decision=none
+  - 前置 G2C/BND-001 未通过（pending）
+GATE G3 instance=SLC-004 state=pending eligibility=BLOCKED decision=none
+  - 前置 G3/SLC-003 未通过（pending）
+GATE G4 instance=feature state=pending eligibility=BLOCKED decision=none
+GATE G5 instance=feature state=not_applicable eligibility=NOT_APPLICABLE decision=none
+GATE G6 instance=feature state=not_applicable eligibility=NOT_APPLICABLE decision=none
 ```
 
-- Handler 只解析/鉴权/映射，不放业务规则。
-- Repository 查询必须带 `tenant_id`、时间范围和 hard limit。
-- Encoder 逐行写出，客户端取消时停止查询并释放资源。
-- 审计只写筛选范围、行数、结果和关联 ID，不写 CSV 内容。
-
-## 6. Test Plan
-
-| AC/Risk | 测试 |
-|---|---|
-| AC-001 | use case 单测 + repository 集成 + API E2E |
-| AC-002 | 未认证、缺权限、错误结构与拒绝审计 |
-| AC-003 | 两租户合成 fixture，验证查询和结果隔离 |
-| AC-004 | 10,000/10,001 边界 |
-| CSV 注入 | 属性/表格用例覆盖危险前缀、引号、换行和 Unicode |
-| 取消/超时 | 客户端取消，验证查询取消与资源释放 |
-| Contract | generate、breaking、SDK/网关 conformance |
-
-## 7. Implementation Slices
-
-1. `S1`：权威 Schema、canonical fixture、consumer 容忍测试。
-2. `S2`：纯 CSV encoder 与注入防护测试。
-3. `S3`：租户范围 repository 查询与集成测试。
-4. `S4`：use case、授权、限制和审计。
-5. `S5`：handler 与 API E2E。
-6. `S6`：Web loading/error/download 状态。
-7. `S7`：指标、告警、Runbook 和 feature flag。
-
-每个切片只允许修改列明模块，并在完成后执行局部测试、受影响模块测试、lint/typecheck/build 和完整 diff 审查。
-
-## 8. Verification（格式示意）
-
-| 结论 | 证据 | 结果 |
-|---|---|---|
-| AC-003 租户隔离 | `真实仓库命令应填在这里` | 示例中不声称 PASS |
-| 生成物无漂移 | `真实 generate + diff 命令应填在这里` | NOT RUN |
-| SDK 兼容 | `真实 conformance 命令应填在这里` | NOT RUN |
-
-真正的报告还应记录 CWD、完整 SHA、工具版本、时间、退出码和日志位置。
-
-## 9. Release/Rollback
-
-- 默认 flag 为 off；先内部租户 smoke，再 5%、25%、100%。
-- 观察导出成功率、p95、取消率、数据库读取时间、审计失败和跨租户拒绝。
-- 达到停止阈值时先关 flag；因为无 schema 写入，可以回退 API/Web 制品。
-- 发布前必须演练 flag 关闭和上一制品回退，不能只写“可回滚”。
-
-## 10. Delivery Summary
-
-最终关闭时应记录：
-
-- 实际 API/Web 完整 commit 和制品 digest；
-- 每条 AC 的生产或预生产证据；
-- 灰度窗口内真实指标；
-- 权限/租户/审计抽查；
-- 已知限制、后续异步导出 Issue；
-- G6 关闭批准。
-
-这个示例的关键不是 CSV，而是任何业务需求都能形成：
-
-```text
-用户结果
-→ 编号 AC
-→ 仓库/契约/风险
-→ 原子切片
-→ AC 对应的真实测试证据
-→ 灰度和回滚
-→ 生产观察与关闭
-```
+`VALID` 只表示结构有效；`ELIGIBLE` 只表示可以由 Gate Owner 决策。Evaluator 不替人批准。下一步是追加绑定当前 `boundary_digest[BND-001]` 的 G2C `passed` 决策，再分别实施和验收 Slice；local target 最终止于 G4，G4 通过后才生成 Summary，不能写成生产交付完成。

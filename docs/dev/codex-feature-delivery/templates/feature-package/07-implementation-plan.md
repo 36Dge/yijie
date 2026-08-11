@@ -1,93 +1,58 @@
-# {{FEATURE_ID}} 原子实施计划
+# {{FEATURE_ID}} 实施计划
 
-## 1. 实施原则
+> **Purpose**：把 Feature 拆成可独立验收和撤销、并被有界 G2 授权明确覆盖的纵向 Slice。
+>
+> **Authority**：本文定义稳定范围与依赖；当前授权、Gate、SHA 和证据只在 manifest/ledgers。
+>
+> **适用 Profile / Target**：全部 Profile 与 Target。
+>
+> **完成时点**：G2 前；每个 Slice 开工前确认它仍被当前有效 G2 Authorization Packet 覆盖。
 
-- 一次只完成一个可独立验证的行为；
-- 先建立失败证据，再做最小实现；
-- 不夹带无关重构、依赖升级或全仓格式化；
-- 每个仓库独立分支、提交、PR 和验证；
-- 范围或语义变化时回到需求/设计，而不是静默扩张。
+本文进入 G2 `build_digest`。G2 先以一个有界 Authorization Packet 授权整个 Feature 中明确列出的 Slice；随后 G2C 逐 Boundary 解锁依赖 Slice，G3 逐 Slice 验收实现。
 
-## 2. 依赖 DAG
+## 1. 粒度与顺序
 
-```text
-TBD contract
-  → TBD provider
-  → TBD consumer
-  → TBD activation
+- 单一用户结果及最小边界：{{FEATURE_GRAIN}}
+- 依赖 DAG：{{DEPENDENCY_DAG}}
+
+Epic、路线图或“完成整个模块”必须先拆为多个 Feature。Slice 应纵向产生可观察增量，不能只按 controller/service/database 横切。首个 Slice 优先成为 Walking Skeleton，真实贯通关键端口；mock 只能位于明确端口后且不得进入目标路径。
+
+## 2. Slice 计划
+
+| Slice | 用户增量与 AC | Boundary/Repo | 允许/禁止范围 | 前置 | Test IDs | 撤销策略 |
+|---|---|---|---|---|---|---|
+{{SLICE_ROWS}}
+
+按需增行。每个 Slice 对应独立 `G3/<SLICE_ID>`；一个 Slice 的证据或通过不能替代另一个。实际 diff 越界、夹带重构/升级/格式化或依赖未声明时必须停止。
+
+跨仓 producer/consumer 的版本 pin、兼容窗口和更新顺序，以及数据 expand/backfill/switch/contract 的真实依赖，都写进上表或 DAG；不得预设固定流水线。
+
+## 3. Slice 执行边界
+
+每次 Codex 实施任务引用 `decisions.yaml` 中当前有效、已由包外 trust root 验签的 G2 Decision ID，并从该有界 Packet 选择一个已授权 Slice 执行。一个 G2 Packet 可以覆盖多个明确列出的 Slice；不因此增加一轮逐 Slice 人工批准。执行提示至少带出：
+
+```yaml
+slice: {{SLICE_ID}}
+objective_and_inputs: {{OBJECTIVE_AND_INPUTS}}
+repository_and_base: {{REPOSITORY_AND_BASE_CONSTRAINT}}
+allowed_and_excluded: {{ALLOWED_AND_EXCLUDED_ACTIONS}}
+verification_and_handoff: {{VERIFICATION_AND_HANDOFF}}
+expiry_and_invalidation: {{EXPIRY_AND_INVALIDATION}}
 ```
 
-## 3. 实施切片
+至少在 base/spec/Boundary/风险/数据分类/允许路径/依赖主体改变或授权过期时重新授权。Codex 产品级 sandbox/approval 不等于项目 G2/G3/G5 授权。
 
-| Slice | 主要意图 | AC | Repository | 允许修改 | 禁止修改 | 前置 | 验证命令 | 回滚 |
-|---|---|---|---|---|---|---|---|---|
-| S1 | TBD | AC-001 | TBD | TBD | TBD | TBD | TBD | TBD |
+G2 Packet 必须以 `{repository,path}` 精确覆盖全部已授权 Slice scope，列出每仓 base ref、`environment: local_engineering`、`account: null`、data/budget、policy enum 中的 allowed/excluded capabilities、required evidence、stop conditions 和 `reauthorize_on`。`account: null` 表示它不授权任何真实外部账号；发布目标账号只能在新的 G5 授权中精确绑定。`.` 整仓 scope 需要 justification；`controlled`/高风险还需逐仓 exception Evidence。
 
-建议先完成最小 Walking Skeleton，再按纵向切片替换 mock；mock 必须位于明确端口后且不可进入生产路径。
+## 4. Review 与合并
 
-## 4. 跨仓顺序
+- 每个仓库分别记录 base/head、验证和 review；review 证据必须绑定精确 base/head；
+- commit 或 PR 数量不代表完成；只有有效证据和 `G3/<SLICE_ID>` 决策能形成通过；
+- 合并、部署、迁移、回填和激活是不同动作，分别按 DAG 授权；
+- 单人可承担多个角色，但实现、review 与决策记录仍需分开，不伪造独立人员。
 
-| 阶段 | Repository | Branch/base full SHA | 输出 | 下游 Pin | Owner |
-|---|---|---|---|---|---|
-| Contract | TBD | TBD | version/full commit/digest/generator | TBD | TBD |
-| Provider | TBD | TBD | TBD | TBD | TBD |
-| Consumer | TBD | TBD | TBD | TBD | TBD |
-| Activation | TBD | TBD | TBD | TBD | TBD |
+## 5. 变更控制与 G3
 
-## 5. Migration 实施序列
+用户行为/AC 变化回到 requirements；仓库/Boundary 变化回到 impact/contract；风险/数据/架构变化回到 risks/design/test；验证阈值变化回到 test plan。只追加新 Decision/Evidence，不改写历史。
 
-| Phase | 代码/数据动作 | 兼容要求 | 验证 | 停止/回滚点 |
-|---|---|---|---|---|
-| Expand | TBD | TBD | TBD | TBD |
-| Backfill | TBD | TBD | TBD | TBD |
-| Switch | TBD | TBD | TBD | TBD |
-| Contract | TBD | TBD | TBD | TBD |
-
-无数据库变化：`N/A + 理由`。
-
-## 6. 每个 Codex 任务的固定 Context
-
-```text
-Feature ID / Slice ID:
-角色：Planner / Implementer / Tester / Reviewer
-当前 Repository、Branch 与 Base Full SHA:
-权威输入路径与不可变版本:
-目标及对应 AC:
-允许修改目录:
-禁止修改目录:
-真实验证命令:
-证据输出位置:
-停止条件:
-最终报告格式:
-```
-
-## 7. Commit/PR 计划
-
-| Commit/PR | 单一目的 | Files/Repo | Test evidence | Cross-link |
-|---|---|---|---|---|
-| TBD | TBD | TBD | TBD | TBD |
-
-## 8. Slice 完成记录
-
-| Slice | Head full SHA | Actual diff | Test result | Review | Status |
-|---|---|---|---|---|---|
-| S1 | TBD | TBD | TBD | TBD | Pending |
-
-## 9. 变更控制
-
-以下变化必须回跳：
-
-| 变化 | 回到 |
-|---|---|
-| 用户行为/AC 变化 | `01-requirements.md` |
-| 仓库/边界变化 | `02-impact-assessment.md` |
-| 风险/权限变化 | `03-decisions-and-risks.md` |
-| 状态/接口语义变化 | `04-contract-change-plan.md` |
-| 数据/架构变化 | `05-technical-design.md` |
-| 测试阈值变化 | `06-test-plan.md` |
-
-## 10. 计划批准
-
-| 角色 | 姓名 | 结论 | 日期 |
-|---|---|---|---|
-| 技术负责人 | TBD | Approve/Reject | TBD |
+Evaluator 对每个 G3 实例检查：授权对当前 `slice_digest` 仍有效，前置 Slice 已通过，code refs 逐仓携带 `sha + base_sha` 并与成功测试 evidence 一致，AC 被覆盖；controlled static analysis 也逐仓匹配。本文不记录 G3 当前状态。

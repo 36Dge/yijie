@@ -1,0 +1,8 @@
+schema_version: 1
+kind: FeatureDeliveryApprovalTrust
+
+# 这是 Feature Package 之外的身份信任根。默认没有受信任审批人，因此任何
+# `passed` decision 都会 fail closed。用 init-approver-key.mjs 登记公钥；私钥
+# 必须保存在仓库之外。生产 CI 应从受保护的 base branch 或独立 secret/mount
+# 读取本文件，不能信任待审 PR 自己改写的 trust root。
+keys: []
