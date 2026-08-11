@@ -1,8 +1,26 @@
 schema_version: 1
 kind: FeatureDeliveryApprovalTrust
-
-# 这是 Feature Package 之外的身份信任根。默认没有受信任审批人，因此任何
-# `passed` decision 都会 fail closed。用 init-approver-key.mjs 登记公钥；私钥
-# 必须保存在仓库之外。生产 CI 应从受保护的 base branch 或独立 secret/mount
-# 读取本文件，不能信任待审 PR 自己改写的 trust root。
-keys: []
+keys:
+  - id: fd-engineering-2026-08-11
+    actor: 36Dge
+    roles:
+      - accountable_owner
+    gates:
+      - G0
+      - G1
+      - G2
+      - G2C
+      - G3
+      - G4
+    profiles:
+      - lite
+      - standard
+    targets:
+      - local_engineering
+    public_key_pem: |
+      -----BEGIN PUBLIC KEY-----
+      MCowBQYDK2VwAyEAm6Y4ipMn7uokW+CqCJmO84y398dSqFXHO0komj5+i1w=
+      -----END PUBLIC KEY-----
+    status: active
+    valid_from: 2026-08-11T12:04:16.223Z
+    valid_until: 2027-02-11T15:59:59.000Z
