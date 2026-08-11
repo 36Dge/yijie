@@ -1,96 +1,45 @@
-# {{FEATURE_ID}} 契约与兼容变更计划
+# {{FEATURE_ID}} — Boundary 索引
 
-## 1. Contract Impact 结论
+| 元数据 | 值 |
+|---|---|
+| Purpose | 导航每个 Boundary 的独立权威规范和 G2C 实例 |
+| Authority | 本文是 index，Boundary 当前声明以 `feature.yaml` 为准，语义以对应 `boundary_spec` 为准 |
+| 适用范围 | 至少一个已声明 Boundary / 全部 Target；无实例时 artifact 非适用且文件缺席 |
+| 完成时点 | 首个 Boundary materialize 时建立；G2 前索引与 manifest 一致 |
 
-- 分类：`TBD`（`none | additive | semantic | breaking`）
-- 理由：TBD
-- 边界：TBD
-- 业务/安全语义是否变化：TBD
+> 本文不得成为多个 Boundary 共享的契约规范，也不复制证据或 G2C 状态。每个已声明 Boundary 必须独占一个 `boundaries/<BND-ID>.md`。
 
-如果分类为 `none`，仍需填写第 1、2、9 节并说明其余各节 `N/A` 的理由。
+## 1. Boundary 导航
 
-## 2. 权威源与责任
-
-| 契约/边界 | 权威源类别 | 仓库与路径 | Owner | Producer | Consumers |
+| Boundary ID | Type / Impact | Manifest artifact ID | 独立规范 | Producer / 已知受支持 Consumers | Owner |
 |---|---|---|---|---|---|
-| TBD | central contract/private DB/runtime/third-party | TBD | TBD | TBD | TBD |
+{{BOUNDARY_INDEX_ROWS}}
 
-生成物、SDK、fixture、快照、handler 类型和数据库行都不能成为第二权威源。
+每行必须与 `feature.yaml.boundaries[]` 一致：`artifact_id` 指向唯一、`authority: normative`、`kind: boundary_spec` 的 artifact，路径固定为 `boundaries/<BND-ID>.md`。不得让两个 Boundary 共用同一 artifact，也不得让 Boundary 指向本索引。
 
-## 3. 语义设计
+无受影响 Boundary 时不 materialize 本索引，artifact manifest 保持策略允许的 `conditional|not_applicable` 及理由；不创建假 Boundary 或假 G2C 决策。
 
-### 请求
+## 2. 独立规范建立命令
 
-- 字段、默认值与约束：TBD
-- 认证、租户、权限：TBD
-- 幂等、分页、排序：TBD
-
-### 响应/事件
-
-- 字段、单位与空值：TBD
-- 错误码/错误结构：TBD
-- 顺序、重复、乱序和未知 variant：TBD
-
-### 审批与审计
-
-- 审批语义：TBD
-- 必需审计字段：TBD
-
-## 4. 兼容方向
-
-```text
-新 request/input：provider 先接受，consumer 后发送
-新 response/output/event：consumer 先容忍，producer 后发出
-breaking：expand/新版本 → 迁移 consumers → 切换 → 观测 → cleanup
+```bash
+node ./scripts/materialize-boundary.mjs <package> <BND-ID>
 ```
 
-| Version combination | Request | Response/Event | Expected | Test |
-|---|---|---|---|---|
-| old producer + new consumer | TBD | TBD | TBD | TBD |
-| new producer + old consumer | TBD | TBD | TBD | TBD |
+命令只对 manifest 已声明的 Boundary 创建对应规范。创建后补齐该文件的权威源、语义、consumer 支持基线、兼容矩阵、演进 DAG、恢复和验证计划。
+运行前先以约定 forward ref 声明 `artifact_id: ART-BOUNDARY-<BND-ID>`。短暂的未解析 forward ref 会被 evaluator fail-closed，不得提交或用于 Gate；materializer 原子创建文件/artifact 并回写同一 ID。
 
-## 5. 支持基线与 Breaking Check
+## 3. G2 与 G2C 边界
 
-| Baseline version | Full commit | Support window | Check command | Result/evidence |
-|---|---|---|---|---|
-| TBD | TBD | TBD | TBD | TBD |
+- G2 先绑定 `build_digest` 并授权整个 Feature 的有界构建计划。
+- G2C 后绑定单个 `boundary_digest`，只证明该 Boundary 已就绪。
+- 某 G2C 只解锁 `slices[].boundary_ids` 引用该 ID 的 Slice，不阻塞无关 Slice，也不扩大 G2 Authorization Packet。
+- 独立规范、权威源、consumer 基线或 generator pin 改变时，只使相关 G2C、依赖 G3 和后续集成决策失效。
 
-没有已发布基线时，使用治理目录登记的 fallback 完整 commit；禁止零基线放行。
+## 4. 一致性复核
 
-## 6. Generator 与下游 Pin
+- [ ] 索引中的 ID、type、impact、artifact ID 与 manifest 一致
+- [ ] 每个受影响 Boundary 的规范存在、在包内且不是符号链接
+- [ ] 每个 Boundary 独占 artifact/path，没有跨实例别名
+- [ ] 索引未复制规范语义、Evidence 结果或 Gate 当前状态
 
-| Consumer | Contract version/tag | Full commit | Digest | Generator/version | Owner |
-|---|---|---|---|---|---|
-| TBD | TBD | TBD | TBD | TBD | TBD |
-
-不得从 dirty worktree、floating sibling 或可移动引用构建发布产物。
-
-## 7. Fixtures 与 Conformance
-
-| Fixture | 唯一权威位置 | Producer test | Consumer test | 结果 |
-|---|---|---|---|---|
-| TBD | TBD | TBD | TBD | TBD |
-
-Feature 目录只引用 fixture；不要复制出第二套权威测试事实。
-
-## 8. 合并、部署、启用与清理顺序
-
-| 顺序 | 动作 | Repository/Owner | 前置证据 | 回滚点 |
-|---:|---|---|---|---|
-| 1 | TBD | TBD | TBD | TBD |
-
-## 9. 实际检查证据
-
-| 检查 | Command | CWD | SHA/版本 | Exit code | 结果 | 证据位置 |
-|---|---|---|---|---:|---|---|
-| generate | TBD | TBD | TBD | TBD | NOT RUN | TBD |
-| lint | TBD | TBD | TBD | TBD | NOT RUN | TBD |
-| test | TBD | TBD | TBD | TBD | NOT RUN | TBD |
-| breaking | TBD | TBD | TBD | TBD | NOT RUN | TBD |
-| conformance | TBD | TBD | TBD | TBD | NOT RUN | TBD |
-
-## 10. Consumer Owner 评审
-
-| Consumer/Owner | 结论 | 日期 | 证据/例外 |
-|---|---|---|---|
-| TBD | Approve/Reject | TBD | TBD |
+本文的勾选不产生批准；evaluator 计算实例资格，有权人只在 `decisions.yaml` 追加决定。

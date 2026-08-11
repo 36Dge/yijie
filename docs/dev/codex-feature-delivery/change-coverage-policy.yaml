@@ -1,0 +1,142 @@
+schema_version: 1
+kind: FeatureChangeCoveragePolicy
+
+# 本仓默认配置。兄弟代码仓必须在自己的 CI 中把 repo ID、base/head 和 required Gate
+# 传给复用 CLI；中央仓无法替代兄弟仓 required check。
+repository_id: yijie
+feature_root: docs/features
+required_gate: G3
+
+# 规则使用 segment-aware exact/prefix，命中时选最长路径且 exact 优先。普通文档、
+# 模板可由 controlled + G4（或精确 exemption）演进；下一轮会执行的 runtime TCB
+# 必须走隔离的仓库外 digest 通道，避免当前 Gate policy 自我批准造成升级死锁。
+protected_paths:
+  - path: .github
+    match: prefix
+    mode: controlled_g4_or_exemption
+  - path: .github/workflows
+    match: prefix
+    mode: external_digest_only
+  - path: .npmrc
+    match: exact
+    mode: external_digest_only
+  - path: .pnpmfile.cjs
+    match: exact
+    mode: external_digest_only
+  - path: docs/dev/codex-feature-delivery
+    match: prefix
+    mode: controlled_g4_or_exemption
+  - path: docs/dev/codex-feature-delivery/approval-trust.yaml
+    match: exact
+    mode: external_digest_only
+  - path: docs/dev/codex-feature-delivery/change-coverage-policy.yaml
+    match: exact
+    mode: external_digest_only
+  - path: docs/dev/codex-feature-delivery/gate-policy.yaml
+    match: exact
+    mode: external_digest_only
+  - path: docs/dev/codex-feature-delivery/legacy-v1-allowlist.txt
+    match: exact
+    mode: external_digest_only
+  - path: docs/dev/codex-feature-delivery/policies
+    match: prefix
+    mode: external_digest_only
+  - path: docs/dev/codex-feature-delivery/schemas
+    match: prefix
+    mode: external_digest_only
+  - path: docs/dev/codex-feature-delivery/scripts
+    match: prefix
+    mode: external_digest_only
+  - path: package.json
+    match: exact
+    mode: external_digest_only
+  - path: pnpm-lock.yaml
+    match: exact
+    mode: external_digest_only
+  - path: pnpm-workspace.yaml
+    match: exact
+    mode: external_digest_only
+  - path: repos.yaml
+    match: exact
+    mode: external_digest_only
+
+exemptions:
+  - id: EXC-FDV2-BOOTSTRAP-2026-08-11
+    owner: 段成威
+    rationale: 首次落地 Feature Delivery v2 框架、校验器和 CI 接线；当前基线没有 v2 包，不能用尚未存在的体系为其自身建立 G2/G3。
+    approval_reference: user-request/2026-08-11-codex-feature-delivery-rewrite
+    created_at: 2026-08-11T00:00:00+08:00
+    expires_at: 2026-09-30T23:59:59+08:00
+    one_time: true
+    # 必须与当前 rewrite 的完整 changed-file set 完全相等；digest 只规范化
+    # exemptions[].head_content_digest 自引用字段，policy 的其余语义内容全部入摘要。
+    # base 尚无 policy 时，仓库管理员还必须在 PR 外把同一 digest pin 到
+    # CFD_FEATURE_DELIVERY_BOOTSTRAP_DIGEST repository variable。
+    changed_files:
+      - .codex/config.toml
+      - .codex/prompts/dev.md
+      - .codex/prompts/review.md
+      - .codex/prompts/test.md
+      - .codex/tasks/fix-bug.md
+      - .codex/tasks/implement-feature.md
+      - .codex/tasks/refactor.md
+      - .codex/tasks/write-tests.md
+      - .github/pull_request_template.md
+      - .github/workflows/ci.yml
+      - .github/workflows/feature-delivery-coverage.yml
+      - AGENTS.md
+      - CONTRIBUTING.md
+      - README.md
+      - docs/dev/codex-development.md
+      - docs/dev/codex-feature-delivery/CODEX_PLAYBOOK.md
+      - docs/dev/codex-feature-delivery/DOCUMENT_CATALOG.md
+      - docs/dev/codex-feature-delivery/HANDBOOK.md
+      - docs/dev/codex-feature-delivery/MIGRATION_V1_TO_V2.md
+      - docs/dev/codex-feature-delivery/QUALITY_GATES.md
+      - docs/dev/codex-feature-delivery/QUICKSTART.md
+      - docs/dev/codex-feature-delivery/README.md
+      - docs/dev/codex-feature-delivery/approval-trust.yaml
+      - docs/dev/codex-feature-delivery/change-coverage-policy.yaml
+      - docs/dev/codex-feature-delivery/checklists/definition-of-done.md
+      - docs/dev/codex-feature-delivery/checklists/definition-of-ready.md
+      - docs/dev/codex-feature-delivery/checklists/production-readiness.md
+      - docs/dev/codex-feature-delivery/examples/feature-package-example.md
+      - docs/dev/codex-feature-delivery/gate-policy.yaml
+      - docs/dev/codex-feature-delivery/legacy-v1-allowlist.txt
+      - docs/dev/codex-feature-delivery/policies/d55f4d0a53d2f7170b16bc84bcfca7c7c97aaa6a3791b2ce32f8561edac6bcfb.yaml
+      - docs/dev/codex-feature-delivery/schemas/feature-package.schema.json
+      - docs/dev/codex-feature-delivery/schemas/gate-policy.schema.json
+      - docs/dev/codex-feature-delivery/scripts/approval-attestation.mjs
+      - docs/dev/codex-feature-delivery/scripts/check-all-feature-packages.mjs
+      - docs/dev/codex-feature-delivery/scripts/check-changed-feature-coverage.mjs
+      - docs/dev/codex-feature-delivery/scripts/check-feature-package.sh
+      - docs/dev/codex-feature-delivery/scripts/evaluate-feature-package.mjs
+      - docs/dev/codex-feature-delivery/scripts/init-approver-key.mjs
+      - docs/dev/codex-feature-delivery/scripts/legacy-v1.mjs
+      - docs/dev/codex-feature-delivery/scripts/materialize-boundary.mjs
+      - docs/dev/codex-feature-delivery/scripts/materialize-delivery-summary.mjs
+      - docs/dev/codex-feature-delivery/scripts/new-feature.sh
+      - docs/dev/codex-feature-delivery/scripts/policy-registry.mjs
+      - docs/dev/codex-feature-delivery/scripts/sign-decision.mjs
+      - docs/dev/codex-feature-delivery/templates/feature-package/00-feature-brief.md
+      - docs/dev/codex-feature-delivery/templates/feature-package/01-requirements.md
+      - docs/dev/codex-feature-delivery/templates/feature-package/02-impact-assessment.md
+      - docs/dev/codex-feature-delivery/templates/feature-package/03-decisions-and-risks.md
+      - docs/dev/codex-feature-delivery/templates/feature-package/04-contract-change-plan.md
+      - docs/dev/codex-feature-delivery/templates/feature-package/05-technical-design.md
+      - docs/dev/codex-feature-delivery/templates/feature-package/06-test-plan.md
+      - docs/dev/codex-feature-delivery/templates/feature-package/07-implementation-plan.md
+      - docs/dev/codex-feature-delivery/templates/feature-package/08-verification-report.md
+      - docs/dev/codex-feature-delivery/templates/feature-package/09-release-and-rollback.md
+      - docs/dev/codex-feature-delivery/templates/feature-package/10-delivery-summary.md
+      - docs/dev/codex-feature-delivery/templates/feature-package/boundary-spec.md
+      - docs/dev/codex-feature-delivery/templates/feature-package/decisions.yaml
+      - docs/dev/codex-feature-delivery/templates/feature-package/evidence.yaml
+      - docs/dev/codex-feature-delivery/templates/feature-package/feature.yaml
+      - docs/dev/codex-feature-delivery/tests/change-coverage.test.mjs
+      - docs/dev/codex-feature-delivery/tests/evaluator.test.mjs
+      - docs/dev/codex-feature-delivery/tests/gate-policy-schema.test.mjs
+      - docs/dev/codex-feature-delivery/tests/policy-registry.test.mjs
+      - docs/dev/codex-project-memory.md
+      - package.json
+    head_content_digest: sha256:583ecb6217e13a130dc2d628604c38e9389bfd0dcd78f43fca8742cd50965326

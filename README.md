@@ -115,6 +115,8 @@ AGENTS.md
 
 Codex 修改代码时必须遵循对应仓库的 `AGENTS.md`。
 
+元仓新需求的唯一交付入口是 [`docs/dev/codex-feature-delivery/`](docs/dev/codex-feature-delivery/README.md)。开始 Package 之外的实现前，必须使用其 `new-feature.sh` 创建 `schema_version: 2` Feature Package，并按 Profile、Target、G0—G6、逐 Boundary G2C、逐 Slice G3、Evidence 与签名 Decision 执行。`docs/features/` 中既有 schema v1 包只读，不得复制或把其 G2A/本地里程碑当作 v2 PASS。实现 PR 必须通过独立 status `feature-delivery/trusted-coverage-status`；兄弟仓仍需各自安装同等检查才能形成不可绕过门禁。
+
 ## 安全红线
 
 - 不得提交任何平台 token、secret、cookie、access key；

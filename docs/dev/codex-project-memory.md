@@ -4,7 +4,7 @@
 
 - 状态：Accepted
 - Owner：段成威
-- 最后更新：2026-08-01
+- 最后更新：2026-08-11
 - 适用范围：`yijie` 多仓项目的需求起草、调查、设计、实现、验证、评审与发布协作
 
 ## 1. 单人开发角色默认值
@@ -50,11 +50,11 @@ Codex 不得虚构段成威已经批准尚未展示或尚未确认的内容。�
 
 ## 3. 每次需求起草前的强制高质量协议
 
-Codex 在输出需求结论或开始修改文件前，必须完成以下检查。不能用“快速总结”代替真实调查。
+Codex 在输出实现结论或修改 Feature Package 之外的文件前，必须完成以下检查。创建 v2 Package 骨架和填写 Intake/Scope 不等于实现授权，不能用“快速总结”代替真实调查。
 
 ### 3.1 加载上下文
 
-1. 读取本文件、当前作用域的 `AGENTS.md`、Feature Delivery Handbook 和已有 Feature Package。
+1. 读取本文件、当前作用域的 `AGENTS.md`、`docs/dev/codex-feature-delivery/README.md`、`HANDBOOK.md` 和已有 Feature Package；新需求先由生成器建立 schema v2 骨架。
 2. 读取用户本轮请求、附件、视觉稿、已确认决策和前序未完成事项。
 3. 从 `repos.yaml` 确认可能受影响的仓库；进入仓库后重新读取该仓规则。
 4. 检查相关仓库的 branch、完整 HEAD、remote 和 `git status`，保护已有改动。
@@ -117,13 +117,17 @@ Codex 完成需求草案后必须自检：
 - 是否错误扩大到用户没有要求的业务能力；
 - 当前 Gate 状态是否与真实文档和验证证据一致。
 
-## 4. 开发与门禁原则
+## 4. Feature Delivery v2 开发与门禁原则
 
-- G0/G1/G2 未满足前，不开始正式业务代码实现。
-- `contract-impact != none` 时，按权威源类型完成适用的 G2A；不适用的公共 contracts 字段写 `N/A + 理由`，不得伪造 generator、tag 或 breaking 结果。
-- Codex 可以在 G2 后执行明确隔离的契约、migration 或本地持久化候选切片，但其余 provider/consumer 业务实现必须等待适用的 G2A。
+- 新需求只接受由生成器创建的 `schema_version: 2` Package；历史 v1 包只读，旧 `G2A` 结论不产生 v2 Gate 状态。
+- G0 允许建立 Intake 和只读调查边界；G1 固定范围、AC、风险、仓库与 Boundary；G2 以当前 `build_digest` 和有界 Authorization Packet 授权明确 Slice。
+- 修改 Package 之外的实现前，G0/G1/G2 及该 Slice 引用的全部逐 Boundary G2C 必须有效通过；没有 Boundary 的 Slice 不创建假 G2C。
+- 实施只能落在当前 packet 的 repository、base SHA、path、capability、environment、data 和 time scope 内；事实变化或范围扩大立即停止并重新授权。
+- 每个 Slice 的代码和证据以 G3 单独验收；全部适用实例、逐仓验证与结构化审查完成后才可通过 G4。
+- `local_engineering` 的终点是 G4；`staging|production` 还需 G5 发布授权和 G6 结果验证。Target 改变会使相关旧决策失效，不得复用历史状态。
+- Evidence 只登记真实执行事实；Decision 必须由 Package 外 trust root 验签。Codex 可以准备草案，不能签名或替人批准。
 - 测试、构建、视觉检查、集成、生产 smoke 和发布状态只根据真实命令与环境证据填写。
-- commit、push、tag、发布、生产迁移和外部写操作仍需要段成威的明确授权。
+- commit、push、tag、发布、生产迁移和外部写操作仍需要段成威针对精确目标的明确授权。
 
 ## 5. 长期记忆的使用边界
 
@@ -134,31 +138,16 @@ Codex 完成需求草案后必须自检：
 - Feature Package 是单个需求的权威交付记录；本文件不能替代需求内的具体决策和证据。
 - 如果工作方式发生长期变化，应更新本文件的状态、日期和变更内容，不依赖聊天历史维持隐含规则。
 
-## 6. 本地优先开发与生产安全补齐
+## 6. `local_engineering` Target 与生产激活
 
-易界当前允许在尚未购买云资源、未准备生产 IdP 和签名发布能力时，把安全基础需求登记为
-`Local Engineering Baseline Complete / Production Activation Blocked`。该状态只表示契约、
-服务端领域能力、consumer、默认关闭策略及本地合成验证足以支撑后续业务代码开发，不等于
-Code Complete、Production Ready、Delivery Complete 或发布授权。
+没有生产 IdP、云资源、签名或真实外部账户时，新需求应显式选择 `delivery_target: local_engineering`。这表示该 Package 只以 G4 为终点；G5/G6 由 policy 派生 `not_applicable`，不得把工程完成描述为已发布、Production Ready 或业务结果已验证。
 
-进入该状态后：
+生产前置缺口继续作为可追踪 blocker 或残余风险记录，并保持生产 feature flag、真实账号和外部副作用默认关闭。以后决定进入 staging/production 时，先把 Package Target 改为相应值、补齐新增适用产物和环境事实，让依赖旧 Target 的 Decision 按 evaluator 结果重新评估，再完成 G5/G6；不得沿用 v1 的 `Local Engineering Baseline Complete / Production Activation Blocked` 或历史 G2A 作为新 Target 的批准。
 
-- 可以继续开发首页、聊天、Tasks 等业务功能，并使用本地合成 identity、tenant、RBAC 和
-  capability 数据验证流程；
-- 每个新业务需求仍须建立自己的需求包并通过适用的 G0/G1/G2/G2A、测试与结构化审查；
-  FEAT-125 本地基线只解除对生产身份环境的等待，不是跳过后续需求门禁的通行证；
-- 身份与权限 feature flag 必须继续默认关闭，业务 API 的服务端授权、租户隔离和审计要求
-  不得用前端投影、mock 或本地里程碑替代；
-- 未完成的真实 IdP、签名 Keychain、跨仓 bearer、refresh-family、性能、监控、部署和回滚
-  证据必须作为可追踪的生产激活阻断项保留，不得写成已接受风险或 PASS；
-- 当段成威决定真实部署整个 yijie、购买/准备服务器数据库公网资源、选择生产 IdP，或准备
-  Desktop 签名发布时，必须先恢复完整生产级身份安全链路，复跑对应 S7/G4/G5/G6，之后
-  才能打开 feature flag、创建 release tag 或进行生产激活。
-
-FEAT-125 是该策略的首个实例：本地工程基线完成，S7 冻结到真实部署准备阶段；FEAT-124
-G4-001 与 FEAT-126 的 Tasks 服务端资源授权仍按各自生产门禁保持开放/阻断。
+FEAT-123—126 及相关 ADR 中的旧术语是只读历史 provenance，不回填为 v2。其已授权原范围可按 v1 收尾；后续若新增 Slice、实现范围、发布或风险决策，创建新的 v2 successor，并从当前代码和环境重新建立 baseline、Boundary、Slice、Evidence 和 Decision。
 
 ## 7. 变更记录
 
 - 2026-07-30：建立单人开发角色默认值和需求起草前的强制高质量协议。
 - 2026-08-01：增加本地优先里程碑规则；FEAT-125 本地工程基线完成后允许继续业务开发，完整生产级身份安全链路在真实部署前强制补齐。
+- 2026-08-11：迁移到 Feature Delivery v2；新需求使用 schema v2、逐 Boundary G2C、逐 Slice G3 和 Target 派生终点，v1 仅保留只读历史语义。

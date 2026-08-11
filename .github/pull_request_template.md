@@ -8,6 +8,21 @@
 
 -
 
+## Feature Delivery v2
+
+- Feature ID：
+- Package 路径（非需求变更写 `N/A + 理由`）：
+- Profile：`lite | standard | controlled | N/A`
+- Target：`local_engineering | staging | production | N/A`
+- 本 PR 目标 Gate / instance：
+- Decision ID：
+- Approval key ID / attestation payload digest：
+- Evidence ID / CI run：
+- Change coverage exemption：`N/A` 或 registry 中的精确 ID（不能只写自由文本理由）
+
+`ELIGIBLE` 不等于批准；只有绑定当前 subject、且由受保护 base trust root 验签的有效 `passed` 决策可以作为 Gate 结论。仅写 `actor.type: human` 不能认证身份。历史 v1 包只读，不复制为新需求起点。
+CI 会把 base...head 的每个变更路径映射到 v2 Package 的当前 G2 repository/path/base 授权及所需 Gate/head SHA；Feature Package 自身文件单独校验。豁免只认受保护 base policy 中登记的精确文件集合、内容摘要、Owner、批准引用和期限。
+
 ## 影响范围
 
 - [ ] yijie-contracts

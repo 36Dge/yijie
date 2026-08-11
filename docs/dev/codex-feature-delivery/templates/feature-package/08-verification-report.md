@@ -1,97 +1,46 @@
-# {{FEATURE_ID}} 验证证据与独立审查报告
+# {{FEATURE_ID}} 验证索引
 
-> 只记录真实执行结果。未执行、被跳过、输出截断或仍在运行的检查必须写 `NOT RUN`，不能推断为通过。
+> **Purpose**：把 Claim、Slice、Boundary、Finding 与不可变 Evidence ID 连接起来。
+>
+> **Authority**：本文只做索引，不复制执行事实或声明 Gate；原始事实与决策分别在 `evidence.yaml`、`decisions.yaml`。
+>
+> **适用 Profile / Target**：全部 Profile 与 Target。
+>
+> **完成时点**：G4 前；代码或验证主体变化时追加新 Evidence 并更新引用。
 
-## 1. 验证上下文
+G3 按实例绑定 `slice_digest` 和逐仓 `sha + base_sha`，`controlled` 的 `static_analysis` 精确匹配该 G3 代码主体；G4 绑定全 repository code/base refs 与 `engineering_digest`，每仓最终测试、review、`controlled` 的 `security_review` 与适用 `data_review` 精确匹配 G4 主体。不同 Gate 或不同基线的证据不能拼接。
 
-| Repository | Branch | Full HEAD SHA | Worktree | Runtime/toolchain | 时间 |
-|---|---|---|---|---|---|
-| TBD | TBD | TBD | TBD | TBD | TBD |
+## 1. Coverage
 
-## 2. Baseline
-
-| ID | CWD | Command | Exit code | Result | 摘要/日志位置 | 历史失败 |
-|---|---|---|---:|---|---|---|
-| BASE-001 | TBD | TBD | TBD | NOT RUN | TBD | TBD |
-
-## 3. Slice 证据
-
-| Slice/AC | Head SHA | Command | Exit code | Result | Diff/证据 |
-|---|---|---|---:|---|---|
-| S1 / AC-001 | TBD | TBD | TBD | NOT RUN | TBD |
-
-## 4. 最终命令记录
-
-| Check ID | Repository/CWD | Command | Tool/version | Exit code | PASS/FAIL/NOT RUN | Evidence |
-|---|---|---|---|---:|---|---|
-| V-LINT | TBD | TBD | TBD | TBD | NOT RUN | TBD |
-| V-TYPE | TBD | TBD | TBD | TBD | NOT RUN | TBD |
-| V-UNIT | TBD | TBD | TBD | TBD | NOT RUN | TBD |
-| V-INTEGRATION | TBD | TBD | TBD | TBD | NOT RUN | TBD |
-| V-BUILD | TBD | TBD | TBD | TBD | NOT RUN | TBD |
-| V-GENERATE | TBD | TBD | TBD | TBD | NOT RUN | TBD |
-
-## 5. 契约与版本兼容
-
-| 结论 | Contract version/full commit/digest/generator | Command/Test | Result | Evidence |
+| Claim/Slice/Boundary | Test/实现引用 | Evidence IDs | Review Evidence ID | 失效条件 |
 |---|---|---|---|---|
-| 源结构与生成无漂移 | TBD | TBD | NOT RUN | TBD |
-| Supported baseline breaking check | TBD | TBD | NOT RUN | TBD |
-| Producer conformance | TBD | TBD | NOT RUN | TBD |
-| Consumer conformance | TBD | TBD | NOT RUN | TBD |
-| Runtime/第三方兼容 | TBD | TBD | NOT RUN | TBD |
+{{COVERAGE_ROWS}}
 
-## 6. AC → 实现 → 证据追踪
+Coverage 表示有效证据覆盖声明，不是“有一行”。计划、截图说明、口头结论、`not_run`、skip、截断输出、未结束任务、过期或主体不匹配的 Evidence 都不计入。
+被决策引用的成功 Evidence 还必须满足时间有序且非未来，至少声明一个带 immutable URI、digest 和覆盖决策有效窗口的 artifact。Evaluator 校验这些元数据及绑定关系；URI 可访问性与 artifact bytes/digest 的真实一致性由受保护 CI/审批面验证并出具可信 receipt。
 
-| AC/NFR | 实现文件/符号 | Test IDs | 实际命令/证据 | 结果 |
-|---|---|---|---|---|
-| AC-001 | TBD | TBD | TBD | NOT RUN |
+## 2. Baseline 与 Review
 
-## 7. 专项验证
+- Baseline/comparison Evidence 及差异解释：{{BASELINE_COMPARISON_REFS}}
+- Review Evidence、Finding 与复验引用：{{REVIEW_AND_FINDING_REFS}}
 
-| 专项 | 范围 | 环境/版本组合 | 结果 | Evidence |
-|---|---|---|---|---|
-| E2E | TBD | TBD | NOT RUN | TBD |
-| Security/tenant | TBD | TBD | NOT RUN | TBD |
-| Failure/resilience | TBD | TBD | NOT RUN | TBD |
-| Migration rehearsal | TBD | TBD | NOT RUN | TBD |
-| Performance | TBD | TBD | NOT RUN | TBD |
-| AI Eval | TBD | TBD | NOT RUN | TBD |
-| Visual/accessibility | TBD | TBD | NOT RUN | TBD |
+Review record 必须绑定 repository、精确 base/head、diff 范围和 reviewer。任一主体变化后需要新 Evidence ID。
 
-不适用项写 `N/A + 理由`，不得空白。
+Finding 保存稳定描述，不维护第二份 Open/Closed：P0/P1 必须有修复与复验证据；例外必须有 Decision ID、范围、Owner、期限和失效条件。单人开发可由同一人承担多角色，但不得伪造独立 reviewer。
 
-## 8. Diff 与制品完整性
+## 3. 专项与异常
 
-- [ ] `git status` 已逐仓检查
-- [ ] `git diff --stat` 范围符合计划
-- [ ] `git diff --check` 通过
-- [ ] 完整 diff 已审阅
-- [ ] 生成物来自锁定 generator
-- [ ] lockfile/依赖变化有意且已审查
-- [ ] migration 与发布顺序一致
-- [ ] 无 `.skip`、`.only`、弱化断言或关闭门禁
-- [ ] 无 secret、PII、本机路径、调试后门或临时文件
+- Contract、安全/租户、migration/resilience、performance、AI Eval、visual/accessibility 的适用证据或不适用依据：{{SPECIAL_COVERAGE_REFS}}
+- 未验证项、异常、残余风险及处置 Decision ID：{{GAPS_AND_EXCEPTIONS}}
 
-## 9. 独立 Review Findings
+一个 Gate instance 的证据不会因名称相似自动满足另一个实例。共享证据必须在 subject 中显式覆盖每个对象。没有有效 Evidence ID 的声明默认未证明。
 
-| Finding | Severity | 文件/位置 | 触发与影响 | 处理 | 复验 |
-|---|---|---|---|---|---|
-| TBD | P0/P1/P2/P3 | TBD | TBD | Open | TBD |
+## 4. G4 复核问题
 
-- Reviewer 是否独立于实现上下文：TBD
-- P0/P1 是否清零：TBD
-- P2 例外批准：TBD
+- 每个 Must AC、NFR、Slice、Boundary 和高风险项由哪些 Evidence ID 证明？
+- 命令证据是否含完整上下文且不是 ledger 值 `not_run`？
+- 哪些 baseline/review 因代码、依赖、生成物或环境变化而失效？
+- 每个 Finding 如何被修复、复验或通过有期限例外处理？
+- 哪些事实仍未验证，是否阻断对应 Gate？
 
-## 10. 未验证项与残余风险
-
-| Item | 原因 | 风险 | 补验证条件 | Owner | 是否阻断 |
-|---|---|---|---|---|---|
-| TBD | TBD | TBD | TBD | TBD | yes/no |
-
-## 11. 结论
-
-- Code Complete：TBD
-- 验证人：TBD
-- 日期：TBD
-- 结论依据：TBD
+本文不写“Code Complete”或批准结论；evaluator 计算资格，Gate Owner 只在 `decisions.yaml` 追加决定。

@@ -1,5 +1,17 @@
 # Task: Implement Feature
 
+## Feature Delivery v2 Context
+
+- Feature ID:
+- Package path: `docs/features/FEAT-...`
+- Schema version: `2`
+- Profile: `lite | standard | controlled`
+- Delivery target: `local_engineering | staging | production`
+- Current Gate / instance:
+- Current G2 Authorization Decision and expiry:
+- Required Boundary instances (`G2C/BND-NNN`):
+- Slice instance (`G3/SLC-NNN`):
+
 ## Background
 
 Describe the business or platform reason for the change.
@@ -30,6 +42,9 @@ Describe the concrete result expected from this task.
 
 ## Constraints
 
+- Do not modify implementation files until the generator-created v2 Package has valid G0/G1/G2, every Boundary required by the current Slice has valid G2C, and the current G2 Authorization Packet covers the exact repository, base SHA, path, capability, environment, data class and time window.
+- Codex may prepare Decision drafts and Evidence indexes, but it must not access approval private keys, sign for an owner, or turn `ELIGIBLE` into `passed`.
+- Legacy v1 packages and G2A labels are historical only and cannot authorize this implementation.
 - Follow `docs/dev/contract-first.md`; a downstream draft may run in parallel, but it
   cannot merge or be enabled before the contract is consumable and pinned.
 - Treat behavior, errors, auth, idempotency, enums and event semantics as contract
@@ -40,6 +55,9 @@ Describe the concrete result expected from this task.
 
 ## Acceptance Criteria
 
+- [ ] Feature Package is schema v2 and evaluates against its exact policy digest
+- [ ] Applicable G2C/G3 instances and G4 evidence bind current repository/code refs
+- [ ] Changed implementation paths pass `feature-delivery/trusted-coverage-status`
 - [ ] Contract impact classified with evidence
 - [ ] Applicable authority reviewed, immutable and pinned
 - [ ] Public-wire conformance/baselines or routed migration/data/runtime/deployment compatibility verified

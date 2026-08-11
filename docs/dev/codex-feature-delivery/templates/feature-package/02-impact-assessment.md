@@ -1,94 +1,59 @@
-# {{FEATURE_ID}} 现状扫描与影响评估
+# {{FEATURE_ID}} — 影响评估
 
-## 1. 调查基线
+| 元数据 | 值 |
+|---|---|
+| Purpose | 用证据确定仓库、依赖、Boundary、数据与风险影响 |
+| Authority | 本文权威描述分析结论；当前基线、Profile、Target 与 Gate 以 `feature.yaml` 为准 |
+| 适用范围 | 全部 Profile / Target |
+| 完成时点 | G1 决策前；baseline/依赖动态事实最迟在 G2 前闭合，相关分析也供后续逐 Boundary G2C 使用 |
 
-| Repository | Rules read | Branch | Full HEAD SHA | Worktree | Toolchain |
-|---|---|---|---|---|---|
-| TBD | AGENTS/README/SECURITY/... | TBD | TBD | TBD | TBD |
+> 调查命令、结果与观测 SHA 只进 `evidence.yaml`；本文引用 Evidence ID，不复制快照。
 
-## 2. 已验证的当前行为
+本文进入 G1 `scope_digest`；当前 baseline/依赖解决状态还进入 G2 `build_digest`，因此不得用一个不随当前事实变化的稳定声明绕过 G2 重新授权。
 
-| 事实 | 文件/符号/行号或命令 | 结果 | 事实/推断 |
-|---|---|---|---|
-| TBD | TBD | TBD | Fact |
+## 1. 调查与影响
 
-## 3. 仓库与组件影响矩阵
+{{DISCOVERY_AND_IMPACT}}
 
-| Repository/Component | 职责 | 影响 | 原因 | Owner | 预计改动 |
-|---|---|---|---|---|---|
-| TBD | TBD | direct/indirect/none | TBD | TBD | TBD |
+按需记录：
 
-对判定为 `none` 的相邻仓库，也应记录排除理由。
+- `SCAN-* | 仓库/组件 ref | 已读规则 | 调查问题 | Evidence ID`；
+- `FND-* | fact/inference | 结论 | Evidence ID/推断输入`；
+- `IMP-* | 仓库/组件 | direct/indirect/none | 原因或排除证据 | owner ref`。
 
-## 4. 调用链与数据流
+对相邻但无影响的仓库也要说明排除依据；推断不得写成观测事实。
 
-```text
-TBD producer
-  → TBD boundary
-  → TBD consumer
-  → TBD storage/external service
-```
+## 2. Boundary
 
-| 边界 | 方向 | 权威源 | Producer | Consumers | 失败传播 |
-|---|---|---|---|---|---|
-| TBD | request/response/event | TBD | TBD | TBD | TBD |
+{{BOUNDARIES}}
 
-## 5. Contract Impact
+每个跨进程、跨仓库、跨版本、持久化、重放或第三方边界使用独立 `BND-*`，记录
+`type | impact | authority ref | producer | 已知且受支持 consumers | 发现 Evidence ID`。
+类型仅为 `generated_schema`、`handwritten_protocol`、`database_format`、
+`runtime_third_party`、`semantic_only`；已声明 Boundary 的 impact 仅为
+`additive`、`semantic`、`breaking`；没有 Boundary 时保持 `boundaries: []`。
 
-- 分类：`TBD`（`none | additive | semantic | breaking`）
-- 选择最高风险分类的理由：TBD
-- 是否存在公开未知消费者：TBD
-- 请求方向兼容：TBD
-- 响应/事件方向兼容：TBD
-- 支持基线：TBD
+公开边界只承诺已知且受支持 consumer，不把“未发现”外推为“全部兼容”。
+G2 先授权实现范围；之后每个已声明 Boundary 分别通过 G2C，且只解锁依赖该 Boundary 的 Slice。
+每个已声明 Boundary 必须指向唯一 `boundary_spec` artifact；`04-contract-change-plan.md` 仅作导航索引。
 
-`none` 不是默认值；必须证明没有改变跨进程、跨仓、跨版本、持久化或重放边界的可观察行为。
+## 3. 数据、安全与依赖
 
-## 6. 数据与 Migration 影响
+{{DATA_RISK_DEPENDENCIES}}
 
-| 存储/Schema | Owner | 变化 | 旧数据影响 | 新旧 Reader/Writer | 回填/回滚 |
-|---|---|---|---|---|---|
-| TBD | TBD | TBD | TBD | TBD | TBD |
+只记录改变方案或 Profile 的迁移、reader/writer 共存、认证/租户/隐私、供应链、第三方版本、
+付费或不可逆副作用。每项须有 `DEP/RSK/BND-*` 与 Evidence ID；高风险强制 `controlled`。
 
-## 7. 安全与隐私影响
+## 4. 依赖 DAG 与 Size
 
-- 认证：TBD
-- 资源级授权：TBD
-- 租户隔离：TBD
-- 数据分类与脱敏：TBD
-- Secret/token：TBD
-- 高风险审批：TBD
-- 审计字段：TBD
-- 输入/文件/URL 风险：TBD
+{{DAG_AND_SIZE}}
 
-## 8. Runtime、模型与第三方影响
+用 `DAG-* | 交付物 | requires | blocks | owner | 完成判据` 表达真实依赖，不预设合并/迁移/部署顺序。
+G2 前必须完成 Feature Size、Profile 与拆分复核，并引用对应 Decision ID。
 
-| 依赖 | 固定版本/完整 SHA | 能力是否已验证 | 费用/限流 | Sandbox | Fallback |
-|---|---|---|---|---|---|
-| TBD | TBD | TBD | TBD | TBD | TBD |
+## 5. Spike
 
-## 9. 现有测试、构建与发布入口
+{{SPIKES_OR_NA}}
 
-| 目的 | 真实命令/配置来源 | 作用范围 | 已知限制 |
-|---|---|---|---|
-| TBD | TBD | TBD | TBD |
-
-## 10. 初步交付顺序
-
-### 合并顺序
-
-1. TBD
-
-### 部署顺序
-
-1. TBD
-
-### 功能启用顺序
-
-1. TBD
-
-## 11. 阻塞项与 Spike
-
-| ID | 未知项 | 允许的只读/隔离验证 | 禁止副作用 | Owner | 结论 |
-|---|---|---|---|---|---|
-| SPIKE-001 | TBD | TBD | TBD | TBD | Open |
+只保留阻塞性未知项，格式为
+`SPK-* | 未知项 | 安全验证 | 禁止副作用 | owner | due_at | open/resolved/blocked | Evidence/Decision ID`。

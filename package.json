@@ -9,8 +9,10 @@
     "pnpm": ">=11 <12"
   },
   "scripts": {
-    "lint": "node scripts/repo-manifest.mjs validate && node scripts/check-contract-governance.mjs",
-    "test": "node --test tests/*.test.mjs"
+    "lint": "node scripts/repo-manifest.mjs validate && node scripts/check-contract-governance.mjs && node docs/dev/codex-feature-delivery/scripts/check-all-feature-packages.mjs",
+    "test": "node --test tests/*.test.mjs docs/dev/codex-feature-delivery/tests/*.test.mjs",
+    "feature-delivery:test": "node --test docs/dev/codex-feature-delivery/tests/*.test.mjs",
+    "feature-delivery:changes": "node docs/dev/codex-feature-delivery/scripts/check-changed-feature-coverage.mjs"
   },
   "dependencies": {
     "yaml": "^2.9.0"

@@ -35,6 +35,8 @@
 - `docs/product/`：产品范围、卖家 SOP 和 MVP 边界；
 - `docs/dev/contract-first.md`：当前项目级 Contract First 操作规范；
 - `docs/dev/codex-project-memory.md`：段成威与 Codex 的长期协作角色、质量要求和需求起草前强制协议；
+- `docs/dev/codex-feature-delivery/README.md` 与 `HANDBOOK.md`：新需求唯一适用的 Feature Delivery v2 协议、Gate 语义和执行规则；
+- `docs/features/`：单个需求的权威 Feature Package；历史 schema v1 包只读，新需求只接受 schema v2；
 - `docs/dev/`：其它本地开发、测试、分支、调试和 Codex 协作说明；
 - `docs/security/`：安全模型、数据分类、秘密、审批和审计；
 - `docs/runbook/`：故障诊断和恢复入口；
@@ -48,7 +50,15 @@
 
 易界当前默认由段成威一人使用 Codex 开发。需求负责人、Product/Design 决策人、技术负责人、Reviewer 和发布负责人默认均为段成威；每个需求仍必须分别记录需求确认、技术批准、审查和发布批准，不能因角色由同一人承担而省略门禁或伪造“独立人工评审”。
 
-Codex 在起草任何新需求、设计或实施计划前，必须完整执行 `docs/dev/codex-project-memory.md` 的上下文加载、工程事实核对、场景推演、决策取舍和可追踪性自检。高质量要求必须体现为可验证的文档、代码事实与门禁证据，而不是仅声称“已经认真思考”。
+Codex 在起草任何新需求、设计或实施计划前，必须完整执行 `docs/dev/codex-project-memory.md` 的上下文加载、工程事实核对、场景推演、决策取舍和可追踪性自检，并读取 Feature Delivery v2 的 README 与 HANDBOOK。高质量要求必须体现为可验证的文档、代码事实与门禁证据，而不是仅声称“已经认真思考”。
+
+## 新需求的 Feature Delivery v2 强制入口
+
+凡新增或改变产品/平台能力、可观察行为、公共或私有 Boundary、数据或 migration 语义、风险处置或发布结果的工作，均视为新需求。开始 Package 之外的实现前，必须从需求所属 Git worktree 使用 `docs/dev/codex-feature-delivery/scripts/new-feature.sh` 创建 `schema_version: 2` Feature Package，并完整读取 `docs/dev/codex-feature-delivery/README.md`、`HANDBOOK.md` 和本项目长期协作记忆。禁止复制历史 v1 包或手工拼装模板作为新需求起点。
+
+创建和填写 v2 Package、执行无副作用事实调查属于 Intake/Scope 工作，不等于业务实现授权。G0 接受 Intake，G1 固定范围，G2 以当前 build subject 和有界 Authorization Packet 授权明确 Slice；修改业务或平台实现前，G0、G1、G2 以及当前 Slice 引用的每个 G2C Boundary 实例都必须由 evaluator 复核为有效 `passed`。每个 Slice 以 G3 单独验收，整体工程以 G4 完成；`local_engineering` Target 到 G4 终止，G5/G6 由 policy 派生 `not_applicable`，`staging|production` 必须继续到 G6。
+
+Codex 可以调查、起草 Package、追加真实 Evidence 和准备未签 Decision，但不得接触审批私钥、替有权人签名或把 `ELIGIBLE` 写成 `passed`。历史 v1 中的 `G2A`、`Local Engineering Baseline Complete` 等标签只保留审计语义，不自动映射、继承或替代任何 v2 G2C/G3/G4。所有 PR 的实现路径必须由同一 v2 Package 的当前授权和 Gate 证据覆盖，并通过 `feature-delivery/trusted-coverage-status`；中央元仓规则不能替代兄弟仓各自安装同等检查。
 
 ## Codex 多仓工作流程
 
@@ -180,5 +190,6 @@ make dev-down          # 停止 infra Compose并保留命名 volume
 - 当 `contract-impact != none` 时，按权威源路由提供完成证据：`yijie-contracts` 治理的公共跨仓 wire 边界包含契约 PR/tag/完整 commit、全部适用 breaking 基线（尚无发布版本时为已登记 fallback 完整 commit）、consumer pin、生成差异和 conformance；私有存储、部署接口、Runtime/第三方上游边界则包含对应不可变权威源、migration/data/runtime/deployment compatibility、受影响方验证及回滚；不适用的 contracts 字段明确写 `N/A` 和理由；所有路径都包含分级 Owner/consumer 评审或例外、验证命令和部署顺序；`none` 只需有可复核理由；
 - 各仓按依赖顺序完成独立生成、lint、测试和必要的集成验证；
 - 每个仓库的状态、提交、发布、迁移和回滚均可独立追踪；
+- 新需求具有 `schema_version: 2` Package，适用 Gate/instance、Evidence、签名 Decision、Authorization scope 和 changed-file coverage 可复核；v1 历史结论不算 v2 PASS；
 - 多仓脚本的网络、写入、readiness 和占位语义被准确报告；
 - 未执行或尚未接通的 Runtime、数据库、平台、模型、云端和端到端验证被如实列出。
