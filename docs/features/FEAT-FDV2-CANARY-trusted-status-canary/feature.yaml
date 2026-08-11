@@ -1,0 +1,153 @@
+schema_version: 2
+kind: FeaturePackage
+
+policy:
+  id: "codex-feature-delivery/v2"
+  version: "2.0.0"
+  digest: "sha256:d55f4d0a53d2f7170b16bc84bcfca7c7c97aaa6a3791b2ce32f8561edac6bcfb"
+
+feature:
+  id: "FEAT-FDV2-CANARY"
+  slug: "trusted-status-canary"
+  title: "Feature Delivery v2 trusted status canary"
+  summary: "Feature Delivery v2 trusted status canary"
+  lifecycle: proposed
+  profile: "lite"
+  delivery_target: "local_engineering"
+  created_at: "2026-08-11"
+  updated_at: "2026-08-11"
+  owners:
+    accountable: "段成威"
+    role_assignments:
+      - actor: "段成威"
+        roles:
+          - accountable_owner
+          - requirement_owner
+          - technical_owner
+          - reviewer
+          - release_owner
+
+classification:
+  risk: low
+  data: internal
+  # 闭集：contract_breaking/database_migration/restricted_data/irreversible_operation/
+  # regulated_data/production_security_boundary/contract_change/external_side_effect/
+  # ai_behavior_change/public_unknown_consumers
+  risk_factors: []
+
+size:
+  class: small
+  repositories: 1
+  boundaries: 0
+  acceptance_criteria: 1
+  slices: 1
+  estimated_active_days: 1
+
+acceptance_criteria:
+  - id: AC-001
+    statement: "Feature Delivery v2 trusted status canary 的最小可验证结果"
+
+repositories:
+  - id: "yijie"
+    # canonical checkout identity 与 repo 内 path 分离。
+    identity:
+      kind: current
+      name: "yijie"
+      url: "https://github.com/36Dge/yijie.git"
+      root: "."
+    path: "."
+    root_scope_justification: "初始单仓骨架；G2 前应缩到最小路径，或保留可审计理由"
+    root_scope_exception_evidence_id: null
+    role: implementation
+    baseline:
+      sha: null
+      evidence_id: null
+
+dependencies: []
+
+# 每个跨进程、跨仓库、跨版本、持久化或重放边界单独登记。
+# Lite Profile 不允许 boundary；非空 boundary 会创建同 ID 的 G2C Gate 实例。
+boundaries: []
+
+slices:
+  - id: SLC-001
+    title: "最小纵向切片"
+    outcome: "验证 AC-001"
+    depends_on: []
+    boundary_ids: []
+    acceptance_criteria: [ AC-001 ]
+    repositories: [ "yijie" ]
+    paths:
+      - repository: "yijie"
+        path: "."
+    authorization_decision_id: null
+
+# applicability 由 Profile、Target 和实际影响共同决定。
+# required 必须存在；conditional 只在条件触发后 materialize；not_applicable 不创建。
+artifacts:
+  - id: ART-BRIEF
+    kind: brief
+    path: 00-feature-brief.md
+    authority: normative
+    applicability: required
+    reason: core
+  - id: ART-REQUIREMENTS
+    kind: requirements
+    path: 01-requirements.md
+    authority: normative
+    applicability: required
+    reason: core
+  - id: ART-IMPACT
+    kind: impact_assessment
+    path: 02-impact-assessment.md
+    authority: normative
+    applicability: required
+    reason: core
+  - id: ART-DECISIONS
+    kind: decisions_and_risks
+    path: 03-decisions-and-risks.md
+    authority: normative
+    applicability: "not_applicable"
+    reason: "lite_profile"
+  - id: ART-CONTRACT
+    kind: contract_change_plan
+    path: 04-contract-change-plan.md
+    authority: index
+    applicability: "not_applicable"
+    reason: "lite_profile"
+  - id: ART-DESIGN
+    kind: technical_design
+    path: 05-technical-design.md
+    authority: normative
+    applicability: "not_applicable"
+    reason: "lite_profile"
+  - id: ART-TEST
+    kind: test_plan
+    path: 06-test-plan.md
+    authority: normative
+    applicability: required
+    reason: core
+  - id: ART-IMPLEMENTATION
+    kind: implementation_plan
+    path: 07-implementation-plan.md
+    authority: normative
+    applicability: required
+    reason: core
+  - id: ART-VERIFICATION
+    kind: verification_report
+    path: 08-verification-report.md
+    authority: index
+    applicability: required
+    reason: core
+  - id: ART-RELEASE
+    kind: release_and_rollback
+    path: 09-release-and-rollback.md
+    authority: normative
+    applicability: "not_applicable"
+    reason: "local_engineering_target"
+  - id: ART-SUMMARY
+    kind: delivery_summary
+    path: 10-delivery-summary.md
+    authority: summary
+    applicability: conditional
+    reason: materialize_after_terminal_gate
