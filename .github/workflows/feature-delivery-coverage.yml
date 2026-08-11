@@ -1,0 +1,116 @@
+name: Feature Delivery Coverage
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: feature-delivery-coverage-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  base-trusted:
+    if: ${{ !github.event.pull_request.draft }}
+    runs-on: ubuntu-latest
+    environment: feature-delivery-trusted
+    steps:
+      # This short-lived token belongs to a dedicated GitHub App whose only
+      # repository permission is Commit statuses: write. The protected
+      # environment must be restricted to protected target branches.
+      - name: Mint dedicated status publisher token
+        id: status_token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3
+        with:
+          client-id: ${{ vars.CFD_STATUS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.CFD_STATUS_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ github.event.repository.name }}
+          permission-statuses: write
+      - name: Publish pending candidate commit status
+        id: status_pending
+        env:
+          GH_TOKEN: ${{ steps.status_token.outputs.token }}
+          REPOSITORY: ${{ github.repository }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh api --method POST "repos/${REPOSITORY}/statuses/${HEAD_SHA}" \
+            -f state=pending \
+            -f context="feature-delivery/trusted-coverage-status" \
+            -f description="base-trusted coverage is running" \
+            -f target_url="$RUN_URL"
+      # pull_request_target is safe here only because every executable, schema,
+      # policy and lockfile remains at the protected target-base commit. The
+      # candidate ref is fetched as Git objects and is never checked out/run.
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        id: checkout_base
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          fetch-depth: 0
+          # Read-only GITHUB_TOKEN is retained only so private repositories can
+          # fetch the server-created PR ref; candidate content is never run.
+          persist-credentials: true
+      - name: Fetch candidate objects without checkout
+        id: candidate
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          EXPECTED_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          EXPECTED_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          actual_base_sha="$(git rev-parse --verify 'HEAD^{commit}')"
+          test "$actual_base_sha" = "$EXPECTED_BASE_SHA"
+          git fetch --no-tags origin "+refs/pull/${PR_NUMBER}/head:refs/remotes/pull/candidate"
+          actual_head_sha="$(git rev-parse --verify 'refs/remotes/pull/candidate^{commit}')"
+          test "$actual_head_sha" = "$EXPECTED_HEAD_SHA"
+      - uses: pnpm/action-setup@d15e628ca66d93ee5f352c71671a7bc6a97af5c9 # v6.0.8
+        id: setup_pnpm
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        id: setup_node
+        with:
+          node-version: 24
+          cache: pnpm
+      - name: Install protected-base dependencies without lifecycle scripts
+        id: install
+        run: pnpm install --frozen-lockfile --ignore-scripts
+      - name: Verify changed-file coverage with protected-base code
+        id: verify
+        env:
+          FEATURE_DELIVERY_BASE: ${{ github.event.pull_request.base.sha }}
+          FEATURE_DELIVERY_HEAD: refs/remotes/pull/candidate
+          CFD_BOOTSTRAP_APPROVAL_DIGEST: ${{ vars.CFD_FEATURE_DELIVERY_BOOTSTRAP_DIGEST }}
+          CFD_FEATURE_DELIVERY_GOVERNANCE_DIGEST: ${{ vars.CFD_FEATURE_DELIVERY_GOVERNANCE_DIGEST }}
+        run: >-
+          pnpm feature-delivery:changes
+          --base "$FEATURE_DELIVERY_BASE"
+          --head "$FEATURE_DELIVERY_HEAD"
+          --repo-id yijie
+          --allow-policy-bootstrap
+      - name: Publish independent candidate commit status
+        if: ${{ always() && steps.status_token.outcome == 'success' }}
+        env:
+          GH_TOKEN: ${{ steps.status_token.outputs.token }}
+          REPOSITORY: ${{ github.repository }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          CHECKOUT_OUTCOME: ${{ steps.checkout_base.outcome }}
+          PNPM_OUTCOME: ${{ steps.setup_pnpm.outcome }}
+          NODE_OUTCOME: ${{ steps.setup_node.outcome }}
+          INSTALL_OUTCOME: ${{ steps.install.outcome }}
+          CANDIDATE_OUTCOME: ${{ steps.candidate.outcome }}
+          PENDING_OUTCOME: ${{ steps.status_pending.outcome }}
+          VERIFY_OUTCOME: ${{ steps.verify.outcome }}
+        run: |
+          state=failure
+          description="base-trusted coverage failed"
+          if [[ "$CHECKOUT_OUTCOME" == success && "$PNPM_OUTCOME" == success && "$NODE_OUTCOME" == success && "$INSTALL_OUTCOME" == success && "$CANDIDATE_OUTCOME" == success && "$PENDING_OUTCOME" == success && "$VERIFY_OUTCOME" == success ]]; then
+            state=success
+            description="base-trusted coverage passed"
+          fi
+          gh api --method POST "repos/${REPOSITORY}/statuses/${HEAD_SHA}" \
+            -f state="$state" \
+            -f context="feature-delivery/trusted-coverage-status" \
+            -f description="$description" \
+            -f target_url="$RUN_URL"
