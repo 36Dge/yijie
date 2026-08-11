@@ -305,3 +305,11 @@ S10BF1 contract impact为private test/deployment tooling `semantic`，central G2
 | Contracts/API/Host/Runtime | 无文件 | 无实现影响 | 精确既有checkpoint保持；若实现发现必须修改任一仓，立即超出本corrective并停止 |
 
 本轮最高影响为`semantic`，但仅限不可发布的Desktop↔Infra private local deployment/test control与evidence interface；central G2A=`N/A`。实施形成Desktop `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd`与Infra `5fdba2b22b343237683f383f098fa2ffaea5bc54`两个local clean/not-pushed checkpoint；Contracts/API/Host/Runtime保持既定SHA且clean。离线阶段未启动Docker容器、真实组件、isolated live、fresh R8、业务case、S11、MiniMax、真实数据、Keychain或远端动作；历史run/evidence/retained volumes保持不变。Corrective Closure为Review Ready / Pending Owner Acceptance。
+
+## 18. DESIGN-126-020 / LIA-126-035 Startup Durability Corrective Impact
+
+LIA-126-034 run `41cdd1c7-e1a6-43ae-ac3a-706ff6989e99`在Desktop已持久化process identity后，60秒内既未产生`component_ready`也未产生closed `startup_failed`；Infra随后因`desktop_spawned` phase/descendant约束拒绝`orchestrator_control_timeout` failure evidence，runtime-log-scan v3又将Caddy structured metadata归入`unclassified_sensitive_field`。该run保持FAIL、永久不可复用，历史evidence与retained volumes未改变。
+
+本轮实现影响仍为`semantic`，且只覆盖不可发布的Desktop↔Infra private local startup/control/evidence interface。Desktop新增content-free native startup stages/watchdog、真实Tauri mock `AppHandle/setup` fixture、first-terminal-wins及FD4 flush/close-before-exit；Infra将immutable primary failure先于abort/business/cleanup持久化，接受pre-ownership API/fake/Desktop known scope，并用nested/value-aware Caddy分类及field-class摘要扩展runtime-log-scan v3。Contracts/API/Host/Runtime/Public Tasks wire、durable schema、Runtime pin、Compose pins和default flags均未改变，central G2A=`N/A`。
+
+Owner通过DEC-126-077接受DESIGN-126-020 / LIA-126-035 Corrective Closure。实现checkpoints为Desktop `713bd5a2985c491db5d6cfc3e31f8f509994427d`与Infra `222fd36a1555bd4787798ed95bf3b4e6b76fa3e1`，均local、clean、not pushed；其余实现仓保持既定SHA。该接受不构成isolated-live PASS，G3保持Partial，G4/G6 Pending。

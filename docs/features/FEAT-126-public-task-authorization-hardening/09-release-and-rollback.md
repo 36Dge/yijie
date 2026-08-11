@@ -377,3 +377,10 @@ DESIGN-126-008对未来corrective的回滚语义冻结如下：
 - 本接受只关闭repository corrective及environment-bound Compose gap，不产生release artifact，不构成isolated-live、G4或G6证据。
 - 真实Tauri `AppHandle/setup` direct fixture仍为P2/live；G3保持Partial，G4/G6 Pending。
 - 仅Governance形成一个local clean checkpoint。不得push、merge、tag、publish或deploy；后续isolated-live必须另行授权并固定新的七仓精确SHA。
+
+## 23. DEC-126-077 Corrective Acceptance and Rollback Boundary
+
+- 本接受只确认Desktop `713bd5a2985c491db5d6cfc3e31f8f509994427d`与Infra `222fd36a1555bd4787798ed95bf3b4e6b76fa3e1`的local repository corrective，不产生release artifact、deployment或feature activation。
+- 若需回滚，必须分别以可审查revert撤销Desktop startup terminal/watchdog与Infra failure durability/runtime-scan变更；不得只放宽phase validator、删除field-class摘要、恢复value-blind Caddy规则或复用失败run。
+- LIA-126-034历史evidence及retained volumes不可修改、删除或作为重试输入；不得prune或读取其业务内容。
+- G3保持Partial，G4/G6 Pending。真实isolated-live startup/ownership/readiness/abort/cleanup PASS必须基于新七仓SHA另行一次性授权；fresh R8、S11、MiniMax及所有远端/发布动作继续禁止。

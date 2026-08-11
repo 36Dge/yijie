@@ -586,3 +586,18 @@
 | Gate state | G3 Partial；G4/G6 Pending；`s10b_r8_executed=false` |
 | Next authorization | Governance形成包含本记录的local clean checkpoint后，任何isolated-live都必须使用新七仓精确SHA并取得另一份一次性Owner授权 |
 | Prohibited | no Docker lifecycle、isolated-live、fresh R8、business case、S11、MiniMax、real data/Keychain、default activation、push/merge/tag/publish/deploy |
+
+## 39. DEC-126-077 / DESIGN-126-020 / LIA-126-035 Corrective Closure Owner Acceptance
+
+| 项目 | Owner决定与证据 |
+|---|---|
+| Owner decision | 接受DESIGN-126-020 / LIA-126-035 Desktop+Infra unified Corrective Closure；关闭`S10B-BLK-013`；仅授权Governance记录和一个local clean checkpoint |
+| Preserved failure | LIA-126-034 run `41cdd1c7-e1a6-43ae-ac3a-706ff6989e99`保持FAIL、永久不可重试/续跑/复用；历史evidence与retained volumes保持不变 |
+| Fixed checkpoints | Desktop `713bd5a2985c491db5d6cfc3e31f8f509994427d`；Infra `222fd36a1555bd4787798ed95bf3b4e6b76fa3e1`；均local、clean、not pushed |
+| Corrective accepted | Desktop startup stage/watchdog、panic/page-load/frontend/first-IPC closed projection、real Tauri mock fixture、first-terminal/FD4 close；Infra primary-before-cleanup durability、pre-ownership known scope、FD4/child ordering、runtime-log-scan v3 field-class digests与Caddy nested value-aware classification |
+| Verification | Desktop targeted TS `12/12`、frontend `179/179`、default Rust `134 pass/3 ignored`、feature Rust `152 pass/3 ignored`、real Tauri fixture `1/1`、lint/clippy/build PASS；Infra BO2/BO3 targeted `51/51`、full `193/193`、lint/syntax/Compose `5.3.0` config semantic/diff PASS；独立只读review无open P0/P1 |
+| Governance verification | feature package default、strict、G2A、unique-key YAML、`pnpm lint`、`pnpm test`、checker Shell syntax及`git diff --check`全部PASS |
+| Contract impact | governance disposition=`none`；被接受实现为private non-publishable Desktop↔Infra `semantic`；central contracts/G2A=N/A，Contracts/API/Host/Runtime无需修改 |
+| Gate state | G3 Partial；G4/G6 Pending；`s10b_r8_executed=false`；真实isolated-live startup/ownership/readiness/abort/cleanup PASS仍待新的单次授权 |
+| Governance checkpoint | 包含DEC-126-077及上述精确实现SHA的本地commit；自身SHA在commit后报告，不在commit内容中自引用 |
+| Prohibited | no Docker lifecycle、isolated-live、fresh R8、business case、S11、MiniMax、real data/Keychain、default activation、push/merge/tag/publish/deploy or other remote operation |

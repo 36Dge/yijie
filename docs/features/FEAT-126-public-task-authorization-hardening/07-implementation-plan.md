@@ -610,3 +610,12 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 The slices are one corrective authorization and must be reviewed as a set. No Contracts/API/Host/Runtime changes are permitted. If a required fix escapes these files, stop and report contract-impact or repository scope expansion before editing.
 
 DEC-126-076已接受上述slice集合的Corrective Closure并关闭environment-bound Compose gap。真实Tauri `AppHandle/setup` direct fixture继续保留为P2/live；G3仍为Partial，G4/G6 Pending。包含本接受记录的新Governance checkpoint形成后，下一次isolated-live必须使用新七仓精确SHA并取得另一份一次性授权。
+
+## 35. DESIGN-126-020 / LIA-126-035 Corrective Exit
+
+1. LIA-126-034 run `41cdd1c7-e1a6-43ae-ac3a-706ff6989e99`保持历史FAIL且永久不可复用；不覆盖、补写或修改其evidence/retained volumes。
+2. Desktop只修改已授权driver/lib/frontend及targeted test，形成checkpoint `713bd5a2985c491db5d6cfc3e31f8f509994427d`；startup stage/watchdog、panic/page-load/frontend/first-IPC terminal、real Tauri mock fixture及FD4 ordering完成。
+3. Infra只修改orchestrator、BO2/BO3 tests及Caddy fixture，形成checkpoint `222fd36a1555bd4787798ed95bf3b4e6b76fa3e1`；primary failure durability、pre-ownership known scope、FD4 priority及runtime-log-scan v3 field-class分类完成。
+4. Desktop和Infra全部targeted/full/lint/build/syntax/Compose config/diff门禁PASS，独立只读review无open P0/P1；Contracts/API/Host/Runtime无需修改。
+5. DEC-126-077接受Corrective Closure并关闭`S10B-BLK-013`；Governance仅更新现有FEAT-126 package和feature.yaml，门禁通过后形成一个local clean checkpoint。
+6. checkpoint后停止。不得自动执行isolated-live、fresh R8、业务case、S11、MiniMax、Keychain、默认启用或任何远端动作；下一次live需基于新七仓精确SHA另行一次性授权。

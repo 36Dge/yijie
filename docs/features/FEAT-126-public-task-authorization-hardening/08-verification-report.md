@@ -1099,3 +1099,32 @@ Implementation checkpoints are Desktop `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd
 | Gate state | DESIGN-126-019 Complete；LIA-126-033 Corrective Closure Accepted；G3 Partial；G4/G6 Pending |
 | Runtime boundary | no Docker lifecycle、isolated-live、fresh R8、business case、S11、MiniMax、real data/Keychain or remote operation；`s10b_r8_executed=false` |
 | Next authorization | 任何后续isolated-live必须使用包含本记录的新Governance checkpoint和其余六仓精确clean SHA，并取得另一份一次性Owner授权 |
+
+## 48. LIA-126-034 Fourth Isolated-Live Failure Preservation
+
+| Evidence | Actual result |
+|---|---|
+| Run | `41cdd1c7-e1a6-43ae-ac3a-706ff6989e99`；授权已消费一次，永久不可retry/resume/reuse |
+| Fixed references | Governance `df64433fab03997b05bc5e1e814496c6486ed623`；Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`；API `451940b282d8dd3e232ed414bd44b0677897f4c4`；Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`；Desktop `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd`；Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`；Infra `5fdba2b22b343237683f383f098fa2ffaea5bc54` |
+| Startup failure | Desktop process evidence存在，但60秒内无`component_ready`或closed `startup_failed` FD4 frame；observed startup leaf为`orchestrator_control_timeout` |
+| Evidence failure | old `validateAttemptPhaseState`在Host/Runtime尚未启动时拒绝`desktop_spawned` API/fake/Desktop known scope，primary failure无法形成完整canonical failure/closure |
+| No-log finding | runtime-log-scan v3唯一命中`compose:feat126-s10-caddy` / `unclassified_sensitive_field`；离线审计确认需要nested/value-aware field classification与可解释field-class摘要，不读取或记录命中值/正文 |
+| Boundary | business cases disabled；Public Tasks/conversation/turn/provider calls=0；`s10b_r8_executed=false`；历史evidence和retained volumes保持不变 |
+| Disposition | `S10B-BLK-013`由后续DESIGN-126-020/LIA-126-035 corrective关闭；本失败本身不升级为PASS |
+
+## 49. DEC-126-077 / DESIGN-126-020 / LIA-126-035 Corrective Closure Owner Acceptance
+
+| Evidence | Accepted result |
+|---|---|
+| Authorization | Owner明确接受本次Desktop/Infra Corrective Closure，仅授权Governance记录和local clean checkpoint；不授权live |
+| Desktop checkpoint | `713bd5a2985c491db5d6cfc3e31f8f509994427d` clean/local/not pushed；4 files |
+| Desktop gates | targeted TS `12/12`；frontend `179/179`；default Rust `134 pass/3 ignored`；feature Rust `152 pass/3 ignored`；real Tauri mock setup fixture `1/1`；lint/clippy/fmt/build/diff PASS |
+| Infra checkpoint | `222fd36a1555bd4787798ed95bf3b4e6b76fa3e1` clean/local/not pushed；orchestrator、BO2/BO3 tests与Caddy fixture |
+| Infra gates | targeted `51/51`；full `193/193`；Node/Shell syntax、lint、Compose `5.3.0` direct config semantic及diff PASS |
+| Corrective closure | startup terminal observable/content-free；FD4 flush/close-before-exit；immutable primary persisted once before cleanup；pre-ownership known scope accepted；Caddy nested value-aware classification与v3 field-class摘要完成 |
+| Review | no open P0/P1；没有发现必须修改Contracts/API/Host/Runtime/Governance产品源码的corrective |
+| Governance gates | feature package default/strict/G2A、unique-key YAML、`pnpm lint/test`、checker Shell syntax与`git diff --check` PASS |
+| Gate state | `DEC-126-077 Accepted / DESIGN-126-020 Complete / LIA-126-035 Corrective Closure Accepted / S10B-BLK-013 Closed`；G3 Partial；G4/G6 Pending |
+| Runtime boundary | corrective与Owner Acceptance均未执行Docker lifecycle、isolated-live、fresh R8、业务case、S11、MiniMax、真实数据/Keychain或远端动作；`s10b_r8_executed=false` |
+| Governance checkpoint | 本地commit包含本记录和两个实现SHA；精确Governance SHA在commit后报告 |
+| Next authorization | 任何后续isolated-live必须使用新的七仓exact clean SHA并取得另一份一次性Owner授权 |

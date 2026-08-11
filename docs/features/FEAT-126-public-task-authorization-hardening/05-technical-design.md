@@ -1694,3 +1694,26 @@ created -> preflight_running -> preflight_passed -> dependencies_ready
 - Owner接受DESIGN-126-019 / LIA-126-033 repository Corrective Closure；该接受不新增或修改public contract、Host wire、durable schema、Runtime pin、Compose pin或default behavior，`contract-impact=none` for this governance disposition。
 - 真实Tauri `AppHandle/setup` direct fixture仍属于P2/live；repository evidence不能替代真实startup、ownership、readiness、abort或cleanup证据。
 - 后续isolated-live必须基于包含DEC-126-076的新Governance checkpoint及其余六仓精确clean SHA取得独立一次性授权；本记录不授权fresh R8或业务case。
+
+## 53. DESIGN-126-020 Startup Durability and Explainable No-Log Closure
+
+### 53.1 Desktop startup terminal
+
+- Native bitmap记录setup entry、`AppHandle` available、page-load started/finished、frontend bootstrap和first driver IPC；50秒watchdog只投影closed failure class，不携带panic值、path、token、secret、日志正文或业务内容。
+- setup panic由content-free guard封闭；timeout、page-load未完成、frontend未bootstrap及first IPC缺失均映射唯一`startup_failed`。first-terminal-wins，`startup_failed`或`abort_complete`写入后flush并关闭FD4，再允许child exit。
+- real Tauri mock `AppHandle/setup` fixture仅运行Desktop本地测试进程，不启动网络、Docker或业务调用。该fixture证明repository setup wiring，不替代真实isolated-live AppHandle/WebView lifecycle。
+
+### 53.2 Infra immutable failure observation
+
+- `runStartupAbortFlow`在进入abort、business boundary和cleanup之前对primary observation执行一次且仅一次持久化；持久化失败作为secondary evidence failure，不触发retry。
+- `desktop_starting`/`desktop_spawned`允许API/fake/Desktop exact known scope承载timeout、EOF、frame-invalid/order-invalid、API/fake/Desktop early-exit及closed Desktop startup leaf，即使Host/Runtime尚未启动；unknown scope或额外descendant仍fail closed。
+- FD4完整frame对同tick Desktop exit拥有优先级；failure/closure继续绑定run ID、七仓SHA、attempt/preclaim digest及`s10b_r8_executed=false`。
+
+### 53.3 Caddy structured-log classification
+
+- runtime-log-scan保持schema v3与exact Docker authority。Caddy `request`、headers和response headers按nested value-aware方式递归；`/healthz`/`/healthz/v2`等公开健康元数据不构成命中，真实敏感header/value仍失败。
+- evidence仅写origin/rule/field-class及origin-rule-field-class集合的稳定SHA-256、counts和状态；不写字段名、值、路径、日志正文或业务内容。legacy v3读取保持兼容。
+
+### 53.4 Accepted boundary
+
+DEC-126-077接受DESIGN-126-020 / LIA-126-035 Corrective Closure并关闭`S10B-BLK-013`。Desktop=`713bd5a2985c491db5d6cfc3e31f8f509994427d`，Infra=`222fd36a1555bd4787798ed95bf3b4e6b76fa3e1`；G3仍Partial，G4/G6 Pending。下一次isolated-live必须另行授权并使用包含DEC-126-077的新Governance SHA。

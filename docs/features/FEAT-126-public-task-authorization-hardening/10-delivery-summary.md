@@ -344,3 +344,16 @@
 | State | DEC-126-076 Accepted / DESIGN-126-019 Complete / LIA-126-033 Corrective Closure Accepted / environment-bound Compose gap Closed；真实Tauri `AppHandle/setup` direct fixture P2/live；G3 Partial；G4/G6 Pending；s10b_r8_executed=false |
 
 This record proves the accepted repository corrective checkpoints, not a live startup. Historical evidence and retained volumes remain untouched. Any later isolated-live requires a separate one-time authorization bound to the new exact seven-repository SHAs.
+
+## 22. DEC-126-077 Unified Corrective Owner Acceptance
+
+| Item | Current fact |
+|---|---|
+| Historical run | LIA-126-034 `41cdd1c7-e1a6-43ae-ac3a-706ff6989e99` remains FAIL and permanently non-reusable; evidence/retained volumes unchanged |
+| Decision | `DEC-126-077 Accepted / DESIGN-126-020 Complete / LIA-126-035 Corrective Closure Accepted / S10B-BLK-013 Closed` |
+| Desktop | startup stage/watchdog、panic/page-load/frontend/first-IPC projection、first-terminal-wins、FD4 close-before-exit、real Tauri mock setup fixture；checkpoint `713bd5a2985c491db5d6cfc3e31f8f509994427d` |
+| Infra | immutable primary-before-cleanup persistence、exact pre-ownership known scope、FD4/child ordering、runtime-log-scan v3 field-class digests、Caddy nested value-aware fixture；checkpoint `222fd36a1555bd4787798ed95bf3b4e6b76fa3e1` |
+| Verification | Desktop targeted `12/12`、frontend `179/179`、default Rust `134/3 ignored`、feature Rust `152/3 ignored`、fixture `1/1`及lint/build/clippy PASS；Infra targeted `51/51`、full `193/193`、lint/syntax/Compose config/diff PASS；no open P0/P1 |
+| Contract impact | private Desktop↔Infra `semantic`；central G2A=N/A；Owner governance disposition=`none`；Contracts/API/Host/Runtime unchanged |
+| State | G3 Partial；G4/G6 Pending；`s10b_r8_executed=false`；no live/fresh R8/business/MiniMax/Keychain/default activation/remote action |
+| Next gate | Governance local clean checkpoint后停止；下一次isolated-live必须使用新的七仓exact clean SHA并取得独立一次性授权 |

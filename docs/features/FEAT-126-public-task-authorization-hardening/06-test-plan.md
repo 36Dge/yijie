@@ -913,3 +913,18 @@ Actual reruns：Desktop `make lint/test/build`、feature frontend build、featur
 | Compose semantic | Compose `5.3.0` direct config、Infra `make lint`和`make test` `192/192` PASS；environment-bound gap Closed；no lifecycle/live |
 | Deferred proof | 真实Tauri `AppHandle/setup` direct fixture仍为P2/live |
 | Governance state | Corrective Closure Accepted；G3 Partial、G4/G6 Pending；`s10b_r8_executed=false`；下一次isolated-live需要新七仓精确SHA和另一份一次性授权 |
+
+## 39. LIA-126-034 / DESIGN-126-020 / LIA-126-035 Verification Matrix
+
+| Gate | Accepted result |
+|---|---|
+| Historical failure | run `41cdd1c7-e1a6-43ae-ac3a-706ff6989e99`在`desktop_spawned`无terminal FD4 frame并超时；failure/closure persistence和Caddy no-log分类缺口保留为历史FAIL，不复用run |
+| Desktop startup stages | PASS：setup/AppHandle/page-load/frontend/first IPC class matrix、watchdog、panic redaction、first-terminal race与FD4 close-before-terminate |
+| Tauri fixture | PASS `1/1`：real Tauri mock `AppHandle/setup`，仅本地Desktop测试进程，无网络/Docker/业务调用 |
+| Desktop full | targeted TS `12/12`；frontend `179/179`；default Rust `134 pass/3 ignored`；feature Rust `152 pass/3 ignored`；lint、clippy、fmt、build、diff PASS |
+| Infra durability | PASS：primary persistence先于abort/business/cleanup且仅一次；timeout/EOF/frame/closed leaf及API/fake/Desktop early-exit接受exact pre-ownership scope，unknown scope拒绝 |
+| Runtime scan v3 | PASS：empty/nonempty field-class及origin-rule-field-class摘要、legacy v3 compatibility、Caddy 2.11.4 offline fixture benign/sensitive组合 |
+| Infra full | BO2/BO3 targeted `51/51`；full `193/193`；Node/Shell syntax、lint、Compose `5.3.0` config semantic、diff PASS |
+| Independent review | no open P0/P1；授权文件闭集满足，Contracts/API/Host/Runtime/Governance产品源码均无需corrective |
+| Runtime boundary | corrective期间未执行Docker lifecycle、isolated-live、fresh R8、业务case、MiniMax、Keychain或远端动作；`s10b_r8_executed=false` |
+| Owner disposition | DEC-126-077 Accepted；DESIGN-126-020 Complete；LIA-126-035 Corrective Closure Accepted；`S10B-BLK-013 Closed`；G3 Partial、G4/G6 Pending |

@@ -307,3 +307,10 @@ S8B切片contract impact为`semantic Desktop-private`，不改变central feature
 - runtime-log-scan v3新增`hit_origin_rule_set_sha256`并将source identity稳定为closed Compose service role；writer必须绑定完整Docker label authority，reader保留v1/v2/v3。空命中时origin、rule及pair三个摘要都绑定SHA-256(empty set)，非空时三者都与实际closed sets一致。
 - no-log分类改为structured/value-aware：允许经closed schema证明无内容的健康/ready字段，继续拒绝敏感值、凭据、DSN、private key、绝对本机路径和未分类高风险payload。摘要证据不得持久化raw value、日志正文、规则文本或路径。
 - Contracts/API/Host/Runtime conformance=`N/A / no source change`。Desktop↔Infra targeted conformance通过：Desktop targeted TS/Rust各`11/11`、Infra S10BO2/S10BO3 `50/50`；full gates分别为Desktop TS `178/178`、default Rust `134 pass/3 ignored`、feature Rust `149 pass/3 ignored`及Infra `192/192`。独立审查的两个Infra P1已关闭；新checkpoint为Desktop `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd`与Infra `5fdba2b22b343237683f383f098fa2ffaea5bc54`，均local clean/not pushed。Corrective Closure为Review Ready / Pending Owner Acceptance。
+
+## 19. DESIGN-126-020 Contract Disposition
+
+- 本轮最高影响继续为private Desktop↔Infra `semantic`：Desktop补充startup stage/terminal时序，Infra补充pre-ownership failure durability和runtime-log-scan v3可解释摘要；这些接口不可发布且仅由FEAT-126 isolated local driver/orchestrator消费。
+- `yijie-contracts`、Public Tasks HTTP、Host SSE、业务Tauri IPC、SQLCipher durable schema和Runtime protocol均无变化，因此central G2A=`N/A / no applicable public contract source change`。Contracts/API/Host/Runtime保持精确既有checkpoint。
+- 兼容约束：新Infra仍读取legacy v1/v2/v3 runtime scans；新增field-class摘要只由新v3 writer产生。Desktop与Infra新checkpoint必须成对用于下一次isolated-live，不得将单侧新语义发布或默认启用。
+- DEC-126-077仅是Governance Owner disposition，`contract-impact=none`；它接受Desktop `713bd5a2985c491db5d6cfc3e31f8f509994427d`和Infra `222fd36a1555bd4787798ed95bf3b4e6b76fa3e1`的repository evidence，不改变任何运行或发布授权。
