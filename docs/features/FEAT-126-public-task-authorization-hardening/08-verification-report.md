@@ -1085,3 +1085,17 @@ Implementation checkpoints are Desktop `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd
 | Execution boundary | Config-only validation; no `up`, `start`, `run`, `create`, `stop`, `down`, `rm`, image pull, container/process startup, volume-content access, isolated-live, fresh R8, business case, MiniMax, Keychain or remote operation was executed |
 | State | The environment-bound Docker Compose semantic wrapper gap from section 45 is closed. The real Tauri `AppHandle/setup` direct fixture remains P2/live. Corrective Closure remains Review Ready / Pending Owner Acceptance; no isolated-live is authorized by this gate |
 | R8 boundary | `s10b_r8_executed=false`; no run ID or live evidence was created or reused |
+
+## 47. DEC-126-076 / LIA-126-033 Corrective Closure Owner Acceptance
+
+| Evidence | Owner disposition |
+|---|---|
+| Authorization | Owner明确接受DESIGN-126-019 / LIA-126-033 Corrective Closure，仅授权Governance记录和local clean checkpoint |
+| Desktop checkpoint | `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd` clean/local/not pushed；targeted/full/build/clippy/fmt证据Accepted |
+| Infra checkpoint | `5fdba2b22b343237683f383f098fa2ffaea5bc54` clean/local/not pushed；targeted `50/50`、full `192/192`、syntax/validate/diff证据Accepted |
+| Independent review | v3 canonical source reader与acronym/plural/pretty JSON两个P1已关闭；no open P0/P1 |
+| Compose semantic | Compose `5.3.0` direct `config --no-interpolate --quiet`、Infra `make lint`和`make test` `192/192` PASS；environment-bound gap Closed |
+| Deferred live proof | 真实Tauri `AppHandle/setup` direct fixture保留为P2/live；本接受不是isolated-live/startup PASS |
+| Gate state | DESIGN-126-019 Complete；LIA-126-033 Corrective Closure Accepted；G3 Partial；G4/G6 Pending |
+| Runtime boundary | no Docker lifecycle、isolated-live、fresh R8、business case、S11、MiniMax、real data/Keychain or remote operation；`s10b_r8_executed=false` |
+| Next authorization | 任何后续isolated-live必须使用包含本记录的新Governance checkpoint和其余六仓精确clean SHA，并取得另一份一次性Owner授权 |

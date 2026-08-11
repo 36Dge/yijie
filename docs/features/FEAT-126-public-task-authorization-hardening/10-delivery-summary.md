@@ -6,7 +6,7 @@
 - 原目标是否达成：未达成。LIA-126-024/S10B-R7已消费；S10B-001 PASS，但S10B-002因缺少完整四组件可执行orchestrator fail closed，S10B-003–011未运行，012仅完成abort cleanup subset。S10BO1 Corrective Closure已由DEC-126-066接受并关闭`S10B-BLK-008`，但完整fresh S10B仍未PASS。
 - 当前范围：安全的新建任务对话、任务记录、聊天项目、本地持久化及Public Tasks hardening的完整Local-only需求/设计/测试/实施候选。
 - 非目标：见`00-feature-brief.md`；没有文件/图片/工具/云同步；tag/package publish/registry/线上部署/生产灰度/云数据库/真实用户数据均N/A。
-- 交付状态：`G1/G2/G2A Passed / DESIGN-126-017 Complete / LIA-126-030 Corrective Closure Accepted / DEC-126-072 Infra/Governance Checkpoints Clean / S10B-BLK-008/009/010/011 Closed / G3 Partial / G4/G6 Pending`。第二次isolated live run `8b94dc6d-5984-4579-9e0c-bed43a4b872f`在preflight前fail closed并永久不可复用；corrective Infra `188/188`、targeted `67/67`及Governance全部门禁PASS，checkpoint为`c7edbc344daecb84553efafe86dfe335a5c0c72d`。`s10b_r8_executed=false`；在另一份isolated-live授权前不再live，fresh R8、业务调用、merge/tag/publish/deploy/default activation或远端写入未授权。
+- 交付状态：`G1/G2/G2A Passed / DESIGN-126-019 Complete / LIA-126-033 Corrective Closure Accepted / DEC-126-076 Owner Acceptance / environment-bound Compose gap Closed / G3 Partial / G4/G6 Pending`。Desktop `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd`与Infra `5fdba2b22b343237683f383f098fa2ffaea5bc54` repository corrective证据已接受；真实Tauri `AppHandle/setup` direct fixture仍为P2/live。`s10b_r8_executed=false`；在另一份基于新七仓精确SHA的isolated-live授权前不再live，fresh R8、业务调用、merge/tag/publish/deploy/default activation或远端写入未授权。
 
 ## 2. 实际版本与本地候选（未发布）
 
@@ -341,6 +341,6 @@
 | Excluded | Contracts/API/Host/Runtime source, public wire, durable schema, Compose pins, default flags, business cases, Docker/live, fresh R8, S11, MiniMax, Keychain, real data and remote actions |
 | Contract impact | semantic private local deployment/test interface; central G2A=N/A |
 | Verification | Desktop `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd`：TS `178/178`、default Rust `134/3 ignored`、feature Rust `149/3 ignored`、targeted各`11/11`及lint/build/clippy PASS。Infra `5fdba2b22b343237683f383f098fa2ffaea5bc54`：targeted `50/50`、full `192/192`、syntax/validate/diff PASS；独立review的两个P1已关闭。原corrective的Compose discovery exit 125保留为历史事实；后续config-only门禁中Compose 5.3.0 direct config、Infra `make lint`和`make test` `192/192`全部PASS，无lifecycle/live。Governance default/strict/G2A/YAML/lint/test/shell/diff最终复跑PASS |
-| State | Implementation Complete / Review Ready / Pending Owner Acceptance；G3 Partial；G4/G6 Pending；s10b_r8_executed=false |
+| State | DEC-126-076 Accepted / DESIGN-126-019 Complete / LIA-126-033 Corrective Closure Accepted / environment-bound Compose gap Closed；真实Tauri `AppHandle/setup` direct fixture P2/live；G3 Partial；G4/G6 Pending；s10b_r8_executed=false |
 
-This record proves the repository corrective checkpoints, not a live startup. It does not claim Corrective Closure Owner acceptance. Historical evidence and retained volumes remain untouched.
+This record proves the accepted repository corrective checkpoints, not a live startup. Historical evidence and retained volumes remain untouched. Any later isolated-live requires a separate one-time authorization bound to the new exact seven-repository SHAs.

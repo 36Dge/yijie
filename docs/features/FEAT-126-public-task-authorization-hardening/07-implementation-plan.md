@@ -1,4 +1,4 @@
-# FEAT-126 Local-only 原子实施计划（DESIGN-126-017 Complete / Preclaim Corrective Closure Accepted / BLK-008/009/010/011 Closed / G3 Partial）
+# FEAT-126 Local-only 原子实施计划（DESIGN-126-019 Complete / LIA-126-033 Corrective Closure Accepted / G3 Partial）
 
 ## 1. 当前执行边界
 
@@ -608,3 +608,5 @@ Owner审批结论：`批准LIA-126-001，仅授权S4–S6本地基础实现；�
 | G1 Governance closure | FEAT-126 package documents and feature.yaml only | record scope, contract impact, tests, rollback and explicit stop; do not claim unrun results or SHA | IMPLEMENTATION RECORD COMPLETE；default/strict/G2A/YAML/lint/test/shell/diff最终复跑PASS；checkpoint SHA仅在commit后报告 |
 
 The slices are one corrective authorization and must be reviewed as a set. No Contracts/API/Host/Runtime changes are permitted. If a required fix escapes these files, stop and report contract-impact or repository scope expansion before editing.
+
+DEC-126-076已接受上述slice集合的Corrective Closure并关闭environment-bound Compose gap。真实Tauri `AppHandle/setup` direct fixture继续保留为P2/live；G3仍为Partial，G4/G6 Pending。包含本接受记录的新Governance checkpoint形成后，下一次isolated-live必须使用新七仓精确SHA并取得另一份一次性授权。

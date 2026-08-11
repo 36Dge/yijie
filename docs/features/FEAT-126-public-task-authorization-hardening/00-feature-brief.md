@@ -4,7 +4,7 @@
 
 | 字段 | 内容 |
 |---|---|
-| 状态 | G1/G2/G2A Passed / DESIGN-126-017 Complete / LIA-126-030 Corrective Closure Accepted / DEC-126-072 Infra/Governance Checkpoints Clean / S10B-BLK-009/010/011 Closed / G3 Partial / G4/G6 Pending |
+| 状态 | G1/G2/G2A Passed / DESIGN-126-019 Complete / LIA-126-033 Corrective Closure Accepted / DEC-126-076 Owner Acceptance / environment-bound Compose gap Closed / G3 Partial / G4/G6 Pending |
 | 需求负责人 | 段成威 |
 | Product/Design 决策人 | 段成威 |
 | 技术负责人 | 段成威 |
@@ -154,7 +154,7 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 | G2A 契约就绪 | 2026-08-02 | 段成威 | Re-review Passed：DEC-126-024 Accepted，`29317b6426578749dc698fc2ad32b986ee5c8e9f`为唯一source-contract candidate；现已精确推送到`origin/feat/feat-126-content-free-candidate`，`origin/develop`、历史`c000a024`与Draft PR #1均不变；远端可达不等于merge/发布/实现完成 |
 | Contract Draft PR / merge readiness | 2026-08-02 | 段成威 | DEC-126-021 Accepted/HOLD：Draft PR #1固定SHA且保持Draft；红色CI只阻断merge，不回退G2/G2A；未来需本地跨仓E2E、audit修复、远端CI全绿及单独merge批准 |
 | Local-only Delivery Strategy | 2026-08-02 | 段成威 | DEC-126-022 Accepted；目标改为Local Runtime Ready；tag/publish/deploy/G5均N/A；LIA-126-001后续仅授权S4–S6 |
-| G3 本地切片完成 | 未排期 | 段成威 | Partial：第二次isolated live run `8b94dc6d-5984-4579-9e0c-bed43a4b872f`在preflight前因Node绝对身份不可得而fail closed并永久不可复用；Owner已接受DESIGN-126-017/LIA-126-030 corrective及DEC-126-072 clean checkpoints，Infra 188/188、targeted 67/67 PASS；尚无新的isolated-live PASS或完整fresh S10B-001–012 PASS，G4/G6 Pending |
+| G3 本地切片完成 | 未排期 | 段成威 | Partial：Owner已通过DEC-126-076接受DESIGN-126-019/LIA-126-033 repository Corrective Closure；Desktop/Infra checkpoints、targeted/full门禁、独立审查及Compose 5.3.0 semantic gate均PASS。真实Tauri `AppHandle/setup` direct fixture仍为P2/live；尚无新的isolated-live PASS或完整fresh S10B-001–012 PASS，G4/G6 Pending |
 | S8B0 UI Integration Readiness Review | 2026-08-03 | 段成威 | DESIGN-126-006/DEC-126-032与DEC-126-033 Accepted；LIA-126-005 / S8B0 Closure Passed |
 | S8B Vue UI Closure Review | 2026-08-03 | 段成威 | DEC-126-034 Accepted / S8B Closure Passed；不自动授权S9/S10/activation，VoiceOver人工项保留到S11/G6 |
 | Remote State Reconciliation | 2026-08-04 | 段成威 | DEC-126-035 Accepted：五仓候选ref/clean clone精确PASS；四个S4–S8B checkpoints已按Owner明确授权远端可达；不改变G3/G4/G6或后续切片授权 |
@@ -166,6 +166,8 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 ## 12. 变更日志
 
 > 2026-08-11：单独config-only授权已补齐LIA-126-033唯一未通过的Infra Compose semantic环境门禁。Compose `5.3.0`、直接`config --no-interpolate --quiet`、Infra `make lint`与`make test` `192/192`均PASS；未执行任何lifecycle或live，`s10b_r8_executed=false`。Corrective Closure仍为Review Ready / Pending Owner Acceptance，本门禁不授权isolated-live。
+
+> 2026-08-12：Owner通过DEC-126-076接受DESIGN-126-019/LIA-126-033 Corrective Closure并关闭environment-bound Compose gap。G3保持Partial，G4/G6 Pending；真实Tauri `AppHandle/setup` direct fixture保留为P2/live。后续isolated-live必须基于本次新Governance checkpoint和其余六仓精确SHA取得另一份一次性授权。
 
 | 日期 | 修改人 | 变化 | 原因/批准 |
 |---|---|---|---|
@@ -249,3 +251,4 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 | 2026-08-10 | 段成威 / Codex | Owner单独授权DESIGN-126-017 / LIA-126-030单仓Infra corrective并接受Closure | canonical Make入口改为解析和调用绝对Node；在进程身份检查前以0600/O_EXCL canonical preclaim预占run，并在marker前失败时写入绑定preclaim SHA-256的content-free failure。失败或不完整preclaim继续fail closed且不可执行，preclaim纳入no-log source set，legacy marker-only attempt保持兼容。Infra四文件corrective通过Node syntax、`pnpm validate`、`make lint`、Compose semantic、`make test` `188/188`、四文件targeted `67/67`、绝对Node self identity与`git diff --check`；未执行live、fresh R8或业务case |
 | 2026-08-10 | 段成威 / Codex | Owner仅授权形成新的Infra/Governance clean checkpoint并接受DEC-126-072 | Infra四个corrective文件形成local clean checkpoint `c7edbc344daecb84553efafe86dfe335a5c0c72d`；Governance只更新既有九份FEAT-126文件并形成包含该精确SHA的本地checkpoint。其余五仓保持既定clean SHA；两个checkpoint均不push。获得新的精确SHA与另一份isolated-live一次性授权前，禁止再次执行live；fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用及远端动作仍未授权 |
 | 2026-08-10 | 段成威 / Codex | Owner授权DESIGN-126-019 / LIA-126-033一次性综合startup-surface corrective；实施完成并进入Owner acceptance review | 最小产品范围保持Desktop五个授权文件、Infra既有orchestrator与两个targeted tests及FEAT-126治理记录。Desktop `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd`和Infra `5fdba2b22b343237683f383f098fa2ffaea5bc54`已形成local clean/not-pushed checkpoint；Desktop TS `178/178`、default Rust `134 pass/3 ignored`、feature Rust `149 pass/3 ignored`、targeted TS/Rust各`11/11`及lint/build/clippy通过；Infra targeted `50/50`、full `192/192`、syntax/validate/diff通过。独立审查发现的v3 reader canonical source绑定与`APIKey`/plural/pretty JSON两个P1均已修复并回归；无open P0/P1。`make lint`只执行到`pnpm validate`通过，随后本机`docker compose`发现失败并以125停止，未启动容器；corrective禁止Docker，故未重试或伪报Compose semantic PASS。Contracts/API/Host/Runtime不变；未执行isolated live、fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用或远端动作；`s10b_r8_executed=false`。Corrective Closure为Review Ready / Pending Owner Acceptance |
+| 2026-08-12 | 段成威 / Codex | Owner接受DESIGN-126-019 / LIA-126-033 Corrective Closure并形成DEC-126-076 | 只读复核Desktop `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd`、Infra `5fdba2b22b343237683f383f098fa2ffaea5bc54`及Compose semantic证据完整：targeted/full门禁PASS、独立审查无open P0/P1、Compose 5.3.0 direct config与Infra `make lint/test` `192/192` PASS。environment-bound gap Closed；真实Tauri `AppHandle/setup` direct fixture保留P2/live；G3 Partial、G4/G6 Pending。仅形成Governance本地clean checkpoint；未执行Docker lifecycle、isolated-live、fresh R8、业务调用或远端动作，`s10b_r8_executed=false` |

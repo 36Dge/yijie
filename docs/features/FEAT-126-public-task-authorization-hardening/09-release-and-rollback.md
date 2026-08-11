@@ -1,4 +1,4 @@
-# FEAT-126 本地启动、停止与恢复 Runbook（DESIGN-126-017 Complete / Preclaim Corrective Closure Accepted / BLK-008/009/010/011 Closed）
+# FEAT-126 本地启动、停止与恢复 Runbook（DESIGN-126-019 Complete / LIA-126-033 Corrective Closure Accepted / G3 Partial）
 
 > DEC-126-022将本需求冻结为Local-only Delivery。DEC-126-062/063关闭BLK-007并形成clean checkpoints后，LIA-126-024/S10B-R7已单独授权和消费：S10B-001 PASS，S10B-002因缺少完整四组件orchestrator fail closed，003–011 NOT RUN，012仅abort cleanup subset。Owner已接受DEC-126-064/065/066并完成DESIGN-126-014、LIA-126-025/S10BO1 Corrective Closure及`S10B-BLK-008`关闭；DEC-126-067进一步形成API/Host/Desktop/Infra/Governance本地clean checkpoints。LIA-126-027 isolated live 的失败事实保留且run不可复用；Owner已接受DESIGN-126-016与LIA-126-028/S10BO3 Corrective Closure并关闭`S10B-BLK-010`。G3保持Partial。本文不授权isolated live、fresh R8、S11、MiniMax、default activation或发布。
 
@@ -370,4 +370,10 @@ DESIGN-126-008对未来corrective的回滚语义冻结如下：
 - 本切片是不可发布的本地 corrective，不产生 release artifact、tag、merge、deploy 或 feature activation。contract-impact=semantic 仅描述 private Desktop↔Infra startup/evidence 接口；central contracts/API/Host/Runtime 不参与。
 - 允许修改的产品文件仅限 Desktop 四个入口及对应 targeted test；Infra 仅限现有 orchestrator 和 S10BO2/S10BO3 tests；Governance package 记录可同步更新。任何超出该闭集的必要改动都必须停止并重新取得范围授权。
 - 回滚必须成对撤销 Desktop startup terminal projection 与 Infra frame/authority/no-log v3 变更；不能恢复相对 Node、把完整 frame 折叠成 EOF、放宽 Docker label authority 或重新启用宽泛 sensitive_field 匹配。历史失败 run、evidence 和 retained volumes 不得变更。
-- 实施退出结果：Desktop `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd`与Infra `5fdba2b22b343237683f383f098fa2ffaea5bc54`已local clean/not pushed；Governance checkpoint包含本记录并在commit后报告SHA。离线测试、targeted matrix和独立review已完成，两个P1关闭。原no-Docker corrective中Infra Compose wrapper未重试；2026-08-11的config-only授权已以Compose 5.3.0 direct config、Infra `make lint`和`make test` `192/192`关闭该environment-bound gate，且没有执行lifecycle或live。Corrective Closure为Review Ready / Pending Owner Acceptance；继续禁止`make feat-126-s10b-orchestrator`、Docker live、isolated live、fresh R8、业务case、S11、MiniMax、Keychain或远端动作。
+- 实施退出结果：Desktop `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd`与Infra `5fdba2b22b343237683f383f098fa2ffaea5bc54`已local clean/not pushed；Governance checkpoint包含本记录并在commit后报告SHA。离线测试、targeted matrix和独立review已完成，两个P1关闭。原no-Docker corrective中Infra Compose wrapper未重试；2026-08-11的config-only授权已以Compose 5.3.0 direct config、Infra `make lint`和`make test` `192/192`关闭该environment-bound gate，且没有执行lifecycle或live。DEC-126-076已接受Corrective Closure；真实Tauri `AppHandle/setup` direct fixture仍为P2/live。继续禁止`make feat-126-s10b-orchestrator`、Docker live、isolated live、fresh R8、业务case、S11、MiniMax、Keychain或远端动作，除非获得基于新七仓精确SHA的独立一次性授权。
+
+## 22. DEC-126-076 Owner Acceptance Release Boundary
+
+- 本接受只关闭repository corrective及environment-bound Compose gap，不产生release artifact，不构成isolated-live、G4或G6证据。
+- 真实Tauri `AppHandle/setup` direct fixture仍为P2/live；G3保持Partial，G4/G6 Pending。
+- 仅Governance形成一个local clean checkpoint。不得push、merge、tag、publish或deploy；后续isolated-live必须另行授权并固定新的七仓精确SHA。

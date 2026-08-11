@@ -902,3 +902,14 @@ DESIGN-126-014确认完整corrective不能是Infra-only：Desktop driver、Host 
 | S10BO4-012 | Cross-repo offline gates | Desktop, Infra and Governance lint/test/build/diff and independent review; Contracts/API/Host/Runtime unchanged | Desktop/Infra checkpoints `e8e56df...`/`5fdba2b...` clean；full/targeted gates PASS；后续config-only授权下Infra Compose 5.3.0 direct config与`make lint/test` semantic wrapper PASS；no live evidence |
 
 Actual reruns：Desktop `make lint/test/build`、feature frontend build、feature Rust test/clippy、fmt/diff PASS；TS `178/178`、default Rust `134 pass/3 ignored`、feature Rust `149 pass/3 ignored`、targeted TS/Rust各`11/11`。Infra三文件`node --check`、S10BO2+S10BO3 `50/50`、`pnpm validate`、`pnpm test` `192/192`及diff PASS；原no-Docker corrective中`make lint`在validate后因Compose discovery退出125，未重试。后续config-only授权下Compose `5.3.0`、直接`config --no-interpolate --quiet`、Infra `make lint`与`make test` `192/192`全部PASS，未执行容器lifecycle或live。独立审查提出的v3 canonical source reader与acronym/plural/pretty JSON扫描两个P1均已关闭；无open P0/P1。Governance default/strict/G2A/YAML/lint/test/shell/diff在本记录后最终复跑PASS。
+
+## 38. DEC-126-076 Corrective Closure Acceptance Verification
+
+| Gate | Accepted result |
+|---|---|
+| Desktop checkpoint | `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd` clean；targeted TS/Rust各`11/11`、TS `178/178`、default Rust `134/3 ignored`、feature Rust `149/3 ignored`及lint/build/clippy/fmt/diff PASS |
+| Infra checkpoint | `5fdba2b22b343237683f383f098fa2ffaea5bc54` clean；targeted `50/50`、full `192/192`、syntax/validate/diff PASS |
+| Independent review | 两个P1均已关闭；no open P0/P1 |
+| Compose semantic | Compose `5.3.0` direct config、Infra `make lint`和`make test` `192/192` PASS；environment-bound gap Closed；no lifecycle/live |
+| Deferred proof | 真实Tauri `AppHandle/setup` direct fixture仍为P2/live |
+| Governance state | Corrective Closure Accepted；G3 Partial、G4/G6 Pending；`s10b_r8_executed=false`；下一次isolated-live需要新七仓精确SHA和另一份一次性授权 |
