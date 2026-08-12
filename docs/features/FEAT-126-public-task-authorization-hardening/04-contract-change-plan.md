@@ -330,3 +330,7 @@ S8B切片contract impact为`semantic Desktop-private`，不改变central feature
 v4 exact keys are `schema_version`、`status`、`run_id`、`source_count`、`row_count`、`hit_count`、`source_set_sha256`、`hit_origin_set_sha256`、`hit_rule_set_sha256`、`hit_origin_rule_set_sha256`、`hit_field_class_set_sha256`、`hit_origin_rule_field_class_set_sha256`、`hit_reason_class_set_sha256`、`hit_origin_rule_field_class_reason_class_set_sha256`。Extra、missing或跨版本混合key全部fail closed。
 
 回滚只允许整体恢复旧writer并保留新reader对已有v4 evidence的可解释处理方案；在没有兼容reader时不得产生v4后再回滚到只读v3。当前未产生任何live v4 evidence，因此本轮repository rollback不涉及migration、reconcile或历史evidence重写。
+
+### 20.1 DEC-126-079 Closure disposition
+
+Owner接受Infra `ef9984b06c2913b1d7561360b1e3e569cbfd9d4a`对上述private compatibility contract的实现证据。v4 exact-key、zero/nonzero digest、reason-class、production feature和legacy reader测试均通过；独立审查无open P0/P1。本Owner Acceptance自身`contract-impact=none`，不新增或修改中央契约、consumer pin、migration、tag或发布顺序。

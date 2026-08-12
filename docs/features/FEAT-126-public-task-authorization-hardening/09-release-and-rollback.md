@@ -1,4 +1,4 @@
-# FEAT-126 本地启动、停止与恢复 Runbook（DESIGN-126-021 Complete / LIA-126-036 Two-stage Corrective Authorized / G3 Partial）
+# FEAT-126 本地启动、停止与恢复 Runbook（DESIGN-126-021 Complete / LIA-126-036 Corrective Closure Accepted / G3 Partial）
 
 > DEC-126-022将本需求冻结为Local-only Delivery。DEC-126-062/063关闭BLK-007并形成clean checkpoints后，LIA-126-024/S10B-R7已单独授权和消费：S10B-001 PASS，S10B-002因缺少完整四组件orchestrator fail closed，003–011 NOT RUN，012仅abort cleanup subset。Owner已接受DEC-126-064/065/066并完成DESIGN-126-014、LIA-126-025/S10BO1 Corrective Closure及`S10B-BLK-008`关闭；DEC-126-067进一步形成API/Host/Desktop/Infra/Governance本地clean checkpoints。LIA-126-027 isolated live 的失败事实保留且run不可复用；Owner已接受DESIGN-126-016与LIA-126-028/S10BO3 Corrective Closure并关闭`S10B-BLK-010`。G3保持Partial。本文不授权isolated live、fresh R8、S11、MiniMax、default activation或发布。
 
@@ -393,3 +393,10 @@ DESIGN-126-008对未来corrective的回滚语义冻结如下：
 - Infra预期dirty状态仅在Governance阶段豁免clean检查，闭集为orchestrator、BO2 test、BO3 test和sanitized Caddy fixture。任何额外dirty文件或SHA漂移都必须停止。
 - Compose验证仅允许5.3.0 direct config rendering；禁止`create/start/up/run/exec/stop/down/rm`、prune、volume delete或读取retained volume。
 - 两个checkpoint均local/not pushed。后续isolated-live仍需基于最终七仓exact clean SHA的新一次性授权；本决定不授权fresh R8、业务调用或MiniMax。
+
+## 25. DEC-126-079 Corrective Closure Acceptance Boundary
+
+- 本接受固定Infra checkpoint `ef9984b06c2913b1d7561360b1e3e569cbfd9d4a`，不产生release artifact、deployment、默认启用或live evidence。
+- 回滚必须以独立可审查revert整体撤销该Infra commit；不得只移除v4 keys、恢复不带`tauri/custom-protocol`的build、放行未知Caddy shape或重写历史evidence。
+- 本Governance checkpoint只记录Owner Acceptance；不得修改、amend或提交Infra及其余五仓，不得push、merge、tag、publish或deploy。
+- G3保持Partial、G4/G6 Pending。下一步只能是基于最终七仓exact clean SHA的另一份isolated-live startup/abort授权，且该授权仍不得隐含fresh R8或业务case。

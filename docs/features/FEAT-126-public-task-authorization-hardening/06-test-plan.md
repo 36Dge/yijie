@@ -944,3 +944,7 @@ Actual reruns：Desktop `make lint/test/build`、feature frontend build、featur
 | Review | independent read-only review reports no open P0/P1 before Infra commit |
 
 Governance phase runs feature-package default/strict/G2A, unique-key YAML, `pnpm lint`, `pnpm test`, checker Shell syntax, `bash -n scripts/*.sh` and `git diff --check`. Infra's authorized dirty files must have identical SHA-256 before and after the Governance phase.
+
+### 40.1 Accepted result
+
+Infra checkpoint `ef9984b06c2913b1d7561360b1e3e569cbfd9d4a`通过BO2/BO3 `51/51`、full `193/193`、`make lint`、Compose 5.3.0 direct config-only、Node/Shell syntax及`git diff --check`。测试覆盖v4 exact 14 keys、v1/v2/legacy-v3/explainable-v3/v4 reader、七项zero-hit digest、positive-hit非空摘要、container-ID/input ordering稳定性，以及Caddy真实`msg`和unknown key/value/empty/non-JSON fail-closed。独立review无open P0/P1；DEC-126-079接受该结果。

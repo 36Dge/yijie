@@ -1146,3 +1146,21 @@ Implementation checkpoints are Desktop `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd
 本节是Phase G的权威与验证要求。Phase I的最终Infra test counts、review结论与commit SHA只能在真实执行完成后于最终报告中陈述，不能在本Governance commit内预先声称。
 
 Governance门禁完成后，Infra四个预期dirty文件SHA-256仍分别为`3c589e7d1e43fdc1478bfa329cb187aacac65a6394b06e47d47cdbdc06e7ce45`、`26c99d9463d4e04551697bfc5d8a2ca1ebd7674b26df599c12237c2c41616a87`、`6f1484647b8d68fac733cc4cd7de6f093243653e09fb195cdf191dec5fb9d1be`、`eb165b44e73cd06494dc7e0fa36afa5dbf70ffdca6a13c42b17f9a4f1532d361`，与Phase G开始前一致。
+
+## 51. DEC-126-079 / LIA-126-036 Corrective Closure Owner Acceptance
+
+| Evidence | Accepted result |
+|---|---|
+| Fixed checkpoints | Governance pre-acceptance `b7542d4054efc85843ee17b7e79856045e9b385a`；Infra `ef9984b06c2913b1d7561360b1e3e569cbfd9d4a`；其余五仓保持既定SHA；七仓执行前均clean |
+| Infra scope | parent `222fd36a1555bd4787798ed95bf3b4e6b76fa3e1`；orchestrator、BO2、BO3、sanitized Caddy fixture exactly four files |
+| Production assets | exact cargo features `feat126-s10-driver,tauri/custom-protocol`；missing feature fail closed；no devUrl/Vite/1420/1421 authority |
+| Runtime scan v4 | writer v4 exact 14 keys；reason-class and four-tuple digests；v1/v2/legacy-v3/explainable-v3/v4 reader compatibility；zero-hit seven empty digests |
+| Caddy explainability | known 2.11.4 access/system metadata value-aware；real `msg`受控；unknown key/value/empty/non-JSON均fail closed；evidence不含raw field/value/path/log body |
+| Infra gates | targeted `51/51`；full `193/193`；`make lint`；Compose `5.3.0` direct config-only；Node/Shell syntax；diff PASS |
+| Review | 两个P1在授权闭集内关闭；最终independent read-only review无open P0/P1 |
+| Historical evidence | run `c61ba4e8-793f-4e1b-a1ac-86e4e2331e76` preclaim/attempt/failure/closure/runtime-scan/business-boundary摘要与原记录一致；未读取日志正文或retained volume |
+| Governance gates | feature package default/strict/G2A、unique-key YAML、`pnpm lint`、`pnpm test`、checker/repository Shell syntax及`git diff --check`首轮与最终记录后复跑均PASS |
+| Owner disposition | `DEC-126-079 Accepted / DESIGN-126-021 Complete / LIA-126-036 Corrective Closure Accepted`；G3 Partial；G4/G6 Pending |
+| Runtime boundary | no Docker lifecycle、isolated-live、fresh R8、business case、S11、MiniMax、real data/Keychain、default activation or remote operation；`s10b_r8_executed=false` |
+
+Governance Acceptance checkpoint的精确SHA在commit后报告，不在commit自身内容中自引用。该checkpoint完成后才能基于最终七仓clean SHA另行签发一次性isolated-live startup/abort授权。

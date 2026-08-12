@@ -372,3 +372,18 @@ This record proves the accepted repository corrective checkpoints, not a live st
 | Boundary | no Docker lifecycle/live/fresh R8/business/S11/MiniMax/Keychain/default activation/remote action; `s10b_r8_executed=false` |
 
 The Governance checkpoint records the authority and ordering but intentionally cannot contain the future Infra commit SHA. The final execution report must provide both resulting SHAs and seven-repository clean status.
+
+## 24. DEC-126-079 Corrective Closure Owner Acceptance
+
+| Item | Accepted state |
+|---|---|
+| Decision | `DEC-126-079 Accepted / DESIGN-126-021 Complete / LIA-126-036 Corrective Closure Accepted` |
+| Governance authority checkpoint | `b7542d4054efc85843ee17b7e79856045e9b385a`；local、clean、not pushed |
+| Infra implementation checkpoint | `ef9984b06c2913b1d7561360b1e3e569cbfd9d4a`；four-file corrective；local、clean、not pushed |
+| Infra gates | targeted `51/51`、full `193/193`、lint、Compose 5.3.0 config-only、Node/Shell syntax、diff PASS；no open P0/P1 |
+| Accepted behavior | exact production custom-protocol features；runtime-log-scan v4 exact keys/reason digests/legacy readers；closed Caddy metadata authority and unknown-shape fail-closed |
+| Historical state | run `c61ba4e8-793f-4e1b-a1ac-86e4e2331e76` evidence digests unchanged；logs/retained volumes not read |
+| Gate state | G3 Partial；G4/G6 Pending；actual isolated-live startup/abort PASS still absent |
+| Boundary | no Docker lifecycle/live/fresh R8/business/S11/MiniMax/Keychain/default activation/remote action；`s10b_r8_executed=false` |
+
+本Governance commit将形成最终Owner Acceptance checkpoint，其SHA在commit后报告。之后不得自动live；需要使用最终七仓精确SHA取得新的单次授权。

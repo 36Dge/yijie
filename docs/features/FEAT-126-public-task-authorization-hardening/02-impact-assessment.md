@@ -322,3 +322,5 @@ Owner通过DEC-126-077接受DESIGN-126-020 / LIA-126-035 Corrective Closure。�
 - canonical Desktop production build必须显式使用`feat126-s10-driver,tauri/custom-protocol`，不得依赖`devUrl`、Vite dev server或1420/1421端口。
 - 本阶段固定Governance基线`5da2d93b7c4e3ee9884b0fedb04261b5aaf65f92`。Infra基线为`222fd36a1555bd4787798ed95bf3b4e6b76fa3e1`，且允许仅四个既有corrective文件保持预期dirty；该状态不构成基线失败，也不得在Governance阶段修改、暂存或提交。
 - 两阶段checkpoint互相独立：先形成Governance local clean checkpoint，再完成Infra剩余门禁、独立只读审查与单一local clean checkpoint。Governance commit不预填尚不存在的Infra新SHA。
+
+DEC-126-079现已接受DESIGN-126-021 / LIA-126-036 Corrective Closure。Infra从父SHA `222fd36a1555bd4787798ed95bf3b4e6b76fa3e1`形成local clean checkpoint `ef9984b06c2913b1d7561360b1e3e569cbfd9d4a`，严格包含orchestrator、BO2/BO3 tests和脱敏Caddy fixture四个文件；Contracts/API/Host/Desktop/Runtime均未改变。该接受只关闭repository corrective，不构成isolated-live PASS，G3仍为Partial，G4/G6 Pending。

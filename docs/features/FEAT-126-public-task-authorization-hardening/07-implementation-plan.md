@@ -1,4 +1,4 @@
-# FEAT-126 Local-only 原子实施计划（DESIGN-126-021 Complete / LIA-126-036 Two-stage Corrective Authorized / G3 Partial）
+# FEAT-126 Local-only 原子实施计划（DESIGN-126-021 Complete / LIA-126-036 Corrective Closure Accepted / G3 Partial）
 
 ## 1. 当前执行边界
 
@@ -628,3 +628,10 @@ DEC-126-076已接受上述slice集合的Corrective Closure并关闭environment-b
 4. Phase I随后恢复同一Infra corrective，完成production assets、v4 writer/reason-class/Caddy fixture的剩余targeted/full/config-only/syntax/diff门禁及独立只读审查。
 5. 仅在Infra创建一个local commit并确认clean；其它六仓不修改。最终Governance与Infra SHA在执行报告中列出。
 6. 两阶段均禁止Docker lifecycle、isolated-live、fresh R8、业务case、S11、MiniMax、真实数据、Keychain、默认启用与远端操作；`s10b_r8_executed=false`。
+
+## 37. DEC-126-079 Owner Acceptance Exit
+
+1. Phase G checkpoint=`b7542d4054efc85843ee17b7e79856045e9b385a`；Phase I checkpoint=Infra `ef9984b06c2913b1d7561360b1e3e569cbfd9d4a`。
+2. Infra四文件corrective、targeted `51/51`、full `193/193`、Compose 5.3.0 config-only、syntax/diff及独立review证据由Owner接受；DESIGN-126-021 Complete，LIA-126-036 Corrective Closure Accepted。
+3. Governance只更新现有FEAT-126 package与`feature.yaml`，全门禁通过后形成一个local clean checkpoint；自身SHA只在commit后报告。
+4. checkpoint后停止。G3仍Partial，G4/G6 Pending；不得自动执行isolated-live或fresh R8，下一次live必须固定最终七仓clean SHA并另行一次性授权。

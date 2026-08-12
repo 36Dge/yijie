@@ -621,3 +621,17 @@
 - 该变更为private local evidence interface的semantic变更；central Contracts/G2A、Public Tasks、Host/Runtime与产品默认行为均N/A/unchanged。
 - 不在Governance checkpoint中虚构未来Infra commit SHA；最终SHA只能在Infra commit形成后报告。
 - 不执行Docker lifecycle、isolated-live、fresh R8、业务case、S11、MiniMax、真实数据、Keychain、默认启用或远端操作；`s10b_r8_executed=false`。
+
+## 41. DEC-126-079 / DESIGN-126-021 / LIA-126-036 Corrective Closure Owner Acceptance
+
+| 项目 | Owner决定与证据 |
+|---|---|
+| Owner decision | 接受DESIGN-126-021 / LIA-126-036 Infra Corrective Closure；仅授权本Governance记录更新和一个local clean checkpoint |
+| Governance baseline | `b7542d4054efc85843ee17b7e79856045e9b385a`；包含DEC-126-078 v4 authority；执行前clean |
+| Infra checkpoint | `ef9984b06c2913b1d7561360b1e3e569cbfd9d4a`；父SHA `222fd36a1555bd4787798ed95bf3b4e6b76fa3e1`；四个授权文件；local、clean、not pushed |
+| Corrective accepted | production cargo exact features `feat126-s10-driver,tauri/custom-protocol`；runtime-log-scan v4 14-key writer；两项reason-class摘要；v1/v2/two-v3/v4 exact reader；Caddy `msg`与unknown key/value/empty/non-JSON shape fail closed |
+| Verification | BO2/BO3 targeted `51/51`；full `193/193`；`make lint`；Compose 5.3.0 direct config-only；Node/Shell syntax；diff check PASS；独立只读review发现的两个P1已关闭，无open P0/P1 |
+| Historical integrity | run `c61ba4e8-793f-4e1b-a1ac-86e4e2331e76`六项evidence SHA-256与原记录一致；未读取日志正文或retained volume |
+| Contract impact | 本Governance disposition=`none`；被接受实现仍为private non-publishable local evidence interface的`semantic`变更；central Contracts/G2A、Public Tasks、Host/Runtime与产品默认行为不变 |
+| Gate state | DESIGN-126-021 Complete；LIA-126-036 Corrective Closure Accepted；G3 Partial；G4/G6 Pending；`s10b_r8_executed=false` |
+| Stop | no Docker lifecycle、isolated-live、fresh R8、business case、S11、MiniMax、real data/Keychain、default activation or remote operation；后续live必须基于最终七仓clean SHA另行一次性授权 |
