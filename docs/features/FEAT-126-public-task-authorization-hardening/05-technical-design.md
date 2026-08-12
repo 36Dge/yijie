@@ -1767,3 +1767,21 @@ Run `5a52227e-64cf-4544-9a42-527c512433fe`的attempt failure/closure把primary�
 ### 55.4 Accepted checkpoints and residual live surface
 
 DEC-126-081接受Desktop `b066e8d08b5f80521c87a6505649b1bb3a62d83b`和Infra `cf00b4caacefbd35823dffafb9e23653484bc576`。targeted/full/build/lint/Compose config-only及独立复审均通过，无open P0/P1。修复后仍需live验证实际Keycloak页面、credential/callback/token exchange、session storage、project registration、Host/Runtime ownership/readiness、abort及现场Caddy event集合；这些是P2/live验证面，不是新的repository blocker。
+
+## 56. DESIGN-126-023 Keycloak Session-state and Caddy Storage-cleaning Authority
+
+### 56.1 Callback authority
+
+- Keycloak 26.7.0 `session_state`是18个随机字节经base64url编码形成的24字符opaque identifier，不是UUID。
+- Desktop仅在参数存在时接受精确24个ASCII alphanumeric、`-`或`_`字符；空值、UUID、错误长度、空白及其它字符拒绝。
+- callback仍要求exact `http://127.0.0.1/oauth/callback`、无port/fragment、唯一query keys、constant-time state equality、exact issuer及有界非空code。
+
+### 56.2 Caddy authority
+
+- Caddy 2.11.4/CertMagic 0.25.3 storage cleanup maintenance可产生storage-cleaning skip event。
+- accepted object必须exact keys `level/ts/logger/msg/instance/try_again/try_again_in`，logger=`tls`，instance为canonical UUIDv4，两个retry值为有限正数，`try_again_in<=86400`，并与`try_again-ts`在1秒容差内一致。
+- event approval仍先逐字段value-aware校验，再执行top-level exact schema；未知、额外、跨shape或关系不成立的输入形成`unclassified_caddy_system_value`，不记录原始值。
+
+### 56.3 Checkpoints and residual runtime surface
+
+DEC-126-082接受Desktop `475086f1e68bcd1e0820a07b727d741e22a1bf62`与Infra `e4e92ff1c2f7cbb7627917fb0bc04a5c9bd1b2e2`。repository验证无open P0/P1。真实callback后的session/project continuation、Host/Runtime ownership/readiness、abort和live Caddy input仍为P2/runtime gate，必须由LIA-126-041的新run验证。

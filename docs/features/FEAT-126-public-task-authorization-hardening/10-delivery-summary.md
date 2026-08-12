@@ -400,3 +400,16 @@ The Governance checkpoint records the authority and ordering but intentionally c
 | Gates | Desktop targeted/full/lint/build/Rust PASS; Infra targeted `51/51`, full `193/193`, lint, Compose 5.3.0 config-only, syntax/diff PASS; no open P0/P1 |
 | Boundary | no live/fresh R8/business/S11/MiniMax/Keychain/default activation/remote action during closure; `s10b_r8_executed=false` |
 | Next | after the Governance clean checkpoint and final seven SHA manifest, issue one fresh non-retry startup/abort authorization; live execution remains distinct |
+
+## 26. DEC-126-082 Callback and Caddy Corrective Closure
+
+| Item | Accepted state |
+|---|---|
+| Failed run | LIA-126-039 `5633d030-9486-4824-bf2c-7f0ee7954b58`；`driver_login_callback_rejected`；permanently non-reusable |
+| Audit truth | Keycloak 26.7.0 session state is a 24-character base64url opaque identifier, not UUID；Caddy hit is the closed-version storage-cleaning skip event missing from the old exact schema |
+| Desktop | `475086f1e68bcd1e0820a07b727d741e22a1bf62`；accept exact Keycloak form while retaining callback authority |
+| Infra | `e4e92ff1c2f7cbb7627917fb0bc04a5c9bd1b2e2`；exact Caddy event shape with UUID/time/relationship validation and fail-closed negatives |
+| Gates | Desktop full/lint/build/Rust and callback targeted PASS；Infra targeted `51/51`、full `193/193`、lint、Compose 5.3.0 config-only、syntax/diff PASS；no open P0/P1 |
+| Historical boundary | ledger/evidence digests rechecked read-only；raw log and retained volume not read；Public Tasks/conversation/turn/provider=0；`s10b_r8_executed=false` |
+| State | `DEC-126-082 Accepted / DESIGN-126-023 Complete / LIA-126-040 Corrective Closure Accepted`；G3 Partial；G4/G6 Pending |
+| Next | after this Governance clean checkpoint, LIA-126-041 binds the new seven-SHA manifest and a fresh UUIDv4 for exactly one isolated-live startup/abort |

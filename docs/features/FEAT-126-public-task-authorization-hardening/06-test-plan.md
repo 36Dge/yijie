@@ -964,3 +964,18 @@ Infra checkpoint `ef9984b06c2913b1d7561360b1e3e569cbfd9d4a`通过BO2/BO3 `51/51`
 | Historical integrity | attempt-ledger and run evidence digests rechecked read-only; retained volume and log body not read; `s10b_r8_executed=false` |
 
 The next isolated-live remains a distinct P2/runtime gate. It must verify the actual login chain, project/Host/Runtime continuation, readiness, one-shot abort, v4 live Caddy classification and cleanup under a fresh UUID; repository tests do not claim these outcomes.
+
+## 42. DESIGN-126-023 / LIA-126-040 Corrective Gates
+
+| Area | Accepted proof |
+|---|---|
+| Desktop callback | exact 24-character base64url session state accepted；UUID、empty、25-character、whitespace和invalid character rejected；state/issuer/path/query closure保持 |
+| Desktop full/static | `make lint`、`make test`、`make build`；frontend `180/180`；Rust `135 pass/3 ignored`；fmt、clippy、targeted callback和diff PASS |
+| Infra benign event | sanitized Caddy 2.11.4 storage-cleaning skip exact shape produces zero hits |
+| Infra negative matrix | invalid instance、retry time、duration、relationship及cross-shape继续产生canonical v4 failed evidence |
+| Infra stability/privacy | dynamic UUID/time变化不改变zero-hit evidence；v4 exact keys/digests不变；无field name/value/path/log body进入evidence |
+| Infra full/static | BO2/BO3 targeted `51/51`；full `193/193`；`make lint`；Compose 5.3.0 config-only；Node/Shell syntax及diff PASS |
+| Review | final independent read-only review has no open P0/P1；Contracts/API/Host/Runtime无需修改 |
+| Historical integrity | LIA-126-039 ledger/evidence read-only digest复核；未读日志正文或retained volume；`s10b_r8_executed=false` |
+
+LIA-126-041仍是独立live gate：使用全新UUIDv4和提交后七仓SHA，只执行一次startup/abort；验证callback continuation、project/Host/Runtime readiness、FD4/ownership、no-log v4、single abort和资源归零。任一失败都形成canonical closure并停止，不得retry/resume。

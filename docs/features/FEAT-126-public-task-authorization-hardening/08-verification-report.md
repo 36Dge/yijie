@@ -1189,3 +1189,21 @@ Governance Acceptance checkpoint的精确SHA在commit后报告，不在commit自
 | Runtime state | no live during audit/corrective/acceptance; G3 Partial; G4/G6 Pending; `s10b_r8_executed=false` |
 
 Governance checkpoint的SHA在commit后报告。完成后仅签发一份绑定最终七仓SHA的新startup/abort授权；本节本身不执行该live。
+
+## 49. LIA-126-039 Offline Audit / DESIGN-126-023 / LIA-126-040 Corrective Closure
+
+| Evidence | Accepted result |
+|---|---|
+| Failed run | `5633d030-9486-4824-bf2c-7f0ee7954b58`；primary=`driver_login_callback_rejected` at `desktop_starting`；API/fake/Desktop process evidence exists；Host/Runtime未启动；永久不可retry/resume/reuse |
+| Durable ledger | preclaim `3628c6256d7624821160aa717e3477f37703fd4bc14455a5a5e95b82b0e2971b`；attempt `e791513b13087d6ea5318bb8f95b5dbbefcdedaa7838a16d35349ababe11e895`；failure `47e966c925f5c8f2f2f1c39f8a1f4f2de6b3f564d3b88f10a056c8cb358aee8f`；closure `1d1398fef7294f291bb9df1cc704484cb00d3c9b823a242644f98939150f83c2`；均0600、owner 501、nlink 1、canonical JSON |
+| Business boundary | PASS；API before/after digest identical；fake accepted/rejected=0；Public Tasks/conversation/turn/provider=0；`s10b_r8_executed=false` |
+| Runtime scan | schema v4，source_count=4、row_count=68、hit_count=1；evidence SHA `bfa3a3b08f5688e76f8c16bf019897fd6741574510ff1f9ac02a1a652d87d232`；旧scanner缺少Caddy storage-cleaning skip exact event shape |
+| Desktop root cause/corrective | Keycloak 26.7.0合法24字符base64url opaque session state被错误UUID校验拒绝；Desktop checkpoint `475086f1e68bcd1e0820a07b727d741e22a1bf62`修正格式且不放宽callback其它绑定 |
+| Infra root cause/corrective | Caddy 2.11.4/CertMagic storage-cleaning skip metadata未进入closed event schema；Infra checkpoint `e4e92ff1c2f7cbb7627917fb0bc04a5c9bd1b2e2`加入exact shape、UUID/time/relationship校验及negative matrix |
+| Desktop gates | `make lint/test/build` PASS；frontend `180/180`；Rust `135 pass/3 ignored`；fmt、clippy、callback targeted、diff PASS |
+| Infra gates | BO2/BO3 targeted `51/51`；full `193/193`；`make lint`；Compose 5.3.0 direct config-only；Node/Shell syntax及diff PASS |
+| Review/scope | independent read-only review no open P0/P1；semantic private startup/evidence only；Contracts/API/Host/Runtime未修改，central G2A=N/A |
+| Historical boundary | 未读取原始日志正文、retained-volume内容、secret、token或业务内容；未改写历史evidence；corrective/acceptance阶段未执行Docker lifecycle/live/fresh R8/business/MiniMax/Keychain/remote action |
+| Owner disposition | `DEC-126-082 Accepted / DESIGN-126-023 Complete / LIA-126-040 Corrective Closure Accepted`；G3 Partial、G4/G6 Pending |
+
+本Governance checkpoint完成后，LIA-126-041必须使用其提交后SHA、上述新Desktop/Infra SHA和其余五仓当前clean SHA，现场生成未占用UUIDv4，并且只执行一次canonical isolated-live startup/abort。

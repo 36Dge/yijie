@@ -660,3 +660,19 @@
 | Runtime boundary | corrective/acceptance阶段未执行Docker lifecycle、isolated-live、fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用或远端动作；Public Tasks/conversation/turn/provider calls=0；`s10b_r8_executed=false` |
 | Gate state | `DESIGN-126-022 Complete / LIA-126-038 Corrective Closure Accepted / S10B-BLK-014 Closed`；G3 Partial、G4/G6 Pending |
 | Next | Governance clean checkpoint完成并取得七仓exact clean SHA后，只能另行签发一次全新、不可重试的isolated-live startup/abort授权；该接受本身不执行live |
+
+## 44. DEC-126-082 / DESIGN-126-023 / LIA-126-040 Corrective Closure Owner Acceptance
+
+| 项目 | 接受结果 |
+|---|---|
+| Failed run | LIA-126-039 run `5633d030-9486-4824-bf2c-7f0ee7954b58`保持FAIL、已消费且永久不可retry、resume或复用；primary=`driver_login_callback_rejected`，closure同时记录`orchestrator_no_log_invalid` |
+| Desktop root cause | Keycloak 26.7.0以18随机字节的padded base64url产生24字符opaque `session_state`；旧Desktop错误要求canonical UUID，因此合法callback在授权成功后被拒绝 |
+| Caddy root cause | Caddy 2.11.4/CertMagic 0.25.3发出storage-cleaning skip及`instance/try_again/try_again_in`系统元数据；旧scanner缺少该top-level exact event schema，不构成敏感泄漏证据 |
+| Checkpoints | Desktop `475086f1e68bcd1e0820a07b727d741e22a1bf62`；Infra `e4e92ff1c2f7cbb7627917fb0bc04a5c9bd1b2e2`；均local、clean、not pushed |
+| Corrective accepted | Desktop接受exact 24-character base64url session state并保持callback其余authority闭合；Infra接受exact Caddy storage-cleaning skip event、canonical UUIDv4 instance、有界时间值及时间关系，unknown/cross-shape继续fail closed |
+| Verification | Desktop `make lint/test/build`、frontend `180/180`、Rust `135 pass/3 ignored`、fmt/clippy/diff及callback targeted PASS；Infra BO2/BO3 `51/51`、full `193/193`、lint、Compose 5.3.0 config-only、Node/Shell syntax及diff PASS；独立只读复审无open P0/P1 |
+| Evidence integrity | old run preclaim/attempt/failure/closure均0600 canonical JSON且SHA-256分别为`3628c6256d7624821160aa717e3477f37703fd4bc14455a5a5e95b82b0e2971b`、`e791513b13087d6ea5318bb8f95b5dbbefcdedaa7838a16d35349ababe11e895`、`47e966c925f5c8f2f2f1c39f8a1f4f2de6b3f564d3b88f10a056c8cb358aee8f`、`1d1398fef7294f291bb9df1cc704484cb00d3c9b823a242644f98939150f83c2`；未读取日志正文或retained volume |
+| Contract impact | 本Governance disposition=`none`；被接受实现为private non-publishable startup/evidence `semantic`；central Contracts/G2A与Contracts/API/Host/Runtime源码均N/A/unchanged |
+| Gate state | DESIGN-126-023 Complete；LIA-126-040 Corrective Closure Accepted；G3 Partial；G4/G6 Pending；`s10b_r8_executed=false` |
+| Next | 本Governance clean checkpoint形成并取得最终七仓exact clean SHA后，LIA-126-041可以作为另一份全新、不可重试的startup/abort授权；必须现场生成未使用UUIDv4 |
+| Prohibited | corrective/acceptance阶段未执行Docker lifecycle、isolated-live、fresh R8、business case、S11、MiniMax、real data/Keychain、default activation或远端动作 |

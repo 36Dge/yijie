@@ -332,3 +332,11 @@ LIA-126-037 run `5a52227e-64cf-4544-9a42-527c512433fe`在`desktop_starting`形�
 本corrective的最高影响为`semantic`，仅限不可发布的Desktop-to-Infra local startup/control/evidence interface。Desktop把synthetic login的secret authority、authorization start/request/page、form、credential submit/reject、callback、token exchange、session/storage/runtime/concurrency失败闭合为content-free stage leaves；Infra接受并持久化这些leaves，同时用top-level exact event shape解释脱敏Caddy 2.11.4 startup/admin/TLS/reverse-proxy metadata。array/scalar root、unknown key/value和malformed nested access object继续fail closed。中央Contracts、Public Tasks、API、Host、Runtime、durable schema、Compose pins和default flags不变，central G2A=`N/A`。
 
 Owner通过DEC-126-081接受Desktop `b066e8d08b5f80521c87a6505649b1bb3a62d83b`与Infra `cf00b4caacefbd35823dffafb9e23653484bc576`的Corrective Closure。实际Keycloak页面/credential/callback/token exchange、project registration、Host/Runtime ownership/readiness及live Caddy event集合仍必须由下一次isolated-live验证；因此G3保持Partial，G4/G6 Pending。
+
+## 21. DESIGN-126-023 / LIA-126-039–040 Callback and Caddy Storage-cleaning Corrective Impact
+
+LIA-126-039 run `5633d030-9486-4824-bf2c-7f0ee7954b58`在真实Keycloak授权成功后，由Desktop以`driver_login_callback_rejected`终止。离线只读审计确认Keycloak 26.7.0的`session_state`由18个随机字节编码为24字符base64url opaque值，旧Desktop却错误要求canonical UUID。runtime-log-scan v4的唯一Caddy命中对应Caddy 2.11.4/CertMagic 0.25.3 storage-cleaning skip system event；旧Infra缺少该top-level exact event shape。这两项均属于已固定版本的private startup/evidence语义，不涉及真实业务数据或公共wire。
+
+本corrective的最高影响为`semantic`，仅限不可发布的FEAT-126 Desktop/Infra local startup验证。Desktop仅修改`src-tauri/src/native_auth/synthetic_agent.rs`，接受精确24字符base64url session state并继续闭合scheme/host/path/state/issuer/code。Infra仅修改orchestrator、BO3 test及脱敏Caddy fixture，接受exact logger/message/instance/try-again shape和时间关系，未知、cross-shape及非法值继续fail closed。Contracts/API/Host/Runtime、Public Tasks、durable schema、Compose pins与default flags均不变，central G2A=`N/A`。
+
+Owner通过DEC-126-082接受Desktop `475086f1e68bcd1e0820a07b727d741e22a1bf62`与Infra `e4e92ff1c2f7cbb7627917fb0bc04a5c9bd1b2e2`的Corrective Closure。仓库门禁与独立复审无open P0/P1；真实callback continuation、project registration、Host/Runtime ownership/readiness、一次性abort、现场Caddy集合及资源归零仍由下一次isolated-live验证，因此G3保持Partial，G4/G6 Pending。

@@ -342,3 +342,11 @@ Owner接受Infra `ef9984b06c2913b1d7561360b1e3e569cbfd9d4a`对上述private comp
 Caddy v4 evidence schema和14-key exact shape不变；本corrective只收紧同一`unclassified_caddy_system_value` reason class下的event-shape判定。合法脱敏Caddy 2.11.4 fixture按top-level exact shape通过，array/scalar/null root、unknown或cross-shape组合仍失败。中央Contracts字段、版本、生成物、breaking baseline、consumer pin与发布tag均为`N/A`。
 
 DEC-126-081接受Desktop/Infra配对checkpoints。回滚必须配对revert两个commits；不得只移除Infra新leaf、让Desktop发送未知class，或只放宽Caddy规则。历史run不迁移、不重写、不reconcile。
+
+## 22. DESIGN-126-023 Callback/Caddy Private Compatibility
+
+- `contract-impact=semantic`，仅限FEAT-126 feature-only Desktop synthetic auth callback与Infra runtime-log scanner；公共HTTP/SSE/Tauri业务IPC、持久业务schema、Runtime protocol和中央Contracts source均无变化，G2A=`N/A`。
+- Desktop producer/consumer在同一checkpoint内把Keycloak 26.7.0 `session_state`解释从UUID修正为精确24字符base64url opaque value；callback的scheme、host、path、state、issuer、code、duplicate/unknown query约束保持不变。
+- Infra v4 evidence shape与摘要算法不变，只在既有closed Caddy system-event authority中增加一个exact event schema。`instance`必须canonical UUIDv4，`try_again`与`try_again_in`必须有限、正数、有界且满足时间关系；未知字段、交叉event shape和非法值继续fail closed。
+- Desktop `475086f1e68bcd1e0820a07b727d741e22a1bf62`与Infra `e4e92ff1c2f7cbb7627917fb0bc04a5c9bd1b2e2`必须成对用于下一次isolated-live。旧run及其v4 evidence不迁移、不重写、不resume。
+- DEC-126-082只接受上述repository corrective，不改变运行授权。下一次LIA-126-041必须绑定提交后的七仓exact clean SHA和全新UUIDv4。

@@ -408,3 +408,11 @@ DESIGN-126-008对未来corrective的回滚语义冻结如下：
 - Caddy rollback不得放行array/scalar/null root、malformed nested object、unknown key/value或cross-event字段组合；不得通过修改Caddyfile、删规则或重写历史scan消除门禁。
 - Run `5a52227e-64cf-4544-9a42-527c512433fe`及其evidence/retained volumes不可修改、删除、retry、resume、reconcile或作为新run输入。
 - Governance checkpoint后可单独签发一次新startup/abort授权；任何执行必须使用最终七仓exact clean SHA与现场生成UUIDv4，失败即停止且不得重试。fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用与远端动作仍禁止。
+
+## 27. DEC-126-082 Corrective Closure and Rollback Boundary
+
+- 本接受固定Desktop `475086f1e68bcd1e0820a07b727d741e22a1bf62`与Infra `e4e92ff1c2f7cbb7627917fb0bc04a5c9bd1b2e2`，不产生release artifact、deployment、default activation或live PASS。
+- 回滚必须分别以可审查revert撤销两个local commits；不得把Desktop恢复为UUID-only session state、只放宽长度而移除字符约束，或删除Infra exact event schema而用field-level宽泛allowlist替代。
+- Caddy rollback不得忽略instance、retry bounds或时间关系；unknown、extra、cross-event和invalid-value输入继续fail closed。runtime-log-scan v4 shape及历史reader兼容不变。
+- Run `5633d030-9486-4824-bf2c-7f0ee7954b58`及其evidence/retained volumes不可修改、删除、retry、resume、reconcile或作为新run输入。
+- Governance checkpoint后，LIA-126-041只能绑定最终七仓exact clean SHA和现场生成的fresh UUIDv4，并执行一次startup/abort。fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用与远端动作仍禁止。

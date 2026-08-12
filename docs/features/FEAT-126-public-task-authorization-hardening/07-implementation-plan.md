@@ -644,3 +644,12 @@ DEC-126-076已接受上述slice集合的Corrective Closure并关闭environment-b
 4. 两仓targeted/full/lint/build/config-only/syntax/diff门禁PASS，独立复审无open P0/P1；Contracts/API/Host/Runtime无需修改。
 5. DEC-126-081接受Corrective Closure并关闭`S10B-BLK-014`；Governance只更新现有FEAT-126 package与`feature.yaml`，全门禁通过后形成local clean checkpoint。
 6. 取得最终七仓exact clean SHA后，Owner可以另行签发一次全新、不可重试的isolated-live startup/abort授权并现场生成未使用UUIDv4。该授权不包含fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用或远端动作。
+
+## 39. DESIGN-126-023 / LIA-126-040 Corrective Exit
+
+1. LIA-126-039 run `5633d030-9486-4824-bf2c-7f0ee7954b58`保持永久FAIL、已消费且不可复用；其evidence与retained volumes不修改、不删除、不resume。
+2. Desktop仅修改`synthetic_agent.rs`，形成checkpoint `475086f1e68bcd1e0820a07b727d741e22a1bf62`；Keycloak session-state格式修正，callback其余authority不放宽。
+3. Infra仅修改orchestrator、BO3 test及脱敏Caddy fixture，形成checkpoint `e4e92ff1c2f7cbb7627917fb0bc04a5c9bd1b2e2`；storage-cleaning skip exact shape闭合，未知输入继续fail closed。
+4. 两仓targeted/full/lint/build/config-only/syntax/diff门禁PASS，独立只读复审无open P0/P1；Contracts/API/Host/Runtime无需修改。
+5. DEC-126-082接受Corrective Closure；Governance只更新现有FEAT-126 package与`feature.yaml`，全门禁通过后形成一个local clean checkpoint。
+6. 取得最终七仓exact clean SHA后，LIA-126-041现场生成未使用UUIDv4并且只执行一次canonical startup/abort。失败即canonical closure并停止；不授权fresh R8、业务case、S11、MiniMax、Keychain、默认启用或远端动作。
