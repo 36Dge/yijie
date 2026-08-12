@@ -350,3 +350,11 @@ DEC-126-081接受Desktop/Infra配对checkpoints。回滚必须配对revert两个
 - Infra v4 evidence shape与摘要算法不变，只在既有closed Caddy system-event authority中增加一个exact event schema。`instance`必须canonical UUIDv4，`try_again`与`try_again_in`必须有限、正数、有界且满足时间关系；未知字段、交叉event shape和非法值继续fail closed。
 - Desktop `475086f1e68bcd1e0820a07b727d741e22a1bf62`与Infra `e4e92ff1c2f7cbb7627917fb0bc04a5c9bd1b2e2`必须成对用于下一次isolated-live。旧run及其v4 evidence不迁移、不重写、不resume。
 - DEC-126-082只接受上述repository corrective，不改变运行授权。下一次LIA-126-041必须绑定提交后的七仓exact clean SHA和全新UUIDv4。
+
+## 23. DESIGN-126-024 Live Caddy System-event Compatibility
+
+- `contract-impact=semantic`，仅限Infra私有runtime-log-scan分类器；v4 schema、14-key evidence shape、digest算法和legacy reader均不变。
+- Caddy origin仍要求exact Docker authority。event approval先验证top-level exact keys和message/logger组合，再验证字段值；新增字段级合法值不能单独让未知event通过。
+- Admin healthcheck仅接受closed GET `/config/` loopback shape及exact headers；startup/TLS/reverse-proxy事件按message-specific schema闭合。unknown key/value、cross-event组合、非object root和不合规nested shape继续fail closed。
+- 中央Contracts、Public Tasks、API/Host/Desktop/Runtime wire、durable schema、Compose pins和default flags无变化，G2A=`N/A`。
+- DEC-126-083接受Infra `d4749cb31242799d7cb8f566d44bea3c1f085d8a`；历史v4 evidence不迁移、不重写、不reconcile。LIA-126-045必须绑定新的七仓exact clean SHA。

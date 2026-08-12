@@ -1785,3 +1785,22 @@ DEC-126-081接受Desktop `b066e8d08b5f80521c87a6505649b1bb3a62d83b`和Infra `cf0
 ### 56.3 Checkpoints and residual runtime surface
 
 DEC-126-082接受Desktop `475086f1e68bcd1e0820a07b727d741e22a1bf62`与Infra `e4e92ff1c2f7cbb7627917fb0bc04a5c9bd1b2e2`。repository验证无open P0/P1。真实callback后的session/project continuation、Host/Runtime ownership/readiness、abort和live Caddy input仍为P2/runtime gate，必须由LIA-126-041的新run验证。
+
+## 57. DESIGN-126-024 Closed Live Caddy 2.11.4 System-event Authority
+
+### 57.1 Runtime evidence boundary
+
+- LIA-126-041/042/043的三份v4 scan都只证明同一tuple：Caddy origin、unclassified-sensitive rule、structured-unclassified field class和Caddy-system reason；每份source_count=4、row_count=69、hit_count=1。
+- 三个run均已到`desktop_exited`并持久化API/fake/Desktop/Host/Runtime process evidence，business boundary PASS且fake calls=0。failure/closure primary只为`orchestrator_no_log_invalid`，不得把这些结果写成live PASS。
+- v4隐私设计没有保存原始record，因此不能从历史evidence把某条日志正文归因给某个run。根因结论来自固定Caddy 2.11.4公开结构和完全脱敏fixture的离线对照，不读取retained volume或输出原始日志正文。
+
+### 57.2 Event authority
+
+- Caddy system event仍采用两层闭合：字段值必须通过`approvedCaddySystemFieldValue`，完整object随后必须通过message-specific exact schema。单独允许一个logger、message、URI或header值不能放行未知event。
+- 新增形状覆盖固定版本的GOMEMLIMIT、admin bind、automatic HTTPS/redirect、UDP buffer、storage cleaning、autosave和admin healthcheck元数据；所有值均为系统元数据，不是业务payload。
+- Admin healthcheck要求exact top-level keys、logger/message、loopback host/IP、GET `/config/`和closed header keys/values。unknown、extra、wrong logger/message/URI/header及cross-shape继续产生`unclassified_caddy_system_value`。
+- v4 evidence仍只保存counts与stable origin/rule/field/reason digests，不保存raw field name/value、path、log body、token、secret或业务内容。
+
+### 57.3 Accepted checkpoint and residual live gate
+
+DEC-126-083接受Infra `d4749cb31242799d7cb8f566d44bea3c1f085d8a`。targeted/full/lint/Compose config-only/syntax/diff全部PASS，独立review无open P0/P1。`remote_port`更严格的1..65535数值域可作为P2 authority hardening，但不影响本轮固定healthcheck形状或Corrective Closure。LIA-126-045仍须验证现场零命中、一次性abort和资源归零；G3保持Partial，G4/G6 Pending。

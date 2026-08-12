@@ -340,3 +340,11 @@ LIA-126-039 run `5633d030-9486-4824-bf2c-7f0ee7954b58`在真实Keycloak授权成
 本corrective的最高影响为`semantic`，仅限不可发布的FEAT-126 Desktop/Infra local startup验证。Desktop仅修改`src-tauri/src/native_auth/synthetic_agent.rs`，接受精确24字符base64url session state并继续闭合scheme/host/path/state/issuer/code。Infra仅修改orchestrator、BO3 test及脱敏Caddy fixture，接受exact logger/message/instance/try-again shape和时间关系，未知、cross-shape及非法值继续fail closed。Contracts/API/Host/Runtime、Public Tasks、durable schema、Compose pins与default flags均不变，central G2A=`N/A`。
 
 Owner通过DEC-126-082接受Desktop `475086f1e68bcd1e0820a07b727d741e22a1bf62`与Infra `e4e92ff1c2f7cbb7627917fb0bc04a5c9bd1b2e2`的Corrective Closure。仓库门禁与独立复审无open P0/P1；真实callback continuation、project registration、Host/Runtime ownership/readiness、一次性abort、现场Caddy集合及资源归零仍由下一次isolated-live验证，因此G3保持Partial，G4/G6 Pending。
+
+## 22. DESIGN-126-024 / LIA-126-041–044 Live Caddy System-event Corrective Impact
+
+LIA-126-041、042、043分别消费run `909e7b8b-93e0-4497-adbf-579d7afb90e1`、`7eeb81fa-7969-4b9f-b979-a3ad3ba1a3c8`和`8001b5ae-4916-41fd-81db-0617e862a6c3`。三者都在`desktop_exited`形成`orchestrator_no_log_invalid` failure/closure，process scope包含API、fake、Desktop、Host和Runtime，business boundary PASS且fake accepted/rejected calls均为0。三份runtime-log-scan v4均为四个exact sources、69 rows、单一Caddy unclassified tuple；这些run均已消费、永久不可retry/resume/reuse，不能合并为一个live PASS。
+
+统一离线审计确认影响仍仅为Infra private runtime-log classification semantics。固定Caddy 2.11.4现场系统日志包含与旧脱敏fixture不同但content-free的startup/admin/TLS/reverse-proxy元数据形状。旧closed event authority不能解释这些值，因而按设计fail closed；摘要不证明token、secret或业务内容泄漏。corrective只修改Infra orchestrator、BO3 test和完全脱敏fixture；Contracts/API/Host/Desktop/Runtime及central G2A均不受影响。
+
+DEC-126-083接受Infra `d4749cb31242799d7cb8f566d44bea3c1f085d8a`。BO2/BO3 targeted `51/51`、full `193/193`、`make lint`、Compose 5.3.0 config-only、Node/Shell syntax及diff检查PASS，独立只读审查无open P0/P1。实际live输入仍须由新七仓SHA上的LIA-126-045验证；因此G3保持Partial，G4/G6 Pending。

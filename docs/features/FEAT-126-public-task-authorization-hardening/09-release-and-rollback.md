@@ -416,3 +416,11 @@ DESIGN-126-008对未来corrective的回滚语义冻结如下：
 - Caddy rollback不得忽略instance、retry bounds或时间关系；unknown、extra、cross-event和invalid-value输入继续fail closed。runtime-log-scan v4 shape及历史reader兼容不变。
 - Run `5633d030-9486-4824-bf2c-7f0ee7954b58`及其evidence/retained volumes不可修改、删除、retry、resume、reconcile或作为新run输入。
 - Governance checkpoint后，LIA-126-041只能绑定最终七仓exact clean SHA和现场生成的fresh UUIDv4，并执行一次startup/abort。fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用与远端动作仍禁止。
+
+## 28. DEC-126-083 Corrective Closure and Rollback Boundary
+
+- 本接受固定Infra `d4749cb31242799d7cb8f566d44bea3c1f085d8a`，不产生release artifact、deployment、default activation或isolated-live PASS。
+- 回滚必须整体revert该Infra commit；不得只放宽field allowlist、删除event-level exact schema、修改Caddyfile或重写历史v4 scan。
+- LIA-126-041/042/043的run ID、ledger、evidence和retained volumes不可修改、删除、retry、resume、reconcile或作为新run输入。
+- Governance checkpoint后，LIA-126-045只能绑定最终七仓exact clean SHA和现场生成的一个fresh UUIDv4，并执行一次startup/abort；失败即停止且不得重试。
+- fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用及push/merge/tag/publish/deploy仍禁止。

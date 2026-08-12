@@ -979,3 +979,18 @@ The next isolated-live remains a distinct P2/runtime gate. It must verify the ac
 | Historical integrity | LIA-126-039 ledger/evidence read-only digest复核；未读日志正文或retained volume；`s10b_r8_executed=false` |
 
 LIA-126-041仍是独立live gate：使用全新UUIDv4和提交后七仓SHA，只执行一次startup/abort；验证callback continuation、project/Host/Runtime readiness、FD4/ownership、no-log v4、single abort和资源归零。任一失败都形成canonical closure并停止，不得retry/resume。
+
+## 43. DESIGN-126-024 / LIA-126-044 Corrective Gates
+
+| Area | Accepted proof |
+|---|---|
+| Historical runs | LIA-126-041/042/043均保留canonical FAIL；不retry/resume/reuse，不改写evidence或retained volume |
+| Event closure | Caddy 2.11.4 startup/admin/TLS/reverse-proxy/shutdown fixture产生zero hit；完整event先过exact schema，再过value-aware字段校验 |
+| Negative matrix | wrong address/logger/URI/User-Agent/Connection/case、unknown root/event及cross-shape继续产生canonical v4 failure |
+| Digest/privacy | 输入顺序、container ID及允许的动态系统值变化不改变zero-hit evidence；evidence不含raw field/value/path/log body |
+| Infra targeted | BO2/BO3 `51/51` PASS |
+| Infra full/static | `193/193`、`make lint`、Compose 5.3.0 config-only、Node/Shell syntax及`git diff --check` PASS |
+| Independent review | no open P0/P1；P2仅保留更严格remote-port range和下一次live输入验证 |
+| Owner disposition | DEC-126-083 Accepted；DESIGN-126-024 Complete；LIA-126-044 Corrective Closure Accepted；G3 Partial、G4/G6 Pending |
+
+下一次live编号为LIA-126-045。它必须绑定Governance提交后的七仓exact clean SHA，现场生成一个未使用UUIDv4并只执行一次canonical startup/abort。

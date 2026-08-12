@@ -676,3 +676,18 @@
 | Gate state | DESIGN-126-023 Complete；LIA-126-040 Corrective Closure Accepted；G3 Partial；G4/G6 Pending；`s10b_r8_executed=false` |
 | Next | 本Governance clean checkpoint形成并取得最终七仓exact clean SHA后，LIA-126-041可以作为另一份全新、不可重试的startup/abort授权；必须现场生成未使用UUIDv4 |
 | Prohibited | corrective/acceptance阶段未执行Docker lifecycle、isolated-live、fresh R8、business case、S11、MiniMax、real data/Keychain、default activation或远端动作 |
+
+## 45. DEC-126-083 / DESIGN-126-024 / LIA-126-041–044 Corrective Closure Owner Acceptance
+
+| 项目 | 接受结果 |
+|---|---|
+| Historical runs | LIA-126-041=`909e7b8b-93e0-4497-adbf-579d7afb90e1`、LIA-126-042=`7eeb81fa-7969-4b9f-b979-a3ad3ba1a3c8`、LIA-126-043=`8001b5ae-4916-41fd-81db-0617e862a6c3`；均CONSUMED/FAIL且永久不可retry、resume或reuse |
+| Shared failure | phase=`desktop_exited`；process roles=`api/fake/desktop/host/runtime`；business boundary PASS、fake accepted/rejected=0；primary=`orchestrator_no_log_invalid`；runtime-log-scan v4为4 sources、69 rows、1个Caddy unclassified tuple |
+| Root cause | 固定Caddy 2.11.4现场系统事件与旧脱敏fixture存在closed-shape差异；旧scanner不能把startup/admin/TLS/reverse-proxy元数据归入已批准event authority，因而正确fail closed。content-free摘要不能恢复原始record，也不证明敏感值泄漏 |
+| Corrective | DESIGN-126-024 / LIA-126-044仅更新Infra orchestrator、S10BO3 test和完全脱敏Caddy fixture；增加closed event-level schema及value-aware negative matrix，unknown/cross-shape继续fail closed |
+| Checkpoint | Infra `d4749cb31242799d7cb8f566d44bea3c1f085d8a`；parent=`e4e92ff1c2f7cbb7627917fb0bc04a5c9bd1b2e2`；local、clean、not pushed |
+| Verification | BO2/BO3 targeted `51/51`；full `193/193`；`make lint`；Compose 5.3.0 config-only；Node/Shell syntax；`git diff --check` PASS；独立只读review无open P0/P1 |
+| Scope | Owner接受本次Infra-only Corrective Closure；Governance disposition=`none`。Contracts/API/Host/Desktop/Runtime、central G2A、Public Tasks wire、durable schema、Compose pins和default flags unchanged/N/A |
+| Gate state | DESIGN-126-024 Complete；LIA-126-044 Corrective Closure Accepted；G3 Partial；G4/G6 Pending；所有历史run保持FAIL；`s10b_r8_executed=false` |
+| Next | Governance clean checkpoint形成并取得七仓exact clean SHA后，LIA-126-045仅可现场生成一个未使用UUIDv4并执行一次canonical startup/abort；失败即closure并停止，不得retry/resume |
+| Prohibited | fresh R8、business case、S11、MiniMax、real data/Keychain、default activation及push/merge/tag/publish/deploy仍未授权 |

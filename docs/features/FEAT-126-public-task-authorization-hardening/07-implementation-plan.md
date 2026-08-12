@@ -653,3 +653,12 @@ DEC-126-076已接受上述slice集合的Corrective Closure并关闭environment-b
 4. 两仓targeted/full/lint/build/config-only/syntax/diff门禁PASS，独立只读复审无open P0/P1；Contracts/API/Host/Runtime无需修改。
 5. DEC-126-082接受Corrective Closure；Governance只更新现有FEAT-126 package与`feature.yaml`，全门禁通过后形成一个local clean checkpoint。
 6. 取得最终七仓exact clean SHA后，LIA-126-041现场生成未使用UUIDv4并且只执行一次canonical startup/abort。失败即canonical closure并停止；不授权fresh R8、业务case、S11、MiniMax、Keychain、默认启用或远端动作。
+
+## 40. DESIGN-126-024 / LIA-126-044 Corrective Exit
+
+1. LIA-126-041/042/043三个run均保持已消费FAIL且永久不可复用；其evidence和retained volumes不修改、不删除、不resume。
+2. Infra只修改orchestrator、BO3 test和完全脱敏Caddy fixture，形成checkpoint `d4749cb31242799d7cb8f566d44bea3c1f085d8a`；其它六仓不修改。
+3. BO2/BO3 targeted `51/51`、full `193/193`、lint、Compose 5.3.0 config-only、Node/Shell syntax和diff全部PASS；独立只读复审无open P0/P1。
+4. DEC-126-083接受Corrective Closure；Governance只更新现有FEAT-126 package和`feature.yaml`，门禁通过后形成一个local clean checkpoint。
+5. 取得最终七仓exact clean SHA后，LIA-126-045现场生成一个未使用UUIDv4并只执行一次canonical startup/abort。任一失败形成canonical closure并停止，禁止retry/resume/reuse。
+6. fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用及远端操作仍禁止。

@@ -1207,3 +1207,19 @@ Governance checkpoint的SHA在commit后报告。完成后仅签发一份绑定�
 | Owner disposition | `DEC-126-082 Accepted / DESIGN-126-023 Complete / LIA-126-040 Corrective Closure Accepted`；G3 Partial、G4/G6 Pending |
 
 本Governance checkpoint完成后，LIA-126-041必须使用其提交后SHA、上述新Desktop/Infra SHA和其余五仓当前clean SHA，现场生成未占用UUIDv4，并且只执行一次canonical isolated-live startup/abort。
+
+## 50. LIA-126-041–043 / DESIGN-126-024 / LIA-126-044 Corrective Closure
+
+| Evidence | Accepted result |
+|---|---|
+| Runs | `909e7b8b-93e0-4497-adbf-579d7afb90e1`、`7eeb81fa-7969-4b9f-b979-a3ad3ba1a3c8`、`8001b5ae-4916-41fd-81db-0617e862a6c3`；均CONSUMED/FAIL、永久不可retry/resume/reuse |
+| Fixed SHAs | Governance `b52c52644d4fafb581b6373428166d1abe910e77`；Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`；API `451940b282d8dd3e232ed414bd44b0677897f4c4`；Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`；Desktop `475086f1e68bcd1e0820a07b727d741e22a1bf62`；Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`；Infra `e4e92ff1c2f7cbb7627917fb0bc04a5c9bd1b2e2` |
+| Shared closure | `desktop_exited`；API/fake/Desktop/Host/Runtime process scope；business PASS、fake accepted/rejected=0；failure=`orchestrator_no_log_invalid`；cleanup failure null；`s10b_r8_executed=false` |
+| Runtime scan | 每份schema v4、source_count=4、row_count=69、hit_count=1；相同Caddy origin/rule/field/reason摘要；未读取日志正文或retained volume |
+| Root cause | 固定Caddy 2.11.4现场系统事件与旧closed fixture存在版本化shape差异；旧scanner正确fail closed。摘要不证明敏感泄漏，具体原始record不可从evidence恢复 |
+| Corrective checkpoint | Infra `d4749cb31242799d7cb8f566d44bea3c1f085d8a`；3 files；local/clean/not pushed |
+| Gates | targeted `51/51`；full `193/193`；`make lint`；Compose 5.3.0 config-only；Node/Shell syntax；diff PASS；fixture SHA-256=`672eb9de3784a68cf7fceef1f6763c0205c584f34df4e0c392282f9122cd9c3a` |
+| Review | event-level exact schema prevents newly allowed field values from approving unknown events；no open P0/P1；remote-port range为P2 hardening |
+| Owner disposition | DEC-126-083 Accepted；DESIGN-126-024 Complete；LIA-126-044 Corrective Closure Accepted；G3 Partial、G4/G6 Pending |
+
+Governance checkpoint形成后，LIA-126-045只能以新七仓exact clean SHA和一个现场生成的fresh UUIDv4执行一次startup/abort；本节不构成live PASS。

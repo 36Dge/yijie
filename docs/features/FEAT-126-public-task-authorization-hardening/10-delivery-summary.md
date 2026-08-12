@@ -413,3 +413,15 @@ The Governance checkpoint records the authority and ordering but intentionally c
 | Historical boundary | ledger/evidence digests rechecked read-only；raw log and retained volume not read；Public Tasks/conversation/turn/provider=0；`s10b_r8_executed=false` |
 | State | `DEC-126-082 Accepted / DESIGN-126-023 Complete / LIA-126-040 Corrective Closure Accepted`；G3 Partial；G4/G6 Pending |
 | Next | after this Governance clean checkpoint, LIA-126-041 binds the new seven-SHA manifest and a fresh UUIDv4 for exactly one isolated-live startup/abort |
+
+## 27. DEC-126-083 Live Caddy System-event Corrective Closure
+
+| Item | Accepted state |
+|---|---|
+| Historical runs | LIA-126-041/042/043分别为`909e7b8b-93e0-4497-adbf-579d7afb90e1`、`7eeb81fa-7969-4b9f-b979-a3ad3ba1a3c8`、`8001b5ae-4916-41fd-81db-0617e862a6c3`；均FAIL且不可复用 |
+| Startup boundary | 三者均到`desktop_exited`并有API/fake/Desktop/Host/Runtime process evidence；business boundary PASS且fake calls=0；未执行业务case或fresh R8 |
+| Failure | runtime-log-scan v4在Caddy origin产生一个unclassified tuple；旧closed event authority未覆盖固定2.11.4现场系统元数据shape，不是敏感泄漏证明 |
+| Infra | `d4749cb31242799d7cb8f566d44bea3c1f085d8a`；event-level exact schemas、value-aware classification、sanitized fixture与negative matrix |
+| Gates | targeted `51/51`、full `193/193`、lint、Compose 5.3.0 config-only、Node/Shell syntax及diff PASS；independent review no open P0/P1 |
+| State | `DEC-126-083 Accepted / DESIGN-126-024 Complete / LIA-126-044 Corrective Closure Accepted`；G3 Partial；G4/G6 Pending；`s10b_r8_executed=false` |
+| Next | Governance clean checkpoint后，LIA-126-045绑定新七仓SHA并现场生成一个fresh UUIDv4，只执行一次isolated-live startup/abort |
