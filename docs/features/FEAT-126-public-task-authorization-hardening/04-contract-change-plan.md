@@ -314,3 +314,19 @@ S8B切片contract impact为`semantic Desktop-private`，不改变central feature
 - `yijie-contracts`、Public Tasks HTTP、Host SSE、业务Tauri IPC、SQLCipher durable schema和Runtime protocol均无变化，因此central G2A=`N/A / no applicable public contract source change`。Contracts/API/Host/Runtime保持精确既有checkpoint。
 - 兼容约束：新Infra仍读取legacy v1/v2/v3 runtime scans；新增field-class摘要只由新v3 writer产生。Desktop与Infra新checkpoint必须成对用于下一次isolated-live，不得将单侧新语义发布或默认启用。
 - DEC-126-077仅是Governance Owner disposition，`contract-impact=none`；它接受Desktop `713bd5a2985c491db5d6cfc3e31f8f509994427d`和Infra `222fd36a1555bd4787798ed95bf3b4e6b76fa3e1`的repository evidence，不改变任何运行或发布授权。
+
+## 20. DESIGN-126-021 Runtime-log-scan v4 Compatibility Contract
+
+`contract-impact=semantic`，权威源是FEAT-126 Governance package，producer/consumer均为Infra私有orchestrator writer/validator。中央`yijie-contracts`字段、版本、生成物、breaking baseline、consumer pin与发布tag均为`N/A`，因为该evidence不进入Public Tasks、Host wire、Runtime协议或可发布SDK。
+
+| Version | Reader exact shape | Writer policy |
+|---|---|---|
+| v1 | base 7 keys | read-only compatibility |
+| v2 | v1 + origin/rule set digests | read-only compatibility |
+| legacy v3 | v2 + origin-rule digest | read-only compatibility |
+| explainable v3 | legacy v3 + field-class and origin-rule-field-class digests | read-only compatibility |
+| v4 | explainable v3 + reason-class and origin-rule-field-class-reason-class digests | only emitted shape |
+
+v4 exact keys are `schema_version`、`status`、`run_id`、`source_count`、`row_count`、`hit_count`、`source_set_sha256`、`hit_origin_set_sha256`、`hit_rule_set_sha256`、`hit_origin_rule_set_sha256`、`hit_field_class_set_sha256`、`hit_origin_rule_field_class_set_sha256`、`hit_reason_class_set_sha256`、`hit_origin_rule_field_class_reason_class_set_sha256`。Extra、missing或跨版本混合key全部fail closed。
+
+回滚只允许整体恢复旧writer并保留新reader对已有v4 evidence的可解释处理方案；在没有兼容reader时不得产生v4后再回滚到只读v3。当前未产生任何live v4 evidence，因此本轮repository rollback不涉及migration、reconcile或历史evidence重写。

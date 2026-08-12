@@ -1128,3 +1128,21 @@ Implementation checkpoints are Desktop `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd
 | Runtime boundary | corrective与Owner Acceptance均未执行Docker lifecycle、isolated-live、fresh R8、业务case、S11、MiniMax、真实数据/Keychain或远端动作；`s10b_r8_executed=false` |
 | Governance checkpoint | 本地commit包含本记录和两个实现SHA；精确Governance SHA在commit后报告 |
 | Next authorization | 任何后续isolated-live必须使用新的七仓exact clean SHA并取得另一份一次性Owner授权 |
+
+## 50. DEC-126-078 / DESIGN-126-021 / LIA-126-036 Governance Authority Verification
+
+| Evidence | Required/current disposition |
+|---|---|
+| Fixed Governance baseline | `5da2d93b7c4e3ee9884b0fedb04261b5aaf65f92` clean before edit |
+| Expected Infra intermediate state | HEAD `222fd36a1555bd4787798ed95bf3b4e6b76fa3e1`; only orchestrator, BO2, BO3 and sanitized Caddy fixture dirty; allowed and not a preflight failure |
+| Schema authority | writer v4 only; reader v1/v2/legacy-v3/explainable-v3/v4; 14 exact keys; two new reason-class digests |
+| Empty set | all seven hit dimension/tuple digests bind `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855` when `hit_count=0` |
+| Production asset authority | exact `feat126-s10-driver,tauri/custom-protocol`; no devUrl/Vite/1420/1421 dependency |
+| Contract disposition | semantic private local evidence interface; central Contracts/G2A and product wire N/A/unchanged |
+| Governance gate | PASS：default/strict/G2A、unique-key YAML、`pnpm lint`、`pnpm test`、checker and repository Shell syntax、`git diff --check` |
+| Phase boundary | Governance checkpoint first; Infra SHA intentionally absent until the later separately committed checkpoint |
+| Runtime boundary | no Docker lifecycle、isolated-live、fresh R8、business case、S11、MiniMax、real data/Keychain or remote operation；`s10b_r8_executed=false` |
+
+本节是Phase G的权威与验证要求。Phase I的最终Infra test counts、review结论与commit SHA只能在真实执行完成后于最终报告中陈述，不能在本Governance commit内预先声称。
+
+Governance门禁完成后，Infra四个预期dirty文件SHA-256仍分别为`3c589e7d1e43fdc1478bfa329cb187aacac65a6394b06e47d47cdbdc06e7ce45`、`26c99d9463d4e04551697bfc5d8a2ca1ebd7674b26df599c12237c2c41616a87`、`6f1484647b8d68fac733cc4cd7de6f093243653e09fb195cdf191dec5fb9d1be`、`eb165b44e73cd06494dc7e0fa36afa5dbf70ffdca6a13c42b17f9a4f1532d361`，与Phase G开始前一致。

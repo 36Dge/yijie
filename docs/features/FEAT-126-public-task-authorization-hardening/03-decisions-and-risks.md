@@ -601,3 +601,23 @@
 | Gate state | G3 Partial；G4/G6 Pending；`s10b_r8_executed=false`；真实isolated-live startup/ownership/readiness/abort/cleanup PASS仍待新的单次授权 |
 | Governance checkpoint | 包含DEC-126-077及上述精确实现SHA的本地commit；自身SHA在commit后报告，不在commit内容中自引用 |
 | Prohibited | no Docker lifecycle、isolated-live、fresh R8、business case、S11、MiniMax、real data/Keychain、default activation、push/merge/tag/publish/deploy or other remote operation |
+
+## 40. DEC-126-078 / DESIGN-126-021 / LIA-126-036 Two-stage v4 Authority and Infra Corrective
+
+**Status**: Accepted 2026-08-12
+
+**Decision**:
+
+1. 先仅更新现有FEAT-126 Governance文档与`feature.yaml`，将runtime-log-scan writer权威升级为schema v4；Governance基线精确固定为`5da2d93b7c4e3ee9884b0fedb04261b5aaf65f92`。
+2. v4采用14个exact keys，在explainable v3上只新增`hit_reason_class_set_sha256`与`hit_origin_rule_field_class_reason_class_set_sha256`。writer只发出v4；reader继续接受v1、v2、legacy v3、explainable v3与v4，不接受其它key组合。
+3. 固定reason classes为`literal_authority_match`、`local_machine_path_value`、`sensitive_nonempty_value`、`unclassified_context_value`、`unclassified_caddy_system_value`、`unstructured_pattern_match`。未知Caddy结构继续fail closed，不能靠修改Caddyfile或放宽规则消除门禁。
+4. `hit_count=0`时，origin、rule、origin-rule、field-class、origin-rule-field-class、reason-class及origin-rule-field-class-reason-class七项hit集合摘要全部等于空串SHA-256 `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`；`hit_count>0`时当前schema中存在的全部hit摘要必须为非空集合摘要。
+5. evidence只允许counts和稳定摘要。禁止记录原始字段名、值、路径、日志正文、token、secret或业务内容；exact Docker authority与stable ASCII origin排序不变。
+6. production Desktop cargo build authority固定为精确features `feat126-s10-driver,tauri/custom-protocol`，缺一或顺序/集合不符均fail closed；不得依赖Vite dev server或1420/1421。
+7. Infra `222fd36a1555bd4787798ed95bf3b4e6b76fa3e1`允许保持四个既有预期dirty文件，Governance阶段不得修改或提交这些文件。Governance门禁和local checkpoint完成后，恢复同一Infra diff，完成剩余门禁、独立只读审查并创建一个Infra local clean checkpoint。
+
+**Risk controls**:
+
+- 该变更为private local evidence interface的semantic变更；central Contracts/G2A、Public Tasks、Host/Runtime与产品默认行为均N/A/unchanged。
+- 不在Governance checkpoint中虚构未来Infra commit SHA；最终SHA只能在Infra commit形成后报告。
+- 不执行Docker lifecycle、isolated-live、fresh R8、业务case、S11、MiniMax、真实数据、Keychain、默认启用或远端操作；`s10b_r8_executed=false`。

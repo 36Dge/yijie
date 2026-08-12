@@ -1,4 +1,4 @@
-# FEAT-126 本地启动、停止与恢复 Runbook（DESIGN-126-019 Complete / LIA-126-033 Corrective Closure Accepted / G3 Partial）
+# FEAT-126 本地启动、停止与恢复 Runbook（DESIGN-126-021 Complete / LIA-126-036 Two-stage Corrective Authorized / G3 Partial）
 
 > DEC-126-022将本需求冻结为Local-only Delivery。DEC-126-062/063关闭BLK-007并形成clean checkpoints后，LIA-126-024/S10B-R7已单独授权和消费：S10B-001 PASS，S10B-002因缺少完整四组件orchestrator fail closed，003–011 NOT RUN，012仅abort cleanup subset。Owner已接受DEC-126-064/065/066并完成DESIGN-126-014、LIA-126-025/S10BO1 Corrective Closure及`S10B-BLK-008`关闭；DEC-126-067进一步形成API/Host/Desktop/Infra/Governance本地clean checkpoints。LIA-126-027 isolated live 的失败事实保留且run不可复用；Owner已接受DESIGN-126-016与LIA-126-028/S10BO3 Corrective Closure并关闭`S10B-BLK-010`。G3保持Partial。本文不授权isolated live、fresh R8、S11、MiniMax、default activation或发布。
 
@@ -384,3 +384,12 @@ DESIGN-126-008对未来corrective的回滚语义冻结如下：
 - 若需回滚，必须分别以可审查revert撤销Desktop startup terminal/watchdog与Infra failure durability/runtime-scan变更；不得只放宽phase validator、删除field-class摘要、恢复value-blind Caddy规则或复用失败run。
 - LIA-126-034历史evidence及retained volumes不可修改、删除或作为重试输入；不得prune或读取其业务内容。
 - G3保持Partial，G4/G6 Pending。真实isolated-live startup/ownership/readiness/abort/cleanup PASS必须基于新七仓SHA另行一次性授权；fresh R8、S11、MiniMax及所有远端/发布动作继续禁止。
+
+## 24. DEC-126-078 v4 Authority and Checkpoint Boundary
+
+- 本决定不产生release artifact、deployment或feature activation。Phase G仅提交Governance；Phase I仅提交已授权Infra corrective。
+- Governance rollback必须整体撤销DEC-126-078/DESIGN-126-021/LIA-126-036记录。Infra rollback必须整体撤销production custom-protocol build authority与v4 reason-class evidence；不得只删除新增keys、放宽unknown Caddy结构或恢复dev server依赖。
+- v4一旦产生evidence，旧版本回滚必须保留能读取v4的兼容路径；当前没有运行live，因此不存在v4历史evidence migration或重写授权。
+- Infra预期dirty状态仅在Governance阶段豁免clean检查，闭集为orchestrator、BO2 test、BO3 test和sanitized Caddy fixture。任何额外dirty文件或SHA漂移都必须停止。
+- Compose验证仅允许5.3.0 direct config rendering；禁止`create/start/up/run/exec/stop/down/rm`、prune、volume delete或读取retained volume。
+- 两个checkpoint均local/not pushed。后续isolated-live仍需基于最终七仓exact clean SHA的新一次性授权；本决定不授权fresh R8、业务调用或MiniMax。

@@ -928,3 +928,19 @@ Actual reruns：Desktop `make lint/test/build`、feature frontend build、featur
 | Independent review | no open P0/P1；授权文件闭集满足，Contracts/API/Host/Runtime/Governance产品源码均无需corrective |
 | Runtime boundary | corrective期间未执行Docker lifecycle、isolated-live、fresh R8、业务case、MiniMax、Keychain或远端动作；`s10b_r8_executed=false` |
 | Owner disposition | DEC-126-077 Accepted；DESIGN-126-020 Complete；LIA-126-035 Corrective Closure Accepted；`S10B-BLK-013 Closed`；G3 Partial、G4/G6 Pending |
+
+## 40. DESIGN-126-021 / LIA-126-036 v4 Corrective Gates
+
+| Area | Required proof |
+|---|---|
+| Production feature authority | exact `feat126-s10-driver,tauri/custom-protocol`; missing production feature fails closed; no dev server or 1420/1421 dependency |
+| v4 writer | emits schema v4 and exactly 14 keys; no v3 writer path remains |
+| Reader compatibility | v1、v2、legacy v3、explainable v3、v4 accepted only in their exact shapes; mixed/extra/missing keys rejected |
+| Empty/non-empty binding | zero hit binds all seven hit-set digests to empty-string SHA-256; positive hit requires every applicable digest to be non-empty |
+| Reason stability | reason-class and four-tuple digests stable under input order and container-ID changes |
+| Caddy classification | sanitized Caddy 2.11.4 system metadata is benign; sensitive, unknown and nested combinations remain fail closed |
+| Evidence privacy | canonical JSON contains counts/digests only; no field names, values, paths, log body, token, secret or business content |
+| Infra repository | targeted BO2/BO3, `make lint`, full `make test`, Compose 5.3.0 direct config-only semantic, checker Shell syntax and `git diff --check` PASS |
+| Review | independent read-only review reports no open P0/P1 before Infra commit |
+
+Governance phase runs feature-package default/strict/G2A, unique-key YAML, `pnpm lint`, `pnpm test`, checker Shell syntax, `bash -n scripts/*.sh` and `git diff --check`. Infra's authorized dirty files must have identical SHA-256 before and after the Governance phase.

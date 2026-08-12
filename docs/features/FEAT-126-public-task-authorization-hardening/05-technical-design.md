@@ -1,4 +1,4 @@
-# FEAT-126 技术设计（DESIGN-126-019 Complete / LIA-126-033 Corrective Closure Accepted / G3 Partial）
+# FEAT-126 技术设计（DESIGN-126-021 Complete / LIA-126-036 Two-stage Corrective Authorized / G3 Partial）
 
 > 本文产品/架构设计保持G2 Passed。DEC-126-057已接受S10BF1 Closure并关闭`S10B-BLK-005`；Owner随后单独授权并消费LIA-126-020/S10B-R5。R5的S10B-001通过，但S10B-002在API readiness前因runtime service-profile authority不一致而fail closed；DEC-126-058 Option A已Accepted并拒绝R5 Closure，Owner随后单独授权、消费LIA-126-021/S10BRP1。Owner于2026-08-06批准DEC-126-059 Option A，S10BRP1 Closure Passed并关闭`S10B-BLK-006`；API/Infra已形成clean local checkpoints。LIA-126-022/S10B-R6随后被正式消费，但在S10B-001 image resolver阶段以`preflight_image_resolver_failed`停止；S10B-002–012未运行。DEC-126-060/061 Option A均已Accepted；LIA-126-023/S10BEP1 repository implementation、2026-08-09的S10BEP1-014 isolated live验证及Infra/Governance全量门禁均PASS。Owner通过DEC-126-062接受Corrective Closure并关闭`S10B-BLK-007`，随后通过DEC-126-063仅形成Infra/Governance本地clean checkpoints。G3保持Partial，fresh R7、S11/MiniMax、默认flag activation与远端动作仍未授权。
 > 本文产品/架构设计保持G2 Passed。DEC-126-057已接受S10BF1 Closure并关闭`S10B-BLK-005`；Owner随后单独授权并消费LIA-126-020/S10B-R5。R5的S10B-001通过，但S10B-002在API readiness前因runtime service-profile authority不一致而fail closed；DEC-126-058 Option A已Accepted并拒绝R5 Closure，Owner随后单独授权、消费LIA-126-021/S10BRP1。Owner于2026-08-06批准DEC-126-059 Option A，S10BRP1 Closure Passed并关闭`S10B-BLK-006`；API/Infra已形成clean local checkpoints。LIA-126-022/S10B-R6随后被正式消费，但在S10B-001 image resolver阶段以`preflight_image_resolver_failed`停止；S10B-002–012未运行。DEC-126-060/061 Option A均已Accepted；LIA-126-023/S10BEP1 repository implementation、2026-08-09的S10BEP1-014 isolated live验证及Infra/Governance全量门禁均PASS。Owner通过DEC-126-062接受Corrective Closure并关闭`S10B-BLK-007`，随后通过DEC-126-063仅形成Infra/Governance本地clean checkpoints。Owner继续接受DEC-126-065 Option A并授权LIA-126-025/S10BO1；四仓repository corrective、S10BO1-001–014及全部实现/Governance门禁PASS，DEC-126-066现已接受Corrective Closure并关闭`S10B-BLK-008`。G3保持Partial，isolated live、fresh R8、S11/MiniMax、默认flag activation与远端动作仍未授权。
@@ -1717,3 +1717,26 @@ created -> preflight_running -> preflight_passed -> dependencies_ready
 ### 53.4 Accepted boundary
 
 DEC-126-077接受DESIGN-126-020 / LIA-126-035 Corrective Closure并关闭`S10B-BLK-013`。Desktop=`713bd5a2985c491db5d6cfc3e31f8f509994427d`，Infra=`222fd36a1555bd4787798ed95bf3b4e6b76fa3e1`；G3仍Partial，G4/G6 Pending。下一次isolated-live必须另行授权并使用包含DEC-126-077的新Governance SHA。
+
+## 54. DESIGN-126-021 Production Assets and Runtime-log-scan v4
+
+### 54.1 Production asset authority
+
+- Canonical Desktop build invocation is `cargo build --features feat126-s10-driver,tauri/custom-protocol` through one closed helper.
+- The helper accepts only the exact ordered feature vector and fails closed otherwise. `TAURI_CONFIG` and run-root `frontendDist` remain bound to the exact clean Desktop authority.
+- Semantic tests must prove no `pnpm/npm/yarn dev|serve`, `devUrl`, `localhost:1420/1421` or `127.0.0.1:1420/1421` dependency. Validation itself may not start a real Desktop/Tauri process.
+
+### 54.2 v4 evidence shape
+
+- Writer emits only `schema_version=4` with the 14 exact keys listed in the contract plan.
+- Two new digests bind the unique sorted reason-class set and the unique sorted `[origin, rule, fieldClass, reasonClass]` tuple set.
+- Reason classes are a closed six-value authority: `literal_authority_match`、`local_machine_path_value`、`sensitive_nonempty_value`、`unclassified_context_value`、`unclassified_caddy_system_value`、`unstructured_pattern_match`。
+- The digest input is unique values sorted by stable ASCII order and joined with LF. Zero hits hash the empty string; positive hits may not retain an empty-set digest for any applicable hit dimension.
+- Caddy approval is origin-aware and value-aware for a closed system metadata allowlist. Unknown keys/values/shapes remain `unclassified_caddy_system_value` and fail closed.
+- Evidence never includes the raw origin input, field name, field value, path or log row. Exact Docker labels, four closed service roles and canonical source-set digest remain unchanged.
+
+### 54.3 Compatibility and checkpoint ordering
+
+- Validator reads v1, v2, both v3 shapes and v4 by exact-key version dispatch; writer never emits an older version.
+- Phase 1 edits and commits Governance only from exact HEAD `5da2d93b7c4e3ee9884b0fedb04261b5aaf65f92`; Infra remains at HEAD `222fd36a1555bd4787798ed95bf3b4e6b76fa3e1` with its four expected dirty corrective files unchanged.
+- Phase 2 begins only after Governance is clean. It resumes that same Infra diff, finishes config-only/static gates and independent review, then creates one Infra local checkpoint. No live authorization is implied.

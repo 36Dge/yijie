@@ -357,3 +357,18 @@ This record proves the accepted repository corrective checkpoints, not a live st
 | Contract impact | private Desktop↔Infra `semantic`；central G2A=N/A；Owner governance disposition=`none`；Contracts/API/Host/Runtime unchanged |
 | State | G3 Partial；G4/G6 Pending；`s10b_r8_executed=false`；no live/fresh R8/business/MiniMax/Keychain/default activation/remote action |
 | Next gate | Governance local clean checkpoint后停止；下一次isolated-live必须使用新的七仓exact clean SHA并取得独立一次性授权 |
+
+## 23. DEC-126-078 Runtime-log-scan v4 Two-stage Authorization
+
+| Item | Authorized state |
+|---|---|
+| Decision/design | `DEC-126-078 Accepted / DESIGN-126-021 Complete / LIA-126-036 two-stage corrective authorized` |
+| Governance baseline | `5da2d93b7c4e3ee9884b0fedb04261b5aaf65f92` clean; FEAT-126 package and `feature.yaml` only |
+| Infra intermediate state | `222fd36a1555bd4787798ed95bf3b4e6b76fa3e1` plus exactly four expected dirty corrective files; preserved unchanged during Governance phase |
+| v4 authority | writer v4 only; two reason-class digests; 14 exact keys; seven empty-hit digests bind empty-string SHA-256; v1/v2/two v3 readers retained |
+| Production assets | exact cargo feature set `feat126-s10-driver,tauri/custom-protocol`; dev server/1420/1421 not part of the production path |
+| Evidence privacy | counts and stable digests only; no raw field names/values/paths/log text/token/secret/business content |
+| Checkpoint order | Governance local clean checkpoint first; then resume the same Infra diff, finish gates/review and create one Infra local clean checkpoint |
+| Boundary | no Docker lifecycle/live/fresh R8/business/S11/MiniMax/Keychain/default activation/remote action; `s10b_r8_executed=false` |
+
+The Governance checkpoint records the authority and ordering but intentionally cannot contain the future Infra commit SHA. The final execution report must provide both resulting SHAs and seven-repository clean status.

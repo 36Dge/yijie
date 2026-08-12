@@ -313,3 +313,12 @@ LIA-126-034 run `41cdd1c7-e1a6-43ae-ac3a-706ff6989e99`在Desktop已持久化proc
 本轮实现影响仍为`semantic`，且只覆盖不可发布的Desktop↔Infra private local startup/control/evidence interface。Desktop新增content-free native startup stages/watchdog、真实Tauri mock `AppHandle/setup` fixture、first-terminal-wins及FD4 flush/close-before-exit；Infra将immutable primary failure先于abort/business/cleanup持久化，接受pre-ownership API/fake/Desktop known scope，并用nested/value-aware Caddy分类及field-class摘要扩展runtime-log-scan v3。Contracts/API/Host/Runtime/Public Tasks wire、durable schema、Runtime pin、Compose pins和default flags均未改变，central G2A=`N/A`。
 
 Owner通过DEC-126-077接受DESIGN-126-020 / LIA-126-035 Corrective Closure。实现checkpoints为Desktop `713bd5a2985c491db5d6cfc3e31f8f509994427d`与Infra `222fd36a1555bd4787798ed95bf3b4e6b76fa3e1`，均local、clean、not pushed；其余实现仓保持既定SHA。该接受不构成isolated-live PASS，G3保持Partial，G4/G6 Pending。
+
+## 19. DESIGN-126-021 / LIA-126-036 Runtime-log-scan v4 Authority Impact
+
+- `contract-impact=semantic`，仅影响不可发布的FEAT-126本地deployment/test evidence接口。`yijie-contracts`、Public Tasks、Host wire、Runtime source/pin、Compose pins、持久业务schema与默认flags均不变，central G2A为N/A。
+- Governance权威源先固定runtime-log-scan writer v4、v1/v2/两种v3 reader兼容、exact-key、空集合和reason-class摘要语义；随后才允许恢复已经存在的Infra corrective diff。
+- v4 writer比explainable v3只增加`hit_reason_class_set_sha256`和`hit_origin_rule_field_class_reason_class_set_sha256`。evidence继续只保存counts与稳定摘要，不保存字段名、值、路径、日志正文、token、secret或业务内容。
+- canonical Desktop production build必须显式使用`feat126-s10-driver,tauri/custom-protocol`，不得依赖`devUrl`、Vite dev server或1420/1421端口。
+- 本阶段固定Governance基线`5da2d93b7c4e3ee9884b0fedb04261b5aaf65f92`。Infra基线为`222fd36a1555bd4787798ed95bf3b4e6b76fa3e1`，且允许仅四个既有corrective文件保持预期dirty；该状态不构成基线失败，也不得在Governance阶段修改、暂存或提交。
+- 两阶段checkpoint互相独立：先形成Governance local clean checkpoint，再完成Infra剩余门禁、独立只读审查与单一local clean checkpoint。Governance commit不预填尚不存在的Infra新SHA。
