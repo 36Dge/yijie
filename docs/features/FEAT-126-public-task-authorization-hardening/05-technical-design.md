@@ -1744,3 +1744,26 @@ DEC-126-077接受DESIGN-126-020 / LIA-126-035 Corrective Closure并关闭`S10B-B
 ### 54.4 Accepted implementation checkpoint
 
 DEC-126-079接受Infra checkpoint `ef9984b06c2913b1d7561360b1e3e569cbfd9d4a`。实现严格继承父SHA `222fd36a1555bd4787798ed95bf3b4e6b76fa3e1`并只包含四个授权文件；targeted/full/config-only/syntax/diff gates全部PASS，两个review P1均已关闭，无open P0/P1。该状态不证明真实Tauri startup或runtime log live输入，G3仍为Partial。
+
+## 55. DESIGN-126-022 Closed Synthetic-login Leaves and Caddy Event Shapes
+
+### 55.1 Historical failure boundary
+
+Run `5a52227e-64cf-4544-9a42-527c512433fe`的attempt failure/closure把primary固定为`driver_login_failed` at `desktop_starting`。Desktop process identity已经存在，Host/Runtime尚未启动；business boundary前后相同，provider calls为0。旧实现的`feat126_s10_driver_login`在唯一Tauri command边界使用`map_err(|_| "driver_login_failed")`，所以历史证据不包含可恢复的内部substage。离线审计只能把首个真实可观察leaf定为synthetic login chain failure，不能把某个细分stage写成历史事实。
+
+### 55.2 Desktop authority
+
+- `SyntheticLoginFailure`是feature-only closed enum，覆盖secret authority、authorization start/request/page、login form、credential submit/reject、callback和token exchange；runtime、concurrency、session/storage由调用层闭合。
+- native command只返回closed class；frontend只透传审查过的login allowlist，任何未知字符串折叠回`driver_login_failed`，避免错误正文或敏感值跨FD4。
+- startup frame allowlist与Infra consumer同步，保持first-terminal-wins、FD4 flush/close-before-exit和no-retry。
+
+### 55.3 Infra and Caddy authority
+
+- Infra接受全部closed login leaves并允许在Host/Runtime未启动的known API/fake/Desktop scope持久化failure/closure。
+- Caddy approval以top-level exact event shape为单位，不再把字段级合法值跨event自由组合。fixture覆盖Caddy 2.11.4 startup、admin、automatic HTTPS、HTTP/3、TLS issuance/lock、local CA、storage cleanup、reverse proxy及shutdown形状。
+- Caddy origin的JSON root必须是plain object；array、scalar或null形成`unclassified_caddy_system_value`。access event的`request`、`headers`、`tls`和`resp_headers`必须先通过plain-object guard，畸形输入不得抛裸TypeError。
+- v4 evidence shape不变，只保存counts及origin/rule/field/reason tuple digests。run的摘要能证明分类tuple，不能证明或泄露原始命中值。
+
+### 55.4 Accepted checkpoints and residual live surface
+
+DEC-126-081接受Desktop `b066e8d08b5f80521c87a6505649b1bb3a62d83b`和Infra `cf00b4caacefbd35823dffafb9e23653484bc576`。targeted/full/build/lint/Compose config-only及独立复审均通过，无open P0/P1。修复后仍需live验证实际Keycloak页面、credential/callback/token exchange、session storage、project registration、Host/Runtime ownership/readiness、abort及现场Caddy event集合；这些是P2/live验证面，不是新的repository blocker。

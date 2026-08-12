@@ -1164,3 +1164,28 @@ Governance门禁完成后，Infra四个预期dirty文件SHA-256仍分别为`3c58
 | Runtime boundary | no Docker lifecycle、isolated-live、fresh R8、business case、S11、MiniMax、real data/Keychain、default activation or remote operation；`s10b_r8_executed=false` |
 
 Governance Acceptance checkpoint的精确SHA在commit后报告，不在commit自身内容中自引用。该checkpoint完成后才能基于最终七仓clean SHA另行签发一次性isolated-live startup/abort授权。
+
+## 52. LIA-126-037 Offline Root-cause Audit
+
+| Evidence | Result |
+|---|---|
+| Attempt ledger | preclaim `5f779dca923d4f95613b144eedb416085eade425d8b24c1faa46be20aa6192fe`; attempt `e851ad7ffb807fe7bd7f7f289cf7c6ab10aefbfdcc2e1eff2b262160276d8f17`; failure `795a3ef0dfdb01264a35afc363a405ddf1d4e1a132486df8d4ad2e730919bfc5`; closure `cf135a05378a2378eb2d313d52e7ad6c4e8a0138b07f7dae6db61fdedfbf6b66`; all owner `0600` canonical JSON |
+| Primary | `driver_login_failed`, phase `desktop_starting`, API/fake/Desktop known scope; Host/Runtime not started |
+| First honest leaf | synthetic login chain failed before project registration; old IPC boundary discarded the internal error, so no finer historical leaf is recoverable |
+| Caddy tuple | runtime-scan file digest=`87fb3b6fafa516fd8b2983b3c45ee881ce9c67a8f6fcd86a6ca76f53bc3cd9c2`; set digests bind only Caddy origin + unclassified rule + structured-unclassified field + Caddy-system reason |
+| Caddy cause | old scanner's incomplete field-level allowlist could not classify the observed input into a closed Caddy system-event authority. The exact original record is unrecoverable because v4 intentionally stores no raw record; this is not evidence of a leaked sensitive value; raw log body and retained volume were not read |
+| Business boundary | file digest `99b25bc14845572e4d36883e423682d6376de29bbc109f9f9d6a01f79f1af150`; Public Tasks/conversation/turn/provider calls=0; `s10b_r8_executed=false` |
+
+## 53. DEC-126-081 / LIA-126-038 Corrective Closure Owner Acceptance
+
+| Area | Result |
+|---|---|
+| Desktop checkpoint | `b066e8d08b5f80521c87a6505649b1bb3a62d83b`, six files, local/clean/not pushed |
+| Infra checkpoint | `cf00b4caacefbd35823dffafb9e23653484bc576`, three files, local/clean/not pushed |
+| Desktop gates | targeted frontend `13/13`; feature Rust `37 pass/1 ignored`; default targeted `1/1`; full frontend `180/180`; full Rust `135 pass/3 ignored`; lint/build/clippy/fmt/diff PASS |
+| Infra gates | targeted `51/51`; full `193/193`; lint; Compose 5.3.0 config-only; Node/Shell syntax; diff PASS |
+| Review | root array/scalar/null bypass and malformed nested access TypeError P1s closed; no open P0/P1 |
+| Owner disposition | `DEC-126-081 Accepted / DESIGN-126-022 Complete / LIA-126-038 Corrective Closure Accepted / S10B-BLK-014 Closed` |
+| Runtime state | no live during audit/corrective/acceptance; G3 Partial; G4/G6 Pending; `s10b_r8_executed=false` |
+
+Governance checkpoint的SHA在commit后报告。完成后仅签发一份绑定最终七仓SHA的新startup/abort授权；本节本身不执行该live。

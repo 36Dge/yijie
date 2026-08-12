@@ -400,3 +400,11 @@ DESIGN-126-008对未来corrective的回滚语义冻结如下：
 - 回滚必须以独立可审查revert整体撤销该Infra commit；不得只移除v4 keys、恢复不带`tauri/custom-protocol`的build、放行未知Caddy shape或重写历史evidence。
 - 本Governance checkpoint只记录Owner Acceptance；不得修改、amend或提交Infra及其余五仓，不得push、merge、tag、publish或deploy。
 - G3保持Partial、G4/G6 Pending。下一步只能是基于最终七仓exact clean SHA的另一份isolated-live startup/abort授权，且该授权仍不得隐含fresh R8或业务case。
+
+## 26. DEC-126-081 Corrective Closure and Rollback Boundary
+
+- 本接受固定Desktop `b066e8d08b5f80521c87a6505649b1bb3a62d83b`与Infra `cf00b4caacefbd35823dffafb9e23653484bc576`，不产生release artifact、deployment、default activation或live PASS。
+- 回滚必须配对、独立可审查地revert两仓commits；不得只撤销Desktop stage leaves导致Infra allowlist孤立，或只撤销Infra consumer导致Desktop发送未知terminal。
+- Caddy rollback不得放行array/scalar/null root、malformed nested object、unknown key/value或cross-event字段组合；不得通过修改Caddyfile、删规则或重写历史scan消除门禁。
+- Run `5a52227e-64cf-4544-9a42-527c512433fe`及其evidence/retained volumes不可修改、删除、retry、resume、reconcile或作为新run输入。
+- Governance checkpoint后可单独签发一次新startup/abort授权；任何执行必须使用最终七仓exact clean SHA与现场生成UUIDv4，失败即停止且不得重试。fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用与远端动作仍禁止。

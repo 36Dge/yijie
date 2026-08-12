@@ -948,3 +948,19 @@ Governance phase runs feature-package default/strict/G2A, unique-key YAML, `pnpm
 ### 40.1 Accepted result
 
 Infra checkpoint `ef9984b06c2913b1d7561360b1e3e569cbfd9d4a`通过BO2/BO3 `51/51`、full `193/193`、`make lint`、Compose 5.3.0 direct config-only、Node/Shell syntax及`git diff --check`。测试覆盖v4 exact 14 keys、v1/v2/legacy-v3/explainable-v3/v4 reader、七项zero-hit digest、positive-hit非空摘要、container-ID/input ordering稳定性，以及Caddy真实`msg`和unknown key/value/empty/non-JSON fail-closed。独立review无open P0/P1；DEC-126-079接受该结果。
+
+## 41. DESIGN-126-022 / LIA-126-038 Corrective Gates
+
+| Area | Accepted proof |
+|---|---|
+| Desktop login leaves | every synthetic stage maps to one closed content-free class accepted by FD4; unknown frontend error collapses to `driver_login_failed` |
+| Desktop targeted/full | frontend targeted `13/13`; feature Rust FEAT-126 `37 pass/1 ignored`; default targeted `1/1`; full frontend `180/180`; full Rust `135 pass/3 ignored` |
+| Desktop quality/build | `make lint`, clippy/fmt, `make build` and `git diff --check` PASS |
+| Infra leaf durability | all closed login leaves validate and persist without Host/Runtime continuation; BO2/BO3 targeted `51/51` PASS |
+| Caddy benign fixture | sanitized 2.11.4 startup/admin/TLS/reverse-proxy/shutdown event shapes produce zero hits |
+| Caddy negative matrix | wrong event shape, unknown key/value, array/scalar/null root, and null request/headers/tls/resp_headers produce canonical v4 failed evidence, never raw exceptions |
+| Infra full/static | full `193/193`, `make lint`, Compose 5.3.0 direct config-only, Node/Shell syntax and diff PASS |
+| Review | two late P1 findings closed; final independent read-only review has no open P0/P1 |
+| Historical integrity | attempt-ledger and run evidence digests rechecked read-only; retained volume and log body not read; `s10b_r8_executed=false` |
+
+The next isolated-live remains a distinct P2/runtime gate. It must verify the actual login chain, project/Host/Runtime continuation, readiness, one-shot abort, v4 live Caddy classification and cleanup under a fresh UUID; repository tests do not claim these outcomes.

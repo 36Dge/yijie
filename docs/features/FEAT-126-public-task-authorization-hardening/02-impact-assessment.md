@@ -324,3 +324,11 @@ Owner通过DEC-126-077接受DESIGN-126-020 / LIA-126-035 Corrective Closure。�
 - 两阶段checkpoint互相独立：先形成Governance local clean checkpoint，再完成Infra剩余门禁、独立只读审查与单一local clean checkpoint。Governance commit不预填尚不存在的Infra新SHA。
 
 DEC-126-079现已接受DESIGN-126-021 / LIA-126-036 Corrective Closure。Infra从父SHA `222fd36a1555bd4787798ed95bf3b4e6b76fa3e1`形成local clean checkpoint `ef9984b06c2913b1d7561360b1e3e569cbfd9d4a`，严格包含orchestrator、BO2/BO3 tests和脱敏Caddy fixture四个文件；Contracts/API/Host/Desktop/Runtime均未改变。该接受只关闭repository corrective，不构成isolated-live PASS，G3仍为Partial，G4/G6 Pending。
+
+## 20. DESIGN-126-022 / LIA-126-038 Login-leaf and Caddy Event-shape Corrective Impact
+
+LIA-126-037 run `5a52227e-64cf-4544-9a42-527c512433fe`在`desktop_starting`形成canonical `driver_login_failed` failure/closure。历史Desktop在唯一IPC边界不可逆丢弃内部`NativeAuthError`，因此现有evidence只能证明首个失败位于feature-only synthetic login chain、project registration和Host/Runtime startup之前，不能诚实恢复为某个更细的历史stage leaf。runtime-log-scan v4的单一tuple摘要精确绑定Caddy origin、unclassified rule、structured-unclassified field class和`unclassified_caddy_system_value` reason class；确切分类原因是旧scanner只拥有不完整的字段级Caddy allowlist，无法把观察输入归入closed Caddy 2.11.4 system event authority。privacy-preserving evidence没有保存原始record，所以具体触发record不可恢复；该摘要也不证明敏感值泄漏。
+
+本corrective的最高影响为`semantic`，仅限不可发布的Desktop-to-Infra local startup/control/evidence interface。Desktop把synthetic login的secret authority、authorization start/request/page、form、credential submit/reject、callback、token exchange、session/storage/runtime/concurrency失败闭合为content-free stage leaves；Infra接受并持久化这些leaves，同时用top-level exact event shape解释脱敏Caddy 2.11.4 startup/admin/TLS/reverse-proxy metadata。array/scalar root、unknown key/value和malformed nested access object继续fail closed。中央Contracts、Public Tasks、API、Host、Runtime、durable schema、Compose pins和default flags不变，central G2A=`N/A`。
+
+Owner通过DEC-126-081接受Desktop `b066e8d08b5f80521c87a6505649b1bb3a62d83b`与Infra `cf00b4caacefbd35823dffafb9e23653484bc576`的Corrective Closure。实际Keycloak页面/credential/callback/token exchange、project registration、Host/Runtime ownership/readiness及live Caddy event集合仍必须由下一次isolated-live验证；因此G3保持Partial，G4/G6 Pending。

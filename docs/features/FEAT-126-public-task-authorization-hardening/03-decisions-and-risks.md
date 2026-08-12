@@ -635,3 +635,28 @@
 | Contract impact | 本Governance disposition=`none`；被接受实现仍为private non-publishable local evidence interface的`semantic`变更；central Contracts/G2A、Public Tasks、Host/Runtime与产品默认行为不变 |
 | Gate state | DESIGN-126-021 Complete；LIA-126-036 Corrective Closure Accepted；G3 Partial；G4/G6 Pending；`s10b_r8_executed=false` |
 | Stop | no Docker lifecycle、isolated-live、fresh R8、business case、S11、MiniMax、real data/Keychain、default activation or remote operation；后续live必须基于最终七仓clean SHA另行一次性授权 |
+
+## 42. DEC-126-080 / DESIGN-126-022 / LIA-126-037–038 Unified Corrective Authorization
+
+| 项目 | 决策与证据 |
+|---|---|
+| Failed run | `5a52227e-64cf-4544-9a42-527c512433fe`永久不可retry、resume或复用；failure=`driver_login_failed`、phase=`desktop_starting`、process roles=`api/fake/desktop`、cleanup scope=`run_artifacts` |
+| Honest leaf boundary | 旧Desktop在`feat126_s10_driver_login`唯一IPC边界把所有native auth错误折叠为`driver_login_failed`；历史evidence无法区分secret、authorization page、form、credential、callback、token exchange或session/storage子阶段，不得倒推或伪造更细历史leaf |
+| Caddy cause | v4摘要精确绑定`compose:feat126-s10-caddy`、`unclassified_sensitive_field`、`structured_unclassified`、`unclassified_caddy_system_value`；确切分类原因是旧scanner只有不完整的字段级Caddy allowlist，无法将输入归入closed system-event authority。原始record未进入evidence且不可恢复；不等于已证明敏感值泄漏 |
+| Corrective scope | Desktop六个driver/native-auth文件；Infra orchestrator、BO3 test与完全脱敏Caddy fixture；Contracts/API/Host/Runtime不修改 |
+| Required closure | closed login stage leaves；frontend只透传closed allowlist；Infra接受并持久化所有login leaves；Caddy top-level exact event shapes；array/scalar/null root、unknown key/value与malformed nested access object fail closed |
+| Contract impact | `semantic` private local startup/control/evidence interface；central contracts和G2A N/A；Public Tasks、API/Host/Runtime wire、durable schema、Compose pins及default flags不变 |
+| Authorization | Owner的连续执行指令单独授权并消费本次Desktop/Infra corrective、targeted/full/build/config-only门禁、独立审查与两个local checkpoints；不授权在corrective过程中执行live |
+
+## 43. DEC-126-081 Corrective Closure Owner Acceptance
+
+| 项目 | 接受结果 |
+|---|---|
+| Checkpoints | Desktop `b066e8d08b5f80521c87a6505649b1bb3a62d83b`；Infra `cf00b4caacefbd35823dffafb9e23653484bc576`；均local、clean、not pushed |
+| Desktop gates | targeted frontend `13/13`；feature Rust FEAT-126 `37 pass/1 ignored`；default targeted `1/1`；full frontend `180/180`；full Rust `135 pass/3 ignored`；lint、clippy、fmt、production build与diff PASS |
+| Infra gates | BO2/BO3 targeted `51/51`；full `193/193`；`make lint`；Docker Compose 5.3.0 direct config-only；Node/Shell syntax及diff PASS |
+| Review | array/scalar/null Caddy root bypass与malformed nested access object裸TypeError两个P1已关闭；独立只读复审无open P0/P1 |
+| Historical integrity | preclaim/attempt/failure/closure均0600 canonical JSON；SHA-256分别为`5f779dca923d4f95613b144eedb416085eade425d8b24c1faa46be20aa6192fe`、`e851ad7ffb807fe7bd7f7f289cf7c6ab10aefbfdcc2e1eff2b262160276d8f17`、`795a3ef0dfdb01264a35afc363a405ddf1d4e1a132486df8d4ad2e730919bfc5`、`cf135a05378a2378eb2d313d52e7ad6c4e8a0138b07f7dae6db61fdedfbf6b66`；runtime scan=`87fb3b6fafa516fd8b2983b3c45ee881ce9c67a8f6fcd86a6ca76f53bc3cd9c2`，business boundary=`99b25bc14845572e4d36883e423682d6376de29bbc109f9f9d6a01f79f1af150`；未修改历史evidence或读取retained volume |
+| Runtime boundary | corrective/acceptance阶段未执行Docker lifecycle、isolated-live、fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用或远端动作；Public Tasks/conversation/turn/provider calls=0；`s10b_r8_executed=false` |
+| Gate state | `DESIGN-126-022 Complete / LIA-126-038 Corrective Closure Accepted / S10B-BLK-014 Closed`；G3 Partial、G4/G6 Pending |
+| Next | Governance clean checkpoint完成并取得七仓exact clean SHA后，只能另行签发一次全新、不可重试的isolated-live startup/abort授权；该接受本身不执行live |

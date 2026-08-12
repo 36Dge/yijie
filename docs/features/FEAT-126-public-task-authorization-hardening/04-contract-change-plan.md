@@ -334,3 +334,11 @@ v4 exact keys are `schema_version`、`status`、`run_id`、`source_count`、`row
 ### 20.1 DEC-126-079 Closure disposition
 
 Owner接受Infra `ef9984b06c2913b1d7561360b1e3e569cbfd9d4a`对上述private compatibility contract的实现证据。v4 exact-key、zero/nonzero digest、reason-class、production feature和legacy reader测试均通过；独立审查无open P0/P1。本Owner Acceptance自身`contract-impact=none`，不新增或修改中央契约、consumer pin、migration、tag或发布顺序。
+
+## 21. DESIGN-126-022 Private Login-leaf Compatibility
+
+`contract-impact=semantic`，但只涉及feature-only Desktop producer与Infra orchestrator consumer之间的本地startup failure-class allowlist。旧`driver_login_failed`继续保留为未知或无法安全归类时的兼容fallback；新closed leaves只增加诊断精度，不携带错误正文、URL、path、credential、token或业务内容。Infra同一checkpoint接受全部新leaves并保持first-terminal-wins、no-retry和immutable primary failure约束，因此不存在单侧consumer不兼容窗口。
+
+Caddy v4 evidence schema和14-key exact shape不变；本corrective只收紧同一`unclassified_caddy_system_value` reason class下的event-shape判定。合法脱敏Caddy 2.11.4 fixture按top-level exact shape通过，array/scalar/null root、unknown或cross-shape组合仍失败。中央Contracts字段、版本、生成物、breaking baseline、consumer pin与发布tag均为`N/A`。
+
+DEC-126-081接受Desktop/Infra配对checkpoints。回滚必须配对revert两个commits；不得只移除Infra新leaf、让Desktop发送未知class，或只放宽Caddy规则。历史run不迁移、不重写、不reconcile。

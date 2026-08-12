@@ -387,3 +387,16 @@ The Governance checkpoint records the authority and ordering but intentionally c
 | Boundary | no Docker lifecycle/live/fresh R8/business/S11/MiniMax/Keychain/default activation/remote action；`s10b_r8_executed=false` |
 
 本Governance commit将形成最终Owner Acceptance checkpoint，其SHA在commit后报告。之后不得自动live；需要使用最终七仓精确SHA取得新的单次授权。
+
+## 25. DEC-126-080/081 Login-leaf and Caddy Corrective Closure
+
+| Item | Accepted state |
+|---|---|
+| Failed run | `5a52227e-64cf-4544-9a42-527c512433fe`; historical primary=`driver_login_failed`; permanently non-reusable |
+| Audit truth | first observable leaf is the synthetic login chain; old boundary destroyed finer substage identity, so no finer historical claim is made |
+| Caddy truth | one v4 Caddy unclassified tuple; exact classification cause is the old incomplete field-level allowlist, while the privacy-preserving evidence cannot recover the specific original record; no sensitive leakage is proven |
+| Desktop | `b066e8d08b5f80521c87a6505649b1bb3a62d83b`; closed stage leaves and safe frontend fallback |
+| Infra | `cf00b4caacefbd35823dffafb9e23653484bc576`; leaf durability and exact Caddy 2.11.4 event shapes with malformed-root fail-closed |
+| Gates | Desktop targeted/full/lint/build/Rust PASS; Infra targeted `51/51`, full `193/193`, lint, Compose 5.3.0 config-only, syntax/diff PASS; no open P0/P1 |
+| Boundary | no live/fresh R8/business/S11/MiniMax/Keychain/default activation/remote action during closure; `s10b_r8_executed=false` |
+| Next | after the Governance clean checkpoint and final seven SHA manifest, issue one fresh non-retry startup/abort authorization; live execution remains distinct |

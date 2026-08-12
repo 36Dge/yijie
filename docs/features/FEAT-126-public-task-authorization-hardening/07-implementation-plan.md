@@ -635,3 +635,12 @@ DEC-126-076已接受上述slice集合的Corrective Closure并关闭environment-b
 2. Infra四文件corrective、targeted `51/51`、full `193/193`、Compose 5.3.0 config-only、syntax/diff及独立review证据由Owner接受；DESIGN-126-021 Complete，LIA-126-036 Corrective Closure Accepted。
 3. Governance只更新现有FEAT-126 package与`feature.yaml`，全门禁通过后形成一个local clean checkpoint；自身SHA只在commit后报告。
 4. checkpoint后停止。G3仍Partial，G4/G6 Pending；不得自动执行isolated-live或fresh R8，下一次live必须固定最终七仓clean SHA并另行一次性授权。
+
+## 38. DEC-126-080/081 / DESIGN-126-022 Corrective Exit
+
+1. LIA-126-037 run `5a52227e-64cf-4544-9a42-527c512433fe`保持永久FAIL和不可复用；只读审计不得把旧`driver_login_failed`虚构成某个内部stage leaf。
+2. Desktop只提交六个driver/native-auth/frontend文件，形成checkpoint `b066e8d08b5f80521c87a6505649b1bb3a62d83b`；closed stage mapping、unknown fallback及FD4 allowlist成对完成。
+3. Infra只提交orchestrator、BO3 test和脱敏Caddy fixture，形成checkpoint `cf00b4caacefbd35823dffafb9e23653484bc576`；login leaves、top-level exact event shapes及fail-closed malformed roots完成。
+4. 两仓targeted/full/lint/build/config-only/syntax/diff门禁PASS，独立复审无open P0/P1；Contracts/API/Host/Runtime无需修改。
+5. DEC-126-081接受Corrective Closure并关闭`S10B-BLK-014`；Governance只更新现有FEAT-126 package与`feature.yaml`，全门禁通过后形成local clean checkpoint。
+6. 取得最终七仓exact clean SHA后，Owner可以另行签发一次全新、不可重试的isolated-live startup/abort授权并现场生成未使用UUIDv4。该授权不包含fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用或远端动作。
