@@ -4,14 +4,14 @@
 
 | 字段 | 内容 |
 |---|---|
-| 状态 | G1/G2/G2A Passed / DESIGN-126-024 Complete / LIA-126-044 Corrective Closure Accepted / DEC-126-083 Owner Acceptance / G3 Partial / G4/G6 Pending |
+| 状态 | G1/G2/G2A Passed / DESIGN-126-025 Complete / LIA-126-046 Corrective Closure Accepted / DEC-126-084 Owner Acceptance / G3 Partial / G4/G6 Pending |
 | 需求负责人 | 段成威 |
 | Product/Design 决策人 | 段成威 |
 | 技术负责人 | 段成威 |
 | Reviewer | 段成威 |
 | 发布负责人 | 段成威 |
 | 创建日期 | 2026-08-01 |
-| 最后更新 | 2026-08-12 |
+| 最后更新 | 2026-08-13 |
 | 原始需求来源 | 段成威 2026-08-01 对话需求及 4 张 Codex 局部交互截图 |
 
 ## 2. 一句话目标

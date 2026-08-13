@@ -425,3 +425,15 @@ The Governance checkpoint records the authority and ordering but intentionally c
 | Gates | targeted `51/51`、full `193/193`、lint、Compose 5.3.0 config-only、Node/Shell syntax及diff PASS；independent review no open P0/P1 |
 | State | `DEC-126-083 Accepted / DESIGN-126-024 Complete / LIA-126-044 Corrective Closure Accepted`；G3 Partial；G4/G6 Pending；`s10b_r8_executed=false` |
 | Next | Governance clean checkpoint后，LIA-126-045绑定新七仓SHA并现场生成一个fresh UUIDv4，只执行一次isolated-live startup/abort |
+
+## 28. DEC-126-084 Run-artifact No-log Corrective Closure
+
+| Item | Accepted state |
+|---|---|
+| Failed run | LIA-126-045 `f07e9f3f-bc8f-4a3d-9da9-b79ba70054b2`；startup/ownership/readiness/business/single-abort完成，但最终no-log closure FAIL；永久不可复用 |
+| Audit truth | runtime-log-scan v4为4 sources/69 rows/0 hits；本地scanner与既有closed evidence/log字段契约冲突，没有发现真实敏感值泄漏 |
+| Infra | `58dc41f16e1d3411d7170cc2f5b10843a1ad13c5`；exact field+value/shape authority，不使用字段名级豁免 |
+| Gates | historical replay 0 hits；targeted `52/52`、full `194/194`、lint/test、Compose 5.3.0 direct config、validate、syntax/diff PASS；no open P0/P1 |
+| Integrity | ledger/evidence只读digest与0600/nlink=1复核；历史evidence/retained volumes不变；Public Tasks/conversation/turn/provider calls=0；`s10b_r8_executed=false` |
+| State | `DEC-126-084 Accepted / DESIGN-126-025 Complete / LIA-126-046 Corrective Closure Accepted / S10B-BLK-015 Closed`；G3 Partial；G4/G6 Pending |
+| Next | Governance clean checkpoint后，LIA-126-047绑定新七仓SHA并现场生成一个fresh UUIDv4，只执行一次isolated-live startup/abort |

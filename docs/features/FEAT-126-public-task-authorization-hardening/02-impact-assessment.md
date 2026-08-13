@@ -348,3 +348,11 @@ LIA-126-041、042、043分别消费run `909e7b8b-93e0-4497-adbf-579d7afb90e1`、
 统一离线审计确认影响仍仅为Infra private runtime-log classification semantics。固定Caddy 2.11.4现场系统日志包含与旧脱敏fixture不同但content-free的startup/admin/TLS/reverse-proxy元数据形状。旧closed event authority不能解释这些值，因而按设计fail closed；摘要不证明token、secret或业务内容泄漏。corrective只修改Infra orchestrator、BO3 test和完全脱敏fixture；Contracts/API/Host/Desktop/Runtime及central G2A均不受影响。
 
 DEC-126-083接受Infra `d4749cb31242799d7cb8f566d44bea3c1f085d8a`。BO2/BO3 targeted `51/51`、full `193/193`、`make lint`、Compose 5.3.0 config-only、Node/Shell syntax及diff检查PASS，独立只读审查无open P0/P1。实际live输入仍须由新七仓SHA上的LIA-126-045验证；因此G3保持Partial，G4/G6 Pending。
+
+## 23. DESIGN-126-025 / LIA-126-045–046 Run-artifact No-log Authority Impact
+
+LIA-126-045 run `f07e9f3f-bc8f-4a3d-9da9-b79ba70054b2`已完成真实API、fake、Desktop、Host和Runtime startup、ownership/readiness、business boundary与一次性abort。runtime-log-scan v4为4个exact sources、69 rows、0 hits；business boundary前后API摘要相同，fake accepted/rejected calls均为0。最终failure/closure仅为`orchestrator_no_log_invalid` at `desktop_exited`，scope=`run_artifacts`。该run永久不可retry、resume或reuse，不能因主startup链通过而升级为live PASS。
+
+离线只读审计确认旧scanner把既有closed evidence/log authority中的字段按字段名宽泛判为敏感或不可分类，包括精确startup message、本地JWKS authority、固定retained-volume keys、authorization revision、secret descriptor SHA-256及synthetic secret roles。没有发现实际token、secret、路径或业务内容泄漏。corrective只在字段名与精确值/结构同时匹配时放行；unknown message、非权威JWKS、错误digest/revision/role/volume顺序及unstructured内容继续fail closed。
+
+最高影响为`semantic`，仅限Infra private local no-log classification。runtime-log-scan v4 evidence shape、digest算法、Docker/Caddy authority、central Contracts、Public Tasks、API/Host/Desktop/Runtime wire、durable schema、Compose pins与default flags均不变，G2A=`N/A`。DEC-126-084接受Infra `58dc41f16e1d3411d7170cc2f5b10843a1ad13c5`；G3保持Partial，G4/G6 Pending。

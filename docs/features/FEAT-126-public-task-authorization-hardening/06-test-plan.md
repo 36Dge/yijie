@@ -994,3 +994,18 @@ LIA-126-041仍是独立live gate：使用全新UUIDv4和提交后七仓SHA，只
 | Owner disposition | DEC-126-083 Accepted；DESIGN-126-024 Complete；LIA-126-044 Corrective Closure Accepted；G3 Partial、G4/G6 Pending |
 
 下一次live编号为LIA-126-045。它必须绑定Governance提交后的七仓exact clean SHA，现场生成一个未使用UUIDv4并只执行一次canonical startup/abort。
+
+## 44. DESIGN-126-025 / LIA-126-045–046 Corrective Gates
+
+| Area | Accepted proof |
+|---|---|
+| Failed run | LIA-126-045 `f07e9f3f-bc8f-4a3d-9da9-b79ba70054b2`保持canonical FAIL且永久不可retry/resume/reuse |
+| Root-cause replay | 33 retained run sources + 4 external sources、97 rows、0 hits；明确记录native-auth abort deletion造成的事后literal replay边界 |
+| Exact authority | 合法嵌套failure/bootstrap/manifest/preflight/process-log形状为zero hit；只按字段名不能通过 |
+| Negative matrix | invalid digest、unknown startup message、non-authorized JWKS、revision drift及volume ordering drift均继续命中 |
+| Infra targeted | BO2/BO3 `52/52` PASS |
+| Infra full/static | `194/194`、`make lint`、Compose 5.3.0 direct config、`pnpm validate`、Node/Shell syntax及`git diff --check` PASS |
+| Independent review | no open P0/P1；exact values足够窄，nested sensitive/unstructured/Caddy unknown没有被静默抑制 |
+| Owner disposition | DEC-126-084 Accepted；DESIGN-126-025 Complete；LIA-126-046 Corrective Closure Accepted；`S10B-BLK-015 Closed`；G3 Partial、G4/G6 Pending |
+
+下一次live编号为LIA-126-047。它必须绑定Governance提交后的七仓exact clean SHA，现场生成一个未使用UUIDv4并只执行一次canonical startup/abort。

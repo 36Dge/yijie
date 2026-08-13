@@ -1223,3 +1223,20 @@ Governance checkpoint的SHA在commit后报告。完成后仅签发一份绑定�
 | Owner disposition | DEC-126-083 Accepted；DESIGN-126-024 Complete；LIA-126-044 Corrective Closure Accepted；G3 Partial、G4/G6 Pending |
 
 Governance checkpoint形成后，LIA-126-045只能以新七仓exact clean SHA和一个现场生成的fresh UUIDv4执行一次startup/abort；本节不构成live PASS。
+
+## 51. LIA-126-045 / DESIGN-126-025 / LIA-126-046 Corrective Closure
+
+| Evidence | Accepted result |
+|---|---|
+| Run | `f07e9f3f-bc8f-4a3d-9da9-b79ba70054b2`；CONSUMED/FAIL、永久不可retry/resume/reuse |
+| Fixed SHAs | Governance `a18214b2f8dee136ff848fa963ceb6b320463f3a`；Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`；API `451940b282d8dd3e232ed414bd44b0677897f4c4`；Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`；Desktop `475086f1e68bcd1e0820a07b727d741e22a1bf62`；Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`；Infra `51d3515a81233459642bc2174d1425e0afc21371` |
+| Startup/abort | API/fake/Desktop/Host/Runtime startup与ownership/readiness完成；business boundary PASS；fake accepted/rejected=0；single abort完成；cleanup failure null |
+| Failure | primary=`orchestrator_no_log_invalid`；phase=`desktop_exited`；no-log/cleanup scope=`run_artifacts`；runtime-log-scan v4=`4 sources / 69 rows / 0 hits` |
+| Ledger | preclaim `2765c6818c5469cca8e7223b79610a137ec5f7fb479973b5edbe1dd42a0ebc72`；attempt `e15c27a1cc96c0cfa5126e239cccb1351a2dd71c97eae08cf858afcd0dd7bc7a`；failure `6ef9972f0902c27cb3919059d28bfdd8315ca2c9a080ec4e580c2cda8fa9d077`；closure `0dddc19e74912b71454a625af274b6a15f34b28687013fed4206e4d3e01b1163`；均0600/nlink=1 |
+| Root cause | legitimate closed run-artifact fields were classified solely by sensitive/unclassified names; no actual secret/path/business leak identified |
+| Replay | current retained authority: 33 local sources + 4 external sources、97 rows、0 hits；native-auth secret had already been deleted by abort, so complete historical literal replay is not claimed |
+| Corrective | Infra `58dc41f16e1d3411d7170cc2f5b10843a1ad13c5`；exact field+value/shape approvals and negative regressions；no schema or other-repository change |
+| Gates | targeted `52/52`、full `194/194`、make lint/test、Compose 5.3.0 direct config、validate、Node/Shell syntax、diff PASS；independent review no open P0/P1 |
+| Owner disposition | `DEC-126-084 Accepted / DESIGN-126-025 Complete / LIA-126-046 Corrective Closure Accepted / S10B-BLK-015 Closed`；G3 Partial、G4/G6 Pending；`s10b_r8_executed=false` |
+
+Governance checkpoint形成后，LIA-126-047只能以新七仓exact clean SHA和现场生成的fresh UUIDv4执行一次startup/abort；本节不构成live PASS。

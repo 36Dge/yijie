@@ -358,3 +358,11 @@ DEC-126-081接受Desktop/Infra配对checkpoints。回滚必须配对revert两个
 - Admin healthcheck仅接受closed GET `/config/` loopback shape及exact headers；startup/TLS/reverse-proxy事件按message-specific schema闭合。unknown key/value、cross-event组合、非object root和不合规nested shape继续fail closed。
 - 中央Contracts、Public Tasks、API/Host/Desktop/Runtime wire、durable schema、Compose pins和default flags无变化，G2A=`N/A`。
 - DEC-126-083接受Infra `d4749cb31242799d7cb8f566d44bea3c1f085d8a`；历史v4 evidence不迁移、不重写、不reconcile。LIA-126-045必须绑定新的七仓exact clean SHA。
+
+## 24. DESIGN-126-025 Run-artifact No-log Private Compatibility
+
+- `contract-impact=semantic`，仅限Infra私有run-artifact scanner；runtime-log-scan v4 schema、14-key evidence shape、集合digest、legacy reader和exact Docker authority均不变。
+- approved context必须同时满足normalized field name与exact closed value/shape：两个固定startup messages、唯一local JWKS URL、按协议顺序的四个retained-volume keys、revision `3`、lowercase SHA-256 descriptor及精确三个synthetic secret roles。
+- 字段名本身不构成豁免。unknown message/JWKS、错误或大写digest、revision漂移、role/volume缺失/重排以及unstructured敏感模式继续fail closed。
+- 中央Contracts、Public Tasks、API/Host/Desktop/Runtime wire、durable schema、Compose pins和default flags无变化，G2A=`N/A`。
+- DEC-126-084接受Infra `58dc41f16e1d3411d7170cc2f5b10843a1ad13c5`；历史run不迁移、不重写、不reconcile。LIA-126-047必须绑定新的七仓exact clean SHA。

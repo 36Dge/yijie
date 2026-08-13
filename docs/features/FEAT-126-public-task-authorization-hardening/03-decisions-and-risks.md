@@ -691,3 +691,20 @@
 | Gate state | DESIGN-126-024 Complete；LIA-126-044 Corrective Closure Accepted；G3 Partial；G4/G6 Pending；所有历史run保持FAIL；`s10b_r8_executed=false` |
 | Next | Governance clean checkpoint形成并取得七仓exact clean SHA后，LIA-126-045仅可现场生成一个未使用UUIDv4并执行一次canonical startup/abort；失败即closure并停止，不得retry/resume |
 | Prohibited | fresh R8、business case、S11、MiniMax、real data/Keychain、default activation及push/merge/tag/publish/deploy仍未授权 |
+
+## 46. DEC-126-084 / DESIGN-126-025 / LIA-126-045–046 Corrective Closure Owner Acceptance
+
+| 项目 | 接受结果 |
+|---|---|
+| Failed live | LIA-126-045=`f07e9f3f-bc8f-4a3d-9da9-b79ba70054b2`；CONSUMED/FAIL且永久不可retry、resume或reuse |
+| Live boundary | API/fake/Desktop/Host/Runtime startup、ownership/readiness、business boundary、single abort与cleanup完成；runtime-log-scan v4=`4 sources / 69 rows / 0 hits`；最终primary=`orchestrator_no_log_invalid`、phase=`desktop_exited`、scope=`run_artifacts` |
+| Root cause | old run-artifact scanner按字段名判定合法closed authority，导致`msg`、local `jwks_url`、固定retained volume keys、revision 3、SHA-256 descriptor与精确synthetic roles产生误报；未发现实际敏感值泄漏 |
+| Corrective | DESIGN-126-025 / LIA-126-046仅更新Infra orchestrator与BO2 regression；字段名必须同时匹配精确值/结构才可通过，所有漂移和unknown/unstructured输入继续fail closed |
+| Read-only replay | 当前保留的33个run文件/数据库来源与4个external sources共97 rows复扫为0 hits；abort已删除native-auth临时secret，故历史完整literal authority不能事后重建，该边界不被虚构为完整原始secret replay |
+| Evidence integrity | preclaim=`2765c681...bc72`；attempt=`e15c27a1...bc7a`；failure=`6ef9972f...d077`；closure=`0dddc19e...1163`；均0600、nlink=1；历史evidence/retained volumes未修改 |
+| Checkpoint | Infra `58dc41f16e1d3411d7170cc2f5b10843a1ad13c5`；parent=`51d3515a81233459642bc2174d1425e0afc21371`；local、clean、not pushed |
+| Verification | BO2/BO3 targeted `52/52`；full `194/194`；`make lint`；Compose 5.3.0 direct config；Node/Shell syntax；`pnpm validate`；`git diff --check` PASS；独立只读review无open P0/P1 |
+| Scope | Owner接受Infra Corrective Closure并关闭`S10B-BLK-015`；Governance disposition=`none`。Contracts/API/Host/Desktop/Runtime及central G2A unchanged/N/A |
+| Gate state | DESIGN-126-025 Complete；LIA-126-046 Corrective Closure Accepted；G3 Partial；G4/G6 Pending；`s10b_r8_executed=false` |
+| Next | Governance clean checkpoint后，LIA-126-047只能绑定最终七仓exact clean SHA与现场生成的fresh UUIDv4，执行一次canonical startup/abort |
+| Prohibited | fresh R8、business case、S11、MiniMax、real data/Keychain、default activation及任何远端动作仍未授权 |

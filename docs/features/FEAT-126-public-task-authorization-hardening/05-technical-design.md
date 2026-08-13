@@ -1804,3 +1804,22 @@ DEC-126-082接受Desktop `475086f1e68bcd1e0820a07b727d741e22a1bf62`与Infra `e4e
 ### 57.3 Accepted checkpoint and residual live gate
 
 DEC-126-083接受Infra `d4749cb31242799d7cb8f566d44bea3c1f085d8a`。targeted/full/lint/Compose config-only/syntax/diff全部PASS，独立review无open P0/P1。`remote_port`更严格的1..65535数值域可作为P2 authority hardening，但不影响本轮固定healthcheck形状或Corrective Closure。LIA-126-045仍须验证现场零命中、一次性abort和资源归零；G3保持Partial，G4/G6 Pending。
+
+## 58. DESIGN-126-025 Closed Run-artifact Field Authority
+
+### 58.1 Historical failure boundary
+
+- LIA-126-045已到`desktop_exited`并持久化全部五个process records、business boundary、runtime-log-scan v4、failure和closure。Caddy external scan为0 hits，最终failure来自本地run artifact scanner。
+- 离线审计定位到六类合法closed authority：startup `msg`、local `jwks_url`、`retained_volume_keys`、`final_authorization_revision`、`secret_descriptor_sha256`和`secret_roles`。旧scanner先按敏感字段名命中，未复用同一closed value validator，因此产生契约冲突。
+- 没有证据证明token、secret、路径或业务正文泄漏；但失败历史保持FAIL，不得重写其closure或用新scanner生成替代evidence。
+
+### 58.2 Exact approval algorithm
+
+- `msg`仅允许API与Agent Host两个固定startup值；JWKS仅允许FEAT-126 local issuer的exact certs URL。
+- retained volume keys必须与`S10_NAMED_VOLUME_KEYS`按既定顺序完全相等；authorization revision必须精确为`3`。
+- descriptor必须为64字符lowercase hex SHA-256；secret roles必须精确为`chat_sqlcipher / receipt_hmac / native_auth`的既定顺序。
+- `sensitiveStructuredField`只有在同一个entry通过上述exact context validator时才免除命中。unknown、extra、wrong value、wrong ordering与unstructured source不享有豁免。
+
+### 58.3 Replay, tests and residual live gate
+
+只读回放覆盖当前仍保留的33个run sources、4个external sources及97 rows，结果0 hits。native-auth临时secret已由成功abort按协议删除，故事后不能重新构造当时完整literal pattern set；live路径仍要求在abort前capture全部run-scoped secret authority，相关测试保持通过。DEC-126-084接受Infra `58dc41f16e1d3411d7170cc2f5b10843a1ad13c5`，无open P0/P1。LIA-126-047仍须现场证明完整capture下的0-hit、single abort与资源归零。

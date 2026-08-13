@@ -424,3 +424,11 @@ DESIGN-126-008对未来corrective的回滚语义冻结如下：
 - LIA-126-041/042/043的run ID、ledger、evidence和retained volumes不可修改、删除、retry、resume、reconcile或作为新run输入。
 - Governance checkpoint后，LIA-126-045只能绑定最终七仓exact clean SHA和现场生成的一个fresh UUIDv4，并执行一次startup/abort；失败即停止且不得重试。
 - fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用及push/merge/tag/publish/deploy仍禁止。
+
+## 29. DEC-126-084 Corrective Closure and Rollback Boundary
+
+- 本接受固定Infra `58dc41f16e1d3411d7170cc2f5b10843a1ad13c5`，不产生release artifact、deployment、default activation或isolated-live PASS。
+- 回滚必须整体revert该Infra commit；不得改为字段名全局豁免、删除exact value/shape约束、跳过run-scoped secret capture或放行unknown/unstructured内容。
+- LIA-126-045 run、ledger、evidence和retained volumes不可修改、删除、retry、resume、reconcile或作为新run输入。
+- Governance checkpoint后，LIA-126-047只能绑定最终七仓exact clean SHA和现场生成的一个fresh UUIDv4，并执行一次startup/abort；失败即closure且不得重试。
+- fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用及push/merge/tag/publish/deploy仍禁止。
