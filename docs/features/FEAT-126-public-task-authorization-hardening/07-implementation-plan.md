@@ -688,3 +688,12 @@ DEC-126-076已接受上述slice集合的Corrective Closure并关闭environment-b
 3. Desktop targeted R8 `16/16`、TypeScript full `183/183`、Rust feature `160 tests (157 pass, 3 ignored)`、fmt、clippy、production Vite build及`cargo build --locked --release --features feat126-s10-driver,tauri/custom-protocol` PASS；Infra R8/BO3 targeted `42/42`、full `206/206`、`make lint`、`make test`、Compose 5.3.0 semantic config、Node/Shell syntax及`git diff --check` PASS。
 4. S10B-011使用真实SQLCipher probe验证10,000 sessions、500,000 turns、1,000,000 messages、50-turn/100-message history pages、30次metadata/history P95、10,000 reducer observations及10,000 concurrent duplicate pairs；probe为feature-only synthetic路径，结束后删除临时目录。case evidence只记录固定assertion set digest，不写正文或敏感值。
 5. 本实现checkpoint不等同于LIA-126-048 live PASS，不生成run_id/evidence，不调用MiniMax，不产生Public Tasks/conversation/turn/provider调用；`business_cases=disabled`、`s10b_r8_executed=false`在当前未消费执行中保持。LIA-126-048仍必须以Governance新SHA、七仓exact/clean和现场fresh UUIDv4通过canonical入口一次性执行；入口或preflight失败即停止，不得模拟、retry、resume或复用run。
+
+## 44. DESIGN-126-027 / LIA-126-049 Corrective and Acceptance Order
+
+1. 保留LIA-126-048 run `2cc440eb-632d-456b-abb1-f95b12c14b5a`为CONSUMED/FAIL且永久不可retry、resume或reuse；只读复核ledger和结构化evidence，不读取日志正文、retained volume或业务内容。
+2. Desktop只增加post-ready content-free terminal、first-terminal-wins、FD4 flush/close/exit ordering、真实R8 case-failure fixture及同一`database.rs`默认build cfg闭包；Infra只增加post-ready primary持久化、frame/exit/EOF顺序和actual reached-phase evidence集合。
+3. 执行Desktop targeted/full/lint/test/build/default+feature clippy/fmt/diff及Infra targeted/full/lint/test/Compose 5.3.0 config-only/Node/Shell/diff；独立只读审查必须无open P0/P1。
+4. 形成Desktop `88382304b46002ce3e44f7f3bb30104dbd4b11ea`和Infra `06baf058d6bafd7bce6310574066b990098e80f4`两个local clean checkpoints；其他五仓不变。
+5. 仅更新现有FEAT-126 Governance package和`feature.yaml`，登记DEC-126-087 Owner Acceptance；Governance全部门禁通过后形成一个local clean checkpoint。
+6. 停止。下一次R8必须另行授权、绑定新的七仓exact clean SHA并现场生成fresh UUIDv4；本Corrective Closure不自动授权live。

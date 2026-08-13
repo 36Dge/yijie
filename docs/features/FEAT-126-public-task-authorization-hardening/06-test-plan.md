@@ -1024,3 +1024,19 @@ LIA-126-041仍是独立live gate：使用全新UUIDv4和提交后七仓SHA，只
 | R8 exclusions | no MiniMax/external provider、real data、Keychain、S11、default activation、retained-volume content access、prune/delete或remote operation |
 
 DEC-126-085接受LIA-126-047，但G3保持Partial且G4/G6 Pending，直到完整fresh R8真实PASS并另行Owner验收。若canonical R8 entry缺失，本轮只完成Governance checkpoint并报告implementation blocker，不生成run ID或模拟结果。
+
+## 46. DESIGN-126-027 / LIA-126-049 Corrective Closure Gates
+
+| Gate | Accepted proof |
+|---|---|
+| Historical integrity | run `2cc440eb-632d-456b-abb1-f95b12c14b5a` ledger为regular 0600、UID 501、nlink=1；preclaim/attempt/failure/closure SHA-256分别为`4a0097a7442f390a3b6b6208423379f79100564ef8ddeefbd61f4ea6375dbf83`、`83573bbe4dad24aec364cc29bb8aa786d1c965a11ebc068e3f04bc30afd6f6e9`、`8ed6def8c17fb15bfa2087760b50cb4a6834c5dd625fb0a2f77ee63d67018d60`、`89a9a7dfc78420362206d6a6b9a6a11ae2c8e40ee84aae68b4cd343eba152924` |
+| Desktop terminal | post-ready failure allowlist、content-free exact frame、terminal race、case-vs-terminal race、FD4 flush/close and exit ordering、ready-aware FD3 monitor and frontend `driver_case_failed` fixture PASS |
+| Desktop default gate | R8 imports/scale/idempotency probes are feature-gated; default non-feature lint/test compiles without changing feature-enabled behavior |
+| Desktop verification | targeted TS `16/16`; targeted Rust `20/20`; frontend full `183/183`; Rust default `135 passed/3 ignored`; Rust feature `160 passed/3 ignored`; lint, Vite build, fmt, default and feature clippy, diff PASS |
+| Infra observation | post-ready primary persistence, frame-over-exit/EOF bounded priority, successful-frame process-exit detection, listener cleanup, reached-phase no-log and lifecycle stopped-evidence matrix PASS |
+| Infra verification | BO2/BO3/R8 targeted `70/70`; full `212/212`; `make lint/test`; Node and all checker Shell syntax; `git diff --check` PASS |
+| Compose | exact Docker Compose `5.3.0`, binary SHA-256 `2642b6354b323be90cf28460ac186499fbc85381b9ce5e6681fdefb2d0a7d265`; direct `config --no-interpolate --quiet` only; no lifecycle command |
+| Independent review | no open P0/P1 in Desktop/Infra corrective scope; Contracts/API/Host/Runtime unchanged |
+| Owner disposition | `DEC-126-087 Accepted / DESIGN-126-027 Complete / LIA-126-049 Corrective Closure Accepted / S10B-BLK-016 Closed`; G3 Partial, G4/G6 Pending |
+
+No canonical/live R8 attempt, isolated-live, Docker lifecycle, business case, MiniMax, real data/Keychain, default activation or remote action was executed during this corrective/acceptance cycle. Any next R8 needs a separate one-time authorization and a new run ID. Feature-only synthetic Rust tests are repository gates and do not create or consume an orchestrator run.

@@ -1835,3 +1835,27 @@ LIA-126-048的技术入口必须满足以下不变量：
 3. Desktop拥有Host，Host拥有Runtime；business case/result、planned restart、failure、abort、no-log与cleanup均写入同一run的closed evidence链。
 4. success必须明确记录`s10b_r8_executed=true`及完整case set；startup/abort runner固定`business_cases=disabled`和`s10b_r8_executed=false`，因此在语义上不能复用为R8。
 5. canonical full-case入口缺失时必须在创建run evidence或启动Docker/进程前停止，并把它报告为实现阻塞；本Governance授权不允许临时实现、人工拼装或修改preflight。
+
+## 60. DESIGN-126-027 Post-ready Terminal and Reached-phase Evidence Authority
+
+### 60.1 Historical R8 failure boundary
+
+- LIA-126-048 run `2cc440eb-632d-456b-abb1-f95b12c14b5a`固定于Governance `8ef14346fd36fde9d786c521c7b084c85a3d2389`、Desktop `f5e4cfbbe4026ff992b2ede251b6689f67c5621f`、Infra `b5fcc612fa875159423368f7c2ef49cf325e8d8f`及其余既定SHA；attempt已记录`s10b_r8_executed=true`。
+- failure固定为`orchestrator_control_eof` at `runtime_ready`，process roles为API/fake/Desktop/Host/Runtime；closure的business status为`not_applicable`，没有case evidence或business-boundary evidence，不得推导已完成case或业务/provider调用次数。
+- runtime-log-scan v4本身为`4 sources / 69 rows / 0 hits`，七个hit集合摘要均绑定空集合SHA-256；overall closure另记`orchestrator_no_log_invalid`，原因是旧runner要求尚未实际形成的后续phase evidence，而不是Caddy runtime scan命中。
+
+### 60.2 Desktop terminal authority
+
+- `component_ready`之后只接受closed post-ready failure class并写`component_failed`；frame保持run/nonce/monotonic sequence绑定且不携带path、value、日志正文、token、secret或业务内容。
+- failure、planned restart和abort共享first-terminal-wins；terminal claim后在同一critical section完成FD4 write、flush和close，后续case/terminal frame均失败关闭，child exit不能先于已claim terminal的close。
+- frontend真实R8 failure经closed classifier投影；FD3 monitor在ready前投影startup leaf、ready后投影post-ready leaf。`database.rs`的R8 probe、同步/线程/计时imports统一受`feat126-s10-driver`条件编译，默认build不引用feature-only symbol，feature-enabled行为不变。
+
+### 60.3 Infra observation and no-log authority
+
+- startup/abort与R8 reader严格接受post-ready leaf并将其作为immutable primary；完整failure frame在bounded drain窗口内优先于API/fake/Desktop child-exit或EOF，只有不存在合法完整frame时才使用外层process/EOF fallback。
+- case result读取仍并行观察API/fake/Desktop exit，成功case frame不能掩盖进程退出；每次观察结束移除临时listener，避免跨case残留竞争。
+- no-log source集合按actual reached phase、已持久化case/fake/ownership records生成。lifecycle-1 planned-restart stopped evidence继续强制；lifecycle-2不能仅因nominal `s10b_011`被推定存在。
+
+### 60.4 Accepted closure
+
+Desktop `88382304b46002ce3e44f7f3bb30104dbd4b11ea`与Infra `06baf058d6bafd7bce6310574066b990098e80f4`均local、clean、not pushed。targeted/full/lint/test/build/clippy/config-only/syntax/diff门禁通过，复审无open P0/P1。DEC-126-087接受DESIGN-126-027 / LIA-126-049 Corrective Closure并关闭`S10B-BLK-016`；该接受不执行或授权新的R8/live。

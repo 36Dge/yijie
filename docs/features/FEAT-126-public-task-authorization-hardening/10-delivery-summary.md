@@ -464,3 +464,15 @@ The Governance checkpoint records the authority and ordering but intentionally c
 | Boundary | No run_id/evidence was generated; no Public Tasks/conversation/turn/provider calls; `business_cases=disabled`; `s10b_r8_executed=false` |
 | Acceptance | `DEC-126-086 Accepted`; `DESIGN-126-026 Complete`; Governance checkpoint is the only remaining local record action before LIA-126-048 |
 | Next | After the Governance clean checkpoint, a separately authorized, one-time LIA-126-048 execution may consume the new seven exact SHAs and a fresh UUIDv4 |
+
+## 31. DEC-126-087 Post-ready Failure Corrective Closure
+
+| Item | Accepted state |
+|---|---|
+| Failed R8 | LIA-126-048 `2cc440eb-632d-456b-abb1-f95b12c14b5a`; consumed/failed/non-reusable; primary `orchestrator_control_eof` at `runtime_ready`; historical `s10b_r8_executed=true` |
+| Desktop | `88382304b46002ce3e44f7f3bb30104dbd4b11ea`; post-ready terminal failure, first-terminal-wins, FD4 flush/close ordering, frontend failure fixture and default cfg closure |
+| Infra | `06baf058d6bafd7bce6310574066b990098e80f4`; post-ready leaf persistence, bounded frame priority, process-exit authority and actual reached-phase no-log evidence |
+| Gates | Desktop targeted/full/default+feature Rust/lint/build/clippy/fmt PASS; Infra targeted `70/70`, full `212/212`, lint/test, Compose 5.3.0 config-only, syntax/diff PASS; Governance default/strict/G2A/YAML/lint/test/Shell/diff PASS; no open P0/P1 |
+| Scope | Contracts/API/Host/Runtime unchanged; no Docker lifecycle, canonical/live R8 attempt, business case, MiniMax, real data/Keychain, default activation or remote action during corrective/acceptance |
+| Acceptance | `DESIGN-126-027 Complete / LIA-126-049 Corrective Closure Accepted / S10B-BLK-016 Closed / DEC-126-087 Accepted`; G3 Partial, G4/G6 Pending |
+| Next | Stop after the Governance clean checkpoint. Any next R8 requires a separate one-time Owner authorization, all seven new exact clean SHAs and a fresh unused UUIDv4 |

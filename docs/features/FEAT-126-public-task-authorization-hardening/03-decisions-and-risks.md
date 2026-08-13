@@ -737,3 +737,19 @@
 | Authority | canonical full-case target is `make feat-126-s10b-r8`; input is fresh UUIDv4 plus seven exact SHAs; startup/abort target remains separate and cannot be used as R8 |
 | Boundary | No live/R8 run was consumed, no evidence was generated, no Docker lifecycle or business/provider call occurred; `business_cases=disabled`, `s10b_r8_executed=false` |
 | Gate state | `DESIGN-126-026 Complete`; `DEC-126-086 Accepted`; G3 Partial; G4/G6 Pending; LIA-126-048 may proceed only after this Governance clean checkpoint and a separate one-time Owner execution authorization |
+
+## 31. DEC-126-087 / DESIGN-126-027 / LIA-126-049 Post-ready Failure Corrective Closure Owner Acceptance
+
+| Item | Owner decision and evidence |
+|---|---|
+| Failed R8 | LIA-126-048 run `2cc440eb-632d-456b-abb1-f95b12c14b5a` is consumed/failed and permanently non-reusable; `s10b_r8_executed=true` is a historical attempt fact, not a PASS |
+| Historical primary | `orchestrator_control_eof` at `runtime_ready`; exact process roles are API/fake/Desktop/Host/Runtime. No R8 case evidence or business-boundary evidence was persisted, so no completed-case or call-count claim is made |
+| Root cause | Desktop had no content-free terminal failure frame after `component_ready`, so a real case failure could close FD4/exit and become outer EOF. Infra also inferred no-log/stopped evidence from a later nominal phase instead of actual reached/persisted observations |
+| Desktop corrective | `88382304b46002ce3e44f7f3bb30104dbd4b11ea`, parent `f5e4cfbbe4026ff992b2ede251b6689f67c5621f`; strict post-ready `component_failed`, first-terminal-wins, FD4 write/flush/close ordering, realistic frontend R8 failure projection, and complete default-build cfg boundary in `database.rs` |
+| Infra corrective | `06baf058d6bafd7bce6310574066b990098e80f4`, parent `b5fcc612fa875159423368f7c2ef49cf325e8d8f`; accepts/persists post-ready leaf, gives a complete failure frame bounded priority over exit/EOF, preserves process-exit authority, and derives no-log/stopped requirements from actual reached/persisted state |
+| Gates | Desktop TS targeted `16/16`, frontend full `183/183`, Rust targeted `20/20`, default `135 passed/3 ignored`, feature `160 passed/3 ignored`, lint/build/fmt/default+feature clippy PASS. Infra targeted `70/70`, full `212/212`, lint/test, Node/Shell syntax and Compose 5.3.0 config-only PASS |
+| Governance gates | feature package default/strict/G2A, unique-key YAML, `pnpm lint/test`, checker/repository Shell syntax and `git diff --check` PASS |
+| Review | Authorized scope contains no open P0/P1; Contracts/API/Host/Runtime are unchanged and outside the corrective |
+| Decision | `DESIGN-126-027 Complete`; `LIA-126-049 Corrective Closure Accepted`; `S10B-BLK-016 Closed`; `DEC-126-087 Accepted`; G3 remains Partial and G4/G6 remain Pending |
+| Boundary | Governance disposition contract-impact=`none`; accepted implementation is a private local control/evidence semantic corrective. No central Contracts, business wire, durable schema, Runtime/Compose pin or default activation changes |
+| Next | No automatic canonical R8/live. A new attempt requires this Governance checkpoint, all seven exact clean SHAs, a fresh unused UUIDv4 and a separate one-time authorization; run `2cc440eb-632d-456b-abb1-f95b12c14b5a` must never be retried/resumed/reused |

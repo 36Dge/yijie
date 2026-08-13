@@ -1258,3 +1258,22 @@ Governance checkpoint形成后，LIA-126-047只能以新七仓exact clean SHA和
 | Fresh R8 | LIA-126-048授权一次frozen synthetic/fake R8；必须在Governance checkpoint后绑定新七仓SHA、现场生成fresh UUIDv4，并经真实full-case canonical entry执行；入口缺失时不执行、不模拟、不消费run |
 
 本Owner Acceptance阶段没有执行新的Docker lifecycle、fresh R8、业务case、MiniMax、真实数据/Keychain、default activation或远端动作。历史evidence和retained volumes未改变。
+
+## 53. LIA-126-048 Failure and DEC-126-087 Corrective Closure Verification
+
+| Evidence | Accepted result |
+|---|---|
+| Failed run | `2cc440eb-632d-456b-abb1-f95b12c14b5a`; LIA-126-048 consumed once; canonical FAIL; permanently non-reusable |
+| Fixed references | Governance `8ef14346fd36fde9d786c521c7b084c85a3d2389`; Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`; API `451940b282d8dd3e232ed414bd44b0677897f4c4`; Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`; Desktop `f5e4cfbbe4026ff992b2ede251b6689f67c5621f`; Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`; Infra `b5fcc612fa875159423368f7c2ef49cf325e8d8f` |
+| Failure | attempt records `s10b_r8_executed=true`; primary=`orchestrator_control_eof`, phase=`runtime_ready`, process roles API/fake/Desktop/Host/Runtime; business status=`not_applicable`; no case evidence or business-boundary evidence |
+| No-log | runtime-log-scan v4 SHA-256 `efde78ec2aabe37e681d9ecabca6c8dd3d072a0af2d4d7ab822dcb23cbd3f703`; `4 sources / 69 rows / 0 hits`; all hit-set digests equal empty-set SHA-256. Closure no-log failure came from the old required-evidence set, not a runtime scan hit |
+| Ledger | preclaim `4a0097a7442f390a3b6b6208423379f79100564ef8ddeefbd61f4ea6375dbf83`; attempt `83573bbe4dad24aec364cc29bb8aa786d1c965a11ebc068e3f04bc30afd6f6e9`; failure `8ed6def8c17fb15bfa2087760b50cb4a6834c5dd625fb0a2f77ee63d67018d60`; closure `89a9a7dfc78420362206d6a6b9a6a11ae2c8e40ee84aae68b4cd343eba152924`; all regular 0600, UID 501, nlink=1 |
+| Desktop checkpoint | `88382304b46002ce3e44f7f3bb30104dbd4b11ea`; 4 files; local/clean/not pushed; diff SHA-256 `07259fff302b7aa249688d29b2181e3abcb0db14529c5b9a787f8678c6ae57a0` |
+| Infra checkpoint | `06baf058d6bafd7bce6310574066b990098e80f4`; 2 files; local/clean/not pushed; diff SHA-256 `3915408b670996ce6a03f150587765c7c2373f976781e6746e296a34996b7159` |
+| Desktop gates | TS targeted `16/16`; frontend `183/183`; Rust targeted `20/20`; default `135 passed/3 ignored`; feature `160 passed/3 ignored`; lint/build/fmt/default+feature clippy/diff PASS |
+| Infra gates | targeted BO2/BO3/R8 `70/70`; full `212/212`; make lint/test; Node/Shell syntax; Compose 5.3.0 direct config-only; diff PASS |
+| Governance gates | feature package default/strict/G2A; unique-key YAML; `pnpm lint/test`; checker/repository Shell syntax; `git diff --check` PASS |
+| Review | no open P0/P1; Contracts/API/Host/Runtime unchanged |
+| Owner disposition | `DEC-126-087 Accepted`; `DESIGN-126-027 Complete`; `LIA-126-049 Corrective Closure Accepted`; `S10B-BLK-016 Closed`; G3 Partial, G4/G6 Pending |
+
+Corrective and Owner Acceptance did not execute Docker lifecycle, a canonical/live R8 attempt, isolated-live, business cases, MiniMax, real data/Keychain, default activation or remote operations. Feature-only synthetic Rust tests did not create or consume an orchestrator run. Historical evidence and retained volumes were not changed. The historical failed attempt remains `s10b_r8_executed=true`; no new attempt was created.
