@@ -4,7 +4,7 @@
 
 | 字段 | 内容 |
 |---|---|
-| 状态 | G1/G2/G2A Passed / LIA-126-047 isolated-live startup/abort Closure Accepted / DEC-126-085 Owner Acceptance / G3 Partial / fresh R8 Authorized Pending Canonical Entry / G4/G6 Pending |
+| 状态 | G1/G2/G2A Passed / LIA-126-047 isolated-live startup/abort Closure Accepted / DEC-126-085 Owner Acceptance / DESIGN-126-026 Complete / DEC-126-086 Owner Acceptance / G3 Partial / LIA-126-048 execution pending separate consumption / G4/G6 Pending |
 | 需求负责人 | 段成威 |
 | Product/Design 决策人 | 段成威 |
 | 技术负责人 | 段成威 |

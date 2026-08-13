@@ -725,3 +725,15 @@
 | Canonical-entry condition | 必须使用实际执行S10B-001–012 business cases的单一canonical full-case入口；当前startup/abort target固定`business_cases=disabled`与`s10b_r8_executed=false`，不得冒充或人工拼装R8。若无full-case入口，立即报告实现阻塞且不生成/消费run |
 | Prohibited | MiniMax/外部provider、真实数据、Keychain、S11、default activation、push/merge/tag/publish/deploy、retained-volume读取/删除均不授权；失败不得retry/resume/reuse |
 | Contract impact | 本Governance acceptance/authorization=`none`；不改变中央Contracts、公共或私有业务wire、durable schema、Runtime pin、Compose pins与产品默认行为 |
+
+## 30. DEC-126-086 / DESIGN-126-026 Canonical Full-case R8 Implementation Closure Owner Acceptance
+
+| Item | Result |
+|---|---|
+| Decision | `DEC-126-086` accepts `DESIGN-126-026` as complete; Owner Acceptance is limited to the repository implementation and the two local clean checkpoints |
+| Desktop | `f5e4cfbbe4026ff992b2ede251b6689f67c5621f`, clean/local/not pushed |
+| Infra | `b5fcc612fa875159423368f7c2ef49cf325e8d8f`, clean/local/not pushed |
+| Evidence | Desktop R8 targeted `16/16`, TS full `183/183`, Rust feature `160 (3 ignored)`; Infra targeted/full `42/42` and `206/206`; Compose 5.3.0 config-only, lint/test, syntax/diff and independent read-only review pass |
+| Authority | canonical full-case target is `make feat-126-s10b-r8`; input is fresh UUIDv4 plus seven exact SHAs; startup/abort target remains separate and cannot be used as R8 |
+| Boundary | No live/R8 run was consumed, no evidence was generated, no Docker lifecycle or business/provider call occurred; `business_cases=disabled`, `s10b_r8_executed=false` |
+| Gate state | `DESIGN-126-026 Complete`; `DEC-126-086 Accepted`; G3 Partial; G4/G6 Pending; LIA-126-048 may proceed only after this Governance clean checkpoint and a separate one-time Owner execution authorization |

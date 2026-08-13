@@ -680,3 +680,11 @@ DEC-126-076已接受上述slice集合的Corrective Closure并关闭environment-b
 4. 以新Governance SHA重新确认七仓exact clean状态；检查canonical full-case R8入口的help、参数、case set和preflight。
 5. 只有入口确实执行完整S10B-001–012时，现场生成fresh UUIDv4并执行一次。若入口缺失、只支持startup/abort或preflight失败，停止并报告；不得修改实现、人工拼接、retry、resume或复用历史run。
 6. R8成功后另行登记结果和Owner Acceptance；在此之前G3 Partial、G4/G6 Pending，MiniMax/S11/default activation/远端动作继续禁止。
+
+## 43. DESIGN-126-026 / LIA-126-048 Canonical Full-case R8 Implementation Checkpoint
+
+1. 在不消费任何R8 run、不启动Docker lifecycle或真实组件的前提下，完成了 canonical `make feat-126-s10b-r8` entry、绝对Node authority、两阶段S10B-002–011 case runner、四代Host-owned fake generation、planned restart、single abort、business-boundary和content-free no-log/evidence链。
+2. Desktop checkpoint为 `f5e4cfbbe4026ff992b2ede251b6689f67c5621f`，Infra checkpoint为 `b5fcc612fa875159423368f7c2ef49cf325e8d8f`；两仓local/clean/not pushed。Contracts/API/Host/Runtime未修改，Governance仍待本次Owner Acceptance checkpoint。
+3. Desktop targeted R8 `16/16`、TypeScript full `183/183`、Rust feature `160 tests (157 pass, 3 ignored)`、fmt、clippy、production Vite build及`cargo build --locked --release --features feat126-s10-driver,tauri/custom-protocol` PASS；Infra R8/BO3 targeted `42/42`、full `206/206`、`make lint`、`make test`、Compose 5.3.0 semantic config、Node/Shell syntax及`git diff --check` PASS。
+4. S10B-011使用真实SQLCipher probe验证10,000 sessions、500,000 turns、1,000,000 messages、50-turn/100-message history pages、30次metadata/history P95、10,000 reducer observations及10,000 concurrent duplicate pairs；probe为feature-only synthetic路径，结束后删除临时目录。case evidence只记录固定assertion set digest，不写正文或敏感值。
+5. 本实现checkpoint不等同于LIA-126-048 live PASS，不生成run_id/evidence，不调用MiniMax，不产生Public Tasks/conversation/turn/provider调用；`business_cases=disabled`、`s10b_r8_executed=false`在当前未消费执行中保持。LIA-126-048仍必须以Governance新SHA、七仓exact/clean和现场fresh UUIDv4通过canonical入口一次性执行；入口或preflight失败即停止，不得模拟、retry、resume或复用run。

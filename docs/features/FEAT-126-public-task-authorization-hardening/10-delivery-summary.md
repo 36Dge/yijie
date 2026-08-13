@@ -452,3 +452,15 @@ The Governance checkpoint records the authority and ordering but intentionally c
 | R8 authorization | LIA-126-048授权一次frozen `normal-000` synthetic/fake fresh R8；checkpoint后新七仓SHA + fresh UUIDv4 + canonical full-case入口是强制前提；缺入口即停止，不得模拟或人工拼装 |
 
 本Governance checkpoint只接受既有success并登记下一次执行边界。checkpoint SHA在commit后报告；未执行新的Docker lifecycle、fresh R8、MiniMax、真实数据/Keychain、default activation或远端动作。
+
+## 30. DESIGN-126-026 Canonical Full-case R8 Implementation Owner Acceptance
+
+| Item | Accepted implementation state |
+|---|---|
+| Desktop | `f5e4cfbbe4026ff992b2ede251b6689f67c5621f`；canonical feature-only Vue/Pinia/Tauri R8 driver、SQLCipher scale/idempotency probe；local/clean/not pushed |
+| Infra | `b5fcc612fa875159423368f7c2ef49cf325e8d8f`；`make feat-126-s10b-r8`、R8 state machine、case/fake/business/no-log evidence and absolute Node authority；local/clean/not pushed |
+| Gates | Desktop targeted `16/16`、TS full `183/183`、Rust feature `160 (3 ignored)`、fmt/clippy/build PASS；Infra targeted/full `42/42` and `206/206`、`make lint/test`、Compose 5.3.0 config-only、syntax/diff PASS |
+| Scope | No Contracts/API/Host/Runtime source changes; no Docker lifecycle, isolated-live, fresh R8, business case, MiniMax, Keychain, real data, default activation or remote operation |
+| Boundary | No run_id/evidence was generated; no Public Tasks/conversation/turn/provider calls; `business_cases=disabled`; `s10b_r8_executed=false` |
+| Acceptance | `DEC-126-086 Accepted`; `DESIGN-126-026 Complete`; Governance checkpoint is the only remaining local record action before LIA-126-048 |
+| Next | After the Governance clean checkpoint, a separately authorized, one-time LIA-126-048 execution may consume the new seven exact SHAs and a fresh UUIDv4 |
