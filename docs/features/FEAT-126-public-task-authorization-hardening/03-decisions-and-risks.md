@@ -708,3 +708,20 @@
 | Gate state | DESIGN-126-025 Complete；LIA-126-046 Corrective Closure Accepted；G3 Partial；G4/G6 Pending；`s10b_r8_executed=false` |
 | Next | Governance clean checkpoint后，LIA-126-047只能绑定最终七仓exact clean SHA与现场生成的fresh UUIDv4，执行一次canonical startup/abort |
 | Prohibited | fresh R8、business case、S11、MiniMax、real data/Keychain、default activation及任何远端动作仍未授权 |
+
+## 47. DEC-126-085 / LIA-126-047 Closure Owner Acceptance and LIA-126-048 Fresh R8 Authorization
+
+| 项目 | Owner决定与证据 |
+|---|---|
+| Owner decision | 接受LIA-126-047 isolated-live startup/abort成功Closure；仅在Governance形成新的local clean checkpoint后，授权LIA-126-048执行一次fresh R8 |
+| Successful run | `7e18d0aa-317e-4fa5-a7a5-a93d7880eb8e`；status=`passed`、closure_kind=`success`、failure file absent |
+| Fixed references | Governance `322fb73774d0392028ea0b32166c8472288c9215`；Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`；API `451940b282d8dd3e232ed414bd44b0677897f4c4`；Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`；Desktop `475086f1e68bcd1e0820a07b727d741e22a1bf62`；Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`；Infra `58dc41f16e1d3411d7170cc2f5b10843a1ad13c5` |
+| Live result | API/fake/Desktop/Host/Runtime startup、ownership、readiness与single abort PASS；primary/business/cleanup/evidence/no-log/parent failure均null；no retry/resume |
+| No-log/business | runtime-log-scan v4=`4 sources/69 rows/0 hits`；overall=`31 local files + 4 external sources/95 rows/0 hits`；API before/after digest相同；fake accepted/rejected=`0/0`；Public Tasks/conversation/turn/provider=`0`；`s10b_r8_executed=false` |
+| Evidence | preclaim `80a9879713a8ca2f32f2ea5a56798ba8aed760424be7d8e4eb18578fa809897d`；attempt `b8f41b33b6acaee3938b5416fb9f60f1df52b8c84d0538caa2cf990dad601ae5`；closure `a3860d1c2a30aa7b46992b2812c2eba520a4085476cd1d71c900c6873a125629`；runtime scan `14d0b5c713a1ad05e8d79a93d6c04f18fb365937108f9e9fa57a2aca0f637e00`；business boundary `5372bf1d0686510b6ecc281b347a25cb1bcdeac3412779ef29ffe42e122385cf`；均0600、UID 501、nlink=1 |
+| Cleanup | containers/networks/processes/listeners/temporary volumes=`0`；四个canonical named volumes retained、not mounted/read/deleted；no prune或volume delete |
+| Gate state | LIA-126-047 Closure Accepted；G3仍Partial；G4/G6 Pending。startup/abort不等于完整S10B-001–012，也不等于fresh R8 |
+| Fresh R8 scope | LIA-126-048仅允许frozen S10B-001–012、fixture `normal-000`、loopback fake provider、synthetic identity/data与run-scoped隔离资源；基于checkpoint后的七仓exact clean SHA现场生成一个fresh canonical UUIDv4，并只执行一次 |
+| Canonical-entry condition | 必须使用实际执行S10B-001–012 business cases的单一canonical full-case入口；当前startup/abort target固定`business_cases=disabled`与`s10b_r8_executed=false`，不得冒充或人工拼装R8。若无full-case入口，立即报告实现阻塞且不生成/消费run |
+| Prohibited | MiniMax/外部provider、真实数据、Keychain、S11、default activation、push/merge/tag/publish/deploy、retained-volume读取/删除均不授权；失败不得retry/resume/reuse |
+| Contract impact | 本Governance acceptance/authorization=`none`；不改变中央Contracts、公共或私有业务wire、durable schema、Runtime pin、Compose pins与产品默认行为 |

@@ -432,3 +432,11 @@ DESIGN-126-008对未来corrective的回滚语义冻结如下：
 - LIA-126-045 run、ledger、evidence和retained volumes不可修改、删除、retry、resume、reconcile或作为新run输入。
 - Governance checkpoint后，LIA-126-047只能绑定最终七仓exact clean SHA和现场生成的一个fresh UUIDv4，并执行一次startup/abort；失败即closure且不得重试。
 - fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用及push/merge/tag/publish/deploy仍禁止。
+
+## 30. DEC-126-085 Startup/Abort Acceptance and Fresh R8 Boundary
+
+- 本接受只登记LIA-126-047的local isolated-live startup/abort success evidence，不产生release artifact、deployment、default activation、tag、publish或production claim。
+- LIA-126-047 run、ledger、evidence与四个retained volumes保持不可修改、删除、retry、resume、reconcile或作为新run输入；回滚Governance记录也不能撤销或改写已发生事实。
+- LIA-126-048只在本Governance checkpoint之后生效，并仅允许frozen synthetic `normal-000`/loopback fake-provider S10B-001–012执行一次。它不授权MiniMax、真实数据、Keychain、S11、远端写入或默认启用。
+- 执行前必须证明canonical full-case入口存在、七仓SHA exact/clean、run UUID全新且资源authority可用。startup/abort-only target、人工shell拼装或降低assertion均不构成R8。
+- 入口缺失时不生成run ID、不启动Docker或组件、不修改实现；报告阻塞后等待单独corrective授权。执行失败时保留canonical closure并停止，禁止retry/resume/reuse。

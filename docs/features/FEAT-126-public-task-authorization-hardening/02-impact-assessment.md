@@ -356,3 +356,11 @@ LIA-126-045 run `f07e9f3f-bc8f-4a3d-9da9-b79ba70054b2`已完成真实API、fake�
 离线只读审计确认旧scanner把既有closed evidence/log authority中的字段按字段名宽泛判为敏感或不可分类，包括精确startup message、本地JWKS authority、固定retained-volume keys、authorization revision、secret descriptor SHA-256及synthetic secret roles。没有发现实际token、secret、路径或业务内容泄漏。corrective只在字段名与精确值/结构同时匹配时放行；unknown message、非权威JWKS、错误digest/revision/role/volume顺序及unstructured内容继续fail closed。
 
 最高影响为`semantic`，仅限Infra private local no-log classification。runtime-log-scan v4 evidence shape、digest算法、Docker/Caddy authority、central Contracts、Public Tasks、API/Host/Desktop/Runtime wire、durable schema、Compose pins与default flags均不变，G2A=`N/A`。DEC-126-084接受Infra `58dc41f16e1d3411d7170cc2f5b10843a1ad13c5`；G3保持Partial，G4/G6 Pending。
+
+## 24. DEC-126-085 / LIA-126-047 Startup/Abort Closure and Fresh R8 Impact
+
+LIA-126-047 run `7e18d0aa-317e-4fa5-a7a5-a93d7880eb8e`绑定Governance `322fb73774d0392028ea0b32166c8472288c9215`、Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`、API `451940b282d8dd3e232ed414bd44b0677897f4c4`、Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`、Desktop `475086f1e68bcd1e0820a07b727d741e22a1bf62`、Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`和Infra `58dc41f16e1d3411d7170cc2f5b10843a1ad13c5`，形成canonical success closure。API、fake、Desktop、Host和Runtime的startup、ownership、readiness与single abort均通过；容器、网络、进程、listeners和temporary volumes归零，四个named volumes按协议保留且未读取、挂载或删除。
+
+runtime-log-scan v4为4个exact sources、69 rows、0 hits；整体no-log覆盖31个local files与4个external sources、95 rows、0 hits。API before/after摘要相同，fake accepted/rejected calls为`0/0`，Public Tasks、conversation、turn和provider调用均为0，`s10b_r8_executed=false`。DEC-126-085的Governance处置为`contract-impact=none`，不改变Contracts、Public Tasks、Desktop/Host/Runtime wire、durable schema、Compose pins、default flags或生产状态。
+
+Owner同时授权LIA-126-048一次fresh R8，但该授权只覆盖frozen S10B-001–012、synthetic fixture `normal-000`、loopback fake provider和本地隔离资源。它不授权MiniMax、外部provider、真实数据、Keychain、S11、默认启用或远端操作。执行必须在本Governance checkpoint后绑定新的七仓exact clean SHA，并通过一个实际执行全部case的canonical full-case入口；startup/abort-only入口不能作为替代。若入口不存在、preflight失败或出现任何不确定状态，授权保持未消费或形成单次失败closure，不得人工拼接、重试、resume或复用run ID。

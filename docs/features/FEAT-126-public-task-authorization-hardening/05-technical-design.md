@@ -1823,3 +1823,15 @@ DEC-126-083接受Infra `d4749cb31242799d7cb8f566d44bea3c1f085d8a`。targeted/ful
 ### 58.3 Replay, tests and residual live gate
 
 只读回放覆盖当前仍保留的33个run sources、4个external sources及97 rows，结果0 hits。native-auth临时secret已由成功abort按协议删除，故事后不能重新构造当时完整literal pattern set；live路径仍要求在abort前capture全部run-scoped secret authority，相关测试保持通过。DEC-126-084接受Infra `58dc41f16e1d3411d7170cc2f5b10843a1ad13c5`，无open P0/P1。LIA-126-047仍须现场证明完整capture下的0-hit、single abort与资源归零。
+
+## 59. DEC-126-085 Startup/Abort Success and Fresh R8 Entry Invariant
+
+LIA-126-047已经现场证明真实Tauri/Desktop、API、fake、Host与Runtime可以在单一Infra authority下完成startup、ownership/readiness、content-free observation、single abort与资源归零。success closure没有failure evidence；runtime-log-scan v4及整体no-log均为0 hits，业务状态在run前后不变，所有业务与provider调用为0。该成功只关闭startup/abort验证面，不执行任何S10B business case。
+
+LIA-126-048的技术入口必须满足以下不变量：
+
+1. 输入只有fresh canonical UUIDv4与checkpoint后的七仓full SHA；禁止case、mode、path、binary、profile、retry或resume override。
+2. 同一parent authority顺序执行S10B-001 combined preflight及frozen S10B-002–012；fixture固定Host-owned `normal-000`，provider固定loopback fake。
+3. Desktop拥有Host，Host拥有Runtime；business case/result、planned restart、failure、abort、no-log与cleanup均写入同一run的closed evidence链。
+4. success必须明确记录`s10b_r8_executed=true`及完整case set；startup/abort runner固定`business_cases=disabled`和`s10b_r8_executed=false`，因此在语义上不能复用为R8。
+5. canonical full-case入口缺失时必须在创建run evidence或启动Docker/进程前停止，并把它报告为实现阻塞；本Governance授权不允许临时实现、人工拼装或修改preflight。

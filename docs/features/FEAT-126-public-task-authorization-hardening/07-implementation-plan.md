@@ -671,3 +671,12 @@ DEC-126-076已接受上述slice集合的Corrective Closure并关闭environment-b
 4. DEC-126-084接受Corrective Closure并关闭`S10B-BLK-015`；Governance只更新现有FEAT-126 package和`feature.yaml`，门禁通过后形成一个local clean checkpoint。
 5. 取得最终七仓exact clean SHA后，LIA-126-047现场生成一个未使用UUIDv4并只执行一次canonical startup/abort。任一失败形成canonical closure；该run不得retry/resume/reuse。
 6. fresh R8、业务case、S11、MiniMax、真实数据/Keychain、默认启用及远端操作仍禁止。
+
+## 42. DEC-126-085 Acceptance and LIA-126-048 Execution Order
+
+1. 只读复核LIA-126-047 ledger、success closure、runtime-log-scan v4、business boundary、cleanup和七仓binding；不读取日志正文或retained-volume内容。
+2. 仅更新FEAT-126 Governance package和`feature.yaml`，登记DEC-126-085 Owner Acceptance及LIA-126-048一次性fresh R8授权。
+3. 通过Governance default/strict/G2A/YAML/lint/test/Shell/diff gates，并仅在Governance创建一个local clean checkpoint。
+4. 以新Governance SHA重新确认七仓exact clean状态；检查canonical full-case R8入口的help、参数、case set和preflight。
+5. 只有入口确实执行完整S10B-001–012时，现场生成fresh UUIDv4并执行一次。若入口缺失、只支持startup/abort或preflight失败，停止并报告；不得修改实现、人工拼接、retry、resume或复用历史run。
+6. R8成功后另行登记结果和Owner Acceptance；在此之前G3 Partial、G4/G6 Pending，MiniMax/S11/default activation/远端动作继续禁止。

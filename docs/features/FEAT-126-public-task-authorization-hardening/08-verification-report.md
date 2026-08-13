@@ -1240,3 +1240,21 @@ Governance checkpoint形成后，LIA-126-045只能以新七仓exact clean SHA和
 | Owner disposition | `DEC-126-084 Accepted / DESIGN-126-025 Complete / LIA-126-046 Corrective Closure Accepted / S10B-BLK-015 Closed`；G3 Partial、G4/G6 Pending；`s10b_r8_executed=false` |
 
 Governance checkpoint形成后，LIA-126-047只能以新七仓exact clean SHA和现场生成的fresh UUIDv4执行一次startup/abort；本节不构成live PASS。
+
+## 52. DEC-126-085 / LIA-126-047 Isolated-live Startup/Abort Closure Owner Acceptance
+
+| Evidence | Accepted result |
+|---|---|
+| Run | `7e18d0aa-317e-4fa5-a7a5-a93d7880eb8e`；canonical UUIDv4；result=`closed_pass`；failure file absent |
+| Fixed SHAs | Governance `322fb73774d0392028ea0b32166c8472288c9215`；Contracts `29317b6426578749dc698fc2ad32b986ee5c8e9f`；API `451940b282d8dd3e232ed414bd44b0677897f4c4`；Host `c5939b4d8b5ebc318a7beeb49b20f343802e59b9`；Desktop `475086f1e68bcd1e0820a07b727d741e22a1bf62`；Runtime `3aa317cebbbc9c743f6b1a18522be11a7ebb5d6f`；Infra `58dc41f16e1d3411d7170cc2f5b10843a1ad13c5` |
+| Startup/ownership | API/fake/Desktop/Host/Runtime真实进程startup、Infra→Desktop→Host→Runtime ownership、readiness与一次性abort全部PASS；no retry/resume |
+| Business boundary | API before/after SHA-256均为`34ac8065bd8cc96b1a4e578d5e6e9836fb50ee0ac8785147f16d459900dc869e`；fake accepted/rejected=`0/0`；Public Tasks/conversation/turn/provider=`0`；`s10b_r8_executed=false` |
+| Runtime no-log | schema v4；source_count=4、row_count=69、hit_count=0；七个hit集合摘要均为空集合SHA-256 `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855` |
+| Overall no-log | 31 local files + 4 external sources、95 rows、0 hits；无日志正文、路径、token、secret或业务内容进入evidence |
+| Cleanup | containers/networks/processes/listeners/temporary volumes=`0`；四个named volumes retained且未mounted/read/deleted；未prune、未volume delete |
+| Digests | preclaim `80a9879713a8ca2f32f2ea5a56798ba8aed760424be7d8e4eb18578fa809897d`；attempt `b8f41b33b6acaee3938b5416fb9f60f1df52b8c84d0538caa2cf990dad601ae5`；closure `a3860d1c2a30aa7b46992b2812c2eba520a4085476cd1d71c900c6873a125629`；runtime scan `14d0b5c713a1ad05e8d79a93d6c04f18fb365937108f9e9fa57a2aca0f637e00`；business boundary `5372bf1d0686510b6ecc281b347a25cb1bcdeac3412779ef29ffe42e122385cf` |
+| File authority | 上述五项均regular file、0600、UID 501、nlink=1；run_id和七仓SHA引用链一致 |
+| Owner disposition | `DEC-126-085 Accepted / LIA-126-047 isolated-live startup/abort Closure Accepted`；G3 Partial、G4/G6 Pending；不冒充完整S10B-001–012 |
+| Fresh R8 | LIA-126-048授权一次frozen synthetic/fake R8；必须在Governance checkpoint后绑定新七仓SHA、现场生成fresh UUIDv4，并经真实full-case canonical entry执行；入口缺失时不执行、不模拟、不消费run |
+
+本Owner Acceptance阶段没有执行新的Docker lifecycle、fresh R8、业务case、MiniMax、真实数据/Keychain、default activation或远端动作。历史evidence和retained volumes未改变。

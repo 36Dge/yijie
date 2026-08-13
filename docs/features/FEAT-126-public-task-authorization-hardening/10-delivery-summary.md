@@ -437,3 +437,18 @@ The Governance checkpoint records the authority and ordering but intentionally c
 | Integrity | ledger/evidence只读digest与0600/nlink=1复核；历史evidence/retained volumes不变；Public Tasks/conversation/turn/provider calls=0；`s10b_r8_executed=false` |
 | State | `DEC-126-084 Accepted / DESIGN-126-025 Complete / LIA-126-046 Corrective Closure Accepted / S10B-BLK-015 Closed`；G3 Partial；G4/G6 Pending |
 | Next | Governance clean checkpoint后，LIA-126-047绑定新七仓SHA并现场生成一个fresh UUIDv4，只执行一次isolated-live startup/abort |
+
+## 29. DEC-126-085 LIA-126-047 Startup/Abort Success Closure
+
+| Item | Accepted state |
+|---|---|
+| Run | LIA-126-047 `7e18d0aa-317e-4fa5-a7a5-a93d7880eb8e`；closed_pass；no failure evidence |
+| Startup | API/fake/Desktop/Host/Runtime startup、ownership/readiness、single abort PASS；no retry/resume |
+| No-log | runtime-log-scan v4 `4 sources/69 rows/0 hits`；overall `31 local files + 4 external sources/95 rows/0 hits` |
+| Business | API before/after digest相同；fake accepted/rejected=`0/0`；Public Tasks/conversation/turn/provider=`0`；`s10b_r8_executed=false` |
+| Cleanup | containers/networks/processes/listeners/temp volumes=0；四个named volumes retained且未读取/挂载/删除；no prune |
+| Evidence | preclaim `80a98797...9897d`；attempt `b8f41b33...01ae5`；closure `a3860d1c...25629`；runtime scan `14d0b5c7...37e00`；business `5372bf1d...385cf`；均0600/UID501/nlink1 |
+| State | `DEC-126-085 Accepted / LIA-126-047 Closure Accepted`；G3 Partial；G4/G6 Pending；startup/abort不是完整S10B-001–012 |
+| R8 authorization | LIA-126-048授权一次frozen `normal-000` synthetic/fake fresh R8；checkpoint后新七仓SHA + fresh UUIDv4 + canonical full-case入口是强制前提；缺入口即停止，不得模拟或人工拼装 |
+
+本Governance checkpoint只接受既有success并登记下一次执行边界。checkpoint SHA在commit后报告；未执行新的Docker lifecycle、fresh R8、MiniMax、真实数据/Keychain、default activation或远端动作。

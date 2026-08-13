@@ -366,3 +366,11 @@ DEC-126-081接受Desktop/Infra配对checkpoints。回滚必须配对revert两个
 - 字段名本身不构成豁免。unknown message/JWKS、错误或大写digest、revision漂移、role/volume缺失/重排以及unstructured敏感模式继续fail closed。
 - 中央Contracts、Public Tasks、API/Host/Desktop/Runtime wire、durable schema、Compose pins和default flags无变化，G2A=`N/A`。
 - DEC-126-084接受Infra `58dc41f16e1d3411d7170cc2f5b10843a1ad13c5`；历史run不迁移、不重写、不reconcile。LIA-126-047必须绑定新的七仓exact clean SHA。
+
+## 25. DEC-126-085 Closure and Fresh R8 Contract Boundary
+
+- LIA-126-047 success evidence是既有private local startup/control/evidence contract的运行结果，不引入字段、枚举、wire、schema、migration、consumer pin或发布语义变化；本Owner Acceptance的`contract-impact=none`。
+- preclaim、attempt、success closure、runtime-log-scan v4与business-boundary evidence继续使用既有exact-key reader/writer contract；本次只登记其SHA-256、权限、run和repository binding，不迁移、不重写历史evidence。
+- LIA-126-048只消费当前已冻结的S10B-001–012 synthetic/fake contract：fixture固定`normal-000`，不允许外部provider、真实数据、Keychain或operator-supplied case/mode override。
+- R8 runner必须在同一run内消费七仓exact clean SHA、single preflight、closed case order、content-free evidence、no-retry和cleanup authority。startup/abort-only runner不满足该contract，不得通过手工命令或第二authority补齐。
+- 如果仓库不存在上述canonical full-case runner，属于实现入口缺失，LIA-126-048保持未消费；不得把治理授权解释为允许现场修改Infra、Desktop或其他仓库。

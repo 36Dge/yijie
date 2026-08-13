@@ -1009,3 +1009,18 @@ LIA-126-041仍是独立live gate：使用全新UUIDv4和提交后七仓SHA，只
 | Owner disposition | DEC-126-084 Accepted；DESIGN-126-025 Complete；LIA-126-046 Corrective Closure Accepted；`S10B-BLK-015 Closed`；G3 Partial、G4/G6 Pending |
 
 下一次live编号为LIA-126-047。它必须绑定Governance提交后的七仓exact clean SHA，现场生成一个未使用UUIDv4并只执行一次canonical startup/abort。
+
+## 45. DEC-126-085 Acceptance and LIA-126-048 Fresh R8 Gates
+
+| Gate | Required result |
+|---|---|
+| LIA-126-047 ledger | preclaim/attempt/success closure exact run/repository binding；failure file absent；0600、UID 501、nlink=1；五项SHA-256与verification report一致 |
+| Startup/abort | API/fake/Desktop/Host/Runtime startup、ownership、readiness、single abort PASS；无retry/resume；containers/networks/processes/listeners/temp volumes为0 |
+| No-log/business | runtime-log-scan v4 `4/69/0`；overall `31 local + 4 external/95/0`；API before/after相同；fake与Public Tasks/conversation/turn/provider calls均0；`s10b_r8_executed=false` |
+| Governance | feature package default、strict、G2A、unique-key YAML、`pnpm lint`、`pnpm test`、checker/repository Shell syntax和`git diff --check`全部PASS后才能commit |
+| R8 entry | 必须存在且帮助/代码明确执行完整frozen S10B-001–012、`normal-000` fake-provider cases，并在success记录`s10b_r8_executed=true`；startup/abort-only target不满足 |
+| R8 preflight | checkpoint后七仓exact clean；fresh unused UUIDv4；Docker/Compose/ports/images/ownership/evidence/no-log capability全部通过；任何失败立即停止 |
+| R8 execution | 只执行一次；case order和assertions不得减少；failure立即canonical abort/closure；不得retry/resume/reuse或人工continuation |
+| R8 exclusions | no MiniMax/external provider、real data、Keychain、S11、default activation、retained-volume content access、prune/delete或remote operation |
+
+DEC-126-085接受LIA-126-047，但G3保持Partial且G4/G6 Pending，直到完整fresh R8真实PASS并另行Owner验收。若canonical R8 entry缺失，本轮只完成Governance checkpoint并报告implementation blocker，不生成run ID或模拟结果。
