@@ -705,3 +705,12 @@ DEC-126-076已接受上述slice集合的Corrective Closure并关闭environment-b
 3. checkpoint后才可恢复既有R8 corrective campaign的offline实现阶段。先同步Contracts权威描述及Host generated snapshot（若实际diff需要），再闭合Host marker/rehydration/default/rollback、Desktop与Infra已有draft和convergence fixtures；不得手改generated contract。
 4. 每个实际修改仓执行§47相称门禁和独立只读审查；无open P0/P1后分别形成local clean checkpoint。Governance设计checkpoint本身不得冒充这些implementation checkpoints或Owner Acceptance。
 5. 当前override明确禁止Docker lifecycle、isolated-live与canonical R8。即使七仓提前clean，也必须等待后续明确live/R8授权；失败run、历史evidence和retained volumes均不读取、不修改、不复用。
+
+## 46. DESIGN-126-029 / LIA-126-051 Offline Convergence Order
+
+1. Governance先登记DEC-126-089 review errata并形成clean checkpoint；不消费run ID。
+2. Contracts source-first更新两处`cwd`描述，generate/full/breaking通过后形成local clean commit；Host只能消费该exact commit生成snapshot/lock。
+3. Host完成fresh lifecycle nonce、durable `feat126_run_id`、new-file-only initialization、strict home authority、start/resume projection与rollback/preflight tests。
+4. Desktop在保留现有dirty draft基础上完成single monotonic deadline和SQLite retry taxonomy/deadline；Infra完成multi-lifecycle cleanup、real authority convergence、default-off/preflight evidence及Host artifact/run-binding消费。
+5. Contracts/Host/Desktop/Infra分别执行targeted/full/conformance/lint/test/build/config-only/syntax/diff门禁；独立review发现P0/P1时直接修复并复跑，不进入live。
+6. 每个修改仓分别local commit，确认七仓clean并报告exact SHAs。到此停止；Docker lifecycle/live/R8/MiniMax/远端操作仍需新授权。

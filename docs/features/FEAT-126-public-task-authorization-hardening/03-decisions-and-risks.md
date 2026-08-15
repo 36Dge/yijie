@@ -771,3 +771,19 @@
 | Prohibited | 本轮无Docker/live/R8、MiniMax/provider、业务case、真实数据/Keychain、默认启用、push/merge/tag/publish/deploy |
 
 该决定关闭的只是campaign第6项Governance设计授权边界。恢复corrective后仍须完成权威source同步、实现门禁、独立复审和各修改仓local clean checkpoint；在新的Owner Acceptance与live授权前，不得把设计批准描述为R8 readiness或实现Closure。
+
+## 33. DEC-126-089 / DESIGN-126-029 / LIA-126-051 Opaque CWD Review Errata and Offline Corrective
+
+| 项目 | Owner决定 |
+|---|---|
+| Review | `a7b6eff...`后的独立审查无P0、4个P1；该checkpoint不得被描述为无open P0/P1的实现authority |
+| Restart nonce | same run ID/run root/project/store；每个Desktop lifecycle和Host spawn使用fresh、canonical、重新验证的instance nonce，旧nonce仅作为已闭合process evidence保留 |
+| Durable binding | metadata exact增加`feat126_run_id`，值为canonical UUIDv4；必须等于profile run ID和canonical run-root basename。encoding marker、run ID和row sentinel任一缺失/漂移均fail closed |
+| Initialization | 只允许current open exclusive-created的新DB初始化marker/run ID；所有pre-existing unmarked DB拒绝，不以sessions key count、freelist或logical empty推断fresh |
+| Directory authority | run root、project、host root、current nonce dir、host-home、codex-home均在任何create/chmod/symlink-following runtime setup前以`Lstat + UID + exact 0700 + non-symlink + EvalSymlinks equality`验证 |
+| Runtime semantics | `thread/start`接收rehydrated canonical CWD；`thread/resume`保持existing ID-only contract并由Runtime保留原thread CWD，不新增resume cwd字段 |
+| Contract source | Contracts OpenAPI描述同步是required，不再是conditional；source-first生成Host snapshot/lock，shape和有效wire保持不变 |
+| LIA | `LIA-126-051 Authorized / Offline Only`：允许Contracts/Host/Desktop/Infra当前dirty drafts的最小corrective、targeted/full/conformance、independent review与local clean commits |
+| Stop | no Docker lifecycle/live/R8, MiniMax/provider, real business/data/Keychain, default activation or remote action；七仓clean后停止等待新R8授权 |
+
+`DEC-126-089 Accepted`取代DEC-126-088中与same nonce、empty-unmarked adoption和无durable run binding冲突的部分；DEC-126-088其余profile-only/default-compatible/no-in-place-downgrade原则继续有效。

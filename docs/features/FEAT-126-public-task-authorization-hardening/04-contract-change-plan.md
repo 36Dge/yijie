@@ -385,3 +385,12 @@ DEC-126-081接受Desktop/Infra配对checkpoints。回滚必须配对revert两个
 - 兼容方向是closed profile split：default reader/writer继续absolute path；exact FEAT-126 reader/writer只接受`opaque-project-v1`。数据库不得跨profile滚动共存或双向收养，因此没有silent migration窗口。
 - 新Host的default reader必须拒绝marker/sentinel；不假设历史Host binary能理解或拒绝新marker。对旧binary的rollback保护由Infra exact Host commit/artifact preflight在任何store open前阻断，marked run也必须永久不可复用。
 - 回滚不做data migration：停止/closure当前profile run，禁止复用其run ID或DB，恢复成对的Host/Infra authority后以fresh run root重新开始。历史evidence与保留资源不迁移、不重写。
+
+## 27. DESIGN-126-029 Contract and Durable Compatibility Errata
+
+- Contracts source wording sync is required。`StartSessionRequest.cwd`必须说明Host resolves symlinks and uses canonical path as session CWD，private persistence representation不属于wire；`AgentSession.cwd`必须说明返回rehydrated canonical absolute path。
+- source change仍不改变OpenAPI shape、validation或valid consumer interaction，但必须形成新的immutable local Contracts commit，执行generate/lint/test/build/breaking与Desktop/Host consumer review，再由Host source-sync生成snapshot/lock。
+- private durable exact keys为`schema_version=3`、`feat126_cwd_encoding=opaque-project-v1`、`feat126_run_id=<canonical UUIDv4>`及record `cwd=feat126-s10-project`。run ID不是secret/path，且必须与profile和canonical run root一致。
+- planned restart不复用instance nonce。兼容identity是same run ID/root/store + fresh lifecycle nonce；process ownership/evidence按nonce分代闭合。
+- 只有newly-created DB可初始化private marker。existing unmarked empty/default DB不能被feature writer收养，避免旧bbolt pages残留absolute path或跨mode解释。
+- rollback依赖Infra exact Host SHA/artifact authority阻断old binary，并以durable run ID阻断跨run copied DB。当前default reader仍主动拒绝marker/sentinel；不假设历史binary理解新metadata。

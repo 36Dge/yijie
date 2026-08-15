@@ -379,3 +379,14 @@ Owner同时授权LIA-126-048一次fresh R8，但该授权只覆盖frozen S10B-00
 | API / Runtime | API `451940b282d8dd3e232ed414bd44b0677897f4c4`、Runtime `0ce5902ed400866be0196886bb78f693a004d68d` clean | 无本设计源码影响；发现需要修改时重新评估范围 |
 
 本Governance checkpoint不接受上述implementation draft，也不将任何门禁标为实现PASS。它不授权Docker lifecycle、isolated-live、canonical R8、MiniMax、业务调用、真实数据/Keychain、default activation或远端动作。
+
+## 26. DESIGN-126-029 Post-checkpoint Review Errata Impact
+
+独立只读review确认DESIGN-126-028方向成立，但原checkpoint存在4个implementation-blocking P1。DESIGN-126-029以`semantic` private durable/deployment impact修正权威，不改变Public Tasks、Host wire shape、Runtime protocol或default产品行为：
+
+- planned restart复用same run ID、canonical run root、project和bbolt store，但每次Desktop lifecycle/Host spawn必须生成fresh canonical instance nonce并验证独立`host/<nonce>` authority；
+- metadata除`feat126_cwd_encoding=opaque-project-v1`外必须持久化`feat126_run_id=<canonical UUIDv4>`；open时与run-root basename和profile run ID三方一致，阻断跨run复制/rebind；
+- 只有本次调用以exclusive create新建的`sessions.db`可以初始化marker/run ID。任何pre-existing unmarked DB即使empty、曾删除至empty或只剩freelist page也拒绝；
+- run root、project、host root/current nonce dir、host-home、codex-home均须在exact profile启动前strict验证owner、non-symlink、canonical equality和精确`0700`，不得靠后续chmod或symlink-following API修复。
+
+本纠正将LIA-126-051 offline实现范围明确为Contracts、Host、Desktop、Infra。Governance先形成clean checkpoint；随后各仓可以在现有dirty draft上继续最小修改、全量门禁、独立review与local commits。Docker lifecycle/live/R8仍不授权。

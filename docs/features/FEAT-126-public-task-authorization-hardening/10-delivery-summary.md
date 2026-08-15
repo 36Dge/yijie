@@ -489,3 +489,14 @@ The Governance checkpoint records the authority and ordering but intentionally c
 | Workspace | Governance从`aa94e057...`形成单一local checkpoint；Host/Desktop/Infra dirty drafts被允许保留但未接受、未暂存、未提交 |
 | Exclusions | no Docker lifecycle/live/R8, MiniMax/provider, business case, real data/Keychain, default activation or remote operation |
 | Next | Governance checkpoint后才恢复offline corrective；完成source sync、OCWD tests、full gates、independent review与各仓clean checkpoints前不得Owner-accept implementation或执行R8 |
+
+## 33. DEC-126-089 Opaque CWD Review Errata
+
+| Item | Corrected authority |
+|---|---|
+| Identity | same run ID/root/store across planned restart；fresh nonce per lifecycle/spawn；metadata adds canonical `feat126_run_id` |
+| Initialization | only newly exclusive-created DB；all existing unmarked/empty/default/delete-to-empty stores fail closed |
+| Directories | run/project/host/nonce/host-home/codex-home strict owner/non-symlink/canonical/0700 before repair |
+| Projection | thread/start canonical CWD；thread/resume ID-only；response canonical；marker/run ID/sentinel private |
+| Scope | LIA-126-051 offline Contracts/Host/Desktop/Infra corrective、tests、review、local commits only |
+| Stop | final seven clean SHAs后停止；no Docker lifecycle/live/R8/MiniMax/remote |

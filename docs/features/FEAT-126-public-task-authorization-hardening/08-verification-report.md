@@ -1294,3 +1294,16 @@ Corrective and Owner Acceptance did not execute Docker lifecycle, a canonical/li
 | Scope check | exactly 11 existing files under this FEAT-126 package changed；Host/Desktop/Infra drafts and Contracts/API/Runtime bytes unchanged |
 
 The resulting local Governance commit SHA is reported after commit. These green documentation gates do not claim implementation Closure or R8 readiness.
+
+## 55. DEC-126-089 Post-checkpoint Independent Review
+
+| Finding | Disposition |
+|---|---|
+| Same nonce requirement | P1 accepted；canonical runner使用fresh lifecycle/Host nonce，Governance已修正为same run authority + distinct nonce |
+| Missing durable run binding | P1 accepted；新增`feat126_run_id` exact metadata和copied-store negative matrix |
+| Existing empty DB adoption | P1 accepted；仅newly exclusive-created DB可初始化，任何existing unmarked file拒绝 |
+| Home directory authority | P1 accepted；所有exact-profile dirs在任何create/chmod/runtime setup前strict Lstat/Eval/UID/0700 |
+| Resume projection | P2 accepted；start使用canonical CWD，resume保持ID-only |
+| Contract sync | source-first update is required，not conditional |
+
+本review没有修改Host/Desktop/Infra dirty drafts，没有执行Docker/live/R8/provider。DEC-126-089只关闭Governance design ambiguity；implementation findings需由LIA-126-051门禁实际关闭后才能声称无open P0/P1。

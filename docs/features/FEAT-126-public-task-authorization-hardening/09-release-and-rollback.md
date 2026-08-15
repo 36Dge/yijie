@@ -450,3 +450,11 @@ DESIGN-126-008对未来corrective的回滚语义冻结如下：
 - contract wording rollback按Host consumer snapshot先、Contracts source后执行；实现rollback按Infra profile consumer先、Host writer/reader后执行。任何单侧rollback都保持R8 HOLD。
 - 恢复前一表示只能在fresh UUID、fresh run root和clean seven-SHA checkpoint上开始；历史run/evidence/retained volumes不迁移、不重写、不resume。
 - 本Governance操作不执行上述rollback演练、Docker/live/R8，也不接受当前dirty implementation。
+
+## 32. DEC-126-089 Corrected Rollback Identity
+
+- planned restart与rollback不得复用Host instance nonce；same-run restart生成fresh nonce，rollback后的new run生成fresh run ID/root/nonce。
+- marked DB以`feat126_run_id`绑定run。复制到其它run root/new run ID必须拒绝；same run ID不可因preclaim/non-reuse规则在另一authority重新消费。
+- pre-existing unmarked DB永不升级为feature store；rollback不得删除marker/run binding制造unmarked DB，也不得展开sentinel。
+- older Host binary由Infra exact artifact preflight在store open前阻断；current default reader继续拒绝marker/sentinel。
+- 任一rollback identity测试未通过都保持R8 HOLD；本offline campaign不执行实际Docker/live rollback。

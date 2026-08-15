@@ -1055,3 +1055,17 @@ No canonical/live R8 attempt, isolated-live, Docker lifecycle, business case, Mi
 | OCWD-008 | Convergence | non-authoritative temporary R8 fixture执行restart和failure injection | 复用canonical validator/case definitions，完整通过且不写canonical evidence、不启动Docker |
 
 恢复corrective后的最低仓库门禁：Contracts若改source则generate/lint/test/build/breaking和consumer semantic review；Host targeted、race、`make lint/test/runtime-test`及contract-check；Desktop/Infra按现有dirty draft范围执行targeted/full/build/config-only；checker syntax与各仓`git diff --check`；独立只读review必须无open P0/P1。上述门禁在本Governance-only checkpoint中只被冻结，不能预报为implementation PASS。
+
+## 48. DESIGN-126-029 Errata Gates
+
+| Test ID | Required proof |
+|---|---|
+| OCWD-009 | planned restart保持same run ID/root/store但lifecycle-1/2使用distinct fresh nonces；两代process evidence/ownership无混淆 |
+| OCWD-010 | metadata exact包含canonical `feat126_run_id`；wrong/missing/noncanonical run ID、profile/root mismatch及copied-to-new-run DB全部拒绝 |
+| OCWD-011 | only newly exclusive-created DB initializes marker；pre-existing zero-byte、empty bbolt、default-empty、delete-to-empty及old-page canary全部拒绝且不改bytes |
+| OCWD-012 | run/project/host/current nonce/host-home/codex-home逐项覆盖symlink、wrong UID、0755、noncanonical path与missing；全部在generic chmod/create/Runtime open前失败 |
+| OCWD-013 | `thread/start`收到rehydrated canonical project；`thread/resume`请求保持ID-only；response始终canonical，metadata/sentinel不出store |
+| OCWD-014 | Contracts source、generated artifacts、Host snapshot/lock/digest和producer/consumer conformance一致；description sync不改变shape |
+| OCWD-015 | Infra exact Host artifact preflight阻断old commit；preflight success evidence包含该gate identity/result；default-off evidence包含tracked file count/set digest |
+
+LIA-126-051还必须关闭此前open P1：Desktop monotonic case deadline与只重试SQLite busy/locked的bounded retry；Infra lifecycle-2 pre-ownership terminal、real authority convergence rehearsal及default-off tracked scan。最终独立review要求0 open P0/P1。

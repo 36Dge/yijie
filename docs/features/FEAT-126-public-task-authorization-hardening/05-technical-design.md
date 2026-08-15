@@ -1893,3 +1893,25 @@ Host contract的批准语义为：`cwd`输入是existing absolute local director
 ### 61.5 Acceptance boundary
 
 DEC-126-088仅接受上述设计。当前Host/Desktop/Infra dirty draft不是accepted implementation，当前Contracts/API/Runtime clean state不是新candidate。corrective恢复后必须通过§47测试矩阵、全量仓库门禁、独立只读审查与分仓clean checkpoints；本轮禁止Docker/live/R8。
+
+## 62. DESIGN-126-029 Review Errata
+
+### 62.1 Restart identity
+
+planned restart的stable identity只有run ID、canonical run root、project和run-scoped store。每个Desktop lifecycle/Host spawn必须生成fresh canonical UUIDv4 nonce，使用新的`<run_root>/host/<nonce>`目录并形成独立terminal process evidence；新Host以fresh nonce重新验证same run authority后打开same marked store。不得要求或允许nonce复用。
+
+### 62.2 Durable run binding and initialization
+
+metadata exact增加`feat126_run_id`。值必须为canonical UUIDv4，并在每次open时同时等于profile run ID与canonical run-root basename；不匹配时在读取session row前fail closed。复制marked DB到其它run root/new run ID因此被拒绝；同run ID也受canonical Infra root与preclaim不可复用约束。
+
+feature marker/run ID只允许在本次`OpenStore`确认DB此前不存在并以exclusive create建立的新文件上初始化。任何pre-existing unmarked file均拒绝，包括zero sessions、delete-to-empty、empty metadata或包含旧freelist pages的default DB。existing marked DB只有marker/run binding/rows全一致时可用于same-run restart。
+
+### 62.3 Directory authority before repair
+
+exact profile要求`<run_root>`、`project`、`host`、current `host/<nonce>`、`host-home`和`codex-home`全部pre-created。Host在任何generic directory helper、chmod、bolt open或Runtime setup之前逐项执行`Lstat`、current UID、directory、non-symlink、exact `0700`和`EvalSymlinks(path)==Clean(path)`；homes还必须精确为run root的直接children。失败不得现场修复。
+
+### 62.4 Runtime and contract projection
+
+rehydrated CWD用于Host session response及Runtime `thread/start`。既有`thread/resume`只发送thread ID，Runtime从既有thread state保留original CWD；不得为本corrective新增resume cwd字段。marker/run binding/sentinel均不得进入HTTP/SSE、Runtime wire、log或evidence。
+
+Contracts source描述同步是LIA-126-051的required first slice。DESIGN-126-029取代§61中same nonce、logical-empty initialization或缺少durable run binding的任何解释；其它default compatibility和rollback规则继续有效。
