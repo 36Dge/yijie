@@ -1859,3 +1859,37 @@ LIA-126-048的技术入口必须满足以下不变量：
 ### 60.4 Accepted closure
 
 Desktop `88382304b46002ce3e44f7f3bb30104dbd4b11ea`与Infra `06baf058d6bafd7bce6310574066b990098e80f4`均local、clean、not pushed。targeted/full/lint/test/build/clippy/config-only/syntax/diff门禁通过，复审无open P0/P1。DEC-126-087接受DESIGN-126-027 / LIA-126-049 Corrective Closure并关闭`S10B-BLK-016`；该接受不执行或授权新的R8/live。
+
+## 61. DESIGN-126-028 Exact-profile Host Opaque Project CWD
+
+### 61.1 Encoding authority
+
+仅exact FEAT-126 local profile可以启用本设计。bbolt主`schema_version`保持`3`；`metadata` bucket增加独立discriminator key `feat126_cwd_encoding`，唯一批准值为`opaque-project-v1`。该profile中每条session record的`cwd`必须精确为`feat126-s10-project`，不得保存absolute project path、相对path、hash、bookmark或operator输入。
+
+marker创建只允许发生在empty sessions bucket。以下状态全部fail closed且不得自动migration或修复：non-empty unmarked store、unknown marker/version、feature marker但任一row不是sentinel、default mode发现marker/sentinel、feature mode尝试收养既有default rows。
+
+### 61.2 Run-root derivation and restart rehydration
+
+1. exact profile先验证canonical UUID run ID与instance nonce；`YIJIE_FEAT126_S10_HOST_LOG_DIR`必须为`<run_root>/host/<nonce>`。
+2. `<run_root>`、`<run_root>/project`和log directory必须为current owner、non-symlink、精确`0700`且canonical；Host/Runtime homes必须精确为`<run_root>/host-home`和`<run_root>/codex-home`。
+3. Host只把验证后的`<run_root>/project`作为进程内authority传给Store。写record时只写sentinel；读record时先验证marker和row，再将sentinel替换为该内存authority。
+4. planned Host restart不得从bbolt、command argument或Desktop payload恢复absolute path。新Host必须用同一run ID/nonce/run-root authority重走上述验证后才可open store；任何漂移都在readiness前终止。
+5. rehydrated canonical path可用于既有Host response和Runtime `cwd`调用，但sentinel、marker和raw bbolt representation不得进入HTTP/SSE、Runtime request、process evidence、日志或no-log摘要。
+
+### 61.3 Default-mode compatibility
+
+不带exact feature authority的`OpenStore`行为保持原状：default/production数据库不写marker，record继续持久化canonical absolute CWD，公开request/response仍为absolute path。feature和default数据库不能共享或互相收养。optional profile discriminator不把default schema升级为新版本，也不能成为默认flag或通用migration。
+
+Host contract的批准语义为：`cwd`输入是existing absolute local directory；Host resolves symlinks and uses the canonical path as the session CWD；private persistence representation is not part of the wire contract。所有response中的`cwd`必须是rehydrated canonical absolute path。Contracts source与Host generated snapshot的文字同步属于恢复corrective后的门禁，不在本Governance-only checkpoint内执行。
+
+### 61.4 Rollback and failure semantics
+
+- 写入marker前可整体回退实现而无data动作；不得为证明回滚而创建canonical run/evidence。
+- 写入marker后禁止删除marker、把sentinel原地改写为path、用default/older Host打开，或把该DB复制到另一个run root。
+- current default reader必须主动拒绝marker/sentinel；older Host不具备该知识时，由Infra exact Host SHA/artifact preflight保证它在打开marked store前被拒绝，不能把安全性建立在旧binary自行识别新marker的假设上。
+- rollback先将R8置于HOLD；若存在active run，只执行canonical abort/closure并使run ID永久不可复用。run-scoped Host DB只能由批准的cleanup边界处理；若为审计保留，保持owner-only且不得由业务/默认mode读取。
+- repository rollback必须按consumer-first顺序撤回Infra profile consumption、Host generated contract snapshot/implementation以及适用的Contracts source clarification；任何历史evidence不重写。下一次验证使用fresh UUID和fresh run root。
+
+### 61.5 Acceptance boundary
+
+DEC-126-088仅接受上述设计。当前Host/Desktop/Infra dirty draft不是accepted implementation，当前Contracts/API/Runtime clean state不是新candidate。corrective恢复后必须通过§47测试矩阵、全量仓库门禁、独立只读审查与分仓clean checkpoints；本轮禁止Docker/live/R8。

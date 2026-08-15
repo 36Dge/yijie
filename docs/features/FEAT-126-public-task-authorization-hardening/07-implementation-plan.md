@@ -697,3 +697,11 @@ DEC-126-076已接受上述slice集合的Corrective Closure并关闭environment-b
 4. 形成Desktop `88382304b46002ce3e44f7f3bb30104dbd4b11ea`和Infra `06baf058d6bafd7bce6310574066b990098e80f4`两个local clean checkpoints；其他五仓不变。
 5. 仅更新现有FEAT-126 Governance package和`feature.yaml`，登记DEC-126-087 Owner Acceptance；Governance全部门禁通过后形成一个local clean checkpoint。
 6. 停止。下一次R8必须另行授权、绑定新的七仓exact clean SHA并现场生成fresh UUIDv4；本Corrective Closure不自动授权live。
+
+## 45. DESIGN-126-028 Governance-first Corrective Resume Order
+
+1. 以Governance `aa94e05709c7f59ae180ce8f9ecb1ef564e17d1c` clean为起点；允许Host `78e7e91...`、Desktop `b2ca6b5...`和Infra `af155ae...`保留已记录dirty draft，禁止reset、switch、discard、暂存或提交它们。
+2. 仅更新FEAT-126 Governance package，登记DEC-126-088/DESIGN-126-028/LIA-126-050；通过default、strict、G2A、unique-key YAML、`pnpm lint/test`、Shell syntax与diff门禁，并形成一个Governance local clean checkpoint。
+3. checkpoint后才可恢复既有R8 corrective campaign的offline实现阶段。先同步Contracts权威描述及Host generated snapshot（若实际diff需要），再闭合Host marker/rehydration/default/rollback、Desktop与Infra已有draft和convergence fixtures；不得手改generated contract。
+4. 每个实际修改仓执行§47相称门禁和独立只读审查；无open P0/P1后分别形成local clean checkpoint。Governance设计checkpoint本身不得冒充这些implementation checkpoints或Owner Acceptance。
+5. 当前override明确禁止Docker lifecycle、isolated-live与canonical R8。即使七仓提前clean，也必须等待后续明确live/R8授权；失败run、历史evidence和retained volumes均不读取、不修改、不复用。

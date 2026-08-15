@@ -476,3 +476,16 @@ The Governance checkpoint records the authority and ordering but intentionally c
 | Scope | Contracts/API/Host/Runtime unchanged; no Docker lifecycle, canonical/live R8 attempt, business case, MiniMax, real data/Keychain, default activation or remote action during corrective/acceptance |
 | Acceptance | `DESIGN-126-027 Complete / LIA-126-049 Corrective Closure Accepted / S10B-BLK-016 Closed / DEC-126-087 Accepted`; G3 Partial, G4/G6 Pending |
 | Next | Stop after the Governance clean checkpoint. Any next R8 requires a separate one-time Owner authorization, all seven new exact clean SHAs and a fresh unused UUIDv4 |
+
+## 32. DEC-126-088 Host Opaque Project CWD Design Authority
+
+| Item | Current state |
+|---|---|
+| Authority | DESIGN-126-028 Accepted；LIA-126-050仅消费Governance-only更新授权；DEC-126-088 Accepted |
+| Durable semantic | exact FEAT-126 profile使用`feat126_cwd_encoding=opaque-project-v1`和`feat126-s10-project`；canonical project只从revalidated run root在内存rehydrate |
+| Compatibility | default/production继续schema v3 + absolute canonical CWD；feature/default stores不能互相收养；public Host shape和canonical response不变 |
+| Contract | 后续corrective必须从Contracts OpenAPI source澄清private persistence representation不属于wire contract，再生成Host snapshot；本轮未改Contracts/Host |
+| Rollback | marked DB不允许in-place downgrade；HOLD R8、abort/closure并废弃run，fresh UUID/run root重启；历史evidence不修改 |
+| Workspace | Governance从`aa94e057...`形成单一local checkpoint；Host/Desktop/Infra dirty drafts被允许保留但未接受、未暂存、未提交 |
+| Exclusions | no Docker lifecycle/live/R8, MiniMax/provider, business case, real data/Keychain, default activation or remote operation |
+| Next | Governance checkpoint后才恢复offline corrective；完成source sync、OCWD tests、full gates、independent review与各仓clean checkpoints前不得Owner-accept implementation或执行R8 |

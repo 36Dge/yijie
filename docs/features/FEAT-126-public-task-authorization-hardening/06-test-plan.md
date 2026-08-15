@@ -1040,3 +1040,18 @@ DEC-126-085接受LIA-126-047，但G3保持Partial且G4/G6 Pending，直到完整
 | Owner disposition | `DEC-126-087 Accepted / DESIGN-126-027 Complete / LIA-126-049 Corrective Closure Accepted / S10B-BLK-016 Closed`; G3 Partial, G4/G6 Pending |
 
 No canonical/live R8 attempt, isolated-live, Docker lifecycle, business case, MiniMax, real data/Keychain, default activation or remote action was executed during this corrective/acceptance cycle. Any next R8 needs a separate one-time authorization and a new run ID. Feature-only synthetic Rust tests are repository gates and do not create or consume an orchestrator run.
+
+## 47. DESIGN-126-028 Opaque CWD Corrective Gates
+
+| Test ID | Level | Required proof | Pass condition |
+|---|---|---|---|
+| OCWD-001 | Host unit / bbolt bytes | exact profile创建empty store并保存session | marker精确为`opaque-project-v1`，row只含`feat126-s10-project`，DB bytes不含canonical project path |
+| OCWD-002 | Host restart integration | close/reopen同一store并重新验证same run ID/nonce/root | Get、HTTP response及Runtime start/resume取得canonical `<run_root>/project`；marker/sentinel不越过store boundary |
+| OCWD-003 | Host negative matrix | non-empty unmarked、unknown marker、wrong row、wrong home/root/project/nonce/permissions/symlink | 全部在startup/readiness前fail closed，无自动adoption、migration或path fallback |
+| OCWD-004 | Default compatibility | 无feature authority的既有schema v1/v2/v3/default store与new writes | migration与default tests保持通过；marker absent；canonical absolute CWD仍持久化；default不能打开feature store |
+| OCWD-005 | Contract conformance | Contracts source描述、generated Host snapshot与实际response/Runtime behavior | shape/digest流程完整，描述明确private representation非wire；response/runtime永远得到absolute canonical CWD |
+| OCWD-006 | Rollback fixture | empty-before-marker与marked/non-empty两种rollback状态 | 前者可无data回退；current default reader拒绝后者；Infra exact Host SHA/artifact preflight在store open前拒绝older binary；R8 HOLD并要求closure + fresh UUID/run root |
+| OCWD-007 | No-log/security | path/sentinel/marker canary贯穿Host error/log/evidence | absolute path不进入bbolt profile bytes或evidence/log；marker/sentinel不进入public/runtime wire；错误content-free |
+| OCWD-008 | Convergence | non-authoritative temporary R8 fixture执行restart和failure injection | 复用canonical validator/case definitions，完整通过且不写canonical evidence、不启动Docker |
+
+恢复corrective后的最低仓库门禁：Contracts若改source则generate/lint/test/build/breaking和consumer semantic review；Host targeted、race、`make lint/test/runtime-test`及contract-check；Desktop/Infra按现有dirty draft范围执行targeted/full/build/config-only；checker syntax与各仓`git diff --check`；独立只读review必须无open P0/P1。上述门禁在本Governance-only checkpoint中只被冻结，不能预报为implementation PASS。

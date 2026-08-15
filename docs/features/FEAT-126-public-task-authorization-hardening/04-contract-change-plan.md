@@ -374,3 +374,14 @@ DEC-126-081接受Desktop/Infra配对checkpoints。回滚必须配对revert两个
 - LIA-126-048只消费当前已冻结的S10B-001–012 synthetic/fake contract：fixture固定`normal-000`，不允许外部provider、真实数据、Keychain或operator-supplied case/mode override。
 - R8 runner必须在同一run内消费七仓exact clean SHA、single preflight、closed case order、content-free evidence、no-retry和cleanup authority。startup/abort-only runner不满足该contract，不得通过手工命令或第二authority补齐。
 - 如果仓库不存在上述canonical full-case runner，属于实现入口缺失，LIA-126-048保持未消费；不得把治理授权解释为允许现场修改Infra、Desktop或其他仓库。
+
+## 26. DESIGN-126-028 Private Durable Encoding and Host Contract Clarification
+
+- 总体`contract-impact=semantic`：Host private bbolt的跨重启解释变化；中央wire structure、operation、status/error、required/default和public consumer行为不变。
+- Private durable authority为Host `internal/session`的marker/version与reader/writer compatibility。它不进入`yijie-contracts` schema或SDK，也不允许Desktop/Infra直接解析bbolt。
+- Host OpenAPI中`cwd`仍接收并返回canonical absolute path。现有“stores the canonical path”不能再被解释为规定bbolt raw bytes；批准的准确语义是Host以canonical path执行session/Runtime行为，而private persistence representation不属于wire contract。
+- 为消除文案歧义，恢复corrective时若修改Host OpenAPI描述，必须先修改`yijie-contracts/openapi/agent-host/agent-host.yaml`权威source，执行generate/lint/test/breaking与语义评审，形成不可变local candidate，再由Host sync生成snapshot/lock并执行producer conformance。不得直接修改`yijie-agent-host/api/openapi/agent-host.yaml`。
+- 该source文字同步不得改变shape或有效交互；如果实际生成diff改变SDK签名、wire validation或consumer解释，立即升级影响评审并停止当前最小corrective。
+- 兼容方向是closed profile split：default reader/writer继续absolute path；exact FEAT-126 reader/writer只接受`opaque-project-v1`。数据库不得跨profile滚动共存或双向收养，因此没有silent migration窗口。
+- 新Host的default reader必须拒绝marker/sentinel；不假设历史Host binary能理解或拒绝新marker。对旧binary的rollback保护由Infra exact Host commit/artifact preflight在任何store open前阻断，marked run也必须永久不可复用。
+- 回滚不做data migration：停止/closure当前profile run，禁止复用其run ID或DB，恢复成对的Host/Infra authority后以fresh run root重新开始。历史evidence与保留资源不迁移、不重写。

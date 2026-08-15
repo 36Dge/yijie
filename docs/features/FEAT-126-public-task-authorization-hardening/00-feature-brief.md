@@ -4,14 +4,14 @@
 
 | 字段 | 内容 |
 |---|---|
-| 状态 | G1/G2/G2A Passed / LIA-126-048 fresh R8 Consumed Failed / DESIGN-126-027 Complete / LIA-126-049 Corrective Closure Accepted / DEC-126-087 Owner Acceptance / G3 Partial / G4/G6 Pending |
+| 状态 | G1/G2/G2A Passed / R8 Convergence Corrective Campaign Held / DESIGN-126-028 Accepted / LIA-126-050 Governance-only Authority Consumed / DEC-126-088 Accepted / G3 Partial / G4/G6 Pending |
 | 需求负责人 | 段成威 |
 | Product/Design 决策人 | 段成威 |
 | 技术负责人 | 段成威 |
 | Reviewer | 段成威 |
 | 发布负责人 | 段成威 |
 | 创建日期 | 2026-08-01 |
-| 最后更新 | 2026-08-13 |
+| 最后更新 | 2026-08-15 |
 | 原始需求来源 | 段成威 2026-08-01 对话需求及 4 张 Codex 局部交互截图 |
 
 ## 2. 一句话目标
@@ -254,3 +254,4 @@ Accepted ADR-0012 与 FEAT-125 已把 `FEAT-126-public-task-authorization-harden
 | 2026-08-12 | 段成威 / Codex | Owner接受DESIGN-126-019 / LIA-126-033 Corrective Closure并形成DEC-126-076 | 只读复核Desktop `e8e56df00cd7acd6c99fcfb36bedc6e892fa7fdd`、Infra `5fdba2b22b343237683f383f098fa2ffaea5bc54`及Compose semantic证据完整：targeted/full门禁PASS、独立审查无open P0/P1、Compose 5.3.0 direct config与Infra `make lint/test` `192/192` PASS。environment-bound gap Closed；真实Tauri `AppHandle/setup` direct fixture保留P2/live；G3 Partial、G4/G6 Pending。仅形成Governance本地clean checkpoint；未执行Docker lifecycle、isolated-live、fresh R8、业务调用或远端动作，`s10b_r8_executed=false` |
 | 2026-08-13 | 段成威 / Codex | DEC-126-085接受LIA-126-047 isolated-live startup/abort成功Closure，并授权后续一次fresh R8 | run `7e18d0aa-317e-4fa5-a7a5-a93d7880eb8e`以七仓exact clean SHA完成API/fake/Desktop/Host/Runtime startup、ownership/readiness、single abort、no-log与cleanup；runtime-log-scan v4 `4 sources/69 rows/0 hits`，整体`31 local files + 4 external sources/95 rows/0 hits`，业务调用和provider调用均为0，`s10b_r8_executed=false`。Owner接受该startup/abort Closure但不把它冒充S10B-001–012、G4或G6。LIA-126-048只授权在本Governance checkpoint后，以新七仓exact clean SHA、现场生成的新UUIDv4和真实canonical full-case入口执行一次frozen synthetic `normal-000`/fake-provider fresh R8；入口缺失或preflight失败时不得拼装、重试或降级 |
 | 2026-08-14 | 段成威 / Codex | Owner接受DESIGN-126-027 / LIA-126-049 post-ready failure durability Corrective Closure并形成DEC-126-087 | LIA-126-048 run `2cc440eb-632d-456b-abb1-f95b12c14b5a`已消费且永久不可复用；历史primary为`orchestrator_control_eof` at `runtime_ready`，五组件process evidence齐全，runtime-log-scan v4为`4 sources/69 rows/0 hits`，但整体no-log closure因reached-phase evidence集合错误而失败。Desktop `88382304b46002ce3e44f7f3bb30104dbd4b11ea`增加post-ready content-free terminal、first-terminal-wins及默认非feature cfg闭包；Infra `06baf058d6bafd7bce6310574066b990098e80f4`持久化post-ready leaf、仅在无完整frame时投影exit/EOF并按实际phase要求no-log evidence。两仓全量/targeted/build/config-only门禁及只读复审通过，无open P0/P1；corrective阶段未执行R8、isolated-live或Docker lifecycle，下一次R8仍需新七仓SHA、fresh UUIDv4和单独一次性授权 |
+| 2026-08-15 | 段成威 / Codex | Owner以DEC-126-088接受DESIGN-126-028 Host bbolt opaque CWD authority；LIA-126-050仅消费Governance更新授权 | exact FEAT-126 profile可在private run-scoped bbolt中以metadata `feat126_cwd_encoding=opaque-project-v1`和record sentinel `feat126-s10-project`代替absolute project bytes；每次打开及planned restart均须重新验证同一run authority并只在内存重建canonical `<run_root>/project`。默认模式、public Host wire和schema shape保持不变；Host contract描述须在后续corrective从权威source同步，明确private persistence representation不属于wire contract。本轮允许Host/Desktop/Infra保持既有dirty draft但不接受、不暂存、不提交；禁止Docker/live/R8/MiniMax及远端动作 |

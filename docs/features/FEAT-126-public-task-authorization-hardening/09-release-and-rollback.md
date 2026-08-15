@@ -440,3 +440,13 @@ DESIGN-126-008对未来corrective的回滚语义冻结如下：
 - LIA-126-048只在本Governance checkpoint之后生效，并仅允许frozen synthetic `normal-000`/loopback fake-provider S10B-001–012执行一次。它不授权MiniMax、真实数据、Keychain、S11、远端写入或默认启用。
 - 执行前必须证明canonical full-case入口存在、七仓SHA exact/clean、run UUID全新且资源authority可用。startup/abort-only target、人工shell拼装或降低assertion均不构成R8。
 - 入口缺失时不生成run ID、不启动Docker或组件、不修改实现；报告阻塞后等待单独corrective授权。执行失败时保留canonical closure并停止，禁止retry/resume/reuse。
+
+## 31. DEC-126-088 Opaque CWD Rollback Boundary
+
+- 本设计没有生产发布或default activation；当前只批准exact FEAT-126 local profile。Governance checkpoint可独立回退，但回退立即把corrective campaign和R8置为HOLD。
+- marker未写入时，repository可以按依赖逆序撤回而无需data migration。marker已写入时，绝不删除marker、原地展开sentinel、复制DB或让default/older Host读取。
+- current default reader负责拒绝marker/sentinel；older Host是否理解marker不构成安全假设，Infra必须以exact Host SHA/artifact preflight在store open前阻断旧binary。
+- active profile run必须先走canonical abort/closure并永久废弃run ID；临时`host-home`只由批准的run cleanup处理。审计保留副本保持owner-only、不可由业务/default mode打开，且不得改写为模拟evidence。
+- contract wording rollback按Host consumer snapshot先、Contracts source后执行；实现rollback按Infra profile consumer先、Host writer/reader后执行。任何单侧rollback都保持R8 HOLD。
+- 恢复前一表示只能在fresh UUID、fresh run root和clean seven-SHA checkpoint上开始；历史run/evidence/retained volumes不迁移、不重写、不resume。
+- 本Governance操作不执行上述rollback演练、Docker/live/R8，也不接受当前dirty implementation。

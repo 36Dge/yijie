@@ -1277,3 +1277,20 @@ Governance checkpoint形成后，LIA-126-047只能以新七仓exact clean SHA和
 | Owner disposition | `DEC-126-087 Accepted`; `DESIGN-126-027 Complete`; `LIA-126-049 Corrective Closure Accepted`; `S10B-BLK-016 Closed`; G3 Partial, G4/G6 Pending |
 
 Corrective and Owner Acceptance did not execute Docker lifecycle, a canonical/live R8 attempt, isolated-live, business cases, MiniMax, real data/Keychain, default activation or remote operations. Feature-only synthetic Rust tests did not create or consume an orchestrator run. Historical evidence and retained volumes were not changed. The historical failed attempt remains `s10b_r8_executed=true`; no new attempt was created.
+
+## 54. DEC-126-088 / DESIGN-126-028 Governance Design Verification
+
+| Item | Verified fact before Governance edit |
+|---|---|
+| Governance baseline | `aa94e05709c7f59ae180ce8f9ecb1ef564e17d1c`, branch `feat/feat-126-foundation-closure`, clean |
+| Clean siblings | Contracts `e7820395486ad05fab2cd13b5b13f77e33880c14`; API `451940b282d8dd3e232ed414bd44b0677897f4c4`; Runtime `0ce5902ed400866be0196886bb78f693a004d68d` |
+| Preserved dirty drafts | Host `78e7e91fc89cff14caeb5eb4da01d7f52a690630`; Desktop `b2ca6b52ef05f46f0224069e5689ac09e95288da`; Infra `af155ae4eb68a92e967e7f730b975f9558356dda`; existing files recorded before edit and untouched by this Governance phase |
+| Source conflict | Host generated OpenAPI says it “stores the canonical path”; draft bbolt writer stores sentinel. External request/response remains canonical, so DESIGN-126-028 reclassifies private durable semantics and freezes source-first wording synchronization |
+| Approved identity | marker key `feat126_cwd_encoding`; version `opaque-project-v1`; sentinel `feat126-s10-project`; exact profile only |
+| Implementation status | dirty drafts remain unaccepted; OCWD-001–008 and resumed corrective repository gates are not claimed by this Governance checkpoint |
+| Runtime scope | no Docker lifecycle, live, R8, MiniMax/provider, business case, real data/Keychain, default activation or remote operation authorized |
+| Governance package | default、`--strict`、`--gate G2A` all exit 0；unique-key YAML parse PASS |
+| Governance repository | `pnpm lint`、`pnpm test`、checker/repository Shell syntax、`git diff --check` all exit 0 |
+| Scope check | exactly 11 existing files under this FEAT-126 package changed；Host/Desktop/Infra drafts and Contracts/API/Runtime bytes unchanged |
+
+The resulting local Governance commit SHA is reported after commit. These green documentation gates do not claim implementation Closure or R8 readiness.

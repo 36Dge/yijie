@@ -364,3 +364,18 @@ LIA-126-047 run `7e18d0aa-317e-4fa5-a7a5-a93d7880eb8e`绑定Governance `322fb737
 runtime-log-scan v4为4个exact sources、69 rows、0 hits；整体no-log覆盖31个local files与4个external sources、95 rows、0 hits。API before/after摘要相同，fake accepted/rejected calls为`0/0`，Public Tasks、conversation、turn和provider调用均为0，`s10b_r8_executed=false`。DEC-126-085的Governance处置为`contract-impact=none`，不改变Contracts、Public Tasks、Desktop/Host/Runtime wire、durable schema、Compose pins、default flags或生产状态。
 
 Owner同时授权LIA-126-048一次fresh R8，但该授权只覆盖frozen S10B-001–012、synthetic fixture `normal-000`、loopback fake provider和本地隔离资源。它不授权MiniMax、外部provider、真实数据、Keychain、S11、默认启用或远端操作。执行必须在本Governance checkpoint后绑定新的七仓exact clean SHA，并通过一个实际执行全部case的canonical full-case入口；startup/abort-only入口不能作为替代。若入口不存在、preflight失败或出现任何不确定状态，授权保持未消费或形成单次失败closure，不得人工拼接、重试、resume或复用run ID。
+
+## 25. DESIGN-126-028 Host Opaque Project CWD Durable Impact
+
+本设计的最高影响为`semantic`。wire字段与形状没有变化，但exact FEAT-126 profile下Host private bbolt的跨重启解释从“record中保存canonical absolute CWD”改为“record中保存固定opaque sentinel，并在每次打开后从重新验证的run authority恢复canonical CWD”。因此不能继续以“durable schema unchanged”描述该profile；它是经过Owner批准的private local durable semantic change，中央Public Tasks、Runtime protocol和业务数据schema不受影响。
+
+| Repository | 本轮状态 | 后续corrective影响 |
+|---|---|---|
+| yijie | 只更新现有FEAT-126 package与`feature.yaml`并形成一个local clean checkpoint | 权威定义marker/version、rehydration、compatibility、contract wording和rollback |
+| yijie-agent-host | `78e7e91fc89cff14caeb5eb4da01d7f52a690630`上的预期dirty draft，尚未接受或提交 | private bbolt encoding、exact profile/run-root validation、restart/default/rollback tests；Host contract snapshot只能从权威source同步 |
+| yijie-contracts | `e7820395486ad05fab2cd13b5b13f77e33880c14` clean；本轮不修改 | 若恢复corrective时同步OpenAPI文字，必须从`openapi/agent-host/agent-host.yaml`权威source修改并按Contracts门禁生成/验证；不得手改Host snapshot |
+| yijie-desktop | `b2ca6b52ef05f46f0224069e5689ac09e95288da`上的预期dirty draft，尚未接受或提交 | 保持当前campaign draft；不得因本设计扩大Public Tasks或业务IPC |
+| yijie-infra | `af155ae4eb68a92e967e7f730b975f9558356dda`上的预期dirty draft，尚未接受或提交 | 只消费exact profile/run-root authority并补convergence/rollback fixtures |
+| API / Runtime | API `451940b282d8dd3e232ed414bd44b0677897f4c4`、Runtime `0ce5902ed400866be0196886bb78f693a004d68d` clean | 无本设计源码影响；发现需要修改时重新评估范围 |
+
+本Governance checkpoint不接受上述implementation draft，也不将任何门禁标为实现PASS。它不授权Docker lifecycle、isolated-live、canonical R8、MiniMax、业务调用、真实数据/Keychain、default activation或远端动作。

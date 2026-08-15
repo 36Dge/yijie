@@ -753,3 +753,21 @@
 | Decision | `DESIGN-126-027 Complete`; `LIA-126-049 Corrective Closure Accepted`; `S10B-BLK-016 Closed`; `DEC-126-087 Accepted`; G3 remains Partial and G4/G6 remain Pending |
 | Boundary | Governance disposition contract-impact=`none`; accepted implementation is a private local control/evidence semantic corrective. No central Contracts, business wire, durable schema, Runtime/Compose pin or default activation changes |
 | Next | No automatic canonical R8/live. A new attempt requires this Governance checkpoint, all seven exact clean SHAs, a fresh unused UUIDv4 and a separate one-time authorization; run `2cc440eb-632d-456b-abb1-f95b12c14b5a` must never be retried/resumed/reused |
+
+## 32. DEC-126-088 / DESIGN-126-028 / LIA-126-050 Host Opaque Project CWD Design Authority
+
+| 项目 | Owner决定 |
+|---|---|
+| Decision | `DEC-126-088 Accepted`; `DESIGN-126-028 Accepted`; `LIA-126-050 Governance-only Authority Consumed` |
+| Contract impact | `semantic`，因为exact FEAT-126 profile改变private bbolt的durable/restart解释；public Host request/response shape、Public Tasks、Runtime protocol与默认产品行为不变 |
+| Encoding | metadata key=`feat126_cwd_encoding`；唯一已批准version=`opaque-project-v1`；session record `cwd`唯一sentinel=`feat126-s10-project` |
+| Authority | 仅当exact FEAT-126 profile、canonical UUID run ID、instance nonce、owner-only non-symlink `0700` run root、`host-home`、`codex-home`、`host/<nonce>`和`project`全部绑定到同一run root时启用 |
+| Restart | 每次Host open/restart都重新验证authority；只在内存把sentinel恢复为canonical `<run_root>/project`，再供Runtime与Host response使用；sentinel不得越过bbolt边界 |
+| Adoption | 空feature store可原子写入marker；non-empty unmarked store、unknown marker、marked store在default mode打开、default store在feature mode收养、row非sentinel或sentinel出现在default store均fail closed |
+| Default compatibility | default/production `schema_version=3`、canonical absolute CWD持久化、公开HTTP/SSE行为与flags保持不变；profile marker是独立的private encoding discriminator，不允许跨模式共享数据库 |
+| Host contract wording | 权威描述固定为：input是existing absolute local directory；Host resolves symlinks and uses the canonical path as session CWD；private persistence representation is not part of the wire contract。response `cwd`仍是rehydrated canonical absolute path。后续同步必须从Contracts source生成Host snapshot，不得手改派生物 |
+| Rollback | marker一旦写入，禁止in-place downgrade、marker删除、sentinel改写或由旧/default reader收养。回滚必须HOLD R8、canonical abort/closure当前run、使run永久不可复用，并通过批准的run-scoped cleanup处理临时Host DB；需要保留审计时只保留owner-only不可打开副本。下一次只能用fresh UUID/run root在同一版本或已批准前一表示上开始 |
+| Draft boundary | Host/Desktop/Infra现有dirty draft可原样保留，但本决定不接受、不暂存、不提交任何implementation；Contracts/API/Runtime保持clean |
+| Prohibited | 本轮无Docker/live/R8、MiniMax/provider、业务case、真实数据/Keychain、默认启用、push/merge/tag/publish/deploy |
+
+该决定关闭的只是campaign第6项Governance设计授权边界。恢复corrective后仍须完成权威source同步、实现门禁、独立复审和各修改仓local clean checkpoint；在新的Owner Acceptance与live授权前，不得把设计批准描述为R8 readiness或实现Closure。
