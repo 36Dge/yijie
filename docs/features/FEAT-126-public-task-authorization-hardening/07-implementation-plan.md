@@ -703,7 +703,7 @@ DEC-126-076已接受上述slice集合的Corrective Closure并关闭environment-b
 1. 以Governance `aa94e05709c7f59ae180ce8f9ecb1ef564e17d1c` clean为起点；允许Host `78e7e91...`、Desktop `b2ca6b5...`和Infra `af155ae...`保留已记录dirty draft，禁止reset、switch、discard、暂存或提交它们。
 2. 仅更新FEAT-126 Governance package，登记DEC-126-088/DESIGN-126-028/LIA-126-050；通过default、strict、G2A、unique-key YAML、`pnpm lint/test`、Shell syntax与diff门禁，并形成一个Governance local clean checkpoint。
 3. checkpoint后才可恢复既有R8 corrective campaign的offline实现阶段。先同步Contracts权威描述及Host generated snapshot（若实际diff需要），再闭合Host marker/rehydration/default/rollback、Desktop与Infra已有draft和convergence fixtures；不得手改generated contract。
-4. 每个实际修改仓执行§47相称门禁和独立只读审查；无open P0/P1后分别形成local clean checkpoint。Governance设计checkpoint本身不得冒充这些implementation checkpoints或Owner Acceptance。
+4. 每个实际修改仓执行`06-test-plan.md` §47–48相称门禁和独立只读审查；无open P0/P1后分别形成local clean checkpoint。Governance设计checkpoint本身不得冒充这些implementation checkpoints或Owner Acceptance。
 5. 当前override明确禁止Docker lifecycle、isolated-live与canonical R8。即使七仓提前clean，也必须等待后续明确live/R8授权；失败run、历史evidence和retained volumes均不读取、不修改、不复用。
 
 ## 46. DESIGN-126-029 / LIA-126-051 Offline Convergence Order
@@ -714,3 +714,11 @@ DEC-126-076已接受上述slice集合的Corrective Closure并关闭environment-b
 4. Desktop在保留现有dirty draft基础上完成single monotonic deadline和SQLite retry taxonomy/deadline；Infra完成multi-lifecycle cleanup、real authority convergence、default-off/preflight evidence及Host artifact/run-binding消费。
 5. Contracts/Host/Desktop/Infra分别执行targeted/full/conformance/lint/test/build/config-only/syntax/diff门禁；独立review发现P0/P1时直接修复并复跑，不进入live。
 6. 每个修改仓分别local commit，确认七仓clean并报告exact SHAs。到此停止；Docker lifecycle/live/R8/MiniMax/远端操作仍需新授权。
+
+## 47. DEC-126-090 Corrective Closure and Stop Order
+
+1. 接受LIA-126-051的四仓offline implementation checkpoints：Contracts `98e89d8...`、Host `d9c770e...`、Desktop `7d8c8b0...`、Infra `2732576...`；DESIGN-126-029 Complete。
+2. 登记LIA-126-052 run `e844f4a5-7cea-4fa5-bf95-b05bb9cef35d`为CONSUMED/FAIL/non-reusable；保留primary ownership failure、cleanup unknown、no-log PASS及历史`s10b_r8_executed=true`。
+3. 接受DESIGN-126-030/LIA-126-053 Desktop `a87e70d...`与Infra `42671b8...`配对corrective；确认full gates和independent review无open P0/P1，关闭S10B-BLK-017。
+4. 仅更新现有FEAT-126 Governance package和`feature.yaml`，通过default/strict/G2A/YAML/lint/test/Shell/diff门禁，并在Governance形成一个local clean checkpoint。
+5. 停止。不得自动生成run ID、启动Docker或执行R8。下一次canonical full-case R8必须由新的单独Owner授权绑定Governance新SHA、其余六仓current clean SHA和fresh unused UUIDv4。

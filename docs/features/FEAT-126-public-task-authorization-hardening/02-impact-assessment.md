@@ -390,3 +390,17 @@ Owner同时授权LIA-126-048一次fresh R8，但该授权只覆盖frozen S10B-00
 - run root、project、host root/current nonce dir、host-home、codex-home均须在exact profile启动前strict验证owner、non-symlink、canonical equality和精确`0700`，不得靠后续chmod或symlink-following API修复。
 
 本纠正将LIA-126-051 offline实现范围明确为Contracts、Host、Desktop、Infra。Governance先形成clean checkpoint；随后各仓可以在现有dirty draft上继续最小修改、全量门禁、独立review与local commits。Docker lifecycle/live/R8仍不授权。
+
+## 27. DESIGN-126-030 Ownership Convergence Corrective Closure Impact
+
+LIA-126-051已经完成DESIGN-126-029要求的source-first Contracts描述、Host private durable authority、Desktop deadline/retry和Infra convergence/preflight闭合，并形成Contracts `98e89d8cccfe15256f09e9329d4bc1980d6da578`、Host `d9c770e27bfa4796d22aa50074652971ae47eff6`、Desktop `7d8c8b09fc79c34cf391b6061f33062a7746cb28`、Infra `2732576705d221412fc3278d62f5736587d7a642`四个clean checkpoints。API与Runtime没有实现影响。
+
+LIA-126-052 canonical R8在真实ownership evidence已经持久化后发现lifecycle authority仍有两个组合缺口：Desktop Sidecar为Host另行生成nonce，未消费Infra传入的canonical driver nonce；Infra又把“evidence persisted but convergence invalid”误分类为pre-ownership。后续control failure只退出Desktop而未strict stop Host，使cleanup closure无法证明Host terminal state。
+
+DESIGN-126-030/LIA-126-053仅影响Desktop feature-only Sidecar/control-monitor和Infra R8 cleanup state machine：
+
+- Desktop exact profile消费`YIJIE_FEAT126_S10_DRIVER_NONCE`，default mode继续UUIDv7；control failure保持first-terminal-wins，并按FD4 terminal flush/close、Failed、最多7秒strict Host stop、Desktop exit的顺序闭合。
+- Infra分别记录`ownershipEvidencePersisted`与`ownershipConverged`；persisted-but-unconverged可以读取、验证并持久化stopped Host evidence，primary failure继续first-wins，真正pre-ownership仍fail closed。
+- Contracts、API、Host、Runtime wire/schema/default行为均未改变。本Governance Acceptance的`contract-impact=none`；实现影响仍局限于private local control/evidence semantics。
+
+本接受不把失败R8改写为PASS，不产生release或activation，也不授权下一次Docker/live/R8。G3保持Partial，G4/G6 Pending。

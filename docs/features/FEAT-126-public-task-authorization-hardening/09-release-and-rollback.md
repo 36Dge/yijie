@@ -458,3 +458,11 @@ DESIGN-126-008对未来corrective的回滚语义冻结如下：
 - pre-existing unmarked DB永不升级为feature store；rollback不得删除marker/run binding制造unmarked DB，也不得展开sentinel。
 - older Host binary由Infra exact artifact preflight在store open前阻断；current default reader继续拒绝marker/sentinel。
 - 任一rollback identity测试未通过都保持R8 HOLD；本offline campaign不执行实际Docker/live rollback。
+
+## 33. DEC-126-090 Corrective Acceptance and Rollback Boundary
+
+- 本接受固定LIA-126-051 checkpoints Contracts `98e89d8...`、Host `d9c770e...`、Desktop `7d8c8b0...`、Infra `2732576...`，以及LIA-126-053 Desktop `a87e70d...`、Infra `42671b8...`；不产生release artifact、deployment、default activation或R8 PASS。
+- LIA-126-053回滚必须配对、可审查地先撤销Infra persisted/converged cleanup consumer，再撤销Desktop canonical nonce/control-stop producer；不得形成单侧authority。DESIGN-126-029回滚继续遵守Infra→Desktop/Host→Contracts source的逆依赖顺序。
+- 不得以回滚删除或改写LIA-126-052 run `e844f4a5-7cea-4fa5-bf95-b05bb9cef35d`的ledger、evidence、run root或retained volumes；不得retry、resume、reconcile或复用该run ID。
+- 本Governance checkpoint只记录Owner Acceptance并关闭S10B-BLK-017。本阶段不执行Docker/live/R8；下一次R8必须另行授权、绑定新的七仓exact clean SHA和fresh unused UUIDv4。
+- 禁止push、merge、tag、publish、deploy、MiniMax、真实业务数据/Keychain和默认启用；G3保持Partial，G4/G6 Pending。

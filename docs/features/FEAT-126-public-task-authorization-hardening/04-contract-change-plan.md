@@ -394,3 +394,11 @@ DEC-126-081接受Desktop/Infra配对checkpoints。回滚必须配对revert两个
 - planned restart不复用instance nonce。兼容identity是same run ID/root/store + fresh lifecycle nonce；process ownership/evidence按nonce分代闭合。
 - 只有newly-created DB可初始化private marker。existing unmarked empty/default DB不能被feature writer收养，避免旧bbolt pages残留absolute path或跨mode解释。
 - rollback依赖Infra exact Host SHA/artifact authority阻断old binary，并以durable run ID阻断跨run copied DB。当前default reader仍主动拒绝marker/sentinel；不假设历史binary理解新metadata。
+
+## 28. DESIGN-126-029–030 Closure Contract Disposition
+
+- LIA-126-051已从Contracts source-first澄清Host `cwd`语义并形成`98e89d8cccfe15256f09e9329d4bc1980d6da578`；Host generated snapshot/lock由该精确commit同步。OpenAPI shape、validation、有效request/response和Runtime resume wire没有变化。
+- Host `d9c770e27bfa4796d22aa50074652971ae47eff6`实现的opaque-project-v1、durable run binding、restart rehydration和default compatibility仍是private persistence/deployment semantics，不新增公共字段。
+- DESIGN-126-030只修复Infra→Desktop→Host的feature-only lifecycle nonce authority和Desktop→Infra的terminal/cleanup evidence interpretation；没有中央Contracts、API、Host HTTP/SSE或Runtime schema change。
+- 因而本Governance Owner Acceptance分类为`contract-impact=none`。若后续R8证明需要公共wire/schema变化，必须重新进入Contract First评审，不能在R8现场扩展。
+- 回滚DESIGN-126-030必须配对revert Desktop `a87e70d...`与Infra `42671b8...`；不得只撤销nonce consumer或只撤销persisted-unconverged reader。LIA-126-052历史evidence不随代码回滚修改。

@@ -1069,3 +1069,18 @@ No canonical/live R8 attempt, isolated-live, Docker lifecycle, business case, Mi
 | OCWD-015 | Infra exact Host artifact preflight阻断old commit；preflight success evidence包含该gate identity/result；default-off evidence包含tracked file count/set digest |
 
 LIA-126-051还必须关闭此前open P1：Desktop monotonic case deadline与只重试SQLite busy/locked的bounded retry；Infra lifecycle-2 pre-ownership terminal、real authority convergence rehearsal及default-off tracked scan。最终独立review要求0 open P0/P1。
+
+## 49. DESIGN-126-029–030 Corrective Closure Gates
+
+| Gate | Accepted proof |
+|---|---|
+| LIA-126-051 checkpoints | Contracts source/generate/compatibility、Host opaque-project-v1/restart/default/rollback、Desktop deadline/retry、Infra lifecycle convergence/default-off/preflight full gates及independent review完成；Contracts `98e89d8...`、Host `d9c770e...`、Desktop `7d8c8b0...`、Infra `2732576...` clean |
+| Desktop nonce/profile | exact feature profile消费Infra canonical UUIDv4；distinct lifecycle nonce不混淆；missing/non-v4/noncanonical/non-UTF-8及default-off残留fail closed；default UUIDv7保持 |
+| Desktop terminal cleanup | control EOF/invalid只产生一个terminal；FD4 flush/close在Failed、strict Host stop和Desktop exit之前；stop error/timeout仍bounded fail closed |
+| Infra ownership state | pre-ownership、persisted-unconverged、converged三态全部覆盖；非法state拒绝；persisted-unconverged验证并持久化stopped evidence；primary ownership failure不被cleanup覆盖 |
+| Desktop full gates | targeted control-monitor `4/4`、feature nonce/profile `3/3`、default nonce/profile `3/3`；frontend `197/197`；default Rust `138 pass/3 ignored`；feature Rust `172 pass/3 ignored`；lint/build/fmt/default+feature Clippy/production release build PASS |
+| Infra full gates | targeted `109/109`、S10BO3 `62/62`、full `252/252`、make lint/test、Compose 5.3.0 direct config-only、Node/Shell syntax和`git diff --check` PASS |
+| Independent review | 无open P0/P1；真实macOS Tauri + Host stopped-manifest完整时序为P2，必须由下一次单独授权R8验证 |
+| Governance | feature package default/strict/G2A、unique-key YAML、`pnpm lint/test`、checker/repository Shell syntax、`git diff --check`必须全部PASS后才可commit DEC-126-090 |
+
+本矩阵不执行Docker lifecycle、live或R8。LIA-126-052失败run保持immutable；任何下一次R8使用新的七仓SHA与fresh UUIDv4。

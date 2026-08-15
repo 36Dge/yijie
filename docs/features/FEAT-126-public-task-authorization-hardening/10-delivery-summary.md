@@ -500,3 +500,17 @@ The Governance checkpoint records the authority and ordering but intentionally c
 | Projection | thread/start canonical CWD；thread/resume ID-only；response canonical；marker/run ID/sentinel private |
 | Scope | LIA-126-051 offline Contracts/Host/Desktop/Infra corrective、tests、review、local commits only |
 | Stop | final seven clean SHAs后停止；no Docker lifecycle/live/R8/MiniMax/remote |
+
+## 34. DEC-126-090 R8 Ownership Convergence Corrective Closure
+
+| Item | Accepted state |
+|---|---|
+| Prior corrective | `DESIGN-126-029 Complete / LIA-126-051 Corrective Closure Accepted`；Contracts `98e89d8...`、Host `d9c770e...`、Desktop `7d8c8b0...`、Infra `2732576...` |
+| Failed R8 | LIA-126-052 `e844f4a5-7cea-4fa5-bf95-b05bb9cef35d`；primary `orchestrator_ownership_invalid`、cleanup `orchestrator_cleanup_unknown`；historical `s10b_r8_executed=true`；permanently non-reusable |
+| Root cause | canonical lifecycle nonce未收敛到Host；Infra把persisted-unconverged误作pre-ownership；Desktop control failure未strict stop Host |
+| Desktop | `a87e70dd9e8fa3b9540f2a3f0f7f2d84cc27dde9`；canonical nonce、default UUIDv7兼容、FD4 terminal→Failed→bounded Host stop→exit |
+| Infra | `42671b802d48ce0318abdefeeb01003cdc597825`；persisted/converged状态分离、stopped evidence closure、primary first-wins |
+| Gates | Desktop frontend `197/197`、Rust default `138/3 ignored`、feature `172/3 ignored`及build/lint/clippy/fmt PASS；Infra targeted `109/109`、S10BO3 `62/62`、full `252/252`、lint/test/Compose config-only/syntax/diff PASS；Governance default/strict/G2A/YAML/lint/test/Shell/diff PASS；no open P0/P1 |
+| State | `DEC-126-090 Accepted / DESIGN-126-030 Complete / LIA-126-053 Corrective Closure Accepted / S10B-BLK-017 Closed`；G3 Partial；G4/G6 Pending |
+| Boundary | Acceptance阶段未执行Docker/live/R8/MiniMax/业务调用/真实数据/Keychain/远端动作；current `s10b_r8_executed=false`不覆盖历史run的`true` |
+| Next | Governance clean checkpoint后停止；下一次R8需要单独一次性授权、新七仓exact clean SHA与fresh UUIDv4 |

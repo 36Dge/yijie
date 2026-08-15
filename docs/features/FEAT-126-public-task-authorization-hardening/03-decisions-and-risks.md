@@ -787,3 +787,18 @@
 | Stop | no Docker lifecycle/live/R8, MiniMax/provider, real business/data/Keychain, default activation or remote action；七仓clean后停止等待新R8授权 |
 
 `DEC-126-089 Accepted`取代DEC-126-088中与same nonce、empty-unmarked adoption和无durable run binding冲突的部分；DEC-126-088其余profile-only/default-compatible/no-in-place-downgrade原则继续有效。
+
+## 34. DEC-126-090 / DESIGN-126-029–030 / LIA-126-051–053 R8 Ownership Convergence Corrective Closure Owner Acceptance
+
+| 项目 | Owner决定 |
+|---|---|
+| LIA-126-051 | `DESIGN-126-029 Complete / Corrective Closure Accepted`；固定Contracts `98e89d8cccfe15256f09e9329d4bc1980d6da578`、Host `d9c770e27bfa4796d22aa50074652971ae47eff6`、Desktop `7d8c8b09fc79c34cf391b6061f33062a7746cb28`、Infra `2732576705d221412fc3278d62f5736587d7a642` |
+| Failed R8 | `LIA-126-052` run `e844f4a5-7cea-4fa5-bf95-b05bb9cef35d`已CONSUMED/FAIL且永久不可retry、resume或reuse；primary=`orchestrator_ownership_invalid` at `desktop_ready`；closure cleanup=`orchestrator_cleanup_unknown`；历史`s10b_r8_executed=true` |
+| Root cause | Infra lifecycle nonce与Desktop Sidecar生成的Host nonce分叉；ownership evidence已持久化但Infra将unconverged误判为pre-ownership；Desktop control EOF/invalid后未strict stop Host，Host manifest可能停留`ready` |
+| Desktop corrective | `a87e70dd9e8fa3b9540f2a3f0f7f2d84cc27dde9`；exact profile消费canonical driver nonce，default UUIDv7不变；control failure按FD4 terminal flush/close → Failed → bounded strict Host stop → exit闭合 |
+| Infra corrective | `42671b802d48ce0318abdefeeb01003cdc597825`；分离`ownershipEvidencePersisted`与`ownershipConverged`，persisted-but-unconverged可以形成validated stopped evidence，primary failure保持first-wins |
+| Verification | Desktop frontend `197/197`、default Rust `138 pass/3 ignored`、feature Rust `172 pass/3 ignored`及lint/build/fmt/default+feature Clippy/production release build PASS；Infra targeted `109/109`、S10BO3 `62/62`、full `252/252`、lint/test、Compose 5.3.0 config-only、Node/Shell syntax/diff PASS；Governance default/strict/G2A、unique-key YAML、`pnpm lint/test`、checker/repository Shell syntax、diff PASS；独立review无open P0/P1 |
+| Residual P2 | 真实macOS Tauri + Host stopped-manifest完整时序只由下一次独立R8验证；不阻塞本次offline Corrective Closure |
+| Decision | `DESIGN-126-030 Complete / LIA-126-053 Corrective Closure Accepted / S10B-BLK-017 Closed / DEC-126-090 Accepted`；G3仍Partial，G4/G6 Pending |
+| Boundary | 本Acceptance只更新Governance并形成local checkpoint；未执行Docker lifecycle/live/R8/MiniMax/业务调用/真实数据/Keychain/远端动作。本阶段`s10b_r8_executed=false`不覆盖LIA-126-052历史`true` |
+| Next | 停止。任何下一次canonical R8都必须取得另一份单独一次性授权，绑定本Governance新SHA、七仓exact clean SHA和fresh unused UUIDv4 |

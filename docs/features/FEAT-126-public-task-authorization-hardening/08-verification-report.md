@@ -1307,3 +1307,22 @@ The resulting local Governance commit SHA is reported after commit. These green 
 | Contract sync | source-first update is required，not conditional |
 
 本review没有修改Host/Desktop/Infra dirty drafts，没有执行Docker/live/R8/provider。DEC-126-089只关闭Governance design ambiguity；implementation findings需由LIA-126-051门禁实际关闭后才能声称无open P0/P1。
+
+## 56. DEC-126-090 Ownership Convergence Corrective Closure Verification
+
+| Evidence | Verified result |
+|---|---|
+| Pre-R8 clean checkpoints | Governance `2b930bcf7a9bb821f625679f8f17b38b795fa495`；Contracts `98e89d8cccfe15256f09e9329d4bc1980d6da578`；API `451940b282d8dd3e232ed414bd44b0677897f4c4`；Host `d9c770e27bfa4796d22aa50074652971ae47eff6`；Desktop `7d8c8b09fc79c34cf391b6061f33062a7746cb28`；Runtime `0ce5902ed400866be0196886bb78f693a004d68d`；Infra `2732576705d221412fc3278d62f5736587d7a642` |
+| Failed R8 | LIA-126-052 `e844f4a5-7cea-4fa5-bf95-b05bb9cef35d`；primary `orchestrator_ownership_invalid` at `desktop_ready`；closure cleanup `orchestrator_cleanup_unknown`；business not applicable；historical `s10b_r8_executed=true` |
+| Ledger integrity | preclaim `ac9c94e5c7ca7d76556ede1830d5ae98fb4f570dc88181438159e56cee5d2d63`；attempt `5652a2c65ea357204d1d5ed07d25c8e58a8b1afee6957a5ac71f0b8399804b7b`；failure `51986a11c153ba824963ff1630a3ead496dfe87be4f7f16240cc4a7ff6cae135`；closure `a0754eb836ccb0dae2eb7500c260ba6030094d88396f2a81804590744bf5e229`；均0600、UID501、nlink1 |
+| Ownership evidence | Desktop spawn claim `651e55af194fe1ebb10dc0a5679333021abbcf453d8a970ebc1d7f5216c687ff`；Desktop process `aac2e7f3c9c7740fc356770a48d622c17293493383f85d733ac8428f5e53d48c`；Host ready `ac8e9fdf6170634a2fec8a8e9183f0c74d740262788575f57f37dbdb4a1dea61`；Runtime ready `cdf0ff19bd751048f39176edf19de7ae52a75f38b037e644eb87171773ac73a4`；均0600、UID501、nlink1 |
+| No-log | runtime-log-scan schema v4 digest `e384795fcf2513a9310396bfa723eae29e54fd621e20c79ffe3ae1b22d61ee35`；4 sources、69 rows、0 hits；全部hit集合摘要为empty-set SHA-256；fake accepted/rejected=`0/0`；未调用真实provider/MiniMax |
+| Root cause | Infra canonical lifecycle nonce未被Desktop Sidecar用于Host；Infra混淆evidence persisted与convergence；Desktop control failure没有strict Host stop，导致stopped evidence无法形成 |
+| LIA-126-051 closure | Contracts `98e89d8...`、Host `d9c770e...`、Desktop `7d8c8b0...`、Infra `2732576...` clean；DESIGN-126-029 requirements完成并通过相称full/conformance/review gates |
+| LIA-126-053 Desktop | `a87e70dd9e8fa3b9540f2a3f0f7f2d84cc27dde9`；frontend `197/197`、default Rust `138 pass/3 ignored`、feature Rust `172 pass/3 ignored`、lint/build/fmt/default+feature Clippy/production release build PASS |
+| LIA-126-053 Infra | `42671b802d48ce0318abdefeeb01003cdc597825`；targeted `109/109`、S10BO3 `62/62`、full `252/252`、lint/test、Compose 5.3.0 config-only、Node/Shell syntax/diff PASS |
+| Governance gates | feature package default/strict/G2A、unique-key YAML、`pnpm lint`、`pnpm test`、checker/repository Shell syntax及`git diff --check`全部PASS |
+| Review | independent read-only review无open P0/P1；真实macOS Tauri + Host stopped-manifest完整时序保留P2/R8 |
+| Owner disposition | `DEC-126-090 Accepted / DESIGN-126-029–030 Complete / LIA-126-051 and LIA-126-053 Corrective Closure Accepted / LIA-126-052 Consumed Failed / S10B-BLK-017 Closed`；G3 Partial，G4/G6 Pending |
+
+本Owner Acceptance阶段没有执行Docker lifecycle、isolated-live、canonical R8、MiniMax、业务调用、真实数据/Keychain、default activation或远端动作；本阶段`s10b_r8_executed=false`。LIA-126-052的历史`true`、run evidence和retained volumes均未被修改。下一次R8未获授权。

@@ -1915,3 +1915,28 @@ exact profile要求`<run_root>`、`project`、`host`、current `host/<nonce>`、
 rehydrated CWD用于Host session response及Runtime `thread/start`。既有`thread/resume`只发送thread ID，Runtime从既有thread state保留original CWD；不得为本corrective新增resume cwd字段。marker/run binding/sentinel均不得进入HTTP/SSE、Runtime wire、log或evidence。
 
 Contracts source描述同步是LIA-126-051的required first slice。DESIGN-126-029取代§61中same nonce、logical-empty initialization或缺少durable run binding的任何解释；其它default compatibility和rollback规则继续有效。
+
+## 63. DESIGN-126-030 Ownership Convergence and Failure Cleanup
+
+### 63.1 Canonical lifecycle nonce
+
+每个R8 Desktop lifecycle仍由Infra生成fresh canonical UUIDv4，并通过`YIJIE_FEAT126_S10_DRIVER_NONCE`传入feature driver。Desktop Sidecar exact profile必须消费该值作为Host instance nonce，拒绝missing、noncanonical、non-v4或非UTF-8环境值；default-off残留该变量fail closed。非feature/default模式继续独立生成UUIDv7，不改变生产identity。
+
+### 63.2 Ownership state split
+
+Infra不再以单一observed boolean同时表示“evidence读取成功”和“convergence通过”。每个lifecycle维护：
+
+- `ownershipEvidencePersisted=false/true`：Host/Runtime ownership evidence已经读取、validated并进入history；
+- `ownershipConverged=false/true`：该evidence的Host nonce与当前Infra lifecycle authority完全一致。
+
+合法状态只有pre-ownership `(false,false)`、persisted-unconverged `(true,false)`和converged `(true,true)`；`(false,true)`必须投影`orchestrator_cleanup_unknown`。convergence failure不得抹去已经持久化的ownership scope，也不得覆盖immutable primary failure。
+
+### 63.3 Terminal and cleanup ordering
+
+Desktop control-monitor遇到EOF/invalid frame且成功赢得first-terminal时，先写入content-free FD4 terminal并flush/close，再将driver置Failed；随后以最多7秒strict stop已拥有Host，最后退出Desktop。stop失败或timeout仍fail closed并退出，但不会产生第二个terminal frame。
+
+Infra对persisted-unconverged lifecycle使用已验证的Host ready identity读取对应stopped manifest，校验run ID、PID/PPID、binary digest、nonce、start time和terminal state后写入run evidence。真正pre-ownership继续要求descendant absence；converged路径沿用完整ownership cleanup。所有路径保留primary first-wins、no retry和canonical closure。
+
+### 63.4 Acceptance boundary
+
+DESIGN-126-030只关闭LIA-126-052暴露的private feature-only ownership/cleanup组合。真实macOS Tauri、FD control failure、Host stopped manifest与Desktop exit的完整现场时序保留为P2/R8验证项。本设计完成不等于R8 PASS，也不授权执行。
