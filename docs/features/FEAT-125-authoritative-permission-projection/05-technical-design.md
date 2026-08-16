@@ -425,3 +425,38 @@ local-lab 证据。
   user provisioning、API bootstrap 与 core online PASS。G3 与 S5B PASS，feature 继续关闭。
   生产 IdP、域名/TLS、Secret Manager、Apple 签名与 ingress 配置保持 G5 Blocked；真实部署前
   必须恢复完整生产级身份安全链路和 S7/G4/G5/G6。
+
+## 15. 本地白名单登录附录（EXC-125-003）
+
+该附录只定义本地 Desktop 私有登录入口，`contract-impact = semantic`，原因是新增了携带一次性
+本地凭据的私有 Tauri IPC 和本地 deployment flags；Public OpenAPI、API handler、JWT verifier、
+PostgreSQL schema 和 Agent Host wire 均为 N/A/未改变。
+
+```text
+Settings 空白账号/密码表单
+  -> native_auth_local_whitelist_login(request)
+  -> Rust local + local-integration + exact-true gates
+  -> username/password SHA-256 fingerprint match
+  -> owner-only ignored FEAT-125 synthetic secret authority
+  -> existing synthetic Authorization Code + PKCE client
+  -> existing install_issued_tokens / refresh / logout
+  -> existing tenants + capabilities + Chat authorization
+```
+
+前端 `VITE_YIJIE_LOCAL_WHITELIST_LOGIN_ENABLED` 与 `VITE_YIJIE_ENV=local` 只决定第一步是否
+显示表单；它们不替代 Rust runtime gate。表单隐藏时，原有系统浏览器登录按钮仍可用。
+
+不变量：
+
+- 前端开关 `VITE_YIJIE_LOCAL_WHITELIST_LOGIN_ENABLED` 默认关闭且只在
+  `VITE_YIJIE_ENV=local` 时显示表单；它不是 native 安全边界。Rust 开关
+  `YIJIE_DESKTOP_LOCAL_WHITELIST_LOGIN_ENABLED` 默认关闭且只接受精确 `true`；Rust 另要求
+  `YIJIE_ENV=local` 与 `YIJIE_DESKTOP_AUTH_ENVIRONMENT=local-integration`。
+- `YIJIE_DESKTOP_LOCAL_WHITELIST_IDP_SECRETS_PATH` 必须为 absolute、owner-owned、regular
+  non-symlink、`0400/0600` 文件，并包含精确四项 FEAT-125 local secret inventory；production
+  或部分配置直接使 native auth runtime invalid。
+- tracked code 只保存 Owner 指定账号和密码各自的 SHA-256 指纹；原文不进入源码、文档、
+  fixture、日志或初始 DOM。Tauri request 拒绝未知字段并在 drop 时 zeroize。
+- 白名单匹配只选择既有 synthetic user A；它不生成 Principal、capability 或 API session。
+  API 仍从标准 bearer `(issuer, subject)` 映射 user，并逐请求验证 tenant/membership/RBAC。
+- 回滚关闭两个白名单开关并重启 Desktop；标准系统浏览器 `native_auth_login` 始终保留且未修改。

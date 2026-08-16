@@ -19,6 +19,7 @@
 | DEC-013 | Public API 错误 | 复用任意 HTTP 状态 / 固定安全语义 | 仅 400/401/403/500/503；不使用 409；200-empty 表示合法零权限 | consumer 可稳定 fail-closed 且不混淆无权限与依赖故障 | 段成威 | Accepted / A3、A4 |
 | DEC-014 | 当前无云资源时如何完成工程集成 | 等待云资源 / HTTP mock / 本地类生产环境 | G3-NP-LOCAL：loopback-only Keycloak + 专用 PostgreSQL + Caddy HTTPS + synthetic data；IdP/API 为 `localhost` 独立端口；Desktop 显式 CA pin 与 Keychain issuer/client/environment binding | 不等待云资源，同时保留真实 OIDC/TLS/RBAC/隔离语义；禁止 mock 或 insecure TLS 冒充集成 | 段成威 | Accepted / A7；offline ready/core online/final gates PASS |
 | DEC-015 | S7 外部前置暂不可得时是否阻断后续业务开发 | 无限继续本地模拟 / 完全阻断业务 / 分离本地工程与生产激活里程碑 | `Local Engineering Baseline Complete / Production Activation Blocked`；冻结 S7 到真实部署准备，允许首页/聊天/Tasks 使用合成身份与权限继续开发；flags 默认关闭 | 当前无生产资源、生产 IdP 或 Apple 签名能力；现有契约/API/consumer/local 安全基线足以支持业务编码，但不足以宣称生产完成 | 段成威 | Approved 2026-08-01；不改变 ADR/契约；G4/G5/G6 保持未通过 |
+| DEC-016 | 已冻结生产身份验证但本地业务功能需要立即可登录时如何处理 | 放宽 API verifier / 前端伪造权限 / 本地 Desktop 白名单桥接现有 synthetic OIDC | 采用第三项：新增专用本地 Tauri command；原始账号与密码只在本次 UI→Rust 调用内存在，Rust 以 tracked SHA-256 指纹校验后读取 ignored owner-only synthetic IdP secret，并复用现有 Code+PKCE、token、API 权限和 Chat authorization | 不改变 API、JWT verifier、RBAC、生产 OIDC 或默认构建；把特例限制在可删除的 Desktop 本地入口，同时让全部后续业务仍经过服务端权威权限链 | 段成威 | Accepted 2026-08-16 / EXC-125-003；contract-impact semantic（私有 IPC/deployment interface），Public Contracts N/A |
 
 段成威已于 2026-07-31 明确批准 A1—A6。G1 需求/架构决策与 G2 设计门通过；2026-08-01
 已执行并完成获特别授权的 S1/S2 Contracts candidate；段成威已于 2026-08-01 通过 G2A，
@@ -76,6 +77,7 @@ S7 已留下真实 blocker 证据，段成威随后批准 DEC-015：当前停止
 | R-018 | Keycloak rotation 被误报为 reuse-revokes-family | high if wording not constrained | high | 本地 config 固定 `provider_limit_documented`；G3 只记录 rotation，不记录 A2 family PASS | 生产恢复时执行 provider auth-lifecycle E2E | 换用满足要求的 provider/补偿控制并重新走安全评审 | 段成威 | deferred production-activation blocker；不阻断本地业务开发 |
 | R-021 | pinned Keycloak 26.7 access JWT 缺少已批准 API 契约要求的 `nbf` | high | high | S7 harness 在发送 bearer 前严格校验 `iss/sub/aud/alg/kid/iat/nbf/exp`；不得放宽 API 或伪造 claim | 真实系统浏览器 Code+PKCE/loopback/code exchange 后稳定得到 `not_before_missing`；API 对同 token 返回 401 | 选择原生支持 `nbf` 的获批 IdP，或由段成威另行批准修改身份契约/ADR 后重做 API/provider conformance | 段成威 | open；deferred blocker for resumed S7/G4/G5，不阻断本地业务开发 |
 | R-022 | 当前 Mac 无有效 code-signing identity/entitlement，Data Protection Keychain 真机写入失败 | high | high | 只执行隔离 synthetic service 的 ignored smoke；失败后确认无残留；不得降级普通 Keychain、文件或 LocalStorage | macOS error `-34018`；`security find-identity -v -p codesigning` 为 0 | 配置匹配的 Apple Development provisioning/entitlement，生成签名 native candidate 后复跑完整 Keychain/browser/Rust lifecycle | 段成威 | open；deferred blocker for resumed S7/G4/G5，不阻断本地业务开发 |
+| R-023 | 本地白名单入口或账密泄漏到 production/default、日志、Git、DOM 默认值或通用 IPC | low with gates | critical | Vite/Rust exact-true 双开关 + `YIJIE_ENV=local` + `local-integration` + localhost OIDC/API + owner-only exact secret inventory；tracked 仅存不可逆指纹；专用 request `deny_unknown_fields` 且 drop zeroize；登录后仍走 API JWT/RBAC | flag truth table、Rust config/secret parser、credential/error/Git scan、production/default build absence、真实 tenants/capabilities/Chat bind | 删除两个白名单开关并重启 Desktop；撤销本地 synthetic refresh；若 raw credential 泄漏则立即轮换 Owner 白名单凭据 | 段成威 | accepted local-only residual；不得作为 S7/G5/production evidence |
 | R-019 | local bootstrap 误连共享或真实数据库 | high before guard | critical | `feat-125-local-lab` 在任何 DB 访问前锁死 exact issuer、credentialed `postgres://<credentials>@127.0.0.1:5432/yijie_api_feat125_local?sslmode=disable` 结构及固定 tracked 2×2 manifests；错误脱敏 | profile/DSN/manifest 负测 + 空库 inventory + 首次/幂等 bootstrap 对账 | unknown/drift fail closed；禁止写操作 | 段成威 | resolved in API `faeb78019d95aaf9dcfbd8493f8bc2ecf7e4bf34`；dedicated DB runtime proof PASS |
 
 ## 4. 威胁建模
@@ -83,6 +85,7 @@ S7 已留下真实 blocker 证据，段成威随后批准 DEC-015：当前停止
 | 资产/边界 | 威胁 | 攻击路径 | 服务端控制 | 安全测试 | 残余风险 |
 |---|---|---|---|---|---|
 | access/refresh credential | 窃取与重放 | LocalStorage、日志、redirect 泄漏 | 系统浏览器、PKCE S256、10 分钟 access、Keychain、refresh rotation/reuse detection、TLS | storage/log/redirect；验证有效 bearer 在到期前的残余重放窗口 | IdP/OS 风险；无 DPoP，access JWT 最长 10 分钟可重放；本地 Keycloak family reuse 未证明 |
+| local whitelist credential | 原始账密泄漏或入口越界 | 前端预填、日志/错误、tracked env、非 local 调用专用 IPC | 每次空白输入；tracked 仅指纹；Rust 多重环境门、输入上限、统一失败、request drop zeroize；owner-only ignored IdP secret | DOM/IPC/config/parser/error/Git scan 与 production/default absence | 本地操作者可读进程内存；不属于生产凭据方案 |
 | Desktop authenticated transport | confused deputy/SSRF/token IPC | 任意 operation/URL/method/header/body、redirect 越界、command/event 泄漏 | 固定两 GET operations 与 API HTTPS origin/path；Rust 内附加 bearer；IPC 无 token/Authorization 输入 | SEC-005/012 allowlist、redirect、IPC fuzz | 已批准 API origin 或 Rust dependency compromise |
 | Principal | 伪造 issuer/subject | 错签名、错误 audience、alg confusion、未知 kid | 严格 issuer/aud/alg/time/JWKS 验证 | auth matrix | IdP compromise |
 | active tenant | 越权切租户 | 缺失或伪造 `X-Yijie-Tenant-ID` | header 只作选择提示；user/tenant/membership 每请求验证；repository 显式 tenant | 0/1/多租户、header 与 two-tenant forgery | 管理员错误授权 |
@@ -124,6 +127,17 @@ S7 已留下真实 blocker 证据，段成威随后批准 DEC-015：当前停止
 |---|---|---|---|---|---|---|---|
 | EXC-125-001 | 旧 `/v1/tasks` 尚未迁移到权威身份/租户/RBAC | 仅旧 Tasks handlers 与生产暴露；不覆盖 capability endpoint；默认 legacy profile/wire 保持不变 | 段成威 | A6 | FEAT-126 生产启用或 2026-09-30，取较早者 | 获批宿主 profile 不注册 task handlers + production ingress 拒绝；独立 handler registration 断言 + internet/Desktop/untrusted network 三来源负测 | FEAT-126 完成并生产启用；到期未完成不得开放 Tasks，必须重新审批 |
 | EXC-125-002 | `rsa 0.9.10` 暂无修复版本且仅由 `openidconnect 4.0.1` 传递引入 | 仅 S5A RS256 公钥验签 candidate；不覆盖任何 RSA 私钥、签名或解密 | 段成威 | S5A commit、安全矩阵与审查记录 | G5 复核或上游修复可用时，取较早者 | exact lock、`.cargo/audit.toml` 有理由 ignore、每次 audit、禁止 private-key operation | 升级到修复链并删除 ignore；若不能证明 verifier-only 则停止发布 |
+| EXC-125-003 | 生产身份/签名治理已冻结且持续排障阻塞本地 Chat 与后续业务运行 | 仅 loopback synthetic FEAT-125 Desktop；单一 Owner 指定账号；不覆盖 API/JWT/RBAC/真实数据/生产/default | 段成威 | 2026-08-16 用户明确指令、DEC-016 | 真实部署准备或本地白名单不再需要时，取较早者 | raw credential 不入 Git；前后端双开关、local-integration/localhost/owner-only secret 多门；每次重新输入；错误统一；服务端权限链不变 | 删除专用 command/form/config 和两个开关；恢复系统浏览器路径；真实部署前不得携带该入口 |
+
+### R-023 / EXC-125-003 gate clarification
+
+本地 UI flag 只控制 Settings 表单是否进入前端构建；它不是可由 Rust 信任的安全输入。
+`native_auth_local_whitelist_login` 的实际安全边界是 Rust exact-true flag、`YIJIE_ENV=local`、
+`local-integration`、localhost OIDC/API 和 owner-only secret authority。UI flag 关闭时表单隐藏，
+系统浏览器登录仍可用；Rust gate 关闭或配置漂移时专用 command fail closed。该解释覆盖上表中
+“前后端双开关”措辞，并保留生产/default 不可显示、不可运行的要求。
+固定账号/密码的 SHA-256 指纹可被本地操作者离线猜测，属于该一次性本地例外的已接受 residual；
+原文仍不得进入 tracked 资产，且不得复用于生产身份方案。
 
 ## 8. Codex 停止条件
 
@@ -156,4 +170,5 @@ S7 已留下真实 blocker 证据，段成威随后批准 DEC-015：当前停止
 | S5A dependency exception | 段成威 | Accepted for non-production S5A candidate；G5 必须重审，禁止扩大到 RSA 私钥运算 | 2026-08-01 | EXC-125-002、Desktop security matrix、`cargo audit` PASS with documented ignore |
 | 生产 IdP 与生产配置 | 段成威 | Pending；G5 blocker | 2026-07-31 | production issuer/client ID/domain/TLS/secret 尚未登记 |
 | A7 / G3-NP-LOCAL | 段成威 | PASS；最小显式 CA 方案、offline ready、core online 与最终三仓门禁完成；随后 S5B 已单独批准并完成 | 2026-08-01 | local-only CA pin evidence；不修改系统 Keychain/生产配置 |
+| 本地白名单登录（DEC-016 / EXC-125-003） | 段成威 | Approved；仅用于当前 loopback synthetic 服务，允许绕过系统浏览器/签名治理阻塞但不得绕过 API 权限治理 | 2026-08-16 | 用户明确指令；raw credential 不进入 tracked 资产 |
 | 生产环境与激活 | 段成威 | Deferred；本地 G3 PASS 不替代 G5/G6 | 2026-08-01 | A7 明确保留门 |

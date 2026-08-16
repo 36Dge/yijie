@@ -111,6 +111,9 @@ artifact，也不得把 develop 分支当作生产 release manifest。
 | `VITE_YIJIE_AUTHORITATIVE_PERMISSION_UI_ENABLED` | false；仅精确 `true` 启用 | S6 build/channel；per-user/cohort control 待 G5 | provider smoke→S7→canary build | false：protected items=0 + Settings login/core recovery only | 段成威 |
 | `YIJIE_API_SERVICE_PROFILE` | default/legacy | API handler namespace | local runtime only: exact `feat-125-local-lab` | stop dedicated host API；clear env；do not start default profile as substitute | 段成威 |
 | `YIJIE_DESKTOP_AUTH_ENVIRONMENT` | production | Desktop credential namespace | local code only: exact `local-integration` | sign out/purge mismatched envelope；restore production | 段成威 |
+| `VITE_YIJIE_LOCAL_WHITELIST_LOGIN_ENABLED` | false | local Desktop build only | exact `true` + `VITE_YIJIE_ENV=local`；仅控制表单显示 | rebuild/restart with false；form absent；browser login remains | 段成威 |
+| `YIJIE_DESKTOP_LOCAL_WHITELIST_LOGIN_ENABLED` | false | local Desktop Rust process only | exact `true` + `YIJIE_ENV=local` + local-integration | set false and restart；command rejects | 段成威 |
+| `YIJIE_DESKTOP_LOCAL_WHITELIST_IDP_SECRETS_PATH` | unset | local ignored owner-only file | only with exact Rust whitelist flag | unset and restart；partial config fails closed | 段成威 |
 
 Infra Compose profile `feat-125-local`、API service profile `feat-125-local-lab` 与 Desktop auth
 environment `local-integration` 是三个不同命名空间；不得互换或以一个值隐式启用另一个边界。
@@ -203,6 +206,7 @@ projection 环境；再关闭 Desktop local flags、撤销本地 session/清除�
 | 跨租户/fail-open/token leak | stop rollout、flags off、撤销相关凭证 | rollback/roll-forward security fix | 保留审计，隔离受影响 membership | SEC/E2E+log review | 段成威 |
 | auth/JWKS/DB outage | Desktop protected=0、API deny | 回退 provider only if endpoint compatibility remains | no destructive data rollback | 503/recovery smoke | 段成威 |
 | G3 local startup/CA failure | keep G3/S5B blocked；no insecure fallback | stop dedicated host API + clear local env；stop local Compose | retain synthetic local DB/audit unless explicit cleanup approved | ports closed；default profile unchanged；no trust-store residue | 段成威 |
+| local whitelist leak/gate drift | disable both whitelist flags、logout/revoke local synthetic refresh、stop local Desktop | remove/roll back dedicated command/form only；standard browser path unchanged | no DB change；rotate Owner whitelist credential if raw input leaked | default/production form absent；Rust command rejected when its gate is off；Git/log scan clean | 段成威 |
 | Desktop stale/route bypass | stop Desktop channel/flag off | roll-forward preferred | clear process/JWT-derived permission state | nav/route/direct API | 段成威 |
 | migration failure | pause deploy | old app on expanded/partial safe state | follow approved migration recovery | schema status+old app smoke | 段成威 |
 | contract/digest drift | stop tag/release | return to fixed candidate | none | regenerate+digest | 段成威 |
@@ -257,4 +261,5 @@ projection 环境；再关闭 Desktop local flags、撤销本地 session/清除�
 | API local CA trust | 段成威 | Approved minimal local-profile-only scope；implemented and verified | 2026-08-01 | API `faeb78019d...`；offline ready/core online PASS；system Keychain unchanged |
 | S5B | 段成威 | Approved / complete / remote verified | 2026-08-01 | Desktop final `f94ac343881b0f7df59c0f5f4169372e612fd019`；feature off；S6/G4 separate |
 | Local engineering milestone | 段成威 | Complete；S7 frozen；production activation blocked | 2026-08-01 | 允许本地合成数据业务开发；flags 默认关闭；真实部署前恢复完整生产身份安全链路 |
+| EXC-125-003 local whitelist | 段成威 | Approved for current loopback synthetic services only；not release/production evidence | 2026-08-16 | Owner explicit instruction；DEC-016；raw credential excluded from tracked assets |
 | Go/No-Go | 段成威 | Pending | G5 后 | final manifest/runbook/rehearsal |

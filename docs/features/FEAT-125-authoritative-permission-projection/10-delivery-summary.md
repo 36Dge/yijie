@@ -141,3 +141,52 @@ gate。Keycloak `provider_limit_documented`、缺失 required `nbf` 与未签名
 | G6 Delivery Complete | 段成威 | Not approved / production activation blocked | 2026-08-01 | S1—S6 remote；G3 passed；S7 frozen after blocker evidence；S8/G4/G5/G6 Pending |
 
 - 正式关闭时间：N/A。
+
+## 12. 2026-08-16 本地运行附录
+
+- Owner 已批准 `EXC-125-003`，用于停止继续消耗时间验证生产登录前置，并让当前 loopback
+  synthetic 服务可以支撑 Chat 与后续业务功能运行。
+- Desktop 新增默认关闭的账号/密码表单和专用 Rust command；tracked code 仅存账号/密码
+  SHA-256 指纹，原始 credential 不写入本 feature package 或其它 Git 资产。
+- 该入口复用现有 synthetic Authorization Code + PKCE、token 安装、tenant/capability 投影和
+  Chat authorization；API、JWT verifier、RBAC、数据库与 Public Contracts 未修改。
+- 本附录只更新本地工程状态，不改变 `Production Activation Blocked`、S7/G4/G5/G6 或
+  FEAT-124 G4-001 的结论。关闭双开关并重启 Desktop 即移除运行态特例。
+
+## 13. 2026-08-16 停止状态记录
+
+- 按 Owner 指令停止继续尝试生产/真实身份安全检验；本地白名单实现已完成并保留为未提交工作区变更，
+  未执行 commit 或 push。
+- 停止的是本次登录验证与 Desktop/Agent Host 体验进程；记录时本地依赖仍在运行：admin Vite `5173`、
+  default API `8080`、local API `18080`、Caddy `8443/9443`、connectors `18081`、knowledge `18082`
+  与 FEAT-125 Docker 依赖均可见；Desktop Vite `1420` 和 Agent Host `18083` 未监听。上述现存进程
+  属于此前工作区状态，未被本次变更操作。
+- 白名单登录的组合运行验证暂不执行；已完成针对性与全量静态/单元门禁，后续启动本地服务时应使用本附录的
+  双开关、local-integration 和 ignored owner-only secret 配置，并在真实 Chat 体验前重新记录 tenants、
+  capabilities、bind 与回复证据。
+
+## 14. 2026-08-16 恢复运行与本地组合验收
+
+- Owner 随后要求恢复启动并持续排查直至登录成功；本节取代第 13 节中“组合运行验证暂不执行”的
+  运行态结论，但保留其停止时点记录。所有实现与文档变更仍未 commit、未 push。
+- Desktop 白名单表单以每次空白输入方式完成 synthetic 登录；tenant A 选择成功，capability
+  投影进入“权限已就绪”，authorization revision 为 3。随后验证 token refresh 与 Desktop
+  重启后的 session restoration 均成功。
+- 首次 capability 失败的根因是 Desktop 在请求发出前采样时间，而 API 在处理请求后签发
+  `server observed time + 5 minutes` 的投影；正常网络耗时因此可能被客户端误判为超过五分钟上限。
+  Desktop 已改为响应到达后采样，仍严格拒绝已过期或超过响应观察时刻五分钟的投影，没有放宽安全边界。
+- Chat 首次创建任务失败的独立根因是 `18080` 主 API 漏设 Secure Tasks runtime flag，导致
+  `POST /v2/tasks` 返回 `404`。使用同一 local-lab 配置开启该 flag 后，direct `18080` 与
+  edge `9443` 的匿名探针均返回预期 `401`，证明路由与认证中间件已挂载。
+- Desktop 随后在已注册的隔离项目中创建新任务并发送无工具、无文件修改请求；任务进入“已完成”，
+  对话记录显示真实模型回复 `LOCAL_CHAT_E2E_OK`。这同时覆盖标准 bearer、tenant/capability、
+  task owner/bind、Agent Host 与 Desktop 回复呈现链路，不以伪造 Pinia 状态替代服务端校验。
+- 验收后保留正式体验栈运行：Desktop/Vite `1420`、API `18080`、connectors `18081`、knowledge
+  `18082`、Agent Host `18083`、local IdP/Caddy `8443/9443`；仅关闭切换期间使用的临时 API
+  `18084`。各正式 health/readiness 探针为 `200`。
+- 最终本地门禁：Desktop 完整 frontend 32 files / 213 tests、production build、lint、
+  5-file targeted 66 tests、Rust native-auth 53 tests 均 PASS；1 项会修改后清理隔离 Keychain item 的
+  显式 smoke 按既有设计 ignored。Desktop 与 feature package 的 `git diff --check` 均 PASS。
+- 原始白名单 credential、OIDC token、Cookie 与数据库 DSN 均未写入本 feature package、测试、
+  代码或验收日志；tracked 资产继续只保留既有指纹与本地 fail-closed 配置约束。本次结果仍只属于
+  `EXC-125-003` 本地工程证据，不改变 Production Activation Blocked 或 S7/G4/G5/G6 状态。

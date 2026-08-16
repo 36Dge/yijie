@@ -39,6 +39,7 @@
 | BR-023 | v1 不持久化 last tenant 或 capability projection；每次 Desktop 进程启动都重新调用 `GET /v1/me/tenants` 并按 0/1/multiple 规则恢复选择，随后重新拉取 capability。禁止从上次运行恢复 tenant/capability 作为当前授权事实 | A3 / 段成威 | Must |
 | BR-024 | Rust 持有 access token 时，WebView 只通过两个 operation-scoped native calls 访问 `GET /v1/me/tenants` 与 `GET /v1/me/capabilities`；Rust 使用固定 API HTTPS origin/method/path 并在内部附加 bearer。IPC 不返回 token，也不接受任意 URL、method、Authorization header 或通用代理 payload；响应由固定 contract 生成类型/adapter 消费 | A2 的最小暴露实现 / 段成威 | Must |
 | BR-025 | 当前工程环境只使用 loopback、Docker 与合成数据：本地 Keycloak public client、专用 PostgreSQL 和 Caddy HTTPS；API local profile 必须在任何 manifest/migration/DB 访问前锁死 exact issuer、`127.0.0.1:5432/yijie_api_feat125_local`、唯一 `sslmode=disable` query 与固定 tracked 2×2 synthetic matrix，禁止连接共享/生产库。API 仅在 `feat-125-local-lab` 接受绝对 CA PEM 路径与 lowercase SHA-256 pin，要求单 PEM/≤64KiB/0400或0600/regular non-symlink，并使用禁代理禁重定向的隔离 TLS client；default/production/disabled projection fail closed，禁止 insecure TLS 或系统 Keychain 修改；Desktop local-integration Keychain envelope 必须绑定 issuer/client/environment。本地通过不代表生产配置或激活通过 | A7 / 段成威 | Must |
+| BR-026 | 为解除本地业务开发阻塞，Desktop 可提供单一 Owner 指定白名单账密表单。每次登录必须重新输入账号和密码；原始账密不得写入 Git、日志、错误、fixture 或前端默认值，tracked code 仅保存 SHA-256 指纹。前端仅在 `VITE_YIJIE_ENV=local` 且 UI flag exact-true 时显示；Rust command 仅在 `YIJIE_ENV=local`、OIDC `local-integration`、Rust flag exact-true 和 owner-only 本地 IdP secret 文件同时满足时接受，前端 flag 不被当作 native 安全边界。通过后仍走固定 synthetic Authorization Code + PKCE、标准 bearer、API tenant/membership/RBAC 与原有 Chat authorization。production/default/普通 local 构建不得显示该入口，Rust 非 local 配置必须 fail closed | Owner 2026-08-16 指令 / EXC-125-003 | Must |
 
 ## 3. 用户流程
 
@@ -83,6 +84,18 @@
 5. schema 不支持、tenant 不一致或 payload 非法：视为安全错误，丢弃响应并 fail-closed。
 6. 旧 epoch 或旧 tenant 的迟到响应：静默丢弃，不覆盖当前状态。
 
+### 本地白名单例外流程
+
+1. 仅在显式本地白名单构建中，Settings 显示空白账号输入框和 masked 密码输入框；不预填、
+   不回显、每次登录重新输入。
+2. WebView 只把本次输入交给专用 Tauri command；Rust 对账号和密码分别做 SHA-256 指纹
+   比较，失败统一返回认证失败，不输出输入或 provider 细节。
+3. 指纹匹配后，Rust 从 owner-only、absolute、regular non-symlink、`0400/0600` 且 Git ignored
+   的 FEAT-125 本地 secrets authority 读取既有 synthetic user A IdP secret，执行固定
+   Authorization Code + PKCE 流程并复用原有 token 安装、刷新、权限投影和 logout。
+4. 该例外不创建 API session、不放宽 JWT verifier、不伪造 capability、不跳过 tenant/member/
+   resource authorization；删除两个白名单开关即恢复原有系统浏览器登录路径。
+
 ### 取消、重复与部分成功
 
 - 取消语义：新请求、logout 或租户切换使用 AbortController 取消旧请求并使旧 epoch 失效。
@@ -116,6 +129,7 @@
 | AC-020 | `tenant_owner`、`tenant_member` × 2 tenants | 执行跨仓矩阵 | owner 精确 7 key；member 精确 `task.create/task.read`；跨租户泄漏为 0 | 冒号 key、额外隐式 key、角色名直接驱动前端或跨租户 union | 段成威 |
 | AC-021 | FEAT-126 未生产启用且日期早于例外期限 | FEAT-125 发布 | Tasks 契约和默认 API profile 的 legacy wire 不变；获批的 FEAT-125 宿主 profile 不注册 handlers，public ingress 拒绝 legacy 路由，Desktop 不调用；到期自动阻断 Tasks | 用 FEAT-125 静默修改/暴露 Tasks、误称默认 profile 已关闭、只做客户端隔离或无限延期例外 | 段成威 |
 | AC-022 | G3-NP-LOCAL 配置与本地依赖已准备 | 创建并盘点专用 API DB，执行 offline ready、启动本地栈并执行 online preflight | 专用 DB migration 前 public tables=0、bootstrap 前业务行=0；Keycloak exact realm/two clients/canonicalized scope sets/explicit `userinfo.token.claim=false` mapper/strict managed `data_classification` user profile（Keycloak 26.7 REST omitted field = unmanaged disabled）/two fixed users/password resets/refresh revocation `invalid_grant`、discovery/JWKS、Caddy TLS、API health/ready、tracked synthetic bootstrap 首次/幂等与 Tasks ingress+handler 双隔离均以真实本地组合通过；Keycloak 必须在任何写操作前只读核验 realm/clients/full two-user inventory/core/attributes，仅 exact default profile + empty attributes 可迁移，意外状态在 PUT/reset 前拒绝；CA/密码/token/真实数据不进入 Git | 连接共享/生产 DB、HTTP issuer/API、关闭证书校验、mock JWT 冒充集成、把本地 PASS 写成生产 PASS | 段成威 |
+| AC-023 | local UI gate、Rust runtime gate、`local-integration` OIDC 和 owner-only FEAT-125 secrets authority 均有效 | 用户在 Settings 每次输入 Owner 指定白名单账号与密码并提交 | 专用 Tauri command 完成 synthetic Code+PKCE 登录，调用前清空 UI 输入；现有 tenants/capabilities、tenant/owner 绑定和 Chat authorization 全链通过。错误账密、部分 native 配置、非 local 环境、非 localhost OIDC/API 或错误 secret 文件均统一失败且不泄漏输入；系统浏览器登录回退保持可用 | 前端预填/持久化账密、在 Pinia 伪造 ready、跳过 API JWT/RBAC、扩大到 production/default、把白名单原文写入 tracked 文件 | 段成威 |
 
 ## 5. 状态与错误语义
 
@@ -155,6 +169,7 @@
 | NFR-006 | 可追溯 | contract、generator、producer、consumer 均有完整 SHA/digest | 任一浮动引用即阻断 |
 | NFR-007 | 隐私 | token、外部 subject、完整 capability 不进入日志/fixture | 任一泄漏即阻断 |
 | NFR-008 | 原生认证安全 | callback 仅为精确 `http://127.0.0.1:<ephemeral-port>/oauth/callback`；state/PKCE/ID-token nonce 验证；Keychain service 和 token 生命周期符合 BR-018；native opener/listener/transport 最小权限且 transport 仅允许两个固定 GET operations | 任一 deep-link/embedded login、非 loopback/错误 path、generic proxy、任意 URL/header、普通存储 fallback、refresh reuse 未撤销 family 或 token IPC 泄漏即阻断 S7/G5；G3 不得伪造该证据 |
+| NFR-009 | 本地白名单隔离 | raw credential 在 DOM 初始值、Git、日志、错误和测试 fixture 中均为 0；production/default artifact 中表单入口为 0；Rust gate 对部分配置 fail closed，前端 UI gate 仅控制显示 | 任一原始账密落盘/回显、Rust gate 关闭后仍可调用、非 local 可用或绕过 API 权限即阻断 EXC-125-003 |
 
 ## 8. 外部副作用与审批
 

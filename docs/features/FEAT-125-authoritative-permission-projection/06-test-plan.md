@@ -224,3 +224,18 @@ PASS；该完整提交已推送并核验，但不包含系统浏览器、
 |---|---|---|---|
 | 测试/技术 Owner | 段成威 | G2/G2A/S4/S5A/S5B/S6 Approved；G3-NP-LOCAL 与 core online PASS；批准 Local Engineering Baseline Complete，冻结 S7；现有 `nbf`/signed Keychain/2×2/perf 缺口在真实部署前恢复验证 | 2026-08-01 |
 | 安全/数据 Owner | 段成威 | API 严格 JWT 契约不降级；Keycloak 26.7 缺 `nbf`、family-reuse 未证明、macOS `-34018`/0 signing identities 均继续阻断生产激活，但不阻断使用合成数据开展本地业务开发 | 2026-08-01 |
+
+## 14. EXC-125-003 本地白名单验证
+
+| Test ID | 层级 | 断言 | 阻断条件 |
+|---|---|---|---|
+| WL-001 | Vue config/UI | 仅 exact `true` 显示表单；账号初值为空、密码 masked；空字段错误关联字段；成功/失败均清空密码 | 预填、回显、键盘不可提交或非 exact flag 可见 |
+| WL-002 | TypeScript IPC | 只调用 `native_auth_local_whitelist_login`，payload 只有 `request.username/password`；错误不反射 provider/input | 通用 proxy、token/Authorization 输入输出或错误泄漏 |
+| WL-003 | UI/Rust config | UI 仅 local env + exact Vite flag 显示；command 仅 local + local-integration + exact Rust flag + absolute secret path 组合通过；partial/production/default fail closed；系统浏览器回退始终保留 | 任一 native 单门可启用或 UI 隐藏时无回退 |
+| WL-004 | Rust credentials/secret | tracked 指纹精确匹配；输入有上限；secret 文件 owner/mode/type/inventory/hex/duplicate 全校验 | raw credential 进入 tracked 资产或错误 secret 被接受 |
+| WL-005 | 本地组合 | 白名单成功后标准 token 被现有 API 接受，tenant/capability ready，Chat bind/owner/tenant/capability 校验和真实回复通过；错误账密失败 | Pinia 伪造 ready、JWT verifier/RBAC bypass 或仅 UI 成功 |
+| WL-006 | 隔离/回滚 | 默认与 production build 无表单；关闭 Vite flag 隐藏表单，关闭 Rust flag 使专用 command fail closed；系统浏览器 command 保持原样 | 特例进入 release/production、Rust gate 关闭后仍可调用或 UI 无回退 |
+
+仓库门禁至少执行 Desktop `make lint && make test && make build`、聚焦 Vue/IPC/Rust tests、
+credential literal/Git diff scan；本地运行验证必须保留服务端 tenants/capabilities 与 Chat 证据，
+不得只以表单提示作为 PASS。
