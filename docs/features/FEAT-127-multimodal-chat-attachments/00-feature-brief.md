@@ -38,7 +38,7 @@
 
 ## 6. Owner 与授权
 
-需求、技术、评审和发布 Owner 均按单人开发默认值记录为段成威。2026-08-17 用户明确要求使用新流程创建 FEAT-127 并完成本地可用实现，同时明确无生产部署或云资源计划；这构成本地需求与实现方向授权。2026-08-19 用户另行授权对所有改动执行 Git add、commit 和 push；该授权不构成 tag、merge、release 或生产批准。
+需求、技术、评审和发布 Owner 均按单人开发默认值记录为段成威。2026-08-17 用户明确要求使用新流程创建 FEAT-127 并完成本地可用实现，同时明确无生产部署或云资源计划；这构成本地需求与实现方向授权。2026-08-19 用户另行授权对所有改动执行 Git add、commit 和 push，并在当前任务中明确要求完成 semantic Owner/consumer review、记录 Reviewer 批准并推进到 G4 PASS；该批准只覆盖当前本地候选的契约语义与 Code Complete 门禁，不构成 PR、merge、tag、release、G5/G6 或生产批准。
 
 ## 7. 视觉依据
 
@@ -49,4 +49,4 @@
 
 ## 8. 当前状态
 
-2026-08-18 的首次人工验收暴露了草稿恢复、导入进度、失败终态和测试证据缺口，因此此前“本地候选工程基线完成”的结论已撤回。缺口修复后的自动门禁通过；用户随后通过了 picker 与仅附件 Runtime 路径，拖拽首次验收失败后已修复，但修复后的拖拽复验及其余人工场景尚未记录。2026-08-19 已形成并推送 Contracts `ebdd30f...`、Host `673de86...`、Desktop `3efed9a...`，Host/Desktop 均 pin 到完整 Contracts commit。G2A 仍等待 semantic Owner/consumer 明确批准与 release tag，G3/G4 仍等待完整人工验收，不能写为需求关闭；生产激活不在本期范围。
+2026-08-18 的首次人工验收暴露了草稿恢复、导入进度、失败终态和测试证据缺口，因此此前过早的“本地候选工程基线完成”结论已撤回。缺口修复后的自动门禁通过；2026-08-19 用户已人工通过 picker、仅附件 Runtime、不支持格式提示、修复后图片拖拽、图文文件混合发送、已发送历史重开和未发送附件草稿重开。附件移除后重开、大小/压缩包边界和 10+1 容量由针对性自动回归验证，仍不能记为人工通过；VoiceOver、真实系统 200% 缩放和 reduced motion 仍为 `NOT RUN`。`EXC-127-001` 因此只让 G3 在保留上述证据标签时例外通过。Contracts `747cf740...`、Host `e2f0f5d...`、Desktop `2cb4ffd...` 已按依赖顺序形成、推送并精确 pin；canonical fixture 为 `ec464ce5...`。semantic Owner/consumer review 与 Reviewer 段成威批准均已记录，G2A 在 `EXC-127-002` 管理临时 Rust adapter 的前提下对本地候选通过，G4 为 `PASS`。`contracts-v0.3.0` tag、supported/release-ready、PR/merge、签名制品、G5/G6 和生产激活仍为 `PENDING` 或当前范围 `N/A/not passed`，不能由 G4 推导为发布批准。

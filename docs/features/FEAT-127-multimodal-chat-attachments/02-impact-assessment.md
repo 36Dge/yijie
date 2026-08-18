@@ -75,7 +75,7 @@ API、Infra、Knowledge、Connectors、Skills、Admin 不受本地实现直接�
 
 ## 9. 交付 Git 证据
 
-- Contracts：`ebdd30f076614ebc7f5149aebf70e851b81ff32b`，已推送到 `origin/feat/feat-126-content-free-candidate`；其中 `bd0dc050...` 为功能契约提交，`ebdd30f...` 补充 Go validator 兼容修复与回归测试。
-- Host：`673de86d3d076f4600eb0d0bfb215382677afd72`，已推送到 `origin/feat/feat-126-foundation-closure`，`api/contracts.lock` 精确固定 `ebdd30f...`。
-- Desktop：`3efed9aba5faab90ca3ea397a4d6489890df2026`，已推送到 `origin/feat/feat-126-foundation-closure`，Public API 与 Chat authority 均固定 `ebdd30f...`。
-- 三个实现仓提交后工作区与上游同步；没有 tag、merge、release artifact 或部署。
+- Contracts：`747cf740f2d91e76e5c1a130e8e009f1efa821b8`，已推送到 `origin/feat/feat-126-content-free-candidate`；它包含功能契约、Go validator 兼容修复、可严格解码的 canonical PNG fixture、回归测试与本地 semantic review 记录。
+- Host：`e2f0f5d0e7273331e7e9eaeeb82be15955e94c86`，已推送到 `origin/feat/feat-126-foundation-closure`，`api/contracts.lock` 精确固定 `747cf740...`。
+- Desktop：`2cb4ffdd87055e5f70aafacc63479154e0c62cad`，已推送到 `origin/feat/feat-126-foundation-closure`；Public API、Agent Host v2 lock 与 Rust readiness 均固定 `747cf740...`，canonical fixture SHA-256 为 `ec464ce56f749852e65be8d1472d8f5d8cccc82c89d2dd16fab33fbdbe62decc`。
+- 三个实现仓提交后工作区与上游同步；semantic Owner/consumer review 和本地 G4 Reviewer 批准已记录。没有 tag、PR、merge、release artifact 或部署；candidate 尚不是 supported/release-ready。

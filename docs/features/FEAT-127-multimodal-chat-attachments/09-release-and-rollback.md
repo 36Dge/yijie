@@ -6,14 +6,15 @@
 
 | Component | Version/tag | Full commit | Artifact digest | Contract pin | Environment |
 |---|---|---|---|---|---|
-| Contracts | `contracts-v0.3.0` 仅为候选名称；无 tag | `ebdd30f076614ebc7f5149aebf70e851b81ff32b` | source digests 见 `08`；无 release artifact | N/A | pushed feature branch |
-| Agent Host | 未发布 | `673de86d3d076f4600eb0d0bfb215382677afd72` | source commit only；无 release artifact | Contracts `ebdd30f...` | pushed feature branch/local |
-| Desktop | 未发布 | `3efed9aba5faab90ca3ea397a4d6489890df2026` | source commit only；无 signed artifact | Contracts `ebdd30f...` | pushed feature branch/local |
+| Contracts | `contracts-v0.3.0` 仅为候选名称；无 tag | `747cf740f2d91e76e5c1a130e8e009f1efa821b8` | OpenAPI `3d2f2273...`；fixture `ec464ce5...`；无 release artifact | N/A | pushed feature branch/local candidate |
+| Agent Host | 未发布 | `e2f0f5d0e7273331e7e9eaeeb82be15955e94c86` | source commit only；无 release artifact | Contracts `747cf740...` | pushed feature branch/local candidate |
+| Desktop | 未发布 | `2cb4ffdd87055e5f70aafacc63479154e0c62cad` | source commit only；无 signed artifact | Contracts `747cf740...`；Rust adapter under `EXC-127-002` | pushed feature branch/local candidate |
 
 ## 2. 当前发布判定
 
-- G2A：PENDING；不可变 full commit 与下游 pin 已形成，仍缺 Contracts Owner/consumer review 与 release tag。
-- G4：PENDING；三个实现仓已有干净可审查提交，仍缺完整 Desktop 人工验收、G2A 与 Reviewer 批准。
+- G2A：`PASS WITH EXCEPTION (EXC-127-002)` for local candidate；不可变 full commit、下游 pin、semantic Owner/consumer review 与 conformance 已完成。release tag/supported 状态仍 PENDING，但不是本地 G2A 前置。
+- G3：`PASS WITH EXCEPTION`；`EXC-127-001` 仅适用于当前本地候选，人工验收仍为 `PARTIAL`，真实 macOS 可访问性仍为 `NOT RUN`，到期或触发后回退 `PENDING`。
+- G4：`PASS` for local candidate；最终 commits/pins、门禁、独立审查与 Reviewer 段成威批准已记录，受两项有期限例外约束。
 - G5/G6：本地范围 N/A；没有生产配置、签名、公证、dashboard、告警、制品或批准。
 - 当前允许动作：本地 synthetic 测试、构建和人工验收；已完成授权范围内的 commit/push。
 - 当前禁止动作：merge、tag、signed/release build、部署、真实模型调用、购买/配置云资源。
@@ -22,9 +23,9 @@
 
 | Order | Action | Preconditions | Verification | Rollback point |
 |---:|---|---|---|---|
-| 1 | 对现有 Contracts commit 完成 Owner review；发布时再创建不可移动 tag | full commit `ebdd30f...` 与 checks 已形成；仍需 semantic/consumer review | tag 解析到同一 full commit 与 digest | 不发布 tag，继续 v1 |
-| 2 | 审查并合并已 pin exact contract 的 Host v2 provider | Host source commit `673de86...` 已形成；v2 route 默认不被旧 Desktop 调用 | race/conformance/fixed Runtime fake vertical slice | 停用/不部署 v2 route，v1 保持 |
-| 3 | 审查 Desktop `3efed9a...` 并形成签名候选 | Host provider merge ready；v7 backup/forward-only 边界获批 | lint/test/build/Tauri bundle/manual accessibility | 不分发 Desktop candidate |
+| 1 | 取得独立 release approval 后，为 Contracts `747cf740...` 创建不可移动 tag | local semantic review/checks 已完成；当前 release approval 未形成 | tag 解析到同一 full commit 与 OpenAPI/fixture digest | 不发布 tag，继续 v1 |
+| 2 | 审查并合并已 pin exact contract 的 Host v2 provider `e2f0f5d...` | release identity 可用；v2 route 默认不被旧 Desktop 调用 | race/conformance/fixed Runtime fake vertical slice | 停用/不部署 v2 route，v1 保持 |
+| 3 | 关闭或重新批准两项例外，审查 Desktop `2cb4ffd...` 并形成签名候选 | Host provider merge ready；v7 backup/forward-only 边界获批；真实 macOS accessibility 完成；Rust adapter generator/例外重新评审 | lint/test/build/Tauri bundle/manual accessibility/contract conformance | 不分发 Desktop candidate |
 | 4 | 备份当前加密数据库后升级到 v7 | 备份与对应旧应用可读、密钥可用、磁盘空间充足 | v6+v7 ledger、history、draft target/order、TTL、WAL checkpoint smoke | 恢复完整迁移前 backup，旧应用不能打开 v7 DB |
 | 5 | 小范围启用加号/拖拽与 v2 dispatch | Host/Desktop 版本组合兼容 | synthetic attachment smoke + telemetry redaction | 停止扩量；使用 v7 roll-forward 或恢复匹配旧版本的 backup |
 
@@ -85,4 +86,6 @@ Smoke 输入只允许合成 JPEG/PNG/PDF/TXT/DOCX 等 fixture，不使用真实�
 - 本地验证命令：见 `08-verification-report.md`，不等同部署或回滚演练。
 - 正式回滚演练：NOT RUN；需在类生产签名 Desktop、真实版本 pin 和复制的加密数据库上执行。
 - Release/Go-No-Go approver：段成威；当前未批准 release、tag 或生产激活。
+- G3 exception owner：段成威；`EXC-127-001` 不适用于签名、公证或可分发候选，进入这些阶段前必须补验并关闭或重新审批。
+- G2A/G4 adapter exception owner：段成威；`EXC-127-002` 在 approved Rust generator、schema/受锁 source 变化、到期或 signed/release candidate 前必须移除或重新审批。
 - 联系路径与值班机制：N/A；单人本地开发阶段未建立生产 on-call。

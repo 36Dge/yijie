@@ -70,19 +70,21 @@ SDK、fixture、Host adapter、IPC DTO 和数据库行均为派生表示，不�
 | planned version | `contracts-v0.3.0` semantic candidate；未 tag |
 | OpenAPI digest | `3d2f2273160aa05112f63d67f170229780d4526d679cd449a267890a933ea177` |
 | Chat schema digest | `3f277898f8204e02a400053cd56bec3b0eeb37ed2c50db3a6347e7fec61ddf34` |
-| generators | `openapi-typescript 7.13.0`; `oapi-codegen v2.7.2`; repository-pinned Protobuf/JSON Schema generation |
-| immutable contract commit/tag | full commit `ebdd30f076614ebc7f5149aebf70e851b81ff32b` 已形成并推送；release tag 未形成 |
-| downstream exact pin | Host `673de86...` 与 Desktop `3efed9a...` 均固定 `ebdd30f...` |
+| canonical turn fixture digest | `ec464ce56f749852e65be8d1472d8f5d8cccc82c89d2dd16fab33fbdbe62decc` |
+| generators | `openapi-typescript 7.13.0`; `oapi-codegen v2.7.2`; repository-pinned Protobuf/JSON Schema generation；Desktop Rust generator 为 `N/A`，由 `EXC-127-002` 管理手写 adapter |
+| immutable contract commit/tag | full commit `747cf740f2d91e76e5c1a130e8e009f1efa821b8` 已形成并推送；release tag 未形成，candidate 尚非 supported/release-ready |
+| downstream exact pin | Host `e2f0f5d...` 与 Desktop `2cb4ffd...` 均固定 `747cf740...` |
+| Desktop adapter/readiness digest | `host_bridge.rs` `c6e90e0e8eff736101fd2cf9eea39cf70064f9c59ab0bcd90b2e2fc9286e221d`; `chat/mod.rs` `9a0702519eb8ad39cab72aa6adf5b1e2bdc72103b84c92cc0b38e0f05b0a444a` |
 
 ## 7. Canonical Fixtures 与 Conformance
 
 | Fixture/test | Authority | Purpose | Status |
 |---|---|---|---|
-| `tests/fixtures/agent/host-v2/turn-request.json` | contracts | ordered text/file/image + idempotency request | PASS schema test |
+| `tests/fixtures/agent/host-v2/turn-request.json` | contracts | ordered text/file/image + idempotency request；严格可解码 PNG | PASS schema/Go decode/size/SHA；digest `ec464ce5...` |
 | `tests/agent-turns-v2.test.mjs` | contracts | closed union、bounds、v1 isolation | PASS |
 | `tests/chat-message-multimodal.test.mjs` | contracts | legacy projection + attachment history | PASS |
 | Host request/Runtime mapping tests | Host | semantic validation、order、idempotency、no persistence | PASS：race suite + fixed Runtime/local fake Responses vertical slice |
-| Desktop HostBridge tests | Desktop | generated/source-aligned wire and fail-closed mapping | PASS：v2 wire/order/hash、lost response、invalid 202、typed conflict tests |
+| Desktop HostBridge/contract lock tests | Desktop | source-aligned wire and fail-closed mapping；手写 Rust adapter 不冒充生成 DTO | PASS：Redocly+Ajv、byte-identical fixture、adapter/readiness digest、expiry/negative tests、Rust canonical serialization、v2 wire/order/hash、lost response、invalid 202、typed conflict |
 
 ## 8. 历史契约检查证据与重验要求
 
@@ -100,6 +102,8 @@ SDK、fixture、Host adapter、IPC DTO 和数据库行均为派生表示，不�
 ## 9. Gate 2A 与评审
 
 - 机器契约候选：2026-08-19 对最终 commit source 重跑 generate、lint、test 与 supported-baseline breaking check，全部通过；Go `kin-openapi` 兼容回归也已覆盖。
-- Consumer/Contracts Owner 人工批准：`NOT RECORDED`；Codex 的实现与总结不是人工批准。
-- 不可变 full commit 与下游 pin：`FORMED AND PUSHED`；release tag 未形成，因此不能声称已发布 Contracts。
-- Gate 2A：仍为 `PENDING`，剩余条件是 semantic Owner/consumer 明确批准与适用 release tag；禁止 merge、tag、signed release build 或 activation。
+- Semantic Owner/consumer review：`APPROVED FOR LOCAL CANDIDATE`。段成威作为 Contracts/Host/Desktop Owner 于 2026-08-19 明确批准，Contracts release note 与 supported baseline 已记录；自动 breaking check 不冒充该人工语义结论。
+- 不可变 full commit 与下游 pin：`FORMED, PUSHED AND VERIFIED`；Contracts `747cf740...` -> Host `e2f0f5d...` -> Desktop `2cb4ffd...`。release tag 未形成，因此不能声称已发布或 supported。
+- Desktop Rust generator：`N/A`；`EXC-127-002` 固定 adapter/readiness 源摘要、schema/fixture conformance、Owner、期限和移除触发，自 2026-11-18 起自动闭门。
+- Gate 2A：`PASS WITH EXCEPTION (EXC-127-002) FOR LOCAL CANDIDATE`。tag 是后续正式发布身份，不是本地 G2A 前置；`contracts-v0.3.0` tag 与 supported/release-ready 状态保持 `PENDING`。
+- Reviewer approval：段成威在当前任务于 2026-08-19 明确要求记录本地候选 Reviewer 批准；范围仅 G4 code-complete，不批准 PR、merge、tag、signed build、release 或 activation。

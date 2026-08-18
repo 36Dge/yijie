@@ -6,7 +6,7 @@ Desktop 是附件原件、解析文本、索引、消息绑定和七天生命周
 
 明确不做：云存储、云数据库、向量服务、OCR、压缩包、legacy `.doc`、宏 Office、SVG、远程 URL、生成文件/图片展示、真实模型质量声明和生产部署。
 
-当前状态是“Desktop 人工验收进行中”，不是 `Local Candidate Complete`。picker 与仅附件 Runtime 路径已由用户验收通过；拖拽首次失败后已修复，修复后复验及 mixed send、重开和失败恢复等场景仍待记录，因此 G3/G4 保持 `PENDING`。Contracts/Host/Desktop commit、push 与精确 pin 已形成；tag、merge、签名制品和 deploy 未授权。
+当前状态为 `G4 PASS for local candidate`，受 `EXC-127-001` 与 `EXC-127-002` 约束，不是 release-ready 或 production-ready。用户已人工通过 picker、仅附件 Runtime、修复后图片拖拽、mixed image/file send、已发送历史重开和未发送草稿重开；移除持久化、大小/压缩包边界和 10+1 容量使用针对性自动回归，不能记为人工通过。真实 macOS 可访问性检查仍为 `NOT RUN`。G3 因 `EXC-127-001` 例外通过；G2A 因临时 Rust adapter 的 `EXC-127-002` 对本地候选例外通过。最终 Contracts/Host/Desktop commit、push、精确 pin、semantic review、独立审查与 Reviewer 批准均已形成；tag、merge、签名制品和 deploy 未授权。
 
 ## 2. 组件职责
 
@@ -20,6 +20,8 @@ Desktop 是附件原件、解析文本、索引、消息绑定和七天生命周
 | Desktop HostBridge | v2 JSON、data URL、selected chunks、response/error 映射 | 附件长期存储 |
 | Agent Host | request/idempotency/aggregate validation、Runtime mapping | 原始文件解析、业务数据库 |
 | Codex Runtime 0.144.6 | 消费 ordered text/image inputs | 七天生命周期与附件授权 |
+
+Desktop Rust v2 request DTO 当前是显式手写 adapter，不冒充生成物。`contracts/agent-host-v2-turn.lock.json` 固定 Contracts `747cf740...`、OpenAPI/fixture digest、adapter/readiness source digest、canonical serialization test、Owner、2026-11-17 期限与移除触发；checker 在漂移或到期后 fail closed。该边界由 `EXC-127-002` 和 `RSK-127-015` 管理。
 
 ## 3. 正常时序
 
@@ -165,6 +167,6 @@ UI attempt 状态：`queued -> importing -> parsing -> indexing -> ready`，失�
 
 不新增 ADR：沿用 ADR-0013/0014 的 Desktop local confidential authority 和 deletion boundary，公共能力以 versioned v2 expand。若未来引入云存储、服务端解析、向量索引或跨设备同步，必须新 ADR。
 
-技术/安全设计依据用户 2026-08-17 明确要求完成本地实现并授权模型补足高质量交互而进入本地候选实施。该授权覆盖 G2 的本地设计与实施方向，不构成独立人工代码评审、Contracts Owner 合并批准或生产批准。
+技术/安全设计依据用户 2026-08-17 明确要求完成本地实现并授权模型补足高质量交互而进入本地候选实施。段成威于 2026-08-19 进一步批准当前 semantic candidate 的 Owner/consumer review，并作为 Reviewer 明确接受本地 G4 证据。该批准不构成 Contracts merge、tag、release 或生产批准；独立 Codex audit 仍只作为技术审查证据，不冒充人工批准来源。
 
-截至 2026-08-19，最终 Contracts/Host/Desktop commit 已推送，精确 pin 与提交后自动门禁通过。人工验收只形成 picker 与仅附件 Runtime 路径的部分记录，拖拽修复后复验及其余场景仍未完成；因此不得声明 `Local Candidate Complete`、G3 Slice Complete 或 G4 Code Complete。tag、merge、签名制品与任何 deploy 仍未授权。
+截至 2026-08-19，最终 Contracts `747cf740...`、Host `e2f0f5d...`、Desktop `2cb4ffd...` 已推送并精确 pin；提交后完整门禁、针对性自动回归和独立复审通过，P0/P1/P2 清零。人工验收仍只是 `PARTIAL`，真实 macOS 可访问性仍为 `NOT RUN`，不会因 G4 通过而改写。当前可声明的是“本地代码候选 G4 PASS（含两项有期限例外）”；`contracts-v0.3.0` tag、supported/release-ready、PR/merge、签名制品、G5/G6 与任何 deploy 仍未批准或未执行。

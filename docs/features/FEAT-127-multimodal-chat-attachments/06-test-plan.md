@@ -6,7 +6,7 @@
 - 阻断：contracts generate/lint/test/breaking/v1 equality；Host lint/race tests/runtime no-model conformance；Desktop lint/unit/Rust clippy/tests/build；migration/security/failure tests；UI light/dark/minimum viewport。
 - 类生产依赖：本地 SQLCipher、loopback fake Host、固定 Runtime schema/binary handshake；不需要云资源。
 - NOT RUN：真实 MiniMax turn、生产身份/部署、签名/公证、真实商家文件、云 DLP/AV、生产性能与 AI 答案质量。
-- 状态门槛：自动化、合成 E2E 和视觉 harness 通过后只可声明“Desktop 人工验收候选已准备”；真实 Desktop 人工验收记录形成前不得声明 `Local Candidate Complete`，G3/G4 必须保持 `PENDING`。
+- 状态门槛：自动化、合成 E2E 和视觉 harness 通过后默认只可声明“Desktop 人工验收候选已准备”。2026-08-19 用户批准 `EXC-127-001` 后，仅当前本地 G3 可在人工结果仍为 `PARTIAL`、可访问性仍为 `NOT RUN` 的情况下记为 `PASS WITH EXCEPTION`；G4 还必须独立满足 contract pin/conformance、审查、提交和 Reviewer approval。当前这些条件已完成，因此 G4 可记 `PASS for local candidate`，但不得改写为完整人工验收或发布就绪。
 
 ## 2. AC 追踪矩阵
 
@@ -28,9 +28,10 @@
 
 | ID | Scenario | Expected |
 |---|---|---|
-| CONTRACT-001 | compare to `98e89d...` | no structural breaking |
+| CONTRACT-001 | compare to supported `f16a497...` | no structural breaking |
 | CONTRACT-002 | v1 selected path/reference closure | byte-semantic equality |
 | CONTRACT-003 | canonical v2 fixture + invalid variants | closed union, UUID, limits, unknown fields enforced |
+| CONTRACT-004 | Desktop exact contract checkout、OpenAPI/fixture/adapter/readiness digest、exception expiry | drift/comment spoof/expired exception fail closed；Rust canonical serialization executes |
 | HOST-001 | strict HTTP decode, body cap, unknown field | 400 safe `invalid_request`; Runtime not called |
 | HOST-002 | ordered blocks with image/file/text | Runtime receives same order and bounded values |
 | HOST-003 | same operation/same input then conflict input | original turn returned once; conflict is 409 |
@@ -135,16 +136,18 @@ This feature changes retrieval input but does not change model, prompt, tools or
 
 PASS requires completed command, exit 0 and asserted behavior. A skipped test, unavailable environment, truncated output or mock-only path is NOT RUN. Flaky results require root-cause analysis; rerun-to-green is insufficient.
 
-Plan author: Codex, updated 2026-08-19. 用户的本地实现授权覆盖本测试计划作为 G2 候选依据；最终命令结果见 `08-verification-report.md`，不构成独立人工 review、完整用户人工验收或生产批准。
+Plan author: Codex, updated 2026-08-19. 用户的本地实现授权覆盖本测试计划作为 G2 候选依据；最终命令结果见 `08-verification-report.md`。独立 Codex audit 只提供技术审查证据；Reviewer 段成威另行明确接受当前本地 G4 证据。两者都不构成完整用户人工验收、release 或生产批准。
 
 ## 12. 人工验收与状态声明
 
 | Item | Current state | Completion evidence |
 |---|---|---|
-| 自动化候选 | 结果只以 `08-verification-report.md` 的真实命令记录为准 | lint/test/build、migration、failure、fake Runtime、visual harness |
-| Desktop 功能人工验收 | `PARTIAL` | picker 与仅附件 Runtime 路径通过；格式拒绝红色提示与预期一致；drop 首次失败后已修复，需复验 drop，并继续 mixed send、重开与草稿恢复重试 |
-| VoiceOver/真实系统 200% 缩放/reduced motion | `NOT RUN` | 真实 macOS/Tauri 手工记录 |
-| `Local Candidate Complete` / G3 / G4 | `PENDING`，当前禁止声明 | 完整用户人工验收 + 适用门禁证据；G4 还要求 G2A 与 Reviewer 批准 |
-| commit/push/downstream pin | `PASS` | Contracts `ebdd30f...`、Host `673de86...`、Desktop `3efed9a...` 已按依赖顺序推送并完成提交后重验 |
-| tag/merge/release | `PENDING/NOT AUTHORIZED` | 需独立 Owner/Reviewer/Release 批准，不从本次 Git push 授权推断 |
+| 针对性自动回归 | `PASS` | ready 附件移除后重绑不恢复；10 MiB/10 MiB+1、压缩包；10 项后第 11 项 `too_many` 且原草稿不变；命令与计数见 `08-verification-report.md` |
+| Desktop 功能人工验收 | `PARTIAL` | 用户人工通过 picker、仅附件 Runtime、不支持格式提示、修复后图片拖拽、图文文件 mixed send、已发送历史重开、未发送附件草稿重开；移除/边界/容量仅为 `AUTOMATED ONLY` |
+| VoiceOver/真实系统 200% 缩放/reduced motion | `NOT RUN` | 自动证据只覆盖 axe、键盘语义、light/dark 与等效 200% CSS viewport；没有真实 macOS/Tauri 手工记录 |
+| G3 Slice Complete | `PASS WITH EXCEPTION` | `EXC-127-001` 仅对当前本地候选生效；自动证据不冒充人工，至 2026-11-17 或更早触发失效 |
+| G2A contract ready | `PASS WITH EXCEPTION` for local candidate | semantic Owner/consumer review、supported-baseline checks、immutable pin 与 conformance PASS；Rust adapter 由 `EXC-127-002` 管理；tag/supported/release-ready 仍 PENDING |
+| G4 Code Complete | `PASS` for local candidate | 两项例外已登记；35 Vitest files / 270 tests、Rust 175 passed / 3 ignored、build/docs、独立复审 P0/P1/P2 清零、Reviewer 批准、提交/推送/干净状态 |
+| commit/push/downstream pin | `PASS` | Contracts `747cf740...`、Host `e2f0f5d...`、Desktop `2cb4ffd...` 已按依赖顺序推送并完成提交后重验 |
+| tag/merge/release | `PENDING/NOT AUTHORIZED` | semantic/Reviewer 本地批准不等于 Release approval；未创建 tag、PR、merge 或制品 |
 | deploy/production smoke/G5/G6 | 当前本地范围 `N/A`，未通过 | 只有未来明确部署授权和环境准备后才能执行 |

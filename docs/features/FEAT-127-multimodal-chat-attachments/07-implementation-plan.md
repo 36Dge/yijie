@@ -6,8 +6,8 @@
 - 各仓独立 diff/验证；初始授权不含 Git 操作，2026-08-19 用户追加授权 add/commit/push，仍不含 tag、merge 或 deploy。
 - 不修改 `yijie-codex` Runtime core，不调用真实 MiniMax，不添加云资源。
 - 保留 Desktop 既有 FEAT-126 未提交改动；禁止 reset、全仓格式化和无关重构。
-- dirty sibling 阶段只支持本地 candidate；当前不可变 Contracts full commit 与下游 pin 已形成，正式 G2A 仍等待 Owner/consumer review 与 release tag。
-- 自动化完成只把候选推进到用户 Desktop 人工验收；人工验收记录形成前，任何切片和总状态都不得写成 `Local Candidate Complete`，G3/G4 保持 `PENDING`。
+- dirty sibling 阶段只支持本地 candidate；最终 Contracts full commit、下游 pin 与 semantic Owner/consumer review 已形成，G2A 由 `EXC-127-002` 管理临时 Desktop Rust adapter 后对本地候选通过。release tag 是后续发布步骤，尚未创建。
+- 自动化完成默认只把候选推进到用户 Desktop 人工验收。用户于 2026-08-19 批准 `EXC-127-001` 后，当前本地 G3 可记为 `PASS WITH EXCEPTION`，但人工结果继续记为 `PARTIAL`、可访问性继续记为 `NOT RUN`。G4 另经 contract conformance、完整门禁、独立审查、提交/推送和 Reviewer 批准后通过；不代表完整人工验收或 release-ready。
 
 ## 2. 依赖 DAG
 
@@ -38,7 +38,7 @@ S2/S4 可并行；S5 前端可基于稳定 DTO candidate 与 S4 并行，但 S6 
 | S5 | IPC v2、client/store/composer/history/drag、draft recovery fail-closed、220ms stage display、command/event terminal race；AC-001/002/005/007/010 | Desktop `src/**`, IPC command registration | ESLint/Vitest/type/build；bind/session retry、late event、minimum stage、visual tests | hide v2 UI and continue v1 text；unknown draft remains closed |
 | S6 | outbox v2/HostBridge/idempotent dispatch/resync; AC-004/006/011 | Desktop chat application/bridge/tests | fake Host integration, lost-response retry, ordered request | payload version routes old turns to v1 |
 | S7 | removal、TTL、adversarial parser、session cleanup、full UI matrix、真实 Desktop 手工验收; AC-003/008/009/010 | focused tests/harness；用户本地 Desktop | full Desktop/Host suites、screenshots；用户 picker/drop/send/reopen/recovery 记录 | automated candidate may proceed to manual acceptance；no completion claim before user result |
-| S8 | independent read-only review and FEAT-127 evidence | feature docs/design pattern | strict package check, diff/status review | remain Manual Acceptance Candidate；G3/G4 blocked |
+| S8 | independent read-only review and FEAT-127 evidence | feature docs/design pattern | strict package check, diff/status review | finding/invalid exception -> affected gate returns pending |
 
 ## 4. DTO 对齐
 
@@ -64,9 +64,11 @@ Any Rust/TS field divergence is a stop condition, not a reason to loosen strict 
 | Switch | write content blocks only for v2 create/submit | payload version keeps existing v1 outbox | unregister v2 UI/route |
 | Contract | NOT IN SCOPE; do not remove old content/input | old Desktop/Host remain supported | future feature/ADR |
 
-## 6. Host Contract Candidate 例外
+## 6. Contract Candidate 收口
 
-The Host production sync tool correctly refuses dirty/floating contracts. During initial implementation S3 therefore used a generated same-source candidate adapter without changing `api/contracts.lock`. After the user's 2026-08-19 commit/push authorization, Contracts formed `ebdd30f076614ebc7f5149aebf70e851b81ff32b`; Host formally synchronized that commit, removed the temporary duplicate adapter, and passed `contract-check`, race tests and `runtime-test`. No release tag was created.
+The Host production sync tool correctly refuses dirty/floating contracts. During initial implementation S3 therefore used a generated same-source candidate adapter without changing `api/contracts.lock`. After the user's 2026-08-19 commit/push authorization, Contracts ultimately formed `747cf740f2d91e76e5c1a130e8e009f1efa821b8`; Host synchronized it in `e2f0f5d0e7273331e7e9eaeeb82be15955e94c86`, removed the temporary duplicate adapter, and passed `contract-check`, race tests and `runtime-test`.
+
+Desktop then pinned the same commit in `2cb4ffdd87055e5f70aafacc63479154e0c62cad`. Because no Rust OpenAPI generator is approved, its explicit adapter is governed by `EXC-127-002`: exact source/fixture/adapter/readiness digests, structured validation, canonical serialization, expiry and negative tests all fail closed. No release tag was created; candidate supported/release-ready status remains pending.
 
 ## 7. Per-slice 闭环
 
@@ -89,17 +91,17 @@ Stop if requirements conflict with code, secrets/real seller data appear, a capa
 |---|---|---|
 | S1 | automated re-verification passed | contracts generate/lint/31 tests/build/supported-baseline breaking/v1 equality PASS |
 | S2 | automated re-verification passed | Host strict block validation、idempotency、bounded Runtime mapping and non-persistence tests PASS |
-| S3 | provider committed, pinned and pushed | v2 HTTP/conformance PASS；Host `673de86...` pins Contracts `ebdd30f...`；temporary candidate adapter removed |
+| S3 | provider committed, pinned and pushed | v2 HTTP/conformance PASS；Host `e2f0f5d...` pins Contracts `747cf740...`；temporary Host candidate adapter removed |
 | S4 | implementation and automated re-verification passed; manual candidate only | authoritative SQLCipher 0006->0007 catalog/ledger、target-scoped `draft_ordinal`、worker shutdown、TTL/WAL、PDF/OOXML adversarial tests and Rust gates PASS |
-| S5 | implementation committed/pushed; automated re-verification passed | ESLint/typecheck、34 files / 263 Vitest、build；bind/session draft reload fail-closed + retry、five stages >=220ms、command rejection/late event terminal monotonicity、visual matrix PASS |
+| S5 | implementation committed/pushed; automated re-verification passed | ESLint/typecheck、35 files / 270 Vitest、Rust 175 passed / 3 ignored、build；bind/session draft reload fail-closed + retry、five stages >=220ms、command rejection/late event terminal monotonicity、visual matrix PASS |
 | S6 | automated re-verification passed | HostBridge/outbox v2、lost/invalid response same-operation replay、ordered history/dispatch tests PASS |
-| S7 | automated checks passed; manual partial | picker/attachment-only Runtime path passed；drop first failed, fix committed, post-fix retest pending；remaining functional and macOS accessibility checks incomplete |
-| S8 | documentation checks passed; G3/G4 pending | thirteen P1 findings fixed and reverified；strict feature-package check PASS after this update；complete user manual acceptance absent |
+| S7 | targeted automated regression passed; manual partial | manual PASS：picker、attachment-only Runtime、post-fix image drop、mixed send、sent-history reopen、unsent-draft reopen；automated-only PASS：removal/bounds/10+1 capacity；macOS accessibility NOT RUN |
+| S8 | review/evidence complete; G4 pass for local candidate | original thirteen P1 plus final contract-lock audit findings fixed and reverified；P0/P1/P2 clear；strict G4/feature-package checks PASS；两项例外、semantic review 与 Reviewer approval 已记录 |
 
-Overall state: `Manual Acceptance In Progress / Production Activation Blocked`. This wording is intentionally not `Local Candidate Complete`; S7 manual evidence is a required remaining step for G3, while G4 additionally remains blocked by G2A and Reviewer approval.
+Overall state: `G4 PASS for local candidate with EXC-127-001/002 / Production Activation Blocked`. This is local code-complete only: S7 still has partial manual evidence, real macOS accessibility is `NOT RUN`, and both exceptions are temporary. It is not a release, supported contract, signed candidate, G5 or G6 claim.
 
-Git execution completed in dependency order: Contracts `ebdd30f...` -> Host `673de86...` -> Desktop `3efed9a...`; each commit is pushed to its existing upstream branch, and Host/Desktop cross-reference the exact Contracts commit. No PR, merge, tag or release artifact was created. Deploy、production smoke、monitoring and G5/G6 remain outside the local-only authorization and stay `N/A/not passed`.
+Git execution completed in dependency order: Contracts `747cf740...` -> Host `e2f0f5d...` -> Desktop `2cb4ffd...`; each commit is pushed to its existing upstream branch, and Host/Desktop cross-reference the exact Contracts commit. The feature-package commit records G4 without self-referencing its own SHA. No PR, merge, tag or release artifact was created. Deploy、production smoke、monitoring and G5/G6 remain outside the local-only authorization and stay `N/A/not passed`.
 
 ## 9. Approval
 
-This is the Codex implementation plan selected under the user's explicit local-feature authorization and permission to fill missing engineering detail. It is not a recorded user Desktop acceptance, human code review, merge approval or release approval. Until the user returns manual acceptance results, G3/G4 and `Local Candidate Complete` remain explicitly unclaimed; production phases remain N/A/blocked by current scope.
+This is the Codex implementation plan selected under the user's explicit local-feature authorization and permission to fill missing engineering detail. Recorded user Desktop results are limited to the scenarios listed in S7; automated-only checks are not relabeled as manual acceptance. The user separately approved G3 `PASS WITH EXCEPTION`, semantic Owner/consumer review and Reviewer acceptance for the local G4 candidate on 2026-08-19. Independent Codex audits supplied technical findings but are not presented as the human approval. G4 is `PASS` only for this local candidate under `EXC-127-001/002`; merge, tag, release and production phases remain unauthorized or N/A/not passed.
