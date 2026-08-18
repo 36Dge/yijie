@@ -1,0 +1,99 @@
+schema_version: 1
+
+feature:
+  id: "FEAT-127"
+  slug: "multimodal-chat-attachments"
+  title: "对话图片与文件上传及七天本地上下文"
+  status: "manual-acceptance-in-progress"
+  created_at: "2026-08-17"
+  updated_at: "2026-08-19"
+  requirement_owner: "段成威"
+  technical_owner: "段成威"
+  reviewer: "段成威"
+  release_owner: "段成威"
+
+scope:
+  risk_level: "high"
+  data_classification: "confidential"
+  contract_impact: "semantic"
+  database_change: "expand plus forward-only v7 draft-target migration"
+  ai_behavior_change: "retrieval"
+
+repositories:
+  - name: "yijie"
+    role: "feature package and cross-repository governance"
+    branch: "feat/feat-126-foundation-closure"
+    baseline_full_commit: "e584f15b561c43877b278c19b9dcef643f41051d"
+    initial_worktree: "clean before the new FEAT-127 package"
+  - name: "yijie-contracts"
+    role: "authoritative semantic Agent Host v2 multimodal turn contract"
+    branch: "feat/feat-126-content-free-candidate"
+    baseline_full_commit: "98e89d8cccfe15256f09e9329d4bc1980d6da578"
+    delivery_full_commit: "ebdd30f076614ebc7f5149aebf70e851b81ff32b"
+    initial_worktree: "clean"
+  - name: "yijie-agent-host"
+    role: "validated v2 content-block adapter to pinned Codex Runtime UserInput"
+    branch: "feat/feat-126-foundation-closure"
+    baseline_full_commit: "d9c770e27bfa4796d22aa50074652971ae47eff6"
+    delivery_full_commit: "673de86d3d076f4600eb0d0bfb215382677afd72"
+    initial_worktree: "clean"
+  - name: "yijie-desktop"
+    role: "native import, encrypted persistence, parsing/indexing, seven-day expiry and chat UI"
+    branch: "feat/feat-126-foundation-closure"
+    baseline_full_commit: "16c5b9d5be4723455ea65ae349daab5ce8bbd141"
+    delivery_full_commit: "3efed9aba5faab90ca3ea397a4d6489890df2026"
+    initial_worktree: "dirty with preserved FEAT-126 UI and visual-verification edits"
+  - name: "yijie-codex"
+    role: "unchanged pinned upstream Runtime authority with existing text/image UserInput variants"
+    branch: "develop"
+    baseline_full_commit: "0ce5902ed400866be0196886bb78f693a004d68d"
+    initial_worktree: "read-only for FEAT-127"
+
+immutable_references:
+  visual_reference:
+    path: "references/plus-entry.png"
+    sha256: "ea933b4091578cb14de9e3d7659aba8d9d1bd1aa5453b60327bffb459e5d383c"
+    dimensions: "1086x210"
+  runtime:
+    repository_commit: "0ce5902ed400866be0196886bb78f693a004d68d"
+    upstream: "codex-cli 0.144.6"
+    capability: "stable turn/start UserInput supports text, image and localImage"
+  baseline_commits:
+    - "yijie@e584f15b561c43877b278c19b9dcef643f41051d"
+    - "yijie-contracts@98e89d8cccfe15256f09e9329d4bc1980d6da578"
+    - "yijie-agent-host@d9c770e27bfa4796d22aa50074652971ae47eff6"
+    - "yijie-desktop@16c5b9d5be4723455ea65ae349daab5ce8bbd141"
+    - "yijie-codex@0ce5902ed400866be0196886bb78f693a004d68d"
+  delivery_commits:
+    - "yijie-contracts@ebdd30f076614ebc7f5149aebf70e851b81ff32b"
+    - "yijie-agent-host@673de86d3d076f4600eb0d0bfb215382677afd72"
+    - "yijie-desktop@3efed9aba5faab90ca3ea397a4d6489890df2026"
+  contracts:
+    version: "0.3.0 semantic candidate; no tag"
+    full_commit: "ebdd30f076614ebc7f5149aebf70e851b81ff32b"
+    digest: "OpenAPI sha256 3d2f2273160aa05112f63d67f170229780d4526d679cd449a267890a933ea177; Chat schema sha256 3f277898f8204e02a400053cd56bec3b0eeb37ed2c50db3a6347e7fec61ddf34"
+    generator: "openapi-typescript 7.13.0 and oapi-codegen v2.7.2"
+  release_artifacts: []
+
+gates:
+  G0_intake: "passed from explicit user request on 2026-08-17"
+  G1_design_ready: "passed for local-only implementation; requirements and affected boundaries recorded"
+  G2_implementation_ready: "local-only implementation was explicitly requested; formal downstream readiness remains constrained by G2A"
+  G2A_contract_ready: "pending - immutable contract commit and downstream pins are formed; semantic Owner/consumer approval and release tag are not recorded"
+  G3_slice_complete: "pending - picker and attachment-only Runtime path passed manually; post-fix drag retest and remaining Desktop acceptance cases are not recorded"
+  G4_code_complete: "pending - code commits are pushed and automated gates pass; G2A, user Reviewer approval, and manual acceptance remain"
+  G5_production_ready: "N/A for local-only scope; not evaluated or passed; production activation blocked"
+  G6_delivery_complete: "N/A for local-only scope; no deployment, smoke, or observation was performed"
+
+documents:
+  brief: "00-feature-brief.md"
+  requirements: "01-requirements.md"
+  impact: "02-impact-assessment.md"
+  decisions_and_risks: "03-decisions-and-risks.md"
+  contract_plan: "04-contract-change-plan.md"
+  technical_design: "05-technical-design.md"
+  test_plan: "06-test-plan.md"
+  implementation_plan: "07-implementation-plan.md"
+  verification: "08-verification-report.md"
+  release_and_rollback: "09-release-and-rollback.md"
+  delivery_summary: "10-delivery-summary.md"
