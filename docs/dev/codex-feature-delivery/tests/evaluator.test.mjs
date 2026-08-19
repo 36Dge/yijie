@@ -19,8 +19,12 @@ import { fileURLToPath } from "node:url";
 import test, { after } from "node:test";
 import YAML from "yaml";
 import { approvalPayloadDigest, canonicalApprovalPayload } from "../scripts/approval-attestation.mjs";
+import { createProjectFixture, NEUTRAL_REPOSITORY_ID } from "./project-fixture.mjs";
 
-const frameworkDir = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const distributionFrameworkDir = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const project = createProjectFixture(distributionFrameworkDir);
+after(() => project.cleanup());
+const frameworkDir = project.frameworkDir;
 const newFeature = resolve(frameworkDir, "scripts/new-feature.sh");
 const checker = resolve(frameworkDir, "scripts/check-feature-package.sh");
 const checkAll = resolve(frameworkDir, "scripts/check-all-feature-packages.mjs");
@@ -28,7 +32,7 @@ const materializer = resolve(frameworkDir, "scripts/materialize-delivery-summary
 const boundaryMaterializer = resolve(frameworkDir, "scripts/materialize-boundary.mjs");
 const signDecisionScript = resolve(frameworkDir, "scripts/sign-decision.mjs");
 const initApproverKeyScript = resolve(frameworkDir, "scripts/init-approver-key.mjs");
-const legacyAllowlist = resolve(frameworkDir, "legacy-v1-allowlist.txt");
+const legacyAllowlist = project.legacyPath;
 
 const PRIMARY_SHA = "0123456789abcdef0123456789abcdef01234567";
 const SECONDARY_SHA = "89abcdef0123456789abcdef0123456789abcdef";
@@ -42,7 +46,6 @@ const ALL_ROLES = [
   "reviewer",
   "release_owner",
 ];
-
 const testTrustDirectory = mkdtempSync(join(tmpdir(), "codex-feature-delivery-trust-"));
 const testTrustRoot = join(testTrustDirectory, "approval-trust.yaml");
 const testApprovalPrivateKeyPath = join(testTrustDirectory, "test-owner-private.pem");
@@ -75,6 +78,17 @@ function run(command, args, options = {}) {
   });
 }
 
+test("unsupported schema text output fails cleanly without a stack trace", (t) => {
+  const packageDir = createPackage(t, "FEAT-BAD-SCHEMA-TEXT");
+  const manifestPath = join(packageDir, "feature.yaml");
+  writeFileSync(manifestPath, readFileSync(manifestPath, "utf8").replace("schema_version: 2", "schema_version: 999"));
+  const result = run(checker, ["--project-config", project.configPath, packageDir], { cwd: project.root });
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /INVALID:/);
+  assert.match(result.stderr, /不支持 schema_version=999/);
+  assert.doesNotMatch(result.stderr, /TypeError|at outputText/);
+});
+
 function jsonReport(result) {
   try {
     return JSON.parse(result.stdout);
@@ -84,11 +98,11 @@ function jsonReport(result) {
 }
 
 function createPackage(t, id, profile = "lite", target = "local_engineering", options = {}) {
-  const root = options.root ?? mkdtempSync(join(tmpdir(), "codex-feature-delivery-v2-"));
-  if (!options.root) t.after(() => rmSync(root, { recursive: true, force: true }));
   const slug = options.slug ?? "evaluator-test";
   const title = options.title ?? "Evaluator test";
   const owner = options.owner ?? "Test Owner";
+  const targetDir = join(project.featureDir, `${id}-${slug}`);
+  t.after(() => rmSync(targetDir, { recursive: true, force: true }));
   const result = run(newFeature, [
     id,
     slug,
@@ -100,13 +114,11 @@ function createPackage(t, id, profile = "lite", target = "local_engineering", op
     title,
     "--owner",
     owner,
-    "--repository-id",
-    "primary",
-    "--output-root",
-    root,
-  ]);
+    "--scope",
+    options.scope ?? "src/app",
+  ], { cwd: project.root });
   assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
-  return join(root, `${id}-${slug}`);
+  return targetDir;
 }
 
 function markdownFiles(root) {
@@ -172,7 +184,7 @@ function evidence({
   id,
   kind,
   instance = "feature",
-  repository = "primary",
+  repository = NEUTRAL_REPOSITORY_ID,
   codeSha = PRIMARY_SHA,
   baseSha = null,
   environment = "local",
@@ -341,10 +353,12 @@ function assignAllRoles(manifest) {
   manifest.feature.owners.role_assignments = [{ actor: "Test Owner", roles: ALL_ROLES }];
 }
 
-function configureRepositories(manifest, featureId, repositories = ["primary"]) {
+function configureRepositories(manifest, featureId, repositories = [NEUTRAL_REPOSITORY_ID]) {
   manifest.repositories = repositories.map((id, index) => ({
     id,
-    identity: { kind: "external", name: id, url: `https://example.test/${id}.git`, root: `../${id}` },
+    identity: id === NEUTRAL_REPOSITORY_ID
+      ? { kind: "current", name: "example-app", url: "https://example.invalid/acme/example-app.git", root: "." }
+      : { kind: "external", name: id, url: `https://example.invalid/acme/${id}.git`, root: `../${id}` },
     path: "src",
     root_scope_justification: null,
     root_scope_exception_evidence_id: null,
@@ -364,7 +378,7 @@ function prepareThroughG2(t, {
   id,
   profile = "lite",
   target = "local_engineering",
-  repositories = ["primary"],
+  repositories = [NEUTRAL_REPOSITORY_ID],
   twoSlices = false,
   dataClassification = null,
 } = {}) {
@@ -539,32 +553,32 @@ test("generator physically tailors artifacts by Profile and Target", (t) => {
   assert.equal(run(checker, [staging]).status, 0);
 });
 
-test("generator binds current identity to the invoking Git worktree", (t) => {
+test("generator binds current identity to project config and fails without config", (t) => {
   const foreignRoot = mkdtempSync(join(tmpdir(), "codex-feature-delivery-foreign-"));
   const nonGitRoot = mkdtempSync(join(tmpdir(), "codex-feature-delivery-nongit-"));
   t.after(() => rmSync(foreignRoot, { recursive: true, force: true }));
   t.after(() => rmSync(nonGitRoot, { recursive: true, force: true }));
   assert.equal(run("git", ["init", "-q", foreignRoot]).status, 0);
 
-  const generated = run(newFeature, [
-    "FEAT-FOREIGN-001",
-    "foreign-repository",
-    "--profile",
-    "lite",
-    "--target",
-    "local_engineering",
-    "--title",
-    "Foreign repository",
-    "--owner",
-    "Test Owner",
-  ], { cwd: foreignRoot });
-  assert.equal(generated.status, 0, `${generated.stdout}\n${generated.stderr}`);
-  const packageDir = join(foreignRoot, "docs/features/FEAT-FOREIGN-001-foreign-repository");
+  const packageDir = createPackage(t, "FEAT-CONFIG-IDENTITY", "lite", "local_engineering", { slug: "configured-identity" });
   const manifest = readYaml(join(packageDir, "feature.yaml"));
-  assert.equal(manifest.repositories[0].id, basename(foreignRoot).toLowerCase());
-  assert.equal(manifest.repositories[0].identity.name, basename(foreignRoot));
-  const checked = run(checker, ["--json", packageDir], { cwd: foreignRoot });
+  assert.equal(manifest.repositories[0].id, NEUTRAL_REPOSITORY_ID);
+  assert.deepEqual(manifest.repositories[0].identity, {
+    kind: "current",
+    name: "example-app",
+    url: "https://example.invalid/acme/example-app.git",
+    root: ".",
+  });
+  assert.deepEqual(manifest.slices[0].repositories, [NEUTRAL_REPOSITORY_ID]);
+  const checked = run(checker, ["--json", packageDir], { cwd: project.root });
   assert.equal(checked.status, 0, `${checked.stdout}\n${checked.stderr}`);
+
+  const noConfig = run(newFeature, [
+    "FEAT-NOCONFIG-001", "no-config", "--profile", "lite", "--target", "local_engineering",
+    "--owner", "Test Owner", "--scope", "src/app",
+  ], { cwd: foreignRoot });
+  assert.equal(noConfig.status, 2, `${noConfig.stdout}\n${noConfig.stderr}`);
+  assert.match(`${noConfig.stdout}\n${noConfig.stderr}`, /项目配置|\.feature-delivery\.yaml|不存在/i);
 
   const rejected = run(newFeature, [
     "FEAT-NONGIT-001",
@@ -575,10 +589,12 @@ test("generator binds current identity to the invoking Git worktree", (t) => {
     "local_engineering",
     "--owner",
     "Test Owner",
+    "--scope",
+    "src/app",
   ], { cwd: nonGitRoot });
   assert.equal(rejected.status, 2, `${rejected.stdout}\n${rejected.stderr}`);
   assert.match(`${rejected.stdout}\n${rejected.stderr}`, /Git worktree/i);
-  assert.equal(existsSync(join(nonGitRoot, "docs/features/FEAT-NONGIT-001-non-git")), false);
+  assert.equal(existsSync(join(nonGitRoot, "work-items/features/FEAT-NONGIT-001-non-git")), false);
 });
 
 test("JSON Schema rejects undeclared fields", (t) => {
@@ -821,7 +837,7 @@ test("unrelated Boundary and Slice digest lanes remain isolated", (t) => {
     impact: "additive",
     owner: "Test Owner",
     authority: `contracts/${id}.yaml`,
-    producers: ["primary"],
+    producers: [NEUTRAL_REPOSITORY_ID],
     consumers: [],
     known_unknowns: [],
     artifact_id: `ART-BOUNDARY-${id}`,
@@ -834,8 +850,8 @@ test("unrelated Boundary and Slice digest lanes remain isolated", (t) => {
     depends_on: [],
     boundary_ids: ["BND-002"],
     acceptance_criteria: ["AC-001"],
-    repositories: ["primary"],
-    paths: [{ repository: "primary", path: "src" }],
+    repositories: [NEUTRAL_REPOSITORY_ID],
+    paths: [{ repository: NEUTRAL_REPOSITORY_ID, path: "src" }],
     authorization_decision_id: null,
   });
   const contract = manifest.artifacts.find((item) => item.kind === "contract_change_plan");
@@ -875,7 +891,7 @@ test("Boundary materializer creates an independent spec and derived index atomic
     impact: "additive",
     owner: "Test Owner",
     authority: "contracts/task.yaml",
-    producers: ["primary"],
+    producers: [NEUTRAL_REPOSITORY_ID],
     consumers: [],
     known_unknowns: [],
     artifact_id: "ART-BOUNDARY-BND-001",
@@ -923,15 +939,14 @@ test("unknown Gate instances are rejected, including plausible IDs", (t) => {
     instance: "SLC-999",
     roles: ["verifier"],
     digests: inspection.digests,
-    subjectOverrides: { code_refs: [{ repository: "primary", sha: PRIMARY_SHA, base_sha: PRIMARY_SHA }] },
+    subjectOverrides: { code_refs: [{ repository: NEUTRAL_REPOSITORY_ID, sha: PRIMARY_SHA, base_sha: PRIMARY_SHA }] },
   })];
   writeYaml(ledgerPath, ledger);
   assertRejected(run(checker, ["--json", packageDir]), /SLC-999|instance|不存在/i);
 });
 
 test("lifecycle=completed cannot bypass terminal closure in evaluator or batch CI", (t) => {
-  const featureRoot = mkdtempSync(join(tmpdir(), "codex-feature-delivery-ci-"));
-  t.after(() => rmSync(featureRoot, { recursive: true, force: true }));
+  const featureRoot = project.featureDir;
   const packageDir = createPackage(t, "FEAT-912", "lite", "local_engineering", { root: featureRoot });
   fillMarkdownTokens(packageDir);
   const manifestPath = join(packageDir, "feature.yaml");
@@ -946,7 +961,7 @@ test("lifecycle=completed cannot bypass terminal closure in evaluator or batch C
     mkdirSync(legacyDir, { recursive: true });
     writeFileSync(join(legacyDir, "feature.yaml"), "schema_version: 1\n");
   }
-  const batch = run(process.execPath, [checkAll, featureRoot]);
+  const batch = run(process.execPath, [checkAll, "--project-config", project.configPath, "--repository-root", project.root, "--feature-root", featureRoot]);
   assert.notEqual(batch.status, 0, `${batch.stdout}\n${batch.stderr}`);
   assert.match(`${batch.stdout}${batch.stderr}`, /FEAT-912-evaluator-test/);
 });
@@ -962,13 +977,12 @@ test("lifecycle=active requires a current G2 build authorization", (t) => {
 });
 
 test("batch validation rejects duplicate Feature IDs", (t) => {
-  const featureRoot = mkdtempSync(join(tmpdir(), "codex-feature-delivery-duplicate-id-"));
-  t.after(() => rmSync(featureRoot, { recursive: true, force: true }));
+  const featureRoot = project.featureDir;
   const first = createPackage(t, "FEAT-953", "lite", "local_engineering", { root: featureRoot, slug: "first" });
   const second = createPackage(t, "FEAT-953", "lite", "local_engineering", { root: featureRoot, slug: "second" });
   fillMarkdownTokens(first);
   fillMarkdownTokens(second);
-  const batch = run(process.execPath, [checkAll, featureRoot]);
+  const batch = run(process.execPath, [checkAll, "--project-config", project.configPath, "--repository-root", project.root, "--feature-root", featureRoot]);
   assert.notEqual(batch.status, 0, `${batch.stdout}\n${batch.stderr}`);
   assert.match(`${batch.stdout}${batch.stderr}`, /重复 feature\.id=FEAT-953|duplicate/i);
 });
@@ -984,8 +998,8 @@ test("decision time cannot precede the evidence it approves", (t) => {
 });
 
 test("G3 code_refs cover every Slice repository", (t) => {
-  const state = prepareThroughG2(t, { id: "FEAT-914", profile: "standard", repositories: ["primary", "secondary"] });
-  addG3AndG4Decisions(state, { codeRepositories: ["primary"] });
+  const state = prepareThroughG2(t, { id: "FEAT-914", profile: "standard", repositories: [NEUTRAL_REPOSITORY_ID, "secondary"] });
+  addG3AndG4Decisions(state, { codeRepositories: [NEUTRAL_REPOSITORY_ID] });
   const result = run(checker, ["--gate", "G3", "--instance", "SLC-001", "--json", state.packageDir]);
   assertRejected(result, /secondary|code_ref|repository|覆盖/i);
 });
@@ -1014,7 +1028,7 @@ test("G4 final code refs require tests on the same repository code and base", (t
     roles: ["verifier"],
     digests: inspection.digests,
     evidenceRefs: testEntries.map((entry) => evidenceRef(inspection, entry.id)),
-    subjectOverrides: { code_refs: [{ repository: "primary", sha: PRIMARY_SHA, base_sha: PRIMARY_SHA }] },
+    subjectOverrides: { code_refs: [{ repository: NEUTRAL_REPOSITORY_ID, sha: PRIMARY_SHA, base_sha: PRIMARY_SHA }] },
   }));
   state.decisionLedger.entries.push(decision({
     id: "DEC-FEAT-952-G4",
@@ -1023,7 +1037,7 @@ test("G4 final code refs require tests on the same repository code and base", (t
     roles: ["reviewer"],
     digests: inspection.digests,
     evidenceRefs: [...testEntries, ...reviewEntries].map((entry) => evidenceRef(inspection, entry.id)),
-    subjectOverrides: { code_refs: [{ repository: "primary", sha: DRIFT_SHA, base_sha: PRIMARY_SHA }] },
+    subjectOverrides: { code_refs: [{ repository: NEUTRAL_REPOSITORY_ID, sha: DRIFT_SHA, base_sha: PRIMARY_SHA }] },
   }));
   writeYaml(state.decisionsPath, state.decisionLedger);
   assertRejected(run(checker, ["--gate", "G4", "--json", state.packageDir]), /最终测试 Evidence|逐仓精确绑定|code_ref/i);
@@ -1040,21 +1054,21 @@ test("repository identity and authorization scopes fail closed", async (t) => {
     assertRejected(run(checker, ["--json", packageDir]), /repository|path|相对|pattern|越出/i);
   });
 
-  await t.test("managed repository identity must match repos.yaml", () => {
+  await t.test("managed repository identity must match the configured repository registry", () => {
     const packageDir = createPackage(t, "FEAT-931");
     fillMarkdownTokens(packageDir);
     const manifestPath = join(packageDir, "feature.yaml");
     const manifest = readYaml(manifestPath);
-    manifest.repositories[0].identity = { kind: "managed", name: "yijie-api", url: "https://example.invalid/spoof.git", root: "../yijie-api" };
+    manifest.repositories[0].identity = { kind: "managed", name: "managed-lib", url: "https://example.invalid/spoof.git", root: "components/managed-lib" };
     writeYaml(manifestPath, manifest);
-    assertRejected(run(checker, ["--json", packageDir]), /repos\.yaml|managed identity|name\/path\/url/i);
+    assertRejected(run(checker, ["--json", packageDir]), /repository registry|managed identity|精确一致/i);
   });
 
   await t.test("G2 paths must exactly match Slice repository/path scopes", () => {
     const state = prepareThroughG2(t, { id: "FEAT-932" });
     const ledger = readYaml(state.decisionsPath);
     const g2 = ledger.entries.find((entry) => entry.gate === "G2");
-    g2.authorization.paths = [{ repository: "primary", path: "src/unplanned" }];
+    g2.authorization.paths = [{ repository: NEUTRAL_REPOSITORY_ID, path: "src/unplanned" }];
     writeYaml(state.decisionsPath, ledger);
     assertRejected(run(checker, ["--gate", "G2", "--json", state.packageDir]), /authorization\.paths|Slice scope|精确覆盖/i);
   });
@@ -1073,7 +1087,7 @@ test("repository identity and authorization scopes fail closed", async (t) => {
     const manifest = readYaml(state.manifestPath);
     manifest.repositories[0].path = ".";
     manifest.repositories[0].root_scope_justification = "Whole repository change is required";
-    manifest.slices[0].paths = [{ repository: "primary", path: "." }];
+    manifest.slices[0].paths = [{ repository: NEUTRAL_REPOSITORY_ID, path: "." }];
     writeYaml(state.manifestPath, manifest);
     assertRejected(run(checker, ["--gate", "G2", "--json", state.packageDir]), /exception Evidence|整仓 scope|controlled/i);
   });
@@ -1085,7 +1099,7 @@ test("Package root symlinks are rejected before parsing", (t) => {
   const packageDir = createPackage(t, "FEAT-935", "lite", "local_engineering", { root });
   const linkedRoot = join(root, "FEAT-935-linked-root");
   symlinkSync(packageDir, linkedRoot, "dir");
-  assertRejected(run(checker, ["--json", linkedRoot]), /根目录|符号链接|symlink/i);
+  assertRejected(run(checker, ["--repository-root", project.root, "--project-config", project.configPath, "--json", linkedRoot]), /根目录|符号链接|symlink/i);
 });
 
 test("every Decision timestamp and Evidence retention window is validated", async (t) => {
@@ -1124,7 +1138,7 @@ test("controlled code-scoped controls bind every repository code_sha and base_sh
   const state = prepareThroughG2(t, {
     id: "FEAT-939",
     profile: "controlled",
-    repositories: ["primary", "secondary"],
+    repositories: [NEUTRAL_REPOSITORY_ID, "secondary"],
     dataClassification: "restricted",
   });
   const { testEntries, reviewEntries } = appendSliceAndG4Evidence(state);
@@ -1379,8 +1393,8 @@ test("unregistered legacy v1 is rejected and never called PASS", (t) => {
   const root = mkdtempSync(join(tmpdir(), "codex-feature-delivery-v1-"));
   t.after(() => rmSync(root, { recursive: true, force: true }));
   writeFileSync(join(root, "feature.yaml"), "schema_version: 1\n");
-  assert.equal(run(checker, [root]).status, 1);
-  const allowed = run(checker, ["--allow-legacy", "--json", root]);
+  assert.equal(run(checker, ["--repository-root", project.root, "--project-config", project.configPath, root]).status, 1);
+  const allowed = run(checker, ["--repository-root", project.root, "--project-config", project.configPath, "--allow-legacy", "--json", root]);
   assert.notEqual(allowed.status, 0);
   const report = jsonReport(allowed);
   assert.equal(report.valid, false);

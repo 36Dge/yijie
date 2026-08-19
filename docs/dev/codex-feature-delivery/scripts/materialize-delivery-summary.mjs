@@ -18,6 +18,7 @@ import { fileURLToPath } from "node:url";
 import process from "node:process";
 import YAML from "yaml";
 import { buildDeliverySummaryBody } from "./evaluate-feature-package.mjs";
+import { loadProjectContext } from "./project-context.mjs";
 import { resolveGatePolicy } from "./policy-registry.mjs";
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
@@ -143,17 +144,24 @@ function parseYaml(path, label) {
   return document.toJS();
 }
 
-const argument = process.argv[2];
-if (!argument || process.argv.length !== 3) {
-  process.stderr.write("Usage: node materialize-delivery-summary.mjs PACKAGE_DIR\n");
+const cliArgs = process.argv.slice(2);
+const argument = cliArgs.shift();
+let projectConfig = null;
+if (cliArgs[0] === "--project-config" && cliArgs[1] && cliArgs.length === 2) projectConfig = resolve(cliArgs[1]);
+else if (cliArgs.length !== 0) {
+  process.stderr.write("Usage: node materialize-delivery-summary.mjs PACKAGE_DIR [--project-config FILE]\n");
   process.exit(2);
 }
+if (!argument) fail("缺少 PACKAGE_DIR", 2);
 
 const requestedPackageDir = resolve(argument);
 const requestedMetadata = lstatIfPresent(requestedPackageDir);
 if (!requestedMetadata || !requestedMetadata.isDirectory()) fail(`Package 目录不存在：${requestedPackageDir}`);
 if (requestedMetadata.isSymbolicLink()) fail(`Package 目录不得是符号链接：${requestedPackageDir}`);
 const packageDir = realpathSync(requestedPackageDir);
+let projectContext;
+try { projectContext = loadProjectContext({ projectConfig, startPath: packageDir, frameworkDir }); }
+catch (error) { fail(error.message, 2); }
 acquirePackageLock(packageDir);
 
 const manifestPath = requireSafeFile(packageDir, resolve(packageDir, "feature.yaml"), "feature.yaml");
@@ -174,7 +182,7 @@ if (typeof terminalGate !== "string" || !policy.gates?.[terminalGate]) fail(`gat
 
 const evaluation = spawnSync(
   process.execPath,
-  [resolve(scriptDir, "evaluate-feature-package.mjs"), "--gate", terminalGate, "--json", packageDir],
+  [resolve(scriptDir, "evaluate-feature-package.mjs"), "--project-config", projectContext.configPath, "--repository-root", projectContext.repositoryRoot, "--gate", terminalGate, "--json", packageDir],
   { encoding: "utf8", maxBuffer: 16 * 1024 * 1024 },
 );
 if (evaluation.error) fail(`无法运行 evaluator：${evaluation.error.message}`);

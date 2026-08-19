@@ -1,5 +1,7 @@
 # Quality Gates v2
 
+本文定义核心 Gate 断言，不规定项目目录、仓库拓扑或 CI provider。项目接入参数见 [PROJECT_ADOPTION.md](PROJECT_ADOPTION.md)。
+
 Gate 是对精确对象的可审计决策，不是 Markdown 勾选框。清单帮助发现缺口，evaluator 判断是否具备决策条件，`decisions.yaml` 中的有效记录才决定 Gate 状态。
 
 ## 状态与判定
@@ -93,7 +95,7 @@ G0 → G1 → G2 → G2C[每个适用 boundary] → G3[每个 slice] → G4 → 
 - 每个 slice 可独立验证、回滚，且有授权模板和停止条件；
 - baseline、size、依赖和工作区事实仍新鲜；
 - `controlled` 或跨仓需求先安排 walking skeleton，避免末期才集成。
-- Repository identity 的 `kind/name/url/root` 绑定当前 repo、中央 `repos.yaml` 条目或显式 external sibling；repo 内 path 不含绝对路径、`..`、空段或 glob。
+- Repository identity 的 `kind/name/url/root` 必须匹配项目 `.feature-delivery/repository-registry.yaml`：`managed` 是项目根内登记路径，`external` 是显式登记的单层项目外 checkout；未登记/隐式拓扑和多层项目外跳转拒绝。repo 内 path 不含绝对路径、`..`、空段、反斜杠或 glob。
 - Authorization Packet 以 `{repository,path}` 精确覆盖全部 Slice scope 和逐仓 base refs；canonical capability 允许集与策略允许集取交集，禁止集完整且无重叠。
 - `.` 整仓 scope 有显式 justification；`controlled`/high/critical 还引用逐仓成功 `exception` Evidence。
 - `controlled` 在 G2 前规划逐仓 static/security review 与适用 data review；实际 `static_analysis` 在 G3、`security_review` 和受限数据 `data_review` 在 G4 生成并精确绑定对应 code/base。

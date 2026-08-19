@@ -58,7 +58,6 @@ export function loadLegacyPins(path) {
     if (pins.has(name)) throw new Error(`${path}:${index + 1}: 重复 package basename ${name}`);
     pins.set(name, digest);
   }
-  if (pins.size === 0) throw new Error(`${path}: legacy pin registry 为空`);
   return pins;
 }
 

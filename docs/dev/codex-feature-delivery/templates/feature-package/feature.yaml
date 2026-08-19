@@ -17,19 +17,20 @@ feature:
   created_at: "{{DATE}}"
   updated_at: "{{DATE}}"
   owners:
-    accountable: "{{OWNER}}"
+    # Stable actor ID used by Decisions and approval keys. `{{OWNER}}` is the
+    # optional human-readable owner label used in narrative documents.
+    accountable: "{{OWNER_ID}}"
     role_assignments:
-      - actor: "{{OWNER}}"
+      - actor: "{{OWNER_ID}}"
         roles:
           - accountable_owner
           - requirement_owner
-          - technical_owner
-          - reviewer
-          - release_owner
+    # Add technical_owner, verifier, reviewer, contract_owner and release_owner
+    # assignments explicitly when the Feature actually needs them.
 
 classification:
   risk: low
-  data: internal
+  data: "{{DATA_CLASSIFICATION}}"
   # 闭集：contract_breaking/database_migration/restricted_data/irreversible_operation/
   # regulated_data/production_security_boundary/contract_change/external_side_effect/
   # ai_behavior_change/public_unknown_consumers
@@ -55,8 +56,10 @@ repositories:
       name: "{{REPOSITORY_NAME}}"
       url: "{{REPOSITORY_IDENTITY}}"
       root: "."
-    path: "."
-    root_scope_justification: "初始单仓骨架；G2 前应缩到最小路径，或保留可审计理由"
+    path: "{{REPOSITORY_SCOPE}}"
+    # Use null for a scoped path. If the explicit scope is ".", replace this
+    # text with a project-specific, auditable whole-repository justification.
+    root_scope_justification: "{{ROOT_SCOPE_JUSTIFICATION}}"
     root_scope_exception_evidence_id: null
     role: implementation
     baseline:
@@ -79,7 +82,7 @@ slices:
     repositories: ["{{REPOSITORY_ID}}"]
     paths:
       - repository: "{{REPOSITORY_ID}}"
-        path: "."
+        path: "{{REPOSITORY_SCOPE}}"
     authorization_decision_id: null
 
 # applicability 由 Profile、Target 和实际影响共同决定。

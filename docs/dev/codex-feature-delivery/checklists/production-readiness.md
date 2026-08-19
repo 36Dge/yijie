@@ -6,7 +6,7 @@
 
 - [ ] G4 对当前集成候选仍为有效 `passed`
 - [ ] 每个制品有 version/tag、完整 commit、digest、来源和构建 evidence
-- [ ] 制品来自干净、不可变、可复现的 source，无 dirty/floating sibling
+- [ ] 制品来自干净、不可变、可复现的 source，无 dirty 或未登记的浮动 checkout
 - [ ] Contract、Runtime、模型、Skill、Knowledge、配置和 migration 组合已固定
 - [ ] SBOM/provenance、依赖、许可证和供应链要求按风险完成
 - [ ] 目标环境的 secret、权限、容量、账户和外部依赖有真实确认

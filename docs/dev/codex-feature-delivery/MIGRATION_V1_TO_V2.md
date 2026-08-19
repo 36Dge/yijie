@@ -2,10 +2,12 @@
 
 本说明只处理历史需求继续演进时的边界；不批量重写既有 Feature Package，也不把缺失的历史证据补造成事实。
 
+全新项目不需要创建 legacy 记录，保持 `.feature-delivery/legacy-v1-allowlist.txt` 为空。项目接入位置和初始化方式见 [PROJECT_ADOPTION.md](PROJECT_ADOPTION.md)。
+
 ## 默认策略
 
-- 已关闭或仅供审计的 v1 包保持只读；registry 逐包 pin basename + 规范化 tree digest。`--allow-legacy` 精确匹配时只返回 `LEGACY_RECOGNIZED` 元数据，`valid=false` 且退出码非零；任何新 v1 或 tree 漂移都拒绝。
-- 新需求一律由 `new-feature.sh` 创建 v2 包。
+- 已关闭或仅供审计的 v1 包保持只读；项目 `.feature-delivery/legacy-v1-allowlist.txt` 逐包 pin basename + 规范化 tree digest，不预设历史包数量。`--allow-legacy` 精确匹配时只返回 `LEGACY_RECOGNIZED` 元数据，`valid=false` 且退出码非零；任何新 v1 或 tree 漂移都拒绝。
+- 新需求一律由 `<FRAMEWORK_ROOT>/scripts/new-feature.sh` 创建 v2 包。
 - v1 需求若需要新增实现、发布或风险决策，创建新的 v2 Feature ID；在 Brief 的来源中引用旧包路径和最后可信事实。
 - 不复制 v1 的自由文本 Gate 状态。只有能定位原始命令、完整版本、actor、时间和结果的记录，才可作为 v2 evidence 的来源；新记录必须标注 provenance。
 
@@ -23,8 +25,8 @@
 
 Gate Policy 升级不要求改写既有 v2 Package，更不能批量替换其 Decision subject：
 
-1. 以最终原始 bytes 准备新 policy，严格通过 `schemas/gate-policy.schema.json`；
-2. 计算 SHA-256，把完全相同的 bytes 新增为 `policies/<digest-hex>.yaml`；
+1. 以最终原始 bytes 准备新 policy，严格通过 `<FRAMEWORK_ROOT>/schemas/gate-policy.schema.json`；
+2. 计算 SHA-256，把完全相同的 bytes 新增为 `<FRAMEWORK_ROOT>/policies/<digest-hex>.yaml`；
 3. 在同一个受保护、外部 change-set digest 批准的隔离 TCB 变更中，用相同 bytes 覆盖 active `gate-policy.yaml`；不混入 Feature Package/ledger 修改；
 4. 运行 registry、evaluator、签名与 materializer 回归；active 没有同 bytes 快照时必须 fail closed；
 5. 合并后，新 Package 自动绑定新 active 的 id/version/digest；既有 Package 和已签 Decision 保持原 digest，由 `policies/<old-digest>.yaml` 继续复核。
@@ -33,11 +35,9 @@ Gate Policy 升级不要求改写既有 v2 Package，更不能批量替换其 De
 
 不要在 v1 目录内追加“迁移说明”或新 evidence；这会破坏只读 tree pin。迁移关联只写入新的 v2 Package，并以旧目录路径与已固定 Git provenance 引用。
 
-## FEAT-126 等大型历史包
+## 大型历史包
 
 不把数千行 v1 历史塞进新的 manifest。创建一个小型 v2 successor，旧包作为只读参考；只迁移当前范围、未关闭 blocker、仍有效风险和可复核证据。后续执行历史进入 v2 ledgers，不再向旧 Markdown 顶部和末尾双重回填。
-
-bootstrap 所在 `develop` 基线当前只包含并 pin FEAT-123—125；FEAT-126 的 v1 包仍属于其原 feature 分支，因此不得把一个尚不存在的目录预登记进 base allowlist。该分支以后若要进入已启用 v2 的受保护基线，必须先选择并独立审查：以精确 tree digest 走一次受治理的只读历史导入，或创建 v2 successor 承接后续工作；不能把新增 v1、legacy pin 和普通实现混入同一变更绕过 coverage。
 
 ## 验收
 

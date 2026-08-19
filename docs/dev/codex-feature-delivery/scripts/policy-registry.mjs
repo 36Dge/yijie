@@ -178,7 +178,16 @@ export function resolveGatePolicy(policyRef, frameworkDir = DEFAULT_FRAMEWORK_DI
 }
 
 const modulePath = fileURLToPath(import.meta.url);
-if (process.argv[1] && resolve(process.argv[1]) === modulePath) {
+function isDirectInvocation() {
+  if (!process.argv[1]) return false;
+  try {
+    return realpathSync(resolve(process.argv[1])) === realpathSync(modulePath);
+  } catch {
+    return false;
+  }
+}
+
+if (isDirectInvocation()) {
   if (process.argv.length !== 3 || process.argv[2] !== "active-metadata") {
     process.stderr.write("Usage: node policy-registry.mjs active-metadata\n");
     process.exit(2);

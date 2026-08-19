@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { createHash, generateKeyPairSync } from "node:crypto";
-import { cpSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, symlinkSync, unlinkSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, rmSync, unlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { spawnSync } from "node:child_process";
@@ -8,26 +8,20 @@ import { fileURLToPath } from "node:url";
 import test from "node:test";
 import YAML from "yaml";
 import { loadActiveGatePolicy, resolveGatePolicy } from "../scripts/policy-registry.mjs";
+import { createProjectFixture } from "./project-fixture.mjs";
 
 const frameworkDir = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const repositoryRoot = resolve(frameworkDir, "../../..");
-const newFeature = resolve(frameworkDir, "scripts/new-feature.sh");
-const evaluator = resolve(frameworkDir, "scripts/evaluate-feature-package.mjs");
-const signer = resolve(frameworkDir, "scripts/sign-decision.mjs");
+const projectByFramework = new Map();
 
 function digest(source) {
   return `sha256:${createHash("sha256").update(source).digest("hex")}`;
 }
 
 function copyFramework(t) {
-  const root = mkdtempSync(join(tmpdir(), "cfd-policy-registry-"));
-  t.after(() => rmSync(root, { recursive: true, force: true }));
-  const copiedRepository = join(root, "yijie");
-  const copiedFramework = join(copiedRepository, "docs/dev/codex-feature-delivery");
-  mkdirSync(dirname(copiedFramework), { recursive: true });
-  cpSync(frameworkDir, copiedFramework, { recursive: true });
-  symlinkSync(join(repositoryRoot, "node_modules"), join(copiedRepository, "node_modules"), "dir");
-  return copiedFramework;
+  const fixture = createProjectFixture(frameworkDir);
+  t.after(() => fixture.cleanup());
+  projectByFramework.set(fixture.frameworkDir, fixture);
+  return fixture.frameworkDir;
 }
 
 function switchActivePolicy(copiedFramework, version = "2.0.1") {
@@ -114,10 +108,15 @@ test("historical policy resolution is content-addressed, schema-strict, and id/v
 });
 
 test("a signed Decision and package remain verifiable after the active policy switches", (t) => {
-  const packageRoot = mkdtempSync(join(tmpdir(), "cfd-policy-package-"));
-  const trustRoot = join(packageRoot, "approval-trust.yaml");
-  const privateKeyPath = join(packageRoot, "approval-private.pem");
-  t.after(() => rmSync(packageRoot, { recursive: true, force: true }));
+  const copiedFramework = copyFramework(t);
+  const fixture = projectByFramework.get(copiedFramework);
+  const keyRoot = mkdtempSync(join(tmpdir(), "cfd-policy-keys-"));
+  const trustRoot = join(keyRoot, "approval-trust.yaml");
+  const privateKeyPath = join(keyRoot, "approval-private.pem");
+  t.after(() => rmSync(keyRoot, { recursive: true, force: true }));
+  const newFeature = fixture.scripts.newFeature;
+  const evaluator = fixture.scripts.evaluator;
+  const signer = fixture.scripts.signer;
   const generated = run(newFeature, [
     "FEAT-POLICY-HISTORY",
     "policy-history",
@@ -125,11 +124,10 @@ test("a signed Decision and package remain verifiable after the active policy sw
     "--target", "local_engineering",
     "--title", "Historical policy verification",
     "--owner", "Test Owner",
-    "--repository-id", "primary",
-    "--output-root", packageRoot,
-  ], { cwd: repositoryRoot });
+    "--scope", "src/app",
+  ], { cwd: fixture.root });
   assert.equal(generated.status, 0, `${generated.stdout}\n${generated.stderr}`);
-  const packageDir = join(packageRoot, "FEAT-POLICY-HISTORY-policy-history");
+  const packageDir = join(fixture.featureDir, "FEAT-POLICY-HISTORY-policy-history");
   const briefPath = join(packageDir, "00-feature-brief.md");
   writeFileSync(briefPath, readFileSync(briefPath, "utf8").replace(/\{\{[A-Z0-9_]+\}\}/g, "filled"));
 
@@ -207,9 +205,8 @@ test("a signed Decision and package remain verifiable after the active policy sw
   const before = run(process.execPath, [evaluator, "--gate", "G0", "--json", "--trust-root", trustRoot, packageDir]);
   assert.equal(before.status, 0, `${before.stdout}\n${before.stderr}`);
 
-  const switchedFramework = copyFramework(t);
-  switchActivePolicy(switchedFramework);
-  const historicalSigner = realpathSync(join(switchedFramework, "scripts/sign-decision.mjs"));
+  switchActivePolicy(copiedFramework);
+  const historicalSigner = join(copiedFramework, "scripts/sign-decision.mjs");
   const historicalLedger = YAML.parse(readFileSync(ledgerPath, "utf8"), { uniqueKeys: true });
   historicalLedger.entries.push({
     ...historicalLedger.entries[0],
@@ -228,7 +225,7 @@ test("a signed Decision and package remain verifiable after the active policy sw
     "--trust-root", trustRoot,
   ]);
   assert.equal(historicalSigned.status, 0, `${historicalSigned.stdout}\n${historicalSigned.stderr}`);
-  const historicalEvaluator = realpathSync(join(switchedFramework, "scripts/evaluate-feature-package.mjs"));
+  const historicalEvaluator = join(copiedFramework, "scripts/evaluate-feature-package.mjs");
   const after = run(process.execPath, [historicalEvaluator, "--gate", "G0", "--json", "--trust-root", trustRoot, packageDir]);
   assert.equal(after.status, 0, `${after.stdout}\n${after.stderr}`);
   assert.equal(parseReport(after).digests.policy_digest, digests.policy_digest);

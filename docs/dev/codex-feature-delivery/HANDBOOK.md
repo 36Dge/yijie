@@ -1,5 +1,7 @@
 # Codex Feature Delivery v2 完整手册
 
+本文定义核心生命周期和不可变语义，不假设项目目录、仓库拓扑或 CI 托管平台。项目实例化见 [PROJECT_ADOPTION.md](PROJECT_ADOPTION.md)；当前 Git 和 GitHub adapter 分别见 [integrations/git.md](integrations/git.md) 与 [integrations/github-actions.md](integrations/github-actions.md)。
+
 ## 1. 这套体系解决什么
 
 V2 把一次需求交付拆成三个互不替代的层次：
@@ -34,14 +36,14 @@ G2 表示构建计划获准，不表示获得任意文件、账户和环境的�
 
 ### 2.5 一人多角色不等于独立评审
 
-单人项目允许同一位负责人承担 Business、Technical、Verifier、Release 等角色，并在一次 decision 中列出其在 `feature.yaml.feature.owners.role_assignments` 中真实已分配的 `roles`。`passed` 的 actor 必须是可追溯的人，且完整 Decision 必须由包外 `approval-trust.yaml` 中 scope 匹配的 Ed25519 key 验签；YAML 自报 `human` 不构成身份。私钥只能存在于 Codex/待审代码不可访问的受保护审批面，CI 使用受保护 base 或独立 mount 的 trust root。不得为满足形式伪造第二个人。Codex Review、另一个 Agent 的审查、静态分析和 CI 都是 evidence；如果组织要求独立人审，必须由真实独立人完成，否则 Gate 保持阻塞或明确降级决策。
+单人项目允许同一位负责人承担 Business、Technical、Verifier、Release 等角色，并在一次 decision 中列出其在 `feature.yaml.feature.owners.role_assignments` 中真实已分配的 `roles`。`passed` 的 actor 必须是可追溯的人，且完整 Decision 必须由包外 `.feature-delivery/approval-trust.yaml` 中 scope 匹配的 Ed25519 key 验签；YAML 自报 `human` 不构成身份。私钥只能存在于 Codex/待审代码不可访问的受保护审批面，CI 使用受保护 base 或独立 mount 的 trust root。不得为满足形式伪造第二个人。Codex Review、另一个 Agent 的审查、静态分析和 CI 都是 evidence；如果组织要求独立人审，必须由真实独立人完成，否则 Gate 保持阻塞或明确降级决策。
 
 ## 3. 权威源与优先级
 
 出现冲突时按下列顺序处理，而不是静默挑一个方便的版本：
 
 1. 组织/仓库适用的安全、合规和授权规则；
-2. `gate-policy.yaml`、其 `policies/<sha256>.yaml` 内容寻址快照与 JSON Schema；
+2. `<FRAMEWORK_ROOT>/gate-policy.yaml`、其 `policies/<sha256>.yaml` 内容寻址快照与 JSON Schema；
 3. Accepted 决策、契约权威源和真实代码/环境事实；
 4. `feature.yaml` 当前声明；
 5. Feature Package Markdown 的解释；
@@ -51,7 +53,7 @@ G2 表示构建计划获准，不表示获得任意文件、账户和环境的�
 
 ### 3.1 Gate Policy 内容寻址与升级
 
-`gate-policy.yaml` 只是供新 Feature 使用的 active 指针，不是历史 Package 的浮动依赖。每个策略版本必须按原始文件 bytes 计算 SHA-256，并在 `policies/<64-lowercase-hex>.yaml` 保存完全相同的不可变快照。运行时先严格校验 active policy，再要求 active bytes 与同 digest 快照逐字节一致；解析 Package 时，digest 命中 active 就使用 active，否则只允许读取同名历史快照。快照的实际 digest、Gate Policy Schema、`policy.id` 和 `policy.version` 任一不匹配都 fail closed。
+`<FRAMEWORK_ROOT>/gate-policy.yaml` 只是供新 Feature 使用的 active 指针，不是历史 Package 的浮动依赖。每个策略版本必须按原始文件 bytes 计算 SHA-256，并在 `<FRAMEWORK_ROOT>/policies/<64-lowercase-hex>.yaml` 保存完全相同的不可变快照。运行时先严格校验 active policy，再要求 active bytes 与同 digest 快照逐字节一致；解析 Package 时，digest 命中 active 就使用 active，否则只允许读取同名历史快照。快照的实际 digest、Gate Policy Schema、`policy.id` 和 `policy.version` 任一不匹配都 fail closed。
 
 升级顺序固定为：准备新策略 bytes → 计算 digest → 新增同名快照 → 在同一个受治理、外部 digest 批准的 TCB 变更中把 active 切到相同 bytes → 通过 registry/schema/回归 → 合并。历史快照只增不改、禁止删除；已有 Package/Decision 不改 digest、不重新签名，继续由历史 verifier 语义复核。新 Package 的 id/version/digest 由 `new-feature.sh` 从已归档的 active policy 读取，不从模板硬编码。若 active 改了 bytes 却没有匹配快照，生成器、evaluator、签名器和 Summary materializer 全部停止。当前 `gate-policy.schema.json` 必须保持能严格验证所有仍受支持的历史快照；需要破坏性 Schema 演进时，应先引入显式 schema registry/版本路由，不能直接让旧快照失效。
 
@@ -210,7 +212,7 @@ G2 前必须对每个受影响仓库运行最小且可重复的 baseline。记�
 
 G2 是对整个 Feature 当前 `build_digest` 的一次有界构建授权，必须覆盖要执行的 slice instance、repository/base SHA、路径、允许/排除 capability、`environment: local_engineering`、数据分类、预算、有效期、所需 evidence、停止条件和重新授权触发器；`account` 保持 `null`，明确不授权真实外部账号。G2 不授权生产、外部写、真实数据、付费调用或不可逆动作，也不代替各 G2C/G3 实例。先通过 G2，再由每个 G2C 逐边界解锁依赖 Slice；生产/预发布账号只能由新的 G5 授权精确绑定。
 
-Repository checkout identity 与 repo 内修改 scope 是两层事实：`identity={kind,name,url,root}` 标识 checkout，`kind=managed` 必须精确匹配中央 `repos.yaml`，`current` 只能是当前 repo 的 `.`，显式 external 只允许一个命名 sibling；`repositories[].path`、`slices[].paths` 与 Authorization `paths` 才表示 repo 内 scope。Slice/Authorization path 使用 `{repository,path}`，拒绝绝对路径、`..`、空段、反斜杠和 glob，且 Authorization 必须精确等于 Slice scope 的并集。`.` 是整仓授权，不是通配符简写：必须写 justification；`controlled` 或 high/critical 风险还必须在 G2 引用 subject 为该 repository 的成功 `exception` Evidence。
+Repository checkout identity 与 repo 内修改 scope 是两层事实：`identity={kind,name,url,root}` 标识 checkout，且必须精确匹配项目 `.feature-delivery/repository-registry.yaml`。`managed` 是项目根内已登记路径；`external` 是显式登记的单层项目外 checkout。相邻路径可以作为 external 登记，但未登记或隐式推断的目录拓扑、以及多层项目外跳转一律拒绝。`repositories[].path`、`slices[].paths` 与 Authorization `paths` 才表示 repo 内 scope。Slice/Authorization path 使用 `{repository,path}`，拒绝绝对路径、`..`、空段、反斜杠和 glob，且 Authorization 必须精确等于 Slice scope 的并集。`.` 是整仓授权，不是通配符简写：必须写 justification；`controlled` 或 high/critical 风险还必须在 G2 引用 subject 为该 repository 的成功 `exception` Evidence。
 
 ## 6. Boundary 交付：每实例 G2C
 
@@ -219,7 +221,7 @@ Repository checkout identity 与 repo 内修改 scope 是两层事实：`identit
 对每个受影响 boundary 分别声明：ID、类型、影响分类、Owner、权威源、producer、consumers、支持基线、版本/digest、生成器、fixture 和关联 slice。有 Boundary 时，`04-contract-change-plan.md` 只是索引；每个已声明 Boundary 在 manifest 中引用唯一 `boundary_spec` artifact，路径为 `boundaries/<BND-ID>.md`，通过以下命令建立：
 
 ```bash
-node ./scripts/materialize-boundary.mjs <package> BND-001
+node <FRAMEWORK_ROOT>/scripts/materialize-boundary.mjs <package> BND-001
 ```
 
 在运行前，`BND-001.artifact_id` 写约定 forward ref `ART-BOUNDARY-BND-001`。该 ID 暂时尚无 artifact 的中间态必须 fail-closed，不得提交或进入 Gate；materializer 原子创建文件/artifact 并回写同 ID。索引不成为多个 Boundary 的共享规范，一个 artifact 也不能被多个 Boundary 复用。无受影响 Boundary 时，索引不 materialize，不创建假 G2C。
@@ -253,7 +255,7 @@ node ./scripts/materialize-boundary.mjs <package> BND-001
 
 范围、SHA、依赖、环境、数据或副作用变化即停止，追加失效记录并申请新 packet。授权包不是“只要有助于完成需求就可以做”的泛化许可。
 
-`allowed_actions` 与 `excluded_actions` 只能取自 `gate-policy.yaml` 的 canonical capability enum。有效能力是 packet 允许集与 Gate 的 `permitted_capabilities` 交集，再扣除 `prohibited_capabilities`/显式 excluded 集；自由文本近义词、允许/排除重叠和未进入禁止集的高副作用能力一律 fail-closed。
+`allowed_actions` 与 `excluded_actions` 只能取自当前 Feature 绑定的内容寻址 Gate Policy 的 canonical capability enum。有效能力是 packet 允许集与 Gate 的 `permitted_capabilities` 交集，再扣除 `prohibited_capabilities`/显式 excluded 集；自由文本近义词、允许/排除重叠和未进入禁止集的高副作用能力一律 fail-closed。
 
 ### 7.2 单切片闭环
 
@@ -335,7 +337,7 @@ G5 subject 包含 `release_digest`、目标环境、目标账号、精确制品�
 
 ### Decision 必须绑定 subject
 
-至少记录：稳定 ID、Gate/instance、state、人类 actor、其在 manifest 已分配的真实 roles、时间、分段 subject digest、`evidence_refs`、有效期/失效条件、`attestation` 和适用的 `supersedes`。`passed` 必须让签名 key 的 actor/roles/Gate/Profile/Target/有效期 scope 全部匹配，并验证对“Feature ID + 精确 policy bytes digest + 除 attestation 外完整 Decision”的签名；未签名只算草案。所有 state（不只 `passed`）的 `decided_at` 都不得在未来，非空 `valid_until` 必须晚于 `decided_at`。一个批准只对当前 subject 有效，不能引用“最新版”“当前分支”或 floating sibling。G3/G4 的 `code_refs` 逐仓包含 `sha + base_sha`；`controlled` G3 的 `static_analysis`，以及 G4 的 `review`、`security_review` 和适用 `data_review`，必须对每个 code ref 精确匹配 repository/code/base，不能用一仓结果覆盖多仓。
+至少记录：稳定 ID、Gate/instance、state、人类 actor、其在 manifest 已分配的真实 roles、时间、分段 subject digest、`evidence_refs`、有效期/失效条件、`attestation` 和适用的 `supersedes`。`passed` 必须让签名 key 的 actor/roles/Gate/Profile/Target/有效期 scope 全部匹配，并验证对“Feature ID + 精确 policy bytes digest + 除 attestation 外完整 Decision”的签名；未签名只算草案。所有 state（不只 `passed`）的 `decided_at` 都不得在未来，非空 `valid_until` 必须晚于 `decided_at`。一个批准只对当前 subject 有效，不能引用“最新版”“当前分支”或浮动 checkout。G3/G4 的 `code_refs` 逐仓包含 `sha + base_sha`；`controlled` G3 的 `static_analysis`，以及 G4 的 `review`、`security_review` 和适用 `data_review`，必须对每个 code ref 精确匹配 repository/code/base，不能用一仓结果覆盖多仓。
 
 避免 SHA 自引用：绑定实现/契约/制品等被判断对象，不要求包含 decision 的治理提交引用自身 SHA。治理提交可以由外部 Git/CI provenance 追踪。
 
@@ -356,7 +358,7 @@ G5 subject 包含 `release_digest`、目标环境、目标账号、精确制品�
 ## 12. Legacy v1
 
 - v1 包只读保留，是历史材料，不是 v2 Gate 证据；
-- registry 固定四个历史包的 basename 与规范化 tree digest（相对路径 + 字节内容，忽略 `.DS_Store`，不依赖 mtime）；
+- 项目的 `.feature-delivery/legacy-v1-allowlist.txt` 逐个固定已登记历史包的 basename 与规范化 tree digest（相对路径 + 字节内容，忽略 `.DS_Store`，不依赖 mtime）；全新项目保持 registry 为空；
 - 默认 checker 拒绝 v1；`--allow-legacy` 即使精确识别也保持 `valid=false` 和非零退出，只返回 `LEGACY_RECOGNIZED` inventory，不是 Gate PASS；
 - 新增 v1、目录改名、普通文件增删/重命名/改写或符号链接都会 fail closed；
 - 旧需求若继续开发，创建新 v2 Feature Package，通过只读引用关联旧包；
@@ -365,23 +367,13 @@ G5 subject 包含 `release_digest`、目标环境、目标账号、精确制品�
 
 ## 13. Changed-files 与 governance trust
 
-合并检查不能只证明“仓库里存在一个 v2 包”。target base 必须是 candidate head 的祖先；变更集合取 `merge-base(target base, head)...head`，但 merge-base 只用于 diff，不能替代 G2 的当前 target base。沿无 merge 的 first-parent 链，最后一个修改 Feature root 外普通路径的提交定义为 implementation commit C；C 后只能修改 evaluator 识别的 Package 管理文件，最终普通路径 tree 必须与 C 一致。G3/G4 code ref 绑定 C，签名账本可在后续 D 提交追加而不产生 head SHA 自引用；metadata-only diff 的 `code_sha=null`。报告同时给出 `target_base_sha`、`diff_base_sha`、`head_sha`、`code_sha`。
+合并检查不能只证明“仓库里存在一个 v2 包”。每个实现路径必须能追到当前 Package、G2 Authorization 的 repository/path/base ref，以及命中最具体 Slice scope 的有效 G3；项目策略还可以要求 G4。Feature Package 内只允许 core 文件和 manifest artifacts，未声明路径与重复 `feature.id` 都必须 fail closed。
 
-每个实现路径必须能追到当前 Package、G2 Authorization 的 repository/path/current target-base ref，以及命中最具体 Slice path scope 的 G3（按仓策略也可要求 G4）。Feature 包内只允许 core 文件和 manifest artifacts，未声明路径与重复 v2 `feature.id` 都 fail closed。Evaluator 负责判断 Gate；changed-files checker 负责证明本次 diff 没有游离在这些边界之外。
+远端 enforcement 必须从受保护 base 读取 verifier、Schema、Gate Policy、coverage policy 和 approval trust root，不能执行候选变更中的脚本。Evidence/Decision 历史必须逐提交验证 append-only，而不是只比较最终文件。候选代码不能用自己新增的 policy、key、exemption 或 verifier 自证。
 
-base/head CI 模式用 lexical repo-relative path 从 target-base Git blob 读取 coverage policy 与 approval trust root，拒绝 symlink、tree、submodule mode；不能因 head worktree 的 `realpath` 把 repo 内信任源改判为外部文件。change-set v3 digest 还绑定 blob mode（`100644`/`100755`）。既有 v2 包按 target base→每个后续 commit 逐步比较 `decisions.yaml` 与 `evidence.yaml`：root identity 不变、entries 不得缩短、旧 entry canonical 值不变，只能尾部追加；因此“先追加、下一提交再改写”同样失败。这项历史保护先于 exemption。
+审批 trust root、CI adapter、framework scripts/schemas、active/versioned policies、repository registry、legacy registry 和依赖锁属于治理 TCB。TCB 变更必须隔离，并由待审变更不可写的第二通道批准精确 change-set digest；普通 Feature Gate 或代码审查不能替代该通道。
 
-`approval-trust.yaml` 首 key/轮换以及下一轮会执行的 runtime TCB（workflow、framework scripts/schemas、gate/change/versioned policies、legacy pin、package/lock/workspace、pnpm hooks、`repos.yaml`）采用独立两通道。候选 change set 必须全部命中受保护 base policy 的 `external_digest_only`，管理员再在 PR 外把精确摘要写入 `CFD_FEATURE_DELIVERY_GOVERNANCE_DIGEST`；checker 对 trust root、coverage/gate policy、YAML/JSON 等执行适用的候选结构校验。普通 Feature、G4、exemption 和 head 自证都不能替代任一通道。Gate policy 演进必须把新 snapshot 与 active 切换作为一个隔离 TCB 变更；Package/ledger 不混入该变更，历史 Package 继续解析其不可变 snapshot，从而避免旧 base verifier 与新 digest 互相等待。
-
-首次接入时 base 尚无 policy，只允许与 bootstrap registry 完全一致的一次性 rewrite；摘要只规范化 exemption 自身的 `head_content_digest` 字段，policy 其余内容与所有候选文件字节都参与摘要。head policy 不能自证，管理员还必须在 PR 不可写的 repository variable `CFD_FEATURE_DELIVERY_BOOTSTRAP_DIGEST` 中预先 pin 同一摘要，workflow 映射为 `CFD_BOOTSTRAP_APPROVAL_DIGEST` 后才可通过。若 base 尚无该 workflow，head 新增的 `pull_request_target` 文件不会在本 PR 自动取得 base trust；必须由平台级 required workflow 或管理员从已审查的不可变 verifier 独立复算 pin。一次性 bootstrap 合并后，CI 永远优先使用 target-base 版本。
-
-required workflow 使用 `pull_request_target`，只 checkout target-base SHA 并核对 checkout commit，从该 base 执行 verifier/schema/policy；候选 PR ref 必须精确等于 event head，之后只作为 Git objects 解析，不 checkout、不执行 head package scripts。专用 GitHub App 的短期 token 从受分支限制的 `feature-delivery-trusted` Environment 签发，只具备 Commit statuses: write；默认 `GITHUB_TOKEN` 保持只读。workflow 向精确 head 发布独立 context `feature-delivery/trusted-coverage-status` 的 pending 与最终 success/failure。
-
-`edited` 事件覆盖 PR retarget，pending 在 App token 签发后立即写到 event head。Commit status 仍以 SHA 为键；禁止在旧状态尚未被新事件覆盖时跨 PR/base 复用同一 head，并始终启用 branch up-to-date。需要完全消除事件竞态时，改用专用 App webhook 或平台级 required workflow 执行同一 base-trusted 算法。
-
-该 workflow 当前只覆盖 `pull_request_target` 与精确 PR head，没有实现 `merge_group`。启用 merge queue 前必须先部署同等 base-trusted 的 `merge_group` verifier/status；在此之前保持 merge queue 禁用，否则 required context 缺失会 fail closed 并阻塞队列。
-
-管理员在 branch protection 中只要求该独立 context，将 expected source pin 到专用 App，开启 require branches up to date，并禁止 bypass；不要把归属 base SHA 的 `Feature Delivery Coverage / base-trusted` job check 当 required。Environment 配置 `CFD_STATUS_APP_CLIENT_ID`、`CFD_STATUS_APP_PRIVATE_KEY`，bootstrap/governance variables 也必须由 PR 不可写的管理员面保护。token/status 发布失败时 required context 缺失，门禁 fail closed。显式 `--file` 只是本地诊断；每个 sibling 仓仍需安装自己的 base-trusted workflow 和保护规则。
+上述原则是核心要求。当前 Git commit/tree/diff 算法见 [integrations/git.md](integrations/git.md)；GitHub App、required status、Environment、branch protection、bootstrap 和 merge queue 限制见 [integrations/github-actions.md](integrations/github-actions.md)。复制 adapter 文件不等于 enforcement 已上线，管理员必须完成外部配置并验证故障时 fail closed。
 
 ## 14. 可以使用的完成用语
 

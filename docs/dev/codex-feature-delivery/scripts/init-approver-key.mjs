@@ -8,6 +8,7 @@ import { fileURLToPath } from "node:url";
 import process from "node:process";
 import YAML from "yaml";
 import { validateApprovalTrustRoot } from "./approval-attestation.mjs";
+import { loadProjectContext } from "./project-context.mjs";
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
 const frameworkDir = resolve(scriptDir, "..");
@@ -17,15 +18,16 @@ function fail(message, code = 1) {
   process.exit(code);
 }
 
-function usage() {
-  process.stderr.write(`Usage: init-approver-key.mjs --actor ACTOR --key-id ID --private-key PATH
+function usage(code = 2) {
+  const stream = code === 0 ? process.stdout : process.stderr;
+  stream.write(`Usage: init-approver-key.mjs --actor ACTOR --key-id ID --private-key PATH
   --role ROLE [--role ROLE ...]
   --gate GATE [--gate GATE ...]
   --profile PROFILE [--profile PROFILE ...]
   --target TARGET [--target TARGET ...]
-  --valid-until ISO_TIME [--trust-root PATH]
+  --valid-until ISO_TIME [--trust-root PATH] [--project-config PATH]
 `);
-  process.exit(2);
+  process.exit(code);
 }
 
 function rejectGitWorktreePath(path, label) {
@@ -46,7 +48,8 @@ const options = {
   actor: null,
   keyId: null,
   privateKey: null,
-  trustRoot: resolve(frameworkDir, "approval-trust.yaml"),
+    trustRoot: null,
+    projectConfig: null,
   roles: [],
   gates: [],
   profiles: [],
@@ -60,10 +63,12 @@ for (let index = 0; index < args.length; index += 1) {
     return value;
   };
   const arg = args[index];
-  if (arg === "--actor") options.actor = take();
+  if (arg === "-h" || arg === "--help") usage(0);
+  else if (arg === "--actor") options.actor = take();
   else if (arg === "--key-id") options.keyId = take();
   else if (arg === "--private-key") options.privateKey = resolve(take());
   else if (arg === "--trust-root") options.trustRoot = resolve(take());
+  else if (arg === "--project-config") options.projectConfig = resolve(take());
   else if (arg === "--role") options.roles.push(take());
   else if (arg === "--gate") options.gates.push(take());
   else if (arg === "--profile") options.profiles.push(take());
@@ -72,6 +77,10 @@ for (let index = 0; index < args.length; index += 1) {
   else usage();
 }
 if (!options.actor || !options.keyId || !options.privateKey || !options.validUntil) usage();
+if (!options.trustRoot) {
+  try { options.trustRoot = loadProjectContext({ projectConfig: options.projectConfig, frameworkDir }).governance.trustRoot; }
+  catch (error) { fail(error.message, 2); }
+}
 rejectGitWorktreePath(options.privateKey, "private key");
 if (!/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(options.keyId)) fail("key-id 只能使用字母、数字、点、下划线和连字符。", 2);
 const scopedLists = [

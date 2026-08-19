@@ -21,8 +21,10 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: npm --prefix docs/dev/codex-feature-delivery ci --ignore-scripts
       - run: pnpm lint
       - run: pnpm test
       - run: pnpm audit --audit-level high
+      - run: npm --prefix docs/dev/codex-feature-delivery audit --audit-level=high
       - run: bash -n scripts/*.sh
       - run: bash -n docs/dev/codex-feature-delivery/scripts/*.sh

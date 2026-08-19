@@ -1,25 +1,40 @@
 # 文档与机器产物目录
 
-v2 只有三个事实层：当前声明、追加账本、解释性文档。相同事实只设一个权威位置，其他文件用 ID 引用，避免状态漂移。
+v2 只有三个 Feature 事实层：当前声明、追加账本、解释性文档。项目接入配置与发行包策略是这些事实的外部输入。相同事实只设一个权威位置，其他文件用 ID 引用，避免状态漂移。
+
+## 发行包与项目实例
+
+| 位置 | 性质 | 职责 |
+|---|---|---|
+| `<DISTRIBUTION_ROOT>/` | 只读发行源 | 由下载位置提供初始化器、锁定依赖、模板、策略和 adapter；不承载项目实例状态 |
+| `<FRAMEWORK_ROOT>/` | 项目内 Framework | 由初始化器从发行源原子复制，默认安装到 `docs/dev/codex-feature-delivery` |
+| `<FRAMEWORK_ROOT>/gate-policy.yaml` | active 发行策略 | 新 Feature 使用的 Gate/Profile/Target 规则 |
+| `<FRAMEWORK_ROOT>/policies/<sha256>.yaml` | 不可变策略注册表 | 按原始 bytes digest 保存 active 与历史快照 |
+| `<FRAMEWORK_ROOT>/schemas/` | 发行契约 | 严格约束项目配置、Feature Package 与 Gate Policy |
+| `<PROJECT_ROOT>/.feature-delivery.yaml` | 项目当前配置 | Framework/Feature root、project/repository identity、adapter 与治理文件引用 |
+| `<PROJECT_ROOT>/.feature-delivery/` | 项目实例治理目录 | trust root、coverage policy、repository registry 与 legacy registry |
+
+项目初始化与字段选择见 [PROJECT_ADOPTION.md](PROJECT_ADOPTION.md)。
 
 ## 机器权威源
 
 | 文件 | 性质 | 职责 | 禁止事项 |
 |---|---|---|---|
-| `gate-policy.yaml` | active 体系策略 | 新 Feature 使用的 Gate、Profile、Target、适用性、前置和失效规则 | 把 active 当成历史 Package 的浮动依赖；改 bytes 却不归档 |
-| `policies/<sha256>.yaml` | 不可变策略注册表 | 按原始 bytes SHA-256 保存 active 与历史 Gate Policy 快照 | 覆盖、删除、重命名快照；文件名 digest 与内容不一致 |
-| `approval-trust.yaml` | 外部审批信任根 | 受信 Ed25519 公钥、actor/role/Gate/Profile/Target 范围与有效期 | 从待审 head 自增 key 后自批；把私钥提交入仓 |
-| `change-coverage-policy.yaml` | diff 覆盖策略 | repo、Feature root、最低 Gate、protected governance path 与精确 exemption | 用 PR 自由文本或环境变量临时豁免；用 head policy 验证自身 |
-| `legacy-v1-allowlist.txt` | v1 只读 pin registry | 固定 basename 与规范化 tree digest | 把新 v1 加入“白名单”；修改历史包后重算 pin 掩盖漂移 |
-| `schemas/feature-package.schema.json` | 结构契约 | `feature.yaml` 字段、枚举和引用格式 | 用 Markdown 代替机器必填字段 |
-| `schemas/gate-policy.schema.json` | 策略契约 | Gate/Override/Profile/Target 的闭合字段、类型与安全关键必填项 | 删除或拼错控制字段后依赖运行时默认值 |
+| `<FRAMEWORK_ROOT>/gate-policy.yaml` | active 体系策略 | 新 Feature 使用的 Gate、Profile、Target、适用性、前置和失效规则 | 把 active 当成历史 Package 的浮动依赖；改 bytes 却不归档 |
+| `<FRAMEWORK_ROOT>/policies/<sha256>.yaml` | 不可变策略注册表 | 按原始 bytes SHA-256 保存 active 与历史 Gate Policy 快照 | 覆盖、删除、重命名快照；文件名 digest 与内容不一致 |
+| `.feature-delivery/approval-trust.yaml` | 外部审批信任根 | 受信 Ed25519 公钥、actor/role/Gate/Profile/Target 范围与有效期 | 从待审 head 自增 key 后自批；把私钥提交入仓 |
+| `.feature-delivery/change-coverage-policy.yaml` | diff 覆盖策略 | repository、Feature root、最低 Gate、protected governance path 与精确 exemption | 用 PR 自由文本或普通环境变量临时豁免；用 head policy 验证自身 |
+| `.feature-delivery/repository-registry.yaml` | 仓库身份注册表 | 稳定 repository ID、规范 URL 与 checkout identity | 依赖目录名猜身份；把 repo 内 scope 混入 checkout root |
+| `.feature-delivery/legacy-v1-allowlist.txt` | v1 只读 pin registry | 逐个固定已登记 basename 与规范化 tree digest | 新建 v1；修改历史包后重算 pin 掩盖漂移 |
+| `<FRAMEWORK_ROOT>/schemas/feature-package.schema.json` | 结构契约 | `feature.yaml` 字段、枚举和引用格式 | 用 Markdown 代替机器必填字段 |
+| `<FRAMEWORK_ROOT>/schemas/gate-policy.schema.json` | 策略契约 | Gate/Override/Profile/Target 的闭合字段、类型与安全关键必填项 | 删除或拼错控制字段后依赖运行时默认值 |
 | `feature.yaml` | 当前声明 | Feature 身份、Profile/Target、Owner、风险、仓库、boundary、slice 和 artifact manifest | 保存 Gate 状态或历史；复制 evidence/decision 内容 |
 | `evidence.yaml` | append-only 事实账本 | 命令、环境、时间、SHA、退出码、制品、日志和实际结果 | 预写未来结果；原地改写旧记录；用计划冒充执行 |
 | `decisions.yaml` | append-only 决策账本 | Gate 实例、decision、actor/roles、精确 subject、evidence、时间、期限、外部签名和失效关系 | Codex 自批；无 subject 的“同意”；仅写 `human` 不验签；伪造独立 Reviewer |
 
 机器 evaluator 对三者和策略做一致性判断：适用 Gate 只输出 `ELIGIBLE` / `BLOCKED`，policy 裁剪实例输出 `NOT_APPLICABLE`。`passed` 来自有效决策，不来自脚本自动写入。
 
-`scripts/policy-registry.mjs` 是 evaluator、签名器、Summary materializer 与生成器共享的策略解析入口；`tests/policy-registry.test.mjs` 固定 active/archive 字节一致、缺失/篡改拒绝和 active 切换后历史 Package/Decision 仍可验证的回归。
+`<FRAMEWORK_ROOT>/scripts/policy-registry.mjs` 是 evaluator、签名器、Summary materializer 与生成器共享的策略解析入口；对应测试固定 active/archive 字节一致、缺失/篡改拒绝和 active 切换后历史 Package/Decision 仍可验证的回归。
 
 ### 避免 SHA 自引用
 

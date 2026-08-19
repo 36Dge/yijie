@@ -14,12 +14,23 @@ import {
   verifyApprovalAttestation,
 } from "./approval-attestation.mjs";
 import { resolveGatePolicy } from "./policy-registry.mjs";
+import { loadProjectContext } from "./project-context.mjs";
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
 const frameworkDir = resolve(scriptDir, "..");
 
 function fail(message, code = 1) {
   process.stderr.write(`ERROR: ${message}\n`);
+  process.exit(code);
+}
+
+const USAGE = `Usage: sign-decision.mjs PACKAGE_DIR DECISION_ID --key-id ID --private-key PATH
+  [--trust-root PATH] [--project-config PATH]
+`;
+
+function usage(code = 0) {
+  const stream = code === 0 ? process.stdout : process.stderr;
+  stream.write(USAGE);
   process.exit(code);
 }
 
@@ -87,10 +98,11 @@ function acquirePackageLock(packageDir, decisionId) {
 }
 
 const args = process.argv.slice(2);
-if (args.length < 2) fail("Usage: sign-decision.mjs PACKAGE_DIR DECISION_ID --key-id ID --private-key PATH [--trust-root PATH]", 2);
+if (args.includes("-h") || args.includes("--help")) usage(0);
+if (args.length < 2) fail(USAGE.trimEnd(), 2);
 const requestedPackageDir = resolve(args.shift());
 const decisionId = args.shift();
-const options = { keyId: null, privateKey: null, trustRoot: resolve(frameworkDir, "approval-trust.yaml") };
+const options = { keyId: null, privateKey: null, trustRoot: null, projectConfig: null };
 for (let index = 0; index < args.length; index += 1) {
   const take = () => {
     const value = args[++index];
@@ -100,6 +112,7 @@ for (let index = 0; index < args.length; index += 1) {
   if (args[index] === "--key-id") options.keyId = take();
   else if (args[index] === "--private-key") options.privateKey = resolve(take());
   else if (args[index] === "--trust-root") options.trustRoot = resolve(take());
+  else if (args[index] === "--project-config") options.projectConfig = resolve(take());
   else fail(`未知参数：${args[index]}`, 2);
 }
 if (!options.keyId || !options.privateKey) fail("--key-id 与 --private-key 必填。", 2);
@@ -107,6 +120,10 @@ validatePrivateKeyFile(options.privateKey);
 const packageMetadata = lstatSync(requestedPackageDir);
 if (!packageMetadata.isDirectory() || packageMetadata.isSymbolicLink()) fail("Package 必须是非符号链接目录。 ");
 const packageDir = realpathSync(requestedPackageDir);
+let projectContext;
+try { projectContext = loadProjectContext({ projectConfig: options.projectConfig, startPath: packageDir, frameworkDir }); }
+catch (error) { fail(error.message, 2); }
+options.trustRoot ??= projectContext.governance.trustRoot;
 acquirePackageLock(packageDir, decisionId);
 const manifestPath = resolve(packageDir, "feature.yaml");
 const decisionsPath = resolve(packageDir, "decisions.yaml");

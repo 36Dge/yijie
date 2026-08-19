@@ -17,7 +17,7 @@
 - [ ] Must 需求有编号化、可判定 AC/NFR
 - [ ] 成功、失败、空数据、边界、权限、超时、取消、重复和部分成功有预期
 - [ ] 阻塞 Open Questions 已由有权人关闭，未让 Codex 默认补规则
-- [ ] 逐仓读取适用 `AGENTS.md`、安全、架构、ADR 和 CI 文档
+- [ ] 逐仓读取适用项目指令（例如 `AGENTS.md`）、安全、架构、ADR 和 CI 文档
 - [ ] 记录 remote、branch、完整 HEAD、工具链、Git 状态和用户已有改动
 - [ ] 入口、调用链、存储、测试、生成器和发布控制面来自真实代码/CI
 - [ ] producer、consumer、数据、权限、外部系统和 AI tool boundary 逐项登记

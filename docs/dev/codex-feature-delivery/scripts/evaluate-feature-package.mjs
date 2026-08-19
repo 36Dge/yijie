@@ -3,28 +3,34 @@
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import { existsSync, lstatSync, readFileSync, realpathSync, statSync } from "node:fs";
-import { basename, dirname, isAbsolute, relative, resolve, sep } from "node:path";
+import { dirname, isAbsolute, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import process from "node:process";
 import YAML from "yaml";
 import { validateApprovalTrustRoot, verifyApprovalAttestation } from "./approval-attestation.mjs";
 import { recognizeLegacyPackage } from "./legacy-v1.mjs";
 import { resolveGatePolicy } from "./policy-registry.mjs";
+import { loadProjectContext } from "./project-context.mjs";
 
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
 const FRAMEWORK_DIR = resolve(SCRIPT_DIR, "..");
-const PROJECT_ROOT = resolve(FRAMEWORK_DIR, "../../..");
 const SCHEMA_PATH = resolve(FRAMEWORK_DIR, "schemas/feature-package.schema.json");
-const REPOSITORY_REGISTRY_PATH = resolve(PROJECT_ROOT, "repos.yaml");
-const LEGACY_PIN_PATH = resolve(FRAMEWORK_DIR, "legacy-v1-allowlist.txt");
-const DEFAULT_APPROVAL_TRUST_PATH = resolve(FRAMEWORK_DIR, "approval-trust.yaml");
 const GLOBAL_GATES = ["G0", "G1", "G2", "G4", "G5", "G6"];
 const ALL_GATES = ["G0", "G1", "G2", "G2C", "G3", "G4", "G5", "G6"];
 const TEST_EVIDENCE = new Set(["unit_test", "integration_test", "contract_test", "e2e_test", "ai_eval"]);
 const DIGEST_RE = /^sha256:[0-9a-f]{64}$/;
-const SHA_RE = /^[0-9a-f]{40}$/;
+const SHA_RE = /^(?:[0-9a-f]{40}|[0-9a-f]{64})$/;
 const ISO_TIME_RE = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,9})?(?:Z|[+-]\d{2}:\d{2})$/;
 const MODULE_PATH = fileURLToPath(import.meta.url);
+
+function isDirectInvocation() {
+  if (!process.argv[1]) return false;
+  try {
+    return realpathSync(resolve(process.argv[1])) === realpathSync(MODULE_PATH);
+  } catch {
+    return false;
+  }
+}
 const SUMMARY_HEADER_FIELDS = [
   "schema_version",
   "kind",
@@ -50,6 +56,8 @@ Options:
   --strict          Require every gate through the delivery target terminal gate.
   --json            Emit a machine-readable report, including current digests.
   --trust-root FILE Verify passed Decisions against this external approval trust root.
+  --project-config FILE
+                    Project-root .feature-delivery.yaml; otherwise discovered from Git root.
   --repository-root DIRECTORY
                     Bind repositories[].identity.kind=current to this Git root.
   --allow-legacy    Recognize an exactly pinned schema v1 tree; valid stays false and exit stays nonzero.
@@ -65,7 +73,8 @@ function parseArgs(argv) {
     strict: false,
     json: false,
     allowLegacy: false,
-    trustRoot: resolve(process.env.CFD_APPROVAL_TRUST_ROOT || DEFAULT_APPROVAL_TRUST_PATH),
+    trustRoot: process.env.CFD_APPROVAL_TRUST_ROOT ? resolve(process.env.CFD_APPROVAL_TRUST_ROOT) : null,
+    projectConfig: null,
     repositoryRoot: null,
     packageDir: null,
   };
@@ -75,6 +84,15 @@ function parseArgs(argv) {
     if (arg === "--strict") options.strict = true;
     else if (arg === "--json") options.json = true;
     else if (arg === "--allow-legacy") options.allowLegacy = true;
+    else if (arg === "--project-config") {
+      const value = argv[++index];
+      if (!value) throw new Error("--project-config 缺少值");
+      options.projectConfig = resolve(value);
+    } else if (arg.startsWith("--project-config=")) {
+      const value = arg.slice("--project-config=".length);
+      if (!value) throw new Error("--project-config 缺少值");
+      options.projectConfig = resolve(value);
+    }
     else if (arg === "--trust-root") {
       const value = argv[++index];
       if (!value) throw new Error("--trust-root 缺少值");
@@ -126,7 +144,9 @@ function resolveCurrentRepositoryRoot(explicitRoot, packageDir) {
     if (!discovered || discovered !== canonical) throw new Error(`--repository-root 必须精确指向 Git worktree 根：${explicitRoot}`);
     return canonical;
   }
-  return gitRepositoryRoot(packageDir) ?? realpathSync(PROJECT_ROOT);
+  const discovered = gitRepositoryRoot(packageDir);
+  if (!discovered) throw new Error(`Package 不属于可发现的 Git worktree；请显式提供 --repository-root 与 --project-config：${packageDir}`);
+  return discovered;
 }
 
 function parseYaml(path) {
@@ -514,7 +534,7 @@ function computeDigests(manifest, manifestSource, artifactDigests, evidenceMap, 
   };
 }
 
-function validateManifest(manifest, packageDir, policy, policyDigest, repositoryRegistry, currentRepositoryRoot, errors, warnings) {
+function validateManifest(manifest, packageDir, policy, policyDigest, repositoryRegistry, currentRepositoryRoot, currentProjectRepository, errors, warnings) {
   if (manifest.schema_version !== 2) return;
   if (manifest.kind !== "FeaturePackage") addUniqueError(errors, "feature.yaml kind 必须为 FeaturePackage。 ");
   const policyRef = requireObject(errors, manifest.policy, "feature.yaml policy");
@@ -633,6 +653,7 @@ function validateManifest(manifest, packageDir, policy, policyDigest, repository
     if (!/^AC-[0-9]{3,}$/.test(String(criterion?.id ?? ""))) addUniqueError(errors, `acceptance_criteria[${index}].id 格式无效。`);
     requireString(errors, criterion?.statement, `acceptance_criteria[${index}].statement`);
   }
+  let currentRepositoryCount = 0;
   for (const [index, repository] of repositories.entries()) {
     if (!/^[a-z][a-z0-9._-]*$/.test(String(repository?.id ?? ""))) addUniqueError(errors, `repositories[${index}].id 格式无效。`);
     const identity = requireObject(errors, repository?.identity, `repositories[${index}].identity`);
@@ -642,12 +663,18 @@ function validateManifest(manifest, packageDir, policy, policyDigest, repository
     const identityRoot = requireString(errors, identity.root, `repositories[${index}].identity.root`);
     if (identityName && !/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(identityName)) addUniqueError(errors, `repositories[${index}].identity.name 格式无效。`);
     if (identityUrl && (identityUrl !== identityUrl.trim() || /[\s\0]/.test(identityUrl))) addUniqueError(errors, `repositories[${index}].identity.url 必须是无空白 canonical URL/identifier。`);
+    const registered = asArray(repositoryRegistry?.repositories).find((item) => item?.id === repository?.id);
+    if (!registered || registered.kind !== identity.kind || registered.name !== identityName || registered.url !== identityUrl || registered.root !== identityRoot) {
+      addUniqueError(errors, `repositories[${index}] identity 必须与 repository registry 中同 ID 的 kind/name/url/root 精确一致。`);
+    }
     if (identity.kind === "current") {
+      currentRepositoryCount += 1;
       if (identityRoot !== ".") addUniqueError(errors, `repositories[${index}] current identity.root 必须是 "."。`);
-      if (identityName !== basename(currentRepositoryRoot)) addUniqueError(errors, `repositories[${index}] current identity.name 必须等于当前 repo ${basename(currentRepositoryRoot)}。`);
+      if (repository?.id !== currentProjectRepository.id || identityName !== currentProjectRepository.name || identityUrl !== currentProjectRepository.url) {
+        addUniqueError(errors, `repositories[${index}] current identity 必须匹配项目配置的 canonical current repository。`);
+      }
     } else if (identity.kind === "managed") {
-      const managed = asArray(repositoryRegistry?.repos).find((item) => item?.name === identityName);
-      if (!managed || managed.path !== identityRoot || managed.url !== identityUrl) addUniqueError(errors, `repositories[${index}] managed identity 必须与 repos.yaml 的 name/path/url 精确一致。`);
+      if (!registered) addUniqueError(errors, `repositories[${index}] managed identity 未在 repository registry 注册。`);
     } else if (identity.kind === "external") {
       if (!/^\.\.\/[A-Za-z0-9][A-Za-z0-9._-]*$/.test(identityRoot) || identityRoot.slice(3) !== identityName) {
         addUniqueError(errors, `repositories[${index}] external identity.root 只允许显式单层 sibling ../<name>，且必须匹配 identity.name。`);
@@ -662,9 +689,10 @@ function validateManifest(manifest, packageDir, policy, policyDigest, repository
     }
     requireString(errors, repository?.role, `repositories[${index}].role`);
     const baseline = requireObject(errors, repository?.baseline, `repositories[${index}].baseline`);
-    if (baseline.sha !== null && !SHA_RE.test(String(baseline.sha))) addUniqueError(errors, `${repository?.id}.baseline.sha 必须是完整 40 位 commit。`);
+    if (baseline.sha !== null && !SHA_RE.test(String(baseline.sha))) addUniqueError(errors, `${repository?.id}.baseline.sha 必须是完整 40 或 64 位 commit。`);
     if (baseline.evidence_id !== null && typeof baseline.evidence_id !== "string") addUniqueError(errors, `${repository?.id}.baseline.evidence_id 必须为 string 或 null。`);
   }
+  if (currentRepositoryCount !== 1) addUniqueError(errors, "Feature Package 必须恰好声明一个 kind=current repository。");
   for (const [index, dependency] of dependencies.entries()) {
     requireString(errors, dependency?.id, `dependencies[${index}].id`);
     requireEnum(errors, dependency?.type, ["feature", "repository", "service", "environment", "decision", "external"], `dependencies[${index}].type`);
@@ -813,8 +841,8 @@ function validateEvidence(ledger, featureId, policy, errors) {
     const subject = requireObject(errors, entry?.subject, `${label}.subject`);
     requireString(errors, subject.instance, `${label}.subject.instance`);
     if (!Array.isArray(subject.acceptance_criteria)) addUniqueError(errors, `${label}.subject.acceptance_criteria 必须是数组。`);
-    if (subject.code_sha !== null && subject.code_sha !== undefined && !SHA_RE.test(String(subject.code_sha))) addUniqueError(errors, `${label}.subject.code_sha 必须是完整 40 位 SHA。`);
-    if (subject.base_sha !== null && subject.base_sha !== undefined && !SHA_RE.test(String(subject.base_sha))) addUniqueError(errors, `${label}.subject.base_sha 必须是完整 40 位 SHA。`);
+    if (subject.code_sha !== null && subject.code_sha !== undefined && !SHA_RE.test(String(subject.code_sha))) addUniqueError(errors, `${label}.subject.code_sha 必须是完整 40 或 64 位 SHA。`);
+    if (subject.base_sha !== null && subject.base_sha !== undefined && !SHA_RE.test(String(subject.base_sha))) addUniqueError(errors, `${label}.subject.base_sha 必须是完整 40 或 64 位 SHA。`);
     const execution = requireObject(errors, entry?.execution, `${label}.execution`);
     requireString(errors, execution.command, `${label}.execution.command`);
     requireString(errors, execution.tool, `${label}.execution.tool`);
@@ -1027,7 +1055,7 @@ function decisionValidity(decision, gatePolicy, context) {
     if (value === null || value === undefined || (Array.isArray(value) && value.length === 0) || value === "") reasons.push(`subject.${field} 缺失`);
   }
   for (const [index, codeRef] of asArray(decision.subject?.code_refs).entries()) {
-    if (!codeRef?.repository || !SHA_RE.test(String(codeRef?.sha ?? "")) || !SHA_RE.test(String(codeRef?.base_sha ?? ""))) reasons.push(`subject.code_refs[${index}] 必须包含 repository、完整 40 位 sha 与 base_sha`);
+    if (!codeRef?.repository || !SHA_RE.test(String(codeRef?.sha ?? "")) || !SHA_RE.test(String(codeRef?.base_sha ?? ""))) reasons.push(`subject.code_refs[${index}] 必须包含 repository、完整 40 或 64 位 sha 与 base_sha`);
   }
   for (const [index, artifactRef] of asArray(decision.subject?.artifact_refs).entries()) {
     if (!artifactRef?.id || !DIGEST_RE.test(String(artifactRef?.digest ?? ""))) reasons.push(`subject.artifact_refs[${index}] 必须包含 id 与 sha256 digest`);
@@ -1573,6 +1601,10 @@ function outputText(report, options) {
   } else {
     process.stdout.write(`VALID: ${report.feature.id} profile=${report.feature.profile} target=${report.feature.delivery_target}\n`);
   }
+  if (!report.digests) {
+    for (const warning of report.warnings ?? []) process.stdout.write(`WARNING: ${warning}\n`);
+    return;
+  }
   process.stdout.write(`DIGEST intake_digest=${report.digests.intake_digest} scope_digest=${report.digests.scope_digest} build_digest=${report.digests.build_digest}\n`);
   for (const [id, digest] of Object.entries(report.digests.boundary_digests ?? {})) process.stdout.write(`DIGEST boundary_digest/${id}=${digest}\n`);
   for (const [id, digest] of Object.entries(report.digests.slice_digests ?? {})) process.stdout.write(`DIGEST slice_digest/${id}=${digest}\n`);
@@ -1614,8 +1646,16 @@ function main() {
     failPackageRoot(`Package 路径不是目录：${packageDir}`);
   }
   let currentRepositoryRoot;
+  let projectContext;
   try {
     currentRepositoryRoot = resolveCurrentRepositoryRoot(options.repositoryRoot, packageDir);
+    projectContext = loadProjectContext({
+      projectConfig: options.projectConfig,
+      repositoryRoot: currentRepositoryRoot,
+      startPath: packageDir,
+      frameworkDir: FRAMEWORK_DIR,
+    });
+    options.trustRoot ??= projectContext.governance.trustRoot;
   } catch (error) {
     failPackageRoot(error.message);
   }
@@ -1624,12 +1664,11 @@ function main() {
   const warnings = [];
   let manifestRecord;
   let policyRecord;
-  let repositoryRegistry = { repos: [] };
+  let repositoryRegistry = projectContext.registry;
   let schema;
   try {
     if (!existsSync(SCHEMA_PATH)) throw new Error(`缺少 Schema：${SCHEMA_PATH}`);
     schema = JSON.parse(readFileSync(SCHEMA_PATH, "utf8"));
-    if (existsSync(REPOSITORY_REGISTRY_PATH)) repositoryRegistry = parseYaml(REPOSITORY_REGISTRY_PATH).data;
     const manifestPath = resolve(packageDir, "feature.yaml");
     if (!existsSync(manifestPath) || lstatSync(manifestPath).isSymbolicLink()) throw new Error("feature.yaml 缺失或为不允许的符号链接");
     manifestRecord = parseYaml(manifestPath);
@@ -1649,7 +1688,7 @@ function main() {
     }
     let recognition;
     try {
-      recognition = recognizeLegacyPackage(packageDir, LEGACY_PIN_PATH);
+      recognition = recognizeLegacyPackage(packageDir, projectContext.governance.legacyAllowlist);
     } catch (error) {
       recognition = { name: packageDir, recognized: false, treeDigest: null, expectedTreeDigest: null, error: error.message };
     }
@@ -1718,7 +1757,7 @@ function main() {
   enforceSchema(manifest, schema.$defs.featurePackage, schema, "feature.yaml", errors);
   enforceSchema(evidenceRecord.data ?? {}, schema.$defs.evidenceLedger, schema, "evidence.yaml", errors);
   enforceSchema(decisionRecord.data ?? {}, schema.$defs.decisionLedger, schema, "decisions.yaml", errors);
-  validateManifest(manifest, packageDir, policy, policyDigest, repositoryRegistry, currentRepositoryRoot, errors, warnings);
+  validateManifest(manifest, packageDir, policy, policyDigest, repositoryRegistry, currentRepositoryRoot, projectContext.currentRepository, errors, warnings);
   validateManagedFileIdentities(manifest, packageDir, errors);
   const featureId = manifest.feature?.id ?? "UNKNOWN";
   const evidenceMap = validateEvidence(evidenceRecord.data ?? {}, featureId, policy, errors);
@@ -1776,4 +1815,4 @@ function main() {
   process.exit(valid && (!options.gate && !effectiveStrict && !defaultEnforcement || gateSuccess) ? 0 : 1);
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === MODULE_PATH) main();
+if (isDirectInvocation()) main();

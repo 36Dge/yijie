@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { createHash } from "node:crypto";
-import { existsSync, lstatSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, lstatSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, realpathSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
 import { tmpdir } from "node:os";
 import { spawnSync } from "node:child_process";
@@ -10,20 +10,28 @@ import process from "node:process";
 import YAML from "yaml";
 import { validateApprovalTrustRoot } from "./approval-attestation.mjs";
 import { gatePolicyDigest, validateGatePolicySource } from "./policy-registry.mjs";
+import { loadProjectContext, loadProjectContextFromSources } from "./project-context.mjs";
 
 const MODULE_PATH = fileURLToPath(import.meta.url);
 const SCRIPT_DIR = dirname(MODULE_PATH);
 const FRAMEWORK_DIR = resolve(SCRIPT_DIR, "..");
 const EVALUATOR = resolve(SCRIPT_DIR, "evaluate-feature-package.mjs");
-const DEFAULT_POLICY = resolve(FRAMEWORK_DIR, "change-coverage-policy.yaml");
-const DEFAULT_TRUST_ROOT = resolve(FRAMEWORK_DIR, "approval-trust.yaml");
-const SHA_RE = /^[0-9a-f]{40}$/;
+const SHA_RE = /^(?:[0-9a-f]{40}|[0-9a-f]{64})$/;
 const DIGEST_RE = /^sha256:[0-9a-f]{64}$/;
 const GATE_ORDER = { G2: 2, G3: 3, G4: 4 };
 let evaluatorEnvironment = { ...process.env };
 let evaluatorRepositoryRoot = null;
 const temporaryDirectories = new Set();
 const FATAL_UTF8_DECODER = new TextDecoder("utf-8", { fatal: true });
+
+function isDirectInvocation() {
+  if (!process.argv[1]) return false;
+  try {
+    return realpathSync(resolve(process.argv[1])) === realpathSync(MODULE_PATH);
+  } catch {
+    return false;
+  }
+}
 process.on("exit", () => {
   for (const directory of temporaryDirectories) rmSync(directory, { recursive: true, force: true });
 });
@@ -36,11 +44,12 @@ function usage(code = 0) {
 
 Options:
   --repo-root DIR             Git repository root; default: current directory.
-  --repo-id ID                Repository ID used in Feature Packages.
-  --feature-root DIR          Feature Package parent directory.
-  --policy FILE               Change coverage policy; default: framework policy.
-  --trust-root FILE           Approval trust root; default: framework approval-trust.yaml.
-  --required-gate G2|G3|G4   Override the policy Gate (CI should not weaken it).
+  --project-config FILE       Project-root .feature-delivery.yaml; otherwise discovery/env is used.
+  --repo-id ID                Assert the configured current repository ID; cannot override it.
+  --feature-root DIR          Assert the configured Feature root; cannot override it.
+  --policy FILE               Explicit policy path; default: configured project governance policy.
+  --trust-root FILE           Explicit trust path; default: configured project governance trust root.
+  --required-gate G2|G3|G4   Assert the configured policy Gate; cannot override it.
   --base REF --head REF       Target base and candidate head; diff uses merge-base...head.
   --file PATH                 Explicit repo-relative changed path; repeatable.
   --base-sha SHA              G2 base ref for explicit-file mode.
@@ -56,7 +65,7 @@ Options:
 
 function parseArgs(argv) {
   const options = {
-    repoRoot: process.cwd(), repoId: null, featureRoot: null, policy: DEFAULT_POLICY, trustRoot: DEFAULT_TRUST_ROOT,
+    repoRoot: process.cwd(), projectConfig: null, repoId: null, featureRoot: null, policy: null, trustRoot: null,
     requiredGate: null, base: null, head: null, files: [], baseSha: null, codeSha: null,
     allowPolicyBootstrap: false,
     bootstrapDigest: process.env.CFD_BOOTSTRAP_APPROVAL_DIGEST || null,
@@ -72,6 +81,7 @@ function parseArgs(argv) {
     };
     if (arg === "-h" || arg === "--help") usage(0);
     if (arg === "--repo-root") options.repoRoot = take();
+    else if (arg === "--project-config") options.projectConfig = take();
     else if (arg === "--repo-id") options.repoId = take();
     else if (arg === "--feature-root") options.featureRoot = take();
     else if (arg === "--policy") options.policy = take();
@@ -93,8 +103,8 @@ function parseArgs(argv) {
   if (gitMode && options.files.length > 0) throw new Error("git base/head 模式不能同时使用 --file");
   if (!gitMode && options.files.length === 0) throw new Error("必须指定 --base/--head 或至少一个 --file");
   if (options.requiredGate && !GATE_ORDER[options.requiredGate]) throw new Error(`--required-gate 不支持 ${options.requiredGate}`);
-  if (options.baseSha && !SHA_RE.test(options.baseSha)) throw new Error("--base-sha 必须是完整 40 位小写 SHA");
-  if (options.codeSha && !SHA_RE.test(options.codeSha)) throw new Error("--code-sha 必须是完整 40 位小写 SHA");
+  if (options.baseSha && !SHA_RE.test(options.baseSha)) throw new Error("--base-sha 必须是完整 40 或 64 位小写 SHA");
+  if (options.codeSha && !SHA_RE.test(options.codeSha)) throw new Error("--code-sha 必须是完整 40 或 64 位小写 SHA");
   if (options.bootstrapDigest && !DIGEST_RE.test(options.bootstrapDigest)) throw new Error("--bootstrap-digest/CFD_BOOTSTRAP_APPROVAL_DIGEST 必须是 sha256");
   if (options.governanceDigest && !DIGEST_RE.test(options.governanceDigest)) throw new Error("--governance-digest/CFD_FEATURE_DELIVERY_GOVERNANCE_DIGEST 必须是 sha256");
   return { ...options, gitMode };
@@ -181,7 +191,6 @@ function validatePolicy(policy, label) {
     const now = Date.now();
     if (!Number.isFinite(createdAt) || !Number.isFinite(expiresAt)) throw new Error(`${item}: created_at/expires_at 必须是 ISO 时间`);
     if (createdAt > now) throw new Error(`${item}: created_at 不得位于未来`);
-    if (expiresAt <= now) throw new Error(`${item}: exemption 已过期`);
     if (expiresAt <= createdAt) throw new Error(`${item}: expires_at 必须晚于 created_at`);
   }
   return policy;
@@ -463,12 +472,27 @@ function candidateGovernanceSource(repoRoot, headSha, path) {
   return blob ? blob.content.toString("utf8") : null;
 }
 
-function validateCandidateGovernanceFiles(options, repoRoot, targetBaseSha, headSha, paths, policyPath, trustRootPath, coveragePolicy) {
+function validateCandidateGovernanceFiles(options, repoRoot, targetBaseSha, headSha, paths, policyPath, trustRootPath, coveragePolicy, projectContext) {
   // External pins are commit authorizations. Explicit-file/worktree mode has no
   // immutable candidate commit, so it must never exercise this channel.
   if (!options.gitMode) throw new Error("external_digest_only 只接受 base/head Git 模式");
   const relativePolicy = repoRelativePath(repoRoot, policyPath);
   const relativeTrust = repoRelativePath(repoRoot, trustRootPath);
+  let candidateProjectContext = projectContext;
+  const configuredRegistryPath = repoRelativePath(repoRoot, projectContext.registryPath);
+  if (paths.includes(".feature-delivery.yaml") || (configuredRegistryPath && paths.includes(configuredRegistryPath))) {
+    const projectConfigBlob = gitRegularBlob(repoRoot, headSha, ".feature-delivery.yaml");
+    const projectConfig = parseYamlSource(projectConfigBlob.content.toString("utf8"), `${headSha}:.feature-delivery.yaml`);
+    const registryRelative = normalizePath(projectConfig?.paths?.repository_registry);
+    const registryBlob = gitRegularBlob(repoRoot, headSha, registryRelative);
+    candidateProjectContext = loadProjectContextFromSources({
+      configSource: projectConfigBlob.content.toString("utf8"),
+      registrySource: registryBlob.content.toString("utf8"),
+      configPath: resolve(repoRoot, ".feature-delivery.yaml"),
+      repositoryRoot: repoRoot,
+      frameworkDir: FRAMEWORK_DIR,
+    });
+  }
   const snapshotPrefixes = coveragePolicy.protected_paths
     .filter((rule) => rule.match === "prefix" && rule.mode === "external_digest_only" && (rule.path === "policies" || rule.path.endsWith("/policies")))
     .map((rule) => rule.path);
@@ -496,7 +520,12 @@ function validateCandidateGovernanceFiles(options, repoRoot, targetBaseSha, head
     }
     if (path === relativePolicy) {
       if (source === null) throw new Error(`${headSha}:${path}: change coverage policy 不得删除`);
-      validatePolicy(parseYamlSource(source, `${headSha}:${path}`), `${headSha}:${path}`);
+      const candidatePolicy = validatePolicy(parseYamlSource(source, `${headSha}:${path}`), `${headSha}:${path}`);
+      if (candidatePolicy.repository_id !== candidateProjectContext.currentRepository.id
+          || candidatePolicy.feature_root !== candidateProjectContext.config.paths.feature_root
+          || candidatePolicy.required_gate !== candidateProjectContext.config.ci.required_gate) {
+        throw new Error(`${headSha}:${path}: candidate coverage policy 与 project config 不一致`);
+      }
       continue;
     }
     if (path.endsWith("/gate-policy.yaml") || path === "gate-policy.yaml") {
@@ -739,8 +768,34 @@ function main() {
   // Keep the CLI's lexical checkout root. Resolving a worktree symlink here can
   // incorrectly reclassify an in-repo policy/trust path as an external mount.
   const repoRoot = resolve(options.repoRoot);
-  const policyPath = requestedPath(repoRoot, options.policy);
-  const trustPath = requestedPath(repoRoot, options.trustRoot);
+  let projectContext;
+  try {
+    if (options.gitMode) {
+      const configPath = requestedPath(repoRoot, options.projectConfig ?? ".feature-delivery.yaml");
+      const relativeConfig = repoRelativePath(repoRoot, configPath);
+      if (relativeConfig !== ".feature-delivery.yaml") throw new Error("项目配置必须是项目根 .feature-delivery.yaml");
+      const baseCommit = String(git(repoRoot, ["rev-parse", "--verify", `${options.base}^{commit}`])).trim();
+      const configBlob = gitRegularBlob(repoRoot, baseCommit, relativeConfig);
+      const preliminary = parseYamlSource(configBlob.content.toString("utf8"), `${baseCommit}:${relativeConfig}`);
+      const registryRelative = normalizePath(preliminary?.paths?.repository_registry);
+      const registryBlob = gitRegularBlob(repoRoot, baseCommit, registryRelative);
+      projectContext = loadProjectContextFromSources({
+        configSource: configBlob.content.toString("utf8"),
+        registrySource: registryBlob.content.toString("utf8"),
+        configPath,
+        repositoryRoot: repoRoot,
+        frameworkDir: FRAMEWORK_DIR,
+      });
+    } else {
+      projectContext = loadProjectContext({ projectConfig: options.projectConfig, repositoryRoot: repoRoot, frameworkDir: FRAMEWORK_DIR });
+    }
+  } catch (error) {
+    const report = { valid: false, verdict: "INVALID", repository_id: options.repoId, changed_files: [], errors: [error.message], warnings: [] };
+    emit(report, options.json);
+    process.exit(2);
+  }
+  const policyPath = requestedPath(repoRoot, options.policy ?? projectContext.governance.changeCoveragePolicy);
+  const trustPath = requestedPath(repoRoot, options.trustRoot ?? projectContext.governance.trustRoot);
   let targetBaseSha = options.baseSha;
   let diffBaseSha = null;
   let headSha = null;
@@ -759,16 +814,19 @@ function main() {
 
     const loaded = loadPolicy(options, repoRoot, policyPath, targetBaseSha, headSha);
     const policy = loaded.policy;
-    if (options.repoId && options.repoId !== policy.repository_id) {
-      throw new Error(`--repo-id=${options.repoId} 必须等于受信 policy repository_id=${policy.repository_id}`);
-    }
-    const repoId = options.repoId ?? policy.repository_id;
-    const requiredGate = options.requiredGate ?? policy.required_gate;
-    if (options.requiredGate && GATE_ORDER[options.requiredGate] < GATE_ORDER[policy.required_gate]) throw new Error(`不能把 policy required_gate=${policy.required_gate} 降级为 ${options.requiredGate}`);
-    const featureRootPath = requestedPath(repoRoot, options.featureRoot ?? policy.feature_root);
+    if (policy.repository_id !== projectContext.currentRepository.id) throw new Error(`coverage policy repository_id=${policy.repository_id} 与项目配置 current_id=${projectContext.currentRepository.id} 不一致`);
+    if (policy.feature_root !== projectContext.config.paths.feature_root) throw new Error(`coverage policy feature_root=${policy.feature_root} 与项目配置 feature_root=${projectContext.config.paths.feature_root} 不一致`);
+    if (policy.required_gate !== projectContext.config.ci.required_gate) throw new Error(`coverage policy required_gate=${policy.required_gate} 与项目配置 ci.required_gate=${projectContext.config.ci.required_gate} 不一致`);
+    if (options.repoId && options.repoId !== policy.repository_id) throw new Error(`--repo-id 只能断言配置值，不能覆盖：${options.repoId} != ${policy.repository_id}`);
+    if (options.requiredGate && options.requiredGate !== policy.required_gate) throw new Error(`--required-gate 只能断言配置值，不能覆盖：${options.requiredGate} != ${policy.required_gate}`);
+    const repoId = policy.repository_id;
+    const requiredGate = policy.required_gate;
+    const featureRootPath = projectContext.featureRoot;
+    if (options.featureRoot && requestedPath(repoRoot, options.featureRoot) !== featureRootPath) throw new Error("--feature-root 只能断言项目配置值，不能覆盖");
     const featureRootRelative = repoRelativePath(repoRoot, featureRootPath);
     if (options.gitMode && !featureRootRelative) throw new Error("git 模式的 feature-root 必须是 lexical repo-relative 路径");
     evaluatorRepositoryRoot = repoRoot;
+    evaluatorEnvironment = { ...evaluatorEnvironment, CFD_PROJECT_CONFIG: projectContext.configPath };
     let trust = null;
     if (!options.gitMode || loaded.source !== "bootstrap_head") trust = configureEvaluatorTrust(options, repoRoot, trustPath, targetBaseSha);
     const evaluatorFeatureRoot = options.gitMode
@@ -815,7 +873,7 @@ function main() {
       if (options.governanceDigest !== rawDigest) {
         throw new Error(`runtime TCB/approval-trust 变更必须由仓库外 CFD_FEATURE_DELIVERY_GOVERNANCE_DIGEST 精确 pin 当前 digest=${rawDigest}`);
       }
-      validateCandidateGovernanceFiles(options, repoRoot, targetBaseSha, headSha, externalDigestPaths, policyPath, trustPath, policy);
+      validateCandidateGovernanceFiles(options, repoRoot, targetBaseSha, headSha, externalDigestPaths, policyPath, trustPath, policy, projectContext);
       const report = {
         valid: true,
         verdict: "GOVERNANCE_DIGEST_APPLIED",
@@ -877,7 +935,7 @@ function main() {
           continue;
         }
         if (metadataPackage.missing) {
-          errors.push(`${path}: docs/features 下的路径不属于含 feature.yaml 的 Feature Package`);
+          errors.push(`${path}: ${featureRootRelative} 下的路径不属于含 feature.yaml 的 Feature Package`);
           continue;
         }
         const report = metadataPackage.inspection.report;
@@ -910,4 +968,4 @@ function main() {
   }
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === MODULE_PATH) main();
+if (isDirectInvocation()) main();
