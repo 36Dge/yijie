@@ -10,12 +10,12 @@ entries: []
 #   kind: baseline
 #   recorded_at: "{{DATE}}T00:02:00Z"
 #   producer:
-#     id: "{{OWNER}}"
+#     id: "{{OWNER_ID}}"
 #     type: human
 #   subject:
 #     instance: feature
 #     repository: "{{REPOSITORY_ID}}"
-#     cwd: "."
+#     cwd: "{{REPOSITORY_SCOPE}}"
 #     code_sha: "0123456789abcdef0123456789abcdef01234567"
 #     base_sha: null
 #     environment_ref: local
@@ -25,9 +25,11 @@ entries: []
 #     artifact_refs: []
 #     acceptance_criteria: []
 #   execution:
-#     command: "pnpm test"
-#     tool: pnpm
-#     tool_version: "11.x"
+#     # Resolve these values from `.feature-delivery.yaml.tooling`; never invent
+#     # a package manager or command for a project that has not declared one.
+#     command: "{{TEST_COMMAND}}"
+#     tool: "{{PACKAGE_MANAGER}}"
+#     tool_version: "{{TOOL_VERSION}}"
 #     started_at: "{{DATE}}T00:00:00Z"
 #     finished_at: "{{DATE}}T00:01:00Z"
 #     exit_code: 0

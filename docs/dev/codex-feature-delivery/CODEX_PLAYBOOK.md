@@ -1,5 +1,7 @@
 # Codex 实战操作规程 v2
 
+本规程消费项目接入后的真实配置。`<PROJECT_ROOT>`、`<FRAMEWORK_ROOT>`、Feature root、repository identity、角色和 CI 均以 [.feature-delivery 配置说明](PROJECT_ADOPTION.md) 为准，不从目录名或聊天历史推断。
+
 ## 1. 每次任务的上下文包
 
 不要把聊天历史当唯一权威。每次交给 Codex 的任务至少引用：
@@ -167,7 +169,7 @@ consumer 兼容、真实路径未验证、测试与实现共享错误假设、pl
 
 “G2 已过”“任务要求交付”或“这是正常实现步骤”不能替代这些授权。
 
-G2 packet 必须显式列出全部获准 instances、repositories、`{repository,path}`、每仓 base refs、`environment: local_engineering`、`account: null`、data classification/budget、allowed/excluded canonical capabilities、required evidence、stop conditions 和 `reauthorize_on`。一个 packet 可覆盖多个 Slice，执行轮次仍只处理指定 Slice；`account: null` 明确不授权真实外部账号。managed repo 的 `name/path/url` 必须匹配中央 `repos.yaml`；Authorization path 只允许 repo 内相对路径，且精确等于 Slice scope。`.` 整仓 scope 需要 justification，`controlled`/高风险还需逐仓 exception Evidence。有效能力是 packet 与 Gate 策略允许集的交集并扣除禁止集；不得通过同义自由文本或 Profile 改名获得宽授权。
+G2 packet 必须显式列出全部获准 instances、repositories、`{repository,path}`、每仓 base refs、`environment: local_engineering`、`account: null`、data classification/budget、allowed/excluded canonical capabilities、required evidence、stop conditions 和 `reauthorize_on`。一个 packet 可覆盖多个 Slice，执行轮次仍只处理指定 Slice；`account: null` 明确不授权真实外部账号。repository 的 `name/root/url` 必须匹配项目 `.feature-delivery/repository-registry.yaml`：`managed` 只用于项目根内登记路径，`external` 只用于显式登记的单层项目外 checkout；相邻路径可以登记，未登记/隐式拓扑和多层项目外跳转不得使用。Authorization path 只允许 repo 内相对路径，且精确等于 Slice scope。`.` 整仓 scope 需要 justification，`controlled`/高风险还需逐仓 exception Evidence。有效能力是 packet 与 Gate 策略允许集的交集并扣除禁止集；不得通过同义自由文本或 Profile 改名获得宽授权。
 
 ## 4. 小步与依赖图
 

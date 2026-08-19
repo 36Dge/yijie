@@ -10,8 +10,8 @@
   },
   "scripts": {
     "lint": "node scripts/repo-manifest.mjs validate && node scripts/check-contract-governance.mjs && node docs/dev/codex-feature-delivery/scripts/check-all-feature-packages.mjs",
-    "test": "node --test tests/*.test.mjs docs/dev/codex-feature-delivery/tests/*.test.mjs",
-    "feature-delivery:test": "node --test docs/dev/codex-feature-delivery/tests/*.test.mjs",
+    "test": "node --test tests/*.test.mjs && npm --prefix docs/dev/codex-feature-delivery test",
+    "feature-delivery:test": "npm --prefix docs/dev/codex-feature-delivery test",
     "feature-delivery:changes": "node docs/dev/codex-feature-delivery/scripts/check-changed-feature-coverage.mjs"
   },
   "dependencies": {

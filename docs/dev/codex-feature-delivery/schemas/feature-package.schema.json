@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://yijie.local/schemas/codex-feature-delivery/v2/feature-package.schema.json",
+  "$id": "urn:codex-feature-delivery:schema:feature-package:v2",
   "title": "Codex Feature Delivery v2 package records",
   "oneOf": [
     { "$ref": "#/$defs/featurePackage" },
@@ -17,14 +17,14 @@
     },
     "sha": {
       "type": "string",
-      "pattern": "^[0-9a-f]{40}$"
+      "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
     },
     "nullableSha": {
       "anyOf": [{ "$ref": "#/$defs/sha" }, { "type": "null" }]
     },
     "repositoryScopePath": {
       "type": "string",
-      "pattern": "^(?:\\.|[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*)$"
+      "pattern": "^(?:\\.|(?!(?:.*\\/)?(?:\\.{1,2}|\\.git)(?:\\/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*)$"
     },
     "authorizationCapability": {
       "enum": ["workspace_read", "workspace_edit", "local_command", "local_test", "local_build", "dependency_install", "network_read", "external_write", "real_sensitive_data", "paid_call", "deployment", "migration", "irreversible_operation"]

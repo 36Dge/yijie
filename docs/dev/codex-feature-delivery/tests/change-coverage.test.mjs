@@ -1,33 +1,104 @@
 import assert from "node:assert/strict";
 import { createHash, generateKeyPairSync, sign } from "node:crypto";
-import { chmodSync, cpSync, existsSync, lstatSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
+import { chmodSync, cpSync, existsSync, lstatSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, realpathSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import test from "node:test";
+import test, { after } from "node:test";
 import YAML from "yaml";
 import { approvalPayloadDigest, canonicalApprovalPayload } from "../scripts/approval-attestation.mjs";
 import { decodeGitPathOutput } from "../scripts/check-changed-feature-coverage.mjs";
-import { loadLegacyPins } from "../scripts/legacy-v1.mjs";
+import { legacyTreeDigest, loadLegacyPins } from "../scripts/legacy-v1.mjs";
+import { NEUTRAL_REPOSITORY_ID, projectConfig, repositoryRegistry } from "./project-fixture.mjs";
 
 const frameworkDir = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const evaluator = resolve(frameworkDir, "scripts/evaluate-feature-package.mjs");
 const checkAll = resolve(frameworkDir, "scripts/check-all-feature-packages.mjs");
 const checkChanged = resolve(frameworkDir, "scripts/check-changed-feature-coverage.mjs");
-const pinPath = resolve(frameworkDir, "legacy-v1-allowlist.txt");
-const sourceFeatureRoot = resolve(frameworkDir, "../../features");
-const trustedWorkflow = resolve(frameworkDir, "../../../.github/workflows/feature-delivery-coverage.yml");
+const trustedWorkflow = resolve(frameworkDir, "integrations/github/feature-delivery-coverage.yml");
 const newFeature = resolve(frameworkDir, "scripts/new-feature.sh");
+const TEST_FRAMEWORK_ROOT = "internal/tooling/quality/feature-delivery";
+const projectContexts = new Map();
+let standardCodeLedgerTemplate = null;
+after(() => {
+  if (standardCodeLedgerTemplate) rmSync(standardCodeLedgerTemplate.root, { recursive: true, force: true });
+});
+const runtimeScriptNames = new Map([
+  [evaluator, "evaluate-feature-package.mjs"],
+  [checkAll, "check-all-feature-packages.mjs"],
+  [checkChanged, "check-changed-feature-coverage.mjs"],
+]);
 
 function run(command, args, options = {}) {
-  return spawnSync(command, args, { encoding: "utf8", ...options });
+  let actualCommand = command;
+  const actualArgs = [...args];
+  let root = options.cwd ? resolve(options.cwd) : null;
+  const rootIndex = actualArgs.indexOf("--repo-root");
+  const repositoryRootIndex = actualArgs.indexOf("--repository-root");
+  if (rootIndex >= 0) root = resolve(actualArgs[rootIndex + 1]);
+  else if (repositoryRootIndex >= 0) root = resolve(actualArgs[repositoryRootIndex + 1]);
+  if (!root) {
+    const candidate = actualArgs.find((arg) => typeof arg === "string" && [...projectContexts.keys()].some((item) => resolve(arg) === item || resolve(arg).startsWith(`${item}/`)));
+    if (candidate) root = [...projectContexts.keys()].find((item) => resolve(candidate) === item || resolve(candidate).startsWith(`${item}/`));
+  }
+  const context = root ? projectContexts.get(root) : null;
+  if (context && actualCommand === newFeature) actualCommand = context.newFeature;
+  if (context && actualCommand === process.execPath && runtimeScriptNames.has(actualArgs[0])) {
+    actualArgs[0] = realpathSync(join(context.frameworkDir, "scripts", runtimeScriptNames.get(actualArgs[0])));
+  }
+  return spawnSync(actualCommand, actualArgs, { encoding: "utf8", ...options });
 }
 
 function git(root, ...args) {
   const result = run("git", ["-C", root, ...args]);
   assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
   return result.stdout.trim();
+}
+
+function installProjectContext(root, { featureRoot = "features", repositoryId = NEUTRAL_REPOSITORY_ID, ci = "none", requiredGate = "G3" } = {}) {
+  if (!existsSync(join(root, ".git"))) git(root, "init", "-q", "-b", "main");
+  git(root, "config", "user.name", "Coverage Owner");
+  git(root, "config", "user.email", "coverage@example.invalid");
+  const frameworkLink = join(root, ...TEST_FRAMEWORK_ROOT.split("/"));
+  if (!existsSync(frameworkLink)) {
+    mkdirSync(frameworkLink, { recursive: true });
+    for (const entry of ["gate-policy.yaml", "package.json", "package-lock.json", "policies", "schemas", "scripts", "templates"]) {
+      cpSync(join(frameworkDir, entry), join(frameworkLink, entry), { recursive: true });
+    }
+    symlinkSync(join(frameworkDir, "node_modules"), join(frameworkLink, "node_modules"), "dir");
+  }
+  mkdirSync(join(root, featureRoot), { recursive: true });
+  mkdirSync(join(root, ".feature-delivery"), { recursive: true });
+  writeYaml(join(root, ".feature-delivery.yaml"), projectConfig({
+    projectId: "coverage-app",
+    projectName: "Coverage App",
+    repositoryId,
+    frameworkRoot: TEST_FRAMEWORK_ROOT,
+    featureRoot,
+    governanceRoot: ".feature-delivery",
+    repositoryRegistry: ".feature-delivery/repository-registry.yaml",
+    ci,
+    requiredGate,
+    actorId: "coverage.owner",
+  }));
+  writeYaml(join(root, ".feature-delivery/repository-registry.yaml"), repositoryRegistry({ repositoryId, name: "coverage-app", url: "https://example.invalid/acme/coverage-app.git" }));
+  if (!existsSync(join(root, ".feature-delivery/approval-trust.yaml"))) writeFileSync(join(root, ".feature-delivery/approval-trust.yaml"), emptyTrustRoot());
+  if (!existsSync(join(root, ".feature-delivery/change-coverage-policy.yaml"))) {
+    writeFileSync(join(root, ".feature-delivery/change-coverage-policy.yaml"), policy({
+      files: [], digest: `sha256:${"0".repeat(64)}`, exemptions: false, repoId: repositoryId, requiredGate,
+    }));
+  }
+  if (!existsSync(join(root, ".feature-delivery/legacy-v1-allowlist.txt"))) writeFileSync(join(root, ".feature-delivery/legacy-v1-allowlist.txt"), "# Empty generic baseline.\n");
+  const context = {
+    configPath: join(root, ".feature-delivery.yaml"),
+    registryPath: join(root, ".feature-delivery/repository-registry.yaml"),
+    legacyPath: join(root, ".feature-delivery/legacy-v1-allowlist.txt"),
+    frameworkDir: frameworkLink,
+    newFeature: join(frameworkLink, "scripts/new-feature.sh"),
+  };
+  projectContexts.set(resolve(root), context);
+  return context;
 }
 
 function changeSetDigest(root, files, policyPath, exemptionId = "EXC-TEST-BOOTSTRAP") {
@@ -59,7 +130,7 @@ function changeSetDigest(root, files, policyPath, exemptionId = "EXC-TEST-BOOTST
   return `sha256:${hash.digest("hex")}`;
 }
 
-function policy({ files, digest, exemptions = true, protectedPaths = [], rationale = "Regression-only bootstrap", repoId = "test-repo", requiredGate = "G3" }) {
+function policy({ files, digest, exemptions = true, protectedPaths = [], rationale = "Regression-only bootstrap", repoId = NEUTRAL_REPOSITORY_ID, requiredGate = "G3" }) {
   return YAML.stringify({
     schema_version: 1,
     kind: "FeatureChangeCoveragePolicy",
@@ -125,9 +196,9 @@ function e2eSha(value) {
 function e2eAuthorization(baseSha, scopePath = "src") {
   return {
     instances: ["SLC-001"],
-    repositories: ["primary"],
-    paths: [{ repository: "primary", path: scopePath }],
-    base_refs: [{ repository: "primary", sha: baseSha }],
+    repositories: [NEUTRAL_REPOSITORY_ID],
+    paths: [{ repository: NEUTRAL_REPOSITORY_ID, path: scopePath }],
+    base_refs: [{ repository: NEUTRAL_REPOSITORY_ID, sha: baseSha }],
     environment: "local_engineering",
     account: null,
     data_classification: "internal",
@@ -160,7 +231,7 @@ function e2eSubject(report, gate, { codeSha = null, baseSha = null } = {}) {
     engineering_digest: report.digests.engineering_digest,
     release_digest: report.digests.release_digest,
     spec_digest: report.digests.spec_digest,
-    code_refs: codeSha ? [{ repository: "primary", sha: codeSha, base_sha: baseSha }] : [],
+    code_refs: codeSha ? [{ repository: NEUTRAL_REPOSITORY_ID, sha: codeSha, base_sha: baseSha }] : [],
     artifact_refs: [],
     engineering_decision_ref: null,
     environment_ref: null,
@@ -208,7 +279,7 @@ function e2eEvidence({ id, kind, codeSha, baseSha = null, acceptanceCriteria = [
     producer: { id: "ci/coverage", type: "ci" },
     subject: {
       instance,
-      repository: "primary",
+      repository: NEUTRAL_REPOSITORY_ID,
       cwd: ".",
       code_sha: codeSha,
       base_sha: baseSha,
@@ -240,12 +311,34 @@ function evaluatorReport(root, trustPath, packageDir, gate = null) {
   return JSON.parse(result.stdout);
 }
 
+function cloneCodeLedgerFixture(t, template) {
+  const parent = realpathSync(mkdtempSync(join(tmpdir(), "cfd-code-ledger-clone-")));
+  const root = join(parent, "repository");
+  cpSync(template.root, root, { recursive: true });
+  t.after(() => rmSync(parent, { recursive: true, force: true }));
+  const frameworkDir = join(root, ...TEST_FRAMEWORK_ROOT.split("/"));
+  projectContexts.set(root, {
+    configPath: join(root, ".feature-delivery.yaml"),
+    registryPath: join(root, ".feature-delivery/repository-registry.yaml"),
+    legacyPath: join(root, ".feature-delivery/legacy-v1-allowlist.txt"),
+    frameworkDir,
+    newFeature: join(frameworkDir, "scripts/new-feature.sh"),
+  });
+  return {
+    ...template,
+    root,
+    packageDir: join(root, "features/FEAT-990-coverage-e2e"),
+    trustPath: join(root, "approval-trust.yaml"),
+  };
+}
+
 function createCodeThenLedgerFixture(t, { implementationPath = "src/app.js", protectedPaths = [] } = {}) {
+  const reusable = implementationPath === "src/app.js" && protectedPaths.length === 0;
+  if (reusable && standardCodeLedgerTemplate) return cloneCodeLedgerFixture(t, standardCodeLedgerTemplate);
   const root = mkdtempSync(join(tmpdir(), "cfd-code-ledger-e2e-"));
-  t.after(() => rmSync(root, { recursive: true, force: true }));
+  if (!reusable) t.after(() => rmSync(root, { recursive: true, force: true }));
   git(root, "init", "-q");
-  git(root, "config", "user.name", "Coverage Owner");
-  git(root, "config", "user.email", "coverage@example.invalid");
+  installProjectContext(root);
   const { privateKey, publicKey } = generateKeyPairSync("ed25519");
   const trustPath = join(root, "approval-trust.yaml");
   writeYaml(trustPath, {
@@ -264,22 +357,21 @@ function createCodeThenLedgerFixture(t, { implementationPath = "src/app.js", pro
       valid_until: null,
     }],
   });
-  mkdirSync(join(root, "features"));
   writeFileSync(join(root, "features/.keep"), "");
   writeFileSync(join(root, "policy.yaml"), policy({
-    files: [], digest: `sha256:${"0".repeat(64)}`, exemptions: false, repoId: "primary", protectedPaths,
+    files: [], digest: `sha256:${"0".repeat(64)}`, exemptions: false, repoId: NEUTRAL_REPOSITORY_ID, protectedPaths,
   }));
   git(root, "add", ".");
   git(root, "commit", "-qm", "target base");
   const base = git(root, "rev-parse", "HEAD");
 
+  const scopePath = implementationPath.split("/")[0];
   const generated = run(newFeature, [
     "FEAT-990", "coverage-e2e", "--profile", protectedPaths.length > 0 ? "lite" : "lite",
-    "--target", "local_engineering", "--title", "Coverage E2E", "--owner", "Coverage Owner", "--repository-id", "primary", "--output-root", join(root, "features"),
+    "--target", "local_engineering", "--title", "Coverage E2E", "--owner", "Coverage Owner", "--scope", scopePath,
   ], { cwd: root });
   assert.equal(generated.status, 0, `${generated.stdout}\n${generated.stderr}`);
   const packageDir = join(root, "features/FEAT-990-coverage-e2e");
-  const scopePath = implementationPath.split("/")[0];
   fillMarkdownTokens(packageDir);
   const manifestPath = join(packageDir, "feature.yaml");
   const evidencePath = join(packageDir, "evidence.yaml");
@@ -289,7 +381,7 @@ function createCodeThenLedgerFixture(t, { implementationPath = "src/app.js", pro
   manifest.repositories[0].path = scopePath;
   manifest.repositories[0].root_scope_justification = null;
   manifest.repositories[0].baseline = { sha: base, evidence_id: "EV-FEAT-990-BASE" };
-  manifest.slices[0].paths = [{ repository: "primary", path: scopePath }];
+  manifest.slices[0].paths = [{ repository: NEUTRAL_REPOSITORY_ID, path: scopePath }];
   manifest.slices[0].authorization_decision_id = "DEC-FEAT-990-003";
   writeYaml(manifestPath, manifest);
   const evidenceLedger = readYaml(evidencePath);
@@ -341,26 +433,33 @@ function createCodeThenLedgerFixture(t, { implementationPath = "src/app.js", pro
   git(root, "add", ".");
   git(root, "commit", "-qm", "signed ledger D");
   const head = git(root, "rev-parse", "HEAD");
-  return { root, base, code, head, packageDir, trustPath, implementationPath, privateKey, manifest, evidenceLedger, decisionLedger };
+  const fixture = { root, base, code, head, packageDir, trustPath, implementationPath };
+  if (reusable) {
+    standardCodeLedgerTemplate = fixture;
+    return cloneCodeLedgerFixture(t, fixture);
+  }
+  return fixture;
 }
 
 test("legacy pins bind basename and normalized tree content while remaining valid=false", (t) => {
-  const pins = loadLegacyPins(pinPath);
-  const available = [...pins.keys()].filter((name) => existsSync(join(sourceFeatureRoot, name)));
-  if (available.length === 0) {
-    t.skip("this branch has not merged any pinned historical v1 Package");
-    return;
-  }
   const root = mkdtempSync(join(tmpdir(), "cfd-legacy-pin-"));
   t.after(() => rmSync(root, { recursive: true, force: true }));
-  for (const name of available) cpSync(join(sourceFeatureRoot, name), join(root, name), { recursive: true });
+  const context = installProjectContext(root);
+  const name = "FEAT-100-legacy-sample";
+  const packageDir = join(root, "features", name);
+  mkdirSync(packageDir, { recursive: true });
+  writeFileSync(join(packageDir, "feature.yaml"), "schema_version: 1\n");
+  writeFileSync(join(packageDir, "00-feature-brief.md"), "# Frozen legacy sample\n");
+  const pinnedDigest = legacyTreeDigest(packageDir);
+  writeFileSync(context.legacyPath, `${name} ${pinnedDigest}\n`);
+  const pins = loadLegacyPins(context.legacyPath);
+  assert.equal(pins.get(name), pinnedDigest);
 
-  const batch = run(process.execPath, [checkAll, root]);
+  const batch = run(process.execPath, [checkAll, "--repository-root", root, "--project-config", context.configPath]);
   assert.equal(batch.status, 0, `${batch.stdout}\n${batch.stderr}`);
-  assert.match(batch.stdout, new RegExp(`legacy_recognized=${available.length}`));
+  assert.match(batch.stdout, /legacy_recognized=1/);
 
-  const name = available[0];
-  const reportResult = run(process.execPath, [evaluator, "--allow-legacy", "--json", join(root, name)]);
+  const reportResult = run(process.execPath, [evaluator, "--allow-legacy", "--json", packageDir]);
   assert.notEqual(reportResult.status, 0, "legacy recognition must remain a non-success process result");
   const report = JSON.parse(reportResult.stdout);
   assert.deepEqual({ valid: report.valid, legacy: report.legacy, recognized: report.recognized, verdict: report.verdict }, {
@@ -370,10 +469,10 @@ test("legacy pins bind basename and normalized tree content while remaining vali
     verdict: "LEGACY_RECOGNIZED",
   });
 
-  writeFileSync(join(root, name, ".DS_Store"), "ignored metadata");
-  assert.equal(run(process.execPath, [checkAll, root]).status, 0, ".DS_Store must not affect the normalized historical tree");
-  writeFileSync(join(root, name, "00-feature-brief.md"), `${readFileSync(join(root, name, "00-feature-brief.md"), "utf8")}\nmutation\n`);
-  const mutated = run(process.execPath, [checkAll, root]);
+  writeFileSync(join(packageDir, ".DS_Store"), "ignored metadata");
+  assert.equal(run(process.execPath, [checkAll, "--repository-root", root, "--project-config", context.configPath]).status, 0, ".DS_Store must not affect the normalized historical tree");
+  writeFileSync(join(packageDir, "00-feature-brief.md"), `${readFileSync(join(packageDir, "00-feature-brief.md"), "utf8")}\nmutation\n`);
+  const mutated = run(process.execPath, [checkAll, "--repository-root", root, "--project-config", context.configPath]);
   assert.notEqual(mutated.status, 0, `${mutated.stdout}\n${mutated.stderr}`);
   assert.match(`${mutated.stdout}${mutated.stderr}`, /tree digest|normalized tree digest|只读 pin/i);
 });
@@ -381,9 +480,12 @@ test("legacy pins bind basename and normalized tree content while remaining vali
 test("an unregistered schema v1 directory is rejected even with --allow-legacy", (t) => {
   const root = mkdtempSync(join(tmpdir(), "cfd-legacy-unknown-"));
   t.after(() => rmSync(root, { recursive: true, force: true }));
-  writeFileSync(join(root, "feature.yaml"), "schema_version: 1\n");
-  const result = run(process.execPath, [evaluator, "--allow-legacy", "--json", root]);
-  assert.notEqual(result.status, 0);
+  installProjectContext(root);
+  const packageDir = join(root, "features/FEAT-101-unregistered");
+  mkdirSync(packageDir, { recursive: true });
+  writeFileSync(join(packageDir, "feature.yaml"), "schema_version: 1\n");
+  const result = run(process.execPath, [evaluator, "--allow-legacy", "--json", packageDir]);
+  assert.notEqual(result.status, 0, `${result.stdout}\n${result.stderr}\nspawnargs=${JSON.stringify(result.spawnargs)}`);
   const report = JSON.parse(result.stdout);
   assert.equal(report.valid, false);
   assert.equal(report.recognized, false);
@@ -393,7 +495,7 @@ test("an unregistered schema v1 directory is rejected even with --allow-legacy",
 test("explicit-file exemption requires an exact file set and head-content digest", (t) => {
   const root = mkdtempSync(join(tmpdir(), "cfd-change-exemption-"));
   t.after(() => rmSync(root, { recursive: true, force: true }));
-  mkdirSync(join(root, "features"));
+  installProjectContext(root);
   writeFileSync(join(root, "framework.md"), "approved bootstrap\n");
   const files = ["framework.md", "policy.yaml"].sort();
   writePolicyWithSelfDigest(root, files, { protectedPaths: [
@@ -450,9 +552,7 @@ test("git mode reads exemption policy from base and rejects PR-head self-authori
   const root = mkdtempSync(join(tmpdir(), "cfd-change-base-policy-"));
   t.after(() => rmSync(root, { recursive: true, force: true }));
   git(root, "init", "-q");
-  git(root, "config", "user.name", "Regression");
-  git(root, "config", "user.email", "regression@example.invalid");
-  mkdirSync(join(root, "features"));
+  installProjectContext(root);
   writeFileSync(join(root, "policy.yaml"), policy({ files: [], digest: `sha256:${"0".repeat(64)}`, exemptions: false }));
   writeFileSync(join(root, "approval-trust.yaml"), emptyTrustRoot());
   writeFileSync(join(root, "README.md"), "base\n");
@@ -478,14 +578,12 @@ test("first CI integration can use only an exact bootstrap-head exemption", (t) 
   const root = mkdtempSync(join(tmpdir(), "cfd-change-policy-bootstrap-"));
   t.after(() => rmSync(root, { recursive: true, force: true }));
   git(root, "init", "-q");
-  git(root, "config", "user.name", "Regression");
-  git(root, "config", "user.email", "regression@example.invalid");
+  installProjectContext(root);
   writeFileSync(join(root, "README.md"), "base\n");
   git(root, "add", ".");
   git(root, "commit", "-qm", "base");
   const base = git(root, "rev-parse", "HEAD");
 
-  mkdirSync(join(root, "features"));
   writeFileSync(join(root, "framework.md"), "bootstrap\n");
   const files = ["features/.keep", "framework.md", "policy.yaml"].sort();
   writeFileSync(join(root, "features/.keep"), "");
@@ -510,7 +608,7 @@ test("git mode binds G3 to implementation commit C and permits a signed ledger-o
   const result = run(process.execPath, [
     checkChanged,
     "--repo-root", fixture.root,
-    "--repo-id", "primary",
+    "--repo-id", NEUTRAL_REPOSITORY_ID,
     "--policy", join(fixture.root, "policy.yaml"),
     "--trust-root", fixture.trustPath,
     "--base", fixture.base,
@@ -529,29 +627,13 @@ test("git mode binds G3 to implementation commit C and permits a signed ledger-o
   assert.equal(report.coverage.find((item) => item.path === fixture.implementationPath)?.gates.at(-1)?.gate, "G3");
 });
 
-test("CLI repository ID cannot override the protected coverage policy", (t) => {
-  const fixture = createCodeThenLedgerFixture(t);
-  const result = run(process.execPath, [
-    checkChanged,
-    "--repo-root", fixture.root,
-    "--repo-id", "different-repository",
-    "--policy", join(fixture.root, "policy.yaml"),
-    "--trust-root", fixture.trustPath,
-    "--base", fixture.base,
-    "--head", fixture.head,
-    "--json",
-  ]);
-  assert.notEqual(result.status, 0, `${result.stdout}\n${result.stderr}`);
-  assert.match(`${result.stdout}\n${result.stderr}`, /必须等于受信 policy repository_id=primary/);
-});
-
 test("a later ordinary change becomes C and invalidates a G3 decision bound to the older implementation", (t) => {
   const fixture = createCodeThenLedgerFixture(t);
   writeFileSync(join(fixture.root, fixture.implementationPath), "export const delivered = false;\n");
   git(fixture.root, "add", ".");
   git(fixture.root, "commit", "-qm", "ordinary change after signed ledger");
   const finalHead = git(fixture.root, "rev-parse", "HEAD");
-  const result = run(process.execPath, [checkChanged, "--repo-root", fixture.root, "--repo-id", "primary", "--policy", join(fixture.root, "policy.yaml"), "--trust-root", fixture.trustPath, "--base", fixture.base, "--head", finalHead, "--json"]);
+  const result = run(process.execPath, [checkChanged, "--repo-root", fixture.root, "--repo-id", NEUTRAL_REPOSITORY_ID, "--policy", join(fixture.root, "policy.yaml"), "--trust-root", fixture.trustPath, "--base", fixture.base, "--head", finalHead, "--json"]);
   assert.notEqual(result.status, 0, `${result.stdout}\n${result.stderr}`);
   const report = JSON.parse(result.stdout);
   assert.equal(report.code_sha, finalHead);
@@ -560,7 +642,7 @@ test("a later ordinary change becomes C and invalidates a G3 decision bound to t
 
 test("a package-ledger-only diff is metadata-only and reports code_sha null", (t) => {
   const fixture = createCodeThenLedgerFixture(t);
-  const result = run(process.execPath, [checkChanged, "--repo-root", fixture.root, "--repo-id", "primary", "--policy", join(fixture.root, "policy.yaml"), "--trust-root", fixture.trustPath, "--base", fixture.code, "--head", fixture.head, "--json"]);
+  const result = run(process.execPath, [checkChanged, "--repo-root", fixture.root, "--repo-id", NEUTRAL_REPOSITORY_ID, "--policy", join(fixture.root, "policy.yaml"), "--trust-root", fixture.trustPath, "--base", fixture.code, "--head", fixture.head, "--json"]);
   assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
   const report = JSON.parse(result.stdout);
   assert.equal(report.valid, true);
@@ -574,7 +656,7 @@ test("a Feature package may not smuggle an undeclared tail file", (t) => {
   git(fixture.root, "add", ".");
   git(fixture.root, "commit", "-qm", "undeclared package tail");
   const finalHead = git(fixture.root, "rev-parse", "HEAD");
-  const result = run(process.execPath, [checkChanged, "--repo-root", fixture.root, "--repo-id", "primary", "--policy", join(fixture.root, "policy.yaml"), "--trust-root", fixture.trustPath, "--base", fixture.base, "--head", finalHead, "--json"]);
+  const result = run(process.execPath, [checkChanged, "--repo-root", fixture.root, "--repo-id", NEUTRAL_REPOSITORY_ID, "--policy", join(fixture.root, "policy.yaml"), "--trust-root", fixture.trustPath, "--base", fixture.base, "--head", finalHead, "--json"]);
   assert.notEqual(result.status, 0);
   assert.match(JSON.parse(result.stdout).errors.join(" "), /未声明的路径.*undeclared\.tmp/);
 });
@@ -592,7 +674,7 @@ test("first-parent history rejects merge commits", (t) => {
   git(fixture.root, "commit", "-qm", "main");
   git(fixture.root, "merge", "--no-ff", "-qm", "merge is forbidden", "side-change");
   const finalHead = git(fixture.root, "rev-parse", "HEAD");
-  const result = run(process.execPath, [checkChanged, "--repo-root", fixture.root, "--repo-id", "primary", "--policy", join(fixture.root, "policy.yaml"), "--trust-root", fixture.trustPath, "--base", fixture.base, "--head", finalHead, "--json"]);
+  const result = run(process.execPath, [checkChanged, "--repo-root", fixture.root, "--repo-id", NEUTRAL_REPOSITORY_ID, "--policy", join(fixture.root, "policy.yaml"), "--trust-root", fixture.trustPath, "--base", fixture.base, "--head", finalHead, "--json"]);
   assert.notEqual(result.status, 0);
   assert.match(JSON.parse(result.stdout).errors.join(" "), /不允许 merge commit/);
 });
@@ -609,7 +691,7 @@ test("append-only validation runs at every commit and catches rewriting a newly 
   git(fixture.root, "add", ".");
   git(fixture.root, "commit", "-qm", "rewrite newly appended entry");
   const finalHead = git(fixture.root, "rev-parse", "HEAD");
-  const result = run(process.execPath, [checkChanged, "--repo-root", fixture.root, "--repo-id", "primary", "--policy", join(fixture.root, "policy.yaml"), "--trust-root", fixture.trustPath, "--base", fixture.base, "--head", finalHead, "--json"]);
+  const result = run(process.execPath, [checkChanged, "--repo-root", fixture.root, "--repo-id", NEUTRAL_REPOSITORY_ID, "--policy", join(fixture.root, "policy.yaml"), "--trust-root", fixture.trustPath, "--base", fixture.base, "--head", finalHead, "--json"]);
   assert.notEqual(result.status, 0);
   assert.match(JSON.parse(result.stdout).errors.join(" "), /decisions\.yaml.*只允许尾部追加/);
 });
@@ -620,7 +702,7 @@ test("candidate discovery rejects duplicate v2 feature IDs", (t) => {
   git(fixture.root, "add", ".");
   git(fixture.root, "commit", "-qm", "duplicate v2 identity");
   const finalHead = git(fixture.root, "rev-parse", "HEAD");
-  const result = run(process.execPath, [checkChanged, "--repo-root", fixture.root, "--repo-id", "primary", "--policy", join(fixture.root, "policy.yaml"), "--trust-root", fixture.trustPath, "--base", fixture.base, "--head", finalHead, "--json"]);
+  const result = run(process.execPath, [checkChanged, "--repo-root", fixture.root, "--repo-id", NEUTRAL_REPOSITORY_ID, "--policy", join(fixture.root, "policy.yaml"), "--trust-root", fixture.trustPath, "--base", fixture.base, "--head", finalHead, "--json"]);
   assert.notEqual(result.status, 0);
   assert.match(JSON.parse(result.stdout).errors.join(" "), /重复 v2 feature\.id=FEAT-990/);
 });
@@ -630,7 +712,7 @@ test("ordinary G3 cannot authorize a runtime TCB change", (t) => {
     implementationPath: ".github/workflows/untrusted.yml",
     protectedPaths: [{ path: ".github/workflows", match: "prefix", mode: "external_digest_only" }],
   });
-  const result = run(process.execPath, [checkChanged, "--repo-root", fixture.root, "--repo-id", "primary", "--policy", join(fixture.root, "policy.yaml"), "--trust-root", fixture.trustPath, "--base", fixture.base, "--head", fixture.head, "--json"]);
+  const result = run(process.execPath, [checkChanged, "--repo-root", fixture.root, "--repo-id", NEUTRAL_REPOSITORY_ID, "--policy", join(fixture.root, "policy.yaml"), "--trust-root", fixture.trustPath, "--base", fixture.base, "--head", fixture.head, "--json"]);
   assert.notEqual(result.status, 0);
   assert.match(JSON.parse(result.stdout).errors.join(" "), /external_digest_only.*必须独立提交|CFD_FEATURE_DELIVERY_GOVERNANCE_DIGEST/);
 });
@@ -639,9 +721,7 @@ test("git mode rejects a target base that is not an ancestor of candidate head",
   const root = mkdtempSync(join(tmpdir(), "cfd-target-vs-diff-base-"));
   t.after(() => rmSync(root, { recursive: true, force: true }));
   git(root, "init", "-q");
-  git(root, "config", "user.name", "Regression");
-  git(root, "config", "user.email", "regression@example.invalid");
-  mkdirSync(join(root, "features"));
+  installProjectContext(root);
   writeFileSync(join(root, "features/.keep"), "");
   writeFileSync(join(root, "approval-trust.yaml"), emptyTrustRoot());
   writeFileSync(join(root, "policy.yaml"), policy({ files: [], digest: `sha256:${"0".repeat(64)}`, exemptions: false }));
@@ -677,9 +757,7 @@ test("repo-internal policy and trust are read as regular blobs from target base"
   const root = mkdtempSync(join(tmpdir(), "cfd-base-blob-mode-"));
   t.after(() => rmSync(root, { recursive: true, force: true }));
   git(root, "init", "-q");
-  git(root, "config", "user.name", "Regression");
-  git(root, "config", "user.email", "regression@example.invalid");
-  mkdirSync(join(root, "features"));
+  installProjectContext(root);
   writeFileSync(join(root, "features/.keep"), "");
   writeFileSync(join(root, "real-policy.yaml"), policy({ files: [], digest: `sha256:${"0".repeat(64)}`, exemptions: false }));
   // A worktree realpath would make this appear usable; the Git mode must reject 120000.
@@ -695,9 +773,7 @@ test("repo-internal policy and trust are read as regular blobs from target base"
   const trustRoot = mkdtempSync(join(tmpdir(), "cfd-base-trust-mode-"));
   t.after(() => rmSync(trustRoot, { recursive: true, force: true }));
   git(trustRoot, "init", "-q");
-  git(trustRoot, "config", "user.name", "Regression");
-  git(trustRoot, "config", "user.email", "regression@example.invalid");
-  mkdirSync(join(trustRoot, "features"));
+  installProjectContext(trustRoot);
   writeFileSync(join(trustRoot, "features/.keep"), "");
   writeFileSync(join(trustRoot, "policy.yaml"), policy({ files: [], digest: `sha256:${"0".repeat(64)}`, exemptions: false }));
   writeFileSync(join(trustRoot, "real-trust.yaml"), emptyTrustRoot());
@@ -718,7 +794,7 @@ test("repo-internal policy and trust are read as regular blobs from target base"
 test("coverage policy is closed and exemptions are valid only in their active time window", (t) => {
   const root = mkdtempSync(join(tmpdir(), "cfd-policy-closed-time-"));
   t.after(() => rmSync(root, { recursive: true, force: true }));
-  mkdirSync(join(root, "features"));
+  installProjectContext(root);
   writeFileSync(join(root, "changed.txt"), "content\n");
   const unknown = YAML.parse(policy({ files: [], digest: `sha256:${"0".repeat(64)}`, exemptions: false }));
   unknown.unreviewed = true;
@@ -740,8 +816,7 @@ test("existing v2 decision and evidence ledgers allow only canonical tail append
   const root = mkdtempSync(join(tmpdir(), "cfd-ledger-prefix-"));
   t.after(() => rmSync(root, { recursive: true, force: true }));
   git(root, "init", "-q");
-  git(root, "config", "user.name", "Regression");
-  git(root, "config", "user.email", "regression@example.invalid");
+  installProjectContext(root);
   const packageRoot = join(root, "features/FEAT-900-ledger");
   mkdirSync(packageRoot, { recursive: true });
   writeFileSync(join(root, "approval-trust.yaml"), emptyTrustRoot());
@@ -786,9 +861,7 @@ test("approval trust rotation is isolated, strict, and pinned by the admin gover
   const root = mkdtempSync(join(tmpdir(), "cfd-governance-digest-"));
   t.after(() => rmSync(root, { recursive: true, force: true }));
   git(root, "init", "-q");
-  git(root, "config", "user.name", "Regression");
-  git(root, "config", "user.email", "regression@example.invalid");
-  mkdirSync(join(root, "features"));
+  installProjectContext(root);
   writeFileSync(join(root, "features/.keep"), "");
   writeFileSync(join(root, "approval-trust.yaml"), emptyTrustRoot());
   writeFileSync(join(root, "policy.yaml"), policy({
@@ -866,9 +939,7 @@ test("external digest governance covers runtime TCB files and validates candidat
   const root = mkdtempSync(join(tmpdir(), "cfd-runtime-tcb-governance-"));
   t.after(() => rmSync(root, { recursive: true, force: true }));
   git(root, "init", "-q");
-  git(root, "config", "user.name", "Regression");
-  git(root, "config", "user.email", "regression@example.invalid");
-  mkdirSync(join(root, "features"));
+  installProjectContext(root);
   writeFileSync(join(root, "features/.keep"), "");
   writeFileSync(join(root, "approval-trust.yaml"), emptyTrustRoot());
   writeFileSync(join(root, "package.json"), "{}\n");
@@ -904,9 +975,7 @@ test("policy snapshots are content-addressed, strict, immutable, and required by
   const root = mkdtempSync(join(tmpdir(), "cfd-policy-snapshot-governance-"));
   t.after(() => rmSync(root, { recursive: true, force: true }));
   git(root, "init", "-q");
-  git(root, "config", "user.name", "Regression");
-  git(root, "config", "user.email", "regression@example.invalid");
-  mkdirSync(join(root, "features"));
+  installProjectContext(root);
   mkdirSync(join(root, "framework/policies"), { recursive: true });
   writeFileSync(join(root, "features/.keep"), "");
   writeFileSync(join(root, "approval-trust.yaml"), emptyTrustRoot());
@@ -1000,9 +1069,7 @@ test("git-derived changed paths cannot be normalized into a different protected 
   const root = mkdtempSync(join(tmpdir(), "cfd-git-path-alias-"));
   t.after(() => rmSync(root, { recursive: true, force: true }));
   git(root, "init", "-q");
-  git(root, "config", "user.name", "Regression");
-  git(root, "config", "user.email", "regression@example.invalid");
-  mkdirSync(join(root, "features"));
+  installProjectContext(root);
   writeFileSync(join(root, "features/.keep"), "");
   writeFileSync(join(root, "approval-trust.yaml"), emptyTrustRoot());
   writeFileSync(join(root, "policy.yaml"), policy({
@@ -1028,11 +1095,11 @@ test("Git path output rejects invalid UTF-8 bytes instead of replacing them", ()
   assert.throws(() => decodeGitPathOutput(Buffer.from([0x66, 0x80, 0x00])), /非 UTF-8 路径字节/);
 });
 
-test("base-trusted workflow never checks out or executes candidate package scripts", () => {
+test("GitHub workflow template uses only base-trusted execution and exact-head App statuses", () => {
   const source = readFileSync(trustedWorkflow, "utf8");
   assert.match(source, /pull_request_target:/);
   assert.match(source, /types:\s*\[[^\]]*edited[^\]]*\]/);
-  assert.match(source, /environment:\s*feature-delivery-trusted/);
+  assert.match(source, /environment:\s*__TRUSTED_ENVIRONMENT__/);
   assert.match(source, /actions\/create-github-app-token@[0-9a-f]{40}/);
   assert.match(source, /permission-statuses:\s*write/);
   assert.doesNotMatch(source, /^\s*statuses:\s*write\s*$/m, "default GITHUB_TOKEN must remain read-only");
@@ -1043,9 +1110,10 @@ test("base-trusted workflow never checks out or executes candidate package scrip
   assert.match(source, /if:\s*\$\{\{ always\(\).*status_token\.outcome == 'success'/);
   assert.match(source, /state=pending/);
   assert.match(source, /context="feature-delivery\/trusted-coverage-status"/);
+  assert.equal((source.match(/^\s+HEAD_SHA:\s*\$\{\{ github\.event\.pull_request\.head\.sha \}\}/gm) ?? []).length, 2);
+  assert.match(source, /\(cd "\$CFD_FRAMEWORK_ROOT" && npm ci --ignore-scripts\)/);
   assert.ok(source.indexOf("Publish pending candidate commit status") < source.indexOf("actions/checkout@"), "pending status must be posted immediately after the dedicated App token, before checkout/fetch");
   assert.match(source, /CFD_FEATURE_DELIVERY_GOVERNANCE_DIGEST/);
-  assert.doesNotMatch(source, /pnpm feature-delivery:changes --\s/);
   assert.doesNotMatch(source, /checkout[^\n]*head\.sha/);
   assert.doesNotMatch(source, /secrets\.GITHUB_TOKEN/);
 });

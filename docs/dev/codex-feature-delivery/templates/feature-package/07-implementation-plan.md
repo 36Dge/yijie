@@ -42,7 +42,7 @@ expiry_and_invalidation: {{EXPIRY_AND_INVALIDATION}}
 
 至少在 base/spec/Boundary/风险/数据分类/允许路径/依赖主体改变或授权过期时重新授权。Codex 产品级 sandbox/approval 不等于项目 G2/G3/G5 授权。
 
-G2 Packet 必须以 `{repository,path}` 精确覆盖全部已授权 Slice scope，列出每仓 base ref、`environment: local_engineering`、`account: null`、data/budget、policy enum 中的 allowed/excluded capabilities、required evidence、stop conditions 和 `reauthorize_on`。`account: null` 表示它不授权任何真实外部账号；发布目标账号只能在新的 G5 授权中精确绑定。`.` 整仓 scope 需要 justification；`controlled`/高风险还需逐仓 exception Evidence。
+G2 Packet 必须以 `{repository,path}` 精确覆盖全部已授权 Slice scope，列出每仓 base ref、与 `{{DELIVERY_TARGET}}` 相符的工程环境、`account: null`、data/budget、policy enum 中的 allowed/excluded capabilities、required evidence、stop conditions 和 `reauthorize_on`。`account: null` 表示它不授权任何真实外部账号；发布目标账号只能在新的 G5 授权中精确绑定。`.` 整仓 scope 需要 justification；`controlled`/高风险还需逐仓 exception Evidence。
 
 ## 4. Review 与合并
 

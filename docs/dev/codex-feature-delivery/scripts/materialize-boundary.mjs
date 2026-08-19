@@ -19,6 +19,7 @@ import { basename, dirname, isAbsolute, relative, resolve, sep } from "node:path
 import { fileURLToPath } from "node:url";
 import process from "node:process";
 import YAML from "yaml";
+import { loadProjectContext } from "./project-context.mjs";
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
 const frameworkDir = resolve(scriptDir, "..");
@@ -78,18 +79,24 @@ function writeExclusiveTemp(directory, label, content, mode = 0o644) {
   return path;
 }
 
-if (process.argv.length !== 4) {
-  process.stderr.write("Usage: node materialize-boundary.mjs PACKAGE_DIR BND-ID\n");
+const cliArgs = process.argv.slice(2);
+const packageArgument = cliArgs.shift();
+const boundaryId = cliArgs.shift();
+let projectConfig = null;
+if (cliArgs[0] === "--project-config" && cliArgs[1] && cliArgs.length === 2) projectConfig = resolve(cliArgs[1]);
+else if (cliArgs.length !== 0 || !packageArgument || !boundaryId) {
+  process.stderr.write("Usage: node materialize-boundary.mjs PACKAGE_DIR BND-ID [--project-config FILE]\n");
   process.exit(2);
 }
-const requestedPackageDir = resolve(process.argv[2]);
-const boundaryId = process.argv[3];
+const requestedPackageDir = resolve(packageArgument);
 if (!/^BND-[0-9]{3,}$/.test(boundaryId)) fail("BND-ID 必须符合 BND-NNN。", 2);
 
 const packageMetadata = lstatIfPresent(requestedPackageDir);
 if (!packageMetadata || !packageMetadata.isDirectory()) fail(`Package 目录不存在：${requestedPackageDir}`);
 if (packageMetadata.isSymbolicLink()) fail(`Package 目录不得是符号链接：${requestedPackageDir}`);
 const packageDir = realpathSync(requestedPackageDir);
+try { loadProjectContext({ projectConfig, startPath: packageDir, frameworkDir }); }
+catch (error) { fail(error.message, 2); }
 const materializeLockPath = resolve(packageDir, ".cfd-materialize.lock");
 let materializeLockDescriptor;
 let materializeLockIdentity;

@@ -13,7 +13,7 @@ entries: []
 #   instance: feature
 #   state: passed
 #   actor:
-#     id: "{{OWNER}}"
+#     id: "{{OWNER_ID}}"
 #     type: human
 #   roles: [accountable_owner, requirement_owner]
 #   decided_at: "{{DATE}}T00:00:00Z"
@@ -44,7 +44,7 @@ entries: []
 #     instances: []
 #     repositories: []
 #     # paths 使用 canonical repository alias + repo 内相对路径；禁止绝对路径和 `..`。
-#     paths: [{repository: "{{REPOSITORY_ID}}", path: src/tasks}]
+#     paths: [{repository: "{{REPOSITORY_ID}}", path: "{{REPOSITORY_SCOPE}}"}]
 #     base_refs: []
 #     environment: null
 #     account: null
