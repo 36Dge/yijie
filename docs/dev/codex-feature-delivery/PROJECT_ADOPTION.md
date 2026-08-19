@@ -137,6 +137,8 @@ Target 只是生命周期终点，不自动授予环境访问权限。G5 也必�
 - [ ] Evidence artifact 存储、digest 核验和保留期可执行
 - [ ] 初始化器、Schema、policy registry、evaluator 和 materializer 测试通过
 - [ ] 若启用 CI，required status 的来源、保护规则和失败行为已实际验证
+- [ ] 首次 GitHub bootstrap 由 canonical `verify-first-bootstrap.mjs` 读取 Git objects 独立复算；无 pin 只得到 `BOOTSTRAP_DIGEST_REQUIRED`，精确、未过期的仓外 pin 才得到 `BOOTSTRAP_DIGEST_APPLIED`
+- [ ] 首次候选的 trust root 严格为 `keys: []`、coverage policy 为 `exemptions: []`；审批公钥在 bootstrap 合并后通过独立 trust-only 变更建立
 - [ ] 若未启用 CI，文档明确标注“流程可用，但未被远端强制”
 - [ ] 已创建一个虚构或低风险试点包，完成 G0/G1 演练且未把 ELIGIBLE 当作 passed
 

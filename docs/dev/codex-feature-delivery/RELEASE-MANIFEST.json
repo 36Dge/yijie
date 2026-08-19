@@ -3,7 +3,7 @@
   "kind": "FeatureDeliveryReleaseManifest",
   "distribution": {
     "name": "codex-feature-delivery-runtime",
-    "version": "2.0.0"
+    "version": "2.0.1"
   },
   "manifest_path": "RELEASE-MANIFEST.json",
   "manifest_excludes": [
@@ -30,14 +30,14 @@
     {
       "path": "DOCUMENT_CATALOG.md",
       "mode": "100644",
-      "size": 10099,
-      "sha256": "sha256:ba7eb75bab3bd23891ebef32dd50449c7b7605a64ba19def0232a9a86ce94d42"
+      "size": 10332,
+      "sha256": "sha256:91c8ca03b8465dc55c8cc89161c71c026fec8c464aefe9423f633b2227095a3e"
     },
     {
       "path": "HANDBOOK.md",
       "mode": "100644",
-      "size": 28624,
-      "sha256": "sha256:508e1e352310c0028568d8a03ffce57ce099c669fd80e8fe07cd1885d89de549"
+      "size": 29163,
+      "sha256": "sha256:a268ecaa2e7e2296c51c1828011dc089ff4fa4a50c3583daa2d2352d6989da9c"
     },
     {
       "path": "MIGRATION_V1_TO_V2.md",
@@ -48,8 +48,8 @@
     {
       "path": "PROJECT_ADOPTION.md",
       "mode": "100644",
-      "size": 8686,
-      "sha256": "sha256:c8875ea64a643b46c85cd646875c409499511ee0fe1db6a8bbcaccb27e46316d"
+      "size": 9077,
+      "sha256": "sha256:1422ce3999715287b068932e018870bb701f0999904f6175bbcb4c0b0852522d"
     },
     {
       "path": "QUALITY_GATES.md",
@@ -60,14 +60,14 @@
     {
       "path": "QUICKSTART.md",
       "mode": "100644",
-      "size": 9517,
-      "sha256": "sha256:c430cb7ecbb9e1a8feb9e8e0ead51bdc992d4c973157598875e06fe900320a51"
+      "size": 10038,
+      "sha256": "sha256:851b5f21abc6b5192d1118aaf217f6ceb7122915d9874dedbd6655993dc8d3fa"
     },
     {
       "path": "README.md",
       "mode": "100644",
-      "size": 7840,
-      "sha256": "sha256:c6e37d7e7230728c11dd7912012b7358a2c25ae7071e6f100c603b0b2c7d763d"
+      "size": 8593,
+      "sha256": "sha256:f9e482ea5d1225656fd5348b83c7bab3dd69cc87ab2231d893663c9b13046aec"
     },
     {
       "path": "checklists/definition-of-done.md",
@@ -126,14 +126,14 @@
     {
       "path": "integrations/git.md",
       "mode": "100644",
-      "size": 3877,
-      "sha256": "sha256:677076abbd5a73f1c87778fceacdf01ed607691f2e8fdcb3b833afaf13f8409d"
+      "size": 4471,
+      "sha256": "sha256:b56bc66592f5de838e77e8ed416a46bfc84be0feb2eda627ffcc89e786db3bb5"
     },
     {
       "path": "integrations/github-actions.md",
       "mode": "100644",
-      "size": 5459,
-      "sha256": "sha256:fd2654e4ab964ec52a65f5a4f0cf1c4382e88191dc300b4ee42429cdd7a9b09c"
+      "size": 7551,
+      "sha256": "sha256:cc9ada8e68bc1a6c05d3970e0fc95f57e83ae09c0ebde0e2e12720b0802b719b"
     },
     {
       "path": "integrations/github/feature-delivery-coverage.yml",
@@ -151,13 +151,13 @@
       "path": "package-lock.json",
       "mode": "100644",
       "size": 2906,
-      "sha256": "sha256:12ff2b5eb11e63d52e4f7aab71a68ff64f8ba3f894290b11f31f1c15f5b2d659"
+      "sha256": "sha256:d684bfa824914b87be42b92ab522335f0cc03c30c5a819da59f73b5aedabe2da"
     },
     {
       "path": "package.json",
       "mode": "100644",
-      "size": 552,
-      "sha256": "sha256:60dc481a16dd71a296168197136cc626ce895d775e0dd6abc0c1de3fbfe933e6"
+      "size": 625,
+      "sha256": "sha256:31659233fdb2f66b59382204b59c142e3667f7ee484c4ec5e56f8d5329752d1c"
     },
     {
       "path": "policies/d55f4d0a53d2f7170b16bc84bcfca7c7c97aaa6a3791b2ce32f8561edac6bcfb.yaml",
@@ -246,8 +246,8 @@
     {
       "path": "scripts/init-project.mjs",
       "mode": "100755",
-      "size": 13112,
-      "sha256": "sha256:04d831841eb674d8e64144642bafc71a59b6816f4f4f1f76d1cb22b596de4b57"
+      "size": 13128,
+      "sha256": "sha256:31cd86cb59cd8ff7d10c61130a105c45ede31f4ddbdc43c6875aacef3466a2ce"
     },
     {
       "path": "scripts/legacy-v1.mjs",
@@ -302,6 +302,12 @@
       "mode": "100755",
       "size": 10331,
       "sha256": "sha256:170db149f3e2fd5953775c3cf44ca03d840150feb1c8696eff51bb905d1dd6cc"
+    },
+    {
+      "path": "scripts/verify-first-bootstrap.mjs",
+      "mode": "100755",
+      "size": 32810,
+      "sha256": "sha256:7a959552e0a64d80c17e3a9caa3cfd2a3bd81cd319d1069b8eb39041b7c47fe7"
     },
     {
       "path": "templates/feature-package/00-feature-brief.md",
@@ -406,6 +412,12 @@
       "sha256": "sha256:4d69b99df1d88c2f88d0ec88d2f7cd0f77c3258752b6a50fce779e50a367b67a"
     },
     {
+      "path": "tests/first-bootstrap.test.mjs",
+      "mode": "100644",
+      "size": 12641,
+      "sha256": "sha256:b93777eb2eac20c4c7bad1fc440e4f1a1e861c5d015763712473abf792b9bb77"
+    },
+    {
       "path": "tests/gate-policy-schema.test.mjs",
       "mode": "100644",
       "size": 2718,
@@ -433,8 +445,8 @@
       "path": "tests/release-manifest.test.mjs",
       "mode": "100644",
       "size": 1437,
-      "sha256": "sha256:10d54697e6bd36c17561cd026684673764733c07f883471e4871c0eb0a28a548"
+      "sha256": "sha256:423a7c769e82fcf3197e45432aa38953abc09af9e839f651426fd56b3745209e"
     }
   ],
-  "distribution_digest": "sha256:62cd19a9a61ac3ab81fd90dbeb5ef060f2f8c80c5ce985e5cf1c17c3cf9a323b"
+  "distribution_digest": "sha256:dbc3a7920f287fca35002e2e0c6052b8ffebf4c0537ac808ad58be2e980b222d"
 }

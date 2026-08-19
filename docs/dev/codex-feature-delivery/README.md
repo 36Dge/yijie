@@ -123,6 +123,8 @@ node <DISTRIBUTION_ROOT>/scripts/init-project.mjs \
 
 `--ci github` 会在同一原子初始化中生成候选 GitHub adapter，但不会创建 GitHub App、Environment、repository variables、required status 或 branch protection。管理员必须按 [GitHub Actions 接入指南](integrations/github-actions.md) 完成外部配置；未完成时 CI enforcement 保持未启用或 fail closed。
 
+首次把 v2 安装到尚无 `.feature-delivery.yaml` 的 GitHub 仓库时，不能执行候选 head 中的新 checker 给自己背书。必须从已锁定的 canonical 发行 worktree 运行 `scripts/verify-first-bootstrap.mjs`，把候选 base/head 只作为 Git objects 读取。诊断先输出 `codex-feature-delivery/first-bootstrap/v1` 的精确摘要；管理员在仓外独立复算并短期 pin 同一值后，再次验证才会得到 `BOOTSTRAP_DIGEST_APPLIED`。摘要显式绑定 repository、branch、base、head、tree、完整 path/mode/content、发行版本、distribution/policy digest、空 trust root 和不超过 24 小时的授权窗口。详见 [GitHub Actions 接入指南](integrations/github-actions.md#4-首次-bootstrap)。
+
 ## 核心规范与 Adapter 的边界
 
 - [HANDBOOK.md](HANDBOOK.md)、[QUALITY_GATES.md](QUALITY_GATES.md) 定义与平台无关的生命周期、Evidence 和 Decision 语义。

@@ -112,6 +112,7 @@ process.once("exit", cleanup);
 
 const stagedFramework = join(stage, "framework");
 const include = new Set([
+  ".gitignore",
   "CODEX_PLAYBOOK.md", "DOCUMENT_CATALOG.md", "HANDBOOK.md", "MIGRATION_V1_TO_V2.md", "PROJECT_ADOPTION.md",
   "QUALITY_GATES.md", "QUICKSTART.md", "README.md", "checklists", "config", "examples", "integrations", "gate-policy.yaml",
   "policies", "schemas", "scripts", "templates", "tests", "package.json", "package-lock.json", "RELEASE-MANIFEST.json",

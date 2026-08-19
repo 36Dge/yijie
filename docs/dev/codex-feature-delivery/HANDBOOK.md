@@ -375,6 +375,8 @@ G5 subject 包含 `release_digest`、目标环境、目标账号、精确制品�
 
 上述原则是核心要求。当前 Git commit/tree/diff 算法见 [integrations/git.md](integrations/git.md)；GitHub App、required status、Environment、branch protection、bootstrap 和 merge queue 限制见 [integrations/github-actions.md](integrations/github-actions.md)。复制 adapter 文件不等于 enforcement 已上线，管理员必须完成外部配置并验证故障时 fail closed。
 
+首次接入是独立协议：base 尚无 v2 时，必须从已锁定 canonical runtime 运行 `verify-first-bootstrap.mjs`，只读取候选 Git objects，并用 `codex-feature-delivery/first-bootstrap/v1` 摘要绑定精确 repository/base/head/tree、完整 path/mode/content、发行/policy/component digest 与最长 24 小时的仓外授权。候选 trust 必须为空、最终 policy 不得保留 exemption。base 一旦已有 v2 配置，first-bootstrap 模式立即失效，后续只能走普通 base-trusted coverage checker。
+
 ## 14. 可以使用的完成用语
 
 必须按证据精确表达：

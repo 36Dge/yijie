@@ -15,7 +15,7 @@ test("release manifest is canonical and binds every distribution payload file", 
   const actual = readFileSync(resolve(frameworkRoot, "RELEASE-MANIFEST.json"), "utf8");
   assert.equal(actual, serializedManifest(frameworkRoot));
   const manifest = buildReleaseManifest(frameworkRoot);
-  assert.equal(manifest.distribution.version, "2.0.0");
+  assert.equal(manifest.distribution.version, "2.0.1");
   assert.match(manifest.distribution_digest, /^sha256:[0-9a-f]{64}$/);
   assert.ok(manifest.files.some((file) => file.path === "scripts/evaluate-feature-package.mjs"));
   assert.ok(manifest.files.some((file) => file.path === "schemas/feature-package.schema.json"));

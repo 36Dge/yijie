@@ -1,7 +1,7 @@
 {
   "name": "codex-feature-delivery-runtime",
   "private": true,
-  "version": "2.0.0",
+  "version": "2.0.1",
   "type": "module",
   "engines": {
     "node": ">=24 <27"
@@ -9,6 +9,7 @@
   "scripts": {
     "test": "node --test tests/*.test.mjs && node scripts/release-manifest.mjs --check",
     "check": "node scripts/check-runtime.mjs && node scripts/release-manifest.mjs --check",
+    "verify:first-bootstrap": "node scripts/verify-first-bootstrap.mjs",
     "release:manifest": "node scripts/release-manifest.mjs --write",
     "release:check": "node scripts/release-manifest.mjs --check"
   },

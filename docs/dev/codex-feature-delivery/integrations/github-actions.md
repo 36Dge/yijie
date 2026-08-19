@@ -73,11 +73,34 @@ branch protection 或 ruleset 必须：
 - 禁止普通开发者绕过；
 - 避免把归属 base SHA 的 workflow job check 误当成候选 head required status。
 
-## 4. Bootstrap
+## 4. 首次 Bootstrap
 
 首次接入时，target base 可能尚无 workflow 或 coverage policy。候选 head 不能用自己新增的 verifier 自证。
 
-管理员必须从已审查、不可变的外部 verifier 独立复算初始 change-set digest，并把同一值预先写入受保护 repository variable。若 base 尚无可执行 workflow，则使用组织级 required workflow、专用 App webhook，或管理员控制的离线验证完成首次合并。
+管理员必须从已审查、不可变的 canonical runtime 运行独立 CLI；不得从候选 checkout、候选依赖或候选 workflow 运行：
+
+```bash
+node <CANONICAL_RUNTIME>/scripts/verify-first-bootstrap.mjs \
+  --repo-root <PILOT_REPOSITORY> \
+  --repository <OWNER/REPOSITORY> \
+  --repo-id <REPOSITORY_ID> \
+  --target-branch <TARGET_BRANCH> \
+  --base <EXACT_TARGET_BASE_SHA> \
+  --head <EXACT_CANDIDATE_HEAD_SHA> \
+  --authorization-id <UNIQUE_AUTHORIZATION_ID> \
+  --approval-reference <EXTERNAL_APPROVAL_REFERENCE> \
+  --created-at <RFC3339_CREATED_AT> \
+  --expires-at <RFC3339_EXPIRES_AT> \
+  --json
+```
+
+无 pin 的第一次运行必须退出 `1` 并输出 `BOOTSTRAP_DIGEST_REQUIRED` 与 `expected_bootstrap_digest`；这只是待管理员复算的诊断，不是 PASS。管理员在仓外复核 repository、base/head/tree、完整 changed-file 表、component digests、授权引用和有效期后，把同一摘要放入候选不可写的临时授权通道，再以完全相同参数加 `--bootstrap-digest sha256:...` 复核。只有退出 `0` 且 verdict 为 `BOOTSTRAP_DIGEST_APPLIED` 才表示内容授权匹配。
+
+首次 bootstrap 使用独立 domain `codex-feature-delivery/first-bootstrap/v1`，不是普通 `change-set/v3`。它采用无歧义长度前缀编码，绑定 canonical distribution version/digest、active policy digest、repository full name/ID、target branch、精确 base/head/tree、完整 path/mode/size/content、project config、registry、coverage policy、严格空 trust root、rendered workflow，以及最长 24 小时的外部授权。repository/base/head/path/mode/content 任一变化都必须产生新摘要；跨仓摘要不可互换。
+
+CLI 还会拒绝：base 已有或部分存在 v2 控制面、非线性/merge history、非规范或非法 UTF-8 path、symlink/gitlink/special mode、非空 trust、持久 exemption、非 canonical runtime/manifest/policy snapshot、错误 repository identity，以及会运行候选 head 的 workflow。Git object 没有 checkout inode/hardlink 语义；验证器只接受 manifest 声明的普通 blob，不从候选物理文件系统取信。
+
+若 base 尚无可执行 workflow，则由管理员控制的离线环境、专用 App webhook或平台级 required workflow运行上述 canonical CLI完成首次合并。候选 head workflow 的绿色结果不能作为首次 bootstrap 证据。
 
 首次接入合并后，后续 CI 永远优先使用 target-base 版本。bootstrap pin 不得成为普通 Feature 的长期豁免。
 

@@ -75,4 +75,6 @@ TCB 变更必须隔离，且除普通代码审查外，还要由待审分支不�
 
 本地显式文件列表只用于诊断。它不能证明完整提交历史、受保护 base、append-only 前缀或远端 required status，因此不能替代 base/head 合并门禁。
 
+尚无 v2 base 的首次接入不走普通 changed-files bootstrap 分支。由 canonical `verify-first-bootstrap.mjs` 使用 `codex-feature-delivery/first-bootstrap/v1` 域，从 Git object database 读取精确 base/head/tree 和候选 blob；它不会 checkout 或执行候选。摘要采用长度前缀字段编码，并把 repository、target branch、授权窗口、全部 changed path/mode/content 与 canonical distribution/policy/component digest 纳入绑定。base 已有 `.feature-delivery.yaml` 后，该模式永久拒绝，所有后续变更回到普通 base-trusted checker。
+
 GitHub 实现见 [github-actions.md](github-actions.md)。其他平台的 adapter 必须实现相同的版本绑定、base trust、历史保护和 fail-closed 语义。

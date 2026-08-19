@@ -13,6 +13,7 @@ v2 只有三个 Feature 事实层：当前声明、追加账本、解释性文�
 | `<FRAMEWORK_ROOT>/schemas/` | 发行契约 | 严格约束项目配置、Feature Package 与 Gate Policy |
 | `<PROJECT_ROOT>/.feature-delivery.yaml` | 项目当前配置 | Framework/Feature root、project/repository identity、adapter 与治理文件引用 |
 | `<PROJECT_ROOT>/.feature-delivery/` | 项目实例治理目录 | trust root、coverage policy、repository registry 与 legacy registry |
+| `<FRAMEWORK_ROOT>/scripts/verify-first-bootstrap.mjs` | canonical 首次接入验证器 | base 尚无 v2 时，只从 Git objects 验证候选发行、空 trust、实例配置与精确外部摘要；base 已接入后拒绝运行 |
 
 项目初始化与字段选择见 [PROJECT_ADOPTION.md](PROJECT_ADOPTION.md)。
 

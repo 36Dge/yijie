@@ -6,6 +6,8 @@
 
 确认初始化已使用 Node.js 24–26，并且发行源和项目内 Framework 都在各自目录中通过 `(cd "<PATH>" && npm ci --ignore-scripts)` 安装。若选择了 `--ci github`，初始化器只生成候选 adapter 文件；GitHub App、Environment、variables、required status 和 branch protection 仍必须由管理员另行配置，见 [integrations/github-actions.md](integrations/github-actions.md)。
 
+如果目标分支还没有 `.feature-delivery.yaml`，先按接入指南从 canonical runtime 运行 `verify-first-bootstrap.mjs`。无外部 pin 的 `BOOTSTRAP_DIGEST_REQUIRED` 只是诊断；只有管理员仓外复算、有效期不超过 24 小时且精确匹配的 `BOOTSTRAP_DIGEST_APPLIED` 才能授权首次安装。候选 head 中的 workflow/checker 不得验证自己。首次合并后的审批 trust 仍必须通过独立 trust-only 变更建立；在此之前 `keys: []` 是正确的 fail-closed 状态。
+
 ## 1. 管理员建立审批信任根
 
 在 Codex 和待审代码不可访问的受保护终端或审批面生成 key。私钥绝不能提交进项目：
