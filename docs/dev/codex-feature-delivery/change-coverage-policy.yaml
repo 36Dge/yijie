@@ -17,6 +17,12 @@ protected_paths:
   - path: .github/workflows
     match: prefix
     mode: external_digest_only
+  - path: .github/workflows/ci.yml
+    match: exact
+    mode: controlled_g4_or_exemption
+  - path: .github/workflows/feature-delivery-coverage.yml
+    match: exact
+    mode: controlled_g4_or_exemption
   - path: .npmrc
     match: exact
     mode: external_digest_only
@@ -28,28 +34,94 @@ protected_paths:
     mode: controlled_g4_or_exemption
   - path: docs/dev/codex-feature-delivery/approval-trust.yaml
     match: exact
-    mode: external_digest_only
+    mode: controlled_g4_or_exemption
   - path: docs/dev/codex-feature-delivery/change-coverage-policy.yaml
     match: exact
-    mode: external_digest_only
+    mode: controlled_g4_or_exemption
   - path: docs/dev/codex-feature-delivery/gate-policy.yaml
     match: exact
     mode: external_digest_only
   - path: docs/dev/codex-feature-delivery/legacy-v1-allowlist.txt
     match: exact
-    mode: external_digest_only
+    mode: controlled_g4_or_exemption
   - path: docs/dev/codex-feature-delivery/policies
     match: prefix
     mode: external_digest_only
   - path: docs/dev/codex-feature-delivery/schemas
     match: prefix
     mode: external_digest_only
+  - path: docs/dev/codex-feature-delivery/schemas/approval-trust.schema.json
+    match: exact
+    mode: controlled_g4_or_exemption
+  - path: docs/dev/codex-feature-delivery/schemas/change-coverage-policy.schema.json
+    match: exact
+    mode: controlled_g4_or_exemption
+  - path: docs/dev/codex-feature-delivery/schemas/feature-package.schema.json
+    match: exact
+    mode: controlled_g4_or_exemption
+  - path: docs/dev/codex-feature-delivery/schemas/gate-policy.schema.json
+    match: exact
+    mode: controlled_g4_or_exemption
+  - path: docs/dev/codex-feature-delivery/schemas/project-config.schema.json
+    match: exact
+    mode: controlled_g4_or_exemption
+  - path: docs/dev/codex-feature-delivery/schemas/repository-registry.schema.json
+    match: exact
+    mode: controlled_g4_or_exemption
   - path: docs/dev/codex-feature-delivery/scripts
     match: prefix
     mode: external_digest_only
+  - path: docs/dev/codex-feature-delivery/scripts/approval-attestation.mjs
+    match: exact
+    mode: controlled_g4_or_exemption
+  - path: docs/dev/codex-feature-delivery/scripts/check-all-feature-packages.mjs
+    match: exact
+    mode: controlled_g4_or_exemption
+  - path: docs/dev/codex-feature-delivery/scripts/check-changed-feature-coverage.mjs
+    match: exact
+    mode: controlled_g4_or_exemption
+  - path: docs/dev/codex-feature-delivery/scripts/check-runtime.mjs
+    match: exact
+    mode: controlled_g4_or_exemption
+  - path: docs/dev/codex-feature-delivery/scripts/evaluate-feature-package.mjs
+    match: exact
+    mode: controlled_g4_or_exemption
+  - path: docs/dev/codex-feature-delivery/scripts/init-approver-key.mjs
+    match: exact
+    mode: controlled_g4_or_exemption
+  - path: docs/dev/codex-feature-delivery/scripts/init-project.mjs
+    match: exact
+    mode: controlled_g4_or_exemption
+  - path: docs/dev/codex-feature-delivery/scripts/legacy-v1.mjs
+    match: exact
+    mode: controlled_g4_or_exemption
+  - path: docs/dev/codex-feature-delivery/scripts/materialize-boundary.mjs
+    match: exact
+    mode: controlled_g4_or_exemption
+  - path: docs/dev/codex-feature-delivery/scripts/materialize-delivery-summary.mjs
+    match: exact
+    mode: controlled_g4_or_exemption
+  - path: docs/dev/codex-feature-delivery/scripts/new-feature.mjs
+    match: exact
+    mode: controlled_g4_or_exemption
+  - path: docs/dev/codex-feature-delivery/scripts/new-feature.sh
+    match: exact
+    mode: controlled_g4_or_exemption
+  - path: docs/dev/codex-feature-delivery/scripts/policy-registry.mjs
+    match: exact
+    mode: controlled_g4_or_exemption
+  - path: docs/dev/codex-feature-delivery/scripts/project-context.mjs
+    match: exact
+    mode: controlled_g4_or_exemption
+  - path: docs/dev/codex-feature-delivery/scripts/release-manifest.mjs
+    match: exact
+    mode: controlled_g4_or_exemption
+  - path: docs/dev/codex-feature-delivery/scripts/sign-decision.mjs
+    match: exact
+    mode: controlled_g4_or_exemption
   - path: package.json
     match: exact
-    mode: external_digest_only
+    mode: controlled_g4_or_exemption
   - path: pnpm-lock.yaml
     match: exact
     mode: external_digest_only
@@ -140,3 +212,79 @@ exemptions:
       - docs/dev/codex-project-memory.md
       - package.json
     head_content_digest: sha256:583ecb6217e13a130dc2d628604c38e9389bfd0dcd78f43fca8742cd50965326
+  - id: EXC-FDV2-CANONICAL-DISTRIBUTION-2026-08-19
+    owner: 36Dge
+    rationale: 仅允许 PR #5 将 canonical generic Feature Delivery v2 发行版原子迁入 yijie；精确文件集和内容摘要之外的任何变化均不授权。
+    approval_reference: user-request/2026-08-19-feature-delivery-v2-phase-4-1-governance-bridge
+    created_at: 2026-08-19T16:11:21+08:00
+    expires_at: 2026-08-20T16:11:21+08:00
+    one_time: true
+    changed_files:
+      - .feature-delivery.yaml
+      - .feature-delivery/approval-trust.yaml
+      - .feature-delivery/change-coverage-policy.yaml
+      - .feature-delivery/legacy-v1-allowlist.txt
+      - .feature-delivery/repository-registry.yaml
+      - .github/workflows/ci.yml
+      - .github/workflows/feature-delivery-coverage.yml
+      - docs/dev/codex-feature-delivery/.gitignore
+      - docs/dev/codex-feature-delivery/CODEX_PLAYBOOK.md
+      - docs/dev/codex-feature-delivery/DOCUMENT_CATALOG.md
+      - docs/dev/codex-feature-delivery/HANDBOOK.md
+      - docs/dev/codex-feature-delivery/MIGRATION_V1_TO_V2.md
+      - docs/dev/codex-feature-delivery/PROJECT_ADOPTION.md
+      - docs/dev/codex-feature-delivery/QUALITY_GATES.md
+      - docs/dev/codex-feature-delivery/QUICKSTART.md
+      - docs/dev/codex-feature-delivery/README.md
+      - docs/dev/codex-feature-delivery/RELEASE-MANIFEST.json
+      - docs/dev/codex-feature-delivery/approval-trust.yaml
+      - docs/dev/codex-feature-delivery/change-coverage-policy.yaml
+      - docs/dev/codex-feature-delivery/checklists/definition-of-ready.md
+      - docs/dev/codex-feature-delivery/checklists/production-readiness.md
+      - docs/dev/codex-feature-delivery/config/approval-trust.example.yaml
+      - docs/dev/codex-feature-delivery/config/change-coverage-policy.example.yaml
+      - docs/dev/codex-feature-delivery/config/project-config.example.yaml
+      - docs/dev/codex-feature-delivery/config/repository-registry.example.yaml
+      - docs/dev/codex-feature-delivery/examples/feature-package-example.md
+      - docs/dev/codex-feature-delivery/integrations/git.md
+      - docs/dev/codex-feature-delivery/integrations/github-actions.md
+      - docs/dev/codex-feature-delivery/integrations/github/feature-delivery-coverage.yml
+      - docs/dev/codex-feature-delivery/integrations/github/pull_request_template.md
+      - docs/dev/codex-feature-delivery/legacy-v1-allowlist.txt
+      - docs/dev/codex-feature-delivery/package-lock.json
+      - docs/dev/codex-feature-delivery/package.json
+      - docs/dev/codex-feature-delivery/schemas/approval-trust.schema.json
+      - docs/dev/codex-feature-delivery/schemas/change-coverage-policy.schema.json
+      - docs/dev/codex-feature-delivery/schemas/feature-package.schema.json
+      - docs/dev/codex-feature-delivery/schemas/gate-policy.schema.json
+      - docs/dev/codex-feature-delivery/schemas/project-config.schema.json
+      - docs/dev/codex-feature-delivery/schemas/repository-registry.schema.json
+      - docs/dev/codex-feature-delivery/scripts/approval-attestation.mjs
+      - docs/dev/codex-feature-delivery/scripts/check-all-feature-packages.mjs
+      - docs/dev/codex-feature-delivery/scripts/check-changed-feature-coverage.mjs
+      - docs/dev/codex-feature-delivery/scripts/check-runtime.mjs
+      - docs/dev/codex-feature-delivery/scripts/evaluate-feature-package.mjs
+      - docs/dev/codex-feature-delivery/scripts/init-approver-key.mjs
+      - docs/dev/codex-feature-delivery/scripts/init-project.mjs
+      - docs/dev/codex-feature-delivery/scripts/legacy-v1.mjs
+      - docs/dev/codex-feature-delivery/scripts/materialize-boundary.mjs
+      - docs/dev/codex-feature-delivery/scripts/materialize-delivery-summary.mjs
+      - docs/dev/codex-feature-delivery/scripts/new-feature.mjs
+      - docs/dev/codex-feature-delivery/scripts/new-feature.sh
+      - docs/dev/codex-feature-delivery/scripts/policy-registry.mjs
+      - docs/dev/codex-feature-delivery/scripts/project-context.mjs
+      - docs/dev/codex-feature-delivery/scripts/release-manifest.mjs
+      - docs/dev/codex-feature-delivery/scripts/sign-decision.mjs
+      - docs/dev/codex-feature-delivery/templates/feature-package/07-implementation-plan.md
+      - docs/dev/codex-feature-delivery/templates/feature-package/decisions.yaml
+      - docs/dev/codex-feature-delivery/templates/feature-package/evidence.yaml
+      - docs/dev/codex-feature-delivery/templates/feature-package/feature.yaml
+      - docs/dev/codex-feature-delivery/tests/change-coverage.test.mjs
+      - docs/dev/codex-feature-delivery/tests/evaluator.test.mjs
+      - docs/dev/codex-feature-delivery/tests/gate-policy-schema.test.mjs
+      - docs/dev/codex-feature-delivery/tests/policy-registry.test.mjs
+      - docs/dev/codex-feature-delivery/tests/project-bootstrap.test.mjs
+      - docs/dev/codex-feature-delivery/tests/project-fixture.mjs
+      - docs/dev/codex-feature-delivery/tests/release-manifest.test.mjs
+      - package.json
+    head_content_digest: sha256:2d15ba6d6ecb1344ac96b52cb4ae35ffaab7155e0db68c2fd058cc440e32bc1d
