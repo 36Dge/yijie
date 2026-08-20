@@ -15,7 +15,7 @@
 | AC-001/NFR-001 | 占位晚出现/布局跳动 | EVT-001, UI-001, PERF-001 | contract/store/visual | started 在 terminal 前到达，300ms 内稳定显示 | synthetic local | event timestamp、DOM state、layout shift screenshot |
 | AC-002 | 重复/乱序/双终态 | EVT-002, STORE-001, RES-001 | contract/unit/integration | duplicate、gap、percent regression、late progress | no network | 幂等、resync、终态不回退 |
 | AC-003 | 图片炸弹/handle 重放/保存越界 | ART-IMG-001, SEC-001/007/009, UI-002 | Host/native/UI | PNG/JPEG/WebP、magic/20MiB、one-shot handle、lightbox/save | synthetic PNG/JPEG/WebP only | schema、双次 digest、protocol、keyboard、atomic save evidence |
-| AC-004 | 视频不可 seek/OOM/autoplay | ART-VID-001, SEC-002, UI-003 | Host/native/UI | MP4/WebM metadata/range/64MiB/autoplay off | synthetic tiny media + boundary stream | 206/416、controls、memory、fallback |
+| AC-004 | 视频不可 seek/OOM/autoplay | ART-VID-001, SEC-002/011, UI-003 | Host/native/UI | frozen MP4 metadata/range/64MiB/autoplay off；WebM 未批准 | canonical 1,642-byte MP4 + boundary responses | 200/206/416、controls、memory、fallback |
 | AC-005 | 文件内容执行/截断不明 | ART-FILE-001, SEC-003, UI-004 | native/UI | text/MD/JSON/CSV preview；PDF/Office unsupported preview | synthetic files | text-only DOM、row/byte caps、save/fallback |
 | AC-006 | report XSS/任意 chart option | ART-RPT-001, SEC-004, UI-005 | schema/adapter/UI | safe sections、unknown optional accepted/opaque、unknown required rejected、HTML/URL/script rejection | report v1 fixtures | schema errors、chart text summary、no `v-html` |
 | AC-007 | 历史丢失/过期残留 | DB-001, DB-002, E2E-001 | migration/integration/E2E | v7->v8、reopen、TTL、WAL、delete | temp SQLCipher DB | metadata order、content physically absent、cleanup receipt |
@@ -55,7 +55,7 @@
 | Test ID | 威胁 | 场景 | 预期结果 |
 |---|---|---|---|
 | SEC-001 | 图片炸弹/伪装 MIME | 巨大像素、小 bytes、magic mismatch、truncated image | 签发及 protocol GET 双次拒绝；Vue/Pinia/DOM 不收到 bytes/base64/digest/path |
-| SEC-002 | 视频 range/解码滥用 | multi-range、invalid range、伪装 container、超时 stream | 仅单 range；416/timeout；降级不崩溃 |
+| SEC-002 | 视频 range/解码滥用 | no/closed/open/suffix/multi/invalid/unsatisfiable range、伪装 container、超时 | 200/206/416 精确；仅单 range；bounded failure/fallback |
 | SEC-003 | 文件内容执行 | Markdown HTML、CSV formula、JSON control、active link | 普通文本展示；无 HTML/script/network/tool action |
 | SEC-004 | report 注入 | raw HTML、javascript URL、任意 ECharts option、unknown optional/required、超大 table | known invalid/unknown required 拒绝；unknown optional opaque fallback；无遍历/执行 |
 | SEC-005 | 越权/资源枚举 | wrong bearer/session/tenant/artifact | fail closed，404 不泄露存在性 |
@@ -63,7 +63,8 @@
 | SEC-007 | 任意文件写/覆盖 | `../` 名称、symlink、已有文件、取消 dialog、写满磁盘 | 只写用户选择目标；原子覆盖需明确确认；temp 清理 |
 | SEC-008 | synthetic 误启用 | production/non-local/default env | 配置启动失败或 capability false |
 | SEC-009 | opaque handle/协议重放 | 猜测、重复 GET、跨 WebView/context/session、query/body/HEAD/Range、过期/重启、并发/容量超限 | 仅 first bound GET 200；其它 empty 404 或 stable typed limit；无 CORS/redirect/oracle |
-| SEC-010 | CSP/capability 越界 | Artifact 尝试 asset/blob/data/fetch，或新增 fs/shell/dialog plugin/capability | 仅 `img-src yijie-artifact-preview:` delta；forbidden changes hit count 0 |
+| SEC-010 | CSP/capability 越界 | Artifact 尝试 asset/blob/data/fetch，或新增 fs/shell/dialog plugin/capability | 当前仅 image `img-src` delta；未来 S7A 只允许 exact `media-src 'self' yijie-artifact-video:`；其它 forbidden changes hit count 0 |
+| SEC-011 | video handle 重放/内存放大 | 猜测、跨 WebView/context/session/restart、30min/5min expiry、64-request exhaustion、2-read/64MiB in-flight | binding/replay fail closed；no CORS/fetch/oracle；registry/read/body counters 回零；S6A image 行为不变 |
 
 ## 6. 韧性与故障测试
 
@@ -92,6 +93,21 @@ S6A 必须先提交失败测试并记录 RED，再写最小 native boundary；S6
 S6A focused commands must include Rust unit/integration tests for `artifact_native` repository/registry/protocol/save plus
 Vitest schema/client negative tests. `pnpm lint`、`pnpm test`、`make build`、`pnpm docs:build` 与 `git diff --check`
 随后全量通过。S6A 只能在这些证据和 atomic Desktop commit 后记为 PASS；readiness 文档不是测试结果。
+
+## 6B. S7 测试先行门禁
+
+| Slice/Layer | 必须先失败的测试 | GREEN 必须证明 |
+|---|---|---|
+| S7F Host canonical conformance | 当前 Host video size/digest 与 Contracts canonical 不同，box audit 找不到 `moov`/track/keyframe | exact raw 1,642 bytes + `96ea070c...77dd5`、front moov、H.264/16×16/0.12s/3 frames/keyframe；completed manifest 一致；GET/HEAD/200/206/416；strict-local/default-off |
+| S7A private schema/client | video private schema、3 commands 与 typed TS client 不存在 | exact identity-only payload/result/error；无 bytes/base64/digest/href/path/name/token；image schema/client unchanged |
+| S7A SQLCipher authority | ready-video inspect/range reader 不存在 | foreign/not-ready/expired/wrong kind/MIME/size/digest/box/sample fail closed；open + first protocol full validation；每 request authority/BLOB length；no migration |
+| S7A registry/protocol | separate multi-request handle/protocol 不存在 | 256-bit/43-char、30min absolute/5min idle、2/WebView/1/artifact/64 requests/2 reads/64MiB；GET/HEAD 200、single range 206、invalid/multi/unsat 416；no CORS/redirect/query/body/fetch/oracle；release/restart |
+| S7A native save/config | video save command/media-src 不存在 | explicit ready-video intent、`.mp4`、dialog/overwrite、0600 same-dir temp、chunk digest/fsync/atomic replace、content-free result；only exact `media-src 'self' yijie-artifact-video:`；deps/capability/lockfile unchanged |
+| S7B component | ready video renderer 不存在 | native controls/preload metadata/no autoplay、loading/error/expired/retry/seek、duplicate/stale、pause-clear-load-release、save outcomes、keyboard/focus/reduced-motion/axe、DOM/snapshot leak=0；non-ready/non-video stays generic |
+
+执行顺序必须是 S7F immutable PASS -> S7A separate authorization/PASS -> S7B separate authorization/PASS。S7F 在 Host
+运行 `make contract-check && make lint && make test && make runtime-test`；S7A/S7B 各自运行 focused RED/GREEN 后的
+`pnpm lint`、`pnpm test`、`make build`、`pnpm docs:build`、`git diff --check`。任一 slice 不得借 readiness 预记 PASS。
 
 ## 7. Migration 演练
 
@@ -138,7 +154,8 @@ Vitest schema/client negative tests. `pnpm lint`、`pnpm test`、`make build`、
 |---|---|---|---|---|
 | v3 lifecycle JSON | `yijie-contracts/tests/fixtures/agent/session-event-v3/` | public synthetic | UUID、1x1/小媒体、无路径/正文 | Host/Desktop |
 | report document v1 | `yijie-contracts/jsonschema/report/report-document-v1.schema.json` + canonical fixtures | public synthetic | 虚构指标/日期/来源，无店铺数据；media type `application/vnd.yijie.report+json;version=1`；PDF/Markdown 仅作 derived export | SDK/Desktop renderer |
-| media boundary corpus | implemented S3/S4 testdata + future UI corpus | public synthetic | generated headers/containers/corruption | Host/Desktop native validators PASS；UI later |
+| canonical video resource | `yijie-contracts/tests/fixtures/agent/resources-v3/synthetic-video-16x16.mp4.base64` | public synthetic | generated three identical 16×16 frames；raw 1,642 bytes；no external footage/business data | Contracts PASS；Host S7F must consume exact bytes；Desktop S7A/S7B later |
+| media boundary corpus | implemented S3/S4 testdata + future UI corpus | public synthetic | generated headers/containers/corruption | Host/Desktop native validators foundation PASS；video Range/UI later |
 | canary leak corpus | implemented native checks + planned DOM scanner | restricted synthetic marker only | 明确 path/token/body canary，不含真实 secret | native no-content projection PASS；DOM later |
 | migration DB corpus | Desktop temp fixtures | confidential synthetic | v1-v8 fake tenant/session | Rust repository tests |
 
@@ -170,7 +187,7 @@ Vitest schema/client negative tests. `pnpm lint`、`pnpm test`、`make build`、
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
 | 测试/技术 Owner | 段成威 | G2A APPROVED；S1/S2/S2P evidence PASS | 2026-08-20 |
-| 安全/数据 Owner | 段成威 | G2A boundary APPROVED；S3/S4/S5 evidence PASS；S6A readiness APPROVED，implementation NOT RUN | 2026-08-20 |
+| 安全/数据 Owner | 段成威 | G2A boundary APPROVED；S3/S4/S5 G3 PASS；S6A/S6B separate PASS；S7 readiness READY FOR S7F ONLY | 2026-08-20 |
 
-Contracts、pin conformance 与 S3/S4/S5 命令已实际执行并记录于 08；S6A/S6B 及以后仍须按本计划执行，不能因
-readiness 批准或 G3 对基础切片通过而预先记为通过。
+Contracts、pin conformance、S3/S4/S5 与独立 S6A/S6B 命令已实际执行并记录于 08；S7F/S7A/S7B 及以后仍须按
+本计划串行执行，不能因 S7 readiness 或 G3 对基础切片通过而预先记为通过。

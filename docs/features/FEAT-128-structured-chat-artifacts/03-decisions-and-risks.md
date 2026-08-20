@@ -73,6 +73,30 @@ private IPC、Tauri command/capability/CSP、SQLCipher authority 与 S5 shell �
 S6-READINESS 的 contract impact 为 Desktop-private `additive`；Feature 总体仍为 `semantic`。S6A 通过前 S6B
 不得开始；S6A/S6B 都未纳入 G3，G3 仍只包含 S3/S4/S5，G4 pending。
 
+## 2D. S7-READINESS Owner Conclusion（2026-08-20）
+
+本轮从指定 clean baselines 只读审计 Contracts canonical resource、Host S3 synthetic/GET/HEAD/Range、Desktop
+SQLCipher authority、S6A private protocol/save、S6B handle lifecycle、Tauri 2.11.x responder、CSP/capability 与依赖，
+并只更新治理文档和 Accepted Pattern 1.2.0。readiness 文档本身 `contract-impact=none`；计划中的 S7F 是在既有
+immutable contract 下修复 exact-local producer 输出的 `semantic` conformance，S7A 是 Desktop-private
+`additive`，均不改变公共 Contracts source/schema/operation/version。
+
+| ID | 冻结结论 | 理由/证据 | Gate effect |
+|---|---|---|---|
+| DEC-128-012 | Contracts `ea48fe...` 的 `synthetic-video-16x16.mp4.base64` 是唯一 canonical video fixture：raw 1,642 bytes、SHA-256 `96ea070c...77dd5`、H.264 High/16×16/25fps/0.12s/3 frames、front `moov`、首帧 keyframe；Host S3 自造的 `ftyp/free/mdat` 无 `moov`，只能 transport，不可播放/seek。 | `ffprobe`、box/packet/frame audit 与 source inspection；canonical resource tree OID `f447129c...` 已由 Desktop exact pin 固定。 | 首个编码切片只能 S7F，让 Host 消费/逐字节校验现有 canonical fixture；不得改 Contracts full commit/tree/pin。 |
+| DEC-128-013 | 视频不得使用 `blob:`/`data:`，不得复用 one-shot image scheme；采用独立 `yijie-artifact-video://localhost/v1/<43-char handle>` 和独立 private schema/3 exact commands。 | blob/data 会把正文交给 Vue 并扩大 CSP；image scheme 明确只支持一次 GET，无 HEAD/Range。 | S7A 只在 S7F immutable PASS 后可请求；若需 dependency/plugin/capability/migration/public pin，停止。 |
+| DEC-128-014 | video handle 绑定 main WebView/process/context/owner/tenant/session/turn/artifact；30min absolute + 5min idle、2 handles/WebView、1/artifact、64 requests/handle、2 concurrent、64MiB in-flight；GET/HEAD 支持单 closed/open/suffix Range 和 200/206/416。 | 原生 video 会重复 HEAD/GET/Range；Tauri 2.11.x responder 缓冲 body，必须把 64MiB 设为硬上限。 | CSP 只允许 `media-src 'self' yijie-artifact-video:`；no CORS/redirect/query/body/error body/fetch。 |
+| DEC-128-015 | video save 新增 video-only exact command，但复用 S6A native dialog/safe-name/same-dir 0600 temp/chunk digest/fsync/atomic replace 内核；只允许 ready `video/mp4` 和 `.mp4`。S7B 使用原生 controls、`preload=metadata`、无 autoplay/player library/external origin；本切片不消费 poster_blob。 | kind/MIME/64MiB 校验不能由 image command 猜测；renderer 不应再实现第二套写盘能力。 | S7B 只在 S7A immutable PASS 后可请求；未满足时保留 S5 metadata shell。 |
+
+| Review | Owner | 结论 | 批准范围 | 保持关闭 |
+|---|---|---|---|---|
+| Product/Design | 段成威 | READY FOR S7F ONLY；S7A/S7B WAIT | canonical strict-local playable/seekable fixture conformance；Pattern 1.2.0 Accepted | video native/UI、S8-S12、G4 |
+| Technical | 段成威 | APPROVED FOR S7F CANONICAL CONFORMANCE | Host producer/snapshot/checker/test 对齐现有 immutable fixture；不重新编码 | Contracts/tree/pin、ffmpeg/codec/runtime dependency、provider |
+| Security/Data | 段成威 | APPROVED FOR S7F WITH NO PIN/TREE/DEPENDENCY/PROVIDER DRIFT | synthetic-only、default-off、owner resource/Range 既有边界；后续 S7A 按已冻结 private limits 单独授权 | native/config/CSP/command、bytes/path to Vue、capability/migration |
+
+Owner 结论依据用户本轮明确指令由 Codex 代录，不声称独立人工批准。S7-READINESS 不是 S7F/S7A/S7B 实现
+PASS，不扩 G3，不声明 G4；真实 video provider 继续 blocked。
+
 ## 3. Provider activation gate
 
 每个真实 kind 单独通过以下条件后才能启用：
@@ -100,6 +124,7 @@ S6-READINESS 的 contract impact 为 Desktop-private `additive`；Feature 总体
 | RSK-128-009 provider 费用失控 | 自动调用媒体生成 API | 不可控成本 | 默认 capability off、显式费用批准、per-turn limits | cost counter/budget stop | kill switch、禁止新请求 | Product/Release Owner |
 | RSK-128-010 retention 清理失败 | DB/WAL/cache 或 Host staging 残留 | confidential 长期残留 | TTL job、session cleanup saga、WAL/cache verification | reopen/forensic test | retry cleanup、阻断关闭/发布 | Data Owner |
 | RSK-128-011 preview handle 重放/资源探测 | handle 泄漏、跨 WebView/session 重放或协议被当 generic fetch | 跨会话显示、内容枚举或 JS 读取 | 256-bit one-shot handle、main WebView/process/context/session binding、30s TTL、no CORS、empty 404 | registry/expiry/replay/session-switch/adversarial protocol tests | revoke all handles、关闭 image preview、保持 metadata/save fallback | Client/Security Owner |
+| RSK-128-012 video Range handle 滥用/OOM | multi-request handle 被猜测、跨 context 重放、恶意 Range 或 64MiB buffered response 并发 | 内容泄漏、内存放大、播放卡死 | 独立 256-bit binding、30min/5min TTL、64 request budget、2 handle/2 read/64MiB total、single Range parser、no CORS/fetch | HEAD/GET/200/206/416、replay/expiry/context/in-flight/memory tests | revoke video registry、移除 `media-src` scheme、回落 metadata/save-disabled shell | Client/Security/Data Owner |
 
 ## 5. 不需要新 ADR 的前提
 
@@ -108,9 +133,10 @@ S6-READINESS 的 contract impact 为 Desktop-private `additive`；Feature 总体
 ## 6. 实现前批准清单
 
 - DEC-128-005..011、ACK/poster/cursor/cancel、report compatibility、synthetic/real 分层与 Provider gate 已完成 G2 Owner 冻结。
-- S6-READINESS 已批准仅图片使用的 3 个 private command、`yijie-artifact-preview` scheme 与 CSP
-  `img-src` 单项增量；现有 capability 文件保持不变，不新增 app-command ACL、plugin、generic fs/shell/dialog 权限。
-  实际 Desktop diff 只能在 S6A 编码任务中落地并复核。
+- S6-READINESS 批准的图片 3-command/scheme/CSP 边界已由 S6A 实现，S6B 已消费而未改变 native/config；两者均为
+  G3 外独立 PASS。
+- S7-READINESS 已接受 Pattern 1.2.0 并只批准 S7F 编码。S7A 的独立 schema/3 command/video scheme/精确
+  `media-src` 与 S7B native-controls renderer 虽已冻结，仍分别等待 S7F/S7A immutable PASS 和新的逐切片执行授权。
 - Contracts v3 source、基线、generator/adapter、unknown kind/section 行为和 consumer 顺序已完成 G2 设计评审；S1/S2 真实生成、检查、双 breaking 与不可变 commit 已通过。
 - Desktop SQLCipher v8 migration、64 MiB 单 Artifact 上限、七天 retention 起算与恢复边界已在 S4 实现并通过迁移/reopen/TTL/delete 验证；图片 native preview/save/CSP 属 S6A，S6B 只做 renderer。
 - 真实 MiniMax 调用保持关闭；如需启用，另行取得费用和 provider activation 批准。
@@ -121,5 +147,5 @@ S6-READINESS 的 contract impact 为 Desktop-private `additive`；Feature 总体
 - G1：PASS，场景、AC、受影响仓库、最高 contract impact 和主要风险已识别。
 - G2：`PASS`，Product/Design、Technical/Contracts、Security/Data 与测试计划已由 Owner 明确批准；只允许进入 Contracts S1/S2。
 - G2A：`PASS`，Contracts `ea48fe190e18afba728712d1e2cc79cda57f581b`、Host pin `dea84d0768ebc017b7ee5faedab7f9a49ce74875` 与 Desktop pin `96094419d963745529ed0fa246919089e659f20d` 已满足真实 generate、双 breaking、semantic/consumer review 与不可变 pin 条件。批准依据是用户本轮给出的条件授权与实际证据，不声称 Codex 是独立人工 Reviewer。
-- G3：只对 S3/S4/S5 原子切片通过；S6-READINESS 是文档批准，不扩展 G3。G4-G6 仍未通过，Host/Desktop
-  master/synthetic flags 与真实 provider 继续关闭。
+- G3：只对 S3/S4/S5 原子切片通过；S6A/S6B 为独立 PASS，S7-READINESS 只批准下一步 S7F，均不扩展
+  G3。G4-G6 仍未通过，Host/Desktop master/synthetic flags 与真实 provider 继续关闭。

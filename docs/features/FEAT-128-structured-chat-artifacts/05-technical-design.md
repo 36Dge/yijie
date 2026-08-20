@@ -7,8 +7,9 @@
   WebView 只消费安全 metadata 与 one-shot opaque image preview handle；report 使用 closed JSON document。
 - 关键约束：本地-only、confidential、无云资源、v1/v2 保持兼容、真实 MiniMax output capability 默认关闭、无原始路径/base64/token 进入 SSE 或 WebView state。
 - 明确不做：生产部署、云存储、公开分享、raw HTML/脚本报告、任意本地路径、视频转码、真实付费媒体生成、跨设备同步。
-- 设计状态：G2/G2A APPROVED，S3/S4/S5 与其 G3 scope 已通过。S6-READINESS 已批准 S6A native
-  preview/save boundary，实际 command/protocol/CSP/save 与 S6B renderer 均未实现；G3 不扩展，G4 pending。
+- 设计状态：G2/G2A APPROVED，S3/S4/S5 与其 G3 scope 已通过；S6A/S6B 已分别作为 G3 外独立切片 PASS。
+  S7-READINESS 已冻结 S7F/S7A/S7B，只批准 S7F 编码；没有 S7 fixture/code/schema/command/CSP/renderer 实现，
+  G3 不扩展，G4 pending。
 
 ## 2. 组件职责与依赖方向
 
@@ -17,9 +18,9 @@
 | yijie-codex | 上游 Runtime canonical item authority | provider/tool output | `imageGeneration` started/completed item | 易界 Artifact 存储、下载或 UI |
 | yijie-contracts | v3 wire、report document、error/fixture 权威源 | 已批准业务语义 | OpenAPI/JSON Schema/Proto/AsyncAPI/SDK | Runtime 实现、数据库或 UI |
 | yijie-agent-host | Runtime item 归一化、短期 staging、v3 SSE 和认证资源读取 | Runtime notification、synthetic fixture | 安全 Artifact lifecycle + relative resource | 长期业务数据、WebView 渲染、用户保存目标 |
-| Desktop native/Tauri | implemented Host fetch/SQLCipher/history；S6A 承担 image handle protocol 与 native save | v3 event/resource；private identity-only intent | metadata-only history；未来 opaque preview URL/content-free save result | provider 选择、公共契约权威、generic filesystem |
+| Desktop native/Tauri | implemented Host fetch/SQLCipher/history 与 S6A image handle/native save；未来 S7A 承担隔离的 video Range/save boundary | v3 event/resource；private identity-only intent | metadata-only history；opaque preview URL/content-free save result | provider 选择、公共契约权威、generic filesystem |
 | Desktop domain/store | implemented 单调状态机、去重、history/live projection | private IPC v3 safe metadata | stable provider-neutral view model | wire 外 I/O、bytes、文件写入 |
-| Desktop Vue components | implemented generic shell；S6B 才做 image renderer/lightbox | view model、opaque non-authoritative handle | 用户可观察 UI intent | Host/SQL/path/digest/bytes/save 副作用 |
+| Desktop Vue components | implemented generic shell + S6B image renderer/lightbox；未来 S7B 使用 native video controls | view model、opaque non-authoritative handle | 用户可观察 UI intent | Host/SQL/path/digest/bytes/save 副作用 |
 
 ```text
 Runtime or synthetic producer
@@ -97,7 +98,8 @@ wire `failed` 映射为 `failed` 或 `cancelled`，`expired` 只由本地 retent
 | ArtifactContent | Desktop scope | artifact_id | bytes 与 manifest digest/size/MIME 一致 | transfer commit -> expiry/delete |
 | HostStagingLease | 本机 Host session | artifact_id + lease generation | owner-only encrypted spool、`0600`、per-process ephemeral key、no redirect、TTL、有界 | completed -> Desktop ack/TTL/restart cleanup |
 | ReportDocumentV1 | 同 Artifact | schema version + digest | closed safe sections、无 HTML/URL/script | content 生命周期内不可变 |
-| PreviewHandle | main WebView + process/context/session | 256-bit CSPRNG base64url | 30s、one-shot、非 bearer；不持久化/日志/Pinia/snapshot | issue -> atomic consume/release/TTL/restart |
+| ImagePreviewHandle | main WebView + process/context/session | 256-bit CSPRNG base64url | 30s、one-shot、非 bearer；不持久化/日志/Pinia/snapshot | issue -> atomic consume/release/TTL/restart |
+| VideoPreviewHandle（S7A planned） | main WebView + process/context/session | 独立 256-bit CSPRNG base64url | 30min absolute/5min idle、64 requests、single Range、非 bearer | issue -> repeated HEAD/GET -> release/TTL/restart |
 | SaveIntent | 当前 WebView 用户动作 | request_id + artifact identity | one active；native dialog/path only；Vue 只收 content-free outcome | click -> dialog -> atomic success/cancel/failure |
 
 ## 6. 数据与 Migration 专项
@@ -124,8 +126,9 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 - 重试/退避/上限：仅 retryable transport/staging error 可重试，指数退避最多 3 次；integrity/protocol/unsupported 不自动重试。
 - 限流/熔断/降级：每项 20/64 MiB、每 turn 128 MiB/12 项；Host 每 session staging 256 MiB、全局 1 GiB、lease 从 `staged_at` 起 24 小时。staging 使用 app-private encrypted spool，不使用 1 GiB 进程内大对象。达到上限拒绝新 Artifact，不驱逐正在读取或已持久化内容。
 - 部分失败与补偿：一项失败不回滚其它 ready；Desktop commit 失败不 ack Host；Host ack 丢失依靠 TTL 清理。
-- 资源释放：未消费 image handle、WebView decoded image、video handle、timer、AbortController、temp file、range
-  response 和 staging lease 都必须在关闭/切换/失败时释放；image handle 在 GET 开始时原子消费，restart 后无效。
+- 资源释放：未消费 image handle、WebView decoded image、未来 video handle、timer、AbortController、temp file、range
+  response 和 staging lease 都必须在关闭/切换/失败时释放；image handle 在 GET 开始时原子消费；video handle
+  允许 bounded multi-request，但 pause/clear source/unmount/context switch 时必须显式释放；restart 后两类均无效。
 
 ## 8. 安全设计
 
@@ -137,10 +140,11 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 - PII/日志脱敏：日志只记录 kind、typed code、byte bucket、duration bucket 和 opaque correlation；不记录标题、文件名、正文、path、digest 或 raw provider error。
 - 高风险审批：N/A；Artifact 查看不是电商业务写操作。保存仍需用户明确 native dialog intent，不能后台自动写文件。
 - 审计：本地阶段只记录 aggregate typed operation outcome，不记录目标路径；生产审计方案当前 N/A/not designed。
-- CSP/capability：S6A 只在既有 `img-src` 追加 `yijie-artifact-preview:`，不改 `connect-src` 或增加 external
+- CSP/capability：S6A 已只在既有 `img-src` 追加 `yijie-artifact-preview:`，不改 `connect-src` 或增加 external
   origin；不得将 Artifact 放入既有 asset/blob/data 路径。当前 app 没有 app-command ACL manifest，局部新增会让
   所有既有 app commands 被 ACL 检查，因此 capability/permission 文件保持不变。只允许 3 个 exact app commands，
-  不引入 dialog/fs/shell plugin。视频 `media-src` 仍未批准，留给 S7 readiness。
+  不引入 dialog/fs/shell plugin。S7 readiness 仅为未来 S7A 批准精确
+  `media-src 'self' yijie-artifact-video:`；实际 config 仍未修改，必须等待 S7F immutable PASS 与 S7A 授权。
 
 ### 8.1 S6A image preview boundary
 
@@ -170,7 +174,7 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 4. 结果严格为 saved/cancelled/failed + stable code，无 path/name/digest/body。normal failure 的 RAII guard 删除 temp；
    authority copy 保留。crash/power loss 可能留下用户已选择目录内的 `0600` hidden temp，不为此持久化 path 或扫描
    arbitrary filesystem；下一次同目录显式 save 只做可验证的 best-effort stale cleanup。
-5. stable error codes 与响应脱敏以 Accepted Pattern 1.1.0 §9.3 为唯一清单；cross-scope 统一 not_found。
+5. stable error codes 与响应脱敏以 Accepted Pattern 1.2.0 §9.3 为唯一清单；cross-scope 统一 not_found。
 
 ### 8.3 Private result 与 stable error allowlist
 
@@ -185,6 +189,44 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
   `artifact_native_unavailable`。cancelled 是用户动作结果，不伪装为 failure code。
 - command 层只从该 closed set 返回 typed result；cross-owner/tenant/session/turn/artifact existence 全部折叠为
   `artifact_native_not_found`。custom protocol 不回传上述细节，所有失败保持 body-empty `404`。
+
+### 8.4 S7F canonical fixture route
+
+1. Contracts immutable candidate 已含 canonical raw MP4：1,642 bytes、SHA-256 `96ea070c...77dd5`、H.264 High、
+   16×16、25fps、0.12s、3 frames、front `moov`、首帧 keyframe。它是唯一 fixture authority，resource tree
+   OID `f447129c08b9b39231e33698afc3f2fd875d6b14` 保持不变。
+2. Host S3 当前 `syntheticMP4()` 只有 `ftyp/free/mdat`，没有 track/codec/duration/dimensions/sample/keyframe，
+   明确 transport-only。S7F 只能让 strict-local producer 读取由 canonical bytes 派生、checker 逐字节校验的
+   consumer snapshot，或生成完全相同 raw digest；禁止重新编码或引入 ffmpeg/codec/runtime dependency。
+3. S7F 修改 Host producer/checker/tests 后必须证明 completed manifest size/digest 与 Contracts exact fixture 一致，
+   并覆盖 video GET/HEAD、无 Range `200`、single closed/open/suffix `206`、unsatisfiable `416`、multi-range reject、
+   default-off/local-manifest gates。Contracts full commit/tree/source、Desktop pin 均不变。
+
+### 8.5 S7A planned native video boundary
+
+1. 新增隔离的 `chat-artifact-video-native-v1.schema.json` 与 exact commands：
+   `chat_open_artifact_video_preview_v1`、`chat_release_artifact_video_preview_v1`、
+   `chat_save_artifact_video_v1`。identity envelope 与 S6A 一致且仍只有 session/turn/artifact IDs。
+2. `yijie-artifact-video://localhost/v1/<43-char handle>` 绑定 main WebView/process/context/owner/tenant/session/
+   turn/artifact。只允许 SQLCipher ready/unexpired `video/mp4` 1..64MiB；open 与 protocol 首次请求进行两次完整
+   length/SHA-256/MP4 box+sample validation，之后每次 Range 重验 authority/manifest/BLOB length 并从同一 row 读取。
+3. limits：2 handles/WebView、1/artifact、64 successful requests/handle、2 concurrent responses、64MiB total
+   in-flight；30min absolute + 5min idle。Tauri 2.11.x responder 只能返回 buffered body，不能声称 streaming；
+   超过 64MiB 或需要 streaming/new dependency 时停止。
+4. 无 Range `GET|HEAD` 返回 200；single closed/open/suffix Range 返回 206；malformed/multi/unsatisfiable 返回 empty
+   416 + `Content-Range: bytes */size`。成功只含 MIME/length/Accept-Ranges/必要 Content-Range/no-store/nosniff；
+   no CORS/redirect/query/body/ETag/digest/filename/error body，其他错误 empty 404。`connect-src` 不允许该 scheme。
+5. save 使用新的 video-only command，但复用 S6A native atomic write kernel；只允许 `.mp4`。Vue 只收
+   saved/cancelled/failed + stable code。image schema/commands/limits/behavior 不变，poster_blob 本切片不暴露。
+
+### 8.6 S7B planned UI lifecycle
+
+1. 只为 `kind=video && status=ready` 创建 `<video controls preload="metadata" playsinline>`；无 autoplay、外部
+   origin、player library、browser download、remote playback 或 PiP。其他状态/kind 继续 S5 shell。
+2. video handle 可被原生元素用于多次 Range，但 Vue 不 fetch、不持久化、不写 Pinia/log/snapshot。error、expiry、
+   identity/context/session switch、unmount 时先 pause，清空 `src` 并 `load()`，再 release；迟到 open/save 结果不得污染新 identity。
+3. 当前不新增 poster handle；使用稳定 16:9 placeholder，解码后显示首帧。loading/error/expired、keyboard/focus、
+   reduced-motion、content-free save feedback 与 sensitive-data negative assertions 必须测试先行。
 
 ## 9. 可观测性
 
@@ -242,14 +284,16 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 | C：Host 短期 staging + Desktop SQLCipher authority | 保持职责、本地加密、可历史恢复、可回滚 | 需要 transfer/ack/migration | 中 | Recommended |
 | D：generic Tauri asset/file protocol | 大媒体 seek 效率好 | path scope、跨 kind 与 seek 攻击面 | 中高 | Reject |
 | E：image-only opaque handle custom protocol | Vue 不接收 bytes/path；native 每次复核；可 one-shot/TTL | 需 3 private commands 与 exact CSP scheme delta | 中 | S6A Approved；image only |
+| F：独立 video opaque Range protocol | Vue 不接收正文；原生 video 可多次 HEAD/GET/seek；与 image one-shot 隔离 | Tauri response buffered，必须硬限 64MiB 并维护 multi-request registry | 中 | S7A Accepted design；waits for S7F PASS |
 
 ## 14. ADR 与批准
 
 - ADR：当前 `N/A`，前提是采用方案 C 且不改变跨仓职责；选择 Host/云长期存储、自定义公开 URL 或 Runtime 核心修改时必须新增 ADR。
 - 技术负责人：段成威，结论 `G2 APPROVED for Contracts S1/S2`。
 - 安全/数据 Owner：段成威，结论 `G2 APPROVED for Contracts S1/S2`。
-- Product/Design：FEAT-128 Pattern 1.1.0 `Accepted`；S6A ready，S6B 等待 S6A PASS。
-- S6 Technical：`APPROVED FOR S6A CODING`，仅 3 commands + 1 image scheme + exact CSP delta。
-- S6 Security/Data：`APPROVED FOR S6A CODING`，不新增 dependency/plugin/capability/DB migration。
-- 结论日期：2026-08-20；G3 仍只对 S3/S4/S5 为 PASS。S6A/S6B-S11、任何真实 producer 与生产
-  activation 仍未执行；所有 FEAT-128 flags 默认关闭，G4 pending。
+- Product/Design：FEAT-128 Pattern 1.2.0 `Accepted`；S6A/S6B separate PASS；`READY FOR S7F ONLY`。
+- S7 Technical：`APPROVED FOR S7F CANONICAL CONFORMANCE`；S7A/S7B wait for immutable predecessors。
+- S7 Security/Data：S7F 不得改变 Contracts tree/pin、引入 dependency/runtime codec/provider；S7A 只能按
+  8.5 exact private limits 另行授权。
+- 结论日期：2026-08-20；G3 仍只对 S3/S4/S5 为 PASS。S7F-S11、任何真实 producer 与生产 activation
+  仍未执行；所有 FEAT-128 flags 默认关闭，G4 pending。

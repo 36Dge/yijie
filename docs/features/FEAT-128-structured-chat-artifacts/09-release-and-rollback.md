@@ -3,8 +3,9 @@
 ## 1. Release Manifest
 
 当前 G2/G2A 已获 Owner 批准；Contracts `0.4.0` local candidate、Host S3 与 Desktop S4/S5 已形成不可变本地
-commits，并通过各自 G3 slice gate。S6-READINESS 只冻结图片 preview/save 边界；尚没有 S6 command/protocol/
-CSP/save/renderer、tag、E2E、签名制品或部署。
+commits，并通过 G3 slice gate；S6A/S6B 已作为独立本地切片 PASS。S7-READINESS 只冻结 canonical video
+fixture、Range/save/CSP/lifecycle 与 S7F/S7A/S7B；尚没有 S7 fixture/code/schema/command/CSP/renderer、tag、
+E2E、签名制品或部署。
 
 | Component | Version/tag | Full commit | Artifact digest | Contract pin/generator | Environment |
 |---|---|---|---|---|---|
@@ -14,6 +15,8 @@ CSP/save/renderer、tag、E2E、签名制品或部署。
 | Desktop S4 | local source candidate; flag off | `09220dd8319cfb8ec0c4d1531514bb5169107983` | 10 implementation file pins in Desktop lock | Contracts `ea48fe...` | not deployed |
 | Desktop S5 | local UI foundation; no renderer | `7548ea8aeacfd7274f1107786ce48ddc6789cd45` | N/A source commit | same immutable pin | not deployed |
 | Desktop S6 readiness Pattern 1.1.0 | docs-only Accepted boundary | `2b854b40379a207c19bf37fc5bc64266553c5df1` | N/A | same immutable pin | not implemented/deployed |
+| Desktop S6A/S6B | local independent source slices；not in G3 | S6A `8b99849d418a3ef226f4133128f1ac22a438f9d5`; S6B `4a8dce6a6526e37052941f6dbb921ba2486e109f` | source commits | same immutable pin | not deployed |
+| Desktop S7 readiness Pattern 1.2.0 | docs-only Accepted boundary；READY FOR S7F ONLY | `18b17d961ed5991cec55eeb230ea21d91f2fb8ec` | N/A | same Contracts pin/tree；Host unchanged | not implemented/deployed |
 
 ## 2. 发布前提
 
@@ -36,11 +39,14 @@ CSP/save/renderer、tag、E2E、签名制品或部署。
 | 2 | merge immutable contract candidate | yijie-contracts | Contracts Owner | G2 approved, full checks/review | tag/ref/digests/generators | do not pin downstream |
 | 3 | merge Host provider with flags off | Agent Host | Runtime Owner | exact contract pin | producer/resource conformance | v1/v2 only |
 | 4 | merge Desktop native consumer with flags off | Desktop | Client/Data Owner | Host conformance, migration review | Rust/TS/build/history/security | old UI, v8 data read-only |
-| 5 | implement/review S6A native image boundary | Desktop local source | Client/Security/Data Owner | S5 + S6 readiness | RED/GREEN + full Desktop gates；no renderer | remove exact commands/scheme/CSP delta；SQLCipher unchanged |
-| 6 | implement/review S6B image renderer | Desktop local source | Product/Client Owner | S6A immutable PASS | component/axe/visual + full Desktop gates | disable renderer；S5 metadata shell remains |
-| 7 | enable synthetic local profile | isolated local | 段成威 | S3-S9 + E2E | deterministic smoke/visual | disable profile, clean staging |
-| 8 | decide local G4 | source candidates | 段成威 | review findings closed | 08 evidence | remain implementation pending |
-| 9 | prepare real provider/release | future environment | 段成威 | separate fee/provider/production approval | fixed Eval/smoke/metrics | per-kind kill switch |
+| 5 | S6A native image boundary | Desktop local source | Client/Security/Data Owner | S5 + S6 readiness | PASS at `8b99849d...` | remove exact commands/scheme/CSP delta；SQLCipher unchanged |
+| 6 | S6B image renderer | Desktop local source | Product/Client Owner | S6A immutable PASS | PASS at `4a8dce6a...`；runtime visual later | disable renderer；S5 metadata shell remains |
+| 7 | S7F canonical video fixture conformance | Host local source | Runtime/Technical/Security Owner | Pattern 1.2.0 + current immutable Contracts resource | exact raw digest/boxes/manifest + Host full gates | revert S7F；keep video renderer off |
+| 8 | S7A native video Range/save boundary | Desktop local source | Client/Security/Data Owner | S7F immutable PASS + separate authorization | Rust/TS RED/GREEN + full Desktop gates | remove isolated commands/schema/scheme/media-src |
+| 9 | S7B video renderer | Desktop local source | Product/Client Owner | S7A immutable PASS + separate authorization | component/axe/runtime seek/visual + full gates | disable renderer；metadata shell remains |
+| 10 | enable synthetic local profile | isolated local | 段成威 | S3-S9 + E2E | deterministic smoke/visual | disable profile, clean staging |
+| 11 | decide local G4 | source candidates | 段成威 | review findings closed | 08 evidence | remain implementation pending |
+| 12 | prepare real provider/release | future environment | 段成威 | separate fee/provider/production approval | fixed Eval/smoke/metrics | per-kind kill switch |
 
 代码合并、部署、migration、synthetic activation、真实 provider activation 和 production release 是不同动作。
 
@@ -80,7 +86,7 @@ CSP/save/renderer、tag、E2E、签名制品或部署。
 | Smoke ID | 用户路径 | 输入/租户 | 预期 | 避免真实副作用方式 |
 |---|---|---|---|---|
 | SMOKE-128-001 | text streams while image started -> progress -> completed -> local ready -> lightbox/save | synthetic tenant/1x1 PNG | stable announced placeholder, verified transfer, preview, atomic save | local fixture + temp destination |
-| SMOKE-128-002 | video announced/progress -> controls/range/save | synthetic tiny MP4/WebM | no autoplay, seek/controls/fallback | fixed local bytes |
+| SMOKE-128-002 | video announced/progress -> controls/range/save | frozen 1,642-byte canonical MP4；WebM unsupported | no autoplay, single-range seek/controls/fallback | fixed local bytes；no external footage |
 | SMOKE-128-003 | text/JSON/CSV + unsupported Office file | synthetic files | safe preview caps + metadata/save fallback | no system app launch |
 | SMOKE-128-004 | report metrics/table/chart/unknown section | synthetic report v1 | structured render, text summary, no HTML/network | closed local JSON |
 | SMOKE-128-005 | duplicate/gap/restart/reopen/TTL/delete | synthetic events/temp DB | idempotent/resync/history/physical cleanup | fake clock + temp SQLCipher/Host home |
@@ -134,7 +140,8 @@ CSP/save/renderer、tag、E2E、签名制品或部署。
 
 | 日期 | Environment | Artifact/data versions | Steps | Result | Gaps |
 |---|---|---|---|---|---|
-| 2026-08-20 | S6 readiness stage | S4 v8 + S5 shell；no S6 code/config | preview/save threat-model and rollback walkthrough only | DESIGN PASS；runtime drill NOT RUN | 需要 S6A candidate、signed/local bundle 与完整加密备份后执行 |
+| 2026-08-20 | S6 readiness stage | S4 v8 + S5 shell；no S6 code/config at that time | preview/save threat-model and rollback walkthrough only | DESIGN PASS；runtime drill NOT RUN | S6A/S6B later implemented；signed/local bundle drill remains |
+| 2026-08-20 | S7 readiness stage | S6B `4a8dce6a...` + Pattern 1.2.0；no S7 code/config | fixture/Range/save/CSP/resource-release threat model and rollback walkthrough | DESIGN PASS；runtime drill NOT RUN | first run S7F；S7A/S7B and Tauri playback/seek drill wait |
 
 ## 12. 沟通、职责与批准
 
@@ -147,5 +154,6 @@ CSP/save/renderer、tag、E2E、签名制品或部署。
 | G2 design | 段成威 | APPROVED for Contracts S1/S2 only | 2026-08-20 | 03 §2B + 00-07 + Pattern 1.0.0 Accepted |
 | G2A local candidate | 段成威 | APPROVED | 2026-08-20 | Contracts `ea48fe190e18afba728712d1e2cc79cda57f581b` + Host/Desktop exact pins；generate/lint/test/build、双 breaking 与 consumer conformance PASS |
 | S6 readiness | 段成威（Product/Technical/Security/Data） | APPROVED FOR S6A CODING ONLY；S6B WAITS FOR S6A PASS | 2026-08-20 | 03 §2C + 05/06/07 + Desktop Pattern 1.1.0 `2b854b40379a207c19bf37fc5bc64266553c5df1` |
-| G4 local candidate | 段成威 | NOT REQUESTED | N/A | S6A/S6B-S11 and full AC/E2E/review incomplete |
+| S7 readiness | 段成威（Product/Technical/Security/Data） | READY FOR S7F ONLY；S7A/S7B WAIT | 2026-08-20 | 03 §2D + 05/06/07 + Desktop Pattern 1.2.0 `18b17d961ed5991cec55eeb230ea21d91f2fb8ec` |
+| G4 local candidate | 段成威 | NOT REQUESTED | N/A | S7F-S11 and full AC/E2E/review incomplete |
 | Go/No-Go production | 段成威 | N/A current scope / not approved | N/A | no production plan |
