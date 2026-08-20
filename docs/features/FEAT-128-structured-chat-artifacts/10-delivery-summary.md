@@ -76,6 +76,7 @@ semantic review 与 immutable pin 完成后才能开始 Host/Desktop。实际证
 | Desktop SQLCipher/native transfer/history/private IPC | S4 PASS | S10 integrated lifecycle + S5 renderer projection |
 | image/video/file/report renderers | NOT RUN | S5-S9 component/visual/a11y |
 | synthetic local vertical slice | NOT RUN | S10 E2E/security/performance/visual |
+| synthetic video playback/seek | NOT RUN | 当前 S3 MP4 fixture 无 `moov`，S7/S10 需可播放本地 fixture + controls/range smoke |
 | MiniMax real image | BLOCKED | fixed provider capability + separate paid authorization/eval |
 | real video/file/report producers | BLOCKED | per-kind authority/ownership/security design |
 | release/deployment | N/A current scope | separate G5/G6 package if later requested |

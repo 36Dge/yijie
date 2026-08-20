@@ -149,6 +149,7 @@ slice 的未验证范围，未被降级为已接受风险。
 |---|---|---|
 | Host/Desktop cross-process lifecycle | 两端 isolated conformance 已完成 | S10 integration 出现 replay、TTL、ACK 或 scope 偏差时重开对应 slice/G2 |
 | Desktop native save/CSP | S4 明确未实现 | 需要 plaintext、wide capability、不同 retention clock 时重开 Security/Data review |
+| Synthetic video playability | S3 fixture 只有 deterministic `ftyp/free/mdat` boxes，无 `moov`，只证明 MP4 resource/integrity transport | S7/S10 必须换用可播放且可 seek 的无版权本地 fixture，并完成 WebView controls/range smoke；此前不得声称 video preview PASS |
 | Unknown report section | contract 限 `required=false`、128 KiB、depth 8、opaque | renderer 遍历/执行 unknown payload 即阻断 |
 | Real MiniMax image | blocked | 固定 capability/API/model、费用与 bounded eval 单独获批 |
 | Real video/file/report | blocked | 每 kind 形成 producer/ownership/security contract 后单独评审 |
