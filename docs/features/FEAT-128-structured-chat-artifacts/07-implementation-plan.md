@@ -3,7 +3,7 @@
 ## 1. 实施原则
 
 - G2 已于 2026-08-20 由段成威明确批准，随后先执行 Contracts S1-S2，再只做 S2P exact pin preflight。
-- Feature 总体 `contract-impact = semantic`；G2A 在真实 generate、双基线 breaking、semantic review、immutable commit 和 downstream exact pin 全部通过后获批。随后严格先完成 Host S3、Desktop S4 与 Desktop S5；三者均通过 G3 slice gate。S6A/S6B、S7F 与 S7A 已在后续独立用户授权下分别完成，但均不扩展 G3，也不改变公共 Contracts/Host/pin。
+- Feature 总体 `contract-impact = semantic`；G2A 在真实 generate、双基线 breaking、semantic review、immutable commit 和 downstream exact pin 全部通过后获批。随后严格先完成 Host S3、Desktop S4 与 Desktop S5；三者均通过 G3 slice gate。S6A/S6B、S7F、S7A、S7A-REPAIR 与 S7B 已在后续独立用户授权下分别完成，但均不扩展 G3，也不改变公共 Contracts/Host/pin。
 - 一次只完成一个可独立验证的行为；不把 v3 协议、媒体存储、native save 和四类 UI 一次混成大 diff。
 - 先建立失败 fixture/测试，再实现最小能力；每个 kind 独立 flag，默认关闭。
 - 不新增云资源、远程 URL、真实付费调用、通用 filesystem/shell capability 或第二套 UI 库。
@@ -24,7 +24,8 @@ S0 Owner G2 approval (PASS)
               -> S6B image renderer/lightbox/zoom (PASS)
            -> S7F Host canonical playable/seekable fixture conformance (PASS)
               -> S7A Desktop native video Range/save boundary (PASS)
-                 -> S7B Vue native-controls video renderer
+                 -> S7A-REPAIR playback-compatible Range handle lifetime (PASS)
+                    -> S7B Vue native-controls video renderer (PASS)
            -> S8 file preview/save
            -> S9 report document renderer/export
               -> S10 local synthetic vertical/visual/security/performance evidence
@@ -78,6 +79,8 @@ S2 + S3 + S4 + S10
 | S7 readiness docs | yijie-desktop | `feat/feat-128-structured-chat-artifacts@18b17d961ed5991cec55eeb230ea21d91f2fb8ec` | Pattern 1.2.0 冻结 canonical fixture、S7F/S7A/S7B、video Range/save/CSP/lifecycle；无 fixture/code/config diff | Contracts `ea48fe...`、Host S3、Desktop S6B 均未改变 | Product/Technical/Security/Data Owner |
 | Host S7F | yijie-agent-host | `feat/feat-128-structured-chat-artifacts@1045dd06534eb72d53eb7ad7b7d18e63c80284f8` | canonical-derived video snapshot/embed、exact source/tree/raw checker、completed manifest 与 public GET/HEAD/Range conformance；无 public wire/Contracts/Desktop 变化 | Contracts `ea48fe...` 与 resource tree `f447129c...` unchanged | Runtime/Contracts Consumer Owner |
 | Desktop S7A | yijie-desktop | `feat/feat-128-structured-chat-artifacts@22b91c5a258458c87f1ac96c06bf39d1af97358f` | independent private schema/client、SQLCipher video inspect/range、bounded multi-request opaque protocol、native atomic `.mp4` save、exact `media-src`；无 renderer | Contracts `ea48fe...`、resource tree `f447129c...`、Host S7F unchanged；仅刷新 Desktop implementation/readiness digests | Client/Security/Data Owner |
+| Desktop S7A-REPAIR | yijie-desktop | `feat/feat-128-structured-chat-artifacts@34991d8967de9aa2197ab2e8b9b49347774df7a5` | 移除与 WKWebView Range 探测不兼容的 64-success lifetime revocation；保留 TTL/release/context/restart/concurrency/in-flight/double-validation；增加编译期关闭的 content-free runtime harness | Contracts/Host/pin/schema/commands/protocol/config/dependencies unchanged | Technical/Security/Data Owner |
+| Desktop S7B | yijie-desktop | `feat/feat-128-structured-chat-artifacts@366186b601144bdc2bc87a2cef3075b74f1e8f19` | ready-video native controls、metadata/error/expired/retry、pause-clear-load-release、stale isolation、native-save UX；无 pages/native/config diff | S7A existing typed client/protocol unchanged；real WebView metadata/playback/seek PASS | Product/Client Owner |
 | Activation | local environment only | clean immutable candidates | synthetic profile evidence | source identities recorded | 段成威 |
 
 实现时必须填写完整 40-character SHA、source digests 和 generator identity；本文短 SHA 只用于阅读，不能作为 pin。
@@ -123,13 +126,13 @@ Repository、branch、base full SHA：从 feature.yaml 与实际 git 命令取�
 | D4 | S6B image renderer/lightbox/zoom/save UX | yijie-desktop TS/Vue only | `4a8dce6a6526e37052941f6dbb921ba2486e109f`；expected RED、3 files/12 focused tests、axe + full Desktop gates；runtime visual matrix deferred to S10 | D3 immutable PASS；S6B PASS |
 | H3 | S7F Host canonical video fixture conformance | yijie-agent-host | expected RED + exact resource/manifest/Range + full Host gates PASS | `1045dd06534eb72d53eb7ad7b7d18e63c80284f8`；Contracts pin/tree unchanged；S7F PASS |
 | D5 | S7A native video Range/save boundary | yijie-desktop private/native/config | `22b91c5a258458c87f1ac96c06bf39d1af97358f`；TS/Rust RED→GREEN、45 files/313 tests、11 focused Rust tests、full Desktop gates PASS | H3 immutable PASS + explicit S7A authorization；S7A PASS |
-| D6 | S7B video renderer/native-save UX | yijie-desktop TS/Vue | component/axe/runtime seek/visual + full Desktop gates | D5 immutable PASS + separate authorization |
+| D5R | S7A playback handle lifetime repair + runtime diagnostics/smoke | yijie-desktop private native + default-off harness | `34991d8967de9aa2197ab2e8b9b49347774df7a5`；request 65 EXPECTED RED、128-request GREEN、real WebView 76 Range/metadata/playback/seek PASS | D5 immutable PASS + explicit diagnostic/repair authorization；S7A-REPAIR PASS |
+| D6 | S7B video renderer/native-save UX | yijie-desktop TS/Vue | `366186b601144bdc2bc87a2cef3075b74f1e8f19`；missing-component RED、3 files/14 focused、47 files/324 full、axe/runtime seek/build/docs PASS | D5R runtime PASS + separate authorization；S7B PASS |
 | D7-D8 | one commit per file/report renderer | yijie-desktop | focused + visual | D6 + per-slice readiness |
 | E1 | deterministic E2E/evidence/review fixes | affected repos + yijie docs | full final gates | all above |
 
-用户的逐轮明确指令已授权并完成 C1/HP/DP/H1-H2/D1/D2/D3/D4、S7 readiness、H3/S7F 与 D5/S7A 的本地原子 commits；当前
-尚未批准 D6、S8-S12、push、PR、tag、release 或真实 provider。D6/S7B 已满足 immutable predecessor，但仍需
-单独用户授权；继续实施前仍需
+用户的逐轮明确指令已授权并完成 C1/HP/DP/H1-H2/D1/D2/D3/D4、S7 readiness、H3/S7F、D5/S7A、D5R/S7A-REPAIR
+与 D6/S7B 的本地原子 commits；当前尚未批准 S8-S12、push、PR、tag、release 或真实 provider。继续实施前仍需
 逐仓确认用户已有改动并保持可独立审查。
 
 ## 8. Slice 完成记录
@@ -150,7 +153,9 @@ Repository、branch、base full SHA：从 feature.yaml 与实际 git 命令取�
 | S7-READINESS | Desktop Pattern `18b17d961ed5991cec55eeb230ea21d91f2fb8ec` + yijie governance commit | docs/read-only audit only；canonical/Host mismatch、Range/save/CSP/lifecycle、S7F/S7A/S7B frozen | Desktop docs/lint/test/diff + governance full docs gates | Product/Technical/Security/Data READY FOR S7F ONLY；no implementation | PASS FOR READINESS ONLY |
 | S7F | `1045dd06534eb72d53eb7ad7b7d18e63c80284f8` | derived canonical MP4 snapshot/embed；lock/sync/check exact path/tree/source/raw identity；bounded Go box/sample audit；video manifest/poster/auth/GET/HEAD/Range tests | EXPECTED RED: 81 vs 1642 bytes、digest mismatch、missing `moov`；GREEN focused PASS；`make contract-check/lint/test/runtime-test`、`git diff --check` PASS | 7-file allowed Host scope；Contracts/Desktop unchanged；no dependency/provider/public wire drift | PASS AS SEPARATE SLICE |
 | S7A | `22b91c5a258458c87f1ac96c06bf39d1af97358f` | private schema/typed client、3 exact commands、SQLCipher MP4 inspect/range、30min/5min opaque video protocol、GET/HEAD single Range、native atomic `.mp4` save、exact `media-src` | EXPECTED TS/Rust RED；2 TS files/5 GREEN、11 focused Rust + 1 reader；`pnpm lint/test`、`make build`、`pnpm docs:build`、diff PASS；45 files/313 tests | exact 19-file scope；无 components/pages/stores、Contracts/Host/public pin、dependency/lockfile/capability/permission/migration/S7B 漂移 | PASS AS SEPARATE SLICE |
-| S7B-S11 | N/A | none | NOT RUN | S7B 已满足 S7A immutable predecessor但仍需 separate authorization | PENDING |
+| S7A-REPAIR | `34991d8967de9aa2197ab2e8b9b49347774df7a5` | 移除 64-success lifetime revocation；保留 TTL/release/restart/context/WebView/2 handles/2 reads/64MiB/double validation；compile-time-off content-free diagnostics/runtime harness | request 65 EXPECTED RED；128-request focused GREEN；默认 11/11、feature 12/12 Rust；real WebView 76/76 Range、metadata/playback/seek PASS；clippy/diff PASS | 无 command/schema/protocol/CSP/capability/dependency/pin/page 漂移 | PASS AS SEPARATE SLICE |
+| S7B | `366186b601144bdc2bc87a2cef3075b74f1e8f19` | ready-video-only native controls/save UX；metadata/error/expired/retry；pause-clear-load-release；stale/dedup/focus/a11y | missing-component EXPECTED RED；3 files/14 focused GREEN；47 files/324 full；`pnpm lint/test`、`make build`、`pnpm docs:build`、real WebView smoke、diff PASS | components/chat only；无 native/config/checker/contracts/host/pin/dependency/pages/stores 漂移；production vertical/manual visual matrix留待 S10 | PASS AS SEPARATE SLICE |
+| S8-S11 | N/A | none | NOT RUN | file/report、vertical/performance、independent review仍需独立授权与实施 | PENDING |
 | S12 | N/A | none | BLOCKED | separate real-provider authority required | BLOCKED |
 
 ## 9. 变更控制
@@ -176,9 +181,11 @@ Repository、branch、base full SHA：从 feature.yaml 与实际 git 命令取�
 | Security/Data Owner | 段成威 | S6A CODING APPROVED；no dependency/plugin/capability/migration | 2026-08-20 |
 | Technical/Security/Data Owner | 段成威 | S7F canonical conformance APPROVED；no Contracts tree/pin/dependency/provider drift | 2026-08-20 |
 | Technical/Security/Data Owner | 段成威 | S7A bounded Desktop-private native boundary 已按显式指令完成并独立 PASS；no renderer/public pin/dependency/capability/migration drift | 2026-08-20 |
+| Technical/Security/Data Owner | 段成威 | S7A-REPAIR 已按显式诊断/修复授权完成；只修复 playback lifetime，真实 WebView metadata/playback/seek PASS | 2026-08-21 |
+| Product/Technical/Security/Data Owner | 段成威 | S7B 已按显式授权完成并独立 PASS；复用既有 typed client，no native/config/public contract/page drift | 2026-08-21 |
 
-G2、G2A 与 S3/S4/S5 的 G3 slice gate 均已通过；S6A/S6B/S7F/S7A 也分别形成 immutable PASS，但不并入 G3。
-S7B 与 S8-S12 继续关闭，S7B 需要新的显式编码授权；真实 provider、tag、push、release 和生产能力继续
+G2、G2A 与 S3/S4/S5 的 G3 slice gate 均已通过；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B 也分别形成 immutable PASS，
+但不并入 G3。S8-S12 继续关闭并需要新的显式编码授权；真实 provider、tag、push、release 和生产能力继续
 关闭，G4 不通过。
 
 ## 11. 已执行 Codex 指令：S6A（历史证据）
@@ -325,7 +332,7 @@ G4 pending。若任何实现需要 Contracts/tree/pin 漂移、新 dependency/ru
 GREEN 使用由 Contracts `ea48fe...` resource 派生的 Base64 snapshot；checker 锁定 source path、source SHA、tree OID、
 raw size/SHA 与 snapshot SHA，运行时只解码 embed 并复核 raw identity，不依赖 sibling checkout。focused session/app
 测试与 `make contract-check`、`make lint`、`make test`、`make runtime-test`、`git diff --check` 均 exit 0；无
-Contracts/Desktop/public wire/dependency/provider 变化。S7A 后来在独立授权下完成；S7B 仍未授权或启动。
+Contracts/Desktop/public wire/dependency/provider 变化。S7A、S7A-REPAIR 与 S7B 后来均在独立授权下完成。
 
 ## 14. 已执行 Codex 指令：S7A（历史证据）
 
@@ -336,9 +343,27 @@ private domain/client 尚不存在而 exit 1；Rust focused suite 因 Range/MP4/
 
 实现严格停在 Desktop-private native boundary：独立 `chat-artifact-video-native-v1` schema/typed client、exact open/release/save
 commands、SQLCipher ready-video 有界 MP4 inspect/range、`yijie-artifact-video://localhost/v1/<43-char opaque handle>`、30min
-absolute/5min idle、2 handles/WebView、1/artifact、64 success requests、2 concurrent reads/64MiB in-flight、GET/HEAD 与
+absolute/5min idle、2 handles/WebView、1/artifact、2 concurrent reads/64MiB in-flight、GET/HEAD 与
 single closed/open/suffix Range 的 200/206/416，以及复用 S6A atomic kernel 的 content-free `.mp4` native save。最终
 `pnpm lint`、`pnpm test`（45 files/313 tests）、`make build`、`pnpm docs:build`、`git diff --check` 均 exit 0；
 额外 `make lint` 也 exit 0。仅按批准例外刷新五个 Desktop implementation/readiness digests；Contracts full commit/source/
 resource tree/version/operations/schemas、Host、公共协议均未改变。没有 components/pages/stores、renderer、dependency/lockfile、
-capability/permission、migration、S7B 或真实 provider 变化。
+capability/permission、migration、S7B 或真实 provider 变化。原始 64-success lifetime limit 后经真实 WKWebView
+诊断证明与 metadata Range 探测不兼容，并在独立 S7A-REPAIR 中移除。
+
+## 15. 已执行 Codex 指令：S7A-REPAIR 与 S7B（历史证据）
+
+S7A-REPAIR 从 `22b91c5a258458c87f1ac96c06bf39d1af97358f` 开始。编译期关闭、content-free diagnostics 证明 WebKit
+在 metadata-ready 前需要超过 64 个合法 Range：前 64 个均通过 header、SQLCipher、digest、MP4 与 response 校验，
+随后 handle 被累计次数上限撤销并产生 404。repair 测试先行将同一 handle 扩展到至少 128 次请求，旧实现于第 65
+次返回 `NotFound`（EXPECTED RED）；最小 GREEN 只移除 lifetime request counter/revocation，保留 absolute/idle TTL、
+release、restart、context/WebView invalidation、2 handles、2 concurrent reads、64MiB in-flight 与双次 SQLCipher 校验。
+提交 `34991d8967de9aa2197ab2e8b9b49347774df7a5` 的真实 Tauri WebView smoke 为 76 GET/Range、76 个 206、
+`metadataReady/playbackStarted/seeked=true`、`beginRequestFailed=0`、`responsesNotFound=0`。
+
+S7B 提交 `366186b601144bdc2bc87a2cef3075b74f1e8f19` 只增加 reusable ready-video component 与 shell/list typed
+integration：原生 `<video controls preload="metadata">`、无 autoplay/PiP/remote/browser download、稳定 loading/error/
+expired/retry、同一播放会话 handle、retry fresh handle、pause-clear-load-release、stale/duplicate guard 和 content-free
+native-save feedback。missing-component EXPECTED RED 后，focused 3 files/14 tests、axe/reduced-motion、全量 47 files/324
+tests、lint/build/docs/diff 与上述真实 WebView playback/seek 均通过。未修改 S7A commands/schema/protocol/config、pages、
+Contracts/Host/pins/checkers、依赖、capability/permission 或 migration；生产 Chat vertical/manual visual matrix仍留待 S10。

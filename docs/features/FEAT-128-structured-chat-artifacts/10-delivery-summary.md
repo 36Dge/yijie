@@ -24,18 +24,22 @@
   canonical raw bytes，并以 snapshot/source/tree checker、bounded MP4 audit、manifest/poster/auth/Range 与全量 Host 门禁通过。
 - S7A 已在 Desktop `22b91c5a258458c87f1ac96c06bf39d1af97358f` 完成独立 private video schema/client、
   SQLCipher bounded inspect/Range、multi-request opaque protocol、native atomic `.mp4` save 与 exact `media-src`；无 renderer/UI。
-- S3/S4/S5 的 G3 slice gate 已通过且范围未扩展；S6A/S6B/S7F/S7A 作为独立切片 PASS，均不并入 G3。S7B-S12、真实
+- S7A-REPAIR 已在 Desktop `34991d8967de9aa2197ab2e8b9b49347774df7a5` 移除不兼容的 64-success lifetime
+  revocation，并以编译期关闭、content-free harness 证明真实 WebView 76 Range、metadata/playback/seek PASS、零 404。
+- S7B 已在 Desktop `366186b601144bdc2bc87a2cef3075b74f1e8f19` 完成 ready-video native controls、稳定
+  metadata/error/expired/retry、pause-clear-load-release、stale isolation 与 content-free native-save UX。
+- S3/S4/S5 的 G3 slice gate 已通过且范围未扩展；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B 作为独立切片 PASS，均不并入 G3。S8-S12、真实
   provider、tag、push、release、production 与 G4-G6 仍关闭。
 
 ## 2. 实际版本与提交
 
 | Component | Version/status | Full commit | 说明 |
 |---|---|---|---|
-| Feature package | G3 recorded for S3/S4/S5 + S6A/S6B/S7F/S7A separate PASS + S7 readiness evidence | 本次 `yijie` 文档提交 | governance/evidence only；G3 unchanged；S7B still requires separate authorization |
+| Feature package | G3 recorded for S3/S4/S5 + S6A/S6B/S7F/S7A/S7A-REPAIR/S7B separate PASS | 本次 `yijie` 文档提交 | governance/evidence only；G3 unchanged；G4 pending |
 | Desktop Pattern | Accepted 1.2.0 S7 readiness | `18b17d961ed5991cec55eeb230ea21d91f2fb8ec` | docs only；S6 readiness `2b854b...`；S6A/S6B already separate PASS |
 | Contracts | `0.4.0 local candidate` | `ea48fe190e18afba728712d1e2cc79cda57f581b` | immutable；no tag/release |
 | Agent Host | S3 PASS + S7F separate PASS; default off | S7F `1045dd06534eb72d53eb7ad7b7d18e63c80284f8`; S3 `4017785adb08e1114781d3d844e9a10a683fa933` | canonical strict-local video conformance；Contracts/tree unchanged |
-| Desktop | S4/S5 PASS; S6 readiness docs PASS; S6A/S6B/S7A separate PASS; default off | S7A `22b91c5a258458c87f1ac96c06bf39d1af97358f`; S6B `4a8dce6a6526e37052941f6dbb921ba2486e109f`; S6A `8b99849d418a3ef226f4133128f1ac22a438f9d5`; S5 `7548ea8aeacfd7274f1107786ce48ddc6789cd45`; S4 `09220dd8319cfb8ec0c4d1531514bb5169107983` | Contracts pin stays `ea48fe...`; S7A has no renderer/page/public pin/dependency/capability/migration drift |
+| Desktop | S4/S5 PASS; S6A/S6B/S7A/S7A-REPAIR/S7B separate PASS; default off | S7B `366186b601144bdc2bc87a2cef3075b74f1e8f19`; S7A-REPAIR `34991d8967de9aa2197ab2e8b9b49347774df7a5`; S7A `22b91c5a258458c87f1ac96c06bf39d1af97358f`; S6B `4a8dce6a6526e37052941f6dbb921ba2486e109f`; S6A `8b99849d418a3ef226f4133128f1ac22a438f9d5`; S5 `7548ea8aeacfd7274f1107786ce48ddc6789cd45`; S4 `09220dd8319cfb8ec0c4d1531514bb5169107983` | Contracts/Host/pins unchanged；production page/vertical仍待 S10 |
 
 关键 source digests：OpenAPI `cf72ba8dd6910e8454ad60feeffa5e82583303b441dad78e49910fbdb9f5420f`，
 event v3 `87b1284056529bde8314e6cfa6ad1fb27ffefef50ea86033875fda795330939f`，report v1
@@ -59,12 +63,14 @@ event v3 `87b1284056529bde8314e6cfa6ad1fb27ffefef50ea86033875fda795330939f`，re
 | S7-READINESS | PASS FOR DOCS ONLY / READY FOR S7F ONLY | canonical/Host/Desktop read-only audits；Pattern 1.2.0；Desktop docs/lint/test/diff PASS；43 files/308 tests；`18b17d961ed5991cec55eeb230ea21d91f2fb8ec` |
 | Host S7F | PASS AS SEPARATE SLICE | EXPECTED RED 81-byte/digest/missing-moov；GREEN exact 1,642-byte raw identity + bounded MP4/manifest/poster/auth/GET/HEAD/Range；`make contract-check/lint/test/runtime-test`、diff PASS；`1045dd06534eb72d53eb7ad7b7d18e63c80284f8` |
 | Desktop S7A | PASS AS SEPARATE SLICE | EXPECTED TS/Rust RED；2 TS files/5 tests、11 focused Rust + 1 SQLCipher reader GREEN；`pnpm lint/test`、`make build`、`pnpm docs:build`、diff PASS；45 files/313 tests；`22b91c5a258458c87f1ac96c06bf39d1af97358f` |
+| Desktop S7A-REPAIR | PASS AS SEPARATE SLICE | request 65 EXPECTED RED；128-request GREEN；default 11/11 + feature 12/12 Rust；real WebView 76 Range、metadata/playback/seek、零 404；clippy/diff PASS；`34991d8967de9aa2197ab2e8b9b49347774df7a5` |
+| Desktop S7B | PASS AS SEPARATE SLICE | missing-component RED；3 files/14 focused；47 files/324 full；axe/reduced-motion、lint/build/docs/diff、real WebView metadata/playback/seek PASS；`366186b601144bdc2bc87a2cef3075b74f1e8f19` |
 | AC contract portions | CONTRACT PASS | lifecycle/resource/ACK/report/fixtures/negative cases |
 | AC Host/native foundation portions | PARTIAL PASS | S3/S4 lifecycle/resource/persistence/history/retention conformance |
 | AC generic shell portion | S5 FOUNDATION PASS | monotonic/closed reducer、history/live shared store、generic accessible metadata shell |
 | AC-003 image preview/save boundary | S6A NATIVE PASS / S6B COMPONENT PASS / E2E NOT RUN | native security/save boundary + reusable ready image/lightbox/save UX implemented and tested；page/runtime visual integration pending |
-| AC-004 video native boundary | S7A NATIVE PASS / UI NOT RUN | bounded MP4 inspect/Range、opaque multi-request protocol、native `.mp4` save 已实现；renderer/playback/runtime seek 待 S7B/S10 |
-| AC type renderer/E2E portions | PARTIAL | image component PASS；video/file/report renderer 与 integrated E2E 未开始 |
+| AC-004 video boundary | S7A NATIVE + S7A-REPAIR + S7B COMPONENT/RUNTIME PASS / VERTICAL PENDING | MP4 inspect/Range/save、playback-compatible lifetime、native controls/save UX 与真实 metadata/playback/seek 已验证；production vertical待 S10 |
+| AC type renderer/E2E portions | PARTIAL | image/video reusable components PASS；file/report renderer 与 integrated production E2E 未开始 |
 | Real provider capability | BLOCKED/UNKNOWN | 无付费调用或 authority |
 
 ## 4. 安全、数据与兼容边界
@@ -85,8 +91,9 @@ event v3 `87b1284056529bde8314e6cfa6ad1fb27ffefef50ea86033875fda795330939f`，re
 - canonical video resource 是 raw 1,642 bytes、SHA-256 `96ea070c...77dd5`、H.264 High/16×16/25fps/0.12s/
   3 frames、front `moov`/first keyframe；Host S7F 已从锁定 source 派生并复核 exact bytes，不依赖 runtime sibling。
 - S7A 已实现 `yijie-artifact-video://localhost/v1/<opaque-handle>`：30min absolute/5min idle、2 handles/
-  WebView、1/artifact、64 requests、2 reads/64MiB；identity-only 3 commands、GET/HEAD single Range 200/206/416、
-  no CORS/query/body/redirect/error body，CSP 只新增 `media-src 'self' yijie-artifact-video:`；Vue 仍无 renderer 或 URL 消费。
+  WebView、1/artifact、playback-compatible multi-request lifetime、2 reads/64MiB；identity-only 3 commands、GET/HEAD
+  single Range 200/206/416、no CORS/query/body/redirect/error body，CSP 只新增精确 video scheme。S7A-REPAIR 只移除
+  累计请求撤销；S7B Vue 只持有当前播放 lease 的 opaque URL，不 fetch、不持久化，并在切换/错误/卸载释放。
 
 ## 5. G2/G2A Owner 结论
 
@@ -108,7 +115,9 @@ semantic review 与 immutable pin 完成后才能开始 Host/Desktop。实际证
 | S7 Readiness | HISTORICAL READY FOR S7F ONLY | 2026-08-20 | Pattern 1.2.0 `18b17d961ed5991cec55eeb230ea21d91f2fb8ec`；readiness docs only；不扩 G3 |
 | S7F Slice | PASS OUTSIDE G3 | 2026-08-20 | Host `1045dd06534eb72d53eb7ad7b7d18e63c80284f8` + RED/GREEN/full gates；Contracts/tree/Desktop/dependency/public wire unchanged |
 | S7A Slice | PASS OUTSIDE G3 | 2026-08-20 | Desktop `22b91c5a258458c87f1ac96c06bf39d1af97358f` + RED/GREEN/full gates；无 renderer/public pin/dependency/capability/migration drift |
-| G4 Code Complete | PENDING | N/A | S7B-S11、全部 AC/E2E/运行时视觉/独立 review 未完成 |
+| S7A-REPAIR Slice | PASS OUTSIDE G3 | 2026-08-21 | Desktop `34991d8967de9aa2197ab2e8b9b49347774df7a5` + request-limit RED/GREEN + real WebView 76 Range PASS；无 schema/protocol/config drift |
+| S7B Slice | PASS OUTSIDE G3 | 2026-08-21 | Desktop `366186b601144bdc2bc87a2cef3075b74f1e8f19` + component/full/runtime gates；无 native/config/page drift |
+| G4 Code Complete | PENDING | N/A | S8-S11、全部 AC/E2E/full visual/performance/独立 review 未完成 |
 | G5/G6 | NOT PASSED | N/A | local-only scope has no release/deployment/production evidence |
 
 ## 6. 未验证项与已知限制
@@ -120,20 +129,21 @@ semantic review 与 immutable pin 完成后才能开始 Host/Desktop。实际证
 | Desktop generic domain/store/shell | S5 PASS | S10 history/live integrated lifecycle + visual/performance evidence |
 | S6A native image preview/save boundary | PASS | S10 仍需 integrated lifecycle 证据 |
 | S6B image renderer/lightbox/zoom/save UX | COMPONENT PASS | focused/full/axe 通过；Chat page、真实 Tauri visual/runtime 与 vertical lifecycle 待 S10 |
-| S7A native video inspect/Range/save | PASS | S7B renderer/playback/runtime seek 仍需独立授权与证据 |
-| video/file/report type renderers | NOT RUN | S7B/S8/S9 component/visual/a11y |
+| S7A/S7A-REPAIR native video inspect/Range/save | PASS | S10 仍需 production vertical/longer-media lifecycle evidence |
+| S7B ready-video renderer/native-save UX | COMPONENT + REAL WEBVIEW MEDIA PASS | production Chat page、light/dark/1180x760/200% manual matrix 与 performance待 S10 |
+| file/report type renderers | NOT RUN | S8/S9 component/visual/a11y |
 | synthetic local vertical slice | NOT RUN | S10 E2E/security/performance/visual |
-| synthetic video playback/seek | CONTRACT + HOST S7F + DESKTOP S7A NATIVE PASS / UI NOT RUN | Host emits exact canonical playable/seekable bytes；Desktop native protocol Range passes；S7B controls/runtime seek smoke not run |
+| synthetic video playback/seek | CONTRACT + HOST S7F + DESKTOP S7A/S7A-REPAIR/S7B PASS | real Tauri WebView shell smoke metadata/playback/seek true；production Chat vertical仍待 S10 |
 | MiniMax real image | BLOCKED | fixed provider capability + separate paid authorization/eval |
 | real video/file/report producers | BLOCKED | per-kind authority/ownership/security design |
 | release/deployment | N/A current scope | separate G5/G6 package if later requested |
 
 ## 7. 下一步与停止条件
 
-1. S7F 与 S7A 已完成。下一候选是 S7B TS/Vue-only ready-video renderer/native-save UX，但必须先取得新的显式
-   S7B 编码授权；在此之前不得修改 components/pages 或启动 S8-S12。
-2. S7B 必须只消费 S7A existing typed client/opaque URL/result，不得修改 src-tauri/config/checker、Contracts/Host/public pin；
-   若需要 dependency/plugin/capability/migration、扩大 native limits 或真实 provider，立即停止。
+1. S7F、S7A、S7A-REPAIR 与 S7B 已完成。下一候选是 S8 file preview/save，但必须取得新的显式编码授权；
+   在此之前不得启动 S8-S12 或 production page integration。
+2. 后续切片不得修改既有 S7A/S7B boundary；若需要 dependency/plugin/capability/migration、扩大 native limits、
+   Contracts/Host/public pin 漂移或真实 provider，立即停止。
 3. 任何 ACK、limits、retention clock、report compatibility、auth/CSP 或 authority 漂移先重开 G2；
    Contracts pin 漂移先重开 G2A。
 4. 不启动真实 provider，不 tag/push/publish/release，不把 pin conformance 描述成 Code Complete。
@@ -142,9 +152,9 @@ semantic review 与 immutable pin 完成后才能开始 Host/Desktop。实际证
 
 | Artifact | Path | Owner | 状态 |
 |---|---|---|---|
-| Feature package | `yijie/docs/features/FEAT-128-structured-chat-artifacts/` | 段成威 | G3 remains S3/S4/S5；S6A/S6B/S7F/S7A separate PASS；S7B-S11 pending |
-| Desktop UI Pattern | `yijie-desktop/docs/design/docs/design/05-patterns/14-feat-128-structured-chat-artifacts.md` | 段成威 | Accepted 1.2.0 `18b17d961ed5991cec55eeb230ea21d91f2fb8ec`；S7A native only，no S7B renderer |
+| Feature package | `yijie/docs/features/FEAT-128-structured-chat-artifacts/` | 段成威 | G3 remains S3/S4/S5；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B separate PASS；S8-S11 pending |
+| Desktop UI Pattern | `yijie-desktop/docs/design/docs/design/05-patterns/14-feat-128-structured-chat-artifacts.md` | 段成威 | Accepted 1.2.0 unchanged；S7B implements its frozen native-controls boundary |
 | Contracts semantic review | `yijie-contracts/docs/reviews/FEAT-128-semantic-review.md` | Contracts Owner | PASS |
 | Release/rollback plan | `09-release-and-rollback.md` | 段成威 | no release executed |
 
-正式关闭时间尚未形成。当前准确状态是：`G3 PASS only for S3/S4/S5; S6A, S6B, S7F and S7A separate PASS; S7B-S11 pending; real providers closed; G4-G6 not passed`。
+正式关闭时间尚未形成。当前准确状态是：`G3 PASS only for S3/S4/S5; S6A, S6B, S7F, S7A, S7A-REPAIR and S7B separate PASS; S8-S11 pending; real providers closed; G4-G6 not passed`。
