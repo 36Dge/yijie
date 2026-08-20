@@ -18,7 +18,7 @@
 | DEC-128-005 | 新增 v3 event/history/resource surface | 原地扩充 v2 closed union | 保持 v1/v2 严格 consumer 兼容 | Contract/Consumer Owner |
 | DEC-128-006 | Desktop SQLCipher 为长期 authority，Host 仅短期 staging | Host 长期保存，或 event 携带 base64 | 延续本地加密边界，避免大事件与第二业务库 | Data/Security Owner |
 | DEC-128-007 | report 使用 closed versioned JSON document | raw HTML/iframe 或任意 ECharts option | 可访问、可测试、无脚本/远程资源攻击面 | Product/Client/Security Owner |
-| DEC-128-008 | WebView 仅接 bounded blob preview；超限降级为保存 | 自定义 asset protocol 或直接本地路径 | 首期减少 Tauri capability 和路径暴露 | Client/Security Owner |
+| DEC-128-008 | WebView 仅通过 one-shot opaque handle custom image protocol 消费 bounded preview；超限降级为保存 | bytes/base64/object URL、generic asset protocol 或直接本地路径 | 同时满足 no-bytes-to-Vue、无路径、可原生复核与有界生命周期 | Client/Security Owner |
 | DEC-128-009 | native save dialog + streaming temp file + atomic replace | 浏览器 download、直接 workspace 写入 | 符合 macOS 预期并绑定明确用户意图 | Client/Security Owner |
 | DEC-128-010 | local-only synthetic producer 为无云验收入口，默认关闭 | 把 fixture 混入普通 provider | 可重复验证且不误报真实模型能力 | Technical/Reviewer |
 | DEC-128-011 | Artifact 默认保留七天，与 FEAT-127 对齐 | 会话永久保留或应用退出即删 | 当前本地数据治理一致，限制 confidential 残留 | Data Owner |
@@ -32,10 +32,10 @@
 | DEC-128-005 | Approve | 采用显式 v3 event/resource/ack surface，并使用 `event_schema_version=3` 协商；游标参数沿用权威 v1/v2 的 `after`、`stream_id` 与 `Last-Event-ID`。Artifact 只在 v3 surface 发出。v1/v2 endpoint、wire、事件集合、cursor、replay、终态和字节语义保持不变；Desktop durable history/resource 仍是 private surface，本期不新增 Host public history endpoint。 | 隔离 semantic change，保护严格 v1/v2 consumer 兼容性并避免发明第二条 history API。 | S1 必须形成 v3 event、content/poster、ack source 与双基线 equality；G2A 才要求真实生成、不可变引用和 consumer pin。 | 段成威 | 2026-08-20 |
 | DEC-128-006 | Modify | Desktop SQLCipher 是 Artifact 唯一长期 authority。Host staging 使用 app-private encrypted spool：文件权限 `0600`、每进程临时密钥且密钥不落盘，Host 重启先清除不可恢复旧 spool；不使用 1 GiB 进程内大对象或 owner-only plaintext。冻结每 session 256 MiB、全局 1 GiB、`staged_at + 24h` TTL。Desktop 校验 scope/size/MIME/magic/SHA-256 并提交 SQLCipher 后，调用 owner/session-scoped 幂等 ACK；ACK、TTL 或 Host 重启触发清理，不驱逐读取中的内容。 | 冻结存储介质、容量、TTL、ack、重启和明文边界。 | S1 定义 ACK operation；Host cleanup transport receipt 与 Desktop 私有 retention cleanup receipt 分开，后者留在 S4 private data design。 | 段成威 | 2026-08-20 |
 | DEC-128-007 | Modify | `report-document-v1` 根对象 closed；每个 section envelope 显式包含 `id`、`type`、`required` 和 `payload`。已知 `summary|metrics|paragraph|table|chart|callout` payload 使用 strict safe schema；unknown type 只有 `required=false` 时可由兼容层保留为不渲染的 opaque JSON 并显示 `unsupported`，`required=true` 或已知 payload violation 拒绝整份文档。canonical MIME 为 `application/vnd.yijie.report+json;version=1`；禁止 HTML、script、iframe、URL、远程资源和任意 ECharts option；PDF/Markdown 仅为未来 derived export。 | 让 closed root 与 unknown optional fail-soft 同时可实现、可测试。 | S1 提供 known/unknown requiredness fixtures；Desktop 必须 two-stage decode 且不遍历或执行 unknown payload。 | 段成威 | 2026-08-20 |
-| DEC-128-008 | Approve | WebView 只消费 native bridge 提供的 bounded blob/object preview；候选上限为 image 20 MiB、video/file/report 64 MiB，单轮最多 12 项或 128 MiB，超限或不支持时只显示安全 metadata 并保留 native save。WebView 不持有 Host bearer、绝对路径或 provider URL；object URL/preview handle 在关闭、卸载、替换和 session 切换时撤销。 | 有界预览和保存降级减少 capability、路径暴露和 OOM 风险；具体上限和生命周期作为批准边界记录。 | 需要 native fetch 校验、内存/边界测试、CSP 最小变更和 object URL 释放证据；不新增自定义 asset protocol。 | 段成威 | 2026-08-20 |
-| DEC-128-009 | Modify | 用户显式触发 native save dialog；使用服务端验证的 safe filename，在目标目录创建同目录 streaming temporary file，禁止 symlink/no-follow 越界，覆盖必须由用户明确确认，成功后执行 atomic replace。保存失败时删除临时文件但保留 SQLCipher authority 副本；仅允许精确 private save capability，禁止通用 filesystem 或 shell capability。 | 原句未确认 safe filename、symlink/overwrite 和 capability 最小权限，存在保存越界风险。 | 需要 Tauri command/capability、安全测试和失败恢复证据；不得使用浏览器 download 或直接 workspace 写入。 | 段成威 | 2026-08-20 |
+| DEC-128-008 | Modify at S6-READINESS | WebView 只通过 `yijie-artifact-preview://localhost/v1/<opaque-handle>` 消费 ready image。handle 为 256-bit CSPRNG、30 秒 absolute TTL、one-shot GET，绑定 main WebView/process/context/owner/tenant/session/turn/artifact；每 WebView 最多 4 个未消费 handle、每 Artifact 1 个、最多 2 个并发读取/40 MiB in-flight。native 在签发和 GET 两次复核 ready/image、PNG/JPEG/WebP、20 MiB、BLOB length、digest 与 image limits。Vue 不接收 bytes/base64/digest/Host href/path/bearer；只允许 CSP `img-src` 追加该 scheme。 | 原 G2 object URL 候选无法同时满足“Vue 不接收 bytes/base64”和实际 `<img>` 取流，必须在编码前改为 non-bearer opaque handle protocol。 | S6A 只实现 native boundary；S6B 才实现 renderer。不得使用 asset/file/blob/data URL 绕过，不扩 `connect-src`/外部 origin。 | 段成威 | 2026-08-20 |
+| DEC-128-009 | Modify at S6-READINESS | 用户显式触发 exact native save command；payload 只有 session/turn/artifact identity。native 双次复核 ready image authority，使用既有 `rfd` panel 和 canonical `.png/.jpg/.webp`，同目录 `0600` create-new/no-follow temp、分块复算 digest、fsync 与 atomic replace；取消/失败清 temp 并保留 SQLCipher，Vue 只收 content-free saved/cancelled/failed + stable code。现有 app-command ACL 架构不允许安全地只新增三条 capability，因此不新增 capability/plugin；精确 `generate_handler!` command list 是最小 allowlist。 | 冻结 safe name、extension/MIME、symlink/overwrite、路径不出 native、审计和 crash residue 边界。 | S6A 不新增依赖、plugin、filesystem/shell/dialog capability 或 DB migration；若这些成为必需立即停止并重开 Security/Data review。 | 段成威 | 2026-08-20 |
 | DEC-128-010 | Approve | local-only synthetic producer 作为无云验收入口，仅在 `YIJIE_ENV=local`、固定 test manifest 和独立 synthetic flag 同时满足时可启动；它可以为 image/video/file/report 四类发出固定 fixture，默认关闭且不得与真实 provider 同开。每个 Artifact 必须携带并持久化 `provenance=synthetic`；非 local、manifest 不匹配或 capability 不明确时 fail closed，不调用 MiniMax 或任何付费 API。 | 提供完整、可重复、零费用的 walking skeleton，同时把 synthetic 与真实 producer authority 分层。 | 四类 synthetic contract fixtures 属 S1；真实 `provider|tool` producer 仍只由 S12 activation gate 管理。 | 段成威 | 2026-08-20 |
-| DEC-128-011 | Modify | Desktop 成功校验并提交 SQLCipher 时记录 `local_committed_at`，并计算 `expires_at = local_committed_at + 168h`；`now >= expires_at` 时进入 `expired`。到期清除 SQLCipher content、preview/object URL、cache 及可清理的 WAL/checkpoint 残留，并写入 Desktop 私有、幂等的 cleanup receipt；历史只保留最小安全 metadata、位置和 `expired`。Host staging 使用独立 `staged_at + 24h` TTL。会话删除 cleanup saga 失败必须可重试且不得报告物理删除完成。 | 冻结起算点、Host/Desktop 两个时钟和 receipt authority。 | retention migration/reopen/forensic 属 S4，不作为 G2 前的实现证据；G2A 前只需 public contract source 与计划一致。 | 段成威 | 2026-08-20 |
+| DEC-128-011 | Modify | Desktop 成功校验并提交 SQLCipher 时记录 `local_committed_at`，并计算 `expires_at = local_committed_at + 168h`；`now >= expires_at` 时进入 `expired`。到期清除 SQLCipher content、preview handle/cache 及可清理的 WAL/checkpoint 残留，并写入 Desktop 私有、幂等的 cleanup receipt；历史只保留最小安全 metadata、位置和 `expired`。Host staging 使用独立 `staged_at + 24h` TTL。会话删除 cleanup saga 失败必须可重试且不得报告物理删除完成。 | 冻结起算点、Host/Desktop 两个时钟和 receipt authority。 | retention migration/reopen/forensic 属 S4，不作为 G2 前的实现证据；G2A 前只需 public contract source 与计划一致。 | 段成威 | 2026-08-20 |
 
 Provider gate：`Approve / Keep closed`。真实 MiniMax image、video、file、report producer 按 kind 独立关闭，不调用真实或付费 API，不发出 `provenance=provider/tool` Artifact。任何启用都必须另行固定 capability/API/model、费用与网络授权、格式/容量/失败/取消/合规语义、Host/Desktop conformance 及质量/延迟/成本 Eval，并取得单独 Owner 批准。
 
@@ -57,6 +57,21 @@ Generator/adapter 边界：OpenAPI、Protobuf 和 TypeScript JSON Schema 继续�
 | Test/Reviewer | 段成威 | APPROVED FOR G2 | 06 的 synthetic contract、failure、安全、兼容和双 baseline 计划 | G2A/G4 测试结果或“独立人工评审”声明 |
 
 G2 结论：`APPROVED`，只授权 `yijie-contracts` S1/S2。真实 source/generate/lint/test/breaking/semantic review/immutable commit 与下游 exact pin 是 G2A 证据，不是 G2 前置实现证据。
+
+## 2C. S6-READINESS Owner Conclusion（2026-08-20）
+
+用户明确要求本轮只完成图片 preview/save 安全与实施边界闭环并记录各 Owner 结论。Codex 依据指定基线完成
+private IPC、Tauri command/capability/CSP、SQLCipher authority 与 S5 shell 的只读审计并代录下表；不把本轮
+文档批准描述为 renderer、command、protocol、CSP 或 save 已实现，也不把 Codex 描述为独立人工 Reviewer。
+
+| Review | Owner | 结论 | 批准范围 | 保持关闭 |
+|---|---|---|---|---|
+| Product/Design | 段成威 | READY FOR S6A；S6B WAITS FOR S6A PASS | ready image preview、明确用户 save、content-free result 与稳定失败 UX | renderer/lightbox/zoom、S7-S12、G4 |
+| Technical | 段成威 | APPROVED FOR S6A CODING | 独立 private artifact-native v1 schema、3 个 exact commands、one-shot custom image scheme、SQLCipher reader/save tests | Contracts/Host/pin、依赖/plugin、DB migration、generic protocol |
+| Security/Data | 段成威 | APPROVED FOR S6A CODING | owner/context/WebView binding、双次 content validation、30s/4-handle/2-read/40MiB limits、exact `img-src` scheme delta、native atomic save | bytes/path/token to Vue、generic fs/shell/dialog capability、external origin |
+
+S6-READINESS 的 contract impact 为 Desktop-private `additive`；Feature 总体仍为 `semantic`。S6A 通过前 S6B
+不得开始；S6A/S6B 都未纳入 G3，G3 仍只包含 S3/S4/S5，G4 pending。
 
 ## 3. Provider activation gate
 
@@ -84,6 +99,7 @@ G2 结论：`APPROVED`，只授权 `yijie-contracts` S1/S2。真实 source/gener
 | RSK-128-008 synthetic 被误当真实 | fixture 在普通模式启用 | 验收/用户信任失真 | exact local env gate、明显 synthetic source、默认 off | startup/config tests | 关闭 profile、清理 fixture session | Technical Owner |
 | RSK-128-009 provider 费用失控 | 自动调用媒体生成 API | 不可控成本 | 默认 capability off、显式费用批准、per-turn limits | cost counter/budget stop | kill switch、禁止新请求 | Product/Release Owner |
 | RSK-128-010 retention 清理失败 | DB/WAL/cache 或 Host staging 残留 | confidential 长期残留 | TTL job、session cleanup saga、WAL/cache verification | reopen/forensic test | retry cleanup、阻断关闭/发布 | Data Owner |
+| RSK-128-011 preview handle 重放/资源探测 | handle 泄漏、跨 WebView/session 重放或协议被当 generic fetch | 跨会话显示、内容枚举或 JS 读取 | 256-bit one-shot handle、main WebView/process/context/session binding、30s TTL、no CORS、empty 404 | registry/expiry/replay/session-switch/adversarial protocol tests | revoke all handles、关闭 image preview、保持 metadata/save fallback | Client/Security Owner |
 
 ## 5. 不需要新 ADR 的前提
 
@@ -92,9 +108,11 @@ G2 结论：`APPROVED`，只授权 `yijie-contracts` S1/S2。真实 source/gener
 ## 6. 实现前批准清单
 
 - DEC-128-005..011、ACK/poster/cursor/cancel、report compatibility、synthetic/real 分层与 Provider gate 已完成 G2 Owner 冻结。
-- Tauri native save command、CSP `media-src blob:` 与 capability 的设计方向已批准；G2A 已通过，实际 Desktop diff 仍须在 S4/S7 单独复核。
+- S6-READINESS 已批准仅图片使用的 3 个 private command、`yijie-artifact-preview` scheme 与 CSP
+  `img-src` 单项增量；现有 capability 文件保持不变，不新增 app-command ACL、plugin、generic fs/shell/dialog 权限。
+  实际 Desktop diff 只能在 S6A 编码任务中落地并复核。
 - Contracts v3 source、基线、generator/adapter、unknown kind/section 行为和 consumer 顺序已完成 G2 设计评审；S1/S2 真实生成、检查、双 breaking 与不可变 commit 已通过。
-- Desktop SQLCipher v8 migration、64 MiB 单 Artifact 上限、七天 retention 起算与恢复边界已在 S4 实现并通过迁移/reopen/TTL/delete 验证；native save/CSP 仍属于后续 S6-S8 安全切片。
+- Desktop SQLCipher v8 migration、64 MiB 单 Artifact 上限、七天 retention 起算与恢复边界已在 S4 实现并通过迁移/reopen/TTL/delete 验证；图片 native preview/save/CSP 属 S6A，S6B 只做 renderer。
 - 真实 MiniMax 调用保持关闭；如需启用，另行取得费用和 provider activation 批准。
 
 ## 7. 当前 Gate 结论
@@ -103,4 +121,5 @@ G2 结论：`APPROVED`，只授权 `yijie-contracts` S1/S2。真实 source/gener
 - G1：PASS，场景、AC、受影响仓库、最高 contract impact 和主要风险已识别。
 - G2：`PASS`，Product/Design、Technical/Contracts、Security/Data 与测试计划已由 Owner 明确批准；只允许进入 Contracts S1/S2。
 - G2A：`PASS`，Contracts `ea48fe190e18afba728712d1e2cc79cda57f581b`、Host pin `dea84d0768ebc017b7ee5faedab7f9a49ce74875` 与 Desktop pin `96094419d963745529ed0fa246919089e659f20d` 已满足真实 generate、双 breaking、semantic/consumer review 与不可变 pin 条件。批准依据是用户本轮给出的条件授权与实际证据，不声称 Codex 是独立人工 Reviewer。
-- G3：对 S3/S4 原子切片已通过；G4-G6 仍未通过。Host/Desktop master/synthetic flags 默认关闭，真实 provider 继续关闭。
+- G3：只对 S3/S4/S5 原子切片通过；S6-READINESS 是文档批准，不扩展 G3。G4-G6 仍未通过，Host/Desktop
+  master/synthetic flags 与真实 provider 继续关闭。

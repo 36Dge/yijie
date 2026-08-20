@@ -53,14 +53,14 @@ FEAT-128 把 Assistant 输出扩展为“文本 + 结构化 Artifact”。Artifa
 | Reviewer | 段成威 |
 | 发布负责人 | 段成威 |
 
-2026-08-20 的用户请求授权创建本需求交付包，并明确本期只要求本地可用、不准备部署或购买云资源。用户随后明确要求执行 G2 closure rewrite、记录 Product/Design、Technical、Security/Data Owner 的 G2 批准，并在 G2 后只启动 `yijie-contracts` S1/S2；只有真实 generate、breaking、semantic review、immutable commit 与 downstream exact pin 全部通过 G2A 后，才允许开始 Host/Desktop 业务切片。该条件已满足，随后 S3/S4 按序完成并以实际证据通过 G3 slice gate。本授权仍不包含 push、tag、契约发布、真实付费模型调用、生产激活或 G4-G6 批准。
+2026-08-20 的用户请求授权创建本需求交付包，并明确本期只要求本地可用、不准备部署或购买云资源。用户随后明确要求执行 G2 closure rewrite、记录 Product/Design、Technical、Security/Data Owner 的 G2 批准，并在 G2 后只启动 `yijie-contracts` S1/S2；只有真实 generate、breaking、semantic review、immutable commit 与 downstream exact pin 全部通过 G2A 后，才允许开始 Host/Desktop 业务切片。该条件已满足，随后 S3/S4/S5 按序完成并以实际证据通过 G3 slice gate。S6-READINESS 只冻结下一步 S6A 图片 native preview/save 边界，不扩展 G3。本授权仍不包含 push、tag、契约发布、真实付费模型调用、生产激活或 G4-G6 批准。
 
 标准流程备注：本地-only synthetic profile 只能作为隔离验收入口，默认关闭；它不改变既有 v1/v2 文本流程，也不能替代 G2/G2A、真实 provider capability 或生产门禁。
 
 ## 7. 当前状态
 
-- 状态：`G3 PASS for Host S3 + Desktop S4 native foundations / S5-S11 pending / real providers closed`。
+- 状态：`G3 PASS only for S3/S4/S5 / S6 readiness approved / S6A-S11 pending / real providers closed`。
 - `contract-impact = semantic`：虽然计划用显式 v3 协商保持 v1/v2 wire 兼容，但现有 Runtime `imageGeneration` item 的解释将从“信息性 item”变为可持久化、可预览、可保存 Artifact，跨进程与持久化语义发生变化，按最高风险归类。
 - G0/G1/G2 与 G2A 均有可复核证据；Contracts immutable candidate 及两端 exact pin 已形成并通过完整检查。
-- G2A 后已严格按依赖完成 Host S3，再完成 Desktop S4；这只证明本地 Host/native foundation，不代表
-  renderer、synthetic 端到端、真实 provider、发布或生产门禁通过。
+- G2A 后已严格按依赖完成 Host S3、Desktop S4/S5；S6 readiness 仅为设计批准。这不代表 S6 native
+  boundary、renderer、synthetic 端到端、真实 provider、发布或生产门禁通过。

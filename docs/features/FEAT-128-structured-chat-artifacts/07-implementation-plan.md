@@ -20,7 +20,8 @@ S0 Owner G2 approval (PASS)
            -> S3 Host v3 dual route + staging/resource/synthetic producer (PASS)
            -> S4 Desktop v8 migration + native transfer/history/private IPC v3 (PASS)
         -> S5 Desktop shared Artifact state/rendering shell (PASS)
-           -> S6 image renderer/lightbox/save
+           -> S6A native image preview/save boundary
+              -> S6B image renderer/lightbox/zoom
            -> S7 video renderer/range/blob/save
            -> S8 file preview/save
            -> S9 report document renderer/export
@@ -45,8 +46,9 @@ S2 + S3 + S4 + S10
 | S3 | Host 支持 v3 dual route、Artifact manager、owner-only GET/HEAD/range、synthetic producer | AC-001/002/008/009/011/012 | yijie-agent-host | session/resource modules、tests；使用既有 pin | 长期业务库、真实 MiniMax、cloud | G2A PASS | `make lint/test/runtime-test` | flag off，移除 v3 route，v1/v2 continue |
 | S4 | Desktop v8 SQLCipher authority、native transfer/ack/TTL/delete、private IPC v3/history | AC-002/007/008/009 | yijie-desktop `src-tauri/schemas/chat-ipc-v3.schema.json` + src-tauri/domain/api | migration、repository、Host bridge、IPC schema/parser/tests | Vue renderer、plaintext files、broad capability | G2A PASS + S3 conformance | Rust focused -> `make lint/test/build` | flag off；已存 Artifact 只读；v8 roll-forward |
 | S5 | 建立 provider-neutral domain/store 与稳定 Artifact shell | AC-001/002/010 | yijie-desktop src/domain/stores/components | state reducer、generic list/card/status tests | type-specific preview、wire parsing in Vue | S4 fixtures | Vitest/component/axe | generic unsupported fallback remains |
-| S6 | 图片 preview/lightbox/zoom/save 与错误状态 | AC-003/010 | yijie-desktop components/icons/styles | image renderer、dialog、tokens/tests | raw path/base64 in Pinia、clipboard/plugin | S5 + native preview/save approval | Vitest + visual matrix + Rust save tests | disable image renderer -> metadata/save fallback |
-| S7 | 视频 controls/range/blob/CSP 精确变更与资源释放 | AC-004/010 | yijie-desktop components + approved Tauri config | video renderer、`media-src` exact change、tests | autoplay、external origin、player library | S5 + CSP approval + S3 range | UI/media tests + CSP/security + visual | no inline preview；metadata/save only |
+| S6A | 实现图片 opaque-handle preview protocol 与 native save boundary；无 renderer | AC-003 security/native portions | yijie-desktop private schema + src-tauri + narrow domain/api | `chat-artifact-native-v1` schema/parser/client；artifact authority reader；3 exact commands；one image scheme；exact `img-src` delta；Rust/TS tests | components/pages/renderer；Contracts/Host/pin；migration；deps/lockfile/plugin/capability；generic fs/shell/asset；bytes/path to Vue | S5 + S6 readiness APPROVED | RED focused Rust/TS -> focused GREEN -> `pnpm lint/test`、`make build`、`pnpm docs:build`、diff | remove 3 commands/registry/scheme/CSP delta；SQLCipher schema/data unchanged |
+| S6B | 使用 S6A handle/result 实现 image card/lightbox/zoom/save UX | AC-003/010 UI portions | yijie-desktop TS/Vue only | components/chat、domain/api integration、icons/styles/tests | src-tauri/config/capability/deps；wire parsing；bytes/base64/path/digest；S7+ | S6A immutable PASS | Vitest/component/axe + visual matrix + full Desktop gates | disable image renderer -> S5 metadata shell remains |
+| S7 | 视频 controls/range/blob/CSP 精确变更与资源释放 | AC-004/010 | yijie-desktop components + separately approved Tauri config | video renderer、`media-src` exact change、tests | autoplay、external origin、player library | S6B + separate S7 readiness + S3 range | UI/media tests + CSP/security + visual | no inline preview；metadata only |
 | S8 | 文本/MD/JSON/CSV 有界预览与其它格式 fallback/save | AC-005/010 | yijie-desktop components/domain | plain-text renderers、search/caps/tests | `v-html`、macro/PDF/Office fake preview | S5 | unit/component/security/visual | metadata/save only |
 | S9 | report document v1 adapter、metric/table/chart/callout renderer | AC-006/010 | yijie-desktop domain/components/design theme | safe mapper、ECharts theme、tests | arbitrary option、HTML/URL/script | S2 report schema + S5 | schema fixture/component/axe/visual | generic report metadata/save fallback |
 | S10 | deterministic end-to-end、history/TTL/delete、security/performance/visual evidence | AC-001..012 | Host + Desktop + yijie docs | exact local harness/evidence docs | real provider、真实数据、production claim | S3-S9 | full gates + Playwright/axe + migration/adversarial | close flags, preserve evidence; findings reopen slices |
@@ -66,6 +68,7 @@ S2 + S3 + S4 + S10
 | Consumer pin preflight | yijie-desktop | `feat/feat-128-structured-chat-artifacts@96094419d963745529ed0fa246919089e659f20d` | exact pin/checker only | contract full commit + source/fixture identities | Client/Data Owner |
 | Desktop S4 | yijie-desktop | `feat/feat-128-structured-chat-artifacts@09220dd8319cfb8ec0c4d1531514bb5169107983` | SQLCipher v8/native transfer/ACK/TTL/history/private IPC；default off | contract + 10 implementation digests | Client/Data Owner |
 | Consumer UI S5 | yijie-desktop | `feat/feat-128-structured-chat-artifacts@7548ea8aeacfd7274f1107786ce48ddc6789cd45` | provider-neutral reducer/store + generic metadata shell；无 type renderer | same exact pins | Product/Client Owner |
+| S6 readiness docs | yijie-desktop | `feat/feat-128-structured-chat-artifacts@2b854b40379a207c19bf37fc5bc64266553c5df1` | Pattern 1.1.0 冻结 S6A/S6B、preview/save/security boundary；无 code/config diff | same exact pins | Product/Technical/Security/Data Owner |
 | Activation | local environment only | clean immutable candidates | synthetic profile evidence | source identities recorded | 段成威 |
 
 实现时必须填写完整 40-character SHA、source digests 和 generator identity；本文短 SHA 只用于阅读，不能作为 pin。
@@ -107,7 +110,9 @@ Repository、branch、base full SHA：从 feature.yaml 与实际 git 命令取�
 | H1/H2 | v3 dual route/event reducer + resource staging/range/synthetic producer | yijie-agent-host | contract-check/lint/test/runtime-test | `4017785adb08e1114781d3d844e9a10a683fa933`；S3 PASS |
 | D1 | pin + v8 migration/native transfer/private IPC | yijie-desktop Rust/schema/domain | migration/Rust/conformance/full Desktop gates | `09220dd8319cfb8ec0c4d1531514bb5169107983`；S4 PASS |
 | D2 | generic shell/state | yijie-desktop TS/Vue | `7548ea8aeacfd7274f1107786ce48ddc6789cd45`；19 focused tests + full lint/test/build/docs/diff PASS | D1；S5 PASS |
-| D3-D6 | one commit per image/video/file/report renderer | yijie-desktop | focused + visual | D2 |
+| D3 | S6A native image preview/save boundary | yijie-desktop schema/Rust/narrow domain+api/config | focused RED/GREEN + full Desktop gates | D2 + Pattern 1.1.0 readiness |
+| D4 | S6B image renderer/lightbox/zoom/save UX | yijie-desktop TS/Vue only | component/axe/visual + full Desktop gates | D3 immutable PASS |
+| D5-D7 | one commit per video/file/report renderer | yijie-desktop | focused + visual | D4 + per-slice readiness |
 | E1 | deterministic E2E/evidence/review fixes | affected repos + yijie docs | full final gates | all above |
 
 用户的逐轮明确指令已授权并完成 C1/HP/DP/H1-H2/D1/D2 的本地原子 commits；仍未授权 push、PR、tag、
@@ -125,7 +130,8 @@ release、真实 provider 或后续 S6-S12。继续实施前仍需逐仓确认�
 | S4 | `09220dd8319cfb8ec0c4d1531514bb5169107983` | SQLCipher v8、closed event/report adapter、native transfer/commit/ACK、168h TTL/delete、metadata-only history v3 | `make lint/test/build` + `pnpm docs:build` PASS | 10 implementation digests pinned；no renderer/CSP/save | PASS |
 | S5 | `7548ea8aeacfd7274f1107786ce48ddc6789cd45` | provider-neutral identity/status/progress reducer、session/turn/Artifact store、generic metadata shell/list；无 preview/action | RED missing-module evidence；19 focused tests；`make lint/test/build`、`pnpm docs:build`、diff checks PASS | parser-approved metadata only；no dependency/Tauri/CSP/capability/wire drift | PASS |
 | G3 | evidence in 08/feature.yaml | S3/S4/S5 only | owning-repository full gates PASS | planned scope and clean worktrees verified | PASS FOR S3/S4/S5 |
-| S6-S11 | N/A | none | NOT RUN | next authorized action requires a new slice task | PENDING |
+| S6-READINESS | Desktop Pattern 1.1.0 + yijie governance commits | pure docs audit：private IPC/Tauri/CSP/SQLCipher/S5；freeze S6A/S6B | Desktop docs build + both repos lint/test + governance package/YAML/diff checks | Product/Technical/Security/Data readiness captured；no implementation | PASS FOR READINESS ONLY |
+| S6A/S6B-S11 | N/A | none | NOT RUN | next executable coding slice is S6A only | PENDING |
 | S12 | N/A | none | BLOCKED | separate real-provider authority required | BLOCKED |
 
 ## 9. 变更控制
@@ -145,8 +151,59 @@ release、真实 provider 或后续 S6-S12。继续实施前仍需逐仓确认�
 |---|---|---|---|
 | 技术负责人 | 段成威 | G2 APPROVED for Contracts S1/S2 | 2026-08-20 |
 | Security/Data Owner | 段成威 | G2 APPROVED for Contracts S1/S2 | 2026-08-20 |
-| Product/Design Owner | 段成威 | FEAT-128 Pattern 1.0.0 Accepted | 2026-08-20 |
+| Product/Design Owner | 段成威 | FEAT-128 Pattern 1.1.0 Accepted；S6A ready，S6B waits for S6A PASS | 2026-08-20 |
 | Feature Owner | 段成威 | G2A APPROVED after S1/S2/S2P evidence | 2026-08-20 |
+| Technical Owner | 段成威 | S6A CODING APPROVED within exact schema/3-command/scheme/CSP boundary | 2026-08-20 |
+| Security/Data Owner | 段成威 | S6A CODING APPROVED；no dependency/plugin/capability/migration | 2026-08-20 |
 
-G2、G2A 与 S3/S4/S5 的 G3 slice gate 均已通过。下一计划切片是 S6 image renderer，但尚未获本轮授权；
-真实 provider、tag、push、release、CSP/save、S6-S12 与生产能力继续关闭，G4 不通过。
+G2、G2A 与 S3/S4/S5 的 G3 slice gate 均已通过。S6-READINESS 只批准下一编码切片 S6A；S6B 等待 S6A
+immutable PASS。真实 provider、tag、push、release、S7-S12 与生产能力继续关闭，G3 不扩展，G4 不通过。
+
+## 11. 下一条可执行 Codex 指令：S6A
+
+下述指令的 Desktop baseline 为 `2b854b40379a207c19bf37fc5bc64266553c5df1`，并应与
+`feature.yaml.repositories[name=yijie-desktop].s6_readiness_pattern_full_commit` 完全一致。
+
+```text
+执行 FEAT-128 / S6A，仅完成 yijie-desktop 图片 native preview/save boundary，不实现 renderer、灯箱或任何 Vue UI。
+
+开始前：
+- 完整阅读 yijie-desktop/AGENTS.md、FEAT-128 feature.yaml/03/05/06/07/08、Accepted Pattern 1.1.0；
+- 核对 branch=feat/feat-128-structured-chat-artifacts、HEAD=2b854b40379a207c19bf37fc5bc64266553c5df1、
+  Contracts pin=ea48fe190e18afba728712d1e2cc79cda57f581b，保护 dirty worktree；
+- 不修改 Contracts/Host/pin，不 push/tag/PR/release，不扩 G3 或声明 G4。
+
+测试先行：先补并运行失败的 Rust/TS 测试，再实现最小 GREEN。必须覆盖 foreign owner/session/turn、not-ready、
+expired、wrong kind/MIME、size/digest/magic mismatch、one-shot duplicate GET、30s TTL、session/context/WebView/restart
+replay、4-handle/2-read/40MiB limits、query/body/HEAD/Range/CORS/redirect 拒绝、save cancel、extension mismatch、
+symlink/nonregular target、overwrite、permission/disk-full/write failure、temp cleanup 与 authority retained。
+
+只允许：
+- 新建 src-tauri/schemas/chat-artifact-native-v1.schema.json；
+- 在 src-tauri/src/chat/ 下新增最小 artifact_native 模块，并仅为 SQLCipher ready-image reader 修改
+  artifact.rs/application.rs/worker.rs/ipc.rs/mod.rs；
+- 修改 src-tauri/src/lib.rs，精确注册 chat_open_artifact_image_preview_v1、
+  chat_release_artifact_image_preview_v1、chat_save_artifact_image_v1 和唯一 custom scheme
+  yijie-artifact-preview；
+- 修改 src-tauri/tauri.conf.json，仅在既有 img-src 追加 yijie-artifact-preview:；
+- 新增最小 src/domain/chat-artifact-native.ts、src/api/chat-artifact-native-client.ts 及对应测试，保证 payload 只有
+  sessionId/turnId/artifactId、响应 content-free。
+
+严格禁止：
+- 修改 src/components、src/pages 或实现图片 renderer/lightbox/zoom；
+- 新增/修改依赖、Cargo.lock/pnpm-lock、Tauri plugin、capabilities/permissions、DB migration；
+- generic filesystem/shell/dialog/asset protocol、external origin、connect-src/media-src/object-src/frame-src 放宽；
+- bytes/base64/digest/Host href/绝对路径/bearer 进入 Vue、Pinia、DOM、log、telemetry 或 snapshot；
+- S6B/S7-S12、真实 provider/tool、部署发布。
+
+实现必须逐项遵守 Pattern 1.1.0 §9.1-9.3 的 256-bit/43-char handle、30s one-shot、main WebView/process/context/
+owner/tenant/session/turn binding、双次 SQLCipher content validation、empty-404/no-CORS protocol、canonical
+.png/.jpg/.webp、native rfd panel、0600 same-dir temp、chunk digest、fsync/atomic replace、stable error codes。
+
+运行 focused RED/GREEN 后顺序运行：pnpm lint；pnpm test；make build；pnpm docs:build；git diff --check。
+检查最终 diff/工作树并创建一个本地原子 S6A commit，不得 push。随后只更新 yijie FEAT-128 的 07/08/10/
+feature.yaml，记录真实命令、结果与完整 SHA；S6A 可单独记 PASS，但 G3 必须仍只包含 S3/S4/S5，G4 pending。
+
+若需要新依赖/plugin/capability/permission、DB migration、Contracts/Host/pin 漂移、generic protocol、外部 origin、
+把 path/bytes 暴露给 Vue，或无法用现有 SQLCipher/rfd/Tauri boundary 实现，立即停止并报告 blocker，不得扩大范围。
+```

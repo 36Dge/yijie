@@ -2,15 +2,18 @@
 
 ## 1. Release Manifest
 
-当前 G2/G2A 已获 Owner 批准；Contracts `0.4.0` local candidate、Host S3 与 Desktop S4 已形成不可变本地
-commits，并通过各自 G3 slice gate。尚没有 tag、renderer/E2E、签名制品或部署。
+当前 G2/G2A 已获 Owner 批准；Contracts `0.4.0` local candidate、Host S3 与 Desktop S4/S5 已形成不可变本地
+commits，并通过各自 G3 slice gate。S6-READINESS 只冻结图片 preview/save 边界；尚没有 S6 command/protocol/
+CSP/save/renderer、tag、E2E、签名制品或部署。
 
 | Component | Version/tag | Full commit | Artifact digest | Contract pin/generator | Environment |
 |---|---|---|---|---|---|
-| Governance package | G3 evidence candidate | 本次 `yijie` 文档提交 | N/A | N/A | local workspace |
+| Governance package | G3 S3/S4/S5 + S6 readiness evidence candidate | 本次 `yijie` 文档提交 | N/A | N/A | local workspace |
 | Contracts | `0.4.0 local candidate` | `ea48fe190e18afba728712d1e2cc79cda57f581b` | source digests in feature.yaml | locked generators | not deployed |
 | Agent Host S3 | local source candidate; flags off | `4017785adb08e1114781d3d844e9a10a683fa933` | N/A source commit | Contracts `ea48fe...` | not deployed |
 | Desktop S4 | local source candidate; flag off | `09220dd8319cfb8ec0c4d1531514bb5169107983` | 10 implementation file pins in Desktop lock | Contracts `ea48fe...` | not deployed |
+| Desktop S5 | local UI foundation; no renderer | `7548ea8aeacfd7274f1107786ce48ddc6789cd45` | N/A source commit | same immutable pin | not deployed |
+| Desktop S6 readiness Pattern 1.1.0 | docs-only Accepted boundary | `2b854b40379a207c19bf37fc5bc64266553c5df1` | N/A | same immutable pin | not implemented/deployed |
 
 ## 2. 发布前提
 
@@ -33,9 +36,11 @@ commits，并通过各自 G3 slice gate。尚没有 tag、renderer/E2E、签名�
 | 2 | merge immutable contract candidate | yijie-contracts | Contracts Owner | G2 approved, full checks/review | tag/ref/digests/generators | do not pin downstream |
 | 3 | merge Host provider with flags off | Agent Host | Runtime Owner | exact contract pin | producer/resource conformance | v1/v2 only |
 | 4 | merge Desktop native consumer with flags off | Desktop | Client/Data Owner | Host conformance, migration review | Rust/TS/build/history/security | old UI, v8 data read-only |
-| 5 | enable synthetic local profile | isolated local | 段成威 | S3-S9 + E2E | deterministic smoke/visual | disable profile, clean staging |
-| 6 | decide local G4 | source candidates | 段成威 | review findings closed | 08 evidence | remain implementation pending |
-| 7 | prepare real provider/release | future environment | 段成威 | separate fee/provider/production approval | fixed Eval/smoke/metrics | per-kind kill switch |
+| 5 | implement/review S6A native image boundary | Desktop local source | Client/Security/Data Owner | S5 + S6 readiness | RED/GREEN + full Desktop gates；no renderer | remove exact commands/scheme/CSP delta；SQLCipher unchanged |
+| 6 | implement/review S6B image renderer | Desktop local source | Product/Client Owner | S6A immutable PASS | component/axe/visual + full Desktop gates | disable renderer；S5 metadata shell remains |
+| 7 | enable synthetic local profile | isolated local | 段成威 | S3-S9 + E2E | deterministic smoke/visual | disable profile, clean staging |
+| 8 | decide local G4 | source candidates | 段成威 | review findings closed | 08 evidence | remain implementation pending |
+| 9 | prepare real provider/release | future environment | 段成威 | separate fee/provider/production approval | fixed Eval/smoke/metrics | per-kind kill switch |
 
 代码合并、部署、migration、synthetic activation、真实 provider activation 和 production release 是不同动作。
 
@@ -102,7 +107,7 @@ commits，并通过各自 G3 slice gate。尚没有 tag、renderer/E2E、签名�
   -> 判断 Desktop DB 是否已升级到 v8
   -> 未升级：回退应用/Host candidate
   -> 已升级：保持 v8 reader roll-forward；需要旧应用时恢复迁移前加密备份
-  -> 清理 Host staging/object URLs/temp files
+  -> 清理 Host staging/opaque preview handles/temp files
   -> 复验 v1/v2 text、history、TTL、integrity 与 redaction
 ```
 
@@ -129,7 +134,7 @@ commits，并通过各自 G3 slice gate。尚没有 tag、renderer/E2E、签名�
 
 | 日期 | Environment | Artifact/data versions | Steps | Result | Gaps |
 |---|---|---|---|---|---|
-| 2026-08-20 | design stage | no code/data migration | design walkthrough only | NOT RUN | 需要 v8 candidate、signed/local bundle 与完整加密备份后执行 |
+| 2026-08-20 | S6 readiness stage | S4 v8 + S5 shell；no S6 code/config | preview/save threat-model and rollback walkthrough only | DESIGN PASS；runtime drill NOT RUN | 需要 S6A candidate、signed/local bundle 与完整加密备份后执行 |
 
 ## 12. 沟通、职责与批准
 
@@ -141,5 +146,6 @@ commits，并通过各自 G3 slice gate。尚没有 tag、renderer/E2E、签名�
 |---|---|---|---|---|
 | G2 design | 段成威 | APPROVED for Contracts S1/S2 only | 2026-08-20 | 03 §2B + 00-07 + Pattern 1.0.0 Accepted |
 | G2A local candidate | 段成威 | APPROVED | 2026-08-20 | Contracts `ea48fe190e18afba728712d1e2cc79cda57f581b` + Host/Desktop exact pins；generate/lint/test/build、双 breaking 与 consumer conformance PASS |
-| G4 local candidate | 段成威 | NOT REQUESTED | N/A | S5-S11 and full AC/E2E/review incomplete |
+| S6 readiness | 段成威（Product/Technical/Security/Data） | APPROVED FOR S6A CODING ONLY；S6B WAITS FOR S6A PASS | 2026-08-20 | 03 §2C + 05/06/07 + Desktop Pattern 1.1.0 `2b854b40379a207c19bf37fc5bc64266553c5df1` |
+| G4 local candidate | 段成威 | NOT REQUESTED | N/A | S6A/S6B-S11 and full AC/E2E/review incomplete |
 | Go/No-Go production | 段成威 | N/A current scope / not approved | N/A | no production plan |

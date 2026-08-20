@@ -126,8 +126,9 @@ Protobuf 和 AsyncAPI 必须通过一致性测试证明等价，不得复制后�
 - stable failures：未生成完成为 `409 artifact_not_ready`，当前进程已知但资源已释放为
   `410 artifact_expired`，未知 session/artifact 为不泄露存在性的 `404 artifact_not_found`，
   完整性校验失败为 `500 artifact_integrity_failed` 并立即撤销该 resource。
-- WebView 不直接持有 Host bearer。Desktop native bridge 负责 fetch、大小/digest 复核、生成受控
-  object URL 或保存对话附件；关闭/替换预览时撤销 object URL。
+- WebView 不直接持有 Host bearer。Desktop native bridge 负责 fetch、大小/digest 复核和 SQLCipher authority；
+  S6A 只向 WebView 签发短期 one-shot opaque image handle，或执行 native save。关闭/替换/session switch 时
+  release handle；不得用 public Contracts 暴露 Desktop-private preview/save surface。
 
 ### Artifact ACK 与 staging cleanup
 
@@ -278,7 +279,9 @@ S1/S2 与 S2P 完成后，严格按依赖先执行 Host S3，再执行 Desktop S
 | Contracts / 段成威 | `G2A APPROVED` | 2026-08-20 | immutable `0.4.0` candidate、locked generate、双 baseline breaking 与 semantic review PASS |
 | Agent Host/Runtime / 段成威 | `S3 CONFORMANCE PASS` | 2026-08-20 | exact pin、route/staging/resource/ACK/synthetic 实现与全量 Host 门禁通过；真实 producer 关闭 |
 | Desktop/Data/UI / 段成威 | `S4 CONFORMANCE PASS` | 2026-08-20 | exact pin、v8/native transfer/history/private IPC 实现与全量 Desktop 门禁通过；renderer 未开始 |
-| Security/Data review / 段成威 | `G3 PASS FOR S3/S4 BOUNDARY` | 2026-08-20 | encrypted staging/SQLCipher、owner scope、MIME/range/digest、commit ACK、retention 与 no-content IPC 已实证 |
+| Desktop UI / 段成威 | `S5 CONFORMANCE PASS` | 2026-08-20 | provider-neutral reducer/store/generic shell 只消费安全 metadata；type renderer 未开始 |
+| Security/Data review / 段成威 | `G3 PASS FOR S3/S4/S5 BOUNDARY` | 2026-08-20 | encrypted staging/SQLCipher、owner scope、MIME/range/digest、commit ACK、retention、no-content IPC 与 safe S5 projection 已实证 |
+| S6 readiness / 段成威 | `APPROVED FOR S6A CODING ONLY` | 2026-08-20 | Desktop-private preview/save boundary 不改变本 public Contracts plan；S6A/S6B implementation NOT RUN |
 
 Open blockers 与解除条件：
 

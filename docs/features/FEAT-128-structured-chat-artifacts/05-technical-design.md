@@ -3,10 +3,12 @@
 ## 1. 设计摘要
 
 - 要解决的问题：让 Agent/LLM 输出的图片、视频、文件和报告在 Chat 中以结构化、可流式更新、可历史恢复的 Artifact 展示，而不是 Markdown 链接或一次性文本。
-- 选择的方案：Host v3 显式协商 + owner-only 临时资源；Desktop native 校验并写入 SQLCipher 长期 authority；WebView 只消费安全 metadata 和短生命周期 blob preview；report 使用 closed JSON document。
+- 选择的方案：Host v3 显式协商 + owner-only 临时资源；Desktop native 校验并写入 SQLCipher 长期 authority；
+  WebView 只消费安全 metadata 与 one-shot opaque image preview handle；report 使用 closed JSON document。
 - 关键约束：本地-only、confidential、无云资源、v1/v2 保持兼容、真实 MiniMax output capability 默认关闭、无原始路径/base64/token 进入 SSE 或 WebView state。
 - 明确不做：生产部署、云存储、公开分享、raw HTML/脚本报告、任意本地路径、视频转码、真实付费媒体生成、跨设备同步。
-- 设计状态：G2 APPROVED；Contracts S1/S2 与 downstream pin-only S2P 已通过，G2A APPROVED。它不构成 Host/Desktop 业务实现、Tauri/CSP/数据库实际变更或生产批准。
+- 设计状态：G2/G2A APPROVED，S3/S4/S5 与其 G3 scope 已通过。S6-READINESS 已批准 S6A native
+  preview/save boundary，实际 command/protocol/CSP/save 与 S6B renderer 均未实现；G3 不扩展，G4 pending。
 
 ## 2. 组件职责与依赖方向
 
@@ -15,9 +17,9 @@
 | yijie-codex | 上游 Runtime canonical item authority | provider/tool output | `imageGeneration` started/completed item | 易界 Artifact 存储、下载或 UI |
 | yijie-contracts | v3 wire、report document、error/fixture 权威源 | 已批准业务语义 | OpenAPI/JSON Schema/Proto/AsyncAPI/SDK | Runtime 实现、数据库或 UI |
 | yijie-agent-host | Runtime item 归一化、短期 staging、v3 SSE 和认证资源读取 | Runtime notification、synthetic fixture | 安全 Artifact lifecycle + relative resource | 长期业务数据、WebView 渲染、用户保存目标 |
-| Desktop native/Tauri | Host fetch、scope/MIME/size/digest 复核、SQLCipher、history；save dialog 属后续切片 | v3 event/resource | implemented `src-tauri/schemas/chat-ipc-v3.schema.json` metadata-only history projection；受控 preview/save bytes 仍 planned | provider 选择、公共契约权威 |
-| Desktop domain/store | 单调状态机、去重、resync、历史 projection | private IPC v3 | renderer view model | wire 解析之外的 I/O、文件写入 |
-| Desktop Vue components | 图片/视频/文件/report 展示、预览和可访问交互 | view model、受控 object URL | 用户可观察 UI intent | Host 请求、路径、SQL、保存副作用 |
+| Desktop native/Tauri | implemented Host fetch/SQLCipher/history；S6A 承担 image handle protocol 与 native save | v3 event/resource；private identity-only intent | metadata-only history；未来 opaque preview URL/content-free save result | provider 选择、公共契约权威、generic filesystem |
+| Desktop domain/store | implemented 单调状态机、去重、history/live projection | private IPC v3 safe metadata | stable provider-neutral view model | wire 外 I/O、bytes、文件写入 |
+| Desktop Vue components | implemented generic shell；S6B 才做 image renderer/lightbox | view model、opaque non-authoritative handle | 用户可观察 UI intent | Host/SQL/path/digest/bytes/save 副作用 |
 
 ```text
 Runtime or synthetic producer
@@ -39,8 +41,11 @@ Runtime or synthetic producer
 4. Producer 完成后，Host 校验内容、媒体类型、大小和 digest，写入 owner-only staging，资源 GET/HEAD 可用后发布 completed。
 5. Desktop native 通过同一 bearer 读取 resource，禁止重定向并复核 scope、Content-Length、MIME/magic 和 SHA-256；以临时记录/增量 BLOB 写入 SQLCipher。
 6. 数据库事务提交 Artifact content、metadata、turn relation 和 terminal state 后，private IPC 把 UI 状态从 `transferring` 切到 `ready`。
-7. renderer 按 kind 提供预览；用户选择保存时，native dialog 取得目标，内容流式写入同目录临时文件并原子替换。
-8. Desktop ack 后 Host 可删除 staging；即使 Host 重启，Desktop 已持久化历史仍可只读预览/保存。
+7. S6A open command 只接收 session/turn/artifact identity，签发 one-shot opaque handle；custom image protocol 再次
+   复核 SQLCipher authority 后把 bytes 直接交给 WebView resource loader，Vue JS 不接触正文。
+8. 用户选择保存时，S6A native command 再校验 authority，native dialog 取得目标，内容分块写入同目录临时文件
+   并原子替换；WebView 只接收 content-free outcome。
+9. Desktop ack 后 Host 可删除 staging；即使 Host 重启，Desktop 已持久化历史仍可只读预览/保存。
 
 ### 报告路径
 
@@ -92,13 +97,13 @@ wire `failed` 映射为 `failed` 或 `cancelled`，`expired` 只由本地 retent
 | ArtifactContent | Desktop scope | artifact_id | bytes 与 manifest digest/size/MIME 一致 | transfer commit -> expiry/delete |
 | HostStagingLease | 本机 Host session | artifact_id + lease generation | owner-only encrypted spool、`0600`、per-process ephemeral key、no redirect、TTL、有界 | completed -> Desktop ack/TTL/restart cleanup |
 | ReportDocumentV1 | 同 Artifact | schema version + digest | closed safe sections、无 HTML/URL/script | content 生命周期内不可变 |
-| PreviewHandle | 当前 WebView 实例 | random handle | 不持久化、不进日志、组件卸载撤销 | open -> close/session switch |
-| SaveIntent | 当前用户动作 | request_id | 只写 native dialog 选择目标；不保存路径历史 | dialog -> atomic success/failure |
+| PreviewHandle | main WebView + process/context/session | 256-bit CSPRNG base64url | 30s、one-shot、非 bearer；不持久化/日志/Pinia/snapshot | issue -> atomic consume/release/TTL/restart |
+| SaveIntent | 当前 WebView 用户动作 | request_id + artifact identity | one active；native dialog/path only；Vue 只收 content-free outcome | click -> dialog -> atomic success/cancel/failure |
 
 ## 6. 数据与 Migration 专项
 
 - 是否涉及数据库/缓存/持久化：是，Desktop SQLCipher expand；Host 只有短期 staging，不扩展为业务主库。
-- 候选 migration：`0008_chat_output_artifacts.sql`，实际名称/DDL 需在 G2A 后由 Desktop authority 确认。
+- 已实现 migration：`yijie-desktop/src-tauri/migrations/chat/0008_chat_output_artifacts.sql`；S6A 不需要也不允许新增 migration。
 
 | Phase | Schema/Data change | Old app compatibility | New app compatibility | Validation | Rollback/roll-forward |
 |---|---|---|---|---|---|
@@ -112,13 +117,15 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 ## 7. 一致性与韧性
 
 - 事务边界：单个 Artifact transfer 以一个 SQLCipher transaction 提交 metadata、content 和 terminal projection；UI ready 只在 commit 后发生。
-- 并发冲突：同 artifact 只允许一个 active transfer/save intent；duplicate completed 复用同一 operation。
+- 并发冲突：同 artifact 只允许一个 active transfer/save intent 和一个未消费 preview handle；每 WebView 未消费
+  handle 最多 4、protocol read 最多 2、in-flight response 最多 40 MiB。duplicate completed 复用同一 operation。
 - 幂等：Host event_id/sequence、Desktop transfer operation 和数据库 unique key 共同防重复。
 - 超时/取消：Host resource read、Desktop transfer、preview decode、save 和 resync 均使用 bounded timeout/AbortSignal；turn interrupt 不自动删除已 ready Artifact。
 - 重试/退避/上限：仅 retryable transport/staging error 可重试，指数退避最多 3 次；integrity/protocol/unsupported 不自动重试。
 - 限流/熔断/降级：每项 20/64 MiB、每 turn 128 MiB/12 项；Host 每 session staging 256 MiB、全局 1 GiB、lease 从 `staged_at` 起 24 小时。staging 使用 app-private encrypted spool，不使用 1 GiB 进程内大对象。达到上限拒绝新 Artifact，不驱逐正在读取或已持久化内容。
 - 部分失败与补偿：一项失败不回滚其它 ready；Desktop commit 失败不 ack Host；Host ack 丢失依靠 TTL 清理。
-- 资源释放：object URL、video handle、timer、AbortController、temp file、range response 和 staging lease 都必须在关闭/切换/失败时释放。
+- 资源释放：未消费 image handle、WebView decoded image、video handle、timer、AbortController、temp file、range
+  response 和 staging lease 都必须在关闭/切换/失败时释放；image handle 在 GET 开始时原子消费，restart 后无效。
 
 ## 8. 安全设计
 
@@ -130,7 +137,54 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 - PII/日志脱敏：日志只记录 kind、typed code、byte bucket、duration bucket 和 opaque correlation；不记录标题、文件名、正文、path、digest 或 raw provider error。
 - 高风险审批：N/A；Artifact 查看不是电商业务写操作。保存仍需用户明确 native dialog intent，不能后台自动写文件。
 - 审计：本地阶段只记录 aggregate typed operation outcome，不记录目标路径；生产审计方案当前 N/A/not designed。
-- CSP/capability：图片继续用现有 `blob:`；视频 preview 候选只增加精确 `media-src 'self' blob:`。native save command 与 dialog scope 必须单独批准，禁止通用 filesystem/shell capability。
+- CSP/capability：S6A 只在既有 `img-src` 追加 `yijie-artifact-preview:`，不改 `connect-src` 或增加 external
+  origin；不得将 Artifact 放入既有 asset/blob/data 路径。当前 app 没有 app-command ACL manifest，局部新增会让
+  所有既有 app commands 被 ACL 检查，因此 capability/permission 文件保持不变。只允许 3 个 exact app commands，
+  不引入 dialog/fs/shell plugin。视频 `media-src` 仍未批准，留给 S7 readiness。
+
+### 8.1 S6A image preview boundary
+
+1. 独立 Desktop-private authority：`chat-artifact-native-v1.schema.json`，不得修改公共 Contracts、Host 或
+   `chat-ipc-v3.schema.json` 的 metadata-only history 职责。
+2. exact commands 仅为 `chat_open_artifact_image_preview_v1`、`chat_release_artifact_image_preview_v1`、
+   `chat_save_artifact_image_v1`。envelope 使用 `requestId/contextId`；open/release/save payload 只包含
+   `sessionId/turnId/artifactId`，command 同时校验 injected WebView label 必须为 `main`。
+3. open 先授权 `task.read` 并查询 owner/tenant/session/turn/artifact，要求 ready、未过期、image、
+   `image/png|image/jpeg|image/webp`、1..20 MiB；读取 BLOB 后复算 length/digest 并执行 image limits。成功才签发
+   43-char CSPRNG handle，registry 绑定 process epoch、WebView、context 和完整 Artifact identity。
+4. `yijie-artifact-preview://localhost/v1/<handle>` 只接受无 query/body 的 GET。handler 原子 consume handle，复核
+   binding/authority/content，返回 allowlisted MIME + length + no-store/nosniff；不返回 CORS header、不支持
+   fetch/XHR/HEAD/Range/redirect。任一 protocol failure 只返回 empty 404，不形成存在性 oracle。
+5. release、session switch、context invalidation、WebView/app close、TTL 30s 清 registry；S6B 在 unmount/replace
+   先清 `<img src>` 再 release。超过 4 handle、2 read 或 40 MiB 时 typed limit error，绝不隐式驱逐。
+
+### 8.2 S6A native image save boundary
+
+1. 只有一次明确 click/keyboard intent 可调用 save；native 在 dialog 前和 write 前复核与 preview 相同的 authority。
+2. 复用现有 macOS target dependency `rfd=0.16.0`，不增加 npm/Cargo dependency 或 Tauri plugin。safe default
+   filename 来自 validated display name/fallback；PNG/JPEG/WebP canonical extension 为 `.png/.jpg/.webp`，缺失时
+   append，不匹配时返回 `artifact_native_extension_mismatch`，覆盖确认由 native panel 完成。
+3. dialog 选择的绝对路径只在 native stack 存活，不进 SQLCipher/history/log/result。目标目录内创建随机 `0600`
+   create-new/no-follow temp；从 SQLCipher BLOB 分块写出并同步复算 length/SHA-256，fsync 后同目录 atomic replace。
+   目标 leaf 为 symlink/非 regular 时 fail closed。
+4. 结果严格为 saved/cancelled/failed + stable code，无 path/name/digest/body。normal failure 的 RAII guard 删除 temp；
+   authority copy 保留。crash/power loss 可能留下用户已选择目录内的 `0600` hidden temp，不为此持久化 path 或扫描
+   arbitrary filesystem；下一次同目录显式 save 只做可验证的 best-effort stale cleanup。
+5. stable error codes 与响应脱敏以 Accepted Pattern 1.1.0 §9.3 为唯一清单；cross-scope 统一 not_found。
+
+### 8.3 Private result 与 stable error allowlist
+
+- preview open 成功只返回 opaque preview URL/handle envelope；release 成功只返回 content-free released；save 只返回
+  `saved|cancelled|failed`。任何结果都不得包含 filename、target path、MIME、size、digest、Host href、bytes/base64、
+  bearer、正文或 raw native error。
+- exact stable codes：`artifact_native_invalid_request`、`artifact_native_unauthenticated`、
+  `artifact_native_forbidden`、`artifact_native_not_found`、`artifact_native_not_ready`、`artifact_native_expired`、
+  `artifact_native_unsupported`、`artifact_native_integrity_failed`、`artifact_native_limit_exceeded`、
+  `artifact_native_conflict`、`artifact_native_extension_mismatch`、`artifact_native_dialog_unavailable`、
+  `artifact_native_permission_denied`、`artifact_native_storage_full`、`artifact_native_io_failed`、
+  `artifact_native_unavailable`。cancelled 是用户动作结果，不伪装为 failure code。
+- command 层只从该 closed set 返回 typed result；cross-owner/tenant/session/turn/artifact existence 全部折叠为
+  `artifact_native_not_found`。custom protocol 不回传上述细节，所有失败保持 body-empty `404`。
 
 ## 9. 可观测性
 
@@ -154,7 +208,7 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 | 单图片 | N/A | 20 MiB | boundary + magic + pixel fixtures | metadata + save |
 | 单视频/文件/report | N/A | 64 MiB | range/stream/boundary fixtures | 不内嵌 preview，仅保存 |
 | 每 turn | N/A | 12 项 / 128 MiB | aggregate admission tests | 拒绝新增、保留已 ready |
-| WebView memory | 未测 | <= 2.5x preview bytes | process memory sampling | lazy load/revoke/object URL |
+| WebView memory | 未测 | <= 2.5x preview bytes；native in-flight <=40 MiB | process memory sampling + registry counters | lazy load/one-shot release |
 | 模型成本 | 0（当前不调用） | synthetic 0；真实值未批准 | provider Eval 后记录 | capability off |
 
 ## 11. 配置、Feature Flag 与部署
@@ -186,13 +240,16 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 | A：SSE 携带 base64/正文 | 实现直观 | 大事件、重放内存、日志/DOM 泄漏、视频不可 seek | 高 | Reject |
 | B：Host 长期 Artifact 仓库 + URL | 范围读取容易 | Host 演变为业务库，路径/生命周期复杂 | 高 | Reject for local baseline |
 | C：Host 短期 staging + Desktop SQLCipher authority | 保持职责、本地加密、可历史恢复、可回滚 | 需要 transfer/ack/migration | 中 | Recommended |
-| D：自定义 Tauri asset protocol | 大媒体 seek 效率好 | 新 capability/CSP/路径协议攻击面 | 中高 | Defer；只有 BLOB 性能失败后重开 G2 |
+| D：generic Tauri asset/file protocol | 大媒体 seek 效率好 | path scope、跨 kind 与 seek 攻击面 | 中高 | Reject |
+| E：image-only opaque handle custom protocol | Vue 不接收 bytes/path；native 每次复核；可 one-shot/TTL | 需 3 private commands 与 exact CSP scheme delta | 中 | S6A Approved；image only |
 
 ## 14. ADR 与批准
 
 - ADR：当前 `N/A`，前提是采用方案 C 且不改变跨仓职责；选择 Host/云长期存储、自定义公开 URL 或 Runtime 核心修改时必须新增 ADR。
 - 技术负责人：段成威，结论 `G2 APPROVED for Contracts S1/S2`。
 - 安全/数据 Owner：段成威，结论 `G2 APPROVED for Contracts S1/S2`。
-- Product/Design：FEAT-128 Pattern 1.0.0 `Accepted`。
-- 结论日期：2026-08-20；G2A 后已按依赖完成 Host S3 与 Desktop S4，G3 对这两个切片为 PASS。
-  S5-S11、任何真实 producer 与生产 activation 仍未批准；所有 FEAT-128 flags 默认关闭。
+- Product/Design：FEAT-128 Pattern 1.1.0 `Accepted`；S6A ready，S6B 等待 S6A PASS。
+- S6 Technical：`APPROVED FOR S6A CODING`，仅 3 commands + 1 image scheme + exact CSP delta。
+- S6 Security/Data：`APPROVED FOR S6A CODING`，不新增 dependency/plugin/capability/DB migration。
+- 结论日期：2026-08-20；G3 仍只对 S3/S4/S5 为 PASS。S6A/S6B-S11、任何真实 producer 与生产
+  activation 仍未执行；所有 FEAT-128 flags 默认关闭，G4 pending。

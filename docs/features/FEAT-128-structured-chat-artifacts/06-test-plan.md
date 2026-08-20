@@ -14,7 +14,7 @@
 |---|---|---|---|---|---|---|
 | AC-001/NFR-001 | 占位晚出现/布局跳动 | EVT-001, UI-001, PERF-001 | contract/store/visual | started 在 terminal 前到达，300ms 内稳定显示 | synthetic local | event timestamp、DOM state、layout shift screenshot |
 | AC-002 | 重复/乱序/双终态 | EVT-002, STORE-001, RES-001 | contract/unit/integration | duplicate、gap、percent regression、late progress | no network | 幂等、resync、终态不回退 |
-| AC-003 | 图片炸弹/破图/保存越界 | ART-IMG-001, SEC-001, UI-002 | Host/native/UI | valid、magic mismatch、20MiB boundary、lightbox/save | synthetic PNG/JPEG/WebP/GIF | schema、digest、keyboard、save temp/atomic evidence |
+| AC-003 | 图片炸弹/handle 重放/保存越界 | ART-IMG-001, SEC-001/007/009, UI-002 | Host/native/UI | PNG/JPEG/WebP、magic/20MiB、one-shot handle、lightbox/save | synthetic PNG/JPEG/WebP only | schema、双次 digest、protocol、keyboard、atomic save evidence |
 | AC-004 | 视频不可 seek/OOM/autoplay | ART-VID-001, SEC-002, UI-003 | Host/native/UI | MP4/WebM metadata/range/64MiB/autoplay off | synthetic tiny media + boundary stream | 206/416、controls、memory、fallback |
 | AC-005 | 文件内容执行/截断不明 | ART-FILE-001, SEC-003, UI-004 | native/UI | text/MD/JSON/CSV preview；PDF/Office unsupported preview | synthetic files | text-only DOM、row/byte caps、save/fallback |
 | AC-006 | report XSS/任意 chart option | ART-RPT-001, SEC-004, UI-005 | schema/adapter/UI | safe sections、unknown optional accepted/opaque、unknown required rejected、HTML/URL/script rejection | report v1 fixtures | schema errors、chart text summary、no `v-html` |
@@ -25,7 +25,7 @@
 | AC-011 | synthetic 冒充真实 | CFG-001, E2E-002 | config/E2E | exact local profile、default off、visible synthetic source | local only | startup rejection/default-off/fixture flow |
 | AC-012 | provider 未验证却开启 | CAP-001, CFG-002 | runtime/config | capability false/unknown、real flag request | fixed Runtime fake | no producer/no UI capability；typed readiness |
 | NFR-002/003 | UI 卡顿/内存放大 | PERF-002, PERF-003 | performance | burst progress、12 artifacts、20/64MiB preview | local sampled build | <=10Hz、<50ms long task target、<=2.5x memory target |
-| NFR-004 | 资源泄漏 | RES-002 | unit/integration | switch session/close modal/abort save/transfer | synthetic | object URL/timer/temp/lease released |
+| NFR-004 | 资源泄漏 | RES-002 | unit/integration | switch session/close modal/expire/replay handle/abort save | synthetic | handle/read/temp/decoded image counters released |
 
 ## 3. 领域与边界测试
 
@@ -54,7 +54,7 @@
 
 | Test ID | 威胁 | 场景 | 预期结果 |
 |---|---|---|---|
-| SEC-001 | 图片炸弹/伪装 MIME | 巨大像素、小 bytes、magic mismatch、truncated image | native 拒绝，DOM 不收到 bytes/object URL |
+| SEC-001 | 图片炸弹/伪装 MIME | 巨大像素、小 bytes、magic mismatch、truncated image | 签发及 protocol GET 双次拒绝；Vue/Pinia/DOM 不收到 bytes/base64/digest/path |
 | SEC-002 | 视频 range/解码滥用 | multi-range、invalid range、伪装 container、超时 stream | 仅单 range；416/timeout；降级不崩溃 |
 | SEC-003 | 文件内容执行 | Markdown HTML、CSV formula、JSON control、active link | 普通文本展示；无 HTML/script/network/tool action |
 | SEC-004 | report 注入 | raw HTML、javascript URL、任意 ECharts option、unknown optional/required、超大 table | known invalid/unknown required 拒绝；unknown optional opaque fallback；无遍历/执行 |
@@ -62,17 +62,36 @@
 | SEC-006 | secret/path/body 泄漏 | canary 放入 savedPath、provider error、filename、content | SSE/log/DOM/snapshot 命中 0 |
 | SEC-007 | 任意文件写/覆盖 | `../` 名称、symlink、已有文件、取消 dialog、写满磁盘 | 只写用户选择目标；原子覆盖需明确确认；temp 清理 |
 | SEC-008 | synthetic 误启用 | production/non-local/default env | 配置启动失败或 capability false |
+| SEC-009 | opaque handle/协议重放 | 猜测、重复 GET、跨 WebView/context/session、query/body/HEAD/Range、过期/重启、并发/容量超限 | 仅 first bound GET 200；其它 empty 404 或 stable typed limit；无 CORS/redirect/oracle |
+| SEC-010 | CSP/capability 越界 | Artifact 尝试 asset/blob/data/fetch，或新增 fs/shell/dialog plugin/capability | 仅 `img-src yijie-artifact-preview:` delta；forbidden changes hit count 0 |
 
 ## 6. 韧性与故障测试
 
 | Test ID | 故障 | 注入方式 | 恢复预期 | 观测信号 |
 |---|---|---|---|---|
 | RES-001 | SSE gap/Host restart | 丢 sequence、换 stream_id | 停止局部应用，resync；已存 ready 可用 | typed resync code，无重复 transfer |
-| RES-002 | UI 卸载/取消 | 切 session、关闭 lightbox、abort save | revoke URL、cancel request、删 temp | handle/lease counter 回零 |
+| RES-002 | UI 卸载/取消 | 切 session、关闭 lightbox、handle TTL/consume、abort save | clear img src、release registry、cancel、删 normal-failure temp | handle/read/temp counter 回零；restart handle invalid |
 | RES-003 | storage full/WAL busy | temp volume limit、held reader | 不置 ready，保留可重试 transfer | typed storage code |
 | RES-004 | staging TTL/ack loss | duplicate/conflicting ack、丢 ack、推进 `staged_at`、Host restart | 相同 ACK 幂等、冲突拒绝；Desktop 已存内容不受影响；Host encrypted spool 清除 | receipt + bytes counter 归零 |
 | RES-005 | partial turn | 一项 complete、一项 failed、turn complete | ready 保留，failed 卡稳定，turn terminal 正确 | per-artifact + turn state |
 | RES-006 | save failure | permission denied、disk full、cancel | authority copy 保留，可再次保存 | no stored target path |
+
+## 6A. S6A 测试先行门禁
+
+S6A 必须先提交失败测试并记录 RED，再写最小 native boundary；S6B renderer 不得出现在 S6A diff。
+
+| Layer | 必须先失败的测试 | GREEN 必须证明 |
+|---|---|---|
+| private schema/TS parser | 3 command names、identity-only payload、closed result/error 枚举不存在 | schema/TS exact-key；path/name/MIME/digest/href/bytes/base64 字段全部拒绝 |
+| repository/worker | ready image content reader 不存在 | owner+tenant+session+turn+artifact、state/kind/MIME/size/BLOB/digest/image limits 双次复核；expired/foreign/not-ready fail closed |
+| handle registry | registry/limits/release 不存在 | 256-bit/43-char handle、30s absolute TTL、one-shot atomic consume、4 per WebView/1 per Artifact、2 reads/40MiB、session/context/restart cleanup |
+| custom protocol | scheme handler 不存在 | exact host/path/GET；200 headers；no CORS/redirect/HEAD/Range/query/body；全部失败 empty 404；main WebView binding |
+| native save | image save operation 不存在 | explicit intent、canonical extension、native cancel/overwrite、symlink/nonregular reject、0600 temp、chunk digest、fsync/atomic replace、normal failure cleanup、authority retained |
+| leak/config | current baseline only | no bytes/base64/digest/Host href/path/bearer in Vue/Pinia/DOM/log/snapshot；only one `img-src` scheme delta；capability/deps/lockfile unchanged |
+
+S6A focused commands must include Rust unit/integration tests for `artifact_native` repository/registry/protocol/save plus
+Vitest schema/client negative tests. `pnpm lint`、`pnpm test`、`make build`、`pnpm docs:build` 与 `git diff --check`
+随后全量通过。S6A 只能在这些证据和 atomic Desktop commit 后记为 PASS；readiness 文档不是测试结果。
 
 ## 7. Migration 演练
 
@@ -151,7 +170,7 @@
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
 | 测试/技术 Owner | 段成威 | G2A APPROVED；S1/S2/S2P evidence PASS | 2026-08-20 |
-| 安全/数据 Owner | 段成威 | G2A contract boundary APPROVED；S3/S4 runtime evidence PASS；S5-S11 pending | 2026-08-20 |
+| 安全/数据 Owner | 段成威 | G2A boundary APPROVED；S3/S4/S5 evidence PASS；S6A readiness APPROVED，implementation NOT RUN | 2026-08-20 |
 
-Contracts、pin conformance、S3 与 S4 命令已实际执行并记录于 08；S5 及以后仍须按本计划执行，不能因
-G3 对基础切片通过而预先记为通过。
+Contracts、pin conformance 与 S3/S4/S5 命令已实际执行并记录于 08；S6A/S6B 及以后仍须按本计划执行，不能因
+readiness 批准或 G3 对基础切片通过而预先记为通过。

@@ -53,7 +53,10 @@ Runtime/provider/tool output
 - Agent Host 只保留传输所需的短期 owner-only encrypted spool 与 opaque reference，不成为长期业务数据库。spool 位于 app-private 临时目录、文件权限 `0600`、内容用每进程临时密钥加密且密钥不落盘；Host 重启时先清除不可恢复的旧 spool。Desktop 成功接收并 ACK、staging `staged_at + 24h` 到期或 Host 重启时删除。
 - v1-v7 Chat 数据库 reader 必须继续工作；新 reader 为旧消息合成无 Artifact 的 projection。
 - migration 为 forward-only candidate 时必须记录备份/roll-forward 边界，不能假定旧 Desktop 可打开 future schema。
-- G2 已批准 Desktop SQLCipher incremental BLOB + 有界 WebView blob preview 作为首选；`expires_at` 从 Desktop SQLCipher commit 成功时间起算。若 S4 性能证据证明 64 MiB BLOB 不可接受，必须重新打开 G2 选择版本化加密文件格式，不能静默落为 plaintext 或自定义 URL scheme。
+- G2 已批准 Desktop SQLCipher incremental BLOB；S6-READINESS 将 image preview 修改为 image-only
+  `yijie-artifact-preview` opaque-handle scheme，以满足 no-bytes-to-Vue。`expires_at` 从 Desktop SQLCipher
+  commit 成功时间起算。若 authority BLOB 边界不可接受，必须重新打开 G2/Data review，不能静默落为 plaintext、
+  generic asset/file protocol 或把 bytes/base64 暴露给 Vue。
 
 ## 6. 安全、隐私与权限
 
@@ -61,7 +64,9 @@ Runtime/provider/tool output
 - Host/Desktop event 与日志只携带 opaque ID、kind、stage、大小等安全 metadata；不记录 bytes、正文、路径、token、prompt 或 raw provider error。
 - Artifact content 只能由同一 owner/tenant/session 的 native client 读取；loopback 不是认证替代品。
 - HTML/SVG/宏/脚本/远程资源不执行。report renderer 只接受 closed、versioned、安全 section schema。
-- 保存属于用户显式本地文件写入，必须经过 native dialog、路径校验、symlink/覆盖处理和原子写；G2 只批准这项最小权限设计，具体 Tauri command/capability 仍须在 S4 实现前复核且不得早于 G2A。
+- 保存属于用户显式本地文件写入，必须经过 native dialog、路径校验、symlink/覆盖处理和原子写；S6-READINESS
+  已冻结 S6A 的 exact private command 与 content-free result，并确认不新增 dependency/plugin/capability。实际实现仍须
+  通过 S6A RED/GREEN 与 Security/Data diff review。
 - 视频 blob preview 的候选 CSP 仅为精确 `media-src 'self' blob:`；G2 批准设计方向但不授权当前修改 Desktop CSP。S7 前必须复核实际 diff，禁止放宽为通用 `*`。
 
 ## 7. AI/provider 影响
