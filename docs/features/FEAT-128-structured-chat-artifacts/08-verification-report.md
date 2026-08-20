@@ -1,0 +1,166 @@
+# FEAT-128 验证证据与审查报告
+
+> 本报告只记录实际执行或可复核结果。Owner 决策来自用户的直接指令；Codex 负责执行、核对和记录，
+> 不把自身描述成独立人工 Reviewer。G2A PASS 只证明契约与 downstream exact pin 已就绪，不证明
+> Host/Desktop Artifact 业务实现已经存在。
+
+## 1. 验证上下文
+
+| Repository | Branch | Evidence commit | FEAT-128 实际范围 | 日期 |
+|---|---|---|---|---|
+| `yijie` | `feat/feat-128-structured-chat-artifacts` | 本文档最终提交 | G2/G2A governance package | 2026-08-20 |
+| `yijie-contracts` | `feat/feat-128-structured-chat-artifacts` | `ea48fe190e18afba728712d1e2cc79cda57f581b` | S1/S2 authoritative source/generated/fixtures/review | 2026-08-20 |
+| `yijie-agent-host` | `feat/feat-128-structured-chat-artifacts` | `dea84d0768ebc017b7ee5faedab7f9a49ce74875` | S2P exact pin/snapshots/checker only；S3 未开始 | 2026-08-20 |
+| `yijie-desktop` | `feat/feat-128-structured-chat-artifacts` | Pattern Accepted `e97b2dabd724af856b4041e23b24437ec2f5dfc3`; pin `96094419d963745529ed0fa246919089e659f20d`; G2A record `35efa1475af4679b5974663593831d07759c3728` | Pattern + S2P pin/checker；S4-S9 未开始 | 2026-08-20 |
+| `yijie-codex` | `develop` | `0ce5902ed400866be0196886bb78f693a004d68d` | read-only Runtime authority | 2026-08-20 |
+
+没有 tag、push、契约发布、真实 provider 调用、云资源、部署或生产流量。Host pin commit 没有加入 v3
+route/staging/producer；Desktop pin commit 没有加入 SQLCipher migration、native transfer、IPC v3 或 renderer。
+
+## 2. Gate 时间线
+
+| Gate/Slice | 结论 | Evidence | 授权效果 |
+|---|---|---|---|
+| G0/G1 | PASS | 00-03、requirements/impact/risks | 进入 G2 review |
+| G2/S0 | APPROVED | 03 §2A/2B、04-07、Pattern 1.0.0 Accepted | 只授权 Contracts S1/S2 |
+| S1 | PASS | v3 OpenAPI/SSE/report/Proto/AsyncAPI、四 kind fixtures 与负例 | 进入 locked generation |
+| S2 | PASS | `ea48fe...`、generate/lint/test/build、双 breaking、semantic review | 允许 S2P exact pin preflight |
+| S2P | PASS | Host `dea84d...`、Desktop `960944...` 与两个仓库全量门禁 | 只形成 provenance/conformance，不改变业务行为 |
+| G2A | APPROVED | 全部 required evidence 已通过，用户的条件授权生效 | 可按依赖启动 S3、随后 S4 |
+| S3-S11 | NOT RUN | 无业务实现 diff | 不得写成完成 |
+| S12 real producers | BLOCKED | 无 provider authority/付费授权 | 保持关闭 |
+
+## 3. Contracts 不可变候选
+
+| Identity | Value |
+|---|---|
+| Version | `0.4.0 local candidate`；未 tag、未发布 |
+| Full commit | `ea48fe190e18afba728712d1e2cc79cda57f581b` |
+| Host OpenAPI | `cf72ba8dd6910e8454ad60feeffa5e82583303b441dad78e49910fbdb9f5420f` |
+| AsyncAPI source | `e7ea38b310d406bf09441b11ff5e8a8f2931e3b246f99c51be7d10d27ac61090` |
+| Session event v3 schema | `87b1284056529bde8314e6cfa6ad1fb27ffefef50ea86033875fda795330939f` |
+| Report document v1 schema | `94715e5b821cca686405d06004b805e9eac6d39dc61e19c9fc38925102f79556` |
+| v3 Proto | `5021a0342b84cdea0e1dd773728e4c8f013ce7d03377ade18f06f6716a81b70d` |
+| Generators | `openapi-typescript 7.13.0`; `json-schema-to-typescript 15.0.4`; `oapi-codegen v2.7.2`; `protoc-gen-es 2.12.1`; `protoc-gen-go v1.36.11` |
+
+Semantic review 位于 `yijie-contracts/docs/reviews/FEAT-128-semantic-review.md`。它明确审查 v1/v2
+隔离、`after` cursor、ACK/poster、ordinal、closed enums、report two-stage compatibility、limits、
+synthetic/real provenance 与 activation gate。
+
+## 4. 实际命令记录
+
+| Check ID | Repository | Command | Exit | Result | 摘要 |
+|---|---|---|---:|---|---|
+| Y-PACKAGE | yijie | G2 package check + strict package check | 0 | PASS | structure、template variables 与未完成标记检查通过 |
+| Y-YAML | yijie | parse `feature.yaml` | 0 | PASS | machine-readable gate record valid |
+| Y-LINT-TEST | yijie | `pnpm lint && pnpm test && bash -n scripts/*.sh` | 0 | PASS | governance + repository tests + shell syntax |
+| C-GENERATE | Contracts | `pnpm generate` | 0 | PASS | locked generated outputs clean，无 warning |
+| C-LINT | Contracts | `pnpm lint` | 0 | PASS | sequential post-generate check 通过 |
+| C-TEST | Contracts | `pnpm test` | 0 | PASS | Node `39/39` + Go 全部通过 |
+| C-BUILD | Contracts | `pnpm build` | 0 | PASS | TypeScript SDK compile 通过 |
+| C-BREAK-PUB | Contracts | `./scripts/check-breaking.sh f16a497e1377f45747f8ff9292b4b60cf2027f88` | 0 | PASS | published `contracts-v0.2.0` compatibility |
+| C-BREAK-CAND | Contracts | `./scripts/check-breaking.sh 747cf740f2d91e76e5c1a130e8e009f1efa821b8` | 0 | PASS | FEAT-127 `0.3.0` candidate compatibility |
+| C-EQUALITY | Contracts | v1 wire equality against both baselines | 0 | PASS | v1 unchanged；v2 source/fixture equality retained |
+| C-POST-COMMIT | Contracts | `pnpm test && pnpm lint` + both breaking commands | 0 | PASS | immutable commit post-check |
+| H-SYNC | Host | `make sync-contracts` | 0 | PASS | exact checkout `ea48fe...`；snapshot sync clean |
+| H-CONTRACT | Host | `make contract-check` | 0 | PASS | version/full SHA/digests/generated types match |
+| H-LINT | Host | `make lint` | 0 | PASS | existing + pin-only diff clean |
+| H-TEST | Host | `make test` | 0 | PASS | Go/race/coverage suites pass |
+| D-PIN | Desktop | `pnpm generate:check` | 0 | PASS | public/v2/v3 all pin `ea48fe...` |
+| D-FOCUSED | Desktop | v3 contract checker tests | 0 | PASS | `2/2`；明确输出 adapter `not_started` |
+| D-LINT | Desktop | `make lint` | 0 | PASS | generate check、ESLint/vue-tsc、fmt/clippy |
+| D-TEST | Desktop | `make test` | 0 | PASS | frontend `36 files / 272 tests`; Rust `175 passed, 3 ignored` |
+| D-BUILD | Desktop | `make build` | 0 | PASS | application build passes |
+| D-DOCS | Desktop | `pnpm docs:build` | 0 | PASS | Accepted Pattern builds |
+
+一次 `pnpm lint` 曾与 `pnpm test` 并行执行，因仓库 `check-generated` 临时替换 generated 目录而产生
+瞬时失败；改为仓库要求的顺序执行后通过，且 immutable commit 上再次通过。它是命令并发冲突，
+不是产品或契约失败。
+
+## 5. Downstream pin 证据
+
+| Consumer | Pin commit | Pin 内容 | 结论 |
+|---|---|---|---|
+| Agent Host | `dea84d0768ebc017b7ee5faedab7f9a49ce74875` | Contracts `0.4.0` + full commit + OpenAPI/event/report digests；v3 snapshots/generated Go types；`EXC-128-001` | PASS；S3 business `not_started` |
+| Desktop | `96094419d963745529ed0fa246919089e659f20d` | Contracts full commit/source digests；canonical event/resource/report fixture tree OIDs；validator/exception | PASS；S4 business `not_started` |
+
+Desktop fixture Git tree OIDs：event v3 `21de31ceb65900bcf38bc7fe171de8238dfa30dc`、resources
+`f447129c08b9b39231e33698afc3f2fd875d6b14`、Host v3
+`8afbe7e88cc89401d9990e08b4b332096b53934e`、report
+`3fafff6d702504f7a8a1cd44b4c717f024c88ae8`。
+
+## 6. AC/NFR 当前覆盖
+
+| 范围 | 当前结果 | 说明 |
+|---|---|---|
+| AC-001/002/006/008/009 contract portions | CONTRACT PASS | lifecycle/report/resource/ACK/version/negative fixtures 已自动验证 |
+| AC-011 contract fixture portion | CONTRACT PASS | image/video/file/report 四类 synthetic canonical fixtures 已形成 |
+| AC-003/004/005/006 Desktop renderer behavior | NOT RUN | S6-S9 未开始 |
+| AC-007 persistence/history/retention | NOT RUN | S4 migration/repository 未开始 |
+| AC-008 runtime auth/integrity/ACK | NOT RUN | public contract 已通过；Host/Desktop runtime behavior 未实现 |
+| AC-009 Host dual route + old/new matrix | PARTIAL | contract/equality/pins PASS；实际 v3 Host route 未实现 |
+| AC-010/NFR-002 visual/a11y/performance | NOT RUN | Pattern build 不等于 runtime evidence |
+| AC-011 local walking skeleton | NOT RUN | fixtures 已有，synthetic Host producer/UI 未实现 |
+| AC-012/real provider | BLOCKED | capability 未证、未授权付费调用 |
+
+## 7. 专项验证状态
+
+| 专项 | 结果 | 后续切片 |
+|---|---|---|
+| Contract/source/generated/breaking | PASS | 边界漂移则重开 G2/G2A |
+| Consumer exact pin/conformance | PASS | S3/S4 使用相同 immutable identities |
+| Host v3 auth/range/replay/staging | NOT RUN | S3 |
+| Desktop SQLCipher/transfer/cleanup | NOT RUN | S4 |
+| UI/visual/a11y/performance | NOT RUN | S5-S10 |
+| Local synthetic E2E | NOT RUN | S10 |
+| MiniMax/video/file/report real producer | BLOCKED | S12，需单独 authority/eval |
+| Deployment/production rollback | N/A current local-only scope; gates NOT PASSED | G5/G6 |
+
+## 8. Review findings closure
+
+| Finding | 原状态 | 当前状态 | Evidence |
+|---|---|---|---|
+| G2-128-001 Owner/G2 closure | P1 | CLOSED AT G2 | 03 §2A/2B + Pattern Accepted |
+| G2-128-002 missing source/immutable pin | P1 | CLOSED AT G2A | Contracts `ea48fe...` + source digests |
+| G2-128-003 ACK/poster/retention/report ambiguity | P1 | CLOSED AT G2 | 03-05 frozen semantics；S3/S4 evidence still pending |
+| BLK-128-004 generator/downstream pin | P1 | CLOSED AT G2A | locked generators + Host/Desktop pin commits |
+| BASE-128-001 old Contracts lint/test failure | P2 historical | CLOSED | current lint/test and post-commit recheck PASS |
+| Host docs stale `0.2.0` pin | P2 | CLOSED | Host pin commit updates README/AGENTS to actual lineage |
+
+G2A 范围没有开放 P0/P1/P2。真实 provider、runtime security/data behavior、visual/a11y/performance 是后续
+slice 的未验证范围，未被降级为已接受风险。
+
+## 9. Owner G2/G2A decision capture
+
+- G2：用户明确要求 Codex 分别以 Product/Design、Technical、Security/Data Owner 身份记录
+  `APPROVED`，完整 capture 在 03 §2A/2B；UI Pattern 1.0.0 为 `Accepted`。
+- G2A：用户明确设定条件——真实 generate、breaking、semantic review 和 immutable pin 完成后才能
+  通过。第 3-5 节证据全部满足后，记录为 `APPROVED`。
+- 该授权允许下一步启动 local-only S3/S4，不允许 real provider、付费调用、tag、push、publish、release、
+  production 或直接宣称 G3-G6 通过。
+
+## 10. 残余风险与停止条件
+
+| Item | 当前边界 | 停止/重开条件 |
+|---|---|---|
+| Host encrypted staging/ACK/range | 仅契约完成 | S3 diff 偏离 limits/auth/TTL/ACK 时重开 G2 |
+| Desktop v8/native save/CSP | 仅设计完成 | 需要 plaintext、wide capability、不同 retention clock 时重开 Security/Data review |
+| Unknown report section | contract 限 `required=false`、128 KiB、depth 8、opaque | renderer 遍历/执行 unknown payload 即阻断 |
+| Real MiniMax image | blocked | 固定 capability/API/model、费用与 bounded eval 单独获批 |
+| Real video/file/report | blocked | 每 kind 形成 producer/ownership/security contract 后单独评审 |
+
+## 11. 制品与工作树完整性
+
+- Contracts、Host、Desktop feature commits 均为完整 40-character SHA；没有使用 floating branch/tag 作为 pin。
+- 每个仓库在提交后重跑关键门禁；最终应保持 clean worktree。
+- 生成物来自锁定 source/generator；Feature 目录不复制 canonical payload。
+- 没有 `.skip`、`.only`、弱化断言、secret、真实业务数据或付费调用。
+
+## 12. 结论
+
+- G2：`APPROVED`。
+- S1/S2：`PASS`，Contracts immutable local candidate 已形成。
+- S2P：`PASS`，Host/Desktop exact pin 与 conformance 已形成，业务行为未改变。
+- G2A：`APPROVED`。
+- Code Complete：否；S3-S11 尚未开始。
+- 当前状态：`G2A Approved / Host/Desktop business implementation authorized but not started / real providers closed / G3-G6 not passed`。
