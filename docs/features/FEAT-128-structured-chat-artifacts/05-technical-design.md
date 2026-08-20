@@ -4,11 +4,13 @@
 
 - 要解决的问题：让 Agent/LLM 输出的图片、视频、文件和报告在 Chat 中以结构化、可流式更新、可历史恢复的 Artifact 展示，而不是 Markdown 链接或一次性文本。
 - 选择的方案：Host v3 显式协商 + owner-only 临时资源；Desktop native 校验并写入 SQLCipher 长期 authority；
-  WebView 只消费安全 metadata 与 one-shot opaque image preview handle；report 使用 closed JSON document。
-- 关键约束：本地-only、confidential、无云资源、v1/v2 保持兼容、真实 MiniMax output capability 默认关闭、无原始路径/base64/token 进入 SSE 或 WebView state。
+  WebView media 使用 opaque image/video handles，S8 file 使用一次性 bounded safe projection；report 使用 closed JSON document。
+- 关键约束：本地-only、confidential、无云资源、v1/v2 保持兼容、真实 MiniMax output capability 默认关闭；无原始
+  路径/base64/token、未授权内容或超出已批准 bounded projection 的正文进入 SSE/WebView state，用户授权 file
+  projection 仅按 8.8 短暂存在；小文件 projection 可在上限内等于完整正文。
 - 明确不做：生产部署、云存储、公开分享、raw HTML/脚本报告、任意本地路径、视频转码、真实付费媒体生成、跨设备同步。
-- 设计状态：G2/G2A APPROVED，S3/S4/S5 与其 G3 scope 已通过；S6A/S6B 已分别作为 G3 外独立切片 PASS。
-  S7-READINESS 已冻结 S7F/S7A/S7B，只批准 S7F 编码；没有 S7 fixture/code/schema/command/CSP/renderer 实现，
+- 设计状态：G2/G2A APPROVED，S3/S4/S5 与其 G3 scope 已通过；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B 已分别
+  作为 G3 外独立切片 PASS。S8-READINESS/Pattern 1.3.0 已冻结 S8A/S8B，只批准 S8A 编码；S8 尚无实现，
   G3 不扩展，G4 pending。
 
 ## 2. 组件职责与依赖方向
@@ -18,9 +20,9 @@
 | yijie-codex | 上游 Runtime canonical item authority | provider/tool output | `imageGeneration` started/completed item | 易界 Artifact 存储、下载或 UI |
 | yijie-contracts | v3 wire、report document、error/fixture 权威源 | 已批准业务语义 | OpenAPI/JSON Schema/Proto/AsyncAPI/SDK | Runtime 实现、数据库或 UI |
 | yijie-agent-host | Runtime item 归一化、短期 staging、v3 SSE 和认证资源读取 | Runtime notification、synthetic fixture | 安全 Artifact lifecycle + relative resource | 长期业务数据、WebView 渲染、用户保存目标 |
-| Desktop native/Tauri | implemented Host fetch/SQLCipher/history 与 S6A image handle/native save；未来 S7A 承担隔离的 video Range/save boundary | v3 event/resource；private identity-only intent | metadata-only history；opaque preview URL/content-free save result | provider 选择、公共契约权威、generic filesystem |
+| Desktop native/Tauri | implemented Host fetch/SQLCipher/history、S6A image 与 S7A/S7A-REPAIR video boundary；S8A 将新增隔离的 file bounded preview/save | v3 event/resource；private identity-only intent | metadata-only history；media opaque URL；file bounded projection；content-free save result | provider 选择、公共契约权威、generic filesystem |
 | Desktop domain/store | implemented 单调状态机、去重、history/live projection | private IPC v3 safe metadata | stable provider-neutral view model | wire 外 I/O、bytes、文件写入 |
-| Desktop Vue components | implemented generic shell + S6B image renderer/lightbox；未来 S7B 使用 native video controls | view model、opaque non-authoritative handle | 用户可观察 UI intent | Host/SQL/path/digest/bytes/save 副作用 |
+| Desktop Vue components | implemented generic shell + S6B image + S7B native-video renderer；S8B 将消费 bounded file projection | view model、typed native client result | 用户可观察 UI intent 与 component-local authorized preview | Host/SQL/path/digest/bytes/save 副作用 |
 
 ```text
 Runtime or synthetic producer
@@ -99,7 +101,8 @@ wire `failed` 映射为 `failed` 或 `cancelled`，`expired` 只由本地 retent
 | HostStagingLease | 本机 Host session | artifact_id + lease generation | owner-only encrypted spool、`0600`、per-process ephemeral key、no redirect、TTL、有界 | completed -> Desktop ack/TTL/restart cleanup |
 | ReportDocumentV1 | 同 Artifact | schema version + digest | closed safe sections、无 HTML/URL/script | content 生命周期内不可变 |
 | ImagePreviewHandle | main WebView + process/context/session | 256-bit CSPRNG base64url | 30s、one-shot、非 bearer；不持久化/日志/Pinia/snapshot | issue -> atomic consume/release/TTL/restart |
-| VideoPreviewHandle（S7A planned） | main WebView + process/context/session | 独立 256-bit CSPRNG base64url | 30min absolute/5min idle、64 requests、single Range、非 bearer | issue -> repeated HEAD/GET -> release/TTL/restart |
+| VideoPreviewHandle | main WebView + process/context/session | 独立 256-bit CSPRNG base64url | 30min absolute/5min idle、无累计 request cap、single Range、非 bearer；2 handles/2 concurrent/64MiB in-flight | issue -> repeated HEAD/GET -> release/TTL/restart/binding invalidation |
+| FilePreviewProjection（S8A planned） | current main WebView/context/artifact | request_id + immutable revision | one-shot bounded safe text/CSV/JSON；不持久化、不签发 URL/handle | explicit read -> component local state -> close/switch/unmount clear |
 | SaveIntent | 当前 WebView 用户动作 | request_id + artifact identity | one active；native dialog/path only；Vue 只收 content-free outcome | click -> dialog -> atomic success/cancel/failure |
 
 ## 6. 数据与 Migration 专项
@@ -119,14 +122,17 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 ## 7. 一致性与韧性
 
 - 事务边界：单个 Artifact transfer 以一个 SQLCipher transaction 提交 metadata、content 和 terminal projection；UI ready 只在 commit 后发生。
-- 并发冲突：同 artifact 只允许一个 active transfer/save intent 和一个未消费 preview handle；每 WebView 未消费
-  handle 最多 4、protocol read 最多 2、in-flight response 最多 40 MiB。duplicate completed 复用同一 operation。
+- 并发冲突：同 artifact 只允许一个 active transfer/save intent。image 每 Artifact 最多 1 个未消费 one-shot handle，
+  每 WebView 最多 4 个 image handles、2 个 protocol reads、40 MiB image in-flight；video 每 Artifact 最多 1 个 active
+  handle，每 WebView 最多 2 个 video handles、2 个并发 Range requests、64 MiB video in-flight；file 不签发 handle，
+  每 WebView 最多 2 个 preview operations、2,097,152 bytes source in-flight，并按 identity single-flight。duplicate
+  completed 复用同一 operation。
 - 幂等：Host event_id/sequence、Desktop transfer operation 和数据库 unique key 共同防重复。
 - 超时/取消：Host resource read、Desktop transfer、preview decode、save 和 resync 均使用 bounded timeout/AbortSignal；turn interrupt 不自动删除已 ready Artifact。
 - 重试/退避/上限：仅 retryable transport/staging error 可重试，指数退避最多 3 次；integrity/protocol/unsupported 不自动重试。
 - 限流/熔断/降级：每项 20/64 MiB、每 turn 128 MiB/12 项；Host 每 session staging 256 MiB、全局 1 GiB、lease 从 `staged_at` 起 24 小时。staging 使用 app-private encrypted spool，不使用 1 GiB 进程内大对象。达到上限拒绝新 Artifact，不驱逐正在读取或已持久化内容。
 - 部分失败与补偿：一项失败不回滚其它 ready；Desktop commit 失败不 ack Host；Host ack 丢失依靠 TTL 清理。
-- 资源释放：未消费 image handle、WebView decoded image、未来 video handle、timer、AbortController、temp file、range
+- 资源释放：未消费 image handle、WebView decoded image、video handle、timer、AbortController、temp file、range
   response 和 staging lease 都必须在关闭/切换/失败时释放；image handle 在 GET 开始时原子消费；video handle
   允许 bounded multi-request，但 pause/clear source/unmount/context switch 时必须显式释放；restart 后两类均无效。
 
@@ -140,11 +146,11 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 - PII/日志脱敏：日志只记录 kind、typed code、byte bucket、duration bucket 和 opaque correlation；不记录标题、文件名、正文、path、digest 或 raw provider error。
 - 高风险审批：N/A；Artifact 查看不是电商业务写操作。保存仍需用户明确 native dialog intent，不能后台自动写文件。
 - 审计：本地阶段只记录 aggregate typed operation outcome，不记录目标路径；生产审计方案当前 N/A/not designed。
-- CSP/capability：S6A 已只在既有 `img-src` 追加 `yijie-artifact-preview:`，不改 `connect-src` 或增加 external
+- CSP/capability：S6A 已只在既有 `img-src` 追加 `yijie-artifact-preview:`，S7A 已只增加精确
+  `media-src 'self' yijie-artifact-video:`，均不改 `connect-src` 或增加 external
   origin；不得将 Artifact 放入既有 asset/blob/data 路径。当前 app 没有 app-command ACL manifest，局部新增会让
   所有既有 app commands 被 ACL 检查，因此 capability/permission 文件保持不变。只允许 3 个 exact app commands，
-  不引入 dialog/fs/shell plugin。S7 readiness 仅为未来 S7A 批准精确
-  `media-src 'self' yijie-artifact-video:`；实际 config 仍未修改，必须等待 S7F immutable PASS 与 S7A 授权。
+  不引入 dialog/fs/shell plugin。S8A 直接返回 bounded projection，不新增 scheme/CSP/capability/plugin。
 
 ### 8.1 S6A image preview boundary
 
@@ -174,13 +180,15 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 4. 结果严格为 saved/cancelled/failed + stable code，无 path/name/digest/body。normal failure 的 RAII guard 删除 temp；
    authority copy 保留。crash/power loss 可能留下用户已选择目录内的 `0600` hidden temp，不为此持久化 path 或扫描
    arbitrary filesystem；下一次同目录显式 save 只做可验证的 best-effort stale cleanup。
-5. stable error codes 与响应脱敏以 Accepted Pattern 1.2.0 §9.3 为唯一清单；cross-scope 统一 not_found。
+5. stable error codes 与响应脱敏以 Accepted Pattern 1.3.0 §9.3 为唯一清单；cross-scope 统一 not_found。
 
 ### 8.3 Private result 与 stable error allowlist
 
-- preview open 成功只返回 opaque preview URL/handle envelope；release 成功只返回 content-free released；save 只返回
-  `saved|cancelled|failed`。任何结果都不得包含 filename、target path、MIME、size、digest、Host href、bytes/base64、
-  bearer、正文或 raw native error。
+- image/video preview open 成功只返回 opaque preview URL/handle envelope；release 成功只返回 content-free released；
+  save 只返回 `saved|cancelled|failed`。S8A file preview 是唯一窄例外，只返回 8.7 的 bounded safe projection 与
+  allowlisted media type；任何结果都不得包含 filename、target path、size、digest、Host href、bytes/base64、bearer、
+  未授权内容、超出已批准 bounded projection 的正文或 raw native error。小文件的授权 projection 可在 caps 内等于
+  完整正文，但只按 8.8 的生命周期存在。
 - exact stable codes：`artifact_native_invalid_request`、`artifact_native_unauthenticated`、
   `artifact_native_forbidden`、`artifact_native_not_found`、`artifact_native_not_ready`、`artifact_native_expired`、
   `artifact_native_unsupported`、`artifact_native_integrity_failed`、`artifact_native_limit_exceeded`、
@@ -190,19 +198,19 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 - command 层只从该 closed set 返回 typed result；cross-owner/tenant/session/turn/artifact existence 全部折叠为
   `artifact_native_not_found`。custom protocol 不回传上述细节，所有失败保持 body-empty `404`。
 
-### 8.4 S7F canonical fixture route
+### 8.4 已完成的 S7F canonical fixture route
 
 1. Contracts immutable candidate 已含 canonical raw MP4：1,642 bytes、SHA-256 `96ea070c...77dd5`、H.264 High、
    16×16、25fps、0.12s、3 frames、front `moov`、首帧 keyframe。它是唯一 fixture authority，resource tree
    OID `f447129c08b9b39231e33698afc3f2fd875d6b14` 保持不变。
-2. Host S3 当前 `syntheticMP4()` 只有 `ftyp/free/mdat`，没有 track/codec/duration/dimensions/sample/keyframe，
-   明确 transport-only。S7F 只能让 strict-local producer 读取由 canonical bytes 派生、checker 逐字节校验的
-   consumer snapshot，或生成完全相同 raw digest；禁止重新编码或引入 ffmpeg/codec/runtime dependency。
-3. S7F 修改 Host producer/checker/tests 后必须证明 completed manifest size/digest 与 Contracts exact fixture 一致，
+2. Host S3 曾以 `syntheticMP4()` 生成 `ftyp/free/mdat` transport-only bytes；S7F
+   `1045dd06534eb72d53eb7ad7b7d18e63c80284f8` 已让 strict-local producer 读取由 canonical bytes 派生、checker
+   逐字节校验的 consumer snapshot，且未重新编码或引入 ffmpeg/codec/runtime dependency。
+3. S7F evidence 已证明 completed manifest size/digest 与 Contracts exact fixture 一致，
    并覆盖 video GET/HEAD、无 Range `200`、single closed/open/suffix `206`、unsatisfiable `416`、multi-range reject、
    default-off/local-manifest gates。Contracts full commit/tree/source、Desktop pin 均不变。
 
-### 8.5 S7A planned native video boundary
+### 8.5 已完成并修复的 S7A native video boundary
 
 1. 新增隔离的 `chat-artifact-video-native-v1.schema.json` 与 exact commands：
    `chat_open_artifact_video_preview_v1`、`chat_release_artifact_video_preview_v1`、
@@ -210,23 +218,69 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 2. `yijie-artifact-video://localhost/v1/<43-char handle>` 绑定 main WebView/process/context/owner/tenant/session/
    turn/artifact。只允许 SQLCipher ready/unexpired `video/mp4` 1..64MiB；open 与 protocol 首次请求进行两次完整
    length/SHA-256/MP4 box+sample validation，之后每次 Range 重验 authority/manifest/BLOB length 并从同一 row 读取。
-3. limits：2 handles/WebView、1/artifact、64 successful requests/handle、2 concurrent responses、64MiB total
-   in-flight；30min absolute + 5min idle。Tauri 2.11.x responder 只能返回 buffered body，不能声称 streaming；
-   超过 64MiB 或需要 streaming/new dependency 时停止。
+3. operative limits：2 handles/WebView、1/artifact、2 concurrent responses、64MiB total in-flight；30min absolute +
+   5min idle，不存在累计 successful request 终态上限。S7A-REPAIR `34991d8967de9aa2197ab2e8b9b49347774df7a5`
+   supersede 原 64-request 候选：Rust 已证明同一 handle 至少 128 次合法 Range 仍有效，真实 WebView 76 次 partial
+   response 完成 metadata/playback/seek 且 404=0。Tauri responder 仍是 buffered body；超过 64MiB 或需要
+   streaming/new dependency 时停止。
 4. 无 Range `GET|HEAD` 返回 200；single closed/open/suffix Range 返回 206；malformed/multi/unsatisfiable 返回 empty
    416 + `Content-Range: bytes */size`。成功只含 MIME/length/Accept-Ranges/必要 Content-Range/no-store/nosniff；
    no CORS/redirect/query/body/ETag/digest/filename/error body，其他错误 empty 404。`connect-src` 不允许该 scheme。
 5. save 使用新的 video-only command，但复用 S6A native atomic write kernel；只允许 `.mp4`。Vue 只收
    saved/cancelled/failed + stable code。image schema/commands/limits/behavior 不变，poster_blob 本切片不暴露。
 
-### 8.6 S7B planned UI lifecycle
+### 8.6 已完成的 S7B UI lifecycle
 
 1. 只为 `kind=video && status=ready` 创建 `<video controls preload="metadata" playsinline>`；无 autoplay、外部
    origin、player library、browser download、remote playback 或 PiP。其他状态/kind 继续 S5 shell。
 2. video handle 可被原生元素用于多次 Range，但 Vue 不 fetch、不持久化、不写 Pinia/log/snapshot。error、expiry、
    identity/context/session switch、unmount 时先 pause，清空 `src` 并 `load()`，再 release；迟到 open/save 结果不得污染新 identity。
 3. 当前不新增 poster handle；使用稳定 16:9 placeholder，解码后显示首帧。loading/error/expired、keyboard/focus、
-   reduced-motion、content-free save feedback 与 sensitive-data negative assertions 必须测试先行。
+   reduced-motion、content-free save feedback 与 sensitive-data negative assertions 已有 component/axe/runtime evidence。
+
+### 8.7 S8A planned native file boundary
+
+1. 独立 Desktop-private `chat-artifact-file-native-v1.schema.json` 只登记
+   `chat_read_artifact_file_preview_v1` 与 `chat_save_artifact_file_v1`。closed request <=4,096 encoded bytes，envelope
+   为 `schemaVersion/requestId/contextId`，payload 只有 `sessionId/turnId/artifactId`；只接受 `main` WebView 与当前
+   `ReadSessions` context。无 open/release handle、custom protocol、CSP、capability、plugin、dependency 或 migration。
+2. preview 前后两次查询 SQLCipher authority，复核 owner/tenant/session/turn/artifact、ready/unexpired、kind=file、
+   MIME、declared size/BLOB length/digest/revision 与内容格式。第一次读取产生 projection 后立即重读并验证同一 revision；
+   任一漂移 fail closed。inline allowlist 仅 `text/plain|text/csv|application/json`；PDF/XLSX 只提供 metadata/native save。
+3. exact caps：source <=1,048,576 bytes；projection <=262,144 bytes；response <=524,288 bytes；text/JSON <=2,000 lines、
+   每行 <=8,192 UTF-8 bytes；CSV <=200 rows × 50 columns、cell <=4,096 bytes；JSON depth<=32、nodes<=20,000；
+   preview <=2 concurrent/WebView、in-flight source<=2,097,152 bytes、同 identity single-flight、10s timeout。
+4. UTF-8 only；仅去一个 BOM，CRLF/CR 只在 projection 转 LF；TAB/LF/CR 外 C0、DEL/C1 拒绝 inline，并精确拒绝
+   Unicode `Bidi_Control` code points `U+061C`、`U+200E-U+200F`、`U+202A-U+202E`、`U+2066-U+2069`。JSON full
+   parse/depth/node audit 后返回 inert source text；CSV 使用 bounded RFC4180 comma parser 并返回 cell strings，不执行
+   formula。closed result：text/JSON `{status,mediaType,text,truncated}`；CSV
+   `{status,mediaType,rows,truncated}`，不含 name/size/path/digest/href/token/raw error。
+5. save allowlist 为当前五种 v3 file MIME，ready-file bytes `1..67,108,864`，与 preview 1 MiB eligibility 相互独立；
+   canonical extension `.txt/.csv/.json/.pdf/.xlsx`。用户明确 intent 后，dialog 前校验并释放 bytes，dialog 后重新读取/
+   校验，复用 same-dir `0600` create-new/no-follow temp、chunk digest、fsync、atomic replace/RAII。file residue 的唯一
+   prefix 是 `.yijie-artifact-file-save-v1-`，exact filename 为
+   `.yijie-artifact-file-save-v1-<txt|csv|json|pdf|xlsx>-<process-epoch UUID>-<22-char base64url>.tmp`；仅在用户下一次
+   明确选择同一目录保存时删除 prior-epoch 且同时通过 exact marker、regular non-symlink、current uid、`0600`、
+   link count 1、size `1..67,108,864` 与对应 format recheck 的条目。当前 epoch、未知/失败条目与 S6/S7 prefix/
+   behavior 保持不变。save format recheck：plain/CSV valid UTF-8 且无 NUL、JSON full parse；PDF 复用既有 bounded
+   preflight（classic xref/EOF、非加密、无 ObjStm/XRef stream/Prev、objects<=4,096、pages `1..256`、streams<=1,024、
+   单/总 decoded stream<=8/32 MiB、ratio<=100:1、expanded traversal<=4,096 stream visits/32 MiB、form depth<=16、
+   page-tree depth<=64）；XLSX 复用既有 bounded OOXML validator（entries `1..512`、safe
+   unique names、Stored/Deflated、单/总 uncompressed<=8/32 MiB、ratio<=100:1、无 `.bin`/`vbaProject`，且
+   `[Content_Types].xml`、`xl/workbook.xml` 与 spreadsheet main content type 匹配）。只允许从 `attachment.rs` 暴露/
+   复用 helper，既有 attachment import behavior/limits 不变；PDF/XLSX 不 inline/提取/渲染/执行或自动打开。Vue 只收
+   content-free saved/cancelled/failed。
+
+### 8.8 S8B planned renderer 与数据生命周期
+
+1. S8B 等待 S8A immutable PASS 与单独授权；只对 ready file 渲染。text/JSON 为普通 text nodes，CSV cell 为 escaped
+   text nodes；PDF/XLSX 为 inline unsupported + native save。禁止 v-html、link、network、formula/macro、Agent/tool action。
+2. 用户明确打开后的 bounded safe projection 只在当前组件 local state/DOM 短暂存在；不得进入 Pinia/history/router/
+   storage/log/telemetry/diagnostics/snapshot。close/status/artifact/session/context switch/unmount/error/stale response 清空。
+   SEC-006 zero-hit 继续覆盖未授权内容、超出已批准 bounded projection 的正文、path/token/digest/savedPath/raw
+   error；小文件 projection 可在 caps 内等于完整正文，授权 canary 关闭后必须为 0。
+3. search 仅对当前 projection 做 literal/no-regex search，query 1..128 Unicode scalars、最多 100 hits；truncated 时显示
+   “仅预览部分内容，截断区未搜索”。重复 read/save single-flight，迟到 response 以 requestId+context/identity 丢弃。
 
 ## 9. 可观测性
 
@@ -248,9 +302,11 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 | 占位可见延迟 | 未测 | p95 < 300ms | deterministic SSE timestamps + Playwright | 保留文本，合并低频 progress |
 | UI progress 刷新 | 未测 | <= 10Hz | fake burst events | coalesce latest state |
 | 单图片 | N/A | 20 MiB | boundary + magic + pixel fixtures | metadata + save |
-| 单视频/文件/report | N/A | 64 MiB | range/stream/boundary fixtures | 不内嵌 preview，仅保存 |
+| 单视频 | N/A | 64 MiB BLOB / 64 MiB protocol in-flight | Range/boundary/WebView smoke | metadata shell + native save |
+| 单文件 | N/A | 64 MiB save；inline source 1 MiB / projection 256 KiB / response 512 KiB | parser/caps/save boundary fixtures | metadata + native save |
+| 单 report | N/A | 64 MiB authority；renderer 尚未实现 | closed-schema/boundary fixtures | metadata shell |
 | 每 turn | N/A | 12 项 / 128 MiB | aggregate admission tests | 拒绝新增、保留已 ready |
-| WebView memory | 未测 | <= 2.5x preview bytes；native in-flight <=40 MiB | process memory sampling + registry counters | lazy load/one-shot release |
+| WebView/native preview memory | 未测 | image in-flight 40 MiB；video in-flight 64 MiB；file source in-flight 2 MiB | process memory sampling + registry/operation counters | metadata + native save |
 | 模型成本 | 0（当前不调用） | synthetic 0；真实值未批准 | provider Eval 后记录 | capability off |
 
 ## 11. 配置、Feature Flag 与部署
@@ -284,16 +340,18 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 | C：Host 短期 staging + Desktop SQLCipher authority | 保持职责、本地加密、可历史恢复、可回滚 | 需要 transfer/ack/migration | 中 | Recommended |
 | D：generic Tauri asset/file protocol | 大媒体 seek 效率好 | path scope、跨 kind 与 seek 攻击面 | 中高 | Reject |
 | E：image-only opaque handle custom protocol | Vue 不接收 bytes/path；native 每次复核；可 one-shot/TTL | 需 3 private commands 与 exact CSP scheme delta | 中 | S6A Approved；image only |
-| F：独立 video opaque Range protocol | Vue 不接收正文；原生 video 可多次 HEAD/GET/seek；与 image one-shot 隔离 | Tauri response buffered，必须硬限 64MiB 并维护 multi-request registry | 中 | S7A Accepted design；waits for S7F PASS |
+| F：独立 video opaque Range protocol | Vue 不接收正文；原生 video 可多次 HEAD/GET/seek；与 image one-shot 隔离 | Tauri response buffered，必须硬限 64MiB 并维护 lifecycle registry | 中 | S7A/S7A-REPAIR/S7B implemented separate PASS |
+| G：file bounded private projection + native save | 可搜索安全文本无需 URL/CSP；路径与 raw bytes 留在 native | 用户授权内容会短暂进入组件 DOM，必须严格 caps/清理 | 中 | S8A Approved design；S8B waits for S8A PASS |
 
 ## 14. ADR 与批准
 
 - ADR：当前 `N/A`，前提是采用方案 C 且不改变跨仓职责；选择 Host/云长期存储、自定义公开 URL 或 Runtime 核心修改时必须新增 ADR。
 - 技术负责人：段成威，结论 `G2 APPROVED for Contracts S1/S2`。
 - 安全/数据 Owner：段成威，结论 `G2 APPROVED for Contracts S1/S2`。
-- Product/Design：FEAT-128 Pattern 1.2.0 `Accepted`；S6A/S6B separate PASS；`READY FOR S7F ONLY`。
-- S7 Technical：`APPROVED FOR S7F CANONICAL CONFORMANCE`；S7A/S7B wait for immutable predecessors。
-- S7 Security/Data：S7F 不得改变 Contracts tree/pin、引入 dependency/runtime codec/provider；S7A 只能按
-  8.5 exact private limits 另行授权。
-- 结论日期：2026-08-20；G3 仍只对 S3/S4/S5 为 PASS。S7F-S11、任何真实 producer 与生产 activation
+- Product/Design：FEAT-128 Pattern 1.3.0 `Accepted`；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B separate PASS；
+  `READY FOR S8A ONLY WITH MARKDOWN DEFERRED; AC-005 PARTIAL`。
+- S8 Technical：`APPROVED FOR S8A CODING`，只允许 8.7 exact private schema/two commands/no protocol/config。
+- S8 Security/Data：批准 bounded authorized-content exception 与 native atomic save；禁止 persistence/log/snapshot 和
+  generic fs/shell/asset scope。
+- 结论日期：2026-08-21；G3 仍只对 S3/S4/S5 为 PASS。S8A/S8B/S9-S11、任何真实 producer 与生产 activation
   仍未执行；所有 FEAT-128 flags 默认关闭，G4 pending。

@@ -85,7 +85,7 @@ immutable contract 下修复 exact-local producer 输出的 `semantic` conforman
 |---|---|---|---|
 | DEC-128-012 | Contracts `ea48fe...` 的 `synthetic-video-16x16.mp4.base64` 是唯一 canonical video fixture：raw 1,642 bytes、SHA-256 `96ea070c...77dd5`、H.264 High/16×16/25fps/0.12s/3 frames、front `moov`、首帧 keyframe；Host S3 自造的 `ftyp/free/mdat` 无 `moov`，只能 transport，不可播放/seek。 | `ffprobe`、box/packet/frame audit 与 source inspection；canonical resource tree OID `f447129c...` 已由 Desktop exact pin 固定。 | 首个编码切片只能 S7F，让 Host 消费/逐字节校验现有 canonical fixture；不得改 Contracts full commit/tree/pin。 |
 | DEC-128-013 | 视频不得使用 `blob:`/`data:`，不得复用 one-shot image scheme；采用独立 `yijie-artifact-video://localhost/v1/<43-char handle>` 和独立 private schema/3 exact commands。 | blob/data 会把正文交给 Vue 并扩大 CSP；image scheme 明确只支持一次 GET，无 HEAD/Range。 | S7A 只在 S7F immutable PASS 后可请求；若需 dependency/plugin/capability/migration/public pin，停止。 |
-| DEC-128-014 | video handle 绑定 main WebView/process/context/owner/tenant/session/turn/artifact；30min absolute + 5min idle、2 handles/WebView、1/artifact、64 requests/handle、2 concurrent、64MiB in-flight；GET/HEAD 支持单 closed/open/suffix Range 和 200/206/416。 | 原生 video 会重复 HEAD/GET/Range；Tauri 2.11.x responder 缓冲 body，必须把 64MiB 设为硬上限。 | CSP 只允许 `media-src 'self' yijie-artifact-video:`；no CORS/redirect/query/body/error body/fetch。 |
+| DEC-128-014 | video handle 绑定 main WebView/process/context/owner/tenant/session/turn/artifact；30min absolute + 5min idle、2 handles/WebView、1/artifact、原始候选 64 requests/handle、2 concurrent、64MiB in-flight；GET/HEAD 支持单 closed/open/suffix Range 和 200/206/416。 | 原生 video 会重复 HEAD/GET/Range；Tauri 2.11.x responder 缓冲 body，必须把 64MiB 设为硬上限。 | 历史 readiness 决策；其中累计 64 request 撤销条款已被 DEC-128-016 supersede，其余边界继续有效。 |
 | DEC-128-015 | video save 新增 video-only exact command，但复用 S6A native dialog/safe-name/same-dir 0600 temp/chunk digest/fsync/atomic replace 内核；只允许 ready `video/mp4` 和 `.mp4`。S7B 使用原生 controls、`preload=metadata`、无 autoplay/player library/external origin；本切片不消费 poster_blob。 | kind/MIME/64MiB 校验不能由 image command 猜测；renderer 不应再实现第二套写盘能力。 | S7B 只在 S7A immutable PASS 后可请求；未满足时保留 S5 metadata shell。 |
 
 | Review | Owner | 结论 | 批准范围 | 保持关闭 |
@@ -94,8 +94,47 @@ immutable contract 下修复 exact-local producer 输出的 `semantic` conforman
 | Technical | 段成威 | APPROVED FOR S7F CANONICAL CONFORMANCE | Host producer/snapshot/checker/test 对齐现有 immutable fixture；不重新编码 | Contracts/tree/pin、ffmpeg/codec/runtime dependency、provider |
 | Security/Data | 段成威 | APPROVED FOR S7F WITH NO PIN/TREE/DEPENDENCY/PROVIDER DRIFT | synthetic-only、default-off、owner resource/Range 既有边界；后续 S7A 按已冻结 private limits 单独授权 | native/config/CSP/command、bytes/path to Vue、capability/migration |
 
-Owner 结论依据用户本轮明确指令由 Codex 代录，不声称独立人工批准。S7-READINESS 不是 S7F/S7A/S7B 实现
-PASS，不扩 G3，不声明 G4；真实 video provider 继续 blocked。
+Owner 结论依据用户当轮明确指令由 Codex 代录，不声称独立人工批准。上表是 2026-08-20 的历史 readiness：
+S7F/S7A/S7A-REPAIR/S7B 后续已在逐切片显式授权下形成独立 PASS，但不扩 G3、不声明 G4；真实 video provider
+继续 blocked。
+
+## 2E. S7-SPEC-RECONCILIATION 与 S8-READINESS Owner Conclusion（2026-08-21）
+
+本轮只读核对 Contracts/Host/Desktop 当前实现，并把 operative specification 与已完成的 S7 evidence 对齐；文档
+改写 `contract-impact=none`。Accepted Pattern 已升为 1.3.0。S8A 未来实现是 Desktop-private `additive`，S8B 不改
+contract；本轮没有 command/schema/renderer/config 代码。
+
+| ID | 冻结结论 | 理由/证据 | Gate effect |
+|---|---|---|---|
+| DEC-128-016 | 累计请求次数不再撤销 video handle。同一合法 handle 在 30min absolute TTL、5min idle TTL、显式 release、restart 或 context/WebView/session/identity/revision 失效前持续支持 WebKit 多次 Range；保留 2 handles/WebView、1/artifact、2 concurrent、64MiB in-flight、双次 SQLCipher/MP4/Range fail-closed。 | historical RED：第 65 个合法请求因 64 上限返回 404；S7A-REPAIR `34991d8967de9aa2197ab2e8b9b49347774df7a5` 后 128-request Rust GREEN，真实 WebView 76/76 partial responses 达到 metadata/playback/seek，404=0。 | Supersedes DEC-128-014 的 request-budget clause；保留历史故障，不把它回写为“从未发生”。 |
+| DEC-128-017 | S8 重切为 S8A Desktop-private identity-only bounded file preview/save boundary 与 S8B ready-file-only TS/Vue renderer。S8A exact schema 为 `chat-artifact-file-native-v1.schema.json`，exact commands 仅 `chat_read_artifact_file_preview_v1` 与 `chat_save_artifact_file_v1`；无 URL/handle/protocol/CSP/capability/dependency/migration。 | SQLCipher 已是长期 authority；一次性 bounded projection 可满足搜索与文本 DOM，不需要把 bytes/path 交给 Vue。 | `READY FOR S8A ONLY`；S8B 必须等待 S8A immutable PASS 与单独授权。 |
+| DEC-128-018 | 当前 v3 file output 只允许 plain/CSV/JSON/PDF/XLSX；inline 只允许前三类，PDF/XLSX metadata + native save。延期 Markdown，不伪装成 `text/plain`。用户明确打开后的 bounded safe projection 只可短暂进入组件 local state/DOM；不得进入 Pinia/history/storage/router/log/telemetry/diagnostics/snapshot。 | `text/markdown` 只存在于 v2 turn input；扩充 v3 closed output 会重开 public semantic contract。SEC-006 的 zero-hit 应针对未授权内容、超出已批准 bounded projection 的正文、path/token/digest/savedPath/raw error；小文件 projection 可在 caps 内等于完整正文，授权 preview 关闭后也必须 zero-hit。 | AC-005=`PARTIAL`，G4 仍 blocked。若本期坚持 Markdown，重开 G2/G2A、Contracts generate/breaking/semantic review、immutable pin 与 downstream repin。 |
+
+S8A exact limits 已冻结为：source `1..1,048,576` bytes；projection `<=262,144` bytes；response `<=524,288`
+bytes；text/JSON `<=2,000` lines、每行 `<=8,192` UTF-8 bytes；CSV `<=200×50`、cell `<=4,096` bytes；JSON
+depth `<=32`、nodes `<=20,000`；每 WebView preview concurrency `<=2`、in-flight source `<=2,097,152` bytes、
+同 identity single-flight、10s timeout；S8B literal search query `1..128` Unicode scalars、最多 100 hits。UTF-8 only，
+仅去一个 BOM，CRLF/CR 仅在 projection 规范化 LF；TAB/LF/CR 外 C0/DEL/C1 拒绝 inline，并拒绝 Unicode
+`Bidi_Control` `U+061C`、`U+200E-U+200F`、`U+202A-U+202E`、`U+2066-U+2069`。save 与 preview eligibility
+相互独立，五类 ready-file save 接受 `1..67,108,864` bytes。file temp 唯一使用
+`.yijie-artifact-file-save-v1-<txt|csv|json|pdf|xlsx>-<process-epoch UUID>-<22-char base64url>.tmp`；仅在下一次用户
+明确选择同一目录时，删除 prior epoch 且 exact marker、regular non-symlink、current uid、`0600`、link count 1、
+size/对应 format recheck 全部通过的条目；S6/S7 prefix/validator/behavior 不变。
+save 的 PDF/XLSX recheck 不停留在 magic sniff：PDF 复用既有 bounded preflight（classic xref/EOF、非加密、无
+ObjStm/XRef stream/Prev、objects<=4,096、pages `1..256`、streams<=1,024、单/总 decoded stream<=8/32 MiB、
+ratio<=100:1、expanded traversal<=4,096 stream visits/32 MiB、form depth<=16、page-tree depth<=64）；
+XLSX 复用既有 bounded OOXML package validator（entries `1..512`、safe unique names、Stored/Deflated、单/总
+uncompressed<=8/32 MiB、ratio<=100:1、无 `.bin`/`vbaProject`，且 `[Content_Types].xml`、`xl/workbook.xml` 与
+spreadsheet main content type 匹配）。只允许暴露/复用 helper，既有 attachment import 行为与 limits 不变。
+
+| Review | Owner | 结论 | 批准范围 | 保持关闭 |
+|---|---|---|---|---|
+| Product | 段成威 | READY FOR S8A ONLY WITH MARKDOWN DEFERRED；AC-005 PARTIAL；S8B WAITS | 当前 v3 五种 file MIME、三类 bounded inline、五类 native save/fallback | Markdown contract、S8B、S9-S12、G4 |
+| Technical | 段成威 | APPROVED FOR S8A CODING | exact private schema + 2 commands、双次 authority/format validation、typed client/tests、仅 Desktop implementation/readiness SHA checker refresh | public pin/source/tree/schema/operation/version、protocol/config/dependency/migration |
+| Security/Data | 段成威 | APPROVED FOR S8A CODING | bounded authorized-content exception、no persistence/log/snapshot、native dialog + atomic save、file-specific crash residue validation | generic fs/shell/asset、path/body/token leakage、S6/S7 behavior drift |
+
+Owner 结论依据用户本轮明确指令由 Codex 代录，不声称独立人工批准。Readiness 不是实现 PASS；S8A/S8B 均未
+实现，G3 仍只包含 S3/S4/S5，G4 pending。
 
 ## 3. Provider activation gate
 
@@ -124,7 +163,8 @@ PASS，不扩 G3，不声明 G4；真实 video provider 继续 blocked。
 | RSK-128-009 provider 费用失控 | 自动调用媒体生成 API | 不可控成本 | 默认 capability off、显式费用批准、per-turn limits | cost counter/budget stop | kill switch、禁止新请求 | Product/Release Owner |
 | RSK-128-010 retention 清理失败 | DB/WAL/cache 或 Host staging 残留 | confidential 长期残留 | TTL job、session cleanup saga、WAL/cache verification | reopen/forensic test | retry cleanup、阻断关闭/发布 | Data Owner |
 | RSK-128-011 preview handle 重放/资源探测 | handle 泄漏、跨 WebView/session 重放或协议被当 generic fetch | 跨会话显示、内容枚举或 JS 读取 | 256-bit one-shot handle、main WebView/process/context/session binding、30s TTL、no CORS、empty 404 | registry/expiry/replay/session-switch/adversarial protocol tests | revoke all handles、关闭 image preview、保持 metadata/save fallback | Client/Security Owner |
-| RSK-128-012 video Range handle 滥用/OOM | multi-request handle 被猜测、跨 context 重放、恶意 Range 或 64MiB buffered response 并发 | 内容泄漏、内存放大、播放卡死 | 独立 256-bit binding、30min/5min TTL、64 request budget、2 handle/2 read/64MiB total、single Range parser、no CORS/fetch | HEAD/GET/200/206/416、replay/expiry/context/in-flight/memory tests | revoke video registry、移除 `media-src` scheme、回落 metadata/save-disabled shell | Client/Security/Data Owner |
+| RSK-128-012 video Range handle 滥用/OOM | multi-request handle 被猜测、跨 context 重放、恶意 Range 或 64MiB buffered response 并发 | 内容泄漏、内存放大、播放卡死 | 独立 256-bit binding、30min/5min TTL、无累计次数撤销、2 handle/2 read/64MiB total、single Range parser、no CORS/fetch | >=128 legal Range lifecycle、76-Range WebView zero-404、replay/expiry/context/in-flight/memory tests | revoke video registry、移除 `media-src` scheme、回落 metadata/save-disabled shell | Client/Security/Data Owner |
+| RSK-128-013 file preview 内容执行/泄漏 | raw/未授权正文进入全局 state/log/snapshot，CSV formula/HTML/link 被执行，或 save path 返回 Vue | XSS、工具越权、数据泄漏、任意写入 | native bounded projection、text nodes only、exact limits、no v-html/link/formula execution、component-local lifecycle、native atomic save | control/bidi/CSV/JSON adversarial tests、authorized/unauthorized canary open/close scans、path/token/digest zero-hit | 关闭 S8 renderer/commands，回落 metadata shell，保留 SQLCipher authority | Client/Security/Data Owner |
 
 ## 5. 不需要新 ADR 的前提
 
@@ -135,8 +175,10 @@ PASS，不扩 G3，不声明 G4；真实 video provider 继续 blocked。
 - DEC-128-005..011、ACK/poster/cursor/cancel、report compatibility、synthetic/real 分层与 Provider gate 已完成 G2 Owner 冻结。
 - S6-READINESS 批准的图片 3-command/scheme/CSP 边界已由 S6A 实现，S6B 已消费而未改变 native/config；两者均为
   G3 外独立 PASS。
-- S7-READINESS 已接受 Pattern 1.2.0 并只批准 S7F 编码。S7A 的独立 schema/3 command/video scheme/精确
-  `media-src` 与 S7B native-controls renderer 虽已冻结，仍分别等待 S7F/S7A immutable PASS 和新的逐切片执行授权。
+- S7F/S7A/S7A-REPAIR/S7B 已逐切片独立 PASS；DEC-128-016 是现行 video handle lifecycle，Pattern 1.2.0 的
+  64-request 条款只保留为历史 RED。
+- S8-READINESS/Pattern 1.3.0 只批准下一编码切片 S8A；S8B 等待 S8A immutable PASS 与单独授权。Markdown 延期使
+  AC-005 保持 PARTIAL，G4 不得通过。
 - Contracts v3 source、基线、generator/adapter、unknown kind/section 行为和 consumer 顺序已完成 G2 设计评审；S1/S2 真实生成、检查、双 breaking 与不可变 commit 已通过。
 - Desktop SQLCipher v8 migration、64 MiB 单 Artifact 上限、七天 retention 起算与恢复边界已在 S4 实现并通过迁移/reopen/TTL/delete 验证；图片 native preview/save/CSP 属 S6A，S6B 只做 renderer。
 - 真实 MiniMax 调用保持关闭；如需启用，另行取得费用和 provider activation 批准。
@@ -147,5 +189,6 @@ PASS，不扩 G3，不声明 G4；真实 video provider 继续 blocked。
 - G1：PASS，场景、AC、受影响仓库、最高 contract impact 和主要风险已识别。
 - G2：`PASS`，Product/Design、Technical/Contracts、Security/Data 与测试计划已由 Owner 明确批准；只允许进入 Contracts S1/S2。
 - G2A：`PASS`，Contracts `ea48fe190e18afba728712d1e2cc79cda57f581b`、Host pin `dea84d0768ebc017b7ee5faedab7f9a49ce74875` 与 Desktop pin `96094419d963745529ed0fa246919089e659f20d` 已满足真实 generate、双 breaking、semantic/consumer review 与不可变 pin 条件。批准依据是用户本轮给出的条件授权与实际证据，不声称 Codex 是独立人工 Reviewer。
-- G3：只对 S3/S4/S5 原子切片通过；S6A/S6B 为独立 PASS，S7-READINESS 只批准下一步 S7F，均不扩展
-  G3。G4-G6 仍未通过，Host/Desktop master/synthetic flags 与真实 provider 继续关闭。
+- G3：只对 S3/S4/S5 原子切片通过；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B 为独立 PASS，均不扩展 G3。
+  S8-READINESS 仅 `READY FOR S8A ONLY`，不是实现 PASS；G4-G6 仍未通过，Host/Desktop master/synthetic flags
+  与真实 provider 继续关闭。

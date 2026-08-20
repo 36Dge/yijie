@@ -26,7 +26,9 @@ S0 Owner G2 approval (PASS)
               -> S7A Desktop native video Range/save boundary (PASS)
                  -> S7A-REPAIR playback-compatible Range handle lifetime (PASS)
                     -> S7B Vue native-controls video renderer (PASS)
-           -> S8 file preview/save
+                       -> S8-READINESS + S7-SPEC-RECONCILIATION (PASS docs only)
+                          -> S8A Desktop-private bounded file preview/save (PENDING)
+                             -> S8B ready-file renderer/search/save UX (PENDING)
            -> S9 report document renderer/export
               -> S10 local synthetic vertical/visual/security/performance evidence
                  -> S11 structured independent review + local G4 decision
@@ -54,7 +56,8 @@ S2 + S3 + S4 + S10
 | S7F | 让 Host strict-local video producer 对齐既有 canonical playable/seekable MP4 | AC-004/011 fixture portions | yijie-agent-host | synthetic producer、derived pinned snapshot/checker/lock metadata、Host tests/docs | Contracts/Desktop、fixture tree/full_commit、schema/operation、ffmpeg/codec dependency、real provider | S7 readiness + Contracts canonical fixture | RED digest/box mismatch -> exact bytes/boxes/manifest + GET/HEAD/200/206/416 + `make contract-check/lint/test/runtime-test` | revert S7F；保持 transport-only 描述和 video UI off |
 | S7A | 实现隔离的 native video inspect/Range/handle/save boundary；无 renderer | AC-004 security/native portions | yijie-desktop private schema + src-tauri + narrow domain/api/config/checker | independent schema/client；3 exact commands；SQLCipher video inspect/range；one video scheme；exact `media-src`；必要 internal implementation digests | components/pages；S6A behavior；Contracts/Host/public pin；deps/plugin/capability/migration；blob/data/asset/external | S7F immutable PASS + separate S7A authorization | Rust/TS RED→GREEN + full Desktop gates | remove commands/schema/client/registry/scheme/media-src；S6/data unchanged |
 | S7B | 使用 S7A handle/result 实现 ready-video native-controls/save UX | AC-004/010 UI portions | yijie-desktop TS/Vue only | components/chat、necessary typed client integration、icons/styles/tests | src-tauri/config/checker/deps/pages；autoplay/player lib/poster command；S8+ | S7A immutable PASS + separate S7B authorization | Vitest/component/axe + Range/seek runtime smoke + full Desktop gates | disable video renderer；S5 metadata shell remains |
-| S8 | 文本/MD/JSON/CSV 有界预览与其它格式 fallback/save | AC-005/010 | yijie-desktop components/domain | plain-text renderers、search/caps/tests | `v-html`、macro/PDF/Office fake preview | S5 | unit/component/security/visual | metadata/save only |
+| S8A | Desktop-private identity-only bounded file preview/save boundary；无 renderer | AC-005 security/native partial | yijie-desktop private schema + src-tauri + narrow domain/api/checker | new `chat-artifact-file-native-v1`；2 exact commands；SQLCipher double validation；plain/CSV/JSON projection；five-MIME native save；必要 Desktop implementation/readiness SHA-only checker refresh | components/pages/stores；Markdown；Contracts/Host/public pin；protocol/CSP/capability/deps/migration；S6/S7 drift；path/raw bytes to Vue | S8 readiness + separate S8A authorization | Rust/TS EXPECTED RED→GREEN + full Desktop gates | remove file commands/schema/client/runtime；restore SHA-only checker；SQLCipher/S6/S7 unchanged |
+| S8B | 使用 S8A projection/result 实现 ready-file renderer、literal search、truncation/fallback/save UX | AC-005/010 UI partial | yijie-desktop TS/Vue only | components/chat、typed client integration、tokens/icons/tests | native/config/checker/pages/stores/deps；v-html/link/formula/network；Markdown/PDF/Office fake preview | S8A immutable PASS + separate S8B authorization | Vitest/component/axe/security/visual + full Desktop gates | disable file renderer；S5 metadata shell remains |
 | S9 | report document v1 adapter、metric/table/chart/callout renderer | AC-006/010 | yijie-desktop domain/components/design theme | safe mapper、ECharts theme、tests | arbitrary option、HTML/URL/script | S2 report schema + S5 | schema fixture/component/axe/visual | generic report metadata/save fallback |
 | S10 | deterministic end-to-end、history/TTL/delete、security/performance/visual evidence | AC-001..012 | Host + Desktop + yijie docs | exact local harness/evidence docs | real provider、真实数据、production claim | S3-S9 | full gates + Playwright/axe + migration/adversarial | close flags, preserve evidence; findings reopen slices |
 | S11 | 独立结构化审查、P0/P1/P2 修复和本地 G4 decision | all | all affected | review report/fixes within original slices | self-approval、release/tag | S10 | repeat affected/full gates | G4 remains pending until owner approval |
@@ -81,6 +84,7 @@ S2 + S3 + S4 + S10
 | Desktop S7A | yijie-desktop | `feat/feat-128-structured-chat-artifacts@22b91c5a258458c87f1ac96c06bf39d1af97358f` | independent private schema/client、SQLCipher video inspect/range、bounded multi-request opaque protocol、native atomic `.mp4` save、exact `media-src`；无 renderer | Contracts `ea48fe...`、resource tree `f447129c...`、Host S7F unchanged；仅刷新 Desktop implementation/readiness digests | Client/Security/Data Owner |
 | Desktop S7A-REPAIR | yijie-desktop | `feat/feat-128-structured-chat-artifacts@34991d8967de9aa2197ab2e8b9b49347774df7a5` | 移除与 WKWebView Range 探测不兼容的 64-success lifetime revocation；保留 TTL/release/context/restart/concurrency/in-flight/double-validation；增加编译期关闭的 content-free runtime harness | Contracts/Host/pin/schema/commands/protocol/config/dependencies unchanged | Technical/Security/Data Owner |
 | Desktop S7B | yijie-desktop | `feat/feat-128-structured-chat-artifacts@366186b601144bdc2bc87a2cef3075b74f1e8f19` | ready-video native controls、metadata/error/expired/retry、pause-clear-load-release、stale isolation、native-save UX；无 pages/native/config diff | S7A existing typed client/protocol unchanged；real WebView metadata/playback/seek PASS | Product/Client Owner |
+| S8 readiness docs | yijie-desktop | `feat/feat-128-structured-chat-artifacts@4929a73a7871056d7aeca3eb0b27c682b21bfe4b` | Pattern 1.3.0；S7 request-count supersession；S8A/S8B exact schema/limits/lifecycle/save/stop conditions；无 code/config diff | Contracts/Host/Desktop implementation/pin unchanged | Product/Technical/Security/Data Owner |
 | Activation | local environment only | clean immutable candidates | synthetic profile evidence | source identities recorded | 段成威 |
 
 实现时必须填写完整 40-character SHA、source digests 和 generator identity；本文短 SHA 只用于阅读，不能作为 pin。
@@ -128,12 +132,15 @@ Repository、branch、base full SHA：从 feature.yaml 与实际 git 命令取�
 | D5 | S7A native video Range/save boundary | yijie-desktop private/native/config | `22b91c5a258458c87f1ac96c06bf39d1af97358f`；TS/Rust RED→GREEN、45 files/313 tests、11 focused Rust tests、full Desktop gates PASS | H3 immutable PASS + explicit S7A authorization；S7A PASS |
 | D5R | S7A playback handle lifetime repair + runtime diagnostics/smoke | yijie-desktop private native + default-off harness | `34991d8967de9aa2197ab2e8b9b49347774df7a5`；request 65 EXPECTED RED、128-request GREEN、real WebView 76 Range/metadata/playback/seek PASS | D5 immutable PASS + explicit diagnostic/repair authorization；S7A-REPAIR PASS |
 | D6 | S7B video renderer/native-save UX | yijie-desktop TS/Vue | `366186b601144bdc2bc87a2cef3075b74f1e8f19`；missing-component RED、3 files/14 focused、47 files/324 full、axe/runtime seek/build/docs PASS | D5R runtime PASS + separate authorization；S7B PASS |
-| D7-D8 | one commit per file/report renderer | yijie-desktop | focused + visual | D6 + per-slice readiness |
+| D7A | S8A bounded file preview/save native boundary | yijie-desktop private schema/Rust/narrow domain+api/checker | EXPECTED RED + focused/full gates；NOT RUN | Pattern 1.3.0 + separate S8A authorization |
+| D7B | S8B ready-file renderer/search/save UX | yijie-desktop TS/Vue | focused/component/axe/security/visual；NOT RUN | D7A immutable PASS + separate S8B authorization |
+| D8 | report renderer | yijie-desktop | focused + visual；NOT RUN | D7B + report readiness |
 | E1 | deterministic E2E/evidence/review fixes | affected repos + yijie docs | full final gates | all above |
 
 用户的逐轮明确指令已授权并完成 C1/HP/DP/H1-H2/D1/D2/D3/D4、S7 readiness、H3/S7F、D5/S7A、D5R/S7A-REPAIR
-与 D6/S7B 的本地原子 commits；当前尚未批准 S8-S12、push、PR、tag、release 或真实 provider。继续实施前仍需
-逐仓确认用户已有改动并保持可独立审查。
+与 D6/S7B 的本地原子 commits；S8-READINESS 已完成 docs-only 审计并仅记录 `READY FOR S8A ONLY`。S8A/S8B 尚未
+实现；当前尚未批准 S9-S12、push、PR、tag、release 或真实 provider。继续实施前仍需逐仓确认用户已有改动并保持
+可独立审查。
 
 ## 8. Slice 完成记录
 
@@ -150,12 +157,14 @@ Repository、branch、base full SHA：从 feature.yaml 与实际 git 命令取�
 | S6-READINESS | Desktop Pattern 1.1.0 + yijie governance commits | pure docs audit：private IPC/Tauri/CSP/SQLCipher/S5；freeze S6A/S6B | Desktop docs build + both repos lint/test + governance package/YAML/diff checks | Product/Technical/Security/Data readiness captured；no implementation | PASS FOR READINESS ONLY |
 | S6A | `8b99849d418a3ef226f4133128f1ac22a438f9d5` | 3 exact private commands、opaque preview handle/protocol、双次 SQLCipher 校验、native atomic save、typed content-free client；无 renderer | RED TS/Rust；6 TS + 11 Rust focused；`pnpm lint/test`、`make build`、`pnpm docs:build`、diff；full Rust 196 pass/3 ignored | 最小例外仅刷新 Desktop implementation/readiness SHA；Contracts `ea48fe...`、source/fixture/protocol 未变；无 UI/dependency/capability/migration | PASS |
 | S6B | `4a8dce6a6526e37052941f6dbb921ba2486e109f` | ready-image-only renderer、inline/fresh lightbox opaque URLs、finite zoom、content-free native-save feedback、handle release 与 stale-response isolation | missing-component RED；3 files/12 focused GREEN；`pnpm lint/test`、`make build`、`pnpm docs:build`、diff PASS；full TS 308/308 | 仅 7 个 components/chat + icon files；axe/reduced-motion PASS；无 native/contracts/pin/dependency/page/store 漂移；runtime visual matrix NOT RUN，留待 S10 | PASS AS SEPARATE SLICE |
-| S7-READINESS | Desktop Pattern `18b17d961ed5991cec55eeb230ea21d91f2fb8ec` + yijie governance commit | docs/read-only audit only；canonical/Host mismatch、Range/save/CSP/lifecycle、S7F/S7A/S7B frozen | Desktop docs/lint/test/diff + governance full docs gates | Product/Technical/Security/Data READY FOR S7F ONLY；no implementation | PASS FOR READINESS ONLY |
+| S7-READINESS (historical) | Desktop Pattern `18b17d961ed5991cec55eeb230ea21d91f2fb8ec` + yijie governance commit | docs/read-only audit only；canonical/Host mismatch、Range/save/CSP/lifecycle、S7F/S7A/S7B frozen | Desktop docs/lint/test/diff + governance full docs gates | historical Product/Technical/Security/Data READY FOR S7F ONLY；S7 chain later completed separately | PASS FOR READINESS ONLY |
 | S7F | `1045dd06534eb72d53eb7ad7b7d18e63c80284f8` | derived canonical MP4 snapshot/embed；lock/sync/check exact path/tree/source/raw identity；bounded Go box/sample audit；video manifest/poster/auth/GET/HEAD/Range tests | EXPECTED RED: 81 vs 1642 bytes、digest mismatch、missing `moov`；GREEN focused PASS；`make contract-check/lint/test/runtime-test`、`git diff --check` PASS | 7-file allowed Host scope；Contracts/Desktop unchanged；no dependency/provider/public wire drift | PASS AS SEPARATE SLICE |
 | S7A | `22b91c5a258458c87f1ac96c06bf39d1af97358f` | private schema/typed client、3 exact commands、SQLCipher MP4 inspect/range、30min/5min opaque video protocol、GET/HEAD single Range、native atomic `.mp4` save、exact `media-src` | EXPECTED TS/Rust RED；2 TS files/5 GREEN、11 focused Rust + 1 reader；`pnpm lint/test`、`make build`、`pnpm docs:build`、diff PASS；45 files/313 tests | exact 19-file scope；无 components/pages/stores、Contracts/Host/public pin、dependency/lockfile/capability/permission/migration/S7B 漂移 | PASS AS SEPARATE SLICE |
 | S7A-REPAIR | `34991d8967de9aa2197ab2e8b9b49347774df7a5` | 移除 64-success lifetime revocation；保留 TTL/release/restart/context/WebView/2 handles/2 reads/64MiB/double validation；compile-time-off content-free diagnostics/runtime harness | request 65 EXPECTED RED；128-request focused GREEN；默认 11/11、feature 12/12 Rust；real WebView 76/76 Range、metadata/playback/seek PASS；clippy/diff PASS | 无 command/schema/protocol/CSP/capability/dependency/pin/page 漂移 | PASS AS SEPARATE SLICE |
 | S7B | `366186b601144bdc2bc87a2cef3075b74f1e8f19` | ready-video-only native controls/save UX；metadata/error/expired/retry；pause-clear-load-release；stale/dedup/focus/a11y | missing-component EXPECTED RED；3 files/14 focused GREEN；47 files/324 full；`pnpm lint/test`、`make build`、`pnpm docs:build`、real WebView smoke、diff PASS | components/chat only；无 native/config/checker/contracts/host/pin/dependency/pages/stores 漂移；production vertical/manual visual matrix留待 S10 | PASS AS SEPARATE SLICE |
-| S8-S11 | N/A | none | NOT RUN | file/report、vertical/performance、independent review仍需独立授权与实施 | PENDING |
+| S8-READINESS | Desktop Pattern `4929a73a7871056d7aeca3eb0b27c682b21bfe4b` + 本次 yijie governance commit | docs/read-only audit only；S7 spec reconciliation；S8A/S8B exact boundary、Markdown/SEC-006 decision | Desktop docs/lint/test/diff + governance full docs gates | Product/Technical/Security/Data `READY FOR S8A ONLY`；AC-005 PARTIAL；no implementation | PASS FOR READINESS ONLY |
+| S8A/S8B | N/A | none | NOT RUN | S8A 需下一条独立编码指令；S8B 等 S8A immutable PASS；Markdown 需 contract reopen | PENDING |
+| S9-S11 | N/A | none | NOT RUN | report、vertical/performance、independent review仍需独立授权与实施 | PENDING |
 | S12 | N/A | none | BLOCKED | separate real-provider authority required | BLOCKED |
 
 ## 9. 变更控制
@@ -183,10 +192,13 @@ Repository、branch、base full SHA：从 feature.yaml 与实际 git 命令取�
 | Technical/Security/Data Owner | 段成威 | S7A bounded Desktop-private native boundary 已按显式指令完成并独立 PASS；no renderer/public pin/dependency/capability/migration drift | 2026-08-20 |
 | Technical/Security/Data Owner | 段成威 | S7A-REPAIR 已按显式诊断/修复授权完成；只修复 playback lifetime，真实 WebView metadata/playback/seek PASS | 2026-08-21 |
 | Product/Technical/Security/Data Owner | 段成威 | S7B 已按显式授权完成并独立 PASS；复用既有 typed client，no native/config/public contract/page drift | 2026-08-21 |
+| Product Owner | 段成威 | Pattern 1.3.0 Accepted；READY FOR S8A ONLY WITH MARKDOWN DEFERRED；AC-005 PARTIAL；S8B WAIT | 2026-08-21 |
+| Technical Owner | 段成威 | S8A CODING APPROVED：exact private schema + two commands + no protocol/config；只允许 Desktop SHA-only checker refresh | 2026-08-21 |
+| Security/Data Owner | 段成威 | S8A CODING APPROVED：bounded authorized-content exception、no persistence/log/snapshot、native atomic save | 2026-08-21 |
 
 G2、G2A 与 S3/S4/S5 的 G3 slice gate 均已通过；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B 也分别形成 immutable PASS，
-但不并入 G3。S8-S12 继续关闭并需要新的显式编码授权；真实 provider、tag、push、release 和生产能力继续
-关闭，G4 不通过。
+但不并入 G3。S8 readiness 仅批准下一切片 S8A；S8A/S8B 未实现，S9-S12 继续关闭。真实 provider、tag、push、
+release 和生产能力继续关闭，G4 不通过。
 
 ## 11. 已执行 Codex 指令：S6A（历史证据）
 
@@ -367,3 +379,74 @@ expired/retry、同一播放会话 handle、retry fresh handle、pause-clear-loa
 native-save feedback。missing-component EXPECTED RED 后，focused 3 files/14 tests、axe/reduced-motion、全量 47 files/324
 tests、lint/build/docs/diff 与上述真实 WebView playback/seek 均通过。未修改 S7A commands/schema/protocol/config、pages、
 Contracts/Host/pins/checkers、依赖、capability/permission 或 migration；生产 Chat vertical/manual visual matrix仍留待 S10。
+
+## 16. 下一条可执行 Codex 指令：S8A
+
+```text
+执行 FEAT-128 / S8A，仅实现 yijie-desktop Desktop-private bounded file preview/save boundary；禁止实现 S8B
+renderer、搜索或任何 Vue component。
+
+基线：
+- yijie-desktop HEAD: 4929a73a7871056d7aeca3eb0b27c682b21bfe4b
+- yijie governance: 使用本次 S8-READINESS 最终治理 commit
+- Contracts pin: ea48fe190e18afba728712d1e2cc79cda57f581b
+- Host S7F: 1045dd06534eb72d53eb7ad7b7d18e63c80284f8
+- Accepted Pattern 1.3.0: 4929a73a7871056d7aeca3eb0b27c682b21bfe4b
+- G3 仍只包含 S3/S4/S5；S6/S7 slices separate PASS；G4 pending。
+
+开始前完整阅读 yijie-desktop/AGENTS.md、FEAT-128 03/05/06/07/08/feature.yaml 和 Pattern 1.3.0；检查并保护
+Desktop/yijie 工作树，不得 reset、checkout、stash 或覆盖用户改动。确认 Contracts full commit/source/tree/fixture/
+schema/operation/version 均未漂移。
+
+测试先行：先编写并运行 EXPECTED RED 的 Rust/TS tests，再实现最小 GREEN。实现独立
+chat-artifact-file-native-v1.schema.json 与 exact commands chat_read_artifact_file_preview_v1、
+chat_save_artifact_file_v1；closed request <=4096 bytes，仅 schemaVersion/requestId/contextId 与
+sessionId/turnId/artifactId。只接受 main WebView + current ReadSessions context。
+
+Preview：不签发 URL/handle、不新增 protocol/CSP/release。native 前后两次校验 SQLCipher owner/tenant/session/turn/
+artifact、ready/unexpired、kind=file、MIME、size/BLOB length/digest/revision/format。inline 仅 text/plain、text/csv、
+application/json；PDF/XLSX metadata/save-only。source<=1,048,576B、projection<=262,144B、response<=524,288B；
+text/JSON<=2,000 lines、line<=8,192 UTF-8B；CSV<=200x50、cell<=4,096B；JSON depth<=32/nodes<=20,000；
+preview<=2 concurrent/WebView、source in-flight<=2,097,152B、same identity single-flight、10s timeout。UTF-8 only，
+仅去一个 BOM，CRLF/CR projection->LF；TAB/LF/CR 外 C0/DEL/C1 拒绝 inline，并拒绝 Unicode `Bidi_Control`
+`U+061C`、`U+200E-U+200F`、`U+202A-U+202E`、`U+2066-U+2069`。JSON full parse 后只返回 inert text；CSV
+bounded RFC4180 parse 后只返回 cell strings，不执行 formula。结果严格为 Pattern 1.3.0 的 closed union，不得含
+name/size/path/digest/Host href/token/bytes/base64/raw error。
+
+Save：仅明确 click/keyboard intent；五种 current-v3 MIME，ready-file bytes `1..67,108,864`，与 1MiB preview
+eligibility 独立；canonical `.txt/.csv/.json/.pdf/.xlsx`，无扩展名 native 追加，mismatch fail closed。plain/CSV
+valid UTF-8 no-NUL、JSON full parse；PDF 复用既有 bounded preflight（classic xref/EOF、非加密、无 ObjStm/XRef
+stream/Prev、objects<=4,096、pages 1..256、streams<=1,024、单/总 decoded stream<=8/32MiB、ratio<=100:1、
+expanded traversal<=4,096 stream visits/32MiB、form depth<=16、page-tree depth<=64）；XLSX
+复用既有 bounded OOXML validator（entries 1..512、safe unique names、Stored/Deflated、单/总 uncompressed<=8/32MiB、
+ratio<=100:1、无 `.bin`/`vbaProject`、required `[Content_Types].xml` + `xl/workbook.xml` + matching main type）。
+不得提取/渲染/执行/自动打开。dialog 前校验并释放 bytes，dialog 后重新读取/校验，复用 same-dir 0600
+create-new/no-follow temp、chunk digest、fsync、atomic replace/RAII。file temp exact filename 为
+`.yijie-artifact-file-save-v1-<txt|csv|json|pdf|xlsx>-<process-epoch UUID>-<22-char base64url>.tmp`；只在用户下一次
+选择同一目录时清除 prior epoch 且 exact marker、regular non-symlink、current uid、0600、nlink=1、size/format
+全通过的条目；当前 epoch/其它条目与 S6/S7 prefix/行为不变。Vue 只收 content-free saved/cancelled/failed。
+
+允许修改：
+- new src-tauri/schemas/chat-artifact-file-native-v1.schema.json
+- new src-tauri/src/chat/artifact_file_native.rs
+- 必要的 artifact.rs/application.rs/worker.rs/ipc.rs/mod.rs/lib.rs
+- artifact_native.rs 仅限无 S6/S7 行为漂移的 atomic helper/residue 复用
+- attachment.rs 仅限暴露/复用既有 bounded PDF/XLSX validator；不得改变 attachment import 行为或 limits
+- new TS-only domain/client 及对应 tests
+- 必要的 v2/v3 consumer lock/checker/test constants，但只能刷新 Desktop implementation/readiness SHA
+
+严格禁止：components/pages/stores；Markdown；Contracts/Host/public/private existing schemas or commands；Contracts
+full_commit/source/tree/fixture/version/operation；tauri.conf/capability/Cargo/pnpm dependencies/lockfile/migration；custom
+protocol、CSP、generic filesystem/shell/asset、browser download、external origin；bytes/base64/digest/path/href/token 到
+Vue/Pinia/DOM/log/diagnostics/snapshot；修改 S6/S7 boundary；启动 S8B/S9-S12、provider、push/tag/PR/release。
+
+必须覆盖 authority/identity/state/MIME/expiry/length/digest/revision/format、UTF/BOM/control/bidi、所有 limits、CSV
+quotes/malformed/formula、JSON depth/nodes、same-identity/concurrency/timeout、stale/drift、save extension/dialog cancel/
+symlink/nonregular/atomic/fsync/residue、schema/leak negative、exact 2 commands、S6/S7/config/dependency unchanged。
+
+依次运行 focused RED/GREEN、pnpm lint、pnpm test、make build、pnpm docs:build、git diff --check。任何测试、安全或
+stop condition 失败立即停止，不做猜测性扩展。全部通过后审计 diff，创建一个 Desktop 本地原子 S8A commit，不得
+push。随后只更新 yijie FEAT-128 的 07/08/10/feature.yaml，记录完整 SHA/RED/GREEN/全量命令；S8A 记 separate
+PASS，不并入 G3，G4 pending。运行 G3/strict package、unique-key YAML、pnpm lint/test、bash -n、diff 后创建一个
+governance 本地原子 commit，不得 push。
+```

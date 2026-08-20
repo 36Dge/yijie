@@ -16,10 +16,10 @@
 | AC-002 | 重复/乱序/双终态 | EVT-002, STORE-001, RES-001 | contract/unit/integration | duplicate、gap、percent regression、late progress | no network | 幂等、resync、终态不回退 |
 | AC-003 | 图片炸弹/handle 重放/保存越界 | ART-IMG-001, SEC-001/007/009, UI-002 | Host/native/UI | PNG/JPEG/WebP、magic/20MiB、one-shot handle、lightbox/save | synthetic PNG/JPEG/WebP only | schema、双次 digest、protocol、keyboard、atomic save evidence |
 | AC-004 | 视频不可 seek/OOM/autoplay | ART-VID-001, SEC-002/011, UI-003 | Host/native/UI | frozen MP4 metadata/range/64MiB/autoplay off；WebM 未批准 | canonical 1,642-byte MP4 + boundary responses | 200/206/416、controls、memory、fallback |
-| AC-005 | 文件内容执行/截断不明 | ART-FILE-001, SEC-003, UI-004 | native/UI | text/MD/JSON/CSV preview；PDF/Office unsupported preview | synthetic files | text-only DOM、row/byte caps、save/fallback |
+| AC-005 (`PARTIAL`) | 文件内容执行/截断不明；Markdown 不在 v3 output | ART-FILE-001, SEC-003/006, UI-004 | native/UI | plain/JSON/CSV bounded preview；PDF/XLSX unsupported-inline + save；Markdown contract blocker | Desktop-private synthetic files | text-only DOM、exact caps、search/save/fallback；G4 不通过 |
 | AC-006 | report XSS/任意 chart option | ART-RPT-001, SEC-004, UI-005 | schema/adapter/UI | safe sections、unknown optional accepted/opaque、unknown required rejected、HTML/URL/script rejection | report v1 fixtures | schema errors、chart text summary、no `v-html` |
 | AC-007 | 历史丢失/过期残留 | DB-001, DB-002, E2E-001 | migration/integration/E2E | v7->v8、reopen、TTL、WAL、delete | temp SQLCipher DB | metadata order、content physically absent、cleanup receipt |
-| AC-008 | 跨租户/路径/token 泄漏 | SEC-005, SEC-006, ACK-001 | integration/security | wrong session/token、redirect、href/path injection、ACK digest/conflict/replay、log/DOM scan | loopback fake Host | 404/deny、idempotent receipt、canary hit count 0 |
+| AC-008 | 跨租户/路径/token 泄漏 | SEC-005, SEC-006, ACK-001 | integration/security | wrong session/token、redirect、href/path injection、ACK digest/conflict/replay、log/DOM scan | loopback fake Host | 404/deny、idempotent receipt、unauthorized/path/token/raw-error canary hit count 0 |
 | AC-009 | 旧 consumer 被击穿 | COMP-001..004 | contract/producer/consumer | old/new Host/Desktop matrix | canonical fixtures | v1/v2 byte equality、v3 explicit negotiation |
 | AC-010 | 主题/窗口/a11y 回归 | UI-006..010 | component/visual/manual | light/dark、1180x760、200%、keyboard、axe、VoiceOver/reduced motion | visual harness + macOS | screenshots、axe JSON、manual checklist |
 | AC-011 | synthetic 冒充真实 | CFG-001, E2E-002 | config/E2E | exact local profile、default off、visible synthetic source | local only | startup rejection/default-off/fixture flow |
@@ -56,15 +56,15 @@
 |---|---|---|---|
 | SEC-001 | 图片炸弹/伪装 MIME | 巨大像素、小 bytes、magic mismatch、truncated image | 签发及 protocol GET 双次拒绝；Vue/Pinia/DOM 不收到 bytes/base64/digest/path |
 | SEC-002 | 视频 range/解码滥用 | no/closed/open/suffix/multi/invalid/unsatisfiable range、伪装 container、超时 | 200/206/416 精确；仅单 range；bounded failure/fallback |
-| SEC-003 | 文件内容执行 | Markdown HTML、CSV formula、JSON control、active link | 普通文本展示；无 HTML/script/network/tool action |
+| SEC-003 | 文件内容执行 | plain/JSON control/bidi、CSV formula/quotes、HTML/link-like text；Markdown 仅在未来 contract reopen 后测试 | bounded text/cell nodes；无 HTML/script/network/formula/tool action |
 | SEC-004 | report 注入 | raw HTML、javascript URL、任意 ECharts option、unknown optional/required、超大 table | known invalid/unknown required 拒绝；unknown optional opaque fallback；无遍历/执行 |
 | SEC-005 | 越权/资源枚举 | wrong bearer/session/tenant/artifact | fail closed，404 不泄露存在性 |
-| SEC-006 | secret/path/body 泄漏 | canary 放入 savedPath、provider error、filename、content | SSE/log/DOM/snapshot 命中 0 |
+| SEC-006 | secret/path/body 泄漏 | canary 放入 savedPath、provider error、path/token/digest、未授权内容或超出已批准 bounded projection 的正文；另以授权 preview marker 验证 open/close 生命周期 | 前者 SSE/state/log/DOM/snapshot 命中 0；用户显式打开的 bounded marker 只在当前组件 DOM 存在，小文件 projection 可在 caps 内等于完整正文；close/switch/unmount 后归零且永不进 Pinia/history/log/diagnostics/snapshot |
 | SEC-007 | 任意文件写/覆盖 | `../` 名称、symlink、已有文件、取消 dialog、写满磁盘 | 只写用户选择目标；原子覆盖需明确确认；temp 清理 |
 | SEC-008 | synthetic 误启用 | production/non-local/default env | 配置启动失败或 capability false |
 | SEC-009 | opaque handle/协议重放 | 猜测、重复 GET、跨 WebView/context/session、query/body/HEAD/Range、过期/重启、并发/容量超限 | 仅 first bound GET 200；其它 empty 404 或 stable typed limit；无 CORS/redirect/oracle |
-| SEC-010 | CSP/capability 越界 | Artifact 尝试 asset/blob/data/fetch，或新增 fs/shell/dialog plugin/capability | 当前仅 image `img-src` delta；未来 S7A 只允许 exact `media-src 'self' yijie-artifact-video:`；其它 forbidden changes hit count 0 |
-| SEC-011 | video handle 重放/内存放大 | 猜测、跨 WebView/context/session/restart、30min/5min expiry、64-request exhaustion、2-read/64MiB in-flight | binding/replay fail closed；no CORS/fetch/oracle；registry/read/body counters 回零；S6A image 行为不变 |
+| SEC-010 | CSP/capability 越界 | Artifact 尝试 asset/blob/data/fetch，或新增 fs/shell/dialog plugin/capability | image exact `img-src` + video exact `media-src` 已实现；S8A 必须零 config delta；其它 forbidden changes hit count 0 |
+| SEC-011 | video handle 重放/内存放大 | >=128 次合法不同/重复 Range；另测跨 WebView/context/session/restart、30min/5min expiry、release、2-read/64MiB in-flight | >=128 次仍有效；TTL/release/restart/binding mismatch 撤销；2 handles/2 concurrent/64MiB 保持；no CORS/fetch/oracle；S6A 行为不变 |
 
 ## 6. 韧性与故障测试
 
@@ -94,20 +94,36 @@ S6A focused commands must include Rust unit/integration tests for `artifact_nati
 Vitest schema/client negative tests. `pnpm lint`、`pnpm test`、`make build`、`pnpm docs:build` 与 `git diff --check`
 随后全量通过。S6A 只能在这些证据和 atomic Desktop commit 后记为 PASS；readiness 文档不是测试结果。
 
-## 6B. S7 测试先行门禁
+## 6B. S7 测试先行门禁与当前 evidence
 
 | Slice/Layer | 必须先失败的测试 | GREEN 必须证明 |
 |---|---|---|
 | S7F Host canonical conformance | 当前 Host video size/digest 与 Contracts canonical 不同，box audit 找不到 `moov`/track/keyframe | exact raw 1,642 bytes + `96ea070c...77dd5`、front moov、H.264/16×16/0.12s/3 frames/keyframe；completed manifest 一致；GET/HEAD/200/206/416；strict-local/default-off |
 | S7A private schema/client | video private schema、3 commands 与 typed TS client 不存在 | exact identity-only payload/result/error；无 bytes/base64/digest/href/path/name/token；image schema/client unchanged |
 | S7A SQLCipher authority | ready-video inspect/range reader 不存在 | foreign/not-ready/expired/wrong kind/MIME/size/digest/box/sample fail closed；open + first protocol full validation；每 request authority/BLOB length；no migration |
-| S7A registry/protocol | separate multi-request handle/protocol 不存在 | 256-bit/43-char、30min absolute/5min idle、2/WebView/1/artifact/64 requests/2 reads/64MiB；GET/HEAD 200、single range 206、invalid/multi/unsat 416；no CORS/redirect/query/body/fetch/oracle；release/restart |
+| S7A registry/protocol | separate multi-request handle/protocol 不存在 | 256-bit/43-char、30min absolute/5min idle、2/WebView/1/artifact/2 reads/64MiB；GET/HEAD 200、single range 206、invalid/multi/unsat 416；no CORS/redirect/query/body/fetch/oracle；release/restart |
+| S7A-REPAIR lifecycle | historical request 65 返回 404，WebView metadata 最终 `MEDIA_ERR_SRC_NOT_SUPPORTED(4)` | 无累计 request-count 撤销；同一 handle >=128 legal Range GREEN；real WebView 76/76 partial、metadata/playback/seek PASS、404=0；TTL/release/restart/binding limits 保持 |
 | S7A native save/config | video save command/media-src 不存在 | explicit ready-video intent、`.mp4`、dialog/overwrite、0600 same-dir temp、chunk digest/fsync/atomic replace、content-free result；only exact `media-src 'self' yijie-artifact-video:`；deps/capability/lockfile unchanged |
 | S7B component | ready video renderer 不存在 | native controls/preload metadata/no autoplay、loading/error/expired/retry/seek、duplicate/stale、pause-clear-load-release、save outcomes、keyboard/focus/reduced-motion/axe、DOM/snapshot leak=0；non-ready/non-video stays generic |
 
-执行顺序必须是 S7F immutable PASS -> S7A separate authorization/PASS -> S7B separate authorization/PASS。S7F 在 Host
-运行 `make contract-check && make lint && make test && make runtime-test`；S7A/S7B 各自运行 focused RED/GREEN 后的
-`pnpm lint`、`pnpm test`、`make build`、`pnpm docs:build`、`git diff --check`。任一 slice 不得借 readiness 预记 PASS。
+执行顺序 S7F -> S7A -> S7A-REPAIR -> S7B 已完成并分别形成独立 PASS。historical RED 与当前 GREEN 均保留在 08；
+这些证据不并入 G3，也不代表 production vertical/G4。
+
+## 6C. S8 测试先行门禁
+
+| Slice/Layer | 必须先失败的测试 | GREEN 必须证明 |
+|---|---|---|
+| S8A private schema/client | file private schema、2 commands 与 typed client 不存在 | closed <=4,096-byte identity-only request；exact read/save commands；closed text/JSON/CSV projection + content-free save；无 path/name/size/digest/href/token/bytes/base64/raw error |
+| S8A SQLCipher authority | ready-file bounded reader/save authority 不存在 | open/save 双次 owner/tenant/session/turn/artifact/state/expiry/kind/MIME/size/BLOB/digest/revision/format 校验；drift fail closed；无 migration |
+| S8A UTF/caps/parser | control/bidi、CSV quotes/formula、JSON depth/node 与 truncation 尚无实现 | source<=1,048,576B；projection<=262,144B；response<=524,288B；2,000 lines/8,192B line；CSV 200×50/4,096B cell；JSON depth32/nodes20,000；UTF-8/BOM/newline；拒绝 C0/DEL/C1（TAB/LF/CR 除外）及 `U+061C`,`U+200E-U+200F`,`U+202A-U+202E`,`U+2066-U+2069`；不拆 scalar/cell |
+| S8A concurrency/config | file preview concurrency/timeout 与 config negative 不存在 | <=2 preview/WebView、<=2,097,152B source in-flight、same-identity single-flight、10s timeout；无 URL/handle/protocol/CSP/capability/plugin/dependency；S6/S7 exact behavior unchanged |
+| S8A native save | five-MIME file save 与 residue verifier 不存在 | explicit intent；ready-file `1..67,108,864B`，与 1MiB preview eligibility 独立；`.txt/.csv/.json/.pdf/.xlsx`；plain/CSV UTF-8 no-NUL、JSON parse；复用 Pattern §9.8 exact bounded PDF preflight（含 expanded visits<=4,096/bytes<=32MiB/form depth<=16/page-tree depth<=64）与 XLSX OOXML validator；dialog前后双验；cancel/mismatch/symlink/nonregular；0600 same-dir temp/chunk digest/fsync/atomic replace；exact `.yijie-artifact-file-save-v1-<media>-<epoch>-<22-char base64url>.tmp` prior-epoch/current-uid/mode/nlink/size/format cleanup；content-free result；attachment/S6/S7 behavior unchanged |
+| S8B component（wait） | ready-file renderer/search 尚无实现 | 仅 S8A immutable PASS 与单独授权后：plain/JSON text nodes、CSV cell nodes、PDF/XLSX fallback、truncation、literal query<=128 scalars/<=100 hits、stale/clear/save/axe；no v-html/link/formula/network；authorized-content lifecycle + leak scans |
+
+S8A 使用 current-v3-only Desktop-private fixtures；Contracts canonical CSV 与 Host strict-local CSV 都是合法 synthetic，
+但 bytes 不同，不得混称 byte-equal canonical。plain/JSON/PDF/XLSX 由 Desktop-private injection/unit fixtures 覆盖，
+不修改 Host/Contracts。S8B 必须等待 S8A immutable PASS 和单独授权。Markdown 继续 BLOCKED；若本期要求它，先重开
+G2/G2A 与完整 contract/downstream pin 流程。
 
 ## 7. Migration 演练
 
@@ -154,9 +170,10 @@ Vitest schema/client negative tests. `pnpm lint`、`pnpm test`、`make build`、
 |---|---|---|---|---|
 | v3 lifecycle JSON | `yijie-contracts/tests/fixtures/agent/session-event-v3/` | public synthetic | UUID、1x1/小媒体、无路径/正文 | Host/Desktop |
 | report document v1 | `yijie-contracts/jsonschema/report/report-document-v1.schema.json` + canonical fixtures | public synthetic | 虚构指标/日期/来源，无店铺数据；media type `application/vnd.yijie.report+json;version=1`；PDF/Markdown 仅作 derived export | SDK/Desktop renderer |
-| canonical video resource | `yijie-contracts/tests/fixtures/agent/resources-v3/synthetic-video-16x16.mp4.base64` | public synthetic | generated three identical 16×16 frames；raw 1,642 bytes；no external footage/business data | Contracts PASS；Host S7F must consume exact bytes；Desktop S7A/S7B later |
-| media boundary corpus | implemented S3/S4 testdata + future UI corpus | public synthetic | generated headers/containers/corruption | Host/Desktop native validators foundation PASS；video Range/UI later |
-| canary leak corpus | implemented native checks + planned DOM scanner | restricted synthetic marker only | 明确 path/token/body canary，不含真实 secret | native no-content projection PASS；DOM later |
+| canonical video resource | `yijie-contracts/tests/fixtures/agent/resources-v3/synthetic-video-16x16.mp4.base64` | public synthetic | generated three identical 16×16 frames；raw 1,642 bytes；no external footage/business data | Contracts/Host S7F/Desktop S7A/S7B PASS |
+| file fixture corpus | Contracts `synthetic-data.csv` + Host distinct strict-local CSV + future Desktop-private MIME matrix | public synthetic | 两个 CSV 均合法但非 byte-equal；其余只用 local safe fixtures | S8A/S8B NOT RUN；不得修改 immutable source |
+| media boundary corpus | implemented S3/S4/S6/S7 testdata + future file/report UI corpus | public synthetic | generated headers/containers/corruption | image/video boundary/renderers PASS；file/report pending |
+| canary leak corpus | implemented native/media checks + planned file DOM scanner | restricted synthetic marker only | path/token/body + authorized preview marker，不含真实 secret | unauthorized zero-hit；authorized bounded marker open-only/close-zero |
 | migration DB corpus | Desktop temp fixtures | confidential synthetic | v1-v8 fake tenant/session | Rust repository tests |
 
 ## 11. 实际执行命令
@@ -187,7 +204,8 @@ Vitest schema/client negative tests. `pnpm lint`、`pnpm test`、`make build`、
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
 | 测试/技术 Owner | 段成威 | G2A APPROVED；S1/S2/S2P evidence PASS | 2026-08-20 |
-| 安全/数据 Owner | 段成威 | G2A boundary APPROVED；S3/S4/S5 G3 PASS；S6A/S6B separate PASS；S7 readiness READY FOR S7F ONLY | 2026-08-20 |
+| 安全/数据 Owner | 段成威 | S3/S4/S5 G3 PASS；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B separate PASS | 2026-08-21 |
+| Product/Technical/Security/Data Owner | 段成威 | S8 `READY FOR S8A ONLY`；Markdown deferred/AC-005 PARTIAL；S8B waits | 2026-08-21 |
 
-Contracts、pin conformance、S3/S4/S5 与独立 S6A/S6B 命令已实际执行并记录于 08；S7F/S7A/S7B 及以后仍须按
-本计划串行执行，不能因 S7 readiness 或 G3 对基础切片通过而预先记为通过。
+Contracts、pin conformance、S3/S4/S5 与独立 S6/S7 命令已实际执行并记录于 08；S8-READINESS 只是 docs evidence，
+S8A/S8B 尚未实现，不能因 Pattern Accepted 或 Owner readiness 预记 PASS。
