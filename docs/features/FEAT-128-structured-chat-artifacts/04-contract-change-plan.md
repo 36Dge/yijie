@@ -33,7 +33,7 @@
 | 异步 channel 与 Protobuf 等价投影 | central AsyncAPI/Protobuf | `yijie-contracts/asyncapi/events.yaml`、`protobuf/yijie/events/v3/agent_session.proto` | 段成威 / Contracts Owner | Agent Host / future async adapter | generated SDK consumers |
 | Runtime image-generation item | pinned Runtime canonical schema | `yijie-codex@0ce5902ed400866be0196886bb78f693a004d68d`，`codex-rs/app-server-protocol/schema/json/v2/ItemStartedNotification.json` 与 `ItemCompletedNotification.json` 的 `imageGeneration` item | Runtime Owner | fixed Codex Runtime | Agent Host adapter |
 | Runtime 到归一化 Artifact 的映射 | reviewed compatibility projection | `yijie-contracts/compatibility/agent-host-runtime-v1.json` 的后续 additive projection + Agent Host conformance | Contracts/Runtime Owner | Agent Host | Desktop v3 consumer |
-| Artifact durable history 与本地文件所有权 | private Desktop data authority | planned `yijie-desktop/src-tauri/schemas/chat-ipc-v3.schema.json` (`x-yijie-schema-version=3`) plus `chat_load_history_v3` / `chat_artifact_preview_v3` / `chat_artifact_save_v3` command family; SQLCipher migration remains private | Desktop/Data Owner | Desktop native | later Desktop versions/UI |
+| Artifact durable history 与本地文件所有权 | private Desktop data authority | implemented `yijie-desktop/src-tauri/schemas/chat-ipc-v3.schema.json` (`x-yijie-schema-version=3`) plus metadata-only `chat_load_history_v3` and private SQLCipher v8 authority；preview/save commands remain planned for later approved slices | Desktop/Data Owner | Desktop native | later Desktop versions/UI |
 
 生成 SDK、Host snapshot、手写 adapter、fixture、数据库行和 UI view model 均为派生表示，不成为
 第二权威源。JSON Schema 是 SSE payload 权威；OpenAPI 定义 transport/auth/resource response；
@@ -43,7 +43,8 @@ Protobuf 和 AsyncAPI 必须通过一致性测试证明等价，不得复制后�
 
 - 固定 Runtime canonical schema 已有 `imageGeneration` item，字段为 `id`、`status`、
   `revisedPrompt`、base64 PNG `result` 和可选 `savedPath`，并通过通用 `item/started`、
-  `item/completed` 通知出现。现有 Host parser 只保留 item id/type/text，Artifact 字段尚未投影。
+  `item/completed` 通知出现。S3 只实现 exact-local synthetic producer；真实 Runtime `imageGeneration`
+  adapter 仍未投影，不能由 synthetic 证据推导为 MiniMax/Runtime 能力。
 - 固定 Runtime 的 image-generation extension 只在其 provider capability gate 通过时暴露；当前
   MiniMax Host profile 没有已验证的 Images API capability 或真实生成证据。canonical item 存在不
   等于 MiniMax 当前可发出该 item。
@@ -209,8 +210,8 @@ v3：显式 path + event_schema_version=3，不做内容丢失型自动降级
 |---|---|---|---|---|---|
 | TypeScript SDK | `0.4.0 local candidate` | `ea48fe190e18afba728712d1e2cc79cda57f581b` | OpenAPI `cf72ba8d...`; event v3 `87b12840...`; report v1 `94715e5b...`; proto `5021a034...` | `openapi-typescript 7.13.0`、`json-schema-to-typescript 15.0.4`、`protoc-gen-es 2.12.1` | Contracts Owner / PASS |
 | Go SDK/Host HTTP types | `0.4.0 local candidate` | `ea48fe190e18afba728712d1e2cc79cda57f581b` | generated Host `4b7c5bb7...`; generated proto `d07e6781...` | `oapi-codegen v2.7.2`、`protoc-gen-go v1.36.11` | Contracts Owner / PASS |
-| Host SSE JSON adapter | `0.4.0 local candidate` | exact pin `ea48fe190e18afba728712d1e2cc79cda57f581b` in Host commit `dea84d0768ebc017b7ee5faedab7f9a49ce74875` | event v3 `87b12840...`; report v1 `94715e5b...` | explicit adapter exception `EXC-128-001`; canonical-schema checker | Agent Runtime Owner / PIN CONFORMANCE PASS；业务 adapter 未开始 |
-| Desktop Rust adapter | `0.4.0 local candidate` | exact pin `ea48fe190e18afba728712d1e2cc79cda57f581b` in Desktop commit `96094419d963745529ed0fa246919089e659f20d` | source digests + canonical fixture Git tree OIDs recorded in lock | explicit adapter exception `EXC-128-001`; source/fixture validator | Desktop Owner / PIN CONFORMANCE PASS；业务 adapter 未开始 |
+| Host SSE JSON adapter | `0.4.0 local candidate` | exact contract pin from `dea84d0768ebc017b7ee5faedab7f9a49ce74875`; S3 implementation `4017785adb08e1114781d3d844e9a10a683fa933` | event v3 `87b12840...`; report v1 `94715e5b...` | explicit adapter exception `EXC-128-001`; canonical-schema checker | Agent Runtime Owner / S3 PASS；local synthetic only |
+| Desktop Rust adapter | `0.4.0 local candidate` | exact contract pin from `96094419d963745529ed0fa246919089e659f20d`; S4 implementation `09220dd8319cfb8ec0c4d1531514bb5169107983` | source/fixture identities + 10 implementation file digests recorded in lock | explicit adapter exception `EXC-128-001`; source/fixture/implementation validator | Desktop Owner / S4 PASS；native foundation only |
 
 不得从 dirty sibling、floating branch 或文档中的计划 tag 生成下游发布产物。正确顺序是 Contracts
 source/generated PR 通过 -> 形成不可变完整 commit -> Host/Desktop 分别 exact pin -> conformance
@@ -253,9 +254,8 @@ tag publish 或真实用户 rollout。生产部署相关子项为 `N/A for curre
 
 ## 9. 实际检查证据
 
-S1/S2 已在未发布的 Contracts feature branch 完成，随后只做了 S2P 下游精确 pin 预检。下表的
-Host/Desktop `PASS` 只证明现有基线加新 pin/checker 可以共存，不证明 Artifact 业务 endpoint、
-SQLCipher migration、native transfer 或 UI 已实现。
+S1/S2 与 S2P 完成后，严格按依赖先执行 Host S3，再执行 Desktop S4。下表分别保留 pin preflight 与
+业务基础切片的证据；S3/S4 PASS 不证明 renderer、synthetic 端到端、真实 provider 或生产能力。
 
 | 检查 | Command | CWD | SHA/版本 | Exit code | 结果 | 证据位置/解除条件 |
 |---|---|---|---|---:|---|---|
@@ -265,8 +265,10 @@ SQLCipher migration、native transfer 或 UI 已实现。
 | build | `pnpm build` | `yijie-contracts` | immutable candidate | 0 | PASS | TypeScript SDK compile 通过 |
 | published baseline breaking | `./scripts/check-breaking.sh f16a497e1377f45747f8ff9292b4b60cf2027f88` | `yijie-contracts` | `contracts-v0.2.0` | 0 | PASS | 结构检查 + v1 equality |
 | local candidate compatibility | `./scripts/check-breaking.sh 747cf740f2d91e76e5c1a130e8e009f1efa821b8` | `yijie-contracts` | FEAT-127 candidate | 0 | PASS | v2 source/fixture equality + semantic review |
-| Host pin conformance | `make sync-contracts && make contract-check && make lint && make test` | `yijie-agent-host` | pin commit `dea84d0768ebc017b7ee5faedab7f9a49ce74875` | 0 | PASS | exact pin/snapshot/generated types 与既有 Host baseline 通过；S3 未开始 |
-| Desktop pin conformance | `pnpm generate:check && make lint && make test && make build && pnpm docs:build` | `yijie-desktop` | pin commit `96094419d963745529ed0fa246919089e659f20d` | 0 | PASS | public/v2/v3 pin、TS/Rust baseline、docs 通过；S4-S9 未开始 |
+| Host pin conformance | `make sync-contracts && make contract-check && make lint && make test` | `yijie-agent-host` | pin commit `dea84d0768ebc017b7ee5faedab7f9a49ce74875` | 0 | PASS | exact pin/snapshot/generated types 与既有 Host baseline 通过 |
+| Host S3 | `make contract-check && make lint && make test && make runtime-test` | `yijie-agent-host` | `4017785adb08e1114781d3d844e9a10a683fa933` | 0 | PASS | v3 dual route、bounded encrypted staging、GET/HEAD/range、ACK/TTL/restart cleanup 与四类 exact-local synthetic；真实 producer off |
+| Desktop pin conformance | `pnpm generate:check && make lint && make test && make build && pnpm docs:build` | `yijie-desktop` | pin commit `96094419d963745529ed0fa246919089e659f20d` | 0 | PASS | public/v2/v3 pin、TS/Rust baseline、docs 通过 |
+| Desktop S4 | `make lint && make test && make build && pnpm docs:build` | `yijie-desktop` | `09220dd8319cfb8ec0c4d1531514bb5169107983` | 0 | PASS | v8 SQLCipher、closed event/report adapter、resource transfer/commit/ACK、168h TTL/delete、metadata-only history v3；TS 276/276，Rust 184 pass/3 ignored |
 | MiniMax real image capability | bounded provider eval command `PENDING` | isolated local environment | fixed model/API/version `Unknown` | N/A | BLOCKED | 用户批准付费调用、能力来源与固定 eval 后才可执行 |
 
 ## 10. Consumer Owner 评审与阻断项
@@ -274,21 +276,21 @@ SQLCipher migration、native transfer 或 UI 已实现。
 | Consumer/Owner | 结论 | 日期 | 证据/例外 |
 |---|---|---|---|
 | Contracts / 段成威 | `G2A APPROVED` | 2026-08-20 | immutable `0.4.0` candidate、locked generate、双 baseline breaking 与 semantic review PASS |
-| Agent Host/Runtime / 段成威 | `PIN CONFORMANCE PASS; S3 AUTHORIZED` | 2026-08-20 | exact pin commit 已形成并全量验证；尚无 Artifact route/staging/producer 业务实现 |
-| Desktop/Data/UI / 段成威 | `PIN CONFORMANCE PASS; S4 AUTHORIZED` | 2026-08-20 | exact pin 与 Pattern Accepted 已形成并全量验证；尚无 migration/transfer/renderer 业务实现 |
-| Security/Data review / 段成威 | `G2A APPROVED FOR CONTRACT BOUNDARY` | 2026-08-20 | href/bearer、MIME/range/digest、retention 与 no-log 契约边界已锁定；实际 S3/S4 仍需复核 |
+| Agent Host/Runtime / 段成威 | `S3 CONFORMANCE PASS` | 2026-08-20 | exact pin、route/staging/resource/ACK/synthetic 实现与全量 Host 门禁通过；真实 producer 关闭 |
+| Desktop/Data/UI / 段成威 | `S4 CONFORMANCE PASS` | 2026-08-20 | exact pin、v8/native transfer/history/private IPC 实现与全量 Desktop 门禁通过；renderer 未开始 |
+| Security/Data review / 段成威 | `G3 PASS FOR S3/S4 BOUNDARY` | 2026-08-20 | encrypted staging/SQLCipher、owner scope、MIME/range/digest、commit ACK、retention 与 no-content IPC 已实证 |
 
 Open blockers 与解除条件：
 
 | ID | 状态 | 阻断事实 | 解除条件 |
 |---|---|---|---|
-| BLK-128-001 | `CLOSED AT G2A` | limits、encrypted spool、24h TTL、ACK/重启清理已冻结，契约侧已形成 | Host config/no-log 实现证据留到 S3 |
+| BLK-128-001 | `CLOSED AT S3` | limits、encrypted spool、24h TTL、ACK/重启清理已冻结并实现 | Host S3 commit 与 contract/lint/test/runtime-test 证据已形成；漂移则重开 |
 | BLK-128-002 | `Unknown` | MiniMax 当前 Host profile 未证明 Images API 或 Runtime imageGeneration tool 可用 | 固定 MiniMax API/model/capability 来源，隔离验证 canonical started/completed，记录费用、限流、失败和最多两次短 eval；此前只能 synthetic local test |
 | BLK-128-003 | `REAL PROVIDER BLOCKED; SYNTHETIC ALLOWED` | video 没有 canonical real producer；exact-local fixture 已获准 | 真实 activation 前选择 provider 并形成 immutable API、ownership、range/failure conformance；不阻断 S1 synthetic fixture |
 | BLK-128-004 | `REAL PROVIDER BLOCKED; SYNTHETIC ALLOWED` | file/report 没有归一化 real producer；exact-local fixture 已获准 | 真实 activation 前明确 producer/权限/审计；不阻断 S1 contract/report fixtures |
-| BLK-128-005 | `CLOSED AT G2A` | OpenAPI/Proto/TS 锁定 generator；Go/Rust JSON Schema 使用显式 adapter 例外 | Host/Desktop lock/checker 已记录同源 conformance、Owner、到期 `2026-11-20 or G5, whichever is earlier` 与移除条件 |
+| BLK-128-005 | `CLOSED AT S3/S4; EXPIRING EXCEPTION` | OpenAPI/Proto/TS 锁定 generator；Go/Rust JSON Schema 使用显式 adapter 例外 | Host/Desktop implementation digests、同源 conformance、Owner、到期 `2026-11-20 or G5, whichever is earlier` 与移除条件均已记录 |
 | BLK-128-006 | `CLOSED AT G2A` | Contracts source/generated、双基线、semantic review 与 consumer exact pin 已形成 | commits 与命令证据见第 6、9 节；边界漂移时重开 |
 
-结论：G2A 已通过，S3/S4 现在可以按原子切片启动；本结论不声称 Host/Desktop 业务实现、真实 provider、
-tag、push、release 或生产交付已经完成。任何 v3 producer 仍默认关闭，不得真实调用 MiniMax，也不得
-声称真实 video/file/report 已支持。
+结论：G2A 后已按序完成 S3/S4，G3 对这两个原子切片为 PASS；本结论不声称 Desktop renderer、walking
+skeleton、真实 provider、tag、push、release 或生产交付已经完成。任何真实 v3 producer 仍默认关闭，
+不得真实调用 MiniMax，也不得声称真实 video/file/report 已支持。

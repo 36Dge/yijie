@@ -2,12 +2,15 @@
 
 ## 1. Release Manifest
 
-当前 G2/G2A 已获 Owner 批准；Contracts `0.4.0` local candidate 与 Host/Desktop exact pin 已形成。尚没有 tag、Host/Desktop 业务实现、签名制品或部署。
+当前 G2/G2A 已获 Owner 批准；Contracts `0.4.0` local candidate、Host S3 与 Desktop S4 已形成不可变本地
+commits，并通过各自 G3 slice gate。尚没有 tag、renderer/E2E、签名制品或部署。
 
 | Component | Version/tag | Full commit | Artifact digest | Contract pin/generator | Environment |
 |---|---|---|---|---|---|
-| Governance package | uncommitted design candidate | baseline `3d6988daa7a36b24bb2e86308e4cc7213c967426` | N/A | N/A | local workspace |
-| Contracts/Host/Desktop | no FEAT-128 release | N/A | N/A | N/A | not deployed |
+| Governance package | G3 evidence candidate | 本次 `yijie` 文档提交 | N/A | N/A | local workspace |
+| Contracts | `0.4.0 local candidate` | `ea48fe190e18afba728712d1e2cc79cda57f581b` | source digests in feature.yaml | locked generators | not deployed |
+| Agent Host S3 | local source candidate; flags off | `4017785adb08e1114781d3d844e9a10a683fa933` | N/A source commit | Contracts `ea48fe...` | not deployed |
+| Desktop S4 | local source candidate; flag off | `09220dd8319cfb8ec0c4d1531514bb5169107983` | 10 implementation file pins in Desktop lock | Contracts `ea48fe...` | not deployed |
 
 ## 2. 发布前提
 
@@ -40,8 +43,9 @@
 
 | Flag | Default | Scope | Enable steps | Kill switch | Owner |
 |---|---|---|---|---|---|
-| `YIJIE_CHAT_ARTIFACTS_V3_ENABLED` | off | Host + Desktop master | exact pins、migration、consumer/provider tests 后本地设置 | set false/restart local service | 段成威 |
-| `YIJIE_ARTIFACT_SYNTHETIC_PROFILE_ENABLED` | off | exact local test profile | `YIJIE_ENV=local` + fixed manifest + no real provider | unset/false and clear staging | 段成威 |
+| `YIJIE_AGENT_HOST_V3_ARTIFACTS_ENABLED` | off | Host v3 route/resources | exact pin + S3 tests 后本地设 exact true | false/restart Host | 段成威 |
+| `YIJIE_CHAT_ARTIFACTS_V3_ENABLED` | off | Desktop native transfer | exact pin + S4 migration/consumer tests 后本地设 exact true | false/restart Desktop；已存 metadata 只读 | 段成威 |
+| `YIJIE_FEAT128_SYNTHETIC_ENABLED` + `YIJIE_FEAT128_SYNTHETIC_MANIFEST=feat128-artifact-v1` | off | exact local Host producer profile | `YIJIE_ENV=local` + fixed manifest + no real provider | unset/false and clear staging | 段成威 |
 | image real capability | off/not defined | MiniMax/Runtime image only | separate paid/provider gate | independent image off | 段成威 |
 | video/file/report real capability | off/not defined | per kind | future producer-specific approval | independent kind off | 段成威 |
 
@@ -51,7 +55,7 @@
 
 | Phase | Command/job | Batch/lock controls | Validation | Pause/resume | Recovery |
 |---|---|---|---|---|---|
-| Expand v8 | Desktop embedded migration runner；exact command随实现形成 | single local DB transaction + checksum | populated v1-v7 fixtures、user_version、FK | app startup fail closed | restore pre-v8 encrypted backup or v8 roll-forward |
+| Expand v8 | Desktop embedded migration runner at `09220dd8319cfb8ec0c4d1531514bb5169107983` | single local DB transaction + checksum | populated v1-v7 fixtures、user_version、FK PASS | app startup fail closed | restore pre-v8 encrypted backup or v8 roll-forward |
 | Backfill | N/A；旧消息无 Artifact | N/A | reader returns empty list | N/A | N/A |
 | TTL cleanup | Desktop maintenance + Host staging TTL | bounded items/bytes per pass | content/cache/WAL/staging inaccessible | resumable typed receipt | retry/repair; do not claim delete complete |
 
@@ -114,7 +118,7 @@
 
 | Purpose | Exact command/control plane action | Required role | Expected output | Evidence location |
 |---|---|---|---|---|
-| Local disable | unset or set planned Artifact flags to `false`, then restart local Host/Desktop | local owner | no v3 producer; v1/v2 text works | future 08/local smoke log |
+| Local disable | unset or set the three exact Host/Desktop Artifact flags above to `false`, then restart local Host/Desktop | local owner | no new v3 producer/transfer; v1/v2 text and persisted metadata reader remain | future 08/local smoke log |
 | Local validation | commands in `06-test-plan.md` | developer | exact PASS/FAIL exits | `08-verification-report.md` |
 | Deploy | N/A；当前没有部署平台 | release owner | not executed | NOT RUN |
 | Production rollback | N/A；当前没有 production artifact/environment | release owner | not executed | NOT RUN |
@@ -137,5 +141,5 @@
 |---|---|---|---|---|
 | G2 design | 段成威 | APPROVED for Contracts S1/S2 only | 2026-08-20 | 03 §2B + 00-07 + Pattern 1.0.0 Accepted |
 | G2A local candidate | 段成威 | APPROVED | 2026-08-20 | Contracts `ea48fe190e18afba728712d1e2cc79cda57f581b` + Host/Desktop exact pins；generate/lint/test/build、双 breaking 与 consumer conformance PASS |
-| G4 local candidate | 段成威 | NOT REQUESTED | N/A | no Host/Desktop implementation |
+| G4 local candidate | 段成威 | NOT REQUESTED | N/A | S5-S11 and full AC/E2E/review incomplete |
 | Go/No-Go production | 段成威 | N/A current scope / not approved | N/A | no production plan |

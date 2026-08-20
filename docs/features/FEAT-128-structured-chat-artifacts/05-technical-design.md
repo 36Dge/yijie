@@ -15,7 +15,7 @@
 | yijie-codex | 上游 Runtime canonical item authority | provider/tool output | `imageGeneration` started/completed item | 易界 Artifact 存储、下载或 UI |
 | yijie-contracts | v3 wire、report document、error/fixture 权威源 | 已批准业务语义 | OpenAPI/JSON Schema/Proto/AsyncAPI/SDK | Runtime 实现、数据库或 UI |
 | yijie-agent-host | Runtime item 归一化、短期 staging、v3 SSE 和认证资源读取 | Runtime notification、synthetic fixture | 安全 Artifact lifecycle + relative resource | 长期业务数据、WebView 渲染、用户保存目标 |
-| Desktop native/Tauri | Host fetch、scope/MIME/size/digest 复核、SQLCipher、history、save dialog | v3 event/resource | planned `src-tauri/schemas/chat-ipc-v3.schema.json` private IPC projection 与受控 preview bytes | provider 选择、公共契约权威 |
+| Desktop native/Tauri | Host fetch、scope/MIME/size/digest 复核、SQLCipher、history；save dialog 属后续切片 | v3 event/resource | implemented `src-tauri/schemas/chat-ipc-v3.schema.json` metadata-only history projection；受控 preview/save bytes 仍 planned | provider 选择、公共契约权威 |
 | Desktop domain/store | 单调状态机、去重、resync、历史 projection | private IPC v3 | renderer view model | wire 解析之外的 I/O、文件写入 |
 | Desktop Vue components | 图片/视频/文件/report 展示、预览和可访问交互 | view model、受控 object URL | 用户可观察 UI intent | Host 请求、路径、SQL、保存副作用 |
 
@@ -159,8 +159,9 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 
 ## 11. 配置、Feature Flag 与部署
 
-- `YIJIE_CHAT_ARTIFACTS_V3_ENABLED=false`：Host/Desktop master flag，默认关闭。
-- `YIJIE_ARTIFACT_SYNTHETIC_PROFILE_ENABLED=false`：只在 `YIJIE_ENV=local` 与固定 test manifest 下接受 exact `true`，不能与真实 MiniMax generation 同开。
+- `YIJIE_AGENT_HOST_V3_ARTIFACTS_ENABLED=false`：Host v3 route/resource master flag，默认关闭。
+- `YIJIE_CHAT_ARTIFACTS_V3_ENABLED=false`：Desktop native transfer master flag，默认关闭；关闭后已存 metadata 仍只读。
+- `YIJIE_FEAT128_SYNTHETIC_ENABLED=false` + `YIJIE_FEAT128_SYNTHETIC_MANIFEST=feat128-artifact-v1`：只在 `YIJIE_ENV=local` 下接受 exact profile，不能与真实 provider profile 同开。
 - kind capability 由 Host readiness 返回，Desktop 不根据模型名猜测。
 - 安全关闭行为：继续 v1/v2 文本流；已持久化 Artifact 只读可见，禁止新 transfer/producer。
 - 配置验证：非 local 环境拒绝 synthetic；无 v3 contract pin、limits、storage 或 CSP approval 时 master flag 拒绝启动。
@@ -171,7 +172,7 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 
 - 是否改变 prompt/model/retrieval/tool schema：不改变 prompt/model/retrieval；改变 provider/Runtime output capability projection，并预留未来 tool-produced file/report。
 - 固定版本：MiniMax-M3 与 Runtime `0ce5902...` 仅为当前调查基线，不构成 real generation approval。
-- 结构化输出 Schema：Agent session event v3 + Artifact manifest + planned
+- 结构化输出 Schema：Agent session event v3 + Artifact manifest + implemented
   `yijie-contracts/jsonschema/report/report-document-v1.schema.json`，canonical media type 为
   `application/vnd.yijie.report+json;version=1`；PDF/Markdown 只允许作为后续 derived export。
 - 无答案/拒答：模型没有生成能力时返回文本说明；Desktop 不显示虚假生成入口或从 Markdown 推断 Artifact。
@@ -193,4 +194,5 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 - 技术负责人：段成威，结论 `G2 APPROVED for Contracts S1/S2`。
 - 安全/数据 Owner：段成威，结论 `G2 APPROVED for Contracts S1/S2`。
 - Product/Design：FEAT-128 Pattern 1.0.0 `Accepted`。
-- 结论日期：2026-08-20；G2A 已通过，可按依赖先开始 S3、再开始 S4。当前尚未修改 Host/Desktop 业务代码，任何 producer 仍默认关闭。
+- 结论日期：2026-08-20；G2A 后已按依赖完成 Host S3 与 Desktop S4，G3 对这两个切片为 PASS。
+  S5-S11、任何真实 producer 与生产 activation 仍未批准；所有 FEAT-128 flags 默认关闭。

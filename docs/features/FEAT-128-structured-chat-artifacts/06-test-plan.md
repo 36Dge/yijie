@@ -119,8 +119,8 @@
 |---|---|---|---|---|
 | v3 lifecycle JSON | `yijie-contracts/tests/fixtures/agent/session-event-v3/` | public synthetic | UUID、1x1/小媒体、无路径/正文 | Host/Desktop |
 | report document v1 | `yijie-contracts/jsonschema/report/report-document-v1.schema.json` + canonical fixtures | public synthetic | 虚构指标/日期/来源，无店铺数据；media type `application/vnd.yijie.report+json;version=1`；PDF/Markdown 仅作 derived export | SDK/Desktop renderer |
-| media boundary corpus | planned Host/Desktop testdata | public synthetic | generated headers/containers/corruption | native validators |
-| canary leak corpus | planned tests | restricted synthetic marker only | 明确 path/token/body canary，不含真实 secret | log/DOM scanners |
+| media boundary corpus | implemented S3/S4 testdata + future UI corpus | public synthetic | generated headers/containers/corruption | Host/Desktop native validators PASS；UI later |
+| canary leak corpus | implemented native checks + planned DOM scanner | restricted synthetic marker only | 明确 path/token/body canary，不含真实 secret | native no-content projection PASS；DOM later |
 | migration DB corpus | Desktop temp fixtures | confidential synthetic | v1-v8 fake tenant/session | Rust repository tests |
 
 ## 11. 实际执行命令
@@ -151,6 +151,7 @@
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
 | 测试/技术 Owner | 段成威 | G2A APPROVED；S1/S2/S2P evidence PASS | 2026-08-20 |
-| 安全/数据 Owner | 段成威 | G2A contract boundary APPROVED；S3/S4 runtime evidence pending | 2026-08-20 |
+| 安全/数据 Owner | 段成威 | G2A contract boundary APPROVED；S3/S4 runtime evidence PASS；S5-S11 pending | 2026-08-20 |
 
-Contracts 与 pin conformance 命令已实际执行并记录于 08；S3 及以后仍须按本计划执行，不能因 G2A 批准预先记为通过。
+Contracts、pin conformance、S3 与 S4 命令已实际执行并记录于 08；S5 及以后仍须按本计划执行，不能因
+G3 对基础切片通过而预先记为通过。

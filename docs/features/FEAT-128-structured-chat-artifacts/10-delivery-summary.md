@@ -5,20 +5,22 @@
 - G2 closure rewrite、Product/Technical/Security/Data Owner sign-off 与 UI Pattern 1.0.0 `Accepted` 已完成。
 - Contracts S1/S2 已形成真实、不可变、未发布的 `0.4.0` local candidate；locked generation、lint、test、
   build、双 baseline breaking、v1/v2 equality 与 semantic review 全部通过。
-- Host/Desktop 只完成 downstream exact pin 与 conformance preflight；Artifact 业务 endpoint、staging、
-  SQLCipher migration、native transfer、IPC v3 和 UI renderer 均未开始。
-- G2A 已批准。下一步可以启动 S3，S3 conformance 后再启动 S4；真实 provider、tag、push、release、
-  production 与 G3-G6 仍关闭。
+- G2A 后严格先完成 Host S3：v3 dual route、bounded encrypted staging、owner-only content/poster、range、
+  ACK/TTL/restart cleanup 与四类 exact-local synthetic producer。
+- Host S3 通过后完成 Desktop S4：SQLCipher v8、closed event/report adapter、native transfer/commit/ACK、
+  168h retention/delete、metadata-only history v3 与实现级 pin；没有 renderer、CSP 或 save。
+- S3/S4 的 G3 slice gate 已通过。下一步是 S5 provider-neutral domain/store 与稳定 shell；真实 provider、
+  tag、push、release、production 与 G4-G6 仍关闭。
 
 ## 2. 实际版本与提交
 
 | Component | Version/status | Full commit | 说明 |
 |---|---|---|---|
-| Feature package | G2A approved | 本次 `yijie` 文档提交 | governance only |
+| Feature package | G3 recorded for S3/S4 | 本次 `yijie` 文档提交 | governance/evidence only |
 | Desktop Pattern | Accepted 1.0.0 + G2A record | `35efa1475af4679b5974663593831d07759c3728` | design docs only；initial acceptance at `e97b2dab...` |
 | Contracts | `0.4.0 local candidate` | `ea48fe190e18afba728712d1e2cc79cda57f581b` | immutable；no tag/release |
-| Agent Host | pin conformance PASS | `dea84d0768ebc017b7ee5faedab7f9a49ce74875` | no S3 business code |
-| Desktop | pin conformance PASS | `96094419d963745529ed0fa246919089e659f20d` | no S4-S9 business code |
+| Agent Host | S3 PASS; default off | `4017785adb08e1114781d3d844e9a10a683fa933` | pin base `dea84d...`; strict-local synthetic only |
+| Desktop | S4 PASS; default off | `09220dd8319cfb8ec0c4d1531514bb5169107983` | pin base `960944...`; no S5-S9 renderer/save/CSP |
 
 关键 source digests：OpenAPI `cf72ba8dd6910e8454ad60feeffa5e82583303b441dad78e49910fbdb9f5420f`，
 event v3 `87b1284056529bde8314e6cfa6ad1fb27ffefef50ea86033875fda795330939f`，report v1
@@ -33,8 +35,11 @@ event v3 `87b1284056529bde8314e6cfa6ad1fb27ffefef50ea86033875fda795330939f`，re
 | Contracts S1/S2 | PASS | `pnpm generate/lint/test/build`、39/39 Node + Go、双 breaking、semantic review |
 | Host exact pin | PASS | sync/contract-check/lint/test at `dea84d...` |
 | Desktop exact pin | PASS | generate-check/lint/test/build/docs at `960944...` |
+| Host S3 | PASS | contract-check/lint/test/runtime-test at `4017785...` |
+| Desktop S4 | PASS | generate-check/lint/test/build/docs at `09220dd...`; TS 276/276, Rust 184 pass/3 ignored |
 | AC contract portions | CONTRACT PASS | lifecycle/resource/ACK/report/fixtures/negative cases |
-| AC runtime/UI portions | NOT RUN | S3-S10 未开始 |
+| AC Host/native foundation portions | PARTIAL PASS | S3/S4 lifecycle/resource/persistence/history/retention conformance |
+| AC renderer/E2E portions | NOT RUN | S5-S10 未开始 |
 | Real provider capability | BLOCKED/UNKNOWN | 无付费调用或 authority |
 
 ## 4. 安全、数据与兼容边界
@@ -42,8 +47,8 @@ event v3 `87b1284056529bde8314e6cfa6ad1fb27ffefef50ea86033875fda795330939f`，re
 - v1/v2 wire、schema、fixtures 与语义保持不变；v3 使用显式 path 与 `event_schema_version=3`。
 - Artifact content/poster/ACK、owner/session scope、relative href、MIME/size/digest、range 与 stable errors 已入契约。
 - Report known sections strict；unknown 只允许 `required=false`、opaque、128 KiB/depth 8，禁止 HTML/URL/script。
-- Host encrypted spool、24h TTL 与 ACK cleanup 仍待 S3 实现；Desktop commit+168h retention、native save/CSP
-  与 cleanup receipt 仍待 S4/S7 实现。
+- Host encrypted staging、24h TTL 与 ACK cleanup 已在 S3 实现；Desktop commit+168h retention 与 cleanup
+  receipt 已在 S4 实现。Native save/CSP/preview handle 仍待 S6-S8 独立安全切片。
 - 四种 exact-local synthetic fixtures 已存在；真实 `provider|tool` activation 仍分 kind blocked。
 
 ## 5. G2/G2A Owner 结论
@@ -59,15 +64,16 @@ semantic review 与 immutable pin 完成后才能开始 Host/Desktop。实际证
 | G1 Design Ready | PASS | 2026-08-20 | 01-03 + repository investigation |
 | G2 Implementation Ready | APPROVED for S1/S2 | 2026-08-20 | 03 §2A/2B + 04-07 + Pattern Accepted |
 | G2A Contract Ready | APPROVED | 2026-08-20 | Contracts immutable candidate + dual breaking + semantic review + downstream exact pins |
-| G3/G4 | PENDING | N/A | no Host/Desktop business implementation |
+| G3 Slice Complete | PASS for S3/S4 | 2026-08-20 | immutable Host/Desktop commits + focused/full gates + diff/clean checks |
+| G4 Code Complete | PENDING | N/A | S5-S11、全部 AC/E2E/独立 review 未完成 |
 | G5/G6 | NOT PASSED | N/A | local-only scope has no release/deployment/production evidence |
 
 ## 6. 未验证项与已知限制
 
 | Item | 状态 | 下一证据 |
 |---|---|---|
-| Host v3 route/staging/resource/synthetic producer | NOT RUN | S3 focused + full Host gates |
-| Desktop SQLCipher/native transfer/history/private IPC | NOT RUN | S4 migration/security/conformance |
+| Host v3 route/staging/resource/synthetic producer | S3 PASS | S10 cross-process/restart walking skeleton |
+| Desktop SQLCipher/native transfer/history/private IPC | S4 PASS | S10 integrated lifecycle + S5 renderer projection |
 | image/video/file/report renderers | NOT RUN | S5-S9 component/visual/a11y |
 | synthetic local vertical slice | NOT RUN | S10 E2E/security/performance/visual |
 | MiniMax real image | BLOCKED | fixed provider capability + separate paid authorization/eval |
@@ -76,9 +82,9 @@ semantic review 与 immutable pin 完成后才能开始 Host/Desktop。实际证
 
 ## 7. 下一步与停止条件
 
-1. 从 Host S3 开始：实现 v3 dual route、encrypted staging、content/poster/ACK、range、replay 与
-   exact-local synthetic producer，继续默认关闭。
-2. S3 conformance 通过后开始 Desktop S4：v8 SQLCipher、native transfer/ACK、history/private IPC 与 cleanup。
+1. 启动 Desktop S5：只建立 provider-neutral domain/store、单调 reducer 与稳定 generic Artifact shell，
+   不进入 type-specific preview/save。
+2. S5 通过后才按 S6-S9 分别处理 image/video/file/report；新增 CSP、native save/capability 前单独复核安全边界。
 3. 任何 ACK、limits、retention clock、report compatibility、auth/CSP 或 authority 漂移先重开 G2；
    Contracts pin 漂移先重开 G2A。
 4. 不启动真实 provider，不 tag/push/publish/release，不把 pin conformance 描述成 Code Complete。
@@ -87,9 +93,9 @@ semantic review 与 immutable pin 完成后才能开始 Host/Desktop。实际证
 
 | Artifact | Path | Owner | 状态 |
 |---|---|---|---|
-| Feature package | `yijie/docs/features/FEAT-128-structured-chat-artifacts/` | 段成威 | G2A updated |
+| Feature package | `yijie/docs/features/FEAT-128-structured-chat-artifacts/` | 段成威 | G3 updated for S3/S4 |
 | Desktop UI Pattern | `yijie-desktop/docs/design/docs/design/05-patterns/14-feat-128-structured-chat-artifacts.md` | 段成威 | Accepted 1.0.0 |
 | Contracts semantic review | `yijie-contracts/docs/reviews/FEAT-128-semantic-review.md` | Contracts Owner | PASS |
 | Release/rollback plan | `09-release-and-rollback.md` | 段成威 | no release executed |
 
-正式关闭时间尚未形成。当前准确状态是：`G2A Approved; S3/S4 authorized but not started; real providers and G3-G6 closed`。
+正式关闭时间尚未形成。当前准确状态是：`G3 PASS for S3/S4 foundations; S5-S11 pending; real providers closed; G4-G6 not passed`。

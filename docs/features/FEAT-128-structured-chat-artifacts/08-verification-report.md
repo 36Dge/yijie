@@ -2,20 +2,20 @@
 
 > 本报告只记录实际执行或可复核结果。Owner 决策来自用户的直接指令；Codex 负责执行、核对和记录，
 > 不把自身描述成独立人工 Reviewer。G2A PASS 只证明契约与 downstream exact pin 已就绪，不证明
-> Host/Desktop Artifact 业务实现已经存在。
+> Host/Desktop S3/S4 以外的 renderer、端到端或真实 provider 能力已经存在。
 
 ## 1. 验证上下文
 
 | Repository | Branch | Evidence commit | FEAT-128 实际范围 | 日期 |
 |---|---|---|---|---|
-| `yijie` | `feat/feat-128-structured-chat-artifacts` | 本文档最终提交 | G2/G2A governance package | 2026-08-20 |
+| `yijie` | `feat/feat-128-structured-chat-artifacts` | 本文档最终提交 | G2/G2A decisions + S3/S4 G3 governance/evidence package | 2026-08-20 |
 | `yijie-contracts` | `feat/feat-128-structured-chat-artifacts` | `ea48fe190e18afba728712d1e2cc79cda57f581b` | S1/S2 authoritative source/generated/fixtures/review | 2026-08-20 |
-| `yijie-agent-host` | `feat/feat-128-structured-chat-artifacts` | `dea84d0768ebc017b7ee5faedab7f9a49ce74875` | S2P exact pin/snapshots/checker only；S3 未开始 | 2026-08-20 |
-| `yijie-desktop` | `feat/feat-128-structured-chat-artifacts` | Pattern Accepted `e97b2dabd724af856b4041e23b24437ec2f5dfc3`; pin `96094419d963745529ed0fa246919089e659f20d`; G2A record `35efa1475af4679b5974663593831d07759c3728` | Pattern + S2P pin/checker；S4-S9 未开始 | 2026-08-20 |
+| `yijie-agent-host` | `feat/feat-128-structured-chat-artifacts` | pin `dea84d0768ebc017b7ee5faedab7f9a49ce74875`; S3 `4017785adb08e1114781d3d844e9a10a683fa933` | exact pin + local Host v3 lifecycle/staging/resource/synthetic foundation | 2026-08-20 |
+| `yijie-desktop` | `feat/feat-128-structured-chat-artifacts` | Pattern `e97b2dabd724af856b4041e23b24437ec2f5dfc3`; pin `96094419d963745529ed0fa246919089e659f20d`; G2A record `35efa1475af4679b5974663593831d07759c3728`; S4 `09220dd8319cfb8ec0c4d1531514bb5169107983` | Pattern + pin + SQLCipher/native transfer/history/private IPC foundation；S5-S9 未开始 | 2026-08-20 |
 | `yijie-codex` | `develop` | `0ce5902ed400866be0196886bb78f693a004d68d` | read-only Runtime authority | 2026-08-20 |
 
-没有 tag、push、契约发布、真实 provider 调用、云资源、部署或生产流量。Host pin commit 没有加入 v3
-route/staging/producer；Desktop pin commit 没有加入 SQLCipher migration、native transfer、IPC v3 或 renderer。
+没有 tag、push、契约发布、真实 provider 调用、云资源、部署或生产流量。Host S3 与 Desktop S4 均默认
+关闭；Desktop 没有 renderer/CSP/save，Host 没有真实 provider producer。
 
 ## 2. Gate 时间线
 
@@ -27,7 +27,10 @@ route/staging/producer；Desktop pin commit 没有加入 SQLCipher migration、n
 | S2 | PASS | `ea48fe...`、generate/lint/test/build、双 breaking、semantic review | 允许 S2P exact pin preflight |
 | S2P | PASS | Host `dea84d...`、Desktop `960944...` 与两个仓库全量门禁 | 只形成 provenance/conformance，不改变业务行为 |
 | G2A | APPROVED | 全部 required evidence 已通过，用户的条件授权生效 | 可按依赖启动 S3、随后 S4 |
-| S3-S11 | NOT RUN | 无业务实现 diff | 不得写成完成 |
+| S3 | PASS | Host `4017785...` + full Host gates | 允许按依赖进入 S4；不开放真实 provider |
+| S4 | PASS | Desktop `09220dd...` + full Desktop gates | native foundation 完成；不等于 UI/E2E 完成 |
+| G3 S3/S4 | PASS | planned scope、tests/build、diff 与 clean worktrees | 下一切片为 S5；G4 仍 pending |
+| S5-S11 | NOT RUN | 无对应实现 diff | 不得写成完成 |
 | S12 real producers | BLOCKED | 无 provider authority/付费授权 | 保持关闭 |
 
 ## 3. Contracts 不可变候选
@@ -51,7 +54,7 @@ synthetic/real provenance 与 activation gate。
 
 | Check ID | Repository | Command | Exit | Result | 摘要 |
 |---|---|---|---:|---|---|
-| Y-PACKAGE | yijie | G2 package check + strict package check | 0 | PASS | structure、template variables 与未完成标记检查通过 |
+| Y-PACKAGE | yijie | G3 package check + strict package check | 0 | PASS | structure、template variables 与未完成标记检查通过 |
 | Y-YAML | yijie | parse `feature.yaml` | 0 | PASS | machine-readable gate record valid |
 | Y-LINT-TEST | yijie | `pnpm lint && pnpm test && bash -n scripts/*.sh` | 0 | PASS | governance + repository tests + shell syntax |
 | C-GENERATE | Contracts | `pnpm generate` | 0 | PASS | locked generated outputs clean，无 warning |
@@ -67,11 +70,12 @@ synthetic/real provenance 与 activation gate。
 | H-LINT | Host | `make lint` | 0 | PASS | existing + pin-only diff clean |
 | H-TEST | Host | `make test` | 0 | PASS | Go/race/coverage suites pass |
 | D-PIN | Desktop | `pnpm generate:check` | 0 | PASS | public/v2/v3 all pin `ea48fe...` |
-| D-FOCUSED | Desktop | v3 contract checker tests | 0 | PASS | `2/2`；明确输出 adapter `not_started` |
+| H-S3 | Host | `make contract-check && make lint && make test && make runtime-test` | 0 | PASS | v3 dual route、bounded encrypted staging、GET/HEAD/range、ACK/TTL/restart cleanup 与四类 strict-local synthetic |
+| D-FOCUSED | Desktop | v3 contract checker tests | 0 | PASS | exact source/fixture + 10 implementation file pins；adapter `implemented` |
 | D-LINT | Desktop | `make lint` | 0 | PASS | generate check、ESLint/vue-tsc、fmt/clippy |
-| D-TEST | Desktop | `make test` | 0 | PASS | frontend `36 files / 272 tests`; Rust `175 passed, 3 ignored` |
+| D-TEST | Desktop | `make test` | 0 | PASS | frontend `37 files / 276 tests`; Rust `184 passed, 3 ignored` |
 | D-BUILD | Desktop | `make build` | 0 | PASS | application build passes |
-| D-DOCS | Desktop | `pnpm docs:build` | 0 | PASS | Accepted Pattern builds |
+| D-DOCS | Desktop | `pnpm docs:build` | 0 | PASS | Accepted Pattern + S4 architecture record builds |
 
 一次 `pnpm lint` 曾与 `pnpm test` 并行执行，因仓库 `check-generated` 临时替换 generated 目录而产生
 瞬时失败；改为仓库要求的顺序执行后通过，且 immutable commit 上再次通过。它是命令并发冲突，
@@ -81,8 +85,8 @@ synthetic/real provenance 与 activation gate。
 
 | Consumer | Pin commit | Pin 内容 | 结论 |
 |---|---|---|---|
-| Agent Host | `dea84d0768ebc017b7ee5faedab7f9a49ce74875` | Contracts `0.4.0` + full commit + OpenAPI/event/report digests；v3 snapshots/generated Go types；`EXC-128-001` | PASS；S3 business `not_started` |
-| Desktop | `96094419d963745529ed0fa246919089e659f20d` | Contracts full commit/source digests；canonical event/resource/report fixture tree OIDs；validator/exception | PASS；S4 business `not_started` |
+| Agent Host | pin `dea84d0768ebc017b7ee5faedab7f9a49ce74875`; implementation `4017785adb08e1114781d3d844e9a10a683fa933` | Contracts `0.4.0` identities + v3 snapshots/types + implementation conformance；`EXC-128-001` | S2P/S3 PASS |
+| Desktop | pin `96094419d963745529ed0fa246919089e659f20d`; implementation `09220dd8319cfb8ec0c4d1531514bb5169107983` | Contracts source/fixture identities + 10 implementation file digests + validator/exception | S2P/S4 PASS |
 
 Desktop fixture Git tree OIDs：event v3 `21de31ceb65900bcf38bc7fe171de8238dfa30dc`、resources
 `f447129c08b9b39231e33698afc3f2fd875d6b14`、Host v3
@@ -96,11 +100,11 @@ Desktop fixture Git tree OIDs：event v3 `21de31ceb65900bcf38bc7fe171de8238dfa30
 | AC-001/002/006/008/009 contract portions | CONTRACT PASS | lifecycle/report/resource/ACK/version/negative fixtures 已自动验证 |
 | AC-011 contract fixture portion | CONTRACT PASS | image/video/file/report 四类 synthetic canonical fixtures 已形成 |
 | AC-003/004/005/006 Desktop renderer behavior | NOT RUN | S6-S9 未开始 |
-| AC-007 persistence/history/retention | NOT RUN | S4 migration/repository 未开始 |
-| AC-008 runtime auth/integrity/ACK | NOT RUN | public contract 已通过；Host/Desktop runtime behavior 未实现 |
-| AC-009 Host dual route + old/new matrix | PARTIAL | contract/equality/pins PASS；实际 v3 Host route 未实现 |
+| AC-007 persistence/history/retention | S4 FOUNDATION PASS | v8 migration、SQLCipher BLOB、metadata history、168h TTL/receipt/delete/reopen 已验证；UI history 仍待 S5/S10 |
+| AC-008 runtime auth/integrity/ACK | S3/S4 FOUNDATION PASS | owner-only Host resource、MIME/size/digest/magic、commit 后 ACK 与 replay 已验证；E2E/error UI 待 S10 |
+| AC-009 Host dual route + old/new matrix | PARTIAL PASS | v1/v2 equality/pins + 实际 v3 Host route 均通过；mixed-version E2E 待 S10 |
 | AC-010/NFR-002 visual/a11y/performance | NOT RUN | Pattern build 不等于 runtime evidence |
-| AC-011 local walking skeleton | NOT RUN | fixtures 已有，synthetic Host producer/UI 未实现 |
+| AC-011 local walking skeleton | PARTIAL | 四类 strict-local Host producer 已实现；Desktop renderer/vertical smoke 未运行 |
 | AC-012/real provider | BLOCKED | capability 未证、未授权付费调用 |
 
 ## 7. 专项验证状态
@@ -109,8 +113,8 @@ Desktop fixture Git tree OIDs：event v3 `21de31ceb65900bcf38bc7fe171de8238dfa30
 |---|---|---|
 | Contract/source/generated/breaking | PASS | 边界漂移则重开 G2/G2A |
 | Consumer exact pin/conformance | PASS | S3/S4 使用相同 immutable identities |
-| Host v3 auth/range/replay/staging | NOT RUN | S3 |
-| Desktop SQLCipher/transfer/cleanup | NOT RUN | S4 |
+| Host v3 auth/range/replay/staging | S3 PASS | S10 仍需跨进程/restart walking skeleton |
+| Desktop SQLCipher/transfer/cleanup | S4 PASS | S10 仍需 Host+Desktop integrated lifecycle |
 | UI/visual/a11y/performance | NOT RUN | S5-S10 |
 | Local synthetic E2E | NOT RUN | S10 |
 | MiniMax/video/file/report real producer | BLOCKED | S12，需单独 authority/eval |
@@ -122,7 +126,7 @@ Desktop fixture Git tree OIDs：event v3 `21de31ceb65900bcf38bc7fe171de8238dfa30
 |---|---|---|---|
 | G2-128-001 Owner/G2 closure | P1 | CLOSED AT G2 | 03 §2A/2B + Pattern Accepted |
 | G2-128-002 missing source/immutable pin | P1 | CLOSED AT G2A | Contracts `ea48fe...` + source digests |
-| G2-128-003 ACK/poster/retention/report ambiguity | P1 | CLOSED AT G2 | 03-05 frozen semantics；S3/S4 evidence still pending |
+| G2-128-003 ACK/poster/retention/report ambiguity | P1 | CLOSED AT S3/S4 | 03-05 frozen semantics + Host/Desktop runtime conformance |
 | BLK-128-004 generator/downstream pin | P1 | CLOSED AT G2A | locked generators + Host/Desktop pin commits |
 | BASE-128-001 old Contracts lint/test failure | P2 historical | CLOSED | current lint/test and post-commit recheck PASS |
 | Host docs stale `0.2.0` pin | P2 | CLOSED | Host pin commit updates README/AGENTS to actual lineage |
@@ -136,15 +140,15 @@ slice 的未验证范围，未被降级为已接受风险。
   `APPROVED`，完整 capture 在 03 §2A/2B；UI Pattern 1.0.0 为 `Accepted`。
 - G2A：用户明确设定条件——真实 generate、breaking、semantic review 和 immutable pin 完成后才能
   通过。第 3-5 节证据全部满足后，记录为 `APPROVED`。
-- 该授权允许下一步启动 local-only S3/S4，不允许 real provider、付费调用、tag、push、publish、release、
-  production 或直接宣称 G3-G6 通过。
+- 该授权已用于按序完成 local-only S3/S4；G3 只对这两个原子切片通过，不允许 real provider、付费调用、
+  tag、push、publish、release、production 或直接宣称 G4-G6 通过。
 
 ## 10. 残余风险与停止条件
 
 | Item | 当前边界 | 停止/重开条件 |
 |---|---|---|
-| Host encrypted staging/ACK/range | 仅契约完成 | S3 diff 偏离 limits/auth/TTL/ACK 时重开 G2 |
-| Desktop v8/native save/CSP | 仅设计完成 | 需要 plaintext、wide capability、不同 retention clock 时重开 Security/Data review |
+| Host/Desktop cross-process lifecycle | 两端 isolated conformance 已完成 | S10 integration 出现 replay、TTL、ACK 或 scope 偏差时重开对应 slice/G2 |
+| Desktop native save/CSP | S4 明确未实现 | 需要 plaintext、wide capability、不同 retention clock 时重开 Security/Data review |
 | Unknown report section | contract 限 `required=false`、128 KiB、depth 8、opaque | renderer 遍历/执行 unknown payload 即阻断 |
 | Real MiniMax image | blocked | 固定 capability/API/model、费用与 bounded eval 单独获批 |
 | Real video/file/report | blocked | 每 kind 形成 producer/ownership/security contract 后单独评审 |
@@ -162,5 +166,6 @@ slice 的未验证范围，未被降级为已接受风险。
 - S1/S2：`PASS`，Contracts immutable local candidate 已形成。
 - S2P：`PASS`，Host/Desktop exact pin 与 conformance 已形成，业务行为未改变。
 - G2A：`APPROVED`。
-- Code Complete：否；S3-S11 尚未开始。
-- 当前状态：`G2A Approved / Host/Desktop business implementation authorized but not started / real providers closed / G3-G6 not passed`。
+- S3/S4：`PASS`；G3 对这两个切片为 `PASS`。
+- Code Complete：否；S5-S11 尚未开始。
+- 当前状态：`G3 PASS for S3/S4 foundations / S5-S11 pending / real providers closed / G4-G6 not passed`。

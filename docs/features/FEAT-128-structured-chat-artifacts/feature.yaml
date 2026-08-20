@@ -4,7 +4,7 @@ feature:
   id: "FEAT-128"
   slug: "structured-chat-artifacts"
   title: "对话流结构化 Artifact 展示与操作"
-  status: "G2A approved after immutable Contracts and downstream pins; Host/Desktop business implementation not started"
+  status: "G3 passed for local-only Host S3 and Desktop S4 foundations; S5-S11 pending; real providers closed"
   created_at: "2026-08-20"
   updated_at: "2026-08-20"
   requirement_owner: "段成威"
@@ -16,7 +16,7 @@ scope:
   risk_level: "high"
   data_classification: "confidential"
   contract_impact: "semantic"
-  database_change: "expand candidate in Desktop SQLCipher; exact migration not implemented"
+  database_change: "Desktop SQLCipher v8 expand-only Artifact authority implemented; no backfill or down migration"
   ai_behavior_change: "provider output adaptation and capability gating; model/prompt unchanged"
 
 repositories:
@@ -36,6 +36,7 @@ repositories:
     branch: "feat/feat-128-structured-chat-artifacts"
     baseline_full_commit: "e2f0f5d0e7273331e7e9eaeeb82be15955e94c86"
     pin_only_full_commit: "dea84d0768ebc017b7ee5faedab7f9a49ce74875"
+    implementation_full_commit: "4017785adb08e1114781d3d844e9a10a683fa933"
     initial_worktree: "clean"
   - name: "yijie-desktop"
     role: "encrypted Artifact authority, private IPC v3, Chat renderers, preview and native save"
@@ -44,6 +45,7 @@ repositories:
     pattern_full_commit: "e97b2dabd724af856b4041e23b24437ec2f5dfc3"
     pin_only_full_commit: "96094419d963745529ed0fa246919089e659f20d"
     g2a_pattern_record_full_commit: "35efa1475af4679b5974663593831d07759c3728"
+    implementation_full_commit: "09220dd8319cfb8ec0c4d1531514bb5169107983"
     initial_worktree: "clean"
   - name: "yijie-codex"
     role: "read-only upstream Runtime authority and imageGeneration capability evidence"
@@ -66,6 +68,9 @@ immutable_references:
   downstream_pins:
     - "yijie-agent-host@dea84d0768ebc017b7ee5faedab7f9a49ce74875 -> contracts ea48fe190e18afba728712d1e2cc79cda57f581b"
     - "yijie-desktop@96094419d963745529ed0fa246919089e659f20d -> contracts ea48fe190e18afba728712d1e2cc79cda57f581b"
+  slice_commits:
+    - "S3 yijie-agent-host@4017785adb08e1114781d3d844e9a10a683fa933"
+    - "S4 yijie-desktop@09220dd8319cfb8ec0c4d1531514bb5169107983"
   release_artifacts: []
 
 gates:
@@ -73,8 +78,8 @@ gates:
   G1_design_ready: "passed for design review; scenarios, AC, boundaries, impact and risks are documented"
   G2_implementation_ready: "passed on 2026-08-20 for the local-only Contracts S1/S2 candidate; design, compatibility, security/data boundaries, tests and slices are approved"
   G2A_contract_ready: "passed on 2026-08-20 - locked generation, lint/test/build, published+candidate breaking, semantic/security review, immutable Contracts commit and Host/Desktop exact pins all verified"
-  G3_slice_complete: "pending - implementation not started"
-  G4_code_complete: "pending - implementation not started"
+  G3_slice_complete: "passed on 2026-08-20 for S3 Host and S4 Desktop native foundations; both stayed in planned scope and passed local full gates"
+  G4_code_complete: "pending - S5-S11 renderer, vertical, visual, accessibility, performance and independent review slices are not complete"
   G5_production_ready: "production subchecks N/A for current local-only scope; gate NOT PASSED"
   G6_delivery_complete: "deployment/observation subchecks N/A for current local-only scope; gate NOT PASSED"
 
@@ -91,7 +96,7 @@ owner_decision_capture:
     "DEC-128-010": "Approve"
     "DEC-128-011": "Modify"
   provider_gate: "Approve - Keep closed"
-  gate_effect: "G2A PASS now authorizes planned S3/S4 Host/Desktop business slices. No such business slice has started; every real provider and G3-G6 remain closed."
+  gate_effect: "G2A authorized S3/S4; both are now complete at immutable local commits and G3 is passed for those slices. S5-S11 and every real provider remain closed or pending."
 
 g2_approval:
   decision: "APPROVED"
@@ -116,6 +121,16 @@ g2a_approval:
   authorization_scope: "planned local-only S3/S4 Host/Desktop business implementation may start from the exact pinned candidate"
   excluded: "real provider/tool activation, paid calls, tag, push, publish, release, production and G3-G6 approval"
   independence_note: "The Owner approval follows the user's explicit instruction; Codex evidence review is not represented as an independent human review."
+
+g3_record:
+  decision: "PASSED FOR S3/S4"
+  recorded_at: "2026-08-20"
+  recorder: "Codex execution evidence under the user's authorized implementation sequence"
+  host_commit: "4017785adb08e1114781d3d844e9a10a683fa933"
+  desktop_commit: "09220dd8319cfb8ec0c4d1531514bb5169107983"
+  evidence: "Host contract-check/lint/test/runtime-test and Desktop generate-check/lint/test/build/docs-build all passed; diffs and clean worktrees checked"
+  scope: "S3 local Host lifecycle/staging/resource/synthetic foundation and S4 Desktop SQLCipher/native transfer/history/private IPC foundation only"
+  excluded: "S5-S11 UI/E2E/review, real provider/tool activation, paid calls, tag, push, release, deployment and production"
 
 documents:
   brief: "00-feature-brief.md"

@@ -43,7 +43,7 @@ Provider gate：`Approve / Keep closed`。真实 MiniMax image、video、file、
 
 poster/ACK 边界：`poster_href` 只允许指向同 session 的 `/poster` 相对资源；content 与 poster 均由 owner-only GET/HEAD 读取。ACK 是独立幂等 POST，校验 artifact、session、size、digest 和 Desktop commit identity，成功只表示 Host 可提前清理 staging，不代表 Desktop retention cleanup 完成。
 
-Generator/adapter 边界：OpenAPI、Protobuf 和 TypeScript JSON Schema 继续使用仓库锁定 generator。当前没有获批的 Go/Rust JSON Schema generator；G2 批准沿用显式 adapter 例外方案。Host/Desktop 的 pin-only commits 已记录 Owner、同源 schema/fixture conformance、最晚 2026-11-20 或 G5（以较早者为准）的到期日，以及“接入获批 generator 或生产前重新批准”的移除条件，因此该项 G2A 证据已关闭；实际业务 adapter 仍分别属于 S3/S4。
+Generator/adapter 边界：OpenAPI、Protobuf 和 TypeScript JSON Schema 继续使用仓库锁定 generator。当前没有获批的 Go/Rust JSON Schema generator；G2 批准沿用显式 adapter 例外方案。Host/Desktop 的 pin-only commits 已记录 Owner、同源 schema/fixture conformance、最晚 2026-11-20 或 G5（以较早者为准）的到期日，以及“接入获批 generator 或生产前重新批准”的移除条件。S3/S4 实现现已分别固定在 Host `4017785adb08e1114781d3d844e9a10a683fa933` 与 Desktop `09220dd8319cfb8ec0c4d1531514bb5169107983`；生产前仍须移除或重新批准例外。
 
 ## 2B. G2 Owner Sign-off（2026-08-20）
 
@@ -94,7 +94,7 @@ G2 结论：`APPROVED`，只授权 `yijie-contracts` S1/S2。真实 source/gener
 - DEC-128-005..011、ACK/poster/cursor/cancel、report compatibility、synthetic/real 分层与 Provider gate 已完成 G2 Owner 冻结。
 - Tauri native save command、CSP `media-src blob:` 与 capability 的设计方向已批准；G2A 已通过，实际 Desktop diff 仍须在 S4/S7 单独复核。
 - Contracts v3 source、基线、generator/adapter、unknown kind/section 行为和 consumer 顺序已完成 G2 设计评审；S1/S2 真实生成、检查、双 breaking 与不可变 commit 已通过。
-- Desktop SQLCipher migration、64/128 MiB 上限、七天 retention 起算与恢复边界已完成 G2 数据设计评审；实际 migration 属 G2A 后 S4，尚未开始。
+- Desktop SQLCipher v8 migration、64 MiB 单 Artifact 上限、七天 retention 起算与恢复边界已在 S4 实现并通过迁移/reopen/TTL/delete 验证；native save/CSP 仍属于后续 S6-S8 安全切片。
 - 真实 MiniMax 调用保持关闭；如需启用，另行取得费用和 provider activation 批准。
 
 ## 7. 当前 Gate 结论
@@ -103,4 +103,4 @@ G2 结论：`APPROVED`，只授权 `yijie-contracts` S1/S2。真实 source/gener
 - G1：PASS，场景、AC、受影响仓库、最高 contract impact 和主要风险已识别。
 - G2：`PASS`，Product/Design、Technical/Contracts、Security/Data 与测试计划已由 Owner 明确批准；只允许进入 Contracts S1/S2。
 - G2A：`PASS`，Contracts `ea48fe190e18afba728712d1e2cc79cda57f581b`、Host pin `dea84d0768ebc017b7ee5faedab7f9a49ce74875` 与 Desktop pin `96094419d963745529ed0fa246919089e659f20d` 已满足真实 generate、双 breaking、semantic/consumer review 与不可变 pin 条件。批准依据是用户本轮给出的条件授权与实际证据，不声称 Codex 是独立人工 Reviewer。
-- G3-G6：未开始；Host/Desktop 与真实 provider 保持关闭。
+- G3：对 S3/S4 原子切片已通过；G4-G6 仍未通过。Host/Desktop master/synthetic flags 默认关闭，真实 provider 继续关闭。
