@@ -4,7 +4,7 @@ feature:
   id: "FEAT-128"
   slug: "structured-chat-artifacts"
   title: "对话流结构化 Artifact 展示与操作"
-  status: "G3 passed only for local-only S3/S4/S5; S6A passed as a separate Desktop-native slice; S6B-S11 pending; real providers closed"
+  status: "G3 passed only for local-only S3/S4/S5; S6A and S6B passed as separate Desktop slices; S7-S11 pending; real providers closed"
   created_at: "2026-08-20"
   updated_at: "2026-08-20"
   requirement_owner: "段成威"
@@ -26,6 +26,7 @@ repositories:
     baseline_full_commit: "3d6988daa7a36b24bb2e86308e4cc7213c967426"
     s6_readiness_baseline_full_commit: "5ab7e5ada0a728ae4d6e821b46a7778bda0cbb0b"
     s6a_governance_baseline_full_commit: "4d177da0a52b29ab5278ee9178b7c187c39b43fe"
+    s6b_governance_baseline_full_commit: "668221b31340b923d715ce37c305aef17536b518"
     initial_worktree: "clean before FEAT-128 package creation"
   - name: "yijie-contracts"
     role: "authoritative v3 Artifact event/resource and report document contracts"
@@ -51,6 +52,7 @@ repositories:
     s5_full_commit: "7548ea8aeacfd7274f1107786ce48ddc6789cd45"
     s6_readiness_pattern_full_commit: "2b854b40379a207c19bf37fc5bc64266553c5df1"
     s6a_full_commit: "8b99849d418a3ef226f4133128f1ac22a438f9d5"
+    s6b_full_commit: "4a8dce6a6526e37052941f6dbb921ba2486e109f"
     initial_worktree: "clean"
   - name: "yijie-codex"
     role: "read-only upstream Runtime authority and imageGeneration capability evidence"
@@ -78,6 +80,7 @@ immutable_references:
     - "S4 yijie-desktop@09220dd8319cfb8ec0c4d1531514bb5169107983"
     - "S5 yijie-desktop@7548ea8aeacfd7274f1107786ce48ddc6789cd45"
     - "S6A yijie-desktop@8b99849d418a3ef226f4133128f1ac22a438f9d5"
+    - "S6B yijie-desktop@4a8dce6a6526e37052941f6dbb921ba2486e109f"
   readiness_documents:
     - "S6-READINESS yijie-desktop Pattern 1.1.0@2b854b40379a207c19bf37fc5bc64266553c5df1 (docs only; no S6 implementation)"
   release_artifacts: []
@@ -90,7 +93,8 @@ gates:
   G3_slice_complete: "passed on 2026-08-20 for S3 Host and S4/S5 Desktop foundations; all stayed in planned scope and passed their local full gates"
   S6_readiness: "passed for documentation and Owner boundary approval only on 2026-08-20; authorizes S6A coding, does not add S6 to G3, and does not prove commands/protocol/CSP/save/renderer implementation"
   S6A_slice: "passed on 2026-08-20 at yijie-desktop@8b99849d418a3ef226f4133128f1ac22a438f9d5 as a separate Desktop-native boundary slice; does not expand G3 or pass G4"
-  G4_code_complete: "pending - S6B-S11 renderer, vertical, visual, accessibility, performance and independent review slices are not complete"
+  S6B_slice: "passed on 2026-08-20 at yijie-desktop@4a8dce6a6526e37052941f6dbb921ba2486e109f as a separate ready-image component slice; does not expand G3 or pass G4, and runtime visual/vertical evidence remains pending"
+  G4_code_complete: "pending - S7-S11 video/file/report, vertical, runtime visual, performance and independent review slices are not complete"
   G5_production_ready: "production subchecks N/A for current local-only scope; gate NOT PASSED"
   G6_delivery_complete: "deployment/observation subchecks N/A for current local-only scope; gate NOT PASSED"
 
@@ -107,7 +111,7 @@ owner_decision_capture:
     "DEC-128-010": "Approve"
     "DEC-128-011": "Modify"
   provider_gate: "Approve - Keep closed"
-  gate_effect: "G2A authorized S3/S4, and later explicit user instructions authorized S5 and S6A as bounded Desktop slices. S3-S5 are complete at immutable local commits and G3 is passed only for those slices. S6A is separately complete at an immutable local commit; S6B-S11 and every real provider remain closed or pending."
+  gate_effect: "G2A authorized S3/S4, and later explicit user instructions authorized S5, S6A and S6B as bounded Desktop slices. S3-S5 are complete at immutable local commits and G3 is passed only for those slices. S6A/S6B are separately complete at immutable local commits; S7-S11 and every real provider remain closed or pending."
 
 g2_approval:
   decision: "APPROVED"
@@ -142,7 +146,7 @@ g3_record:
   desktop_s5_commit: "7548ea8aeacfd7274f1107786ce48ddc6789cd45"
   evidence: "Host contract-check/lint/test/runtime-test; S4 Desktop generate-check/lint/test/build/docs-build; and S5 Desktop focused RED/GREEN tests plus make lint/test/build, pnpm docs:build and diff checks all passed; diffs and clean worktrees checked"
   scope: "S3 local Host lifecycle/staging/resource/synthetic foundation, S4 Desktop SQLCipher/native transfer/history/private IPC, and S5 Desktop provider-neutral reducer/store/generic metadata shell only"
-  excluded: "S6A/S6B-S11 from the G3 decision itself; UI/E2E/review, real provider/tool activation, paid calls, tag, push, release, deployment and production"
+  excluded: "S6A/S6B/S7-S11 from the G3 decision itself; vertical/E2E/review, real provider/tool activation, paid calls, tag, push, release, deployment and production"
 
 s6_readiness:
   decision: "APPROVED FOR S6A CODING ONLY; PASS FOR DOCUMENTATION, NOT IMPLEMENTATION"
@@ -161,7 +165,7 @@ s6_readiness:
     - "chat_save_artifact_image_v1"
   allowed_config_delta: "append yijie-artifact-preview: to existing img-src only"
   implementation_status: "HISTORICAL READINESS RECORD - the readiness commits contained no implementation; S6A was subsequently implemented at 8b99849d418a3ef226f4133128f1ac22a438f9d5"
-  next_slice: "S6B renderer is the next candidate after S6A immutable PASS, but remains a separate unstarted slice requiring explicit execution"
+  next_slice: "HISTORICAL - S6B was the next candidate after S6A and is now separately complete at 4a8dce6a6526e37052941f6dbb921ba2486e109f"
   stop_conditions: "new dependency/plugin/capability/permission, DB migration, Contracts/Host/pin drift, generic asset/filesystem/shell protocol, external origin, bytes/base64/digest/Host href/path/token in Vue/Pinia/DOM/log/snapshot, or inability to stay inside the frozen boundary"
   gate_effect: "G3 remains PASSED FOR S3/S4/S5 only; G4 remains pending"
   independence_note: "Owner conclusions are captured from the user's direct instruction; Codex audit is not represented as independent human approval."
@@ -181,7 +185,25 @@ s6a_record:
   implementation_digests: "artifact.rs 0cb51f7158503d21f08cdf028e570391cedca37e13177dce2457779c10af98a4; worker.rs 0cc60bea06a27c770628fb4b3b08f474aa6a34228540e49c947eee7ecd8132a5; ipc.rs 8cbea90459cbfe2857355c5732cc3e9b3549180cf98d1cfc7c4a516a64bfc2fb; application.rs b96ecfbbbfa5a87cd398ff2487c77dc9e8e6192f447eecf5c9bed5f522aac547; mod.rs 6ea940c2129a2b08039eb121ae95f9790667b207b2a79c25d7560ab23b1f4474"
   unchanged: "Contracts full_commit/source SHA/fixture pin/version/operations/schemas, Host, public protocol, dependencies/lockfiles, plugins, capabilities/permissions and SQLCipher migrations"
   excluded: "Vue components/pages, renderer/lightbox/zoom UX, S6B-S12, real provider/tool, push, PR, tag, release and deployment"
-  next_slice: "S6B TS/Vue image renderer is unstarted and must consume the existing typed client/opaque preview URL without native/config drift"
+  next_slice: "HISTORICAL - S6B consumed the existing typed client/opaque preview URL without native/config drift and is now separately complete"
+  gate_effect: "G3 remains PASSED FOR S3/S4/S5 only; G4 remains pending"
+
+s6b_record:
+  decision: "PASSED AS A SEPARATE SLICE; NOT ADDED TO G3"
+  recorded_at: "2026-08-20"
+  recorder: "Codex execution evidence under the user's explicit S6B instruction"
+  desktop_baseline_commit: "8b99849d418a3ef226f4133128f1ac22a438f9d5"
+  desktop_commit: "4a8dce6a6526e37052941f6dbb921ba2486e109f"
+  governance_baseline_commit: "668221b31340b923d715ce37c305aef17536b518"
+  contracts_full_commit: "ea48fe190e18afba728712d1e2cc79cda57f581b"
+  host_s3_commit: "4017785adb08e1114781d3d844e9a10a683fa933"
+  scope: "ready-image-only Vue renderer, fresh opaque inline/lightbox URLs, accessible dialog with Escape/focus return/focus constraint, finite 100/125/150/200 percent zoom, content-free native-save feedback, lease cleanup and stale-response isolation"
+  test_first: "expected RED: focused image component suite could not resolve the not-yet-created ChatArtifactImage.vue; focused GREEN: 3 files/12 tests covering non-image/non-ready, load/error/expiry/retry, fresh URL, release/stale response, save outcomes/deduplication, keyboard/focus/zoom, axe/reduced-motion and sensitive-data negative assertions"
+  final_evidence: "pnpm lint PASS; pnpm test PASS with 43 files/308 tests; make build PASS; pnpm docs:build PASS; git diff --check PASS; exact 7-file scope and clean worktree audited"
+  visual_evidence: "component axe and reduced-motion checks PASS; real Tauri light/dark/viewport/200 percent runtime visual matrix NOT RUN because page/vertical wiring was outside the authorized S6B directories; deferred to S10"
+  unchanged: "src-tauri, tauri.conf.json, private schema, three S6A commands, Contracts/Host/immutable pin, consumer digests/checkers, dependencies/lockfiles, plugins, capabilities/permissions, migrations, pages and stores"
+  excluded: "video/file/report renderers, Chat page/vertical integration, S7-S12, real provider/tool, push, PR, tag, release and deployment"
+  next_slice: "S7-READINESS docs/read-only audit is the next candidate; direct video implementation remains closed"
   gate_effect: "G3 remains PASSED FOR S3/S4/S5 only; G4 remains pending"
 
 documents:

@@ -2,20 +2,21 @@
 
 > 本报告只记录实际执行或可复核结果。Owner 决策来自用户的直接指令；Codex 负责执行、核对和记录，
 > 不把自身描述成独立人工 Reviewer。G2A PASS 只证明契约与 downstream exact pin 已就绪，不证明
-> Host/Desktop S3/S4/S5 与独立 S6A native preview/save boundary 以外的 type renderer、端到端或真实 provider 能力已经存在。
+> Host/Desktop S3/S4/S5、独立 S6A native boundary 与独立 S6B image renderer 以外的 type renderer、端到端或真实 provider 能力已经存在。
 
 ## 1. 验证上下文
 
 | Repository | Branch | Evidence commit | FEAT-128 实际范围 | 日期 |
 |---|---|---|---|---|
-| `yijie` | `feat/feat-128-structured-chat-artifacts` | 本文档最终提交 | G2/G2A + S3/S4/S5 G3 evidence + S6 readiness/S6A evidence；不扩 G3 | 2026-08-20 |
+| `yijie` | `feat/feat-128-structured-chat-artifacts` | 本文档最终提交 | G2/G2A + S3/S4/S5 G3 evidence + S6 readiness/S6A/S6B evidence；不扩 G3 | 2026-08-20 |
 | `yijie-contracts` | `feat/feat-128-structured-chat-artifacts` | `ea48fe190e18afba728712d1e2cc79cda57f581b` | S1/S2 authoritative source/generated/fixtures/review | 2026-08-20 |
 | `yijie-agent-host` | `feat/feat-128-structured-chat-artifacts` | pin `dea84d0768ebc017b7ee5faedab7f9a49ce74875`; S3 `4017785adb08e1114781d3d844e9a10a683fa933` | exact pin + local Host v3 lifecycle/staging/resource/synthetic foundation | 2026-08-20 |
-| `yijie-desktop` | `feat/feat-128-structured-chat-artifacts` | initial Pattern `e97b2dabd724af856b4041e23b24437ec2f5dfc3`; pin `96094419d963745529ed0fa246919089e659f20d`; G2A record `35efa1475af4679b5974663593831d07759c3728`; S4 `09220dd8319cfb8ec0c4d1531514bb5169107983`; S5 `7548ea8aeacfd7274f1107786ce48ddc6789cd45`; S6 readiness `2b854b40379a207c19bf37fc5bc64266553c5df1`; S6A `8b99849d418a3ef226f4133128f1ac22a438f9d5` | Pattern 1.1.0 + pin + S4/S5 + independent S6A native preview/save boundary；无 renderer/UI | 2026-08-20 |
+| `yijie-desktop` | `feat/feat-128-structured-chat-artifacts` | initial Pattern `e97b2dabd724af856b4041e23b24437ec2f5dfc3`; pin `96094419d963745529ed0fa246919089e659f20d`; G2A record `35efa1475af4679b5974663593831d07759c3728`; S4 `09220dd8319cfb8ec0c4d1531514bb5169107983`; S5 `7548ea8aeacfd7274f1107786ce48ddc6789cd45`; S6 readiness `2b854b40379a207c19bf37fc5bc64266553c5df1`; S6A `8b99849d418a3ef226f4133128f1ac22a438f9d5`; S6B `4a8dce6a6526e37052941f6dbb921ba2486e109f` | Pattern 1.1.0 + pin + S4/S5 + independent S6A native boundary + independent ready-image renderer；无 page/vertical integration | 2026-08-20 |
 | `yijie-codex` | `develop` | `0ce5902ed400866be0196886bb78f693a004d68d` | read-only Runtime authority | 2026-08-20 |
 
 没有 tag、push、契约发布、真实 provider 调用、云资源、部署或生产流量。Host S3 与 Desktop S4 均默认
-关闭；Desktop S6A 已有 image-only custom protocol、native preview/save 与精确 CSP 增量，但仍没有 type-specific renderer；Host 没有真实 provider producer。
+关闭；Desktop S6A 已有 image-only custom protocol/native preview/save，S6B 已有 reusable image component/lightbox/save UX，
+但没有 Chat page/跨进程 vertical integration；Host 没有真实 provider producer。
 
 ## 2. Gate 时间线
 
@@ -33,7 +34,8 @@
 | G3 S3/S4/S5 | PASS | planned scope、tests/build/docs、diff 与 clean worktrees | G3 scope 保持不变；G4 仍 pending |
 | S6-READINESS | PASS FOR DOCS ONLY | Desktop Pattern 1.1.0 + private IPC/Tauri/CSP/SQLCipher/S5 audit + Owner capture | 只授权下一编码切片 S6A；不代表实现或 G3/G4 |
 | S6A | PASS AS SEPARATE SLICE | Desktop `8b99849d418a3ef226f4133128f1ac22a438f9d5` + RED/GREEN + focused/full gates + diff/clean review | native boundary 已形成；不并入 G3，不代表 renderer 或 G4 |
-| S6B-S11 | NOT RUN | 无对应实现 diff | S6B 技术前置已满足，但仍须独立执行；不得写成完成 |
+| S6B | PASS AS SEPARATE SLICE | Desktop `4a8dce6a6526e37052941f6dbb921ba2486e109f` + missing-component RED + 12 focused/full 308 tests + axe/build/docs/diff/scope review | reusable ready-image UI 已形成；不并入 G3，不代表 page/E2E/visual runtime 或 G4 |
+| S7-S11 | NOT RUN | 无对应实现 diff | 下一候选只允许先做 S7-READINESS；不得写成视频/文件/report/vertical 完成 |
 | S12 real producers | BLOCKED | 无 provider authority/付费授权 | 保持关闭 |
 
 ## 3. Contracts 不可变候选
@@ -115,6 +117,20 @@ synthetic/real provenance 与 activation gate。
 | Y-S6A-TEST | yijie | `pnpm test` | 0 | PASS | 1/1 repository manifest test passed |
 | Y-S6A-SHELL | yijie | `bash -n scripts/*.sh docs/dev/codex-feature-delivery/scripts/*.sh` | 0 | PASS | shell syntax 通过 |
 | Y-S6A-DIFF | yijie | `git diff --check` | 0 | PASS | 仅 07/08/10/feature.yaml，whitespace check 通过 |
+| D-S6B-RED | Desktop | `pnpm exec vitest run src/components/chat/ChatArtifactImage.test.ts` before implementation | 1 | EXPECTED RED | 新测试无法解析尚不存在的 `ChatArtifactImage.vue`；随后才实现 |
+| D-S6B-FOCUSED | Desktop | `pnpm exec vitest run src/components/chat/ChatArtifactImage.test.ts src/components/chat/ChatArtifactShell.test.ts src/icons/registry.test.ts` | 0 | PASS | 3 files / 12 tests；ready-only、fresh URL、load/error/expired、release/stale、save、focus/zoom、axe/reduced-motion 与敏感数据负断言 |
+| D-S6B-LINT | Desktop | `pnpm lint` | 0 | PASS | ESLint + vue-tsc 通过；public contract/checker 仍固定 `ea48fe...` |
+| D-S6B-TEST | Desktop | `pnpm test` | 0 | PASS | contract generate/check PASS；43 files / 308 tests 全通过 |
+| D-S6B-BUILD | Desktop | `make build` | 0 | PASS | Vue typecheck + production Vite build 通过 |
+| D-S6B-DOCS | Desktop | `pnpm docs:build` | 0 | PASS | Accepted Pattern 1.1.0 VitePress build 通过 |
+| D-S6B-DIFF | Desktop | `git diff --check` + staged scope audit | 0 | PASS | 7-file components/chat + icon diff；无 src-tauri/contracts/checker/dependency/lockfile/page/store 差异 |
+| D-S6B-VISUAL | Desktop | real Tauri light/dark/viewport/200% runtime matrix | N/A | NOT RUN | S5 list 尚未做 page/vertical wiring，本切片未获准改 pages；组件 axe/reduced-motion PASS，真实视觉证据留给 S10 |
+| Y-S6B-PACKAGE | yijie | `check-feature-package.sh --gate G3` + `--strict` | 0 | PASS | G3 文档范围与全包结构/未完成标记通过；G3 仍只包含 S3/S4/S5 |
+| Y-S6B-YAML | yijie | unique-key parse + exact G3/S6B/Contracts/G4 assertions | 0 | PASS | S6B full SHA/separate PASS、Contracts `ea48fe...`、G4 pending 均精确 |
+| Y-S6B-LINT | yijie | `pnpm lint` | 0 | PASS | 10 repository manifest 与 central Contract First governance 通过 |
+| Y-S6B-TEST | yijie | `pnpm test` | 0 | PASS | 1/1 repository manifest test passed |
+| Y-S6B-SHELL | yijie | `bash -n scripts/*.sh docs/dev/codex-feature-delivery/scripts/*.sh` | 0 | PASS | shell syntax 通过 |
+| Y-S6B-DIFF | yijie | `git diff --check` | 0 | PASS | 仅 07/08/10/feature.yaml，whitespace check 通过 |
 
 一次 `pnpm lint` 曾与 `pnpm test` 并行执行，因仓库 `check-generated` 临时替换 generated 目录而产生
 瞬时失败；改为仓库要求的顺序执行后通过，且 immutable commit 上再次通过。它是命令并发冲突，
@@ -124,12 +140,16 @@ S6A 另有一次实现期 `pnpm lint` 因新测试 mock 的 tuple 签名错误�
 `D-S6A-PIN-RED` 则是 checker 正确执行 fail-closed：用户随后明确批准最小例外，才刷新 Desktop 内部
 consumer implementation/readiness digests。该例外不改变公共 Contracts pin 或 wire/schema 语义。
 
+S6B 实现期 focused 测试曾先暴露 3 个问题（空节点断言、Naive focus sentinel、axe `aria-hidden-focus`），随后改为
+明确的 dialog Tab 约束与焦点归还并通过。`pnpm lint` 也先后检出 unused helper（exit 1）和测试 mock/nullable
+类型（exit 2）；修正后按用户要求从头串行执行五条最终命令，全部 exit 0。上述迭代均未修改 native boundary。
+
 ## 5. Downstream pin 证据
 
 | Consumer | Pin commit | Pin 内容 | 结论 |
 |---|---|---|---|
 | Agent Host | pin `dea84d0768ebc017b7ee5faedab7f9a49ce74875`; implementation `4017785adb08e1114781d3d844e9a10a683fa933` | Contracts `0.4.0` identities + v3 snapshots/types + implementation conformance；`EXC-128-001` | S2P/S3 PASS |
-| Desktop | pin `96094419d963745529ed0fa246919089e659f20d`; S4 `09220dd8319cfb8ec0c4d1531514bb5169107983`; S5 `7548ea8aeacfd7274f1107786ce48ddc6789cd45`; readiness `2b854b40379a207c19bf37fc5bc64266553c5df1`; S6A `8b99849d418a3ef226f4133128f1ac22a438f9d5` | Contracts source/fixture identities unchanged；S6A 仅刷新修改过的 5 个 Desktop implementation/readiness SHA/checker constants，并消费同一 `ea48fe...` public pin | S2P/S4/S5 PASS；S6 readiness docs PASS；S6A separate PASS |
+| Desktop | pin `96094419d963745529ed0fa246919089e659f20d`; S4 `09220dd8319cfb8ec0c4d1531514bb5169107983`; S5 `7548ea8aeacfd7274f1107786ce48ddc6789cd45`; readiness `2b854b40379a207c19bf37fc5bc64266553c5df1`; S6A `8b99849d418a3ef226f4133128f1ac22a438f9d5`; S6B `4a8dce6a6526e37052941f6dbb921ba2486e109f` | Contracts source/fixture identities unchanged；S6A 的既有 internal implementation pins 未再刷新；S6B 仅消费 typed client/opaque URL | S2P/S4/S5 PASS；S6 readiness docs PASS；S6A/S6B separate PASS |
 
 Desktop fixture Git tree OIDs：event v3 `21de31ceb65900bcf38bc7fe171de8238dfa30dc`、resources
 `f447129c08b9b39231e33698afc3f2fd875d6b14`、Host v3
@@ -149,13 +169,13 @@ S6A 最终 Desktop implementation digests：`artifact.rs` `0cb51f7158503d21f08cd
 | AC-001/002/006/008/009 contract portions | CONTRACT PASS | lifecycle/report/resource/ACK/version/negative fixtures 已自动验证 |
 | AC-011 contract fixture portion | CONTRACT PASS | image/video/file/report 四类 synthetic canonical fixtures 已形成 |
 | AC-001/002 S5 UI projection portions | S5 FOUNDATION PASS | 8-state monotonic reducer、four-kind stable identity/order、duplicate idempotency、generic state shell 与 fail-closed conflicts 已单元/组件验证 |
-| AC-003 image preview/save security boundary | S6A NATIVE PASS / UI NOT RUN | 3 exact commands、opaque one-shot protocol、双次 authority validation、atomic native save 与精确 CSP 已验证；S6B renderer 未开始 |
-| AC-004/005/006 Desktop type renderer behavior | NOT RUN | S7-S9 未开始；S6B image renderer 同样未开始 |
+| AC-003 image preview/save security boundary | S6A NATIVE PASS / S6B COMPONENT PASS / E2E NOT RUN | 3 exact commands、opaque one-shot protocol、双次 authority validation、atomic native save；ready-only UI、fresh inline/lightbox URL、release/stale isolation 与 content-free save feedback 已验证；page/runtime visual 待 S10 |
+| AC-004/005/006 Desktop type renderer behavior | NOT RUN | video/file/report S7-S9 未开始 |
 | AC-007 persistence/history/retention | S4/S5 FOUNDATION PASS | v8 migration、SQLCipher BLOB、metadata history、168h TTL/receipt/delete/reopen + history replay/store dedupe 已验证；跨进程 UI integration 仍待 S10 |
 | AC-008 runtime auth/integrity/ACK | S3/S4 FOUNDATION PASS | owner-only Host resource、MIME/size/digest/magic、commit 后 ACK 与 replay 已验证；E2E/error UI 待 S10 |
 | AC-009 Host dual route + old/new matrix | PARTIAL PASS | v1/v2 equality/pins + 实际 v3 Host route 均通过；mixed-version E2E 待 S10 |
-| AC-010/NFR-002 generic shell portion | S5 FOCUSED PASS | semantic tokens、Naive UI/YjIcon、aria-live/busy/progress/focus、reduced-motion CSS 与 axe component test 通过；visual matrix/performance/runtime evidence 仍待 S10 |
-| AC-011 local walking skeleton | PARTIAL | 四类 strict-local Host producer 已实现；Desktop renderer/vertical smoke 未运行 |
+| AC-010/NFR-002 generic/image component portions | S5/S6B FOCUSED PASS | semantic tokens、Naive UI/YjIcon、aria-live/busy/progress/focus、lightbox focus/keyboard、finite zoom、reduced-motion 与 axe 通过；visual matrix/performance/runtime evidence 仍待 S10 |
+| AC-011 local walking skeleton | PARTIAL | 四类 strict-local Host producer 与 image reusable renderer 已实现；Chat page/跨进程 vertical smoke 未运行 |
 | AC-012/real provider | BLOCKED | capability 未证、未授权付费调用 |
 
 ## 7. 专项验证状态
@@ -166,8 +186,8 @@ S6A 最终 Desktop implementation digests：`artifact.rs` `0cb51f7158503d21f08cd
 | Consumer exact pin/conformance | PASS | S3/S4 使用相同 immutable identities |
 | Host v3 auth/range/replay/staging | S3 PASS | S10 仍需跨进程/restart walking skeleton |
 | Desktop SQLCipher/transfer/cleanup | S4 PASS | S10 仍需 Host+Desktop integrated lifecycle |
-| Image native preview/save security | S6A PASS at `8b99849d418a3ef226f4133128f1ac22a438f9d5` | S6B renderer/visual integration 仍未运行 |
-| UI/visual/a11y/performance | S5 generic unit/component/axe PASS；visual/runtime/performance NOT RUN | S6B-S10 |
+| Image preview/save | S6A native PASS at `8b99849d418a3ef226f4133128f1ac22a438f9d5`; S6B component/a11y PASS at `4a8dce6a6526e37052941f6dbb921ba2486e109f` | page/vertical/runtime visual integration 仍待 S10 |
+| UI/visual/a11y/performance | S5 generic + S6B image unit/component/axe/reduced-motion PASS；runtime visual/performance NOT RUN | S10 |
 | Local synthetic E2E | NOT RUN | S10 |
 | MiniMax/video/file/report real producer | BLOCKED | S12，需单独 authority/eval |
 | Deployment/production rollback | N/A current local-only scope; gates NOT PASSED | G5/G6 |
@@ -196,7 +216,9 @@ slice 的未验证范围，未被降级为已接受风险。
   已 capture 为 S6A coding ready，S6B 等待 S6A PASS。本结论仅授权范围，不声称 Codex 是独立人工 Reviewer。
 - 用户随后明确执行 S6A，并在 checker 正确阻断 stale implementation digest 后另行批准最小 Desktop consumer digest
   例外；S6A 已形成独立 PASS，但没有追加到历史 G3 决策。
-- 这些授权已用于按序完成 local-only S3/S4/S5 与独立 S6A；G3 只对前三个原子切片通过，不允许 real provider、付费调用、
+- 用户再明确执行严格 TS/Vue-only 的 S6B；它在 `4a8dce6a6526e37052941f6dbb921ba2486e109f`
+  形成独立 PASS，同样没有追加到历史 G3 决策，也没有修改 S6A/native/config 或公共 pin。
+- 这些授权已用于按序完成 local-only S3/S4/S5 与独立 S6A/S6B；G3 只对前三个原子切片通过，不允许 real provider、付费调用、
   tag、push、publish、release、production 或直接宣称 G4-G6 通过。
 
 ## 10. 残余风险与停止条件
@@ -204,8 +226,8 @@ slice 的未验证范围，未被降级为已接受风险。
 | Item | 当前边界 | 停止/重开条件 |
 |---|---|---|
 | Host/Desktop cross-process lifecycle | 两端 isolated conformance 已完成 | S10 integration 出现 replay、TTL、ACK 或 scope 偏差时重开对应 slice/G2 |
-| Desktop image preview/save/CSP | S6A 已实现 image-only opaque protocol、3 exact commands、原生 save、`img-src` 单项增量；renderer/UI 未运行 | S6B 若需要 plaintext、bytes/path to Vue、新依赖/plugin/capability/migration、native/config 改动、generic protocol 或外部 origin，立即停止并重开 Security/Data review |
-| Preview handle/recovery | 30s one-shot、main WebView/process/context/session bound；关闭/context/logout/过期/restart 路径已测试 | S6B 出现跨 context/session replay、CORS/oracle、handle 未 release 或持久化/复用 URL 时阻断 |
+| Desktop image preview/save/CSP | S6A 已实现 native boundary；S6B 只消费 typed client，实现 ready-only component/lightbox/save UX，未触碰 native/config | S10 page/runtime 集成若需要 plaintext、bytes/path to Vue、新依赖/plugin/capability/migration、native/config 改动、generic protocol 或外部 origin，立即停止并重开 Security/Data review |
+| Preview handle/recovery | 30s one-shot、main WebView/process/context/session bound；S6B 对 inline/lightbox 分别取 fresh URL，并覆盖 close/unmount/error/context-stale release | S10 若出现跨 context/session replay、CORS/oracle、handle 持久化/复用或 lease 泄漏时阻断 |
 | Native save crash residue | 正常取消/失败清除 temp；崩溃/断电可能留下 user-selected directory 内的隐藏 `0600` app temp，不声称零残留 | 若需持久化目标路径或扫描任意目录才能恢复，停止并重开 Data review |
 | Synthetic video playability | S3 fixture 只有 deterministic `ftyp/free/mdat` boxes，无 `moov`，只证明 MP4 resource/integrity transport | S7/S10 必须换用可播放且可 seek 的无版权本地 fixture，并完成 WebView controls/range smoke；此前不得声称 video preview PASS |
 | Unknown report section | contract 限 `required=false`、128 KiB、depth 8、opaque | renderer 遍历/执行 unknown payload 即阻断 |
@@ -214,7 +236,7 @@ slice 的未验证范围，未被降级为已接受风险。
 
 ## 11. 制品与工作树完整性
 
-- Contracts、Host、Desktop S3/S4/S5、Desktop readiness 与 S6A commits 均为完整 40-character SHA；没有使用 floating branch/tag 作为 pin。
+- Contracts、Host、Desktop S3/S4/S5、Desktop readiness 与 S6A/S6B commits 均为完整 40-character SHA；没有使用 floating branch/tag 作为 pin。
 - 每个仓库在提交后重跑关键门禁；最终应保持 clean worktree。
 - 生成物来自锁定 source/generator；Feature 目录不复制 canonical payload。
 - 没有 `.skip`、`.only`、弱化断言、secret、真实业务数据或付费调用。
@@ -226,6 +248,6 @@ slice 的未验证范围，未被降级为已接受风险。
 - S2P：`PASS`，Host/Desktop exact pin 与 conformance 已形成，业务行为未改变。
 - G2A：`APPROVED`。
 - S3/S4/S5：`PASS`；G3 对这三个切片为 `PASS`。
-- S6-READINESS：`PASS FOR DOCS ONLY`；S6A 随后在 `8b99849d418a3ef226f4133128f1ac22a438f9d5` 独立 `PASS`。
-- Code Complete：否；S6B-S11 尚未开始。
-- 当前状态：`G3 PASS only for S3/S4/S5 / S6A separate PASS / S6B-S11 pending / real providers closed / G4-G6 not passed`。
+- S6-READINESS：`PASS FOR DOCS ONLY`；S6A 在 `8b99849d418a3ef226f4133128f1ac22a438f9d5`、S6B 在 `4a8dce6a6526e37052941f6dbb921ba2486e109f` 分别独立 `PASS`。
+- Code Complete：否；S7-S11 与 S10 vertical/runtime visual 证据尚未开始。
+- 当前状态：`G3 PASS only for S3/S4/S5 / S6A and S6B separate PASS / S7-S11 pending / real providers closed / G4-G6 not passed`。
