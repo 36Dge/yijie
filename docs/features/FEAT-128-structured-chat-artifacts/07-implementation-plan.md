@@ -3,11 +3,11 @@
 ## 1. 实施原则
 
 - G2 已于 2026-08-20 由段成威明确批准，随后先执行 Contracts S1-S2，再只做 S2P exact pin preflight。
-- Feature 总体 `contract-impact = semantic`；G2A 在真实 generate、双基线 breaking、semantic review、immutable commit 和 downstream exact pin 全部通过后获批。随后严格先完成 Host S3、Desktop S4 与本轮明确授权的 Desktop S5；三者均通过 G3 slice gate。S5 自身不改变跨进程、跨仓、跨版本或持久化/重放边界，slice-level `contract-impact = none`。
+- Feature 总体 `contract-impact = semantic`；G2A 在真实 generate、双基线 breaking、semantic review、immutable commit 和 downstream exact pin 全部通过后获批。随后严格先完成 Host S3、Desktop S4 与 Desktop S5；三者均通过 G3 slice gate。S6A 已在独立用户授权下完成 Desktop-private native preview/save boundary，但不扩展 G3，也不改变公共 Contracts/Host/pin。
 - 一次只完成一个可独立验证的行为；不把 v3 协议、媒体存储、native save 和四类 UI 一次混成大 diff。
 - 先建立失败 fixture/测试，再实现最小能力；每个 kind 独立 flag，默认关闭。
 - 不新增云资源、远程 URL、真实付费调用、通用 filesystem/shell capability 或第二套 UI 库。
-- 每个仓库独立提交、PR、pin 和验证；本计划不授权 commit/push/tag/release。
+- 每个仓库独立提交和验证；commit 只按用户逐切片明确授权执行，本计划不自行授权 push/PR/tag/release。
 
 ## 2. 依赖 DAG
 
@@ -20,7 +20,7 @@ S0 Owner G2 approval (PASS)
            -> S3 Host v3 dual route + staging/resource/synthetic producer (PASS)
            -> S4 Desktop v8 migration + native transfer/history/private IPC v3 (PASS)
         -> S5 Desktop shared Artifact state/rendering shell (PASS)
-           -> S6A native image preview/save boundary
+           -> S6A native image preview/save boundary (PASS)
               -> S6B image renderer/lightbox/zoom
            -> S7 video renderer/range/blob/save
            -> S8 file preview/save
@@ -69,6 +69,7 @@ S2 + S3 + S4 + S10
 | Desktop S4 | yijie-desktop | `feat/feat-128-structured-chat-artifacts@09220dd8319cfb8ec0c4d1531514bb5169107983` | SQLCipher v8/native transfer/ACK/TTL/history/private IPC；default off | contract + 10 implementation digests | Client/Data Owner |
 | Consumer UI S5 | yijie-desktop | `feat/feat-128-structured-chat-artifacts@7548ea8aeacfd7274f1107786ce48ddc6789cd45` | provider-neutral reducer/store + generic metadata shell；无 type renderer | same exact pins | Product/Client Owner |
 | S6 readiness docs | yijie-desktop | `feat/feat-128-structured-chat-artifacts@2b854b40379a207c19bf37fc5bc64266553c5df1` | Pattern 1.1.0 冻结 S6A/S6B、preview/save/security boundary；无 code/config diff | same exact pins | Product/Technical/Security/Data Owner |
+| Desktop S6A | yijie-desktop | `feat/feat-128-structured-chat-artifacts@8b99849d418a3ef226f4133128f1ac22a438f9d5` | private schema/client、SQLCipher double validation、opaque one-shot image protocol、native atomic save、精确 `img-src` delta；无 Vue renderer | Contracts full commit/source/fixture identities unchanged；仅刷新 Desktop implementation/readiness digests | Client/Security/Data Owner |
 | Activation | local environment only | clean immutable candidates | synthetic profile evidence | source identities recorded | 段成威 |
 
 实现时必须填写完整 40-character SHA、source digests 和 generator identity；本文短 SHA 只用于阅读，不能作为 pin。
@@ -110,13 +111,13 @@ Repository、branch、base full SHA：从 feature.yaml 与实际 git 命令取�
 | H1/H2 | v3 dual route/event reducer + resource staging/range/synthetic producer | yijie-agent-host | contract-check/lint/test/runtime-test | `4017785adb08e1114781d3d844e9a10a683fa933`；S3 PASS |
 | D1 | pin + v8 migration/native transfer/private IPC | yijie-desktop Rust/schema/domain | migration/Rust/conformance/full Desktop gates | `09220dd8319cfb8ec0c4d1531514bb5169107983`；S4 PASS |
 | D2 | generic shell/state | yijie-desktop TS/Vue | `7548ea8aeacfd7274f1107786ce48ddc6789cd45`；19 focused tests + full lint/test/build/docs/diff PASS | D1；S5 PASS |
-| D3 | S6A native image preview/save boundary | yijie-desktop schema/Rust/narrow domain+api/config | focused RED/GREEN + full Desktop gates | D2 + Pattern 1.1.0 readiness |
+| D3 | S6A native image preview/save boundary | yijie-desktop schema/Rust/narrow domain+api/config | `8b99849d418a3ef226f4133128f1ac22a438f9d5`；focused RED/GREEN + 6 TS/11 Rust focused + full Desktop gates | D2 + Pattern 1.1.0 readiness；S6A PASS |
 | D4 | S6B image renderer/lightbox/zoom/save UX | yijie-desktop TS/Vue only | component/axe/visual + full Desktop gates | D3 immutable PASS |
 | D5-D7 | one commit per video/file/report renderer | yijie-desktop | focused + visual | D4 + per-slice readiness |
 | E1 | deterministic E2E/evidence/review fixes | affected repos + yijie docs | full final gates | all above |
 
-用户的逐轮明确指令已授权并完成 C1/HP/DP/H1-H2/D1/D2 的本地原子 commits；仍未授权 push、PR、tag、
-release、真实 provider 或后续 S6-S12。继续实施前仍需逐仓确认用户已有改动并保持可独立审查。
+用户的逐轮明确指令已授权并完成 C1/HP/DP/H1-H2/D1/D2/D3 的本地原子 commits；仍未授权 push、PR、tag、
+release、真实 provider 或 S6B-S12。继续实施前仍需逐仓确认用户已有改动并保持可独立审查。
 
 ## 8. Slice 完成记录
 
@@ -131,7 +132,8 @@ release、真实 provider 或后续 S6-S12。继续实施前仍需逐仓确认�
 | S5 | `7548ea8aeacfd7274f1107786ce48ddc6789cd45` | provider-neutral identity/status/progress reducer、session/turn/Artifact store、generic metadata shell/list；无 preview/action | RED missing-module evidence；19 focused tests；`make lint/test/build`、`pnpm docs:build`、diff checks PASS | parser-approved metadata only；no dependency/Tauri/CSP/capability/wire drift | PASS |
 | G3 | evidence in 08/feature.yaml | S3/S4/S5 only | owning-repository full gates PASS | planned scope and clean worktrees verified | PASS FOR S3/S4/S5 |
 | S6-READINESS | Desktop Pattern 1.1.0 + yijie governance commits | pure docs audit：private IPC/Tauri/CSP/SQLCipher/S5；freeze S6A/S6B | Desktop docs build + both repos lint/test + governance package/YAML/diff checks | Product/Technical/Security/Data readiness captured；no implementation | PASS FOR READINESS ONLY |
-| S6A/S6B-S11 | N/A | none | NOT RUN | next executable coding slice is S6A only | PENDING |
+| S6A | `8b99849d418a3ef226f4133128f1ac22a438f9d5` | 3 exact private commands、opaque preview handle/protocol、双次 SQLCipher 校验、native atomic save、typed content-free client；无 renderer | RED TS/Rust；6 TS + 11 Rust focused；`pnpm lint/test`、`make build`、`pnpm docs:build`、diff；full Rust 196 pass/3 ignored | 最小例外仅刷新 Desktop implementation/readiness SHA；Contracts `ea48fe...`、source/fixture/protocol 未变；无 UI/dependency/capability/migration | PASS |
+| S6B-S11 | N/A | none | NOT RUN | next candidate is separately authorized S6B; no slice started | PENDING |
 | S12 | N/A | none | BLOCKED | separate real-provider authority required | BLOCKED |
 
 ## 9. 变更控制
@@ -151,18 +153,18 @@ release、真实 provider 或后续 S6-S12。继续实施前仍需逐仓确认�
 |---|---|---|---|
 | 技术负责人 | 段成威 | G2 APPROVED for Contracts S1/S2 | 2026-08-20 |
 | Security/Data Owner | 段成威 | G2 APPROVED for Contracts S1/S2 | 2026-08-20 |
-| Product/Design Owner | 段成威 | FEAT-128 Pattern 1.1.0 Accepted；S6A ready，S6B waits for S6A PASS | 2026-08-20 |
+| Product/Design Owner | 段成威 | FEAT-128 Pattern 1.1.0 Accepted；S6A PASS，S6B 仅作为下一独立切片 | 2026-08-20 |
 | Feature Owner | 段成威 | G2A APPROVED after S1/S2/S2P evidence | 2026-08-20 |
 | Technical Owner | 段成威 | S6A CODING APPROVED within exact schema/3-command/scheme/CSP boundary | 2026-08-20 |
 | Security/Data Owner | 段成威 | S6A CODING APPROVED；no dependency/plugin/capability/migration | 2026-08-20 |
 
-G2、G2A 与 S3/S4/S5 的 G3 slice gate 均已通过。S6-READINESS 只批准下一编码切片 S6A；S6B 等待 S6A
-immutable PASS。真实 provider、tag、push、release、S7-S12 与生产能力继续关闭，G3 不扩展，G4 不通过。
+G2、G2A 与 S3/S4/S5 的 G3 slice gate 均已通过；S6A 也已在独立切片形成 immutable PASS。S6A 不并入
+G3，S6B 尚未启动。真实 provider、tag、push、release、S7-S12 与生产能力继续关闭，G4 不通过。
 
-## 11. 下一条可执行 Codex 指令：S6A
+## 11. 已执行 Codex 指令：S6A（历史证据）
 
-下述指令的 Desktop baseline 为 `2b854b40379a207c19bf37fc5bc64266553c5df1`，并应与
-`feature.yaml.repositories[name=yijie-desktop].s6_readiness_pattern_full_commit` 完全一致。
+下述指令已从 Desktop baseline `2b854b40379a207c19bf37fc5bc64266553c5df1` 执行完成，产出
+`8b99849d418a3ef226f4133128f1ac22a438f9d5`；保留原文用于复核范围，不再作为下一条指令。
 
 ```text
 执行 FEAT-128 / S6A，仅完成 yijie-desktop 图片 native preview/save boundary，不实现 renderer、灯箱或任何 Vue UI。
@@ -206,4 +208,41 @@ feature.yaml，记录真实命令、结果与完整 SHA；S6A 可单独记 PASS�
 
 若需要新依赖/plugin/capability/permission、DB migration、Contracts/Host/pin 漂移、generic protocol、外部 origin、
 把 path/bytes 暴露给 Vue，或无法用现有 SQLCipher/rfd/Tauri boundary 实现，立即停止并报告 blocker，不得扩大范围。
+```
+
+## 12. 下一条候选 Codex 指令：S6B
+
+S6A immutable PASS 已满足 S6B 的技术前置。S6B 仍须由用户作为独立编码切片明确执行；下述 baseline 必须精确为
+`feature.yaml.repositories[name=yijie-desktop].s6a_full_commit`。
+
+```text
+执行 FEAT-128 / S6B，仅实现 yijie-desktop ready image renderer/lightbox/zoom/save UX；不得修改 native boundary。
+
+基线：
+- yijie-desktop HEAD: 8b99849d418a3ef226f4133128f1ac22a438f9d5
+- Contracts pin: ea48fe190e18afba728712d1e2cc79cda57f581b
+- Host S3: 4017785adb08e1114781d3d844e9a10a683fa933
+- G3 仍只包含 S3/S4/S5；S6A 为独立 PASS；G4 pending。
+
+开始前完整阅读 AGENTS.md、FEAT-128 的 03/05/06/07/08/feature.yaml 与 Accepted Pattern 1.1.0，并保护现有工作树。
+测试先行：先为 image ready/non-ready、open/release、load/error/expiry、save saved/cancelled/failed、键盘焦点、
+aria/reduced-motion 与卸载清理补失败的 Vitest/component/axe 测试，再实现最小 GREEN。
+
+只允许修改 yijie-desktop 的 src/components/chat、必要的 TS-only domain/api integration、现有图标/semantic-token 样式与
+对应测试。Vue 只能把 sessionId/turnId/artifactId/contextId 交给既有 typed client，只使用 parser 验证后的
+yijie-artifact-preview URL；每次关闭、切换、卸载或加载失败都必须 release handle。保存只能由明确用户操作调用既有
+chat_save_artifact_image_v1，并仅展示 content-free 状态/稳定错误码。
+
+严格禁止：
+- 修改 src-tauri、tauri.conf.json、private schema、Contracts/Host/immutable pin 或 implementation digests；
+- 新增依赖、plugin、capability/permission、migration、外部 origin 或 generic filesystem/shell/asset protocol；
+- bytes/base64/digest/Host href/绝对路径/token 进入 Vue、Pinia、DOM、日志、telemetry 或 snapshot；
+- 视频/文件/report renderer、真实 provider、S7-S12、push/tag/PR/release，或扩大 G3/声明 G4。
+
+实现 preview card、dialog/lightbox、键盘关闭、焦点归还、有限缩放与 native-save trigger；不得自行 fetch/read preview
+内容，不得持久化或复用已消费/过期 URL。运行 focused RED/GREEN、component/axe/visual matrix 后，依次运行：
+pnpm lint；pnpm test；make build；pnpm docs:build；git diff --check。
+
+若现有 S6A typed client/opaque URL 无法满足 UI、需要任何 native/config/dependency/permission 变化，或发现 path/bytes 泄漏，
+立即停止并报告，不得扩大范围。最终审计 diff/工作树，只有在用户明确授权本切片 commit 时才创建本地原子 commit；不得 push。
 ```
