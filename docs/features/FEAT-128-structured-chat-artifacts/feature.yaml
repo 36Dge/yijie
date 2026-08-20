@@ -4,7 +4,7 @@ feature:
   id: "FEAT-128"
   slug: "structured-chat-artifacts"
   title: "对话流结构化 Artifact 展示与操作"
-  status: "G3 passed only for local-only S3/S4/S5; S6A/S6B separate PASS; S7 readiness READY FOR S7F ONLY; S7F-S11 pending; real providers closed"
+  status: "G3 passed only for local-only S3/S4/S5; S6A/S6B/S7F separate PASS; S7A-S11 pending; real providers closed"
   created_at: "2026-08-20"
   updated_at: "2026-08-20"
   requirement_owner: "段成威"
@@ -28,6 +28,7 @@ repositories:
     s6a_governance_baseline_full_commit: "4d177da0a52b29ab5278ee9178b7c187c39b43fe"
     s6b_governance_baseline_full_commit: "668221b31340b923d715ce37c305aef17536b518"
     s7_readiness_baseline_full_commit: "c1fb407a92e706544e7f6219ba46d4a71cc5d118"
+    s7f_governance_baseline_full_commit: "04864190ee3916061bee0eb12dda8f0d9aa391c1"
     initial_worktree: "clean before FEAT-128 package creation"
   - name: "yijie-contracts"
     role: "authoritative v3 Artifact event/resource and report document contracts"
@@ -41,6 +42,7 @@ repositories:
     baseline_full_commit: "e2f0f5d0e7273331e7e9eaeeb82be15955e94c86"
     pin_only_full_commit: "dea84d0768ebc017b7ee5faedab7f9a49ce74875"
     implementation_full_commit: "4017785adb08e1114781d3d844e9a10a683fa933"
+    s7f_full_commit: "1045dd06534eb72d53eb7ad7b7d18e63c80284f8"
     initial_worktree: "clean"
   - name: "yijie-desktop"
     role: "encrypted Artifact authority, private IPC v3, Chat renderers, preview and native save"
@@ -83,9 +85,10 @@ immutable_references:
     - "S5 yijie-desktop@7548ea8aeacfd7274f1107786ce48ddc6789cd45"
     - "S6A yijie-desktop@8b99849d418a3ef226f4133128f1ac22a438f9d5"
     - "S6B yijie-desktop@4a8dce6a6526e37052941f6dbb921ba2486e109f"
+    - "S7F yijie-agent-host@1045dd06534eb72d53eb7ad7b7d18e63c80284f8"
   readiness_documents:
     - "S6-READINESS yijie-desktop Pattern 1.1.0@2b854b40379a207c19bf37fc5bc64266553c5df1 (docs only; no S6 implementation)"
-    - "S7-READINESS yijie-desktop Pattern 1.2.0@18b17d961ed5991cec55eeb230ea21d91f2fb8ec (docs only; READY FOR S7F only; no S7 implementation)"
+    - "S7-READINESS yijie-desktop Pattern 1.2.0@18b17d961ed5991cec55eeb230ea21d91f2fb8ec (docs-only historical commit; READY FOR S7F only at capture; S7F later passed separately)"
   release_artifacts: []
 
 gates:
@@ -97,8 +100,9 @@ gates:
   S6_readiness: "passed for documentation and Owner boundary approval only on 2026-08-20; authorizes S6A coding, does not add S6 to G3, and does not prove commands/protocol/CSP/save/renderer implementation"
   S6A_slice: "passed on 2026-08-20 at yijie-desktop@8b99849d418a3ef226f4133128f1ac22a438f9d5 as a separate Desktop-native boundary slice; does not expand G3 or pass G4"
   S6B_slice: "passed on 2026-08-20 at yijie-desktop@4a8dce6a6526e37052941f6dbb921ba2486e109f as a separate ready-image component slice; does not expand G3 or pass G4, and runtime visual/vertical evidence remains pending"
-  S7_readiness: "passed for documentation only on 2026-08-20 at yijie-desktop@18b17d961ed5991cec55eeb230ea21d91f2fb8ec; READY FOR S7F ONLY; S7F/S7A/S7B not run; G3 unchanged and G4 pending"
-  G4_code_complete: "pending - S7F-S11 video/file/report, vertical, runtime visual, performance and independent review slices are not complete"
+  S7_readiness: "passed for documentation only on 2026-08-20 at yijie-desktop@18b17d961ed5991cec55eeb230ea21d91f2fb8ec; historical READY FOR S7F ONLY; S7F later passed separately at 1045dd06534eb72d53eb7ad7b7d18e63c80284f8; S7A/S7B not run; G3 unchanged and G4 pending"
+  S7F_slice: "passed on 2026-08-20 at yijie-agent-host@1045dd06534eb72d53eb7ad7b7d18e63c80284f8 as a separate canonical strict-local video fixture conformance slice; does not expand G3 or pass G4"
+  G4_code_complete: "pending - S7A-S11 Desktop video/file/report, vertical, runtime visual, performance and independent review slices are not complete"
   G5_production_ready: "production subchecks N/A for current local-only scope; gate NOT PASSED"
   G6_delivery_complete: "deployment/observation subchecks N/A for current local-only scope; gate NOT PASSED"
 
@@ -119,7 +123,7 @@ owner_decision_capture:
     "DEC-128-014": "Approve at S7-READINESS"
     "DEC-128-015": "Approve at S7-READINESS"
   provider_gate: "Approve - Keep closed"
-  gate_effect: "G2A authorized S3/S4, and later explicit user instructions authorized S5, S6A and S6B as bounded Desktop slices. S3-S5 are complete at immutable local commits and G3 is passed only for those slices. S6A/S6B are separately complete. S7 readiness now authorizes only S7F Host canonical conformance; S7A/S7B/S8-S11 and every real provider remain closed or pending."
+  gate_effect: "G2A authorized S3/S4, and later explicit user instructions authorized S5, S6A, S6B and S7F as bounded slices. S3-S5 are complete at immutable local commits and G3 is passed only for those slices. S6A/S6B/S7F are separately complete. S7A/S7B/S8-S11 and every real provider remain closed or pending."
 
 g2_approval:
   decision: "APPROVED"
@@ -154,7 +158,7 @@ g3_record:
   desktop_s5_commit: "7548ea8aeacfd7274f1107786ce48ddc6789cd45"
   evidence: "Host contract-check/lint/test/runtime-test; S4 Desktop generate-check/lint/test/build/docs-build; and S5 Desktop focused RED/GREEN tests plus make lint/test/build, pnpm docs:build and diff checks all passed; diffs and clean worktrees checked"
   scope: "S3 local Host lifecycle/staging/resource/synthetic foundation, S4 Desktop SQLCipher/native transfer/history/private IPC, and S5 Desktop provider-neutral reducer/store/generic metadata shell only"
-  excluded: "S6A/S6B/S7F-S11 from the G3 decision itself; vertical/E2E/review, real provider/tool activation, paid calls, tag, push, release, deployment and production"
+  excluded: "separate S6A/S6B/S7F and pending S7A-S11 from the G3 decision itself; vertical/E2E/review, real provider/tool activation, paid calls, tag, push, release, deployment and production"
 
 s6_readiness:
   decision: "APPROVED FOR S6A CODING ONLY; PASS FOR DOCUMENTATION, NOT IMPLEMENTATION"
@@ -211,7 +215,7 @@ s6b_record:
   visual_evidence: "component axe and reduced-motion checks PASS; real Tauri light/dark/viewport/200 percent runtime visual matrix NOT RUN because page/vertical wiring was outside the authorized S6B directories; deferred to S10"
   unchanged: "src-tauri, tauri.conf.json, private schema, three S6A commands, Contracts/Host/immutable pin, consumer digests/checkers, dependencies/lockfiles, plugins, capabilities/permissions, migrations, pages and stores"
   excluded: "video/file/report renderers, Chat page/vertical integration, S7-S12, real provider/tool, push, PR, tag, release and deployment"
-  next_slice: "HISTORICAL - S7-READINESS docs/read-only audit is complete; S7F is now the only authorized coding slice"
+  next_slice: "HISTORICAL - S7-READINESS docs/read-only audit and S7F implementation are now complete; S7A remains separately unauthorized"
   gate_effect: "G3 remains PASSED FOR S3/S4/S5 only; G4 remains pending"
 
 s7_readiness:
@@ -233,10 +237,29 @@ s7_readiness:
   s7a_boundary: "planned separate chat-artifact-video-native-v1 schema; exact open/release/save commands; yijie-artifact-video opaque scheme; main WebView/process/context/owner/tenant/session/turn binding; 30min absolute/5min idle; 2 handles/WebView, 1/artifact, 64 requests, 2 reads, 64MiB in-flight; GET/HEAD single Range 200/206/416; native .mp4 atomic save; exact media-src only"
   s7b_boundary: "planned ready-video-only native controls with preload metadata, no autoplay/player library/external origin/browser download/remote playback/PiP, pause-clear-load-release lifecycle and content-free save UX; no poster command in this slice"
   stop_conditions: "Contracts full_commit/tree/source/schema/operation/version or Desktop public pin drift; new dependency/plugin/capability/permission/migration/runtime codec; blob/data/asset/external origin; bytes/path/token to Vue; real provider; scope expansion"
-  implementation_status: "NOT RUN for S7F/S7A/S7B; readiness changed docs only"
-  next_slice: "S7F Host canonical fixture conformance only; S7A waits for S7F immutable PASS; S7B waits for S7A immutable PASS"
-  gate_effect: "G3 remains PASSED FOR S3/S4/S5 only; S6A/S6B remain separate PASS; G4 remains pending"
+  implementation_status: "HISTORICAL READINESS RECORD - readiness changed docs only; S7F was subsequently implemented at 1045dd06534eb72d53eb7ad7b7d18e63c80284f8; S7A/S7B remain NOT RUN"
+  next_slice: "HISTORICAL - S7F is immutable PASS; S7A is the next candidate but requires separate explicit authorization; S7B waits for S7A immutable PASS"
+  gate_effect: "G3 remains PASSED FOR S3/S4/S5 only; S6A/S6B/S7F are separate PASS; G4 remains pending"
   independence_note: "Owner conclusions are captured from the user's direct instruction; Codex audit is not represented as independent human approval."
+
+s7f_record:
+  decision: "PASSED AS A SEPARATE SLICE; NOT ADDED TO G3"
+  recorded_at: "2026-08-20"
+  recorder: "Codex execution evidence under the user's explicit S7F instruction"
+  host_baseline_commit: "4017785adb08e1114781d3d844e9a10a683fa933"
+  host_commit: "1045dd06534eb72d53eb7ad7b7d18e63c80284f8"
+  governance_baseline_commit: "04864190ee3916061bee0eb12dda8f0d9aa391c1"
+  contracts_full_commit: "ea48fe190e18afba728712d1e2cc79cda57f581b"
+  contracts_resource_tree: "f447129c08b9b39231e33698afc3f2fd875d6b14"
+  contract_impact: "semantic producer conformance repair against unchanged immutable public contract"
+  scope: "Host strict-local synthetic video producer now decodes an embedded derived canonical snapshot and verifies exact raw identity; sync/check lock source path, source SHA, resource tree, raw size/SHA and snapshot SHA; bounded Go MP4 audit plus completed manifest/poster/auth/GET/HEAD/Range tests"
+  test_first: "expected RED: current output was 81 bytes with SHA-256 b4bed74c1214ad307baa3ffe766ac139782991586adc26a3771c23cf08b8599e instead of canonical 1642/96ea070c..., and structure failed because moov was absent"
+  green_evidence: "focused session canonical identity/box/sample/lifecycle tests PASS; focused app default-off/strict-local/provider isolation and video GET/HEAD/closed-open-suffix Range/416/multi-range/owner-session tests PASS"
+  final_evidence: "make contract-check PASS; make lint PASS; make test PASS; make runtime-test PASS; git diff --check PASS; exact 7-file allowed Host scope and clean worktree audited"
+  unchanged: "Contracts files/full_commit/resource tree/source/schema/operation/version, Desktop, public wire, dependencies, Runtime codec, provider/tool, cloud/network, Tauri/CSP/capabilities and long-term storage"
+  excluded: "Desktop S7A/S7B, S8-S12, real provider/tool, push, PR, tag, release and deployment"
+  next_slice: "S7A is eligible by predecessor only but remains NOT AUTHORIZED; separate explicit S7A instruction is required"
+  gate_effect: "G3 remains PASSED FOR S3/S4/S5 only; S6A/S6B/S7F are separate PASS; G4 remains pending"
 
 documents:
   brief: "00-feature-brief.md"

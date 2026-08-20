@@ -22,7 +22,7 @@ S0 Owner G2 approval (PASS)
         -> S5 Desktop shared Artifact state/rendering shell (PASS)
            -> S6A native image preview/save boundary (PASS)
               -> S6B image renderer/lightbox/zoom (PASS)
-           -> S7F Host canonical playable/seekable fixture conformance
+           -> S7F Host canonical playable/seekable fixture conformance (PASS)
               -> S7A Desktop native video Range/save boundary
                  -> S7B Vue native-controls video renderer
            -> S8 file preview/save
@@ -76,6 +76,7 @@ S2 + S3 + S4 + S10
 | Desktop S6A | yijie-desktop | `feat/feat-128-structured-chat-artifacts@8b99849d418a3ef226f4133128f1ac22a438f9d5` | private schema/client、SQLCipher double validation、opaque one-shot image protocol、native atomic save、精确 `img-src` delta；无 Vue renderer | Contracts full commit/source/fixture identities unchanged；仅刷新 Desktop implementation/readiness digests | Client/Security/Data Owner |
 | Desktop S6B | yijie-desktop | `feat/feat-128-structured-chat-artifacts@4a8dce6a6526e37052941f6dbb921ba2486e109f` | ready image inline preview、fresh-handle lightbox、100/125/150/200% zoom、native-save UX、lease/stale-response/focus/a11y tests；无 native/config diff | Contracts/Host/pin、S6A commands/schema/config/digests 均不变 | Product/Client Owner |
 | S7 readiness docs | yijie-desktop | `feat/feat-128-structured-chat-artifacts@18b17d961ed5991cec55eeb230ea21d91f2fb8ec` | Pattern 1.2.0 冻结 canonical fixture、S7F/S7A/S7B、video Range/save/CSP/lifecycle；无 fixture/code/config diff | Contracts `ea48fe...`、Host S3、Desktop S6B 均未改变 | Product/Technical/Security/Data Owner |
+| Host S7F | yijie-agent-host | `feat/feat-128-structured-chat-artifacts@1045dd06534eb72d53eb7ad7b7d18e63c80284f8` | canonical-derived video snapshot/embed、exact source/tree/raw checker、completed manifest 与 public GET/HEAD/Range conformance；无 public wire/Contracts/Desktop 变化 | Contracts `ea48fe...` 与 resource tree `f447129c...` unchanged | Runtime/Contracts Consumer Owner |
 | Activation | local environment only | clean immutable candidates | synthetic profile evidence | source identities recorded | 段成威 |
 
 实现时必须填写完整 40-character SHA、source digests 和 generator identity；本文短 SHA 只用于阅读，不能作为 pin。
@@ -119,14 +120,15 @@ Repository、branch、base full SHA：从 feature.yaml 与实际 git 命令取�
 | D2 | generic shell/state | yijie-desktop TS/Vue | `7548ea8aeacfd7274f1107786ce48ddc6789cd45`；19 focused tests + full lint/test/build/docs/diff PASS | D1；S5 PASS |
 | D3 | S6A native image preview/save boundary | yijie-desktop schema/Rust/narrow domain+api/config | `8b99849d418a3ef226f4133128f1ac22a438f9d5`；focused RED/GREEN + 6 TS/11 Rust focused + full Desktop gates | D2 + Pattern 1.1.0 readiness；S6A PASS |
 | D4 | S6B image renderer/lightbox/zoom/save UX | yijie-desktop TS/Vue only | `4a8dce6a6526e37052941f6dbb921ba2486e109f`；expected RED、3 files/12 focused tests、axe + full Desktop gates；runtime visual matrix deferred to S10 | D3 immutable PASS；S6B PASS |
-| H3 | S7F Host canonical video fixture conformance | yijie-agent-host | expected RED + exact resource/manifest/Range + full Host gates | Pattern 1.2.0；must keep Contracts pin/tree unchanged |
+| H3 | S7F Host canonical video fixture conformance | yijie-agent-host | expected RED + exact resource/manifest/Range + full Host gates PASS | `1045dd06534eb72d53eb7ad7b7d18e63c80284f8`；Contracts pin/tree unchanged；S7F PASS |
 | D5 | S7A native video Range/save boundary | yijie-desktop private/native/config | Rust/TS RED/GREEN + full Desktop gates | H3 immutable PASS + separate authorization |
 | D6 | S7B video renderer/native-save UX | yijie-desktop TS/Vue | component/axe/runtime seek/visual + full Desktop gates | D5 immutable PASS + separate authorization |
 | D7-D8 | one commit per file/report renderer | yijie-desktop | focused + visual | D6 + per-slice readiness |
 | E1 | deterministic E2E/evidence/review fixes | affected repos + yijie docs | full final gates | all above |
 
-用户的逐轮明确指令已授权并完成 C1/HP/DP/H1-H2/D1/D2/D3/D4 以及 S7 readiness 的本地原子 commits；当前
-只批准下一编码切片 H3/S7F，尚未批准 D5/D6、S8-S12、push、PR、tag、release 或真实 provider。继续实施前仍需
+用户的逐轮明确指令已授权并完成 C1/HP/DP/H1-H2/D1/D2/D3/D4、S7 readiness 与 H3/S7F 的本地原子 commits；当前
+尚未批准 D5/D6、S8-S12、push、PR、tag、release 或真实 provider。D5/S7A 虽已满足 immutable predecessor，仍需
+单独用户授权；继续实施前仍需
 逐仓确认用户已有改动并保持可独立审查。
 
 ## 8. Slice 完成记录
@@ -145,7 +147,8 @@ Repository、branch、base full SHA：从 feature.yaml 与实际 git 命令取�
 | S6A | `8b99849d418a3ef226f4133128f1ac22a438f9d5` | 3 exact private commands、opaque preview handle/protocol、双次 SQLCipher 校验、native atomic save、typed content-free client；无 renderer | RED TS/Rust；6 TS + 11 Rust focused；`pnpm lint/test`、`make build`、`pnpm docs:build`、diff；full Rust 196 pass/3 ignored | 最小例外仅刷新 Desktop implementation/readiness SHA；Contracts `ea48fe...`、source/fixture/protocol 未变；无 UI/dependency/capability/migration | PASS |
 | S6B | `4a8dce6a6526e37052941f6dbb921ba2486e109f` | ready-image-only renderer、inline/fresh lightbox opaque URLs、finite zoom、content-free native-save feedback、handle release 与 stale-response isolation | missing-component RED；3 files/12 focused GREEN；`pnpm lint/test`、`make build`、`pnpm docs:build`、diff PASS；full TS 308/308 | 仅 7 个 components/chat + icon files；axe/reduced-motion PASS；无 native/contracts/pin/dependency/page/store 漂移；runtime visual matrix NOT RUN，留待 S10 | PASS AS SEPARATE SLICE |
 | S7-READINESS | Desktop Pattern `18b17d961ed5991cec55eeb230ea21d91f2fb8ec` + yijie governance commit | docs/read-only audit only；canonical/Host mismatch、Range/save/CSP/lifecycle、S7F/S7A/S7B frozen | Desktop docs/lint/test/diff + governance full docs gates | Product/Technical/Security/Data READY FOR S7F ONLY；no implementation | PASS FOR READINESS ONLY |
-| S7F/S7A/S7B-S11 | N/A | none | NOT RUN | S7F is first authorized coding slice；S7A/S7B wait for immutable predecessors | PENDING |
+| S7F | `1045dd06534eb72d53eb7ad7b7d18e63c80284f8` | derived canonical MP4 snapshot/embed；lock/sync/check exact path/tree/source/raw identity；bounded Go box/sample audit；video manifest/poster/auth/GET/HEAD/Range tests | EXPECTED RED: 81 vs 1642 bytes、digest mismatch、missing `moov`；GREEN focused PASS；`make contract-check/lint/test/runtime-test`、`git diff --check` PASS | 7-file allowed Host scope；Contracts/Desktop unchanged；no dependency/provider/public wire drift | PASS AS SEPARATE SLICE |
+| S7A/S7B-S11 | N/A | none | NOT RUN | S7A requires separate authorization；S7B waits for S7A immutable PASS | PENDING |
 | S12 | N/A | none | BLOCKED | separate real-provider authority required | BLOCKED |
 
 ## 9. 变更控制
@@ -171,8 +174,8 @@ Repository、branch、base full SHA：从 feature.yaml 与实际 git 命令取�
 | Security/Data Owner | 段成威 | S6A CODING APPROVED；no dependency/plugin/capability/migration | 2026-08-20 |
 | Technical/Security/Data Owner | 段成威 | S7F canonical conformance APPROVED；no Contracts tree/pin/dependency/provider drift | 2026-08-20 |
 
-G2、G2A 与 S3/S4/S5 的 G3 slice gate 均已通过；S6A/S6B 也分别形成 immutable PASS，但不并入 G3。
-S7-READINESS 只批准 S7F，S7A/S7B 与 S8-S12 继续关闭；真实 provider、tag、push、release 和生产能力继续
+G2、G2A 与 S3/S4/S5 的 G3 slice gate 均已通过；S6A/S6B/S7F 也分别形成 immutable PASS，但不并入 G3。
+S7A/S7B 与 S8-S12 继续关闭，S7A 需要新的显式编码授权；真实 provider、tag、push、release 和生产能力继续
 关闭，G4 不通过。
 
 ## 11. 已执行 Codex 指令：S6A（历史证据）
@@ -265,7 +268,10 @@ pnpm lint；pnpm test；make build；pnpm docs:build；git diff --check。
 `ChatArtifactImage.vue`（exit 1）；最终 focused GREEN 为 3 files/12 tests，全量为 43 files/308 tests。
 真实 Tauri 页面集成与 light/dark/viewport/200% 运行时视觉矩阵没有执行，不纳入本切片 PASS，留给 S10。
 
-## 13. 下一条可执行 Codex 指令：S7F
+## 13. 已执行 Codex 指令：S7F（历史证据）
+
+下述指令已从 Host baseline `4017785adb08e1114781d3d844e9a10a683fa933` 执行完成，产出
+`1045dd06534eb72d53eb7ad7b7d18e63c80284f8`；保留原文用于复核范围，不再作为下一条指令。
 
 ```text
 执行 FEAT-128 / S7F，仅修复 yijie-agent-host strict-local synthetic video fixture conformance；不得实现 Desktop
@@ -309,3 +315,11 @@ worktree，创建一个本地原子 S7F commit，不得 push。随后只更新 y
 G4 pending。若任何实现需要 Contracts/tree/pin 漂移、新 dependency/runtime codec、真实 provider 或 Desktop 变化，
 立即停止并报告 blocker，不得扩大范围。
 ```
+
+实际 EXPECTED RED 为当前 `syntheticMP4()` 输出 81 bytes、SHA-256
+`b4bed74c1214ad307baa3ffe766ac139782991586adc26a3771c23cf08b8599e`，与 canonical 1642 bytes/
+`96ea070cac612d17927939c22f3c0c593fb26b171f62c4e9cee43fb596177dd5` 不同，结构检查因缺少 `moov` 失败。
+GREEN 使用由 Contracts `ea48fe...` resource 派生的 Base64 snapshot；checker 锁定 source path、source SHA、tree OID、
+raw size/SHA 与 snapshot SHA，运行时只解码 embed 并复核 raw identity，不依赖 sibling checkout。focused session/app
+测试与 `make contract-check`、`make lint`、`make test`、`make runtime-test`、`git diff --check` 均 exit 0；无
+Contracts/Desktop/public wire/dependency/provider 变化。S7A/S7B 仍未授权或启动。

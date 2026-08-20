@@ -2,16 +2,17 @@
 
 > 本报告只记录实际执行或可复核结果。Owner 决策来自用户的直接指令；Codex 负责执行、核对和记录，
 > 不把自身描述成独立人工 Reviewer。G2A PASS 只证明契约与 downstream exact pin 已就绪，不证明
-> Host/Desktop S3/S4/S5、独立 S6A native boundary 与独立 S6B image renderer 以外的实现、端到端或真实 provider
-> 能力已经存在。S7-READINESS 只形成 docs/design evidence，不是 S7 implementation。
+> Host/Desktop S3/S4/S5、独立 S6A native boundary、独立 S6B image renderer 与独立 S7F Host fixture conformance
+> 以外的实现、端到端或真实 provider 能力已经存在。S7-READINESS 本身仍只是 docs/design evidence；S7F 已另行
+> 实现并形成 immutable Host commit，不代表 S7A/S7B 或 G4。
 
 ## 1. 验证上下文
 
 | Repository | Branch | Evidence commit | FEAT-128 实际范围 | 日期 |
 |---|---|---|---|---|
-| `yijie` | `feat/feat-128-structured-chat-artifacts` | 本文档最终提交 | G2/G2A + S3/S4/S5 G3 + S6A/S6B + S7 readiness evidence；不扩 G3 | 2026-08-20 |
+| `yijie` | `feat/feat-128-structured-chat-artifacts` | 本文档最终提交 | G2/G2A + S3/S4/S5 G3 + S6A/S6B/S7F separate PASS + S7 readiness evidence；不扩 G3 | 2026-08-20 |
 | `yijie-contracts` | `feat/feat-128-structured-chat-artifacts` | `ea48fe190e18afba728712d1e2cc79cda57f581b` | S1/S2 authoritative source/generated/fixtures/review | 2026-08-20 |
-| `yijie-agent-host` | `feat/feat-128-structured-chat-artifacts` | pin `dea84d0768ebc017b7ee5faedab7f9a49ce74875`; S3 `4017785adb08e1114781d3d844e9a10a683fa933` | exact pin + local Host v3 lifecycle/staging/resource/synthetic foundation | 2026-08-20 |
+| `yijie-agent-host` | `feat/feat-128-structured-chat-artifacts` | pin `dea84d0768ebc017b7ee5faedab7f9a49ce74875`; S3 `4017785adb08e1114781d3d844e9a10a683fa933`; S7F `1045dd06534eb72d53eb7ad7b7d18e63c80284f8` | exact pin + local Host v3 foundation + canonical playable/seekable strict-local video conformance | 2026-08-20 |
 | `yijie-desktop` | `feat/feat-128-structured-chat-artifacts` | initial Pattern `e97b2dabd724af856b4041e23b24437ec2f5dfc3`; pin `96094419d963745529ed0fa246919089e659f20d`; S4 `09220dd8319cfb8ec0c4d1531514bb5169107983`; S5 `7548ea8aeacfd7274f1107786ce48ddc6789cd45`; S6 readiness `2b854b40379a207c19bf37fc5bc64266553c5df1`; S6A `8b99849d418a3ef226f4133128f1ac22a438f9d5`; S6B `4a8dce6a6526e37052941f6dbb921ba2486e109f`; S7 readiness `18b17d961ed5991cec55eeb230ea21d91f2fb8ec` | Pattern 1.2.0 + exact pin + S4/S5 + independent S6A/S6B；S7 docs only；无 S7/page/vertical implementation | 2026-08-20 |
 | `yijie-codex` | `develop` | `0ce5902ed400866be0196886bb78f693a004d68d` | read-only Runtime authority | 2026-08-20 |
 
@@ -37,7 +38,8 @@
 | S6A | PASS AS SEPARATE SLICE | Desktop `8b99849d418a3ef226f4133128f1ac22a438f9d5` + RED/GREEN + focused/full gates + diff/clean review | native boundary 已形成；不并入 G3，不代表 renderer 或 G4 |
 | S6B | PASS AS SEPARATE SLICE | Desktop `4a8dce6a6526e37052941f6dbb921ba2486e109f` + missing-component RED + 12 focused/full 308 tests + axe/build/docs/diff/scope review | reusable ready-image UI 已形成；不并入 G3，不代表 page/E2E/visual runtime 或 G4 |
 | S7-READINESS | PASS FOR DOCS ONLY / READY FOR S7F ONLY | canonical/Host/Desktop audit + Pattern 1.2.0 `18b17d961ed5991cec55eeb230ea21d91f2fb8ec` | 只授权 S7F；不代表 fixture/code/schema/command/CSP/renderer 实现或 G3/G4 |
-| S7F-S11 | NOT RUN | 无对应实现 diff | S7F first；S7A/S7B wait；不得写成视频/文件/report/vertical 完成 |
+| S7F | PASS AS SEPARATE SLICE | Host `1045dd06534eb72d53eb7ad7b7d18e63c80284f8` + EXPECTED RED/GREEN + exact snapshot/checker/manifest/Range + full Host gates | 修复 strict-local fixture conformance；不并入 G3，不代表 Desktop video 或 G4 |
+| S7A-S11 | NOT RUN | 无对应实现 diff | S7A 仍需 separate authorization；S7B waits；不得写成视频 UI/文件/report/vertical 完成 |
 | S12 real producers | BLOCKED | 无 provider authority/付费授权 | 保持关闭 |
 
 ## 3. Contracts 不可变候选
@@ -134,7 +136,24 @@ synthetic/real provenance 与 activation gate。
 | Y-S6B-SHELL | yijie | `bash -n scripts/*.sh docs/dev/codex-feature-delivery/scripts/*.sh` | 0 | PASS | shell syntax 通过 |
 | Y-S6B-DIFF | yijie | `git diff --check` | 0 | PASS | 仅 07/08/10/feature.yaml，whitespace check 通过 |
 | A-S7-CONTRACT-FIXTURE | Contracts read-only | base64 decode + `xxd` + `shasum -a 256` + `ffprobe` packet/stream audit + `ffmpeg -f framemd5` | 0 | PASS | raw 1,642 bytes；`96ea070c...77dd5`；front `ftyp/moov`；H.264 High/16×16/yuv420p/25fps/0.12s/3 frames；首 packet keyframe；3 identical generated frames |
-| A-S7-HOST-FIXTURE | Host read-only | inspect `internal/session/artifacts.go`、store media gate、HTTP Range parser/tests | 0 | FINDING | current `syntheticMP4()` only `ftyp/free/mdat`；无 moov/track/codec/duration/dimensions/sample/keyframe；transport-only，completed size/digest 与 canonical 不同 |
+| A-S7-HOST-FIXTURE | Host pre-S7F baseline read-only | inspect `internal/session/artifacts.go`、store media gate、HTTP Range parser/tests | 0 | FINDING | baseline `syntheticMP4()` only `ftyp/free/mdat`；无 moov/track/codec/duration/dimensions/sample/keyframe；transport-only，completed size/digest 与 canonical 不同 |
+| H-S7F-RED | Host | `go test ./internal/session -run '^TestSyntheticVideoFixtureCanonicalConformance$' -count=1 -v` before implementation | 1 | EXPECTED RED | 81 vs 1642 bytes；SHA `b4bed74c...599e` vs `96ea070c...77dd5`；missing `moov` |
+| H-S7F-GREEN-SESSION | Host | focused canonical identity/box/sample + lifecycle/resource tests | 0 | PASS | raw 1642 + exact SHA；front moov；H.264 High/avc1/avcC；16×16；120/1000s；3 samples；first sync sample；manifest/poster |
+| H-S7F-GREEN-APP | Host | focused config + Artifact HTTP resource test | 0 | PASS | default-off/exact-local/provider isolation；video bearer/session scope；GET/HEAD 200；closed/open/suffix 206；unsatisfiable 416；multi-range 400 |
+| H-S7F-SYNC | Host | `YIJIE_CONTRACTS_REF=ea48fe190e18afba728712d1e2cc79cda57f581b make sync-contracts` | 0 | PASS | pinned Git object produced byte-identical derived snapshot/lock；no generated drift |
+| H-S7F-CONTRACT | Host | `make contract-check` | 0 | PASS | source path/SHA、resource tree、raw size/SHA、snapshot SHA and byte equality verified |
+| H-S7F-LINT | Host | `make lint` | 0 | PASS | gofmt/vet + shell syntax |
+| H-S7F-TEST | Host | `make test` | 0 | PASS | race/coverage suite passed across Host packages；contract-check rerun |
+| H-S7F-RUNTIME | Host | `make runtime-test` | 0 | PASS | fixed Runtime integration passed；no model/provider call |
+| H-S7F-DIFF | Host | `git diff --check` + exact 7-file allowed-scope audit | 0 | PASS | no Contracts/Desktop/public wire/dependency/provider drift |
+| H-S7F-COMMIT | Host | `git commit` | 0 | PASS | atomic local commit `1045dd06534eb72d53eb7ad7b7d18e63c80284f8`；not pushed |
+| Y-S7F-PACKAGE | yijie | `check-feature-package.sh --gate G3` | 0 | PASS | G3 remains exact S3/S4/S5；S7F separate evidence accepted |
+| Y-S7F-STRICT | yijie | `check-feature-package.sh --strict` | 0 | PASS | package templates/markers valid；pending S7A-S11 remains explicit |
+| Y-S7F-YAML | yijie | unique-key parse + exact Contracts/G3/S6A/S6B/S7F/G4 assertions | 0 | PASS | S7F full SHA/separate PASS and G4 pending verified without G3 drift |
+| Y-S7F-LINT | yijie | `pnpm lint` | 0 | PASS | 10 repository manifests + central Contract First governance |
+| Y-S7F-TEST | yijie | `pnpm test` | 0 | PASS | 1/1 repository manifest test passed |
+| Y-S7F-SHELL | yijie | `bash -n scripts/*.sh docs/dev/codex-feature-delivery/scripts/*.sh` | 0 | PASS | shell syntax passed |
+| Y-S7F-DIFF | yijie | `git diff --check` + exact four-file scope audit | 0 | PASS | only 07/08/10/feature.yaml；no implementation/Pattern/Contracts files |
 | A-S7-DESKTOP | Desktop read-only | inspect SQLCipher migration/ready reader、S6A registry/protocol/save、S6B lifecycle、Tauri config/capability/deps and local Tauri 2.11.x responder | 0 | PASS FOR DESIGN | image scheme is 30s one-shot GET/no Range；SQLCipher stores ready video+poster up to 64MiB；responder buffers body；no current video command/schema/media-src/renderer |
 | D-S7R-DOCS | Desktop | `pnpm docs:build` | 0 | PASS | Pattern 1.2.0 Accepted build passed |
 | D-S7R-LINT | Desktop | `pnpm lint` | 0 | PASS | ESLint + vue-tsc passed；docs-only diff |
@@ -165,7 +184,7 @@ S6B 实现期 focused 测试曾先暴露 3 个问题（空节点断言、Naive f
 
 | Consumer | Pin commit | Pin 内容 | 结论 |
 |---|---|---|---|
-| Agent Host | pin `dea84d0768ebc017b7ee5faedab7f9a49ce74875`; implementation `4017785adb08e1114781d3d844e9a10a683fa933` | Contracts `0.4.0` identities + v3 snapshots/types + implementation conformance；`EXC-128-001` | S2P/S3 PASS |
+| Agent Host | pin `dea84d0768ebc017b7ee5faedab7f9a49ce74875`; S3 `4017785adb08e1114781d3d844e9a10a683fa933`; S7F `1045dd06534eb72d53eb7ad7b7d18e63c80284f8` | Contracts `0.4.0` identities + v3 snapshots/types + canonical resource path/source SHA/tree/raw/snapshot conformance；`EXC-128-001` | S2P/S3 PASS；S7F separate PASS |
 | Desktop | pin `96094419d963745529ed0fa246919089e659f20d`; S4 `09220dd8319cfb8ec0c4d1531514bb5169107983`; S5 `7548ea8aeacfd7274f1107786ce48ddc6789cd45`; S6 readiness `2b854b40379a207c19bf37fc5bc64266553c5df1`; S6A `8b99849d418a3ef226f4133128f1ac22a438f9d5`; S6B `4a8dce6a6526e37052941f6dbb921ba2486e109f`; S7 readiness Pattern `18b17d961ed5991cec55eeb230ea21d91f2fb8ec` | Contracts source/fixture identities unchanged；S7 readiness is docs-only and does not refresh implementation pins | S2P/S4/S5 PASS；S6A/S6B separate PASS；S7 readiness docs PASS |
 
 Desktop fixture Git tree OIDs：event v3 `21de31ceb65900bcf38bc7fe171de8238dfa30dc`、resources
@@ -187,13 +206,13 @@ S6A 最终 Desktop implementation digests：`artifact.rs` `0cb51f7158503d21f08cd
 | AC-011 contract fixture portion | CONTRACT PASS | image/video/file/report 四类 synthetic canonical fixtures 已形成 |
 | AC-001/002 S5 UI projection portions | S5 FOUNDATION PASS | 8-state monotonic reducer、four-kind stable identity/order、duplicate idempotency、generic state shell 与 fail-closed conflicts 已单元/组件验证 |
 | AC-003 image preview/save security boundary | S6A NATIVE PASS / S6B COMPONENT PASS / E2E NOT RUN | 3 exact commands、opaque one-shot protocol、双次 authority validation、atomic native save；ready-only UI、fresh inline/lightbox URL、release/stale isolation 与 content-free save feedback 已验证；page/runtime visual 待 S10 |
-| AC-004 video fixture/readiness | CONTRACT FIXTURE PASS / HOST CONFORMANCE GAP / IMPLEMENTATION NOT RUN | Contracts canonical MP4 is playable/seekable by box/codec audit；Host S3 still emits transport-only bytes；S7F approved to repair exact-local conformance；S7A/S7B not run |
+| AC-004 video fixture/readiness | CONTRACT FIXTURE PASS / HOST S7F CONFORMANCE PASS / DESKTOP NOT RUN | Host now emits exact canonical MP4 and proves manifest/poster/auth/GET/HEAD/Range semantics at `1045dd...`；S7A/S7B not run |
 | AC-005/006 Desktop type renderer behavior | NOT RUN | file/report S8-S9 未开始 |
 | AC-007 persistence/history/retention | S4/S5 FOUNDATION PASS | v8 migration、SQLCipher BLOB、metadata history、168h TTL/receipt/delete/reopen + history replay/store dedupe 已验证；跨进程 UI integration 仍待 S10 |
 | AC-008 runtime auth/integrity/ACK | S3/S4 FOUNDATION PASS | owner-only Host resource、MIME/size/digest/magic、commit 后 ACK 与 replay 已验证；E2E/error UI 待 S10 |
 | AC-009 Host dual route + old/new matrix | PARTIAL PASS | v1/v2 equality/pins + 实际 v3 Host route 均通过；mixed-version E2E 待 S10 |
 | AC-010/NFR-002 generic/image component portions | S5/S6B FOCUSED PASS | semantic tokens、Naive UI/YjIcon、aria-live/busy/progress/focus、lightbox focus/keyboard、finite zoom、reduced-motion 与 axe 通过；visual matrix/performance/runtime evidence 仍待 S10 |
-| AC-011 local walking skeleton | PARTIAL | 四类 strict-local Host producer 与 image reusable renderer 已实现；Chat page/跨进程 vertical smoke 未运行 |
+| AC-011 local walking skeleton | PARTIAL | 四类 strict-local Host producer 已实现，video now exact canonical；image reusable renderer 已实现；Chat page/跨进程 vertical smoke 未运行 |
 | AC-012/real provider | BLOCKED | capability 未证、未授权付费调用 |
 
 ## 7. 专项验证状态
@@ -205,7 +224,7 @@ S6A 最终 Desktop implementation digests：`artifact.rs` `0cb51f7158503d21f08cd
 | Host v3 auth/range/replay/staging | S3 PASS | S10 仍需跨进程/restart walking skeleton |
 | Desktop SQLCipher/transfer/cleanup | S4 PASS | S10 仍需 Host+Desktop integrated lifecycle |
 | Image preview/save | S6A native PASS at `8b99849d418a3ef226f4133128f1ac22a438f9d5`; S6B component/a11y PASS at `4a8dce6a6526e37052941f6dbb921ba2486e109f` | page/vertical/runtime visual integration 仍待 S10 |
-| Video readiness | Pattern 1.2.0 PASS at `18b17d961ed5991cec55eeb230ea21d91f2fb8ec`；fixture/Host/Desktop audits complete | S7F first；S7A/S7B wait for predecessor immutable PASS；no implementation evidence |
+| Video fixture/Host conformance | Pattern 1.2.0 PASS；S7F Host PASS at `1045dd06534eb72d53eb7ad7b7d18e63c80284f8` | S7A predecessor satisfied but coding still requires separate authorization；S7B waits for S7A；no Desktop video evidence |
 | UI/visual/a11y/performance | S5 generic + S6B image unit/component/axe/reduced-motion PASS；runtime visual/performance NOT RUN | S10 |
 | Local synthetic E2E | NOT RUN | S10 |
 | MiniMax/video/file/report real producer | BLOCKED | S12，需单独 authority/eval |
@@ -239,7 +258,9 @@ slice 的未验证范围，未被降级为已接受风险。
   形成独立 PASS，同样没有追加到历史 G3 决策，也没有修改 S6A/native/config 或公共 pin。
 - 用户本轮明确要求 S7-READINESS 只做安全/fixture/切片闭环并分别记录 Owner。Pattern 1.2.0 已 capture 为
   `READY FOR S7F ONLY; S7A/S7B WAIT`；该结论不是 S7 implementation PASS，也不追加 G3。
-- 这些授权已用于按序完成 local-only S3/S4/S5 与独立 S6A/S6B；G3 只对前三个原子切片通过，不允许 real provider、付费调用、
+- 用户随后明确执行 S7F；Host `1045dd06534eb72d53eb7ad7b7d18e63c80284f8` 已完成 canonical snapshot/checker/
+  producer/manifest/Range conformance，保持 Contracts/tree/Desktop/dependency/public wire 不变。它是 G3 外 separate PASS。
+- 这些授权已用于按序完成 local-only S3/S4/S5 与独立 S6A/S6B/S7F；G3 只对前三个原子切片通过，不允许 real provider、付费调用、
   tag、push、publish、release、production 或直接宣称 G4-G6 通过。
 
 ## 10. 残余风险与停止条件
@@ -250,7 +271,7 @@ slice 的未验证范围，未被降级为已接受风险。
 | Desktop image preview/save/CSP | S6A 已实现 native boundary；S6B 只消费 typed client，实现 ready-only component/lightbox/save UX，未触碰 native/config | S10 page/runtime 集成若需要 plaintext、bytes/path to Vue、新依赖/plugin/capability/migration、native/config 改动、generic protocol 或外部 origin，立即停止并重开 Security/Data review |
 | Preview handle/recovery | 30s one-shot、main WebView/process/context/session bound；S6B 对 inline/lightbox 分别取 fresh URL，并覆盖 close/unmount/error/context-stale release | S10 若出现跨 context/session replay、CORS/oracle、handle 持久化/复用或 lease 泄漏时阻断 |
 | Native save crash residue | 正常取消/失败清除 temp；崩溃/断电可能留下 user-selected directory 内的隐藏 `0600` app temp，不声称零残留 | 若需持久化目标路径或扫描任意目录才能恢复，停止并重开 Data review |
-| Synthetic video playability | Contracts canonical resource 已证实 front `moov`、H.264/16×16/0.12s/3 frames/首帧 keyframe，可用于 local playback/seek；Host S3 未消费它，仍发 `ftyp/free/mdat` transport-only bytes | S7F 必须让 Host exact output 对齐同一 immutable fixture；Contracts/tree/pin 漂移、新 codec dependency 或重新编码即阻断；S7A/B 前不得声称 video preview PASS |
+| Synthetic video playability | Contracts canonical resource 已证实 front `moov`、H.264/16×16/0.12s/3 frames/首帧 keyframe；Host S7F 已按 exact raw identity 消费并通过 public resource/Range conformance | Desktop S7A/B 仍未实现；任何 Contracts/tree/pin、新 codec dependency、重新编码或 video preview PASS 声明仍阻断 |
 | Video protocol/memory | S7 readiness only：独立 30min/5min multi-request handle、2 handles/2 reads/64MiB、64 requests、GET/HEAD 200/206/416、exact media-src 已冻结 | S7A 若无法在 Tauri buffered 64MiB 与现有 deps/capability/migration 内实现，停止并重开 Technical/Security review |
 | Unknown report section | contract 限 `required=false`、128 KiB、depth 8、opaque | renderer 遍历/执行 unknown payload 即阻断 |
 | Real MiniMax image | blocked | 固定 capability/API/model、费用与 bounded eval 单独获批 |
@@ -258,7 +279,7 @@ slice 的未验证范围，未被降级为已接受风险。
 
 ## 11. 制品与工作树完整性
 
-- Contracts、Host、Desktop S3/S4/S5、Desktop readiness 与 S6A/S6B commits 均为完整 40-character SHA；没有使用 floating branch/tag 作为 pin。
+- Contracts、Host S3/S7F、Desktop S4/S5、Desktop readiness 与 S6A/S6B commits 均为完整 40-character SHA；没有使用 floating branch/tag 作为 pin。
 - 每个仓库在提交后重跑关键门禁；最终应保持 clean worktree。
 - 生成物来自锁定 source/generator；Feature 目录不复制 canonical payload。
 - 没有 `.skip`、`.only`、弱化断言、secret、真实业务数据或付费调用。
@@ -271,6 +292,6 @@ slice 的未验证范围，未被降级为已接受风险。
 - G2A：`APPROVED`。
 - S3/S4/S5：`PASS`；G3 对这三个切片为 `PASS`。
 - S6-READINESS：`PASS FOR DOCS ONLY`；S6A 在 `8b99849d418a3ef226f4133128f1ac22a438f9d5`、S6B 在 `4a8dce6a6526e37052941f6dbb921ba2486e109f` 分别独立 `PASS`。
-- S7-READINESS：Pattern 1.2.0 `18b17d961ed5991cec55eeb230ea21d91f2fb8ec` 为 `PASS FOR DOCS ONLY / READY FOR S7F ONLY`；S7F/S7A/S7B 全部 NOT RUN。
-- Code Complete：否；S7F-S11 与 S10 vertical/runtime visual 证据尚未开始。
-- 当前状态：`G3 PASS only for S3/S4/S5 / S6A and S6B separate PASS / S7 readiness approved only for S7F / S7F-S11 pending / real providers closed / G4-G6 not passed`。
+- S7-READINESS：Pattern 1.2.0 `18b17d961ed5991cec55eeb230ea21d91f2fb8ec` 为 docs PASS；S7F 在 Host `1045dd06534eb72d53eb7ad7b7d18e63c80284f8` 独立 `PASS`；S7A/S7B NOT RUN。
+- Code Complete：否；S7A-S11 与 S10 vertical/runtime visual 证据尚未开始。
+- 当前状态：`G3 PASS only for S3/S4/S5 / S6A, S6B and S7F separate PASS / S7A-S11 pending / real providers closed / G4-G6 not passed`。
