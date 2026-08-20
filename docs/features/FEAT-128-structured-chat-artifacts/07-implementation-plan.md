@@ -3,7 +3,7 @@
 ## 1. 实施原则
 
 - G2 已于 2026-08-20 由段成威明确批准，随后先执行 Contracts S1-S2，再只做 S2P exact pin preflight。
-- `contract-impact = semantic`；G2A 在真实 generate、双基线 breaking、semantic review、immutable commit 和 downstream exact pin 全部通过后获批。随后严格先完成 Host S3，再完成 Desktop S4；两者均通过 G3 slice gate。
+- Feature 总体 `contract-impact = semantic`；G2A 在真实 generate、双基线 breaking、semantic review、immutable commit 和 downstream exact pin 全部通过后获批。随后严格先完成 Host S3、Desktop S4 与本轮明确授权的 Desktop S5；三者均通过 G3 slice gate。S5 自身不改变跨进程、跨仓、跨版本或持久化/重放边界，slice-level `contract-impact = none`。
 - 一次只完成一个可独立验证的行为；不把 v3 协议、媒体存储、native save 和四类 UI 一次混成大 diff。
 - 先建立失败 fixture/测试，再实现最小能力；每个 kind 独立 flag，默认关闭。
 - 不新增云资源、远程 URL、真实付费调用、通用 filesystem/shell capability 或第二套 UI 库。
@@ -19,7 +19,7 @@ S0 Owner G2 approval (PASS)
         -> G2A contract-ready decision (PASS)
            -> S3 Host v3 dual route + staging/resource/synthetic producer (PASS)
            -> S4 Desktop v8 migration + native transfer/history/private IPC v3 (PASS)
-        -> S5 Desktop shared Artifact state/rendering shell
+        -> S5 Desktop shared Artifact state/rendering shell (PASS)
            -> S6 image renderer/lightbox/save
            -> S7 video renderer/range/blob/save
            -> S8 file preview/save
@@ -65,7 +65,7 @@ S2 + S3 + S4 + S10
 | Host S3 | yijie-agent-host | `feat/feat-128-structured-chat-artifacts@4017785adb08e1114781d3d844e9a10a683fa933` | local v3 lifecycle/staging/resources/ACK/synthetic；default off | same contract pin | Runtime Owner |
 | Consumer pin preflight | yijie-desktop | `feat/feat-128-structured-chat-artifacts@96094419d963745529ed0fa246919089e659f20d` | exact pin/checker only | contract full commit + source/fixture identities | Client/Data Owner |
 | Desktop S4 | yijie-desktop | `feat/feat-128-structured-chat-artifacts@09220dd8319cfb8ec0c4d1531514bb5169107983` | SQLCipher v8/native transfer/ACK/TTL/history/private IPC；default off | contract + 10 implementation digests | Client/Data Owner |
-| Consumer UI | yijie-desktop | same feature branch | Artifact shell + four renderers + harness | same exact pins | Product/Client Owner |
+| Consumer UI S5 | yijie-desktop | `feat/feat-128-structured-chat-artifacts@7548ea8aeacfd7274f1107786ce48ddc6789cd45` | provider-neutral reducer/store + generic metadata shell；无 type renderer | same exact pins | Product/Client Owner |
 | Activation | local environment only | clean immutable candidates | synthetic profile evidence | source identities recorded | 段成威 |
 
 实现时必须填写完整 40-character SHA、source digests 和 generator identity；本文短 SHA 只用于阅读，不能作为 pin。
@@ -106,12 +106,12 @@ Repository、branch、base full SHA：从 feature.yaml 与实际 git 命令取�
 | DP | pin v3 contract + fixtures/checker；无 migration/adapter/UI | yijie-desktop | generate-check/lint/test/build/docs | `96094419d963745529ed0fa246919089e659f20d`；S2P PASS |
 | H1/H2 | v3 dual route/event reducer + resource staging/range/synthetic producer | yijie-agent-host | contract-check/lint/test/runtime-test | `4017785adb08e1114781d3d844e9a10a683fa933`；S3 PASS |
 | D1 | pin + v8 migration/native transfer/private IPC | yijie-desktop Rust/schema/domain | migration/Rust/conformance/full Desktop gates | `09220dd8319cfb8ec0c4d1531514bb5169107983`；S4 PASS |
-| D2 | generic shell/state | yijie-desktop TS/Vue | unit/component/axe | D1 |
+| D2 | generic shell/state | yijie-desktop TS/Vue | `7548ea8aeacfd7274f1107786ce48ddc6789cd45`；19 focused tests + full lint/test/build/docs/diff PASS | D1；S5 PASS |
 | D3-D6 | one commit per image/video/file/report renderer | yijie-desktop | focused + visual | D2 |
 | E1 | deterministic E2E/evidence/review fixes | affected repos + yijie docs | full final gates | all above |
 
-用户的本轮明确指令已授权并完成 C1/HP/DP/H1-H2/D1 的本地原子 commits；仍未授权 push、PR、tag、
-release、真实 provider 或后续 S5-S12。继续实施前仍需逐仓确认用户已有改动并保持可独立审查。
+用户的逐轮明确指令已授权并完成 C1/HP/DP/H1-H2/D1/D2 的本地原子 commits；仍未授权 push、PR、tag、
+release、真实 provider 或后续 S6-S12。继续实施前仍需逐仓确认用户已有改动并保持可独立审查。
 
 ## 8. Slice 完成记录
 
@@ -123,8 +123,9 @@ release、真实 provider 或后续 S5-S12。继续实施前仍需逐仓确认�
 | G2A | evidence in 04/08/feature.yaml | immutable contract + both downstream pins | all required checks PASS | direct user conditional authority captured | PASS |
 | S3 | `4017785adb08e1114781d3d844e9a10a683fa933` | v3 dual route、encrypted staging、GET/HEAD/range、ACK/TTL/restart cleanup、四 kind strict-local synthetic | `make contract-check/lint/test/runtime-test` PASS | scope/diff/default-off reviewed | PASS |
 | S4 | `09220dd8319cfb8ec0c4d1531514bb5169107983` | SQLCipher v8、closed event/report adapter、native transfer/commit/ACK、168h TTL/delete、metadata-only history v3 | `make lint/test/build` + `pnpm docs:build` PASS | 10 implementation digests pinned；no renderer/CSP/save | PASS |
-| G3 | evidence in 08/feature.yaml | S3/S4 only | both repositories full gates PASS | planned scope and clean worktrees verified | PASS FOR S3/S4 |
-| S5-S11 | N/A | none | NOT RUN | next authorized action requires a new slice task | PENDING |
+| S5 | `7548ea8aeacfd7274f1107786ce48ddc6789cd45` | provider-neutral identity/status/progress reducer、session/turn/Artifact store、generic metadata shell/list；无 preview/action | RED missing-module evidence；19 focused tests；`make lint/test/build`、`pnpm docs:build`、diff checks PASS | parser-approved metadata only；no dependency/Tauri/CSP/capability/wire drift | PASS |
+| G3 | evidence in 08/feature.yaml | S3/S4/S5 only | owning-repository full gates PASS | planned scope and clean worktrees verified | PASS FOR S3/S4/S5 |
+| S6-S11 | N/A | none | NOT RUN | next authorized action requires a new slice task | PENDING |
 | S12 | N/A | none | BLOCKED | separate real-provider authority required | BLOCKED |
 
 ## 9. 变更控制
@@ -147,5 +148,5 @@ release、真实 provider 或后续 S5-S12。继续实施前仍需逐仓确认�
 | Product/Design Owner | 段成威 | FEAT-128 Pattern 1.0.0 Accepted | 2026-08-20 |
 | Feature Owner | 段成威 | G2A APPROVED after S1/S2/S2P evidence | 2026-08-20 |
 
-G2、G2A 与 S3/S4 的 G3 slice gate 均已通过。下一标准动作是 S5 provider-neutral domain/store 与稳定
-Artifact shell；真实 provider、tag、push、release、CSP/save 与生产能力继续关闭。
+G2、G2A 与 S3/S4/S5 的 G3 slice gate 均已通过。下一计划切片是 S6 image renderer，但尚未获本轮授权；
+真实 provider、tag、push、release、CSP/save、S6-S12 与生产能力继续关闭，G4 不通过。
