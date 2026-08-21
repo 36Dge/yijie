@@ -10,10 +10,9 @@
   路径/base64/token、未授权内容或超出已批准 bounded projection 的正文进入 SSE/WebView state，用户授权 file
   projection 仅按 8.8 短暂存在；小文件 projection 可在上限内等于完整正文。
 - 明确不做：生产部署、云存储、公开分享、raw HTML/脚本报告、任意本地路径、视频转码、真实付费媒体生成、跨设备同步。
-- 设计状态：G2/G2A APPROVED，S3/S4/S5 与其 G3 scope 已通过；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A
-  已分别作为 G3 外独立切片 PASS。S9B-READINESS/Pattern 1.5.0
-  `630c3c8d55a2617499f51bd5bed263b819aaf084` 将 S9B 拆为 S9B-D/S9B-R，只批准 D 编码；D/R 均
-  `NOT RUN`，G3 不扩展，G4 pending。
+- 设计状态：G2/G2A APPROVED，S3/S4/S5 与其 G3 scope 已通过；S6-S9B-R 均为 G3 外独立 PASS。
+  Pattern 1.6.0 `c1095eeb7a4c4bbc1f5a2729e9f8df861ebc02c2` 完成 S9 reconciliation 与 S10 readiness，
+  只批准 S10A-LOCAL-PROFILE；S10A-E 均 `NOT RUN`，G3 不扩展，G4 pending。
 
 ## 2. 组件职责与依赖方向
 
@@ -24,7 +23,7 @@
 | yijie-agent-host | Runtime item 归一化、短期 staging、v3 SSE 和认证资源读取 | Runtime notification、synthetic fixture | 安全 Artifact lifecycle + relative resource | 长期业务数据、WebView 渲染、用户保存目标 |
 | Desktop native/Tauri | implemented Host fetch/SQLCipher/history 与 image/video/file/report private boundaries | v3 event/resource；private identity-only intent | metadata-only history；media opaque URL；file/report bounded projection；content-free save result | provider 选择、公共契约权威、generic filesystem |
 | Desktop domain/store | implemented 单调状态机、去重、history/live projection | private IPC v3 safe metadata | stable provider-neutral view model | wire 外 I/O、bytes、文件写入 |
-| Desktop Vue components | implemented generic shell + image/video/file renderer；S9B-D/R 将分别提供 chart foundation 与 report renderer | view model、typed native client result | 用户可观察 UI intent 与 component-local authorized preview | Host/SQL/path/digest/bytes/save 副作用 |
+| Desktop Vue components | implemented generic shell + image/video/file/report renderer 与 bounded chart enhancement；production ChatPage 尚未接 Artifact list/store | view model、typed native client result | 用户可观察 UI intent 与 component-local authorized preview | Host/SQL/path/digest/bytes/save 副作用 |
 
 ```text
 Runtime or synthetic producer
@@ -110,7 +109,7 @@ wire `failed` 映射为 `failed` 或 `cancelled`，`expired` 只由本地 retent
 | ImagePreviewHandle | main WebView + process/context/session | 256-bit CSPRNG base64url | 30s、one-shot、非 bearer；不持久化/日志/Pinia/snapshot | issue -> atomic consume/release/TTL/restart |
 | VideoPreviewHandle | main WebView + process/context/session | 独立 256-bit CSPRNG base64url | 30min absolute/5min idle、无累计 request cap、single Range、非 bearer；2 handles/2 concurrent/64MiB in-flight | issue -> repeated HEAD/GET -> release/TTL/restart/binding invalidation |
 | FilePreviewProjection（S8A implemented） | current main WebView/context/artifact | request_id + immutable revision | one-shot bounded safe text/CSV/JSON；不持久化、不签发 URL/handle | explicit read -> component local state -> close/switch/unmount clear |
-| ReportPreviewProjection（S9A planned） | current main WebView/context/artifact | request_id + immutable revision + section ordinal | full schema valid 后形成 closed bounded known union；unknown payload omitted；不持久化、不签发 URL/handle | explicit read -> component local state -> close/error/stale/switch/unmount clear |
+| ReportPreviewProjection（S9A implemented） | current main WebView/context/artifact | request_id + immutable revision + section ordinal | full schema valid 后形成 closed bounded known union；unknown payload omitted；不持久化、不签发 URL/handle | explicit read -> component local state -> close/error/stale/switch/unmount clear |
 | SaveIntent | 当前 WebView 用户动作 | request_id + artifact identity | one active；native dialog/path only；Vue 只收 content-free outcome | click -> dialog -> atomic success/cancel/failure |
 
 ## 6. 数据与 Migration 专项
@@ -350,6 +349,34 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
    `scripts/check-feat128-s9b-d-dependencies.mjs` 与 `scripts/check-feat128-s9b-d-bundle.mjs`（各有同名
    `.test.mjs`），visual harness 固定 `tests/visual/feat-128-s9b-d/`。S9B-R 等待 S9B-D immutable PASS 与单独授权。
 
+### 8.11 S10 single-v3、atomic cursor 与 private invalidation
+
+1. 当前 production 只开 v2；Artifact flag on 后必须改成一个 v3 active-turn stream。common v3 decoder 先校验
+   schema/stream/sequence/event/event_type/turn identity，再 dispatch ordinary 或 Artifact；v2/v3 不并跑。
+2. ordinary progress 可合并，但 Artifact 事件前 flush。started/progress/failed 使用同一 SQLCipher transaction 写 turn
+   progress、Artifact state 和 v3 cursor。completed 的 `transferring` 可先落地但不前推 completed cursor；下载/双重校验后，
+   ready BLOB、ACK intent、completed cursor 在一个 transaction commit；ACK 后置且幂等。crash replay 不弱化单调检查。
+3. private channel exact `yijie:chat:artifact:changed:v1`，schema `chat-artifact-live-v1.schema.json`。它只携
+   subscription/context/session/turn/event UUID、canonical decimal notification sequence、closed kind 与 content-free payload；
+   queue=64，gap/overflow→单一 resync_required。history v3 是 replay authority，notification 不携 Artifact metadata/body。
+4. S10C subscribe ordinary+artifact first、buffer、control resync+history v3、同一 S5 reducer ingest、coalesced second v3
+   resync、再 replay buffer。ArtifactStore authority tuple 与 epoch/reset 先于 Page；ChatPage 只取 trusted context/turn，显式注入
+   image/video/file/report clients，assistant text 为空也渲染该 turn 的 Artifact list。
+
+### 8.12 S10 keyless profile、process 与 harness
+
+1. 当前 FEAT-128 synthetic 无法独立执行真实 StartSession/Turn；选择 exact
+   `YIJIE_FEAT128_S10_TEST_PROFILE_ENABLED=true` + 既有 FEAT126 loopback fake Responses。它要求 local、v3/synthetic exact
+   true、manifest `feat128-artifact-v1`、fixed `127.0.0.1:18082/v1`、owner/parent/run authority、无 MiniMax/key/provider；
+   不满足即在 listen/spool/child 前失败。
+2. Desktop `YIJIE_CHAT_ARTIFACTS_V3_ENABLED` 是 parent authority，exact true 映射 child Host v3 flag但不原样转发。
+   synthetic env 只在 compile-time `feat128-s10-runtime` + exact test profile下注入；默认关闭。flag off 仍可授权读取已存 rows。
+3. S10A runner fresh-build Host，记录 source/binary digest，使用 0700 mktemp root、ports 18082/18080、ready 20s、operation
+   30s、global watchdog 180s、TERM 10s→KILL；结束按 Desktop→Host→fake 顺序停止并证明 no child/listener/WAL/spool/temp。
+   evidence 只允许 content-free status/count/duration/binary digest，禁止 env value/path/token/body。
+4. real vertical 仅在 A-C PASS 后用真实 production ChatPage/Tauri；不得用 S7 seeded shell、S9 Vite harness 或外部 DB/spool
+   写入冒充。native save 保持真实 dialog，无法无泄漏自动化则 manual/NOT RUN。
+
 ## 9. 可观测性
 
 | Signal | 名称/字段 | 本地成功基线 | 停止阈值 | Runbook 动作 |
@@ -357,6 +384,8 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 | Metric | artifact_started_to_visible_ms{kind} | synthetic p95 < 300ms | p95 >= 1000ms | 检查事件 flush/store render |
 | Metric | artifact_transfer_result{kind,code} | success fixture 100% | integrity/protocol > 0 | 停止 kind，保留 fixture 和证据 |
 | Metric | artifact_preview_memory_bytes{kind} | <= 2.5x content | > 3x 或 OOM | 降级 metadata + save，调查 decode |
+| Metric | artifact_v3_cursor_apply{kind,result} | duplicate replay idempotent；gap=0 | cursor/state divergence 1 次 | 关闭 Artifact flag，保留 rows，只读回落 v2 |
+| Metric | artifact_private_invalidation{result} | queue<64；gap/invalid/leak=0 | content canary 或 authority mismatch 1 次 | 清 subscription/store，强制 history-v3 resync |
 | Metric | artifact_staging_bytes/session/global | 低于批准上限 | 达 90% 拒绝新 work | 清理 expired lease，检查 ack |
 | Log | artifact_operation_outcome | typed code only | path/body/token canary 命中 1 次 | 立即停止、清理并安全审查 |
 | Audit | local save intent aggregate | success/failure only | N/A local | 不记录目标路径；生产前重审 |
@@ -367,20 +396,23 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 
 | 项目 | 基线 | 目标/上限 | 测试方法 | 降级 |
 |---|---:|---:|---|---|
-| 占位可见延迟 | 未测 | p95 < 300ms | deterministic SSE timestamps + Playwright | 保留文本，合并低频 progress |
-| UI progress 刷新 | 未测 | <= 10Hz | fake burst events | coalesce latest state |
+| 占位可见延迟 | 未测 | 3 warmup + 30 samples；p95 <300ms，>=1000ms hard-stop | real-Tauri monotonic Host→DOM timestamps | 保留文本，合并低频 progress |
+| UI progress 刷新 | 未测 | 100 events/s×10s；<=10Hz/component，>20Hz sustained hard-stop | test-only strict-local burst | coalesce latest state |
 | 单图片 | N/A | 20 MiB | boundary + magic + pixel fixtures | metadata + save |
 | 单视频 | N/A | 64 MiB BLOB / 64 MiB protocol in-flight | Range/boundary/WebView smoke | metadata shell + native save |
 | 单文件 | N/A | 64 MiB save；inline source 1 MiB / projection 256 KiB / response 512 KiB | parser/caps/save boundary fixtures | metadata + native save |
 | 单 report | N/A | 64 MiB save authority；preview source 4 MiB / projection 512 KiB / response 1 MiB | closed-schema/projection/caps/save fixtures | metadata shell + canonical save |
 | 每 turn | N/A | 12 项 / 128 MiB | aggregate admission tests | 拒绝新增、保留已 ready |
 | WebView/native preview memory | 未测 | image in-flight 40 MiB；video in-flight 64 MiB；file source in-flight 2 MiB；report source in-flight 8 MiB | process memory sampling + registry/operation counters | metadata + native save |
+| UI/进程稳定性 | 未测 | 12 mixed；no >200ms long task；CLS<=0.1；close 30s 后三进程 RSS 残留<=64MiB | Desktop/WebContent/Host per-PID sampling，3 warmup+30 samples | table/metadata/save-only |
 | 模型成本 | 0（当前不调用） | synthetic 0；真实值未批准 | provider Eval 后记录 | capability off |
 
 ## 11. 配置、Feature Flag 与部署
 
 - `YIJIE_AGENT_HOST_V3_ARTIFACTS_ENABLED=false`：Host v3 route/resource master flag，默认关闭。
 - `YIJIE_CHAT_ARTIFACTS_V3_ENABLED=false`：Desktop native transfer master flag，默认关闭；关闭后已存 metadata 仍只读。
+- `YIJIE_FEAT128_S10_TEST_PROFILE_ENABLED=false`：仅 strict-local S10 harness master；必须与既有 FEAT126 exact fake profile
+  及 compile-time `feat128-s10-runtime` 同时满足，production/default build 不接受 synthetic child injection。
 - `YIJIE_FEAT128_SYNTHETIC_ENABLED=false` + `YIJIE_FEAT128_SYNTHETIC_MANIFEST=feat128-artifact-v1`：只在 `YIJIE_ENV=local` 下接受 exact profile，不能与真实 provider profile 同开。
 - kind capability 由 Host readiness 返回，Desktop 不根据模型名猜测。
 - 安全关闭行为：继续 v1/v2 文本流；已持久化 Artifact 只读可见，禁止新 transfer/producer。
@@ -411,7 +443,7 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 | F：独立 video opaque Range protocol | Vue 不接收正文；原生 video 可多次 HEAD/GET/seek；与 image one-shot 隔离 | Tauri response buffered，必须硬限 64MiB 并维护 lifecycle registry | 中 | S7A/S7A-REPAIR/S7B implemented separate PASS |
 | G：file bounded private projection + native save | 可搜索安全文本无需 URL/CSP；路径与 raw bytes 留在 native | 用户授权内容会短暂进入组件 DOM，必须严格 caps/清理 | 中 | S8A/S8B implemented separate PASS |
 | H：report closed bounded projection + canonical JSON native save | Vue 不接触 raw JSON，unknown payload 不穿透；复用 SQLCipher/atomic save | 复杂 section 必须严格 caps/typed union | 中 | S9A implemented separate PASS |
-| I：direct tree-shaken ECharts core + closed adapter + table authority | 满足 Accepted ECharts 标准，不开 generic option/wrapper，可单独回滚 | 新 exact dependency/license/bundle/theme 审查，必须严格 dispose | 中 | Recommended for S9B-D |
+| I：direct tree-shaken ECharts core + closed adapter + table authority | 满足 Accepted ECharts 标准，不开 generic option/wrapper，可单独回滚 | 新 exact dependency/license/bundle/theme 审查，必须严格 dispose | 中 | S9B-D/R implemented separate PASS |
 | J：`vue-echarts` wrapper | Vue 集成便利 | 仍需 ECharts，额外 generic option/event/lifecycle 与供应链 | 中高 | Reject |
 | K：table-only final renderer | 零 chart dependency，可访问性最稳 | 不完成 AC-006 有限图表路径 | 中 | Fallback/rollback only |
 
@@ -420,11 +452,11 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 - ADR：当前 `N/A`，前提是采用方案 C 且不改变跨仓职责；选择 Host/云长期存储、自定义公开 URL 或 Runtime 核心修改时必须新增 ADR。
 - 技术负责人：段成威，结论 `G2 APPROVED for Contracts S1/S2`。
 - 安全/数据 Owner：段成威，结论 `G2 APPROVED for Contracts S1/S2`。
-- Product/Design：FEAT-128 Pattern 1.5.0 `Accepted`；S6-S9A separate PASS；
-  `READY FOR S9B-D ONLY; ACCESSIBLE TABLE IS AUTHORITATIVE; S9B-R WAITS`。Markdown/AC-005 仍 PARTIAL。
-- S9B Technical：`APPROVED FOR S9B-D CODING`，只允许 8.10 exact dependency/lock/notice、static core/Canvas、
-  semantic theme/card、closed adapter/tests/bundle gate；S9B-R 等待 D immutable PASS 与单独授权。
-- S9B Security/Data：批准 D 在 no-report-read/no-option/no-HTML/no-event/no-network、bounded instances 与 dispose
-  lifecycle 内编码；R 的 authorized-content DOM lifecycle 仍关闭。
-- 结论日期：2026-08-21；G3 仍只对 S3/S4/S5 为 PASS。S9B-D/S9B-R/S10-S11、任何真实 producer 与生产
-  activation 仍未执行；所有 FEAT-128 flags 默认关闭，G4 pending。
+- Product/Design：Pattern 1.6.0 `Accepted`；S6-S9B-R separate PASS；`READY FOR S10A-LOCAL-PROFILE ONLY`。
+  Markdown/AC-005 仍 PARTIAL，production vertical/G4 pending。
+- S10 Technical：`APPROVED FOR EXACT KEYLESS LOOPBACK PROFILE AND SIDECAR FLAG MAPPING`；single-v3/atomic-cursor
+  S10B 等待 A immutable PASS。
+- S10 Security/Data：`APPROVED FOR S10A ONLY`，要求 zero key/provider/non-loopback、owner-only temp root、watchdog、
+  content-free evidence；B-E 等待。
+- 结论日期：2026-08-22；G3 仍只对 S3/S4/S5 为 PASS。S10A-E、任何真实 producer 与 production activation
+  均未执行；所有 FEAT-128 flags 默认关闭，G4 pending。

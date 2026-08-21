@@ -17,7 +17,7 @@
 | AC-003 | 图片炸弹/handle 重放/保存越界 | ART-IMG-001, SEC-001/007/009, UI-002 | Host/native/UI | PNG/JPEG/WebP、magic/20MiB、one-shot handle、lightbox/save | synthetic PNG/JPEG/WebP only | schema、双次 digest、protocol、keyboard、atomic save evidence |
 | AC-004 | 视频不可 seek/OOM/autoplay | ART-VID-001, SEC-002/011, UI-003 | Host/native/UI | frozen MP4 metadata/range/64MiB/autoplay off；WebM 未批准 | canonical 1,642-byte MP4 + boundary responses | 200/206/416、controls、memory、fallback |
 | AC-005 (`PARTIAL`) | 文件内容执行/截断不明；Markdown 不在 v3 output | ART-FILE-001, SEC-003/006, UI-004 | native/UI | plain/JSON/CSV bounded preview；PDF/XLSX unsupported-inline + save；Markdown contract blocker | Desktop-private synthetic files | text-only DOM、exact caps、search/save/fallback；G4 不通过 |
-| AC-006 | report XSS/任意 chart option/consumer 漂移 | ART-RPT-001, SEC-004, UI-005 | schema/native/UI | contract-valid Unicode/date-time/duplicate/mismatched chart；known sections；unknown optional omitted、unknown required rejected；HTML/URL/script rejection | report v1 fixtures + Desktop-private valid differential cases | S9A conformance/projection/save PASS；S9B-READINESS docs PASS；S9B-D/S9B-R implementation NOT RUN |
+| AC-006 | report XSS/任意 chart option/consumer 漂移 | ART-RPT-001, SEC-004, UI-005 | schema/native/UI | contract-valid Unicode/date-time/duplicate/mismatched chart；known sections；unknown optional omitted、unknown required rejected；HTML/URL/script rejection | report v1 fixtures + Desktop-private valid differential cases | S9A/S9B-D/checker repair/S9B-R separate PASS；production vertical NOT RUN |
 | AC-007 | 历史丢失/过期残留 | DB-001, DB-002, E2E-001 | migration/integration/E2E | v7->v8、reopen、TTL、WAL、delete | temp SQLCipher DB | metadata order、content physically absent、cleanup receipt |
 | AC-008 | 跨租户/路径/token 泄漏 | SEC-005, SEC-006, ACK-001 | integration/security | wrong session/token、redirect、href/path injection、ACK digest/conflict/replay、log/DOM scan | loopback fake Host | 404/deny、idempotent receipt、unauthorized/path/token/raw-error canary hit count 0 |
 | AC-009 | 旧 consumer 被击穿 | COMP-001..004 | contract/producer/consumer | old/new Host/Desktop matrix | canonical fixtures | v1/v2 byte equality、v3 explicit negotiation |
@@ -146,8 +146,23 @@ production page/runtime visual。Markdown/AC-005 仍为 PARTIAL。
 
 S9A fixture authority 使用 immutable `report-document-v1.schema.json` 与 canonical valid/unknown optional/unknown required/
 injection fixtures；Desktop-private differential fixtures只能补 consumer conformance，不得修改或冒充 Contracts canonical。
-Host synthetic report 与 Contracts canonical bytes 不同但都必须 schema-valid。S9A 已独立 PASS；S9B-READINESS 只批准
-S9B-D 为下一切片，本轮不得安装依赖，S9B-D/S9B-R 均 `NOT RUN`。
+Host synthetic report 与 Contracts canonical bytes 不同但都必须 schema-valid。S9A、S9B-D、checker repair 与 S9B-R
+后续均已独立 PASS；本节保留 readiness/RED 口径，production Chat/Tauri vertical 仍 `NOT RUN`。
+
+## 6E. S10 测试先行门禁
+
+| Slice/Layer | EXPECTED RED | GREEN/stop |
+|---|---|---|
+| S10A exact profile | as-is real Host 拒绝 synthetic+fake；Desktop sidecar 不映射 v3/synthetic flags | exact S10+FEAT126 local conjunction start session/turn and v3 four-kind GET/ACK；所有不完整/大小写/key/provider/non-loopback 组合 fail before listen/spool/child；fresh source/binary digest、0700 root、20/30/180/10s deadlines、zero child/listener/WAL/spool/temp；否则 STOP |
+| S10B v3 decoder/cursor | production 只开 v2；Artifact apply 与 cursor 独立 | single v3 common order；ordinary reducer parity；started/progress/failed+cursor transaction；completed ready+ACK intent+cursor crash points；duplicate/gap/stream restart/identity/terminal fail closed；flag-off v2 equality |
+| S10B private event | channel/schema 不存在 | exact content-free closed shape；main-WebView/current context/session subscription；sequence monotonic、queue 64、gap/overflow coalesced resync、restart no replay；DOM/log/schema source无 metadata/body/digest/path/token/error |
+| S10C history/store/page | ChatClient/Store 使用 v2；ArtifactStore无 authority reset；Page未挂List | subscribe-first/buffer/control+v3 history/second resync/replay；separate v3 cursor；authority tuple+epoch/reset；empty-text turn；four typed clients；stale/switch/logout/delete zero projection；no direct invoke/wire parse |
+| S10D vertical | S7 seeded shell/S9 Vite fake 不能证明 production | fresh exact Host + real Tauri production ChatPage；四 kind lifecycle/ACK/history/pagination/reload/restart/mixed failure/TTL/delete；18+ visual/a11y matrix；manual native save若不可安全自动化则 NOT RUN |
+| S10E security/perf | 无真实 12-item/burst/boundary/canary/per-process baseline | unauthorized context/WebView/session与 digest/MIME/size/content mismatch；12 items、100/s×10s、20/64MiB、file/report caps；3 warmup+30 samples，p50/p95；started p95<300ms/hard-stop>=1000，render<=10Hz/hard-stop>20，no >200ms long task，CLS<=0.1，memory target<=2.5x/hard-stop>3x，close residual<=64MiB |
+
+S10A exact focused commands、allowlist 与 process runner 在 07 §23；B-E 均等待前序 immutable PASS 和单独授权。
+任何 public contract/pin/fixture、migration、dependency/plugin/capability/CSP/external origin、secret/provider/non-loopback、
+monotonic weakening 或 content leakage 立即失败。
 
 ## 7. Migration 演练
 
@@ -163,14 +178,15 @@ S9B-D 为下一切片，本轮不得安装依赖，S9B-D/S9B-R 均 `NOT RUN`。
 
 | Metric | Workload | Baseline | Pass threshold | Stop threshold |
 |---|---|---:|---:|---:|
-| announced visible p95 | 100 synthetic turns | 未建立 | <300ms | >=1000ms |
+| announced visible p95 | 3 warmup + 30 measured samples/kind | 未建立 | <300ms | >=1000ms |
 | progress render rate | 100 events/sec burst | 未建立 | <=10Hz/component | >20Hz sustained |
-| long task | 12 mixed artifacts | 未建立 | no task >50ms target | any task >200ms |
+| long task/layout | 12 mixed artifacts | 未建立 | no task >50ms target；CLS<=0.1 | any task >200ms |
 | preview memory | 20MiB image / 64MiB video | 未建立 | <=2.5x bytes target | >3x or crash/OOM |
 | transfer integrity | range/full content | 未建立 | 100% digest match | any silent mismatch |
 | cleanup | 128MiB turn | 未建立 | content inaccessible after completion | any residual readable content |
+| process residual RSS | Desktop+WebContent+Host, close+30s | 未建立 | <=64MiB aggregate over baseline | >64MiB after cleanup |
 
-这些阈值是 G2 候选；实际 baseline、工具和样本数必须在实现前由 Owner 批准，未测结果不能写成 PASS。
+这些阈值、样本和 hard-stop 已由 S10 readiness Owner 冻结；未测结果不能写成 PASS。
 
 ## 9. AI Eval 专项
 
@@ -193,7 +209,7 @@ S9B-D 为下一切片，本轮不得安装依赖，S9B-D/S9B-R 均 `NOT RUN`。
 | Fixture/Dataset | 权威位置 | 数据分类 | 合成/脱敏方式 | Consumer |
 |---|---|---|---|---|
 | v3 lifecycle JSON | `yijie-contracts/tests/fixtures/agent/session-event-v3/` | public synthetic | UUID、1x1/小媒体、无路径/正文 | Host/Desktop |
-| report document v1 | `yijie-contracts/jsonschema/report/report-document-v1.schema.json` + canonical valid/unknown optional/unknown required/injection fixtures | public synthetic | 虚构指标/日期/来源，无店铺数据；exact MIME `application/vnd.yijie.report+json;version=1`；Host synthetic 为独立 schema-valid bytes；PDF/Markdown/image derived export 延期 | Contracts/Host + S9A PASS；S9B-D/S9B-R NOT RUN |
+| report document v1 | `yijie-contracts/jsonschema/report/report-document-v1.schema.json` + canonical valid/unknown optional/unknown required/injection fixtures | public synthetic | 虚构指标/日期/来源，无店铺数据；exact MIME `application/vnd.yijie.report+json;version=1`；Host synthetic 为独立 schema-valid bytes；PDF/Markdown/image derived export 延期 | Contracts/Host + S9A/S9B-D/S9B-R PASS；production vertical NOT RUN |
 | canonical video resource | `yijie-contracts/tests/fixtures/agent/resources-v3/synthetic-video-16x16.mp4.base64` | public synthetic | generated three identical 16×16 frames；raw 1,642 bytes；no external footage/business data | Contracts/Host S7F/Desktop S7A/S7B PASS |
 | file fixture corpus | Contracts `synthetic-data.csv` + Host distinct strict-local CSV + Desktop-private MIME matrix | public synthetic | 两个 CSV 均合法但非 byte-equal；其余只用 local safe fixtures | S8A/S8B PASS；不得修改 immutable source |
 | media boundary corpus | implemented S3/S4/S6/S7/S8 testdata + future report UI corpus | public synthetic | generated headers/containers/corruption | image/video/file boundary/renderers PASS；report pending |
@@ -212,6 +228,8 @@ S9B-D 为下一切片，本轮不得安装依赖，S9B-D/S9B-R 均 `NOT RUN`。
 | Host | yijie-agent-host | `make lint && make test && make runtime-test` | fixed Runtime artifact for runtime-test | 3-8 min |
 | Desktop | yijie-desktop | `make lint && make test && make build && pnpm docs:build` | Node/Rust/pnpm | 5-15 min |
 | Desktop all Rust | yijie-desktop | `cargo test --manifest-path src-tauri/Cargo.toml --all-targets --all-features` | Rust toolchain | 5-15 min |
+| S10A Host profile | yijie-agent-host | `go test ./internal/app ./cmd/desktop-host && YIJIE_RUN_FEAT128_S10_PROFILE_INTEGRATION=1 go test ./internal/integration -run '^TestFEAT128S10ExactLocalProfile$' -count=1 -v && go test ./...` | loopback 18080/18082 free；no key/provider | 3-10 min |
+| S10A Desktop sidecar | yijie-desktop | `cargo fmt --manifest-path src-tauri/Cargo.toml -- --check && cargo test --manifest-path src-tauri/Cargo.toml chat::sidecar::tests && cargo test --manifest-path src-tauri/Cargo.toml --features feat128-s10-runtime chat::sidecar::tests && cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --all-features -- -D warnings` | Rust toolchain；no child secrets | 3-10 min |
 | visual/a11y | yijie-desktop | FEAT-128 Vite harness + Playwright screenshots/axe command recorded when harness exists | local browser | 3-10 min |
 | real MiniMax | isolated local environment | command not defined or authorized | API key, paid network, fixed provider evidence | BLOCKED |
 
@@ -228,8 +246,8 @@ S9B-D 为下一切片，本轮不得安装依赖，S9B-D/S9B-R 均 `NOT RUN`。
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
 | 测试/技术 Owner | 段成威 | G2A APPROVED；S1/S2/S2P evidence PASS | 2026-08-20 |
-| 安全/数据 Owner | 段成威 | S3/S4/S5 G3 PASS；S6-S9A separate PASS | 2026-08-21 |
-| Product/Technical/Security/Data Owner | 段成威 | S9B-READINESS `READY FOR S9B-D ONLY`；accessible table authoritative；S9B-R waits for D immutable PASS | 2026-08-21 |
+| 安全/数据 Owner | 段成威 | S3/S4/S5 G3 PASS；S6-S9B-R separate PASS | 2026-08-22 |
+| Product/Technical/Security/Data Owner | 段成威 | S10-READINESS `READY FOR S10A-LOCAL-PROFILE ONLY`；S10B-E WAIT/NOT RUN | 2026-08-22 |
 
-Contracts、pin conformance、S3/S4/S5 与独立 S6-S9A 命令已实际执行并记录于 08；S9B-READINESS 只是
-docs evidence，S9B-D/S9B-R 尚未实现，不能因 Pattern Accepted 或 Owner readiness 预记 PASS。
+Contracts、pin conformance、S3/S4/S5 与独立 S6-S9B-R 命令已实际执行并记录于 08；S10-READINESS 只是
+docs evidence，S10A-E 尚未实现，不能因 Pattern Accepted 或 Owner readiness 预记 PASS。

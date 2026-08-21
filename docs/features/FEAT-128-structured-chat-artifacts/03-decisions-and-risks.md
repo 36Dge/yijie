@@ -206,7 +206,36 @@ tokens，`animation=false`，rich-text confined tooltip、ARIA/decal、可见 ta
 | Security/Data | 段成威 | APPROVED FOR S9B-D CODING | no report read/persistence/log/snapshot/network、bounded instances、dispose lifecycle、table fallback | S9B-R authorized-content DOM lifecycle 在 D PASS 前保持关闭 |
 
 Owner 结论依据用户本轮明确指令由 Codex 代录，不声称独立人工批准。S9B-READINESS 是 docs-only
-PASS；S9B-D/S9B-R 均 `NOT RUN`，G3 仍只包含 S3/S4/S5，G4 pending。
+PASS；其历史结论保留。S9B-D `0a36ca7c54460d22ea6b3228832a57f05f0bde68`、checker repair
+`aec0f8a05ba7534132cbb4f46be64e333d7e9024` 与 S9B-R
+`6bcc2a6bfb4db76398ecf5483c688475477f08ed` 后续均已独立 PASS；production vertical 仍 NOT RUN，G3/G4 不变。
+
+## 2H. S9-SPEC-RECONCILIATION 与 S10-READINESS Owner Conclusion（2026-08-22）
+
+本轮只读审计确认：Host v3 是普通 turn/reasoning 与 Artifact 的同序列超集；Desktop production 仍只开 v2，
+ArtifactTransferService/v3 decoder 没有生产调用；ChatClient/Store/Page 仍未接 history v3/ArtifactStore/List。现有
+FEAT-128 synthetic 又因 Runtime 前置和 synthetic+fake 互斥，不能独立驱动真实 Host。Accepted Pattern 已升为
+1.6.0 `c1095eeb7a4c4bbc1f5a2729e9f8df861ebc02c2`。本 docs rewrite `contract-impact=none`。
+
+| ID | 冻结结论 | 理由/证据 | Gate effect |
+|---|---|---|---|
+| DEC-128-025 | S10 重切为 S10A-LOCAL-PROFILE → S10B-NATIVE-LIVE → S10C-PAGE → S10D-VERTICAL → S10E-SEC-PERF；native V3/cursor 基础必须先于 Page。 | keyless Runtime/profile、ordered durable ingestion、UI authority 和纵向/性能是四种不同风险，必须独立回滚。 | `READY FOR S10A-LOCAL-PROFILE ONLY`；B-E WAIT/NOT RUN。 |
+| DEC-128-026 | 新增 exact/default-off `YIJIE_FEAT128_S10_TEST_PROFILE_ENABLED=true`，只在既有 FEAT126 exact loopback fake Responses profile、v3/synthetic exact flags、manifest `feat128-artifact-v1`、local/owner/parent/run-root 条件及零 MiniMax/key/provider 时允许 synthetic+fake。其它组合 startup fail before listen/spool/child。 | 当前 StartSession/Turn 先依赖 Runtime；无 Runtime 时 synthetic 到不了，直接放宽互斥会扩大测试配置。 | S10A 只改 Host config/integration test 与 Desktop sidecar/compile-time test wiring；公共 wire/pin/fixture不变。 |
+| DEC-128-027 | Artifact flag on 时 active turn 只消费 single v3 stream。started/progress/failed 与 turn-progress flush/cursor 同 SQLCipher transaction；completed 的 ready BLOB+ACK intent+cursor 同事务，ACK 在 commit 后幂等发送；网络期间不持事务。 | v2+v3 双流无共同 cursor；当前 Artifact 状态与 turn cursor 分开写，崩溃重放会撞上 strict monotonic state。 | S10B 必须证明 crash/replay/gap/duplicate/stream restart，不得用弱化 regression 检查修复。 |
+| DEC-128-028 | 新增 Desktop-private content-free channel `yijie:chat:artifact:changed:v1`/schema `chat-artifact-live-v1.schema.json`，只含 subscription/context/session/turn/event identity、per-subscription sequence 与 `artifact_changed|resync_required|context_invalidated`；queue cap 64。history v3 是唯一 replay authority。 | 发送完整 Artifact metadata 会在 history 与 live 间产生 stale regression；content-free invalidation + coalesced history-v3 resync 保持同一 S5 reducer 和安全边界。 | S10B 实现 channel；S10C subscribe-first/buffer/control+v3-history/replay。无 public Contracts/Host wire 变化。 |
+| DEC-128-029 | flag off 只禁止新 v3 producer/transfer；已持久化 metadata 与经当前 `ReadSessions` 授权的 preview/save 保持只读。Desktop parent flag 映射 Host v3 child flag但不转发自身；synthetic env 只能由 compile-time `feat128-s10-runtime` exact profile 注入。 | rollback 不能使本地 authority 数据不可读，也不能信任任意 shell synthetic env。 | 不新增 Vue-only flag；关闭后回落 single v2 active stream。 |
+
+S10A exact process/temp/watchdog、B-E private schema/atomicity/history/store/page/vertical/security/performance、允许目录、
+命令、停止条件和回滚以 Pattern 1.6.0 §§9.14-9.19 与 07 §23 为准。Markdown/AC-005 仍 PARTIAL。
+
+| Review | Owner | 结论 | 批准范围 | 保持关闭 |
+|---|---|---|---|---|
+| Product | 段成威 | READY FOR S10A-LOCAL-PROFILE ONLY；PRODUCTION VERTICAL AND MARKDOWN PENDING | strict-local zero-provider executable profile | S10B-E、S11-S12、G4 |
+| Technical | 段成威 | APPROVED FOR EXACT KEYLESS LOOPBACK PROFILE AND SIDECAR FLAG MAPPING | S10A exact Host/Desktop test/config scope | single-v3/atomic-cursor B、Page、public contract/config expansion |
+| Security/Data | 段成威 | APPROVED FOR S10A ONLY WITH NO KEY/PROVIDER/NON-LOOPBACK, OWNER-ONLY TEMP ROOT, WATCHDOG AND CONTENT-FREE EVIDENCE | zero-secret/network proof、bounded process lifecycle、cleanup | real provider、persistent evidence content、B-E |
+
+Owner 结论依据用户明确指令由 Codex 代录，不声称独立人工批准。S10 readiness 是 docs-only PASS；S10A-E
+implementation 均 NOT RUN，不扩 G3，不声明 G4。
 
 ## 3. Provider activation gate
 
@@ -239,6 +268,9 @@ PASS；S9B-D/S9B-R 均 `NOT RUN`，G3 仍只包含 S3/S4/S5，G4 pending。
 | RSK-128-013 file preview 内容执行/泄漏 | raw/未授权正文进入全局 state/log/snapshot，CSV formula/HTML/link 被执行，或 save path 返回 Vue | XSS、工具越权、数据泄漏、任意写入 | native bounded projection、text nodes only、exact limits、no v-html/link/formula execution、component-local lifecycle、native atomic save | control/bidi/CSV/JSON adversarial tests、authorized/unauthorized canary open/close scans、path/token/digest zero-hit | 关闭 S8 renderer/commands，回落 metadata shell，保留 SQLCipher authority | Client/Security/Data Owner |
 | RSK-128-014 report consumer/renderer 漂移或注入 | Desktop 额外拒绝 contract-valid document，或 raw/unknown payload、任意 chart option/formatter 进入 Vue | 合法报告不可用、XSS/代码执行、数据外传 | contract-valid conformance fixtures、native closed projection、unknown omission、fixed chart mapper、text nodes + accessible table、exact caps | Ajv-vs-Rust differential、injection/unknown/cap tests、exact-key/serializable/no-function/no-URL assertions、DOM/log/storage canary；禁止含 projection 值的 option snapshot | 关闭 S9 renderer/commands，回落 metadata shell；保留 SQLCipher canonical authority，不恢复错误契约解释 | Client/Security/Data Owner |
 | RSK-128-015 chart dependency/bundle/instance 失控 | 额外 transitive、full import、license/integrity 漂移、包体超限、多 chart 未 dispose | 供应链/发行合规风险、启动回归、WebView 内存泄漏 | exact package/lock/notice/import allowlist、static tree-shaking、bundle gate、4-instance/2048-point cap、clear/dispose/disconnect | dependency/lock/source scan、raw+gzip build budget、theme/unmount/error lifecycle tests、visual matrix | 回滚 S9B-D dependency/theme/adapter/card，保留 table fallback 与 S9A canonical save | Technical/Security/Data Owner |
+| RSK-128-016 v3 双流/游标非原子 | v2/v3 并跑，或 Artifact 状态先于/晚于 cursor 独立提交 | 丢事件、重复下载、严格状态机冲突、UI错位 | single v3 common decoder；event apply+cursor transaction；completed crash-safe ready/ACK intent | crash-point、replay、gap/duplicate/stream-change、cursor/state differential | 关闭 Artifact flag，恢复 single v2；保留 authority rows只读 | Runtime/Client/Data Owner |
+| RSK-128-017 synthetic 测试剖面越权 | fake/synthetic 在非 exact profile、带 key/provider 或非 loopback 启动 | 误用真实 provider、付费/数据外传、错误验收 | exact master conjunction、env_clear+inject、owner/parent/run-root、fresh binary/watchdog | negative config matrix、socket/process/env evidence、zero-secret scan | 删除/关闭 profile，终止 child，清 run root；不改变默认生产路径 | Technical/Security Owner |
+| RSK-128-018 UI authority/stale projection | context/tenant/session 切换后 ArtifactStore 保留旧 metadata，或 live/history竞态回退 | 跨 authority 展示、重复/错位/终态回退 | content-free invalidation、subscribe-first、v3 history authority、epoch/reset guards、trusted ids | logout/rebind/switch/delete/stale/gap tests与DOM/Pinia canary | unmount Artifact list，清 store，回落 v2 Chat UI | Client/Security/Data Owner |
 
 ## 5. 不需要新 ADR 的前提
 
@@ -252,9 +284,9 @@ PASS；S9B-D/S9B-R 均 `NOT RUN`，G3 仍只包含 S3/S4/S5，G4 pending。
 - S7F/S7A/S7A-REPAIR/S7B 已逐切片独立 PASS；DEC-128-016 是现行 video handle lifecycle，Pattern 1.2.0 的
   64-request 条款只保留为历史 RED。
 - S8A/S8B 已分别独立 PASS，未并入 G3；Markdown 延期使 AC-005 保持 PARTIAL，G4 不得通过。
-- S9A 已在 `232ea6ce132faa8ac99bdf6abcc5e02ddd704ffe` 独立 PASS。S9B-READINESS/Pattern 1.5.0
-  `630c3c8d55a2617499f51bd5bed263b819aaf084` 只批准下一编码切片 S9B-D；S9B-R 等待 D immutable
-  PASS 与单独授权。readiness 不等于实现 PASS。
+- S9A、S9B-D、checker repair 与 S9B-R 已分别独立 PASS；production Chat/Tauri vertical 仍 NOT RUN。
+- S10-READINESS/Pattern 1.6.0 `c1095eeb7a4c4bbc1f5a2729e9f8df861ebc02c2` 只批准
+  S10A-LOCAL-PROFILE；S10B-E 等待前序 immutable PASS 与单独授权。readiness 不等于实现 PASS。
 - Contracts v3 source、基线、generator/adapter、unknown kind/section 行为和 consumer 顺序已完成 G2 设计评审；S1/S2 真实生成、检查、双 breaking 与不可变 commit 已通过。
 - Desktop SQLCipher v8 migration、64 MiB 单 Artifact 上限、七天 retention 起算与恢复边界已在 S4 实现并通过迁移/reopen/TTL/delete 验证；图片 native preview/save/CSP 属 S6A，S6B 只做 renderer。
 - 真实 MiniMax 调用保持关闭；如需启用，另行取得费用和 provider activation 批准。
@@ -265,6 +297,6 @@ PASS；S9B-D/S9B-R 均 `NOT RUN`，G3 仍只包含 S3/S4/S5，G4 pending。
 - G1：PASS，场景、AC、受影响仓库、最高 contract impact 和主要风险已识别。
 - G2：`PASS`，Product/Design、Technical/Contracts、Security/Data 与测试计划已由 Owner 明确批准；只允许进入 Contracts S1/S2。
 - G2A：`PASS`，Contracts `ea48fe190e18afba728712d1e2cc79cda57f581b`、Host pin `dea84d0768ebc017b7ee5faedab7f9a49ce74875` 与 Desktop pin `96094419d963745529ed0fa246919089e659f20d` 已满足真实 generate、双 breaking、semantic/consumer review 与不可变 pin 条件。批准依据是用户本轮给出的条件授权与实际证据，不声称 Codex 是独立人工 Reviewer。
-- G3：只对 S3/S4/S5 原子切片通过；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A 为独立 PASS，均不扩展 G3。
-  S9B-READINESS 仅 `READY FOR S9B-D ONLY`，不是实现 PASS；S9B-D/S9B-R `NOT RUN`，G4-G6 仍未通过，Host/Desktop
-  master/synthetic flags 与真实 provider 继续关闭。
+- G3：只对 S3/S4/S5 原子切片通过；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A/S9B-D/
+  S9B-D-CHECKER-REPAIR/S9B-R 为独立 PASS，均不扩展 G3。S10-READINESS=`DOCS PASS / READY FOR
+  S10A-LOCAL-PROFILE ONLY`；S10A-E `NOT RUN`，G4-G6 未通过，Host/Desktop master/synthetic 与真实 provider 继续关闭。

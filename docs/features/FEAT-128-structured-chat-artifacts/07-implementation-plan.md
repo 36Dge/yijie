@@ -35,7 +35,12 @@ S0 Owner G2 approval (PASS)
                                       -> S9B-D exact dependency/theme/closed-adapter/card foundation (PASS separate slice)
                                          -> S9B-D-CHECKER-REPAIR historical-scope + immutable-boundary audit (PASS separate slice)
                                             -> S9B-R ready-report renderer/save UX (PASS separate slice)
-                                               -> S10 local synthetic vertical/visual/security/performance evidence
+                                               -> S10-READINESS + S9-SPEC-RECONCILIATION (PASS docs only)
+                                                  -> S10A-LOCAL-PROFILE exact keyless Host/sidecar profile
+                                                     -> S10B-NATIVE-LIVE single-v3/atomic cursor/private invalidation
+                                                        -> S10C-PAGE history/store/production ChatPage integration
+                                                           -> S10D-VERTICAL real Tauri + fresh Host vertical
+                                                              -> S10E-SEC-PERF adversarial/boundary/performance
                                          -> S11 structured independent review + local G4 decision
 
 Real provider activation:
@@ -69,7 +74,11 @@ S2 + S3 + S4 + S10
 | S9B-D | exact dependency/semantic theme/closed adapter/one-instance chart-card foundation；不读 report | AC-006/010 foundation partial | yijie-desktop TS/design only | `package.json`、`pnpm-lock.yaml`、`THIRD_PARTY_NOTICES.md`、chart tokens/theme、pure adapter/budget helper、`YjChartCard`、`scripts/check-feat128-s9b-d-{dependencies,bundle}.mjs(+test)`、`tests/visual/feat-128-s9b-d/**` | components/chat、S9A client/native/config/pages/stores；full/root/vue-echarts/dynamic/CDN；arbitrary option/event/HTML/network | S9B readiness + separate S9B-D authorization | exact focused/checker/full/bundle/loopback-browser/diff commands in §20 | remove exact dep/3 lock nodes/notice/theme/tokens/adapter/card/checker；S5/S9A 不变 |
 | S9B-D-CHECKER-REPAIR | 修复 dependency checker 把所有 readiness 后续 diff 误判为 S9B-D scope 的问题 | governance/conformance only | yijie-desktop checker only | `scripts/check-feat128-s9b-d-dependencies.mjs` 与同名 test | 全部 S9B-D protected production files、`components/chat`、依赖、native/config/schema/pin | immutable S9B-D PASS + separate repair authorization | EXPECTED RED → focused/full checker + Desktop full gates；见 §21 | revert 两个 checker 文件；S9B-D production boundary 与 S9B-R 均不变 |
 | S9B-R | 使用 immutable D + S9A typed client 实现 ready-report renderer/canonical-save UX | AC-006/010 UI partial | yijie-desktop TS/Vue only | `ChatArtifactReport*.vue`、Shell/List typed client 透传、tests + test-only visual | dependency/theme/adapter/native/config/pages/stores；raw/unknown/v-html/link/network；derived export | S9B-D immutable PASS + checker repair PASS + separate S9B-R authorization | component/axe/security/visual + final bundle/full Desktop gates | remove report renderer/Shell/List 透传；回落 S5 metadata + S9A canonical save |
-| S10 | deterministic end-to-end、history/TTL/delete、security/performance/visual evidence | AC-001..012 | Host + Desktop + yijie docs | exact local harness/evidence docs | real provider、真实数据、production claim | S3-S9 | full gates + Playwright/axe + migration/adversarial | close flags, preserve evidence; findings reopen slices |
+| S10A-LOCAL-PROFILE | exact keyless strict-local Host profile + Desktop sidecar flag mapping；无 live/page | S10 precondition | Host + Desktop test/config only | Pattern 1.6 §9.15/§9.17 与本文件 §23 exact allowlist | session fixture/public wire/pin、native live/page/store/config capability/deps | S10 readiness + separate auth | exact RED/GREEN/process/full commands in §23 | delete profile/mapping/runner；restore synthetic+fake mutex |
+| S10B-NATIVE-LIVE | single v3 stream、atomic cursor/transfer、content-free private invalidation | AC-001/002/007/009 | Desktop native/private only | HostBridge/domain/application/artifact/database/worker/ipc/mod/lib/private schema/parser/tests + SHA-only checker | Page/store/components、migration、public Contracts/Host wire/fixture、monotonic weakening | S10A immutable PASS + auth | focused crash/replay/private event + full Desktop gates | flag off→single v2；rows/preview/save read-only |
+| S10C-PAGE | V3 history、ArtifactStore authority、ChatPage/List/four clients | AC-001..010 UI | Desktop TS/Vue | ChatClient/ChatStore/ArtifactStore/ChatPage/chat components/tests | native/config/deps/public wire；route/DOM identity inference | S10B immutable PASS + auth | subscribe/buffer/v3 resync/stale/axe/security + full gates | unmount list，clear store，existing v2 UI remains |
+| S10D-VERTICAL | fresh Host + real Tauri production Chat vertical | AC-001..012 | Host/Desktop test-only | compile-time-off harness/evidence only | seeded shell/Vite fake/production config/provider/DB-spool tamper | A-C PASS + auth | four kind/ACK/history/restart/TTL/delete/visual/a11y | remove test feature/harness |
+| S10E-SEC-PERF | adversarial/boundary/per-process performance evidence | NFR/security | Host/Desktop test-only | exact boundary controls/evidence | limit loosening、secret/non-loopback/provider | D PASS + auth | §6E + Pattern 1.6 §9.18 | disable affected preview/kind；metadata/save-only |
 | S11 | 独立结构化审查、P0/P1/P2 修复和本地 G4 decision | all | all affected | review report/fixes within original slices | self-approval、release/tag | S10 | repeat affected/full gates | G4 remains pending until owner approval |
 | S12a | 验证并可选启用真实 MiniMax image | AC-012 | Runtime/Host/Desktop/docs | capability config/adapter/eval after approval | video/file/report、unbounded spend | separate paid approval + S11 | fixed provider integration/eval | per-kind kill switch off |
 | S12b | 视频 producer | AC-004/012 | future authority | only after new producer design | guessing provider API | blocked | command defined after authority | N/A until unblocked |
@@ -190,7 +199,9 @@ S10-S12 未获授权。push、PR、tag、release 与真实 provider 继续关闭
 | S9B-D | `0a36ca7c54460d22ea6b3228832a57f05f0bde68` | exact ECharts/3-node lock/NOTICE、semantic theme/tokens、closed adapter + ordinal budget、one-instance chart card、checkers 与 test-only harness；不读 S9A report | EXPECTED RED 5 suites missing；focused 5 files/13、dependency checker、57 files/360 full、build/docs、bundle 655731 raw/206565 gzip-9、18-case real-browser matrix、diff PASS | exact 18-file allowlist；无 components/chat/native/config/pages/stores/public pin 漂移 | PASS AS SEPARATE SLICE |
 | S9B-D-CHECKER-REPAIR | `aec0f8a05ba7534132cbb4f46be64e333d7e9024` | 只改 dependency checker 与同名 test；历史 D scope 固定为 `630c3c8…→0a36ca7…`，当前只保护 immutable D 文件 | EXPECTED RED：1 file/5 tests 中 3 failed；GREEN：1/5、5 files/16、57 files/363；dependency/lint/build/docs/bundle/diff 全 PASS | package/lock/NOTICE/theme/adapter/card/bundle checker/visual harness 均未变；`components/chat` synthetic downstream path 放行 | PASS AS SEPARATE SLICE |
 | S9B-R | `6bcc2a6bfb4db76398ecf5483c688475477f08ed` | ready-report explicit preview、known/unknown inert sections、ordinal identity、closed chart adapter + per-open 4/2048 budget、visible table authority、stale/clear/dispose、canonical JSON save UX、test-only visual harness | EXPECTED RED：missing component 与 Shell/List action；GREEN：3 files/14 focused、59 files/373 full、dependency/lint/build/docs/bundle/diff + 18-case real browser PASS | 10-file allowed TS/Vue/test-only visual scope；S9A/S9B-D/native/config/pages/stores/dependencies/pins unchanged；production Chat/Tauri vertical NOT RUN | PASS AS SEPARATE SLICE |
-| S10-S11 | N/A | none | NOT RUN | vertical/performance/visual、independent review仍需独立授权与实施 | PENDING |
+| S10-READINESS | Desktop Pattern `c1095eeb7a4c4bbc1f5a2729e9f8df861ebc02c2` + 本次 yijie governance commit | docs/read-only audit；S9 reconciliation、keyless profile、single-v3/atomic cursor、private invalidation、page/vertical/security/perf DAG | Desktop docs/lint/test/diff + governance full docs gates | Product/Technical/Security/Data `READY FOR S10A-LOCAL-PROFILE ONLY`；no implementation | PASS FOR READINESS ONLY |
+| S10A-S10E | N/A | none | NOT RUN | 必须逐片授权与 immutable PASS | WAIT/PENDING |
+| S11 | N/A | none | NOT RUN | independent review需 S10E PASS 与单独授权 | PENDING |
 | S12 | N/A | none | BLOCKED | separate real-provider authority required | BLOCKED |
 
 ## 9. 变更控制
@@ -729,3 +740,66 @@ projection/canvas/authorized marker zero-hit、animation/transition 0s 与 conso
 没有改变任何跨进程、跨仓、持久化或重放边界。S9A client/domain/native/schema/commands、S9B-D protected production files、
 Contracts/Host/pins、src-tauri、config、pages、stores 与 dependencies 均未修改。production Chat/Tauri vertical 与 S10-S12
 仍 `NOT RUN`；S9B-R 仅记 G3 外 separate PASS，G3 仍只包含 S3/S4/S5，G4 pending。
+
+## 23. 下一条可执行指令：S10A-LOCAL-PROFILE
+
+本节只授权首个最小 S10 slice；S10B-E 继续 WAIT/NOT RUN。开始前必须检查 Host/Desktop/yijie 工作树并保护用户改动，
+完整阅读四仓 AGENTS、Pattern 1.6.0 §§9.14-9.19 与 FEAT 03/05/06/07/08/feature。contract impact=`none`：
+只新增默认关闭的 test/config profile，不改 public/private wire、fixture、pin 或 production Artifact behavior。
+
+测试先行：先增加 Host config/integration 与 Desktop sidecar tests，首次必须证明 as-is synthetic+fake 被拒且 child 缺少
+v3/synthetic mapping，记录 EXPECTED RED；再做最小 GREEN。exact profile 是：
+
+- `YIJIE_FEAT128_S10_TEST_PROFILE_ENABLED=true` 与 `YIJIE_FEAT126_S10_TEST_PROFILE_ENABLED=true` 同时 exact true；
+- `YIJIE_ENV=local`、Desktop parent `YIJIE_CHAT_ARTIFACTS_V3_ENABLED=true`，child Host v3/synthetic exact true，manifest
+  `feat128-artifact-v1`，fake endpoint `http://127.0.0.1:18082/v1`；
+- MiniMax/provider/API key/key-file env 必须 absent；existing canonical UUIDv4 run id、parent PID、owner-only 0700 run root、
+  log dir 与 process manifest全部通过；任一缺失/额外/非 loopback/非 exact 值 startup fail before listen/spool/child；
+- parent Artifact flag只映射 child Host v3 flag、不原样转发；synthetic env不继承 shell，只能在 Cargo feature
+  `feat128-s10-runtime` + exact profile下注入。default build/profile off 不注入。
+
+允许修改仅：
+
+- yijie-agent-host：`internal/app/app.go`、`internal/app/app_test.go`、必要的
+  `cmd/desktop-host/main.go`/`main_test.go`、新 `internal/integration/feat128_s10_local_profile_test.go`；
+- yijie-desktop：`src-tauri/Cargo.toml`（只加 empty feature）、`src-tauri/src/chat/sidecar.rs`（含 tests）、新
+  `scripts/run-feat128-s10-local-profile.sh`；
+- 不允许 Cargo.lock/package/lock、session fixture/producer bytes、Host route/wire、Contracts、pin/checker、Host S7F、Desktop
+  host_bridge/application/artifact/database/worker/ipc/mod/lib、schema/domain/api/store/page/component、Tauri config/CSP/capability。
+
+runner 必须 fresh build exact Host/fake binaries并记录 source commit/binary SHA-256，预检 127.0.0.1:18080/18082 未占用，
+创建并验证 0700 `mktemp -d` root；ready=20s、session/turn各30s、whole=180s、TERM grace=10s。它必须真实 start
+session/turn，读取 v3 image/video/file/report started/progress/completed，GET content并 ACK；只输出 content-free status/count/
+duration/source+binary digest 和 `zeroProvider=true/zeroNonLoopback=true/cleanup=true`。finally 依序停 Desktop child/Host/fake，
+证明 no child/listener/WAL/spool/temp 后删除 root。任何失败立即停，不猜测性扩大。
+
+依次运行：
+
+```bash
+# yijie-agent-host
+go test ./internal/app ./cmd/desktop-host
+YIJIE_RUN_FEAT128_S10_PROFILE_INTEGRATION=1 go test ./internal/integration -run '^TestFEAT128S10ExactLocalProfile$' -count=1 -v
+make contract-check
+make lint
+make test
+make runtime-test
+bash -n scripts/*.sh
+git diff --check
+
+# yijie-desktop
+cargo fmt --manifest-path src-tauri/Cargo.toml -- --check
+cargo test --manifest-path src-tauri/Cargo.toml chat::sidecar::tests
+cargo test --manifest-path src-tauri/Cargo.toml --features feat128-s10-runtime chat::sidecar::tests
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --all-features -- -D warnings
+./scripts/run-feat128-s10-local-profile.sh
+pnpm lint
+pnpm test
+make build
+pnpm docs:build
+git diff --check
+```
+
+若任何真实 key/provider/non-loopback 请求、public contract/pin/fixture、dependency/CSP/capability/migration/config widening、
+secret/path/body evidence 或 cleanup residue 出现，停止且不得提交。全部通过后分别审计 Host/Desktop diff，各创建一笔本地
+原子 commit，不 push；随后只更新 FEAT 07/08/10/feature.yaml，记 S10A separate PASS、S10B-E WAIT、G3 exact
+S3/S4/S5、G4 pending，并创建一笔治理 commit。

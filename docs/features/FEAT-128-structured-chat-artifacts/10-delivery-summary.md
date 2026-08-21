@@ -189,6 +189,7 @@ semantic review 与 immutable pin 完成后才能开始 Host/Desktop。实际证
 | S9B-D Slice | PASS OUTSIDE G3 | 2026-08-21 | Desktop `0a36ca7c54460d22ea6b3228832a57f05f0bde68` + RED/GREEN/full/dependency/bundle/real-browser evidence；无 report read/Chat/native/config/page/store/public pin drift |
 | S9B-D-CHECKER-REPAIR Slice | PASS OUTSIDE G3 | 2026-08-21 | Desktop `aec0f8a05ba7534132cbb4f46be64e333d7e9024` + RED/GREEN/full gates；历史 scope 固定 + immutable D protection；无 production boundary/S9B-R drift |
 | S9B-R Slice | PASS OUTSIDE G3 | 2026-08-21 | Desktop `6bcc2a6bfb4db76398ecf5483c688475477f08ed` + RED/GREEN/full/dependency/bundle/18-case real-browser evidence；无 native/config/page/store/dependency/pin drift；production vertical NOT RUN |
+| S10 Readiness + S9 Spec Reconciliation | READY FOR S10A-LOCAL-PROFILE ONLY；DOCS PASS | 2026-08-22 | Pattern 1.6.0 `c1095eeb7a4c4bbc1f5a2729e9f8df861ebc02c2` + four-repo read-only audit；S10A-E NOT RUN |
 | G4 Code Complete | PENDING | N/A | S10-S11、Markdown/full AC、E2E/full production visual/performance/独立 review 未完成 |
 | G5/G6 | NOT PASSED | N/A | local-only scope has no release/deployment/production evidence |
 
@@ -208,6 +209,7 @@ semantic review 与 immutable pin 完成后才能开始 Host/Desktop。实际证
 | S9A report native projection/save | PASS | `232ea6ce132faa8ac99bdf6abcc5e02ddd704ffe` + EXPECTED RED/focused/full Desktop gates；S9B-R 已单独完成 |
 | S9B-D dependency/theme/adapter/card | PASS | `0a36ca7c54460d22ea6b3228832a57f05f0bde68` + exact dependency/integrity/license、5/13 focused、57/360 full、bundle 与 18-case browser matrix；checker repair `aec0f8a05ba7534132cbb4f46be64e333d7e9024` 保持 production boundary immutable |
 | S9B-R report renderer/chart/save UX | REUSABLE COMPONENT + REAL-BROWSER MATRIX PASS | `6bcc2a6b...` + 3/14 focused、59/373 full、bundle/security/axe 与 18/18 test-only browser matrix；production Chat/Tauri vertical 留待 S10 |
+| S10 production seam | READINESS DOCS PASS / IMPLEMENTATION NOT RUN | 当前 synthetic 需要 Runtime却与 fake互斥；Desktop只开v2且Artifact/cursor非原子；ChatClient/Store/Page未集成。先执行 S10A exact keyless profile，B-E依次等待 |
 | synthetic local vertical slice | NOT RUN | S10 E2E/security/performance/visual |
 | synthetic video playback/seek | CONTRACT + HOST S7F + DESKTOP S7A/S7A-REPAIR/S7B PASS | real Tauri WebView shell smoke metadata/playback/seek true；production Chat vertical仍待 S10 |
 | MiniMax real image | BLOCKED | fixed provider capability + separate paid authorization/eval |
@@ -216,21 +218,23 @@ semantic review 与 immutable pin 完成后才能开始 Host/Desktop。实际证
 
 ## 7. 下一步与停止条件
 
-1. S9B-R 已完成为独立 reusable UI slice；下一步只能在单独授权后执行 S10 local synthetic production-vertical/security/performance evidence，不得跳到 S11-S12 或 G4。
-2. S10 若要求改变 S9B-R 或 protected S9B-D boundary、额外 dependency/install script、integrity/license 漂移、
-   full/dynamic/CDN import、bundle 超限，或需要未经批准的 native/config/page/store/arbitrary option，应立即停止。若需要新 native/private schema、Contracts/Host/
-   public pin、pages/stores、config/protocol/CSP/capability/migration、derived export 或扩大 frozen limits，重开相应 review。
-3. 任何 ACK、limits、retention clock、report compatibility、auth/CSP 或 authority 漂移先重开 G2；
+1. 下一步只能在单独授权后执行 07 §23 的 S10A-LOCAL-PROFILE；不得跳过它进入 single-v3/Page/vertical、S11-S12 或 G4。
+2. S10A 只允许 exact Host test config/integration 与 Desktop sidecar/empty Cargo feature/runner。任何真实 key/provider/
+   non-loopback、公共 Contracts/Host wire/pin/fixture、dependency/plugin/CSP/capability/migration、production page/native live
+   或 content/path/token evidence 立即停止。
+3. S10B 只有在 A immutable PASS 后才能实现 single-v3/atomic cursor/private invalidation；S10C 只有在 B PASS 后才能
+   接 history/store/page；S10D/E 再做 fresh Host + real Tauri vertical/security/perf。不得弱化单调检查或用 seeded/Vite harness冒充。
+4. 任何 ACK、limits、retention clock、report compatibility、auth/CSP 或 authority 漂移先重开 G2；
    Contracts pin 漂移先重开 G2A。
-4. 不启动真实 provider，不 tag/push/publish/release，不把 pin conformance 描述成 Code Complete。
+5. 不启动真实 provider，不 tag/push/publish/release，不把 pin conformance 描述成 Code Complete。
 
 ## 8. 文档与交接
 
 | Artifact | Path | Owner | 状态 |
 |---|---|---|---|
-| Feature package | `yijie/docs/features/FEAT-128-structured-chat-artifacts/` | 段成威 | G3 remains S3/S4/S5；S6-S9B-R separate PASS；S10-S11 pending |
-| Desktop UI Pattern | `yijie-desktop/docs/design/docs/design/05-patterns/14-feat-128-structured-chat-artifacts.md` | 段成威 | Accepted 1.5.0 at `630c3c8...`；S9B-D/S9B-R later separate PASS；production vertical NOT RUN |
+| Feature package | `yijie/docs/features/FEAT-128-structured-chat-artifacts/` | 段成威 | G3 remains S3/S4/S5；S6-S9B-R separate PASS；S10 readiness docs-only；A-E NOT RUN |
+| Desktop UI Pattern | `yijie-desktop/docs/design/docs/design/05-patterns/14-feat-128-structured-chat-artifacts.md` | 段成威 | Accepted 1.6.0 at `c1095eeb...`；only S10A READY；production vertical NOT RUN |
 | Contracts semantic review | `yijie-contracts/docs/reviews/FEAT-128-semantic-review.md` | Contracts Owner | PASS |
 | Release/rollback plan | `09-release-and-rollback.md` | 段成威 | no release executed |
 
-正式关闭时间尚未形成。当前准确状态是：`G3 PASS only for S3/S4/S5; S6A, S6B, S7F, S7A, S7A-REPAIR, S7B, S8A, S8B, S9A, S9B-D, S9B-D-CHECKER-REPAIR and S9B-R separate PASS; S9B readiness docs-only PASS; S10-S11 pending; production vertical NOT RUN; real providers closed; G4-G6 not passed`。
+正式关闭时间尚未形成。当前准确状态是：`G3 PASS only for S3/S4/S5; S6-S9B-R separate PASS; S10 readiness docs-only PASS; S10A-E NOT RUN; production vertical NOT RUN; real providers closed; G4-G6 not passed`。
