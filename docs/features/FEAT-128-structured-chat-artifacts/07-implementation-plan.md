@@ -200,7 +200,10 @@ S10-S12 未获授权。push、PR、tag、release 与真实 provider 继续关闭
 | S9B-D-CHECKER-REPAIR | `aec0f8a05ba7534132cbb4f46be64e333d7e9024` | 只改 dependency checker 与同名 test；历史 D scope 固定为 `630c3c8…→0a36ca7…`，当前只保护 immutable D 文件 | EXPECTED RED：1 file/5 tests 中 3 failed；GREEN：1/5、5 files/16、57 files/363；dependency/lint/build/docs/bundle/diff 全 PASS | package/lock/NOTICE/theme/adapter/card/bundle checker/visual harness 均未变；`components/chat` synthetic downstream path 放行 | PASS AS SEPARATE SLICE |
 | S9B-R | `6bcc2a6bfb4db76398ecf5483c688475477f08ed` | ready-report explicit preview、known/unknown inert sections、ordinal identity、closed chart adapter + per-open 4/2048 budget、visible table authority、stale/clear/dispose、canonical JSON save UX、test-only visual harness | EXPECTED RED：missing component 与 Shell/List action；GREEN：3 files/14 focused、59 files/373 full、dependency/lint/build/docs/bundle/diff + 18-case real browser PASS | 10-file allowed TS/Vue/test-only visual scope；S9A/S9B-D/native/config/pages/stores/dependencies/pins unchanged；production Chat/Tauri vertical NOT RUN | PASS AS SEPARATE SLICE |
 | S10-READINESS | Desktop Pattern `c1095eeb7a4c4bbc1f5a2729e9f8df861ebc02c2` + 本次 yijie governance commit | docs/read-only audit；S9 reconciliation、keyless profile、single-v3/atomic cursor、private invalidation、page/vertical/security/perf DAG | Desktop docs/lint/test/diff + governance full docs gates | Product/Technical/Security/Data `READY FOR S10A-LOCAL-PROFILE ONLY`；no implementation | PASS FOR READINESS ONLY |
-| S10A-S10E | N/A | none | NOT RUN | 必须逐片授权与 immutable PASS | WAIT/PENDING |
+| FEAT126-DRIVER-COMPILE-GUARD-REPAIR | `c257fe9e31979cc3f2f426ab1cb7c11ce8781732` | five compile-only function-item references；不调用/注册 production surface | 67+29 dead-code RED；262 pass/3 ignored + four clippy matrix GREEN | `chat/mod.rs` only | PASS AS SEPARATE REPAIR |
+| FEAT126 guard consumer digest refresh | `3e5a3830a34718bf7bf0632cc71fc4c4ab9ea4b7` | v2 readiness + v3 runtime-gate internal SHA/checker constants only | stale digest RED；2 files/7 + full 59/373 GREEN | public Contracts identity unchanged | PASS AS SEPARATE REPAIR |
+| S10A-LOCAL-PROFILE | Host `0debd877a4afe1bf2da8c988caeb1124d0fa7272` + Desktop `f4a3d42ad837ecdc8a8ba4198b269d4717285791` | exact keyless Host profile、sidecar child flags、compile-time-off runner | Host/Desktop full gates + post-commit lifecycle/GET/ACK 4/4/4/4/4、zeroProvider/nonLoopback/cleanup PASS | no live/page/public wire/pin/fixture drift | PASS AS SEPARATE SLICE |
+| S10B-S10E | N/A | none | NOT RUN | 必须逐片授权与 immutable predecessor PASS | WAIT/PENDING |
 | S11 | N/A | none | NOT RUN | independent review需 S10E PASS 与单独授权 | PENDING |
 | S12 | N/A | none | BLOCKED | separate real-provider authority required | BLOCKED |
 
@@ -741,9 +744,9 @@ projection/canvas/authorized marker zero-hit、animation/transition 0s 与 conso
 Contracts/Host/pins、src-tauri、config、pages、stores 与 dependencies 均未修改。production Chat/Tauri vertical 与 S10-S12
 仍 `NOT RUN`；S9B-R 仅记 G3 外 separate PASS，G3 仍只包含 S3/S4/S5，G4 pending。
 
-## 23. 下一条可执行指令：S10A-LOCAL-PROFILE
+## 23. 已执行指令：S10A-LOCAL-PROFILE
 
-本节只授权首个最小 S10 slice；S10B-E 继续 WAIT/NOT RUN。开始前必须检查 Host/Desktop/yijie 工作树并保护用户改动，
+本节授权的首个最小 S10 slice 已执行；S10B-E 继续 WAIT/NOT RUN。开始前必须检查 Host/Desktop/yijie 工作树并保护用户改动，
 完整阅读四仓 AGENTS、Pattern 1.6.0 §§9.14-9.19 与 FEAT 03/05/06/07/08/feature。contract impact=`none`：
 只新增默认关闭的 test/config profile，不改 public/private wire、fixture、pin 或 production Artifact behavior。
 
@@ -790,7 +793,10 @@ git diff --check
 cargo fmt --manifest-path src-tauri/Cargo.toml -- --check
 cargo test --manifest-path src-tauri/Cargo.toml chat::sidecar::tests
 cargo test --manifest-path src-tauri/Cargo.toml --features feat128-s10-runtime chat::sidecar::tests
-cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --all-features -- -D warnings
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features feat126-s10-driver -- -D warnings
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features feat128-s7b-runtime -- -D warnings
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features feat128-s10-runtime -- -D warnings
 ./scripts/run-feat128-s10-local-profile.sh
 pnpm lint
 pnpm test
@@ -803,3 +809,27 @@ git diff --check
 secret/path/body evidence 或 cleanup residue 出现，停止且不得提交。全部通过后分别审计 Host/Desktop diff，各创建一笔本地
 原子 commit，不 push；随后只更新 FEAT 07/08/10/feature.yaml，记 S10A separate PASS、S10B-E WAIT、G3 exact
 S3/S4/S5、G4 pending，并创建一笔治理 commit。
+
+执行中，旧 `feat126-s10-driver` 的 compile guard 因 S6 image private protocol 与 S7 video command/protocol 后续新增而发生
+覆盖漂移：专属 clippy 首次 exit 101，报告 67 个 library 与 29 个 library-test dead-code errors。独立修复
+`c257fe9e31979cc3f2f426ab1cb7c11ce8781732` 只在 `chat/mod.rs` guard 中加入五个函数项引用；没有调用函数、加入
+driver `invoke_handler` 或注册 private URI protocol。`cargo test --all-targets --features feat126-s10-driver` 为
+262 passed/3 ignored，专属 clippy 与 default/`feat128-s7b-runtime`/`feat128-s10-runtime` 四组独立 clippy 均 exit 0。
+互不兼容的 `--all-features` 门禁由该 matrix 正式替代，不记录或声明 `--all-features` PASS。
+
+repair 合法改变了 pinned `chat/mod.rs` 内容 SHA，consumer checker 随后正确 fail closed：旧
+`134d878b2955e9ca3f0ad0afebdf2d8a550737288e35bed0c125556465d03e20` 与实际
+`807817989e7c28afb4e001f1d3e416be235f2dc3511a8763781ad3ebdeb56d0a` 不一致。独立 consumer digest refresh
+`3e5a3830a34718bf7bf0632cc71fc4c4ab9ea4b7` 只同步 v2 readiness、v3 runtime-gate 两个内部 digest 与 checker/test
+常量；Contracts `full_commit`、source/resource tree/fixture/version/operation/schema 均未改变。focused checker 2 files/
+7 tests、两个 checker、generate check、lint 与 full 59 files/373 tests 全部 GREEN。
+
+S10A 最终形成 Host `0debd877a4afe1bf2da8c988caeb1124d0fa7272` 与 Desktop
+`f4a3d42ad837ecdc8a8ba4198b269d4717285791` 两个本地原子提交，未 push。Host exact integration 真实得到
+started/progress/completed/ACK=`4/4/4/4`，所有 Host full gates PASS；Desktop default sidecar 10/10、runtime-feature
+12/12、四组 clippy、lint、59 files/373 tests、build、docs 与 diff gates PASS。提交后 fresh runner 的 content-free
+结果为 started/progress/completed/GET/ACK=`4/4/4/4/4`、`zeroProvider=true`、`zeroNonLoopback=true`、
+`cleanup=true`；Host source=`0debd877a4afe1bf2da8c988caeb1124d0fa7272`，Host binary SHA-256=
+`ad2e23492d82da77e189249c919187fc23f357c78d4e47116f26a26854c07bd5`，fake binary SHA-256=
+`44a4f59bfa234257f0ea1060e59f032a35c949cf769b3a94581604429d5935d5`。S10A 只记 separate PASS；S10B
+仍须独立授权，S10C-E 继续等待，G3/G4 不变。

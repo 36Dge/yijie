@@ -61,19 +61,24 @@
   known/unknown sections、ordinal identity、每次打开 4 charts/2,048 points 的受控增强、始终可见的 accessible table、
   stale/clear/dispose lifecycle 与 canonical JSON native-save UX；3 files/14 focused、59 files/373 full、bundle 与
   18-case real-browser matrix PASS。production Chat page + real Tauri report vertical 仍 NOT RUN。
-- S3/S4/S5 的 G3 slice gate 已通过且范围未扩展；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A/S9B-D/
-  S9B-D-CHECKER-REPAIR/S9B-R 作为独立切片 PASS，均不并入 G3。S10-S12、真实 provider、tag、push、release、
-  production 与 G4-G6 仍关闭。
+- FEAT126 compile-guard repair `c257fe9e31979cc3f2f426ab1cb7c11ce8781732` 恢复了 S6 image protocol 与 S7 video
+  commands/protocol 的 compile reachability，没有注册 surface；consumer digest refresh
+  `3e5a3830a34718bf7bf0632cc71fc4c4ab9ea4b7` 只同步内部 `chat/mod.rs` readiness/runtime-gate SHA。
+- S10A-LOCAL-PROFILE 已在 Host `0debd877a4afe1bf2da8c988caeb1124d0fa7272` 与 Desktop
+  `f4a3d42ad837ecdc8a8ba4198b269d4717285791` 独立 PASS：post-commit runner 四类 lifecycle/GET/ACK=`4/4/4/4/4`，
+  zeroProvider/zeroNonLoopback/cleanup=true。
+- S3/S4/S5 的 G3 slice gate 已通过且范围未扩展；S6A-S9B-R、guard/digest repair 与 S10A 均为独立 PASS，不并入
+  G3。S10B-S12、真实 provider、tag、push、release、production 与 G4-G6 仍关闭。
 
 ## 2. 实际版本与提交
 
 | Component | Version/status | Full commit | 说明 |
 |---|---|---|---|
-| Feature package | G3 S3/S4/S5 + S6-S9B-R separate PASS + S9B readiness docs | 本次 `yijie` 文档提交 | governance/evidence only；G3 unchanged；G4 pending |
-| Desktop Pattern | Accepted 1.5.0 S9B readiness | `630c3c8d55a2617499f51bd5bed263b819aaf084` | docs-only readiness；S9B-D/S9B-R later separate PASS；production vertical NOT RUN |
+| Feature package | G3 S3/S4/S5 + S6-S9B-R/guard/digest/S10A separate PASS | 本次 `yijie` 文档提交 | governance/evidence only；G3 unchanged；G4 pending |
+| Desktop Pattern | Accepted 1.6.0 S10 readiness | `c1095eeb7a4c4bbc1f5a2729e9f8df861ebc02c2` | docs-only readiness；S10A later separate PASS；production vertical NOT RUN |
 | Contracts | `0.4.0 local candidate` | `ea48fe190e18afba728712d1e2cc79cda57f581b` | immutable；no tag/release |
-| Agent Host | S3 PASS + S7F separate PASS; default off | S7F `1045dd06534eb72d53eb7ad7b7d18e63c80284f8`; S3 `4017785adb08e1114781d3d844e9a10a683fa933` | canonical strict-local video conformance；Contracts/tree unchanged |
-| Desktop | S4/S5 PASS; S6A/S6B/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A/S9B-D/checker repair/S9B-R separate PASS; default off | S9B-R `6bcc2a6bfb4db76398ecf5483c688475477f08ed`; checker repair `aec0f8a05ba7534132cbb4f46be64e333d7e9024`; S9B-D `0a36ca7c54460d22ea6b3228832a57f05f0bde68`; S9A `232ea6ce132faa8ac99bdf6abcc5e02ddd704ffe`; S8B `4d0238b1906f02d319f47f5e55cdc023485ef07a`; S8A `bf5452f7fde24d1391845deaba17ec1135716c62`; S7B `366186b601144bdc2bc87a2cef3075b74f1e8f19`; S7A-REPAIR `34991d8967de9aa2197ab2e8b9b49347774df7a5`; S7A `22b91c5a258458c87f1ac96c06bf39d1af97358f`; S6B `4a8dce6a6526e37052941f6dbb921ba2486e109f`; S6A `8b99849d418a3ef226f4133128f1ac22a438f9d5`; S5 `7548ea8aeacfd7274f1107786ce48ddc6789cd45`; S4 `09220dd8319cfb8ec0c4d1531514bb5169107983` | Contracts/Host/public pin and S9A/S9B-D protected boundaries unchanged；production vertical pending |
+| Agent Host | S3 PASS + S7F/S10A separate PASS; default off | S10A `0debd877a4afe1bf2da8c988caeb1124d0fa7272`; S7F `1045dd06534eb72d53eb7ad7b7d18e63c80284f8`; S3 `4017785adb08e1114781d3d844e9a10a683fa933` | exact keyless local profile + canonical video conformance；Contracts/tree unchanged |
+| Desktop | S4/S5 PASS; S6-S9B-R + guard/digest/S10A separate PASS; default off | S10A `f4a3d42ad837ecdc8a8ba4198b269d4717285791`; digest `3e5a3830a34718bf7bf0632cc71fc4c4ab9ea4b7`; guard `c257fe9e31979cc3f2f426ab1cb7c11ce8781732`; S9B-R `6bcc2a6bfb4db76398ecf5483c688475477f08ed`; checker repair `aec0f8a05ba7534132cbb4f46be64e333d7e9024`; S9B-D `0a36ca7c54460d22ea6b3228832a57f05f0bde68`; S9A `232ea6ce132faa8ac99bdf6abcc5e02ddd704ffe`; earlier slice SHAs见08 | public pin unchanged；`mod.rs` internal consumer SHA-only refresh；production vertical pending |
 
 关键 source digests：OpenAPI `cf72ba8dd6910e8454ad60feeffa5e82583303b441dad78e49910fbdb9f5420f`，
 event v3 `87b1284056529bde8314e6cfa6ad1fb27ffefef50ea86033875fda795330939f`，report v1
@@ -108,6 +113,9 @@ event v3 `87b1284056529bde8314e6cfa6ad1fb27ffefef50ea86033875fda795330939f`，re
 | Desktop S9B-D | PASS AS SEPARATE SLICE | EXPECTED RED 5 missing suites；5 files/13 focused、57 files/360 full、dependency checker、lint/build/docs/diff PASS；655,731 raw/206,565 gzip-9；18-case real-browser matrix；`0a36ca7c54460d22ea6b3228832a57f05f0bde68` |
 | Desktop S9B-D-CHECKER-REPAIR | PASS AS SEPARATE SLICE | root-cause regression EXPECTED RED 3/5 failed；GREEN 5/5、5 files/16、57 files/363；dependency/lint/build/docs/bundle/diff PASS；two-checker-file scope；`aec0f8a05ba7534132cbb4f46be64e333d7e9024` |
 | Desktop S9B-R | PASS AS SEPARATE SLICE | missing-component/Shell/List EXPECTED RED；3 files/14 focused、59 files/373 full；dependency/lint/build/docs/bundle/diff PASS；18/18 real-browser matrix；`6bcc2a6bfb4db76398ecf5483c688475477f08ed` |
+| FEAT126-DRIVER-COMPILE-GUARD-REPAIR | PASS AS SEPARATE SLICE | 67+29 dead-code EXPECTED RED；262 passed/3 ignored + four independent clippy matrix GREEN；five compile-only references；`c257fe9e31979cc3f2f426ab1cb7c11ce8781732` |
+| FEAT126 guard consumer digest refresh | PASS AS SEPARATE SLICE | checker SHA mismatch EXPECTED RED；2 files/7 tests + v2/v3 checker + 59 files/373 tests GREEN；internal SHA only；`3e5a3830a34718bf7bf0632cc71fc4c4ab9ea4b7` |
+| Host/Desktop S10A-LOCAL-PROFILE | PASS AS SEPARATE SLICE | Host `0debd877a4afe1bf2da8c988caeb1124d0fa7272`；Desktop `f4a3d42ad837ecdc8a8ba4198b269d4717285791`；exact keyless profile、sidecar mapping、content-free runner/full gates PASS |
 | AC contract portions | CONTRACT PASS | lifecycle/resource/ACK/report/fixtures/negative cases |
 | AC Host/native foundation portions | PARTIAL PASS | S3/S4 lifecycle/resource/persistence/history/retention conformance |
 | AC generic shell portion | S5 FOUNDATION PASS | monotonic/closed reducer、history/live shared store、generic accessible metadata shell |
@@ -189,8 +197,11 @@ semantic review 与 immutable pin 完成后才能开始 Host/Desktop。实际证
 | S9B-D Slice | PASS OUTSIDE G3 | 2026-08-21 | Desktop `0a36ca7c54460d22ea6b3228832a57f05f0bde68` + RED/GREEN/full/dependency/bundle/real-browser evidence；无 report read/Chat/native/config/page/store/public pin drift |
 | S9B-D-CHECKER-REPAIR Slice | PASS OUTSIDE G3 | 2026-08-21 | Desktop `aec0f8a05ba7534132cbb4f46be64e333d7e9024` + RED/GREEN/full gates；历史 scope 固定 + immutable D protection；无 production boundary/S9B-R drift |
 | S9B-R Slice | PASS OUTSIDE G3 | 2026-08-21 | Desktop `6bcc2a6bfb4db76398ecf5483c688475477f08ed` + RED/GREEN/full/dependency/bundle/18-case real-browser evidence；无 native/config/page/store/dependency/pin drift；production vertical NOT RUN |
-| S10 Readiness + S9 Spec Reconciliation | READY FOR S10A-LOCAL-PROFILE ONLY；DOCS PASS | 2026-08-22 | Pattern 1.6.0 `c1095eeb7a4c4bbc1f5a2729e9f8df861ebc02c2` + four-repo read-only audit；S10A-E NOT RUN |
-| G4 Code Complete | PENDING | N/A | S10-S11、Markdown/full AC、E2E/full production visual/performance/独立 review 未完成 |
+| S10 Readiness + S9 Spec Reconciliation | HISTORICAL READY FOR S10A-LOCAL-PROFILE ONLY；DOCS PASS | 2026-08-22 | Pattern 1.6.0 `c1095eeb7a4c4bbc1f5a2729e9f8df861ebc02c2` + four-repo read-only audit；S10A-E NOT RUN at capture，S10A later PASS |
+| FEAT126 Driver Compile Guard Repair | PASS OUTSIDE G3 | 2026-08-22 | Desktop `c257fe9e31979cc3f2f426ab1cb7c11ce8781732`；compile reachability only；four independent clippy matrix |
+| FEAT126 Guard Consumer Digest Refresh | PASS OUTSIDE G3 | 2026-08-22 | Desktop `3e5a3830a34718bf7bf0632cc71fc4c4ab9ea4b7`；only `mod.rs` internal readiness/runtime-gate SHA |
+| S10A-LOCAL-PROFILE Slice | PASS OUTSIDE G3 | 2026-08-22 | Host `0debd877a4afe1bf2da8c988caeb1124d0fa7272` + Desktop `f4a3d42ad837ecdc8a8ba4198b269d4717285791` + post-commit content-free runner |
+| G4 Code Complete | PENDING | N/A | S10B-S11、Markdown/full AC、E2E/full production visual/performance/独立 review 未完成 |
 | G5/G6 | NOT PASSED | N/A | local-only scope has no release/deployment/production evidence |
 
 ## 6. 未验证项与已知限制
@@ -209,7 +220,7 @@ semantic review 与 immutable pin 完成后才能开始 Host/Desktop。实际证
 | S9A report native projection/save | PASS | `232ea6ce132faa8ac99bdf6abcc5e02ddd704ffe` + EXPECTED RED/focused/full Desktop gates；S9B-R 已单独完成 |
 | S9B-D dependency/theme/adapter/card | PASS | `0a36ca7c54460d22ea6b3228832a57f05f0bde68` + exact dependency/integrity/license、5/13 focused、57/360 full、bundle 与 18-case browser matrix；checker repair `aec0f8a05ba7534132cbb4f46be64e333d7e9024` 保持 production boundary immutable |
 | S9B-R report renderer/chart/save UX | REUSABLE COMPONENT + REAL-BROWSER MATRIX PASS | `6bcc2a6b...` + 3/14 focused、59/373 full、bundle/security/axe 与 18/18 test-only browser matrix；production Chat/Tauri vertical 留待 S10 |
-| S10 production seam | READINESS DOCS PASS / IMPLEMENTATION NOT RUN | 当前 synthetic 需要 Runtime却与 fake互斥；Desktop只开v2且Artifact/cursor非原子；ChatClient/Store/Page未集成。先执行 S10A exact keyless profile，B-E依次等待 |
+| S10 production seam | S10A LOCAL PROFILE PASS / S10B-E NOT RUN | keyless exact Host profile、sidecar child flags 与 clean runner 已闭环；Desktop仍只开v2且Artifact/cursor非原子，ChatClient/Store/Page未集成。下一步只能单独授权 S10B native-live |
 | synthetic local vertical slice | NOT RUN | S10 E2E/security/performance/visual |
 | synthetic video playback/seek | CONTRACT + HOST S7F + DESKTOP S7A/S7A-REPAIR/S7B PASS | real Tauri WebView shell smoke metadata/playback/seek true；production Chat vertical仍待 S10 |
 | MiniMax real image | BLOCKED | fixed provider capability + separate paid authorization/eval |
@@ -218,11 +229,10 @@ semantic review 与 immutable pin 完成后才能开始 Host/Desktop。实际证
 
 ## 7. 下一步与停止条件
 
-1. 下一步只能在单独授权后执行 07 §23 的 S10A-LOCAL-PROFILE；不得跳过它进入 single-v3/Page/vertical、S11-S12 或 G4。
-2. S10A 只允许 exact Host test config/integration 与 Desktop sidecar/empty Cargo feature/runner。任何真实 key/provider/
-   non-loopback、公共 Contracts/Host wire/pin/fixture、dependency/plugin/CSP/capability/migration、production page/native live
-   或 content/path/token evidence 立即停止。
-3. S10B 只有在 A immutable PASS 后才能实现 single-v3/atomic cursor/private invalidation；S10C 只有在 B PASS 后才能
+1. S10A 已 immutable separate PASS；下一步只能在单独授权后执行 S10B-NATIVE-LIVE，不得直接进入 Page/vertical、S11-S12 或 G4。
+2. S10B 只能实现 single-v3/atomic cursor/private content-free invalidation；任何真实 key/provider/non-loopback、公共
+   Contracts/Host wire/pin/fixture、dependency/plugin/CSP/capability/migration、production page 或 content/path/token evidence立即停止。
+3. S10C 只有在 B immutable PASS 后才能
    接 history/store/page；S10D/E 再做 fresh Host + real Tauri vertical/security/perf。不得弱化单调检查或用 seeded/Vite harness冒充。
 4. 任何 ACK、limits、retention clock、report compatibility、auth/CSP 或 authority 漂移先重开 G2；
    Contracts pin 漂移先重开 G2A。
@@ -232,9 +242,9 @@ semantic review 与 immutable pin 完成后才能开始 Host/Desktop。实际证
 
 | Artifact | Path | Owner | 状态 |
 |---|---|---|---|
-| Feature package | `yijie/docs/features/FEAT-128-structured-chat-artifacts/` | 段成威 | G3 remains S3/S4/S5；S6-S9B-R separate PASS；S10 readiness docs-only；A-E NOT RUN |
-| Desktop UI Pattern | `yijie-desktop/docs/design/docs/design/05-patterns/14-feat-128-structured-chat-artifacts.md` | 段成威 | Accepted 1.6.0 at `c1095eeb...`；only S10A READY；production vertical NOT RUN |
+| Feature package | `yijie/docs/features/FEAT-128-structured-chat-artifacts/` | 段成威 | G3 remains S3/S4/S5；S6-S9B-R/guard/digest/S10A separate PASS；S10B-E NOT RUN |
+| Desktop UI Pattern | `yijie-desktop/docs/design/docs/design/05-patterns/14-feat-128-structured-chat-artifacts.md` | 段成威 | Accepted 1.6.0 at `c1095eeb...`；S10A later PASS；production vertical NOT RUN |
 | Contracts semantic review | `yijie-contracts/docs/reviews/FEAT-128-semantic-review.md` | Contracts Owner | PASS |
 | Release/rollback plan | `09-release-and-rollback.md` | 段成威 | no release executed |
 
-正式关闭时间尚未形成。当前准确状态是：`G3 PASS only for S3/S4/S5; S6-S9B-R separate PASS; S10 readiness docs-only PASS; S10A-E NOT RUN; production vertical NOT RUN; real providers closed; G4-G6 not passed`。
+正式关闭时间尚未形成。当前准确状态是：`G3 PASS only for S3/S4/S5; S6-S9B-R + FEAT126 guard/digest + S10A separate PASS; S10B-E NOT RUN; production vertical NOT RUN; real providers closed; G4-G6 not passed`。
