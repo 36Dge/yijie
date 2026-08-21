@@ -4,13 +4,14 @@
 
 - 要解决的问题：让 Agent/LLM 输出的图片、视频、文件和报告在 Chat 中以结构化、可流式更新、可历史恢复的 Artifact 展示，而不是 Markdown 链接或一次性文本。
 - 选择的方案：Host v3 显式协商 + owner-only 临时资源；Desktop native 校验并写入 SQLCipher 长期 authority；
-  WebView media 使用 opaque image/video handles，S8 file 使用一次性 bounded safe projection；report 使用 closed JSON document。
+  WebView media 使用 opaque image/video handles，S8 file 使用一次性 bounded safe projection；S9 report 使用
+  native closed bounded projection 与 canonical JSON save。
 - 关键约束：本地-only、confidential、无云资源、v1/v2 保持兼容、真实 MiniMax output capability 默认关闭；无原始
   路径/base64/token、未授权内容或超出已批准 bounded projection 的正文进入 SSE/WebView state，用户授权 file
   projection 仅按 8.8 短暂存在；小文件 projection 可在上限内等于完整正文。
 - 明确不做：生产部署、云存储、公开分享、raw HTML/脚本报告、任意本地路径、视频转码、真实付费媒体生成、跨设备同步。
-- 设计状态：G2/G2A APPROVED，S3/S4/S5 与其 G3 scope 已通过；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B 已分别
-  作为 G3 外独立切片 PASS。S8-READINESS/Pattern 1.3.0 已冻结 S8A/S8B，只批准 S8A 编码；S8 尚无实现，
+- 设计状态：G2/G2A APPROVED，S3/S4/S5 与其 G3 scope 已通过；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B
+  已分别作为 G3 外独立切片 PASS。S9-READINESS/Pattern 1.4.0 已冻结 S9A/S9B，只批准 S9A 编码；S9 尚无实现，
   G3 不扩展，G4 pending。
 
 ## 2. 组件职责与依赖方向
@@ -20,9 +21,9 @@
 | yijie-codex | 上游 Runtime canonical item authority | provider/tool output | `imageGeneration` started/completed item | 易界 Artifact 存储、下载或 UI |
 | yijie-contracts | v3 wire、report document、error/fixture 权威源 | 已批准业务语义 | OpenAPI/JSON Schema/Proto/AsyncAPI/SDK | Runtime 实现、数据库或 UI |
 | yijie-agent-host | Runtime item 归一化、短期 staging、v3 SSE 和认证资源读取 | Runtime notification、synthetic fixture | 安全 Artifact lifecycle + relative resource | 长期业务数据、WebView 渲染、用户保存目标 |
-| Desktop native/Tauri | implemented Host fetch/SQLCipher/history、S6A image 与 S7A/S7A-REPAIR video boundary；S8A 将新增隔离的 file bounded preview/save | v3 event/resource；private identity-only intent | metadata-only history；media opaque URL；file bounded projection；content-free save result | provider 选择、公共契约权威、generic filesystem |
+| Desktop native/Tauri | implemented Host fetch/SQLCipher/history、image/video/file boundary；S9A 将新增隔离的 report bounded projection/save | v3 event/resource；private identity-only intent | metadata-only history；media opaque URL；file/report bounded projection；content-free save result | provider 选择、公共契约权威、generic filesystem |
 | Desktop domain/store | implemented 单调状态机、去重、history/live projection | private IPC v3 safe metadata | stable provider-neutral view model | wire 外 I/O、bytes、文件写入 |
-| Desktop Vue components | implemented generic shell + S6B image + S7B native-video renderer；S8B 将消费 bounded file projection | view model、typed native client result | 用户可观察 UI intent 与 component-local authorized preview | Host/SQL/path/digest/bytes/save 副作用 |
+| Desktop Vue components | implemented generic shell + image/video/file renderer；S9B 将消费 bounded report projection | view model、typed native client result | 用户可观察 UI intent 与 component-local authorized preview | Host/SQL/path/digest/bytes/save 副作用 |
 
 ```text
 Runtime or synthetic producer
@@ -53,10 +54,15 @@ Runtime or synthetic producer
 ### 报告路径
 
 1. producer 生成 `application/vnd.yijie.report+json;version=1`。
-2. Host/Contracts validator 拒绝 raw HTML、URL、脚本和 unknown required field。
-3. Desktop native 先校验 closed root 和 section envelope，再对 known section 执行 strict payload schema；持久化原始 versioned JSON。
-4. report renderer 按 section 顺序展示 `summary | metrics | paragraph | table | chart | callout`；unknown `required=false` section 只显示 unsupported metadata 且不遍历 payload，unknown `required=true` 拒绝整份文档。
-5. chart adapter 将有限 schema 映射到易界 ECharts theme，不直接接受任意 option。
+2. Contracts closed schema 定义 root/envelope/known payload；unknown `required=false` 允许 opaque payload，unknown
+   `required=true` 拒绝整份文档。Host synthetic 只负责 schema-valid lifecycle/resource，不是 canonical fixture bytes。
+3. S4 已把 canonical bytes 持久化到 SQLCipher，但 history/private IPC 仍为 metadata-only。S9A 必须先修复 Desktop
+   consumer 对 contract-valid Unicode/date-time/duplicate/mismatched-chart document 的额外拒绝，再执行完整 schema、
+   authority、size/digest/revision 校验。
+4. 用户明确打开后，S9A 只返回 8.9 的 closed bounded projection；unknown optional 只返回 ordinal/unsupported marker，
+   不遍历或返回原 type/payload。close/error/stale/switch/unmount 后清空组件 local state/DOM。
+5. S9B 按 section ordinal 展示 known union；chart 只通过 8.10 fixed adapter 映射易界 ECharts theme，同时始终提供
+   accessible text table。S9B 等待 S9A immutable PASS 与 ECharts blocker 解除。
 
 ### 失败、取消与恢复
 
@@ -102,7 +108,8 @@ wire `failed` 映射为 `failed` 或 `cancelled`，`expired` 只由本地 retent
 | ReportDocumentV1 | 同 Artifact | schema version + digest | closed safe sections、无 HTML/URL/script | content 生命周期内不可变 |
 | ImagePreviewHandle | main WebView + process/context/session | 256-bit CSPRNG base64url | 30s、one-shot、非 bearer；不持久化/日志/Pinia/snapshot | issue -> atomic consume/release/TTL/restart |
 | VideoPreviewHandle | main WebView + process/context/session | 独立 256-bit CSPRNG base64url | 30min absolute/5min idle、无累计 request cap、single Range、非 bearer；2 handles/2 concurrent/64MiB in-flight | issue -> repeated HEAD/GET -> release/TTL/restart/binding invalidation |
-| FilePreviewProjection（S8A planned） | current main WebView/context/artifact | request_id + immutable revision | one-shot bounded safe text/CSV/JSON；不持久化、不签发 URL/handle | explicit read -> component local state -> close/switch/unmount clear |
+| FilePreviewProjection（S8A implemented） | current main WebView/context/artifact | request_id + immutable revision | one-shot bounded safe text/CSV/JSON；不持久化、不签发 URL/handle | explicit read -> component local state -> close/switch/unmount clear |
+| ReportPreviewProjection（S9A planned） | current main WebView/context/artifact | request_id + immutable revision + section ordinal | full schema valid 后形成 closed bounded known union；unknown payload omitted；不持久化、不签发 URL/handle | explicit read -> component local state -> close/error/stale/switch/unmount clear |
 | SaveIntent | 当前 WebView 用户动作 | request_id + artifact identity | one active；native dialog/path only；Vue 只收 content-free outcome | click -> dialog -> atomic success/cancel/failure |
 
 ## 6. 数据与 Migration 专项
@@ -185,7 +192,7 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 ### 8.3 Private result 与 stable error allowlist
 
 - image/video preview open 成功只返回 opaque preview URL/handle envelope；release 成功只返回 content-free released；
-  save 只返回 `saved|cancelled|failed`。S8A file preview 是唯一窄例外，只返回 8.7 的 bounded safe projection 与
+  save 只返回 `saved|cancelled|failed`。S8A file 与计划中的 S9A report preview 是窄例外，只返回相应 bounded safe projection 与
   allowlisted media type；任何结果都不得包含 filename、target path、size、digest、Host href、bytes/base64、bearer、
   未授权内容、超出已批准 bounded projection 的正文或 raw native error。小文件的授权 projection 可在 caps 内等于
   完整正文，但只按 8.8 的生命周期存在。
@@ -238,7 +245,7 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 3. 当前不新增 poster handle；使用稳定 16:9 placeholder，解码后显示首帧。loading/error/expired、keyboard/focus、
    reduced-motion、content-free save feedback 与 sensitive-data negative assertions 已有 component/axe/runtime evidence。
 
-### 8.7 S8A planned native file boundary
+### 8.7 已完成的 S8A native file boundary
 
 1. 独立 Desktop-private `chat-artifact-file-native-v1.schema.json` 只登记
    `chat_read_artifact_file_preview_v1` 与 `chat_save_artifact_file_v1`。closed request <=4,096 encoded bytes，envelope
@@ -271,7 +278,7 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
    复用 helper，既有 attachment import behavior/limits 不变；PDF/XLSX 不 inline/提取/渲染/执行或自动打开。Vue 只收
    content-free saved/cancelled/failed。
 
-### 8.8 S8B planned renderer 与数据生命周期
+### 8.8 已完成的 S8B renderer 与数据生命周期
 
 1. S8B 等待 S8A immutable PASS 与单独授权；只对 ready file 渲染。text/JSON 为普通 text nodes，CSV cell 为 escaped
    text nodes；PDF/XLSX 为 inline unsupported + native save。禁止 v-html、link、network、formula/macro、Agent/tool action。
@@ -281,6 +288,46 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
    error；小文件 projection 可在 caps 内等于完整正文，授权 canary 关闭后必须为 0。
 3. search 仅对当前 projection 做 literal/no-regex search，query 1..128 Unicode scalars、最多 100 hits；truncated 时显示
    “仅预览部分内容，截断区未搜索”。重复 read/save single-flight，迟到 response 以 requestId+context/identity 丢弃。
+
+### 8.9 S9A planned native report boundary
+
+1. 独立 Desktop-private `chat-artifact-report-native-v1.schema.json` 只登记
+   `chat_read_artifact_report_preview_v1` 与 `chat_save_artifact_report_v1`。closed request <=4,096 encoded bytes，
+   envelope 为 `schemaVersion=1/requestId/contextId/payload{sessionId,turnId,artifactId}`；只接受 `main` WebView 与当前
+   `ReadSessions` context。无 URL/handle/protocol/CSP/capability/plugin/dependency/migration。
+2. preview/save 前后查询 SQLCipher authority，复核 owner/tenant/session/turn/artifact、ready/unexpired、kind=report、
+   exact MIME、declared size/BLOB length/SHA-256/revision 与完整 ReportDocumentV1。S9A 先修复 adapter：JSON Schema
+   `maxLength` 按 Unicode scalar、date-time 接受合法 RFC 3339 offset，不增加 section ID/column key unique 或 chart
+   labels/values aligned 条件；UI identity 用 ordinal。公共 Contracts/Host/pin/fixture 不变。
+3. preview source `1..4,194,304` bytes；projection encoded `<=524,288` bytes；serialized response `<=1,048,576`
+   bytes；document depth `<=12`、nodes `<=100,000`、sections `0..64`；每 WebView concurrent preview `<=2`、source
+   in-flight `<=8,388,608` bytes、same-identity single-flight、10s timeout。save eligibility 独立为
+   `1..67,108,864` validated ready bytes。
+4. closed root 只含 `schemaVersion/title/generatedAt/sourceTime/truncated/sections`。summary/paragraph/callout text
+   `<=8,192` scalars、heading/title `<=1,024`；metrics `<=32`；table `<=32` columns、前 `<=200` rows、string cell
+   `<=1,024`；chart `<=128` labels、`<=16` series、每 series `<=128` finite JSON numbers、总 points `<=2,048`。
+   unknown optional 只返回 `ordinal/id/type=unsupported/required=false`，不得返回 original type/payload；unknown required、
+   schema/integrity/revision/source/node/depth/response failure 均 fail closed。display cap 只产生 bounded truncation。
+5. known text 的 CRLF/CR 规范化 LF；TAB/LF 外 C0、DEL/C1 与 `Bidi_Control` `U+061C`、
+   `U+200E-U+200F`、`U+202A-U+202E`、`U+2066-U+2069` 投影为可见 ASCII `\\uXXXX`。projection 仅在
+   用户明确打开后的组件 local state/DOM；不得进 Pinia/history/router/storage/log/diagnostics/telemetry/snapshot。
+6. save 只保存 canonical report JSON，exact `.json`；dialog 前后双次 authority/full-schema validation，复用 same-dir
+   `0600` create-new/no-follow temp、chunk digest、fsync、atomic replace/RAII。residue exact filename 为
+   `.yijie-artifact-report-save-v1-json-<process-epoch UUID>-<22-char base64url>.tmp`，只在下一次明确选择同一目录时清理
+   prior epoch 且 exact marker/uid/mode/nlink/size/full-schema recheck 全部通过的条目。Vue 只收 content-free outcome。
+   PDF/Markdown/image derived export 延期；禁止 browser download、system auto-open、generic fs/shell 与 path result。
+
+### 8.10 S9B planned renderer、chart adapter 与数据生命周期
+
+1. S9B 等待 S9A immutable PASS、单独授权及 active app 的 ECharts dependency/theme blocker 解除。所有文字只用
+   Vue text nodes；table 使用 `<table>/<caption>/<th scope>` 与 positional cells；unknown optional 只显示 unsupported。
+   禁止 `v-html`、Markdown/HTML、linkification、活动 URL、脚本、公式、网络或 Agent/tool action。
+2. fixed chart mapping：bar/line 使用 category axis；pie 仅 exactly one aligned series；其它 schema-valid mismatch 回落
+   accessible data table + notice。固定 `animation=false`、semantic palette、plain/rich-text tooltip、aria/decal；禁止任意
+   option/formatter/HTML tooltip/URL/event action/toolbox/dataZoom/dataset/graphic/custom/dynamic code。text table 永远存在。
+3. 当前 `package.json`/lockfile 无 ECharts/vue-echarts，也无 `echarts-theme.ts`/`YjChartCard`，所以 S9B=`BLOCKED`。
+   解除需要单独批准 exact pinned dependency/lockfile、tree-shaken imports 与 semantic theme/card。runtime/page vertical、
+   light/dark、200% zoom、完整 visual/performance 属 S10。
 
 ## 9. 可观测性
 
@@ -304,9 +351,9 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 | 单图片 | N/A | 20 MiB | boundary + magic + pixel fixtures | metadata + save |
 | 单视频 | N/A | 64 MiB BLOB / 64 MiB protocol in-flight | Range/boundary/WebView smoke | metadata shell + native save |
 | 单文件 | N/A | 64 MiB save；inline source 1 MiB / projection 256 KiB / response 512 KiB | parser/caps/save boundary fixtures | metadata + native save |
-| 单 report | N/A | 64 MiB authority；renderer 尚未实现 | closed-schema/boundary fixtures | metadata shell |
+| 单 report | N/A | 64 MiB save authority；preview source 4 MiB / projection 512 KiB / response 1 MiB | closed-schema/projection/caps/save fixtures | metadata shell + canonical save |
 | 每 turn | N/A | 12 项 / 128 MiB | aggregate admission tests | 拒绝新增、保留已 ready |
-| WebView/native preview memory | 未测 | image in-flight 40 MiB；video in-flight 64 MiB；file source in-flight 2 MiB | process memory sampling + registry/operation counters | metadata + native save |
+| WebView/native preview memory | 未测 | image in-flight 40 MiB；video in-flight 64 MiB；file source in-flight 2 MiB；report source in-flight 8 MiB | process memory sampling + registry/operation counters | metadata + native save |
 | 模型成本 | 0（当前不调用） | synthetic 0；真实值未批准 | provider Eval 后记录 | capability off |
 
 ## 11. 配置、Feature Flag 与部署
@@ -341,17 +388,19 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 | D：generic Tauri asset/file protocol | 大媒体 seek 效率好 | path scope、跨 kind 与 seek 攻击面 | 中高 | Reject |
 | E：image-only opaque handle custom protocol | Vue 不接收 bytes/path；native 每次复核；可 one-shot/TTL | 需 3 private commands 与 exact CSP scheme delta | 中 | S6A Approved；image only |
 | F：独立 video opaque Range protocol | Vue 不接收正文；原生 video 可多次 HEAD/GET/seek；与 image one-shot 隔离 | Tauri response buffered，必须硬限 64MiB 并维护 lifecycle registry | 中 | S7A/S7A-REPAIR/S7B implemented separate PASS |
-| G：file bounded private projection + native save | 可搜索安全文本无需 URL/CSP；路径与 raw bytes 留在 native | 用户授权内容会短暂进入组件 DOM，必须严格 caps/清理 | 中 | S8A Approved design；S8B waits for S8A PASS |
+| G：file bounded private projection + native save | 可搜索安全文本无需 URL/CSP；路径与 raw bytes 留在 native | 用户授权内容会短暂进入组件 DOM，必须严格 caps/清理 | 中 | S8A/S8B implemented separate PASS |
+| H：report closed bounded projection + canonical JSON native save | Vue 不接触 raw JSON，unknown payload 不穿透；复用 SQLCipher/atomic save | 需修复 consumer conformance；复杂 section 必须严格 caps/typed union | 中 | S9A Approved design；S9B waits and is blocked on ECharts |
 
 ## 14. ADR 与批准
 
 - ADR：当前 `N/A`，前提是采用方案 C 且不改变跨仓职责；选择 Host/云长期存储、自定义公开 URL 或 Runtime 核心修改时必须新增 ADR。
 - 技术负责人：段成威，结论 `G2 APPROVED for Contracts S1/S2`。
 - 安全/数据 Owner：段成威，结论 `G2 APPROVED for Contracts S1/S2`。
-- Product/Design：FEAT-128 Pattern 1.3.0 `Accepted`；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B separate PASS；
-  `READY FOR S8A ONLY WITH MARKDOWN DEFERRED; AC-005 PARTIAL`。
-- S8 Technical：`APPROVED FOR S8A CODING`，只允许 8.7 exact private schema/two commands/no protocol/config。
-- S8 Security/Data：批准 bounded authorized-content exception 与 native atomic save；禁止 persistence/log/snapshot 和
-  generic fs/shell/asset scope。
-- 结论日期：2026-08-21；G3 仍只对 S3/S4/S5 为 PASS。S8A/S8B/S9-S11、任何真实 producer 与生产 activation
+- Product/Design：FEAT-128 Pattern 1.4.0 `Accepted`；S6/S7/S8A/S8B separate PASS；
+  `READY FOR S9A ONLY; CANONICAL JSON SAVE ONLY; S9B WAITS`。Markdown/AC-005 仍 PARTIAL。
+- S9 Technical：`APPROVED FOR S9A CODING`，只允许 8.9 contract-conformant consumer repair、exact private schema/two
+  commands/no protocol/config；S9B blocked on ECharts。
+- S9 Security/Data：批准 bounded projection、unknown-payload omission、component-local lifecycle 与 native atomic save；
+  禁止 raw JSON/path/token/error、persistence/log/snapshot、generic fs/shell/derived export。
+- 结论日期：2026-08-21；G3 仍只对 S3/S4/S5 为 PASS。S9A/S9B/S10-S11、任何真实 producer 与生产 activation
   仍未执行；所有 FEAT-128 flags 默认关闭，G4 pending。

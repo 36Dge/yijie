@@ -133,8 +133,52 @@ spreadsheet main content type 匹配）。只允许暴露/复用 helper，既有
 | Technical | 段成威 | APPROVED FOR S8A CODING | exact private schema + 2 commands、双次 authority/format validation、typed client/tests、仅 Desktop implementation/readiness SHA checker refresh | public pin/source/tree/schema/operation/version、protocol/config/dependency/migration |
 | Security/Data | 段成威 | APPROVED FOR S8A CODING | bounded authorized-content exception、no persistence/log/snapshot、native dialog + atomic save、file-specific crash residue validation | generic fs/shell/asset、path/body/token leakage、S6/S7 behavior drift |
 
-Owner 结论依据用户本轮明确指令由 Codex 代录，不声称独立人工批准。Readiness 不是实现 PASS；S8A/S8B 均未
-实现，G3 仍只包含 S3/S4/S5，G4 pending。
+Owner 结论依据用户本轮明确指令由 Codex 代录，不声称独立人工批准。该 readiness 当时不是实现 PASS；S8A/S8B
+现已分别完成并保持 G3 外独立 PASS，G3 仍只包含 S3/S4/S5，G4 pending。
+
+## 2F. S9-READINESS Owner Conclusion（2026-08-21）
+
+本轮只读核对 immutable Contracts report v1、Host synthetic producer、Desktop SQLCipher authority/private IPC、
+现有 commands/config/dependency 与 S5/S8 component boundary，并将 Accepted Pattern 升为 1.4.0。readiness 文档
+`contract-impact=none`；未来 S9A 的最高影响是 Desktop consumer `semantic` conformance repair 加 Desktop-private
+additive schema/commands，公共 Contracts、Host、pin、fixture 与 wire 不变。本轮没有 schema、command、renderer、
+dependency、config 或业务代码。
+
+| ID | 冻结结论 | 理由/证据 | Gate effect |
+|---|---|---|---|
+| DEC-128-019 | S9 重切为 S9A Desktop-private identity-only bounded report projection/canonical JSON save boundary 与 S9B provider-neutral TS/Vue renderer。S9A exact private schema 为 `chat-artifact-report-native-v1.schema.json`，exact commands 仅 `chat_read_artifact_report_preview_v1` 与 `chat_save_artifact_report_v1`；无 URL/handle/protocol/CSP/capability/dependency/migration。 | 当前 history/private IPC 只含 report metadata，SQLCipher 才持有 ready report canonical bytes；Vue 不得读取 raw JSON 或自行验证 wire。 | `READY FOR S9A ONLY`；S9B 等待 S9A immutable PASS、单独授权与 ECharts blocker 解除。 |
+| DEC-128-020 | S9A 必须先修复 Desktop report consumer 对 immutable schema 的额外拒绝：Unicode `maxLength` 按 scalar 计数、接受合法 RFC 3339 offset、不要求 section ID/column key 唯一、不要求 chart labels/values 等长。修复后再以同一 full-schema validator 签发 closed bounded projection；unknown optional 只投影 ordinal/unsupported marker，unknown required 拒绝整份文档。 | Contracts exact MIME 是 `application/vnd.yijie.report+json;version=1`；known sections 为 summary/metrics/paragraph/table/chart/callout。当前 Rust adapter 会拒绝多组 Ajv-valid fixture，属于 consumer conformance 漂移，不得反向收紧公共契约。 | S9A EXPECTED RED 必须固定这些 contract-valid cases；repair 若不能保持 public pins/fixtures 不变则停止。 |
+| DEC-128-021 | S9A 只允许保存同一 validated canonical report JSON（`.json`）；PDF/Markdown/image derived export 延期。S9B chart 只能从 closed projection 映射固定 ECharts option，且始终提供 accessible text table。 | 当前没有安全 derived exporter；active Desktop package/lock 没有 ECharts/vue-echarts，也没有易界 chart theme/card。 | S9B=`BLOCKED`；解除需单独批准 exact pinned ECharts dependency/lockfile、tree-shaken imports、semantic theme/card。G4 不得因此通过。 |
+
+S9A exact limits 冻结为：request `<=4,096` encoded bytes；preview source `1..4,194,304` bytes；projection
+`<=524,288` bytes；serialized response `<=1,048,576` bytes；完整 document depth `<=12`、nodes `<=100,000`、
+sections `0..64`；每 WebView preview concurrency `<=2`、source in-flight `<=8,388,608` bytes、同 identity
+single-flight、10s timeout；save 与 preview eligibility 独立，validated ready report `1..67,108,864` bytes。
+summary/paragraph/callout text 每项 `<=8,192` scalars、heading/title `<=1,024`；metrics `<=32` items；table
+`<=32` columns、前 `<=200` rows、string cell `<=1,024` scalars；chart `<=128` labels、`<=16` series、每 series
+`<=128` finite JSON numbers、总 points `<=2,048`。完整 schema、source/node/depth/response、unknown required、
+integrity 或 revision failure 均 fail closed；display cap 只在 scalar/section/row/cell 边界截断并标记 `truncated`。
+
+projection 根对象只含 `schemaVersion/title/generatedAt/sourceTime/truncated/sections`；known union 只含 renderer
+需要的 typed scalar/array，unknown optional 只含 ordinal/id/`type=unsupported`/`required=false`，不得返回 original
+type 或 payload。CRLF/CR 规范化 LF；TAB/LF 外的 C0、DEL/C1 与 `Bidi_Control` `U+061C`、
+`U+200E-U+200F`、`U+202A-U+202E`、`U+2066-U+2069` 投影成可见 ASCII `\\uXXXX`，不改变 SQLCipher/save
+canonical bytes。
+
+save 只由明确 click/keyboard intent 触发，dialog 前后执行两次 authority/full-schema validation；复用同目录
+`0600` create-new/no-follow temp、chunk digest、fsync、atomic replace 与 RAII。report residue exact filename 为
+`.yijie-artifact-report-save-v1-json-<process-epoch UUID>-<22-char base64url>.tmp`；仅在下一次用户明确选择同一目录时
+best-effort 删除 prior epoch 且通过 exact marker、regular non-symlink、current uid、`0600`、nlink=1、size 与完整
+ReportDocumentV1 recheck 的条目。Vue 只收 content-free `saved|cancelled|failed` + stable code。
+
+| Review | Owner | 结论 | 批准范围 | 保持关闭 |
+|---|---|---|---|---|
+| Product | 段成威 | READY FOR S9A ONLY；CANONICAL JSON SAVE ONLY；S9B WAITS | closed report v1、bounded projection、canonical JSON native save、Pattern 1.4.0 Accepted | derived export、S9B、S10-S12、G4 |
+| Technical | 段成威 | APPROVED FOR S9A CODING | contract-conformant validator repair、exact private schema + 2 commands、typed client/tests、必要 Desktop implementation/readiness SHA-only checker refresh | public contract/pin、Host、dependency/config/protocol/migration |
+| Security/Data | 段成威 | APPROVED FOR S9A CODING | 双次 SQLCipher authority/full-schema validation、bounded projection、unknown payload omission、component-local lifecycle、native atomic save/residue validation | raw JSON/path/token/error to Vue、persistence/log/snapshot、generic fs/shell/export |
+
+Owner 结论依据用户本轮明确指令由 Codex 代录，不声称独立人工批准。S9 readiness 是 docs-only PASS，S9A/S9B
+均未实现；G3 仍只包含 S3/S4/S5，G4 pending。
 
 ## 3. Provider activation gate
 
@@ -165,6 +209,7 @@ Owner 结论依据用户本轮明确指令由 Codex 代录，不声称独立人�
 | RSK-128-011 preview handle 重放/资源探测 | handle 泄漏、跨 WebView/session 重放或协议被当 generic fetch | 跨会话显示、内容枚举或 JS 读取 | 256-bit one-shot handle、main WebView/process/context/session binding、30s TTL、no CORS、empty 404 | registry/expiry/replay/session-switch/adversarial protocol tests | revoke all handles、关闭 image preview、保持 metadata/save fallback | Client/Security Owner |
 | RSK-128-012 video Range handle 滥用/OOM | multi-request handle 被猜测、跨 context 重放、恶意 Range 或 64MiB buffered response 并发 | 内容泄漏、内存放大、播放卡死 | 独立 256-bit binding、30min/5min TTL、无累计次数撤销、2 handle/2 read/64MiB total、single Range parser、no CORS/fetch | >=128 legal Range lifecycle、76-Range WebView zero-404、replay/expiry/context/in-flight/memory tests | revoke video registry、移除 `media-src` scheme、回落 metadata/save-disabled shell | Client/Security/Data Owner |
 | RSK-128-013 file preview 内容执行/泄漏 | raw/未授权正文进入全局 state/log/snapshot，CSV formula/HTML/link 被执行，或 save path 返回 Vue | XSS、工具越权、数据泄漏、任意写入 | native bounded projection、text nodes only、exact limits、no v-html/link/formula execution、component-local lifecycle、native atomic save | control/bidi/CSV/JSON adversarial tests、authorized/unauthorized canary open/close scans、path/token/digest zero-hit | 关闭 S8 renderer/commands，回落 metadata shell，保留 SQLCipher authority | Client/Security/Data Owner |
+| RSK-128-014 report consumer/renderer 漂移或注入 | Desktop 额外拒绝 contract-valid document，或 raw/unknown payload、任意 chart option/formatter 进入 Vue | 合法报告不可用、XSS/代码执行、数据外传 | contract-valid conformance fixtures、native closed projection、unknown omission、fixed chart mapper、text nodes + accessible table、exact caps | Ajv-vs-Rust differential、injection/unknown/cap tests、option snapshot、DOM/log/storage canary | 关闭 S9 renderer/commands，回落 metadata shell；保留 SQLCipher canonical authority，不恢复错误契约解释 | Client/Security/Data Owner |
 
 ## 5. 不需要新 ADR 的前提
 
@@ -177,8 +222,9 @@ Owner 结论依据用户本轮明确指令由 Codex 代录，不声称独立人�
   G3 外独立 PASS。
 - S7F/S7A/S7A-REPAIR/S7B 已逐切片独立 PASS；DEC-128-016 是现行 video handle lifecycle，Pattern 1.2.0 的
   64-request 条款只保留为历史 RED。
-- S8-READINESS/Pattern 1.3.0 只批准下一编码切片 S8A；S8B 等待 S8A immutable PASS 与单独授权。Markdown 延期使
-  AC-005 保持 PARTIAL，G4 不得通过。
+- S8A/S8B 已分别独立 PASS，未并入 G3；Markdown 延期使 AC-005 保持 PARTIAL，G4 不得通过。
+- S9-READINESS/Pattern 1.4.0 只批准下一编码切片 S9A；S9B 等待 S9A immutable PASS、单独授权与 ECharts
+  dependency/theme blocker 解除。readiness 不等于实现 PASS。
 - Contracts v3 source、基线、generator/adapter、unknown kind/section 行为和 consumer 顺序已完成 G2 设计评审；S1/S2 真实生成、检查、双 breaking 与不可变 commit 已通过。
 - Desktop SQLCipher v8 migration、64 MiB 单 Artifact 上限、七天 retention 起算与恢复边界已在 S4 实现并通过迁移/reopen/TTL/delete 验证；图片 native preview/save/CSP 属 S6A，S6B 只做 renderer。
 - 真实 MiniMax 调用保持关闭；如需启用，另行取得费用和 provider activation 批准。
@@ -189,6 +235,6 @@ Owner 结论依据用户本轮明确指令由 Codex 代录，不声称独立人�
 - G1：PASS，场景、AC、受影响仓库、最高 contract impact 和主要风险已识别。
 - G2：`PASS`，Product/Design、Technical/Contracts、Security/Data 与测试计划已由 Owner 明确批准；只允许进入 Contracts S1/S2。
 - G2A：`PASS`，Contracts `ea48fe190e18afba728712d1e2cc79cda57f581b`、Host pin `dea84d0768ebc017b7ee5faedab7f9a49ce74875` 与 Desktop pin `96094419d963745529ed0fa246919089e659f20d` 已满足真实 generate、双 breaking、semantic/consumer review 与不可变 pin 条件。批准依据是用户本轮给出的条件授权与实际证据，不声称 Codex 是独立人工 Reviewer。
-- G3：只对 S3/S4/S5 原子切片通过；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B 为独立 PASS，均不扩展 G3。
-  S8-READINESS 仅 `READY FOR S8A ONLY`，不是实现 PASS；G4-G6 仍未通过，Host/Desktop master/synthetic flags
-  与真实 provider 继续关闭。
+- G3：只对 S3/S4/S5 原子切片通过；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B 为独立 PASS，均不扩展 G3。
+  S9-READINESS 仅 `READY FOR S9A ONLY`，不是实现 PASS；S9B blocked，G4-G6 仍未通过，Host/Desktop
+  master/synthetic flags 与真实 provider 继续关闭。
