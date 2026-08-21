@@ -4,8 +4,8 @@
 > 不把自身描述成独立人工 Reviewer。G2A PASS 只证明契约与 downstream exact pin 已就绪，不证明
 > Host/Desktop S3/S4/S5、独立 S6A native boundary、独立 S6B image renderer、独立 S7F Host fixture conformance
 >、独立 S7A Desktop native video boundary、S7A-REPAIR、S7B reusable renderer/runtime smoke、独立 S8A
-> Desktop-private file native boundary、S8B reusable file renderer、S9A Desktop-private report native boundary与 S9B-D chart foundation 以外的实现、端到端或真实 provider 能力已经存在。
-> S7F、S7A、S7A-REPAIR、S7B、S8A、S8B、S9A 与 S9B-D 已形成 immutable commits；S9-READINESS 是历史 docs-only evidence，
+> Desktop-private file native boundary、S8B reusable file renderer、S9A Desktop-private report native boundary、S9B-D chart foundation 与其 checker repair 以外的实现、端到端或真实 provider 能力已经存在。
+> S7F、S7A、S7A-REPAIR、S7B、S8A、S8B、S9A、S9B-D 与 S9B-D-CHECKER-REPAIR 已形成 immutable commits；S9-READINESS 是历史 docs-only evidence，
 > S9B-READINESS/Pattern 1.5.0 也只是 docs-only evidence。S9B-D 独立通过不代表 S9B-R、
 > production vertical、S10-S11 或 G4。
 
@@ -13,10 +13,10 @@
 
 | Repository | Branch | Evidence commit | FEAT-128 实际范围 | 日期 |
 |---|---|---|---|---|
-| `yijie` | `feat/feat-128-structured-chat-artifacts` | 本文档最终提交 | G2/G2A + S3/S4/S5 G3 + S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A/S9B-D separate PASS；不扩 G3 | 2026-08-21 |
+| `yijie` | `feat/feat-128-structured-chat-artifacts` | 本文档最终提交 | G2/G2A + S3/S4/S5 G3 + S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A/S9B-D/S9B-D-CHECKER-REPAIR separate PASS；不扩 G3 | 2026-08-21 |
 | `yijie-contracts` | `feat/feat-128-structured-chat-artifacts` | `ea48fe190e18afba728712d1e2cc79cda57f581b` | S1/S2 authoritative source/generated/fixtures/review | 2026-08-20 |
 | `yijie-agent-host` | `feat/feat-128-structured-chat-artifacts` | pin `dea84d0768ebc017b7ee5faedab7f9a49ce74875`; S3 `4017785adb08e1114781d3d844e9a10a683fa933`; S7F `1045dd06534eb72d53eb7ad7b7d18e63c80284f8` | exact pin + local Host v3 foundation + canonical playable/seekable strict-local video conformance | 2026-08-20 |
-| `yijie-desktop` | `feat/feat-128-structured-chat-artifacts` | initial Pattern `e97b2dabd724af856b4041e23b24437ec2f5dfc3`; pin `96094419d963745529ed0fa246919089e659f20d`; S4 `09220dd8319cfb8ec0c4d1531514bb5169107983`; S5 `7548ea8aeacfd7274f1107786ce48ddc6789cd45`; S6 readiness `2b854b40379a207c19bf37fc5bc64266553c5df1`; S6A `8b99849d418a3ef226f4133128f1ac22a438f9d5`; S6B `4a8dce6a6526e37052941f6dbb921ba2486e109f`; S7 readiness `18b17d961ed5991cec55eeb230ea21d91f2fb8ec`; S7A `22b91c5a258458c87f1ac96c06bf39d1af97358f`; S7A-REPAIR `34991d8967de9aa2197ab2e8b9b49347774df7a5`; S7B `366186b601144bdc2bc87a2cef3075b74f1e8f19`; S8 readiness `4929a73a7871056d7aeca3eb0b27c682b21bfe4b`; S8A `bf5452f7fde24d1391845deaba17ec1135716c62`; S8B `4d0238b1906f02d319f47f5e55cdc023485ef07a`; S9 readiness `b6f7401c79d5b2356bc45468f14d7fdbb17a855c`; S9A `232ea6ce132faa8ac99bdf6abcc5e02ddd704ffe`; S9B readiness `630c3c8d55a2617499f51bd5bed263b819aaf084`; S9B-D `0a36ca7c54460d22ea6b3228832a57f05f0bde68` | Pattern 1.5.0 + exact pin + independent image/video/file/S9A/S9B-D slices；S9B-R 仍 NOT RUN，无 report renderer/production vertical | 2026-08-21 |
+| `yijie-desktop` | `feat/feat-128-structured-chat-artifacts` | initial Pattern `e97b2dabd724af856b4041e23b24437ec2f5dfc3`; pin `96094419d963745529ed0fa246919089e659f20d`; S4 `09220dd8319cfb8ec0c4d1531514bb5169107983`; S5 `7548ea8aeacfd7274f1107786ce48ddc6789cd45`; S6 readiness `2b854b40379a207c19bf37fc5bc64266553c5df1`; S6A `8b99849d418a3ef226f4133128f1ac22a438f9d5`; S6B `4a8dce6a6526e37052941f6dbb921ba2486e109f`; S7 readiness `18b17d961ed5991cec55eeb230ea21d91f2fb8ec`; S7A `22b91c5a258458c87f1ac96c06bf39d1af97358f`; S7A-REPAIR `34991d8967de9aa2197ab2e8b9b49347774df7a5`; S7B `366186b601144bdc2bc87a2cef3075b74f1e8f19`; S8 readiness `4929a73a7871056d7aeca3eb0b27c682b21bfe4b`; S8A `bf5452f7fde24d1391845deaba17ec1135716c62`; S8B `4d0238b1906f02d319f47f5e55cdc023485ef07a`; S9 readiness `b6f7401c79d5b2356bc45468f14d7fdbb17a855c`; S9A `232ea6ce132faa8ac99bdf6abcc5e02ddd704ffe`; S9B readiness `630c3c8d55a2617499f51bd5bed263b819aaf084`; S9B-D `0a36ca7c54460d22ea6b3228832a57f05f0bde68`; S9B-D-CHECKER-REPAIR `aec0f8a05ba7534132cbb4f46be64e333d7e9024` | Pattern 1.5.0 + exact pin + independent image/video/file/S9A/S9B-D/checker-repair slices；S9B-R 仍 NOT RUN，无 report renderer/production vertical | 2026-08-21 |
 | `yijie-codex` | `develop` | `0ce5902ed400866be0196886bb78f693a004d68d` | read-only Runtime authority | 2026-08-20 |
 
 没有 tag、push、契约发布、真实 provider 调用、云资源、部署或生产流量。Host S3 与 Desktop S4 均默认
@@ -53,6 +53,7 @@ vertical integration；Host 没有真实 provider producer。
 | S9A | PASS AS SEPARATE SLICE | Desktop `232ea6ce132faa8ac99bdf6abcc5e02ddd704ffe` + Rust/TS EXPECTED RED、focused/full GREEN、scope/diff/clean review | native report boundary 已形成；不并入 G3，不代表 S9B/vertical/full AC/G4 |
 | S9B-READINESS | PASS FOR DOCS ONLY / READY FOR S9B-D ONLY | Desktop Pattern 1.5.0 `630c3c8d55a2617499f51bd5bed263b819aaf084` + package/lock/theme/S9A/UI read-only audit + Owner capture | 只解除为 exact D 边界；不是 implementation/G3/G4 PASS |
 | S9B-D | PASS AS SEPARATE SLICE | Desktop `0a36ca7c54460d22ea6b3228832a57f05f0bde68` + EXPECTED RED、5 files/13 focused、dependency/bundle/full/real-browser evidence | exact dependency/theme/closed adapter/card foundation 已形成；不并入 G3，不代表 S9B-R/production vertical/G4 |
+| S9B-D-CHECKER-REPAIR | PASS AS SEPARATE SLICE | Desktop `aec0f8a05ba7534132cbb4f46be64e333d7e9024` + 3-test EXPECTED RED、5/5 与 5 files/16 GREEN、full Desktop gates | 只修复 checker ownership；D production boundary 不变；不并入 G3，不代表 S9B-R/G4 |
 | S9B-R | WAIT / NOT RUN | 无 report component/Shell/List diff | immutable S9B-D PASS 已满足；仍等待 separate authorization |
 | S10-S11 | NOT RUN | 无对应实现 diff | vertical/performance、independent review仍待逐切片授权 |
 | S12 real producers | BLOCKED | 无 provider authority/付费授权 | 保持关闭 |
@@ -147,6 +148,20 @@ S9B-D/S9B-R 当时均 `NOT RUN`，G3/G4 不变；S9B-D 后续在独立授权下�
 
 S9B-D local atomic commit 为 `0a36ca7c54460d22ea6b3228832a57f05f0bde68`，未 push。production Chat/Tauri
 report vertical 与 S9B-R 均 `NOT RUN`；S9B-R 仍需单独授权，G3 仍只包含 S3/S4/S5，G4 pending。
+
+## 2H. S9B-D-CHECKER-REPAIR 实现证据
+
+| Boundary | 实际修复 | 结论 |
+|---|---|---|
+| Root cause | 旧 checker 把 readiness baseline `630c3c8…` 到当前工作树的全部 diff 当成 S9B-D scope | CONFIRMED；合法后续 `src/components/chat/ChatArtifactReport.vue` 会被误报为 forbidden |
+| Historical audit | 固定比较 `630c3c8d55a2617499f51bd5bed263b819aaf084` → `0a36ca7c54460d22ea6b3228832a57f05f0bde68` | PASS；历史 S9B-D diff 仍只能包含原 allowlist/visual prefix |
+| Current audit | 相对 immutable S9B-D commit 只保护 package/lock/NOTICE/tokens/theme/adapter/card/bundle-checker/visual-harness | PASS；任一 protected file 变化 fail closed；无关后续 slice 由自身 diff audit 负责 |
+| Assertions/scope | exact ECharts/transitives/integrity/license/NOTICE/install-script/static-import 断言原样保留；只改 dependency checker 与同名 test | PASS；S9B-D production boundary、S9A、Chat/native/config/Contracts/Host/pin 均未改 |
+
+EXPECTED RED：新增回归后 focused command exit 1，1 file/5 tests 中 3 failed、2 passed，三个失败均因新 scope
+validator 尚不存在。GREEN：1 file/5 tests 与扩展 5 files/16 tests 均 PASS；完整 `pnpm test` 为 57 files/363 tests。
+Desktop 原子提交为 `aec0f8a05ba7534132cbb4f46be64e333d7e9024`，未 push。S9B-D 保持独立 PASS，
+S9B-R 保持 `WAIT / NOT RUN`，G3/G4 不变。
 
 ## 3. Contracts 不可变候选
 
@@ -419,6 +434,24 @@ synthetic/real provenance 与 activation gate。
 | Y-S9BD-TEST | yijie | `pnpm test` | 0 | PASS | 1/1 repository manifest test passed |
 | Y-S9BD-SHELL | yijie | `bash -n scripts/*.sh docs/dev/codex-feature-delivery/scripts/*.sh` | 0 | PASS | all shell syntax passed |
 | Y-S9BD-DIFF | yijie | `git diff --check` + exact four-file scope audit | 0 | PASS | only 07/08/10/feature.yaml changed |
+| D-S9BDC-RED | Desktop | `pnpm exec vitest run scripts/check-feat128-s9b-d-dependencies.test.mjs` after tests only | 1 | EXPECTED RED | 1 file/5 tests；3 failed/2 passed because two-stage scope validators did not exist |
+| D-S9BDC-GREEN | Desktop | same focused command after repair | 0 | PASS | 1 file/5 tests；legal synthetic `components/chat` accepted；protected/current + forbidden/historical cases fail closed |
+| D-S9BDC-FOCUSED | Desktop | dependency+bundle+theme+adapter+card exact focused command | 0 | PASS | 5 files/16 tests |
+| D-S9BDC-DEPS | Desktop | `node scripts/check-feat128-s9b-d-dependencies.mjs` | 0 | PASS | historical `630c3c8…→0a36ca7…` scope + immutable D protection + unchanged dependency assertions |
+| D-S9BDC-LINT | Desktop | `pnpm lint` | 0 | PASS | ESLint + vue-tsc；no contract/pin drift |
+| D-S9BDC-TEST | Desktop | `pnpm test` | 0 | PASS | 57 files/363 tests；public/v2/v3 checkers and 10 implementation pins remain PASS |
+| D-S9BDC-BUILD | Desktop | `make build` | 0 | PASS | Vue production build；no code/config expansion |
+| D-S9BDC-DOCS | Desktop | `pnpm docs:build` | 0 | PASS | Pattern 1.5.0 unchanged and buildable |
+| D-S9BDC-BUNDLE | Desktop | `node scripts/check-feat128-s9b-d-bundle.mjs --dist dist/assets` | 0 | PASS | 17 assets；655,731 raw/206,565 gzip-9；delta 0/-15 |
+| D-S9BDC-DIFF | Desktop | `git diff --check` + staged exact two-file audit | 0 | PASS | only dependency checker + same-name test；all protected D files unchanged |
+| D-S9BDC-COMMIT | Desktop | selective atomic local commit + post-commit checker | 0 | PASS | `aec0f8a05ba7534132cbb4f46be64e333d7e9024`; clean；not pushed |
+| Y-S9BDC-PACKAGE | yijie | `check-feature-package.sh --gate G3` | 0 | PASS | G3 remains exact S3/S4/S5；checker repair separate evidence does not expand it |
+| Y-S9BDC-STRICT | yijie | `check-feature-package.sh --strict` | 0 | PASS | templates/markers valid；S9B-R/S10-S11 and G4 remain pending |
+| Y-S9BDC-YAML | yijie | unique-key parse + exact G3/repair/S9B-R/G4 assertions | 0 | PASS | repair full SHA/separate PASS、S9B-R WAIT/NOT RUN、G4 pending |
+| Y-S9BDC-LINT | yijie | `pnpm lint` | 0 | PASS | 10 repository manifests + central Contract First governance passed |
+| Y-S9BDC-TEST | yijie | `pnpm test` | 0 | PASS | 1/1 repository manifest test passed |
+| Y-S9BDC-SHELL | yijie | `bash -n scripts/*.sh docs/dev/codex-feature-delivery/scripts/*.sh` | 0 | PASS | all shell syntax passed |
+| Y-S9BDC-DIFF | yijie | `git diff --check` + exact four-file scope audit | 0 | PASS | only 07/08/10/feature.yaml changed |
 
 一次 `pnpm lint` 曾与 `pnpm test` 并行执行，因仓库 `check-generated` 临时替换 generated 目录而产生
 瞬时失败；改为仓库要求的顺序执行后通过，且 immutable commit 上再次通过。它是命令并发冲突，
@@ -558,7 +591,9 @@ slice 的未验证范围，未被降级为已接受风险。
 - 用户随后明确执行 S9B-D；Desktop `0a36ca7c54460d22ea6b3228832a57f05f0bde68` 完成 exact ECharts/lock/NOTICE、
   semantic theme/tokens、closed adapter + pure ordinal budget、accessible one-instance chart card、checkers 与真实浏览器 test-only
   visual matrix，未调用 S9A client、读取真实 report 或修改 Chat/native/config/pages/stores/public pin。它是 G3 外 separate PASS。
-- 这些授权已用于按序完成 local-only S3/S4/S5 与独立 S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A/S9B-D；
+- 用户随后明确授权 S9B-D-CHECKER-REPAIR；Desktop `aec0f8a05ba7534132cbb4f46be64e333d7e9024`
+  只把 checker 拆为固定历史 scope audit 与当前 immutable D protection，保留全部 dependency assertions，未启动 S9B-R。
+- 这些授权已用于按序完成 local-only S3/S4/S5 与独立 S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A/S9B-D/S9B-D-CHECKER-REPAIR；
   G3 只对前三个原子切片通过，不允许 real provider、付费调用、
   tag、push、publish、release、production 或直接宣称 G4-G6 通过。
 
@@ -576,14 +611,14 @@ slice 的未验证范围，未被降级为已接受风险。
 | Markdown Artifact | current immutable v3 output 不含 `text/markdown`；Product 延期，AC-005 PARTIAL | 若本期必需，重开 G2/G2A、Contracts source/generate/breaking/semantic review、immutable commit 与全部 downstream repin |
 | S9 report boundary | S9A `232ea6ce...` projection/save 与 S9B-D `0a36ca7...` dependency/theme/adapter/card 已实现；S9B-R 尚未实现 | 任何反向收紧 Contracts、raw JSON/unknown payload/path/error to Vue、超 exact caps、derived export、protocol/config/migration 或 S6-S8 drift 立即停止；回落 metadata shell |
 | Unknown report section | contract 限 `required=false`、128 KiB、depth 8、opaque；S9A projection 只允许 unsupported marker | native/renderer 返回、遍历、搜索或执行 original type/payload 即阻断 |
-| S9B-D dependency/theme | exact `echarts@6.1.0`/3-node lock/NOTICE/static Canvas/import/bundle/theme/adapter/card 已在 `0a36ca7...` 实现并通过 18-case real-browser matrix | S9B-R 若要求额外 package、full/dynamic/CDN import、arbitrary option、外部 origin或突破 frozen bundle/table/dispose边界，立即停止并回滚 R |
+| S9B-D dependency/theme | exact `echarts@6.1.0`/3-node lock/NOTICE/static Canvas/import/bundle/theme/adapter/card 已在 `0a36ca7...` 实现并通过 18-case real-browser matrix；checker repair `aec0f8a...` 固定历史 scope 并保护 immutable D boundary | S9B-R 若要求额外 package、full/dynamic/CDN import、arbitrary option、外部 origin或突破 frozen bundle/table/dispose边界，或改变 protected D 文件，立即停止并回滚 R |
 | S9B-R renderer | WAIT/NOT RUN；当前 projection 无 unit/data source/time range | D immutable PASS 已满足；仍须单独授权。UI 必须显示“报告未提供”，若要求推断/新契约字段则重开 G2/G2A |
 | Real MiniMax image | blocked | 固定 capability/API/model、费用与 bounded eval 单独获批 |
 | Real video/file/report | blocked | 每 kind 形成 producer/ownership/security contract 后单独评审 |
 
 ## 11. 制品与工作树完整性
 
-- Contracts、Host S3/S7F、Desktop S4/S5、Desktop readiness 与 S6A/S6B/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A/S9B-D/Pattern 1.5.0 commits 均为完整 40-character SHA；没有使用 floating branch/tag 作为 pin。
+- Contracts、Host S3/S7F、Desktop S4/S5、Desktop readiness 与 S6A/S6B/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A/S9B-D/S9B-D-CHECKER-REPAIR/Pattern 1.5.0 commits 均为完整 40-character SHA；没有使用 floating branch/tag 作为 pin。
 - 每个仓库在提交后重跑关键门禁；最终应保持 clean worktree。
 - 生成物来自锁定 source/generator；Feature 目录不复制 canonical payload。
 - 没有 `.skip`、`.only`、弱化断言、secret、真实业务数据或付费调用。
@@ -600,6 +635,6 @@ slice 的未验证范围，未被降级为已接受风险。
 - S8-READINESS：Pattern 1.3.0 为 docs PASS；S8A `bf5452...` 与 S8B `4d0238...` 分别独立 `PASS`；Markdown deferred，AC-005 `PARTIAL`。
 - S9-READINESS：Pattern 1.4.0 `b6f7401c...` 为历史 docs-only PASS；S9A `232ea6ce...` 已独立 `PASS`。
 - S9B-READINESS：Pattern 1.5.0 `630c3c8...` 为 docs-only PASS；S9B-D `0a36ca7...` 已独立 `PASS`；
-  S9B-R `WAIT/NOT RUN`；canonical JSON save only，derived export deferred。
+  S9B-D-CHECKER-REPAIR `aec0f8a...` 已独立 `PASS`；S9B-R `WAIT/NOT RUN`；canonical JSON save only，derived export deferred。
 - Code Complete：否；S9B-R、S10-S11、production vertical、full visual/performance 与 independent review 尚未完成。
-- 当前状态：`G3 PASS only for S3/S4/S5 / S6A, S6B, S7F, S7A, S7A-REPAIR, S7B, S8A, S8B, S9A and S9B-D separate PASS / S9B readiness docs-only PASS / S9B-R WAIT NOT RUN / S10-S11 pending / real providers closed / G4-G6 not passed`。
+- 当前状态：`G3 PASS only for S3/S4/S5 / S6A, S6B, S7F, S7A, S7A-REPAIR, S7B, S8A, S8B, S9A, S9B-D and S9B-D-CHECKER-REPAIR separate PASS / S9B readiness docs-only PASS / S9B-R WAIT NOT RUN / S10-S11 pending / real providers closed / G4-G6 not passed`。
