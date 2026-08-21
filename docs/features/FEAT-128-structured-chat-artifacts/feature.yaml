@@ -4,7 +4,7 @@ feature:
   id: "FEAT-128"
   slug: "structured-chat-artifacts"
   title: "对话流结构化 Artifact 展示与操作"
-  status: "G3 passed only for local-only S3/S4/S5; S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B separate PASS; S9 readiness docs-only and READY FOR S9A ONLY; S9A-S11 pending; AC-005 partial; real providers closed"
+  status: "G3 passed only for local-only S3/S4/S5; S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A separate PASS; S9B-S11 pending; AC-005 partial; real providers closed"
   created_at: "2026-08-20"
   updated_at: "2026-08-21"
   requirement_owner: "段成威"
@@ -35,6 +35,7 @@ repositories:
     s8a_governance_baseline_full_commit: "9e4891b06ee43638d5602e2987b80988768569c7"
     s8b_governance_baseline_full_commit: "7e0f1c1d49e3bc7552749cc401727ee89e8c6a03"
     s9_readiness_baseline_full_commit: "9f3a80c9a0269d835ce44550f0be6ba7b987d5d5"
+    s9a_governance_baseline_full_commit: "cc624dc8942a484167dec94f02c39ac3285f0d23"
     initial_worktree: "clean before FEAT-128 package creation"
   - name: "yijie-contracts"
     role: "authoritative v3 Artifact event/resource and report document contracts"
@@ -70,6 +71,7 @@ repositories:
     s8a_full_commit: "bf5452f7fde24d1391845deaba17ec1135716c62"
     s8b_full_commit: "4d0238b1906f02d319f47f5e55cdc023485ef07a"
     s9_readiness_pattern_full_commit: "b6f7401c79d5b2356bc45468f14d7fdbb17a855c"
+    s9a_full_commit: "232ea6ce132faa8ac99bdf6abcc5e02ddd704ffe"
     initial_worktree: "clean"
   - name: "yijie-codex"
     role: "read-only upstream Runtime authority and imageGeneration capability evidence"
@@ -104,11 +106,12 @@ immutable_references:
     - "S7B yijie-desktop@366186b601144bdc2bc87a2cef3075b74f1e8f19"
     - "S8A yijie-desktop@bf5452f7fde24d1391845deaba17ec1135716c62"
     - "S8B yijie-desktop@4d0238b1906f02d319f47f5e55cdc023485ef07a"
+    - "S9A yijie-desktop@232ea6ce132faa8ac99bdf6abcc5e02ddd704ffe"
   readiness_documents:
     - "S6-READINESS yijie-desktop Pattern 1.1.0@2b854b40379a207c19bf37fc5bc64266553c5df1 (docs only; no S6 implementation)"
     - "S7-READINESS yijie-desktop Pattern 1.2.0@18b17d961ed5991cec55eeb230ea21d91f2fb8ec (docs-only historical commit; READY FOR S7F only at capture; S7F later passed separately)"
     - "S8-READINESS/S7-SPEC-RECONCILIATION yijie-desktop Pattern 1.3.0@4929a73a7871056d7aeca3eb0b27c682b21bfe4b (docs-only readiness; S8A/S8B later passed separately)"
-    - "S9-READINESS yijie-desktop Pattern 1.4.0@b6f7401c79d5b2356bc45468f14d7fdbb17a855c (docs-only readiness; READY FOR S9A ONLY; S9A/S9B NOT RUN; S9B blocked on ECharts)"
+    - "S9-READINESS yijie-desktop Pattern 1.4.0@b6f7401c79d5b2356bc45468f14d7fdbb17a855c (docs-only historical readiness; S9A later passed separately; S9B blocked on ECharts)"
   release_artifacts: []
 
 gates:
@@ -128,8 +131,9 @@ gates:
   S8_readiness: "passed for documentation only on 2026-08-21 at yijie-desktop@4929a73a7871056d7aeca3eb0b27c682b21bfe4b; historical READY FOR S8A ONLY with Markdown deferred and AC-005 PARTIAL; S8A/S8B later passed separately; G3 unchanged and G4 pending"
   S8A_slice: "passed on 2026-08-21 at yijie-desktop@bf5452f7fde24d1391845deaba17ec1135716c62 as a separate Desktop-private bounded file preview/save slice; does not expand G3 or pass G4"
   S8B_slice: "passed on 2026-08-21 at yijie-desktop@4d0238b1906f02d319f47f5e55cdc023485ef07a as a separate ready-file renderer/search/fallback/native-save UX slice; does not expand G3 or pass G4; production page/runtime visual remains pending"
-  S9_readiness: "passed for documentation only on 2026-08-21 at yijie-desktop@b6f7401c79d5b2356bc45468f14d7fdbb17a855c; READY FOR S9A ONLY with canonical JSON save; S9A/S9B not implemented, S9B blocked on ECharts; G3 unchanged and G4 pending"
-  G4_code_complete: "pending - S9A/S9B/S10-S11, full AC-005 including Markdown decision, vertical integration, full visual/performance and independent review slices are not complete"
+  S9_readiness: "passed for documentation only on 2026-08-21 at yijie-desktop@b6f7401c79d5b2356bc45468f14d7fdbb17a855c; historical READY FOR S9A ONLY with canonical JSON save; S9A later passed separately and S9B remains blocked on ECharts; G3 unchanged and G4 pending"
+  S9A_slice: "passed on 2026-08-21 at yijie-desktop@232ea6ce132faa8ac99bdf6abcc5e02ddd704ffe as a separate Desktop-private bounded report projection/canonical JSON save slice with semantic consumer conformance repair; does not expand G3 or pass G4"
+  G4_code_complete: "pending - S9B/S10-S11, full AC-005 including Markdown decision, vertical integration, full visual/performance and independent review slices are not complete"
   G5_production_ready: "production subchecks N/A for current local-only scope; gate NOT PASSED"
   G6_delivery_complete: "deployment/observation subchecks N/A for current local-only scope; gate NOT PASSED"
 
@@ -156,7 +160,7 @@ owner_decision_capture:
     "DEC-128-020": "Approve at S9-READINESS - consumer conformance repair and bounded unknown-omitting projection"
     "DEC-128-021": "Approve at S9-READINESS - canonical JSON save only; derived export deferred; S9B blocked on ECharts"
   provider_gate: "Approve - Keep closed"
-  gate_effect: "G2A authorized S3/S4, and later explicit user instructions authorized S5, S6A, S6B, S7F, S7A, S7A-REPAIR, S7B, S8A and S8B as bounded slices; S9 readiness now authorizes S9A coding only. S3-S5 are complete at immutable local commits and G3 is passed only for those slices. S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B are separately complete. S9A-S11 and every real provider remain closed or pending."
+  gate_effect: "G2A authorized S3/S4, and later explicit user instructions authorized S5, S6A, S6B, S7F, S7A, S7A-REPAIR, S7B, S8A, S8B and S9A as bounded slices. S3-S5 are complete at immutable local commits and G3 is passed only for those slices. S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A are separately complete. S9B-S11 and every real provider remain closed or pending."
 
 g2_approval:
   decision: "APPROVED"
@@ -191,7 +195,7 @@ g3_record:
   desktop_s5_commit: "7548ea8aeacfd7274f1107786ce48ddc6789cd45"
   evidence: "Host contract-check/lint/test/runtime-test; S4 Desktop generate-check/lint/test/build/docs-build; and S5 Desktop focused RED/GREEN tests plus make lint/test/build, pnpm docs:build and diff checks all passed; diffs and clean worktrees checked"
   scope: "S3 local Host lifecycle/staging/resource/synthetic foundation, S4 Desktop SQLCipher/native transfer/history/private IPC, and S5 Desktop provider-neutral reducer/store/generic metadata shell only"
-  excluded: "separate S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B and pending S9-S11 from the G3 decision itself; vertical/E2E/review, real provider/tool activation, paid calls, tag, push, release, deployment and production"
+  excluded: "separate S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A and pending S9B-S11 from the G3 decision itself; vertical/E2E/review, real provider/tool activation, paid calls, tag, push, release, deployment and production"
 
 s6_readiness:
   decision: "APPROVED FOR S6A CODING ONLY; PASS FOR DOCUMENTATION, NOT IMPLEMENTATION"
@@ -441,7 +445,7 @@ s9_readiness:
   desktop_pattern_commit: "b6f7401c79d5b2356bc45468f14d7fdbb17a855c"
   contracts_full_commit: "ea48fe190e18afba728712d1e2cc79cda57f581b"
   host_s7f_commit: "1045dd06534eb72d53eb7ad7b7d18e63c80284f8"
-  contract_impact: "readiness docs none; future S9A highest impact is a semantic Desktop consumer conformance repair plus Desktop-private additive schema/commands; public Contracts, Host, immutable pins, fixtures and wire remain unchanged"
+  contract_impact: "readiness docs none; historical S9A plan identified a semantic Desktop consumer conformance repair plus Desktop-private additive schema/commands; S9A later passed separately while public Contracts, Host, immutable pins, fixtures and wire remained unchanged"
   product: "READY FOR S9A ONLY; canonical validated report JSON save only; derived PDF/Markdown/image export deferred; S9B waits"
   technical: "APPROVED FOR S9A CODING with contract-conformant report validator repair, one exact private schema, two exact commands, no protocol/config/dependency/migration; S9B blocked on ECharts"
   security_data: "APPROVED FOR S9A CODING with double SQLCipher authority/full-schema validation, bounded closed projection, unknown-payload omission, component-local lifecycle and native atomic save"
@@ -460,10 +464,31 @@ s9_readiness:
   s9b_blocker: "active Desktop package/lock has no ECharts or vue-echarts and no yijie ECharts theme/YjChartCard; unblock only with separate approval for exact pinned dependency/lockfile, tree-shaken imports, semantic theme/card and security tests"
   allowed_s9a_scope: "new report private schema/native module and TS domain/client/tests; necessary artifact/application/worker/ipc/mod/lib wiring; artifact_native atomic helper only with no S6-S8 behavior drift; necessary v2/v3 lock/checker/test constants only for Desktop implementation/readiness SHA"
   stop_conditions: "Contracts/Host/public pin/source/tree/fixture/version/operation/schema drift; components/pages/stores or S9B; dependency/lockfile/plugin/capability/permission/CSP/protocol/migration/external origin; raw JSON/bytes/base64/digest/path/href/token/unknown payload/raw error to Vue or persistence/log/snapshot; derived export/browser download/generic filesystem/shell; S6-S8 behavior drift; inability to keep exact limits or verified residue cleanup"
-  implementation_status: "READINESS DOCS PASS ONLY; S9A and S9B NOT RUN"
-  next_slice: "S9A only, under the direct coding instruction in 07 section 18; S9B waits for S9A immutable PASS, separate authorization and blocker closure"
-  gate_effect: "G3 remains PASSED FOR S3/S4/S5 only; S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B remain separate PASS; S9 readiness is docs-only; G4 remains pending"
+  implementation_status: "HISTORICAL READINESS DOCS PASS ONLY; S9A later passed separately; S9B NOT RUN"
+  next_slice: "HISTORICAL - S9A is separately complete; S9B still waits for separate authorization and exact ECharts dependency/theme blocker closure"
+  gate_effect: "G3 remains PASSED FOR S3/S4/S5 only; S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A remain separate PASS; G4 remains pending"
   independence_note: "Owner conclusions are captured from the user's direct instruction; Codex audit is not represented as independent human approval."
+
+s9a_record:
+  decision: "PASSED AS A SEPARATE SLICE; NOT ADDED TO G3"
+  recorded_at: "2026-08-21"
+  recorder: "Codex execution evidence under the user's explicit S9A authorization"
+  governance_baseline_commit: "cc624dc8942a484167dec94f02c39ac3285f0d23"
+  desktop_baseline_commit: "b6f7401c79d5b2356bc45468f14d7fdbb17a855c"
+  desktop_commit: "232ea6ce132faa8ac99bdf6abcc5e02ddd704ffe"
+  contracts_full_commit: "ea48fe190e18afba728712d1e2cc79cda57f581b"
+  host_s7f_commit: "1045dd06534eb72d53eb7ad7b7d18e63c80284f8"
+  contract_impact: "semantic Desktop consumer conformance repair plus additive Desktop-private schema/commands/domain/client; public Contracts full commit/source/tree/fixtures/version/operations/schema, Host and immutable pin unchanged"
+  scope: "immutable-schema-valid report adapter repair; exact chat-artifact-report-native-v1 schema and two identity-only commands; SQLCipher owner/state/kind/MIME/size/blob/digest/revision/full-schema double validation; bounded closed known-section projection with unknown optional payload omission; canonical report JSON native atomic save and report-only verified prior-epoch residue cleanup; TS-only parser/client; no Vue component"
+  test_first: "expected Rust RED exit 101 because the old consumer rejected an immutable-schema-valid differential fixture; expected TS RED exit 1 because report native domain/client modules did not exist; focused GREEN consumer/reader/native tests plus 2 TS files/6 tests"
+  final_evidence: "cargo test 227 passed/3 ignored; cargo clippy PASS; pnpm lint PASS; pnpm test 52 files/347 tests PASS; make build PASS; pnpm docs:build PASS; git diff --check PASS"
+  governance_evidence: "G3 package PASS; strict package PASS; unique-key YAML asserted G3=S3/S4/S5, S9A separate PASS, S9B pending and G4 pending; pnpm lint/test, bash -n and git diff --check PASS"
+  implementation_digests: "artifact.rs a8c3128bbc647fb99db516f60627952d0d5cb4d2923fa12ff4756f5ebd6de285; worker.rs 7cf74c094e735ff26fd17c4252dc693224cd237ba9ada5809bd12aa66b4128c0; ipc.rs d3c0da508abb8f20118bf089f74211e33f922af223006e7111b69cf81282786a; application.rs d3290063de27db9c9da967d5eb26506a5ddd551ead67cc68611513d95838803d; mod.rs 134d878b2955e9ca3f0ad0afebdf2d8a550737288e35bed0c125556465d03e20"
+  unchanged: "components/pages/stores, S6-S8 commands/schema/protocol/limits/behavior, tauri config/CSP/capability/permission, dependencies/lockfiles, plugins, migrations, Contracts/Host/public pin and production integration"
+  excluded: "S9B renderer/chart/ECharts/theme, derived export, production page integration, S10-S12, real provider/tool, push, PR, tag, release and deployment"
+  ac_status: "AC-006 native/contract portion PASS; renderer/chart and production vertical remain pending, so full AC is not passed"
+  next_slice: "S9B remains BLOCKED/NOT RUN despite S9A immutable PASS; requires separate authorization for exact pinned ECharts dependency/lockfile, tree-shaken imports, semantic theme/card and security/a11y tests"
+  gate_effect: "G3 remains PASSED FOR S3/S4/S5 only; S9A is a separate PASS; G4 remains pending"
 
 documents:
   brief: "00-feature-brief.md"

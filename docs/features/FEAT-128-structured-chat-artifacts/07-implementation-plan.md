@@ -3,7 +3,7 @@
 ## 1. 实施原则
 
 - G2 已于 2026-08-20 由段成威明确批准，随后先执行 Contracts S1-S2，再只做 S2P exact pin preflight。
-- Feature 总体 `contract-impact = semantic`；G2A 在真实 generate、双基线 breaking、semantic review、immutable commit 和 downstream exact pin 全部通过后获批。随后严格先完成 Host S3、Desktop S4 与 Desktop S5；三者均通过 G3 slice gate。S6A/S6B、S7F、S7A、S7A-REPAIR、S7B、S8A 与 S8B 已在后续独立用户授权下分别完成，但均不扩展 G3，也不改变公共 Contracts/Host/pin。
+- Feature 总体 `contract-impact = semantic`；G2A 在真实 generate、双基线 breaking、semantic review、immutable commit 和 downstream exact pin 全部通过后获批。随后严格先完成 Host S3、Desktop S4 与 Desktop S5；三者均通过 G3 slice gate。S6A/S6B、S7F、S7A、S7A-REPAIR、S7B、S8A、S8B 与 S9A 已在后续独立用户授权下分别完成，但均不扩展 G3，也不改变公共 Contracts/Host/pin。
 - 一次只完成一个可独立验证的行为；不把 v3 协议、媒体存储、native save 和四类 UI 一次混成大 diff。
 - 先建立失败 fixture/测试，再实现最小能力；每个 kind 独立 flag，默认关闭。
 - 不新增云资源、远程 URL、真实付费调用、通用 filesystem/shell capability 或第二套 UI 库。
@@ -30,7 +30,7 @@ S0 Owner G2 approval (PASS)
                           -> S8A Desktop-private bounded file preview/save (PASS separate slice)
                              -> S8B ready-file renderer/search/save UX (PASS separate slice)
                              -> S9-READINESS report contract/data/security slicing (PASS docs only)
-                                -> S9A Desktop-private bounded report projection/canonical JSON save (READY)
+                                -> S9A Desktop-private bounded report projection/canonical JSON save (PASS separate slice)
                                    -> S9B provider-neutral report renderer/chart adapter (BLOCKED: ECharts)
                                       -> S10 local synthetic vertical/visual/security/performance evidence
                                          -> S11 structured independent review + local G4 decision
@@ -92,6 +92,7 @@ S2 + S3 + S4 + S10
 | Desktop S8A | yijie-desktop | `feat/feat-128-structured-chat-artifacts@bf5452f7fde24d1391845deaba17ec1135716c62` | exact two-command bounded file preview/save private boundary；无 Vue renderer/config/dependency/migration | Contracts full commit/source/tree/fixture/operation unchanged；仅刷新 Desktop implementation/readiness digests | Client/Security/Data Owner |
 | Desktop S8B | yijie-desktop | `feat/feat-128-structured-chat-artifacts@4d0238b1906f02d319f47f5e55cdc023485ef07a` | ready-file-only explicit preview、inert plain/JSON/CSV、PDF/XLSX fallback、bounded literal search、clear/stale isolation 与 content-free native-save UX；无 native/config/page/store diff | S8A typed client/boundary、Contracts/Host/public pin unchanged | Product/Client Owner |
 | S9 readiness docs | yijie-desktop | `feat/feat-128-structured-chat-artifacts@b6f7401c79d5b2356bc45468f14d7fdbb17a855c` | Pattern 1.4.0；report contract facts、consumer conformance repair、S9A exact projection/save、S9B fixed chart mapping/ECharts blocker；无 code/config diff | Contracts/Host/Desktop implementation/pin unchanged | Product/Technical/Security/Data Owner |
+| Desktop S9A | yijie-desktop | `feat/feat-128-structured-chat-artifacts@232ea6ce132faa8ac99bdf6abcc5e02ddd704ffe` | contract-conformant report consumer repair；exact two-command bounded closed projection/canonical JSON native save；无 renderer/config/dependency/migration | Contracts/Host/public pin unchanged；仅刷新 Desktop implementation/readiness SHA | Client/Security/Data Owner |
 | Activation | local environment only | clean immutable candidates | synthetic profile evidence | source identities recorded | 段成威 |
 
 实现时必须填写完整 40-character SHA、source digests 和 generator identity；本文短 SHA 只用于阅读，不能作为 pin。
@@ -208,8 +209,8 @@ S9-S12、push、PR、tag、release 或真实 provider。继续实施前仍需逐
 | Technical Owner | 段成威 | S9A CODING APPROVED：contract-conformant validator repair + exact private schema/two commands/no protocol/config；S9B BLOCKED ON ECHARTS | 2026-08-21 |
 | Security/Data Owner | 段成威 | S9A CODING APPROVED：bounded projection、unknown-payload omission、local-only lifecycle 与 native atomic save | 2026-08-21 |
 
-G2、G2A 与 S3/S4/S5 的 G3 slice gate 均已通过；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B 也分别形成 immutable PASS，
-但不并入 G3。S9-READINESS 只批准 S9A 编码；S9A/S9B 尚未实现，S9B 因 ECharts blocker 关闭，S10-S12 继续
+G2、G2A 与 S3/S4/S5 的 G3 slice gate 均已通过；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A 也分别形成 immutable PASS，
+但不并入 G3。S9-READINESS 历史上只批准 S9A 编码；S9A 已在 `232ea6ce132faa8ac99bdf6abcc5e02ddd704ffe` 完成，S9B 因 ECharts blocker 关闭，S10-S12 继续
 关闭。真实 provider、tag、push、release 和生产能力继续关闭，G4 不通过。
 
 ## 11. 已执行 Codex 指令：S6A（历史证据）
@@ -482,7 +483,10 @@ status/artifact/session/context switch 与 unmount 会清空 projection/query/ma
 config/checker/dependency/lockfile、Contracts/Host/pin。production Chat page integration 与真实 runtime light/dark/viewport/
 200% visual matrix `NOT RUN`，留待 S10；Markdown 仍 deferred，AC-005 保持 PARTIAL，G4 pending。
 
-## 18. 下一条可直接执行的 Codex 指令：S9A
+## 18. 已执行 Codex 指令：S9A（历史证据）
+
+以下指令已从 Desktop 基线 `b6f7401c79d5b2356bc45468f14d7fdbb17a855c` 执行并形成独立提交
+`232ea6ce132faa8ac99bdf6abcc5e02ddd704ffe`。保留原文用于复核冻结边界，不再作为下一条指令。
 
 ```text
 执行 FEAT-128 / S9A，仅实现 yijie-desktop Desktop-private bounded report projection/canonical JSON save boundary；
@@ -567,3 +571,9 @@ dependency/config/migration/protocol、S6-S8 行为漂移或无法保持 exact c
 S9B 继续 blocked/waits，G4 pending。运行 G3/strict package、unique-key YAML、pnpm lint/test、bash -n、diff 后创建
 一个 governance 本地原子 commit，不得 push。
 ```
+
+## 19. 当前下一步与阻断
+
+- S9A 已作为 G3 外 separate PASS 完成；公共 Contracts/Host/pin、S6-S8、config、dependency 与 Vue component 均未漂移。
+- S9B 仍为 `BLOCKED / NOT RUN`。虽然 S9A immutable PASS 前置已满足，仍需单独授权 exact pinned ECharts dependency/lockfile、tree-shaken imports、易界 semantic theme/card 与相应 security/a11y tests，才能编码。
+- G3 继续严格只包含 S3/S4/S5；G4 继续 pending。不得启动 S9B、S10-S12、真实 provider、push、tag、PR 或 release，除非获得对应独立授权。
