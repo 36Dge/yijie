@@ -3,18 +3,18 @@
 > 本报告只记录实际执行或可复核结果。Owner 决策来自用户的直接指令；Codex 负责执行、核对和记录，
 > 不把自身描述成独立人工 Reviewer。G2A PASS 只证明契约与 downstream exact pin 已就绪，不证明
 > Host/Desktop S3/S4/S5、独立 S6A native boundary、独立 S6B image renderer、独立 S7F Host fixture conformance
->、独立 S7A Desktop native video boundary、S7A-REPAIR、S7B reusable renderer/runtime smoke 与独立 S8A
-> Desktop-private file native boundary 以外的实现、端到端或真实 provider 能力已经存在。S8B 尚未实现。
-> S7F、S7A、S7A-REPAIR、S7B 与 S8A 已形成 immutable commits，但仍不代表 production vertical、S8B-S11 或 G4。
+>、独立 S7A Desktop native video boundary、S7A-REPAIR、S7B reusable renderer/runtime smoke、独立 S8A
+> Desktop-private file native boundary 与 S8B reusable file renderer 以外的实现、端到端或真实 provider 能力已经存在。
+> S7F、S7A、S7A-REPAIR、S7B、S8A 与 S8B 已形成 immutable commits，但仍不代表 production vertical、S9-S11 或 G4。
 
 ## 1. 验证上下文
 
 | Repository | Branch | Evidence commit | FEAT-128 实际范围 | 日期 |
 |---|---|---|---|---|
-| `yijie` | `feat/feat-128-structured-chat-artifacts` | 本文档最终提交 | G2/G2A + S3/S4/S5 G3 + S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A separate PASS；不扩 G3 | 2026-08-21 |
+| `yijie` | `feat/feat-128-structured-chat-artifacts` | 本文档最终提交 | G2/G2A + S3/S4/S5 G3 + S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B separate PASS；不扩 G3 | 2026-08-21 |
 | `yijie-contracts` | `feat/feat-128-structured-chat-artifacts` | `ea48fe190e18afba728712d1e2cc79cda57f581b` | S1/S2 authoritative source/generated/fixtures/review | 2026-08-20 |
 | `yijie-agent-host` | `feat/feat-128-structured-chat-artifacts` | pin `dea84d0768ebc017b7ee5faedab7f9a49ce74875`; S3 `4017785adb08e1114781d3d844e9a10a683fa933`; S7F `1045dd06534eb72d53eb7ad7b7d18e63c80284f8` | exact pin + local Host v3 foundation + canonical playable/seekable strict-local video conformance | 2026-08-20 |
-| `yijie-desktop` | `feat/feat-128-structured-chat-artifacts` | initial Pattern `e97b2dabd724af856b4041e23b24437ec2f5dfc3`; pin `96094419d963745529ed0fa246919089e659f20d`; S4 `09220dd8319cfb8ec0c4d1531514bb5169107983`; S5 `7548ea8aeacfd7274f1107786ce48ddc6789cd45`; S6 readiness `2b854b40379a207c19bf37fc5bc64266553c5df1`; S6A `8b99849d418a3ef226f4133128f1ac22a438f9d5`; S6B `4a8dce6a6526e37052941f6dbb921ba2486e109f`; S7 readiness `18b17d961ed5991cec55eeb230ea21d91f2fb8ec`; S7A `22b91c5a258458c87f1ac96c06bf39d1af97358f`; S7A-REPAIR `34991d8967de9aa2197ab2e8b9b49347774df7a5`; S7B `366186b601144bdc2bc87a2cef3075b74f1e8f19`; S8 readiness Pattern `4929a73a7871056d7aeca3eb0b27c682b21bfe4b`; S8A `bf5452f7fde24d1391845deaba17ec1135716c62` | Pattern 1.3.0 + exact pin + foundations + independent image/video UI/native slices + bounded file native boundary；无 S8B/production page/vertical integration | 2026-08-21 |
+| `yijie-desktop` | `feat/feat-128-structured-chat-artifacts` | initial Pattern `e97b2dabd724af856b4041e23b24437ec2f5dfc3`; pin `96094419d963745529ed0fa246919089e659f20d`; S4 `09220dd8319cfb8ec0c4d1531514bb5169107983`; S5 `7548ea8aeacfd7274f1107786ce48ddc6789cd45`; S6 readiness `2b854b40379a207c19bf37fc5bc64266553c5df1`; S6A `8b99849d418a3ef226f4133128f1ac22a438f9d5`; S6B `4a8dce6a6526e37052941f6dbb921ba2486e109f`; S7 readiness `18b17d961ed5991cec55eeb230ea21d91f2fb8ec`; S7A `22b91c5a258458c87f1ac96c06bf39d1af97358f`; S7A-REPAIR `34991d8967de9aa2197ab2e8b9b49347774df7a5`; S7B `366186b601144bdc2bc87a2cef3075b74f1e8f19`; S8 readiness Pattern `4929a73a7871056d7aeca3eb0b27c682b21bfe4b`; S8A `bf5452f7fde24d1391845deaba17ec1135716c62`; S8B `4d0238b1906f02d319f47f5e55cdc023485ef07a` | Pattern 1.3.0 + exact pin + foundations + independent image/video/file UI/native slices；无 production page/vertical integration | 2026-08-21 |
 | `yijie-codex` | `develop` | `0ce5902ed400866be0196886bb78f693a004d68d` | read-only Runtime authority | 2026-08-20 |
 
 没有 tag、push、契约发布、真实 provider 调用、云资源、部署或生产流量。Host S3 与 Desktop S4 均默认
@@ -46,7 +46,8 @@ vertical integration；Host 没有真实 provider producer。
 | S7B | PASS AS SEPARATE SLICE | Desktop `366186b601144bdc2bc87a2cef3075b74f1e8f19` + missing-component RED、14 focused/324 full tests、axe/build/docs、real metadata/playback/seek PASS | reusable video UI 已形成；不并入 G3，不代表 production vertical 或 G4 |
 | S8-READINESS + S7-SPEC-RECONCILIATION | PASS FOR DOCS ONLY / READY FOR S8A ONLY | four-repo read-only audit + Pattern 1.3.0 `4929a73a7871056d7aeca3eb0b27c682b21bfe4b` + Owner capture | 只授权下一编码切片 S8A；AC-005 PARTIAL；S8A/S8B 非实现 PASS，不扩 G3/G4 |
 | S8A | PASS AS SEPARATE SLICE | Desktop `bf5452f7fde24d1391845deaba17ec1135716c62` + TS/Rust EXPECTED RED、focused/full GREEN、scope/diff/clean review | private bounded file preview/save boundary 已形成；不并入 G3，不代表 S8B/Markdown/full AC/G4 |
-| S8B/S9-S11 | NOT RUN | 无对应实现 diff | file renderer/search、report、vertical/performance、independent review仍待逐切片授权 |
+| S8B | PASS AS SEPARATE SLICE | Desktop `4d0238b1906f02d319f47f5e55cdc023485ef07a` + EXPECTED RED、15 focused/341 full tests、axe/security/build/docs/scope review | reusable ready-file UI 已形成；不并入 G3，不代表 production page/visual、Markdown/full AC/G4 |
+| S9-S11 | NOT RUN | 无对应实现 diff | report、vertical/performance、independent review仍待逐切片授权 |
 | S12 real producers | BLOCKED | 无 provider authority/付费授权 | 保持关闭 |
 
 ## 2A. S8-READINESS 只读审计证据
@@ -73,6 +74,17 @@ vertical integration；Host 没有真实 provider producer。
 | Native save | five current-v3 MIME、1..64 MiB、canonical extension、native dialog、第二次 authority validation、0600 create-new/no-follow temp、chunk digest/fsync/atomic replace/RAII | PASS；PDF/XLSX 复用既有 exact bounded validators；Vue 只收 content-free outcome |
 | Residue cleanup | exact file-only prefix/media marker/prior process epoch；只清除 regular non-symlink/current uid/0600/nlink=1/size/format 全通过的条目 | PASS；S6/S7 prefix、commands、limits 与行为未变 |
 | Contract impact | consumer checkers only refresh Desktop implementation/readiness SHA | PASS；Contracts `ea48fe...`、source SHA、fixture trees、version、operation/schema 与 Host 不变 |
+
+## 2C. S8B 实现证据
+
+| Boundary | 实际实现 | 结论 |
+|---|---|---|
+| Eligibility/intent | 仅 `kind=file && status=ready`；preview/save 都由用户明确 click/keyboard intent 触发；其它 kind/status 保持 S5 shell | PASS；无自动 content read、无 production page integration |
+| Safe render/fallback | plain/JSON 为 inert `<pre>` text nodes；CSV 为 accessible text-only table；PDF/XLSX 只显示 metadata/save-only fallback | PASS；无 `v-html`、linkification、formula/macro/code/network、browser download 或 Office/PDF renderer |
+| Bounded search | 只搜索当前 S8A projection；case-sensitive literal/no-regex；query <=128 Unicode scalars；最多 100 hits；truncated 显示截断区未搜索 | PASS；highlight 仅 Vue text nodes/`mark`，不重新读取文件 |
+| Data lifecycle | projection/query/matches 只在组件 local state/打开态 DOM；close/error/stale、status/artifact/session/context switch 与 unmount 清空 | PASS；授权 marker close 后 zero-hit；无 Pinia/history/router/storage/log/diagnostics/telemetry/snapshot |
+| Native save UX | 只调用既有 `ChatArtifactFileNativeClient.saveFile`；dedupe；仅显示 saved/cancelled/failed 稳定 content-free 文案 | PASS；无 requestId/path/name/digest/body/raw native error |
+| Scope/contract impact | 5 个 `src/components/chat` 文件；消费 immutable S8A typed client | PASS；无 src-tauri、S8A schema/commands/parser/validator/save、page/store/config/checker/dependency/lockfile/Contracts/Host/pin drift |
 
 ## 3. Contracts 不可变候选
 
@@ -268,6 +280,22 @@ synthetic/real provenance 与 activation gate。
 | Y-S8A-TEST | yijie | `pnpm test` | 0 | PASS | repository manifest tests passed |
 | Y-S8A-SHELL | yijie | `bash -n scripts/*.sh docs/dev/codex-feature-delivery/scripts/*.sh` | 0 | PASS | all shell syntax passed |
 | Y-S8A-DIFF | yijie | `git diff --check` + exact four-file scope audit | 0 | PASS | only 07/08/10/feature.yaml changed |
+| D-S8B-RED | Desktop | `pnpm exec vitest run src/components/chat/ChatArtifactFile.test.ts src/components/chat/ChatArtifactShell.test.ts` before implementation | 1 | EXPECTED RED | `ChatArtifactFile.vue` 尚不存在，Shell 尚无 ready-file action surface；既有 3 个 Shell tests 仍通过 |
+| D-S8B-FOCUSED | Desktop | same focused command after implementation | 0 | PASS | 2 files / 15 tests；explicit open、plain/JSON/CSV、PDF/XLSX fallback、truncation、literal search caps、clear/stale/dedup/save/focus/axe/reduced-motion/security |
+| D-S8B-LINT | Desktop | `pnpm lint` | 0 | PASS | ESLint + vue-tsc；S8A/private/public contract checkers unchanged |
+| D-S8B-TEST | Desktop | `pnpm test` | 0 | PASS | 50 files / 341 tests；Contracts identity remains `ea48fe...`；10 Desktop implementation pins unchanged |
+| D-S8B-BUILD | Desktop | `make build` | 0 | PASS | Vue typecheck + production Vite build passed |
+| D-S8B-DOCS | Desktop | `pnpm docs:build` | 0 | PASS | Accepted Pattern 1.3.0 VitePress build passed without Pattern edit |
+| D-S8B-DIFF | Desktop | `git diff --check` + exact staged scope review | 0 | PASS | only 5 `src/components/chat` files；no native/config/checker/page/store/dependency/pin drift |
+| D-S8B-COMMIT | Desktop | selective atomic `git commit` | 0 | PASS | `4d0238b1906f02d319f47f5e55cdc023485ef07a`; not pushed |
+| D-S8B-VISUAL | Desktop | production Chat page + real Tauri light/dark/1180x760/200-percent visual matrix | N/A | NOT RUN | production page integration explicitly forbidden；component axe/reduced-motion PASS；deferred to S10 |
+| Y-S8B-PACKAGE | yijie | `docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate G3 docs/features/FEAT-128-structured-chat-artifacts` | 0 | PASS | G3 remains exact S3/S4/S5；S8B separate evidence does not expand it |
+| Y-S8B-STRICT | yijie | `docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-128-structured-chat-artifacts` | 0 | PASS | package templates/markers valid；S9-S11 and G4 remain pending |
+| Y-S8B-YAML | yijie | `yaml@2.9.0` unique-key parse + exact G3/separate-slice/G4 assertions | 0 | PASS | G3=S3/S4/S5；S6/S7/S8A/S8B separate PASS；G4 pending |
+| Y-S8B-LINT | yijie | `pnpm lint` | 0 | PASS | 10 repository manifests + central Contract First governance passed |
+| Y-S8B-TEST | yijie | `pnpm test` | 0 | PASS | repository manifest test passed |
+| Y-S8B-SHELL | yijie | `bash -n scripts/*.sh docs/dev/codex-feature-delivery/scripts/*.sh` | 0 | PASS | all shell syntax passed |
+| Y-S8B-DIFF | yijie | `git diff --check` + exact four-file scope audit | 0 | PASS | only 07/08/10/feature.yaml changed |
 
 一次 `pnpm lint` 曾与 `pnpm test` 并行执行，因仓库 `check-generated` 临时替换 generated 目录而产生
 瞬时失败；改为仓库要求的顺序执行后通过，且 immutable commit 上再次通过。它是命令并发冲突，
@@ -290,7 +318,7 @@ SQLCipher `local_committed_at` revision 的双读比较，随后再次完整重�
 | Consumer | Pin commit | Pin 内容 | 结论 |
 |---|---|---|---|
 | Agent Host | pin `dea84d0768ebc017b7ee5faedab7f9a49ce74875`; S3 `4017785adb08e1114781d3d844e9a10a683fa933`; S7F `1045dd06534eb72d53eb7ad7b7d18e63c80284f8` | Contracts `0.4.0` identities + v3 snapshots/types + canonical resource path/source SHA/tree/raw/snapshot conformance；`EXC-128-001` | S2P/S3 PASS；S7F separate PASS |
-| Desktop | pin `96094419d963745529ed0fa246919089e659f20d`; S4 `09220dd8319cfb8ec0c4d1531514bb5169107983`; S5 `7548ea8aeacfd7274f1107786ce48ddc6789cd45`; S6 readiness `2b854b40379a207c19bf37fc5bc64266553c5df1`; S6A `8b99849d418a3ef226f4133128f1ac22a438f9d5`; S6B `4a8dce6a6526e37052941f6dbb921ba2486e109f`; S7 readiness `18b17d961ed5991cec55eeb230ea21d91f2fb8ec`; S7A `22b91c5a258458c87f1ac96c06bf39d1af97358f`; S7A-REPAIR `34991d8967de9aa2197ab2e8b9b49347774df7a5`; S7B `366186b601144bdc2bc87a2cef3075b74f1e8f19`; S8 readiness Pattern `4929a73a7871056d7aeca3eb0b27c682b21bfe4b`; S8A `bf5452f7fde24d1391845deaba17ec1135716c62` | Contracts source/fixture identities unchanged；S8A 只刷新 Desktop implementation/readiness SHA | S2P/S4/S5 PASS；S6/S7/S8A separate PASS；S8B pending |
+| Desktop | pin `96094419d963745529ed0fa246919089e659f20d`; S4 `09220dd8319cfb8ec0c4d1531514bb5169107983`; S5 `7548ea8aeacfd7274f1107786ce48ddc6789cd45`; S6 readiness `2b854b40379a207c19bf37fc5bc64266553c5df1`; S6A `8b99849d418a3ef226f4133128f1ac22a438f9d5`; S6B `4a8dce6a6526e37052941f6dbb921ba2486e109f`; S7 readiness `18b17d961ed5991cec55eeb230ea21d91f2fb8ec`; S7A `22b91c5a258458c87f1ac96c06bf39d1af97358f`; S7A-REPAIR `34991d8967de9aa2197ab2e8b9b49347774df7a5`; S7B `366186b601144bdc2bc87a2cef3075b74f1e8f19`; S8 readiness Pattern `4929a73a7871056d7aeca3eb0b27c682b21bfe4b`; S8A `bf5452f7fde24d1391845deaba17ec1135716c62`; S8B `4d0238b1906f02d319f47f5e55cdc023485ef07a` | Contracts source/fixture identities unchanged；S8A 只刷新 Desktop implementation/readiness SHA；S8B 无 checker/pin diff | S2P/S4/S5 PASS；S6/S7/S8A/S8B separate PASS |
 
 Desktop fixture Git tree OIDs：event v3 `21de31ceb65900bcf38bc7fe171de8238dfa30dc`、resources
 `f447129c08b9b39231e33698afc3f2fd875d6b14`、Host v3
@@ -319,12 +347,12 @@ S8A 最终 Desktop implementation/readiness digests：`artifact.rs`
 | AC-001/002 S5 UI projection portions | S5 FOUNDATION PASS | 8-state monotonic reducer、four-kind stable identity/order、duplicate idempotency、generic state shell 与 fail-closed conflicts 已单元/组件验证 |
 | AC-003 image preview/save security boundary | S6A NATIVE PASS / S6B COMPONENT PASS / E2E NOT RUN | 3 exact commands、opaque one-shot protocol、双次 authority validation、atomic native save；ready-only UI、fresh inline/lightbox URL、release/stale isolation 与 content-free save feedback 已验证；page/runtime visual 待 S10 |
 | AC-004 video fixture/native/UI boundary | CONTRACT + HOST S7F + DESKTOP S7A/S7A-REPAIR/S7B PASS / VERTICAL PENDING | Host emits exact canonical MP4；S7A proves SQLCipher inspect/Range/save；repair proves playback-compatible lifetime；S7B proves native controls/save UX and real WebView metadata/playback/seek；production Chat vertical待 S10 |
-| AC-005 Desktop file behavior | S8A NATIVE PASS / S8B NOT RUN / AC PARTIAL | current-v3 plain/CSV/JSON bounded native preview projection + five-MIME native save 已实现；Markdown deferred，renderer/search/UX 未实现，G4 blocked |
+| AC-005 Desktop file behavior | S8A NATIVE PASS / S8B COMPONENT PASS / VERTICAL NOT RUN / AC PARTIAL | current-v3 plain/CSV/JSON bounded preview + renderer/search、PDF/XLSX fallback 与 five-MIME native save UX 已实现；Markdown deferred，production page/visual待 S10，G4 blocked |
 | AC-006 Desktop report renderer behavior | NOT RUN | report S9 未开始 |
 | AC-007 persistence/history/retention | S4/S5 FOUNDATION PASS | v8 migration、SQLCipher BLOB、metadata history、168h TTL/receipt/delete/reopen + history replay/store dedupe 已验证；跨进程 UI integration 仍待 S10 |
 | AC-008 runtime auth/integrity/ACK | S3/S4 FOUNDATION PASS | owner-only Host resource、MIME/size/digest/magic、commit 后 ACK 与 replay 已验证；E2E/error UI 待 S10 |
 | AC-009 Host dual route + old/new matrix | PARTIAL PASS | v1/v2 equality/pins + 实际 v3 Host route 均通过；mixed-version E2E 待 S10 |
-| AC-010/NFR-002 generic/image/video component portions | S5/S6B/S7B FOCUSED PASS | semantic tokens、Naive UI/YjIcon、aria-live/busy/progress/focus、image lightbox、native video controls、reduced-motion 与 axe 通过；full visual matrix/performance仍待 S10 |
+| AC-010/NFR-002 generic/image/video/file component portions | S5/S6B/S7B/S8B FOCUSED PASS | semantic tokens、Naive UI/YjIcon、aria-live/busy/progress/focus、image lightbox、native video controls、file disclosure/search、reduced-motion 与 axe 通过；full visual matrix/performance仍待 S10 |
 | AC-011 local walking skeleton | PARTIAL | 四类 strict-local Host producer 已实现，video exact canonical 且 Desktop shell真实 metadata/playback/seek smoke通过；production Chat page/跨进程 vertical smoke 未运行 |
 | AC-012/real provider | BLOCKED | capability 未证、未授权付费调用 |
 
@@ -338,8 +366,8 @@ S8A 最终 Desktop implementation/readiness digests：`artifact.rs`
 | Desktop SQLCipher/transfer/cleanup | S4 PASS | S10 仍需 Host+Desktop integrated lifecycle |
 | Image preview/save | S6A native PASS at `8b99849d418a3ef226f4133128f1ac22a438f9d5`; S6B component/a11y PASS at `4a8dce6a6526e37052941f6dbb921ba2486e109f` | page/vertical/runtime visual integration 仍待 S10 |
 | Video fixture/native/UI boundary | Pattern 1.2.0 + S7F Host + S7A native + S7A-REPAIR + S7B renderer/runtime PASS at recorded full SHAs | production Chat vertical and full visual/performance evidence remain S10 |
-| File preview/save boundary | Pattern 1.3.0 + S8A native PASS at `bf5452f7fde24d1391845deaba17ec1135716c62`；current-v3 plain/CSV/JSON bounded projection + five-MIME native save | S8B waits separate authorization；Markdown requires G2/G2A reopen or remains deferred/AC-005 PARTIAL |
-| UI/visual/a11y/performance | S5 generic + S6B image + S7B video unit/component/axe/reduced-motion PASS；real video media lifecycle PASS；full manual visual/performance NOT RUN | S10 |
+| File preview/save boundary | Pattern 1.3.0 + S8A native `bf5452...` + S8B component `4d0238...` PASS；current-v3 plain/CSV/JSON bounded renderer/search + PDF/XLSX fallback + five-MIME native save UX | production page/visual remains S10；Markdown requires G2/G2A reopen or remains deferred/AC-005 PARTIAL |
+| UI/visual/a11y/performance | S5 generic + S6B image + S7B video + S8B file unit/component/axe/reduced-motion PASS；real video media lifecycle PASS；full manual visual/performance NOT RUN | S10 |
 | Local synthetic E2E | NOT RUN | S10 |
 | MiniMax/video/file/report real producer | BLOCKED | S12，需单独 authority/eval |
 | Deployment/production rollback | N/A current local-only scope; gates NOT PASSED | G5/G6 |
@@ -384,7 +412,8 @@ slice 的未验证范围，未被降级为已接受风险。
   implementation PASS，也不追加 G3。
 - 用户随后明确执行 S8A；Desktop `bf5452f7fde24d1391845deaba17ec1135716c62` 在冻结的 exact schema/commands/limits/
   validator/save/residue 边界内完成，不含 Vue component、config/dependency/migration 或公共 contract/pin 漂移，记为 G3 外 separate PASS。
-- 这些授权已用于按序完成 local-only S3/S4/S5 与独立 S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A；G3 只对前三个原子切片通过，不允许 real provider、付费调用、
+- 用户随后明确执行 S8B；Desktop `4d0238b1906f02d319f47f5e55cdc023485ef07a` 只在 `components/chat` 消费既有 S8A typed client，完成 ready-file renderer/search/fallback/save UX，未修改 native/config/page/store。
+- 这些授权已用于按序完成 local-only S3/S4/S5 与独立 S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B；G3 只对前三个原子切片通过，不允许 real provider、付费调用、
   tag、push、publish、release、production 或直接宣称 G4-G6 通过。
 
 ## 10. 残余风险与停止条件
@@ -397,7 +426,7 @@ slice 的未验证范围，未被降级为已接受风险。
 | Native save crash residue | 正常取消/失败清除 temp；S8A 只在用户下一次选择同一目录时，以 exact file-only prefix/media marker/prior epoch/current uid/0600/nlink/1..64MiB/format validator 做 best-effort cleanup；不声称 crash 零残留 | 若需持久化目标路径、扫描任意目录、删除未完全验证条目或改变 S6/S7 verifier，停止并重开 Data review |
 | Synthetic video playability | Contracts canonical + Host S7F + Desktop S7A/S7A-REPAIR/S7B real WebView metadata/playback/seek PASS | production Chat page vertical、light/dark/viewport/200-percent manual visual 与 longer-media performance仍待 S10；不得外推为真实 provider PASS |
 | Video protocol/memory | 30min/5min multi-request handle、2 handles/2 reads/64MiB、GET/HEAD 200/206/416；repair 移除不兼容的 lifetime request count，76 Range smoke零 404 | S10 若需要扩大 buffered/concurrency/TTL、引入 rate limiter、新 dependency/capability/migration 或持久化/跨 context 复用 handle，停止并重开 Technical/Security review |
-| S8 file boundary | S8A exact private 2-command bounded projection/native save 已在 `bf5452f...` 实现并验证；S8B waits；无 protocol/config/dependency | S8B 若要求 Markdown/public contract、raw bytes/path to Vue、持久化/log/snapshot、generic fs/shell/asset、native/config drift 或扩大 exact limits，立即停止 |
+| S8 file boundary | S8A exact private 2-command boundary `bf5452f...` 与 S8B ready-file UI `4d0238b...` 已实现并验证；无 protocol/config/dependency/page/store drift | S10 page/vertical 若要求 Markdown/public contract、raw bytes/path to Vue、持久化/log/snapshot、generic fs/shell/asset、native/config drift 或扩大 exact limits，立即停止 |
 | Markdown Artifact | current immutable v3 output 不含 `text/markdown`；Product 延期，AC-005 PARTIAL | 若本期必需，重开 G2/G2A、Contracts source/generate/breaking/semantic review、immutable commit 与全部 downstream repin |
 | Unknown report section | contract 限 `required=false`、128 KiB、depth 8、opaque | renderer 遍历/执行 unknown payload 即阻断 |
 | Real MiniMax image | blocked | 固定 capability/API/model、费用与 bounded eval 单独获批 |
@@ -405,7 +434,7 @@ slice 的未验证范围，未被降级为已接受风险。
 
 ## 11. 制品与工作树完整性
 
-- Contracts、Host S3/S7F、Desktop S4/S5、Desktop readiness 与 S6A/S6B/S7A/S7A-REPAIR/S7B/S8A/Pattern 1.3.0 commits 均为完整 40-character SHA；没有使用 floating branch/tag 作为 pin。
+- Contracts、Host S3/S7F、Desktop S4/S5、Desktop readiness 与 S6A/S6B/S7A/S7A-REPAIR/S7B/S8A/S8B/Pattern 1.3.0 commits 均为完整 40-character SHA；没有使用 floating branch/tag 作为 pin。
 - 每个仓库在提交后重跑关键门禁；最终应保持 clean worktree。
 - 生成物来自锁定 source/generator；Feature 目录不复制 canonical payload。
 - 没有 `.skip`、`.only`、弱化断言、secret、真实业务数据或付费调用。
@@ -419,6 +448,6 @@ slice 的未验证范围，未被降级为已接受风险。
 - S3/S4/S5：`PASS`；G3 对这三个切片为 `PASS`。
 - S6-READINESS：`PASS FOR DOCS ONLY`；S6A 在 `8b99849d418a3ef226f4133128f1ac22a438f9d5`、S6B 在 `4a8dce6a6526e37052941f6dbb921ba2486e109f` 分别独立 `PASS`。
 - S7-READINESS：Pattern 1.2.0 为 docs PASS；S7F `1045dd...`、S7A `22b91c...`、S7A-REPAIR `34991d...` 与 S7B `366186...` 分别独立 `PASS`。
-- S8-READINESS：Pattern 1.3.0 为 docs PASS；S8A 在 `bf5452f7fde24d1391845deaba17ec1135716c62` 独立 `PASS`；S8B `NOT RUN`，Markdown deferred，AC-005 `PARTIAL`。
-- Code Complete：否；S8B/S9-S11、production vertical、full visual/performance 与 independent review 尚未完成。
-- 当前状态：`G3 PASS only for S3/S4/S5 / S6A, S6B, S7F, S7A, S7A-REPAIR, S7B and S8A separate PASS / S8B-S11 pending / real providers closed / G4-G6 not passed`。
+- S8-READINESS：Pattern 1.3.0 为 docs PASS；S8A `bf5452...` 与 S8B `4d0238...` 分别独立 `PASS`；Markdown deferred，AC-005 `PARTIAL`。
+- Code Complete：否；S9-S11、production vertical、full visual/performance 与 independent review 尚未完成。
+- 当前状态：`G3 PASS only for S3/S4/S5 / S6A, S6B, S7F, S7A, S7A-REPAIR, S7B, S8A and S8B separate PASS / S9-S11 pending / real providers closed / G4-G6 not passed`。

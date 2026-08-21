@@ -4,7 +4,7 @@ feature:
   id: "FEAT-128"
   slug: "structured-chat-artifacts"
   title: "对话流结构化 Artifact 展示与操作"
-  status: "G3 passed only for local-only S3/S4/S5; S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A separate PASS; S8B-S11 pending; AC-005 partial; real providers closed"
+  status: "G3 passed only for local-only S3/S4/S5; S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B separate PASS; S9-S11 pending; AC-005 partial; real providers closed"
   created_at: "2026-08-20"
   updated_at: "2026-08-21"
   requirement_owner: "段成威"
@@ -33,6 +33,7 @@ repositories:
     s7b_governance_baseline_full_commit: "a38d1bcbfbf4a7f0adbba0522b82f931b83dc0e5"
     s8_readiness_baseline_full_commit: "fda9356e39b933b1f139c12cfe97d7b4c386c386"
     s8a_governance_baseline_full_commit: "9e4891b06ee43638d5602e2987b80988768569c7"
+    s8b_governance_baseline_full_commit: "7e0f1c1d49e3bc7552749cc401727ee89e8c6a03"
     initial_worktree: "clean before FEAT-128 package creation"
   - name: "yijie-contracts"
     role: "authoritative v3 Artifact event/resource and report document contracts"
@@ -66,6 +67,7 @@ repositories:
     s7b_full_commit: "366186b601144bdc2bc87a2cef3075b74f1e8f19"
     s8_readiness_pattern_full_commit: "4929a73a7871056d7aeca3eb0b27c682b21bfe4b"
     s8a_full_commit: "bf5452f7fde24d1391845deaba17ec1135716c62"
+    s8b_full_commit: "4d0238b1906f02d319f47f5e55cdc023485ef07a"
     initial_worktree: "clean"
   - name: "yijie-codex"
     role: "read-only upstream Runtime authority and imageGeneration capability evidence"
@@ -99,10 +101,11 @@ immutable_references:
     - "S7A-REPAIR yijie-desktop@34991d8967de9aa2197ab2e8b9b49347774df7a5"
     - "S7B yijie-desktop@366186b601144bdc2bc87a2cef3075b74f1e8f19"
     - "S8A yijie-desktop@bf5452f7fde24d1391845deaba17ec1135716c62"
+    - "S8B yijie-desktop@4d0238b1906f02d319f47f5e55cdc023485ef07a"
   readiness_documents:
     - "S6-READINESS yijie-desktop Pattern 1.1.0@2b854b40379a207c19bf37fc5bc64266553c5df1 (docs only; no S6 implementation)"
     - "S7-READINESS yijie-desktop Pattern 1.2.0@18b17d961ed5991cec55eeb230ea21d91f2fb8ec (docs-only historical commit; READY FOR S7F only at capture; S7F later passed separately)"
-    - "S8-READINESS/S7-SPEC-RECONCILIATION yijie-desktop Pattern 1.3.0@4929a73a7871056d7aeca3eb0b27c682b21bfe4b (docs-only readiness; S8A later passed separately; S8B not implemented)"
+    - "S8-READINESS/S7-SPEC-RECONCILIATION yijie-desktop Pattern 1.3.0@4929a73a7871056d7aeca3eb0b27c682b21bfe4b (docs-only readiness; S8A/S8B later passed separately)"
   release_artifacts: []
 
 gates:
@@ -119,9 +122,10 @@ gates:
   S7A_slice: "passed on 2026-08-20 at yijie-desktop@22b91c5a258458c87f1ac96c06bf39d1af97358f as a separate Desktop-private native video inspect/Range/opaque-handle/save boundary slice; does not expand G3 or pass G4"
   S7A_repair_slice: "passed on 2026-08-21 at yijie-desktop@34991d8967de9aa2197ab2e8b9b49347774df7a5 as a separate playback compatibility repair with compile-time-off content-free runtime diagnostics; does not expand G3 or pass G4"
   S7B_slice: "passed on 2026-08-21 at yijie-desktop@366186b601144bdc2bc87a2cef3075b74f1e8f19 as a separate ready-video native-controls/save UX slice with real WebView metadata/playback/seek evidence; does not expand G3 or pass G4"
-  S8_readiness: "passed for documentation only on 2026-08-21 at yijie-desktop@4929a73a7871056d7aeca3eb0b27c682b21bfe4b; historical READY FOR S8A ONLY with Markdown deferred and AC-005 PARTIAL; S8A later passed separately; G3 unchanged and G4 pending"
+  S8_readiness: "passed for documentation only on 2026-08-21 at yijie-desktop@4929a73a7871056d7aeca3eb0b27c682b21bfe4b; historical READY FOR S8A ONLY with Markdown deferred and AC-005 PARTIAL; S8A/S8B later passed separately; G3 unchanged and G4 pending"
   S8A_slice: "passed on 2026-08-21 at yijie-desktop@bf5452f7fde24d1391845deaba17ec1135716c62 as a separate Desktop-private bounded file preview/save slice; does not expand G3 or pass G4"
-  G4_code_complete: "pending - S8B/S9-S11, full AC-005 including Markdown decision, vertical integration, full visual/performance and independent review slices are not complete"
+  S8B_slice: "passed on 2026-08-21 at yijie-desktop@4d0238b1906f02d319f47f5e55cdc023485ef07a as a separate ready-file renderer/search/fallback/native-save UX slice; does not expand G3 or pass G4; production page/runtime visual remains pending"
+  G4_code_complete: "pending - S9-S11, full AC-005 including Markdown decision, vertical integration, full visual/performance and independent review slices are not complete"
   G5_production_ready: "production subchecks N/A for current local-only scope; gate NOT PASSED"
   G6_delivery_complete: "deployment/observation subchecks N/A for current local-only scope; gate NOT PASSED"
 
@@ -145,7 +149,7 @@ owner_decision_capture:
     "DEC-128-017": "Approve at S8-READINESS - exact Desktop-private S8A/S8B split"
     "DEC-128-018": "Approve at S8-READINESS - Markdown deferred and bounded authorized-content exception"
   provider_gate: "Approve - Keep closed"
-  gate_effect: "G2A authorized S3/S4, and later explicit user instructions authorized S5, S6A, S6B, S7F, S7A, S7A-REPAIR, S7B and S8A as bounded slices. S3-S5 are complete at immutable local commits and G3 is passed only for those slices. S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A are separately complete. S8B/S9-S11 and every real provider remain closed or pending."
+  gate_effect: "G2A authorized S3/S4, and later explicit user instructions authorized S5, S6A, S6B, S7F, S7A, S7A-REPAIR, S7B, S8A and S8B as bounded slices. S3-S5 are complete at immutable local commits and G3 is passed only for those slices. S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B are separately complete. S9-S11 and every real provider remain closed or pending."
 
 g2_approval:
   decision: "APPROVED"
@@ -180,7 +184,7 @@ g3_record:
   desktop_s5_commit: "7548ea8aeacfd7274f1107786ce48ddc6789cd45"
   evidence: "Host contract-check/lint/test/runtime-test; S4 Desktop generate-check/lint/test/build/docs-build; and S5 Desktop focused RED/GREEN tests plus make lint/test/build, pnpm docs:build and diff checks all passed; diffs and clean worktrees checked"
   scope: "S3 local Host lifecycle/staging/resource/synthetic foundation, S4 Desktop SQLCipher/native transfer/history/private IPC, and S5 Desktop provider-neutral reducer/store/generic metadata shell only"
-  excluded: "separate S6A/S6B/S7F/S7A/S7A-REPAIR/S7B and pending S8-S11 from the G3 decision itself; vertical/E2E/review, real provider/tool activation, paid calls, tag, push, release, deployment and production"
+  excluded: "separate S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B and pending S9-S11 from the G3 decision itself; vertical/E2E/review, real provider/tool activation, paid calls, tag, push, release, deployment and production"
 
 s6_readiness:
   decision: "APPROVED FOR S6A CODING ONLY; PASS FOR DOCUMENTATION, NOT IMPLEMENTATION"
@@ -376,9 +380,9 @@ s8_readiness:
   search_boundary: "S8B only after S8A PASS; literal no-regex search of the current bounded projection; query 1..128 Unicode scalars; max 100 hits; truncated area explicitly not searched"
   allowed_implementation_scope: "new file private schema/native module and TS domain/client/tests; necessary artifact/application/worker/ipc/mod/lib wiring; artifact_native atomic helper only with no S6/S7 behavior drift; attachment.rs only to expose/reuse existing bounded PDF/XLSX validators with no attachment-import behavior or limit change; necessary v2/v3 lock/checker/test constants only for Desktop implementation/readiness SHA"
   stop_conditions: "Markdown/public contract or pin/source/tree/fixture/schema/operation/version drift; Host changes; dependency/plugin/capability/permission/CSP/protocol/migration; generic filesystem/shell/asset/browser download/external origin; bytes/base64/digest/path/href/token to Vue; persistence/log/snapshot of preview; S6/S7 behavior drift; S8A component/page/store changes; inability to keep exact limits or verified residue cleanup"
-  implementation_status: "READINESS DOCS PASS; S8A later implemented separately at bf5452f7fde24d1391845deaba17ec1135716c62; S8B NOT RUN"
-  next_slice: "S8B only after separate authorization; S8A immutable PASS prerequisite is satisfied"
-  gate_effect: "G3 remains PASSED FOR S3/S4/S5 only; S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A remain separate PASS; G4 remains pending"
+  implementation_status: "READINESS DOCS PASS; S8A later implemented separately at bf5452f7fde24d1391845deaba17ec1135716c62 and S8B at 4d0238b1906f02d319f47f5e55cdc023485ef07a"
+  next_slice: "HISTORICAL - S8A/S8B are separately complete; S9 requires its own readiness/authorization"
+  gate_effect: "G3 remains PASSED FOR S3/S4/S5 only; S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B remain separate PASS; G4 remains pending"
   independence_note: "Owner conclusions are captured from the user's direct instruction; Codex audit is not represented as independent human approval."
 
 s8a_record:
@@ -395,10 +399,31 @@ s8a_record:
   final_evidence: "default and feat128-s7b-runtime clippy PASS; full Rust 218 passed/3 ignored; S7 runtime-feature regression 12/12; pnpm lint PASS; pnpm test 49 files/329 tests PASS; make build PASS; pnpm docs:build PASS; git diff --check PASS"
   implementation_digests: "artifact.rs 1f03dd893958fdb6666aad9f98764e2ab6abc54256e0bf065c76628d90ccb58f; worker.rs d7dd8b804d644a74b9f256607ea385d93ddbeb2ba82f39162a3a6cd1b4164d22; ipc.rs d3c0da508abb8f20118bf089f74211e33f922af223006e7111b69cf81282786a; application.rs d8eb06f03560383f5fc6bd3f5e4057c1b148b0dae81072c049d842123ebfb415; mod.rs c0168e149d71ffee5663008510c8f9aee5e0bf7156f1fe6a93858bb3061bee33"
   unchanged: "components/pages/stores, S6/S7 commands/schema/protocol/limits/behavior, tauri config/CSP/capability/permission, dependencies/lockfiles, migrations, Contracts/Host/public pin and production integration"
-  excluded: "S8B renderer/search/DOM preview, Markdown, report/S9-S12, real provider/tool, push, PR, tag, release and deployment"
-  ac_status: "AC-005 remains PARTIAL because Markdown is deferred and S8B is not implemented"
-  next_slice: "S8B requires separate authorization and must consume the immutable S8A typed client without native/config/checker drift"
-  gate_effect: "G3 remains PASSED FOR S3/S4/S5 only; S8A is separate PASS; G4 remains pending"
+  excluded: "the S8A commit contains no S8B renderer/search/DOM preview; S8B is recorded separately. Markdown, report/S9-S12, real provider/tool, push, PR, tag, release and deployment remain excluded"
+  ac_status: "AC-005 remains PARTIAL because Markdown is deferred; S8B current-v3 component behavior is separately complete"
+  next_slice: "HISTORICAL - S8B consumed the immutable S8A typed client without native/config/checker drift and is separately complete"
+  gate_effect: "G3 remains PASSED FOR S3/S4/S5 only; S8A/S8B are separate PASS; G4 remains pending"
+
+s8b_record:
+  decision: "PASSED AS A SEPARATE SLICE; NOT ADDED TO G3"
+  recorded_at: "2026-08-21"
+  recorder: "Codex execution evidence under the user's explicit S8B authorization"
+  governance_baseline_commit: "7e0f1c1d49e3bc7552749cc401727ee89e8c6a03"
+  desktop_baseline_commit: "bf5452f7fde24d1391845deaba17ec1135716c62"
+  desktop_commit: "4d0238b1906f02d319f47f5e55cdc023485ef07a"
+  contracts_full_commit: "ea48fe190e18afba728712d1e2cc79cda57f581b"
+  contract_impact: "none - TS/Vue consumes the immutable Desktop-private S8A typed client; no public/private transport, persistence or native boundary change"
+  scope: "ready-file-only explicit preview/save; inert plain/JSON pre and CSV text-only accessible table; PDF/XLSX metadata/save-only fallback; case-sensitive literal no-regex search limited to 128 Unicode scalars and 100 hits; truncation notice; local-state/DOM clear and stale/dedup isolation; content-free save feedback"
+  test_first: "expected RED exit 1 because ChatArtifactFile.vue did not exist and the Shell had no ready-file action; existing three Shell tests remained green; focused GREEN 2 files/15 tests"
+  final_evidence: "pnpm lint PASS; pnpm test 50 files/341 tests PASS; make build PASS; pnpm docs:build PASS; git diff --check PASS; component axe/reduced-motion/security assertions PASS"
+  governance_evidence: "G3 package PASS; strict package PASS; unique-key YAML asserted G3=S3/S4/S5, S6/S7/S8A/S8B separate PASS and G4=pending; pnpm lint/test, bash -n and git diff --check PASS"
+  visual_evidence: "production Chat page and real Tauri light/dark/1180x760/200-percent runtime visual matrix NOT RUN because page integration was explicitly forbidden; deferred to S10"
+  content_lifecycle: "authorized bounded projection exists only in component local state/current DOM after explicit open and is cleared on close/error/stale/status/artifact/session/context switch/unmount; query and matches clear with it; no Pinia/history/router/storage/log/diagnostics/telemetry/snapshot"
+  unchanged: "src-tauri, S8A private schema/two commands/SQLCipher reader/validator/atomic save/residue cleanup/domain parser/client, Contracts/Host/immutable pin/consumer checker, pages/stores, config/CSP/capability/permission, dependencies/lockfiles, plugins and migrations"
+  excluded: "Markdown, PDF/Office renderer, browser download, production page integration, S9-S12, real provider/tool, push, PR, tag, release and deployment"
+  ac_status: "AC-005 remains PARTIAL because Markdown is deferred and production vertical remains S10; current-v3 S8A/S8B behavior is component/native PASS"
+  next_slice: "S9 report renderer requires separate readiness/authorization; S10 vertical evidence may only follow its dependency chain"
+  gate_effect: "G3 remains PASSED FOR S3/S4/S5 only; S8B is separate PASS; G4 remains pending"
 
 documents:
   brief: "00-feature-brief.md"
