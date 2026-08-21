@@ -177,8 +177,36 @@ ReportDocumentV1 recheck 的条目。Vue 只收 content-free `saved|cancelled|fa
 | Technical | 段成威 | APPROVED FOR S9A CODING | contract-conformant validator repair、exact private schema + 2 commands、typed client/tests、必要 Desktop implementation/readiness SHA-only checker refresh | public contract/pin、Host、dependency/config/protocol/migration |
 | Security/Data | 段成威 | APPROVED FOR S9A CODING | 双次 SQLCipher authority/full-schema validation、bounded projection、unknown payload omission、component-local lifecycle、native atomic save/residue validation | raw JSON/path/token/error to Vue、persistence/log/snapshot、generic fs/shell/export |
 
-Owner 结论依据用户本轮明确指令由 Codex 代录，不声称独立人工批准。S9 readiness 是 docs-only PASS，S9A/S9B
-均未实现；G3 仍只包含 S3/S4/S5，G4 pending。
+Owner 结论依据用户本轮明确指令由 Codex 代录，不声称独立人工批准。该 readiness 是历史 docs-only PASS；
+S9A 后续已在 `232ea6ce132faa8ac99bdf6abcc5e02ddd704ffe` 独立 PASS，S9B 仍未实现；G3 仍只包含
+S3/S4/S5，G4 pending。
+
+## 2G. S9B-READINESS Owner Conclusion（2026-08-21）
+
+本轮只读核对 S9A closed projection/client、S5/S8 UI lifecycle、semantic tokens/Naive UI/YjIcon/test
+设施、active package/lock/Vite/Tauri/CSP，并以 Desktop Pattern 1.5.0
+`630c3c8d55a2617499f51bd5bed263b819aaf084` 冻结以下 superseding decisions。本轮没有安装包、修改
+lockfile/config 或实现 renderer；`contract-impact=none`。
+
+| ID | 冻结结论 | 理由/证据 | Gate effect |
+|---|---|---|---|
+| DEC-128-022 | S9B 拆为 S9B-D exact dependency/semantic theme/closed adapter/chart-card foundation 与 S9B-R ready-report renderer/save UX。 | dependency/lock/license/bundle/theme 与授权正文 local-DOM lifecycle 是两类不同风险；分开后可独立回滚。 | `READY FOR S9B-D ONLY`；S9B-R 等待 D immutable PASS 与单独授权。 |
+| DEC-128-023 | 选择 direct exact `echarts@6.1.0` Apache-2.0 + static tree-shaken `echarts/core` + CanvasRenderer；拒绝 `vue-echarts`。exact transitives 只允许 `zrender@6.1.0` BSD-3-Clause 与 `tslib@2.3.0` 0BSD，integrity/import/notice/bundle 按 Pattern 9.12 冻结。 | active app 确实没有 ECharts/theme/card；wrapper 增加 generic option/event/lifecycle 面而无必要能力。全部 JS baseline=`655731/206580` raw/gzip-9，最终 cap=`1372531/431860`。series token 只允许 `--yj-color-chart-series-1..8`。 | 只在 S9B-D 授权 package/lock/notice/theme/adapter/card、两条 exact checker 与 test-only visual harness 增量；任何额外 package、integrity/license/install-script 或 `716800/225280` 增量超限立即停止。 |
+| DEC-128-024 | accessible HTML table 始终是数据权威；chart 只是 bounded progressive enhancement。adapter 只接受 S9A closed chart projection，bar/line 限 64 labels/8 series/512 points，pie 限 one aligned non-negative non-zero series/32 labels。S9B-R 每次 explicit open 按 section ordinal 升序只增强前 4 个 adapter-eligible charts；D 只提供 pure local-budget helper，不用 global/mount/async-order counter。 | 当前 projection 没有 chart unit/data source/time range；UI 只能展示“报告未提供”，不得推断。单 chart cap 使 4 instances 合计必 `<=2048` points；mismatch/oversize/init/error 必须只降级当前 chart。 | 禁止 arbitrary option/formatter/HTML/URL/event/network/dynamic module；model/option 不得 snapshot，改用 exact-key/no-function/no-URL 结构断言。 |
+
+Exact value imports 只为 `init/use`、`BarChart/LineChart/PieChart`、`GridComponent/TooltipComponent/AriaComponent`
+与 `CanvasRenderer`；图例由 HTML `<ul>` 实现，禁止 full/root ECharts、SVG、Legend/Title/Dataset/Transform/
+DataZoom/Toolbox/Graphic/Custom/UniversalTransition、CDN/import map/dynamic module。theme 使用 Pattern 9.12 的 exact light/dark
+tokens，`animation=false`，rich-text confined tooltip、ARIA/decal、可见 table 与 disposal 顺序均为强制门禁。
+
+| Review | Owner | 结论 | 批准范围 | 保持关闭 |
+|---|---|---|---|---|
+| Product | 段成威 | READY FOR S9B-D ONLY；ACCESSIBLE TABLE IS AUTHORITATIVE；UNIT/SOURCE/TIME RANGE HONESTLY UNAVAILABLE | exact dependency/theme/closed adapter/chart-card foundation | S9B-R、production page、S10-S12、G4 |
+| Technical | 段成威 | APPROVED FOR S9B-D CODING | exact ECharts/integrity/lock/notice/static imports/Canvas、semantic theme/card、bundle checker | S9A/native/config/pages/stores、arbitrary option/dynamic module |
+| Security/Data | 段成威 | APPROVED FOR S9B-D CODING | no report read/persistence/log/snapshot/network、bounded instances、dispose lifecycle、table fallback | S9B-R authorized-content DOM lifecycle 在 D PASS 前保持关闭 |
+
+Owner 结论依据用户本轮明确指令由 Codex 代录，不声称独立人工批准。S9B-READINESS 是 docs-only
+PASS；S9B-D/S9B-R 均 `NOT RUN`，G3 仍只包含 S3/S4/S5，G4 pending。
 
 ## 3. Provider activation gate
 
@@ -209,7 +237,8 @@ Owner 结论依据用户本轮明确指令由 Codex 代录，不声称独立人�
 | RSK-128-011 preview handle 重放/资源探测 | handle 泄漏、跨 WebView/session 重放或协议被当 generic fetch | 跨会话显示、内容枚举或 JS 读取 | 256-bit one-shot handle、main WebView/process/context/session binding、30s TTL、no CORS、empty 404 | registry/expiry/replay/session-switch/adversarial protocol tests | revoke all handles、关闭 image preview、保持 metadata/save fallback | Client/Security Owner |
 | RSK-128-012 video Range handle 滥用/OOM | multi-request handle 被猜测、跨 context 重放、恶意 Range 或 64MiB buffered response 并发 | 内容泄漏、内存放大、播放卡死 | 独立 256-bit binding、30min/5min TTL、无累计次数撤销、2 handle/2 read/64MiB total、single Range parser、no CORS/fetch | >=128 legal Range lifecycle、76-Range WebView zero-404、replay/expiry/context/in-flight/memory tests | revoke video registry、移除 `media-src` scheme、回落 metadata/save-disabled shell | Client/Security/Data Owner |
 | RSK-128-013 file preview 内容执行/泄漏 | raw/未授权正文进入全局 state/log/snapshot，CSV formula/HTML/link 被执行，或 save path 返回 Vue | XSS、工具越权、数据泄漏、任意写入 | native bounded projection、text nodes only、exact limits、no v-html/link/formula execution、component-local lifecycle、native atomic save | control/bidi/CSV/JSON adversarial tests、authorized/unauthorized canary open/close scans、path/token/digest zero-hit | 关闭 S8 renderer/commands，回落 metadata shell，保留 SQLCipher authority | Client/Security/Data Owner |
-| RSK-128-014 report consumer/renderer 漂移或注入 | Desktop 额外拒绝 contract-valid document，或 raw/unknown payload、任意 chart option/formatter 进入 Vue | 合法报告不可用、XSS/代码执行、数据外传 | contract-valid conformance fixtures、native closed projection、unknown omission、fixed chart mapper、text nodes + accessible table、exact caps | Ajv-vs-Rust differential、injection/unknown/cap tests、option snapshot、DOM/log/storage canary | 关闭 S9 renderer/commands，回落 metadata shell；保留 SQLCipher canonical authority，不恢复错误契约解释 | Client/Security/Data Owner |
+| RSK-128-014 report consumer/renderer 漂移或注入 | Desktop 额外拒绝 contract-valid document，或 raw/unknown payload、任意 chart option/formatter 进入 Vue | 合法报告不可用、XSS/代码执行、数据外传 | contract-valid conformance fixtures、native closed projection、unknown omission、fixed chart mapper、text nodes + accessible table、exact caps | Ajv-vs-Rust differential、injection/unknown/cap tests、exact-key/serializable/no-function/no-URL assertions、DOM/log/storage canary；禁止含 projection 值的 option snapshot | 关闭 S9 renderer/commands，回落 metadata shell；保留 SQLCipher canonical authority，不恢复错误契约解释 | Client/Security/Data Owner |
+| RSK-128-015 chart dependency/bundle/instance 失控 | 额外 transitive、full import、license/integrity 漂移、包体超限、多 chart 未 dispose | 供应链/发行合规风险、启动回归、WebView 内存泄漏 | exact package/lock/notice/import allowlist、static tree-shaking、bundle gate、4-instance/2048-point cap、clear/dispose/disconnect | dependency/lock/source scan、raw+gzip build budget、theme/unmount/error lifecycle tests、visual matrix | 回滚 S9B-D dependency/theme/adapter/card，保留 table fallback 与 S9A canonical save | Technical/Security/Data Owner |
 
 ## 5. 不需要新 ADR 的前提
 
@@ -223,8 +252,9 @@ Owner 结论依据用户本轮明确指令由 Codex 代录，不声称独立人�
 - S7F/S7A/S7A-REPAIR/S7B 已逐切片独立 PASS；DEC-128-016 是现行 video handle lifecycle，Pattern 1.2.0 的
   64-request 条款只保留为历史 RED。
 - S8A/S8B 已分别独立 PASS，未并入 G3；Markdown 延期使 AC-005 保持 PARTIAL，G4 不得通过。
-- S9-READINESS/Pattern 1.4.0 只批准下一编码切片 S9A；S9B 等待 S9A immutable PASS、单独授权与 ECharts
-  dependency/theme blocker 解除。readiness 不等于实现 PASS。
+- S9A 已在 `232ea6ce132faa8ac99bdf6abcc5e02ddd704ffe` 独立 PASS。S9B-READINESS/Pattern 1.5.0
+  `630c3c8d55a2617499f51bd5bed263b819aaf084` 只批准下一编码切片 S9B-D；S9B-R 等待 D immutable
+  PASS 与单独授权。readiness 不等于实现 PASS。
 - Contracts v3 source、基线、generator/adapter、unknown kind/section 行为和 consumer 顺序已完成 G2 设计评审；S1/S2 真实生成、检查、双 breaking 与不可变 commit 已通过。
 - Desktop SQLCipher v8 migration、64 MiB 单 Artifact 上限、七天 retention 起算与恢复边界已在 S4 实现并通过迁移/reopen/TTL/delete 验证；图片 native preview/save/CSP 属 S6A，S6B 只做 renderer。
 - 真实 MiniMax 调用保持关闭；如需启用，另行取得费用和 provider activation 批准。
@@ -235,6 +265,6 @@ Owner 结论依据用户本轮明确指令由 Codex 代录，不声称独立人�
 - G1：PASS，场景、AC、受影响仓库、最高 contract impact 和主要风险已识别。
 - G2：`PASS`，Product/Design、Technical/Contracts、Security/Data 与测试计划已由 Owner 明确批准；只允许进入 Contracts S1/S2。
 - G2A：`PASS`，Contracts `ea48fe190e18afba728712d1e2cc79cda57f581b`、Host pin `dea84d0768ebc017b7ee5faedab7f9a49ce74875` 与 Desktop pin `96094419d963745529ed0fa246919089e659f20d` 已满足真实 generate、双 breaking、semantic/consumer review 与不可变 pin 条件。批准依据是用户本轮给出的条件授权与实际证据，不声称 Codex 是独立人工 Reviewer。
-- G3：只对 S3/S4/S5 原子切片通过；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B 为独立 PASS，均不扩展 G3。
-  S9-READINESS 仅 `READY FOR S9A ONLY`，不是实现 PASS；S9B blocked，G4-G6 仍未通过，Host/Desktop
+- G3：只对 S3/S4/S5 原子切片通过；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A 为独立 PASS，均不扩展 G3。
+  S9B-READINESS 仅 `READY FOR S9B-D ONLY`，不是实现 PASS；S9B-D/S9B-R `NOT RUN`，G4-G6 仍未通过，Host/Desktop
   master/synthetic flags 与真实 provider 继续关闭。

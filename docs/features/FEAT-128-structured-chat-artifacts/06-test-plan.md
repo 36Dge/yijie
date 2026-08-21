@@ -17,7 +17,7 @@
 | AC-003 | 图片炸弹/handle 重放/保存越界 | ART-IMG-001, SEC-001/007/009, UI-002 | Host/native/UI | PNG/JPEG/WebP、magic/20MiB、one-shot handle、lightbox/save | synthetic PNG/JPEG/WebP only | schema、双次 digest、protocol、keyboard、atomic save evidence |
 | AC-004 | 视频不可 seek/OOM/autoplay | ART-VID-001, SEC-002/011, UI-003 | Host/native/UI | frozen MP4 metadata/range/64MiB/autoplay off；WebM 未批准 | canonical 1,642-byte MP4 + boundary responses | 200/206/416、controls、memory、fallback |
 | AC-005 (`PARTIAL`) | 文件内容执行/截断不明；Markdown 不在 v3 output | ART-FILE-001, SEC-003/006, UI-004 | native/UI | plain/JSON/CSV bounded preview；PDF/XLSX unsupported-inline + save；Markdown contract blocker | Desktop-private synthetic files | text-only DOM、exact caps、search/save/fallback；G4 不通过 |
-| AC-006 | report XSS/任意 chart option/consumer 漂移 | ART-RPT-001, SEC-004, UI-005 | schema/native/UI | contract-valid Unicode/date-time/duplicate/mismatched chart；known sections；unknown optional omitted、unknown required rejected；HTML/URL/script rejection | report v1 fixtures + Desktop-private valid differential cases | S9A conformance/projection/save；S9B fixed chart/text table；readiness only，implementation NOT RUN |
+| AC-006 | report XSS/任意 chart option/consumer 漂移 | ART-RPT-001, SEC-004, UI-005 | schema/native/UI | contract-valid Unicode/date-time/duplicate/mismatched chart；known sections；unknown optional omitted、unknown required rejected；HTML/URL/script rejection | report v1 fixtures + Desktop-private valid differential cases | S9A conformance/projection/save PASS；S9B-READINESS docs PASS；S9B-D/S9B-R implementation NOT RUN |
 | AC-007 | 历史丢失/过期残留 | DB-001, DB-002, E2E-001 | migration/integration/E2E | v7->v8、reopen、TTL、WAL、delete | temp SQLCipher DB | metadata order、content physically absent、cleanup receipt |
 | AC-008 | 跨租户/路径/token 泄漏 | SEC-005, SEC-006, ACK-001 | integration/security | wrong session/token、redirect、href/path injection、ACK digest/conflict/replay、log/DOM scan | loopback fake Host | 404/deny、idempotent receipt、unauthorized/path/token/raw-error canary hit count 0 |
 | AC-009 | 旧 consumer 被击穿 | COMP-001..004 | contract/producer/consumer | old/new Host/Desktop matrix | canonical fixtures | v1/v2 byte equality、v3 explicit negotiation |
@@ -138,11 +138,16 @@ production page/runtime visual。Markdown/AC-005 仍为 PARTIAL。
 | S9A caps/projection | typed report projection/caps/unknown omission 不存在 | source 1..4,194,304B；projection<=524,288B；response<=1,048,576B；depth<=12/nodes<=100,000/sections<=64；text/metrics/table/chart caps精确；CRLF/control/bidi可见投影；unknown optional 仅 unsupported marker、unknown required fail closed |
 | S9A concurrency/config | report operation limits/config negative 不存在 | <=2 preview/WebView、<=8,388,608B source in-flight、same-identity single-flight、10s timeout；无 URL/handle/protocol/CSP/capability/plugin/dependency；S6-S8 behavior unchanged |
 | S9A canonical save | report save/residue verifier 不存在 | explicit intent；validated ready report 1..67,108,864B，与 4MiB preview 独立；exact `.json`；dialog 前后双验；cancel/mismatch/symlink/nonregular；0600 same-dir temp/chunk digest/fsync/atomic replace；exact `.yijie-artifact-report-save-v1-json-<epoch>-<22-char base64url>.tmp` prior-epoch/current-uid/mode/nlink/size/full-schema cleanup；content-free result；无 derived export |
-| S9B renderer/chart（blocked） | report renderer/theme/chart adapter 不存在；active package/lock 无 ECharts/vue-echarts | 仅 S9A immutable PASS、单独授权和 dependency/theme blocker 解除后：all known sections、unknown unsupported、truncation/stale/clear/save/axe；fixed bar/line category + one-series aligned pie；mismatch text-table fallback；no arbitrary option/formatter/HTML/URL/event/toolbox/dataZoom/dataset/graphic/custom/dynamic code；accessible table always present |
+| S9B-D dependency/lock | active package/lock 无 ECharts，theme/card/adapter/bundle checker 不存在 | exact `echarts@6.1.0` + only zrender 6.1.0/tslib 2.3.0；integrity/license/NOTICE exact；root/full/vue-echarts/dynamic/CDN/install-script/额外 package 0；只有 core + Bar/Line/Pie + Grid/Tooltip/Aria + Canvas value imports；`scripts/check-feat128-s9b-d-dependencies.mjs` 与同名 test；JS baseline `655731/206580` raw/gzip-9，delta<=`716800/225280`，final<=`1372531/431860` 由 `scripts/check-feat128-s9b-d-bundle.mjs` 与同名 test 执行 |
+| S9B-D theme/closed adapter | semantic chart tokens/theme/closed mapper/card 不存在 | token 仅 `--yj-color-chart-series-1..8` + exact light/dark palette + missing-token fail closed；bar/line<=64 labels/8 series/512 points；pie one aligned non-negative/non-zero series<=32 labels；mismatch/empty/nonfinite/oversize complete table fallback；pure helper 按 ordinal 选前 4 eligible charts/<=2048 points，不用 global/mount/async-order counter；no EChartsOption prop/output |
+| S9B-D chart card/lifecycle | one-instance Canvas boundary 不存在 | animation=false/richText confined tooltip/ARIA/decal/HTML legend/visible table；init/update/resize/theme/error/unmount `clear->dispose->disconnect`；exact-key/serializable/no-function/no-URL/no-formatter assertions，不 snapshot projection/model/option values；axe/reduced-motion/no network/storage/log |
+| S9B-D visual/bundle | no `tests/visual/feat-128-s9b-d/` harness | exact loopback Vite command启动后执行 full-known/fallback/error × light/dark × 1180×760/720 narrow/200% zoom；no page horizontal scroll/overlap，table local scroll、focus、tooltip confinement、theme re-init；不冒充 happy-dom/axe 或 production page/S10 |
+| S9B-R renderer | report component/Shell/List client 透传不存在 | 仅 D immutable PASS + 单独授权后：report+ready explicit open；all known sections/ordinal identity/unknown fixed marker/truncation；unit/source/time range 显示“报告未提供”；chart isolated fallback/table authority；duplicate/stale/clear/dispose顺序；canonical save；keyboard/focus/aria/axe/open canary/close zero-hit/no raw/path/digest/href/token/requestId/error/log/snapshot |
 
 S9A fixture authority 使用 immutable `report-document-v1.schema.json` 与 canonical valid/unknown optional/unknown required/
 injection fixtures；Desktop-private differential fixtures只能补 consumer conformance，不得修改或冒充 Contracts canonical。
-Host synthetic report 与 Contracts canonical bytes 不同但都必须 schema-valid。S9B 仍 `BLOCKED`，不得在 readiness 安装依赖。
+Host synthetic report 与 Contracts canonical bytes 不同但都必须 schema-valid。S9A 已独立 PASS；S9B-READINESS 只批准
+S9B-D 为下一切片，本轮不得安装依赖，S9B-D/S9B-R 均 `NOT RUN`。
 
 ## 7. Migration 演练
 
@@ -188,7 +193,7 @@ Host synthetic report 与 Contracts canonical bytes 不同但都必须 schema-va
 | Fixture/Dataset | 权威位置 | 数据分类 | 合成/脱敏方式 | Consumer |
 |---|---|---|---|---|
 | v3 lifecycle JSON | `yijie-contracts/tests/fixtures/agent/session-event-v3/` | public synthetic | UUID、1x1/小媒体、无路径/正文 | Host/Desktop |
-| report document v1 | `yijie-contracts/jsonschema/report/report-document-v1.schema.json` + canonical valid/unknown optional/unknown required/injection fixtures | public synthetic | 虚构指标/日期/来源，无店铺数据；exact MIME `application/vnd.yijie.report+json;version=1`；Host synthetic 为独立 schema-valid bytes；PDF/Markdown/image derived export 延期 | Contracts/Host；S9A/S9B NOT RUN |
+| report document v1 | `yijie-contracts/jsonschema/report/report-document-v1.schema.json` + canonical valid/unknown optional/unknown required/injection fixtures | public synthetic | 虚构指标/日期/来源，无店铺数据；exact MIME `application/vnd.yijie.report+json;version=1`；Host synthetic 为独立 schema-valid bytes；PDF/Markdown/image derived export 延期 | Contracts/Host + S9A PASS；S9B-D/S9B-R NOT RUN |
 | canonical video resource | `yijie-contracts/tests/fixtures/agent/resources-v3/synthetic-video-16x16.mp4.base64` | public synthetic | generated three identical 16×16 frames；raw 1,642 bytes；no external footage/business data | Contracts/Host S7F/Desktop S7A/S7B PASS |
 | file fixture corpus | Contracts `synthetic-data.csv` + Host distinct strict-local CSV + Desktop-private MIME matrix | public synthetic | 两个 CSV 均合法但非 byte-equal；其余只用 local safe fixtures | S8A/S8B PASS；不得修改 immutable source |
 | media boundary corpus | implemented S3/S4/S6/S7/S8 testdata + future report UI corpus | public synthetic | generated headers/containers/corruption | image/video/file boundary/renderers PASS；report pending |
@@ -223,8 +228,8 @@ Host synthetic report 与 Contracts canonical bytes 不同但都必须 schema-va
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|
 | 测试/技术 Owner | 段成威 | G2A APPROVED；S1/S2/S2P evidence PASS | 2026-08-20 |
-| 安全/数据 Owner | 段成威 | S3/S4/S5 G3 PASS；S6/S7/S8A/S8B separate PASS | 2026-08-21 |
-| Product/Technical/Security/Data Owner | 段成威 | S9 `READY FOR S9A ONLY`；canonical JSON save only；S9B waits/blocked on ECharts | 2026-08-21 |
+| 安全/数据 Owner | 段成威 | S3/S4/S5 G3 PASS；S6-S9A separate PASS | 2026-08-21 |
+| Product/Technical/Security/Data Owner | 段成威 | S9B-READINESS `READY FOR S9B-D ONLY`；accessible table authoritative；S9B-R waits for D immutable PASS | 2026-08-21 |
 
-Contracts、pin conformance、S3/S4/S5 与独立 S6/S7/S8A/S8B 命令已实际执行并记录于 08；S9-READINESS 只是
-docs evidence，S9A/S9B 尚未实现，不能因 Pattern Accepted 或 Owner readiness 预记 PASS。
+Contracts、pin conformance、S3/S4/S5 与独立 S6-S9A 命令已实际执行并记录于 08；S9B-READINESS 只是
+docs evidence，S9B-D/S9B-R 尚未实现，不能因 Pattern Accepted 或 Owner readiness 预记 PASS。

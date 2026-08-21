@@ -3,13 +3,13 @@
 ## 1. Release Manifest
 
 当前 G2/G2A 已获 Owner 批准；Contracts `0.4.0` local candidate、Host S3 与 Desktop S4/S5 已形成不可变本地
-commits，并通过 G3 slice gate；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B 已作为独立本地切片 PASS。
-S9-READINESS 已形成 Pattern 1.4.0 docs-only evidence，但尚没有 S9 command/schema/projection/renderer/dependency、
-production vertical、tag、E2E、签名制品或部署。
+commits，并通过 G3 slice gate；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A 已作为独立本地切片 PASS。
+S9A 已形成 private command/schema/projection/canonical save；S9B-READINESS 已形成 Pattern 1.5.0 docs-only
+evidence，但 S9B-D/S9B-R 尚无 dependency/theme/adapter/renderer。production vertical、tag、E2E、签名制品与部署均不存在。
 
 | Component | Version/tag | Full commit | Artifact digest | Contract pin/generator | Environment |
 |---|---|---|---|---|---|
-| Governance package | G3 S3/S4/S5 + S6/S7/S8A/S8B separate PASS + S9 readiness docs | 本次 `yijie` 文档提交 | N/A | N/A | local workspace |
+| Governance package | G3 S3/S4/S5 + S6-S9A separate PASS + S9B readiness docs | 本次 `yijie` 文档提交 | N/A | N/A | local workspace |
 | Contracts | `0.4.0 local candidate` | `ea48fe190e18afba728712d1e2cc79cda57f581b` | source digests in feature.yaml | locked generators | not deployed |
 | Agent Host S3 | local source candidate; flags off | `4017785adb08e1114781d3d844e9a10a683fa933` | N/A source commit | Contracts `ea48fe...` | not deployed |
 | Desktop S4 | local source candidate; flag off | `09220dd8319cfb8ec0c4d1531514bb5169107983` | 10 implementation file pins in Desktop lock | Contracts `ea48fe...` | not deployed |
@@ -21,7 +21,9 @@ production vertical、tag、E2E、签名制品或部署。
 | Desktop S7A/S7A-REPAIR/S7B | local independent source slices；not in G3 | S7A `22b91c5a258458c87f1ac96c06bf39d1af97358f`; repair `34991d8967de9aa2197ab2e8b9b49347774df7a5`; S7B `366186b601144bdc2bc87a2cef3075b74f1e8f19` | source commits + default-off smoke harness | same immutable pin | not deployed |
 | Desktop S8 readiness Pattern 1.3.0 | historical docs-only Accepted boundary；READY FOR S8A ONLY at capture | `4929a73a7871056d7aeca3eb0b27c682b21bfe4b` | N/A | same Contracts/Host/Desktop implementation pins | no implementation at readiness；later S8A/S8B not deployed |
 | Desktop S8A/S8B | local independent source slices；not in G3 | S8A `bf5452f7fde24d1391845deaba17ec1135716c62`; S8B `4d0238b1906f02d319f47f5e55cdc023485ef07a` | source commits | same immutable pin | not deployed |
-| Desktop S9 readiness Pattern 1.4.0 | docs-only Accepted boundary；READY FOR S9A ONLY；S9B blocked | `b6f7401c79d5b2356bc45468f14d7fdbb17a855c` | N/A | same Contracts/Host/Desktop implementation pins | S9 not implemented/deployed |
+| Desktop S9 readiness Pattern 1.4.0 | historical docs-only Accepted boundary；READY FOR S9A ONLY at capture | `b6f7401c79d5b2356bc45468f14d7fdbb17a855c` | N/A | same Contracts/Host/Desktop implementation pins | S9A later implemented；not deployed |
+| Desktop S9A | local independent native report boundary；not in G3 | `232ea6ce132faa8ac99bdf6abcc5e02ddd704ffe` | source commit | same public Contracts/Host pin；Desktop SHA-only checker refresh | not deployed |
+| Desktop S9B readiness Pattern 1.5.0 | docs-only Accepted boundary；READY FOR S9B-D ONLY；S9B-R waits | `630c3c8d55a2617499f51bd5bed263b819aaf084` | N/A | same Contracts/Host/Desktop implementation pins | D/R not implemented/deployed |
 
 ## 2. 发布前提
 
@@ -53,10 +55,11 @@ production vertical、tag、E2E、签名制品或部署。
 | 11 | S8A bounded file preview/save boundary | Desktop local source | Product/Technical/Security/Data Owner | Pattern 1.3.0 + separate coding authorization | Rust/TS RED/GREEN + full Desktop gates | remove exact file commands/schema/client；S5 shell remains |
 | 12 | S8B file renderer/search/save UX | Desktop local source | Product/Client Owner | S8A immutable PASS + separate authorization | component/axe/security/visual + full gates | disable file renderer；S8A may remain closed |
 | 13 | S9A bounded report projection/canonical JSON save | Desktop local source | Product/Technical/Security/Data Owner | Pattern 1.4.0 + separate coding authorization | consumer differential + Rust/TS RED/GREEN + full Desktop gates | remove report commands/schema/client；metadata shell remains；不得恢复错误 contract interpretation |
-| 14 | S9B report renderer/fixed chart adapter | Desktop local source | Product/Client/Security Owner | S9A immutable PASS + separate dependency/S9B authorization | component/chart/axe/security/visual + full gates | disable renderer/chart；S9A canonical save may remain closed |
-| 15 | enable synthetic local profile | isolated local | 段成威 | S3-S9 + E2E | deterministic smoke/visual | disable profile, clean staging |
-| 16 | decide local G4 | source candidates | 段成威 | review findings closed | 08 evidence | remain implementation pending |
-| 17 | prepare real provider/release | future environment | 段成威 | separate fee/provider/production approval | fixed Eval/smoke/metrics | per-kind kill switch |
+| 14 | S9B-D dependency/theme/closed adapter/card | Desktop local source | Product/Technical/Security/Data Owner | Pattern 1.5.0 + separate S9B-D authorization | exact dependency/integrity/license/import/bundle + theme/adapter/card/axe/visual/full gates | remove dep/3 lock nodes/notice/theme/tokens/adapter/card/checker；S9A unchanged |
+| 15 | S9B-R report renderer/canonical-save UX | Desktop local source | Product/Client/Security Owner | S9B-D immutable PASS + separate S9B-R authorization | component/axe/security/visual + final bundle/full gates | remove renderer/Shell/List wiring；S5 metadata + S9A save remain |
+| 16 | enable synthetic local profile | isolated local | 段成威 | S3-S9 + E2E | deterministic smoke/visual | disable profile, clean staging |
+| 17 | decide local G4 | source candidates | 段成威 | review findings closed | 08 evidence | remain implementation pending |
+| 18 | prepare real provider/release | future environment | 段成威 | separate fee/provider/production approval | fixed Eval/smoke/metrics | per-kind kill switch |
 
 代码合并、部署、migration、synthetic activation、真实 provider activation 和 production release 是不同动作。
 
@@ -98,7 +101,7 @@ production vertical、tag、E2E、签名制品或部署。
 | SMOKE-128-001 | text streams while image started -> progress -> completed -> local ready -> lightbox/save | synthetic tenant/1x1 PNG | stable announced placeholder, verified transfer, preview, atomic save | local fixture + temp destination |
 | SMOKE-128-002 | video announced/progress -> controls/range/save | frozen 1,642-byte canonical MP4；WebM unsupported | no autoplay, single-range seek/controls/fallback | fixed local bytes；no external footage |
 | SMOKE-128-003 | plain/JSON/CSV + PDF/XLSX unsupported-inline | Desktop-private synthetic files | exact bounded projection/search + metadata/native-save fallback；Markdown deferred | no system app launch；no public fixture drift |
-| SMOKE-128-004 | report metrics/table/chart/unknown section | synthetic report v1 | S9A bounded projection/canonical save；S9B fixed chart + accessible table、no HTML/network | closed local JSON；S9A/S9B NOT RUN |
+| SMOKE-128-004 | report metrics/table/chart/unknown section | synthetic report v1 | S9A bounded projection/canonical save；S9B fixed chart + accessible table、no HTML/network | closed local JSON；S9A native PASS；S9B-D/R NOT RUN |
 | SMOKE-128-005 | duplicate/gap/restart/reopen/TTL/delete | synthetic events/temp DB | idempotent/resync/history/physical cleanup | fake clock + temp SQLCipher/Host home |
 | SMOKE-128-006 | provider capability unavailable | normal local config | no real generation UI/event; text remains | real provider call disabled |
 
@@ -134,6 +137,8 @@ production vertical、tag、E2E、签名制品或部署。
 | crash/OOM/media decode issue | affected kind off | renderer/native roll-forward fix | retain authority bytes but disable preview | boundary/performance tests | Client Owner |
 | migration/cleanup failure | block app/close decision | v8 roll-forward fix | restore backup only if approved | reopen/WAL/forensic cleanup | Data Owner |
 | provider cost/capability drift | real kind off immediately | revert provider config/adapter | no cloud data assumed | zero new calls + fixed capability test | Product/Release Owner |
+| S9B dependency/integrity/license/bundle drift | stop S9B-D，keep report UI unconnected | remove exact dependency/three lock nodes/notice/theme/adapter/card | no report data change；S9A SQLCipher/canonical save retained | lock/integrity/license/import scan + raw/gzip budget + full Desktop gates | Technical/Security/Data Owner |
+| chart init/instance leak or a11y failure | table-only fallback，disable chart enhancement | remove/disable YjChartCard and later renderer integration | projection remains component-local only；clear/dispose/disconnect | lifecycle/axe/visual/memory + close zero-hit | Product/Client/Security Owner |
 
 ## 10. 可执行命令与权限
 
@@ -156,6 +161,8 @@ production vertical、tag、E2E、签名制品或部署。
 | 2026-08-21 | S8 readiness stage | Pattern 1.3.0 `4929a73a...`；no S8 code/config | bounded projection/native save/data-lifecycle/rollback walkthrough | DESIGN PASS；runtime drill NOT RUN | first run S8A；S8B waits；Markdown/G4 blocked |
 | 2026-08-21 | S8 implemented chain | S8A `bf5452f...` + S8B `4d0238b...` | bounded file projection/save + renderer/search component evidence | native/component PASS；runtime/page visual NOT RUN | production Chat vertical/manual visual/performance still S10；Markdown partial |
 | 2026-08-21 | S9 readiness stage | Pattern 1.4.0 `b6f7401c...`；no S9 code/config/dependency | report conformance/projection/unknown/chart/save/export/lifecycle/rollback walkthrough | DESIGN PASS；implementation/runtime drill NOT RUN | first run S9A；S9B waits/blocked on ECharts；G4 pending |
+| 2026-08-21 | S9A implemented | S9A `232ea6ce...` | consumer differential + private projection/canonical JSON save RED/GREEN and full gates | native PASS；renderer/chart NOT RUN | S9B readiness/dependency/theme/renderer remained |
+| 2026-08-21 | S9B readiness stage | Pattern 1.5.0 `630c3c8...`；no package/lock/code/config | exact registry/license/import/bundle/theme/adapter/a11y/lifecycle/D-R rollback walkthrough | DESIGN PASS；S9B-D/R implementation NOT RUN | first run D only；R waits D immutable PASS；production vertical/G4 pending |
 
 ## 12. 沟通、职责与批准
 
@@ -171,5 +178,6 @@ production vertical、tag、E2E、签名制品或部署。
 | S7 readiness (historical) | 段成威（Product/Technical/Security/Data） | READY FOR S7F ONLY；S7A/S7B WAIT at capture | 2026-08-20 | 03 §2D + Pattern 1.2.0；S7F/S7A/repair/S7B later separate PASS |
 | S8 readiness | 段成威（Product/Technical/Security/Data） | READY FOR S8A ONLY；Markdown deferred/AC-005 PARTIAL；S8B WAIT | 2026-08-21 | 03 §2E + 05/06/07 + Desktop Pattern 1.3.0 `4929a73a7871056d7aeca3eb0b27c682b21bfe4b` |
 | S9 readiness | 段成威（Product/Technical/Security/Data） | READY FOR S9A ONLY；canonical JSON save only；S9B WAIT/BLOCKED ON ECHARTS | 2026-08-21 | 03 §2F + 05/06/07 + Desktop Pattern 1.4.0 `b6f7401c79d5b2356bc45468f14d7fdbb17a855c` |
-| G4 local candidate | 段成威 | NOT REQUESTED | N/A | S9A/S9B/S10-S11 and full AC/E2E/review incomplete；Markdown unresolved for full AC-005 |
+| S9B readiness | 段成威（Product/Technical/Security/Data） | READY FOR S9B-D ONLY；accessible table authoritative；unit/source/time range honestly unavailable；S9B-R waits | 2026-08-21 | 03 §2G + 05/06/07 + Desktop Pattern 1.5.0 `630c3c8d55a2617499f51bd5bed263b819aaf084` |
+| G4 local candidate | 段成威 | NOT REQUESTED | N/A | S9B-D/S9B-R/S10-S11 and full AC/E2E/review incomplete；Markdown unresolved for full AC-005 |
 | Go/No-Go production | 段成威 | N/A current scope / not approved | N/A | no production plan |
