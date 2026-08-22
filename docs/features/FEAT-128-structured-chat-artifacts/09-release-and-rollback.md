@@ -4,7 +4,8 @@
 
 当前 G2/G2A 已获 Owner 批准；Contracts `0.4.0` local candidate、Host S3 与 Desktop S4/S5 已形成不可变本地
 commits，并通过 G3 slice gate；S6-S9B-R 已作为独立本地切片 PASS。S10-READINESS/Pattern 1.6.0 只冻结并批准
-S10A-LOCAL-PROFILE；S10A-E 均未实现。production vertical、tag、E2E、签名制品与部署均不存在。
+S10A/S10B/S10C 已分别形成 G3 外独立 PASS；Pattern 1.7.0 仅给出 `READY FOR S10D-H ONLY`。S10D-H/V、S10E
+均未实现或运行；production vertical、tag、E2E、签名制品与部署均不存在。
 
 | Component | Version/tag | Full commit | Artifact digest | Contract pin/generator | Environment |
 |---|---|---|---|---|---|
@@ -25,6 +26,8 @@ S10A-LOCAL-PROFILE；S10A-E 均未实现。production vertical、tag、E2E、签
 | Desktop S9B readiness Pattern 1.5.0 | historical docs-only Accepted boundary；READY FOR S9B-D ONLY at capture | `630c3c8d55a2617499f51bd5bed263b819aaf084` | N/A | same Contracts/Host/Desktop implementation pins | D/R later implemented；not deployed |
 | Desktop S9B-D/checker repair/S9B-R | local independent slices；not in G3 | `0a36ca7c54460d22ea6b3228832a57f05f0bde68`; `aec0f8a05ba7534132cbb4f46be64e333d7e9024`; `6bcc2a6bfb4db76398ecf5483c688475477f08ed` | source commits/test-only harness | same public pins | not deployed；production vertical NOT RUN |
 | Desktop S10 readiness Pattern 1.6.0 | docs-only Accepted boundary；READY FOR S10A-LOCAL-PROFILE ONLY | `c1095eeb7a4c4bbc1f5a2729e9f8df861ebc02c2` | N/A | same Contracts/Host/Desktop pins | S10A-E not implemented/deployed |
+| Host/Desktop S10A + Desktop S10B/S10C | local independent slices；not in G3 | Host `0debd877a4afe1bf2da8c988caeb1124d0fa7272`; Desktop `f4a3d42ad837ecdc8a8ba4198b269d4717285791`/`f787d70b4cfb51cde76bdce047ba630f4b7b1250`/`86f02b4def4d07f76d66ebdafafda5a9bb75035c` | source commits | same public Contracts/Host pins | not deployed；production vertical NOT RUN |
+| Desktop S10D readiness Pattern 1.7.0 | docs-only Accepted boundary；READY FOR S10D-H ONLY | `8afdc996c11bbad2d275eb8b86a0f6b82ca5da52` | N/A | same Contracts/Host/Desktop pins | H/V/E not implemented/deployed |
 
 ## 2. 发布前提
 
@@ -61,9 +64,11 @@ S10A-LOCAL-PROFILE；S10A-E 均未实现。production vertical、tag、E2E、签
 | 16 | S10A exact keyless local profile | Host/Desktop test/config | Technical/Security Owner | Pattern 1.6 + separate auth | real Host session/turn/v3 GET/ACK；zero provider/non-loopback；cleanup | delete profile/mapping/runner；restore mutex |
 | 17 | S10B single-v3 native live | Desktop native/private | Runtime/Client/Data Owner | S10A immutable PASS | atomic cursor/replay/private invalidation | flag off→single v2；rows read-only |
 | 18 | S10C production page | Desktop TS/Vue | Product/Client/Security Owner | S10B immutable PASS | v3 history/store/page/four clients/axe | unmount list/clear store；v2 UI remains |
-| 19 | S10D/E vertical + security/perf | isolated local | 段成威 | A-C immutable PASS | fresh Host + real Tauri + boundary/perf matrix | disable harness/affected kind |
-| 20 | decide local G4 | source candidates | 段成威 | S10E + independent review + Markdown decision | 08 evidence | remain pending |
-| 21 | prepare real provider/release | future environment | 段成威 | separate fee/provider/production approval | fixed Eval/smoke/metrics | per-kind kill switch |
+| 19 | S10D-H harness/walking skeleton | isolated local | 段成威 | A-C immutable PASS + Pattern 1.7 + separate auth | fresh Host/fake/Desktop + real Tauri production Page + four ready shells + cleanup | remove H hooks/module/controller/runner/checker |
+| 20 | S10D-V full vertical | isolated local | 段成威 | H immutable PASS + separate auth | four renderer/history/restart/TTL/delete/visual/a11y matrix | disable V scenarios；retain H |
+| 21 | S10E security/perf | isolated local | 段成威 | D-V immutable PASS + separate auth | adversarial boundary/per-process perf | disable affected kind/preview |
+| 22 | decide local G4 | source candidates | 段成威 | S10E + independent review + Markdown decision | 08 evidence | remain pending |
+| 23 | prepare real provider/release | future environment | 段成威 | separate fee/provider/production approval | fixed Eval/smoke/metrics | per-kind kill switch |
 
 代码合并、部署、migration、synthetic activation、真实 provider activation 和 production release 是不同动作。
 
@@ -147,6 +152,7 @@ S10A-LOCAL-PROFILE；S10A-E 均未实现。production vertical、tag、E2E、签
 | S10 test profile escape/key/network | stop all children；close ports | remove S10A profile/mapping/runner | preserve content-free evidence then delete owner-only run root | zero key/provider/non-loopback + no child/listener/WAL/spool/temp | Technical/Security Owner |
 | v3 cursor/Artifact divergence | Artifact flag off；single v2 active stream | revert S10B private channel/coordinator | retain SQLCipher rows read-only；do not delete or weaken state | crash/replay/gap/stream-change/history differential | Runtime/Client/Data Owner |
 | page authority/stale projection | unmount Artifact list；clear ArtifactStore | revert S10C page/history/event wiring | native authority rows remain | logout/rebind/tenant/session/delete/stale zero-hit | Product/Client/Security Owner |
+| S10D harness escape/control/cleanup failure | stop Desktop/WebContent/Host/fake；keep D-V/E closed | remove H feature hooks/module/controller/runner/checker | preserve S10A-C authority；delete owner-only run root after content-free failure record | no mock/store/DB/spool seed；ports/PIDs/WAL/SHM/spool/temp/canary zero-hit | Technical/Security/Data Owner |
 
 ## 10. 可执行命令与权限
 
@@ -173,6 +179,7 @@ S10A-LOCAL-PROFILE；S10A-E 均未实现。production vertical、tag、E2E、签
 | 2026-08-21 | S9B readiness stage | Pattern 1.5.0 `630c3c8...`；no package/lock/code/config | exact registry/license/import/bundle/theme/adapter/a11y/lifecycle/D-R rollback walkthrough | DESIGN PASS；S9B-D/R implementation NOT RUN | first run D only；R waits D immutable PASS；production vertical/G4 pending |
 | 2026-08-21 | S9B implemented chain | D `0a36ca7...` + checker `aec0f8a...` + R `6bcc2a6...` | dependency/theme/adapter/card + ready-report component/security/visual | separate PASS；test-only 18-case browser matrix | production Chat/Tauri vertical still S10 |
 | 2026-08-22 | S10 readiness stage | Pattern 1.6.0 `c1095eeb...`；S10A-E no code | keyless profile、single-v3/atomic cursor、private invalidation、page/vertical/sec-perf rollback walkthrough | DESIGN PASS；implementation NOT RUN | first run S10A only；B-E wait immutable predecessor |
+| 2026-08-22 | S10D readiness stage | S10A/B/C separate PASS + Pattern 1.7.0 `8afdc996...`；no H/V/E code | production-path audit、H/V split、fresh-build/control/evidence/cleanup rollback walkthrough | DESIGN PASS；READY FOR S10D-H ONLY；runtime NOT RUN | first run H only；V/E wait immutable predecessor |
 
 ## 12. 沟通、职责与批准
 
@@ -190,5 +197,6 @@ S10A-LOCAL-PROFILE；S10A-E 均未实现。production vertical、tag、E2E、签
 | S9 readiness | 段成威（Product/Technical/Security/Data） | READY FOR S9A ONLY；canonical JSON save only；S9B WAIT/BLOCKED ON ECHARTS | 2026-08-21 | 03 §2F + 05/06/07 + Desktop Pattern 1.4.0 `b6f7401c79d5b2356bc45468f14d7fdbb17a855c` |
 | S9B readiness | 段成威（Product/Technical/Security/Data） | READY FOR S9B-D ONLY；accessible table authoritative；unit/source/time range honestly unavailable；S9B-R waits | 2026-08-21 | 03 §2G + 05/06/07 + Desktop Pattern 1.5.0 `630c3c8d55a2617499f51bd5bed263b819aaf084` |
 | S10 readiness | 段成威（Product/Technical/Security/Data） | READY FOR S10A-LOCAL-PROFILE ONLY；S10B-E WAIT/NOT RUN | 2026-08-22 | 03 §2H + 05/06/07 + Desktop Pattern 1.6.0 `c1095eeb7a4c4bbc1f5a2729e9f8df861ebc02c2` |
-| G4 local candidate | 段成威 | NOT REQUESTED | N/A | S10A-E/S11 and full AC/E2E/review incomplete；Markdown unresolved for full AC-005 |
+| S10D readiness | 段成威（Product/Technical/Security/Data） | READY FOR S10D-H ONLY；S10D-H/V、S10E NOT RUN | 2026-08-22 | 03 §2I + 05/06/07 §26 + Desktop Pattern 1.7.0 `8afdc996c11bbad2d275eb8b86a0f6b82ca5da52` |
+| G4 local candidate | 段成威 | NOT REQUESTED | N/A | S10D-H/S10D-V/S10E/S11 and full AC/E2E/review incomplete；Markdown unresolved for full AC-005 |
 | Go/No-Go production | 段成威 | N/A current scope / not approved | N/A | no production plan |

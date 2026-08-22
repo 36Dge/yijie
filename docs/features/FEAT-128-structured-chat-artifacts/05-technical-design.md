@@ -10,9 +10,9 @@
   路径/base64/token、未授权内容或超出已批准 bounded projection 的正文进入 SSE/WebView state，用户授权 file
   projection 仅按 8.8 短暂存在；小文件 projection 可在上限内等于完整正文。
 - 明确不做：生产部署、云存储、公开分享、raw HTML/脚本报告、任意本地路径、视频转码、真实付费媒体生成、跨设备同步。
-- 设计状态：G2/G2A APPROVED，S3/S4/S5 与其 G3 scope 已通过；S6-S9B-R 均为 G3 外独立 PASS。
-  Pattern 1.6.0 `c1095eeb7a4c4bbc1f5a2729e9f8df861ebc02c2` 完成 S9 reconciliation 与 S10 readiness，
-  只批准 S10A-LOCAL-PROFILE；S10A-E 均 `NOT RUN`，G3 不扩展，G4 pending。
+- 设计状态：G2/G2A APPROVED，S3/S4/S5 与其 G3 scope 已通过；S6-S10C 均为 G3 外独立 PASS。
+  Pattern 1.7.0 `8afdc996c11bbad2d275eb8b86a0f6b82ca5da52` 完成 S10 reconciliation 与 S10D readiness，
+  只批准 S10D-H；S10D-H/V、S10E 均 `NOT RUN`，G3 不扩展，G4 pending。
 
 ## 2. 组件职责与依赖方向
 
@@ -23,7 +23,7 @@
 | yijie-agent-host | Runtime item 归一化、短期 staging、v3 SSE 和认证资源读取 | Runtime notification、synthetic fixture | 安全 Artifact lifecycle + relative resource | 长期业务数据、WebView 渲染、用户保存目标 |
 | Desktop native/Tauri | implemented Host fetch/SQLCipher/history 与 image/video/file/report private boundaries | v3 event/resource；private identity-only intent | metadata-only history；media opaque URL；file/report bounded projection；content-free save result | provider 选择、公共契约权威、generic filesystem |
 | Desktop domain/store | implemented 单调状态机、去重、history/live projection | private IPC v3 safe metadata | stable provider-neutral view model | wire 外 I/O、bytes、文件写入 |
-| Desktop Vue components | implemented generic shell + image/video/file/report renderer 与 bounded chart enhancement；production ChatPage 尚未接 Artifact list/store | view model、typed native client result | 用户可观察 UI intent 与 component-local authorized preview | Host/SQL/path/digest/bytes/save 副作用 |
+| Desktop Vue components | implemented generic shell + image/video/file/report renderer、bounded chart enhancement 与 S10C production ChatPage/history-v3/ArtifactStore/four-client wiring | view model、typed native client result | 用户可观察 UI intent 与 component-local authorized preview | Host/SQL/path/digest/bytes/save 副作用 |
 
 ```text
 Runtime or synthetic producer
@@ -351,7 +351,7 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 
 ### 8.11 S10 single-v3、atomic cursor 与 private invalidation
 
-1. 当前 production 只开 v2；Artifact flag on 后必须改成一个 v3 active-turn stream。common v3 decoder 先校验
+1. S10B 已使 Artifact flag on 只打开一个 v3 active-turn stream。common v3 decoder 先校验
    schema/stream/sequence/event/event_type/turn identity，再 dispatch ordinary 或 Artifact；v2/v3 不并跑。
 2. ordinary progress 可合并，但 Artifact 事件前 flush。started/progress/failed 使用同一 SQLCipher transaction 写 turn
    progress、Artifact state 和 v3 cursor。completed 的 `transferring` 可先落地但不前推 completed cursor；下载/双重校验后，
@@ -359,11 +359,11 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 3. private channel exact `yijie:chat:artifact:changed:v1`，schema `chat-artifact-live-v1.schema.json`。它只携
    subscription/context/session/turn/event UUID、canonical decimal notification sequence、closed kind 与 content-free payload；
    queue=64，gap/overflow→单一 resync_required。history v3 是 replay authority，notification 不携 Artifact metadata/body。
-4. S10C subscribe ordinary+artifact first、buffer、control resync+history v3、同一 S5 reducer ingest、coalesced second v3
+4. S10C 已实现 subscribe ordinary+artifact first、buffer、control resync+history v3、同一 S5 reducer ingest、coalesced second v3
    resync、再 replay buffer。ArtifactStore authority tuple 与 epoch/reset 先于 Page；ChatPage 只取 trusted context/turn，显式注入
    image/video/file/report clients，assistant text 为空也渲染该 turn 的 Artifact list。
 
-### 8.12 S10 keyless profile、process 与 harness
+### 8.12 S10 keyless profile与已执行 process runner
 
 1. 当前 FEAT-128 synthetic 无法独立执行真实 StartSession/Turn；选择 exact
    `YIJIE_FEAT128_S10_TEST_PROFILE_ENABLED=true` + 既有 FEAT126 loopback fake Responses。它要求 local、v3/synthetic exact
@@ -374,8 +374,26 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 3. S10A runner fresh-build Host，记录 source/binary digest，使用 0700 mktemp root、ports 18082/18080、ready 20s、operation
    30s、global watchdog 180s、TERM 10s→KILL；结束按 Desktop→Host→fake 顺序停止并证明 no child/listener/WAL/spool/temp。
    evidence 只允许 content-free status/count/duration/binary digest，禁止 env value/path/token/body。
-4. real vertical 仅在 A-C PASS 后用真实 production ChatPage/Tauri；不得用 S7 seeded shell、S9 Vite harness 或外部 DB/spool
-   写入冒充。native save 保持真实 dialog，无法无泄漏自动化则 manual/NOT RUN。
+4. S10A/S10B/S10C 现已分别 separate PASS；S10A runner 不启动 Tauri Page，S7 seeded shell 与 S9 Vite harness 也不构成
+   real vertical。不得以这些证据或外部 DB/spool 写入冒充 S10D。
+
+### 8.13 S10D-H/V real Tauri harness 与 evidence
+
+1. S10D 拆为 H/V。H 复用 `feat128-s10-runtime`，只建立默认关闭的 production-first Tauri bootstrap/controller/runner/checker
+   和一个 UI walking skeleton；V 等 H immutable PASS 后才运行四类 renderer、history/restart/visual/a11y 完整矩阵。
+2. H 的 production branch 必须先 mount 现有 App/Pinia/router/ChatPage，之后才动态加载 feature-only controller。controller
+   仅按 accessible role/name click/type，不 mount 第二 App、不 mock client、不 set Pinia；test native bootstrap 只建立 exact
+   synthetic auth/project prerequisite，不制造 session/Artifact、不写 SQLCipher/spool。
+3. fresh build 使用 isolated target 的 exact release feature set `feat128-s10-runtime,tauri/custom-protocol`，不依赖 Vite/devUrl。
+   Host/fake/Desktop source commit 与 binary SHA-256 必须入 closed evidence。fixed ports 18080/18082；0700 root；ready
+   20s、Page 45s、scenario 180s、global 300s、TERM 10s。
+4. H 只证明 production UI 提交一个 turn 后 image/video/file/report 各有 announced/progress/ready stable shell，并采集
+   axe/focus 与一张 transient synthetic screenshot。verdict 只含 status/failure class、source/binary provenance、boolean path/profile、
+   lifecycle counts、axe/focus/screenshot SHA 与 cleanup booleans；禁止 ID/path/URL/header/requestId/name/MIME/body/artifact digest/
+   token/raw error。screenshot/log 只在 run root，记录 SHA 后删除。
+5. teardown 顺序是 UI terminal/resource release→close window→TERM Desktop/WebContent→Host→fake→port/PID/WAL/SHM/spool/temp
+   scan→delete root。macOS window capture、authority bootstrap、consumer digest、public/private wire、dependency/config 任一不能在
+   Pattern 1.7.0 exact boundary内闭合即停止，不得降级为 browser/Vite 或扩大范围。
 
 ## 9. 可观测性
 
@@ -452,11 +470,11 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 - ADR：当前 `N/A`，前提是采用方案 C 且不改变跨仓职责；选择 Host/云长期存储、自定义公开 URL 或 Runtime 核心修改时必须新增 ADR。
 - 技术负责人：段成威，结论 `G2 APPROVED for Contracts S1/S2`。
 - 安全/数据 Owner：段成威，结论 `G2 APPROVED for Contracts S1/S2`。
-- Product/Design：Pattern 1.6.0 `Accepted`；S6-S9B-R separate PASS；`READY FOR S10A-LOCAL-PROFILE ONLY`。
-  Markdown/AC-005 仍 PARTIAL，production vertical/G4 pending。
-- S10 Technical：`APPROVED FOR EXACT KEYLESS LOOPBACK PROFILE AND SIDECAR FLAG MAPPING`；single-v3/atomic-cursor
-  S10B 等待 A immutable PASS。
-- S10 Security/Data：`APPROVED FOR S10A ONLY`，要求 zero key/provider/non-loopback、owner-only temp root、watchdog、
-  content-free evidence；B-E 等待。
-- 结论日期：2026-08-22；G3 仍只对 S3/S4/S5 为 PASS。S10A-E、任何真实 producer 与 production activation
+- Product/Design：Pattern 1.7.0 `Accepted`；S6-S10C separate PASS；`READY FOR S10D-H ONLY`。Markdown/AC-005
+  仍 PARTIAL，production vertical/G4 pending。
+- S10D Technical：只批准 fresh-binary real-Tauri production-first H harness、closed evidence 与完整 process lifecycle；D-V
+  等 H immutable PASS。
+- S10D Security/Data：只批准 exact keyless loopback、test-only authority bootstrap、zero canary、transient screenshot、
+  content-free verdict 与 complete cleanup；provider/key/non-loopback/raw evidence 保持关闭。
+- 结论日期：2026-08-22；G3 仍只对 S3/S4/S5 为 PASS。S10D-H/V、S10E、任何真实 provider 与 production activation
   均未执行；所有 FEAT-128 flags 默认关闭，G4 pending。

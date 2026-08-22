@@ -39,8 +39,10 @@ S0 Owner G2 approval (PASS)
                                                   -> S10A-LOCAL-PROFILE exact keyless Host/sidecar profile (PASS separate slice)
                                                      -> S10B-NATIVE-LIVE single-v3/atomic cursor/private invalidation (PASS separate slice)
                                                         -> S10C-PAGE history/store/production ChatPage integration (PASS separate slice)
-                                                           -> S10D-VERTICAL real Tauri + fresh Host vertical
-                                                              -> S10E-SEC-PERF adversarial/boundary/performance
+                                                           -> S10D-READINESS + S10-SPEC-RECONCILIATION (PASS docs only)
+                                                              -> S10D-H default-off real Tauri harness + walking skeleton (NOT RUN)
+                                                                 -> S10D-V full four-kind/restart/history/visual vertical (NOT RUN)
+                                                                    -> S10E-SEC-PERF adversarial/boundary/performance
                                          -> S11 structured independent review + local G4 decision
 
 Real provider activation:
@@ -77,8 +79,9 @@ S2 + S3 + S4 + S10
 | S10A-LOCAL-PROFILE | exact keyless strict-local Host profile + Desktop sidecar flag mapping；无 live/page | S10 precondition | Host + Desktop test/config only | Pattern 1.6 §9.15/§9.17 与本文件 §23 exact allowlist | session fixture/public wire/pin、native live/page/store/config capability/deps | S10 readiness + separate auth | exact RED/GREEN/process/full commands in §23 | delete profile/mapping/runner；restore synthetic+fake mutex |
 | S10B-NATIVE-LIVE | single v3 stream、atomic cursor/transfer、content-free private invalidation | AC-001/002/007/009 | Desktop native/private only | HostBridge/domain/application/artifact/database/worker/ipc/mod/lib/private schema/parser/tests + SHA-only checker | Page/store/components、migration、public Contracts/Host wire/fixture、monotonic weakening | S10A immutable PASS + auth | focused crash/replay/private event + full Desktop gates | flag off→single v2；rows/preview/save read-only |
 | S10C-PAGE | V3 history、ArtifactStore authority、ChatPage/List/four clients | AC-001..010 UI | Desktop TS/Vue | ChatClient/ChatStore/ArtifactStore/ChatPage/chat components/tests | native/config/deps/public wire；route/DOM identity inference | S10B immutable PASS + auth | subscribe/buffer/v3 resync/stale/axe/security + full gates | unmount list，clear store，existing v2 UI remains |
-| S10D-VERTICAL | fresh Host + real Tauri production Chat vertical | AC-001..012 | Host/Desktop test-only | compile-time-off harness/evidence only | seeded shell/Vite fake/production config/provider/DB-spool tamper | A-C PASS + auth | four kind/ACK/history/restart/TTL/delete/visual/a11y | remove test feature/harness |
-| S10E-SEC-PERF | adversarial/boundary/per-process performance evidence | NFR/security | Host/Desktop test-only | exact boundary controls/evidence | limit loosening、secret/non-loopback/provider | D PASS + auth | §6E + Pattern 1.6 §9.18 | disable affected preview/kind；metadata/save-only |
+| S10D-H | fresh Host/fake/Desktop + real Tauri production walking skeleton | AC-001/007/008/011 foundation | Host/Desktop test-only | existing feature、production-first bootstrap/controller/runner/checker、closed evidence | seeded shell/Vite fake/mock client/Pinia or DB-spool seed/config/dependency | A-C PASS + Pattern 1.7 + auth | four ready shells/axe/focus/transient screenshot/process cleanup | remove H hooks/module/controller/runner/checker |
+| S10D-V | complete four-kind production vertical | AC-001..012 | Host/Desktop test-only | H scenarios/evidence extension only | native/config/provider/dependency/public wire | H immutable PASS + auth | four renderer/ACK/history/restart/TTL/delete/visual/a11y | disable V scenarios；retain H |
+| S10E-SEC-PERF | adversarial/boundary/per-process performance evidence | NFR/security | Host/Desktop test-only | exact boundary controls/evidence | limit loosening、secret/non-loopback/provider | D-V PASS + auth | §6E + Pattern 1.7 §9.18 | disable affected preview/kind；metadata/save-only |
 | S11 | 独立结构化审查、P0/P1/P2 修复和本地 G4 decision | all | all affected | review report/fixes within original slices | self-approval、release/tag | S10 | repeat affected/full gates | G4 remains pending until owner approval |
 | S12a | 验证并可选启用真实 MiniMax image | AC-012 | Runtime/Host/Desktop/docs | capability config/adapter/eval after approval | video/file/report、unbounded spend | separate paid approval + S11 | fixed provider integration/eval | per-kind kill switch off |
 | S12b | 视频 producer | AC-004/012 | future authority | only after new producer design | guessing provider API | blocked | command defined after authority | N/A until unblocked |
@@ -205,7 +208,8 @@ S10-S12 未获授权。push、PR、tag、release 与真实 provider 继续关闭
 | S10A-LOCAL-PROFILE | Host `0debd877a4afe1bf2da8c988caeb1124d0fa7272` + Desktop `f4a3d42ad837ecdc8a8ba4198b269d4717285791` | exact keyless Host profile、sidecar child flags、compile-time-off runner | Host/Desktop full gates + post-commit lifecycle/GET/ACK 4/4/4/4/4、zeroProvider/nonLoopback/cleanup PASS | no live/page/public wire/pin/fixture drift | PASS AS SEPARATE SLICE |
 | S10B-NATIVE-LIVE | `f787d70b4cfb51cde76bdce047ba630f4b7b1250` | single-v3 common order、Artifact/assistant/cursor SQLCipher 原子提交、completed network-outside-tx + ready/BLOB/ACK-intent/cursor、pending ACK restart recovery、closed content-free private invalidation + typed parser/client | missing typed boundary EXPECTED RED；2 files/6 TS、14/17+1 ignored/10/23/9 Rust focused、234+3 ignored all-target、四组 Clippy、61 files/379 full、build/docs/checker/runner/Host read-only gates PASS | Desktop-private semantic change；只刷新 7 个实际变更 implementation SHA 与 v2 adapter/readiness SHA；Contracts `ea48fe...`、Host/public wire、migration/config/dependency/Page/Store unchanged | PASS AS SEPARATE SLICE |
 | S10C-PAGE | `86f02b4def4d07f76d66ebdafafda5a9bb75035c` | closed history-v3 client、双 channel subscribe-first、ArtifactStore authority epoch/reset、bounded live resync、production ChatPage/List/four typed clients | missing API/authority EXPECTED RED；6 files/67 focused + axe、61 files/385 full、generate/lint/build/docs/dependency/bundle/diff PASS | TS/Vue-only 8-file scope；无 native/config/dependency/Contracts/Host/pin 漂移；real Tauri production vertical NOT RUN | PASS AS SEPARATE SLICE |
-| S10D-S10E | N/A | none | NOT RUN | 必须逐片授权与 immutable predecessor PASS | WAIT/PENDING |
+| S10D-READINESS | Pattern 1.7.0 `8afdc996c11bbad2d275eb8b86a0f6b82ca5da52` | four-repo read-only audit；exact H/V boundaries、Owner capture | Desktop generate/docs/lint/test/diff PASS；governance gates由本次提交记录 | docs only；H/V/E NOT RUN | READY FOR S10D-H ONLY |
+| S10D-H/S10D-V/S10E | N/A | none | NOT RUN | 必须逐片授权与 immutable predecessor PASS | WAIT/PENDING |
 | S11 | N/A | none | NOT RUN | independent review需 S10E PASS 与单独授权 | PENDING |
 | S12 | N/A | none | BLOCKED | separate real-provider authority required | BLOCKED |
 
@@ -247,9 +251,13 @@ S10-S12 未获授权。push、PR、tag、release 与真实 provider 继续关闭
 | Product/Technical/Security/Data Owner | 段成威 | Historical S9B-D completion：exact dependency/theme/closed adapter/card + real-browser matrix；S9B-R later separate PASS | 2026-08-21 |
 | Technical/Governance Owner | 段成威 | Historical S9B-D-CHECKER-REPAIR completion：固定历史 scope + immutable D protection；S9B-R later separate PASS | 2026-08-21 |
 | Product/Technical/Security/Data Owner | 段成威 | S9B-R 已按显式授权完成并独立 PASS：只消费 immutable S9A/S9B-D boundary；explicit open、bounded chart enhancement、visible table、clear/dispose 与 canonical save UX；production vertical 留待 S10 | 2026-08-21 |
+| Product Owner | 段成威 | S10D-READINESS：READY FOR S10D-H ONLY；H 只证明 production ChatPage 四类 ready shell walking skeleton，full user paths 等待 V | 2026-08-22 |
+| Technical Owner | 段成威 | S10D-H 只允许 fresh exact binaries、production-first real-Tauri bootstrap/controller、closed verdict 与完整 process lifecycle | 2026-08-22 |
+| Security/Data Owner | 段成威 | S10D-H 只允许 exact keyless loopback、test-only authority prerequisite、zero canary、transient screenshot 与 complete cleanup | 2026-08-22 |
 
 G2、G2A 与 S3/S4/S5 的 G3 slice gate 均已通过；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A/S9B-D/S9B-D-CHECKER-REPAIR/S9B-R/S10A/S10B/S10C 也分别形成 immutable PASS，
-但不并入 G3。S10D-S12 继续关闭。真实 provider、tag、push、release 和 production Tauri vertical 继续关闭，G4 不通过。
+但不并入 G3。S10D-READINESS 只批准 H 编码；S10D-H/V、S10E-S12 继续关闭。真实 provider、tag、push、release 和
+production Tauri vertical 继续关闭，G4 不通过。
 
 ## 11. 已执行 Codex 指令：S6A（历史证据）
 
@@ -895,3 +903,111 @@ ordinary/Artifact listener；没有 direct invoke、Host wire parse、opaque URL
 `pnpm docs:build`、S9B-D dependency/bundle checker 与 `git diff --check` 全部 PASS。bundle checker 为 raw
 1,282,888 bytes、gzip 412,283 bytes，仍在既有预算内。未运行 fresh Host + real Tauri production Chat vertical；
 S10C 只记 G3 外 separate PASS，S10D/E 仍 WAIT/NOT RUN，G3 仍严格为 S3/S4/S5，G4 pending。
+
+## 26. S10D-READINESS 与下一编码切片：S10D-H
+
+本节是 docs-only readiness，不是实现或 runtime PASS。只读审计结论：S7B 通过 `main.ts` 的互斥分支挂载 seeded
+video shell；S9 visual 是 Vite fake projection；S10A runner 是 Cargo integration test，不启动 production Page；当前没有
+可复用的 production Tauri UI controller/screenshot/closed verdict/complete teardown。production auth 还会拒绝 ephemeral
+test profile。故 S10D 必须拆为 H/V，先单独闭合 harness/platform lifecycle，再运行完整 vertical。
+
+### 26.1 真实 vertical 与切片边界
+
+- 只有 fresh exact Host/fake/Desktop binaries、S10A keyless loopback、真实 Tauri WebView、production App/router/ChatPage、
+  production commands、S10B coordinator/SQLCipher/ACK、history v3/ArtifactStore 与四类 typed clients 同时经过，才叫 real vertical。
+- H 只证明一个 production walking skeleton：真实 UI 提交一个 turn，image/video/file/report 各一 stable shell 经
+  announced→progress→ready；不打开 renderer、不做 save、不声称 S10D PASS。
+- V 等 H immutable PASS + 单独授权，才执行四 renderer、failure/order/history/restart/TTL/delete 与完整 visual/a11y matrix。
+- S10E 等 V PASS + 单独授权；readiness 不扩 G3，G4 pending。
+
+### 26.2 H exact allowlist 与 test surface
+
+复用现有 Cargo feature `feat128-s10-runtime`；禁止新增 feature/dependency/plugin/capability/permission/CSP/migration/config。
+只允许：
+
+- `src-tauri/src/lib.rs`：同 feature 下 manage H runtime、注册下列三个 test-only commands；default/production handler 不变；
+- 新 `src-tauri/src/feat128_s10d_runtime.rs` 及 unit tests；
+- 仅完成 test auth prerequisite 所需的 `src-tauri/src/native_auth/mod.rs`、`runtime.rs` 最小 feature-gated helper；default 与
+  production auth semantics 不变；
+- `src/main.ts`：production App/Pinia/router mount + `router.isReady()` 后，exact Vite flag 才动态加载 controller；
+- 新 `src/feat128/s10d-runtime-controller.ts`、同名 test；
+- 新 `scripts/run-feat128-s10d-runtime-smoke.sh`；
+- 新 `scripts/check-feat128-s10d-h.mjs` 与同名 test，只保护本节 exact scope/default-off/import/command/feature语义。
+
+三个 exact test-only commands：
+
+1. `feat128_s10d_runtime_prepare_v1`：无 WebView 输入；验证 main WebView、exact profile/feature/run authority，建立 synthetic
+   native-auth session 与 run-root project prerequisite；只返回 `{schemaVersion:1,status:'ready'}`。不得创建 session/turn/
+   Artifact、不得写 spool 或伪造 SQLCipher data。
+2. `feat128_s10d_runtime_checkpoint_v1`：只接受 closed stage
+   `production_page_ready|four_shells_ready|screenshot_ready|axe_focus_ready`；返回 content-free ack。native 只把 current macOS
+   window number 写入 exact 0600 run-root control file，不向 WebView 返回 window id/path。
+3. `feat128_s10d_runtime_finish_v1`：只接受 closed counts/booleans 与 stable failure class；native validate exact observation、
+   原子写 result 并触发 app exit；拒绝 ID/path/URL/header/name/MIME/body/digest/token/requestId/raw error/unknown key。
+
+controller 必须先等待 production router ready，再调用 prepare，然后让现有 PermissionStore 通过 production
+`list_my_tenants/get_my_capabilities` 建立 authority，并只按 accessible role/name click/type/keyboard 驱动 production ChatPage。
+禁止 mount 第二 App、mock client、direct invoke business commands、import/set Pinia、直接读 Host wire、直接写 DB/spool。
+
+### 26.3 Runner、evidence 与 lifecycle
+
+- env 必须精确复用 S10A conjunction，provider/API key/key-file absent；预检 127.0.0.1:18080/18082，无 Vite/dev server/
+  1420/1421。0700 canonical `mktemp` root 内建立 bin/target/host-home/codex-home/project/control/evidence。
+- fresh `go build -trimpath` Host/fake；`pnpm build` 后以 isolated `CARGO_TARGET_DIR` 执行
+  `cargo build --locked --release --features feat128-s10-runtime,tauri/custom-protocol`。记录 Host/Desktop source commit、
+  Contracts pin 与 Host/fake/Desktop binary SHA-256。
+- 启动 fake，再运行 Desktop binary，由 production sidecar 启动 Host。deadlines：fake/Host ready 20s、Tauri/Page 45s、
+  walking skeleton 180s、runtime global 300s、SIGTERM grace 10s 后 SIGKILL。
+- feature-only Rust hook 用现有 Tauri raw macOS window/`objc2` 取 `NSWindow.windowNumber`；runner 调
+  `/usr/sbin/screencapture -l` 产出 0600 synthetic ready screenshot。捕获/权限/窗口定位失败则 H fail closed；不得降级
+  browser/Vite。runner 记录 screenshot SHA 后删除原图。
+- closed verdict exact root：`schemaVersion/status/failureCode/source{host,desktop,contracts}/binarySha256{host,fake,desktop}/
+  profile{zeroProvider,zeroNonLoopback}/productionPath{realTauri,productionBootstrap,productionChatPage,productionCommands,
+  singleV3,sqlcipher,historyV3,artifactStore,typedClients}/lifecycle{announced,progress,ready,kinds}/
+  ui{axeSeriousCritical,focusOrder,screenshotSha256}/cleanup{desktop,webContent,host,fake,listeners,wal,spool,temp,runRoot}`。
+  禁止任何业务 identity、path/URL/header/requestId/name/MIME/正文/artifact digest/token/raw error；source/binary/screenshot SHA
+  只是 test provenance。
+- teardown：controller terminal/resource release→close window→TERM Desktop→wait WebContent→Host→fake→检查 ports/PIDs/
+  SQLCipher WAL/SHM/Host spool/temp/save residue→删除 root。DOM/Pinia/log/diagnostics/verdict 禁止 canary zero-hit；原始 log/
+  screenshot/control/result 只在 run root，最终全部删除。
+
+### 26.4 测试先行、命令与停止条件
+
+EXPECTED RED 必须先证明：当前 production branch 没有 H controller；exact test auth/project prerequisite 不存在；closed command/
+observation parser、macOS window control、scope checker 和 result/cleanup 均不存在。不得重制造 S10A-C RED。
+
+focused GREEN：
+
+```bash
+pnpm exec vitest run src/feat128/s10d-runtime-controller.test.ts scripts/check-feat128-s10d-h.test.mjs
+cargo test --manifest-path src-tauri/Cargo.toml --features feat128-s10-runtime feat128_s10d_runtime::tests
+node scripts/check-feat128-s10d-h.mjs
+```
+
+full GREEN：
+
+```bash
+cargo fmt --manifest-path src-tauri/Cargo.toml -- --check
+cargo test --manifest-path src-tauri/Cargo.toml --all-targets
+cargo test --manifest-path src-tauri/Cargo.toml --all-targets --features feat128-s10-runtime
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features feat126-s10-driver -- -D warnings
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features feat128-s7b-runtime -- -D warnings
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features feat128-s10-runtime -- -D warnings
+pnpm generate:check
+pnpm lint
+pnpm test
+make build
+pnpm docs:build
+./scripts/run-feat128-s10d-runtime-smoke.sh
+git diff --check
+```
+
+H completion requires exact verdict `status=passed`、四 lifecycle counts each 4、全部 productionPath/profile/cleanup booleans true、
+axe serious/critical=0、focus order true、non-empty screenshot SHA，以及 no canary/residue。native save、renderer open、restart/
+history/visual full matrix均明确 `NOT RUN`，不得记 S10D PASS。
+
+任何 public/private schema/production command/protocol/pin/fixture、Page/Store/component、dependency/lock/config/CSP/capability/
+migration、real key/provider/non-loopback、direct DB/spool/Pinia seed、consumer digest refresh、macOS control failure、content leak 或
+cleanup residue立即停止。若 internal consumer checker 因 exact H hook 要求 SHA-only refresh，先报告并等待单独最小授权，不得
+自行修改 checker。回滚只删除 H feature hooks/module/controller/runner/checker；S10A-C 与 default production path保持不变。

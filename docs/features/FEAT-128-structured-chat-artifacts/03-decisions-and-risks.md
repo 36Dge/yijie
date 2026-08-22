@@ -210,7 +210,7 @@ PASS；其历史结论保留。S9B-D `0a36ca7c54460d22ea6b3228832a57f05f0bde68`�
 `aec0f8a05ba7534132cbb4f46be64e333d7e9024` 与 S9B-R
 `6bcc2a6bfb4db76398ecf5483c688475477f08ed` 后续均已独立 PASS；production vertical 仍 NOT RUN，G3/G4 不变。
 
-## 2H. S9-SPEC-RECONCILIATION 与 S10-READINESS Owner Conclusion（2026-08-22）
+## 2H. S9-SPEC-RECONCILIATION 与 S10-READINESS Owner Conclusion（2026-08-22，historical）
 
 本轮只读审计确认：Host v3 是普通 turn/reasoning 与 Artifact 的同序列超集；Desktop production 仍只开 v2，
 ArtifactTransferService/v3 decoder 没有生产调用；ChatClient/Store/Page 仍未接 history v3/ArtifactStore/List。现有
@@ -234,8 +234,37 @@ S10A exact process/temp/watchdog、B-E private schema/atomicity/history/store/pa
 | Technical | 段成威 | APPROVED FOR EXACT KEYLESS LOOPBACK PROFILE AND SIDECAR FLAG MAPPING | S10A exact Host/Desktop test/config scope | single-v3/atomic-cursor B、Page、public contract/config expansion |
 | Security/Data | 段成威 | APPROVED FOR S10A ONLY WITH NO KEY/PROVIDER/NON-LOOPBACK, OWNER-ONLY TEMP ROOT, WATCHDOG AND CONTENT-FREE EVIDENCE | zero-secret/network proof、bounded process lifecycle、cleanup | real provider、persistent evidence content、B-E |
 
-Owner 结论依据用户明确指令由 Codex 代录，不声称独立人工批准。S10 readiness 是 docs-only PASS；S10A-E
-implementation 均 NOT RUN，不扩 G3，不声明 G4。
+Owner 结论依据用户明确指令由 Codex 代录，不声称独立人工批准。上述是当时的 docs-only capture；当时
+S10A-E 均 NOT RUN。S10A/S10B/S10C 后续已在独立授权下分别 separate PASS，历史不得回写。
+
+## 2I. S10-SPEC-RECONCILIATION 与 S10D-READINESS Owner Conclusion（2026-08-22）
+
+只读审计确认 S10A exact keyless profile、S10B single-v3/SQLCipher/ACK/private invalidation 与 S10C
+history-v3/ArtifactStore/production ChatPage wiring 已分别独立 PASS；但现有 S7B 会替换 production bootstrap，S9
+visual 是 Vite fake，S10A runner 不启动 production Page，三者均不构成 real Tauri production vertical。production
+auth 也不接受 ephemeral test profile，因此 bootstrap、WKWebView control/screenshot 与多进程 teardown 是必须先独立闭合的
+非平凡风险。Accepted Pattern 已升为 1.7.0
+`8afdc996c11bbad2d275eb8b86a0f6b82ca5da52`；本轮 `contract-impact=none`。
+
+| ID | 冻结结论 | 理由/证据 | Gate effect |
+|---|---|---|---|
+| DEC-128-030 | S10D 重切为 S10D-H harness/walking skeleton → S10D-V complete vertical；S10E 继续等待 V PASS。 | 先证明 fresh binaries、production bootstrap/commands/Page、macOS control/screenshot/content-free verdict 与 teardown，才能可信运行四类/restart/history/visual matrix。 | `READY FOR S10D-H ONLY`；D-H/D-V/E 均 NOT RUN。 |
+| DEC-128-031 | H 复用现有 `feat128-s10-runtime`；production App/router 先正常 mount，再加载 feature-only controller。test bootstrap 只建立 synthetic auth/project prerequisite；session/turn/Artifact/history/ACK/UI 必须走 production path。 | 禁止 S7 seeded shell、mock client、Pinia seed、direct SQLCipher/spool 与生产 Page/command 替换。 | 不新增 feature/dependency/plugin/capability/CSP/migration/public or private wire。 |
+| DEC-128-032 | H 使用 isolated release build、ports 18080/18082、0700 root、20/45/180/300/10s deadlines、closed content-free verdict、transient screenshot 与 exact teardown。 | 现有依赖已足以用 Tauri raw macOS window/`objc2` 取得 window number，再调用系统 `screencapture -l`；H 要实际证明可用，失败不得降级 Vite/browser。 | H 失败只记录 blocker/failure class；不得猜测性扩大。 |
+
+H 允许目录、EXPECTED RED/GREEN、exact runner/build、verdict schema、cleanup、完整 D-V matrix、stop/rollback 以 Pattern
+1.7.0 §§9.17-9.18 与 07 §26 为准。完整 D-V 覆盖四 kind lifecycle、乱序/失败隔离、history/restart/ACK/TTL/delete、
+四 renderer、light/dark/1180×760/720×760/200%/keyboard/focus/axe/reduced-motion；native save 无法安全自动化时必须
+`MANUAL/NOT RUN`，不得注入目标路径。
+
+| Review | Owner | 结论 | 批准范围 | 保持关闭 |
+|---|---|---|---|---|
+| Product | 段成威 | READY FOR S10D-H ONLY；H 只验一个 production walking skeleton | production ChatPage 四类 ready shell 与基本可访问状态 | renderer/save/full matrix、S10D-V/E、G4 |
+| Technical | 段成威 | APPROVED FOR EXACT FRESH-BINARY REAL-TAURI HARNESS WITH PRODUCTION BOOTSTRAP/COMMANDS AND CLOSED PROCESS LIFECYCLE | default-off H bootstrap/controller/runner/checker | mock/Vite/dev server、新 feature/config/dependency、D-V |
+| Security/Data | 段成威 | APPROVED FOR S10D-H ONLY WITH EXACT KEYLESS LOOPBACK PROFILE, TEST-ONLY AUTHORITY BOOTSTRAP, ZERO CANARY, CONTENT-FREE VERDICT, TRANSIENT SCREENSHOT AND COMPLETE CLEANUP | 0700 authority、minimal evidence、process/listener/WAL/spool/temp cleanup | provider/key/non-loopback、raw content/path/token/evidence persistence、D-V/E |
+
+Owner 结论由 Codex 按用户明确指令代录，不声称独立人工批准。S10D readiness 是 docs-only PASS；S10D-H/V、S10E
+均未实现或运行，不扩 G3，不声明 G4。
 
 ## 3. Provider activation gate
 
@@ -271,6 +300,7 @@ implementation 均 NOT RUN，不扩 G3，不声明 G4。
 | RSK-128-016 v3 双流/游标非原子 | v2/v3 并跑，或 Artifact 状态先于/晚于 cursor 独立提交 | 丢事件、重复下载、严格状态机冲突、UI错位 | single v3 common decoder；event apply+cursor transaction；completed crash-safe ready/ACK intent | crash-point、replay、gap/duplicate/stream-change、cursor/state differential | 关闭 Artifact flag，恢复 single v2；保留 authority rows只读 | Runtime/Client/Data Owner |
 | RSK-128-017 synthetic 测试剖面越权 | fake/synthetic 在非 exact profile、带 key/provider 或非 loopback 启动 | 误用真实 provider、付费/数据外传、错误验收 | exact master conjunction、env_clear+inject、owner/parent/run-root、fresh binary/watchdog | negative config matrix、socket/process/env evidence、zero-secret scan | 删除/关闭 profile，终止 child，清 run root；不改变默认生产路径 | Technical/Security Owner |
 | RSK-128-018 UI authority/stale projection | context/tenant/session 切换后 ArtifactStore 保留旧 metadata，或 live/history竞态回退 | 跨 authority 展示、重复/错位/终态回退 | content-free invalidation、subscribe-first、v3 history authority、epoch/reset guards、trusted ids | logout/rebind/switch/delete/stale/gap tests与DOM/Pinia canary | unmount Artifact list，清 store，回落 v2 Chat UI | Client/Security/Data Owner |
+| RSK-128-019 S10D harness 替代 production path 或清理不完整 | controller mount 第二 App/mock client/set store/direct DB/spool，或 Desktop/WebContent/Host/fake/WAL/temp 残留 | 虚假 vertical PASS、测试权限逃逸、内容/进程残留 | reuse exact feature、production-first bootstrap、closed test authority、scope checker、0700 root、deadlines、ordered teardown | source/static audit、real Tauri walking skeleton、PID/port/WAL/spool/temp/canary zero-hit | 删除 H hook/controller/runner；保留 S10A-C，S10D-V/E 关闭 | Technical/Security/Data Owner |
 
 ## 5. 不需要新 ADR 的前提
 
@@ -285,8 +315,8 @@ implementation 均 NOT RUN，不扩 G3，不声明 G4。
   64-request 条款只保留为历史 RED。
 - S8A/S8B 已分别独立 PASS，未并入 G3；Markdown 延期使 AC-005 保持 PARTIAL，G4 不得通过。
 - S9A、S9B-D、checker repair 与 S9B-R 已分别独立 PASS；production Chat/Tauri vertical 仍 NOT RUN。
-- S10-READINESS/Pattern 1.6.0 `c1095eeb7a4c4bbc1f5a2729e9f8df861ebc02c2` 只批准
-  S10A-LOCAL-PROFILE；S10B-E 等待前序 immutable PASS 与单独授权。readiness 不等于实现 PASS。
+- S10A/S10B/S10C 已在独立授权下分别 separate PASS；S10D-READINESS/Pattern 1.7.0
+  `8afdc996c11bbad2d275eb8b86a0f6b82ca5da52` 只批准 S10D-H。D-H/D-V/E 均 NOT RUN；readiness 不等于实现 PASS。
 - Contracts v3 source、基线、generator/adapter、unknown kind/section 行为和 consumer 顺序已完成 G2 设计评审；S1/S2 真实生成、检查、双 breaking 与不可变 commit 已通过。
 - Desktop SQLCipher v8 migration、64 MiB 单 Artifact 上限、七天 retention 起算与恢复边界已在 S4 实现并通过迁移/reopen/TTL/delete 验证；图片 native preview/save/CSP 属 S6A，S6B 只做 renderer。
 - 真实 MiniMax 调用保持关闭；如需启用，另行取得费用和 provider activation 批准。
@@ -298,5 +328,5 @@ implementation 均 NOT RUN，不扩 G3，不声明 G4。
 - G2：`PASS`，Product/Design、Technical/Contracts、Security/Data 与测试计划已由 Owner 明确批准；只允许进入 Contracts S1/S2。
 - G2A：`PASS`，Contracts `ea48fe190e18afba728712d1e2cc79cda57f581b`、Host pin `dea84d0768ebc017b7ee5faedab7f9a49ce74875` 与 Desktop pin `96094419d963745529ed0fa246919089e659f20d` 已满足真实 generate、双 breaking、semantic/consumer review 与不可变 pin 条件。批准依据是用户本轮给出的条件授权与实际证据，不声称 Codex 是独立人工 Reviewer。
 - G3：只对 S3/S4/S5 原子切片通过；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A/S9B-D/
-  S9B-D-CHECKER-REPAIR/S9B-R 为独立 PASS，均不扩展 G3。S10-READINESS=`DOCS PASS / READY FOR
-  S10A-LOCAL-PROFILE ONLY`；S10A-E `NOT RUN`，G4-G6 未通过，Host/Desktop master/synthetic 与真实 provider 继续关闭。
+  S9B-D-CHECKER-REPAIR/S9B-R/S10A/S10B/S10C 为独立 PASS，均不扩展 G3。S10D-READINESS=`DOCS PASS /
+  READY FOR S10D-H ONLY`；S10D-H/V、S10E `NOT RUN`，G4-G6 未通过，真实 provider 继续关闭。

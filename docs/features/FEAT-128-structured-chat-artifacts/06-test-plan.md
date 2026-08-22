@@ -157,10 +157,12 @@ Host synthetic report 与 Contracts canonical bytes 不同但都必须 schema-va
 | S10B v3 decoder/cursor | production 只开 v2；Artifact apply 与 cursor 独立 | single v3 common order；ordinary reducer parity；started/progress/failed+cursor transaction；completed ready+ACK intent+cursor crash points；duplicate/gap/stream restart/identity/terminal fail closed；flag-off v2 equality |
 | S10B private event | channel/schema 不存在 | exact content-free closed shape；main-WebView/current context/session subscription；sequence monotonic、queue 64、gap/overflow coalesced resync、restart no replay；DOM/log/schema source无 metadata/body/digest/path/token/error |
 | S10C history/store/page | ChatClient/Store 使用 v2；ArtifactStore无 authority reset；Page未挂List | subscribe-first/buffer/control+v3 history/second resync/replay；separate v3 cursor；authority tuple+epoch/reset；empty-text turn；four typed clients；stale/switch/logout/delete zero projection；no direct invoke/wire parse |
-| S10D vertical | S7 seeded shell/S9 Vite fake 不能证明 production | fresh exact Host + real Tauri production ChatPage；四 kind lifecycle/ACK/history/pagination/reload/restart/mixed failure/TTL/delete；18+ visual/a11y matrix；manual native save若不可安全自动化则 NOT RUN |
+| S10D-H harness/walking skeleton | S7 seeded shell、S9 Vite fake 与 S10A sidecar runner 都不能证明 production；ephemeral profile不能直接通过production auth | reuse `feat128-s10-runtime`；fresh exact Host/fake/Desktop release binaries；production-first App/router/ChatPage；test-only auth/project prerequisite；真实 UI submit 后四 kind announced/progress/ready shell；closed verdict、axe/focus/transient screenshot、complete teardown；禁止 mock/store/DB/spool seed |
+| S10D-V full vertical | H immutable PASS 后才运行 | 四 kind preview/playback/file/report；duplicate/out-of-order/gap/terminal regression/failure isolation；ACK/history-v3/pagination/reload/restart/TTL/delete；light/dark/1180×760/720×760/200%/keyboard/focus/axe/reduced-motion；manual native save若不可安全自动化则 NOT RUN |
 | S10E security/perf | 无真实 12-item/burst/boundary/canary/per-process baseline | unauthorized context/WebView/session与 digest/MIME/size/content mismatch；12 items、100/s×10s、20/64MiB、file/report caps；3 warmup+30 samples，p50/p95；started p95<300ms/hard-stop>=1000，render<=10Hz/hard-stop>20，no >200ms long task，CLS<=0.1，memory target<=2.5x/hard-stop>3x，close residual<=64MiB |
 
-S10A exact focused commands、allowlist 与 process runner 在 07 §23；B-E 均等待前序 immutable PASS 和单独授权。
+S10A exact focused commands、allowlist 与 process runner 在 07 §23；S10B/C 已 separate PASS；S10D-H exact
+commands/allowlist/evidence 在 07 §26 与 Pattern 1.7.0 §§9.17-9.18。D-V/E 均等待前序 immutable PASS 和单独授权。
 任何 public contract/pin/fixture、migration、dependency/plugin/capability/CSP/external origin、secret/provider/non-loopback、
 monotonic weakening 或 content leakage 立即失败。
 
@@ -247,7 +249,8 @@ monotonic weakening 或 content leakage 立即失败。
 |---|---|---|---|
 | 测试/技术 Owner | 段成威 | G2A APPROVED；S1/S2/S2P evidence PASS | 2026-08-20 |
 | 安全/数据 Owner | 段成威 | S3/S4/S5 G3 PASS；S6-S9B-R separate PASS | 2026-08-22 |
-| Product/Technical/Security/Data Owner | 段成威 | S10-READINESS `READY FOR S10A-LOCAL-PROFILE ONLY`；S10B-E WAIT/NOT RUN | 2026-08-22 |
+| Product/Technical/Security/Data Owner | 段成威 | historical S10-READINESS `READY FOR S10A-LOCAL-PROFILE ONLY`；S10A-C later separate PASS | 2026-08-22 |
+| Product/Technical/Security/Data Owner | 段成威 | S10D-READINESS `READY FOR S10D-H ONLY`；S10D-H/V、S10E NOT RUN | 2026-08-22 |
 
 Contracts、pin conformance、S3/S4/S5 与独立 S6-S9B-R 命令已实际执行并记录于 08；S10-READINESS 只是
 docs evidence，S10A-E 尚未实现，不能因 Pattern Accepted 或 Owner readiness 预记 PASS。
