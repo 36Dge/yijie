@@ -59,7 +59,8 @@ vertical integration；Host 没有真实 provider producer。
 | FEAT126-DRIVER-COMPILE-GUARD-REPAIR | PASS AS SEPARATE REPAIR | Desktop `c257fe9e31979cc3f2f426ab1cb7c11ce8781732` + RED/GREEN + four clippy matrix | compile reachability only；不注册 command/protocol；不并入 G3/G4 |
 | FEAT126 guard consumer digest refresh | PASS AS SEPARATE REPAIR | Desktop `3e5a3830a34718bf7bf0632cc71fc4c4ab9ea4b7` + stale-SHA RED/checker/full GREEN | internal `mod.rs` SHA only；公共 Contracts identity不变 |
 | S10A-LOCAL-PROFILE | PASS AS SEPARATE SLICE | Host `0debd877a4afe1bf2da8c988caeb1124d0fa7272` + Desktop `f4a3d42ad837ecdc8a8ba4198b269d4717285791` + final content-free runner | keyless local profile已形成；不并入 G3/G4 |
-| S10B-S10E/S11 | NOT RUN | 无对应实现 diff | 必须逐切片授权与 immutable PASS |
+| S10B-NATIVE-LIVE | PASS AS SEPARATE SLICE | Desktop `f787d70b4cfb51cde76bdce047ba630f4b7b1250` + EXPECTED RED、focused/full GREEN、atomic/replay/private-event evidence | single-v3 native seam 已形成；不并入 G3/G4，不代表 Page/vertical |
+| S10C-S10E/S11 | NOT RUN | 无对应实现 diff | 必须逐切片授权与 immutable PASS |
 | S12 real producers | BLOCKED | 无 provider authority/付费授权 | 保持关闭 |
 
 ## 2A. S8-READINESS 只读审计证据
@@ -194,13 +195,28 @@ Desktop 原子提交为 `6bcc2a6bfb4db76398ecf5483c688475477f08ed`，未 push。
 | Desktop native seam | HostBridge/Application 只开 v2；v3 decoder/ArtifactTransferService 无生产调用；Artifact state 与 turn cursor 独立写 | S10B 必须 atomic event apply+cursor；不能弱化 monotonic replay |
 | Desktop UI seam | `chat_load_history_v3`/parser存在，但 ChatClient/ChatStore用v2；ArtifactStore无authority reset；ChatPage未挂List/clients | S10C 必须 subscribe-first + v3 history + epoch/reset + trusted context/turn |
 | Existing harnesses | S7B runtime seeded shell；S9B visual Vite fake projection；均未挂 production ChatPage/full Host lifecycle | 不能作为 S10 vertical；S10D 必须 fresh Host + real Tauri production Chat |
-| Config/dependencies | sidecar env_clear 未传 Host v3/synthetic flags；当前 CSP/capability/deps无需变化 | S10A只允许 exact mapping/test feature；S10B-E若需 CSP/capability/dependency/migration立即停止 |
+| Config/dependencies | readiness capture 时 sidecar env_clear 未传 Host v3/synthetic flags；当前 CSP/capability/deps无需变化 | S10A只允许 exact mapping/test feature；S10B 后独立 PASS；S10C-E若需 CSP/capability/dependency/migration立即停止 |
 | Contract impact | public Contracts/Host v3 wire/pin/canonical fixture均无需改；private content-free invalidation可 additive | readiness docs=`none`；future S10B 仅 Desktop-private additive + implementation SHA-only checker |
 
 Desktop Pattern validation 实际结果：`pnpm docs:build`、`pnpm lint`、`pnpm test`（59 files/373 tests）和
 `git diff --check` 均 exit 0；Pattern 1.6.0 单文件 commit 为
 `c1095eeb7a4c4bbc1f5a2729e9f8df861ebc02c2`。yijie package/strict/YAML/lint/test/shell/diff 的本轮实际结果记录在
 第 4 节 `Y-S10R-*`；readiness 不是 S10 implementation PASS。
+
+## 2K. S10B-NATIVE-LIVE 实现证据
+
+| 范围 | 可复核证据 | 结论 |
+|---|---|---|
+| Test first | `chat-artifact-live` domain/client 测试先运行，两个模块均不存在 | EXPECTED RED；随后 2 files/6 tests GREEN |
+| Single stream/order | real loopback Host stream 同时包含 ordinary answer 与 file started/progress/completed/turn completed；请求只命中 exact v3 route，零 v2 route | single-v3 common sequence/eventId domain PASS；flag-off constructor 保留原 v2 path |
+| SQLCipher atomicity | conflict test 证明 assistant text、Artifact state、cursor 一起 rollback；success 证明 ready BLOB、pending ACK intent、completed cursor 一起 commit | started/progress/failed 共用同一 transaction seam；completed 网络 I/O 不持 transaction |
+| Crash/ACK replay | 首次 ACK 真实返回 500 后 Artifact 仍 ready 且 intent pending；drop application 后新 Host bridge 恢复 ACK，pending 清零 | ready-commit/ACK-before crash seam 与 restart recovery PASS |
+| Private event | exact schema + Rust queue + Ajv/TS parser；uint64 max 接受、max+1 拒绝；queue 64 overflow 合并 backpressure resync | canonical UUID/sequence、closed union、main WebView/current authority、content-free PASS |
+| Regression | Rust 234 passed/3 ignored；TS 61 files/379 tests；四组独立 Clippy；S10A runner与 Host read-only gates | no migration/config/dependency/Page/Store/Host/public contract drift |
+
+Desktop atomic commit 为 `f787d70b4cfb51cde76bdce047ba630f4b7b1250`，未 push。`contract-impact = semantic`
+仅指 Desktop-private live event 与 durable cursor/replay 语义；公共 Contracts/Host wire 仍固定在
+`ea48fe190e18afba728712d1e2cc79cda57f581b`。production Page/Store/vertical、S10C-E、真实 provider 均 NOT RUN。
 
 ## 3. Contracts 不可变候选
 
@@ -546,12 +562,29 @@ synthetic/real provenance 与 activation gate。
 | D-S10A-COMMIT | Desktop | local atomic S10A commit | 0 | PASS | `f4a3d42ad837ecdc8a8ba4198b269d4717285791`；not pushed |
 | D-S10A-RUNNER-FINAL | Desktop/Host | clean-tree post-commit fresh runner | 0 | PASS | lifecycle/GET/ACK=`4/4/4/4/4`；zeroProvider/zeroNonLoopback/cleanup=true；Host source `0debd877...`；Host/fake SHA-256 `ad2e2349...`/`44a4f59b...` |
 | Y-S10A-PACKAGE | yijie | `check-feature-package.sh --gate G3` | 0 | PASS | G3 remains exact S3/S4/S5；guard/digest/S10A separate evidence does not expand it |
-| Y-S10A-STRICT | yijie | `check-feature-package.sh --strict` | 0 | PASS | package structure/templates/markers valid；S10B-E/G4 pending |
-| Y-S10A-YAML | yijie | unique-key parse + exact G3/repair/digest/S10A/S10B-E/G4 assertions | 0 | PASS | G3=S3/S4/S5；three new records separate PASS；S10B-E NOT RUN；G4 pending |
+| Y-S10A-STRICT | yijie | `check-feature-package.sh --strict` | 0 | PASS | historical S10A capture：package structure/templates/markers valid；S10B-E/G4 pending at capture |
+| Y-S10A-YAML | yijie | unique-key parse + exact G3/repair/digest/S10A/S10B-E/G4 assertions | 0 | PASS | historical S10A capture：G3=S3/S4/S5；three new records separate PASS；S10B-E NOT RUN at capture；G4 pending |
 | Y-S10A-LINT | yijie | `pnpm lint` | 0 | PASS | 10 repository entries and central Contract First governance passed |
 | Y-S10A-TEST | yijie | `pnpm test` | 0 | PASS | repository manifest 1/1 passed |
 | Y-S10A-SHELL | yijie | `bash -n scripts/*.sh docs/dev/codex-feature-delivery/scripts/*.sh` | 0 | PASS | all shell syntax passed |
 | Y-S10A-DIFF | yijie | `git diff --check` + exact four-file scope audit | 0 | PASS | only 07/08/10/feature.yaml changed |
+| D-S10B-RED | Desktop | focused live domain/client Vitest before implementation | 1 | EXPECTED RED | `chat-artifact-live` domain/client modules and private schema did not exist |
+| D-S10B-TS | Desktop | `pnpm exec vitest run src/domain/chat-artifact-live.test.ts src/api/chat-artifact-live-client.test.ts` | 0 | PASS | 2 files/6 tests；closed parser/channel/unlisten/content-free invalid callback + Ajv uint64 boundary |
+| D-S10B-RUST-FOCUSED | Desktop | host_bridge/application/artifact/database/ipc focused cargo tests | 0 | PASS | 14；17 pass/1 ignored；10；23；9；real mixed-v3 + ACK restart recovery included |
+| D-S10B-RUST-ALL | Desktop | `cargo test --manifest-path src-tauri/Cargo.toml --all-targets` | 0 | PASS | 234 passed/3 ignored |
+| D-S10B-CLIPPY | Desktop | default、`feat126-s10-driver`、`feat128-s7b-runtime`、`feat128-s10-runtime` four independent all-target clippy `-D warnings` | 0 | PASS | all four GREEN；no `--all-features` claim |
+| D-S10B-CONTRACT | Desktop | v2/v3 checker tests + both checkers + `pnpm generate:check` | 0 | PASS | Contracts `ea48fe...` unchanged；10 v3 implementation pins verified；only actual Desktop internal SHA refreshed |
+| D-S10B-RUNNER | Desktop/Host | `./scripts/run-feat128-s10-local-profile.sh` | 0 | PASS | lifecycle/GET/ACK=`4/4/4/4/4`；zeroProvider/zeroNonLoopback/cleanup=true；Host/fake SHA unchanged |
+| D-S10B-FULL | Desktop | `pnpm lint`; `pnpm test`; `make build`; `pnpm docs:build`; `git diff --check` | 0 | PASS | 61 files/379 tests；type/lint/build/docs/diff all GREEN |
+| H-S10B-READONLY | Host | `make contract-check`; `make test`; `make runtime-test`; `git diff --check` | 0 | PASS | Host `0debd877...` unchanged and clean；public contract/runtime regressions absent |
+| D-S10B-COMMIT | Desktop | selective local atomic commit | 0 | PASS | `f787d70b4cfb51cde76bdce047ba630f4b7b1250`; 19 allowed files；clean；not pushed |
+| Y-S10B-PACKAGE | yijie | `check-feature-package.sh --gate G3` | 0 | PASS | G3 scope remains exact S3/S4/S5；S10B separate evidence does not expand it |
+| Y-S10B-STRICT | yijie | `check-feature-package.sh --strict` | 0 | PASS | package structure/templates/markers valid；S10C-E/G4 pending |
+| Y-S10B-YAML | yijie | unique-key parse + exact G3/S10B/S10C-E/G4 assertions | 0 | PASS | G3=S3/S4/S5；S10B separate PASS；S10C-E NOT RUN；G4 pending |
+| Y-S10B-LINT | yijie | `pnpm lint` | 0 | PASS | 10 repository entries and central Contract First governance passed |
+| Y-S10B-TEST | yijie | `pnpm test` | 0 | PASS | repository manifest 1/1 passed |
+| Y-S10B-SHELL | yijie | `bash -n scripts/*.sh docs/dev/codex-feature-delivery/scripts/*.sh` | 0 | PASS | all shell syntax passed |
+| Y-S10B-DIFF | yijie | `git diff --check` + exact four-file scope audit | 0 | PASS | only 07/08/10/feature.yaml changed |
 
 一次 `pnpm lint` 曾与 `pnpm test` 并行执行，因仓库 `check-generated` 临时替换 generated 目录而产生
 瞬时失败；改为仓库要求的顺序执行后通过，且 immutable commit 上再次通过。它是命令并发冲突，
@@ -578,7 +611,7 @@ S10A 最终 Desktop 全量门禁首次执行时，既有 `YjChartCard` MutationO
 | Consumer | Pin commit | Pin 内容 | 结论 |
 |---|---|---|---|
 | Agent Host | pin `dea84d0768ebc017b7ee5faedab7f9a49ce74875`; S3 `4017785adb08e1114781d3d844e9a10a683fa933`; S7F `1045dd06534eb72d53eb7ad7b7d18e63c80284f8`; S10A `0debd877a4afe1bf2da8c988caeb1124d0fa7272` | Contracts `0.4.0` identities + v3 snapshots/types + canonical resource conformance；S10A only exact default-off local profile/integration，public wire unchanged；`EXC-128-001` | S2P/S3 PASS；S7F/S10A separate PASS |
-| Desktop | pin `96094419d963745529ed0fa246919089e659f20d`; S4 `09220dd8319cfb8ec0c4d1531514bb5169107983`; S5 `7548ea8aeacfd7274f1107786ce48ddc6789cd45`; S6 readiness `2b854b40379a207c19bf37fc5bc64266553c5df1`; S6A `8b99849d418a3ef226f4133128f1ac22a438f9d5`; S6B `4a8dce6a6526e37052941f6dbb921ba2486e109f`; S7 readiness `18b17d961ed5991cec55eeb230ea21d91f2fb8ec`; S7A `22b91c5a258458c87f1ac96c06bf39d1af97358f`; S7A-REPAIR `34991d8967de9aa2197ab2e8b9b49347774df7a5`; S7B `366186b601144bdc2bc87a2cef3075b74f1e8f19`; S8 readiness `4929a73a7871056d7aeca3eb0b27c682b21bfe4b`; S8A `bf5452f7fde24d1391845deaba17ec1135716c62`; S8B `4d0238b1906f02d319f47f5e55cdc023485ef07a`; S9 readiness `b6f7401c79d5b2356bc45468f14d7fdbb17a855c`; S9A `232ea6ce132faa8ac99bdf6abcc5e02ddd704ffe`; S9B-D `0a36ca7c54460d22ea6b3228832a57f05f0bde68`; checker repair `aec0f8a05ba7534132cbb4f46be64e333d7e9024`; S9B-R `6bcc2a6bfb4db76398ecf5483c688475477f08ed`; S10 Pattern `c1095eeb7a4c4bbc1f5a2729e9f8df861ebc02c2`; FEAT126 guard repair `c257fe9e31979cc3f2f426ab1cb7c11ce8781732`; consumer digest refresh `3e5a3830a34718bf7bf0632cc71fc4c4ab9ea4b7`; S10A `f4a3d42ad837ecdc8a8ba4198b269d4717285791` | Contracts source/fixture identities unchanged；latest internal `mod.rs` consumer SHA `80781798...`；S10A public contract impact none | S2P/S4/S5 PASS；S6-S9B-R + repair/digest/S10A separate PASS |
+| Desktop | pin `96094419d963745529ed0fa246919089e659f20d`; S4 `09220dd8319cfb8ec0c4d1531514bb5169107983`; S5 `7548ea8aeacfd7274f1107786ce48ddc6789cd45`; S6 readiness `2b854b40379a207c19bf37fc5bc64266553c5df1`; S6A `8b99849d418a3ef226f4133128f1ac22a438f9d5`; S6B `4a8dce6a6526e37052941f6dbb921ba2486e109f`; S7 readiness `18b17d961ed5991cec55eeb230ea21d91f2fb8ec`; S7A `22b91c5a258458c87f1ac96c06bf39d1af97358f`; S7A-REPAIR `34991d8967de9aa2197ab2e8b9b49347774df7a5`; S7B `366186b601144bdc2bc87a2cef3075b74f1e8f19`; S8 readiness `4929a73a7871056d7aeca3eb0b27c682b21bfe4b`; S8A `bf5452f7fde24d1391845deaba17ec1135716c62`; S8B `4d0238b1906f02d319f47f5e55cdc023485ef07a`; S9 readiness `b6f7401c79d5b2356bc45468f14d7fdbb17a855c`; S9A `232ea6ce132faa8ac99bdf6abcc5e02ddd704ffe`; S9B-D `0a36ca7c54460d22ea6b3228832a57f05f0bde68`; checker repair `aec0f8a05ba7534132cbb4f46be64e333d7e9024`; S9B-R `6bcc2a6bfb4db76398ecf5483c688475477f08ed`; S10 Pattern `c1095eeb7a4c4bbc1f5a2729e9f8df861ebc02c2`; FEAT126 guard repair `c257fe9e31979cc3f2f426ab1cb7c11ce8781732`; consumer digest refresh `3e5a3830a34718bf7bf0632cc71fc4c4ab9ea4b7`; S10A `f4a3d42ad837ecdc8a8ba4198b269d4717285791`; S10B `f787d70b4cfb51cde76bdce047ba630f4b7b1250` | Contracts source/fixture identities unchanged；latest internal `mod.rs` consumer SHA `76731f70...`；S10B public contract/Host impact none | S2P/S4/S5 PASS；S6-S10B + repair/digest separate PASS |
 
 Desktop fixture Git tree OIDs：event v3 `21de31ceb65900bcf38bc7fe171de8238dfa30dc`、resources
 `f447129c08b9b39231e33698afc3f2fd875d6b14`、Host v3
@@ -607,6 +640,16 @@ S9A 最终 Desktop implementation/readiness digests（`mod.rs` 后由 compile-gu
 digest 为 `807817989e7c28afb4e001f1d3e416be235f2dc3511a8763781ad3ebdeb56d0a`，只反映 compile guard coverage；其余
 S9A implementation digests 未变。
 
+S10B 最终 Desktop implementation/readiness digests：`artifact.rs`
+`e25d15c8f5caa75e6e001fee1b90379e9c675859b8b46ec9c513fe96fa2f5adc`、`host_bridge.rs`
+`da621e8ba7aeccfffce07ff89c412c80941be5c4d472b25d7e210bf90d88c93b`、`database.rs`
+`3e2c591eb991904225f8d7edbfef1150fe3b527f92c382802bef3a853619c97f`、`worker.rs`
+`47decb75f2f2663210de72870c6f3850973cd2a193a4be52245b3003645173c2`、`ipc.rs`
+`421f49eae08789f6ba421bbe690e1df2fccb228492426f7508da4e9ed1720484`、`application.rs`
+`950aed2c80f06a9a1234cee572dd03bef95fe313b3870db4475ea2027985c5ce`、`mod.rs`
+`76731f70cbe9451397008666080500484accf7c8114b7f21be5b1ad8708a87e6`。v2 lock 只同步实际变更的
+`host_bridge.rs` adapter 与 `mod.rs` readiness；公共 pin/source/fixture/operation/schema 未变。
+
 ## 6. AC/NFR 当前覆盖
 
 | 范围 | 当前结果 | 说明 |
@@ -618,9 +661,9 @@ S9A implementation digests 未变。
 | AC-004 video fixture/native/UI boundary | CONTRACT + HOST S7F + DESKTOP S7A/S7A-REPAIR/S7B PASS / VERTICAL PENDING | Host emits exact canonical MP4；S7A proves SQLCipher inspect/Range/save；repair proves playback-compatible lifetime；S7B proves native controls/save UX and real WebView metadata/playback/seek；production Chat vertical待 S10 |
 | AC-005 Desktop file behavior | S8A NATIVE PASS / S8B COMPONENT PASS / VERTICAL NOT RUN / AC PARTIAL | current-v3 plain/CSV/JSON bounded preview + renderer/search、PDF/XLSX fallback 与 five-MIME native save UX 已实现；Markdown deferred，production page/visual待 S10，G4 blocked |
 | AC-006 Desktop report behavior | CONTRACT PASS / S9A NATIVE PASS / S9B-D FOUNDATION PASS / S9B-R REUSABLE UI PASS / PRODUCTION VERTICAL NOT RUN | report schema/fixtures、Desktop projection/save、exact dependency/theme/closed adapter/card 与 ready-report renderer/chart/save UX 已验证；production Chat/Tauri vertical 留待 S10，不能记完整 AC PASS |
-| AC-007 persistence/history/retention | S4/S5 FOUNDATION PASS | v8 migration、SQLCipher BLOB、metadata history、168h TTL/receipt/delete/reopen + history replay/store dedupe 已验证；跨进程 UI integration 仍待 S10 |
-| AC-008 runtime auth/integrity/ACK | S3/S4 FOUNDATION PASS | owner-only Host resource、MIME/size/digest/magic、commit 后 ACK 与 replay 已验证；E2E/error UI 待 S10 |
-| AC-009 Host dual route + old/new matrix | PARTIAL PASS | v1/v2 equality/pins + 实际 v3 Host route 均通过；mixed-version E2E 待 S10 |
+| AC-007 persistence/history/retention | S4/S5 FOUNDATION + S10B NATIVE LIVE PASS | v8 authority/history、168h lifecycle 与 store reducer 已验证；S10B 增加 Artifact/assistant/cursor 原子提交与 ACK restart recovery；跨进程 UI integration 仍待 S10C/D |
+| AC-008 runtime auth/integrity/ACK | S3/S4 FOUNDATION + S10B NATIVE LIVE PASS | owner-only Host resource、MIME/size/digest/magic、ready/ACK-intent/cursor atomic commit 与 post-commit ACK replay 已验证；production Page/error UI 待 S10C/D |
+| AC-009 Host dual route + old/new matrix | NATIVE PARTIAL PASS | v1/v2 equality/pins + Host v3 route均通过；S10B flag-on only-v3、flag-off v2 path已验证；full production mixed-version vertical待 S10D |
 | AC-010/NFR-002 generic/image/video/file component portions | S5/S6B/S7B/S8B FOCUSED PASS | semantic tokens、Naive UI/YjIcon、aria-live/busy/progress/focus、image lightbox、native video controls、file disclosure/search、reduced-motion 与 axe 通过；full visual matrix/performance仍待 S10 |
 | AC-011 local walking skeleton | PARTIAL | 四类 strict-local Host producer 已实现，video exact canonical 且 Desktop shell真实 metadata/playback/seek smoke通过；production Chat page/跨进程 vertical smoke 未运行 |
 | AC-012/real provider | BLOCKED | capability 未证、未授权付费调用 |
@@ -638,8 +681,8 @@ S9A implementation digests 未变。
 | File preview/save boundary | Pattern 1.3.0 + S8A native `bf5452...` + S8B component `4d0238...` PASS；current-v3 plain/CSV/JSON bounded renderer/search + PDF/XLSX fallback + five-MIME native save UX | production page/visual remains S10；Markdown requires G2/G2A reopen or remains deferred/AC-005 PARTIAL |
 | Report projection/save/renderer | Pattern 1.4.0 S9 readiness docs PASS；S9A `232ea6ce...` projection/save PASS；Pattern 1.5.0 readiness docs PASS；S9B-D `0a36ca7...` dependency/theme/closed adapter/card PASS；S9B-R `6bcc2a6b...` reusable renderer/chart/save + real-browser harness PASS | production Chat page + real Tauri report vertical仍 `NOT RUN`，属 S10 |
 | UI/visual/a11y/performance | S5 generic + S6B image + S7B video + S8B file unit/component/axe/reduced-motion PASS；real video media lifecycle PASS；full manual visual/performance NOT RUN | S10 |
-| Local synthetic E2E | S10A cross-process profile/GET/ACK runner PASS；production Chat vertical NOT RUN | S10B-E |
-| S10 keyless/single-v3/page/vertical/security-perf | S10A keyless PASS；S10B-E NOT RUN | next only S10B after separate authorization |
+| Local synthetic E2E | S10A cross-process profile/GET/ACK runner PASS；S10B real loopback mixed-v3 native coordinator/ACK recovery PASS；production Chat vertical NOT RUN | S10C-E |
+| S10 keyless/single-v3/page/vertical/security-perf | S10A keyless + S10B single-v3/atomic/private-event PASS；S10C-E NOT RUN | next only S10C after separate authorization |
 | MiniMax/video/file/report real producer | BLOCKED | S12，需单独 authority/eval |
 | Deployment/production rollback | N/A current local-only scope; gates NOT PASSED | G5/G6 |
 
@@ -727,7 +770,7 @@ slice 的未验证范围，未被降级为已接受风险。
 | Unknown report section | contract 限 `required=false`、128 KiB、depth 8、opaque；S9A projection 只允许 unsupported marker | native/renderer 返回、遍历、搜索或执行 original type/payload 即阻断 |
 | S9B-D dependency/theme | exact `echarts@6.1.0`/3-node lock/NOTICE/static Canvas/import/bundle/theme/adapter/card 已在 `0a36ca7...` 实现并通过 18-case real-browser matrix；checker repair `aec0f8a...` 固定历史 scope 并保护 immutable D boundary | S9B-R 若要求额外 package、full/dynamic/CDN import、arbitrary option、外部 origin或突破 frozen bundle/table/dispose边界，或改变 protected D 文件，立即停止并回滚 R |
 | S9B-R renderer | `6bcc2a6b...` separate PASS；当前 projection 无 unit/data source/time range，UI 固定显示“报告未提供”；18-case test-only real browser PASS | production Chat/Tauri vertical仍待 S10；若要求推断/新契约字段或 protected/native/config drift则重开 G2/G2A/相应 review |
-| S10 production seam | S10A 已解除 exact keyless synthetic+fake/sidecar mapping/runner blocker；Desktop仍只消费v2、Artifact apply/cursor非原子、Chat/Page未集成 | 只允许在单独授权后执行 S10B native-live；任何 key/provider/non-loopback/public pin/fixture/migration/config widening立即停止 |
+| S10 production seam | S10A exact keyless profile与 S10B single-v3/atomic cursor/private invalidation 已独立 PASS；ChatClient/Store/Page与 production vertical仍未集成 | 下一步只允许单独授权 S10C-PAGE；任何 key/provider/non-loopback/public pin/fixture/migration/config widening立即停止 |
 | Real MiniMax image | blocked | 固定 capability/API/model、费用与 bounded eval 单独获批 |
 | Real video/file/report | blocked | 每 kind 形成 producer/ownership/security contract 后单独评审 |
 
@@ -752,6 +795,6 @@ slice 的未验证范围，未被降级为已接受风险。
 - S9B-READINESS：Pattern 1.5.0 `630c3c8...` 为 docs-only PASS；S9B-D `0a36ca7...`、
   S9B-D-CHECKER-REPAIR `aec0f8a...` 与 S9B-R `6bcc2a6b...` 已分别独立 `PASS`；canonical JSON save only，derived export deferred。
 - S10-READINESS：Pattern 1.6.0 `c1095eeb...` 为 docs-only PASS；FEAT126 compile-guard repair `c257fe9...`、consumer
-  digest refresh `3e5a383...` 与 S10A Host `0debd877...`/Desktop `f4a3d42...` 已分别独立 `PASS`。
-- Code Complete：否；S10B-E/S11、production vertical、full performance 与 independent review 尚未完成。
-- 当前状态：`G3 PASS only for S3/S4/S5 / S6-S9B-R + FEAT126 guard/digest + S10A separate PASS / S10B-E NOT RUN / production vertical NOT RUN / real providers closed / G4-G6 not passed`。
+  digest refresh `3e5a383...`、S10A Host `0debd877...`/Desktop `f4a3d42...` 与 S10B Desktop `f787d70...` 已分别独立 `PASS`。
+- Code Complete：否；S10C-E/S11、production vertical、full performance 与 independent review 尚未完成。
+- 当前状态：`G3 PASS only for S3/S4/S5 / S6-S10B + FEAT126 guard/digest separate PASS / S10C-E NOT RUN / production vertical NOT RUN / real providers closed / G4-G6 not passed`。

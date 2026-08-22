@@ -3,7 +3,7 @@
 ## 1. 实施原则
 
 - G2 已于 2026-08-20 由段成威明确批准，随后先执行 Contracts S1-S2，再只做 S2P exact pin preflight。
-- Feature 总体 `contract-impact = semantic`；G2A 在真实 generate、双基线 breaking、semantic review、immutable commit 和 downstream exact pin 全部通过后获批。随后严格先完成 Host S3、Desktop S4 与 Desktop S5；三者均通过 G3 slice gate。S6A/S6B、S7F、S7A、S7A-REPAIR、S7B、S8A、S8B、S9A、S9B-D、S9B-D-CHECKER-REPAIR 与 S9B-R 已在后续独立用户授权下分别完成，但均不扩展 G3，也不改变公共 Contracts/Host/pin。
+- Feature 总体 `contract-impact = semantic`；G2A 在真实 generate、双基线 breaking、semantic review、immutable commit 和 downstream exact pin 全部通过后获批。随后严格先完成 Host S3、Desktop S4 与 Desktop S5；三者均通过 G3 slice gate。S6A/S6B、S7F、S7A、S7A-REPAIR、S7B、S8A、S8B、S9A、S9B-D、S9B-D-CHECKER-REPAIR、S9B-R、S10A-LOCAL-PROFILE 与 S10B-NATIVE-LIVE 已在后续独立用户授权下分别完成，但均不扩展 G3，也不改变公共 Contracts/Host/pin。
 - 一次只完成一个可独立验证的行为；不把 v3 协议、媒体存储、native save 和四类 UI 一次混成大 diff。
 - 先建立失败 fixture/测试，再实现最小能力；每个 kind 独立 flag，默认关闭。
 - 不新增云资源、远程 URL、真实付费调用、通用 filesystem/shell capability 或第二套 UI 库。
@@ -36,8 +36,8 @@ S0 Owner G2 approval (PASS)
                                          -> S9B-D-CHECKER-REPAIR historical-scope + immutable-boundary audit (PASS separate slice)
                                             -> S9B-R ready-report renderer/save UX (PASS separate slice)
                                                -> S10-READINESS + S9-SPEC-RECONCILIATION (PASS docs only)
-                                                  -> S10A-LOCAL-PROFILE exact keyless Host/sidecar profile
-                                                     -> S10B-NATIVE-LIVE single-v3/atomic cursor/private invalidation
+                                                  -> S10A-LOCAL-PROFILE exact keyless Host/sidecar profile (PASS separate slice)
+                                                     -> S10B-NATIVE-LIVE single-v3/atomic cursor/private invalidation (PASS separate slice)
                                                         -> S10C-PAGE history/store/production ChatPage integration
                                                            -> S10D-VERTICAL real Tauri + fresh Host vertical
                                                               -> S10E-SEC-PERF adversarial/boundary/performance
@@ -203,7 +203,8 @@ S10-S12 未获授权。push、PR、tag、release 与真实 provider 继续关闭
 | FEAT126-DRIVER-COMPILE-GUARD-REPAIR | `c257fe9e31979cc3f2f426ab1cb7c11ce8781732` | five compile-only function-item references；不调用/注册 production surface | 67+29 dead-code RED；262 pass/3 ignored + four clippy matrix GREEN | `chat/mod.rs` only | PASS AS SEPARATE REPAIR |
 | FEAT126 guard consumer digest refresh | `3e5a3830a34718bf7bf0632cc71fc4c4ab9ea4b7` | v2 readiness + v3 runtime-gate internal SHA/checker constants only | stale digest RED；2 files/7 + full 59/373 GREEN | public Contracts identity unchanged | PASS AS SEPARATE REPAIR |
 | S10A-LOCAL-PROFILE | Host `0debd877a4afe1bf2da8c988caeb1124d0fa7272` + Desktop `f4a3d42ad837ecdc8a8ba4198b269d4717285791` | exact keyless Host profile、sidecar child flags、compile-time-off runner | Host/Desktop full gates + post-commit lifecycle/GET/ACK 4/4/4/4/4、zeroProvider/nonLoopback/cleanup PASS | no live/page/public wire/pin/fixture drift | PASS AS SEPARATE SLICE |
-| S10B-S10E | N/A | none | NOT RUN | 必须逐片授权与 immutable predecessor PASS | WAIT/PENDING |
+| S10B-NATIVE-LIVE | `f787d70b4cfb51cde76bdce047ba630f4b7b1250` | single-v3 common order、Artifact/assistant/cursor SQLCipher 原子提交、completed network-outside-tx + ready/BLOB/ACK-intent/cursor、pending ACK restart recovery、closed content-free private invalidation + typed parser/client | missing typed boundary EXPECTED RED；2 files/6 TS、14/17+1 ignored/10/23/9 Rust focused、234+3 ignored all-target、四组 Clippy、61 files/379 full、build/docs/checker/runner/Host read-only gates PASS | Desktop-private semantic change；只刷新 7 个实际变更 implementation SHA 与 v2 adapter/readiness SHA；Contracts `ea48fe...`、Host/public wire、migration/config/dependency/Page/Store unchanged | PASS AS SEPARATE SLICE |
+| S10C-S10E | N/A | none | NOT RUN | 必须逐片授权与 immutable predecessor PASS | WAIT/PENDING |
 | S11 | N/A | none | NOT RUN | independent review需 S10E PASS 与单独授权 | PENDING |
 | S12 | N/A | none | BLOCKED | separate real-provider authority required | BLOCKED |
 
@@ -246,8 +247,8 @@ S10-S12 未获授权。push、PR、tag、release 与真实 provider 继续关闭
 | Technical/Governance Owner | 段成威 | Historical S9B-D-CHECKER-REPAIR completion：固定历史 scope + immutable D protection；S9B-R later separate PASS | 2026-08-21 |
 | Product/Technical/Security/Data Owner | 段成威 | S9B-R 已按显式授权完成并独立 PASS：只消费 immutable S9A/S9B-D boundary；explicit open、bounded chart enhancement、visible table、clear/dispose 与 canonical save UX；production vertical 留待 S10 | 2026-08-21 |
 
-G2、G2A 与 S3/S4/S5 的 G3 slice gate 均已通过；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A/S9B-D/S9B-D-CHECKER-REPAIR/S9B-R 也分别形成 immutable PASS，
-但不并入 G3。S10-S12 继续关闭。真实 provider、tag、push、release 和生产能力继续关闭，G4 不通过。
+G2、G2A 与 S3/S4/S5 的 G3 slice gate 均已通过；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A/S9B-D/S9B-D-CHECKER-REPAIR/S9B-R/S10A/S10B 也分别形成 immutable PASS，
+但不并入 G3。S10C-S12 继续关闭。真实 provider、tag、push、release 和生产能力继续关闭，G4 不通过。
 
 ## 11. 已执行 Codex 指令：S6A（历史证据）
 
@@ -746,7 +747,7 @@ Contracts/Host/pins、src-tauri、config、pages、stores 与 dependencies 均�
 
 ## 23. 已执行指令：S10A-LOCAL-PROFILE
 
-本节授权的首个最小 S10 slice 已执行；S10B-E 继续 WAIT/NOT RUN。开始前必须检查 Host/Desktop/yijie 工作树并保护用户改动，
+本节记录 S10A 执行时的历史范围；S10B 当时 WAIT/NOT RUN，后在独立授权下完成；S10C-E 仍 WAIT/NOT RUN。开始前必须检查 Host/Desktop/yijie 工作树并保护用户改动，
 完整阅读四仓 AGENTS、Pattern 1.6.0 §§9.14-9.19 与 FEAT 03/05/06/07/08/feature。contract impact=`none`：
 只新增默认关闭的 test/config profile，不改 public/private wire、fixture、pin 或 production Artifact behavior。
 
@@ -807,7 +808,7 @@ git diff --check
 
 若任何真实 key/provider/non-loopback 请求、public contract/pin/fixture、dependency/CSP/capability/migration/config widening、
 secret/path/body evidence 或 cleanup residue 出现，停止且不得提交。全部通过后分别审计 Host/Desktop diff，各创建一笔本地
-原子 commit，不 push；随后只更新 FEAT 07/08/10/feature.yaml，记 S10A separate PASS、S10B-E WAIT、G3 exact
+原子 commit，不 push；随后只更新 FEAT 07/08/10/feature.yaml；该历史捕获记录 S10A separate PASS、S10B-E WAIT、G3 exact
 S3/S4/S5、G4 pending，并创建一笔治理 commit。
 
 执行中，旧 `feat126-s10-driver` 的 compile guard 因 S6 image private protocol 与 S7 video command/protocol 后续新增而发生
@@ -832,4 +833,38 @@ started/progress/completed/ACK=`4/4/4/4`，所有 Host full gates PASS；Desktop
 `cleanup=true`；Host source=`0debd877a4afe1bf2da8c988caeb1124d0fa7272`，Host binary SHA-256=
 `ad2e23492d82da77e189249c919187fc23f357c78d4e47116f26a26854c07bd5`，fake binary SHA-256=
 `44a4f59bfa234257f0ea1060e59f032a35c949cf769b3a94581604429d5935d5`。S10A 只记 separate PASS；S10B
-仍须独立授权，S10C-E 继续等待，G3/G4 不变。
+随后在独立授权下完成，S10C-E 继续等待，G3/G4 不变。
+
+## 24. 已执行指令：S10B-NATIVE-LIVE
+
+本切片从 Desktop `f4a3d42ad837ecdc8a8ba4198b269d4717285791` 开始，先形成 typed parser/client 不存在的
+EXPECTED RED，再在允许的 native/private 范围实现：Artifact flag 开启时只消费
+`/v3/agent-sessions/{id}/events?event_schema_version=3`；common decoder 一次解析共享 envelope，并让普通事件与
+Artifact 事件进入同一 stream/sequence/eventId 连续域。flag 关闭时仍走原 single-v2；既有持久化 Artifact
+metadata 与授权 preview/save 只读能力不变。
+
+SQLCipher 原子边界实际实现为：started/progress/failed 将 pending assistant projection、Artifact 状态与 v3 cursor
+放在同一 transaction；completed 在下载前先持久化前序 ordinary progress，进入 transferring 后不推进 completed
+cursor，网络下载/校验期间不持 transaction，最后将 ready BLOB、ACK intent 与 completed cursor 一次提交。ACK 只在
+commit 后发送；真实本地 HTTP 测试先令 ACK 返回 500，证明 ready 与 pending intent 已 durable，再用新的 Host bridge
+恢复同一 pending ACK 并清空 intent。validation/resource failure 仍以失败状态与 cursor 原子提交，identity/digest/MIME/
+size/state/sequence/terminal 检查未弱化。
+
+新增 Desktop-private `yijie:chat:artifact:changed:v1` closed schema、每 subscription canonical uint64 decimal sequence 与
+64-entry queue：payload 仅有 `artifact_changed {}`、`resync_required` 的三个固定 reason、`context_invalidated` 的
+`authority_changed`。只向 current main WebView、current authorized context/session subscription 发 content-free 通知；
+emit failure 不回滚 durable state，history v3 是 restart/resync authority。TS 仅新增 closed parser 与 listen/unlisten client，
+未读 history、未写 store、未挂 Page/Component。
+
+最终 Desktop 原子提交：`f787d70b4cfb51cde76bdce047ba630f4b7b1250`，未 push。focused TS 为 2 files/6 tests；
+Rust focused 为 host_bridge 14、application 17 passed/1 ignored、artifact 10、database 23、ipc 9；all-target 为
+234 passed/3 ignored。default、`feat126-s10-driver`、`feat128-s7b-runtime`、`feat128-s10-runtime` 四组 Clippy
+均以 `-D warnings` PASS；checker/generate、lint、61 files/379 tests、build、docs、diff 全部 PASS。S10A runner 回归为
+started/progress/completed/GET/ACK=`4/4/4/4/4`、zeroProvider/zeroNonLoopback/cleanup=true；Host read-only
+`contract-check/test/runtime-test/diff` 全部 PASS。
+
+仅刷新实际变更的 Desktop internal consumer SHA：`artifact.rs` `e25d15c8...`、`host_bridge.rs` `da621e8b...`、
+`database.rs` `3e2c591e...`、`worker.rs` `47decb75...`、`ipc.rs` `421f49ea...`、`application.rs`
+`950aed2c...`、`mod.rs` `76731f70...`，以及 v2 adapter/readiness 对应同值。Contracts `full_commit`
+`ea48fe190e18afba728712d1e2cc79cda57f581b`、source/resource tree/fixture/version/operation/schema 与 Host 均未改变。
+S10B 只记 G3 外 separate PASS；S10C-E、production Page/vertical、S11-S12 均未启动，G4 pending。
