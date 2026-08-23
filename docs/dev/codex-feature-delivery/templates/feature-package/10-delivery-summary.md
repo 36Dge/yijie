@@ -25,6 +25,14 @@
 |---|---|---:|---:|---:|---|
 | TBD | TBD | TBD | TBD | TBD | TBD |
 
+### 最终 E2E 分层结论
+
+| Verdict | Result | Full commit/platform/harness | Freshness | Evidence |
+|---|---|---|---|---|
+| core_vertical | PASS/FAIL/NOT RUN/N/A | TBD | TBD | TBD |
+| accessibility_visual | PASS/FAIL/NOT RUN/N/A | TBD | TBD | TBD |
+| teardown | PASS/FAIL/NOT RUN/N/A | TBD | TBD | TBD |
+
 ## 5. 安全与审计抽查
 
 | 项目 | Trace/request/task/session 标识 | 结果 | Evidence |
@@ -64,6 +72,9 @@
 - 出现的返工/缺陷：TBD
 - 根因：TBD
 - 要沉淀为测试/CI/Skill/AGENTS 规则的改进：TBD
+- 触发过的三次同类失败熔断与 RCA：TBD
+- 问题归类（product/harness/platform/gate）：TBD
+- G2V 是否足够早暴露关键风险；若未暴露，缺失边界：TBD
 
 ## 11. 关闭批准
 

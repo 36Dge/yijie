@@ -73,7 +73,22 @@ TBD producer
 |---|---|---|---|
 | TBD | TBD | TBD | TBD |
 
-## 10. 初步交付顺序
+## 10. G2V 与 Runtime Harness 适用性
+
+- Workflow 变化：`TBD`（`none | internal | user_visible`）
+- UI 变化：`TBD`（`none | visual | interactive`）；accessibility/visual applicability 以此字段判定
+- G2V 是否 required：TBD
+- 触发原因（high/critical、跨仓/进程、契约、持久化/重放、Runtime、认证/权限、用户可见 workflow）：TBD
+- 真实目标平台/Runtime：TBD
+- Production bootstrap/entrypoint：TBD
+- 最小代表性合成或授权数据：TBD
+- 禁止的 mock/seed/bypass：TBD
+
+| Harness ID | 当前入口 | 是否 production bootstrap | Qualification 状态 | 不可变引用 | 已知缺口 |
+|---|---|---|---|---|---|
+| H-VERTICAL-001 | TBD | yes/no | NOT RUN | TBD | TBD |
+
+## 11. 初步交付顺序
 
 ### 合并顺序
 
@@ -87,7 +102,7 @@ TBD producer
 
 1. TBD
 
-## 11. 阻塞项与 Spike
+## 12. 阻塞项与 Spike
 
 | ID | 未知项 | 允许的只读/隔离验证 | 禁止副作用 | Owner | 结论 |
 |---|---|---|---|---|---|

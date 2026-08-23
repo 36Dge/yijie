@@ -68,7 +68,8 @@ TBD
 | 里程碑 | 目标日期 | Owner | 状态 |
 |---|---|---|---|
 | G0 需求建档 | TBD | TBD | Pending |
-| G2 可开始实现 | TBD | TBD | Pending |
+| G2 契约候选/最小纵向实现就绪 | TBD | TBD | Pending |
+| G2V 最小真实纵向可行性 | TBD | TBD | Pending |
 | G4 Code Complete | TBD | TBD | Pending |
 | G5 Production Ready | TBD | TBD | Pending |
 | G6 Delivery Complete | TBD | TBD | Pending |

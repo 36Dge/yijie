@@ -13,7 +13,11 @@
 - [ ] 正常、边界、非法输入和错误路径测试通过
 - [ ] 事务、并发、幂等、超时、取消、重试、限流和部分失败已处理
 - [ ] Unit、Integration、Contract/Conformance 和适用 E2E 通过
+- [ ] 所有 required slices 的 `G3/<slice-id>` 均 PASS，prerequisites 与 evidence freshness 仍有效
+- [ ] final `core_vertical`、`accessibility_visual`、`teardown` 分别 PASS 或有真实 `N/A + Owner 理由`
 - [ ] Flaky 测试已调查；没有“重跑到绿”
+- [ ] runtime harness 已资格验证；harness/platform/gate failure 没有被冒充 product failure
+- [ ] 没有开放的三次同类失败熔断、未完成 RCA 或未经批准的第四次尝试
 - [ ] Snapshot/golden/fixture 差异已经人工审阅
 
 ## 契约与数据
@@ -47,6 +51,7 @@
 - [ ] P0/P1 清零；P2 已修复或有 Owner、期限和批准
 - [ ] 最终验证记录了 command、cwd、SHA、工具版本、时间、退出码和日志
 - [ ] 未执行项被标记为 `NOT RUN`，风险和补验证条件明确
+- [ ] Temporal Contract Matrix 的阻断 invariants 均有 executable PASS evidence
 - [ ] 工作区无未知改动、秘密、本机路径或临时文件
 
 ## Done 结论

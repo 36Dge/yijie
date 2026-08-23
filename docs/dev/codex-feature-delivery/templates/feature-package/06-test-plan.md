@@ -95,7 +95,38 @@
 
 命令必须来自仓库脚本或 CI 配置；示例命令不能被当作真实能力。
 
-## 12. 通过、失败与 Flaky 策略
+## 12. Runtime Harness Qualification
+
+| Harness ID | Full commit/digest | Real platform | Production bootstrap | Positive control | 4 negative controls | Timeout | Cleanup/content-free | Result |
+|---|---|---|---|---|---|---|---|---|
+| H-VERTICAL-001 | TBD | TBD | yes/no | TBD | TBD | TBD | TBD | NOT RUN |
+
+Harness 成为阻断证据前必须证明 closed、content-free verdict 能唯一分类：
+
+| Failure class | 判定条件 | Control/Test ID |
+|---|---|---|
+| product_failure | qualified harness 抵达正确生产观测点后产品行为违约 | TBD |
+| harness_failure | controller/fixture/assertion/evidence transport/orchestration 自身失败 | TBD |
+| platform_failure | OS/WebView/Runtime/环境前置条件失败 | TBD |
+| gate_failure | checker/allowlist/治理规则错误拒绝合法证据 | TBD |
+
+无法分类时保持 `DIAGNOSIS_REQUIRED`，不得猜成 product failure。
+每个 control 必须有独立 `08-verification-report.md#<EVIDENCE-ID>`，negative control 的
+`observed_class` 必须与被注入的四类之一精确相等；qualification 还必须记录 exact command、environment、
+exit code、验证时间、harness full commit 和 digest。
+
+## 13. G2V 与最终 E2E 独立 Verdict
+
+| Verdict | 阶段 | Required | Exact command/environment | Pass 条件 | Evidence freshness | 当前结果 |
+|---|---|---|---|---|---|---|
+| G2V minimal core | 大规模实现前 | yes/no | TBD | 真实平台 + production bootstrap + 最小代表性数据 + cleanup | TBD | NOT RUN |
+| core_vertical | G4 前 | yes/no | TBD | 完整关键用户纵向结果 | TBD | NOT RUN |
+| accessibility_visual | G4 前 | yes/no | TBD | axe/键盘/焦点/视口/主题/截图 | TBD | NOT RUN |
+| teardown | G4 前 | yes/no | TBD | process/connection/WAL/spool/temp/listener/handle/run-root cleanup | TBD | NOT RUN |
+
+三个最终 verdict 独立保存；一项 PASS 不得覆盖另一项 `FAIL/NOT RUN`。
+
+## 14. 通过、失败、Flaky 与三次熔断策略
 
 - PASS：命令完成、退出码与断言符合预期；
 - FAIL：任何阻断断言失败；
@@ -103,7 +134,14 @@
 - Flaky：先调查根因，不允许“重跑到绿”作为通过证据；
 - Snapshot/golden：必须人工审阅语义 diff。
 
-## 13. 测试计划批准
+同类失败 fingerprint：`feature + slice + gate + evidence/harness ID + owner layer + stable failure code/checkpoint`。
+第三次出现后进入 `RCA_REQUIRED`，禁止第四次重试、自动 retry、延长 timeout、改名清零或继续局部补丁。
+
+| Incident ID | Fingerprint | Attempt 1 | Attempt 2 | Attempt 3 | RCA evidence | Product/Harness/Platform/Gate | Owner-approved single next action |
+|---|---|---|---|---|---|---|---|
+| RCA-001 | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
+
+## 15. 测试计划批准
 
 | 角色 | 姓名 | 结论 | 日期 |
 |---|---|---|---|

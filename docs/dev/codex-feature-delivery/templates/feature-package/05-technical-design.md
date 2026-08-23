@@ -30,6 +30,8 @@ TBD client
 
 1. TBD
 
+时序不变量和 executable Test ID 以 `04A-temporal-contract-matrix.md` 为准；本节不得建立第二套冲突事实。
+
 ## 4. 状态模型
 
 | 当前状态 | 事件 | 条件 | 新状态 | 副作用 | 非法处理 |
@@ -102,7 +104,20 @@ TBD client
 - 配置验证：TBD
 - 新旧版本共存窗口：TBD
 
-## 12. AI 功能专项
+## 12. 最小 Production Vertical 与 Harness 边界
+
+- G2V 适用结论：TBD
+- 真实目标平台/Runtime：TBD
+- Production bootstrap/entrypoint：TBD
+- 最小代表性数据：TBD
+- 覆盖的 producer/boundary/persistence/consumer/user result：TBD
+- 明确禁止的 DB/Store seed、替代路由、第二 App、mock/bypass：TBD
+- Harness ID 与不可变 commit/digest：TBD
+- Harness default-off 与隔离方式：TBD
+- `product_failure / harness_failure / platform_failure / gate_failure` 的 closed 判定：TBD
+- Process/connection/checkpoint/WAL/spool/temp/listener/handle/run-root teardown 顺序与 Owner：TBD
+
+## 13. AI 功能专项
 
 - 是否改变 prompt/model/retrieval/tool schema：TBD
 - 固定版本：TBD
@@ -112,14 +127,14 @@ TBD client
 - Eval 计划引用：TBD
 - 非 AI 功能写 `N/A + 理由`。
 
-## 13. 方案比较
+## 14. 方案比较
 
 | 方案 | 优点 | 缺点 | 风险 | 结论 |
 |---|---|---|---|---|
 | A | TBD | TBD | TBD | TBD |
 | B | TBD | TBD | TBD | TBD |
 
-## 14. ADR 与批准
+## 15. ADR 与批准
 
 - ADR：TBD
 - 技术负责人：TBD

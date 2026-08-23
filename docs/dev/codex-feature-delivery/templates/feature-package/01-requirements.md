@@ -43,6 +43,7 @@
 - 超时、取消、重试、断线和部分失败；
 - 重复、乱序、幂等和并发；
 - 旧版本、旧数据和未知字段/枚举（适用时）。
+- producer、durable commit、notification、replay、terminal 和 cleanup 的用户可观察顺序（适用时）。
 
 ## 5. 状态与错误语义
 

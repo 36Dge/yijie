@@ -27,13 +27,13 @@ feature_id="$1"
 feature_slug="$2"
 output_root="${3:-$PWD/features}"
 
-if [[ ! "$feature_id" =~ ^[A-Za-z0-9._-]+$ ]]; then
-  echo "ERROR: FEATURE_ID 只能包含字母、数字、点、下划线和连字符。" >&2
+if [[ ! "$feature_id" =~ ^FEAT-[0-9]+$ ]]; then
+  echo "ERROR: FEATURE_ID 必须匹配 FEAT-<数字>。" >&2
   exit 2
 fi
 
-if [[ ! "$feature_slug" =~ ^[a-z0-9][a-z0-9._-]*$ ]]; then
-  echo "ERROR: FEATURE_SLUG 必须以小写字母或数字开头，且只能包含小写字母、数字、点、下划线和连字符。" >&2
+if [[ ! "$feature_slug" =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]]; then
+  echo "ERROR: FEATURE_SLUG 必须是小写 kebab-case。" >&2
   exit 2
 fi
 
@@ -72,4 +72,6 @@ echo
 echo "Next:"
 echo "  1. 先完成 00—07 文档并通过 G2。"
 echo "  2. 执行：$script_dir/check-feature-package.sh --gate G2 \"$target_dir\""
-echo "  3. G2 通过后，契约变更先完成 Gate 2A，再开始下游业务代码实现。"
+echo "  3. G2 后先完成适用 G2A、runtime harness qualification 和真实最小 Walking Skeleton。"
+echo "  4. 执行：$script_dir/check-feature-package.sh --gate G2V \"$target_dir\""
+echo "  5. G2V 后逐切片执行：$script_dir/check-feature-package.sh --gate G3 --slice S1 \"$target_dir\""

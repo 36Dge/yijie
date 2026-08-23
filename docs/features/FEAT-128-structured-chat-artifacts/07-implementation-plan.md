@@ -915,8 +915,9 @@ test profile。故 S10D 必须拆为 H/V，先单独闭合 harness/platform life
 
 - 只有 fresh exact Host/fake/Desktop binaries、S10A keyless loopback、真实 Tauri WebView、production App/router/ChatPage、
   production commands、S10B coordinator/SQLCipher/ACK、history v3/ArtifactStore 与四类 typed clients 同时经过，才叫 real vertical。
-- H 只证明一个 production walking skeleton：真实 UI 提交一个 turn，image/video/file/report 各一 stable shell 经
-  announced→progress→ready；不打开 renderer、不做 save、不声称 S10D PASS。
+- H 只证明一个 production walking skeleton：真实 UI 提交一个 turn；Host/native durable evidence 证明四类各自
+  announced→progress→ready，DOM 证明 image/video/file/report 四个当前 stable ready shell；不打开 renderer、不做 save、
+  不声称 S10D PASS。
 - V 等 H immutable PASS + 单独授权，才执行四 renderer、failure/order/history/restart/TTL/delete 与完整 visual/a11y matrix。
 - S10E 等 V PASS + 单独授权；readiness 不扩 G3，G4 pending。
 
@@ -942,7 +943,8 @@ test profile。故 S10D 必须拆为 H/V，先单独闭合 harness/platform life
 2. `feat128_s10d_runtime_checkpoint_v1`：只接受 closed stage
    `production_page_ready|four_shells_ready|screenshot_ready|axe_focus_ready`；返回 content-free ack。native 只把 current macOS
    window number 写入 exact 0600 run-root control file，不向 WebView 返回 window id/path。
-3. `feat128_s10d_runtime_finish_v1`：只接受 closed counts/booleans 与 stable failure class；native validate exact observation、
+3. `feat128_s10d_runtime_finish_v1`：只接受 DOM ready-shell closed counts/booleans 与 stable failure class；native 自己合并并验证
+   coordinator/SQLCipher durable lifecycle counts，validate exact observation、
    原子写 result 并触发 app exit；拒绝 ID/path/URL/header/name/MIME/body/digest/token/requestId/raw error/unknown key。
 
 controller 必须先等待 production router ready，再调用 prepare，然后让现有 PermissionStore 通过 production
@@ -963,13 +965,26 @@ controller 必须先等待 production router ready，再调用 prepare，然后�
   browser/Vite。runner 记录 screenshot SHA 后删除原图。
 - closed verdict exact root：`schemaVersion/status/failureCode/source{host,desktop,contracts}/binarySha256{host,fake,desktop}/
   profile{zeroProvider,zeroNonLoopback}/productionPath{realTauri,productionBootstrap,productionChatPage,productionCommands,
-  singleV3,sqlcipher,historyV3,artifactStore,typedClients}/lifecycle{announced,progress,ready,kinds}/
+  singleV3,sqlcipher,historyV3,artifactStore,typedClients}/
+  lifecycle{hostNative{announced,progress,ready,kinds},dom{domReadyShells,domKinds}}/
   ui{axeSeriousCritical,focusOrder,screenshotSha256}/cleanup{desktop,webContent,host,fake,listeners,wal,spool,temp,runRoot}`。
   禁止任何业务 identity、path/URL/header/requestId/name/MIME/正文/artifact digest/token/raw error；source/binary/screenshot SHA
   只是 test provenance。
 - teardown：controller terminal/resource release→close window→TERM Desktop→wait WebContent→Host→fake→检查 ports/PIDs/
   SQLCipher WAL/SHM/Host spool/temp/save residue→删除 root。DOM/Pinia/log/diagnostics/verdict 禁止 canary zero-hit；原始 log/
-  screenshot/control/result 只在 run root，最终全部删除。
+screenshot/control/result 只在 run root，最终全部删除。
+
+### 26.3.1 S10D-H terminal-order 与 evidence superseding decision（2026-08-23）
+
+- 已确认的根因不是 UI timeout，而是 Host `turn.completed` 可在 `StartTurn/StartTurnV2` response 完成 Bind/Accept 前到达；
+  Desktop single-v3 coordinator 看到 terminal 后正确结束 stream，因而不会消费 terminal 后才发布的 12 条 synthetic Artifact 事件。
+- strict-local synthetic profile 必须建立 per-turn terminal barrier：早到 terminal 只暂存，不执行 `CompleteTurn`、不进入 EventHub；
+  Bind/Accept 后精确一次发布四类各 started/progress/completed，全部成功后精确一次 flush terminal。失败、context cancellation、
+  identity conflict、cleanup/exit 清空 barrier 并 fail closed；禁止 sleep、Host 延时或 Desktop timeout 扩张。
+- H 的阶段证据由 Desktop native coordinator 在每条 Artifact event 完成 SQLCipher durable commit 后记录 exact 4/4/4；WebView
+  只提交四个当前 stable ready shell 的 content-free count。current history 与 current-state ArtifactStore 会合法合并快速连续事件，
+  因此 H 不再要求 announced/progress 各自产生独立 DOM frame，也不得用 observer 历史、伪造计数或 screenshot 猜测替代 native evidence。
+- 若 Product 坚持 UI 每阶段都必须可见，必须重开 S10C，设计有界、版本化 transition journal/projection；这不是 H repair。
 
 ### 26.4 测试先行、命令与停止条件
 

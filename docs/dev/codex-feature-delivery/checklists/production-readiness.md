@@ -5,6 +5,7 @@
 - [ ] 每个制品有 version/tag、完整 commit、digest 和来源
 - [ ] 制品从干净、不可变、可复现的 source 构建
 - [ ] Contract、Runtime、模型、Skill、Knowledge 和 migration 版本组合已固定
+- [ ] core vertical、accessibility/visual、teardown 三项最终 E2E evidence 均绑定当前制品/平台/harness，且仍 fresh
 - [ ] SBOM/provenance、依赖和许可证按组织要求完成
 - [ ] 配置、secret、权限和容量已经在目标环境确认
 
@@ -23,6 +24,7 @@
 - [ ] 每阶段观察窗口、成功阈值、停止阈值和决策人明确
 - [ ] Dashboard、告警、日志、trace 和审计在启用前可用
 - [ ] Smoke 覆盖关键用户结果且避免真实高风险副作用
+- [ ] runtime harness qualification 与 failure taxonomy 仍对应当前 harness digest/commit
 - [ ] 业务成功率、错误率、延迟、资源、成本和安全指标均有阈值
 - [ ] AI 功能有线上抽检、质量退化和成本/延迟阈值
 
@@ -40,6 +42,7 @@
 - [ ] G5 Production Ready 通过
 - [ ] 业务、技术、发布及条件性安全/数据批准真实存在
 - [ ] 所有 `NOT RUN` 与残余风险已由有权人接受
+- [ ] 没有开放的 `RCA_REQUIRED` 或被绕过的三次失败熔断
 
 ## 线上关闭
 

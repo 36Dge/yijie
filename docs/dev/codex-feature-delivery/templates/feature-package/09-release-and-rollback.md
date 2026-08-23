@@ -9,6 +9,10 @@
 ## 2. 发布前提
 
 - [ ] G4 Code Complete 通过
+- [ ] 所有 required per-slice G3 evidence 仍绑定当前制品与 prerequisites
+- [ ] final core vertical、accessibility/visual、teardown 三项适用 verdict 分别 PASS 且 fresh
+- [ ] runtime harness qualification 仍绑定当前 harness commit/digest
+- [ ] 无开放 `RCA_REQUIRED` 或未经批准的第四次同类失败尝试
 - [ ] Release artifact 可追溯且来自干净不可变 source
 - [ ] Config、secret、权限和容量准备完成
 - [ ] Migration/回填已在类生产环境演练
@@ -52,6 +56,9 @@
 | Smoke ID | 用户路径 | 输入/租户 | 预期 | 避免真实副作用方式 |
 |---|---|---|---|---|
 | SMOKE-001 | TBD | TBD | TBD | TBD |
+
+发布 smoke 不能替代 G4 前三项独立 E2E；若目标环境、制品、contract pin、bootstrap 或 harness
+发生会使证据失效的变化，必须按 freshness 规则重跑受影响 verdict。
 
 ## 8. 观测与告警
 

@@ -1,4 +1,4 @@
-schema_version: 1
+schema_version: 2
 
 feature:
   id: "{{FEATURE_ID}}"
@@ -16,17 +16,19 @@ scope:
   data_classification: "TBD" # public | internal | confidential | restricted
   contract_impact: "TBD" # none | additive | semantic | breaking
   database_change: "TBD" # none | expand | migrate | contract
+  persistence_change: "TBD" # none | durable | replay
+  runtime_change: "TBD" # none | runtime | platform
+  auth_permission_change: "TBD" # none | auth | permission | both
+  user_workflow_change: "TBD" # none | internal | user_visible
+  ui_change: "TBD" # none | visual | interactive
   ai_behavior_change: "TBD" # none | prompt | model | retrieval | tool | eval
 
 repositories: []
 
 immutable_references:
   baseline_commits: []
-  contracts:
-    version: "N/A"
-    full_commit: "N/A"
-    digest: "N/A"
-    generator: "N/A"
+  contracts: []
+  fixtures: []
   release_artifacts: []
 
 gates:
@@ -34,10 +36,228 @@ gates:
   G1_design_ready: "pending"
   G2_implementation_ready: "pending"
   G2A_contract_ready: "pending"
-  G3_slice_complete: "pending"
+  G2V_vertical_feasibility: "pending"
   G4_code_complete: "pending"
   G5_production_ready: "pending"
   G6_delivery_complete: "pending"
+
+gate_reasons:
+  G2A: "TBD"
+  G2V: "TBD"
+
+temporal_contract_matrix:
+  required: true
+  applicability_reason: "TBD"
+  exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" }
+  phases:
+    producer: { status: "required", reason: "TBD" }
+    persistence: { status: "required", reason: "TBD" }
+    notification: { status: "required", reason: "TBD" }
+    replay: { status: "required", reason: "TBD" }
+    terminal: { status: "required", reason: "TBD" }
+    cleanup: { status: "required", reason: "TBD" }
+  phase_exceptions: {}
+  scenarios:
+    - id: "FLOW-LIVE-001"
+      ordered_phases: ["producer", "persistence", "notification", "terminal", "cleanup"]
+    - id: "FLOW-REPLAY-001"
+      ordered_phases: ["persistence", "replay", "cleanup"]
+  invariants:
+    - id: "TINV-001"
+      statement: "TBD"
+      scenario_ids: ["FLOW-LIVE-001", "FLOW-REPLAY-001"]
+      slice_ids: ["S1"]
+      executable_tests: ["TCONF-001"]
+  executable_tests:
+    - id: "TCONF-001"
+      required: true
+      repository: "TBD"
+      command: "TBD"
+      slice_id: "S1"
+      status: "NOT RUN"
+      exit_code: null
+      verified_at: "NOT RUN"
+      commits: []
+      evidence_ref: "NOT RUN"
+      exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" }
+
+vertical_feasibility:
+  required: true
+  applicability_reason: "TBD"
+  exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" }
+  harness_id: "H-VERTICAL-001"
+  participating_repositories: []
+  platform: "TBD"
+  production_bootstrap: true
+  representative_data: "TBD"
+  critical_path: "TBD"
+  evidence:
+    commits: []
+    command: "NOT RUN"
+    environment: "NOT RUN"
+    exit_code: null
+    status: "NOT RUN" # PASS | FAIL | NOT RUN
+    verified_at: "NOT RUN"
+    harness:
+      id: "H-VERTICAL-001"
+      commit: "NOT RUN"
+      digest: "NOT RUN"
+    platform: "NOT RUN"
+    production_bootstrap: true
+    contract_refs: []
+    fixture_refs: []
+    refs: []
+
+runtime_harnesses:
+  - id: "H-VERTICAL-001"
+    purpose: "TBD"
+    commit: "NOT RUN"
+    digest: "NOT RUN"
+    default_enabled: false
+    real_platform: "TBD"
+    production_bootstrap: true
+    representative_data: "TBD"
+    failure_classes:
+      - "product_failure"
+      - "harness_failure"
+      - "platform_failure"
+      - "gate_failure"
+    qualification:
+      status: "NOT RUN" # PASS | FAIL | NOT RUN
+      verified_at: "NOT RUN"
+      command: "NOT RUN"
+      environment: "NOT RUN"
+      exit_code: null
+      positive_control:
+        status: "NOT RUN"
+        evidence_ref: "NOT RUN"
+      negative_controls:
+        product_failure: { status: "NOT RUN", observed_class: "NOT RUN", evidence_ref: "NOT RUN" }
+        harness_failure: { status: "NOT RUN", observed_class: "NOT RUN", evidence_ref: "NOT RUN" }
+        platform_failure: { status: "NOT RUN", observed_class: "NOT RUN", evidence_ref: "NOT RUN" }
+        gate_failure: { status: "NOT RUN", observed_class: "NOT RUN", evidence_ref: "NOT RUN" }
+      timeout_control: { status: "NOT RUN", evidence_ref: "NOT RUN" }
+      cleanup_control: { status: "NOT RUN", evidence_ref: "NOT RUN" }
+      content_free_verdict: { status: "NOT RUN", evidence_ref: "NOT RUN" }
+
+slices:
+  - id: "S1"
+    intent: "TBD"
+    required: true
+    prerequisites: []
+    commits: []
+    exception:
+      owner: "N/A"
+      approved_at: "N/A"
+      reason: "N/A"
+    local_evidence:
+      required: true
+      status: "NOT RUN" # PASS | FAIL | NOT RUN | N/A
+      command: "NOT RUN"
+      environment: "NOT RUN"
+      exit_code: null
+      verified_at: "NOT RUN"
+      refs: []
+      reason: "required for every implemented slice"
+      exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" }
+    boundary_evidence:
+      required: true
+      status: "NOT RUN"
+      command: "NOT RUN"
+      environment: "NOT RUN"
+      exit_code: null
+      verified_at: "NOT RUN"
+      refs: []
+      reason: "TBD"
+      exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" }
+    vertical_evidence:
+      required: true
+      status: "NOT RUN"
+      command: "NOT RUN"
+      environment: "NOT RUN"
+      exit_code: null
+      verified_at: "NOT RUN"
+      refs: []
+      reason: "TBD"
+      exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" }
+    freshness:
+      verified_at: "NOT RUN"
+      commits: []
+      contract_refs: []
+      fixture_refs: []
+      harness:
+        id: "H-VERTICAL-001"
+        commit: "NOT RUN"
+        digest: "NOT RUN"
+      platform: "NOT RUN"
+      production_bootstrap: true
+      invalidation_rule: "rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation reference changes"
+    status: "pending" # pending | pass | fail | blocked | not_applicable
+    status_reason: "awaiting implementation"
+
+final_e2e:
+  core_vertical:
+    required: true
+    reason: "TBD"
+    status: "NOT RUN" # PASS | FAIL | NOT RUN | N/A
+    command: "NOT RUN"
+    environment: "NOT RUN"
+    exit_code: null
+    verified_at: "NOT RUN"
+    commits: []
+    contract_refs: []
+    fixture_refs: []
+    harness:
+      id: "H-VERTICAL-001"
+      commit: "NOT RUN"
+      digest: "NOT RUN"
+    platform: "NOT RUN"
+    production_bootstrap: true
+    evidence_refs: []
+    exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" }
+  accessibility_visual:
+    required: true
+    reason: "TBD"
+    status: "NOT RUN"
+    command: "NOT RUN"
+    environment: "NOT RUN"
+    exit_code: null
+    verified_at: "NOT RUN"
+    commits: []
+    contract_refs: []
+    fixture_refs: []
+    harness:
+      id: "H-VERTICAL-001"
+      commit: "NOT RUN"
+      digest: "NOT RUN"
+    platform: "NOT RUN"
+    production_bootstrap: true
+    evidence_refs: []
+    exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" }
+  teardown:
+    required: true
+    reason: "TBD"
+    status: "NOT RUN"
+    command: "NOT RUN"
+    environment: "NOT RUN"
+    exit_code: null
+    verified_at: "NOT RUN"
+    commits: []
+    contract_refs: []
+    fixture_refs: []
+    harness:
+      id: "H-VERTICAL-001"
+      commit: "NOT RUN"
+      digest: "NOT RUN"
+    platform: "NOT RUN"
+    production_bootstrap: true
+    evidence_refs: []
+    exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" }
+
+failure_circuit_breaker:
+  same_failure_threshold: 3
+  policy: "third equivalent failure blocks retries and local patches until a root-cause audit produces discriminating evidence and an authorized next action"
+  incidents: []
 
 documents:
   brief: "00-feature-brief.md"
@@ -45,6 +265,7 @@ documents:
   impact: "02-impact-assessment.md"
   decisions_and_risks: "03-decisions-and-risks.md"
   contract_plan: "04-contract-change-plan.md"
+  temporal_contract: "04A-temporal-contract-matrix.md"
   technical_design: "05-technical-design.md"
   test_plan: "06-test-plan.md"
   implementation_plan: "07-implementation-plan.md"

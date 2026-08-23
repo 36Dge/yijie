@@ -1,6 +1,7 @@
-# Definition of Ready：何时可以开始业务代码开发
+# Definition of Ready：何时可以开始大规模业务代码开发
 
-只有以下项目全部满足，才可以从调查/设计进入正式业务实现。`N/A` 必须附理由。
+只有以下项目全部满足，才可以从调查/设计和最小 G2V Walking Skeleton 进入大规模正式业务实现。
+`N/A` 必须附理由。
 
 ## 需求与责任
 
@@ -23,6 +24,7 @@
 - [ ] `contract-impact` 已在 `none/additive/semantic/breaking` 中分类并说明理由
 - [ ] 权威源、producer、全部已知 consumers 和数据方向明确
 - [ ] 公共契约先设计；无手写影子 DTO 或第二权威源
+- [ ] Temporal Contract Matrix 覆盖 producer/persistence/notification/replay/terminal/cleanup 及 executable Test ID，或有 `N/A + Owner 理由`
 - [ ] 兼容、版本 pin、合并、部署、启用和回滚顺序明确
 - [ ] 架构变化有 Accepted ADR；不需要 ADR 时写明理由
 - [ ] 数据 migration 使用 expand/backfill/switch/contract 思路
@@ -42,15 +44,19 @@
 - [ ] 测试计划包含 Unit、Integration、Contract/Conformance 和适用 E2E
 - [ ] 安全、失败恢复、migration、性能、AI Eval 等专项已判定
 - [ ] 实现拆成可独立验证、可回滚的切片
-- [ ] 每个切片有允许/禁止范围、前置引用、验证命令和停止条件
+- [ ] 每个切片有允许/禁止范围、prerequisites、完整 commit 计划、local/boundary/vertical evidence、freshness、验证命令和停止条件
 - [ ] 相关仓库 baseline 已执行，既有失败已单独记录
+- [ ] runtime harness qualification 覆盖四类失败、positive/negative controls、timeout 与 cleanup
+- [ ] G2V 适用性、真实平台、production bootstrap、最小代表性数据和 Walking Skeleton 已冻结
 
 ## Ready 结论
 
 - [ ] G0、G1、G2 均通过
 - [ ] 若 `contract-impact != none`，Gate 2A 的真实 generate/lint/test/breaking、语义评审和不可变 pin 已通过
+- [ ] G2V 已 PASS；不适用时有 Technical Owner 的 `N/A + 可复核理由`
 - [ ] 需求负责人确认业务语义
 - [ ] 技术负责人确认实现可开始
 - [ ] 高风险领域 Owner 完成条件性批准
 
-任一项缺失：允许继续只读调查或隔离 Spike。G2 通过后可以执行契约候选切片；下游 provider/consumer 业务实现必须同时满足适用的 Gate 2A。
+任一项缺失：允许继续只读调查或隔离 Spike。G2 通过后可以执行契约候选；适用 G2A 后只允许
+最小 G2V Walking Skeleton。大规模 provider/consumer 业务实现必须同时满足 G2V。

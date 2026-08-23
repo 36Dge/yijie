@@ -240,6 +240,7 @@ Then 返回 UTF-8 CSV，包含 50 条授权范围内的记录，审计一次导�
 | 文档 | 作用 | 如何生成 |
 |---|---|---|
 | `04-contract-change-plan.md` | 保存契约分类、权威源、consumer 和方向性发布计划 | Codex 根据影响扫描起草，Contracts/Consumer Owner 评审 |
+| `04A-temporal-contract-matrix.md` | 固定 producer、持久化、通知、replay、terminal、cleanup 的顺序与不变量 | 从真实调用链建立 Phase/Invariant/Test ID，Producer/Persistence/Consumer Owner 评审 |
 | OpenAPI/Proto/Schema/Event 设计稿 | 让各方在编码前审查边界语义 | 从权威源结构起草；在此阶段不手写下游 DTO |
 | Compatibility Test Plan | 规定如何证明结构与实现方向兼容 | 列出真实 breaking、generate-drift、producer/consumer conformance 命令和基线 |
 
@@ -250,6 +251,7 @@ Then 返回 UTF-8 CSV，包含 50 条授权范围内的记录，审计一次导�
 - 不可变引用、generator、baseline 和 consumer pin 方案明确；
 - 不允许“先写临时 DTO，之后再补契约”；
 - 尚未执行的 generate/breaking/conformance 明确标记为 `NOT RUN`。
+- 每个阻断时序不变量已映射到能在错误实现下失败的 executable temporal conformance；完全不适用时记录 `N/A + Owner 理由`。
 
 ---
 
@@ -270,6 +272,8 @@ Then 返回 UTF-8 CSV，包含 50 条授权范围内的记录，审计一次导�
 - migration、双读/双写、回填和回滚；
 - 容量、性能、费用和降级；
 - feature flag、灰度和兼容窗口。
+- 最小 production vertical、production bootstrap、真实平台与 runtime harness 的边界；
+- process、连接、WAL/spool/temp、handle 与 run-root 的 teardown 所有权和顺序。
 
 ### 输出文档
 
@@ -308,6 +312,7 @@ Then 返回 UTF-8 CSV，包含 50 条授权范围内的记录，审计一次导�
 | Migration | 空库、旧数据、新旧 reader/writer 和回滚 |
 | AI Eval | 固定模型/数据/参数下的质量、安全和回归 |
 | Visual/Accessibility | 目标视口、键盘、焦点、主题和可读性 |
+| Harness Qualification | 证明 runtime harness 自身能区分 product/harness/platform/gate failure，并正确 cleanup |
 
 ### 输出文档
 
@@ -323,6 +328,8 @@ Then 返回 UTF-8 CSV，包含 50 条授权范围内的记录，审计一次导�
 - 负向、安全和失败场景不是事后补充；
 - 外部服务、真实账户和不可执行项已标注；
 - 测试不会访问未知生产资源。
+- G2V 所需 harness 的 positive/negative controls、超时、cleanup 与 content-free verdict 已设计；
+- 最终 E2E 已拆为 core vertical、accessibility/visual、teardown 三项独立 verdict。
 
 ---
 
@@ -334,18 +341,16 @@ Then 返回 UTF-8 CSV，包含 50 条授权范围内的记录，审计一次导�
 
 ### 推荐切片顺序
 
-1. 权威契约/类型；
-2. 纯领域逻辑；
-3. provider 接受能力；
-4. 持久化和 migration；
-5. adapter/handler；
-6. consumer 接入；
-7. UI 与状态；
-8. 集成/E2E；
-9. 观测与发布开关；
-10. 清理与文档。
+1. 权威契约/类型候选，并在适用时通过 G2A；
+2. 资格验证默认关闭的 runtime harness；
+3. 在真实平台和 production bootstrap 上完成最小纵向 Walking Skeleton，通过 G2V；
+4. 按用户结果拆分后续纵向切片，每个切片同步完成领域、provider、持久化、consumer/UI 中适用部分；
+5. 每个切片完成 local、boundary、vertical evidence 并通过自己的 G3；
+6. 完成观测、发布开关、兼容清理和文档；
+7. G4 前执行完整 core vertical、accessibility/visual、teardown 三项最终 E2E。
 
 实际顺序必须服从数据方向。例如新请求字段先 provider，新增响应 enum 先 consumer 容忍。
+不得先横向完成所有 provider/persistence/consumer/UI，最后才第一次运行真实 production vertical。
 
 ### 输出文档
 
@@ -368,6 +373,7 @@ Then 返回 UTF-8 CSV，包含 50 条授权范围内的记录，审计一次导�
 - 没有“大包实现整个功能”的任务；
 - 关键依赖和跨仓顺序明确；
 - 每个切片都有验证方法。
+- 每个切片明确 prerequisites、不可变 commit、required local/boundary/vertical evidence 与 freshness 失效规则。
 
 ---
 
@@ -397,6 +403,53 @@ Then 返回 UTF-8 CSV，包含 50 条授权范围内的记录，审计一次导�
 
 ---
 
+## 步骤 8A：资格验证 Harness 并通过 G2V
+
+### 目标
+
+在大规模实现前，用最小成本证明真实平台上的 production 组合方向成立，并先证明负责给出阻断
+结论的 runtime harness 本身可信。
+
+### 适用性
+
+风险为 high/critical，或涉及跨仓/进程、公共契约、持久化/重放、Runtime/平台、认证/权限、
+用户可见工作流语义时，G2V 必须执行。其他低风险场景由 Technical Owner 写
+`N/A + 可复核理由`。`contract-impact != none` 时必须先通过 G2A。
+
+### Harness Qualification
+
+在 harness 证据可以阻断产品门禁前，固定其 commit/digest、目标平台、production bootstrap、fixture
+和 closed evidence schema，并通过 positive control、negative controls、timeout 与 cleanup。结果必须互斥区分：
+
+- `product_failure`：qualified harness 已到达正确生产观测点，产品行为违反预期；
+- `harness_failure`：controller、fixture、断言、证据传输或编排本身失败；
+- `platform_failure`：OS/WebView/Runtime/环境前置条件不成立；
+- `gate_failure`：checker、allowlist 或治理规则错误拒绝合法实现/证据。
+
+后三类只能阻断验证，不得当成 product failure 后修改业务代码。无法唯一分类时保持
+`DIAGNOSIS_REQUIRED`，不得猜测。
+
+### G2V Walking Skeleton
+
+1. fresh build/固定真实制品；
+2. 真实目标平台和 production bootstrap/entrypoint；
+3. 最小代表性合成或已授权数据；
+4. 穿过适用 producer、边界、durable authority、consumer 和用户可观察结果；
+5. 验证错误传播与资源释放；
+6. 记录完整 commits、harness 引用、环境、命令、时间、结果和未覆盖风险。
+
+禁止用 browser-only、mock-only、第二个测试 App、直接 DB/Store seed、替代路由或伪造 DOM 结果
+满足 G2V。允许实现严格受限、默认关闭的最小 skeleton；它不授权大规模业务实现，也不替代最终 E2E。
+
+### 退出门禁
+
+- Harness Qualification PASS；
+- G2V PASS，或真实低风险 `N/A + Owner 理由`；
+- 失败能唯一归入四类之一，未覆盖风险已登记；
+- 未开始与最小 skeleton 无关的横向大规模实现。
+
+---
+
 ## 步骤 9：执行 Codex 小步实现循环
 
 ### 目标
@@ -414,6 +467,8 @@ Then 返回 UTF-8 CSV，包含 50 条授权范围内的记录，审计一次导�
   → 运行局部验证
   → 检查完整 diff/status
   → 更新验证证据
+  → 核对 boundary/vertical evidence freshness
+  → 通过 G3/<slice-id>
   → 再进入下一切片
 ```
 
@@ -430,7 +485,23 @@ Then 返回 UTF-8 CSV，包含 50 条授权范围内的记录，审计一次导�
   → 下游固定 version + full commit + digest + generator
 ```
 
-这一步必须在步骤 8 已记录的干净、可重复基线上执行。只有上述证据齐全，才通过 Gate 2A 并进入 provider/consumer 业务实现。
+这一步必须在步骤 8 已记录的干净、可重复基线上执行。只有上述证据齐全，才通过 Gate 2A，
+进入最小 G2V provider/consumer Walking Skeleton；大规模业务实现仍须等待 G2V。
+
+### Per-slice G3
+
+每个切片独立记录 prerequisites、各仓完整 commit、local evidence、boundary evidence、vertical
+evidence 与 freshness。一个 slice 可包含多个仓库 commit，freshness 必须精确覆盖它自身及所有
+transitive prerequisite commits，并绑定适用 contract/fixture、qualified harness 的 commit/digest、
+真实平台与 production bootstrap。required evidence 中出现 `NOT RUN`、`FAIL`、`STALE`，或任一
+绑定与当前权威值不一致时，切片不得 PASS。
+
+`feature.yaml` 保存机器索引，实际证据只通过 `08-verification-report.md#<EVIDENCE-ID>` 引用；该
+ID 在验证报告中必须有且只有一个 `<!-- evidence: <EVIDENCE-ID> -->`。这样既允许报告保留未来切片
+的 `NOT RUN`，又不能用任意非空字符串伪造 G2V/G3 evidence。
+
+任何 prerequisite、契约 pin、fixture、runtime/platform、production bootstrap、harness/controller
+或实现 commit 变化，都必须按失效规则重算相关 evidence；不能用旧 runtime 结果证明新 diff。
 
 ### Codex 必须报告
 
@@ -453,6 +524,15 @@ Then 返回 UTF-8 CSV，包含 50 条授权范围内的记录，审计一次导�
 - 测试只能通过降低断言、关闭门禁或修改生成物；
 - 修复范围明显超出当前切片。
 
+### 三次同类失败熔断
+
+以 Feature、Slice、Gate、evidence/harness ID、责任层和稳定 failure code/checkpoint 识别实质同类失败。
+第三次出现后立即进入 `RCA_REQUIRED`：禁止第四次重试、自动 retry、继续局部补丁、延长 timeout
+或通过改名规避计数。先扩大只读审计，形成时间线及 `Fact / Assumption / Unknown / Conflict`，
+区分 product/harness/platform/gate，列出可证伪候选和最小区分证据，只推荐一个下一动作。
+Owner 批准后仅取得一次新执行授权；RCA、授权和该次结果追加为一个 cycle。若仍为同一失败则
+立即回到 `RCA_REQUIRED`；不得删除旧 cycle、覆盖历史或重新取得三次额度。
+
 ### 输出
 
 - 小步代码与测试；
@@ -463,11 +543,11 @@ Then 返回 UTF-8 CSV，包含 50 条授权范围内的记录，审计一次导�
 
 ---
 
-## 步骤 10：完成跨组件集成
+## 步骤 10：持续集成并完成三项最终 E2E
 
 ### 目标
 
-证明单个模块的绿色测试在真实组合中仍然成立。
+持续证明每个切片在真实边界中的组合仍成立，并在 G4 前形成三项互不覆盖的最终 verdict。
 
 ### 要做什么
 
@@ -476,8 +556,10 @@ Then 返回 UTF-8 CSV，包含 50 条授权范围内的记录，审计一次导�
 3. 运行数据库、队列、sidecar、Runtime 或第三方 sandbox 集成。
 4. 验证 trace、错误传播、取消和重试。
 5. 验证 unknown 字段、enum、事件和版本不兼容路径。
-6. 运行关键用户 E2E。
-7. 检查所有仓库生成前后状态。
+6. 运行最终 `core_vertical`：production bootstrap、用户操作、跨组件/durable 链路和最终用户结果。
+7. 运行最终 `accessibility_visual`：适用的 axe、键盘、焦点、视口、主题和真实截图。
+8. 运行最终 `teardown`：process/connection/checkpoint、WAL/spool/temp、listener、handle 和 run-root cleanup。
+9. 检查所有仓库生成前后状态和三项 evidence freshness。
 
 ### 输出
 
@@ -491,6 +573,8 @@ Then 返回 UTF-8 CSV，包含 50 条授权范围内的记录，审计一次导�
 - 不用 mock-only 测试冒充集成完成；
 - 跳过的 sibling、数据库、Runtime 或 sandbox 检查明确标记；
 - 端到端失败可以通过 trace 定位。
+- 三项 verdict 分别保存 `PASS/FAIL/NOT RUN/N/A`；一项 PASS 不覆盖另一项失败或未运行；
+- 所有阻断 harness 均已资格验证，且不存在开放的三次失败熔断/RCA。
 
 ---
 
@@ -680,7 +764,7 @@ plan → review → backup/readiness → deploy → migrate → verify → enabl
 3. 根据文档声称能力存在，不检查真实代码。
 4. 先写实现，再补契约和 migration。
 5. 只测 happy path，遗漏权限、超时、取消和部分失败。
-6. 使用 mock 绿色冒充真实集成。
+6. 使用 mock 绿色冒充真实集成，或把 G2V 冒充最终完整 E2E。
 7. 让 Codex修改测试以迁就错误实现。
 8. 手改生成文件或复制 DTO。
 9. 把 localStorage、日志或 fixture 当临时 secret 存储。
@@ -688,5 +772,7 @@ plan → review → backup/readiness → deploy → migrate → verify → enabl
 11. 发布前没有指标、告警和回滚触发器。
 12. 部署成功后不做业务 smoke 和观察。
 13. 把 Codex 的总结当成命令执行证据。
-14. 大范围格式化或重构掩盖业务 diff。
-15. 在 dirty worktree 上 reset、覆盖用户改动。
+14. 同一失败第三次后继续机械重试或局部补丁，而不进入根因审计。
+15. 用单一 E2E PASS 覆盖 accessibility/visual 或 teardown 的 FAIL/NOT RUN。
+16. 大范围格式化或重构掩盖业务 diff。
+17. 在 dirty worktree 上 reset、覆盖用户改动。

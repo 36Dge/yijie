@@ -4,12 +4,13 @@ set -euo pipefail
 usage() {
   cat <<'USAGE'
 Usage:
-  ./scripts/check-feature-package.sh [--strict] [--gate G0|G1|G2|G2A|G3|G4|G5|G6] FEATURE_DIR
+  ./scripts/check-feature-package.sh [--strict] [--gate G0|G1|G2|G2A|G2V|G3|G4|G5|G6] [--slice SLICE_ID] FEATURE_DIR
 
 Checks:
   default       Required files exist and template placeholders were replaced.
   --strict      Also rejects TBD, TODO, 待补充 and 待确认 in all documents.
-  --gate Gx     Rejects incomplete markers in documents required through that gate.
+  --gate Gx     Rejects incomplete markers in documents required through that gate and validates schema semantics.
+  --slice ID    Required for schema v2 G3; validates exactly one per-slice gate.
 
 This script checks document structure and incomplete markers. It does not replace
 human approval, CI, security review, compatibility checks, or production evidence.
@@ -18,6 +19,7 @@ USAGE
 
 strict=0
 gate=""
+slice_id=""
 feature_dir=""
 
 while [[ "$#" -gt 0 ]]; do
@@ -33,6 +35,15 @@ while [[ "$#" -gt 0 ]]; do
         exit 2
       fi
       gate="$2"
+      shift 2
+      ;;
+    --slice)
+      if [[ "$#" -lt 2 ]]; then
+        echo "ERROR: --slice 缺少值。" >&2
+        usage >&2
+        exit 2
+      fi
+      slice_id="$2"
       shift 2
       ;;
     -h|--help)
@@ -62,12 +73,17 @@ if [[ -z "$feature_dir" ]]; then
 fi
 
 case "$gate" in
-  ""|G0|G1|G2|G2A|G3|G4|G5|G6) ;;
+  ""|G0|G1|G2|G2A|G2V|G3|G4|G5|G6) ;;
   *)
-    echo "ERROR: gate 必须是 G0、G1、G2、G2A、G3、G4、G5 或 G6。" >&2
+    echo "ERROR: gate 必须是 G0、G1、G2、G2A、G2V、G3、G4、G5 或 G6。" >&2
     exit 2
     ;;
 esac
+
+if [[ -n "$slice_id" && "$gate" != "G3" ]]; then
+  echo "ERROR: --slice 只能与 --gate G3 一起使用。" >&2
+  exit 2
+fi
 
 if [[ ! -d "$feature_dir" ]]; then
   echo "ERROR: 目录不存在：$feature_dir" >&2
@@ -88,6 +104,11 @@ required_files=(
   "09-release-and-rollback.md"
   "10-delivery-summary.md"
 )
+
+schema_version="$(sed -nE 's/^schema_version:[[:space:]]*([0-9]+)([[:space:]]*#.*)?[[:space:]]*$/\1/p' "$feature_dir/feature.yaml" 2>/dev/null || true)"
+if [[ "$schema_version" == "2" ]]; then
+  required_files+=("04A-temporal-contract-matrix.md")
+fi
 
 errors=0
 all_paths=()
@@ -122,11 +143,15 @@ add_scope_file() {
 }
 
 if [[ -n "$gate" ]]; then
-  add_scope_file "feature.yaml"
+  # schema v2 的 feature.yaml 由 gate-aware semantic validator 负责。不得因未来
+  # slice/G4 字段仍为 TBD 而阻断较早 Gate；schema v1 保留原 marker 行为。
+  if [[ "$schema_version" != "2" ]]; then
+    add_scope_file "feature.yaml"
+  fi
   add_scope_file "00-feature-brief.md"
 
   case "$gate" in
-    G1|G2|G2A|G3|G4|G5|G6)
+    G1|G2|G2A|G2V|G3|G4|G5|G6)
       add_scope_file "01-requirements.md"
       add_scope_file "02-impact-assessment.md"
       add_scope_file "03-decisions-and-risks.md"
@@ -134,8 +159,11 @@ if [[ -n "$gate" ]]; then
   esac
 
   case "$gate" in
-    G2|G2A|G3|G4|G5|G6)
+    G2|G2A|G2V|G3|G4|G5|G6)
       add_scope_file "04-contract-change-plan.md"
+      if [[ "$schema_version" == "2" ]]; then
+        add_scope_file "04A-temporal-contract-matrix.md"
+      fi
       add_scope_file "05-technical-design.md"
       add_scope_file "06-test-plan.md"
       add_scope_file "07-implementation-plan.md"
@@ -143,10 +171,14 @@ if [[ -n "$gate" ]]; then
   esac
 
   case "$gate" in
-    G3|G4|G5|G6)
+    G4|G5|G6)
       add_scope_file "08-verification-report.md"
       ;;
   esac
+
+  if [[ "$gate" == "G3" && "$schema_version" != "2" ]]; then
+    add_scope_file "08-verification-report.md"
+  fi
 
   case "$gate" in
     G5|G6)
@@ -170,8 +202,22 @@ if [[ "${#scope_files[@]}" -gt 0 ]]; then
   fi
 fi
 
+validator_args=()
 if [[ -n "$gate" ]]; then
-  echo "PASS: 文档结构完整，且 $gate 范围无未完成标记。"
+  validator_args+=(--gate "$gate")
+fi
+if [[ -n "$slice_id" ]]; then
+  validator_args+=(--slice "$slice_id")
+fi
+validator_args+=("$feature_dir")
+node "$(dirname -- "$0")/validate-feature-package.mjs" "${validator_args[@]}"
+
+if [[ -n "$gate" ]]; then
+  if [[ -n "$slice_id" ]]; then
+    echo "PASS: 文档结构完整，且 $gate/$slice_id 范围与语义门禁通过。"
+  else
+    echo "PASS: 文档结构完整，且 $gate 范围与语义门禁通过。"
+  fi
 elif [[ "$strict" -eq 1 ]]; then
   echo "PASS: 文档结构完整，所有模板变量和未完成标记已处理。"
 else

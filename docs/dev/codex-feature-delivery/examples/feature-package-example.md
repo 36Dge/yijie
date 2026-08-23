@@ -61,6 +61,9 @@ Web export button
 - Encoder 逐行写出，客户端取消时停止查询并释放资源。
 - 审计只写筛选范围、行数、结果和关联 ID，不写 CSV 内容。
 
+Temporal Contract Matrix 另行冻结：授权通过 → 查询/编码 → 响应提交 → 下载完成/取消 → 审计终态
+→ stream/query cleanup；取消或 terminal 不得越过仍持有的查询资源，每个不变量绑定 executable Test ID。
+
 ## 6. Test Plan
 
 | AC/Risk | 测试 |
@@ -75,15 +78,17 @@ Web export button
 
 ## 7. Implementation Slices
 
-1. `S1`：权威 Schema、canonical fixture、consumer 容忍测试。
-2. `S2`：纯 CSV encoder 与注入防护测试。
-3. `S3`：租户范围 repository 查询与集成测试。
-4. `S4`：use case、授权、限制和审计。
-5. `S5`：handler 与 API E2E。
-6. `S6`：Web loading/error/download 状态。
-7. `S7`：指标、告警、Runbook 和 feature flag。
+1. `S1/G2A`：权威 Schema、canonical fixture、consumer 容忍测试与不可变 pin。
+2. `H1`：默认关闭的真实 browser/API harness qualification，覆盖四类失败与 cleanup。
+3. `VS1/G2V`：production Web bootstrap 下，使用两租户合成数据走通按钮 → API → 查询 → CSV
+   用户结果 → cleanup 的最小真实纵向链路。
+4. `S2`：在已通过的 vertical 上扩展完整 encoder、注入防护、边界与取消。
+5. `S3`：扩展租户范围 repository、授权、限制和审计。
+6. `S4`：扩展 Web loading/error/download 状态与可访问性。
+7. `S5`：指标、告警、Runbook 和 feature flag。
 
-每个切片只允许修改列明模块，并在完成后执行局部测试、受影响模块测试、lint/typecheck/build 和完整 diff 审查。
+每个切片只允许修改列明模块，并分别记录 prerequisites、完整 commit、local/boundary/vertical
+evidence 与 freshness。任何 required evidence 为 `NOT RUN/FAIL/STALE` 时不能通过该切片 G3。
 
 ## 8. Verification（格式示意）
 
@@ -92,6 +97,10 @@ Web export button
 | AC-003 租户隔离 | `真实仓库命令应填在这里` | 示例中不声称 PASS |
 | 生成物无漂移 | `真实 generate + diff 命令应填在这里` | NOT RUN |
 | SDK 兼容 | `真实 conformance 命令应填在这里` | NOT RUN |
+| G2V 最小真实纵向 | `真实平台、production bootstrap、harness commit/digest` | NOT RUN |
+| Final core vertical | `完整用户路径` | NOT RUN |
+| Final accessibility/visual | `axe/键盘/焦点/视口/主题` | NOT RUN |
+| Final teardown | `stream/query/process/temp cleanup` | NOT RUN |
 
 真正的报告还应记录 CWD、完整 SHA、工具版本、时间、退出码和日志位置。
 
@@ -119,7 +128,9 @@ Web export button
 用户结果
 → 编号 AC
 → 仓库/契约/风险
-→ 原子切片
+→ Temporal Contract Matrix
+→ Harness Qualification 与早期 G2V
+→ Per-slice G3
 → AC 对应的真实测试证据
 → 灰度和回滚
 → 生产观察与关闭

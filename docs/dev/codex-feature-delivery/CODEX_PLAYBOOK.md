@@ -6,6 +6,7 @@
 
 - Feature ID；
 - 当前步骤和切片 ID；
+- 当前 G2V/harness qualification 状态；
 - 目标与非目标；
 - 验收标准；
 - 允许/禁止修改范围；
@@ -13,7 +14,9 @@
 - contract-impact、权威源和不可变引用；
 - 安全与数据约束；
 - 测试和验证命令；
+- prerequisites、required local/boundary/vertical evidence 与 freshness 引用；
 - 当前 Git 状态与已有改动；
+- 当前同类失败 fingerprint、尝试次数与 circuit-breaker 状态；
 - 明确的停止条件。
 
 不要把整段历史聊天当作唯一上下文。优先引用 feature package 中已确认的文档。
@@ -52,12 +55,15 @@
 ### 单切片实现任务
 
 ```text
-实现切片 <S1>。
+实现切片 <S1>；仅在 G2V 与 prerequisites 满足后开始。
 
 目标：
 范围：
 禁止范围：
 前置契约/commit：
+Harness/G2V reference：
+Required local/boundary/vertical evidence：
+Structured freshness（transitive commits、contract/fixture refs、harness commit/digest、platform、bootstrap）与 invalidation rule：
 验收标准：
 验证命令：
 
@@ -68,7 +74,8 @@
 4. 不修改生成文件；通过生成入口更新。
 5. 运行局部验证并检查完整 diff。
 6. 报告真实结果、未执行项和新风险。
-7. 如果需要新决策或扩大范围，停止并请求确认。
+7. 运行 `--gate G3 --slice <S1>`，不得用聚合 G3 覆盖切片事实。
+8. 如果需要新决策或扩大范围，停止并请求确认。
 ```
 
 ### 测试任务
@@ -85,6 +92,9 @@
 - unknown enum/event/field；
 - migration 和回滚 reader；
 - secret/PII 脱敏。
+- Temporal Contract Matrix 中 producer/commit/notify/replay/terminal/cleanup 的顺序不变量；
+- runtime harness 的 product/harness/platform/gate failure classification；
+- 最终 core vertical、accessibility/visual、teardown 三项独立 verdict。
 
 输出每个测试对应的验收标准和失败时能发现的缺陷。
 ```
@@ -193,3 +203,17 @@ Codex 必须遵守：
 - commit message 总结行为，不写“AI generated changes”。
 
 Push、创建 tag、发布、迁移生产数据和调用真实外部写操作都是外部状态变化，必须有明确授权和精确目标。
+
+## 8. 三次同类失败后的工作方式
+
+同一命令、Gate、runtime checkpoint、稳定 failure code 或实质相同条件第三次失败时：
+
+1. 立即停止重试、timeout 调整和局部补丁，标记 `RCA_REQUIRED`；
+2. 汇总三次时序、相同/变化证据以及此前修复为什么未触及根因；
+3. 扩大只读审计到完整调用链、平台、harness、规范和 checker；
+4. 按 `Fact / Assumption / Unknown / Conflict` 重建判断；
+5. 区分 `product_failure / harness_failure / platform_failure / gate_failure`；
+6. 只提出一个有区分力的诊断或根因修复，列出停止条件和回滚；
+7. 等待 Owner 批准后只执行一次。再次出现同类失败立即重新熔断。
+
+禁止删除历史尝试、改名 failure code 清零、绕过 production path、伪造 evidence 或“重跑到绿”。

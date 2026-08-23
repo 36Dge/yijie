@@ -31,6 +31,9 @@
 - 错误码/错误结构：TBD
 - 顺序、重复、乱序和未知 variant：TBD
 
+完整 producer、持久化、通知、replay、terminal、cleanup 顺序与 executable invariants 见
+`04A-temporal-contract-matrix.md`。结构/breaking checker 绿色不能替代时序兼容和实现 conformance。
+
 ### 审批与审计
 
 - 审批语义：TBD
@@ -64,6 +67,8 @@ breaking：expand/新版本 → 迁移 consumers → 切换 → 观测 → clean
 | TBD | TBD | TBD | TBD | TBD | TBD |
 
 不得从 dirty worktree、floating sibling 或可移动引用构建发布产物。
+`feature.yaml.immutable_references.contracts[]` 必须为每个适用契约记录唯一 ID、version、full commit、
+SHA-256 digest 与 generator；freshness 使用 checker 生成规则对应的完整 contract token，不能只写 tag。
 
 ## 7. Fixtures 与 Conformance
 
@@ -72,6 +77,8 @@ breaking：expand/新版本 → 迁移 consumers → 切换 → 观测 → clean
 | TBD | TBD | TBD | TBD | TBD |
 
 Feature 目录只引用 fixture；不要复制出第二套权威测试事实。
+适用 fixture 同步写入 `immutable_references.fixtures[]` 的 ID 与 SHA-256 digest，供 G2V、slice 和最终
+E2E freshness 精确绑定。
 
 ## 8. 合并、部署、启用与清理顺序
 
