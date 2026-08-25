@@ -1,12 +1,15 @@
-schema_version: 1
+# ACTIVE SCHEMA V2 MANIFEST — S12A governance migration completed on 2026-08-23.
+# Historical v1 claims remain below under legacy_* and historical record keys; they are not current gate claims.
+# S10D-H remains FAIL/PAUSED with an open rca_required circuit breaker. No H retry is authorized here.
+schema_version: 2
 
 feature:
   id: "FEAT-128"
   slug: "structured-chat-artifacts"
   title: "对话流结构化 Artifact 展示与操作"
-  status: "G3 passed only for local-only S3/S4/S5; S6A-S10C plus FEAT126 guard repair and consumer digest refresh separate PASS; S10D readiness docs-only READY FOR S10D-H ONLY; S10D-H/S10D-V/S10E NOT RUN; production vertical NOT RUN; G4 pending; AC-005 partial; real providers closed"
+  status: "S12A governance migration complete at G2; S12B-S12F pending; S10D-H FAIL/PAUSED with open fuse; G2A/G2V/G4-G6 not passed"
   created_at: "2026-08-20"
-  updated_at: "2026-08-22"
+  updated_at: "2026-08-23"
   requirement_owner: "段成威"
   technical_owner: "段成威"
   reviewer: "段成威"
@@ -16,10 +19,22 @@ scope:
   risk_level: "high"
   data_classification: "confidential"
   contract_impact: "semantic"
-  database_change: "Desktop SQLCipher v8 expand-only Artifact authority implemented; no backfill or down migration"
-  ai_behavior_change: "provider output adaptation and capability gating; model/prompt unchanged"
+  database_change: "none"
+  persistence_change: "durable"
+  runtime_change: "runtime"
+  auth_permission_change: "both"
+  user_workflow_change: "user_visible"
+  ui_change: "interactive"
+  ai_behavior_change: "tool"
 
 repositories:
+  - "yijie"
+  - "yijie-contracts"
+  - "yijie-agent-host"
+  - "yijie-desktop"
+  - "yijie-codex"
+
+legacy_repositories:
   - name: "yijie"
     role: "feature package and cross-repository governance"
     branch: "feat/feat-128-structured-chat-artifacts"
@@ -98,6 +113,29 @@ repositories:
 
 immutable_references:
   baseline_commits:
+    - { repository: "yijie", full_sha: "e7b7b2f9d3883068409a7ab9682dbc48f8b13775" }
+    - { repository: "yijie-contracts", full_sha: "ea48fe190e18afba728712d1e2cc79cda57f581b" }
+    - { repository: "yijie-agent-host", full_sha: "09d83cce5f2937db1cbe3afa36cc5461ea671574" }
+    - { repository: "yijie-desktop", full_sha: "997345d87a5daa073c480769d57b4e59c3dfefcb" }
+    - { repository: "yijie-codex", full_sha: "0ce5902ed400866be0196886bb78f693a004d68d" }
+  contracts:
+    - id: "agent-host-v3-artifact-event"
+      version: "0.4.0-local-candidate"
+      full_commit: "ea48fe190e18afba728712d1e2cc79cda57f581b"
+      digest: "87b1284056529bde8314e6cfa6ad1fb27ffefef50ea86033875fda795330939f"
+      generator: "json-schema-to-typescript 15.0.4"
+    - id: "agent-host-v3-proto"
+      version: "0.4.0-local-candidate"
+      full_commit: "ea48fe190e18afba728712d1e2cc79cda57f581b"
+      digest: "5021a0342b84cdea0e1dd773728e4c8f013ce7d03377ade18f06f6716a81b70d"
+      generator: "protoc-gen-es 2.12.1"
+  fixtures:
+    - id: "synthetic-video-16x16"
+      digest: "96ea070cac612d17927939c22f3c0c593fb26b171f62c4e9cee43fb596177dd5"
+  release_artifacts: []
+
+legacy_immutable_references:
+  baseline_commits:
     - "yijie@3d6988daa7a36b24bb2e86308e4cc7213c967426"
     - "yijie-contracts@747cf740f2d91e76e5c1a130e8e009f1efa821b8"
     - "yijie-agent-host@e2f0f5d0e7273331e7e9eaeeb82be15955e94c86"
@@ -143,6 +181,20 @@ immutable_references:
   release_artifacts: []
 
 gates:
+  G0_intake: "pass"
+  G1_design_ready: "pass"
+  G2_implementation_ready: "pass"
+  G2A_contract_ready: "pending"
+  G2V_vertical_feasibility: "blocked"
+  G4_code_complete: "pending"
+  G5_production_ready: "pending"
+  G6_delivery_complete: "pending"
+
+gate_reasons:
+  G2A: "S12B must pin the Runtime dynamic-tool compatibility contract before Host provider implementation"
+  G2V: "required by high-risk cross-repository runtime, durable persistence, user-visible UI and real provider boundaries; currently blocked by open S10D-H cleanup fuse and unqualified S12 harness"
+
+legacy_gates:
   G0_intake: "passed from explicit local-only request and recorded repository snapshot on 2026-08-20"
   G1_design_ready: "passed for design review; scenarios, AC, boundaries, impact and risks are documented"
   G2_implementation_ready: "passed on 2026-08-20 for the local-only Contracts S1/S2 candidate; design, compatibility, security/data boundaries, tests and slices are approved"
@@ -178,6 +230,343 @@ gates:
   G4_code_complete: "pending - S10D-H/S10D-V/S10E, S11, full AC-005 including Markdown decision, production vertical integration, full performance and independent review slices are not complete"
   G5_production_ready: "production subchecks N/A for current local-only scope; gate NOT PASSED"
   G6_delivery_complete: "deployment/observation subchecks N/A for current local-only scope; gate NOT PASSED"
+
+temporal_contract_matrix:
+  required: true
+  applicability_reason: "real-image tool calls cross Runtime, Host, MiniMax, durable Artifact publication, Desktop replay and cleanup boundaries"
+  exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" }
+  phases:
+    producer: { status: "required", reason: "Runtime structured tool call and Host provider request are the only authorized producers" }
+    persistence: { status: "required", reason: "campaign slots, operation identity, staging bytes and Desktop ready authority are durable" }
+    notification: { status: "required", reason: "Host v3 Artifact events notify Desktop of lifecycle transitions" }
+    replay: { status: "required", reason: "duplicate calls, crash recovery, cursor replay and pending ACK recovery must be deterministic" }
+    terminal: { status: "required", reason: "tool result, Artifact terminal state and turn terminal ordering are explicit" }
+    cleanup: { status: "required", reason: "input, staging, WAL, spool, handles, screenshots and run roots require bounded cleanup" }
+  phase_exceptions: {}
+  scenarios:
+    - { id: "FLOW-IMG-T2I-001", ordered_phases: ["producer", "persistence", "notification", "terminal", "cleanup"] }
+    - { id: "FLOW-IMG-I2I-001", ordered_phases: ["producer", "persistence", "notification", "terminal", "cleanup"] }
+    - { id: "FLOW-IMG-NO-CALL-001", ordered_phases: ["producer", "terminal", "cleanup"] }
+    - { id: "FLOW-IMG-DUPLICATE-001", ordered_phases: ["producer", "persistence", "replay", "terminal", "cleanup"] }
+    - { id: "FLOW-IMG-CANCEL-001", ordered_phases: ["producer", "persistence", "notification", "terminal", "cleanup"] }
+    - { id: "FLOW-IMG-CRASH-001", ordered_phases: ["persistence", "replay", "terminal", "cleanup"] }
+    - { id: "FLOW-IMG-FAIL-001", ordered_phases: ["producer", "persistence", "notification", "terminal", "cleanup"] }
+  invariants:
+    - id: "TINV-IMG-001"
+      statement: "Only a validated Runtime structured tool call may trigger one bounded provider operation; text guessing and restart resend are forbidden."
+      scenario_ids: ["FLOW-IMG-T2I-001", "FLOW-IMG-I2I-001", "FLOW-IMG-NO-CALL-001", "FLOW-IMG-FAIL-001"]
+      slice_ids: ["S12C", "S12E", "S12F"]
+      executable_tests: ["TCONF-IMG-001", "TCONF-IMG-005", "TCONF-IMG-006"]
+    - id: "TINV-IMG-002"
+      statement: "The durable five-slot campaign ledger is the sole paid-call authority and cannot be reset by process or run-root changes."
+      scenario_ids: ["FLOW-IMG-T2I-001", "FLOW-IMG-I2I-001", "FLOW-IMG-DUPLICATE-001", "FLOW-IMG-CANCEL-001", "FLOW-IMG-CRASH-001"]
+      slice_ids: ["S12C", "S12E", "S12F"]
+      executable_tests: ["TCONF-IMG-001", "TCONF-IMG-002", "TCONF-IMG-003", "TCONF-IMG-005", "TCONF-IMG-006"]
+    - id: "TINV-IMG-003"
+      statement: "Validated image bytes become durable before completed publication; duplicate and late results remain idempotent and monotonic."
+      scenario_ids: ["FLOW-IMG-T2I-001", "FLOW-IMG-I2I-001", "FLOW-IMG-DUPLICATE-001", "FLOW-IMG-CANCEL-001", "FLOW-IMG-CRASH-001", "FLOW-IMG-FAIL-001"]
+      slice_ids: ["S12C"]
+      executable_tests: ["TCONF-IMG-002", "TCONF-IMG-003"]
+    - id: "TINV-IMG-004"
+      statement: "Desktop SQLCipher ready state, ACK intent and cursor commit are atomic and precede Host ACK."
+      scenario_ids: ["FLOW-IMG-T2I-001", "FLOW-IMG-I2I-001", "FLOW-IMG-DUPLICATE-001", "FLOW-IMG-CRASH-001"]
+      slice_ids: ["S12D"]
+      executable_tests: ["TCONF-IMG-004"]
+    - id: "TINV-IMG-005"
+      statement: "Runtime tool results and governance evidence remain content-free and never expose keys, prompts, reference images or provider payloads."
+      scenario_ids: ["FLOW-IMG-T2I-001", "FLOW-IMG-I2I-001", "FLOW-IMG-NO-CALL-001", "FLOW-IMG-FAIL-001"]
+      slice_ids: ["S12C", "S12D"]
+      executable_tests: ["TCONF-IMG-002", "TCONF-IMG-004"]
+    - id: "TINV-IMG-006"
+      statement: "Input, staging, durable ready data and runtime residue follow separate explicit cleanup authorities."
+      scenario_ids: ["FLOW-IMG-T2I-001", "FLOW-IMG-I2I-001", "FLOW-IMG-CANCEL-001", "FLOW-IMG-CRASH-001", "FLOW-IMG-FAIL-001"]
+      slice_ids: ["S12C", "S12D"]
+      executable_tests: ["TCONF-IMG-003", "TCONF-IMG-004"]
+  executable_tests:
+    - id: "TCONF-IMG-001"
+      required: true
+      repository: "yijie-agent-host"
+      command: "go test ./internal/codex ./internal/session ./internal/imagegen -run 'Feat128ImageTool' -count=1"
+      slice_id: "S12C"
+      status: "NOT RUN"
+      exit_code: null
+      verified_at: "NOT RUN"
+      commits: []
+      evidence_ref: "NOT RUN"
+      exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" }
+    - id: "TCONF-IMG-002"
+      required: true
+      repository: "yijie-agent-host"
+      command: "go test ./internal/imagegen ./internal/session -run 'Feat128ImageProvider' -count=1"
+      slice_id: "S12C"
+      status: "NOT RUN"
+      exit_code: null
+      verified_at: "NOT RUN"
+      commits: []
+      evidence_ref: "NOT RUN"
+      exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" }
+    - id: "TCONF-IMG-003"
+      required: true
+      repository: "yijie-agent-host"
+      command: "go test ./internal/imagegen ./internal/session -run 'Feat128ImageRecovery' -count=1"
+      slice_id: "S12C"
+      status: "NOT RUN"
+      exit_code: null
+      verified_at: "NOT RUN"
+      commits: []
+      evidence_ref: "NOT RUN"
+      exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" }
+    - id: "TCONF-IMG-004"
+      required: true
+      repository: "yijie-desktop"
+      command: "cargo test --manifest-path src-tauri/Cargo.toml --features feat128-real-image feat128_real_image"
+      slice_id: "S12D"
+      status: "NOT RUN"
+      exit_code: null
+      verified_at: "NOT RUN"
+      commits: []
+      evidence_ref: "NOT RUN"
+      exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" }
+    - id: "TCONF-IMG-005"
+      required: true
+      repository: "yijie-agent-host"
+      command: "./scripts/run-feat128-s12e-image-capability.sh"
+      slice_id: "S12E"
+      status: "NOT RUN"
+      exit_code: null
+      verified_at: "NOT RUN"
+      commits: []
+      evidence_ref: "NOT RUN"
+      exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" }
+    - id: "TCONF-IMG-006"
+      required: true
+      repository: "yijie-desktop"
+      command: "./scripts/run-feat128-s12f-real-image-vertical.sh"
+      slice_id: "S12F"
+      status: "NOT RUN"
+      exit_code: null
+      verified_at: "NOT RUN"
+      commits: []
+      evidence_ref: "NOT RUN"
+      exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" }
+
+vertical_feasibility:
+  required: true
+  applicability_reason: "high-risk multi-repository production runtime with durable storage, real paid provider calls and interactive Desktop output"
+  exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" }
+  harness_id: "H-128-S12-REAL-IMAGE"
+  participating_repositories: ["yijie-agent-host", "yijie-desktop"]
+  platform: "macOS Tauri release-like with China-region MiniMax image-01"
+  production_bootstrap: true
+  representative_data: "bounded T2I and current-turn single-person PNG/JPEG subject-reference I2I fixtures"
+  critical_path: "MiniMax-M3 structured call -> Host image-01 adapter -> durable v3 Artifact -> Desktop render, preview, save and replay"
+  evidence:
+    commits: []
+    command: "NOT RUN"
+    environment: "NOT RUN"
+    exit_code: null
+    status: "NOT RUN"
+    verified_at: "NOT RUN"
+    harness: { id: "H-128-S12-REAL-IMAGE", commit: "NOT RUN", digest: "NOT RUN" }
+    platform: "NOT RUN"
+    production_bootstrap: true
+    contract_refs: []
+    fixture_refs: []
+    refs: []
+
+runtime_harnesses:
+  - id: "H-128-S10D-H"
+    purpose: "historical default-off real-Tauri walking skeleton whose failed attempts are retained for the circuit breaker"
+    commit: "997345d87a5daa073c480769d57b4e59c3dfefcb"
+    digest: "c1b1a6345f329f39cd60a5ce89682fa9ad6c77efb7bc3017f3803a4e715d4a7c"
+    default_enabled: false
+    real_platform: "macOS Tauri release"
+    production_bootstrap: true
+    representative_data: "strict-local four synthetic Artifact kinds with zero provider and zero non-loopback traffic"
+    failure_classes: ["product_failure", "harness_failure", "platform_failure", "gate_failure"]
+    qualification:
+      status: "FAIL"
+      verified_at: "2026-08-23T14:28:42+08:00"
+      command: "./scripts/run-feat128-s10d-runtime-smoke.sh"
+      environment: "macOS Tauri release, Host 09d83cce5f2937db1cbe3afa36cc5461ea671574, Desktop 997345d87a5daa073c480769d57b4e59c3dfefcb"
+      exit_code: 1
+      positive_control: { status: "NOT RUN", evidence_ref: "NOT RUN" }
+      negative_controls:
+        product_failure: { status: "NOT RUN", observed_class: "NOT RUN", evidence_ref: "NOT RUN" }
+        harness_failure: { status: "NOT RUN", observed_class: "NOT RUN", evidence_ref: "NOT RUN" }
+        platform_failure: { status: "NOT RUN", observed_class: "NOT RUN", evidence_ref: "NOT RUN" }
+        gate_failure: { status: "NOT RUN", observed_class: "NOT RUN", evidence_ref: "NOT RUN" }
+      timeout_control: { status: "NOT RUN", evidence_ref: "NOT RUN" }
+      cleanup_control: { status: "FAIL", evidence_ref: "08-verification-report.md#EV-128-S10D-H-FAIL" }
+      content_free_verdict: { status: "PASS", evidence_ref: "08-verification-report.md#EV-128-S10D-H-FAIL" }
+  - id: "H-128-S12-REAL-IMAGE"
+    purpose: "qualify fake controls first, then run the bounded real image-01 capability and full Desktop vertical"
+    commit: "NOT RUN"
+    digest: "NOT RUN"
+    default_enabled: false
+    real_platform: "macOS Tauri release-like with China-region MiniMax image-01"
+    production_bootstrap: true
+    representative_data: "bounded T2I and current-turn single-person PNG/JPEG subject-reference I2I fixtures"
+    failure_classes: ["product_failure", "harness_failure", "platform_failure", "gate_failure"]
+    qualification:
+      status: "NOT RUN"
+      verified_at: "NOT RUN"
+      command: "NOT RUN"
+      environment: "NOT RUN"
+      exit_code: null
+      positive_control: { status: "NOT RUN", evidence_ref: "NOT RUN" }
+      negative_controls:
+        product_failure: { status: "NOT RUN", observed_class: "NOT RUN", evidence_ref: "NOT RUN" }
+        harness_failure: { status: "NOT RUN", observed_class: "NOT RUN", evidence_ref: "NOT RUN" }
+        platform_failure: { status: "NOT RUN", observed_class: "NOT RUN", evidence_ref: "NOT RUN" }
+        gate_failure: { status: "NOT RUN", observed_class: "NOT RUN", evidence_ref: "NOT RUN" }
+      timeout_control: { status: "NOT RUN", evidence_ref: "NOT RUN" }
+      cleanup_control: { status: "NOT RUN", evidence_ref: "NOT RUN" }
+      content_free_verdict: { status: "NOT RUN", evidence_ref: "NOT RUN" }
+
+slices:
+  - id: "S10D-H"
+    intent: "retain the failed default-off real-Tauri walking skeleton as an independently blocked historical slice"
+    required: true
+    prerequisites: ["G2"]
+    commits:
+      - { repository: "yijie-agent-host", full_sha: "09d83cce5f2937db1cbe3afa36cc5461ea671574" }
+      - { repository: "yijie-desktop", full_sha: "997345d87a5daa073c480769d57b4e59c3dfefcb" }
+    exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" }
+    local_evidence: { required: true, status: "PASS", command: "cargo test --manifest-path src-tauri/Cargo.toml --features feat128-s10-runtime feat128_s10d_runtime::tests", environment: "yijie-desktop macOS", exit_code: 0, verified_at: "2026-08-23T13:58:58+08:00", refs: ["08-verification-report.md#EV-128-S10D-H-FAIL"], reason: "focused Rust coverage passed but cannot substitute for runtime smoke", exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" } }
+    boundary_evidence: { required: true, status: "FAIL", command: "./scripts/run-feat128-s10d-runtime-smoke.sh", environment: "macOS Tauri release", exit_code: 1, verified_at: "2026-08-23T14:28:42+08:00", refs: ["08-verification-report.md#EV-128-S10D-H-FAIL"], reason: "all recovered structured runtime attempts failed", exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" } }
+    vertical_evidence: { required: true, status: "FAIL", command: "./scripts/run-feat128-s10d-runtime-smoke.sh", environment: "macOS Tauri release", exit_code: 1, verified_at: "2026-08-23T14:28:42+08:00", refs: ["08-verification-report.md#EV-128-S10D-H-FAIL"], reason: "no complete walking-skeleton PASS exists and teardown repeatedly left an empty WAL", exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" } }
+    freshness: { verified_at: "2026-08-23T14:28:42+08:00", commits: [{ repository: "yijie-agent-host", full_sha: "09d83cce5f2937db1cbe3afa36cc5461ea671574" }, { repository: "yijie-desktop", full_sha: "997345d87a5daa073c480769d57b4e59c3dfefcb" }], contract_refs: [], fixture_refs: [], harness: { id: "H-128-S10D-H", commit: "997345d87a5daa073c480769d57b4e59c3dfefcb", digest: "c1b1a6345f329f39cd60a5ce89682fa9ad6c77efb7bc3017f3803a4e715d4a7c" }, platform: "macOS Tauri release", production_bootstrap: true, invalidation_rule: "H remains failed until a separately authorized post-RCA attempt passes on current immutable inputs" }
+    status: "fail"
+    status_reason: "runtime smoke never passed; user paused execution; empty-WAL cleanup fuse is rca_required"
+  - id: "S12A"
+    intent: "migrate active governance to schema v2, bind the S12 graph and restore exact S10D-H failure facts"
+    required: true
+    prerequisites: ["G1"]
+    commits: []
+    exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" }
+    local_evidence: { required: true, status: "PASS", command: "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate G2 docs/features/FEAT-128-structured-chat-artifacts", environment: "yijie documentation workspace", exit_code: 0, verified_at: "2026-08-23T17:42:57+08:00", refs: ["08-verification-report.md#EV-128-S12A-GOVERNANCE"], reason: "S12A is a governance migration and establishes the new G2 plan", exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" } }
+    boundary_evidence: { required: true, status: "NOT RUN", command: "NOT RUN", environment: "NOT RUN", exit_code: null, verified_at: "NOT RUN", refs: [], reason: "S12A makes no business-repository boundary change; S12B-S12D will produce executable boundary evidence", exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" } }
+    vertical_evidence: { required: true, status: "NOT RUN", command: "NOT RUN", environment: "NOT RUN", exit_code: null, verified_at: "NOT RUN", refs: [], reason: "S12A does not claim G2V or a real image vertical", exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" } }
+    freshness: { verified_at: "NOT RUN", commits: [], contract_refs: [], fixture_refs: [], harness: { id: "H-128-S12-REAL-IMAGE", commit: "NOT RUN", digest: "NOT RUN" }, platform: "NOT RUN", production_bootstrap: true, invalidation_rule: "rerun governance checks after any manifest, temporal matrix, failure ledger or implementation-plan change" }
+    status: "pending"
+    status_reason: "G2 governance work is complete; schema v2 per-slice G3 is intentionally not claimed for a documentation-only migration"
+  - id: "S12B"
+    intent: "pin Runtime dynamic tool-call compatibility and S12 Contracts/fixtures"
+    required: true
+    prerequisites: ["S12A"]
+    commits: []
+    exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" }
+    local_evidence: { required: true, status: "NOT RUN", command: "NOT RUN", environment: "NOT RUN", exit_code: null, verified_at: "NOT RUN", refs: [], reason: "contract generation, compatibility and semantic review are required", exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" } }
+    boundary_evidence: { required: true, status: "NOT RUN", command: "NOT RUN", environment: "NOT RUN", exit_code: null, verified_at: "NOT RUN", refs: [], reason: "Runtime and Host must agree on a closed dynamic-tool envelope", exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" } }
+    vertical_evidence: { required: true, status: "NOT RUN", command: "NOT RUN", environment: "NOT RUN", exit_code: null, verified_at: "NOT RUN", refs: [], reason: "compatibility must later be exercised by the qualified vertical", exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" } }
+    freshness: { verified_at: "NOT RUN", commits: [], contract_refs: [], fixture_refs: [], harness: { id: "H-128-S12-REAL-IMAGE", commit: "NOT RUN", digest: "NOT RUN" }, platform: "NOT RUN", production_bootstrap: true, invalidation_rule: "rerun after Runtime pin, contract, generator or fixture changes" }
+    status: "pending"
+    status_reason: "awaiting S12B implementation after S12A"
+  - id: "S12C"
+    intent: "implement Host dynamic-call router, image-01 adapter, durable paid-call ledger and fake-provider controls"
+    required: true
+    prerequisites: ["S12B"]
+    commits: []
+    exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" }
+    local_evidence: { required: true, status: "NOT RUN", command: "NOT RUN", environment: "NOT RUN", exit_code: null, verified_at: "NOT RUN", refs: [], reason: "Host unit, fake HTTP, recovery and race tests are required", exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" } }
+    boundary_evidence: { required: true, status: "NOT RUN", command: "NOT RUN", environment: "NOT RUN", exit_code: null, verified_at: "NOT RUN", refs: [], reason: "fake Runtime and fake MiniMax must prove no-call, T2I, I2I, duplicate, timeout and failure boundaries", exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" } }
+    vertical_evidence: { required: true, status: "NOT RUN", command: "NOT RUN", environment: "NOT RUN", exit_code: null, verified_at: "NOT RUN", refs: [], reason: "S12C fake-provider vertical must qualify before any paid call", exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" } }
+    freshness: { verified_at: "NOT RUN", commits: [], contract_refs: [], fixture_refs: [], harness: { id: "H-128-S12-REAL-IMAGE", commit: "NOT RUN", digest: "NOT RUN" }, platform: "NOT RUN", production_bootstrap: true, invalidation_rule: "rerun after Host, Runtime pin, provider adapter, ledger or fixture changes" }
+    status: "pending"
+    status_reason: "awaiting S12C implementation after S12B"
+  - id: "S12D"
+    intent: "repin Desktop consumer, add secure key handoff and prove fake-provider Artifact persistence/render/save boundaries"
+    required: true
+    prerequisites: ["S12C"]
+    commits: []
+    exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" }
+    local_evidence: { required: true, status: "NOT RUN", command: "NOT RUN", environment: "NOT RUN", exit_code: null, verified_at: "NOT RUN", refs: [], reason: "Desktop Rust/TS/Vue, secret-zeroization and consumer-digest checks are required", exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" } }
+    boundary_evidence: { required: true, status: "NOT RUN", command: "NOT RUN", environment: "NOT RUN", exit_code: null, verified_at: "NOT RUN", refs: [], reason: "fake v3 image Artifact must cross Host/Desktop authority without leaking a key or prompt", exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" } }
+    vertical_evidence: { required: true, status: "NOT RUN", command: "NOT RUN", environment: "NOT RUN", exit_code: null, verified_at: "NOT RUN", refs: [], reason: "production-bootstrap fake-provider Desktop vertical is required before S12E", exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" } }
+    freshness: { verified_at: "NOT RUN", commits: [], contract_refs: [], fixture_refs: [], harness: { id: "H-128-S12-REAL-IMAGE", commit: "NOT RUN", digest: "NOT RUN" }, platform: "NOT RUN", production_bootstrap: true, invalidation_rule: "rerun after Desktop, Host pin, secret handoff, contract, fixture or harness changes" }
+    status: "pending"
+    status_reason: "awaiting S12D implementation after S12C"
+  - id: "S12E"
+    intent: "run bounded paid MiniMax-M3 capability probes for T2I, I2I and no-call routing"
+    required: true
+    prerequisites: ["S12D"]
+    commits: []
+    exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" }
+    local_evidence: { required: true, status: "NOT RUN", command: "NOT RUN", environment: "NOT RUN", exit_code: null, verified_at: "NOT RUN", refs: [], reason: "capability runner and durable campaign preflight must pass", exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" } }
+    boundary_evidence: { required: true, status: "NOT RUN", command: "NOT RUN", environment: "NOT RUN", exit_code: null, verified_at: "NOT RUN", refs: [], reason: "real M3 structured calls must reach China-region image-01 exactly once per authorized slot", exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" } }
+    vertical_evidence: { required: true, status: "NOT RUN", command: "NOT RUN", environment: "NOT RUN", exit_code: null, verified_at: "NOT RUN", refs: [], reason: "paid capability evidence is necessary but not sufficient for Desktop G2V", exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" } }
+    freshness: { verified_at: "NOT RUN", commits: [], contract_refs: [], fixture_refs: [], harness: { id: "H-128-S12-REAL-IMAGE", commit: "NOT RUN", digest: "NOT RUN" }, platform: "NOT RUN", production_bootstrap: true, invalidation_rule: "invalidate after model, endpoint, key authority, Runtime, Host, contract, campaign ledger or fixture changes" }
+    status: "pending"
+    status_reason: "awaiting S12E; campaign used 0 of 5 and reserved 0"
+  - id: "S12F"
+    intent: "prove real T2I and I2I through production ChatPage, v3 Artifact, Desktop preview/save/history and cleanup"
+    required: true
+    prerequisites: ["S12E"]
+    commits: []
+    exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" }
+    local_evidence: { required: true, status: "NOT RUN", command: "NOT RUN", environment: "NOT RUN", exit_code: null, verified_at: "NOT RUN", refs: [], reason: "runner preflight and all repository gates are required", exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" } }
+    boundary_evidence: { required: true, status: "NOT RUN", command: "NOT RUN", environment: "NOT RUN", exit_code: null, verified_at: "NOT RUN", refs: [], reason: "real provider bytes must traverse Host and Desktop authorities with exact terminal ordering", exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" } }
+    vertical_evidence: { required: true, status: "NOT RUN", command: "NOT RUN", environment: "NOT RUN", exit_code: null, verified_at: "NOT RUN", refs: [], reason: "production-bootstrap real Tauri T2I/I2I render, preview, save, history, accessibility and teardown are required", exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" } }
+    freshness: { verified_at: "NOT RUN", commits: [], contract_refs: [], fixture_refs: [], harness: { id: "H-128-S12-REAL-IMAGE", commit: "NOT RUN", digest: "NOT RUN" }, platform: "NOT RUN", production_bootstrap: true, invalidation_rule: "rerun after any transitive prerequisite, contract, fixture, runtime, platform, harness, bootstrap or implementation change" }
+    status: "pending"
+    status_reason: "awaiting S12F after S12E and an explicit resolution of overlap with paused S10D-H"
+
+final_e2e:
+  core_vertical: { required: true, reason: "real user T2I/I2I workflow", status: "NOT RUN", command: "NOT RUN", environment: "NOT RUN", exit_code: null, verified_at: "NOT RUN", commits: [], contract_refs: [], fixture_refs: [], harness: { id: "H-128-S12-REAL-IMAGE", commit: "NOT RUN", digest: "NOT RUN" }, platform: "NOT RUN", production_bootstrap: true, evidence_refs: [], exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" } }
+  accessibility_visual: { required: true, reason: "generated images are interactive visual Artifacts in Desktop", status: "NOT RUN", command: "NOT RUN", environment: "NOT RUN", exit_code: null, verified_at: "NOT RUN", commits: [], contract_refs: [], fixture_refs: [], harness: { id: "H-128-S12-REAL-IMAGE", commit: "NOT RUN", digest: "NOT RUN" }, platform: "NOT RUN", production_bootstrap: true, evidence_refs: [], exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" } }
+  teardown: { required: true, reason: "provider inputs, staging bytes, SQLCipher/WAL, spool, handles and run roots require cleanup", status: "NOT RUN", command: "NOT RUN", environment: "NOT RUN", exit_code: null, verified_at: "NOT RUN", commits: [], contract_refs: [], fixture_refs: [], harness: { id: "H-128-S12-REAL-IMAGE", commit: "NOT RUN", digest: "NOT RUN" }, platform: "NOT RUN", production_bootstrap: true, evidence_refs: [], exception: { owner: "N/A", approved_at: "N/A", reason: "N/A" } }
+
+failure_circuit_breaker:
+  same_failure_threshold: 3
+  policy: "third equivalent failure blocks retries and local patches until a root-cause audit produces discriminating evidence and an authorized next action"
+  incidents:
+    - id: "INC-128-S10D-H-EMPTY-WAL"
+      slice_id: "S10D-H"
+      gate_id: "G3"
+      evidence_id: "EV-128-S10D-H-FAIL"
+      failure_class: "harness_failure"
+      failure_code: "desktop_sqlcipher_wal"
+      checkpoint: "teardown_cleanup"
+      fingerprint: "S10D-H|G3|EV-128-S10D-H-FAIL|harness_failure|desktop_sqlcipher_wal|teardown_cleanup"
+      attempts:
+        - { run_id: "exec-508d5761-8fb1-4f38-91b2-089f6828a1ff", occurred_at: "2026-08-23T14:00:41+08:00", result: "FAIL", failure_class: "harness_failure", failure_code: "desktop_sqlcipher_wal", checkpoint: "teardown_cleanup", evidence_ref: "08-verification-report.md#EV-128-S10D-H-FAIL" }
+        - { run_id: "exec-4e6fc999-9b54-4fcb-bb37-f93fc2d3e0f5", occurred_at: "2026-08-23T14:08:11+08:00", result: "FAIL", failure_class: "harness_failure", failure_code: "desktop_sqlcipher_wal", checkpoint: "teardown_cleanup", evidence_ref: "08-verification-report.md#EV-128-S10D-H-FAIL" }
+        - { run_id: "exec-f77a820c-7a14-481a-b3f1-ee0555bbb5d0", occurred_at: "2026-08-23T14:17:42+08:00", result: "FAIL", failure_class: "harness_failure", failure_code: "desktop_sqlcipher_wal", checkpoint: "teardown_cleanup", evidence_ref: "08-verification-report.md#EV-128-S10D-H-FAIL" }
+      rca_cycles: []
+      state: "rca_required"
+
+governance_migration:
+  slice_id: "S12A"
+  status: "pass"
+  completed_at: "2026-08-23T17:42:57+08:00"
+  evidence_ref: "08-verification-report.md#EV-128-S12A-GOVERNANCE"
+  claims:
+    - "active manifest uses schema v2"
+    - "S12A-S12F graph and 04A identifiers are machine-bound"
+    - "S10D-H exact recoverable attempts and open third-failure fuse are retained"
+    - "no S10D-H retry, business-code change or MiniMax call occurred in S12A"
+
+observed_s10d_h_ledger:
+  source_sessions:
+    - "<codex-home>/archived_sessions/rollout-2026-08-20T10-04-04-01a01ce9-429d-7e82-b5f4-5098846363a2.jsonl"
+    - "<codex-home>/sessions/2026/08/23/rollout-2026-08-23T13-48-23-01a02d29-b48b-7b12-95ef-27df3acfdabe.jsonl"
+  focused_rust:
+    run_id: "exec-caac6b30-2e27-403a-b2b8-c176308ca70a"
+    command: "cargo test --manifest-path src-tauri/Cargo.toml --features feat128-s10-runtime feat128_s10d_runtime::tests"
+    started_at: "2026-08-23T13:58:58+08:00"
+    completed_at: "2026-08-23T13:58:58+08:00"
+    exit_code: 0
+    result: "8 passed, 0 failed"
+  runtime_attempts:
+    - { run_id: "call_BAyDvScb5gEPelnACy9Cbi9M/session-52491", started_at: "2026-08-22T21:21:18+08:00", completed_at: "2026-08-22T21:22:43+08:00", command: "./scripts/run-feat128-s10d-runtime-smoke.sh", exit_code: 1, schema: "legacy failureCode", primary_classification: "runtime_chat_navigation_failed", residue_classification: "not emitted" }
+    - { run_id: "exec-508d5761-8fb1-4f38-91b2-089f6828a1ff", started_at: "2026-08-23T13:59:25+08:00", completed_at: "2026-08-23T14:00:41+08:00", command: "./scripts/run-feat128-s10d-runtime-smoke.sh", exit_code: 1, primary_classification: "runtime_axe_import_rejected", host_native: "4/4/4/4", dom: "4/4", residue_classification: "desktop_sqlcipher_wal", wal_state: "empty" }
+    - { run_id: "exec-4e6fc999-9b54-4fcb-bb37-f93fc2d3e0f5", started_at: "2026-08-23T14:04:28+08:00", completed_at: "2026-08-23T14:08:11+08:00", command: "./scripts/run-feat128-s10d-runtime-smoke.sh", exit_code: 1, primary_classification: "native_complete_dom_ready_incomplete", host_native: "4/4/4/4", dom: "0/0", residue_classification: "desktop_sqlcipher_wal", wal_state: "empty" }
+    - { run_id: "exec-f77a820c-7a14-481a-b3f1-ee0555bbb5d0", started_at: "2026-08-23T14:14:06+08:00", completed_at: "2026-08-23T14:17:42+08:00", command: "./scripts/run-feat128-s10d-runtime-smoke.sh", exit_code: 1, primary_classification: "runtime_axe_import_timeout", host_native: "4/4/4/4", dom: "0/0", residue_classification: "desktop_sqlcipher_wal", wal_state: "empty" }
+    - { run_id: "exec-23932ef0-3b5e-4400-9fb7-6d13074b2be5", started_at: "2026-08-23T14:20:38+08:00", completed_at: "2026-08-23T14:21:53+08:00", command: "./scripts/run-feat128-s10d-runtime-smoke.sh", exit_code: 1, primary_classification: "runtime_axe_import_rejected", host_native: "4/4/4/4", dom: "4/4", residue_classification: "desktop_sqlcipher_wal", wal_state: "empty" }
+    - { run_id: "exec-ef0050b7-9238-470b-8f9d-e432476452e3", started_at: "2026-08-23T14:24:44+08:00", completed_at: "2026-08-23T14:25:49+08:00", command: "./scripts/run-feat128-s10d-runtime-smoke.sh", exit_code: 1, primary_classification: "runtime_accessibility_failed", host_native: "4/4/4/4", dom: "4/4", residue_classification: "desktop_sqlcipher_wal", wal_state: "empty" }
+    - { run_id: "exec-18b6eb11-485a-47d0-a21c-d7cde390c8ba", started_at: "2026-08-23T14:27:28+08:00", completed_at: "2026-08-23T14:28:42+08:00", command: "./scripts/run-feat128-s10d-runtime-smoke.sh", exit_code: 1, primary_classification: "runtime_axe_serious_critical", host_native: "4/4/4/4", dom: "4/4", residue_classification: "desktop_sqlcipher_wal", wal_state: "empty" }
+  exact_conclusion: "focused Rust passed; all seven recovered runtime attempts failed; no H runtime PASS exists; the empty-WAL cleanup failure repeated in all six structured attempts and the third equivalent failure opened the fuse"
 
 owner_decision_capture:
   recorded_at: "2026-08-20"
@@ -815,6 +1204,7 @@ documents:
   impact: "02-impact-assessment.md"
   decisions_and_risks: "03-decisions-and-risks.md"
   contract_plan: "04-contract-change-plan.md"
+  temporal_contract: "04A-temporal-contract-matrix.md"
   technical_design: "05-technical-design.md"
   test_plan: "06-test-plan.md"
   implementation_plan: "07-implementation-plan.md"

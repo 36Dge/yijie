@@ -1,0 +1,173 @@
+schema_version: 3
+delivery_profile: "demo_fast"
+exposure: "local"
+
+feature:
+  id: "FEAT-130"
+  slug: "desktop-sidebar-layout"
+  title: "Desktop 主导航、任务记录树与项目选择条布局调整"
+  status: "active"
+  created_at: "2026-08-25"
+  requirement_owner: "段成威"
+  technical_owner: "段成威"
+  reviewer: "段成威"
+  release_owner: "段成威"
+
+scope:
+  risk_level: "medium"
+  data_classification: "internal"
+  contract_impact: "none"
+  database_change: "none"
+  persistence_change: "none"
+  runtime_change: "none"
+  auth_permission_change: "none"
+  user_workflow_change: "user_visible"
+  ui_change: "interactive"
+  ai_behavior_change: "none"
+
+repositories:
+  - "yijie"
+  - "yijie-desktop"
+
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+
+product_ux:
+  status: "PASS"
+  primary_user: "在易界 AI Desktop 中新建任务、选择本地项目并回看本地对话的用户"
+  problem: "主导航顺序、独立任务记录页面和项目树位置增加了导航成本，且项目选择条层级偏弱。"
+  user_outcome: "用户可从固定顺序的左侧导航直接按项目浏览对话，并在更清晰的项目选择条中开始任务。"
+  in_scope:
+    - "主导航顺序调整，包含资料库后再显示任务记录"
+    - "任务记录静态分组、项目到对话两层树与独立滚动区"
+    - "移除 /tasks 独立页面、页面布局和导航关系"
+    - "保留 removed project session 的安全可发现性"
+    - "主页项目选择条 radius-lg 与 bg-app 视觉调整，hover 不增加描边"
+    - "相关测试、视觉验证与设计规范 override"
+  out_of_scope:
+    - "公共或私有 IPC、API、Runtime、数据库和重放契约变化"
+    - "恢复已移除项目的真实名称或路径"
+    - "实现我的店铺、工作台、定时任务、插件或资料库业务页面"
+    - "公开部署、生产发布、签名、公证和自动更新"
+  main_flow:
+    - "用户通过 demo_fast local 零登录入口进入 Desktop。"
+    - "主导航按新建任务、我的店铺、工作台、定时任务、插件、资料库、任务记录显示。"
+    - "用户在任务记录下展开项目并选择对话，进入 /chat/:sessionId。"
+    - "长列表只在任务记录树滚动；主页项目选择条以增强后的 token 样式选择项目。"
+  visual_direction: "遵循 yijie Desktop Design System，使用现有语义 color/radius/spacing token、YjIcon、light/dark 与标准密度。"
+  ui_states:
+    idle: "固定主导航和可展开项目/对话树；主页显示增强后的项目选择条。"
+    loading: "任务树内部显示正在读取本地任务，固定导航不位移。"
+    success: "项目与对话层级清晰，点击对话进入对应 Chat。"
+    empty: "任务树显示暂无任务记录。"
+    error: "稳定中文错误或权限提示，不泄漏路径、ID 或底层错误。"
+    retry: "复用现有 Chat store 的恢复动作，不新增旁路请求。"
+    cancel: "N/A：没有新增可取消操作；现有确认弹窗语义不变。"
+
+must_acceptance:
+  - id: "AC-001"
+    statement: "主导航顺序精确为新建任务、我的店铺、工作台、定时任务、插件、资料库、任务记录，设置仍固定在底部。"
+    verification: "导航单测与 1180×760 视觉截图。"
+    status: "PASS"
+  - id: "AC-002"
+    statement: "任务记录是非导航静态分组，标题不改变路由，/tasks 页面、loader 与 route 均不存在。"
+    verification: "组件/路由单测与 source inventory。"
+    status: "PASS"
+  - id: "AC-003"
+    statement: "任务记录第一层是项目、第二层是对话；点击对话进入 /chat/:sessionId，已移除项目历史仍显示为项目已移除。"
+    verification: "Tree focused tests 与真实 renderer smoke。"
+    status: "PASS"
+  - id: "AC-004"
+    statement: "长任务列表仅在任务记录区域纵向滚动，不推动顶部导航或底部设置离开可视区域。"
+    verification: "1180×760 长列表视觉截图。"
+    status: "PASS"
+  - id: "AC-005"
+    statement: "主页项目选择条圆角从 8px 增至 12px，未 hover 背景保持轻微对比；hover 不增加描边，focus 与 light/dark 均清晰。"
+    verification: "token source check 与 light/dark 截图。"
+    status: "PASS"
+  - id: "AC-006"
+    statement: "核心导航和历史选择保持键盘可用，无严重/致命 axe 问题，200% zoom 与 reduced-motion 不遮挡关键操作。"
+    verification: "focused accessibility 与视觉矩阵。"
+    status: "PASS"
+
+contract:
+  impact: "none"
+  authority: "N/A：仅 Desktop 进程内 Vue 路由、组件布局与 CSS；既有 Chat IPC 和本地存储投影不变。"
+  source_first_plan: "N/A：复用现有 ChatProject/ChatSession 权威投影，不修改公共或私有 wire。"
+  status: "N/A"
+  checks: []
+
+external_authorizations:
+  paid_calls: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+  destructive_operations: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+  production_writes: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+
+implementation:
+  status: "complete"
+  real_entrypoint: "cd ../yijie-desktop && pnpm tauri:dev"
+  mock_only: false
+
+verification:
+  status: "PARTIAL"
+  verified_at: "2026-08-25T01:33:40+08:00"
+  startup:
+    status: "BLOCKED"
+    command_or_steps: "在 yijie-desktop 执行 pnpm tauri:dev，等待 Desktop/Host/Runtime readiness。"
+    environment: "Desktop local / demo_fast / fresh application process"
+    actual_result: "canonical 端口 18081 已被 2026-08-24 启动的既有 yijie-agent-host 占用；为保护未知在用会话未终止该进程，fresh run 未执行。"
+  real_smoke:
+    status: "PARTIAL"
+    command_or_steps: "核对导航、任务记录项目/对话树、对话选择和主页项目选择条。"
+    environment: "Desktop local / demo_fast / 1180x760 light and dark"
+    actual_result: "生产组件 visual harness 已完成 1180x760 light/dark、长列表与 200% 等效视口；因既有 Demo 占用 canonical 端口，不把 renderer smoke 充当 D4 real-service smoke。"
+  representative_failure:
+    status: "PARTIAL"
+    command_or_steps: "核对 removed project session、empty 与 permission/error 状态。"
+    environment: "Desktop local / demo_fast / safe synthetic metadata"
+    actual_result: "removed-project、read-only、permission-denied 文案与无 mutation 菜单 focused tests PASS；fresh real-service failure/retry 未执行。"
+  focused_checks:
+    - command: "pnpm exec vitest run <FEAT-130 focused files including Store/read-only/a11y>"
+      status: "PASS"
+      result: "独立最终复审矩阵 8 files / 104 tests PASS；视觉微调后 Store/Tree/Sidebar/Composer/App focused 5 files / 81 tests PASS。"
+    - command: "pnpm lint; cargo fmt --check; cargo clippy --all-targets -- -D warnings"
+      status: "PASS"
+      result: "ESLint、Vue typecheck、Rust fmt 与 Clippy 全部 PASS。"
+    - command: "pnpm exec vitest run <demo-fast exclusions plus two externally dirty contract-pin files>"
+      status: "PASS"
+      result: "61 files / 454 tests PASS；未过滤全量仅两项 contract pin 因 yijie-contracts 并行脏改动失败。"
+    - command: "cargo test --manifest-path src-tauri/Cargo.toml"
+      status: "PASS"
+      result: "246 passed / 0 failed / 3 environment integrations ignored。"
+    - command: "pnpm build; pnpm docs:build"
+      status: "PASS"
+      result: "Desktop production renderer 与 VitePress Design System 均构建成功。"
+  artifacts:
+    - "references/feat130-light.jpg"
+    - "references/feat130-hover.jpg"
+    - "references/feat130-dark.jpg"
+    - "references/feat130-zoom200-scrolled.jpg"
+  diff_review: { status: "PASS", summary: "独立只读审查完成；read-only 权限、迟到异步结果、非当前对话误操作及删除后错误跳转均已修复，最终无 P0/P1/P2。完整目标 diff/status/diff-check 已复核，未覆盖既有 FEAT-128 或并行 Contracts 改动。" }
+  known_limitations:
+    - "removed project fallback 不显示原项目名称或路径。"
+    - "task.read-only 用户从 Settings shell 的全局展开侧栏选择历史对话。"
+    - "canonical fresh D4 run 尚未完成：既有本地 Demo 占用固定端口，未擅自终止。"
+    - "yijie-contracts 存在与 FEAT-130 无关的并行未提交变化，导致 clean-contract pin 门禁失败；本需求未修改该仓库。"
+
+public_readiness:
+  required: false
+  status: "not_applicable"
+  checks: []
+  external_smoke:
+    status: "NOT RUN"
+    command_or_steps: "N/A：FEAT-130 exposure=local。"
+    actual_result: "N/A：本 Feature 不提供公网入口。"
+
+documents:
+  brief: "00-feature-brief.md"
+  delivery_log: "01-delivery-log.md"
+  verification: "02-verification.md"

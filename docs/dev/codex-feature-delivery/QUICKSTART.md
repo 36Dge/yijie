@@ -1,144 +1,112 @@
 # 快速开始
 
-## 1. 创建需求交付目录
+## 1. 先选 Profile 与 Exposure
+
+默认值为 `demo_fast + local`。不要因为需求跨仓、涉及 Runtime 或第三方 API 就自动升级；先按 Demo
+目标实现真实用户结果。只有用户明确选择、准备生产激活，或命中生产升级条件时使用
+`production_hardened`。
 
 ```bash
+# 默认：本地 Demo
 ./scripts/new-feature.sh FEAT-123 task-history-export ./work
+
+# 公开 Demo
+./scripts/new-feature.sh --exposure public FEAT-123 task-history-export ./work
+
+# 完整生产加固
+./scripts/new-feature.sh --profile production_hardened --exposure public \
+  FEAT-123 task-history-export ./work
 ```
 
-不要一开始就让 Codex “实现整个功能”。先把生成目录中的实现前文档（00—07，含 04A）补到足以评审。
+## 2. demo_fast：先一次补全逻辑与 UI
 
-## 2. 给 Codex 一个调查任务
-
-第一轮只允许只读调查：
+第一轮 Codex 输出一个推荐完整方案，不拆治理切片：
 
 ```text
-目标：为 FEAT-123 建立实现前上下文，不修改任何文件。
-
-请完成：
-1. 读取仓库级 AGENTS.md、README、SECURITY、CONTRIBUTING 和相关架构文档。
-2. 检查 git 状态、当前分支、现有未提交改动。
-3. 查找现有实现、测试、契约、数据库和发布入口。
-4. 列出受影响仓库、producer、consumers、数据流和安全边界。
-5. 判断 contract-impact = none | additive | semantic | breaking，并说明理由。
-6. 把确定事实和推断分开，列出必须由人确认的问题。
-
-输出：用于更新 02-impact-assessment.md 的证据，不要实现。
+请按 demo_fast 完成产品与 UX 定稿：
+1. 核对真实代码入口、已有工作区改动和 contract-impact；
+2. 补全目标用户、问题、主流程、业务规则和明确非目标；
+3. 补全 idle/loading/success/empty/error/retry/cancel；
+4. 给出布局、主要操作、反馈、预览/保存等高质量交互；
+5. 写出 5—10 条可操作判断的 Must AC；
+6. 对不影响目标/安全/成本的未知项使用推荐默认值继续。
+不要实现，不要创建切片。
 ```
 
-## 3. 通过实现前门禁
-
-编码前至少确认：
-
-- 用户场景、目标、非目标和验收标准无歧义；
-- 受影响仓库和已有用户改动已经记录；
-- 契约影响、数据库影响、安全影响和发布顺序已经分类；
-- 重大决策已有 ADR 或明确确认；
-- 测试计划覆盖成功、失败、边界和回滚；
-- 实现任务已经拆成可独立验证的小切片。
-
-详见 [checklists/definition-of-ready.md](checklists/definition-of-ready.md)。
-
-完成后执行结构化检查：
+完成后：
 
 ```bash
-./scripts/check-feature-package.sh --gate G2 ./work/FEAT-123-task-history-export
+./scripts/check-feature-package.sh --gate D0 <feature-dir>
 ```
 
-脚本同时对 schema v2 执行结构化门禁检查，但不能替代真实命令或 Owner 批准。G2 仍必须由需求、技术及条件性安全/数据 Owner 根据真实证据批准。若 `contract-impact != none`，G2 后先落地并验证契约候选，通过 Gate 2A 后才允许最小纵向实现。
-
-大规模实现前必须完成：
-
-1. 对 runtime harness 做独立资格验证，固定 commit/digest、真实平台、production bootstrap、
-   最小代表性数据和四类失败语义；
-2. 在真实目标平台上运行最小 Walking Skeleton；
-3. 通过 G2V，或对低风险不适用场景记录 `N/A + Technical Owner 理由`。
-
-```bash
-./scripts/check-feature-package.sh --gate G2V ./work/FEAT-123-task-history-export
-```
-
-## 4. 让 Codex 一次只实现一个切片
+## 3. demo_fast：整个需求连续实现
 
 ```text
-实现 07-implementation-plan.md 中已经满足 prerequisites 的切片 S1。
-
-范围：
-- 只修改：<文件或模块>
-- 不修改：<明确排除>
-- contract-impact：<分类与权威引用>
+按已确认的 Demo Brief 完成整个需求。
 
 要求：
-1. 修改前复核相关代码和测试。
-2. 先补或更新能证明行为的测试。
-3. 实现最小代码，不顺手重构无关区域。
-4. 运行本切片对应的 lint/test/build/generate。
-5. 运行计划要求的 boundary/vertical evidence，并核对 evidence freshness。
-6. 检查完整 diff 和 git status。
-7. 报告实际命令、结果、未执行项和剩余风险。
+- 契约变更先改权威源，再改 producer/consumer；
+- 可按技术依赖顺序工作，但不建立治理切片或逐切片 evidence；
+- 复用现有组件，不扩展到性能、安全专项或无关重构；
+- 只补能保护核心逻辑的 focused tests；
+- 保护已有工作区，付费/破坏性/生产操作必须在批准上限内。
 
-如果发现文档、契约或设计不成立，停止实现并说明阻塞。
+实现完成后立即启动真实服务，不要停在“代码已写完”。
 ```
 
-## 5. 每个切片都执行闭环
+`exposure=local` 的应用入口默认遵循 ADR-0018：使用 canonical `local + demo_fast` 启动器，自动建立
+固定本地身份/租户上下文，零登录交互并直达业务主页面。不得把手工输入白名单账号密码、启动
+Keycloak/OIDC 或先修认证测试环境当作正常 Demo 前置条件。进程间 token 与外部 Provider Key 可由
+本地服务自动管理，但不能进入 UI、日志或仓库。
+
+## 4. demo_fast：真实启动—修 Bug 循环
 
 ```text
-调查 → 计划 → 测试 → 实现 → 验证 → Diff 审查 → 更新证据
+正常启动真实本地服务
+  → 执行全部 Must AC
+  → 验证一个真实 happy path
+  → 验证一个代表性 error/retry
+  → 有 Bug：定位、修复、重启、复测
+  → 全部在一次 fresh run 中通过
 ```
 
-禁止把多个高风险模块一次性交给 Codex，再在最后统一测试。
-
-每个切片使用独立门禁：
+只把真实 Provider/Runtime/数据库/桌面组合写成真实服务；mock、synthetic Artifact 或独立测试 App
+不能满足 D4。最终执行：
 
 ```bash
-./scripts/check-feature-package.sh --gate G3 --slice S1 <feature-package>
+./scripts/check-feature-package.sh --gate D4 <feature-dir>
 ```
 
-required local、boundary 或 vertical evidence 中任何一项为 `NOT RUN`、`FAIL` 或已失效时，
-该切片不得记为 PASS。
+## 5. 调试时间盒
 
-每条 refs 使用 `08-verification-report.md#<EVIDENCE-ID>`；验证报告中添加唯一
-`<!-- evidence: <EVIDENCE-ID> -->`。freshness 必须精确列出当前切片及 transitive prerequisites 的
-全部仓库 commits、contract/fixture refs、harness commit/digest、平台和 production bootstrap。
+- 30 分钟没有新事实：停止局部猜测，读取完整日志和调用链。
+- 90 分钟同一阻塞：采用最简单实现、关闭非核心花活或提出一个 workaround。
+- 非核心 harness、accessibility、完美 cleanup 或全量测试最多 120 分钟；本地 Demo 可登记限制。
+- 240 分钟核心结果仍不可用：缩小 MVP 或更换架构。
+- 16 小时仍未 D4：必须重新定范围，不继续累积流程与基础设施。
 
-同一命令、gate、runtime checkpoint、稳定 failure code 或实质相同失败第三次出现后，立即停止
-重试和局部补丁，进入扩大范围的根因审计；没有 RCA 与 Owner 批准的唯一下一步，不得执行第四次。
+## 6. exposure=public：再补 DP
 
-## 6. 完成后做一次独立审查
-
-最好开启一个新 Codex 任务，只给需求、设计和 diff，不给原实现对话中的辩解：
-
-```text
-作为独立 Reviewer 审查当前 diff，不修改代码。
-
-重点查找：
-- 与验收标准不一致；
-- 权限、租户、PII、secret、审批或审计缺口；
-- 并发、事务、幂等、超时、取消、重试和部分失败问题；
-- 契约、migration、生成物或 consumer 兼容问题；
-- 只验证 mock、没有验证真实生产路径；
-- 测试与实现共享同一错误假设；
-- 日志、指标、告警、灰度和回滚缺口。
-
-按严重度输出可复现证据、文件和建议验证方法。
-```
-
-## 7. 发布前形成证据包
-
-必须完成：
-
-- `08-verification-report.md`
-- `09-release-and-rollback.md`
-- `10-delivery-summary.md`
-- [checklists/production-readiness.md](checklists/production-readiness.md)
-
-最终 E2E 必须分别记录 `core_vertical`、`accessibility_visual` 和 `teardown`；一个 verdict 的
-PASS 不能覆盖另一个 verdict 的 `FAIL` 或 `NOT RUN`。
-
-严格检查：
+首次让非本人访问之前，完成最小公开安全底线：服务端密钥、鉴权/数据边界、输入/文件/超时限制、
+付费成本上限、安全错误、最简恢复方式及公网真实 smoke。
 
 ```bash
-./scripts/check-feature-package.sh --strict <feature-package>
+./scripts/check-feature-package.sh --gate DP <feature-dir>
 ```
 
-严格检查通过不代表代码一定正确，但缺失这些材料时不应宣称“生产就绪”。
+公开 URL、云资源、真实用户账户/数据、外部可重复触发的付费 API 都会触发 DP。若同时存在付费用户、
+SLA、多租户/PII、重要持久数据、不可逆 migration 或合规责任，应使用 `production_hardened`。
+
+## 7. production_hardened
+
+显式选择后沿用原完整流程：实现前完成 00—07，按 G2A、Harness Qualification、G2V、per-slice G3、
+三项最终 E2E、G4、G5、G6 推进。详见 [HANDBOOK.md](HANDBOOK.md)。
+
+## 8. 共同红线
+
+- 不伪造测试、调用、批准、commit、tag、部署或服务 ready。
+- 不提交 secret/PII；public/production 不绕过服务端授权、审批和审计。local direct-entry 只按
+  ADR-0018 在固定 native scope 内免用户登录。
+- 不在未知 dirty worktree 上 reset、覆盖或批量格式化。
+- 不从 mock-only 绿色推断真实服务可用。
+- 不自动 commit、push、部署或执行超出授权的付费/破坏性操作。

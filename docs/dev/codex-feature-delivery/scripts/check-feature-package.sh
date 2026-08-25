@@ -4,12 +4,12 @@ set -euo pipefail
 usage() {
   cat <<'USAGE'
 Usage:
-  ./scripts/check-feature-package.sh [--strict] [--gate G0|G1|G2|G2A|G2V|G3|G4|G5|G6] [--slice SLICE_ID] FEATURE_DIR
+  ./scripts/check-feature-package.sh [--strict] [--gate D0|D4|DP|G0|G1|G2|G2A|G2V|G3|G4|G5|G6] [--slice SLICE_ID] FEATURE_DIR
 
 Checks:
   default       Required files exist and template placeholders were replaced.
   --strict      Also rejects TBD, TODO, 待补充 and 待确认 in all documents.
-  --gate Gx     Rejects incomplete markers in documents required through that gate and validates schema semantics.
+  --gate Dx/Gx  Validates the selected demo_fast or production_hardened checkpoint.
   --slice ID    Required for schema v2 G3; validates exactly one per-slice gate.
 
 This script checks document structure and incomplete markers. It does not replace
@@ -73,9 +73,9 @@ if [[ -z "$feature_dir" ]]; then
 fi
 
 case "$gate" in
-  ""|G0|G1|G2|G2A|G2V|G3|G4|G5|G6) ;;
+  ""|D0|D4|DP|G0|G1|G2|G2A|G2V|G3|G4|G5|G6) ;;
   *)
-    echo "ERROR: gate 必须是 G0、G1、G2、G2A、G2V、G3、G4、G5 或 G6。" >&2
+    echo "ERROR: gate 必须是 D0、D4、DP、G0、G1、G2、G2A、G2V、G3、G4、G5 或 G6。" >&2
     exit 2
     ;;
 esac
@@ -90,24 +90,42 @@ if [[ ! -d "$feature_dir" ]]; then
   exit 1
 fi
 
-required_files=(
-  "feature.yaml"
-  "00-feature-brief.md"
-  "01-requirements.md"
-  "02-impact-assessment.md"
-  "03-decisions-and-risks.md"
-  "04-contract-change-plan.md"
-  "05-technical-design.md"
-  "06-test-plan.md"
-  "07-implementation-plan.md"
-  "08-verification-report.md"
-  "09-release-and-rollback.md"
-  "10-delivery-summary.md"
-)
+schema_version="$(sed -nE 's/^[[:space:]]*"?schema_version"?[[:space:]]*:[[:space:]]*([0-9]+),?([[:space:]]*#.*)?[[:space:]]*$/\1/p' "$feature_dir/feature.yaml" 2>/dev/null || true)"
+delivery_profile="$(sed -nE 's/^[[:space:]]*"?delivery_profile"?[[:space:]]*:[[:space:]]*"?([a-z_]+)"?,?([[:space:]]*#.*)?[[:space:]]*$/\1/p' "$feature_dir/feature.yaml" 2>/dev/null || true)"
+if [[ "$schema_version" == "3" && "$delivery_profile" == "demo_fast" ]]; then
+  required_files=(
+    "feature.yaml"
+    "00-feature-brief.md"
+    "01-delivery-log.md"
+    "02-verification.md"
+  )
+else
+  required_files=(
+    "feature.yaml"
+    "00-feature-brief.md"
+    "01-requirements.md"
+    "02-impact-assessment.md"
+    "03-decisions-and-risks.md"
+    "04-contract-change-plan.md"
+    "05-technical-design.md"
+    "06-test-plan.md"
+    "07-implementation-plan.md"
+    "08-verification-report.md"
+    "09-release-and-rollback.md"
+    "10-delivery-summary.md"
+  )
+  if [[ "$schema_version" == "2" || "$schema_version" == "3" ]]; then
+    required_files+=("04A-temporal-contract-matrix.md")
+  fi
+fi
 
-schema_version="$(sed -nE 's/^schema_version:[[:space:]]*([0-9]+)([[:space:]]*#.*)?[[:space:]]*$/\1/p' "$feature_dir/feature.yaml" 2>/dev/null || true)"
-if [[ "$schema_version" == "2" ]]; then
-  required_files+=("04A-temporal-contract-matrix.md")
+if [[ "$delivery_profile" == "demo_fast" && "$gate" == G* ]]; then
+  echo "ERROR: demo_fast 只能使用 D0、D4 或 DP。" >&2
+  exit 2
+fi
+if [[ "$delivery_profile" != "demo_fast" && "$gate" == D* ]]; then
+  echo "ERROR: D0、D4、DP 只适用于 schema v3 demo_fast。" >&2
+  exit 2
 fi
 
 errors=0
@@ -130,7 +148,7 @@ if [[ "$errors" -gt 0 ]]; then
   exit 1
 fi
 
-placeholder_output="$(grep -HnE '\{\{FEATURE_ID\}\}|\{\{FEATURE_SLUG\}\}|\{\{DATE\}\}' "${all_paths[@]}" || true)"
+placeholder_output="$(grep -HnE '\{\{FEATURE_ID\}\}|\{\{FEATURE_SLUG\}\}|\{\{DATE\}\}|\{\{DELIVERY_PROFILE\}\}|\{\{EXPOSURE\}\}|\{\{PUBLIC_REQUIRED\}\}|\{\{PUBLIC_STATUS\}\}' "${all_paths[@]}" || true)"
 if [[ -n "$placeholder_output" ]]; then
   echo "FAIL: 仍有未替换的模板变量：" >&2
   echo "$placeholder_output" >&2
@@ -142,10 +160,21 @@ add_scope_file() {
   scope_files+=("$feature_dir/$1")
 }
 
-if [[ -n "$gate" ]]; then
+if [[ -n "$gate" && "$delivery_profile" == "demo_fast" ]]; then
+  case "$gate" in
+    D0)
+      add_scope_file "00-feature-brief.md"
+      ;;
+    D4|DP)
+      add_scope_file "00-feature-brief.md"
+      add_scope_file "01-delivery-log.md"
+      add_scope_file "02-verification.md"
+      ;;
+  esac
+elif [[ -n "$gate" ]]; then
   # schema v2 的 feature.yaml 由 gate-aware semantic validator 负责。不得因未来
   # slice/G4 字段仍为 TBD 而阻断较早 Gate；schema v1 保留原 marker 行为。
-  if [[ "$schema_version" != "2" ]]; then
+  if [[ "$schema_version" != "2" && "$schema_version" != "3" ]]; then
     add_scope_file "feature.yaml"
   fi
   add_scope_file "00-feature-brief.md"
@@ -161,7 +190,7 @@ if [[ -n "$gate" ]]; then
   case "$gate" in
     G2|G2A|G2V|G3|G4|G5|G6)
       add_scope_file "04-contract-change-plan.md"
-      if [[ "$schema_version" == "2" ]]; then
+      if [[ "$schema_version" == "2" || "$schema_version" == "3" ]]; then
         add_scope_file "04A-temporal-contract-matrix.md"
       fi
       add_scope_file "05-technical-design.md"
@@ -176,7 +205,7 @@ if [[ -n "$gate" ]]; then
       ;;
   esac
 
-  if [[ "$gate" == "G3" && "$schema_version" != "2" ]]; then
+  if [[ "$gate" == "G3" && "$schema_version" != "2" && "$schema_version" != "3" ]]; then
     add_scope_file "08-verification-report.md"
   fi
 
@@ -224,4 +253,8 @@ else
   echo "PASS: 文档结构完整，模板变量已替换。"
 fi
 
-echo "NOTE: 此结果不证明代码、测试、安全、兼容或生产门禁已经通过。"
+if [[ "$delivery_profile" == "demo_fast" ]]; then
+  echo "NOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。"
+else
+  echo "NOTE: 此结果不证明未声明的代码、测试、安全、兼容或生产门禁已经通过。"
+fi

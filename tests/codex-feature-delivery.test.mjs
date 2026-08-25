@@ -360,6 +360,167 @@ function validV2() {
   };
 }
 
+function validProductionV3() {
+  return {
+    ...validV2(),
+    schema_version: 3,
+    delivery_profile: "production_hardened",
+    exposure: "public",
+  };
+}
+
+function validDemoV3(exposure = "local") {
+  const publicRequired = exposure === "public";
+  return {
+    schema_version: 3,
+    delivery_profile: "demo_fast",
+    exposure,
+    feature: {
+      id: "FEAT-999",
+      slug: "demo-fast-test",
+      title: "Demo fast test",
+      status: "usable",
+      created_at: "2026-08-23",
+      requirement_owner: "Product Owner",
+      technical_owner: "Technical Owner",
+      reviewer: "Reviewer",
+      release_owner: "Release Owner",
+    },
+    scope: {
+      risk_level: "medium",
+      data_classification: "internal",
+      contract_impact: "none",
+      database_change: "none",
+      persistence_change: "none",
+      runtime_change: "runtime",
+      auth_permission_change: "none",
+      user_workflow_change: "user_visible",
+      ui_change: "interactive",
+      ai_behavior_change: "tool",
+    },
+    repositories: ["desktop", "host"],
+    timebox: {
+      target_hours: 12,
+      hard_stop_hours: 16,
+      no_progress_minutes: 30,
+      same_blocker_minutes: 90,
+      non_core_limit_minutes: 120,
+      core_blocker_minutes: 240,
+    },
+    product_ux: {
+      status: "PASS",
+      primary_user: "local demo user",
+      problem: "the user needs one real outcome",
+      user_outcome: "the real result is visible and saveable",
+      in_scope: ["real happy path", "one representative failure"],
+      out_of_scope: ["production SLO and rollout"],
+      main_flow: ["start the real service", "perform the action", "inspect the result"],
+      visual_direction: "clear primary action and result preview",
+      ui_states: {
+        idle: "ready to submit",
+        loading: "show progress and prevent duplicate submit",
+        success: "show and save the result",
+        empty: "explain that no result exists",
+        error: "show an actionable error",
+        retry: "retry the failed action",
+        cancel: "cancel returns to an actionable state",
+      },
+    },
+    must_acceptance: [
+      {
+        id: "AC-001",
+        statement: "one real end-to-end result is visible",
+        verification: "run the real local service and inspect the result",
+        status: "PASS",
+      },
+    ],
+    contract: {
+      impact: "none",
+      authority: "N/A — no cross-boundary observable contract change",
+      source_first_plan: "N/A — existing contract remains unchanged",
+      status: "N/A",
+      checks: [],
+    },
+    external_authorizations: {
+      paid_calls: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" },
+      destructive_operations: {
+        allowed: false,
+        max_actions: 0,
+        approved_by: "N/A",
+        approved_at: "N/A",
+      },
+      production_writes: {
+        allowed: false,
+        max_actions: 0,
+        approved_by: "N/A",
+        approved_at: "N/A",
+      },
+    },
+    implementation: {
+      status: "complete",
+      real_entrypoint: "pnpm dev",
+      mock_only: false,
+    },
+    verification: {
+      status: "PASS",
+      verified_at: "2026-08-23T12:00:00+08:00",
+      startup: {
+        status: "PASS",
+        command_or_steps: "pnpm dev and wait for readiness",
+        environment: "local desktop runtime",
+        actual_result: "service became ready",
+      },
+      real_smoke: {
+        status: "PASS",
+        command_or_steps: "perform AC-001 in the real app",
+        environment: "local desktop runtime",
+        actual_result: "real result was displayed",
+      },
+      representative_failure: {
+        status: "PASS",
+        command_or_steps: "trigger one bounded provider error and retry",
+        environment: "local desktop runtime",
+        actual_result: "error was actionable and retry recovered",
+      },
+      focused_checks: [
+        { repository: "desktop", command: "pnpm test -- focused", status: "PASS", exit_code: 0 },
+      ],
+      artifacts: ["local screenshot and redacted request id"],
+      diff_review: { status: "PASS", summary: "only intended files changed" },
+      known_limitations: ["production hardening is deferred"],
+    },
+    public_readiness: publicRequired
+      ? {
+          required: true,
+          status: "PASS",
+          checks: [
+            "auth_and_data",
+            "cost_limits",
+            "input_limits",
+            "recovery",
+            "safe_errors",
+            "secrets",
+          ].map((id) => ({ id, status: "PASS", evidence: `${id} checked` })),
+          external_smoke: {
+            status: "PASS",
+            command_or_steps: "open the public URL and perform AC-001",
+            actual_result: "public smoke passed",
+          },
+        }
+      : {
+          required: false,
+          status: "N/A",
+          checks: [],
+          external_smoke: { status: "NOT RUN", command_or_steps: "N/A", actual_result: "N/A" },
+        },
+    documents: {
+      brief: "00-feature-brief.md",
+      delivery_log: "01-delivery-log.md",
+      verification: "02-verification.md",
+    },
+  };
+}
+
 test("schema v2 accepts qualified G2V, per-slice G3, and split G4 evidence", () => {
   const data = validV2();
   assert.deepEqual(validateFeatureData(data, { gate: "G2V" }).errors, []);
@@ -664,13 +825,19 @@ test("failure ledger evolution is append-only across the CI base ref", () => {
   );
 });
 
-test("a package absent from the CI base must start at schema v2", () => {
+test("a package absent from the CI base must start at schema v3 with an explicit profile", () => {
   assert.ok(
     validateFeaturePackageEvolution(null, { schema_version: 1 }).some((error) =>
-      error.includes("must use schema_version: 2"),
+      error.includes("must use schema_version: 3"),
     ),
   );
-  assert.deepEqual(validateFeaturePackageEvolution(null, validV2()), []);
+  assert.ok(
+    validateFeaturePackageEvolution(null, validV2()).some((error) =>
+      error.includes("must use schema_version: 3"),
+    ),
+  );
+  assert.deepEqual(validateFeaturePackageEvolution(null, validDemoV3()), []);
+  assert.deepEqual(validateFeaturePackageEvolution(null, validProductionV3()), []);
 });
 
 test("a legacy v1 manifest is immutable until it is migrated to schema v2", () => {
@@ -722,6 +889,56 @@ test("final E2E evidence binds a qualified harness digest and canonical report r
   const result = validateFeatureData(data, { gate: "G4" });
   assert.ok(result.errors.some((error) => error.includes("match the qualified harness")));
   assert.ok(result.errors.some((error) => error.includes("08-verification-report.md#EVIDENCE-ID")));
+});
+
+test("schema v3 demo_fast accepts one product/UX checkpoint and one real-service done checkpoint", () => {
+  const data = validDemoV3();
+  assert.deepEqual(validateFeatureData(data, { gate: "D0" }).errors, []);
+  assert.deepEqual(validateFeatureData(data, { gate: "D4" }).errors, []);
+  assert.ok(
+    validateFeatureData(data, { gate: "G4" }).errors.some((error) =>
+      error.includes("production_hardened"),
+    ),
+  );
+});
+
+test("demo_fast D4 rejects mock-only, missing real smoke, and failed Must acceptance", () => {
+  const data = validDemoV3();
+  data.implementation.mock_only = true;
+  data.verification.real_smoke.status = "NOT RUN";
+  data.verification.focused_checks = [];
+  data.must_acceptance[0].status = "FAIL";
+  const result = validateFeatureData(data, { gate: "D4" });
+  assert.ok(result.errors.some((error) => error.includes("mock_only must be false")));
+  assert.ok(result.errors.some((error) => error.includes("real_smoke.status must be PASS")));
+  assert.ok(result.errors.some((error) => error.includes("must_acceptance[0].status must be PASS")));
+  assert.ok(result.errors.some((error) => error.includes("focused_checks must contain")));
+});
+
+test("demo_fast DP is public-only and enforces the minimum public safety floor", () => {
+  assert.ok(
+    validateFeatureData(validDemoV3(), { gate: "DP" }).errors.some((error) =>
+      error.includes("DP requires exposure: public"),
+    ),
+  );
+  const publicDemo = validDemoV3("public");
+  assert.deepEqual(validateFeatureData(publicDemo, { gate: "DP" }).errors, []);
+  publicDemo.public_readiness.checks.pop();
+  assert.ok(
+    validateFeatureData(publicDemo, { gate: "DP" }).errors.some((error) =>
+      error.includes("must contain exactly"),
+    ),
+  );
+});
+
+test("schema v3 production_hardened preserves the full schema v2 gate semantics", () => {
+  const data = validProductionV3();
+  assert.deepEqual(validateFeatureData(data, { gate: "G4" }).errors, []);
+  assert.ok(
+    validateFeatureData(data, { gate: "D4" }).errors.some((error) =>
+      error.includes("demo_fast"),
+    ),
+  );
 });
 
 test("schema v1 remains readable but cannot claim any downstream gate", () => {
@@ -858,7 +1075,7 @@ test("repository audit applies the authoritative full-document shell check", () 
   }
 });
 
-test("repository CI audits every committed schema v2 gate and slice claim", () => {
+test("repository CI audits every committed historical and profile-aware claim", () => {
   const featureRoot = path.resolve("docs/features");
   for (const entry of fs.readdirSync(featureRoot, { withFileTypes: true })) {
     if (!entry.isDirectory() || !entry.name.startsWith("FEAT-")) continue;
@@ -888,21 +1105,74 @@ test("delivery shell entrypoints remain syntactically valid", () => {
   ]);
 });
 
-test("new-feature creates a schema v2 package with the temporal matrix", () => {
+test("new-feature defaults to compact schema v3 demo_fast local", () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "yijie-new-feature-"));
   try {
     execFileSync(
       path.join(PACKAGE_ROOT, "scripts/new-feature.sh"),
-      ["FEAT-999", "governance-v2-test", root],
+      ["FEAT-999", "demo-fast-test", root],
       { stdio: "pipe" },
     );
-    const featureDir = path.join(root, "FEAT-999-governance-v2-test");
-    assert.equal(fs.existsSync(path.join(featureDir, "04A-temporal-contract-matrix.md")), true);
+    const featureDir = path.join(root, "FEAT-999-demo-fast-test");
+    assert.equal(fs.existsSync(path.join(featureDir, "01-delivery-log.md")), true);
+    assert.equal(fs.existsSync(path.join(featureDir, "02-verification.md")), true);
+    assert.equal(fs.existsSync(path.join(featureDir, "04A-temporal-contract-matrix.md")), false);
     const source = fs.readFileSync(path.join(featureDir, "feature.yaml"), "utf8");
-    assert.match(source, /^schema_version: 2$/m);
+    assert.match(source, /^schema_version: 3$/m);
+    assert.match(source, /^delivery_profile: "demo_fast"$/m);
+    assert.match(source, /^exposure: "local"$/m);
     execFileSync(path.join(PACKAGE_ROOT, "scripts/check-feature-package.sh"), [featureDir], {
       stdio: "pipe",
     });
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("new-feature creates production_hardened only when explicitly selected", () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "yijie-new-production-feature-"));
+  try {
+    execFileSync(
+      path.join(PACKAGE_ROOT, "scripts/new-feature.sh"),
+      [
+        "--profile",
+        "production_hardened",
+        "--exposure",
+        "public",
+        "FEAT-999",
+        "production-test",
+        root,
+      ],
+      { stdio: "pipe" },
+    );
+    const featureDir = path.join(root, "FEAT-999-production-test");
+    assert.equal(fs.existsSync(path.join(featureDir, "04A-temporal-contract-matrix.md")), true);
+    const source = fs.readFileSync(path.join(featureDir, "feature.yaml"), "utf8");
+    assert.match(source, /^schema_version: 3$/m);
+    assert.match(source, /^delivery_profile: "production_hardened"$/m);
+    assert.match(source, /^exposure: "public"$/m);
+    execFileSync(path.join(PACKAGE_ROOT, "scripts/check-feature-package.sh"), [featureDir], {
+      stdio: "pipe",
+    });
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("shell checker enforces demo_fast D0, D4, and profile separation", () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "yijie-check-demo-v3-"));
+  try {
+    fs.writeFileSync(path.join(root, "feature.yaml"), JSON.stringify(validDemoV3(), null, 2));
+    for (const file of ["00-feature-brief.md", "01-delivery-log.md", "02-verification.md"]) {
+      fs.writeFileSync(path.join(root, file), "complete\n");
+    }
+    const checker = path.join(PACKAGE_ROOT, "scripts/check-feature-package.sh");
+    execFileSync(checker, ["--gate", "D0", root], { stdio: "pipe" });
+    execFileSync(checker, ["--gate", "D4", root], { stdio: "pipe" });
+    assert.throws(
+      () => execFileSync(checker, ["--gate", "G4", root], { stdio: "pipe" }),
+      (error) => error.stderr.toString().includes("demo_fast"),
+    );
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }

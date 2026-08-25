@@ -1,7 +1,16 @@
-# FEAT-128 交付总结与关闭记录
+# FEAT-128 交付总结与当前状态
+
+> **当前执行路线（2026-08-23）**：真实图片生成改由 [`demo-fast/`](demo-fast/) 独立账本连续实现并以
+> fresh local real-service D4 为完成条件。以下 schema v2 总结是历史 `production_hardened` 状态；其中
+> S10D-H 继续保持 `FAIL/PAUSED` 且 fuse open，不因路线切换而关闭、重试或改写。
 
 ## 1. 当前结果
 
+- 2026-08-23 用户把真实图片生成正式纳入 FEAT-128：MiniMax-M3 通过结构化 tool 决策，Agent Host 固定调用
+  中国区 `image-01`，支持文生图与当前轮单张人物参考图生图，校验 base64 后发布现有 v3 image Artifact，
+  Desktop 复用既有展示/预览/保存链路。最多 5 次 S12 campaign 付费验证已获授权，计划 4 次，当前 used `0/5`、
+  reserved `0`；实现与 yijie 链路验证尚未开始。用户确认 scope 前已有一次 standalone `image-01` 成功 probe，
+  但它没有经过 yijie 且证据不完整，不进入 S12 campaign。
 - G2 closure rewrite、Product/Technical/Security/Data Owner sign-off 与 UI Pattern `Accepted` 已完成；Pattern
   1.1.0 完成 S6-READINESS，随后 S6A native boundary 与 S6B image renderer 已分别独立实现并提交。
 - Contracts S1/S2 已形成真实、不可变、未发布的 `0.4.0` local candidate；locked generation、lint、test、
@@ -73,19 +82,22 @@
   subscribe-first buffering、ArtifactStore authority epoch、bounded live resync 与 production ChatPage/List/four-client wiring 已验证。
 - S10D-READINESS/S10-SPEC-RECONCILIATION 已把 Accepted Pattern 升为 1.7.0
   `8afdc996c11bbad2d275eb8b86a0f6b82ca5da52`：确认 S7B seeded shell、S9 Vite fake 与 S10A sidecar runner 均不能
-  证明 production vertical；S10D 拆为 H harness/walking skeleton 与 V full vertical，只批准 H 编码。没有编写或运行 H/V/E。
-- S3/S4/S5 的 G3 slice gate 已通过且范围未扩展；S6A-S10C、guard/digest repair 均为独立 PASS，不并入
-  G3。S10D-H/V、S10E-S12、真实 provider、tag、push、release、production Tauri vertical 与 G4-G6 仍关闭。
+  证明 production vertical；S10D 拆为 H harness/walking skeleton 与 V full vertical，当时只批准 H 编码。H 后续在
+  Host `09d83cce5f2937db1cbe3afa36cc5461ea671574` 与 Desktop `997345d87a5daa073c480769d57b4e59c3dfefcb`
+  形成实现提交，但没有一次完整 runtime smoke PASS，最新已知主失败类为 `runtime_axe_serious_critical`，并已按用户指令暂停。
+- S3/S4/S5 的历史 G3 slice gate 已通过且范围未扩展；S6A-S10C、guard/digest repair 均为独立 PASS，不并入
+  schema v2 per-slice G3。S10D-H 为 FAIL/PAUSED，S10D-V/S10E 未运行。S12A schema v2 governance/G2 已完成；S12B-F、qualified provider 调用、tag、push、
+  release、production Tauri vertical 与 G4-G6 均未发生或未通过；历史 standalone probe 只保留为未限定观察。
 
 ## 2. 实际版本与提交
 
 | Component | Version/status | Full commit | 说明 |
 |---|---|---|---|
-| Feature package | G3 S3/S4/S5 + S6-S10C/guard/digest separate PASS + S10D readiness docs | 本次 `yijie` 文档提交 | governance/evidence only；G3 unchanged；G4 pending |
-| Desktop Pattern | Accepted 1.7.0 S10D readiness | `8afdc996c11bbad2d275eb8b86a0f6b82ca5da52` | docs-only readiness；READY FOR S10D-H ONLY；H/V/E NOT RUN |
+| Feature package | active schema v2；S12A governance/G2 PASS；historical G3 S3/S4/S5 + S6-S10C/guard/digest separate PASS；S10D-H FAIL/PAUSED | 本次 `yijie` 文档工作树；提交未形成 | G2A pending；G2V blocked；G4 pending |
+| Desktop Pattern | Accepted 1.7.0 historical S10D readiness | `8afdc996c11bbad2d275eb8b86a0f6b82ca5da52` | docs-only readiness；READY FOR S10D-H ONLY at capture；H later FAIL/PAUSED，V/E NOT RUN |
 | Contracts | `0.4.0 local candidate` | `ea48fe190e18afba728712d1e2cc79cda57f581b` | immutable；no tag/release |
-| Agent Host | S3 PASS + S7F/S10A separate PASS; default off | S10A `0debd877a4afe1bf2da8c988caeb1124d0fa7272`; S7F `1045dd06534eb72d53eb7ad7b7d18e63c80284f8`; S3 `4017785adb08e1114781d3d844e9a10a683fa933` | exact keyless local profile + canonical video conformance；Contracts/tree unchanged |
-| Desktop | S4/S5 PASS; S6-S10C + guard/digest separate PASS; default off | S10C `86f02b4def4d07f76d66ebdafafda5a9bb75035c`; S10B `f787d70b4cfb51cde76bdce047ba630f4b7b1250`; S10A `f4a3d42ad837ecdc8a8ba4198b269d4717285791`; digest `3e5a3830a34718bf7bf0632cc71fc4c4ab9ea4b7`; guard `c257fe9e31979cc3f2f426ab1cb7c11ce8781732`; earlier slice SHAs见08 | public pin unchanged；S10C TS/Vue-only；production Tauri vertical pending |
+| Agent Host | S3 PASS + S7F/S10A separate PASS；H failed candidate；real-image adapter absent/default off | H `09d83cce5f2937db1cbe3afa36cc5461ea671574`; S10A `0debd877a4afe1bf2da8c988caeb1124d0fa7272`; S7F `1045dd06534eb72d53eb7ad7b7d18e63c80284f8`; S3 `4017785adb08e1114781d3d844e9a10a683fa933` | H SHA 不是 PASS pin；dynamic-tool router/provider/secret handoff 未实现 |
+| Desktop | S4/S5 PASS；S6-S10C + guard/digest separate PASS；H failed candidate；default off | H `997345d87a5daa073c480769d57b4e59c3dfefcb`; S10C `86f02b4def4d07f76d66ebdafafda5a9bb75035c`; S10B `f787d70b4cfb51cde76bdce047ba630f4b7b1250`; S10A `f4a3d42ad837ecdc8a8ba4198b269d4717285791`; earlier SHAs见08 | public pin unchanged；现有 image renderer 可复用；packaged Key handoff 未实现 |
 
 关键 source digests：OpenAPI `cf72ba8dd6910e8454ad60feeffa5e82583303b441dad78e49910fbdb9f5420f`，
 event v3 `87b1284056529bde8314e6cfa6ad1fb27ffefef50ea86033875fda795330939f`，report v1
@@ -96,7 +108,8 @@ event v3 `87b1284056529bde8314e6cfa6ad1fb27ffefef50ea86033875fda795330939f`，re
 
 | 范围 | 结果 | Evidence |
 |---|---|---|
-| Requirements/design traceability | PASS | 00-07 + Pattern Accepted + package checks |
+| Historical requirements/design traceability | PASS for legacy scope | historical 00-07 + Pattern Accepted + immutable legacy package evidence |
+| S12 real-image traceability | S12A GOVERNANCE/G2 PASS / MACHINE-BOUND | active schema v2 + 00-07 + 04A + 08；S12B-F implementation/evidence NOT RUN |
 | Contracts S1/S2 | PASS | `pnpm generate/lint/test/build`、39/39 Node + Go、双 breaking、semantic review |
 | Host exact pin | PASS | sync/contract-check/lint/test at `dea84d...` |
 | Desktop exact pin | PASS | generate-check/lint/test/build/docs at `960944...` |
@@ -125,6 +138,8 @@ event v3 `87b1284056529bde8314e6cfa6ad1fb27ffefef50ea86033875fda795330939f`，re
 | Host/Desktop S10A-LOCAL-PROFILE | PASS AS SEPARATE SLICE | Host `0debd877a4afe1bf2da8c988caeb1124d0fa7272`；Desktop `f4a3d42ad837ecdc8a8ba4198b269d4717285791`；exact keyless profile、sidecar mapping、content-free runner/full gates PASS |
 | Desktop S10B-NATIVE-LIVE | PASS AS SEPARATE SLICE | Desktop `f787d70b4cfb51cde76bdce047ba630f4b7b1250`；single-v3、atomic Artifact/cursor、post-commit ACK replay、closed content-free private event、full gates PASS |
 | Desktop S10C-PAGE | PASS AS SEPARATE SLICE | Desktop `86f02b4def4d07f76d66ebdafafda5a9bb75035c`；EXPECTED RED、6 files/67 focused、61 files/385 full、subscribe-first/history-v3/authority/bounded resync/four clients/axe/security/full gates PASS |
+| Host/Desktop S10D-H | FAIL / PAUSED | implementation heads exist；no complete runtime smoke PASS；latest known primary class `runtime_axe_serious_critical`；exact attempt ledger must be recovered，not invented |
+| S12 real-image scope/API/design | DESIGN RECORDED / IMPLEMENTATION NOT RUN | 00-07 + 04A + 08 scope/validation indexes；official MiniMax endpoint/model/response contract checked；S12 campaign used `0/5`、reserved `0`；standalone probe unqualified |
 | AC contract portions | CONTRACT PASS | lifecycle/resource/ACK/report/fixtures/negative cases |
 | AC Host/native foundation portions | PARTIAL PASS | S3/S4 lifecycle/resource/persistence/history/retention conformance |
 | AC generic shell portion | S5 FOUNDATION PASS | monotonic/closed reducer、history/live shared store、generic accessible metadata shell |
@@ -133,7 +148,7 @@ event v3 `87b1284056529bde8314e6cfa6ad1fb27ffefef50ea86033875fda795330939f`，re
 | AC-005 file behavior | S8A NATIVE PASS / S8B COMPONENT + S10C PAGE PASS / VERTICAL NOT RUN / AC PARTIAL | current-v3 file UI/native save与 trusted Page wiring implemented；Markdown deferred/G4 blocked |
 | AC-006 report behavior | CONTRACT/NATIVE/FOUNDATION/UI/S10C PAGE PASS / PRODUCTION VERTICAL NOT RUN | report projection/save、closed chart renderer 与 trusted Page wiring已通过；real Tauri vertical 留待 S10D/E，不记完整 AC PASS |
 | AC type renderer/E2E portions | PARTIAL | image/video/file/report reusable components与 production Page code integration PASS；real Tauri production E2E 尚未开始 |
-| Real provider capability | BLOCKED/UNKNOWN | 无付费调用或 authority |
+| Real image provider capability | STANDALONE OBSERVED / YIJIE PATH UNKNOWN | 历史 standalone `image-01` success 只证明 Key/provider 曾可用；adapter、secret handoff、Runtime compatibility、Artifact/Desktop 路径均未验证；S12 campaign used `0/5`、reserved `0` |
 
 ## 4. 安全、数据与兼容边界
 
@@ -149,7 +164,8 @@ event v3 `87b1284056529bde8314e6cfa6ad1fb27ffefef50ea86033875fda795330939f`，re
   digest/bytes。只允许 `img-src` 追加该 scheme，不新增依赖/plugin/capability/migration 或 generic fs/shell。
 - 用户批准的最小例外只刷新 Desktop 内部 consumer implementation/readiness digests 与 checker 常量；Contracts
   `full_commit=ea48fe...`、source SHA、fixtures、version、operation/schema、Host 与公共协议均未改变。
-- 四种 exact-local synthetic fixtures 已存在；真实 `provider|tool` activation 仍分 kind blocked。
+- 四种 exact-local synthetic fixtures 已存在。真实 image `provider|tool` 的需求范围已打开，但 activation 仍默认关闭，
+  必须按 S12A-F 逐门禁实施；video/file/report real producer 继续关闭。
 - canonical video resource 是 raw 1,642 bytes、SHA-256 `96ea070c...77dd5`、H.264 High/16×16/25fps/0.12s/
   3 frames、front `moov`/first keyframe；Host S7F 已从锁定 source 派生并复核 exact bytes，不依赖 runtime sibling。
 - S7A 已实现 `yijie-artifact-video://localhost/v1/<opaque-handle>`：30min absolute/5min idle、2 handles/
@@ -212,7 +228,9 @@ semantic review 与 immutable pin 完成后才能开始 Host/Desktop。实际证
 | S10A-LOCAL-PROFILE Slice | PASS OUTSIDE G3 | 2026-08-22 | Host `0debd877a4afe1bf2da8c988caeb1124d0fa7272` + Desktop `f4a3d42ad837ecdc8a8ba4198b269d4717285791` + post-commit content-free runner |
 | S10B-NATIVE-LIVE Slice | PASS OUTSIDE G3 | 2026-08-22 | Desktop `f787d70b4cfb51cde76bdce047ba630f4b7b1250` + RED/GREEN/full gates + atomic/restart/private-event evidence；no Page/Store/Host/public wire drift |
 | S10C-PAGE Slice | PASS OUTSIDE G3 | 2026-08-22 | Desktop `86f02b4def4d07f76d66ebdafafda5a9bb75035c` + RED/GREEN/full gates + subscribe-first/v3/authority/resync/Page/axe/security evidence；no native/config/dependency/public wire drift |
-| G4 Code Complete | PENDING | N/A | S10D/E/S11、Markdown/full AC、E2E/full production visual/performance/独立 review 未完成 |
+| S10D-H execution | FAIL / PAUSED | 2026-08-23 | Host `09d83cce...` + Desktop `997345d8...`；无一次完整 smoke PASS；用户明确暂停；不关闭 H |
+| S12 real-image scope | APPROVED FOR DESIGN + MAX 5 S12 CAMPAIGN CALLS / NOT IMPLEMENTED | 2026-08-23 | fixed China `image-01`、T2I + current-turn single-person-reference I2I、Host Artifact pipeline；planned 4，S12 campaign used `0/5`、reserved `0`；standalone probe predates epoch |
+| G4 Code Complete | PENDING | N/A | S10D-H 失败、S10D-V/S10E/S11、S12B-F、Markdown/full AC、E2E/full production visual/performance/独立 review 未完成 |
 | G5/G6 | NOT PASSED | N/A | local-only scope has no release/deployment/production evidence |
 
 ## 6. 未验证项与已知限制
@@ -231,29 +249,34 @@ semantic review 与 immutable pin 完成后才能开始 Host/Desktop。实际证
 | S9A report native projection/save | PASS | `232ea6ce132faa8ac99bdf6abcc5e02ddd704ffe` + EXPECTED RED/focused/full Desktop gates；S9B-R 已单独完成 |
 | S9B-D dependency/theme/adapter/card | PASS | `0a36ca7c54460d22ea6b3228832a57f05f0bde68` + exact dependency/integrity/license、5/13 focused、57/360 full、bundle 与 18-case browser matrix；checker repair `aec0f8a05ba7534132cbb4f46be64e333d7e9024` 保持 production boundary immutable |
 | S9B-R report renderer/chart/save UX | REUSABLE COMPONENT + REAL-BROWSER MATRIX + S10C PAGE PASS | renderer/browser matrix与 trusted production Page wiring已通过；real Tauri vertical留待 S10D/E |
-| S10 production seam | S10A LOCAL PROFILE + S10B NATIVE LIVE + S10C PAGE PASS / S10D READINESS DOCS ONLY | keyless profile、single-v3、atomic cursor/Artifact、history/store/Page已闭环；H/V/E与real Tauri production vertical仍未运行 |
+| S10 production seam | S10A LOCAL PROFILE + S10B NATIVE LIVE + S10C PAGE PASS / S10D-H FAIL+PAUSED | keyless profile、single-v3、atomic cursor/Artifact、history/store/Page已闭环；H没有完整 smoke PASS；V/E 未运行 |
 | synthetic local vertical slice | NOT RUN | S10 E2E/security/performance/visual |
 | synthetic video playback/seek | CONTRACT + HOST S7F + DESKTOP S7A/S7A-REPAIR/S7B PASS | real Tauri WebView shell smoke metadata/playback/seek true；production Chat vertical仍待 S10D |
-| MiniMax real image | BLOCKED | fixed provider capability + separate paid authorization/eval |
+| MiniMax real image | S12A GOVERNANCE PASS / S12B-F NOT RUN / S12 CAMPAIGN `0/5` | 历史 standalone success 不可借作链路证据；下一步完成 Runtime compatibility、fake adapter、secure Key handoff，再按 shared campaign hard max 5 执行 S12E/F |
 | real video/file/report producers | BLOCKED | per-kind authority/ownership/security design |
 | release/deployment | N/A current scope | separate G5/G6 package if later requested |
 
 ## 7. 下一步与停止条件
 
-1. S10A/S10B/S10C 已 immutable separate PASS；Pattern 1.7.0 只批准下一编码切片 S10D-H，不得直接进入 S10D-V、S10E、S11-S12 或 G4。
-2. S10D-H 必须按 07 §26 fresh-build exact Host/fake/Desktop，挂真实 Tauri production App/router/ChatPage，并只证明一个四类 ready-shell walking skeleton、closed evidence与complete cleanup；不得用 seeded/Vite/mock/store/DB-spool seed 冒充。
-3. S10D-V 仍须等待 H immutable PASS 与单独授权；S10E 等 V PASS。native save无法安全自动化时必须MANUAL/NOT RUN，不得注入目标路径。
-4. 任何 ACK、limits、retention clock、report compatibility、auth/CSP 或 authority 漂移先重开 G2；
-   Contracts pin 漂移先重开 G2A。
-5. 不启动真实 provider，不 tag/push/publish/release，不把 pin conformance 描述成 Code Complete。
+1. `S12A` 已完成：active `feature.yaml` 已迁移到 schema v2，04A、S12A-F graph、G2V harness、真实图片 gate 与
+   `INC-128-S10D-H-EMPTY-WAL` 已机器绑定；没有补造 H PASS/RCA。
+2. 下一步只执行 `S12B`：形成 Runtime dynamic-tool compatibility candidate、双向 fixture、generate/breaking/semantic review
+   与 exact consumer pin，完成后才可声明新范围 G2A。
+3. S12A 未修改业务仓、未运行 S10D-H、未调用 MiniMax。S12B-E 依次是 Runtime compatibility contract、Host fake
+   adapter、consumer repin/secure secret handoff与 bounded paid probe。S12F 前还必须在 schema v2 显式解决与 H 重叠的
+   real-Tauri blocker；不得跳序、借用证据或删除 H failure ledger。
+4. S10D-H 保持 FAIL/PAUSED；恢复执行需要单独 Owner 指令和迁移后的失败账本。S10D-V/S10E 仍等待 H immutable PASS。
+5. 真实图片调用只有 S12E/F 可执行，`n=1`、逐次、hard max 5；timeout/outcome-unknown 不自动重试。生产 activation、
+   video/file/report real producer、tag/push/publish/release 均未获批准。
 
 ## 8. 文档与交接
 
 | Artifact | Path | Owner | 状态 |
 |---|---|---|---|
-| Feature package | `yijie/docs/features/FEAT-128-structured-chat-artifacts/` | 段成威 | G3 remains S3/S4/S5；S6-S10C/guard/digest separate PASS；S10D readiness docs；H/V/E NOT RUN |
-| Desktop UI Pattern | `yijie-desktop/docs/design/docs/design/05-patterns/14-feat-128-structured-chat-artifacts.md` | 段成威 | Accepted 1.7.0 at `8afdc996...`；READY FOR S10D-H ONLY；production vertical NOT RUN |
+| Feature package | `yijie/docs/features/FEAT-128-structured-chat-artifacts/` | 段成威 | active schema v2；S12A governance/G2 PASS；S12B-F pending；G2A pending/G2V blocked；S10D-H FAIL/PAUSED；campaign `0/5` |
+| Desktop UI Pattern | `yijie-desktop/docs/design/docs/design/05-patterns/14-feat-128-structured-chat-artifacts.md` | 段成威 | Accepted 1.7.0 at `8afdc996...`；historical READY FOR S10D-H ONLY；H later FAIL/PAUSED，production vertical NOT RUN |
 | Contracts semantic review | `yijie-contracts/docs/reviews/FEAT-128-semantic-review.md` | Contracts Owner | PASS |
-| Release/rollback plan | `09-release-and-rollback.md` | 段成威 | no release executed |
+| Temporal contract matrix | `04A-temporal-contract-matrix.md` | 段成威 | real-image lifecycle/invariants planned；conformance NOT RUN |
+| Release/rollback plan | `09-release-and-rollback.md` | 段成威 | no release executed；image kill switch/budget/secret rollback planned |
 
-正式关闭时间尚未形成。当前准确状态是：`G3 PASS only for S3/S4/S5; S6-S10C + FEAT126 guard/digest separate PASS; S10D readiness docs only; S10D-H/V and S10E NOT RUN; production vertical NOT RUN; real providers closed; G4-G6 not passed`。
+正式关闭时间尚未形成。当前准确状态是：`schema v2 active; S12A governance/G2 PASS; S12B-F pending; G2A pending; G2V blocked by open H cleanup fuse and unqualified S12 harness; historical G3 only S3/S4/S5; S6-S10C + FEAT126 guard/digest separate historical PASS; S10D-H FAIL/PAUSED; campaign 0/5; production vertical NOT RUN; G4-G6 pending`。

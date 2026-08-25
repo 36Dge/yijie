@@ -8,19 +8,23 @@
 > S7F、S7A、S7A-REPAIR、S7B、S8A、S8B、S9A、S9B-D、S9B-D-CHECKER-REPAIR 与 S9B-R 已形成 immutable commits；S9-READINESS 是历史 docs-only evidence，
 > S9B-READINESS/Pattern 1.5.0 也只是 docs-only evidence。S9B-R 独立通过不代表 production vertical。
 > S10-READINESS/Pattern 1.6.0 是历史 docs-only evidence；S10A/S10B/S10C 后续分别形成 separate PASS。S10D-READINESS/
-> Pattern 1.7.0 只批准 S10D-H，仍不代表 production Tauri vertical、S10D-H/V、S10E 或 G4。
+> Pattern 1.7.0 只批准 S10D-H；H 随后已有 Host/Desktop 实现提交，但 runtime smoke 未通过且已按用户指令暂停，
+> 因而仍不代表 production Tauri vertical、S10D-H/V、S10E 或 G4。2026-08-23 新增真实图片范围只完成需求、
+> 官方 API 核对与设计拆分；实现、Runtime 兼容验证和付费图片验证均未运行。
 
 ## 1. 验证上下文
 
 | Repository | Branch | Evidence commit | FEAT-128 实际范围 | 日期 |
 |---|---|---|---|---|
-| `yijie` | `feat/feat-128-structured-chat-artifacts` | 本文档最终提交 | G2/G2A + S3/S4/S5 G3 + S6-S10C separate PASS + S10D readiness docs；不扩 G3 | 2026-08-22 |
+| `yijie` | `feat/feat-128-structured-chat-artifacts` | 本文档工作树；提交未形成 | 历史 G2/G2A + S3/S4/S5 G3 + S6-S10C separate PASS；记录 S10D-H FAIL/PAUSED 与真实图片 S12 设计 | 2026-08-23 |
 | `yijie-contracts` | `feat/feat-128-structured-chat-artifacts` | `ea48fe190e18afba728712d1e2cc79cda57f581b` | S1/S2 authoritative source/generated/fixtures/review | 2026-08-20 |
-| `yijie-agent-host` | `feat/feat-128-structured-chat-artifacts` | pin `dea84d0768ebc017b7ee5faedab7f9a49ce74875`; S3 `4017785adb08e1114781d3d844e9a10a683fa933`; S7F `1045dd06534eb72d53eb7ad7b7d18e63c80284f8` | exact pin + local Host v3 foundation + canonical playable/seekable strict-local video conformance | 2026-08-20 |
+| `yijie-agent-host` | `feat/feat-128-structured-chat-artifacts` | pin `dea84d0768ebc017b7ee5faedab7f9a49ce74875`; S3 `4017785adb08e1114781d3d844e9a10a683fa933`; S7F `1045dd06534eb72d53eb7ad7b7d18e63c80284f8`; current H repair head `09d83cce5f2937db1cbe3afa36cc5461ea671574` | existing v3/synthetic foundation；真实图片 provider 尚未实现 | 2026-08-23 |
 | `yijie-desktop` | `feat/feat-128-structured-chat-artifacts` | initial Pattern `e97b2dabd724af856b4041e23b24437ec2f5dfc3`; pin `96094419d963745529ed0fa246919089e659f20d`; S4 `09220dd8319cfb8ec0c4d1531514bb5169107983`; S5 `7548ea8aeacfd7274f1107786ce48ddc6789cd45`; S6 readiness `2b854b40379a207c19bf37fc5bc64266553c5df1`; S6A `8b99849d418a3ef226f4133128f1ac22a438f9d5`; S6B `4a8dce6a6526e37052941f6dbb921ba2486e109f`; S7 readiness `18b17d961ed5991cec55eeb230ea21d91f2fb8ec`; S7A `22b91c5a258458c87f1ac96c06bf39d1af97358f`; S7A-REPAIR `34991d8967de9aa2197ab2e8b9b49347774df7a5`; S7B `366186b601144bdc2bc87a2cef3075b74f1e8f19`; S8 readiness `4929a73a7871056d7aeca3eb0b27c682b21bfe4b`; S8A `bf5452f7fde24d1391845deaba17ec1135716c62`; S8B `4d0238b1906f02d319f47f5e55cdc023485ef07a`; S9 readiness `b6f7401c79d5b2356bc45468f14d7fdbb17a855c`; S9A `232ea6ce132faa8ac99bdf6abcc5e02ddd704ffe`; S9B readiness `630c3c8d55a2617499f51bd5bed263b819aaf084`; S9B-D `0a36ca7c54460d22ea6b3228832a57f05f0bde68`; checker repair `aec0f8a05ba7534132cbb4f46be64e333d7e9024`; S9B-R `6bcc2a6bfb4db76398ecf5483c688475477f08ed`; S10 readiness `c1095eeb7a4c4bbc1f5a2729e9f8df861ebc02c2`; S10C `86f02b4def4d07f76d66ebdafafda5a9bb75035c`; S10D readiness `8afdc996c11bbad2d275eb8b86a0f6b82ca5da52` | exact pin + independent S6-S10C + Pattern 1.7.0 docs；production Tauri vertical NOT RUN | 2026-08-22 |
-| `yijie-codex` | `develop` | `0ce5902ed400866be0196886bb78f693a004d68d` | read-only Runtime authority | 2026-08-20 |
+| `yijie-codex` | `develop` | `0ce5902ed400866be0196886bb78f693a004d68d` | read-only Runtime authority；确认实验性 `dynamicTools` / `item/tool/call` 候选路径 | 2026-08-23 |
 
-没有 tag、push、契约发布、真实 provider 调用、云资源、部署或生产流量。Host S3 与 Desktop S4 均默认
+本轮需求包编辑没有新增 tag、push、契约发布、真实 provider 调用、云资源、部署或生产流量；S12 campaign
+账本为 used `0/5`、reserved `0`。用户已确认本次 scope 之前另有至少一次 standalone `image-01` 成功 probe；它不经过
+yijie 链路、不进入 S12 campaign，也没有足够 run evidence。Host S3 与 Desktop S4 均默认
 关闭；Desktop S6A/S6B 已有 image native/rendering，S7A/S7A-REPAIR/S7B 已有 video native、playback-compatible
 Range lifetime、reusable renderer 与真实 WebView metadata/playback/seek smoke，但没有 production Chat page/跨进程
 vertical integration；Host 没有真实 provider producer。
@@ -63,8 +67,9 @@ vertical integration；Host 没有真实 provider producer。
 | S10B-NATIVE-LIVE | PASS AS SEPARATE SLICE | Desktop `f787d70b4cfb51cde76bdce047ba630f4b7b1250` + EXPECTED RED、focused/full GREEN、atomic/replay/private-event evidence | single-v3 native seam 已形成；不并入 G3/G4，不代表 Page/vertical |
 | S10C-PAGE | PASS AS SEPARATE SLICE | Desktop `86f02b4def4d07f76d66ebdafafda5a9bb75035c` + EXPECTED RED、focused/full GREEN、authority/resync/axe/security evidence | TS/Vue production Page integration 已形成；不并入 G3，不代表 real Tauri vertical/G4 |
 | S10D-READINESS + S10-SPEC-RECONCILIATION | PASS FOR DOCS ONLY / READY FOR S10D-H ONLY | four-repo read-only audit + Pattern 1.7.0 `8afdc996c11bbad2d275eb8b86a0f6b82ca5da52` + Owner capture | 只批准 H；不并入 G3/G4，不代表 H/V/E 实现或 runtime PASS |
-| S10D-H/S10D-V/S10E/S11 | NOT RUN | 无对应实现 diff/runtime evidence | 必须逐切片授权与 immutable PASS |
-| S12 real producers | BLOCKED | 无 provider authority/付费授权 | 保持关闭 |
+| S10D-H | FAIL / PAUSED | Host `09d83cce5f2937db1cbe3afa36cc5461ea671574`、Desktop `997345d87a5daa073c480769d57b4e59c3dfefcb`；未形成一次完整 runtime smoke PASS；最新已知主失败类为 `runtime_axe_serious_critical`，且曾观察到空 WAL 清理残留 | 保留失败事实；不关闭、不续跑、不升级为 PASS；恢复前先迁移完整失败账本 |
+| S10D-V/S10E/S11 | NOT RUN | H 未通过且已暂停 | 不得启动 |
+| S12 real image producer | S12A GOVERNANCE/G2 PASS / S12B-F NOT RUN | 2026-08-23 active schema v2 已绑定 API、架构、时序、测试、H fuse 与回滚计划；历史 standalone probe 仅为未限定观察 | 下一步按 S12B→S12C→S12D→S12E→S12F 执行；S12 campaign used `0/5`、reserved `0` |
 
 ## 2A. S8-READINESS 只读审计证据
 
@@ -246,12 +251,117 @@ orchestration，不证明 fresh Host + real Tauri production vertical；S10D/E�
 | Existing runtime | S7B `main.ts` 互斥分支 self-mount seeded video shell；S10A 只跑 Cargo integration；S9 visual是Vite fake | 三者均不能证明 production bootstrap/ChatPage/full Host lifecycle |
 | Production bootstrap risk | current production auth rejects ephemeral test profile；repo无 production-Page Tauri controller、closed screenshot/evidence/teardown | nontrivial lifecycle；S10D拆H/V，先H only |
 | Build/control choice | reuse existing `feat128-s10-runtime` and current Tauri/objc2/axe；release custom-protocol build，不用 Vite/devUrl；macOS window-number + system screenshot需H实际证明 | 无新 feature/dependency/config；capture失败fail closed，不降级browser |
-| Security/evidence | exact S10A loopback/zero-provider、0700 root、closed test auth/project prerequisite、no store/DB/spool seed、content-free verdict、transient screenshot、ordered cleanup | READY FOR S10D-H ONLY；D-H/V/E仍NOT RUN |
+| Security/evidence | exact S10A loopback/zero-provider、0700 root、closed test auth/project prerequisite、no store/DB/spool seed、content-free verdict、transient screenshot、ordered cleanup | readiness 时为 READY FOR S10D-H ONLY；H 后续实现但 smoke FAIL/PAUSED，V/E仍 NOT RUN |
 | Contract impact | docs-only；Contracts/Host/public/private wire/pin/fixture/consumer digest均未改 | `none` |
 
 Desktop Pattern 1.7.0 commit `8afdc996c11bbad2d275eb8b86a0f6b82ca5da52` 只修改 Accepted Pattern；
 `pnpm generate:check`、`pnpm docs:build`、`pnpm lint`、`pnpm test`（61 files/385 tests）与 `git diff --check`
-均 exit 0。S10D-H/V/E harness/runtime 均未编写或运行。
+均 exit 0。该句只描述 readiness 当时的证据；S10D-H 后续已产生 Host/Desktop 实现提交，但没有一次完整 smoke
+PASS，现已暂停。由于本轮没有可复核的完整 run ID、时间戳与全部 attempt ledger，不在此推造执行次数或根因。
+
+## 2N. 2026-08-23 真实图片范围验证快照
+
+<!-- evidence: EV-128-IMG-SCOPE-20260823 -->
+### Evidence EV-128-IMG-SCOPE-20260823
+
+本 marker 只是 Owner scope/decision index：没有 exact command、environment、exit code 或 immutable implementation ref，
+不得作为 schema v2 slice、G2V 或 G3 PASS evidence。S12A 必须把决策与后续合格执行证据分开迁移。
+
+| 检查 | 可复核事实 | 当前结论 |
+|---|---|---|
+| 官方接口 | MiniMax 官方文档定义 `POST https://api.minimaxi.com/v1/image_generation`；文生图与人物参考图生图共用该 endpoint；固定模型 `image-01`；`response_format=base64` 返回 `data.image_base64[]` | DESIGN FACT；本轮未发 S12 请求 |
+| 历史 standalone probe | 用户明确确认在本 scope 指令前，现有 Key 与 `image-01` 已成功生成至少一张真实图片；未提供 exact command、timestamp、request/response 或留存 evidence，且未经过 Runtime/Host Artifact/Desktop | OBSERVED / UNQUALIFIED；只说明 provider/Key 曾可用，不能证明当前可用、I2I 或 yijie 对话链路 |
+| Runtime 路由 | 当前 pinned Runtime 存在实验性 `thread/start.dynamicTools` 与 reverse JSON-RPC `item/tool/call` 候选面；Host 当前拒绝 reverse server requests | 需要先冻结 Runtime compatibility contract；NOT RUN |
+| Tool ownership | MiniMax-M3 只决定是否调用 closed image tool；Host 独占 Key、HTTP、引用图解析、幂等/预算、响应校验、Artifact 发布；Desktop 复用现有 v3 image Artifact | DESIGN ONLY |
+| 文生图 | tool 仅接受 `mode=text_to_image`、`prompt` 与可选受限 `aspect_ratio`；Host 固定 origin/model/format/n | IMPLEMENTATION NOT RUN |
+| 图生图 | 仅允许当前轮恰好一张已验证 PNG/JPEG 作为 `subject_reference` Data URL；拒绝模型传入 URL/base64/任意 Artifact ID；不是通用图片编辑 | IMPLEMENTATION NOT RUN |
+| 数据与密钥 | Key 不进 Runtime、Desktop/WebView、argv、日志、数据库、Artifact 或证据；Host 为 provider 建立的参考图副本只驻留短生命周期内存。原 user-turn prompt/附件仍按既有 Desktop/Runtime 授权边界存在，不得被 result/event/log/evidence 复制；packaged Desktop 的 owner-only secret handoff 尚未实现 | BLOCKED AT S12D |
+| 付费验证 | 用户在陈述历史 probe 后另行授权本次 S12 campaign 总上限 5 次 HTTP send attempts、`n=1`；P1-P4 为 4 个 planned slots，R1 为一次性 repair；S12E/F 共用不可重置 durable ledger；只有假 provider、静态门禁和密钥交接全部通过后才能消费 | S12 campaign used `0/5`、reserved `0`；历史 probe 不在该 epoch，不能借作 S12 evidence |
+| S10D-H 隔离 | H 是 keyless synthetic real-Tauri harness；当前 FAIL/PAUSED。真实图片 S12A-E 可按自身前置独立推进，其中 S12E 仅是 Host/Runtime capability probe；只有 S12F 与 G4 受 real-Tauri overlap blocker 约束，须先有 H immutable PASS 或 schema v2 Owner-approved non-borrowing H-IMG-VERTICAL exception | 两条状态不互相改写；exception 不关闭 H |
+
+官方依据：
+[图片生成指南](https://platform.minimaxi.com/docs/guides/image-generation)、
+[文生图 OpenAPI](https://platform.minimaxi.com/docs/api-reference/image/generation/api/text-to-image.json)、
+[图生图 OpenAPI](https://platform.minimaxi.com/docs/api-reference/image/generation/api/image-to-image.json)、
+[错误码](https://platform.minimaxi.com/docs/api-reference/errorcode)、
+[按量价格](https://platform.minimaxi.com/docs/guides/pricing-paygo) 与
+[速率限制](https://platform.minimaxi.com/docs/guides/rate-limits)。价格与限制属于运行时可变事实，S12E 前必须再次核对。
+
+<!-- evidence: EV-128-IMG-DOCS-VALIDATION-20260823 -->
+### Evidence EV-128-IMG-DOCS-VALIDATION-20260823
+
+- 环境：`yijie` 本地工作树，2026-08-23；这是 S12A 迁移前的 pre-migration validation snapshot。
+- 证据绑定：本 marker 绑定未提交 worktree，不是 immutable commit，也不能被 schema v2 slice/G2V/G3 引用为 PASS。
+- `./docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-128-structured-chat-artifacts`：exit 0；
+  当时的 legacy v1 historical-only warning 按预期出现，结构、模板变量与未完成标记检查通过。
+- `./docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate G3 docs/features/FEAT-128-structured-chat-artifacts`：
+  exit 1（EXPECTED BLOCK）；明确拒绝 schema v1 声称 G3，证明 S12A v2 迁移不可跳过。
+- `feature.yaml` 使用 `yaml@2.9.0` `uniqueKeys=true` 解析：exit 0。
+- `pnpm lint`：exit 0；repository manifest 与 Contract First governance 校验通过。
+- `pnpm test`：exit 0；42 tests PASS，包含 schema v1 immutable-until-v2-migration、G2V、temporal contract、
+  failure fuse 与 evidence-marker 规则。
+- `git diff --check`：exit 0，覆盖 tracked 修改；新增未跟踪 04A 另以
+  `git diff --no-index --check /dev/null docs/features/FEAT-128-structured-chat-artifacts/04A-temporal-contract-matrix.md`
+  检查，exit 1 仅表示文件有差异且无 whitespace diagnostics，并以 trailing-whitespace scan 复核为零命中。
+- 上述结果只证明需求包结构与治理工具回归；不证明 Runtime compatibility、provider adapter、真实图片、S10D-H 或 G4。
+
+<!-- evidence: EV-128-S10D-H-FAIL -->
+### Evidence EV-128-S10D-H-FAIL（RECOVERED FAILURE LEDGER）
+
+可复核来源是两份只读 Codex 原始 JSONL transcript：
+
+- `<codex-home>/archived_sessions/rollout-2026-08-20T10-04-04-01a01ce9-429d-7e82-b5f4-5098846363a2.jsonl`
+- `<codex-home>/sessions/2026/08/23/rollout-2026-08-23T13-48-23-01a02d29-b48b-7b12-95ef-27df3acfdabe.jsonl`
+
+focused Rust 在新版六次 smoke 前运行且通过：
+
+| Run ID | Command | Started / completed | Exit | Result |
+|---|---|---|---:|---|
+| `exec-caac6b30-2e27-403a-b2b8-c176308ca70a` | `cargo test --manifest-path src-tauri/Cargo.toml --features feat128-s10-runtime feat128_s10d_runtime::tests` | `2026-08-23T13:58:58+08:00` / `2026-08-23T13:58:58+08:00` | 0 | 8 passed，0 failed；main target 0 tests |
+
+恢复出的 runtime 账本如下；七次命令均为 `./scripts/run-feat128-s10d-runtime-smoke.sh`，均 exit 1，没有 PASS：
+
+| # | Run ID | Started / completed | Primary classification | Host / DOM | axe stages | Cleanup |
+|---:|---|---|---|---|---|---|
+| 0 | `call_BAyDvScb5gEPelnACy9Cbi9M/session-52491` | `2026-08-22T21:21:18+08:00` / `2026-08-22T21:22:43+08:00` | legacy `failureCode=runtime_chat_navigation_failed` | legacy schema 未发出 | legacy schema 未发出 | residue 字段未发出 |
+| 1 | `exec-508d5761-8fb1-4f38-91b2-089f6828a1ff` | `2026-08-23T13:59:25+08:00` / `2026-08-23T14:00:41+08:00` | `runtime_axe_import_rejected` | `4/4/4/4` / `4/4` | loaded → nonce → bootstrap → import rejected | `desktop_sqlcipher_wal`，`walState=empty`；除 `wal=false` 外均 true |
+| 2 | `exec-4e6fc999-9b54-4fcb-bb37-f93fc2d3e0f5` | `2026-08-23T14:04:28+08:00` / `2026-08-23T14:08:11+08:00` | `native_complete_dom_ready_incomplete` | `4/4/4/4` / `0/0` | `[]` | 同上 |
+| 3 | `exec-f77a820c-7a14-481a-b3f1-ee0555bbb5d0` | `2026-08-23T14:14:06+08:00` / `2026-08-23T14:17:42+08:00` | `runtime_axe_import_timeout` | `4/4/4/4` / `0/0` | loaded → nonce → bootstrap | 同上 |
+| 4 | `exec-23932ef0-3b5e-4400-9fb7-6d13074b2be5` | `2026-08-23T14:20:38+08:00` / `2026-08-23T14:21:53+08:00` | `runtime_axe_import_rejected` | `4/4/4/4` / `4/4` | loaded → nonce → bootstrap → import rejected | 同上 |
+| 5 | `exec-ef0050b7-9238-470b-8f9d-e432476452e3` | `2026-08-23T14:24:44+08:00` / `2026-08-23T14:25:49+08:00` | `runtime_accessibility_failed` | `4/4/4/4` / `4/4` | loaded → nonce → bootstrap → import resolved → run resolved | 同上 |
+| 6 | `exec-18b6eb11-485a-47d0-a21c-d7cde390c8ba` | `2026-08-23T14:27:28+08:00` / `2026-08-23T14:28:42+08:00` | `runtime_axe_serious_critical` | `4/4/4/4` / `4/4` | loaded → nonce → bootstrap → import resolved → run resolved | 同上 |
+
+精确结论：
+
+- primary classification 随修复演进，不能把它们强行合并为一个产品根因；最新主分类是 `runtime_axe_serious_critical`。
+- 六次结构化尝试都独立重复 `desktop_sqlcipher_wal`、`walState=empty`、`cleanup.wal=false`，因此可按同一
+  `harness_failure / teardown_cleanup` fingerprint 计数；第 3 次已触发 schema v2 的三次等价失败熔断。
+- `feature.yaml` 只把前 3 次等价失败写入阈值上限为 3 的 immutable incident；第 4–6 次仍完整保留在
+  `observed_s10d_h_ledger`，但没有发现满足 schema v2 要求的 complete RCA audit、单次 Owner authorization 与 post-RCA attempt，
+  所以 `rca_cycles=[]`、`state=rca_required`。
+- Host `09d83cce5f2937db1cbe3afa36cc5461ea671574` 与 Desktop
+  `997345d87a5daa073c480769d57b4e59c3dfefcb` 在最后一次尝试之后提交，只能作为当前失败现场 heads，不能倒写成每次运行时的 immutable commit。
+- 用户已明确暂停；S12A 没有重跑 H、没有关闭 H。恢复执行须先完成区分性 RCA，再取得最多一次的 Owner authorization。
+
+<!-- evidence: EV-128-S12A-GOVERNANCE -->
+### Evidence EV-128-S12A-GOVERNANCE
+
+- 范围：只迁移 `feature.yaml`、恢复 H 失败账本并同步需求包状态；未修改 Contracts/Host/Desktop/Codex 业务仓，未运行 H，未调用 MiniMax。
+- 当前 gate：`G0/G1/G2=pass`；`G2A=pending`；`G2V=blocked`；`G4-G6=pending`。历史 v1 结论保留在
+  `legacy_*`/historical record keys，不自动转换成 schema v2 per-slice G3。
+- schema v2 machine binding：S12A–F slice graph、04A 的 7 个 FLOW、6 个 TINV、6 个 TCONF、两个 default-off harness、
+  split final E2E 与 `INC-128-S10D-H-EMPTY-WAL` 均已进入 active manifest。
+- `check-feature-package.sh --strict ...`：exit 0；schema v2 semantics、完整文件、模板变量与未完成标记检查 PASS。
+- `check-feature-package.sh --gate G2 ...`：exit 0；active `G0/G1/G2=pass` 的 planning scope、04A、slice graph 与 fuse 语义 PASS。
+- `validate-feature-package.mjs --audit-claims ...`：exit 0；只审计当前声明的 G0/G1/G2，没有借用历史 G2A/G3。
+- `check-feature-package.sh --gate G2V ...`：exit 1（EXPECTED BLOCK）；首项为
+  `open rca_required incident blocks G2V: INC-128-S10D-H-EMPTY-WAL`，并同时拒绝 pending G2A、未合格 harness 与未运行 vertical evidence。
+- `feature.yaml` 以 `yaml@2.9.0`、`uniqueKeys=true` 解析并断言：schema v2、S10D-H+S12A-F graph、3-attempt fuse、
+  7-attempt observation ledger 与 S12A governance state，exit 0。
+- `pnpm lint`：exit 0；10 repository entries 与 central Contract First governance PASS。
+- `pnpm test`：exit 0；42/42 PASS，包含 v2 G2V/per-slice G3、temporal contract、split E2E、failure fuse、append-only evolution 与 evidence marker。
+- `git diff --check`：exit 0；FEAT-128 包 trailing-whitespace scan 零命中。
+- 验证完成时间：`2026-08-23T17:42:57+08:00`。本 marker 不证明 S12B-F、G2A、G2V、真实图片或 H PASS。
 
 ## 3. Contracts 不可变候选
 
@@ -628,16 +738,19 @@ synthetic/real provenance 与 activation gate。
 | D-S10C-BUILD-DOCS | Desktop | `make build`; `pnpm docs:build` | 0 | PASS | Vite/TypeScript and VitePress GREEN；only existing chunk warning |
 | D-S10C-S9BD | Desktop | dependency checker + bundle checker | 0 | PASS | protected D boundary immutable；raw/gzip 1,282,888/412,283 bytes |
 | D-S10C-DIFF-COMMIT | Desktop | `git diff --check` + selective atomic commit | 0 | PASS | `86f02b4def4d07f76d66ebdafafda5a9bb75035c`；8 allowed files；clean；not pushed |
-| Y-S10C-PACKAGE | yijie | `check-feature-package.sh --gate G3` | 0 | PASS | G3 remains exact S3/S4/S5；S10C separate evidence does not expand it |
-| Y-S10C-STRICT | yijie | `check-feature-package.sh --strict` | 0 | PASS | package structure/templates/markers valid；S10D/E/S11/G4 pending |
-| Y-S10C-YAML | yijie | unique-key parse + exact G3/S10C/S10D/E/G4 assertions | 0 | PASS | G3=S3/S4/S5；S10C separate PASS；S10D/E NOT RUN；G4 pending |
-| Y-S10C-LINT-TEST | yijie | `pnpm lint`; `pnpm test` | 0 | PASS | repository governance and manifest tests GREEN |
-| Y-S10C-SHELL-DIFF | yijie | `bash -n ...`; `git diff --check` + exact four-file scope | 0 | PASS | shell syntax GREEN；only 07/08/10/feature.yaml changed |
-| Y-S10DR-PACKAGE | yijie | `docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate G3 docs/features/FEAT-128-structured-chat-artifacts` | 0 | PASS | G3 scope remains exact S3/S4/S5；S10D readiness docs do not expand it |
-| Y-S10DR-STRICT | yijie | `docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-128-structured-chat-artifacts` | 0 | PASS | package structure/templates/markers valid；H/V/E runtime remains NOT RUN |
-| Y-S10DR-YAML | yijie | `yaml@2.9.0` unique-key parse + exact G3/separate/readiness/G4 assertions | 0 | PASS | G3=S3/S4/S5；S6-S10C separate PASS；readiness docs-only；S10D-H/V/S10E NOT RUN；G4 pending；Pattern 1.7.0 pinned |
-| Y-S10DR-LINT-TEST | yijie | `pnpm lint`; `pnpm test` | 0 | PASS | repository governance/checker and manifest test GREEN |
-| Y-S10DR-SHELL-DIFF | yijie | `bash -n scripts/*.sh docs/dev/codex-feature-delivery/scripts/*.sh`; `git diff --check` | 0 | PASS | shell syntax and whitespace valid；only eight permitted FEAT-128 governance files changed |
+| HIST-Y-S10C-PACKAGE | yijie at S10C capture | `check-feature-package.sh --gate G3` | 0 | HISTORICAL PASS | 当时 legacy v1 checker 下 G3 remained exact S3/S4/S5；不是当前工作树的 G3 结果 |
+| HIST-Y-S10C-STRICT | yijie at S10C capture | `check-feature-package.sh --strict` | 0 | HISTORICAL PASS | 当时 package structure/templates/markers valid；不是 S12 readiness |
+| HIST-Y-S10C-YAML | yijie at S10C capture | unique-key parse + exact G3/S10C/S10D/E/G4 assertions | 0 | HISTORICAL PASS | 当时 G3=S3/S4/S5；S10C separate PASS；S10D/E NOT RUN；G4 pending |
+| HIST-Y-S10C-LINT-TEST | yijie at S10C capture | `pnpm lint`; `pnpm test` | 0 | HISTORICAL PASS | 当时 repository governance and manifest tests GREEN |
+| HIST-Y-S10C-SHELL-DIFF | yijie at S10C capture | `bash -n ...`; `git diff --check` + exact four-file scope | 0 | HISTORICAL PASS | 当时 shell syntax GREEN；only 07/08/10/feature.yaml changed |
+| HIST-Y-S10DR-PACKAGE | yijie at Pattern 1.7.0 capture | `docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate G3 docs/features/FEAT-128-structured-chat-artifacts` | 0 | HISTORICAL PASS | 当时 G3 scope remained exact S3/S4/S5；active schema v2 不沿用此旧 checker 结果 |
+| HIST-Y-S10DR-STRICT | yijie at Pattern 1.7.0 capture | `docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-128-structured-chat-artifacts` | 0 | HISTORICAL PASS | 当时 package structure/templates/markers valid；不是当前 S12/H 状态 |
+| HIST-Y-S10DR-YAML | yijie at Pattern 1.7.0 capture | `yaml@2.9.0` unique-key parse + exact G3/separate/readiness/G4 assertions | 0 | HISTORICAL PASS | 当时 S10D-H/V/S10E NOT RUN；H 后续已 FAIL/PAUSED，不能沿用该现态 |
+| HIST-Y-S10DR-LINT-TEST | yijie at Pattern 1.7.0 capture | `pnpm lint`; `pnpm test` | 0 | HISTORICAL PASS | 当时 repository governance/checker and manifest test GREEN |
+| HIST-Y-S10DR-SHELL-DIFF | yijie at Pattern 1.7.0 capture | `bash -n scripts/*.sh docs/dev/codex-feature-delivery/scripts/*.sh`; `git diff --check` | 0 | HISTORICAL PASS | 当时 shell syntax/whitespace valid；不是当前 diff scope |
+| CUR-Y-S12-LEGACY-STRICT | current yijie docs worktree | `check-feature-package.sh --strict` | 0 | PASS WITH LEGACY WARNING | 只证明 schema v1 历史可读与文档结构；不证明 S12/G2V/G3 |
+| PRE-S12A-G3-PREFLIGHT | pre-migration yijie docs worktree | `check-feature-package.sh --gate G3` | 1 | HISTORICAL EXPECTED BLOCK | `schema v1 must migrate to schema v2 before claiming G3`；证明 S12A 不可跳过；当前不声明任何 S12 per-slice G3 |
+| CUR-Y-S12-YAML-LINT-TEST | current yijie docs worktree | unique-key parse；`pnpm lint`；`pnpm test` | 0 | PASS | YAML unique keys；10 repo entries/governance；42/42 tests |
 
 一次 `pnpm lint` 曾与 `pnpm test` 并行执行，因仓库 `check-generated` 临时替换 generated 目录而产生
 瞬时失败；改为仓库要求的顺序执行后通过，且 immutable commit 上再次通过。它是命令并发冲突，
@@ -719,7 +832,12 @@ S10B 最终 Desktop implementation/readiness digests：`artifact.rs`
 | AC-009 Host dual route + old/new matrix | NATIVE PARTIAL PASS | v1/v2 equality/pins + Host v3 route均通过；S10B flag-on only-v3、flag-off v2 path已验证；full production mixed-version vertical待 S10D |
 | AC-010/NFR-002 generic/image/video/file/report/Page portions | S5/S6B/S7B/S8B/S9B-R/S10C FOCUSED PASS | semantic tokens、aria-live/busy/progress/focus、四 renderer、production Page empty-text/list wiring、reduced-motion 与 axe 通过；full visual matrix/performance仍待 S10D/E |
 | AC-011 local walking skeleton | PARTIAL | 四类 strict-local Host producer、Desktop native coordinator 与 production ChatPage code 已实现，video smoke通过；fresh Host + real Tauri production vertical smoke 未运行 |
-| AC-012/real provider | BLOCKED | capability 未证、未授权付费调用 |
+| AC-012 bounded real-provider validation | AUTHORIZED / NOT RUN | 用户已授权 S12 campaign 最多 5 次 HTTP send attempts、`n=1`、成功最多 5 张，计划 4 attempts；实现、密钥交接与假 HTTP 门禁未通过，S12 campaign used `0/5`、reserved `0`；历史 standalone probe 不合格且不计入该 epoch |
+| AC-013 real text-to-image | DESIGN ONLY / NOT RUN | closed dynamic tool → Host `image-01` adapter → validated base64 → v3 image Artifact；尚无代码或真实图片证据 |
+| AC-014 subject-reference image-to-image | DESIGN ONLY / NOT RUN | 当前轮恰好一张 PNG/JPEG；Host 自动绑定 `subject_reference` Data URL；尚无代码或真实图片证据 |
+| AC-015 no-call/non-image intent | DESIGN ONLY / NOT RUN | 普通对话不得触发 provider；需要 Runtime tool-routing eval 与 fake-provider counter |
+| AC-016 provider failure/idempotency | DESIGN ONLY / NOT RUN | HTTP/`base_resp`/decode/MIME/size/safety/timeout/cancel 以及结果未知不重试尚待实现 |
+| AC-017 secret/content redaction | DESIGN ONLY / NOT RUN | Key/provider raw/base64 必须隔离；prompt/reference 只允许既有 user-turn、Runtime input/tool args 与 Host provider request，不得进入 tool result/Artifact metadata/log/evidence；尚待验证 |
 
 ## 7. 专项验证状态
 
@@ -735,8 +853,9 @@ S10B 最终 Desktop implementation/readiness digests：`artifact.rs`
 | Report projection/save/renderer | S9A `232ea6ce...` projection/save、S9B-D `0a36ca7...` foundation、S9B-R `6bcc2a6b...` renderer/real-browser harness与 S10C Page wiring PASS | real Tauri report vertical仍 `NOT RUN`，属 S10D/E |
 | UI/visual/a11y/performance | S5 generic + S6B image + S7B video + S8B file unit/component/axe/reduced-motion PASS；real video media lifecycle PASS；full manual visual/performance NOT RUN | S10 |
 | Local synthetic E2E | S10A cross-process profile/GET/ACK runner PASS；S10B real loopback mixed-v3 native coordinator/ACK recovery PASS；S10C production Page code integration PASS；real Tauri production Chat vertical NOT RUN | S10D/E |
-| S10 keyless/single-v3/page/vertical/security-perf | S10A keyless + S10B single-v3/atomic/private-event + S10C history/store/Page PASS；S10D readiness docs only；H/V/E NOT RUN | next only S10D-H after separate authorization |
-| MiniMax/video/file/report real producer | BLOCKED | S12，需单独 authority/eval |
+| S10 keyless/single-v3/page/vertical/security-perf | S10A keyless + S10B single-v3/atomic/private-event + S10C history/store/Page PASS；S10D-H implementation commits exist but runtime smoke FAIL/PAUSED；V/E NOT RUN | 不续跑 H；恢复前先迁移可复核失败账本并取得 Owner 指令 |
+| MiniMax real image producer | S12A GOVERNANCE/G2 PASS / S12B-F NOT RUN | S12 campaign used `0/5`、reserved `0`，历史 standalone provider probe 为 unqualified observation；S12E 前重新核对官方动态事实 |
+| video/file/report real producer | BLOCKED | 各 kind 仍需单独 authority/eval |
 | Deployment/production rollback | N/A current local-only scope; gates NOT PASSED | G5/G6 |
 
 ## 8. Review findings closure
@@ -749,9 +868,12 @@ S10B 最终 Desktop implementation/readiness digests：`artifact.rs`
 | BLK-128-004 generator/downstream pin | P1 | CLOSED AT G2A | locked generators + Host/Desktop pin commits |
 | BASE-128-001 old Contracts lint/test failure | P2 historical | CLOSED | current lint/test and post-commit recheck PASS |
 | Host docs stale `0.2.0` pin | P2 | CLOSED | Host pin commit updates README/AGENTS to actual lineage |
+| BLK-128-007 Runtime dynamic-tool compatibility | P1 | OPEN / NOT RUN | Host 尚未处理 `item/tool/call`；需 S12B 契约与 pinned Runtime 双向 fixture |
+| BLK-128-008 packaged secret handoff | P1 | OPEN / NOT RUN | Desktop sidecar `env_clear()`；需 S12D owner-only secret source，禁止 argv/WebView/plain inherited env |
+| BLK-128-009 S10D-H failure ledger + schema v2 migration | P1 | PARTIALLY CLOSED / H FUSE OPEN | S12A 已恢复 exact ledger 并迁移 schema v2；`INC-128-S10D-H-EMPTY-WAL` 仍 `rca_required`，H 继续 FAIL/PAUSED |
 
-G2A 范围没有开放 P0/P1/P2。真实 provider、runtime security/data behavior、visual/a11y/performance 是后续
-slice 的未验证范围，未被降级为已接受风险。
+历史 G2A 范围没有开放 P0/P1/P2。新增真实图片范围存在上表三个开放 blocker；它们是后续切片的未验证范围，
+未被降级为已接受风险，也没有被最多 5 次付费授权自动关闭。
 
 ## 9. Owner G2/G2A decision capture
 
@@ -803,12 +925,16 @@ slice 的未验证范围，未被降级为已接受风险。
   `c1095eeb7a4c4bbc1f5a2729e9f8df861ebc02c2` 纠正 S9 current state，确认现有 synthetic 无 Runtime 时不可达、
   选择 exact FEAT126 loopback fake Responses 组合 profile，并冻结 single-v3/atomic cursor、content-free invalidation、
   V3 history/store/page 与 real-Tauri/security/perf DAG。Owner 只批准 S10A-LOCAL-PROFILE；本轮无实现。
-- 用户随后完成 S10A/S10B/S10C 并本轮明确执行 S10D-READINESS/S10-SPEC-RECONCILIATION；Pattern 1.7.0
+- 用户随后完成 S10A/S10B/S10C 并明确执行 S10D-READINESS/S10-SPEC-RECONCILIATION；Pattern 1.7.0
   `8afdc996c11bbad2d275eb8b86a0f6b82ca5da52` 保留上述历史，确认现有 harness 均不能证明 production vertical，
-  冻结 S10D-H/V、closed evidence 与 process cleanup，只批准 H 编码；H/V/E 均未实现或运行。
+  冻结 S10D-H/V、closed evidence 与 process cleanup，只批准 H 编码。H 后续已实现但 runtime smoke 未通过，
+  当前按用户指令暂停；V/E 未运行。
+- 用户 2026-08-23 明确把真实图片生成功能纳入 FEAT-128，固定中国区 `image-01`、支持文生图与人物参考图生图，
+  并授权最多 5 次付费验证。该指令只改变 image scope/provider gate，不追认 S10D-H，不开放真实
+  video/file/report，不等于实现、G2/G2A/G2V/G3/G4 或生产批准。
 - 这些授权已用于按序完成 local-only S3/S4/S5 与独立 S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A/S9B-D/S9B-D-CHECKER-REPAIR/S9B-R；
-  G3 只对前三个原子切片通过，不允许 real provider、付费调用、
-  tag、push、publish、release、production 或直接宣称 G4-G6 通过。
+  G3 只对前三个原子切片通过。真实图片付费调用仅可在 S12E/F 前置门禁全部满足后、总账本不超过 5 时执行；
+  当前仍不允许 tag、push、publish、release、production 或直接宣称 G4-G6 通过。
 
 ## 10. 残余风险与停止条件
 
@@ -826,16 +952,17 @@ slice 的未验证范围，未被降级为已接受风险。
 | Unknown report section | contract 限 `required=false`、128 KiB、depth 8、opaque；S9A projection 只允许 unsupported marker | native/renderer 返回、遍历、搜索或执行 original type/payload 即阻断 |
 | S9B-D dependency/theme | exact `echarts@6.1.0`/3-node lock/NOTICE/static Canvas/import/bundle/theme/adapter/card 已在 `0a36ca7...` 实现并通过 18-case real-browser matrix；checker repair `aec0f8a...` 固定历史 scope 并保护 immutable D boundary | S9B-R 若要求额外 package、full/dynamic/CDN import、arbitrary option、外部 origin或突破 frozen bundle/table/dispose边界，或改变 protected D 文件，立即停止并回滚 R |
 | S9B-R renderer | `6bcc2a6b...` separate PASS；当前 projection 无 unit/data source/time range，UI 固定显示“报告未提供”；18-case test-only real browser PASS | production Chat/Tauri vertical仍待 S10；若要求推断/新契约字段或 protected/native/config drift则重开 G2/G2A/相应 review |
-| S10 production seam | S10A exact keyless profile、S10B single-v3/atomic cursor/private invalidation 与 S10C ChatClient/Store/Page 已独立 PASS；real Tauri production vertical仍未运行 | 下一步只能先做 S10D readiness/明确授权的 vertical；任何 key/provider/non-loopback/public pin/fixture/migration/config widening立即停止 |
-| Real MiniMax image | blocked | 固定 capability/API/model、费用与 bounded eval 单独获批 |
+| S10 production seam | S10A exact keyless profile、S10B single-v3/atomic cursor/private invalidation 与 S10C ChatClient/Store/Page 已独立 PASS；S10D-H 已实现但 smoke FAIL/PAUSED | 不把失败 H 描述为未运行或已完成；未经恢复失败账本与 Owner 指令不得续跑；任何 public pin/fixture/migration/config 越界立即停止 |
+| Real MiniMax image | 用户已批准功能范围与最多 5 次 S12 campaign 付费验证；S12A governance/G2 PASS，代码/密钥交接/Runtime 兼容/yijie 真实链路均未验证；历史 standalone provider success 不合格；S12 campaign used `0/5`、reserved `0` | 下一步 S12B Contracts，再做 S12C fake-provider、S12D secure handoff；pre-send 失败不增 used，sent 后结果未知保持已消费且不重试 |
 | Real video/file/report | blocked | 每 kind 形成 producer/ownership/security contract 后单独评审 |
 
 ## 11. 制品与工作树完整性
 
-- Contracts、Host S3/S7F、Desktop S4/S5、Desktop readiness 与 S6-S9B-R/Pattern 1.6.0 commits 均为完整 40-character SHA；没有使用 floating branch/tag 作为 pin。
-- 每个仓库在提交后重跑关键门禁；最终应保持 clean worktree。
+- Contracts、Host S3/S7F、Desktop S4/S5、Desktop readiness 与 S6-S10C commits 均为完整 40-character SHA；没有使用 floating branch/tag 作为 pin。S10D-H 的两个 current heads 只作为失败现场，不是 PASS pin。
+- 历史 PASS 切片在提交后重跑关键门禁；本轮只改 `yijie` 文档工作树，未提交。S10D-H 没有完整 PASS，不能套用该历史结论。
 - 生成物来自锁定 source/generator；Feature 目录不复制 canonical payload。
-- 没有 `.skip`、`.only`、弱化断言、secret、真实业务数据或付费调用。
+- 本轮需求包编辑没有新增 `.skip`、`.only`、弱化断言、secret、真实业务数据或付费调用；S12 campaign 账本
+  used `0/5`、reserved `0`。历史 standalone probe 已单列，不属于本轮执行。
 
 ## 12. 结论
 
@@ -851,6 +978,11 @@ slice 的未验证范围，未被降级为已接受风险。
 - S9B-READINESS：Pattern 1.5.0 `630c3c8...` 为 docs-only PASS；S9B-D `0a36ca7...`、
   S9B-D-CHECKER-REPAIR `aec0f8a...` 与 S9B-R `6bcc2a6b...` 已分别独立 `PASS`；canonical JSON save only，derived export deferred。
 - S10-READINESS：Pattern 1.6.0 `c1095eeb...` 为历史 docs-only PASS；FEAT126 repair/digest、S10A/S10B/S10C 已分别独立
-  `PASS`。S10D-READINESS Pattern 1.7.0 `8afdc996...` 为 docs-only `READY FOR S10D-H ONLY`。
-- Code Complete：否；S10D-H/V、S10E/S11、production vertical、full performance 与 independent review 尚未完成。
-- 当前状态：`G3 PASS only for S3/S4/S5 / S6-S10C + FEAT126 guard/digest separate PASS / S10D readiness docs only / S10D-H/V and S10E NOT RUN / production vertical NOT RUN / real providers closed / G4-G6 not passed`。
+  `PASS`。S10D-READINESS Pattern 1.7.0 `8afdc996...` 为历史 docs-only `READY FOR S10D-H ONLY`；H 当前
+  `FAIL/PAUSED`，V/E `NOT RUN`。
+- 真实图片：功能范围、官方 API 基线、架构、时序、测试、发布与最多 5 次付费验证授权已记录；实现与验证均
+  `NOT RUN`，计划 4 次，S12 campaign 账本 used `0/5`、reserved `0`；历史 standalone provider probe
+  仅为 `OBSERVED / UNQUALIFIED`，不证明 yijie 链路。
+- S12A：schema v2 与 exact H ledger 已迁移，当前 G2 `PASS`；这是 governance 完成，不是 per-slice G3 或业务实现 PASS。
+- Code Complete：否；S10D-H 未完成且 fuse open，S10D-V/S10E/S11、S12B-F、production vertical、真实图片结果、full performance 与 independent review 尚未完成。
+- 当前状态：`schema v2 active; S12A governance/G2 PASS; S12B-F pending; G2A pending; G2V blocked by open H cleanup fuse and unqualified S12 harness; historical G3 only S3/S4/S5; S6-S10C + FEAT126 guard/digest separate historical PASS; S10D-H FAIL/PAUSED; campaign 0/5; G4-G6 pending`。

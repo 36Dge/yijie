@@ -1,5 +1,10 @@
 # FEAT-128 - 对话流结构化 Artifact 展示与操作
 
+> **当前执行路线（2026-08-23）**：后续实现与本地验收以
+> [`demo-fast/`](demo-fast/) 的 `demo_fast + local` 独立账本为准。下文 schema v2 / S12 路线保留为
+> 历史 `production_hardened` 记录；S10D-H 仍为 `FAIL/PAUSED` 且 fuse open，本路线不关闭、不重试、
+> 不借用或改写其证据。
+
 ## 1. 问题与用户价值
 
 当前 Chat 的模型输出只有 Markdown/纯文本增量。即使 Agent 或模型生成了图片、视频、文件或数据分析报告，Desktop 也没有稳定协议、流式状态、专业预览和保存操作来承接，用户只能看到文字说明，无法在对话上下文中直接使用结果。
@@ -23,13 +28,19 @@ FEAT-128 把 Assistant 输出扩展为“文本 + 结构化 Artifact”。Artifa
 - 图片、视频、通用文件和结构化报告四类 UI renderer。
 - loading、empty、error、permission denied、ready、expired 和 unsupported 状态。
 - 本地合成 producer 与固定 fixture，用于无云资源、无付费调用的完整流式 UI/协议验证。
-- 对固定 Runtime `imageGeneration` item 的候选适配设计；只在 provider capability 真实可用后启用。
+- 真实图片生成：MiniMax-M3 通过固定 Runtime `dynamicTools` 选择 `generate_image`，Agent Host
+  执行中国区 MiniMax `image-01` provider adapter，并把结果发布为现有 v3 image Artifact。
+- 文生图；以及首版严格限定为单张 `subject_reference.character` 的人物主体参考图生图。
+- 最多 5 次、计划 4 次的有界付费验证；S12E/S12F 分别各验证一次 T2I/I2I，每次固定 `n=1`，
+  另有 1 个 repair slot 只供明确根因修复后的复验；它是总预算中的第 5 个额度，不要求按物理发送顺序恰为第 5 次。
 
 ## 4. 明确非目标
 
 - 本期不购买云服务器、数据库、对象存储、CDN 或转码服务。
 - 不部署到 staging/production，不签名、公证、发布或启用生产流量。
-- 不声称当前 MiniMax-M3 接入已经能生成图片、视频、文件或报告。
+- 不把普通看图、图片问答或含图片附件的对话自动解释为生图请求。
+- 不承诺任意图片编辑、局部重绘、风格迁移、多参考图融合或非人物主体图生图。
+- 不接入 `image-01-live`，不开放真实视频、文件或报告 producer。
 - 不在 WebView 执行 Artifact 中的 HTML、JavaScript、宏、外部链接或任意 ECharts option。
 - 不提供协作分享、公开链接、多设备同步、版本管理、在线编辑、视频转码或云端缩略图。
 - 不把文件保存动作解释为高风险业务写操作；保存范围只限用户通过 native dialog 明确选择的本机目标。
@@ -42,6 +53,11 @@ FEAT-128 把 Assistant 输出扩展为“文本 + 结构化 Artifact”。Artifa
 - 原始路径、bearer、API Key、文件正文和 provider raw error 不进入公共事件、DOM、日志或遥测。
 - v1/v2 consumer 不接收新 Artifact 事件；v3 consumer 对未知 Artifact kind fail soft。
 - 本地固定 fixture 可重复证明 announce -> progress -> ready/failed 的流式路径，不依赖云资源或真实模型费用。
+- 在有界验证配置中，用户明确要求生成图片时由 MiniMax-M3 发出结构化工具调用；Host 不做关键词猜测。
+- 文生图和单张人物主体参考图生图均经 `image-01` 返回真实 base64 图片，Host 严格校验后发布
+  `provenance=provider` 的 v3 image Artifact，Desktop 使用既有预览、历史与 native save 链路展示。
+- 无效 Key、余额不足、限流、内容安全、超时、畸形/超限 base64 与重复工具调用均 fail closed，
+  不产生伪 ready Artifact，也不触发未经批准的自动付费重试。
 
 ## 6. Owner 与授权边界
 
@@ -53,14 +69,20 @@ FEAT-128 把 Assistant 输出扩展为“文本 + 结构化 Artifact”。Artifa
 | Reviewer | 段成威 |
 | 发布负责人 | 段成威 |
 
-2026-08-20 的用户请求授权创建本需求交付包，并明确本期只要求本地可用、不准备部署或购买云资源。用户随后明确要求执行 G2 closure rewrite、记录 Product/Design、Technical、Security/Data Owner 的 G2 批准，并在 G2 后只启动 `yijie-contracts` S1/S2；只有真实 generate、breaking、semantic review、immutable commit 与 downstream exact pin 全部通过 G2A 后，才允许开始 Host/Desktop 业务切片。该条件已满足，随后 S3/S4/S5 按序完成并以实际证据通过 G3 slice gate。S6-READINESS 只冻结下一步 S6A 图片 native preview/save 边界，不扩展 G3。本授权仍不包含 push、tag、契约发布、真实付费模型调用、生产激活或 G4-G6 批准。
+2026-08-20 的用户请求授权创建本需求交付包，并明确本期只要求本地可用、不准备部署或购买云资源。用户随后明确要求执行 G2 closure rewrite、记录 Product/Design、Technical、Security/Data Owner 的 G2 批准，并在 G2 后只启动 `yijie-contracts` S1/S2；只有真实 generate、breaking、semantic review、immutable commit 与 downstream exact pin 全部通过 G2A 后，才允许开始 Host/Desktop 业务切片。该条件已满足，随后 S3/S4/S5 按序完成并以实际证据通过 G3 slice gate。
+
+2026-08-23 用户将真实图片生成纳入 FEAT-128 必做范围，固定中国区
+`https://api.minimaxi.com/v1/image_generation`、模型 `image-01`、base64 输出，并授权总计最多 5 次付费验证。
+该授权只覆盖隔离开发验证，不覆盖生产启用、push/tag/契约发布或 G4-G6 批准。历史“真实 provider 保持关闭”
+只描述此前阶段，已由本次范围决定取代；真实视频、文件与报告 producer 仍关闭。
 
 标准流程备注：本地-only synthetic profile 只能作为隔离验收入口，默认关闭；它不改变既有 v1/v2 文本流程，也不能替代 G2/G2A、真实 provider capability 或生产门禁。
 
 ## 7. 当前状态
 
-- 状态：`G3 PASS only for S3/S4/S5 / S6 readiness approved / S6A-S11 pending / real providers closed`。
-- `contract-impact = semantic`：虽然计划用显式 v3 协商保持 v1/v2 wire 兼容，但现有 Runtime `imageGeneration` item 的解释将从“信息性 item”变为可持久化、可预览、可保存 Artifact，跨进程与持久化语义发生变化，按最高风险归类。
+- 状态：`active schema v2；S12A governance/G2 PASS；S12B-F pending；G2A pending、G2V blocked；legacy G3 仅 S3/S4/S5；S6A-S10C 为独立历史 PASS；S10D-H smoke FAIL/PAUSED 且 fuse open；G4-G6 未通过`。
+- `contract-impact = semantic`：虽然显式 v3 协商保持 v1/v2 wire 兼容，但 Runtime dynamic tool/reverse request
+  将新增 Host 付费副作用，且结果进入可持久化、可预览、可保存的 Artifact 链路；跨进程、时序与持久化语义发生变化，按最高风险归类。
 - G0/G1/G2 与 G2A 均有可复核证据；Contracts immutable candidate 及两端 exact pin 已形成并通过完整检查。
-- G2A 后已严格按依赖完成 Host S3、Desktop S4/S5；S6 readiness 仅为设计批准。这不代表 S6 native
-  boundary、renderer、synthetic 端到端、真实 provider、发布或生产门禁通过。
+- 现有 v3 image Artifact 展示、预览和保存基础已形成，但不等于真实生成链路已完成。新增 provider 工具契约、
+  Host adapter、付费探测与真实 Desktop vertical 必须逐片形成证据；S10D-H 的失败状态保持独立，不由 S12 覆盖。

@@ -31,13 +31,16 @@
 |---|---|---|---|---|---|---|
 | DEC-128-005 | Approve | 采用显式 v3 event/resource/ack surface，并使用 `event_schema_version=3` 协商；游标参数沿用权威 v1/v2 的 `after`、`stream_id` 与 `Last-Event-ID`。Artifact 只在 v3 surface 发出。v1/v2 endpoint、wire、事件集合、cursor、replay、终态和字节语义保持不变；Desktop durable history/resource 仍是 private surface，本期不新增 Host public history endpoint。 | 隔离 semantic change，保护严格 v1/v2 consumer 兼容性并避免发明第二条 history API。 | S1 必须形成 v3 event、content/poster、ack source 与双基线 equality；G2A 才要求真实生成、不可变引用和 consumer pin。 | 段成威 | 2026-08-20 |
 | DEC-128-006 | Modify | Desktop SQLCipher 是 Artifact 唯一长期 authority。Host staging 使用 app-private encrypted spool：文件权限 `0600`、每进程临时密钥且密钥不落盘，Host 重启先清除不可恢复旧 spool；不使用 1 GiB 进程内大对象或 owner-only plaintext。冻结每 session 256 MiB、全局 1 GiB、`staged_at + 24h` TTL。Desktop 校验 scope/size/MIME/magic/SHA-256 并提交 SQLCipher 后，调用 owner/session-scoped 幂等 ACK；ACK、TTL 或 Host 重启触发清理，不驱逐读取中的内容。 | 冻结存储介质、容量、TTL、ack、重启和明文边界。 | S1 定义 ACK operation；Host cleanup transport receipt 与 Desktop 私有 retention cleanup receipt 分开，后者留在 S4 private data design。 | 段成威 | 2026-08-20 |
-| DEC-128-007 | Modify | `report-document-v1` 根对象 closed；每个 section envelope 显式包含 `id`、`type`、`required` 和 `payload`。已知 `summary|metrics|paragraph|table|chart|callout` payload 使用 strict safe schema；unknown type 只有 `required=false` 时可由兼容层保留为不渲染的 opaque JSON 并显示 `unsupported`，`required=true` 或已知 payload violation 拒绝整份文档。canonical MIME 为 `application/vnd.yijie.report+json;version=1`；禁止 HTML、script、iframe、URL、远程资源和任意 ECharts option；PDF/Markdown 仅为未来 derived export。 | 让 closed root 与 unknown optional fail-soft 同时可实现、可测试。 | S1 提供 known/unknown requiredness fixtures；Desktop 必须 two-stage decode 且不遍历或执行 unknown payload。 | 段成威 | 2026-08-20 |
+| DEC-128-007 | Modify | `report-document-v1` 根对象 closed；每个 section envelope 显式包含 `id`、`type`、`required` 和 `payload`。已知 `summary\|metrics\|paragraph\|table\|chart\|callout` payload 使用 strict safe schema；unknown type 只有 `required=false` 时可由兼容层保留为不渲染的 opaque JSON 并显示 `unsupported`，`required=true` 或已知 payload violation 拒绝整份文档。canonical MIME 为 `application/vnd.yijie.report+json;version=1`；禁止 HTML、script、iframe、URL、远程资源和任意 ECharts option；PDF/Markdown 仅为未来 derived export。 | 让 closed root 与 unknown optional fail-soft 同时可实现、可测试。 | S1 提供 known/unknown requiredness fixtures；Desktop 必须 two-stage decode 且不遍历或执行 unknown payload。 | 段成威 | 2026-08-20 |
 | DEC-128-008 | Modify at S6-READINESS | WebView 只通过 `yijie-artifact-preview://localhost/v1/<opaque-handle>` 消费 ready image。handle 为 256-bit CSPRNG、30 秒 absolute TTL、one-shot GET，绑定 main WebView/process/context/owner/tenant/session/turn/artifact；每 WebView 最多 4 个未消费 handle、每 Artifact 1 个、最多 2 个并发读取/40 MiB in-flight。native 在签发和 GET 两次复核 ready/image、PNG/JPEG/WebP、20 MiB、BLOB length、digest 与 image limits。Vue 不接收 bytes/base64/digest/Host href/path/bearer；只允许 CSP `img-src` 追加该 scheme。 | 原 G2 object URL 候选无法同时满足“Vue 不接收 bytes/base64”和实际 `<img>` 取流，必须在编码前改为 non-bearer opaque handle protocol。 | S6A 只实现 native boundary；S6B 才实现 renderer。不得使用 asset/file/blob/data URL 绕过，不扩 `connect-src`/外部 origin。 | 段成威 | 2026-08-20 |
 | DEC-128-009 | Modify at S6-READINESS | 用户显式触发 exact native save command；payload 只有 session/turn/artifact identity。native 双次复核 ready image authority，使用既有 `rfd` panel 和 canonical `.png/.jpg/.webp`，同目录 `0600` create-new/no-follow temp、分块复算 digest、fsync 与 atomic replace；取消/失败清 temp 并保留 SQLCipher，Vue 只收 content-free saved/cancelled/failed + stable code。现有 app-command ACL 架构不允许安全地只新增三条 capability，因此不新增 capability/plugin；精确 `generate_handler!` command list 是最小 allowlist。 | 冻结 safe name、extension/MIME、symlink/overwrite、路径不出 native、审计和 crash residue 边界。 | S6A 不新增依赖、plugin、filesystem/shell/dialog capability 或 DB migration；若这些成为必需立即停止并重开 Security/Data review。 | 段成威 | 2026-08-20 |
-| DEC-128-010 | Approve | local-only synthetic producer 作为无云验收入口，仅在 `YIJIE_ENV=local`、固定 test manifest 和独立 synthetic flag 同时满足时可启动；它可以为 image/video/file/report 四类发出固定 fixture，默认关闭且不得与真实 provider 同开。每个 Artifact 必须携带并持久化 `provenance=synthetic`；非 local、manifest 不匹配或 capability 不明确时 fail closed，不调用 MiniMax 或任何付费 API。 | 提供完整、可重复、零费用的 walking skeleton，同时把 synthetic 与真实 producer authority 分层。 | 四类 synthetic contract fixtures 属 S1；真实 `provider|tool` producer 仍只由 S12 activation gate 管理。 | 段成威 | 2026-08-20 |
+| DEC-128-010 | Approve | local-only synthetic producer 作为无云验收入口，仅在 `YIJIE_ENV=local`、固定 test manifest 和独立 synthetic flag 同时满足时可启动；它可以为 image/video/file/report 四类发出固定 fixture，默认关闭且不得与真实 provider 同开。每个 Artifact 必须携带并持久化 `provenance=synthetic`；非 local、manifest 不匹配或 capability 不明确时 fail closed，不调用 MiniMax 或任何付费 API。 | 提供完整、可重复、零费用的 walking skeleton，同时把 synthetic 与真实 producer authority 分层。 | 四类 synthetic contract fixtures 属 S1；真实 `provider\|tool` producer 仍只由 S12 activation gate 管理。 | 段成威 | 2026-08-20 |
 | DEC-128-011 | Modify | Desktop 成功校验并提交 SQLCipher 时记录 `local_committed_at`，并计算 `expires_at = local_committed_at + 168h`；`now >= expires_at` 时进入 `expired`。到期清除 SQLCipher content、preview handle/cache 及可清理的 WAL/checkpoint 残留，并写入 Desktop 私有、幂等的 cleanup receipt；历史只保留最小安全 metadata、位置和 `expired`。Host staging 使用独立 `staged_at + 24h` TTL。会话删除 cleanup saga 失败必须可重试且不得报告物理删除完成。 | 冻结起算点、Host/Desktop 两个时钟和 receipt authority。 | retention migration/reopen/forensic 属 S4，不作为 G2 前的实现证据；G2A 前只需 public contract source 与计划一致。 | 段成威 | 2026-08-20 |
 
 Provider gate：`Approve / Keep closed`。真实 MiniMax image、video、file、report producer 按 kind 独立关闭，不调用真实或付费 API，不发出 `provenance=provider/tool` Artifact。任何启用都必须另行固定 capability/API/model、费用与网络授权、格式/容量/失败/取消/合规语义、Host/Desktop conformance 及质量/延迟/成本 Eval，并取得单独 Owner 批准。
+
+> 历史说明：上述 provider gate 是 2026-08-20 的阶段结论。image kind 已由 2026-08-23 的
+> DEC-128-033..040 有界范围决定取代；video/file/report 仍保持关闭。
 
 取消边界：当前 candidate 只复用既有 turn interrupt；没有 Artifact-specific cancel operation。turn interrupt 将尚未终态项发为 `item.artifact.failed(error_code=turn_interrupted)`，Desktop 显示 `cancelled`。
 
@@ -222,7 +225,7 @@ FEAT-128 synthetic 又因 Runtime 前置和 synthetic+fake 互斥，不能独立
 | DEC-128-025 | S10 重切为 S10A-LOCAL-PROFILE → S10B-NATIVE-LIVE → S10C-PAGE → S10D-VERTICAL → S10E-SEC-PERF；native V3/cursor 基础必须先于 Page。 | keyless Runtime/profile、ordered durable ingestion、UI authority 和纵向/性能是四种不同风险，必须独立回滚。 | `READY FOR S10A-LOCAL-PROFILE ONLY`；B-E WAIT/NOT RUN。 |
 | DEC-128-026 | 新增 exact/default-off `YIJIE_FEAT128_S10_TEST_PROFILE_ENABLED=true`，只在既有 FEAT126 exact loopback fake Responses profile、v3/synthetic exact flags、manifest `feat128-artifact-v1`、local/owner/parent/run-root 条件及零 MiniMax/key/provider 时允许 synthetic+fake。其它组合 startup fail before listen/spool/child。 | 当前 StartSession/Turn 先依赖 Runtime；无 Runtime 时 synthetic 到不了，直接放宽互斥会扩大测试配置。 | S10A 只改 Host config/integration test 与 Desktop sidecar/compile-time test wiring；公共 wire/pin/fixture不变。 |
 | DEC-128-027 | Artifact flag on 时 active turn 只消费 single v3 stream。started/progress/failed 与 turn-progress flush/cursor 同 SQLCipher transaction；completed 的 ready BLOB+ACK intent+cursor 同事务，ACK 在 commit 后幂等发送；网络期间不持事务。 | v2+v3 双流无共同 cursor；当前 Artifact 状态与 turn cursor 分开写，崩溃重放会撞上 strict monotonic state。 | S10B 必须证明 crash/replay/gap/duplicate/stream restart，不得用弱化 regression 检查修复。 |
-| DEC-128-028 | 新增 Desktop-private content-free channel `yijie:chat:artifact:changed:v1`/schema `chat-artifact-live-v1.schema.json`，只含 subscription/context/session/turn/event identity、per-subscription sequence 与 `artifact_changed|resync_required|context_invalidated`；queue cap 64。history v3 是唯一 replay authority。 | 发送完整 Artifact metadata 会在 history 与 live 间产生 stale regression；content-free invalidation + coalesced history-v3 resync 保持同一 S5 reducer 和安全边界。 | S10B 实现 channel；S10C subscribe-first/buffer/control+v3-history/replay。无 public Contracts/Host wire 变化。 |
+| DEC-128-028 | 新增 Desktop-private content-free channel `yijie:chat:artifact:changed:v1`/schema `chat-artifact-live-v1.schema.json`，只含 subscription/context/session/turn/event identity、per-subscription sequence 与 `artifact_changed\|resync_required\|context_invalidated`；queue cap 64。history v3 是唯一 replay authority。 | 发送完整 Artifact metadata 会在 history 与 live 间产生 stale regression；content-free invalidation + coalesced history-v3 resync 保持同一 S5 reducer 和安全边界。 | S10B 实现 channel；S10C subscribe-first/buffer/control+v3-history/replay。无 public Contracts/Host wire 变化。 |
 | DEC-128-029 | flag off 只禁止新 v3 producer/transfer；已持久化 metadata 与经当前 `ReadSessions` 授权的 preview/save 保持只读。Desktop parent flag 映射 Host v3 child flag但不转发自身；synthetic env 只能由 compile-time `feat128-s10-runtime` exact profile 注入。 | rollback 不能使本地 authority 数据不可读，也不能信任任意 shell synthetic env。 | 不新增 Vue-only flag；关闭后回落 single v2 active stream。 |
 
 S10A exact process/temp/watchdog、B-E private schema/atomicity/history/store/page/vertical/security/performance、允许目录、
@@ -263,8 +266,43 @@ H 允许目录、EXPECTED RED/GREEN、exact runner/build、verdict schema、clea
 | Technical | 段成威 | APPROVED FOR EXACT FRESH-BINARY REAL-TAURI HARNESS WITH PRODUCTION BOOTSTRAP/COMMANDS AND CLOSED PROCESS LIFECYCLE | default-off H bootstrap/controller/runner/checker | mock/Vite/dev server、新 feature/config/dependency、D-V |
 | Security/Data | 段成威 | APPROVED FOR S10D-H ONLY WITH EXACT KEYLESS LOOPBACK PROFILE, TEST-ONLY AUTHORITY BOOTSTRAP, ZERO CANARY, CONTENT-FREE VERDICT, TRANSIENT SCREENSHOT AND COMPLETE CLEANUP | 0700 authority、minimal evidence、process/listener/WAL/spool/temp cleanup | provider/key/non-loopback、raw content/path/token/evidence persistence、D-V/E |
 
-Owner 结论由 Codex 按用户明确指令代录，不声称独立人工批准。S10D readiness 是 docs-only PASS；S10D-H/V、S10E
-均未实现或运行，不扩 G3，不声明 G4。
+Owner 结论由 Codex 按用户明确指令代录，不声称独立人工批准。S10D readiness 是 docs-only PASS。其后
+S10D-H 已在 Host `09d83cce5f2937db1cbe3afa36cc5461ea671574` 与 Desktop
+`997345d87a5daa073c480769d57b4e59c3dfefcb` 形成实现/修复提交并执行 smoke，但从未通过；当前暂停且不能记为
+PASS。S10D-V/S10E 未启动，不扩 G3，不声明 G4。
+
+## 2J. 真实图片范围决定（2026-08-23）
+
+本节取代此前 image kind 的“保持关闭”阶段结论，但不回写或删除历史证据。用户明确要求 FEAT-128 支持真实
+文生图与图生图，并授权最多 3 至 5 次付费验证；本包固定为总上限 5 次、计划 4 次：S12E 与 S12F
+分别各验证一次 T2I/I2I，另有 1 个 repair slot 只作为明确根因修复后的复验储备；它是第 5 个预算额度，
+不限定物理发送序号。
+
+| ID | 决策 | 理由 | 影响 | 状态 |
+|---|---|---|---|---|
+| DEC-128-033 | 使用固定 Runtime 已有 experimental `thread/start.dynamicTools` 与反向 `item/tool/call`；MiniMax-M3 决定是否调用 `generate_image`，Host 不做关键词路由 | 保留模型决策并复用 thread/turn/call identity | 先冻结 Runtime compatibility semantic candidate；除精确方法外反向请求继续 fail closed | Accepted scope；implementation NOT RUN |
+| DEC-128-034 | 不改造内置 OpenAI image generation，也不经 MCP 旁路 | 内置扩展绑定 OpenAI auth/model；MCP 会弱化 Host Artifact/identity 边界 | 若当前 Runtime experimental surface 不可接受，停止并评审最小 Runtime 稳定化，不得绕行 | Accepted |
+| DEC-128-035 | Host 固定中国区 `POST https://api.minimaxi.com/v1/image_generation`、`model=image-01`、`response_format=base64`、`n=1`、`prompt_optimizer=false`、验证期 `aigc_watermark=false` | 官方 API 与用户指定；避免临时 URL、多图成本和隐式默认漂移 | 模型、origin、格式、数量、optimizer、watermark 不进入工具可控参数；生产水印策略须在 Go/No-Go 复核 | Accepted |
+| DEC-128-036 | 首版 I2I 只承诺当前 turn 恰有一张 PNG/JPEG 人物主体参考图，并映射为一个 `subject_reference.character` | 官方当前能力不是通用编辑 | 不支持任意编辑、多参考、上一轮 Artifact 自动回灌；用户需在当前 turn 重新附图 | Accepted |
+| DEC-128-037 | Key 与 provider HTTP 只在 Host；Runtime 只收 content-free tool result，图片 bytes 只经 Artifact 链路到 Desktop | 最小化 secret/正文暴露与重复大对象 | packaged Desktop 必须设计 owner-only secret 交接；不可放命令行、普通 env 继承、WebView 或 prompt | Accepted design；secret handoff unresolved |
+| DEC-128-038 | `(thread_id, turn_id, call_id)` 加参数摘要作为付费幂等 identity；请求发出后超时/取消记 outcome unknown，禁止自动重试 | MiniMax 文档没有请求幂等键或服务端取消 | 重复同参等待/复用结果；同 ID 异参协议失败；迟到结果丢弃 | Accepted |
+| DEC-128-039 | 最多 5 次且每次 `n=1`；4 个 planned slots 对应 S12E T2I/I2I 与 S12F T2I/I2I，另 1 个总额度是任一失败后的单次 repair slot；不限定该 repair 的物理发送序号 | 用户授权与费用可控，同时让两种能力都形成 capability 与真实对话证据 | 单一 durable campaign `feat128-s12-image-validation-20260823`；`P1=S12E/T2I`、`P2=S12E/I2I`、`P3=S12F/T2I`、`P4=S12F/I2I`、`R1=repair(original_slot_id)`；两个 runner 共用 authority 并对 slot CAS，run root/restart 不得重置；`quota_class=planned\|repair` + `reserved_slots`/`used_calls`；repair 须绑定一次性 Owner authorization/RCA 和原失败，不能挪作新场景；pre-send 释放、sent 不可逆计 used、fake 不计；startup 回收 orphan reserved 且不补发；总 cap=5 | Accepted；S12 campaign used `0/5`、reserved `0`；此前 standalone probe 另见 08，不能借作 S12 证据 |
+| DEC-128-040 | 现有 v3 Artifact shape 继续使用 `kind=image, provenance=provider`；新增的是 Runtime compatibility/tool contract，不新增 Desktop public payload | 现有 image lifecycle/preview/save 足够 | contract impact 仍为 semantic；新 candidate 需 generate/breaking/semantic review/immutable pin | Accepted design；G2A NOT RUN |
+
+预算 epoch 解释：用户先陈述此前 standalone `image-01` 已成功生成，随后在本次 scope 指令中另行授权最多
+3 至 5 次付费验证。因此 `feat128-s12-image-validation-20260823` 从本次 scope approval 开始独立建账，当前
+used `0/5`、reserved `0`；历史 probe 至少一次，但不进入该 campaign，也不能用作 yijie 证据。若 Owner 对该时序解释
+有异议，任何 S12 发送前必须先修订本决策并按更小剩余额度 fail closed。
+
+### 2J.1 Owner 范围结论
+
+| Review | Owner | 结论 | 已批准 | 仍未批准 |
+|---|---|---|---|---|
+| Product | 段成威 | SCOPE APPROVED | 真实 T2I、单人物主体参考 I2I、对话内展示/保存 | 通用编辑、真实 video/file/report、生产启用 |
+| Technical | 段成威 | DESIGN REQUIRED BEFORE CODING | dynamic tool compatibility、Host adapter、幂等账本、Artifact 复用 | 先写 provider 再补契约、改 S10D-H 承载真实调用 |
+| Security/Data | 段成威 | BOUNDED PAID VALIDATION AUTHORIZED | 最多 5 次、固定 endpoint/model、合成 prompt/参考图、content-free ledger | 真实业务图片、自动重试、任意 URL、Key 下放、生产外发 |
+
+本节是新需求与费用边界的 Owner capture，不代表 G2/G2A/G2V、实现、真实调用或生产 PASS。
 
 ## 3. Provider activation gate
 
@@ -276,7 +314,8 @@ Owner 结论由 Codex 按用户明确指令代录，不声称独立人工批准�
 4. Host producer conformance、Desktop consumer conformance 和真实 local integration 通过。
 5. 质量/延迟/成本 Eval 有固定 dataset 和阈值。
 
-当前 image/video/file/report 均未通过完整 gate。固定 Runtime 的 `imageGeneration` item 只满足第 1 项的一部分，MiniMax capability 仍未证明。
+当前 image/video/file/report 均未通过完整 gate。image 已取得有界范围与费用授权，但工具 compatibility、Host adapter、
+secret handoff、真实能力/质量与 Desktop vertical 均未形成证据；video/file/report 未获真实 producer 授权。
 
 ## 4. 风险登记
 
@@ -301,6 +340,15 @@ Owner 结论由 Codex 按用户明确指令代录，不声称独立人工批准�
 | RSK-128-017 synthetic 测试剖面越权 | fake/synthetic 在非 exact profile、带 key/provider 或非 loopback 启动 | 误用真实 provider、付费/数据外传、错误验收 | exact master conjunction、env_clear+inject、owner/parent/run-root、fresh binary/watchdog | negative config matrix、socket/process/env evidence、zero-secret scan | 删除/关闭 profile，终止 child，清 run root；不改变默认生产路径 | Technical/Security Owner |
 | RSK-128-018 UI authority/stale projection | context/tenant/session 切换后 ArtifactStore 保留旧 metadata，或 live/history竞态回退 | 跨 authority 展示、重复/错位/终态回退 | content-free invalidation、subscribe-first、v3 history authority、epoch/reset guards、trusted ids | logout/rebind/switch/delete/stale/gap tests与DOM/Pinia canary | unmount Artifact list，清 store，回落 v2 Chat UI | Client/Security/Data Owner |
 | RSK-128-019 S10D harness 替代 production path 或清理不完整 | controller mount 第二 App/mock client/set store/direct DB/spool，或 Desktop/WebContent/Host/fake/WAL/temp 残留 | 虚假 vertical PASS、测试权限逃逸、内容/进程残留 | reuse exact feature、production-first bootstrap、closed test authority、scope checker、0700 root、deadlines、ordered teardown | source/static audit、real Tauri walking skeleton、PID/port/WAL/spool/temp/canary zero-hit | 删除 H hook/controller/runner；保留 S10A-C，S10D-V/E 关闭 | Technical/Security/Data Owner |
+| RSK-128-020 生图工具误路由 | 普通看图/对话触发工具，或 Host 关键词猜测 | 非预期外发与付费 | 仅 Runtime structured tool call；negative intent Eval；每 turn 一次 | tool-call/no-call dataset + ledger | image flag off；保留文本/看图能力 | Product/AI Owner |
+| RSK-128-021 Key 或正文越界复制 | Authorization、prompt、参考图、base64/raw response 超出已授权 input/provider/Artifact authority，或进入 result/log/evidence | secret/用户内容泄漏 | Host-only secret、closed result、授权位置 allowlist、redaction/canary、no command-line key | Key/header 全局 zero-hit（Host secret/header除外）+ prompt/reference/result/log/evidence boundary scan | kill switch、清 input/provider intermediate、轮换 Key、阻断发布；ready staging 仅按 incident evidence/deletion authority 处理 | Security/Data Owner |
+| RSK-128-022 外部 URL/重定向/代理外传 | 模型注入 URL、provider client 跟随 redirect 或继承 proxy | SSRF/越区/非预期数据外发 | fixed HTTPS origin/path、redirect deny、proxy policy fixed、只用当前 turn Data URL | fake server redirect/host/proxy tests | 拒绝请求并关闭 adapter | Security Owner |
+| RSK-128-023 重试与并发放大费用 | timeout/429/5xx 自动重试、duplicate call 或并行 turns | 超预算/重复图片 | durable/bounded idempotency ledger、no auto retry、single concurrency、5-call fuse | fake delayed/duplicate tests + ledger audit | image flag off；outcome unknown 等待明确新请求 | Technical/Product Owner |
+| RSK-128-024 Provider 响应炸弹或伪图 | 超大 JSON/base64、invalid alphabet、magic/MIME/尺寸不符 | OOM、解析漏洞、错误 Artifact | HTTP/body/array/decoded/pixel caps、strict decode、full image validation、`n=1` | adversarial fake responses + memory bound | 丢弃 bytes、failed terminal、清中间缓冲 | Technical/Security Owner |
+| RSK-128-025 内容安全/部分成功误判 | HTTP 200 但 base status 非零，或 success/failed counts 矛盾 | 违规内容/伪成功 | 同时验证 HTTP、base_resp、array、metadata；closed error mapping | official error matrix + fake fixtures | failed Artifact；不展示/保存内容 | Product/Security Owner |
+| RSK-128-026 Experimental Runtime surface 漂移 | current Runtime pin 改变 dynamic tool schema/反向调用 | 工具不可用或参数错配 | Contracts compatibility candidate、fixed Runtime commit、G2V spike、exact conformance | generate/differential/runtime tests | 不注册工具；继续文本/看图；重开 G2A | Runtime/Contracts Owner |
+| RSK-128-027 Packaged Desktop secret 交接缺失 | sidecar `env_clear()` 无安全 Key 来源 | 开发 Host 可用但产品链路不可用，或为求可用泄漏 Key | owner-only Key file/系统安全存储设计与双向权限测试 | packaged release-like vertical | 保持真实 image flag off；不宣称 Desktop 完成 | Client/Security Owner |
+| RSK-128-028 Provider 数据保留/删除未知 | 已发送 prompt/参考图后只执行本地 rollback，或把本地清理误当 provider 删除 | 无法兑现删除承诺、真实用户内容治理失真 | S12E/F 仅合成数据；执行前复核官方当时政策并记录 known/UNKNOWN；生产用户数据另过 Go/No-Go | provider-policy snapshot + run ledger 数据分类 | 停止后续外发、清本地副本；按官方/incident 流程处置，不声称远端已删 | Security/Data Owner |
 
 ## 5. 不需要新 ADR 的前提
 
@@ -316,17 +364,25 @@ Owner 结论由 Codex 按用户明确指令代录，不声称独立人工批准�
 - S8A/S8B 已分别独立 PASS，未并入 G3；Markdown 延期使 AC-005 保持 PARTIAL，G4 不得通过。
 - S9A、S9B-D、checker repair 与 S9B-R 已分别独立 PASS；production Chat/Tauri vertical 仍 NOT RUN。
 - S10A/S10B/S10C 已在独立授权下分别 separate PASS；S10D-READINESS/Pattern 1.7.0
-  `8afdc996c11bbad2d275eb8b86a0f6b82ca5da52` 只批准 S10D-H。D-H/D-V/E 均 NOT RUN；readiness 不等于实现 PASS。
+  `8afdc996c11bbad2d275eb8b86a0f6b82ca5da52` 当时只批准 S10D-H。H 后续实现但 smoke FAIL/PAUSED；
+  D-V/E 仍 NOT RUN；readiness 和 implementation commit 都不等于 runtime PASS。
 - Contracts v3 source、基线、generator/adapter、unknown kind/section 行为和 consumer 顺序已完成 G2 设计评审；S1/S2 真实生成、检查、双 breaking 与不可变 commit 已通过。
 - Desktop SQLCipher v8 migration、64 MiB 单 Artifact 上限、七天 retention 起算与恢复边界已在 S4 实现并通过迁移/reopen/TTL/delete 验证；图片 native preview/save/CSP 属 S6A，S6B 只做 renderer。
-- 真实 MiniMax 调用保持关闭；如需启用，另行取得费用和 provider activation 批准。
+- 真实 MiniMax image 已获得最多 5 次的 S12 开发验证授权；此前另有一次用户确认成功的 standalone
+  `image-01` probe，但没有经过 yijie tool/Host/Artifact/Desktop，也没有可复核的完整 run evidence，不能借作 S12 PASS。
+  S12 campaign 尚未发送，生产 activation 继续关闭。
+- S12A 已完成 legacy schema v1→v2 治理迁移、04A 时序矩阵和 S10D-H 失败事实/fuse 迁移并形成新 G2；S12B
+  在 G2 后形成 Runtime compatibility candidate 与 G2A；S12C 在 G2A 后以 fake provider 形成 G2V；S12D/E/F
+  逐项消费前置。不得把旧 G2A 自动外推到 dynamic tool contract，也不得要求尚未实现的 S12C G2V 反向阻塞 S12A。
 
 ## 7. 当前 Gate 结论
 
 - G0：PASS，Feature ID、Owner、本地边界和初始 Git 状态已记录。
 - G1：PASS，场景、AC、受影响仓库、最高 contract impact 和主要风险已识别。
-- G2：`PASS`，Product/Design、Technical/Contracts、Security/Data 与测试计划已由 Owner 明确批准；只允许进入 Contracts S1/S2。
-- G2A：`PASS`，Contracts `ea48fe190e18afba728712d1e2cc79cda57f581b`、Host pin `dea84d0768ebc017b7ee5faedab7f9a49ce74875` 与 Desktop pin `96094419d963745529ed0fa246919089e659f20d` 已满足真实 generate、双 breaking、semantic/consumer review 与不可变 pin 条件。批准依据是用户本轮给出的条件授权与实际证据，不声称 Codex 是独立人工 Reviewer。
-- G3：只对 S3/S4/S5 原子切片通过；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A/S9B-D/
-  S9B-D-CHECKER-REPAIR/S9B-R/S10A/S10B/S10C 为独立 PASS，均不扩展 G3。S10D-READINESS=`DOCS PASS /
-  READY FOR S10D-H ONLY`；S10D-H/V、S10E `NOT RUN`，G4-G6 未通过，真实 provider 继续关闭。
+- G2：active schema v2 为 `PASS`；S12A 已把真实图片设计、04A、S12 图和 H failure fuse 机器绑定。历史 v1 的 Product/Design、Technical/Contracts、Security/Data G2 capture 继续保留，但不覆盖新范围。
+- G2A：active schema v2 为 `PENDING`，等待 S12B Runtime dynamic-tool contract candidate。历史 v1 Contracts `ea48fe190e18afba728712d1e2cc79cda57f581b` 的 G2A PASS 只覆盖旧 Artifact v3 范围，不能外推到新工具协议。
+- G3：只对 S3/S4/S5 原子切片通过；S6A-S10C 的历史独立 PASS 不自动转换为 schema v2 per-slice G3。
+  S10D-H 已实现/执行但 smoke `FAIL`，当前暂停；S10D-V/S10E 未启动。
+- 新 image scope：G0/G1/G2 与 S12A governance migration 已 `PASS`；G2A `PENDING`，G2V 因 open H cleanup fuse 与未合格 S12 harness 为 `BLOCKED`，S12B-S12F `NOT RUN`；
+  历史 standalone provider probe 只证明 Key/provider 曾可用，不改变任一 yijie gate。
+  S12 campaign 付费账本为 used `0/5`、reserved `0`。G4-G6 未通过，生产 provider 关闭。

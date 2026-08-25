@@ -128,7 +128,7 @@ export function auditFeaturePackages({ baseRef = "", featureRoot }) {
     if (fs.existsSync(featurePath)) {
       try {
         current = parseFeatureYaml(fs.readFileSync(featurePath, "utf8"), `${entry.name} current`);
-        if (current?.schema_version === 2) {
+        if ([2, 3].includes(current?.schema_version)) {
           errors.push(
             ...runAuthoritativePackageChecks(featureDir, current).map(
               (error) => `${entry.name}: ${error}`,
@@ -177,8 +177,8 @@ export function auditFeaturePackages({ baseRef = "", featureRoot }) {
         }),
         `${removedPath} at base ref`,
       );
-      if (previous?.schema_version === 2) {
-        errors.push(`schema v2 Feature Package was removed or renamed: ${removedPath}`);
+      if ([2, 3].includes(previous?.schema_version)) {
+        errors.push(`schema v${previous.schema_version} Feature Package was removed or renamed: ${removedPath}`);
       }
     } catch (error) {
       errors.push(`${removedPath}: cannot audit removed package: ${error.message}`);

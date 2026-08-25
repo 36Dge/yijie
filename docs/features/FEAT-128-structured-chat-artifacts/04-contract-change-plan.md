@@ -18,6 +18,9 @@
 - 旧版本隔离：`/v1/agent-sessions/{agent_session_id}/events` 与
   `/v2/agent-sessions/{agent_session_id}/events?event_schema_version=2` 必须保持逐字节兼容；Host
   只有在 consumer 调用 `/v3/.../events?event_schema_version=3` 时才可发出 Artifact 事件。
+- 本次范围扩展：公共 v3 image Artifact shape 保持不变，但 Runtime compatibility 从“拒绝所有反向请求、
+  experimental API off”扩展为一个精确 dynamic tool 与 `item/tool/call`。该行为包含付费 side effect，
+  仍按 `semantic` 处理，并要求新的 G2/G2A/G2V；旧 `0.4.0` candidate 不授权它。
 
 如果实现向 v1/v2 发出新事件、在既有 `item.completed` 中增加旧 schema 拒绝的字段、改变既有
 游标/终态解释，或让旧 Desktop 无法继续使用 v1/v2，则分类升级为 `breaking`，必须停止当前
@@ -27,12 +30,14 @@
 
 | 契约/边界 | 权威源类别 | 仓库与计划路径 | Owner | Producer | Consumers |
 |---|---|---|---|---|---|
-| Agent Session v3 HTTP/SSE、Artifact content/poster GET/HEAD 与 ACK | central OpenAPI | `yijie-contracts/openapi/agent-host/agent-host.yaml` 的新 `/v3/agent-sessions/{agent_session_id}/events`、`.../artifacts/{artifact_id}/content|poster` 与 `.../ack` operations | 段成威 / Contracts Owner | `yijie-agent-host` | `yijie-desktop` native bridge |
+| Agent Session v3 HTTP/SSE、Artifact content/poster GET/HEAD 与 ACK | central OpenAPI | `yijie-contracts/openapi/agent-host/agent-host.yaml` 的新 `/v3/agent-sessions/{agent_session_id}/events`、`.../artifacts/{artifact_id}/content\|poster` 与 `.../ack` operations | 段成威 / Contracts Owner | `yijie-agent-host` | `yijie-desktop` native bridge |
 | v3 SSE event envelope、Artifact lifecycle payload | central JSON Schema | `yijie-contracts/jsonschema/agent/session-event-v3.schema.json` | 段成威 / Contracts Owner | `yijie-agent-host` | Desktop event adapter/store/UI |
 | Report document v1 payload | central JSON Schema | `yijie-contracts/jsonschema/report/report-document-v1.schema.json`; canonical media type `application/vnd.yijie.report+json;version=1` | 段成威 / Contracts Owner | synthetic producer first; future report producer separately approved | Desktop report renderer/export |
 | 异步 channel 与 Protobuf 等价投影 | central AsyncAPI/Protobuf | `yijie-contracts/asyncapi/events.yaml`、`protobuf/yijie/events/v3/agent_session.proto` | 段成威 / Contracts Owner | Agent Host / future async adapter | generated SDK consumers |
-| Runtime image-generation item | pinned Runtime canonical schema | `yijie-codex@0ce5902ed400866be0196886bb78f693a004d68d`，`codex-rs/app-server-protocol/schema/json/v2/ItemStartedNotification.json` 与 `ItemCompletedNotification.json` 的 `imageGeneration` item | Runtime Owner | fixed Codex Runtime | Agent Host adapter |
+| Runtime built-in image-generation item（已拒绝用于 S12） | pinned Runtime canonical schema | `yijie-codex@0ce5902ed400866be0196886bb78f693a004d68d`，`codex-rs/app-server-protocol/schema/json/v2/ItemStartedNotification.json` 与 `ItemCompletedNotification.json` 的 `imageGeneration` item | Runtime Owner | fixed Codex Runtime | factual compatibility evidence only；S12 不消费 |
 | Runtime 到归一化 Artifact 的映射 | reviewed compatibility projection | `yijie-contracts/compatibility/agent-host-runtime-v1.json` 的后续 additive projection + Agent Host conformance | Contracts/Runtime Owner | Agent Host | Desktop v3 consumer |
+| `generate_image` dynamic tool 与反向调用 | reviewed Runtime compatibility + closed JSON Schema | planned `yijie-contracts` compatibility candidate：固定 `thread/start.dynamicTools`、`item/tool/call`、tool args/result 与 pinned Runtime evidence | Contracts/Runtime Owner | MiniMax-M3 / Runtime | Agent Host reverse-request dispatcher |
+| MiniMax T2I/I2I provider API | external official OpenAPI | [图片生成指南](https://platform.minimaxi.com/docs/guides/image-generation)、[T2I OpenAPI](https://platform.minimaxi.com/docs/api-reference/image/generation/api/text-to-image.json)、[I2I OpenAPI](https://platform.minimaxi.com/docs/api-reference/image/generation/api/image-to-image.json)，基线日期 2026-08-23 | MiniMax external authority / Host Owner | Agent Host adapter | Host Artifact manager |
 | Artifact durable history 与本地文件所有权 | private Desktop data authority | implemented `yijie-desktop/src-tauri/schemas/chat-ipc-v3.schema.json` (`x-yijie-schema-version=3`) plus metadata-only `chat_load_history_v3` and private SQLCipher v8 authority；preview/save commands remain planned for later approved slices | Desktop/Data Owner | Desktop native | later Desktop versions/UI |
 
 生成 SDK、Host snapshot、手写 adapter、fixture、数据库行和 UI view model 均为派生表示，不成为
@@ -45,13 +50,48 @@ Protobuf 和 AsyncAPI 必须通过一致性测试证明等价，不得复制后�
   `revisedPrompt`、base64 PNG `result` 和可选 `savedPath`，并通过通用 `item/started`、
   `item/completed` 通知出现。S3 只实现 exact-local synthetic producer；真实 Runtime `imageGeneration`
   adapter 仍未投影，不能由 synthetic 证据推导为 MiniMax/Runtime 能力。
-- 固定 Runtime 的 image-generation extension 只在其 provider capability gate 通过时暴露；当前
-  MiniMax Host profile 没有已验证的 Images API capability 或真实生成证据。canonical item 存在不
-  等于 MiniMax 当前可发出该 item。
+- 固定 Runtime 的内置 image-generation extension 依赖 OpenAI actor/auth 并固定 OpenAI 图片模型，
+  不适用于 `image-01`。本期不用该 extension 或其 `savedPath/result` DTO。
+- 固定 Runtime 已有 experimental dynamic tool 注册、反向 `item/tool/call` 与 content item response；
+  Host 当前 compatibility 声明 experimental API off，且 `protocol.go` 会拒绝所有反向请求。S12 必须先冻结并
+  验证这一 compatibility surface，只允许精确 tool，其它反向方法继续 method-not-found。
 - video、file、report 当前没有已登记的 canonical Runtime item 或其它真实 producer。
-  exact-local synthetic profile 可以为四种 kind 发固定 fixture；`provenance=provider|tool` 的真实 producer 继续分别 blocked。
+  exact-local synthetic profile 可以为四种 kind 发固定 fixture；真实 image 进入新 S12，另外三类继续 blocked。
+
+正常路径使用 producer→persistence→notification→terminal→cleanup；只有 restart/history reconciliation
+进入 persistence→replay→terminal→cleanup。完整顺序与阻断不变量见 `04A-temporal-contract-matrix.md`；
+结构检查不能替代这些 conformance。
 
 ## 3. 语义设计
+
+### Runtime dynamic tool contract（S12 candidate）
+
+- `thread/start` 仅在 exact real-image flag、Host secret ready、budget available 与 fixed Runtime compatibility
+  同时成立时注册一个 namespace/function `generate_image`；普通线程不暴露工具。
+- arguments 为 closed object：required `prompt`（1..1500 Unicode chars）、required
+  `mode=text_to_image|subject_reference`、optional `aspect_ratio`；比例闭集为
+  `1:1|16:9|4:3|3:2|2:3|3:4|9:16|21:9`，且 `additionalProperties=false`。
+- 工具不接受 model、origin、`response_format`、`n`、URL、path、base64、style、seed、optimizer、watermark、
+  retry 或 Artifact identity。Host 固定 provider 参数和当前 turn authority。
+- `subject_reference` 只在当前 turn 恰有一个已校验 PNG/JPEG image block 时成立；Host 将其转换成完整
+  Data URL 与 `type=character`。模型不提供图片正文或外部引用。
+- Runtime 反向 request required canonical `threadId/turnId/callId`，namespace/tool/arguments 必须与 active
+  session/turn 注册表精确匹配。Host 异步处理并回复 closed `success` + 一个 `inputText`；回复不含图片、
+  Artifact ID、provider ID、prompt、URL 或 raw error。图片只通过 v3 Artifact 流发布。
+- planned compatibility candidate 必须固定 Runtime full commit、experimental capability、thread-start field、
+  reverse request/result shapes、dynamicToolCall projection 与 Host 反向 dispatcher conformance；不得直接修改派生 DTO。
+
+### MiniMax provider mapping（S12 candidate）
+
+- 固定 `POST https://api.minimaxi.com/v1/image_generation`，Bearer 从 Host secret boundary 读取；禁止 redirect、
+  arbitrary proxy/origin 与 query secret。
+- 固定 `model=image-01`、`response_format=base64`、`n=1`、`prompt_optimizer=false`、
+  验证阶段 `aigc_watermark=false`；默认 `aspect_ratio=1:1`，只接受官方 closed ratios。
+- T2I 不发送 `subject_reference`；I2I 只发送一个 `subject_reference[{type:"character",image_file:<Data URL>}]`。
+- 不能只以 HTTP 200 判成功；必须验证 `base_resp.status_code=0`、恰一个 base64、success=1/failed=0，
+  兼容 metadata count 的整数或十进制字符串表示。输出 MIME 未由官方稳定承诺，必须以 magic/full decode 检测。
+- `(thread,turn,call)+argument digest` 是 Host side-effect ledger identity。provider 无幂等键；发送后的网络/超时/取消
+  不得自动重试，迟到结果在 turn terminal 后丢弃并清除。
 
 ### v3 事件流请求
 
@@ -186,9 +226,11 @@ v3：显式 path + event_schema_version=3，不做内容丢失型自动降级
 | old Host + new Desktop | v3 route 返回 404/unsupported | 无 Artifact event | Desktop fail closed，隐藏/禁用 Artifact 能力；不得从 Markdown 猜测文件或回退丢失结构 | Desktop readiness/404 negative test |
 | new Host + new Desktop，feature off | v1/v2 或 v3 不激活 producer | 无新 Artifact emission | 默认行为与当前候选一致 | default-off source/config test |
 | new Host + new Desktop，synthetic producer on | v3 explicit negotiation | started -> progress* -> completed/failed | UI 可渐进展示、去重、恢复和下载 synthetic resource | canonical end-to-end fixture test |
-| new Host + new Desktop，MiniMax real image | v3 explicit negotiation | 仅在 provider capability 获证后发 image | 当前状态 `PENDING/BLOCKED`，不得用 Runtime schema 存在替代真实 capability | fixed-provider capability + bounded paid eval，需用户单独授权 |
+| new Host + new Desktop，MiniMax real T2I | Runtime structured call + v3 explicit negotiation | one `provenance=provider` image lifecycle | 仅 exact validation profile；当前 implementation/eval `NOT RUN` | tool no-call/call + fake provider + paid T2I + Desktop vertical |
+| new Host + new Desktop，MiniMax subject I2I | current turn one PNG/JPEG + structured call + v3 | one provider image lifecycle | 只承诺 `subject_reference.character`，其它输入 fail closed | fake Data URL mapping + paid I2I + Desktop vertical |
+| normal vision conversation | v2 image input + no generate tool call | text only, no provider Artifact | 看图不误生图，付费 ledger 不增加 | negative intent Eval + zero-call assertion |
 | exact-local synthetic emits video/file/report | v3 explicit negotiation | 对应 kind lifecycle，`provenance=synthetic` | 允许固定 fixture 验证 contract/UI；不得冒充真实能力 | synthetic producer conformance + failure/range tests |
-| real producer emits video/file/report | v3 explicit negotiation | `provenance=provider|tool` | `Unknown/BLOCKED`；必须先形成 canonical producer、容量、安全和取消语义 | producer-specific conformance + failure/range tests |
+| real producer emits video/file/report | v3 explicit negotiation | `provenance=provider\|tool` | `Unknown/BLOCKED`；必须先形成 canonical producer、容量、安全和取消语义 | producer-specific conformance + failure/range tests |
 | new Desktop reads old local history | no v3 wire required | legacy text/history | 旧记录保持可读，未保存的 Host ephemeral resource 不伪造为可下载 | Desktop migration/history tests |
 | rollback to old Host | new Desktop stops v3 calls | no new events | 关闭 feature flag 后继续 v1/v2；Desktop 已持久化 Artifact 保持本地只读 | rollback compatibility test |
 
@@ -228,7 +270,8 @@ source/generated PR 通过 -> 形成不可变完整 commit -> Host/Desktop 分�
 | report lifecycle/document | `.../report-{started,progress,completed,failed}.json` + `tests/fixtures/report/report-document-v1/*` | known、unknown optional、unknown required 与 injection fixtures 通过 | Desktop pin checker通过；renderer/fallback 属 S4/S9 | CONTRACT PASS；真实 producer 单独 blocked |
 | artifact ACK | `tests/fixtures/agent/host-v3/artifact-ack-{request,response}.json` | request/receipt schema 与幂等错误语义通过 | Desktop 只允许在 SQLCipher commit 后发送，业务实现属 S4 | CONTRACT PASS |
 | lifecycle negatives | `yijie-contracts/tests/agent-session-events-v3.test.mjs` | closed variants、ordinal、MIME/size/href/report limits 被自动验证 | Desktop 对重复、乱序、gap、expired fail closed 属 S4 | CONTRACT PASS |
-| Runtime canonical projection | Host test fixture derived from pinned `ItemStartedNotification` / `ItemCompletedNotification` imageGeneration shape | parser 保留 id/status/result，验证 base64 PNG、size/digest；不输出 path | Desktop 只消费归一化 v3，不依赖 Runtime DTO | `PENDING`；固定 Runtime commit/schema tree 必须与 compatibility lock 一致 |
+| Runtime dynamic tool fixture | planned Contracts compatibility fixture for `thread/start.dynamicTools` + `item/tool/call` | Host 注册 exact schema、接收反向 call、仅回复 content-free text | Desktop 不消费 Runtime DTO，只消费 v3 Artifact | NOT RUN；S12B source/generate/semantic review 后形成 immutable identity |
+| MiniMax fake HTTP fixtures | Host-local fake responses for success/error/redirect/timeout/malformed base64/count mismatch | provider adapter mapping、limits、no retry、ledger、cleanup | resulting v3 image goes through existing consumer fixture | NOT RUN；不提交真实付费输出或 secret |
 | v1/v2 isolation | existing v1/v2 fixtures plus equality assertions | v1/v2 source/wire 对两个 baseline 均不变 | public/v2 downstream pin checker 继续通过 | PASS |
 
 所有 fixture 只使用合成数据。Feature 目录只引用 canonical fixture 路径和 digest，不复制 payload。
@@ -244,8 +287,13 @@ source/generated PR 通过 -> 形成不可变完整 commit -> Host/Desktop 分�
 | 5 | G2A 审核 Contracts 与两个 consumer pin/conformance | `yijie` / 段成威 | 第 2-4 步全部 PASS | G2A 保持 pending，禁止 S3/S4 |
 | 6 | G2A 后按 S3/S4 实现 Host route/staging/synthetic 与 Desktop native persistence/IPC；默认 flag off | Host + Desktop | G2A PASS | 关闭 v3 route/flag，v1/v2 继续服务 |
 | 7 | 完成 S5-S10 UI、synthetic walking skeleton 与安全/视觉/性能证据 | Host + Desktop | S3/S4 conformance | 关闭 local flag；不删除用户已保存文件 |
-| 8 | MiniMax image real activation | Runtime/Host/Desktop | `PENDING`：能力、费用/限流、固定模型/API 和 bounded eval 获单独授权 | 禁用 image producer |
-| 9 | video/file/report real producer activation | 对应未来权威 producer Owner | `Unknown/BLOCKED`：每类独立 producer/security/eval 获批 | 每种 kind 独立 flag 关闭 |
+| 8 | S12A legacy v1→v2 治理迁移与真实图片 G2 readiness | yijie | 04A、真实 S10D-H failure ledger、官方 API/预算/secret/工具决策 | 保持 image flag off |
+| 9 | S12B Runtime compatibility contract candidate | Contracts + Host read-only consumer | source/generate/breaking/semantic review、immutable commit | 不 repin、不注册工具 |
+| 10 | S12C Host tool router/provider/ledger/fake Artifact | Host | S12B G2A + frozen fake-harness design/EXPECTED RED；qualification 是本步输出 | image flag off；回滚 adapter/router |
+| 11 | S12D consumer repin + packaged secret handoff | Host + Desktop | exact pin、安全存储/owner-only交接、existing image conformance | 禁止 Key 下放；回滚 pin/config |
+| 12 | S12E bounded paid probe | isolated Host/Runtime | fixed call ledger；执行 planned slots P1-P2（T2I/I2I），总上限 5；用户授权已记录 | 达上限或任一 stop condition立即关闭 |
+| 13 | S12F real Tauri T2I/I2I vertical + security/cost review | Host + Desktop | S12E + schema v2 中显式解决 S10D-H 重叠 blocker；执行 planned slots P3-P4 分别证明 T2I/I2I，并覆盖 no-call、history/save/teardown、fresh evidence | real image kill switch off |
+| 14 | video/file/report real producer activation | 对应未来权威 producer Owner | `Unknown/BLOCKED`：每类独立 producer/security/eval 获批 | 每种 kind 独立 flag 关闭 |
 
 本需求明确是本地服务候选：不购买云服务器、数据库或对象存储，不执行 production deployment、
 tag publish 或真实用户 rollout。生产部署相关子项为 `N/A for current local-only scope`，但 G5/G6
@@ -270,7 +318,7 @@ S1/S2 与 S2P 完成后，严格按依赖先执行 Host S3，再执行 Desktop S
 | Host S3 | `make contract-check && make lint && make test && make runtime-test` | `yijie-agent-host` | `4017785adb08e1114781d3d844e9a10a683fa933` | 0 | PASS | v3 dual route、bounded encrypted staging、GET/HEAD/range、ACK/TTL/restart cleanup 与四类 exact-local synthetic；真实 producer off |
 | Desktop pin conformance | `pnpm generate:check && make lint && make test && make build && pnpm docs:build` | `yijie-desktop` | pin commit `96094419d963745529ed0fa246919089e659f20d` | 0 | PASS | public/v2/v3 pin、TS/Rust baseline、docs 通过 |
 | Desktop S4 | `make lint && make test && make build && pnpm docs:build` | `yijie-desktop` | `09220dd8319cfb8ec0c4d1531514bb5169107983` | 0 | PASS | v8 SQLCipher、closed event/report adapter、resource transfer/commit/ACK、168h TTL/delete、metadata-only history v3；TS 276/276，Rust 184 pass/3 ignored |
-| MiniMax real image capability | bounded provider eval command `PENDING` | isolated local environment | fixed model/API/version `Unknown` | N/A | BLOCKED | 用户批准付费调用、能力来源与固定 eval 后才可执行 |
+| MiniMax real image capability | planned exact `./scripts/run-feat128-s12e-image-capability.sh`（目标尚未实现） | isolated local environment | endpoint/model/base64/n=1 fixed；shared S12 campaign P1/P2 可 CAS；used 0/5、reserved 0 | N/A | NOT RUN | S12E 实现前命令应 fail/missing；历史 standalone probe 不合格；费用已授权，仍须 S12A-D PASS；禁止手工绕过 runner |
 
 ## 10. Consumer Owner 评审与阻断项
 
@@ -288,12 +336,17 @@ Open blockers 与解除条件：
 | ID | 状态 | 阻断事实 | 解除条件 |
 |---|---|---|---|
 | BLK-128-001 | `CLOSED AT S3` | limits、encrypted spool、24h TTL、ACK/重启清理已冻结并实现 | Host S3 commit 与 contract/lint/test/runtime-test 证据已形成；漂移则重开 |
-| BLK-128-002 | `Unknown` | MiniMax 当前 Host profile 未证明 Images API 或 Runtime imageGeneration tool 可用 | 固定 MiniMax API/model/capability 来源，隔离验证 canonical started/completed，记录费用、限流、失败和最多两次短 eval；此前只能 synthetic local test |
+| BLK-128-002 | `SUPERSEDED 2026-08-23` | 历史状态：Host 未证明 Images API，且旧限制最多两次 eval | DEC-128-033..040 取代：dynamic tool + image-01；总上限 5、计划 4；当前 used 0/reserved 0 |
 | BLK-128-003 | `REAL PROVIDER BLOCKED; SYNTHETIC ALLOWED` | video 没有 canonical real producer；exact-local fixture 已获准 | 真实 activation 前选择 provider 并形成 immutable API、ownership、range/failure conformance；不阻断 S1 synthetic fixture |
 | BLK-128-004 | `REAL PROVIDER BLOCKED; SYNTHETIC ALLOWED` | file/report 没有归一化 real producer；exact-local fixture 已获准 | 真实 activation 前明确 producer/权限/审计；不阻断 S1 contract/report fixtures |
 | BLK-128-005 | `CLOSED AT S3/S4; EXPIRING EXCEPTION` | OpenAPI/Proto/TS 锁定 generator；Go/Rust JSON Schema 使用显式 adapter 例外 | Host/Desktop implementation digests、同源 conformance、Owner、到期 `2026-11-20 or G5, whichever is earlier` 与移除条件均已记录 |
 | BLK-128-006 | `CLOSED AT G2A` | Contracts source/generated、双基线、semantic review 与 consumer exact pin 已形成 | commits 与命令证据见第 6、9 节；边界漂移时重开 |
+| BLK-128-007 | `OPEN` | Runtime compatibility 当前关闭 experimental API，Host 拒绝全部 reverse requests | S12B 冻结 exact dynamic tool/item-tool-call candidate、真实 generate/breaking/semantic review/immutable pin |
+| BLK-128-008 | `OPEN` | packaged Desktop sidecar `env_clear()` 下尚无已批准 Host Key 安全交接 | S12D 形成 owner-only Key file/系统安全存储边界和 release-like negative tests；不得用 CLI/env 泄漏绕过 |
+| BLK-128-009 | `PARTIALLY CLOSED / H FUSE OPEN` | S12A 已迁移 schema v2 与 exact failure ledger；`INC-128-S10D-H-EMPTY-WAL` 为 `rca_required` | S10D-H 保持暂停；先做区分性 RCA 与单次 Owner authorization，不能被 S12 隐式关闭 |
 
-结论：G2A 后已按序完成 S3/S4，G3 对这两个原子切片为 PASS；本结论不声称 Desktop renderer、walking
-skeleton、真实 provider、tag、push、release 或生产交付已经完成。任何真实 v3 producer 仍默认关闭，
-不得真实调用 MiniMax，也不得声称真实 video/file/report 已支持。
+结论：历史 G2A/S3/S4 证据保持有效于原 `0.4.0` Artifact contract，但不授权新增 dynamic tool/付费 side effect。
+真实 image 范围与最多 5 次验证已获批，S12 campaign 当前仍为 used `0/5`、reserved `0`、implementation/eval
+`NOT RUN`；历史 standalone provider success 不进入该 campaign，也不证明 yijie 链路；
+计划 4 个 slots，另有 1 个 repair slot 只供明确根因修复后复验且不限定物理发送序号；S12A-D 通过前不得调用。
+真实 image 与其它 kind 的生产开关均默认关闭，也不得声称真实 video/file/report 已支持。

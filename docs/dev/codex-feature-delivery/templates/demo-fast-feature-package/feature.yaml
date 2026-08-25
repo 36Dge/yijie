@@ -1,0 +1,114 @@
+schema_version: 3
+delivery_profile: "{{DELIVERY_PROFILE}}"
+exposure: "{{EXPOSURE}}"
+
+feature:
+  id: "{{FEATURE_ID}}"
+  slug: "{{FEATURE_SLUG}}"
+  title: "TBD"
+  status: "draft" # draft | active | usable | blocked
+  created_at: "{{DATE}}"
+  requirement_owner: "段成威"
+  technical_owner: "段成威"
+  reviewer: "段成威"
+  release_owner: "段成威"
+
+scope:
+  risk_level: "TBD" # low | medium | high | critical
+  data_classification: "TBD" # public | internal | confidential | restricted
+  contract_impact: "TBD" # none | additive | semantic | breaking
+  database_change: "TBD" # none | expand | migrate | contract
+  persistence_change: "TBD" # none | durable | replay
+  runtime_change: "TBD" # none | runtime | platform
+  auth_permission_change: "TBD" # none | auth | permission | both
+  user_workflow_change: "TBD" # none | internal | user_visible
+  ui_change: "TBD" # none | visual | interactive
+  ai_behavior_change: "TBD" # none | prompt | model | retrieval | tool | eval
+
+repositories: []
+
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+
+product_ux:
+  status: "pending" # pending | PASS
+  primary_user: "TBD"
+  problem: "TBD"
+  user_outcome: "TBD"
+  in_scope: []
+  out_of_scope: []
+  main_flow: []
+  visual_direction: "TBD"
+  ui_states:
+    idle: "TBD"
+    loading: "TBD"
+    success: "TBD"
+    empty: "TBD"
+    error: "TBD"
+    retry: "TBD"
+    cancel: "TBD"
+
+must_acceptance:
+  - id: "AC-001"
+    statement: "TBD"
+    verification: "TBD"
+    status: "pending" # pending | PASS | FAIL
+
+contract:
+  impact: "TBD"
+  authority: "TBD"
+  source_first_plan: "TBD"
+  status: "NOT RUN" # N/A when impact=none; otherwise NOT RUN | PASS
+  checks: []
+
+external_authorizations:
+  paid_calls: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+  destructive_operations: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+  production_writes: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+
+implementation:
+  status: "pending" # pending | active | complete | blocked
+  real_entrypoint: "TBD"
+  mock_only: false
+
+verification:
+  status: "NOT RUN" # PASS only after one fresh real-service run
+  verified_at: "NOT RUN"
+  startup:
+    status: "NOT RUN"
+    command_or_steps: "TBD"
+    environment: "TBD"
+    actual_result: "TBD"
+  real_smoke:
+    status: "NOT RUN"
+    command_or_steps: "TBD"
+    environment: "TBD"
+    actual_result: "TBD"
+  representative_failure:
+    status: "NOT RUN"
+    command_or_steps: "TBD"
+    environment: "TBD"
+    actual_result: "TBD"
+  focused_checks: []
+  artifacts: []
+  diff_review: { status: "NOT RUN", summary: "TBD" }
+  known_limitations: []
+
+public_readiness:
+  required: {{PUBLIC_REQUIRED}}
+  status: "{{PUBLIC_STATUS}}" # N/A | pending | PASS
+  checks: []
+  external_smoke:
+    status: "NOT RUN"
+    command_or_steps: "TBD"
+    actual_result: "TBD"
+
+documents:
+  brief: "00-feature-brief.md"
+  delivery_log: "01-delivery-log.md"
+  verification: "02-verification.md"

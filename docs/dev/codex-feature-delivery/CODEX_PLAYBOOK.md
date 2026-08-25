@@ -1,6 +1,40 @@
 # Codex 实战操作规程
 
-## 1. 高质量上下文包
+## 0. Profile-aware 工作方式
+
+新需求默认 `demo_fast`。每次任务上下文先写明：
+
+```text
+delivery_profile: demo_fast | production_hardened
+exposure: local | public
+current_checkpoint: D0 | D4 | DP | G0...G6
+```
+
+`demo_fast` 上下文只需 Feature ID、用户结果、Must AC、交互/UI、真实入口、受影响仓库、
+contract-impact、外部授权、focused checks、时间盒、当前真实 Bug 和已有工作区改动。不要求切片 ID、
+G2V、harness、freshness 或 production evidence。
+
+推荐的 Demo 整体实现任务：
+
+```text
+按已通过 D0 的 Brief 完成整个需求，不建立治理切片。
+
+1. 契约影响先改权威源并运行适用 generate/lint/focused conformance。
+2. 按技术依赖连续完成 provider/domain/storage/event/UI。
+3. 只补保护 Must AC 和核心错误语义的 focused tests。
+4. 完成后立即通过正常入口启动真实服务。
+   对 `demo_fast + local`，正常入口必须采用 ADR-0018 canonical direct-entry，不要求用户登录。
+5. 执行真实 happy path、全部 Must AC 和一个 failure/retry。
+6. 有 Bug 就修复、重启、复测，直到一次 fresh run 全部通过。
+7. 记录 Artifact、实际命令、diff 和已知限制；不得把 mock 写成真实服务。
+```
+
+Demo 调试使用时间盒：30 分钟无新事实则扩大真实调用链调查；90 分钟同一阻塞则简化方案；
+非核心验证 120 分钟后登记限制；核心阻塞 240 分钟后缩小 MVP/换架构；16 小时未 D4 则重新定范围。
+
+`production_hardened` 使用下述完整规程。
+
+## 1. production_hardened 高质量上下文包
 
 每次 Codex 实现任务至少提供：
 
@@ -129,7 +163,7 @@ Structured freshness（transitive commits、contract/fixture refs、harness comm
 - 每个未执行项写原因、风险和补充条件。
 ```
 
-## 3. 小步循环控制
+## 3. production_hardened 小步循环控制
 
 Codex 每轮最多承担一个主要认知目标，例如：
 
@@ -204,7 +238,7 @@ Codex 必须遵守：
 
 Push、创建 tag、发布、迁移生产数据和调用真实外部写操作都是外部状态变化，必须有明确授权和精确目标。
 
-## 8. 三次同类失败后的工作方式
+## 8. production_hardened 三次同类失败后的工作方式
 
 同一命令、Gate、runtime checkpoint、稳定 failure code 或实质相同条件第三次失败时：
 
@@ -217,3 +251,6 @@ Push、创建 tag、发布、迁移生产数据和调用真实外部写操作都
 7. 等待 Owner 批准后只执行一次。再次出现同类失败立即重新熔断。
 
 禁止删除历史尝试、改名 failure code 清零、绕过 production path、伪造 evidence 或“重跑到绿”。
+
+`demo_fast` 不使用三次失败冻结和 production failure ledger；它必须保留实际失败摘要，并按时间盒
+转入真实调用链诊断、最小 workaround 或缩小范围。任何 Profile 都禁止机械“重跑到绿”。

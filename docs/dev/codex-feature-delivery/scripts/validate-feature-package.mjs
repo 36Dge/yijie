@@ -19,6 +19,17 @@ const GATE_KEYS = {
 };
 const GATE_PREREQUISITES = new Set(["G0", "G1", "G2", "G2A", "G2V"]);
 const DOWNSTREAM_GATES = new Set(["G2V", "G3", "G4", "G5", "G6"]);
+const DEMO_GATES = new Set(["D0", "D4", "DP"]);
+const DELIVERY_PROFILES = new Set(["demo_fast", "production_hardened"]);
+const EXPOSURES = new Set(["local", "public"]);
+const PUBLIC_DEMO_CHECKS = [
+  "auth_and_data",
+  "cost_limits",
+  "input_limits",
+  "recovery",
+  "safe_errors",
+  "secrets",
+];
 const GATE_STATUSES = new Set(["blocked", "fail", "not_applicable", "pass", "pending"]);
 const SLICE_STATUSES = new Set(["blocked", "fail", "not_applicable", "pass", "pending"]);
 const FAILURE_CLASSES = [
@@ -179,6 +190,246 @@ function validateDesignGateChain(errors, data, throughGate) {
   const chain = ["G0", "G1", "G2"];
   const end = chain.indexOf(throughGate);
   for (const gate of chain.slice(0, end + 1)) validateGatePassed(errors, data, gate);
+}
+
+function deliveryProfile(data) {
+  if (data?.schema_version === 3) return normalized(data.delivery_profile);
+  if (data?.schema_version === 2) return "production_hardened";
+  return "legacy";
+}
+
+function validateV3Envelope(errors, data) {
+  const profile = deliveryProfile(data);
+  if (!DELIVERY_PROFILES.has(profile)) {
+    errors.push("delivery_profile must be demo_fast or production_hardened");
+  }
+  if (!EXPOSURES.has(normalized(data.exposure))) {
+    errors.push("exposure must be local or public");
+  }
+  return profile;
+}
+
+function validateMeaningfulList(errors, value, label, { minimum = 1 } = {}) {
+  if (!Array.isArray(value)) {
+    errors.push(`${label} must be an array`);
+    return;
+  }
+  if (value.length < minimum) errors.push(`${label} must contain at least ${minimum} item(s)`);
+  for (const [index, item] of value.entries()) {
+    if (!meaningful(item)) errors.push(`${label}[${index}] must be meaningful`);
+  }
+}
+
+function validateDemoAuthorization(errors, value, label) {
+  const authorization = addRequiredObject(errors, value, label);
+  if (!authorization) return;
+  if (typeof authorization.allowed !== "boolean") errors.push(`${label}.allowed must be boolean`);
+  if (!Number.isInteger(authorization.max_actions) || authorization.max_actions < 0) {
+    errors.push(`${label}.max_actions must be a non-negative integer`);
+  }
+  if (authorization.allowed) {
+    if (authorization.max_actions < 1) errors.push(`${label}.max_actions must be positive when allowed`);
+    if (!meaningful(authorization.approved_by)) errors.push(`${label}.approved_by is required when allowed`);
+    if (!isIsoInstant(authorization.approved_at)) {
+      errors.push(`${label}.approved_at must be an ISO-8601 instant when allowed`);
+    }
+  } else if (authorization.max_actions !== 0) {
+    errors.push(`${label}.max_actions must be 0 when not allowed`);
+  }
+}
+
+function validateDemoCheckList(errors, checks, label, { minimum = 1 } = {}) {
+  if (!Array.isArray(checks)) {
+    errors.push(`${label} must be an array`);
+    return;
+  }
+  if (checks.length < minimum) errors.push(`${label} must contain at least ${minimum} check(s)`);
+  for (const [index, check] of checks.entries()) {
+    const itemLabel = `${label}[${index}]`;
+    if (!asObject(check)) {
+      errors.push(`${itemLabel} must be an object`);
+      continue;
+    }
+    if (!meaningful(check.repository)) errors.push(`${itemLabel}.repository is required`);
+    if (!meaningful(check.command)) errors.push(`${itemLabel}.command is required`);
+    if (!isPass(check.status)) errors.push(`${itemLabel}.status must be PASS`);
+    if (check.exit_code !== 0) errors.push(`${itemLabel}.exit_code must equal 0`);
+  }
+}
+
+function validateDemoPlanning(errors, data) {
+  validateFeatureIdentity(errors, data);
+  validatePlanningScope(errors, data);
+  const timebox = addRequiredObject(errors, data.timebox, "timebox");
+  if (timebox) {
+    for (const [field, minimum, maximum] of [
+      ["target_hours", 1, 16],
+      ["hard_stop_hours", 1, 24],
+      ["no_progress_minutes", 15, 60],
+      ["same_blocker_minutes", 30, 120],
+      ["non_core_limit_minutes", 30, 180],
+      ["core_blocker_minutes", 60, 360],
+    ]) {
+      const value = timebox[field];
+      if (!Number.isInteger(value) || value < minimum || value > maximum) {
+        errors.push(`timebox.${field} must be an integer between ${minimum} and ${maximum}`);
+      }
+    }
+    if (
+      Number.isInteger(timebox.target_hours) &&
+      Number.isInteger(timebox.hard_stop_hours) &&
+      timebox.target_hours > timebox.hard_stop_hours
+    ) {
+      errors.push("timebox.target_hours must not exceed timebox.hard_stop_hours");
+    }
+  }
+
+  const product = addRequiredObject(errors, data.product_ux, "product_ux");
+  if (product) {
+    if (!isPass(product.status)) errors.push("product_ux.status must be PASS for D0");
+    for (const field of ["primary_user", "problem", "user_outcome", "visual_direction"]) {
+      if (!meaningful(product[field])) errors.push(`product_ux.${field} is required`);
+    }
+    validateMeaningfulList(errors, product.in_scope, "product_ux.in_scope");
+    validateMeaningfulList(errors, product.out_of_scope, "product_ux.out_of_scope");
+    validateMeaningfulList(errors, product.main_flow, "product_ux.main_flow", { minimum: 2 });
+    const states = addRequiredObject(errors, product.ui_states, "product_ux.ui_states");
+    if (states) {
+      for (const state of ["idle", "loading", "success", "empty", "error", "retry", "cancel"]) {
+        if (!meaningful(states[state])) errors.push(`product_ux.ui_states.${state} is required`);
+      }
+    }
+  }
+
+  if (!Array.isArray(data.must_acceptance) || data.must_acceptance.length === 0) {
+    errors.push("must_acceptance must contain at least one acceptance criterion");
+  } else {
+    const ids = new Set();
+    for (const [index, acceptance] of data.must_acceptance.entries()) {
+      const label = `must_acceptance[${index}]`;
+      if (!asObject(acceptance)) {
+        errors.push(`${label} must be an object`);
+        continue;
+      }
+      if (!/^AC-[A-Z0-9._-]+$/.test(acceptance.id ?? "")) errors.push(`${label}.id must be AC-*`);
+      if (ids.has(acceptance.id)) errors.push(`${label}.id must be unique`);
+      ids.add(acceptance.id);
+      if (!meaningful(acceptance.statement)) errors.push(`${label}.statement is required`);
+      if (!meaningful(acceptance.verification)) errors.push(`${label}.verification is required`);
+      if (!["pending", "pass", "fail"].includes(normalized(acceptance.status))) {
+        errors.push(`${label}.status must be pending, pass, or fail`);
+      }
+    }
+  }
+
+  const contract = addRequiredObject(errors, data.contract, "contract");
+  const impact = normalized(asObject(data.scope)?.contract_impact);
+  if (contract) {
+    if (normalized(contract.impact) !== impact) errors.push("contract.impact must match scope.contract_impact");
+    if (!meaningful(contract.authority)) errors.push("contract.authority is required");
+    if (!meaningful(contract.source_first_plan)) errors.push("contract.source_first_plan is required");
+    if (!["not_run", "pass", "n/a", "not_applicable"].includes(normalized(contract.status))) {
+      errors.push("contract.status must be NOT RUN, PASS, or N/A");
+    }
+    if (impact === "none" && !isNotApplicable(contract.status)) {
+      errors.push("contract.status must be N/A when contract_impact is none");
+    }
+  }
+
+  const authorizations = addRequiredObject(errors, data.external_authorizations, "external_authorizations");
+  if (authorizations) {
+    validateDemoAuthorization(errors, authorizations.paid_calls, "external_authorizations.paid_calls");
+    validateDemoAuthorization(errors, authorizations.destructive_operations, "external_authorizations.destructive_operations");
+    validateDemoAuthorization(errors, authorizations.production_writes, "external_authorizations.production_writes");
+  }
+}
+
+function validateDemoDone(errors, data) {
+  validateDemoPlanning(errors, data);
+  if (normalized(data.feature?.status) !== "usable") errors.push("feature.status must be usable for D4");
+  const implementation = addRequiredObject(errors, data.implementation, "implementation");
+  if (implementation) {
+    if (normalized(implementation.status) !== "complete") {
+      errors.push("implementation.status must be complete for D4");
+    }
+    if (!meaningful(implementation.real_entrypoint)) errors.push("implementation.real_entrypoint is required");
+    if (implementation.mock_only !== false) errors.push("implementation.mock_only must be false");
+  }
+  for (const [index, acceptance] of (data.must_acceptance ?? []).entries()) {
+    if (!isPass(acceptance?.status)) errors.push(`must_acceptance[${index}].status must be PASS for D4`);
+  }
+  const contract = asObject(data.contract);
+  if (normalized(data.scope?.contract_impact) !== "none") {
+    if (!isPass(contract?.status)) errors.push("contract.status must be PASS for a contract-impacting D4");
+    validateDemoCheckList(errors, contract?.checks, "contract.checks");
+  }
+  const verification = addRequiredObject(errors, data.verification, "verification");
+  if (!verification) return;
+  if (!isPass(verification.status)) errors.push("verification.status must be PASS for D4");
+  if (!isIsoInstant(verification.verified_at)) {
+    errors.push("verification.verified_at must be an ISO-8601 instant for D4");
+  }
+  for (const key of ["startup", "real_smoke", "representative_failure"]) {
+    const check = addRequiredObject(errors, verification[key], `verification.${key}`);
+    if (!check) continue;
+    if (!isPass(check.status)) errors.push(`verification.${key}.status must be PASS`);
+    if (!meaningful(check.command_or_steps)) {
+      errors.push(`verification.${key}.command_or_steps is required`);
+    }
+    if (!meaningful(check.environment)) errors.push(`verification.${key}.environment is required`);
+    if (!meaningful(check.actual_result)) errors.push(`verification.${key}.actual_result is required`);
+  }
+  validateDemoCheckList(errors, verification.focused_checks, "verification.focused_checks");
+  validateMeaningfulList(errors, verification.artifacts, "verification.artifacts");
+  if (!isPass(verification.diff_review?.status)) errors.push("verification.diff_review.status must be PASS");
+  if (!meaningful(verification.diff_review?.summary)) {
+    errors.push("verification.diff_review.summary is required");
+  }
+  if (!Array.isArray(verification.known_limitations)) {
+    errors.push("verification.known_limitations must be an array");
+  }
+}
+
+function validateDemoPublic(errors, data) {
+  validateDemoDone(errors, data);
+  if (normalized(data.exposure) !== "public") errors.push("DP requires exposure: public");
+  const readiness = addRequiredObject(errors, data.public_readiness, "public_readiness");
+  if (!readiness) return;
+  if (readiness.required !== true) errors.push("public_readiness.required must be true for public exposure");
+  if (!isPass(readiness.status)) errors.push("public_readiness.status must be PASS for DP");
+  const checks = Array.isArray(readiness.checks) ? readiness.checks : [];
+  const ids = checks.map((check) => check?.id).sort();
+  if (JSON.stringify(ids) !== JSON.stringify(PUBLIC_DEMO_CHECKS)) {
+    errors.push(`public_readiness.checks must contain exactly: ${PUBLIC_DEMO_CHECKS.join(", ")}`);
+  }
+  for (const [index, check] of checks.entries()) {
+    if (!isPass(check?.status)) errors.push(`public_readiness.checks[${index}].status must be PASS`);
+    if (!meaningful(check?.evidence)) errors.push(`public_readiness.checks[${index}].evidence is required`);
+  }
+  const smoke = addRequiredObject(errors, readiness.external_smoke, "public_readiness.external_smoke");
+  if (smoke) {
+    if (!isPass(smoke.status)) errors.push("public_readiness.external_smoke.status must be PASS");
+    if (!meaningful(smoke.command_or_steps)) {
+      errors.push("public_readiness.external_smoke.command_or_steps is required");
+    }
+    if (!meaningful(smoke.actual_result)) errors.push("public_readiness.external_smoke.actual_result is required");
+  }
+}
+
+function validateDemoBase(errors, data, gate) {
+  for (const key of ["feature", "scope", "timebox", "product_ux", "contract", "external_authorizations", "implementation", "verification", "public_readiness", "documents"]) {
+    addRequiredObject(errors, data[key], key);
+  }
+  if (gate === "D0") validateDemoPlanning(errors, data);
+  if (gate === "D4") validateDemoDone(errors, data);
+  if (gate === "DP") validateDemoPublic(errors, data);
+  const readiness = asObject(data.public_readiness);
+  if (normalized(data.exposure) === "local") {
+    if (readiness?.required !== false) errors.push("public_readiness.required must be false for local exposure");
+    if (!isNotApplicable(readiness?.status)) errors.push("public_readiness.status must be N/A for local exposure");
+  } else if (normalized(data.exposure) === "public" && readiness?.required !== true) {
+    errors.push("public_readiness.required must be true for public exposure");
+  }
 }
 
 function validateFeatureIdentity(errors, data) {
@@ -1289,22 +1540,10 @@ function validateG4(errors, data, context) {
   validateFinalVerdicts(errors, data, context);
 }
 
-export function validateFeatureData(data, { gate = "", sliceId = "" } = {}) {
-  const errors = [];
-  const warnings = [];
-  const schemaVersion = data?.schema_version;
-  if (schemaVersion === 1) {
-    warnings.push(
-      "LEGACY_SCHEMA_V1: historical read only; result does not prove G2V, per-slice G3, temporal contracts, harness qualification, split E2E, or the three-failure fuse",
-    );
-    if (DOWNSTREAM_GATES.has(gate)) {
-      errors.push(`schema v1 must migrate to schema v2 before claiming ${gate}`);
-    }
-    return { schemaVersion, errors, warnings };
-  }
-  if (schemaVersion !== 2) {
-    errors.push(`unsupported schema_version: ${String(schemaVersion)}`);
-    return { schemaVersion, errors, warnings };
+function validateProductionData(data, { gate = "", sliceId = "" }, errors) {
+  if (DEMO_GATES.has(gate)) {
+    errors.push(`${gate} is only valid for delivery_profile: demo_fast`);
+    return;
   }
   const context = validateV2Base(data, errors, gate);
   if (["G0", "G1", "G2"].includes(gate)) validateDesignGateChain(errors, data, gate);
@@ -1322,6 +1561,43 @@ export function validateFeatureData(data, { gate = "", sliceId = "" } = {}) {
     validateG4(errors, data, context);
     validateGatePassed(errors, data, "G5");
     validateGatePassed(errors, data, "G6");
+  }
+}
+
+export function validateFeatureData(data, { gate = "", sliceId = "" } = {}) {
+  const errors = [];
+  const warnings = [];
+  const schemaVersion = data?.schema_version;
+  if (schemaVersion === 1) {
+    warnings.push(
+      "LEGACY_SCHEMA_V1: historical read only; result does not prove G2V, per-slice G3, temporal contracts, harness qualification, split E2E, or the three-failure fuse",
+    );
+    if (DOWNSTREAM_GATES.has(gate)) {
+      errors.push(`schema v1 must migrate to schema v2 before claiming ${gate}`);
+    }
+    return { schemaVersion, errors, warnings };
+  }
+  if (schemaVersion !== 2 && schemaVersion !== 3) {
+    errors.push(`unsupported schema_version: ${String(schemaVersion)}`);
+    return { schemaVersion, errors, warnings };
+  }
+  if (schemaVersion === 2) {
+    validateProductionData(data, { gate, sliceId }, errors);
+    return { schemaVersion, errors, warnings };
+  }
+  const profile = validateV3Envelope(errors, data);
+  if (profile === "demo_fast") {
+    if (gate.startsWith("G")) {
+      errors.push(`${gate} is only valid for delivery_profile: production_hardened`);
+    } else {
+      validateDemoBase(errors, data, gate);
+    }
+  } else if (profile === "production_hardened") {
+    const productionData = { ...data, schema_version: 2 };
+    validateProductionData(productionData, { gate, sliceId }, errors);
+    if (["G5", "G6"].includes(gate) && normalized(data.exposure) !== "public") {
+      errors.push(`${gate} requires exposure: public`);
+    }
   }
   return { schemaVersion, errors, warnings };
 }
@@ -1407,6 +1683,31 @@ function validateLinkedDocuments(featureDir, data, options, errors) {
   }
 }
 
+function validateDemoLinkedDocuments(featureDir, data, errors) {
+  const documents = asObject(data.documents) ?? {};
+  safeDocumentPath(
+    featureDir,
+    documents.brief,
+    "00-feature-brief.md",
+    errors,
+    "documents.brief",
+  );
+  safeDocumentPath(
+    featureDir,
+    documents.delivery_log,
+    "01-delivery-log.md",
+    errors,
+    "documents.delivery_log",
+  );
+  safeDocumentPath(
+    featureDir,
+    documents.verification,
+    "02-verification.md",
+    errors,
+    "documents.verification",
+  );
+}
+
 export function loadAndValidateFeaturePackage(featureDir, options = {}) {
   const featurePath = path.join(featureDir, "feature.yaml");
   let source;
@@ -1429,11 +1730,24 @@ export function loadAndValidateFeaturePackage(featureDir, options = {}) {
   }
   const data = document.toJS();
   const result = validateFeatureData(data, options);
-  if (result.schemaVersion === 2) validateLinkedDocuments(featureDir, data, options, result.errors);
+  if (result.schemaVersion === 2 || deliveryProfile(data) === "production_hardened") {
+    validateLinkedDocuments(featureDir, data, options, result.errors);
+  } else if (result.schemaVersion === 3 && deliveryProfile(data) === "demo_fast") {
+    validateDemoLinkedDocuments(featureDir, data, result.errors);
+  }
   return result;
 }
 
 export function claimedGateChecks(data) {
+  if (data?.schema_version === 3 && deliveryProfile(data) === "demo_fast") {
+    const claims = [];
+    if (isPass(data.product_ux?.status)) claims.push({ gate: "D0" });
+    if (isPass(data.verification?.status)) claims.push({ gate: "D4" });
+    if (normalized(data.exposure) === "public" && isPass(data.public_readiness?.status)) {
+      claims.push({ gate: "DP" });
+    }
+    return claims;
+  }
   const claims = [];
   for (const gate of ["G0", "G1", "G2"]) {
     if (isPass(gateStatus(data, gate))) claims.push({ gate });
@@ -1452,7 +1766,7 @@ export function claimedGateChecks(data) {
 
 export function validateClaimedFeaturePackage(featureDir) {
   const base = loadAndValidateFeaturePackage(featureDir);
-  if (base.errors.length > 0 || base.schemaVersion !== 2) return base;
+  if (base.errors.length > 0 || ![2, 3].includes(base.schemaVersion)) return base;
   const featurePath = path.join(featureDir, "feature.yaml");
   const document = YAML.parseDocument(fs.readFileSync(featurePath, "utf8"), { uniqueKeys: true });
   const data = document.toJS();
@@ -1474,9 +1788,15 @@ export function validateClaimedFeaturePackage(featureDir) {
 
 export function validateFailureLedgerEvolution(previousData, currentData) {
   const errors = [];
-  if (previousData?.schema_version !== 2) return errors;
-  if (currentData?.schema_version !== 2) {
-    errors.push("schema v2 Feature Package cannot be downgraded while preserving its failure ledger");
+  const previousProduction =
+    previousData?.schema_version === 2 ||
+    (previousData?.schema_version === 3 && deliveryProfile(previousData) === "production_hardened");
+  const currentProduction =
+    currentData?.schema_version === 2 ||
+    (currentData?.schema_version === 3 && deliveryProfile(currentData) === "production_hardened");
+  if (!previousProduction) return errors;
+  if (!currentProduction) {
+    errors.push("production_hardened Feature Package cannot be downgraded or bypass its failure ledger");
     return errors;
   }
   const previousIncidents = new Map(
@@ -1542,14 +1862,31 @@ export function validateFailureLedgerEvolution(previousData, currentData) {
 
 export function validateFeaturePackageEvolution(previousData, currentData) {
   if (previousData == null) {
-    return currentData?.schema_version === 2
-      ? []
-      : ["new Feature Package must use schema_version: 2"];
+    if (currentData?.schema_version !== 3) return ["new Feature Package must use schema_version: 3"];
+    if (!DELIVERY_PROFILES.has(deliveryProfile(currentData))) {
+      return ["new Feature Package must declare delivery_profile"];
+    }
+    if (!EXPOSURES.has(normalized(currentData.exposure))) {
+      return ["new Feature Package must declare exposure: local or public"];
+    }
+    return [];
   }
   if (previousData?.schema_version === 1 && currentData?.schema_version === 1) {
     return isDeepStrictEqual(previousData, currentData)
       ? []
       : ["legacy schema v1 feature.yaml is historical-only; migrate to schema v2 before changing claims"];
+  }
+  if (previousData?.schema_version === 2 && currentData?.schema_version !== 2) {
+    return ["historical schema v2 package keeps its production_hardened semantics and cannot change schema"];
+  }
+  if (previousData?.schema_version === 3) {
+    if (currentData?.schema_version !== 3) return ["schema v3 Feature Package cannot be downgraded"];
+    if (deliveryProfile(previousData) !== deliveryProfile(currentData)) {
+      return ["delivery_profile is immutable; create an explicit production_hardened package when upgrading"];
+    }
+    if (normalized(previousData.exposure) === "public" && normalized(currentData.exposure) === "local") {
+      return ["exposure cannot be downgraded from public to local to bypass public readiness"];
+    }
   }
   return validateFailureLedgerEvolution(previousData, currentData);
 }

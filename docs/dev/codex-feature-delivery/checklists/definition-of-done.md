@@ -1,4 +1,6 @@
-# Definition of Done：何时可以称为业务代码开发完成
+# production_hardened Definition of Done
+
+> 仅适用于显式 `production_hardened`。D4 表示本地 Demo 可用，不等于本清单的 G4 Code Complete。
 
 ## 需求与实现
 

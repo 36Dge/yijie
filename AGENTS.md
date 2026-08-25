@@ -24,7 +24,8 @@
 - 不把兄弟仓库复制进索引目录，也不擅自改为 monorepo 或 submodule；
 - 不提交真实 token、secret、cookie、access key、平台凭据、DSN、PII 或真实商家数据；
 - 不在 `yijie-codex` 中设计业务逻辑，不在 Agent Host 中重建完整 Agent 平台；
-- 不绕过 Contract First、服务端授权、审批、审计和日志脱敏要求；
+- 不绕过 Contract First、public/production 服务端授权、审批、审计和日志脱敏要求；
+  `demo_fast + local` 仅可使用 ADR-0018 固定 native scope 的免登录直达；
 - 不在未更新 ADR、架构和相关仓库文档时改变跨仓职责或依赖方向。
 
 ## 权威文档与目录
@@ -46,9 +47,29 @@
 
 ## 单人开发协作模式
 
-易界当前默认由段成威一人使用 Codex 开发。需求负责人、Product/Design 决策人、技术负责人、Reviewer 和发布负责人默认均为段成威；每个需求仍必须分别记录需求确认、技术批准、审查和发布批准，不能因角色由同一人承担而省略门禁或伪造“独立人工评审”。
+易界当前默认由段成威一人使用 Codex 开发。需求负责人、Product/Design 决策人、技术负责人、Reviewer 和发布负责人默认均为段成威。`production_hardened` 仍分别记录需求确认、技术批准、审查和发布批准；`demo_fast` 记录 D0 产品/UX确认、D4 真实可用结论及条件性的外部操作/公开批准。任何 Profile 都不能伪造“独立人工评审”或不存在的批准。
 
 Codex 在起草任何新需求、设计或实施计划前，必须完整执行 `docs/dev/codex-project-memory.md` 的上下文加载、工程事实核对、场景推演、决策取舍和可追踪性自检。高质量要求必须体现为可验证的文档、代码事实与门禁证据，而不是仅声称“已经认真思考”。
+
+## 需求交付 Profile 与 Exposure
+
+Accepted ADR-0017 建立双模式治理：
+
+- 新需求默认使用 schema v3 `delivery_profile: demo_fast`、`exposure: local`；目标是 8–16 小时内完成逻辑完整、交互清晰、真实本地服务可用的 Demo。
+- `production_hardened` 必须显式选择，完整保留 G0–G6、G2A/G2V、per-slice G3、harness qualification、freshness、三项最终 E2E 和发布观察。
+- `exposure: public` 表示非本人或不可信客户端可以访问；`demo_fast` 在 D4 后还必须通过 DP 最小公开安全检查。
+- 付费用户、SLA、多租户/PII、重要持久数据、不可逆 migration、合规或组织级生产责任必须建立 `production_hardened`，不能用 DP 代替。
+- 历史 schema v1/v2 保持原语义；v2 继续视为生产加固包，不自动降级。D4/DP 不能换算成 G4/G5/G6。
+- `demo_fast + local` 默认按 ADR-0018 使用 canonical direct-entry：零登录页/浏览器/账号密码，自动建立
+  固定本地 identity/tenant/capability 并直达业务主页面；不得把白名单/OIDC/Keycloak 人工登录作为
+  正常本地业务验证前置条件。Host 内部 token 与 Provider Key 仍由进程自动管理。
+
+`demo_fast` 的固定执行方式是：一次补全产品逻辑、Must AC、交互和 UI → D0 → 整个需求连续实现（不建立治理切片）→ 正常入口启动真实服务 → 有 Bug 即修复、重启、复测 → 一次 fresh run 中 Must AC、真实 happy path 和代表性 failure/retry 全部通过 → D4。30/90/120/240 分钟时间盒用于决定何时扩大诊断、简化、登记非核心限制或缩小 MVP；16 小时未 D4 必须重新定范围。
+
+Profile 只裁剪治理与非必要生产加固，不改变以下红线：Contract First 权威源、public/production
+服务端授权、secret/PII、审批与审计、已有工作区保护、真实测试事实，以及
+commit/push/tag/部署/付费/破坏性/生产写操作的明确授权。local direct-entry 的唯一例外及边界由
+ADR-0018 冻结。
 
 ## Codex 多仓工作流程
 
@@ -68,7 +89,7 @@ Codex 在起草任何新需求、设计或实施计划前，必须完整执行 `
 
 ## Contract First 项目级强制评审门禁
 
-完整规范见 `docs/dev/contract-first.md`，相关任务开始时必须先给出
+完整规范见 `docs/dev/contract-first.md`，两个 Profile 的相关任务开始时都必须先给出
 `contract-impact = none | additive | semantic | breaking`。选择 `none` 必须说明为什么没有改变跨进程、跨仓库、跨版本或持久化/重放边界上的可观察行为；不能因为 JSON/DTO 形状未变就忽略语义变化。
 
 分类按最高风险唯一选择：任何仍受支持的 producer/consumer 可能失败或错误解释时为
@@ -92,7 +113,11 @@ payload 时才进入公共契约判定；不得用“临时 DTO”“先写死�
 - Codex app-server 协议以上游固定 Runtime 及其 canonical schema 为权威，先形成 Runtime 候选，再更新 `yijie-contracts` 的兼容投影，最后由 Agent Host/客户端消费；
 - 第三方平台协议以当前官方规范为外部权威，`yijie-connectors` 负责适配；任何易界公开的归一化 tool/API/event 仍须先进入 `yijie-contracts`。
 
-除上述权威源特例外，跨仓变更必须按以下门禁执行：
+除上述权威源特例外，Contract First 的权威源、方向兼容、无影子 DTO 和 source-first 顺序对两个
+Profile 均强制。以下不可变 pin、全支持基线、逐 Consumer Owner、发布/激活顺序是
+`production_hardened` 的完整合并/发布门禁；`demo_fast + local` 在权威源先行并通过适用
+generate/lint/focused conformance 后可使用当前 sibling commits 完成本地真实闭环，但不得把它写成已发布
+tag、生产兼容或 Consumer 批准。进入 public/production 前必须补齐适用 DP 或 production_hardened：
 
 1. 明确 Owner、producer、全部已知/登记 consumers、权威源、输入/输出方向、安全与失败语义、兼容窗口和回滚；高成本决策先更新 ADR；
 2. 对 `yijie-contracts` 治理的边界，先修改所有受影响且适用的源契约、示例/fixture、生成物、一致性测试、版本及迁移说明，执行 generate、lint、test，并对所有仍受支持或处于生产兼容窗口的基线执行 breaking check；尚无已发布基线时必须使用契约仓登记的 fallback 完整 commit，不能形成零基线检查真空；
@@ -174,6 +199,12 @@ make dev-down          # 停止 infra Compose并保留命名 volume
 - 真实账户、生产数据、付费服务或不可逆命令。
 
 ## 完成标准
+
+`demo_fast + local` 完成要求：D0 产品/UX完整；正常入口启动真实服务；一次 fresh run 中全部 Must AC、
+真实 happy path 和代表性 failure/retry PASS；focused checks、Artifact、diff/status 与已知限制有真实记录；
+不存在阻断使用的崩溃、数据破坏、秘密泄漏或死循环。`exposure: public` 还必须在公开前通过 DP。
+
+下列完整标准适用于 `production_hardened` 与生产激活：
 
 - 变更位于正确仓库，相关仓库规则和已有用户改动得到保护；
 - 跨仓职责、契约、安全和 ADR 保持一致，没有用元仓文档代替实际实现；

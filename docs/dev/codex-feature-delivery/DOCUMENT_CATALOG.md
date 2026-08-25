@@ -2,6 +2,20 @@
 
 这张表回答三个问题：什么时候生成、解决什么问题、事实从哪里来。Codex 可以起草内容，但不得生成业务批准、commit、tag、digest、测试结果或生产状态等不存在的事实。
 
+## demo_fast（默认）
+
+| 产物 | 时点 | 作用 | 最小事实来源 |
+|---|---|---|---|
+| `feature.yaml` | 创建并持续更新 | 保存 schema v3、Profile/Exposure、时间盒、产品/UX、Must AC、Contract First、授权和最终 D 状态 | 用户要求、代码调查和真实命令 |
+| `00-feature-brief.md` | D0 | 一次补全问题、范围、业务逻辑、交互、UI、Must AC 和工程边界 | 用户要求、视觉上下文、真实代码入口 |
+| `01-delivery-log.md` | 整体实现与调试 | 保存实际调用链、整体改动、Bug→修复循环、外部调用额度和限制 | diff、日志、Provider/Runtime 实际结果 |
+| `02-verification.md` | D4/DP | 保存 focused checks、真实启动/smoke、Must AC、Artifact、diff 和公开检查 | 真实终端、App、Provider 和公网入口 |
+
+Demo 不建立治理切片、04A、per-slice evidence、harness qualification、production release/rollback 文档。
+D4 的证据可以紧凑，但必须来自一次 fresh real-service run，不能由 Codex 总结或 mock 替代。
+
+## production_hardened（显式）
+
 | 产物 | 生成时点 | 作用 | 生成方法 | 主要批准人 |
 |---|---|---|---|---|
 | `feature.yaml` | 步骤 0，持续更新 | 机器可读地索引 Owner、风险、仓库、不可变版本和门禁状态 | 脚本创建；从 Git、契约仓、CI 和发布平台回填真实值 | 技术负责人 |
@@ -32,8 +46,11 @@
 2. 区分 `Fact / Assumption / Unknown`；未知项不得被 Codex 自动补成业务规则。
 3. 条件性文档不能静默删除；写 `N/A + 理由`。
 4. 计划和事实分开：计划中的命令、tag、环境不能被写成“已执行”。
-5. 真实证据至少记录：时间、repository/cwd、完整 SHA、工具版本、命令、退出码、结果和日志/artifact
-   位置；机器引用必须解析到 `08-verification-report.md` 中唯一 evidence marker。
+5. `production_hardened` 真实证据至少记录时间、repository/cwd、完整 SHA、工具版本、命令、退出码、
+   结果和日志/artifact；机器引用解析到唯一 evidence marker。`demo_fast` 至少记录命令/步骤、环境、
+   实际结果、时间、Artifact 和 diff 审阅，不要求 immutable freshness。
 6. 文档与代码发生冲突时，停止并重新确认权威源；不能让实现悄悄改变需求。
-7. 同一实质失败第三次出现时，证据链进入 `RCA_REQUIRED`；历史失败只能追加，不能删除或改写成从未发生。
-8. runtime/E2E 证据必须引用已资格验证的 harness；core、accessibility/visual、teardown verdict 分别保存。
+7. `production_hardened` 同一实质失败第三次进入 `RCA_REQUIRED`，历史失败只追加；`demo_fast` 使用
+   30/90/120/240 分钟时间盒和真实调用链诊断，不能机械重跑或删除实际失败摘要。
+8. qualified harness 与拆分 E2E 是 `production_hardened` 要求；`demo_fast` 以真实服务 happy path、
+   Must AC、代表性 failure/retry 和实际 Artifact 为完成证据。

@@ -1,4 +1,58 @@
-# 质量门禁
+# 双模式质量门禁
+
+## Profile 选择
+
+- 新需求默认 `schema_version: 3 + delivery_profile: demo_fast + exposure: local`。
+- `production_hardened` 必须由用户显式选择，或在准备生产激活/命中生产升级条件时建立。
+- 历史 schema v1/v2 继续按原生产语义读取；D0/D4/DP 只适用于 schema v3 `demo_fast`。
+- D4 不能换算成 G4/G5/G6，DP 也不能换算成 Production Ready。
+
+## D0：Demo Product/UX Ready
+
+- [ ] 目标用户、问题、用户结果、In/Out scope 完整
+- [ ] 主流程与 5—10 条 Must AC 可操作判断
+- [ ] idle/loading/success/empty/error/retry/cancel 均有行为或明确不适用理由
+- [ ] 高质量布局、主次操作、反馈、预览/保存和视觉方向已确定
+- [ ] 受影响仓库、真实入口和已有工作区改动已核对
+- [ ] `contract-impact`、权威源和 source-first 顺序明确
+- [ ] 付费调用、破坏性操作、生产写入和真实数据边界明确且未超授权
+
+失败处理：继续补产品/UX 或工程事实；不开始整体实现。
+
+## D4：Local Demo Usable
+
+- [ ] 整个需求已实现，不是 mock-only 或 synthetic-only
+- [ ] 正常入口启动真实服务并观察到 ready
+- [ ] fresh local 启动无登录页/浏览器/账号密码，并直达业务主页面（ADR-0018）
+- [ ] 一次 fresh run 中全部 Must AC PASS
+- [ ] 真实 happy path 产生可观察/可保存结果
+- [ ] 一个代表性 failure/retry 行为正确
+- [ ] 至少一组 focused build/test/check PASS
+- [ ] 截图、录屏、Artifact 或脱敏 request ID 存在
+- [ ] Loading/error/retry 不会困住用户
+- [ ] 完整 diff/status 已审阅，已知限制已登记
+- [ ] 没有阻断使用的崩溃、数据破坏、秘密泄漏或死循环
+
+失败处理：立即修 Bug、重启真实服务并复测；不要转而扩建非核心生产 harness。
+
+## DP：Public Demo Ready
+
+只适用于 `exposure: public`，并以 D4 为前置：
+
+- [ ] secret 仅在服务端环境/Keychain
+- [ ] 鉴权与数据边界适合公开访问
+- [ ] 输入、文件、URL、大小与超时有边界
+- [ ] 付费 API 有频率、并发和成本上限
+- [ ] 错误不泄露敏感信息、调试栈或凭据
+- [ ] 最简停止/恢复方式可执行
+- [ ] 公网入口真实 smoke PASS
+
+失败处理：不得对外公开。付费用户、SLA、多租户/PII、重要持久数据、不可逆 migration、合规或
+组织级生产责任不使用 DP 代替 `production_hardened`。
+
+---
+
+## production_hardened 门禁
 
 ## Gate 0：需求可进入调查
 
@@ -157,12 +211,13 @@ marker grep 代替定点 evidence 解析。结构化 YAML evidence 是机器判�
 
 ## CI 声明审计
 
-`pnpm test` 必须扫描所有 committed schema v2 Feature Package，并对每个已声明 PASS/N/A Gate 与
-PASS slice 重放 semantic validator。门禁命令没有执行、evidence ref 不能唯一解析、freshness 失效或
-存在开放熔断时，CI 必须失败；不得依赖 PR 作者自觉运行 checker。
+`pnpm test` 必须扫描所有 committed Feature Package：历史 schema v2 和 schema v3
+`production_hardened` 重放已声明的 G Gate/PASS slice；schema v3 `demo_fast` 重放 D0/D4/DP 声明。
+对应命令、真实 smoke、evidence/freshness 或公开检查不成立时 CI 必须失败。
 
-CI 还必须以 PR/push base commit 为基线审计 `failure_circuit_breaker`：既有 incident identity、
+对 `production_hardened`，CI 还必须以 PR/push base commit 为基线审计 `failure_circuit_breaker`：既有 incident identity、
 attempt 和已记录 RCA cycle 不得删除或改写，只能追加新的真实记录。新建 Package 无历史基线时从
 空 ledger 开始且必须直接使用 schema v2；后续提交不能以降级 schema、重命名、删除 YAML 或改写
 旧 attempt 的方式重置三次失败计数。CI 无法取得不可变 base commit（包括全零 first-push base）时
-必须 fail closed，不能退化为 current-only 审计。
+必须 fail closed，不能退化为 current-only 审计。`demo_fast` 不建立该生产 failure ledger，使用本手册的
+时间盒和真实服务闭环；不得通过改 Profile 删除既有 production ledger。

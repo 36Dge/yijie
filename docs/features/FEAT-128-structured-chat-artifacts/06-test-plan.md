@@ -5,7 +5,9 @@
 - 风险等级：high；重点是 closed event compatibility、confidential content、native 文件写入、大媒体资源、历史/删除和 capability 误启用。
 - 阻断质量门槛：Contracts/Host/Desktop 对应 generate、lint、test、build 全绿；v1/v2 equality 与双基线 breaking 通过；P0/P1/P2 清零；light/dark/1180x760/200%/keyboard/axe 通过；真实 VoiceOver 结果如实记录。
 - 类生产依赖：本期没有生产环境。Runtime handshake 可以使用固定本地产物；媒体内容使用 deterministic synthetic fixture。
-- 不可执行环境：真实 MiniMax image/video/file/report generation、费用/延迟/质量 Eval、签名 Desktop、生产监控和云回滚当前均未授权或不存在，记录为 BLOCKED/NOT RUN。
+- 外部环境：真实 image-01 最多 5 次的有界验证已获授权，但 runner、前置 contract/provider/secret 门禁尚未形成，
+  S12 campaign 当前仍 `NOT RUN`、used `0/5`、reserved `0`。此前 standalone 成功 probe 不属于该 campaign，也不证明
+  yijie 链路；真实 video/file/report、签名 Desktop、生产监控和云回滚未授权或不存在。
 - 测试数据：仅合成安全数据，包含 canary path/token/body 字符串用于证明不会泄漏。
 
 ## 2. AC -> 测试追踪矩阵
@@ -24,6 +26,11 @@
 | AC-010 | 主题/窗口/a11y 回归 | UI-006..010 | component/visual/manual | light/dark、1180x760、200%、keyboard、axe、VoiceOver/reduced motion | visual harness + macOS | screenshots、axe JSON、manual checklist |
 | AC-011 | synthetic 冒充真实 | CFG-001, E2E-002 | config/E2E | exact local profile、default off、visible synthetic source | local only | startup rejection/default-off/fixture flow |
 | AC-012 | provider 未验证却开启 | CAP-001, CFG-002 | runtime/config | capability false/unknown、real flag request | fixed Runtime fake | no producer/no UI capability；typed readiness |
+| AC-013 | M3 未调用工具或 Host 关键词代替决策 | IMG-EVAL-001, TOOL-001, IMG-VERT-001 | eval/runtime/E2E | 明确 T2I intent→一次 structured call→真实 provider Artifact | fake + bounded paid | call identity、1 request、Desktop ready/history/save |
+| AC-014 | I2I 被泛化/外发错误图片 | IMG-EVAL-002, TOOL-002, IMG-VERT-002 | eval/security/E2E | 当前 turn 恰一张 PNG/JPEG；零/多张/GIF/WebP/跨 turn 拒绝 | synthetic reference + paid I2I | exact Data URL mapping、one subject character、Desktop ready |
+| AC-015 | 普通看图误生图 | IMG-EVAL-003 | eval/integration | vision Q&A、图片总结、普通文本 | fixed no-call dataset | tool/provider/ledger 增量均 0 |
+| AC-016 | provider 失败伪成功或重复计费 | IMG-PROV-001..010, IMG-LEDGER-001 | unit/integration | auth/balance/429/safety/timeout/5xx/malformed/duplicate/cancel | fake HTTP | stable failure、no ready、same call最多一次、no auto retry |
+| AC-017 | Key/provider response 泄漏或 prompt/reference 越界复制 | IMG-SEC-001..007 | security/vertical | success/failure/cancel/restart canaries + authorized-location allowlist | fake + bounded paid | Key/header/provider raw 全局隔离；prompt/reference 只在 authorized input/provider 边界，result/event/log/evidence 零命中；provider retention 状态有记录 |
 | NFR-002/003 | UI 卡顿/内存放大 | PERF-002, PERF-003 | performance | burst progress、12 artifacts、20/64MiB preview | local sampled build | <=10Hz、<50ms long task target、<=2.5x memory target |
 | NFR-004 | 资源泄漏 | RES-002 | unit/integration | switch session/close modal/expire/replay handle/abort save | synthetic | handle/read/temp/decoded image counters released |
 
@@ -47,7 +54,9 @@
 - 新旧 producer/consumer：覆盖 04 文档的七种组合，尤其 new Host + old Desktop 与 old Host + new Desktop。
 - 生成漂移：Contracts `check-generated`、Host `contract-check`、Desktop `generate:check` 必须从同一不可变 commit 通过。
 - Canonical fixture：唯一位于 `yijie-contracts/tests/fixtures/agent/session-event-v3/` 与 report v1 schema fixture；下游只引用/pin，不复制修改。Desktop private IPC 计划路径为 `yijie-desktop/src-tauri/schemas/chat-ipc-v3.schema.json`，版本 3，不能替代公共 v3 event schema。
-- Runtime 兼容：固定 `yijie-codex@0ce5902...` imageGeneration started/completed shape映射测试；`savedPath` 和 raw base64 不出现在 Host event。
+- Runtime 兼容：S12 不使用内置 imageGeneration。新的 compatibility candidate 必须固定 experimental
+  `thread/start.dynamicTools`、反向 `item/tool/call`、closed `generate_image` args、content-free inputText response 与
+  dynamicToolCall projection；raw base64/input image/provider data 不进入 Runtime result/event。
 - Breaking：同时对 published `f16a497e...` 和当前 downstream candidate `747cf740...` 执行完整 baseline 检查，并人工验证 v1/v2 equality。
 
 ## 5. 安全与隐私测试
@@ -65,6 +74,13 @@
 | SEC-009 | opaque handle/协议重放 | 猜测、重复 GET、跨 WebView/context/session、query/body/HEAD/Range、过期/重启、并发/容量超限 | 仅 first bound GET 200；其它 empty 404 或 stable typed limit；无 CORS/redirect/oracle |
 | SEC-010 | CSP/capability 越界 | Artifact 尝试 asset/blob/data/fetch，或新增 fs/shell/dialog plugin/capability | image exact `img-src` + video exact `media-src` 已实现；S8/S9 bounded projection 必须零 config delta；其它 forbidden changes hit count 0 |
 | SEC-011 | video handle 重放/内存放大 | >=128 次合法不同/重复 Range；另测跨 WebView/context/session/restart、30min/5min expiry、release、2-read/64MiB in-flight | >=128 次仍有效；TTL/release/restart/binding mismatch 撤销；2 handles/2 concurrent/64MiB 保持；no CORS/fetch/oracle；S6A 行为不变 |
+| IMG-SEC-001 | Key/Header 泄漏 | Key canary 置于 Host secret，执行 success/error | argv/env-to-WebView/Runtime/tool/Artifact/log/evidence 0 hit |
+| IMG-SEC-002 | SSRF/redirect/proxy | args 注入 URL、fake 302、unexpected host/proxy | 请求前或首响应拒绝；只允许 fixed China origin；无第二 hop |
+| IMG-SEC-003 | 参考图越权 | 多图、跨 turn/session ID、GIF/WebP、`>=10,000,000` bytes、wrong digest | provider request count 0；ref cleanup complete |
+| IMG-SEC-004 | response bomb | 超限 JSON/base64、invalid padding、array>1、巨大像素、magic mismatch | bounded read/decode；failed；memory/temp 回零 |
+| IMG-SEC-005 | provider raw/error 或输入内容越界 | status_msg/trace/base64/prompt/reference canary | stable typed class only；provider raw 在公开面/日志/证据 0 hit；prompt/reference 只在授权 input/provider 位置，tool result/Artifact metadata/日志/证据 0 hit |
+| IMG-SEC-006 | paid fuse bypass | duplicate identity/slot、wrong stage/mode、S12E/F 并发进程、restart/new run root/temp deletion、manual retry、未授权 repair、分类或总额度超限 | 两个 runner 只接受 campaign `feat128-s12-image-validation-20260823` 并对 P1-P4/R1 同一 durable authority CAS；同 identity/slot 最多一次；wrong stage/mode、ledger reset/drift/missing、第二 authority 均在 network 前拒绝；planned cap=4、repair cap=1、total cap=5；repair 绑定原失败+一次性 Owner authorization/RCA 且不能用于新场景；orphan reserved 回收且不补发；pre-send 释放、fake 不计、sent 不回退；总第 6 次恒拒绝 |
+| IMG-SEC-007 | provider 数据保留政策未知或漂移 | S12E 前读取官方政策快照；只用合成 prompt/参考图执行门禁 | 记录已知值或 `UNKNOWN`；无法确认不等于“云端已删除”；生产用户内容外发保持关闭 |
 
 ## 6. 韧性与故障测试
 
@@ -76,6 +92,10 @@
 | RES-004 | staging TTL/ack loss | duplicate/conflicting ack、丢 ack、推进 `staged_at`、Host restart | 相同 ACK 幂等、冲突拒绝；Desktop 已存内容不受影响；Host encrypted spool 清除 | receipt + bytes counter 归零 |
 | RES-005 | partial turn | 一项 complete、一项 failed、turn complete | ready 保留，failed 卡稳定，turn terminal 正确 | per-artifact + turn state |
 | RES-006 | save failure | permission denied、disk full、cancel | authority copy 保留，可再次保存 | no stored target path |
+| IMG-RES-001 | reverse request 阻塞 read loop | delayed fake provider + concurrent Runtime notifications | JSON-RPC notifications继续处理；provider worker bounded | queue/latency counters |
+| IMG-RES-002 | pre/post-send cancel | reserve-before-send 与 body sent 后 interrupt | pre-send 释放 reservation、used 不变；post-send outcome unknown、used 保持、no retry/late completed | ledger transition + Artifact terminal |
+| IMG-RES-003 | Host crash/restart | accepted/reserved/sent/provider-success/staging/Desktop-commit crash points | orphan reservation 可回收；sent 不重发；staged/SQLCipher authority按时序恢复 | no duplicate paid call/artifact |
+| IMG-RES-004 | provider success + staging failure | inject spool/full/digest failure | failed before tool reply；clear plaintext；no content href | bytes/lease counter 0 |
 
 ## 6A. S6A 测试先行门禁
 
@@ -195,16 +215,18 @@ monotonic weakening 或 content leakage 立即失败。
 | 项目 | 固定值/版本 |
 |---|---|
 | Protocol/UI dataset | deterministic synthetic `feat128-artifact-v1`，包含四 kind、失败、乱序、过期和注入样本 |
-| Model/prompt/skill/knowledge/tool schema | synthetic 阶段 N/A；MiniMax-M3/Runtime 只作为 capability 调查基线 |
+| Model/prompt/skill/knowledge/tool schema | MiniMax-M3 fixed；exact `generate_image` dynamic tool；prompt dataset为合成中文/英文意图；无 skill/knowledge 依赖 |
 | Seed/temperature/runner | synthetic exact fixture，无采样 |
 | 结构通过率 | 100% canonical accepted；100% invalid rejected |
 | 任务成功率 | synthetic vertical slice 100% |
-| 工具选择/参数正确率 | N/A，首期不启真实 tool producer |
-| 引用/无答案/安全 | unsupported provider 必须文本说明且不产生虚假 Artifact |
-| 延迟与成本 | synthetic cost 0；真实 provider值 BLOCKED |
+| 工具选择/参数正确率 | 生成意图 call=100%；普通看图/普通文本 no-call=100%；mode/aspect closed schema=100% |
+| 引用/无答案/安全 | 只有单人物当前 turn reference 可 I2I；不支持/不可用时稳定文本 + no provider/no fake Artifact |
+| 延迟与成本 | fake cost/used 0；paid hard max 5 HTTP send attempts、`n=1`、成功最多 5 张，计划 4 attempts；记录 reserved/used、latency bucket 与成功图片数，不记录内容 |
 | 相对基线不可退化阈值 | v1/v2 text/reasoning/session tests 0 regression |
 
-真实 MiniMax image/video/file/report Eval 需用户单独授权付费调用、固定 provider API/model、最多调用次数、质量 rubric 和成本停止阈值；当前不执行。
+真实 MiniMax image Eval 已授权最多 5 次；S12 campaign 当前 used `0/5`、reserved `0`。只有 S12A-D 的
+contract/fake/security/secret 门禁 PASS 后才能由 exact runner 执行。历史 standalone probe 不进入该账本，也不能
+替代任何 Eval；video/file/report 仍需独立授权。
 
 ## 10. Fixture 与测试数据
 
@@ -217,6 +239,9 @@ monotonic weakening 或 content leakage 立即失败。
 | media boundary corpus | implemented S3/S4/S6/S7/S8 testdata + future report UI corpus | public synthetic | generated headers/containers/corruption | image/video/file boundary/renderers PASS；report pending |
 | canary leak corpus | implemented native/media/file checks + planned report projection/DOM scanner | restricted synthetic marker only | path/token/body/raw report/unknown payload + authorized preview marker，不含真实 secret | unauthorized/raw zero-hit；authorized bounded marker open-only/close-zero |
 | migration DB corpus | Desktop temp fixtures | confidential synthetic | v1-v8 fake tenant/session | Rust repository tests |
+| image tool intent dataset | planned Contracts/Host testdata | public synthetic | T2I、subject I2I、vision Q&A、ambiguous/unsafe/no-call prompts；无商家/品牌素材 | Runtime/Host Eval |
+| fake MiniMax HTTP corpus | planned Host `internal/imagegen/testdata` or code fixtures | public synthetic | success/base status/error/count/base64/redirect/timeout/response-bomb；1x1/小 PNG/JPEG | Host adapter/ledger/Artifact |
+| paid I2I reference | isolated run-root only，不提交 | confidential synthetic | 由测试生成的单人物风格化 PNG/JPEG，不用真实用户/品牌/IP 素材 | S12E/F；run 后清除 |
 
 ## 11. 实际执行命令
 
@@ -233,7 +258,7 @@ monotonic weakening 或 content leakage 立即失败。
 | S10A Host profile | yijie-agent-host | `go test ./internal/app ./cmd/desktop-host && YIJIE_RUN_FEAT128_S10_PROFILE_INTEGRATION=1 go test ./internal/integration -run '^TestFEAT128S10ExactLocalProfile$' -count=1 -v && go test ./...` | loopback 18080/18082 free；no key/provider | 3-10 min |
 | S10A Desktop sidecar | yijie-desktop | `cargo fmt --manifest-path src-tauri/Cargo.toml -- --check && cargo test --manifest-path src-tauri/Cargo.toml chat::sidecar::tests && cargo test --manifest-path src-tauri/Cargo.toml --features feat128-s10-runtime chat::sidecar::tests && cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --all-features -- -D warnings` | Rust toolchain；no child secrets | 3-10 min |
 | visual/a11y | yijie-desktop | FEAT-128 Vite harness + Playwright screenshots/axe command recorded when harness exists | local browser | 3-10 min |
-| real MiniMax | isolated local environment | command not defined or authorized | API key, paid network, fixed provider evidence | BLOCKED |
+| real MiniMax paid probe | isolated local environment | planned exact `./scripts/run-feat128-s12e-image-capability.sh`；禁止 ad-hoc curl | Host-only Key、paid network、S12A-D PASS、shared campaign P1/P2 可 CAS | NOT RUN；target 尚未实现；S12 campaign used 0/5、reserved 0 |
 
 ## 12. 通过、失败与 Flaky 策略
 
@@ -241,6 +266,9 @@ monotonic weakening 或 content leakage 立即失败。
 - FAIL：任何阻断断言失败、silent skip、canary 泄漏、P0/P1/P2、未知真实费用或旧 consumer 回归。
 - NOT RUN：环境缺失、被跳过、输出截断、进程未完成或尚未有实现/命令。
 - Flaky：先定位时间、媒体解码、端口或资源根因；不允许“重跑到绿”。
+- Paid failure：provider 返回失败、timeout 或 outcome unknown 都消耗一次 send-attempt 台账；不允许测试框架自动 retry。
+  未授权 repair、任一分类超额、第 6 个总 attempt、`n!=1`、非固定 origin/model、Key/base64/raw response 泄漏或
+  无前置 gate 时立即停止。
 - Snapshot/golden：必须检查 light/dark、1180x760、200% 和最长中文/文件名，不以像素接近替代行为验收。
 
 ## 13. 测试计划批准
@@ -250,7 +278,30 @@ monotonic weakening 或 content leakage 立即失败。
 | 测试/技术 Owner | 段成威 | G2A APPROVED；S1/S2/S2P evidence PASS | 2026-08-20 |
 | 安全/数据 Owner | 段成威 | S3/S4/S5 G3 PASS；S6-S9B-R separate PASS | 2026-08-22 |
 | Product/Technical/Security/Data Owner | 段成威 | historical S10-READINESS `READY FOR S10A-LOCAL-PROFILE ONLY`；S10A-C later separate PASS | 2026-08-22 |
-| Product/Technical/Security/Data Owner | 段成威 | S10D-READINESS `READY FOR S10D-H ONLY`；S10D-H/V、S10E NOT RUN | 2026-08-22 |
+| Product/Technical/Security/Data Owner | 段成威 | S10D-READINESS 历史只批准 H；H 后续实现/执行但 smoke FAIL 并暂停；V/E NOT RUN | 2026-08-23 |
+| Product/Technical/Security/Data Owner | 段成威 | real image scope + max 5 paid calls approved；S12 contract/implementation/eval NOT RUN | 2026-08-23 |
 
-Contracts、pin conformance、S3/S4/S5 与独立 S6-S9B-R 命令已实际执行并记录于 08；S10-READINESS 只是
-docs evidence，S10A-E 尚未实现，不能因 Pattern Accepted 或 Owner readiness 预记 PASS。
+Contracts、pin conformance、S3/S4/S5 与独立 S6-S10C 命令已实际执行并记录于 08。S10D-H 有代码提交和
+失败 smoke，不得记 PASS；S12A governance/G2 已执行但未重跑 H，S12B-F 与其 campaign 中任何付费调用均未执行，历史 standalone probe 只是不合格观察，
+不能因范围/费用授权或该 probe 预记 PASS。
+
+## 14. S12 测试先行与付费调用顺序
+
+1. Contract RED/GREEN：先让 compatibility checker 对缺失 dynamic tool/reverse-call schema 失败，再生成、
+   双 baseline breaking、semantic review 与 immutable pin；不得手写下游类型冒充 source。
+2. Host RED/GREEN：reverse request、closed args、current-turn ref、fake provider、error/count/base64/media、ledger、
+   cancel/restart/cleanup 全部 loopback fake 通过；真实网络请求计数必须为 0。
+3. Harness qualification：positive T2I/I2I fake、四类 closed failure taxonomy、timeout、cleanup 与 content-free verdict
+   均 PASS；并验证两个 runner/并发进程共用 campaign、duplicate slot/wrong stage/reset 全部 fail closed 后，才允许
+   G2V/consumer repin。
+4. Planned slot P1（S12E）：T2I capability，`n=1`；成功必须形成可校验图片，失败按真实 code 终止本次，不自动重试。
+5. Planned slot P2（S12E）：单人物 PNG/JPEG I2I capability，`n=1`；只证明 subject consistency path，不声称通用编辑。
+6. Planned slot P3（S12F）：真实 M3 T2I intent→dynamic tool→Host→Artifact→Desktop vertical。
+7. Planned slot P4（S12F）：当前轮单人物参考 I2I 的同一真实对话 vertical。P3-P4 前须在 schema v2 中解决
+   S10D-H 的 real-Tauri 重叠 blocker；不得把新 harness 的结果借给 H 或删除其失败账本。
+8. Repair slot R1：只在 P1-P4 的某次失败已有明确根因、修复 diff/假服务/full gates 复核通过且 Owner 明确启动时
+   使用；它是第 5 个预算额度但可以在相应失败修复后立即发送，不要求物理发送序号为第 5，也不能用于“多跑几次看是否变绿”。
+
+真实输出只保留在 owner-only run root/Artifact authority 到完成验证，报告只写 content-free 的模式、调用计数、
+校验/Artifact 终态布尔值、稳定失败类和延迟区间；不写 Artifact/图片 identity 或 digest，也不提交 base64、图片、
+prompt、Key 或 provider raw response。

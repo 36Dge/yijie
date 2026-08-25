@@ -1,0 +1,234 @@
+schema_version: 3
+delivery_profile: "demo_fast"
+exposure: "local"
+
+feature:
+  id: "FEAT-128"
+  slug: "structured-chat-artifacts-real-image-generation"
+  title: "对话流真实图片生成 Demo 快速闭环"
+  status: "usable"
+  created_at: "2026-08-23"
+  requirement_owner: "段成威"
+  technical_owner: "段成威"
+  reviewer: "段成威"
+  release_owner: "段成威"
+
+scope:
+  risk_level: "high"
+  data_classification: "confidential"
+  contract_impact: "semantic"
+  database_change: "none"
+  persistence_change: "durable"
+  runtime_change: "runtime"
+  auth_permission_change: "auth"
+  user_workflow_change: "user_visible"
+  ui_change: "interactive"
+  ai_behavior_change: "tool"
+
+repositories:
+  - "yijie"
+  - "yijie-agent-host"
+  - "yijie-desktop"
+
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+
+product_ux:
+  status: "PASS"
+  primary_user: "在 macOS Desktop 中快速验证本地 Chat 的 Owner"
+  problem: "用户要求生成图片时，MiniMax-M3 只能返回文字提示词，现有 v3 图片 Artifact 只能展示 synthetic 图片。"
+  user_outcome: "用户在同一轮对话中直接获得 image-01 真实图片，可预览并保存；也可用当前轮一张人物图片保持主体特征生成新图。"
+  in_scope:
+    - "MiniMax-M3 通过 Runtime canonical dynamic tool 决定是否调用 generate_image"
+    - "固定中国区 MiniMax image-01、base64、n=1 的文生图"
+    - "当前轮单张 PNG/JPEG 人物附件作为 subject_reference.character 的参考图生图"
+    - "Host 校验、暂存并发布现有 v3 image Artifact 生命周期"
+    - "Desktop 复用现有 loading、preview、native save 与失败展示"
+  out_of_scope:
+    - "任意图片编辑、局部重绘、风格迁移、多参考图或非人物主体图生图"
+    - "image-01-live、真实视频/文件/报告 producer 或其他图片 Provider"
+    - "公网部署、SLA、多租户、云资源与 production_hardened 加固"
+    - "性能专项、完整回归矩阵、S10D-H harness 修复或关闭"
+  main_flow:
+    - "用户运行 canonical demo_fast 启动命令；Desktop 自动绑定固定本地 identity/tenant/capabilities，无登录交互并直达 /chat。"
+    - "用户输入明确的文生图请求，或附带一张人物图片并明确要求参考人物生成新图。"
+    - "MiniMax-M3 仅在明确生图意图下调用 generate_image；普通对话和看图分析继续返回文本。"
+    - "Agent Host 固定调用中国区 image-01，校验响应后发布 v3 Artifact started/progress/completed 事件。"
+    - "Desktop 在当前消息内显示生成状态；ready 后展示图片，并允许预览和原生保存。"
+    - "Provider 或校验失败时展示安全错误与重新提交建议，不发布伪 ready，也不自动产生第二次付费调用。"
+  visual_direction: "复用现有 ChatArtifactShell 与图片 lightbox；在原消息内保持稳定卡片、清晰阶段、低干扰恢复提示，不新增第二套视觉语言。"
+  ui_states:
+    idle: "尚未调用生图工具时只显示正常文本流，不提前创建空图片卡片。"
+    loading: "收到 started/progress 后在对应 assistant 消息中显示稳定图片占位、阶段文案与进度。"
+    success: "ready 图片在消息中直接显示，可进入 lightbox 预览并通过 native dialog 保存。"
+    empty: "模型未调用工具或没有可用 Artifact 时保持普通文本结果，不显示破损媒体占位。"
+    error: "失败卡片只显示脱敏 failureCode 对应的用户提示，不显示 Key、请求体、base64 或 provider raw error。"
+    retry: "提示用户在输入框重新提交或调整请求；系统不对未知付费结果自动重试。"
+    cancel: "用户停止当前轮后取消未完成请求，Artifact 保持明确取消/失败终态且不污染下一轮。"
+
+must_acceptance:
+  - id: "AC-IMG-001"
+    statement: "明确文生图请求可由 MiniMax-M3 调用 generate_image，并在同一消息获得 image-01 返回的真实图片。"
+    verification: "真实本地 Desktop fresh run，记录一次 T2I Artifact、预览与 content-free 调用证据。"
+    status: "pass"
+  - id: "AC-IMG-002"
+    statement: "当前轮附带单张 PNG/JPEG 人物图片并明确要求参考人物生图时，Host 使用 subject_reference.character 生成真实新图。"
+    verification: "真实本地 Desktop fresh run，记录一次人物参考 I2I Artifact；确认不是回显附件。"
+    status: "pass"
+  - id: "AC-IMG-003"
+    statement: "普通文本对话和仅要求分析图片时不调用 generate_image，也不产生图片 Artifact 或付费调用。"
+    verification: "分别执行普通文本与看图分析，检查消息、Host 事件及付费调用计数。"
+    status: "pass"
+  - id: "AC-IMG-004"
+    statement: "生成中、成功、失败、重试建议和取消均在当前消息内有清晰且不会卡死的状态。"
+    verification: "组件 focused tests 加真实 happy path 与一个代表性失败/取消 smoke。"
+    status: "pass"
+  - id: "AC-IMG-005"
+    statement: "真实 ready 图片可在 Desktop 内预览，并可通过既有 native save 保存到用户选择的位置。"
+    verification: "真实 Tauri 会话中打开预览并保存后，核对目标图片可解码且不是 synthetic fixture。"
+    status: "pass"
+  - id: "AC-IMG-006"
+    statement: "Key 仅通过 owner-only 文件传给 Host；日志、事件、DOM 和错误中不出现 Key、Data URL 或生成图片 base64。"
+    verification: "focused security tests、失败路径和脱敏日志检查。"
+    status: "pass"
+  - id: "AC-IMG-007"
+    statement: "HTTP、业务状态、超限或畸形图片失败时 fail closed，不发布伪 ready 且不盲目自动重试付费请求。"
+    verification: "fake provider focused tests与一次不付费的代表性错误 smoke。"
+    status: "pass"
+  - id: "AC-IMG-008"
+    statement: "从 clean process 启动 local demo_fast 后，无登录页、浏览器或账号密码输入，Desktop 自动启动 Host/Runtime 并直达 /chat；非 local/demo_fast 时原认证路径不变。"
+    verification: "记录 canonical launcher 进程链、同 profile latest debug app 的 fresh/Settings 重启首屏与 DOM、Host readiness/退出生命周期，以及 exact profile 负向 focused 回归。"
+    status: "pass"
+
+contract:
+  impact: "semantic"
+  authority: "ADR-0018 local Demo direct-entry；Runtime canonical dynamicTools/codex/event protocol、yijie-contracts v3 Artifact contract ea48fe190e18afba728712d1e2cc79cda57f581b、MiniMax 官方 image generation API。"
+  source_first_plan: "先按 ADR-0018 在 Native 建立 exact local authority 与 canonical launcher；复用 upstream dynamic tool schema和现有 v3 Artifact，不复制公共 DTO；再验证 Host router/provider 与 Desktop consumer。"
+  status: "PASS"
+  checks:
+    - repository: "yijie-agent-host"
+      command: "make contract-check"
+      status: "PASS"
+      exit_code: 0
+    - repository: "yijie-desktop"
+      command: "pnpm generate:check"
+      status: "PASS"
+      exit_code: 0
+
+external_authorizations:
+  paid_calls:
+    allowed: true
+    max_actions: 5
+    approved_by: "段成威"
+    approved_at: "2026-08-23T21:45:30+08:00"
+  destructive_operations: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+  production_writes: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+
+implementation:
+  status: "complete"
+  real_entrypoint: "yijie-desktop Tauri dev app 中的真实 ChatPage -> demo-fast launcher 构建的当前 yijie-agent-host -> bundled yijie-codex Runtime -> MiniMax-M3 dynamic tool -> MiniMax image-01 -> v3 Artifact"
+  mock_only: false
+
+verification:
+  status: "PASS"
+  verified_at: "2026-08-24T13:54:26+08:00"
+  startup:
+    status: "PASS"
+    command_or_steps: "运行 canonical launcher 验证 fresh Desktop/Host/Runtime 进程链与抗污染启动；该 launcher 现同时作为标准 pnpm tauri:dev 与显式别名 pnpm tauri:demo-fast；再运行同 profile 构建的最新 ad-hoc signed debug app，检查首屏、Settings、Host listener、退出/重启，并完成一个普通文本 turn。"
+    environment: "macOS local + demo_fast；真实 ChatPage；launcher 语义为 dev Host build + bundled Codex Runtime；MiniMax 中国区 owner-only Key 文件；Keycloak/OIDC/API 不是启动依赖。"
+    actual_result: "2026-08-23 23:31 至 2026-08-24 01:18 +08:00：fresh 首屏和从 Settings 重启后的首屏均为 tauri://localhost/chat；无登录页、浏览器、账号或密码，Settings 只有本地快速验证模式与 Sidecar。Host 在 127.0.0.1:18081 ready，MiniMax-M3/experimental_api=true；污染的 FEAT126/128 parent env 被 launcher 清除。普通文本 session 01a02f4b-7028-74b3-9a0f-a53942512d2a 完成并返回 DEMO_FAST_OK；图片 Artifact 0、image-01 调用 0。真实图片 session 01a02f89-2c6e-7591-bf2b-22392bc3fcad 从 Finder 切回后仍保留精确路由、completed/ready 且未进入 Settings。正常退出立即释放端口，Desktop SIGKILL 后 Host parent watchdog 约 0.1 秒退出。"
+  real_smoke:
+    status: "PASS"
+    command_or_steps: "在真实 Desktop 依次验证普通文本、文生图、人物参考图生图、预览与保存。"
+    environment: "local；image-01；付费调用总上限 5，n=1。"
+    actual_result: "真实 Desktop ordinary-text 返回 DEMO_FAST_OK 且 image-01 调用 0；T2I session 01a02f89-2c6e-7591-bf2b-22392bc3fcad 完成同一消息 ready、lightbox、native save 与重启持久化；仅看图分析 session 01a0316d-2347-7ed0-85a3-a10dce02a7bd 只返回文本，Runtime 无 generate_image function_call 且无新图片 Artifact；最终 I2I session 01a03176-9a68-7141-8dea-417152f4ba14 只有 1 次 generate_image，参数 mode=subject_reference/aspect_ratio=3:4，生成 864x1152 新 JPEG，预览、保存、重启持久化与应用失焦恢复均通过。付费账本最终 5/5，未追加调用。"
+  representative_failure:
+    status: "PASS"
+    command_or_steps: "使用 fake provider、无效配置与缺失 base_resp.status_code 响应触发安全失败，确认无伪 ready、无盲目重试且 UI 可恢复。"
+    environment: "local isolated error path。"
+    actual_result: "focused tests PASS；所有错误只映射稳定 failureCode，缺失业务状态字段 fail closed。"
+  focused_checks:
+    - repository: "yijie"
+      command: "./docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate D4 docs/features/FEAT-128-structured-chat-artifacts/demo-fast"
+      status: "PASS"
+      exit_code: 0
+    - repository: "yijie"
+      command: "node --test tests/codex-feature-delivery.test.mjs"
+      status: "PASS"
+      exit_code: 0
+    - repository: "yijie-agent-host"
+      command: "make test"
+      status: "PASS"
+      exit_code: 0
+    - repository: "yijie-agent-host"
+      command: "make lint"
+      status: "PASS"
+      exit_code: 0
+    - repository: "yijie-agent-host"
+      command: "go test ./..."
+      status: "PASS"
+      exit_code: 0
+    - repository: "yijie-desktop"
+      command: "cargo test --manifest-path src-tauri/Cargo.toml"
+      status: "PASS"
+      exit_code: 0
+    - repository: "yijie-desktop"
+      command: "pnpm exec vitest run src/components/chat/ChatArtifactShell.test.ts"
+      status: "PASS"
+      exit_code: 0
+    - repository: "yijie-desktop"
+      command: "make lint"
+      status: "PASS"
+      exit_code: 0
+    - repository: "yijie-desktop"
+      command: "pnpm build"
+      status: "PASS"
+      exit_code: 0
+    - repository: "yijie-desktop"
+      command: "pnpm test"
+      status: "PASS"
+      exit_code: 0
+    - repository: "yijie-desktop"
+      command: "pnpm exec vitest run scripts/check-feat128-s9b-d-dependencies.test.mjs && node scripts/check-feat128-s9b-d-dependencies.mjs"
+      status: "PASS"
+      exit_code: 0
+    - repository: "yijie-desktop"
+      command: "pnpm exec vitest run src/authorization/permission-lifecycle.test.ts src/authorization/chat-permission-lifecycle.test.ts src/pages/chat/ChatPage.test.ts src/stores/chat.store.test.ts"
+      status: "PASS"
+      exit_code: 0
+  artifacts:
+    - "T2I provider Artifact 59dbb603-afd5-4435-ae1c-cb71ae72ff84: image/jpeg, 1024x1024, sha256 5f5901c9a724c30cdf671025dce53c6adca079355dd0d0bd4c1d0c00c800a4f5"
+    - "Reference portrait Artifact 4983adb3-297f-4e8e-8d19-85b0c5e41e80: image/jpeg, 1024x1024, sha256 7f3b7826bb6ac6be8965574414d0de36805dc86fc946047c434e2ac6b3f61ad9"
+    - "I2I provider Artifact d6126074-2dea-44c8-b58a-5d73e2d8806b: image/jpeg, 864x1152, sha256 377f0c099209c57e05d6515f355e80228138f40708c266b30c9db25443c28e4b"
+    - "Local direct-entry text evidence 2026-08-23 23:31 +08:00: tauri://localhost/chat, session 01a02f4b-7028-74b3-9a0f-a53942512d2a completed with DEMO_FAST_OK, image Artifact 0, image-01 call 0"
+    - "Desktop T2I Artifact b574c1d4-d4d3-40b7-9944-eaa26e02c3e1: image/jpeg, 1024x1024, 95393 bytes, sha256 8685a600d566e0f2c7208e013ab05025ac570e9e7b416180bc9877d3a157e46d; session 01a02f89-2c6e-7591-bf2b-22392bc3fcad completed, previewed and survived restart"
+    - "Desktop native-save evidence <workspace>/generated-image.jpg: image/jpeg, 1024x1024, 95393 bytes, mode 0600, sha256 8685a600d566e0f2c7208e013ab05025ac570e9e7b416180bc9877d3a157e46d; exact digest match with provider T2I Artifact and not a synthetic fixture"
+    - "Desktop analyze-only session 01a0316d-2347-7ed0-85a3-a10dce02a7bd: persisted text answer, no response_item function_call, no new image Artifact, paid-call ledger unchanged at 4/5"
+    - "Desktop final I2I session 01a03176-9a68-7141-8dea-417152f4ba14: one Runtime generate_image function_call with mode=subject_reference and aspect_ratio=3:4; saved JPEG 864x1152, 247098 bytes, mode 0600, sha256 e37f769adb80c97c509da43237534cd2dd50932d63e7a1e62d849be4ef457a61, distinct from reference sha256 7f3b7826bb6ac6be8965574414d0de36805dc86fc946047c434e2ac6b3f61ad9"
+  diff_review: { status: "PASS", summary: "本地免登录、machine credential 边界、launcher 抗污染和 Desktop/Host 生命周期经独立只读审计与回归；未发现本范围 P0/P1。" }
+  known_limitations:
+    - "图生图首版只支持当前轮单张 PNG/JPEG 人物主体参考，不承诺任意图片编辑。"
+    - "本路线 exposure=local，不证明公网、SLA、多租户或生产发布就绪。"
+    - "历史 S10D-H 仍为 FAIL/PAUSED；本路线不关闭、借用或改写其失败账本。"
+    - "Desktop 默认 pnpm test 使用 demo_fast 测试面并 438/438 PASS；显式 production_hardened 入口保留历史 S10D-H checker，当前 479/480，仅该 digest 检查按预期失败。"
+    - "S9B-D 现在语义冻结 ECharts 6.1.0、zrender/tslib graph、integrity、license、NOTICE 与静态 import，不再因 package scripts 或无关 lock/NOTICE 演进误报；S10D-H digest 未刷新且历史 FAIL/PAUSED 账本未改变。"
+    - "canonical launcher、latest debug app UI、窗口失焦恢复和正常/异常退出均已 fresh 复跑；T2I、分析-only、人物参考 I2I、预览、native save 与重启持久化均已完成。"
+
+public_readiness:
+  required: false
+  status: "N/A"
+  checks: []
+  external_smoke:
+    status: "NOT RUN"
+    command_or_steps: "本路线不公开暴露服务。"
+    actual_result: "N/A"
+
+documents:
+  brief: "00-feature-brief.md"
+  delivery_log: "01-delivery-log.md"
+  verification: "02-verification.md"

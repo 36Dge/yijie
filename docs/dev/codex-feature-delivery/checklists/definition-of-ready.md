@@ -1,4 +1,6 @@
-# Definition of Ready：何时可以开始大规模业务代码开发
+# production_hardened Definition of Ready
+
+> 仅适用于显式 `production_hardened`。默认 `demo_fast` 使用 `demo-fast-done.md` 中的 D0/D4。
 
 只有以下项目全部满足，才可以从调查/设计和最小 G2V Walking Skeleton 进入大规模正式业务实现。
 `N/A` 必须附理由。

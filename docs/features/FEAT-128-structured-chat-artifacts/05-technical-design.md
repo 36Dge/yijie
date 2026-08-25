@@ -6,27 +6,30 @@
 - 选择的方案：Host v3 显式协商 + owner-only 临时资源；Desktop native 校验并写入 SQLCipher 长期 authority；
   WebView media 使用 opaque image/video handles，S8 file 使用一次性 bounded safe projection；S9 report 使用
   native closed bounded projection 与 canonical JSON save。
-- 关键约束：本地-only、confidential、无云资源、v1/v2 保持兼容、真实 MiniMax output capability 默认关闭；无原始
+- 关键约束：本地-first、confidential、无自建云资源、v1/v2 保持兼容、真实 MiniMax image capability 默认关闭且只在有界验证配置启用；无原始
   路径/base64/token、未授权内容或超出已批准 bounded projection 的正文进入 SSE/WebView state，用户授权 file
   projection 仅按 8.8 短暂存在；小文件 projection 可在上限内等于完整正文。
-- 明确不做：生产部署、云存储、公开分享、raw HTML/脚本报告、任意本地路径、视频转码、真实付费媒体生成、跨设备同步。
+- 明确不做：生产部署、云存储、公开分享、raw HTML/脚本报告、任意本地路径、视频转码、真实视频/文件/report producer、通用图片编辑、跨设备同步。
 - 设计状态：G2/G2A APPROVED，S3/S4/S5 与其 G3 scope 已通过；S6-S10C 均为 G3 外独立 PASS。
   Pattern 1.7.0 `8afdc996c11bbad2d275eb8b86a0f6b82ca5da52` 完成 S10 reconciliation 与 S10D readiness，
-  只批准 S10D-H；S10D-H/V、S10E 均 `NOT RUN`，G3 不扩展，G4 pending。
+  只批准 S10D-H；其实现已形成但 smoke `FAIL` 并暂停，S10D-V/S10E 未启动。2026-08-23 新增真实
+  image-01 S12 设计，当前 implementation/eval `NOT RUN`、S12 campaign 付费台账 `0/5`；历史 standalone
+  provider success 不属于 yijie 链路证据。G3 不扩展，G4 pending。
 
 ## 2. 组件职责与依赖方向
 
 | Component/Repository | 职责 | 输入 | 输出 | 不负责 |
 |---|---|---|---|---|
-| yijie-codex | 上游 Runtime canonical item authority | provider/tool output | `imageGeneration` started/completed item | 易界 Artifact 存储、下载或 UI |
-| yijie-contracts | v3 wire、report document、error/fixture 权威源 | 已批准业务语义 | OpenAPI/JSON Schema/Proto/AsyncAPI/SDK | Runtime 实现、数据库或 UI |
-| yijie-agent-host | Runtime item 归一化、短期 staging、v3 SSE 和认证资源读取 | Runtime notification、synthetic fixture | 安全 Artifact lifecycle + relative resource | 长期业务数据、WebView 渲染、用户保存目标 |
+| yijie-codex | 上游 Runtime dynamic tool 与反向 request authority | Host thread-start tool spec、M3 tool decision | `item/tool/call` + content-free result flow | MiniMax image Key/HTTP、Artifact 存储、下载或 UI |
+| yijie-contracts | v3 wire、report document、Runtime compatibility/tool contract、error/fixture 权威源 | 已批准业务语义 | OpenAPI/JSON Schema/Proto/AsyncAPI/SDK/compatibility | Runtime 实现、数据库或 UI |
+| yijie-agent-host | dynamic tool router、image-01 adapter、付费幂等/预算、短期 input/output staging、v3 SSE 和认证资源读取 | Runtime reverse request、current-turn image ref、synthetic fixture | content-free tool result + 安全 Artifact lifecycle/resource | 模型意图猜测、长期业务数据、WebView 渲染、用户保存目标 |
 | Desktop native/Tauri | implemented Host fetch/SQLCipher/history 与 image/video/file/report private boundaries | v3 event/resource；private identity-only intent | metadata-only history；media opaque URL；file/report bounded projection；content-free save result | provider 选择、公共契约权威、generic filesystem |
 | Desktop domain/store | implemented 单调状态机、去重、history/live projection | private IPC v3 safe metadata | stable provider-neutral view model | wire 外 I/O、bytes、文件写入 |
 | Desktop Vue components | implemented generic shell + image/video/file/report renderer、bounded chart enhancement 与 S10C production ChatPage/history-v3/ArtifactStore/four-client wiring | view model、typed native client result | 用户可观察 UI intent 与 component-local authorized preview | Host/SQL/path/digest/bytes/save 副作用 |
 
 ```text
-Runtime or synthetic producer
+MiniMax-M3 structured generate_image call or synthetic producer
+  -> Host policy/idempotency/budget -> fixed MiniMax image-01 (real image only)
   -> Agent Host v3 lifecycle + owner-only staging
   -> Desktop native authenticated transfer
   -> SQLCipher Artifact authority
@@ -136,7 +139,8 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
   completed 复用同一 operation。
 - 幂等：Host event_id/sequence、Desktop transfer operation 和数据库 unique key 共同防重复。
 - 超时/取消：Host resource read、Desktop transfer、preview decode、save 和 resync 均使用 bounded timeout/AbortSignal；turn interrupt 不自动删除已 ready Artifact。
-- 重试/退避/上限：仅 retryable transport/staging error 可重试，指数退避最多 3 次；integrity/protocol/unsupported 不自动重试。
+- 重试/退避/上限：既有 Artifact transport/staging 的 retryable error 可指数退避最多 3 次；integrity/protocol/unsupported
+  不自动重试。该规则不适用于付费 provider HTTP；真实 `image_generation` 一旦发送，无论失败、超时或结果未知都不自动重试。
 - 限流/熔断/降级：每项 20/64 MiB、每 turn 128 MiB/12 项；Host 每 session staging 256 MiB、全局 1 GiB、lease 从 `staged_at` 起 24 小时。staging 使用 app-private encrypted spool，不使用 1 GiB 进程内大对象。达到上限拒绝新 Artifact，不驱逐正在读取或已持久化内容。
 - 部分失败与补偿：一项失败不回滚其它 ready；Desktop commit 失败不 ack Host；Host ack 丢失依靠 TTL 清理。
 - 资源释放：未消费 image handle、WebView decoded image、video handle、timer、AbortController、temp file、range
@@ -149,7 +153,8 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 - 资源级授权：每次 GET/HEAD 同时校验 token、session、artifact ownership、lease 和 state。
 - 租户隔离：Desktop SQL query 与 IPC command 强制 owner_user_id + tenant_id + session_id；opaque ID 单独不构成权限。
 - 输入验证：closed kind/status/error/report schema；safe filename；MIME + magic；长度、像素、时长、行列、series、UTF-8 与 digest limits。
-- Secret/token 边界：API Key 只留 Runtime 子进程环境；Host bearer 只在 native bridge；content href 为相对路径且无 query token。
+- Secret/token 边界：MiniMax image Key 只由 Host secret boundary 持有；不得进入 Runtime、Desktop/WebView、
+  command line、普通配置、tool arguments/result、日志或 evidence。Host bearer 只在 native bridge；content href 为相对路径且无 query token。
 - PII/日志脱敏：日志只记录 kind、typed code、byte bucket、duration bucket 和 opaque correlation；不记录标题、文件名、正文、path、digest 或 raw provider error。
 - 高风险审批：N/A；Artifact 查看不是电商业务写操作。保存仍需用户明确 native dialog intent，不能后台自动写文件。
 - 审计：本地阶段只记录 aggregate typed operation outcome，不记录目标路径；生产审计方案当前 N/A/not designed。
@@ -423,7 +428,7 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 | 每 turn | N/A | 12 项 / 128 MiB | aggregate admission tests | 拒绝新增、保留已 ready |
 | WebView/native preview memory | 未测 | image in-flight 40 MiB；video in-flight 64 MiB；file source in-flight 2 MiB；report source in-flight 8 MiB | process memory sampling + registry/operation counters | metadata + native save |
 | UI/进程稳定性 | 未测 | 12 mixed；no >200ms long task；CLS<=0.1；close 30s 后三进程 RSS 残留<=64MiB | Desktop/WebContent/Host per-PID sampling，3 warmup+30 samples | table/metadata/save-only |
-| 模型成本 | 0（当前不调用） | synthetic 0；真实值未批准 | provider Eval 后记录 | capability off |
+| 模型调用 | S12 campaign used `0/5`、reserved `0`；历史 standalone probe >=1 | synthetic/fake 不计；S12 真实发送 hard max 5、planned 4、`n=1` | S12E 前复核官方动态价格；content-free ledger 记录次数而非内容；历史 probe 不作为 yijie evidence | capability off |
 
 ## 11. 配置、Feature Flag 与部署
 
@@ -440,14 +445,17 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 
 ## 12. AI 功能专项
 
-- 是否改变 prompt/model/retrieval/tool schema：不改变 prompt/model/retrieval；改变 provider/Runtime output capability projection，并预留未来 tool-produced file/report。
-- 固定版本：MiniMax-M3 与 Runtime `0ce5902...` 仅为当前调查基线，不构成 real generation approval。
+- 是否改变 prompt/model/retrieval/tool schema：模型仍为 MiniMax-M3，不改变 retrieval；新增 exact
+  `generate_image` dynamic tool 与最小 tool instruction，属于 tool behavior semantic change。
+- 固定版本：Runtime 当前 commit 只证明 experimental dynamicTools/item-tool-call 能力；新的 compatibility candidate、
+  fake conformance 与 G2V 通过前不构成 real generation approval。
 - 结构化输出 Schema：Agent session event v3 + Artifact manifest + implemented
   `yijie-contracts/jsonschema/report/report-document-v1.schema.json`，canonical media type 为
   `application/vnd.yijie.report+json;version=1`；PDF/Markdown 只允许作为后续 derived export。
-- 无答案/拒答：模型没有生成能力时返回文本说明；Desktop 不显示虚假生成入口或从 Markdown 推断 Artifact。
+- 无答案/拒答：工具未注册、预算耗尽或 provider 不可用时返回稳定文本说明；Desktop 不显示虚假 ready，也不从 Markdown 推断 Artifact。
 - 提示注入和越权工具控制：report/file 内容是数据，不能触发 Agent tool、network、审批或保存；真实 file/report producer 必须另行定义权限。
-- Eval：先 deterministic protocol/UI dataset；真实 provider 需固定 capability、质量、延迟、费用与安全 dataset，且必须单独授权付费调用。
+- Eval：call/no-call intent、参数、T2I/I2I、安全拒绝和未授权位置正文零命中使用固定 dataset；真实调用总上限 5、计划 4，
+  每次 `n=1` 且禁止自动重试。真实业务图片不进入 dataset。
 
 ## 13. 方案比较
 
@@ -464,10 +472,15 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
 | I：direct tree-shaken ECharts core + closed adapter + table authority | 满足 Accepted ECharts 标准，不开 generic option/wrapper，可单独回滚 | 新 exact dependency/license/bundle/theme 审查，必须严格 dispose | 中 | S9B-D/R implemented separate PASS |
 | J：`vue-echarts` wrapper | Vue 集成便利 | 仍需 ECharts，额外 generic option/event/lifecycle 与供应链 | 中高 | Reject |
 | K：table-only final renderer | 零 chart dependency，可访问性最稳 | 不完成 AC-006 有限图表路径 | 中 | Fallback/rollback only |
+| L：Runtime dynamicTools → Host image adapter | M3 做结构化意图决策；Host 保留 Key/费用/Artifact/turn identity | experimental compatibility 与 reverse-request dispatcher 需冻结 | 中高 | Recommended for S12 |
+| M：改内置 OpenAI imagegen | 已有 image item | 绑定 OpenAI auth/model，职责错误 | 高 | Reject |
+| N：Host 关键词路由 | Host 改动表面较小 | 误触发付费、无法证明 M3 决策 | 高 | Reject |
+| O：MCP 旁路 | Runtime 已有 MCP 能力 | 引入第二服务/权限/identity/Artifact 协调面 | 中高 | Reject for first image slice |
 
 ## 14. ADR 与批准
 
-- ADR：当前 `N/A`，前提是采用方案 C 且不改变跨仓职责；选择 Host/云长期存储、自定义公开 URL 或 Runtime 核心修改时必须新增 ADR。
+- ADR：S12A/G2 决定是否需要独立 ADR。若严格采用方案 L、Host 继续拥有 provider/Artifact 且不改 Runtime core，
+  本包 DEC-128-033..040 可作为决策权威；若引入 Runtime fork、云长期存储、公开 URL、独立 secret service 或改变跨仓职责，必须新增 ADR。
 - 技术负责人：段成威，结论 `G2 APPROVED for Contracts S1/S2`。
 - 安全/数据 Owner：段成威，结论 `G2 APPROVED for Contracts S1/S2`。
 - Product/Design：Pattern 1.7.0 `Accepted`；S6-S10C separate PASS；`READY FOR S10D-H ONLY`。Markdown/AC-005
@@ -476,5 +489,95 @@ G2 选择 content 使用 SQLCipher BLOB 增量 I/O，避免 plaintext app-data �
   等 H immutable PASS。
 - S10D Security/Data：只批准 exact keyless loopback、test-only authority bootstrap、zero canary、transient screenshot、
   content-free verdict 与 complete cleanup；provider/key/non-loopback/raw evidence 保持关闭。
-- 结论日期：2026-08-22；G3 仍只对 S3/S4/S5 为 PASS。S10D-H/V、S10E、任何真实 provider 与 production activation
-  均未执行；所有 FEAT-128 flags 默认关闭，G4 pending。
+- 结论日期：2026-08-23；G3 仍只对历史 S3/S4/S5 为 PASS。S10D-H 实现/运行未通过并暂停；
+  S10D-V/S10E 未启动。真实 image S12 scope/费用已批准但集成实现与 S12 campaign 调用均未开始；此前 standalone
+  provider probe 只证明 Key/`image-01` 曾成功。所有 FEAT-128 flags 默认关闭，G4 pending。
+
+## 15. 真实 image-01 详细设计（S12）
+
+### 15.1 Tool registration 与 reverse request
+
+1. Host 在 thread/start 前检查 exact image flag、Host-only secret、固定 provider config、call budget 和 Runtime
+   compatibility identity；任一缺失即不注册工具。
+2. 注册一个 closed `generate_image` function：`prompt`、`mode`、optional `aspect_ratio`；
+   `additionalProperties=false`。工具说明明确区分生成新图与普通看图，并说明 I2I 仅单人物主体参考。
+3. Host JSON-RPC client 增加有界异步 server-request dispatcher，只允许 exact `item/tool/call`；校验
+   `threadId/turnId/callId/namespace/tool/arguments` 与 active registry。其它 reverse request 继续返回 method-not-found。
+4. 处理不能阻塞 JSON-RPC read loop；每个 accepted call 绑定 provider context，Host shutdown/turn interrupt 取消本地等待。
+5. Host 回复 Runtime 只使用一个 `inputText`，例如稳定的成功/失败类别；不回传 `inputImage`、base64、URL、
+   Artifact identity、provider id 或 raw error。Runtime 可以继续生成简短文本，Desktop 图片来自 v3 stream。
+
+### 15.2 Current-turn reference registry
+
+- StartTurnV2 在向 Runtime 发送前，为当前 operation/turn 建立短期 image ref；只保留现有校验通过的 Data URL 与
+  metadata，最大一张被 I2I 使用，PNG/JPEG 且 `<10,000,000` bytes。
+- `mode=text_to_image` 不读取引用；`mode=subject_reference` 要求当前 turn 恰有一张合格图片。零张、多张、
+  GIF/WebP、跨 turn/session 或 expired 引用均在 provider 前失败。
+- ref 不写 Host bbolt/replay、Runtime transcript、日志或普通 temp；turn start 失败、tool/turn terminal、interrupt、
+  session cleanup、timeout 或 Host shutdown 清除。首版不自动复用上一轮生成 Artifact，用户需重新附图。
+
+### 15.3 Provider adapter 与响应校验
+
+```text
+exact tool args
+  -> validate prompt/mode/aspect + claim operation + reserve call slot
+  -> Artifact started(provenance=provider)
+  -> transition sent + used_calls immediately before first network write
+  -> POST fixed China endpoint (no redirect, fixed model/base64/n=1)
+  -> HTTP + base_resp + metadata + array validation
+  -> strict base64 decode + magic/full decode/dimensions/size/digest
+  -> encrypted Host staging commit
+  -> Artifact completed
+  -> content-free tool success
+```
+
+- HTTP client 使用独立 bounded timeout、response header/body caps、single concurrency，并明确固定 proxy policy；
+  不接受 endpoint override、redirect 或 response URL。
+- 错误映射：1002/2045 rate limit；1004/2049 auth；1008 balance；1026/1027 content safety；2013 parameter；
+  1001 timeout；1024/1033 provider unavailable；其它为 stable provider failure。原始 status message 不外传。
+- 只有 `base_resp.status_code=0`、恰一个图片、`success_count=1/failed_count=0` 才成功；count 同时兼容
+  JSON integer 与 canonical decimal string，但拒绝负数、小数和矛盾结果。
+- 输出先限制 JSON/base64，再 strict decode；检测 PNG/JPEG/WebP magic、完整解码、像素与 20 MiB Artifact 上限。
+  任一失败销毁中间字节并发布 failed，不产生 content href。
+
+### 15.4 付费幂等、取消与部分失败
+
+| 状态 | 含义 | 重复行为 | 允许迁移 |
+|---|---|---|---|
+| accepted | operation identity 已 claim；尚未占用调用额度 | 同 call+digest 等待；异参失败 | reserved / failed_pre_send |
+| reserved | 按 `quota_class=planned\|repair` 原子占用一个并发/预算 slot；`used_calls` 尚未增加 | 同 call+digest 复用 reservation | sent / failed_pre_send（释放同分类 reservation） |
+| sent | 紧邻首次网络 write 前已释放 reservation 并不可逆 `used_calls += 1`；请求可能已计费 | 绝不自动重发 | succeeded / failed / outcome_unknown |
+| succeeded | Artifact staging 与 identity 已绑定 | 返回同一 content-free result，不生成第二 Artifact | terminal only |
+| failed | 已知 provider/validation/store 失败 | 返回同一稳定失败 | terminal only |
+| outcome_unknown | 发送后 timeout/cancel/disconnect | 返回 unknown；需用户新 operation | terminal only |
+
+- 全功能 call fuse hard max 5，验证 runner 计划消费 4 个 planned slots，另有 1 个 repair slot 仅供明确根因修复后
+  复验；repair 是第 5 个预算额度但不限定物理发送序号。每 turn max 1、全局 single concurrent。
+- 单一 durable ledger 以 `campaign_id=feat128-s12-image-validation-20260823` 为 authority，存放于 Host 持久域且独立于
+  任一 runner/run root。slots 固定为 `P1=S12E/T2I`、`P2=S12E/I2I`、`P3=S12F/T2I`、
+  `P4=S12F/I2I` 与 `R1=repair(original_slot_id)`；S12E/F 必须打开同一 campaign，不能自行初始化第二本账。
+- slot authority 只允许 CAS `available → reserved → sent`。pre-send failure 把 slot 原子释放回 `available`，同时把本次
+  operation 终结为 `failed_pre_send`；`sent`、分类/总 used 计数与 R1 authorization 消费必须在同一 durable transaction
+  中完成。aggregate counters 从 slot records 推导并在每次打开 campaign 时核对，不能作为可单独清零的第二权威。
+- quota 分两类：四个 planned slots 固定绑定四个验证场景；一个 repair slot 可在任一 planned failure 后使用。
+  planned admission 要求 `planned_used + planned_reserved < 4`；repair admission 要求绑定原失败/RCA 的一次性 Owner
+  authorization、`repair_used + repair_reserved < 1`，且总 `used_calls + reserved_slots < 5`。repair 不能挪给新场景；
+  authorization 在 sent 转换时消费。每个 runner 在 reserve 时同时 CAS slot 的 expected stage/mode；duplicate slot、wrong
+  stage/mode、跨进程竞争或第二 campaign authority 全部在网络前拒绝。pre-send reject/cancel 释放同分类 reservation 且不增加
+  used；总第 6 次恒拒绝，fake HTTP 永不进入 sent/used 账本。
+- Host startup 将持久化的 orphan `reserved` 原子转为 `failed_pre_send` 并释放，不补发；`sent` 状态保留 used，
+  无论 success、provider error、网络错误、timeout 或 outcome unknown 都不得回退或自动重试。restart、新 run root、删除
+  临时目录或 runner 参数都不得重置 campaign；若 ledger 丢失、版本不符或与 evidence 摘要不一致，立即 fail closed 并由
+  Owner 对账，禁止创建空 ledger 继续发送。
+- HTTP 请求开始前取消不发送；开始后官方无 cancel API，本地取消不承诺免计费。turn terminal 后的迟到响应丢弃，
+  不发布 completed；call 仍计入 5 次。
+- `n=1` 消除多图部分成功；若 metadata 表示 failed_count 或 success_count 矛盾，整体失败。
+
+### 15.5 Secret handoff、flags 与 rollback
+
+- `YIJIE_AGENT_HOST_REAL_IMAGE_ENABLED`（名称在 G2 冻结后才能落代码）默认 false，并与 synthetic exact flag 互斥。
+- Key 存在不启用功能；Host startup 必须同时满足 fixed China origin/model/tool/contract/budget。生产 activation 有独立 gate。
+- packaged Desktop sidecar 当前 `env_clear()`，S12D 必须选择 owner-only Key file 或系统安全存储交接，并证明
+  child-only read、mode/owner/no-symlink、无 argv/log/env-to-WebView 泄漏；此前只允许隔离 Host probe，不宣称 Desktop 完成。
+- kill switch 立即阻止新 tool registration/call，取消本地 pending context，保留已 committed Desktop Artifact，
+  清 Host input refs/intermediate/staging 按既有 ACK/TTL 处理；不删除用户另存文件。

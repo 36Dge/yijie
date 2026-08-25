@@ -1,12 +1,17 @@
 # FEAT-128 原子实施计划
 
+> **历史生产级计划**：自 2026-08-23 起，真实图片生成的当前实现入口已经切换到
+> [`demo-fast/`](demo-fast/) 的整体快速闭环，不再以 S12B→S12F 治理切片作为本地 Demo 的阻断依赖。
+> 本文件及 S10D-H/S12 记录继续保留以确保历史可追溯；S10D-H 仍为 `FAIL/PAUSED`，没有被关闭。
+
 ## 1. 实施原则
 
 - G2 已于 2026-08-20 由段成威明确批准，随后先执行 Contracts S1-S2，再只做 S2P exact pin preflight。
 - Feature 总体 `contract-impact = semantic`；G2A 在真实 generate、双基线 breaking、semantic review、immutable commit 和 downstream exact pin 全部通过后获批。随后严格先完成 Host S3、Desktop S4 与 Desktop S5；三者均通过 G3 slice gate。S6A/S6B、S7F、S7A、S7A-REPAIR、S7B、S8A、S8B、S9A、S9B-D、S9B-D-CHECKER-REPAIR、S9B-R、S10A-LOCAL-PROFILE、S10B-NATIVE-LIVE 与 S10C-PAGE 已在后续独立用户授权下分别完成，但均不扩展 G3，也不改变公共 Contracts/Host/pin。
 - 一次只完成一个可独立验证的行为；不把 v3 协议、媒体存储、native save 和四类 UI 一次混成大 diff。
 - 先建立失败 fixture/测试，再实现最小能力；每个 kind 独立 flag，默认关闭。
-- 不新增云资源、远程 URL、真实付费调用、通用 filesystem/shell capability 或第二套 UI 库。
+- 不新增自建云资源、任意远程 URL、通用 filesystem/shell capability 或第二套 UI 库。真实 image-01 只允许
+  在 S12E/F exact runner 中按总上限 5 次、每次 `n=1` 执行；S12A-D 保持零付费调用。
 - 每个仓库独立提交和验证；commit 只按用户逐切片明确授权执行，本计划不自行授权 push/PR/tag/release。
 
 ## 2. 依赖 DAG
@@ -40,16 +45,23 @@ S0 Owner G2 approval (PASS)
                                                      -> S10B-NATIVE-LIVE single-v3/atomic cursor/private invalidation (PASS separate slice)
                                                         -> S10C-PAGE history/store/production ChatPage integration (PASS separate slice)
                                                            -> S10D-READINESS + S10-SPEC-RECONCILIATION (PASS docs only)
-                                                              -> S10D-H default-off real Tauri harness + walking skeleton (NOT RUN)
+                                                              -> S10D-H default-off real Tauri harness + walking skeleton (IMPLEMENTED; SMOKE FAIL; PAUSED)
                                                                  -> S10D-V full four-kind/restart/history/visual vertical (NOT RUN)
                                                                     -> S10E-SEC-PERF adversarial/boundary/performance
                                          -> S11 structured independent review + local G4 decision
 
-Real provider activation:
-S2 + S3 + S4 + S10
-  -> S12a MiniMax image capability/eval (separate paid approval)
-  -> S12b video producer (blocked: no authority)
-  -> S12c file/report producer (blocked: no authority/tool permission)
+Real image generation (independent from paused S10D-H):
+S12A legacy v1→v2 migration + real-image G2 readiness
+  -> S12B Runtime dynamic-tool compatibility contract/G2A
+     -> S12C Host reverse router + image-01 adapter + fake provider/G2V
+        -> S12D consumer repin + packaged secret handoff
+           -> S12E bounded paid capability probe (planned slots P1-P2; hard max 5; currently 0)
+              -> resolve real-Tauri overlap with paused S10D-H in schema v2
+                 -> S12F real Tauri T2I/I2I vertical + security/cost review
+
+Other real producers:
+  -> S13V video producer (blocked: no authority)
+  -> S13FR file/report producer (blocked: no authority/tool permission)
 ```
 
 ## 3. 实施切片
@@ -83,9 +95,14 @@ S2 + S3 + S4 + S10
 | S10D-V | complete four-kind production vertical | AC-001..012 | Host/Desktop test-only | H scenarios/evidence extension only | native/config/provider/dependency/public wire | H immutable PASS + auth | four renderer/ACK/history/restart/TTL/delete/visual/a11y | disable V scenarios；retain H |
 | S10E-SEC-PERF | adversarial/boundary/per-process performance evidence | NFR/security | Host/Desktop test-only | exact boundary controls/evidence | limit loosening、secret/non-loopback/provider | D-V PASS + auth | §6E + Pattern 1.7 §9.18 | disable affected preview/kind；metadata/save-only |
 | S11 | 独立结构化审查、P0/P1/P2 修复和本地 G4 decision | all | all affected | review report/fixes within original slices | self-approval、release/tag | S10 | repeat affected/full gates | G4 remains pending until owner approval |
-| S12a | 验证并可选启用真实 MiniMax image | AC-012 | Runtime/Host/Desktop/docs | capability config/adapter/eval after approval | video/file/report、unbounded spend | separate paid approval + S11 | fixed provider integration/eval | per-kind kill switch off |
-| S12b | 视频 producer | AC-004/012 | future authority | only after new producer design | guessing provider API | blocked | command defined after authority | N/A until unblocked |
-| S12c | 文件/report producer | AC-005/006/012 | future tool/provider | only after permission/producer design | arbitrary workspace writes | blocked | command defined after authority | N/A until unblocked |
+| S12A | legacy v1→v2 migration + real-image readiness | R-021..029/AC-012..017 | yijie docs only | feature.yaml v2、04A、真实 H failure fuse、官方 API/预算/secret/data-policy/Owner decisions | 业务代码、provider call、伪造历史 PASS/timestamp | 当前 scope request | package v2/default/G2 design checks + diff | revert governance slice；保持 image off |
+| S12B | Runtime dynamic tool compatibility semantic candidate | AC-015/016/017 | yijie-contracts + Host read-only conformance | exact runtime compatibility source/schema/fixture/generated/review | provider HTTP、Desktop UI、手写 downstream DTO | S12A G2 | RED→generate/lint/test/build + dual breaking + semantic review + immutable candidate | 不 repin；旧 0.4.0 继续 |
+| S12C | Host reverse router、current-turn ref、image-01 adapter、paid ledger、Artifact publish；fake only | AC-013..017 | yijie-agent-host | exact reverse method/tool、provider package、fake HTTP、ledger/limits/cancel/cleanup/tests | real key/network、Runtime core、Desktop renderer/DB、auto retry | S12B G2A + frozen fake-harness design/EXPECTED RED | TCONF-IMG-001..003 + Host full gates，zero external call；本切片形成 qualified fake harness/G2V | real flag off；移除 router/adapter；保留 synthetic |
+| S12D | Host/Desktop exact repin + packaged Host secret handoff + unchanged image consumer conformance | AC-013/014/017 | Host + Desktop native/config | generated pin/checker、owner-only secret handoff、release-like negative tests | WebView/argv/plain env Key、migration/new renderer、provider call | S12C immutable fake PASS | contract-check/generate-check/full gates + secret canary | flag off；回滚 handoff/pin；旧 Artifact只读 |
+| S12E | bounded paid capability probe | AC-013..017 | isolated Host/Runtime + shared campaign ledger | exact runner、campaign `feat128-s12-image-validation-20260823` 的 P1-P2 分别 T2I/I2I；总上限5、计划4、n=1 | ad-hoc curl、auto retry、runner 自建/重置账本、真实业务图片、其它 provider/kind | S12D + Owner start | one call at a time；durable slot CAS + content-free ledger | kill switch；清 refs/intermediate；ready staging按 ACK/TTL 保留；保留证据摘要 |
+| S12F | real M3→tool→image-01→Artifact→Desktop T2I/I2I vertical + security/cost review | AC-013..017/NFR-006/007 | Host + Desktop test harness/docs + same campaign ledger | production bootstrap、campaign P3-P4、two paths/history/save/teardown、independent review | 改写/借用 S10D-H、第二/重置账本、放宽 limits/secret、生产 activation | S12E capability + schema v2 中 H immutable PASS 或 Owner 批准的非借用 H-IMG-VERTICAL exception | TCONF-IMG-005/006 + real Tauri matrix/full gates | independent image kill switch off |
+| S13V | 视频 producer | AC-004/012 | future authority | only after new producer design | guessing provider API | blocked | command defined after authority | N/A until unblocked |
+| S13FR | 文件/report producer | AC-005/006/012 | future tool/provider | only after permission/producer design | arbitrary workspace writes | blocked | command defined after authority | N/A until unblocked |
 
 ## 4. 跨仓顺序
 
@@ -171,7 +188,8 @@ Repository、branch、base full SHA：从 feature.yaml 与实际 git 命令取�
 
 用户的逐轮明确指令已授权并完成 C1/HP/DP/H1-H2/D1/D2/D3/D4、S7 readiness、H3/S7F、D5/S7A、D5R/S7A-REPAIR、
 D6/S7B、D7A/S8A、D7B/S8B、D8A/S9A、D8D/S9B-D、D8C/S9B-D-CHECKER-REPAIR 与 D8R/S9B-R 的本地原子 commits；
-S10-S12 未获授权。push、PR、tag、release 与真实 provider 继续关闭。
+S10A-S10C 已分别完成；S10D-H 已实现但 smoke FAIL/PAUSED，V/E 未运行。真实 image S12 scope 与最多 5 次
+付费验证已获授权，但 S12A-F 均未执行；production activation、push、PR、tag 与 release 继续关闭。
 继续实施前仍需逐仓确认用户已有改动并保持可独立审查。
 
 ## 8. Slice 完成记录
@@ -208,10 +226,12 @@ S10-S12 未获授权。push、PR、tag、release 与真实 provider 继续关闭
 | S10A-LOCAL-PROFILE | Host `0debd877a4afe1bf2da8c988caeb1124d0fa7272` + Desktop `f4a3d42ad837ecdc8a8ba4198b269d4717285791` | exact keyless Host profile、sidecar child flags、compile-time-off runner | Host/Desktop full gates + post-commit lifecycle/GET/ACK 4/4/4/4/4、zeroProvider/nonLoopback/cleanup PASS | no live/page/public wire/pin/fixture drift | PASS AS SEPARATE SLICE |
 | S10B-NATIVE-LIVE | `f787d70b4cfb51cde76bdce047ba630f4b7b1250` | single-v3 common order、Artifact/assistant/cursor SQLCipher 原子提交、completed network-outside-tx + ready/BLOB/ACK-intent/cursor、pending ACK restart recovery、closed content-free private invalidation + typed parser/client | missing typed boundary EXPECTED RED；2 files/6 TS、14/17+1 ignored/10/23/9 Rust focused、234+3 ignored all-target、四组 Clippy、61 files/379 full、build/docs/checker/runner/Host read-only gates PASS | Desktop-private semantic change；只刷新 7 个实际变更 implementation SHA 与 v2 adapter/readiness SHA；Contracts `ea48fe...`、Host/public wire、migration/config/dependency/Page/Store unchanged | PASS AS SEPARATE SLICE |
 | S10C-PAGE | `86f02b4def4d07f76d66ebdafafda5a9bb75035c` | closed history-v3 client、双 channel subscribe-first、ArtifactStore authority epoch/reset、bounded live resync、production ChatPage/List/four typed clients | missing API/authority EXPECTED RED；6 files/67 focused + axe、61 files/385 full、generate/lint/build/docs/dependency/bundle/diff PASS | TS/Vue-only 8-file scope；无 native/config/dependency/Contracts/Host/pin 漂移；real Tauri production vertical NOT RUN | PASS AS SEPARATE SLICE |
-| S10D-READINESS | Pattern 1.7.0 `8afdc996c11bbad2d275eb8b86a0f6b82ca5da52` | four-repo read-only audit；exact H/V boundaries、Owner capture | Desktop generate/docs/lint/test/diff PASS；governance gates由本次提交记录 | docs only；H/V/E NOT RUN | READY FOR S10D-H ONLY |
-| S10D-H/S10D-V/S10E | N/A | none | NOT RUN | 必须逐片授权与 immutable predecessor PASS | WAIT/PENDING |
+| S10D-READINESS (historical capture) | Pattern 1.7.0 `8afdc996c11bbad2d275eb8b86a0f6b82ca5da52` | four-repo read-only audit；exact H/V boundaries、Owner capture | Desktop generate/docs/lint/test/diff PASS；governance gates由当时提交记录 | docs only；H/V/E 当时 NOT RUN；H 后续 FAIL/PAUSED | HISTORICAL READY FOR S10D-H ONLY |
+| S10D-H | Host `09d83cce5f2937db1cbe3afa36cc5461ea671574` + Desktop `997345d87a5daa073c480769d57b4e59c3dfefcb` | harness + terminal-order repair implemented | focused evidence exists；real smoke failed, latest primary class `runtime_axe_serious_critical` with cleanup residue also observed | no PASS；paused by user；must not retry without RCA/authority | FAIL/PAUSED |
+| S10D-V/S10E | N/A | none | NOT RUN | require H immutable PASS；not satisfied | WAIT/PENDING |
 | S11 | N/A | none | NOT RUN | independent review需 S10E PASS 与单独授权 | PENDING |
-| S12 | N/A | none | BLOCKED | separate real-provider authority required | BLOCKED |
+| S12A governance migration | current yijie docs worktree | schema v2、04A machine binding、exact H ledger、open third-failure fuse | v2 default/G2 semantics PASS；未运行 H/业务代码/MiniMax | governance only；不声明 per-slice G3 | PASS AT G2 |
+| S12B-S12F real image | N/A | scope/API/call budget recorded；S12 campaign 0/5；standalone probe unqualified | NOT RUN | S12B G2A → S12C fake controls → S12D handoff/consumer → S12E paid capability → S12F real vertical | PENDING/BLOCKED BY PREREQUISITES |
 
 ## 9. 变更控制
 
@@ -256,8 +276,9 @@ S10-S12 未获授权。push、PR、tag、release 与真实 provider 继续关闭
 | Security/Data Owner | 段成威 | S10D-H 只允许 exact keyless loopback、test-only authority prerequisite、zero canary、transient screenshot 与 complete cleanup | 2026-08-22 |
 
 G2、G2A 与 S3/S4/S5 的 G3 slice gate 均已通过；S6A/S6B/S7F/S7A/S7A-REPAIR/S7B/S8A/S8B/S9A/S9B-D/S9B-D-CHECKER-REPAIR/S9B-R/S10A/S10B/S10C 也分别形成 immutable PASS，
-但不并入 G3。S10D-READINESS 只批准 H 编码；S10D-H/V、S10E-S12 继续关闭。真实 provider、tag、push、release 和
-production Tauri vertical 继续关闭，G4 不通过。
+但不并入 G3。S10D-H 已实现/执行但 smoke FAIL 并暂停；V/E 继续关闭。真实 image scope 与最多 5 次验证已批准，
+S12A governance/G2 已完成；S12B-F 尚未执行。生产 provider、tag、push、release 和 production Tauri vertical
+继续关闭，G4 不通过。
 
 ## 11. 已执行 Codex 指令：S6A（历史证据）
 
@@ -1026,3 +1047,44 @@ history/visual full matrix均明确 `NOT RUN`，不得记 S10D PASS。
 migration、real key/provider/non-loopback、direct DB/spool/Pinia seed、consumer digest refresh、macOS control failure、content leak 或
 cleanup residue立即停止。若 internal consumer checker 因 exact H hook 要求 SHA-only refresh，先报告并等待单独最小授权，不得
 自行修改 checker。回滚只删除 H feature hooks/module/controller/runner/checker；S10A-C 与 default production path保持不变。
+
+### 26.5 S10D-H 当前执行事实（2026-08-23）
+
+- H 已落在 Host `09d83cce5f2937db1cbe3afa36cc5461ea671574` 与 Desktop
+  `997345d87a5daa073c480769d57b4e59c3dfefcb`，不能继续写成“未实现”。
+- focused Rust evidence 是否完整通过必须从原始 runner 记录恢复；当前不能补写结论。real runtime smoke 从未形成完整
+  PASS；最近可复核的主 failure class 为 `runtime_axe_serious_critical`，teardown 还观察到空 WAL cleanup residue。
+  failureCode 只是分类，不自动等于根因。
+- 用户已明确暂停 S10D-H。不得删除/关闭该 slice，不得无 RCA 重跑，也不得让 S12 的真实 provider 实现修改
+  S10D-H 的 keyless/synthetic/zero-provider contract。
+- legacy schema v1→v2 迁移必须把可复核的 H attempts、RCA cycle 与 evidence refs 原样迁入；无法恢复的时间/次数保持
+  migration gap，不得补造。H 继续阻断其依赖的 V/E 与 full G4，但不阻断 S12A-D 或 Host/Runtime-only S12E
+  capability probe；只有 S12F 受 real-Tauri overlap blocker 约束。
+
+## 27. 下一阶段：S12 真实图片生成
+
+### 27.1 原子顺序与停止条件
+
+1. `S12A`（GOV-MIGRATION）：先完成 active v1 package 的 schema v2 独立迁移；新增 04A、per-slice graph、G2V
+   与 final E2E 状态，并迁移真实 H failure fuse。当前文档已写入 04A 设计，但 YAML 仍保持 v1，不能声明新下游 gate。
+2. `S12B`（TOOL-CONTRACT）：在 Contracts authority 新增 Runtime compatibility semantic candidate；固定 Runtime full commit、
+   experimental flag、tool args/reverse result/dynamicToolCall redaction。真实 generate/breaking/semantic review/immutable candidate
+   后才能 G2A；旧 `ea48fe...` 不被改写。
+3. `S12C`（HOST-FAKE）：实现 Host-only tool router/current-turn ref/provider/ledger/Artifact。所有 HTTP 指向 loopback fake；
+   positive/negative/timeout/cleanup/content-free harness qualification 完成前外网调用数必须为 0。
+4. `S12D`（PIN-SECRET）：两端 exact repin；解决 packaged sidecar `env_clear()` 下的 Host Key 安全交接。任何把 Key 放进
+   argv、WebView、普通配置或未验证 env 的方案立即停止。
+5. `S12E`（PAID）：逐次运行 exact runner 的 planned slots P1-P2，分别证明 T2I 与单人物 subject I2I capability；全程
+   hard max 5、planned 4、n=1。每次前必须打开同一 campaign 并对 expected stage/mode slot CAS，同时检查
+   `used_calls+reserved_slots` 与前置 commit；pre-send 释放 reservation，sent 后的失败/timeout 也计入 used 且不自动 retry。
+6. `S12F`（VERTICAL-REVIEW）：进入前先在 schema v2 解决与 S10D-H 重叠的 real-Tauri blocker：H 单独形成 immutable
+   PASS，或 Owner 批准不借用 H 证据的 H-IMG-VERTICAL exception。随后在同一不可重置 campaign 中用 planned slots
+   P3-P4 分别证明
+   T2I/I2I/no-call、Artifact
+   history/preview/save、zero-secret/content canary 与完整 teardown，再做独立 security/cost review；结果不自动关闭 H 或 AC-005 Markdown。
+
+### 27.2 建议下一条执行指令
+
+下一步只执行 `S12A`（GOV-MIGRATION），不修改业务仓、不运行 S10D-H、不调用 MiniMax：从 Git/现有报告恢复
+可追溯的历史 slice commits/evidence 与 S10D-H failure ledger，将 `feature.yaml` 迁移到 schema v2，并使默认/strict/G1
+检查通过。若无法恢复 H 失败熔断所需的精确 run/timestamp/fingerprint/evidence，应停止并列出缺口，而不是伪造 fuse。

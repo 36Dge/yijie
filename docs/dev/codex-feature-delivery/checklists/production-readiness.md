@@ -1,4 +1,6 @@
-# Production Readiness：发布、灰度与线上关闭
+# production_hardened Production Readiness
+
+> 仅适用于生产激活。公开 Demo 的最小检查见 `public-demo-readiness.md`，DP 不替代 G5/G6。
 
 ## 发布候选
 

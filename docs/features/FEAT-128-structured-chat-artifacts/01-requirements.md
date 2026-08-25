@@ -20,8 +20,38 @@
 - R-016：Artifact 默认本地保留七个 24 小时；`expires_at = local_committed_at + 168h`，其中 `local_committed_at` 是 Desktop 完成完整性校验并提交 SQLCipher 的时间。`now >= expires_at` 时清除内容与 preview cache，保留最小历史 metadata 和 `expired` 状态。未来改变保留期或起算点需独立数据决策。
 - R-017：permission denied、unsupported、failed、cancelled 和 expired 均保留类型图标、状态说明和下一步，不只靠颜色表达。
 - R-018：MiniMax“支持多模态”不能等同于“当前 provider 已启用输出生成”。真实 producer 必须通过 capability probe、固定模型/API 版本和集成测试后才可启用。
-- R-019：严格 local synthetic profile 可以为 `image | video | file | report` 四类发出固定 fixture；`provenance=synthetic` 必须持久化并显著展示。真实 `provider | tool` producer 继续按 kind 关闭，不能用真实 producer 的未知项阻断本地 synthetic 契约候选。
+- R-019：严格 local synthetic profile 可以为 `image | video | file | report` 四类发出固定 fixture；`provenance=synthetic` 必须持久化并显著展示。synthetic 与真实 provider 配置互斥，前者不能冒充后者的能力证据。
 - R-020：当前取消只复用既有 turn interrupt；它把该 turn 内尚未终态的 Artifact 映射为 `failed(error_code=turn_interrupted)`，Desktop 显示 `cancelled`。本候选没有 artifact-specific cancel endpoint 或卡片级取消按钮。
+- R-021：MiniMax-M3 只能通过 Runtime 的结构化 `generate_image` dynamic tool 表达生图意图；Host 不得按关键词、附件存在与否或自由文本猜测并触发付费调用。
+- R-022：Host provider adapter 固定调用 `POST https://api.minimaxi.com/v1/image_generation`，固定 `model=image-01`、`response_format=base64`、`n=1`；拒绝 `image-01-live`、`style`、任意 endpoint 与模型覆盖。
+- R-023：生图工具输入只允许非空 `prompt`（最多 1500 字符）、`mode=text_to_image|subject_reference` 与可选
+  `aspect_ratio`；比例闭集为 `1:1|16:9|4:3|3:2|2:3|3:4|9:16|21:9`，默认 `1:1`。首版不暴露
+  `n`、provider/model、URL、path、base64、watermark、prompt optimizer 或任意 provider 参数。
+- R-024：图生图首版只支持 `mode=subject_reference`，且当前 turn 必须恰有一张已通过现有附件校验的 PNG/JPEG 参考图；Host 以完整 Base64 Data URL 映射为一个 `subject_reference`，`type=character`。零张、多张、GIF/WebP、文件大小 `>=10,000,000` bytes 或 authority 不匹配时拒绝，不接受模型提供的 URL、路径或图片正文。
+- R-025：Host 不能只看 HTTP 200；还必须验证 `base_resp.status_code=0`、`data.image_base64` 恰有一个成员、
+  `metadata.success_count=1/failed_count=0`（兼容官方 schema 整数与示例十进制字符串后再归一化），并严格 base64
+  解码、限制响应/解码大小、检查图片 magic/MIME/尺寸、计算 SHA-256，随后才发布 `provenance=provider` 的 v3 image Artifact。
+- R-026：MiniMax Key 只由 Host 安全配置读取，不进入 Desktop/WebView、Runtime prompt/tool arguments、公共事件、日志、错误或 Artifact metadata。用户参考图属于一次明确生成请求的数据外发，只在当前 turn/operation 的短期 owner-only 边界内使用。
+- R-027：Runtime `call_id` 与 session/turn 共同构成 Host 付费操作幂等键。重复调用不得二次计费；请求发送后发生超时/取消时结果记为 `provider_outcome_unknown`，不得自动重试，只有用户明确的新操作可再次调用。
+- R-028：付费验证全功能总上限为 5 次发送尝试且每次 `n=1`；计划使用 4 次（S12E 的 T2I/I2I
+  capability 各一次，S12F 的真实对话 T2I/I2I vertical 各一次），另有 1 个 repair slot 只供明确根因修复后的复验；
+  它是总预算中的第 5 个额度，不要求按物理发送顺序恰为第 5 次。台账必须分开
+  `reserved_slots` 与 `used_calls`：并发/预算判断前原子 reserve；pre-send reject/cancel 释放 reservation 且不增加 used；
+  紧邻首次网络 write 前转 `sent` 并不可逆增加 used。sent 后的成功、provider 失败、网络错误、超时或 outcome unknown
+  均计入 used；fake HTTP 永不计入。ledger 必须区分 `quota_class=planned|repair`：普通计划调用要求
+  `planned_used+planned_reserved<4` 且总量 `<5`；repair 必须绑定一次性 Owner authorization、明确 RCA 与原失败。
+  最多允许 4 个 planned send attempts，
+  以及最多 1 个可在任一 planned failure 后使用的 repair send attempt；repair 不能被新场景挪用。未授权 repair、
+  任意第 6 个总 attempt 或任一分类超额都在网络前 fail closed。startup 对各分类 orphan reservation 转
+  `failed_pre_send` 并释放，不补发请求。整个验证使用一个不可按 runner/run-root 重置的 durable campaign ledger：
+  `campaign_id=feat128-s12-image-validation-20260823`，slot 固定为 `P1=S12E/T2I`、`P2=S12E/I2I`、
+  `P3=S12F/T2I`、`P4=S12F/I2I`、`R1=repair(original_slot_id)`；两个 runner 必须对同一 authority 做 slot CAS。
+  slot 只能原子 `available → reserved → sent`；pre-send 释放回 `available`，`sent` 与分类/总计更新以及 R1 authorization
+  消费必须同事务持久化。aggregate counters 只能由 slots 推导/核对，不能独立重置。restart、并行进程、新 run root 或
+  删除临时目录都不能恢复已 sent slot；ledger 缺失/漂移时禁止网络并要求 Owner 对账。
+- R-029：S12E/F 只使用合成 prompt 与合成参考图。发送到 MiniMax 后，本地 kill switch/cleanup 不能证明 provider
+  侧删除；S12E 前必须复核官方当时的数据保留/删除政策并记录已知或 `UNKNOWN`。在生产 Go/No-Go 单独批准前，
+  不外发真实用户、商家、品牌或受限素材。
 
 ## 2. 可观察状态
 
@@ -88,7 +118,35 @@ Given 无云服务器、数据库、对象存储和真实付费调用，When 启
 
 ### AC-012 真实 producer 启用门禁
 
-Given MiniMax provider 尚未证明 output generation capability，When 应用正常启动，Then synthetic profile 默认关闭、真实生成入口不出现；只有 capability、模型/API pin、费用授权和集成测试全部形成后才允许启用对应 kind。
+Given 普通安装或未满足 exact real-image 配置，When 应用启动，Then synthetic 与真实 image producer 均默认关闭；Key 存在不等于启用。Given 开发验证显式启用且 capability、模型/API pin、费用台账与前置门禁成立，Then 只允许 image kind 的有界调用；生产启用仍需单独 Go/No-Go。
+
+### AC-013 真实文生图端到端
+
+Given real-image 验证配置已显式启用，When 用户明确要求生成图片，Then MiniMax-M3 发出一次结构化
+`generate_image(mode=text_to_image)` 调用，Host 只调用一次固定 `image-01`，将真实输出发布为
+`provenance=provider` image Artifact；Desktop 在对应 assistant turn 中预览、历史重开并可 native save。
+
+### AC-014 真实人物参考图生图端到端
+
+Given 当前 turn 恰有一张合格 PNG/JPEG 人物参考图，When 用户明确要求基于该人物生成新图片，Then 工具调用使用
+`mode=subject_reference`，Host 只将该附件映射为一个 `subject_reference.character` 并完成同一 Artifact 链路；
+零张、多张或不支持格式时不外发且返回可恢复错误。
+
+### AC-015 不误触发与工具决定
+
+Given 用户只要求识图、总结图片或进行普通文本对话，When MiniMax-M3 处理请求，Then 不发起生图工具调用且调用台账不增加；Host 不用关键词规则补发调用。
+
+### AC-016 Provider 失败与付费幂等
+
+Given 鉴权、余额、限流、内容安全、参数、超时、网络、5xx、畸形 base64、重复 call 或取消，When Host 执行工具，Then 返回稳定 content-free 失败、Artifact 只进入 failed/不创建、同一幂等键最多一次外部请求，且不自动付费重试。
+
+### AC-017 Secret、内容与响应隔离
+
+Given T2I/I2I 成功或失败，When 检查 Runtime、v3 事件、Desktop DB/DOM、Host/Desktop 日志和验证制品，Then
+API Key/Authorization 在 Host secret/HTTP header 之外零命中，provider base64/raw response/raw error 在 Host 有界
+处理中之外零命中。用户 prompt 与参考附件只允许出现在既有授权的 Desktop user-turn authority、Runtime 当前轮输入/
+tool arguments、Host 当前轮 provider request 和 MiniMax request 中；不得被 tool result、Artifact metadata、日志、遥测或
+验证制品重复。只有经校验的生成图片 bytes 进入现有加密 Artifact authority。
 
 ## 4. 非功能要求
 
@@ -97,9 +155,13 @@ Given MiniMax provider 尚未证明 output generation capability，When 应用�
 - NFR-003：preview 内存峰值目标不超过 Artifact 大小的 2.5 倍；超过本地预览上限时降级为 metadata + 保存。
 - NFR-004：所有读取、保存、解码、图表和历史操作可取消，并在组件卸载时释放 object URL、timer 和 media handle。
 - NFR-005：测试数据全部合成；禁止真实卖家文件、商家数据、API Key、cookie、路径或品牌受限素材。
+- NFR-006：真实图片调用默认单并发；适配器遵守官方当前图片限流基线，不排队形成无界积压，所有 HTTP/JSON/base64/decoded image 缓冲均有硬上限。
+- NFR-007：每次付费调用的 content-free 台账记录 operation、模式、开始/终态、调用计数、图片计数、稳定失败类、延迟区间与配置 identity；不记录 prompt、附件或 provider payload。
 
-## 5. 当前限制
+## 5. 当前事实与限制
 
-- 固定 MiniMax-M3 catalog 只声明 `text/image` 输入；这不是媒体输出能力证据。
-- 固定 yijie-codex Runtime 有 `imageGeneration` item，但当前 MiniMax provider 未启用对应 extension；视频/文件/report 没有既有 Runtime output item。
-- 因此本包把通用协议/UI设计与 producer activation 分开；本地合成 vertical slice 可以验收展示链路，但不能证明真实生成质量或费用可控。
+- 历史基线只证明 MiniMax-M3 的 text/image 输入和真实文本输出；它没有自动调用真实图片 provider。
+- 固定 Runtime 已有 experimental `thread/start.dynamicTools` 与反向 `item/tool/call`，本期选择它作为
+  M3→Host 的结构化工具通道；内置 `imageGeneration` 扩展依赖 OpenAI auth 且固定 OpenAI 图片模型，不能用于本需求。
+- MiniMax 官方当前证明的 I2I 是单张 `subject_reference.character`，因此首版不承诺通用图片编辑。
+- S10D-H 是 strict-local/keyless/synthetic 验证骨架，已实现并尝试运行但尚未通过；它与真实 image-01 S12 阶段互不替代。

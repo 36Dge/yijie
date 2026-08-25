@@ -4,7 +4,10 @@
 
 `contract-impact = semantic`。
 
-现有 Agent session v1/v2 event 是 closed union，直接向 v2 增加 Artifact variant 会让严格 consumer 失败。本需求计划采用显式 `/v3/.../events?event_schema_version=3` 和 v3 history/resource surface，并保持 v1/v2 wire 不变；但现有 Runtime `imageGeneration` item 的解释将从无内容的普通 lifecycle item 变为可持久化、可预览、可保存结果，同时新增 retention、完整性和 native 保存语义。按最高风险分类为 semantic，不能只按新增 v3 形状标为 additive。
+现有 Agent session v1/v2 event 是 closed union，直接向 v2 增加 Artifact variant 会让严格 consumer 失败。本需求计划采用显式
+`/v3/.../events?event_schema_version=3` 和 v3 history/resource surface，并保持 v1/v2 wire 不变；但 Runtime
+dynamic tool/reverse request 将新增 Host 付费 side effect，结果进入可持久化、可预览、可保存的 Artifact 链路，同时引入
+幂等、取消、retention 与完整性语义。按最高风险分类为 semantic，不能只按现有 v3 image 形状未变而标为 additive。
 
 如果实施时原地扩充 v2 closed union、改变既有 `assistant_append`/terminal 顺序、让旧 history reader 读取新必填形状，或修改默认权限解释，分类必须升级为 `breaking`。
 
@@ -17,14 +20,22 @@
 | Host v2 event payload 只投影 text/reasoning/item lifecycle，未保存输出内容 | `yijie-agent-host/internal/session/events.go`、`service.go` |
 | 固定 Runtime app-server ThreadItem 已包含 `imageGeneration` | `yijie-codex/codex-rs/app-server-protocol/src/protocol/v2/item.rs` |
 | MiniMax catalog 只声明 text/image input，provider capability 未启用 image generation | `yijie-agent-host/internal/codex/provider.go` 与固定 Runtime capability gates |
+| 固定 Runtime 支持 thread-start dynamic tool 注册及反向 `item/tool/call` | `yijie-codex/codex-rs/app-server-protocol/src/protocol/v2/thread.rs`、`item.rs` 与 `app-server/src/dynamic_tools.rs` |
+| Host 当前对所有带 id 的 Runtime 反向请求统一返回 method-not-found | `yijie-agent-host/internal/codex/protocol.go` |
+| 固定 Runtime 内置 image generation 扩展要求 OpenAI actor/auth 且固定 OpenAI 图片模型 | `yijie-codex/codex-rs/core/src/tools/spec_plan.rs` 与 image generation extension |
 | 当前 CSP 允许 image `blob:`，没有显式 video `media-src blob:` | `yijie-desktop/src-tauri/tauri.conf.json` |
 | FEAT-127 明确把模型生成图片/文件展示排除在范围外 | `docs/features/FEAT-127-multimodal-chat-attachments/` |
 
 ## 3. 推荐数据流
 
 ```text
-Runtime/provider/tool output
-  -> Agent Host validates and announces Artifact v3
+用户请求 + 可选单张当前 turn 图片附件
+  -> MiniMax-M3 选择 Host 注册的 generate_image dynamic tool
+  -> Runtime 反向 item/tool/call(thread/turn/call identity + closed args)
+  -> Agent Host policy/idempotency/budget gate
+  -> MiniMax China image-01 adapter (T2I or subject_reference.character)
+  -> strict base64/media/size/digest validation
+  -> Agent Host validates and announces Artifact v3 (provenance=provider)
   -> authenticated local content transfer with opaque reference
   -> Desktop native validates length/media/digest/scope
   -> SQLCipher artifact authority + bounded preview cache
@@ -46,11 +57,16 @@ Runtime/provider/tool output
 | yijie-codex | read-only upstream Runtime authority/capability investigation | Runtime Team | `develop` behind remote by 1 / `0ce5902ed400866be0196886bb78f693a004d68d` / clean |
 
 `yijie-api`、Infra、Connectors、Knowledge、Admin Web 首期本地 slice 不修改。生产云存储、分享和业务主状态不进入本需求。
+`yijie-codex` 首选保持代码不变并固定现有 dynamic tool 协议证据；若 compatibility spike 证明当前 pin 无法让
+MiniMax-M3 调用或 Host 响应 `item/tool/call`，必须停止并重新评审 Runtime fork 变更，不能退回关键词路由。
 
 ## 5. 存储与 migration
 
 - Desktop 需要 SQLCipher expand migration：Artifact metadata、message relation、content chunk/BLOB 或受控 encrypted payload、preview state、retention 和 save receipt。
 - Agent Host 只保留传输所需的短期 owner-only encrypted spool 与 opaque reference，不成为长期业务数据库。spool 位于 app-private 临时目录、文件权限 `0600`、内容用每进程临时密钥加密且密钥不落盘；Host 重启时先清除不可恢复的旧 spool。Desktop 成功接收并 ACK、staging `staged_at + 24h` 到期或 Host 重启时删除。
+- I2I 参考图不得写入普通 Host 日志、bbolt replay 或 Runtime transcript 副本。Host 在 StartTurnV2 校验后只为当前
+  active turn 建立有界 owner-only 短期引用；tool terminal、turn terminal、interrupt、超时或重启即清除。
+- Provider JSON body、base64 响应和 decoded bytes 只能存在于有硬上限的内存/加密 staging 中；完成 Artifact commit 后释放中间缓冲。
 - v1-v7 Chat 数据库 reader 必须继续工作；新 reader 为旧消息合成无 Artifact 的 projection。
 - migration 为 forward-only candidate 时必须记录备份/roll-forward 边界，不能假定旧 Desktop 可打开 future schema。
 - G2 已批准 Desktop SQLCipher incremental BLOB；S6-READINESS 将 image preview 修改为 image-only
@@ -62,6 +78,9 @@ Runtime/provider/tool output
 
 - 数据分类：`confidential`。报告可能包含店铺经营数据，文件名、标题和缩略图也可能敏感。
 - Host/Desktop event 与日志只携带 opaque ID、kind、stage、大小等安全 metadata；不记录 bytes、正文、路径、token、prompt 或 raw provider error。
+- MiniMax Key 归 Host secret 配置所有；不得转交 Runtime、Desktop 或 WebView。Authorization header、完整 prompt、
+  参考图 Data URL、完整 base64、provider response 与 `trace_id` 不进入公开边界；诊断只保留 content-free 稳定类与本地 correlation。
+- 官方允许 I2I 使用公网 URL，但易界首版禁止 URL 输入，避免 SSRF、重定向与模型诱导外传；只接受当前 turn 已授权附件的 Base64 Data URL。
 - Artifact content 只能由同一 owner/tenant/session 的 native client 读取；loopback 不是认证替代品。
 - HTML/SVG/宏/脚本/远程资源不执行。report renderer 只接受 closed、versioned、安全 section schema。
 - 保存属于用户显式本地文件写入，必须经过 native dialog、路径校验、symlink/覆盖处理和原子写；S6-READINESS
@@ -71,19 +90,26 @@ Runtime/provider/tool output
 
 ## 7. AI/provider 影响
 
-- 本需求不修改 MiniMax prompt 或模型本身，改变的是 Runtime/Host output projection 与能力 gating。
-- 固定 Runtime `imageGeneration` 只构成上游形状证据，不构成 MiniMax 可用性、费用、延迟或质量证据。
+- 本次新增可选 dynamic tool 与最小 developer/tool instruction，属于 `ai_behavior_change=tool`；模型仍固定 MiniMax-M3。
+- Agent Host 只响应 Runtime 的结构化调用，不从自然语言自行判断。工具只在 exact real-image flag、有效 Host Key、
+  中国区 endpoint/model pin、预算与会话 authority 同时成立时注册。
+- 图片 API 固定 `image-01`；按单次 POST 直接返回最终 base64 的官方请求/响应形态实现，不发明轮询接口。
 - video/file/report 首期只有通用 contract/UI 与 synthetic fixture；真实 producer 要分别登记 API/tool authority、费用授权、模型版本、合规与 Eval。
-- 未经用户明确授权，不调用真实付费模型或媒体生成 API。
+- 用户已授权最多 5 次、每次 `n=1` 的图片开发验证；计划 4 次（S12E/S12F 各一次 T2I/I2I），
+  另有 1 个 repair slot 只供明确根因修复后复验；它是第 5 个预算额度，不限定物理发送序号。S12 campaign 当前
+  used `0/5`、reserved `0`；此前 standalone success 不进入该 epoch，也不等于 yijie capability 或生产 activation，
+  也不授权自动重试或其它媒体调用。
 
 ## 8. 风险等级与依赖
 
 - 风险等级：high。原因是跨仓公共事件、confidential 本地内容、native 文件写入、媒体解码、CSP 与大对象资源管理。
-- 不新增云依赖。候选实现应优先使用已有 Go/Rust/TypeScript 依赖；新增 parser/media/crypto 依赖需单独审批和许可证/漏洞检查。
+- 新增外部依赖为 MiniMax 中国区图片生成 API；不新增自建云资源。候选实现应优先使用已有 Go HTTP/图片解析能力；新增 parser/media/crypto 依赖需单独审批和许可证/漏洞检查。
 - 当前根工作区不是 Git repo；每个兄弟仓独立分支、状态、提交和发布。
 
 ## 9. 冲突与处理
 
 - FEAT-127 的非目标明确排除生成结果展示。本需求新增 FEAT-128 Pattern，只覆盖该非目标，不篡改 FEAT-127 历史。
 - 通用 Chat Pattern 已要求结构化结果卡，本需求为其补齐具体协议和交互。
-- “MiniMax 支持多模态”与当前代码事实不等价。交付包记录为 capability gate，而不是默认开启真实媒体生成。
+- 历史“MiniMax 支持多模态不等于已能输出图片”仍成立；本次计划以明确工具、Host adapter 和后续真实证据
+  关闭 image kind 的能力缺口，当前尚未关闭，也不能外推到视频/文件/report。
+- S10D-H 仍要求 zero-key/zero-provider；真实 provider 测试使用独立 S12 harness、flag、账本与证据，不能改写 H 的失败或授权边界。

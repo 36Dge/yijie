@@ -1,4 +1,126 @@
-# Codex 生产级需求全生命周期实践手册
+# Codex 双模式需求交付手册
+
+## Profile 路由
+
+新需求使用 schema v3，并在创建时固定：
+
+- `delivery_profile: demo_fast`：默认。目标是 8–16 小时内完成真实可用 Demo。
+- `delivery_profile: production_hardened`：显式选择。执行后文完整生产生命周期。
+- `exposure: local | public`：决定是否需要公开 Demo 检查，不改变 Profile 本身。
+
+历史 schema v1/v2 保持原语义；schema v2 视为历史 `production_hardened`，不会自动降级为 Demo。
+
+## A. demo_fast：真实服务快速闭环
+
+### A0. 产品、逻辑与 UX 一次定稿
+
+Codex 在实现前完成一个推荐方案，包含：
+
+- 目标用户、问题、真实用户结果、In/Out scope；
+- 主流程和必要业务规则；
+- 最多 5—10 条 Must AC；
+- `idle/loading/success/empty/error/retry/cancel` 中每个状态的行为；
+- 布局、主次操作、反馈、预览/保存和视觉方向；
+- 真实代码入口、受影响仓库和工作区已有改动；
+- `contract-impact`、权威源和 source-first 实施顺序；
+- 付费调用、破坏性操作、生产写入和真实数据边界。
+
+不影响用户目标、安全、数据、成本或不可逆架构的未知项，由 Codex 给出推荐默认值继续，不逐项等待。
+
+退出条件 D0：逻辑与 UI 没有阻断性空洞；Must AC 可操作判断；Contract First 和外部授权边界明确。
+
+### A1. 整个需求连续实现
+
+不建立治理切片，不执行 per-slice G3。Codex 可以按以下技术依赖顺序编码：
+
+```text
+权威契约/官方第三方协议
+  → provider/domain/storage
+  → event/API boundary
+  → consumer/UI
+  → focused checks
+```
+
+这只是编码顺序，不是多个交付 Gate。最终只用完整用户结果判断完成。
+
+保留的工程要求：
+
+- 契约源先于下游，生成物通过正确入口产生，不复制影子 DTO；
+- 只补能保护核心逻辑、错误映射和真实边界的 focused tests；
+- 不夹带无关重构、全仓格式化或未经批准的依赖升级；
+- 不使用真实 PII，不泄漏 secret，不超出付费/外部副作用授权；
+- 实现完成后立即启动正常真实服务，而不是先扩建治理 harness。
+
+明确延后到公开/生产升级的内容：完整性能、安全、韧性、migration 矩阵、baseline breaking matrix、
+harness qualification、三项拆分 E2E、全仓 full-green、灰度、Dashboard、发布/回滚和线上观察。
+
+### A2. 真实服务启动与 Bug 循环
+
+`exposure=local` 默认先执行 ADR-0018 `local_demo_direct`：canonical launcher 自动绑定固定本地
+identity/tenant/capabilities、启动必要 sidecar 并进入首个业务主页面。正常 Demo 启动不得显示登录页、
+打开 OIDC 浏览器或要求账号密码。Host 内部 token 与 Provider Key 属于自动管理的机器凭据，不等于
+用户登录；public/production 不适用此例外。
+
+```text
+正常启动真实服务
+  → 检查 readiness
+  → 操作真实 happy path
+  → 检查最终用户结果/Artifact
+  → 验证一个代表性 failure/retry
+  → 有 Bug：定位、修复、重启、复测
+  → 一次 fresh run 中全部 Must AC 通过
+```
+
+真实服务是产品实际入口、真实 Runtime/Provider/数据库/Host/Desktop 组合。browser-only、mock-only、
+synthetic Artifact、直接 seed Store 或第二个测试 App 不能满足 D4。
+
+### A3. 时间盒与停止条件
+
+| 条件 | 必须动作 |
+|---|---|
+| 30 分钟没有新增事实 | 停止猜测式局部补丁，读取真实日志和完整调用链 |
+| 90 分钟同一核心阻塞 | 采用最简单方案、关闭非核心花活或提出一个 workaround |
+| 非核心验证累计 120 分钟 | 登记限制并降级，不继续阻断业务结果 |
+| 核心路径累计 240 分钟仍不可用 | 更换架构、缩小 MVP 或请求一个关键决定 |
+| 总工时达到 16 小时仍未 D4 | 停止扩建流程，重新定范围和估时 |
+
+以下情况无论 Profile 都要立即停止并请求明确授权：真实敏感数据、生产写入、破坏性 migration、
+超出预算的付费调用、公开部署、commit/push/tag 或会改变安全/契约权威边界的决定。
+
+### A4. D4 完成标准
+
+- 正常本地启动命令和 readiness 成功；
+- fresh local 启动零登录交互，并直达实际业务主页面；
+- 所有 Must AC 在一次 fresh run 中 PASS；
+- 真实 happy path 产生可观察/可保存结果；
+- 一个代表性错误能正确提示并重试或恢复；
+- focused build/test/check 通过；
+- Loading/error/retry 不会困住用户；
+- 有截图、录屏、Artifact 或脱敏 request ID；
+- 完整 diff/status 已检查；
+- 没有崩溃、数据破坏、秘密泄漏、死循环或阻断使用的 Bug；
+- 已知非阻断限制被明确记录。
+
+D4 表示“本地真实 Demo 可用”，不表示 G4、Production Ready 或 Delivery Complete。
+
+### A5. DP 公开 Demo
+
+`exposure: public` 在首次对外访问前必须额外验证：
+
+1. secret 只在服务端环境或 Keychain，不进入客户端、源码、日志和错误；
+2. 鉴权与数据边界适合公开访问，或公开服务不处理受保护数据；
+3. 输入、文件、URL、大小与超时有边界；
+4. 付费 API 有调用频率、并发和成本上限；
+5. 错误不泄露敏感内容或调试栈；
+6. 有最简停止/恢复方式；
+7. 公网入口执行一次真实 smoke。
+
+以下任一出现时，不再只用 DP，而应建立显式 `production_hardened`：付费用户、SLA、多租户/PII、
+重要持久数据、不可逆 migration、合规、团队值班或业务依赖。
+
+---
+
+## B. production_hardened：完整生产生命周期
 
 ## 一、工作方式
 
