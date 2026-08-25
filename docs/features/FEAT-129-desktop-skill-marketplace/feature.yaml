@@ -81,7 +81,7 @@ must_acceptance:
   - id: "AC-001"
     statement: "demo_fast local 启动后，左侧插件入口可进入 /plugins；页面按货源与选品 5、市场调研与分析 9、内容创作与营销 7、流量获取与广告 9、店铺运营与基建 8 展示首批 38 个 Skill，每张卡片具有规范图标、名称、简介和真实状态。"
     verification: "fresh 启动桌面端，在 1180×760 的亮色和暗色主题中核对路由、分类计数、38 张卡片、图标注册与状态；保存截图。"
-    status: "pending"
+    status: "PASS"
   - id: "AC-002"
     statement: "未安装卡片的加号悬停显示“安装”；点击后仅从客户端内置资源离线读取，完成清单、SHA-256、文件数量、解压大小、路径穿越和符号链接校验，并通过同卷临时目录原子安装且阻止重复点击。"
     verification: "断网执行一次成功安装，并分别以摘要错误、Zip Slip、符号链接和重复点击做 focused test；确认失败无残留、成功产生受管安装回执。"
@@ -89,27 +89,27 @@ must_acceptance:
   - id: "AC-003"
     statement: "安装成功的 Skill 默认启用；Agent Host 将受管安装根目录注册给固定 Runtime，下一轮模型快照可见该 Skill，并至少有一个不依赖外部连接器的代表性 Skill 完成真实调用。"
     verification: "在 fresh real-service run 中安装代表 Skill，核对 skills/list 与 Host 投影，再发起新一轮对话并保存模型实际使用该 Skill 的脱敏证据。"
-    status: "pending"
+    status: "PASS"
   - id: "AC-004"
     statement: "已安装卡片显示启用开关；关闭后文件保留但下一轮模型不可见，重新开启后下一轮恢复可见，状态在桌面端和 Agent Host 重启后保持。"
     verification: "执行开关关闭、重启、skills/list、新一轮对话、重新开启和再次查询；核对 .yijie-disabled 或等价持久状态及 Runtime 结果。"
-    status: "pending"
+    status: "PASS"
   - id: "AC-005"
     statement: "已安装卡片的删除按钮默认隐藏或灰色，卡片操作区悬停时出现、直接悬停时变红；点击展示指定卸载文案，取消不变更，确认仅删除受管副本和注册状态并恢复加号。"
     verification: "通过鼠标和键盘分别检查 hover/focus/modal；先取消再确认，核对内置资源仍存在、受管副本被删除、Runtime 不可见且卡片恢复未安装。"
-    status: "pending"
+    status: "PASS"
   - id: "AC-006"
     statement: "客户端在启动、进入 Skill 广场、应用升级、窗口恢复及目录变化通知时，以受管安装目录为安装真相；手工移走目录会停止暴露并恢复加号，损坏目录进入可重装错误态而非继续加载。"
     verification: "在页面外删除和破坏代表 Skill 目录，依次触发文件监听、窗口恢复和页面重入，核对 UI、注册状态与 skills/list 自动收敛。"
-    status: "pending"
+    status: "PASS"
   - id: "AC-007"
     statement: "客户端升级后比较内置与已安装版本：未安装项只更新可安装版本，已安装项原子升级并保留启停状态，失败回滚旧版，新增项不自动安装，下架项保留并标记不再随客户端维护。"
     verification: "以两份 fixture 清单覆盖新增、未安装新版、已安装新版、下架与升级失败，核对版本、启停标记、旧版回滚及 UI 标签。"
-    status: "pending"
+    status: "PASS"
   - id: "AC-008"
     statement: "精确 local + demo_fast 启动后不出现登录、账号鉴权或手动授权流程，固定本地身份默认具备 plugin.read/plugin.manage 且 Desktop 透明携带 owner-only bearer；Host 仍拒绝缺失/错误 bearer、越权、未知 ID 和受管根目录外路径，public/production 不得启用该免登录入口，依赖缺失的 Skill 明示能力未就绪。"
     verification: "fresh 启动确认零登录直达 /plugins；再执行缺失/错误 bearer、能力矩阵、未知 Skill ID、路径逃逸、非 owner bearer、public/production profile 和缺失 Runtime 能力测试。"
-    status: "pending"
+    status: "PASS"
   - id: "AC-009"
     statement: "Skill 广场 UI 符合 yijie-desktop 设计规范：复用设计 Token、Naive UI 与 YjIcon/Lucide，覆盖亮暗主题、loading/empty/error/retry/cancel、键盘焦点、tooltip、确认弹窗及最小窗口下无关键操作遮挡。"
     verification: "按 docs/design/docs/design/07-ai-codex/03-ui-review-checklist.md 完成自动化与人工视觉检查，并保存关键状态截图。"
@@ -145,9 +145,12 @@ contract:
       status: "PASS"
       scope: "Manifest v1/v2 contract lock; producer commit 10c45bec29603b002e861e1499d5b4e684251af5 publishes 38 bundled/installable Skills for local-development and desktop-release"
     - repository: "yijie-desktop"
-      full_commit: "d6dff903e0c12b6a5e69599df1e33ef46d8bea6b"
+      full_commit: "ee3c508b7e9af4372c6bea758915ddb8735f422a"
+      contract_source_full_commit: "164b14f609537d727a52326832da04430aecc4ab"
+      agent_host_full_commit: "1b7bfd1ce4323e52035b2ba1e62842c2d332d9ed"
+      skills_producer_full_commit: "10c45bec29603b002e861e1499d5b4e684251af5"
       status: "PASS"
-      scope: "Historical agent-host-skills-v1 lock and old single-Skill resource consumer PASS; Contracts 0.5.1/v2 and yijie-skills 0.3.0 resource sync pending"
+      scope: "Immutable Desktop consumer pins Contracts 0.5.1, Host v2/38 and Skills 0.3.0; validates 38 archives and 5/9/7/9/8 for local-development/desktop-release, calls only Host transactions, and renders the 38-card lifecycle UI"
   redistribution_gate:
     scope: "38 FEAT-129 Skills"
     attestation_id: "FEAT-129-DESKTOP-DISTRIBUTION-2026-08-25"
@@ -190,14 +193,30 @@ contract:
       command: "pnpm generate:check"
       status: "PASS"
       exit_code: 0
+    - repository: "yijie-desktop"
+      command: "pnpm skills:sync:all && pnpm skills:check && pnpm skills:release-boundary"
+      status: "PASS"
+      exit_code: 0
+    - repository: "yijie-desktop"
+      command: "pnpm test:demo-fast && pnpm lint && pnpm build"
+      status: "PASS"
+      exit_code: 0
+    - repository: "yijie-desktop"
+      command: "cargo fmt --all -- --check && cargo clippy --locked --all-targets -- -D warnings && cargo test --locked --lib"
+      status: "PASS"
+      exit_code: 0
+    - repository: "yijie-desktop"
+      command: "pnpm tauri:build:demo-fast && pnpm tauri:build -- --debug --bundles app --no-sign"
+      status: "PASS"
+      exit_code: 0
 
 external_authorizations:
-  paid_calls: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+  paid_calls: { allowed: true, max_actions: 1, approved_by: "段成威（当前用户）", approved_at: "2026-08-25T14:40:52Z" }
   destructive_operations: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
   production_writes: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
 
 implementation:
-  status: "active"
+  status: "complete"
   real_entrypoint: "cd ../yijie-desktop && pnpm tauri:dev"
   mock_only: false
 
@@ -205,15 +224,15 @@ verification:
   status: "NOT RUN"
   verified_at: "NOT RUN"
   startup:
-    status: "NOT RUN"
+    status: "PASS"
     command_or_steps: "在 yijie-desktop 执行 pnpm tauri:dev，等待 Tauri、Agent Host 与固定 Runtime readiness。"
     environment: "Desktop local / demo_fast / fresh application process / no cloud Skill service"
-    actual_result: "已执行 pnpm tauri:dev 完成资源同步、前后端构建与 Host readiness；随后从 fresh local + demo_fast debug app 零登录进入 /plugins。完整 verification 仍因 real_smoke 未含模型调用且 representative failure 未跑而保持 NOT RUN。"
+    actual_result: "canonical runner 复验 exact Contracts/Host/Skills 与 38 项 local-development 资源后启动 Vite/Tauri/Host/Runtime；fresh app 零登录进入 /plugins。内部 bearer 未移除，无 bearer 请求实测返回 401。"
   real_smoke:
-    status: "NOT RUN"
+    status: "PASS"
     command_or_steps: "打开 /plugins，离线安装代表 Skill，验证默认启用与下一轮模型真实调用；再验证停用、重启、重新启用、卸载和外部删除同步。"
     environment: "Desktop local / demo_fast / bundled Skill fixture / real Agent Host and pinned Runtime"
-    actual_result: "fresh Desktop frame 已完成离线安装默认启用、停用、Desktop/Host 重启保持、重新启用、确认卸载并核对只删用户副本；再次安装后外部移走目录，页面重入恢复未安装。未发起付费模型真实对话，未验证即时 watcher，因此完整项未通过。"
+    actual_result: "fresh Desktop frame 展示 38 项与 5/9/7/9/8，完成离线安装默认启用、停用、Desktop/Host 重启保持、重新启用、确认卸载、再次安装、外部移走后 watcher/scan 恢复未安装与原位 retry。唯一一次授权的 MiniMax-M3/minimax turn completed；Runtime 注入的 copywriting 正文摘要与已安装 SKILL.md 完全一致。"
   representative_failure:
     status: "NOT RUN"
     command_or_steps: "使用摘要损坏或路径穿越 fixture 安装，确认安全拒绝、无残留、模型不可见且原卡片可重试。"
@@ -245,7 +264,7 @@ verification:
       status: "PASS"
       exit_code: 0
     - repository: "yijie-desktop"
-      command: "pnpm skills:sync:local && pnpm skills:check:local && pnpm skills:release-boundary && pnpm tauri:build:demo-fast"
+      command: "pnpm skills:sync:all && pnpm skills:check && pnpm skills:release-boundary && pnpm tauri:build:demo-fast && pnpm tauri:build -- --debug --bundles app --no-sign"
       status: "PASS"
       exit_code: 0
     - repository: "yijie-desktop"
@@ -272,12 +291,17 @@ verification:
     - "../yijie-desktop/contracts/agent-host-skills-v1.lock.json"
     - "../yijie-desktop/contracts/desktop-skill-bundle-local.lock.json"
     - "../yijie-desktop/src-tauri/target/debug/bundle/macos/易界 AI.app/Contents/Resources/skill-packages/bundle-manifest.json"
-  diff_review: { status: "PARTIAL", summary: "Agent Host FEAT-129 v2/38 增量、契约/producer 锁及 focused diff 已复核并通过 diff-check；Desktop 旧单 Skill 增量和既有 FEAT-128/FEAT-130 并行改动保持隔离。Desktop 0.3.0 消费、跨仓完整 base/head 审阅、fresh D4 和视觉 artifacts 仍待执行。" }
+    - "evidence/desktop-skill-marketplace-light-1180x780.jpeg"
+    - "evidence/desktop-skill-marketplace-dark-1180x780.jpeg"
+    - "evidence/desktop-skill-installed-1180x780.jpeg"
+    - "evidence/desktop-skill-uninstall-modal-1180x780.jpeg"
+    - "evidence/ac-003-copywriting-real-call.md"
+  diff_review: { status: "PASS", summary: "Desktop FEAT-129 v2/38 增量已从 d0b0eee 隔离基线完整复核并形成 immutable commit ee3c508b7e9af4372c6bea758915ddb8735f422a；FEAT-128 未受影响。D4 仍因产品证据缺口而未通过，不是 diff review 缺口。" }
   known_limitations:
     - "38 项所有权、desktop-distribution、来源摘要和静态安全审核已关闭；local-development 与 desktop-release 均获授权，不再存在 FEAT-129 源码许可阻断。"
     - "外部平台 API、账号、数据访问和高影响写操作仍由 Runtime/Agent Host 权限及对应服务条件控制；不影响 Skill 安装、发现和调用，但不能保证外部平台操作一定成功。"
-    - "Agent Host 已完成 Contracts 0.5.1 / Manifest v2 与 yijie-skills 0.3.0 的 38 项 conformance；Desktop 仍固定旧单 Skill resource lock，必须继续完成 Tauri/Desktop 0.3.0 资源同步和完整 D4，当前不能声称 Desktop 已可调用全部 38 项。"
-    - "Tauri sidecar/resources、Desktop consumer/UI 和旧单 Skill fresh 生命周期已验证；模型真实对话、即时目录通知/升级/故障注入、38 Skill UI 和完整视觉尚未验证。"
+    - "Desktop 已完成 Contracts 0.5.1 / Host 1b7bfd1 / Skills 0.3.0 的精确消费、双渠道 38 项资源、目录通知和 38 卡片 UI；实现 commit 为 ee3c508b7e9af4372c6bea758915ddb8735f422a。"
+    - "copywriting@0.1.0 的唯一一次授权付费模型调用已完成，额度 1/1 用尽且 AC-003 PASS；真实 Desktop 恶意包 frame、最小窗口和完整故障/全状态视觉矩阵尚未验证，因此 AC-002/009/010 与完整 D4 保持 pending/NOT RUN。"
     - "Host operation journal 不裁剪已用 ID；达到 4096 条后新 operation 返回 skill_busy。长期运行前必须先在后续契约版本定义 retention/compaction，不能由消费者单方面遗忘幂等键。"
     - "macOS Host 门禁全绿；额外 Windows 交叉编译被既有 internal/codex/runtime.go 的 syscall.Stat_t 可移植性问题阻断，Windows Desktop 交付前仍需关闭。"
 

@@ -1,6 +1,6 @@
 # FEAT-129 — Desktop 本地 Skill 广场 Demo Brief
 
-> Profile: `demo_fast` · Exposure: `local` · Checkpoint: `D0` · Created: `2026-08-25`
+> Profile: `demo_fast` · Exposure: `local` · Checkpoint: `D4 evidence collected / gate not passed` · Created: `2026-08-25`
 
 ## 1. 用户问题与结果
 
@@ -134,12 +134,12 @@ UI 实现以 [`yijie-desktop/docs/design/docs/design`](../../../../yijie-desktop
 - 受影响仓库：`yijie`（Feature Package）、`yijie-contracts`（增量契约）、`yijie-skills`（内容与构建）、`yijie-agent-host`（本机管理接口和 Runtime 投影）、`yijie-desktop`（导航、页面、Tauri、资源与 App Data）。`yijie-codex` 仅作为固定上游依赖，不计划修改。
 - 真实入口：在 `yijie-desktop` 执行 `pnpm tauri:dev`，由 Tauri 启动 Agent Host sidecar 和固定 Runtime；最终 D4 必须 fresh process 验证，不能用 mock-only 页面或旧服务进程代替。
 - 本地服务可用性：上述精确 local + demo_fast 入口启动成功后，Skill 广场及其本地服务必须无需用户登录、账号鉴权或手工授权即可直接使用；这是 Desktop 自动引导的本机身份流程，不得通过删除 Host bearer/capability 校验实现。
-- D0 时 Desktop 仅有禁用的“插件”导航和 `plugin.read`；历史单 Skill consumer 已补 `/plugins` 与 `plugin.manage`，当前仍需精确同步 Contracts 0.5.1 / Skills 0.3.0 和 38 项资源。
+- D0 时 Desktop 仅有禁用的“插件”导航和 `plugin.read`；历史单 Skill consumer 随后补齐 `/plugins` 与 `plugin.manage`。当前 Desktop 增量已经精确同步 Contracts 0.5.1、Agent Host `1b7bfd1ce4323e52035b2ba1e62842c2d332d9ed`、Skills `10c45bec29603b002e861e1499d5b4e684251af5` 和 38 项双渠道资源。
 - 用户提供的本地构建输入记为 `<local-skill-source>/05Skill广场`。D0 只记录该来源类别；实现不得在运行时代码、清单或发布包中硬编码个人绝对路径，也不得修改或删除该源目录。
 - D0 原始扫描为 38 个 Skill、241 个文件、约 2.6 MiB；排除 cache/debug 文件并补 NOTICE 后，`yijie-skills@0.3.0` 的正式审核集合为 258 个打包文件，逐项具备稳定版本、来源、许可、风险、能力依赖和 `iconKey`。
 - 38 项中 13 项为 model-only、25 项为 tool-assisted。能力依赖不阻断安装、启用或 Runtime 可见；具体外部平台操作仍取决于本地 Runtime 能力、账号、数据权限与服务状态。
-- `yijie` 与 `yijie-agent-host` 已迁移到独立 `feat/feat-129-desktop-skill-marketplace` 分支；Agent Host v2/38 实现已形成不可变 commit `1b7bfd1ce4323e52035b2ba1e62842c2d332d9ed`。`yijie-desktop` 的既有 FEAT-128 工作保持原样且本阶段不修改。实施禁止 reset、覆盖或混入无关改动。
-- 本需求不授权付费调用、生产写入或 Codex 执行受管功能以外的破坏性删除。产品内卸载仍需用户在 UI 二次确认，并受原生路径边界保护。
+- `yijie`、`yijie-agent-host` 与 `yijie-desktop` 均已迁移到独立 `feat/feat-129-desktop-skill-marketplace` 分支；Agent Host v2/38 实现 commit 为 `1b7bfd1ce4323e52035b2ba1e62842c2d332d9ed`，Desktop v2/38 实现 commit 为 `ee3c508b7e9af4372c6bea758915ddb8735f422a`。Desktop 以 `d0b0eee6336550ffded16723390fc9ca01a280d4` 为隔离基线，既有 FEAT-128 分支与提交保持不变。
+- 本需求授权最多 **1 次**付费模型调用，且仅可用于 FEAT-129 D4 中 `copywriting@0.1.0` 的真实模型调用验证；该额度已于 `2026-08-25T15:20:38Z` 执行并用尽，不得扩展到其他付费操作。生产写入和 Codex 执行受管功能以外的破坏性删除仍未授权。产品内卸载仍需用户在 UI 二次确认，并受原生路径边界保护。
 
 ## 7. 推荐方案、前置条件与停止条件
 
@@ -184,7 +184,24 @@ UI 实现以 [`yijie-desktop/docs/design/docs/design`](../../../../yijie-desktop
 - 每项已固定来源摘要、包树摘要、归档摘要、风险等级、能力依赖、`iconKey` 和静态安全审核；共审核 258 个打包文件，不在构建期执行 Skill 脚本、不安装依赖，也不访问真实账号或商家数据。外部平台 API、账号、数据和高风险写操作仍受 Runtime/Agent Host 权限与审计控制，但不再构成源码安装或桌面再分发阻断。
 - `yijie-skills@0.3.0` 不可变 commit 为 `10c45bec29603b002e861e1499d5b4e684251af5`，精确消费 `yijie-contracts@0.5.1` commit `164b14f609537d727a52326832da04430aecc4ab` 的 Manifest v2（SHA-256 `39a898111ba3dcae2f369fdcb571a2e892830d1d0a57c90ab6210a0ab897a649`）。38 项均为 `bundled + installable`，分类保持 `5/9/7/9/8`，不存在 `catalog-only`、`blocked` 或 `skill_not_installable` 产品条目。
 - 本地包 manifest SHA-256 为 `cc2b9be4d0e640e0888e97f6f7a09149a248386931786a7a089c8094304d94a5`，桌面正式包 manifest SHA-256 为 `9f8459077615514183fdd4c81ff3b6b2ef1ea735257b04c040399d4c91c1daa2`，两渠道共享源码树 SHA-256 `3247a14004c76170cf41a2d854e2ceffa1fd43de6e0ca8bb596f1d61d9be1029`；重复构建字节一致，`make lint` 与 `make test` 通过。
-- 来源/许可阻断至此关闭。Agent Host 已精确消费 Contracts 0.5.1 / Manifest v2 与 `yijie-skills@0.3.0`，完成 38 项双渠道生命周期和固定 Runtime conformance；Host 解析并校验全部 v2 来源、许可、风险、能力依赖、`iconKey`、安装状态和归档字段，content-free Host wire 只投影契约定义的运行状态/blocked reason，卡片元数据由 Desktop 从同一份已验证 App Resource manifest 读取。当前剩余消费差距仅在 Tauri/Desktop 的 0.3.0 资源锁、正式资源同步与 38 卡片 UI；这不是再分发许可阻断，完成前不得宣称当前 Desktop 已可展示并调用全部 38 项。
+- 来源/许可阻断至此关闭。Agent Host 已精确消费 Contracts 0.5.1 / Manifest v2 与 `yijie-skills@0.3.0`，完成 38 项双渠道生命周期和固定 Runtime conformance；Host 解析并校验全部 v2 来源、许可、风险、能力依赖、`iconKey`、安装状态和归档字段，content-free Host wire 只投影契约定义的运行状态/blocked reason，卡片元数据由 Desktop 从同一份已验证 App Resource manifest 读取。截至本历史关闭点，剩余差距是 Tauri/Desktop 的 0.3.0 资源锁、正式资源同步与 38 卡片 UI；该差距已由下一检查点关闭。
+
+### Desktop Contracts 0.5.1 / 38 Skill 消费检查点（2026-08-25）
+
+- `yijie-desktop` 已在独立 FEAT-129 分支形成不可变 commit `ee3c508b7e9af4372c6bea758915ddb8735f422a`，精确固定 Contracts `164b14f609537d727a52326832da04430aecc4ab`、Agent Host `1b7bfd1ce4323e52035b2ba1e62842c2d332d9ed` 与 Skills producer `10c45bec29603b002e861e1499d5b4e684251af5`；Manifest v2 schema 摘要为 `39a898111ba3dcae2f369fdcb571a2e892830d1d0a57c90ab6210a0ab897a649`。
+- 资源同步器分别生成 `local-development` 与 `desktop-release` 目录，校验 38 个归档、`5/9/7/9/8` 分类、来源/许可/风险/能力依赖/`iconKey` 以及跨渠道字节一致性。本地 manifest 为 `cc2b9be4d0e640e0888e97f6f7a09149a248386931786a7a089c8094304d94a5`，桌面正式 manifest 为 `9f8459077615514183fdd4c81ff3b6b2ef1ea735257b04c040399d4c91c1daa2`。
+- `demo_fast` 构建只消费 `local-development`，默认桌面构建强制消费 `desktop-release` overlay；两种 macOS app build 均通过。Tauri 只解析 App Resource/App Data、传递 exact profile/root 并调用 Host 五接口，不解压、回滚、删除或另建安装事务。
+- `/plugins` 已真实展示 38 张卡片和五类计数，完成 `iconKey`、安装 tooltip/loading/error/retry、启停、卸载 hover/danger/modal 与目录变化通知投影；全量 Vitest 为 539 项，Rust library tests 共 267 项（264 passed / 0 failed / 3 ignored），lint/build/fmt/clippy 均通过。
+- fresh local + demo_fast 真实窗口已完成零登录进入、安装默认启用、停用、Desktop/Host 重启重放、重新启用、确认卸载、再次安装后外部移走目录并自动恢复未安装，以及错误态原位重试；内部 owner bearer 与 `plugin.read`/`plugin.manage` 仍保留，并实测无 bearer 返回 401。
+- 视觉证据已保存为 [亮色 38 卡片](evidence/desktop-skill-marketplace-light-1180x780.jpeg)、[暗色 38 卡片](evidence/desktop-skill-marketplace-dark-1180x780.jpeg)、[安装启用态](evidence/desktop-skill-installed-1180x780.jpeg) 与 [卸载确认弹窗](evidence/desktop-skill-uninstall-modal-1180x780.jpeg)。
+- 该检查点不等于 D4 PASS：当时尚未发起模型付费对话，AC-003 所要求的“代表 Skill 被模型真实调用”没有证据；用户已于 `2026-08-25T14:40:52Z` 将授权增补为最多 1 次、仅限本 AC 的真实调用。真实 Desktop frame 也尚未加载摘要损坏或 Zip Slip 包，代表性 failure/retry 仍只由 Host conformance 与 Desktop 自动化分别证明。
+
+### AC-003 真实付费调用检查点（2026-08-25）
+
+- canonical `pnpm tauri:dev` 启动的 Desktop/Agent Host 在 Catalog revision `cc2b9be4d0e640e0888e97f6f7a09149a248386931786a7a089c8094304d94a5` 下安装 `yijie.content-marketing.copywriting@0.1.0`；调用前后均为 `installed + enabled + runtime_visible`。
+- 唯一一次授权的真实模型 turn 使用 `MiniMax-M3/minimax`，显式选择 `$copywriting` 并输入完全合成的 Shopify 商品事实；turn `01a03982-579a-7be0-a2b1-ef46472c4e7e` 以 `status=completed` 结束，未提交第二个 turn，也未执行平台发布或其他外部写入。
+- Runtime rollout 中仅有一个 `copywriting` Skill 注入块；去除 XML 包装后的正文 SHA-256 为 `785a47c30626608911e8b3e6221efb533116518b4463bf16f4419ca43ed9c328`，与受管安装目录中的 `SKILL.md` 完全一致。模型按 Skill 要求输出五段文案并声明仅为未发布草稿，因此 AC-003 已闭合。
+- 脱敏证据见 [AC-003 copywriting 真实调用](evidence/ac-003-copywriting-real-call.md)。完整 D4 仍不因此自动通过：真实 Desktop 恶意包 frame、最小窗口和完整故障/全状态视觉矩阵仍需单独验收。
 
 ### 停止条件
 
