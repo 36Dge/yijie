@@ -1,6 +1,6 @@
 # FEAT-129 Demo 验证
 
-> 当前 checkpoint：`D0` 实现检查点。Contract First、Agent Host conformance、Desktop/Tauri consumer、local-development 资源打包、focused checks 与 fresh happy-path smoke 已完成；由于未执行模型真实调用和 Desktop 恶意包失败帧，下面的完整 D4 仍未通过。
+> 当前 checkpoint：`D0` 实现检查点。38 项所有权/桌面再分发、逐项来源与安全审核、Skills v2 双渠道包及 Agent Host v2/38 conformance 已通过；Desktop 仍需同步 0.3.0 资源并完成 38 卡片 UI，且未执行完整模型调用、Desktop 恶意包失败帧和视觉验收，因此下面的完整 D4 仍未通过。
 
 ## 1. D0 治理检查
 
@@ -8,12 +8,12 @@
 |---|---|---:|---|---|
 | `yijie` | `./docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate D0 docs/features/FEAT-129-desktop-skill-marketplace` | 0 | PASS：schema v3 及 D0 范围/语义门禁通过。 | 2026-08-25 |
 | `yijie` | `node --test tests/codex-feature-delivery.test.mjs` | 0 | PASS：47/47。 | 2026-08-25 |
-| `yijie` | `pnpm feature:audit -- --base-ref HEAD` | 0 | PASS：审计 8 个已提交 Feature Package；仅报告 5 个既有 schema v1 历史警告。FEAT-129 当前新增目录由上一行 direct D0 checker 单独验证，尚未提交。 | 2026-08-25 |
+| `yijie` | `pnpm feature:audit -- --base-ref HEAD` | 0 | PASS：审计 8 个已提交 Feature Package；仅报告 5 个既有 schema v1 历史警告。FEAT-129 的 4 个治理文件已在独立分支跟踪并由 direct D0 checker 验证，当前为待提交修改。 | 2026-08-25 |
 | `yijie` | `pnpm lint` | 0 | PASS：10 个仓库登记及中央 Contract First 治理校验通过。 | 2026-08-25 |
 | `yijie` | `pnpm test` | 0 | PASS：48/48。 | 2026-08-25 |
 | `yijie` | `bash -n docs/dev/codex-feature-delivery/scripts/*.sh` | 0 | PASS。 | 2026-08-25 |
 
-### 首个 Contract First 不可变候选与 consumer pin
+### 历史 v1 候选与当前 Contracts 0.5.1 / Manifest v2 consumer pin
 
 | Repository/CWD | Command | Exit | Result | 时间 |
 |---|---|---:|---|---|
@@ -23,14 +23,20 @@
 | `yijie-contracts` | `pnpm test` | 0 | PASS：45/45 Node tests 与全部 Go packages；包含 Host Skills canonical fixtures、manifest、摘要损坏、Zip Slip 及可复现 fixture。 | 2026-08-25 |
 | `yijie-contracts` | `pnpm breaking HEAD` | 0 | PASS：相对当前工作基线无结构 breaking。 | 2026-08-25 |
 | `yijie-contracts` | `pnpm breaking ea48fe190e18afba728712d1e2cc79cda57f581b` | 0 | PASS：相对 FEAT-129 契约增量前的完整 commit 无结构 breaking。 | 2026-08-25 |
-| `yijie-agent-host` | `make contract-check` | 0 | PASS：Host 精确 pin `yijie-contracts@0.5.0` commit `d6dff903e0c12b6a5e69599df1e33ef46d8bea6b`，OpenAPI/Manifest/Runtime projection/fixture 快照摘要无漂移，generator 为 `oapi-codegen@v2.7.2`。该检查不证明 lifecycle/conformance。 | 2026-08-25 |
+| `yijie-contracts` | `git rev-parse HEAD`、`pnpm generate && pnpm lint && pnpm test` 及 breaking checks | 0 | PASS：Catalog First `0.5.1` 不可变 commit `164b14f609537d727a52326832da04430aecc4ab`；Manifest v2 SHA-256 `39a898111ba3dcae2f369fdcb571a2e892830d1d0a57c90ab6210a0ab897a649`，38 项 fixture 分类为 `5/9/7/9/8`。 | 2026-08-25 |
+| `yijie-agent-host` | 历史 `make contract-check` | 0 | PASS（历史 0.5.0 检查点）：Host 当时精确 pin commit `d6dff903e0c12b6a5e69599df1e33ef46d8bea6b`；已被下方 0.5.1/v2 门禁取代。 | 2026-08-25 |
 | `yijie-agent-host` | `make test` | 0 | PASS：`contract-check` 后执行全仓 `go test -race -cover ./...`；五接口、wire fixture、原子安装/回滚、路径/祖先安全、70+ operation 幂等/冲突、重启重放、401/403、通知合并与 feedback-loop 上界均通过。 | 2026-08-25 |
 | `yijie-agent-host` | `make lint` | 0 | PASS：全仓 `go vet` 与 shell 语法检查通过；Go format 与 `git diff --check` 无输出。 | 2026-08-25 |
 | `yijie-agent-host` | `make runtime-test` | 0 | PASS：使用固定本地 Runtime 二进制/manifest 完成精确 Skill roots、catalog 外 orphan 不可见、安装默认可见、停用不可见、Host/Runtime 重启重放、重新启用和卸载不可见。 | 2026-08-25 |
-| `yijie-agent-host` | `YIJIE_SKILLS_BUNDLE_ROOT=../yijie-skills/dist/skill-packages go test -race ./internal/integration -run '^TestLocalDevelopmentCopywritingBundleConsumption$' -count=1` | 0 | PASS：消费实际 `copywriting@0.1.0` local-development deterministic bundle；未使用契约正常包替代生产者输出。 | 2026-08-25 |
-| `yijie-skills` | `pnpm lint && pnpm test && pnpm package` | 0 | PASS：2 个 Skill/2 个 plugin manifest、4 tests、4 synthetic eval cases；代表包含 5 个审核文件，重复构建字节一致；archive SHA-256 `987dae7003064fa1d0b00a37be0f130eb973a55f966fbf43faf2ed8af84c5138`。 | 2026-08-25 |
-| `yijie-skills` | `contracts/lock.json` 核对 + `pnpm test` | 0 | PASS：`source_revision_kind=git-commit`，精确锁定 `d6dff903e0c12b6a5e69599df1e33ef46d8bea6b` 和 Manifest SHA-256 `d86185a1d5f4d9a136c88b679d50ac3e83bcc2b722eee39cba674c5be3b88469`；4/4 tests 与 4 个 synthetic eval cases 通过。 | 2026-08-25 |
-| `yijie-skills` | `quick_validate.py plugins/yijie-desktop-skills/skills/copywriting` | 0 | PASS：官方 Skill validator 输出 `Skill is valid!`；PyYAML 仅装入隔离临时目录。 | 2026-08-25 |
+| `yijie-agent-host` | 历史单 Skill producer integration | 0 | PASS（历史 0.5.0 检查点）：消费实际 `copywriting@0.1.0` local-development bundle；已被下方双渠道 38 项 conformance 取代。 | 2026-08-25 |
+| `yijie-agent-host` | `make generate && make contract-check && make lint && make test` | 0 | PASS：精确 pin Contracts 0.5.1 commit `164b14f609537d727a52326832da04430aecc4ab`、Manifest v2 SHA-256 `39a898111ba3dcae2f369fdcb571a2e892830d1d0a57c90ab6210a0ab897a649`；生成物、快照、格式、vet、shell 和全仓 race/coverage 无漂移。 | 2026-08-25 |
+| `yijie-agent-host` | `make skills-conformance` | 0 | PASS：从干净 `yijie-skills@0.3.0` commit `10c45bec29603b002e861e1499d5b4e684251af5` 重建 local-development/desktop-release；38 项分类 `5/9/7/9/8`、0 blocked、归档逐字节一致，并在两个渠道各完成查询、扫描、安装、启停、目录移走、重启重放与卸载。 | 2026-08-25 |
+| `yijie-agent-host` | `make runtime-test`（Contracts 0.5.1 增量） | 0 | PASS：除既有 Runtime 门禁外，真实固定 Codex Runtime 对 38 项执行安装可见、全部停用、Host/Runtime 重启重放、全部重新启用和卸载；不调用模型、不需要用户登录。 | 2026-08-25 |
+| `yijie-agent-host` | `git rev-parse HEAD && git status --short` | 0 | PASS：v2/38 consumer 已形成不可变实现 commit `1b7bfd1ce4323e52035b2ba1e62842c2d332d9ed`，位于独立 `feat/feat-129-desktop-skill-marketplace` 分支；提交后工作树干净。 | 2026-08-25 |
+| `yijie-skills` | 历史 `pnpm lint && pnpm test && pnpm package` | 0 | PASS（历史单 Skill 检查点）：代表包重复构建一致；已被下方 0.3.0/38 项门禁取代。 | 2026-08-25 |
+| `yijie-skills` | 历史 0.5.0 contract lock 核对 | 0 | PASS（历史单 Skill 检查点）：当时精确锁定 `d6dff903e0c12b6a5e69599df1e33ef46d8bea6b`；当前权威为下方 0.5.1/0.3.0 记录。 | 2026-08-25 |
+| `yijie-skills` | 历史 `quick_validate.py` copywriting | 0 | PASS（历史单 Skill 检查点）；当前 38 项由 0.3.0 全量 lint/test/audit 取代。 | 2026-08-25 |
+| `yijie-skills` | `make lint && make test && make package && make package-desktop-release` | 0 | PASS：`0.3.0` commit `10c45bec29603b002e861e1499d5b4e684251af5` 精确消费 Contracts 0.5.1 v2；38 项均 `bundled + installable`、0 blocked，258 个审核文件，双渠道重复构建字节一致。local manifest `cc2b9be4d0e640e0888e97f6f7a09149a248386931786a7a089c8094304d94a5`，desktop-release manifest `9f8459077615514183fdd4c81ff3b6b2ef1ea735257b04c040399d4c91c1daa2`。 | 2026-08-25 |
 | `yijie-desktop` | `pnpm generate:check` | 0 | PASS：Public API、Agent Host v2/v3 与 Skills v1 均精确 pin `d6dff903e0c12b6a5e69599df1e33ef46d8bea6b`；Skills lock 固定三份权威摘要、fixture tree 和 10 个已实现 Rust consumer 文件摘要，输出 `native consumer pins are complete`。 | 2026-08-25 |
 | `yijie-desktop` | `pnpm skills:sync:local && pnpm skills:check:local && pnpm skills:release-boundary` | 0 | PASS：从 `yijie-skills@c0aaba17f9ba5534e133b67b9eac43bb7210694f` 生成并复验 1 个 local + demo_fast 资源；manifest SHA-256 `091de202783ae2658d3a8ce3c0ceaedfef023d71fa84c94ff040e72c9421bb2c`、archive SHA-256 `987dae7003064fa1d0b00a37be0f130eb973a55f966fbf43faf2ed8af84c5138`。默认 Tauri 配置不含 local-development Skill，配置覆盖旁路 fail closed。 | 2026-08-25 |
 | `yijie-desktop` | `pnpm tauri:build:demo-fast` | 0 | PASS：macOS debug app 构建成功；`易界 AI.app/Contents/Resources/skill-packages/` 中 manifest/zip 摘要与 Desktop resource lock 一致。该结果仅证明 local-development 调试包，不是正式发行包。 | 2026-08-25 |
@@ -39,7 +45,7 @@
 | `yijie-desktop` | `pnpm lint`；`pnpm build` | 0 | PASS：全仓 ESLint、Vue typecheck 与 production renderer build 通过；Skill Marketplace chunk 已生成。 | 2026-08-25 |
 | `yijie-desktop/src-tauri` | `cargo fmt --check`；`cargo clippy --lib -- -D warnings`；`cargo test --lib` | 0 | PASS：Rust format/clippy 通过；259 passed / 0 failed / 3 environment tests ignored。包含 App Resource/App Data、owner-only/symlink/重叠、exact profile/root、owner token、Skills route/401/403 和安全错误投影。 | 2026-08-25 |
 
-边界说明：上表证明契约权威源、确定性 Skill 生产者、Host 五接口/本地文件事务与固定 Runtime，以及 Desktop/Tauri/UI 消费者之间的精确版本、摘要、编译和 focused 行为关系。Tauri 只消费 Host API，不实现安装事务。后续 fresh smoke 已证明一个真实本地生命周期，但仍不证明模型真实对话、38 Skill、完整视觉、Desktop 恶意 fixture 或 D4 已完成。
+边界说明：上表证明 Contracts v2、38 项确定性 Skill 生产者和 Agent Host 五接口/Runtime 投影已经闭环；Desktop/Tauri/UI 仍精确消费旧单 Skill 资源。Tauri 只消费 Host API，不实现安装事务。只有完成 Desktop 0.3.0 资源同步、38 卡片 UI 和 fresh smoke 后，才能证明完整桌面跨仓生命周期；当前仍不证明模型真实对话、完整视觉、Desktop 恶意 fixture 或 D4 已完成。
 
 ## 2. D4 真实服务启动与 Smoke
 
@@ -53,11 +59,11 @@
 
 | Repository | Checks | 当前结果 |
 |---|---|---|
-| `yijie-contracts` | generate、schema lint/test、breaking、Host↔Runtime compatibility projection | PASS：`0.5.0` 不可变本地候选 `d6dff903e0c12b6a5e69599df1e33ef46d8bea6b`与三个权威源摘要已记录；未 tag/发布。 |
-| `yijie-skills` | frontmatter、来源/许可、安全、能力依赖、eval、确定性打包、contract lock 与摘要一致 | PASS：仅代表 `copywriting@0.1.0` local-development 候选；`desktop-distribution` 许可 blocked。 |
-| `yijie-agent-host` | 精确 contract pin 与 snapshot drift | PASS：`make contract-check`。 |
-| `yijie-agent-host` | 查询/扫描/安装/启停/卸载、owner-only bearer、权限、Runtime 映射、重启重放、未知 ID、Runtime 不可用与 conformance | PASS：`make test`、`make lint`、`make runtime-test` 和真实 local-development 包 race integration。 |
-| `yijie-desktop` contract/resource | Skills v1 pin、fixture 和 10 个 consumer 摘要；local resource sync/check；默认 release boundary；demo_fast app resource | PASS：`generate:check`、resource/release checker 与 macOS demo_fast debug app build；正式 release 仍因许可 fail closed。 |
+| `yijie-contracts` | generate、schema lint/test、breaking、Host 查询投影与 Runtime compatibility projection | PASS：`0.5.1` Catalog First v2 不可变 commit `164b14f609537d727a52326832da04430aecc4ab` 及 Manifest v2 摘要已记录；v1 历史候选保持不变。 |
+| `yijie-skills` | frontmatter、38 项来源/许可、安全、能力依赖、eval、确定性双渠道打包、contract lock 与摘要一致 | PASS：38/38 `bundled + installable`，声明 `FEAT-129-DESKTOP-DISTRIBUTION-2026-08-25` 同时授权 local-development 与 desktop-release；0 blocked。 |
+| `yijie-agent-host` | 精确 Contracts 0.5.1 与 Skills 0.3.0 producer pin、snapshot drift | PASS：`make contract-check`、`scripts/check-skills-producer.sh`。 |
+| `yijie-agent-host` | 38 项查询/扫描/安装/启停/卸载、synthetic blocked、owner-only bearer、权限、Runtime 映射、重启重放、摘要损坏、Zip Slip、资源缺失、目录移动与双渠道 conformance | PASS：`make test`、`make lint`、`make skills-conformance`、`make runtime-test`。 |
+| `yijie-desktop` contract/resource | Skills v1 pin、fixture 和 10 个 consumer 摘要；旧 local resource sync/check；demo_fast app resource | 历史 focused checks PASS；当前尚未精确消费 Contracts v2 和 `yijie-skills@0.3.0`，因此 38 项正式资源同步为 NOT RUN，不再受许可阻断。 |
 | `yijie-desktop` TypeScript | navigation/router、权限、闭合 native projection、状态收敛、重复点击、modal、错误/重试 | PASS：FEAT-129 focused 10 files/77 tests；全量 demo_fast 71 files/517 tests；lint/build PASS。页面重入目录变化已实测；即时通知和升级不由组件测试推导。 |
 | `yijie-desktop` Rust | Resource/App Data root、首次启动 owner-only 创建、symlink/non-dir/权限/重叠拒绝、exact profile/root、owner token、五个 Host API adapter、安全错误 DTO | PASS：全 Rust unit 259/0/3 ignored、fmt/clippy PASS。SHA、Zip Slip、原子安装/回滚和受管删除由 Agent Host 独占并使用其 conformance 证据，不在 Tauri 重复实现。 |
 | UI | 设计 Token、YjIcon/Lucide、tooltip、switch、删除 hover/focus、确认弹窗、loading/error/retry、键盘交互 | 自动化 PASS；1180×760 亮/暗、最小窗口与真实 native 状态截图仍为 NOT RUN。 |
@@ -66,7 +72,7 @@
 
 | AC | Result | 真实证据/Artifact |
 |---|---|---|
-| AC-001 | NOT RUN | `/plugins` 路由、导航、设计系统页面与真实 native DTO 已实现并通过 focused tests；当前资源仅 1 个审核 Skill，D4 仍需五类 5/9/7/9/8、38 卡片和亮暗主题截图。 |
+| AC-001 | NOT RUN | `/plugins` 路由、导航、设计系统页面与真实 native DTO 已实现；Skills producer 已产出五类 `5/9/7/9/8` 的 38 项审核包，但 Desktop 资源锁尚未同步 0.3.0，仍需 38 卡片和亮暗主题 fresh 截图。 |
 | AC-002 | NOT RUN | 真实 App Resource 点击离线安装已 PASS；Host 恶意归档、Desktop tooltip/重复点击 focused tests 已 PASS。仍缺真实 Desktop 恶意 fixture 与同帧失败无残留证据。 |
 | AC-003 | NOT RUN | Host/真实 pinned Runtime 可见性已 PASS；D4 仍需 Desktop frame 和模型真实对话调用证据。 |
 | AC-004 | NOT RUN | Host 启停/Runtime 重放与 Desktop 开关、Desktop/Host 重启保持已 PASS；仍缺下一轮真实模型对话可见性证据。 |
@@ -87,13 +93,11 @@
 
 ## 6. Diff 与限制
 
-- D0 diff 核对：`git diff --check` exit 0；Feature Package 内无占位词或行尾空白；`git status --short -- docs/features/FEAT-129-desktop-skill-marketplace` 仅显示该新增目录为 untracked。仓库其他既有改动不属于本需求并保持原状。
+- 当前治理 diff 核对：`git diff --check` exit 0；Feature Package 内无占位词或行尾空白；4 个治理文件均为独立 FEAT-129 分支上的 tracked modifications。仓库其他既有改动不属于本需求并保持原状。
 - D4 必须逐仓记录 base/head、完整 diff 审阅、生成文件、无关工作树改动和 focused check 输出。
-- 已知限制：代表 Skill 已重写并固定 `iconKey=edit`，但仅授权 `local-development`；`copywriting@0.1.0` 的 `desktop-distribution` 许可/来源证明仍阻断随客户端安装包分发，原始 Accio 候选和其余 37 个 Skill 也尚未完成正式再分发审核。
-- 已知限制：至少 8 个 Skill 的外部能力依赖未满足；D4 只承诺代表性自包含 Skill 的真实调用，其他卡片必须披露能力就绪度。
-- 已知限制：Tauri resources/sidecar、Desktop consumer/UI、local-development debug app 与 fresh happy path 已验证；模型真实对话、即时目录通知/升级/故障、38 Skill 与完整视觉尚未验证。
-- 已知限制：默认 release 有意排除当前 local-development Skill；只有 demo_fast overlay 包含它，不能把成功的 debug app build 表述为获得 `desktop-distribution` 权利或正式发行可用。
-- 已知限制：Desktop resource lock 已固定 immutable `git-commit` 来源，但当前授权范围仍仅为 local-development；正式发行仍需 `desktop-distribution` 许可证明。
+- 已知限制：38 项源码所有权、桌面再分发、来源摘要和静态安全审核已关闭；授权同时覆盖 local-development 与 desktop-release，不再存在 `copywriting@0.1.0` 或其余 37 项的 FEAT-129 许可阻断。
+- 已知限制：外部平台 API、账号、数据访问和高影响写操作仍受 Runtime/Agent Host 权限与对应服务条件控制；这不影响 38 项安装、Runtime 发现和调用，但不能把 Skill 可调用表述为外部平台一定成功。
+- 已知限制：Agent Host 已完成 Manifest v2/38 conformance；Desktop 仍固定旧单 Skill resource lock，下一步必须同步 Tauri/Desktop 0.3.0 资源并实现 38 卡片 UI。当前模型真实对话、即时目录通知/升级/故障、38 Skill UI 与完整视觉尚未验证。
 - 已知限制：Host operation journal 不裁剪已用 ID，达到 4096 条后新 operation 返回 `skill_busy`；后续版本需先在契约中定义 retention/compaction，不能单方面遗忘旧 ID。
 - 已知限制：macOS 验证全绿；额外 Windows 交叉编译被既有 `internal/codex/runtime.go` 的 `syscall.Stat_t` 依赖阻断，Windows Desktop 交付前仍需关闭该非 FEAT-129 回归项。
 

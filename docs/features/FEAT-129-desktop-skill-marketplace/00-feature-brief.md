@@ -91,7 +91,7 @@ yijie-desktop：App Resource/App Data/Tauri/UI 消费者
 ```
 
 - Runtime 上游方法：`skills/list`、`skills/extraRoots/set`、`skills/config/write`、`skills/changed`；实现前在固定 Runtime 版本和摘要上再次核实。
-- `contract-impact=additive`。不向现有 `skill-manifest.schema.json` 增加新的必填字段；新增版本化的 Skill Bundle Manifest 与 Host 管理接口，随后执行 generate、lint、test、breaking/compatibility checks。
+- `contract-impact=semantic`。Manifest v2、目录安装状态与 Runtime 投影改变了跨仓语义；通过版本化 schema 保留 v1 兼容，并执行 generate、lint、test、breaking/compatibility checks。
 - 浏览需要 `plugin.read`；安装、启停、升级、卸载需要新增 `plugin.manage`。精确 local + demo_fast 固定身份默认拥有这两项能力，Desktop 自动提供 Host bearer，因此正常本地用户流程不得出现登录或权限弹窗；直接调用 Host 仍必须通过 bearer/capability 校验，public/production 仍走正式鉴权。
 
 ## 4. 交互与 UI 规范
@@ -134,11 +134,11 @@ UI 实现以 [`yijie-desktop/docs/design/docs/design`](../../../../yijie-desktop
 - 受影响仓库：`yijie`（Feature Package）、`yijie-contracts`（增量契约）、`yijie-skills`（内容与构建）、`yijie-agent-host`（本机管理接口和 Runtime 投影）、`yijie-desktop`（导航、页面、Tauri、资源与 App Data）。`yijie-codex` 仅作为固定上游依赖，不计划修改。
 - 真实入口：在 `yijie-desktop` 执行 `pnpm tauri:dev`，由 Tauri 启动 Agent Host sidecar 和固定 Runtime；最终 D4 必须 fresh process 验证，不能用 mock-only 页面或旧服务进程代替。
 - 本地服务可用性：上述精确 local + demo_fast 入口启动成功后，Skill 广场及其本地服务必须无需用户登录、账号鉴权或手工授权即可直接使用；这是 Desktop 自动引导的本机身份流程，不得通过删除 Host bearer/capability 校验实现。
-- 当前 Desktop 已存在名为“插件”的禁用导航项和 `plugin.read`，但没有 `/plugins` 路由；写操作不能复用只读能力，需新增 `plugin.manage`。
+- D0 时 Desktop 仅有禁用的“插件”导航和 `plugin.read`；历史单 Skill consumer 已补 `/plugins` 与 `plugin.manage`，当前仍需精确同步 Contracts 0.5.1 / Skills 0.3.0 和 38 项资源。
 - 用户提供的本地构建输入记为 `<local-skill-source>/05Skill广场`。D0 只记录该来源类别；实现不得在运行时代码、清单或发布包中硬编码个人绝对路径，也不得修改或删除该源目录。
-- 该目录扫描结果为 38 个 Skill、241 个文件、约 2.6 MiB；全部有 `SKILL.md`，但当前没有图标文件、LICENSE/NOTICE、受管 commit 或统一可靠版本。四类目录含远程 cache/config，它们不是内容权威，也不得直接打包。
-- 至少 8 个 Skill 依赖当前 Host 未提供的浏览器、Web Search、Jungle Scout、供应商搜索等能力；安装/模型可见不等于端到端工具链可用。
-- 当前 `yijie`、`yijie-desktop`、`yijie-agent-host` 工作树含 FEAT-128 等用户未提交改动；实施必须保留并隔离，禁止 reset、覆盖或混入无关修改。
+- D0 原始扫描为 38 个 Skill、241 个文件、约 2.6 MiB；排除 cache/debug 文件并补 NOTICE 后，`yijie-skills@0.3.0` 的正式审核集合为 258 个打包文件，逐项具备稳定版本、来源、许可、风险、能力依赖和 `iconKey`。
+- 38 项中 13 项为 model-only、25 项为 tool-assisted。能力依赖不阻断安装、启用或 Runtime 可见；具体外部平台操作仍取决于本地 Runtime 能力、账号、数据权限与服务状态。
+- `yijie` 与 `yijie-agent-host` 已迁移到独立 `feat/feat-129-desktop-skill-marketplace` 分支；Agent Host v2/38 实现已形成不可变 commit `1b7bfd1ce4323e52035b2ba1e62842c2d332d9ed`。`yijie-desktop` 的既有 FEAT-128 工作保持原样且本阶段不修改。实施禁止 reset、覆盖或混入无关改动。
 - 本需求不授权付费调用、生产写入或 Codex 执行受管功能以外的破坏性删除。产品内卸载仍需用户在 UI 二次确认，并受原生路径边界保护。
 
 ## 7. 推荐方案、前置条件与停止条件
@@ -159,8 +159,8 @@ UI 实现以 [`yijie-desktop/docs/design/docs/design`](../../../../yijie-desktop
 ### 首个 Contract First 闭环（2026-08-25）
 
 - 代表 Skill：`yijie.content-marketing.copywriting@0.1.0`，Runtime name 为 `copywriting`，风险 `medium`，`iconKey=edit`，执行模式 `model-only`，无网络、文件系统或外部工具依赖。
-- 原始 `copywriting@0.0.94` 只有本地 cache 的 official 标记，无 LICENSE/NOTICE 或可验证上游仓库；其文本未进入候选包，原始来源的再分发仍被阻断。
-- `yijie-skills` 中的候选为重新编写的窄化实现，仅获准用于 `local-development` Contract First 测试；`desktop-distribution` 必须等待产品/法务提供 YiJie 许可声明、来源证明与桌面分发授权。该阻断不影响使用 `local-development` 包继续开发 Agent Host，但阻断随客户端安装包分发。
+- 当时原始 `copywriting@0.0.94` 只有本地 cache 的 official 标记，无 LICENSE/NOTICE 或可验证上游仓库；其文本未进入候选包，初始候选因此仅使用易界重写文本。
+- 当时易界重写候选仅授权 `local-development` Contract First 测试；该历史阻断已由下文覆盖 38 项的所有权/桌面再分发声明、逐项来源摘要和安全审核关闭。
 - `yijie-contracts@0.5.0` 已形成不可变的本地候选 commit `d6dff903e0c12b6a5e69599df1e33ef46d8bea6b`（未 tag、未发布、未升格为 supported baseline），固定 Bundle Manifest v1、Host 查询/扫描/安装/启停/卸载接口、`plugin.manage` 与 Runtime Skills 投影。
 - 不可变候选的审核摘要为：Agent Host OpenAPI `406b55dad02d5a3d489955bcf29c973b94252c3e300f8ff853709a71d6874431`；Skill Bundle Manifest v1 `d86185a1d5f4d9a136c88b679d50ac3e83bcc2b722eee39cba674c5be3b88469`；Runtime compatibility projection `6b7662d4237486300456f16abd0305fe1ea267b70a85e497ba7ab15a654939ee`。
 - 正常、摘要损坏和 Zip Slip fixture 已随候选固定；`pnpm generate`、`pnpm lint`、`pnpm test`以及相对 `HEAD` 和 `ea48fe190e18afba728712d1e2cc79cda57f581b` 的 breaking checks 通过。
@@ -173,9 +173,18 @@ UI 实现以 [`yijie-desktop/docs/design/docs/design`](../../../../yijie-desktop
 - `yijie-desktop` 已通过 `contracts/agent-host-skills-v1.lock.json` 精确 pin `yijie-contracts@0.5.0` commit `d6dff903e0c12b6a5e69599df1e33ef46d8bea6b`，并固定 Agent Host OpenAPI `406b55dad02d5a3d489955bcf29c973b94252c3e300f8ff853709a71d6874431`、Skill Bundle Manifest v1 `d86185a1d5f4d9a136c88b679d50ac3e83bcc2b722eee39cba674c5be3b88469`、Runtime projection `6b7662d4237486300456f16abd0305fe1ea267b70a85e497ba7ab15a654939ee` 以及 fixture/10 个 Rust consumer 文件摘要。当前使用有时限的 reviewed hand-written Rust adapter `EXC-129-001`，并由 checker 防止漂移。
 - Tauri 已通过平台 API 解析 App Resource/App Data，并把 canonical `skill-packages/` 与 owner-only `skills/installed/` 作为精确根传给 Agent Host；资源或 manifest 缺失、非目录、符号链接、权限不安全及根目录重叠均 fail closed。精确 `local + demo_fast` profile 和两个根通过受控 sidecar 环境传递，bearer 不进入子进程参数/环境或 Renderer，由原生 Host bridge 从 owner-only token 文件读取并用于 Host API。
 - Tauri 暴露查询、扫描、安装、启停、卸载五个窄化 command，并仅调用 Agent Host Skills v1 API；operation ID、catalog revision、摘要、路径与 bearer 均留在原生边界。安装、解压、回滚、持久回执、停用标记和受管删除仍由 Agent Host 独占，Desktop/Tauri 未实现第二套文件事务或状态真相。
-- Desktop 已新增 `/plugins` 路由、导航、`plugin.read`/`plugin.manage` UI 投影、闭合 IPC adapter、Pinia 状态收敛、Skill 卡片和错误/重试/卸载确认交互，并复用设计 Token、Naive UI 与 YjIcon/Lucide。当前 App Resource 只有一个完成审核的 `copywriting@0.1.0`，其余 37 个 Skill 仍不得伪装成已审核可安装项。
-- 本地资源同步锁记录 manifest SHA-256 `091de202783ae2658d3a8ce3c0ceaedfef023d71fa84c94ff040e72c9421bb2c` 与 archive SHA-256 `987dae7003064fa1d0b00a37be0f130eb973a55f966fbf43faf2ed8af84c5138`，producer 已固定至 `yijie-skills@c0aaba17f9ba5534e133b67b9eac43bb7210694f` 且 `source_revision_kind=git-commit`。该资源只通过 `src-tauri/tauri.demo-fast.conf.json` 进入 `local-development` 调试包；默认 Tauri 配置明确不携带它，release wrapper 对配置旁路 fail closed；不可变来源阻断已关闭，`desktop-distribution` 许可阻断不变。
+- 该检查点的 Desktop 已新增 `/plugins` 路由、导航、`plugin.read`/`plugin.manage` UI 投影、闭合 IPC adapter、Pinia 状态收敛、Skill 卡片和错误/重试/卸载确认交互，并复用设计 Token、Naive UI 与 YjIcon/Lucide；当时 App Resource 只有一个完成审核的 `copywriting@0.1.0`，其余 37 项尚未进入可安装资源。
+- 该检查点的本地资源同步锁记录 manifest SHA-256 `091de202783ae2658d3a8ce3c0ceaedfef023d71fa84c94ff040e72c9421bb2c` 与 archive SHA-256 `987dae7003064fa1d0b00a37be0f130eb973a55f966fbf43faf2ed8af84c5138`，producer 固定至 `yijie-skills@c0aaba17f9ba5534e133b67b9eac43bb7210694f` 且 `source_revision_kind=git-commit`。当时该资源只进入 `local-development` 调试包，默认配置因尚无桌面再分发声明而排除它。
 - Desktop contract/resource checker、全量 `demo_fast` Vitest、TypeScript lint/build、Rust fmt/clippy/unit tests 与实际 macOS debug app 打包已通过。随后从 fresh local + demo_fast 进程验证了零登录进入 `/plugins`、离线安装默认启用、停用、Desktop/Host 重启重放、重新启用、确认卸载，以及外部移走受管目录后页面重入恢复“未安装”；未执行付费模型真实对话、Desktop 恶意包失败帧、38 Skill/亮暗视觉和完整 D4/AC 验收。
+
+### 38 项所有权、桌面再分发与安全审核关闭点（2026-08-25）
+
+- FEAT-129 产品与仓库所有者提供声明 `FEAT-129-DESKTOP-DISTRIBUTION-2026-08-25`，覆盖 38 个稳定 Skill ID，授权 `local-development` 与正式桌面再分发；许可表达式为 `LicenseRef-YiJie-Desktop-Distribution-Owner-Attestation`。该声明是用户提供的项目所有权/授权记录，不虚构第三方法务签字，也不把缓存中的 `official` 标记当作许可证据。
+- 37 项直接采用用户提供目录中的审核源码快照，只做 LF 归一化并增加包内 NOTICE，不重新编写；`copywriting@0.1.0` 保留易界重新编写的窄化 model-only 实现。`.DS_Store` 与抓取调试页 `amz-hot-keywords/scripts/debug_page.html` 被排除。
+- 每项已固定来源摘要、包树摘要、归档摘要、风险等级、能力依赖、`iconKey` 和静态安全审核；共审核 258 个打包文件，不在构建期执行 Skill 脚本、不安装依赖，也不访问真实账号或商家数据。外部平台 API、账号、数据和高风险写操作仍受 Runtime/Agent Host 权限与审计控制，但不再构成源码安装或桌面再分发阻断。
+- `yijie-skills@0.3.0` 不可变 commit 为 `10c45bec29603b002e861e1499d5b4e684251af5`，精确消费 `yijie-contracts@0.5.1` commit `164b14f609537d727a52326832da04430aecc4ab` 的 Manifest v2（SHA-256 `39a898111ba3dcae2f369fdcb571a2e892830d1d0a57c90ab6210a0ab897a649`）。38 项均为 `bundled + installable`，分类保持 `5/9/7/9/8`，不存在 `catalog-only`、`blocked` 或 `skill_not_installable` 产品条目。
+- 本地包 manifest SHA-256 为 `cc2b9be4d0e640e0888e97f6f7a09149a248386931786a7a089c8094304d94a5`，桌面正式包 manifest SHA-256 为 `9f8459077615514183fdd4c81ff3b6b2ef1ea735257b04c040399d4c91c1daa2`，两渠道共享源码树 SHA-256 `3247a14004c76170cf41a2d854e2ceffa1fd43de6e0ca8bb596f1d61d9be1029`；重复构建字节一致，`make lint` 与 `make test` 通过。
+- 来源/许可阻断至此关闭。Agent Host 已精确消费 Contracts 0.5.1 / Manifest v2 与 `yijie-skills@0.3.0`，完成 38 项双渠道生命周期和固定 Runtime conformance；Host 解析并校验全部 v2 来源、许可、风险、能力依赖、`iconKey`、安装状态和归档字段，content-free Host wire 只投影契约定义的运行状态/blocked reason，卡片元数据由 Desktop 从同一份已验证 App Resource manifest 读取。当前剩余消费差距仅在 Tauri/Desktop 的 0.3.0 资源锁、正式资源同步与 38 卡片 UI；这不是再分发许可阻断，完成前不得宣称当前 Desktop 已可展示并调用全部 38 项。
 
 ### 停止条件
 

@@ -16,7 +16,7 @@ feature:
 scope:
   risk_level: "high"
   data_classification: "internal"
-  contract_impact: "additive"
+  contract_impact: "semantic"
   database_change: "none"
   persistence_change: "durable"
   runtime_change: "runtime"
@@ -120,35 +120,43 @@ must_acceptance:
     status: "pending"
 
 contract:
-  impact: "additive"
+  impact: "semantic"
   authority: "固定 yijie-codex Runtime 的 skills/list、skills/extraRoots/set、skills/config/write 与 skills/changed 是运行时上游权威；yijie-contracts 拥有增量 Host 投影与 Skill Bundle Manifest schema；yijie-skills 拥有 Skill 内容、版本、来源和可复现包；yijie-agent-host 独占私有 App Data 文件事务、安装回执与停用标记；yijie-desktop 只拥有 App Resource/App Data 根解析、Host API consumer 与 UI 投影。"
   source_first_plan: "先锁定上游 Runtime 方法与版本摘要，再在 yijie-contracts 增量定义 Host 管理接口和 bundle manifest；随后由 yijie-skills 产出经许可、安全与 eval 审核的确定性资源包，yijie-agent-host 实现并验证投影，最后由 yijie-desktop 消费契约完成 Tauri 边界与 UI。"
   status: "PASS"
   immutable_candidate:
-    version: "0.5.0"
-    full_commit: "d6dff903e0c12b6a5e69599df1e33ef46d8bea6b"
+    version: "0.5.1"
+    full_commit: "164b14f609537d727a52326832da04430aecc4ab"
     release_state: "local_candidate_not_tagged_or_published"
     artifacts:
-      agent_host_openapi_sha256: "406b55dad02d5a3d489955bcf29c973b94252c3e300f8ff853709a71d6874431"
+      agent_host_openapi_sha256: "f1aefb55285a12963a37e0cc008f90e7b081373d77623ce92127b06e1fbcdb31"
       skill_bundle_manifest_v1_sha256: "d86185a1d5f4d9a136c88b679d50ac3e83bcc2b722eee39cba674c5be3b88469"
-      runtime_projection_sha256: "6b7662d4237486300456f16abd0305fe1ea267b70a85e497ba7ab15a654939ee"
+      skill_bundle_manifest_v2_sha256: "39a898111ba3dcae2f369fdcb571a2e892830d1d0a57c90ab6210a0ab897a649"
+      runtime_projection_sha256: "5eadca026cdc8813cf529fa8e074de7532a2c78bebc5c89d9364180942869311"
   consumer_pins:
     - repository: "yijie-agent-host"
-      full_commit: "d6dff903e0c12b6a5e69599df1e33ef46d8bea6b"
+      full_commit: "1b7bfd1ce4323e52035b2ba1e62842c2d332d9ed"
+      contract_source_full_commit: "164b14f609537d727a52326832da04430aecc4ab"
+      skills_producer_full_commit: "10c45bec29603b002e861e1499d5b4e684251af5"
       status: "PASS"
-      scope: "OpenAPI, Manifest Schema, Runtime projection and fixture snapshots; five Host operations, owner-only file lifecycle and Runtime conformance PASS"
+      scope: "Immutable Host implementation consumes Contracts 0.5.1/v2 OpenAPI, Manifest Schema, Runtime projection and fixtures plus yijie-skills 0.3.0 producer lock; 38-Skill dual-channel lifecycle and pinned Runtime conformance PASS"
     - repository: "yijie-skills"
-      full_commit: "d6dff903e0c12b6a5e69599df1e33ef46d8bea6b"
+      full_commit: "164b14f609537d727a52326832da04430aecc4ab"
       status: "PASS"
-      scope: "Manifest Schema contract lock and tests"
+      scope: "Manifest v1/v2 contract lock; producer commit 10c45bec29603b002e861e1499d5b4e684251af5 publishes 38 bundled/installable Skills for local-development and desktop-release"
     - repository: "yijie-desktop"
       full_commit: "d6dff903e0c12b6a5e69599df1e33ef46d8bea6b"
       status: "PASS"
-      scope: "agent-host-skills-v1 lock pins OpenAPI 406b55dad02d5a3d489955bcf29c973b94252c3e300f8ff853709a71d6874431, Manifest d86185a1d5f4d9a136c88b679d50ac3e83bcc2b722eee39cba674c5be3b88469, Runtime projection 6b7662d4237486300456f16abd0305fe1ea267b70a85e497ba7ab15a654939ee, fixture trees and 10 implemented Rust consumer files; reviewed hand-written adapter EXC-129-001 is active"
+      scope: "Historical agent-host-skills-v1 lock and old single-Skill resource consumer PASS; Contracts 0.5.1/v2 and yijie-skills 0.3.0 resource sync pending"
   redistribution_gate:
-    skill: "yijie.content-marketing.copywriting@0.1.0"
+    scope: "38 FEAT-129 Skills"
+    attestation_id: "FEAT-129-DESKTOP-DISTRIBUTION-2026-08-25"
+    license_expression: "LicenseRef-YiJie-Desktop-Distribution-Owner-Attestation"
+    yijie_skills_commit: "10c45bec29603b002e861e1499d5b4e684251af5"
     local_development: "allowed"
-    desktop_distribution: "blocked_pending_license_and_source_proof"
+    desktop_distribution: "allowed"
+    source_license_blocker: "closed"
+    runtime_permission_controls: "required_not_a_distribution_blocker"
   checks:
     - repository: "yijie-contracts"
       command: "pnpm generate && pnpm lint && pnpm test"
@@ -159,7 +167,7 @@ contract:
       status: "PASS"
       exit_code: 0
     - repository: "yijie-agent-host"
-      command: "make contract-check"
+      command: "make generate && make contract-check"
       status: "PASS"
       exit_code: 0
     - repository: "yijie-agent-host"
@@ -167,15 +175,15 @@ contract:
       status: "PASS"
       exit_code: 0
     - repository: "yijie-agent-host"
-      command: "YIJIE_SKILLS_BUNDLE_ROOT=../yijie-skills/dist/skill-packages go test -race ./internal/integration -run '^TestLocalDevelopmentCopywritingBundleConsumption$' -count=1"
+      command: "make skills-conformance"
       status: "PASS"
       exit_code: 0
     - repository: "yijie-skills"
-      command: "pnpm lint && pnpm test && pnpm package"
+      command: "make lint && make test && make package && make package-desktop-release"
       status: "PASS"
       exit_code: 0
     - repository: "yijie-skills"
-      command: "verify contracts/lock.json exact git-commit pin && pnpm test"
+      command: "verify contracts/lock.json exact 0.5.1 git-commit pin, 38 source/security audit entries and deterministic dual-channel manifests"
       status: "PASS"
       exit_code: 0
     - repository: "yijie-desktop"
@@ -212,6 +220,10 @@ verification:
     environment: "Host local / demo_fast / malicious local fixture / real Host file boundary；Desktop stable error/retry projection"
     actual_result: "Host 已拒绝摘要损坏与 Zip Slip 包并验证无半安装/越界写入；Desktop 稳定错误映射与原位重试 UI 已通过 focused tests，但尚未在真实 Tauri frame 点击恶意 fixture。"
   focused_checks:
+    - repository: "yijie-skills"
+      command: "make lint && make test && make package && make package-desktop-release"
+      status: "PASS"
+      exit_code: 0
     - repository: "yijie-agent-host"
       command: "make contract-check"
       status: "PASS"
@@ -229,7 +241,7 @@ verification:
       status: "PASS"
       exit_code: 0
     - repository: "yijie-agent-host"
-      command: "YIJIE_SKILLS_BUNDLE_ROOT=../yijie-skills/dist/skill-packages go test -race ./internal/integration -run '^TestLocalDevelopmentCopywritingBundleConsumption$' -count=1"
+      command: "make skills-conformance"
       status: "PASS"
       exit_code: 0
     - repository: "yijie-desktop"
@@ -249,16 +261,23 @@ verification:
       status: "PASS"
       exit_code: 0
   artifacts:
+    - "../yijie-agent-host/api/contracts.lock"
+    - "../yijie-agent-host/api/skills.lock"
+    - "../yijie-skills/docs/provenance/FEAT-129-ownership-and-desktop-redistribution.md"
+    - "../yijie-skills/docs/provenance/FEAT-129-desktop-distribution-attestation.json"
+    - "../yijie-skills/docs/provenance/source-audits/FEAT-129-catalog-38-source-audit.json"
+    - "../yijie-skills/docs/provenance/source-audits/FEAT-129-catalog-38-security-review.json"
+    - "../yijie-skills/dist/skill-packages/bundle-manifest.json"
+    - "../yijie-skills/dist/skill-packages-desktop-release/bundle-manifest.json"
     - "../yijie-desktop/contracts/agent-host-skills-v1.lock.json"
     - "../yijie-desktop/contracts/desktop-skill-bundle-local.lock.json"
     - "../yijie-desktop/src-tauri/target/debug/bundle/macos/易界 AI.app/Contents/Resources/skill-packages/bundle-manifest.json"
-  diff_review: { status: "PARTIAL", summary: "Agent Host 与 Desktop FEAT-129 增量、契约/资源锁及 focused diff 已复核并通过 diff-check；既有 FEAT-128/FEAT-130 与并行改动保持原状。跨仓完整 base/head 审阅、fresh D4 和视觉 artifacts 仍待执行。" }
+  diff_review: { status: "PARTIAL", summary: "Agent Host FEAT-129 v2/38 增量、契约/producer 锁及 focused diff 已复核并通过 diff-check；Desktop 旧单 Skill 增量和既有 FEAT-128/FEAT-130 并行改动保持隔离。Desktop 0.3.0 消费、跨仓完整 base/head 审阅、fresh D4 和视觉 artifacts 仍待执行。" }
   known_limitations:
-    - "代表性 copywriting 已形成仅限 local-development 的重写版本、审核记录和确定性包；原始 Accio 候选未被复制，copywriting@0.1.0 的 desktop-distribution 许可/来源证明仍阻断随客户端安装包分发。"
-    - "至少 8 个 Skill 声明的浏览器、搜索、供应商或第三方数据能力当前不可用；首批 UI 必须披露能力就绪度，D4 只承诺代表性自包含 Skill 的真实闭环。"
-    - "Tauri sidecar/resources、Desktop consumer/UI、local-development debug app 和 fresh 安装/启停/重启/卸载/页面重入目录移走已验证；模型真实对话、即时目录通知/升级/故障注入、38 Skill 和完整视觉尚未验证，不能声称 D4 可用。"
-    - "当前默认 release 有意排除 local-development Skill；只有 demo_fast overlay 包含它。成功的 debug app build 不代表 desktop-distribution 授权或正式发行可用。"
-    - "Desktop local resource lock 已固定至 yijie-skills@c0aaba17f9ba5534e133b67b9eac43bb7210694f 且 source_revision_kind=git-commit；正式发行仍需 desktop-distribution 许可证明。"
+    - "38 项所有权、desktop-distribution、来源摘要和静态安全审核已关闭；local-development 与 desktop-release 均获授权，不再存在 FEAT-129 源码许可阻断。"
+    - "外部平台 API、账号、数据访问和高影响写操作仍由 Runtime/Agent Host 权限及对应服务条件控制；不影响 Skill 安装、发现和调用，但不能保证外部平台操作一定成功。"
+    - "Agent Host 已完成 Contracts 0.5.1 / Manifest v2 与 yijie-skills 0.3.0 的 38 项 conformance；Desktop 仍固定旧单 Skill resource lock，必须继续完成 Tauri/Desktop 0.3.0 资源同步和完整 D4，当前不能声称 Desktop 已可调用全部 38 项。"
+    - "Tauri sidecar/resources、Desktop consumer/UI 和旧单 Skill fresh 生命周期已验证；模型真实对话、即时目录通知/升级/故障注入、38 Skill UI 和完整视觉尚未验证。"
     - "Host operation journal 不裁剪已用 ID；达到 4096 条后新 operation 返回 skill_busy。长期运行前必须先在后续契约版本定义 retention/compaction，不能由消费者单方面遗忘幂等键。"
     - "macOS Host 门禁全绿；额外 Windows 交叉编译被既有 internal/codex/runtime.go 的 syscall.Stat_t 可移植性问题阻断，Windows Desktop 交付前仍需关闭。"
 
