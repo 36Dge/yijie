@@ -1,0 +1,37 @@
+FEAT-129 D4 canonical App Data isolation record
+Date: 2026-08-26 Asia/Shanghai
+
+Canonical application id: com.yijie.ai
+Canonical App Data root: ~/Library/Application Support/com.yijie.ai
+
+Pre-test snapshot:
+- exists: true
+- regular files: 6
+- root mode: 755
+- historical one-off tree digest: d1b84c6cb27b5ff6bbc4b159a74dd89097e932eae99d1881b108f0b508f3cb57
+
+Post-test read-only inventory, before restoring the normal launch service:
+- exists: true
+- regular files: 6
+- root mode: 755
+- latest file ctime: 2026-08-26T00:08:55+0800
+- first isolated Desktop evidence birth time: 2026-08-26T00:10:58+0800
+- first isolated Desktop evidence completion/mtime: 2026-08-26T00:12:06+0800
+- isolated test listeners on 18082/18083 after normal application quit: none
+
+Isolation facts:
+- The real Desktop scenarios used application ids com.yijie.ai.feat129d4 and
+  com.yijie.ai.feat129d4fixed, each with a separate App Data root.
+- The canonical launch service was stopped before the isolated run and remained
+  stopped through the post-test inventory.
+- Every canonical file ctime predates the first isolated Desktop evidence. The
+  canonical file count and root mode are unchanged, so no restoration write was
+  necessary.
+- The serialization procedure for the historical one-off tree digest was not
+  persisted; that value is retained as a historical observation and is not used
+  as a false byte-for-byte comparison claim. Directory isolation, process state,
+  file count, mode, and the ctime boundary are the reproducible acceptance facts.
+
+Result: PASS. The FEAT-129 isolated D4 run did not write the canonical user App
+Data. No canonical App Data files were copied, replaced, deleted, or
+permission-modified during the final closure.

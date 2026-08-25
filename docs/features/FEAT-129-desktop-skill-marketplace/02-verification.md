@@ -1,6 +1,6 @@
 # FEAT-129 Demo 验证
 
-> 当前 checkpoint：`D4 evidence collected / gate not passed`。Desktop 已精确消费 Contracts 0.5.1、Agent Host immutable commit 与 Skills 0.3.0，完成双渠道 38 项资源、38 卡片 UI、真实本地生命周期、四份视觉证据及 `copywriting@0.1.0` 的唯一一次真实付费模型调用；真实 Desktop frame 恶意包和剩余视觉/故障矩阵尚未闭合，因此完整 D4 仍未通过。
+> 当前 checkpoint：`D4 PASS`。Desktop 已精确消费 Contracts 0.5.1、Agent Host immutable commit 与 Skills 0.3.0，完成双渠道 38 项资源、38 卡片 UI、真实本地生命周期、分层失败恢复、自动化视觉矩阵及 `copywriting@0.1.0` 的唯一一次真实付费模型调用。
 
 ## 1. D0 治理检查
 
@@ -43,8 +43,11 @@
 | `yijie-desktop` | `pnpm lint && pnpm build` | 0 | PASS：全仓 ESLint、Vue typecheck 与 production renderer build 通过；Skill Marketplace chunk 已生成。 | 2026-08-25 |
 | `yijie-desktop/src-tauri` | `cargo fmt --all -- --check && cargo clippy --locked --all-targets -- -D warnings && YIJIE_DESKTOP_SKILL_BUNDLE_TEST_ROOT=../.local/skill-packages cargo test --locked --lib` | 0 | PASS：共 267 项，264 passed / 0 failed / 3 environment tests ignored；实际解析 38 项 Manifest v2 与归档，覆盖 App Resource/App Data、owner-only/symlink/重叠、exact profile/root、token、五接口、目录 watcher、重启桥接、升级重放及安全错误投影。 | 2026-08-25 |
 | `yijie-desktop` | `pnpm tauri:build:demo-fast`；`pnpm tauri:build -- --debug --bundles app --no-sign` | 0 | PASS：demo_fast app 精确嵌入 `local-development`，默认 Desktop build 强制嵌入 `desktop-release` overlay；两种 macOS app 都包含 38 个已校验归档，release wrapper 拒绝 config 旁路。此处“desktop-release”仅表示审核资源渠道，不等同于已签名/公证/发布。 | 2026-08-25 |
+| `yijie-desktop` | `pnpm generate:check && pnpm test:demo-fast`（commit `6745eb793e417c6685d1900231477c59ec81a5fd`） | 0 | PASS：最终 implementation digest lock 精确匹配；72 files / 548 tests 全部通过。 | 2026-08-26 |
+| `yijie-desktop` | resource sync/check/release-boundary、lint/build、Rust fmt/clippy/tests | 0 | PASS：38 项与 `5/9/7/9/8`；lint/build PASS；Rust 265 passed / 0 failed / 3 ignored。最终 commit 只在 watcher 修复后刷新审核摘要锁。 | 2026-08-26 |
+| `yijie-agent-host` | 三项 Zip Slip 定向测试（临时目录 fixture） | 0 | PASS：`archive_unsafe`，无 target/staging/backup/failed 残留，受管根外无 escape 文件；Desktop DTO/UI 映射由最终 Vitest 覆盖。 | 2026-08-26 |
 
-边界说明：上表证明 Contracts v2、38 项确定性 Skill 生产者、Agent Host 五接口/Runtime 投影，以及 Desktop/Tauri/UI 的 0.3.0 精确消费均已闭环；Tauri 只消费 Host API，不实现安装事务。模型真实调用已由下方独立 rollout 证据闭合，但真实 Desktop 恶意 fixture 仍未运行，故不能据此宣布完整 D4。
+边界说明：上表证明 Contracts v2、38 项确定性 Skill 生产者、Agent Host 五接口/Runtime 投影，以及 Desktop/Tauri/UI 的 0.3.0 精确消费均已闭环；Tauri 只消费 Host API，不实现安装事务。失败验证遵循同一责任边界：真实隔离 Desktop 验证错误展示与恢复，Zip Slip 由拥有安装事务的 Host 临时目录 fixture 验证。用户收紧安全边界后未执行新的危险归档注入。
 
 ## 2. D4 真实服务启动与 Smoke
 
@@ -52,7 +55,7 @@
 |---|---|---|---|---|
 | Startup/readiness | 在 `yijie-desktop` 执行 `pnpm tauri:dev`；确认 Tauri、Agent Host、固定 Runtime readiness，整个正常流程不出现登录页、账号鉴权或手动授权并直接打开 `/plugins`。 | fresh Desktop process；`YIJIE_ENV=local`、`YIJIE_LOCAL_PROFILE=demo_fast`；无云端 Skill 服务 | canonical runner 先复验 exact Host/Contracts/Skills 与 38 项 local-development 资源，再启动 Vite/Tauri/Host/Runtime；fresh app 零登录进入 `/plugins`。无 bearer 的直接 Host 请求返回 401，证明本地免登录没有移除内部边界。 | PASS |
 | Real happy path | 断网安装自包含代表 Skill → `skills/list` enabled → 新一轮模型真实调用 → 关闭并验证下一轮不可见 → 重启保持 → 开启 → 卸载 → 外部删除同步。 | 真实 App Resource/App Data、真实 Agent Host 与固定 Runtime；非 mock | 真实窗口显示五类 `5/9/7/9/8` 共 38 项；完成安装默认启用、停用、Desktop/Host 重启保持、重新启用、确认卸载、再次安装、外部移走后 watcher/scan 恢复未安装，并验证原位 retry。唯一一次授权的 `MiniMax-M3/minimax` turn completed，Runtime 注入正文摘要与受管 `copywriting` `SKILL.md` 完全一致。 | PASS |
-| Representative failure/retry | 使用摘要损坏或 Zip Slip fixture 点击安装；确认拒绝、无半安装/注册残留、模型不可见、原卡片显示原因并可重试。 | 真实 Host 文件边界与本地恶意 fixture；接 Desktop UI | Host 已真实拒绝摘要损坏与 Zip Slip 且无残留；Desktop 已实现稳定错误映射和原位重试状态并通过组件测试，但尚未经真实 Tauri frame 点击恶意 fixture。 | NOT RUN |
+| Representative failure/retry | 摘要损坏、资源缺失、Host 不可用、安装根不可写和安装中断后核对文件/Runtime，并恢复依赖后从原卡片重试；Zip Slip 使用 Host 临时目录 fixture。 | 隔离真实 Desktop + 独立 App Resource/App Data；Agent Host temp-directory safety tests；Desktop DTO/UI automation | 摘要失败返回 `archive_checksum_mismatch`，Zip Slip 返回 `archive_unsafe`；无半安装、越界文件或 Runtime 暴露，既有源包未被误删；缺失资源恢复后同卡片重试成功。见 [失败恢复与视觉矩阵](evidence/d4-desktop-failure-and-visual-matrix.md)。 | PASS |
 
 ## 3. Focused checks
 
@@ -63,32 +66,32 @@
 | `yijie-agent-host` | 精确 Contracts 0.5.1 与 Skills 0.3.0 producer pin、snapshot drift | PASS：`make contract-check`、`scripts/check-skills-producer.sh`。 |
 | `yijie-agent-host` | 38 项查询/扫描/安装/启停/卸载、synthetic blocked、owner-only bearer、权限、Runtime 映射、重启重放、摘要损坏、Zip Slip、资源缺失、目录移动与双渠道 conformance | PASS：`make test`、`make lint`、`make skills-conformance`、`make runtime-test`。 |
 | `yijie-desktop` contract/resource | exact Contracts/Host/Skills pin、Manifest v2、38 个归档、双渠道、分类与 release overlay | PASS：local `cc2b9be4...`、release `9f845907...`，各 38 项、分类 `5/9/7/9/8`、全部归档摘要通过；默认 build 强制 desktop-release，demo_fast 只消费 local-development。 |
-| `yijie-desktop` TypeScript | navigation/router、权限、闭合 v2 native projection、状态收敛、目录事件、重复点击、modal、错误/重试 | PASS：全量 demo_fast 539 tests；lint/build PASS。外部目录移动和 retry 已在真实窗口实测。 |
-| `yijie-desktop` Rust | Resource/App Data、owner-only/symlink/重叠、exact profile/root/token、五个 Host API adapter、v2 catalog、目录 watcher、升级/重启、安全错误 DTO | PASS：共 267 项，264 passed / 0 failed / 3 ignored，fmt/clippy PASS。SHA、Zip Slip、原子安装/回滚和受管删除仍由 Agent Host 独占，不在 Tauri 重复实现。 |
-| UI | 设计 Token、YjIcon/Lucide、38 卡片、tooltip、switch、删除危险态、确认弹窗、loading/error/retry、键盘自动化 | 自动化 PASS；真实 light/dark、installed、uninstall modal 四份截图已保存。最小窗口与完整全状态人工矩阵尚未运行，故 AC-009 保持 pending。 |
+| `yijie-desktop` TypeScript | navigation/router、权限、闭合 v2 native projection、状态收敛、目录事件、重复点击、modal、错误/重试 | PASS：最终 demo_fast 72 files / 548 tests；lint/build PASS。外部目录移动和 retry 已在真实窗口实测。 |
+| `yijie-desktop` Rust | Resource/App Data、owner-only/symlink/重叠、exact profile/root/token、五个 Host API adapter、v2 catalog、目录 watcher、升级/重启、安全错误 DTO | PASS：265 passed / 0 failed / 3 ignored，fmt/clippy PASS。SHA、Zip Slip、原子安装/回滚和受管删除仍由 Agent Host 独占，不在 Tauri 重复实现。 |
+| UI | 设计 Token、YjIcon/Lucide、38 卡片、tooltip、switch、删除危险态、确认弹窗、loading/success/empty/error/retry、键盘自动化、亮暗与最小窗口 | 自动化 PASS；机器截图覆盖 light/dark、installed、modal、keyboard tooltip、失败/retry 和 watcher 正常态；按用户要求不设置人工验收门禁。 |
 
 ## 4. Must AC
 
 | AC | Result | 真实证据/Artifact |
 |---|---|---|
 | AC-001 | PASS | fresh `/plugins` 真实展示 38 项与 `5/9/7/9/8`；light/dark 截图和 iconKey 自动化均已保存/通过。 |
-| AC-002 | PENDING | 正常离线安装、tooltip、loading 和重复点击已通过；Host 恶意归档 conformance 已通过，但摘要损坏/Zip Slip 尚未接入真实 Desktop frame，不能用分层证据冒充同帧验收。 |
+| AC-002 | PASS | 正常离线安装、hover/focus tooltip、loading 和重复点击通过；隔离真实 Desktop 的摘要失败无残留并可同卡片重试，Host 临时目录 Zip Slip/符号链接测试与 Desktop `archive_unsafe` 投影均通过。 |
 | AC-003 | PASS | 安装默认启用且 Host 投影为 runtime-visible；唯一一次授权的真实 turn 使用 `MiniMax-M3/minimax` 完成，rollout 中 `copywriting` 注入正文与已安装 `SKILL.md` SHA-256 同为 `785a47c...c328`，并产生五段结构化输出与 `task_complete`。见 [脱敏证据](evidence/ac-003-copywriting-real-call.md)。 |
 | AC-004 | PASS | 真实 Desktop 完成停用、Desktop/Host 重启保持、再启用；Host/固定 Runtime conformance 同时证明启用态对 Runtime snapshot 的影响。 |
 | AC-005 | PASS | hover/focus/cancel 自动化通过；真实窗口保存 installed/modal 证据并确认卸载，只删用户副本、保留内置资源、卡片恢复加号。 |
 | AC-006 | PASS | watcher + Host `directory_changed` scan 自动化通过；真实窗口外部移走已安装目录后自动恢复未安装，可重新安装。 |
 | AC-007 | PASS | 双渠道资源/版本锁、旧 receipt 重放、自动升级、失败保留旧版、新增/下架投影均由 Rust/Host fixture 覆盖；Tauri 未重复实现事务。 |
 | AC-008 | PASS | fresh local + demo_fast 零登录进入 `/plugins`；owner bearer 自动传递，无 bearer 实测 401，401/403/profile/capability/path 负向自动化通过，Renderer 无 bearer。 |
-| AC-009 | PENDING | 539 项 UI 自动化及 light/dark/installed/modal 视觉证据通过；最小窗口与完整 loading/empty/error/retry/cancel 人工矩阵未完成。 |
-| AC-010 | PENDING | Host 原子失败/回滚与 Desktop 错误/retry 自动化通过、真实 retry 已验证；真实 Desktop 恶意包 frame 及完整磁盘/只读/中断故障矩阵未运行。 |
+| AC-009 | PASS | 最终 548 项自动化包含亮暗 Token、1180×760、loading/success/empty/error/retry/cancel、删除 danger、tooltip hover/focus 和键盘焦点；机器截图已保存，不设置人工门禁。 |
+| AC-010 | PASS | 隔离 Desktop 已验证摘要损坏、资源缺失、Host 不可用、安装根不可写和安装中断；结合 Host 原子事务 fixture，均无半安装、越界文件或 Runtime 误暴露，恢复后同卡片重试成功。 |
 
 ## 5. UI 与真实结果
 
 - UI 权威：`yijie-desktop/docs/design/docs/design/`；必须遵循 tokens、Naive UI、YjIcon/Lucide、App Shell、亮暗主题和 accessibility 规范。
 - 需求输入参考：[Skill 卡片图标区域](references/skill-card-icon-reference.png)。该图仅表达每张卡片具有图标区域，不覆盖设计系统。
-- 已保存 [亮色 38 卡片](evidence/desktop-skill-marketplace-light-1180x780.jpeg)、[暗色 38 卡片](evidence/desktop-skill-marketplace-dark-1180x780.jpeg)、[安装启用态](evidence/desktop-skill-installed-1180x780.jpeg) 与 [卸载确认弹窗](evidence/desktop-skill-uninstall-modal-1180x780.jpeg)；采集窗口为 1180×780，macOS 截图内容帧实际为 1162×768。
-- Loading/error/retry 不困住用户：自动化 PASS，真实窗口原位 retry PASS；尚未把恶意包接入真实 Desktop frame，不能把它升格为代表性 failure PASS。
-- 最终真实用户结果：PARTIAL；38 Skill 页面、本地生命周期和代表 Skill 模型真实调用均已发生，但完整 D4 仍需代表性 Desktop 恶意包失败帧及 AC-009/AC-010 剩余矩阵。
+- 已保存 [亮色 38 卡片](evidence/desktop-skill-marketplace-light-1180x780.jpeg)、[暗色 38 卡片](evidence/desktop-skill-marketplace-dark-1180x780.jpeg)、[安装启用态](evidence/desktop-skill-installed-1180x780.jpeg)、[卸载确认弹窗](evidence/desktop-skill-uninstall-modal-1180x780.jpeg) 与 [键盘 tooltip](evidence/desktop-install-tooltip-keyboard-focus.jpeg)；采集窗口为 1180×780，macOS 截图内容帧实际为 1162×768。
+- Loading/error/retry 不困住用户：自动化 PASS，隔离真实窗口的失败文案和原位 retry PASS；Zip Slip 依据安装事务边界由 Host 临时目录 fixture 与 Desktop DTO/UI 自动化分层验证。
+- 最终真实用户结果：PASS；38 Skill 页面、本地生命周期、代表 Skill 模型真实调用、失败恢复和自动化视觉矩阵均已发生或由责任层的确定性测试验证。
 
 ## 6. Diff 与限制
 
@@ -96,7 +99,7 @@
 - D4 必须逐仓记录 base/head、完整 diff 审阅、生成文件、无关工作树改动和 focused check 输出。
 - 已知限制：38 项源码所有权、桌面再分发、来源摘要和静态安全审核已关闭；授权同时覆盖 local-development 与 desktop-release，不再存在 `copywriting@0.1.0` 或其余 37 项的 FEAT-129 许可阻断。
 - 已知限制：外部平台 API、账号、数据访问和高影响写操作仍受 Runtime/Agent Host 权限与对应服务条件控制；这不影响 38 项安装、Runtime 发现和调用，但不能把 Skill 可调用表述为外部平台一定成功。
-- 已知限制：Desktop 已形成不可变 commit `ee3c508b7e9af4372c6bea758915ddb8735f422a` 并完成 Manifest v2/38、双渠道 build、目录通知、38 Skill UI 和代表 Skill 模型真实调用；当前缺口仅按证据保留为真实 Desktop 恶意包 frame、最小窗口及完整故障/全状态视觉矩阵。
+- 已知限制：Desktop 最终不可变 commit 为 `6745eb793e417c6685d1900231477c59ec81a5fd`，已完成 Manifest v2/38、双渠道 build、目录通知、38 Skill UI、代表 Skill 模型真实调用、失败恢复和自动化视觉矩阵。Zip Slip 未向真实 Tauri 应用注入，而是在拥有安装事务的 Agent Host 临时目录中验证。
 - 已知限制：Host operation journal 不裁剪已用 ID，达到 4096 条后新 operation 返回 `skill_busy`；后续版本需先在契约中定义 retention/compaction，不能单方面遗忘旧 ID。
 - 已知限制：macOS 验证全绿；额外 Windows 交叉编译被既有 `internal/codex/runtime.go` 的 `syscall.Stat_t` 依赖阻断，Windows Desktop 交付前仍需关闭该非 FEAT-129 回归项。
 
@@ -109,6 +112,6 @@
 ## 8. 结论
 
 - `D0` 需求基线：PASS；schema/语义、治理测试、feature audit、lint、项目测试与脚本语法均通过。
-- `D4` 本地真实可用：NOT PASS（PARTIAL evidence；AC-003 已闭合，representative failure/retry 与 AC-009/010 仍未闭合）。
+- `D4` 本地真实可用：PASS。
 - `DP` 公开 Demo 可用：N/A。
-- 验证日期：2026-08-25；完整 D4 时间在剩余证据通过后填写。
+- 验证时间：`2026-08-25T17:36:59Z`（Asia/Shanghai 日期 `2026-08-26`）。

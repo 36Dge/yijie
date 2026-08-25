@@ -1,6 +1,6 @@
 # FEAT-129 — Desktop 本地 Skill 广场 Demo Brief
 
-> Profile: `demo_fast` · Exposure: `local` · Checkpoint: `D4 evidence collected / gate not passed` · Created: `2026-08-25`
+> Profile: `demo_fast` · Exposure: `local` · Checkpoint: `D4 PASS` · Created: `2026-08-25` · Verified: `2026-08-26`
 
 ## 1. 用户问题与结果
 
@@ -126,8 +126,8 @@ UI 实现以 [`yijie-desktop/docs/design/docs/design`](../../../../yijie-desktop
 | AC-006 | 外部移走/损坏目录后 UI 与 Runtime 自动收敛到未安装或可重装错误态。 | 监听、窗口恢复、页面重入三条触发路径的真实文件测试。 |
 | AC-007 | 客户端版本升级正确处理未安装、已安装、新增、下架和失败回滚，保留启停状态。 | 双版本 fixture 与原子回滚测试。 |
 | AC-008 | 精确 local + demo_fast 零登录直达且 Desktop 透明携带 owner bearer；Host 仍执行 `plugin.read`/`plugin.manage` 分权，缺失/错误 bearer、越权、未知 ID、越界路径被拒绝，public/production 无免登录例外。 | fresh 启动零登录检查 + Desktop/Tauri/Host 权限、profile 与能力矩阵测试。 |
-| AC-009 | 页面符合 Desktop 设计系统，完整覆盖亮暗主题、所有 UI 状态、键盘焦点和最小窗口。 | 自动化 + UI Review Checklist + 关键状态截图。 |
-| AC-010 | 所有失败路径不留半安装、不误删源包、不破坏旧版、不暴露无效 Skill，且用户可理解并重试。 | 故障注入并核对文件、注册、模型可见性、文案和恢复。 |
+| AC-009 | 页面符合 Desktop 设计系统，完整覆盖亮暗主题、所有 UI 状态、键盘焦点和最小窗口。 | 自动化 UI 状态矩阵 + 键盘可达性测试 + 机器截图；不设置人工验收门禁。 |
+| AC-010 | 所有失败路径不留半安装、不误删源包、不破坏旧版、不暴露无效 Skill，且用户可理解并重试。 | 隔离环境恢复检查 + 临时目录负向 fixture，核对文件、注册、模型可见性、文案和恢复。 |
 
 ## 6. 工程事实与边界
 
@@ -138,7 +138,7 @@ UI 实现以 [`yijie-desktop/docs/design/docs/design`](../../../../yijie-desktop
 - 用户提供的本地构建输入记为 `<local-skill-source>/05Skill广场`。D0 只记录该来源类别；实现不得在运行时代码、清单或发布包中硬编码个人绝对路径，也不得修改或删除该源目录。
 - D0 原始扫描为 38 个 Skill、241 个文件、约 2.6 MiB；排除 cache/debug 文件并补 NOTICE 后，`yijie-skills@0.3.0` 的正式审核集合为 258 个打包文件，逐项具备稳定版本、来源、许可、风险、能力依赖和 `iconKey`。
 - 38 项中 13 项为 model-only、25 项为 tool-assisted。能力依赖不阻断安装、启用或 Runtime 可见；具体外部平台操作仍取决于本地 Runtime 能力、账号、数据权限与服务状态。
-- `yijie`、`yijie-agent-host` 与 `yijie-desktop` 均已迁移到独立 `feat/feat-129-desktop-skill-marketplace` 分支；Agent Host v2/38 实现 commit 为 `1b7bfd1ce4323e52035b2ba1e62842c2d332d9ed`，Desktop v2/38 实现 commit 为 `ee3c508b7e9af4372c6bea758915ddb8735f422a`。Desktop 以 `d0b0eee6336550ffded16723390fc9ca01a280d4` 为隔离基线，既有 FEAT-128 分支与提交保持不变。
+- `yijie`、`yijie-agent-host` 与 `yijie-desktop` 均已迁移到独立 `feat/feat-129-desktop-skill-marketplace` 分支；Agent Host v2/38 实现 commit 为 `1b7bfd1ce4323e52035b2ba1e62842c2d332d9ed`，Desktop D4 最终实现 commit 为 `6745eb793e417c6685d1900231477c59ec81a5fd`。Desktop 以 `d0b0eee6336550ffded16723390fc9ca01a280d4` 为隔离基线，既有 FEAT-128 分支与提交保持不变。
 - 本需求授权最多 **1 次**付费模型调用，且仅可用于 FEAT-129 D4 中 `copywriting@0.1.0` 的真实模型调用验证；该额度已于 `2026-08-25T15:20:38Z` 执行并用尽，不得扩展到其他付费操作。生产写入和 Codex 执行受管功能以外的破坏性删除仍未授权。产品内卸载仍需用户在 UI 二次确认，并受原生路径边界保护。
 
 ## 7. 推荐方案、前置条件与停止条件
@@ -202,6 +202,14 @@ UI 实现以 [`yijie-desktop/docs/design/docs/design`](../../../../yijie-desktop
 - 唯一一次授权的真实模型 turn 使用 `MiniMax-M3/minimax`，显式选择 `$copywriting` 并输入完全合成的 Shopify 商品事实；turn `01a03982-579a-7be0-a2b1-ef46472c4e7e` 以 `status=completed` 结束，未提交第二个 turn，也未执行平台发布或其他外部写入。
 - Runtime rollout 中仅有一个 `copywriting` Skill 注入块；去除 XML 包装后的正文 SHA-256 为 `785a47c30626608911e8b3e6221efb533116518b4463bf16f4419ca43ed9c328`，与受管安装目录中的 `SKILL.md` 完全一致。模型按 Skill 要求输出五段文案并声明仅为未发布草稿，因此 AC-003 已闭合。
 - 脱敏证据见 [AC-003 copywriting 真实调用](evidence/ac-003-copywriting-real-call.md)。完整 D4 仍不因此自动通过：真实 Desktop 恶意包 frame、最小窗口和完整故障/全状态视觉矩阵仍需单独验收。
+
+### Desktop D4 最终关闭点（2026-08-26）
+
+- 上一节是 `2026-08-25` 的历史检查点；其余 AC 已在本关闭点完成。Desktop 最终提交为 `6745eb793e417c6685d1900231477c59ec81a5fd`：补齐安装 tooltip 的键盘焦点，保持 scan 后的原卡片 retry 状态，并修复 Host journal 触发目录 watcher 自反馈的问题；implementation digest lock 已同步。
+- 最终正常门禁通过：38 项资源和 `5/9/7/9/8` 分类检查、`generate:check`、72 files / 548 Vitest、lint/build、Rust fmt/clippy，以及 265 passed / 3 ignored 的 library tests。
+- AC-002/010 采用分层安全证据：隔离真实 Desktop 完成摘要失败、资源缺失、Host 不可用、安装根不可写、安装中断及恢复；Zip Slip 由拥有安装事务的 Agent Host 临时目录 fixture 验证，Desktop 自动化验证 `archive_unsafe` 投影和原位重试。所有场景均无半安装或 Runtime 误暴露，恢复正常依赖后可从原卡片重试。用户收紧安全边界后未再向 Tauri 注入危险归档。
+- AC-009 由设计规范驱动的自动化矩阵与机器截图闭合，不设置人工验收门禁；覆盖亮暗主题、1180×760、tooltip hover/focus、loading/success/empty/error/retry、删除 hover/danger、取消/确认/Escape 和焦点恢复。
+- 详细证据见 [D4 失败恢复与视觉矩阵](evidence/d4-desktop-failure-and-visual-matrix.md)；D4 收尾未执行付费模型调用，历史额度仍为 `1/1`。
 
 ### 停止条件
 

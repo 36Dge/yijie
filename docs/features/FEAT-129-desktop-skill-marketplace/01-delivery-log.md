@@ -1,6 +1,6 @@
 # FEAT-129 整体实现与调试记录
 
-> 当前 checkpoint：`D4 evidence collected / gate not passed`。38 项双渠道资源、Tauri 消费层、38 卡片 UI、fresh 本地生命周期及 `copywriting@0.1.0` 的唯一一次真实付费模型调用均已完成；尚未在真实 Desktop frame 运行恶意包，最小窗口和完整故障/全状态视觉矩阵也未闭合，因此完整 D4 仍不能标记 PASS。
+> 当前 checkpoint：`D4 PASS`。38 项双渠道资源、Tauri 消费层、38 卡片 UI、fresh 本地生命周期、分层失败恢复验证、自动化视觉矩阵及 `copywriting@0.1.0` 的唯一一次真实付费模型调用均已完成。
 
 ## 1. 整体实现方案
 
@@ -23,9 +23,9 @@
 | `yijie-skills` | 38 项所有权/桌面再分发声明、源码快照、逐项来源/安全审核、Manifest v2、双渠道确定性 packager | `0.3.0` 在 commit `10c45bec29603b002e861e1499d5b4e684251af5` 将 38 项全部产出为 `bundled + installable`；37 项不重写，保留审核源码快照，`copywriting@0.1.0` 使用易界重写版本；local-development 与 desktop-release 均获授权。 | 关闭 FEAT-129 源码所有权与桌面再分发阻断，同时保留 Runtime 权限控制和逐项摘要审计。 |
 | `yijie-agent-host` | contract/producer lock、五个 Host API、Manifest/archive/receipt/store/service、Runtime Skills adapter、fixture 与真实 Runtime integration | 不可变实现 commit `1b7bfd1ce4323e52035b2ba1e62842c2d332d9ed` 精确 pin `yijie-contracts@0.5.1` commit `164b14f609537d727a52326832da04430aecc4ab` 与 `yijie-skills@0.3.0` commit `10c45bec29603b002e861e1499d5b4e684251af5`，完整消费 v2 来源、许可、风险、能力依赖、`iconKey`、状态和归档；38 项均完成查询/扫描/安装/启停/卸载与 Runtime 投影。 | 以 synthetic blocked、v2 摘要损坏/Zip Slip/资源缺失、目录移走、重启、401/403、双渠道和真实 pinned Runtime 证明 owner-only conformance。 |
 | `yijie-desktop` | 历史 v1 contract/resource lock、Tauri `skills`/sidecar/native auth、`/plugins` 路由/导航/store/page/card | 历史 consumer 精确 pin Contracts 0.5.0 commit `d6dff903e0c12b6a5e69599df1e33ef46d8bea6b`，并完成单 Skill Tauri/Renderer 闭环；Tauri 仅消费 Host API，不实现安装/解压/回滚/删除事务。 | 保留首个 Contract First consumer 的审计链；该锁已被下方 0.5.1/38 项增量取代。 |
-| `yijie-desktop` | Contracts/Host/Skills locks、双渠道 resource sync、Tauri v2 consumer、目录 watcher、38 卡片 UI、release overlays | 不可变 commit `ee3c508b7e9af4372c6bea758915ddb8735f422a` 精确 pin Contracts `164b14f609537d727a52326832da04430aecc4ab`、Host `1b7bfd1ce4323e52035b2ba1e62842c2d332d9ed` 与 Skills `10c45bec29603b002e861e1499d5b4e684251af5`；local-development/desktop-release 均同步 38 个归档并校验 `5/9/7/9/8`，页面消费完整 v2 元数据和 Host 五接口。 | 完成 Desktop 38 Skill 实现闭环；本地 manifest `cc2b9be4d0e640e0888e97f6f7a09149a248386931786a7a089c8094304d94a5`、正式 manifest `9f8459077615514183fdd4c81ff3b6b2ef1ea735257b04c040399d4c91c1daa2`，Tauri 不复制 Host 安装事务。 |
+| `yijie-desktop` | Contracts/Host/Skills locks、双渠道 resource sync、Tauri v2 consumer、目录 watcher、38 卡片 UI、release overlays | 最终不可变 commit `6745eb793e417c6685d1900231477c59ec81a5fd` 精确 pin Contracts `164b14f609537d727a52326832da04430aecc4ab`、Host `1b7bfd1ce4323e52035b2ba1e62842c2d332d9ed` 与 Skills `10c45bec29603b002e861e1499d5b4e684251af5`；local-development/desktop-release 均同步 38 个归档并校验 `5/9/7/9/8`，页面消费完整 v2 元数据和 Host 五接口。 | 完成 Desktop 38 Skill 实现闭环；本地 manifest `cc2b9be4d0e640e0888e97f6f7a09149a248386931786a7a089c8094304d94a5`、正式 manifest `9f8459077615514183fdd4c81ff3b6b2ef1ea735257b04c040399d4c91c1daa2`，Tauri 不复制 Host 安装事务。 |
 
-本轮已完成 `yijie-agent-host` lifecycle/conformance，以及 `yijie-desktop` 对 Contracts 0.5.1、Host immutable commit 与 Skills 0.3.0 的精确消费、双渠道 38 项资源、Tauri consumer、UI focused 实现、双 app build 和 fresh local + demo_fast 生命周期 smoke。固定 `yijie-codex` 作为未修改真实上游参与 Host 与 Desktop 启动；已保存亮/暗、安装启用和卸载弹窗证据，并完成 `copywriting@0.1.0` 的唯一一次授权模型真实调用。真实 Desktop frame 恶意包和剩余视觉/故障矩阵尚未完成，因此完整 D4 仍未通过。
+本轮已完成 `yijie-agent-host` lifecycle/conformance，以及 `yijie-desktop` 对 Contracts 0.5.1、Host immutable commit 与 Skills 0.3.0 的精确消费、双渠道 38 项资源、Tauri consumer、UI focused 实现、双 app build 和 fresh local + demo_fast 生命周期 smoke。固定 `yijie-codex` 作为未修改真实上游参与 Host 与 Desktop 启动；已保存亮/暗、安装启用、卸载弹窗和失败恢复证据，并完成 `copywriting@0.1.0` 的唯一一次授权模型真实调用。安全负向验证、自动化视觉矩阵和最终门禁均已闭合，D4 PASS。
 
 ## 3. 实施矩阵
 
@@ -34,8 +34,8 @@
 | `yijie-contracts` | Bundle Manifest schema、Host operation、Runtime compatibility projection、权限枚举 | `0.5.0` v1 历史闭环保持不变；Catalog First v2 已形成 `0.5.1` 不可变 commit `164b14f609537d727a52326832da04430aecc4ab`。 | v2 generate/lint/test/breaking checks PASS；Manifest v2 SHA-256 `39a898111ba3dcae2f369fdcb571a2e892830d1d0a57c90ab6210a0ab897a649`。 |
 | `yijie-skills` | 38 项来源/许可、icon、风险、能力依赖、安全审核与确定性 packager | `0.3.0` 精确消费 Contracts 0.5.1 v2；38 项均确定性产出为 local-development 与 desktop-release 的 bundled/installable 条目，无 catalog-only/blocked 项。 | `make lint && make test` PASS；258 个审核文件；双渠道重复构建字节一致，正式包 manifest SHA-256 `9f8459077615514183fdd4c81ff3b6b2ef1ea735257b04c040399d4c91c1daa2`。安装/发现/Runtime 可见由下游 Host conformance 证明。 |
 | `yijie-agent-host` | owner-only Skill 管理 API、App Data root 注册、启停重放、变更通知 | 实现 commit `1b7bfd1ce4323e52035b2ba1e62842c2d332d9ed` 已固定；契约 commit/OpenAPI/Manifest/Runtime projection/fixtures 已精确 pin；查询、扫描、安装、启停、卸载与 Runtime 投影完成。 | `contract-check`、全仓 race tests、lint、恶意 fixture、重启重放、401/403、通知合并、local-development/desktop-release 双渠道完整生命周期及真实 pinned Runtime 38 项生命周期 PASS。 |
-| `yijie-desktop` | `/plugins`、导航、store/native client、Tauri commands、resources/app-data、sidecar、目录 watcher、设计系统组件与双渠道 app overlay | 精确消费 v2/0.3.0，按五类展示 38 项并通过 Host 完成安装、启停、卸载、扫描和 Runtime 状态投影；operation/digest/path/bearer 不进入 Renderer，Tauri 不持有第二套文件事务。 | `generate:check`、539 项 demo_fast Vitest、lint/build、267 项 Rust unit（264 passed / 3 ignored）、fmt/clippy、双渠道 resource/release checker、macOS local-development 与 desktop-release app build、fresh 生命周期、401、四份视觉证据及 `copywriting` 模型真实调用 PASS；完整 D4 因 Desktop 恶意包 frame 和剩余视觉/故障矩阵未完成而保持未通过。 |
-| `yijie` | Feature Package | 按 checkpoint 更新 AC、checks、artifact、diff 和限制。 | D0 checker 与 feature audit PASS；D4 checker 因已记录的 pending AC 按预期拒绝。 |
+| `yijie-desktop` | `/plugins`、导航、store/native client、Tauri commands、resources/app-data、sidecar、目录 watcher、设计系统组件与双渠道 app overlay | 精确消费 v2/0.3.0，按五类展示 38 项并通过 Host 完成安装、启停、卸载、扫描和 Runtime 状态投影；operation/digest/path/bearer 不进入 Renderer，Tauri 不持有第二套文件事务。 | 最终 `generate:check`、548 项 demo_fast Vitest、lint/build、265 passed / 3 ignored Rust library tests、fmt/clippy、双渠道 resource/release checker、macOS app build、fresh 生命周期、401、视觉与失败恢复证据及 `copywriting` 模型真实调用均 PASS。 |
+| `yijie` | Feature Package | 按 checkpoint 更新 AC、checks、artifact、diff 和限制。 | D0 与 strict D4 checker、claim audit、feature audit、lint/test 均 PASS。 |
 
 ## 4. 调试循环
 
@@ -67,6 +67,11 @@
 | 2026-08-25 | AC-003 要求代表 Skill 被模型真实调用，但 Feature Package 明确未授权付费调用。 | Runtime/Host 可见性测试不等于模型在真实对话中选用 Skill；不得伪造或用自动化推导付费调用证据。 | 保持 `paid_calls.allowed=false` 和实际调用 0；记录 Host/Runtime 可见性、Desktop lifecycle 与缺口，等待用户另行授权后再执行该一步。 | AC-003、real_smoke 总项和 D4 保持未通过；同样保留“真实 Desktop 恶意包 frame 未运行”的代表性 failure 缺口。 | D4 evidence review |
 | 2026-08-25 | 用户明确要求修改 Brief 并允许付费调用。 | 只需要关闭 AC-003，不应把授权扩张为开放式付费预算。 | 将 `external_authorizations.paid_calls` 更新为 `allowed=true`、`max_actions=1`，用途固定为 `copywriting@0.1.0` 的一次真实模型调用；生产写入与其他付费操作仍未授权。 | 授权于 `2026-08-25T14:40:52Z` 生效；实际调用与结果在执行后回填。 | Paid-call authorization |
 | 2026-08-25 | AC-003 已获 1 次限定授权，仍需证明模型使用的是受管安装目录中的准确 Skill，而非只看到目录投影。 | `runtime_visible=true` 与实际上下文注入是两层不同证据；调用必须使用真实 provider/model，并且不能提交第二个 turn。 | canonical Desktop 启动 Host，安装并确认 `copywriting` enabled/runtime-visible；以显式 `$copywriting` 和合成商品事实提交唯一一个 `--retry 0` Host turn，随后对 rollout 注入正文与已安装 `SKILL.md` 分别计算 SHA-256。 | `MiniMax-M3/minimax` turn completed；两份摘要同为 `785a47c...c328`，仅 1 个 Skill 注入、assistant message 和 task_complete；额度 1/1 用尽，AC-003 PASS。 | Paid real-call evidence |
+| 2026-08-26 | 安装 tooltip 只支持鼠标，键盘用户无法获得同等提示。 | 加号按钮已有可聚焦语义，但 tooltip trigger 未覆盖 focus。 | 补齐 focus-visible 行为和 Vitest，机器截图保存键盘聚焦时的“安装”提示。 | hover/focus 均 PASS，未改变安装协议或权限边界。 | AC-002/009 accessibility |
+| 2026-08-26 | scan 响应会覆盖卡片的失败状态，导致用户看不到原位 retry；Host journal 更新还会触发 watcher 再次 scan。 | Renderer 合并策略未保留可重试错误；目录指纹包含 Host 自己管理的 `.yijie-state/operations.json`。 | 保留 pending/retry 状态直到用户动作；watcher 指纹忽略 Host 管理的 `.yijie-*` 节点，但继续检测真实 Skill 内容、移动与删除；刷新精确 implementation digest lock。 | 正常页面观察期 scan `2 → 2`，真实目录变化测试仍 PASS；最终 Desktop commit 为 `6745eb793e417c6685d1900231477c59ec81a5fd`。 | State convergence |
+| 2026-08-26 | AC-002/010 需要证明失败原子性与恢复，同时用户要求停止高敏感操作。 | 安装事务属于 Agent Host；Tauri 只消费接口，重复在真实应用注入危险归档没有必要。 | 真实隔离 Desktop 保留已取得的摘要失败、资源缺失、Host 不可用、安装根不可写和中断恢复证据；Zip Slip 只运行 Host 既有临时目录 fixture，并由 Desktop DTO/UI 自动化验证 `archive_unsafe` 与重试。 | 无半安装、越界文件或 Runtime 误暴露；恢复后同卡片重试 PASS。用户收紧边界后未再执行故障注入。 | Safe D4 failure matrix |
+| 2026-08-26 | AC-009 的人工验收门禁已由用户明确移除。 | Checker 不要求人工签字，设计规范可由自动化状态矩阵与机器截图审计。 | Vitest 覆盖亮暗 Token、1180×760、tooltip hover/focus、loading/success/empty/error/retry、删除 danger、取消/确认/Escape 和焦点恢复；复用真实 light/dark/installed/modal 截图。 | 自动化视觉矩阵 PASS，无人工验收门禁。 | AC-009 closure |
+| 2026-08-26 | watcher 修复后 implementation digest lock 与源码摘要不一致，最终门禁唯一失败。 | `resources.rs` 已更新，consumer lock 仍固定父提交摘要。 | 将 lock 精确更新为 `5353f19e...` 并重新运行 `generate:check` 与 `test:demo-fast`。 | `generate:check` PASS；72 files / 548 tests PASS，最终工作树干净。 | Final Desktop gate |
 
 调试规则：30 分钟无新事实则停止猜测式补丁；90 分钟同一阻塞则简化到一个代表 Skill 的完整闭环；非核心验证最多 120 分钟；核心阻塞 240 分钟后重新选择架构或缩小 MVP。
 
@@ -82,11 +87,11 @@
 
 ## 6. 已知限制与工作区保护
 
-- D0 需求基线、Contracts 0.5.1 v2、38 项双渠道 Skills 生产者、Agent Host v2/38 lifecycle/conformance，以及 Desktop 对 0.5.1/0.3.0 的精确消费、38 卡片、双 app build、fresh 生命周期 smoke 与代表 Skill 模型真实调用已完成。Desktop 恶意包失败帧未运行，最小窗口/全状态视觉矩阵未完成，因此 AC-002/009/010 与完整 D4 仍为 `pending`/`NOT RUN`。
+- D0 需求基线、Contracts 0.5.1 v2、38 项双渠道 Skills 生产者、Agent Host v2/38 lifecycle/conformance，以及 Desktop 对 0.5.1/0.3.0 的精确消费、38 卡片、双 app build、fresh 生命周期、代表 Skill 模型真实调用、分层失败恢复和自动化视觉矩阵均已完成，D4 PASS。
 - 38 项所有权、桌面再分发、来源摘要和静态安全审核已由声明 `FEAT-129-DESKTOP-DISTRIBUTION-2026-08-25` 覆盖；`copywriting@0.1.0` 与其余 37 项均可进入 local-development 和 desktop-release，不再存在 FEAT-129 源码许可阻断。
 - 25 项 tool-assisted Skill 声明了外部能力依赖；Host 不再以此阻断安装、启用和 Runtime 可见，但 D4 仍不能把“Skill 可调用”表述为每个外部平台操作必然成功。
-- Desktop Tauri resources/sidecar、local + demo_fast 自动凭据传递、Host API consumer、目录变化通知和 38 卡片 UI 已实现并通过 focused checks；fresh 启动及安装/停用/重启保持/再启用/卸载/外部移走自动恢复/retry/401 已实测，模型真实调用也已由 rollout 注入摘要闭合，但仍不替代 Desktop 恶意包 frame。
-- Desktop resource lock 已关闭旧单 Skill 差距并精确固定 `yijie-skills@10c45bec29603b002e861e1499d5b4e684251af5`；`local-development` 与 `desktop-release` 两渠道均为 38 项、0 blocked。实现已形成不可变 commit `ee3c508b7e9af4372c6bea758915ddb8735f422a`，但尚未 tag、push 或发布。
+- Desktop Tauri resources/sidecar、local + demo_fast 自动凭据传递、Host API consumer、目录变化通知和 38 卡片 UI 已实现并通过 focused checks；fresh 启动及安装/停用/重启保持/再启用/卸载/外部移走自动恢复/retry/401 已实测，模型真实调用由 rollout 注入摘要闭合。Zip Slip 按最新安全边界由 Agent Host 临时目录 fixture 与 Desktop DTO/UI 自动化分层验证。
+- Desktop resource lock 已关闭旧单 Skill 差距并精确固定 `yijie-skills@10c45bec29603b002e861e1499d5b4e684251af5`；`local-development` 与 `desktop-release` 两渠道均为 38 项、0 blocked。最终实现已形成不可变 commit `6745eb793e417c6685d1900231477c59ec81a5fd`，但尚未 tag、push 或发布。
 - Host operation journal 为保留 Contracts 0.5.1 未声明过期的幂等语义而不裁剪旧 ID；达到 4096 条后新 operation 会 fail closed 为 `skill_busy`。长期运行前需在后续契约版本明确 retention/compaction。
 - 本轮 macOS 全套门禁通过；额外 Windows 交叉编译在既有 `internal/codex/runtime.go` 的 `syscall.Stat_t` 可移植性问题处失败，不由 FEAT-129 新增 authority 文件引起，但在 Windows Desktop 交付前必须另行关闭。
 - `yijie`、`yijie-agent-host` 与 `yijie-desktop` 均位于独立 `feat/feat-129-desktop-skill-marketplace` 分支；Desktop 以 `d0b0eee6336550ffded16723390fc9ca01a280d4` 为隔离基线，FEAT-128 分支/提交未受影响。后续仍禁止 reset、checkout 覆盖或顺手整理无关 diff。

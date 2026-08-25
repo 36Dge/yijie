@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "featureId": "FEAT-129",
+  "verifiedDate": "2026-08-26",
+  "desktopCommit": "6745eb793e417c6685d1900231477c59ec81a5fd",
+  "isolatedDesktopScenarios": [
+    {
+      "scenario": "archive_checksum_mismatch",
+      "mode": "isolated-real-desktop",
+      "managedTargetPresent": false,
+      "stagingPresent": false,
+      "installReceiptPresent": false,
+      "runtimeVisible": false,
+      "bundledSourceRetained": true,
+      "sameCardRetryAfterRecovery": "pass"
+    },
+    {
+      "scenario": "bundle_missing",
+      "mode": "isolated-real-desktop",
+      "managedTargetPresent": false,
+      "stagingPresent": false,
+      "installReceiptPresent": false,
+      "runtimeVisible": false,
+      "bundledSourceRetained": true,
+      "sameCardRetryAfterRecovery": "pass"
+    },
+    {
+      "scenario": "host_unavailable",
+      "mode": "isolated-real-desktop",
+      "managedTargetPresent": false,
+      "stagingPresent": false,
+      "runtimeVisible": false,
+      "bundledSourceRetained": true,
+      "sameCardRetryAfterRecovery": "pass"
+    },
+    {
+      "scenario": "install_root_not_writable",
+      "mode": "isolated-real-desktop",
+      "managedTargetPresent": false,
+      "stagingPresent": false,
+      "installReceiptPresent": false,
+      "runtimeVisible": false,
+      "bundledSourceRetained": true,
+      "sameCardRetryAfterRecovery": "pass"
+    },
+    {
+      "scenario": "install_interruption_replay",
+      "mode": "isolated-real-desktop",
+      "managedTargetPresentAfterReplay": false,
+      "stagingPresentAfterReplay": false,
+      "runtimeVisible": false,
+      "bundledSourceRetained": true,
+      "reinstallAfterRecovery": "pass"
+    }
+  ],
+  "safeContractScenarios": [
+    {
+      "scenario": "zip_slip",
+      "mode": "agent-host-temp-directory-fixture",
+      "errorCode": "archive_unsafe",
+      "managedTargetPresent": false,
+      "stagingPresent": false,
+      "backupPresent": false,
+      "failedResiduePresent": false,
+      "outsideEscapeFilePresent": false,
+      "runtimeVisible": false,
+      "desktopErrorProjectionTested": true
+    }
+  ],
+  "safety": {
+    "canonicalUserAppDataUsed": false,
+    "paidCallsInFinalClosure": 0,
+    "faultInjectionAfterUserSafetyBoundary": false
+  }
+}

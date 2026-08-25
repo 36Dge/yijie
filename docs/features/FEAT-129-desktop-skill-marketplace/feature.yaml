@@ -6,7 +6,7 @@ feature:
   id: "FEAT-129"
   slug: "desktop-skill-marketplace"
   title: "Desktop 本地 Skill 广场与运行时管理"
-  status: "active"
+  status: "usable"
   created_at: "2026-08-25"
   requirement_owner: "段成威"
   technical_owner: "段成威"
@@ -84,8 +84,8 @@ must_acceptance:
     status: "PASS"
   - id: "AC-002"
     statement: "未安装卡片的加号悬停显示“安装”；点击后仅从客户端内置资源离线读取，完成清单、SHA-256、文件数量、解压大小、路径穿越和符号链接校验，并通过同卷临时目录原子安装且阻止重复点击。"
-    verification: "断网执行一次成功安装，并分别以摘要错误、Zip Slip、符号链接和重复点击做 focused test；确认失败无残留、成功产生受管安装回执。"
-    status: "pending"
+    verification: "在隔离 Desktop 中完成正常离线安装与摘要错误恢复；以 Agent Host 临时目录 fixture 验证 Zip Slip/符号链接拒绝，以 Desktop 自动化验证错误映射、重复点击和原位重试；确认失败无残留或 Runtime 暴露，成功产生受管安装回执。"
+    status: "PASS"
   - id: "AC-003"
     statement: "安装成功的 Skill 默认启用；Agent Host 将受管安装根目录注册给固定 Runtime，下一轮模型快照可见该 Skill，并至少有一个不依赖外部连接器的代表性 Skill 完成真实调用。"
     verification: "在 fresh real-service run 中安装代表 Skill，核对 skills/list 与 Host 投影，再发起新一轮对话并保存模型实际使用该 Skill 的脱敏证据。"
@@ -112,12 +112,12 @@ must_acceptance:
     status: "PASS"
   - id: "AC-009"
     statement: "Skill 广场 UI 符合 yijie-desktop 设计规范：复用设计 Token、Naive UI 与 YjIcon/Lucide，覆盖亮暗主题、loading/empty/error/retry/cancel、键盘焦点、tooltip、确认弹窗及最小窗口下无关键操作遮挡。"
-    verification: "按 docs/design/docs/design/07-ai-codex/03-ui-review-checklist.md 完成自动化与人工视觉检查，并保存关键状态截图。"
-    status: "pending"
+    verification: "按 docs/design/docs/design/07-ai-codex/03-ui-review-checklist.md，以 Vitest 自动化和机器截图覆盖亮暗主题、1180×760 最小窗口、tooltip hover/focus、loading/success/empty/error/retry、删除 hover/danger、取消/确认及键盘焦点；本 AC 不设置人工验收门禁。"
+    status: "PASS"
   - id: "AC-010"
     statement: "清单、安装、启停、卸载或 Runtime 同步失败均不得留下半安装目录、误删内置资源、破坏可用旧版本或继续向模型暴露无效 Skill；用户可在原位置理解原因并重试。"
-    verification: "注入资源缺失、只读目录、磁盘写入失败、Host 不可用和升级中断，核对原子性、回滚、模型可见性、错误文案和重试恢复。"
-    status: "pending"
+    verification: "在隔离 App Resource/App Data 中验证资源缺失、安装根不可写、Host 不可用和安装中断；结合 Host 临时目录原子事务测试，核对无半安装、无越界写入、源包和旧版保留、Runtime 不可见，并在恢复后从原卡片重试成功。"
+    status: "PASS"
 
 contract:
   impact: "semantic"
@@ -145,7 +145,7 @@ contract:
       status: "PASS"
       scope: "Manifest v1/v2 contract lock; producer commit 10c45bec29603b002e861e1499d5b4e684251af5 publishes 38 bundled/installable Skills for local-development and desktop-release"
     - repository: "yijie-desktop"
-      full_commit: "ee3c508b7e9af4372c6bea758915ddb8735f422a"
+      full_commit: "6745eb793e417c6685d1900231477c59ec81a5fd"
       contract_source_full_commit: "164b14f609537d727a52326832da04430aecc4ab"
       agent_host_full_commit: "1b7bfd1ce4323e52035b2ba1e62842c2d332d9ed"
       skills_producer_full_commit: "10c45bec29603b002e861e1499d5b4e684251af5"
@@ -221,8 +221,8 @@ implementation:
   mock_only: false
 
 verification:
-  status: "NOT RUN"
-  verified_at: "NOT RUN"
+  status: "PASS"
+  verified_at: "2026-08-25T17:36:59Z"
   startup:
     status: "PASS"
     command_or_steps: "在 yijie-desktop 执行 pnpm tauri:dev，等待 Tauri、Agent Host 与固定 Runtime readiness。"
@@ -234,10 +234,10 @@ verification:
     environment: "Desktop local / demo_fast / bundled Skill fixture / real Agent Host and pinned Runtime"
     actual_result: "fresh Desktop frame 展示 38 项与 5/9/7/9/8，完成离线安装默认启用、停用、Desktop/Host 重启保持、重新启用、确认卸载、再次安装、外部移走后 watcher/scan 恢复未安装与原位 retry。唯一一次授权的 MiniMax-M3/minimax turn completed；Runtime 注入的 copywriting 正文摘要与已安装 SKILL.md 完全一致。"
   representative_failure:
-    status: "NOT RUN"
-    command_or_steps: "使用摘要损坏或路径穿越 fixture 安装，确认安全拒绝、无残留、模型不可见且原卡片可重试。"
-    environment: "Host local / demo_fast / malicious local fixture / real Host file boundary；Desktop stable error/retry projection"
-    actual_result: "Host 已拒绝摘要损坏与 Zip Slip 包并验证无半安装/越界写入；Desktop 稳定错误映射与原位重试 UI 已通过 focused tests，但尚未在真实 Tauri frame 点击恶意 fixture。"
+    status: "PASS"
+    command_or_steps: "在隔离 Desktop 中验证摘要损坏、资源缺失、Host 不可用、安装根不可写和安装中断后的原位恢复；以 Agent Host 临时目录 fixture 验证 Zip Slip，并以 Desktop 自动化核对 archive_unsafe 投影、错误展示和重试。"
+    environment: "macOS isolated Tauri Desktop / local + demo_fast / unique App Resource and App Data / real pinned Agent Host and Runtime；Agent Host temp-directory safety fixtures；no paid calls in this closure"
+    actual_result: "摘要损坏返回 archive_checksum_mismatch，Zip Slip 返回 archive_unsafe；各自对应的受管边界均无目标目录、staging、安装回执或越界文件，Runtime 不可见，既有内置源包未被误删。缺失资源恢复后同卡片重试成功。用户收紧安全边界后未向 Tauri 注入危险归档，Zip Slip 由拥有安装事务的 Host 临时目录测试及 Desktop DTO/UI 测试分层闭合。证据见 evidence/d4-desktop-failure-and-visual-matrix.md。"
   focused_checks:
     - repository: "yijie-skills"
       command: "make lint && make test && make package && make package-desktop-release"
@@ -271,6 +271,10 @@ verification:
       command: "pnpm test:demo-fast"
       status: "PASS"
       exit_code: 0
+    - repository: "yijie-agent-host"
+      command: "go test ./internal/skills -run '^TestArchivePreflightRejectsUnsafeEntrySets$/zip_slip$' -count=1 && go test ./internal/integration -run '^TestManagedSkillRejectsPinnedChecksumAndZipSlipFixturesAtomically$/zip_slip$' -count=1 && go test ./internal/app -run '^TestSkillArchiveUnsafeErrorMatchesPinnedFixture$' -count=1"
+      status: "PASS"
+      exit_code: 0
     - repository: "yijie-desktop"
       command: "pnpm lint && pnpm build"
       status: "PASS"
@@ -296,12 +300,26 @@ verification:
     - "evidence/desktop-skill-installed-1180x780.jpeg"
     - "evidence/desktop-skill-uninstall-modal-1180x780.jpeg"
     - "evidence/ac-003-copywriting-real-call.md"
-  diff_review: { status: "PASS", summary: "Desktop FEAT-129 v2/38 增量已从 d0b0eee 隔离基线完整复核并形成 immutable commit ee3c508b7e9af4372c6bea758915ddb8735f422a；FEAT-128 未受影响。D4 仍因产品证据缺口而未通过，不是 diff review 缺口。" }
+    - "evidence/d4-desktop-failure-and-visual-matrix.md"
+    - "evidence/d4-host-filesystem-state.json"
+    - "evidence/d4-appdata-restoration.txt"
+    - "evidence/desktop-install-tooltip-keyboard-focus.jpeg"
+    - "evidence/desktop-checksum-failure.jpeg"
+    - "evidence/desktop-checksum-retry-success.jpeg"
+    - "evidence/desktop-resource-missing.jpeg"
+    - "evidence/desktop-resource-missing-retry-success.jpeg"
+    - "evidence/desktop-host-unavailable-retry.jpeg"
+    - "evidence/desktop-host-retry-success.jpeg"
+    - "evidence/desktop-readonly-install-failure.jpeg"
+    - "evidence/desktop-readonly-retry-success.jpeg"
+    - "evidence/desktop-install-interrupted-recovered.jpeg"
+    - "evidence/desktop-fixed-watcher-light-1180x780.jpeg"
+  diff_review: { status: "PASS", summary: "Desktop FEAT-129 增量已从 d0b0eee 隔离基线完整复核；最终 immutable commit 为 6745eb793e417c6685d1900231477c59ec81a5fd，FEAT-128 未受影响。资源锁、548 项 Vitest、lint/build、Rust fmt/clippy/265 项 library tests 与 D4 证据均通过。" }
   known_limitations:
     - "38 项所有权、desktop-distribution、来源摘要和静态安全审核已关闭；local-development 与 desktop-release 均获授权，不再存在 FEAT-129 源码许可阻断。"
     - "外部平台 API、账号、数据访问和高影响写操作仍由 Runtime/Agent Host 权限及对应服务条件控制；不影响 Skill 安装、发现和调用，但不能保证外部平台操作一定成功。"
-    - "Desktop 已完成 Contracts 0.5.1 / Host 1b7bfd1 / Skills 0.3.0 的精确消费、双渠道 38 项资源、目录通知和 38 卡片 UI；实现 commit 为 ee3c508b7e9af4372c6bea758915ddb8735f422a。"
-    - "copywriting@0.1.0 的唯一一次授权付费模型调用已完成，额度 1/1 用尽且 AC-003 PASS；真实 Desktop 恶意包 frame、最小窗口和完整故障/全状态视觉矩阵尚未验证，因此 AC-002/009/010 与完整 D4 保持 pending/NOT RUN。"
+    - "Desktop 已完成 Contracts 0.5.1 / Host 1b7bfd1 / Skills 0.3.0 的精确消费、双渠道 38 项资源、目录通知和 38 卡片 UI；最终实现 commit 为 6745eb793e417c6685d1900231477c59ec81a5fd。"
+    - "copywriting@0.1.0 的唯一一次授权付费模型调用已完成，额度 1/1 用尽且 AC-003 PASS；D4 收尾未新增付费调用。Zip Slip 按最新安全边界使用 Agent Host 临时目录契约测试与 Desktop DTO/UI 自动化分层验证，不向真实 Tauri 应用注入危险归档。"
     - "Host operation journal 不裁剪已用 ID；达到 4096 条后新 operation 返回 skill_busy。长期运行前必须先在后续契约版本定义 retention/compaction，不能由消费者单方面遗忘幂等键。"
     - "macOS Host 门禁全绿；额外 Windows 交叉编译被既有 internal/codex/runtime.go 的 syscall.Stat_t 可移植性问题阻断，Windows Desktop 交付前仍需关闭。"
 
