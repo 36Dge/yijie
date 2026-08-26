@@ -1,0 +1,204 @@
+schema_version: 3
+delivery_profile: "demo_fast"
+exposure: "local"
+
+feature:
+  id: "FEAT-150"
+  slug: "desktop-my-stores-page"
+  title: "Desktop 我的店铺展示页"
+  status: "usable" # draft | active | usable | blocked
+  created_at: "2026-08-26"
+  requirement_owner: "段成威"
+  technical_owner: "段成威"
+  reviewer: "段成威"
+  release_owner: "段成威"
+
+scope:
+  risk_level: "low" # low | medium | high | critical
+  data_classification: "public" # public | internal | confidential | restricted
+  contract_impact: "none" # none | additive | semantic | breaking
+  database_change: "none" # none | expand | migrate | contract
+  persistence_change: "none" # none | durable | replay
+  runtime_change: "none" # none | runtime | platform
+  auth_permission_change: "none" # none | auth | permission | both
+  user_workflow_change: "user_visible" # none | internal | user_visible
+  ui_change: "interactive" # none | visual | interactive
+  ai_behavior_change: "none" # none | prompt | model | retrieval | tool | eval
+
+repositories:
+  - "yijie"
+  - "yijie-desktop"
+
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+
+product_ux:
+  status: "PASS" # pending | PASS
+  primary_user: "希望快速查看经营概况并发现下一项运营任务的跨境电商卖家与运营人员"
+  problem: "左侧导航中的“我的店铺”仍为禁用项，用户无法进入参考稿定义的经营快报和场景推荐页面。"
+  user_outcome: "用户可从左侧导航进入“我的店铺”，查看明确标注为演示内容的经营快报，并按经营目标或岗位筛选场景卡片。"
+  in_scope:
+    - "启用“我的店铺”导航并新增受 store.read 保护的 /store 路由。"
+    - "实现经营快报、精选场景、角色场景推荐三个模块及参考稿中的全部筛选项。"
+    - "使用本地合成展示数据，完成亮色、暗色、1180×760 与键盘可用的生产级 UI。"
+  out_of_scope:
+    - "任何真实店铺、平台、广告、库存、授权、API、数据库、Runtime 或持久化接入。"
+    - "参考稿明确排除的多端同步、立即授权/需授权、查看全部、搜索和分页交互。"
+    - "场景卡片执行、保存、预览、付费调用、生产写入和外部副作用。"
+  main_flow:
+    - "用户通过 canonical demo_fast 启动器零登录进入应用，点击左侧“我的店铺”。"
+    - "页面默认展示近 7 天销售战报、精选场景“全部”和角色推荐“全部”。"
+    - "用户切换经营快报标签，查看近 7 天店铺广告或 FBA 库存的合成指标。"
+    - "用户切换经营目标和角色标签，卡片列表立即更新且焦点、选中状态和空态语义清晰。"
+  visual_direction: "沿用易界品牌绿、标准密度和现有 App Shell；以清晰的指标卡、胶囊标签和克制的经营场景卡片构成高信息密度但可扫描的桌面数据页。"
+  ui_states:
+    idle: "进入页面前由左侧已启用的“我的店铺”导航提供入口；页面不预取数据。"
+    loading: "不适用：内容来自同步加载的只读本地常量，不存在网络或长任务等待。"
+    success: "三个模块完整显示；切换标签后，对应指标或场景列表在当前页面即时更新。"
+    empty: "任一筛选映射无结果时显示该筛选暂无演示场景，并保留其他筛选入口。"
+    error: "无 store.read 的深链由既有路由权限边界转到无权访问页；未知筛选键安全回退到默认项。"
+    retry: "不适用：没有远程请求；权限恢复沿用既有设置/权限刷新流程，筛选错误可直接选择其他标签恢复。"
+    cancel: "不适用：页面没有提交、授权、保存、长任务或可取消副作用。"
+
+must_acceptance:
+  - id: "AC-001"
+    statement: "拥有 store.read 时，左侧“我的店铺”是可用链接，进入 /store 后保持选中且页面标题为“我的店铺 · 易界 AI”。"
+    verification: "Router、导航和 App Shell 组件测试；真实应用键盘与鼠标 smoke。"
+    status: "PASS" # pending | PASS | FAIL
+  - id: "AC-002"
+    statement: "页面按顺序展示经营快报、精选场景、角色场景推荐三个模块，并明确说明所有指标和内容均为演示数据。"
+    verification: "StorePage 组件测试与亮/暗色截图。"
+    status: "PASS"
+  - id: "AC-003"
+    statement: "经营快报提供近 7 天销售战报、近 7 天店铺广告、FBA 库存总览三个可键盘切换的标签，每个标签展示五项带单位或口径的合成指标。"
+    verification: "组件交互测试，逐标签核对标题、指标数量、单位与时间范围。"
+    status: "PASS"
+  - id: "AC-004"
+    statement: "精选场景提供全部、降 ACOS、提转化、防差评、防断货、查销量、提流量、盯竞品、健康诊断九个筛选项，切换后只显示对应场景。"
+    verification: "领域映射单测和页面交互测试。"
+    status: "PASS"
+  - id: "AC-005"
+    statement: "角色场景推荐提供全部、店铺负责人、选品经理、运营专员、广告优化师、供应链六个筛选项，切换后只显示对应推荐。"
+    verification: "领域映射单测和页面交互测试。"
+    status: "PASS"
+  - id: "AC-006"
+    statement: "页面不出现多端同步、立即授权、需授权、查看全部场景、搜索输入框、分页或场景执行按钮。"
+    verification: "组件否定断言与真实页面检查。"
+    status: "PASS"
+  - id: "AC-007"
+    statement: "页面不调用任何店铺/API/Runtime 接口，不读取或保存店铺数据；展示内容仅来自本地合成只读模型。"
+    verification: "代码审阅、依赖/调用搜索和真实 smoke 网络边界检查。"
+    status: "PASS"
+  - id: "AC-008"
+    statement: "页面使用现有 Yj 组件、设计 token 与图标 registry，在亮色、暗色和 1180×760 下无关键内容重叠或主体横向滚动。"
+    verification: "lint/build、视觉截图和最小窗口检查。"
+    status: "PASS"
+  - id: "AC-009"
+    statement: "全部筛选控件可用 Tab、方向键、Home 和 End 操作，具有可见焦点与正确 tablist/tab/aria-selected 语义。"
+    verification: "YjTabs 单测、axe 检查和键盘 smoke。"
+    status: "PASS"
+  - id: "AC-010"
+    statement: "没有 store.read 时，“我的店铺”不进入导航树；直接访问 /store 在页面实例化前转到无权访问页。"
+    verification: "权限策略、路由和侧栏测试。"
+    status: "PASS" # pending | PASS | FAIL
+
+contract:
+  impact: "none"
+  authority: "N/A：仅 Desktop 进程内静态展示模型、Vue 组件和路由；不新增或改变跨进程、跨仓、跨版本或持久化/重放边界。"
+  source_first_plan: "N/A：不修改 yijie-contracts、API/Agent Host/Runtime wire schema、Tauri command 或本地持久格式。"
+  status: "N/A" # N/A when impact=none; otherwise NOT RUN | PASS
+  checks: []
+
+external_authorizations:
+  paid_calls: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+  destructive_operations: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+  production_writes: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+
+implementation:
+  status: "complete" # pending | active | complete | blocked
+  real_entrypoint: "从 yijie-desktop 执行 pnpm tauri:dev，通过 local demo_fast 零登录环境进入应用后选择 /store。"
+  mock_only: false
+
+verification:
+  status: "PASS" # PASS only after one fresh real-service run
+  verified_at: "2026-08-26T16:37:22+08:00"
+  startup:
+    status: "PASS"
+    command_or_steps: "在 yijie-desktop fresh 执行 pnpm tauri:dev，等待 Vite、Tauri binary 与 Agent Host readiness；验收后通过应用关闭按钮或开发进程正常 Ctrl-C 退出。"
+    environment: "macOS local demo_fast，标准 Tauri 入口，真实 Codex Runtime/Agent Host 启动链。"
+    actual_result: "Tauri 编译完成并进入 Running target/debug/yijie-desktop；Agent Host 监听 127.0.0.1:18081；正常退出后 18081 与 1420 均释放，未强杀进程。"
+  real_smoke:
+    status: "PASS"
+    command_or_steps: "从真实 local demo 主页面点击左侧‘我的店铺’，切换广告、防差评、供应链，并用 Left 键切换角色；同时在 1180×760 visual harness 核对 light/dark 与 axe。"
+    environment: "真实 Tauri WebView local demo；原生窗口 1162×768；生产组件 visual harness 1180×760 light/dark。"
+    actual_result: "原生 WebView 到达 tauri://localhost/store，标题与侧栏选中正确；三个模块、18 个标签状态、广告指标、筛选卡片与键盘切换可观察；1180×760 light/dark 无关键重叠，axe violations=0。"
+  representative_failure:
+    status: "PASS"
+    command_or_steps: "Vitest 以缺少 store.read 的权限快照访问 /store，断言先进入 /access-denied 且 Store loader 未调用；另验证 exact local/demo_fast 外直接回退 Settings。"
+    environment: "Vitest memory router、真实页面本地筛选；无故障注入、无真实店铺或外部写入。"
+    actual_result: "无 store.read 时导航隐藏且深链在页面实例化前拒绝；feature profile 关闭时 /store 不注册；页面无远程重试，用户切换任一合法标签即可恢复展示。"
+  focused_checks:
+    - command: "pnpm exec vitest run <FEAT-150 focused files> --maxWorkers=4"
+      repository: "yijie-desktop"
+      exit_code: 0
+      status: "PASS"
+      result: "10 files / 80 tests PASS；含 denied loader、tab→tabpanel 关联、键盘与 axe 断言。"
+    - command: "make lint && make test && make build"
+      repository: "yijie-desktop"
+      exit_code: 0
+      status: "PASS"
+      result: "ESLint/Vue typecheck/Rust fmt/Clippy PASS；81 frontend files / 641 tests PASS；Rust 265 passed / 3 ignored；production renderer build PASS。"
+    - command: "pnpm lint && pnpm test（yijie）"
+      repository: "yijie"
+      exit_code: 0
+      status: "PASS"
+      result: "仓库治理 lint PASS；48 tests PASS。"
+    - command: "pnpm tauri:build:demo-fast"
+      repository: "yijie-desktop"
+      exit_code: 0
+      status: "PASS"
+      result: "未签名 local debug app bundle 构建成功；Vite 产物包含 StorePage chunk。"
+    - command: "Browser + Computer Use visual/interaction smoke"
+      repository: "yijie-desktop"
+      exit_code: 0
+      status: "PASS"
+      result: "1180×760 light/dark、广告/防差评/供应链、原生 Left 键切换与 axe 0 violations 均 PASS。"
+    - command: "check-feature-package.sh --gate D4；check-feature-package.sh --strict"
+      repository: "yijie"
+      exit_code: 0
+      status: "PASS"
+      result: "schema v3 语义、D4 范围、文档结构、模板变量与未完成标记检查全部 PASS。"
+  artifacts:
+    - "evidence/store-native-local-demo.png"
+    - "evidence/store-native-ads.png"
+    - "evidence/store-native-review-filter.png"
+    - "evidence/store-native-supply-chain.png"
+    - "evidence/store-native-keyboard.png"
+    - "evidence/store-light-1180x760.png"
+    - "evidence/store-dark-1180x760.png"
+    - "evidence/store-filters-1180x760.png"
+    - "evidence/store-role-keyboard-1180x760.png"
+  diff_review: { status: "PASS", summary: "独立只读审查覆盖目标源文件、测试、Feature Package、git status/diff/diff-check 与无 I/O 搜索；提出的 tab→tabpanel、透明边框 token 和 denied loader 三项均已修复并回归，最终无可操作代码问题。既有 FEAT-131 五个脏文件启动前后 SHA-256 完全一致。" }
+  known_limitations:
+    - "本 Feature 按要求仅在 local demo_fast 暴露，全部数值与热度为本地合成内容，不代表真实店铺。"
+    - "两个‘全部’状态复刻参考稿首屏编排；PDF 中 54 个去重场景均可通过具体经营目标或角色标签访问，按要求不提供搜索或分页。"
+    - "canonical pnpm tauri:dev fresh startup 已独立 PASS；原生可交互截图使用同一 local demo 启动器的可枚举 debug app bundle，因为开发态裸二进制未出现在 macOS 辅助功能应用目录中。"
+
+public_readiness:
+  required: false
+  status: "not_applicable" # N/A | pending | PASS
+  checks: []
+  external_smoke:
+    status: "NOT RUN"
+    command_or_steps: "N/A：exposure=local"
+    actual_result: "N/A：不创建公网入口"
+
+documents:
+  brief: "00-feature-brief.md"
+  delivery_log: "01-delivery-log.md"
+  verification: "02-verification.md"
