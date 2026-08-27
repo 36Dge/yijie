@@ -1,0 +1,200 @@
+schema_version: 3
+delivery_profile: "demo_fast"
+exposure: "local"
+
+feature:
+  id: "FEAT-133"
+  slug: "desktop-conversation-timeline-item-shell"
+  title: "Desktop 对话 Timeline 与通用 Item 展示框架"
+  status: "active"
+  created_at: "2026-08-27"
+  requirement_owner: "段成威"
+  technical_owner: "段成威"
+  reviewer: "段成威"
+  release_owner: "段成威"
+
+scope:
+  risk_level: "medium"
+  data_classification: "confidential"
+  contract_impact: "none"
+  database_change: "none"
+  persistence_change: "none"
+  runtime_change: "none"
+  auth_permission_change: "none"
+  user_workflow_change: "user_visible"
+  ui_change: "interactive"
+  ai_behavior_change: "none"
+
+repositories:
+  - "yijie"
+  - "yijie-desktop"
+
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+
+product_ux:
+  status: "PASS"
+  primary_user: "在易界 AI Desktop 中阅读、理解和操作本地 Agent 对话历史与当前 Turn 的用户"
+  problem: "当前 Chat 页面分别渲染用户文本、Assistant 文本、reasoning 与 Artifact，缺少由 FEAT-132 领域顺序驱动的 Turn/Item 信息层级和可复用 Item 外壳；继续逐能力堆叠会造成状态、间距、折叠、错误反馈与可访问性不一致，并诱使页面解释 raw wire。"
+  user_outcome: "用户在固定 Runtime 不变时，能够在一个符合易界 UI 规范的 Codex 风格近似 Timeline 中按领域顺序阅读多 Turn、多 Item 内容，安全查看 Markdown/代码、展开过程项、复制内容，并在空、加载、错误、权限不足与未知内容状态下获得清楚且可恢复的反馈。"
+  in_scope:
+    - "从 FEAT-132 唯一 Thread/Turn/Item/ContentBlock ViewModel 派生 Timeline 与 Turn group，不读取 raw Host/Runtime wire"
+    - "统一 Item shell 的 header、真实状态、body、折叠控制与 action slot；时间或耗时字段缺失时隐藏而不推测"
+    - "用户消息、Assistant 最终回答、Turn lifecycle/notice 的只读过程呈现，以及 unknown/error 的安全基础展示"
+    - "以受限、类型化且不使用 v-html 的内容树展示纯文本、Markdown 子集、代码块、列表、表格和行内代码"
+    - "文本选择、文本/代码复制、复制成功或失败反馈，以及外链不自动打开的安全行为"
+    - "长过程内容的确定性折叠/展开；header/status 始终可见，最终回答永不被默认折叠"
+    - "empty、loading、ready、error、permission denied、unknown 与 interrupted/cancelled 的清楚呈现"
+    - "light/dark、1180×760、200% zoom、键盘顺序、可见焦点、可访问名称和 reduced-motion 基线"
+    - "保留 FEAT-127 附件与 FEAT-128 Artifact 的既有 authority，不创建第二套正文、附件或 Artifact authority"
+  out_of_scope:
+    - "修改、升级、重编译、替换或同步 yijie-codex Runtime、binary、schema 或 pin，或启用 experimentalApi"
+    - "修改 yijie-contracts、yijie-agent-host、Desktop private IPC、src-tauri、数据库、持久化或 Tauri capability"
+    - "流式聚合与 commentary/final 分层、Command/Tool 详情、审批、Turn 控制、复杂恢复/重连和长对话滚动策略"
+    - "重构 Sidebar、Composer、附件存储或 Artifact authority；本 Feature 不建立第二套 action authority"
+    - "引入 React、assistant-ui、第二套通用 UI/Markdown 组件库；任何新增依赖必须单独取得 Owner 批准"
+    - "逐像素复制 Codex Desktop、复制其品牌或私有素材，或把工程推测描述成版本专属实测事实"
+    - "语音、模型版本信息、模型推理强度配置/档位 UI、分享、切换置顶摘要、显示侧边面板、分支到新聊天"
+    - "GS-006 文件修改与 Diff；既有 Artifact 可以保留，但不得包装或描述为 FileChange/Diff"
+    - "模型、prompt、Provider、Agent 决策、真实付费调用、生产写入、public/production 发布"
+  main_flow:
+    - "用户通过 canonical demo_fast stable 入口零登录直达 Chat，选择新 Thread 或已有历史；Timeline 只消费 FEAT-132 领域 ViewModel。"
+    - "Timeline 按 Thread 中 Turn ordinal 与 Turn 内 Item ordinal/identity 展示用户输入、过程呈现、最终回答和安全 notice；视觉顺序与领域顺序一致。"
+    - "用户可聚焦 Item header，展开或收起允许折叠的过程内容，并复制可复制文本/代码；操作通过显式事件交给上层，shell 不执行 Host/Tauri 副作用。"
+    - "unknown、error 或 permission denied 只影响对应位置，使用固定安全文案与诊断 code，不显示 raw payload，也不吞掉其他可读历史。"
+    - "外链仅显示为安全可选择内容；没有已批准的安全打开 handler 时提供复制，不自动打开或交给系统。"
+    - "FEAT-127 附件与 FEAT-128 Artifact 继续使用既有 authority；本 Feature 完成时只声明 Timeline 框架局部完成，Epic 尚未完成。"
+  visual_direction: "采用 codex-inspired-approximate-parity-v1-2026-08-27 的 owner-approved-inference：以易界 Design System、现有 token/Naive UI/Lucide registry 和当前 Chat 能力为准，形成留白清楚、最终回答优先、过程项克制且可折叠的 Codex 风格近似 Timeline；允许颜色、间距、图标、文案和局部布局合理不同，不依赖任何已撤回人工截图或版本 Freeze。"
+  ui_states:
+    idle: "Thread 已加载且无 active Turn；历史 Timeline 保持可读，Item action 只呈现当前可用的无副作用操作。"
+    loading: "初次加载显示稳定 skeleton；已有历史刷新时保留已确认内容和阅读位置，不闪成空白。"
+    success: "按领域顺序展示完整 Turn/Item，最终回答保持最高阅读优先级；完成状态不只依赖颜色表达。"
+    empty: "显示如何开始新任务的明确中文文案，不生成虚假示例消息；Composer 行为仍由既有页面与 FEAT-135 边界管理。"
+    error: "错误、unknown 与 permission denied 在对应 Turn/Item 或 Timeline 状态内显示固定安全文案和适用恢复入口；历史内容继续可读且不泄露资源存在性或 raw payload。"
+    retry: "只有上层已有安全恢复意图时展示重试/重新加载入口；Item shell 仅发出显式事件，不直接调用 Host、Tauri 或网络。"
+    cancel: "本 Feature 不新增 Stop/Cancel 控件；若 FEAT-132 ViewModel 已是 interrupted/cancelled 语义，则保留已确认内容并显示终态，实际 Turn 控制留给 FEAT-139。"
+
+must_acceptance:
+  - id: "AC-001"
+    statement: "给定多 Turn、多 Item 历史，打开会话后视觉顺序与 FEAT-132 领域顺序一致，用户与 Assistant/过程/系统角色清楚。"
+    verification: "Timeline selector 与 Vue 组件测试使用稳定领域 fixture 核对 Turn/Item ordinal、DOM 顺序、角色名称和重复 identity；canonical history UI smoke 复核。"
+    status: "pending"
+  - id: "AC-002"
+    statement: "Markdown、代码和表格以安全节点展示，不执行 HTML/script，不使用 v-html，也不自动打开 URL。"
+    verification: "受限内容树组件测试使用良性惰性 markup/text fixture，断言无可执行 HTML、无隐式导航、代码/表格局部溢出且原文可复制。"
+    status: "pending"
+  - id: "AC-003"
+    statement: "长过程内容折叠或展开时 header 与状态始终可见，最终回答不被默认折叠或隐藏。"
+    verification: "按稳定 Item ID 的 disclosure 状态组件测试，覆盖长度阈值、键盘切换、重渲染与 final-answer non-collapsible 规则。"
+    status: "pending"
+  - id: "AC-004"
+    statement: "unknown Item 以脱敏 fail-soft 占位呈现，页面不崩溃、不输出 raw payload，前后其他 Item 正常显示。"
+    verification: "FEAT-132 unknown ViewModel 组件测试与安全 canary 扫描，断言固定诊断 code、隔离渲染和相邻 Item 完整。"
+    status: "pending"
+  - id: "AC-005"
+    statement: "复制文本或代码成功与失败时均给出准确、可访问反馈，且消息内容和选择状态不被改写。"
+    verification: "注入 clipboard adapter 的成功与拒绝组件测试，核对反馈 live region、焦点保持、正文快照和重复操作。"
+    status: "pending"
+  - id: "AC-006"
+    statement: "empty、loading、error 与 permission denied 均有明确中文文案，并在适用时提供不会越权的恢复入口。"
+    verification: "状态组件矩阵测试与 canonical empty/history smoke；权限不足使用确定性领域状态，不破坏真实文件权限或注入故障。"
+    status: "pending"
+  - id: "AC-007"
+    statement: "在 light/dark、1180×760、200% zoom 与键盘遍历下，Timeline 无关键重叠或主体横向滚动，焦点可见，图标按钮有可访问名称。"
+    verification: "组件 a11y/focus 测试，加 canonical Desktop 的主题、最小窗口、缩放与键盘人工 smoke；保存脱敏 Yijie Artifact，不采集 Codex 参考证据。"
+    status: "pending"
+  - id: "AC-008"
+    statement: "现有 FEAT-127 附件和 FEAT-128 Artifact 进入 Timeline 后不丢失、不重复，也不创建第二套内容或显示 authority。"
+    verification: "Chat/Timeline 集成测试复用现有 attachment_reference、artifact_reference 与 Artifact 组件，核对 identity、ordinal、可见内容及 authority 路径无变化。"
+    status: "pending"
+
+contract:
+  impact: "none"
+  authority: "FEAT-132 的 yijie-desktop/src/domain/conversation-state.ts 是进程内 Timeline 输入权威；FEAT-127 附件与 FEAT-128 Artifact 保持既有 authority。FEAT-133 只新增 Vue 侧 selector/展示契约，不改变跨进程、跨仓、跨版本、持久化或重放边界的可观察语义。"
+  source_first_plan: "先对账 FEAT-132 ViewModel 是否包含排序、角色、状态与安全 ContentBlock；足够时只实现纯 selector 和无副作用 Vue components。任何必须读取 raw wire、补字段、改 adapter/domain/IPC/Host/Contracts/Runtime/持久化的情况立即停止，重新分类 contract-impact 并按权威源治理，不在 Vue 猜测。"
+  status: "N/A"
+  checks: []
+
+external_authorizations:
+  paid_calls: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+  destructive_operations: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+  production_writes: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+
+implementation:
+  status: "pending"
+  real_entrypoint: "cd ../yijie-desktop && pnpm tauri:demo-fast:stable"
+  mock_only: false
+
+verification:
+  status: "NOT RUN"
+  verified_at: "NOT RUN"
+  startup:
+    status: "NOT RUN"
+    command_or_steps: "实现完成后从 fresh canonical pnpm tauri:demo-fast:stable 启动，核对零登录 Chat、ready、固定 Runtime 0.144.6 与 experimentalApi=false，并通过应用自身正常退出。"
+    environment: "Desktop local / demo_fast / fixed Runtime / no new prompt authorized"
+    actual_result: "NOT RUN：当前仅完成 D0 治理与工作区隔离，未启动 Desktop。"
+  real_smoke:
+    status: "NOT RUN"
+    command_or_steps: "使用已有 FEAT-132 的 1 user + 1 assistant 历史和新建空 Thread 验证 Timeline；不发送新 prompt，不调用工具，不读写项目文件。"
+    environment: "Desktop local / canonical stable entry / existing non-sensitive history"
+    actual_result: "NOT RUN：实现尚未开始，D0 不宣称真实 UI 可用。"
+  representative_failure:
+    status: "NOT RUN"
+    command_or_steps: "用安全、确定性组件 fixture 覆盖 unknown、permission denied、clipboard rejection、惰性 markup 与外链不自动打开；不强杀、不破坏权限、不替换 binary、不使用攻击性 fixture。"
+    environment: "Vue component tests / synthetic non-sensitive domain states / normal application lifecycle"
+    actual_result: "NOT RUN：失败与恢复测试在实现阶段执行。"
+  focused_checks:
+    - repository: "yijie"
+      command: "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict --gate D0 docs/features/FEAT-133-desktop-conversation-timeline-item-shell"
+      status: "PASS"
+      exit_code: 0
+      result: "schema v3 semantics 与 D0 文档/产品 UX 门禁 PASS"
+    - repository: "yijie"
+      command: "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-133-desktop-conversation-timeline-item-shell"
+      status: "PASS"
+      exit_code: 0
+      result: "product_ux.status=PASS 的 D0 声明审计 PASS"
+    - repository: "yijie"
+      command: "pnpm feature:audit -- --base-ref aed49b78f21c264bb13c05c1976f11f7fc14b520"
+      status: "PASS"
+      exit_code: 0
+      result: "working-tree docs/features 的 12 个 Feature Package claim（包含未跟踪 FEAT-133）审计 PASS；direct strict/claims 另作 FEAT-133 定点复核"
+    - repository: "yijie"
+      command: "pnpm lint && pnpm test && bash -n scripts/*.sh"
+      status: "PASS"
+      exit_code: 0
+      result: "10 仓 manifest/Contract First governance PASS；48 tests PASS；Shell syntax PASS"
+    - repository: "CrossBSD multi-repo workspace"
+      command: "核对 11 仓 branch/HEAD/status、FEAT-133 五文件 allowlist、ChatPage blob/SHA-256 与 Runtime/Contracts/Host freeze"
+      status: "PASS"
+      exit_code: 0
+      result: "只有 yijie/FEAT-133 包为 untracked；其余 10 仓 clean，ChatPage.vue 未变化"
+  artifacts:
+    - "evidence/workspace-isolation-baseline-2026-08-27.md（D0 clean-start、多仓 HEAD、精确 allowlist、保护哈希与停止条件）"
+  diff_review: { status: "NOT RUN", summary: "D0 仅审阅治理包范围；产品实现 diff 尚不存在，不能声明完整 diff review。" }
+  known_limitations:
+    - "D0 只冻结产品/UX、Contract First、Owner 排除项和工作区边界；Timeline 组件、测试、canonical smoke 与 D4 尚未实施。"
+    - "本轮未获新分支、worktree、commit、push、stash、reset 或 clean 授权；D0 使用精确 HEAD、clean-start、路径 allowlist 和保护哈希做逻辑隔离。"
+    - "D0 阶段 yijie-desktop 写入 allowlist 为空，ChatPage.vue 保持不变；后续实现阶段的页面组合方式需在新的 scoped implementation turn 中复核。"
+    - "没有新增 Markdown renderer/sanitizer 依赖；若受限类型化内容树不足，必须先取得新增依赖批准。"
+    - "不要求或接受 Codex Desktop 人工参考证据，不声明版本专属观察或逐像素一致。"
+    - "GS-006 文件修改与 Diff 及其余七项 Owner 主动排除能力不进入实现或验收。"
+
+public_readiness:
+  required: false
+  status: "not_applicable"
+  checks: []
+  external_smoke:
+    status: "NOT RUN"
+    command_or_steps: "N/A：FEAT-133 exposure=local，不提供公网入口。"
+    actual_result: "N/A：公开 Demo、生产发布和外部写入均不在本 Feature 范围。"
+
+documents:
+  brief: "00-feature-brief.md"
+  delivery_log: "01-delivery-log.md"
+  verification: "02-verification.md"
