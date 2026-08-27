@@ -1,85 +1,84 @@
-# FEAT-131 — Codex Desktop 对话一致性基线与黄金场景 Demo Brief
+# FEAT-131 — Codex 风格近似对话基线与黄金场景 Demo Brief
 
-> Profile: `demo_fast` · Exposure: `local` · Checkpoint: `D0` · Created: `2026-08-26`
+> Profile: `demo_fast` · Exposure: `local` · Checkpoint: `D4` · Created: `2026-08-26`
 
 ## 1. Epic 总目标、用户问题与结果
 
-- Epic 总目标：在保留 Vue 技术栈和固定 `yijie-codex` Agent Runtime 不变的前提下，使用户从输入、流式响应、过程更新、工具执行、权限确认、文件变更，到中断、恢复和完成的端到端对话体验，与冻结基线版本 Codex Desktop 保持可观察的行为一致。
+- Epic 总目标：在保留 Vue 技术栈和固定 `yijie-codex` Agent Runtime 不变的前提下，使用户从输入、流式响应、过程更新、工具执行、权限确认，到中断、恢复和完成的端到端对话体验具有 Codex 风格且整体相近，同时遵守 Yijie UI 规范；不要求逐像素或逐状态完全一致。
 - 目标用户：负责 FEAT-132–143 的产品、设计、开发和验收人员，以及最终使用易界 Agent 对话完成任务的本地用户。
-- 当前问题：“与 Codex Desktop 一致”仍是会随参考客户端更新而漂移的主观描述；当前 Host 投影又少于固定 Runtime 的稳定能力，无法客观判断每个差异应由哪一层负责。
-- 本 Feature 的真实结果：后续 Feature 可引用唯一的版本身份、能力矩阵、黄金场景 ID、证据状态和可重复 test-only 回放，避免各自发明不兼容的交互模型。
-- 完成边界：FEAT-131 只冻结基线，不实施生产对话交互；基线冻结后 Epic 仍未完成。
+- 当前问题：逐版本、逐场景采集 Codex Desktop 人工证据成本过高，会让参考取证替代真正的产品交付。
+- Reference policy：`codex-inspired-approximate-parity-v1-2026-08-27` / `owner-approved-inference`。不建立 Codex Desktop version/build Freeze ID，不要求任何人工截图、录屏、hash 或 drift 跟踪。
+- 本 Feature 的真实结果：后续 Feature 引用同一能力矩阵、13 个稳定场景 ID、推测策略和主动排除项，避免各自发明不兼容的交互模型。
+- 完成边界：FEAT-131 只固定工程边界和近似目标，不实施生产对话交互；Epic 仍需后续 Feature 完成。
 
 ### In scope
 
-- 冻结 Codex Desktop `26.818.61809` build `7019`、冻结日期和可取得的环境证据。
-- 冻结 Runtime `0.144.6`、fork/upstream commit、schema tree hash 和 `experimentalApi=false`。
-- 建立“Codex 可观察行为 → Runtime → Host/Contracts → Desktop → Owner Feature”能力矩阵。
-- 建立至少 13 个覆盖成功、失败、中断、恢复、历史、滚动和异常序列的黄金场景。
+- 固定 Runtime `0.144.6`、fork/upstream commit、schema tree hash 和 `experimentalApi=false`。
+- 建立“推测的 Codex 风格目标 → Runtime → Host/Contracts → Desktop → Owner Feature”能力矩阵。
+- 建立 13 个覆盖成功、失败、中断、恢复、历史、滚动和异常序列的稳定场景 ID；GS-006 作为明确排除的负范围记录保留。
 - 仅在 Desktop 测试路径建立真实 parser/store 的确定性事件回放及 production bundle 隔离检查。
-- 无法由安全自动化观察的 Codex 交互明确标记 `reference-unobserved`。
-- 新增 `pnpm tauri:demo-fast:stable` canonical local 验证入口：使用独立 bundle identifier、Desktop app-data 和 Host/Codex home，保留 MiniMax 文本 Provider、关闭图片 dynamic tool，并以 `experimentalApi=false` 启动固定 Runtime。
+- 使用 Yijie UI 规范、当前实现和固定能力进行工程推测，不把推测写成版本专属实测事实。
+- 保留 `pnpm tauri:demo-fast:stable` canonical local 验证入口：独立 bundle/data roots、MiniMax 文本 Provider、图片 dynamic tool 关闭、`experimentalApi=false`。
 
 ### Out of scope
 
-- 不修改生产 Chat UI、路由、Tauri command、Host API、公共 wire 契约、数据库或持久化；仅允许增加受限 local launcher 与既有 Provider 环境的 Sidecar 投影。
+- 不修改生产 Chat UI、路由、Tauri command、Host API、公共 wire 契约、数据库或持久化；FEAT-131 只建立基线资产与 local 验证入口。
 - 不修改、升级、同步、重编译 `yijie-codex` Runtime 或开启实验 API。
-- 不伪造 Command、Tool、Approval、Diff、Steer 等尚未投影的生产事件。
-- 不复制 Codex 源码、品牌资产、私有文案或逐像素实现。
-- 不决定审批、文件写入或其他高风险权限策略。
-- 不进行 public/production 发布、外部写或破坏性验证；真实模型调用仅限当前用户明确授权的一次 UI submission，不自动重试。
-- 不修改 Host 的 Runtime 管理器，也不通过故障注入验证其 shutdown timeout/protocol failure/startup abort 的强制 Kill fallback；该风险只登记为限制。
+- 不伪造 Runtime/Host 未提供的 Command、Tool、Approval、Steer 等生产事件。
+- 不复制 Codex 源码、品牌资产、私有文案，不要求逐像素复刻或一模一样。
+- 不要求或保存 Codex Desktop 人工参考证据；先前图 1、2、3 及派生资产均已撤回。
+- Owner 明确不实现 8 项主动产品差异：语音、模型版本信息、模型推理强度信息、右上角分享、切换置顶摘要、显示侧边面板、分支到新聊天、GS-006 文件修改与 Diff。
+- “模型推理强度信息”只指配置/档位 UI，不等于用户可见 reasoning summary；后者仍由 CAP-011 / GS-002 承接。
+- GS-006 排除不删除既有 Artifact 能力，但不得把 Artifact 卡片包装成 FileChange/Diff。
+- 不决定高风险审批或其他权限策略；不进行 public/production 发布、外部写或破坏性验证。
+- 不修改 Host Runtime 管理器，也不通过故障注入验证其强制 Kill fallback。
 
 ## 2. 完整主流程
 
-1. 实施者从 canonical `demo_fast` local 环境开始，以只读命令核对参考 App、Runtime、Contracts、Host 与 Desktop 当前事实。
-2. 对每个参考行为记录 observation status 和 provenance；无法安全获取时写 `reference-unobserved`，不凭记忆补造。
+1. 实施者先读取 `reference-inference-policy.md`、固定 Runtime、Contracts、Host、Desktop 和 Yijie UI 规范。
+2. 将每项行为标记为 `owner-approved-inference` 或 `intentional product difference`，不等待外部 UI 证据。
 3. 使用固定四类 primary classification 归类能力，并单列 delivery lane、blocker 和 Owner Feature。
-4. 将可由当前 Desktop wire 表达的场景写为无敏感数据 fixture，通过测试内存 transport 进入真实 `parseChatProjectionEvent` 和 Chat Store reducer。
-5. 连续回放、敏感数据扫描、版本漂移和 production bundle 边界检查通过后，记录 D4 证据。
-6. 从 `pnpm tauri:demo-fast:stable` 启动隔离 identifier/data roots 的注册 debug App，先核对 `/readyz` 与 `/v1/status` 的 Runtime/Provider/`experimental_api=false`；仅在存在未使用的明确授权时执行单次 UI smoke，并用应用自身退出流程清理。
-7. Owner 冻结基线；FEAT-132–143 引用场景 ID 逐步交付完整 Epic，不静默改写旧观察。
+4. 将当前 Desktop wire 可表达的场景写为无敏感数据 fixture，通过测试内存 transport 进入真实 parser/store。
+5. 执行重复回放、敏感数据扫描、policy ID 一致性和 production bundle 边界检查。
+6. 通过 `pnpm tauri:demo-fast:stable` 核对 Runtime/Provider/`experimental_api=false`；真实 prompt 只能在明确授权与仓库级更严格调用上限内提交。
+7. FEAT-132–143 按场景和矩阵实现近似体验，并以 Yijie 规范、自动化检查、真实 local smoke 与 Owner 体验反馈验收。
 
 ## 3. 交互与 UI
 
-- 视觉方向：本 Feature 不改变生产 UI；Codex 截图/录屏仅作内部脱敏参考。未来生产 UI 仍以 `yijie-desktop/docs/design/docs/design` 为唯一规范。
-- Idle：等待只读采集或 test-only 回放。
-- Loading：正在读取版本元数据或执行有界内存回放。
-- Success：基线身份、矩阵、场景、证据索引、回放和 Runtime freeze evidence 齐全。
-- Empty：无法观察的参考场景显示为 `reference-unobserved`，包含原因、影响和 Owner。
-- Error：记录稳定错误与受影响验收项，不记录绝对路径、正文、secret、PII 或商家数据。
-- Retry：只重跑安全、幂等的读取、测试和正常应用启动。
-- Cancel：只使用应用自身的停止/退出流程；禁止强杀、权限破坏、二进制替换和攻击 fixture。
+- 视觉方向：Codex-inspired，但 Yijie-first。信息层级、流式/终态、可用动作和整体布局相近即可；颜色、间距、图标、文案和局部结构允许不同。
+- 本 Feature 不改变生产 UI；后续生产 UI 以 `yijie-desktop/docs/design/docs/design` 为唯一设计规范。
+- Idle：等待策略/矩阵核对或 test-only 回放。
+- Loading：正在读取 Runtime/Contracts 或执行有界回放。
+- Success：策略、主动排除项、矩阵、场景、Runtime freeze 和回放检查一致。
+- Empty：没有人工参考媒体是预期状态，不是 blocker。
+- Error：记录稳定错误与受影响 AC，不记录 secret、PII、路径或真实业务数据。
+- Retry/Cancel：只重跑安全幂等检查，只使用应用自身停止/退出流程。
 
 ## 4. Must 验收
 
 | AC | 可观察行为 | 验证方式 |
 |---|---|---|
-| AC-001 | 记录 Codex Desktop `26.818.61809`、build `7019`、冻结日期、环境和证据状态 | Info.plist 只读证据 + evidence index |
-| AC-002 | 精确记录 Runtime fork/upstream commit、版本、schema tree 和 `experimentalApi=false` | manifest/checksum/HEAD 对账 |
-| AC-003 | 至少 13 个场景包含前置、操作、状态、动作、结果、provenance 和观察状态 | 场景表 + fixture ID 测试 |
-| AC-004 | 每项能力使用四类 primary classification 之一并包含交付层、阻断和 Owner | capability matrix 检查 |
-| AC-005 | fixture 不含真实 prompt、路径、secret、PII 或商家数据 | fail-closed parser + sensitive-data scan |
+| AC-001 | 固定 owner-approved inference 策略、近似而非完全一致标准、人工证据撤回和全部主动排除项 | policy + brief + matrix + scenario index |
+| AC-002 | 精确记录 Runtime fork/upstream/version/schema 和 `experimentalApi=false` | manifest/checksum/HEAD 对账 |
+| AC-003 | 13 个场景均包含目标行为或明确 exclusion；GS-006 为主动产品差异 | 场景表 + catalog ID/classification 测试 |
+| AC-004 | 每项能力使用四类 primary classification 并包含交付层、阻断和 Owner | capability matrix 检查 |
+| AC-005 | fixture 不含真实 prompt、路径、secret、PII 或商家数据；推测只在 catalog reference basis | fail-closed parser + sensitive-data scan |
 | AC-006 | fixture 经真实 Desktop parser/store 重放且可重复；生产 bundle 不含测试入口 | focused Vitest + production build/dist scan |
-| AC-007 | 参考 App 漂移时保留冻结版本，除非 Owner 新建 baseline | drift test + 变更规则审查 |
-| AC-008 | Runtime HEAD、schema tree 和 pin 实施前后不变 | 前后 git/status/hash/manifest 对账 |
-| AC-009 | 隔离 canonical stable 入口保留文本 Provider、关闭图片 dynamic tool，以 `experimentalApi=false` 启动；stable-only 第二实例 fail closed，Desktop supervisor 不使用 `kill_on_drop/start_kill` | launcher/config/Rust focused tests + `/v1/status` + 隔离注册 App 正常启动/Cmd-Q；不包含 Host 内部 fallback 保证 |
+| AC-007 | 仓库无撤回媒体、hash/manifest、旧 Freeze authority 或人工采集 gate；test-only 只锁 policy ID | 负向扫描 + policy consistency test |
+| AC-008 | Runtime HEAD、schema tree 和 pin 实施前后不变 | git/status/hash/manifest 对账 |
+| AC-009 | 隔离 canonical stable 入口保留文本 Provider、关闭图片 dynamic tool，以 `experimentalApi=false` 启动 | focused tests + `/v1/status` + 正常启动/Cmd-Q |
 
 ## 5. 工程事实与边界
 
-- 受影响仓库：`yijie`（Feature Package）和 `yijie-desktop`（test-only fixture/harness、stable local launcher/config、stable-only second-instance 分支、既有 Provider 的受限 Sidecar 投影及 consumer pin）；`yijie-codex` 只读，不列为修改仓。
-- 分支基线：`yijie@bce5c1199513b6b4f6a0c5b82edf270efc9f69df`、`yijie-desktop@6745eb793e417c6685d1900231477c59ec81a5fd`，均从用户授权的 `feat/feat-131-desktop-codex-parity-baseline` 开始。
-- 真实入口：`cd ../yijie-desktop && pnpm tauri:demo-fast:stable`；它 freshly build 并启动 `com.yijie.ai.feat131-stable` debug `.app`，使用 `.local/feat131-stable` Host/Codex home，必须正常启动和退出。stable 遇到已有 Yijie instance 时非零 fail closed；默认 `pnpm tauri:dev`/`tauri:demo-fast` 的命令、图片模式、数据根和第二实例返回行为保持不变。
-- local direct-entry：沿用精确 `local + demo_fast` 零登录入口；本 Feature 不改变 public/production 鉴权边界。
-- `contract-impact=additive`：fixture 仍不是 wire/API/持久化契约；增量只包含 Desktop-local launcher/config/identity、stable-only second-instance 分支、既有 Provider/Desktop cleanup 环境投影与对应 implementation SHA pin。公共 Contracts、Host API 和 Runtime schema 不变。
-- 权威事实：固定 Runtime app-server schema 与 `yijie-contracts/compatibility/agent-host-runtime-v1.json`；实现代码存在但未进入锁定 manifest 的路径只记为 extension observed。
-- 数据/secret：所有正文为明确 synthetic copy；不允许绝对路径、真实身份、邮箱、手机号、凭据、商家或店铺字段。
-- 外部动作：当前用户授权的最多一次真实 Provider/模型 submission 已由 predecessor entry 的一次 UI 点击保守记作使用；当前隔离 stable entry 不再发送 prompt。破坏性操作和生产写上限仍为 0；不 commit、push、tag、merge、发布或部署。
+- 受影响仓库：`yijie` 与 `yijie-desktop`；`yijie-codex` 严格只读。
+- 分支基线：`yijie@bce5c1199513b6b4f6a0c5b82edf270efc9f69df`、`yijie-desktop@6745eb793e417c6685d1900231477c59ec81a5fd`。
+- 真实入口：`cd ../yijie-desktop && pnpm tauri:demo-fast:stable`；使用独立 `com.yijie.ai.feat131-stable` 与 `.local/feat131-stable`。
+- `contract-impact=additive`：公共 Contracts、Host API 和 Runtime schema 不变；fixture 与 policy 不是公共 wire/persistence 契约。
+- 外部动作：predecessor 一次 UI submission 与当前 canonical 一次成功 submission 合计达到 `yijie-agent-host` 更严格的最多 2 次短请求上限；当前请求首轮精确返回 `FEAT-131_SMOKE_OK`，未调用工具、未重试，后续不再发送付费请求。破坏性操作、生产写、commit/push/tag/merge/发布均未授权。
 
 ## 6. 推荐方案与停止条件
 
-- 推荐方案：用测试内存 `ChatClientTransport → createChatClient → createChatStoreDefinition`，使原始 fixture 经过生产严格 parser、sequence/idempotency/resync 判断和 Store reducer；通过唯一 canary 扫描 production `dist/`。
-- 取舍：只回放当前 wire 能表达的 assistant/reasoning/turn/resync/context 事件；其余能力登记到矩阵，不扩展生产契约。
-- 30 分钟无新证据：回到 Runtime schema、compatibility manifest、Host mapper 和 Desktop parser 四个权威边界定位，不猜测式补事件。
-- 90 分钟同一阻塞：保留版本冻结、矩阵和最小 parser/store 回放；把无法安全获取的参考证据标为 `reference-unobserved`。
-- 超过 16 小时：停止增加非核心场景/格式，保留 13 个场景定义、可回放子集、bundle 隔离与精确未观察清单，不降低 Runtime 不变和不伪造证据要求。
+- 使用测试内存 `ChatClientTransport → createChatClient → createChatStoreDefinition`，让 raw fixture 经过生产严格 parser、sequence/idempotency/resync 判断和 Store reducer。
+- 只回放当前 wire 能表达的事实；不可投影能力登记 gap，主动排除能力登记 `intentional product difference`。
+- 不因缺少 Codex 截图停止开发；实现不确定时优先 Yijie UI 规范、固定 Runtime/Contracts 和 Owner 最新反馈。
+- 超过 16 小时则停止增加非核心格式，保留 13 个场景、能力矩阵、回放子集、bundle 隔离和精确排除项，不降低 Runtime 不变要求。

@@ -15,7 +15,8 @@
 |---|---|---|---|
 | `yijie-desktop` | `src/domain/store-showcase.ts` 及测试 | 新增 3 组快报（每组 5 指标）、9 个精选筛选、6 个角色筛选、54 个去重合成场景及纯筛选函数 | 覆盖 PDF 全部页面内容，同时保证无真实数据依赖 |
 | `yijie-desktop` | `YjTabs`、`YjMetricCard`、`StoreSceneCard` 及测试 | 新增 token 化可复用展示组件；tabs 支持 tablist/tab、roving tabindex、方向键、Home/End | 提供可访问、可单测的统一交互与视觉语言 |
-| `yijie-desktop` | `src/pages/store/StorePage.vue` 及测试 | 实现经营快报、精选场景、角色场景推荐三模块，含演示数据提示、筛选与空态 | 形成用户可直接浏览的“我的店铺”页面 |
+| `yijie-desktop` | `src/pages/store/StorePage.vue` 及测试 | 实现经营快报、精选场景、角色场景推荐三模块；按反馈移除独立“演示内容”提示条，保留模块口径、来源标签、筛选与空态 | 形成更紧凑的“我的店铺”页面，同时维持合成数据边界 |
+| `yijie-desktop` | `src/components/store/StoreSceneCard.vue` | 将场景标签统一为 32px 高、两字标签最小 48px 宽和相同内边距/字重，移除全部标签描边与静态卡片伪交互 hover | 修复精品、热门、关联等标签尺寸漂移，并让不可点击卡片不再暗示操作 |
 | `yijie-desktop` | store UI config、App、App Shell、navigation、router、permission policy 及测试 | 仅在 exact `local + demo_fast` 暴露 `/store`；启用导航并以既有 `store.read` 保护路由与可见性 | 不扩大 public/production 暴露，不改变 capability 权威来源 |
 | `yijie-desktop` | `tests/visual/feat-150/*` | 新增生产组件视觉 harness，支持 1180×760、light/dark 与 axe 证据 | 对齐 Desktop UI 交付门禁，不以截图代替真实 Tauri 启动 |
 | `yijie` | `docs/features/FEAT-150-desktop-my-stores-page/*` | 建立 v3 `demo_fast/local` Feature Package 和九张视觉证据 | 落实 codex-feature-delivery D0/D4 治理 |
@@ -30,8 +31,11 @@
 | 2026-08-26 | Browser `fullPage` 只能覆盖 App 内部滚动容器的当前视口 | App Shell 主内容使用独立滚动区，document 本身不增长 | 分别捕获首屏、精选筛选和角色筛选视口；同时读取完整 DOM/AX tree | PASS |
 | 2026-08-26 | `pnpm tauri:dev` 裸开发二进制未被 macOS Computer Use 枚举 | 未签名 dev process 不在辅助功能应用目录，但 Tauri、Vite 与 Host 均已真实 Running | canonical fresh startup 独立验收；再用同一 local demo 启动器构建可枚举 debug `.app` 完成原生点击、筛选与键盘截图 | PASS |
 | 2026-08-26 | 路由拒绝测试只断言跳转，未显式证明 Store loader 未运行 | AC-010 要求在页面实例化前拒绝 | 将 Store loader 改为 spy，补充 denied 路径 `not.toHaveBeenCalled()` 断言 | PASS |
+| 2026-08-27 | 用户反馈独立“演示内容”提示条占据首屏空间，场景标签尺寸和描边不统一 | 真实 1180×760 渲染确认：标签随文字与边框自适应，静态卡片还有 hover 反馈 | 删除提示条；统一标签几何尺寸与字重、取消描边和静态 hover；为模块增加轻量层级阴影 | PASS |
+| 2026-08-27 | 去掉描边后，axe 报告精品/热门标签文字对比度不足 | 浅色主题下原 warning/error 文字与软色背景的对比度分别为 3.07/4.41 | 标签改用主文字色，保留类型软色背景；重载 light/dark 后 axe 均为 0 violations | PASS |
+| 2026-08-27 | 最终源码 fresh Tauri 启动被既有本地 Demo 占用 1420/18081 阻止 | 端口由 01:00 启动且不属于本轮的 Vite/Agent Host 进程占用，没有可安全识别的应用窗口可正常退出 | 不强杀或接管既有进程；保留 2026-08-26 fresh Tauri PASS 基线，以本轮 focused tests、全量前端 641 项、lint/typecheck、production build 和真实浏览器渲染验证 UI delta | 受控跳过，无 UI 影响 |
 
-所有测试均为正常、非破坏性开发验证；未执行强杀进程、故障注入、恶意 fixture、可执行文件替换或权限破坏。Tauri 与视觉服务均通过应用关闭按钮或正常 Ctrl-C 退出，端口随后确认释放。
+所有测试均为正常、非破坏性开发验证；未执行强杀进程、恶意 fixture、可执行文件替换或权限破坏。本轮发现既有 Rust sidecar 故障生命周期用例失败后，依据安全条款没有反复执行该故障场景；本轮启动的视觉服务通过正常 Ctrl-C 退出。既有本地 Demo 进程保持原样。
 
 ## 4. 外部授权与实际调用
 

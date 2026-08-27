@@ -46,18 +46,30 @@ Implementation code paths not listed above are recorded only as `implementation 
 
 Canonical hash calculation used the repository-owned `scripts/runtime_manifest.py::sha256_tree` over `.yijie/schemas/app-server/generated-json-schema`; a generic shell tree hash is not equivalent and is not used as evidence.
 
+### 2026-08-27 scope-amendment recheck
+
+Read-only recheck at `2026-08-27T01:03:50+08:00` again returned Runtime HEAD `0ce5902ed400866be0196886bb78f693a004d68d`, clean worktree, 267 schema files and tree SHA-256 `82ee9de771cf1d41bac16d87380f1121e7794107aa3aa526ad702d5d1bf7afe1`. The Contracts checkout also remained clean at `164b14f609537d727a52326832da04430aecc4ab`; `compatibility/agent-host-runtime-v1.json` SHA-256 remained `5eadca026cdc8813cf529fa8e074de7532a2c78bebc5c89d9364180942869311`.
+
+An additional read-only `python3 scripts/check_agent_host_contracts.py` diagnostic returned non-zero because the Runtime-side checker expects the Host projection without `skills/config/write`, `skills/extraRoots/set`, `skills/list` and `skills/changed`, while the unchanged Contracts manifest includes them. This is a pre-existing checker/manifest expectation mismatch, not Runtime drift and not caused by the FEAT-131 policy amendment. The hard Runtime constraint forbids changing either Runtime code or schema to make this optional diagnostic green; the mismatch is therefore reported rather than patched or hidden.
+
+### 2026-08-27 final D4 recheck
+
+Read-only recheck at `2026-08-27T01:38:36+08:00` again returned Runtime HEAD `0ce5902ed400866be0196886bb78f693a004d68d`, clean worktree, 267 schema files and the canonical tree SHA-256 `82ee9de771cf1d41bac16d87380f1121e7794107aa3aa526ad702d5d1bf7afe1`. Contracts remained clean at `164b14f609537d727a52326832da04430aecc4ab`; the compatibility manifest SHA-256 remained `5eadca026cdc8813cf529fa8e074de7532a2c78bebc5c89d9364180942869311`.
+
 ## Canonical stable startup observation
 
 The Desktop-local `pnpm tauri:demo-fast:stable` entrypoint freshly built the isolated `com.yijie.ai.feat131-stable` Yijie debug App, used its own Desktop app-data and `.local/feat131-stable` Host/Codex home, and launched the already pinned Runtime through the normal Host/Sidecar path. It did not build, replace or edit the Runtime.
 
-For the final current implementation, two startup/normal-exit observations both showed:
+For the final current implementation, the authorized happy-path run and the later safe failure/retry run showed:
 
 - `/readyz` returned `status=ready` and `runtime_state=ready`;
 - `/v1/status` reported Runtime `0.144.6`, `ready=true`, `model_provider=minimax`, model `MiniMax-M3`, transport `stdio`, and `experimental_api=false`;
-- after the App's own `Cmd-Q`, the App, Host and Runtime exited normally, the local ports were released and no owned process remained.
+- the authorized happy-path run selected a clean detached worktree and submitted exactly one no-sensitive-data text prompt that explicitly prohibited tools and file reads/writes; the UI Turn completed with the exact response `FEAT-131_SMOKE_OK`, with no tool call and no retry;
+- while a freshly built canonical first instance was ready, a direct second launch of the same stable bundle exited `1` with the stable message `yijie desktop instance is already running`; the first instance remained ready with `experimental_api=false`;
+- after normally exiting that first instance, the canonical entry restarted to ready again; after the final normal quit, the App, Host and Runtime exited, ports `18081`/`1420` were released and no owned process remained.
 
-No project was opened and no prompt was submitted in the current isolated entry. The one authorized predecessor-entry UI submission had produced no observed Runtime `thread_started`, `turn_started`, `assistant_delta` or `turn_completed` event, so it does not establish a successful Runtime turn or Provider call and is not current-canonical real smoke evidence.
+The predecessor-entry UI submission had produced no observed Runtime `thread_started`, `turn_started`, `assistant_delta` or `turn_completed` event, so it remains a separate `pre-runtime: FAIL` and is not rewritten as successful evidence. Together with the current successful request it exhausts the `yijie-agent-host` repository's stricter two-short-request total gate; no paid retry was used or remains permitted.
 
-The unchanged Host implementation still contains `Process.Kill()` fallbacks for Runtime shutdown timeout, protocol failure and startup abort. Those paths were not triggered or fault-injected; normal `Cmd-Q` evidence must not be generalized into an end-to-end abnormal-cleanup guarantee.
+The unchanged Host implementation still contains `Process.Kill()` fallbacks for Runtime shutdown timeout, protocol failure and startup abort. Those paths were not triggered or fault-injected. The real representative failure is limited to stable-only second-instance rejection plus a normal canonical restart; neither that result nor normal `Cmd-Q` may be generalized into an end-to-end abnormal-cleanup guarantee.
 
 Result: **PASS for AC-008**. No fetch, pull, rebase, checkout, Runtime generation/build, binary replacement, schema edit or Runtime file edit was performed. The Runtime remains one commit behind `origin/develop` exactly as captured before implementation.

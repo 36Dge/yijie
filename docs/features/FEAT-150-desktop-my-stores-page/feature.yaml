@@ -41,7 +41,7 @@ product_ux:
   status: "PASS" # pending | PASS
   primary_user: "希望快速查看经营概况并发现下一项运营任务的跨境电商卖家与运营人员"
   problem: "左侧导航中的“我的店铺”仍为禁用项，用户无法进入参考稿定义的经营快报和场景推荐页面。"
-  user_outcome: "用户可从左侧导航进入“我的店铺”，查看明确标注为演示内容的经营快报，并按经营目标或岗位筛选场景卡片。"
+  user_outcome: "用户可从左侧导航进入“我的店铺”，查看以模块口径和来源标签标注的合成经营快报，并按经营目标或岗位筛选场景卡片。"
   in_scope:
     - "启用“我的店铺”导航并新增受 store.read 保护的 /store 路由。"
     - "实现经营快报、精选场景、角色场景推荐三个模块及参考稿中的全部筛选项。"
@@ -71,7 +71,7 @@ must_acceptance:
     verification: "Router、导航和 App Shell 组件测试；真实应用键盘与鼠标 smoke。"
     status: "PASS" # pending | PASS | FAIL
   - id: "AC-002"
-    statement: "页面按顺序展示经营快报、精选场景、角色场景推荐三个模块，并明确说明所有指标和内容均为演示数据。"
+    statement: "页面按顺序展示经营快报、精选场景、角色场景推荐三个模块，并通过模块口径、来源标签和演示热度明确合成数据边界。"
     verification: "StorePage 组件测试与亮/暗色截图。"
     status: "PASS"
   - id: "AC-003"
@@ -168,6 +168,11 @@ verification:
       exit_code: 0
       status: "PASS"
       result: "1180×760 light/dark、广告/防差评/供应链、原生 Left 键切换与 axe 0 violations 均 PASS。"
+    - command: "FEAT-150 UI refinement focused tests + lint/typecheck/build + Browser computed-style smoke"
+      repository: "yijie-desktop"
+      exit_code: 0
+      status: "PASS"
+      result: "2026-08-27：提示条已移除；相关 3 files / 19 tests、ESLint、Vue typecheck 与 production renderer build PASS；light/dark axe violations=0；精品/热门/关联均为 48×32px 且四边 border=0。"
     - command: "check-feature-package.sh --gate D4；check-feature-package.sh --strict"
       repository: "yijie"
       exit_code: 0

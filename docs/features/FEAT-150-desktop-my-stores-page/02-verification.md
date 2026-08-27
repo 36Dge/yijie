@@ -12,6 +12,10 @@
 | `yijie-desktop` | `pnpm tauri:build:demo-fast` | 0 | PASS：local debug `.app` bundle 构建成功 | 2026-08-26 |
 | `yijie` | `pnpm lint && pnpm test` | 0 | PASS：repository governance lint；48 tests | 2026-08-26 |
 | `yijie` | `check-feature-package.sh --gate D4`；`check-feature-package.sh --strict` | 0 | PASS：schema v3、D4 范围与语义、文档结构、模板变量/未完成标记 | 2026-08-26 |
+| `yijie-desktop` | `pnpm exec vitest run StoreSceneCard StorePage YjTabs --maxWorkers=4` | 0 | PASS：3 files / 19 tests；覆盖提示条移除、三模块、筛选、标签语义与键盘 tabs | 2026-08-27 |
+| `yijie-desktop` | 目标 ESLint + `vue-tsc --noEmit`；`make lint` | 0 | PASS：Vue/TypeScript/CSS 变更与全仓 lint、Rust fmt、Clippy 通过 | 2026-08-27 |
+| `yijie-desktop` | `make build` | 0 | PASS：最终 UI 源码 production renderer build；StorePage 独立 chunk 生成 | 2026-08-27 |
+| `yijie-desktop` | `make test` | 2 | 前端 81 files / 641 tests 全部通过；Rust 264 passed / 1 个既有 sidecar 故障生命周期用例未通过 / 3 ignored。该用例与本次纯 Vue/CSS delta 无关，且按安全条款未做故障注入式反复重跑 | 2026-08-27 |
 
 全量测试输出中的 Happy DOM worker module 提示属于既有 FEAT-128 测试路径；Vitest 最终汇总为 81/81 files、641/641 tests PASS，不影响 FEAT-150 结果。所有执行均为正常、非破坏性验证。
 
@@ -23,6 +27,8 @@
 | Native happy path | 从主页面点击“我的店铺”，切换广告、防差评、供应链；在供应链 selected 时按 Left | 同一 local demo 启动器的可枚举 debug app bundle，真实 Tauri WebView，1162×768 | 到达 `tauri://localhost/store`；标题“我的店铺 · 易界 AI”、侧栏 selected、三个模块和对应卡片均可观察；Left 从供应链切换到广告优化师 | PASS |
 | 1180×760 visual matrix | production-component harness：light、dark、广告、防差评、供应链、角色键盘 | Browser viewport 1180×760 | 无关键重叠、主体横向滚动或不可达标签；所有截图刷新自最终代码 | PASS |
 | Accessibility | 读取最终 harness axe JSON；YjTabs/StorePage 单测 | 1180×760 light + Happy DOM | `violations: []`；tablist/tab、roving tabindex、`aria-selected`、`aria-controls`、tabpanel/`aria-labelledby` 关联通过 | PASS |
+| UI refinement smoke | 删除提示条后重载；读取全部场景标签 computed style；切换防差评/供应链；分别扫描 light/dark | Browser 1180×760，最终源码 | 提示条与原说明文本均不存在；精品/热门/关联统一 48×32px、免费版 60×32px，全部四边 `border=0`；无横向溢出；两主题 axe violations=0 | PASS |
+| UI refinement Tauri startup | `pnpm tauri:dev` | macOS local / demo_fast | 既有本地 Demo 占用 1420/18081，启动器按设计安全拒绝；未强杀或接管既有进程。2026-08-26 fresh Tauri 基线仍为 PASS，本次纯 UI delta 由 production build 与真实渲染 smoke 覆盖 | 受控跳过 |
 | Representative failure/recovery | 缺少 `store.read` 访问 `/store`；关闭 store profile 访问 `/store`；切换合法筛选恢复内容 | Vitest memory router + local component | 无权限时进入 `/access-denied` 且 Store loader 未调用；非 exact local/demo_fast 回退 Settings；页面无远程重试，切换标签即时恢复 | PASS |
 
 说明：canonical `pnpm tauri:dev` fresh run 绑定最终源码并独立 PASS。macOS Computer Use 无法枚举未签名裸 dev binary，因此原生点击截图使用同一启动器的可枚举 debug app bundle；这不是 browser-only 或 mock-only 替代。
@@ -32,13 +38,13 @@
 | AC | Result | 真实证据/Artifact |
 |---|---|---|
 | AC-001 | PASS | 原生 WebView 从左侧进入 `/store`；标题、URL、selected 均由 AX tree 确认；navigation/router/Sidebar 测试通过 |
-| AC-002 | PASS | AX tree 与 `store-native-local-demo.png` 显示经营快报、精选场景、角色场景推荐及“本地合成/不代表真实店铺”提示 |
+| AC-002 | PASS | AX tree 与最新 light/dark 证据显示三个模块；经营快报保留“无店铺数据连接/本地合成”，场景与筛选保留“演示”口径；独立提示条按反馈移除 |
 | AC-003 | PASS | 3 个快报标签、每组严格 5 指标由 domain/page tests 固定；原生广告切换显示广告销售额、花费、订单、ACOS、ROAS |
 | AC-004 | PASS | 9 个精选标签顺序固定；“防差评”原生状态显示 4 个对应场景；全部 PDF 精选映射单测通过 |
 | AC-005 | PASS | 6 个角色标签顺序固定；“供应链”原生状态显示 6 个 FBA 场景；全部角色映射单测通过 |
 | AC-006 | PASS | 组件否定断言与 source search 均无多端同步、授权、查看全部、搜索、分页或场景执行控件；卡片是非交互 article |
 | AC-007 | PASS | 目标 production source 对 `fetch/axios/invoke/localStorage/sessionStorage/indexedDB` 搜索为空；页面只消费本地只读常量 |
-| AC-008 | PASS | `make lint/build`；新样式无裸色值/px 值，复用 design token 与 `YjIcon`；light/dark 1180×760 截图通过 |
+| AC-008 | PASS | `make lint/build`；新样式无裸色值/px 值，复用 design token；light/dark 1180×760 截图、0 横向溢出和标签 computed style 检查通过 |
 | AC-009 | PASS | 原生 Left 键 smoke、YjTabs Arrow/Home/End 单测、明确 tab→tabpanel 关联及 axe 0 violations |
 | AC-010 | PASS | 无 `store.read` 时导航不可见、深链拒绝且 Store loader 未调用；exact local/demo_fast 外 `/store` 不开放 |
 
@@ -49,8 +55,8 @@
 - `evidence/store-native-review-filter.png`：真实 Tauri WebView “防差评” selected。
 - `evidence/store-native-supply-chain.png`：真实 Tauri WebView 供应链 6 张场景卡。
 - `evidence/store-native-keyboard.png`：原生 Left 键从供应链切换到广告优化师后的状态。
-- `evidence/store-light-1180x760.png`、`store-dark-1180x760.png`：最终代码的两主题最小窗口首屏。
-- `evidence/store-filters-1180x760.png`、`store-role-keyboard-1180x760.png`：最终筛选与键盘状态。
+- `evidence/store-light-1180x760.png`、`store-dark-1180x760.png`：2026-08-27 最终代码的两主题最小窗口首屏，独立提示条已移除。
+- `evidence/store-filters-1180x760.png`：2026-08-27 防差评 + 供应链筛选状态，可见统一无描边标签；`store-role-keyboard-1180x760.png` 保留原生键盘状态。
 - 九个 artifact 均为真实 PNG；1180×760 与原生 1162×768 尺寸已通过文件检查。
 
 ## 5. Diff、审查与限制

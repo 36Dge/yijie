@@ -5,8 +5,8 @@ exposure: "local"
 feature:
   id: "FEAT-131"
   slug: "desktop-codex-parity-baseline"
-  title: "Codex Desktop 对话一致性基线与黄金场景"
-  status: "active"
+  title: "Codex 风格近似对话基线与黄金场景"
+  status: "usable"
   created_at: "2026-08-26"
   requirement_owner: "段成威"
   technical_owner: "段成威"
@@ -39,16 +39,16 @@ timebox:
 
 product_ux:
   status: "PASS"
-  primary_user: "负责把易界 Desktop 对话工作区与冻结 Codex Desktop 行为对齐的产品、设计、开发和验收人员，以及最终使用易界 Agent 对话完成任务的本地用户"
-  problem: "“与 Codex Desktop 一致”尚未被固定为版本化、可复核、可回放的行为基线，后续 Feature 无法区分 Desktop 缺口、Host/Contracts 缺口、固定 Runtime 上限和主动产品差异。"
-  user_outcome: "在保留 Vue 技术栈和固定 yijie-codex Runtime 不变的前提下，后续 FEAT-132–143 可引用同一冻结版本、能力矩阵和脱敏黄金场景，逐步交付与 Codex Desktop 可观察行为一致的端到端对话体验。"
+  primary_user: "负责把易界 Desktop 对话工作区建设为 Codex 风格近似体验的产品、设计、开发和验收人员，以及最终使用易界 Agent 对话完成任务的本地用户"
+  problem: "逐版本、逐场景采集 Codex Desktop 人工证据成本过高；继续把像素和状态完全一致作为门槛会阻塞真正有价值的对话交互交付。"
+  user_outcome: "在保留 Vue 技术栈和固定 yijie-codex Runtime 不变的前提下，后续 FEAT-132–143 引用同一 owner-approved inference 策略、能力矩阵和黄金场景，交付风格相近、信息层级清楚、符合 Yijie UI 规范的端到端对话体验，不要求与 Codex 一模一样。"
   in_scope:
-    - "冻结 Codex Desktop 26.818.61809 build 7019、日期、环境和证据状态"
+    - "固定 reference policy codex-inspired-approximate-parity-v1-2026-08-27；不建立 Codex Desktop version/build Freeze ID"
     - "冻结 Runtime 0.144.6、fork/upstream commit、schema tree 与 experimentalApi=false"
     - "建立 Codex 行为到 Runtime、Host/Contracts、Desktop 和 Owner Feature 的能力矩阵"
-    - "定义至少 13 个正常、失败、中断、恢复和长对话黄金场景及证据来源"
+    - "定义至少 13 个正常、失败、中断、恢复和长对话黄金场景及 owner-inference / exclusion 依据"
     - "建立不进入生产 bundle 的 Desktop test-only 确定性事件回放与敏感数据扫描"
-    - "对无法安全自动观察的参考交互如实标记 reference-unobserved"
+    - "允许开发依据 Yijie UI 规范、固定 Runtime/Host 能力和工程判断推测 Codex 风格，但不得把推测声明为版本专属实测事实"
     - "提供固定 MiniMax 文本 Provider、关闭图片动态工具且 experimentalApi=false 的 canonical Desktop local 验证入口"
     - "canonical stable 入口使用独立 bundle identifier、Desktop app-data 与 Host/Codex home，避免恢复默认 demo_fast 的历史 outbox"
   out_of_scope:
@@ -59,34 +59,38 @@ product_ux:
     - "决定高风险审批、文件写入或其他权限策略"
     - "public/production 发布、签名、公证、部署或外部写入"
     - "修改 yijie-agent-host 的 Runtime 管理器或验证其超时/协议失败强制 Kill fallback；该跨进程风险只登记限制，不做故障注入"
+    - "Epic 主动产品差异：不实现语音、模型版本信息、模型推理强度信息、右上角分享、切换置顶摘要、显示侧边面板、分支到新聊天（“回复不佳”右侧按钮）"
+    - "GS-006 文件修改与 Diff：Owner 明确不实现，不建立 FileChange/Diff UI、审批或 synthetic/real-runtime 验收"
+    - "模型推理强度信息只指模型配置/档位 UI；用户可见 reasoning summary（CAP-011 / GS-002）仍在 Epic 范围内"
+    - "任何 Codex Desktop 人工截图、录屏、版本/build Freeze、证据 hash 或逐像素/逐状态完全一致验收"
   main_flow:
-    - "实施者核对本机参考 App、固定 Runtime 和当前 Host/Contracts/Desktop 的只读事实，并记录证据来源与不可观察项。"
+    - "实施者读取 owner-approved inference 策略、固定 Runtime 和当前 Host/Contracts/Desktop 事实，不等待或请求 Codex Desktop 人工证据。"
     - "实施者把每项行为映射到四种 primary capability classification、交付层和 Owner Feature。"
     - "实施者用无真实正文、路径、秘密、PII 或商家数据的 fixture，通过真实 Desktop parser/store 运行 test-only 回放。"
-    - "实施者通过 pnpm tauri:demo-fast:stable 启动独立 identifier/data-root 的 freshly built debug App，先核对 Runtime/Provider/readiness 与 experimentalApi=false；真实 prompt 只有在另获未使用授权时才可提交。"
-    - "Owner 审核后冻结该基线；后续参考 App 更新只登记 drift，不静默改写本基线。"
+    - "实施者通过 pnpm tauri:demo-fast:stable 启动独立 identifier/data-root 的 freshly built debug App，先核对 Runtime/Provider/readiness 与 experimentalApi=false；真实 prompt 只能在明确授权与仓库级更严格调用上限内提交。"
+    - "Owner 已撤回先前三张人工材料；实现只声明 Codex-inspired approximation，不声明版本专属 observed parity。"
     - "FEAT-132–143 复用场景 ID 和矩阵逐步实现完整 Epic，总目标在本 Feature 单独完成后仍未达成。"
-  visual_direction: "不修改生产 UI。Codex Desktop 截图/录屏仅作为脱敏内部参考；测试渲染若后续需要，必须使用既有易界 token、组件和 light/dark/minimum-window 规范。"
+  visual_direction: "本 Feature 不修改生产 UI；后续 Feature 允许推测 Codex 风格的布局与交互层级，但以既有易界 token、组件和 light/dark/minimum-window 规范为准，接受合理差异，不做逐像素复刻。"
   ui_states:
-    idle: "等待执行只读基线采集或确定性回放；生产 UI 无变化。"
-    loading: "正在读取版本元数据、核对 manifest 或执行有界内存回放，不显示或写入真实用户内容。"
-    success: "版本冻结、能力矩阵、场景、证据索引、Runtime 对账和回放检查均有可复核结果。"
-    empty: "参考行为无法安全观察时明确标记 reference-unobserved，并记录原因、影响和 Owner，不生成替代观察。"
+    idle: "等待执行策略/能力矩阵核对或确定性回放；生产 UI 无变化。"
+    loading: "正在核对 reference policy、Runtime manifest 或执行有界内存回放，不显示或写入真实用户内容。"
+    success: "推测策略、主动排除项、能力矩阵、场景、Runtime 对账和回放检查均有可复核结果。"
+    empty: "没有人工参考媒体是预期状态，不构成 blocker；使用 owner-approved inference 并明确不声明 reference observation。"
     error: "记录稳定的检查失败、受影响 AC 和恢复建议，不写绝对路径、用户正文、secret、PII 或商家数据。"
     retry: "只重跑安全、幂等、确定性的读取、扫描、测试和正常启动检查，不通过故障注入制造结果。"
-    cancel: "仅使用工具或应用自身的正常取消、退出和清理流程；保留已生成证据，禁止强杀进程。"
+    cancel: "仅使用工具或应用自身的正常取消、退出和清理流程；保留治理/测试结果，禁止强杀进程。"
 
 must_acceptance:
   - id: "AC-001"
-    statement: "UX 基线明确记录 Codex Desktop 版本 26.818.61809、build 7019、冻结日期、环境和证据状态。"
-    verification: "Feature 文档检查、本机 Info.plist 只读证据与参考证据索引。"
+    statement: "UX 基线明确记录 owner-approved inference 策略、允许近似而非完全一致、撤回人工证据，以及全部主动排除项。"
+    verification: "Feature 文档、reference inference policy 与能力/场景索引一致性检查。"
     status: "PASS"
   - id: "AC-002"
     statement: "Runtime fork/upstream commit、版本 0.144.6、schema tree hash 与 experimentalApi=false 被精确记录并区分权威锁定清单和实现扩展。"
     verification: "compatibility manifest、Runtime manifest/checksum 与只读 HEAD/status 对账。"
     status: "PASS"
   - id: "AC-003"
-    statement: "至少 13 个黄金场景均记录前置条件、用户操作、状态顺序、可用动作、最终结果、provenance 和观察状态；无法获取的场景明确为 reference-unobserved。"
+    statement: "至少 13 个黄金场景均记录前置条件、用户操作、状态顺序、可用动作、最终结果和 reference basis；GS-006 明确为 Owner 主动排除。"
     verification: "黄金场景表审查与 fixture/场景 ID 一致性测试。"
     status: "PASS"
   - id: "AC-004"
@@ -94,7 +98,7 @@ must_acceptance:
     verification: "capability matrix 枚举、owner 覆盖和分类词表检查。"
     status: "PASS"
   - id: "AC-005"
-    statement: "fixture 不含真实 prompt、绝对路径、secret、token、PII、手机号、邮箱、私钥或商家数据，并标明 reference-observation、real-runtime 或 synthetic provenance。"
+    statement: "fixture 不含真实 prompt、绝对路径、secret、token、PII、手机号、邮箱、私钥或商家数据，并标明 real-runtime 或 synthetic provenance；owner inference 只出现在 catalog reference basis。"
     verification: "fail-closed fixture parser、canary/no-sensitive-data focused test 与人工审阅。"
     status: "PASS"
   - id: "AC-006"
@@ -102,8 +106,8 @@ must_acceptance:
     verification: "focused Vitest、连续重复回放、production build 与 dist boundary scanner。"
     status: "PASS"
   - id: "AC-007"
-    statement: "Codex Desktop 更新或本机版本漂移时仍保留 26.818.61809 build 7019 冻结基线，除非 Owner 明确建立新 baseline。"
-    verification: "版本漂移 focused test、基线变更规则和证据索引审查。"
+    statement: "先前三张人工材料及派生证据均已撤回并从仓库删除；当前策略不要求 Codex Desktop version/build、drift 或后续人工补采。"
+    verification: "reference policy、仓库媒体/旧 Freeze 引用负向扫描与 test-only policy ID 一致性测试。"
     status: "PASS"
   - id: "AC-008"
     statement: "yijie-codex Runtime 仓库、schema tree 和 compatibility pin 在实施前后无变化。"
@@ -130,7 +134,7 @@ contract:
       exit_code: 0
 
 external_authorizations:
-  paid_calls: { allowed: true, max_actions: 1, approved_by: "段成威（当前用户）", approved_at: "2026-08-26T12:22:54+08:00" }
+  paid_calls: { allowed: true, max_actions: 3, approved_by: "段成威（当前用户）", approved_at: "2026-08-27T01:28:17+08:00" }
   destructive_operations: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
   production_writes: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
 
@@ -140,26 +144,30 @@ implementation:
   mock_only: false
 
 verification:
-  status: "PARTIAL"
-  verified_at: "2026-08-26T13:07:39+08:00"
+  status: "PASS"
+  verified_at: "2026-08-27T01:38:36+08:00"
   startup:
     status: "PASS"
     command_or_steps: "在 yijie-desktop 执行 pnpm tauri:demo-fast:stable，构建并启动注册的 debug .app；检查 /readyz 与 /v1/status 后用应用自身 Cmd-Q 退出，再检查 Host/Vite 端口和 owned Host/Runtime 进程。"
     environment: "Desktop local / isolated com.yijie.ai.feat131-stable + .local/feat131-stable / fresh debug app / MiniMax text provider / image dynamic tool disabled"
-    actual_result: "当前代码 freshly built 易界 AI FEAT-131.app 正常启动并可由安全 UI 自动化读取；/readyz=ready，/v1/status 同时为 Runtime 0.144.6、ready=true、model_provider=minimax、model=MiniMax-M3、experimental_api=false。未打开项目或提交 prompt；Cmd-Q 后应用、owned Host 与 owned Runtime 正常退出，18081/1420 均释放。正常路径未观察到强制清理；未用故障注入验证 Host latent fallback。"
+    actual_result: "从 clean detached HEAD freshly built 的易界 AI FEAT-131.app 正常启动并可由安全 UI 自动化读取；/readyz=ready，/v1/status 同时为 Runtime 0.144.6、ready=true、model_provider=minimax、model=MiniMax-M3、experimental_api=false。选择该 clean worktree 后只提交一次受限 prompt；完成后 Cmd-Q，应用、owned Host 与 owned Runtime 正常退出，18081/1420 均释放。正常路径未观察到强制清理；未用故障注入验证 Host latent fallback。"
   real_smoke:
-    status: "NOT RUN"
-    command_or_steps: "当前隔离 canonical stable App 只做 startup/status/normal-exit，不提交 prompt。历史 predecessor entry 曾只提交一次已授权固定文本 prompt且不重试。"
-    environment: "current: isolated com.yijie.ai.feat131-stable；predecessor observation: com.yijie.ai / fixed Runtime 0.144.6 / MiniMax-M3 / experimentalApi=false"
-    actual_result: "当前 canonical real smoke 因授权额度已被 predecessor UI submission 保守记作使用而 NOT RUN。历史 submission 在 Desktop 本地出现用户消息与新会话，但始终 queued/“状态已更新”；Runtime 聚合为 thread_started=0、turn_started=0、assistant_delta=0、turn_completed=0，故没有证据证明到达 Runtime/Provider，也没有确认产生计费。旧 default profile 的 pending outbox 未删除；当前 stable identity/data roots 已隔离，不会恢复它。"
+    status: "PASS"
+    command_or_steps: "在 canonical stable App 选择 clean detached worktree，只提交一次明确禁止工具、禁止文件读写且要求精确单行输出的无敏感信息文本 prompt；完成后复查 /v1/status 并用 Cmd-Q 正常退出。"
+    environment: "isolated com.yijie.ai.feat131-stable / fixed Runtime 0.144.6 / MiniMax-M3 / experimentalApi=false / clean detached yijie-desktop HEAD@00c8227"
+    actual_result: "首轮 submission 成功，UI Turn 到达已完成，模型精确返回 FEAT-131_SMOKE_OK，Composer 恢复可发送；没有工具调用、文件读取/修改或重试。完成后 /v1/status 仍为 ready=true、experimental_api=false，正常退出后 18081/1420 释放。predecessor 的一次失败 UI submission 与本次成功请求合计达到 yijie-agent-host 更严格的最多 2 次短请求上限，因此不再发送付费请求。"
   representative_failure:
-    status: "PARTIAL"
-    command_or_steps: "使用确定性内存 sequence-gap/resync fixture 与正常可恢复失败路径核对，不杀进程、不破坏权限、不替换二进制、不注入攻击载荷。"
-    environment: "Desktop test-only replay + safe local lifecycle"
-    actual_result: "GS-012 resync 与 GS-013 sequence-gap 的 safe synthetic raw-event replay 已经真实 parser/store 通过；predecessor UI submission 停在 Host session/Runtime thread 绑定前的 queued/unknown 状态，未执行自动重试或恢复，故仍为 PARTIAL。synthetic 结果未记作 real-runtime；当前隔离 canonical 未发送 prompt。"
+    status: "PASS"
+    command_or_steps: "freshly built canonical App 达到 ready 后，直接启动同一 stable bundle 的第二实例并要求 stable flag；核对第二实例 fail closed、首实例仍 ready，再正常退出首实例、从同一 canonical 入口重启并复查 ready，最后正常退出。另用 GS-012/GS-013 replay 和 production boundary canary 补充 parser/store 与 bundle 边界。"
+    environment: "isolated com.yijie.ai.feat131-stable / clean detached yijie-desktop HEAD@00c8227 / fixed Runtime 0.144.6 / experimentalApi=false / no Provider request"
+    actual_result: "真实代表性失败/恢复 PASS：首实例 ready 时，第二实例立即 exit 1 并只输出稳定错误 yijie desktop instance is already running；首实例继续 ready=true、experimental_api=false。首实例正常退出后 canonical retry/restart 再次 ready，最终正常退出且端口/owned processes 清空。未调用模型、未强杀或注入故障。GS-012/GS-013 safe replay 与 v1/v2/version/build/policy canary fail-closed 另行 PASS；未执行 Host abnormal-shutdown/process fault injection，因此不证明 Host timeout/protocol-failure fallback 或异常清理。"
   focused_checks:
     - repository: "yijie"
       command: "./docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate D0 docs/features/FEAT-131-desktop-codex-parity-baseline"
+      status: "PASS"
+      exit_code: 0
+    - repository: "yijie"
+      command: "./docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate D4 docs/features/FEAT-131-desktop-codex-parity-baseline"
       status: "PASS"
       exit_code: 0
     - repository: "yijie"
@@ -172,6 +180,10 @@ verification:
       exit_code: 0
     - repository: "yijie-desktop"
       command: "pnpm exec vitest run tests/feat-131/chat-event-replay-harness.test.ts scripts/check-feat131-replay-boundary.test.mjs"
+      status: "PASS"
+      exit_code: 0
+    - repository: "yijie-desktop"
+      command: "pnpm exec eslint tests/feat-131/chat-event-replay-harness.ts tests/feat-131/chat-event-replay-harness.test.ts scripts/check-feat131-replay-boundary.mjs && pnpm exec vue-tsc --noEmit"
       status: "PASS"
       exit_code: 0
     - repository: "yijie-desktop"
@@ -198,9 +210,8 @@ verification:
     - "03-capability-matrix.md"
     - "04-golden-scenarios.md"
     - "05-reference-evidence-index.md"
-    - "references/codex-desktop-build-metadata.md"
     - "references/runtime-freeze-evidence.md"
-    - "references/manual-capture-checklist.md"
+    - "references/reference-inference-policy.md"
     - "yijie-desktop/tests/feat-131/chat-event-replay-harness.ts"
     - "yijie-desktop/tests/fixtures/feat-131/scenario-catalog.json"
     - "yijie-desktop/scripts/check-feat131-replay-boundary.mjs"
@@ -209,12 +220,13 @@ verification:
     - "yijie-desktop/src-tauri/tauri.feat131-stable.conf.json"
     - "yijie-desktop/src-tauri/src/chat/sidecar.rs"
     - "yijie-desktop/src-tauri/src/lib.rs"
-  diff_review: { status: "PARTIAL", summary: "最终独立复审无 P0、无新增 P1/P2；stable-only identity/data isolation、default command/second-instance compatibility、Provider/image 解耦、closed arguments、key-file 正向复验、experimentalApi=false、current startup/Cmd-Q 和 implementation pins 均有证据。仍保留 1 个 P1、1 个 P2：未修改 Host 的 Runtime Manager 在 shutdown timeout/protocol failure/startup abort 存在 Process.Kill fallback；Desktop exit callback 不把 cleanup-incomplete 传播为 launcher 非零退出。本 Feature不做故障注入或越界修改 Host，因此不能宣称整条 App→Host→Runtime 异常清理保证。" }
+  diff_review: { status: "PASS", summary: "独立复审对 FEAT-131 scoped code/test diff 未发现 P0–P3。复审发现的 production boundary legacy-v1/version/build canary P2 已修复并复验：v1、v2、旧 version/build 与 policy canary 全部 fail closed；focused 41 tests、35-file dist scan 与 git diff --check PASS。并行 FEAT-150/Store 改动明确排除且未触碰。未修改 Host 的 Runtime Manager fallback 与 cleanup-incomplete 传播属于既有、范围外限制，不计为本 Feature diff finding，也不宣称异常清理保证。" }
   known_limitations:
-    - "Codex Desktop 当前应用窗口不可由自动化 Computer Use 安全读取；版本专属截图/录屏待按证据索引人工采集。"
-    - "Command、Tool、Approval、Diff 和 Steer 尚无当前 Host/Contracts/Desktop 端到端投影，本 Feature 不伪造这些生产能力。"
-    - "当前隔离 stable canonical startup 已关闭 experimentalApi；当前 entry 的 real smoke 因一次授权已被 predecessor submission 使用而 NOT RUN。历史 submission 停在 Host session/Runtime thread 绑定前，GS-001 happy path 未通过。"
-    - "当前没有确认发生 Provider 计费：Runtime 没有 thread/turn/delta/terminal 事件；授权额度仍按一次 UI submission 保守记作已用。"
+    - "Owner 不再提供或要求任何 Codex Desktop 人工证据；后续实现是工程推测的 Codex-inspired approximation，不能宣称版本专属或逐像素一致。"
+    - "Command、Tool、Approval 和 Steer 尚无当前 Host/Contracts/Desktop 端到端投影，本 Feature 不伪造这些生产能力；FileChange/Diff 已由 Owner 主动排除。"
+    - "Runtime 与 Contracts 的 HEAD、worktree、schema tree 和 manifest hash 均未变化，但 Runtime-side check_agent_host_contracts.py 对 Host projection 的既有期望少于当前固定 manifest 中的 skills surface，额外 diagnostic 非零；该 checker/manifest expectation mismatch 已披露，不能通过修改固定 Runtime 消除。"
+    - "当前隔离 stable canonical real smoke 已在 experimentalApi=false 下首轮 PASS，精确返回 FEAT-131_SMOKE_OK；未调用工具、未重试。该结果只证明安全纯文本 GS-001 happy path，不证明后续 Feature 的 Tool、Command、Approval、Steer、长对话或视觉体验。"
+    - "Provider 调用可能产生计费；predecessor submission 与当前成功 submission 合计达到 yijie-agent-host 更严格的最多 2 次短请求上限，不再进行任何付费重试。Owner 本轮允许的额外重试因首轮成功且仓库上限耗尽而未使用。"
     - "未修改 Host；其 Runtime Manager 仍有 shutdown timeout/protocol failure/startup abort 的 Process.Kill fallback。正常 Cmd-Q 两次均自然退出，但没有也不会用故障注入证明异常路径。"
     - "旧 com.yijie.ai/default demo_fast 数据仍可能包含 predecessor pending outbox；默认入口再次启动前需 Owner 决策。canonical stable 已用独立 identifier/app-data/Host/Codex home 隔离。"
 
