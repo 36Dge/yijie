@@ -1,97 +1,106 @@
 # FEAT-133 整体实现与调试记录
 
-> 当前阶段：`D0 PASS` · 实现状态：`pending` · 记录日期：`2026-08-27`
+> 当前阶段：`D4 PASS` · 实现状态：`complete` · 记录日期：`2026-08-28`
 
-## 1. 整体实现方案
+## 1. 最终实现方案
 
-- 参考策略：`codex-inspired-approximate-parity-v1-2026-08-27` / `owner-approved-inference`；不采集或等待 Codex Desktop 人工证据。
-- 真实调用链：FEAT-132 `ConversationState` → 纯 Timeline selector/ViewModel → Vue Timeline/TurnGroup/ItemShell/SafeContent → 页面组合；组件不接触 raw wire、数据库或原生副作用。
-- 跨层顺序：领域能力只读对账 → selector/component tests → Timeline/Item shell → disclosure/clipboard/action events → 最小页面组合 → focused/full checks → canonical no-prompt smoke → 独立审查 → D4。
-- Contract First：当前 `impact=none`，因为只消费 FEAT-132 进程内 ViewModel 并派生展示；若缺字段或需改变任何跨进程/持久化语义，立即停止并重新分类，不在 Vue 猜测。
-- 内容安全：优先使用受限、类型化内容树，不使用 `v-html`；不新增 Markdown 依赖。若该方案不能满足 AC-002，先取得依赖批准。
-- 产品边界：保留 FEAT-127 附件、FEAT-128 Artifact 和既有 Composer/Sidebar authority；不实现八项 Owner 排除能力，尤其不把 Artifact 变成 FileChange/Diff。
-- 明确不做的生产加固：public/production、发布、完整安全/性能专项、migration、灰度、Dashboard、签名与公证；这些不影响 `demo_fast + local` D0，但不能被写成 PASS。
+- 数据单链路：FEAT-132 `ConversationState` → `conversation-timeline` 纯 selector/ViewModel →
+  `ChatTimeline` → `ChatTurnGroup` → `ChatTimelineItemShell` → `ChatSafeContent`。
+- selector 只消费 FEAT-132 领域对象，保持 Turn/Item ordinal、稳定 identity、角色和真实状态；没有读取 raw
+  wire、数据库、Tauri command 或 Host payload。
+- 安全内容树以 Vue 节点展示纯文本、段落、标题、强调、行内代码、代码块、列表和表格；未使用
+  `v-html`，未自动打开 URL，也未新增 Markdown/UI 依赖。
+- 过程 Item 以稳定 Item ID 管理 disclosure；最终回答永不默认折叠。unknown/error 使用固定脱敏文案，
+  相邻 Item 不受影响。
+- clipboard 通过注入的 `ChatClipboardAdapter` 和 `ChatCopyAction` 完成文本/代码复制；Timeline 不直接访问
+  Tauri/Host。成功与拒绝均进入可访问 live region，正文、选择和焦点保持不变。
+- `ChatPage.vue` 最小组合新 Timeline；FEAT-127 attachment reference 与 FEAT-128 Artifact exact authority
+  通过 typed slots 接入。permission denied 只读取既有 `controlPlane`、`lastErrorCode` 与 context
+  `allowedActions`，没有在 Vue 伪造领域权限。
+- 旧 renderer 只保留为显式 rollback：仅环境值精确为 `true` 时启用；默认、canonical、selector-null 和分页
+  均不自动进入旧路径。
+- Tauri WebView 的原生缩放需要新增 capability，属于禁止的 `src-tauri` 边界。因此用无依赖前端
+  Cmd/Ctrl `+`、`-`、`0` 实现 80–200% 缩放，并反向折算 viewport/minimum；180/200% 复用既有窄屏
+  chat sidebar，使 1180×760 下 composer 可见且主体不产生横向滚动。
 
-本 Profile 不建立治理切片。后续编码可以按技术依赖推进，但最终只以一个完整 Timeline 用户结果统一验收。
+## 2. Owner reasoning 决策
 
-## 2. 工作区 clean-start 与逻辑隔离
+2026-08-28，Owner 明确接受“历史 reasoning 仅显示元数据和固定缺失提示”。最终规则为：
 
-`2026-08-27T20:40:31+08:00` 重新核对 CrossBSD 11 个 Git 仓库。创建 FEAT-133 scaffold 前全部 clean；创建后只有 `yijie` 出现一个未跟踪 FEAT-133 目录，其他仓库保持 clean。
+- completed reasoning 且 `contentBlocks.length === 0` 时显示固定 note：
+  “此过程仅包含状态元数据；详情未进入当前对话投影。”
+- active/streaming 空 reasoning 不显示“历史缺失”提示。
+- 默认 Timeline 不调用 `loadReasoning`，不把旧 `ChatReasoningItem` 拼进 FEAT-132 state，也不新增 lazy body
+  authority、adapter、store 或 raw wire 字段。
+- legacy 分支只有显式 rollback 开关可达。
+- canonical 现有三条无敏感历史都没有 reasoning Item，所以真实 UI 没有可展示的 reasoning 样本；该规则由
+  TurnGroup 与 ChatPage 组件测试证明。D4 不宣称历史 reasoning 正文已迁移或与 Codex 正文等价。
 
-| Repository | Branch | Baseline HEAD | 初始状态 | D0 结束预期 |
-|---|---|---|---|---|
-| `yijie` | `feat/feat-131-desktop-codex-parity-baseline` | `aed49b78f21c264bb13c05c1976f11f7fc14b520` | clean | 仅 FEAT-133 包为 untracked/modified |
-| `yijie-desktop` | `feat/feat-131-desktop-codex-parity-baseline` | `f96fe05ca81d6bc7fac97ecbf81bcbab32b8aaa0` | clean | clean |
-| `yijie-codex` | `develop` | `0ce5902ed400866be0196886bb78f693a004d68d` | clean | clean / fixed |
-| `yijie-contracts` | `feat/feat-129-desktop-skill-marketplace` | `164b14f609537d727a52326832da04430aecc4ab` | clean | clean |
-| `yijie-agent-host` | `feat/feat-129-desktop-skill-marketplace` | `1b7bfd1ce4323e52035b2ba1e62842c2d332d9ed` | clean | clean |
-| `yijie-admin-web` | `develop` | `1e5c7783d98210d5ec03408ec9ff7824795d1127` | clean | clean |
-| `yijie-api` | `feat/feat-126-foundation-closure` | `451940b282d8dd3e232ed414bd44b0677897f4c4` | clean | clean |
-| `yijie-infra` | `feat/feat-126-s10e` | `42671b802d48ce0318abdefeeb01003cdc597825` | clean | clean |
-| `yijie-knowledge` | `develop` | `3e5682c4dacdc8031b433bfc956909172a8051b6` | clean | clean |
-| `yijie-connectors` | `develop` | `2624155f973e3f6121b5648d2d903fe72fee0210` | clean | clean |
-| `yijie-skills` | `develop` | `10c45bec29603b002e861e1499d5b4e684251af5` | clean | clean |
+## 3. 工作区与实现记录
 
-本轮没有新 branch/worktree/stash/commit 授权，因此采用路径级逻辑隔离：
+D0 于 2026-08-27 在两个目标仓建立独立分支并提交基线；实现沿用同名分支：
 
-- `yijie` D0 allowlist：FEAT-133 的四个正式文件及一个 `evidence/workspace-isolation-baseline-2026-08-27.md`。
-- `yijie-desktop` D0 allowlist：空；整个仓库只读。
-- `ChatPage.vue` 保护证据：Git blob `ea2c3a1e606d687981d7a11fec3ac7196baa56f9`，SHA-256 `b89e1204864656de800c5d2682100116b2784ebd17b48534b705ba58bb8dfef1`。
-- Runtime、Contracts、Host 和其余仓库：全仓只读。
-- 普通 `git diff` 不覆盖未跟踪包；D0 范围必须同时用 `git status --short`、实际包文件清单、strict D0 checker 与 claims audit 证明。
-
-完整记录见 `evidence/workspace-isolation-baseline-2026-08-27.md`。
-
-## 3. D0 实际改动
-
-| Repository | 模块/文件 | 行为变化 | 原因 |
+| Repository | Branch | D4 基线/最终引用 | D4 状态 |
 |---|---|---|---|
-| `yijie` | `docs/features/FEAT-133-desktop-conversation-timeline-item-shell/feature.yaml` | 登记 schema v3、scope、8 条 Must AC、Contract First、授权和 D4 计划 | 建立机器可读正式治理包 |
-| `yijie` | `00-feature-brief.md` | 冻结背景、目标、非目标、主流程、UI 状态、推荐组件边界、隔离和停止条件 | 让后续实现不依赖聊天历史或旧 Epic 冲突文本 |
-| `yijie` | `01-delivery-log.md` | 记录 clean-start、逻辑隔离、决策冲突与当前未实施状态 | 保护多仓工作区并保持事实可追踪 |
-| `yijie` | `02-verification.md` | 记录 D0 门禁、未运行 D4 项与后续验证矩阵 | 防止把治理完成误报为功能完成 |
-| `yijie` | `evidence/workspace-isolation-baseline-2026-08-27.md` | 保存 11 仓 HEAD/status、关键哈希、allowlist/denylist | 为后续范围漂移检查提供可复核基线 |
-| `yijie-desktop` | 无 | 无代码、测试、配置或依赖变化；`ChatPage.vue` 未修改 | 遵守本轮“不要直接修改 ChatPage.vue”和 D0-only 范围 |
+| `yijie` | `feat/feat-133-desktop-conversation-timeline-item-shell` | 演进基线 `a154fcea9fc6073af30ac14b3ada8eaf490f754b` | D4 文档与 3 个截图由包含本文的治理收口 commit 固化 |
+| `yijie-desktop` | `feat/feat-133-desktop-conversation-timeline-item-shell` | 最终实现 `af38353694c3eb045365b7f3450ffc8a95aaf8a1` | 页面组合、交互、缩放与测试已提交，worktree clean |
+| `yijie-codex` | `develop` | `0ce5902ed400866be0196886bb78f693a004d68d` | clean / fixed / 未修改、升级、重编译或替换 |
 
-## 4. D0 决策与冲突收敛
+FEAT-133 Desktop 已有三个 scoped implementation commit：
 
-| 时间 | 事实/冲突 | 决策 | 结果 |
+- `cf61a8c feat(feat-133): add conversation timeline view model`
+- `4ef3f57 feat(feat-133): add standalone conversation timeline components`
+- `af38353 feat(feat-133): integrate timeline interactions and accessibility`
+
+Owner 已授权正式收口：页面组合与交互由 `af38353694c3eb045365b7f3450ffc8a95aaf8a1` 固化，D4 治理结果由
+包含本文的治理收口 commit 固化。未执行 push、reset、stash、clean，也未覆盖用户改动。FEAT-132 保护哈希
+保持 D0 值：
+
+- `conversation-state.ts`：`148a3f573f62139175906fb2f5073eab60bc91ceab12135522def56252a99490`
+- `chat-conversation-adapter.ts`：`834094b683e63e26fddf65ac03475fe7e73097ae3dc3f74ead02574790e273a8`
+- `chat.store.ts`：`89832e87dccc0f53cf379a85ed3eae6ca3ebaae9e2839aa298a042d33f545f4a`
+- `package.json` / `pnpm-lock.yaml`：`8316e5…7d4eced7b9` / `e48e21…72f00cc89`
+- `src-tauri` Git tree：`4d59b67cc602f76f0b9603614d0057741c97a109`
+
+## 4. 关键调试循环
+
+| 现象 | 根因/边界 | 修复 | 结果 |
 |---|---|---|---|
-| 2026-08-27 | 原 Epic 要求 Codex version/build Freeze 与人工证据，Owner 后续撤回全部人工材料 | 以 FEAT-131 `owner-approved-inference` policy 为权威，不引用撤回图片或版本专属观察 | D0 使用 Codex 风格近似目标，不要求逐像素一致 |
-| 2026-08-27 | 原 FEAT-133 把 FileChange/Diff 写成 shell 的未来消费者 | GS-006 为永久 Owner 排除；从目标、依赖、验收中移除 Diff，只保留 Artifact authority | 不实现或暗示 FileChange/Diff |
-| 2026-08-27 | Chat Pattern 提到右侧上下文面板，Owner 明确排除“显示侧边面板” | 当前 Epic 采用 Owner 最新决定，不新增/恢复侧边面板 | 作为 intentional product difference 登记 |
-| 2026-08-27 | FEAT-132 将 progress 归为 Turn lifecycle、error/warning 归为 Turn notice | UI 只读呈现这些语义，不伪造新的 domain Item | `contract-impact=none` 保持可复核 |
-| 2026-08-27 | ViewModel 没有保证时间/耗时字段 | header 只显示真实字段；缺失时隐藏，不能在 Vue 推测 | 避免引入影子语义 |
-| 2026-08-27 | package.json 没有直接 Markdown renderer/sanitizer 依赖 | 推荐受限类型化内容树；需要依赖时停止并请求批准 | D0 不改 package/lockfile |
-| 2026-08-27 | 用户要求先完成正式 D0 和隔离记录，不直接修改 `ChatPage.vue` | 本轮 Desktop allowlist 为空，只改 FEAT-133 治理包 | 实现保持 pending，D4 不提前声明 |
+| permission denied 不在 `ConversationTimelineViewModel` | 权限 authority 属于既有页面 control plane/context | 只在页面组合层读取确定性现有来源；不改 FEAT-132 | 状态矩阵与页面 tests PASS |
+| completed 历史 reasoning 没有正文 | FEAT-132 当前持久化投影只有元数据 | 按 Owner 决策显示固定 note；不 lazy load、不建第二 authority | 边界 tests 与独立审查 PASS |
+| 默认 Timeline selector 暂空时可能误入旧 renderer | 旧模板最初与 `v-else` 绑定 | legacy 分支改为显式 exact-true rollback；selector-null 显示新同步/empty 状态 | 页面 tests PASS |
+| Tauri WebView Cmd+plus 不缩放 | 原生 zoom 需要新增 Tauri capability，超出允许范围 | 前端纯规则 20% 步进到 200%，不改 `src-tauri` | domain/App tests 与 canonical PASS |
+| 初版 root CSS zoom 在 200% 放大 1180×760 minimum 与 `100vh` | viewport unit/media query 不会自动反向折算 | 动态折算 viewport/minimum，180/200% 复用 196px chat sidebar | composer 可见；仅保留对话区滚动，无主体横滚 |
 
-## 5. 调试循环
+没有通过强杀、故障注入、权限破坏、二进制替换或攻击性 fixture 制造失败。canonical 每次都使用应用自身
+Cmd-Q 正常退出，launcher exit 0。
 
-当前没有产品实现或 runtime 调试。D0 文档门禁如实记录实际命令；若 checker 失败，将只修复治理包事实或结构，不借机修改 Desktop。
+## 5. 外部授权与实际调用
 
-| 时间 | 真实现象 | 根因/新证据 | 修复 | 结果 | 累计耗时 |
-|---|---|---|---|---|---:|
-| 2026-08-27 | FEAT-133 正式目录不存在 | Desktop Epic 文件只是 Draft Brief，不是 schema v3 package | 使用官方 `new-feature.sh` 创建 demo_fast/local scaffold | scaffold 已创建；进入完整 D0 填充 | < 0.1h |
-| 2026-08-27 | scaffold 含模板未完成标记 | 官方生成器只提供结构，不提供需求事实 | 依据 Owner 最新决定、FEAT-131/132、Design System 与代码事实补全 | strict D0 与 claims audit 均 PASS；placeholder/whitespace/conflict scan PASS | < 0.5h |
-| 2026-08-27 | `feature:audit` 输出固定使用“committed”措辞，但脚本实际枚举当前 working-tree `docs/features` | 当前 12 个目录包含未跟踪 FEAT-133；base ref 用于历史/evolution 对账，不会把当前包排除 | 如实登记 FEAT-133 已被仓库审计覆盖，并保留 direct strict D0 + direct claims audit 作为定点复核 | working-tree 12 个 claims（含 FEAT-133）PASS；direct checks 也 PASS | < 0.1h |
-| 2026-08-27 | D0 结束前复核工作区 | 需要同时证明 allowlist、protected hashes 与所有兄弟仓状态 | 精确断言 11 仓 HEAD/status、五文件清单和 ChatPage blob/SHA-256 | 只有 yijie/FEAT-133 为 untracked；其余 10 仓 clean，ChatPage 未变化 | < 0.1h |
+| 类型 | 上限 | 已用 | 结果 |
+|---|---:|---:|---|
+| FEAT-133 付费/Provider prompt | 0 | 0 | 未授权且未执行；只读取 FEAT-132 既有无敏感历史 |
+| 工具调用或项目文件读写（Agent Turn） | 0 | 0 | 未执行任何新 Turn |
+| 破坏性操作/生产写入 | 0 | 0 | 未授权且未执行 |
+| Runtime/Contracts/Host 修改 | 0 | 0 | 未执行 |
 
-调试规则：30 分钟无新事实则回到 FEAT-132→selector→component 单链路；90 分钟同一阻塞则简化方案；非核心验证最多 120 分钟；核心阻塞 240 分钟后重新选择架构或缩小 MVP；16 小时未 D4 则重新定范围。
+## 6. 验证结果摘要
 
-## 6. 外部授权与实际调用
+- FEAT-133 focused：12 files / 80 tests PASS。
+- Desktop full：`make lint && make test && make build` PASS；94 TypeScript test files / 748 tests；Rust
+  265 PASS、3 条既有条件测试 ignored；Vite production build PASS。
+- canonical：`pnpm tauri:demo-fast:stable` fresh build/start PASS；默认 rollback=false，
+  `experimentalApi=false` stable 入口；没有发送 prompt。
+- 真实 UI：light/dark、1180×760、100→120→140→160→180→200%、pointer copy、keyboard Tab/Return、
+  live feedback、empty/history/waiting 状态 PASS；正常退出 PASS。
+- 独立只读复核：Timeline/reasoning/zoom 最新 diff 未发现 P0/P1/P2。
 
-| 类型 | Provider/目标 | 批准人/时间 | 上限 | 已用 | 结果 |
-|---|---|---|---:|---:|---|
-| 付费调用 | N/A | N/A | 0 | 0 | 未授权、未执行；FEAT-132 额度不可转用 |
-| 破坏性操作 | N/A | N/A | 0 | 0 | 禁止且未执行 |
-| 生产写入 | N/A | N/A | 0 | 0 | 未授权、未执行 |
-| branch/worktree/stash/commit/push | 本地 Git | N/A | 0 | 0 | 本轮未授权、未执行；使用逻辑隔离 |
+## 7. 当前限制
 
-## 7. 已知限制与下一步边界
+- canonical 三条既有历史没有 reasoning Item；固定元数据缺失提示只有自动化证据，没有真实历史截图。
+- 历史 reasoning 正文、lazy load、逐 Item “正文不完整/不可用”详情不在 FEAT-133；不能据此声明正文 parity。
+- 200% 时可视对话区自然缩小，用户通过该区域的单轴滚动访问较长内容；代码/表格仍允许局部横向滚动。
+- public/production、签名、公证、性能与完整安全专项不在 `demo_fast + local` D4。
+- GS-006 File modification & Diff 及其余七项 Owner 排除功能仍不实现。
 
-- 当前只完成 D0 文档与隔离记录；Timeline selector、组件、页面组合、测试、canonical smoke 和 D4 均未实施。
-- `yijie` 的 FEAT-133 包保持未提交；`yijie-desktop`、Runtime、Contracts、Host 与其余仓库应保持 clean。
-- `ChatPage.vue` 未修改；该限制是本 D0 阶段写入边界，不被扩大解释为整个 Feature 永久不能做最小页面组合。
-- 没有新增 Markdown/UI 依赖；若受限内容树不足，需要 Owner 对具体依赖另行批准。
-- 不使用真实 prompt、人工 Codex 证据、攻击性 fixture、故障注入、权限破坏、二进制替换或异常强杀。
-- D0 完成不等于 Timeline 可用。后续最终结论只能是“Timeline 框架局部完成，Epic 尚未完成”。
+最终结论：**Timeline 框架局部完成，Epic 尚未完成。**

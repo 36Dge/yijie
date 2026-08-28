@@ -4,102 +4,105 @@
 
 | Gate | Result | 说明 |
 |---|---|---|
-| D0 | PASS | 正式 Brief、机器字段、Must AC、隔离记录、strict checker 与 claims audit 均完成 |
-| D4 | NOT RUN | 实现、自动化、真实 UI 和代表性失败/恢复尚未开始 |
+| D0 | PASS | 正式 Brief、Must AC、Contract First 与双仓隔离基线已提交 |
+| D4 | PASS | 实现、focused/full checks、代表性安全失败与 fresh canonical UI 均完成 |
 | DP | N/A | `exposure=local`，不提供公网入口 |
 
-本文件不会把 D0 文档完成写成产品实现完成。D0 验证通过后，8 条 AC 仍保持 `pending`，
-`implementation.status=pending`，`verification.status=NOT RUN`。
+D4 的准确结论是“Timeline 框架局部完成，Epic 尚未完成”，不是 Production Ready，也不是 Codex Desktop
+逐像素或历史 reasoning 正文 parity。
 
-## 2. D0 Focused checks
+## 2. D4 Focused 与 full checks
 
 | Repository/CWD | Command | Exit | Result | 时间 |
 |---|---|---:|---|---|
-| `yijie` | `docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict --gate D0 docs/features/FEAT-133-desktop-conversation-timeline-item-shell` | 0 | PASS：schema v3 semantics 与 D0 产品/UX门禁 | 2026-08-27 |
-| `yijie` | `node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-133-desktop-conversation-timeline-item-shell` | 0 | PASS：D0 声明审计 | 2026-08-27 |
-| `yijie` | `pnpm feature:audit -- --base-ref aed49b78f21c264bb13c05c1976f11f7fc14b520` | 0 | PASS：working-tree 12 个 claims，包含未跟踪 FEAT-133；direct checks 另作定点复核 | 2026-08-27 |
-| `yijie` | `pnpm lint` | 0 | PASS：10 仓 manifest 与 Contract First governance | 2026-08-27 |
-| `yijie` | `pnpm test` | 0 | PASS：48 tests | 2026-08-27 |
-| `yijie` | `bash -n scripts/*.sh` | 0 | PASS：Shell syntax | 2026-08-27 |
-| `yijie` | wrapper 对 5 个未跟踪文本文件捕获 `git diff --no-index --check /dev/null <file>` 诊断（允许“存在新增 diff”的底层 exit 1），仅在有诊断时失败；随后扫描 whitespace/conflict/placeholder | 0 | PASS：wrapper 无 whitespace diagnostics、冲突标记或未完成占位符 | 2026-08-27 |
-| multi-repo | 11 仓 `branch/HEAD/status`、D0 allowlist、关键保护 hash 与 `ChatPage.vue` blob/SHA-256 复核 | 0 | PASS：只有 yijie/FEAT-133 包 untracked；其余 10 仓 clean，ChatPage 未变化 | 2026-08-27 |
+| `yijie-desktop` | `pnpm vitest run src/domain/conversation-timeline.test.ts src/domain/conversation-timeline-copy.test.ts src/domain/ui-zoom.test.ts src/api/chat-clipboard-adapter.test.ts src/authorization/chat-timeline-ui-config.test.ts src/components/chat/ChatCopyAction.test.ts src/components/chat/ChatSafeContent.test.ts src/components/chat/ChatTimelineItemShell.test.ts src/components/chat/ChatTurnGroup.test.ts src/components/chat/ChatTimeline.test.ts src/pages/chat/ChatPage.test.ts src/App.test.ts` | 0 | PASS：12 files / 80 tests | 2026-08-28 |
+| `yijie-desktop` | `make lint` | 0 | PASS：Contracts generation check、ESLint、vue-tsc、cargo fmt、cargo clippy | 2026-08-28 |
+| `yijie-desktop` | `make test` | 0 | PASS：94 TypeScript files / 748 tests；Rust 265 PASS、3 条既有条件测试 ignored | 2026-08-28 |
+| `yijie-desktop` | `make build` | 0 | PASS：Vite production build，5308 modules | 2026-08-28 |
+| `yijie-desktop` | `git diff --check` | 0 | PASS：无 patch whitespace error | 2026-08-28 |
+| `yijie-codex` | `git rev-parse HEAD && git status --short` | 0 | PASS：`0ce5902…`，clean，Runtime 未修改 | 2026-08-28 |
+| `yijie` | strict D4 checker + direct claims audit + `git diff --check` | 0 | PASS：schema v3、文档、D4 范围与声明一致 | 2026-08-28 |
+| `yijie` | `pnpm feature:audit -- --base-ref a154fcea… && pnpm lint && pnpm test && bash -n scripts/*.sh` | 0 | PASS：12 packages claims；10 仓治理；48 tests；Shell syntax | 2026-08-28 |
 
-未跟踪 Feature Package 不会出现在普通 `git diff --stat`/`git diff --check` 中。D0 范围审阅必须组合：
+完整 Desktop test 仍会输出两类既有非失败诊断：happy-dom worker module loading warning，以及 Vite 单 chunk
+超过 500 kB 的 warning；命令最终 exit 0，未隐藏或改写这些结果。
 
-1. `git status --short`；
-2. 包内实际文件清单；
-3. 对每个未跟踪文本文件执行独立 whitespace/conflict-marker 检查；
-4. strict D0 checker 与 claims audit；
-5. 11 仓最终 status 和保护 hash 复核。
+## 3. Must AC 证据
 
-## 3. Must AC 状态
-
-| AC | Result | 计划证据/Artifact |
+| AC | Result | 实际证据 |
 |---|---|---|
-| AC-001 | NOT RUN | selector/DOM order/identity tests + canonical history smoke |
-| AC-002 | NOT RUN | 安全内容树、良性惰性 markup/text、无可执行节点/隐式导航 tests |
-| AC-003 | NOT RUN | disclosure、长度阈值、键盘与 final non-collapsible tests |
-| AC-004 | NOT RUN | unknown ViewModel、固定 code、canary 与相邻 Item tests |
-| AC-005 | NOT RUN | clipboard success/rejection、live region、焦点与正文快照 tests |
-| AC-006 | NOT RUN | empty/loading/error/permission-denied 状态矩阵 + canonical empty/history smoke |
-| AC-007 | NOT RUN | a11y/focus tests + light/dark/1180×760/200% zoom/keyboard smoke |
-| AC-008 | NOT RUN | FEAT-127 attachment_reference、FEAT-128 artifact_reference 与既有组件集成回归 |
+| AC-001 | PASS | selector 测试覆盖 Turn/Item ordinal、stable identity、重复 identity、角色/状态映射；Timeline DOM tests 与 canonical 既有 1 user + 1 assistant 历史顺序一致 |
+| AC-002 | PASS | `ChatSafeContent` tests 覆盖受限 Markdown、代码、列表、表格、行内代码、惰性 HTML/URL；无 `v-html`、可执行节点或自动导航；无新增依赖 |
+| AC-003 | PASS | TurnGroup/ItemShell tests 覆盖过程 disclosure、稳定 Item ID、键盘、重渲染和 final non-collapsible；completed 空 reasoning 显示固定元数据 note，active 空 reasoning 不显示 |
+| AC-004 | PASS | unknown/error tests 使用固定 code 与安全 canary，raw payload 不进入 DOM，相邻 Item 正常；canonical 页面未崩溃 |
+| AC-005 | PASS | 注入 clipboard adapter 的 success/rejection/retry tests 覆盖文本/代码、live region、正文/选择/焦点保持；canonical 指针与 Tab→Return 均得到“文本已复制。”且焦点留在复制按钮 |
+| AC-006 | PASS | 组件/页面状态矩阵覆盖 empty/loading/error/permission denied/unknown 与安全恢复；permission 只取既有 control plane/context；canonical 观察新建 empty、queued waiting 与 completed history |
+| AC-007 | PASS | App/zoom/a11y tests 与 canonical light/dark、1180×760、100→200%、键盘 smoke；200% composer 可见，只有对话区单轴滚动，主体无横向滚动，按钮有可访问名称 |
+| AC-008 | PASS | ChatPage/Timeline slots tests 复用 FEAT-127 attachment reference 和 FEAT-128 exact artifactId/context/session/turn authority；未复制正文/资源 authority，Artifact 未被包装成 GS-006 Diff |
 
-## 4. 真实服务启动与 Smoke
+## 4. Canonical 启动与真实 UI Smoke
 
-| Check | Command/steps | Environment | Actual result | Result |
-|---|---|---|---|---|
-| Startup/readiness | `cd ../yijie-desktop && pnpm tauri:demo-fast:stable`；核对零登录、ready、Runtime 0.144.6、`experimentalApi=false`，再正常 Quit | Desktop local / fixed Runtime | 当前 D0 未启动 Desktop | NOT RUN |
-| Real happy path | 使用 FEAT-132 已存在的无敏感 1 user + 1 assistant 历史和新建空 Thread；不发送新 prompt | canonical stable / existing history | 实现尚未开始 | NOT RUN |
-| Representative failure/retry | 安全组件 fixture 覆盖 unknown、permission denied、clipboard rejection、惰性 markup 与外链不自动打开；不强杀/故障注入/破坏权限 | Vue tests / normal lifecycle | 实现尚未开始 | NOT RUN |
+| Check | Command/steps | Actual result | Result |
+|---|---|---|---|
+| Startup/readiness | `cd ../yijie-desktop && pnpm tauri:demo-fast:stable` fresh build/start；使用 FEAT-131 stable config；默认 rollback flag 未设置；最后应用自身 Cmd-Q | 零登录进入 Chat；已有无敏感历史与 composer 可用；stable `experimentalApi=false` 边界未变；launcher exit 0 | PASS |
+| Existing history | 只打开 FEAT-132 已存在的三条历史；不输入/发送 prompt | completed 1 user + 1 assistant 正常显示；queued history 显示等待；新建页 empty 不生成虚假消息 | PASS |
+| Clipboard | 指针点击 Assistant copy；点击标题后 Tab 到 user copy 并 Return；200% 再 Tab/Return | live region 均出现“文本已复制。”；键盘焦点保持在复制按钮 | PASS |
+| Viewport/theme | 窗口校准为 1180×760；切换 light/dark；Cmd+plus 五次到 200%，Cmd+0 复位 | 100/120/140/160/180/200% 逐级可观察；200% composer 可见、无主体横滚；light/dark 均正常 | PASS |
+| Normal cleanup | 每次 canonical 与系统设置均走应用自身 Cmd-Q | canonical launcher exit 0；没有强杀或故障注入 | PASS |
 
-FEAT-133 没有新的真实 prompt 授权。FEAT-132 的累计 2/2 授权已经耗尽，不能复用或转移。
+FEAT-133 没有真实 prompt 授权，实际发送 0 次；没有由新 Turn 触发的工具调用、Agent 项目文件读写、
+Provider 付费调用或自动重试。
 
-## 5. UI 与真实结果计划
+现有三条 canonical 历史都没有 reasoning Item，因此没有真实历史 reasoning 截图。Owner 接受的固定元数据 note
+由组件和页面测试验证；D4 不把“没有样本”伪写为 canonical 已观察到 reasoning 正文或 note。
 
-- Yijie Artifact：实现后保存脱敏 empty/history、light/dark、1180×760、200% zoom 与键盘焦点证据。
-- Codex reference Artifact：不需要、不等待；先前三张人工材料已撤回且不得引用。
-- Loading/error/retry：必须证明历史不会被清空、错误不吞掉其他 Item、恢复入口不会越权。
-- 最终真实用户结果：实现后必须在一次 fresh canonical run 中按领域顺序展示 Timeline，并通过 8 条 Must AC。
-- 最终结论固定为“Timeline 框架局部完成，Epic 尚未完成”；D0 阶段不能提前使用该完成结论。
+## 5. UI Artifact
 
-## 6. 工作区隔离与边界验证
-
-修改前关键基线：
-
-| Authority | Branch/HEAD 或 hash | 状态/约束 |
+| Artifact | 尺寸/用途 | SHA-256 |
 |---|---|---|
-| `yijie` | `aed49b78f21c264bb13c05c1976f11f7fc14b520` | clean-start；D0 只允许 FEAT-133 包 |
-| `yijie-desktop` | `f96fe05ca81d6bc7fac97ecbf81bcbab32b8aaa0` | clean；D0 全仓只读 |
-| `ChatPage.vue` | blob `ea2c3a1e606d687981d7a11fec3ac7196baa56f9`; SHA-256 `b89e1204864656de800c5d2682100116b2784ebd17b48534b705ba58bb8dfef1` | 本轮不得修改 |
-| FEAT-132 domain | SHA-256 `148a3f573f62139175906fb2f5073eab60bc91ceab12135522def56252a99490` | `conversation-state.ts` 只读 |
-| FEAT-132 adapter | SHA-256 `834094b683e63e26fddf65ac03475fe7e73097ae3dc3f74ead02574790e273a8` | `chat-conversation-adapter.ts` 只读 |
-| FEAT-132 store | SHA-256 `89832e87dccc0f53cf379a85ed3eae6ca3ebaae9e2839aa298a042d33f545f4a` | `chat.store.ts` 只读 |
-| Desktop dependencies | `package.json` SHA-256 `8316e5a4013242e7ef1b7e3480c928b2ced1dca6b23eb5e652e2887d4eced7b9`; `pnpm-lock.yaml` SHA-256 `e48e21dd9f40eede7e4116313d72f00cc89d12dcdab7ea12d65c30d7c3e5f687` | 不新增依赖 |
-| Desktop `src-tauri` | Git tree `4d59b67cc602f76f0b9603614d0057741c97a109` | D0 只读；FEAT-133 默认不修改 |
-| Runtime | `0ce5902ed400866be0196886bb78f693a004d68d`; baseline SHA-256 `57c0f2c77754c3a686511524e20108c977580743af305467d614ebac7c2730ce` | fixed / clean / no build |
-| Contracts | `164b14f609537d727a52326832da04430aecc4ab`; manifest SHA-256 `5eadca026cdc8813cf529fa8e074de7532a2c78bebc5c89d9364180942869311` | clean / unchanged |
-| Host | `1b7bfd1ce4323e52035b2ba1e62842c2d332d9ed` | clean / unchanged |
+| `evidence/canonical-light-1180x760-2026-08-28.jpeg` | 1180×760，默认新 Timeline、完成历史、composer | `f45e13f9a03969162bc069bdb069f002731c0ef709f1bdecded798027caea989` |
+| `evidence/canonical-zoom-200pct-1180x760-2026-08-28.jpeg` | 1180×760，200% 重排、composer 可见 | `07adf77da067da80fcd4d84042dd5c47e7b64a82cc7e2e9b818946fc446149cf` |
+| `evidence/canonical-dark-1180x760-2026-08-28.jpeg` | 1180×760，暗色新 Timeline、同一完成历史 | `1368da2cc6fabf7ffa8dbb5b6656043cdc517fdc8c557845454fa537265bee61` |
 
-完整 11 仓 snapshot 和停止条件见 `evidence/workspace-isolation-baseline-2026-08-27.md`。
+这些 Artifact 只记录 Yijie canonical；没有采集、恢复或引用已撤回的 Codex Desktop 人工证据。
 
-## 7. Diff 与限制
+## 6. 代表性安全失败与恢复
 
-- `git status`：PASS；只有 `yijie` 的 FEAT-133 目录为未跟踪改动，其他 10 仓 clean。
-- 普通 `git diff --stat` / `git diff --check`：对未跟踪包不具覆盖力，不能据此声称包 diff 已审阅。
-- 包文件审阅：PASS；文件清单恰好 5 项，placeholder/whitespace/conflict scan、strict D0 与 claims audit 均通过。
-- 产品实现 diff：不存在，完整 diff review 为 `NOT RUN`。
-- 已知限制：没有独立 FEAT-133 branch/worktree；本轮不修改 Desktop；没有新依赖；没有真实 prompt；D4 未开始。
+- clipboard adapter rejection：固定失败 live feedback，并允许正常重试；不改正文、选择或领域状态。
+- unknown Item：固定脱敏占位与诊断 code；不输出 raw payload，其他 Item 继续渲染。
+- permission denied：既有确定性 control plane/context authority 驱动；没有破坏真实文件权限或伪造 FEAT-132。
+- selector-null/history loading/error：使用新 Timeline 的同步/empty/error 状态，不自动切 legacy renderer。
+- inert markup/URL：按文本或受限节点展示，不执行 script/HTML，不自动打开外链。
+- 所有失败测试使用正常、非破坏性的无敏感 fixture；未强杀、未故障注入、未破坏权限、未替换 executable。
 
-## 8. Public Demo（仅 exposure=public）
+## 7. 边界与 Diff 复核
 
-- 本 Feature `exposure=local`，`public_readiness.required=false`。
-- 密钥、公网鉴权、公开输入边界、付费 API 限流与公网 smoke 均为 N/A，不得据此声明 Production Ready。
+- `yijie`、`yijie-desktop` 均在 `feat/feat-133-desktop-conversation-timeline-item-shell`；最终 Desktop
+  页面组合/交互已由 `af38353694c3eb045365b7f3450ffc8a95aaf8a1` 固化，D4 治理包由包含本文的收口
+  commit 固化；未执行 reset、stash、clean 或 push。
+- FEAT-132 `conversation-state.ts`、adapter、store 的 SHA-256 与 D0 完全一致；`package.json`、lockfile 与
+  `src-tauri` tree 也一致，没有新依赖或 capability。
+- `yijie-codex` 位于 `develop@0ce5902…` 且 clean；Contracts、Host、Runtime、private IPC、数据库与持久化均
+  未修改。
+- 新 Timeline 默认开启；legacy rollback 仅 exact `true` 可达，canonical build/startup 为 false；分页与
+  selector-null 不切 renderer。
+- 三轮独立只读审查分别覆盖整体实现、historical reasoning boundary 与 zoom/reflow；最新 diff 未发现
+  P0/P1/P2。
+
+## 8. 已知限制
+
+- historical reasoning 只有 identity/order/lifecycle 元数据和固定缺失提示，不含正文、lazy load 或逐 Item
+  不完整详情；不能声明该正文已经迁移或与 Codex 一致。
+- canonical 没有真实 reasoning Item 样本；这项只有自动化与静态边界证据。
+- 200% 时较长对话依靠对话区纵向滚动；代码/表格保留组件内局部横向滚动，这是预期边界。
+- public/production、签名、公证、完整性能/安全专项不在 local D4。
+- GS-006 File modification & Diff，以及语音、模型版本、模型推理强度、分享、置顶摘要切换、侧边面板和
+  分支到新聊天均未实现。
 
 ## 9. 结论
 
-- `D0` 产品/UX可实施：PASS。
-- `D4` 本地真实可用：NOT RUN。
+- `D0` 产品/UX 可实施：PASS。
+- `D4` 本地真实可用：PASS。
 - `DP` 公开 Demo 可用：N/A。
-- 验证时间：`2026-08-27`。
-- 当前事实：正式 D0 治理与工作区隔离记录已通过；Timeline 实现尚未开始，Epic 尚未完成。
+- 验证时间：`2026-08-28T01:55:39+08:00`。
+- 最终事实：**Timeline 框架局部完成，Epic 尚未完成。**

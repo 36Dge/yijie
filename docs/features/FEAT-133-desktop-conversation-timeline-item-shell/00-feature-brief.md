@@ -1,6 +1,6 @@
 # FEAT-133 — Desktop 对话 Timeline 与通用 Item 展示框架 Brief
 
-> Profile：`demo_fast` · Exposure：`local` · Checkpoint：`D0` · Created：`2026-08-27`
+> Profile：`demo_fast` · Exposure：`local` · Checkpoint：`D4` · Created：`2026-08-27` · Verified：`2026-08-28`
 >
 > 参考策略：`codex-inspired-approximate-parity-v1-2026-08-27` / `owner-approved-inference`
 
@@ -129,8 +129,8 @@ Host/Contracts 权威投影、当前 Yijie UI、工程推测。
 | AC-007 | light/dark、1180×760、200% zoom 与键盘下无关键重叠/主体横滚，焦点可见、按钮有名称 | a11y/focus 测试与 canonical Desktop 人工 smoke |
 | AC-008 | FEAT-127 附件和 FEAT-128 Artifact 不丢失、不重复、不产生第二 authority | attachment/artifact 集成回归与 authority 路径审阅 |
 
-所有 AC 在 D0 后仍为 `pending`。只有实现、focused checks、真实 canonical UI 和代表性安全失败/恢复在
-一次 fresh run 中成立，才能原子更新为 PASS 并进入 D4。
+D0 建立时所有 AC 均为 `pending`。2026-08-28 的 D4 实现、focused/full checks、真实 canonical UI 和
+代表性安全失败/恢复均已完成，8 条 AC 原子更新为 `pass`；逐项证据见 `02-verification.md`。
 
 ## 5. 工程事实与 Contract First
 
@@ -151,11 +151,11 @@ Host/Contracts 权威投影、当前 Yijie UI、工程推测。
 - 安全测试只能使用正常、非破坏性方法；不强杀、不故障注入、不破坏权限、不替换二进制、不使用攻击性
   fixture。无法安全执行的验收必须如实标记未执行并说明影响。
 
-## 6. 工作区隔离记录
+## 6. D0 历史工作区隔离记录（已被后续授权取代）
 
-本轮采用**路径级逻辑隔离**，不是独立 worktree 或新分支。Owner 没有在本轮授权 branch/worktree、
-stash、commit、push、reset 或 clean；因此保留当前分支，使用精确 HEAD、clean-start、写入 allowlist 和
-保护哈希控制范围。
+D0 建立时采用**路径级逻辑隔离**，尚无独立 worktree 或新分支授权；当时保留 FEAT-131 分支，使用精确
+HEAD、clean-start、写入 allowlist 和保护哈希控制范围。随后 Owner 已授权创建两个 FEAT-133 分支并提交
+D0 基线，因此下表只作为 2026-08-27 的历史证据，不描述 D4 当前分支或写入范围。
 
 修改前五个核心仓库均 clean：
 
@@ -183,9 +183,15 @@ D0 exact allowlist：
 完整 11 仓基线、更多保护哈希、允许/禁止范围和停止条件见
 `evidence/workspace-isolation-baseline-2026-08-27.md`。
 
-## 7. 推荐实施顺序与停止条件
+D4 收口状态：治理演进基线为 `yijie@a154fcea9fc6073af30ac14b3ada8eaf490f754b`，最终 Desktop
+实现为 `yijie-desktop@af38353694c3eb045365b7f3450ffc8a95aaf8a1`；两个仓库均位于
+`feat/feat-133-desktop-conversation-timeline-item-shell`。selector、独立组件以及页面组合/交互/缩放/
+测试已有三个 scoped Desktop commit，本治理包由包含本文的 FEAT-133 收口提交固化。`ChatPage.vue` 的
+只读限制只属于 D0，后续实现已按 Owner 任务做最小组合。没有执行 push、reset、stash 或 clean。
 
-推荐 D0 后按一个连续 Feature 实施，不建立治理切片：
+## 7. D0 历史实施计划与持续停止条件
+
+D0 当时推荐按一个连续 Feature 实施，不建立治理切片；以下 1–7 步现已全部完成：
 
 1. 只读对账 FEAT-132 ViewModel 与 FEAT-127/128 authority。
 2. 先补纯 selector 和基础 Item/state 组件测试。
@@ -207,12 +213,23 @@ D0 exact allowlist：
 - 30 分钟没有新事实时回到 FEAT-132→selector→component 单链路；90 分钟同一阻塞时保留最小文本/
   unknown/error shell 并关闭非核心花活；240 分钟核心路径不通时缩小 MVP；16 小时未 D4 时停止并重新定范围。
 
-## 8. D0 结论
+## 8. D0 与 D4 结论
 
-Owner 当前请求明确要求完成 FEAT-133 正式 D0 包；以上产品/UX、Must AC、Contract First、授权和隔离边界
-据此登记为 `D0 Product/UX Ready`。这只表示需求可进入后续 scoped implementation，不表示组件、真实 UI、
-AC 或 D4 已完成。
+2026-08-27，Owner 要求先完成正式 D0 包且不直接修改 `ChatPage.vue`；产品/UX、Must AC、Contract First、
+授权和隔离边界据此登记为 `D0 Product/UX Ready`。该限制只属于 D0 阶段。
 
-当前准确结论：**FEAT-133 D0 治理与工作区隔离已形成；实现尚未开始，Epic 尚未完成。**
+2026-08-28，Owner 允许进入完整 FEAT-133 实现，并接受以下历史 reasoning 边界：默认 Timeline 只展示
+FEAT-132 已持久化的 identity、ordinal、角色和 lifecycle 元数据；若 completed reasoning 没有 ContentBlock，
+显示固定提示“此过程仅包含状态元数据；详情未进入当前对话投影。”active/streaming 空 reasoning 不显示该
+提示。默认路径不调用旧 `loadReasoning`，不在 FEAT-132、adapter、store 或 raw wire 中补字段，也不建立第二
+authority。由此不能声明“历史 reasoning 正文已迁移”或“正文与 Codex 完全一致”。
+
+D4 已完成纯 selector、独立 Timeline/TurnGroup/ItemShell/SafeContent、受限 Markdown、稳定 disclosure、
+注入式 clipboard、页面最小组合、FEAT-127/128 authority slots、确定性 permission denied、显式 legacy
+rollback 和前端 80–200% 缩放。rollback 只有
+`VITE_YIJIE_LEGACY_CHAT_TIMELINE_ROLLBACK_ENABLED=true` 才启用；unset、其他值以及 canonical build/startup
+均使用新 Timeline，分页或 selector 暂时为空不会切回旧 renderer。
+
+最终准确结论：**FEAT-133 D4 本地可用，Timeline 框架局部完成；完整 Epic 尚未完成。**
 
 [ChatPage.vue]: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src/pages/chat/ChatPage.vue
