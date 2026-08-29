@@ -42,8 +42,8 @@ timebox:
 product_ux:
   status: "PASS"
   primary_user: "在易界 AI Desktop 中需要理解 Agent 正在执行什么、看到安全的 Command 输出与 Tool 进度，并准确判断成功、失败或拒绝结果的本地用户"
-  problem: "固定 Runtime 已有 CommandExecution 与 McpToolCall 生命周期，但当前 Host/Desktop 只保留泛化 Item 类型，丢失安全摘要、输出、进度、状态、耗时和错误；用户只能看到笼统处理中，也无法保证实时事件与历史 hydration 的结构一致。"
-  user_outcome: "后续 Host 和 Desktop 按同一 v5 权威契约展示 Command 的真实 started、output delta、completed/failed/declined，以及通用 Tool 的 started、progress、completed/failed 安全投影；事件可重放、可有界持久化且不泄露 raw Runtime、绝对路径、参数、结果或秘密。本批只完成 D0 与 Contracts，整体 Feature 继续进行中。"
+  problem: "固定 Runtime 已有 CommandExecution 与 McpToolCall 生命周期，但 FEAT-136 起点的 Host/Desktop 只保留泛化 Item 类型，丢失安全摘要、输出、进度、状态、耗时和错误；用户只能看到笼统处理中，也无法保证实时事件与历史 hydration 的结构一致。"
+  user_outcome: "Host 和 Desktop 本地实现已按同一 v5 权威契约投影 Command 的 started、output delta、completed/failed/declined，以及通用 Tool 的 started、progress、completed/failed；事件可重放、可有界持久化且 WebView 不接收 raw Runtime、绝对路径、参数、结果或秘密。canonical D4 entrypoint gate repair 和 clean 本地 commits 已完成；真实安全只读 Command D4 已授权但尚未执行，Tool D4 继续等待真实 producer/Owner，整体 Feature 继续进行中。"
   in_scope:
     - "引用 FEAT-131 CAP-016、CAP-017 与 GS-003、GS-004，Command 是本 Feature 的 Must"
     - "新增显式协商的 AgentSessionEventV5，保留 v1 至 v4 schema、proto、route 和 consumer 语义"
@@ -51,11 +51,13 @@ product_ux:
     - "冻结安全 allowlist、UTF-8 caps、compact JSON SSE 计数、先脱敏后计数、显式截断及 Command complete/head-tail/unavailable 保留策略"
     - "冻结结构化 workspace-relative/redacted cwd（总量包含分隔符）、Tool metadata-only arguments/progress/result summary、fixed unknown identity 与 stable error code"
     - "用无敏感正文的合成 fixture 验证 Contracts shape、重复 event identity、合法重复文本、截断、unknown 与 completed reconciliation"
-    - "在本批形成 yijie-contracts 的 source/generated 不可变本地 commit，并把完整 SHA 回填本包"
+    - "固定 yijie-contracts 的 source/generated 不可变本地 commit，并在 Host/Desktop 精确 pin 完整 SHA、v0.7.0、schema 与普通 fixture digest"
+    - "实现 Host v5 negotiation、Command mapper/redactor/caps、generic Tool projection、event ID/replay 与 completed reconciliation"
+    - "实现 Desktop v5 closed decoder、event-ID reducer、SQLCipher additive migration、mixed history hydration、Command/Tool UI 与无障碍状态"
+    - "完成 Host producer 到 Desktop consumer 的 source-anchored conformance，并固化 Host/Desktop clean 本地 commits"
+    - "修复 canonical runner、stable build 与 sidecar FEAT-136 gate；完成独立审查后，仅执行已授权的安全只读 Command D4"
   out_of_scope:
-    - "本批不修改 yijie-agent-host、yijie-desktop 或 yijie-codex，也不创建 Host/Desktop 实现分支"
-    - "不执行 Host Runtime notification mapping、Desktop reducer、SQLCipher migration、hydration 或 UI"
-    - "不启动 Provider、模型或真实 Command/Tool vertical，不执行 D4"
+    - "source-conformance checkpoint 不启动真实服务；固化 commits 后仅进入最多 3 次 Provider/模型请求的安全只读 Command D4，不执行 Tool D4"
     - "不注册新 MCP server、Connector、dynamic tool 或真实 Tool producer，不开启 experimentalApi"
     - "不增加 Command approval reverse request、decision、expiry、waiting action、sandbox、network、filesystem、shell 或 Tauri 权限；FEAT-137 保持未实施"
     - "不增加 FileChange、Diff、patch、file approval、write gate 或相关 fixture/UI/D4；FEAT-138 保持 Cancelled / owner-excluded"
@@ -65,11 +67,11 @@ product_ux:
     - "不 push、merge、tag、publish、release 或 deploy"
   main_flow:
     - "Contracts 先从固定 Runtime stable CommandExecution、outputDelta、McpToolCall 与 progress 事实建立 v5 安全投影；旧版本保持原样。"
-    - "未来 Host 按真实 event_id、turn_id 和 item_id 映射、脱敏、计数与截断；同文本的不同 event_id 必须保留，同 event_id replay 只消费一次。"
-    - "未来 Desktop reducer 按 item identity 聚合 Command delta 和 Tool progress，并以 item.completed 的 bounded snapshot 封口 Item；普通 error 不封口 Turn。"
-    - "未来 Desktop 仅持久化身份、kind/status、安全摘要、caps/truncation、duration/exit/error 和终态元数据，重开后只 hydrate 一份权威 Item。"
-    - "本批在 Contracts commit 与治理证据回填后停止；Host 到 Desktop 的真实链路在下一批单独执行。"
-  visual_direction: "继承 FEAT-131 的 Codex-inspired approximation 与 Yijie Design System；未来 Command/Tool Item 以状态、摘要和结果为主，输出可折叠、可安全复制，错误和截断不只依赖颜色。本批无 UI 变更，视觉验收保持 NOT RUN。"
+    - "Host 按真实 event_id、turn_id 和 item_id 映射、脱敏、计数与截断；同文本的不同 event_id 保留，同 event_id replay 只消费一次。"
+    - "Desktop reducer 按 item identity 聚合 Command delta 和 Tool progress，并以 item.completed 的 bounded snapshot 封口 Item；普通 error 不封口 Turn。"
+    - "Desktop 仅持久化身份、kind/status、安全摘要、caps/truncation、duration/exit/error 和终态元数据；mixed legacy/v4/v5 history 按 Turn authority hydrate，不把旧行伪装 v5。"
+    - "Host 与 Desktop 使用同一 schema/11 个普通 fixture 完成 source-anchored conformance；canonical gate repair 与 source evidence commit 完成后，通过 pnpm tauri:demo-fast:stable 执行 Command D4，Tool D4 始终保持 blocked。"
+  visual_direction: "继承 FEAT-131 的 Codex-inspired approximation 与 Yijie Design System；Command/Tool Item 以状态、摘要和结果为主，输出可折叠、可安全复制，错误和截断不只依赖颜色。component/a11y 自动化已实现，真实 App light/dark、1180×760 与 200% 视觉验收保持 NOT RUN。"
   ui_states:
     idle: "没有 active Command/Tool 时不显示伪造 Item 或状态；历史只读取已经持久化的权威安全投影。"
     loading: "started 到达后显示真实 running/in_progress；没有 delta/progress 时不伪造百分比、耗时或输出。"
@@ -82,19 +84,19 @@ product_ux:
 must_acceptance:
   - id: "AC-001"
     statement: "Command 真实经历 started、零到多个 output delta、completed，并准确区分 running、completed、failed、declined、exit code 与 duration；普通 error 不自行终止 Turn。"
-    verification: "v5 Contracts conformance 提供 partial evidence；下一批 Host/Desktop mapper、reducer 和真实安全只读 Command vertical 完成最终验收。"
+    verification: "Host mapper、Desktop reducer 与 source-anchored conformance 提供 focused PASS；真实安全只读 Command D4 完成最终验收。"
     status: "pending"
   - id: "AC-002"
     statement: "SSE/replay 只按 event_id 去重；同一 item 连续出现内容完全相同但 event_id 不同的 output chunk 时，两段都被保留，且 stream/sequence gap 进入保守恢复。"
-    verification: "Contracts reducer model test、下一批 Host replay 与 Desktop reducer conformance。"
+    verification: "Contracts model、Host replay 与 Desktop event-ID reducer focused conformance；真实 replay vertical 尚未执行。"
     status: "pending"
   - id: "AC-003"
     statement: "item.completed 是对应 Command/Tool 的权威封口和 bounded snapshot；它与累计 delta/progress 对账后不重复、不串 item、不回滚，late delta 不改变已封口 Item。"
-    verification: "Contracts reconciliation test与下一批 Desktop persistence/hydration tests。"
+    verification: "Host completed reconciliation、Desktop reducer、SQLCipher persistence/hydration 与 mixed authority tests。"
     status: "pending"
   - id: "AC-004"
     statement: "Command 只包含安全 display summary、结构化 workspace-relative/redacted cwd、bounded output、truncated/reason、duration、exit code 与 stable error；不含 raw Runtime、绝对路径或秘密。"
-    verification: "v5 schema allowlist/caps/negative-field audit与下一批 Host redaction conformance。"
+    verification: "v5 schema allowlist/caps、Host redaction/caps 与 Desktop closed decoder/component copy tests；真实 Runtime content 尚未执行。"
     status: "pending"
   - id: "AC-005"
     statement: "通用 MCP Tool contract 表达 started、progress、completed/failed 及预留 declined，且只暴露安全 server/tool identity、metadata-only arguments/progress/result summary、duration、stable error 和 truncation；不新增 Tool producer。"
@@ -102,21 +104,21 @@ must_acceptance:
     status: "pending"
   - id: "AC-006"
     statement: "unknown Tool 使用固定 unknown identity 与安全摘要继续处理；未知 v5 event/variant fail closed 并请求 resync，不导致旧 consumer 崩溃或 raw fallback。"
-    verification: "Contracts unknown identity/event tests与下一批 Desktop parser fail-soft/closed tests。"
+    verification: "Contracts/Host unknown identity 与 Desktop parser fail-soft/closed/resync focused tests。"
     status: "pending"
   - id: "AC-007"
-    statement: "未来 persistence/hydration 至少保留 task、session、thread、turn、item、event/stream/sequence identity，item kind/status、安全摘要、caps/truncation、duration/exit/error 和 completed authority，重开后只出现一次。"
-    verification: "Contracts completed snapshot shape与下一批 SQLCipher migration/hydration tests。"
+    statement: "persistence/hydration 至少保留 task、session、thread、turn、item、event/stream/sequence identity，item kind/status、安全摘要、caps/truncation、duration/exit/error 和 completed authority，重开后只出现一次。"
+    verification: "Contracts completed snapshot、SQLCipher v10 additive migration、mixed legacy/v4/v5 history 与 hydration tests。"
     status: "pending"
   - id: "AC-008"
-    statement: "未来 Command/Tool UI 在 light/dark、1180×760、200% 缩放和键盘下可读、可折叠且只复制安全内容，不造成主体布局溢出。"
-    verification: "下一批 Desktop component、visual、accessibility 与 canonical local smoke；本批 NOT RUN。"
+    statement: "Command/Tool UI 在 light/dark、1180×760、200% 缩放和键盘下可读、可折叠且只复制安全内容，不造成主体布局溢出。"
+    verification: "Desktop component/accessibility focused tests PASS；canonical local visual matrix 与 D4 NOT RUN。"
     status: "pending"
 
 contract:
   impact: "semantic"
-  authority: "固定 yijie-codex 0.144.6 stable canonical schema 是外部事实；yijie-contracts@3c3000a6fbe2f08ab2131a463a1691e867d661b1 的显式协商 AgentSessionEventV5 是 Yijie JSON/SSE semantic validity authority，AsyncAPI v5 与 Agent Host v5 OpenAPI 引用该权威，Protobuf v5 仅是 typed transport 且必须经过 JSON-equivalent semantic gate；未来 yijie-agent-host 是唯一 Runtime mapper，FEAT-132 ConversationState 与 Desktop SQLCipher 分别是 UI 状态和已观察历史 authority。"
-  source_first_plan: "已保持 v1 至 v4 不变，在独立 v5 route/schema 中增加 Command lifecycle/output 与 MCP Tool lifecycle/progress 的安全闭合投影，锁定 caps、redaction policy、closed generic allowlist、unknown、dedupe 和 terminal 语义；以不触发预存攻击 fixture 的定向 generation、重复生成 digest、lint、非 archive Node tests、Go tests、direct TypeScript build、双基线 breaking checks及人工 semantic/security review形成不可变 Contracts commit 3c3000a6fbe2f08ab2131a463a1691e867d661b1。下一批 Host/Desktop 必须固定该完整 SHA 后才能实现或启用。"
+  authority: "固定 yijie-codex 0.144.6 stable canonical schema 是外部事实；yijie-contracts@3c3000a6fbe2f08ab2131a463a1691e867d661b1 的显式协商 AgentSessionEventV5 是 Yijie JSON/SSE semantic validity authority，AsyncAPI v5 与 Agent Host v5 OpenAPI 引用该权威，Protobuf v5 仅是 typed transport 且必须经过 JSON-equivalent semantic gate；yijie-agent-host 是唯一 Runtime mapper，FEAT-132 ConversationState 与 Desktop SQLCipher 分别是 UI 状态和已观察历史 authority。"
+  source_first_plan: "已保持 v1 至 v4 不变，在独立 v5 route/schema 中增加 Command lifecycle/output 与 MCP Tool lifecycle/progress 的安全闭合投影，锁定 caps、redaction policy、closed generic allowlist、unknown、dedupe 和 terminal 语义；不可变 Contracts commit 为 3c3000a6fbe2f08ab2131a463a1691e867d661b1。Host/Desktop 精确固定完整 SHA、v0.7.0、schema SHA 与普通 fixture digest，分别完成 producer/consumer focused tests和 source-anchored conformance；不读取禁止 archive/attack fixture，也不把 source conformance表述为真实 Runtime D4。"
   status: "PASS"
   checks:
     - repository: "yijie-contracts"
@@ -156,13 +158,13 @@ contract:
       result: "v1-v4 JSON/Proto sources不变；最终无 open P0/P1/P2；immutable commit 3c3000a6fbe2f08ab2131a463a1691e867d661b1 clean"
 
 external_authorizations:
-  paid_calls: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+  paid_calls: { allowed: true, max_actions: 3, approved_by: "当前用户（FEAT-136 第三批 Command D4 明确授权；不得重试）", approved_at: "2026-08-29T16:57:51Z" }
   destructive_operations: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
   production_writes: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
 
 implementation:
   status: "active"
-  real_entrypoint: "下一批使用 yijie-desktop canonical demo_fast stable 入口；本批无 Host/Desktop/Runtime 启动"
+  real_entrypoint: "yijie-desktop 中执行 pnpm tauri:demo-fast:stable；仅 local/demo_fast，FEAT-136 精确依赖 FEAT-134 Native/Web gates；固定 experimentalApi=false、sandbox=read-only、approvalPolicy=never；真实 Command D4 已授权但尚未启动"
   mock_only: false
 
 verification:
@@ -170,19 +172,19 @@ verification:
   verified_at: "NOT RUN"
   startup:
     status: "NOT RUN"
-    command_or_steps: "本批停止在 Contracts，不启动真实 Host/Desktop/Runtime vertical。"
-    environment: "local demo_fast；固定 Runtime 只读；Host/Desktop 未修改"
-    actual_result: "NOT RUN：不在本批执行真实服务启动。"
+    command_or_steps: "source-conformance evidence commit 后通过 pnpm tauri:demo-fast:stable 正常启动 Host/Desktop/固定 Runtime vertical。"
+    environment: "local/demo_fast；FEAT-134/136 dependent gates；固定 Runtime 0.144.6；experimentalApi=false；sandbox=read-only；approvalPolicy=never"
+    actual_result: "NOT RUN：当前真实调用为 0/3；canonical gate repair 已单独通过测试与审查。"
   real_smoke:
     status: "NOT RUN"
-    command_or_steps: "下一批通过 canonical local 入口执行安全只读 Command；Tool 仅在真实批准 producer 存在时执行。"
-    environment: "本批无 Provider、模型、Command 或 Tool real-runtime 调用"
-    actual_result: "NOT RUN：Contracts synthetic fixture 不等于真实能力。"
+    command_or_steps: "在隔离、无敏感数据 Git 仓库中，仅请求 git status --short --branch 与 git show --no-patch refs/heads/feat-136-d4-missing；最多 3 次真实 Provider/模型请求且不得重试。"
+    environment: "当前 Provider/模型请求 0/3；Tool/MCP/Connector/dynamic tool 请求 0 且未授权"
+    actual_result: "NOT RUN：Contracts synthetic fixture 与 source conformance 不等于真实能力。"
   representative_failure:
     status: "NOT RUN"
-    command_or_steps: "下一批使用正常、非破坏性 Command failure；禁止强杀、故障注入、权限破坏、binary 替换或攻击 fixture。"
-    environment: "本批只做无敏感内容的确定性 Contracts conformance"
-    actual_result: "NOT RUN：本批不执行 D4 failure/retry。"
+    command_or_steps: "使用不存在的本地 Git ref 产生正常、非破坏性 Command failed outcome；禁止强杀、故障注入、权限破坏、binary 替换或攻击 fixture。"
+    environment: "隔离无敏感 Git 仓；只读 sandbox；approval never；不进行失败重试"
+    actual_result: "NOT RUN：当前尚未进入真实 Command D4。"
   focused_checks:
     - repository: "yijie-contracts"
       command: "node --test tests/agent-session-events-v5.test.mjs"
@@ -194,6 +196,31 @@ verification:
       status: "PASS"
       exit_code: 0
       result: "63/63 Node；Go 全量；TypeScript build 全部 PASS；不等于 real-service/D4"
+    - repository: "yijie-agent-host"
+      command: "make lint && make test-feat136 && git diff --check"
+      status: "PASS"
+      exit_code: 0
+      result: "exact v0.7.0/Contracts commit checker、session/app race tests、Runtime compatibility 与 diff check PASS；未读取禁止 fixture blob"
+    - repository: "yijie-desktop"
+      command: "cargo fmt --all -- --check; cargo check --lib; cargo test feat136_ --lib; cargo clippy --lib -- -D warnings -A clippy::type_complexity"
+      status: "PASS"
+      exit_code: 0
+      result: "fmt/check PASS；修复后统一 FEAT-136 Rust suite 20/20；targeted strict clippy PASS。原始 strict clippy 仅命中 base HEAD 已存在的 database.rs type-complexity baseline"
+    - repository: "yijie-desktop"
+      command: "FEAT-136 domain/API/store + chat component Vitest; vue-tsc --noEmit; scoped ESLint; pnpm build"
+      status: "PASS"
+      exit_code: 0
+      result: "27 files / 298 tests、typecheck、lint、production build PASS；仅既有大 chunk warning；不等于真实 App visual"
+    - repository: "yijie-desktop"
+      command: "direct exact checker; repair Vitest; cargo test feat136_sidecar_ --lib; bash -n runner; release/build/Skill resource focused checks"
+      status: "PASS"
+      exit_code: 0
+      result: "Contracts 3c3000a6 与 Host 83d3163e exact clean preflight PASS；3 files / 27 Node tests；sidecar 2/2；fmt/check/clippy/typecheck/lint/diff check PASS；canonical repair 独立审查无 P0/P1/P2"
+    - repository: "Host→Desktop"
+      command: "exact Contracts commit schema and 11 ordinary fixture byte comparison + producer/consumer focused suites"
+      status: "PASS"
+      exit_code: 0
+      result: "Host/Desktop schema SHA-256 2f773dd6dc60bc7dc01bcdb434447e945e0a98317534498f54325fcdabb27008；11 个普通 fixture 逐字节一致；source-anchored conformance PASS，不等于 Runtime D4"
     - repository: "yijie"
       command: "./docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict --gate D0 docs/features/FEAT-136-desktop-command-tool-items"
       status: "PASS"
@@ -208,14 +235,21 @@ verification:
     - "00-feature-brief.md"
     - "01-delivery-log.md"
     - "02-verification.md"
+    - "yijie@c7bc206e89692b591eb044af09de21fdb4f1154d + 本次 source-conformance evidence delta"
     - "yijie-contracts@3c3000a6fbe2f08ab2131a463a1691e867d661b1"
-  diff_review: { status: "PASS", summary: "仅对 Contracts slice 执行 source/generated/protected-file 与独立 P0/P1/P2 review，最终无 open finding；这不是 Host/Desktop/Runtime 或 D4 review。" }
+    - "yijie-agent-host@83d3163e21579042d2cc21f303e943946ff97eb0（parent b9358f06f3a15aa17a2471cf0bb8bfd0e2b29bfe）"
+    - "yijie-desktop@69bfacd25b48917cb6102cf1b1b85ca0f9f6bdba + canonical repair 65ee3062833ef3d185511599d8f3a4018f635369（base fc52ef33cdf040d9b6e8d71bd7498811c5c38c51）"
+  diff_review: { status: "PASS", summary: "Contracts 最终无 finding；Host 独立审查无 P0/P1，保留未由 Contracts 冻结 active-item count cap 的后续 hardening P2；Desktop core 的 Unicode、mixed history、sticky-v4 marker 与 completed-only findings 均已修复，10-file canonical runner/stable build/sidecar repair 独立审查也无 P0/P1/P2。本状态不是 Runtime D4。" }
   known_limitations:
     - "固定 Runtime MCP Tool status 只有 inProgress、completed、failed；v5 的 declined 是 Yijie 预留终态，当前没有 stable real producer。"
     - "CAP-017 的实际产品 Tool 与 GS-004 real-runtime 仍受 owner-product-decision 和 real-runtime-producer-unavailable 阻断，不影响 CAP-016 Command contract。"
-    - "本批 Contracts fixture 只能证明 schema、caps、redaction shape、dedupe 和 reconciliation 语义，不能证明 Host mapping、Desktop persistence/UI 或真实 Runtime 能力。"
-    - "JSON Schema 不能识别 allowed text 内的 secret/path；本批只冻结脱敏义务、顺序和 closed fields，实际 Host sanitizer/conformance 下一批执行。"
+    - "本批 ordinary fixture/source conformance 能证明 Host mapping 与 Desktop decoder/reducer/persistence/UI 的确定性边界，但不能证明真实 Runtime Command 或 Tool。"
+    - "JSON Schema 不能识别 allowed text 内的 secret/path；Host sanitizer有 focused tests，但真实 Runtime content仍须 Command D4验证。"
+    - "Desktop 私有 512 Item cap 继承既有 bounded history resource policy，不是 v5 wire constraint；Host active-item count 尚无 Contracts-frozen cap，留作后续 Owner/Contracts hardening。"
+    - "真实 App light/dark、1180×760、200% visual matrix 未运行；component/a11y tests不能替代它。"
+    - "Desktop 原始 cargo clippy --lib -- -D warnings 仅命中基线 HEAD 已存在的 database.rs type-complexity；本批使用单一 -A clippy::type_complexity 后其余 strict warnings PASS，未修改或掩盖仓库级 lint debt。"
     - "仓库标准 composite generate/test/build 会触达预存 Zip Slip archive fixture，不能作为本批验收证据；最终使用安全定向替代，archive fixture 路径明确未验证。"
+    - "Host/Desktop 已形成 local-only clean commits；本次 yijie source-conformance evidence commit 正在形成。均未 push/tag/publish，且不授权 amend/merge。"
 
 public_readiness:
   required: false
@@ -223,7 +257,7 @@ public_readiness:
   checks: []
   external_smoke:
     status: "NOT RUN"
-    command_or_steps: "N/A：FEAT-136 exposure=local，且本批只完成 D0 与 Contracts。"
+    command_or_steps: "N/A：FEAT-136 exposure=local；本批不发布或部署 Host/Desktop。"
     actual_result: "N/A：没有公网入口、发布或部署。"
 
 documents:
