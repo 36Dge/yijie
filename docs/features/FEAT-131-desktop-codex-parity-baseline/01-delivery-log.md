@@ -8,13 +8,13 @@
 - Contract First：`contract-impact=additive`；不创建或变更公共 wire schema。增量只包含 Desktop-local closed launcher/config/identity、stable-only second-instance 分支、既有 MiniMax Provider/Desktop cleanup 投影与对应 implementation SHA pin。
 - 明确不做：不修改 Runtime、Host/Contracts、生产 UI/route/Tauri command，不开启实验 API，不做 public/production 加固，不通过破坏性手段制造失败。
 
-本 Profile 不建立治理切片。FEAT-131 只交付后续 FEAT-132–143 共用的近似设计策略、能力边界、场景和验证入口；完整 Epic 目标仍需后续 Feature 实现。
+本 Profile 不建立治理切片。FEAT-131 只交付后续 active FEAT-132–137、FEAT-139–143 共用的近似设计策略、能力边界、场景和验证入口；FEAT-138 只保留取消记录，完整 Epic 目标仍需后续 active Feature 实现。
 
 ## 2. 实际改动
 
 | Repository | 模块/文件 | 行为变化 | 原因 |
 |---|---|---|---|
-| yijie | `docs/features/FEAT-131-desktop-codex-parity-baseline/` | 建立 demo_fast Feature Package、近似参考策略、固定 Runtime 身份、38 项能力矩阵、13 个黄金场景和验证索引 | 为 FEAT-132–143 提供同一治理基线 |
+| yijie | `docs/features/FEAT-131-desktop-codex-parity-baseline/` | 建立 demo_fast Feature Package、近似参考策略、固定 Runtime 身份、38 项能力矩阵、13 个黄金场景和验证索引 | 为 active FEAT-132–137、FEAT-139–143 提供同一治理基线；FEAT-138 仅保留取消记录 |
 | yijie-desktop | `tests/feat-131/`、`tests/fixtures/feat-131/` | 新增 test-only raw-event harness、13 场景 catalog 与 safe synthetic replay；catalog 绑定 reference policy ID | 让 fixture 经过真实 `createChatStore`/wire parser，并把推测依据与真实 Runtime 证据分开 |
 | yijie-desktop | `scripts/check-feat131-replay-boundary.mjs` | 扫描 production dist，阻止 fixture、harness、canary 和 catalog 进入 bundle | 保证测试资产不成为生产实现 |
 | yijie-desktop | stable launcher/config/Sidecar | 新增 `pnpm tauri:demo-fast:stable`，使用独立 bundle/app-data/Host home、MiniMax 文本 Provider、关闭图片动态工具并固定 `experimentalApi=false` | 提供不污染默认数据且可复验的 canonical Desktop local 入口 |
@@ -38,6 +38,7 @@
 | 2026-08-27 | Owner 授权 canonical stable 入口发送一次无敏感信息真实文本 prompt，失败最多重试两次且禁止工具调用 | 同时执行 `yijie-agent-host` 更严格的最多 2 次短请求总上限；计入 predecessor 一次 submission 后，本次只剩一次可执行请求 | clean detached HEAD freshly built App 首轮完成并精确返回 `FEAT-131_SMOKE_OK`；未调用工具、未读取/修改文件、未重试；完成后 status 仍为 ready/`experimental_api=false`，Cmd-Q 正常清理 |
 | 2026-08-27 | D4 需要一个真实代表性 failure/retry，synthetic replay 不能替代 | 不发送 Provider 请求、不做故障注入：首实例 ready 时启动同一 stable bundle 第二实例，再核对首实例健康；正常退出后从 canonical 入口重启 | 第二实例 exit 1 且稳定报 already running；首实例保持 ready，canonical retry/restart 再次 ready，最终正常退出并清空端口/owned processes |
 | 2026-08-27 | 独立 diff review 发现 legacy v1/version/build canary 未被 boundary scanner 覆盖 | scanner 同时加入 v1、v2、旧 version/build 与当前 policy canary；重跑 focused 41 tests、35-file dist scan 与 diff check | P2 已修复；FEAT-131 scoped code/test diff 无 P0–P3；并行 FEAT-150/Store 改动排除且未触碰 |
+| 2026-08-29 | Owner 正式取消并排除 FEAT-138 | FEAT-138 不建立正式 Feature Package、不实施、不执行 D4；CAP-022/GS-006 继续保留为 `owner-excluded` 负范围哨兵 | Epic active scope 改为 FEAT-131–137、FEAT-139–143；FEAT-128 Artifact authority 与最终回归不受影响 |
 
 调试规则：30 分钟无新事实则停止猜测式补丁；90 分钟同一阻塞则简化方案；非核心验证最多 120 分钟；核心阻塞 240 分钟后重新选择架构或缩小 MVP。
 
@@ -59,4 +60,4 @@
 - 当前成功 submission 可能产生 Provider 计费；predecessor 与当前请求合计达到仓库更严格的 2/2 短请求上限。旧 `com.yijie.ai`/default demo_fast 数据可能包含 pending outbox，未获删除授权所以保持原状；canonical stable 已隔离，不读取该 outbox。
 - Host Runtime Manager 的 shutdown timeout、protocol failure 和 startup abort 仍存在 `Process.Kill()` fallback；本 Feature 不修改 Host，也不以故障注入验证。正常 `Cmd-Q` 只能证明正常路径。
 - Desktop exit callback 未把 cleanup-incomplete 传播为 launcher 非零状态；本次 normal-exit 结合端口/owned-process 清空为 PASS，但不能外推异常退出保证。
-- 近似策略固定不等于 Epic 已完成；生产对话行为仍由 FEAT-132–143 分阶段交付。
+- 近似策略固定不等于 Epic 已完成；生产对话行为仍由 active FEAT-132–137、FEAT-139–143 分阶段交付，FEAT-138 不承担实现责任。

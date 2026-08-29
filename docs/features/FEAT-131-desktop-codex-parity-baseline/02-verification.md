@@ -6,7 +6,9 @@
 >
 > Final verification time：`2026-08-27T01:38:36+08:00`
 >
-> D4 status：`PASS`。Current canonical real smoke、非破坏性代表性失败/恢复检查与独立 scoped diff review 均已完成；人工参考证据已被 Owner 取消，不是 gate。完整 Epic 仍需 FEAT-132–143 实现。
+> D4 status：`PASS`。Current canonical real smoke、非破坏性代表性失败/恢复检查与独立 scoped diff review 均已完成；人工参考证据已被 Owner 取消，不是 gate。该结论保持 2026-08-27 历史验证事实，不因后续范围调整而重写。
+>
+> Scope amendment：`2026-08-29`。Owner 正式取消/排除 FEAT-138；完整 Epic 后续只需 active FEAT-132–137、FEAT-139–143 实现。此范围修订不代表重新执行 FEAT-131 D4，也不改变原 PASS 证据。
 
 ## 1. 自动化与静态检查
 

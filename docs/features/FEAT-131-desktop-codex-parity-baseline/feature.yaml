@@ -41,7 +41,7 @@ product_ux:
   status: "PASS"
   primary_user: "负责把易界 Desktop 对话工作区建设为 Codex 风格近似体验的产品、设计、开发和验收人员，以及最终使用易界 Agent 对话完成任务的本地用户"
   problem: "逐版本、逐场景采集 Codex Desktop 人工证据成本过高；继续把像素和状态完全一致作为门槛会阻塞真正有价值的对话交互交付。"
-  user_outcome: "在保留 Vue 技术栈和固定 yijie-codex Runtime 不变的前提下，后续 FEAT-132–143 引用同一 owner-approved inference 策略、能力矩阵和黄金场景，交付风格相近、信息层级清楚、符合 Yijie UI 规范的端到端对话体验，不要求与 Codex 一模一样。"
+  user_outcome: "在保留 Vue 技术栈和固定 yijie-codex Runtime 不变的前提下，后续 active FEAT-132–137、FEAT-139–143 引用同一 owner-approved inference 策略、能力矩阵和黄金场景，交付风格相近、信息层级清楚、符合 Yijie UI 规范的端到端对话体验，不要求与 Codex 一模一样。"
   in_scope:
     - "固定 reference policy codex-inspired-approximate-parity-v1-2026-08-27；不建立 Codex Desktop version/build Freeze ID"
     - "冻结 Runtime 0.144.6、fork/upstream commit、schema tree 与 experimentalApi=false"
@@ -60,7 +60,7 @@ product_ux:
     - "public/production 发布、签名、公证、部署或外部写入"
     - "修改 yijie-agent-host 的 Runtime 管理器或验证其超时/协议失败强制 Kill fallback；该跨进程风险只登记限制，不做故障注入"
     - "Epic 主动产品差异：不实现语音、模型版本信息、模型推理强度信息、右上角分享、切换置顶摘要、显示侧边面板、分支到新聊天（“回复不佳”右侧按钮）"
-    - "GS-006 文件修改与 Diff：Owner 明确不实现，不建立 FileChange/Diff UI、审批或 synthetic/real-runtime 验收"
+    - "GS-006 文件修改与 Diff：Owner 明确不实现；FEAT-138 已于 2026-08-29 从本 Epic 正式取消/排除，不建立 FileChange/Diff UI、审批或 synthetic/real-runtime 验收"
     - "模型推理强度信息只指模型配置/档位 UI；用户可见 reasoning summary（CAP-011 / GS-002）仍在 Epic 范围内"
     - "任何 Codex Desktop 人工截图、录屏、版本/build Freeze、证据 hash 或逐像素/逐状态完全一致验收"
   main_flow:
@@ -69,7 +69,7 @@ product_ux:
     - "实施者用无真实正文、路径、秘密、PII 或商家数据的 fixture，通过真实 Desktop parser/store 运行 test-only 回放。"
     - "实施者通过 pnpm tauri:demo-fast:stable 启动独立 identifier/data-root 的 freshly built debug App，先核对 Runtime/Provider/readiness 与 experimentalApi=false；真实 prompt 只能在明确授权与仓库级更严格调用上限内提交。"
     - "Owner 已撤回先前三张人工材料；实现只声明 Codex-inspired approximation，不声明版本专属 observed parity。"
-    - "FEAT-132–143 复用场景 ID 和矩阵逐步实现完整 Epic，总目标在本 Feature 单独完成后仍未达成。"
+    - "Active FEAT-132–137、FEAT-139–143 复用场景 ID 和矩阵逐步实现完整 Epic；FEAT-138 仅保留取消记录、不承担实现责任，总目标在本 Feature 单独完成后仍未达成。"
   visual_direction: "本 Feature 不修改生产 UI；后续 Feature 允许推测 Codex 风格的布局与交互层级，但以既有易界 token、组件和 light/dark/minimum-window 规范为准，接受合理差异，不做逐像素复刻。"
   ui_states:
     idle: "等待执行策略/能力矩阵核对或确定性回放；生产 UI 无变化。"

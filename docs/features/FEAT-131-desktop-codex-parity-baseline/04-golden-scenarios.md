@@ -1,10 +1,10 @@
 # FEAT-131 — Codex 风格近似对话黄金场景
 
-> 作用：固定后续 FEAT-132–143 共用的行为场景 ID，不实现生产交互。
+> 作用：固定后续 active FEAT-132–137、FEAT-139–143 共用的行为场景 ID，不实现生产交互；FEAT-138 仅保留取消记录。
 >
 > Reference policy：`codex-inspired-approximate-parity-v1-2026-08-27` / `owner-approved-inference`。不绑定 Codex Desktop version/build，不需要人工媒体，也不要求一模一样。
 >
-> 结论：D0 场景 ID 与范围已固定，FEAT-131 D4 已通过；完整 Epic 仍需 FEAT-132–143 完成。
+> 结论：D0 场景 ID 与范围已固定，FEAT-131 D4 已通过；完整 Epic 仍需 active FEAT-132–137、FEAT-139–143 完成，FEAT-138 已正式取消/排除。
 
 ## 1. 使用规则
 
@@ -102,7 +102,7 @@
 - 可用动作：无。
 - 最终结果：保持 `intentional product difference`；既有 Artifact 能力继续独立存在，但不得包装成 Diff。
 - Reference basis：`owner-excluded`。
-- Provenance：metadata-only exclusion；无 synthetic fixture、无 `real-runtime` 验收、无 FEAT-138 实现责任。
+- Provenance：metadata-only exclusion；无 synthetic fixture、无 `real-runtime` 验收；FEAT-138 已于 2026-08-29 正式取消/排除，无实现责任。
 - Owner：FEAT-131 scope decision。
 
 ### GS-007 — 执行中补充指令
