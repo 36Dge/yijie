@@ -2,6 +2,8 @@
 
 > Audited: `2026-08-29` · Result: `contract-impact=none` · Mode: source-first read-only audit
 
+> D4 follow-up: Desktop 实现已固化为 `fc52ef33cdf040d9b6e8d71bd7498811c5c38c51`；focused 141/141、full 872/872、lint/typecheck/build/diff PASS。canonical final-source 以 Runtime 0.144.6、`experimental_api=false` ready，1/1 content-free Turn completed 并正常 Cmd+Q 清理。Contracts `3832a6c5...`、Host `b9358f06...`、Runtime `0ce5902e...` 保持 clean 不变，证明原 `contract-impact=none` 结论成立。AC-001 人工视觉与 reduced-motion 为 Owner `WAIVED / NOT REQUIRED`。
+
 ## 1. 审计问题与结论
 
 问题：实现 Codex 风格 Composer、新 Turn 提交、防重复、失败保留、target-scoped 草稿与焦点恢复，是否必须改变跨进程、跨仓、跨版本、durable 或 replay 契约？
@@ -23,7 +25,7 @@
 |---|---|---|---|
 | `yijie-contracts` | `feat/feat-134-desktop-streaming-progress-final-response` | `3832a6c5e99b2a6365f193280fdb887c8fdbc2de` | clean / read-only / no FEAT-135 branch |
 | `yijie-agent-host` | `feat/feat-134-desktop-streaming-progress-final-response` | `b9358f06f3a15aa17a2471cf0bb8bfd0e2b29bfe` | clean / read-only / no FEAT-135 branch |
-| `yijie-desktop` | `feat/feat-135-desktop-codex-style-composer` | baseline `7b9daa791635250d0628c9e9f553cf40fab5ad96` | clean branch / implementation unchanged |
+| `yijie-desktop` | `feat/feat-135-desktop-codex-style-composer` | baseline `7b9daa791635250d0628c9e9f553cf40fab5ad96`；final `fc52ef33cdf040d9b6e8d71bd7498811c5c38c51` | implementation complete / D4 PASS / clean / unpushed |
 | `yijie-codex` Runtime | `develop` | `0ce5902ed400866be0196886bb78f693a004d68d` | clean / fixed / no branch / no build |
 
 Audit order：Contracts → Host snapshot/mapper → Desktop native transaction/private IPC → store/application authority → page/composer → FEAT-127/132/134 integration。
@@ -121,12 +123,12 @@ FEAT-135 采用当前 WebView 生命周期内的 target-scoped text map：
 
 届时必须按 Contracts/Host/native authority 的 source-first 顺序重新建 D0；不得在 Vue、store 或文档中伪造通过。
 
-## 8. D0 审计结论
+## 8. D0 审计与 D4 对账结论
 
 - Contract impact：`none`
 - 受影响仓库：`yijie`、`yijie-desktop`
 - Contracts/Host/Runtime FEAT-135 分支：不需要，且本轮禁止创建
-- 本轮实现代码：0
-- 真实 prompt / Provider 调用：0
-- commit / push：0
-- 后续第一实现动作：先新增内部 submission result、target-scoped draft 与失败/route-race测试，再最小修改 Composer；在新授权前不得执行。
+- D0 当时实现代码、prompt 与提交均为 0；该历史事实保留。
+- D4 最终 Desktop：`fc52ef33cdf040d9b6e8d71bd7498811c5c38c51`，clean、未 push。
+- D4 Provider：Owner 独立确认后 1/1，无工具或任务文件读写；终态 completed，正文不落证据。
+- D4 source-first 对账：Contracts/Host/Runtime、private IPC、database、依赖与保护 authority 均未改变；`contract-impact=none` 保持有效。

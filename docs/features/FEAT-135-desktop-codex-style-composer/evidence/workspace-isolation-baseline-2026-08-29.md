@@ -2,6 +2,8 @@
 
 > Captured: `2026-08-29T11:08:27+08:00`；status reconfirmed: `2026-08-29T11:14:43+08:00` · Scope: 11 sibling repositories · D0 only
 
+> D4 follow-up: `yijie-desktop` 从该 clean baseline 演进到 final `fc52ef33cdf040d9b6e8d71bd7498811c5c38c51` 并保持 clean；Contracts、Host 与 Runtime 精确 HEAD 不变。`yijie` 仅修改本 FEAT-135 治理目录并在 strict D4 后提交；所有仓库不 push。
+
 ## 1. 记录目的
 
 在 FEAT-135 修改任何实现文件前，确认 FEAT-134 已收口的 `yijie` 与 `yijie-desktop` HEAD 均 clean，并从这些精确 HEAD 创建同名隔离分支。其余仓库只读记录 branch、HEAD 与状态，不创建 FEAT-135 分支。
@@ -64,6 +66,7 @@ docs/features/FEAT-135-desktop-codex-style-composer/01-delivery-log.md
 docs/features/FEAT-135-desktop-codex-style-composer/02-verification.md
 docs/features/FEAT-135-desktop-codex-style-composer/evidence/workspace-isolation-baseline-2026-08-29.md
 docs/features/FEAT-135-desktop-codex-style-composer/evidence/contract-first-capability-matrix-2026-08-29.md
+docs/features/FEAT-135-desktop-codex-style-composer/evidence/canonical-content-free-2026-08-29.md
 ```
 
 不允许：上述目录外的源码、历史 Feature、ADR、脚本、锁文件、配置或其他文档。
@@ -119,3 +122,5 @@ Contracts、Host 与 Runtime 没有 provisional write ownership；矩阵结论�
 - Contracts/Host/Runtime FEAT-135 branches: NOT CREATED
 
 Owner 本轮只授权两仓分支创建、D0 治理包、隔离记录和只读 Contract First 矩阵；未授权实现、提交、推送或真实 prompt。
+
+以上是 D0 当时事实。D4 后续由 Owner 分批授权实现/提交并最终授权除 AC-001 人工视觉外的全部收口动作：Desktop 已形成四个 FEAT-135 commit，最终为 `fc52ef33...`；canonical 1/1 已完成；本治理包由包含本文的 D4 收口 commit 固化。push/tag/release 仍未执行。

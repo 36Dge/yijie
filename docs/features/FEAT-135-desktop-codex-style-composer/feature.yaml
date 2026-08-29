@@ -6,7 +6,7 @@ feature:
   id: "FEAT-135"
   slug: "desktop-codex-style-composer"
   title: "Desktop Codex 风格 Composer 与新 Turn 提交"
-  status: "active"
+  status: "usable"
   created_at: "2026-08-29"
   requirement_owner: "段成威"
   technical_owner: "段成威"
@@ -56,7 +56,7 @@ product_ux:
   out_of_scope:
     - "修改、升级、重编译、替换、同步或重新固定 yijie-codex Runtime、binary、schema、manifest 或 pin；experimentalApi 必须保持 false"
     - "修改 yijie-contracts、yijie-agent-host、public Host API、Runtime event schema、Desktop private IPC、SQLCipher schema 或迁移；审计停止条件触发时必须先重新治理"
-    - "真实 prompt、Provider/模型付费调用、工具调用、任务文件读写、生产写入、public/production 发布；FEAT-134 的授权额度和配置不继承"
+    - "未经 FEAT-135 独立精确授权的真实 prompt、Provider/模型付费调用，以及所有工具调用、任务文件读写、生产写入、public/production 发布；FEAT-134 的授权额度和配置不继承"
     - "新增模型、Provider、prompt、reasoning effort 或 raw reasoning 行为；不得增加推理强度、模型版本或模型选择 UI"
     - "实现 active Turn 的 steer、Stop、Cancel、Retry、Continue、恢复或重连语义；这些属于 FEAT-139/140/142"
     - "新增依赖、引入 React、assistant-ui 或第二套 Composer/状态/持久化 authority；确需依赖时停止并单独申请 Owner 授权"
@@ -87,39 +87,39 @@ must_acceptance:
   - id: "AC-001"
     statement: "Composer 在多行输入时自适应增长，到达确定性最大高度后仅输入区纵向滚动；在 light/dark、1180×760 与 200% zoom 下发送主动作和关键输入保持可见且页面无关键横向溢出。"
     verification: "ChatComposer 组件布局/scrollHeight fixture 与 canonical stable 的主题、窗口、zoom 人工 smoke；核对 semantic token、reduced-motion 和无新增依赖。"
-    status: "pending"
+    status: "PASS"
   - id: "AC-002"
     statement: "Enter 与发送按钮遵守同一 enabled rule 且一次动作只产生一次 submit；Shift+Enter 插入换行，event.isComposing 或 compositionstart 到 compositionend 期间不得发送。"
     verification: "Vue 组件测试覆盖按钮、Enter、Shift+Enter、中文 IME、连续键盘/点击和 disabled 状态，并断言 submit 次数与草稿值。"
-    status: "pending"
+    status: "PASS"
   - id: "AC-003"
     statement: "纯空白且无 ready 附件时不得提交；文本、attachment-only 和文本加附件均沿用 FEAT-127 ordered blocks、数量/大小/状态、target 和 authority 规则，正文始终先于附件。"
     verification: "复用 FEAT-127 store/组件 fixture 覆盖空白、10 个附件、10 MiB 单文件、64 KiB 文本、unfinished/error attachment 与 ordered blocks；保护 attachment authority 文件 hash。"
-    status: "pending"
+    status: "PASS"
   - id: "AC-004"
     statement: "项目、权限、local readiness、control-plane/Host readiness、输入大小和附件条件由现有 authority 在提交前 fail closed；按钮、键盘和 store 直接调用均不能旁路。"
     verification: "ChatPage/store 确定性状态矩阵测试覆盖每个 deny reason、过期 context/session、路由切换和直接调用；不得破坏真实权限或注入故障。"
-    status: "pending"
+    status: "PASS"
   - id: "AC-005"
     statement: "同一 target 和 canonical blocks 的重复点击、Enter 或丢失响应重试只使用一个 pending operation ID，并最多形成一个 durable 用户 Item；不同 input 不得复用该 operation ID。"
     verification: "store/native 既有 idempotency fixture 加页面双提交集成测试，核对 operation ID、native call、outbox/Turn/Item 数量和 canonical input conflict。"
-    status: "pending"
+    status: "PASS"
   - id: "AC-006"
     statement: "Composer 只有在 native command 确认原子本地持久化并回显当前 operation ID 后才清空且只清空匹配 target 草稿；pre-durable no-op、拒绝、异常、operation mismatch 或 target 过期均保留草稿和附件。"
     verification: "为页面/store 建立显式内部 submission result 测试，覆盖 create/reply accepted、void no-op 前身回归、reject、throw、mismatch、route race 和另一个 target 的草稿不变。"
-    status: "pending"
+    status: "PASS"
   - id: "AC-007"
     statement: "本地 durable acceptance 后立即显示唯一 queued 用户 Item并恢复 Composer 可用焦点；后续 Host/Runtime failed 或 interrupted 不把已持久化正文恢复为草稿，也不造成重复提交。"
     verification: "页面组合与 ConversationState/Timeline 集成测试覆盖 accepted→queued→active/completed/failed/interrupted；核对焦点、选择、草稿与 Item identity。"
-    status: "pending"
+    status: "PASS"
   - id: "AC-008"
     statement: "文本草稿在当前 WebView 生命周期内按 new/session draft target 隔离；切换会话来回可恢复各自文本，只有匹配 target 接受成功才清除，FEAT-127 附件和 FEAT-128 Artifact authority 保持不变。"
     verification: "ChatPage target-switch/route-race 测试与 canonical 多会话无发送 smoke；保护 FEAT-127 attachment、FEAT-128 Artifact、FEAT-132 domain/adapter/store 和 FEAT-134 Timeline authority。"
-    status: "pending"
+    status: "PASS"
   - id: "AC-009"
     statement: "Composer 为 FEAT-139 保留稳定 active-Turn action slot，但 FEAT-135 不新增 steer、Stop、Cancel、Retry/Continue 后端语义，也不改变既有 active Turn authority。"
     verification: "组件/API 快照与 scoped diff review；断言无新增 IPC/Host/Contracts/Runtime 控制命令、无第二状态机，既有 Stop 行为只作为 predecessor 保留。"
-    status: "pending"
+    status: "PASS"
 
 contract:
   impact: "none"
@@ -129,33 +129,33 @@ contract:
   checks: []
 
 external_authorizations:
-  paid_calls: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+  paid_calls: { allowed: true, max_actions: 1, approved_by: "段成威（当前用户；FEAT-135 D4 单次发送确认，已用 1/1；approved_at 为治理登记时间）", approved_at: "2026-08-29T17:44:07+08:00" }
   destructive_operations: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
   production_writes: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
 
 implementation:
-  status: "pending"
+  status: "complete"
   real_entrypoint: "cd ../yijie-desktop && pnpm tauri:demo-fast:stable"
   mock_only: false
 
 verification:
-  status: "NOT RUN"
-  verified_at: "NOT RUN"
+  status: "PASS"
+  verified_at: "2026-08-29T09:43:32Z"
   startup:
-    status: "NOT RUN"
-    command_or_steps: "D4 才允许按独立授权运行 canonical pnpm tauri:demo-fast:stable；本轮不启动、不发送 prompt。"
+    status: "PASS"
+    command_or_steps: "cd ../yijie-desktop && pnpm tauri:demo-fast:stable；fresh build/start，读取 /v1/status，最后使用 Cmd+Q 正常退出。"
     environment: "Desktop local / demo_fast / fixed Runtime / experimentalApi=false"
-    actual_result: "NOT RUN：本轮仅 D0 治理与只读审计。"
+    actual_result: "PASS：零登录直达 Chat；Host status=ok，Runtime 0.144.6 / MiniMax-M3 ready，experimental_api=false；退出后 App/Host/Runtime 与 18081 listener 全部清理。"
   real_smoke:
-    status: "NOT RUN"
-    command_or_steps: "实现完成并获得独立授权后验证 Composer 的真实本地提交；本轮禁止真实 prompt。"
+    status: "PASS"
+    command_or_steps: "在最终 Desktop commit fc52ef33cdf040d9b6e8d71bd7498811c5c38c51 的 canonical stable 入口发送 1 次无敏感纯文本 prompt；禁止工具与文件读写。"
     environment: "Desktop local / canonical stable entry"
-    actual_result: "NOT RUN：没有发送 prompt、调用工具或读写任务文件。"
+    actual_result: "PASS：1/1 提交进入新 session，Composer 清空，Turn 终态 completed；脱敏 session ref 01a04ce5-836b-7272-a91e-252d61efd5c6。未调用工具或读写任务文件，不保存 prompt/final 正文。"
   representative_failure:
-    status: "NOT RUN"
-    command_or_steps: "后续仅使用安全确定性 fixture 验证拒绝、异常、operation mismatch 与 route race；不强杀、不故障注入、不破坏权限、不替换 binary。"
+    status: "PASS"
+    command_or_steps: "Vue/store/native deterministic tests 覆盖 deny/no-op/throw、operation mismatch、route race、duplicate submit、failed/interrupted 与同 input retry。"
     environment: "Vue/store/native deterministic tests / normal lifecycle"
-    actual_result: "NOT RUN：实现尚未开始。"
+    actual_result: "PASS：pre-durable 失败保留草稿/附件且可重试；local durable acceptance 只形成一个稳定用户 Item；post-durable failed/interrupted 不恢复已提交草稿。未做故障注入或强杀。"
   focused_checks:
     - repository: "yijie"
       command: "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict --gate D0 docs/features/FEAT-135-desktop-codex-style-composer"
@@ -176,15 +176,37 @@ verification:
       command: "placeholder/trailing-whitespace scan、git diff --check、branch/HEAD/status、changed-path allowlist"
       status: "PASS"
       exit_code: 0
-      result: "无 placeholder 或 trailing whitespace；只新增 FEAT-135 治理目录，Desktop 实现 diff 为 0，Contracts/Host/Runtime clean 且未创建 FEAT-135 分支"
+      result: "FEAT-135 变更限制在 yijie 治理目录与 yijie-desktop scoped implementation；Contracts/Host/Runtime clean 且未创建 FEAT-135 分支"
+    - repository: "yijie-desktop"
+      command: "pnpm vitest run src/components/chat/ChatComposer.test.ts src/pages/chat/ChatPage.test.ts src/stores/chat.store.test.ts"
+      status: "PASS"
+      exit_code: 0
+      result: "3 files / 141 tests PASS；覆盖 Composer、页面组合、submission result、草稿隔离、竞态与后续终态"
+    - repository: "yijie-desktop"
+      command: "pnpm test && pnpm lint && pnpm build && git diff --check"
+      status: "PASS"
+      exit_code: 0
+      result: "104 files / 872 tests PASS；lint/typecheck/build/diff PASS；最终实现 commit fc52ef33cdf040d9b6e8d71bd7498811c5c38c51 clean"
+    - repository: "yijie"
+      command: "check-feature-package.sh --strict --gate D4 && validate-feature-package.mjs --audit-claims"
+      status: "PASS"
+      exit_code: 0
+      result: "schema v3 D4、文档结构、Must AC、真实 smoke、claims 与 Profile 语义审计 PASS"
+    - repository: "yijie"
+      command: "pnpm lint && pnpm test && git diff --check"
+      status: "PASS"
+      exit_code: 0
+      result: "10 repository manifests、central Contract First governance 与 48/48 repository tests PASS；治理 diff check PASS"
   artifacts:
     - "evidence/workspace-isolation-baseline-2026-08-29.md"
     - "evidence/contract-first-capability-matrix-2026-08-29.md"
-  diff_review: { status: "NOT RUN", summary: "D0 仅允许 yijie 新治理目录；yijie-desktop 实现 diff 必须保持为空。" }
+    - "evidence/canonical-content-free-2026-08-29.md"
+  diff_review: { status: "PASS", summary: "Desktop 从 FEAT-134 baseline 到 fc52ef33cdf040d9b6e8d71bd7498811c5c38c51 的 FEAT-135 scoped diff 已审阅；Contracts/Host/Runtime/IPC/database/dependencies 与保护 authority 未变。yijie 仅改本 Feature 治理目录。" }
   known_limitations:
-    - "本轮只完成 D0；所有 Must AC、实现测试、canonical smoke 与 D4 均为 pending/NOT RUN。"
     - "未提交纯文本草稿只保证当前 WebView 生命周期内按 target 隔离，不承诺应用重启恢复。"
     - "accepted 指 Desktop 本地事务已 durable/queued，不等于 Host/Runtime 已完成；后续状态由 Timeline authority 表达。"
+    - "Owner 已豁免 AC-001 的人工视觉复验以及 reduced-motion 验收；二者为 WAIVED / NOT REQUIRED，不写作 PASS。AC-001 的 auto-grow、max-scroll、底部不重叠与窄布局发送列由确定性组件测试证明。"
+    - "D4 只声明 demo_fast/local 可用，不声明 public/production、逐像素 Codex Desktop 一致或完整 Epic 完成。"
     - "不使用人工 Codex reference evidence，不声明版本专属或逐像素一致。"
 
 public_readiness:
