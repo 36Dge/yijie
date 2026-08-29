@@ -1,0 +1,202 @@
+schema_version: 3
+delivery_profile: "demo_fast"
+exposure: "local"
+
+feature:
+  id: "FEAT-135"
+  slug: "desktop-codex-style-composer"
+  title: "Desktop Codex 风格 Composer 与新 Turn 提交"
+  status: "active"
+  created_at: "2026-08-29"
+  requirement_owner: "段成威"
+  technical_owner: "段成威"
+  reviewer: "段成威"
+  release_owner: "段成威"
+
+scope:
+  risk_level: "medium"
+  data_classification: "restricted"
+  contract_impact: "none"
+  database_change: "none"
+  persistence_change: "none"
+  runtime_change: "none"
+  auth_permission_change: "none"
+  user_workflow_change: "user_visible"
+  ui_change: "interactive"
+  ai_behavior_change: "none"
+
+repositories:
+  - "yijie"
+  - "yijie-desktop"
+
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+
+product_ux:
+  status: "PASS"
+  primary_user: "在易界 AI Desktop 中向固定 Codex Runtime 提交本地新 Turn，并希望输入、附件、权限和失败恢复行为稳定可预测的用户"
+  problem: "现有 Composer 已具备基本键盘发送、IME 保护和 FEAT-127 附件入口，但输入框不会随内容自适应，文本草稿没有按新会话或已有会话隔离，页面无法区分校验、提交与本地持久化接受；已有会话的 store 还会以 void 静默拒绝，页面随后可能错误清空草稿。按钮、键盘、防重复、焦点和失败恢复因此尚未形成一个可验证的提交事务。"
+  user_outcome: "用户获得符合易界 UI 规范的 Codex 风格近似 Composer：多行输入自然增长，Enter 与按钮遵守同一提交规则，Shift+Enter 和中文输入法可靠，文本与 FEAT-127 附件按同一目标和 operation ID 提交；只有 Desktop 本地事务已持久化并确认同一 operation ID 后才清空对应草稿，前置失败保留内容并可安全重试。该结果完成 Epic 的 G2 输入与提交体验组成部分，但 FEAT-135 完成不等于整个 Epic 完成。"
+  in_scope:
+    - "在现有 ChatComposer 和 ChatPage 组合边界内实现自动增长多行输入、最大高度后的局部滚动，以及与现有 Design System 一致的布局、焦点和可访问反馈"
+    - "统一 Enter、发送按钮与程序化 submit 的 enabled rule；Shift+Enter 插入换行，IME composition 期间不得发送"
+    - "沿用 FEAT-127 attachment draft authority、ordered content blocks、限制校验、目标隔离和 durable-before-Host 事务，不建立第二套附件或正文 authority"
+    - "在提交前确定性校验项目、权限、local readiness、Host/control-plane readiness、64 KiB 文本限制及附件状态；不满足时 fail closed"
+    - "明确 idle、validating、submitting、locally accepted/queued 与 failed 状态；同一提交意图只生成一个 operation ID 和一个用户 Item"
+    - "把 Desktop native command 确认原子本地持久化且回显同一 operation ID 定义为 Composer 的 accepted 清空边界；Host/Runtime 202 与后续终态继续由现有 Timeline/control-plane authority 表达"
+    - "按 draft target 在当前 WebView 进程内隔离文本草稿；会话切换或前置失败保留对应草稿，只有匹配 target 的本地 durable acceptance 才清空"
+    - "提交成功后恢复 Composer 可用焦点且不改写正文选择；失败后保留草稿、附件和可操作焦点"
+    - "为 FEAT-139 的 active Turn 操作保留稳定 action slot，但不在本 Feature 新增或定义 steer、stop、retry/continue 后端语义"
+    - "light/dark、1180×760、200% zoom、键盘、可见焦点和 reduced-motion 基线；没有本 Feature 专属豁免时均需在 D4 验证"
+  out_of_scope:
+    - "修改、升级、重编译、替换、同步或重新固定 yijie-codex Runtime、binary、schema、manifest 或 pin；experimentalApi 必须保持 false"
+    - "修改 yijie-contracts、yijie-agent-host、public Host API、Runtime event schema、Desktop private IPC、SQLCipher schema 或迁移；审计停止条件触发时必须先重新治理"
+    - "真实 prompt、Provider/模型付费调用、工具调用、任务文件读写、生产写入、public/production 发布；FEAT-134 的授权额度和配置不继承"
+    - "新增模型、Provider、prompt、reasoning effort 或 raw reasoning 行为；不得增加推理强度、模型版本或模型选择 UI"
+    - "实现 active Turn 的 steer、Stop、Cancel、Retry、Continue、恢复或重连语义；这些属于 FEAT-139/140/142"
+    - "新增依赖、引入 React、assistant-ui 或第二套 Composer/状态/持久化 authority；确需依赖时停止并单独申请 Owner 授权"
+    - "在应用重启后持久化尚未提交的纯文本草稿；本 Feature 只保证当前 WebView 生命周期内按 target 隔离"
+    - "逐像素复制 Codex Desktop、建立版本/build Freeze、使用已撤回人工材料或要求 Owner 补采 Codex 证据"
+    - "语音、模型版本信息、模型推理强度配置/档位 UI、分享、切换置顶摘要、显示右侧上下文面板、分支到新聊天"
+    - "CAP-022 / GS-006 文件修改与 Diff；既有 Artifact 可以保留，但不得包装或描述为 FileChange/Diff"
+  main_flow:
+    - "用户通过 canonical pnpm tauri:demo-fast:stable 零登录进入 Chat，选择项目以及新会话或已有会话；Composer 绑定当前 draft target，并恢复该 target 在当前 WebView 生命周期内的文本与 FEAT-127 附件。"
+    - "用户输入多行文本或添加附件；输入框在上限内自适应增长，超过视觉上限后只在输入区滚动，页面不因内容增长失去主操作。"
+    - "用户按 Enter 或点击发送；Shift+Enter 只换行，IME composition 不发送。两个入口读取同一 enabled rule，空白文本且无附件时不得提交。"
+    - "页面与 store 按既有 authority 校验项目、权限、local/Host readiness、输入字节和附件状态；校验或提交在途时禁用重复提交，但不破坏草稿与选择。"
+    - "同一 canonical ordered blocks 使用稳定 operation ID 调用既有 native command；前置拒绝、异常、过期 target 或 operation mismatch 均保留匹配 target 的草稿与附件，并显示可恢复错误。"
+    - "native command 确认本地事务已持久化并回显同一 operation ID 后，清空且只清空该 target 的草稿，显示 durable queued 用户 Item，并把焦点恢复到可继续输入的位置。"
+    - "稍后的 Host/Runtime accepted、active、failed、interrupted 或 completed 继续由 FEAT-132/134 Timeline 和 control-plane authority 展示；post-durable 失败不得把已提交正文重新塞回 Composer，以免重复发送。"
+    - "active Turn 区域只提供 FEAT-139 可复用的 action slot；本 Feature 收口时只声明 Composer 能力完成，完整 Epic 继续由后续 Feature 实现。"
+  visual_direction: "继承 codex-inspired-approximate-parity-v1-2026-08-27 / owner-approved-inference：以 Yijie Design System、现有 Chat workspace token、Naive UI 与 Lucide registry 为准，Composer 使用克制的圆角容器、清楚的项目/权限/附件层级和右下主发送动作；允许颜色、尺寸、图标与 Codex Desktop 合理不同，不依赖已撤回截图或版本专属观察。"
+  ui_states:
+    idle: "Composer 绑定当前 draft target，输入和附件可编辑；空白且无附件时发送不可用，有有效内容时按钮与 Enter 同时可用。"
+    loading: "validating 与 submitting 分开表达；校验期间保留内容，提交在途期间防止重复意图且使用可访问的忙碌状态，不用伪造进度百分比。"
+    success: "本地 durable acceptance 后只清空匹配 target 草稿，Timeline 出现 queued 用户 Item，Composer 恢复可输入焦点；这不宣称 Host/Runtime 已完成。"
+    empty: "纯空白且无 ready 附件时不创建 Turn；attachment-only 是否允许完全沿用 FEAT-127 authority，不在 Vue 自行猜测。"
+    error: "项目、权限、readiness、大小、附件、过期 target、operation mismatch 或 native failure 使用固定安全文案；pre-durable 失败保留对应草稿和附件，其他 target 不受影响。"
+    retry: "用户可在权威条件恢复后再次发送相同 canonical input；既有 store 重用同一 operation ID，成功只产生一个用户 Item。post-durable Host 失败由 Timeline/后续 Feature 处理，不恢复 Composer 草稿。"
+    cancel: "本 Feature 不新增 Stop/Cancel/Steer 语义；提交前用户可继续编辑，提交在途只做防重复，active Turn 控制保留给 FEAT-139。"
+
+must_acceptance:
+  - id: "AC-001"
+    statement: "Composer 在多行输入时自适应增长，到达确定性最大高度后仅输入区纵向滚动；在 light/dark、1180×760 与 200% zoom 下发送主动作和关键输入保持可见且页面无关键横向溢出。"
+    verification: "ChatComposer 组件布局/scrollHeight fixture 与 canonical stable 的主题、窗口、zoom 人工 smoke；核对 semantic token、reduced-motion 和无新增依赖。"
+    status: "pending"
+  - id: "AC-002"
+    statement: "Enter 与发送按钮遵守同一 enabled rule 且一次动作只产生一次 submit；Shift+Enter 插入换行，event.isComposing 或 compositionstart 到 compositionend 期间不得发送。"
+    verification: "Vue 组件测试覆盖按钮、Enter、Shift+Enter、中文 IME、连续键盘/点击和 disabled 状态，并断言 submit 次数与草稿值。"
+    status: "pending"
+  - id: "AC-003"
+    statement: "纯空白且无 ready 附件时不得提交；文本、attachment-only 和文本加附件均沿用 FEAT-127 ordered blocks、数量/大小/状态、target 和 authority 规则，正文始终先于附件。"
+    verification: "复用 FEAT-127 store/组件 fixture 覆盖空白、10 个附件、10 MiB 单文件、64 KiB 文本、unfinished/error attachment 与 ordered blocks；保护 attachment authority 文件 hash。"
+    status: "pending"
+  - id: "AC-004"
+    statement: "项目、权限、local readiness、control-plane/Host readiness、输入大小和附件条件由现有 authority 在提交前 fail closed；按钮、键盘和 store 直接调用均不能旁路。"
+    verification: "ChatPage/store 确定性状态矩阵测试覆盖每个 deny reason、过期 context/session、路由切换和直接调用；不得破坏真实权限或注入故障。"
+    status: "pending"
+  - id: "AC-005"
+    statement: "同一 target 和 canonical blocks 的重复点击、Enter 或丢失响应重试只使用一个 pending operation ID，并最多形成一个 durable 用户 Item；不同 input 不得复用该 operation ID。"
+    verification: "store/native 既有 idempotency fixture 加页面双提交集成测试，核对 operation ID、native call、outbox/Turn/Item 数量和 canonical input conflict。"
+    status: "pending"
+  - id: "AC-006"
+    statement: "Composer 只有在 native command 确认原子本地持久化并回显当前 operation ID 后才清空且只清空匹配 target 草稿；pre-durable no-op、拒绝、异常、operation mismatch 或 target 过期均保留草稿和附件。"
+    verification: "为页面/store 建立显式内部 submission result 测试，覆盖 create/reply accepted、void no-op 前身回归、reject、throw、mismatch、route race 和另一个 target 的草稿不变。"
+    status: "pending"
+  - id: "AC-007"
+    statement: "本地 durable acceptance 后立即显示唯一 queued 用户 Item并恢复 Composer 可用焦点；后续 Host/Runtime failed 或 interrupted 不把已持久化正文恢复为草稿，也不造成重复提交。"
+    verification: "页面组合与 ConversationState/Timeline 集成测试覆盖 accepted→queued→active/completed/failed/interrupted；核对焦点、选择、草稿与 Item identity。"
+    status: "pending"
+  - id: "AC-008"
+    statement: "文本草稿在当前 WebView 生命周期内按 new/session draft target 隔离；切换会话来回可恢复各自文本，只有匹配 target 接受成功才清除，FEAT-127 附件和 FEAT-128 Artifact authority 保持不变。"
+    verification: "ChatPage target-switch/route-race 测试与 canonical 多会话无发送 smoke；保护 FEAT-127 attachment、FEAT-128 Artifact、FEAT-132 domain/adapter/store 和 FEAT-134 Timeline authority。"
+    status: "pending"
+  - id: "AC-009"
+    statement: "Composer 为 FEAT-139 保留稳定 active-Turn action slot，但 FEAT-135 不新增 steer、Stop、Cancel、Retry/Continue 后端语义，也不改变既有 active Turn authority。"
+    verification: "组件/API 快照与 scoped diff review；断言无新增 IPC/Host/Contracts/Runtime 控制命令、无第二状态机，既有 Stop 行为只作为 predecessor 保留。"
+    status: "pending"
+
+contract:
+  impact: "none"
+  authority: "yijie-contracts OpenAPI 与 yijie-agent-host snapshot 继续定义 Host 202/idempotency；yijie-desktop 现有 private IPC/native transaction 定义 local durable response，chat.store.ts 定义 operation ID、FEAT-127 ordered blocks 与 authority 校验，FEAT-132 ConversationState/FEAT-134 Timeline 定义提交后的展示。FEAT-135 只在 Desktop 进程内补充可判定 submission result、target-scoped WebView draft 和 Composer 交互，不改变跨进程、跨仓、跨版本、数据库或 replay 语义。"
+  source_first_plan: "只读矩阵已先核对 Contracts→Host→Desktop native IPC→store→page/composer。后续实现只消费既有 operation ID 与本地 durable confirmation，不把 Host 202 或 Runtime terminal 当成清空边界。若实现必须新增或改变 public/private IPC、durable schema、operation/replay、权限、Runtime/Host wire，立即停止，将 contract-impact 重分类为 semantic 并在获得新授权后从权威源开始；不得在 Vue 猜测接受状态。"
+  status: "N/A"
+  checks: []
+
+external_authorizations:
+  paid_calls: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+  destructive_operations: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+  production_writes: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+
+implementation:
+  status: "pending"
+  real_entrypoint: "cd ../yijie-desktop && pnpm tauri:demo-fast:stable"
+  mock_only: false
+
+verification:
+  status: "NOT RUN"
+  verified_at: "NOT RUN"
+  startup:
+    status: "NOT RUN"
+    command_or_steps: "D4 才允许按独立授权运行 canonical pnpm tauri:demo-fast:stable；本轮不启动、不发送 prompt。"
+    environment: "Desktop local / demo_fast / fixed Runtime / experimentalApi=false"
+    actual_result: "NOT RUN：本轮仅 D0 治理与只读审计。"
+  real_smoke:
+    status: "NOT RUN"
+    command_or_steps: "实现完成并获得独立授权后验证 Composer 的真实本地提交；本轮禁止真实 prompt。"
+    environment: "Desktop local / canonical stable entry"
+    actual_result: "NOT RUN：没有发送 prompt、调用工具或读写任务文件。"
+  representative_failure:
+    status: "NOT RUN"
+    command_or_steps: "后续仅使用安全确定性 fixture 验证拒绝、异常、operation mismatch 与 route race；不强杀、不故障注入、不破坏权限、不替换 binary。"
+    environment: "Vue/store/native deterministic tests / normal lifecycle"
+    actual_result: "NOT RUN：实现尚未开始。"
+  focused_checks:
+    - repository: "yijie"
+      command: "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict --gate D0 docs/features/FEAT-135-desktop-codex-style-composer"
+      status: "PASS"
+      exit_code: 0
+      result: "schema v3 semantics、文档结构、D0 范围与语义门禁 PASS"
+    - repository: "yijie"
+      command: "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-135-desktop-codex-style-composer"
+      status: "PASS"
+      exit_code: 0
+      result: "feature.yaml schema v3 claim semantics valid；没有实现或 D4 PASS 声明"
+    - repository: "yijie"
+      command: "pnpm lint && pnpm test"
+      status: "PASS"
+      exit_code: 0
+      result: "10 repository manifests 与 central Contract First governance valid；48/48 tests PASS"
+    - repository: "yijie + scoped siblings"
+      command: "placeholder/trailing-whitespace scan、git diff --check、branch/HEAD/status、changed-path allowlist"
+      status: "PASS"
+      exit_code: 0
+      result: "无 placeholder 或 trailing whitespace；只新增 FEAT-135 治理目录，Desktop 实现 diff 为 0，Contracts/Host/Runtime clean 且未创建 FEAT-135 分支"
+  artifacts:
+    - "evidence/workspace-isolation-baseline-2026-08-29.md"
+    - "evidence/contract-first-capability-matrix-2026-08-29.md"
+  diff_review: { status: "NOT RUN", summary: "D0 仅允许 yijie 新治理目录；yijie-desktop 实现 diff 必须保持为空。" }
+  known_limitations:
+    - "本轮只完成 D0；所有 Must AC、实现测试、canonical smoke 与 D4 均为 pending/NOT RUN。"
+    - "未提交纯文本草稿只保证当前 WebView 生命周期内按 target 隔离，不承诺应用重启恢复。"
+    - "accepted 指 Desktop 本地事务已 durable/queued，不等于 Host/Runtime 已完成；后续状态由 Timeline authority 表达。"
+    - "不使用人工 Codex reference evidence，不声明版本专属或逐像素一致。"
+
+public_readiness:
+  required: false
+  status: "not_applicable"
+  checks: []
+  external_smoke:
+    status: "NOT RUN"
+    command_or_steps: "N/A：FEAT-135 exposure=local，不提供公网入口。"
+    actual_result: "N/A：公开 Demo、生产发布和外部写入均不在本 Feature 范围。"
+
+documents:
+  brief: "00-feature-brief.md"
+  delivery_log: "01-delivery-log.md"
+  verification: "02-verification.md"
