@@ -1,6 +1,6 @@
 # FEAT-136 整体实现与调试记录
 
-> 当前状态：D0、Contracts、Host/Desktop 本地实现、source-anchored conformance 与 canonical D4 entrypoint gate repair 已完成并固化为 clean 本地 commits；修复后独立审查无 P0/P1/P2。overall Feature in progress，用户已授权但尚未发起真实 Command D4。
+> 当前状态：D0、Contracts、Host/Desktop 本地实现、source-anchored conformance 与 canonical D4 entrypoint gate repair 已完成并固化为 clean 本地 commits；修复后独立审查无 P0/P1/P2。真实 Command D4 已用尽 3/3 次授权调用并最终 FAIL：成功投影与单 Item hydration 可见，但隔离 Git repo 内两个 exit 128 结果没有形成 failed Command Item/stable error。overall Feature active / in progress。
 >
 > 第三批范围：先单独修复并审查 canonical runner/stable build/sidecar gate，再执行最多 3 次真实 Provider/模型请求的安全只读 Command D4；Tool D4 继续等待 producer/Owner。
 
@@ -26,6 +26,7 @@
 | 2026-08-30 | yijie-agent-host | 在完整依赖 HEAD b9358f06f3a15aa17a2471cf0bb8bfd0e2b29bfe 上提交 reviewed FEAT-136 draft | PASS：83d3163e21579042d2cc21f303e943946ff97eb0；clean，未 push/tag/publish |
 | 2026-08-30 | yijie-desktop | 从 fc52ef33cdf040d9b6e8d71bd7498811c5c38c51 创建 feat/feat-136-desktop-command-tool-items 并提交 reviewed core | PASS：69bfacd25b48917cb6102cf1b1b85ca0f9f6bdba |
 | 2026-08-30 | yijie-desktop | 单独提交 canonical D4 entrypoint gate repair | PASS：65ee3062833ef3d185511599d8f3a4018f635369；clean，未 push/tag/publish |
+| 2026-08-30 | yijie | 提交 Host/Desktop source conformance 与 canonical gate repair 证据 | PASS：82e4010ff34309998c405085c14e3a8988c7113a；本次 D4 evidence delta 基于该 commit |
 | 2026-08-29 | yijie-codex | 只读核验 0ce5902ed400866be0196886bb78f693a004d68d | clean；未 fetch/pull/build/modify |
 
 ## 3. Contracts 已交付改动
@@ -86,18 +87,32 @@
 
 | 类型 | 授权 | 上限 | 当前结果 |
 |---|---|---:|---|
-| Host/Desktop/yijie 本地 commits | 当前用户明确要求执行 | 本批所需 | Host `83d3163e…` 与 Desktop `69bfacd…`、`65ee306…` 已提交；source-conformance evidence 由本次 yijie commit 固化；未 push/tag |
+| Host/Desktop/yijie 本地 commits | 当前用户明确要求执行 | 本批所需 | Host `83d3163e…` 与 Desktop `69bfacd…`、`65ee306…` 已提交；yijie source evidence 为 `82e4010…`，本次只再形成一个 D4 evidence commit；未 push/tag |
 | 既有 yijie / yijie-contracts 本地 commits | 先前批次明确授权 | 既有范围 | 既有 commits 未 amend/改写 |
 | push/tag/merge/PR/publish/deploy | 未授权 | 0 | 未执行 |
-| Provider/模型 Command D4 请求 | 用户已明确授权 | 最多 3 次、不得重试 | 当前 0 次；只允许两个指定只读 Command |
+| Provider/模型 Command D4 请求 | 用户初始授权最多 3 次，并在 Call 1 后明确允许 Call 2/3 | 最多 3 次；不得自动、隐式或超额重试 | 已用 3/3，额度耗尽；仅使用两个闭合的 allowlisted 只读 Command 形式 |
 | Tool 请求 / Tool D4 | 未授权且 capability blocked | 0 | BLOCKED / NOT RUN |
 | 破坏性、生产写、权限扩大 | 未授权 | 0 | 未执行 |
 
-## 9. 已知限制与下一步
+## 9. 真实、安全、只读 Command D4
+
+- canonical local/demo_fast stable 入口实际开启 FEAT-134/136 gates；一个 success Command 的 v5-only 投影可见。未检查、记录或展示握手/Runtime wire，因此不把它扩大表述为 wire-level negotiation 证据。
+- Call 1 使用既有 security bookmark 绑定到一个非 Git 的历史空 smoke 目录；两次 allowlisted 只读尝试均为 exit 128，Desktop 没有生成 Command Item。该轮结论是环境/项目绑定失败，而不是 Command lifecycle PASS。
+- 随后定位该 bookmark 的精确目标，并在同一个空目录内初始化无 remote 的隔离 Git repo；只创建一个 benign untracked 文件，没有敏感数据。
+- Call 2 只有两次 `exec_command`，参数逐字匹配允许列表，结果依次为 exit 0 与 exit 128，没有第三条或越界命令。成功结果投影为唯一一个 completed Command Item，显示 exit 0、duration 0、安全 cwd 与脱敏输出；失败结果没有对应 failed Item 或 stable error。
+- Call 3 只有一次 allowlisted missing-ref `exec_command`，结果 exit 128，无额外命令；仍没有 Command Item，只出现过程/未分类消息。
+- Call 2/3 是用户在 Call 1 绑定失败后明确允许的追加请求：Call 2 重复两个允许形式验证修复后的项目绑定，Call 3 重复失败形式隔离投影缺口。没有自动、隐式或超出 3/3 授权的重试。由于 Git 仓内的两个正常、非破坏性失败结果均缺失 Command lifecycle/stable error，Command D4 最终为 FAIL。
+- started/output delta 因命令执行过快未直接观察；真实 event_id 幂等、completed authoritative reconciliation 与 late event 不回滚未独立观察；正常 replay 为 NOT OBSERVED，未通过断连、注入或伪造制造。
+- App 正常 Cmd+Q 后 runner exit 0；canonical 重开后 SQLCipher hydration 恰好恢复一个 success Command Item，未重复。最终再次正常 Cmd+Q，runner exit 0。
+- 最终 App/Host 已停止且 loopback 端口 idle。Host bbolt metadata-only 检查为 format 2、store schema 4、7 个预期 bucket、unknown/malformed 0；14/14 session safe projection 可解析，唯一 latest session 为 idle/completed 且 active turn 为空。该证据只证明 durable session 已终态 reconciliation/无 active turn；DB 不含 v5/event journal/Command exit/duration，store schema 4 不能解释为 wire v4/v5。
+- success Item 的折叠、键盘、状态文字、AX live announcement 和安全复制 live 可见 PASS；状态图标只有 component 证据，未单独做 live 判定。当前 light 主题 live PASS；通过键盘缩放到 AX 明确的 200%，布局仍可键盘/AX 访问，随后正常恢复 100%。窗口配置静态覆盖 width 1180、height 780、minWidth 1180、minHeight 760，但本轮未精确调整到 1180×760，因此该精确尺寸 live NOT RUN；dark 跟随 macOS 系统外观，本轮未更改系统设置，live NOT RUN。
+- Command Item 自身只显示闭合状态和脱敏投影，未暴露 producer raw command、绝对路径、secret、bookmark 或 Runtime wire；但用户消息为指定 allowlist 而显示了用户亲自输入的命令文本，所以整个 WebView 的字面 no-raw 标准不满足。四文件与保留截图/证据不记录命令字面量、绝对路径、secret、bookmark、prompt 或 Runtime wire。
+
+## 10. 已知限制与停止状态
 
 - Contracts 可以定义 generic Tool surface，但当前固定 Runtime 没有 MCP declined status，也没有已批准的真实产品 Tool producer；真实 GS-004 继续 blocked/not run。
-- Synthetic fixtures 与 source-anchored conformance 只能证明 Host/Desktop 对同一 authority 的确定性实现，不能证明固定 Runtime 在真实 Command 下的内容、时序或 UI visual smoke。
+- Synthetic fixtures 与 source-anchored conformance 只能证明 Host/Desktop 对同一 authority 的确定性实现；本次真实 D4 只补充一个 success Command、两个未投影失败结果、单 Item hydration 与局部 live UI 证据。
 - Host active turn 的 v5 Item 集合沿用进程内生命周期，但 Contracts 没有冻结 item-count cap；这是后续 Owner/Contracts resource-hardening 项，不在本批制造额外 wire 约束。
 - Desktop 私有 512 Item 上限继承既有 bounded history resource policy，不宣称为 v5 wire limit。
-- 真实、安全、只读 Command D4 已单独授权；只有在 source evidence commit 和所有 clean/exact 门禁再次通过后才可发起，最多 3 次且不得重试。当前尚未发起任何模型调用。
+- 真实、安全、只读 Command D4 已执行 3/3 次且 FAIL；额度耗尽，不再发起请求。缺口是 failed Command lifecycle、stable error、整个 WebView 的字面 no-raw 标准，以及未独立观察的 event_id/reconciliation/late-event/replay 证据。
 - Tool D4 保持 blocked/not run，直到出现真实 stable producer 和 Owner 决策；不得用 synthetic Tool 或 dynamic tool 冒充。
