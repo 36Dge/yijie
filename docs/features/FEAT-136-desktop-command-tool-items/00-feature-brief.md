@@ -2,13 +2,13 @@
 
 > Profile: demo_fast · Exposure: local · Created: 2026-08-29
 >
-> 当前结论：D0 与 Contracts slice complete（`yijie-contracts@3c3000a6fbe2f08ab2131a463a1691e867d661b1`）；Host、Desktop 与 canonical D4 entrypoint gate repair 已形成 clean 本地 commits，source-anchored conformance 和修复后独立审查均 PASS。真实、安全、只读 Command D4 已执行且 3/3 次授权调用全部耗尽，最终 FAIL：成功 Command 的 v5-only 安全投影、正常重开 hydration 与局部 UI 交互可见，但隔离 Git repo 内两个真实 exit 128 结果均没有形成 failed Command Item 或 stable error。Tool D4 继续 BLOCKED/NOT RUN；整体 Feature active / in progress。
+> 当前结论：D0、Contracts、Host/Desktop source conformance 与 canonical D4 entrypoint gate repair 保持 PASS。Command failed lifecycle RCA 已完成：首次丢失发生在固定 Runtime `0ce5902e…` 的 unified-exec producer；短时非零结果被启动诊断误判为 sandbox-denied，并在 Command emitter 创建前提前返回，所以 Host/Desktop 没有收到 started/failed lifecycle。既定 Runtime freeze 与“Host/Desktop 不得制造 producer”共同阻止本批修复；四个产品仓均未改动。RCA 本轮 Provider/模型调用为 0，fresh Command D4 新额度未申请、D4 未重跑；Tool D4 继续 BLOCKED/NOT RUN。整体 Feature active / in progress。
 
 ## 1. 用户问题、目标与 Epic 关系
 
 - 目标用户：在易界 AI Desktop 中需要理解 Agent 执行过程与结果的本地用户。
 - 当前问题：固定 Runtime 已提供 CommandExecution 和 McpToolCall 稳定事实，但当前 Host/Desktop 只暴露泛化 Item，安全摘要、输出、进度、耗时、exit code、失败和拒绝均不可见。
-- 用户结果：本地实现可以消费有界、脱敏、版本化的 Command/Tool 投影；真实 D4 已证明一条成功 Command 能显示并在 SQLCipher 重开后只恢复一次，但失败 Command lifecycle 仍缺失，因此当前不能宣称真实 Command 路径完整可用。
+- 用户结果：本地实现可以消费有界、脱敏、版本化的 Command/Tool 投影；真实 D4 已证明一条成功 Command 能显示并在 SQLCipher 重开后只恢复一次。RCA 进一步证明失败 lifecycle 在进入 Host 前已于固定 Runtime 丢失；上游修复并复审完成前，不能宣称真实 Command 路径完整可用，也不能申请 fresh D4。
 - Epic authority：CAP-016 与 GS-003 是 Command Must；CAP-017 与 GS-004 是通用 MCP Tool 目标。CAP-018 的 experimental dynamic image tool 不得冒充 MCP Tool。CAP-019 至 CAP-021、GS-005 属于 FEAT-137 或未决产品/安全决策。CAP-022、GS-006 与 FEAT-138 永久保持 owner-excluded。
 
 ### In scope
@@ -21,15 +21,17 @@
 - published contracts-v0.2.0 和 FEAT-134 candidate 双基线兼容检查。
 - Host 从 `b9358f06f3a15aa17a2471cf0bb8bfd0e2b29bfe` 实现默认关闭的 v5 negotiation、Command mapper/redactor/caps、event ID/replay 与 completed reconciliation，并固化为本地 commit `83d3163e21579042d2cc21f303e943946ff97eb0`；Tool 只提供通用稳定投影。
 - Desktop 从 `fc52ef33cdf040d9b6e8d71bd7498811c5c38c51` 实现 v5 closed decoder、event-ID reducer、SQLCipher additive migration、持久化/hydration、Command/Tool UI、unknown fail-soft 与无障碍状态；core 与 canonical gate repair 分别固化为 `69bfacd25b48917cb6102cf1b1b85ca0f9f6bdba`、`65ee3062833ef3d185511599d8f3a4018f635369`。
-- 使用同一 Contracts schema 与 11 个普通 fixture 完成 Host producer 到 Desktop consumer 的 source-anchored conformance；不把它表述为真实 Runtime D4。
+- 使用同一 Contracts schema 与 11 个普通 fixture 完成 Host v5 projector 到 Desktop consumer 的 source-anchored conformance；Runtime 仍是 authoritative Command producer，不把该证据表述为真实 Runtime D4。
 - 修复 canonical `local/demo_fast --stable-api-only` 入口：runner/stable build 同步开启 FEAT-134/136 Native/Web gates，非 stable/release 路径清除 ambient FEAT-136，sidecar 在 `env_clear()` 后只白名单转发依赖闭合的 Native gate；精确 preflight 重基线到当前 Contracts/Host commits 且保留 v4 不变量。
 - 本第三批已执行 3/3 次真实 Provider/模型请求的安全只读 Command D4，并通过正常关闭、重开观察 hydration；没有扩大到 Tool D4。
+- 单独完成 failed lifecycle 的只读 RCA、Host/Desktop 消费链复审与合法修复边界判定；不把模型 output 或文本反推成 Command producer。
 
 ### Out of scope
 
 - 不执行 Tool D4；不注册或制造 Tool producer。Command D4 只使用两个闭合的只读 Command 形式；Call 2/3 是用户在 Call 1 绑定失败后明确允许的追加请求，没有自动或未授权重试，3 次授权额度现已耗尽。
 - 不把当前 light/200% 局部 live 结果或 component tests 表述为完整视觉矩阵；dark 与精确 1180×760 live 仍未执行。
 - 不修改 Runtime、experimentalApi、approvalPolicy、sandbox、network、filesystem、shell 或 Tauri 权限。
+- failed lifecycle RCA 阶段不调用 Provider/模型；上游修复与复审未通过前，不申请 fresh D4 新额度、不重跑 D4。
 - 不注册 MCP/Connector/dynamic tool，不制造真实 Tool producer，不把 synthetic fixture 表述为真实能力。
 - 不增加 Command approval、FileChange、Diff、patch、file approval、write gate、Artifact 合并或相关 fixture。
 - 不 push、tag、merge、publish、release、deploy 或创建远端 PR。
@@ -41,7 +43,7 @@
 - FEAT-136 正式目录创建前不存在，ID 可用。
 - 最初发现：yijie 位于 FEAT-135 分支 e654dcb4b09c9daa5904a365ab202c9dc0f1c2e4，只有 6 个 FEAT-138 取消范围的正式 FEAT-131 文档改动。
 - 治理固化：在 yijie 的 feat/feat-136-desktop-command-tool-items 分支先形成独立 commit 67f219b6cf825357285215fcbaafb33c3978acb3，随后工作树 clean。
-- D0/Contracts slice 固化：yijie 随后形成本地 commit c7bc206e89692b591eb044af09de21fdb4f1154d；Host/Desktop source conformance、canonical gate repair 与真实调用授权边界已固化为 82e4010ff34309998c405085c14e3a8988c7113a，本次 D4 evidence delta 基于该 commit。
+- D0/Contracts slice 固化：yijie 随后形成本地 commit c7bc206e89692b591eb044af09de21fdb4f1154d；Host/Desktop source conformance、canonical gate repair 与真实调用授权边界已固化为 82e4010ff34309998c405085c14e3a8988c7113a，D4 FAIL evidence 已固化为 be5c1f91bd1c0f1f10878ea279721dac4eab3dc8；本次 RCA evidence delta 基于该 commit。
 - Contracts 起点：feat/feat-136-desktop-command-tool-items，基线 3832a6c5e99b2a6365f193280fdb887c8fdbc2de，创建分支时 clean。
 - Contracts 不可变本地提交：3c3000a6fbe2f08ab2131a463a1691e867d661b1，提交后 clean，未 push/tag/publish。
 - Host 实现起点：feat/feat-134-desktop-streaming-progress-final-response@b9358f06f3a15aa17a2471cf0bb8bfd0e2b29bfe；当前 clean 本地 commit 为 `83d3163e21579042d2cc21f303e943946ff97eb0`，未 push/tag/publish。
@@ -149,4 +151,19 @@ AC-001 与 AC-004 的真实 Command D4 结果为 FAIL；其余 AC 保持 pending
 - 当前 light 主题 live 可见；键盘缩放至 AX 明确的 200% 后布局仍可键盘/AX 访问，并正常恢复 100%。窗口配置静态覆盖 width 1180、height 780、minWidth 1180、minHeight 760，但未精确调整到 1180×760，故该尺寸 live NOT RUN；dark 因未更改 macOS 系统外观而 live NOT RUN。
 - 标准 composite generate/test/build 因预存 Zip Slip archive fixture 不作为验收证据；最终采用定向生成、重复 digest、63 个非 archive Node tests、完整 Go tests 与 direct TypeScript build，并在验证文档记录例外与影响。
 - 当前实现没有修改 Runtime、experimental API、权限或 Tool producer；Host 的额外 active-item 数量上限未由 Contracts 冻结，保留为后续 Owner/Contracts hardening，不在 consumer 中伪造 wire constraint。
-- Command D4 最终 FAIL，3/3 次真实调用额度已耗尽，停止且不再发起请求。Tool D4 保持 BLOCKED/NOT RUN，不得顺带启动、注册 producer 或扩展范围。
+- 原 Command D4 最终 FAIL，旧 3/3 次真实调用额度已耗尽。failed lifecycle RCA 本轮调用数为 0；因合法修复尚未发生，fresh D4 的新额度未申请且 D4 未重跑。Tool D4 保持 BLOCKED/NOT RUN，不得顺带启动、注册 producer 或扩展范围。
+
+## 7. Command failed lifecycle RCA 与修复边界
+
+### Authority 与首次丢失点
+
+- 固定 Runtime 的 canonical 语义仍是：Command 开始产生 `inProgress`，终态通过 `item/completed` 携带 `completed` 或 `failed`、exit code 与 duration。该语义由 `core/src/tools/events.rs` 与 app-server protocol 的 closed status 明确定义。
+- 三次既有真实调用的脱敏 metadata 闭合为：一个 exit 0 结果紧邻一组 Command started/completed；四个 exit 128 结果对应的 Command started/completed 计数均为 0。前两个来自 Call 1 的错误项目绑定，后两个才是 Git-bound D4 功能失败证据；四个都一致证明 Host intake 之前没有失败 Item 可消费，但不会把 Call 1 追溯改写为功能失败。
+- 根因位于 fixed Runtime unified-exec 的 pre-emitter early return：`sandboxing/src/denial.rs` 对非零结果扫描 denial 关键字；`core/src/unified_exec/process.rs` 在快速退出阶段执行该判断；`core/src/unified_exec/process_manager.rs` 随后在创建 `ToolEmitter` 之前返回 sandbox-denied。上层仍把 exit 结果作为普通 tool output 返回给模型，所以 rollout 可见 exit code，但 app-server 不发布 Command lifecycle。
+
+### 修复与复审结论
+
+- Contracts 对 failed 语义没有缺口；Host source branch 能把 authoritative failed Item 映射为 stable `command_failed`，Desktop 也能完成 closed decode、event-ID reduce、SQLCipher persistence/hydration 与 UI 呈现。focused 复审未发现 downstream 丢失分支；Host 现有 16 个 FEAT-136 tests 虽全部 PASS，但缺少 exact failed/nonzero mapper regression，作为后续 coverage gap 保留。
+- Host/Desktop 若从模型 output、rollout 文本或 exit code 反推 Command identity/status，会制造 producer，并破坏 authority、redaction、event-ID、replay 与 reconciliation 边界，因此不是合法修复。
+- 唯一推荐的下一根因修复是由 Owner 单独授权 Runtime producer patch/升级，使 early sandbox-denial 路径也发布 canonical Command started 与 failed terminal，并重新完成 source conformance；这超出当前 Runtime freeze。通过入口环境隐藏启动诊断只是尚未验证的假设，不作为推荐修复。
+- 本批因此记录为：RCA PASS；Runtime upstream capability gap BLOCKED；Host repair NOT APPLICABLE；Desktop repair NOT APPLICABLE；fresh Command D4 NOT AUTHORIZED / NOT RUN；Tool D4 BLOCKED / NOT RUN。

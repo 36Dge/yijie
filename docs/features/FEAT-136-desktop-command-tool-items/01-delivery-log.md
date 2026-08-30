@@ -1,8 +1,8 @@
 # FEAT-136 整体实现与调试记录
 
-> 当前状态：D0、Contracts、Host/Desktop 本地实现、source-anchored conformance 与 canonical D4 entrypoint gate repair 已完成并固化为 clean 本地 commits；修复后独立审查无 P0/P1/P2。真实 Command D4 已用尽 3/3 次授权调用并最终 FAIL：成功投影与单 Item hydration 可见，但隔离 Git repo 内两个 exit 128 结果没有形成 failed Command Item/stable error。overall Feature active / in progress。
+> 当前状态：D0、Contracts、Host/Desktop source conformance 与 canonical D4 entrypoint gate repair 保持 PASS。后续 Command failed lifecycle RCA 已定位 fixed Runtime 的 pre-emitter sandbox-denial 误判为首次丢失点；Host/Desktop 没有收到失败 Item。由于 Runtime 继续冻结且 downstream 不得制造 producer，本批没有合法代码修复；RCA 本轮 0 次 Provider/模型调用，fresh D4 新额度未申请、D4 未重跑。overall Feature active / in progress。
 >
-> 第三批范围：先单独修复并审查 canonical runner/stable build/sidecar gate，再执行最多 3 次真实 Provider/模型请求的安全只读 Command D4；Tool D4 继续等待 producer/Owner。
+> 当前追加范围：只执行 failed lifecycle RCA、合法修复边界判定与复审。仅在修复和复审通过后才单独申请 fresh D4 新额度；该前置条件未满足，Tool D4 继续等待 producer/Owner。
 
 ## 1. D0 结论与实施方案
 
@@ -27,6 +27,7 @@
 | 2026-08-30 | yijie-desktop | 从 fc52ef33cdf040d9b6e8d71bd7498811c5c38c51 创建 feat/feat-136-desktop-command-tool-items 并提交 reviewed core | PASS：69bfacd25b48917cb6102cf1b1b85ca0f9f6bdba |
 | 2026-08-30 | yijie-desktop | 单独提交 canonical D4 entrypoint gate repair | PASS：65ee3062833ef3d185511599d8f3a4018f635369；clean，未 push/tag/publish |
 | 2026-08-30 | yijie | 提交 Host/Desktop source conformance 与 canonical gate repair 证据 | PASS：82e4010ff34309998c405085c14e3a8988c7113a；本次 D4 evidence delta 基于该 commit |
+| 2026-08-30 | yijie | 提交真实 Command D4 FAIL evidence | PASS：be5c1f91bd1c0f1f10878ea279721dac4eab3dc8；本次 RCA evidence delta 基于该 commit |
 | 2026-08-29 | yijie-codex | 只读核验 0ce5902ed400866be0196886bb78f693a004d68d | clean；未 fetch/pull/build/modify |
 
 ## 3. Contracts 已交付改动
@@ -79,7 +80,7 @@
 
 ## 7. Source-anchored conformance 与审查
 
-- Host 与 Desktop 都从同一 clean Contracts commit 读取同一 schema 和 11 个普通 fixture；Host producer projection/schema tests 与 Desktop consumer decoder/reducer/hydration tests 共同构成 source-anchored conformance。
+- Host 与 Desktop 都从同一 clean Contracts commit 读取同一 schema 和 11 个普通 fixture；Host v5 projection/schema tests 与 Desktop consumer decoder/reducer/hydration tests 共同构成 source-anchored conformance。Runtime 仍是 authoritative Command producer。
 - 该证据不启动固定 Runtime、Provider、模型或 Tool，不等于真实 Command D4，也不证明真实 Tool producer。
 - 独立只读审查推动修复 v5 Unicode char/UTF-8 双界限、mixed v4/v5 history hydration、sticky-v4 live marker 与 completed-only Web reducer；最终 Desktop delta 无剩余 P0/P1/P2。Host 无 P0/P1，保留 Contracts 未冻结 active-item count cap 的后续 resource-hardening P2。
 
@@ -87,10 +88,12 @@
 
 | 类型 | 授权 | 上限 | 当前结果 |
 |---|---|---:|---|
-| Host/Desktop/yijie 本地 commits | 当前用户明确要求执行 | 本批所需 | Host `83d3163e…` 与 Desktop `69bfacd…`、`65ee306…` 已提交；yijie source evidence 为 `82e4010…`，本次只再形成一个 D4 evidence commit；未 push/tag |
+| Host/Desktop/yijie 本地 commits | 当前用户明确要求执行 | 本批所需 | Host `83d3163e…` 与 Desktop `69bfacd…`、`65ee306…` 已提交；yijie D4 evidence 为 `be5c1f9…`，本次只新增一个 RCA evidence commit；未 push/tag |
 | 既有 yijie / yijie-contracts 本地 commits | 先前批次明确授权 | 既有范围 | 既有 commits 未 amend/改写 |
 | push/tag/merge/PR/publish/deploy | 未授权 | 0 | 未执行 |
 | Provider/模型 Command D4 请求 | 用户初始授权最多 3 次，并在 Call 1 后明确允许 Call 2/3 | 最多 3 次；不得自动、隐式或超额重试 | 已用 3/3，额度耗尽；仅使用两个闭合的 allowlisted 只读 Command 形式 |
+| failed lifecycle RCA | 当前用户明确要求先 RCA 与修复，不重跑 D4 | Provider/模型 0 次 | PASS：首次丢失点已定位；受 fixed Runtime freeze 阻断，无 downstream 合法修复 |
+| fresh Command D4 新额度 | 仅允许在修复并复审通过后单独申请 | 当前 0 | NOT REQUESTED / NOT RUN：修复前置条件未满足 |
 | Tool 请求 / Tool D4 | 未授权且 capability blocked | 0 | BLOCKED / NOT RUN |
 | 破坏性、生产写、权限扩大 | 未授权 | 0 | 未执行 |
 
@@ -114,5 +117,43 @@
 - Synthetic fixtures 与 source-anchored conformance 只能证明 Host/Desktop 对同一 authority 的确定性实现；本次真实 D4 只补充一个 success Command、两个未投影失败结果、单 Item hydration 与局部 live UI 证据。
 - Host active turn 的 v5 Item 集合沿用进程内生命周期，但 Contracts 没有冻结 item-count cap；这是后续 Owner/Contracts resource-hardening 项，不在本批制造额外 wire 约束。
 - Desktop 私有 512 Item 上限继承既有 bounded history resource policy，不宣称为 v5 wire limit。
-- 真实、安全、只读 Command D4 已执行 3/3 次且 FAIL；额度耗尽，不再发起请求。缺口是 failed Command lifecycle、stable error、整个 WebView 的字面 no-raw 标准，以及未独立观察的 event_id/reconciliation/late-event/replay 证据。
+- 真实、安全、只读 Command D4 已执行 3/3 次且 FAIL；旧额度耗尽，在该额度内不再发起请求。缺口是 failed Command lifecycle、stable error、整个 WebView 的字面 no-raw 标准，以及未独立观察的 event_id/reconciliation/late-event/replay 证据。
 - Tool D4 保持 blocked/not run，直到出现真实 stable producer 和 Owner 决策；不得用 synthetic Tool 或 dynamic tool 冒充。
+
+## 11. Command failed lifecycle RCA 与修复复审
+
+### 只读证据闭合
+
+- 五仓基线保持 exact clean：Contracts `3c3000a6…`、Host `83d3163e…`、Desktop `65ee306…`、Runtime `0ce5902e…`、RCA 前 yijie evidence `be5c1f9…`；未发现范围外改动或基线漂移。
+- 固定 Runtime source authority 明确把非零 exit 映射为 failed，并以 `item/completed` 携带 status、exit code 与 duration；Host failed mapper/stable error 与 Desktop closed consumer/persistence/UI 均能处理合法 failed Item。
+- 既有三次真实调用的脱敏 metadata 显示：唯一 exit 0 结果有一组 Command started/completed；四个 exit 128 结果的对应 started/completed 均为 0。前两个属于 Call 1 的错误项目绑定，后两个才是 Git-bound D4 功能失败证据；四个只用于同一 pre-emitter RCA，不把 Call 1 改写为功能失败。因此首次缺失在 Runtime app-server producer，早于 Host intake。
+- 代码级根因是 unified-exec 对快速退出结果在 emitter 创建前进行 sandbox-denial heuristic：相同启动诊断对 exit 0 被忽略，对 exit 128 则命中 denial 关键字并 early return。上层把该结果作为 tool output 返回模型，却没有发布 Command Item。
+
+### RCA_REQUIRED 时间线与分类
+
+稳定 incident identity：Feature/Slice/Gate=`FEAT-136/Command/D4`；evidence=`canonical-local-demo-fast`；failure=`command_failed_lifecycle_missing`；checkpoint=`runtime-command-item-notification`；责任层=`platform/runtime-producer`。
+
+| 时间线 | Fact | Gate 解释 |
+|---|---|---|
+| Call 1 / 两个 exit 128 | 对应 Runtime Command started/completed 均为 0；项目绑定错误 | 记录事实但不算 Git-bound 功能 FAIL；仍可用于同一 producer 缺失 RCA |
+| Call 2 / Git-bound exit 128 | 对应 started/completed 均为 0 | 第一个有效环境内功能 FAIL |
+| Call 3 / Git-bound exit 128 | 对应 started/completed 均为 0 | 第二个有效环境内功能 FAIL；连同重复同类现象进入 RCA_REQUIRED，不进行第四次请求 |
+| RCA cycle | 扩大只读审计到 Runtime→Host→Desktop；Provider/模型 0 次 | 首次缺失定位到 fixed Runtime pre-emitter early return |
+
+| 分类 | 当前内容 |
+|---|---|
+| Fact | canonical Runtime 语义要求非零结果为 failed terminal；真实 exit 128 窗口没有 Command notification；Host/Desktop 对合法 failed Item 的 source branch 存在 |
+| Assumption | 消除共同启动诊断可能避免 heuristic 误判，但尚未验证且 shell/environment 变更未授权，因此不作为修复结论 |
+| Unknown | 尚未验证哪一个 Owner 批准的 Runtime patch/升级能在所有支持平台保持 sandbox-denial 与正常非零结果的正确区分 |
+| Conflict | Runtime schema/事件语义承诺 failed Command lifecycle，但 fixed unified-exec 快速非零路径在 emitter 前提前返回 |
+| Product | 无证据表明 FEAT-136 产品语义导致首次丢失 |
+| Harness | Call 1 有绑定错误；Call 2/3 在有效隔离 Git repo 仍复现，故不是最终根因 |
+| Platform | fixed Runtime unified-exec denial heuristic 是已证实的首次丢失责任层 |
+| Gate | D4 必须观察 failed Item/stable error；未满足，保持 FAIL / RCA_REQUIRED |
+
+### 修复判定
+
+- Contracts、Host 与 Desktop 没有需要更改的 failed 语义或消费逻辑；在这些仓从 model output/rollout/exit code 补造 Command 会违反 Runtime producer authority、redaction 与 event-ID/replay/reconciliation 契约。
+- 唯一推荐的下一根因修复是 Owner 单独授权 Runtime producer patch/升级，使 early sandbox-denial 路径也发布 canonical started 与 failed terminal，并补足对应 regression/source conformance。当前明确禁止修改、升级、重编译或替换 Runtime，因此尚未授权；入口环境调整只保留为未验证 assumption。
+- 本批结果：RCA PASS；Runtime repair BLOCKED；Host/Desktop repair NOT APPLICABLE；独立复审无 downstream 丢失 finding；四个产品仓没有代码或 commit 变化。Host 16 个 FEAT-136 focused tests 虽全部 PASS，但尚无 exact failed/nonzero mapper regression；这是测试覆盖缺口，不改变“首次丢失早于 Host”的结论。
+- 本轮 Provider/模型调用 0 次。fresh Command D4 新额度未申请、D4 未重跑；Tool D4、FileChange/Diff、审批、写权限与 FEAT-138 均未触达。

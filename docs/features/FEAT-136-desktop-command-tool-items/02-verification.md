@@ -1,6 +1,6 @@
 # FEAT-136 Demo 验证
 
-> 当前 verdict：D0/Contracts、Host/Desktop source-anchored conformance 与 canonical D4 entrypoint gate repair PASS；Host/Desktop 已形成 clean 本地 commits。真实 Command D4 已执行 3/3 次并 FAIL：一个 success Command 的安全投影与单 Item hydration 可见，但隔离 Git repo 内两个 exit 128 结果均缺少 failed Command Item/stable error。Tool D4 BLOCKED/NOT RUN；overall Feature active / in progress。
+> 当前 verdict：D0/Contracts、Host/Desktop source-anchored conformance 与 canonical D4 entrypoint gate repair 保持 PASS；原真实 Command D4 保持 FAIL。追加的 failed lifecycle RCA 已 PASS 并定位 fixed Runtime pre-emitter early return，但 repair 因 Runtime freeze 为 BLOCKED。RCA 本轮 Provider/模型调用 0 次，fresh D4 新额度 NOT REQUESTED、fresh D4 NOT RUN；Tool D4 BLOCKED/NOT RUN；overall Feature active / in progress。
 >
 > 本文不会把 synthetic fixture、source-anchored Host→Desktop conformance 或 component test 写成 Runtime real vertical、真实 Tool producer或视觉实测。
 
@@ -60,7 +60,7 @@ Call 2/3 是当前用户在 Call 1 后明确允许的追加真实请求。Call 1
 | Command Item / evidence safety | PASS（局部） | Command Item 未暴露 producer raw command、绝对路径、secret、raw bookmark 或 Runtime wire；四文件与保留截图/证据不记录命令字面量、路径、prompt 或 wire |
 | Whole WebView no-raw | FAIL | 用户消息为指定 allowlist 而显示了用户亲自输入的命令文本；这不是 producer 投影泄漏，但意味着不能声称整个 WebView 不含任何 raw command |
 
-真实调用额度 3/3 已耗尽。由于 failed lifecycle、stable error、每命令一次与整个 WebView 的字面 no-raw 标准不成立，Command D4 verdict 为 **FAIL**。
+原真实调用额度 3/3 已耗尽。由于 failed lifecycle、stable error、每命令一次与整个 WebView 的字面 no-raw 标准不成立，Command D4 verdict 为 **FAIL**。failed lifecycle RCA 阶段没有发起新调用；fresh D4 只有在合法修复和复审通过后才可单独申请新额度，当前未满足。
 
 ## 4. Host→Desktop 验证矩阵
 
@@ -99,7 +99,7 @@ AC-001 与 AC-004 为 FAIL；其余 Must AC 保持 pending。不得把局部 suc
 
 - 未执行强杀、故障注入、权限破坏、可执行文件/binary 替换、fixture 提取或新增攻击载荷；这些行为由长期安全条款禁止。
 - 初始标准门禁审计中，在识别前曾各调用一次 `make generate`、`node scripts/check-generated.mjs`、`make test`、`make build`；它们会创建或读取仓库预存 Zip Slip archive fixture。其机械 exit-0 结果不接受为 FEAT-136 证据，识别后未重跑，并改用定向生成、重复 digest、63 个非 archive Node tests、完整 Go tests 与 direct TS build。
-- Command D4 的 Provider/模型请求已使用 3/3，授权额度耗尽；Call 2/3 是用户明确允许的追加请求，没有自动、隐式或超额重试。MCP Tool、生产写或公网访问均未执行。隔离 repo 仅在既有空 smoke 目录内正常初始化，无 remote，且只有 benign untracked 文件。
+- 原 Command D4 的 Provider/模型请求已使用 3/3；Call 2/3 是用户明确允许的追加请求，没有自动、隐式或超额重试。追加 RCA 阶段调用数为 0，fresh D4 新额度未申请、fresh D4 未执行。MCP Tool、生产写或公网访问均未执行。隔离 repo 仅在既有空 smoke 目录内正常初始化，无 remote，且只有 benign untracked 文件。
 - 未执行 FileChange/Diff synthetic event 或 fixture；不存在性只通过 source allowlist 静态审计证明。
 - 未运行仓库全量 Rust/composite suite，因为其中存在长期安全条款禁止的权限破坏、故障/攻击与危险 archive fixture；使用 `cargo check`、命名聚焦 Rust tests、带单一既有 baseline allowance 的 strict clippy、TS/Vue scoped suite替代。原始 `cargo clippy --lib -- -D warnings` 仅在 HEAD 已存在的 `database.rs` type-complexity 上失败；影响是未覆盖与 FEAT-136 无关的全仓测试，也未把该既有 lint 债务伪报为通过。
 - 未通过断连、重放注入、故障注入或伪造来制造 event_id/reconciliation/late-event/replay 证据；normal replay 如实记录为 NOT OBSERVED。
@@ -110,7 +110,7 @@ AC-001 与 AC-004 为 FAIL；其余 Must AC 保持 pending。不得把局部 suc
 
 ## 7. Worktree 与 diff
 
-- yijie 先以 67f219b6cf825357285215fcbaafb33c3978acb3 固化 FEAT-138 owner exclusion，再以 c7bc206e89692b591eb044af09de21fdb4f1154d 固化 FEAT-136 D0/Contracts slice；source-conformance evidence 已固化为 82e4010ff34309998c405085c14e3a8988c7113a，本次 D4 evidence delta 基于该 commit。
+- yijie 先以 67f219b6cf825357285215fcbaafb33c3978acb3 固化 FEAT-138 owner exclusion，再以 c7bc206e89692b591eb044af09de21fdb4f1154d 固化 FEAT-136 D0/Contracts slice；source-conformance evidence 为 82e4010ff34309998c405085c14e3a8988c7113a，D4 FAIL evidence 为 be5c1f91bd1c0f1f10878ea279721dac4eab3dc8；本次 RCA evidence delta 基于后者。
 - yijie-contracts 起点：feat/feat-136-desktop-command-tool-items@3832a6c5e99b2a6365f193280fdb887c8fdbc2de；最终 immutable local commit：3c3000a6fbe2f08ab2131a463a1691e867d661b1，clean。
 - Host 起点精确为 b9358f06f3a15aa17a2471cf0bb8bfd0e2b29bfe，当前 clean commit 为 83d3163e21579042d2cc21f303e943946ff97eb0。
 - Desktop 起点精确为 fc52ef33cdf040d9b6e8d71bd7498811c5c38c51；core commit 为 69bfacd25b48917cb6102cf1b1b85ca0f9f6bdba，canonical repair clean HEAD 为 65ee3062833ef3d185511599d8f3a4018f635369。
@@ -123,6 +123,22 @@ AC-001 与 AC-004 为 FAIL；其余 Must AC 保持 pending。不得把局部 suc
 - Contracts slice：COMPLETE / PASS（safety-compliant scoped gate）。
 - Host/Desktop implementation：本地 source-complete；最终聚焦门禁与独立 diff review PASS，clean local commits 已形成。
 - Host→Desktop source-anchored conformance：PASS；不等于 real service。
-- Real Command / D4 tranche：FAIL；3/3 次授权调用已耗尽，不再发起请求。success 投影/hydration 局部 PASS，failed lifecycle/stable error 与 whole-WebView no-raw 标准缺失或不成立。
+- Real Command / D4 tranche：FAIL；原 3/3 次授权调用已耗尽。failed lifecycle RCA PASS，但 Runtime repair BLOCKED；fresh D4 新额度未申请且 fresh D4 NOT RUN。success 投影/hydration 局部 PASS，failed lifecycle/stable error 与 whole-WebView no-raw 标准缺失或不成立。
 - Real Tool / D4：BLOCKED / NOT RUN，等待 producer/Owner。
 - FEAT-136 overall：ACTIVE / IN PROGRESS；不是 usable、implementation complete、完整 D4 或 Epic complete。
+
+## 9. Command failed lifecycle RCA 验证
+
+| 层级 | 只读证据 | 结果 |
+|---|---|---|
+| Runtime authority | `core/src/tools/events.rs` 定义 started；非零 exit 映射 failed；terminal `item/completed` 携带 status、exit code、duration | PASS：canonical 语义闭合 |
+| Existing real-call metadata | 唯一 exit 0 窗口有 started=1/completed=1；四个 exit 128 窗口均为 started=0/completed=0 | PASS：首次缺失早于 Host intake |
+| Runtime root cause | `sandboxing/src/denial.rs` denial heuristic + `core/src/unified_exec/process.rs` quick-exit check + `core/src/unified_exec/process_manager.rs` pre-emitter error return | PASS：失败结果在 emitter 创建前被误判并提前返回 |
+| Host projector/consumer | source review：failed mapper、stable `command_failed`、completed-only recovery、duplicate/late sealing；16 个 FEAT-136 focused tests | PASS（source）；无 failed-only drop branch且未收到 Runtime producer Item。16 tests 全 PASS，但缺少 exact failed/nonzero mapper regression，保留 coverage gap |
+| Desktop consumer | Rust decoder/reducer/SQLCipher/IPC 与 TS decoder/store/UI source review；Rust 20/20、TS 5 files / 119 tests | PASS（source/分层）；未发现 drop 或生产代码修复点，但缺少 failed+nonzero→SQLCipher reopen→IPC→store/UI 的单一整链回归，不把分层 PASS 扩写为完整 failed hydration vertical |
+| Contracts | v5 closed failed status/error/exit/duration 语义 | PASS；无需改约 |
+| Repair feasibility | 固定 Runtime 禁止修改/升级/重编译/替换；Host/Desktop 禁止制造 producer；shell/sandbox 不变 | BLOCKED：当前授权内无合法修复 |
+| Fresh D4 | 仅在修复并复审通过后单独申请新额度 | NOT AUTHORIZED / NOT RUN；本轮真实调用 0 次 |
+| Tool D4 | 等待真实 producer/Owner | BLOCKED / NOT RUN |
+
+复审结论：RCA 证据能够解释“模型看到非零结果但 Desktop 没有 failed Item”的表面矛盾。Host/Desktop 从 output 文本反推 lifecycle 会绕过 identity、redaction、event-ID、replay 与 reconciliation authority，故明确拒绝该伪修复。唯一推荐的下一步是先取得 Owner 对 Runtime producer patch/升级的单独授权，使 early sandbox-denial 路径发布 canonical lifecycle；完成修复和独立复审后，才进入“申请 fresh D4 新额度”阶段。

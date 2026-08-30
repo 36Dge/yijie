@@ -43,7 +43,7 @@ product_ux:
   status: "PASS"
   primary_user: "在易界 AI Desktop 中需要理解 Agent 正在执行什么、看到安全的 Command 输出与 Tool 进度，并准确判断成功、失败或拒绝结果的本地用户"
   problem: "固定 Runtime 已有 CommandExecution 与 McpToolCall 生命周期，但 FEAT-136 起点的 Host/Desktop 只保留泛化 Item 类型，丢失安全摘要、输出、进度、状态、耗时和错误；用户只能看到笼统处理中，也无法保证实时事件与历史 hydration 的结构一致。"
-  user_outcome: "Host 和 Desktop 本地实现已按同一 v5 权威契约提供 Command/Tool 安全投影，canonical D4 entrypoint gate repair 和 clean 本地 commits 已完成。真实安全只读 Command D4 已执行 3/3 次：一个 success Command 的 completed 安全投影与单 Item hydration 可见，但隔离 Git repo 内两个 exit 128 结果没有 failed Command Item/stable error，因此 Command D4 FAIL；Tool D4 继续 BLOCKED/NOT RUN，整体 Feature active / in progress。"
+  user_outcome: "Host 和 Desktop 本地实现已按同一 v5 权威契约提供 Command/Tool 安全投影，canonical D4 entrypoint gate repair 和 clean 本地 commits 已完成。原真实安全只读 Command D4 保持 FAIL；追加 RCA 已证明 failed lifecycle 在 fixed Runtime unified-exec emitter 创建前丢失，Host/Desktop 没有收到失败 Item。Runtime freeze 使 repair BLOCKED；RCA 本轮 0 次真实调用，fresh D4 新额度未申请且 NOT RUN；Tool D4 继续 BLOCKED/NOT RUN，整体 Feature active / in progress。"
   in_scope:
     - "引用 FEAT-131 CAP-016、CAP-017 与 GS-003、GS-004，Command 是本 Feature 的 Must"
     - "新增显式协商的 AgentSessionEventV5，保留 v1 至 v4 schema、proto、route 和 consumer 语义"
@@ -54,8 +54,9 @@ product_ux:
     - "固定 yijie-contracts 的 source/generated 不可变本地 commit，并在 Host/Desktop 精确 pin 完整 SHA、v0.7.0、schema 与普通 fixture digest"
     - "实现 Host v5 negotiation、Command mapper/redactor/caps、generic Tool projection、event ID/replay 与 completed reconciliation"
     - "实现 Desktop v5 closed decoder、event-ID reducer、SQLCipher additive migration、mixed history hydration、Command/Tool UI 与无障碍状态"
-    - "完成 Host producer 到 Desktop consumer 的 source-anchored conformance，并固化 Host/Desktop clean 本地 commits"
+    - "完成 Host v5 projector 到 Desktop consumer 的 source-anchored conformance，并固化 Host/Desktop clean 本地 commits；Runtime 始终是 authoritative Command producer"
     - "修复 canonical runner、stable build 与 sidecar FEAT-136 gate；完成独立审查后执行 3/3 次已授权的安全只读 Command D4并如实保留 FAIL 证据"
+    - "单独完成 Command failed lifecycle 只读 RCA、首次丢失点定位、Host/Desktop 消费链复审与合法修复边界判定"
   out_of_scope:
     - "不执行 Tool D4；真实 Command D4 仅使用两个闭合的 allowlisted 只读 Command 形式；Call 2/3 是用户在 Call 1 后明确允许的追加请求，没有自动、隐式或超额重试，3/3 额度已耗尽"
     - "不注册新 MCP server、Connector、dynamic tool 或真实 Tool producer，不开启 experimentalApi"
@@ -64,13 +65,14 @@ product_ux:
     - "不把 FEAT-128 Artifact 合并或包装为 Command、Tool、FileChange 或 Diff"
     - "不透传 raw command、canonical cwd、process id、command actions、MCP arguments/result/content/structured content/meta、plugin/app context、token、secret 或 Runtime wire"
     - "不修改、升级、重编译、替换、同步或重新固定 Runtime；固定 experimentalApi=false"
+    - "RCA 阶段不调用 Provider/模型；只有合法修复与独立复审均通过后才单独申请 fresh D4 新额度，当前未申请且未重跑"
     - "不 push、merge、tag、publish、release 或 deploy"
   main_flow:
     - "Contracts 先从固定 Runtime stable CommandExecution、outputDelta、McpToolCall 与 progress 事实建立 v5 安全投影；旧版本保持原样。"
     - "Host 按真实 event_id、turn_id 和 item_id 映射、脱敏、计数与截断；同文本的不同 event_id 保留，同 event_id replay 只消费一次。"
     - "Desktop reducer 按 item identity 聚合 Command delta 和 Tool progress，并以 item.completed 的 bounded snapshot 封口 Item；普通 error 不封口 Turn。"
     - "Desktop 仅持久化身份、kind/status、安全摘要、caps/truncation、duration/exit/error 和终态元数据；mixed legacy/v4/v5 history 按 Turn authority hydrate，不把旧行伪装 v5。"
-    - "Host 与 Desktop 使用同一 schema/11 个普通 fixture 完成 source-anchored conformance；canonical gate repair 后通过 pnpm tauri:demo-fast:stable 执行 Command D4。success 投影/hydration 局部成立，failed lifecycle 缺失而 FAIL；Tool D4 始终保持 blocked。"
+    - "Host 与 Desktop 使用同一 schema/11 个普通 fixture 完成 source-anchored conformance；canonical gate repair 后通过 pnpm tauri:demo-fast:stable 执行 Command D4。success 投影/hydration 局部成立，failed lifecycle 缺失而 FAIL；追加 RCA 将首次缺失定位到 fixed Runtime pre-emitter early return，repair 与 fresh D4 均保持 blocked/not run；Tool D4 始终保持 blocked。"
   visual_direction: "继承 FEAT-131 的 Codex-inspired approximation 与 Yijie Design System；Command/Tool Item 以状态、摘要和结果为主，输出可折叠、可安全复制，错误和截断不只依赖颜色。component/a11y 自动化已实现；真实 App 的 light 与 AX 200% 局部 PASS，精确 1180×760 和 dark live NOT RUN。"
   ui_states:
     idle: "没有 active Command/Tool 时不显示伪造 Item 或状态；历史只读取已经持久化的权威安全投影。"
@@ -84,7 +86,7 @@ product_ux:
 must_acceptance:
   - id: "AC-001"
     statement: "Command 真实经历 started、零到多个 output delta、completed，并准确区分 running、completed、failed、declined、exit code 与 duration；普通 error 不自行终止 Turn。"
-    verification: "Host mapper、Desktop reducer 与 source-anchored conformance focused PASS；真实 D4 只有 success completed Item，隔离 Git repo 内两个 exit 128 结果均无 failed Item，started/delta 未直接观察。"
+    verification: "Host mapper、Desktop reducer 与 source-anchored conformance focused PASS；真实 D4 只有 success completed Item，隔离 Git repo 内两个 exit 128 结果均无 failed Item。追加 RCA 证明四个既有 exit 128 窗口在 Runtime app-server 侧 started/completed 均为 0，首次缺失位于 fixed Runtime pre-emitter early return。"
     status: "fail"
   - id: "AC-002"
     statement: "SSE/replay 只按 event_id 去重；同一 item 连续出现内容完全相同但 event_id 不同的 output chunk 时，两段都被保留，且 stream/sequence gap 进入保守恢复。"
@@ -96,7 +98,7 @@ must_acceptance:
     status: "pending"
   - id: "AC-004"
     statement: "Command 只包含安全 display summary、结构化 workspace-relative/redacted cwd、bounded output、truncated/reason、duration、exit code 与 stable error；不含 raw Runtime、绝对路径或秘密。"
-    verification: "v5 schema allowlist/caps、Host redaction/caps 与 Desktop closed decoder/component copy tests PASS；真实 success Item 的 safe cwd/脱敏输出可见，但隔离 Git repo 内两个失败结果无 stable error；用户消息本身显示 allowlist 文本，whole-WebView no-raw 字面标准不满足。"
+    verification: "v5 schema allowlist/caps、Host redaction/caps 与 Desktop closed decoder/component copy tests PASS；真实 success Item 的 safe cwd/脱敏输出可见，但 Runtime 未发布失败 Item，故 Host 无法产生 stable error；用户消息本身显示 allowlist 文本，whole-WebView no-raw 字面标准不满足。"
     status: "fail"
   - id: "AC-005"
     statement: "通用 MCP Tool contract 表达 started、progress、completed/failed 及预留 declined，且只暴露安全 server/tool identity、metadata-only arguments/progress/result summary、duration、stable error 和 truncation；不新增 Tool producer。"
@@ -158,18 +160,18 @@ contract:
       result: "v1-v4 JSON/Proto sources不变；最终无 open P0/P1/P2；immutable commit 3c3000a6fbe2f08ab2131a463a1691e867d661b1 clean"
 
 external_authorizations:
-  paid_calls: { allowed: true, max_actions: 3, approved_by: "当前用户（FEAT-136 第三批最多 3 次；Call 1 后又明确允许发起 Call 2/3；已用 3/3，无自动、隐式或超额重试）", approved_at: "2026-08-29T16:57:51Z" }
+  paid_calls: { allowed: false, max_actions: 0, approved_by: "N/A（原第三批 3/3 历史授权已耗尽；追加 RCA 本轮 0 次；fresh D4 新额度未申请）", approved_at: "N/A" }
   destructive_operations: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
   production_writes: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
 
 implementation:
   status: "active"
-  real_entrypoint: "yijie-desktop 中执行 pnpm tauri:demo-fast:stable；仅 local/demo_fast，FEAT-136 精确依赖 FEAT-134 Native/Web gates；固定 experimentalApi=false、sandbox=read-only、approvalPolicy=never；真实 Command D4 已执行 3/3 次并 FAIL，停止且不再发起请求"
+  real_entrypoint: "yijie-desktop 中执行 pnpm tauri:demo-fast:stable；仅 local/demo_fast，FEAT-136 精确依赖 FEAT-134 Native/Web gates；固定 experimentalApi=false、sandbox=read-only、approvalPolicy=never；原真实 Command D4 已执行 3/3 次并 FAIL。追加 RCA 已定位 fixed Runtime producer blocker；repair 通过前不申请 fresh D4 新额度、不重跑"
   mock_only: false
 
 verification:
   status: "FAIL"
-  verified_at: "2026-08-30T01:39:44+08:00"
+  verified_at: "2026-08-30T10:00:51+08:00"
   startup:
     status: "PASS"
     command_or_steps: "通过 canonical local/demo_fast stable 入口正常启动；使用正常 Cmd+Q 关闭、确认 runner exit 0，并正常重开后再次正常关闭。"
@@ -221,6 +223,21 @@ verification:
       status: "PASS"
       exit_code: 0
       result: "Host/Desktop schema SHA-256 2f773dd6dc60bc7dc01bcdb434447e945e0a98317534498f54325fcdabb27008；11 个普通 fixture 逐字节一致；source-anchored conformance PASS，不等于 Runtime D4"
+    - repository: "yijie-codex"
+      command: "read-only failed lifecycle source and existing real-call metadata correlation"
+      status: "PASS"
+      exit_code: 0
+      result: "canonical 非零→failed 语义闭合；唯一 exit 0 窗口有 started/completed，四个 exit 128 窗口均无 Command lifecycle；首次缺失定位到 unified-exec pre-emitter sandbox-denial early return。Runtime 未修改、构建或替换"
+    - repository: "yijie-agent-host"
+      command: "read-only failed lifecycle mapper/reconciliation review + FEAT-136 focused tests"
+      status: "PASS"
+      exit_code: 0
+      result: "源码复审确认 failed mapper/stable error/completed-only recovery/duplicate-late sealing 存在且无 failed-only drop branch；16 个 focused tests PASS，但缺少 exact failed/nonzero mapper regression。Host 未收到 Runtime producer Item，无合法 repair"
+    - repository: "yijie-desktop"
+      command: "read-only failed lifecycle decoder/reducer/SQLCipher/IPC/store/UI review + focused tests"
+      status: "PASS"
+      exit_code: 0
+      result: "Rust 20/20、TS 5 files/119 tests PASS；source/分层复审未发现 drop 或生产代码修复点，但缺少 failed+nonzero→SQLCipher reopen→IPC→store/UI 的单一整链回归，不声称完整 failed hydration vertical PASS"
     - repository: "yijie"
       command: "./docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict --gate D0 docs/features/FEAT-136-desktop-command-tool-items"
       status: "PASS"
@@ -235,16 +252,19 @@ verification:
     - "00-feature-brief.md"
     - "01-delivery-log.md"
     - "02-verification.md"
-    - "yijie@82e4010ff34309998c405085c14e3a8988c7113a + 本次 D4 evidence delta"
+    - "yijie@be5c1f91bd1c0f1f10878ea279721dac4eab3dc8 + 本次 RCA evidence delta"
     - "yijie-contracts@3c3000a6fbe2f08ab2131a463a1691e867d661b1"
     - "yijie-agent-host@83d3163e21579042d2cc21f303e943946ff97eb0（parent b9358f06f3a15aa17a2471cf0bb8bfd0e2b29bfe）"
     - "yijie-desktop@69bfacd25b48917cb6102cf1b1b85ca0f9f6bdba + canonical repair 65ee3062833ef3d185511599d8f3a4018f635369（base fc52ef33cdf040d9b6e8d71bd7498811c5c38c51）"
     - "本次 Command D4 脱敏 evidence delta：3/3 calls、一个 success Item、两个 Git-bound failed lifecycle 缺口、正常 hydration 与局部 live UI；不含命令字面量/path/secret/bookmark/prompt/wire"
-  diff_review: { status: "PASS", summary: "Contracts 最终无 finding；Host 独立审查无 P0/P1，保留未由 Contracts 冻结 active-item count cap 的后续 hardening P2；Desktop core 的 Unicode、mixed history、sticky-v4 marker 与 completed-only findings 均已修复，10-file canonical runner/stable build/sidecar repair 独立审查也无 P0/P1/P2。该 source diff review 与真实 Command D4 FAIL 分开记录。" }
+    - "Command failed lifecycle RCA evidence：fixed Runtime canonical 语义、existing-call notification counts、pre-emitter early return 根因、downstream no-fix 复审与本轮 0 calls；不含命令字面量/path/secret/prompt/wire"
+  diff_review: { status: "PASS", summary: "Contracts 最终无 finding；Host 独立审查无 P0/P1，保留未由 Contracts 冻结 active-item count cap 的后续 hardening P2；Desktop core 与 canonical gate repair 无 P0/P1/P2。追加 failed lifecycle RCA 复审确认 Contracts/Host/Desktop 对合法 failed Item 的语义与消费链成立，首次缺失在 fixed Runtime pre-emitter producer；四个产品仓无修复 diff。该 source review 与真实 Command D4 FAIL、Runtime repair BLOCKED 分开记录。" }
   known_limitations:
     - "固定 Runtime MCP Tool status 只有 inProgress、completed、failed；v5 的 declined 是 Yijie 预留终态，当前没有 stable real producer。"
     - "CAP-017 的实际产品 Tool 与 GS-004 real-runtime 仍受 owner-product-decision 和 real-runtime-producer-unavailable 阻断，不影响 CAP-016 Command contract。"
-    - "ordinary fixture/source conformance 能证明 Host mapping 与 Desktop decoder/reducer/persistence/UI 的确定性边界；真实 D4 仅观察到一个 success Command，两个正常失败结果的 lifecycle/stable error 仍缺失。"
+    - "ordinary fixture/source conformance 能证明 Host mapping 与 Desktop decoder/reducer/persistence/UI 的确定性边界；追加 RCA 证明 fixed Runtime 对四个既有 exit 128 结果均未发布 Command lifecycle，首次缺失早于 Host intake。"
+    - "四个既有 exit 128 中，前两个属于 Call 1 的错误项目绑定，后两个才是 Git-bound D4 功能失败证据；四个都可证明相同 pre-emitter RCA，但不追溯改变 Call 1 verdict。"
+    - "fixed Runtime unified-exec 会在 emitter 创建前把带 denial 关键字启动诊断的快速非零结果误判为 sandbox-denied；当前禁止 Runtime 或 shell/sandbox 变更，故 Runtime repair BLOCKED，Host/Desktop repair NOT APPLICABLE。"
     - "started/output delta 因执行过快未直接观察；真实 event_id、authoritative reconciliation、late event 未独立观察；normal replay NOT OBSERVED且未注入。"
     - "Host post-run bbolt closed metadata 为 format 2/store schema 4、7 expected buckets、unknown/malformed 0、14/14 session safe projection parse，latest 唯一 idle/completed 且无 active turn；只证明 durable session 终态 reconciliation。DB 无 v5/event journal/Command exit/duration，store schema 4 不得当作 wire v4/v5。"
     - "Desktop 私有 512 Item cap 继承既有 bounded history resource policy，不是 v5 wire constraint；Host active-item count 尚无 Contracts-frozen cap，留作后续 Owner/Contracts hardening。"
@@ -252,8 +272,8 @@ verification:
     - "Command Item 自身未暴露 producer raw command/path/secret/wire，但用户消息为了给 Agent 指定 allowlist 会显示用户亲自输入的命令文本；whole-WebView no-raw 字面标准因此为 FAIL，四文件与保留证据不记录这些字面量。"
     - "Desktop 原始 cargo clippy --lib -- -D warnings 仅命中基线 HEAD 已存在的 database.rs type-complexity；本批使用单一 -A clippy::type_complexity 后其余 strict warnings PASS，未修改或掩盖仓库级 lint debt。"
     - "仓库标准 composite generate/test/build 会触达预存 Zip Slip archive fixture，不能作为本批验收证据；最终使用安全定向替代，archive fixture 路径明确未验证。"
-    - "Host/Desktop 已形成 local-only clean commits；本次 yijie 只新增 D4 evidence delta。均未 push/tag/publish，且不授权 amend/merge。"
-    - "Command D4 真实调用已用 3/3 且 FAIL，额度耗尽，不再发起请求；Tool D4 继续 BLOCKED/NOT RUN，Feature 保持 active。"
+    - "Host/Desktop 已形成 local-only clean commits；yijie 的 D4 evidence 已固化为 be5c1f91bd1c0f1f10878ea279721dac4eab3dc8，本次只新增 RCA evidence delta。均未 push/tag/publish，且不授权 amend/merge。"
+    - "原 Command D4 真实调用已用 3/3 且 FAIL；追加 RCA 本轮 0 次调用。合法 repair 与复审未完成，因此 fresh D4 新额度未申请、fresh D4 NOT RUN；Tool D4 继续 BLOCKED/NOT RUN，Feature 保持 active。"
 
 public_readiness:
   required: false
