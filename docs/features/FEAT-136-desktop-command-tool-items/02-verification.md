@@ -1,144 +1,141 @@
 # FEAT-136 Demo 验证
 
-> 当前 verdict：D0/Contracts、Host/Desktop source-anchored conformance 与 canonical D4 entrypoint gate repair 保持 PASS；原真实 Command D4 保持 FAIL。追加的 failed lifecycle RCA 已 PASS 并定位 fixed Runtime pre-emitter early return，但 repair 因 Runtime freeze 为 BLOCKED。RCA 本轮 Provider/模型调用 0 次，fresh D4 新额度 NOT REQUESTED、fresh D4 NOT RUN；Tool D4 BLOCKED/NOT RUN；overall Feature active / in progress。
+> 当前 verdict：Owner-authorized Runtime repair、repin、复审与 **fresh Command tranche PASS**；真实请求 **1/5**。FEAT-136 overall verification 仍为 **FAIL / incomplete**，因为 Tool D4 BLOCKED/NOT RUN，且 replay/unknown/完整视觉等 Must 仍 pending。Feature 保持 active，不声明完整 D4 或 usable。
 >
-> 本文不会把 synthetic fixture、source-anchored Host→Desktop conformance 或 component test 写成 Runtime real vertical、真实 Tool producer或视觉实测。
+> 本文区分 prior 3/3 FAIL、RCA 0-call、fresh 1/5 PASS；不把 source conformance 或 component tests冒充未观察到的真实 replay/Tool/visual vertical。
 
-## 1. D0 检查
+## 1. D0 与 authority 检查
 
 | Check | Result | 实际事实 |
 |---|---|---|
-| Feature ID | PASS | 正式 feature 目录创建前无 FEAT-136，ID 可用 |
-| schema/profile/exposure | PASS | schema v3 / demo_fast / local |
-| Product/UX | PASS | 用户、问题、结果、主流程、7 个 UI 状态与 8 条可判定 Must AC 已冻结 |
-| Contract classification | PASS | semantic；closed v4 使用显式协商 v5，不修改 v1 至 v4 |
-| Runtime freeze | PASS | 0.144.6、0ce5902e、267 schema、固定 digest、experimentalApi=false |
-| Scope exclusions | PASS | Runtime、审批、FileChange/Diff、Artifact producer/产品能力、权限与 Tool producer 未新增或改变；Desktop 仅为 inherited v5 Artifact 事件做 closed-decoder/Unicode 边界兼容；真实 D4 未扩大到 Tool |
-| Tool gap | PASS | generic contract 可做；真实 Tool producer/GS-004 仍 blocked/not run，不阻塞 Command |
-| Git protection | PASS | FEAT-138 治理 commit 已独立固化；其它已完成 commits 未改写 |
+| Feature envelope | PASS | schema v3 / demo_fast / local；Feature active |
+| Product/UX | PASS | 用户、问题、结果、主流程、7 个 UI states 与 8 个 Must AC 已冻结 |
+| Contract classification | PASS | semantic；closed v4 使用显式协商 v5，v1 至 v4 不变 |
+| Runtime scope | PASS | `runtime_change=runtime`；Owner-authorized producer source patch；reported 0.144.6 |
+| Scope exclusions | PASS | Tool producer、FileChange、Diff、审批、写权限、FEAT-138、experimentalApi 与 production 均未进入本批 |
+| Safety | PASS | 只用正常启动/退出；无强杀、故障注入、权限破坏、binary 替换或攻击 fixture |
+| Git protection | PASS | 五仓 clean；local commits only；无 amend/push/tag/merge/publish |
 
-## 2. D0 与 Contracts focused checks
+## 2. Final commit、pin 与 artifact
 
-| Repository/CWD | Command | Exit | Result | 时间 |
-|---|---|---:|---|---|
-| yijie | pnpm lint && pnpm test && pnpm feature:audit | 0 | PASS：10 repos、48 tests、15 committed claims；仅预期 legacy v1 warnings；当前包另由 strict D0 gate 直接验证 | 2026-08-29 |
-| yijie | strict D0 package check | 0 | PASS：schema v3 / demo_fast / local D0 gate | 2026-08-29 |
-| yijie-contracts | scoped generation + repeated generated SHA comparison | 0 | PASS：Buf、Agent Host OpenAPI Go/TS、AsyncAPI、v5 JSON Schema TS；7 项 HASH_MATCH=true | 2026-08-29 |
-| yijie-contracts | make lint | 0 | PASS：OpenAPI/AsyncAPI、15 JSON Schema、Buf、TS no-emit、Go vet | 2026-08-29 |
-| yijie-contracts | safe Node suite / Go tests / direct TS build | 0 | PASS：63/63 Node（排除 archive fixture test）、go test ./...、tsc | 2026-08-29 |
-| yijie-contracts | v1 equality / candidate + published breaking | 0 | PASS：v1 exact；两个 baseline 均无结构 breaking | 2026-08-29 |
-| yijie-contracts | diff/protected/generated/semantic review | 0 | PASS：最终无 open P0/P1/P2；commit 3c3000a6fbe2f08ab2131a463a1691e867d661b1 clean | 2026-08-29 |
-| yijie-agent-host | `make lint && make test-feat136 && git diff --check` | 0 | PASS：exact contract checker；session/app race tests；runtime compatibility；未读取禁止 fixture blob | 2026-08-29 |
-| yijie-desktop | `cargo fmt --all -- --check`；`cargo check --lib`；`cargo test feat136_ --lib`；targeted strict clippy | 0 | PASS：fmt/check；修复后统一 FEAT-136 Rust suite 20/20；`cargo clippy --lib -- -D warnings -A clippy::type_complexity`；原始 strict clippy 仅命中 base HEAD 已存在的 type-complexity baseline | 2026-08-30 |
-| yijie-desktop | FEAT-136 domain/API/store + chat component Vitest；`vue-tsc --noEmit`；scoped ESLint；`pnpm build` | 0 | PASS：27 files / 298 tests；typecheck、lint、production build；仅既有 500 KiB chunk warning；不等于真实 App visual | 2026-08-30 |
-| yijie-desktop | canonical gate direct checker；repair Vitest；`cargo test feat136_sidecar_ --lib`；runner/release/build focused checks | 0 | PASS：exact Contracts/Host clean checkout；3 files / 27 Node tests；sidecar 2/2；`bash -n`、release env、Skill resource boundary、fmt/check/clippy/typecheck/lint/diff check；独立 repair review 无 P0/P1/P2 | 2026-08-30 |
-| Host→Desktop | exact schema/11 ordinary fixtures byte comparison + producer/consumer focused suites | 0 | PASS：Host/Desktop schema SHA-256 均为 `2f773dd6dc60bc7dc01bcdb434447e945e0a98317534498f54325fcdabb27008`，11 个普通 fixture 逐字节匹配 exact Contracts commit；不是 live Runtime D4 | 2026-08-30 |
-
-## 3. 真实 Command D4 调用证据
-
-| Call | 安全设置 | 实际结果 |
+| Repository | Final commit | Verification |
 |---|---|---|
-| Call 1 | canonical gates 开启；既有 bookmark 目标仍是非 Git 的历史空 smoke 目录；只使用两个 allowlisted 只读 Command 形式 | 两个结果均 exit 128；无 Command Item。归类为环境/项目绑定失败，不冒充功能 PASS |
-| Call 2 | 同一 bookmark 精确目标已初始化为无 remote 的隔离 Git repo；仅一个 benign untracked 文件；恰好两次 `exec_command`，参数逐字匹配 allowlist | 结果为 exit 0 / exit 128，无第三条命令；只有成功结果形成 completed Command Item，失败结果没有 failed Item/stable error |
-| Call 3 | 只使用一次 allowlisted missing-ref 失败形式，无额外命令 | exit 128；仍无 Command Item，仅过程/未分类消息 |
+| yijie-codex | `b2b20e2fc4a0c94834f34d8cc459e488a1b56277` | Runtime repair source与 artifact provenance clean |
+| yijie-contracts | `87f94c9aa6d4848cb67aa8a1265bd21474edb0bb` | v0.7.0，兼容性精确指向 final Runtime |
+| yijie-agent-host | `96b1fa19783694aef583b614c492fd2b6b5c15cc` | Contracts/artifact exact pin，Host focused PASS |
+| yijie-desktop | `7026b47828961e58854b06c822c9c9e11252260d` | Host/Contracts/artifact exact pin，Desktop focused PASS |
+| yijie | `5b637fc3c0cd10e8294011857764884750435415` + 本次唯一 evidence commit | 只回填四文件包 |
 
-Call 2/3 是当前用户在 Call 1 后明确允许的追加真实请求。Call 1→2 重复两个允许形式以验证修复后的项目绑定，Call 2→3 重复失败形式以隔离投影缺口；没有自动、隐式、越界或超出 3/3 授权的重试。
+- canonical manifest SHA-256：`1cfa2e0a139b2213f4d29b1efeed71d4810110ac865f0bcbd931ff33b0062c1b`，1475 bytes。
+- canonical binary SHA-256：`4efe16d2848680752cf9aacf4c17741ab2eeb7415894a66c2bb03652b00a322d`，355676760 bytes。
+- manifest version / reported Runtime version：0.144.6。
+- cross-pins：Host→Contracts `87f94c9…`，Contracts→Runtime `b2b20e2…`，Desktop→Host `96b1fa1…` / Contracts `87f94c9…`。
+- final read-only cross-repo audit：PASS，无 P0/P1/P2；未发现 MCP/Connector/dynamic-tool registration/config 或 Tool producer 新增。
+
+## 3. Source 与 focused 验证
+
+| Layer | Focused evidence | Result |
+|---|---|---|
+| Contracts | v5 schema/fixtures、safe non-archive tests、scoped generation/digests、lint、v1 equality、双基线 breaking | PASS；v1-v4 不变量保持 |
+| Runtime | early-denial lifecycle regression、stable artifact identity/provenance、source/diff review | PASS；canonical started+failed repair成立 |
+| Host | lint、FEAT-136 mapper/replay/reconciliation/compatibility tests、artifact pin、diff review | PASS；clean |
+| Desktop | 7 targeted Vitest files / 131 tests | PASS |
+| Desktop Rust | failed/nonzero reducer→SQLCipher reopen→IPC 2/2；v5 failed fixture 1/1 | PASS，3/3 |
+| Desktop static | typecheck、scoped ESLint、diff check | PASS |
+| Host→Desktop | exact v5 schema + 11 ordinary fixtures + producer/consumer suites | PASS；source-anchored，不等于 live replay |
+
+未运行会触达预存危险 archive/攻击 fixture 或权限/故障破坏的 broad/composite suites；以上安全定向替代证据不扩写到未覆盖范围。
+
+## 4. Prior attempt 与 RCA 历史
+
+| Phase | Requests | Result |
+|---|---:|---|
+| Prior D4 Call 1 | 1 | bookmark 绑定到非 Git 空目录；环境/项目绑定失败 |
+| Prior D4 Call 2 | 1 | 成功结果形成 completed Item；安全失败结果未形成 failed Item |
+| Prior D4 Call 3 | 1 | 再次隔离安全失败；failed lifecycle 仍缺失 |
+| RCA | 0 | 首次丢失定位到 Runtime pre-emitter early sandbox-denial return；downstream 无合法 producer 修复点 |
+
+旧 3/3 授权已经用尽，prior verdict 保持 FAIL。历史 commits `3c3000a6…`、`83d3163e…`、`65ee306…`、`be5c1f9…`、`5b637fc…` 保持可追溯，不由 fresh 结果覆盖。
+
+## 5. Owner repair 与 fresh Command tranche
+
+### 5.1 授权与 preflight
+
+- Owner 授权 Runtime producer patch/升级边界，并于 `2026-08-30T10:30:59+08:00` 把 fresh 调用上限设为 5。
+- canonical local/demo_fast stable 入口；experimentalApi=false、sandbox=read-only、approvalPolicy=never；FEAT-134/136 gates 开启。
+- 使用本任务创建的隔离、无敏感、无 remote Git repo；无 commit，恰好一个 benign untracked 文件，missing ref 预先确认不存在。
+- 实际 Provider/模型请求 **1/5**；无重试；未发起第 2 至第 5 次请求。
+- 单次请求内恰好执行两个独立 allowlisted 只读 Command；没有第三条或其它命令。
+
+### 5.2 实际 lifecycle 与 cardinality
 
 | Area | Result | 脱敏证据边界 |
 |---|---|---|
-| Canonical v5 gate | PARTIAL PASS | FEAT-134/136 dependent gates 实际开启，success Command 的 v5-only 投影可见；没有检查或记录握手/Runtime wire，不宣称 wire-level negotiation |
-| Success Command | PARTIAL PASS | completed、exit 0、duration 0、安全 cwd 与脱敏输出可见；started/output delta 因执行过快未直接观察 |
-| Failed Command | FAIL | 两个正常 exit 128 结果均没有 failed Command Item 或 stable error |
-| Command cardinality | FAIL | 三次调用共 5 个允许的命令执行结果只形成一个 Command Item；其中有效 Git 绑定下 3 个结果也只形成一个 Item，不满足每个 Command 恰好一次 |
-| event identity/reconciliation | NOT OBSERVED | 真实 event_id 幂等、completed authoritative reconciliation、late event 不回滚均未独立观察 |
-| replay | NOT OBSERVED | 正常流程未自然出现 replay；未断连、注入或伪造 |
-| SQLCipher hydration | PASS（局部） | 正常 Cmd+Q、runner exit 0、canonical 重开后恰好恢复一个 success Command Item，未重复；最终再次正常 Cmd+Q，runner exit 0 |
-| Host post-run metadata | PASS（局部） | App/Host stopped、loopback 端口 idle；bbolt format 2、store schema 4、7 个预期 bucket、unknown/malformed 0；14/14 session safe projection 可解析，唯一 latest session 为 idle/completed 且无 active turn |
-| Item UI/a11y | PASS（局部） | success Item 的折叠、键盘、状态文字、AX live announcement 与安全复制 live 可见；状态图标只有 component 证据，未单独做 live 判定 |
-| light / 200% | PASS（局部） | 当前 light 主题 live 可见；键盘缩放到 AX 明确的 200% 后仍可键盘/AX 访问，并正常恢复 100% |
-| 1180×760 / dark | NOT RUN（live） | 源码配置静态覆盖 width 1180、height 780、minWidth 1180、minHeight 760，但未精确调整到 1180×760；dark 跟随系统外观，本轮未更改系统设置 |
-| Command Item / evidence safety | PASS（局部） | Command Item 未暴露 producer raw command、绝对路径、secret、raw bookmark 或 Runtime wire；四文件与保留截图/证据不记录命令字面量、路径、prompt 或 wire |
-| Whole WebView no-raw | FAIL | 用户消息为指定 allowlist 而显示了用户亲自输入的命令文本；这不是 producer 投影泄漏，但意味着不能声称整个 WebView 不含任何 raw command |
+| Canonical v5 gated projection | PASS | FEAT-134/136 gates 实际开启，v5-only Command projection 可见；未采集 Runtime wire，不声称 wire dump |
+| Completed Command | PASS | completed、exit 0、duration 0ms、安全/脱敏 output |
+| Failed Command | PASS | failed、exit 128、duration 0ms、stable `command_failed` |
+| Command cardinality | PASS | 一个 Provider 请求、两个真实 Command、两个 Item；无第三条命令、无重复 Item |
+| Started / output delta live | PARTIAL | Turn generating/progress transition可见；Command 执行过快，Item started 与独立 output-delta event 未直接捕获；协议/mapper/reducer 由 focused tests覆盖 |
+| event identity / late event live | NOT OBSERVED | 真实 event_id 与 late event 未单独出现；未注入或伪造 |
+| normal replay | NOT OBSERVED | 正常流程没有自然重连/replay；未断连制造 |
 
-原真实调用额度 3/3 已耗尽。由于 failed lifecycle、stable error、每命令一次与整个 WebView 的字面 no-raw 标准不成立，Command D4 verdict 为 **FAIL**。failed lifecycle RCA 阶段没有发起新调用；fresh D4 只有在合法修复和复审通过后才可单独申请新额度，当前未满足。
+### 5.3 Hydration、UI 与安全
 
-## 4. Host→Desktop 验证矩阵
-
-| Area | Required evidence | Current result |
+| Area | Result | 实际证据 |
 |---|---|---|
-| Command started/output/completed | canonical safe fixtures + Host mapper + Desktop decoder/reducer | focused source conformance PASS；真实 success completed 可见，started/delta 未直接观察 |
-| Command failed/declined | closed status/error + persistence/hydration | focused source conformance PASS；真实 failed lifecycle/stable error FAIL |
-| Duplicate identity | same event_id consumed once | Host replay + Desktop event-ID reducer PASS |
-| Legal duplicate text | identical text with distinct event_id retained twice | Host/Desktop focused tests PASS |
-| Output cap/truncation | 16 KiB delta、256 KiB complete/head-tail/unavailable snapshot、compact SSE 1 MiB | Host projection + Desktop DB/UI decoder PASS |
-| Secret/path boundary | allowlist、redaction before caps、closed cwd、copy safe output | Host sanitizer + Desktop parser/component tests PASS；真实 success Item 仅见安全 cwd 与脱敏输出 |
-| Tool progress/result/error | bounded metadata-only stable projection | producer/consumer source tests PASS；real Tool BLOCKED/NOT RUN |
-| Unknown Tool/event | fixed unknown sentinel；unknown variant fail-closed + resync | Host projection + Desktop decoder/application PASS |
-| V5 closed decoder | exact variants/null/Unicode char+UTF-8 boundaries | focused Desktop Rust/TS PASS；v1-v4 path preserved |
-| Completed reconciliation | authoritative completed snapshot and late-delta rule | Host mapper + Desktop reducer/SQLCipher hydration PASS |
-| Mixed history | populated v9→v10、legacy/v4/v5 Turn authority | additive migration + IPC/adapter/store tests PASS；旧行未伪装 v5 |
-| v1-v4 compatibility | named-family isolation + v1 wire equality + dual breaking baselines | PASS |
-| FEAT-138 exclusion | closed schema/proto/event/generic allowlist；不创建 FileChange/Diff fixture | PASS |
+| Normal shutdown/reopen | PASS | 正常 Cmd+Q，runner exit 0；canonical 重开；再次正常 Cmd+Q，runner exit 0；最终 loopback 端口 idle |
+| SQLCipher hydration | PASS | 重开后 Command Items=2，completed=1，failed=1；每条只出现一次，无 terminal rollback |
+| Disclosure / keyboard | PASS | Tab 到达 Command Item；Return 展开和折叠；焦点与内容保持 |
+| Status / icon / aria-live | PASS | completed/failed 状态文字和图标可区分，live region 提供状态反馈，不只依赖颜色 |
+| Safe copy | PASS | UI 显示复制成功；clipboard 不含 raw command、绝对路径、秘密或 Runtime wire，并保留显式脱敏标记 |
+| Light | PASS | 当前系统 light 主题下 live 可读 |
+| 200% zoom | PASS | AX 明确显示 200%；Items 仍可键盘/AX访问；随后正常恢复 100% |
+| Exact 1180×760 | NOT RUN live | 静态配置 width 1180、height 780、minWidth 1180、minHeight 760；没有伪造 exact live 结果 |
+| Dark | NOT RUN live | Desktop 跟随 macOS 系统外观；本批未修改系统主题 |
+| Whole WebView literal no-raw | LIMITATION | Command projection、copy与四文件证据安全；用户消息自身含 allowlist 文字，因此不声明整页字面 no-raw PASS |
 
-## 5. Must AC 状态
+## 6. Host→Desktop 验证矩阵
+
+| Area | Current result |
+|---|---|
+| Command completed/failed、exit/duration/stable error | fresh real PASS |
+| Command started/output delta | focused source PASS；live individual events未独立捕获 |
+| Duplicate event identity / legal duplicate text | focused source PASS；natural replay NOT OBSERVED |
+| Completed snapshot / late-event seal | reducer/DB focused PASS；real hydration无回滚；live late event NOT OBSERVED |
+| Caps/redaction/closed cwd/copy | source/component + fresh real PASS |
+| SQLCipher/mixed history/hydration | focused + fresh real PASS，两个终态各一次 |
+| Tool lifecycle/progress/result/error | generic source conformance PASS；real Tool BLOCKED/NOT RUN |
+| Unknown Tool/event fail-soft/closed resync | focused PASS；real unknown vertical NOT RUN |
+| v1-v4 compatibility | PASS |
+| FEAT-138 exclusion | PASS；无 FileChange/Diff schema/event/fixture/UI/D4 |
+
+## 7. Must AC 状态
 
 | AC | Result | 当前证据边界 |
 |---|---|---|
-| AC-001 | FAIL（focused tests PASS） | success completed 可见，但两个 exit 128 结果无 failed Item；started/delta 未直接观察 |
-| AC-002 | PENDING（source conformance PASS） | 真实 event_id/replay 未独立观察；normal replay NOT OBSERVED |
-| AC-003 | PENDING（reducer/DB/hydration PASS） | success Item 重开后恰好一次；Host metadata 证明 session 终态 reconciliation/无 active turn，但无 Command event journal，late event 未独立观察 |
-| AC-004 | FAIL（sanitizer/closed consumer PASS） | success 安全投影可见，但两个失败结果无 stable error |
-| AC-005 | PENDING（generic source conformance PASS） | 真实 Tool producer/Owner blocked |
-| AC-006 | PENDING（unknown/resync focused PASS） | 真实 recovery vertical NOT RUN |
-| AC-007 | PENDING（migration/mixed hydration focused PASS） | 真实重开仅证明 success Item 恰好一次；failed Item 从未产生 |
-| AC-008 | PENDING（component/a11y PASS） | live light、200%、折叠/键盘/状态文字/AX announcement/复制局部 PASS；状态图标仅 component 证据，1180×760 exact 与 dark live NOT RUN |
+| AC-001 | PENDING | real completed/failed/exit/duration/stable error PASS；Item started/delta live 未独立观察 |
+| AC-002 | PENDING | source event-ID/replay tests PASS；normal replay NOT OBSERVED |
+| AC-003 | PENDING | source reconciliation/late-event + real no-rollback hydration；live event-ID/late event NOT OBSERVED |
+| AC-004 | PASS | real completed/failed closed safety projection与安全复制 PASS |
+| AC-005 | PENDING | generic Tool source PASS；real producer/Tool D4 blocked |
+| AC-006 | PENDING | unknown/resync focused PASS；real vertical NOT RUN |
+| AC-007 | PASS | real normal reopen后 completed/failed 各一次 |
+| AC-008 | PENDING | Command live light/keyboard/200/copy PASS；dark、exact size 与 real Tool UI 未完成 |
 
-AC-001 与 AC-004 为 FAIL；其余 Must AC 保持 pending。不得把局部 success、hydration 或 UI 证据改写为完整 D4/Feature PASS。
+## 8. 安全未执行项与影响
 
-## 6. 安全未执行项
+- 未强杀、故障注入、破坏权限、替换/伪装 binary 或创建攻击 fixture。
+- 未通过断连、重放注入、late-event 注入或伪造制造事件证据；normal replay如实记为 NOT OBSERVED。
+- 未更改 macOS 外观；dark live NOT RUN。未伪造 exact 1180×760 live。
+- 未执行 Tool D4、MCP/Connector/dynamic tool 注册、生产写、公网访问、FileChange、Diff、审批、写权限或 FEAT-138。
+- fresh 1/5 后立即停止，剩余 4 次未使用。
+- 影响：fresh Command completed/failed vertical、hydration与核心 UI/安全成立；Tool、真实 replay/unknown/完整视觉仍未完成，所以整个 FEAT-136 D4 gate 必须保持 FAIL。
 
-- 未执行强杀、故障注入、权限破坏、可执行文件/binary 替换、fixture 提取或新增攻击载荷；这些行为由长期安全条款禁止。
-- 初始标准门禁审计中，在识别前曾各调用一次 `make generate`、`node scripts/check-generated.mjs`、`make test`、`make build`；它们会创建或读取仓库预存 Zip Slip archive fixture。其机械 exit-0 结果不接受为 FEAT-136 证据，识别后未重跑，并改用定向生成、重复 digest、63 个非 archive Node tests、完整 Go tests 与 direct TS build。
-- 原 Command D4 的 Provider/模型请求已使用 3/3；Call 2/3 是用户明确允许的追加请求，没有自动、隐式或超额重试。追加 RCA 阶段调用数为 0，fresh D4 新额度未申请、fresh D4 未执行。MCP Tool、生产写或公网访问均未执行。隔离 repo 仅在既有空 smoke 目录内正常初始化，无 remote，且只有 benign untracked 文件。
-- 未执行 FileChange/Diff synthetic event 或 fixture；不存在性只通过 source allowlist 静态审计证明。
-- 未运行仓库全量 Rust/composite suite，因为其中存在长期安全条款禁止的权限破坏、故障/攻击与危险 archive fixture；使用 `cargo check`、命名聚焦 Rust tests、带单一既有 baseline allowance 的 strict clippy、TS/Vue scoped suite替代。原始 `cargo clippy --lib -- -D warnings` 仅在 HEAD 已存在的 `database.rs` type-complexity 上失败；影响是未覆盖与 FEAT-136 无关的全仓测试，也未把该既有 lint 债务伪报为通过。
-- 未通过断连、重放注入、故障注入或伪造来制造 event_id/reconciliation/late-event/replay 证据；normal replay 如实记录为 NOT OBSERVED。
-- 当前 light 与 AX 200% live 可见；精确 1180×760 只由 static/config 覆盖、live NOT RUN，dark 因未更改 macOS 系统外观而 live NOT RUN。
-- App 只使用正常 Cmd+Q、runner 正常退出与 canonical 重开；未强杀进程。Command Item 没有 producer raw command/path/secret/wire 泄漏，四文件与保留截图/证据也不记录命令字面量、绝对路径、secret、raw bookmark、prompt 或 Runtime wire；但用户消息本身显示 allowlist 文本，因此 whole-WebView no-raw 验收为 FAIL。
-- Host 后置检查只读取/输出 closed metadata；未读取或输出任何 ID、cwd、provider、model 或 raw 内容。bbolt store schema 4 是存储 schema，不得据此推断 wire v4/v5；该 DB 也不含 Command exit/duration 或 event journal。
-- 影响：本批证明一个 success Command 的 v5-only安全投影、单 Item hydration 与局部 UI 成立，但真实 failed lifecycle/stable error 和完整事件语义不成立或未观察，因此 Command D4 FAIL。
-
-## 7. Worktree 与 diff
-
-- yijie 先以 67f219b6cf825357285215fcbaafb33c3978acb3 固化 FEAT-138 owner exclusion，再以 c7bc206e89692b591eb044af09de21fdb4f1154d 固化 FEAT-136 D0/Contracts slice；source-conformance evidence 为 82e4010ff34309998c405085c14e3a8988c7113a，D4 FAIL evidence 为 be5c1f91bd1c0f1f10878ea279721dac4eab3dc8；本次 RCA evidence delta 基于后者。
-- yijie-contracts 起点：feat/feat-136-desktop-command-tool-items@3832a6c5e99b2a6365f193280fdb887c8fdbc2de；最终 immutable local commit：3c3000a6fbe2f08ab2131a463a1691e867d661b1，clean。
-- Host 起点精确为 b9358f06f3a15aa17a2471cf0bb8bfd0e2b29bfe，当前 clean commit 为 83d3163e21579042d2cc21f303e943946ff97eb0。
-- Desktop 起点精确为 fc52ef33cdf040d9b6e8d71bd7498811c5c38c51；core commit 为 69bfacd25b48917cb6102cf1b1b85ca0f9f6bdba，canonical repair clean HEAD 为 65ee3062833ef3d185511599d8f3a4018f635369。
-- Runtime 保持只读 clean；Contracts 仍为 exact clean commit。所有 commits 仅本地，未 amend/push/tag/merge。
-- 最终 diff review 已覆盖 core 与 10-file canonical repair：Desktop 无剩余 P0/P1/P2；Host 无 P0/P1，并保留 active-item count cap 的后续 P2。
-
-## 8. 结论
+## 9. 最终结论
 
 - D0：PASS。
-- Contracts slice：COMPLETE / PASS（safety-compliant scoped gate）。
-- Host/Desktop implementation：本地 source-complete；最终聚焦门禁与独立 diff review PASS，clean local commits 已形成。
-- Host→Desktop source-anchored conformance：PASS；不等于 real service。
-- Real Command / D4 tranche：FAIL；原 3/3 次授权调用已耗尽。failed lifecycle RCA PASS，但 Runtime repair BLOCKED；fresh D4 新额度未申请且 fresh D4 NOT RUN。success 投影/hydration 局部 PASS，failed lifecycle/stable error 与 whole-WebView no-raw 标准缺失或不成立。
-- Real Tool / D4：BLOCKED / NOT RUN，等待 producer/Owner。
-- FEAT-136 overall：ACTIVE / IN PROGRESS；不是 usable、implementation complete、完整 D4 或 Epic complete。
-
-## 9. Command failed lifecycle RCA 验证
-
-| 层级 | 只读证据 | 结果 |
-|---|---|---|
-| Runtime authority | `core/src/tools/events.rs` 定义 started；非零 exit 映射 failed；terminal `item/completed` 携带 status、exit code、duration | PASS：canonical 语义闭合 |
-| Existing real-call metadata | 唯一 exit 0 窗口有 started=1/completed=1；四个 exit 128 窗口均为 started=0/completed=0 | PASS：首次缺失早于 Host intake |
-| Runtime root cause | `sandboxing/src/denial.rs` denial heuristic + `core/src/unified_exec/process.rs` quick-exit check + `core/src/unified_exec/process_manager.rs` pre-emitter error return | PASS：失败结果在 emitter 创建前被误判并提前返回 |
-| Host projector/consumer | source review：failed mapper、stable `command_failed`、completed-only recovery、duplicate/late sealing；16 个 FEAT-136 focused tests | PASS（source）；无 failed-only drop branch且未收到 Runtime producer Item。16 tests 全 PASS，但缺少 exact failed/nonzero mapper regression，保留 coverage gap |
-| Desktop consumer | Rust decoder/reducer/SQLCipher/IPC 与 TS decoder/store/UI source review；Rust 20/20、TS 5 files / 119 tests | PASS（source/分层）；未发现 drop 或生产代码修复点，但缺少 failed+nonzero→SQLCipher reopen→IPC→store/UI 的单一整链回归，不把分层 PASS 扩写为完整 failed hydration vertical |
-| Contracts | v5 closed failed status/error/exit/duration 语义 | PASS；无需改约 |
-| Repair feasibility | 固定 Runtime 禁止修改/升级/重编译/替换；Host/Desktop 禁止制造 producer；shell/sandbox 不变 | BLOCKED：当前授权内无合法修复 |
-| Fresh D4 | 仅在修复并复审通过后单独申请新额度 | NOT AUTHORIZED / NOT RUN；本轮真实调用 0 次 |
-| Tool D4 | 等待真实 producer/Owner | BLOCKED / NOT RUN |
-
-复审结论：RCA 证据能够解释“模型看到非零结果但 Desktop 没有 failed Item”的表面矛盾。Host/Desktop 从 output 文本反推 lifecycle 会绕过 identity、redaction、event-ID、replay 与 reconciliation authority，故明确拒绝该伪修复。唯一推荐的下一步是先取得 Owner 对 Runtime producer patch/升级的单独授权，使 early sandbox-denial 路径发布 canonical lifecycle；完成修复和独立复审后，才进入“申请 fresh D4 新额度”阶段。
+- Contracts / Runtime repair / Host / Desktop：source-complete，final pins clean，独立复审 PASS。
+- Fresh Command tranche：PASS，1/5 calls，completed 1 / failed 1，normal hydration each once。
+- FEAT-136 overall verification：FAIL / incomplete；Feature active，不是 usable。
+- Tool D4：BLOCKED / NOT RUN。
+- App/Host 已正常停止；无 push/tag/merge/amend/publish。
