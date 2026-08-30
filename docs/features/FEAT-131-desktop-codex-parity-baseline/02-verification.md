@@ -9,6 +9,8 @@
 > D4 status：`PASS`。Current canonical real smoke、非破坏性代表性失败/恢复检查与独立 scoped diff review 均已完成；人工参考证据已被 Owner 取消，不是 gate。该结论保持 2026-08-27 历史验证事实，不因后续范围调整而重写。
 >
 > Scope amendment：`2026-08-29`。Owner 正式取消/排除 FEAT-138；完整 Epic 后续只需 active FEAT-132–137、FEAT-139–143 实现。此范围修订不代表重新执行 FEAT-131 D4，也不改变原 PASS 证据。
+>
+> Governance rebaseline：`2026-08-30`。Owner 将 FEAT-136 收口到 evidence-backed Command Must，并新增 FEAT-144 承接 CAP-017 / GS-004；当前 active 范围为 FEAT-131–137、FEAT-139–144。Owner-authorized minimal Runtime repair 后 final re-freeze 为 `b2b20e2…` / 0.144.6。该更新只同步 matrix/scenarios/evidence，不重跑或改写 2026-08-27 FEAT-131 D4。
 
 ## 1. 自动化与静态检查
 
@@ -79,7 +81,7 @@ pnpm tauri:demo-fast:stable
 
 - `yijie`：FEAT-131 文档与治理基线。
 - `yijie-desktop`：test-only fixture/harness/boundary scanner，以及既有隔离 stable launcher/config/identity/data roots。
-- `yijie-codex`：固定 `develop@0ce5902ed400866be0196886bb78f693a004d68d`，保持 clean；有意不追随远端更新。
+- `yijie-codex`（2026-08-27 FEAT-131 D4 historical）：当时固定 `develop@0ce5902ed400866be0196886bb78f693a004d68d` 并保持 clean。当前 final re-freeze `b2b20e2fc4a0c94834f34d8cc459e488a1b56277` 的来源与对账见 `03-capability-matrix.md` / `05-reference-evidence-index.md` / FEAT-136，不把后续修复倒写为原 D4 事实。
 - `yijie-contracts` 与 `yijie-agent-host` repository：无修改；公共 wire/Host API/Runtime schema 无变化。
 - 本次从 UI Freeze 改为 reference policy ID 只改变治理与 test-only metadata，不新增生产行为或公共契约。
 - 独立复审先发现 boundary scanner 未覆盖 legacy v1/version/build canary 的 P2；修复后 v1、v2、旧 version/build 与当前 policy canary 均被拒绝，focused 41 tests、35-file dist scan 与 `git diff --check` PASS。

@@ -2,7 +2,7 @@
 
 > Reference policy：`codex-inspired-approximate-parity-v1-2026-08-27` / `owner-approved-inference`
 >
-> Runtime baseline：`yijie-codex 0.144.6` / `experimentalApi=false`
+> Runtime baseline：原始 freeze `0ce5902…`；Owner-authorized FEAT-136 minimal producer patch 后最终 re-freeze `b2b20e2…` / `yijie-codex 0.144.6` / `experimentalApi=false`
 >
 > 当前结论：Codex Desktop 人工媒体、App version/build 和 UI Freeze 均不再需要。后续 Feature 以 Owner 批准的近似策略、Yijie UI 规范和可核对的 Runtime/Host/Desktop 事实实施；current real smoke、真实 safe failure/retry 与 scoped diff review 已完成，FEAT-131 D4 `PASS`。
 
@@ -37,10 +37,11 @@
 
 | Evidence ID | Fact | Authority | Status |
 |---|---|---|---|
-| EVID-RT-001 | fork commit、upstream tag/commit、Runtime `0.144.6`、stdio、`experimental_api=false`、267 个 schema 与 schema tree SHA-256 | `yijie-contracts/compatibility/agent-host-runtime-v1.json:4-13` | fixed |
+| EVID-RT-001 | 原始 fork freeze、upstream tag/commit、Runtime `0.144.6`、stdio、`experimental_api=false`、267 个 schema 与 schema tree SHA-256 | `references/runtime-freeze-evidence.md`、FEAT-131 original D4 evidence | historical original freeze `0ce5902…` |
 | EVID-RT-002 | upstream tag/commit、Runtime version、toolchain、target、`experimentalApi=false` 与 stdio | `yijie-codex/.yijie/schemas/app-server/baseline.json:3-9` | fixed / read-only |
 | EVID-RT-003 | 实施前 Runtime HEAD、clean worktree、schema hash 与“不 fetch/pull/rebase/build/upgrade”边界 | `references/runtime-freeze-evidence.md:7-21` | captured-before |
-| EVID-RT-004 | 实施后 Runtime/manifest 精确对账 | `references/runtime-freeze-evidence.md:33-49` | `PASS` |
+| EVID-RT-004 | FEAT-131 实施后原始 Runtime/manifest 精确对账 | `references/runtime-freeze-evidence.md:33-49` | historical `PASS` at `0ce5902…` |
+| EVID-RT-005 | Owner-authorized FEAT-136 minimal early-denial producer patch 后的 final commit、upstream/version/schema digest 与 compatibility 精确对账 | `yijie-contracts/compatibility/agent-host-runtime-v1.json:4-13`；FEAT-136 `00-feature-brief.md` §2 | final re-freeze `b2b20e2…`；0.144.6；267 schemas；同一 tree digest；此后 read-only |
 
 ### 3.2 固定 Runtime stable surface
 
@@ -58,7 +59,7 @@
 | Evidence ID | Fact | Authority | Status |
 |---|---|---|---|
 | EVID-HC-001 | local HTTP/SSE、owner-only bearer、read-only、approval `never` | `yijie-contracts/compatibility/agent-host-runtime-v1.json:15-19` | supported projection |
-| EVID-HC-002 | 锁定的 7 个 Runtime methods 与 9 个 notifications | `yijie-contracts/compatibility/agent-host-runtime-v1.json:20-39` | supported projection |
+| EVID-HC-002 | 锁定的 7 个 Runtime methods 与 13 个 notifications，包含 Command output delta、MCP Tool progress、reasoning text delta 与 turn plan update | `yijie-contracts/compatibility/agent-host-runtime-v1.json:20-43` | final supported projection at Contracts v0.7.0 |
 | EVID-HOST-001 | Session methods 与固定 `never` / `read-only` | `yijie-agent-host/internal/codex/session_protocol.go:19-44` | implementation agrees with baseline |
 | EVID-HOST-002 | `thread/delete` 与 dynamic `generate_image` 常量/路径 | `yijie-agent-host/internal/codex/session_protocol.go:19-28`、`:171-215` | `implementation extension observed`，不提升为 locked projection |
 | EVID-HOST-003 | generic Item mapper 保留 item type，但只对 agent text/reasoning 做有限内容处理 | `yijie-agent-host/internal/session/service.go:543-630` | command/tool/file/phase 详细语义未投影 |
@@ -83,6 +84,18 @@
 | EVID-REAL-003 | stable-only 第二实例 fail-closed 与 canonical retry/restart | `02-verification.md` §2、`feature.yaml.verification.representative_failure` | `real-service: PASS`：第二实例 exit 1/already-running；首实例保持 ready；退出后 canonical restart 再次 ready，最终正常清理 |
 | EVID-REAL-004 | predecessor 单次 UI submission 与脱敏 Runtime 事件聚合 | `02-verification.md` §2 | `pre-runtime: FAIL`；历史失败保持独立，未改写成 current PASS |
 
+### 4.1 FEAT-136 后续 Command 与 Tool foundation 证据
+
+以下记录发生在 FEAT-131 D4 之后；上表原始 Desktop/Host 行保留其捕获时事实，不追溯改写。
+
+| Evidence ID | Fact | Authority | Current support |
+|---|---|---|---|
+| EVID-F136-001 | final Runtime/Contracts/Host/Desktop commits、cross-pins、stable artifact digest/version 与 clean audit | FEAT-136 `00-feature-brief.md` §2、`02-verification.md` §1 | `PASS`；Runtime final re-freeze `b2b20e2…`；Contracts `87f94c9…`；Host `96b1fa1…`；Desktop `7026b47…` |
+| EVID-F136-002 | fresh real Command completed 与 failed terminal/cardinality、exit/duration/stable error | FEAT-136 `02-verification.md` §3；yijie evidence commit `3a6b37ee708a71af561929429fdcf778d5667c32` | `real-runtime: PASS`；completed=1、failed=1；historical calls 1/5 |
+| EVID-F136-003 | Command closed safety projection、safe copy、normal SQLCipher reopen/hydration 与 core UI | FEAT-136 `02-verification.md` §3 | `real-runtime: PASS`；each terminal once；light/keyboard/status/icon/aria-live/200% PASS |
+| EVID-F136-004 | live started/output-delta、event_id、late event、natural replay、unknown/resync、dark 与 exact 1180×760 边界 | FEAT-136 `02-verification.md` §5 | `NOT OBSERVED` / `NOT RUN`；分别转 FEAT-142/143，不伪造 PASS |
+| EVID-F144-001 | producer-neutral Tool contract/Host/Desktop foundation 与 real product boundary | FEAT-144 four-file package；FEAT-136 `01-delivery-log.md` §3 | generic source conformance `PASS`；Owner producer/entrypoint/security decision `BLOCKED`；real Tool / GS-004 / D4 `NOT RUN` |
+
 这些事实只能证明 Yijie 当前实现或本次 local 运行，不能把 `owner-approved-inference` 升级成外部参考观察。
 
 ## 5. 黄金场景账本
@@ -93,8 +106,8 @@
 |---|---|---|---|---|
 | GS-001 普通流式完成 | `owner-approved-inference` | streaming/completed `synthetic: PASS`; current `real-runtime: PASS`; predecessor `pre-runtime: FAIL` | EVID-SCHEMA-002/003、EVID-HC-002、EVID-DESKTOP-001/002、EVID-REAL-001/002/004 | FEAT-134、FEAT-135 |
 | GS-002 过程更新/reasoning summary | `owner-approved-inference` | metadata-only；`real-runtime: NOT RUN` | EVID-SCHEMA-003、EVID-HOST-003、EVID-DESKTOP-001/005 | FEAT-134 |
-| GS-003 Command 成功/失败 | `owner-approved-inference` | metadata-only；projection unavailable | EVID-SCHEMA-003、EVID-HOST-003/004、EVID-DESKTOP-001 | FEAT-136 |
-| GS-004 Tool 成功/失败 | `owner-approved-inference` | metadata-only；projection unavailable | EVID-SCHEMA-003/006、EVID-HC-002、EVID-HOST-002/003 | FEAT-136 |
+| GS-003 Command 成功/失败 | `owner-approved-inference` | current terminal scope `real-runtime: PASS`；完整 started/delta live 顺序未捕获 | EVID-HC-002、EVID-F136-001/002/003/004 | FEAT-136；FEAT-143 承接完整状态顺序 |
+| GS-004 Tool 成功/失败 | `owner-approved-inference` | generic source conformance `PASS`；real producer/entrypoint `BLOCKED`；Tool D4 `NOT RUN` | EVID-SCHEMA-003/006、EVID-HC-002、EVID-F144-001 | FEAT-144 |
 | GS-005 Command 审批允许/拒绝/过期 | `owner-approved-inference` | `BLOCKED`: Owner security decision | EVID-SCHEMA-004、EVID-HC-001、EVID-DESKTOP-006 | FEAT-137 |
 | GS-006 文件修改与 Diff | `owner-excluded` | metadata-only exclusion；无 fixture/真实验收 | BASIS-004、EVID-SCHEMA-003/004、EVID-DESKTOP-005 | FEAT-131 scope decision |
 | GS-007 active Turn steer | `owner-approved-inference` | metadata-only；Host projection unavailable | EVID-SCHEMA-002、EVID-HC-002、EVID-DESKTOP-003 | FEAT-139 |
@@ -116,11 +129,11 @@
 
 ## 7. Policy 与完成规则
 
-1. 本索引固定 reference policy ID 与 Runtime `0.144.6`；它不固定任何 Codex Desktop App version/build。
+1. 本索引固定 reference policy ID 与 final re-freeze Runtime `b2b20e2…` / `0.144.6`；原始 `0ce5902…` 保留历史；它不固定任何 Codex Desktop App version/build。
 2. policy 的变更只接受 Owner 明确范围决定；不建立 UI Freeze、drift 或 supersession 流程。
 3. 后续 Feature 必须引用稳定的 `CAP-*`、`GS-*` 与 policy ID；实现结果按 `synthetic`/`real-runtime` 如实登记。
 4. GS-006 和另外 7 项主动排除不需要证据、不进入 replay、不作为 D4 缺口。
 5. D4 依据 current real smoke、stable-only 真实 safe failure/retry、focused checks 与 scoped diff review 通过；缺少 Codex 人工参考媒体不是 gate。Host abnormal-cleanup fault injection 未执行且不在 PASS 声明内。
-6. 实施后必须再次核对 Runtime HEAD、clean status、schema tree hash 与 compatibility manifest；任何差异都违反固定 Runtime 硬性条件。
+6. 后续实施必须再次核对 final Runtime HEAD、clean status、schema tree hash 与 compatibility manifest；任何未获新 Owner 授权的差异都违反最终冻结硬性条件。
 
 当前 reference policy、38 个能力 ID、13 个场景 ID 与 8 项主动排除已固定，FEAT-131 D4 已通过；完整 Epic 尚未完成。

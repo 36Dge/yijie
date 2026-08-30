@@ -2,7 +2,7 @@
 
 > Profile：`demo_fast` · Exposure：`local`
 >
-> Runtime 约束：固定 `yijie-codex` Runtime，不修改、不升级、不重编译、不替换、不启用新的实验 API
+> Runtime 约束：原始冻结点为 `0ce5902…`；Owner 后续仅授权 FEAT-136 early-denial producer 的最小 source patch。当前最终冻结点为 `b2b20e2…` / 0.144.6，此后不再修改、升级、重编译、替换或启用新的实验 API
 >
 > Reference policy：`codex-inspired-approximate-parity-v1-2026-08-27` / `owner-approved-inference`
 >
@@ -13,7 +13,8 @@
 | Identity | Frozen value | Authority |
 |---|---|---|
 | Codex-inspired design policy | `codex-inspired-approximate-parity-v1-2026-08-27` / `owner-approved-inference` | `references/reference-inference-policy.md` |
-| Yijie Runtime repository commit | `0ce5902ed400866be0196886bb78f693a004d68d` | `yijie-contracts/compatibility/agent-host-runtime-v1.json:4-13` |
+| Yijie Runtime repository commit（final re-freeze） | `b2b20e2fc4a0c94834f34d8cc459e488a1b56277` | `yijie-contracts/compatibility/agent-host-runtime-v1.json:4-13` |
+| Yijie Runtime original freeze（history） | `0ce5902ed400866be0196886bb78f693a004d68d` | `references/runtime-freeze-evidence.md`；FEAT-136 history |
 | Upstream Codex tag | `rust-v0.144.6` | 同上 |
 | Upstream Codex commit | `5d1fbf26c43abc65a203928b2e31561cb039e06d` | 同上；`yijie-codex/.yijie/schemas/app-server/baseline.json:3-5` |
 | Runtime version | `0.144.6` | 同上 |
@@ -24,7 +25,7 @@
 | Host transport/auth | local HTTP/SSE；owner-only bearer | `yijie-contracts/compatibility/agent-host-runtime-v1.json:15-19` |
 | Host sandbox/approval | `read-only` / `never` | 同上 |
 
-“Runtime repository commit”和“upstream Codex commit”是两个不同身份，不得互相替换。当前工作区即使发现远端更新，也不得通过 pull、同步、构建或重生成 schema 改变上述冻结值。
+“Runtime repository commit”和“upstream Codex commit”是两个不同身份，不得互相替换。`b2b20e2…` 仅包含 Owner-authorized FEAT-136 minimal producer repair；upstream tag/commit、Runtime version、267-file schema corpus 与 tree digest 保持不变。当前工作区即使发现远端更新，也不得通过 pull、同步、构建或重生成 schema 改变最终冻结值。
 
 ## 2. 分类规则
 
@@ -48,11 +49,11 @@
 权威兼容清单只允许下列 Runtime surface：
 
 - methods：`skills/config/write`、`skills/extraRoots/set`、`skills/list`、`thread/resume`、`thread/start`、`turn/interrupt`、`turn/start`；
-- notifications（9 个）：`error`、`item/agentMessage/delta`、`item/completed`、`item/started`、`skills/changed`、`thread/started`、`turn/completed`、`turn/started`、`warning`。
+- notifications（13 个）：`error`、`item/agentMessage/delta`、`item/commandExecution/outputDelta`、`item/completed`、`item/mcpToolCall/progress`、`item/reasoning/textDelta`、`item/started`、`skills/changed`、`thread/started`、`turn/completed`、`turn/plan/updated`、`turn/started`、`warning`。
 
-来源：`yijie-contracts/compatibility/agent-host-runtime-v1.json:20-39`。
+来源：`yijie-contracts/compatibility/agent-host-runtime-v1.json:20-43`。
 
-Host 代码中另有 `thread/delete`、`item/reasoning/textDelta` 和受条件开关约束的 `generate_image` 路径，但它们没有全部进入上述锁定 projection。矩阵将其标为“实现路径已观察、supported projection 未确认”，不得仅凭代码存在判定 `available`。
+Host 代码中另有 `thread/delete` 和受条件开关约束的 `generate_image` 路径，但它们没有进入上述锁定 projection。`item/reasoning/textDelta` 已进入最终清单；其余路径继续标为“实现路径已观察、supported projection 未确认”，不得仅凭代码存在判定 `available`。
 
 ## 4. 能力矩阵
 
@@ -75,9 +76,9 @@ Host 代码中另有 `thread/delete`、`item/reasoning/textDelta` 和受条件�
 | CAP-013 | schema 注释为实验的 Plan Item/delta | `item/plan/delta` 存在于 non-experimental schema，协议只有 EXPERIMENTAL 注释、没有 runtime gate attribute | `requires Host/Contracts projection` | `contracts-host-desktop` | `real-runtime-producer-unavailable` | 未进入锁定投影，也没有当前 producer 证据 | 不得生成假步骤；优先使用稳定 `turn/plan/updated` | FEAT-134 | `owner-approved-inference` |
 | CAP-014 | Turn started/completed/interrupted/failed | `turn/started`、`turn/completed` | `available` | `desktop-only` | `none` | 已投影；completed 是唯一 Turn 终态 | 已有 streaming 与三类终态 | FEAT-132、FEAT-134 | `owner-approved-inference` |
 | CAP-015 | 非终态 error/warning 的上下文展示 | `error`、`warning` | `available` | `desktop-only` | `none` | 已投影且不等于 Turn 终态 | live projection 未提供独立 error/warning Item | FEAT-134、FEAT-142 | `owner-approved-inference` |
-| CAP-016 | Command started/output/completed/failed/declined | commandExecution Item、`item/commandExecution/outputDelta` | `requires Host/Contracts projection` | `contracts-host-desktop` | `none` | 仅泛化 item type，命令/状态/输出被丢弃 | 无 Command Item | FEAT-136 | `owner-approved-inference` |
-| CAP-017 | MCP Tool 生命周期与 progress | mcpToolCall Item、`item/mcpToolCall/progress` | `requires Host/Contracts projection` | `contracts-host-desktop` | `owner-product-decision` | 当前无通用 MCP/tool 投影 | 无通用 Tool Item | FEAT-136 | `owner-approved-inference` |
-| CAP-018 | Runtime 发起的 dynamic image tool | `item/tool/call`；当前 Host 注册路径会开启 experimental capability | `blocked by frozen Runtime` | `baseline-documentation` | `experimental-api-disabled` | 仅 FEAT-128 条件路径，默认 baseline 不支持 | Artifact UI 存在，但不能证明 fixed baseline 的真实 producer | FEAT-136；复用 FEAT-128 | `owner-approved-inference` |
+| CAP-016 | Command started/output/completed/failed/declined | commandExecution Item、`item/commandExecution/outputDelta` | `available` | `contracts-host-desktop` | `none` | v5 Command 安全 mapper、terminal 与 output-delta projection 已冻结；declined 产品交互另由 FEAT-137 | completed/failed Item、SQLCipher hydration、安全复制与核心 UI 已有 fresh real 证据；完整 started/delta 集成顺序由 FEAT-143 | FEAT-136；FEAT-137/143 承接明确后移项 | `owner-approved-inference` |
+| CAP-017 | MCP Tool 生命周期与 progress | mcpToolCall Item、`item/mcpToolCall/progress` | `requires Host/Contracts projection` | `contracts-host-desktop` | `owner-product-decision` / `real-runtime-producer-unavailable` | v5 producer-neutral Tool mapper/progress projection 已冻结，但没有 Owner-approved real producer/entrypoint | closed consumer、persistence/UI foundation 存在；不能证明 real Tool vertical | FEAT-144 | `owner-approved-inference` |
+| CAP-018 | Runtime 发起的 dynamic image tool | `item/tool/call`；当前 Host 注册路径会开启 experimental capability | `blocked by frozen Runtime` | `baseline-documentation` | `experimental-api-disabled` | 仅 FEAT-128 条件路径，默认 baseline 不支持；不能作为 CAP-017 替代品 | Artifact UI 存在，但不能证明 final frozen baseline 的真实 producer | FEAT-144 boundary；复用 FEAT-128 | `owner-approved-inference` |
 | CAP-019 | Command 本地审批 | `item/commandExecution/requestApproval` | `requires Host/Contracts projection` | `contracts-host-desktop` | `owner-security-decision` | `read-only/never`；未实现 reverse request 默认拒绝 | 只有只读策略说明，无 Allow/Deny 动作 | FEAT-137 | `owner-approved-inference` |
 | CAP-020 | 一般权限请求与 MCP elicitation | `item/permissions/requestApproval`、`mcpServer/elicitation/request` | `requires Host/Contracts projection` | `contracts-host-desktop` | `owner-security-decision` | 未实现 | 无；是否纳入必须由 Owner 决定 | FEAT-137 | `owner-approved-inference` |
 | CAP-021 | Tool 请求用户结构化输入 | `item/tool/requestUserInput` 存在于 non-experimental schema，协议只有 EXPERIMENTAL 注释、没有 runtime gate attribute | `requires Host/Contracts projection` | `contracts-host-desktop` | `owner-product-decision` | 未进入锁定投影；当前无真实 producer 证据 | 不得显示假问答卡 | FEAT-137 | `owner-approved-inference` |
@@ -103,7 +104,7 @@ CAP-022 与 CAP-032～038 共计 8 项 Owner 主动排除。CAP-032 只排除 Fo
 
 ## 5. Owner 与停止条件
 
-- Active FEAT-132–137、FEAT-139–143 必须引用相应 `CAP-*` 和固定 reference policy；FEAT-138 已正式取消/排除，仅保留决策记录。后续只根据 Owner 明确范围变更更新，不跟随某个 Codex Desktop 版本自动漂移。
+- Active FEAT-132–137、FEAT-139–144 必须引用相应 `CAP-*` 和固定 reference policy；FEAT-138 已正式取消/排除，仅保留决策记录。FEAT-144 独立承接 CAP-017 / GS-004，不能被 CAP-018 替代。后续只根据 Owner 明确范围变更更新，不跟随某个 Codex Desktop 版本自动漂移。
 - `requires Host/Contracts projection` 只允许投影上述固定 Runtime stable 能力；必须先改权威 Contracts，再改 Host 和 Desktop。
 - `blocked by frozen Runtime` 不得通过开启 experimental API、修改 schema、替换 binary、模拟事件或硬编码 UI 绕过。
 - `owner-security-decision` 未关闭前，Command 审批、通用工具和权限提升保持 blocked/fail closed；FileChange/Diff 已是 Owner 主动排除，不再等待安全决策。

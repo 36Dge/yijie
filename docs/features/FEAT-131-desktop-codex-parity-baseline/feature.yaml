@@ -41,7 +41,7 @@ product_ux:
   status: "PASS"
   primary_user: "负责把易界 Desktop 对话工作区建设为 Codex 风格近似体验的产品、设计、开发和验收人员，以及最终使用易界 Agent 对话完成任务的本地用户"
   problem: "逐版本、逐场景采集 Codex Desktop 人工证据成本过高；继续把像素和状态完全一致作为门槛会阻塞真正有价值的对话交互交付。"
-  user_outcome: "在保留 Vue 技术栈和固定 yijie-codex Runtime 不变的前提下，后续 active FEAT-132–137、FEAT-139–143 引用同一 owner-approved inference 策略、能力矩阵和黄金场景，交付风格相近、信息层级清楚、符合 Yijie UI 规范的端到端对话体验，不要求与 Codex 一模一样。"
+  user_outcome: "在保留 Vue 技术栈和 final re-freeze yijie-codex Runtime 不变的前提下，后续 active FEAT-132–137、FEAT-139–144 引用同一 owner-approved inference 策略、能力矩阵和黄金场景，交付风格相近、信息层级清楚、符合 Yijie UI 规范的端到端对话体验，不要求与 Codex 一模一样。"
   in_scope:
     - "固定 reference policy codex-inspired-approximate-parity-v1-2026-08-27；不建立 Codex Desktop version/build Freeze ID"
     - "冻结 Runtime 0.144.6、fork/upstream commit、schema tree 与 experimentalApi=false"
@@ -69,7 +69,7 @@ product_ux:
     - "实施者用无真实正文、路径、秘密、PII 或商家数据的 fixture，通过真实 Desktop parser/store 运行 test-only 回放。"
     - "实施者通过 pnpm tauri:demo-fast:stable 启动独立 identifier/data-root 的 freshly built debug App，先核对 Runtime/Provider/readiness 与 experimentalApi=false；真实 prompt 只能在明确授权与仓库级更严格调用上限内提交。"
     - "Owner 已撤回先前三张人工材料；实现只声明 Codex-inspired approximation，不声明版本专属 observed parity。"
-    - "Active FEAT-132–137、FEAT-139–143 复用场景 ID 和矩阵逐步实现完整 Epic；FEAT-138 仅保留取消记录、不承担实现责任，总目标在本 Feature 单独完成后仍未达成。"
+    - "Active FEAT-132–137、FEAT-139–144 复用场景 ID 和矩阵逐步实现完整 Epic；FEAT-138 仅保留取消记录、不承担实现责任；FEAT-144 独立承接 CAP-017 / GS-004，总目标在本 Feature 单独完成后仍未达成。"
   visual_direction: "本 Feature 不修改生产 UI；后续 Feature 允许推测 Codex 风格的布局与交互层级，但以既有易界 token、组件和 light/dark/minimum-window 规范为准，接受合理差异，不做逐像素复刻。"
   ui_states:
     idle: "等待执行策略/能力矩阵核对或确定性回放；生产 UI 无变化。"
@@ -223,7 +223,8 @@ verification:
   diff_review: { status: "PASS", summary: "独立复审对 FEAT-131 scoped code/test diff 未发现 P0–P3。复审发现的 production boundary legacy-v1/version/build canary P2 已修复并复验：v1、v2、旧 version/build 与 policy canary 全部 fail closed；focused 41 tests、35-file dist scan 与 git diff --check PASS。并行 FEAT-150/Store 改动明确排除且未触碰。未修改 Host 的 Runtime Manager fallback 与 cleanup-incomplete 传播属于既有、范围外限制，不计为本 Feature diff finding，也不宣称异常清理保证。" }
   known_limitations:
     - "Owner 不再提供或要求任何 Codex Desktop 人工证据；后续实现是工程推测的 Codex-inspired approximation，不能宣称版本专属或逐像素一致。"
-    - "Command、Tool、Approval 和 Steer 尚无当前 Host/Contracts/Desktop 端到端投影，本 Feature 不伪造这些生产能力；FileChange/Diff 已由 Owner 主动排除。"
+    - "FEAT-136 后续已提供 Command terminal real vertical 与 generic Tool source foundation；真实 Tool producer/entrypoint/GS-004 仍由 FEAT-144 BLOCKED/NOT RUN，Approval 与 Steer 仍由各自 Feature 承接；FileChange/Diff 已由 Owner 主动排除。"
+    - "FEAT-131 原 D4 发生在 Runtime original freeze 0ce5902…；Owner-authorized FEAT-136 minimal producer patch 后的 final re-freeze b2b20e2… 由 03/04/05 索引与 FEAT-136 证据记录。本治理更新不重跑 FEAT-131 D4，也不改写原验证历史。"
     - "Runtime 与 Contracts 的 HEAD、worktree、schema tree 和 manifest hash 均未变化，但 Runtime-side check_agent_host_contracts.py 对 Host projection 的既有期望少于当前固定 manifest 中的 skills surface，额外 diagnostic 非零；该 checker/manifest expectation mismatch 已披露，不能通过修改固定 Runtime 消除。"
     - "当前隔离 stable canonical real smoke 已在 experimentalApi=false 下首轮 PASS，精确返回 FEAT-131_SMOKE_OK；未调用工具、未重试。该结果只证明安全纯文本 GS-001 happy path，不证明后续 Feature 的 Tool、Command、Approval、Steer、长对话或视觉体验。"
     - "Provider 调用可能产生计费；predecessor submission 与当前成功 submission 合计达到 yijie-agent-host 更严格的最多 2 次短请求上限，不再进行任何付费重试。Owner 本轮允许的额外重试因首轮成功且仓库上限耗尽而未使用。"

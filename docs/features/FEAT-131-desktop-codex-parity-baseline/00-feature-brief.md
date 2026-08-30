@@ -1,11 +1,13 @@
 # FEAT-131 — Codex 风格近似对话基线与黄金场景 Demo Brief
 
 > Profile: `demo_fast` · Exposure: `local` · Checkpoint: `D4` · Created: `2026-08-26`
+>
+> Governance amendment `2026-08-30`：Owner-authorized FEAT-136 minimal Runtime repair 后 final re-freeze 为 `b2b20e2…` / 0.144.6；CAP-017 / GS-004 由新增 FEAT-144 承接。原 FEAT-131 D4 与 original freeze 证据保持历史，不重跑、不追溯改写。
 
 ## 1. Epic 总目标、用户问题与结果
 
 - Epic 总目标：在保留 Vue 技术栈和固定 `yijie-codex` Agent Runtime 不变的前提下，使用户从输入、流式响应、过程更新、工具执行、权限确认，到中断、恢复和完成的端到端对话体验具有 Codex 风格且整体相近，同时遵守 Yijie UI 规范；不要求逐像素或逐状态完全一致。
-- 目标用户：负责 active FEAT-132–137、FEAT-139–143 的产品、设计、开发和验收人员，以及最终使用易界 Agent 对话完成任务的本地用户。
+- 目标用户：负责 active FEAT-132–137、FEAT-139–144 的产品、设计、开发和验收人员，以及最终使用易界 Agent 对话完成任务的本地用户。
 - 当前问题：逐版本、逐场景采集 Codex Desktop 人工证据成本过高，会让参考取证替代真正的产品交付。
 - Reference policy：`codex-inspired-approximate-parity-v1-2026-08-27` / `owner-approved-inference`。不建立 Codex Desktop version/build Freeze ID，不要求任何人工截图、录屏、hash 或 drift 跟踪。
 - 本 Feature 的真实结果：后续 Feature 引用同一能力矩阵、13 个稳定场景 ID、推测策略和主动排除项，避免各自发明不兼容的交互模型。
@@ -41,7 +43,7 @@
 4. 将当前 Desktop wire 可表达的场景写为无敏感数据 fixture，通过测试内存 transport 进入真实 parser/store。
 5. 执行重复回放、敏感数据扫描、policy ID 一致性和 production bundle 边界检查。
 6. 通过 `pnpm tauri:demo-fast:stable` 核对 Runtime/Provider/`experimental_api=false`；真实 prompt 只能在明确授权与仓库级更严格调用上限内提交。
-7. Active FEAT-132–137、FEAT-139–143 按场景和矩阵实现近似体验，并以 Yijie 规范、自动化检查、真实 local smoke 与 Owner 体验反馈验收；FEAT-138 不建包、不实施、不执行 D4。
+7. Active FEAT-132–137、FEAT-139–144 按场景和矩阵实现近似体验，并以 Yijie 规范、自动化检查、真实 local smoke 与 Owner 体验反馈验收；FEAT-138 不建包、不实施、不执行 D4；FEAT-144 独立承接 CAP-017 / GS-004。
 
 ## 3. 交互与 UI
 

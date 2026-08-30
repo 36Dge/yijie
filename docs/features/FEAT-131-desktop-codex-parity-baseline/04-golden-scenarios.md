@@ -1,10 +1,10 @@
 # FEAT-131 — Codex 风格近似对话黄金场景
 
-> 作用：固定后续 active FEAT-132–137、FEAT-139–143 共用的行为场景 ID，不实现生产交互；FEAT-138 仅保留取消记录。
+> 作用：固定后续 active FEAT-132–137、FEAT-139–144 共用的行为场景 ID，不实现生产交互；FEAT-138 仅保留取消记录。
 >
 > Reference policy：`codex-inspired-approximate-parity-v1-2026-08-27` / `owner-approved-inference`。不绑定 Codex Desktop version/build，不需要人工媒体，也不要求一模一样。
 >
-> 结论：D0 场景 ID 与范围已固定，FEAT-131 D4 已通过；完整 Epic 仍需 active FEAT-132–137、FEAT-139–143 完成，FEAT-138 已正式取消/排除。
+> 结论：D0 场景 ID 与范围已固定，FEAT-131 D4 已通过；完整 Epic 仍需 active FEAT-132–137、FEAT-139–144 完成，FEAT-138 已正式取消/排除。FEAT-136 已交付 GS-003 的当前 Command terminal scope，FEAT-144 独立承接 GS-004。
 
 ## 1. 使用规则
 
@@ -25,8 +25,8 @@
 |---|---|---|---|---|---|
 | GS-001 | 普通问题的流式回答与最终完成 | `available` | FEAT-134、FEAT-135 | `owner-approved-inference` | `synthetic: PASS`；current canonical `real-runtime: PASS`；predecessor `pre-runtime: FAIL` |
 | GS-002 | 多段过程更新与用户可见推理信息 | `requires Host/Contracts projection` | FEAT-134 | `owner-approved-inference` | metadata only；`real-runtime: NOT RUN` |
-| GS-003 | Command 执行成功和失败 | `requires Host/Contracts projection` | FEAT-136 | `owner-approved-inference` | metadata only；projection unavailable |
-| GS-004 | Tool 调用成功和失败 | `requires Host/Contracts projection` | FEAT-136 | `owner-approved-inference` | metadata only；projection unavailable |
+| GS-003 | Command 执行成功和失败 | `available` | FEAT-136；完整 started/delta 集成顺序由 FEAT-143 | `owner-approved-inference` | current terminal scope `real-runtime: PASS`；completed=1、failed=1、normal hydration each once；individual started/delta live 未捕获 |
+| GS-004 | Tool 调用成功和失败 | `requires Host/Contracts projection` | FEAT-144 | `owner-approved-inference` | generic source conformance `PASS`；real producer/entrypoint decision `BLOCKED`；Tool D4 `NOT RUN` |
 | GS-005 | 命令审批允许、拒绝和过期 | `requires Host/Contracts projection` | FEAT-137 | `owner-approved-inference` | `BLOCKED`: Owner security decision |
 | GS-006 | 文件修改与 Diff | `intentional product difference` | FEAT-131 scope decision | `owner-excluded` | metadata-only exclusion；无 fixture、无真实验收 |
 | GS-007 | 执行中补充指令 | `requires Host/Contracts projection` | FEAT-139 | `owner-approved-inference` | metadata only；projection unavailable |
@@ -69,8 +69,8 @@
 - 可用动作：展开/折叠、复制脱敏且有界的输出；失败后可以显式开始新尝试，不自动重放命令。
 - 最终结果：Command success/failure 与 Turn terminal 分开；无假成功、隐式重跑或无限 retry。
 - Reference basis：`owner-approved-inference`。
-- Provenance：metadata-only；取得受支持投影后才可建立 synthetic replay 与 `real-runtime`。
-- Owner：FEAT-136。
+- Provenance：Owner-authorized Runtime repair 与 final cross-pin 后，fresh canonical tranche 得到 completed=1、failed=1、exit/duration/stable error、安全复制与正常 hydration 各一次，当前 terminal scope 记为 `real-runtime: PASS`。Command Item started 与独立 output-delta live 因执行过快未捕获；focused source tests 不冒充 live evidence，完整集成状态顺序由 FEAT-143 承接。
+- Owner：FEAT-136；FEAT-143 承接明确后移的完整状态顺序。
 
 ### GS-004 — Tool 调用成功和失败
 
@@ -80,8 +80,8 @@
 - 可用动作：展开/折叠安全参数摘要与结果；不显示 raw secret、绝对路径或未批准重试。
 - 最终结果：成功/失败由真实 completed Item 决定；未知 Tool 安全降级但不阻断其它 Item。
 - Reference basis：`owner-approved-inference`。
-- Provenance：通用 Tool 为 metadata-only；严格 stable baseline 下不使用实验 dynamic tool 冒充。
-- Owner：FEAT-136。
+- Provenance：Contracts/Host/Desktop generic Tool source conformance 为 `PASS`，但没有 Owner-approved real producer 或产品入口，因此 real success/failure 与 D4 保持 `BLOCKED / NOT RUN`；不使用 experimental dynamic tool、临时注册或 fixture 冒充。
+- Owner：FEAT-144。
 
 ### GS-005 — 命令审批允许、拒绝和过期
 
@@ -186,6 +186,6 @@
 
 - 每个 `GS-*` 必须在 `05-reference-evidence-index.md` 中有唯一索引。
 - 后续实现不得把 `owner-approved-inference` 写成参考 App 实测，也不得把 `synthetic` 写成 `real-runtime`。
-- 如果固定 Runtime 无法产生某场景，按 `03-capability-matrix.md` 登记 capability gap；不得修改、升级或替换 Runtime。
+- 如果最终冻结 Runtime `b2b20e2…` 无法产生某场景，按 `03-capability-matrix.md` 登记 capability gap；不得再次修改、升级或替换 Runtime。
 - GS-006 永久保留稳定 ID 作为负范围哨兵；除非 Owner 重新修改 Epic 范围，否则不得添加 fixture、投影或 UI。
 - policy ID、13 个场景 ID 与 Owner 排除边界已固定；FEAT-131 D4 已通过，完整 Epic 尚未完成。
