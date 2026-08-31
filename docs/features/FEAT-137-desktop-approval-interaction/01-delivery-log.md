@@ -1,6 +1,6 @@
 # FEAT-137 — Delivery Log
 
-> 本日志保留 Owner-authorized D0、Contracts/Host/Desktop source checkpoint、首次 clean-tree finding 与后续修复历史。当前 D0、Contracts authority、Host/Desktop immutable source implementation 与 clean-tree source conformance 为 PASS；live verification 与 D4 保持 NOT RUN。
+> 本日志保留 Owner-authorized D0、Contracts/Host/Desktop source checkpoint、clean-tree findings、authority composition repair 与真实 D4 历史。当前 D0、component source/conformance 与 canonical entrypoint repair 为 PASS；真实 approval vertical 与 D4 为 BLOCKED。
 
 ## 1. 2026-08-30 — 输入固化
 
@@ -201,3 +201,31 @@ Owner 单独授权 fresh real allow/cancel D4 最多 7 次真实 Provider/模型
 | Hydration / reconnect / expiry / visual / VoiceOver | NOT RUN；未改变系统无障碍设置 |
 
 结论：这是 canonical stable entrypoint authority composition regression，不是 Provider、模型、workspace 或 approval producer 失败。绕过 v4 checker、手工拼接 launcher 或直接运行已构建 binary 都会使 D4 失去 canonical authority，因此本批安全停止。下一步需单独修复 v4 checker，使其从冻结历史 Git object 验证 v4 byte/source authority，同时由当前 Host HEAD `118651804…` 提供运行实现；随后重新冻结 Desktop SHA、更新 v6 authority、复审并重跑 fresh D4。
+
+## 15. 2026-08-31 — canonical stable entrypoint v4/v6 authority composition repair
+
+| Field | Result |
+|---|---|
+| Desktop branch | `feat/feat-137-desktop-v4-v6-authority-composition-repair` |
+| Immutable commit / tree | `27d6c6a2a9f8a9984b47b27143f8c9090815dbd3` / `6cefcc7a6deed7924f64ba32b06ac7c084fd654d` |
+| Repair | v4 checker不再要求当前 sibling HEAD等于历史 v4 commit；继续要求clean checkout与exact origin，并从历史 commit/tree读取Contracts/Host source、Host consumption lock与五个fixture，逐项验证blob类型、大小、digest和tree OID |
+| Runtime implementation authority | 当前 Host `118651804b7f5a7849bc68cdf29d88c74a21f8a1` 仍由v6 checker精确约束并提供实际运行实现；v1-v5 wire与Runtime未修改 |
+| Contract / permission / dependency impact | none / none / none；无capability、plugin、CSP、Cargo/lock或外部URL扩张 |
+| Desktop clean gates | v4/v6 checker PASS；14 Web focused files 294/294；Rust FEAT-137 19/19；pnpm lint/build；Cargo fmt/check；`git diff --check` PASS |
+| Strict Clippy | raw `-D warnings`仅命中base既有且字节一致的`database.rs type_complexity`；只放行该项后无其它warning |
+| Cross-repository gates | Host `make test-feat137`、`make test-feat136`、`make lint` PASS；五仓clean preflight与stable Runtime artifact digest PASS |
+
+## 16. 2026-08-31 — fresh real D4 after entrypoint repair
+
+Canonical `pnpm tauri:demo-fast:stable` 三次均通过v4/v6 checker、safe build并正常启动；所有关闭均使用应用自身 `Quit`，runner exit 0，未强杀或注入故障。真实调用按UI发送保守计数为4/7，decision POST为0。
+
+| Call | Safe observed result |
+|---|---|
+| 1 | 新任务首轮短暂显示task不可用；随后自然封口为Command declined / Turn interrupted。没有出现可操作approval card，Command未执行。 |
+| 2 | 改用稳定的隔离无敏感Git目录；live视图仍短暂不可读。正常关闭并重开后，SQLCipher只恢复一个completed Command item；Command直接完成，未产生approval lifecycle，不能作为accept_once证据。 |
+| 3 | 在已hydration任务内明确请求approval；Provider/turn立即generation failed，没有Command、pending或decision。 |
+| 4 | 在同一任务再次请求approval；超过一分钟且跨正常关闭/重开仍为单一waiting turn，没有approval card、terminal或decision。应用自带权限说明仅显示通用read-only/fixed-no-escalation策略，不是FEAT-137 action authority。 |
+
+结论：authority composition repair `PASS`，但真实 approval producer/task lifecycle → Host pending → Desktop inline action authority链路 `BLOCKED`。`accept_once`、`cancel_current_turn`、真实approval hydration/cardinality、approval replay/expiry与approval card视觉/VoiceOver均未完成；剩余3次额度未继续消耗。自然正常重开已观察，但没有可归因于approval event的replay；不得标为PASS。下一步必须单独RCA live producer、首轮task binding/SSE与pending GET/action-authority组合，不得绕过产品入口、伪造pending或直接调用内部decision command。
+
+治理回填门禁：D0、strict D0、whole-package strict、lint、治理 tests 48/48、17个committed package audit、shell syntax与`git diff --check`全部PASS。D4 closure gate按设计FAIL，因为Feature/implementation/verification、real smoke、representative failure及十条Must没有PASS；该结果是正确的fail-closed治理证据，不得通过改写状态绕过。

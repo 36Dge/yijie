@@ -42,7 +42,7 @@ timebox:
 product_ux:
   status: "PASS"
   primary_user: "在易界 AI Desktop 的本地 demo_fast 会话中，需要明确决定一条受限只读 Command 是否执行的用户。"
-  problem: "Contracts v6、Host approval authority 与 Desktop closed consumer/SQLCipher/inline interaction 的component source已冻结；fresh D4发现canonical stable runner的旧v4 checker仍要求历史Host exact HEAD 96b1fa1…，与当前FEAT-137 Host 118651804…冲突，导致应用启动前阻断。真实allow/cancel、expiry/reconnect与人工视觉均未验证。"
+  problem: "Contracts v6、Host approval authority、Desktop closed consumer/SQLCipher/inline interaction与canonical v4/v6 authority composition已冻结。fresh D4可正常启动app/Runtime/Host/Provider，但真实请求没有形成可操作inline approval authority；accept/cancel、approval replay/expiry与approval-card人工视觉仍未验证。"
   user_outcome: "在唯一允许的本地 Git 仓库检查请求到达时，用户在对应 Command Item 内看到安全摘要，只能选择允许一次或取消本轮；决定真实返回 Runtime，断线、过期和重复操作全部 fail closed。"
   in_scope:
     - "CAP-019 / GS-005 的 local/demo_fast stable Command approval reverse request 闭环。"
@@ -148,33 +148,33 @@ contract:
       result: "原 TTL/ack P1 已闭合；exact gates、v6 negotiation、v1-v5 equality、closed pending/decision/errors、single POST/no retry、unknown resync、SQLCipher/redaction/safe-copy、S10与依赖边界PASS；无剩余P0-P2。"
 
 external_authorizations:
-  paid_calls: { allowed: true, max_actions: 7, approved_by: "段成威（当前用户；2026-08-31 fresh real allow/cancel D4；允许调用层受限自动重试，decision POST仍无自动重试；当前已用0/7）", approved_at: "2026-08-31T11:13:45+08:00" }
+  paid_calls: { allowed: true, max_actions: 7, approved_by: "段成威（当前用户；2026-08-31 fresh real allow/cancel D4；允许调用层受限自动重试，decision POST仍无自动重试；实际使用4/7，剩余3次因live blocker未使用）", approved_at: "2026-08-31T11:13:45+08:00" }
   destructive_operations: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
   production_writes: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
 
 implementation:
   status: "blocked"
-  real_entrypoint: "计划入口仍为yijie-desktop canonical local/demo_fast `pnpm tauri:demo-fast:stable`。2026-08-31真实启动前，v6 authority checker与Host focused gate PASS，但runner先执行的旧v4 checker要求Host HEAD 96b1fa19783694aef583b614c492fd2b6b5c15cc，当前冻结Host为118651804b7f5a7849bc68cdf29d88c74a21f8a1，因而exit 1。不得绕过checker；需先修复双authority composition并重新冻结Desktop。"
+  real_entrypoint: "yijie-desktop canonical local/demo_fast `pnpm tauri:demo-fast:stable`已由Desktop 27d6c6a2...修复：v4从历史immutable Git object验证96b1fa... source/digest，v6继续精确约束当前Host 118651804...运行实现；build/app/Runtime/Host均可正常启动。aggregate implementation仍blocked于真实approval authority未到达Desktop action UI。"
   mock_only: false
 
 verification:
   status: "BLOCKED"
-  verified_at: "2026-08-31T11:13:45+08:00"
+  verified_at: "2026-08-31T12:30:00+08:00"
   startup:
-    status: "BLOCKED"
+    status: "PASS"
     command_or_steps: "在五仓exact clean、stable artifact与Host/v6 focused gate PASS后执行 `pnpm tauri:demo-fast:stable`。"
     environment: "最终冻结 Runtime b2b20e2… / 0.144.6；experimentalApi=false；read-only/on-request exact gate；隔离无敏感Git workspace。"
-    actual_result: "BLOCKED / exit 1 before build/app start：旧v4 checker要求Host 96b1fa1…，当前冻结FEAT-137 Host为118651804…；Desktop、Runtime、Provider、模型均未启动。"
+    actual_result: "PASS：Desktop 27d6c6a2...下v4/v6 checker、safe build、app/Runtime/Host启动与正常Quit/reopen通过；未绕过门禁。"
   real_smoke:
-    status: "NOT RUN"
-    command_or_steps: "修复并重新冻结canonical entrypoint后，在剩余7次额度内执行fresh accept-once vertical。"
+    status: "BLOCKED"
+    command_or_steps: "在最多7次额度内执行fresh accept-once vertical；只允许canonical只读Git probe。"
     environment: "隔离、无敏感 Git workspace；唯一 allowlisted read-only Command。"
-    actual_result: "NOT RUN：额度已授权但canonical startup先失败；真实调用0/7。"
+    actual_result: "BLOCKED：4次真实请求分别出现无action card的decline、无approval的direct completion、generation failure、跨正常reopen持续waiting；accept_once与decision POST均未发生。"
   representative_failure:
-    status: "NOT RUN"
+    status: "BLOCKED"
     command_or_steps: "修复entrypoint后执行fresh cancel-current-turn，并在安全自然条件下观察expiry/reconnect；不得故障注入。"
     environment: "canonical local/demo_fast；正常启动、停止与重连流程。"
-    actual_result: "NOT RUN：本批没有真实cancel/expiry/reconnect观察，且未使用故障注入。"
+    actual_result: "cancel_current_turn NOT RUN：没有可操作approval authority。正常close/reopen已观察，但approval replay/expiry NOT OBSERVED；未故障注入。"
   focused_checks:
     - name: "FEAT-137 D0 package gate"
       command: "./docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate D0 docs/features/FEAT-137-desktop-approval-interaction"
@@ -212,21 +212,31 @@ verification:
     - name: "Fresh D4 canonical stable entrypoint"
       command: "pnpm tauri:demo-fast:stable"
       result: "BLOCKED (exit 1 before build/app start)：v4 checker仍固定历史Host 96b1fa1…，与当前FEAT-137 Host 118651804…冲突；v6 checker和Host focused gate独立PASS；真实调用0/7。"
+    - name: "v4/v6 authority composition repair + Desktop immutable refreeze"
+      command: "v4/v6 checker；14 Web focused files；Rust feat137；pnpm lint/build；Cargo fmt/check；Host FEAT-137/136/lint；five-repository clean audit"
+      result: "PASS：Desktop 27d6c6a2a9f8a9984b47b27143f8c9090815dbd3 / tree 6cefcc7a6deed7924f64ba32b06ac7c084fd654d；Web 294/294、Rust 19/19；v4 historical object与v6 current Host authority同时成立。"
+    - name: "Fresh real D4 after entrypoint repair"
+      command: "canonical stable app；4/7 real UI requests；normal Quit/reopen only"
+      result: "BLOCKED：没有可操作inline approval authority；accept_once/cancel_current_turn与decision POST均0。一次direct Command完成只证明Command/hydration，不证明approval；一次waiting跨正常reopen保持单一。"
+    - name: "Post-D4 governance package gates"
+      command: "D0、strict D0、whole strict、pnpm lint/test/feature:audit、shell syntax、git diff --check；D4 closure gate"
+      result: "PASS：D0/strict/lint、tests 48/48与17-package audit；D4 closure gate按设计FAIL并拒绝未完成Feature，未改写Must/verification为PASS。"
   artifacts:
     - "00-feature-brief.md"
     - "01-delivery-log.md"
     - "02-verification.md"
   diff_review:
     status: "PASS"
-    summary: "D0与component source checkpoint保留；Contracts 2e490dea...、Host 118651804...、Desktop 918bd26b...仍clean且v6 authority PASS。fresh D4暴露canonical runner旧v4 exact-HEAD gate回归，aggregate implementation/verification降为blocked；未修改四个实现仓，真实调用0/7。"
+    summary: "D0与component source checkpoint保留；Contracts 2e490dea...、Host 118651804...、Desktop 27d6c6a2...最终clean。canonical authority composition已修复，真实D4暴露live approval authority未闭环；aggregate implementation/verification保持blocked，真实调用4/7、decision POST 0。"
   known_limitations:
     - "Contracts/Host/Desktop local immutable source authority与clean-tree conformance已PASS，但没有published tag/release。"
     - "真实allow/cancel、自然expiry/reconnect与人工UI仍未验证；source PASS不得冒充真实vertical。"
     - "独立 decline-and-continue 因 frozen stable available-decision 语义不纳入第一阶段；只有 accept once / cancel current turn。"
-    - "真实 allow/cancel、自然 expiry/reconnect、hydration、主题/视口/缩放/VoiceOver 与 D4 全部 NOT RUN。"
+    - "真实allow/cancel与approval hydration/cardinality未完成；normal reconnect已观察，但approval replay/expiry NOT OBSERVED。"
+    - "light generic UI仅在100%观察；dark、exact 1180×760、200%、approval keyboard/focus/aria-live/safe-copy与VoiceOver NOT RUN，因为没有真实approval card。"
     - "CAP-020/021、FileChange/Diff、平台/生产审批均不属于 FEAT-137。"
-    - "本治理、Host repair与Desktop repin均未启动应用、Runtime、Provider或模型，真实调用0次。"
-    - "2026-08-31 D4额度已授权7次但未使用；canonical stable runner在旧v4 checker处exit 1，必须先修复并重新冻结Desktop，不得绕过。"
+    - "2026-08-31 authority repair后canonical app/Runtime/Host/Provider已真实启动；4/7请求未形成可操作approval authority，剩余3次停止消耗。"
+    - "不得把direct Command completion、generic policy modal、source fixture或跨重开的waiting turn冒充accept/cancel、approval replay或D4 PASS。"
 
 public_readiness:
   required: false

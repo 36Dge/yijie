@@ -1,6 +1,6 @@
 # FEAT-137 — D0 与 source implementation 验证
 
-> 当前 verdict：**D0 与 component source/conformance PASS；fresh D4 canonical startup BLOCKED；真实调用 0/7**。旧 v4 checker 的 Host exact-HEAD authority仍固定为 `96b1fa1…`，无法与当前 FEAT-137 Host `118651804…` 组合；应用、Runtime、Provider、模型与 live verification均未启动。
+> 当前 verdict：**D0、component source/conformance 与 canonical v4/v6 authority composition repair PASS；fresh real D4 BLOCKED；真实调用 4/7**。canonical app/Runtime/Host/Provider已启动，但没有形成可操作的真实 inline approval authority；decision POST为0，accept/cancel均未完成。
 
 ## 1. D0 checklist
 
@@ -32,7 +32,7 @@
 | Pending storage | Host memory only | Host source/focused PASS |
 | Resolved audit | content-free；128/session；delete with session | Host bounded retention/timestamps/redaction/cleanup focused PASS |
 | Contract | new negotiated v6；v1-v5 unchanged | Contracts `2e490dea…`、Host `118651804…`、Desktop `918bd26b…` exact clean authority与 source conformance PASS |
-| Real calls | D0 quota 0；2026-08-31 fresh D4 quota 7，允许调用层受限自动重试 | 0/7 used；decision POST 仍无自动重试 |
+| Real calls | D0 quota 0；2026-08-31 fresh D4 quota 7，允许调用层受限自动重试 | 4/7 used；decision POST 0，剩余3次未使用 |
 
 ## 3. Baseline preflight
 
@@ -75,14 +75,17 @@ Contracts 的 post-commit 结果绑定完整 SHA `2e490dea4444ea1e33c2df1a5267b2
 
 ## 5. 明确未执行项
 
-- Fresh D4 canonical startup：`BLOCKED`。`pnpm tauri:demo-fast:stable` 在旧 v4 checker 比较 Host exact HEAD 时 exit 1；v6 checker与Host focused gate分别PASS。未绕过门禁。
+- Canonical authority composition repair：`PASS`。Desktop `27d6c6a2…`从历史immutable Git object校验v4 source/digest，当前Host `118651804…`由v6 checker提供实际运行实现；五仓clean、stable artifact、Host/desktop focused门禁PASS。
+- Fresh D4 canonical startup/build：`PASS`；真实approval vertical：`BLOCKED`。4次请求没有形成可操作的inline approval card：declined without action UI、direct Command completion without approval、generation failure、persistent waiting across normal reopen。
 - Contracts v6 local immutable commit、clean-tree SHA audit 与 authority freeze：PASS；published tag/release：NOT RUN。
 - Host consumer pin、source implementation、unit/race/contract conformance：PASS（immutable clean commit）；真实 Runtime integration：NOT RUN。
 - Desktop closed consumer、SQLCipher、inline UI source、lint/test/build：PASS（immutable clean commit）；真实 UI smoke：NOT RUN。
-- App/Host/Runtime/Provider/model startup：NOT RUN。
-- Real accept/cancel、自然 expiry/reconnect与真实 normal reopen：NOT RUN；SQLCipher source hydration test PASS。
-- Light/dark、exact 1180×760、200%、keyboard、VoiceOver：NOT RUN。
-- D4：BLOCKED before startup；真实调用 0/7，accept/cancel、自动重试均未发生。
+- App/Host/Runtime/Provider/model startup：PASS at canonical entrypoint；所有停止/重开均为正常应用生命周期。
+- Real accept/cancel：BLOCKED / NOT RUN；没有decision POST。普通Command item在正常重开后只hydration一次；真实approval hydration/cardinality仍NOT OBSERVED。
+- Natural reconnect：OBSERVED for normal app close/reopen；approval replay、expiry：NOT OBSERVED，未注入或伪造。
+- Light：OBSERVED at 100% generic task UI；dark、exact 1180×760、200%、approval keyboard/focus/aria-live/safe-copy与VoiceOver：NOT RUN，因为没有真实approval card。未更改系统辅助功能设置。
+- D4：BLOCKED after canonical startup；真实调用4/7，剩余3次因重复无信息未使用。
+- Governance：D0、strict、lint、tests 48/48与17-package audit PASS；D4 closure gate正确拒绝未完成的Feature，未强行关闭Must AC。
 
 ## 6. Non-evidence 与限制
 
@@ -91,7 +94,7 @@ Contracts 的 post-commit 结果绑定完整 SHA `2e490dea4444ea1e33c2df1a5267b2
 - FEAT-136 Command terminal/UI foundation 不能证明 approval pending/decision 闭环。
 - synthetic fixture 只能证明 parser/reducer/UI，不得冒充真实 reverse request 或 D4。
 - Contracts/Host/Desktop local commits 已建立 clean source authority/conformance；真实 vertical 和 published/supported release仍未建立。
-- Canonical stable runner 的 v4 checker仍将运行 checkout强制为历史 Host `96b1fa1…`；它不能同时验证当前 v6 Host `118651804…`。必须修复 authority composition，不得绕过 checker。
+- Canonical stable runner 的v4/v6 authority composition已修复并冻结；当前阻断转移到真实producer/task lifecycle、Host pending与Desktop inline action authority未能闭环。
 - `decline-and-continue`、session approval、network/permission amendment、CAP-020/021 与 FileChange/Diff 均不在第一阶段。
 
 ## 7. 结论
@@ -100,5 +103,5 @@ Contracts 的 post-commit 结果绑定完整 SHA `2e490dea4444ea1e33c2df1a5267b2
 - Contracts local immutable authority / clean-tree audit：PASS（`2e490dea…`）。
 - Feature：active。
 - Contract authority / immutable commit：PASS；`contract.status=PASS`。Host 与 Desktop exact consumer pins PASS。
-- Component source implementation/conformance：PASS；aggregate Feature implementation：BLOCKED at canonical entrypoint。live verification、D4 与十条 Must AC：BLOCKED/NOT RUN/pending；真实调用 0/7。
+- Component source implementation/conformance与canonical entrypoint repair：PASS；aggregate Feature implementation仍BLOCKED于真实approval authority。live verification、D4与十条Must AC保持BLOCKED/NOT RUN/pending；真实调用4/7、decision POST 0。
 - Epic：未完成；不代表 production approval ready。
