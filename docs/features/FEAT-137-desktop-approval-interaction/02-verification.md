@@ -1,6 +1,6 @@
 # FEAT-137 — D0 与 source implementation 验证
 
-> 当前 verdict：**D0 PASS；Contracts、Host、Desktop immutable source implementation 与 clean-tree source conformance PASS；live verification 与 D4 NOT RUN**。source 通过不等于真实 Runtime vertical、人工视觉、Feature 完成或发布批准。
+> 当前 verdict：**D0 与 component source/conformance PASS；fresh D4 canonical startup BLOCKED；真实调用 0/7**。旧 v4 checker 的 Host exact-HEAD authority仍固定为 `96b1fa1…`，无法与当前 FEAT-137 Host `118651804…` 组合；应用、Runtime、Provider、模型与 live verification均未启动。
 
 ## 1. D0 checklist
 
@@ -32,7 +32,7 @@
 | Pending storage | Host memory only | Host source/focused PASS |
 | Resolved audit | content-free；128/session；delete with session | Host bounded retention/timestamps/redaction/cleanup focused PASS |
 | Contract | new negotiated v6；v1-v5 unchanged | Contracts `2e490dea…`、Host `118651804…`、Desktop `918bd26b…` exact clean authority与 source conformance PASS |
-| Real calls | D0 quota 0 | 0 used |
+| Real calls | D0 quota 0；2026-08-31 fresh D4 quota 7，允许调用层受限自动重试 | 0/7 used；decision POST 仍无自动重试 |
 
 ## 3. Baseline preflight
 
@@ -75,13 +75,14 @@ Contracts 的 post-commit 结果绑定完整 SHA `2e490dea4444ea1e33c2df1a5267b2
 
 ## 5. 明确未执行项
 
+- Fresh D4 canonical startup：`BLOCKED`。`pnpm tauri:demo-fast:stable` 在旧 v4 checker 比较 Host exact HEAD 时 exit 1；v6 checker与Host focused gate分别PASS。未绕过门禁。
 - Contracts v6 local immutable commit、clean-tree SHA audit 与 authority freeze：PASS；published tag/release：NOT RUN。
 - Host consumer pin、source implementation、unit/race/contract conformance：PASS（immutable clean commit）；真实 Runtime integration：NOT RUN。
 - Desktop closed consumer、SQLCipher、inline UI source、lint/test/build：PASS（immutable clean commit）；真实 UI smoke：NOT RUN。
 - App/Host/Runtime/Provider/model startup：NOT RUN。
 - Real accept/cancel、自然 expiry/reconnect与真实 normal reopen：NOT RUN；SQLCipher source hydration test PASS。
 - Light/dark、exact 1180×760、200%、keyboard、VoiceOver：NOT RUN。
-- D4：NOT RUN；本批真实调用 0 次。
+- D4：BLOCKED before startup；真实调用 0/7，accept/cancel、自动重试均未发生。
 
 ## 6. Non-evidence 与限制
 
@@ -90,6 +91,7 @@ Contracts 的 post-commit 结果绑定完整 SHA `2e490dea4444ea1e33c2df1a5267b2
 - FEAT-136 Command terminal/UI foundation 不能证明 approval pending/decision 闭环。
 - synthetic fixture 只能证明 parser/reducer/UI，不得冒充真实 reverse request 或 D4。
 - Contracts/Host/Desktop local commits 已建立 clean source authority/conformance；真实 vertical 和 published/supported release仍未建立。
+- Canonical stable runner 的 v4 checker仍将运行 checkout强制为历史 Host `96b1fa1…`；它不能同时验证当前 v6 Host `118651804…`。必须修复 authority composition，不得绕过 checker。
 - `decline-and-continue`、session approval、network/permission amendment、CAP-020/021 与 FileChange/Diff 均不在第一阶段。
 
 ## 7. 结论
@@ -98,5 +100,5 @@ Contracts 的 post-commit 结果绑定完整 SHA `2e490dea4444ea1e33c2df1a5267b2
 - Contracts local immutable authority / clean-tree audit：PASS（`2e490dea…`）。
 - Feature：active。
 - Contract authority / immutable commit：PASS；`contract.status=PASS`。Host 与 Desktop exact consumer pins PASS。
-- Source implementation/conformance：PASS；Feature implementation `complete` 仅指 source slice。live verification、D4 与十条 live Must AC：NOT RUN/pending；真实调用 0。
+- Component source implementation/conformance：PASS；aggregate Feature implementation：BLOCKED at canonical entrypoint。live verification、D4 与十条 Must AC：BLOCKED/NOT RUN/pending；真实调用 0/7。
 - Epic：未完成；不代表 production approval ready。

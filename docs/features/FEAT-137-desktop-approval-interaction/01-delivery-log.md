@@ -180,3 +180,24 @@ Owner 明确确认推荐方案：
 最终独立结构化复审 `PASS`：exact local/demo_fast 与 FEAT-134/136/137 gates、v6 negotiation、v1-v5 equality、closed pending/decision/error shapes、Rust identity/stream mapping、fresh GET→single POST、无自动重试、unknown revoke+resync、SSE-first/double-click/selection/TTL races、SQLCipher safe hydration/cardinality、event-id idempotency/late-event no rollback、redaction/safe-copy、normal handler=1/S10=0 及 capability/plugin/CSP/dependency/external URL 边界均通过。原 TTL/ack P1 已由 Contracts executable at-expiry test与 Host deterministic late-ack/cleanup race tests闭合；无剩余 P0–P2。
 
 本结论只把 source implementation/conformance 标为 PASS。真实 allow/cancel、自然 expiry/reconnect、人工 light/dark/1180×760/200%/键盘/VoiceOver、D4 与发布继续 NOT RUN；十条 Feature-level Must 继续 pending，真实调用为 0。
+
+## 14. 2026-08-31 — fresh real D4 canonical startup blocker
+
+Owner 单独授权 fresh real allow/cancel D4 最多 7 次真实 Provider/模型调用，并允许调用层受限自动重试；approval decision POST 的 closed single-write/no-retry 语义不变。
+
+| Field | Result |
+|---|---|
+| Five-repository preflight | PASS：Runtime `b2b20e2…`、Contracts `2e490dea…`、Host `118651804…`、Desktop `918bd26b…`、yijie `56b922c…` exact clean |
+| Runtime stable artifact | PASS：0.144.6、`experimentalApi=false`、267 schemas；binary SHA-256 `4efe16d2…` / 355676760 bytes；manifest SHA-256 `1cfa2e0a…` / 1475 bytes |
+| Contracts/Desktop authority | PASS：v6 checker确认 Contracts、Host、Desktop exact clean authority |
+| Host focused gate | PASS：`make test-feat137`；Codex/Session/App race suites 与 desktop-host compile-only通过 |
+| Isolated workspace | PASS：新建无敏感 Git repository，branch `feat-137-d4`，仅一个 benign untracked文本文件 |
+| Canonical command | `pnpm tauri:demo-fast:stable` |
+| Startup result | BLOCKED / exit 1 before build or app start：旧 `check-agent-host-v4-contract.mjs` 要求 Host HEAD `96b1fa19783694aef583b614c492fd2b6b5c15cc`，当前冻结 FEAT-137 Host 为 `118651804b7f5a7849bc68cdf29d88c74a21f8a1` |
+| v6 relation | 独立 v6 checker对当前 Host/Contracts/Desktop PASS；失败发生在 runner 先执行的旧 v4 exact-checkout gate |
+| App / Runtime / Provider / model | NOT STARTED |
+| Real calls | 0/7；没有发生或重试任何真实请求 |
+| accept_once / cancel_current_turn | NOT RUN / NOT RUN |
+| Hydration / reconnect / expiry / visual / VoiceOver | NOT RUN；未改变系统无障碍设置 |
+
+结论：这是 canonical stable entrypoint authority composition regression，不是 Provider、模型、workspace 或 approval producer 失败。绕过 v4 checker、手工拼接 launcher 或直接运行已构建 binary 都会使 D4 失去 canonical authority，因此本批安全停止。下一步需单独修复 v4 checker，使其从冻结历史 Git object 验证 v4 byte/source authority，同时由当前 Host HEAD `118651804…` 提供运行实现；随后重新冻结 Desktop SHA、更新 v6 authority、复审并重跑 fresh D4。

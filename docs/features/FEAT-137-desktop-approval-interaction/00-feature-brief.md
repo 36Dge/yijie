@@ -2,12 +2,12 @@
 
 > Profile: `demo_fast` · Exposure: `local` · Created: `2026-08-30`
 >
-> 当前结论：Owner 已于 2026-08-30 明确批准第一阶段安全方案；**D0 PASS / Contracts、Host、Desktop immutable source implementation 与 clean-tree source conformance PASS / live verification 与 D4 NOT RUN**。source implementation 通过不代表真实 approval vertical、人工视觉或发布批准。
+> 当前结论：Owner 已于 2026-08-30 明确批准第一阶段安全方案；**D0、Contracts/Host/Desktop component source 与 clean-tree conformance PASS；2026-08-31 fresh D4 canonical startup BLOCKED，真实调用 0/7**。stable runner 的旧 v4 checker 仍要求 Host `96b1fa1…`，与冻结 FEAT-137 Host `118651804…` 冲突；因此 aggregate implementation/verification 不得标 PASS。
 
 ## 1. 用户问题与真实结果
 
 - 目标用户：在易界 AI Desktop 的本地 demo_fast 会话中，需要明确决定一条受限只读 Command 是否执行的用户。
-- 当前剩余问题：Contracts v6、Host authority 与 Desktop closed consumer/SQLCipher/inline UI 已完成本地不可变 source slice；尚未通过真实 Runtime/Provider 请求验证 allow/cancel，也未自然观察 expiry/reconnect 或完成人工视觉验收，因此不能宣称产品闭环已验证。
+- 当前剩余问题：Contracts v6、Host authority 与 Desktop closed consumer/SQLCipher/inline UI 已完成本地不可变 component source slice，但 canonical `tauri:demo-fast:stable` 在启动前被旧 v4 exact-HEAD checker 阻断；真实 Runtime/Provider 未启动，allow/cancel、expiry/reconnect、hydration 和人工视觉均未验证。
 - 完成后的真实结果：唯一 allowlisted Git 仓库检查触发真实 approval；用户在对应 Command Item 内选择“允许一次”或“取消本轮”，Host 只响应一次，Runtime 与 Item/Turn 权威结果真实收敛。
 
 本 Feature 仅承接 CAP-019 / GS-005。CAP-020 一般权限/MCP elicitation、CAP-021 `requestUserInput`、FileChange/Diff、平台业务审批和生产审批不属于 FEAT-137。
@@ -25,7 +25,7 @@
 9. 审计只含 opaque identities、stable result code、request/resolution timestamps；禁止 command、cwd、reason、secret 和 Runtime wire。
 10. Contracts 后续新增独立、显式协商的 v6 approval surface，v1-v5 和现有 Runtime exact-shape manifest 保持不变。
 11. Runtime 固定为 `b2b20e2…` / 0.144.6；不修改、升级、替换、重编译、重新 pin 或开启 experimental API。
-12. 本 D0 不启动 Desktop、Host、Runtime、Provider 或模型，真实调用额度为 0。
+12. D0 的真实调用额度为 0；Owner 于 2026-08-31 单独授权 fresh D4 最多 7 次真实调用及受限调用层自动重试。approval decision POST 仍严格单次、不得自动重试。canonical startup 阻断前实际使用 0/7。
 
 ## 3. 最终冻结输入
 
@@ -35,7 +35,7 @@
 | yijie-contracts | `2e490dea4444ea1e33c2df1a5267b2bff5bfb8e6` / unpublished v0.7.0 | clean；FEAT-137 v6 local immutable authority；parent `87f94c9…` |
 | yijie-agent-host | `118651804b7f5a7849bc68cdf29d88c74a21f8a1` / tree `9ae73d7b6f024bda241071371487a627810c1058` | clean；基于首个冻结 candidate `01c4a406…` 的 TTL/ack 与 late-cleanup 修复 authority |
 | yijie-desktop | `918bd26b04a32ab20433e2ea991cc0a4ea282c34` / tree `e5f5af31773852af6eefa65a62080c87b3ac1384` | clean；v6 closed consumer、SQLCipher 安全投影、inline UI 与 exact Host repin |
-| yijie | base `ed6e8cc6d4a0cc9e675f189be0973c38ad193e3a` | FEAT-137 治理分支起点；本地治理提交在本批末创建 |
+| yijie | `56b922c28d0708deeb94e02377b91c8d0219d89a` | clean D4 preflight authority；本次阻断证据回填后工作树仅含 FEAT-137 四文件 diff |
 
 Contracts source-first 批已在 `yijie-contracts/feat/feat-137-contracts-v6-approval` 创建 local commit `2e490dea4444ea1e33c2df1a5267b2bff5bfb8e6`，tree 为 `0041ca35366ec4718f9937398924983591bd7010`，父提交为 `87f94c9aa6d4848cb67aa8a1265bd21474edb0bb`。提交后 safe generated/build、focused 25/25、安全合规 Node 88/88、Go、lint、双基线 equality/breaking 与 clean-tree authority audit 全部 PASS；v1-v5 和 `agent-host-runtime-v1.json` 保持不变。Host 与 Desktop 首次冻结后的独立复审发现 decision 在截止前 commit、Runtime ack 在截止后到达时可能生成非法时间窗 terminal；Host `118651804…` 已以 commit 时刻作为 decision winner 时间、让 deadline 后 pending cleanup 归并到 TTL winner，并补确定性 race tests与 retained/HTTP window validation。Desktop 随后精确 repin 到该 Host SHA。最终 Contracts→Host→Desktop clean-tree source conformance PASS；发布/tag/push 与 D4 仍未执行，真实调用为 0。
 
@@ -100,15 +100,16 @@ frozen Runtime stable source/schema（只读）
   → Host 118651804… exact gate/policy/pending/single-response/deadline/redaction/audit（clean immutable source PASS）
   → Desktop 918bd26b… v6 closed decoder/reducer/SQLCipher/inline UI（clean immutable source PASS）
   → Contracts→Host→Desktop clean-tree source conformance（PASS）
-  → 单独授权的 fresh real allow/cancel D4
+  → canonical stable entrypoint v4/v6 authority composition repair（当前 BLOCKED）
+  → 重新冻结 Desktop authority并复审后，fresh real allow/cancel D4
 ```
 
 现有 v5 是 closed Command/Tool Item contract，并明确没有 approval action；不得把审批变体塞回 v5，也不得修改 `agent-host-runtime-v1` 的冻结 exact-shape 含义。
 
 ## 8. 停止条件与明确非目标
 
-- D0、Contracts/Host/Desktop local freeze、Host TTL/ack repair 与 clean-tree source conformance 已完成；下一阶段只能由 Owner 单独授权真实 allow/cancel D4。发布与 Runtime 修改仍未授权。
-- 真实 D4 调用额度需 Owner 另行授权；本治理重基线与 Host source 批次为 0 次。
+- D0、Contracts/Host/Desktop local freeze、Host TTL/ack repair 与 clean-tree component source conformance 已完成。fresh D4 已获最多 7 次调用授权，但 canonical startup 在调用前因旧 v4 checker 的 Host exact-HEAD pin 冲突而 BLOCKED；实际调用 0/7。
+- 不得绕过、删除或跳过 v4/v6 checker。下一步必须单独修复 stable entrypoint 的双 authority composition，形成新的 Desktop immutable SHA并复审；之后才能重新执行 D4。
 - 如果精确 prompt policy 无法在 `on-request/read-only` 下产生 stable request，保持 capability gap 并停止；不得改用危险 Command、`untrusted` 的潜在 unsandboxed retry、权限提升或 Runtime patch。
 - 不实现 FileChange/Diff、CAP-020/021、MCP/平台/生产审批，也不注册或制造其它 producer。
 - 只允许应用自身正常启动、停止、关闭和重开；不强杀、不故障注入、不破坏权限、不替换 binary、不使用攻击 fixture。
@@ -119,8 +120,8 @@ frozen Runtime stable source/schema（只读）
 - Feature：active。
 - Contracts local immutable authority / clean-tree audit：PASS；`contract.status=PASS`。
 - Host v6 consumer pin / mapper / pending / decision / TTL-ack source slice：PASS（immutable clean commit）；Desktop consumer、SQLCipher、inline UI 与 exact repin：PASS（immutable clean commit）。
-- Implementation：complete（仅 source implementation）。
-- Verification / real allow/cancel / D4：NOT RUN。
-- Runtime、Contracts：未修改；Host/Desktop 仅有本地 commits，未发布；真实调用：0。
+- Component source implementation/conformance：PASS；aggregate implementation：BLOCKED（canonical stable entrypoint gate regression）。
+- Verification / real allow/cancel / D4：BLOCKED before startup；所有 live 项仍 NOT RUN。
+- Runtime、Contracts、Host、Desktop：未修改且保持 clean；真实调用：0/7。
 
 完成本 Feature 时只能表述为“本地 Command 审批局部完成，Epic 尚未完成；不代表 production approval ready”。
