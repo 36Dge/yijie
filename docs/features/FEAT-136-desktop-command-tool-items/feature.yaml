@@ -56,7 +56,7 @@ product_ux:
     - "真实 Tool producer、产品入口、安全边界与 Tool D4；全部由 FEAT-144 承接。"
     - "natural replay、live event_id、late event、unknown/resync；由 FEAT-142 承接。"
     - "dark、精确 1180×760 与完整 started/output-delta 集成状态顺序；由 FEAT-143 承接。"
-    - "declined/approval reverse request；由 FEAT-137 承接。"
+    - "approval reverse request 的 accept_once/cancel 与 Runtime Cancel 形成的 declined outcome；由FEAT-137 phase 1承接（immutable source conformance PASS、D4 NOT RUN），独立decline用户动作deferred。"
     - "FileChange、Diff、审批、写权限与 FEAT-138。"
     - "强杀、故障注入、权限破坏、binary 替换、攻击 fixture、发布与生产写。"
   main_flow:

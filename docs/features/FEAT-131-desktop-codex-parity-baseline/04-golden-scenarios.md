@@ -27,7 +27,7 @@
 | GS-002 | 多段过程更新与用户可见推理信息 | `requires Host/Contracts projection` | FEAT-134 | `owner-approved-inference` | metadata only；`real-runtime: NOT RUN` |
 | GS-003 | Command 执行成功和失败 | `available` | FEAT-136；完整 started/delta 集成顺序由 FEAT-143 | `owner-approved-inference` | current terminal scope `real-runtime: PASS`；completed=1、failed=1、normal hydration each once；individual started/delta live 未捕获 |
 | GS-004 | Tool 调用成功和失败 | `requires Host/Contracts projection` | FEAT-144 | `owner-approved-inference` | generic source conformance `PASS`；real producer/entrypoint decision `BLOCKED`；Tool D4 `NOT RUN` |
-| GS-005 | 命令审批允许、拒绝和过期 | `requires Host/Contracts projection` | FEAT-137 | `owner-approved-inference` | `BLOCKED`: Owner security decision |
+| GS-005 | 命令审批一次性允许、取消和过期 | `available` | FEAT-137 | `owner-approved-inference` | immutable source implementation/conformance `PASS`；real allow/cancel、自然expiry/reconnect与D4 `NOT RUN` |
 | GS-006 | 文件修改与 Diff | `intentional product difference` | FEAT-131 scope decision | `owner-excluded` | metadata-only exclusion；无 fixture、无真实验收 |
 | GS-007 | 执行中补充指令 | `requires Host/Contracts projection` | FEAT-139 | `owner-approved-inference` | metadata only；projection unavailable |
 | GS-008 | 用户停止 Turn | `available` | FEAT-139 | `owner-approved-inference` | `real-runtime: NOT RUN` |
@@ -83,15 +83,15 @@
 - Provenance：Contracts/Host/Desktop generic Tool source conformance 为 `PASS`，但没有 Owner-approved real producer 或产品入口，因此 real success/failure 与 D4 保持 `BLOCKED / NOT RUN`；不使用 experimental dynamic tool、临时注册或 fixture 冒充。
 - Owner：FEAT-144。
 
-### GS-005 — 命令审批允许、拒绝和过期
+### GS-005 — 命令审批一次性允许、取消和过期
 
-- 前置条件：Owner 已明确 local-only sandbox、Command approval policy、决定集合、审计和过期语义；否则 blocked/fail closed。
-- 用户操作：对绑定到具体 active Command Item 的请求分别执行 Allow、Deny，并观察一个自然过期/失效请求。
-- 目标状态顺序：`command.running → approval.requested → waiting_approval → allowed|denied|expired → serverRequest.resolved → command/turn authoritative result`。
-- 可用动作：仅在请求 active、身份匹配且未过期时显示批准/拒绝；重复点击禁用；断线后不保留悬空按钮。
-- 最终结果：决定真实返回等待中的 Runtime request；没有有效决定时默认拒绝。
+- 前置条件：exact `local + demo_fast + FEAT-137 gate`；`experimentalApi=false`、`sandbox=read-only`、`approvalPolicy=on-request`、唯一 allowlisted Git repository check 与 120 秒 TTL。默认、gate 关闭和非 local 仍为 `never`。
+- 用户操作：对绑定到具体 active Command Item 的请求分别执行 Accept once、Cancel，并在安全自然条件下观察一个过期/失效请求。
+- 目标状态顺序：`command approval requested → waiting_approval → accepted|cancelled|expired → serverRequest.resolved → command/turn authoritative result`。
+- 可用动作：仅在请求 active、身份匹配且未过期时显示 accept once / cancel current turn；不显示 decline、session approval 或 policy/network amendment；重复点击禁用，断线后动作立即禁用。
+- 最终结果：Accept once 只在 read-only 内执行一次；Cancel/expired 不执行目标 Command。TTL 先胜时 Host 只向仍 pending 的 Runtime request 发送一次 `Cancel` 并投影 `expired`；Runtime/Item/Turn cleanup 先胜时投影 `resolved_elsewhere` 且不再响应。
 - Reference basis：`owner-approved-inference`。FileChange approval 不属于本场景，也不纳入 Epic。
-- Provenance：synthetic 只能验证 reducer/UI；真实 Command 审批在 Owner 安全决定前 `NOT RUN/BLOCKED`。
+- Provenance：Owner D0 decision与Contracts `2e490dea…` / Host `118651804…` / Desktop `918bd26b…` immutable source conformance `PASS`；真实allow/cancel、自然expiry/reconnect与D4 `NOT RUN`。synthetic/source证据不能证明真实审批闭环。
 - Owner：FEAT-137。
 
 ### GS-006 — 文件修改与 Diff（Owner 主动排除）

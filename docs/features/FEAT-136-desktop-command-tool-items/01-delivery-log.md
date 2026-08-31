@@ -61,7 +61,7 @@ Owner 将 FEAT-136 Must 收窄到 fresh real 已证明的 Command 结果，并�
 
 | Former AC | Preserved result | Receiver |
 |---|---|---|
-| AC-001 | completed/failed terminal 部分 | FEAT-136 AC-001/002；declined 转 FEAT-137；完整 started/delta 状态顺序转 FEAT-143 |
+| AC-001 | completed/failed terminal 部分 | FEAT-136 AC-001/002；approval accept_once/cancel与Runtime Cancel形成的declined outcome转FEAT-137 phase 1（immutable source PASS、D4 NOT RUN），独立decline用户动作deferred；完整started/delta状态顺序转FEAT-143 |
 | AC-002 | event identity、replay、gap | FEAT-142 |
 | AC-003 | terminal cardinality/hydration 部分 | FEAT-136 AC-001/002/004；late/reconciliation resilience 转 FEAT-142 |
 | AC-004 | 安全投影/复制 | FEAT-136 AC-003 |

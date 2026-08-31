@@ -1,0 +1,239 @@
+schema_version: 3
+delivery_profile: "demo_fast"
+exposure: "local"
+
+feature:
+  id: "FEAT-137"
+  slug: "desktop-approval-interaction"
+  title: "Desktop 本地 Command 审批交互"
+  status: "active"
+  created_at: "2026-08-30"
+  requirement_owner: "段成威"
+  technical_owner: "段成威"
+  reviewer: "段成威"
+  release_owner: "段成威"
+
+scope:
+  risk_level: "high"
+  data_classification: "restricted"
+  contract_impact: "semantic"
+  database_change: "expand"
+  persistence_change: "durable"
+  runtime_change: "none"
+  auth_permission_change: "permission"
+  user_workflow_change: "user_visible"
+  ui_change: "interactive"
+  ai_behavior_change: "none"
+
+repositories:
+  - "yijie"
+  - "yijie-contracts"
+  - "yijie-agent-host"
+  - "yijie-desktop"
+
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+
+product_ux:
+  status: "PASS"
+  primary_user: "在易界 AI Desktop 的本地 demo_fast 会话中，需要明确决定一条受限只读 Command 是否执行的用户。"
+  problem: "Contracts v6、Host approval authority 与 Desktop closed consumer/SQLCipher/inline interaction 已完成本地不可变 source implementation；当前剩余产品缺口是真实 allow/cancel vertical、自然 expiry/reconnect 与人工视觉尚未验证。"
+  user_outcome: "在唯一允许的本地 Git 仓库检查请求到达时，用户在对应 Command Item 内看到安全摘要，只能选择允许一次或取消本轮；决定真实返回 Runtime，断线、过期和重复操作全部 fail closed。"
+  in_scope:
+    - "CAP-019 / GS-005 的 local/demo_fast stable Command approval reverse request 闭环。"
+    - "仅 exact FEAT-137 gate 下把 approvalPolicy 从 never 切换为稳定 on-request；sandbox 始终 read-only。"
+    - "Host 受管的精确 prompt policy 与唯一 argv git rev-parse --is-inside-work-tree；cwd 必须为当前 workspace root。"
+    - "Host 固定投影 accept_once/cancel_current_turn、120 秒 TTL、single-response、pending snapshot、content-free bounded audit；TTL 竞争获胜时只向 Runtime 发送一次 Cancel 并投影 expired。"
+    - "Contracts v6 source-first approval surface，以及 Desktop inline Item、权威 resolved、SQLCipher 安全状态与无障碍交互。"
+  out_of_scope:
+    - "独立 decline-and-continue、session approval、exec-policy/network amendment、始终允许或离线批准。"
+    - "任何其它 Command、shell wrapper、管道、重定向、环境赋值、多 action、网络、写入、额外权限或 unsandboxed escalation。"
+    - "CAP-020 一般权限/MCP elicitation、CAP-021 requestUserInput、平台业务审批与生产审批。"
+    - "FileChange、Diff、FileChange approval、写权限与已取消的 FEAT-138。"
+    - "修改、升级、替换、重编译或重新 pin 最终冻结 Runtime；开启 experimental API。"
+    - "强杀、故障注入、权限破坏、binary 替换、攻击 fixture、发布与生产写。"
+  main_flow:
+    - "canonical local/demo_fast stable runner 在 FEAT-134/136 foundation 与 exact FEAT-137 gate 下启动；Host 明确使用 on-request/read-only，默认和非 local 继续 never/read-only。"
+    - "Runtime stable Command reverse request 到达 Host；Host 验证 thread/turn/item/request identity、唯一 argv、workspace cwd 和权限边界，并建立 120 秒内存 pending。"
+    - "Contracts v6 requested event 与 owner-only pending snapshot 只向 Desktop 投影固定 action identity、安全摘要和 accept_once/cancel_current_turn。"
+    - "用户允许一次或取消本轮；Host first-writer-wins 地向同一 Runtime request 回应一次，Desktop 仅按 Host/Runtime resolved 与 Item/Turn authority 更新。"
+    - "断线时 Desktop 禁用动作；正常重连按 Host snapshot 对账；TTL 先到时 Host first-writer-wins 地向仍在等待的 Runtime request 发送一次 Cancel 并记 expired；若 Runtime/Item/Turn 已先清理则记 resolved_elsewhere 且不再响应；resolved audit 随 session 有界保留。"
+  visual_direction: "继承 FEAT-133 Item shell 与 Yijie Design System；审批卡内联在对应 Command Item，不使用全局弹窗，不抢占不相关焦点；动作、风险、状态和失败均以文字、图标与克制 aria-live 表达。"
+  ui_states:
+    idle: "没有 active Turn 或审批请求时不显示审批卡，默认策略说明仍为 read-only。"
+    loading: "Pending 显示固定安全动作与剩余有效期；Submitting 后两个按钮均禁用，不预先显示已允许。"
+    success: "仅在 Host/Runtime resolved authority 到达后显示已允许一次；最终执行结果仍由 Command Item terminal 决定。"
+    empty: "active Turn 没有 pending approval 时不制造空卡、fixture 卡或 requestUserInput 卡。"
+    error: "stale、expired、disconnected、version mismatch 或 permission denied 只显示 stable code 与安全说明，不泄露 command、cwd、reason 或 wire。"
+    retry: "决定请求不自动重试；传输结果未知时先读取 Host pending snapshot，对同一 request 不重复提交。"
+    cancel: "按钮明确标为取消本轮；Host 返回 Runtime Cancel，目标 Command 不执行，Turn 由权威 interrupted/terminal 结果封口。"
+
+must_acceptance:
+  - id: "AC-001"
+    statement: "只有 exact local + demo_fast + FEAT-137 gate 才启用 approvalPolicy=on-request；默认、gate 关闭和非 local 始终保持 sandbox=read-only、approvalPolicy=never。"
+    verification: "配置矩阵与 Host tests 覆盖 thread/start、turn/start、默认/非 local 回归和 capability negotiation；Runtime pin/schema 不变。"
+    status: "pending"
+  - id: "AC-002"
+    statement: "真实 stable Command reverse request 绑定 thread、turn、item、request/approval identity，并在对应 Command Item 内只显示固定安全动作及 accept_once/cancel_current_turn。"
+    verification: "Contracts closed fixtures、Host projection conformance 与 Desktop inline card tests；不依赖 Runtime experimental availableDecisions。"
+    status: "pending"
+  - id: "AC-003"
+    statement: "用户允许一次时 Host 对同一 pending request 只响应一次，Runtime 仅在 read-only sandbox 内继续，Desktop 由权威 resolved 与 Command terminal 更新。"
+    verification: "single-response/race tests；后续 Owner 单独授权的真实 allow vertical 验证一次执行且无 unsandboxed retry。"
+    status: "pending"
+  - id: "AC-004"
+    statement: "用户取消本轮时 Host 只发送一次 Runtime Cancel，目标 Command 不执行，UI 不把该动作表述为 decline-and-continue。"
+    verification: "Host cancellation correlation 与 Desktop wording/state tests；后续真实 cancel vertical 观察 Command declined 与 Turn authoritative terminal。"
+    status: "pending"
+  - id: "AC-005"
+    statement: "只有精确 argv git rev-parse --is-inside-work-tree、单 action 和当前 workspace root cwd 可进入 pending；其它 Command、shell/网络/权限边界一律 fail closed。"
+    verification: "allowlist、cwd canonicalization、shell wrapper、pipe、redirect、env、多 action、network、additional permission 与 unknown reverse request focused tests。"
+    status: "pending"
+  - id: "AC-006"
+    statement: "双击、重复 event、迟到 response、120 秒过期和 Item/Turn terminal cleanup 最多接受一个有效决定；TTL 先胜时只向仍 pending 的 Runtime request 发送一次 Cancel 并投影 expired，Runtime/Item/Turn 已先清理时投影 resolved_elsewhere 且不再响应。"
+    verification: "Contracts duplicate/stale/expired/resolved_elsewhere fixtures、Host first-writer-wins/TTL-Cancel/race tests 与 Desktop stale action tests。"
+    status: "pending"
+  - id: "AC-007"
+    statement: "Desktop/SSE 断线立即禁用审批动作，正常重连仅按 Host pending snapshot 对账；Host/Runtime 断开或重启不留下可操作悬空审批，也不自动批准。"
+    verification: "安全 transport lifecycle tests 与正常断开/重连观察；不通过强杀或故障注入制造证据。"
+    status: "pending"
+  - id: "AC-008"
+    statement: "WebView、日志、安全复制、SQLCipher 与 Host audit 不含 raw command、绝对路径、reason、secret 或 Runtime wire；resolved audit 每 session 最多 128 条并随 session 删除。"
+    verification: "secret/path canary、redaction、clipboard、persistence 与 bounded retention tests；证据只保存 content-free fields。"
+    status: "pending"
+  - id: "AC-009"
+    statement: "Approval 使用显式协商的 Contracts v6，v1-v5 保持不变；FileChange、permissions、MCP elicitation、requestUserInput 及 unknown reverse request 保持 fail closed且不生成 UI。"
+    verification: "v6 generation/digest/breaking、v1-v5 equality、Host unsupported method 与 Desktop unknown closed decoder tests。"
+    status: "pending"
+  - id: "AC-010"
+    statement: "Pending、submitting、accepted、cancelled、expired、resolved elsewhere 与 disconnected 状态在对应 Item 内可读，并支持键盘、焦点恢复、状态文字/图标、aria-live 和安全复制。"
+    verification: "Desktop component/domain tests；后续 D4 验证 light/dark、1180×760、200%、键盘、VoiceOver 与正常重开。"
+    status: "pending"
+
+contract:
+  impact: "semantic"
+  authority: "Runtime authority 固定为 yijie-codex@b2b20e2fc4a0c94834f34d8cc459e488a1b56277 / 0.144.6；Contracts v6 authority 为 yijie-contracts@2e490dea4444ea1e33c2df1a5267b2bff5bfb8e6 / tree 0041ca35366ec4718f9937398924983591bd7010；Host mapper/pending/decision/deadline authority 为 yijie-agent-host@118651804b7f5a7849bc68cdf29d88c74a21f8a1 / tree 9ae73d7b6f024bda241071371487a627810c1058；Desktop closed consumer/SQLCipher/UI authority 为 yijie-desktop@918bd26b04a32ab20433e2ea991cc0a4ea282c34 / tree e5f5af31773852af6eefa65a62080c87b3ac1384。四个实现输入 clean，source conformance PASS。"
+  source_first_plan: "v1-v5 与 agent-host-runtime-v1 exact-shape manifest 保持不变；Contracts、Host、Desktop local immutable source implementation与 clean-tree conformance 已完成。首次 Host/Desktop freeze 后发现的 commit-before-deadline/ack-after-deadline P1 已由 Host 118651804... 修复并以 deterministic deadline/cleanup tests闭合，Desktop 918bd26b... 已精确 repin。published tag/release 与真实 D4 仍需独立授权。"
+  status: "PASS"
+  checks:
+    - repository: "yijie-contracts"
+      command: "focused compatibility 25/25；safety-compliant Node tests 88/88；go test ./...；pnpm lint；pnpm check-generated:safe；pnpm build:safe；legacy equality；dual-baseline breaking；git diff --check"
+      status: "PASS"
+      exit_code: 0
+      result: "完整 SHA 2e490dea4444ea1e33c2df1a5267b2bff5bfb8e6 上 clean-tree authority audit PASS；50 个 reviewed files，v1-v5 与 agent-host-runtime-v1 不变。历史误执行的 Zip Slip archive test继续排除；Host与Desktop exact consumer pins PASS。"
+    - repository: "yijie-contracts"
+      command: "git rev-parse HEAD/HEAD^/HEAD^{tree}；rev-list count；50-file scope；worktree/index/untracked clean；agent-host-runtime-v1 blob equality"
+      status: "PASS"
+      exit_code: 0
+      result: "HEAD 2e490dea4444ea1e33c2df1a5267b2bff5bfb8e6；parent 87f94c9aa6d4848cb67aa8a1265bd21474edb0bb；tree 0041ca35366ec4718f9937398924983591bd7010；v1 blob 456edc9865ae29e229fb8958413d876009ba4c15；local only，未 tag/push/publish。"
+    - repository: "yijie-agent-host"
+      command: "make test-feat137 && make test-feat136 && make lint && git diff --check"
+      status: "PASS"
+      exit_code: 0
+      result: "最终 clean SHA 118651804b7f5a7849bc68cdf29d88c74a21f8a1 / tree 9ae73d7b6f024bda241071371487a627810c1058；exact pin/generated/equality、Codex/Session/App focused race、commit→late-ack、deadline→cleanup、retained/HTTP time-window、FEAT-136 regression、lint/diff全部 PASS。"
+    - repository: "yijie-desktop"
+      command: "node scripts/check-agent-host-v6-contract.mjs；Web focused；Rust feat137；pnpm lint/build；Cargo fmt/check；scoped strict Clippy；git diff --check"
+      status: "PASS"
+      exit_code: 0
+      result: "最终 clean SHA 918bd26b04a32ab20433e2ea991cc0a4ea282c34 / tree e5f5af31773852af6eefa65a62080c87b3ac1384；exact Host/Contracts authority、Web 291/291、Rust 19/19及无 capability/plugin/CSP/dependency/external URL drift PASS。raw Clippy仅命中base既有type_complexity。"
+    - repository: "contracts-host-desktop"
+      command: "immutable clean-tree structured source conformance"
+      status: "PASS"
+      exit_code: 0
+      result: "原 TTL/ack P1 已闭合；exact gates、v6 negotiation、v1-v5 equality、closed pending/decision/errors、single POST/no retry、unknown resync、SQLCipher/redaction/safe-copy、S10与依赖边界PASS；无剩余P0-P2。"
+
+external_authorizations:
+  paid_calls: { allowed: false, max_actions: 0, approved_by: "N/A：D0 文档批真实调用额度为 0", approved_at: "N/A" }
+  destructive_operations: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+  production_writes: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+
+implementation:
+  status: "complete"
+  real_entrypoint: "yijie-desktop canonical local/demo_fast stable runner 的 source wiring 已完成：FEAT-134/136/137 exact gates、experimentalApi=false、read-only/on-request、默认/非 local never、单一 git rev-parse --is-inside-work-tree + workspace cwd allowlist、v6 pending/decision/deadline authority、Desktop closed consumer/SQLCipher/inline UI。入口未在本批启动，真实 vertical仍NOT RUN。"
+  mock_only: false
+
+verification:
+  status: "NOT RUN"
+  verified_at: "NOT RUN"
+  startup:
+    status: "NOT RUN"
+    command_or_steps: "实现和 source conformance 完成后，须由 Owner 单独授权 canonical local/demo_fast 启动与真实调用；本批不启动。"
+    environment: "最终冻结 Runtime b2b20e2… / 0.144.6；experimentalApi=false；规划 read-only/on-request exact gate。"
+    actual_result: "NOT RUN：本批未启动 Desktop、Runtime、Provider 或模型。"
+  real_smoke:
+    status: "NOT RUN"
+    command_or_steps: "后续单独授权真实额度后执行 fresh accept-once vertical；本批额度 0。"
+    environment: "隔离、无敏感 Git workspace；唯一 allowlisted read-only Command。"
+    actual_result: "NOT RUN：Contracts/Host/Desktop immutable source implementation与conformance已PASS；真实调用尚未执行。"
+  representative_failure:
+    status: "NOT RUN"
+    command_or_steps: "后续执行 fresh cancel-current-turn，并在安全自然条件下观察 expiry/reconnect；不得故障注入。"
+    environment: "canonical local/demo_fast；正常启动、停止与重连流程。"
+    actual_result: "NOT RUN：本批没有真实 cancel/expiry/reconnect 观察，且未使用故障注入。"
+  focused_checks:
+    - name: "FEAT-137 D0 package gate"
+      command: "./docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate D0 docs/features/FEAT-137-desktop-approval-interaction"
+      result: "PASS (exit 0)"
+    - name: "FEAT-137 strict D0 package gate"
+      command: "./docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict --gate D0 docs/features/FEAT-137-desktop-approval-interaction"
+      result: "PASS (exit 0)"
+    - name: "FEAT-137 whole-package strict gate"
+      command: "./docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-137-desktop-approval-interaction"
+      result: "PASS (exit 0)"
+    - name: "yijie static governance suite"
+      command: "pnpm lint && pnpm test && pnpm feature:audit && bash -n scripts/*.sh docs/dev/codex-feature-delivery/scripts/*.sh && git diff --check"
+      result: "PASS (exit 0); feature:audit reported only legacy schema-v1 warnings and audited 17 committed packages; the new uncommitted FEAT-137 package is covered by its direct D0 gates."
+    - name: "Contracts immutable authority and clean-tree audit"
+      command: "focused compatibility + safety-compliant Node/Go/lint/generated/build/equality/breaking/diff gates recorded in yijie-contracts/docs/reviews/FEAT-137-semantic-review.md"
+      result: "PASS at immutable source authority layer：Contracts 2e490dea...、Host 118651804...、Desktop 918bd26b... exact clean；v1-v5 unchanged。"
+    - name: "Host FEAT-137 safe focused suite"
+      command: "make test-feat137"
+      result: "PASS：exact Contracts source/generated/equality；Codex typed-ID/closed mapper/gate-off wire/response-written callback；Session pending/decision/ack/TTL dual-signal ordering/cleanup/replay/race/redaction；App closed HTTP surface；desktop-host compile-only。"
+    - name: "Host FEAT-136 regression suite"
+      command: "make test-feat136"
+      result: "PASS：v1-v5 equality超集检查、FEAT-136 Session/App race regression 与 Runtime compatibility adapter；未读取排除的 archive/checksum/Zip-Slip/archive-error fixture blobs。"
+    - name: "Host static suite"
+      command: "make lint && git diff --check"
+      result: "PASS：gofmt clean、go vet、shell syntax 与 diff whitespace。"
+    - name: "Host final independent conformance/security review"
+      command: "read-only source/security review；go test -race ./internal/{codex,session,app} -run '^TestFEAT137' -count=1；critical TTL/replay tests -count=10"
+      result: "PASS after repair：optional identity、typed-key replay、response-written/ack、commit-before-deadline+late-ack、deadline+cleanup、write-failure与gate-off compatibility均无剩余阻断。"
+    - name: "Desktop FEAT-137 immutable source suite"
+      command: "authority checker；14 Web focused files；Rust feat137；pnpm lint/build；Cargo fmt/check；scoped strict Clippy；git diff --check"
+      result: "PASS：Web 291/291、Rust 19/19；exact Host repin；raw strict Clippy唯一命中base既有database.rs type_complexity，单项放行后无其它warning。"
+    - name: "Final Contracts→Host→Desktop clean-tree conformance"
+      command: "Contracts at-expiry executable boundary + Host deterministic late-ack/cleanup race + Desktop authority/decoder/persistence/security review"
+      result: "PASS：原P1闭合，无剩余P0-P2；Runtime/Contracts/Host/Desktop均clean；未启动组件或真实调用。"
+  artifacts:
+    - "00-feature-brief.md"
+    - "01-delivery-log.md"
+    - "02-verification.md"
+  diff_review:
+    status: "PASS"
+    summary: "D0 与历史 checkpoint保留；Contracts 2e490dea...、Host 118651804...、Desktop 918bd26b... clean immutable authority PASS。首次freeze发现的TTL/ack P1已修复并复审；Desktop只追加exact Host repin。Runtime未修改，真实调用0。"
+  known_limitations:
+    - "Contracts/Host/Desktop local immutable source authority与clean-tree conformance已PASS，但没有published tag/release。"
+    - "真实allow/cancel、自然expiry/reconnect与人工UI仍未验证；source PASS不得冒充真实vertical。"
+    - "独立 decline-and-continue 因 frozen stable available-decision 语义不纳入第一阶段；只有 accept once / cancel current turn。"
+    - "真实 allow/cancel、自然 expiry/reconnect、hydration、主题/视口/缩放/VoiceOver 与 D4 全部 NOT RUN。"
+    - "CAP-020/021、FileChange/Diff、平台/生产审批均不属于 FEAT-137。"
+    - "本治理、Host repair与Desktop repin均未启动应用、Runtime、Provider或模型，真实调用0次。"
+
+public_readiness:
+  required: false
+  status: "not_applicable"
+  checks: []
+  external_smoke:
+    status: "NOT RUN"
+    command_or_steps: "N/A：exposure=local；不发布或部署。"
+    actual_result: "N/A：没有公网入口。"
+
+documents:
+  brief: "00-feature-brief.md"
+  delivery_log: "01-delivery-log.md"
+  verification: "02-verification.md"

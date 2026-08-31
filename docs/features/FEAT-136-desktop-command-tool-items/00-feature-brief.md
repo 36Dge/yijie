@@ -40,7 +40,7 @@ FEAT-136 只交付 CAP-016 / GS-003 中已有 fresh real 证据的 Command 结�
 | 安全投影与复制 | FEAT-136 AC-003 | fresh real PASS |
 | SQLCipher hydration | FEAT-136 AC-004 | fresh real PASS |
 | light、键盘、状态/aria-live、200% | FEAT-136 AC-005 | fresh real PASS |
-| declined / approval reverse request | FEAT-137 | 不属于当前 Must |
+| approval reverse request；Runtime Cancel 形成的 declined outcome | FEAT-137 phase 1 | immutable source conformance PASS；真实allow/cancel与D4 NOT RUN；独立decline用户动作deferred，不属于当前Must |
 | replay、live event_id、late event、unknown/resync | FEAT-142 | NOT OBSERVED / NOT RUN；不得伪造 PASS |
 | 完整 started/output-delta 集成状态顺序 | FEAT-143 | live individual event 未捕获；source tests 仅作基础 |
 | dark、精确 1180×760 | FEAT-143 | NOT RUN |
