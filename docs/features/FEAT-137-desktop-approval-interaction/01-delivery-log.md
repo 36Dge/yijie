@@ -1,6 +1,6 @@
 # FEAT-137 — Delivery Log
 
-> 本日志保留 Owner-authorized D0、Contracts/Host/Desktop source checkpoint、clean-tree findings、authority composition repair 与真实 D4 历史。当前 D0、component source/conformance 与 canonical entrypoint repair 为 PASS；真实 approval vertical 与 D4 为 BLOCKED。
+> 本日志保留 Owner-authorized D0、Contracts/Host/Desktop source checkpoint、clean-tree findings、authority composition repair 与真实 D4 历史。2026-09-01 Runtime stable sandbox provenance patch 及 Runtime→Contracts→Host→Desktop refreeze/source conformance 已 PASS；真实 approval vertical 与 D4 的既有 BLOCKED 结论不变，本批真实调用 0。
 
 ## 1. 2026-08-30 — 输入固化
 
@@ -229,3 +229,32 @@ Canonical `pnpm tauri:demo-fast:stable` 三次均通过v4/v6 checker、safe buil
 结论：authority composition repair `PASS`，但真实 approval producer/task lifecycle → Host pending → Desktop inline action authority链路 `BLOCKED`。`accept_once`、`cancel_current_turn`、真实approval hydration/cardinality、approval replay/expiry与approval card视觉/VoiceOver均未完成；剩余3次额度未继续消耗。自然正常重开已观察，但没有可归因于approval event的replay；不得标为PASS。下一步必须单独RCA live producer、首轮task binding/SSE与pending GET/action-authority组合，不得绕过产品入口、伪造pending或直接调用内部decision command。
 
 治理回填门禁：D0、strict D0、whole-package strict、lint、治理 tests 48/48、17个committed package audit、shell syntax与`git diff --check`全部PASS。D4 closure gate按设计FAIL，因为Feature/implementation/verification、real smoke、representative failure及十条Must没有PASS；该结果是正确的fail-closed治理证据，不得通过改写状态绕过。
+
+## 17. 2026-09-01 — Runtime stable sandbox provenance patch 与全链 refreeze
+
+Owner 单独授权 pinned Runtime 0.144.6 补丁链增加 stable sandbox provenance；本批不得执行 D4，真实调用额度为 0。实现只把既有 sandbox permission provenance 传到 stable reverse-request wire，不改变执行权限、审批决定或 Yijie public v6 API。
+
+| Repository | Immutable authority | Result |
+|---|---|---|
+| Runtime | `acf2da55d8a53175343aaf112e03368dfef9922a` / tree `97557e0bd736a91bbbf94ccfa11b57a4bbf23a74` / reported 0.144.6 | `0003-feat-137-stable-sandbox-provenance.patch` 在既有 `0001`/`0002` 后精确应用；stable `sandboxPermissions` 必填且 enum 恰为 `use_default`、`require_escalated`、`with_additional_permissions`；tool request → `ExecApprovalRequestEvent` → app-server wire 原值；clean |
+| Contracts | `aeccf5d561bd4259389cdb325bae84ce3e0dea86` / tree `7a864645bf552a8b7457b6338a30f6626ce15d3a` | source-first 新增版本化 compatibility v3；历史 v1/v2 digest 不变，public event v6 不暴露 raw provenance；clean |
+| Host | `078769a22d035c2921e315e5776185bed6f7feeb` / tree `df7e5b6bc4994a1a4023793e766a87c7806f1e07` | exact pin Runtime artifact/Contracts v3；closed decoder 要求三值 enum，只有 `use_default` 可形成 pending；其它值、缺失与未知 fail closed；provenance 进入 replay fingerprint 但不进入 public v6；clean |
+| Desktop | `56f88856125d2affd98f4c0c984792d47b444ca7` / tree `2d580bbe70ebe537cbfc13dae0d9b50b57a007c8`；parent `13277c03…` | exact pin Runtime/Contracts/Host；v4 checker继续从历史immutable objects验证，v6 checker验证Runtime clean SHA/tree、Runtime build artifact与Host stable artifact；provenance不进入IPC/domain/store/UI；canonical runner用nounset-safe数组展开兼容macOS Bash 3.2；隔离clean worktree与stable build PASS；主checkout的FEAT-151改动未暂存、未提交 |
+
+Runtime frozen artifact：binary SHA-256 `84bb0445a15f99354ddd38ccb407b9b0d3d28522accece3fa9755918ab6978e3` / 356082232 bytes；manifest SHA-256 `e62d8210f5abcad7ff0fc1b4d068c7fe4da59501c6fa6b12f18dc4a1f939c6aa` / 1649 bytes；stable schema 267 files / tree SHA-256 `d82a33f683e554c10dd056a0101c26fd24477928e3f98ee3d9ef250b97395228`；patch 0003 SHA-256 `af7196f609fbbe722f69e7913d2aeb2f38bfc5f4cbed4bfb32c9e6f844a9910c`。
+
+安全门禁结果：
+
+- Runtime source/focused、三补丁 replay、fmt、scoped Clippy、release build、267-file schema generation、stable protocol normal-EOF smoke、historical v1 + active v3 authority checker全部 PASS；没有 thread/turn/Provider/model。
+- Contracts focused 13/13、非攻击性 Node 80/80、Go、lint、safe generated 47 files、safe build、历史 equality、相对 `0acf2a39…`、`2e490dea…` 与 published `f16a497…` 的 breaking checks及 clean-tree audit全部 PASS。archive/Zip Slip 与 structured-artifact injection-invalid套件按安全边界未执行。一次 lint 与并行 safe build 的瞬时生成目录竞争不计验收；串行复跑 PASS。
+- Host `make test-feat137`、`make test-feat136`、`make lint`、`git diff --check` 与 pinned Runtime stable integration PASS。integration 使用正常 0700 临时 CODEX_HOME、正常启动/EOF；没有应用、thread/turn、Provider或模型。
+- Desktop isolated clean-tree v4/v6 checker PASS；Web focused 244/244；Rust `feat137` 32/32；ESLint/Vue typecheck、Vite build、Cargo fmt/check PASS。raw strict Clippy唯一命中 Desktop base `7026b478…` 已存在的 `database.rs type_complexity`；仅放行该项后无其它 warning。无 capability、plugin、CSP、Cargo/lock、依赖或外部 URL 扩张。
+- yijie FEAT-137 D0、strict D0、whole-package strict、lint、tests 48/48、18 committed-package audit、shell syntax与`git diff --check`全部PASS；audit仅保留既有schema-v1历史warning。未跟踪FEAT-151 package未进入本批commit。
+
+Desktop freeze后又发现canonical runner在macOS系统Bash 3.2的`set -u`下展开空`feat134_environment`数组会在非stable入口启动前失败。最终commit `13277c03…`只修改runner、v4 activation checker及对应tests：空数组展开为0个参数，非空数组仍逐项保留；runner/v4 tests 25/25、v4/v6 checker、ESLint、Vue typecheck、Vite build与clean-tree audit PASS。完整非攻击性demo_fast Web套件为1070/1071；唯一失败的FEAT-132 projection replay在immutable Desktop base `7026b478…`上同样失败，故记录为既有基线问题，不将其伪造为PASS，也不在FEAT-137批内扩修。
+
+随后在D4前canonical readiness audit中发现stable runner仍指向历史FEAT-136 Runtime artifact `b2b20e2…`，无法把本批新增provenance带入真实运行。Desktop `56f88856…`将runner重pin至新建的版本化Host本地artifact目录`feat-137-acf2da55d8a5`，并把Runtime commit/tree、build binary/manifest digest、Host稳定副本digest与runner三条authority同时纳入v6 checker。新SHA的isolated clean worktree中v4/v6、runner/v4 25/25、lint、Vue typecheck、Vite build、Cargo fmt与原始`pnpm tauri:build:demo-fast:stable`全部PASS；未签名debug `.app`正常生成，bundle与target Desktop binary均为SHA-256 `23e0472875e4f1543c10f035b94822cd9ffb55b5655c09a6c694656a9fa2dcdc`。构建未启动app、Runtime、Provider或模型，真实调用0。
+
+一次 isolated Desktop Rust 初跑因 fixture 的 sibling repository 相对路径在临时 worktree 中不存在而出现 30/32（2 个 `ENOENT`）；建立只读 sibling 链接后同一冻结 SHA 复跑为 32/32。一次 `pnpm exec` 因临时 worktree 的复用模块链接触发非 TTY 清理保护而在测试前退出；改用同一 lock 对应的已安装固定本地二进制后 Web 244/244、lint/typecheck/build 均 PASS。两项均没有代码、依赖、lockfile或权限变化，不计失败功能证据。
+
+本批没有启动 Desktop、Provider或模型，不执行 D4；真实调用 0，decision POST 0。历史 fresh D4 的 4/7 与 blocker 结论保持不变。没有 amend、push、tag、merge或发布，也没有强杀、故障注入、权限破坏、binary替换或攻击 fixture。

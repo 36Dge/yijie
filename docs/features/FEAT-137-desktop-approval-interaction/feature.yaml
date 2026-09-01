@@ -16,10 +16,10 @@ feature:
 scope:
   risk_level: "high"
   data_classification: "restricted"
-  contract_impact: "semantic"
+  contract_impact: "breaking"
   database_change: "expand"
   persistence_change: "durable"
-  runtime_change: "none"
+  runtime_change: "runtime"
   auth_permission_change: "permission"
   user_workflow_change: "user_visible"
   ui_change: "interactive"
@@ -27,6 +27,7 @@ scope:
 
 repositories:
   - "yijie"
+  - "yijie-codex"
   - "yijie-contracts"
   - "yijie-agent-host"
   - "yijie-desktop"
@@ -42,7 +43,7 @@ timebox:
 product_ux:
   status: "PASS"
   primary_user: "在易界 AI Desktop 的本地 demo_fast 会话中，需要明确决定一条受限只读 Command 是否执行的用户。"
-  problem: "Contracts v6、Host approval authority、Desktop closed consumer/SQLCipher/inline interaction与canonical v4/v6 authority composition已冻结。fresh D4可正常启动app/Runtime/Host/Provider，但真实请求没有形成可操作inline approval authority；accept/cancel、approval replay/expiry与approval-card人工视觉仍未验证。"
+  problem: "Runtime stable sandbox provenance、Contracts v6 compatibility v3、Host approval authority、Desktop closed consumer/SQLCipher/inline interaction与canonical v4/v6 authority composition已冻结。历史fresh D4可正常启动app/Runtime/Host/Provider，但真实请求没有形成可操作inline approval authority；accept/cancel、approval replay/expiry与approval-card人工视觉仍未验证。"
   user_outcome: "在唯一允许的本地 Git 仓库检查请求到达时，用户在对应 Command Item 内看到安全摘要，只能选择允许一次或取消本轮；决定真实返回 Runtime，断线、过期和重复操作全部 fail closed。"
   in_scope:
     - "CAP-019 / GS-005 的 local/demo_fast stable Command approval reverse request 闭环。"
@@ -50,16 +51,17 @@ product_ux:
     - "Host 受管的精确 prompt policy 与唯一 argv git rev-parse --is-inside-work-tree；cwd 必须为当前 workspace root。"
     - "Host 固定投影 accept_once/cancel_current_turn、120 秒 TTL、single-response、pending snapshot、content-free bounded audit；TTL 竞争获胜时只向 Runtime 发送一次 Cancel 并投影 expired。"
     - "Contracts v6 source-first approval surface，以及 Desktop inline Item、权威 resolved、SQLCipher 安全状态与无障碍交互。"
+    - "Pinned Runtime 0.144.6 stable request必填sandboxPermissions三值provenance；Host只有use_default可进入pending，且provenance不得进入public v6/Desktop。"
   out_of_scope:
     - "独立 decline-and-continue、session approval、exec-policy/network amendment、始终允许或离线批准。"
     - "任何其它 Command、shell wrapper、管道、重定向、环境赋值、多 action、网络、写入、额外权限或 unsandboxed escalation。"
     - "CAP-020 一般权限/MCP elicitation、CAP-021 requestUserInput、平台业务审批与生产审批。"
     - "FileChange、Diff、FileChange approval、写权限与已取消的 FEAT-138。"
-    - "修改、升级、替换、重编译或重新 pin 最终冻结 Runtime；开启 experimental API。"
+    - "超出Owner授权0003 provenance patch的任何Runtime修改、升级、替换、继续重编译或重新pin；开启experimental API。"
     - "强杀、故障注入、权限破坏、binary 替换、攻击 fixture、发布与生产写。"
   main_flow:
     - "canonical local/demo_fast stable runner 在 FEAT-134/136 foundation 与 exact FEAT-137 gate 下启动；Host 明确使用 on-request/read-only，默认和非 local 继续 never/read-only。"
-    - "Runtime stable Command reverse request 到达 Host；Host 验证 thread/turn/item/request identity、唯一 argv、workspace cwd 和权限边界，并建立 120 秒内存 pending。"
+    - "Runtime stable Command reverse request把originating tool request的sandboxPermissions原样带到Host；Host验证thread/turn/item/request identity、唯一argv、workspace cwd和provenance，只有use_default可建立120秒内存pending。"
     - "Contracts v6 requested event 与 owner-only pending snapshot 只向 Desktop 投影固定 action identity、安全摘要和 accept_once/cancel_current_turn。"
     - "用户允许一次或取消本轮；Host first-writer-wins 地向同一 Runtime request 回应一次，Desktop 仅按 Host/Runtime resolved 与 Item/Turn authority 更新。"
     - "断线时 Desktop 禁用动作；正常重连按 Host snapshot 对账；TTL 先到时 Host first-writer-wins 地向仍在等待的 Runtime request 发送一次 Cancel 并记 expired；若 Runtime/Item/Turn 已先清理则记 resolved_elsewhere 且不再响应；resolved audit 随 session 有界保留。"
@@ -91,8 +93,8 @@ must_acceptance:
     verification: "Host cancellation correlation 与 Desktop wording/state tests；后续真实 cancel vertical 观察 Command declined 与 Turn authoritative terminal。"
     status: "pending"
   - id: "AC-005"
-    statement: "只有精确 argv git rev-parse --is-inside-work-tree、单 action 和当前 workspace root cwd 可进入 pending；其它 Command、shell/网络/权限边界一律 fail closed。"
-    verification: "allowlist、cwd canonicalization、shell wrapper、pipe、redirect、env、多 action、network、additional permission 与 unknown reverse request focused tests。"
+    statement: "只有精确 argv git rev-parse --is-inside-work-tree、单 action、当前 workspace root cwd且Runtime sandboxPermissions=use_default可进入pending；其它Command、缺失/未知/escalated/additional provenance与shell/网络/权限边界一律fail closed。"
+    verification: "allowlist、cwd canonicalization、shell wrapper、pipe、redirect、env、多 action、network、必填sandboxPermissions三值与仅use_default eligible、unknown reverse request focused tests。"
     status: "pending"
   - id: "AC-006"
     statement: "双击、重复 event、迟到 response、120 秒过期和 Item/Turn terminal cleanup 最多接受一个有效决定；TTL 先胜时只向仍 pending 的 Runtime request 发送一次 Cancel 并投影 expired，Runtime/Item/Turn 已先清理时投影 resolved_elsewhere 且不再响应。"
@@ -107,8 +109,8 @@ must_acceptance:
     verification: "secret/path canary、redaction、clipboard、persistence 与 bounded retention tests；证据只保存 content-free fields。"
     status: "pending"
   - id: "AC-009"
-    statement: "Approval 使用显式协商的 Contracts v6，v1-v5 保持不变；FileChange、permissions、MCP elicitation、requestUserInput 及 unknown reverse request 保持 fail closed且不生成 UI。"
-    verification: "v6 generation/digest/breaking、v1-v5 equality、Host unsupported method 与 Desktop unknown closed decoder tests。"
+    statement: "Approval 使用显式协商的 Contracts public v6与版本化Runtime compatibility v3，v1-v5及public v6保持不变；FileChange、permissions、MCP elicitation、requestUserInput及unknown reverse request保持fail closed且不生成UI。"
+    verification: "Runtime stable provenance生成/digest、compatibility v3 breaking、v1-v5/public v6 equality、Host unsupported/provenance negatives与Desktop unknown closed decoder tests。"
     status: "pending"
   - id: "AC-010"
     statement: "Pending、submitting、accepted、cancelled、expired、resolved elsewhere 与 disconnected 状态在对应 Item 内可读，并支持键盘、焦点恢复、状态文字/图标、aria-live 和安全复制。"
@@ -116,55 +118,60 @@ must_acceptance:
     status: "pending"
 
 contract:
-  impact: "semantic"
-  authority: "Runtime authority 固定为 yijie-codex@b2b20e2fc4a0c94834f34d8cc459e488a1b56277 / 0.144.6；Contracts v6 authority 为 yijie-contracts@2e490dea4444ea1e33c2df1a5267b2bff5bfb8e6 / tree 0041ca35366ec4718f9937398924983591bd7010；Host mapper/pending/decision/deadline authority 为 yijie-agent-host@118651804b7f5a7849bc68cdf29d88c74a21f8a1 / tree 9ae73d7b6f024bda241071371487a627810c1058；Desktop closed consumer/SQLCipher/UI authority 为 yijie-desktop@918bd26b04a32ab20433e2ea991cc0a4ea282c34 / tree e5f5af31773852af6eefa65a62080c87b3ac1384。四个实现输入 clean，source conformance PASS。"
-  source_first_plan: "v1-v5 与 agent-host-runtime-v1 exact-shape manifest 保持不变；Contracts、Host、Desktop local immutable source implementation与 clean-tree conformance 已完成。首次 Host/Desktop freeze 后发现的 commit-before-deadline/ack-after-deadline P1 已由 Host 118651804... 修复并以 deterministic deadline/cleanup tests闭合，Desktop 918bd26b... 已精确 repin。published tag/release 与真实 D4 仍需独立授权。"
+  impact: "breaking"
+  authority: "Runtime authority为yijie-codex@acf2da55d8a53175343aaf112e03368dfef9922a / 0.144.6 / tree 97557e0bd736a91bbbf94ccfa11b57a4bbf23a74；Contracts public v6 + compatibility v3 authority为yijie-contracts@aeccf5d561bd4259389cdb325bae84ce3e0dea86 / tree 7a864645bf552a8b7457b6338a30f6626ce15d3a；Host mapper/provenance/pending/decision/deadline authority为yijie-agent-host@078769a22d035c2921e315e5776185bed6f7feeb / tree df7e5b6bc4994a1a4023793e766a87c7806f1e07；Desktop closed consumer/SQLCipher/UI/canonical runner authority为yijie-desktop@56f88856125d2affd98f4c0c984792d47b444ca7 / tree 2d580bbe70ebe537cbfc13dae0d9b50b57a007c8。Runtime/Contracts/Host clean，Desktop isolated clean-tree conformance与canonical stable build PASS；public v6 API与权限语义不变。"
+  source_first_plan: "Runtime 0.144.6三补丁authority先冻结；Contracts以版本化v6 compatibility v3承接stable-wire必填provenance；Host只允许use_default进入pending；Desktop精确repin且不消费raw provenance。历史v1/v2 compatibility、v1-v5与public v6保持不变；published tag/release与真实D4仍需独立授权。"
   status: "PASS"
   checks:
-    - repository: "yijie-contracts"
-      command: "focused compatibility 25/25；safety-compliant Node tests 88/88；go test ./...；pnpm lint；pnpm check-generated:safe；pnpm build:safe；legacy equality；dual-baseline breaking；git diff --check"
+    - repository: "yijie-codex"
+      command: "three-patch replay；source/focused；fmt；scoped Clippy；Rust 1.95 release build；267-file stable schema generation；normal-EOF smoke；historical v1 + active v3 authority"
       status: "PASS"
       exit_code: 0
-      result: "完整 SHA 2e490dea4444ea1e33c2df1a5267b2bff5bfb8e6 上 clean-tree authority audit PASS；50 个 reviewed files，v1-v5 与 agent-host-runtime-v1 不变。历史误执行的 Zip Slip archive test继续排除；Host与Desktop exact consumer pins PASS。"
+      result: "完整SHA acf2da55d8a53175343aaf112e03368dfef9922a / tree 97557e0bd736a91bbbf94ccfa11b57a4bbf23a74 clean；sandboxPermissions必填且精确三值；binary SHA-256 84bb0445... / 356082232 bytes，manifest e62d8210...，schema tree d82a33f6...；无thread/turn/Provider/model。"
     - repository: "yijie-contracts"
-      command: "git rev-parse HEAD/HEAD^/HEAD^{tree}；rev-list count；50-file scope；worktree/index/untracked clean；agent-host-runtime-v1 blob equality"
+      command: "v3 focused compatibility 13/13；safety-compliant Node tests 80/80；go test ./...；pnpm lint；pnpm check-generated:safe；pnpm build:safe；legacy equality；three-baseline breaking；clean-tree audit"
       status: "PASS"
       exit_code: 0
-      result: "HEAD 2e490dea4444ea1e33c2df1a5267b2bff5bfb8e6；parent 87f94c9aa6d4848cb67aa8a1265bd21474edb0bb；tree 0041ca35366ec4718f9937398924983591bd7010；v1 blob 456edc9865ae29e229fb8958413d876009ba4c15；local only，未 tag/push/publish。"
+      result: "完整SHA aeccf5d561bd4259389cdb325bae84ce3e0dea86 / tree 7a864645bf552a8b7457b6338a30f6626ce15d3a clean；新增compatibility v3，历史v1/v2 digest及public v6不变；safe generated 47 files。archive/Zip Slip与structured-artifact injection-invalid未执行。"
+    - repository: "yijie-contracts"
+      command: "git rev-parse HEAD/HEAD^/HEAD^{tree}；worktree/index/untracked clean；historical v1/v2 digest equality；v3 manifest/schema digest"
+      status: "PASS"
+      exit_code: 0
+      result: "HEAD aeccf5d561bd4259389cdb325bae84ce3e0dea86；parent 0acf2a39a505a4ef9fb8757b29cb53efe9e9846f；tree 7a864645bf552a8b7457b6338a30f6626ce15d3a；v3 manifest 9c196a0f...、schema ef83669e...；local only，未tag/push/publish。"
     - repository: "yijie-agent-host"
       command: "make test-feat137 && make test-feat136 && make lint && git diff --check"
       status: "PASS"
       exit_code: 0
-      result: "最终 clean SHA 118651804b7f5a7849bc68cdf29d88c74a21f8a1 / tree 9ae73d7b6f024bda241071371487a627810c1058；exact pin/generated/equality、Codex/Session/App focused race、commit→late-ack、deadline→cleanup、retained/HTTP time-window、FEAT-136 regression、lint/diff全部 PASS。"
+      result: "最终clean SHA 078769a22d035c2921e315e5776185bed6f7feeb / tree df7e5b6bc4994a1a4023793e766a87c7806f1e07；exact Runtime/Contracts pin、closed provenance decoder、仅use_default eligibility、replay fingerprint、binding/TTL/ack、FEAT-136 regression、lint/diff与pinned Runtime normal-EOF integration全部PASS。"
     - repository: "yijie-desktop"
-      command: "node scripts/check-agent-host-v6-contract.mjs；Web focused；Rust feat137；pnpm lint/build；Cargo fmt/check；scoped strict Clippy；git diff --check"
+      command: "isolated clean-tree v4/v6 authority；Web focused；Rust feat137；ESLint/Vue typecheck/Vite build；Cargo fmt/check；scoped strict Clippy；git diff --check"
       status: "PASS"
       exit_code: 0
-      result: "最终 clean SHA 918bd26b04a32ab20433e2ea991cc0a4ea282c34 / tree e5f5af31773852af6eefa65a62080c87b3ac1384；exact Host/Contracts authority、Web 291/291、Rust 19/19及无 capability/plugin/CSP/dependency/external URL drift PASS。raw Clippy仅命中base既有type_complexity。"
+      result: "最终SHA 56f88856125d2affd98f4c0c984792d47b444ca7 / tree 2d580bbe70ebe537cbfc13dae0d9b50b57a007c8 isolated clean；Runtime build与Host stable artifact exact pin、runner/v4 25/25、v4/v6、lint/typecheck/build及canonical Tauri stable bundle PASS；parent source的Web244/244、Rust32/32不变。full Web1070/1071唯一FEAT-132 replay失败在base7026b478...同样存在；主checkout FEAT-151未纳入。"
     - repository: "contracts-host-desktop"
       command: "immutable clean-tree structured source conformance"
       status: "PASS"
       exit_code: 0
-      result: "原 TTL/ack P1 已闭合；exact gates、v6 negotiation、v1-v5 equality、closed pending/decision/errors、single POST/no retry、unknown resync、SQLCipher/redaction/safe-copy、S10与依赖边界PASS；无剩余P0-P2。"
+      result: "Runtime provenance→Contracts compatibility v3→Host eligibility/replay→Desktop non-projection链路PASS；原TTL/ack P1继续闭合；exact gates、public v6/v1-v5 equality、closed pending/decision/errors、single POST/no retry、unknown resync、SQLCipher/redaction/safe-copy、S10与依赖边界PASS。"
 
 external_authorizations:
-  paid_calls: { allowed: true, max_actions: 7, approved_by: "段成威（当前用户；2026-08-31 fresh real allow/cancel D4；允许调用层受限自动重试，decision POST仍无自动重试；实际使用4/7，剩余3次因live blocker未使用）", approved_at: "2026-08-31T11:13:45+08:00" }
+  paid_calls: { allowed: false, max_actions: 0, approved_by: "段成威（当前用户；2026-09-01 Runtime stable sandbox provenance patch批明确D4不得执行、真实调用额度0；历史D4为4/7且decision POST 0）", approved_at: "2026-09-01T01:39:11+08:00" }
   destructive_operations: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
   production_writes: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
 
 implementation:
   status: "blocked"
-  real_entrypoint: "yijie-desktop canonical local/demo_fast `pnpm tauri:demo-fast:stable`已由Desktop 27d6c6a2...修复：v4从历史immutable Git object验证96b1fa... source/digest，v6继续精确约束当前Host 118651804...运行实现；build/app/Runtime/Host均可正常启动。aggregate implementation仍blocked于真实approval authority未到达Desktop action UI。"
+  real_entrypoint: "yijie-desktop canonical local/demo_fast `pnpm tauri:demo-fast:stable` authority现冻结于Desktop 56f88856...：v4从历史immutable Git object验证96b1fa... source/digest，v6精确约束当前Runtime acf2da55... clean source/build、Host stable Runtime artifact、Host 078769a2...运行实现与Contracts aeccf5d5...；macOS Bash3.2 nounset空数组边界已修复。canonical build已验证但未启动app，aggregate implementation仍blocked于真实approval authority未到达Desktop action UI。"
   mock_only: false
 
 verification:
   status: "BLOCKED"
-  verified_at: "2026-08-31T12:30:00+08:00"
+  verified_at: "2026-09-01T01:39:11+08:00"
   startup:
     status: "PASS"
     command_or_steps: "在五仓exact clean、stable artifact与Host/v6 focused gate PASS后执行 `pnpm tauri:demo-fast:stable`。"
-    environment: "最终冻结 Runtime b2b20e2… / 0.144.6；experimentalApi=false；read-only/on-request exact gate；隔离无敏感Git workspace。"
-    actual_result: "PASS：Desktop 27d6c6a2...下v4/v6 checker、safe build、app/Runtime/Host启动与正常Quit/reopen通过；未绕过门禁。"
+    environment: "当前冻结Runtime acf2da55… / 0.144.6；experimentalApi=false；read-only/on-request exact gate；隔离无敏感Git workspace。"
+    actual_result: "历史PASS：Desktop 27d6c6a2...下canonical app/Runtime/Host启动与正常Quit/reopen通过。当前56f88856...以新Runtime artifact完成原始canonical stable build与bundle，未启动Desktop/Runtime/Provider/model，未绕过门禁。"
   real_smoke:
     status: "BLOCKED"
     command_or_steps: "在最多7次额度内执行fresh accept-once vertical；只允许canonical只读Git probe。"
@@ -218,6 +225,21 @@ verification:
     - name: "Fresh real D4 after entrypoint repair"
       command: "canonical stable app；4/7 real UI requests；normal Quit/reopen only"
       result: "BLOCKED：没有可操作inline approval authority；accept_once/cancel_current_turn与decision POST均0。一次direct Command完成只证明Command/hydration，不证明approval；一次waiting跨正常reopen保持单一。"
+    - name: "Runtime stable sandbox provenance immutable freeze"
+      command: "three-patch replay；source/focused；fmt；scoped Clippy；release build；267-file stable schema generation；normal-EOF smoke；historical v1 + active v3 authority"
+      result: "PASS：Runtime acf2da55d8a53175343aaf112e03368dfef9922a clean；sandboxPermissions必填三值并从tool request经ExecApprovalRequestEvent原样到stable wire；权限/decision/public v6不变；真实调用0。"
+    - name: "Contracts v6 compatibility v3 source-first freeze"
+      command: "focused 13/13；non-attack Node 80/80；Go；lint；safe generated 47/build；legacy equality；three-baseline breaking；clean audit"
+      result: "PASS：Contracts aeccf5d561bd4259389cdb325bae84ce3e0dea86 clean；v3精确pin Runtime；历史v1/v2与public v6不变；攻击性归档/注入套件未执行。"
+    - name: "Host provenance repin and freeze"
+      command: "make test-feat137；make test-feat136；make lint；git diff --check；pinned Runtime integration"
+      result: "PASS：Host 078769a22d035c2921e315e5776185bed6f7feeb clean；only use_default eligible，missing/unknown/escalated/additional fail closed；normal Runtime EOF、无Provider/model。"
+    - name: "Desktop provenance authority repin and isolated clean refreeze"
+      command: "v4/v6 authority；9 Web focused files；Rust feat137；ESLint/Vue typecheck/Vite build；Cargo fmt/check；scoped strict Clippy；diff"
+      result: "PASS：Desktop 56f88856125d2affd98f4c0c984792d47b444ca7 isolated clean；Runtime/Host stable artifact exact pin、runner/v4 25/25、v4/v6、lint/typecheck/build、Cargo fmt与canonical stable bundle PASS；parent FEAT-137 Web244/244、Rust32/32保持不变；provenance不进入Desktop投影；主checkout FEAT-151未纳入。"
+    - name: "Provenance governance package refreeze"
+      command: "D0、strict D0、whole-package strict、pnpm lint/test/feature:audit、shell syntax、git diff --check"
+      result: "PASS：tests 48/48；18 committed package audit仅既有schema-v1历史warning；FEAT-151未跟踪package未纳入本批。"
     - name: "Post-D4 governance package gates"
       command: "D0、strict D0、whole strict、pnpm lint/test/feature:audit、shell syntax、git diff --check；D4 closure gate"
       result: "PASS：D0/strict/lint、tests 48/48与17-package audit；D4 closure gate按设计FAIL并拒绝未完成Feature，未改写Must/verification为PASS。"
@@ -227,15 +249,16 @@ verification:
     - "02-verification.md"
   diff_review:
     status: "PASS"
-    summary: "D0与component source checkpoint保留；Contracts 2e490dea...、Host 118651804...、Desktop 27d6c6a2...最终clean。canonical authority composition已修复，真实D4暴露live approval authority未闭环；aggregate implementation/verification保持blocked，真实调用4/7、decision POST 0。"
+    summary: "D0与历史D4证据保留；Runtime acf2da55...、Contracts aeccf5d5...、Host 078769a2... clean，Desktop 56f88856... isolated clean-tree与canonical stable build PASS且FEAT-151未混入。sandbox provenance只在Runtime→Host compatibility边界生效，public v6/Desktop/权限语义不变；Bash3.2 stable runner与Runtime artifact pin已闭合；aggregate implementation/verification保持blocked，本批真实调用0、历史4/7、decision POST 0。"
   known_limitations:
-    - "Contracts/Host/Desktop local immutable source authority与clean-tree conformance已PASS，但没有published tag/release。"
+    - "Runtime/Contracts/Host/Desktop local immutable source authority与clean-tree conformance已PASS，但没有published tag/release；Desktop主checkout另有未纳入的FEAT-151 dirty files。"
     - "真实allow/cancel、自然expiry/reconnect与人工UI仍未验证；source PASS不得冒充真实vertical。"
     - "独立 decline-and-continue 因 frozen stable available-decision 语义不纳入第一阶段；只有 accept once / cancel current turn。"
     - "真实allow/cancel与approval hydration/cardinality未完成；normal reconnect已观察，但approval replay/expiry NOT OBSERVED。"
     - "light generic UI仅在100%观察；dark、exact 1180×760、200%、approval keyboard/focus/aria-live/safe-copy与VoiceOver NOT RUN，因为没有真实approval card。"
     - "CAP-020/021、FileChange/Diff、平台/生产审批均不属于 FEAT-137。"
     - "2026-08-31 authority repair后canonical app/Runtime/Host/Provider已真实启动；4/7请求未形成可操作approval authority，剩余3次停止消耗。"
+    - "2026-09-01 provenance批D4明确NOT RUN、真实调用0；source PASS不得改写历史live blocker。"
     - "不得把direct Command completion、generic policy modal、source fixture或跨重开的waiting turn冒充accept/cancel、approval replay或D4 PASS。"
 
 public_readiness:

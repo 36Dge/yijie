@@ -2,7 +2,7 @@
 
 > Profile: `demo_fast` · Exposure: `local` · Created: `2026-08-30`
 >
-> 当前结论：Owner 已于 2026-08-30 明确批准第一阶段安全方案；**D0、Contracts/Host/Desktop component source、v4/v6 authority composition repair 与 clean-tree conformance PASS；fresh D4 已从 canonical stable entrypoint 启动，但真实 approval vertical BLOCKED，真实调用 4/7**。真实请求未形成可操作的 inline approval authority，因此 accept/cancel 与 Feature verification 不得标 PASS。
+> 当前结论：Owner 已于 2026-08-30 明确批准第一阶段安全方案，并于 2026-09-01 单独授权 Runtime stable sandbox provenance patch；**Runtime→Contracts v6 compatibility v3→Host→Desktop 的本地不可变 source chain 与 clean-tree conformance PASS；fresh D4 的既有 BLOCKED 结论不变**。本批未执行 D4，真实调用 0；历史累计仍为 4/7，真实请求尚未形成可操作的 inline approval authority，因此 accept/cancel 与 Feature verification 不得标 PASS。
 
 ## 1. 用户问题与真实结果
 
@@ -24,29 +24,30 @@
 8. Pending 只驻留 Host 内存；resolved content-free audit 每 session 最多 128 条并随 session 删除。
 9. 审计只含 opaque identities、stable result code、request/resolution timestamps；禁止 command、cwd、reason、secret 和 Runtime wire。
 10. Contracts 后续新增独立、显式协商的 v6 approval surface，v1-v5 和现有 Runtime exact-shape manifest 保持不变。
-11. Runtime 固定为 `b2b20e2…` / 0.144.6；不修改、升级、替换、重编译、重新 pin 或开启 experimental API。
-12. D0 的真实调用额度为 0；Owner 于 2026-08-31 单独授权 fresh D4 最多 7 次真实调用及受限调用层自动重试。approval decision POST 仍严格单次、不得自动重试。本轮实际使用 4/7；没有发出 decision POST，剩余 3 次因 live blocker 未继续消耗。
+11. Runtime 继续报告 0.144.6，upstream tag/commit 与执行权限、审批决策、public v6 API 均不变；Owner 仅授权在既有 `0001`/`0002` 补丁链后增加 `0003-feat-137-stable-sandbox-provenance.patch`，使 stable request 必填 `sandboxPermissions`，枚举严格为 `use_default`、`require_escalated`、`with_additional_permissions`，并从 tool request 经 `ExecApprovalRequestEvent` 原样进入 app-server wire。
+12. Host 只允许 provenance 为 `use_default` 的请求进入本 Feature pending；缺失、未知、`require_escalated` 或 `with_additional_permissions` 均 fail closed。该字段不得进入 public v6 payload、WebView、SQLCipher 或 safe-copy，也不授予任何权限。
+13. D0 的真实调用额度为 0；Owner 于 2026-08-31 单独授权的 fresh D4 历史累计使用 4/7 且没有 decision POST。2026-09-01 provenance 批明确将本批额度设为 0，未执行 D4，也未消耗历史剩余额度。
 
 ## 3. 最终冻结输入
 
 | Repository | Commit / version | D0 状态与角色 |
 |---|---|---|
-| yijie-codex | `b2b20e2fc4a0c94834f34d8cc459e488a1b56277` / 0.144.6 | clean；最终冻结 Runtime authority，只读、不修改 |
-| yijie-contracts | `2e490dea4444ea1e33c2df1a5267b2bff5bfb8e6` / unpublished v0.7.0 | clean；FEAT-137 v6 local immutable authority；parent `87f94c9…` |
-| yijie-agent-host | `118651804b7f5a7849bc68cdf29d88c74a21f8a1` / tree `9ae73d7b6f024bda241071371487a627810c1058` | clean；基于首个冻结 candidate `01c4a406…` 的 TTL/ack 与 late-cleanup 修复 authority |
-| yijie-desktop | `27d6c6a2a9f8a9984b47b27143f8c9090815dbd3` / tree `6cefcc7a6deed7924f64ba32b06ac7c084fd654d` | clean；v4 从历史 immutable Git object 验证 source/digest，v6 继续由当前 Host `118651804…` 提供运行实现；无 capability/plugin/CSP/dependency 扩张 |
-| yijie | D4 前 authority `061c861fa48e5b4a38696b12abf2322ed0e6d837` | clean preflight；本轮只回填 FEAT-137 四文件，最终治理 commit 在批末记录 |
+| yijie-codex | `acf2da55d8a53175343aaf112e03368dfef9922a` / 0.144.6 / tree `97557e0bd736a91bbbf94ccfa11b57a4bbf23a74` | clean；三补丁 local immutable authority；stable schema 267 files / tree SHA-256 `d82a33f6…`，public v6 API 与权限语义不变 |
+| yijie-contracts | `aeccf5d561bd4259389cdb325bae84ce3e0dea86` / unpublished v0.7.0 / tree `7a864645bf552a8b7457b6338a30f6626ce15d3a` | clean；新增版本化 v6 compatibility v3，历史 v1/v2 与 public v6 API 保持不变 |
+| yijie-agent-host | `078769a22d035c2921e315e5776185bed6f7feeb` / tree `df7e5b6bc4994a1a4023793e766a87c7806f1e07` | clean；精确 pin Runtime/Contracts provenance authority；仅 `use_default` 可进入 pending |
+| yijie-desktop | `56f88856125d2affd98f4c0c984792d47b444ca7` / tree `2d580bbe70ebe537cbfc13dae0d9b50b57a007c8` | isolated clean-tree audit与canonical stable build PASS；parent `13277c03…`；v6 checker同时pin Runtime clean SHA/tree、Runtime build artifact、Host stable artifact与当前Contracts/Host，v4历史authority并存；Runtime provenance不进入Desktop投影；主checkout另有未纳入的FEAT-151 dirty files |
+| yijie | 本批治理基线 `88eb3b42529d2e096611f67a59b3120f2f939ed8` | FEAT-137 四文件回填；未跟踪 FEAT-151 包不纳入本批，最终治理 commit 在批末记录 |
 
 Contracts source-first 批已在 `yijie-contracts/feat/feat-137-contracts-v6-approval` 创建 local commit `2e490dea4444ea1e33c2df1a5267b2bff5bfb8e6`，tree 为 `0041ca35366ec4718f9937398924983591bd7010`，父提交为 `87f94c9aa6d4848cb67aa8a1265bd21474edb0bb`。提交后 safe generated/build、focused 25/25、安全合规 Node 88/88、Go、lint、双基线 equality/breaking 与 clean-tree authority audit 全部 PASS；v1-v5 和 `agent-host-runtime-v1.json` 保持不变。Host 与 Desktop 首次冻结后的独立复审发现 decision 在截止前 commit、Runtime ack 在截止后到达时可能生成非法时间窗 terminal；Host `118651804…` 已以 commit 时刻作为 decision winner 时间、让 deadline 后 pending cleanup 归并到 TTL winner，并补确定性 race tests与 retained/HTTP window validation。Desktop 随后精确 repin 到该 Host SHA。最终 Contracts→Host→Desktop clean-tree source conformance PASS；发布/tag/push 与 D4 仍未执行，真实调用为 0。
 
-Runtime stable schema 提供 `item/commandExecution/requestApproval` 与 stable response decision enum，但 stable request schema 不包含可依赖的 `availableDecisions`。因此 Host 必须按本 Owner policy 固定投影两个决定，并兼容忽略 Runtime 可能发送的该额外字段；不得把它提升为 stable contract 事实。
+Runtime stable schema 提供 `item/commandExecution/requestApproval`、必填 `sandboxPermissions` 与 stable response decision enum，但 stable request schema 不包含可依赖的 `availableDecisions`。因此 Host 必须按本 Owner policy 固定投影两个决定，只接受 `sandboxPermissions=use_default` 进入 pending，并兼容忽略 Runtime 可能发送的 `availableDecisions`；不得把后者提升为 stable contract 事实，也不得把 provenance 暴露到 public v6。
 
 ## 4. 完整主流程
 
 1. 用户通过 canonical local/demo_fast stable runner 进入实际对话页；exact FEAT-137 gate 关闭时维持既有 `read-only/never`。
 2. gate 开启时 Host 在 `thread/start` 和 `turn/start` 显式使用 `on-request/read-only`，并装配受管、精确的单 Command prompt policy。
-3. Runtime 发出 stable Command approval reverse request。Host 校验 session/thread/turn/item/request identity、argv、单 action、canonical cwd 和无网络/权限提升事实。
-4. 合法请求进入 120 秒内存 pending；非法、未知、FileChange、permissions、MCP 和 requestUserInput 请求立即 fail closed且不产生 Desktop action。
+3. Runtime 发出 stable Command approval reverse request，并将 originating tool request 的 `sandboxPermissions` 原样带到 wire。Host 校验 session/thread/turn/item/request identity、argv、单 action、canonical cwd 与 provenance。
+4. 只有 `sandboxPermissions=use_default` 且其它条件均合法的请求进入 120 秒内存 pending；缺失/未知 provenance、`require_escalated`、`with_additional_permissions`、其它非法 Command、FileChange、permissions、MCP 和 requestUserInput 请求立即 fail closed且不产生 Desktop action。
 5. Contracts v6 requested event 与 owner-only pending snapshot 仅投影固定 action identity、安全说明、到期信息和 `accept_once/cancel_current_turn`。
 6. Desktop 在对应 Command Item 内联显示卡片；提交决定时禁用按钮，不预先显示成功。
 7. Host first-writer-wins 地向同一 Runtime request 回应一次。允许一次后 Command 仍只在 read-only sandbox 运行；取消本轮时 Command 不执行并由 Runtime/Turn authority 封口。
@@ -81,24 +82,24 @@ Runtime stable schema 提供 `item/commandExecution/requestApproval` 与 stable 
 | AC-002 | 真实 request 绑定完整 identity，在对应 Item 只显示安全摘要与两个固定决定 | Contracts/Host/Desktop conformance |
 | AC-003 | 允许一次最多响应一次，Runtime 在 read-only 内继续并由真实 terminal 封口 | race tests + 后续真实 allow vertical |
 | AC-004 | 取消本轮最多响应一次，Command 不执行且不伪装 decline-and-continue | cancel correlation + 后续真实 cancel vertical |
-| AC-005 | 仅精确 argv/cwd/单 action 可进入 pending；其它命令与权限请求 fail closed | allowlist 与负向 focused tests |
+| AC-005 | 仅精确 argv/cwd/单 action 且 `sandboxPermissions=use_default` 可进入 pending；缺失/未知/escalated/additional provenance、其它命令与权限请求 fail closed | Runtime provenance、Host allowlist 与负向 focused tests |
 | AC-006 | 重复、迟到、过期和 terminal cleanup 不重复决定或执行；TTL 先胜只单次 Cancel，权威清理先胜则 resolved_elsewhere 且不再响应 | duplicate/stale/expired/resolved_elsewhere/TTL-Cancel/race tests |
 | AC-007 | 断线禁用，正常重连按 Host snapshot 对账，不离线批准 | transport/snapshot tests + 安全自然观察 |
 | AC-008 | UI、日志、copy、SQLCipher/audit 均无 raw command/path/reason/secret/wire；audit 有界删除 | canary、redaction、retention tests |
-| AC-009 | v6 显式协商且 v1-v5 不变；排除能力不生成 UI | generate/breaking/equality/unknown tests |
+| AC-009 | public v6 显式协商且 v1-v5 不变；Runtime compatibility v3版本化承接必填provenance；排除能力不生成 UI | generate/breaking/equality/provenance/unknown tests |
 | AC-010 | 全状态内联、键盘/焦点/状态/aria-live/安全复制与后续视觉条件可验收 | Desktop tests + 后续 D4 manual smoke |
 
 十条 Feature-level Must 继续全部为 `pending`：Host 可独立验证的 gate、wire、pending/decision、TTL、cleanup、redaction 与 v1-v5 compatibility 子项已有 source evidence，但每条仍包含 Desktop、真实 Runtime terminal、正常重连或 D4 条件，不能原子化标为 PASS。
 
 ## 7. Contract First 与后续顺序
 
-`contract-impact=semantic`，因为 exact local profile 的 approval policy 和跨进程用户决定语义发生变化；默认与非 local 兼容性必须显式保护。
+`contract-impact=breaking`，因为 Runtime stable reverse-request wire 新增必填字段，strict consumer 必须升级；该 breaking 只发生在 pinned Runtime→Host compatibility boundary，已由版本化 v6 compatibility v3 隔离。Yijie public v6 API、执行权限与审批决定语义不变；默认与非 local 兼容性继续显式保护。
 
 ```text
-frozen Runtime stable source/schema（只读）
-  → Contracts v6 local immutable authority 2e490dea…（clean-tree audit PASS）
-  → Host 118651804… exact gate/policy/pending/single-response/deadline/redaction/audit（clean immutable source PASS）
-  → Desktop 918bd26b… v6 closed decoder/reducer/SQLCipher/inline UI（clean immutable source PASS）
+Runtime 0.144.6 three-patch authority acf2da55…（sandbox provenance；clean immutable source/artifact PASS）
+  → Contracts v6 compatibility v3 aeccf5d5…（source-first clean-tree audit PASS）
+  → Host 078769a2… exact gate/provenance/pending/single-response/deadline/redaction/audit（clean immutable source PASS）
+  → Desktop 56f88856… v6 closed decoder/reducer/SQLCipher/inline UI + Runtime artifact pin + Bash 3.2 stable runner（isolated clean-tree audit与canonical stable build PASS）
   → Contracts→Host→Desktop clean-tree source conformance（PASS）
   → canonical stable entrypoint v4/v6 authority composition repair（PASS；Desktop 27d6c6a2…）
   → fresh real allow/cancel D4（BLOCKED：未形成可操作 inline approval authority）
@@ -108,7 +109,8 @@ frozen Runtime stable source/schema（只读）
 
 ## 8. 停止条件与明确非目标
 
-- D0、Contracts/Host/Desktop local freeze、Host TTL/ack repair、v4/v6 authority composition repair 与 clean-tree component source conformance 已完成；canonical build/app/Runtime/Host 可正常启动。
+- D0、Runtime provenance patch、Contracts v3 compatibility、Host/Desktop repin/freeze、Host TTL/ack repair、v4/v6 authority composition repair 与 clean-tree component source conformance 已完成；canonical build/app/Runtime/Host 的历史启动证据保留。
+- 2026-09-01 provenance 批没有启动 Desktop、Provider 或模型，没有执行 D4；真实调用 0。Runtime 仅执行正常的 stable protocol/EOF smoke 与 Host integration，未触发 thread/turn/provider。
 - Fresh D4 使用 4/7 次真实调用后停止：一次无 card 的正常拒绝、一次未产生 approval 的直接 Command 完成、一次生成失败、一次跨正常重开仍等待；没有 accept/cancel decision POST。剩余 3 次不应用于重复同一 blocker。
 - 不得绕过、删除或跳过 v4/v6 checker，也不得通过直接调用内部 command、伪造 pending、故障注入或提升权限补证。下一步需单独 RCA canonical live task/approval producer→Host pending→Desktop action authority 链路。
 - 如果精确 prompt policy 无法在 `on-request/read-only` 下产生 stable request，保持 capability gap 并停止；不得改用危险 Command、`untrusted` 的潜在 unsandboxed retry、权限提升或 Runtime patch。
@@ -123,6 +125,6 @@ frozen Runtime stable source/schema（只读）
 - Host v6 consumer pin / mapper / pending / decision / TTL-ack source slice：PASS（immutable clean commit）；Desktop consumer、SQLCipher、inline UI 与 exact repin：PASS（immutable clean commit）。
 - Component source implementation/conformance 与 canonical entrypoint repair：PASS；aggregate implementation：BLOCKED（真实 approval authority 未到达 Desktop action UI）。
 - Verification / real allow/cancel / D4：BLOCKED after canonical startup；accept_once、cancel_current_turn 与 approval-only Must AC 仍 pending。
-- Runtime、Contracts、Host、Desktop：最终 clean；真实调用：4/7，decision POST 0，剩余 3 次未使用。
+- Runtime、Contracts、Host：最终 clean；Desktop immutable commit 在隔离 worktree clean，主 checkout 仅保留未纳入的 FEAT-151 改动；本批真实调用 0，历史累计 4/7，decision POST 0。
 
 完成本 Feature 时只能表述为“本地 Command 审批局部完成，Epic 尚未完成；不代表 production approval ready”。
