@@ -1,0 +1,232 @@
+schema_version: 3
+delivery_profile: "demo_fast"
+exposure: "local"
+
+feature:
+  id: "FEAT-151"
+  slug: "desktop-workflow-showcase"
+  title: "Desktop 工作流展示页"
+  status: "usable" # draft | active | usable | blocked
+  created_at: "2026-08-31"
+  requirement_owner: "段成威"
+  technical_owner: "段成威"
+  reviewer: "段成威"
+  release_owner: "段成威"
+
+scope:
+  risk_level: "low" # low | medium | high | critical
+  data_classification: "public" # public | internal | confidential | restricted
+  contract_impact: "none" # none | additive | semantic | breaking
+  database_change: "none" # none | expand | migrate | contract
+  persistence_change: "none" # none | durable | replay
+  runtime_change: "runtime" # none | runtime | platform
+  auth_permission_change: "none" # none | auth | permission | both
+  user_workflow_change: "user_visible" # none | internal | user_visible
+  ui_change: "interactive" # none | visual | interactive
+  ai_behavior_change: "none" # none | prompt | model | retrieval | tool | eval
+
+repositories:
+  - "yijie"
+  - "yijie-desktop"
+
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+
+product_ux:
+  status: "PASS" # pending | PASS
+  primary_user: "需要快速浏览现有与推荐自动化工作流的跨境电商卖家和运营人员"
+  problem: "左侧“工作台”仍是禁用入口，用户无法进入参考截图定义的工作流总览。"
+  user_outcome: "用户点击左侧“工作流”后进入静态工作流总览，并可完整浏览截图中的分类、已有工作流和推荐工作流信息。"
+  in_scope:
+    - "将左侧“工作台”更名为“工作流”，启用受 workspace.use 保护的 /workflows 路由。"
+    - "完整呈现截图中的顶部分类、我的工作流、创建卡、四张已有工作流卡和四张推荐工作流卡。"
+    - "沿用易界 App Shell、Yj 布局组件、design token 与图标 registry，覆盖亮色、暗色和 1180×760。"
+    - "修复 canonical demo_fast 启动器在 macOS Bash 3.2 + nounset 下展开空 profile 环境数组失败的问题，并同步静态契约检查。"
+  out_of_scope:
+    - "任何 API、Agent Host、Runtime、数据库、持久化或真实工作流数据接入。"
+    - "分类筛选、排序、视图切换、新建分类、新建工作流、更多、查看全部、演示或执行交互。"
+    - "任何二次页面跳转、付费调用、生产写入或外部副作用。"
+  main_flow:
+    - "用户通过 canonical demo_fast 启动器零登录进入应用，点击左侧“工作流”。"
+    - "应用进入 /workflows，侧栏保持选中，页面按截图顺序展示全部静态内容。"
+    - "用户滚动浏览顶部分类、我的工作流和推荐工作流；页面内控件均不触发交互或副作用。"
+  visual_direction: "保留参考截图的双层分类、工作流卡片网格与推荐流程节点信息架构，使用易界品牌绿、标准密度、轻边框和卡片层级重新表达，不复制外部品牌视觉。"
+  ui_states:
+    idle: "进入页面前由左侧已启用的“工作流”链接提供清晰入口；不预取任何数据。"
+    loading: "不适用：页面只同步读取打包内的只读 TypeScript 常量，不制造虚假 loading。"
+    success: "三段内容按固定顺序完整展示，文案、标签、时间、使用量与流程节点和截图一致。"
+    empty: "不适用：本需求要求固定展示完整截图内容，打包内数据集合不为空。"
+    error: "无 workspace.use 的深链由既有 Router 权限边界在页面实例化前拦截。"
+    retry: "不适用：没有远程请求；权限恢复沿用既有设置/权限刷新链路。"
+    cancel: "不适用：没有提交、执行、长任务或外部副作用。"
+
+must_acceptance:
+  - id: "AC-001"
+    statement: "拥有 workspace.use 时，左侧原“工作台”显示为“工作流”可用链接，进入 /workflows 后保持选中且文档标题为“工作流 · 易界 AI”。"
+    verification: "导航、Router、App Shell 单测与真实应用 smoke。"
+    status: "PASS" # pending | PASS | FAIL
+  - id: "AC-002"
+    statement: "页面顶部按顺序展示全部、电商获客、批量出图、全网比价、内容创作、视频生成、数据分析、私域运营、更多九个分类。"
+    verification: "领域模型与 WorkflowPage 组件测试；截图。"
+    status: "PASS"
+  - id: "AC-003"
+    statement: "“我的工作流”完整展示六个分类、新建分类、最近修改、网格/列表视图标识、创建工作流卡和四张已有工作流卡的全部截图文案与时间。"
+    verification: "组件内容、顺序与否定交互断言；截图。"
+    status: "PASS"
+  - id: "AC-004"
+    statement: "“推荐工作流”完整展示刷新标识、查看全部，以及四张推荐卡的标题、热门/推荐标签、说明、三段流程节点、使用量、演示与执行文案。"
+    verification: "领域模型与组件测试逐项核对；截图。"
+    status: "PASS"
+  - id: "AC-005"
+    statement: "除侧栏进入 /workflows 外，页面内所有截图控件均只展示，不发起请求、不写持久化、不执行工作流且不产生二次跳转。"
+    verification: "组件否定断言、源码调用搜索与真实 smoke。"
+    status: "PASS"
+  - id: "AC-006"
+    statement: "页面只消费本地只读展示模型，不调用 API、Tauri command、Agent Host、Runtime、数据库或浏览器持久化。"
+    verification: "依赖/调用搜索、代码审阅和构建产物检查。"
+    status: "PASS"
+  - id: "AC-007"
+    statement: "没有 workspace.use 时导航不渲染；直接访问 /workflows 在页面实例化前进入无权访问页。"
+    verification: "权限策略、Router 和 Sidebar 测试。"
+    status: "PASS"
+  - id: "AC-008"
+    statement: "UI 复用 YjPage/YjSection、design token 与 YjIcon registry，在亮色、暗色和 1180×760 下无关键重叠或主体横向滚动。"
+    verification: "lint/build、两主题最小窗口视觉检查。"
+    status: "PASS"
+  - id: "AC-009"
+    statement: "页面有唯一 h1、合理 section/article/list 语义；展示型控件不伪装为可用操作，且 axe 无 serious/critical violation。"
+    verification: "组件语义断言、axe 与键盘/焦点 smoke。"
+    status: "PASS"
+  - id: "AC-010"
+    statement: "canonical pnpm tauri:dev 在 macOS 默认 Bash 3.2、空可选 profile 环境数组下完成 Desktop/Host 启动并进入 ready，退出后端口与进程正常清理。"
+    verification: "启动器回归测试、静态契约检查与 fresh canonical 启动。"
+    status: "PASS"
+
+contract:
+  impact: "none"
+  authority: "N/A：仅 Desktop 进程内静态展示模型、Vue 组件和路由；不新增或改变跨进程、跨仓、跨版本或持久化/重放边界。"
+  source_first_plan: "N/A：不修改 yijie-contracts、API/Agent Host/Runtime wire schema、Tauri command 或本地持久格式。"
+  status: "N/A" # N/A when impact=none; otherwise NOT RUN | PASS
+  checks: []
+
+external_authorizations:
+  paid_calls: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+  destructive_operations: { allowed: true, max_actions: 8, approved_by: "用户（本线程，仅 FEAT-151 canonical 构建覆盖）", approved_at: "2026-09-01T11:05:38+08:00" }
+  production_writes: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+
+implementation:
+  status: "complete" # pending | active | complete | blocked
+  real_entrypoint: "从 yijie-desktop 执行 pnpm tauri:dev，通过 local demo_fast 零登录环境进入应用后选择 /workflows。"
+  mock_only: false
+
+verification:
+  status: "PASS" # PASS only after one fresh real-service run
+  verified_at: "2026-09-01T11:05:38+08:00"
+  startup:
+    status: "PASS"
+    command_or_steps: "在 yijie-desktop fresh 执行 canonical pnpm tauri:dev；等待 Vite 1420、target/debug/yijie-desktop 与真实 Agent Host 18081 ready；验收后以 Ctrl-C 走开发进程正常清理流程。"
+    environment: "macOS local demo_fast；系统 /bin/bash 3.2；真实 Codex Runtime/Agent Host；用户已明确授权本 Feature 的 canonical 构建覆盖既有 executable。"
+    actual_result: "PASS：前两次启动分别暴露空 feat134_environment 在 nounset 下展开失败、静态 checker 仍固化旧展开式，均补回归后修复；第三次 fresh canonical 运行完成 Vite/Tauri/Host ready，127.0.0.1:1420 与 :18081 均监听。正常 Ctrl-C 后 Desktop/Host 进程及两端口均释放。覆盖前 Host 已备份为 yijie-agent-host.feat151-precanonical-20260901（SHA-256 bbeb9cf0…）；当前 Host SHA-256 08faad2d…。"
+  real_smoke:
+    status: "PASS"
+    command_or_steps: "canonical ready 独立通过后，以当前同源 pnpm tauri:build:demo-fast 生成可被 macOS Accessibility 枚举的 unsigned .app；在真实 App Shell 点击“工作流”，核对 URL、标题、选中态、全部可访问文本与纵向滚动，随后点击窗口关闭按钮正常退出。"
+    environment: "真实 Tauri .app/WebView 1162×768；真实 Agent Host 监听 18081；另有生产组件 1180×760 light/dark visual harness。"
+    actual_result: "PASS：从 tauri://localhost/chat 点击侧栏进入 tauri://localhost/workflows，文档标题为‘工作流 · 易界 AI’；AX 树逐项包含 9 个顶部分类、7 个我的分类/新建项、创建卡、4 张已有卡与 4 张推荐卡全部文案。页面本地操作保持 text/container 语义，不出现可用 button 或二次 link；滚动到底部确认第四张推荐卡完整可见。窗口正常关闭后应用、Host 和 18081 均清理。"
+  representative_failure:
+    status: "PASS"
+    command_or_steps: "以缺少 workspace.use 的权限快照访问 /workflows，确认路由先进入 /access-denied 且 WorkflowPage loader 未调用。"
+    environment: "Vitest memory router；不做故障注入。"
+    actual_result: "PASS：权限策略、导航投影与 Router denied-loader 测试通过；exact local/demo_fast 外不注册工作流展示页。"
+  focused_checks:
+    - command: "pnpm exec vitest run <FEAT-151 focused files> --maxWorkers=4"
+      repository: "yijie-desktop"
+      exit_code: 0
+      status: "PASS"
+      result: "9 files / 67 tests PASS；覆盖静态数据、完整文案、否定交互、导航、权限、denied loader、图标 registry、axe 与 demo_fast 启动器。"
+    - command: "pnpm lint"
+      repository: "yijie-desktop"
+      exit_code: 0
+      status: "PASS"
+      result: "ESLint PASS。"
+    - command: "/bin/bash -n scripts/run-local-demo-fast.sh；pnpm exec vitest run scripts/run-local-demo-fast.test.mjs --maxWorkers=1"
+      repository: "yijie-desktop"
+      exit_code: 0
+      status: "PASS"
+      result: "启动器语法与 12/12 回归 PASS；新增 macOS Bash 3.2 nounset 空数组 argc=0 断言。"
+    - command: "node scripts/check-agent-host-v4-contract.mjs；pnpm exec vitest run scripts/check-agent-host-v4-contract.test.mjs -t 'FEAT-134 stable-only launcher boundary' --maxWorkers=1"
+      repository: "yijie-desktop"
+      exit_code: 0
+      status: "PASS"
+      result: "当前 v4 静态契约检查及 stable-only launcher mutation 子集 PASS，明确拒绝 nounset-unsafe 旧展开式。"
+    - command: "pnpm exec vue-tsc --noEmit"
+      repository: "yijie-desktop"
+      exit_code: 0
+      status: "PASS"
+      result: "Vue/TypeScript 类型检查 PASS。"
+    - command: "pnpm build"
+      repository: "yijie-desktop"
+      exit_code: 0
+      status: "PASS"
+      result: "production renderer build PASS，并生成 WorkflowPage chunk；仅有既有 YjChartCard 大 chunk 警告。"
+    - command: "pnpm docs:build"
+      repository: "yijie-desktop"
+      exit_code: 0
+      status: "PASS"
+      result: "VitePress UI 文档构建 PASS。"
+    - command: "Browser visual harness（1180×760 light/dark）"
+      repository: "yijie-desktop"
+      exit_code: 0
+      status: "PASS"
+      result: "两主题 document/main 横向 overflow=0，主滚动区可键盘聚焦，页面内 interactive elements=0，axe violations=0；正常 Ctrl-C 停止 visual server。"
+    - command: "check-feature-package.sh --gate D0"
+      repository: "yijie"
+      exit_code: 0
+      status: "PASS"
+      result: "schema v3、Profile、Contract impact 与 D0 文档检查 PASS。"
+    - command: "pnpm lint && pnpm test"
+      repository: "yijie"
+      exit_code: 0
+      status: "PASS"
+      result: "治理仓库 manifest/Contract First lint PASS；48/48 tests PASS。"
+    - command: "canonical readiness probe during pnpm tauri:dev"
+      repository: "yijie-desktop"
+      exit_code: 0
+      status: "PASS"
+      result: "readiness probe exit 0：第三次 fresh canonical 启动完成 Vite/Tauri/真实 Host ready；随后 Ctrl-C 正常停止 dev launcher（预期 ELIFECYCLE exit 1），1420/18081 与 Desktop/Host 进程均释放。"
+    - command: "pnpm tauri:build:demo-fast；Computer Use native .app smoke"
+      repository: "yijie-desktop"
+      exit_code: 0
+      status: "PASS"
+      result: "production renderer + Rust/Tauri debug app bundle PASS；真实 App Shell 点击工作流、tauri://localhost/workflows、标题/选中态、完整 AX 内容与滚动到底部均 PASS；窗口正常关闭，无残留 App/Host 进程。"
+  artifacts:
+    - "evidence/workflow-light-1180x760.jpg"
+    - "evidence/workflow-dark-recommended-1180x760.jpg"
+    - "evidence/workflow-native-entry-1162x768.jpg"
+    - "evidence/workflow-native-recommended-1162x768.jpg"
+    - "evidence/workflow-canonical-native-entry-1162x768.jpg"
+    - "evidence/workflow-canonical-native-recommended-1162x768.jpg"
+  diff_review: { status: "PASS", summary: "完成 FEAT-151 scoped 源码、测试、启动器兼容修复、文档、status、diff 与无 I/O 边界复审；静态能力分类保持 section/display-only 语义。canonical 覆盖按用户本线程例外授权执行，覆盖前 Host 备份保留；既有 FEAT-137 治理文档脏改动保持原状。git diff --check PASS，最终未发现 FEAT-151 可操作问题。" }
+  known_limitations:
+    - "本需求仅交付 local demo_fast 静态展示，不代表真实工作流能力或 public/production 发布。"
+    - "canonical pnpm tauri:dev fresh startup 已独立 PASS；原生可交互截图使用当前同源 debug .app bundle，因为开发态裸二进制未登记到 macOS Accessibility 应用目录。"
+    - "本次按用户仅限 FEAT-151 的明确例外授权覆盖构建产物；覆盖前 Host 可执行文件备份仍保留在 yijie-agent-host/.local/bin/yijie-agent-host.feat151-precanonical-20260901，可恢复。"
+    - "非 D4 必需的完整 pnpm test 已越过 preflight，当前为 1083/1085 tests PASS；剩余 2 项分别是 v4 contract test 的既有 Contracts HEAD 预期滞后和 FEAT-132 projection recovery_required 预期差异，均已保留在 02-verification.md；FEAT-151 focused 67/67 PASS。"
+
+public_readiness:
+  required: false
+  status: "not_applicable" # N/A | pending | PASS
+  checks: []
+  external_smoke:
+    status: "NOT RUN"
+    command_or_steps: "N/A：exposure=local"
+    actual_result: "N/A：不创建公网入口"
+
+documents:
+  brief: "00-feature-brief.md"
+  delivery_log: "01-delivery-log.md"
+  verification: "02-verification.md"
