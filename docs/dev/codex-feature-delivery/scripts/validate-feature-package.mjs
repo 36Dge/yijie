@@ -432,6 +432,25 @@ function validateDemoBase(errors, data, gate) {
   }
 }
 
+function validateTermination(errors, data, gate) {
+  if (normalized(data.feature?.status) !== "terminated") return;
+  const termination = addRequiredObject(errors, data.termination, "termination");
+  if (termination) {
+    if (termination.owner !== data.feature.requirement_owner) errors.push("termination.owner must be the requirement owner");
+    if (!isIsoInstant(termination.confirmed_at)) errors.push("termination.confirmed_at must be an ISO-8601 instant");
+    if (!meaningful(termination.reason)) errors.push("termination.reason is required");
+    if (termination.permanent !== true) errors.push("termination.permanent must be true");
+    if (termination.acceptance_passed !== false) errors.push("termination.acceptance_passed must be false");
+    if (termination.implementation_resumes !== false) errors.push("termination.implementation_resumes must be false");
+  }
+  if (["D4", "DP", "G4", "G5", "G6"].includes(gate)) {
+    errors.push("permanently terminated feature cannot claim a completion gate");
+  }
+  if (normalized(data.implementation?.status) === "complete" || isPass(data.verification?.status)) {
+    errors.push("permanent termination without acceptance cannot claim complete/PASS");
+  }
+}
+
 function validateFeatureIdentity(errors, data) {
   const feature = addRequiredObject(errors, data.feature, "feature");
   if (!feature) return;
@@ -1586,6 +1605,7 @@ export function validateFeatureData(data, { gate = "", sliceId = "" } = {}) {
     return { schemaVersion, errors, warnings };
   }
   const profile = validateV3Envelope(errors, data);
+  validateTermination(errors, data, gate);
   if (profile === "demo_fast") {
     if (gate.startsWith("G")) {
       errors.push(`${gate} is only valid for delivery_profile: production_hardened`);
@@ -1886,6 +1906,12 @@ export function validateFeaturePackageEvolution(previousData, currentData) {
     }
     if (normalized(previousData.exposure) === "public" && normalized(currentData.exposure) === "local") {
       return ["exposure cannot be downgraded from public to local to bypass public readiness"];
+    }
+    if (normalized(previousData.feature?.status) === "terminated" && previousData.termination?.permanent === true) {
+      if (normalized(currentData.feature?.status) !== "terminated" ||
+          !isDeepStrictEqual(previousData.termination, currentData.termination)) {
+        return ["permanent termination decision cannot be removed or reopened"];
+      }
     }
   }
   return validateFailureLedgerEvolution(previousData, currentData);

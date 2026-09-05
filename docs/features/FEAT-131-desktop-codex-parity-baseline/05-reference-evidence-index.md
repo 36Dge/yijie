@@ -1,5 +1,7 @@
 # FEAT-131 — 设计依据与验证索引
 
+> 当前范围修订（2026-09-05）：FEAT-137 已由 Owner 永久终止且未完成验收，未来不重启。CAP-019 / GS-005 为 `owner-terminated-unaccepted`，不再属于 active 交付范围；现行 active 范围排除 FEAT-137/138。下文旧 active 范围及 FEAT-137 source PASS 为历史记录，不构成审批可用或 D4 PASS。最终权威见 [FEAT-137 永久终止记录](../FEAT-137-desktop-approval-interaction/03-termination.md)。
+
 > Reference policy：`codex-inspired-approximate-parity-v1-2026-08-27` / `owner-approved-inference`
 >
 > Runtime baseline：原始 freeze `0ce5902…`；Owner-authorized FEAT-136 minimal producer patch 后最终 re-freeze `b2b20e2…` / `yijie-codex 0.144.6` / `experimentalApi=false`
@@ -111,7 +113,7 @@
 | GS-002 过程更新/reasoning summary | `owner-approved-inference` | metadata-only；`real-runtime: NOT RUN` | EVID-SCHEMA-003、EVID-HOST-003、EVID-DESKTOP-001/005 | FEAT-134 |
 | GS-003 Command 成功/失败 | `owner-approved-inference` | current terminal scope `real-runtime: PASS`；完整 started/delta live 顺序未捕获 | EVID-HC-002、EVID-F136-001/002/003/004 | FEAT-136；FEAT-143 承接完整状态顺序 |
 | GS-004 Tool 成功/失败 | `owner-approved-inference` | generic source conformance `PASS`；real producer/entrypoint `BLOCKED`；Tool D4 `NOT RUN` | EVID-SCHEMA-003/006、EVID-HC-002、EVID-F144-001 | FEAT-144 |
-| GS-005 Command 审批一次性允许/取消/过期 | `owner-approved-inference` | immutable source implementation/conformance `PASS`；real allow/cancel、自然expiry/reconnect与D4 `NOT RUN` | EVID-SCHEMA-004、EVID-HC-001、EVID-DESKTOP-006、EVID-F137-D0-001、EVID-F137-SOURCE-001 | FEAT-137 |
+| GS-005 Command 审批一次性允许/取消/过期 | `owner-explicit-decision` | `owner-terminated-unaccepted`；旧 source PASS 不等于 D4 PASS | FEAT-137 `03-termination.md`；既有证据仅历史保留 | FEAT-137（永久终止） |
 | GS-006 文件修改与 Diff | `owner-excluded` | metadata-only exclusion；无 fixture/真实验收 | BASIS-004、EVID-SCHEMA-003/004、EVID-DESKTOP-005 | FEAT-131 scope decision |
 | GS-007 active Turn steer | `owner-approved-inference` | metadata-only；Host projection unavailable | EVID-SCHEMA-002、EVID-HC-002、EVID-DESKTOP-003 | FEAT-139 |
 | GS-008 Stop active Turn | `owner-approved-inference` | `real-runtime: NOT RUN` | EVID-SCHEMA-002/003、EVID-HC-002、EVID-DESKTOP-006 | FEAT-139 |

@@ -1,5 +1,7 @@
 # FEAT-137 — Desktop 本地 Command 审批交互 Demo Brief
 
+> 最终处置（2026-09-05 再确认）：Owner 因实现耗时过长，授权永久终止 FEAT-137；未完成验收，未来不再实施或重启。以下设计与验证结论均为终止前历史，不构成待执行任务；source PASS 不等于 D4。收尾见 [永久终止记录](03-termination.md)。
+
 > Profile: `demo_fast` · Exposure: `local` · Created: `2026-08-30`
 >
 > 当前结论：Owner 已于 2026-08-30 明确批准第一阶段安全方案，并于 2026-09-01 单独授权 Runtime stable sandbox provenance patch；**Runtime→Contracts v6 compatibility v3→Host→Desktop 的本地不可变 source chain 与 clean-tree conformance PASS；fresh D4 的既有 BLOCKED 结论不变**。本批未执行 D4，真实调用 0；历史累计仍为 4/7，真实请求尚未形成可操作的 inline approval authority，因此 accept/cancel 与 Feature verification 不得标 PASS。

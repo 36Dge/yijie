@@ -12,6 +12,10 @@
 
 ## A. demo_fast：真实服务快速闭环
 
+### Owner 永久终止（未完成验收）
+
+Owner 明确决定不再实现时，schema v3 可将 `feature.status` 与 `implementation.status` 设为 `terminated`，并记录 `termination.owner/confirmed_at/reason/permanent: true/acceptance_passed: false/implementation_resumes: false`。确认时间不推定最初关闭日期。历史验证证据、Must AC 和失败结论保留；不再为该需求实施、补跑验收或消耗调用额度。永久终止不能声明 D4/DP/G4–G6，不能重新变为 active。检查器验证终止记录及决策不可逆性，不把关闭当作验收通过。归档恢复只用于审计和误删恢复。
+
 ### A0. 产品、逻辑与 UX 一次定稿
 
 Codex 在实现前完成一个推荐方案，包含：

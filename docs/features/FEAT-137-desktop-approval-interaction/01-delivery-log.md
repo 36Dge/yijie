@@ -1,5 +1,7 @@
 # FEAT-137 — Delivery Log
 
+> 2026-09-05 最终决定：Owner 永久终止、未完成验收。未来不再执行本日志中的后续实现、RCA、refreeze 或 D4。历史过程原样保留；本次退役与归档记录见 [03-termination.md](03-termination.md)。
+
 > 本日志保留 Owner-authorized D0、Contracts/Host/Desktop source checkpoint、clean-tree findings、authority composition repair 与真实 D4 历史。2026-09-01 Runtime stable sandbox provenance patch 及 Runtime→Contracts→Host→Desktop refreeze/source conformance 已 PASS；真实 approval vertical 与 D4 的既有 BLOCKED 结论不变，本批真实调用 0。
 
 ## 1. 2026-08-30 — 输入固化

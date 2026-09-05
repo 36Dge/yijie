@@ -1,5 +1,7 @@
 # FEAT-131 — Codex 风格近似对话能力矩阵
 
+> 当前范围修订（2026-09-05）：FEAT-137 已由 Owner 永久终止且未完成验收，未来不重启。CAP-019 / GS-005 为 `owner-terminated-unaccepted`，不再属于 active 交付范围；现行 active 范围排除 FEAT-137/138。下文旧 active 范围及 FEAT-137 source PASS 为历史记录，不构成审批可用或 D4 PASS。最终权威见 [FEAT-137 永久终止记录](../FEAT-137-desktop-approval-interaction/03-termination.md)。
+
 > Profile：`demo_fast` · Exposure：`local`
 >
 > Runtime 约束：原始冻结点为 `0ce5902…`；Owner 后续仅授权 FEAT-136 early-denial producer 的最小 source patch。当前最终冻结点为 `b2b20e2…` / 0.144.6，此后不再修改、升级、重编译、替换或启用新的实验 API
@@ -23,7 +25,7 @@
 | API mode | stable；`experimentalApi=false` | `yijie-codex/.yijie/schemas/app-server/baseline.json:8-9` |
 | Runtime transport | stdio | 同上 |
 | Host transport/auth | local HTTP/SSE；owner-only bearer | `yijie-contracts/compatibility/agent-host-runtime-v1.json:15-19` |
-| Host sandbox/approval | default `read-only` / `never`；exact local/demo_fast + FEAT-134/136/137 gates 为 `read-only` / `on-request` | FEAT-137 Contracts `2e490dea…`、Host `118651804…`、Desktop `918bd26b…` clean source conformance PASS；真实 vertical NOT RUN |
+| Host sandbox/approval | 固定 `read-only` / `never`；旧 FEAT-137 opt-in 拒绝启动 | 2026-09-05 Contracts retirement authority `4d3f967…`；正常 Runtime 使用 FEAT-136 两补丁 artifact |
 
 “Runtime repository commit”和“upstream Codex commit”是两个不同身份，不得互相替换。`b2b20e2…` 仅包含 Owner-authorized FEAT-136 minimal producer repair；upstream tag/commit、Runtime version、267-file schema corpus 与 tree digest 保持不变。当前工作区即使发现远端更新，也不得通过 pull、同步、构建或重生成 schema 改变最终冻结值。
 
@@ -76,10 +78,10 @@ Host 代码中另有 `thread/delete` 和受条件开关约束的 `generate_image
 | CAP-013 | schema 注释为实验的 Plan Item/delta | `item/plan/delta` 存在于 non-experimental schema，协议只有 EXPERIMENTAL 注释、没有 runtime gate attribute | `requires Host/Contracts projection` | `contracts-host-desktop` | `real-runtime-producer-unavailable` | 未进入锁定投影，也没有当前 producer 证据 | 不得生成假步骤；优先使用稳定 `turn/plan/updated` | FEAT-134 | `owner-approved-inference` |
 | CAP-014 | Turn started/completed/interrupted/failed | `turn/started`、`turn/completed` | `available` | `desktop-only` | `none` | 已投影；completed 是唯一 Turn 终态 | 已有 streaming 与三类终态 | FEAT-132、FEAT-134 | `owner-approved-inference` |
 | CAP-015 | 非终态 error/warning 的上下文展示 | `error`、`warning` | `available` | `desktop-only` | `none` | 已投影且不等于 Turn 终态 | live projection 未提供独立 error/warning Item | FEAT-134、FEAT-142 | `owner-approved-inference` |
-| CAP-016 | Command started/output/completed/failed/declined | commandExecution Item、`item/commandExecution/outputDelta` | `available` | `contracts-host-desktop` | `none` | v5 Command 安全 mapper、terminal 与 output-delta projection 已冻结；FEAT-137 phase 1 只承接 approval `accept_once/cancel`，Runtime Cancel 可形成 declined outcome，但独立 decline 用户动作 deferred | completed/failed Item、SQLCipher hydration、安全复制与核心 UI 已有 fresh real 证据；完整 started/delta 集成顺序由 FEAT-143 | FEAT-136；FEAT-137/143 承接明确后移项 | `owner-approved-inference` |
+| CAP-016 | Command started/output/completed/failed/declined | commandExecution Item、`item/commandExecution/outputDelta` | `available` | `contracts-host-desktop` | `none` | v5 Command 安全 mapper、terminal 与 output-delta projection 已冻结；FEAT-137 approval 已永久终止；独立 decline 用户动作不在保留实现范围 | completed/failed Item、SQLCipher hydration、安全复制与核心 UI 已有 fresh real 证据；完整 started/delta 集成顺序由 FEAT-143 | FEAT-136；FEAT-143 承接保留的明确后移项；FEAT-137 已终止 | `owner-approved-inference` |
 | CAP-017 | MCP Tool 生命周期与 progress | mcpToolCall Item、`item/mcpToolCall/progress` | `requires Host/Contracts projection` | `contracts-host-desktop` | `owner-product-decision` / `real-runtime-producer-unavailable` | v5 producer-neutral Tool mapper/progress projection 已冻结，但没有 Owner-approved real producer/entrypoint | closed consumer、persistence/UI foundation 存在；不能证明 real Tool vertical | FEAT-144 | `owner-approved-inference` |
 | CAP-018 | Runtime 发起的 dynamic image tool | `item/tool/call`；当前 Host 注册路径会开启 experimental capability | `blocked by frozen Runtime` | `baseline-documentation` | `experimental-api-disabled` | 仅 FEAT-128 条件路径，默认 baseline 不支持；不能作为 CAP-017 替代品 | Artifact UI 存在，但不能证明 final frozen baseline 的真实 producer | FEAT-144 boundary；复用 FEAT-128 | `owner-approved-inference` |
-| CAP-019 | Command 本地审批 | `item/commandExecution/requestApproval` | `available` | `contracts-host-desktop` | `none` | Contracts v6 与 Host immutable source已实现exact gate、`on-request/read-only`、唯一Git repository check、`accept_once/cancel`、120秒TTL、single response、deadline-safe ack与content-free audit | Desktop immutable closed consumer、SQLCipher安全投影、inline UI与clean-tree source conformance PASS；真实allow/cancel、自然expiry/reconnect与D4 NOT RUN | FEAT-137 | `owner-approved-inference` |
+| CAP-019 | Command 本地审批 | `item/commandExecution/requestApproval`（仅历史 schema） | `owner-terminated-unaccepted` | `none` | `owner-permanent-termination` | Owner 因实现耗时过长永久终止；旧 v6 source/reader 保留审计，Host/Native/UI 入口关闭 | 未完成真实审批及 D4 验收；不再实现、不重启、不以收尾检查替代验收 | FEAT-137（永久终止） | `owner-explicit-decision` |
 | CAP-020 | 一般权限请求与 MCP elicitation | `item/permissions/requestApproval`、`mcpServer/elicitation/request` | `requires Host/Contracts projection` | `contracts-host-desktop` | `owner-security-decision` | 未实现；明确不属于 FEAT-137 | 无；继续 fail closed，不得从 FEAT-137 扩展 | 未分配 Owner backlog（不属于 FEAT-137） | `owner-approved-inference` |
 | CAP-021 | Tool 请求用户结构化输入 | `item/tool/requestUserInput` 存在于 non-experimental schema，协议只有 EXPERIMENTAL 注释、没有 runtime gate attribute | `requires Host/Contracts projection` | `contracts-host-desktop` | `owner-product-decision` | 未进入锁定投影；当前无真实 producer 证据；明确不属于 FEAT-137 | 不得显示假问答卡 | 未分配 Owner backlog（不属于 FEAT-137） | `owner-approved-inference` |
 | CAP-022 | FileChange Item、逐文件 patch 与 turn diff | fileChange Item、`item/fileChange/patchUpdated`、`turn/diff/updated` | `intentional product difference` | `none` | `none` | stable schema 存在，但本 Epic 不新增投影 | Owner 明确不实现；Artifact 不能代替 Diff | FEAT-131 scope decision | `owner-excluded` |
@@ -107,6 +109,6 @@ CAP-022 与 CAP-032～038 共计 8 项 Owner 主动排除。CAP-032 只排除 Fo
 - Active FEAT-132–137、FEAT-139–144 必须引用相应 `CAP-*` 和固定 reference policy；FEAT-138 已正式取消/排除，仅保留决策记录。FEAT-144 独立承接 CAP-017 / GS-004，不能被 CAP-018 替代。后续只根据 Owner 明确范围变更更新，不跟随某个 Codex Desktop 版本自动漂移。
 - `requires Host/Contracts projection` 只允许投影上述固定 Runtime stable 能力；必须先改权威 Contracts，再改 Host 和 Desktop。
 - `blocked by frozen Runtime` 不得通过开启 experimental API、修改 schema、替换 binary、模拟事件或硬编码 UI 绕过。
-- CAP-019 的 Owner security decision 已在 exact local/demo_fast/read-only/单 Command/`accept_once/cancel` 边界内关闭，Contracts/Host/Desktop immutable source implementation与clean-tree conformance已PASS；真实allow/cancel、自然expiry/reconnect、人工视觉与D4仍NOT RUN。CAP-020/021继续blocked/fail closed，不能从FEAT-137扩大权限。FileChange/Diff已是Owner主动排除。
+- CAP-019 的早期 security/source PASS 仅为历史。Owner 已永久终止 FEAT-137，未完成验收；不再要求补齐 allow/cancel、expiry/reconnect 或 D4。CAP-020/021 继续 fail closed，不扩大权限。
 - `owner-approved-inference` 允许合理近似，但不能覆盖 Runtime/Host 事实、伪造生产能力或被表述为视觉实测。
 - 当前 policy ID、38 个能力 ID 与分类词表已固定；FEAT-131 D4 已通过，完整 Epic 尚未完成。

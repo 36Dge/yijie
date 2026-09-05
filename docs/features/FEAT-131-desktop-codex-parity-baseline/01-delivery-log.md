@@ -1,5 +1,7 @@
 # FEAT-131 整体实现与调试记录
 
+> 当前范围修订（2026-09-05）：FEAT-137 已由 Owner 永久终止且未完成验收，未来不重启。CAP-019 / GS-005 为 `owner-terminated-unaccepted`，不再属于 active 交付范围；现行 active 范围排除 FEAT-137/138。下文旧 active 范围及 FEAT-137 source PASS 为历史记录，不构成审批可用或 D4 PASS。最终权威见 [FEAT-137 永久终止记录](../FEAT-137-desktop-approval-interaction/03-termination.md)。
+
 ## 1. 整体实现方案
 
 - 参考策略：固定 `codex-inspired-approximate-parity-v1-2026-08-27` / `owner-approved-inference`。后续 Feature 依据 Owner 范围、Yijie UI 规范、固定 Runtime/Host 能力和工程判断实现 Codex 风格近似体验，不追求版本专属或逐像素一致。

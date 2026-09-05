@@ -1,5 +1,7 @@
 # FEAT-137 — D0 与 source implementation 验证
 
+> 2026-09-05 最终处置：Owner 永久终止，未完成验收。以下 BLOCKED、NOT RUN、pending 和 source PASS 均为原始证据，不继续补齐、不改写为通过。退役检查只验证保留功能与清理结果，不能兑换 FEAT-137 D4。
+
 > 当前 verdict：**D0、Runtime stable sandbox provenance patch、Contracts v6 compatibility v3、Host/Desktop refreeze 与 clean-tree source conformance PASS；fresh real D4 的既有 BLOCKED 结论不变**。本批 D4 额度 0、真实调用 0；历史 canonical D4 累计仍为 4/7，decision POST为0，accept/cancel均未完成。
 
 ## 1. D0 checklist

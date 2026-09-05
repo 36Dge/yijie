@@ -1,5 +1,7 @@
 # FEAT-131 — Codex 风格近似对话黄金场景
 
+> 当前范围修订（2026-09-05）：FEAT-137 已由 Owner 永久终止且未完成验收，未来不重启。CAP-019 / GS-005 为 `owner-terminated-unaccepted`，不再属于 active 交付范围；现行 active 范围排除 FEAT-137/138。下文旧 active 范围及 FEAT-137 source PASS 为历史记录，不构成审批可用或 D4 PASS。最终权威见 [FEAT-137 永久终止记录](../FEAT-137-desktop-approval-interaction/03-termination.md)。
+
 > 作用：固定后续 active FEAT-132–137、FEAT-139–144 共用的行为场景 ID，不实现生产交互；FEAT-138 仅保留取消记录。
 >
 > Reference policy：`codex-inspired-approximate-parity-v1-2026-08-27` / `owner-approved-inference`。不绑定 Codex Desktop version/build，不需要人工媒体，也不要求一模一样。
@@ -27,7 +29,7 @@
 | GS-002 | 多段过程更新与用户可见推理信息 | `requires Host/Contracts projection` | FEAT-134 | `owner-approved-inference` | metadata only；`real-runtime: NOT RUN` |
 | GS-003 | Command 执行成功和失败 | `available` | FEAT-136；完整 started/delta 集成顺序由 FEAT-143 | `owner-approved-inference` | current terminal scope `real-runtime: PASS`；completed=1、failed=1、normal hydration each once；individual started/delta live 未捕获 |
 | GS-004 | Tool 调用成功和失败 | `requires Host/Contracts projection` | FEAT-144 | `owner-approved-inference` | generic source conformance `PASS`；real producer/entrypoint decision `BLOCKED`；Tool D4 `NOT RUN` |
-| GS-005 | 命令审批一次性允许、取消和过期 | `available` | FEAT-137 | `owner-approved-inference` | immutable source implementation/conformance `PASS`；real allow/cancel、自然expiry/reconnect与D4 `NOT RUN` |
+| GS-005 | 命令审批一次性允许、取消和过期（历史场景） | `owner-terminated-unaccepted` | FEAT-137（永久终止） | `owner-explicit-decision` | 未完成验收；不再实现、不重启 |
 | GS-006 | 文件修改与 Diff | `intentional product difference` | FEAT-131 scope decision | `owner-excluded` | metadata-only exclusion；无 fixture、无真实验收 |
 | GS-007 | 执行中补充指令 | `requires Host/Contracts projection` | FEAT-139 | `owner-approved-inference` | metadata only；projection unavailable |
 | GS-008 | 用户停止 Turn | `available` | FEAT-139 | `owner-approved-inference` | `real-runtime: NOT RUN` |

@@ -902,6 +902,44 @@ test("schema v3 demo_fast accepts one product/UX checkpoint and one real-service
   );
 });
 
+function permanentlyTerminatedDemo() {
+  const data = validDemoV3();
+  data.feature.status = "terminated";
+  data.implementation.status = "terminated";
+  data.verification.status = "BLOCKED";
+  data.termination = {
+    owner: data.feature.requirement_owner,
+    confirmed_at: "2026-09-05T11:05:49+08:00",
+    reason: "Owner permanently ended implementation because the time cost was too high",
+    permanent: true,
+    acceptance_passed: false,
+    implementation_resumes: false,
+  };
+  return data;
+}
+
+test("permanent termination preserves historical D0 but cannot claim acceptance", () => {
+  const data = permanentlyTerminatedDemo();
+  assert.deepEqual(validateFeatureData(data, { gate: "D0" }).errors, []);
+  assert.ok(validateFeatureData(data, { gate: "D4" }).errors.some((e) => e.includes("cannot claim a completion gate")));
+  data.verification.status = "PASS";
+  assert.ok(validateFeatureData(data, { gate: "D0" }).errors.some((e) => e.includes("cannot claim complete/PASS")));
+});
+
+test("permanent termination requires explicit Owner authority and cannot be reopened", () => {
+  const original = permanentlyTerminatedDemo();
+  assert.deepEqual(validateFeaturePackageEvolution(original, structuredClone(original)), []);
+  for (const field of Object.keys(original.termination)) {
+    const data = structuredClone(original);
+    delete data.termination[field];
+    assert.ok(validateFeatureData(data, { gate: "D0" }).errors.some((e) => e.includes("termination.")));
+    assert.ok(validateFeaturePackageEvolution(original, data).some((e) => e.includes("cannot be removed or reopened")));
+  }
+  const reopened = structuredClone(original);
+  reopened.feature.status = "active";
+  assert.ok(validateFeaturePackageEvolution(original, reopened).some((e) => e.includes("cannot be removed or reopened")));
+});
+
 test("demo_fast D4 rejects mock-only, missing real smoke, and failed Must acceptance", () => {
   const data = validDemoV3();
   data.implementation.mock_only = true;

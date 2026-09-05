@@ -1,5 +1,7 @@
 # FEAT-131 — Codex 风格近似对话基线与黄金场景 Demo Brief
 
+> 当前范围修订（2026-09-05）：FEAT-137 已由 Owner 永久终止且未完成验收，未来不重启。CAP-019 / GS-005 为 `owner-terminated-unaccepted`，不再属于 active 交付范围；现行 active 范围排除 FEAT-137/138。下文旧 active 范围及 FEAT-137 source PASS 为历史记录，不构成审批可用或 D4 PASS。最终权威见 [FEAT-137 永久终止记录](../FEAT-137-desktop-approval-interaction/03-termination.md)。
+
 > Profile: `demo_fast` · Exposure: `local` · Checkpoint: `D4` · Created: `2026-08-26`
 >
 > Governance amendment `2026-08-30`：Owner-authorized FEAT-136 minimal Runtime repair 后 final re-freeze 为 `b2b20e2…` / 0.144.6；CAP-017 / GS-004 由新增 FEAT-144 承接。原 FEAT-131 D4 与 original freeze 证据保持历史，不重跑、不追溯改写。

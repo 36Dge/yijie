@@ -6,12 +6,20 @@ feature:
   id: "FEAT-137"
   slug: "desktop-approval-interaction"
   title: "Desktop 本地 Command 审批交互"
-  status: "active"
+  status: "terminated"
   created_at: "2026-08-30"
   requirement_owner: "段成威"
   technical_owner: "段成威"
   reviewer: "段成威"
   release_owner: "段成威"
+
+termination:
+  owner: "段成威"
+  confirmed_at: "2026-09-05T11:05:49+08:00"
+  reason: "Owner 因实现投入时间过长决定永久终止，并在本次收尾中再次确认；未完成验收，未来不再实施或重启。日期记录本次确认，不推定最初关闭日期。"
+  permanent: true
+  acceptance_passed: false
+  implementation_resumes: false
 
 scope:
   risk_level: "high"
@@ -160,7 +168,7 @@ external_authorizations:
   production_writes: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
 
 implementation:
-  status: "blocked"
+  status: "terminated"
   real_entrypoint: "yijie-desktop canonical local/demo_fast `pnpm tauri:demo-fast:stable` authority现冻结于Desktop 56f88856...：v4从历史immutable Git object验证96b1fa... source/digest，v6精确约束当前Runtime acf2da55... clean source/build、Host stable Runtime artifact、Host 078769a2...运行实现与Contracts aeccf5d5...；macOS Bash3.2 nounset空数组边界已修复。canonical build已验证但未启动app，aggregate implementation仍blocked于真实approval authority未到达Desktop action UI。"
   mock_only: false
 
