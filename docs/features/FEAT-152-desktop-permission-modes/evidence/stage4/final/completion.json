@@ -1,0 +1,75 @@
+{
+  "feature": "FEAT-152",
+  "profile": "demo_fast",
+  "exposure": "local",
+  "completed_at": "2026-09-07T07:32:30.530Z",
+  "implementation": "complete",
+  "feature_status": "usable",
+  "stages": [
+    "S1",
+    "S2",
+    "S3",
+    "S4"
+  ],
+  "must_acceptance": [
+    {
+      "id": "AC-001",
+      "status": "pass"
+    },
+    {
+      "id": "AC-002",
+      "status": "pass"
+    },
+    {
+      "id": "AC-003",
+      "status": "pass"
+    },
+    {
+      "id": "AC-004",
+      "status": "pass"
+    },
+    {
+      "id": "AC-005",
+      "status": "pass"
+    },
+    {
+      "id": "AC-006",
+      "status": "pass"
+    },
+    {
+      "id": "AC-007",
+      "status": "pass"
+    },
+    {
+      "id": "AC-008",
+      "status": "pass"
+    }
+  ],
+  "gates": {
+    "D0": {
+      "status": "PASS",
+      "exit_code": 0,
+      "evidence": "governance-d0.log"
+    },
+    "D4": {
+      "status": "PASS",
+      "exit_code": 0,
+      "evidence": "governance-d4.log"
+    }
+  },
+  "meta_checks": {
+    "lint": 0,
+    "tests_passed": 50,
+    "shell_syntax": 0
+  },
+  "budget": {
+    "authorized": 45,
+    "consumed": 37,
+    "remaining": 8
+  },
+  "temporary_review_policy_removed": true,
+  "core_and_runtime_unchanged": true,
+  "application_and_meter_normally_stopped": true,
+  "no_additional_model_calls_planned": true,
+  "delivery_scope": "Local opt-in candidate; no commit/push/deployment."
+}

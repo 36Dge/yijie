@@ -1,0 +1,48 @@
+{
+  "stage": "S2",
+  "status": "PASS",
+  "method": "Native CUA accessibility and screenshots, real filesystem observations; no seeded task state or synthetic tool producer",
+  "paid_requests": 6,
+  "limit": 10,
+  "remaining": 4,
+  "approved_task": "01a077a8-5b96-7af2-a9ce-9f45761a0b23",
+  "rejected_task": "01a077b3-b979-7db2-bb57-e53f4c851384",
+  "approved_file": {
+    "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat152-s2/outside/approved.txt",
+    "before_decision": "absent",
+    "after_decision": "S2-approved",
+    "sha256": "963a9aef51299999a87dbed812c97dbb1203b6fc2e2149473157cbfa6446f332",
+    "command_exit_code": 0
+  },
+  "rejected_file": {
+    "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat152-s2/outside/rejected.txt",
+    "after_rejection": "absent",
+    "runtime_status": "command_declined"
+  },
+  "recovery": {
+    "first_attempt": "FAIL: next turn failed before provider request because saved Runtime thread was not resumed",
+    "fix": "Reuse existing normal resume before legacy local bind coordinator under independent permissions gate",
+    "retest": "PASS: same saved task generated a new approval and completed its command"
+  },
+  "mode_persistence": {
+    "saved_task": "auto",
+    "new_task_default": "ask",
+    "after_normal_restart": "auto",
+    "restored_after_verification": "ask",
+    "auto_model_calls": 0,
+    "full_model_calls": 0
+  },
+  "keyboard": [
+    "Open focuses selected option",
+    "Down moves focus to auto without selecting",
+    "Escape closes and restores trigger focus",
+    "Return saves selected option"
+  ],
+  "shutdown": "Normal app quit; Host port 18081 closed; meter normal Ctrl-C and port 18083 closed",
+  "limitations": [
+    "No S3 auto_review/full execution",
+    "No full S4 recovery matrix or light/dark/minimum-window matrix",
+    "Provider final text has no phase and remains under existing unclassified message display",
+    "First over-redacted approval was rejected; no hidden operation was approved"
+  ]
+}

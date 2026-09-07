@@ -1,0 +1,59 @@
+{
+  "status": "COMPLETE: actual configured native deny/manual approval/same-auto-task continuation PASS",
+  "workspace": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat152-s4/manual-review/workspace",
+  "target": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat152-s4/manual-review/pending/reviewed.txt",
+  "policy_file": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat152-s4/manual-review/native-review-policy.md",
+  "original_native_policy_sha256": "c2be313e18e1af6f1fce400db338cb9895d3f21cb9f5e31cccb36af02a8e36e6",
+  "proposed_policy_sha256": "9d23cad03e7684f61578bc9954b50eef874f82f67660daed75bc23b00c5d474f",
+  "native_policy_preserved_verbatim": true,
+  "operation": "printf '%s' 'S4-manual-approved' > /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat152-s4/manual-review/pending/reviewed.txt",
+  "expected_flow": [
+    "real UI auto-mode task",
+    "native guardian evaluates the added document-review requirement",
+    "if genuinely denied, inspect actual card and target absence",
+    "native approveGuardianDeniedAction through UI, no new model turn",
+    "continue same auto-mode task with the approved action",
+    "verify native review/execution and exact output file"
+  ],
+  "paid_request_estimate": {
+    "initial_parent_review_completion": 3,
+    "post_approval_parent_review_completion": 3,
+    "possible_additional_review_tool_requests": 2,
+    "total_without_extra_retries": "6–8",
+    "current_remaining": 2,
+    "proposed_additional": 6,
+    "proposed_cumulative_limit": 31
+  },
+  "boundaries": [
+    "No core/binary changes",
+    "No synthetic runtime callbacks or attack/fault fixtures",
+    "No writes to existing user data",
+    "Actual deny is not guaranteed and will not be fabricated",
+    "Configured-policy rejection is distinct from default-policy natural rejection",
+    "No paid request until scope and additional budget approved"
+  ],
+  "approved_at": "2026-09-07T06:39:38.090Z",
+  "approved_additional_calls": 10,
+  "approved_cumulative_limit": 35,
+  "remaining_at_start": 12,
+  "completed_at": "2026-09-07T07:18:20.268Z",
+  "actual_requests": [
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33
+  ],
+  "actual_result": "First attempt allow due missing Native policy forwarding preserved; repaired attempt real deny, native approval context once with no new turn, same auto continuation allow and exact file result.",
+  "evidence": [
+    "../final/first-attempt.json",
+    "../final/runtime-observations.json",
+    "../final/manual-approval.json",
+    "../final/real-flow.json"
+  ]
+}

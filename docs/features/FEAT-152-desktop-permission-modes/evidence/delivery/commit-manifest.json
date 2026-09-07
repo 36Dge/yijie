@@ -1,0 +1,670 @@
+{
+  "recorded_at": "2026-09-07T16:37:11.970932+00:00",
+  "status": "REVIEW_READY; no staging or commits performed",
+  "repositories": {
+    "yijie-contracts": [
+      {
+        "path": "docs/reviews/FEAT-152-runtime-permissions.md",
+        "selection": "whole",
+        "working_sha256": "800127fa905197a5678d59e816359bcc132e5a5eec7e0dae05ed5afb948286d5",
+        "selected_sha256": "800127fa905197a5678d59e816359bcc132e5a5eec7e0dae05ed5afb948286d5",
+        "bytes": 5441
+      },
+      {
+        "path": "openapi/runtime-permissions/runtime-permissions.yaml",
+        "selection": "whole",
+        "working_sha256": "0cd99d5ee3f7035bf43c0996648dc855f71a447595dcb61d903232d81b602a99",
+        "selected_sha256": "0cd99d5ee3f7035bf43c0996648dc855f71a447595dcb61d903232d81b602a99",
+        "bytes": 4894
+      },
+      {
+        "path": "scripts/generate.mjs",
+        "selection": "whole",
+        "working_sha256": "3c0cc0d335367e0f65a590bfd07f3c41abeee9939255534524c6f5d9e108e6e0",
+        "selected_sha256": "3c0cc0d335367e0f65a590bfd07f3c41abeee9939255534524c6f5d9e108e6e0",
+        "bytes": 12927
+      },
+      {
+        "path": "sdks/go/openapi/runtime-permissions/client.gen.go",
+        "selection": "whole",
+        "working_sha256": "e1129eeb3eb1985a5be8f95aa2e4cca1a4c211fe96f3fefcc8ae1f7d8433bc2b",
+        "selected_sha256": "e1129eeb3eb1985a5be8f95aa2e4cca1a4c211fe96f3fefcc8ae1f7d8433bc2b",
+        "bytes": 37188
+      },
+      {
+        "path": "sdks/go/openapi/runtime-permissions/source.bundle.yaml",
+        "selection": "whole",
+        "working_sha256": "613032548bc666f6724b62f73444ef0052f07f71af715bdc5a436da6fb887fc1",
+        "selected_sha256": "613032548bc666f6724b62f73444ef0052f07f71af715bdc5a436da6fb887fc1",
+        "bytes": 13259
+      },
+      {
+        "path": "sdks/typescript/src/openapi/runtime-permissions.gen.ts",
+        "selection": "whole",
+        "working_sha256": "70cc7af6c1102b813ef3aa501ffa86a49891194dcbf9cd3445b39d1e33167bd8",
+        "selected_sha256": "70cc7af6c1102b813ef3aa501ffa86a49891194dcbf9cd3445b39d1e33167bd8",
+        "bytes": 13033
+      },
+      {
+        "path": "tests/runtime-permissions.test.mjs",
+        "selection": "whole",
+        "working_sha256": "be2622da090c736cd9fa5d34a077d0b6cae053fee458c91b6384e6582834c5ba",
+        "selected_sha256": "be2622da090c736cd9fa5d34a077d0b6cae053fee458c91b6384e6582834c5ba",
+        "bytes": 2148
+      }
+    ],
+    "yijie-agent-host": [
+      {
+        "path": "api/openapi/runtime-permissions.yaml",
+        "selection": "whole",
+        "working_sha256": "613032548bc666f6724b62f73444ef0052f07f71af715bdc5a436da6fb887fc1",
+        "selected_sha256": "613032548bc666f6724b62f73444ef0052f07f71af715bdc5a436da6fb887fc1",
+        "bytes": 13259
+      },
+      {
+        "path": "internal/app/app.go",
+        "selection": "whole",
+        "working_sha256": "9ee3ff13583d0e05d4d71cbd8347fb0335bff88c86de70dfe2785bb4bd9ef233",
+        "selected_sha256": "9ee3ff13583d0e05d4d71cbd8347fb0335bff88c86de70dfe2785bb4bd9ef233",
+        "bytes": 85532
+      },
+      {
+        "path": "internal/app/runtime_permission_verification.go",
+        "selection": "whole",
+        "working_sha256": "1309dc277590710819a7565d8af3e89bc22bbdcd5421c46d874993ea830d61c4",
+        "selected_sha256": "1309dc277590710819a7565d8af3e89bc22bbdcd5421c46d874993ea830d61c4",
+        "bytes": 1220
+      },
+      {
+        "path": "internal/app/runtime_permission_verification_test.go",
+        "selection": "whole",
+        "working_sha256": "426f504bef587c0bfdacb3015c8fc7b380bc0b48721957150ad7c0513dc64a75",
+        "selected_sha256": "426f504bef587c0bfdacb3015c8fc7b380bc0b48721957150ad7c0513dc64a75",
+        "bytes": 1013
+      },
+      {
+        "path": "internal/app/runtime_permissions.go",
+        "selection": "whole",
+        "working_sha256": "6476b42ec0240f21bc8e3209cf78135f21552559ba69f84ce2d4ca2de6e5abab",
+        "selected_sha256": "6476b42ec0240f21bc8e3209cf78135f21552559ba69f84ce2d4ca2de6e5abab",
+        "bytes": 4079
+      },
+      {
+        "path": "internal/codex/runtime.go",
+        "selection": "whole",
+        "working_sha256": "51c3cce114ad69dff1c52aebcc2a4d30b8f8df31efd2e43bdef8d5e85c3d9a25",
+        "selected_sha256": "51c3cce114ad69dff1c52aebcc2a4d30b8f8df31efd2e43bdef8d5e85c3d9a25",
+        "bytes": 28583
+      },
+      {
+        "path": "internal/codex/runtime_permissions.go",
+        "selection": "whole",
+        "working_sha256": "b653057920f12aff6208743523802f51596bc311c7453d5cf89a77efae53f27f",
+        "selected_sha256": "b653057920f12aff6208743523802f51596bc311c7453d5cf89a77efae53f27f",
+        "bytes": 13847
+      },
+      {
+        "path": "internal/codex/runtime_permissions_integration_test.go",
+        "selection": "whole",
+        "working_sha256": "4b0ecbd31c2791a209fd25ac98c7969e3fdeb24d693d1d96def6ceca643d7352",
+        "selected_sha256": "4b0ecbd31c2791a209fd25ac98c7969e3fdeb24d693d1d96def6ceca643d7352",
+        "bytes": 5821
+      },
+      {
+        "path": "internal/codex/runtime_permissions_test.go",
+        "selection": "whole",
+        "working_sha256": "60e9e1fd48a220ea2ceeb2a8ad09adf1ef87744291cd796837097d9830a09df9",
+        "selected_sha256": "60e9e1fd48a220ea2ceeb2a8ad09adf1ef87744291cd796837097d9830a09df9",
+        "bytes": 9739
+      },
+      {
+        "path": "internal/codex/session_protocol.go",
+        "selection": "whole",
+        "working_sha256": "873ef373273cc47f7902fd25138b60034730da17c5373d781153fd4e3121edad",
+        "selected_sha256": "873ef373273cc47f7902fd25138b60034730da17c5373d781153fd4e3121edad",
+        "bytes": 28160
+      },
+      {
+        "path": "internal/contracts/runtimepermissions/types.gen.go",
+        "selection": "whole",
+        "working_sha256": "6f26e5e2d6b9b27b9af010021854431066de2eb35ef5f172d031c30b343934ef",
+        "selected_sha256": "6f26e5e2d6b9b27b9af010021854431066de2eb35ef5f172d031c30b343934ef",
+        "bytes": 17890
+      },
+      {
+        "path": "internal/session/multimodal.go",
+        "selection": "whole",
+        "working_sha256": "b6a7f4f74963d81874c95dfd216673f35d1dad0ad4c4077d4710e881bc95c4bd",
+        "selected_sha256": "b6a7f4f74963d81874c95dfd216673f35d1dad0ad4c4077d4710e881bc95c4bd",
+        "bytes": 21270
+      },
+      {
+        "path": "internal/session/runtime_permissions.go",
+        "selection": "whole",
+        "working_sha256": "f09ef504cfe6e1ebfdcdbfaaaec382d6c40bd60f57ef253964ab163b50b8c358",
+        "selected_sha256": "f09ef504cfe6e1ebfdcdbfaaaec382d6c40bd60f57ef253964ab163b50b8c358",
+        "bytes": 2813
+      },
+      {
+        "path": "internal/session/runtime_permissions_test.go",
+        "selection": "whole",
+        "working_sha256": "c10b539c8ce01d7ec3a23ecff03bfb17b0a9b0d049a9de4b0eddd3e06c459d1f",
+        "selected_sha256": "c10b539c8ce01d7ec3a23ecff03bfb17b0a9b0d049a9de4b0eddd3e06c459d1f",
+        "bytes": 2287
+      },
+      {
+        "path": "internal/session/service.go",
+        "selection": "whole",
+        "working_sha256": "7667d17c38be577c7e66b77a602449c9205ecdad9db108abfad899db9e178554",
+        "selected_sha256": "7667d17c38be577c7e66b77a602449c9205ecdad9db108abfad899db9e178554",
+        "bytes": 53366
+      },
+      {
+        "path": "internal/session/store.go",
+        "selection": "whole",
+        "working_sha256": "fc964299413374cbdd3c1376bbbb341b9c68479ed69ec8c4cd1949316f751ac4",
+        "selected_sha256": "fc964299413374cbdd3c1376bbbb341b9c68479ed69ec8c4cd1949316f751ac4",
+        "bytes": 39483
+      },
+      {
+        "path": "scripts/permission-smoke-meter.py",
+        "selection": "whole",
+        "working_sha256": "b42dd6ac727528ac9400e1d5ec5ec22af4791337a96988ca55d36afabde1f25f",
+        "selected_sha256": "b42dd6ac727528ac9400e1d5ec5ec22af4791337a96988ca55d36afabde1f25f",
+        "bytes": 4717
+      }
+    ],
+    "yijie-desktop": [
+      {
+        "path": "docs/local-development.md",
+        "selection": "whole",
+        "working_sha256": "260346fdb66097cb1be935751ae717cd61ca0aabf9f366bc3ede854dff24ac25",
+        "selected_sha256": "260346fdb66097cb1be935751ae717cd61ca0aabf9f366bc3ede854dff24ac25",
+        "bytes": 4412
+      },
+      {
+        "path": "package.json",
+        "selection": "partial",
+        "working_sha256": "7dc15f05bdb85bfb66049c31724c61209e4fd7b9c7fdc404940afbb9cfc84484",
+        "selected_sha256": "b7ec61867f4b9ec8bb166c63ece0eb399bbb18cbdc2d3c92f53ee2878fb44727",
+        "bytes": 5594
+      },
+      {
+        "path": "scripts/check-agent-host-v4-contract.mjs",
+        "selection": "whole",
+        "working_sha256": "6bff828def3834d92b54be93dbde27f60c4dce7c9e5951e36440210f26d19ce7",
+        "selected_sha256": "6bff828def3834d92b54be93dbde27f60c4dce7c9e5951e36440210f26d19ce7",
+        "bytes": 24746
+      },
+      {
+        "path": "scripts/local-permission-candidate.mjs",
+        "selection": "whole",
+        "working_sha256": "343aa4b4a2a43eb393666b02db35226b7009d3f0b69d730907b0ca78059fa1a8",
+        "selected_sha256": "343aa4b4a2a43eb393666b02db35226b7009d3f0b69d730907b0ca78059fa1a8",
+        "bytes": 2051
+      },
+      {
+        "path": "scripts/local-permission-candidate.test.mjs",
+        "selection": "whole",
+        "working_sha256": "b3c2f2b3e7b3a4af49fd59298d447fa19c3962e878f04a764954bc516bc0e449",
+        "selected_sha256": "b3c2f2b3e7b3a4af49fd59298d447fa19c3962e878f04a764954bc516bc0e449",
+        "bytes": 1250
+      },
+      {
+        "path": "scripts/run-local-demo-fast.sh",
+        "selection": "whole",
+        "working_sha256": "ca6788ac832217f95ac13a7845200ed1b3afd730a52a0962cdbb8072fbaff33f",
+        "selected_sha256": "ca6788ac832217f95ac13a7845200ed1b3afd730a52a0962cdbb8072fbaff33f",
+        "bytes": 7109
+      },
+      {
+        "path": "scripts/sync-desktop-skill-resources.mjs",
+        "selection": "whole",
+        "working_sha256": "0aa0cdf1b27674bea01e2d7b785d8034e28da38f46a89bbf38fe0c19cfaf381c",
+        "selected_sha256": "0aa0cdf1b27674bea01e2d7b785d8034e28da38f46a89bbf38fe0c19cfaf381c",
+        "bytes": 24400
+      },
+      {
+        "path": "scripts/sync-runtime-permissions.mjs",
+        "selection": "whole",
+        "working_sha256": "6b026d0949979f9e8325725ae4a95c36754b9261bcad0e1dc60a27adcfa967ac",
+        "selected_sha256": "6b026d0949979f9e8325725ae4a95c36754b9261bcad0e1dc60a27adcfa967ac",
+        "bytes": 1360
+      },
+      {
+        "path": "src-tauri/migrations/chat/0013_chat_permission_modes.sql",
+        "selection": "whole",
+        "working_sha256": "f0bde431aa15b603ec663c25df3e3452fb4ec926a367f83e24aa580abb97fda8",
+        "selected_sha256": "f0bde431aa15b603ec663c25df3e3452fb4ec926a367f83e24aa580abb97fda8",
+        "bytes": 500
+      },
+      {
+        "path": "src-tauri/schemas/chat-runtime-permissions-v1.schema.json",
+        "selection": "whole",
+        "working_sha256": "ae6d49b3e07e8535ac139bea5188cee5288de4c302a2fd97efe4eb7d17eb0721",
+        "selected_sha256": "ae6d49b3e07e8535ac139bea5188cee5288de4c302a2fd97efe4eb7d17eb0721",
+        "bytes": 2395
+      },
+      {
+        "path": "src-tauri/src/chat/application.rs",
+        "selection": "whole",
+        "working_sha256": "14a9ec53c9924b17f81dcee3ee30f5a0da09cf7a2c73f98fb55c1a324d9bb4be",
+        "selected_sha256": "14a9ec53c9924b17f81dcee3ee30f5a0da09cf7a2c73f98fb55c1a324d9bb4be",
+        "bytes": 297550
+      },
+      {
+        "path": "src-tauri/src/chat/database.rs",
+        "selection": "whole",
+        "working_sha256": "c1dcdad8926d34ececd4aaa5689a119d4569678cd3d277b50e982b7ef158b109",
+        "selected_sha256": "c1dcdad8926d34ececd4aaa5689a119d4569678cd3d277b50e982b7ef158b109",
+        "bytes": 594046
+      },
+      {
+        "path": "src-tauri/src/chat/host_bridge.rs",
+        "selection": "whole",
+        "working_sha256": "f6d3d0b541780f91f4de8ca7e9c2419dfdcc59f2d89deb6b747fd3f6f77ac13c",
+        "selected_sha256": "f6d3d0b541780f91f4de8ca7e9c2419dfdcc59f2d89deb6b747fd3f6f77ac13c",
+        "bytes": 116633
+      },
+      {
+        "path": "src-tauri/src/chat/ipc.rs",
+        "selection": "whole",
+        "working_sha256": "f3fd52515f7e356cec3b18577325032ffd9ee97e3b3d41c6cec28296bd2d42da",
+        "selected_sha256": "f3fd52515f7e356cec3b18577325032ffd9ee97e3b3d41c6cec28296bd2d42da",
+        "bytes": 364304
+      },
+      {
+        "path": "src-tauri/src/chat/migrations.rs",
+        "selection": "whole",
+        "working_sha256": "3f81e7971035faaced921e63aa48731dcc2b8ad9e66d05a8bdcfc9dca5ff184f",
+        "selected_sha256": "3f81e7971035faaced921e63aa48731dcc2b8ad9e66d05a8bdcfc9dca5ff184f",
+        "bytes": 56365
+      },
+      {
+        "path": "src-tauri/src/chat/mod.rs",
+        "selection": "whole",
+        "working_sha256": "eba6930564acaad5ea3ae3b23a63b14d991a37883c85fe85f051b68c05befc27",
+        "selected_sha256": "eba6930564acaad5ea3ae3b23a63b14d991a37883c85fe85f051b68c05befc27",
+        "bytes": 61324
+      },
+      {
+        "path": "src-tauri/src/chat/runtime_permissions.rs",
+        "selection": "whole",
+        "working_sha256": "14855b8f8a15981a9d7ab7205ed34166a02c0ca37f59a209addd2d4bf28ac2d1",
+        "selected_sha256": "14855b8f8a15981a9d7ab7205ed34166a02c0ca37f59a209addd2d4bf28ac2d1",
+        "bytes": 3620
+      },
+      {
+        "path": "src-tauri/src/chat/sidecar.rs",
+        "selection": "whole",
+        "working_sha256": "1763bd796496c3a81193a1a5d1c5a412e2d7fc4a40825db98441158d8e670bb4",
+        "selected_sha256": "1763bd796496c3a81193a1a5d1c5a412e2d7fc4a40825db98441158d8e670bb4",
+        "bytes": 111942
+      },
+      {
+        "path": "src-tauri/src/chat/worker.rs",
+        "selection": "whole",
+        "working_sha256": "be3607533e2823792ca3e2e14a4a19ea1798889424c437255657c84532dad327",
+        "selected_sha256": "be3607533e2823792ca3e2e14a4a19ea1798889424c437255657c84532dad327",
+        "bytes": 38307
+      },
+      {
+        "path": "src-tauri/src/lib.rs",
+        "selection": "whole",
+        "working_sha256": "57462ba0a4e897c85bc0a3e0c14a9910696a09810aa471d3fb531d1814c5c453",
+        "selected_sha256": "57462ba0a4e897c85bc0a3e0c14a9910696a09810aa471d3fb531d1814c5c453",
+        "bytes": 17514
+      },
+      {
+        "path": "src/api/generated/chat-permission-state.gen.ts",
+        "selection": "whole",
+        "working_sha256": "470784562b68529c1d1c645e19874959078f7da15200a40f5d7e6828d98c2a73",
+        "selected_sha256": "470784562b68529c1d1c645e19874959078f7da15200a40f5d7e6828d98c2a73",
+        "bytes": 245
+      },
+      {
+        "path": "src/api/generated/runtime-permissions.gen.ts",
+        "selection": "whole",
+        "working_sha256": "70cc7af6c1102b813ef3aa501ffa86a49891194dcbf9cd3445b39d1e33167bd8",
+        "selected_sha256": "70cc7af6c1102b813ef3aa501ffa86a49891194dcbf9cd3445b39d1e33167bd8",
+        "bytes": 13033
+      },
+      {
+        "path": "src/api/runtime-permission-client.ts",
+        "selection": "whole",
+        "working_sha256": "080267fd0dc8383d1e79db4d25a2c8412fd50fa8a67aa895901c069cc97dbfab",
+        "selected_sha256": "080267fd0dc8383d1e79db4d25a2c8412fd50fa8a67aa895901c069cc97dbfab",
+        "bytes": 3673
+      },
+      {
+        "path": "src/components/chat/ChatComposer.vue",
+        "selection": "partial",
+        "working_sha256": "8a88dd91c38c696fbfa04c542f80371c69d8cd5e85cca608650c49fdeb97966b",
+        "selected_sha256": "2a766f69759f8959cd21fc6ac9c31025c9d15b938568f6b506bb3e9a217dd50a",
+        "bytes": 29554
+      },
+      {
+        "path": "src/components/chat/ChatPermissionControl.test.ts",
+        "selection": "whole",
+        "working_sha256": "8f403f5b189cb0231ca6560191adf49e7fb9f35646bba9a3e3d1eda50d87b072",
+        "selected_sha256": "8f403f5b189cb0231ca6560191adf49e7fb9f35646bba9a3e3d1eda50d87b072",
+        "bytes": 3825
+      },
+      {
+        "path": "src/components/chat/ChatPermissionControl.vue",
+        "selection": "whole",
+        "working_sha256": "c110e591fb8290ac10cb81493d267446c635d4b33cb6a2b090b74dfb1fec8cc5",
+        "selected_sha256": "c110e591fb8290ac10cb81493d267446c635d4b33cb6a2b090b74dfb1fec8cc5",
+        "bytes": 6477
+      },
+      {
+        "path": "src/components/chat/RuntimeApprovalList.vue",
+        "selection": "whole",
+        "working_sha256": "a69149578e4f07ccc9e5fca5b86c23ec920301253d575968b5e83cc931d2ea0e",
+        "selected_sha256": "a69149578e4f07ccc9e5fca5b86c23ec920301253d575968b5e83cc931d2ea0e",
+        "bytes": 2998
+      },
+      {
+        "path": "src/composables/useRuntimePermissions.test.ts",
+        "selection": "whole",
+        "working_sha256": "5221b34b4551a2c1d281ed5182a2daa8a2e86bc7f7cb70e12c5b76760b12244e",
+        "selected_sha256": "5221b34b4551a2c1d281ed5182a2daa8a2e86bc7f7cb70e12c5b76760b12244e",
+        "bytes": 5293
+      },
+      {
+        "path": "src/composables/useRuntimePermissions.ts",
+        "selection": "whole",
+        "working_sha256": "4e396aa90fda5dc057437805f37cade628b43be7d16a7638fe2a8415191b3fed",
+        "selected_sha256": "4e396aa90fda5dc057437805f37cade628b43be7d16a7638fe2a8415191b3fed",
+        "bytes": 4906
+      },
+      {
+        "path": "src/icons/registry.test.ts",
+        "selection": "whole",
+        "working_sha256": "119f048de94d77d19c20601026545a43f2aed85af5bb93db75e0275ceec16de1",
+        "selected_sha256": "119f048de94d77d19c20601026545a43f2aed85af5bb93db75e0275ceec16de1",
+        "bytes": 2697
+      },
+      {
+        "path": "src/icons/registry.ts",
+        "selection": "whole",
+        "working_sha256": "21a5cb3c255d20973e768a2c7cc9c6e3546502144c01bc7f5bb38449108f1c61",
+        "selected_sha256": "21a5cb3c255d20973e768a2c7cc9c6e3546502144c01bc7f5bb38449108f1c61",
+        "bytes": 4585
+      },
+      {
+        "path": "src/pages/chat/ChatPage.test.ts",
+        "selection": "whole",
+        "working_sha256": "a558513ac64dd666648c5f053f4ffe3538ddda3b583cb9c07d4146ab16758522",
+        "selected_sha256": "a558513ac64dd666648c5f053f4ffe3538ddda3b583cb9c07d4146ab16758522",
+        "bytes": 60703
+      },
+      {
+        "path": "src/pages/chat/ChatPage.vue",
+        "selection": "whole",
+        "working_sha256": "0edb4f36f92502f6d102b5061f169f945321ea7b581d55b1e8f76dda04c060d9",
+        "selected_sha256": "0edb4f36f92502f6d102b5061f169f945321ea7b581d55b1e8f76dda04c060d9",
+        "bytes": 54006
+      }
+    ]
+  },
+  "excluded_paths": {
+    "yijie-contracts": [],
+    "yijie-agent-host": [],
+    "yijie-desktop": [
+      "docs/design/CHANGELOG.md",
+      "docs/design/docs/design/04-components/02-navigation-components.md",
+      "docs/design/docs/design/04-components/09-component-color-state-matrix.md",
+      "docs/design/docs/design/07-ai-codex/01-ai-development-rules.md",
+      "docs/design/docs/design/08-governance/08-component-color-convergence.md",
+      "docs/design/proposals/2026-09-06-component-colors/01-current-audit.md",
+      "docs/design/proposals/2026-09-06-component-colors/02-component-color-matrix.md",
+      "docs/design/proposals/2026-09-06-component-colors/03-verification.md",
+      "docs/design/proposals/2026-09-06-component-colors/README.md",
+      "docs/design/proposals/2026-09-06-component-colors/build-review.mjs",
+      "docs/design/proposals/2026-09-06-component-colors/capture-review.cjs",
+      "docs/design/proposals/2026-09-06-component-colors/preview-server.mjs",
+      "docs/design/proposals/2026-09-06-component-colors/preview/PageHarness.vue",
+      "docs/design/proposals/2026-09-06-component-colors/preview/PreviewControls.vue",
+      "docs/design/proposals/2026-09-06-component-colors/preview/StateAtlas.vue",
+      "docs/design/proposals/2026-09-06-component-colors/preview/atlas.css",
+      "docs/design/proposals/2026-09-06-component-colors/preview/candidate-theme.ts",
+      "docs/design/proposals/2026-09-06-component-colors/preview/candidate-tokens.css",
+      "docs/design/proposals/2026-09-06-component-colors/preview/index.html",
+      "docs/design/proposals/2026-09-06-component-colors/preview/main.ts",
+      "docs/design/proposals/2026-09-06-component-colors/preview/page-candidate.css",
+      "docs/design/proposals/2026-09-06-component-colors/preview/tauri-stub.ts",
+      "docs/design/proposals/2026-09-06-component-colors/review.html",
+      "docs/design/proposals/2026-09-06-component-colors/tsconfig.preview.json",
+      "docs/design/proposals/2026-09-06-component-colors/validation/candidate-source-hashes.json",
+      "docs/design/proposals/2026-09-06-component-colors/validation/component-and-page-captures.json",
+      "docs/design/proposals/2026-09-06-component-colors/validation/contrast-roles.json",
+      "docs/design/proposals/2026-09-06-component-colors/validation/page-state-audit.cjs",
+      "docs/design/proposals/2026-09-06-component-colors/validation/page-state-audit.json",
+      "docs/design/proposals/2026-09-06-component-colors/validation/page-state-audit.md",
+      "docs/design/proposals/2026-09-06-component-colors/validation/review-ui.json",
+      "docs/design/proposals/2026-09-06-component-colors/validation/worktree-preservation.json",
+      "docs/design/proposals/2026-09-06-component-colors/worktree-before.json",
+      "docs/verification/CHAT-UI-build-sync-20260908.md",
+      "docs/verification/FEAT-152-ui-integration-fix-20260908.md",
+      "scripts/sync-app-icons.mjs",
+      "src-tauri/icons/128x128.png",
+      "src-tauri/icons/128x128@2x.png",
+      "src-tauri/icons/32x32.png",
+      "src-tauri/icons/icon.icns",
+      "src-tauri/icons/icon.ico",
+      "src-tauri/icons/icon.png",
+      "src/components/yijie/YjNavItem.vue"
+    ]
+  },
+  "patches": {
+    "yijie-contracts": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat152-delivery/yijie-contracts.patch",
+      "sha256": "f77031eb8d54fc949339c2588ac5a720a70828e3a99dbddc177ec509bf681bc3",
+      "bytes": 81856,
+      "index_apply_check_exit_code": 0,
+      "files": 7
+    },
+    "yijie-agent-host": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat152-delivery/yijie-agent-host.patch",
+      "sha256": "6728c8ca01fc5c9349c967d34db24eb15ce86a7d8d7d2c10d7abfe6b11ee4286",
+      "bytes": 94520,
+      "index_apply_check_exit_code": 0,
+      "files": 17
+    },
+    "yijie-desktop": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat152-delivery/yijie-desktop.patch",
+      "sha256": "c0ff33ee9bc8a803ec66b44456e9126965f1df957b3864cf5184d1eb422b1262",
+      "bytes": 110475,
+      "index_apply_check_exit_code": 0,
+      "files": 33
+    }
+  },
+  "future_pin_additions": {
+    "yijie-agent-host": [
+      "api/runtime-permissions.lock.json"
+    ],
+    "yijie-desktop": [
+      "contracts/runtime-permissions.lock.json",
+      "minimal consumed-pin validation in the existing local permission preflight"
+    ]
+  },
+  "pin_rule": "Only actual preceding commits after user authorization; verify committed blobs/digests and generated copies. Preserve legacy locks.",
+  "governance_repository": {
+    "repository": "yijie",
+    "scope": "docs/features/FEAT-152-desktop-permission-modes/** only",
+    "files": [
+      "docs/features/FEAT-152-desktop-permission-modes/00-feature-brief.md",
+      "docs/features/FEAT-152-desktop-permission-modes/01-delivery-log.md",
+      "docs/features/FEAT-152-desktop-permission-modes/02-verification.md",
+      "docs/features/FEAT-152-desktop-permission-modes/03-delivery-commit-plan.md",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/delivery/commit-manifest.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/delivery/contracts-conformance.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/delivery/contracts-tests.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/delivery/desktop-lint.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/delivery/desktop-tests.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/delivery/governance-d4.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/delivery/meta-lint.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/delivery/normal-entry-preflight.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/delivery/precommit-review.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/delivery/worktree-before.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage1/contracts-lint.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage1/contracts.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage1/default-ui-tests.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage1/host-callback-tests.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage1/host-lint.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage1/native-clippy.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage1/native-tests.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage1/retained-schema.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage1/retirement.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage1/runtime-configuration.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage1/runtime-configuration.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage1/runtime-first-attempt.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage1/source-identities.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage1/web-build.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage1/web-lint.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage2/app-final.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage2/authorization.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage2/contracts.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage2/governance-first-attempt.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage2/governance.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage2/host-approval-tests.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage2/host-lint.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage2/lint.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage2/native-tests.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage2/provider-requests.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage2/real-flow.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage2/source-identities.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage2/ui-final.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage3/app.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage3/compatibility-review.md",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage3/contracts.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage3/governance.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage3/host-lint.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage3/host-tests.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage3/provider-requests.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage3/real-flow.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage3/runtime-observations.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage3/source-identities.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage3/ui-final.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage3/web-lint.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/after-full-completed.jpg",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/app-build-initial-failed.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/app-final.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/app-restart.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/approval-results.jpg",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/ask-completed.jpg",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/auto-completed.jpg",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/closeout/governance-d0.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/closeout/governance-d4.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/closeout/host-lint.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/closeout/host-policy-tests.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/closeout/manual-review-plan.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/closeout/manual-takeover-plan.md",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/closeout/native-clippy.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/closeout/native-dispatch-test.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/closeout/native-fmt-first-attempt.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/closeout/native-fmt.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/closeout/native-permission-tests.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/closeout/native-policy-config-probe.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/closeout/proposed-native-review-policy.md",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/closeout/results.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/closeout/source-identities.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/component-dark-auto-selected.png",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/component-dark-confirm.png",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/component-dark-full-selected.png",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/component-dark-menu.png",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/component-light-confirm.png",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/component-light-menu.png",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/component-visual-metrics.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/component-visual-provenance.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/component-visual-source/Preview.vue",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/component-visual-source/README.md",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/component-visual-source/index.html",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/component-visual-source/main.ts",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/component-visual-source/vite.config.mjs",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/component-visual-vite.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/contracts.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/dark-full-label.jpg",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/dark-menu-closing.jpg",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/dark-minimum.jpg",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/desktop-lint.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/diff-check.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/acceptance-matrix.md",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/app-corrected-policy.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/app-default-policy-restart.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/app-final-ask-restart.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/app-final-ask.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/app-first-attempt.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/ask-before-network-approval.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/ask-completed-ax.txt",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/ask-completed.jpg",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/ask-decision-results.jpg",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/ask-pending-ax.txt",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/ask-pending.jpg",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/ask-real-flow.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/child-environment.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/cleanup-at35.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/cleanup.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/completion.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/default-policy-restarted-ax.txt",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/default-policy-restarted.jpg",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/default-policy-restored.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/desktop-lint.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/diff-check.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/final-build-source-hashes.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/final-menu-ax.txt",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/final-restarted-ax.txt",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/final-restarted.jpg",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/first-attempt.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/full-final-completed.jpg",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/governance-d0-wrong-path.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/governance-d0.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/governance-d4.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/host-lint.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/manual-approval.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/manual-approved.jpg",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/meta-lint.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/meta-tests.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/native-clippy.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/native-denial.jpg",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/native-fmt.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/native-policy-forward-tests.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/other-task-auto-restarted-ax.txt",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/provider-requests-at35.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/provider-requests.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/real-flow-at35.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/real-flow.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/remaining-d4-check.md",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/runtime-observations-at35.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/runtime-observations.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/source-identities.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/takeover-completed.jpg",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/ui-tests.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/verification-at35.md",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/final/visual-source-continuity.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/full-completed.jpg",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/governance-d0.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/governance-d4.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/host-lint-final.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/host-lint.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/host-tests.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/light-full-label.jpg",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/light-initial.jpg",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/light-minimum.jpg",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/pending-approvals.jpg",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/provider-requests.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/real-flow.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/restarted-full-selection.jpg",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/runtime-observations.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/source-identities.json",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/ui-final.log",
+      "docs/features/FEAT-152-desktop-permission-modes/evidence/stage4/verification-notes.md",
+      "docs/features/FEAT-152-desktop-permission-modes/feature.yaml",
+      "docs/features/FEAT-152-desktop-permission-modes/references/permission-menu.png"
+    ],
+    "file_count": 168,
+    "total_bytes": 2922528,
+    "note": "Evidence and delivery metadata continue to update through approved commits/build; exact manifest finalized before meta commit."
+  }
+}

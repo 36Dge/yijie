@@ -1,0 +1,619 @@
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+feature:
+  id: FEAT-152
+  slug: desktop-permission-modes
+  title: Chatbox 三档原生权限与审批
+  status: usable
+  created_at: 2026-09-06
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+scope:
+  risk_level: high
+  data_classification: internal
+  contract_impact: semantic
+  database_change: expand
+  persistence_change: durable
+  runtime_change: platform
+  auth_permission_change: permission
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: tool
+repositories:
+  - yijie
+  - yijie-contracts
+  - yijie-agent-host
+  - yijie-desktop
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+product_ux:
+  status: PASS
+  primary_user: 本机易界用户
+  problem: Chatbox 权限入口仅展示固定只读策略，不能选择原生审批模式。
+  user_outcome: 通过当前入口选择三档真实权限、处理具体审批，并按任务记忆设置。
+  in_scope:
+    - 加号右侧权限选择弹层
+    - 请求批准 / 帮我批准 / 完全访问权限
+    - 原生沙箱、人工批准和自动风险审核的薄适配
+    - 任务权限持久化、忙时禁止切换、首次完全访问确认
+    - 对话内批准本次与拒绝卡片
+  out_of_scope:
+    - 重启 FEAT-137
+    - 自建风险评分、审批引擎或确定性工具 producer
+    - 店铺业务审批、组织权限或云端部署
+    - 文件 Diff 产品、无关重构或新模型供应商
+    - Codex 内核改动与 Runtime 二进制替换
+    - 任何 Codex 核心源码或现存 Runtime 二进制改动
+  main_flow:
+    - canonical local demo_fast 免登录进入 Chat
+    - 新任务默认请求批准，用户在入口选模式
+    - 首次完全访问先确认，取消保持原设置
+    - 提交任务时传递真实 Runtime 权限；排队/运行/待审批禁止切换
+    - 人工请求以卡片展示操作与范围，批准本次/拒绝回传 Codex
+    - 当前轮结束后允许修改；模式仅影响该任务，重启后恢复
+  visual_direction: 截图的锚定弹层、三行图标/标题/说明、选中勾；使用易界现有组件和主题 tokens。
+  ui_states:
+    idle: 展示当前模式；允许打开选择菜单。
+    loading: 权限读取/保存与任务提交期间禁用重复动作；运行中禁止切换。
+    success: 持久写入成功后更新模式标签；审批决策成功后更新卡片。
+    empty: 新任务默认请求批准；无待审批不显示审批卡片。
+    error: 读取、保存或决策失败保留最后确认状态并显示可重试错误。
+    retry: 重读当前任务状态；过期或已解决请求不再次执行。
+    cancel: Esc/外部点击收起菜单；完全访问取消不修改；拒绝使用原生拒绝语义。
+must_acceptance:
+  - id: AC-001
+    statement: 入口和截图一致，三项文案、描述、图标及勾选状态清晰。
+    verification: 组件测试与亮/暗主题及最小窗口视觉检查
+    status: pass
+  - id: AC-002
+    statement: 新任务默认请求批准；当前项目可写，外部写入/联网由 Codex 请求批准。
+    verification: 真实 Runtime 与任务流程验证
+    status: pass
+  - id: AC-003
+    statement: 帮我批准使用 Codex auto_review；需人工处理的原生拒绝显示卡片并回传原生批准接口。
+    verification: 配置映射与实际原生 auto_review；用户批准的精确普通文件复核规则下真实 deny → 原生批准 → 同任务 auto 续跑 allow。不是默认策略自然风险拒绝。
+    status: pass
+  - id: AC-004
+    statement: 完全访问使用 danger-full-access/never；首次选择必须确认，取消保留原值。
+    verification: 配置映射、确认交互和真实任务验证
+    status: pass
+  - id: AC-005
+    statement: 权限只影响当前任务，重启恢复；不同任务互不覆盖。
+    verification: 数据库重开和任务切换验证
+    status: pass
+  - id: AC-006
+    statement: 排队、运行或待审批期间 UI 与原生边界都拒绝切换，下一轮使用保存模式。
+    verification: 正常并发状态测试
+    status: pass
+  - id: AC-007
+    statement: 人工卡片展示具体操作/影响范围，批准本次与拒绝准确关联请求且不重复执行。
+    verification: 原生 RPC 适配测试及真实人工审批
+    status: pass
+  - id: AC-008
+    statement: 旧 FEAT-137 终止边界和既有任务历史保留；无攻击注入或强杀验证。
+    verification: 退役边界检查、diff 与安全验证清单
+    status: pass
+contract:
+  impact: semantic
+  authority: Codex 固定 FEAT-136 artifact 的 canonical app-server schema；易界 HTTP 源在 yijie-contracts；私有 IPC 与
+    SQLCipher migration 在 Desktop。
+  source_first_plan: 先登记原生权限/审批投影及 Host 输入/审批表面，再生成 DTO 与聚焦 conformance，然后实现 Host、Native 与 Vue；本地 sibling
+    候选不视为发布 pin。旧调用未提供权限时保留原语义，新 UI 显式传请求批准。
+  status: PASS
+  checks:
+    - name: Runtime permissions source-first conformance
+      status: PASS
+      command: node scripts/generate.mjs --runtime-permissions-only (S1); node --test
+        tests/runtime-permissions.test.mjs (S4); node scripts/sync-runtime-permissions.mjs --check (S4)
+      actual_result: 实际 S1 Runtime 三档配置的 3 项 conformance 在 S4 再次通过；Desktop 生成消费同步检查通过。S4 没有改动公开 wire 源。
+      repository: yijie-contracts / yijie-desktop
+      exit_code: 0
+external_authorizations:
+  paid_calls:
+    allowed: true
+    max_actions: 45
+    approved_by: 段成威
+    approved_at: 2026-09-07T07:19:55.228Z
+    recorded_at: 2026-09-07
+    consumed_actions: 37
+    scope: 累计最多45次实际模型请求；新增10次用于最终构建请求批准回归和D4，全部父/guardian/后续/重试继续同一账本，不重置历史。
+    remaining_actions: 8
+    evidence: evidence/stage4/final/provider-requests.json
+    authorizations:
+      - actions: 10
+        approved_at: 2026-09-06T15:23:31.000Z
+        source: 用户原始 10 次授权
+      - additional_actions: 5
+        approved_at: 2026-09-07T01:24:38.000Z
+        source: 用户明确追加 5 次并要求按序执行 S3
+      - additional_actions: 5
+        approved_at: 2026-09-07T04:34:39.000Z
+        source: 用户明确进入 S4 并追加 5 次
+      - additional_actions: 5
+        approved_at: 2026-09-07T05:33:10.840Z
+        source: 用户在当前 S4 恢复回合明确：额外再加 5 次调用授权
+      - additional_actions: 10
+        approved_at: 2026-09-07T06:39:38.090Z
+        source: 用户采用原生临时复核规则方案，并追加 10 次，强调最终完成 FEAT-152
+      - additional_actions: 10
+        approved_at: 2026-09-07T07:19:55.228Z
+        source: 用户明确：在追加 10 次调用授权。用于 FEAT-152 最终请求批准回归与 D4 收尾。
+  destructive_operations:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  production_writes:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+implementation:
+  status: complete
+  real_entrypoint: "yijie-desktop: pnpm
+    tauri:demo-fast:app；普通com.yijie.ai本地包，自动local/demo_fast两端权限开关、固定来源与既有固定Skills选择；不需要临时计数器。"
+  mock_only: false
+verification:
+  status: PASS
+  verified_at: 2026-09-07T07:32:30.530Z
+  startup:
+    status: PASS
+    command_or_steps: YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast YIJIE_RUNTIME_PERMISSIONS_ENABLED=true
+      VITE_YIJIE_RUNTIME_PERMISSIONS_ENABLED=true
+      YIJIE_PERMISSION_VERIFICATION_BASE_URL=http://127.0.0.1:18083/v1
+      YIJIE_DESKTOP_SKILLS_DIR=$PWD/.local/skills-pinned-10c45be pnpm tauri:demo-fast:stable
+    environment: macOS / local / demo_fast / retained FEAT-136 Runtime
+    actual_result: S2 canonical 完整应用正常构建/启动；固定 v4 对象、退役边界与 retained Runtime hash 保留。明确本地候选路径验证新协议跨仓一致性；Skills
+      消费既有干净固定 worktree。 S3 沿用同一 canonical 应用正常启动，无额外 Runtime 构建或替换。 S4 最终 canonical 构建成功，并经正常 Cmd-Q
+      退出、同入口重新构建启动；已完成任务设置与历史恢复。 最终修复后的 canonical 构建和撤除临时规则后的正常重启均成功；免登录到新任务 ask，原接管任务恢复 ask 和三轮已完成历史。实际 Host
+      环境不含临时规则，Runtime config.toml 无规则残留；应用正常退出。
+      追加10次授权后沿用最终源码正常构建，再完成同一任务第4轮ask回归；之后正常退出重启，四轮完成历史/ask恢复，另一任务auto独立、新任务ask；launcher再次exit0。
+  real_smoke:
+    status: PASS
+    command_or_steps: 最终源码同一验收任务四轮 auto拒绝 → 原生批准后auto续跑 → full执行 → ask项目内写入/联网批准/项目外拒绝；包含撤规则正常重启和执行后正常恢复。
+    environment: macOS local/demo_fast；真实 Desktop → Native SQLCipher → Host → retained Codex → MiniMax，canonical免登录入口
+    actual_result: 最终修复后同一验收任务01a07aa5-6f91-7133-82c6-0cdd9e9bace4：28–30真实guardian
+      deny；UI批准仅注入一次准确原生上下文、不发请求/不执行文件；31–33同任务auto审核allow并准确写入；34–35 full成功；正常重启撤规则后36–37
+      ask项目内写入成功，独立联网卡片批准HTTP/2 200、项目外卡片拒绝且文件不存在，Runtime
+      on-request/user/workspace-write/network=false。再次正常重启恢复4轮完成/ask，另一任务auto、新任务ask。最终源码未再修改，正常重启属于该验收流程，不冒称单一进程或早前18–23重跑。视觉/首次确认/边界检查按验收矩阵分层证据核对，所有Must通过。累计37/45、剩余8，应用与计数器正常关闭。
+  representative_failure:
+    status: PASS
+    command_or_steps: 正常拒绝一项可逆文件操作并重试；无需故障注入
+    environment: 同一真实本地 fresh run
+    actual_result: S2/S3 普通项目外拒绝证据保留；S4 同一回合的公网 HEAD 批准与项目外写入拒绝相互独立，Runtime HTTP/2 200 /
+      command_declined，rejected.txt 不存在。完全访问切回 ask 后再次拒绝，after-full.txt 不存在。无故障或攻击注入。 最终构建另完成真实文档复核 deny →
+      人工批准 → 同任务 auto 重试成功；批准本身未启动新回合/创建文件，后续模型审核明确引用准确的原生批准上下文。
+  focused_checks:
+    - name: S1 real retained Runtime configuration
+      status: PASS
+      command: YIJIE_CODEX_INTEGRATION_BINARY=<retained FEAT-136 codex> YIJIE_CODEX_INTEGRATION_MANIFEST=<retained
+        manifest> go test ./internal/codex -run ^TestPinnedRuntimePermissionConfigurationIntegration$ -count=1
+        -v
+      actual_result: 三档 thread/start 生效配置符合预期；未调用 turn/start；不是执行/恢复验收。
+      repository: yijie-agent-host / yijie-codex
+      exit_code: 0
+    - name: S1 contract generation, lint and real observation conformance
+      status: PASS
+      command: node scripts/generate.mjs --runtime-permissions-only; pnpm exec redocly lint
+        openapi/runtime-permissions/runtime-permissions.yaml; YIJIE_PERMISSION_CONFIGURATION_EVIDENCE=<actual
+        evidence> node --test tests/runtime-permissions.test.mjs
+      actual_result: 专属生成和规范校验通过，3 项测试通过。旧 v6 incidental 生成漂移恢复，未扩修退役资产。
+      repository: yijie-contracts
+      exit_code: 0
+    - name: S1 Host compile/lint and callback mapping
+      status: PASS
+      command: make lint; go test -race ./internal/codex -run ^TestRuntime(Permission|Approval|Automatic) -count=1
+      actual_result: 类型、vet、脚本语法与正常进程内回调测试通过；回调测试不是模型端审批 E2E。
+      repository: yijie-agent-host
+      exit_code: 0
+    - name: S1 native schema and SQLCipher boundary
+      status: PASS
+      command: cargo test --manifest-path src-tauri/Cargo.toml feat152_permission_ -- --nocapture
+      actual_result: 2 项通过，包括正常关闭/重开数据库；未宣称 Runtime 对话重启恢复。
+      repository: yijie-desktop
+      exit_code: 0
+    - name: S1 default-off UI regression
+      status: PASS
+      command: pnpm exec vitest run src/components/chat/ChatComposer.test.ts src/pages/chat/ChatPage.test.ts
+        src/icons/registry.test.ts --maxWorkers=2 --exclude '**/.local/**' --exclude '**/.contracts-source/**'
+        --exclude '**/.agent-host-source/**' --exclude '**/.skills-source/**'
+      actual_result: 3 文件 67 项通过。初次未排除 .local 导致加载其它任务副本，52 个失败不属于当前 src；纠正选择范围后的结果独立记录。
+      repository: yijie-desktop
+      exit_code: 0
+    - name: S1 Desktop lint and build
+      status: PASS
+      command: pnpm lint; pnpm build; node scripts/sync-runtime-permissions.mjs --check; node
+        scripts/check-approval-retirement.mjs
+      actual_result: 通过；Vite 大 chunk 警告保留。
+      repository: yijie-desktop
+      exit_code: 0
+    - name: Strict native Clippy
+      status: PASS
+      command: cargo clippy --manifest-path src-tauri/Cargo.toml -- -D warnings
+      actual_result: 用户明确授权修复后，将 8 字段查询 tuple 命名为 StoredStartTurnDispatchRow；SQL、字段顺序及权限语义不变。严格 cargo clippy -D
+        warnings 实际 exit 0；S1 原始 FAIL 日志保留为历史。见 evidence/stage4/closeout/native-clippy.log。
+      repository: yijie-desktop
+      exit_code: 0
+    - name: S2 actual Desktop Host Runtime approval and refusal
+      status: PASS
+      command: Canonical app + CUA normal UI + ordinary scratch files
+      actual_result: 批准前 approved.txt 不存在；批准后内容准确、退出码 0；最终版本拒绝后 rejected.txt 不存在。请求由真实 MiniMax/Codex 产生。
+      repository: yijie-desktop / yijie-agent-host
+      exit_code: 0
+    - name: S2 normal restart and per-task permission persistence
+      status: PASS
+      command: Normal app quit and canonical relaunch; same task continuation and mode readback
+      actual_result: 首次恢复 FAIL 保留；接上既有 thread/resume 后原任务产生真实审批并完成。原任务 auto 设置重启保留，新任务 ask，验证后恢复 ask；未执行 auto/full 模型任务。
+      repository: yijie-desktop / yijie-agent-host
+      exit_code: 0
+    - name: S2 focused boundary tests and lint
+      status: PASS
+      command: Go approval/admission race tests; make lint; Native feat152_permission_ tests; Desktop lint and
+        focused Vitest; contracts tests
+      actual_result: Go codex/session tests与lint通过；Native 2 项、Desktop 75 项、Contracts 3 项通过。菜单实际方向键/Enter/Esc通过；不表示
+        S3/S4 或全量 suite 通过。
+      repository: yijie-agent-host / yijie-desktop / yijie-contracts
+      exit_code: 0
+    - name: S3 real native automatic review and metering
+      status: PASS
+      command: Canonical Desktop CUA ordinary external-file task; native rollout metadata and provider ledger
+        inspection
+      actual_result: 原生 guardian 子会话 model=MiniMax-M3、provider=minimax、只读/never，返回 {outcome:allow}；请求 7/8/9
+        含审核子请求全部经固定 MiniMax Responses 计数，文件内容 S3-auto。未触发原生拒绝。
+      repository: yijie-desktop / yijie-agent-host / yijie-codex
+      exit_code: 0
+    - name: S3 full access confirmation and same-task contraction
+      status: PASS
+      command: Native UI cancel/confirm, full-mode ordinary write, change same task back to ask and reject its next
+        approval
+      actual_result: 取消保留 auto 且再选仍要求确认；确认后 full，后续不重复首次确认。真实 full 回合为 danger-full-access/never/user，写入 S3-full；同任务
+        ask 恢复 workspace-write/on-request/user/network=false，拒绝后 after-full.txt 不存在。
+      repository: yijie-desktop / yijie-agent-host / yijie-codex
+      exit_code: 0
+    - name: S3 focused checks and source-only manual takeover review
+      status: PASS
+      command: Desktop lint and 77 scoped Vitest tests; Go focused race tests and make lint; contracts 3 tests;
+        read-only native source review
+      actual_result: 检查通过；新增 2 项完全访问确认测试。原生人工接管仅注入具体操作批准，不启动新回合；Host 事件投影/拒绝已做单元测试，真实 approveGuardianDeniedAction
+        接管调用未发生，不能称为该分支 E2E 通过。
+      repository: yijie-desktop / yijie-agent-host / yijie-contracts
+      exit_code: 0
+    - name: S4 request association, duplicate takeover and failure feedback
+      status: PASS
+      command: go test -race ./internal/codex -run ^TestRuntime(Permission|Approval|Automatic) -count=1 -v; scoped
+        Vitest 6 files
+      actual_result: 人工接管进程内协议测试覆盖原 thread/turn/review/action 关联、跨任务拒绝、重复只发一次与原生失败；UI 失败提示保留修复及聚焦回归 78
+        项通过。不是自然自动拒绝接管的真实 E2E。
+      repository: yijie-agent-host / yijie-desktop
+      exit_code: 0
+    - name: S4 lint, contract and canonical build
+      status: PASS
+      command: pnpm lint; make lint; node --test tests/runtime-permissions.test.mjs; node
+        scripts/sync-runtime-permissions.mjs --check; canonical launch
+      actual_result: 两端 lint、Contracts 3 项、生成同步、最终 canonical 构建均通过；首次 TS 空值收窄错误修复，失败日志保留。strict Native Clippy 旧失败不被覆盖。
+      repository: yijie-desktop / yijie-agent-host / yijie-contracts
+      exit_code: 0
+    - name: S4 real auto review, independent tasks and normal recovery
+      status: PASS
+      command: Normal CUA task / Cmd-Q / canonical relaunch / same task continuation
+      actual_result: 真实 guardian MiniMax-M3/minimax read-only/never 自然 allow，S4-auto 文件写入；请求 14–17 含两次审核结构化请求。S4
+        auto 与 S3 ask 独立，正常重启恢复；第 18/19 次完成项目内写入、联网批准和外部写入拒绝。第 20/21 次 full 写入成功，第 22/23 次切回 ask 重新审批并拒绝。应用正常
+        Cmd-Q，launcher exit 0。
+      repository: yijie-desktop / yijie-agent-host
+      exit_code: 0
+    - name: S4 closeout native formatting and dispatch regression
+      repository: yijie-desktop
+      status: PASS
+      exit_code: 0
+      command: cargo fmt --manifest-path src-tauri/Cargo.toml --check; cargo test --manifest-path
+        src-tauri/Cargo.toml feat152_permission_ -- --nocapture; cargo test --manifest-path
+        src-tauri/Cargo.toml two_large_files_share_the_remaining_context_budget_fairly -- --nocapture
+      actual_result: fmt exit 0；原生权限/正常重开 2 项和受影响的多模态派发查询 1 项通过。首次 fmt 检出的本需求片段仅作格式整理，无全量格式化或新行为。
+    - name: S4 supported native review-policy preparation
+      repository: yijie-agent-host / retained yijie-codex Runtime
+      status: PASS
+      exit_code: 0
+      command: go test ./internal/codex -run ^TestPinnedRuntimeManualReviewPolicyConfigurationIntegration$ -count=1
+        -v; focused policy gate race tests; make lint
+      actual_result: 固定 Runtime config/value/write、config/read 与 thread/start 接受 auto_review.policy，0 次模型请求、0 个实际
+        turn。新增局部验证配置仅在 exact local/demo_fast + 固定计数器下按显式文件注入原生配置；未启用该场景，未产生真实拒绝或接管。
+    - name: S4 final configured native denial and manual takeover
+      repository: yijie-desktop / yijie-agent-host / retained Runtime
+      status: PASS
+      exit_code: 0
+      command: Canonical app + real CUA UI + native rollout/ledger/file inspection; requests 28–33
+      actual_result: 真实 guardian deny(low/high)；UI 批准后原生 exact-action 上下文恰好 1 条，计数仍30、文件仍不存在；同任务/auto/同命令续跑原生
+        allow，文件准确为 S4-manual-approved。用户批准的原生配置场景，不冒充默认自然风险拒绝。
+    - name: S4 final Native policy forwarding and regression
+      repository: yijie-desktop / yijie-agent-host
+      status: PASS
+      exit_code: 0
+      command: cargo fmt --check; cargo clippy -- -D warnings; cargo test feat152_permission_; pnpm lint; scoped 78
+        Vitest checks; make lint; canonical build
+      actual_result: 初次请求24–27因Native白名单遗漏策略路径而实际allow，失败原样保留；修复后实测Host收到规则。3项Native、严格Clippy/fmt、UI78项、两端lint和canonical构建通过。
+    - name: S4 final full access, normal recovery and cleanup
+      repository: yijie-desktop / yijie-agent-host
+      status: PASS
+      exit_code: 0
+      command: Requests34–35 ordinary full write; UI switch to ask; normal Cmd-Q, canonical relaunch without
+        review-policy env, UI readback, normal shutdown
+      actual_result: full-final.txt准确为S4-full-final，原生never/danger-full-access；切回ask且重启后同任务ask/三轮完成、新任务ask。撤除规则的Host环境和磁盘配置已核对；应用/计数器exit0、18081/18083无监听。仅模式恢复，不冒称最终ask实际执行。
+    - name: S4 final ask contraction, independent approval/refusal and recovery
+      repository: yijie-desktop / yijie-agent-host / retained Runtime
+      status: PASS
+      exit_code: 0
+      command: Requests36–37 through actual UI; native rollout/file evidence; normal Cmd-Q/canonical relaunch; same
+        task and other task UI readback
+      actual_result: 同一最终任务第4轮ask：项目内准确写入无需审批，公开HEAD独立批准返回HTTP200，项目外准确拒绝未生成；原生权限受限。忙时菜单禁用，完成后恢复；重启4轮历史与ask、另一任务auto、新任务ask。最终受影响源码hash不变，0后续模型请求。
+    - name: Final governance D0/D4 and meta repository checks
+      repository: yijie
+      status: PASS
+      exit_code: 0
+      command: bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict --gate D0|D4
+        <FEAT-152>; pnpm lint; pnpm test; bash -n scripts/*.sh
+      actual_result: 严格D0/D4均exit0；manifest/十仓Contract First治理lint通过；元仓50项测试通过；Shell语法与diff检查通过。D4只表示local
+        demo_fast可用，不代表生产发布。
+  artifacts:
+    - evidence/stage1/runtime-configuration.json
+    - evidence/stage1/source-identities.json
+    - evidence/stage1/runtime-first-attempt.log
+    - evidence/stage1/native-clippy.log
+    - evidence/stage2/real-flow.json
+    - evidence/stage2/provider-requests.json
+    - evidence/stage2/source-identities.json
+    - evidence/stage2/ui-final.log
+    - evidence/stage2/native-tests.log
+    - evidence/stage2/host-approval-tests.log
+    - evidence/stage3/compatibility-review.md
+    - evidence/stage3/runtime-observations.json
+    - evidence/stage3/real-flow.json
+    - evidence/stage3/provider-requests.json
+    - evidence/stage3/source-identities.json
+    - evidence/stage3/ui-final.log
+    - evidence/stage4/verification-notes.md
+    - evidence/stage4/runtime-observations.json
+    - evidence/stage4/provider-requests.json
+    - evidence/stage4/source-identities.json
+    - evidence/stage4/ui-final.log
+    - evidence/stage4/host-tests.log
+    - evidence/stage4/desktop-lint.log
+    - evidence/stage4/contracts.log
+    - evidence/stage4/app-build-initial-failed.log
+    - evidence/stage4/app-final.log
+    - evidence/stage4/app-restart.log
+    - evidence/stage4/light-minimum.jpg
+    - evidence/stage4/dark-minimum.jpg
+    - evidence/stage4/light-full-label.jpg
+    - evidence/stage4/dark-full-label.jpg
+    - evidence/stage4/restarted-full-selection.jpg
+    - evidence/stage4/governance-d0.log
+    - evidence/stage4/governance-d4.log
+    - evidence/stage4/diff-check.json
+    - evidence/stage4/real-flow.json
+    - evidence/stage4/pending-approvals.jpg
+    - evidence/stage4/approval-results.jpg
+    - evidence/stage4/ask-completed.jpg
+    - evidence/stage4/full-completed.jpg
+    - evidence/stage4/after-full-completed.jpg
+    - evidence/stage4/component-light-menu.png
+    - evidence/stage4/component-dark-menu.png
+    - evidence/stage4/component-light-confirm.png
+    - evidence/stage4/component-dark-confirm.png
+    - evidence/stage4/component-dark-full-selected.png
+    - evidence/stage4/component-dark-auto-selected.png
+    - evidence/stage4/component-visual-metrics.json
+    - evidence/stage4/component-visual-provenance.json
+    - evidence/stage4/component-visual-source/README.md
+    - evidence/stage4/host-lint-final.log
+    - evidence/stage4/closeout/native-clippy.log
+    - evidence/stage4/closeout/native-fmt.log
+    - evidence/stage4/closeout/native-permission-tests.log
+    - evidence/stage4/closeout/native-dispatch-test.log
+    - evidence/stage4/closeout/native-policy-config-probe.log
+    - evidence/stage4/closeout/host-policy-tests.log
+    - evidence/stage4/closeout/host-lint.log
+    - evidence/stage4/closeout/results.json
+    - evidence/stage4/closeout/source-identities.json
+    - evidence/stage4/closeout/manual-review-plan.json
+    - evidence/stage4/closeout/proposed-native-review-policy.md
+    - evidence/stage4/closeout/manual-takeover-plan.md
+    - evidence/stage4/final/app-corrected-policy.log
+    - evidence/stage4/final/app-default-policy-restart.log
+    - evidence/stage4/final/app-first-attempt.log
+    - evidence/stage4/final/child-environment.json
+    - evidence/stage4/final/cleanup.json
+    - evidence/stage4/final/default-policy-restarted-ax.txt
+    - evidence/stage4/final/default-policy-restarted.jpg
+    - evidence/stage4/final/default-policy-restored.json
+    - evidence/stage4/final/desktop-lint.log
+    - evidence/stage4/final/diff-check.json
+    - evidence/stage4/final/first-attempt.json
+    - evidence/stage4/final/full-final-completed.jpg
+    - evidence/stage4/final/host-lint.log
+    - evidence/stage4/final/manual-approval.json
+    - evidence/stage4/final/manual-approved.jpg
+    - evidence/stage4/final/native-clippy.log
+    - evidence/stage4/final/native-denial.jpg
+    - evidence/stage4/final/native-fmt.log
+    - evidence/stage4/final/native-policy-forward-tests.log
+    - evidence/stage4/final/provider-requests.json
+    - evidence/stage4/final/real-flow.json
+    - evidence/stage4/final/runtime-observations.json
+    - evidence/stage4/final/source-identities.json
+    - evidence/stage4/final/takeover-completed.jpg
+    - evidence/stage4/final/ui-tests.log
+    - evidence/stage4/final/app-final-ask-restart.log
+    - evidence/stage4/final/app-final-ask.log
+    - evidence/stage4/final/ask-before-network-approval.json
+    - evidence/stage4/final/ask-completed-ax.txt
+    - evidence/stage4/final/ask-completed.jpg
+    - evidence/stage4/final/ask-decision-results.jpg
+    - evidence/stage4/final/ask-pending-ax.txt
+    - evidence/stage4/final/ask-pending.jpg
+    - evidence/stage4/final/ask-real-flow.json
+    - evidence/stage4/final/cleanup-at35.json
+    - evidence/stage4/final/final-build-source-hashes.json
+    - evidence/stage4/final/final-menu-ax.txt
+    - evidence/stage4/final/final-restarted-ax.txt
+    - evidence/stage4/final/final-restarted.jpg
+    - evidence/stage4/final/governance-d0-wrong-path.log
+    - evidence/stage4/final/governance-d0.log
+    - evidence/stage4/final/other-task-auto-restarted-ax.txt
+    - evidence/stage4/final/provider-requests-at35.json
+    - evidence/stage4/final/real-flow-at35.json
+    - evidence/stage4/final/remaining-d4-check.md
+    - evidence/stage4/final/runtime-observations-at35.json
+    - evidence/stage4/final/acceptance-matrix.md
+    - evidence/stage4/final/governance-d4.log
+    - evidence/stage4/final/meta-lint.log
+    - evidence/stage4/final/meta-tests.log
+    - evidence/stage4/final/verification-at35.md
+    - evidence/stage4/final/visual-source-continuity.json
+    - evidence/stage4/final/completion.json
+    - evidence/delivery/app-build-launch.log
+    - evidence/delivery/build-inputs-stable.json
+    - evidence/delivery/build-inputs.json
+    - evidence/delivery/commit-authorization.json
+    - evidence/delivery/commit-manifest.json
+    - evidence/delivery/commits.json
+    - evidence/delivery/concurrent-worktree-updates.json
+    - evidence/delivery/contracts-conformance.log
+    - evidence/delivery/contracts-tests.log
+    - evidence/delivery/daily-after-restart-ax.txt
+    - evidence/delivery/daily-after-restart.jpg
+    - evidence/delivery/daily-before-restart-ax.txt
+    - evidence/delivery/daily-launch-fixed.log
+    - evidence/delivery/daily-launch.log
+    - evidence/delivery/daily-menu-ax.txt
+    - evidence/delivery/daily-restart.log
+    - evidence/delivery/daily-task-after-restart.txt
+    - evidence/delivery/daily-task-before-restart.txt
+    - evidence/delivery/default-skills-pinned.log
+    - evidence/delivery/delivery-results.json
+    - evidence/delivery/desktop-daily-entry-docs.log
+    - evidence/delivery/desktop-daily-entry-lint.log
+    - evidence/delivery/desktop-docs-build.log
+    - evidence/delivery/desktop-lint-pinned.log
+    - evidence/delivery/desktop-lint.log
+    - evidence/delivery/desktop-tests-pinned.log
+    - evidence/delivery/desktop-tests.log
+    - evidence/delivery/governance-d4.log
+    - evidence/delivery/host-lint-pinned.log
+    - evidence/delivery/host-permissions-pinned.log
+    - evidence/delivery/immutable-pins-preflight.log
+    - evidence/delivery/meta-lint.log
+    - evidence/delivery/meta-tests.log
+    - evidence/delivery/normal-app-build.log
+    - evidence/delivery/normal-entry-preflight.log
+    - evidence/delivery/permission-pins-final.json
+    - evidence/delivery/precommit-review.json
+    - evidence/delivery/worktree-before.json
+    - evidence/delivery/governance-final-d4.log
+    - evidence/delivery/meta-final-lint.log
+    - evidence/delivery/meta-final-tests.log
+  diff_review:
+    status: PASS
+    summary: 仅 S2 范围结构化复核：原生请求关联当前 thread/turn；决策在 RPC 写入后确认且同决策幂等；新回合 admission 不破坏已接受操作重放；保留 scope/owner 校验；旧
+      FEAT-137 仍退役，核心仓和 Runtime hash 未改；其它任务改动原样保留。非独立团队/生产安全审查。 S3 复核：只扩展已授权计数器上限/安全元数据与确认交互测试；实际审核仍完全由原生
+      guardian 执行；核心仓、Runtime hash、默认关闭和退役边界均保留。 S4 复核只调整已授权计数上限、失败提示保留、现有警示文字 token 及对应协议/反馈测试；无核心改动或新审批引擎。
+      S4 最终：同一任务 ask / full 权限收敛仍由 retained Runtime 权威控制；额外组件视觉页仅在 .local 直接导入生产组件和主题，不连接审批后端；本阶段最后只扩计数上限至
+      25，无后续产品逻辑改动。 S4 后续收尾：Clippy 修复只命名查询 tuple，相关 Rust 片段仅格式调整；候选验证输入复用原生 auto_review.policy，固定 local/meter
+      且缺省不改变策略，不生成审批事件或风险结论。
+      最终修复只补Native显式验证规则环境白名单及纯映射回归；精确meter/local约束保留。严格Clippy命名局部tuple；无公开DTO、核心、Runtime或正常三档映射变化。最终五仓diff
+      --check通过，核心仓干净、Runtime/manifest hash不变。未把不受影响路径的历史执行改写成最终构建重新执行。
+      最终36–37仅新增用户授权后的正常ask回归，期间产品源码hash逐项不变；原生受限配置、审批准确关联和文件结果实际核对。源/Runtime/manifest与用户已有改动再次审阅，无阻断本地使用的问题。
+      2026-09-08用户授权本地提交后：Contracts→Host→Desktop依次固定真实来源；原有43项路径和两处混合文件的其它改动排除。普通打包参数的首个case写法被已有隔离校验拒绝，保留原stable分支后通过；未放宽门禁。日常App真实启动、菜单与正常重启读回通过，来源/覆盖层记录单独保留。
+  known_limitations:
+    - 2026-09-08已授权完成四仓本地提交及普通App入口；仅local demo_fast，未push/tag/签名或公开/生产发布。原S4模型验收与本次零付费交付检查分别记录。
+    - 真实人工接管采用用户明确批准的原生auto_review.policy精确普通文件复核要求；真实guardian产生deny/allow，原安全策略原文完整保留。该证据不代表默认策略自然风险拒绝。临时规则已撤除，未持久写入Runtime配置。
+    - Native菜单展开截图受工具限制；真实Native主窗口/AX与生产组件亮暗1180×760菜单/确认截图分层记录，组件页不连接审批后端。首次完全访问真实取消/确认来自S3、S4生产组件复核，未重置真实用户确认标记。
+    - 最终fresh验收是同一最终源码/同一任务的四轮真实流程，包含正常退出、重启与撤规则；不是单一进程。单项视觉/边界证据按实际类型标注，先前失败与阶段快照保留，不冒称所有历史操作都发生在最终构建。
+    - 不执行用户禁止的强杀、攻击注入、权限破坏或Runtime替换旧全量测试；focused测试和真实正常流程通过，不声称旧全量suite通过。
+    - 未带phase的MiniMax文本仍显示既有未分类模型消息；验收依据原生执行与文件结果，不猜测协议阶段。
+    - 验收调用累计授权45、实际37、剩余8，本次交付0次；App经正常退出/重启后留给用户运行。其它任务文档/图标/配色工作保留并在本地包中单独记录，FEAT-137永久退役。
+public_readiness:
+  required: false
+  status: not_applicable
+  checks: []
+  external_smoke:
+    status: NOT RUN
+    command_or_steps: TBD
+    actual_result: TBD
+documents:
+  brief: 00-feature-brief.md
+  delivery_log: 01-delivery-log.md
+  verification: 02-verification.md
+staged_delivery:
+  requested_by: 段成威
+  confirmed_at: 2026-09-06
+  current_stage: S4
+  rule: 用户最新明确要求分阶段实现，覆盖 demo_fast 默认整包连续实现；每阶段先给出验证结果，不一次交付完整需求。
+  stages:
+    - id: S1
+      title: 契约与最小跨仓集成
+      status: complete
+      scope: 权威 schema、Host 原生三档配置、Native 契约消费与默认关闭；真实 retained Runtime 无模型启动/配置验证。
+      result: 三档真实 Runtime 配置与契约一致性通过；Native 2 项、现有 UI 67 项通过。完整审批执行和恢复不属于此阶段结论；strict Clippy 有既有 type_complexity 阻断。
+    - id: S2
+      title: 请求批准与任务权限交互
+      status: complete
+      scope: 菜单、每任务持久化、忙时拦截、真实普通人工批准/拒绝闭环及已完成任务最小正常恢复。
+      result: 6 次真实请求完成批准、拒绝和同任务恢复；修复候选启动、过度脱敏、菜单焦点、未绑定审批轮询和缺少 Runtime resume；Native 2、UI 75、Contracts 3 与 Go
+        race/lint 通过。
+    - id: S3
+      title: 原生自动审批与完全访问
+      status: complete
+      scope: 按用户最新三项顺序：自动审核模型/供应商/计数覆盖及人工接管语义核对；普通文件的真实自动审核；首次完全访问确认、取消、执行和同任务切回请求批准。
+      result: 原生 guardian 使用 MiniMax-M3/minimax，真实返回 allow，审核子请求已计数；完全访问普通文件写入与同任务收敛为
+        workspace-write/on-request/user 通过。S3 用 7 次，累计 13/15；UI 77 项及 Host/Contracts focused checks
+        通过。自动拒绝后人工接管的真实分支未触发，AC-003 全分支仍 pending。
+    - id: S4
+      title: 最终恢复与整体回归
+      status: complete
+      scope: 真实已执行任务重启恢复、亮暗/最小窗口、一轮 fresh run 全部 Must AC 与 D4。
+      result: 最终四轮真实auto拒绝/人工接管/auto续跑/full/ask收敛及正常重启恢复通过；视觉、关联/幂等/失败反馈和focused检查通过，Clippy与Native配置转发遗漏已修复，全部Must验收通过。累计37/45剩余8；D4最终校验日志独立记录。
+        严格D0/D4实际exit0，元仓lint/50项测试通过。
+  next_stage: none
+  progression: S1–S4完成，local demo_fast验收完成；无后续功能开发或付费调用。D4不代表提交、发布或生产批准。
+post_acceptance_delivery:
+  requested_at: 2026-09-08
+  status: complete
+  commit_authorized: true
+  authorization: 用户明确：授权按清单执行四仓本地 Git 提交
+  push_authorized: false
+  paid_calls_this_step: 0
+  commits:
+    contracts: 0bdef80491db8263bad4d54cfe1d1950785a6b64
+    host: af8d370277569cb5a9b6a229f10386690aaebb0f
+    desktop: af69d6e740351b6006a1b8aaa716d3c2e04df235
+    desktop_sequence:
+      - 29d6ad462d39f2f7c9410a0da754bd64e16a8c3d
+      - d21533bd912ed7994e5f3d5cb4e795c95dcbb204
+      - af69d6e740351b6006a1b8aaa716d3c2e04df235
+    governance: This report is committed last; actual self SHA recorded in the post-commit local receipt.
+  dependency_pins:
+    - yijie-agent-host/api/runtime-permissions.lock.json
+    - yijie-desktop/contracts/runtime-permissions.lock.json
+  plan: 03-delivery-commit-plan.md
+  report: 04-local-delivery.md
+  result: evidence/delivery/delivery-results.json
+  canonical_entry: pnpm --dir yijie-desktop tauri:demo-fast:app
+  app_bundle: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/target/debug/bundle/macos/易界 AI.app
+  app_binary_sha256: 1af7c6b6c0058d857d1cd8b4d3d067405620e6e7983d8562caeba97a9bd59898
+  verification: "PASS: normal com.yijie.ai App built and ready; 3 menu choices; original history, draft auto and
+    existing task ask preserved through normal quit/restart; zero model tasks. Host lint/race, Desktop lint/81
+    tests (1 safety skip), docs and immutable source checks passed."
+  preservation: 43 unrelated paths and two mixed-file edits excluded from our commits; concurrent updates
+    retained; core and retained Runtime untouched.
+  final_governance_checks:
+    D4: PASS
+    meta_lint: PASS
+    meta_tests: 50

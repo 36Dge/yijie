@@ -1,0 +1,88 @@
+{
+  "recorded_at": "2026-09-07T05:45:47.017225+00:00",
+  "desktop_task": "01a07a39-100b-78d3-8a70-6278d3153173",
+  "runtime_thread": "01a07a39-1043-73b2-8596-dc97aa705528",
+  "stage4_provider_requests": 10,
+  "total_provider_requests": 23,
+  "authorized_limit": 25,
+  "remaining": 2,
+  "final_mode": "ask",
+  "natural_auto_denial_takeover": "NOT RUN: native ordinary-file review returned allow",
+  "rounds": [
+    {
+      "round": 1,
+      "mode": "auto",
+      "requests": [
+        14,
+        15,
+        16,
+        17
+      ],
+      "result": "native guardian allow; external file written; guardian used one tool and two structured requests"
+    },
+    {
+      "round": 2,
+      "after_normal_restart": true,
+      "mode": "ask",
+      "requests": [
+        18,
+        19
+      ],
+      "result": "project write succeeded; external write rejected; public HEAD approved, HTTP/2 200, exit 0; completed after user unlocked Mac"
+    },
+    {
+      "round": 3,
+      "mode": "full",
+      "requests": [
+        20,
+        21
+      ],
+      "result": "danger-full-access / never / user; external file written, exit 0; no new approval"
+    },
+    {
+      "round": 4,
+      "mode": "ask",
+      "requests": [
+        22,
+        23
+      ],
+      "result": "workspace-write / on-request / user / network false; external write required native approval; UI rejected; command_declined; target absent"
+    }
+  ],
+  "files": [
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat152-s4/outside/auto.txt",
+      "exists": true,
+      "content": "S4-auto",
+      "sha256": "c7d42ae08ca8cd8a84c3c26b644b439d46969ef4fd8c2fda4a8364aaee81c325"
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat152-s3/s3-workspace/s4-inside.txt",
+      "exists": true,
+      "content": "S4-inside",
+      "sha256": "640a8efcb72f2870a2a8c4f70779af064c425453655e3a89a0541eaea1adf746"
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat152-s4/outside/rejected.txt",
+      "exists": false
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat152-s4/outside/full.txt",
+      "exists": true,
+      "content": "S4-full",
+      "sha256": "8ba9e50722b42c7841e3537f1dd9646afba62d3f6b86f818ed92343a4346cf38"
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat152-s4/outside/after-full.txt",
+      "exists": false
+    }
+  ],
+  "cleanup": {
+    "desktop": "normal Cmd-Q, canonical launcher exit 0",
+    "meter": "normal Ctrl-C, exit 0",
+    "visual_preview": "normal Ctrl-C, exit 130",
+    "listeners_18081_18083_5177": "none",
+    "browser_viewport": "reset; temporary tab closed",
+    "system_theme": "restored to original light during initial S4 visual checks"
+  }
+}

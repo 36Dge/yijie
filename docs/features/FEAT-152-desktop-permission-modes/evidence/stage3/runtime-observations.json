@@ -1,0 +1,73 @@
+{
+  "task": {
+    "file": "rollout-2026-09-07T09-29-52-01a0797c-6d7a-7623-8951-b4564547f0a2.jsonl",
+    "contexts": [
+      {
+        "turn_id": "01a0797c-6dc4-7e63-973d-c3da9b8c8ed2",
+        "model": "MiniMax-M3",
+        "approval_policy": "on-request",
+        "approvals_reviewer": "auto_review",
+        "sandbox_policy": {
+          "type": "workspace-write",
+          "network_access": false,
+          "exclude_tmpdir_env_var": false,
+          "exclude_slash_tmp": false
+        }
+      },
+      {
+        "turn_id": "01a07980-438a-7081-ab96-ac992f4e71ca",
+        "model": "MiniMax-M3",
+        "approval_policy": "never",
+        "approvals_reviewer": "user",
+        "sandbox_policy": {
+          "type": "danger-full-access"
+        }
+      },
+      {
+        "turn_id": "01a07982-4947-79a1-82db-c8eefd8af327",
+        "model": "MiniMax-M3",
+        "approval_policy": "on-request",
+        "approvals_reviewer": "user",
+        "sandbox_policy": {
+          "type": "workspace-write",
+          "network_access": false,
+          "exclude_tmpdir_env_var": false,
+          "exclude_slash_tmp": false
+        }
+      }
+    ],
+    "metadata": {
+      "id": "01a0797c-6d7a-7623-8951-b4564547f0a2",
+      "source": "vscode",
+      "model_provider": "minimax",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat152-s3/s3-workspace"
+    }
+  },
+  "guardian": {
+    "file": "rollout-2026-09-07T09-30-07-01a0797c-a58d-7471-8c06-f61cdd013bdd.jsonl",
+    "contexts": [
+      {
+        "turn_id": "01a0797c-a5bc-78a1-85fb-fa8ff3b3c0b2",
+        "model": "MiniMax-M3",
+        "approval_policy": "never",
+        "approvals_reviewer": "auto_review",
+        "sandbox_policy": {
+          "type": "read-only"
+        }
+      }
+    ],
+    "metadata": {
+      "id": "01a0797c-a58d-7471-8c06-f61cdd013bdd",
+      "source": {
+        "subagent": {
+          "other": "guardian"
+        }
+      },
+      "model_provider": "minimax",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat152-s3/s3-workspace"
+    },
+    "assessment": {
+      "outcome": "allow"
+    }
+  }
+}

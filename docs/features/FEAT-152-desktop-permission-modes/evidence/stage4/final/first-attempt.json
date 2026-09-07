@@ -1,0 +1,22 @@
+{
+  "result": "NOT PASS: configured-policy takeover was not exercised",
+  "cause": "Native sidecar environment allowlist did not forward the policy file variable; Host and guardian used default policy",
+  "desktop_task": "01a07a9b-e8ae-7963-a9a2-ca60e172730e",
+  "runtime_thread": "01a07a9b-e8ef-7ba2-b5a0-416e4545f1fa",
+  "guardian_thread": "01a07a9b-f8ed-7d03-9e67-882f942d62ab",
+  "review_outcome": "allow",
+  "guardian_policy_rule_present": false,
+  "requests": [
+    24,
+    25,
+    26,
+    27
+  ],
+  "file_before_normal_rename": {
+    "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat152-s4/manual-review/pending/reviewed.txt",
+    "content": "S4-manual-approved\n",
+    "sha256": "360e8c610bbeb992dd6cce64c6b030f0cf1fc31c0d39c32e23c7effd3a6f2099"
+  },
+  "preserved_as": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat152-s4/manual-review/pending/reviewed-first-allow.txt",
+  "fix": "forward the opt-in policy file alongside the exact local meter; add Native allowlist regression; normally relaunch"
+}

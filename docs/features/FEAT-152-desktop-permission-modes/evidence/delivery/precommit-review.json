@@ -1,0 +1,49 @@
+{
+  "recorded_at": "2026-09-07T16:40:59.857223+00:00",
+  "status": "READY_FOR_COMMIT_AUTHORIZATION",
+  "checks": {
+    "yijie": {
+      "diff_check": 0,
+      "index_still_empty": true
+    },
+    "yijie-contracts": {
+      "diff_check": 0,
+      "index_still_empty": true
+    },
+    "yijie-agent-host": {
+      "diff_check": 0,
+      "index_still_empty": true
+    },
+    "yijie-desktop": {
+      "diff_check": 0,
+      "index_still_empty": true
+    },
+    "yijie-codex": {
+      "diff_check": 0,
+      "index_still_empty": true
+    }
+  },
+  "excluded_desktop_paths_preserved": 43,
+  "concurrently_added_excluded_documents": [
+    {
+      "repository": "yijie-desktop",
+      "path": "docs/verification/FEAT-152-ui-integration-fix-20260908.md",
+      "sha256_at_discovery": "c8e5c237a098264733211587dbcd959b0a808310f11724e338d749eff09475f6",
+      "handling": "new document created outside this turn; preserved and excluded"
+    }
+  ],
+  "partial_selection": "package build commands only; ChatComposer permission slot only",
+  "paid_model_calls_this_turn": 0,
+  "desktop_tests": {
+    "passed": 80,
+    "skipped": 1,
+    "reason": "existing script-injection fixture excluded by user safety rule"
+  },
+  "contracts_conformance": "3 passed against existing real S1 observation",
+  "normal_entry_preflight": "PASS without model requests or meter",
+  "common_private_key_and_credential_format_scan": "no match; not a comprehensive security audit",
+  "meta_tests_passed": 50,
+  "meta_lint_exit_code": 0,
+  "meta_shell_syntax_exit_code": 0,
+  "historical_d4_claim_validation_exit_code": 0
+}

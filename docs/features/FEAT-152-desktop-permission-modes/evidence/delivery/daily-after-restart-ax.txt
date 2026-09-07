@@ -1,0 +1,73 @@
+Window: "易界 AI", App: 易界 AI.
+0 standard window 易界 AI, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: 新建任务 · 易界 AI, URL: tauri://localhost/chat
+			3 text 界面缩放 100%
+			4 container 主导航
+				5 image 易界
+				6 container 应用导航
+					7 content list
+						8 link 新建任务, Value: tauri://localhost/chat
+						9 link 我的店铺, Value: tauri://localhost/store
+						10 link 工作流, Value: tauri://localhost/workflows
+						11 container 定时任务，即将开放
+							12 container 定时任务，即将开放
+								13 text 定时任务 即将开放
+						14 link 插件, Value: tauri://localhost/plugins
+						15 container 资料库，即将开放
+							16 container 资料库，即将开放
+								17 text 资料库 即将开放
+						18 container
+							19 heading 任务记录, Value: 2
+								20 text 任务记录
+							21 container 任务记录：项目与对话
+								22 content list
+									23 container test
+										24 button (expanded) 折叠项目 test, Secondary Actions: Collapse
+										25 text test
+										26 button 项目 test 的操作菜单
+										27 content list
+											28 button 你现在都集成了哪些可调用的工具？ 已完成
+									29 container yijie
+										30 button (expanded) 折叠项目 yijie, Secondary Actions: Collapse
+										31 text yijie
+										32 button 项目 yijie 的操作菜单
+										33 content list
+											34 button Reply with exactly FEAT131_REAL_SMOKE_OK 状态已更新
+											35 button 现在前端的思考，很多的对话交互都没有 Codex 中的交互，我如何实现 已完成
+											36 button 介绍一下你自己 ？ 已完成
+									37 container CrossBSD
+										38 button (expanded) 折叠项目 CrossBSD, Secondary Actions: Collapse
+										39 text CrossBSD
+										40 button 项目 CrossBSD 的操作菜单
+										41 content list
+											42 button 参考这张人物图片生成一张全新的图片：保持人物的面部特征、黑色短发和整体身份一致， 已完成
+											43 button 只分析这张图片中的人物外观、服装和画面构图，用中文简要描述。不要生成图片，不要调 已完成
+											44 button 只回复 DEMO_FAST_OK，用于本地免登录启动验收。 已完成
+					45 content list
+						46 link 设置, Value: tauri://localhost/settings
+			47 container 易界AI
+				48 heading 易界AI, Value: 1
+					49 text 易界AI
+				50 text 选择本地项目，用一句话开始任务。
+				51 container 任务输入区
+					52 button 更换项目，当前项目 test, Help: 更换项目：test
+					53 text 输入你的任务需求
+					54 text entry area (settable) 输入你的任务需求, Placeholder: 描述你希望易界 AI 完成的任务…
+						55 text 描述你希望易界 AI 完成的任务…
+					56 button 添加图片或文件
+					57 pop up button 权限审批：帮我批准, Help: 更改当前任务的权限审批模式
+					58 button (disabled) 发送任务
+	59 close button
+	60 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	61 minimize button
+	62 text 易界 AI
+63 menu bar
+	64 易界 AI
+	65 File
+	66 Edit
+	67 View
+	68 Window
+	69 Help
+
+The focused UI element is 48 heading 易界AI, Value: 1

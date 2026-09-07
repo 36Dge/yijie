@@ -1,0 +1,68 @@
+{
+  "schema_directory": "/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-feat152-schema-cctkmfmw",
+  "binary_sha256": "4efe16d2848680752cf9aacf4c17741ab2eeb7415894a66c2bb03652b00a322d",
+  "files": 267,
+  "ClientRequest": [
+    [
+      "thread/approveGuardianDeniedAction"
+    ]
+  ],
+  "v2/ThreadStartParams": [
+    "threadSource",
+    "approvalPolicy",
+    "approvalsReviewer",
+    "baseInstructions",
+    "config",
+    "cwd",
+    "developerInstructions",
+    "sessionStartSource",
+    "serviceTier",
+    "ephemeral",
+    "serviceName",
+    "sandbox",
+    "personality",
+    "model",
+    "modelProvider"
+  ],
+  "v2/ThreadStartResponse": [
+    "serviceTier",
+    "approvalPolicy",
+    "approvalsReviewer",
+    "cwd",
+    "instructionSources",
+    "model",
+    "modelProvider",
+    "sandbox",
+    "reasoningEffort",
+    "thread"
+  ],
+  "v2/ThreadResumeParams": [
+    "approvalPolicy",
+    "approvalsReviewer",
+    "baseInstructions",
+    "config",
+    "cwd",
+    "developerInstructions",
+    "threadId",
+    "sandbox",
+    "personality",
+    "model",
+    "modelProvider",
+    "serviceTier"
+  ],
+  "v2/TurnStartParams": [
+    "personality",
+    "approvalPolicy",
+    "approvalsReviewer",
+    "clientUserMessageId",
+    "summary",
+    "cwd",
+    "effort",
+    "serviceTier",
+    "input",
+    "model",
+    "sandboxPolicy",
+    "outputSchema",
+    "threadId"
+  ]
+}

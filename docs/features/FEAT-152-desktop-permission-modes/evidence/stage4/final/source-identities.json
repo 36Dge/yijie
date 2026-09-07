@@ -1,0 +1,38 @@
+{
+  "recorded_at": "2026-09-07T07:27:45.523081+00:00",
+  "repositories": {
+    "yijie": {
+      "head": "7e7d380b3d05c9d8c50524c0b45a7087ae08449b",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": "?? docs/features/FEAT-152-desktop-permission-modes/"
+    },
+    "yijie-contracts": {
+      "head": "0e680e5a565e7bac3a60f228ae59c2f8387f9bb4",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": " M scripts/generate.mjs\n?? docs/reviews/FEAT-152-runtime-permissions.md\n?? openapi/runtime-permissions/\n?? sdks/go/openapi/runtime-permissions/\n?? sdks/typescript/src/openapi/runtime-permissions.gen.ts\n?? tests/runtime-permissions.test.mjs"
+    },
+    "yijie-agent-host": {
+      "head": "f73fadc40fe5fed4341065da5070558a596ce5e8",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": " M internal/app/app.go\n M internal/codex/runtime.go\n M internal/codex/session_protocol.go\n M internal/session/multimodal.go\n M internal/session/service.go\n M internal/session/store.go\n?? api/openapi/runtime-permissions.yaml\n?? internal/app/runtime_permission_verification.go\n?? internal/app/runtime_permission_verification_test.go\n?? internal/app/runtime_permissions.go\n?? internal/codex/runtime_permissions.go\n?? internal/codex/runtime_permissions_integration_test.go\n?? internal/codex/runtime_permissions_test.go\n?? internal/contracts/runtimepermissions/\n?? internal/session/runtime_permissions.go\n?? internal/session/runtime_permissions_test.go\n?? scripts/permission-smoke-meter.py"
+    },
+    "yijie-desktop": {
+      "head": "c3a6195c540982e6304d02a2918f70eb0f49eb1a",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": " M docs/design/CHANGELOG.md\n M docs/design/docs/design/08-governance/08-component-color-convergence.md\n D docs/design/proposals/2026-09-06-component-colors/01-current-audit.md\n D docs/design/proposals/2026-09-06-component-colors/02-component-color-matrix.md\n D docs/design/proposals/2026-09-06-component-colors/03-verification.md\n D docs/design/proposals/2026-09-06-component-colors/README.md\n D docs/design/proposals/2026-09-06-component-colors/build-review.mjs\n D docs/design/proposals/2026-09-06-component-colors/capture-review.cjs\n D docs/design/proposals/2026-09-06-component-colors/preview-server.mjs\n D docs/design/proposals/2026-09-06-component-colors/preview/PageHarness.vue\n D docs/design/proposals/2026-09-06-component-colors/preview/PreviewControls.vue\n D docs/design/proposals/2026-09-06-component-colors/preview/StateAtlas.vue\n D docs/design/proposals/2026-09-06-component-colors/preview/atlas.css\n D docs/design/proposals/2026-09-06-component-colors/preview/candidate-theme.ts\n D docs/design/proposals/2026-09-06-component-colors/preview/candidate-tokens.css\n D docs/design/proposals/2026-09-06-component-colors/preview/index.html\n D docs/design/proposals/2026-09-06-component-colors/preview/main.ts\n D docs/design/proposals/2026-09-06-component-colors/preview/page-candidate.css\n D docs/design/proposals/2026-09-06-component-colors/preview/tauri-stub.ts\n D docs/design/proposals/2026-09-06-component-colors/review.html\n D docs/design/proposals/2026-09-06-component-colors/tsconfig.preview.json\n D docs/design/proposals/2026-09-06-component-colors/validation/candidate-source-hashes.json\n D docs/design/proposals/2026-09-06-component-colors/validation/component-and-page-captures.json\n D docs/design/proposals/2026-09-06-component-colors/validation/contrast-roles.json\n D docs/design/proposals/2026-09-06-component-colors/validation/page-state-audit.cjs\n D docs/design/proposals/2026-09-06-component-colors/validation/page-state-audit.json\n D docs/design/proposals/2026-09-06-component-colors/validation/page-state-audit.md\n D docs/design/proposals/2026-09-06-component-colors/validation/review-ui.json\n D docs/design/proposals/2026-09-06-component-colors/validation/worktree-preservation.json\n D docs/design/proposals/2026-09-06-component-colors/worktree-before.json\n M package.json\n M scripts/check-agent-host-v4-contract.mjs\n M scripts/run-local-demo-fast.sh\n M scripts/sync-desktop-skill-resources.mjs\n M src-tauri/icons/128x128.png\n M src-tauri/icons/128x128@2x.png\n M src-tauri/icons/32x32.png\n M src-tauri/icons/icon.icns\n M src-tauri/icons/icon.ico\n M src-tauri/icons/icon.png\n M src-tauri/src/chat/application.rs\n M src-tauri/src/chat/database.rs\n M src-tauri/src/chat/host_bridge.rs\n M src-tauri/src/chat/ipc.rs\n M src-tauri/src/chat/migrations.rs\n M src-tauri/src/chat/mod.rs\n M src-tauri/src/chat/sidecar.rs\n M src-tauri/src/chat/worker.rs\n M src-tauri/src/lib.rs\n M src/components/chat/ChatComposer.vue\n M src/icons/registry.test.ts\n M src/icons/registry.ts\n M src/pages/chat/ChatPage.vue\n?? scripts/local-permission-candidate.mjs\n?? scripts/local-permission-candidate.test.mjs\n?? scripts/sync-app-icons.mjs\n?? scripts/sync-runtime-permissions.mjs\n?? src-tauri/migrations/chat/0013_chat_permission_modes.sql\n?? src-tauri/schemas/chat-runtime-permissions-v1.schema.json\n?? src-tauri/src/chat/runtime_permissions.rs\n?? src/api/generated/chat-permission-state.gen.ts\n?? src/api/generated/runtime-permissions.gen.ts\n?? src/api/runtime-permission-client.ts\n?? src/components/chat/ChatPermissionControl.test.ts\n?? src/components/chat/ChatPermissionControl.vue\n?? src/components/chat/RuntimeApprovalList.vue\n?? src/composables/useRuntimePermissions.test.ts\n?? src/composables/useRuntimePermissions.ts"
+    },
+    "yijie-codex": {
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": ""
+    }
+  },
+  "runtime": {
+    "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.local/runtime-artifacts/feat-136-b2b20e2fc4a0/codex",
+    "sha256": "4efe16d2848680752cf9aacf4c17741ab2eeb7415894a66c2bb03652b00a322d"
+  },
+  "manifest": {
+    "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.local/runtime-artifacts/feat-136-b2b20e2fc4a0/runtime-manifest.json",
+    "sha256": "1cfa2e0a139b2213f4d29b1efeed71d4810110ac865f0bcbd931ff33b0062c1b"
+  }
+}

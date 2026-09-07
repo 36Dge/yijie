@@ -1,0 +1,12 @@
+{
+  "provider_requests_after_manual_approval": 30,
+  "target_exists_before_continuation": false,
+  "native_manual_approval_contexts": [
+    {
+      "timestamp": "2026-09-07T06:56:21.243Z",
+      "matches_target": true,
+      "sha256": "c83d489a28322cfd0a8109bfbd4b969836c43685abf6f27ad6404db5216a9c16",
+      "text": "The user has manually approved a specific action that was previously `Rejected`.\n\nTreat this as approval to perform that exact action in the same context in which it was originally requested.\nDo not assume this also authorizes similar operations with different payloads.\n\nApproved action:\n{\n  \"action\": {\n    \"type\": \"command\",\n    \"source\": \"unified_exec\",\n    \"command\": \"/bin/zsh -lc \\\"printf '%s' 'S4-manual-approved' > /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat152-s4/manual-review/pending/reviewed.txt\\\"\",\n    \"cwd\": \"/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat152-s4/manual-review/workspace\"\n  },\n  \"outcome\": \"allowed\"\n}"
+    }
+  ]
+}

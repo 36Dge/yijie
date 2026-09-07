@@ -1,0 +1,122 @@
+{
+  "recorded_at": "2026-09-06T17:17:10.128822+00:00",
+  "repositories": {
+    "yijie": {
+      "head": "7e7d380b3d05c9d8c50524c0b45a7087ae08449b",
+      "status": [
+        "?? docs/features/FEAT-152-desktop-permission-modes/"
+      ]
+    },
+    "yijie-contracts": {
+      "head": "0e680e5a565e7bac3a60f228ae59c2f8387f9bb4",
+      "status": [
+        "M scripts/generate.mjs",
+        "?? docs/reviews/FEAT-152-runtime-permissions.md",
+        "?? openapi/runtime-permissions/",
+        "?? sdks/go/openapi/runtime-permissions/",
+        "?? sdks/typescript/src/openapi/runtime-permissions.gen.ts",
+        "?? tests/runtime-permissions.test.mjs"
+      ]
+    },
+    "yijie-agent-host": {
+      "head": "f73fadc40fe5fed4341065da5070558a596ce5e8",
+      "status": [
+        "M internal/app/app.go",
+        " M internal/codex/runtime.go",
+        " M internal/codex/session_protocol.go",
+        " M internal/session/multimodal.go",
+        " M internal/session/service.go",
+        " M internal/session/store.go",
+        "?? api/openapi/runtime-permissions.yaml",
+        "?? internal/app/runtime_permissions.go",
+        "?? internal/codex/runtime_permissions.go",
+        "?? internal/codex/runtime_permissions_integration_test.go",
+        "?? internal/codex/runtime_permissions_test.go",
+        "?? internal/contracts/runtimepermissions/",
+        "?? internal/session/runtime_permissions.go",
+        "?? internal/session/runtime_permissions_test.go",
+        "?? scripts/__pycache__/",
+        "?? scripts/permission-smoke-meter.py"
+      ]
+    },
+    "yijie-desktop": {
+      "head": "c3a6195c540982e6304d02a2918f70eb0f49eb1a",
+      "status": [
+        "M docs/design/CHANGELOG.md",
+        " M docs/design/docs/design/08-governance/08-component-color-convergence.md",
+        " D docs/design/proposals/2026-09-06-component-colors/01-current-audit.md",
+        " D docs/design/proposals/2026-09-06-component-colors/02-component-color-matrix.md",
+        " D docs/design/proposals/2026-09-06-component-colors/03-verification.md",
+        " D docs/design/proposals/2026-09-06-component-colors/README.md",
+        " D docs/design/proposals/2026-09-06-component-colors/build-review.mjs",
+        " D docs/design/proposals/2026-09-06-component-colors/capture-review.cjs",
+        " D docs/design/proposals/2026-09-06-component-colors/preview-server.mjs",
+        " D docs/design/proposals/2026-09-06-component-colors/preview/PageHarness.vue",
+        " D docs/design/proposals/2026-09-06-component-colors/preview/PreviewControls.vue",
+        " D docs/design/proposals/2026-09-06-component-colors/preview/StateAtlas.vue",
+        " D docs/design/proposals/2026-09-06-component-colors/preview/atlas.css",
+        " D docs/design/proposals/2026-09-06-component-colors/preview/candidate-theme.ts",
+        " D docs/design/proposals/2026-09-06-component-colors/preview/candidate-tokens.css",
+        " D docs/design/proposals/2026-09-06-component-colors/preview/index.html",
+        " D docs/design/proposals/2026-09-06-component-colors/preview/main.ts",
+        " D docs/design/proposals/2026-09-06-component-colors/preview/page-candidate.css",
+        " D docs/design/proposals/2026-09-06-component-colors/preview/tauri-stub.ts",
+        " D docs/design/proposals/2026-09-06-component-colors/review.html",
+        " D docs/design/proposals/2026-09-06-component-colors/tsconfig.preview.json",
+        " D docs/design/proposals/2026-09-06-component-colors/validation/candidate-source-hashes.json",
+        " D docs/design/proposals/2026-09-06-component-colors/validation/component-and-page-captures.json",
+        " D docs/design/proposals/2026-09-06-component-colors/validation/contrast-roles.json",
+        " D docs/design/proposals/2026-09-06-component-colors/validation/page-state-audit.cjs",
+        " D docs/design/proposals/2026-09-06-component-colors/validation/page-state-audit.json",
+        " D docs/design/proposals/2026-09-06-component-colors/validation/page-state-audit.md",
+        " D docs/design/proposals/2026-09-06-component-colors/validation/review-ui.json",
+        " D docs/design/proposals/2026-09-06-component-colors/validation/worktree-preservation.json",
+        " D docs/design/proposals/2026-09-06-component-colors/worktree-before.json",
+        " M package.json",
+        " M scripts/check-agent-host-v4-contract.mjs",
+        " M scripts/run-local-demo-fast.sh",
+        " M scripts/sync-desktop-skill-resources.mjs",
+        " M src-tauri/icons/128x128.png",
+        " M src-tauri/icons/128x128@2x.png",
+        " M src-tauri/icons/32x32.png",
+        " M src-tauri/icons/icon.icns",
+        " M src-tauri/icons/icon.ico",
+        " M src-tauri/icons/icon.png",
+        " M src-tauri/src/chat/application.rs",
+        " M src-tauri/src/chat/database.rs",
+        " M src-tauri/src/chat/host_bridge.rs",
+        " M src-tauri/src/chat/ipc.rs",
+        " M src-tauri/src/chat/migrations.rs",
+        " M src-tauri/src/chat/mod.rs",
+        " M src-tauri/src/chat/sidecar.rs",
+        " M src-tauri/src/chat/worker.rs",
+        " M src-tauri/src/lib.rs",
+        " M src/components/chat/ChatComposer.vue",
+        " M src/icons/registry.test.ts",
+        " M src/icons/registry.ts",
+        " M src/pages/chat/ChatPage.vue",
+        "?? scripts/local-permission-candidate.mjs",
+        "?? scripts/local-permission-candidate.test.mjs",
+        "?? scripts/sync-app-icons.mjs",
+        "?? scripts/sync-runtime-permissions.mjs",
+        "?? src-tauri/migrations/chat/0013_chat_permission_modes.sql",
+        "?? src-tauri/schemas/chat-runtime-permissions-v1.schema.json",
+        "?? src-tauri/src/chat/runtime_permissions.rs",
+        "?? src/api/generated/chat-permission-state.gen.ts",
+        "?? src/api/generated/runtime-permissions.gen.ts",
+        "?? src/api/runtime-permission-client.ts",
+        "?? src/components/chat/ChatPermissionControl.test.ts",
+        "?? src/components/chat/ChatPermissionControl.vue",
+        "?? src/components/chat/RuntimeApprovalList.vue",
+        "?? src/composables/useRuntimePermissions.test.ts",
+        "?? src/composables/useRuntimePermissions.ts"
+      ]
+    },
+    "yijie-codex": {
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "status": []
+    }
+  },
+  "codex_sha256": "4efe16d2848680752cf9aacf4c17741ab2eeb7415894a66c2bb03652b00a322d",
+  "runtime-manifest.json_sha256": "1cfa2e0a139b2213f4d29b1efeed71d4810110ac865f0bcbd931ff33b0062c1b"
+}

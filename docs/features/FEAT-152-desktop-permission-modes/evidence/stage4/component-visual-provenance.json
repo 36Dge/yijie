@@ -1,0 +1,17 @@
+{
+  "kind": "production component visual check, not Runtime E2E",
+  "command": "pnpm exec vite --config .local/feat152-s4/visual/vite.config.mjs",
+  "browser_viewport": {
+    "width": 1180,
+    "height": 760
+  },
+  "network": "loopback Vite assets only; no Native, Host, Runtime or model calls",
+  "source_sha256": {
+    "src/components/chat/ChatPermissionControl.vue": "c110e591fb8290ac10cb81493d267446c635d4b33cb6a2b090b74dfb1fec8cc5",
+    "src/components/yijie/YjIcon.vue": "ced5db7d7aa278d63342b4aafa382b67b833ac8c365c774a6d7aa1f1b05c88a8",
+    "src/styles/main.css": "ed5c5a01da54f34890ca7c1b899eede26a5d1000254baa7a36d375adfac566d0",
+    "src/styles/variables.css": "8ca8e1e824886c775c73403a57c92a84200522b7a719d293f593013a8462e79c",
+    "src/styles/component-colors.css": "c10d69fb7b0b48450450c5574c925db965e0e14371612964c33f32c7faf2fa38",
+    "src/design/theme/naive-theme.ts": "086dd8d7d3e1579ba729c317debdc3e8351cc4ddbe565538c5e38c8722365c60"
+  }
+}

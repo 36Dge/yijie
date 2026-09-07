@@ -1,0 +1,47 @@
+{
+  "paid_calls_this_closeout": 0,
+  "total_used": 23,
+  "limit": 25,
+  "remaining": 2,
+  "current_checks": {
+    "cargo_fmt": {
+      "exit_code": 0
+    },
+    "cargo_clippy_strict": {
+      "exit_code": 0
+    },
+    "native_permission_tests": {
+      "exit_code": 0,
+      "passed": 2
+    },
+    "native_dispatch_test": {
+      "exit_code": 0,
+      "passed": 1
+    },
+    "native_policy_configuration_only": {
+      "exit_code": 0,
+      "provider_calls": 0,
+      "runtime_turns": 0
+    },
+    "host_policy_focused_tests": {
+      "exit_code": 0
+    },
+    "host_lint": {
+      "exit_code": 0
+    }
+  },
+  "existing_managed_guardian_reviews": [
+    {
+      "session_id": "01a0797c-a58d-7471-8c06-f61cdd013bdd",
+      "outcome": "allow"
+    },
+    {
+      "session_id": "01a07a39-3b2f-7022-80dc-6836713ee0a2",
+      "outcome": "allow"
+    }
+  ],
+  "natural_denial_available": false,
+  "manual_takeover": "NOT RUN: native configured-policy scenario prepared; user confirmation and additional paid budget pending",
+  "clippy_change_contract_impact": "none: local tuple type alias only, no SQL, field order, wire, persistence or permission semantics changed",
+  "verification_policy_input_contract_impact": "additive local verification environment input; public DTO and default policies unchanged; feature aggregate remains semantic"
+}

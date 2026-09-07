@@ -1,0 +1,31 @@
+{
+  "modes": [
+    {
+      "approvalPolicy": "on-request",
+      "approvalsReviewer": "user",
+      "mode": "ask",
+      "provider": "minimax",
+      "sandbox": "workspaceWrite"
+    },
+    {
+      "approvalPolicy": "on-request",
+      "approvalsReviewer": "auto_review",
+      "mode": "auto",
+      "provider": "minimax",
+      "sandbox": "workspaceWrite"
+    },
+    {
+      "approvalPolicy": "never",
+      "approvalsReviewer": "user",
+      "mode": "full",
+      "provider": "minimax",
+      "sandbox": "dangerFullAccess"
+    }
+  ],
+  "provider_calls": 0,
+  "restart_recovery": "NOT RUN: requires a real completed turn",
+  "runtime_version": "0.144.6",
+  "scope": "real Host-to-retained-Runtime configuration only",
+  "status": "PASS",
+  "tool_executions": 0
+}

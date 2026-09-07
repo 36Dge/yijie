@@ -1,0 +1,70 @@
+{
+  "stage": "S3",
+  "scope": "The three ordered steps authorized on 2026-09-07",
+  "status": "PASS",
+  "desktop_task_id": "01a0797c-6d49-7872-9615-1d929bcc8ddb",
+  "real_runtime_thread_id": "01a0797c-6d7a-7623-8951-b4564547f0a2",
+  "guardian_thread_id": "01a0797c-a58d-7471-8c06-f61cdd013bdd",
+  "files": {
+    "auto.txt": {
+      "content": "S3-auto",
+      "sha256": "5c04580fe402561546e3dbafcf4bae51c6e64798b7666e72fcef54bb8f68458f"
+    },
+    "full.txt": {
+      "content": "S3-full",
+      "sha256": "341630be578dd00015ee576cfdc7cc117c2596a249bf74dfe7efca42ba8e12cd"
+    },
+    "after-full.txt": {
+      "before_manual_decision": "absent",
+      "after_rejection": "absent",
+      "runtime_result": "command_declined"
+    }
+  },
+  "auto_review": {
+    "provider": "minimax",
+    "model": "MiniMax-M3",
+    "native_outcome": "allow",
+    "manual_decisions": 0,
+    "provider_request_ordinals": [
+      7,
+      8,
+      9
+    ]
+  },
+  "full_access": {
+    "cancel_kept_mode": "auto",
+    "confirmation_appeared_again_after_cancel": true,
+    "confirmed_mode": "full",
+    "subsequent_selection_did_not_repeat_confirmation": true,
+    "provider_request_ordinals": [
+      10,
+      11
+    ]
+  },
+  "contraction": {
+    "same_task": true,
+    "mode": "ask",
+    "policy": "on-request",
+    "sandbox": "workspace-write",
+    "network_access": false,
+    "manual_decision": "reject",
+    "provider_request_ordinals": [
+      12,
+      13
+    ]
+  },
+  "final_mode": "ask",
+  "cost": {
+    "prior": 6,
+    "this_stage": 7,
+    "total": 13,
+    "authorized_total": 15,
+    "remaining": 2
+  },
+  "not_run": [
+    "No naturally denied auto-review occurred; manual takeover semantics verified from native source and focused adapter tests only",
+    "No S4 full recovery/network/file-change or light/dark/minimum-window matrix",
+    "No forced process exits, unsafe resources, destructive permission changes, Runtime replacement or forged live callbacks"
+  ],
+  "shutdown": "Normal app quit and meter Ctrl-C; ports 18081 and 18083 closed"
+}
