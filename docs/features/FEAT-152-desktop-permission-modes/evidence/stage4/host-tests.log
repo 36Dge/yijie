@@ -1,0 +1,20 @@
+=== RUN   TestRuntimePermissionModes
+--- PASS: TestRuntimePermissionModes (0.00s)
+=== RUN   TestRuntimeApprovalCallbackRoundTrip
+=== RUN   TestRuntimeApprovalCallbackRoundTrip/approve_once
+=== RUN   TestRuntimeApprovalCallbackRoundTrip/reject
+--- PASS: TestRuntimeApprovalCallbackRoundTrip (0.00s)
+    --- PASS: TestRuntimeApprovalCallbackRoundTrip/approve_once (0.00s)
+    --- PASS: TestRuntimeApprovalCallbackRoundTrip/reject (0.00s)
+=== RUN   TestRuntimePermissionGrantUsesRequestedTurnScope
+--- PASS: TestRuntimePermissionGrantUsesRequestedTurnScope (0.00s)
+=== RUN   TestRuntimeAutomaticReviewRemainsNative
+--- PASS: TestRuntimeAutomaticReviewRemainsNative (0.00s)
+=== RUN   TestRuntimeAutomaticTakeoverIsBoundIdempotentAndReportsFailure
+=== RUN   TestRuntimeAutomaticTakeoverIsBoundIdempotentAndReportsFailure/accepted
+=== RUN   TestRuntimeAutomaticTakeoverIsBoundIdempotentAndReportsFailure/unavailable
+--- PASS: TestRuntimeAutomaticTakeoverIsBoundIdempotentAndReportsFailure (0.00s)
+    --- PASS: TestRuntimeAutomaticTakeoverIsBoundIdempotentAndReportsFailure/accepted (0.00s)
+    --- PASS: TestRuntimeAutomaticTakeoverIsBoundIdempotentAndReportsFailure/unavailable (0.00s)
+PASS
+ok  	github.com/36Dge/yijie-agent-host/internal/codex	2.265s

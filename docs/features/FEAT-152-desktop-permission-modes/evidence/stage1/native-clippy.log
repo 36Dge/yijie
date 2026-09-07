@@ -1,0 +1,12 @@
+    Checking yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri)
+error: very complex type used. Consider factoring parts into `type` definitions
+    --> src/chat/database.rs:3207:18
+     |
+3207 |         let row: Option<(String, String, String, String, String, i64, Vec<u8>, String)> = self
+     |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |
+     = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.95.0/index.html#type_complexity
+     = note: `-D clippy::type-complexity` implied by `-D warnings`
+     = help: to override `-D warnings` add `#[allow(clippy::type_complexity)]`
+
+error: could not compile `yijie-desktop` (lib) due to 1 previous error

@@ -519,6 +519,8 @@ verification:
     - evidence/delivery/governance-final-d4.log
     - evidence/delivery/meta-final-lint.log
     - evidence/delivery/meta-final-tests.log
+    - evidence/delivery/text-export-normalization.json
+    - evidence/delivery/governance-first-stage-whitespace.log
   diff_review:
     status: PASS
     summary: 仅 S2 范围结构化复核：原生请求关联当前 thread/turn；决策在 RPC 写入后确认且同决策幂等；新回合 admission 不破坏已接受操作重放；保留 scope/owner 校验；旧

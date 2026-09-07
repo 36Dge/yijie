@@ -1,0 +1,70 @@
+$ ./scripts/run-local-demo-fast.sh --stable-api-only
+FEAT-134 v4 immutable objects verified at Contracts 87f94c9aa6d4848cb67aa8a1265bd21474edb0bb and Agent Host 96b1fa19783694aef583b614c492fd2b6b5c15cc; activation is exact local/demo_fast/stable only.
+FEAT-137 permanent retirement authority verified: 4d3f967938dde1c86ca34003a0a5628717f96262; acceptance remains NOT PASSED
+$ node scripts/sync-desktop-skill-resources.mjs --channel local-development
+Synchronized local-development: 38 installable Skills, categories 5/9/7/9/8.
+$ node scripts/check-agent-host-v4-contract.mjs && node scripts/check-approval-retirement.mjs && pnpm skills:sync:local && env -u YIJIE_FEAT134_STREAMING_ENABLED -u VITE_YIJIE_FEAT134_STREAMING_ENABLED -u YIJIE_FEAT136_COMMAND_TOOL_ITEMS_ENABLED -u VITE_YIJIE_FEAT136_EXECUTION_ENABLED -u YIJIE_FEAT137_COMMAND_APPROVAL_ENABLED -u VITE_YIJIE_FEAT137_APPROVAL_ENABLED VITE_YIJIE_FEAT134_STREAMING_ENABLED=true VITE_YIJIE_FEAT136_EXECUTION_ENABLED=true VITE_YIJIE_ENV=local VITE_YIJIE_LOCAL_PROFILE=demo_fast VITE_YIJIE_CHAT_LOCAL_UI_ENABLED=true VITE_YIJIE_AUTHORITATIVE_PERMISSION_UI_ENABLED=true VITE_YIJIE_LOCAL_WHITELIST_LOGIN_ENABLED=false tauri build --debug --bundles app --no-sign --config src-tauri/tauri.feat131-stable.conf.json
+FEAT-134 v4 immutable objects verified at Contracts 87f94c9aa6d4848cb67aa8a1265bd21474edb0bb and Agent Host 96b1fa19783694aef583b614c492fd2b6b5c15cc; activation is exact local/demo_fast/stable only.
+FEAT-137 permanent retirement authority verified: 4d3f967938dde1c86ca34003a0a5628717f96262; acceptance remains NOT PASSED
+$ node scripts/sync-desktop-skill-resources.mjs --channel local-development
+Synchronized local-development: 38 installable Skills, categories 5/9/7/9/8.
+        Warn --no-sign flag detected: Signing will be skipped.
+        Info Looking up installed tauri packages to check mismatched versions...
+     Running beforeBuildCommand `pnpm build`
+$ vue-tsc --noEmit && vite build
+vite v8.1.3 building client environment for production...
+[2K
+transforming...✓ 5353 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                      0.40 kB │ gzip:   0.27 kB
+dist/assets/YjIcon-BmPrxpO0.css                      0.51 kB │ gzip:   0.19 kB
+dist/assets/main-DnTN7IYv.css                        0.71 kB │ gzip:   0.37 kB
+dist/assets/AccessDeniedPage-C549waJM.css            1.05 kB │ gzip:   0.39 kB
+dist/assets/YjEmpty-gVjCw_m1.css                     1.16 kB │ gzip:   0.40 kB
+dist/assets/component-colors-BhkuEDh2.css            2.02 kB │ gzip:   0.60 kB
+dist/assets/YjSection-kVl7766Z.css                   2.10 kB │ gzip:   0.54 kB
+dist/assets/YjChartCard-Db5TVbkt.css                 3.89 kB │ gzip:   0.92 kB
+dist/assets/SettingsPage-BwyXATV_.css                4.89 kB │ gzip:   0.93 kB
+dist/assets/SkillMarketplacePage-Dh-mR3_0.css        5.81 kB │ gzip:   1.19 kB
+dist/assets/StorePage-DJGZPpj-.css                   8.36 kB │ gzip:   1.28 kB
+dist/assets/WorkflowPage-CuHWcts5.css               10.53 kB │ gzip:   1.47 kB
+dist/assets/App-Qrluh9np.css                        17.61 kB │ gzip:   3.47 kB
+dist/assets/ChatPage-CqVLoZEP.css                   81.37 kB │ gzip:   9.32 kB
+dist/assets/_plugin-vue_export-helper-BDNMzG2s.js    0.08 kB │ gzip:   0.09 kB
+dist/assets/AccessDeniedPage-CAsBH0aM.js             0.80 kB │ gzip:   0.58 kB
+dist/assets/YjEmpty-Bj_2e8bX.js                      0.84 kB │ gzip:   0.50 kB
+dist/assets/light-BLsg7FUg.js                        1.73 kB │ gzip:   0.62 kB
+dist/assets/YjSection-Dnk6LunP.js                    1.92 kB │ gzip:   0.80 kB
+dist/assets/_common-CvMYRM3d.js                      2.28 kB │ gzip:   0.89 kB
+dist/assets/router-DS-iPJ-Y.js                       4.53 kB │ gzip:   1.78 kB
+dist/assets/index-D_XE4A3n.js                        4.54 kB │ gzip:   2.11 kB
+dist/assets/pinia-BV-i2v2L.js                        7.48 kB │ gzip:   3.30 kB
+dist/assets/WorkflowPage-zGNYWj74.js                 8.84 kB │ gzip:   2.94 kB
+dist/assets/Tag-CxG7Tv81.js                          9.70 kB │ gzip:   2.97 kB
+dist/assets/SettingsPage-DIPO-BWP.js                11.74 kB │ gzip:   4.54 kB
+dist/assets/StorePage--CJIPZCv.js                   25.22 kB │ gzip:   8.19 kB
+dist/assets/YjIcon-B6GuLXLZ.js                      26.28 kB │ gzip:   9.23 kB
+dist/assets/permission.store-DoQ4ObZJ.js            33.32 kB │ gzip:  12.62 kB
+dist/assets/SkillMarketplacePage-wBi9oLjN.js        46.93 kB │ gzip:  15.39 kB
+dist/assets/Card-DzwFncup.js                        74.84 kB │ gzip:  24.48 kB
+dist/assets/event-BkslYAn-.js                       94.78 kB │ gzip:  28.16 kB
+dist/assets/vue.runtime.esm-bundler-e5W2HnNR.js    110.49 kB │ gzip:  42.37 kB
+dist/assets/chat.store-DaRXNZlY.js                 185.15 kB │ gzip:  43.47 kB
+dist/assets/ChatPage-B_3yQGNw.js                   185.50 kB │ gzip:  49.12 kB
+dist/assets/App-DiCSbV16.js                        196.64 kB │ gzip:  52.38 kB
+dist/assets/YjChartCard-IqyVShnm.js                543.37 kB │ gzip: 185.56 kB
+
+✓ built in 438ms
+[plugin builtin:vite-reporter]
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+   Compiling yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 5.77s
+       Built application at: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/target/debug/yijie-desktop
+    Bundling 易界 AI FEAT-131.app (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/target/debug/bundle/macos/易界 AI FEAT-131.app)
+        Warn Skipping signing due to --no-sign flag.
+    Finished 1 bundle at:
+        /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/target/debug/bundle/macos/易界 AI FEAT-131.app

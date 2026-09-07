@@ -1,0 +1,20 @@
+$ ./scripts/run-local-demo-fast.sh --stable-api-only
+FEAT-134 v4 immutable objects verified at Contracts 87f94c9aa6d4848cb67aa8a1265bd21474edb0bb and Agent Host 96b1fa19783694aef583b614c492fd2b6b5c15cc; activation is exact local/demo_fast/stable only.
+FEAT-137 permanent retirement authority verified: 4d3f967938dde1c86ca34003a0a5628717f96262; acceptance remains NOT PASSED
+$ node scripts/sync-desktop-skill-resources.mjs --channel local-development
+Synchronized local-development: 38 installable Skills, categories 5/9/7/9/8.
+$ node scripts/check-agent-host-v4-contract.mjs && node scripts/check-approval-retirement.mjs && pnpm skills:sync:local && env -u YIJIE_FEAT134_STREAMING_ENABLED -u VITE_YIJIE_FEAT134_STREAMING_ENABLED -u YIJIE_FEAT136_COMMAND_TOOL_ITEMS_ENABLED -u VITE_YIJIE_FEAT136_EXECUTION_ENABLED -u YIJIE_FEAT137_COMMAND_APPROVAL_ENABLED -u VITE_YIJIE_FEAT137_APPROVAL_ENABLED VITE_YIJIE_FEAT134_STREAMING_ENABLED=true VITE_YIJIE_FEAT136_EXECUTION_ENABLED=true VITE_YIJIE_ENV=local VITE_YIJIE_LOCAL_PROFILE=demo_fast VITE_YIJIE_CHAT_LOCAL_UI_ENABLED=true VITE_YIJIE_AUTHORITATIVE_PERMISSION_UI_ENABLED=true VITE_YIJIE_LOCAL_WHITELIST_LOGIN_ENABLED=false tauri build --debug --bundles app --no-sign --config src-tauri/tauri.feat131-stable.conf.json
+FEAT-134 v4 immutable objects verified at Contracts 87f94c9aa6d4848cb67aa8a1265bd21474edb0bb and Agent Host 96b1fa19783694aef583b614c492fd2b6b5c15cc; activation is exact local/demo_fast/stable only.
+FEAT-137 permanent retirement authority verified: 4d3f967938dde1c86ca34003a0a5628717f96262; acceptance remains NOT PASSED
+$ node scripts/sync-desktop-skill-resources.mjs --channel local-development
+Synchronized local-development: 38 installable Skills, categories 5/9/7/9/8.
+        Warn --no-sign flag detected: Signing will be skipped.
+        Info Looking up installed tauri packages to check mismatched versions...
+     Running beforeBuildCommand `pnpm build`
+$ vue-tsc --noEmit && vite build
+src/composables/useRuntimePermissions.ts(34,67): error TS18047: 'decisionFailure' is possibly 'null'.
+[ELIFECYCLE] Command failed with exit code 2.
+beforeBuildCommand `pnpm build` failed with exit code 2
+       Error beforeBuildCommand `pnpm build` failed with exit code 2
+[ELIFECYCLE] Command failed with exit code 1.
+[ELIFECYCLE] Command failed with exit code 1.

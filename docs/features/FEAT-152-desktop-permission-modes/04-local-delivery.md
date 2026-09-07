@@ -60,3 +60,5 @@ pnpm --dir yijie-desktop tauri:demo-fast:app
 用户长期禁止的强杀、攻击注入、危险fixture、权限破坏或Runtime替换测试未执行。只声明所列正常检查；S4真实模型证据与本次零付费交付检查分别记录。应用在用户确认窗口空闲后通过Cmd-Q正常退出，完成重启后已交还用户使用。
 
 最终元仓检查：严格D4、lint和50项测试均通过。日志见[最终D4](evidence/delivery/governance-final-d4.log)与[治理测试](evidence/delivery/meta-final-tests.log)。
+
+证据入库补充：已有忽略规则排除了.log，现已逐文件纳入本Feature提交；文本日志和AX导出只规范化行尾空白，原始字节/hash完整保留在[text-export-normalization.json](evidence/delivery/text-export-normalization.json)。第一次入库空白诊断保留，测试结果没有改写。正在运行的App原始stdout已正常移至私有日志路径，提交的是固定时刻快照。

@@ -1,0 +1,78 @@
+Diff in /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/src/chat/application.rs:1127:
+         &self,
+         session_id: Uuid,
+     ) -> Result<super::runtime_permissions::RuntimeApprovalSnapshot, ChatError> {
+-        let Some(id) = self.database.runtime_approval_session_id(session_id).await? else {
++        let Some(id) = self
++            .database
++            .runtime_approval_session_id(session_id)
++            .await?
++        else {
+             // A newly queued task has no Runtime yet and cannot have a
+             // Runtime approval. Ownership was checked by the DB query.
+             return Ok(super::runtime_permissions::RuntimeApprovalSnapshot::default());
+Diff in /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/src/chat/database.rs:3204:
+         validate_non_nil(operation_id)?;
+         let now = unix_seconds()?;
+         self.expire_attachments(now)?;
+-        type StoredStartTurnDispatchRow = (
+-            String,
+-            String,
+-            String,
+-            String,
+-            String,
+-            i64,
+-            Vec<u8>,
+-            String,
+-        );
++        type StoredStartTurnDispatchRow =
++            (String, String, String, String, String, i64, Vec<u8>, String);
+         let row: Option<StoredStartTurnDispatchRow> = self
+             .connection
+             .query_row(
+Diff in /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/src/chat/database.rs:4338:
+             .query_row(
+                 "SELECT agent_session_id FROM chat_sessions
+                  WHERE id=?1 AND owner_user_id=?2 AND tenant_id=?3",
+-                params![session_id.to_string(), self.scope.owner_user_id, self.scope.tenant_id],
++                params![
++                    session_id.to_string(),
++                    self.scope.owner_user_id,
++                    self.scope.tenant_id
++                ],
+                 |row| row.get(0),
+             )
+             .optional()
+Diff in /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/src/chat/database.rs:15180:
+             .create_session_and_enqueue(project, "Permission storage sample", Uuid::now_v7())
+             .unwrap();
+         assert_eq!(
+-            repository.runtime_approval_session_id(first.session_id).unwrap(),
++            repository
++                .runtime_approval_session_id(first.session_id)
++                .unwrap(),
+             None
+         );
+         assert_eq!(
+Diff in /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/src/chat/ipc.rs:4516:
+     if readiness.host == super::ChatHostReadiness::Ready
+         && readiness.storage == super::ChatStorageReadiness::Ready
+     {
+-        let resumed = if recovery_plan.resume_bound_sessions || super::runtime_permissions::enabled() {
+-            ipc_runtime
+-                .ensure_bound_sessions_resumed(&chat_runtime)
+-                .await
+-        } else {
+-            Ok(())
+-        };
++        let resumed =
++            if recovery_plan.resume_bound_sessions || super::runtime_permissions::enabled() {
++                ipc_runtime
++                    .ensure_bound_sessions_resumed(&chat_runtime)
++                    .await
++            } else {
++                Ok(())
++            };
+         #[cfg(not(feature = "feat126-s10-driver"))]
+         let recovered = if recovery_plan.restart_normal_coordinator {
+             match resumed {
