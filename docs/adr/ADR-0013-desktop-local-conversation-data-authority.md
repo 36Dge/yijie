@@ -113,3 +113,14 @@ bbolt 只保存 task/session/thread/turn 映射，Runtime 自有状态也不应�
 - [x] ADR-0014 已于 2026-08-02 接受 Desktop/Host/Runtime 跨进程物理删除状态机和
       content-free receipt。
 - [ ] 在任何代码切片前完成 Desktop Pattern、contract design、test plan 与人工 G2 批准。
+
+## 2026-09-08 FEAT-132 已授权补充
+
+用户授权“Codex 原生协议驱动 + 单一展示适配 + 原生事实加密保存”，明确区分执行语义权威与产品数据保管权威。本补充优先于上文可能把本地 turns/status 理解为独立执行状态机的表述。
+
+- Codex 决定 Thread/Turn/Item 原生 ID、phase、最终内容及执行结果；Desktop 不再次推演生命周期、前缀对账或历史事件重建。
+- Desktop SQLCipher 保管加密产品记录、已观察原生事实、显示副本、业务 outbox 和来源，不因保管副本而获得重新裁决执行结果的权力。Host bbolt 仍只存关联和必要恢复元数据。
+- 原生历史通过 thread/read/resume 读取；已观察终态优先，冷历史只作为独立来源。旧数据默认 legacy archive，Runtime ID 本身不构成原生证明。
+- migration 14 前向事务扩展，保持 ADR-0014 的密钥/scope/删除边界；不改历史 migration，不静默复制用户 DB，不用降级迁移删除新事实。
+
+实施/来源/回滚详见 [FEAT-132 调整说明](../features/FEAT-132-desktop-conversation-domain-state-machine/03-native-protocol-adjustment.md)。本补充不授权提交、发布或付费操作。

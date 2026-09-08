@@ -147,3 +147,14 @@ summary-only 产品结论由本 ADR 取代。
 - [x] 段成威于 2026-08-02 批准 DEC-126-016并关闭Q-016：Desktop SQLCipher持久化、历史懒加载、session级联物理删除。
 - [x] DESIGN-126-003 已冻结 raw-reasoning v2 schema、caps/sequence/finalized reconciliation、SQLCipher migration/history/cascade候选，并提交 DEC-126-017；fixed Runtime fixtures 4/4 PASS，等待 Owner 批准。
 - [x] 段成威于2026-08-02批准DEC-126-017、DEC-126-011/012与Desktop Pattern并宣布G2通过；进入G2A source-contract candidate评审，业务编码仍未授权。
+
+## 2026-09-08 FEAT-132 已授权替代条款
+
+用户授权原生接入改造。本节替代上文“去重、对账和封口”中由客户端解释 reasoning 执行结果的要求；允许展示 Runtime 实际提供且现有权限允许的 raw reasoning 的产品边界保持。
+
+- 传输重复只按原生 stream cursor 去重；唯一 Native 显示缓冲按原生 Item ID / contentIndex / summaryIndex 追加。
+- item/completed 的 content/summary 最终对象直接替换临时内容，不做正文前缀比较，不因 Turn 结束制造 reasoning complete/incomplete/failed。
+- 缺 completed、断线、解析或容量问题通过独立 availability / diagnostic 明示；不能覆盖 Turn 原生执行状态。保留已观察内容，不把 summary 或合成文案冒充 raw reasoning。
+- 原生事实及显示副本仍在 SQLCipher 加密保存，旧 reasoning 作为只读档案可访问；不得运行旧 accumulator 或历史 reducer。
+
+见 [FEAT-132 调整说明](../features/FEAT-132-desktop-conversation-domain-state-machine/03-native-protocol-adjustment.md)。原历史验证和额度不转移到本次 D4。

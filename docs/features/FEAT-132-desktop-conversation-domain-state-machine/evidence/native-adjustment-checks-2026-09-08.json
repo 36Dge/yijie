@@ -1,0 +1,121 @@
+{
+  "feature": "FEAT-132",
+  "date": "2026-09-08",
+  "status": "unpublished-implementation-candidate",
+  "real_D4": "NOT RUN",
+  "paid_budget": 0,
+  "paid_calls": 0,
+  "rust": {
+    "feat132_tests": 8,
+    "native_buffer_tests": 4,
+    "submission_tests": 2,
+    "failed": 0,
+    "clippy_lib_tests": "PASS",
+    "features_feat128_s10_runtime_compile": "PASS"
+  },
+  "host": {
+    "native_tests": 12,
+    "race": "PASS",
+    "producer_openapi_conformance": "PASS",
+    "canonical_read_rpc_memory_pipe": "PASS",
+    "authorization_and_no_store": "PASS",
+    "all_packages_compile_only": "PASS",
+    "go_vet": "PASS",
+    "additional_permission_regression_tests": 3
+  },
+  "frontend": {
+    "primary_suite_tests": 279,
+    "additional_consumer_tests": 62,
+    "total": 341,
+    "failed": 0,
+    "vue_tsc": "PASS",
+    "targeted_eslint": "PASS",
+    "vite_build": "PASS",
+    "design_docs_build": "PASS"
+  },
+  "contracts": {
+    "focused_native_generation": "PASS",
+    "consumer_snapshot_check": "PASS",
+    "lint": "PASS with one SSE NativeEvent unused-component warning",
+    "typescript_and_go_native_sdk_compile": "PASS",
+    "breaking_baselines": [
+      "f16a497e1377f45747f8ff9292b4b60cf2027f88",
+      "468aecec53cd708286988a221061a2e5ccd2479d"
+    ],
+    "breaking_result": "PASS",
+    "full_generation_final_state": "NOT PASS: pre-existing unrelated FEAT-137 generated drift retained at baseline"
+  },
+  "canonical_preflight": {
+    "result": "BLOCKED",
+    "error": "FEAT-152 Contracts source differs from its committed pin: scripts/generate.mjs",
+    "bypass": false
+  },
+  "independent_review": {
+    "kind": "read-only static review",
+    "remaining_P1_P2": 0,
+    "independently_ran_tests": false,
+    "real_UI_verified": false
+  },
+  "repositories": {
+    "yijie": {
+      "head": "771c0f27a7861feb08480c6fe235051aa02b5215",
+      "deleted_files": []
+    },
+    "yijie-contracts": {
+      "head": "468aecec53cd708286988a221061a2e5ccd2479d",
+      "deleted_files": []
+    },
+    "yijie-agent-host": {
+      "head": "b1bb2975a4f16ada1f95005f4674d3b219a32fec",
+      "deleted_files": []
+    },
+    "yijie-desktop": {
+      "head": "3448784464497adad4b5721133a6d4bdbf319da7",
+      "deleted_files": [
+        "src-tauri/src/chat/feat126_eval_tests.rs",
+        "src/authorization/chat-timeline-ui-config.test.ts",
+        "src/authorization/chat-timeline-ui-config.ts",
+        "src/domain/conversation-state-feat134.test.ts",
+        "src/domain/conversation-state-feat136.test.ts",
+        "src/domain/conversation-state.test.ts",
+        "src/domain/conversation-state.ts",
+        "tests/feat-132/conversation-projection-replay.test.ts"
+      ]
+    },
+    "yijie-codex": {
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "deleted_files": []
+    }
+  },
+  "source_files": {
+    "yijie-contracts/openapi/native-conversation/native-conversation.yaml": "ad4c7f0eece6acb99029358a8284535757ee5d7c97858d65b8813631f56ad651",
+    "yijie-contracts/compatibility/agent-host-native-conversation-v1.json": "5ae920d8fb1ad34c39dc80d824a9192274b5708016ceb124adb6b01ea7156d46",
+    "yijie-agent-host/internal/session/native_conversation.go": "5f77b8a8692ff047466a0f3b8ce8d9e692fe8cea502203e321e7dbbba245e04b",
+    "yijie-agent-host/internal/codex/session_protocol.go": "111b88829d9eeea371b7ae898b1be5af00c188de6d7f2bc78cce515677e3d0e2",
+    "yijie-desktop/src-tauri/src/chat/native_conversation.rs": "38e5471b3880306ff3e6787302272ed3fd8cf4e904ad7c709760dbb3f6454676",
+    "yijie-desktop/src-tauri/src/chat/native_conversation_storage.rs": "b4c9749a2e8f8da3cb6c76205d16e277b7bb8f0d91ace83a8697e574cc608592",
+    "yijie-desktop/src-tauri/migrations/chat/0014_chat_native_conversation.sql": "e4a5306fbc980599521af4ec429c51fac6b7ca7ab7354210e14bf1d38f76fc5a",
+    "yijie-desktop/src/domain/conversation-view.ts": "24a34862f6b2969f0624e40df6f059ccabee74437761d17316dd707c45c3dac0"
+  },
+  "not_executed": [
+    "real Tauri startup/send/interrupt/normal exit/restart with this candidate",
+    "real model D4",
+    "Artifact and FEAT-152 real app end-to-end",
+    "unsafe legacy full test suites",
+    "commit/push/tag/deploy",
+    "user database cutover/rollback"
+  ],
+  "safe_replacements": [
+    "normal in-memory JSONL RPC roundtrip",
+    "normal HTTP mock / SSE parser and SQLCipher persistence",
+    "ordinary bounded native event fixtures",
+    "temporary SQLCipher open-close-reopen and scoped deletion"
+  ],
+  "contract_impact": "breaking",
+  "governance": {
+    "lint": "PASS",
+    "tests": 50,
+    "failed": 0,
+    "shell_syntax": "PASS"
+  }
+}
