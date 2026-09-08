@@ -7,13 +7,13 @@
 - 最后更新：2026-09-09
 - 适用范围：`yijie` 多仓项目的需求起草、调查、设计、实现、验证、评审与发布协作
 
-## FEAT-132 当前权威（2026-09-08）
+## FEAT-132 当前权威（2026-09-09）
 
 用户已授权将 FEAT-132 改为“Codex 原生对话机制接入与视图适配”，删除自建 reducer、hydrate/reconcile、正文对账、身份猜测与自动封口；不得迁移或换名保留。Codex 决定执行事实，Desktop 保存加密产品记录，Native 仅一处显示缓冲；旧记录只读。
 
 当前实施已授权并完成本地源码提交，最终 contract-impact=breaking，必须版本化迁移旧消费者。Desktop migration 14 / Host schema 5 都不允许无兼容方案降级写入。固定 Runtime/FEAT-136 产物不变，FEAT-137 永久退役，FEAT-152 权限语义不变。
 
-原 D4 不继承；本次 paid budget=0，D4 NOT RUN。Contracts/Host 来源 pin 已按真实提交更新，原 FEAT-152 来源阻塞已解除。用户于 2026-09-09 授权本地提交和必要修复提交；推送、发布仍未授权，真实模型预算另行批准。详见 [当前验收](../features/FEAT-132-desktop-conversation-domain-state-machine/02-verification.md) 与 [原生复用/删除/回滚说明](../features/FEAT-132-desktop-conversation-domain-state-machine/03-native-protocol-adjustment.md)。
+原 D4 不继承。本次已固定 Contracts 6f632f155eacdaf93df0e0b00b5dab9e369c5442、Host 9e9d317f7e4ecff5f8aeec94fa467f9bede32139、Desktop 5e6ada73ed8b9d49dde51e4b6659ce5337304a6e；FEAT-152来源阻塞已解除，FEAT-137永久退役。用户明确授权本地提交、必要修复及25次文本/3次图片预算；实际19次文本、1次图片，临时权限模式已恢复请求批准。真实canonical启动/附件/命令/三种权限模式/原生中断/退出重启/Artifact验收通过，十项AC与local D4均PASS；未推送或发布。详见[最终验收](../features/FEAT-132-desktop-conversation-domain-state-machine/02-verification.md)。
 
 ## 1. 单人开发角色默认值
 

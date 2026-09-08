@@ -11,4 +11,6 @@
 7. 执行安全定向测试、来源/生成物检查、构建和独立审查；修复测试暴露的真实问题。没有运行广泛的故障/攻击 fixture 测试集。
 8. canonical 预检实际失败：`FEAT-152 Contracts source differs from its committed pin: scripts/generate.mjs`。候选尚未提交/重新 pin；没有绕过来源门禁，没有伪称启动或 D4 成功。
 
-所有源码和文档仍未提交；没有 commit/push/tag/deploy，没有付费调用，没有强杀、权限破坏、危险 fixture 或 binary 替换。
+以上为2026-09-08阶段记录，当时未提交、无付费调用。
+
+2026-09-09：取得明确本地提交与真实预算授权后按 Contracts→Host→Desktop→元仓固定来源。实际 canonical 验收发现并修复 AJV helper、空助手占位历史和流式期间中断分发3个问题；真实发送/附件/Command/权限/中断/退出重启/图片Artifact全部通过。最终19次文本、1次图片，十项AC均PASS，D4关闭；仅本地提交，未push/tag/deploy。详细过程与边界见04-source-freeze-and-d4-2026-09-09.md，最终结果见02-verification.md。

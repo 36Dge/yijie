@@ -1,0 +1,179 @@
+{
+  "feature": "FEAT-132",
+  "profile": "demo_fast",
+  "exposure": "local",
+  "status": "PASS",
+  "verified_at": "2026-09-08T18:19:55+00:00",
+  "sources": {
+    "yijie-contracts": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+    "yijie-agent-host": "9e9d317f7e4ecff5f8aeec94fa467f9bede32139",
+    "yijie-desktop": "5e6ada73ed8b9d49dde51e4b6659ce5337304a6e",
+    "yijie-codex": "6c1ad767f0997845b8258a1c452fd4eb7577579f"
+  },
+  "runtime": {
+    "version": "0.144.6",
+    "retained_commit": "b2b20e2fc4a0c94834f34d8cc459e488a1b56277",
+    "binary_sha256": "4efe16d2848680752cf9aacf4c17741ab2eeb7415894a66c2bb03652b00a322d",
+    "manifest_sha256": "1cfa2e0a139b2213f4d29b1efeed71d4810110ac865f0bcbd931ff33b0062c1b",
+    "modified": false
+  },
+  "budget": {
+    "text_limit": 25,
+    "text_used": 19,
+    "image_limit": 3,
+    "image_used": 1,
+    "native_review_requests": [
+      12,
+      13
+    ]
+  },
+  "real_scenarios": {
+    "text_and_saved_recovery": "PASS",
+    "csv_png_attachment": "PASS: sum=100, left red/right blue",
+    "switch_while_command_running": "PASS",
+    "command": "PASS: FEAT132_COMMAND_OK, exitCode=0",
+    "approve_once": "PASS: FEAT132_APPROVED",
+    "reject": "PASS: no file, no automatic retry",
+    "auto_review": "PASS: FEAT132_AUTO_REVIEW",
+    "full_access": "PASS: FEAT132_FULL_ACCESS",
+    "restore_ask": "PASS",
+    "native_interrupt": "PASS: 01a08216-156a-77c0-929e-c94f5151e0a2",
+    "normal_restart": "PASS: interrupted retained; FEAT132_RESTART_OK",
+    "image_artifact": "PASS: preview/save/restart preview",
+    "legacy_history": "PASS: readonly legacy views in both canonical app identities",
+    "light_dark_minimum_window": "PASS: 1180x760 window, 1180x728 WebView at DPR2"
+  },
+  "must_acceptance": {
+    "AC-001": "PASS",
+    "AC-002": "PASS",
+    "AC-003": "PASS",
+    "AC-004": "PASS",
+    "AC-005": "PASS",
+    "AC-006": "PASS",
+    "AC-007": "PASS",
+    "AC-008": "PASS",
+    "AC-009": "PASS",
+    "AC-010": "PASS"
+  },
+  "evidence_types": {
+    "AC-001": "real Host native IDs/status/text plus cross-repository generated-boundary tests; actual provider omitted phase, displayed unclassified",
+    "AC-002": "safe interleaved Item/segment and duplicate-cursor tests; real session switch",
+    "AC-003": "safe Host SSE→Native integration, completed item replaces differing deltas",
+    "AC-004": "safe tests plus real command-completed while Turn remains running; interrupted Turn does not seal unfinished reasoning Item",
+    "AC-005": "safe projection/parse/limit tests plus real WebView validation error preserved native completed",
+    "AC-006": "safe real SQLCipher close/reopen and cold-history conflict test, not an induced paid-provider failure",
+    "AC-007": "safe source-selection tests plus real reopen with distinct cold IDs",
+    "AC-008": "real legacy/attachments/Artifact/Command/Composer/three permission modes and migration tests",
+    "AC-009": "production boundary scan, deletion review, generated-source check",
+    "AC-010": "real canonical start/send/switch/interrupt/normal exit/restart"
+  },
+  "skipped": "No force-kill, executable replacement, permissions sabotage, attack injection or dangerous fixtures. Broad suites containing those scenarios were not run. No paid-provider failure was induced.",
+  "limitations": [
+    "Runtime may omit AgentMessage.phase; preserve absence, do not infer final_answer.",
+    "Legacy thread/read cannot restore every delta/Command/plan/error and may rebuild Item IDs; keep observed encrypted facts and mark partial.",
+    "Existing dynamic image tool invocation is displayed as unknown safe content; FEAT-128 Artifact resource independently supports preview/save/reopen.",
+    "Isolated Host cannot resume unrelated original Host mappings; old app histories remain readonly and may show permission synchronization unavailable.",
+    "Independent review covered the original refactor; the three D4 fixes received targeted regressions and final self-review, not a claimed second independent review."
+  ],
+  "evidence_root": "/Users/jack/Downloads/Personal_Info/CrossBSD/.local/feat132-validation-20260909/evidence",
+  "local_evidence_manifest": {
+    "native-source-index-stable-final.json": {
+      "sha256": "1edece4a5b042066f10906fcefc4042c4822d6bda824db070f7fb9539e2db062",
+      "bytes": 780
+    },
+    "after-interrupt-native-read.json": {
+      "sha256": "b8cff23ef14ddb6069d6c8e3f8cd1ff77ba159881e4561c605fb3b9064dff554",
+      "bytes": 351
+    },
+    "canonical-stable-fixed-startup.log": {
+      "sha256": "d1677dd74f904c262a45848bd90522ab45ca7210df8d77735397e6720cc1e27f",
+      "bytes": 6783
+    },
+    "native-interrupt-permission-metadata.json": {
+      "sha256": "926694897cfd0634351870691e095b81671a55fc4bdcf92f848fa848df356cad",
+      "bytes": 228582
+    },
+    "after-interrupt-session.json": {
+      "sha256": "3b6aa8f245029123c9964bb2faacb41c2da6213800e5ee5ef6ab983784594024",
+      "bytes": 196
+    },
+    "contracts-offline-install.log": {
+      "sha256": "1629393636e379d479077f3721a74212d2fd161f087e0f81624b9a4c591eb9a6",
+      "bytes": 805
+    },
+    "canonical-stable-startup.log": {
+      "sha256": "1fe44a5a7a14569237baa5f1f5a7be8180f832c7150ee6401daeeb927476106c",
+      "bytes": 6783
+    },
+    "native-live-command-approval-metadata.json": {
+      "sha256": "71bd7c79fae503275769e2c7d4b2aa0274dca32311c86333a1075d74e39fb6d5",
+      "bytes": 103361
+    },
+    "native-source-index-image.json": {
+      "sha256": "bb79b9d2ca6ce835a8be465ff039e157df88bc710e59ca7d9c2a220f88182818",
+      "bytes": 390
+    },
+    "native-thread-first-read.json": {
+      "sha256": "c13e20f0b3591e40aa1716ce6a34b0555d5c1064f102f48415df453bb4557044",
+      "bytes": 1506
+    },
+    "canonical-image-startup.log": {
+      "sha256": "46720147dd745b3b6a5bf6600e16cff0744aea9aed1d577a28edb33105821ac0",
+      "bytes": 6111
+    },
+    "final-generate-check.log": {
+      "sha256": "4491e9889e4303f177785a9328f8f8fe3c17c19939533254d9b6e4b50f56b5b7",
+      "bytes": 1320
+    },
+    "text-request-ledger.json": {
+      "sha256": "537524e05dc5098f62d363d8ce3e6148915ce56605df5abe9fa24f993585bb3d",
+      "bytes": 4878
+    },
+    "canonical-stable-history-fixed-startup.log": {
+      "sha256": "12e3cb899e00b7cd9dc61c904c65e8fbf6df8bdb30a2dbda78fab62a7baed718",
+      "bytes": 6783
+    },
+    "canonical-stable-final-restart.log": {
+      "sha256": "4ba6b2d24553fc866da126b897f4751fdc8b91e03817e45efd90e6b79686440a",
+      "bytes": 6783
+    },
+    "canonical-image-restart.log": {
+      "sha256": "bac3ca5f6984e9ce483e17fcb52fe9c37bc1e6053f479706022f1dd5c3d1b9c7",
+      "bytes": 6111
+    },
+    "native-source-index-pre-interrupt-fix.json": {
+      "sha256": "88277cdf7f9725109ef73b8855f7e411f7616fddb702f132916265f281566e54",
+      "bytes": 779
+    },
+    "image-export.json": {
+      "sha256": "a16c6fdd85e085ff4cbeb033861a90b4753fbaedb4b76e1ae57eebf7de0266b3",
+      "bytes": 318
+    },
+    "native-source-index-first.json": {
+      "sha256": "df8276072d30a7f938c0f577d36fdff5f7f33bc3fc42e519eaa256e54e2faed5",
+      "bytes": 390
+    },
+    "final-restart-native-history.json": {
+      "sha256": "8d854089774ca8767a2ec5a8762093390aa7051645dd4bbefc794835d4cb9dc1",
+      "bytes": 843
+    },
+    "user-authorization-times.json": {
+      "sha256": "84f5f54d88e69e71e0af11b70ae8d7040f6e40c6b3498d15cac4788640626f47",
+      "bytes": 560
+    },
+    "image-request-ledger.json": {
+      "sha256": "ff226c80202d18a2a6688f7737fae27911d7389aa48ae9e08ac24f067eeb952b",
+      "bytes": 320
+    },
+    "budget-authorization.json": {
+      "sha256": "026eedab2e1f6e9bc7615799d593802ee6ddb1cbc203885eb6dc7f1cf88fa4fc",
+      "bytes": 532
+    },
+    "canonical-stable-interrupt-fixed-startup.log": {
+      "sha256": "184e153287cb87aa9ca86bfe936cf0aa6f5f1b15db47b5b8363909999e70e08d",
+      "bytes": 6783
+    }
+  },
+  "app_and_meter_shutdown": "normal exit; ports 18083 and 18085 released",
+  "published": false
+}

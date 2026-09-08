@@ -5,7 +5,7 @@ feature:
   id: FEAT-132
   slug: desktop-conversation-domain-state-machine
   title: Codex 原生对话机制接入与视图适配
-  status: active
+  status: usable
   created_at: 2026-08-27
   requirement_owner: 段成威
   technical_owner: 段成威
@@ -52,8 +52,8 @@ product_ux:
     - Codex 原生接口/通知 → Host 鉴权、安全字段投影和传输 → Native 单一显示缓冲与加密保存 → Vue 视图
     - 原生最终 Item 替换临时内容，原生 Turn 终态原值保存；本地显示/同步错误独立
     - 每 Turn 使用明确来源的 Item 集合，不按正文/位置猜测融合；旧记录保留只读
-  visual_direction: 不新增页面、视觉资产或第二套 UI；继续使用现有 Vue/Pinia/Naive UI 和易界
-    token。可观察变化仅限流式、错误、恢复和终态显示更准确，light/dark 与 1180×760 现有布局不得回归。
+  visual_direction: 不新增页面、视觉资产或第二套 UI；继续使用现有 Vue/Pinia/Naive UI 和易界 token。可观察变化仅限流式、错误、恢复和终态显示更准确，light/dark 与
+    1180×760 现有布局不得回归。
   ui_states:
     idle: 原生视图或只读旧档案加载完成，无活跃原生执行或未确认本地提交时按权限/readiness 发送。
     loading: 正在读取历史或原子 resync；已确认的安全内容保持可读，不以空白状态覆盖。
@@ -65,62 +65,72 @@ product_ux:
 must_acceptance:
   - id: AC-001
     statement: 原生身份、phase、最终内容和状态贯通
-    verification: 见 03-native-protocol-adjustment.md 及本次执行记录
-    status: pending
+    verification: 02-verification.md 的十项 AC 表；evidence/d4-2026-09-09.json.evidence_types.AC-001
+    status: PASS
   - id: AC-002
     statement: 多 Item delta 不串写且传输重复不重复追加
-    verification: 见 03-native-protocol-adjustment.md 及本次执行记录
-    status: pending
+    verification: 02-verification.md 的十项 AC 表；evidence/d4-2026-09-09.json.evidence_types.AC-002
+    status: PASS
   - id: AC-003
     statement: 最终 Item 与 delta 不一致时接受原生最终值
-    verification: 见 03-native-protocol-adjustment.md 及本次执行记录
-    status: pending
+    verification: 02-verification.md 的十项 AC 表；evidence/d4-2026-09-09.json.evidence_types.AC-003
+    status: PASS
   - id: AC-004
     statement: Item 完成不终结 Turn，Turn 完成不补造 Item 结果
-    verification: 见 03-native-protocol-adjustment.md 及本次执行记录
-    status: pending
+    verification: 02-verification.md 的十项 AC 表；evidence/d4-2026-09-09.json.evidence_types.AC-004
+    status: PASS
   - id: AC-005
     statement: 投影与连接问题不伪造执行失败
-    verification: 见 03-native-protocol-adjustment.md 及本次执行记录
-    status: pending
+    verification: 02-verification.md 的十项 AC 表；evidence/d4-2026-09-09.json.evidence_types.AC-005
+    status: PASS
   - id: AC-006
     statement: 原生失败终态不被冷历史覆盖
-    verification: 见 03-native-protocol-adjustment.md 及本次执行记录
-    status: pending
+    verification: 02-verification.md 的十项 AC 表；evidence/d4-2026-09-09.json.evidence_types.AC-006
+    status: PASS
   - id: AC-007
     statement: 历史不同来源不猜测合并或重复显示
-    verification: 见 03-native-protocol-adjustment.md 及本次执行记录
-    status: pending
+    verification: 02-verification.md 的十项 AC 表；evidence/d4-2026-09-09.json.evidence_types.AC-007
+    status: PASS
   - id: AC-008
     statement: 旧数据与附件/Artifact/Command/Composer/152不回归
-    verification: 见 03-native-protocol-adjustment.md 及本次执行记录
-    status: pending
+    verification: 02-verification.md 的十项 AC 表；evidence/d4-2026-09-09.json.evidence_types.AC-008
+    status: PASS
   - id: AC-009
     statement: 生产调用链无旧 reducer/hydrate/reconcile 或等价替代
-    verification: 见 03-native-protocol-adjustment.md 及本次执行记录
-    status: pending
+    verification: 02-verification.md 的十项 AC 表；evidence/d4-2026-09-09.json.evidence_types.AC-009
+    status: PASS
   - id: AC-010
     statement: 正常运行、中断、退出和重启验证，缺口如实记录
-    verification: 见 03-native-protocol-adjustment.md 及本次执行记录
-    status: pending
+    verification: 02-verification.md 的十项 AC 表；evidence/d4-2026-09-09.json.evidence_types.AC-010
+    status: PASS
 contract:
   impact: breaking
-  authority: 固定 Codex Runtime canonical schema；新 Host wire 以 yijie-contracts
-    为源；Desktop 存储及私有 IPC 同源生成。
+  authority: 固定 Codex Runtime canonical schema；新 Host wire 以 yijie-contracts 为源；Desktop 存储及私有 IPC 同源生成。
   source_first_plan: 原生 schema/源契约 → Host → Native/SQLCipher → Vue；保留已发布兼容并退役旧 Desktop 语义链路
   status: PASS
   checks:
-    - Contracts 6f632f155eacdaf93df0e0b00b5dab9e369c5442 → Host
-      9e9d317f7e4ecff5f8aeec94fa467f9bede32139 → Desktop
-      2da23988028fec5e2d037e4aa81b448376beab65，完整SHA/digest pin检查通过
-    - 全量安全生成及两个基线breaking check通过；FEAT-137保持永久退役
-    - Host实际投影→Native decoder/SQLCipher/reopen零模型调用跨仓集成通过
+    - repository: yijie-contracts
+      command: pnpm check-generated:safe；完整固定 commit 6f632f155eacdaf93df0e0b00b5dab9e369c5442
+      status: PASS
+      exit_code: 0
+    - repository: yijie-agent-host
+      command: go test -race ./internal/session ./internal/app ./internal/codex -run '^TestFEAT132Native' -v；固定
+        commit 9e9d317f7e4ecff5f8aeec94fa467f9bede32139
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: env YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast YIJIE_RUNTIME_PERMISSIONS_ENABLED=true
+        VITE_YIJIE_RUNTIME_PERMISSIONS_ENABLED=true pnpm generate:check；固定 commit
+        5e6ada73ed8b9d49dde51e4b6659ce5337304a6e
+      status: PASS
+      exit_code: 0
 external_authorizations:
   paid_calls:
-    allowed: false
-    max_actions: 0
-    approved_by: N/A
-    approved_at: N/A
+    allowed: true
+    max_actions: 28
+    approved_by: 用户在本任务明确批准25次文本和3次图片总上限；实际19次文本、1次图片，含两次原生审批审查
+    approved_at: 2026-09-08T17:44:47.953Z
+    approval_history: evidence/d4-user-authorization-times.json；本地提交和临时权限模式切换另有明确授权
   destructive_operations:
     allowed: false
     max_actions: 0
@@ -132,46 +142,73 @@ external_authorizations:
     approved_by: N/A
     approved_at: N/A
 implementation:
-  status: active
-  real_entrypoint: cd ../yijie-desktop && pnpm tauri:demo-fast:stable
+  status: complete
+  real_entrypoint: "yijie-desktop: pnpm tauri:demo-fast:stable；图片能力复用 pnpm tauri:demo-fast:app。固定提交隔离 worktree
+    使用同一 canonical 脚本及已有绝对 Runtime/key 路径覆盖。"
   mock_only: false
 verification:
-  status: NOT RUN
-  verified_at: 2026-09-08（仅安全定向检查；真实验收 NOT RUN）
+  status: PASS
+  verified_at: 2026-09-08T18:19:55+00:00
   startup:
-    status: NOT RUN
-    command_or_steps: 从 canonical pnpm tauri:demo-fast:stable fresh 启动，核对
-      ready、Runtime 0.144.6 与 experimentalApi=false，并使用应用自身退出流程。
-    environment: Desktop local / isolated FEAT-131 stable entry / fixed Runtime
-    actual_result: "canonical 预检失败：FEAT-152 Contracts source differs from its
-      committed pin: scripts/generate.mjs；未绕过来源锁。"
+    status: PASS
+    command_or_steps: 固定源 canonical stable 与 canonical app 分别正常启动；旧应用先正常退出，验证实例按需正常退出/重启。
+    environment: macOS local/demo_fast；Runtime0.144.6；stable experimental_api=false，图片仅沿用FEAT-128既有例外
+    actual_result: 来源门禁、标准构建、readiness通过；SQLCipher前向迁移、旧档案读取与最小窗口亮暗主题通过。未绕过全局单实例锁。
   real_smoke:
-    status: NOT RUN
-    command_or_steps: 本次无真实模型授权，paid budget=0；不继承旧额度，未执行模型请求。
-    environment: Desktop local / demo_fast / fixed Runtime / experimentalApi=false
-    actual_result: NOT RUN；没有新 D4 证据。
+    status: PASS
+    command_or_steps: 首条文本→CSV/PNG→后台命令与切换→原生批准/拒绝→原生中断→auto/full/恢复ask→图片预览/保存/正常重启→中断历史保留及继续会话。
+    environment: 固定提交隔离构建；现有SQLCipher app-data；真实Desktop→Host→固定Codex→MiniMax
+    actual_result: 实际19/25次文本、1/3次图片；CSV合计100与红蓝图识别正确；命令/approve-once/auto/full文件内容正确，拒绝文件不存在；原生interrupted在正常重启后保留，继续会话返回FEAT132_RESTART_OK；图片重启后仍可预览。详见02-verification.md。
   representative_failure:
-    status: NOT RUN
-    command_or_steps: 仅普通内存消息、mock HTTP、临时 SQLCipher
-      数据验证原生失败/部分历史/最终替换/本地提交失败；不运行旧强杀、binary替换、权限破坏或攻击 fixture。
-    environment: Desktop local / synthetic non-sensitive events plus normal
-      application lifecycle
-    actual_result: 定向验证见 02-verification.md；真实应用 failure/retry 未执行。
+    status: PASS
+    command_or_steps: 实际WebView兼容错误定位修复后重读已保存回答；正常拒绝单次普通文件操作；安全合成原生failed与SQLCipher正常close/reopen验证冷历史冲突。
+    environment: 真实UI与正常非破坏性定向验证；不诱发付费Provider失败
+    actual_result: 未将显示异常改成Runtime失败；未重发第一笔请求即可恢复内容；拒绝没有执行或自动重试；真实原生中断保持准确。failed重启保留由安全定向集成覆盖，未声称实际Provider failed。
   focused_checks:
-    - 见 02-verification.md 与 evidence/native-adjustment-checks-2026-09-08.json
+    - repository: yijie-desktop
+      command: pnpm check:native-integration
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: pnpm exec vitest run scripts/native-conversation-bundle.test.mjs src/api/chat-client-feat134.test.ts
+        src/api/chat-conversation-adapter.test.ts --maxWorkers=2
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: cargo test --manifest-path src-tauri/Cargo.toml --lib
+        chat::ipc::tests::feat132_history_omits_only_empty_outbox_scaffolds -- --exact
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: cargo test --manifest-path src-tauri/Cargo.toml --lib
+        chat::application::tests::feat132_open_native_stream_dispatches_interrupt_before_terminal -- --exact
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: cargo clippy --manifest-path src-tauri/Cargo.toml --lib --tests -- -D warnings
+      status: PASS
+      exit_code: 0
   artifacts:
+    - 02-verification.md
     - 03-native-protocol-adjustment.md
-    - evidence/native-adjustment-checks-2026-09-08.json
-    - history/2026-08-27/（旧验收归档，不计入本次）
     - 04-source-freeze-and-d4-2026-09-09.md
+    - evidence/d4-2026-09-09.json
+    - evidence/d4-text-request-ledger.json
+    - evidence/d4-image-request-ledger.json
+    - evidence/d4-final-restart-native-history.json
   diff_review:
     status: PASS
-    summary: 独立只读审查最后一轮无新的可复现 P1/P2；不代替真实 Tauri/D4。
+    summary: 初始重构已有独立只读审查，无新的可复现P1/P2；D4三个追加修复完成定向回归与最终自审，未声称再次独立审查。原工作区3处并发UI修改未纳入本任务提交。
   known_limitations:
-    - 固定 Runtime Legacy history 不含全部 delta/Command/plan/error，冷热 Item ID
-      可能不同；paginated history 不适用于当前本地 Runtime
-    - Command delta 不发送正文，最终输出整体安全投影；显示超限仅标记 partial
-    - 真实 Tauri 启动/发送/中断/退出重启与 Artifact/152 端到端验收未执行，D4 NOT RUN
+    - Runtime may omit AgentMessage.phase; preserve absence, do not infer final_answer.
+    - Legacy thread/read cannot restore every delta/Command/plan/error and may rebuild Item IDs; keep observed
+      encrypted facts and mark partial.
+    - Existing dynamic image tool invocation is displayed as unknown safe content; FEAT-128 Artifact resource
+      independently supports preview/save/reopen.
+    - Isolated Host cannot resume unrelated original Host mappings; old app histories remain readonly and may
+      show permission synchronization unavailable.
+    - Independent review covered the original refactor; the three D4 fixes received targeted regressions and
+      final self-review, not a claimed second independent review.
 public_readiness:
   required: false
   status: not_applicable
