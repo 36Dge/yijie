@@ -15,6 +15,8 @@
 
 原 D4 不继承。本次已固定 Contracts 6f632f155eacdaf93df0e0b00b5dab9e369c5442、Host 9e9d317f7e4ecff5f8aeec94fa467f9bede32139、Desktop 5e6ada73ed8b9d49dde51e4b6659ce5337304a6e；FEAT-152来源阻塞已解除，FEAT-137永久退役。用户明确授权本地提交、必要修复及25次文本/3次图片预算；实际19次文本、1次图片，临时权限模式已恢复请求批准。真实canonical启动/附件/命令/三种权限模式/原生中断/退出重启/Artifact验收通过，十项AC与local D4均PASS；未推送或发布。详见[最终验收](../features/FEAT-132-desktop-conversation-domain-state-machine/02-verification.md)。
 
+2026-09-09日常入口收尾已通过：Desktop当前为c0dd70c240d48c2c16d046aa27c9b32ec4d32c5b，包含单独提交的权限弹窗UI、说明修正及旧清理记录的只读历史修复；Contracts/Host来源不变。普通canonical入口沿用原Host Home和app-data，8条原Host映射及最后Turn身份/状态保持一致，旧附件历史与Artifact正常重开。本轮未增加模型调用，历史清理未完成、附件过期及隔离Host缺少映射仍如实保留。详见[日常入口报告](../features/FEAT-132-desktop-conversation-domain-state-machine/05-daily-entry-verification-2026-09-09.md)。
+
 ## 1. 单人开发角色默认值
 
 易界当前采用“段成威一人使用 Codex 开发”的工作模式。除非段成威针对某个需求明确指定其他人，新 Feature Package 和交付文档默认使用以下角色：

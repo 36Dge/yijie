@@ -1,10 +1,10 @@
 # FEAT-132 原生机制调整：最终验收
 
-2026-09-09，**D4 PASS，十项 Must AC 全部通过；仅限 local/demo_fast**。本次使用新的明确授权与真实结果，不继承旧 FEAT-132 的 D4。
+2026-09-09，**D4 PASS，十项 Must AC 全部通过；仅限 local/demo_fast**。本报告保留原生改造D4的固定提交与证据；后续普通入口验证及新增修复见 [日常入口报告](05-daily-entry-verification-2026-09-09.md)。本次使用新的明确授权与真实结果，不继承旧 FEAT-132 的 D4。
 
 ## 固定来源与实际入口
 
-| 仓库 | 本次最终完整 commit |
+| 仓库 | 原生改造D4验收时的完整 commit |
 |---|---|
 | Contracts | `6f632f155eacdaf93df0e0b00b5dab9e369c5442` |
 | Host | `9e9d317f7e4ecff5f8aeec94fa467f9bede32139` |
@@ -63,6 +63,8 @@ AC-002/003/005/006 中需要精确制造协议组合的部分使用普通内存�
 
 固定 Runtime 的冷历史仍缺少部分 delta、Command、plan、error，Item ID 也可能重建；显示“不完整”是明确的能力边界。未标阶段的消息保留未分类；现有动态图片工具调用本身显示为安全 unknown 内容，独立 Artifact 资源的预览/保存/重开可用。
 
+当前Host投影只报告Command输出pending-final，原生completed后才整体交付安全最终正文；逐字流式Command输出尚未提供，这属于当前投影取舍。
+
 隔离 Host 不拥有其他原 Host 的映射；这些旧档案可读，但权限同步可能提示不可用。本次没有冒称已迁移原 Host 的全部运行索引，也没有复制它们。
 
 未执行强杀、binary 替换、权限破坏、攻击注入、危险 fixture 或含这些场景的广泛测试集。没有为原生 failed 验证故意制造 Provider 故障。签名、公证、发布和 public/production 验证不属于本次 local D4。
@@ -73,4 +75,5 @@ AC-002/003/005/006 中需要精确制造协议组合的部分使用普通内存�
 - [文本台账](evidence/d4-text-request-ledger.json)、[图片台账](evidence/d4-image-request-ledger.json)、[授权时间](evidence/d4-user-authorization-times.json)。
 - [重启后的原生历史状态](evidence/d4-final-restart-native-history.json)、[Artifact 保存摘要](evidence/d4-image-export.json)。
 - [来源固定与推进记录](04-source-freeze-and-d4-2026-09-09.md)、[复用/删除/迁移/回滚清单](03-native-protocol-adjustment.md)。
+- [后续文档收尾与日常入口验证](05-daily-entry-verification-2026-09-09.md)。
 - [2026-09-08 定向验证归档](history/2026-09-08/02-verification.md)、[原需求历史](history/2026-08-27/02-verification.md)。

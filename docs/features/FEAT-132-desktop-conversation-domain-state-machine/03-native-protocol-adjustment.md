@@ -1,6 +1,6 @@
 # FEAT-132 原生接入实施与来源说明
 
-日期：2026-09-08，2026-09-09 更新来源固定。用户已授权并完成本地源码提交；未发布、未部署，D4 待真实验证。最新提交和执行状态见 [当前推进记录](04-source-freeze-and-d4-2026-09-09.md)。
+日期：2026-09-08，2026-09-09 完成来源固定和真实local/demo_fast D4，十项Must AC全部通过。用户已授权并完成本地源码提交；未发布、未部署。最终结果见 [验收报告](02-verification.md)，过程见 [推进记录](04-source-freeze-and-d4-2026-09-09.md)。
 
 ## 实际基线
 
@@ -77,7 +77,7 @@ Host bbolt 私有 schema 4 → 5 前向升级；只新增 NativeRevision / Nativ
 
 本次最终按 breaking 管理：旧 Desktop 对合成生命周期的依赖无法维持行为兼容，必须完成消费者迁移。采用新 v7/versioned private IPC。v1–v6 HTTP/SSE 格式保留为单向兼容投影，移除无原生依据的状态合成属于本次明确授权的语义修正；旧 Desktop 语义消费者必须先退役，不能混用新语义 Host 与仍依赖合成状态的旧 Desktop。FEAT-137 的公开历史格式只读，不意味着重新激活其功能。
 
-正式切换必须：旧应用正常结束所有活跃 Turn → 正常退出 → Contracts immutable source → Host pin/构建 → Desktop pin/构建 → migration → 正常启动验证。当前没有对用户运行中的数据库执行切换。
+正式切换必须：旧应用正常结束所有活跃 Turn → 正常退出 → Contracts immutable source → Host pin/构建 → Desktop pin/构建 → migration → 正常启动验证。2026-09-09 D4在旧应用正常退出后，使用固定提交的隔离构建及两个应用身份各自现有的app-data；未复制用户数据库或凭据。该轮Host Home隔离，没有证明原Host全部运行映射已完成日常接管，不能将旧档案可读等同于旧任务均可继续执行。
 
 回滚禁止自动启用旧 reducer，也禁止把 native facts 逆写到旧 body/status 推断格式。Desktop schema 14 和 Host schema 5 都不能交给不认识新 schema 的旧版本继续写入；只能修复向前，或在明确数据兼容方案后由用户管理旧版本及其旧数据库。不得静默复制、降级迁移或删除新记录来制造兼容。未执行任何回滚/发布。
 

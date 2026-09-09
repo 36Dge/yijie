@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-132",
+  "scope": "daily-entry follow-up; preserves the original D4 evidence scope",
+  "verified_at": "2026-09-09T03:24:34.609508+00:00",
+  "status": "PASS",
+  "contract_impact": "none",
+  "sources": {
+    "yijie-contracts": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+    "yijie-agent-host": "9e9d317f7e4ecff5f8aeec94fa467f9bede32139",
+    "yijie-desktop": "c0dd70c240d48c2c16d046aa27c9b32ec4d32c5b",
+    "yijie-codex": "6c1ad767f0997845b8258a1c452fd4eb7577579f"
+  },
+  "entrypoint": "pnpm tauri:demo-fast:app",
+  "application_id": "com.yijie.ai",
+  "host_home": "yijie-desktop/.local/demo-fast/host-home",
+  "codex_home": "yijie-desktop/.local/demo-fast/codex-home",
+  "app_data": "~/Library/Application Support/com.yijie.ai",
+  "original_host_mapping_count": 8,
+  "final_host_mapping_count": 8,
+  "mapping_and_turn_status_preserved": true,
+  "active_turn_references_after": 0,
+  "concurrent_ui_preserved": {
+    "docs/design/docs/design/05-patterns/09-settings-permissions.md": true,
+    "src/components/chat/ChatPermissionControl.vue": true,
+    "src/styles/variables.css": true
+  },
+  "checks": {
+    "source_pin_digests": "PASS: 42 entries match fixed Git objects and current source files",
+    "canonical_build_start_readiness": "PASS",
+    "old_history": "PASS",
+    "cleanup_history_after_fix_and_restart": "PASS: readable, existing incomplete cleanup shown, inputs disabled",
+    "normal_session_after_cleanup_history": "PASS: attachment/permission controls available",
+    "legacy_attachment": "PASS: existing expired state and metadata retained; expired bytes not restored",
+    "artifact": "PASS: existing geometric image preview before/after normal restart",
+    "permission_mode": "ask preserved; no expanded mode or new approvals",
+    "host_index": "PASS",
+    "desktop_docs_build": "PASS",
+    "desktop_lint": "PASS",
+    "desktop_generate_check": "PASS",
+    "permission_ui_tests": "8/8 PASS",
+    "store_focused_tests": "760/760 PASS",
+    "regression_before_fix": "FAIL reproduced chat_resource_not_found",
+    "normal_shutdown": "PASS: app/Host/Runtime ended; ports 18081/18083/18085 released"
+  },
+  "budget": {
+    "text": {
+      "limit": 25,
+      "used": 19,
+      "new_calls": 0
+    },
+    "image": {
+      "limit": 3,
+      "used": 1,
+      "new_calls": 0
+    }
+  },
+  "fix": "c0dd70c240d48c2c16d046aa27c9b32ec4d32c5b",
+  "limitations": [
+    "Existing cleanup_protocol_failure backlog was not retried or deleted.",
+    "Expired attachment metadata remains readable; expired bytes are not restored.",
+    "The earlier isolated image task remains absent from the original Host index; preview works, permission synchronization unavailable.",
+    "Runtime phase/cold-history limits and final-only Command output remain.",
+    "No new paid turn or image; this follow-up does not claim a new full paid D4 run.",
+    "No new independent review; focused regression and final self-review only."
+  ],
+  "safety": "No force-kill, executable impersonation, permissions sabotage, attack fixtures, database/credential copy, push, tag or deployment.",
+  "tool_observations": [
+    "Some native menu AX actions needed focus/keyboard confirmation; popup visual coverage was not overstated.",
+    "A post-quit UI read reopened a bare project App once; it was normally closed before the next canonical launch.",
+    "Tauri devtools shortcut was denied; no permission changes. Existing native WebKit Inspect Element used for read-only diagnosis."
+  ],
+  "local_evidence_root": "/Users/jack/Downloads/Personal_Info/CrossBSD/.local/feat132-daily-entry-20260909",
+  "local_evidence_manifest": {
+    "before.json": {
+      "bytes": 1184,
+      "sha256": "c0b940806c9b185dbe4b4b9c13f2d808d8421001f19205e355d5fed22f937ccd"
+    },
+    "canonical-cleanup-fixed.log": {
+      "bytes": 5971,
+      "sha256": "515aec1e8a1d22a77bdc1b61180457cd0f72ffe120c02058e6d55b231399c93a"
+    },
+    "canonical-final-restart.log": {
+      "bytes": 5971,
+      "sha256": "9bec115c91fee6684954a41bcacc72a80d902e1eb8dd82c27bb82a88c5a459a3"
+    },
+    "canonical-restart.log": {
+      "bytes": 5971,
+      "sha256": "5244c8dda681465f2e69b77e34960e91e5988c5e935375119f1f32753524d603"
+    },
+    "canonical-startup.log": {
+      "bytes": 6871,
+      "sha256": "15b73fb9777526ef5586aadfac47d8bb07488e6d61ce82618d2f77cd5dd2d0b9"
+    },
+    "cleanup-diagnosis.json": {
+      "bytes": 1002,
+      "sha256": "d32a4faabb53480fe1cd00a9a9cdddf2514fa28db83908f1a44d344497877781"
+    },
+    "cleanup-regression-before.log": {
+      "bytes": 1173,
+      "sha256": "899b6d0a0754819e98ad62e145c8039b7059076acdbc2d55ff19ca932334c2de"
+    },
+    "cleanup-store-tests.log": {
+      "bytes": 248,
+      "sha256": "813fd3acad7764d1249dac8e537a47b7f987517704c91af625cc17ecb4c1071c"
+    },
+    "desktop-docs-build.log": {
+      "bytes": 428,
+      "sha256": "d40931e8a2380a120811b587bb99678313bdc0c20a8601088f9450756686d249"
+    },
+    "desktop-lint.log": {
+      "bytes": 48,
+      "sha256": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6"
+    },
+    "final-generate-check.log": {
+      "bytes": 1320,
+      "sha256": "4491e9889e4303f177785a9328f8f8fe3c17c19939533254d9b6e4b50f56b5b7"
+    },
+    "host-index-after-first.json": {
+      "bytes": 2045,
+      "sha256": "ca679862b4093d2c49cca19def7c689429a929d83d7ba270e98ad58146efdc6e"
+    },
+    "host-index-before.json": {
+      "bytes": 2045,
+      "sha256": "ca679862b4093d2c49cca19def7c689429a929d83d7ba270e98ad58146efdc6e"
+    },
+    "host-index-final.json": {
+      "bytes": 2045,
+      "sha256": "ca679862b4093d2c49cca19def7c689429a929d83d7ba270e98ad58146efdc6e"
+    },
+    "permission-ui-tests.log": {
+      "bytes": 245,
+      "sha256": "abe75c2e3354114af8567f8b0a5fd8e76119db53ad951573785fc1a75e83d15d"
+    },
+    "readiness-final.json": {
+      "bytes": 94,
+      "sha256": "1aee0e5f1d6de922d2a3b113903d671f7d994098188260fc1dcca5f4450d2a00"
+    },
+    "readiness-first.json": {
+      "bytes": 94,
+      "sha256": "1aee0e5f1d6de922d2a3b113903d671f7d994098188260fc1dcca5f4450d2a00"
+    },
+    "source-verification.json": {
+      "bytes": 893,
+      "sha256": "3d21999b7e02f119040e4556e8d8fb5b267b0466536237ee1c5ba900fa316b17"
+    }
+  }
+}

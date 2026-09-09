@@ -196,6 +196,7 @@ verification:
     - evidence/d4-text-request-ledger.json
     - evidence/d4-image-request-ledger.json
     - evidence/d4-final-restart-native-history.json
+    - 05-daily-entry-verification-2026-09-09.md
   diff_review:
     status: PASS
     summary: 初始重构已有独立只读审查，无新的可复现P1/P2；D4三个追加修复完成定向回归与最终自审，未声称再次独立审查。原工作区3处并发UI修改未纳入本任务提交。
