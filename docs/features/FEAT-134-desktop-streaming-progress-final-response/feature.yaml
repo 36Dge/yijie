@@ -1,36 +1,32 @@
 schema_version: 3
-delivery_profile: "demo_fast"
-exposure: "local"
-
+delivery_profile: demo_fast
+exposure: local
 feature:
-  id: "FEAT-134"
-  slug: "desktop-streaming-progress-final-response"
-  title: "Desktop 流式响应、过程状态与最终回答分层"
-  status: "usable"
-  created_at: "2026-08-28"
-  requirement_owner: "段成威"
-  technical_owner: "段成威"
-  reviewer: "段成威"
-  release_owner: "段成威"
-
+  id: FEAT-134
+  slug: desktop-streaming-progress-final-response
+  title: 基于 Codex 原生事实的流式响应、过程状态与最终回答展示
+  status: usable
+  created_at: 2026-08-28
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
 scope:
-  risk_level: "high"
-  data_classification: "restricted"
-  contract_impact: "semantic"
-  database_change: "expand"
-  persistence_change: "durable"
-  runtime_change: "none"
-  auth_permission_change: "none"
-  user_workflow_change: "user_visible"
-  ui_change: "interactive"
-  ai_behavior_change: "model"
-
+  risk_level: high
+  data_classification: restricted
+  contract_impact: none
+  database_change: none
+  persistence_change: none
+  runtime_change: none
+  auth_permission_change: none
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: none
 repositories:
-  - "yijie"
-  - "yijie-contracts"
-  - "yijie-agent-host"
-  - "yijie-desktop"
-
+  - yijie
+  - yijie-contracts
+  - yijie-agent-host
+  - yijie-desktop
 timebox:
   target_hours: 12
   hard_stop_hours: 16
@@ -38,232 +34,172 @@ timebox:
   same_blocker_minutes: 90
   non_core_limit_minutes: 120
   core_blocker_minutes: 240
-
 product_ux:
-  status: "PASS"
-  primary_user: "在易界 AI Desktop 中观察 Agent 实时处理过程、阅读最终回答并在稍后重开对话的本地用户"
-  problem: "FEAT-132 已建立 ConversationState，FEAT-133 已建立 Timeline 展示框架，但当前 live projection 将 Assistant 流压成单一文本，并丢失 commentary/final phase、稳定 plan、reasoning 可用性和独立 Item lifecycle；页面无法准确区分等待、过程、推理记录、最终回答及不完整终态，也无法保证这些语义与本地历史重开一致。"
-  user_outcome: "用户从 canonical local 入口看到由真实契约事件驱动的流式回答：等待、过程信息、模型推理记录和最终回答层级清楚，完成、失败与中断状态准确，已确认的部分内容不会丢失或重复；重开 Desktop 已持久化的会话后保持同样的顺序、身份和语义。该结果直接服务于完整 Epic 的 Codex-inspired 对话工作区目标，但 FEAT-134 完成不等于 Epic 完成。"
+  status: PASS
+  primary_user: 在易界 AI Desktop 中观察 Agent 实时处理过程、阅读最终回答并在稍后重开对话的本地用户
+  problem: FEAT-132 已改为原生接入，但 FEAT-134 需求仍依赖旧 reducer/正文对账；当前显示混合 summary/raw，已结束 Turn 的未结束 Item 仍误报忙碌，availability 与诊断表达不足。
+  user_outcome: 直接复用 native v7 与唯一 NativeDisplayBuffer，真实区分过程、摘要、原始正文及最终回答；原生执行事实与内容可用性和 UI 忙碌分离，历史只读兼容。
   in_scope:
-    - "以固定 Runtime 的稳定 schema 为上游事实，先在 yijie-contracts 建立显式协商的 Agent session event vNext，不静默修改 v1、v2 或 v3"
-    - "投影 AgentMessage lifecycle 的 commentary/final_answer/null phase，并投影稳定 turn/plan/updated；明确排除 experimental item/plan/delta"
-    - "把受支持的 raw reasoning delta/finalized 与 unavailable/incomplete reason 明确纳入兼容基线；沿用 ADR-0016 的不可信纯文本、Restricted Data 与无产品级复制按钮边界"
-    - "仅在 demo_fast/local 将固定 managed provider reasoning effort 设为 high，并启用 Host raw-reasoning projection；不增加用户可选档位，不影响 public/production"
-    - "由 yijie-agent-host 按真实 itemId、turnId 与协商版本生成事件，保留 item.completed 与 turn.completed 的不同语义，并升级 Contracts pin"
-    - "由 Desktop 私有 IPC、FEAT-132 ConversationState authority 和 SQLCipher history authority 消费、归并并持久化新增语义，不建立页面侧第二份状态机"
-    - "在 FEAT-133 ChatTimeline 上呈现等待、commentary/plan、模型推理记录、最终回答、完成、失败、中断、warning/error 与 unknown；最终回答永不默认折叠"
-    - "按真实 Item identity 聚合交错 delta，以 authoritative item.completed snapshot 对账，保证不丢字、不重复、不回滚已确认正文"
-    - "仅对 Desktop 已观察并成功持久化的事件保证 live/hydration 等价；Host 进程级短窗 replay 不充当产品历史 authority"
-    - "长流展示节流、文本选择稳定和动态可访问反馈，以及 light、200% zoom 与键盘基线；只向 FEAT-141 输出真实 active/streaming 信号。Owner 已将 dark theme、Reduce Motion 与精确 1180×760 从 FEAT-134 治理门禁移除，三项均为 WAIVED / NOT REQUIRED，不是 PASS"
-    - "保留 FEAT-127 附件、FEAT-128 Artifact 和 FEAT-133 Timeline/clipboard authority，不改变其 identity、存储或 action 边界"
+    - 复用 FEAT-132 原生通道、唯一显示缓冲和加密事实，不新增执行机制
+    - summary/content 分类别及原生索引展示，纯文本、无产品复制按钮
+    - 只有有效实时订阅观察能开启忙碌；Turn 结束后未 completed 的 Item 保留事实并显示缺结束记录
+    - Item availability 与会话范围安全诊断可见，不把投影问题视为执行失败
+    - 修订冲突测试、删除已确认无调用残留，保留旧协议、资源与历史依赖
+    - 修正文档、必要 CI 来源布局与八项 AC，进行正常 canonical 现有数据验证
   out_of_scope:
-    - "修改、升级、重编译、替换、同步或重新固定 yijie-codex Runtime、binary、schema 或 pin；experimentalApi 必须保持 false"
-    - "使用 experimental item/plan/delta、从文本或事件顺序猜测 commentary/final phase、伪造 plan step、时间、百分比或 reasoning 正文"
-    - "把 warning 在缺少 turnId 时猜测归因到 active Turn；只能按真实 thread/session authority 呈现"
-    - "把 Host 内存 replay 当作跨进程或跨重启历史；错过事件后的复杂恢复、重连和 missing-final 修复属于 FEAT-140/FEAT-142"
-    - "新增 Stop/Cancel 控件或定义停止命令；FEAT-134 只消费真实 interrupted/failed 状态，控制能力属于 FEAT-139"
-    - "重写 Composer、Sidebar、附件、Artifact、Command/Tool 详情、审批、复杂恢复或长对话虚拟化策略"
-    - "引入 React、assistant-ui、第二套 Timeline/状态 authority 或新增依赖；任何确需依赖的提案必须停止并单独获得 Owner 授权"
-    - "除 Owner 于 2026-08-28 明确批准的 demo_fast/local 固定 reasoning effort=high 与 Host raw projection 外，修改模型、prompt、Provider、summary 或其它 start-turn reasoning 配置"
-    - "自动滚动、阅读位置保持、reader state 或跟随策略；这些能力属于 FEAT-141"
-    - "逐像素复制 Codex Desktop、建立版本/build Freeze、使用已撤回人工材料或要求 Owner 补采 Codex 证据"
-    - "语音、模型版本信息、模型推理强度配置/档位 UI、分享、切换置顶摘要、显示右侧上下文面板、分支到新聊天"
-    - "CAP-022 / GS-006 文件修改与 Diff；既有 Artifact 可以保留，但不得包装或描述为 FileChange/Diff"
-    - "除 Owner 明确授权的 canonical 无敏感纯文本验证外，任何额外 Provider prompt、付费调用、生产写入或 public/production 发布；历史 tranche 已消费 4/4，当前追加 tranche 已消费 6/7、剩余 1 次，Feature 累计 10/11；每次均禁止工具/文件读写且不是程序自动重试，历史失败与额度不得覆写"
+    - 不修改 Runtime、原生协议、数据库 migration、FEAT-152 权限或 local-only raw/high 配置
+    - 不恢复 FEAT-137、不新增正文对账、身份猜测、历史重建或自动封口
+    - 不复制用户数据库或凭据；不修复旧清理操作、自然过期附件或无绑定任务
+    - 无本次真实模型调用授权，不转移 FEAT-132 或原 FEAT-134 历史额度
+    - 已授权本轮本地提交及必要pin/修复提交；不推送、打tag、合并或部署。
+    - dark theme、Reduce Motion、精确 1180×760 为原 Owner WAIVED / NOT REQUIRED，不是 PASS
   main_flow:
-    - "用户通过 canonical pnpm tauri:demo-fast:stable 零登录进入 Chat；FEAT-132 ConversationState 是 Timeline 唯一语义输入，页面不读取 raw Host/Runtime wire。"
-    - "Turn 开始但尚无正文时，只依据真实 active lifecycle 显示克制的等待反馈；没有真实 plan 或进度值时不生成步骤、时长或百分比。"
-    - "Host 按协商的 vNext 发送真实 Item lifecycle、delta、phase、稳定 plan 和受支持 reasoning 状态；Desktop 按 itemId 与内容块索引增量归并。"
-    - "Timeline 将 commentary/plan 与模型推理记录作为次级、可折叠过程，将 final_answer 作为主要结果且默认展开；null/unknown phase 使用明确的未分类语义，不猜测成 final。"
-    - "item.completed 仅对账对应 Item；即使某 Item 已完成，只要尚未收到 turn.completed，Turn 仍保持 active。"
-    - "收到 completed、interrupted 或 failed 的 turn.completed 后，保留所有已确认部分正文并停止流式指示；错误或不完整原因只影响对应范围。"
-    - "Desktop 将已观察事件写入 SQLCipher 权威历史；用户重开会话时按相同 identity、ordinal、kind、phase、content 与 status hydration，不重复 final。"
-    - "FEAT-127 附件与 FEAT-128 Artifact 继续从既有 authority 进入 Timeline；本 Feature 收口时只声明 FEAT-134 能力完成，完整 Epic 继续由后续 Feature 收口。"
-  visual_direction: "继承 codex-inspired-approximate-parity-v1-2026-08-27 / owner-approved-inference：以 Yijie Design System 和现有 ChatTimeline 为准，最终回答保持最高阅读优先级，commentary/plan/reasoning 使用克制的次级层级与稳定 disclosure；允许颜色、间距、图标和局部布局与 Codex Desktop 合理不同，不依赖任何已撤回截图或版本专属观察。"
+    - canonical 普通入口进入 Chat，沿用现有 app-data 和 Host Home
+    - 加载既有历史，旧档案只读、原生来源与缺失信息明确
+    - 新原生视图仅由既有安全订阅整份替换，唯一 Native 缓冲追加
+    - 显式 phase/plan 分层；reasoning 摘要和正文分别显示
+    - 原生 Item 最终对象直接替换，Turn 结束不封口 Item；UI 关闭忙碌并说明缺结束记录
+    - 正常会话切换、退出、重启后验证既有历史和资源功能
+  visual_direction: 继承 codex-inspired-approximate-parity-v1-2026-08-27 / owner-approved-inference：以 Yijie Design System 和现有 ChatTimeline 为准，最终回答保持最高阅读优先级，commentary/plan/reasoning 使用克制的次级层级与稳定 disclosure；允许颜色、间距、图标和局部布局与 Codex Desktop 合理不同，不依赖任何已撤回截图或版本专属观察。
   ui_states:
-    idle: "Thread 已加载且没有 active Turn；历史内容、Item identity、phase 与终态保持稳定，不显示流式光标或虚假处理状态。"
-    loading: "初次 hydration 使用稳定 skeleton；已有内容刷新时保留已确认正文，不闪成空白，也不把 loading 当作 Agent 过程。"
-    success: "真实 commentary/plan/reasoning 与 final 分层显示；最终回答默认展开，完成状态不只依赖颜色，item.completed 不抢先结束 active Turn。"
-    empty: "无消息时显示明确的开始任务提示，不生成示例过程、plan、reasoning 或 Assistant 消息；Composer authority 不变。"
-    error: "turn-correlated error、thread-scoped warning、unknown phase、reasoning unavailable/incomplete 和 failed Turn 依据各自 authority 显示脱敏文案；已确认内容继续可读。"
-    retry: "只有既有上层 authority 提供安全恢复意图时才显示恢复入口；Timeline 组件不直接调用 Host、Tauri 或网络，复杂 resync 留给 FEAT-140/FEAT-142。"
-    cancel: "本 Feature 不新增停止控件；收到真实 interrupted 终态时保留 partial content、移除流式指示并显示不完整状态，实际 Stop action 属于 FEAT-139。"
-
+    idle: 历史内容可读，不把旧活跃状态当当前执行。
+    loading: 显示历史加载反馈，既有正文不被重写。
+    success: 原生最终内容、phase、plan 和不同 reasoning 类型可辨；执行和显示可用性分开。
+    empty: 不伪造内容、计划或原始 reasoning。
+    error: 安全文案说明投影、容量或历史缺失；原生 failed 独立保留。
+    retry: 只使用既有协调器入口，不补发任务或猜测接管。
+    cancel: Turn 原生 interrupted 保留；未 completed 的 Item 不封口，关闭 UI busy。
 must_acceptance:
-  - id: "AC-001"
-    statement: "多个 Assistant Item 或内容块的 Unicode delta 按真实 itemId、block index 与 sequence 确定性聚合；交错、重复或批量发布后不丢字、不重复、不串 Item。"
-    verification: "Contracts/Host fixture 与 Desktop adapter/reducer 测试覆盖多 Item 交错、Unicode 边界、重复 event_id、sequence gap 和批量 envelope；核对每个稳定 identity 的完整正文。"
-    status: "PASS"
-  - id: "AC-002"
-    statement: "commentary、稳定 plan、模型推理记录与 final_answer 只依据显式投影分层；null/unknown phase、缺失 reasoning 或缺失 plan 不通过字符串、位置或时序推断。"
-    verification: "vNext schema/compatibility tests、Host mapping tests、Desktop parser/reducer/Timeline tests和安全 negative fixtures；确认 experimental item/plan/delta 被拒绝或忽略。"
-    status: "PASS"
-  - id: "AC-003"
-    statement: "authoritative item.completed snapshot 与已累计 delta 对账后仅保留一份内容，不回滚已确认文本；turn.completed 不再生成重复 final。"
-    verification: "覆盖 snapshot 等于、长于、短于或冲突于累计 delta 的 reducer 状态表，并以稳定协议规则处理 gap/conflict；重开历史核对 final 唯一。"
-    status: "PASS"
-  - id: "AC-004"
-    statement: "item.completed 只结束对应 Item；Turn 在真实 turn.completed 前保持 active，首个 delta 前显示真实等待态且不伪造步骤、百分比、耗时或流式正文。"
-    verification: "Host lifecycle fixture、Desktop private projection 与 ConversationState 测试覆盖 Item 先完成而 Turn 继续、无 delta active 和多个 Item 生命周期。"
-    status: "PASS"
-  - id: "AC-005"
-    statement: "completed、interrupted 与 failed 终态准确区分；interrupted/failed 保留已确认 partial content 并标记不完整，错误或 warning 不擅自封口 Turn。"
-    verification: "确定性 lifecycle/notice fixture 与 reducer/Timeline 测试；不强杀、不故障注入、不破坏权限、不替换 binary，并仅消费安全合成状态或已有无敏感历史。"
-    status: "PASS"
-  - id: "AC-006"
-    statement: "模型推理记录遵守 ADR-0016：仅显示受支持 raw reasoning 的不可信纯文本；complete/incomplete/unavailable 与 reason code 准确，缺失正文不由 final、工具输出、模板或元数据冒充。"
-    verification: "Contracts vNext negotiation、Host flag/mapping、Desktop persistence/renderer tests；核对无 Markdown/HTML/链接激活、无产品级复制按钮、无日志/遥测/审计/错误正文泄漏。"
-    status: "PASS"
-  - id: "AC-007"
-    statement: "对 Desktop 已观察并成功写入 SQLCipher 的事件，live 与重开 hydration 在 identity、ordinal、kind、phase、content、status 与 reconciliation 结果上语义等价且没有重复 final。"
-    verification: "数据库 expand/migration、snapshot/hydration 与 restart tests；明确区分 Desktop durable authority 和 Host process-local replay，不宣称恢复从未被 Desktop 观察的事件。"
-    status: "PASS"
-  - id: "AC-008"
-    statement: "长流采用不丢事件的展示节流，文本选区不被流式装饰改写，布局无明显抖动且动态反馈不过度播报；light、200% zoom 与键盘下无关键阻塞。dark theme、Reduce Motion 与精确 1180×760 已由 Owner 从本 Feature 门禁移除，状态为 WAIVED / NOT REQUIRED，不作为 PASS claim。"
-    verification: "长流 reducer/component performance fixture、selection/aria-live/layout-stability tests，加 canonical local 的 light、200% zoom 与键盘 smoke；自动滚动与 reader state 留给 FEAT-141。dark theme、Reduce Motion 与精确 1180×760 无需执行或恢复系统设置；Yijie 本地 Artifact 不充当 Codex reference evidence。"
-    status: "PASS"
-
+  - id: AC-001
+    statement: 多 Item、Unicode、原生 reasoning 分段仅由唯一 Native 缓冲追加，传输重复只在既有入口处理。
+    verification: Native 缓冲及 Host 原生投影定向测试，多 Item/分段/Unicode 与 cursor。
+    status: PASS
+  - id: AC-002
+    statement: commentary/final/plan 仅来自原生字段，缺失不推断。
+    verification: 原生 phase/plan 转发和只读 selector 测试；缺失保持 unknown/无 plan。
+    status: PASS
+  - id: AC-003
+    statement: 完整原生 Item 直接替换草稿，接受更短、不同及合法空内容，无正文对账或重复 final。
+    verification: 原生缓冲与最终视图值定向测试。
+    status: PASS
+  - id: AC-004
+    statement: Item 与 Turn 生命周期独立，结束不封口 Item，UI 不继续误报忙碌。
+    verification: 完成/失败/中断及仅历史加载的组件测试，验证原生事实不变。
+    status: PASS
+  - id: AC-005
+    statement: 执行结果与 availability/诊断分离，投影和存储问题不伪造终态。
+    verification: Host warning/原生 terminal、Item availability 和安全诊断测试。
+    status: PASS
+  - id: AC-006
+    statement: summary/raw 分类与原生索引稳定、纯文本、无产品复制按钮，summary-only 不冒充 raw。
+    verification: 插入摘要时正文 DOM/identity 不变；summary-only 及纯文本组件测试。
+    status: PASS
+  - id: AC-007
+    statement: 加密已观察事实重开保持来源，冷历史不覆盖原生终态、不猜身份，旧档案可读。
+    verification: 复用现有 Native/SQLCipher 正常 reopen 和跨仓集成；canonical 旧历史读取。
+    status: PASS
+  - id: AC-008
+    statement: canonical 正常启动、切换、退出重启，相关展示/a11y 与附件/Artifact/Command/FEAT-152 定向回归通过。
+    verification: 安全定向检查和 canonical 现有数据验证；豁免项不作为 PASS。
+    status: PASS
 contract:
-  impact: "semantic"
-  authority: "固定 yijie-codex 0.144.6 stable schema 是上游事实；yijie-contracts 0.6.0 candidate 的显式协商 AgentSessionEventV4 及 immutable commit 3832a6c5e99b2a6365f193280fdb887c8fdbc2de 是跨仓 wire authority；yijie-agent-host 是唯一 Runtime→Contract mapper；FEAT-132 ConversationState 是 Desktop 进程内 Timeline authority；Desktop SQLCipher 是已观察对话历史的 durable authority。"
-  source_first_plan: "yijie-contracts 独立 v4 已锁定 AgentMessage phase、稳定 turn/plan/updated 与受支持 reasoning lifecycle，完成生成/双基线检查并形成 immutable commit 3832a6c5e99b2a6365f193280fdb887c8fdbc2de；yijie-agent-host 经 201fd9f8fff6e1ee18ddc1a0477e329b0d75af0c 首个实现提交与其直接 corrective child b9358f06f3a15aa17a2471cf0bb8bfd0e2b29bfe，完成 version-gated projection、精确 Contracts pin、closed producer/failure policy 与 local fixed high/raw，Desktop 只 pin 最终 Host authority b9358f06f3a15aa17a2471cf0bb8bfd0e2b29bfe。Desktop 私有 IPC、FEAT-132 ConversationState adapter/reducer、SQLCipher 与 FEAT-133 ChatTimeline 组合已实现。最终 failed-start terminal repair/recovery 仅适用于 payload v2。pre-POST resume 的 matching Active 按 provenance 隔离：claimed attempt_count=1 必定不是当前 operation，保持 outbox inflight/Turn queued/runtime NULL、发布 TurnReconciliationRequired 且 0 次新 POST；只有 attempt_count>1 crash-reclaim 才绑定既有 runtime turn且 0 次新 POST。post-error reconciliation 的 matching Active 因本调用已 POST 同 operation 而直接绑定。confirmed turn_start_failed 才终态化；identity mismatch/non-idle/Err 保持 inflight/queued/no-runtime/no-v4并挂起自动 retry，不伪造 failed。v1 exact-local/legacy 不变。#5 后发现 native 接受 repeated finalized reasoning lifecycle，但 TimelineDelta::Ignored 不跨 WebView、TS 仍 fail-closed 的跨层 P2；现已修复并复审无 open P0/P1/P2。最终门禁 Desktop TS 835/835、Rust 316 pass/3 ignored、lint/build/fmt/diff PASS。#6 final-source canonical fresh task 完成 UI smoke并正常清理。Desktop 已提交 immutable commit 7b9daa791635250d0628c9e9f553cf40fab5ad96，工作树 clean、未 push；yijie 治理包仍未提交。若必须修改旧 closed union、启用 Runtime experimentalApi 或从缺失字段推测语义，立即停止。"
-  status: "PASS"
-  checks:
-    - repository: "yijie-contracts"
-      command: "pnpm generate && pnpm lint && pnpm test && pnpm build"
-      status: "PASS"
-      exit_code: 0
-      result: "14 JSON Schemas generated; lint/build PASS; 56 tests PASS; generated SDK current"
-    - repository: "yijie-contracts"
-      command: "pnpm check:v1-wire f16a497e1377f45747f8ff9292b4b60cf2027f88"
-      status: "PASS"
-      exit_code: 0
-      result: "Public v1 2 paths and Agent Host v1 7 paths/reference closure unchanged"
-    - repository: "yijie-contracts"
-      command: "./scripts/check-breaking.sh 164b14f609537d727a52326832da04430aecc4ab"
-      status: "PASS"
-      exit_code: 0
-      result: "No breaking OpenAPI, Protobuf, AsyncAPI, or JSON Schema change versus prior candidate"
-    - repository: "yijie-contracts"
-      command: "./scripts/check-breaking.sh f16a497e1377f45747f8ff9292b4b60cf2027f88"
-      status: "PASS"
-      exit_code: 0
-      result: "No breaking OpenAPI, Protobuf, AsyncAPI, or JSON Schema change versus published supported baseline"
-    - repository: "yijie-contracts"
-      command: "git rev-parse HEAD && git status --short"
-      status: "PASS"
-      exit_code: 0
-      result: "immutable clean HEAD 3832a6c5e99b2a6365f193280fdb887c8fdbc2de; no push performed"
-    - repository: "yijie-agent-host"
-      command: "make contract-check && go test ./... -count=1 && go test -race ./internal/session ./internal/app ./internal/codex ./cmd/desktop-host && go vet ./... && git diff --check"
-      status: "PASS"
-      exit_code: 0
-      result: "baseline 1b7bfd1c... -> initial FEAT-134 201fd9f8... -> corrective child/final authority b9358f06...; exact Contracts 0.6.0 pin, V4 producer, local high/raw isolation and all Host gates PASS; clean final HEAD, no push"
-    - repository: "yijie-desktop"
-      command: "pnpm lint && pnpm test && pnpm build && cargo test --manifest-path src-tauri/Cargo.toml"
-      status: "PASS"
-      exit_code: 0
-      result: "final static aggregate PASS: Vue/TypeScript 835/835; pnpm lint/build PASS; Rust 316 pass/3 ignored/0 fail; cargo fmt and Desktop diff check PASS. Native repeated finalized lifecycle and WebView/TS TimelineDelta::Ignored propagation are aligned; final review has no open P0/P1/P2; immutable Desktop commit 7b9daa791635250d0628c9e9f553cf40fab5ad96, clean, not pushed"
-    - repository: "yijie-desktop"
-      command: "pnpm tauri:build:demo-fast:stable && git diff --check"
-      status: "PASS"
-      exit_code: 0
-      result: "final source: normal cleanup, v4 pin check and stable debug app rebuild PASS; #6 canonical process Desktop 2026-08-29 02:02:12 / Host 02:02:39 / Runtime 02:02:40 Asia/Shanghai; fresh task content-free UI smoke PASS and normal Cmd+Q cleanup"
-
+  impact: none
+  authority: Codex 原生事实；FEAT-132 native v1/v7 与现有生成 private view；Desktop SQLCipher 保存原生事实。旧 v4/v5 仅兼容，不作为新对话执行权威。
+  source_first_plan: 既有字段足够，本轮无 wire 或持久化结构变化。只改展示、无调用残留、测试及说明。Host 构建输入来源仍必须真实提交并更新 pin；检查不放宽。
+  status: N/A
+  checks: []
 external_authorizations:
-  paid_calls: { allowed: true, max_actions: 11, approved_by: "段成威（历史 tranche 4/4；当前追加 tranche 6/7、剩余 1；Feature 累计 10/11）", approved_at: "2026-08-28T13:35:01+08:00" }
-  destructive_operations: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
-  production_writes: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
-
+  paid_calls:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  destructive_operations:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  production_writes:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
 implementation:
-  status: "complete"
-  real_entrypoint: "cd ../yijie-desktop && pnpm tauri:demo-fast:stable"
+  status: complete
+  real_entrypoint: cd ../yijie-desktop && pnpm tauri:demo-fast:app
   mock_only: false
-
 verification:
-  status: "PASS"
-  verified_at: "2026-08-29T02:07:38+08:00"
+  status: PASS
+  verified_at: 2026-09-09T08:46:52.485397+00:00
   startup:
-    status: "PASS"
-    command_or_steps: "从最终源码重建的 fresh canonical pnpm tauri:demo-fast:stable 启动，核对零登录 Chat、experimentalApi=false、四仓精确 pin、fresh Turn、SQLCipher persistence/hydration 与应用正常状态。"
-    environment: "Desktop local / demo_fast / fixed Runtime / final source rebuild / Mac unlocked / 2026-08-29 Asia/Shanghai"
-    actual_result: "PASS：#6 final-source canonical 新进程于 Desktop 02:02:12、Host 02:02:39、Runtime 02:02:40 启动；零登录直达 Chat，experimentalApi=false。Runtime 保持 clean yijie-codex@0ce5902ed400866be0196886bb78f693a004d68d，binary/manifest 匹配，未修改、升级或重编译；完成后使用应用自身 Cmd+Q 正常清理。"
+    status: PASS
+    command_or_steps: pnpm tauri:demo-fast:app，完整来源门禁及标准构建；两次由应用Cmd+Q正常退出，中间再次由相同canonical入口构建重启。
+    environment: com.yijie.ai / original app-data / original .local/demo-fast Host/Codex Home / Desktop 6e5047d1c23041c46dd495ddb89e24c7e4db5d47
+    actual_result: 两次readyz均ready；两组Desktop/Host/Runtime进程均正常结束。schema5与8条映射、最后Turn及原生终态前后完全一致。
   real_smoke:
-    status: "PASS"
-    command_or_steps: "在 Owner 授权范围内通过 canonical stable 入口提交无敏感纯文本 Turn，只保留 content-free event/status shape；不保存、复述或哈希 prompt、reasoning、plan、final 正文，不调用工具、不进行 Agent 文件/项目读写、不程序自动重试。"
-    environment: "Desktop local / canonical stable entry / historical tranche 4/4 plus current tranche 6/7 / Feature cumulative 10/11 / 1 current action remains"
-    actual_result: "PASS：#5（首次 finalized-content P2 修复源码）取得 attempts=1、outbox=done、Turn=completed、terminal=1、v4 events=187；raw reasoning item=1/part=1、stable plan update/step=0/0、AgentMessage phase=null，并完成 light、200% zoom、键盘检查。该次之后发现并修复 native durable cursor/source 已接受 repeated finalized lifecycle、但 TimelineDelta::Ignored 未跨 WebView 导致 TS fail-closed 的跨层 P2。#6 使用最终源码 fresh task/content-free ID 01a0498a-5574-7cf2-9652-14f47b6db9d4，UI 观察到 processing→completed，reasoning 与 unknown assistant 均 expanded，Composer 恢复；#6 未另取 DB event counts，绝不把 #5 的 187 冒充 #6。null 合法映射 unknown，canonical 只证明负向 producer shape；显式 final_answer 正向行为由 Contracts/Host/Desktop 确定性测试证明。治理证据不含任何正文或正文哈希。"
+    status: PASS
+    command_or_steps: 正常UI读取既有原生图片历史、未分类消息和旧等待/附件记录；预览Artifact；切换正常会话并检查权限三选项；200%缩放/键盘后恢复100%；退出重启重复历史/资源验证。
+    environment: fresh canonical build, existing data only; no new model Turn, no isolated Host Home or copied database
+    actual_result: 旧等待记录不误报当前执行；过期附件及清理保护保持；原生历史与图片预览重启前后一致；正常会话的附件/权限入口恢复，权限始终请求批准。summary/raw正向分层和Command行为由定向测试验证，不冒充当前模型新样本。
   representative_failure:
-    status: "PASS"
-    command_or_steps: "使用正常、非破坏性的 deterministic state fixture 覆盖 interrupted、failed、reasoning unavailable/incomplete、sequence gap 与 unknown phase；禁止强杀、故障注入、权限破坏、binary 替换和攻击 fixture。"
-    environment: "Contracts/Host/Desktop unit and integration tests / synthetic non-sensitive facts / normal lifecycle"
-    actual_result: "PASS：确定性测试覆盖 payload-v2-only pre-POST claimed attempt_count=1 suspend、attempt_count>1 crash-reclaim bind、post-error Active bind、两侧 0 duplicate POST、confirmed failure、identity mismatch/non-idle/Err 与 repeated finalized lifecycle 跨 WebView 边界；full TS 835/835、Rust 316 pass/3 ignored，终审无 open P0/P1/P2。没有强杀、故障注入、权限破坏、binary 替换或攻击 fixture。"
+    status: PASS
+    command_or_steps: 普通合成的中断/失败/缺失记录验证，不实施故障注入。
+    environment: 定向内存及正常临时数据库测试
+    actual_result: 普通合成原生completed/interrupted/failed、未结束Item、显示限额、冷历史冲突及来源切换通过；没有对Runtime或用户应用实施故障注入。
   focused_checks:
-    - repository: "yijie-desktop"
-      command: "focused TS chat-store suite recorded by current task"
-      status: "PASS"
+    - repository: yijie-desktop
+      command: pnpm exec vitest run src/stores/chat.store.test.ts src/components/chat/ChatNativeStreaming.test.ts src/components/chat/ChatTurnGroup.test.ts src/components/chat/ChatTimelineItemShell.test.ts src/domain/conversation-timeline-feat134.test.ts src/domain/conversation-native-view.test.ts src/components/chat/ChatCommandItem.test.ts src/components/chat/ChatPermissionControl.test.ts src/components/chat/ChatArtifactImage.test.ts src/components/chat/ChatComposer.test.ts --maxWorkers=4 --exclude '**/.local/**'
+      status: PASS
       exit_code: 0
-      result: "current exact-local failed-start repair focused TS store tests 69/69 PASS"
-    - repository: "yijie-desktop"
-      command: "focused Rust FEAT-134 suite plus two focused database tests recorded by current task"
-      status: "PASS"
+      result: 来源固定后的233/233 PASS，10份审阅后定向测试；运行日志位于.local/feat134-native-adjustment-20260909/final-frontend-tests.log。
+    - repository: yijie-desktop
+      command: pnpm lint; pnpm build; cargo clippy --all-targets -- -D warnings; cargo fmt --check; pnpm docs:build
+      status: PASS
       exit_code: 0
-      result: "finalized-reasoning lifecycle and FEAT-134 reducer focused 11/11 PASS；repeated finalized snapshot preserves confirmed state and later reasoning body mutation fails closed"
-    - repository: "yijie-desktop"
-      command: "pnpm build"
-      status: "PASS"
+      result: ESLint/TypeScript、构建、Rust静态检查与文档构建通过；Vite保留既有大chunk提示。
+    - repository: yijie-agent-host
+      command: go test ./internal/session -run <9 reviewed FEAT134/FEAT132 tests> -count=1; go vet ./internal/session
+      status: PASS
       exit_code: 0
-      result: "final payload-v2-only reconciliation production build and stable debug app rebuild PASS；#6 final-source canonical 2026-08-29 02:02:12/02:02:39/02:02:40 fresh UI smoke PASS"
-    - repository: "yijie-desktop"
-      command: "legacy_background_does_not_run_feat134_failed_turn_recovery"
-      status: "PASS"
+      result: 9项定向测试及vet通过，不是完整Go套件。
+    - repository: yijie-desktop
+      command: cargo test --lib chat::native_conversation::tests::; cargo test --lib chat::database::tests::feat132_; pnpm check:native-integration
+      status: PASS
       exit_code: 0
-      result: "flag=false background does not repair or change a generic failed outbox plus queued Turn；locks v1 exact-local/legacy unchanged boundary"
-    - repository: "yijie-desktop"
-      command: "current full pnpm test/lint/build and cargo test rerun after failed-start terminal repair"
-      status: "PASS"
+      result: Native4/4，SQLCipher正常reopen4/4，跨仓脚本另启用并通过1项SQLCipher集成及Host真实投影导出；不涉及模型或用户DB。
+    - repository: yijie
+      command: pnpm lint; pnpm test; check-feature-package.sh --gate D0
+      status: PASS
       exit_code: 0
-      result: "pnpm test 835/835；pnpm lint/build PASS；cargo test 316 pass/3 ignored/0 fail；cargo fmt --all --check and Desktop git diff --check PASS"
+      result: 元仓50/50、治理与D0通过。
+    - repository: yijie-desktop
+      command: env YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast YIJIE_RUNTIME_PERMISSIONS_ENABLED=true VITE_YIJIE_RUNTIME_PERMISSIONS_ENABLED=true YIJIE_DESKTOP_SKILLS_DIR=<existing pinned Skills checkout> pnpm generate:check
+      status: PASS
+      exit_code: 0
+      result: 原生/FEAT-152及legacy独立来源校验通过，42个来源条目对照实际Git对象和当前文件一致；消费者固定真实Host f4cf01bd6f7e9f37792ef743d44f0ce10527c10b。
   artifacts:
-    - "evidence/workspace-isolation-baseline-2026-08-28.md"
-    - "evidence/contract-first-capability-matrix-2026-08-28.md"
-    - "evidence/contracts-v4-source-first-candidate-2026-08-28.md"
-    - "evidence/host-v4-projection-candidate-2026-08-28.md"
-    - "evidence/canonical-v4-content-free-2026-08-28.md"
-  diff_review: { status: "PASS", summary: "Contracts 与 Host 已形成 immutable commits；Desktop FEAT-134 scoped diff/status 已复审。#5 后发现的 repeated finalized lifecycle 跨层 P2 已修复，最终无 open P0/P1/P2；临时 probe 源码与 target 残留均为 0，Host 空 probe 目录已删除。TS 835/835、Rust 316 pass/3 ignored、lint/build/fmt/diff 与 #6 final-source canonical fresh UI smoke 均 PASS。Desktop immutable commit 为 7b9daa791635250d0628c9e9f553cf40fab5ad96，message feat(chat): deliver FEAT-134 streaming progress and final response，工作树 clean、未 push；yijie 治理包仍未提交。" }
+    - 03-native-display-adjustment.md
+    - evidence/native-adjustment-canonical-2026-09-09.json
+  diff_review:
+    status: PASS
+    summary: 完成与实现阶段分离的Codex自审及canonical后复核：原生追加/最终对象/状态权威不变；summary/content标签和标识、busy与订阅隔离、availability/诊断、旧历史/资源/权限边界通过定向及现有数据检查。来源固定后canonical两次正常启动/退出，Host原生映射/状态无变化，未发现需要追加代码修复的问题。不冒充独立人工批准。
   known_limitations:
-    - "Contracts 0.6.0/v4 source-first candidate 已提交为 immutable HEAD 3832a6c5e99b2a6365f193280fdb887c8fdbc2de，但未打 tag、未 publish、未 push；Host 必须精确 pin 该 SHA，不能虚构 release tag。"
-    - "Host v4 projection/local high/raw 已通过 full test/race/vet/contract-check，并提交为 immutable HEAD b9358f06f3a15aa17a2471cf0bb8bfd0e2b29bfe；未 push，Desktop 必须精确 pin 该 SHA。"
-    - "Owner 已批准 demo_fast/local 固定 reasoning effort=high 与 Host raw projection，ai_behavior_change=model；#5 content-free 持久化事实确认 raw reasoning item=1/part=1，#6 final-source UI 确认 reasoning expanded。"
-    - "Runtime schema 中 AgentMessage phase 是可选字段；本次 canonical AgentMessage phase 实际为 null，Desktop 保持 unknown，不能按最后一项或 turn terminal 推断 final。"
-    - "本次工具禁令下 stable plan update/step 为 0/0；这证明没有伪造 plan，不证明 current provider 的 plan 正向 producer。稳定 plan shape 由确定性 contract/mapper/reducer 测试证明。"
-    - "Runtime warning 只有 thread 上下文，不能可靠归因到 Turn；本 Feature 不按到达时间猜测归属。"
-    - "Host replay 是进程内短窗；AC-007 只覆盖 Desktop 已观察并持久化的事实，跨进程漏事件恢复属于 FEAT-140/FEAT-142。"
-    - "FEAT-134 历史 tranche 4/4 保留；Owner 后续新增 current tranche 7 次，当前消费 6/7、剩余 1 次，Feature 累计 10/11。每次均为显式授权而非程序自动重试，旧失败历史不得覆写。"
-    - "第四次直接持久证据最深为 turn_start_failed；thread-not-found 只是新旧进程/thread 时间线和确定性代码路径的高置信推断，不作为直接日志 claim。"
-    - "Desktop-only corrective 仅在 exact local feat134_streaming_enabled=true 时让纯文本走 v2 resume/start。pre-POST matching Active 按 provenance 分支：claimed attempt_count=1 suspend，只有 attempt_count>1 crash-reclaim bind；post-error matching Active 因本调用已 POST 同 operation 而直接 bind。flag=false、public/production、v1 与既有 flag=false v2 幂等重试语义不变，Contracts/Host/Runtime 不改。"
-    - "sequence 87 仅是历史 retained-tail production-path recovery；#5 另有 attempts=1、outbox done、completed、terminal 1、v4 events 187 的独立 content-free 持久化证据。#6 是最终源码 UI smoke，未另取 DB event counts，不能继承或冒充 #5 的 187。"
-    - "最终 failed-start repair/recovery 仅适用于 payload v2；v1 exact-local/legacy 不变。pre-POST claimed attempt_count=1 保持 outbox inflight/Turn queued/runtime NULL并发 TurnReconciliationRequired，attempt_count>1 crash-reclaim 才 bind；两者均 0 次新 POST。post-error Active 直接 bind；confirmed turn_start_failed 才终态化；identity mismatch/non-idle/Err suspend且不伪造 failed。unknown version 保持 generic fail。"
-    - "历史已修复的旧 v1 行是本机过渡执行事实，不代表最终 shipped recovery 修改 v1；其 AX/counts 与 00:02 启动也只作历史 evidence。"
-    - "dark theme：WAIVED / NOT REQUIRED；不是 PASS，未执行、无需恢复，系统设置未变。"
-    - "Reduce Motion：WAIVED / NOT REQUIRED；不是 PASS，未执行、无需恢复，系统设置未变。"
-    - "精确 1180×760：WAIVED / NOT REQUIRED；不是 PASS，未执行、无需恢复，系统设置未变。"
-    - "light、200% zoom 与键盘 canonical smoke PASS；三项 waiver 不影响 AC-008 剩余基线。"
-    - "AgentMessage phase=null 是合法 unknown；canonical 只证明负向 producer shape，不冒充 final_answer。显式 final_answer 默认展开由 Contracts/Host/Desktop 确定性测试证明。"
-    - "Runtime 保持 clean yijie-codex@0ce5902ed400866be0196886bb78f693a004d68d，experimentalApi=false，binary/manifest 匹配，未修改、升级或重编译。"
-    - "临时 probe 源码与 target 残留均为 0，Host 空 probe 目录已删除。"
-    - "D4=PASS 表示本地真实 Demo 可用，不等于已 push、生产可用或完整 Epic 完成；Desktop 已提交 7b9daa791635250d0628c9e9f553cf40fab5ad96、clean、未 push，yijie 治理包仍未提交，后续 yijie 收口需 Owner 授权。"
-
+    - 原生 phase/plan 可能缺失；冷历史不完整；Command 最终对象完成后展示。
+    - 旧清理未完成、附件过期、隔离任务无日常 Host 映射均保留真实状态。
+    - 当前私有 view 未提供 diagnostic scope，保守按会话展示，不猜测归属。
+    - dark theme、Reduce Motion、精确 1180×760 保留 WAIVED / NOT REQUIRED。
+    - 原 D4 与历史预算仅见 history/2026-08-29；本轮不继承测试 PASS 或付费授权。
+    - 本轮未发送新模型Turn；summary/raw双类别、显式phase/plan以及Command正向分支由定向测试证明。
+    - 所有新提交仅在本地，未推送；远端CI、完整Host/Rust套件、合并和发布均未作为本轮通过结论。
 public_readiness:
   required: false
-  status: "not_applicable"
+  status: not_applicable
   checks: []
   external_smoke:
-    status: "NOT RUN"
-    command_or_steps: "N/A：FEAT-134 exposure=local，不提供公网入口。"
-    actual_result: "N/A：公开 Demo、生产发布和外部写入均不在本 Feature 范围。"
-
+    status: NOT RUN
+    command_or_steps: N/A：FEAT-134 exposure=local，不提供公网入口。
+    actual_result: N/A：公开 Demo、生产发布和外部写入均不在本 Feature 范围。
 documents:
-  brief: "00-feature-brief.md"
-  delivery_log: "01-delivery-log.md"
-  verification: "02-verification.md"
+  brief: 00-feature-brief.md
+  delivery_log: 01-delivery-log.md
+  verification: 02-verification.md

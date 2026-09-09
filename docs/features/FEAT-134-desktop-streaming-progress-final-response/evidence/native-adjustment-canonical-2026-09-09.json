@@ -1,0 +1,101 @@
+{
+  "feature": "FEAT-134",
+  "verified_at": "2026-09-09T08:46:52.485397+00:00",
+  "source_commits": {
+    "yijie-contracts": "db7a607c1c091fc4f4243829d68d5b673eb7e2c3",
+    "yijie-agent-host": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+    "yijie-desktop": "6e5047d1c23041c46dd495ddb89e24c7e4db5d47",
+    "yijie-codex": "6c1ad767f0997845b8258a1c452fd4eb7577579f"
+  },
+  "source_checks": [
+    {
+      "lock": "yijie-agent-host/api/native-conversation.lock.json",
+      "repository": "yijie-contracts",
+      "full_commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "verified_sources": 11
+    },
+    {
+      "lock": "yijie-desktop/contracts/native-conversation.lock.json",
+      "repository": "yijie-contracts",
+      "full_commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "verified_sources": 11
+    },
+    {
+      "lock": "yijie-desktop/contracts/runtime-permissions.lock.json",
+      "repository": "yijie-contracts",
+      "full_commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "verified_sources": 5
+    },
+    {
+      "lock": "yijie-desktop/contracts/runtime-permissions.lock.json",
+      "repository": "yijie-agent-host",
+      "full_commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+      "verified_sources": 15
+    }
+  ],
+  "entrypoint": "pnpm tauri:demo-fast:app",
+  "identity": "com.yijie.ai",
+  "data": {
+    "app_data": "~/Library/Application Support/com.yijie.ai",
+    "database": "demo-fast-v1/chat/conversations.db",
+    "host_home": "yijie-desktop/.local/demo-fast/host-home",
+    "runtime_home": "yijie-desktop/.local/demo-fast/codex-home",
+    "host_schema": "5",
+    "existing_host_sessions": 8,
+    "host_index_unchanged": true,
+    "databases_or_credentials_copied": false
+  },
+  "canonical": {
+    "standard_build": true,
+    "readiness": "ready",
+    "first_processes": [
+      13696,
+      17298,
+      17301
+    ],
+    "restart_processes": [
+      17962,
+      20908,
+      20910
+    ],
+    "normal_exit_count": 2,
+    "final_active_turns": 0,
+    "final_processes_exited": true,
+    "old_waiting_archive_no_live_claim": true,
+    "native_history_reopened": true,
+    "unknown_phase_remained_unclassified": true,
+    "expired_attachment_readable_as_metadata": true,
+    "unfinished_cleanup_preserved": true,
+    "artifact_preview_before_and_after_restart": true,
+    "normal_session_switch_restored_controls": true,
+    "permission_mode": "request_approval",
+    "permission_choices_observed": 3,
+    "permission_mode_changed": false,
+    "zoom_200_and_keyboard_controls": true,
+    "zoom_restored": 100
+  },
+  "calls_this_adjustment": {
+    "text": 0,
+    "image": 0
+  },
+  "historical_ledgers_not_transferred": {
+    "original_FEAT134": {
+      "used": 10,
+      "authorized": 11
+    },
+    "FEAT132": {
+      "text_used": 19,
+      "text_authorized": 25,
+      "image_used": 1,
+      "image_authorized": 3
+    }
+  },
+  "limits": [
+    "No fresh model Turn was requested. Native summary/raw positive display and unfinished Item states were verified with targeted synthetic tests; canonical used existing data.",
+    "No full Host/Rust suite or remote CI run is claimed.",
+    "Missing phase/plan and incomplete cold history remain native limits.",
+    "Command streaming output remains pending until native final output.",
+    "Expired attachments, incomplete cleanup and isolated tasks without normal Host mappings remain unchanged.",
+    "Dark theme, Reduce Motion and exact 1180x760 retain historical WAIVED / NOT REQUIRED status."
+  ]
+}

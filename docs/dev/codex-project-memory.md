@@ -19,6 +19,14 @@
 
 用户随后明确授权所有仓库审计、提交与推送；上述验收报告中的“未推送”是当时的历史状态。本次同步现有工作分支，修正Contracts/Host说明，源码consumer pin保持不变；Desktop CI来源/目录布局和Host旧测试断言仍列为合并前事项，不能把Git推送等同完整CI或发布通过。详见[多仓审计与同步记录](workspace-git-sync-2026-09-09.md)。
 
+## FEAT-134 当前权威（2026-09-09）
+
+FEAT-134已按用户确认任务收敛为FEAT-132 native v7之上的流式/过程展示：summary与raw按原生类别/索引分开，Item availability及安全诊断可见，UI busy仅由当前有效订阅观察驱动，Turn结束不封口Item。旧v4/v5历史及资源适配保留，无调用发布残留及冲突测试已清理。原2026-08-29 D4完整归档，本次八项AC与local D4通过。
+
+当前本地提交：Contracts db7a607c1c091fc4f4243829d68d5b673eb7e2c3、Host f4cf01bd6f7e9f37792ef743d44f0ce10527c10b、Desktop 6e5047d1c23041c46dd495ddb89e24c7e4db5d47。native Contracts源仍固定6f632f…；Desktop权限消费者及CI改用真实Host提交，42项来源校验通过。CI目录布局已修正，但本轮不推送，不代表远端CI/合并/发布通过。
+
+普通canonical入口使用原app-data/Host Home，两次正常启动/退出，既有历史/附件/Artifact/权限入口复查通过，8条原Host映射及原生终态未变；233项前端定向测试及Host/Native/SQLCipher验证通过。本轮模型请求0，不转用FEAT-132或原FEAT-134预算。原生缺阶段/冷历史不完整、Command完成后展示输出、附件过期、清理未完成和隔离任务无Host映射等限制仍保留。详见[FEAT-134最终验收](../features/FEAT-134-desktop-streaming-progress-final-response/02-verification.md)。
+
 ## 1. 单人开发角色默认值
 
 易界当前采用“段成威一人使用 Codex 开发”的工作模式。除非段成威针对某个需求明确指定其他人，新 Feature Package 和交付文档默认使用以下角色：
