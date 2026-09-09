@@ -55,4 +55,4 @@ Codex 决定 Thread/Turn/Item 身份、消息 phase、最终内容和执行结�
 
 用户后续授权执行，并单独批准 FEAT-136 本次最多10次文本请求。原生 Command 展示和两处必要缩放布局修复已完成，251项前端、10项App/zoom、原生SQLCipher/旧Command IPC各1项及真实成功/失败/正常重开通过，本次八项 local D4 PASS；累计3/10文本、0图片，计量器正常关闭。Runtime/Host/Contracts源与权限不变，旧8条Host映射不变，仅新增1条验证映射。
 
-FEAT-134四个原提交已按依赖顺序推送并核对远端SHA，精确SHA无Actions运行，CI NOT RUN。本次新增提交和推送已取得明确授权，Desktop 已固定为 8bfa5ca284fddb86d7cdd2a406c5041c49367688；元仓及远端实际状态见 FEAT-136 的 04-delivery-closure-2026-09-09.md，并发原始内容保留。最终权威见FEAT-136的02-verification.md及机器证据，原审计阶段0调用和历史FAIL不被覆盖。
+FEAT-134四个原提交已按依赖顺序推送并核对远端SHA，精确SHA无Actions运行，CI NOT RUN。本次新增提交和推送已取得明确授权：Desktop 8bfa5ca284fddb86d7cdd2a406c5041c49367688 与元仓 4e6645574fdfe7d29f7c551564bf807cf8222d48 按顺序普通推送并核对远端 SHA，两个提交均无 Actions 运行，CI NOT RUN。详见 FEAT-136 的 04-delivery-closure-2026-09-09.md，并发原始内容保留。最终权威见FEAT-136的02-verification.md及机器证据，原审计阶段0调用和历史FAIL不被覆盖。

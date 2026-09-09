@@ -4,7 +4,7 @@
 
 ## 当前来源与真实入口
 
-Desktop 验收基线为 `6e5047d1c23041c46dd495ddb89e24c7e4db5d47`，交付提交为 `8bfa5ca284fddb86d7cdd2a406c5041c49367688`。原 [机器证据](evidence/native-command-d4-2026-09-09.json) 是验收时点快照，其 candidate_committed=false、工作区状态及逐文件 SHA-256 保留历史含义；当前 Git 状态见 [交付证据](evidence/delivery-status-2026-09-09.json)。提交对象中的 10 个源码/测试文件逐项匹配原 D4 哈希，仅 Desktop 文档追加验收与交付状态区分，其前后哈希另见提交前证据；没有在新提交上重跑 D4。Contracts `db7a607c1c091fc4f4243829d68d5b673eb7e2c3`、Host `f4cf01bd6f7e9f37792ef743d44f0ce10527c10b`、Codex `6c1ad767f0997845b8258a1c452fd4eb7577579f` 未改。native Contracts pin 仍为 `6f632f155eacdaf93df0e0b00b5dab9e369c5442`，权限 Host pin 不变。
+Desktop 验收基线为 `6e5047d1c23041c46dd495ddb89e24c7e4db5d47`，交付提交为 `8bfa5ca284fddb86d7cdd2a406c5041c49367688`。原 [机器证据](evidence/native-command-d4-2026-09-09.json) 是验收时点快照，其 desktop_candidate_committed=false、工作区状态及逐文件 SHA-256 保留历史含义；当前 Git 状态见 [交付证据](evidence/delivery-status-2026-09-09.json)。提交对象中的 10 个源码/测试文件逐项匹配原 D4 哈希，仅 Desktop 文档追加验收与交付状态区分，其前后哈希另见提交前证据；没有在新提交上重跑 D4。Contracts `db7a607c1c091fc4f4243829d68d5b673eb7e2c3`、Host `f4cf01bd6f7e9f37792ef743d44f0ce10527c10b`、Codex `6c1ad767f0997845b8258a1c452fd4eb7577579f` 未改。native Contracts pin 仍为 `6f632f155eacdaf93df0e0b00b5dab9e369c5442`，权限 Host pin 不变。
 
 日常标准入口为 `pnpm tauri:demo-fast:app`。所有构建保持原来源/权限检查；普通身份 `com.yijie.ai`，现有 app-data、原 `.local/demo-fast/host-home` 与 `codex-home`。没有隔离或复制用户数据库/凭据。真实请求阶段仅使用既有 `permission-smoke-meter.py` 固定路由计量器，转发原 MiniMax endpoint，关闭自动重试，不改正文或审批策略，不借此模拟服务。
 
