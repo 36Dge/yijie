@@ -1,5 +1,7 @@
 # FEAT-134 原生展示调整验收
 
+> 2026-09-09 当前依赖与证据适用范围：本需求当前八项 AC/local D4 以 2026-09-09 原生展示记录为准；远端交付单独记录于 04-remote-delivery-2026-09-09.md。FEAT-136 卡片调整已另行实施并取得自身 local D4，不继承或改写本需求验收。详见[整体一致性复核](../FEAT-131-desktop-codex-parity-baseline/06-native-consistency-review-2026-09-09.md)。
+
 日期：2026-09-09。**八项Must AC满足，当前调整local D4 PASS**。原2026-08-29 D4及原提交的测试结果完整保留于history/2026-08-29，未作为本次新结果继承。
 
 ## 当前来源和正常入口

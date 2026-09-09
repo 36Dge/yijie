@@ -1,0 +1,131 @@
+{
+  "feature": "FEAT-136",
+  "verified_at": "2026-09-09T10:27:58.855450+00:00",
+  "contract_impact": "none",
+  "source": {
+    "desktop_base_commit": "6e5047d1c23041c46dd495ddb89e24c7e4db5d47",
+    "desktop_candidate_committed": false,
+    "desktop_changed_file_sha256": {
+      "docs/chat-native-conversation.md": "e649ae773416d36959c7ed970d3a33cedb358ff7ac90be9f0d5dfeb2406f9a8a",
+      "src-tauri/src/chat/database.rs": "018ba8d6f29bb3116d90ee41508d619fe4f76ebfdec091dc07aec4c0abcadcc7",
+      "src/components/chat/ChatCommandItem.test.ts": "6cc8010928cae929aeb31e069e902023058721eb9530d688d512ea24e072f019",
+      "src/components/chat/ChatCommandItem.vue": "53c210d459cb117edacdec66beff3e8e23311b0a55d759c8177a02eb06b165de",
+      "src/components/chat/ChatNativeStreaming.test.ts": "921ba4b57402a200849ca23c8c1f698958166292c5e8bb27ed4b5b88768fa7f9",
+      "src/components/chat/ChatTimelineItemShell.vue": "635ee926d0064cd793de2b5a306475127a53eb883dc54e0f0e3587d658251b39",
+      "src/components/yijie/YjAppShell.vue": "e4b39682b7c43f676844dd84179b8386cc82b6ca7a4557d85c6ba6fe6514ccac",
+      "src/domain/conversation-diagnostics.ts": "115b2138179fd0901c402ef1750d600426eab4fa003726a3a4bcbf5d21dbc6cf",
+      "src/domain/conversation-view.ts": "98ccfc424a2787e0ce6f40dab571731ced97abea937647a0538bce0688e30e5b",
+      "src/pages/chat/ChatPage.vue": "1dc17838223b437f682f042c8dc431ceab7fee7d5088e17d35a292d2be29d18c",
+      "src/components/chat/ChatNativeCommand.test.ts": "7bea122c200c0494ce56366f67e4394348146ab95aaee2943414c9ac2f750170"
+    },
+    "contracts_head": "db7a607c1c091fc4f4243829d68d5b673eb7e2c3",
+    "host_head": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+    "codex_head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+    "native_contracts_pin": "6f632f155eacdaf93df0e0b00b5dab9e369c5442"
+  },
+  "canonical": {
+    "entrypoint": "pnpm tauri:demo-fast:app",
+    "app_identity": "com.yijie.ai",
+    "existing_app_data": "~/Library/Application Support/com.yijie.ai/demo-fast-v1/chat/conversations.db",
+    "host_home": "yijie-desktop/.local/demo-fast/host-home",
+    "codex_home": "yijie-desktop/.local/demo-fast/codex-home",
+    "request_meter": "existing scripts/permission-smoke-meter.py, exact local verification opt-in; no policy override",
+    "normal_build_start_exit_runs": 5,
+    "final_code_real_turn_and_normal_restart": true,
+    "same_desktop_session": "01a085a9-b561-7331-be8d-4aabf9c47757",
+    "command_count_before_and_after_restart": 2,
+    "commands": [
+      {
+        "status": "completed",
+        "exit_code": 0,
+        "duration_ms": 0,
+        "cwd_label": "当前项目",
+        "safe_output_available": true,
+        "redaction_markers_observed": true
+      },
+      {
+        "status": "failed",
+        "exit_code": 128,
+        "duration_ms": 0,
+        "cwd_label": "当前项目",
+        "display_error_code": "command_failed",
+        "safe_output_available": true
+      }
+    ],
+    "permission_mode": "request_approval",
+    "permission_mode_changed": false,
+    "keyboard_disclosure_and_safe_copy": true,
+    "final_zoom_200_readability": true,
+    "zoom_restored_100": true,
+    "artifact_preview": true,
+    "existing_legacy_history_readable": true,
+    "expired_attachment_and_incomplete_cleanup_preserved": true,
+    "isolated_task_missing_host_binding_preserved": true
+  },
+  "host": {
+    "schema": "5",
+    "original_mappings_unchanged": 8,
+    "new_verification_sessions": 1,
+    "total_sessions": 9,
+    "index_unchanged_after_final_restart": true,
+    "active_turns_after_exit": 0
+  },
+  "checks": {
+    "frontend_targeted": {
+      "files": 11,
+      "passed": 251
+    },
+    "app_zoom": {
+      "files": 2,
+      "passed": 10
+    },
+    "sqlcipher_native_command_reopen": {
+      "passed": 1
+    },
+    "legacy_command_ipc": {
+      "passed": 1
+    },
+    "make_lint": "PASS",
+    "canonical_standard_build": "PASS",
+    "desktop_docs_build": "PASS",
+    "independent_phase_self_review": "PASS",
+    "reviewer_kind": "Codex self-review; not independent human approval",
+    "meta_governance": {
+      "lint": "PASS",
+      "tests_passed": 50,
+      "shell_syntax": "PASS",
+      "feature_packages_audited": 19,
+      "feat136_d4_package_gate": "PASS",
+      "candidate_digest_and_archive_integrity": "PASS"
+    }
+  },
+  "calls": {
+    "text_used": 3,
+    "text_limit": 10,
+    "image_used": 0,
+    "image_limit": 0,
+    "old_budgets_transferred": false
+  },
+  "safety": {
+    "runtime_modified": false,
+    "permissions_expanded": false,
+    "databases_or_credentials_copied": false,
+    "force_kill_or_attack_injection": false,
+    "meter_normal_shutdown": true
+  },
+  "limitations": [
+    "No individual live Command started/output-delta order claim; final safe output policy retained.",
+    "Native stable phase/plan/cold history can be incomplete; no rollout parsing or identity guessing.",
+    "Real legacy v5 Command data was not present in the inspected normal app data; compatibility covered by targeted tests; actual canonical used fresh native Commands and existing legacy text/attachments.",
+    "No full Host/Rust/Contracts suite containing prohibited scenarios was run.",
+    "Dark, exact 1180x760 and original deferred FEAT-142/143 checks are not claimed PASS.",
+    "Original FEAT-136 D4 remains archived; current candidate is not a new commit or remote release."
+  ],
+  "repository_state": {
+    "yijie_contracts": "clean, synchronized with origin",
+    "yijie_agent_host": "clean, synchronized with origin",
+    "yijie_codex": "clean, unchanged",
+    "yijie_desktop": "reviewed candidate changes uncommitted; FEAT-134 base commit pushed",
+    "yijie": "reviewed documentation/evidence changes uncommitted; FEAT-134 base commit pushed"
+  }
+}

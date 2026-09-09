@@ -1,0 +1,208 @@
+schema_version: 3
+delivery_profile: "demo_fast"
+exposure: "local"
+
+feature:
+  id: "FEAT-136"
+  slug: "desktop-command-tool-items"
+  title: "Desktop Command 执行 Item（Tool 后移）"
+  status: "usable"
+  created_at: "2026-08-29"
+  requirement_owner: "段成威"
+  technical_owner: "段成威"
+  reviewer: "段成威"
+  release_owner: "段成威"
+
+scope:
+  risk_level: "high"
+  data_classification: "restricted"
+  contract_impact: "semantic"
+  database_change: "expand"
+  persistence_change: "durable"
+  runtime_change: "runtime"
+  auth_permission_change: "none"
+  user_workflow_change: "user_visible"
+  ui_change: "interactive"
+  ai_behavior_change: "none"
+
+repositories:
+  - "yijie"
+  - "yijie-codex"
+  - "yijie-contracts"
+  - "yijie-agent-host"
+  - "yijie-desktop"
+
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+
+product_ux:
+  status: "PASS"
+  primary_user: "在易界 AI Desktop 中需要理解 Agent 只读 Command 执行结果并安全复制输出的本地用户。"
+  problem: "泛化 Item 无法稳定表达 Command 的终态、耗时、退出信息、安全输出与正常重开后的历史。"
+  user_outcome: "在 canonical local/demo_fast 入口中，真实 completed 与代表性 failed Command 各形成且只形成一个安全 Item；正常关闭重开后 SQLCipher 各恢复一次，并通过核心无障碍与 200% 验证。"
+  in_scope:
+    - "CAP-016 / GS-003 的真实 Command completed/failed terminal、cardinality、exit code、duration 与 stable error。"
+    - "Command 闭合安全投影、bounded output、redaction 与安全复制。"
+    - "Command SQLCipher persistence/hydration；正常重开后每个 terminal Item 只出现一次。"
+    - "Command light、键盘折叠、状态文字/图标、aria-live 与 200% 核心 UI。"
+    - "Owner 授权的 Runtime early sandbox-denial producer source repair及最终 cross-pin/stable artifact 冻结。"
+    - "保留 producer-neutral Tool contract/consumer 基础，但不把它声明为本 Feature 的产品交付或 Must。"
+  out_of_scope:
+    - "真实 Tool producer、产品入口、安全边界与 Tool D4；全部由 FEAT-144 承接。"
+    - "natural replay、live event_id、late event、unknown/resync；由 FEAT-142 承接。"
+    - "dark、精确 1180×760 与完整 started/output-delta 集成状态顺序；由 FEAT-143 承接。"
+    - "approval reverse request 的 accept_once/cancel 与 Runtime Cancel 形成的 declined outcome；由FEAT-137 phase 1承接（immutable source conformance PASS、D4 NOT RUN），独立decline用户动作deferred。"
+    - "FileChange、Diff、审批、写权限与 FEAT-138。"
+    - "强杀、故障注入、权限破坏、binary 替换、攻击 fixture、发布与生产写。"
+  main_flow:
+    - "canonical local/demo_fast stable runner 在 read-only/never 与 FEAT-134/136 gates 下启动。"
+    - "Runtime 发布 canonical Command terminal；Host 映射安全投影；Desktop closed decoder/reducer 展示 completed 或 failed。"
+    - "用户以键盘展开、读取并复制安全内容；状态通过文字、图标与 aria-live 表达。"
+    - "应用正常关闭和重开后，SQLCipher 按稳定身份恢复两个 terminal Item，各一次且不回滚。"
+  visual_direction: "继承 Yijie Design System；Command Item 以状态和安全结果为主，输出可折叠、可键盘操作，错误与完成不只依赖颜色。"
+  ui_states:
+    idle: "没有真实 Command 时不制造 Item；历史仅来自已持久化的安全投影。"
+    loading: "运行中状态只由真实 lifecycle 驱动；完整 live started/delta 顺序留给 FEAT-143。"
+    success: "completed terminal 显示 bounded 结果、duration 与适用 exit code。"
+    empty: "安全 aggregate 不可用时显示 unavailable，不从 raw payload 补造。"
+    error: "failed 仅显示闭合 stable code 与安全摘要；普通 error 不自行结束 Turn。"
+    retry: "本 Feature 不自动重放 Command；新尝试必须来自新的上层意图。"
+    cancel: "本 Feature 不新增取消或审批；只服从真实 Item/Turn authority。"
+
+must_acceptance:
+  - id: "AC-001"
+    statement: "真实成功 Command 形成且只形成一个 completed terminal Item，并显示 exit 0 与 duration。"
+    verification: "Fresh real tranche 中 completed=1、exit 0、duration 0ms；没有重复或第三个 Command Item。"
+    status: "pass"
+  - id: "AC-002"
+    statement: "代表性安全失败 Command 形成且只形成一个 failed terminal Item，并显示非零 exit、duration 与 stable error。"
+    verification: "Fresh real tranche 中 failed=1、exit 128、duration 0ms、stable command_failed；没有重复。"
+    status: "pass"
+  - id: "AC-003"
+    statement: "Command 仅暴露闭合安全摘要、bounded/redacted output、duration、exit 与 stable error，复制内容不含 raw Runtime、绝对路径、秘密或 wire。"
+    verification: "Fresh completed/failed 投影与 clipboard 检查 PASS；保留显式 redaction 标记。"
+    status: "pass"
+  - id: "AC-004"
+    statement: "正常关闭并重开 Desktop 后，SQLCipher 只恢复最小安全 Command 投影，每个 terminal Item 只出现一次且不回滚。"
+    verification: "Canonical 正常重开后 Items=2、completed=1、failed=1；每条一次。"
+    status: "pass"
+  - id: "AC-005"
+    statement: "Command UI 在 light 与 200% 下可读，可用键盘展开/折叠，状态以文字、图标和 aria-live 表达，且只复制安全内容。"
+    verification: "Fresh live light、键盘/折叠、状态文字/图标、aria-live、安全复制与 200% 全部 PASS。"
+    status: "pass"
+
+contract:
+  impact: "semantic"
+  authority: "yijie-codex@b2b20e2fc4a0c94834f34d8cc459e488a1b56277 的 0.144.6 canonical source 是 Runtime producer authority；yijie-contracts@87f94c9aa6d4848cb67aa8a1265bd21474edb0bb / v0.7.0 的 AgentSessionEventV5 是 Yijie JSON/SSE authority；Host 是唯一 mapper，Desktop SQLCipher 是已观察历史 authority。"
+  source_first_plan: "原始 Contracts 输入 3c3000a6fbe2f08ab2131a463a1691e867d661b1 保留历史；Owner-authorized Runtime patch 后只把 provenance/compatibility 重固定到当前最终基线。v1-v4 保持不变。"
+  status: "PASS"
+  checks:
+    - repository: "yijie-contracts"
+      command: "scoped v5 generation, digest repeat, lint, safe non-archive tests, v1 equality and breaking checks"
+      status: "PASS"
+      exit_code: 0
+      result: "v0.7.0 final commit clean；v1-v4 protected；13 个受支持 notifications 已冻结。"
+    - repository: "Host→Desktop"
+      command: "exact Contracts commit, schema and 11 ordinary fixture comparison plus focused producer/consumer suites"
+      status: "PASS"
+      exit_code: 0
+      result: "Source conformance PASS；不冒充 natural replay、unknown vertical 或 real Tool。"
+
+external_authorizations:
+  paid_calls: { allowed: false, max_actions: 0, approved_by: "N/A（本治理批额度为 0；历史 fresh tranche 1/5 保留在证据中）", approved_at: "N/A" }
+  destructive_operations: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+  production_writes: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+
+implementation:
+  status: "complete"
+  real_entrypoint: "yijie-desktop canonical local/demo_fast stable runner；FEAT-134/136 gates；experimentalApi=false；sandbox=read-only；approvalPolicy=never；本治理批不启动入口。"
+  mock_only: false
+
+verification:
+  status: "PASS"
+  verified_at: "2026-08-30T18:04:09+08:00"
+  startup:
+    status: "PASS"
+    command_or_steps: "复用 fresh tranche 的 canonical 正常启动、正常关闭、正常重开与再次正常关闭证据；本治理批不启动应用。"
+    environment: "FEAT-134/136 gates；final stable artifact；experimentalApi=false；sandbox=read-only；approvalPolicy=never。"
+    actual_result: "PASS：两条 terminal Command Item 可见；runner 正常退出；重开后 hydration 成立。"
+  real_smoke:
+    status: "PASS"
+    command_or_steps: "复用同一最终产品 SHAs/artifact 下的 fresh 真实 tranche；一次请求内仅执行两个独立 allowlisted 只读 Command。"
+    environment: "隔离、无敏感、无 remote Git repo；read-only/never；本治理批真实调用 0 次。"
+    actual_result: "PASS：completed 1 与 failed 1；exit/duration/stable error、安全投影、核心 UI 与正常 hydration 均满足收窄后的 Must。"
+  representative_failure:
+    status: "PASS"
+    command_or_steps: "复用 fresh tranche 的正常、非破坏性 missing-ref 失败结果；不重试、不注入故障。"
+    environment: "隔离 Git repo；read-only sandbox；approval never。"
+    actual_result: "PASS：failed terminal、exit 128、duration 0ms、stable command_failed 各出现一次。"
+  focused_checks:
+    - repository: "yijie-codex"
+      command: "Runtime failed lifecycle regression, stable artifact provenance and source/diff review"
+      status: "PASS"
+      exit_code: 0
+      result: "Owner-authorized early-denial started+failed repair；final commit clean；reported 0.144.6。"
+    - repository: "yijie-contracts"
+      command: "v5 focused, scoped generation/digests, lint, safe tests and compatibility checks"
+      status: "PASS"
+      exit_code: 0
+      result: "Final v0.7.0 commit clean；v1-v4 protected。"
+    - repository: "yijie-agent-host"
+      command: "make lint; make test-feat136; final artifact/compatibility checks; git diff --check"
+      status: "PASS"
+      exit_code: 0
+      result: "Final pin 与 Command mapper/reconciliation PASS；clean；独立审查无 P0/P1/P2。"
+    - repository: "yijie-desktop"
+      command: "targeted Vitest; failed lifecycle/hydration Rust; typecheck; scoped ESLint; git diff --check"
+      status: "PASS"
+      exit_code: 0
+      result: "7 files / 131 tests；Rust 3/3；typecheck/lint/diff PASS；clean。"
+    - repository: "cross-repo"
+      command: "final commit, cross-pin, artifact digest/version and Tool registration read-only audit"
+      status: "PASS"
+      exit_code: 0
+      result: "五仓 clean；pins/artifact 一致；没有真实 Tool producer 或注册。"
+    - repository: "yijie"
+      command: "strict D0/D4 package gates, lint, test, feature audit, shell syntax and git diff check"
+      status: "PASS"
+      exit_code: 0
+      result: "收口后的治理门禁在本批重新执行并通过。"
+  artifacts:
+    - "00-feature-brief.md"
+    - "01-delivery-log.md"
+    - "02-verification.md"
+    - "yijie-codex@b2b20e2fc4a0c94834f34d8cc459e488a1b56277"
+    - "yijie-contracts@87f94c9aa6d4848cb67aa8a1265bd21474edb0bb"
+    - "yijie-agent-host@96b1fa19783694aef583b614c492fd2b6b5c15cc"
+    - "yijie-desktop@7026b47828961e58854b06c822c9c9e11252260d"
+    - "fresh Command evidence yijie@3a6b37ee708a71af561929429fdcf778d5667c32"
+  diff_review:
+    status: "PASS"
+    summary: "Owner-authorized atomic scope split preserves prior history and current evidence. FEAT-136 now closes only Command evidence-backed Must；Tool transfers to FEAT-144；resilience to FEAT-142；remaining integrated visual/state order to FEAT-143。"
+  known_limitations:
+    - "Prior Command D4 3/3 FAIL 与 RCA 0-call 保留为历史；fresh 1/5 PASS 不覆盖该历史。"
+    - "Item started 与独立 output-delta live 未捕获；完整集成状态顺序由 FEAT-143 承接。"
+    - "Live event_id、late event 与 natural replay NOT OBSERVED；unknown/resync vertical NOT RUN；由 FEAT-142 承接。"
+    - "Dark 与 exact 1180×760 live NOT RUN；由 FEAT-143 承接。"
+    - "真实 Tool producer 不存在，Tool D4 NOT RUN；由 FEAT-144 承接。"
+    - "用户消息本身含 allowlist 文本，故不声明 whole-WebView literal no-raw PASS。"
+    - "本治理批没有启动应用、Runtime、Provider 或模型，真实调用 0 次；复用最终产品基线不变的 fresh 证据。"
+
+public_readiness:
+  required: false
+  status: "not_applicable"
+  checks: []
+  external_smoke:
+    status: "NOT RUN"
+    command_or_steps: "N/A：exposure=local；不发布或部署。"
+    actual_result: "N/A：没有公网入口、发布或部署。"
+
+documents:
+  brief: "00-feature-brief.md"
+  delivery_log: "01-delivery-log.md"
+  verification: "02-verification.md"

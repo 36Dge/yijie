@@ -27,6 +27,14 @@ FEAT-134已按用户确认任务收敛为FEAT-132 native v7之上的流式/过�
 
 普通canonical入口使用原app-data/Host Home，两次正常启动/退出，既有历史/附件/Artifact/权限入口复查通过，8条原Host映射及原生终态未变；233项前端定向测试及Host/Native/SQLCipher验证通过。本轮模型请求0，不转用FEAT-132或原FEAT-134预算。原生缺阶段/冷历史不完整、Command完成后展示输出、附件过期、清理未完成和隔离任务无Host映射等限制仍保留。详见[FEAT-134最终验收](../features/FEAT-134-desktop-streaming-progress-final-response/02-verification.md)。
 
+## FEAT-131～136 一致性审计（2026-09-09）
+
+FEAT-134 四个本地提交在用户“授权执行”后已按 Contracts → Host → Desktop → 元仓顺序普通推送，远端 SHA 相等；精确 SHA 的 Actions 查询均无运行，CI NOT RUN。没有合并、tag 或部署。本轮新增修改没有混入这四个提交。最新状态以 [FEAT-134 远端记录](../features/FEAT-134-desktop-streaming-progress-final-response/04-remote-delivery-2026-09-09.md) 为准。
+
+FEAT-136 现状审计确认：命令执行和最终输出来自 Codex，Desktop 复用 FEAT-132 native v7/唯一缓冲/SQLCipher；Host native 主动不传 Command delta 正文，等待 aggregatedOutput 后安全投影。旧 v5 有真实兼容路由和容量计数，不能整包删除。审计发现的目录标签、输出完整性、空输出与历史 running 文案问题已按[执行方案](../features/FEAT-136-desktop-command-tool-items/03-native-command-audit-and-plan-2026-09-09.md) 实施并取得本次八项 local D4 PASS；真实3/10文本、0图片，两条 Command 成功/失败及正常重开通过。本次交付收尾已另获明确提交/推送授权，Desktop 固定为 8bfa5ca284fddb86d7cdd2a406c5041c49367688；元仓与远端状态见 FEAT-136 的 04-delivery-closure-2026-09-09.md。原验收 base commit 与逐文件 SHA-256 保留；原 2026-08-30 五项 Command D4 保持历史语义，Tool 仍属 FEAT-144 blocked / NOT RUN。
+
+六项需求已补充当前依赖与证据适用范围，能力矩阵修正为当前 native 事实。后续不恢复 ConversationState/reducer、正文对账、身份猜测、自动封口或历史重建；日常 app 与原 stable 隔离数据、FEAT-152 与已终止 FEAT-137 分开记录。详见[整体一致性复核](../features/FEAT-131-desktop-codex-parity-baseline/06-native-consistency-review-2026-09-09.md)。审计阶段模型调用为0，授权后的FEAT-136实施验收为3/10文本、0图片。
+
 ## 1. 单人开发角色默认值
 
 易界当前采用“段成威一人使用 Codex 开发”的工作模式。除非段成威针对某个需求明确指定其他人，新 Feature Package 和交付文档默认使用以下角色：

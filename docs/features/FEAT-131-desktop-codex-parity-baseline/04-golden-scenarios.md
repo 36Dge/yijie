@@ -1,12 +1,14 @@
 # FEAT-131 — Codex 风格近似对话黄金场景
 
+> 2026-09-09：历史场景结果不自动继承到 native v7；当前职责、日常入口与不可恢复的旧机制见[一致性复核](06-native-consistency-review-2026-09-09.md)。
+
 > 当前范围修订（2026-09-05）：FEAT-137 已由 Owner 永久终止且未完成验收，未来不重启。CAP-019 / GS-005 为 `owner-terminated-unaccepted`，不再属于 active 交付范围；现行 active 范围排除 FEAT-137/138。下文旧 active 范围及 FEAT-137 source PASS 为历史记录，不构成审批可用或 D4 PASS。最终权威见 [FEAT-137 永久终止记录](../FEAT-137-desktop-approval-interaction/03-termination.md)。
 
-> 作用：固定后续 active FEAT-132–137、FEAT-139–144 共用的行为场景 ID，不实现生产交互；FEAT-138 仅保留取消记录。
+> 作用：固定后续 active FEAT-132–136、FEAT-139–144 共用的行为场景 ID，不实现生产交互；FEAT-138 仅保留取消记录。
 >
 > Reference policy：`codex-inspired-approximate-parity-v1-2026-08-27` / `owner-approved-inference`。不绑定 Codex Desktop version/build，不需要人工媒体，也不要求一模一样。
 >
-> 结论：D0 场景 ID 与范围已固定，FEAT-131 D4 已通过；完整 Epic 仍需 active FEAT-132–137、FEAT-139–144 完成，FEAT-138 已正式取消/排除。FEAT-136 已交付 GS-003 的当前 Command terminal scope，FEAT-144 独立承接 GS-004。
+> 结论：D0 场景 ID 与范围已固定，FEAT-131 D4 已通过；完整 Epic 仍需 active FEAT-132–136、FEAT-139–144 完成，FEAT-138 已正式取消/排除。FEAT-136 已交付 GS-003 的当前 Command terminal scope，FEAT-144 独立承接 GS-004。
 
 ## 1. 使用规则
 
@@ -15,7 +17,7 @@
 - `owner-approved-inference`：Owner 允许开发根据 Yijie UI 规范、固定能力与工程判断推测 Codex 风格；它不是视觉实测或版本专属事实。
 - `owner-excluded`：Owner 主动排除，不实现、不建 fixture、不做真实验收。
 - `real-runtime`：通过 Yijie 正常入口连接固定 Runtime 真实产生。
-- `synthetic`：只用于 parser/reducer/UI 状态机的确定性回放，不能证明真实 Runtime/Host 支持。
+- `synthetic`：只用于当前 native ingress/显示缓冲/只读 UI 的确定性回放；原 reducer 回放仅为历史证据，不能证明真实 Runtime/Host 支持。
 
 机器目录中的 `variants` 是场景要求全集；`replayedVariants` 只列 fixture 实际覆盖的子集，并必须与 fixture 的 `coveredVariants` 精确一致。未列入的 variant 保持 metadata-only/`NOT RUN`。
 
@@ -26,8 +28,8 @@
 | Scenario | Purpose | Primary classification | Owner | Reference basis | Current Yijie evidence |
 |---|---|---|---|---|---|
 | GS-001 | 普通问题的流式回答与最终完成 | `available` | FEAT-134、FEAT-135 | `owner-approved-inference` | `synthetic: PASS`；current canonical `real-runtime: PASS`；predecessor `pre-runtime: FAIL` |
-| GS-002 | 多段过程更新与用户可见推理信息 | `requires Host/Contracts projection` | FEAT-134 | `owner-approved-inference` | metadata only；`real-runtime: NOT RUN` |
-| GS-003 | Command 执行成功和失败 | `available` | FEAT-136；完整 started/delta 集成顺序由 FEAT-143 | `owner-approved-inference` | current terminal scope `real-runtime: PASS`；completed=1、failed=1、normal hydration each once；individual started/delta live 未捕获 |
+| GS-002 | 多段过程更新与用户可见推理信息 | `available` | FEAT-134 | `owner-approved-inference` | 2026-09-09 native 分段/phase/plan 定向检查与既有数据 local D4 PASS；summary/raw 正向组合为 synthetic，不冒称新模型完整样本 |
+| GS-003 | Command 执行成功和失败 | `available` | FEAT-136；完整状态顺序后移 FEAT-143 | `owner-approved-inference` | 2026-08-30 v5 D4 保留历史；2026-09-09 native 调整 D4 PASS，真实 completed/failed 各1、正常重开，3/10文本；不声明独立 delta 顺序 |
 | GS-004 | Tool 调用成功和失败 | `requires Host/Contracts projection` | FEAT-144 | `owner-approved-inference` | generic source conformance `PASS`；real producer/entrypoint decision `BLOCKED`；Tool D4 `NOT RUN` |
 | GS-005 | 命令审批一次性允许、取消和过期（历史场景） | `owner-terminated-unaccepted` | FEAT-137（永久终止） | `owner-explicit-decision` | 未完成验收；不再实现、不重启 |
 | GS-006 | 文件修改与 Diff | `intentional product difference` | FEAT-131 scope decision | `owner-excluded` | metadata-only exclusion；无 fixture、无真实验收 |

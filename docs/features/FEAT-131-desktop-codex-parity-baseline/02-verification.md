@@ -1,5 +1,7 @@
 # FEAT-131 Demo 验证
 
+> 2026-09-09 当前依赖与证据适用范围：FEAT-132/134 已切换为 native v7、唯一 NativeDisplayBuffer 与只读 ConversationView。后续回放不得恢复旧 Store reducer。FEAT-137 永久退役；旧 stable 隔离入口、read-only/never 与历史 PASS 仅适用于原记录。日常 canonical 入口为 pnpm tauri:demo-fast:app。详见[整体一致性复核](../FEAT-131-desktop-codex-parity-baseline/06-native-consistency-review-2026-09-09.md)。
+
 > 当前范围修订（2026-09-05）：FEAT-137 已由 Owner 永久终止且未完成验收，未来不重启。CAP-019 / GS-005 为 `owner-terminated-unaccepted`，不再属于 active 交付范围；现行 active 范围排除 FEAT-137/138。下文旧 active 范围及 FEAT-137 source PASS 为历史记录，不构成审批可用或 D4 PASS。最终权威见 [FEAT-137 永久终止记录](../FEAT-137-desktop-approval-interaction/03-termination.md)。
 
 > Verification status：`PASS`

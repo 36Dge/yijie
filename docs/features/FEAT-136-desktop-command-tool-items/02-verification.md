@@ -1,86 +1,52 @@
-# FEAT-136 — Demo 验证
+# FEAT-136 原生 Command 调整验收
 
-> 2026-08-30 rebaseline verdict：**D0 PASS / D4 PASS / strict PASS**；Feature **usable**、implementation **complete**、verification **PASS**。该结论只覆盖五条 Command Must；Tool 由 FEAT-144 承接且仍 **blocked / NOT RUN**。
+日期：2026-09-09。**本次八项 Must 满足，local D4 PASS。验收发生于当时的工作区候选；其后 Desktop 已提交为 8bfa5ca284fddb86d7cdd2a406c5041c49367688。** 原 2026-08-30 五项 Command D4 四文件完整归档于 history/2026-08-30；prior FAIL、原日期、源提交、调用数均不覆盖或继承。
 
-## 1. D0 与 final baseline
+## 当前来源与真实入口
 
-| Check | Result | Evidence boundary |
+Desktop 验收基线为 `6e5047d1c23041c46dd495ddb89e24c7e4db5d47`，交付提交为 `8bfa5ca284fddb86d7cdd2a406c5041c49367688`。原 [机器证据](evidence/native-command-d4-2026-09-09.json) 是验收时点快照，其 candidate_committed=false、工作区状态及逐文件 SHA-256 保留历史含义；当前 Git 状态见 [交付证据](evidence/delivery-status-2026-09-09.json)。提交对象中的 10 个源码/测试文件逐项匹配原 D4 哈希，仅 Desktop 文档追加验收与交付状态区分，其前后哈希另见提交前证据；没有在新提交上重跑 D4。Contracts `db7a607c1c091fc4f4243829d68d5b673eb7e2c3`、Host `f4cf01bd6f7e9f37792ef743d44f0ce10527c10b`、Codex `6c1ad767f0997845b8258a1c452fd4eb7577579f` 未改。native Contracts pin 仍为 `6f632f155eacdaf93df0e0b00b5dab9e369c5442`，权限 Host pin 不变。
+
+日常标准入口为 `pnpm tauri:demo-fast:app`。所有构建保持原来源/权限检查；普通身份 `com.yijie.ai`，现有 app-data、原 `.local/demo-fast/host-home` 与 `codex-home`。没有隔离或复制用户数据库/凭据。真实请求阶段仅使用既有 `permission-smoke-meter.py` 固定路由计量器，转发原 MiniMax endpoint，关闭自动重试，不改正文或审批策略，不借此模拟服务。
+
+本轮共五次标准构建启动及正常退出，前三次用于已有数据及布局定位；最终代码的一次真实 Command run 与一次正常重启构成当前验收。最终 App/Host/Runtime 全部退出，18081/18083 无监听，计量器在全部请求完成后通过自身 KeyboardInterrupt/server_close 路径正常结束。
+
+## 八项结果
+
+| AC | 证据与结果 | 状态 |
 |---|---|---|
-| Feature envelope | PASS | schema v3 / demo_fast / local；5 个可独立验收 Must |
-| Product/UX | PASS | Command primary user、problem、outcome、flow、7 states 已闭合 |
-| Contract classification | PASS | semantic；v5 显式协商；v1-v4 保持不变 |
-| Runtime governance | PASS | 原始 `0ce5902…` 保留历史；Owner-authorized minimal patch 后最终冻结 `b2b20e2…` / 0.144.6 |
-| Scope split | PASS | Tool→FEAT-144；resilience→FEAT-142；remaining visual/state order→FEAT-143 |
-| Safety | PASS | 无强杀、故障注入、权限破坏、binary 替换或攻击 fixture |
+| AC-001 | 原生 Command 展示链路测试；真实 completed 1 / failed 1，exit 0 / 128、duration 均 0ms，“当前项目”保留；command_failed 为显式 status 的产品映射，不冒称原生 error | PASS |
+| AC-002 | 更短、不同、合法空输出和直接 completed 的联合测试；真实仅两条 Command，重开后仍两条，无前缀对账/第二累计 | PASS |
+| AC-003 | Turn completed/interrupted/failed、历史及 stream gap 下 UI 无错误 busy/正在执行播报，Item 最后观察事实不变；真实终态后无忙碌误报 | PASS |
+| AC-004 | null/空/partial/零值与安全目录回归；partial 不再伪称上游截断，失败空输出不说成成功；真实目录/exit/duration/输出可读 | PASS |
+| AC-005 | 保留 native final-only 安全输出；真实指针与 Tab→Return 复制均成功；合成精确复制/纯文本检查通过；会话诊断不猜 Item 归属 | PASS |
+| AC-006 | SQLCipher 原生 Command 正常 reopen/cold conflict 通过；实际同一任务退出重开后仍各一条且字段/输出/失败码一致；旧 Command IPC/卡片兼容定向检查通过 | PASS |
+| AC-007 | 最终 canonical 正常启动/切换/退出重启、light、键盘/aria-live、200%与恢复100%；旧历史、过期附件、Artifact预览、权限入口和 Composer 定向回归通过 | PASS |
+| AC-008 | 与实现阶段分离的源码自审完成；删除与保留理由见交付记录；无新 reducer/状态推演/历史重建器/累积器，无 Runtime/Host/schema/权限改动 | PASS |
 
-Final identities：
+## 实际数据和调用
 
-| Repository | Commit |
-|---|---|
-| Runtime | `b2b20e2fc4a0c94834f34d8cc459e488a1b56277` |
-| Contracts | `87f94c9aa6d4848cb67aa8a1265bd21474edb0bb` / v0.7.0 |
-| Host | `96b1fa19783694aef583b614c492fd2b6b5c15cc` |
-| Desktop | `7026b47828961e58854b06c822c9c9e11252260d` |
-| Fresh evidence | yijie `3a6b37ee708a71af561929429fdcf778d5667c32` |
+只在新建普通 `command-project` 中发送一次合成用户请求，请求执行两个独立只读命令：`git status --short` 成功，`git rev-parse --verify refs/heads/feat136-absent-ref` 正常缺失引用失败。实际仅观察到两条 Command Item，没有额外 Command Item 或重试观察；不从脱敏输出反推完整 shell 正文。验证任务为 `01a085a9-b561-7331-be8d-4aabf9c47757`，正常重启后读取同一任务。
 
-- manifest SHA-256 `1cfa2e0a139b2213f4d29b1efeed71d4810110ac865f0bcbd931ff33b0062c1b` / 1475 bytes。
-- binary SHA-256 `4efe16d2848680752cf9aacf4c17741ab2eeb7415894a66c2bb03652b00a322d` / 355676760 bytes。
-- final read-only audit：五仓 clean、cross-pins一致、Runtime/manifest version 0.144.6、无真实 Tool producer/registration。
+用户授权本次独立上限 10 次 MiniMax-M3 文本 API 请求、0 次图片，包含标题/审批审查/自动请求与重试；实际 **3/10 文本、0/0 图片**，均 HTTP 200 并正常完成。台账没有转用历史额度；重开读取没有新增请求。详见 [调用台账](evidence/text-request-ledger-2026-09-09.json) 与 [授权记录](evidence/request-authorization-2026-09-09.json)。
 
-## 2. 证据复用判定
+原 8 条 Host 映射及原生终态逐项不变；本次只新增 1 条验证映射，总数 9、全部 idle。最后退出后的 Host 索引与 Command 完成后索引完全相等。权限始终“请求批准”，没有临时换模式。
 
-本次是 Owner 授权的治理范围重基线，不是新的产品实现。Runtime、Contracts、Host、Desktop commits 与 stable artifact 自 fresh real run 后均未变化，因此可以把同一 fresh run 复用于其严格子集 Must；无需也不得新增 Provider/模型调用。
+## 检查、自审和过程失败
 
-| Historical phase | Requests | Verdict retained |
-|---|---:|---|
-| Prior D4 | 3/3 | FAIL；环境绑定与 missing failed lifecycle 历史保留 |
-| RCA | 0 | 根因定位到 Runtime pre-emitter early-denial return |
-| Fresh tranche after Owner repair | 1/5 | PASS for current Command Must |
-| Current governance batch | 0 | 仅文档、lint、test、audit 与 package gates |
+- 前端 11 份定向测试 251/251；App/zoom 另 10/10。新增 native Command 18 项，既有 Command/FEAT-134/store/Composer/Artifact/权限覆盖保留。
+- 正常 SQLCipher reopen/cold conflict 扩展 Command 后 1/1；旧 Command IPC 原终态字段检查 1/1。
+- make lint 包含生成来源、ESLint/TypeScript、fmt、clippy all-targets，全部通过；canonical 标准构建与 Desktop 文档构建通过。保留 Vite 既有大 chunk 与未签名开发构建提示。
+- 初轮 4 项新测试失败源于错误的测试观察时机/未挂载 DOM；修正 harness 后通过，不修改产品迎合测试。
+- 200% 曾暴露既有外壳宽度未消费缩放视口、长标题撑开默认 Grid 列的问题。先补宽度后仍需约束 Grid；最终两处最小 CSS 修复后，标题正常省略、右侧输入与发送控件在视口内，Command 失败说明及字段可滚动读取。原失败截图不改写为 PASS。
+- 独立阶段自审检查 native/legacy 分支、零值/空内容、状态/诊断、复制、来源/权限、兼容与布局；无阻断问题。Reviewer 为 Codex 自审，不冒称独立人工批准。
 
-## 3. Current Must 验证
+## 保留限制
 
-| AC | Result | Fresh evidence |
-|---|---|---|
-| AC-001 | PASS | completed terminal=1；exit 0；duration 0ms；没有重复或第三个 Item |
-| AC-002 | PASS | failed terminal=1；exit 128；duration 0ms；stable `command_failed`；没有重复 |
-| AC-003 | PASS | closed safety projection 与 clipboard 不含 raw Runtime、绝对路径、秘密或 wire |
-| AC-004 | PASS | 正常关闭重开后 Items=2、completed=1、failed=1；每条一次且不回滚 |
-| AC-005 | PASS | light、键盘 focus/展开/折叠、状态文字/图标、aria-live、安全复制、200% |
+- Command 输出继续等原生最终对象，不声明独立 live started/output-delta 顺序已实测；Runtime cold history、phase/plan 仍可能缺失，不补造。
+- 日常数据未提供真实旧 v5 Command 样本；旧兼容由定向测试验证，实际 canonical 的旧数据回归覆盖旧文本、附件与原生 Artifact。没有把 synthetic 写成真实旧 Command 验收。
+- 旧清理未完成、附件自然过期、隔离任务缺少普通 Host 映射仍保留；不自动续跑、补发、修复删除或猜接管。
+- Tool 仍为 FEAT-144 blocked / NOT RUN；dark、精确1180×760及原 FEAT-142/143 后移项不写 PASS。
+- 不运行含强杀、攻击、权限破坏、故障注入等禁止场景的广泛 Host/Rust/Contracts 套件；没有关闭检查或批量跳过测试来制造绿色。
+- 本次 FEAT-136 的本地验收、已提交和已推送状态分别见 [交付收尾记录](04-delivery-closure-2026-09-09.md)；FEAT-134 四个原提交不能代替本次新实现交付。
 
-canonical run 使用 local/demo_fast stable runner、FEAT-134/136 gates、experimentalApi=false、sandbox=read-only、approvalPolicy=never。应用只通过自身正常退出与重开流程；没有断连或故障注入。
-
-## 4. Focused 与 cross-repository 验证
-
-| Layer | Evidence | Result |
-|---|---|---|
-| Runtime | failed lifecycle regression、artifact provenance、source/diff review | PASS；Owner-authorized canonical started+failed repair |
-| Contracts | v5 focused、safe non-archive tests、generation/digests、lint、breaking | PASS；v1-v4 protected |
-| Host | lint、FEAT-136 mapper/reconciliation/compatibility、artifact pin、diff review | PASS；clean；无 P0/P1/P2 |
-| Desktop | 7 targeted Vitest files / 131 tests；Rust hydration/failed 3/3；typecheck；scoped ESLint；diff | PASS；clean |
-| Host→Desktop | exact schema + 11 ordinary fixtures + focused producer/consumer suites | PASS；source conformance only |
-| Governance | FEAT-136 D0/D4/strict PASS；FEAT-144 strict structural PASS、D0 semantic BLOCKED；lint/test/audit/shell/diff PASS | FEAT-144 Owner decision pending；Tool D4 不运行 |
-
-## 5. 明确后移且不得伪造的项目
-
-| Item | Current observation | Receiver / impact |
-|---|---|---|
-| natural replay | NOT OBSERVED | FEAT-142；不影响收窄后的 FEAT-136 Must |
-| live event_id / late event | NOT OBSERVED | FEAT-142 |
-| unknown/resync real vertical | NOT RUN | FEAT-142 |
-| Item started / independent output delta live | 未独立捕获 | FEAT-143 承接完整集成状态顺序；focused tests 不能冒充 live evidence |
-| dark | NOT RUN live | FEAT-143 |
-| exact 1180×760 | NOT RUN live | FEAT-143；静态配置不冒充 live result |
-| real Tool producer / Tool D4 / GS-004 | BLOCKED / NOT RUN | FEAT-144；CAP-017 保持 Epic active scope |
-
-用户消息自身包含 allowlist 文字，因此不声明 whole-WebView literal no-raw PASS；只对 Command 投影、clipboard 与保存的证据作闭合安全声明。
-
-## 6. 最终 verdict
-
-- FEAT-136 current Must：5/5 PASS。
-- D0：PASS。
-- D4：PASS。
-- strict / lint / test / feature audit：PASS。
-- Feature：usable；implementation complete；verification PASS。
-- FEAT-144：四文件 D0 package 已创建，但 D0 semantic gate BLOCKED；implementation blocked / verification NOT RUN；没有代码实现或 Tool D4。
-- Epic：仍 active；没有发布、push、tag、merge 或 Runtime/Provider/model 启动。
+最终元仓 pnpm lint、pnpm test（50/50）、Shell 语法、feature:audit（19个包）、FEAT-136 D4 门禁及 diff/digest/原四文件归档完整性检查均 PASS；机器门禁不替代以上真实验收事实。

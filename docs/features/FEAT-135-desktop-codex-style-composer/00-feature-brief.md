@@ -1,5 +1,7 @@
 # FEAT-135 — Desktop Codex 风格 Composer 与新 Turn 提交 Demo Brief
 
+> 2026-09-09 当前依赖与证据适用范围：Composer 继续保留目标草稿、operation ID 和本地 durable acceptance；queued 属于本地提交记录。后续执行只读 FEAT-132 native v7/ConversationView，不能伪造 Codex Item 或按正文匹配。原 ConversationState 集成及 stable 隔离 D4 是历史证据；日常入口为 pnpm tauri:demo-fast:app。详见[整体一致性复核](../FEAT-131-desktop-codex-parity-baseline/06-native-consistency-review-2026-09-09.md)。
+
 > Profile: `demo_fast` · Exposure: `local` · Created: `2026-08-29`
 
 ## 1. 需求背景、目标与非目标

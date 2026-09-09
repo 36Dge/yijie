@@ -1,5 +1,7 @@
 # FEAT-132：Codex 原生对话机制接入与视图适配
 
+> 2026-09-09 当前依赖与证据适用范围：2026-09-09 原生调整及日常入口记录仍为本需求验收权威。FEAT-134 已在该 native 主链完成本地展示调整；FEAT-136 的新 Command 卡片审计不改变本需求终态、历史或权限语义。详见[整体一致性复核](../FEAT-131-desktop-codex-parity-baseline/06-native-consistency-review-2026-09-09.md)。
+
 2026-09-08 调整版，用户已授权实施。原编号和目录保留。原实现及原 D4 仅属于 [历史版本](history/2026-08-27/00-feature-brief.md)，不能作为本次验收结果。
 
 2026-09-09：本次调整 D4 PASS，十项 Must AC 已通过；固定来源与真实证据见 [最终验收](02-verification.md)。

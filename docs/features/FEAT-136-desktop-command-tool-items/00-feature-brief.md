@@ -1,78 +1,47 @@
-# FEAT-136 — Desktop Command 执行 Item（Tool 后移）Demo Brief
+# FEAT-136 — 基于 Codex 原生事实的 Command 执行 Item
 
-> Profile: demo_fast · Exposure: local · Created: 2026-08-29 · Scope rebaseline: 2026-08-30
->
-> 当前结论：Owner 已按原子结果重基线 FEAT-136。Command scope 为 **usable / implementation complete / verification PASS / D4 PASS**；真实 Tool scope 转移至 FEAT-144。Epic 仍未完成，FEAT-144 仍为 **blocked / NOT RUN**。
+日期：2026-09-09；demo_fast / local。用户已审阅前置方案并授权执行。本次调整复用 FEAT-132/134，不修改 Runtime、跨进程协议、数据库或权限。**本次八项 Must 已满足，local D4 PASS；Desktop 已固定为 8bfa5ca284fddb86d7cdd2a406c5041c49367688，元仓提交与远端同步另记交付记录。**
 
-## 1. 用户结果与当前 Must
+## 用户目标与范围
 
-FEAT-136 只交付 CAP-016 / GS-003 中已有 fresh real 证据的 Command 结果：
+用户可以准确读取 Command 执行结果、安全输出和历史记录，区分原生失败、合法空输出、信息不完整及未观察到结束记录。Command 执行器、身份、status、exitCode、durationMs 和聚合输出由 Codex 提供，Host 做必要安全投影，Desktop 只读适配。
 
-1. 真实成功 Command 形成且只形成一个 completed terminal，含 exit 0 与 duration。
-2. 代表性安全失败 Command 形成且只形成一个 failed terminal，含非零 exit、duration 与 stable error。
-3. Command 使用闭合安全投影与安全复制，不暴露 raw Runtime、绝对路径、秘密或 wire。
-4. Desktop 正常关闭重开后，SQLCipher 对 completed/failed 各 hydrate 一次，不重复、不回滚。
-5. Command UI 在 light 与 200% 下可读，可用键盘展开/折叠，以状态文字、图标和 aria-live 表达结果。
+- 复用 native v7、NativeDisplayBuffer、thread/read/resume、SQLCipher 原生事实保存与旧档案读取。
+- 原生展示和旧 v5 投影分开；不伪填旧 source event、cwd 结构、retention 或截断原因。
+- 原生完整 Item 直接替换；Turn 结束不封口 Command，界面停止错误忙碌提示。
+- 继续只展示已有安全最终输出，不启用原始 delta 或新累积器。
+- 允许安全复制、键盘折叠与独立 aria-live；零值和空字符串不丢失。
+- 真实 Tool 由 FEAT-144 承接；不新增 producer、注册、progress 或错误字段。
 
-上述五条均由最终产品 SHAs 和 stable artifact 下的 fresh real tranche 支持。原四类结果被拆为五个可独立验收的 Must，以分别保留成功和失败 terminal/cardinality 的证据边界。
+## 实际入口与职责
 
-## 2. 最终冻结基线
+`Codex native notifications → Host native safety projection → NativeDisplayBuffer → SQLCipher → ConversationView → ChatCommandItem`。
 
-| Repository | Final local commit | 状态与角色 |
-|---|---|---|
-| yijie-codex | `b2b20e2fc4a0c94834f34d8cc459e488a1b56277` | clean；Owner-authorized minimal producer patch；reported 0.144.6；此后冻结，不再修改 |
-| yijie-contracts | `87f94c9aa6d4848cb67aa8a1265bd21474edb0bb` | clean；unpublished v0.7.0；精确固定最终 Runtime |
-| yijie-agent-host | `96b1fa19783694aef583b614c492fd2b6b5c15cc` | clean；精确固定 Contracts 与 stable Runtime artifact |
-| yijie-desktop | `7026b47828961e58854b06c822c9c9e11252260d` | clean；精确固定 Host/Contracts/artifact，并提供 canonical stable runner |
-| yijie | `3a6b37ee708a71af561929429fdcf778d5667c32` + 本次最多一个治理 commit | fresh Command 证据与本次治理文档 |
+普通 canonical 为 `pnpm tauri:demo-fast:app`，使用 `com.yijie.ai`、现有 app-data 与原 Host Home。旧 stable 隔离数据不冒充普通 Host 映射；没有可信绑定的旧任务不自动续跑、补发或猜测接管。
 
-- 原始冻结基线 Runtime `0ce5902ed400866be0196886bb78f693a004d68d` / upstream rust-v0.144.6 保留为历史。
-- Owner 后续仅授权 early sandbox-denial 的最小 canonical started+failed producer source repair，形成当前最终冻结 commit；版本、schema corpus 与协议族没有升级。
-- 原始 Contracts 输入 `3c3000a6fbe2f08ab2131a463a1691e867d661b1`、Host/Desktop 原始实施基线及 prior D4/RCA commits 均保留历史，不被重写。
-- canonical manifest SHA-256 `1cfa2e0a139b2213f4d29b1efeed71d4810110ac865f0bcbd931ff33b0062c1b`（1475 bytes）；binary SHA-256 `4efe16d2848680752cf9aacf4c17741ab2eeb7415894a66c2bb03652b00a322d`（355676760 bytes）。
+Host native 对 Command delta 只发 `command_output_pending_final` 诊断，收到原生完整 Item 后投影 Codex aggregatedOutput。这是已明确的分片脱敏/单一缓冲边界，不是 Runtime 没有流式输出能力。缺失冷历史仍如实披露，不复制 HistoryBuilder、解析 rollout 或开启实验历史。
 
-## 3. Owner 原子化范围决策
+## 八项 Must AC
 
-| 原 FEAT-136 能力 | 当前归属 | 当前事实 |
-|---|---|---|
-| completed terminal/cardinality | FEAT-136 AC-001 | fresh real PASS |
-| failed terminal/cardinality、exit/duration/stable error | FEAT-136 AC-002 | fresh real PASS |
-| 安全投影与复制 | FEAT-136 AC-003 | fresh real PASS |
-| SQLCipher hydration | FEAT-136 AC-004 | fresh real PASS |
-| light、键盘、状态/aria-live、200% | FEAT-136 AC-005 | fresh real PASS |
-| approval reverse request；Runtime Cancel 形成的 declined outcome | FEAT-137 phase 1 | immutable source conformance PASS；真实allow/cancel与D4 NOT RUN；独立decline用户动作deferred，不属于当前Must |
-| replay、live event_id、late event、unknown/resync | FEAT-142 | NOT OBSERVED / NOT RUN；不得伪造 PASS |
-| 完整 started/output-delta 集成状态顺序 | FEAT-143 | live individual event 未捕获；source tests 仅作基础 |
-| dark、精确 1180×760 | FEAT-143 | NOT RUN |
-| 真实 Tool producer、产品入口、安全边界、Tool-only AC、GS-004、Tool D4 | FEAT-144 | blocked / NOT RUN |
+| AC | 可判定结果 |
+|---|---|
+| AC-001 | 按原生身份、status、exit/duration 展示，保留 0；失败码只映射显式 status，不改事实 |
+| AC-002 | 完整 Item 直接替换更长/不同/空输出；未见 started 的 completed 也不被丢弃，无正文对账 |
+| AC-003 | Turn 结束、历史或连接不明时不误报 busy，保留 Item 状态与缺结束记录 |
+| AC-004 | cwdLabel、null、空输出、partial 可区分，不伪造截断原因或把失败空输出说成成功 |
+| AC-005 | 只显示/复制已有安全输出，保持会话诊断范围，不产生永久等待误报 |
+| AC-006 | SQLCipher 正常重开保留来源/身份/终态，冷历史不覆盖，旧 Command 档案可读 |
+| AC-007 | 定向测试与 canonical 启动/切换/退出重启、light/键盘/aria-live/200%、附件/Artifact/Composer/FEAT-152 无定向回归 |
+| AC-008 | 无新引擎、累计或历史重建；删除/保留有引用依据，历史及 Tool 限制真实记录 |
 
-通用 Tool schema、Host 投影和 Desktop consumer/UI 基础可以保留为 compatibility foundation，但它们不构成 FEAT-136 的产品交付，也不能替代 FEAT-144 的真实 producer 与 D4。
+这些 AC 是本次原生调整的验收，状态见 feature.yaml 和 02-verification.md。原 2026-08-30 五项 Command D4 四文件完整归档于 history/2026-08-30，日期、源提交、prior 3/3 FAIL、fresh 1/5 PASS 不覆盖或继承。
 
-## 4. Command D4 证据边界
+## Contract First 与授权
 
-- canonical local/demo_fast stable 入口使用 `experimentalApi=false`、`sandbox=read-only`、`approvalPolicy=never`，FEAT-134/136 gates 开启。
-- fresh 授权上限为 5 次，实际使用 1 次且无重试；单次请求只产生两个独立 allowlisted 只读 Command。
-- Desktop 恰好显示 completed 1 与 failed 1；exit 分别为 0 与 128，duration 均为 0ms，失败 stable code 为 `command_failed`。
-- 正常关闭并重开后 Items=2、completed=1、failed=1；再次正常关闭，未通过异常退出制造证据。
-- light、键盘折叠、状态文字/图标、aria-live、安全复制与 200% 均通过。
-- prior 3/3 FAIL 和 RCA 0-call 是历史；fresh 1/5 PASS 不覆盖它们。
+contract-impact=none：纯进程内展示及必要布局修复；现有 Host wire/private IPC/schema/migration/Runtime/权限均不改。原 Contracts/Host pin 保持；不存在因文档提交必须机械 repin 的要求。
 
-本次治理批不启动 Desktop、Runtime、Provider 或模型，真实调用为 0；D4 结论复用产品 SHAs、cross-pins 与 artifact 未变化的 fresh evidence。
+FEAT-137 永久退役，FEAT-152 为独立原生权限功能，不继承 FEAT-137 source PASS。既有 v4/v5 reader/资源适配仍保留。原 FEAT-142/143 后移职责与 dark/精确 1180×760 未执行范围继续保留，不补写 PASS。
 
-## 5. 未观察项与安全边界
+用户另行批准本次最多 10 次 MiniMax-M3 文本请求（含标题、审批审查和自动重试），实际 3 次；图片 0 次，旧额度没有转用。用户于本次交付收尾确认“授权”，明确覆盖已核验的 Desktop → 元仓提交、普通推送和必要的交付结果补充提交；不更新无变化的 pin，不强推、不打 tag、不部署。所有测试均为正常非破坏性操作，不复制用户数据库或凭据。
 
-- natural replay、live event_id 与 late event：**NOT OBSERVED**，转 FEAT-142。
-- unknown/resync real vertical：**NOT RUN**，转 FEAT-142。
-- dark 与 exact 1180×760 live：**NOT RUN**，转 FEAT-143。
-- Item started 与独立 output-delta live：执行过快未独立捕获；完整集成状态顺序转 FEAT-143。
-- Tool D4：**NOT RUN**；没有注册 MCP/Connector/dynamic tool，也没有制造 producer。
-- 不涉及 FileChange、Diff、审批、写权限或 FEAT-138。
-- 不强杀、不故障注入、不破坏权限、不替换 binary、不使用攻击 fixture。
-
-## 6. 结论
-
-- FEAT-136 D0：PASS。
-- FEAT-136 D4：PASS（仅收窄后的五条 Command Must）。
-- Feature：usable；implementation complete；verification PASS。
-- CAP-017 / GS-004：仍是 Epic active scope，由 FEAT-144 独立承接，当前 blocked / NOT RUN。
-- Epic：未完成；不得把 FEAT-136 的 Command 收口扩写为 Tool 或整体 Epic 完成。
+完整源码证据、删除/保留决策与执行步骤见 [审计方案](03-native-command-audit-and-plan-2026-09-09.md)。

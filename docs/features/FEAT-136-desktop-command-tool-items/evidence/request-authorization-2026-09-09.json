@@ -1,0 +1,20 @@
+{
+  "feature": "FEAT-136",
+  "authorized_at_recorded": "2026-09-09T10:12:34.470579+00:00",
+  "user_statement": "可以给出10 次请求授权",
+  "text_limit": 10,
+  "image_limit": 0,
+  "includes": [
+    "title",
+    "approval-review",
+    "automatic-requests",
+    "retries"
+  ],
+  "permission_mode": "request_approval",
+  "commands": [
+    "git status --short",
+    "git rev-parse --verify refs/heads/feat136-absent-ref"
+  ],
+  "ledger": "text-request-ledger.json",
+  "old_budgets_transferred": false
+}

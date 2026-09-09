@@ -43,7 +43,7 @@ product_ux:
   problem: "当前 Chat 页面分别渲染用户文本、Assistant 文本、reasoning 与 Artifact，缺少由 FEAT-132 领域顺序驱动的 Turn/Item 信息层级和可复用 Item 外壳；继续逐能力堆叠会造成状态、间距、折叠、错误反馈与可访问性不一致，并诱使页面解释 raw wire。"
   user_outcome: "用户在固定 Runtime 不变时，能够在一个符合易界 UI 规范的 Codex 风格近似 Timeline 中按领域顺序阅读多 Turn、多 Item 内容，安全查看 Markdown/代码、展开过程项、复制内容，并在空、加载、错误、权限不足与未知内容状态下获得清楚且可恢复的反馈。"
   in_scope:
-    - "从 FEAT-132 唯一 Thread/Turn/Item/ContentBlock ViewModel 派生 Timeline 与 Turn group，不读取 raw Host/Runtime wire"
+    - "从 FEAT-132 native v7 之上的只读 ConversationView（旧档案只读兼容） 派生 Timeline 与 Turn group，不读取 raw Host/Runtime wire"
     - "统一 Item shell 的 header、真实状态、body、折叠控制与 action slot；时间或耗时字段缺失时隐藏而不推测"
     - "用户消息、Assistant 最终回答、Turn lifecycle/notice 的只读过程呈现，以及 unknown/error 的安全基础展示"
     - "以受限、类型化且不使用 v-html 的内容树展示纯文本、Markdown 子集、代码块、列表、表格和行内代码"
@@ -63,7 +63,7 @@ product_ux:
     - "GS-006 文件修改与 Diff；既有 Artifact 可以保留，但不得包装或描述为 FileChange/Diff"
     - "模型、prompt、Provider、Agent 决策、真实付费调用、生产写入、public/production 发布"
   main_flow:
-    - "用户通过 canonical demo_fast stable 入口零登录直达 Chat，选择新 Thread 或已有历史；Timeline 只消费 FEAT-132 领域 ViewModel。"
+    - "用户通过 canonical demo_fast stable 入口零登录直达 Chat，选择新 Thread 或已有历史；Timeline 只消费 FEAT-132 只读 ConversationView。"
     - "Timeline 按 Thread 中 Turn ordinal 与 Turn 内 Item ordinal/identity 展示用户输入、过程呈现、最终回答和安全 notice；视觉顺序与领域顺序一致。"
     - "用户可聚焦 Item header，展开或收起允许折叠的过程内容，并复制可复制文本/代码；操作通过显式事件交给上层，shell 不执行 Host/Tauri 副作用。"
     - "unknown、error 或 permission denied 只影响对应位置，使用固定安全文案与诊断 code，不显示 raw payload，也不吞掉其他可读历史。"
@@ -186,6 +186,7 @@ verification:
     - "evidence/canonical-dark-1180x760-2026-08-28.jpeg（暗色同一完成历史；SHA-256 1368da2cc6fabf7ffa8dbb5b6656043cdc517fdc8c557845454fa537265bee61）"
   diff_review: { status: "PASS", summary: "最终 Desktop 实现已固定为 af38353694c3eb045365b7f3450ffc8a95aaf8a1；完成 selector、独立组件、clipboard、安全内容、页面组合、FEAT-127/128 authority、historical reasoning boundary、rollback 与 zoom/reflow 的多轮 scoped diff 审查；三名独立只读 reviewer 对最新状态未发现剩余 P0/P1/P2。FEAT-132、依赖、src-tauri、Contracts、Host 与 Runtime 均未修改。" }
   known_limitations:
+    - "2026-09-09 一致性补充：当前输入为 FEAT-132 的只读 ConversationView；新对话来自 native v7/NativeDisplayBuffer，旧 ConversationState、reducer 与 legacy rollback 已删除。reasoning 正文按 FEAT-134 区分 summary/raw；原 metadata-only note 只适用于缺正文的旧档案。下文 2026-08-28 的源码哈希、旧调用链及 PASS 是历史证据，不是恢复旧机制的要求。详见 FEAT-131/06-native-consistency-review-2026-09-09.md。"
     - "Owner 接受 historical reasoning 只显示 identity/order/lifecycle 元数据和固定缺失提示；没有正文、lazy load 或逐 Item 不完整详情，不能声明 reasoning 正文已迁移或与 Codex 一致。"
     - "canonical 三条既有历史没有 reasoning Item；固定元数据 note 只有组件/页面测试证据，没有真实历史截图。"
     - "200% 下较长对话依靠对话区纵向滚动；代码/表格保留组件内局部横向滚动。"

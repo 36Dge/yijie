@@ -110,7 +110,7 @@ must_acceptance:
     status: "PASS"
   - id: "AC-007"
     statement: "本地 durable acceptance 后立即显示唯一 queued 用户 Item并恢复 Composer 可用焦点；后续 Host/Runtime failed 或 interrupted 不把已持久化正文恢复为草稿，也不造成重复提交。"
-    verification: "页面组合与 ConversationState/Timeline 集成测试覆盖 accepted→queued→active/completed/failed/interrupted；核对焦点、选择、草稿与 Item identity。"
+    verification: "原 D4 页面组合与 ConversationState/Timeline 集成测试覆盖 accepted→queued→active/completed/failed/interrupted；核对焦点、选择、草稿与 Item identity。"
     status: "PASS"
   - id: "AC-008"
     statement: "文本草稿在当前 WebView 生命周期内按 new/session draft target 隔离；切换会话来回可恢复各自文本，只有匹配 target 接受成功才清除，FEAT-127 附件和 FEAT-128 Artifact authority 保持不变。"
@@ -123,7 +123,7 @@ must_acceptance:
 
 contract:
   impact: "none"
-  authority: "yijie-contracts OpenAPI 与 yijie-agent-host snapshot 继续定义 Host 202/idempotency；yijie-desktop 现有 private IPC/native transaction 定义 local durable response，chat.store.ts 定义 operation ID、FEAT-127 ordered blocks 与 authority 校验，FEAT-132 ConversationState/FEAT-134 Timeline 定义提交后的展示。FEAT-135 只在 Desktop 进程内补充可判定 submission result、target-scoped WebView draft 和 Composer 交互，不改变跨进程、跨仓、跨版本、数据库或 replay 语义。"
+  authority: "yijie-contracts OpenAPI 与 yijie-agent-host snapshot 继续定义 Host 202/idempotency；yijie-desktop 现有 private IPC/native transaction 定义 local durable response，chat.store.ts 定义 operation ID、FEAT-127 ordered blocks 与 authority 校验，FEAT-132 native v7/只读 ConversationView 与 FEAT-134 Timeline 定义提交后的展示；本地 queued 不冒充 Codex 原生 Item。FEAT-135 只在 Desktop 进程内补充可判定 submission result、target-scoped WebView draft 和 Composer 交互，不改变跨进程、跨仓、跨版本、数据库或 replay 语义。"
   source_first_plan: "只读矩阵已先核对 Contracts→Host→Desktop native IPC→store→page/composer。后续实现只消费既有 operation ID 与本地 durable confirmation，不把 Host 202 或 Runtime terminal 当成清空边界。若实现必须新增或改变 public/private IPC、durable schema、operation/replay、权限、Runtime/Host wire，立即停止，将 contract-impact 重分类为 semantic 并在获得新授权后从权威源开始；不得在 Vue 猜测接受状态。"
   status: "N/A"
   checks: []
@@ -203,6 +203,7 @@ verification:
     - "evidence/canonical-content-free-2026-08-29.md"
   diff_review: { status: "PASS", summary: "Desktop 从 FEAT-134 baseline 到 fc52ef33cdf040d9b6e8d71bd7498811c5c38c51 的 FEAT-135 scoped diff 已审阅；Contracts/Host/Runtime/IPC/database/dependencies 与保护 authority 未变。yijie 仅改本 Feature 治理目录。" }
   known_limitations:
+    - "2026-09-09 一致性补充：Composer 继续保留目标草稿、operation ID 和本地 durable acceptance；queued 属于本地提交记录。后续执行只读 FEAT-132 native v7/ConversationView，不能伪造 Codex Item 或按正文匹配。原 ConversationState 集成及 stable 隔离 D4 是历史证据；日常入口为 pnpm tauri:demo-fast:app。详见 FEAT-131/06-native-consistency-review-2026-09-09.md。"
     - "未提交纯文本草稿只保证当前 WebView 生命周期内按 target 隔离，不承诺应用重启恢复。"
     - "accepted 指 Desktop 本地事务已 durable/queued，不等于 Host/Runtime 已完成；后续状态由 Timeline authority 表达。"
     - "Owner 已豁免 AC-001 的人工视觉复验以及 reduced-motion 验收；二者为 WAIVED / NOT REQUIRED，不写作 PASS。AC-001 的 auto-grow、max-scroll、底部不重叠与窄布局发送列由确定性组件测试证明。"

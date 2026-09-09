@@ -1,5 +1,7 @@
 # FEAT-132 原生机制调整：最终验收
 
+> 2026-09-09 当前依赖与证据适用范围：2026-09-09 原生调整及日常入口记录仍为本需求验收权威。FEAT-134 已在该 native 主链完成本地展示调整；FEAT-136 的新 Command 卡片审计不改变本需求终态、历史或权限语义。详见[整体一致性复核](../FEAT-131-desktop-codex-parity-baseline/06-native-consistency-review-2026-09-09.md)。
+
 2026-09-09，**D4 PASS，十项 Must AC 全部通过；仅限 local/demo_fast**。本报告保留原生改造D4的固定提交与证据；后续普通入口验证及新增修复见 [日常入口报告](05-daily-entry-verification-2026-09-09.md)。本次使用新的明确授权与真实结果，不继承旧 FEAT-132 的 D4。
 
 ## 固定来源与实际入口

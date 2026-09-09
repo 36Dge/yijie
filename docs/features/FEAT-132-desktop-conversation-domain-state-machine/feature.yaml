@@ -201,6 +201,7 @@ verification:
     status: PASS
     summary: 初始重构已有独立只读审查，无新的可复现P1/P2；D4三个追加修复完成定向回归与最终自审，未声称再次独立审查。原工作区3处并发UI修改未纳入本任务提交。
   known_limitations:
+    - "2026-09-09 一致性补充：2026-09-09 原生调整及日常入口记录仍为本需求验收权威。FEAT-134 已在该 native 主链完成本地展示调整；FEAT-136 的新 Command 卡片审计不改变本需求终态、历史或权限语义。详见 FEAT-131/06-native-consistency-review-2026-09-09.md。"
     - Runtime may omit AgentMessage.phase; preserve absence, do not infer final_answer.
     - Legacy thread/read cannot restore every delta/Command/plan/error and may rebuild Item IDs; keep observed
       encrypted facts and mark partial.

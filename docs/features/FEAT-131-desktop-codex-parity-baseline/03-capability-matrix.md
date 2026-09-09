@@ -1,5 +1,7 @@
 # FEAT-131 — Codex 风格近似对话能力矩阵
 
+> 2026-09-09：下表 native 相关行已按当前源码修正；原始基线/历史证据保留，交付范围与限制见[一致性复核](06-native-consistency-review-2026-09-09.md)。
+
 > 当前范围修订（2026-09-05）：FEAT-137 已由 Owner 永久终止且未完成验收，未来不重启。CAP-019 / GS-005 为 `owner-terminated-unaccepted`，不再属于 active 交付范围；现行 active 范围排除 FEAT-137/138。下文旧 active 范围及 FEAT-137 source PASS 为历史记录，不构成审批可用或 D4 PASS。最终权威见 [FEAT-137 永久终止记录](../FEAT-137-desktop-approval-interaction/03-termination.md)。
 
 > Profile：`demo_fast` · Exposure：`local`
@@ -25,7 +27,7 @@
 | API mode | stable；`experimentalApi=false` | `yijie-codex/.yijie/schemas/app-server/baseline.json:8-9` |
 | Runtime transport | stdio | 同上 |
 | Host transport/auth | local HTTP/SSE；owner-only bearer | `yijie-contracts/compatibility/agent-host-runtime-v1.json:15-19` |
-| Host sandbox/approval | 固定 `read-only` / `never`；旧 FEAT-137 opt-in 拒绝启动 | 2026-09-05 Contracts retirement authority `4d3f967…`；正常 Runtime 使用 FEAT-136 两补丁 artifact |
+| Host sandbox/approval | 当前 FEAT-152 原生权限配置；旧 FEAT-137 opt-in 永久拒绝 | read-only/never 仅为原隔离验收配置；不得改当前权限匹配旧文档，FEAT-152 不继承 FEAT-137 验收 |
 
 “Runtime repository commit”和“upstream Codex commit”是两个不同身份，不得互相替换。`b2b20e2…` 仅包含 Owner-authorized FEAT-136 minimal producer repair；upstream tag/commit、Runtime version、267-file schema corpus 与 tree digest 保持不变。当前工作区即使发现远端更新，也不得通过 pull、同步、构建或重生成 schema 改变最终冻结值。
 
@@ -66,20 +68,20 @@ Host 代码中另有 `thread/delete` 和受条件开关约束的 `generate_image
 | CAP-001 | 固定 Runtime/Host 能力身份 | initialize/baseline metadata | `available` | `baseline-documentation` | `none` | manifest 已固定 | readiness 已校验版本边界 | FEAT-131 | `owner-approved-inference` |
 | CAP-002 | 新建并恢复 Thread | `thread/start`、`thread/resume`、`thread/started` | `available` | `none` | `none` | 已锁定投影 | 已有 session 创建/恢复与映射 | FEAT-132、FEAT-140 | `owner-approved-inference` |
 | CAP-003 | Thread active/idle/system-error 状态 | `thread/status/changed` | `requires Host/Contracts projection` | `contracts-host-desktop` | `none` | 未投影 | 仅由本地阶段粗粒度派生 | FEAT-132、FEAT-140 | `owner-approved-inference` |
-| CAP-004 | 产品会话列表与正文历史 authority | `thread/list`、`thread/read` 可作 Runtime 诊断输入 | `intentional product difference` | `desktop-only` | `none` | 不作为产品正文 authority | Desktop SQLite 是既定产品 authority | FEAT-140 | `yijie-product-authority` |
+| CAP-004 | 产品会话列表与正文历史 authority | thread/read(includeTurns=true)、thread/resume | `available` | `contracts-host-desktop` | `none` | native v7 读取原生历史；不解析 rollout | SQLCipher 保管产品记录及已观察事实，冷历史分开标来源、旧历史只读 | FEAT-132、FEAT-140 | `yijie-product-authority` |
 | CAP-005 | Archive/Unarchive | `thread/archive`、`thread/unarchive` | `requires Host/Contracts projection` | `contracts-host-desktop` | `owner-product-decision` | 未投影 | 无对应交互；Owner 尚未决定纳入或形成主动产品差异 | FEAT-140 | `owner-approved-inference` |
 | CAP-006 | 删除/重命名 Thread | `thread/delete`、`thread/name/set` | `available` | `desktop-only` | `none` | delete 有未登记扩展；name 未投影 | 已有本地删除、重命名 authority | FEAT-140 | `owner-approved-inference` |
 | CAP-007 | 文本新 Turn | `turn/start` + text input | `available` | `desktop-only` | `none` | 已投影 | 已有 Composer 与提交闭环 | FEAT-135 | `owner-approved-inference` |
 | CAP-008 | 图片/文件附件随 Turn 提交 | `turn/start` 的 text/image/localImage；无通用 file input | `available` | `desktop-only` | `none` | v2 受控转换复用 `turn/start` | 已有附件导入、解析、绑定和历史 | FEAT-135；复用 FEAT-127 | `owner-approved-inference` |
-| CAP-009 | Assistant Item 流式文本 | `item/started`、`item/agentMessage/delta`、`item/completed` | `available` | `desktop-only` | `none` | 已投影基础生命周期 | 已聚合为单一 live assistant 文本 | FEAT-134 | `owner-approved-inference` |
-| CAP-010 | Commentary/progress 与 final answer 分层 | `AgentMessage.phase=commentary/final_answer`；Provider 可能不发 phase | `requires Host/Contracts projection` | `contracts-host-desktop` | `none` | 当前 Item 投影丢弃 phase | 当前合并为同一文本区域 | FEAT-134 | `owner-approved-inference` |
-| CAP-011 | 用户可见 reasoning summary | `item/reasoning/summaryTextDelta`、`summaryPartAdded`、`textDelta`、reasoning completed | `requires Host/Contracts projection` | `contracts-host-desktop` | `none` | textDelta 有实现路径但不在锁定清单；summary 未投影 | 已有 reasoning disclosure，但语义不是完整 summary parity | FEAT-134 | `owner-approved-inference` |
-| CAP-012 | 稳定计划/步骤更新 | `turn/plan/updated` | `requires Host/Contracts projection` | `contracts-host-desktop` | `none` | 未投影 | 无 | FEAT-134 | `owner-approved-inference` |
+| CAP-009 | Assistant Item 流式文本 | item/started、item/agentMessage/delta、item/completed | `available` | `contracts-host-desktop` | `none` | native v7 保留原生身份和内容 | 唯一 NativeDisplayBuffer 按 Item 累计，完整 Item 直接替换；不做正文对账 | FEAT-132、FEAT-134 | `owner-approved-inference` |
+| CAP-010 | Commentary 与 final answer 分层 | AgentMessage.phase | `available` | `contracts-host-desktop` | `none` | native v7 保留 phase，缺失保持 null | FEAT-134 按原生阶段显示；缺 phase 未分类，不声称 provider 稳定提供 | FEAT-134 | `owner-approved-inference` |
+| CAP-011 | 推理摘要与模型推理记录 | summaryTextDelta、summaryPartAdded、textDelta、reasoning completed | `available` | `contracts-host-desktop` | `none` | 原生 summary/content 分类与索引，沿用 local-only raw 权限 | FEAT-134 分类别/原生索引纯文本展示；summary-only 不冒充 raw，缺失如实披露 | FEAT-134 | `owner-approved-inference` |
+| CAP-012 | 稳定计划/步骤更新 | turn/plan/updated | `available` | `contracts-host-desktop` | `none` | native v7 已投影原生 plan | FEAT-134 只显示实际 plan；没有 plan 不造步骤，正向新模型样本未补跑 | FEAT-134 | `owner-approved-inference` |
 | CAP-013 | schema 注释为实验的 Plan Item/delta | `item/plan/delta` 存在于 non-experimental schema，协议只有 EXPERIMENTAL 注释、没有 runtime gate attribute | `requires Host/Contracts projection` | `contracts-host-desktop` | `real-runtime-producer-unavailable` | 未进入锁定投影，也没有当前 producer 证据 | 不得生成假步骤；优先使用稳定 `turn/plan/updated` | FEAT-134 | `owner-approved-inference` |
-| CAP-014 | Turn started/completed/interrupted/failed | `turn/started`、`turn/completed` | `available` | `desktop-only` | `none` | 已投影；completed 是唯一 Turn 终态 | 已有 streaming 与三类终态 | FEAT-132、FEAT-134 | `owner-approved-inference` |
-| CAP-015 | 非终态 error/warning 的上下文展示 | `error`、`warning` | `available` | `desktop-only` | `none` | 已投影且不等于 Turn 终态 | live projection 未提供独立 error/warning Item | FEAT-134、FEAT-142 | `owner-approved-inference` |
-| CAP-016 | Command started/output/completed/failed/declined | commandExecution Item、`item/commandExecution/outputDelta` | `available` | `contracts-host-desktop` | `none` | v5 Command 安全 mapper、terminal 与 output-delta projection 已冻结；FEAT-137 approval 已永久终止；独立 decline 用户动作不在保留实现范围 | completed/failed Item、SQLCipher hydration、安全复制与核心 UI 已有 fresh real 证据；完整 started/delta 集成顺序由 FEAT-143 | FEAT-136；FEAT-143 承接保留的明确后移项；FEAT-137 已终止 | `owner-approved-inference` |
-| CAP-017 | MCP Tool 生命周期与 progress | mcpToolCall Item、`item/mcpToolCall/progress` | `requires Host/Contracts projection` | `contracts-host-desktop` | `owner-product-decision` / `real-runtime-producer-unavailable` | v5 producer-neutral Tool mapper/progress projection 已冻结，但没有 Owner-approved real producer/entrypoint | closed consumer、persistence/UI foundation 存在；不能证明 real Tool vertical | FEAT-144 | `owner-approved-inference` |
+| CAP-014 | Turn started/completed/interrupted/failed | turn/started、turn/completed | `available` | `contracts-host-desktop` | `none` | 原生 turn/completed 的 status 决定 Turn 结果 | Turn 与 Item 独立；UI busy 与执行事实分离，不自动封口 Item | FEAT-132、FEAT-134 | `owner-approved-inference` |
+| CAP-015 | 非终态 error/warning 与投影诊断 | error、warning、projection notice | `available` | `contracts-host-desktop` | `none` | 安全代码与 availability 独立于执行状态 | FEAT-134 仅安全代码映射；范围不足时放会话层，不猜 Turn/Item 归属 | FEAT-134、FEAT-142 | `owner-approved-inference` |
+| CAP-016 | Command 生命周期与安全输出 | commandExecution、item/commandExecution/outputDelta | `available` | `contracts-host-desktop` | `none` | native v7 转发原生 Item；delta 仅输出 pending-final 诊断；最终 aggregatedOutput 安全投影，v5 保留兼容 | 原五项 D4 属历史 v5；2026-09-09 native 卡片修复/八项 local D4 已通过，真实两条成功/失败及重开；final-only 策略保留 | FEAT-136；FEAT-143 后移项不授权恢复 v5；FEAT-137 永久终止 | `owner-approved-inference` |
+| CAP-017 | MCP Tool 生命周期与 progress | mcpToolCall、item/mcpToolCall/progress | `requires Host/Contracts projection` | `contracts-host-desktop` | `owner-product-decision` / `real-runtime-producer-unavailable` | native 仅通用安全标签/结果有无，partial；旧 v5 基础保留 | Tool 卡片不代表完整 native error/duration/progress 或真实 producer；D4 NOT RUN | FEAT-144 | `owner-approved-inference` |
 | CAP-018 | Runtime 发起的 dynamic image tool | `item/tool/call`；当前 Host 注册路径会开启 experimental capability | `blocked by frozen Runtime` | `baseline-documentation` | `experimental-api-disabled` | 仅 FEAT-128 条件路径，默认 baseline 不支持；不能作为 CAP-017 替代品 | Artifact UI 存在，但不能证明 final frozen baseline 的真实 producer | FEAT-144 boundary；复用 FEAT-128 | `owner-approved-inference` |
 | CAP-019 | Command 本地审批 | `item/commandExecution/requestApproval`（仅历史 schema） | `owner-terminated-unaccepted` | `none` | `owner-permanent-termination` | Owner 因实现耗时过长永久终止；旧 v6 source/reader 保留审计，Host/Native/UI 入口关闭 | 未完成真实审批及 D4 验收；不再实现、不重启、不以收尾检查替代验收 | FEAT-137（永久终止） | `owner-explicit-decision` |
 | CAP-020 | 一般权限请求与 MCP elicitation | `item/permissions/requestApproval`、`mcpServer/elicitation/request` | `requires Host/Contracts projection` | `contracts-host-desktop` | `owner-security-decision` | 未实现；明确不属于 FEAT-137 | 无；继续 fail closed，不得从 FEAT-137 扩展 | 未分配 Owner backlog（不属于 FEAT-137） | `owner-approved-inference` |
@@ -106,7 +108,7 @@ CAP-022 与 CAP-032～038 共计 8 项 Owner 主动排除。CAP-032 只排除 Fo
 
 ## 5. Owner 与停止条件
 
-- Active FEAT-132–137、FEAT-139–144 必须引用相应 `CAP-*` 和固定 reference policy；FEAT-138 已正式取消/排除，仅保留决策记录。FEAT-144 独立承接 CAP-017 / GS-004，不能被 CAP-018 替代。后续只根据 Owner 明确范围变更更新，不跟随某个 Codex Desktop 版本自动漂移。
+- Active FEAT-132–136、FEAT-139–144 必须引用相应 `CAP-*` 和固定 reference policy；FEAT-138 已正式取消/排除，仅保留决策记录。FEAT-144 独立承接 CAP-017 / GS-004，不能被 CAP-018 替代。后续只根据 Owner 明确范围变更更新，不跟随某个 Codex Desktop 版本自动漂移。
 - `requires Host/Contracts projection` 只允许投影上述固定 Runtime stable 能力；必须先改权威 Contracts，再改 Host 和 Desktop。
 - `blocked by frozen Runtime` 不得通过开启 experimental API、修改 schema、替换 binary、模拟事件或硬编码 UI 绕过。
 - CAP-019 的早期 security/source PASS 仅为历史。Owner 已永久终止 FEAT-137，未完成验收；不再要求补齐 allow/cancel、expiry/reconnect 或 D4。CAP-020/021 继续 fail closed，不扩大权限。

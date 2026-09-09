@@ -184,6 +184,7 @@ verification:
     status: PASS
     summary: 完成与实现阶段分离的Codex自审及canonical后复核：原生追加/最终对象/状态权威不变；summary/content标签和标识、busy与订阅隔离、availability/诊断、旧历史/资源/权限边界通过定向及现有数据检查。来源固定后canonical两次正常启动/退出，Host原生映射/状态无变化，未发现需要追加代码修复的问题。不冒充独立人工批准。
   known_limitations:
+    - "2026-09-09 一致性补充：本需求当前八项 AC/local D4 以 2026-09-09 原生展示记录为准；远端交付单独记录于 04-remote-delivery-2026-09-09.md。FEAT-136 卡片调整已另行实施并取得自身 local D4，不继承或改写本需求验收。详见 FEAT-131/06-native-consistency-review-2026-09-09.md。"
     - 原生 phase/plan 可能缺失；冷历史不完整；Command 最终对象完成后展示。
     - 旧清理未完成、附件过期、隔离任务无日常 Host 映射均保留真实状态。
     - 当前私有 view 未提供 diagnostic scope，保守按会话展示，不猜测归属。

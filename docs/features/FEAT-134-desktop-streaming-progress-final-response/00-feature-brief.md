@@ -1,5 +1,7 @@
 # FEAT-134 — 基于 Codex 原生事实的流式与过程展示
 
+> 2026-09-09 当前依赖与证据适用范围：本需求当前八项 AC/local D4 以 2026-09-09 原生展示记录为准；远端交付单独记录于 04-remote-delivery-2026-09-09.md。FEAT-136 卡片调整已另行实施并取得自身 local D4，不继承或改写本需求验收。详见[整体一致性复核](../FEAT-131-desktop-codex-parity-baseline/06-native-consistency-review-2026-09-09.md)。
+
 Profile：demo_fast；Exposure：local。2026-09-09 用户确认并授权本次原生适配调整，D0 PASS；本次原生展示调整已完成来源固定及 canonical 既有数据验证，八项 Must AC 满足，local D4 PASS。
 
 ## 产品目标与当前事实

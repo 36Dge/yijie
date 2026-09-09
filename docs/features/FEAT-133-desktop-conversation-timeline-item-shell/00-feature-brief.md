@@ -1,5 +1,7 @@
 # FEAT-133 — Desktop 对话 Timeline 与通用 Item 展示框架 Brief
 
+> 2026-09-09 当前依赖与证据适用范围：当前输入为 FEAT-132 的只读 ConversationView；新对话来自 native v7/NativeDisplayBuffer，旧 ConversationState、reducer 与 legacy rollback 已删除。reasoning 正文按 FEAT-134 区分 summary/raw；原 metadata-only note 只适用于缺正文的旧档案。下文 2026-08-28 的源码哈希、旧调用链及 PASS 是历史证据，不是恢复旧机制的要求。详见[整体一致性复核](../FEAT-131-desktop-codex-parity-baseline/06-native-consistency-review-2026-09-09.md)。
+
 > Profile：`demo_fast` · Exposure：`local` · Checkpoint：`D4` · Created：`2026-08-27` · Verified：`2026-08-28`
 >
 > 参考策略：`codex-inspired-approximate-parity-v1-2026-08-27` / `owner-approved-inference`
@@ -39,7 +41,7 @@ Host/Contracts 权威投影、当前 Yijie UI、工程推测。
   `0.144.6`、固定 commit 和 `experimentalApi=false`。
 - 不修改 `yijie-contracts`、`yijie-agent-host`、Desktop private IPC、`src-tauri`、数据库、持久化、
   Tauri capability、模型、prompt、Provider 或 Agent 决策。
-- 不实现 FEAT-134 流式分层、FEAT-136 Command/Tool 详情、FEAT-137 审批、FEAT-139 Turn 控制、
+- 不实现 FEAT-134 流式分层、FEAT-136 Command 详情、FEAT-144 Tool、FEAT-152 权限（FEAT-137 永久退役）、FEAT-139 Turn 控制、
   FEAT-140/142 复杂恢复与重连或 FEAT-141 长对话滚动策略。
 - 不重构 Sidebar、Composer、附件存储或 Artifact authority。
 - 不引入 React、`assistant-ui`、第二套通用 UI/Markdown 组件库；新增依赖必须另获 Owner 批准。
@@ -55,8 +57,8 @@ Host/Contracts 权威投影、当前 Yijie UI、工程推测。
    Thread 或已有会话；固定 local owner/tenant/capability 只用于 ADR-0018 本机 direct-entry。
 2. Timeline selector 只读取 FEAT-132 领域 ViewModel，按 Turn ordinal 与 Item ordinal/identity 生成稳定
    展示模型；组件不接触 raw event method、payload、数据库或原生 command。
-3. Timeline 依次展示用户输入、允许的过程呈现、最终回答与安全 notice。progress 是 Turn lifecycle
-   的只读呈现，error/warning 是 Turn notice；组件不伪造新的领域 Item。
+3. Timeline 依次展示用户输入、允许的过程呈现、最终回答与安全 notice。progress 是原生 Turn lifecycle
+   的只读呈现，error/warning 只按已知来源范围展示；仅 thread 范围的 notice 保留在会话层；组件不伪造新的领域 Item。
 4. Item header 只显示 ViewModel 中真实存在的类型、状态、时间或耗时；缺少字段时隐藏，不从到达时间、
    DOM 顺序或文案推测。
 5. 用户可通过键盘或指针展开/收起允许折叠的过程内容，复制文本/代码；shell 仅发出显式事件，上层
@@ -105,7 +107,7 @@ Host/Contracts 权威投影、当前 Yijie UI、工程推测。
 
 ### 推荐组件边界
 
-- `conversation-timeline` selector/ViewModel：只从 FEAT-132 state 派生展示数据，纯函数、确定性、可测试。
+- `conversation-timeline` selector/ViewModel：只从 FEAT-132 只读 ConversationView 派生展示数据，纯函数、确定性、可测试。
 - `ChatTimeline`：组织 Thread 状态和 Turn group，不执行 I/O。
 - `ChatTurnGroup`：呈现 Turn 层级、状态与有序 Item。
 - `ChatTimelineItemShell`：提供 header/status/body/disclosure/action slot。

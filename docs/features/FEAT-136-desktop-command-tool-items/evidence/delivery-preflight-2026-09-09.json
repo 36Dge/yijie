@@ -1,0 +1,61 @@
+{
+  "feature": "FEAT-136",
+  "phase": "delivery-preflight",
+  "checked_at": "2026-09-09T15:54:37.768655+00:00",
+  "commit_authorization": "pending",
+  "push_authorization": "pending",
+  "local_d4": "PASS as recorded; not rerun",
+  "desktop_base_commit": "6e5047d1c23041c46dd495ddb89e24c7e4db5d47",
+  "meta_base_commit": "7ddf9e64a56df2af4aa4f6906408b0d1a85a48df",
+  "initial_desktop_files_matching_d4_sha256": 11,
+  "desktop_precommit_file_sha256": {
+    "docs/chat-native-conversation.md": "e09cac4a962555f080964a1b6416415283bd554c2b1d4f8358b6f39786cb8dce",
+    "src-tauri/src/chat/database.rs": "018ba8d6f29bb3116d90ee41508d619fe4f76ebfdec091dc07aec4c0abcadcc7",
+    "src/components/chat/ChatCommandItem.test.ts": "6cc8010928cae929aeb31e069e902023058721eb9530d688d512ea24e072f019",
+    "src/components/chat/ChatCommandItem.vue": "53c210d459cb117edacdec66beff3e8e23311b0a55d759c8177a02eb06b165de",
+    "src/components/chat/ChatNativeStreaming.test.ts": "921ba4b57402a200849ca23c8c1f698958166292c5e8bb27ed4b5b88768fa7f9",
+    "src/components/chat/ChatTimelineItemShell.vue": "635ee926d0064cd793de2b5a306475127a53eb883dc54e0f0e3587d658251b39",
+    "src/components/yijie/YjAppShell.vue": "e4b39682b7c43f676844dd84179b8386cc82b6ca7a4557d85c6ba6fe6514ccac",
+    "src/domain/conversation-diagnostics.ts": "115b2138179fd0901c402ef1750d600426eab4fa003726a3a4bcbf5d21dbc6cf",
+    "src/domain/conversation-view.ts": "98ccfc424a2787e0ce6f40dab571731ced97abea937647a0538bce0688e30e5b",
+    "src/pages/chat/ChatPage.vue": "1dc17838223b437f682f042c8dc431ceab7fee7d5088e17d35a292d2be29d18c",
+    "src/components/chat/ChatNativeCommand.test.ts": "7bea122c200c0494ce56366f67e4394348146ab95aaee2943414c9ac2f750170"
+  },
+  "post_d4_documentation_changes": [
+    {
+      "path": "docs/chat-native-conversation.md",
+      "d4_sha256": "e649ae773416d36959c7ed970d3a33cedb358ff7ac90be9f0d5dfeb2406f9a8a",
+      "precommit_sha256": "e09cac4a962555f080964a1b6416415283bd554c2b1d4f8358b6f39786cb8dce",
+      "reason": "Clarify acceptance occurred on the working-tree candidate; commit/push status is separately recorded, without claiming a D4 rerun."
+    }
+  ],
+  "checks": {
+    "source_lock_entries": 42,
+    "source_git_object_and_worktree_digest": "PASS",
+    "generate_check_default_sibling": "FAIL: Skills HEAD differs from exact pin; not modified",
+    "generate_check_original_pinned_environment": "PASS",
+    "skills_fixed_commit": "10c45bec29603b002e861e1499d5b4e684251af5",
+    "desktop_docs_build": "PASS",
+    "meta_lint": "PASS",
+    "meta_tests_passed": 50,
+    "meta_shell_syntax": "PASS",
+    "feature_packages_audited": 19,
+    "feat131_to_feat136_d4_document_gates": "PASS, not fresh runtime runs",
+    "original_archive_files_byte_equal": 4,
+    "diff_whitespace": "PASS"
+  },
+  "calls": {
+    "new_text_requests": 0,
+    "text_used": 3,
+    "text_limit": 10,
+    "image_used": 0,
+    "image_limit": 0
+  },
+  "remote_preflight": {
+    "branch": "chore/retirement-baseline-20260905",
+    "desktop_sha": "6e5047d1c23041c46dd495ddb89e24c7e4db5d47",
+    "meta_sha": "7ddf9e64a56df2af4aa4f6906408b0d1a85a48df",
+    "open_prs_for_each_branch": 0,
+    "new_delivery_ci": "NOT RUN; no new commit yet"
+  }
+}

@@ -1,5 +1,7 @@
 # FEAT-133 Demo 验证
 
+> 2026-09-09 当前依赖与证据适用范围：当前输入为 FEAT-132 的只读 ConversationView；新对话来自 native v7/NativeDisplayBuffer，旧 ConversationState、reducer 与 legacy rollback 已删除。reasoning 正文按 FEAT-134 区分 summary/raw；原 metadata-only note 只适用于缺正文的旧档案。下文 2026-08-28 的源码哈希、旧调用链及 PASS 是历史证据，不是恢复旧机制的要求。详见[整体一致性复核](../FEAT-131-desktop-codex-parity-baseline/06-native-consistency-review-2026-09-09.md)。
+
 ## 1. 当前门禁状态
 
 | Gate | Result | 说明 |
