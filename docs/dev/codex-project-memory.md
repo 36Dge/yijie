@@ -17,6 +17,8 @@
 
 2026-09-09日常入口收尾已通过：Desktop当前为c0dd70c240d48c2c16d046aa27c9b32ec4d32c5b，包含单独提交的权限弹窗UI、说明修正及旧清理记录的只读历史修复；Contracts/Host来源不变。普通canonical入口沿用原Host Home和app-data，8条原Host映射及最后Turn身份/状态保持一致，旧附件历史与Artifact正常重开。本轮未增加模型调用，历史清理未完成、附件过期及隔离Host缺少映射仍如实保留。详见[日常入口报告](../features/FEAT-132-desktop-conversation-domain-state-machine/05-daily-entry-verification-2026-09-09.md)。
 
+用户随后明确授权所有仓库审计、提交与推送；上述验收报告中的“未推送”是当时的历史状态。本次同步现有工作分支，修正Contracts/Host说明，源码consumer pin保持不变；Desktop CI来源/目录布局和Host旧测试断言仍列为合并前事项，不能把Git推送等同完整CI或发布通过。详见[多仓审计与同步记录](workspace-git-sync-2026-09-09.md)。
+
 ## 1. 单人开发角色默认值
 
 易界当前采用“段成威一人使用 Codex 开发”的工作模式。除非段成威针对某个需求明确指定其他人，新 Feature Package 和交付文档默认使用以下角色：
