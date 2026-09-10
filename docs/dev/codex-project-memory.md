@@ -47,7 +47,7 @@ product_detail及asin/amz_site输入schema当前由固定操作8确认，asin必
 
 结果采用原生text块/稳定索引、最多32个原始content条目和既有256KiB UTF-8容量、复用既有完整文本脱敏后纯文本展示。safeNativeText仅NUL/容量处理，不能冒称脱敏。未返回outputSchema/annotations或progress不补造，也不独立阻断该展示设计；没有可展示文本不代表商品无数据。status/availability/诊断/busy分离，原生failed即使error=null也不改completed。
 
-[12契约与reader方案](../features/FEAT-144-desktop-real-tool-producer-items/12-independent-contract-and-reader-plan-2026-09-10.md)已细化：Contract First；兼容reader/格式版本拒绝先于新producer写入；未知格式用本地recordDiagnostics定位，不生成NativeView或触发冷读补建；DB user_version过高仍整体拒绝。未来expand migration仅设计候选，旧JSON/历史migration不改，回滚仅到已验证兼容reader，不复制用户DB。
+[12契约与reader方案](../features/FEAT-144-desktop-real-tool-producer-items/12-independent-contract-and-reader-plan-2026-09-10.md)已细化：Contract First；兼容reader/格式版本拒绝先于新producer写入；未知格式用本地recordDiagnostics定位，不生成NativeView或触发冷读补建；DB user_version过高仍整体拒绝。schema15 expand migration已实现并通过合成数据前向验证，旧JSON/历史migration不改，回滚仅到已验证兼容reader，不复制用户DB。
 
 秘密首期只存受管进程内存，正常重开重新输入；原生shell_environment_policy.exclude需核对set和实际执行环境不重注入。稳定elicitation空form按request/thread/可信turn关联，原生accept/decline/cancel/resolved处理，无itemId不猜卡片；其它未支持请求继续拒绝。FEAT-152语义不变，FEAT-137永久退役。
 
@@ -55,9 +55,9 @@ product_detail及asin/amz_site输入schema当前由固定操作8确认，asin必
 
 用户已明确“不做业务失败场景的验证，跳过这个逻辑实现”：AC-004/F144-S03从当前Must范围移出，标OWNER_EXCLUDED/NOT RUN，原编号不复用、旧四文件逐字归档、不算PASS。不新增Sorftime业务错误字段、分类器、失败专用分支或样本；已有原生failed与通用安全处理仍如实保留。无需再索取官方正常失败条件，不用成功/空结果或权限拒绝替代业务失败通过。
 
-用户确认业务余额充足并授权10次Sorftime业务请求。保守口径为tools/call尝试共10次，含原生404重发；每个逻辑调用先预留最多2次，不足则不启动，不能视为10逻辑加10重试。业务已用0/10，元数据8/10独立，模型/图片0且未授权。扣费公式未核实但不再阻塞该明确预算，不承诺重试免费。14备用取样在这份预算内但非D0必要步骤，本轮不消耗额度。
+用户确认业务余额充足并授权10次Sorftime业务请求。保守口径为tools/call尝试共10次，含原生404重发；每个逻辑调用先预留最多2次，不足则不启动，不能视为10逻辑加10重试。业务已用0/10，元数据8/10独立，模型另获8次文本请求授权、已用0/8，图片0且未授权。扣费公式未核实但不再阻塞该明确预算，不承诺重试免费。14备用取样在这份预算内但非D0必要步骤，本轮不消耗额度。
 
-D0根据用户新范围与授权重新审定并实跑PASS（exit0），strict及50项元仓测试通过；9项活动Must pending，产品实现/canonical/D4 NOT RUN。通用D4仍保留AC-007的既有输入/原生权限正常拒绝检查，不能冒充AC-004或另做业务失败逻辑。继续复用Codex与FEAT-132唯一缓冲/SQLCipher/thread-read，不造执行器/推演/对账/重建/封口。后续Contracts→兼容reader→Host/Desktop→定向验证→canonical→D4；产品实施/migration、模型预算、提交推送仍依据各自明确授权，业务预算不代替它们。
+D0根据用户新范围与授权重新审定并实跑PASS（exit0），strict及50项元仓测试通过；9项活动Must pending，产品实现与本地来源固定已完成；canonical构建通过，应用启动/真实D4尚待用户隐藏输入。通用D4仍保留AC-007的既有输入/原生权限正常拒绝检查，不能冒充AC-004或另做业务失败逻辑。继续复用Codex与FEAT-132唯一缓冲/SQLCipher/thread-read，不造执行器/推演/对账/重建/封口。后续Contracts→兼容reader→Host/Desktop→定向验证→canonical→D4；产品实施/migration、本地提交与8次模型请求已明确授权，推送未授权，业务预算不代替它们。
 
 本轮仅元仓需求/证据更新，无产品代码/migration/提交/推送/tag/部署；Desktop228a95a4929a53bbb6aafc76156161d642d72153并发界面内容保护，47来源锁不机械更新。原包和05–12阶段历史保留，当前事实以15和分账台账为准。
 
@@ -270,3 +270,8 @@ G4-001 与 FEAT-126 的 Tasks 服务端资源授权仍按各自生产门禁保�
 - 2026-08-01：增加本地优先里程碑规则；FEAT-125 本地工程基线完成后允许继续业务开发，完整生产级身份安全链路在真实部署前强制补齐。
 - 2026-08-22：增加“三次同点失败后强制深度反思”规则；停止机械重试，扩大只读审计范围并以可证伪证据寻找根因后，才允许提出下一步诊断或修复。
 - 2026-08-23：依据 ADR-0017 建立双 Profile；新需求默认 `demo_fast + local`，以产品/UX完整、整体实现、时间盒和真实服务 D4 闭环为准；公开 Demo 增加 DP，生产加固保留原 G0–G6 与三次失败熔断。
+
+
+FEAT-144 实施后的当前检查点以[18来源与D4记录](../features/FEAT-144-desktop-real-tool-producer-items/18-committed-sources-and-d4-2026-09-10.md)为准：Contracts db54c617c65db5431b950eb297ba148a43a8e600 → Host 31ee71889f83aff53dce6eeacd4b5ca4fd319c6b → Desktop reader 25b004fbd5a4dcf642a503d302c21a7d6e3b817f → Desktop writer/展示 9455179cac3772972dc19d16cd8dee3a5b95806f → 元仓来源记录 1b4b86b39d7004b87b590365ddb00803a225f9be，均为本地提交，不推送。最低回滚reader保持writer=1/read=2，实际源码树通过生成/类型及3项安全reader测试。最终代码定向测试、clippy、文档构建和真实来源门禁通过，Runtime未改、FEAT-152语义未改、FEAT-137仍永久退役。
+
+普通canonical构建已通过，使用com.yijie.ai、既有app-data及日常Host Home，未复制用户数据库。当前系统隐藏输入框等待用户亲自提供Sorftime密钥；这是产品D4输入检查点，不是旧的原生连通性阻塞。8次模型计数器已就绪、当前0/8；业务0/10、元数据8/10、图片0；不重复申请已经授权的预算。后续仅一个新验证线程，初始化/目录检查各使用一次剩余元数据操作。9项活动AC保持pending、AC-004始终用户排除；不得因构建或本地提交完成将D4关闭。
