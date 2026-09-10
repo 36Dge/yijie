@@ -1,6 +1,6 @@
 # FEAT-144 原生配置所有权兼容修复
 
-当前来源：Host及日常回滚下限`ccd815ff63542674daa80172a1c71ac7478edd0f`，Desktop `a5975f48e63d3f1d3a262e9e8dfc57ca0d923961`。普通canonical与旧Tool重开PASS；实际Sorftime连接后的权限切换待用户隐藏输入，D4未关闭。下文早期提交和失败保留阶段语义。
+配置兼容阻塞已关闭：当前Host ccd815ff63542674daa80172a1c71ac7478edd0f、Desktop a5975f48e63d3f1d3a262e9e8dfc57ca0d923961。新E真实Tool completed/414ms，原生返回三字段对照通过；Sorftime正常停用、auto/full/ask、原数据canonical退出重开均PASS。累计元数据12/20、模型7/8、业务2逻辑调用保守扣4/10、图片0；应用与计数器均已正常退出。D4尚未关闭：当前来源下的原生Prompt正常拒绝未复验，不能继承旧B结果；已申请最多追加2次文本，未获授权不调用。AC-004始终用户排除。 详见[22](22-connected-permissions-and-reopen-2026-09-10.md)。
 
 用户已授权解决20所记问题并完成正常重开/权限切换，另增10次原生元数据操作；累计上限20，既有已用10。本地提交及必要修复授权沿用，推送未授权；模型4/8、业务保守扣2/10、图片0不变。
 
@@ -30,17 +30,23 @@
 必要源码修复完成并分离阶段自审后，本地提交Host、更新Desktop真实Host commit/digest/pin并提交；Contracts/Codex不变。普通canonical读取现有数据和Tool历史，正常退出后以用户隐藏输入重新启用Sorftime。按台账预留初始化/单工具目录验证，不消耗模型或业务额度验证单纯切换。界面扩大权限时取得适用于当前验证的当场确认，正常停用后auto/full→ask，正常退出重开。D4依全部活动AC的实际结果决定，20历史失败保留，AC-004继续排除。
 
 
-## 实施与来源固定
+## 实施与来源固定（分阶段历史，当前以22为准）
 
 Host已提交`65f7b3212fbeb62b3b828cc1ca8997076f1f6b29`，也是新配置布局最低可回滚Host基线；Desktop仅更新真实Host来源pin，提交`c784d842b59c063b4f357fce8445d9edb808370f`。Contracts db54c617c65db5431b950eb297ba148a43a8e600及Codex不变。三项新普通配置测试、Host FEAT144定向race/vet、模块校验与三项固定Runtime无调用集成通过；审查后再次验证有效MCP配置、正常停用重启和trust字节保留。首次集成发现原生CLI不解引号key路径，已按固定native语法改为受限bare segments后通过，未修改Runtime。详见[实现与审查证据](evidence/config-ownership-implementation-2026-09-10.json)。
 
-当前开始普通未启用Sorftime的canonical构建/重开验证；使用原计数器4/8上限，不重建预算。元数据10/20、业务保守2/10、图片0不变；尚未将本轮产品重开或D4标PASS。
+当时开始普通未启用Sorftime的canonical构建/重开验证；使用原计数器4/8上限，不重建预算。元数据10/20、业务保守2/10、图片0不变；尚未将本轮产品重开或D4标PASS。
 
 
 首次普通canonical实际迁移保留两个trust条目，但启动器工作目录为已被原生信任的Desktop仓库，固定Runtime因此加载该仓不支持的workspace配置并退出。已以相同真实Home、相同配置，仅改变bootstrap cwd的无调用对照证实：仓内初始化失败、中性根目录初始化exit0。Host追加`ccd815ff63542674daa80172a1c71ac7478edd0f`，Desktop pin追加`a5975f48e63d3f1d3a262e9e8dfc57ca0d923961`；新配置布局的日常回滚下限以该Host为准。实际任务仍传入原cwd并加载其项目配置，既有不支持workspace的任务目录限制没有绕过。三项无调用集成与来源检查再次通过，当前第二次普通canonical构建中，证据见[native-bootstrap-cwd](evidence/native-bootstrap-cwd-2026-09-10.json)。
 
 
-修复后普通canonical实际PASS：同一app-data/Host Home/CODEX_HOME正常启动，旧FEAT144-D4-B两个Tool已重开，342ms成功及0ms拒绝、原生观察来源、脱敏/缺结果语义保留；模式ask。原模板+现root尾部重新合成的摘要等于原ab41...，证明trust原字节保留。Cmd-Q正常退出且所有受管进程消失，计数未增加。详见[canonical证据](evidence/config-ownership-canonical-2026-09-10.json)。当前准备Sorftime隐藏输入后的真实连接/停用；D4暂不关闭。
+修复后普通canonical实际PASS：同一app-data/Host Home/CODEX_HOME正常启动，旧FEAT144-D4-B两个Tool已重开，342ms成功及0ms拒绝、原生观察来源、脱敏/缺结果语义保留；模式ask。原模板+现root尾部重新合成的摘要等于原ab41...，证明trust原字节保留。Cmd-Q正常退出且所有受管进程消失，计数未增加。详见[canonical证据](evidence/config-ownership-canonical-2026-09-10.json)。当时准备Sorftime隐藏输入后的真实连接/停用（现已完成，见22）；D4暂不关闭。
 
 
-本次最后检查：Host make lint、模块校验、定向race及三项原生无调用集成通过；元仓strict/D0、lint及50项测试通过。没有运行受禁止的全量故障/攻击测试，没有推送或触发远端CI。当前标准Sorftime构建已完成、隐藏输入等待用户；计数器4/8沿用原台账，新10次元数据尚未使用。
+本次最后检查：Host make lint、模块校验、定向race及三项原生无调用集成通过；元仓strict/D0、lint及50项测试通过。没有运行受禁止的全量故障/攻击测试，没有推送或触发远端CI。阶段检查点（已由22取代）：标准Sorftime构建已完成、隐藏输入等待用户；计数器4/8沿用原台账，新10次元数据尚未使用。
+
+## 当前真实连接复验
+
+当前配置兼容修复已本地提交：Host ccd815ff63542674daa80172a1c71ac7478edd0f、Desktop a5975f48e63d3f1d3a262e9e8dfc57ca0d923961。普通canonical重开旧B任务已通过；用户隐藏输入后，新E任务真实Tool completed/414ms、两轮均完成。累计元数据12/20、模型7/8、业务2逻辑调用保守扣4/10尝试、图片0。本次E模式切换与正常重开已通过；不再等待密钥或切换授权。D4尚未关闭，AC-004继续用户排除。
+
+新E任务首轮模型只用聊天文字请求权限，未调用工具；明确原生工具schema后第二轮产生真实Prompt，核对ASIN/US并批准一次。它没有使用聊天确认替代原生审批。原任务B的冷启动提交在模型/MCP调用前被拒绝，保留无原生Turn绑定的本地失败投递，不自动续跑或补封口。新E事实已保存于原SQLCipher schema15/view2；显示partial与原生completed分别保留。原生返回三字段已在正常退出后经thread/read独立对照通过，不另建保存/历史重建链。

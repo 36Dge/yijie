@@ -1,0 +1,256 @@
+{
+  "recorded_at": "2026-09-10T13:43:55.651255+00:00",
+  "feature": "FEAT-144",
+  "scope": "Real canonical recheck after managed native config/trust compatibility fix",
+  "sources": {
+    "contracts": "db54c617c65db5431b950eb297ba148a43a8e600",
+    "host": "ccd815ff63542674daa80172a1c71ac7478edd0f",
+    "desktop": "a5975f48e63d3f1d3a262e9e8dfc57ca0d923961",
+    "codex": "6c1ad767f0997845b8258a1c452fd4eb7577579f"
+  },
+  "session_id": "01a08b86-6c94-7761-b1bf-75a68c3ff4fa",
+  "host_session_id": "611bfa67-868c-483f-a4ef-010c055ff655",
+  "native_thread_id": "01a08b86-6ceb-77b1-818d-9b75308cbbd8",
+  "native_turn_ids": [
+    "01a08b86-7af6-74d3-a057-8794ef5080a6",
+    "01a08b88-35ca-7fb0-ac78-a0f398692542"
+  ],
+  "turn_statuses": [
+    "completed",
+    "completed"
+  ],
+  "tool": {
+    "server": "sorftime",
+    "name": "product_detail",
+    "arguments": {
+      "asin": "B07H9PZDQW",
+      "amz_site": "US"
+    },
+    "status": "completed",
+    "duration_ms": 414,
+    "display_availability": "partial/content_redacted",
+    "source": "native_observed",
+    "raw_business_payload_saved": false,
+    "final_model_fields_displayed": [
+      "title",
+      "brand",
+      "price"
+    ],
+    "native_return_comparison": "PASS: title/brand/price exactly match native /data fields; compare in memory, hashes only saved",
+    "id": "call_01a08b8848e0789180c3c3f9"
+  },
+  "approval": {
+    "actual_native_prompt": true,
+    "actual_parameters_confirmed": true,
+    "decision": "approve_once",
+    "ordinary_chat_approval_not_used": true
+  },
+  "model_only_first_turn": {
+    "actual_call_ordinal": 5,
+    "tool_calls": 0,
+    "observation": "Model incorrectly requested chat approval and unrelated sandbox fields; clarification led to actual native Prompt in next Turn. No schema changes or approval bypass."
+  },
+  "persistence": {
+    "read_only_actual_db": true,
+    "database_copied": false,
+    "schema_version": 15,
+    "view_format": 2,
+    "view_sources": [
+      "native_observed",
+      "native_observed"
+    ],
+    "view_revisions": [
+      32,
+      26
+    ],
+    "permission": "ask",
+    "outbox_start_turns": "done"
+  },
+  "budget": {
+    "metadata_used": 12,
+    "metadata_max": 20,
+    "model_used": 7,
+    "model_max": 8,
+    "business_logical_calls": 2,
+    "business_actual_http_attempts": null,
+    "business_attempt_lower_bound": 2,
+    "business_charged_upper_bound": 4,
+    "business_max": 10,
+    "images": 0,
+    "meter_sha256": "e7cdf527f0379a32001e9ac95a75bc81e0f607843d179c05ee1e00bef21c877e",
+    "model_requests": [
+      {
+        "ordinal": 1,
+        "admitted_at": "2026-09-10T11:59:56Z",
+        "status": "completed",
+        "model": "MiniMax-M3",
+        "structured_output": false,
+        "upstream": "https://api.minimaxi.com/v1/responses",
+        "http_status": 200
+      },
+      {
+        "ordinal": 2,
+        "admitted_at": "2026-09-10T12:01:40Z",
+        "status": "completed",
+        "model": "MiniMax-M3",
+        "structured_output": false,
+        "upstream": "https://api.minimaxi.com/v1/responses",
+        "http_status": 200
+      },
+      {
+        "ordinal": 3,
+        "admitted_at": "2026-09-10T12:03:58Z",
+        "status": "completed",
+        "model": "MiniMax-M3",
+        "structured_output": false,
+        "upstream": "https://api.minimaxi.com/v1/responses",
+        "http_status": 200
+      },
+      {
+        "ordinal": 4,
+        "admitted_at": "2026-09-10T12:04:48Z",
+        "status": "completed",
+        "model": "MiniMax-M3",
+        "structured_output": false,
+        "upstream": "https://api.minimaxi.com/v1/responses",
+        "http_status": 200
+      },
+      {
+        "ordinal": 5,
+        "admitted_at": "2026-09-10T13:34:01Z",
+        "status": "completed",
+        "model": "MiniMax-M3",
+        "structured_output": false,
+        "upstream": "https://api.minimaxi.com/v1/responses",
+        "http_status": 200
+      },
+      {
+        "ordinal": 6,
+        "admitted_at": "2026-09-10T13:35:54Z",
+        "status": "completed",
+        "model": "MiniMax-M3",
+        "structured_output": false,
+        "upstream": "https://api.minimaxi.com/v1/responses",
+        "http_status": 200
+      },
+      {
+        "ordinal": 7,
+        "admitted_at": "2026-09-10T13:36:38Z",
+        "status": "completed",
+        "model": "MiniMax-M3",
+        "structured_output": false,
+        "upstream": "https://api.minimaxi.com/v1/responses",
+        "http_status": 200
+      }
+    ]
+  },
+  "trust_sha256": "40838b962f2314c89af7f3942d187761ea28ca010de19d4bd6bef6e172c5764d",
+  "old_cold_task_attempt": {
+    "session_id": "01a08b30-50f4-7370-bc41-d89b5e2223e0",
+    "local_turn_id": "01a08b84-6737-71e3-8459-b5f3f06c7096",
+    "outbox_id": "69c79d35-f148-4ec8-8d01-c35543d9a675",
+    "outbox_status": "failed",
+    "attempts": 1,
+    "native_turn_id": null,
+    "model_and_mcp_calls": 0,
+    "preserved": true,
+    "reason": "Current opt-in does not automatically resume old native threads; cold thread lacked current verified Sorftime binding. No guessed takeover or automatic replay."
+  },
+  "current_permission_switch": {
+    "status": "PASS",
+    "authorization": "Explicit user current E task temporary auto/full/ask grant",
+    "native_mcp_runtime_pid_before": 75663,
+    "native_mcp_runtime_exited_normally": true,
+    "replacement_runtime_pid": 78721,
+    "managed_mcp_servers_absent": true,
+    "mode_sequence": [
+      "ask",
+      "auto",
+      "full",
+      "ask"
+    ],
+    "ui_and_sqlcipher_modes_agree": true,
+    "same_host_pid": 75661,
+    "native_trust_bytes_unchanged": true,
+    "model_requests_added": 0,
+    "business_calls_added": 0,
+    "metadata_operations_added": 0
+  },
+  "normal_reopen": {
+    "status": "PASS",
+    "command": "YIJIE_PERMISSION_VERIFICATION_BASE_URL=http://127.0.0.1:18083/v1 pnpm tauri:demo-fast:app",
+    "same_app_data": true,
+    "same_host_home": true,
+    "same_codex_home": true,
+    "app_identity": "com.yijie.ai",
+    "sorftime_opt_in": false,
+    "reopen_processes": {
+      "app": 78865,
+      "host": 82029,
+      "runtime": 82031
+    },
+    "session_E_history": {
+      "two_turns": "completed",
+      "tool": "completed/414ms/native_observed/partial/content_redacted",
+      "parameters": "same single ASIN and US",
+      "permission": "ask",
+      "approval_callback_not_replayed": true
+    },
+    "related_history": {
+      "Command": "native failed/exit128/0ms/safe output unchanged",
+      "Artifact": "generated-image ready; unsupported native dynamic item preserved; isolated task has missing Host mapping and disabled permission input, no retry",
+      "attachment": "expired and previous cleanup incomplete retained; no delete/retry"
+    },
+    "source_guards_retained": true,
+    "normal_exit": "Cmd-Q; all three processes absent; canonical launcher exit0",
+    "model_meter_normal_exit": 0,
+    "calls_added": 0
+  },
+  "d4_status": "NOT CLOSED: current native decline after fix not rerun; needs sufficient separately authorized model budget",
+  "excluded": "AC-004 OWNER_EXCLUDED / NOT RUN",
+  "source_checks": {
+    "native_conversation": 0,
+    "native_mcp": 0,
+    "permission_source": 0,
+    "feat137_retirement": 0
+  },
+  "external_delivery": "local commits authorized; no push/tag/deploy",
+  "native_history_read": {
+    "purpose": "Native thread/read of actual D4 history; no rollout parser, no new thread, no model or MCP call",
+    "raw_payload_saved": false,
+    "tool_results": [
+      {
+        "id": "call_01a08b8848e0789180c3c3f9",
+        "server": "sorftime",
+        "tool": "product_detail",
+        "status": "completed",
+        "durationMs": 414,
+        "turn_id": "01a08b88-35ca-7fb0-ac78-a0f398692542",
+        "public_field_comparison": [
+          {
+            "path": "/data/title",
+            "matched": true,
+            "expected_sha256": "0a6433fe2b48bc7238d0ee0791af41826d24968773556e98281ac35735f09a4e"
+          },
+          {
+            "path": "/data/brand",
+            "matched": true,
+            "expected_sha256": "e62f29b3a62996d85d9fb56861646a9d2a1b19fad41f23f0294afbf51f6fd6f4"
+          },
+          {
+            "path": "/data/price",
+            "matched": true,
+            "expected_sha256": "813feb128c4049e0a17f6bda2ae2d7661ccfeddf8732cdb478fc00c8352e3a1c"
+          }
+        ]
+      }
+    ],
+    "native_turns": 2,
+    "exit_code": 0,
+    "notifications": [
+      "remoteControl/status/changed"
+    ],
+    "stderr_bytes": 0
+  },
+  "finished_at": "2026-09-10T13:50:12.334870+00:00"
+}

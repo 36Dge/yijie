@@ -1,0 +1,129 @@
+{
+  "recorded_at": "2026-09-10T13:53:30.313249+00:00",
+  "scope": "FEAT144 config compatibility connected success, mode switching and normal reopen; current decline pending",
+  "checks": [
+    {
+      "name": "strict",
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，所有模板变量和未完成标记已处理。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+    },
+    {
+      "name": "D0",
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，且 D0 范围与语义门禁通过。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+    },
+    {
+      "name": "D4",
+      "exit_code": 1,
+      "output": "ERROR: feature.status must be usable for D4\nERROR: implementation.status must be complete for D4\nERROR: must_acceptance[5].status must be PASS for D4\nERROR: verification.status must be PASS for D4\nERROR: verification.representative_failure.status must be PASS\n"
+    },
+    {
+      "name": "diff",
+      "exit_code": 0,
+      "output": ""
+    }
+  ],
+  "source_checks": {
+    "native_conversation": 0,
+    "native_mcp": 0,
+    "local_permission_candidate": 0,
+    "feat137_retirement": 0
+  },
+  "meta_lint": 0,
+  "meta_test": {
+    "passed": 50,
+    "exit_code": 0
+  },
+  "separate_stage_review": {
+    "reviewer": "same agent after implementation and real validation; no independent human claim",
+    "findings_resolved": [
+      "current stale wait/config blocker/budget statements corrected",
+      "old rejection evidence not inherited as current fresh PASS",
+      "UI source diff is only runtime-permissions lock; no UI edits",
+      "old cold-thread failure preserved",
+      "business attempt upper-bound charged; no exact HTTP count claim"
+    ],
+    "remaining": "Current fresh native decline needs enough authorized model requests; request pending"
+  },
+  "workspace": {
+    "yijie": {
+      "head": "170108db1bf63da1f8b2b2dec9ea25491540e77b",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": "M docs/dev/codex-project-memory.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/00-feature-brief.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/01-delivery-log.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/02-verification.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/21-native-config-ownership-2026-09-10.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-business-call-ledger-2026-09-10.json\n M docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-discovery-ledger-2026-09-10.json\n M docs/features/FEAT-144-desktop-real-tool-producer-items/feature.yaml\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/22-connected-permissions-and-reopen-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/connected-config-recheck-2026-09-10.json"
+    },
+    "yijie-admin-web": {
+      "head": "d009cafccb112c098114c075d60f67ee5e0296d8",
+      "branch": "develop",
+      "status": ""
+    },
+    "yijie-agent-host": {
+      "head": "ccd815ff63542674daa80172a1c71ac7478edd0f",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": ""
+    },
+    "yijie-api": {
+      "head": "f9d730a157bcb012a8fe178cbfebcd4ea27419fc",
+      "branch": "feat/feat-126-foundation-closure",
+      "status": ""
+    },
+    "yijie-codex": {
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": ""
+    },
+    "yijie-connectors": {
+      "head": "273eec40bbbfeb17e817643f283db7c81e9b190c",
+      "branch": "develop",
+      "status": ""
+    },
+    "yijie-contracts": {
+      "head": "db54c617c65db5431b950eb297ba148a43a8e600",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": ""
+    },
+    "yijie-desktop": {
+      "head": "a5975f48e63d3f1d3a262e9e8dfc57ca0d923961",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": ""
+    },
+    "yijie-infra": {
+      "head": "19b7920696904f83030a8ddaba71af15c3c05ad8",
+      "branch": "feat/feat-126-s10e",
+      "status": ""
+    },
+    "yijie-knowledge": {
+      "head": "e9091d2b673ba779ecb39271ce9148e3a41fc256",
+      "branch": "develop",
+      "status": ""
+    },
+    "yijie-skills": {
+      "head": "488714a8d96f40806a257aae097683815b1dd458",
+      "branch": "develop",
+      "status": ""
+    }
+  },
+  "precommit_file_sha256": {
+    "docs/dev/codex-project-memory.md": "98c12560da29165ffda376b7cdd1a6dd9b736dd609581576449de6675f3ac037",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/00-feature-brief.md": "47759ba4f5603a7b1e3c5e069eab73ceaf48f2f74ad7b49999d43a370ea4ad31",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/01-delivery-log.md": "5bee943181fbb0ec605733b3f02c79a70ca8c747fdd445ce782fc578fb6cbce9",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/02-verification.md": "3196c65afa34edd45814b95bd8e3b53980731f83a97593c16eb38aacfd43da8b",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/21-native-config-ownership-2026-09-10.md": "d28824ef29b2f3c9d79d676ba7abed2428027587de7fc767bcff17948063f258",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/22-connected-permissions-and-reopen-2026-09-10.md": "966005747ce31c203c3082620dfff077055fed2efde2c8e91ec5432db80fab98",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/connected-config-recheck-2026-09-10.json": "a7a2deb39d566e78f25efecc9e06d0951c13a18f96c5aad76210b0d3e8ccdf79",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-business-call-ledger-2026-09-10.json": "6f591a7b34459dac9bfbc5e93617b770908a8e6b14a89ce3dcba518a8f051332",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-discovery-ledger-2026-09-10.json": "8bd50835ab6856cd0c100aad393f4a59d722369162afd464f96a60877793b167",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/feature.yaml": "051eb42098447f59a6ddc1b081903d4a71baf202a12c48380a49aa7acef29bbb"
+  },
+  "current_budgets": {
+    "metadata": "12/20",
+    "model": "7/8",
+    "business": "2 logical, charged upper bound4/10",
+    "images": 0
+  },
+  "owned_processes": "normally exited; no forced termination",
+  "D4": "NOT CLOSED",
+  "push": false,
+  "tag": false,
+  "deploy": false,
+  "secret_scan": "general scoped patterns no matches; no credential or DB reread for scan"
+}

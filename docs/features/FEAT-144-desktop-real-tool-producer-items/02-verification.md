@@ -1,33 +1,24 @@
 # FEAT-144 — 当前实施与验收记录
 
-2026-09-10；当前权威为[20实际D4与权限重启阻塞](20-d4-permission-restart-blocker-2026-09-10.md)。产品已实施并本地提交，真实Sorftime成功调用和原生Prompt正常拒绝完成；D4为FAIL/未关闭，不能写成未运行全部业务，也不能写成整体PASS。AC-004为用户排除，不实现、不验证、不算PASS。
+配置兼容阻塞已关闭：当前Host ccd815ff63542674daa80172a1c71ac7478edd0f、Desktop a5975f48e63d3f1d3a262e9e8dfc57ca0d923961。新E真实Tool completed/414ms，原生返回三字段对照通过；Sorftime正常停用、auto/full/ask、原数据canonical退出重开均PASS。累计元数据12/20、模型7/8、业务2逻辑调用保守扣4/10、图片0；应用与计数器均已正常退出。D4尚未关闭：当前来源下的原生Prompt正常拒绝未复验，不能继承旧B结果；已申请最多追加2次文本，未获授权不调用。AC-004始终用户排除。 详见[22](22-connected-permissions-and-reopen-2026-09-10.md)。
 
-## 当前事实
+## 当前核验事实
 
-| 项目 | 结果 |
+| 项目 | 结果及证据范围 |
 |---|---|
-| 固定Runtime | 0.144.6不变，Bearer环境引用、无query URL、真实版本User-Agent；原生调用已验证 |
-| 实际来源 | Contracts db54c617c65db5431b950eb297ba148a43a8e600；Host 635846f72ef4b0d940798215e7b79d58aed6c591；Desktop 95afd425fd5b55ada9f13b43421ad2c06830dc5c |
-| reader/存储 | 最低reader 25b004fbd5a4dcf642a503d302c21a7d6e3b817f先提交；实际schema15、view格式2，旧JSON不改写 |
-| canonical范围 | 普通com.yijie.ai、现有app-data、日常Host Home、独立合成项目；真实查询及旧Command/Artifact/附件兼容展示已检查 |
-| 真实成功 | product_detail单ASIN/US，原生completed/342ms；thread/read的/data标题、品牌、价格匹配模型回答 |
-| 安全展示 | 实际结果文本整体脱敏，availability=partial，与completed分开；卡片可复制脱敏文本，无活动链接 |
-| 原生拒绝 | 同一线程第二次Prompt正常拒绝，failed/0ms/result=null，Turn completed；没有第二次业务调用；只算权限回归 |
-| 权限模式 | 用户已授权本次临时切换；请求auto后旧Runtime正常退出，新Runtime因受管config出现原生projects而拒绝启动；ask保持，full未尝试 |
-| 正常重开 | Tool数据已保存且原生历史可读；普通应用Tool重开因上述门禁未运行，不能由只读SQLCipher检查代替 |
-| UI | light/dark、1180×760、200%、键盘展开、安全复制和会话切换已检查；恢复浅色及100% |
-| 调用 | 元数据10/10、模型4/8、业务1逻辑调用按原生重发上界扣2/10尝试、图片0；HTTP业务精确次数未知 |
-| 清理 | App/Host/Runtime及计数器正常退出；没有强杀、复制数据库/凭据或改写受管配置 |
-| AC/D4 | AC-001/002/003/005/009/010 PASS；AC-006已在21的普通canonical重开中PASS；AC-007/008保留失败历史，当前实际连接后的切换尚未完成；AC-004排除；D4未通过 |
-| 交付 | 产品及来源已本地提交，当前验收文档另行本地提交；未推送/tag/部署，未触发远端CI |
+| 来源 | Contracts db54c617c65db5431b950eb297ba148a43a8e600；Host ccd815ff63542674daa80172a1c71ac7478edd0f；Desktop a5975f48e63d3f1d3a262e9e8dfc57ca0d923961；固定Runtime0.144.6不变 |
+| 配置兼容 | 原生CLI配置层、独立精确受管模板、原生trust原字节保留；bootstrap cwd独立于任务cwd。无调用原生集成及当前来源检查通过，详见21 |
+| 实际数据 | com.yijie.ai原app-data、日常Host/Codex Home；无数据库或凭据副本；schema15/view2，reader下限25b004fbd5a4dcf642a503d302c21a7d6e3b817f |
+| 普通重开 | 修复后旧B两条Tool在canonical重开：342ms成功与0ms拒绝、来源/脱敏保留，正常退出；不是自动续跑证明 |
+| 新E成功 | 本轮actual native Prompt批准ASIN/US，Tool completed/414ms，两Turn completed，安全正文partial/content_redacted；最终标题品牌价格与正常退出后的原生thread/read三字段对照PASS |
+| 原生拒绝 | 旧B实际decline通过，保留旧提交范围；当前E未重跑decline，不自动继承为当前fresh run |
+| 模式切换 | 当前E明确授权后正常停用MCP，auto/full/ask均与持久值一致，trust字节不变；产品实际切换PASS，旧B失败历史保留 |
+| UI/相关回归 | 旧B的light/dark、1180×760、200%、键盘/复制、Command/Artifact/附件检查保留当时范围；当前E已核对展开、参数、来源和结果文案 |
+| 调用累计 | 元数据12/20；模型7/8；业务2逻辑调用、实际HTTP次数未知、保守扣4/10；图片0 |
+| 兼容限制 | 当前MCP启用不自动resume旧线程；旧B新本地投递被拒绝且未调用模型/MCP，记录保留；不猜绑定、不自动封口 |
+| 交付 | 产品修复及pin已本地提交；当前证据更新中；未推送、tag、部署或远端CI |
 
-## 本轮证据与未运行范围
-
-[16实施](16-native-implementation-2026-09-10.md)、[17分离阶段自审](17-implementation-review-and-precommit-2026-09-10.md)、[18来源与修复历程](18-committed-sources-and-d4-2026-09-10.md)、[19真实D4过程](19-real-d4-progress-2026-09-10.md)、[20当前阻塞](20-d4-permission-restart-blocker-2026-09-10.md)。原有安全定向测试、来源锁及实际生成证据保持各自提交和日期，不把历史测试数量继承为新fresh run。
-
-首次有效配置序列化和Sorftime旧历史逐个resume问题已修复并提交；此次项目trust/模板冲突尚未修复。Git源码pin通过不代表运行后CODEX_HOME配置通过。auto/full成功路径和普通Tool重开未运行；不得删除projects、忽略漂移、换空Home或缩小断言伪造通过。AC-004、既有攻击/故障注入豁免保持原状态。完整业务返回不入版本库，字段对照仅存路径、匹配值摘要。
-
-最终结构/D0与D4实际门禁结果记录于当前检查证据；文档结构通过不证明真实生命周期可用。
+新E详见[连接复验](evidence/connected-config-recheck-2026-09-10.json)，配置与普通重开详见[21](21-native-config-ownership-2026-09-10.md)；20保留历史失败。当前D4保持未关闭，未运行项不写PASS。AC-004继续OWNER_EXCLUDED / NOT RUN；未做攻击、故障注入、强杀或权限破坏。
 
 ## 前次连接闭环检查与分离审查（历史）
 
@@ -70,7 +61,3 @@
 适用strict/D0、元仓lint/test、已提交需求包审计、Shell及工作区/来源核验见[本轮实际检查](evidence/owner-scope-d0-checks-2026-09-10.json)。前次50项测试与门禁结果不自动继承。
 
 本轮最终结果：strict/D0均exit0；lint、50/50测试、19个已提交需求包审计（5个历史schema v1警告）、7个Shell逐个语法与diff检查通过。没有新MCP/模型调用，未实施产品或修改全局检查器；适用工作树和来源保护见本轮JSON证据。
-
-当前续办授权：用户另增10次原生元数据操作，累计10/20、本轮新增0；兼容修复按[21](21-native-config-ownership-2026-09-10.md)推进。固定Runtime原生CLI分层与Host无调用集成证明已通过，TOML依赖已获明确授权，Host修复及Desktop真实pin已本地提交；现正验证普通canonical，历史D4失败结论保留。
-
-当前运行检查点：Host配置兼容与初始化cwd修复已固定来源，普通Tool历史重开通过；Sorftime标准构建已完成并停在用户隐藏输入框，模型计数器保持4/8，元数据10/20、业务保守2/10、图片0。实际连接后的停用与权限切换完成前不关闭D4。

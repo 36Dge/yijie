@@ -19,16 +19,16 @@
     },
     "account_balance": "Sufficient, asserted by user; no private balance query performed",
     "billing_detail": "Not independently verified; no promise of free retries or exact charging. No longer a prerequisite under this explicit grant.",
-    "other_authorizations": "Metadata independent: now10/10; model separately authorized8 and used4; image0. This business grant does not grant pushes or permission changes."
+    "other_authorizations": "Metadata12/20; model7/8; image0. Independent budgets; no push or permission grant inferred."
   },
   "actual": {
-    "logical_calls": 1,
+    "logical_calls": 2,
     "tools_call_attempts": null,
-    "observed_attempt_lower_bound": 1,
-    "charged_attempt_upper_bound": 2,
+    "observed_attempt_lower_bound": 2,
+    "charged_attempt_upper_bound": 4,
     "reserved_attempt_upper_bound": 0
   },
-  "remaining_attempt_budget": 8,
+  "remaining_attempt_budget": 6,
   "records": [
     {
       "recorded_at": "2026-09-10T11:46:53.715176+00:00",
@@ -60,10 +60,41 @@
       "charged_attempt_upper_bound": 2,
       "count_basis": "One native Tool Item completed. Fixed native recovery may resend once; no HTTP-level attempt instrumentation is claimed. Conservative upper bound consumes 2 of the approved 10 attempts.",
       "content_availability": "partial under existing whole-text redaction; /data/title, /data/brand and /data/price independently match model via native thread/read after normal exit"
+    },
+    {
+      "recorded_at": "2026-09-10T13:31:05.718055+00:00",
+      "status": "reservation consumed by current E native completed Tool",
+      "session_id": "01a08b86-6c94-7761-b1bf-75a68c3ff4fa",
+      "tool": "product_detail",
+      "asin": "B07H9PZDQW",
+      "amz_site": "US",
+      "logical_call_limit": 1,
+      "attempt_upper_bound": 2,
+      "approval": "wait for actual native Prompt"
+    },
+    {
+      "observed_at": "2026-09-10T13:42:21.745585+00:00",
+      "status": "native completed after approve_once",
+      "session_id": "01a08b86-6c94-7761-b1bf-75a68c3ff4fa",
+      "native_thread_id": "01a08b86-6ceb-77b1-818d-9b75308cbbd8",
+      "tool": "product_detail",
+      "asin": "B07H9PZDQW",
+      "amz_site": "US",
+      "duration_ms": 414,
+      "attempt_count": null,
+      "attempt_count_bounds": [
+        1,
+        2
+      ],
+      "charged_attempt_upper_bound": 2,
+      "approval": "Actual native Prompt displayed exact tool and actual parameters; approved once",
+      "content_availability": "partial/content_redacted; completed independent; native thread/read title/brand/price match model; normal canonical E reopen PASS",
+      "model_requests_this_run": 3,
+      "model_only_first_turn": "No tool call; model asked chat permission, clarification then produced real native Prompt"
     }
   ],
   "metadata_ledger": "sorftime-discovery-ledger-2026-09-10.json",
   "business_failure_scenario": "OWNER_EXCLUDED / NOT RUN; no special implementation",
   "execution": "No business call required to close D0; reserve for useful success validation after applicable prerequisites.",
-  "latest_checkpoint": "d4-permission-restart-blocker-2026-09-10.json"
+  "latest_checkpoint": "connected-config-recheck-2026-09-10.json"
 }

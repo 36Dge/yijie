@@ -29,12 +29,12 @@
     ]
   },
   "actual": {
-    "native_discovery_operations": 10,
+    "native_discovery_operations": 12,
     "mcp_http_attempts": null,
-    "mcp_business_calls": 1,
-    "model_requests": 4,
+    "mcp_business_calls": 2,
+    "model_requests": 7,
     "images": 0,
-    "mcp_business_call_unit": "approved native logical calls; raw attempt count unknown, conservatively charged upper bound 2 in separate business ledger"
+    "mcp_business_call_unit": "native logical calls; attempts unknown, upper bound4 charged in business ledger"
   },
   "header_support": "CONFIRMED_BY_OFFICIAL_DOCUMENTATION",
   "endpoint": "https://mcp.sorftime.com/",
@@ -2015,11 +2015,29 @@
       "scope": "FEAT144-D4-B single new canonical thread, native Prompt observed",
       "evidence_basis": "Model request admitted only after thread-scoped native startup ready and exact bearer/single-tool/inputSchema preflight; actual native Prompt rendered.",
       "configuration": "fixed Runtime 0.144.6, committed Host 635846f72ef4b0d940798215e7b79d58aed6c591; raw HTTP attempt count not claimed"
+    },
+    {
+      "operation": 11,
+      "observed_at": "2026-09-10T13:42:21.745585+00:00",
+      "status": "RETURNED",
+      "method": "thread/start MCP initialization",
+      "scope": "FEAT144-D4-E canonical new thread 01a08b86-6ceb-77b1-818d-9b75308cbbd8",
+      "evidence_basis": "Model admitted after native startup and exact server/tool/schema preflight; actual parameter Prompt approved and native Tool completed414ms. Raw HTTP attempt count not claimed.",
+      "configuration": "fixed Runtime0.144.6; Host ccd815ff63542674daa80172a1c71ac7478edd0f; Desktop a5975f48e63d3f1d3a262e9e8dfc57ca0d923961"
+    },
+    {
+      "operation": 12,
+      "observed_at": "2026-09-10T13:42:21.745585+00:00",
+      "status": "RETURNED",
+      "method": "mcpServerStatus/list toolsAndAuthOnly",
+      "scope": "FEAT144-D4-E canonical new thread 01a08b86-6ceb-77b1-818d-9b75308cbbd8",
+      "evidence_basis": "Model admitted after native startup and exact server/tool/schema preflight; actual parameter Prompt approved and native Tool completed414ms. Raw HTTP attempt count not claimed.",
+      "configuration": "fixed Runtime0.144.6; Host ccd815ff63542674daa80172a1c71ac7478edd0f; Desktop a5975f48e63d3f1d3a262e9e8dfc57ca0d923961"
     }
   ],
   "native_result_file": "sorftime-native-discovery-operation-8-2026-09-10.json",
-  "execution_state": "configuration compatibility implemented and ordinary canonical Tool history reopened; waiting user hidden input before Sorftime connection",
-  "remaining_native_discovery_operations": 10,
+  "execution_state": "Connected native success, normal MCP deactivation, auto/full/ask and ordinary E history reopen PASS; all owned processes normally exited",
+  "remaining_native_discovery_operations": 8,
   "next_operation_prepared_not_executed": null,
   "resume_requirement": "Proceed under 15 scope/budget and 16 authorized implementation; no business-failure/fee prerequisite and no repeat business-budget request. Check independent ledgers before real operations; local commit/model/push need their applicable authorization.",
   "resume_authorization": {
@@ -2028,9 +2046,9 @@
   },
   "runtime_currently_running": false,
   "credential_retained": false,
-  "current_report": "../21-native-config-ownership-2026-09-10.md",
+  "current_report": "../22-connected-permissions-and-reopen-2026-09-10.md",
   "harness_sha256": "7b8bc45dfc0ff3762b8a63ddbea23b81f82e2d8ea4b05b7579a5dad8dfff0e6a",
-  "current_stage_boundary": "Host ccd815f/Desktop a5975f4 fixed. Same app-data and Host/Codex Home, native trust bytes preserved, ordinary Tool reopen and normal exit passed. New Sorftime canonical build waiting user hidden input. Metadata10/20, model4/8, business charged2/10, image0.",
+  "current_stage_boundary": "metadata12/20, model7/8, business conservative4/10, images0. Configuration blocker closed; fresh native decline pending separate model budget. No silent reconnect.",
   "latest_operation_evidence": "sorftime-native-discovery-operation-8-2026-09-10.json",
   "latest_execution_authorization": {
     "source": "User explicitly requests fixed Runtime same-flow verification with remaining five metadata operations; this round prefer max two, no model or business calls.",
@@ -2057,13 +2075,13 @@
   "scope_decision": "AC-004/F144-S03 business failure implementation and validation excluded by explicit user request; not PASS",
   "d0_evidence": "owner-scope-d0-checks-2026-09-10.json",
   "product_d4_reservation": {
-    "reserved_at": "2026-09-10T11:46:53.715176+00:00",
+    "reserved_at": "2026-09-10T13:31:05.718055+00:00",
     "max_operations": 2,
     "methods": [
-      "thread/start MCP initialization",
+      "native thread resume/start MCP initialization",
       "mcpServerStatus/list toolsAndAuthOnly"
     ],
-    "status": "consumed by native initialization and one catalog read",
-    "scope": "single new FEAT144 scenario-project thread; no repeated initialization"
+    "status": "consumed by operations11/12",
+    "scope": "new task in same standalone synthetic scenario-project, single ASIN/US"
   }
 }

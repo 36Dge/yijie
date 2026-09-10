@@ -2,7 +2,7 @@
 
 2026-09-10；demo_fast / local。固定Runtime 0.144.6原生元数据接入已通过，无query URL、原生Bearer环境引用和真实版本User-Agent方案不变。用户本次明确排除业务失败场景的实现/验证，并确认余额充足、授权10次MCP业务请求。当前权威见[15范围与预算决策](15-owner-scope-and-business-budget-2026-09-10.md)，连接技术依据仍见13。
 
-当前元数据10/20（新增10尚未消耗）、模型4/8、业务1次逻辑调用（HTTP尝试数未独立观测，保守扣2/10）、图片0。真实查询、原生Prompt批准/拒绝、返回值核对与部分UI检查通过；权限切换时原生项目trust写入与Host受管模板冲突，重启被门禁拒绝，模式仍ask。D4未通过；AC-004用户排除，其余AC逐项见[20最新结论](20-d4-permission-restart-blocker-2026-09-10.md)。产品来源已本地提交，未推送。
+配置兼容阻塞已关闭：当前Host ccd815ff63542674daa80172a1c71ac7478edd0f、Desktop a5975f48e63d3f1d3a262e9e8dfc57ca0d923961。新E真实Tool completed/414ms，原生返回三字段对照通过；Sorftime正常停用、auto/full/ask、原数据canonical退出重开均PASS。累计元数据12/20、模型7/8、业务2逻辑调用保守扣4/10、图片0；应用与计数器均已正常退出。D4尚未关闭：当前来源下的原生Prompt正常拒绝未复验，不能继承旧B结果；已申请最多追加2次文本，未获授权不调用。AC-004始终用户排除。 详见[22](22-connected-permissions-and-reopen-2026-09-10.md)。
 
 ## 目标、工具与入口
 
@@ -30,7 +30,7 @@ Sorftime是现成的外部producer；Codex已有MCP协议客户端、发现、�
 
 原2026-08-30四文件和D0 BLOCKED/8AC pending完整归档。刚才view_image方案仅为用户提供真实MCP前的未实施备选，已放入history/2026-09-10-builtin-proposal，不是当前主线、不计MCP成功或失败。ImageView、Command和dynamic generate_image都不能替代本次真实McpToolCall证据。
 
-Codex原生McpToolCall有id/server/tool/status/arguments/result/error/duration；实施前Host只投影通用标签、参数隐藏、结果已接收且恒partial，Desktop伪填旧DTO并可能误报历史忙碌。当前候选已按[16实施记录](16-native-implementation-2026-09-10.md)修复这些适配缺口，尚未完成canonical/D4，直接保留原生事实，不新造生命周期。
+Codex原生McpToolCall有id/server/tool/status/arguments/result/error/duration；实施前Host只投影通用标签、参数隐藏、结果已接收且恒partial，Desktop伪填旧DTO并可能误报历史忙碌。当前候选已按[16实施记录](16-native-implementation-2026-09-10.md)修复这些适配缺口，canonical启动及新Tool重开已完成，D4未关闭，直接保留原生事实，不新造生命周期。
 
 原生progress协议存在，但当前固定app-server生产发送未证实、native通道也未接通。允许0条progress；首期不以持续进度为Must，不新增假步骤、百分比或轮询。只有实际支持并收到原生通知才能显示。Tool冷历史复用thread/read/resume；MCP的Legacy保存规则与Command/ImageView不同，既不保证全部完整，也不一概声称不能恢复。
 
@@ -44,7 +44,7 @@ Codex原生McpToolCall有id/server/tool/status/arguments/result/error/duration�
 
 只允许固定HTTPS Sorftime服务，非任意URL输入；不把query秘密转发其它origin。秘密是MCP传输凭据，不作为工具参数、卖家平台OAuth或模型输入；本地之外的发布仍须独立安全审查。
 
-MCP调用采用Codex原生Prompt审批语义；不能把readOnlyHint/工具名/prompt当授权。当前 Host 的 FEAT-152 只接 Command/FileChange/Permissions。本次已明确最小**原生审批请求薄适配设计**：复用默认稳定 mcpServer/elicitation/request 的 Sorftime 空表单确认，按真实 request ID/threadId/可信非空 turnId 显示线程请求面板；原生没有 itemId/结构化 toolName，不能猜 Tool 卡关联。accept/decline/cancel 和 serverRequest/resolved 沿用原生，回调不持久化。一般表单/URL/认证/requestUserInput 不在本期支持，继续拒绝；不启用实验功能。产品薄适配已实施，真实批准与拒绝通过；正常模式停用/重启仍被20所述问题阻断。不得设置Approve、降低模式或复活FEAT-137来跑通；FEAT-152三档权限的既有语义不变。
+MCP调用采用Codex原生Prompt审批语义；不能把readOnlyHint/工具名/prompt当授权。当前 Host 的 FEAT-152 只接 Command/FileChange/Permissions。本次已明确最小**原生审批请求薄适配设计**：复用默认稳定 mcpServer/elicitation/request 的 Sorftime 空表单确认，按真实 request ID/threadId/可信非空 turnId 显示线程请求面板；原生没有 itemId/结构化 toolName，不能猜 Tool 卡关联。accept/decline/cancel 和 serverRequest/resolved 沿用原生，回调不持久化。一般表单/URL/认证/requestUserInput 不在本期支持，继续拒绝；不启用实验功能。产品薄适配已实施，真实批准与拒绝通过；20所记配置冲突已按21修复，实际连接后的正常停用/切换已按22通过。不得设置Approve、降低模式或复活FEAT-137来跑通；FEAT-152三档权限的既有语义不变。
 
 首期Sorftime只在“请求批准”及已核实原生on-request/user/workspaceWrite/networkAccess=false、工具approval_mode=prompt的受管配置下激活；不把prompt当必出面板的保证。自动审查/完全访问保持FEAT-152原语义，但本期Sorftime不在这些模式激活，不自动切换模式；未知有效配置或审批被hook/插件替代时不激活。详见13。
 
@@ -62,11 +62,11 @@ MCP调用采用Codex原生Prompt审批语义；不能把readOnlyHint/工具名/p
 
 首期公开US ASIN B07H9PZDQW已真实返回数据；原生/data三字段与模型回答一致，见20。用户已取消业务失败场景的实现/验证，不新增业务错误字段扩展、分类器、失败专用流程或失败触发样本；已有原生failed及通用安全处理仍如实保留，不造成功。
 
-当前业务请求累计上限10次，1次逻辑调用保守扣2次尝试，包含原生重发；每次逻辑调用按可能的2次tools/call预留上界，不够则不启动，不自动追加或外层重试。元数据10/10按原口径独立记账；模型另获8次文本授权、已用4次；图片未授权。用户确认余额充足，本轮不再等待计费细则；不承诺重试免费。详情见15及两份台账。
+当前业务上限10次tools/call尝试，累计2逻辑调用、HTTP精确次数未知、保守扣4/10；每逻辑调用按原生可能重发预留2次。元数据12/20，模型7/8，图片0；互不转用、不自动加额。详情见独立台账。
 
 本期按breaking保守治理安全Tool字段、权限请求和持久兼容；具体公共wire/私有IPC版本先在Contracts确定，不原地扩旧闭合schema，不机械沿用view_image的v8提议。顺序为源契约 → Host/Desktop兼容reader → MCP配置/原生审批与安全投影 → 唯一显示/保存 → 真实验证；来源受影响才更新真实commit/digest/pin。Codex不改，门禁不放宽。
 
-当前9项活动Must为7项PASS、AC-007/008仍等待实际连接后的切换验证，AC-004为OWNER_EXCLUDED / NOT RUN，编号不复用。原D0 BLOCKED历史保留；当前根据用户范围决策重新审定且D0实跑PASS，不要求先编码或完成D4。通用D4中既有输入/权限拒绝回归保留，不能当成被排除的业务失败验证；产品仍须通过真实成功和剩余AC。实际检查见02和15。
+当前9项活动Must为8项PASS，AC-007待当前来源的正常拒绝复验，AC-004为OWNER_EXCLUDED / NOT RUN，编号不复用。原D0 BLOCKED历史保留；当前根据用户范围决策重新审定且D0实跑PASS，不要求先编码或完成D4。通用D4中既有输入/权限拒绝回归保留，不能当成被排除的业务失败验证；产品仍须通过真实成功和剩余AC。实际检查见02和15。
 
 ## 不依赖连接的后续设计（2026-09-10）
 
@@ -75,8 +75,6 @@ MCP调用采用Codex原生Prompt审批语义；不能把readOnlyHint/工具名/p
 
 ## 当前交付边界
 
-以[20实际D4结果](20-d4-permission-restart-blocker-2026-09-10.md)为当前权威。18保留本地提交和启动修复历程，19保留本次真实查询过程。调用额度不增加，所有进程已正常退出。当前受管config.toml原生projects条目保留原样，未重新启动已知不通过的入口，未放宽任何来源或权限门禁。下一步先审定原生信任记录与受管配置的兼容，再修复并验证普通重开；需要重新连接Sorftime验证停用时须另取元数据额度。
+当前配置兼容修复已本地提交：Host ccd815ff63542674daa80172a1c71ac7478edd0f、Desktop a5975f48e63d3f1d3a262e9e8dfc57ca0d923961。普通canonical重开旧B任务已通过；用户隐藏输入后，新E任务真实Tool completed/414ms、两轮均完成。累计元数据12/20、模型7/8、业务2逻辑调用保守扣4/10尝试、图片0。本次E模式切换与正常重开已通过；不再等待密钥或切换授权。D4尚未关闭，AC-004继续用户排除。
 
-当前续办授权：用户另增10次原生元数据操作，累计10/20、本轮新增0；兼容修复按[21](21-native-config-ownership-2026-09-10.md)推进。固定Runtime原生CLI分层与Host无调用集成证明已通过，TOML依赖已获明确授权，Host修复及Desktop真实pin已本地提交；现正验证普通canonical，历史D4失败结论保留。
-
-当前运行检查点：Host配置兼容与初始化cwd修复已固定来源，普通Tool历史重开通过；Sorftime标准构建已完成并停在用户隐藏输入框，模型计数器保持4/8，元数据10/20、业务保守2/10、图片0。实际连接后的停用与权限切换完成前不关闭D4。
+20保留先前权限重启失败；21记录配置所有权与bootstrap修复，当前[连接复验](evidence/connected-config-recheck-2026-09-10.json)记录新E事实，不把旧B拒绝/UI检查当新E fresh run。旧冷任务不自动续跑、无绑定记录不猜接管；来源及权限门禁保持。
