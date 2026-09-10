@@ -19,16 +19,51 @@
     },
     "account_balance": "Sufficient, asserted by user; no private balance query performed",
     "billing_detail": "Not independently verified; no promise of free retries or exact charging. No longer a prerequisite under this explicit grant.",
-    "other_authorizations": "Existing metadata ledger remains independent at 8/10. This does not authorize Runtime/permissions changes, product implementation/migration, commits or pushes."
+    "other_authorizations": "Metadata independent: now10/10; model separately authorized8 and used4; image0. This business grant does not grant pushes or permission changes."
   },
   "actual": {
-    "logical_calls": 0,
-    "tools_call_attempts": 0,
+    "logical_calls": 1,
+    "tools_call_attempts": null,
+    "observed_attempt_lower_bound": 1,
+    "charged_attempt_upper_bound": 2,
     "reserved_attempt_upper_bound": 0
   },
-  "remaining_attempt_budget": 10,
-  "records": [],
+  "remaining_attempt_budget": 8,
+  "records": [
+    {
+      "recorded_at": "2026-09-10T11:46:53.715176+00:00",
+      "status": "first local draft failed before native thread creation; reservation transferred to valid standalone project",
+      "tool": "product_detail",
+      "asin": "B07H9PZDQW",
+      "amz_site": "US",
+      "logical_call_limit": 1,
+      "attempt_upper_bound": 2,
+      "approval": "pending actual native Prompt"
+    },
+    {
+      "recorded_at": "2026-09-10T12:01:31.904856+00:00",
+      "status": "native completed after approve_once",
+      "session_id": "01a08b30-50f4-7370-bc41-d89b5e2223e0",
+      "tool": "product_detail",
+      "asin": "B07H9PZDQW",
+      "amz_site": "US",
+      "attempt_upper_bound": 2,
+      "logical_call_limit": 1,
+      "native_approval": "request actual parameters verified",
+      "observed_at": "2026-09-10T12:03:42.487769+00:00",
+      "duration_ms": 342,
+      "attempt_count": null,
+      "attempt_count_bounds": [
+        1,
+        2
+      ],
+      "charged_attempt_upper_bound": 2,
+      "count_basis": "One native Tool Item completed. Fixed native recovery may resend once; no HTTP-level attempt instrumentation is claimed. Conservative upper bound consumes 2 of the approved 10 attempts.",
+      "content_availability": "partial under existing whole-text redaction; /data/title, /data/brand and /data/price independently match model via native thread/read after normal exit"
+    }
+  ],
   "metadata_ledger": "sorftime-discovery-ledger-2026-09-10.json",
   "business_failure_scenario": "OWNER_EXCLUDED / NOT RUN; no special implementation",
-  "execution": "No business call required to close D0; reserve for useful success validation after applicable prerequisites."
+  "execution": "No business call required to close D0; reserve for useful success validation after applicable prerequisites.",
+  "latest_checkpoint": "d4-permission-restart-blocker-2026-09-10.json"
 }

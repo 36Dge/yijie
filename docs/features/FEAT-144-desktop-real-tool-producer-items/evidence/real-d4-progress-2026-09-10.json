@@ -1,0 +1,153 @@
+{
+  "recorded_at": "2026-09-10T12:22:31.683258+00:00",
+  "stage": "partial real D4, blocked by native project-trust / managed config conflict",
+  "desktop_commit": "95afd425fd5b55ada9f13b43421ad2c06830dc5c",
+  "host_commit": "635846f72ef4b0d940798215e7b79d58aed6c591",
+  "contracts_commit": "db54c617c65db5431b950eb297ba148a43a8e600",
+  "desktop_session_id": "01a08b30-50f4-7370-bc41-d89b5e2223e0",
+  "host_session_id": "103c18a0-1e20-41d7-93ee-506f5b9f85ba",
+  "runtime_thread_id": "01a08b30-5137-72c3-a379-7872b27afafd",
+  "native_history_source": "runtime_read",
+  "native_history_availability": "partial",
+  "native_mcp_items": [
+    {
+      "turn_id": "01a08b30-58ae-7182-8920-f4f1a78918ff",
+      "turn_status": "completed",
+      "items_complete": false,
+      "item": {
+        "argumentsSummary": "ASIN: B07H9PZDQW · 站点: US",
+        "availability": "partial",
+        "durationMs": 342,
+        "id": "call_01a08b306d927961bde7b328",
+        "mcp": {
+          "diagnostics": [
+            "content_redacted"
+          ],
+          "resultKind": "text",
+          "server": "sorftime",
+          "texts": [
+            {
+              "index": 0,
+              "text": "[内容已脱敏]"
+            }
+          ],
+          "tool": "product_detail"
+        },
+        "resultSummary": "结果已接收",
+        "status": "completed",
+        "toolLabel": "sorftime / product_detail",
+        "type": "mcpToolCall"
+      }
+    },
+    {
+      "turn_id": "01a08b34-0962-7720-97b6-8d1a476206b4",
+      "turn_status": "completed",
+      "items_complete": false,
+      "item": {
+        "argumentsSummary": "ASIN: B07H9PZDQW · 站点: US",
+        "availability": "available",
+        "durationMs": 0,
+        "id": "call_01a08b341c6b7e03aac0d767",
+        "mcp": {
+          "diagnostics": [],
+          "resultKind": "null",
+          "server": "sorftime",
+          "texts": [],
+          "tool": "product_detail"
+        },
+        "status": "failed",
+        "toolLabel": "sorftime / product_detail",
+        "type": "mcpToolCall"
+      }
+    }
+  ],
+  "approval_results": [
+    "approved once for exact ASIN/US",
+    "second native Prompt declined; no second business call"
+  ],
+  "model_meter": {
+    "limit": 8,
+    "requests": [
+      {
+        "ordinal": 1,
+        "admitted_at": "2026-09-10T11:59:56Z",
+        "status": "completed",
+        "model": "MiniMax-M3",
+        "structured_output": false,
+        "upstream": "https://api.minimaxi.com/v1/responses",
+        "http_status": 200
+      },
+      {
+        "ordinal": 2,
+        "admitted_at": "2026-09-10T12:01:40Z",
+        "status": "completed",
+        "model": "MiniMax-M3",
+        "structured_output": false,
+        "upstream": "https://api.minimaxi.com/v1/responses",
+        "http_status": 200
+      },
+      {
+        "ordinal": 3,
+        "admitted_at": "2026-09-10T12:03:58Z",
+        "status": "completed",
+        "model": "MiniMax-M3",
+        "structured_output": false,
+        "upstream": "https://api.minimaxi.com/v1/responses",
+        "http_status": 200
+      },
+      {
+        "ordinal": 4,
+        "admitted_at": "2026-09-10T12:04:48Z",
+        "status": "completed",
+        "model": "MiniMax-M3",
+        "structured_output": false,
+        "upstream": "https://api.minimaxi.com/v1/responses",
+        "http_status": 200
+      }
+    ]
+  },
+  "business": {
+    "logical_calls": 1,
+    "attempt_lower_bound": 1,
+    "attempt_upper_bound_charged": 2,
+    "max_attempts": 10,
+    "attempts_not_independently_counted": true
+  },
+  "metadata": {
+    "used_native_operations": 10,
+    "limit": 10,
+    "extra_HTTP_counts_not_claimed": true
+  },
+  "images": 0,
+  "ui_checks": {
+    "normal_ordinary_app_start": "PASS after scoped fixes",
+    "history_session_switch": "PASS",
+    "command_history": "PASS",
+    "artifact_image_preview": "PASS",
+    "expired_attachment_and_incomplete_cleanup": "retained accurately",
+    "safe_copy": "PASS; only [内容已脱敏] pasted into Composer then cleared without sending",
+    "keyboard_disclosure": "PASS; Shift-Tab focused native Tool and Return expanded it",
+    "light_dark": "both visually checked; original light restored",
+    "minimum_window": "resized with native UI to 1180x760",
+    "zoom_200": "checked with scrolling in light/dark; reset to100",
+    "Tool_reopen": "NOT RUN: stop after managed config gate rejection",
+    "permission_mode_deactivation": "FAIL: old Runtime exited normally; managed config rejected restart; ask preserved"
+  },
+  "remaining": [
+    "Normal native MCP deactivation and Runtime restart",
+    "auto/full then ask real product sequence",
+    "normal Tool history reopen through canonical"
+  ],
+  "limitations": [
+    "entire one-line Tool result hidden by existing safety redaction; native completed and content availability stay separate",
+    "phase absent and native history itemsComplete=false remain visible",
+    "unsupported repository workspace config caused first local submission to fail before native thread; retained local record still shows waiting submission",
+    "old expired attachments, cleanup incomplete and missing isolated Host mapping retained"
+  ],
+  "secret_handling": "No credential in args/log evidence/DB copies; temporary local read-only SQLCipher diagnostic used existing protected key only in memory and printed selected IDs/status, never message bodies or credentials. No DB or credential file copied.",
+  "AC004": "OWNER_EXCLUDED / NOT RUN",
+  "D4": "NOT PASSED",
+  "push": false,
+  "superseded_by": "d4-permission-restart-blocker-2026-09-10.json",
+  "native_returned_value_comparison": "PASS: /data/title,/data/brand,/data/price match model; see current receipt"
+}

@@ -1,0 +1,118 @@
+{
+  "recorded_at": "2026-09-10T11:41:51.727753+00:00",
+  "first_canonical": {
+    "app_started": true,
+    "host_healthz": "ok",
+    "runtime_readyz": "ready",
+    "ui": "chat_host_not_ready; task records unavailable",
+    "normal_retry_once": "same UI failure",
+    "exit": "normal Cmd-Q; Desktop, Host and fixed Runtime exited; meter normal Ctrl-C exit0",
+    "model_requests": 0,
+    "business_requests": 0,
+    "metadata_operations_added": 0,
+    "metadata_basis": "No new thread or model submission; source guard rejects effective config before thread/resume. No MCP startup notification in current-process log evidence. Absence of logs alone is not used as success proof."
+  },
+  "native_config_diagnosis": {
+    "selected_config": {
+      "mcp_servers": {
+        "sorftime": {
+          "url": "https://mcp.sorftime.com/",
+          "bearer_token_env_var": "YIJIE_FEAT144_SORFTIME_ACCOUNT_SK",
+          "http_headers": {
+            "User-Agent": "codex-mcp-client/0.144.6"
+          },
+          "environment_id": "local",
+          "enabled": true,
+          "startup_timeout_sec": 30.0,
+          "tool_timeout_sec": 60.0,
+          "default_tools_approval_mode": "prompt",
+          "enabled_tools": [
+            "product_detail"
+          ],
+          "tools": {
+            "product_detail": {
+              "approval_mode": "prompt"
+            }
+          }
+        }
+      },
+      "features": {
+        "network_proxy": null,
+        "apps": false,
+        "hooks": false,
+        "js_repl": false,
+        "memories": false,
+        "multi_agent": false,
+        "plugins": false,
+        "shell_snapshot": false,
+        "tool_call_mcp_elicitation": true,
+        "tool_suggest": false,
+        "auth_elicitation": true,
+        "mentions_v2": true,
+        "remote_control": false,
+        "remote_plugin": true
+      },
+      "shell_environment_policy": {
+        "inherit": "core",
+        "ignore_default_excludes": null,
+        "exclude": [
+          "YIJIE_FEAT144_SORFTIME_ACCOUNT_SK",
+          "YIJIE_FEAT144_SORFTIME_ENABLED",
+          "MINIMAX_API_KEY"
+        ],
+        "set": {},
+        "include_only": null,
+        "experimental_use_profile": null
+      }
+    },
+    "notifications": [
+      "configWarning",
+      "remoteControl/status/changed"
+    ],
+    "exit_code": 0,
+    "stderr_bytes": 578,
+    "credential_supplied": false,
+    "MCP_metadata_operations": 0,
+    "model_requests": 0
+  },
+  "fixes": {
+    "host": "635846f72ef4b0d940798215e7b79d58aed6c591",
+    "desktop": "95afd425fd5b55ada9f13b43421ad2c06830dc5c",
+    "contracts_unchanged": "db54c617c65db5431b950eb297ba148a43a8e600",
+    "reader_unchanged": "25b004fbd5a4dcf642a503d302c21a7d6e3b817f",
+    "description": [
+      "Match exact fixed native config/read output with environment_id local, native default omission and null environment options; unverified feature null remains rejected.",
+      "During explicit Sorftime startup retain inactive history without eager thread/resume; refuse existing active bindings before MCP initialization. Non-Sorftime recovery unchanged."
+    ]
+  },
+  "checks": {
+    "native_config_read_no_credential_no_thread_no_MCP": "exit0",
+    "Host_FEAT144_race": "PASS",
+    "Host_go_vet": "PASS",
+    "Desktop_fmt_clippy": "PASS",
+    "Desktop_FEAT144_tests": "5 PASS",
+    "source_guards": "PASS"
+  },
+  "canonical_without_sorftime": {
+    "result": "PASS for normal startup and selected history checks",
+    "ordinary_identity": "com.yijie.ai",
+    "existing_data_used": true,
+    "checks": [
+      "task list and ordinary Composer loaded",
+      "FEAT136 command history completed exit0 and failed exit128, safe output readable",
+      "FEAT132 generated-image Artifact preview loaded",
+      "old reference-portrait.jpg remains expired",
+      "old cleanup incomplete remains visible",
+      "isolated FEAT132 history lacks daily Host mapping; permission sync unavailable retained",
+      "new synthetic scenario-project selected via native picker, no session/Turn submitted",
+      "normal Cmd-Q exits Desktop/Host/Runtime; command exit0"
+    ],
+    "new_model_requests": 0,
+    "new_MCP_metadata_operations": 0,
+    "new_business_calls": 0
+  },
+  "D4": "NOT PASSED",
+  "active_AC": "9 pending",
+  "AC004": "OWNER_EXCLUDED / NOT RUN",
+  "next_canonical": "same standard entry with Sorftime opt-in rebuilding; requires fresh hidden input after normal shutdown"
+}

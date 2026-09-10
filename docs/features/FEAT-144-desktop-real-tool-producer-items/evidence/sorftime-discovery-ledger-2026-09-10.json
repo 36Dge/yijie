@@ -22,11 +22,12 @@
     ]
   },
   "actual": {
-    "native_discovery_operations": 8,
+    "native_discovery_operations": 10,
     "mcp_http_attempts": null,
-    "mcp_business_calls": 0,
-    "model_requests": 0,
-    "images": 0
+    "mcp_business_calls": 1,
+    "model_requests": 4,
+    "images": 0,
+    "mcp_business_call_unit": "approved native logical calls; raw attempt count unknown, conservatively charged upper bound 2 in separate business ledger"
   },
   "header_support": "CONFIRMED_BY_OFFICIAL_DOCUMENTATION",
   "endpoint": "https://mcp.sorftime.com/",
@@ -1989,11 +1990,29 @@
         "returned_tool_count": 97,
         "shared_http_summary_note": "Operations7/8 share one process summary with6 observed POST spans; do not add the two copies as12; full HTTP count remains unknown."
       }
+    },
+    {
+      "operation": 9,
+      "observed_at": "2026-09-10T12:01:31.904856+00:00",
+      "status": "RETURNED",
+      "method": "thread/start MCP initialization",
+      "scope": "FEAT144-D4-B single new canonical thread, native Prompt observed",
+      "evidence_basis": "Model request admitted only after thread-scoped native startup ready and exact bearer/single-tool/inputSchema preflight; actual native Prompt rendered.",
+      "configuration": "fixed Runtime 0.144.6, committed Host 635846f72ef4b0d940798215e7b79d58aed6c591; raw HTTP attempt count not claimed"
+    },
+    {
+      "operation": 10,
+      "observed_at": "2026-09-10T12:01:31.904856+00:00",
+      "status": "RETURNED",
+      "method": "mcpServerStatus/list",
+      "scope": "FEAT144-D4-B single new canonical thread, native Prompt observed",
+      "evidence_basis": "Model request admitted only after thread-scoped native startup ready and exact bearer/single-tool/inputSchema preflight; actual native Prompt rendered.",
+      "configuration": "fixed Runtime 0.144.6, committed Host 635846f72ef4b0d940798215e7b79d58aed6c591; raw HTTP attempt count not claimed"
     }
   ],
   "native_result_file": "sorftime-native-discovery-operation-8-2026-09-10.json",
-  "execution_state": "FIXED_RUNTIME_MCP_METADATA_VALIDATED",
-  "remaining_native_discovery_operations": 2,
+  "execution_state": "canonical native Prompt awaiting one business approval",
+  "remaining_native_discovery_operations": 0,
   "next_operation_prepared_not_executed": null,
   "resume_requirement": "Proceed under 15 scope/budget and 16 authorized implementation; no business-failure/fee prerequisite and no repeat business-budget request. Check independent ledgers before real operations; local commit/model/push need their applicable authorization.",
   "resume_authorization": {
@@ -2002,9 +2021,9 @@
   },
   "runtime_currently_running": false,
   "credential_retained": false,
-  "current_report": "../15-owner-scope-and-business-budget-2026-09-10.md",
+  "current_report": "../20-d4-permission-restart-blocker-2026-09-10.md",
   "harness_sha256": "7b8bc45dfc0ff3762b8a63ddbea23b81f82e2d8ea4b05b7579a5dad8dfff0e6a",
-  "current_stage_boundary": "Fixed Runtime native metadata validated; product implementation/canonical/D4 and business calls not executed. No repeat connectivity calls.",
+  "current_stage_boundary": "Metadata10/10 exhausted; real MCP success and decline completed. Normal mode switch failed at managed config restart gate, ask preserved. App/Host/Runtime/meter normally exited; native returned-value read passed. D4 blocked.",
   "latest_operation_evidence": "sorftime-native-discovery-operation-8-2026-09-10.json",
   "latest_execution_authorization": {
     "source": "User explicitly requests fixed Runtime same-flow verification with remaining five metadata operations; this round prefer max two, no model or business calls.",
@@ -2029,5 +2048,15 @@
   "business_sampling_proposal": "14 remains inactive and nonessential; future use shares the separately authorized 10-attempt business cap",
   "business_call_ledger": "sorftime-business-call-ledger-2026-09-10.json",
   "scope_decision": "AC-004/F144-S03 business failure implementation and validation excluded by explicit user request; not PASS",
-  "d0_evidence": "owner-scope-d0-checks-2026-09-10.json"
+  "d0_evidence": "owner-scope-d0-checks-2026-09-10.json",
+  "product_d4_reservation": {
+    "reserved_at": "2026-09-10T11:46:53.715176+00:00",
+    "max_operations": 2,
+    "methods": [
+      "thread/start MCP initialization",
+      "mcpServerStatus/list toolsAndAuthOnly"
+    ],
+    "status": "consumed by native initialization and one catalog read",
+    "scope": "single new FEAT144 scenario-project thread; no repeated initialization"
+  }
 }

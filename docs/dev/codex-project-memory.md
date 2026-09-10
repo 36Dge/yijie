@@ -39,7 +39,7 @@ FEAT-136 现状审计确认：命令执行和最终输出来自 Codex，Desktop 
 
 固定Runtime0.144.6原生元数据连接阻塞已关闭：操作7初始化ready、操作8返回97工具/Sorftime MCP1.1.6；无query URL、原生bearer_token_env_var引用及真实User-Agent codex-mcp-client/0.144.6。连接技术依据保留13；当前范围/预算权威为[15用户决策](../features/FEAT-144-desktop-real-tool-producer-items/15-owner-scope-and-business-budget-2026-09-10.md)及分账台账。没有等待输入或存留诊断Runtime，不重复消耗额度验证同一连接。
 
-累计10次元数据操作授权（含正常握手/重试/清理），实际8次、剩余2；模型/业务/图片均0，本轮文档收尾新增0。正常unsubscribe/EOF exit0、新目录和输出秘密精确扫描无命中；操作7/8的6 POST span来自共享进程摘要，不能重复加为12；完整HTTP尝试数未知。产品环境隔离/canonical/D4仍未执行。
+累计10次元数据操作授权（含正常握手/重试/清理）已用完；模型4/8、业务1逻辑调用保守扣2/10尝试、图片0。正常unsubscribe/EOF exit0、新目录和输出秘密精确扫描无命中；操作7/8的6 POST span来自共享进程摘要，不能重复加为12；完整HTTP尝试数未知。产品原生配置/Prompt与canonical真实成功已验证；D4被权限重启配置冲突阻断，见20。
 
 原操作1–3及6的HTTP400/request error失败历史保留。两版实际二进制对普通localhost服务的初始化观测除真实版本外一致，固定版缺User-Agent；仅补真实UA后固定版远端成功，足以确认该原生配置可用，不等于证明服务端唯一拒绝规则。操作4/5的本地Codex0.153.4对照仍为历史证据。固定binary SHA 4efe16d2848680752cf9aacf4c17741ab2eeb7415894a66c2bb03652b00a322d不变；未升级/修改/替换Runtime或安装ZIP bridge。
 
@@ -51,15 +51,15 @@ product_detail及asin/amz_site输入schema当前由固定操作8确认，asin必
 
 秘密首期只存受管进程内存，正常重开重新输入；原生shell_environment_policy.exclude需核对set和实际执行环境不重注入。稳定elicitation空form按request/thread/可信turn关联，原生accept/decline/cancel/resolved处理，无itemId不猜卡片；其它未支持请求继续拒绝。FEAT-152语义不变，FEAT-137永久退役。
 
-首期Sorftime只在“请求批准”及已核实原生on-request/user/workspaceWrite/networkAccess=false、工具approval_mode=prompt的受管配置下激活；不把prompt当必出面板的保证。自动审查/完全访问保持FEAT-152原语义，但本期Sorftime不在这些模式激活，不自动切换模式；未知有效配置或审批被hook/插件替代时不激活。实际thread响应/配置有效性及正常模式切换工具失效尚待产品验证；原生Prompt不复用Auto批准缓存。
+首期Sorftime只在“请求批准”及已核实原生on-request/user/workspaceWrite/networkAccess=false、工具approval_mode=prompt的受管配置下激活；不把prompt当必出面板的保证。自动审查/完全访问保持FEAT-152原语义，但本期Sorftime不在这些模式激活，不自动切换模式；未知有效配置或审批被hook/插件替代时不激活。实际thread响应/配置与Prompt已验证；正常模式切换时重启被配置门禁阻断，权限保持ask；原生Prompt不复用Auto批准缓存。
 
 用户已明确“不做业务失败场景的验证，跳过这个逻辑实现”：AC-004/F144-S03从当前Must范围移出，标OWNER_EXCLUDED/NOT RUN，原编号不复用、旧四文件逐字归档、不算PASS。不新增Sorftime业务错误字段、分类器、失败专用分支或样本；已有原生failed与通用安全处理仍如实保留。无需再索取官方正常失败条件，不用成功/空结果或权限拒绝替代业务失败通过。
 
-用户确认业务余额充足并授权10次Sorftime业务请求。保守口径为tools/call尝试共10次，含原生404重发；每个逻辑调用先预留最多2次，不足则不启动，不能视为10逻辑加10重试。业务已用0/10，元数据8/10独立，模型另获8次文本请求授权、已用0/8，图片0且未授权。扣费公式未核实但不再阻塞该明确预算，不承诺重试免费。14备用取样在这份预算内但非D0必要步骤，本轮不消耗额度。
+用户确认业务余额充足并授权10次Sorftime业务请求。保守口径为tools/call尝试共10次，含原生404重发；每个逻辑调用先预留最多2次，不足则不启动，不能视为10逻辑加10重试。业务1次逻辑调用、HTTP次数未知，保守扣2/10；元数据10/10独立；模型另获8次文本授权、已用4/8；图片0且未授权。扣费公式未核实但不再阻塞该明确预算，不承诺重试免费。14备用取样在这份预算内但非D0必要步骤，本轮不消耗额度。
 
-D0根据用户新范围与授权重新审定并实跑PASS（exit0），strict及50项元仓测试通过；9项活动Must pending，产品实现与本地来源固定已完成；canonical构建通过，应用启动/真实D4尚待用户隐藏输入。通用D4仍保留AC-007的既有输入/原生权限正常拒绝检查，不能冒充AC-004或另做业务失败逻辑。继续复用Codex与FEAT-132唯一缓冲/SQLCipher/thread-read，不造执行器/推演/对账/重建/封口。后续Contracts→兼容reader→Host/Desktop→定向验证→canonical→D4；产品实施/migration、本地提交与8次模型请求已明确授权，推送未授权，业务预算不代替它们。
+D0根据用户新范围与授权重新审定并实跑PASS（exit0），strict及50项元仓测试通过；9项活动Must为6项PASS、AC-006 pending、AC-007/008 fail；产品实现与本地来源已固定，真实查询/拒绝与返回值对照通过。权限切换重启受原生projects/受管模板冲突阻断，D4未通过且无等待输入。通用D4仍保留AC-007的既有输入/原生权限正常拒绝检查，不能冒充AC-004或另做业务失败逻辑。继续复用Codex与FEAT-132唯一缓冲/SQLCipher/thread-read，不造执行器/推演/对账/重建/封口。后续Contracts→兼容reader→Host/Desktop→定向验证→canonical→D4；产品实施/migration、本地提交与8次模型请求已明确授权，推送未授权，业务预算不代替它们。
 
-本轮仅元仓需求/证据更新，无产品代码/migration/提交/推送/tag/部署；Desktop228a95a4929a53bbb6aafc76156161d642d72153并发界面内容保护，47来源锁不机械更新。原包和05–12阶段历史保留，当前事实以15和分账台账为准。
+前期D0收尾仅改元仓文档，后续产品实现和必要启动修复已本地提交；最新权限重启阻塞只追加证据与文档，不改产品代码或来源锁。Desktop228a95a4929a53bbb6aafc76156161d642d72153并发界面内容保护；无推送/tag/部署。原包和05–12阶段历史保留，当前事实以20和分账台账为准。
 
 ## 1. 单人开发角色默认值
 
@@ -272,6 +272,6 @@ G4-001 与 FEAT-126 的 Tasks 服务端资源授权仍按各自生产门禁保�
 - 2026-08-23：依据 ADR-0017 建立双 Profile；新需求默认 `demo_fast + local`，以产品/UX完整、整体实现、时间盒和真实服务 D4 闭环为准；公开 Demo 增加 DP，生产加固保留原 G0–G6 与三次失败熔断。
 
 
-FEAT-144 实施后的当前检查点以[18来源与D4记录](../features/FEAT-144-desktop-real-tool-producer-items/18-committed-sources-and-d4-2026-09-10.md)为准：Contracts db54c617c65db5431b950eb297ba148a43a8e600 → Host 31ee71889f83aff53dce6eeacd4b5ca4fd319c6b → Desktop reader 25b004fbd5a4dcf642a503d302c21a7d6e3b817f → Desktop writer/展示 9455179cac3772972dc19d16cd8dee3a5b95806f → 元仓来源记录 1b4b86b39d7004b87b590365ddb00803a225f9be，均为本地提交，不推送。最低回滚reader保持writer=1/read=2，实际源码树通过生成/类型及3项安全reader测试。最终代码定向测试、clippy、文档构建和真实来源门禁通过，Runtime未改、FEAT-152语义未改、FEAT-137仍永久退役。
+FEAT-144当前检查点以[20实际D4与权限重启阻塞](../features/FEAT-144-desktop-real-tool-producer-items/20-d4-permission-restart-blocker-2026-09-10.md)为准。Contracts db54c617c65db5431b950eb297ba148a43a8e600、Host 635846f72ef4b0d940798215e7b79d58aed6c591、Desktop 95afd425fd5b55ada9f13b43421ad2c06830dc5c；最低reader 25b004fbd5a4dcf642a503d302c21a7d6e3b817f先于writer固定。均仅本地提交，Runtime未改、FEAT-137永久退役、FEAT-152语义不变。
 
-普通canonical构建已通过，使用com.yijie.ai、既有app-data及日常Host Home，未复制用户数据库。当前系统隐藏输入框等待用户亲自提供Sorftime密钥；这是产品D4输入检查点，不是旧的原生连通性阻塞。8次模型计数器已就绪、当前0/8；业务0/10、元数据8/10、图片0；不重复申请已经授权的预算。后续仅一个新验证线程，初始化/目录检查各使用一次剩余元数据操作。9项活动AC保持pending、AC-004始终用户排除；不得因构建或本地提交完成将D4关闭。
+普通canonical使用现有app-data和日常Host Home完成真实Sorftime查询、原生Prompt正常拒绝、返回值对照及UI/旧历史检查。用户已授权本次临时auto/full并恢复ask，但auto触发旧Runtime正常退出后，Codex原生projects信任记录与Host精确受管模板冲突，重启被拒绝；权限仍ask，full未尝试。所有进程已正常退出，没有等待输入。Tool事实已存SQLCipher，普通Tool重开尚未验证；D4未通过，AC-004仍用户排除。先审定原生信任记录与受管配置兼容，不忽略/删除projects，不换Home掩盖问题，不放宽门禁。元数据10/10、模型4/8、业务1逻辑调用保守扣2/10、图片0；重连另需元数据授权，不转用额度。

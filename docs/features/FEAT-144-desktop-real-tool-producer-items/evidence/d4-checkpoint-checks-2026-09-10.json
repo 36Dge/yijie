@@ -1,0 +1,177 @@
+{
+  "recorded_at": "2026-09-10T12:42:59.508652+00:00",
+  "checks": [
+    {
+      "name": "strict",
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "docs/features/FEAT-144-desktop-real-tool-producer-items"
+      ],
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，所有模板变量和未完成标记已处理。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+    },
+    {
+      "name": "D0",
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--gate",
+        "D0",
+        "docs/features/FEAT-144-desktop-real-tool-producer-items"
+      ],
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，且 D0 范围与语义门禁通过。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+    },
+    {
+      "name": "D4",
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--gate",
+        "D4",
+        "docs/features/FEAT-144-desktop-real-tool-producer-items"
+      ],
+      "exit_code": 1,
+      "output": "ERROR: feature.status must be usable for D4\nERROR: implementation.status must be complete for D4\nERROR: must_acceptance[4].status must be PASS for D4\nERROR: must_acceptance[5].status must be PASS for D4\nERROR: must_acceptance[6].status must be PASS for D4\nERROR: verification.status must be PASS for D4\nERROR: verification.startup.status must be PASS\n"
+    },
+    {
+      "name": "diff",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "name": "meta lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exit_code": 0,
+      "result": "manifest10 repos and central Contract First checked this checkpoint"
+    },
+    {
+      "name": "meta tests",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exit_code": 0,
+      "result": "50/50; no runtime or network calls"
+    },
+    {
+      "name": "current native source generation",
+      "repository": "yijie-desktop",
+      "command": [
+        "node scripts/check-native-conversation.mjs --require-committed",
+        "node scripts/check-native-mcp.mjs --require-committed"
+      ],
+      "exit_code": 0,
+      "result": "Contracts db54c... exact current snapshots; no mutations"
+    },
+    {
+      "name": "retirement",
+      "repository": "yijie-desktop",
+      "command": "node scripts/check-approval-retirement.mjs",
+      "exit_code": 0,
+      "result": "permanent retired authority4d3f...; acceptance NOT PASSED"
+    },
+    {
+      "name": "FEAT152 Host/source pins",
+      "repository": "yijie-desktop",
+      "command": "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast YIJIE_RUNTIME_PERMISSIONS_ENABLED=true VITE_YIJIE_RUNTIME_PERMISSIONS_ENABLED=true node scripts/check-agent-host-v4-contract.mjs",
+      "exit_code": 0,
+      "result": "includes verifyLocalPermissionCandidate whole Host build tree/source hashes and generator check; retained legacy v4 source immutable"
+    }
+  ],
+  "D4_expected_rejection": "AC006 pending; AC007/008 fail; active/incomplete/FAIL retained. Initial shape-only evidence errors corrected without changing real FAIL.",
+  "historical_checks_not_rerun": "Implementation tests and source snapshots remain at16/17/18 scope; no fresh full product suite claimed.",
+  "unrun": [
+    "Tool canonical reopen: stop after managed config drift",
+    "auto/full successful mode sequence: restart failed",
+    "AC004 business failure: OWNER_EXCLUDED",
+    "attack/fault/permission-damage tests: prohibited",
+    "remote CI/push/tag/deploy: not authorized"
+  ],
+  "secret_pattern_scan": "No current changed document matches credential/query-key value patterns; not a general secret-scan proof",
+  "review": "Separated final documentation/evidence review after live diagnostics; not independent human review",
+  "source_states_before_checkpoint_commit": {
+    "yijie": {
+      "head": "5ebb4459d01fefad00388279af4dad68a969d933",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": "M docs/dev/codex-project-memory.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/00-feature-brief.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/01-delivery-log.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/02-verification.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/18-committed-sources-and-d4-2026-09-10.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-business-call-ledger-2026-09-10.json\n M docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-discovery-ledger-2026-09-10.json\n M docs/features/FEAT-144-desktop-real-tool-producer-items/feature.yaml\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/19-real-d4-progress-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/20-d4-permission-restart-blocker-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/canonical-startup-fix-2026-09-10.json\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/d4-permission-restart-blocker-2026-09-10.json\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/real-d4-progress-2026-09-10.json"
+    },
+    "yijie-admin-web": {
+      "head": "d009cafccb112c098114c075d60f67ee5e0296d8",
+      "branch": "develop",
+      "status": ""
+    },
+    "yijie-agent-host": {
+      "head": "635846f72ef4b0d940798215e7b79d58aed6c591",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": ""
+    },
+    "yijie-api": {
+      "head": "f9d730a157bcb012a8fe178cbfebcd4ea27419fc",
+      "branch": "feat/feat-126-foundation-closure",
+      "status": ""
+    },
+    "yijie-codex": {
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": ""
+    },
+    "yijie-connectors": {
+      "head": "273eec40bbbfeb17e817643f283db7c81e9b190c",
+      "branch": "develop",
+      "status": ""
+    },
+    "yijie-contracts": {
+      "head": "db54c617c65db5431b950eb297ba148a43a8e600",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": ""
+    },
+    "yijie-desktop": {
+      "head": "95afd425fd5b55ada9f13b43421ad2c06830dc5c",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": ""
+    },
+    "yijie-infra": {
+      "head": "19b7920696904f83030a8ddaba71af15c3c05ad8",
+      "branch": "feat/feat-126-s10e",
+      "status": ""
+    },
+    "yijie-knowledge": {
+      "head": "e9091d2b673ba779ecb39271ce9148e3a41fc256",
+      "branch": "develop",
+      "status": ""
+    },
+    "yijie-skills": {
+      "head": "488714a8d96f40806a257aae097683815b1dd458",
+      "branch": "develop",
+      "status": ""
+    }
+  },
+  "sha256_before_commit": {
+    "docs/dev/codex-project-memory.md": "aa20c2c4eb46f7177af68314376c4646c9b466b69ab95a5859b2c3669b81ef7d",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/00-feature-brief.md": "3e831fbb2cebf28f497b391fd9d08c400328869c48a926d12e9b52a00e5181df",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/01-delivery-log.md": "ad694a42dc2222c0155789d0f7ca51d58c271c2da2bad70ec305d62753ea2054",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/02-verification.md": "b5270471d857e1b8a131e119cfcaabc21f5130a3afa6a88a0109e6e79fce2916",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/18-committed-sources-and-d4-2026-09-10.md": "89e56fc62812983d0a6299cfd3a6a8477bca3abe27da7a7932966545e4975251",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/19-real-d4-progress-2026-09-10.md": "338e37263b6b677d4541302c9ce384cc8ba7058fb8c7f7077c88d8dd7d3e999e",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/20-d4-permission-restart-blocker-2026-09-10.md": "aec5def705606b92d536b0f57efa95467d6e8b7085a47496e6c593b95f87300d",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/canonical-startup-fix-2026-09-10.json": "792f92b1fa6ea38de011c07a074cb3b892b7d388b098dee8dc094c4ec40b244c",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/d4-permission-restart-blocker-2026-09-10.json": "7c52cc38288b54d0a1750bcf85d0bdd3a7e4a094989683bd2c365aa6f61e9bd0",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/real-d4-progress-2026-09-10.json": "328a2fc4f35687c04927cfb9ffcc92fdb21e0ff87ee9f354e11e9d2f651fcfed",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-business-call-ledger-2026-09-10.json": "147e50c2ef50b8edff9372043ebc26e2364e318b844e80e6056cf08728893324",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-discovery-ledger-2026-09-10.json": "a1d799fcd965502e4646cdebd6341cbc687e2492cae2ecff549ed65299e27bab",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/feature.yaml": "84a6cde0d80a64678772311afb67ce8bf95cd0d527a2ed4bef1ee65a45eac097"
+  },
+  "sha_scope": "all task changed/untracked files except this self-referential receipt; verify same bytes immediately before stage",
+  "external_calls_added_this_checkpoint": 0
+}

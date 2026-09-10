@@ -1,24 +1,33 @@
 # FEAT-144 — 当前实施与验收记录
 
-2026-09-10。固定Runtime连接已通过。用户已明确排除AC-004业务失败实现/验证，并确认余额充足、授权10次业务请求；当前权威为[15范围与预算](15-owner-scope-and-business-budget-2026-09-10.md)。D0按新范围实跑PASS，结果见[本轮检查](evidence/owner-scope-d0-checks-2026-09-10.json)，产品实现及定向验证正在进行，详见[16实施记录](16-native-implementation-2026-09-10.md)；canonical/D4仍NOT RUN。
+2026-09-10；当前权威为[20实际D4与权限重启阻塞](20-d4-permission-restart-blocker-2026-09-10.md)。产品已实施并本地提交，真实Sorftime成功调用和原生Prompt正常拒绝完成；D4为FAIL/未关闭，不能写成未运行全部业务，也不能写成整体PASS。AC-004为用户排除，不实现、不验证、不算PASS。
 
 ## 当前事实
 
 | 项目 | 结果 |
 |---|---|
-| 固定Runtime原生接入 | 操作7：0.144.6 starting→ready；操作8：返回97工具，Sorftime MCP1.1.6 |
-| 已验证配置 | 无query HTTPS URL、原生Bearer环境引用、真实User-Agent codex-mcp-client/0.144.6；二进制不变 |
-| 历史失败与结论边界 | 操作6 initialize HTTP400/request error原样保留；真实UA配置修正有效，不声称已证明服务端唯一拒绝规则 |
-| 工具/inputSchema | product_detail、asin必填、amz_site枚举含US/default Unknow；当前来源为固定Runtime操作8，与操作5一致；未证明完整工具目录 |
-| 调用台账 | 元数据8/10；业务另获10次（含原生重发），已用0/10；模型/图片0且未授权；本轮新增调用0 |
-| HTTP计数 | 操作7/8的6 POST span是同一进程共享摘要，不相加为12；完整底层HTTP尝试数未知 |
-| 正常退出及秘密 | 正常unsubscribe/stdio EOF exit0；新目录和stdout/stderr秘密精确值扫描无命中；无等待输入/存留Runtime，不证明未来模型环境隔离 |
-| 入口与范围 | 仅隔离原生app-server空临时线程；没有turn/start、yijie应用启动或永久MCP配置；不是业务或D4 |
-| 展示设计 | 原生文本块及索引、有界纯文本和既有脱敏；不依赖缺失的outputSchema，不猜商品字段/原生终态 |
-| 安全/审批/兼容 | 候选已实现内存秘密路径、exclude/set检查、原生Prompt、reader和格式保护；定向检查与真实D4分别记账，真实产品路径尚未验证 |
-| 当前范围与费用 | 业务失败场景已由用户排除，不再索取失败条件；用户确认余额充足并授权10次，不再因扣费细则未知阻塞；不据此声称已核实官方定价或重发免费 |
-| D0/Must/D4 | D0实跑exit0/PASS，产品/UX规划通过；9项活动Must pending，AC-004为OWNER_EXCLUDED/NOT RUN、不算PASS；产品D4未运行 |
-| 来源与交付 | 11仓来源、47锁定摘要及Desktop并发内容保护；仅元仓文档/证据修改，产品仓与pin不改；未提交/推送/tag/部署/触发CI |
+| 固定Runtime | 0.144.6不变，Bearer环境引用、无query URL、真实版本User-Agent；原生调用已验证 |
+| 实际来源 | Contracts db54c617c65db5431b950eb297ba148a43a8e600；Host 635846f72ef4b0d940798215e7b79d58aed6c591；Desktop 95afd425fd5b55ada9f13b43421ad2c06830dc5c |
+| reader/存储 | 最低reader 25b004fbd5a4dcf642a503d302c21a7d6e3b817f先提交；实际schema15、view格式2，旧JSON不改写 |
+| canonical范围 | 普通com.yijie.ai、现有app-data、日常Host Home、独立合成项目；真实查询及旧Command/Artifact/附件兼容展示已检查 |
+| 真实成功 | product_detail单ASIN/US，原生completed/342ms；thread/read的/data标题、品牌、价格匹配模型回答 |
+| 安全展示 | 实际结果文本整体脱敏，availability=partial，与completed分开；卡片可复制脱敏文本，无活动链接 |
+| 原生拒绝 | 同一线程第二次Prompt正常拒绝，failed/0ms/result=null，Turn completed；没有第二次业务调用；只算权限回归 |
+| 权限模式 | 用户已授权本次临时切换；请求auto后旧Runtime正常退出，新Runtime因受管config出现原生projects而拒绝启动；ask保持，full未尝试 |
+| 正常重开 | Tool数据已保存且原生历史可读；普通应用Tool重开因上述门禁未运行，不能由只读SQLCipher检查代替 |
+| UI | light/dark、1180×760、200%、键盘展开、安全复制和会话切换已检查；恢复浅色及100% |
+| 调用 | 元数据10/10、模型4/8、业务1逻辑调用按原生重发上界扣2/10尝试、图片0；HTTP业务精确次数未知 |
+| 清理 | App/Host/Runtime及计数器正常退出；没有强杀、复制数据库/凭据或改写受管配置 |
+| AC/D4 | AC-001/002/003/005/009/010 PASS；AC-006 pending；AC-007/008 fail；AC-004排除；D4未通过 |
+| 交付 | 产品及来源已本地提交，当前验收文档另行本地提交；未推送/tag/部署，未触发远端CI |
+
+## 本轮证据与未运行范围
+
+[16实施](16-native-implementation-2026-09-10.md)、[17分离阶段自审](17-implementation-review-and-precommit-2026-09-10.md)、[18来源与修复历程](18-committed-sources-and-d4-2026-09-10.md)、[19真实D4过程](19-real-d4-progress-2026-09-10.md)、[20当前阻塞](20-d4-permission-restart-blocker-2026-09-10.md)。原有安全定向测试、来源锁及实际生成证据保持各自提交和日期，不把历史测试数量继承为新fresh run。
+
+首次有效配置序列化和Sorftime旧历史逐个resume问题已修复并提交；此次项目trust/模板冲突尚未修复。Git源码pin通过不代表运行后CODEX_HOME配置通过。auto/full成功路径和普通Tool重开未运行；不得删除projects、忽略漂移、换空Home或缩小断言伪造通过。AC-004、既有攻击/故障注入豁免保持原状态。完整业务返回不入版本库，字段对照仅存路径、匹配值摘要。
+
+最终结构/D0与D4实际门禁结果记录于当前检查证据；文档结构通过不证明真实生命周期可用。
 
 ## 前次连接闭环检查与分离审查（历史）
 
@@ -61,18 +70,3 @@
 适用strict/D0、元仓lint/test、已提交需求包审计、Shell及工作区/来源核验见[本轮实际检查](evidence/owner-scope-d0-checks-2026-09-10.json)。前次50项测试与门禁结果不自动继承。
 
 本轮最终结果：strict/D0均exit0；lint、50/50测试、19个已提交需求包审计（5个历史schema v1警告）、7个Shell逐个语法与diff检查通过。没有新MCP/模型调用，未实施产品或修改全局检查器；适用工作树和来源保护见本轮JSON证据。
-
-
-## 本轮产品实施（尚未真实验收）
-
-源契约、兼容reader/格式迁移、Host原生薄适配、Native Tool展示与容量修复均已进入候选代码。精确文件、删除/保留理由、调用编排及剩余限制见16。新源规范生成一致性、三组baseline兼容检查、Host原生适配定向/race检查、Rust reader/正常重开/容量及Vue定向检查有本轮结果；不将这些单元/集成结果写成真实D4。
-
-普通canonical入口尚未运行，原因是本次真实本地提交和来源pin尚未固定；模型预算也尚未授权。未推送、未触发远端CI。元数据8/10、业务0/10、模型/图片0不变；AC-004不实现、不验证、不计PASS。
-
-
-## 本次授权补充
-
-用户已明确授权本次 Contracts → Host → Desktop 兼容 reader → Desktop 最终展示/写入 → 元仓的本地提交及同范围必要修复，并单独授权最多 8 次 MiniMax-M3 文本 API 请求（含实际转发的自动请求、重试及审查）。推送、tag、部署未授权。当前累计业务 0/10、元数据 8/10、模型 0/8、图片 0；该授权更新覆盖上文等待授权的阶段状态，不改变既有测试或 D4 结论。详见 [授权与预算](evidence/delivery-authorization-and-budget-2026-09-10.json)。
-
-
-当前进度以[18：来源固定与真实验收](18-committed-sources-and-d4-2026-09-10.md)为准：Contracts、Host、Desktop reader及最终writer已本地提交，真实来源锁已固定；本次模型预算0/8已授权，业务0/10、元数据8/10、图片0。此前“等待提交/模型授权”仅为历史阶段状态，canonical及D4仍未完成。

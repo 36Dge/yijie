@@ -1,0 +1,195 @@
+{
+  "recorded_at": "2026-09-10T12:36:38.736390+00:00",
+  "feature": "FEAT-144",
+  "stage": "D4 blocked after real MCP success and native decline",
+  "contract_impact_this_checkpoint": "none: documentation and local read-only diagnostics only; no product or wire change",
+  "authorization": "Current FEAT144-D4-B only: temporary auto/full and restore ask; no task/tool/model requests",
+  "permission_attempt": {
+    "from": "ask",
+    "requested": "auto",
+    "result": "failed closed; mode remains ask",
+    "full_mode_attempted": false,
+    "old_runtime_pid": 51713,
+    "old_runtime_exited": true,
+    "new_runtime_started": false,
+    "host_failure_code": "provider_config_failed",
+    "host_ready": false,
+    "persisted_permission": "ask"
+  },
+  "config_conflict": {
+    "sha256": "ab41ac0422cf53ef2c1ea277af415c17cb8160146565293fdeed0f471d4e96b5",
+    "extra_native_project_trust_entries": 2,
+    "other_toml_differences_after_model_catalog_path_normalization": [],
+    "native_source": "yijie-codex/codex-rs/app-server/src/request_processors/thread_processor.rs:1123",
+    "host_exact_gate": "yijie-agent-host/internal/codex/provider_authority.go:231",
+    "config_mutated_by_diagnostic": false,
+    "trust_entries_ignored_or_deleted": false,
+    "explanation": "Native thread_start_task writes project trust to config.toml; Host preflight only accepts exact managed templates. Source path plus actual delta support the cause; raw sensitive errors not emitted.",
+    "fixed_runtime_source_matches_current_codex_rs": true,
+    "config_sha256_after_read_only_history": "ab41ac0422cf53ef2c1ea277af415c17cb8160146565293fdeed0f471d4e96b5"
+  },
+  "native_history_read": {
+    "methods": [
+      "initialize",
+      "config/read",
+      "thread/read(includeTurns=true)"
+    ],
+    "local_runs": 2,
+    "MCP_disabled": true,
+    "thread_start_or_resume": false,
+    "model_turn": false,
+    "tool_or_catalog_request": false,
+    "rollout_parser": false,
+    "exit_codes": [
+      0,
+      0
+    ],
+    "stderr_bytes": [
+      0,
+      0
+    ],
+    "tool_ids": [
+      "call_01a08b306d927961bde7b328",
+      "call_01a08b341c6b7e03aac0d767"
+    ],
+    "public_field_comparisons": [
+      {
+        "path": "/data/title",
+        "value_sha256": "0a6433fe2b48bc7238d0ee0791af41826d24968773556e98281ac35735f09a4e",
+        "matches_model_answer": true
+      },
+      {
+        "path": "/data/price",
+        "value_sha256": "813feb128c4049e0a17f6bda2ae2d7661ccfeddf8732cdb478fc00c8352e3a1c",
+        "matches_model_answer": true
+      },
+      {
+        "path": "/data/brand",
+        "value_sha256": "e62f29b3a62996d85d9fb56861646a9d2a1b19fad41f23f0294afbf51f6fd6f4",
+        "matches_model_answer": true
+      }
+    ],
+    "currency_basis": "Native result /doc/price states USD; matches displayed answer",
+    "full_business_payload_saved_to_repository": false
+  },
+  "sqlcipher_read_only": {
+    "database_copied": false,
+    "credential_file_copied": false,
+    "key_used_only_in_memory": true,
+    "schema_version": 15,
+    "native_views": [
+      {
+        "source": "native_observed",
+        "format_version": 2,
+        "revision": 17
+      },
+      {
+        "source": "native_observed",
+        "format_version": 2,
+        "revision": 20
+      }
+    ],
+    "outbox_states": [
+      "done",
+      "done",
+      "done"
+    ],
+    "turns": [
+      "completed",
+      "completed"
+    ],
+    "permission_mode": "ask",
+    "not_a_product_reopen_test": true
+  },
+  "normal_cleanup": {
+    "method": "Cmd-Q app; EOF for local native read; Ctrl-C handled by meter",
+    "canonical_exit_code": 0,
+    "meter_exit_code": 0,
+    "app_host_runtime_pids_absent": [
+      48617,
+      51711,
+      51713
+    ],
+    "force_kill": false
+  },
+  "budgets": {
+    "text_used": 4,
+    "text_limit": 8,
+    "metadata_used": 10,
+    "metadata_limit": 10,
+    "business_logical_calls": 1,
+    "business_exact_http_attempts": null,
+    "business_charged_upper_bound": 2,
+    "business_attempt_limit": 10,
+    "images_used": 0,
+    "image_limit": 0,
+    "new_external_calls_this_checkpoint": 0
+  },
+  "remaining": [
+    "Normal native MCP deactivation and Runtime restart",
+    "auto/full then ask real product sequence",
+    "normal Tool history reopen through canonical"
+  ],
+  "source_states": {
+    "yijie": {
+      "branch": "chore/retirement-baseline-20260905",
+      "commit": "5ebb4459d01fefad00388279af4dad68a969d933",
+      "status_before_evidence_update": "M docs/dev/codex-project-memory.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/00-feature-brief.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/01-delivery-log.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/02-verification.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/18-committed-sources-and-d4-2026-09-10.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-business-call-ledger-2026-09-10.json\n M docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-discovery-ledger-2026-09-10.json\n M docs/features/FEAT-144-desktop-real-tool-producer-items/feature.yaml\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/19-real-d4-progress-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/20-d4-permission-restart-blocker-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/canonical-startup-fix-2026-09-10.json\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/real-d4-progress-2026-09-10.json"
+    },
+    "yijie-admin-web": {
+      "branch": "develop",
+      "commit": "d009cafccb112c098114c075d60f67ee5e0296d8",
+      "status_before_evidence_update": ""
+    },
+    "yijie-agent-host": {
+      "branch": "chore/retirement-baseline-20260905",
+      "commit": "635846f72ef4b0d940798215e7b79d58aed6c591",
+      "status_before_evidence_update": ""
+    },
+    "yijie-api": {
+      "branch": "feat/feat-126-foundation-closure",
+      "commit": "f9d730a157bcb012a8fe178cbfebcd4ea27419fc",
+      "status_before_evidence_update": ""
+    },
+    "yijie-codex": {
+      "branch": "chore/retirement-baseline-20260905",
+      "commit": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "status_before_evidence_update": ""
+    },
+    "yijie-connectors": {
+      "branch": "develop",
+      "commit": "273eec40bbbfeb17e817643f283db7c81e9b190c",
+      "status_before_evidence_update": ""
+    },
+    "yijie-contracts": {
+      "branch": "chore/retirement-baseline-20260905",
+      "commit": "db54c617c65db5431b950eb297ba148a43a8e600",
+      "status_before_evidence_update": ""
+    },
+    "yijie-desktop": {
+      "branch": "chore/retirement-baseline-20260905",
+      "commit": "95afd425fd5b55ada9f13b43421ad2c06830dc5c",
+      "status_before_evidence_update": ""
+    },
+    "yijie-infra": {
+      "branch": "feat/feat-126-s10e",
+      "commit": "19b7920696904f83030a8ddaba71af15c3c05ad8",
+      "status_before_evidence_update": ""
+    },
+    "yijie-knowledge": {
+      "branch": "develop",
+      "commit": "e9091d2b673ba779ecb39271ce9148e3a41fc256",
+      "status_before_evidence_update": ""
+    },
+    "yijie-skills": {
+      "branch": "develop",
+      "commit": "488714a8d96f40806a257aae097683815b1dd458",
+      "status_before_evidence_update": ""
+    }
+  },
+  "runtime_modified": false,
+  "source_pins_changed": false,
+  "push": false,
+  "D4": "FAIL / NOT CLOSED",
+  "AC004": "OWNER_EXCLUDED / NOT RUN"
+}

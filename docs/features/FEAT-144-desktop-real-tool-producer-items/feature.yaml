@@ -37,20 +37,20 @@ timebox:
 product_ux:
   status: PASS
   primary_user: 在当前项目会话中查询一个Amazon US公开商品并理解真实MCP执行、安全结果及失败的本地用户。
-  problem: 固定Runtime原生接入已验证；用户已排除业务失败场景的实现/验证并确认余额充足、授权10次MCP业务请求。当前已实现原生MCP审批承接、native Tool安全展示与兼容reader，待canonical及真实D4；不恢复旧v5对账/封口。
+  problem: 已复用固定Runtime原生MCP和FEAT-132实现真实Tool；查询、原生Prompt和返回值核对通过。当前原生project trust写入与Host受管模板冲突导致模式切换后重启被拒绝，D4未关闭；AC-004排除不变。
   user_outcome: 通过普通Composer查询指定US ASIN，原生McpToolCall展示身份、参数/结果、status/error/适用duration与历史来源，助手摘要与真实数据一致；没有数据与失败分开。
   in_scope:
-    - 服务sorftime，streamableHttp，origin https://mcp.sorftime.com；秘密只作运行时引用。本轮D0已核实官方Bearer，累计获10次原生发现授权（含内部请求），已执行8次；固定0.144.6加入真实User-Agent后操作7ready、操作8返回97工具，连接阻塞关闭，见13。
+    - 服务sorftime、streamableHttp、无query HTTPS origin、原生Bearer环境引用与真实UA；元数据10/10已用完，操作9/10为产品初始化与单工具目录验证；不重复连接。
     - 首期只读单商品详情，product_detail及asin/amz_site输入schema已原生确认；输出采用原生文本块安全投影；只读用途明确、不承诺服务端幂等，余额由用户确认，业务请求上限10次，费用细则未知不作本轮阻塞，精确原生enabled_tools白名单。
     - Codex原生MCP连接/发现/调用/身份/生命周期/历史必须复用；Host只做配置/秘密/原生审批和安全投影薄适配。
     - native专用只读Tool模型，完整对象替换；原生status、availability、busy、实时/历史来源分开。
     - 首期Sorftime仅在请求批准及原生on-request/user/workspaceWrite/networkAccess=false、Prompt且无审批替代的有效配置下激活；其它模式不激活Sorftime，不自动改FEAT-152模式，见13。
     - 首期秘密仅存内存，复用canonical受管进程环境，正常重开重新隐藏输入；原生exclude还须核对set不能重新注入。无新凭据存储或接口。
-    - 兼容reader先于新字段写入，复用唯一NativeDisplayBuffer/SQLCipher/thread-read；新增schema15前向格式版本保护已实现并通过正常合成数据迁移测试，用户数据迁移待canonical，不改历史迁移。
+    - 兼容reader先于新字段写入，复用唯一NativeDisplayBuffer/SQLCipher/thread-read；schema15前向格式版本保护已在现有数据正常使用，不改历史migration、不复制数据库；普通Tool重开仍受配置门禁阻断。
     - 真实成功、空结果判别、正常重开与相关UI/权限回归；CAP-017/GS-004为当前未完成目标。
   out_of_scope:
     - 用户明确排除AC-004/F144-S03业务失败场景实现与验证；不新增业务错误分类、失败专用流程/样本或失败触发逻辑，旧要求归档，排除不算PASS。既有原生错误/安全拒绝仍如实处理。
-    - 本轮已授权按16实施产品及新增前向格式migration，不为消耗预算而调用；业务10次和模型8次已独立授权，本地提交及必要修复已授权、推送未授权；元数据发现累计获10次授权，已用8次，固定Runtime原生初始化/列举已成功，不重复连通性测试；不沿用旧额度。
+    - 本轮产品实施、前向migration、本地提交及必要修复已授权，推送未授权。模型已用4/8，业务1逻辑调用保守扣2/10尝试，元数据10/10已耗尽；不转用历史额度或自动增加授权。
     - 不将未实施view_image备选、Command或dynamic image当MCP交付；不新增其它平台/批量评论/收藏写入/监控/导出。
     - 不自建MCP客户端/HTTP业务调用/代理/bridge/新SDK执行器，不修改或升级Codex Runtime。
     - 不恢复v5主链、状态推演、正文对账、身份猜测、第二累计、历史重建或自动封口；不解析rollout或启用实验历史。
@@ -75,48 +75,57 @@ product_ux:
 must_acceptance:
   - id: AC-001
     statement: 服务、直接工具schema、只读用途和幂等限制与授权预算边界明确；精确原生白名单，只走现有项目Composer，不以服务配置冒充注册成功。
-    verification: F144-S01真实受权发现和配置/入口核验；已执行8次原生发现，固定Runtime返回product_detail输入schema；账户余额用户确认、业务上限10次已授权；产品激活仍未验证，不计整个AC通过。
-    status: pending
+    verification: F144-S01/S02：真实产品初始化和唯一目录/schema、Composer及实际ASIN/US原生Prompt已核对；独立预算按真实结果计账，见19/20。
+    status: pass
   - id: AC-002
     statement: 真实sorftime详情调用经Codex产生McpToolCall；保留原生ID/身份/status/结果/适用duration，完整对象直接替换，不串项重复。
-    verification: F144-S02真实成功及原生适配到卡片定向测试；当前未执行。
-    status: pending
+    verification: F144-S02：真实McpToolCall completed/342ms、原生身份和单项结果；定向完整替换/索引检查见16/17，原生history见20。
+    status: pass
   - id: AC-003
     statement: 原生执行结果与有界原生文本块/availability/模型摘要分离；保留原生content索引、0/null/合法空和缺失，不猜业务schema、不根据正文裁决status；成功仍要证明用户收到与实际返回一致的信息。
-    verification: F144-S02/S04安全字段与业务结果核对、空数据测试；当前未执行。
-    status: pending
+    verification: F144-S02/S04：原生/data/title、brand、price与模型回答一致，/doc/price提供USD；结果整体脱敏与partial/completed分离。空/缺失/容量定向检查见16/17；公开字段对照摘要见20。
+    status: pass
   - id: AC-005
     statement: Item/Turn独立、来源明确；完整Item直接替换，Turn结束不封口，历史/缺记录/不可信订阅不busy，0progress合法。
-    verification: F144-S05普通完整/缺失/重复/并发/历史测试及真实切换；不推演生命周期，当前未执行。
-    status: pending
+    verification: F144-S05：真实两个Turn completed、成功Item与被拒Item保持各自原生终态；切换与可信busy检查通过，缺phase/itemsComplete=false不补造；定向检查见16/17。
+    status: pass
   - id: AC-006
     statement: 已有SQLCipher保存的MCP事实正常重开保持身份/来源/终态/安全结果；冷thread/read分来源不覆盖已观察事实，旧历史可访问。
-    verification: F144-S06正常退出重开同一任务及持久方向兼容；无rollout解析/新历史构建器，当前未执行。
+    verification: F144-S06：SQLCipher schema15、原生view格式2、两个原生绑定及终态已只读核对；thread/read可读。普通Tool历史重开被受管配置门禁阻断，未运行，不由诊断代替。
     status: pending
   - id: AC-007
     statement: 凭据不泄露给模型/shell/日志/DB/CLI；原生MCP Prompt空表单elicitation正确承接及失效，无Item绑定不猜测，未支持拒绝，首期仅在请求批准/user/Prompt且无审批替代时激活Sorftime，其它FEAT-152模式语义不变；原生重试和模型/业务/元数据分别计量。
-    verification: F144-S01/S07秘密注入/环境隔离/实际原生权限/正常切换时工具失效、请求绑定和独立授权审查；本阶段累计10次原生发现已授权，计数单位为原生发现操作及内部请求，已用8/10次，模型另获8次授权且已用0次，业务另获10次授权且已用0次；分账台账见15。
-    status: pending
+    verification: F144-S07：实际Prompt批准本次/第二次拒绝、秘密配置和原生边界定向检查通过。当前临时模式授权已取得，auto切换时旧Runtime正常退出、后续因原生projects与模板不符而拒绝重启，持久权限仍ask；full未尝试，不能关闭。
+    status: fail
   - id: AC-008
     statement: canonical正常启动/切换/退出重启，新Tool的light/dark/1180×760/200%/键盘/折叠/安全复制可用；Composer/Command/附件/Artifact/FEAT-152无定向回归。
-    verification: F144-S08实际UI及定向测试，保护Desktop并发，不能继承旧D4；当前未执行。
-    status: pending
+    verification: F144-S08：canonical初始启动、切换、旧Command/Artifact/附件与light/dark/1180x760/200%/键盘/复制通过；本次正常退出通过，新增Tool后的正常重启受20配置冲突阻断。
+    status: fail
   - id: AC-009
     statement: 源契约与兼容reader先于新字段写入和新审批面激活；未知payload用本地recordDiagnostics隔离且不得触发冷读补建，数据库高版本保持拒绝；旧JSON不改写、回滚仅到已验证兼容reader，来源/pin/版本门禁不放宽。
-    verification: F144-S09 Contracts→reader→Host/Desktop方向检查；最低兼容reader已固定25b004fbd5a4dcf642a503d302c21a7d6e3b817f且保持writer=1；生成/类型和3项迁移/格式检查通过；更旧reader不得假定自动unknown。
-    status: pending
+    verification: F144-S09：真实Contracts→reader→writer提交及来源校验通过；reader25b004fbd5a4dcf642a503d302c21a7d6e3b817f先于新写入。未知格式/前向保护及旧JSON安全检查见17/18，现有schema15已用。
+    status: pass
   - id: AC-010
     statement: 所有可复用Codex MCP/权限/历史和FEAT-132缓冲/SQLCipher机制必须复用；无新客户端/执行器/对账/推演/自动封口；兼容删除有证据且分离阶段审查通过。
-    verification: F144-S09源码/依赖/删除保留清单、Runtime不变及真实D4报告；分离阶段自审及源码快照验证已完成，产品D4待执行。
-    status: pending
+    verification: F144-S09：原生MCP/elicitation/thread-read、唯一NativeDisplayBuffer和SQLCipher复用；删除保留清单与分离阶段自审见16/17，Runtime未改，无自建客户端或对账/推演。
+    status: pass
 contract:
   impact: breaking
-  authority: 固定Codex原生MCP config、McpToolCall与server requests为机制权威；Sorftime实际工具schema/说明为外部业务权威；易界安全投影/请求边界由Contracts治理。源契约已固定db54c617c65db5431b950eb297ba148a43a8e600；Host为31ee71889f83aff53dce6eeacd4b5ca4fd319c6b，消费者使用真实commit/digest，旧源语义保留。
+  authority: 固定Codex原生MCP config、McpToolCall与server requests为机制权威；Sorftime实际工具schema/说明为外部业务权威；易界安全投影/请求边界由Contracts治理。源契约已固定db54c617c65db5431b950eb297ba148a43a8e600；Host为635846f72ef4b0d940798215e7b79d58aed6c591，消费者使用真实commit/digest，旧源语义保留。
   source_first_plan: 先确认秘密安全/真实schema/原生审批，再Contracts固定实际必要字段与版本，兼容reader先于producer新写入；已有字段够用不机械新增。旧v7/旧history保留；schema15最低兼容reader已提交25b004fbd5a4dcf642a503d302c21a7d6e3b817f，旧8bfa reader仍不可回滚。只更新受影响真实pin，本轮按实际MCP字段重新审定native v2/v8，不继承内置备选实现，不修改Runtime。
   status: PASS
   checks:
-    - 新版本源规范生成、lint及三个固定baseline兼容检查通过，旧源语义保持；见17和implementation-checks证据。
-    - Contracts/Host真实提交和消费者commit/digest已固定，FEAT-152完整来源门禁通过；兼容reader先提交并独立验证。
+    - repository: yijie-contracts
+      command: pnpm check-generated:safe; pnpm lint; bash scripts/check-breaking.sh for three full baselines
+      status: PASS
+      exit_code: 0
+      evidence: evidence/implementation-checks-2026-09-10.json
+      scope: Historical implementation checks retained at recorded candidate/commits, not rerun here.
+    - repository: yijie-desktop
+      command: node scripts/check-native-conversation.mjs --require-committed; node scripts/check-native-mcp.mjs --require-committed; local/demo_fast FEAT-152 check-agent-host-v4-contract.mjs
+      status: PASS
+      exit_code: 0
+      scope: Current committed source/digest checks; not managed CODEX_HOME runtime-state validation.
 external_authorizations:
   paid_calls:
     allowed: true
@@ -151,27 +160,37 @@ external_authorizations:
     approved_at: 2026-09-10T02:46:21.957000+00:00
 implementation:
   status: active
-  real_entrypoint: D0按15的用户范围决策重审；未来pnpm tauri:demo-fast:app和现有项目Composer，复用固定Codex原生Sorftime/Bearer/真实UA、Prompt及reader-first方案。AC-004业务失败分支已排除。业务10次已授权，余额充足由用户确认；产品实施及新增前向格式migration已获本轮明确授权；本地提交及8次模型请求已分别授权，推送未授权。
+  real_entrypoint: 已执行pnpm tauri:demo-fast:app；普通com.yijie.ai、现有app-data、日常Host Home，独立合成项目中的真实Sorftime调用与原生Prompt成功。当前模式切换后重启受config.toml原生projects漂移阻断；停止对应入口，见20。
   mock_only: false
 verification:
-  status: NOT RUN
-  verified_at: NOT RUN
+  status: FAIL
+  verified_at: 2026-09-10T12:39:59.102Z
   startup:
-    status: NOT RUN
-    command_or_steps: 当前未启动；以后canonical正常启动/退出，先让活跃Turn结束，前置安全与来源未过不激活。
-    environment: 固定Runtime及原生Prompt；元数据8/10，业务请求0/10（含原生重发），模型0/8已授权，图片0且未授权；本轮没有新调用。
-    actual_result: NOT RUN：产品D4未执行；元数据已执行8次，固定0.144.6加入真实UA后启动/列举成功；产品仍未启动，模型和业务调用0。
+    status: FAIL
+    command_or_steps: 标准canonical正常启动、用户隐藏输入、真实查询后临时auto切换及Cmd-Q；失败后不重试受管配置门禁。
+    environment: 固定Runtime及原生Prompt；元数据10/10，业务1次逻辑调用并保守扣2/10尝试，模型4/8，图片0；当前实际证据见19。
+    actual_result: 初始启动PASS、最终Cmd-Q exit0；模式切换旧Runtime正常退出，新Runtime因受管配置新增原生projects而失败，ask保持；普通Tool重开未运行。
   real_smoke:
-    status: NOT RUN
-    command_or_steps: 当前未执行业务调用；以后真实US单ASIN详情，核对McpToolCall及业务结果，不能以配置或completed单独判成功。
-    environment: 固定Runtime及原生Prompt；元数据8/10，业务请求0/10（含原生重发），模型0/8已授权，图片0且未授权；本轮没有新调用。
-    actual_result: NOT RUN：产品D4未执行；元数据已执行8次，固定0.144.6加入真实UA后启动/列举成功；产品仍未启动，模型和业务调用0。
+    status: PASS
+    command_or_steps: 普通Composer单ASIN B07H9PZDQW、显式US；批准本次原生Prompt；正常退出后原生thread/read核对/data三字段与模型回答。
+    environment: 固定Runtime及原生Prompt；元数据10/10，业务1次逻辑调用并保守扣2/10尝试，模型4/8，图片0；当前实际证据见19。
+    actual_result: McpToolCall completed/342ms；原生/data标题品牌价格与模型回答相符。安全投影整体脱敏、availability partial，不把完成当数据完整。
   representative_failure:
-    status: NOT RUN
-    command_or_steps: AC-004/F144-S03业务失败实现与验证已由用户排除，不运行、不算PASS。通用D4字段仅记录AC-007保留的既有输入/原生权限边界正常拒绝回归（如原生Prompt正常decline且不执行业务工具），不是Sorftime业务失败，不新增失败专用逻辑；当前未执行。
-    environment: 固定Runtime及原生Prompt；元数据8/10，业务请求0/10（含原生重发），模型0/8已授权，图片0且未授权；本轮没有新调用。
-    actual_result: NOT RUN：用户排除的是Sorftime业务失败场景；既有输入/权限安全边界回归尚未执行，不借此将AC-004标为通过。
-  focused_checks: []
+    status: PASS
+    command_or_steps: 仅AC-007原生Prompt正常decline：同线程再次请求同参数，用户正常拒绝，不调用第二次业务；不恢复AC-004。
+    environment: 固定Runtime及原生Prompt；元数据10/10，业务1次逻辑调用并保守扣2/10尝试，模型4/8，图片0；当前实际证据见19。
+    actual_result: 原生Tool failed/0ms/result=null，Turn completed，助手如实说明拒绝，无第二次业务或重试；AC-004仍OWNER_EXCLUDED / NOT RUN。
+  focused_checks:
+    - repository: yijie
+      command: pnpm lint; pnpm test
+      status: PASS
+      exit_code: 0
+      actual_result: Current manifest/governance checks and 50/50 safe tests passed.
+    - repository: yijie-desktop
+      command: node scripts/check-native-conversation.mjs --require-committed; node scripts/check-native-mcp.mjs --require-committed; node scripts/check-approval-retirement.mjs
+      status: PASS
+      exit_code: 0
+      actual_result: Current pinned sources, generator and FEAT-137 retirement verified.
   artifacts:
     - 03-native-audit-and-decisions-2026-09-10.md
     - 04-acceptance-scenarios.md
@@ -224,22 +243,27 @@ verification:
     - evidence/owner-scope-d0-checks-2026-09-10.json
     - history/2026-09-10-before-ac004-exclusion/README.md
     - 17-implementation-review-and-precommit-2026-09-10.md
+    - 18-committed-sources-and-d4-2026-09-10.md
+    - 19-real-d4-progress-2026-09-10.md
+    - 20-d4-permission-restart-blocker-2026-09-10.md
+    - evidence/canonical-startup-fix-2026-09-10.json
+    - evidence/real-d4-progress-2026-09-10.json
+    - evidence/d4-permission-restart-blocker-2026-09-10.json
   diff_review:
     status: PASS
-    summary: 候选代码已进行分离阶段自审，实际reader源快照已通过生成/类型/三项格式测试；结果见17，真实canonical/D4尚未运行，不冒称独立人工批准。
+    summary: 实施与分离阶段自审见17，源码快照/reader验证通过。后续真实canonical发现并修复启动序列化问题；20新增项目trust与受管模板冲突尚未修复，不将源码自审当D4通过。
   known_limitations:
-    - 累计8/10原生元数据操作，剩余2；固定0.144.6加入真实User-Agent后操作7ready/8返回97工具，正常退出和秘密检查通过；只证明诊断接入，不证明产品D4。
-    - product_detail及asin/amz_site输入schema由固定Runtime操作8确认；outputSchema/annotations缺失保持原样，文本展示不依赖它们；不承诺服务端幂等或具体扣费公式；用户确认余额充足并授权10次，业务失败验证已排除。
-    - query-key内存注入已有OAuth/普通错误到独立持久日志的明确阻塞；未找到原生总关闭开关，query候选停用；官方Bearer及原生环境引用已执行元数据测试，秘密扫描无命中，产品环境隔离尚待验证。
-    - 稳定MCP elicitation空表单薄适配已实现并通过定向测试，真实UI往返尚未执行；本期不承接实验requestUserInput/一般表单/URL，不靠Approve绕过。
-    - Runtime原生MCP有初始化/发现重试及tools/call会话404恢复；provider零重试不代表MCP零重试。
-    - 历史status-only不暴露startup错误；操作6诊断到initialize HTTP400，操作7/8通过真实UA修正成功。HTTP跨度为两操作共享摘要，不重复累加；全目录完整性未证明。
-    - 原生progress生产未证明，0progress合法；不造进度或结果状态。
-    - 兼容reader与schema15前向migration候选已实现并验证，旧JSON不改写、未知格式隔离；回滚reader为25b004fbd5a4dcf642a503d302c21a7d6e3b817f，canonical实际写入仍待验证。
-    - AC-004/F144-S03业务失败场景被用户明确排除：不实现、不验证、不算PASS；偶发原生错误仍如实处理，不伪造成功。
-    - 当前D0累计获10次原生发现授权，计数口径为原生发现及内部请求、实际8/10；业务请求另获10次上限且已用0次（含原生重发），模型另获8次文本授权、已用0/8，图片未授权；不转用旧额度。
-    - 原MCP四文件归档，未实施view_image备选归档；当前真实MCP目标仍未完成，不能继承任何旧PASS。
-    - Desktop并发11路径已由其它工作提交228a95a4929a53bbb6aafc76156161d642d72153；本任务保护原有界面改动；当前范围内实现及兼容reader已本地提交并固定真实来源，未推送；canonical构建及来源门禁已通过，应用等待用户隐藏输入，D4未运行。
+    - 当前D4未通过：原生projects信任写入与受管精确模板冲突，模式切换重启失败；ask保持，full未尝试，普通Tool重开未验证。不忽略/删除projects、不放宽校验、不换Home掩盖。
+    - 元数据10/10耗尽；模型4/8；业务1逻辑调用、HTTP尝试精确数未知，按原生重发上界扣2/10；图片0。重新连接需另取元数据授权，不转用额度。
+    - 结果文本整体被既有规则脱敏，安全卡片partial与原生completed分开。原生/data三字段已独立匹配模型回答；不保存完整业务响应到仓库。
+    - product_detail outputSchema/annotations和原生progress缺失不补造；不承诺服务端幂等、重发免费或具体扣费公式。
+    - phase/plan/reasoning及冷历史itemsComplete=false继续如实缺失，Command仍完成后显示输出。
+    - 稳定MCP空form elicitation实际批准与拒绝通过；一般表单、URL和实验requestUserInput未支持，保持拒绝。
+    - query-key日志风险方案不激活；Bearer仅经用户隐藏输入到受管进程内存，配置只有环境变量名，退出清除。未实施恶意/故障注入检查。
+    - 最低可回滚reader25b004fbd5a4dcf642a503d302c21a7d6e3b817f，旧reader不支持schema15；只读原库检查不代替普通应用重开。
+    - AC-004/F144-S03用户排除，不实现、不验证、不算PASS；原生Prompt拒绝只作权限回归。
+    - 首次仓内验证目录因固定Runtime不支持workspace配置在线程创建前失败，原本地记录仍等待提交；不猜绑定、不自动封口。旧附件过期/历史清理未完/隔离Host映射缺失保留。
+    - Desktop原11路径并发修改已在228a95a4929a53bbb6aafc76156161d642d72153保护。产品来源已本地提交，无新产品修改；元仓证据单独提交。没有推送、tag、部署或远端CI。
 public_readiness:
   required: false
   status: not_applicable
