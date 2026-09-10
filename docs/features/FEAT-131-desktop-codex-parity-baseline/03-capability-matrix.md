@@ -1,6 +1,6 @@
 # FEAT-131 — Codex 风格近似对话能力矩阵
 
-> 2026-09-10 FEAT-144 当前范围：sorftime单工具product_detail、US单公开ASIN；固定0.144.6已通过无query URL＋原生Bearer环境引用＋真实版本User-Agent完成操作7/8初始化/列举，累计8/10元数据操作，模型/业务0。连接阻塞关闭，用户已排除业务失败实现/验证并确认余额、授权10次业务请求；D0按调整范围实跑PASS；产品实现/GS-004/D4 NOT RUN。原失败历史和未实施view_image备选保留，不替代真实MCP交付。详见[FEAT-144当前结论](../FEAT-144-desktop-real-tool-producer-items/15-owner-scope-and-business-budget-2026-09-10.md)。
+> 2026-09-11 FEAT-144 当前本地范围：Sorftime 单工具 product_detail、US 单公开 ASIN。原生成功、参数/结果核对、权限停用与模式复原、最终来源原生拒绝和普通重开已完成；九项活动 AC 的证据与 D4 检查见[24 最终报告](../FEAT-144-desktop-real-tool-producer-items/24-final-native-decline-and-delivery-2026-09-11.md)。元数据14/20、文本9/13、业务2逻辑调用保守扣4/10、图片0。AC-004业务失败用户排除，不计PASS；E/F分次实跑保留各自来源，未观察的progress/冷历史缺失仍保留。仅本地提交，未推送或运行远端CI；不改写FEAT-131历史D4。
 
 > 2026-09-09：下表 native 相关行已按当前源码修正；原始基线/历史证据保留，交付范围与限制见[一致性复核](06-native-consistency-review-2026-09-09.md)。
 
@@ -83,10 +83,10 @@ Host 代码中另有 `thread/delete` 和受条件开关约束的 `generate_image
 | CAP-014 | Turn started/completed/interrupted/failed | turn/started、turn/completed | `available` | `contracts-host-desktop` | `none` | 原生 turn/completed 的 status 决定 Turn 结果 | Turn 与 Item 独立；UI busy 与执行事实分离，不自动封口 Item | FEAT-132、FEAT-134 | `owner-approved-inference` |
 | CAP-015 | 非终态 error/warning 与投影诊断 | error、warning、projection notice | `available` | `contracts-host-desktop` | `none` | 安全代码与 availability 独立于执行状态 | FEAT-134 仅安全代码映射；范围不足时放会话层，不猜 Turn/Item 归属 | FEAT-134、FEAT-142 | `owner-approved-inference` |
 | CAP-016 | Command 生命周期与安全输出 | commandExecution、item/commandExecution/outputDelta | `available` | `contracts-host-desktop` | `none` | native v7 转发原生 Item；delta 仅输出 pending-final 诊断；最终 aggregatedOutput 安全投影，v5 保留兼容 | 原五项 D4 属历史 v5；2026-09-09 native 卡片修复/八项 local D4 已通过，真实两条成功/失败及重开；final-only 策略保留 | FEAT-136；FEAT-143 后移项不授权恢复 v5；FEAT-137 永久终止 | `owner-approved-inference` |
-| CAP-017 | MCP Tool 生命周期与 progress | mcpToolCall、item/mcpToolCall/progress | `requires Host/Contracts projection` | `contracts-host-desktop` | `implementation-and-business-basis-pending` | 固定Runtime操作7/8原生接入并取得inputSchema；审批/安全结果/兼容reader设计已明确但未实施，native仍通用标签/partial | 元数据接入通过；业务/GS-004/D4 NOT RUN，不以0progress或模型文字补造结果 | FEAT-144 | `owner-approved-inference` |
+| CAP-017 | MCP Tool 生命周期与 progress | mcpToolCall、item/mcpToolCall/progress | `available` | `contracts-host-desktop` | `none` | Sorftime 单工具原生身份、参数、安全文本、availability、原生Prompt、兼容reader及保存/重开已实现 | E真实成功与F原生拒绝/重开通过；progress未观察且不补造，正文安全脱敏为partial；业务失败用户排除 | FEAT-144 | `owner-approved-inference` |
 | CAP-018 | Runtime 发起的 dynamic image tool | `item/tool/call`；当前 Host 注册路径会开启 experimental capability | `blocked by frozen Runtime` | `baseline-documentation` | `experimental-api-disabled` | 仅 FEAT-128 条件路径，默认 baseline 不支持；不能作为 CAP-017 替代品 | Artifact UI 存在，但不能证明 final frozen baseline 的真实 producer | FEAT-144 boundary；复用 FEAT-128 | `owner-approved-inference` |
 | CAP-019 | Command 本地审批 | `item/commandExecution/requestApproval`（仅历史 schema） | `owner-terminated-unaccepted` | `none` | `owner-permanent-termination` | Owner 因实现耗时过长永久终止；旧 v6 source/reader 保留审计，Host/Native/UI 入口关闭 | 未完成真实审批及 D4 验收；不再实现、不重启、不以收尾检查替代验收 | FEAT-137（永久终止） | `owner-explicit-decision` |
-| CAP-020 | 一般权限请求与 MCP elicitation | `item/permissions/requestApproval`、`mcpServer/elicitation/request` | `requires Host/Contracts projection` | `contracts-host-desktop` | `owner-security-decision` | 未实现；明确不属于 FEAT-137 | 无；继续 fail closed，不得从 FEAT-137 扩展 | 未分配 Owner backlog（不属于 FEAT-137） | `owner-approved-inference` |
+| CAP-020 | 一般权限请求与 MCP elicitation | `item/permissions/requestApproval`、`mcpServer/elicitation/request` | `requires Host/Contracts projection` | `contracts-host-desktop` | `owner-security-decision` | FEAT-144已薄适配稳定Sorftime空表单；一般表单/URL/requestUserInput及其它未支持请求仍拒绝，不属于FEAT-137 | Sorftime实际批准/拒绝与模式停用已验证；不宣称一般MCP表单或所有权限请求完整支持 | FEAT-144有限范围；一般能力仍为Owner backlog | `owner-approved-inference` |
 | CAP-021 | Tool 请求用户结构化输入 | `item/tool/requestUserInput` 存在于 non-experimental schema，协议只有 EXPERIMENTAL 注释、没有 runtime gate attribute | `requires Host/Contracts projection` | `contracts-host-desktop` | `owner-product-decision` | 未进入锁定投影；当前无真实 producer 证据；明确不属于 FEAT-137 | 不得显示假问答卡 | 未分配 Owner backlog（不属于 FEAT-137） | `owner-approved-inference` |
 | CAP-022 | FileChange Item、逐文件 patch 与 turn diff | fileChange Item、`item/fileChange/patchUpdated`、`turn/diff/updated` | `intentional product difference` | `none` | `none` | stable schema 存在，但本 Epic 不新增投影 | Owner 明确不实现；Artifact 不能代替 Diff | FEAT-131 scope decision | `owner-excluded` |
 | CAP-023 | Host v3 Artifact 图片/视频/文件/报告展示 | Host v3 `item.artifact.*` 是 Yijie 归一化事件，不等同于 Runtime dynamic tool | `available` | `desktop-only` | `none` | v3 Artifact 事件和资源接口存在 | 已有 Artifact cards；真实 producer 限制另见 CAP-018 | 复用 FEAT-128；FEAT-143 回归 | `owner-approved-inference` |
@@ -113,6 +113,6 @@ CAP-022 与 CAP-032～038 共计 8 项 Owner 主动排除。CAP-032 只排除 Fo
 - Active FEAT-132–136、FEAT-139–144 必须引用相应 `CAP-*` 和固定 reference policy；FEAT-138 已正式取消/排除，仅保留决策记录。FEAT-144 独立承接 CAP-017 / GS-004，不能被 CAP-018 替代。后续只根据 Owner 明确范围变更更新，不跟随某个 Codex Desktop 版本自动漂移。
 - `requires Host/Contracts projection` 只允许投影上述固定 Runtime stable 能力；必须先改权威 Contracts，再改 Host 和 Desktop。
 - `blocked by frozen Runtime` 不得通过开启 experimental API、修改 schema、替换 binary、模拟事件或硬编码 UI 绕过。
-- CAP-019 的早期 security/source PASS 仅为历史。Owner 已永久终止 FEAT-137，未完成验收；不再要求补齐 allow/cancel、expiry/reconnect 或 D4。CAP-020/021 继续 fail closed，不扩大权限。
+- CAP-019 的早期 security/source PASS 仅为历史。Owner 已永久终止 FEAT-137，未完成验收；不再要求补齐 allow/cancel、expiry/reconnect 或 D4。CAP-020仅增加FEAT-144已验收的Sorftime空表单薄适配；其余未支持请求及CAP-021继续fail closed，不扩大权限。
 - `owner-approved-inference` 允许合理近似，但不能覆盖 Runtime/Host 事实、伪造生产能力或被表述为视觉实测。
 - 当前 policy ID、38 个能力 ID 与分类词表已固定；FEAT-131 D4 已通过，完整 Epic 尚未完成。

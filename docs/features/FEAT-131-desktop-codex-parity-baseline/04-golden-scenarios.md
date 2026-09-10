@@ -1,6 +1,6 @@
 # FEAT-131 — Codex 风格近似对话黄金场景
 
-> 2026-09-10 FEAT-144 当前范围：sorftime单工具product_detail、US单公开ASIN；固定0.144.6已通过无query URL＋原生Bearer环境引用＋真实版本User-Agent完成操作7/8初始化/列举，累计8/10元数据操作，模型/业务0。连接阻塞关闭，用户已排除业务失败实现/验证并确认余额、授权10次业务请求；D0按调整范围实跑PASS；产品实现/GS-004/D4 NOT RUN。原失败历史和未实施view_image备选保留，不替代真实MCP交付。详见[FEAT-144当前结论](../FEAT-144-desktop-real-tool-producer-items/15-owner-scope-and-business-budget-2026-09-10.md)。
+> 2026-09-11 FEAT-144 当前本地范围：Sorftime 单工具 product_detail、US 单公开 ASIN。原生成功、参数/结果核对、权限停用与模式复原、最终来源原生拒绝和普通重开已完成；九项活动 AC 的证据与 D4 检查见[24 最终报告](../FEAT-144-desktop-real-tool-producer-items/24-final-native-decline-and-delivery-2026-09-11.md)。元数据14/20、文本9/13、业务2逻辑调用保守扣4/10、图片0。AC-004业务失败用户排除，不计PASS；E/F分次实跑保留各自来源，未观察的progress/冷历史缺失仍保留。仅本地提交，未推送或运行远端CI；不改写FEAT-131历史D4。
 
 > 2026-09-09：历史场景结果不自动继承到 native v7；当前职责、日常入口与不可恢复的旧机制见[一致性复核](06-native-consistency-review-2026-09-09.md)。
 
@@ -32,7 +32,7 @@
 | GS-001 | 普通问题的流式回答与最终完成 | `available` | FEAT-134、FEAT-135 | `owner-approved-inference` | `synthetic: PASS`；current canonical `real-runtime: PASS`；predecessor `pre-runtime: FAIL` |
 | GS-002 | 多段过程更新与用户可见推理信息 | `available` | FEAT-134 | `owner-approved-inference` | 2026-09-09 native 分段/phase/plan 定向检查与既有数据 local D4 PASS；summary/raw 正向组合为 synthetic，不冒称新模型完整样本 |
 | GS-003 | Command 执行成功和失败 | `available` | FEAT-136；完整状态顺序后移 FEAT-143 | `owner-approved-inference` | 2026-08-30 v5 D4 保留历史；2026-09-09 native 调整 D4 PASS，真实 completed/failed 各1、正常重开，3/10文本；不声明独立 delta 顺序 |
-| GS-004 | Tool 调用成功和失败 | `requires Host/Contracts projection` | FEAT-144 | `owner-approved-inference` | 固定0.144.6原生元数据接入/输入schema已验证，8/10元数据；用户已排除业务失败场景并授权业务10次；D0按新范围实跑PASS，产品真实MCP成功/D4 NOT RUN，业务失败场景用户排除 |
+| GS-004 | Tool 真实成功与原生权限拒绝 | `available` | FEAT-144 | `owner-approved-inference` | E真实Sorftime成功及F实际原生Prompt拒绝、最终来源重开通过；业务失败AC-004用户排除；不同来源/未观察progress等边界见24，不把拒绝当业务失败PASS |
 | GS-005 | 命令审批一次性允许、取消和过期（历史场景） | `owner-terminated-unaccepted` | FEAT-137（永久终止） | `owner-explicit-decision` | 未完成验收；不再实现、不重启 |
 | GS-006 | 文件修改与 Diff | `intentional product difference` | FEAT-131 scope decision | `owner-excluded` | metadata-only exclusion；无 fixture、无真实验收 |
 | GS-007 | 执行中补充指令 | `requires Host/Contracts projection` | FEAT-139 | `owner-approved-inference` | metadata only；projection unavailable |
@@ -78,16 +78,16 @@
 - Provenance：Owner-authorized Runtime repair 与 final cross-pin 后，fresh canonical tranche 得到 completed=1、failed=1、exit/duration/stable error、安全复制与正常 hydration 各一次，当前 terminal scope 记为 `real-runtime: PASS`。Command Item started 与独立 output-delta live 因执行过快未捕获；focused source tests 不冒充 live evidence，完整集成状态顺序由 FEAT-143 承接。
 - Owner：FEAT-136；FEAT-143 承接明确后移的完整状态顺序。
 
-### GS-004 — Tool 调用成功和失败
+### GS-004 — Tool 真实成功与原生权限拒绝
 
-- 前置条件：存在当前产品批准且真实注册的 Tool；没有真实 Tool 时保持 capability gap。
-- 用户操作：提交会明确触发该 Tool 的任务，观察成功一次及正常失败一次。
-- 目标状态顺序：`tool.started(inProgress) → progress* → tool.completed(completed|failed) → turn continues|completes`。
-- 可用动作：展开/折叠安全参数摘要与结果；不显示 raw secret、绝对路径或未批准重试。
-- 最终结果：成功/失败由真实 completed Item 决定；未知 Tool 安全降级但不阻断其它 Item。
+- 前置条件：固定原生 Runtime、已验证 Sorftime 单工具白名单及 schema、仅内存秘密、请求批准与实际参数确认，独立授权预算。
+- 用户操作：Composer 查询一个公开 US ASIN，观察原生批准后的真实成功；单独新任务在实际原生 Prompt 拒绝并正常重开。
+- 目标事实：真实 McpToolCall 的 started/completed、status、适用 duration 与安全结果直接展示；progress 未观察不补造，Turn 与 Item 独立。
+- 可用动作：展开/折叠安全参数和结果摘要；复制仅限安全文本；不恢复审批回调或自动重试。
+- 最终结果：E 实际 completed/414ms、原生数据与模型三字段匹配；F 唯一 Tool failed/0ms、Turn completed；最终来源普通重开 E/F。业务失败实现/验收由用户明确排除，不以权限拒绝替代 AC-004。
 - Reference basis：`owner-approved-inference`。
-- Provenance：generic Tool source conformance仅历史基础；用户已提供sorftime服务来源，实际manifest、秘密注入与原生MCP审批仍待验证，真实success/failure/D4保持BLOCKED / NOT RUN；不使用内置看图、Command、dynamic image或fixture冒充。
-- Owner：FEAT-144。
+- Provenance：FEAT-144报告24及十二文件适用性核对。E/F属于分次canonical实跑并保留各自提交，不将旧通用Tool、内置看图、Command、dynamic image或fixture冒充真实MCP。结果正文安全脱敏、progress和冷历史缺失如实保留。
+- Owner：FEAT-144；一般工具/表单不因本期单工具交付而宣称完整支持。
 
 ### GS-005 — 命令审批一次性允许、取消和过期
 

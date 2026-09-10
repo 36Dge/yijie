@@ -1,0 +1,64 @@
+{
+  "approvals": [
+    {
+      "id": "c57f8f99-698b-42db-b3e1-2370a8781f34",
+      "kind": "mcp",
+      "mcp": {
+        "asin": "B07H9PZDQW",
+        "marketplace": "US",
+        "server": "sorftime",
+        "tool": "product_detail"
+      },
+      "status": "rejected"
+    }
+  ],
+  "current_native_status": {
+    "schema_version": 2,
+    "source": "runtime_read",
+    "status": "idle",
+    "thread_id": "01a08c16-8bf5-7b12-a83f-e9fab0a8b993"
+  },
+  "turns": [
+    {
+      "id": "01a08c16-93bd-7251-a47d-652194a67f85",
+      "status": "completed",
+      "itemsComplete": false,
+      "items": [
+        {
+          "id": "item-1",
+          "type": "userMessage",
+          "status": null,
+          "durationMs": null,
+          "availability": "available",
+          "result_kind": null
+        },
+        {
+          "id": "item-2",
+          "type": "agentMessage",
+          "status": null,
+          "durationMs": null,
+          "availability": "available",
+          "result_kind": null
+        },
+        {
+          "id": "call_01a08c16aebe75d1820f1e30",
+          "type": "mcpToolCall",
+          "status": "failed",
+          "durationMs": 0,
+          "availability": "available",
+          "result_kind": "null"
+        },
+        {
+          "id": "item-3",
+          "type": "agentMessage",
+          "status": null,
+          "durationMs": null,
+          "availability": "available",
+          "result_kind": null
+        }
+      ]
+    }
+  ],
+  "recorded_at": "2026-09-10T16:13:45.801910+00:00",
+  "method": "existing owner-only Host read endpoints; no resume or new Turn"
+}

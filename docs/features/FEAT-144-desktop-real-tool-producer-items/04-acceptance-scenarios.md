@@ -1,43 +1,37 @@
-# FEAT-144 Sorftime真实MCP验收设计（未执行）
+# FEAT-144 Sorftime 真实 MCP 验收场景与结果
 
-2026-09-10。固定Runtime接入已验证，元数据8/10；用户已排除AC-004/F144-S03业务失败实现/验证，余额充足并授权10次业务请求，已用0。当前依据见[15](15-owner-scope-and-business-budget-2026-09-10.md)；以下产品场景仍未执行。
+2026-09-11。当前九项活动 Must 的证据及最终门禁见[24 最终报告](24-final-native-decline-and-delivery-2026-09-11.md)。AC-004/F144-S03 的业务失败实现与验证继续按[用户决定](15-owner-scope-and-business-budget-2026-09-10.md)排除，不算 PASS。本文区分实跑、合成测试、历史适用和未观察项目。
 
-## 准备与业务样本
+## 样本、预算和入口
 
-product_detail只查询单个公开ASIN，显式amz_site=US。候选B07H9PZDQW有公开出处但不保证Sorftime有数据。原生文本块投影不依赖outputSchema；不因取不到失败样本而阻塞本期。
+首期仅 `sorftime/product_detail`，单个公开 ASIN `B07H9PZDQW`，显式 `amz_site=US`。E 实际成功已对照原生返回与模型摘要中的标题、品牌、价格；不依赖缺失的 outputSchema，不推定服务端幂等或免费。
 
-业务10次上限包含原生重发；一次逻辑调用最多2次tools/call须提前预留，不足不启动，保守上界不可自动返还。元数据8/10独立，模型/图片未授权。真实调用只用于有意义的成功验证，不寻找/制造业务失败，不扩大工具或数据范围。
+累计元数据 **14/20**，文本 **9/13**，业务 **2 次逻辑调用、保守扣 4/10 次尝试**，图片 **0**。原生业务重发包含在额度内；历史精确 HTTP 尝试数未知，保守扣账不返还、不跨账。本轮 F 原生拒绝新增业务 0，依据为真实拒绝决议、完整原生 Turn 和 decline 在 call_tool 前返回的代码路径，不宣称进行了 HTTP 抓包。
 
-被排除的业务失败场景与保留的既有安全边界分开：不新增失败分支或业务错误分类；正常缺参数/原生Prompt拒绝仍属于输入/权限回归，不把它算作AC-004通过。历史范围与原文已归档，D4仅评价剩余9项Must和适用的通用检查。
+标准入口为 `pnpm tauri:demo-fast:app`，普通 `com.yijie.ai` 身份、原 app-data 及日常 Host Home/CODEX_HOME；Sorftime 仅在启用运行时通过用户隐藏输入取得内存密钥。正常退出后，普通入口重开不带 Sorftime 配置，不恢复审批回调或自动重发。不复制用户数据库或凭据。
 
 ## 场景矩阵
 
-| 场景 | 未来操作 | 判定与限制 | AC |
+| 场景 | 实际验证 | 结论与限制 | AC |
 |---|---|---|---|
-| F144-S01安全接入与发现 | 复用操作7/8诊断证据；先做产品白名单/schema/秘密隔离定向核验，必要的产品初始化与发现按16单独编排额度 | 只开放核实的单详情工具；不安装bridge/自写MCP客户端，不把发现算业务成功 | 001/007/009 |
-| F144-S02真实成功 | 现有项目Composer请求指定US公开ASIN；原生审批后调用 | 真实McpToolCall ID/status/安全参数/结果/适用duration；助手摘要与真实结果独立核对，缺失保留；不能只凭completed通过 | 002/003 |
-| F144-S03真实正常失败（用户排除） | 不实施、不执行 | OWNER_EXCLUDED / NOT RUN；原要求归档，不计PASS，不被其它场景替代 | 004（已移出Must） |
-| F144-S04空数据与恢复 | 自然无数据/安全合成返回，随后新的明确有效查询 | availability/empty与status分开；不自动补发、扩查询或推演失败；合成不冒称真实远端 | 003/007 |
-| F144-S05生命周期与来源 | 普通Item/Turn结束、缺字段、连接缺口、重复、跨会话定向测试 | 唯一缓冲，不串项/对账/封口；历史/订阅不明不busy，thread/read不冒称亲历started/completed；0progress合法 | 005 |
-| F144-S06正常重开 | canonical正常退出并重开同一已保存Tool记录 | 观察事实、原生ID/终态/安全结果保持；原生冷读分来源、不猜合并；旧历史仍可读，兼容reader先于新写入 | 006/009 |
-| F144-S07原生权限与秘密 | 必要MCP请求/响应薄适配测试及正常审批交互 | 稳定 elicitation 空表单，按 request/thread/可信 turn 关联；无原生 itemId 不猜 Tool 卡，accept/decline/cancel/resolved 原生处理；一般表单/URL/requestUserInput 拒绝，不设Approve；密钥不进模型/shell/日志/DB/CLI，未证安全阻塞 | 007/009 |
-| F144-S08界面和回归 | tool卡、light/dark、1180×760、200%、键盘/折叠/复制，原数据切换 | 只复制安全文字，执行/availability/busy分开；Composer/Command/附件/Artifact/FEAT-152不回归 | 008 |
-| F144-S09来源与复用 | Contracts→兼容reader→Host/Desktop激活检查及分离审查 | 原生MCP/缓冲/SQLCipher/历史复用，真实版本/pin；旧schema不原地扩字段，不改Runtime/137或权限策略 | 009/010 |
+| F144-S01 安全接入与发现 | 固定 Runtime 操作 7/8 确认原生接入和 schema；产品初始化/列举分账，最终 F 再核对真实 Prompt 参数 | PASS：原生 Bearer 环境引用、真实版本 UA、精确单工具；发现不计业务成功 | 001/007/009 |
+| F144-S02 真实成功 | E 经 Composer、原生批准产生 completed/414ms；原生返回三字段独立匹配模型；最终来源重开 E | PASS：E 保留实际旧提交范围，执行路径适用性另经逐文件核验；卡片正文安全脱敏为 partial，不冒称完整原文可见 | 002/003 |
+| F144-S03 业务失败（用户排除） | 不实现、不执行 | OWNER_EXCLUDED / NOT RUN；不计 PASS，权限拒绝不替代此场景 | 004（已移出 Must） |
+| F144-S04 空、缺失与容量 | 安全合成定向测试覆盖合法空、缺失、超限和完整替换；F 实际 result=null | 适用定向检查 PASS；没有声称观察到远端成功空数据或恢复重试，不为取样制造失败 | 003/007 |
+| F144-S05 生命周期与来源 | 原生 Tool 与 Turn 独立；F 唯一 Tool failed/0ms、Turn completed，重开不忙碌 | PASS：唯一 Native 缓冲；不补造 phase、progress、完成事件或旧 B 终态 | 005 |
+| F144-S06 正常重开 | E/F 均经最终来源普通入口重开，SQLCipher schema15/format2、原生身份/来源/终态保持 | PASS：F revision25，B 旧 queued/failed 出站及历史 revision17/20 不改；不猜测接管 | 006/009 |
+| F144-S07 原生权限与秘密 | E 实际批准、Sorftime 正常停用、auto/full/ask；F 实际 Prompt 点击拒绝，审批 rejected、模型正常收尾，重开无审批恢复 | PASS：分次来源清楚；仅稳定 Sorftime 空 form，按 request/thread/可信 turn 关联，不猜 Item；一般表单/URL/requestUserInput 仍拒绝 | 007/009 |
+| F144-S08 界面与回归 | 最终来源启动、切换、展开 E/F、正常退出重开；未改 UI 的主题、最小窗口、200%、键盘、复制证据保留原来源 | 适用检查 PASS；旧 Command 完成后输出、过期附件、清理未完和隔离 Host 映射缺失保留，不计修复 | 008 |
+| F144-S09 来源与复用 | 源契约与兼容 reader 先行、分离阶段审查、真实 pin/digest 和生成检查；新增独立只读状态端点 provider-first | PASS：不扩旧 history、不新增 migration；复用 Codex MCP/elicitation/thread-read、唯一缓冲及 SQLCipher | 009/010 |
 
-## 正常入口与停止条件
+E 真实调用和模式验证运行于 Host `ccd815ff63542674daa80172a1c71ac7478edd0f` / Desktop `a5975f48e63d3f1d3a262e9e8dfc57ca0d923961`。F 和最终普通重开运行于 Host `0e47766f494977c94bfea0e89cfbdf45a7fafa2b` / Desktop `7abf89e84ffcbe56360d8c9943390e0640d9e239`。十二个相关文件逐字不变，见[适用性核对](evidence/native-status-evidence-applicability-2026-09-11.json)。本次按用户指定的“修复后拒绝复验，再收尾”顺序验收，明确为分次正常 canonical 证据组，不宣称同一进程或最后提交重新执行了全部旧检查。
 
-未来使用pnpm tauri:demo-fast:app，普通com.yijie.ai身份、原app-data与Host Home；先让旧活跃Turn正常结束再正常退出，不复制DB/凭据。Sorftime配置限受管本地会话，不覆盖用户个人Codex全局配置，也不宣称自动限制其它无关配置；真实可见工具范围先核对。
+## 权限、兼容与停止边界
 
-必须分别验证：原生Tool执行事实、实际业务可用结果、模型摘要忠实性、持久来源和权限。自然中断/重连若未出现就记录NOT OBSERVED，不能故障注入。元数据重试不等于新Item；业务HTTP尝试与Item数/模型请求数不是同一台账。
+Sorftime 只在“请求批准”和已核实的原生 on-request/user/workspaceWrite/networkAccess=false、approval_mode=prompt 配置下激活。auto/full 保持 FEAT-152 原语义，本期 Sorftime 在这些模式停用；不自动切换权限，不把 prompt 配置或聊天确认当原生授权。
 
-凭据安全、MCP审批承接、schema/来源、预算或旧数据兼容不能确认时停止对应步骤。工具发生schema漂移、未知身份或非白名单调用时拒绝，不通过prompt/客户端推断绕过。禁止攻击fixture、强杀、权限破坏、二进制替换、坏key/断网/耗尽额度制造错误。
+秘密、schema/来源、预算、权限或旧数据兼容不能确认时停止相应步骤。缺少原生身份、未知有效配置或不支持的请求继续拒绝。新增当前线程状态只复用 `thread/read(includeTurns=false)`，notLoaded 仅代表当前未加载，不证明旧请求未执行。旧不确定投递保持只读，不补发或封口。
 
-剩余9项Must、真实成功、正常重开及保留的既有输入/权限回归完成后才可评价D4；AC-004及业务失败实现/验证已排除，不计入通过数量。原MCP历史、内置备选及FEAT-136的旧PASS不继承。
+最低兼容 reader 固定为 `25b004fbd5a4dcf642a503d302c21a7d6e3b817f`；未知格式经 recordDiagnostics 隔离，不触发冷读补建，过高数据库版本拒绝打开。不改历史 migration，不复制用户数据库。详见[12 兼容方案](12-independent-contract-and-reader-plan-2026-09-10.md)及[23 启动修复](23-native-status-startup-repair-2026-09-11.md)。
 
-兼容方向的具体设计与测试准备见[12](12-independent-contract-and-reader-plan-2026-09-10.md)：包括保持原生status事实、版本化reader、单条未来格式不阻断其它历史，以及旧binary版本拒绝。所有新增产品断言尚未执行；本地健康MCP报文比较仅用于诊断，不能替代F144-S02或D4。
-
-## 原生权限模式定向验收补充
-
-首期Sorftime只在“请求批准”及已核实原生on-request/user/workspaceWrite/networkAccess=false、工具approval_mode=prompt的受管配置下激活；不把prompt当必出面板的保证。自动审查/完全访问保持FEAT-152原语义，但本期Sorftime不在这些模式激活，不自动切换模式；未知有效配置或审批被hook/插件替代时不激活。详见13。
-
-核对实际thread响应/配置及正常模式切换时工具失效；不能仅凭UI隐藏或权限标签PASS。原生Prompt不缓存为后续调用授权；手工取样RPC不算此产品审批验收。当前NOT RUN。
+自然中断、重连、远端空数据及 progress 未观察就保持 NOT OBSERVED；业务失败为 OWNER_EXCLUDED。攻击/故障注入、强杀、坏 key、断网、权限破坏、替换二进制等测试均未执行，不计 PASS。剩余额度不自动用于追加验证或其它需求。

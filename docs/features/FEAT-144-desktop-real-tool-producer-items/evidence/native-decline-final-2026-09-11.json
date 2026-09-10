@@ -1,0 +1,210 @@
+{
+  "recorded_at": "2026-09-10T16:18:49.251218+00:00",
+  "scope": "FEAT144 final native rejection and same-data canonical reopen",
+  "sources": {
+    "contracts": "811f38d6b104fa18477107e7ac91a85e19c445d1",
+    "host": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+    "desktop": "7abf89e84ffcbe56360d8c9943390e0640d9e239",
+    "codex": "6c1ad767f0997845b8258a1c452fd4eb7577579f"
+  },
+  "session_id": "01a08c16-8bbe-7253-82c3-41a186eb3d8f",
+  "host_session_id": "5149e9f3-ab57-458c-951d-41cc5dc6bbdb",
+  "native_thread_id": "01a08c16-8bf5-7b12-a83f-e9fab0a8b993",
+  "native_turn_id": "01a08c16-93bd-7251-a47d-652194a67f85",
+  "native_tool_id": "call_01a08c16aebe75d1820f1e30",
+  "approval_id": "c57f8f99-698b-42db-b3e1-2370a8781f34",
+  "approval": {
+    "actual_native_prompt": true,
+    "decision": "reject",
+    "observed_state": "rejected",
+    "parameters": {
+      "server": "sorftime",
+      "tool": "product_detail",
+      "asin": "B07H9PZDQW",
+      "marketplace": "US"
+    },
+    "response_written_and_consumed": "Native failed Item followed reject; Host rejected state and native rejection error independently confirmed"
+  },
+  "native_history_read": {
+    "purpose": "Native thread/read of actual D4 history; no rollout parser, no new thread, no model or MCP call",
+    "raw_payload_saved": false,
+    "native_turns": 1,
+    "turns": [
+      {
+        "id": "01a08c16-93bd-7251-a47d-652194a67f85",
+        "status": "completed",
+        "item_types": [
+          "userMessage",
+          "agentMessage",
+          "mcpToolCall",
+          "agentMessage"
+        ]
+      }
+    ],
+    "tool_results": [
+      {
+        "id": "call_01a08c16aebe75d1820f1e30",
+        "server": "sorftime",
+        "tool": "product_detail",
+        "status": "failed",
+        "durationMs": 0,
+        "result_is_null": true,
+        "error_present": true,
+        "native_rejection_text_present": true
+      }
+    ],
+    "exit_code": 0,
+    "notifications": [
+      "remoteControl/status/changed"
+    ],
+    "stderr_bytes": 0
+  },
+  "model_final": "Explicitly says user rejected, no product data received, no retry or old result reuse; English text, no fabricated query result",
+  "complete_turn_inspection": "One user item, two agent messages, one McpToolCall; no additional Tool/Command/dynamic tool or approval",
+  "canonical": {
+    "command": "pnpm tauri:demo-fast:app with existing meter override; Sorftime opt-in only for first run",
+    "identity": "com.yijie.ai",
+    "app_data": "/Users/jack/Library/Application Support/com.yijie.ai/demo-fast-v1",
+    "host_home": "yijie-desktop/.local/demo-fast/host-home",
+    "codex_home": "yijie-desktop/.local/demo-fast/codex-home",
+    "copied_database_or_credentials": false,
+    "mcp_run_processes": [
+      15776,
+      19831,
+      19881
+    ],
+    "ordinary_reopen_processes": [
+      20902,
+      24134,
+      24136
+    ],
+    "normal_exit_both": true,
+    "launcher_exit_codes": [
+      0,
+      0
+    ],
+    "meter_exit_code": 0,
+    "reopened_F": "same observed source, failed0ms, null result, ask; no approval callback or automatic resend",
+    "reopened_E": "completed414ms, native_observed, partial/content_redacted, same parameters",
+    "old_B": "queued/null nativeTurn/submission queued and failed v1 outbox attempt1 unchanged; saved view revisions17/20 unchanged",
+    "old_B_native_status_at_mcp_start": "notLoaded from new native endpoint; not a statement that the old request never executed",
+    "managed_mcp_servers_absent_after_ordinary_reopen": true,
+    "native_trust_sha256": "40838b962f2314c89af7f3942d187761ea28ca010de19d4bd6bef6e172c5764d"
+  },
+  "persistence": {
+    "schema_version": 15,
+    "view_format": 2,
+    "F_source": "native_observed",
+    "F_view_revision": 25,
+    "F_start_outbox": "done",
+    "F_permission": "ask"
+  },
+  "budget": {
+    "model_limit": 13,
+    "model_used": 9,
+    "model_requests": [
+      {
+        "ordinal": 1,
+        "admitted_at": "2026-09-10T11:59:56Z",
+        "status": "completed",
+        "model": "MiniMax-M3",
+        "structured_output": false,
+        "upstream": "https://api.minimaxi.com/v1/responses",
+        "http_status": 200
+      },
+      {
+        "ordinal": 2,
+        "admitted_at": "2026-09-10T12:01:40Z",
+        "status": "completed",
+        "model": "MiniMax-M3",
+        "structured_output": false,
+        "upstream": "https://api.minimaxi.com/v1/responses",
+        "http_status": 200
+      },
+      {
+        "ordinal": 3,
+        "admitted_at": "2026-09-10T12:03:58Z",
+        "status": "completed",
+        "model": "MiniMax-M3",
+        "structured_output": false,
+        "upstream": "https://api.minimaxi.com/v1/responses",
+        "http_status": 200
+      },
+      {
+        "ordinal": 4,
+        "admitted_at": "2026-09-10T12:04:48Z",
+        "status": "completed",
+        "model": "MiniMax-M3",
+        "structured_output": false,
+        "upstream": "https://api.minimaxi.com/v1/responses",
+        "http_status": 200
+      },
+      {
+        "ordinal": 5,
+        "admitted_at": "2026-09-10T13:34:01Z",
+        "status": "completed",
+        "model": "MiniMax-M3",
+        "structured_output": false,
+        "upstream": "https://api.minimaxi.com/v1/responses",
+        "http_status": 200
+      },
+      {
+        "ordinal": 6,
+        "admitted_at": "2026-09-10T13:35:54Z",
+        "status": "completed",
+        "model": "MiniMax-M3",
+        "structured_output": false,
+        "upstream": "https://api.minimaxi.com/v1/responses",
+        "http_status": 200
+      },
+      {
+        "ordinal": 7,
+        "admitted_at": "2026-09-10T13:36:38Z",
+        "status": "completed",
+        "model": "MiniMax-M3",
+        "structured_output": false,
+        "upstream": "https://api.minimaxi.com/v1/responses",
+        "http_status": 200
+      },
+      {
+        "ordinal": 8,
+        "admitted_at": "2026-09-10T16:11:25Z",
+        "status": "completed",
+        "model": "MiniMax-M3",
+        "structured_output": false,
+        "upstream": "https://api.minimaxi.com/v1/responses",
+        "http_status": 200
+      },
+      {
+        "ordinal": 9,
+        "admitted_at": "2026-09-10T16:11:57Z",
+        "status": "completed",
+        "model": "MiniMax-M3",
+        "structured_output": false,
+        "upstream": "https://api.minimaxi.com/v1/responses",
+        "http_status": 200
+      }
+    ],
+    "model_ledger_sha256": "c52a0d8af924719a36a3e8436b59b026bc53519913cbf37a07ce1e5d415ca26b",
+    "metadata_limit": 20,
+    "metadata_used": 14,
+    "metadata_this_round": 2,
+    "metadata_round_cap": 5,
+    "business_logical_calls_total": 2,
+    "business_attempts_exact": null,
+    "business_charged_upper_bound": 4,
+    "business_limit": 10,
+    "business_added_this_round": 0,
+    "images": 0
+  },
+  "business_zero_basis": "Native decline-before-call branch and complete Turn facts; exact HTTP statistics not claimed",
+  "evidence_applicability": "E success/return comparison/modes retain actual ccd815ff/a5975f48 sources. Twelve execution/permission/buffer/presentation files unchanged, old wire equality conformance retained. F covers new source startup and decline. Not a claim of one process or one commit for all historical checks.",
+  "excluded": "AC004 OWNER_EXCLUDED / NOT RUN",
+  "remaining_limitations": [
+    "Unknown old B operation outcome retained read-only; no automatic continuation",
+    "whole native Tool text redacted, partial separate from completed",
+    "no outputSchema/annotations/progress/phase fabricated; cold items incomplete",
+    "Command final-only output; old expired attachments, incomplete cleanup and isolated Host mappings retained"
+  ],
+  "external_operations": "local commits only; no push/tag/deploy/remote CI"
+}

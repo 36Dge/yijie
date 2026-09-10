@@ -1,24 +1,16 @@
 # FEAT-144 — 当前实施与验收记录
 
-配置兼容阻塞已关闭：当前Host ccd815ff63542674daa80172a1c71ac7478edd0f、Desktop a5975f48e63d3f1d3a262e9e8dfc57ca0d923961。新E真实Tool completed/414ms，原生返回三字段对照通过；Sorftime正常停用、auto/full/ask、原数据canonical退出重开均PASS。累计元数据12/20、模型7/8、业务2逻辑调用保守扣4/10、图片0；应用与计数器均已正常退出。D4尚未关闭：当前来源下的原生Prompt正常拒绝未复验，不能继承旧B结果；已申请最多追加2次文本，未获授权不调用。AC-004始终用户排除。 详见[22](22-connected-permissions-and-reopen-2026-09-10.md)。
+FEAT-144九项活动Must已完成真实证据复核，原生拒绝与正常重开通过；AC-004始终用户排除。当前累计文本9/13、元数据14/20、业务2逻辑调用保守扣4/10、图片0。应用及计数器正常退出，产品来源已本地提交，无推送/tag/部署。最终D4门禁与证据适用范围见[24](24-final-native-decline-and-delivery-2026-09-11.md)。
 
 ## 当前核验事实
 
-| 项目 | 结果及证据范围 |
-|---|---|
-| 来源 | Contracts db54c617c65db5431b950eb297ba148a43a8e600；Host ccd815ff63542674daa80172a1c71ac7478edd0f；Desktop a5975f48e63d3f1d3a262e9e8dfc57ca0d923961；固定Runtime0.144.6不变 |
-| 配置兼容 | 原生CLI配置层、独立精确受管模板、原生trust原字节保留；bootstrap cwd独立于任务cwd。无调用原生集成及当前来源检查通过，详见21 |
-| 实际数据 | com.yijie.ai原app-data、日常Host/Codex Home；无数据库或凭据副本；schema15/view2，reader下限25b004fbd5a4dcf642a503d302c21a7d6e3b817f |
-| 普通重开 | 修复后旧B两条Tool在canonical重开：342ms成功与0ms拒绝、来源/脱敏保留，正常退出；不是自动续跑证明 |
-| 新E成功 | 本轮actual native Prompt批准ASIN/US，Tool completed/414ms，两Turn completed，安全正文partial/content_redacted；最终标题品牌价格与正常退出后的原生thread/read三字段对照PASS |
-| 原生拒绝 | 旧B实际decline通过，保留旧提交范围；当前E未重跑decline，不自动继承为当前fresh run |
-| 模式切换 | 当前E明确授权后正常停用MCP，auto/full/ask均与持久值一致，trust字节不变；产品实际切换PASS，旧B失败历史保留 |
-| UI/相关回归 | 旧B的light/dark、1180×760、200%、键盘/复制、Command/Artifact/附件检查保留当时范围；当前E已核对展开、参数、来源和结果文案 |
-| 调用累计 | 元数据12/20；模型7/8；业务2逻辑调用、实际HTTP次数未知、保守扣4/10；图片0 |
-| 兼容限制 | 当前MCP启用不自动resume旧线程；旧B新本地投递被拒绝且未调用模型/MCP，记录保留；不猜绑定、不自动封口 |
-| 交付 | 产品修复及pin已本地提交；当前证据更新中；未推送、tag、部署或远端CI |
+最终逐项AC、三仓完整来源、兼容/回滚边界、分账与限制见[24最终报告](24-final-native-decline-and-delivery-2026-09-11.md)；[F原生终态及正常重开证据](evidence/native-decline-final-2026-09-11.json)保存真实ID和无正文核验。
 
-新E详见[连接复验](evidence/connected-config-recheck-2026-09-10.json)，配置与普通重开详见[21](21-native-config-ownership-2026-09-10.md)；20保留历史失败。当前D4保持未关闭，未运行项不写PASS。AC-004继续OWNER_EXCLUDED / NOT RUN；未做攻击、故障注入、强杀或权限破坏。
+- 当前最终来源为Contracts811f38d6、Host0e47766f、Desktop7abf89e8；Runtime0.144.6未改。
+- F实际原生Prompt拒绝、rejected、Tool failed/0ms/resultnull、Turn completed；没有追加业务调用。普通重开保持来源与ask，旧审批不恢复。
+- E成功/数据对照/三模式检查保留真实旧提交，十二相关行为文件逐字未变证明适用；最终来源实际重开E历史。不能称所有检查在同一提交或进程实跑。
+- 旧B queued/failed出站及无原生Turn的执行不确定性保持；原生当前notLoaded不推导过去终态。无数据库或凭据副本。
+- 九项活动Must完成；AC-004 OWNER_EXCLUDED / NOT RUN。禁止的攻击/故障/强杀测试未执行，不计PASS。最终门禁输出单独保存。
 
 ## 前次连接闭环检查与分离审查（历史）
 
@@ -52,7 +44,7 @@
 
 此前豁免、冷历史/进度缺失及未执行项目均保持原范围；没有复制用户数据库、测试攻击载荷、故障注入或Runtime修改。
 
-## 本次用户范围调整的审查与检查
+## 用户范围调整阶段的审查与检查（历史）
 
 原AC-004和旧四文件已逐字归档；活动Must由10项改为9项且不重用编号，排除不记PASS。业务失败分支/错误扩展/专用样本已移出设计，原生事实、安全拒绝及通用保护保留。通用D4代表性拒绝仅评价AC-007仍要求的原生权限边界，不能变相计为AC-004业务失败通过。
 

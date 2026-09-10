@@ -1,0 +1,55 @@
+{
+  "recorded_at": "2026-09-10T16:15:01.910429+00:00",
+  "scope": "Evidence applicability review after additive current-status repair; not a claim that E ran at new full HEAD",
+  "unchanged_behavior_files": {
+    "yijie-agent-host/internal/codex/sorftime.go": {
+      "base": "ccd815ff63542674daa80172a1c71ac7478edd0f",
+      "sha256": "449298fb8a7ffc8fd35685ada503eca7073e3ced5684fd7c1ec55c61cb43ae5f"
+    },
+    "yijie-agent-host/internal/codex/session_protocol.go": {
+      "base": "ccd815ff63542674daa80172a1c71ac7478edd0f",
+      "sha256": "66244fced1b7bcc09d8820069e37c5b50f8b2243845ac0993f2ef195d97281fb"
+    },
+    "yijie-agent-host/internal/session/native_mcp.go": {
+      "base": "ccd815ff63542674daa80172a1c71ac7478edd0f",
+      "sha256": "b93d94b0ba81b9bd23b6697840b7d2d94fc99dbb92adaeeb5d50ebb063c32b05"
+    },
+    "yijie-agent-host/internal/session/native_conversation.go": {
+      "base": "ccd815ff63542674daa80172a1c71ac7478edd0f",
+      "sha256": "49af0489c438d73e744be12d3e65734c85e8477abdd73aca9752d4b88b740fa1"
+    },
+    "yijie-agent-host/internal/app/native_mcp.go": {
+      "base": "ccd815ff63542674daa80172a1c71ac7478edd0f",
+      "sha256": "c4c52bb336e017e32961bb6709dafb2f31a43ae3dbf298334990503ab5b0d224"
+    },
+    "yijie-agent-host/internal/codex/native_config_layers.go": {
+      "base": "ccd815ff63542674daa80172a1c71ac7478edd0f",
+      "sha256": "ff550d6bc26a073013eff46c44c6480ec1a74068ebda89a72b544661005f4322"
+    },
+    "yijie-desktop/src-tauri/src/chat/native_conversation.rs": {
+      "base": "a5975f48e63d3f1d3a262e9e8dfc57ca0d923961",
+      "sha256": "cc6cea73f52d65bc529e5bf98a09a51ae5a0ce5697de3c679529bbd39b79d0ff"
+    },
+    "yijie-desktop/src-tauri/src/chat/runtime_permissions.rs": {
+      "base": "a5975f48e63d3f1d3a262e9e8dfc57ca0d923961",
+      "sha256": "ae3410227b85220688bc38c0f95c78f9df7d9a3469d00e30e4ddc3a23fa81a9a"
+    },
+    "yijie-desktop/src-tauri/src/chat/application.rs": {
+      "base": "a5975f48e63d3f1d3a262e9e8dfc57ca0d923961",
+      "sha256": "411cab51174bd821c941730625f3a47d20b8feb633bdb8d17bc036fdf58e8f1d"
+    },
+    "yijie-desktop/src/components/chat/ChatNativeToolItem.vue": {
+      "base": "a5975f48e63d3f1d3a262e9e8dfc57ca0d923961",
+      "sha256": "ae991b1f2f68ca4206d92f054b0cfa867c30b2d2af75a085fc972874095f2607"
+    },
+    "yijie-desktop/src/domain/conversation-view.ts": {
+      "base": "a5975f48e63d3f1d3a262e9e8dfc57ca0d923961",
+      "sha256": "6348e68899244b6c1b4f644eb7ef05203e0c262097ed59f7d3eb545b9fcd2c02"
+    },
+    "yijie-desktop/src/stores/chat.store.ts": {
+      "base": "a5975f48e63d3f1d3a262e9e8dfc57ca0d923961",
+      "sha256": "315fe6ad4dec47c4de587821967d6a98dddfa0ac82380d82cf82b5e91dcf14b7"
+    }
+  },
+  "limitations": "E success/data comparison/mode switching retain their actual source commits; current F independently verifies canonical admission/native Prompt/decline/reopen. No historical test count is claimed as rerun."
+}

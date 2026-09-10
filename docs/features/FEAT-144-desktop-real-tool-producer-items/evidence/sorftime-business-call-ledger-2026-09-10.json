@@ -19,7 +19,7 @@
     },
     "account_balance": "Sufficient, asserted by user; no private balance query performed",
     "billing_detail": "Not independently verified; no promise of free retries or exact charging. No longer a prerequisite under this explicit grant.",
-    "other_authorizations": "Metadata12/20; model7/8; image0. Independent budgets; no push or permission grant inferred."
+    "other_authorizations": "Metadata14/20, model9/13, image0; independent budgets."
   },
   "actual": {
     "logical_calls": 2,
@@ -91,10 +91,21 @@
       "content_availability": "partial/content_redacted; completed independent; native thread/read title/brand/price match model; normal canonical E reopen PASS",
       "model_requests_this_run": 3,
       "model_only_first_turn": "No tool call; model asked chat permission, clarification then produced real native Prompt"
+    },
+    {
+      "observed_at": "2026-09-10T16:15:01.910429+00:00",
+      "status": "Native Prompt rejected; no new MCP business invocation",
+      "session_id": "01a08c16-8bbe-7253-82c3-41a186eb3d8f",
+      "native_thread_id": "01a08c16-8bf5-7b12-a83f-e9fab0a8b993",
+      "native_tool_id": "call_01a08c16aebe75d1820f1e30",
+      "native_approval_id": "c57f8f99-698b-42db-b3e1-2370a8781f34",
+      "logical_calls_added": 0,
+      "charged_attempt_upper_bound_added": 0,
+      "count_basis": "Observed native rejected decision, sole failed0ms/null-result Item and completed Turn; fixed native decline returns before call_tool. Not an HTTP capture. Exact historical HTTP attempts remain null."
     }
   ],
   "metadata_ledger": "sorftime-discovery-ledger-2026-09-10.json",
   "business_failure_scenario": "OWNER_EXCLUDED / NOT RUN; no special implementation",
-  "execution": "No business call required to close D0; reserve for useful success validation after applicable prerequisites.",
-  "latest_checkpoint": "connected-config-recheck-2026-09-10.json"
+  "execution": "Two logical success calls charged conservatively as four attempts; F native decline added zero business calls. Local D4 evidence closed; remaining six attempts not automatically consumed.",
+  "latest_checkpoint": "native-decline-final-2026-09-11.json"
 }

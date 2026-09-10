@@ -1,0 +1,273 @@
+{
+  "recorded_at": "2026-09-10T16:35:42.614378+00:00",
+  "scope": "FEAT144 final local precommit audit; no additional paid/model/MCP calls",
+  "repositories_before_meta_commit": {
+    "yijie": {
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "65b90bfaaf45c61a7769035c59265b7fedaa855c",
+      "origin": "https://github.com/36Dge/yijie.git",
+      "status": [
+        "M docs/dev/codex-project-memory.md",
+        " M docs/features/FEAT-131-desktop-codex-parity-baseline/03-capability-matrix.md",
+        " M docs/features/FEAT-131-desktop-codex-parity-baseline/04-golden-scenarios.md",
+        " M docs/features/FEAT-131-desktop-codex-parity-baseline/05-reference-evidence-index.md",
+        " M docs/features/FEAT-144-desktop-real-tool-producer-items/00-feature-brief.md",
+        " M docs/features/FEAT-144-desktop-real-tool-producer-items/01-delivery-log.md",
+        " M docs/features/FEAT-144-desktop-real-tool-producer-items/02-verification.md",
+        " M docs/features/FEAT-144-desktop-real-tool-producer-items/04-acceptance-scenarios.md",
+        " M docs/features/FEAT-144-desktop-real-tool-producer-items/21-native-config-ownership-2026-09-10.md",
+        " M docs/features/FEAT-144-desktop-real-tool-producer-items/22-connected-permissions-and-reopen-2026-09-10.md",
+        " M docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-business-call-ledger-2026-09-10.json",
+        " M docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-discovery-ledger-2026-09-10.json",
+        " M docs/features/FEAT-144-desktop-real-tool-producer-items/feature.yaml",
+        "?? docs/features/FEAT-144-desktop-real-tool-producer-items/23-native-status-startup-repair-2026-09-11.md",
+        "?? docs/features/FEAT-144-desktop-real-tool-producer-items/24-final-native-decline-and-delivery-2026-09-11.md",
+        "?? docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/decline-recheck-independent-audit-2026-09-10.json",
+        "?? docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/decline-recheck-preflight-2026-09-10.json",
+        "?? docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/final-document-and-source-checks-2026-09-11.json",
+        "?? docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/native-decline-final-2026-09-11.json",
+        "?? docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/native-decline-live-2026-09-11.json",
+        "?? docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/native-status-evidence-applicability-2026-09-11.json",
+        "?? docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/native-status-repair-precommit-2026-09-11.json"
+      ]
+    },
+    "yijie-admin-web": {
+      "branch": "develop",
+      "head": "d009cafccb112c098114c075d60f67ee5e0296d8",
+      "origin": "https://github.com/36Dge/yijie-admin-web.git",
+      "status": []
+    },
+    "yijie-agent-host": {
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "origin": "https://github.com/36Dge/yijie-agent-host.git",
+      "status": []
+    },
+    "yijie-api": {
+      "branch": "feat/feat-126-foundation-closure",
+      "head": "f9d730a157bcb012a8fe178cbfebcd4ea27419fc",
+      "origin": "https://github.com/36Dge/yijie-api.git",
+      "status": []
+    },
+    "yijie-codex": {
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "origin": "https://github.com/36Dge/yijie-codex.git",
+      "status": []
+    },
+    "yijie-connectors": {
+      "branch": "develop",
+      "head": "273eec40bbbfeb17e817643f283db7c81e9b190c",
+      "origin": "https://github.com/36Dge/yijie-connectors.git",
+      "status": []
+    },
+    "yijie-contracts": {
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "811f38d6b104fa18477107e7ac91a85e19c445d1",
+      "origin": "https://github.com/36Dge/yijie-contracts.git",
+      "status": []
+    },
+    "yijie-desktop": {
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "7abf89e84ffcbe56360d8c9943390e0640d9e239",
+      "origin": "https://github.com/36Dge/yijie-desktop.git",
+      "status": []
+    },
+    "yijie-infra": {
+      "branch": "feat/feat-126-s10e",
+      "head": "19b7920696904f83030a8ddaba71af15c3c05ad8",
+      "origin": "https://github.com/36Dge/yijie-infra.git",
+      "status": []
+    },
+    "yijie-knowledge": {
+      "branch": "develop",
+      "head": "e9091d2b673ba779ecb39271ce9148e3a41fc256",
+      "origin": "https://github.com/36Dge/yijie-knowledge.git",
+      "status": []
+    },
+    "yijie-skills": {
+      "branch": "develop",
+      "head": "488714a8d96f40806a257aae097683815b1dd458",
+      "origin": "https://github.com/36Dge/yijie-skills.git",
+      "status": []
+    }
+  },
+  "checks_after_final_doc_sync": [
+    {
+      "command": [
+        "bash",
+        "-n",
+        "scripts/bootstrap.sh"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "scripts/checkout-all.sh"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "scripts/dev-down.sh"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "scripts/dev-up.sh"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "scripts/generate-all.sh"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "scripts/lint-all.sh"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "scripts/test-all.sh"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "docs/features/FEAT-144-desktop-real-tool-producer-items"
+      ],
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，所有模板变量和未完成标记已处理。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+    },
+    {
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--gate",
+        "D0",
+        "docs/features/FEAT-144-desktop-real-tool-producer-items"
+      ],
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，且 D0 范围与语义门禁通过。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+    },
+    {
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--gate",
+        "D4",
+        "docs/features/FEAT-144-desktop-real-tool-producer-items"
+      ],
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，且 D4 范围与语义门禁通过。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output": ""
+    }
+  ],
+  "changed_markdown_links_checked": 79,
+  "changed_json_files_validated": 10,
+  "secret_like_patterns_found": 0,
+  "secret_scan_scope": "Changed documentation/evidence only; generic patterns, not a claim to re-scan private databases or real credentials",
+  "source_precommit_hashes_verified": {
+    "yijie-desktop/contracts/native-conversation.lock.json": "243995316d147ce50c638dff4f100cdb5fa68030f112f548fa02b04dce8717fa",
+    "yijie-desktop/contracts/native-mcp.lock.json": "85b90428494e131c5237c4125095dd096016c442fb48647160a2eacd7db01bc4",
+    "yijie-desktop/contracts/runtime-permissions.lock.json": "0761c64e104350286f8256f4c392d6e411a446a9a536911106cd4f6ae7c2decf",
+    "yijie-desktop/docs/chat-native-conversation.md": "13c77959b9326bbb21495ae7c22f7c242c83c6ba6e8497670db57fde978aa946",
+    "yijie-desktop/src-tauri/contracts/native-conversation-v2.json": "5b2143cad791f5e2b36e1058bf603a0ca0f309cb8cdbde85d712c960fd16b2df",
+    "yijie-desktop/src-tauri/schemas/chat-native-conversation-resolved.schema.json": "2c86bf70efad9494c2f26b583f456b52c2672be6b16447dc7134ce4c3c20e257",
+    "yijie-desktop/src-tauri/src/chat/database.rs": "273a012db1c368efb879aebbe17467168d8e114d208c86a5bcc56cd6cd8ab873",
+    "yijie-desktop/src-tauri/src/chat/host_bridge.rs": "69dca85835d3e1f486a67130f056829a43c8956a079d10bf556ba1068c7c7de3",
+    "yijie-desktop/src-tauri/src/chat/mod.rs": "b3fa71ee69cb1bae392a44fbddad88dda5b3da7c84478adfa7c5334f902f09b7",
+    "yijie-desktop/src-tauri/src/chat/native_conversation_generated.rs": "fd1e0231ad4e7992b00fa786714d65ed87153a291b505d5ea499f87a5e49c5fb",
+    "yijie-desktop/src-tauri/src/chat/worker.rs": "a784960245440ef87de857b6c152fd67216c564ed3c4fe186587ac8d1ea1ed92",
+    "yijie-desktop/src/api/generated/native-conversation-v2.gen.ts": "8711f7ed10ccb6febdeed9cbda6ccb2e26b5050b78378b102187871701776300",
+    "yijie-desktop/src/api/generated/native-conversation-validator.gen.js": "a26fd7b5d07ca406037cb6059d07ac1226aa79e6bb4cacda85d6ef5df6a6f4d0"
+  },
+  "unchanged_behavior_files_verified": 12,
+  "runtime_binary_sha256": "4efe16d2848680752cf9aacf4c17741ab2eeb7415894a66c2bb03652b00a322d",
+  "model_meter_sha256": "c52a0d8af924719a36a3e8436b59b026bc53519913cbf37a07ce1e5d415ca26b",
+  "budget": {
+    "text": "9/13",
+    "metadata": "14/20",
+    "metadata_decline_tranche": "2/5",
+    "business_logical": 2,
+    "business_attempts_exact": null,
+    "business_charged_upper_bound": "4/10",
+    "images": 0
+  },
+  "project_processes_active": false,
+  "meter_listener_active": false,
+  "precommit_sha256": {
+    "docs/dev/codex-project-memory.md": "2357c1e5fe332a910c1822ef4b4537d044feb792e79de640b468c482c61e047c",
+    "docs/features/FEAT-131-desktop-codex-parity-baseline/03-capability-matrix.md": "95fb121dd9cdb73f2a0c977012589bb7abd6f2158efa281c910081a08271923d",
+    "docs/features/FEAT-131-desktop-codex-parity-baseline/04-golden-scenarios.md": "b94b4ac868c21e343a9fad1e66d93de03a8a440f93ab434f3288f79dbf3d1700",
+    "docs/features/FEAT-131-desktop-codex-parity-baseline/05-reference-evidence-index.md": "432bbed11dc61c75c1dfa3929274a5a978538a00786df1a4f5819fbb6581b027",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/00-feature-brief.md": "7747f28bec2675f60a736d51aa99a52bbd9ccbcd86dc995e9b3ed5dfe31f7ec4",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/01-delivery-log.md": "0989fa12757e061e7c2b4f1617b777c7e2720c25bcbe73a68aaed52d9dbcf1cc",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/02-verification.md": "d8a0aae5c46a0f0f4c8472487cc9cc6de4fcce6c838ae9078bb241a0a28f9e76",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/04-acceptance-scenarios.md": "899b9eb41c3b5b65b34f5fe53ce0b5c3a8da8468e497a788a30d8e38e1ba0d73",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/21-native-config-ownership-2026-09-10.md": "0e121c7802caa08606af7faf85ec733c7e55ae9348f6e1fa27b7318faad49272",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/22-connected-permissions-and-reopen-2026-09-10.md": "8a2603072e61c24a0130cd4870a4814044ff52af2b4221bb605c7f340261e05c",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/23-native-status-startup-repair-2026-09-11.md": "02e01fccf6083a5e22dbba8bfe1c8bfaf7874e8136eb38f41e51fbd0d0cbe4a3",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/24-final-native-decline-and-delivery-2026-09-11.md": "88706bf85467e91ccdc51f1d5e5330f0d78a6dab3a0a4d11f0b360f9b56f7696",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/decline-recheck-independent-audit-2026-09-10.json": "380fa026e014e2c699d1fc6b4324d4113608c40bb4f8ad74b70104acf5b64718",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/decline-recheck-preflight-2026-09-10.json": "f7679583e867e03ec70b83cb16b114a5906dabdb458dd0271162e2722b927ddb",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/final-document-and-source-checks-2026-09-11.json": "046e59c28de4666a03c94f2128a72b581f4524e02147d12526168d4b76868cc6",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/native-decline-final-2026-09-11.json": "f94e3ab2288f945fe18aa7e29cd756deaa196c66de2176e1192e8f129bf8f334",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/native-decline-live-2026-09-11.json": "10b4c9840b8032e20157c5c19ee5edd536dc2efba7e4dd4a5ddeec7e0e820725",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/native-status-evidence-applicability-2026-09-11.json": "442abdb14a64af7f58c0e693917829776c27f7b93db8b30ac22c5de546e95870",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/native-status-repair-precommit-2026-09-11.json": "7af0c9c4fdd375791353469ef57efba280fedc0b9c219c09b98328e66218141b",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-business-call-ledger-2026-09-10.json": "195c577574e298515280cb6faf955a90b02466908e0400241b267f31a4808800",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-discovery-ledger-2026-09-10.json": "6cbbbb63db22d482244d1e2b9ecbd8543ffab023fc689a1ab0f52a37cf1e3ef9",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/feature.yaml": "b26de9f35d83d45650d1ce2e0a4f6e78c9e591de82f56853701892fab35561bb"
+  },
+  "self_hash_note": "This file excluded from its own digest; the Git commit tree fixes its bytes. Commit-time verification includes its digest separately.",
+  "deletions": [],
+  "concurrent_worktree_changes": "Ten product repos clean and evidence source hashes unchanged; only explicitly scoped meta documentation/evidence included",
+  "delivery_state": {
+    "local_d4": "PASS",
+    "active_ac_pass": 9,
+    "excluded_ac": "AC-004 OWNER_EXCLUDED / NOT RUN",
+    "product_sources": "committed locally",
+    "meta_commit": "This file belongs to the verified local evidence commit; no fabricated self SHA",
+    "push": false,
+    "tag": false,
+    "deploy": false,
+    "remote_ci": "NOT RUN; not triggered"
+  },
+  "evidence_scope": "E success/modes at recorded earlier source; final F decline/reopen and byte-identical behavior applicability. No claim one process or all checks rerun on final full commit."
+}

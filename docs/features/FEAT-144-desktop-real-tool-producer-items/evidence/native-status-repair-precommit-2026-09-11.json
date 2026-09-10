@@ -1,0 +1,47 @@
+{
+  "recorded_at": "2026-09-10T16:08:28.044926+00:00",
+  "scope": "FEAT144 native current-status readiness repair",
+  "contract": "811f38d6b104fa18477107e7ac91a85e19c445d1",
+  "host": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+  "desktop_base": "a5975f48e63d3f1d3a262e9e8dfc57ca0d923961",
+  "precommit_sha256": {
+    "contracts/native-conversation.lock.json": "243995316d147ce50c638dff4f100cdb5fa68030f112f548fa02b04dce8717fa",
+    "contracts/native-mcp.lock.json": "85b90428494e131c5237c4125095dd096016c442fb48647160a2eacd7db01bc4",
+    "contracts/runtime-permissions.lock.json": "0761c64e104350286f8256f4c392d6e411a446a9a536911106cd4f6ae7c2decf",
+    "docs/chat-native-conversation.md": "13c77959b9326bbb21495ae7c22f7c242c83c6ba6e8497670db57fde978aa946",
+    "src-tauri/contracts/native-conversation-v2.json": "5b2143cad791f5e2b36e1058bf603a0ca0f309cb8cdbde85d712c960fd16b2df",
+    "src-tauri/schemas/chat-native-conversation-resolved.schema.json": "2c86bf70efad9494c2f26b583f456b52c2672be6b16447dc7134ce4c3c20e257",
+    "src-tauri/src/chat/database.rs": "273a012db1c368efb879aebbe17467168d8e114d208c86a5bcc56cd6cd8ab873",
+    "src-tauri/src/chat/host_bridge.rs": "69dca85835d3e1f486a67130f056829a43c8956a079d10bf556ba1068c7c7de3",
+    "src-tauri/src/chat/mod.rs": "b3fa71ee69cb1bae392a44fbddad88dda5b3da7c84478adfa7c5334f902f09b7",
+    "src-tauri/src/chat/native_conversation_generated.rs": "fd1e0231ad4e7992b00fa786714d65ed87153a291b505d5ea499f87a5e49c5fb",
+    "src-tauri/src/chat/worker.rs": "a784960245440ef87de857b6c152fd67216c564ed3c4fe186587ac8d1ea1ed92",
+    "src/api/generated/native-conversation-v2.gen.ts": "8711f7ed10ccb6febdeed9cbda6ccb2e26b5050b78378b102187871701776300",
+    "src/api/generated/native-conversation-validator.gen.js": "a26fd7b5d07ca406037cb6059d07ac1226aa79e6bb4cacda85d6ef5df6a6f4d0"
+  },
+  "checks": {
+    "rust_feat144_tests": {
+      "passed": 7,
+      "exit_code": 0
+    },
+    "rust_clippy_lib": 0,
+    "cargo_fmt_check": 0,
+    "desktop_docs_build": 0,
+    "native_sources_and_generation": 0,
+    "permission_sources": 0,
+    "retirement": 0,
+    "host_make_lint": 0
+  },
+  "review": "Separated agent audit before pause found no permission weakening, replay or history rewrite; requested post-await local recheck now applied and seven Rust tests plus clippy/fmt pass",
+  "runtime_changed": false,
+  "new_history_writer_or_migration": false,
+  "deletions": [],
+  "D4": "pending canonical repaired startup and actual native decline",
+  "budget": {
+    "model": "7/13",
+    "metadata": "12/20",
+    "business": "2 logical, charged4/10",
+    "images": 0
+  },
+  "push": false
+}

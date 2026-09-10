@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "feature": "FEAT-144",
-  "stage": "D0 metadata discovery",
+  "stage": "D4 canonical native decline completed",
   "date": "2026-09-10",
   "authorization": {
     "granted": true,
@@ -29,10 +29,10 @@
     ]
   },
   "actual": {
-    "native_discovery_operations": 12,
+    "native_discovery_operations": 14,
     "mcp_http_attempts": null,
     "mcp_business_calls": 2,
-    "model_requests": 7,
+    "model_requests": 9,
     "images": 0,
     "mcp_business_call_unit": "native logical calls; attempts unknown, upper bound4 charged in business ledger"
   },
@@ -2033,29 +2033,41 @@
       "scope": "FEAT144-D4-E canonical new thread 01a08b86-6ceb-77b1-818d-9b75308cbbd8",
       "evidence_basis": "Model admitted after native startup and exact server/tool/schema preflight; actual parameter Prompt approved and native Tool completed414ms. Raw HTTP attempt count not claimed.",
       "configuration": "fixed Runtime0.144.6; Host ccd815ff63542674daa80172a1c71ac7478edd0f; Desktop a5975f48e63d3f1d3a262e9e8dfc57ca0d923961"
+    },
+    {
+      "operation": 13,
+      "observed_at": "2026-09-10T16:12:40.202958+00:00",
+      "status": "RETURNED",
+      "method": "thread/start MCP initialization",
+      "scope": "FEAT144-D4-F new native thread 01a08c16-8bf5-7b12-a83f-e9fab0a8b993",
+      "evidence_basis": "New model Turn admitted after native startup/single-tool schema check; actual native Prompt with ASIN/US rendered and rejected",
+      "configuration": "Contracts811f38d6b104fa18477107e7ac91a85e19c445d1 Host0e47766f494977c94bfea0e89cfbdf45a7fafa2b Desktop7abf89e84ffcbe56360d8c9943390e0640d9e239; fixed Runtime0.144.6; raw HTTP count not claimed"
+    },
+    {
+      "operation": 14,
+      "observed_at": "2026-09-10T16:12:40.202958+00:00",
+      "status": "RETURNED",
+      "method": "mcpServerStatus/list toolsAndAuthOnly",
+      "scope": "FEAT144-D4-F new native thread 01a08c16-8bf5-7b12-a83f-e9fab0a8b993",
+      "evidence_basis": "New model Turn admitted after native startup/single-tool schema check; actual native Prompt with ASIN/US rendered and rejected",
+      "configuration": "Contracts811f38d6b104fa18477107e7ac91a85e19c445d1 Host0e47766f494977c94bfea0e89cfbdf45a7fafa2b Desktop7abf89e84ffcbe56360d8c9943390e0640d9e239; fixed Runtime0.144.6; raw HTTP count not claimed"
     }
   ],
   "native_result_file": "sorftime-native-discovery-operation-8-2026-09-10.json",
-  "execution_state": "Connected native success, normal MCP deactivation, auto/full/ask and ordinary E history reopen PASS; all owned processes normally exited",
-  "remaining_native_discovery_operations": 8,
+  "execution_state": "Repaired canonical startup, real native decline and normal same-data reopen complete; app/Host/Runtime/meter normally exited",
+  "remaining_native_discovery_operations": 6,
   "next_operation_prepared_not_executed": null,
-  "resume_requirement": "Proceed under 15 scope/budget and 16 authorized implementation; no business-failure/fee prerequisite and no repeat business-budget request. Check independent ledgers before real operations; local commit/model/push need their applicable authorization.",
+  "resume_requirement": "Local D4 evidence closed; no pending key/budget action. Future work must recheck actual sources and independent ledgers; remaining credits are not automatically consumed or transferred. No push authorization.",
   "resume_authorization": {
     "source": "User: 继续执行",
     "recorded_at": "2026-09-10T02:00:58.640147+00:00"
   },
   "runtime_currently_running": false,
   "credential_retained": false,
-  "current_report": "../22-connected-permissions-and-reopen-2026-09-10.md",
+  "current_report": "../24-final-native-decline-and-delivery-2026-09-11.md",
   "harness_sha256": "7b8bc45dfc0ff3762b8a63ddbea23b81f82e2d8ea4b05b7579a5dad8dfff0e6a",
-  "current_stage_boundary": "metadata12/20, model7/8, business conservative4/10, images0. Configuration blocker closed; fresh native decline pending separate model budget. No silent reconnect.",
-  "latest_operation_evidence": "sorftime-native-discovery-operation-8-2026-09-10.json",
-  "latest_execution_authorization": {
-    "source": "User explicitly requests fixed Runtime same-flow verification with remaining five metadata operations; this round prefer max two, no model or business calls.",
-    "cumulative_limit_unchanged": 10,
-    "operations_this_round": 1,
-    "recorded_at": "2026-09-10T03:31:45.603956+00:00"
-  },
+  "current_stage_boundary": "model9/13; metadata14/20, this round2 of5; business2 logical charged4/10, image0; no active process or pending credential input",
+  "latest_operation_evidence": "native-decline-final-2026-09-11.json",
   "connection_blocker": "CLOSED_FOR_NATIVE_METADATA",
   "validated_native_configuration": {
     "url": "https://mcp.sorftime.com/",
@@ -2066,7 +2078,7 @@
   },
   "historical_pause_note": "User requested remembering execution status/details and pausing; no second operation started.",
   "d0_remaining_decisions": [],
-  "latest_result_receipt": "fixed-runtime-user-agent-success-2026-09-10.json",
+  "latest_result_receipt": "native-decline-final-2026-09-11.json",
   "business_activation_prerequisites": [
     "User confirmed sufficient balance and separately authorized 10 business tools/call attempts including native resend; see independent business ledger. Native permissions and applicable implementation/model prerequisites remain."
   ],
@@ -2075,13 +2087,32 @@
   "scope_decision": "AC-004/F144-S03 business failure implementation and validation excluded by explicit user request; not PASS",
   "d0_evidence": "owner-scope-d0-checks-2026-09-10.json",
   "product_d4_reservation": {
-    "reserved_at": "2026-09-10T13:31:05.718055+00:00",
+    "reserved_at": "2026-09-10T15:30:57.622618+00:00",
     "max_operations": 2,
+    "round_cap": 5,
     "methods": [
-      "native thread resume/start MCP initialization",
+      "thread/start MCP initialization",
       "mcpServerStatus/list toolsAndAuthOnly"
     ],
-    "status": "consumed by operations11/12",
-    "scope": "new task in same standalone synthetic scenario-project, single ASIN/US"
-  }
+    "status": "consumed by operations13/14; round used2 of max5",
+    "scope": "new native decline verification task, ask only; total cap20 unchanged"
+  },
+  "historical_execution_authorization_before_product_d4": {
+    "source": "User explicitly requests fixed Runtime same-flow verification with remaining five metadata operations; this round prefer max two, no model or business calls.",
+    "cumulative_limit_unchanged": 10,
+    "operations_this_round": 1,
+    "recorded_at": "2026-09-10T03:31:45.603956+00:00"
+  },
+  "latest_execution_authorization": {
+    "source": "User requested repaired native Prompt decline and D4 closure, then resumed execution; cumulative prior grants remain applicable.",
+    "model_limit": 13,
+    "metadata_cumulative_limit": 20,
+    "decline_metadata_round_cap": 5,
+    "business_attempt_limit": 10,
+    "images": 0,
+    "push": false,
+    "evidence": "decline-recheck-preflight-2026-09-10.json"
+  },
+  "d4": "PASS",
+  "d4_evidence": "final-document-and-source-checks-2026-09-11.json"
 }

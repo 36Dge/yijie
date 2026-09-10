@@ -31,13 +31,13 @@ FEAT-134已按用户确认任务收敛为FEAT-132 native v7之上的流式/过�
 
 FEAT-134 四个本地提交在用户“授权执行”后已按 Contracts → Host → Desktop → 元仓顺序普通推送，远端 SHA 相等；精确 SHA 的 Actions 查询均无运行，CI NOT RUN。没有合并、tag 或部署。本轮新增修改没有混入这四个提交。最新状态以 [FEAT-134 远端记录](../features/FEAT-134-desktop-streaming-progress-final-response/04-remote-delivery-2026-09-09.md) 为准。
 
-FEAT-136 现状审计确认：命令执行和最终输出来自 Codex，Desktop 复用 FEAT-132 native v7/唯一缓冲/SQLCipher；Host native 主动不传 Command delta 正文，等待 aggregatedOutput 后安全投影。旧 v5 有真实兼容路由和容量计数，不能整包删除。审计发现的目录标签、输出完整性、空输出与历史 running 文案问题已按[执行方案](../features/FEAT-136-desktop-command-tool-items/03-native-command-audit-and-plan-2026-09-09.md) 实施并取得本次八项 local D4 PASS；真实3/10文本、0图片，两条 Command 成功/失败及正常重开通过。本次交付收尾已另获明确授权，Desktop 8bfa5ca284fddb86d7cdd2a406c5041c49367688 → 元仓 4e6645574fdfe7d29f7c551564bf807cf8222d48 已普通推送且远端 SHA 相等；两提交 CI 未触发，NOT RUN。详见 FEAT-136 的 04-delivery-closure-2026-09-09.md。原验收 base commit 与逐文件 SHA-256 保留；原 2026-08-30 五项 Command D4 保持历史语义，Tool 仍属 FEAT-144 blocked / NOT RUN。
+FEAT-136 现状审计确认：命令执行和最终输出来自 Codex，Desktop 复用 FEAT-132 native v7/唯一缓冲/SQLCipher；Host native 主动不传 Command delta 正文，等待 aggregatedOutput 后安全投影。旧 v5 有真实兼容路由和容量计数，不能整包删除。审计发现的目录标签、输出完整性、空输出与历史 running 文案问题已按[执行方案](../features/FEAT-136-desktop-command-tool-items/03-native-command-audit-and-plan-2026-09-09.md) 实施并取得本次八项 local D4 PASS；真实3/10文本、0图片，两条 Command 成功/失败及正常重开通过。本次交付收尾已另获明确授权，Desktop 8bfa5ca284fddb86d7cdd2a406c5041c49367688 → 元仓 4e6645574fdfe7d29f7c551564bf807cf8222d48 已普通推送且远端 SHA 相等；两提交 CI 未触发，NOT RUN。详见 FEAT-136 的 04-delivery-closure-2026-09-09.md。原验收 base commit 与逐文件 SHA-256 保留；原 2026-08-30 五项 Command D4 保持历史语义，Tool当时仍属FEAT-144 blocked / NOT RUN；其后续本地交付见下方FEAT-144当前权威，不改写FEAT-136历史范围。
 
 六项需求已补充当前依赖与证据适用范围，能力矩阵修正为当前 native 事实。后续不恢复 ConversationState/reducer、正文对账、身份猜测、自动封口或历史重建；日常 app 与原 stable 隔离数据、FEAT-152 与已终止 FEAT-137 分开记录。详见[整体一致性复核](../features/FEAT-131-desktop-codex-parity-baseline/06-native-consistency-review-2026-09-09.md)。审计阶段模型调用为0，授权后的FEAT-136实施验收为3/10文本、0图片。
 
-## FEAT-144 当前需求权威（2026-09-10，AC-004用户排除、业务授权10次）
+## FEAT-144 当前交付权威（2026-09-11，本地验收、AC-004用户排除）
 
-固定Runtime0.144.6原生元数据连接阻塞已关闭：操作7初始化ready、操作8返回97工具/Sorftime MCP1.1.6；无query URL、原生bearer_token_env_var引用及真实User-Agent codex-mcp-client/0.144.6。连接技术依据保留13；当前范围/预算权威为[15用户决策](../features/FEAT-144-desktop-real-tool-producer-items/15-owner-scope-and-business-budget-2026-09-10.md)及分账台账。当前实际进度以21和连接复验为准，不重复消耗额度验证同一连接。
+固定Runtime0.144.6原生元数据连接阻塞已关闭：操作7初始化ready、操作8返回97工具/Sorftime MCP1.1.6；无query URL、原生bearer_token_env_var引用及真实User-Agent codex-mcp-client/0.144.6。连接技术依据保留13；当前范围/预算权威为[15用户决策](../features/FEAT-144-desktop-real-tool-producer-items/15-owner-scope-and-business-budget-2026-09-10.md)及分账台账。当前交付以[24最终报告](../features/FEAT-144-desktop-real-tool-producer-items/24-final-native-decline-and-delivery-2026-09-11.md)及分账台账为准，不重复消耗额度验证同一连接。
 
 原操作1–3及6的HTTP400/request error失败历史保留。两版实际二进制对普通localhost服务的初始化观测除真实版本外一致，固定版缺User-Agent；仅补真实UA后固定版远端成功，足以确认该原生配置可用，不等于证明服务端唯一拒绝规则。操作4/5的本地Codex0.153.4对照仍为历史证据。固定binary SHA 4efe16d2848680752cf9aacf4c17741ab2eeb7415894a66c2bb03652b00a322d不变；未升级/修改/替换Runtime或安装ZIP bridge。
 
@@ -55,9 +55,15 @@ product_detail及asin/amz_site输入schema当前由固定操作8确认，asin必
 
 
 
-当前配置兼容修复已本地提交：Host ccd815ff63542674daa80172a1c71ac7478edd0f、Desktop a5975f48e63d3f1d3a262e9e8dfc57ca0d923961。普通canonical重开旧B任务已通过；用户隐藏输入后，新E任务真实Tool completed/414ms、两轮均完成。累计元数据12/20、模型7/8、业务2逻辑调用保守扣4/10尝试、图片0。当前E权限切换及重开已通过，均已正常退出；当前来源的正常拒绝复验待模型预算。D4尚未关闭，AC-004继续用户排除。
+当前产品来源：Contracts `811f38d6b104fa18477107e7ac91a85e19c445d1` → Host `0e47766f494977c94bfea0e89cfbdf45a7fafa2b` → Desktop `7abf89e84ffcbe56360d8c9943390e0640d9e239`，仅本地提交；本次文档提交可由报告24所属Git记录定位，不填造自身SHA。最低兼容reader仍为 `25b004fbd5a4dcf642a503d302c21a7d6e3b817f`，Runtime未改，源契约/来源门禁保留。
 
-D0已实跑PASS；当前不以历史B拒绝和UI检查自动关闭新E fresh D4。保留旧冷任务投递失败及无原生绑定记录，禁止猜测接管或自动续跑。
+第二个启动阻塞来自旧B queued/null-native-Turn和failed v1出站被当成活跃执行。新增独立只读原生当前状态端点，复用thread/read(includeTurns=false)；Desktop严格核对原失败投递及无待派发出站，原生idle/notLoaded后再次只读复核。旧记录不改、不补发、不封口；notLoaded不证明过去未执行。旧history/迁移/权限wire不变，未知/active/systemError/缺能力仍拒绝。详见23。
+
+E真实成功/数据对照/模式停用及auto/full/ask保留Host ccd815ff/Desktop a5975f48的实际来源；十二相关文件逐字不变确认适用。F在最终提交实际点击原生Prompt拒绝，审批rejected，唯一Tool failed/0ms/result=null而Turn completed；模型不重试、不使用旧数据，普通canonical正常退出重开F/E通过。没有把不同提交/进程的证据说成一次全量实跑；按用户指定“修复后拒绝复验，再收尾”完成证据组，最终strict/D0/D4已实跑PASS，机器输出见24。
+
+九项活动AC已有实际证据，AC-004保持OWNER_EXCLUDED/NOT RUN。累计文本9/13、元数据14/20（拒绝本轮2/5）、业务2逻辑调用保守扣4/10、图片0；精确历史业务HTTP次数未知，保守扣账不返还。F新增业务0，最后的原生只读核验和普通重开无模型/MCP调用；应用、Host、Runtime和计数器均正常退出。没有等待隐藏输入或预算批准，不推送/tag/部署。
+
+保留旧B结果不确定、Tool正文partial脱敏、冷历史/phase/plan/reasoning/outputSchema/annotations/progress缺失、Command完成后输出、旧附件过期/清理未完/隔离Host映射缺失。剩余额度不自动转用；后续工作重新核对实际来源和台账，不从旧记录自动续跑。
 
 ## 1. 单人开发角色默认值
 
@@ -270,12 +276,12 @@ G4-001 与 FEAT-126 的 Tasks 服务端资源授权仍按各自生产门禁保�
 - 2026-08-23：依据 ADR-0017 建立双 Profile；新需求默认 `demo_fast + local`，以产品/UX完整、整体实现、时间盒和真实服务 D4 闭环为准；公开 Demo 增加 DP，生产加固保留原 G0–G6 与三次失败熔断。
 
 
-FEAT-144当前检查点以[20实际D4与权限重启阻塞](../features/FEAT-144-desktop-real-tool-producer-items/20-d4-permission-restart-blocker-2026-09-10.md)为准。Contracts db54c617c65db5431b950eb297ba148a43a8e600、Host 635846f72ef4b0d940798215e7b79d58aed6c591、Desktop 95afd425fd5b55ada9f13b43421ad2c06830dc5c；最低reader 25b004fbd5a4dcf642a503d302c21a7d6e3b817f先于writer固定。均仅本地提交，Runtime未改、FEAT-137永久退役、FEAT-152语义不变。
+历史阶段检查点（已由24最终报告取代）：当时FEAT-144检查点以[20实际D4与权限重启阻塞](../features/FEAT-144-desktop-real-tool-producer-items/20-d4-permission-restart-blocker-2026-09-10.md)为准。Contracts db54c617c65db5431b950eb297ba148a43a8e600、Host 635846f72ef4b0d940798215e7b79d58aed6c591、Desktop 95afd425fd5b55ada9f13b43421ad2c06830dc5c；最低reader 25b004fbd5a4dcf642a503d302c21a7d6e3b817f先于writer固定。均仅本地提交，Runtime未改、FEAT-137永久退役、FEAT-152语义不变。
 
 普通canonical使用现有app-data和日常Host Home完成真实Sorftime查询、原生Prompt正常拒绝、返回值对照及UI/旧历史检查。用户已授权本次临时auto/full并恢复ask，但auto触发旧Runtime正常退出后，Codex原生projects信任记录与Host精确受管模板冲突，重启被拒绝；权限仍ask，full未尝试。所有进程已正常退出，没有等待输入。Tool事实已存SQLCipher，普通Tool重开尚未验证；D4未通过，AC-004仍用户排除。先审定原生信任记录与受管配置兼容，不忽略/删除projects，不换Home掩盖问题，不放宽门禁。元数据10/10、模型4/8、业务1逻辑调用保守扣2/10、图片0；重连另需元数据授权，不转用额度。
 
-历史阶段检查点（由21当前连接复验取代）：FEAT-144最新续办：用户明确授权修复原生项目trust/受管配置兼容并验证重开、权限切换，另增10次元数据，累计上限20/已用10。固定0.144.6 app-server不支持命名profile，但原生-c覆盖与base项目trust在无凭据、无MCP/模型的正常thread/start、EOF重启测试通过；现有配置精确模板前缀已核对，拟分离Host受管安全模板与Codex原生trust尾部并保留原字节。方案见21；go-toml/v2@v2.4.3已获用户明确授权并验证固定源码校验和；Host修复65f7b3212fbeb62b3b828cc1ca8997076f1f6b29、Desktop pin c784d842b59c063b4f357fce8445d9edb808370f已本地提交，无调用集成和来源检查通过，开始普通canonical验证。业务保守2/10、模型4/8、图片0不变，本地提交授权沿用、推送未授权。
+历史阶段检查点（已由24最终报告取代）：FEAT-144最新续办：用户明确授权修复原生项目trust/受管配置兼容并验证重开、权限切换，另增10次元数据，累计上限20/已用10。固定0.144.6 app-server不支持命名profile，但原生-c覆盖与base项目trust在无凭据、无MCP/模型的正常thread/start、EOF重启测试通过；现有配置精确模板前缀已核对，拟分离Host受管安全模板与Codex原生trust尾部并保留原字节。方案见21；go-toml/v2@v2.4.3已获用户明确授权并验证固定源码校验和；Host修复65f7b3212fbeb62b3b828cc1ca8997076f1f6b29、Desktop pin c784d842b59c063b4f357fce8445d9edb808370f已本地提交，无调用集成和来源检查通过，开始普通canonical验证。业务保守2/10、模型4/8、图片0不变，本地提交授权沿用、推送未授权。
 
-历史阶段检查点（由21当前连接复验取代）：FEAT-144继续执行检查点：最新Host ccd815ff63542674daa80172a1c71ac7478edd0f、Desktop a5975f48e63d3f1d3a262e9e8dfc57ca0d923961；普通canonical已使用同一用户数据正常启动/重开B任务的两条Tool，并正常退出。root config只保留两条trust原始字节，受管模板独立精确校验。当前Sorftime标准构建完成、系统隐藏输入等待用户，未启动新的MCP操作；计数器沿用4/8，元数据10/20、业务保守2/10、图片0。不要用CUA getApp在未启动/已退出时复活无环境应用；退出后通过ps或应用清单确认。下一步用户隐藏输入→正常真实连接/Prompt→取得当前UI权限切换当场确认→auto/full/ask及正常重开，按台账控制，不自动追加预算。
+历史阶段检查点（已由24最终报告取代）：FEAT-144继续执行检查点：最新Host ccd815ff63542674daa80172a1c71ac7478edd0f、Desktop a5975f48e63d3f1d3a262e9e8dfc57ca0d923961；普通canonical已使用同一用户数据正常启动/重开B任务的两条Tool，并正常退出。root config只保留两条trust原始字节，受管模板独立精确校验。当前Sorftime标准构建完成、系统隐藏输入等待用户，未启动新的MCP操作；计数器沿用4/8，元数据10/20、业务保守2/10、图片0。不要用CUA getApp在未启动/已退出时复活无环境应用；退出后通过ps或应用清单确认。下一步用户隐藏输入→正常真实连接/Prompt→取得当前UI权限切换当场确认→auto/full/ask及正常重开，按台账控制，不自动追加预算。
 
-FEAT-144当前执行状态：配置兼容阻塞已关闭：当前Host ccd815ff63542674daa80172a1c71ac7478edd0f、Desktop a5975f48e63d3f1d3a262e9e8dfc57ca0d923961。新E真实Tool completed/414ms，原生返回三字段对照通过；Sorftime正常停用、auto/full/ask、原数据canonical退出重开均PASS。累计元数据12/20、模型7/8、业务2逻辑调用保守扣4/10、图片0；应用与计数器均已正常退出。D4尚未关闭：当前来源下的原生Prompt正常拒绝未复验，不能继承旧B结果；已申请最多追加2次文本，未获授权不调用。AC-004始终用户排除。 详见22。
+历史阶段检查点（已由24最终报告取代）：当时配置兼容阻塞已关闭：当前Host ccd815ff63542674daa80172a1c71ac7478edd0f、Desktop a5975f48e63d3f1d3a262e9e8dfc57ca0d923961。新E真实Tool completed/414ms，原生返回三字段对照通过；Sorftime正常停用、auto/full/ask、原数据canonical退出重开均PASS。累计元数据12/20、模型7/8、业务2逻辑调用保守扣4/10、图片0；应用与计数器均已正常退出。D4尚未关闭：当前来源下的原生Prompt正常拒绝未复验，不能继承旧B结果；已申请最多追加2次文本，未获授权不调用。AC-004始终用户排除。 详见22。

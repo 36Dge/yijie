@@ -1,12 +1,12 @@
 # FEAT-144 — Sorftime 真实 MCP 工具与原生执行记录
 
-2026-09-10；demo_fast / local。固定Runtime 0.144.6原生元数据接入已通过，无query URL、原生Bearer环境引用和真实版本User-Agent方案不变。用户本次明确排除业务失败场景的实现/验证，并确认余额充足、授权10次MCP业务请求。当前权威见[15范围与预算决策](15-owner-scope-and-business-budget-2026-09-10.md)，连接技术依据仍见13。
+2026-09-11；demo_fast / local。固定Runtime 0.144.6原生元数据接入已通过，无query URL、原生Bearer环境引用和真实版本User-Agent方案不变。用户本次明确排除业务失败场景的实现/验证，并确认余额充足、授权10次MCP业务请求。当前权威见[15范围与预算决策](15-owner-scope-and-business-budget-2026-09-10.md)，连接技术依据仍见13。
 
-配置兼容阻塞已关闭：当前Host ccd815ff63542674daa80172a1c71ac7478edd0f、Desktop a5975f48e63d3f1d3a262e9e8dfc57ca0d923961。新E真实Tool completed/414ms，原生返回三字段对照通过；Sorftime正常停用、auto/full/ask、原数据canonical退出重开均PASS。累计元数据12/20、模型7/8、业务2逻辑调用保守扣4/10、图片0；应用与计数器均已正常退出。D4尚未关闭：当前来源下的原生Prompt正常拒绝未复验，不能继承旧B结果；已申请最多追加2次文本，未获授权不调用。AC-004始终用户排除。 详见[22](22-connected-permissions-and-reopen-2026-09-10.md)。
+FEAT-144九项活动Must已完成真实证据复核，原生拒绝与正常重开通过；AC-004始终用户排除。当前累计文本9/13、元数据14/20、业务2逻辑调用保守扣4/10、图片0。应用及计数器正常退出，产品来源已本地提交，无推送/tag/部署。最终D4门禁与证据适用范围见[24](24-final-native-decline-and-delivery-2026-09-11.md)。
 
 ## 目标、工具与入口
 
-首期产品场景定为：用户在现有项目会话中查询**一个 Amazon US 商品的详情**，看到真实 Sorftime MCP 调用、安全参数/结果摘要、原生成功或失败，以及正常重开后的同一记录。原 CAP-017/GS-004 真实 MCP 目标恢复为本期主线，当前尚未验收。
+首期产品场景定为：用户在现有项目会话中查询**一个 Amazon US 商品的详情**，看到真实 Sorftime MCP 调用、安全参数/结果摘要、原生成功或失败，以及正常重开后的同一记录。原 CAP-017/GS-004 真实 MCP 目标恢复为本期主线，当前本地范围已完成验收证据。
 
 选择服务 sorftime，公共基址 https://mcp.sorftime.com，用户提供的传输标签为 streamableHttp。官方公开资料说明具备产品数据查询；本轮原生返回已确认 product_detail 及inputSchema：asin为必填string，amz_site枚举含US且默认Unknow，首期显式传US。**outputSchema/annotations本次未返回并保持缺失；已确定只读查询用途，服务端幂等保证和具体扣费公式不能推定；用户已确认余额并授权10次业务请求，普通业务失败场景不在本期**，不能把公开仓库的桥接别名、amzSite/amz_site等参数猜成此账户的直接服务schema。
 
@@ -30,7 +30,7 @@ Sorftime是现成的外部producer；Codex已有MCP协议客户端、发现、�
 
 原2026-08-30四文件和D0 BLOCKED/8AC pending完整归档。刚才view_image方案仅为用户提供真实MCP前的未实施备选，已放入history/2026-09-10-builtin-proposal，不是当前主线、不计MCP成功或失败。ImageView、Command和dynamic generate_image都不能替代本次真实McpToolCall证据。
 
-Codex原生McpToolCall有id/server/tool/status/arguments/result/error/duration；实施前Host只投影通用标签、参数隐藏、结果已接收且恒partial，Desktop伪填旧DTO并可能误报历史忙碌。当前候选已按[16实施记录](16-native-implementation-2026-09-10.md)修复这些适配缺口，canonical启动及新Tool重开已完成，D4未关闭，直接保留原生事实，不新造生命周期。
+Codex原生McpToolCall有id/server/tool/status/arguments/result/error/duration；实施前Host只投影通用标签、参数隐藏、结果已接收且恒partial，Desktop伪填旧DTO并可能误报历史忙碌。当前实现已按[16实施记录](16-native-implementation-2026-09-10.md)修复这些适配缺口，canonical启动及新Tool重开已完成，D4结果见24，直接保留原生事实，不新造生命周期。
 
 原生progress协议存在，但当前固定app-server生产发送未证实、native通道也未接通。允许0条progress；首期不以持续进度为Must，不新增假步骤、百分比或轮询。只有实际支持并收到原生通知才能显示。Tool冷历史复用thread/read/resume；MCP的Legacy保存规则与Command/ImageView不同，既不保证全部完整，也不一概声称不能恢复。
 
@@ -38,13 +38,13 @@ Codex原生McpToolCall有id/server/tool/status/arguments/result/error/duration�
 
 文档仅保存server名、类型、无秘密origin及秘密引用说明。用户最初提供query-key，随后官方文档确认Bearer，当前已验证无query的原生Bearer路径和真实版本User-Agent，也不把 type:streamableHttp 原样复制为Codex TOML字段。
 
-官方Codex/ClaudeCode文档已确认无query的 https://mcp.sorftime.com/ 与 Authorization: Bearer <Account-SK>。固定Runtime已验证的D0方案为原生 bearer_token_env_var 加 http_headers 中真实版本User-Agent：秘密只经受管输入进入发现Runtime子进程内存，CLI/配置仅变量名；使用临时空ephemeral线程监听原生startupStatus；操作7ready后，操作8单独计工具列举；本轮不重复执行，不启动模型/命令。正式产品的shell环境隔离仍需实施时验证。**query-only 内存注入已发现明确日志泄漏路径，当前不得激活**：原生 OAuth 探测/正常 HTTP 错误可能记录完整 URL，SQLite/feedback 日志不受 RUST_LOG=off 全面约束。原生没有 url_env_var，也未发现可解决这些问题的总关闭开关。不得把秘密URL放CLI参数、TOML、模型上下文、日志、SQLCipher、bbolt或版本库；不新建MCP代理藏key，不改Runtime补丁。
+官方Codex/ClaudeCode文档已确认无query的 https://mcp.sorftime.com/ 与 Authorization: Bearer <Account-SK>。固定Runtime已验证的D0方案为原生 bearer_token_env_var 加 http_headers 中真实版本User-Agent：秘密只经受管输入进入发现Runtime子进程内存，CLI/配置仅变量名；使用临时空ephemeral线程监听原生startupStatus；操作7ready后，操作8单独计工具列举；本轮不重复执行，不启动模型/命令。正式产品的shell环境隔离已按16–20完成适用定向核验，相关文件来源适用性见24；该段临时诊断不替代产品验收。**query-only 内存注入已发现明确日志泄漏路径，当前不得激活**：原生 OAuth 探测/正常 HTTP 错误可能记录完整 URL，SQLite/feedback 日志不受 RUST_LOG=off 全面约束。原生没有 url_env_var，也未发现可解决这些问题的总关闭开关。不得把秘密URL放CLI参数、TOML、模型上下文、日志、SQLCipher、bbolt或版本库；不新建MCP代理藏key，不改Runtime补丁。
 
-环境变量方案也必须验证秘密不传给模型命令：固定Runtime默认shell环境继承不能保证KEY/TOKEN排除，应利用原生shell_environment_policy.exclude显式排除相关变量并覆盖实际执行环境。任何config/session/debug/error/OAuth/日志出口未证安全时，阻塞激活；前期元数据诊断未保存密钥且秘密扫描无命中；本次产品原生配置、真实Prompt和不向模型执行环境继承秘密的定向检查见16–20。未执行通用故障/攻击测试。首期凭据仅存内存；canonical隐藏输入已实现并由用户在两次正常构建后亲自输入，具体路径见16。复用受管sidecar/Runtime环境，不新增持久秘密存储，重开重新输入。原生exclude之后仍会应用set，必须核对无重新注入；详见13。
+环境变量方案也必须验证秘密不传给模型命令：固定Runtime默认shell环境继承不能保证KEY/TOKEN排除，应利用原生shell_environment_policy.exclude显式排除相关变量并覆盖实际执行环境。任何config/session/debug/error/OAuth/日志出口未证安全时，阻塞激活；前期元数据诊断未保存密钥且秘密扫描无命中；本次产品原生配置、真实Prompt和不向模型执行环境继承秘密的定向检查见16–20。未执行通用故障/攻击测试。首期凭据仅存内存；canonical隐藏输入已实现并由用户在相应正常构建后亲自输入，具体路径见16。复用受管sidecar/Runtime环境，不新增持久秘密存储，重开重新输入。原生exclude之后仍会应用set，必须核对无重新注入；详见13。
 
 只允许固定HTTPS Sorftime服务，非任意URL输入；不把query秘密转发其它origin。秘密是MCP传输凭据，不作为工具参数、卖家平台OAuth或模型输入；本地之外的发布仍须独立安全审查。
 
-MCP调用采用Codex原生Prompt审批语义；不能把readOnlyHint/工具名/prompt当授权。当前 Host 的 FEAT-152 只接 Command/FileChange/Permissions。本次已明确最小**原生审批请求薄适配设计**：复用默认稳定 mcpServer/elicitation/request 的 Sorftime 空表单确认，按真实 request ID/threadId/可信非空 turnId 显示线程请求面板；原生没有 itemId/结构化 toolName，不能猜 Tool 卡关联。accept/decline/cancel 和 serverRequest/resolved 沿用原生，回调不持久化。一般表单/URL/认证/requestUserInput 不在本期支持，继续拒绝；不启用实验功能。产品薄适配已实施，真实批准与拒绝通过；20所记配置冲突已按21修复，实际连接后的正常停用/切换已按22通过。不得设置Approve、降低模式或复活FEAT-137来跑通；FEAT-152三档权限的既有语义不变。
+MCP调用采用Codex原生Prompt审批语义；不能把readOnlyHint/工具名/prompt当授权。实施前 Host 的 FEAT-152 只接 Command/FileChange/Permissions；本次仅新增下述有界原生MCP请求薄适配。本次已明确最小**原生审批请求薄适配设计**：复用默认稳定 mcpServer/elicitation/request 的 Sorftime 空表单确认，按真实 request ID/threadId/可信非空 turnId 显示线程请求面板；原生没有 itemId/结构化 toolName，不能猜 Tool 卡关联。accept/decline/cancel 和 serverRequest/resolved 沿用原生，回调不持久化。一般表单/URL/认证/requestUserInput 不在本期支持，继续拒绝；不启用实验功能。产品薄适配已实施，真实批准与拒绝通过；20所记配置冲突已按21修复，实际连接后的正常停用/切换已按22通过。不得设置Approve、降低模式或复活FEAT-137来跑通；FEAT-152三档权限的既有语义不变。
 
 首期Sorftime只在“请求批准”及已核实原生on-request/user/workspaceWrite/networkAccess=false、工具approval_mode=prompt的受管配置下激活；不把prompt当必出面板的保证。自动审查/完全访问保持FEAT-152原语义，但本期Sorftime不在这些模式激活，不自动切换模式；未知有效配置或审批被hook/插件替代时不激活。详见13。
 
@@ -62,19 +62,19 @@ MCP调用采用Codex原生Prompt审批语义；不能把readOnlyHint/工具名/p
 
 首期公开US ASIN B07H9PZDQW已真实返回数据；原生/data三字段与模型回答一致，见20。用户已取消业务失败场景的实现/验证，不新增业务错误字段扩展、分类器、失败专用流程或失败触发样本；已有原生failed及通用安全处理仍如实保留，不造成功。
 
-当前业务上限10次tools/call尝试，累计2逻辑调用、HTTP精确次数未知、保守扣4/10；每逻辑调用按原生可能重发预留2次。元数据12/20，模型7/8，图片0；互不转用、不自动加额。详情见独立台账。
+当前累计业务2逻辑调用保守扣4/10尝试，元数据14/20，文本9/13，图片0；不同台账不转用。原生正常拒绝未进入业务调用，精确历史HTTP次数仍未知。
 
 本期按breaking保守治理安全Tool字段、权限请求和持久兼容；具体公共wire/私有IPC版本先在Contracts确定，不原地扩旧闭合schema，不机械沿用view_image的v8提议。顺序为源契约 → Host/Desktop兼容reader → MCP配置/原生审批与安全投影 → 唯一显示/保存 → 真实验证；来源受影响才更新真实commit/digest/pin。Codex不改，门禁不放宽。
 
-当前9项活动Must为8项PASS，AC-007待当前来源的正常拒绝复验，AC-004为OWNER_EXCLUDED / NOT RUN，编号不复用。原D0 BLOCKED历史保留；当前根据用户范围决策重新审定且D0实跑PASS，不要求先编码或完成D4。通用D4中既有输入/权限拒绝回归保留，不能当成被排除的业务失败验证；产品仍须通过真实成功和剩余AC。实际检查见02和15。
+当前9项活动Must均PASS，AC-007已完成最终来源原生拒绝复验，AC-004为OWNER_EXCLUDED / NOT RUN，编号不复用。原D0 BLOCKED历史保留；当前根据用户范围决策重新审定且D0实跑PASS，不要求先编码或完成D4。通用D4中既有输入/权限拒绝回归保留，不能当成被排除的业务失败验证；真实成功和剩余AC的分次证据、来源及最终检查见02和24。
 
-## 不依赖连接的后续设计（2026-09-10）
+## 不依赖连接的前期设计（历史，2026-09-10）
 
-用户已确认继续本需求中不依赖连接的工作。已把原生字段复用、新的MCP安全显示扩展、NativeTool只读适配、版本化wire、先行兼容reader及普通定向验证明确写入[12](12-independent-contract-and-reader-plan-2026-09-10.md)。现有durationMs/availability等直接复用；原生failed即使error=null也不能改完成。旧闭合reader不能靠删除deny_unknown_fields兼容。为提供真实旧binary拒绝机制，未来database_change调整为expand：新的前向格式版本标记migration已按16及用户授权实现并在现有数据正常落至schema15；不改历史0014、不复制数据库。本段前期设计及旧诊断不等于AC通过。
+用户已确认继续本需求中不依赖连接的工作。已把原生字段复用、新的MCP安全显示扩展、NativeTool只读适配、版本化wire、先行兼容reader及普通定向验证明确写入[12](12-independent-contract-and-reader-plan-2026-09-10.md)。现有durationMs/availability等直接复用；原生failed即使error=null也不能改完成。旧闭合reader不能靠删除deny_unknown_fields兼容。为提供真实旧binary拒绝机制，当时将database_change调整为expand：新的前向格式版本标记migration已按16及用户授权实现并在现有数据正常落至schema15；不改历史0014、不复制数据库。本段前期设计及旧诊断不等于AC通过。
 
 
 ## 当前交付边界
 
-当前配置兼容修复已本地提交：Host ccd815ff63542674daa80172a1c71ac7478edd0f、Desktop a5975f48e63d3f1d3a262e9e8dfc57ca0d923961。普通canonical重开旧B任务已通过；用户隐藏输入后，新E任务真实Tool completed/414ms、两轮均完成。累计元数据12/20、模型7/8、业务2逻辑调用保守扣4/10尝试、图片0。本次E模式切换与正常重开已通过；不再等待密钥或切换授权。D4尚未关闭，AC-004继续用户排除。
+FEAT-144九项活动Must已完成真实证据复核，原生拒绝与正常重开通过；AC-004始终用户排除。当前累计文本9/13、元数据14/20、业务2逻辑调用保守扣4/10、图片0。应用及计数器正常退出，产品来源已本地提交，无推送/tag/部署。最终D4门禁与证据适用范围见[24](24-final-native-decline-and-delivery-2026-09-11.md)。
 
-20保留先前权限重启失败；21记录配置所有权与bootstrap修复，当前[连接复验](evidence/connected-config-recheck-2026-09-10.json)记录新E事实，不把旧B拒绝/UI检查当新E fresh run。旧冷任务不自动续跑、无绑定记录不猜接管；来源及权限门禁保持。
+23修复旧不确定投递阻断全局启动的问题，保留旧记录；24明确分次验证及E/F不同来源适用性，未伪称一次全量实跑。

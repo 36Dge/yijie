@@ -1,0 +1,94 @@
+{
+  "recorded_at": "2026-09-10T15:30:57.622618+00:00",
+  "feature": "FEAT-144",
+  "scope": "Canonical native Prompt normal decline, normal restart, D4 closure",
+  "authorization": {
+    "source": "Current user execution instruction specifies extra5 text and cumulative13, same ledger; metadata this run priority max5 within total20; local commits inherited, no push/tag/deploy",
+    "model_limit_before": 8,
+    "model_limit_after": 13,
+    "model_used_before": 7,
+    "model_requests_array_sha256_unchanged": "e8dfc4146f9dcfdfa09dd55625f9139019f8b686a74515600e7858b584b09c37",
+    "model_ledger_sha256_before": "e7cdf527f0379a32001e9ac95a75bc81e0f607843d179c05ee1e00bef21c877e",
+    "metadata_total_limit": 20,
+    "metadata_used_before": 12,
+    "metadata_round_cap": 5,
+    "metadata_initial_reservation": 2,
+    "business_charged_before": 4,
+    "business_logical_calls_before": 2,
+    "business_additional_planned": 0,
+    "images_limit": 0,
+    "permission_mode": "ask unchanged; no auto/full switching this round"
+  },
+  "contract_impact_this_followup": "none: verification/evidence only, no protocol, private format or product behavior change; prior feature breaking classification retained",
+  "workspace": {
+    "yijie": {
+      "head": "65b90bfaaf45c61a7769035c59265b7fedaa855c",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": ""
+    },
+    "yijie-admin-web": {
+      "head": "d009cafccb112c098114c075d60f67ee5e0296d8",
+      "branch": "develop",
+      "status": ""
+    },
+    "yijie-agent-host": {
+      "head": "ccd815ff63542674daa80172a1c71ac7478edd0f",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": ""
+    },
+    "yijie-api": {
+      "head": "f9d730a157bcb012a8fe178cbfebcd4ea27419fc",
+      "branch": "feat/feat-126-foundation-closure",
+      "status": ""
+    },
+    "yijie-codex": {
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": ""
+    },
+    "yijie-connectors": {
+      "head": "273eec40bbbfeb17e817643f283db7c81e9b190c",
+      "branch": "develop",
+      "status": ""
+    },
+    "yijie-contracts": {
+      "head": "db54c617c65db5431b950eb297ba148a43a8e600",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": ""
+    },
+    "yijie-desktop": {
+      "head": "a5975f48e63d3f1d3a262e9e8dfc57ca0d923961",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": ""
+    },
+    "yijie-infra": {
+      "head": "19b7920696904f83030a8ddaba71af15c3c05ad8",
+      "branch": "feat/feat-126-s10e",
+      "status": ""
+    },
+    "yijie-knowledge": {
+      "head": "e9091d2b673ba779ecb39271ce9148e3a41fc256",
+      "branch": "develop",
+      "status": ""
+    },
+    "yijie-skills": {
+      "head": "488714a8d96f40806a257aae097683815b1dd458",
+      "branch": "develop",
+      "status": ""
+    }
+  },
+  "canonical_prepared": {
+    "checked_at": "2026-09-10T15:33:54.770568+00:00",
+    "command": "YIJIE_DEMO_FAST_SORFTIME_ENABLED=true YIJIE_PERMISSION_VERIFICATION_BASE_URL=http://127.0.0.1:18083/v1 pnpm tauri:demo-fast:app",
+    "source_guards": "native conversation/native MCP/FEAT152 local pinned source/FEAT137 retirement passed",
+    "build": "vue-tsc/vite/Tauri debug app complete, no signing",
+    "status": "system hidden input dialog waiting for user; no new app/server/thread/model/MCP call yet",
+    "meter": {
+      "limit": 13,
+      "used": 7,
+      "original_requests_preserved": true
+    },
+    "native_trust_sha256_before": "40838b962f2314c89af7f3942d187761ea28ca010de19d4bd6bef6e172c5764d",
+    "managed_config_off_sha256_before": "ca8f11d9c09ef844bf2820b02c2bbb28b1046fd4acc24c190f7275d357365c73"
+  }
+}
