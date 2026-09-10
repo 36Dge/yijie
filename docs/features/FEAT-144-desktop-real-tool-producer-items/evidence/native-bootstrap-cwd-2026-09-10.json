@@ -1,0 +1,41 @@
+{
+  "results": [
+    {
+      "bootstrap_cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+      "initialized": false,
+      "exit_code": 1,
+      "existing_unsupported_workspace_config_error": true,
+      "stderr_empty": false,
+      "MCP_operations": 0,
+      "model_calls": 0,
+      "user_files_changed": false
+    },
+    {
+      "bootstrap_cwd": "/",
+      "initialized": true,
+      "exit_code": 0,
+      "existing_unsupported_workspace_config_error": false,
+      "stderr_empty": true,
+      "MCP_operations": 0,
+      "model_calls": 0,
+      "user_files_changed": false
+    }
+  ],
+  "same_codex_home": true,
+  "runtime_unchanged": true,
+  "recorded_at": "2026-09-10T13:22:15.575799+00:00",
+  "first_canonical": {
+    "result": "Host not ready, no model or MCP call",
+    "app_pid": 61789,
+    "normal_cmd_q": true,
+    "canonical_exit_code": 0,
+    "native_root_projects_preserved": 2,
+    "native_root_sha256": "40838b962f2314c89af7f3942d187761ea28ca010de19d4bd6bef6e172c5764d"
+  },
+  "fix_commits": {
+    "host": "ccd815ff63542674daa80172a1c71ac7478edd0f",
+    "desktop": "a5975f48e63d3f1d3a262e9e8dfc57ca0d923961"
+  },
+  "checks": "three no-call fixed Runtime integration tests, go vet and actual FEAT152 whole Host source checks passed",
+  "scope": "bootstrap cwd only; same actual CODEX_HOME; native thread cwd, strict config and project permissions unchanged"
+}

@@ -40,7 +40,7 @@ product_ux:
   problem: 已复用固定Runtime原生MCP和FEAT-132实现真实Tool；查询、原生Prompt和返回值核对通过。当前原生project trust写入与Host受管模板冲突导致模式切换后重启被拒绝，D4未关闭；AC-004排除不变。
   user_outcome: 通过普通Composer查询指定US ASIN，原生McpToolCall展示身份、参数/结果、status/error/适用duration与历史来源，助手摘要与真实数据一致；没有数据与失败分开。
   in_scope:
-    - 服务sorftime、streamableHttp、无query HTTPS origin、原生Bearer环境引用与真实UA；元数据10/10已用完，操作9/10为产品初始化与单工具目录验证；不重复连接。
+    - 服务sorftime、streamableHttp、无query HTTPS origin、原生Bearer环境引用与真实UA；累计元数据上限20、已用10，本轮新增10尚未消耗。先修复配置所有权，再按21验证重开/切换。
     - 首期只读单商品详情，product_detail及asin/amz_site输入schema已原生确认；输出采用原生文本块安全投影；只读用途明确、不承诺服务端幂等，余额由用户确认，业务请求上限10次，费用细则未知不作本轮阻塞，精确原生enabled_tools白名单。
     - Codex原生MCP连接/发现/调用/身份/生命周期/历史必须复用；Host只做配置/秘密/原生审批和安全投影薄适配。
     - native专用只读Tool模型，完整对象替换；原生status、availability、busy、实时/历史来源分开。
@@ -50,7 +50,7 @@ product_ux:
     - 真实成功、空结果判别、正常重开与相关UI/权限回归；CAP-017/GS-004为当前未完成目标。
   out_of_scope:
     - 用户明确排除AC-004/F144-S03业务失败场景实现与验证；不新增业务错误分类、失败专用流程/样本或失败触发逻辑，旧要求归档，排除不算PASS。既有原生错误/安全拒绝仍如实处理。
-    - 本轮产品实施、前向migration、本地提交及必要修复已授权，推送未授权。模型已用4/8，业务1逻辑调用保守扣2/10尝试，元数据10/10已耗尽；不转用历史额度或自动增加授权。
+    - 本轮产品实施、前向migration、本地提交及必要修复已授权，推送未授权。模型已用4/8，业务1逻辑调用保守扣2/10尝试，元数据10/20，本轮新增10尚未消耗；不转用历史额度或自动增加授权。
     - 不将未实施view_image备选、Command或dynamic image当MCP交付；不新增其它平台/批量评论/收藏写入/监控/导出。
     - 不自建MCP客户端/HTTP业务调用/代理/bridge/新SDK执行器，不修改或升级Codex Runtime。
     - 不恢复v5主链、状态推演、正文对账、身份猜测、第二累计、历史重建或自动封口；不解析rollout或启用实验历史。
@@ -91,8 +91,8 @@ must_acceptance:
     status: pass
   - id: AC-006
     statement: 已有SQLCipher保存的MCP事实正常重开保持身份/来源/终态/安全结果；冷thread/read分来源不覆盖已观察事实，旧历史可访问。
-    verification: F144-S06：SQLCipher schema15、原生view格式2、两个原生绑定及终态已只读核对；thread/read可读。普通Tool历史重开被受管配置门禁阻断，未运行，不由诊断代替。
-    status: pending
+    verification: F144-S06：同一实际app-data与日常Host/Codex Home通过标准入口重开FEAT144-D4-B；两个Tool的原生ID/终态/342ms与0ms/来源/安全文本保留。新配置迁移保留trust原字节，正常Cmd-Q退出所有受管进程；见21与config-ownership-canonical证据。
+    status: pass
   - id: AC-007
     statement: 凭据不泄露给模型/shell/日志/DB/CLI；原生MCP Prompt空表单elicitation正确承接及失效，无Item绑定不猜测，未支持拒绝，首期仅在请求批准/user/Prompt且无审批替代时激活Sorftime，其它FEAT-152模式语义不变；原生重试和模型/业务/元数据分别计量。
     verification: F144-S07：实际Prompt批准本次/第二次拒绝、秘密配置和原生边界定向检查通过。当前临时模式授权已取得，auto切换时旧Runtime正常退出、后续因原生projects与模板不符而拒绝重启，持久权限仍ask；full未尝试，不能关闭。
@@ -111,7 +111,7 @@ must_acceptance:
     status: pass
 contract:
   impact: breaking
-  authority: 固定Codex原生MCP config、McpToolCall与server requests为机制权威；Sorftime实际工具schema/说明为外部业务权威；易界安全投影/请求边界由Contracts治理。源契约已固定db54c617c65db5431b950eb297ba148a43a8e600；Host为635846f72ef4b0d940798215e7b79d58aed6c591，消费者使用真实commit/digest，旧源语义保留。
+  authority: 固定Codex原生MCP/config/原生trust为机制权威；Sorftime schema为外部业务权威；易界安全投影/审批边界继续由Contracts db54c617c65db5431b950eb297ba148a43a8e600治理。Host当前ccd815ff63542674daa80172a1c71ac7478edd0f，Desktop a5975f48e63d3f1d3a262e9e8dfc57ca0d923961精确消费；旧源语义保留。
   source_first_plan: 先确认秘密安全/真实schema/原生审批，再Contracts固定实际必要字段与版本，兼容reader先于producer新写入；已有字段够用不机械新增。旧v7/旧history保留；schema15最低兼容reader已提交25b004fbd5a4dcf642a503d302c21a7d6e3b817f，旧8bfa reader仍不可回滚。只更新受影响真实pin，本轮按实际MCP字段重新审定native v2/v8，不继承内置备选实现，不修改Runtime。
   status: PASS
   checks:
@@ -155,12 +155,13 @@ external_authorizations:
     approved_at: N/A
   metadata_discovery:
     allowed: true
-    max_actions: 10
+    max_actions: 20
     approved_by: 段成威
     approved_at: 2026-09-10T02:46:21.957000+00:00
+    scope: Existing10 plus current extra10 native metadata operations, including native handshake/retry/cleanup; cumulative20, used10, new grant used0. No model/business/image transfer.
 implementation:
   status: active
-  real_entrypoint: 已执行pnpm tauri:demo-fast:app；普通com.yijie.ai、现有app-data、日常Host Home，独立合成项目中的真实Sorftime调用与原生Prompt成功。当前模式切换后重启受config.toml原生projects漂移阻断；停止对应入口，见20。
+  real_entrypoint: 配置所有权分离和中性bootstrap cwd已实现并本地提交，Host ccd815ff... / Desktop a5975f4...；普通canonical启动与实际Tool历史重开通过。当前Sorftime标准构建完成，等待用户隐藏输入，随后验证实际连接后的原生停用/权限切换；D4未关闭。
   mock_only: false
 verification:
   status: FAIL
@@ -249,12 +250,17 @@ verification:
     - evidence/canonical-startup-fix-2026-09-10.json
     - evidence/real-d4-progress-2026-09-10.json
     - evidence/d4-permission-restart-blocker-2026-09-10.json
+    - 21-native-config-ownership-2026-09-10.md
+    - evidence/config-ownership-preflight-2026-09-10.json
+    - evidence/config-ownership-implementation-2026-09-10.json
+    - evidence/native-bootstrap-cwd-2026-09-10.json
+    - evidence/config-ownership-canonical-2026-09-10.json
   diff_review:
     status: PASS
     summary: 实施与分离阶段自审见17，源码快照/reader验证通过。后续真实canonical发现并修复启动序列化问题；20新增项目trust与受管模板冲突尚未修复，不将源码自审当D4通过。
   known_limitations:
     - 当前D4未通过：原生projects信任写入与受管精确模板冲突，模式切换重启失败；ask保持，full未尝试，普通Tool重开未验证。不忽略/删除projects、不放宽校验、不换Home掩盖。
-    - 元数据10/10耗尽；模型4/8；业务1逻辑调用、HTTP尝试精确数未知，按原生重发上界扣2/10；图片0。重新连接需另取元数据授权，不转用额度。
+    - 元数据累计新增授权至20、已用10；模型4/8；业务1逻辑调用按原生重发上界扣2/10；图片0。新元数据可用于兼容修复后的原生接入验证，不转用额度。
     - 结果文本整体被既有规则脱敏，安全卡片partial与原生completed分开。原生/data三字段已独立匹配模型回答；不保存完整业务响应到仓库。
     - product_detail outputSchema/annotations和原生progress缺失不补造；不承诺服务端幂等、重发免费或具体扣费公式。
     - phase/plan/reasoning及冷历史itemsComplete=false继续如实缺失，Command仍完成后显示输出。

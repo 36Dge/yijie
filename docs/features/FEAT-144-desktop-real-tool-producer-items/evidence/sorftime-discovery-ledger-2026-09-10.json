@@ -5,7 +5,7 @@
   "date": "2026-09-10",
   "authorization": {
     "granted": true,
-    "max_test_calls": 10,
+    "max_test_calls": 20,
     "count_unit": "native_metadata_discovery_operations_including_native_handshake_retry_cleanup",
     "scope": "Current stage metadata discovery only; no model turn or business tools/call.",
     "source": "User explicitly authorized 5 real call tests with Sorftime official MCP page.",
@@ -18,6 +18,13 @@
         "additional_native_discovery_operations": 5,
         "new_cumulative_limit": 10,
         "source": "User supplies MCP configuration and explicitly grants another 5; allows trying local Codex app before yijie app."
+      },
+      {
+        "recorded_at": "2026-09-10T13:02:30.258557+00:00",
+        "additional_native_discovery_operations": 10,
+        "new_cumulative_limit": 20,
+        "source": "User: 先解决原生项目信任记录与受管配置的兼容，再验证正常重开和权限切换；重新连接Sorftime给予10次授权。",
+        "scope": "FEAT144 compatibility and canonical validation; original native metadata unit incl handshake/retry/cleanup; not model/business/images"
       }
     ]
   },
@@ -2011,8 +2018,8 @@
     }
   ],
   "native_result_file": "sorftime-native-discovery-operation-8-2026-09-10.json",
-  "execution_state": "canonical native Prompt awaiting one business approval",
-  "remaining_native_discovery_operations": 0,
+  "execution_state": "configuration compatibility implemented and ordinary canonical Tool history reopened; waiting user hidden input before Sorftime connection",
+  "remaining_native_discovery_operations": 10,
   "next_operation_prepared_not_executed": null,
   "resume_requirement": "Proceed under 15 scope/budget and 16 authorized implementation; no business-failure/fee prerequisite and no repeat business-budget request. Check independent ledgers before real operations; local commit/model/push need their applicable authorization.",
   "resume_authorization": {
@@ -2021,9 +2028,9 @@
   },
   "runtime_currently_running": false,
   "credential_retained": false,
-  "current_report": "../20-d4-permission-restart-blocker-2026-09-10.md",
+  "current_report": "../21-native-config-ownership-2026-09-10.md",
   "harness_sha256": "7b8bc45dfc0ff3762b8a63ddbea23b81f82e2d8ea4b05b7579a5dad8dfff0e6a",
-  "current_stage_boundary": "Metadata10/10 exhausted; real MCP success and decline completed. Normal mode switch failed at managed config restart gate, ask preserved. App/Host/Runtime/meter normally exited; native returned-value read passed. D4 blocked.",
+  "current_stage_boundary": "Host ccd815f/Desktop a5975f4 fixed. Same app-data and Host/Codex Home, native trust bytes preserved, ordinary Tool reopen and normal exit passed. New Sorftime canonical build waiting user hidden input. Metadata10/20, model4/8, business charged2/10, image0.",
   "latest_operation_evidence": "sorftime-native-discovery-operation-8-2026-09-10.json",
   "latest_execution_authorization": {
     "source": "User explicitly requests fixed Runtime same-flow verification with remaining five metadata operations; this round prefer max two, no model or business calls.",

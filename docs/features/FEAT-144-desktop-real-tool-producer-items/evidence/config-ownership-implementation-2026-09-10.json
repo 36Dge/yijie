@@ -1,0 +1,82 @@
+{
+  "recorded_at": "2026-09-10T13:15:12.150060+00:00",
+  "review": "Separated source review after implementation/native tests; self-review, not independent human approval",
+  "base_host": "635846f72ef4b0d940798215e7b79d58aed6c591",
+  "host_source_sha256": {
+    "docs/native-conversation.md": "f079e8c88e055e59248a13c814fc0affdf919b48e1431184528dc561d8287ea6",
+    "go.mod": "f47ba476ef396d83074df316e25ec9b2fe9323ca2925401fa5969e4a446de39d",
+    "go.sum": "9644330cdaa7bbfc0137cd27ff32b189fcf6b4b1f3f74576f0f953a7ff960945",
+    "internal/codex/runtime.go": "e2646181e5c0f24eb2bc2482dea9cf9a20eafa4f95677b65b913fcd2d2dfe340",
+    "internal/codex/native_config_layers.go": "ff550d6bc26a073013eff46c44c6480ec1a74068ebda89a72b544661005f4322",
+    "internal/codex/native_config_layers_test.go": "622370251b137cbc3623ca238ebd7c6a5b6a80db1bfc92a309fca75481de33bb"
+  },
+  "dependency": {
+    "module": "github.com/pelletier/go-toml/v2",
+    "version": "v2.4.3",
+    "sum": "h1:GTRvJQutkOSftxIFD5xw9aepkYNuPWmVJpffdDPYVpY=",
+    "upstream_commit": "071a36c2a57244f2e70369bfc69889fda2a1f60f",
+    "user_explicitly_authorized": true
+  },
+  "checks": [
+    {
+      "name": "three new plain-config tests",
+      "command": "GOPROXY=off go test ./internal/codex -run '^TestFEAT144Native(Root|Managed)' -count=1",
+      "exit_code": 0
+    },
+    {
+      "name": "Host FEAT144 targeted race",
+      "command": "GOPROXY=off go test -race ./internal/codex ./internal/session ./internal/app -run '^TestFEAT144' -count=1",
+      "exit_code": 0
+    },
+    {
+      "name": "three real no-call native integrations",
+      "command": "TestPinnedRuntimeFEAT144NativeTrustSurvivesRestart, TestPinnedRuntimeMiniMaxConfigurationIntegration, TestPinnedRuntimePermissionConfigurationIntegration",
+      "exit_code": 0,
+      "tool_model_MCP_calls": 0
+    },
+    {
+      "name": "latest native integration after source review",
+      "command": "TestPinnedRuntimeFEAT144NativeTrustSurvivesRestart",
+      "exit_code": 0,
+      "checks": "exact enabled effective MCP config via config/read, normal EOF disable/restart, ask/auto/full configs, native trust persisted and normal reopen byte equality",
+      "tool_model_MCP_calls": 0
+    },
+    {
+      "name": "go vet / go mod verify / diff",
+      "exit_code": 0
+    }
+  ],
+  "first_native_integration": {
+    "result": "initialize EOF; fixed CLI key path does not unquote TOML keys",
+    "fix": "use validated fixed bare path segments, native TOML encoding only for values; no Runtime changes",
+    "normal_exit": true,
+    "external_calls": 0
+  },
+  "review_addition": "Existing managed layer with missing native root is rejected; no silent native-record recreation",
+  "scope": "private native config layout and native CLI adapter only; no public contract change; old FEAT137 source checks untouched",
+  "actual_user_config_before_canonical_sha256": "ab41ac0422cf53ef2c1ea277af415c17cb8160146565293fdeed0f471d4e96b5",
+  "product_canonical": "not run for this source yet",
+  "budgets": {
+    "metadata_used": 10,
+    "metadata_limit": 20,
+    "new_metadata_used": 0,
+    "model_used": 4,
+    "model_limit": 8,
+    "business_charged": 2,
+    "business_limit": 10,
+    "images": 0
+  },
+  "D4": "NOT PASSED",
+  "committed_sources": {
+    "host": "65f7b3212fbeb62b3b828cc1ca8997076f1f6b29",
+    "desktop": "c784d842b59c063b4f357fce8445d9edb808370f",
+    "contracts": "db54c617c65db5431b950eb297ba148a43a8e600",
+    "minimum_host_reader": "65f7b3212fbeb62b3b828cc1ca8997076f1f6b29"
+  },
+  "source_checks": {
+    "FEAT152_entire_host_build_input_and_digests": 0,
+    "native_conversation_committed": 0,
+    "native_MCP_committed": 0,
+    "FEAT137_retirement": 0
+  }
+}

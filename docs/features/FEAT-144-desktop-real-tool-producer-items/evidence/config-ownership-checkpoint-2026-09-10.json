@@ -1,0 +1,110 @@
+{
+  "recorded_at": "2026-09-10T13:29:59.960602+00:00",
+  "stage": "canonical old Tool reopen passed; waiting user hidden input for connected mode validation",
+  "checks": [
+    {
+      "name": "strict",
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，所有模板变量和未完成标记已处理。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+    },
+    {
+      "name": "D0",
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，且 D0 范围与语义门禁通过。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+    },
+    {
+      "name": "diff",
+      "exit_code": 0,
+      "output": ""
+    }
+  ],
+  "other_checks_this_run": {
+    "meta_lint": 0,
+    "meta_tests": {
+      "exit_code": 0,
+      "passed": 50
+    },
+    "Host_make_lint": 0,
+    "pinned_Runtime_no_call_integrations": 3,
+    "source_guards": 0
+  },
+  "repositories": {
+    "yijie": {
+      "head": "51dcf24d06d12733cd67329b4b1a7a02dbf8c6a6",
+      "status": "M docs/dev/codex-project-memory.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/00-feature-brief.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/02-verification.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-discovery-ledger-2026-09-10.json\n M docs/features/FEAT-144-desktop-real-tool-producer-items/feature.yaml\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/21-native-config-ownership-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/config-ownership-canonical-2026-09-10.json\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/config-ownership-implementation-2026-09-10.json\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/config-ownership-preflight-2026-09-10.json\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/native-bootstrap-cwd-2026-09-10.json"
+    },
+    "yijie-admin-web": {
+      "head": "d009cafccb112c098114c075d60f67ee5e0296d8",
+      "status": ""
+    },
+    "yijie-agent-host": {
+      "head": "ccd815ff63542674daa80172a1c71ac7478edd0f",
+      "status": ""
+    },
+    "yijie-api": {
+      "head": "f9d730a157bcb012a8fe178cbfebcd4ea27419fc",
+      "status": ""
+    },
+    "yijie-codex": {
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "status": ""
+    },
+    "yijie-connectors": {
+      "head": "273eec40bbbfeb17e817643f283db7c81e9b190c",
+      "status": ""
+    },
+    "yijie-contracts": {
+      "head": "db54c617c65db5431b950eb297ba148a43a8e600",
+      "status": ""
+    },
+    "yijie-desktop": {
+      "head": "a5975f48e63d3f1d3a262e9e8dfc57ca0d923961",
+      "status": ""
+    },
+    "yijie-infra": {
+      "head": "19b7920696904f83030a8ddaba71af15c3c05ad8",
+      "status": ""
+    },
+    "yijie-knowledge": {
+      "head": "e9091d2b673ba779ecb39271ce9148e3a41fc256",
+      "status": ""
+    },
+    "yijie-skills": {
+      "head": "488714a8d96f40806a257aae097683815b1dd458",
+      "status": ""
+    }
+  },
+  "precommit_sha256": {
+    "docs/dev/codex-project-memory.md": "18b066264b4e0baf3a8505d23caccd991e759a5182c3a52afc5ccfed1538a24c",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/00-feature-brief.md": "8fa63ada3e77b6c56e48783e18667079e2a8f9e9fc46f4aa480611833bcf9fe1",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/02-verification.md": "05542c71000679d5dc49b60515e420ee61eb07d79cdf9bc73fe5e22d7060b727",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/21-native-config-ownership-2026-09-10.md": "761b1fee6cae30f1b18c1b504916f6247878950557e0a28516d29f93aea5598b",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/config-ownership-canonical-2026-09-10.json": "569aa44c4ff5d66972bb798a325b5bd5f593144ff1a7f4be0d3ff922508a77a8",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/config-ownership-implementation-2026-09-10.json": "0717e3bcc5e5a8a9a1b8affd27a81643c3b6ae11c6e2dfd2831aa7e5aa453750",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/config-ownership-preflight-2026-09-10.json": "54815a776aebcb47da3afb6aa93cbc8dd162ccbf8227170a15fee08b8ce2fa0c",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/native-bootstrap-cwd-2026-09-10.json": "2f1d912c22cd2c828545e590077485ed57b01d55004f2ec879d4405aa9480501",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-discovery-ledger-2026-09-10.json": "93829910cdd016c96933d132cb26a8b18cd72ba1370eeb373f142b6d6a692258",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/feature.yaml": "bb138786ab2512766319c6fda56d1d62f73a4568f4ca112bbba20ceb0e22772a"
+  },
+  "current_budget": {
+    "metadata": {
+      "used": 10,
+      "limit": 20,
+      "new_used": 0
+    },
+    "model": {
+      "used": 4,
+      "limit": 8
+    },
+    "business": {
+      "charged_upper_bound": 2,
+      "limit": 10,
+      "logical_calls": 1
+    },
+    "images": 0
+  },
+  "runtime_modified": false,
+  "D4": "not closed",
+  "commit_authorization": "existing local scoped fix and evidence authorization",
+  "push": false
+}
