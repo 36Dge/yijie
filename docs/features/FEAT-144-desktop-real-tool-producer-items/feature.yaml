@@ -50,7 +50,7 @@ product_ux:
     - 真实成功、空结果判别、正常重开与相关UI/权限回归；CAP-017/GS-004在本次单工具及用户排除范围内完成本地验收。
   out_of_scope:
     - 用户明确排除AC-004/F144-S03业务失败场景实现与验证；不新增业务错误分类、失败专用流程/样本或失败触发逻辑，旧要求归档，排除不算PASS。既有原生错误/安全拒绝仍如实处理。
-    - 本轮产品实施、前向migration、本地提交及必要修复已授权，推送未授权。模型已用9/13，业务2逻辑调用保守扣4/10尝试，元数据14/20；不转用历史额度或自动增加授权。
+    - 本轮产品实施、前向migration、本地提交及必要修复已授权；用户本次明确授权的22个提交已普通推送，新增结果记录仅本地提交。模型已用9/13，业务2逻辑调用保守扣4/10尝试，元数据14/20；不转用历史额度或自动增加授权。
     - 不将未实施view_image备选、Command或dynamic image当MCP交付；不新增其它平台/批量评论/收藏写入/监控/导出。
     - 不自建MCP客户端/HTTP业务调用/代理/bridge/新SDK执行器，不修改或升级Codex Runtime。
     - 不恢复v5主链、状态推演、正文对账、身份猜测、第二累计、历史重建或自动封口；不解析rollout或启用实验历史。
@@ -198,6 +198,8 @@ verification:
       exit_code: 0
       actual_result: Current pinned sources, generator and FEAT-137 retirement verified.
   artifacts:
+    - 26-remote-delivery-2026-09-11.md
+    - evidence/remote-delivery-2026-09-11.json
     - 25-remote-delivery-preflight-2026-09-11.md
     - evidence/remote-preflight-2026-09-11.json
     - evidence/remote-preflight-checks-2026-09-11.json
@@ -287,7 +289,7 @@ verification:
     - SQLCipher schema15最低reader25b004fbd5a4dcf642a503d302c21a7d6e3b817f；独立status不写history，不新增migration或扩旧闭合DTO。
     - AC-004/F144-S03用户排除，不实施、不验证、不算PASS；原生Prompt拒绝仅权限回归。
     - 旧仓内项目不支持workspace、旧附件过期/清理未完/隔离Host映射缺失保留。并发界面内容未覆盖。
-    - 产品来源及验收仅本地提交，未推送/tag/部署，远端CI未触发。
+    - 22个已核验提交已获授权普通推送，完整远端SHA一致；本次新增结果记录仅本地提交，未追加推送。无tag/部署，远端CI未触发，NOT RUN；见26。
 
 public_readiness:
   required: false

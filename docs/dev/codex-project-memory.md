@@ -37,7 +37,9 @@ FEAT-136 现状审计确认：命令执行和最终输出来自 Codex，Desktop 
 
 ## FEAT-144 当前交付权威（2026-09-11，本地验收、AC-004用户排除）
 
-固定Runtime0.144.6原生元数据连接阻塞已关闭：操作7初始化ready、操作8返回97工具/Sorftime MCP1.1.6；无query URL、原生bearer_token_env_var引用及真实User-Agent codex-mcp-client/0.144.6。连接技术依据保留13；当前范围/预算权威为[15用户决策](../features/FEAT-144-desktop-real-tool-producer-items/15-owner-scope-and-business-budget-2026-09-10.md)及分账台账。当前交付以[24最终报告](../features/FEAT-144-desktop-real-tool-producer-items/24-final-native-decline-and-delivery-2026-09-11.md)及分账台账为准，不重复消耗额度验证同一连接。
+远端交付更新：用户明确授权的22个提交已按Contracts→Host→Desktop→元仓普通推送；远端完整SHA分别为811f38d6b104fa18477107e7ac91a85e19c445d1、0e47766f494977c94bfea0e89cfbdf45a7fafa2b、5964e2f7c31ea298f801df02086abbc8d6676b91、2febf02b2e9ad21d3996c108a9ac8d0a0c551db5，逐仓核对一致。Desktop包含已告知并授权的首页动画祖先与CI两ref修正；D4产品源码仍为7abf89e8。三种GitHub检查查询均0条，CI NOT RUN。新增结果记录仅本地提交，不自动突破22个提交推送范围；详见[26](../features/FEAT-144-desktop-real-tool-producer-items/26-remote-delivery-2026-09-11.md)。
+
+固定Runtime0.144.6原生元数据连接阻塞已关闭：操作7初始化ready、操作8返回97工具/Sorftime MCP1.1.6；无query URL、原生bearer_token_env_var引用及真实User-Agent codex-mcp-client/0.144.6。连接技术依据保留13；当前范围/预算权威为[15用户决策](../features/FEAT-144-desktop-real-tool-producer-items/15-owner-scope-and-business-budget-2026-09-10.md)及分账台账。本地验收以[24最终报告](../features/FEAT-144-desktop-real-tool-producer-items/24-final-native-decline-and-delivery-2026-09-11.md)及分账台账为准，远端交付以上方26为准，不重复消耗额度验证同一连接。
 
 原操作1–3及6的HTTP400/request error失败历史保留。两版实际二进制对普通localhost服务的初始化观测除真实版本外一致，固定版缺User-Agent；仅补真实UA后固定版远端成功，足以确认该原生配置可用，不等于证明服务端唯一拒绝规则。操作4/5的本地Codex0.153.4对照仍为历史证据。固定binary SHA 4efe16d2848680752cf9aacf4c17741ab2eeb7415894a66c2bb03652b00a322d不变；未升级/修改/替换Runtime或安装ZIP bridge。
 
@@ -55,13 +57,13 @@ product_detail及asin/amz_site输入schema当前由固定操作8确认，asin必
 
 
 
-当前产品来源：Contracts `811f38d6b104fa18477107e7ac91a85e19c445d1` → Host `0e47766f494977c94bfea0e89cfbdf45a7fafa2b` → Desktop `7abf89e84ffcbe56360d8c9943390e0640d9e239`，仅本地提交；本次文档提交可由报告24所属Git记录定位，不填造自身SHA。最低兼容reader仍为 `25b004fbd5a4dcf642a503d302c21a7d6e3b817f`，Runtime未改，源契约/来源门禁保留。
+当前产品来源：Contracts `811f38d6b104fa18477107e7ac91a85e19c445d1` → Host `0e47766f494977c94bfea0e89cfbdf45a7fafa2b` → Desktop `7abf89e84ffcbe56360d8c9943390e0640d9e239`，此处为24本地验收时固定的产品来源；后续CI提交及实际远端位置以上方26为准。本次文档提交由Git记录定位，不填造自身SHA。最低兼容reader仍为 `25b004fbd5a4dcf642a503d302c21a7d6e3b817f`，Runtime未改，源契约/来源门禁保留。
 
 第二个启动阻塞来自旧B queued/null-native-Turn和failed v1出站被当成活跃执行。新增独立只读原生当前状态端点，复用thread/read(includeTurns=false)；Desktop严格核对原失败投递及无待派发出站，原生idle/notLoaded后再次只读复核。旧记录不改、不补发、不封口；notLoaded不证明过去未执行。旧history/迁移/权限wire不变，未知/active/systemError/缺能力仍拒绝。详见23。
 
 E真实成功/数据对照/模式停用及auto/full/ask保留Host ccd815ff/Desktop a5975f48的实际来源；十二相关文件逐字不变确认适用。F在最终提交实际点击原生Prompt拒绝，审批rejected，唯一Tool failed/0ms/result=null而Turn completed；模型不重试、不使用旧数据，普通canonical正常退出重开F/E通过。没有把不同提交/进程的证据说成一次全量实跑；按用户指定“修复后拒绝复验，再收尾”完成证据组，最终strict/D0/D4已实跑PASS，机器输出见24。
 
-九项活动AC已有实际证据，AC-004保持OWNER_EXCLUDED/NOT RUN。累计文本9/13、元数据14/20（拒绝本轮2/5）、业务2逻辑调用保守扣4/10、图片0；精确历史业务HTTP次数未知，保守扣账不返还。F新增业务0，最后的原生只读核验和普通重开无模型/MCP调用；应用、Host、Runtime和计数器均正常退出。没有等待隐藏输入或预算批准，不推送/tag/部署。
+九项活动AC已有实际证据，AC-004保持OWNER_EXCLUDED/NOT RUN。累计文本9/13、元数据14/20（拒绝本轮2/5）、业务2逻辑调用保守扣4/10、图片0；精确历史业务HTTP次数未知，保守扣账不返还。F新增业务0，最后的原生只读核验和普通重开无模型/MCP调用；应用、Host、Runtime和计数器均正常退出。没有等待隐藏输入或预算批准；实际22个提交推送已完成，无tag/部署。
 
 保留旧B结果不确定、Tool正文partial脱敏、冷历史/phase/plan/reasoning/outputSchema/annotations/progress缺失、Command完成后输出、旧附件过期/清理未完/隔离Host映射缺失。剩余额度不自动转用；后续工作重新核对实际来源和台账，不从旧记录自动续跑。
 

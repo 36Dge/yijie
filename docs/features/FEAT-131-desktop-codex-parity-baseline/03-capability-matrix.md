@@ -1,6 +1,6 @@
 # FEAT-131 — Codex 风格近似对话能力矩阵
 
-> 2026-09-11 FEAT-144 当前本地范围：Sorftime 单工具 product_detail、US 单公开 ASIN。原生成功、参数/结果核对、权限停用与模式复原、最终来源原生拒绝和普通重开已完成；九项活动 AC 的证据与 D4 检查见[24 最终报告](../FEAT-144-desktop-real-tool-producer-items/24-final-native-decline-and-delivery-2026-09-11.md)。元数据14/20、文本9/13、业务2逻辑调用保守扣4/10、图片0。AC-004业务失败用户排除，不计PASS；E/F分次实跑保留各自来源，未观察的progress/冷历史缺失仍保留。仅本地提交，未推送或运行远端CI；不改写FEAT-131历史D4。
+> 2026-09-11 FEAT-144 当前本地范围：Sorftime 单工具 product_detail、US 单公开 ASIN。原生成功、参数/结果核对、权限停用与模式复原、最终来源原生拒绝和普通重开已完成；九项活动 AC 的证据与 D4 检查见[24 最终报告](../FEAT-144-desktop-real-tool-producer-items/24-final-native-decline-and-delivery-2026-09-11.md)。元数据14/20、文本9/13、业务2逻辑调用保守扣4/10、图片0。AC-004业务失败用户排除，不计PASS；E/F分次实跑保留各自来源，未观察的progress/冷历史缺失仍保留。后续22个提交已获授权普通推送、远端SHA一致，CI未触发；实际结果见[26](../FEAT-144-desktop-real-tool-producer-items/26-remote-delivery-2026-09-11.md)，不改写FEAT-131历史D4。
 
 > 2026-09-09：下表 native 相关行已按当前源码修正；原始基线/历史证据保留，交付范围与限制见[一致性复核](06-native-consistency-review-2026-09-09.md)。
 

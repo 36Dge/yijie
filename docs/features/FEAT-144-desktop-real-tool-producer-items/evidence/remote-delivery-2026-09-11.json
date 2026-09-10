@@ -1,0 +1,338 @@
+{
+  "recorded_at": "2026-09-10T17:04:28.867164+00:00",
+  "authorization": "User explicitly authorized ordinary push of the reviewed 22 commits in stated order, including the reviewed UI ancestor. Local result-record commits retain existing FEAT144 authorization; additional record push is outside this explicit 22-commit grant.",
+  "branch": "chore/retirement-baseline-20260905",
+  "checks": [
+    {
+      "repository": "yijie-contracts",
+      "target": "811f38d6b104fa18477107e7ac91a85e19c445d1",
+      "remote_before": "db7a607c1c091fc4f4243829d68d5b673eb7e2c3",
+      "count": 2,
+      "clean": true
+    },
+    {
+      "repository": "yijie-agent-host",
+      "target": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "remote_before": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+      "count": 5,
+      "clean": true
+    },
+    {
+      "repository": "yijie-desktop",
+      "target": "5964e2f7c31ea298f801df02086abbc8d6676b91",
+      "remote_before": "8bfa5ca284fddb86d7cdd2a406c5041c49367688",
+      "count": 8,
+      "clean": true
+    },
+    {
+      "repository": "yijie",
+      "target": "2febf02b2e9ad21d3996c108a9ac8d0a0c551db5",
+      "remote_before": "6f12939aa85f8a9c1f55e89f1018c60501a2f494",
+      "count": 7,
+      "clean": true
+    }
+  ],
+  "push_receipts": [
+    {
+      "repository": "yijie-contracts",
+      "at": "2026-09-10T17:05:15.315744+00:00",
+      "command": [
+        "git",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+        "-c",
+        "push.followTags=false",
+        "push",
+        "--porcelain",
+        "origin",
+        "811f38d6b104fa18477107e7ac91a85e19c445d1:refs/heads/chore/retirement-baseline-20260905"
+      ],
+      "exit_code": 0,
+      "stdout": "To https://github.com/36Dge/yijie-contracts.git\n \t811f38d6b104fa18477107e7ac91a85e19c445d1:refs/heads/chore/retirement-baseline-20260905\tdb7a607..811f38d\nDone\n",
+      "stderr": "",
+      "target": "811f38d6b104fa18477107e7ac91a85e19c445d1",
+      "remote_after": "811f38d6b104fa18477107e7ac91a85e19c445d1",
+      "remote_matches": true
+    },
+    {
+      "repository": "yijie-agent-host",
+      "at": "2026-09-10T17:05:26.380857+00:00",
+      "command": [
+        "git",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+        "-c",
+        "push.followTags=false",
+        "push",
+        "--porcelain",
+        "origin",
+        "0e47766f494977c94bfea0e89cfbdf45a7fafa2b:refs/heads/chore/retirement-baseline-20260905"
+      ],
+      "exit_code": 0,
+      "stdout": "To https://github.com/36Dge/yijie-agent-host.git\n \t0e47766f494977c94bfea0e89cfbdf45a7fafa2b:refs/heads/chore/retirement-baseline-20260905\tf4cf01b..0e47766\nDone\n",
+      "stderr": "",
+      "target": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "remote_after": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "remote_matches": true
+    },
+    {
+      "repository": "yijie-desktop",
+      "at": "2026-09-10T17:05:37.438007+00:00",
+      "command": [
+        "git",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+        "-c",
+        "push.followTags=false",
+        "push",
+        "--porcelain",
+        "origin",
+        "5964e2f7c31ea298f801df02086abbc8d6676b91:refs/heads/chore/retirement-baseline-20260905"
+      ],
+      "exit_code": 0,
+      "stdout": "To https://github.com/36Dge/yijie-desktop.git\n \t5964e2f7c31ea298f801df02086abbc8d6676b91:refs/heads/chore/retirement-baseline-20260905\t8bfa5ca..5964e2f\nDone\n",
+      "stderr": "",
+      "target": "5964e2f7c31ea298f801df02086abbc8d6676b91",
+      "remote_after": "5964e2f7c31ea298f801df02086abbc8d6676b91",
+      "remote_matches": true
+    },
+    {
+      "repository": "yijie",
+      "at": "2026-09-10T17:05:48.717080+00:00",
+      "command": [
+        "git",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie",
+        "-c",
+        "push.followTags=false",
+        "push",
+        "--porcelain",
+        "origin",
+        "2febf02b2e9ad21d3996c108a9ac8d0a0c551db5:refs/heads/chore/retirement-baseline-20260905"
+      ],
+      "exit_code": 0,
+      "stdout": "To https://github.com/36Dge/yijie.git\n \t2febf02b2e9ad21d3996c108a9ac8d0a0c551db5:refs/heads/chore/retirement-baseline-20260905\t6f12939..2febf02\nDone\n",
+      "stderr": "",
+      "target": "2febf02b2e9ad21d3996c108a9ac8d0a0c551db5",
+      "remote_after": "2febf02b2e9ad21d3996c108a9ac8d0a0c551db5",
+      "remote_matches": true
+    }
+  ],
+  "ci_receipts": [
+    {
+      "repository": "yijie-contracts",
+      "sha": "811f38d6b104fa18477107e7ac91a85e19c445d1",
+      "queries": [
+        {
+          "kind": "actions",
+          "endpoint": "repos/36Dge/yijie-contracts/actions/runs?head_sha=811f38d6b104fa18477107e7ac91a85e19c445d1&per_page=100",
+          "exit_code": 0,
+          "result": {
+            "total_count": 0,
+            "workflow_runs": []
+          }
+        },
+        {
+          "kind": "check_runs",
+          "endpoint": "repos/36Dge/yijie-contracts/commits/811f38d6b104fa18477107e7ac91a85e19c445d1/check-runs?per_page=100",
+          "exit_code": 0,
+          "result": {
+            "check_runs": [],
+            "total_count": 0
+          }
+        },
+        {
+          "kind": "statuses",
+          "endpoint": "repos/36Dge/yijie-contracts/commits/811f38d6b104fa18477107e7ac91a85e19c445d1/status?per_page=100",
+          "exit_code": 0,
+          "result": {
+            "sha": "811f38d6b104fa18477107e7ac91a85e19c445d1",
+            "state": "pending",
+            "statuses": [],
+            "total_count": 0
+          }
+        }
+      ]
+    },
+    {
+      "repository": "yijie-agent-host",
+      "sha": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "queries": [
+        {
+          "kind": "actions",
+          "endpoint": "repos/36Dge/yijie-agent-host/actions/runs?head_sha=0e47766f494977c94bfea0e89cfbdf45a7fafa2b&per_page=100",
+          "exit_code": 0,
+          "result": {
+            "total_count": 0,
+            "workflow_runs": []
+          }
+        },
+        {
+          "kind": "check_runs",
+          "endpoint": "repos/36Dge/yijie-agent-host/commits/0e47766f494977c94bfea0e89cfbdf45a7fafa2b/check-runs?per_page=100",
+          "exit_code": 0,
+          "result": {
+            "check_runs": [],
+            "total_count": 0
+          }
+        },
+        {
+          "kind": "statuses",
+          "endpoint": "repos/36Dge/yijie-agent-host/commits/0e47766f494977c94bfea0e89cfbdf45a7fafa2b/status?per_page=100",
+          "exit_code": 0,
+          "result": {
+            "sha": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+            "state": "pending",
+            "statuses": [],
+            "total_count": 0
+          }
+        }
+      ]
+    },
+    {
+      "repository": "yijie-desktop",
+      "sha": "5964e2f7c31ea298f801df02086abbc8d6676b91",
+      "queries": [
+        {
+          "kind": "actions",
+          "endpoint": "repos/36Dge/yijie-desktop/actions/runs?head_sha=5964e2f7c31ea298f801df02086abbc8d6676b91&per_page=100",
+          "exit_code": 0,
+          "result": {
+            "total_count": 0,
+            "workflow_runs": []
+          }
+        },
+        {
+          "kind": "check_runs",
+          "endpoint": "repos/36Dge/yijie-desktop/commits/5964e2f7c31ea298f801df02086abbc8d6676b91/check-runs?per_page=100",
+          "exit_code": 0,
+          "result": {
+            "check_runs": [],
+            "total_count": 0
+          }
+        },
+        {
+          "kind": "statuses",
+          "endpoint": "repos/36Dge/yijie-desktop/commits/5964e2f7c31ea298f801df02086abbc8d6676b91/status?per_page=100",
+          "exit_code": 0,
+          "result": {
+            "sha": "5964e2f7c31ea298f801df02086abbc8d6676b91",
+            "state": "pending",
+            "statuses": [],
+            "total_count": 0
+          }
+        }
+      ]
+    },
+    {
+      "repository": "yijie",
+      "sha": "2febf02b2e9ad21d3996c108a9ac8d0a0c551db5",
+      "queries": [
+        {
+          "kind": "actions",
+          "endpoint": "repos/36Dge/yijie/actions/runs?head_sha=2febf02b2e9ad21d3996c108a9ac8d0a0c551db5&per_page=100",
+          "exit_code": 0,
+          "result": {
+            "total_count": 0,
+            "workflow_runs": []
+          }
+        },
+        {
+          "kind": "check_runs",
+          "endpoint": "repos/36Dge/yijie/commits/2febf02b2e9ad21d3996c108a9ac8d0a0c551db5/check-runs?per_page=100",
+          "exit_code": 0,
+          "result": {
+            "check_runs": [],
+            "total_count": 0
+          }
+        },
+        {
+          "kind": "statuses",
+          "endpoint": "repos/36Dge/yijie/commits/2febf02b2e9ad21d3996c108a9ac8d0a0c551db5/status?per_page=100",
+          "exit_code": 0,
+          "result": {
+            "sha": "2febf02b2e9ad21d3996c108a9ac8d0a0c551db5",
+            "state": "pending",
+            "statuses": [],
+            "total_count": 0
+          }
+        }
+      ]
+    }
+  ],
+  "recorded_after_queries_at": "2026-09-10 17:07:36 UTC",
+  "ci_conclusion": "NOT RUN: no Actions runs, Check Runs or commit statuses; pending aggregate with zero statuses is not a running workflow or a PASS. Branch not included by current push filters; no PR/manual dispatch.",
+  "constraints": {
+    "force_push": false,
+    "merge": false,
+    "tag": false,
+    "deploy": false,
+    "runtime_change": false,
+    "permissions_change": false,
+    "paid_calls_added": 0,
+    "ac004": "OWNER_EXCLUDED / NOT RUN"
+  },
+  "budget": {
+    "text": "9/13",
+    "metadata": "14/20",
+    "business_logical": 2,
+    "business_charged_upper_bound": "4/10",
+    "business_http_attempts_exact": null,
+    "images": 0
+  },
+  "delivery_record_commit": "This artifact records 22 authorized commits already pushed. Its containing meta commit is a separate local-only factual delivery record; no additional push under the 22-commit grant.",
+  "local_delivery_document_checks": [
+    {
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-144-desktop-real-tool-producer-items",
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，所有模板变量和未完成标记已处理。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+    },
+    {
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate D4 docs/features/FEAT-144-desktop-real-tool-producer-items",
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，且 D4 范围与语义门禁通过。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+    },
+    {
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-131-desktop-codex-parity-baseline",
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，所有模板变量和未完成标记已处理。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+    },
+    {
+      "command": "pnpm lint",
+      "exit_code": 0,
+      "output": "$ node scripts/repo-manifest.mjs validate && node scripts/check-contract-governance.mjs\nValidated 10 repository entries.\nValidated central Contract First governance and 10 sibling AGENTS.md files.\n"
+    },
+    {
+      "command": "pnpm test",
+      "exit_code": 0,
+      "output": "$ node --test tests/*.test.mjs\n✔ schema v2 accepts qualified G2V, per-slice G3, and split G4 evidence (3.433417ms)\n✔ schema v2 G3 is per-slice and rejects required NOT RUN evidence (0.416958ms)\n✔ slice evidence N/A requires an explicit Owner exception and local evidence is never optional (0.19975ms)\n✔ per-slice freshness must bind the current implementation and harness (0.186958ms)\n✔ a passing slice cannot depend on a falsely passing prerequisite (0.253458ms)\n✔ cross-repository slice freshness includes every transitive prerequisite commit (0.264834ms)\n✔ serial slices in one repository can bind both immutable slice commits (0.261167ms)\n✔ G2V rejects an unqualified harness (0.129542ms)\n✔ temporal contract invariants require executable conformance tests (0.1375ms)\n✔ a required temporal invariant cannot be backed only by an N/A conformance test (0.147209ms)\n✔ a slice cannot borrow temporal conformance assigned to another slice (0.16225ms)\n✔ temporal scenarios form one acyclic ordered contract (0.103167ms)\n✔ declared persistence/runtime scope cannot erase mandatory temporal phases (0.094667ms)\n✔ G2V evidence binds every declared participating repository (0.060375ms)\n✔ G2V cannot substitute a browser mock for the qualified real platform (0.05675ms)\n✔ G2V requires positive, negative, timeout, cleanup, and content-free harness controls (0.065125ms)\n✔ G4 keeps core, accessibility/visual, and teardown verdicts independent (0.098125ms)\n✔ the third equivalent failure trips the circuit breaker (0.12725ms)\n✔ the third failure cannot be marked resolved without an approved RCA cycle (0.061417ms)\n✔ an open three-failure breaker blocks G2V and per-slice G3 (0.119291ms)\n✔ renaming evidence IDs cannot split one equivalent failure to reset the fuse (0.526958ms)\n✔ one Owner-authorized post-RCA success can resolve a tripped incident (0.218875ms)\n✔ failure ledger evolution is append-only across the CI base ref (0.355083ms)\n✔ a package absent from the CI base must start at schema v3 with an explicit profile (0.152083ms)\n✔ a legacy v1 manifest is immutable until it is migrated to schema v2 (0.156708ms)\n✔ harness taxonomy is closed to four failure owners (0.050875ms)\n✔ an evident cross-boundary trigger cannot mark G2V not applicable (0.038125ms)\n✔ closed scope enums and required slice applicability fail closed (0.113208ms)\n✔ final E2E evidence binds a qualified harness digest and canonical report reference (0.090209ms)\n✔ schema v3 demo_fast accepts one product/UX checkpoint and one real-service done checkpoint (0.361916ms)\n✔ permanent termination preserves historical D0 but cannot claim acceptance (0.123542ms)\n✔ permanent termination requires explicit Owner authority and cannot be reopened (0.277709ms)\n✔ demo_fast D4 rejects mock-only, missing real smoke, and failed Must acceptance (0.063625ms)\n✔ demo_fast DP is public-only and enforces the minimum public safety floor (0.146417ms)\n✔ schema v3 production_hardened preserves the full schema v2 gate semantics (0.105208ms)\n✔ schema v1 remains readable but cannot claim any downstream gate (0.04525ms)\n✔ shell checker treats legacy packages as historical-only at G3 (77.992208ms)\n✔ feature.yaml duplicate keys fail closed (2.903584ms)\n✔ schema version comments cannot bypass the required temporal matrix file (9.729917ms)\n✔ verification evidence references must resolve to one report marker (9.656833ms)\n✔ CI claim audit rejects a v2 slice that claims PASS with missing evidence (20.021625ms)\n✔ repository audit applies the authoritative full-document shell check (90.048458ms)\n✔ repository CI audits every committed historical and profile-aware claim (154.353459ms)\n✔ the repository Feature Package audit entrypoint scans committed packages (4186.283125ms)\n✔ delivery shell entrypoints remain syntactically valid (2.817625ms)\n✔ new-feature defaults to compact schema v3 demo_fast local (105.121541ms)\n✔ new-feature creates production_hardened only when explicitly selected (150.270791ms)\n✔ shell checker enforces demo_fast D0, D4, and profile separation (163.949625ms)\n✔ shell checker enforces schema v2 G2V and per-slice G3 semantics (167.720583ms)\n✔ repository manifest contains the ten child repositories (5.791041ms)\nℹ tests 50\nℹ suites 0\nℹ pass 50\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 5243.346959\n"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "output": ""
+    }
+  ],
+  "final_local_record_review": {
+    "at": "2026-09-10T17:10:52.882580+00:00",
+    "files": 12,
+    "markdown_links": 79,
+    "shell_syntax_files": 7,
+    "secret_like_patterns": 0,
+    "scope": "Documentation/evidence only; no additional push beyond the22 authorized commits",
+    "precommit_sha256": {
+      "docs/dev/codex-project-memory.md": "72082fa65d9c3c191c92d579770ca5897c2faabcc31488002017f990226e4775",
+      "docs/features/FEAT-131-desktop-codex-parity-baseline/03-capability-matrix.md": "6f141a6106a79b60fff0672b373d419abdf0882a918283975ccfa8efade58fcb",
+      "docs/features/FEAT-131-desktop-codex-parity-baseline/04-golden-scenarios.md": "f5402680f7b695e488a5aad38ec6997841130782a668edfaff86a9bd86047b33",
+      "docs/features/FEAT-131-desktop-codex-parity-baseline/05-reference-evidence-index.md": "73f0b9a5ce117ca91eea30ffdd9f38d0af2644456343c7b0f40920bef94e741f",
+      "docs/features/FEAT-144-desktop-real-tool-producer-items/00-feature-brief.md": "6cc98ea2fad1f2588170c2b12b47359066fe2c7f95926b1391eda2fbaab39f21",
+      "docs/features/FEAT-144-desktop-real-tool-producer-items/01-delivery-log.md": "7501e80ad0b0662b465aef497d87ae1adfdeb6ebd6f94c41acd777a01471164a",
+      "docs/features/FEAT-144-desktop-real-tool-producer-items/02-verification.md": "1d1118f9680c699dfffa056f34788eaacdd0aafb3d999eb25a3bb222a5ae0fd0",
+      "docs/features/FEAT-144-desktop-real-tool-producer-items/24-final-native-decline-and-delivery-2026-09-11.md": "8bcf8b6cd624c4b8c039c6220cd60c387042b1a3fb83411860c9fbeaae207cb5",
+      "docs/features/FEAT-144-desktop-real-tool-producer-items/25-remote-delivery-preflight-2026-09-11.md": "eedbd17aeee72fb0fa6a50f301fc17c0c167aaf3a1093a3980d4c95bf9ebbea8",
+      "docs/features/FEAT-144-desktop-real-tool-producer-items/26-remote-delivery-2026-09-11.md": "139a41e6b2a71c9438ddb18513f338a2c70be71bfa14c03dea14433d81246907",
+      "docs/features/FEAT-144-desktop-real-tool-producer-items/feature.yaml": "d955bf8cac889c6891f3779d1fd405166c4c6dfa8fb2c560216a3a04b9873ad3"
+    },
+    "self_digest": "Git tree binds this receipt; no self-hash fabricated"
+  }
+}

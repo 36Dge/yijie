@@ -1,6 +1,6 @@
 # FEAT-131 — 设计依据与验证索引
 
-> 2026-09-11 FEAT-144 当前本地范围：Sorftime 单工具 product_detail、US 单公开 ASIN。原生成功、参数/结果核对、权限停用与模式复原、最终来源原生拒绝和普通重开已完成；九项活动 AC 的证据与 D4 检查见[24 最终报告](../FEAT-144-desktop-real-tool-producer-items/24-final-native-decline-and-delivery-2026-09-11.md)。元数据14/20、文本9/13、业务2逻辑调用保守扣4/10、图片0。AC-004业务失败用户排除，不计PASS；E/F分次实跑保留各自来源，未观察的progress/冷历史缺失仍保留。仅本地提交，未推送或运行远端CI；不改写FEAT-131历史D4。
+> 2026-09-11 FEAT-144 当前本地范围：Sorftime 单工具 product_detail、US 单公开 ASIN。原生成功、参数/结果核对、权限停用与模式复原、最终来源原生拒绝和普通重开已完成；九项活动 AC 的证据与 D4 检查见[24 最终报告](../FEAT-144-desktop-real-tool-producer-items/24-final-native-decline-and-delivery-2026-09-11.md)。元数据14/20、文本9/13、业务2逻辑调用保守扣4/10、图片0。AC-004业务失败用户排除，不计PASS；E/F分次实跑保留各自来源，未观察的progress/冷历史缺失仍保留。后续22个提交已获授权普通推送、远端SHA一致，CI未触发；实际结果见[26](../FEAT-144-desktop-real-tool-producer-items/26-remote-delivery-2026-09-11.md)，不改写FEAT-131历史D4。
 
 > 当前范围修订（2026-09-05）：FEAT-137 已由 Owner 永久终止且未完成验收，未来不重启。CAP-019 / GS-005 为 `owner-terminated-unaccepted`，不再属于 active 交付范围；现行 active 范围排除 FEAT-137/138。下文旧 active 范围及 FEAT-137 source PASS 为历史记录，不构成审批可用或 D4 PASS。最终权威见 [FEAT-137 永久终止记录](../FEAT-137-desktop-approval-interaction/03-termination.md)。
 
