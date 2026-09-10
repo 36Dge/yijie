@@ -1,0 +1,236 @@
+{
+  "recorded_at": {
+    "current_time": "2026-09-10 06:38:40 UTC"
+  },
+  "stage": "FEAT-144 metadata connection closure and D0 design review",
+  "checks": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "feature_strict",
+        "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-144-desktop-real-tool-producer-items",
+        "chunk_id": "5ca5ff",
+        "wall_time_seconds": 2.417e-06,
+        "exit_code": 1,
+        "original_token_count": 138,
+        "output": "FAIL: 检查范围仍有未完成标记：\ndocs/features/FEAT-144-desktop-real-tool-producer-items/feature.yaml:138:  real_entrypoint: 未来pnpm tauri:demo-fast:app，现有项目Composer；Codex原生sorftime streamable HTTP MCP，product_detail输入已确认。D0已明确稳定elicitation和reader-first设计；query-key候选停用，官方Bearer及临时空线程startup通知诊断明确；固定Runtime原生元数据接入已通过；文本结果/reader设计已审定，费用/正常失败依据仍待确认，尚未授权产品实施。\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "d0_gate",
+        "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate D0 docs/features/FEAT-144-desktop-real-tool-producer-items",
+        "chunk_id": "45c15b",
+        "wall_time_seconds": 2.125e-06,
+        "exit_code": 1,
+        "original_token_count": 12,
+        "output": "ERROR: product_ux.status must be PASS for D0\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "meta_lint",
+        "command": "pnpm lint",
+        "chunk_id": "dc3c35",
+        "wall_time_seconds": 0.439376,
+        "exit_code": 0,
+        "original_token_count": 50,
+        "output": "$ node scripts/repo-manifest.mjs validate && node scripts/check-contract-governance.mjs\nValidated 10 repository entries.\nValidated central Contract First governance and 10 sibling AGENTS.md files.\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "meta_test",
+        "command": "pnpm test",
+        "chunk_id": "8f8314",
+        "wall_time_seconds": 5.564865,
+        "exit_code": 0,
+        "original_token_count": 1102,
+        "output": "$ node --test tests/*.test.mjs\n✔ schema v2 accepts qualified G2V, per-slice G3, and split G4 evidence (3.605417ms)\n✔ schema v2 G3 is per-slice and rejects required NOT RUN evidence (0.486209ms)\n✔ slice evidence N/A requires an explicit Owner exception and local evidence is never optional (0.239583ms)\n✔ per-slice freshness must bind the current implementation and harness (0.199542ms)\n✔ a passing slice cannot depend on a falsely passing prerequisite (0.4035ms)\n✔ cross-repository slice freshness includes every transitive prerequisite commit (0.397708ms)\n✔ serial slices in one repository can bind both immutable slice commits (0.221583ms)\n✔ G2V rejects an unqualified harness (0.156791ms)\n✔ temporal contract invariants require executable conformance tests (0.250375ms)\n✔ a required temporal invariant cannot be backed only by an N/A conformance test (0.302542ms)\n✔ a slice cannot borrow temporal conformance assigned to another slice (0.1945ms)\n✔ temporal scenarios form one acyclic ordered contract (0.113083ms)\n✔ declared persistence/runtime scope cannot erase mandatory temporal phases (0.093708ms)\n✔ G2V evidence binds every declared participating repository (0.062125ms)\n✔ G2V cannot substitute a browser mock for the qualified real platform (0.056083ms)\n✔ G2V requires positive, negative, timeout, cleanup, and content-free harness controls (0.0665ms)\n✔ G4 keeps core, accessibility/visual, and teardown verdicts independent (0.098583ms)\n✔ the third equivalent failure trips the circuit breaker (0.129375ms)\n✔ the third failure cannot be marked resolved without an approved RCA cycle (0.06075ms)\n✔ an open three-failure breaker blocks G2V and per-slice G3 (0.179542ms)\n✔ renaming evidence IDs cannot split one equivalent failure to reset the fuse (0.542084ms)\n✔ one Owner-authorized post-RCA success can resolve a tripped incident (0.1965ms)\n✔ failure ledger evolution is append-only across the CI base ref (0.372417ms)\n✔ a package absent from the CI base must start at schema v3 with an explicit profile (0.163625ms)\n✔ a legacy v1 manifest is immutable until it is migrated to schema v2 (0.116375ms)\n✔ harness taxonomy is closed to four failure owners (0.058667ms)\n✔ an evident cross-boundary trigger cannot mark G2V not applicable (0.04425ms)\n✔ closed scope enums and required slice applicability fail closed (0.128292ms)\n✔ final E2E evidence binds a qualified harness digest and canonical report reference (0.10825ms)\n✔ schema v3 demo_fast accepts one product/UX checkpoint and one real-service done checkpoint (0.466334ms)\n✔ permanent termination preserves historical D0 but cannot claim acceptance (0.246208ms)\n✔ permanent termination requires explicit Owner authority and cannot be reopened (0.427083ms)\n✔ demo_fast D4 rejects mock-only, missing real smoke, and failed Must acceptance (0.074709ms)\n✔ demo_fast DP is public-only and enforces the minimum public safety floor (0.168917ms)\n✔ schema v3 production_hardened preserves the full schema v2 gate semantics (0.131667ms)\n✔ schema v1 remains readable but cannot claim any downstream gate (0.053084ms)\n✔ shell checker treats legacy packages as historical-only at G3 (89.970917ms)\n✔ feature.yaml duplicate keys fail closed (2.955667ms)\n✔ schema version comments cannot bypass the required temporal matrix file (25.981458ms)\n✔ verification evidence references must resolve to one report marker (15.387083ms)\n✔ CI claim audit rejects a v2 slice that claims PASS with missing evidence (24.627959ms)\n✔ repository audit applies the authoritative full-document shell check (96.425125ms)\n✔ repository CI audits every committed historical and profile-aware claim (164.403958ms)\n✔ the repository Feature Package audit entrypoint scans committed packages (4110.649792ms)\n✔ delivery shell entrypoints remain syntactically valid (3.634416ms)\n✔ new-feature defaults to compact schema v3 demo_fast local (114.44575ms)\n✔ new-feature creates production_hardened only when explicitly selected (154.328375ms)\n✔ shell checker enforces demo_fast D0, D4, and profile separation (169.352416ms)\n✔ shell checker enforces schema v2 G2V and per-slice G3 semantics (171.473958ms)\n✔ repository manifest contains the ten child repositories (8.306333ms)\nℹ tests 50\nℹ suites 0\nℹ pass 50\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 5249.83075\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "feature_audit",
+        "command": "pnpm feature:audit -- --base-ref 6f12939aa85f8a9c1f55e89f1018c60501a2f494",
+        "chunk_id": "be437b",
+        "wall_time_seconds": 4.483159875,
+        "exit_code": 0,
+        "original_token_count": 307,
+        "output": "$ node docs/dev/codex-feature-delivery/scripts/audit-feature-packages.mjs -- --base-ref 6f12939aa85f8a9c1f55e89f1018c60501a2f494\nWARNING: FEAT-123-task-history-export: LEGACY_SCHEMA_V1: historical read only; result does not prove G2V, per-slice G3, temporal contracts, harness qualification, split E2E, or the three-failure fuse\nWARNING: FEAT-124-desktop-post-login-home: LEGACY_SCHEMA_V1: historical read only; result does not prove G2V, per-slice G3, temporal contracts, harness qualification, split E2E, or the three-failure fuse\nWARNING: FEAT-125-authoritative-permission-projection: LEGACY_SCHEMA_V1: historical read only; result does not prove G2V, per-slice G3, temporal contracts, harness qualification, split E2E, or the three-failure fuse\nWARNING: FEAT-126-public-task-authorization-hardening: LEGACY_SCHEMA_V1: historical read only; result does not prove G2V, per-slice G3, temporal contracts, harness qualification, split E2E, or the three-failure fuse\nWARNING: FEAT-127-multimodal-chat-attachments: LEGACY_SCHEMA_V1: historical read only; result does not prove G2V, per-slice G3, temporal contracts, harness qualification, split E2E, or the three-failure fuse\nPASS: audited 19 committed Feature Package claim(s).\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "shell_syntax",
+        "command": "bash -n scripts/*.sh",
+        "chunk_id": "03be49",
+        "wall_time_seconds": 1.542e-06,
+        "exit_code": 0,
+        "original_token_count": 0,
+        "output": ""
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "diff_check",
+        "command": "git diff --check",
+        "chunk_id": "551514",
+        "wall_time_seconds": 1.417e-06,
+        "exit_code": 0,
+        "original_token_count": 0,
+        "output": ""
+      }
+    }
+  ],
+  "strict_wording_followup": {
+    "chunk_id": "5e408f",
+    "wall_time_seconds": 1.1958e-05,
+    "exit_code": 0,
+    "original_token_count": 57,
+    "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，所有模板变量和未完成标记已处理。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+  },
+  "final_checks": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "feature_strict_final",
+        "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-144-desktop-real-tool-producer-items",
+        "chunk_id": "d01c87",
+        "wall_time_seconds": 5e-07,
+        "exit_code": 0,
+        "original_token_count": 57,
+        "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，所有模板变量和未完成标记已处理。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "d0_gate_final",
+        "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate D0 docs/features/FEAT-144-desktop-real-tool-producer-items",
+        "chunk_id": "42a0b4",
+        "wall_time_seconds": 1.667e-06,
+        "exit_code": 1,
+        "original_token_count": 12,
+        "output": "ERROR: product_ux.status must be PASS for D0\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "diff_check_final",
+        "command": "git diff --check",
+        "chunk_id": "3b7d81",
+        "wall_time_seconds": 2.25e-06,
+        "exit_code": 0,
+        "original_token_count": 0,
+        "output": ""
+      }
+    }
+  ],
+  "source_checks": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "native_sources",
+        "command": "node scripts/check-native-conversation.mjs --require-committed",
+        "chunk_id": "480d7e",
+        "wall_time_seconds": 0.101664292,
+        "exit_code": 0,
+        "original_token_count": 45,
+        "output": "Native conversation verified: 6f632f155eacdaf93df0e0b00b5dab9e369c5442; published=false\nFEAT-132 native sources, generated consumer snapshots and retired-engine boundary verified.\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "legacy_v4_sources",
+        "command": "env YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast YIJIE_RUNTIME_PERMISSIONS_ENABLED=true VITE_YIJIE_RUNTIME_PERMISSIONS_ENABLED=true node scripts/check-agent-host-v4-contract.mjs",
+        "chunk_id": "354afc",
+        "wall_time_seconds": 0.981139042,
+        "exit_code": 0,
+        "original_token_count": 50,
+        "output": "FEAT-134 v4 immutable objects verified at Contracts 87f94c9aa6d4848cb67aa8a1265bd21474edb0bb and Agent Host 96b1fa19783694aef583b614c492fd2b6b5c15cc; activation is exact local/demo_fast/stable only.\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "feat137_retirement",
+        "command": "node scripts/check-approval-retirement.mjs",
+        "chunk_id": "36af7e",
+        "wall_time_seconds": 2.791e-06,
+        "exit_code": 0,
+        "original_token_count": 31,
+        "output": "FEAT-137 permanent retirement authority verified: 4d3f967938dde1c86ca34003a0a5628717f96262; acceptance remains NOT PASSED\n"
+      }
+    }
+  ],
+  "review": {
+    "type": "Separate-stage agent review, not independent human approval",
+    "business": "D0 blocked only by missing evidence-backed safe ordinary failure plan. Actual account fees and exact budgets confirmed before paid activation. Optional sample inactive and not required for text projection.",
+    "native": "Explicit first-release PermissionAsk/user/Prompt activation, no hooks/guardian/plugin approval replacement; validate native configuration and responses; other FEAT152 modes unchanged and Sorftime inactive. Manual RPC sample is not model preapproval or Tool Item.",
+    "contract": "Original-index native text, existing redactor before UTF8 truncation, local recordDiagnostics excluded from native recovery, DB future version rejection and compatible-reader rollback."
+  },
+  "d0": {
+    "status": "BLOCKED",
+    "machine_exit_code": 1,
+    "machine_reason": "product_ux.status must be PASS for D0",
+    "actual_design_gap": "AC-004 lacks an evidence-backed, executable, safe ordinary remote business failure scenario",
+    "not_blockers": [
+      "metadata connectivity",
+      "missing outputSchema/annotations/progress",
+      "product implementation not run",
+      "D4 not run",
+      "no successful business sample yet",
+      "new business/model budget not yet granted"
+    ]
+  },
+  "strict_initial_failure": {
+    "cause": "Literal 待确认 matched the existing unresolved-marker scan",
+    "resolution": "Reworded to an explicit named planning gap and activation prerequisite; did not change pending/BLOCKED statuses or weaken checker"
+  },
+  "scope": {
+    "added_metadata_operations": 0,
+    "total_metadata_operations": 8,
+    "metadata_limit": 10,
+    "model_requests": 0,
+    "business_calls": 0,
+    "images": 0,
+    "product_implementation": "NOT RUN",
+    "canonical": "NOT RUN",
+    "D4": "NOT RUN",
+    "commit_push": "NOT RUN"
+  },
+  "historical_baseline": {
+    "evidence": "independent-native-baseline-checks-2026-09-10.json",
+    "scope": "Prior FEAT132 Host/native-view/SQLCipher baseline; not rerun or counted as new FEAT144 AC PASS"
+  },
+  "protection_evidence": "d0-closure-final-workspace-2026-09-10.json",
+  "final_report_followup": {
+    "intermediate_strict_exit": 1,
+    "intermediate_reason": "The explanation repeated the same unresolved-marker literal in 02; reworded without erasing the gap or changing gates.",
+    "strict_after_final_report": {
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，所有模板变量和未完成标记已处理。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。",
+      "tool_chunk_id": "6a0cbf"
+    },
+    "d0_after_final_report": {
+      "exit_code": 1,
+      "output": "ERROR: product_ux.status must be PASS for D0",
+      "tool_chunk_id": "f70f08"
+    },
+    "diff_after_final_report": {
+      "exit_code": 0,
+      "output": "",
+      "tool_chunk_id": "4f553b"
+    }
+  },
+  "per_script_shell_syntax": "All 7 metadata-repository shell scripts checked separately; see d0-closure-final-workspace-2026-09-10.json"
+}

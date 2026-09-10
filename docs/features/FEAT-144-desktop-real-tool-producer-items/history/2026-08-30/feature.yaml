@@ -1,0 +1,171 @@
+schema_version: 3
+delivery_profile: "demo_fast"
+exposure: "local"
+
+feature:
+  id: "FEAT-144"
+  slug: "desktop-real-tool-producer-items"
+  title: "Desktop 真实 Tool Producer 与执行 Item"
+  status: "blocked"
+  created_at: "2026-08-30"
+  requirement_owner: "段成威"
+  technical_owner: "段成威"
+  reviewer: "段成威"
+  release_owner: "段成威"
+
+scope:
+  risk_level: "high"
+  data_classification: "restricted"
+  contract_impact: "semantic"
+  database_change: "expand"
+  persistence_change: "durable"
+  runtime_change: "none"
+  auth_permission_change: "permission"
+  user_workflow_change: "user_visible"
+  ui_change: "interactive"
+  ai_behavior_change: "tool"
+
+repositories:
+  - "yijie"
+  - "yijie-contracts"
+  - "yijie-agent-host"
+  - "yijie-desktop"
+  - "yijie-connectors"
+  - "yijie-skills"
+
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+
+product_ux:
+  status: "pending"
+  primary_user: "在易界 AI Desktop 中需要发起经明确授权的真实 Tool 操作，并理解其安全进度与结果的本地用户。"
+  problem: "FEAT-136 已有 producer-neutral contract、Host 投影与 Desktop consumer/UI 基础，但没有 Owner 选定的真实 Tool producer、产品入口和安全边界，无法进行可信 real Tool vertical 或 D4。"
+  user_outcome: "Owner 决策后，用户只通过明确产品入口调用一个真实、安全、有权限边界的 Tool，并在 Desktop 中看到闭合 lifecycle、进度、结果、失败与正常重开后的唯一 Item。"
+  in_scope:
+    - "CAP-017 / GS-004 的真实 Tool producer、产品入口、安全/权限边界与 real D4。"
+    - "复用 Contracts v0.7.0 的 producer-neutral v5 Tool projection，不从模型文本或 generic Item 制造 producer。"
+    - "Owner 决定正常 producer 所属与责任：Connector 执行、Skill 声明、Host 加载/投影、Contracts 约束、Desktop 呈现。"
+    - "Owner 选定后验证真实 started/progress/completed/failed、稳定身份、caps/redaction、unknown、hydration 与无障碍 UI。"
+  out_of_scope:
+    - "本 D0 不实现任何代码，不注册 MCP/Connector/dynamic tool，不执行 Tool D4。"
+    - "CAP-018 experimental dynamic tool image 不能替代 CAP-017 的真实产品 producer。"
+    - "不修改、升级或替换最终冻结 Runtime b2b20e2fc4a0c94834f34d8cc459e488a1b56277。"
+    - "不涉及 Command、FileChange、Diff、审批、写权限扩展或 FEAT-138。"
+    - "不强杀、故障注入、破坏权限、替换 binary、使用攻击 fixture、发布或生产写。"
+  main_flow:
+    - "Owner 先书面选择真实 Tool 类型、用户入口、producer repository、权限模型、数据分类、允许参数与失败边界。"
+    - "Contracts 先冻结闭合 producer/consumer 语义与安全 allowlist，Host 只映射真实 producer 事件。"
+    - "用户通过选定入口发起 Tool；Desktop 展示真实 started/progress 与单一 completed 或 failed terminal。"
+    - "应用正常关闭重开后，SQLCipher 只 hydrate 安全投影且每个 Tool Item 一次。"
+  visual_direction: "继承 FEAT-136 的 Item shell 与 Yijie Design System；Tool 名称、进度、结果和失败必须安全、可折叠、可键盘操作且不只依赖颜色。"
+  ui_states:
+    idle: "Owner 未选定入口或没有真实 Tool 时不显示伪造 Item。"
+    loading: "只在真实 producer started/progress 后显示 in_progress，不编造百分比。"
+    success: "completed authority 封口 bounded、安全的 Tool 结果。"
+    empty: "没有允许的安全 metadata 时显示 unavailable，不从 raw payload 回退。"
+    error: "failed/unknown 只显示 stable code 与安全摘要，不泄露 provider、path、secret 或 wire。"
+    retry: "不自动重放有副作用 Tool；重试必须是新的明确用户意图并遵守 Owner 安全策略。"
+    cancel: "取消语义必须由所选 producer 与 contract 明确；D0 不假设或制造取消。"
+
+must_acceptance:
+  - id: "AC-001"
+    statement: "Owner 书面选定一个真实 Tool producer、产品入口、所属 repository、权限模型、数据分类、允许参数与副作用边界；CAP-018 不能替代。"
+    verification: "检查 Owner decision record、ADR/contract impact 与唯一真实入口；当前 decision pending。"
+    status: "pending"
+  - id: "AC-002"
+    statement: "选定真实 producer 后，Tool started、零到多个真实 progress 与且仅一个 completed terminal 通过 Runtime/Host/Contracts/Desktop canonical 链路。"
+    verification: "在 Owner-approved local/demo_fast 入口执行一次真实成功 Tool vertical；当前 NOT RUN。"
+    status: "pending"
+  - id: "AC-003"
+    statement: "一个正常、安全、非破坏性的代表性失败形成且只形成一个 failed terminal，包含 stable error 与适用 duration。"
+    verification: "使用产品正常失败条件验证，不故障注入、不破坏权限、不使用攻击 fixture；当前 NOT RUN。"
+    status: "pending"
+  - id: "AC-004"
+    statement: "Tool 只暴露 Owner allowlisted identity、arguments summary、progress/result/error 与 caps/redaction，不包含 raw payload、绝对路径、秘密或 Runtime wire。"
+    verification: "contract、Host mapping、Desktop projection、clipboard 与证据安全审计；当前 NOT RUN。"
+    status: "pending"
+  - id: "AC-005"
+    statement: "未知 Tool identity/variant fail closed，不回退到 raw 内容，并进入明确的安全 unavailable/resync 状态。"
+    verification: "普通 closed fixtures 与 focused consumer tests；真实 unknown vertical 仅在安全自然条件出现时观察；当前 NOT RUN。"
+    status: "pending"
+  - id: "AC-006"
+    statement: "Tool event identity、completed reconciliation、replay/dedupe 与 late-event seal 保证 terminal 不重复、不串 item、不回滚。"
+    verification: "source conformance 加自然重连观察；未自然观察时如实记录 NOT OBSERVED，不注入或伪造；当前 NOT RUN。"
+    status: "pending"
+  - id: "AC-007"
+    statement: "正常关闭重开后 SQLCipher 只 hydrate 最小安全 Tool 投影，每个 Item 一次；Tool UI 在要求的主题、尺寸、200% 与键盘下可读并安全复制。"
+    verification: "正常关闭/重开、cardinality、accessibility、theme/viewport/zoom 与 clipboard 检查；当前 NOT RUN。"
+    status: "pending"
+  - id: "AC-008"
+    statement: "在未修改最终冻结 Runtime、未扩大权限且不使用危险手段的前提下，真实成功和代表性失败 Tool D4 均通过。"
+    verification: "Owner 单独批准真实入口和调用额度后执行 fresh D4；当前调用额度 0，NOT RUN。"
+    status: "pending"
+
+contract:
+  impact: "semantic"
+  authority: "当前兼容性基础为 yijie-contracts@87f94c9aa6d4848cb67aa8a1265bd21474edb0bb / v0.7.0 的 AgentSessionEventV5；真实 Tool producer、入口、权限与产品语义必须由 Owner decision 后的 source-first contract/ADR 冻结。"
+  source_first_plan: "先决策 producer/entrypoint/security，再确认现有 v5 是否充分；只允许 additive/semantic 的闭合变更并保护 v1-v4。若把业务 producer 放入 Runtime 或 Host，必须取得新的 Owner 授权并补 ADR；默认不修改冻结 Runtime。"
+  status: "NOT RUN"
+  checks: []
+
+external_authorizations:
+  paid_calls: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+  destructive_operations: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+  production_writes: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+
+implementation:
+  status: "blocked"
+  real_entrypoint: "NOT SELECTED：等待 Owner 决定真实 Tool producer、产品入口、安全/权限边界与调用额度；在此之前不得注册或制造 producer。"
+  mock_only: false
+
+verification:
+  status: "NOT RUN"
+  verified_at: "NOT RUN"
+  startup:
+    status: "NOT RUN"
+    command_or_steps: "Owner 决策后才允许通过 canonical local/demo_fast 正常入口启动；本 D0 不启动任何应用或 Runtime。"
+    environment: "最终冻结 Runtime b2b20e2…；产品入口、producer 与权限模型 pending。"
+    actual_result: "NOT RUN：D0 only。"
+  real_smoke:
+    status: "NOT RUN"
+    command_or_steps: "Owner 选定并批准后执行一个真实成功 Tool vertical；本批调用额度 0。"
+    environment: "待定的安全 local/demo_fast 入口；不得用 MCP/Connector/dynamic-tool 临时注册制造 producer。"
+    actual_result: "NOT RUN：真实 producer 不存在，Owner decision pending。"
+  representative_failure:
+    status: "NOT RUN"
+    command_or_steps: "Owner 选定产品正常失败条件后执行；禁止故障注入、权限破坏、binary 替换或攻击 fixture。"
+    environment: "待 Owner 决策。"
+    actual_result: "NOT RUN：没有安全且真实的 producer/entrypoint。"
+  focused_checks: []
+  artifacts:
+    - "00-feature-brief.md"
+    - "01-delivery-log.md"
+    - "02-verification.md"
+  diff_review:
+    status: "NOT RUN"
+    summary: "D0 only；尚无实现 diff。已有 FEAT-136 generic Tool foundation 只作为后续 source input，不是 real producer evidence。"
+  known_limitations:
+    - "真实 Tool producer、产品入口、权限/安全边界与副作用分类仍待 Owner 决策。"
+    - "implementation blocked；verification、startup、real smoke、representative failure 与 Tool D4 全部 NOT RUN。"
+    - "现有 generic Tool contract/consumer foundation 不能证明 CAP-017 / GS-004 的真实产品 vertical。"
+    - "CAP-018 experimental dynamic tool image 不能替代本 Feature。"
+    - "本 D0 不修改代码、不启动应用/Runtime/Provider/model，真实调用 0 次。"
+
+public_readiness:
+  required: false
+  status: "not_applicable"
+  checks: []
+  external_smoke:
+    status: "NOT RUN"
+    command_or_steps: "N/A：exposure=local；不发布或部署。"
+    actual_result: "N/A：没有公网入口。"
+
+documents:
+  brief: "00-feature-brief.md"
+  delivery_log: "01-delivery-log.md"
+  verification: "02-verification.md"

@@ -1,0 +1,44 @@
+{
+  "recorded_at": "2026-09-10T10:34:58.075120+00:00",
+  "timestamp_basis": "Recorded on processing the explicit current user replies; not a claimed original delivery timestamp.",
+  "local_commits": {
+    "authorized": true,
+    "order": [
+      "Contracts",
+      "Host",
+      "Desktop compatible reader",
+      "Desktop final writer/display",
+      "meta"
+    ],
+    "necessary_scoped_fixes": true,
+    "push": false,
+    "tag": false,
+    "deploy": false
+  },
+  "budget": {
+    "business": {
+      "limit": 10,
+      "used": 0,
+      "unit": "tools/call attempts including native resend"
+    },
+    "metadata": {
+      "limit": 10,
+      "used": 8,
+      "unit": "native metadata operations including internal retries and cleanup"
+    },
+    "model": {
+      "provider": "MiniMax",
+      "model": "MiniMax-M3",
+      "limit": 8,
+      "used": 0,
+      "unit": "actually forwarded text API requests including automatic/retry/review"
+    },
+    "images": {
+      "limit": 0,
+      "used": 0
+    }
+  },
+  "ac004": "OWNER_EXCLUDED / NOT RUN",
+  "canonical": "NOT RUN",
+  "D4": "NOT RUN"
+}

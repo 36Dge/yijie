@@ -1,0 +1,935 @@
+{
+  "recorded_at": "2026-09-10T10:27:18.146926+00:00",
+  "repositories": [
+    {
+      "repository": "yijie",
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "6f12939aa85f8a9c1f55e89f1018c60501a2f494",
+      "status": " M docs/dev/codex-project-memory.md\n M docs/features/FEAT-131-desktop-codex-parity-baseline/03-capability-matrix.md\n M docs/features/FEAT-131-desktop-codex-parity-baseline/04-golden-scenarios.md\n M docs/features/FEAT-131-desktop-codex-parity-baseline/05-reference-evidence-index.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/00-feature-brief.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/01-delivery-log.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/02-verification.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/feature.yaml\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/03-native-audit-and-decisions-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/04-acceptance-scenarios.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/05-d0-preflight-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/06-header-auth-and-discovery-budget-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/07-paused-state-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/08-discovery-results-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/09-local-codex-validation-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/10-fixed-runtime-d0-decision-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/11-native-http-differential-diagnosis-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/12-independent-contract-and-reader-plan-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/13-connection-closure-and-d0-review-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/14-bounded-native-business-sample-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/15-owner-scope-and-business-budget-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/16-native-implementation-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/17-implementation-review-and-precommit-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/history/\n",
+      "staged": []
+    },
+    {
+      "repository": "yijie-admin-web",
+      "branch": "develop",
+      "head": "d009cafccb112c098114c075d60f67ee5e0296d8",
+      "status": "",
+      "staged": []
+    },
+    {
+      "repository": "yijie-agent-host",
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+      "status": " M internal/app/app.go\n M internal/app/native_conversation.go\n M internal/app/runtime_permissions.go\n M internal/codex/protocol.go\n M internal/codex/provider.go\n M internal/codex/runtime.go\n M internal/codex/runtime_permissions.go\n M internal/codex/session_protocol.go\n M internal/session/events.go\n M internal/session/native_conversation.go\n M internal/session/native_conversation_test.go\n M internal/session/runtime_permissions.go\n M internal/session/service.go\n?? api/native-mcp.candidate.json\n?? api/openapi/native-conversation-v2.yaml\n?? api/openapi/runtime-permissions-v2.yaml\n?? internal/app/native_mcp.go\n?? internal/app/native_mcp_test.go\n?? internal/codex/sorftime-product-detail.input.schema.json\n?? internal/codex/sorftime.go\n?? internal/codex/sorftime_test.go\n?? internal/contracts/nativeconversationv2/\n?? internal/contracts/runtimepermissionsv2/\n?? internal/session/native_mcp.go\n?? internal/session/native_mcp_test.go\n",
+      "staged": []
+    },
+    {
+      "repository": "yijie-api",
+      "branch": "feat/feat-126-foundation-closure",
+      "head": "f9d730a157bcb012a8fe178cbfebcd4ea27419fc",
+      "status": "",
+      "staged": []
+    },
+    {
+      "repository": "yijie-codex",
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "status": "",
+      "staged": []
+    },
+    {
+      "repository": "yijie-connectors",
+      "branch": "develop",
+      "head": "273eec40bbbfeb17e817643f283db7c81e9b190c",
+      "status": "",
+      "staged": []
+    },
+    {
+      "repository": "yijie-contracts",
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "db7a607c1c091fc4f4243829d68d5b673eb7e2c3",
+      "status": " M redocly.yaml\n M scripts/check-breaking.sh\n M scripts/check-generated.mjs\n M scripts/generate.mjs\n M sdks/typescript/src/index.ts\n?? compatibility/agent-host-native-mcp-v2.json\n?? compatibility/sorftime-product-detail.input.schema.json\n?? docs/native-mcp-v2.md\n?? openapi/native-conversation-v2/\n?? openapi/runtime-permissions-v2/\n?? scripts/sync-native-mcp.mjs\n?? sdks/go/openapi/native-conversation-v2/\n?? sdks/go/openapi/runtime-permissions-v2/\n?? sdks/typescript/src/openapi/native-conversation-v2.gen.ts\n?? sdks/typescript/src/openapi/runtime-permissions-v2.gen.ts\n?? tests/native-mcp-v2.test.mjs\n",
+      "staged": []
+    },
+    {
+      "repository": "yijie-desktop",
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "228a95a4929a53bbb6aafc76156161d642d72153",
+      "status": " M scripts/generate-native-conversation.mjs\n M scripts/run-local-demo-fast.sh\n M src-tauri/schemas/chat-native-conversation-resolved.schema.json\n M src-tauri/src/chat/application.rs\n M src-tauri/src/chat/database.rs\n M src-tauri/src/chat/host_bridge.rs\n M src-tauri/src/chat/host_domain.rs\n M src-tauri/src/chat/ipc.rs\n M src-tauri/src/chat/migrations.rs\n M src-tauri/src/chat/mod.rs\n M src-tauri/src/chat/native_conversation.rs\n M src-tauri/src/chat/native_conversation_generated.rs\n M src-tauri/src/chat/native_conversation_storage.rs\n M src-tauri/src/chat/runtime_permissions.rs\n M src-tauri/src/chat/sidecar.rs\n M src-tauri/src/chat/worker.rs\n M src-tauri/src/lib.rs\n M src/api/chat-client.test.ts\n M src/api/chat-client.ts\n M src/api/generated/native-conversation-history.gen.ts\n M src/api/generated/native-conversation-private.gen.ts\n M src/api/generated/native-conversation-validator.gen.js\n M src/api/runtime-permission-client.ts\n M src/components/chat/ChatToolItem.test.ts\n M src/components/chat/ChatToolItem.vue\n M src/components/chat/ChatTurnGroup.vue\n M src/components/chat/RuntimeApprovalList.vue\n M src/domain/conversation-diagnostics.ts\n M src/domain/conversation-native-view.test.ts\n M src/domain/conversation-timeline.ts\n M src/domain/conversation-view.ts\n M src/stores/chat.store.test.ts\n M src/stores/chat.store.ts\n?? contracts/native-mcp.candidate.json\n?? scripts/check-native-mcp.mjs\n?? src-tauri/contracts/native-conversation-v2.json\n?? src-tauri/contracts/runtime-permissions-v2.json\n?? src-tauri/migrations/chat/0015_chat_native_formats.sql\n?? src-tauri/schemas/chat-native-conversation-v2.schema.json\n?? src-tauri/src/chat/native_conversation_legacy_generated.rs\n?? src/api/generated/native-conversation-v2.gen.ts\n?? src/api/generated/runtime-permissions-v2.gen.ts\n?? src/api/runtime-permission-mcp.test.ts\n?? src/components/chat/ChatNativeToolItem.test.ts\n?? src/components/chat/ChatNativeToolItem.vue\n",
+      "staged": []
+    },
+    {
+      "repository": "yijie-infra",
+      "branch": "feat/feat-126-s10e",
+      "head": "19b7920696904f83030a8ddaba71af15c3c05ad8",
+      "status": "",
+      "staged": []
+    },
+    {
+      "repository": "yijie-knowledge",
+      "branch": "develop",
+      "head": "e9091d2b673ba779ecb39271ce9148e3a41fc256",
+      "status": "",
+      "staged": []
+    },
+    {
+      "repository": "yijie-skills",
+      "branch": "develop",
+      "head": "488714a8d96f40806a257aae097683815b1dd458",
+      "status": "",
+      "staged": []
+    }
+  ],
+  "reviewed_files": [
+    {
+      "repository": "yijie",
+      "path": "docs/dev/codex-project-memory.md",
+      "sha256": "c5399b1b7e6ee06c04a20c3fa1ffa38bde99f65e1e4f35be1ff1890bb9567ebb"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-131-desktop-codex-parity-baseline/03-capability-matrix.md",
+      "sha256": "c62b8efa86da34186e26141aebd05f811344997e4386310bc142847fcd32c80a"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-131-desktop-codex-parity-baseline/04-golden-scenarios.md",
+      "sha256": "e2a4639ef004bd3c9309982fbd71d2105a7192ec76f7594c1e4ff61c912a95d4"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-131-desktop-codex-parity-baseline/05-reference-evidence-index.md",
+      "sha256": "bcac30dce0760f4702b8c22a0ee803c9b9a792061b7cc98ab640487fb4876e71"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/00-feature-brief.md",
+      "sha256": "2844df1d730e410b799ff9aa94cbf2060728dbde226eaf564b12e702792ed5ea"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/01-delivery-log.md",
+      "sha256": "ea1755a9818d06f3bca6023e96e6237bb47f58ed01aedcc3aa873d14c79b9906"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/02-verification.md",
+      "sha256": "8d465a2cd72d1bb1e357babe970efd461b287d777a83466d6f48d87b1a1c0dec"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/03-native-audit-and-decisions-2026-09-10.md",
+      "sha256": "4aebbd4be7109e1ab54a4b18a1ad9b9a28331ce240d670c7f351a8e93d05a458"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/04-acceptance-scenarios.md",
+      "sha256": "d6a05093ea2b7cad68eaebb34e516a119a54450ab4d9e47ec9c7311358b5f3eb"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/05-d0-preflight-2026-09-10.md",
+      "sha256": "dba1648ae411863f404bfdf36e50c7036ecf10854ebc4d592714e4772109e40b"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/06-header-auth-and-discovery-budget-2026-09-10.md",
+      "sha256": "a1fd6dac2db944fdf41145705a3d2c7b5114e897e2c79ce38a123ad74ccc7cdf"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/07-paused-state-2026-09-10.md",
+      "sha256": "c546cf156542a7b95f4361a86b259d9cd07e030874dc8cef4f71cc1ae9ae2409"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/08-discovery-results-2026-09-10.md",
+      "sha256": "aaae86121b5d2eed41d4f5311aa1889cb8861522d9077c8f16579adbfba7b9bf"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/09-local-codex-validation-2026-09-10.md",
+      "sha256": "4e5c08da34b77b93a029c7c74fd83107c1cfea01b37de6f286bbb5444e317c1d"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/10-fixed-runtime-d0-decision-2026-09-10.md",
+      "sha256": "91b056943707a615a3929cf5b5d998566e1588ea7059dc450fa029556889051a"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/11-native-http-differential-diagnosis-2026-09-10.md",
+      "sha256": "c2a58e7d4f872394bd6a9c73a9f4d16c5bdca22e23b86884da1e5a113406f253"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/12-independent-contract-and-reader-plan-2026-09-10.md",
+      "sha256": "238737d216fe2f55c824d993be3f07a9cd453e6489ac8aadbeb3b92049dfc497"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/13-connection-closure-and-d0-review-2026-09-10.md",
+      "sha256": "f1c9e5d1695d9a6134e2899ca015335d64dc4c9d39f06365f1ffee1631185f00"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/14-bounded-native-business-sample-2026-09-10.md",
+      "sha256": "0fab5695fb3475fef338233cac6e7eb0da858887dd474b451eccd563ad977ec4"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/15-owner-scope-and-business-budget-2026-09-10.md",
+      "sha256": "3f310c4ccbd2f97ead8f52ae2b01ed33aec12804a69621e01d482157d0646255"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/16-native-implementation-2026-09-10.md",
+      "sha256": "1b52d6a122185258db1bd1e9d7fed2664f1da7e3d46b09a9eda61181330d420f"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/17-implementation-review-and-precommit-2026-09-10.md",
+      "sha256": "b87cb9d3f5822ae85c88c6a44b54928b607db98580fbd2af5a8b4a7f0b4eed9f"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/d0-business-basis-review-2026-09-10.json",
+      "sha256": "ca4c282fc8b9e0b2a434056a7ade34f318474adf24f424051d3f7f320a9f96a7"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/d0-closure-checks-2026-09-10.json",
+      "sha256": "f737310418c7318fc48d4a3592d514b2a5ebb38653e1ba20d9db989b591e554d"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/d0-closure-final-workspace-2026-09-10.json",
+      "sha256": "aea45da760ef8a0bb4b88b5702e98406b4650818125edf477232a7dbb4f3994f"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/d0-closure-preflight-2026-09-10.json",
+      "sha256": "33e5af2a08adecef843cefa6c0fc9855f931704beff7b15f0ec03fbaca3913b0"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/d0-document-checks-2026-09-10.json",
+      "sha256": "3e64dbfd17ea021775de5f7fd71c42e5953d3b3c7e53ca76fdb9ec61a140632a"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/d0-preflight-2026-09-10.json",
+      "sha256": "3942fb40770bac33c802f52ebfa86ca2126dc737915697f299d2e6fa614b5f07"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/deep-diagnostic-preflight-2026-09-10.json",
+      "sha256": "e2235277aedc53cd4cec8ae49d765003945a466241f2c9e1f77019d3a29be37a"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/deep-document-checks-2026-09-10.json",
+      "sha256": "6617bc1c6db0bc3c843d989655d425e84915595f9960f349a16a0df44a1077c9"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/deep-final-workspace-2026-09-10.json",
+      "sha256": "e0209e1983de23eaddce81db88de9ddbe1e61dc1800853c5df042b72df682e35"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/fixed-runtime-comparison-preflight-2026-09-10.json",
+      "sha256": "89fd9a6da00bcbe896621f72757155c1b81e1fd4acc912889bd4dbee2b490ccf"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/fixed-runtime-d0-checks-2026-09-10.json",
+      "sha256": "bb78a1fb871c0fe6784e1aacb04b36431c5a075b69f62fa0a25656ac90282a20"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/fixed-runtime-d0-final-workspace-2026-09-10.json",
+      "sha256": "2c5de6c270fa7c6139b6835dc6c185c5d300cfe6411b430de8b800343cee72af"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/fixed-runtime-user-agent-success-2026-09-10.json",
+      "sha256": "6192834b80c7c3f0a098c0d29e0a5fc2381099bb289bcc15027c54bcf02f76c6"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/implementation-checks-2026-09-10.json",
+      "sha256": "180cad72201ea5233177ae3f16b4718536d3bd9a7b61b195d4fddc67c5f08d0d"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/implementation-preflight-2026-09-10.json",
+      "sha256": "6b2fbbb0932e1d8758acbb2faa520b923e1d1c1566fb9f432f06786b0c658635"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/independent-native-baseline-checks-2026-09-10.json",
+      "sha256": "321a32e628f5ba58b74ec2ca06fabc55aaf7e5d09b57675e82fbc2cbdb998fc5"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/local-codex-app-source-2026-09-10.json",
+      "sha256": "eac284fc62c3aeb1dafe56874ef16a73ac9602fb0508e04d0b5ec1cbb8503455"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/local-codex-document-checks-2026-09-10.json",
+      "sha256": "2f17b3d6650e4e7e108a3698e37602935bf295266e6f4cca7da74f8195cc28a1"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/local-codex-final-receipt-2026-09-10.json",
+      "sha256": "bf8b340af58fe6523cac1e98376aa7ddc5772aed792644c3c14ec0360e834946"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/native-local-wire-comparison-2026-09-10.json",
+      "sha256": "e5ceb9ebcc0c983b34b4324220457e94537f9c282df44ed54689685eccee9a1a"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/owner-scope-d0-checks-2026-09-10.json",
+      "sha256": "ab9596d0dd72a02914f4c47b83e2dcb428208de2c707e860e949e6562e661e50"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/owner-scope-final-workspace-2026-09-10.json",
+      "sha256": "b0b22292cdd2ec025f8d4dddaaba9c6a45d85c48a25c64af00dd81de68cddc22"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/owner-scope-preflight-2026-09-10.json",
+      "sha256": "8e9dd829af86dc2023cde8fdb68749e1225b8935964720f22d161ed469d29878"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/pause-receipt-2026-09-10.json",
+      "sha256": "057687ee4809a2a985a4b07f9832775db1f8ea38e03ac0c603c1cd40cd693505"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/requirements-audit-2026-09-10.json",
+      "sha256": "d60a85332efcd563847be2f076608ac6aa4eb4cd79a1971a9d480877b72022f1"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/resumed-document-checks-2026-09-10.json",
+      "sha256": "f1d7e19db4948f70c37da8ba0a615746db4125a7289dcd217137f2e1c15c68f6"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/resumed-workspace-receipt-2026-09-10.json",
+      "sha256": "b38b82d363762aa0826254a68d79f74c2ee766c987efd23d8ac43bf356bfceb9"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-archive-audit-2026-09-10.json",
+      "sha256": "897141d163f12dc76c00894cff0501f2af4f846d5058386ce159a136374db8a2"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-business-call-ledger-2026-09-10.json",
+      "sha256": "9398b01b8dbff978728b30a96ecc743b97a5c5dfbe3e4e728001d6096d5647ac"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-discovery-ledger-2026-09-10.json",
+      "sha256": "990bf2b88457c587035ff3e8fe9c7887a22bf6c9c3553354a014d6731e0190a9"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-discovery-status-2026-09-10.json",
+      "sha256": "b57e2aa455093000b13c0c42acdca624dce1993fc48fc38cbb52f1257d06a305"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-native-discovery-operation-1-2026-09-10.json",
+      "sha256": "4bb234a89682b13739ddc585237a7bc4e4cb04f3e538765328aac53c8af9a049"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-native-discovery-operation-2-2026-09-10.json",
+      "sha256": "191153bf1808eb4db0c125fb97c27e93eae14c947853cfa5d81cf70b700aa8f3"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-native-discovery-operation-3-2026-09-10.json",
+      "sha256": "d289a86a041a41f83d0a9158ad47a0694314025ff42eb12d83f24110f7801b81"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-native-discovery-operation-5-2026-09-10.json",
+      "sha256": "db7431066ac554c64b0d442d9292b526a65d104fb4b99973d03387a689900567"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-native-discovery-operation-6-2026-09-10.json",
+      "sha256": "5cf043d14f61b62109e8f435f2459478e87511fe8833e42a1ceeca56466a28bc"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-native-discovery-operation-8-2026-09-10.json",
+      "sha256": "da04891267eab74faf9373c212a2cc24fb8b0358a75361fd38092baefc760b74"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-product-detail-fixed-schema-2026-09-10.json",
+      "sha256": "5dca30db412365ba6f9d13715b1bd0aae8b8daf47410169b3c194c53065955b2"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-product-detail-schema-2026-09-10.json",
+      "sha256": "6e4eece3d320328b3d3ae09781f7d1993af3cfe69785b651c5802df6b5f39b74"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-public-business-review-2026-09-10.json",
+      "sha256": "1f3d382a92f4a7a4398660190a13d246c6c2de300bce2840f03847a4f48fc31b"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/upstream-01534-readonly-comparison-2026-09-10.json",
+      "sha256": "92e6ef1ccb62c4fa6af09068fa412cee748e5bfc98e65f0fda5d7a6c21c4b10e"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/feature.yaml",
+      "sha256": "6b7ef859df3dce027e0ab0695c77283c6ec24b49a68eb60539a4cdee2fe4b3c6"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-08-30/00-feature-brief.md",
+      "sha256": "84b8c5bd667ef95728497f51bc46d9252417b1a6415627b99f75986dbd01765d"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-08-30/01-delivery-log.md",
+      "sha256": "79f3fa4e69b580191d72310a7403fe6c240ac50f866511784d880b91944e8c6a"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-08-30/02-verification.md",
+      "sha256": "740ed009cf8945287c711572b8153d93ec7333c304d0dd27130aed4cbf727a0d"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-08-30/feature.yaml",
+      "sha256": "edd1159a11c3e10c1597082e192486b3f1b7b411731823601f3b5bb51af43376"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-before-ac004-exclusion/00-feature-brief.md",
+      "sha256": "505a989b31aa5b36a176831a2f17814af60d491d07e5c4d213d12ccba29a78c7"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-before-ac004-exclusion/02-verification.md",
+      "sha256": "92c3d18105bbafe76d7301bffceb4f82124bd26328c31a8a2cd6b4ff0517869a"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-before-ac004-exclusion/04-acceptance-scenarios.md",
+      "sha256": "11f02c865e98db9b8229f495c6c894aa489cea61a7a99a6682b0b8ff188f5d80"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-before-ac004-exclusion/README.md",
+      "sha256": "3e14423fe83433cafe2a5c23c87f3e8a83e32863dbd8160ccb9a93cd60843ae8"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-before-ac004-exclusion/feature.yaml",
+      "sha256": "fc2eaf17daed01b9dace1d440b2a8ade7ee36280e9d874e6a7fe3b60f90773b4"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-builtin-proposal/00-feature-brief.md",
+      "sha256": "cfabd32daa774a8da3f6a8deebd86c2fcb658608c3caa288eca3af4948cdc427"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-builtin-proposal/01-delivery-log.md",
+      "sha256": "6d3771d6e4a74c00780e8248c6020731c6bde38331c0e4e0247f47d117c76e37"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-builtin-proposal/02-verification.md",
+      "sha256": "838b9bd50c7abdf868dab1cf6288a3a08f0210f8c580f2e1c0bfb62b613db9d6"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-builtin-proposal/03-native-audit-and-decisions-2026-09-10.md",
+      "sha256": "b4a4db0e7a5fcea9f17cae002f16c417a2e77e0c144e2f56ec1707c6a50d8b0f"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-builtin-proposal/04-acceptance-scenarios.md",
+      "sha256": "36a29f54aeb23b08bc01348b779868fc20a7eed386a5facf2795578b93267d7f"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-builtin-proposal/README.md",
+      "sha256": "5ed8baee327cda2c2b6ff3260a6542c2ccd56851925b0c59732b0b05edf7b04c"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-builtin-proposal/feature.yaml",
+      "sha256": "49caa260556ce7bcd3393fc3adf1fe2110dea4998162ebc1e492ac14b3954e1e"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "api/native-mcp.candidate.json",
+      "sha256": "d105ba3349aa2df3634c1a5dd18601359bc2d24113c1c22f642749eb35e5f4c5"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "api/openapi/native-conversation-v2.yaml",
+      "sha256": "ac50e89ba3667e9ac1fab63860cfd1c2b1b594c2746c31488669db100fdb7313"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "api/openapi/runtime-permissions-v2.yaml",
+      "sha256": "2ab3f2b9db2f6f8cb9485c3fb0028dd7e66dd1859e22e6a5c06edb55d02bda74"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/app/app.go",
+      "sha256": "2f2bed54023b31ccb11ef8c83fdab836e8bdb9a36a8a70cd1eff16b023fe61a0"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/app/native_conversation.go",
+      "sha256": "28407e0f9a73527540299de7ff67770a09c8ccac6cd8fd591cbe6359af745d0f"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/app/native_mcp.go",
+      "sha256": "c4c52bb336e017e32961bb6709dafb2f31a43ae3dbf298334990503ab5b0d224"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/app/native_mcp_test.go",
+      "sha256": "08ad9d9cdf26608dde7f88e6c82fad788a80e08df377345e9d7c59a0c1a420fc"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/app/runtime_permissions.go",
+      "sha256": "0fdbb5e03f0cbd72bad357a05376842905cef54a7c8e88fac44aa0d14c78f0d1"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/codex/protocol.go",
+      "sha256": "e622c0f443d3c5139e47714a85f33b61324ff8ffcc1523ac945be8fcba4ada50"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/codex/provider.go",
+      "sha256": "def7866b49e68b74bc64ded9ad87d21a12670451699652909d48a50f55135c31"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/codex/runtime.go",
+      "sha256": "b3f3b3b0e39e91965189569c92aba671d2f4bbccfcb4e23c48583bdc66cd219d"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/codex/runtime_permissions.go",
+      "sha256": "b444194dba6c10758d7d33fb3bb8dc46db2958009cb05a98119dddcde2b234f9"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/codex/session_protocol.go",
+      "sha256": "66244fced1b7bcc09d8820069e37c5b50f8b2243845ac0993f2ef195d97281fb"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/codex/sorftime-product-detail.input.schema.json",
+      "sha256": "d507da888c8b9d0d93c6b8fdc8edb8d4a9f1ae7efbc134e87f188e53bcc88600"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/codex/sorftime.go",
+      "sha256": "8035a42cac7981fff8d292523523a0f7e9f066d6ce07c8a96ec8972475395899"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/codex/sorftime_test.go",
+      "sha256": "5f3491203b7a09882eff297bb7d4ec1aca42a0fc991b520222cc84d9b2162e61"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/contracts/nativeconversationv2/types.gen.go",
+      "sha256": "a430b04153a822c968c167fc65a76fe8f713df17356a1e2bb1f6da8da80707c8"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/contracts/runtimepermissionsv2/types.gen.go",
+      "sha256": "3782b0eb05f6534cfca6d86c0504a7264cb3a806fb6603f85aa41c51842ac9fc"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/session/events.go",
+      "sha256": "b448eeed5f737dc100dc4a821784a597948ac56b40fdc0f32a800395654cb77c"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/session/native_conversation.go",
+      "sha256": "49af0489c438d73e744be12d3e65734c85e8477abdd73aca9752d4b88b740fa1"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/session/native_conversation_test.go",
+      "sha256": "0cb67e4e8ca76065d48d0c2dd0dec7c3431710d470360d3126516cd7ea3525b2"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/session/native_mcp.go",
+      "sha256": "b93d94b0ba81b9bd23b6697840b7d2d94fc99dbb92adaeeb5d50ebb063c32b05"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/session/native_mcp_test.go",
+      "sha256": "0a93792ebf9ca660307d603f07cfbe32b196f44542fae785ce2f1f8791eba972"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/session/runtime_permissions.go",
+      "sha256": "5c04bbd3e02cf4f8dcf9565bea95c4962ea438e0d9da3db9e94aba8ab9c68537"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/session/service.go",
+      "sha256": "c5570227c9526f24b7e0939b3d1897d074aa80a6bf9cc5ae9db39bd0686c5681"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "compatibility/agent-host-native-mcp-v2.json",
+      "sha256": "586e3712108ad969a2cb1b946f3b60ec9b5488ce222bc655baa80dc0b157ef01"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "compatibility/sorftime-product-detail.input.schema.json",
+      "sha256": "d507da888c8b9d0d93c6b8fdc8edb8d4a9f1ae7efbc134e87f188e53bcc88600"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "docs/native-mcp-v2.md",
+      "sha256": "d3baa642f35ac6c612a58f84de08af8c44a6f428b6b4f2860e8c2d4b951b9302"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "openapi/native-conversation-v2/native-conversation-v2.yaml",
+      "sha256": "ac50e89ba3667e9ac1fab63860cfd1c2b1b594c2746c31488669db100fdb7313"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "openapi/runtime-permissions-v2/runtime-permissions-v2.yaml",
+      "sha256": "2ab3f2b9db2f6f8cb9485c3fb0028dd7e66dd1859e22e6a5c06edb55d02bda74"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "redocly.yaml",
+      "sha256": "4f745b46398212b4b60fbd288bd1964bf1dfe9546f11f9b902613329876efa93"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "scripts/check-breaking.sh",
+      "sha256": "0a59c4bf18757e49cd8f1f9b6cb0af11b5b6537e202d6b412d99b1109dd5eb03"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "scripts/check-generated.mjs",
+      "sha256": "3e7f516f1bba31530662cc298f9929a8d5f3240278e2ec4eb5832f3f80cc65f6"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "scripts/generate.mjs",
+      "sha256": "711a529c8cd04f826c6f2db37892bd509004d1cfe078ecc78961761a8ab16a4a"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "scripts/sync-native-mcp.mjs",
+      "sha256": "4b45697d93f4897424ca252bdb8cae937a699bcb3eb1226a5ce1b70982a0c31b"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "sdks/go/openapi/native-conversation-v2/client.gen.go",
+      "sha256": "a430b04153a822c968c167fc65a76fe8f713df17356a1e2bb1f6da8da80707c8"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "sdks/go/openapi/runtime-permissions-v2/client.gen.go",
+      "sha256": "3782b0eb05f6534cfca6d86c0504a7264cb3a806fb6603f85aa41c51842ac9fc"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "sdks/typescript/src/index.ts",
+      "sha256": "80cf97659ba8485c30f3a18b9ecd3b47de37eb386680e9bdb55312c9d278d503"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "sdks/typescript/src/openapi/native-conversation-v2.gen.ts",
+      "sha256": "db7d4fdf4a863c0d6bdeac36ff43303ba51a5dc2f8ec640489cce07930e846f6"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "sdks/typescript/src/openapi/runtime-permissions-v2.gen.ts",
+      "sha256": "17a640f2a951ed98356f77849a2bc8681440497619c234f09f9ffc3e402433b8"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "tests/native-mcp-v2.test.mjs",
+      "sha256": "d5f7d6d73783f12fb61c36917fb989c2d8b04b7bfac41010f467c1b47054d2d5"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "contracts/native-mcp.candidate.json",
+      "sha256": "d105ba3349aa2df3634c1a5dd18601359bc2d24113c1c22f642749eb35e5f4c5"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "scripts/check-native-mcp.mjs",
+      "sha256": "5920e44134ea99a699eefce0fab7c4ded3385c57fd16ca227c055ddaca79f50a"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "scripts/generate-native-conversation.mjs",
+      "sha256": "6f5f77d624731a897a95798d87642c21047782b03c9298d363c8416a40803ed2"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "scripts/run-local-demo-fast.sh",
+      "sha256": "0d70a2d4b33497972d890221553f31d08a71c3f1565bd6a0945f73d8b94d9629"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/contracts/native-conversation-v2.json",
+      "sha256": "ac50e89ba3667e9ac1fab63860cfd1c2b1b594c2746c31488669db100fdb7313"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/contracts/runtime-permissions-v2.json",
+      "sha256": "2ab3f2b9db2f6f8cb9485c3fb0028dd7e66dd1859e22e6a5c06edb55d02bda74"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/migrations/chat/0015_chat_native_formats.sql",
+      "sha256": "01dac0c864378e90c24490065c000e71bc721957d4c1680c409966de2d40b5f2"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/schemas/chat-native-conversation-resolved.schema.json",
+      "sha256": "75be5aa9d600e966c36310b441fa4d2005d51a1928de826609fd0390dabb79bb"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/schemas/chat-native-conversation-v2.schema.json",
+      "sha256": "1e6d57832f0402e352c49317bef1f8cfe217ae4aaf6360064e244496ecc0a443"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/application.rs",
+      "sha256": "411cab51174bd821c941730625f3a47d20b8feb633bdb8d17bc036fdf58e8f1d"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/database.rs",
+      "sha256": "c6a164065259757ad73f60a3478dabd7c46a43a1df9a2538212fee618c574133"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/host_bridge.rs",
+      "sha256": "b171bcf66d00dc71bacacca3f378d4a880030deee6417088921e92bd209f06ce"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/host_domain.rs",
+      "sha256": "2e2fc738bcd2042c57b85fd39818e9e100e0eea42c388b141adf4f35494c6e80"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/ipc.rs",
+      "sha256": "f43f9a85ed6611d52f8ae65ef13a73e750e48a270869d0832cc0559eb0da2b45"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/migrations.rs",
+      "sha256": "ee8e838ec214b2ca332fe0f008a05c518cec67a87ca974fffc2f42b66f8f0f43"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/mod.rs",
+      "sha256": "c3f64f406ea5696f6e9a437d6e62f987f7d3bedc49d0ebf9b717f15f03b6b427"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/native_conversation.rs",
+      "sha256": "cc6cea73f52d65bc529e5bf98a09a51ae5a0ce5697de3c679529bbd39b79d0ff"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/native_conversation_generated.rs",
+      "sha256": "57a81cd05687b53aaae73d6b15ea1039d49365bb3bb8d73d19689bf40db41fa3"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/native_conversation_legacy_generated.rs",
+      "sha256": "1b24cfe4355728a2ac8774b1f587cdfbe70223dfbf5642cb37210eac99385fbe"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/native_conversation_storage.rs",
+      "sha256": "190d2b03fb1ea5c3444170ed7bb2e99593afdee5773ee8826dab2f764abbe63d"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/runtime_permissions.rs",
+      "sha256": "ae3410227b85220688bc38c0f95c78f9df7d9a3469d00e30e4ddc3a23fa81a9a"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/sidecar.rs",
+      "sha256": "2cd429dbcb7054ab4d0329c2dd9144d048d300095a49adeda132f1fc3b1e064b"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/worker.rs",
+      "sha256": "06ab18314fd124d15ab7ab7a2f3b84702b88fcd2f082b3813db1c331dcd2d6f3"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/lib.rs",
+      "sha256": "01e55b8a49909269b7002b81b0f1f8c3c7807e9a0bd040efff089cefe7f2884c"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/api/chat-client.test.ts",
+      "sha256": "1c85edb37a3f1074f06ba82a1838c2fc29e43fdd3eceb40a2b2201f3bcde7a38"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/api/chat-client.ts",
+      "sha256": "22dd8d7b9571caab92986138d1e0015be6b3fe2b6996d41755e2471012b69424"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/api/generated/native-conversation-history.gen.ts",
+      "sha256": "8a02b8ebe94bc9f790f78000f207de3c1e9aa2cbd1fba9912ee32a57fb398b20"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/api/generated/native-conversation-private.gen.ts",
+      "sha256": "fee17f6dd8e89d7b5a8465a6bae7bacb2ee7274993262bafa05cec7457dce32c"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/api/generated/native-conversation-v2.gen.ts",
+      "sha256": "db7d4fdf4a863c0d6bdeac36ff43303ba51a5dc2f8ec640489cce07930e846f6"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/api/generated/native-conversation-validator.gen.js",
+      "sha256": "c389cc204ecabc56ddfd2c0685d3fc1b22234b96ece6a6507d61c78951945151"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/api/generated/runtime-permissions-v2.gen.ts",
+      "sha256": "17a640f2a951ed98356f77849a2bc8681440497619c234f09f9ffc3e402433b8"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/api/runtime-permission-client.ts",
+      "sha256": "ef49090648c396cb3c4f27bd6b35042c8c906c4c77ae9469c731007140342c96"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/api/runtime-permission-mcp.test.ts",
+      "sha256": "59c9199b46bd3833a29052b6df77913de6e8ebd932d1b198b91f697871578627"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/chat/ChatNativeToolItem.test.ts",
+      "sha256": "479b11cc73be201894d02be227e3c22f4057fcf3362b918dfb00748235126eee"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/chat/ChatNativeToolItem.vue",
+      "sha256": "ae991b1f2f68ca4206d92f054b0cfa867c30b2d2af75a085fc972874095f2607"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/chat/ChatToolItem.test.ts",
+      "sha256": "0ec71fc896f7decf603365b934a4153ecbb82932410609e2056f3d8f185cb543"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/chat/ChatToolItem.vue",
+      "sha256": "1f0cf601787671b5d710b6a5a0ccc82093a440f1eaff3f4eeff69c57ed9c65d0"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/chat/ChatTurnGroup.vue",
+      "sha256": "241fbefd1bdc4a3022957bf571a4f9257ca5cf16113018295b040cf1d21e3f9e"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/chat/RuntimeApprovalList.vue",
+      "sha256": "526b5e0780fd05790582cd7fd1e8c9ba358189f6541588a49e8f1fedfdc91aee"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/domain/conversation-diagnostics.ts",
+      "sha256": "36b7fbeff4c9a212f2e7f8afd60d5eb011dd30585fc714ae97f1820d6b287de5"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/domain/conversation-native-view.test.ts",
+      "sha256": "7dee0d68a32ffb8ac7ecef352c2ed7d1c438b27ffed47e8d0acca6a227671b29"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/domain/conversation-timeline.ts",
+      "sha256": "b2b12d781f82680174b384fe00d48d7129d24e1a633ed4463780228cb4a38ad0"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/domain/conversation-view.ts",
+      "sha256": "6348e68899244b6c1b4f644eb7ef05203e0c262097ed59f7d3eb545b9fcd2c02"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/stores/chat.store.test.ts",
+      "sha256": "d3db30349440116a22fc6f1d9652cc35e10b3ac4e85afe4d575529f53bff979a"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/stores/chat.store.ts",
+      "sha256": "315fe6ad4dec47c4de587821967d6a98dddfa0ac82380d82cf82b5e91dcf14b7"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "docs/chat-native-conversation.md",
+      "sha256": "c40a7e0c6ce200a16deff9435b96d0a6e959f4a757de681222018c2b1df8eaa5"
+    }
+  ],
+  "credential_literal_scan": {
+    "key_shaped_hits": 0,
+    "scope": "changed source/docs only; no user database or credential files read"
+  },
+  "authorization": "Local commit/model budget pending; no push authorization",
+  "runtime_unchanged": true,
+  "frozen_runtime": {
+    "codex": "4efe16d2848680752cf9aacf4c17741ab2eeb7415894a66c2bb03652b00a322d",
+    "runtime-manifest.json": "1cfa2e0a139b2213f4d29b1efeed71d4810110ac865f0bcbd931ff33b0062c1b"
+  },
+  "active_git_hooks": {
+    "yijie": [],
+    "yijie-contracts": [],
+    "yijie-agent-host": [],
+    "yijie-desktop": []
+  }
+}

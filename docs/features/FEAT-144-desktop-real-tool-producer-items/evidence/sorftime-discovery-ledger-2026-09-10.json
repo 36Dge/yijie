@@ -1,0 +1,2033 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-144",
+  "stage": "D0 metadata discovery",
+  "date": "2026-09-10",
+  "authorization": {
+    "granted": true,
+    "max_test_calls": 10,
+    "count_unit": "native_metadata_discovery_operations_including_native_handshake_retry_cleanup",
+    "scope": "Current stage metadata discovery only; no model turn or business tools/call.",
+    "source": "User explicitly authorized 5 real call tests with Sorftime official MCP page.",
+    "clarification": "User explicitly chose max 5 native metadata discovery operations including normal handshake/retries/cleanup; prefer one.",
+    "reaffirmation_recorded_at": "2026-09-10T02:00:58.640147+00:00",
+    "approved_at_basis": "Latest explicit resume confirmation recorded at this instant; original five-operation grant remains unchanged. Not an assertion of the original message delivery timestamp.",
+    "amendments": [
+      {
+        "recorded_at": "2026-09-10T02:46:21.957000+00:00",
+        "additional_native_discovery_operations": 5,
+        "new_cumulative_limit": 10,
+        "source": "User supplies MCP configuration and explicitly grants another 5; allows trying local Codex app before yijie app."
+      }
+    ]
+  },
+  "actual": {
+    "native_discovery_operations": 8,
+    "mcp_http_attempts": null,
+    "mcp_business_calls": 0,
+    "model_requests": 0,
+    "images": 0
+  },
+  "header_support": "CONFIRMED_BY_OFFICIAL_DOCUMENTATION",
+  "endpoint": "https://mcp.sorftime.com/",
+  "header_scheme": "Authorization: Bearer <Account-SK>",
+  "credential_processed": true,
+  "runtime_started": true,
+  "tool_set": {
+    "source_operation": 8,
+    "count": 97,
+    "complete_catalog_proven": false
+  },
+  "input_schema": {
+    "tool": "product_detail",
+    "required": [
+      "asin"
+    ],
+    "marketplace_parameter": "amz_site",
+    "evidence": "sorftime-product-detail-fixed-schema-2026-09-10.json"
+  },
+  "output_schema": null,
+  "discovery_complete_catalog_proven": false,
+  "source_docs": [
+    "https://www.sorftime.com/zh-CN/mcp/Codex",
+    "https://www.sorftime.com/zh-CN/mcp/ClaudeCode"
+  ],
+  "d0": "PASS",
+  "records": [
+    {
+      "operation": 1,
+      "started_at": "2026-09-09T18:16:20.596883+00:00",
+      "status": "RETURNED",
+      "method": "mcpServerStatus/list",
+      "scope": "toolsAndAuthOnly, no threadId; native internal requests included",
+      "finished_at": "2026-09-09T18:16:50.690470+00:00",
+      "summary": {
+        "runtime_exit_code": 0,
+        "normal_eof_shutdown": true,
+        "failure": null,
+        "secret_found_in_new_runtime_files_or_streams": false,
+        "affected_surface_count": 0,
+        "unexpected_server_request_count": 0,
+        "observed_http_request_spans_by_method": {},
+        "complete_http_attempt_count": null,
+        "http_count_limit": "native spans exclude possible internal redirects; not a full wire counter",
+        "model_requests": 0,
+        "business_calls": 0,
+        "thread_created": false,
+        "run_directory": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat144-d0-tools/native-discovery-3pkk0fou",
+        "returned_servers": [
+          "sorftime"
+        ],
+        "returned_tool_counts": {
+          "sorftime": 0
+        }
+      },
+      "assessment": {
+        "result": "DISCOVERY_FAILED_TRANSPORT",
+        "native_status_rpc_returned": true,
+        "server_info": null,
+        "tool_count": 0,
+        "observed_initialize_send_failures": 2,
+        "authentication_proven": false,
+        "reason": "Native initialize connection error before a successful MCP handshake; bearerToken only reports configured auth mode.",
+        "incidental_startup_network": "Native default plugin catalog warm-up/sync also attempted ChatGPT/GitHub endpoints; no model turn or business tools. Next operation disables the native plugins feature in the isolated process."
+      }
+    },
+    {
+      "operation": 2,
+      "started_at": "2026-09-10T02:01:21.178237+00:00",
+      "status": "RETURNED",
+      "method": "mcpServerStatus/list",
+      "scope": "toolsAndAuthOnly, no threadId; native internal requests included",
+      "finished_at": "2026-09-10T02:01:21.435201+00:00",
+      "summary": {
+        "runtime_exit_code": 0,
+        "normal_eof_shutdown": true,
+        "failure": null,
+        "secret_found_in_new_runtime_files_or_streams": false,
+        "affected_surface_count": 0,
+        "unexpected_server_request_count": 0,
+        "observed_http_request_spans_by_method": {
+          "POST": 1
+        },
+        "complete_http_attempt_count": null,
+        "http_count_limit": "native spans exclude possible internal redirects; not a full wire counter",
+        "model_requests": 0,
+        "business_calls": 0,
+        "thread_created": false,
+        "run_directory": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat144-d0-tools/native-discovery-xdztqskn",
+        "returned_servers": [
+          "sorftime"
+        ],
+        "returned_tool_counts": {
+          "sorftime": 0
+        }
+      },
+      "assessment": {
+        "result": "DISCOVERY_UNAVAILABLE",
+        "native_status_rpc_returned": true,
+        "server_info": null,
+        "tool_count": 0,
+        "observed_native_post_request_spans": 1,
+        "authentication_proven": false,
+        "reason": "No native server info/tool schema; operation returned in about 0.26s. Native status has no startup error field and no persistent log rows were flushed; cause not proven.",
+        "normal_eof_shutdown": true,
+        "secret_scan": "No exact input secret found in new runtime files/stdout/stderr."
+      }
+    },
+    {
+      "operation": 3,
+      "started_at": "2026-09-10T02:04:15.362397+00:00",
+      "status": "RETURNED",
+      "method": "mcpServerStatus/list",
+      "scope": "toolsAndAuthOnly, no threadId; native internal requests included",
+      "finished_at": "2026-09-10T02:04:15.687975+00:00",
+      "summary": {
+        "runtime_exit_code": 0,
+        "normal_eof_shutdown": true,
+        "failure": null,
+        "secret_found_in_new_runtime_files_or_streams": false,
+        "affected_surface_count": 0,
+        "unexpected_server_request_count": 0,
+        "observed_http_request_spans_by_method": {
+          "POST": 1
+        },
+        "native_http_events": [
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443,
+            "http.response.status_code": 400
+          }
+        ],
+        "native_diagnostic_classes": [],
+        "complete_http_attempt_count": null,
+        "http_count_limit": "native spans exclude possible internal redirects; not a full wire counter",
+        "model_requests": 0,
+        "business_calls": 0,
+        "thread_created": false,
+        "run_directory": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat144-d0-tools/native-discovery-1nng3uwi",
+        "returned_servers": [
+          "sorftime"
+        ],
+        "returned_tool_counts": {
+          "sorftime": 0
+        }
+      },
+      "assessment": {
+        "result": "INITIALIZE_HTTP_400",
+        "native_status_rpc_returned": true,
+        "server_info": null,
+        "tool_count": 0,
+        "native_http_response_status": 400,
+        "observed_native_post_request_spans": 1,
+        "authentication_proven": false,
+        "cause": "Not established by native status response; cannot equate HTTP 400 with invalid credential, absent tools, or Tool business failure."
+      }
+    },
+    {
+      "operation": 4,
+      "started_at": "2026-09-10T02:47:46.535496+00:00",
+      "status": "RETURNED",
+      "method": "thread/start",
+      "scope": "Ephemeral empty native thread for MCP startup diagnostics; no turn/start, no business calls",
+      "runtime_source": "Installed Codex app 0.153.4; c147aa90d34139599711fb568102ceefc6319ca1ac5cb6f4056ca46a1834edd9",
+      "native_startup_status": "ready",
+      "finished_at": "2026-09-10T02:47:48.057382+00:00",
+      "summary": {
+        "runtime_exit_code": 0,
+        "normal_eof_shutdown": true,
+        "failure": null,
+        "secret_found_in_new_runtime_files_or_streams": false,
+        "affected_surface_count": 0,
+        "unexpected_server_request_count": 0,
+        "observed_http_request_spans_by_method": {},
+        "native_http_events": [],
+        "native_diagnostic_classes": [],
+        "complete_http_attempt_count": null,
+        "http_count_limit": "native spans exclude possible internal redirects; not a full wire counter",
+        "model_requests": 0,
+        "business_calls": 0,
+        "thread_created": true,
+        "run_directory": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat144-d0-tools/app-native-discovery-xwf85jz_",
+        "runtime_source": "Installed Codex app 0.153.4",
+        "native_startup_events": [
+          {
+            "name": "sorftime",
+            "status": "starting",
+            "failureReason": null
+          },
+          {
+            "name": "sorftime",
+            "status": "ready",
+            "failureReason": null
+          }
+        ],
+        "returned_servers": [
+          "sorftime"
+        ],
+        "returned_tool_counts": {
+          "sorftime": 97
+        }
+      },
+      "assessment": {
+        "result": "MCP_STARTUP_READY",
+        "runtime": "installed-app 0.153.4",
+        "authentication_and_metadata_connection_validated": true,
+        "business_execution_validated": false,
+        "project_frozen_runtime_compatible": null,
+        "native_server_name": "Sorftime MCP",
+        "native_server_version": "1.1.6",
+        "returned_tool_count": null
+      }
+    },
+    {
+      "operation": 5,
+      "started_at": "2026-09-10T02:47:47.191634+00:00",
+      "status": "RETURNED",
+      "method": "mcpServerStatus/list",
+      "scope": "toolsAndAuthOnly using local Codex app runtime after native startup ready; this may initialize a separate manager",
+      "runtime_source": "Installed Codex app 0.153.4; c147aa90d34139599711fb568102ceefc6319ca1ac5cb6f4056ca46a1834edd9",
+      "finished_at": "2026-09-10T02:47:48.057407+00:00",
+      "summary": {
+        "runtime_exit_code": 0,
+        "normal_eof_shutdown": true,
+        "failure": null,
+        "secret_found_in_new_runtime_files_or_streams": false,
+        "affected_surface_count": 0,
+        "unexpected_server_request_count": 0,
+        "observed_http_request_spans_by_method": {},
+        "native_http_events": [],
+        "native_diagnostic_classes": [],
+        "complete_http_attempt_count": null,
+        "http_count_limit": "native spans exclude possible internal redirects; not a full wire counter",
+        "model_requests": 0,
+        "business_calls": 0,
+        "thread_created": true,
+        "run_directory": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat144-d0-tools/app-native-discovery-xwf85jz_",
+        "runtime_source": "Installed Codex app 0.153.4",
+        "native_startup_events": [
+          {
+            "name": "sorftime",
+            "status": "starting",
+            "failureReason": null
+          },
+          {
+            "name": "sorftime",
+            "status": "ready",
+            "failureReason": null
+          }
+        ],
+        "returned_servers": [
+          "sorftime"
+        ],
+        "returned_tool_counts": {
+          "sorftime": 97
+        }
+      },
+      "assessment": {
+        "result": "MCP_TOOL_DISCOVERY_SUCCEEDED",
+        "runtime": "installed-app 0.153.4",
+        "authentication_and_metadata_connection_validated": true,
+        "business_execution_validated": false,
+        "project_frozen_runtime_compatible": null,
+        "native_server_name": "Sorftime MCP",
+        "native_server_version": "1.1.6",
+        "returned_tool_count": 97
+      }
+    },
+    {
+      "operation": 6,
+      "started_at": "2026-09-10T03:24:56.155769+00:00",
+      "status": "FAILED",
+      "method": "thread/start",
+      "scope": "Ephemeral empty native thread for MCP startup diagnostics; no turn/start, no business calls",
+      "runtime_source": "Project frozen Codex 0.144.6; 4efe16d2848680752cf9aacf4c17741ab2eeb7415894a66c2bb03652b00a322d",
+      "native_startup_status": "failed",
+      "finished_at": "2026-09-10T03:24:56.624032+00:00",
+      "summary": {
+        "runtime_exit_code": 0,
+        "normal_eof_shutdown": true,
+        "failure": "native_mcp_startup_failed",
+        "secret_found_in_new_runtime_files_or_streams": false,
+        "affected_surface_count": 0,
+        "unexpected_server_request_count": 0,
+        "observed_http_request_spans_by_method": {
+          "POST": 1
+        },
+        "native_http_events": [
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443,
+            "http.response.status_code": 400
+          }
+        ],
+        "native_diagnostic_classes": [],
+        "complete_http_attempt_count": null,
+        "http_count_limit": "native spans exclude possible internal redirects; not a full wire counter",
+        "model_requests": 0,
+        "business_calls": 0,
+        "thread_created": true,
+        "run_directory": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat144-d0-tools/fixed-comparison-1zlol84i",
+        "runtime_source": "Project frozen Codex 0.144.6",
+        "native_startup_events": [
+          {
+            "name": "sorftime",
+            "status": "starting",
+            "failureReason": null
+          },
+          {
+            "name": "sorftime",
+            "status": "failed",
+            "failureReason": null,
+            "error": "MCP client for `sorftime` failed to start: MCP startup failed: handshaking with MCP server failed: Send message error Transport [rmcp::transport::worker::WorkerTransport<rmcp::transport::streamable_http_client::StreamableHttpClientWorker<codex_rmcp_client::http_client_adapter::StreamableHttpClientAdapter>>] error: unexpected server response: HTTP 400: request error, when send initialize request"
+          }
+        ]
+      },
+      "assessment": {
+        "result": "FIXED_RUNTIME_INITIALIZE_HTTP_400",
+        "same_flow_as_operations": [
+          4,
+          5
+        ],
+        "runtime": "project frozen 0.144.6",
+        "native_startup_status": "failed",
+        "native_error_body_preview": "request error",
+        "failed_phase": "MCP initialize HTTP response",
+        "subsequent_tool_listing_executed": false,
+        "unique_root_cause_proven": false,
+        "business_execution_validated": false,
+        "conclusion": "Fixed Runtime compatibility remains blocked. Installed app success does not establish compatibility; no credential-invalid inference."
+      }
+    },
+    {
+      "operation": 7,
+      "started_at": "2026-09-10T05:31:24.654223+00:00",
+      "status": "RETURNED",
+      "method": "thread/start",
+      "scope": "Ephemeral empty native thread for MCP startup diagnostics; no turn/start, no business calls",
+      "configuration_delta": {
+        "http_headers": {
+          "User-Agent": "codex-mcp-client/0.144.6"
+        }
+      },
+      "runtime_source": "Project frozen Codex 0.144.6; 4efe16d2848680752cf9aacf4c17741ab2eeb7415894a66c2bb03652b00a322d",
+      "native_startup_status": "ready",
+      "finished_at": "2026-09-10T05:31:26.673875+00:00",
+      "summary": {
+        "runtime_exit_code": 0,
+        "normal_eof_shutdown": true,
+        "failure": null,
+        "secret_found_in_new_runtime_files_or_streams": false,
+        "affected_surface_count": 0,
+        "unexpected_server_request_count": 0,
+        "observed_http_request_spans_by_method": {
+          "POST": 6
+        },
+        "native_http_events": [
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443,
+            "http.response.status_code": 200
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443,
+            "http.response.status_code": 202
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443,
+            "http.response.status_code": 200
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443,
+            "http.response.status_code": 200
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443,
+            "http.response.status_code": 202
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443,
+            "http.response.status_code": 200
+          }
+        ],
+        "native_diagnostic_classes": [],
+        "complete_http_attempt_count": null,
+        "http_count_limit": "native spans exclude possible internal redirects; not a full wire counter",
+        "model_requests": 0,
+        "business_calls": 0,
+        "thread_created": true,
+        "run_directory": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat144-d0-tools/fixed-user-agent-gc3c4hil",
+        "runtime_source": "Project frozen Codex 0.144.6",
+        "configuration_delta": {
+          "http_headers": {
+            "User-Agent": "codex-mcp-client/0.144.6"
+          }
+        },
+        "native_startup_events": [
+          {
+            "name": "sorftime",
+            "status": "starting",
+            "failureReason": null
+          },
+          {
+            "name": "sorftime",
+            "status": "ready",
+            "failureReason": null
+          }
+        ],
+        "returned_servers": [
+          "sorftime"
+        ],
+        "returned_tool_counts": {
+          "sorftime": 97
+        }
+      },
+      "assessment": {
+        "result": "FIXED_RUNTIME_MCP_STARTUP_READY",
+        "project_frozen_runtime_metadata_compatible": true,
+        "business_execution_validated": false,
+        "configuration_fix": "Native http_headers User-Agent=codex-mcp-client/0.144.6; actual version, no Runtime modification",
+        "native_server_name": "Sorftime MCP",
+        "native_server_version": "1.1.6",
+        "returned_tool_count": null,
+        "shared_http_summary_note": "Operations7/8 share one process summary with6 observed POST spans; do not add the two copies as12; full HTTP count remains unknown."
+      }
+    },
+    {
+      "operation": 8,
+      "started_at": "2026-09-10T05:31:25.663948+00:00",
+      "status": "RETURNED",
+      "method": "mcpServerStatus/list",
+      "scope": "toolsAndAuthOnly using project frozen Codex runtime after native startup ready; this may initialize a separate manager",
+      "configuration_delta": {
+        "http_headers": {
+          "User-Agent": "codex-mcp-client/0.144.6"
+        }
+      },
+      "runtime_source": "Project frozen Codex 0.144.6; 4efe16d2848680752cf9aacf4c17741ab2eeb7415894a66c2bb03652b00a322d",
+      "finished_at": "2026-09-10T05:31:26.673895+00:00",
+      "summary": {
+        "runtime_exit_code": 0,
+        "normal_eof_shutdown": true,
+        "failure": null,
+        "secret_found_in_new_runtime_files_or_streams": false,
+        "affected_surface_count": 0,
+        "unexpected_server_request_count": 0,
+        "observed_http_request_spans_by_method": {
+          "POST": 6
+        },
+        "native_http_events": [
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443,
+            "http.response.status_code": 200
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443,
+            "http.response.status_code": 202
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443,
+            "http.response.status_code": 200
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443,
+            "http.response.status_code": 200
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443,
+            "http.response.status_code": 202
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443
+          },
+          {
+            "http.request.method": "POST",
+            "server.address": "mcp.sorftime.com",
+            "server.port": 443,
+            "http.response.status_code": 200
+          }
+        ],
+        "native_diagnostic_classes": [],
+        "complete_http_attempt_count": null,
+        "http_count_limit": "native spans exclude possible internal redirects; not a full wire counter",
+        "model_requests": 0,
+        "business_calls": 0,
+        "thread_created": true,
+        "run_directory": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat144-d0-tools/fixed-user-agent-gc3c4hil",
+        "runtime_source": "Project frozen Codex 0.144.6",
+        "configuration_delta": {
+          "http_headers": {
+            "User-Agent": "codex-mcp-client/0.144.6"
+          }
+        },
+        "native_startup_events": [
+          {
+            "name": "sorftime",
+            "status": "starting",
+            "failureReason": null
+          },
+          {
+            "name": "sorftime",
+            "status": "ready",
+            "failureReason": null
+          }
+        ],
+        "returned_servers": [
+          "sorftime"
+        ],
+        "returned_tool_counts": {
+          "sorftime": 97
+        }
+      },
+      "assessment": {
+        "result": "FIXED_RUNTIME_MCP_TOOL_DISCOVERY_SUCCEEDED",
+        "project_frozen_runtime_metadata_compatible": true,
+        "business_execution_validated": false,
+        "configuration_fix": "Native http_headers User-Agent=codex-mcp-client/0.144.6; actual version, no Runtime modification",
+        "native_server_name": "Sorftime MCP",
+        "native_server_version": "1.1.6",
+        "returned_tool_count": 97,
+        "shared_http_summary_note": "Operations7/8 share one process summary with6 observed POST spans; do not add the two copies as12; full HTTP count remains unknown."
+      }
+    }
+  ],
+  "native_result_file": "sorftime-native-discovery-operation-8-2026-09-10.json",
+  "execution_state": "FIXED_RUNTIME_MCP_METADATA_VALIDATED",
+  "remaining_native_discovery_operations": 2,
+  "next_operation_prepared_not_executed": null,
+  "resume_requirement": "Proceed under 15 scope/budget and 16 authorized implementation; no business-failure/fee prerequisite and no repeat business-budget request. Check independent ledgers before real operations; local commit/model/push need their applicable authorization.",
+  "resume_authorization": {
+    "source": "User: 继续执行",
+    "recorded_at": "2026-09-10T02:00:58.640147+00:00"
+  },
+  "runtime_currently_running": false,
+  "credential_retained": false,
+  "current_report": "../15-owner-scope-and-business-budget-2026-09-10.md",
+  "harness_sha256": "7b8bc45dfc0ff3762b8a63ddbea23b81f82e2d8ea4b05b7579a5dad8dfff0e6a",
+  "current_stage_boundary": "Fixed Runtime native metadata validated; product implementation/canonical/D4 and business calls not executed. No repeat connectivity calls.",
+  "latest_operation_evidence": "sorftime-native-discovery-operation-8-2026-09-10.json",
+  "latest_execution_authorization": {
+    "source": "User explicitly requests fixed Runtime same-flow verification with remaining five metadata operations; this round prefer max two, no model or business calls.",
+    "cumulative_limit_unchanged": 10,
+    "operations_this_round": 1,
+    "recorded_at": "2026-09-10T03:31:45.603956+00:00"
+  },
+  "connection_blocker": "CLOSED_FOR_NATIVE_METADATA",
+  "validated_native_configuration": {
+    "url": "https://mcp.sorftime.com/",
+    "bearer_token_env_var": "YIJIE_FEAT144_SORFTIME_ACCOUNT_SK",
+    "http_headers": {
+      "User-Agent": "codex-mcp-client/0.144.6"
+    }
+  },
+  "historical_pause_note": "User requested remembering execution status/details and pausing; no second operation started.",
+  "d0_remaining_decisions": [],
+  "latest_result_receipt": "fixed-runtime-user-agent-success-2026-09-10.json",
+  "business_activation_prerequisites": [
+    "User confirmed sufficient balance and separately authorized 10 business tools/call attempts including native resend; see independent business ledger. Native permissions and applicable implementation/model prerequisites remain."
+  ],
+  "business_sampling_proposal": "14 remains inactive and nonessential; future use shares the separately authorized 10-attempt business cap",
+  "business_call_ledger": "sorftime-business-call-ledger-2026-09-10.json",
+  "scope_decision": "AC-004/F144-S03 business failure implementation and validation excluded by explicit user request; not PASS",
+  "d0_evidence": "owner-scope-d0-checks-2026-09-10.json"
+}

@@ -1,0 +1,242 @@
+{
+  "recorded_at": "2026-09-10T10:40:01.378060+00:00",
+  "stage": "source committed, canonical and D4 not run",
+  "repositories": {
+    "yijie-contracts": {
+      "commit": "db54c617c65db5431b950eb297ba148a43a8e600",
+      "status": ""
+    },
+    "yijie-agent-host": {
+      "commit": "31ee71889f83aff53dce6eeacd4b5ca4fd319c6b",
+      "status": ""
+    },
+    "yijie-desktop": {
+      "commit": "9455179cac3772972dc19d16cd8dee3a5b95806f",
+      "status": ""
+    },
+    "yijie-codex": {
+      "commit": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "status": ""
+    }
+  },
+  "reader": {
+    "commit": "25b004fbd5a4dcf642a503d302c21a7d6e3b817f",
+    "tree": "799e8e82cd5a61be27db5ce536c73fe74bde95ac",
+    "write_format": 1,
+    "read_format": 2,
+    "checks": {
+      "generation": 0,
+      "vue_tsc": 0,
+      "safe_reader_tests": {
+        "exit": 0,
+        "passed": 3
+      }
+    }
+  },
+  "final_checks": {
+    "desktop_docs_build": 0,
+    "cargo_fmt_check": 0,
+    "cargo_clippy_lib_deny_warnings": 0,
+    "desktop_feat144_tests": {
+      "exit": 0,
+      "passed": 4
+    },
+    "host_feat144_race": 0,
+    "permission_full_source_check": 0,
+    "native_mcp_committed_check": 0,
+    "D0": 0,
+    "strict": 0
+  },
+  "fixes": [
+    "Collapsed nested Sidecar configuration condition for clippy; same predicates and rejection semantics."
+  ],
+  "budget_evidence": "delivery-authorization-and-budget-2026-09-10.json",
+  "pushed": false,
+  "pins": {
+    "yijie-agent-host/api/native-conversation.lock.json": {
+      "sha256": "03a3cbf845d38de1a69ca94167a4a38c86ffcab76c37f6c50f56fa6fa217ab41",
+      "value": {
+        "schema_version": 1,
+        "feature": "FEAT-132",
+        "contract_family_version": "0.1.0",
+        "provenance": "git-commit",
+        "published": false,
+        "contracts": {
+          "repository": "https://github.com/36Dge/yijie-contracts.git",
+          "full_commit": "db54c617c65db5431b950eb297ba148a43a8e600"
+        },
+        "sources": {
+          "openapi/native-conversation/native-conversation.yaml": "ad4c7f0eece6acb99029358a8284535757ee5d7c97858d65b8813631f56ad651",
+          "sdks/go/openapi/native-conversation/client.gen.go": "eefcaeab74a0309a78cda03ad131966cb3b35fa05e66a7e058f1145228124a16",
+          "sdks/typescript/src/openapi/native-conversation.gen.ts": "b8303ceb4bacd41646848f6844b20a0cdf63148708c6f005c9314e8ae93e4f2b",
+          "compatibility/agent-host-native-conversation-v1.json": "5ae920d8fb1ad34c39dc80d824a9192274b5708016ceb124adb6b01ea7156d46",
+          "scripts/generate.mjs": "711a529c8cd04f826c6f2db37892bd509004d1cfe078ecc78961761a8ab16a4a",
+          "scripts/sync-native-conversation.mjs": "795cdc2337f5bed26a04b4dd66ff32bf0bdec0f6e168155610e77b5e4bbd1255",
+          "package.json": "d53fedd8cba4cfd7238b1f60121803905ce6c0127a2e0cde16ba9af18a6333c6",
+          "pnpm-lock.yaml": "57eece158a0405a85ea9b8fd2c382af130e4248897b67af587878737bbf86313",
+          "go.mod": "4bd3ff739f9383a42d641a0cbfcf17d812bf2c260c19be379effff5c528bfc35",
+          "go.sum": "0bb3ffbefa7ef6a6507a59feed3708cf92ac542e4c9911241eb2d9f4a7604b36",
+          "openapi-typescript.redocly.yaml": "b5458ce34977d7c1eef3246846d6372bd1b0be20a8366d8c142170bae4b58ec7"
+        }
+      }
+    },
+    "yijie-agent-host/api/native-mcp.lock.json": {
+      "sha256": "94d09e3988401e0944d91dc0c2c5326738bda2250ed03c055aef983724e1036b",
+      "value": {
+        "schema_version": 1,
+        "feature": "FEAT-144",
+        "contract_family_version": "0.2.0",
+        "provenance": "git-commit",
+        "published": false,
+        "contracts": {
+          "repository": "https://github.com/36Dge/yijie-contracts.git",
+          "full_commit": "db54c617c65db5431b950eb297ba148a43a8e600"
+        },
+        "sources": {
+          "compatibility/sorftime-product-detail.input.schema.json": "d507da888c8b9d0d93c6b8fdc8edb8d4a9f1ae7efbc134e87f188e53bcc88600",
+          "openapi/native-conversation-v2/native-conversation-v2.yaml": "ac50e89ba3667e9ac1fab63860cfd1c2b1b594c2746c31488669db100fdb7313",
+          "sdks/go/openapi/native-conversation-v2/client.gen.go": "a430b04153a822c968c167fc65a76fe8f713df17356a1e2bb1f6da8da80707c8",
+          "sdks/typescript/src/openapi/native-conversation-v2.gen.ts": "db7d4fdf4a863c0d6bdeac36ff43303ba51a5dc2f8ec640489cce07930e846f6",
+          "openapi/runtime-permissions-v2/runtime-permissions-v2.yaml": "2ab3f2b9db2f6f8cb9485c3fb0028dd7e66dd1859e22e6a5c06edb55d02bda74",
+          "sdks/go/openapi/runtime-permissions-v2/client.gen.go": "3782b0eb05f6534cfca6d86c0504a7264cb3a806fb6603f85aa41c51842ac9fc",
+          "sdks/typescript/src/openapi/runtime-permissions-v2.gen.ts": "17a640f2a951ed98356f77849a2bc8681440497619c234f09f9ffc3e402433b8",
+          "compatibility/agent-host-native-mcp-v2.json": "586e3712108ad969a2cb1b946f3b60ec9b5488ce222bc655baa80dc0b157ef01",
+          "scripts/generate.mjs": "711a529c8cd04f826c6f2db37892bd509004d1cfe078ecc78961761a8ab16a4a",
+          "scripts/sync-native-mcp.mjs": "4b45697d93f4897424ca252bdb8cae937a699bcb3eb1226a5ce1b70982a0c31b",
+          "go.mod": "4bd3ff739f9383a42d641a0cbfcf17d812bf2c260c19be379effff5c528bfc35",
+          "go.sum": "0bb3ffbefa7ef6a6507a59feed3708cf92ac542e4c9911241eb2d9f4a7604b36",
+          "package.json": "d53fedd8cba4cfd7238b1f60121803905ce6c0127a2e0cde16ba9af18a6333c6",
+          "pnpm-lock.yaml": "57eece158a0405a85ea9b8fd2c382af130e4248897b67af587878737bbf86313",
+          "openapi-typescript.redocly.yaml": "b5458ce34977d7c1eef3246846d6372bd1b0be20a8366d8c142170bae4b58ec7"
+        }
+      }
+    },
+    "yijie-agent-host/api/runtime-permissions.lock.json": {
+      "sha256": "1d138c13c9f292ec6d8fe824489a4a268ba14cb51bd1e4f050686498fa854326",
+      "value": {
+        "schema_version": 1,
+        "feature": "FEAT-152",
+        "contract_family_version": "0.1.0",
+        "contracts": {
+          "repository": "https://github.com/36Dge/yijie-contracts.git",
+          "full_commit": "db54c617c65db5431b950eb297ba148a43a8e600",
+          "sources": {
+            "openapi/runtime-permissions/runtime-permissions.yaml": "0cd99d5ee3f7035bf43c0996648dc855f71a447595dcb61d903232d81b602a99",
+            "sdks/go/openapi/runtime-permissions/source.bundle.yaml": "613032548bc666f6724b62f73444ef0052f07f71af715bdc5a436da6fb887fc1",
+            "sdks/go/openapi/runtime-permissions/client.gen.go": "e1129eeb3eb1985a5be8f95aa2e4cca1a4c211fe96f3fefcc8ae1f7d8433bc2b",
+            "sdks/typescript/src/openapi/runtime-permissions.gen.ts": "70cc7af6c1102b813ef3aa501ffa86a49891194dcbf9cd3445b39d1e33167bd8",
+            "scripts/generate.mjs": "711a529c8cd04f826c6f2db37892bd509004d1cfe078ecc78961761a8ab16a4a"
+          }
+        },
+        "consumption": {
+          "source": "sdks/go/openapi/runtime-permissions/source.bundle.yaml",
+          "snapshot": "api/openapi/runtime-permissions.yaml",
+          "generated_types": "internal/contracts/runtimepermissions/types.gen.go",
+          "generated_types_sha256": "6f26e5e2d6b9b27b9af010021854431066de2eb35ef5f172d031c30b343934ef",
+          "generator": "github.com/oapi-codegen/oapi-codegen/v2 v2.7.2",
+          "command": "go tool oapi-codegen -generate types -package runtimepermissions api/openapi/runtime-permissions.yaml"
+        },
+        "exposure": "local/demo_fast; not a published tag"
+      }
+    },
+    "yijie-desktop/contracts/native-conversation.lock.json": {
+      "sha256": "03a3cbf845d38de1a69ca94167a4a38c86ffcab76c37f6c50f56fa6fa217ab41",
+      "value": {
+        "schema_version": 1,
+        "feature": "FEAT-132",
+        "contract_family_version": "0.1.0",
+        "provenance": "git-commit",
+        "published": false,
+        "contracts": {
+          "repository": "https://github.com/36Dge/yijie-contracts.git",
+          "full_commit": "db54c617c65db5431b950eb297ba148a43a8e600"
+        },
+        "sources": {
+          "openapi/native-conversation/native-conversation.yaml": "ad4c7f0eece6acb99029358a8284535757ee5d7c97858d65b8813631f56ad651",
+          "sdks/go/openapi/native-conversation/client.gen.go": "eefcaeab74a0309a78cda03ad131966cb3b35fa05e66a7e058f1145228124a16",
+          "sdks/typescript/src/openapi/native-conversation.gen.ts": "b8303ceb4bacd41646848f6844b20a0cdf63148708c6f005c9314e8ae93e4f2b",
+          "compatibility/agent-host-native-conversation-v1.json": "5ae920d8fb1ad34c39dc80d824a9192274b5708016ceb124adb6b01ea7156d46",
+          "scripts/generate.mjs": "711a529c8cd04f826c6f2db37892bd509004d1cfe078ecc78961761a8ab16a4a",
+          "scripts/sync-native-conversation.mjs": "795cdc2337f5bed26a04b4dd66ff32bf0bdec0f6e168155610e77b5e4bbd1255",
+          "package.json": "d53fedd8cba4cfd7238b1f60121803905ce6c0127a2e0cde16ba9af18a6333c6",
+          "pnpm-lock.yaml": "57eece158a0405a85ea9b8fd2c382af130e4248897b67af587878737bbf86313",
+          "go.mod": "4bd3ff739f9383a42d641a0cbfcf17d812bf2c260c19be379effff5c528bfc35",
+          "go.sum": "0bb3ffbefa7ef6a6507a59feed3708cf92ac542e4c9911241eb2d9f4a7604b36",
+          "openapi-typescript.redocly.yaml": "b5458ce34977d7c1eef3246846d6372bd1b0be20a8366d8c142170bae4b58ec7"
+        }
+      }
+    },
+    "yijie-desktop/contracts/native-mcp.lock.json": {
+      "sha256": "94d09e3988401e0944d91dc0c2c5326738bda2250ed03c055aef983724e1036b",
+      "value": {
+        "schema_version": 1,
+        "feature": "FEAT-144",
+        "contract_family_version": "0.2.0",
+        "provenance": "git-commit",
+        "published": false,
+        "contracts": {
+          "repository": "https://github.com/36Dge/yijie-contracts.git",
+          "full_commit": "db54c617c65db5431b950eb297ba148a43a8e600"
+        },
+        "sources": {
+          "compatibility/sorftime-product-detail.input.schema.json": "d507da888c8b9d0d93c6b8fdc8edb8d4a9f1ae7efbc134e87f188e53bcc88600",
+          "openapi/native-conversation-v2/native-conversation-v2.yaml": "ac50e89ba3667e9ac1fab63860cfd1c2b1b594c2746c31488669db100fdb7313",
+          "sdks/go/openapi/native-conversation-v2/client.gen.go": "a430b04153a822c968c167fc65a76fe8f713df17356a1e2bb1f6da8da80707c8",
+          "sdks/typescript/src/openapi/native-conversation-v2.gen.ts": "db7d4fdf4a863c0d6bdeac36ff43303ba51a5dc2f8ec640489cce07930e846f6",
+          "openapi/runtime-permissions-v2/runtime-permissions-v2.yaml": "2ab3f2b9db2f6f8cb9485c3fb0028dd7e66dd1859e22e6a5c06edb55d02bda74",
+          "sdks/go/openapi/runtime-permissions-v2/client.gen.go": "3782b0eb05f6534cfca6d86c0504a7264cb3a806fb6603f85aa41c51842ac9fc",
+          "sdks/typescript/src/openapi/runtime-permissions-v2.gen.ts": "17a640f2a951ed98356f77849a2bc8681440497619c234f09f9ffc3e402433b8",
+          "compatibility/agent-host-native-mcp-v2.json": "586e3712108ad969a2cb1b946f3b60ec9b5488ce222bc655baa80dc0b157ef01",
+          "scripts/generate.mjs": "711a529c8cd04f826c6f2db37892bd509004d1cfe078ecc78961761a8ab16a4a",
+          "scripts/sync-native-mcp.mjs": "4b45697d93f4897424ca252bdb8cae937a699bcb3eb1226a5ce1b70982a0c31b",
+          "go.mod": "4bd3ff739f9383a42d641a0cbfcf17d812bf2c260c19be379effff5c528bfc35",
+          "go.sum": "0bb3ffbefa7ef6a6507a59feed3708cf92ac542e4c9911241eb2d9f4a7604b36",
+          "package.json": "d53fedd8cba4cfd7238b1f60121803905ce6c0127a2e0cde16ba9af18a6333c6",
+          "pnpm-lock.yaml": "57eece158a0405a85ea9b8fd2c382af130e4248897b67af587878737bbf86313",
+          "openapi-typescript.redocly.yaml": "b5458ce34977d7c1eef3246846d6372bd1b0be20a8366d8c142170bae4b58ec7"
+        }
+      }
+    },
+    "yijie-desktop/contracts/runtime-permissions.lock.json": {
+      "sha256": "4476020336f49e7aa48bfcd9eb76cf519ef2994d83b818e5e28e8e81ff172bd2",
+      "value": {
+        "schema_version": 1,
+        "feature": "FEAT-152",
+        "contract_family_version": "0.1.0",
+        "contracts": {
+          "repository": "https://github.com/36Dge/yijie-contracts.git",
+          "full_commit": "db54c617c65db5431b950eb297ba148a43a8e600",
+          "sources": {
+            "openapi/runtime-permissions/runtime-permissions.yaml": "0cd99d5ee3f7035bf43c0996648dc855f71a447595dcb61d903232d81b602a99",
+            "sdks/go/openapi/runtime-permissions/source.bundle.yaml": "613032548bc666f6724b62f73444ef0052f07f71af715bdc5a436da6fb887fc1",
+            "sdks/go/openapi/runtime-permissions/client.gen.go": "e1129eeb3eb1985a5be8f95aa2e4cca1a4c211fe96f3fefcc8ae1f7d8433bc2b",
+            "sdks/typescript/src/openapi/runtime-permissions.gen.ts": "70cc7af6c1102b813ef3aa501ffa86a49891194dcbf9cd3445b39d1e33167bd8",
+            "scripts/generate.mjs": "711a529c8cd04f826c6f2db37892bd509004d1cfe078ecc78961761a8ab16a4a"
+          }
+        },
+        "agent_host": {
+          "repository": "https://github.com/36Dge/yijie-agent-host.git",
+          "full_commit": "31ee71889f83aff53dce6eeacd4b5ca4fd319c6b",
+          "sources": {
+            "api/openapi/runtime-permissions.yaml": "613032548bc666f6724b62f73444ef0052f07f71af715bdc5a436da6fb887fc1",
+            "api/runtime-permissions.lock.json": "1d138c13c9f292ec6d8fe824489a4a268ba14cb51bd1e4f050686498fa854326",
+            "go.mod": "7a360b4877255da78e522fae2de8c165c965eb6f546b023883aba6dd1c631f3f",
+            "go.sum": "f4a3ff159e90d65c0db8336657a2634a3932c7db8e0a5ac415fc3dae017f3d3c",
+            "internal/app/app.go": "2f2bed54023b31ccb11ef8c83fdab836e8bdb9a36a8a70cd1eff16b023fe61a0",
+            "internal/app/runtime_permission_verification.go": "1309dc277590710819a7565d8af3e89bc22bbdcd5421c46d874993ea830d61c4",
+            "internal/app/runtime_permissions.go": "0fdbb5e03f0cbd72bad357a05376842905cef54a7c8e88fac44aa0d14c78f0d1",
+            "internal/codex/runtime.go": "b3f3b3b0e39e91965189569c92aba671d2f4bbccfcb4e23c48583bdc66cd219d",
+            "internal/codex/runtime_permissions.go": "b444194dba6c10758d7d33fb3bb8dc46db2958009cb05a98119dddcde2b234f9",
+            "internal/codex/session_protocol.go": "66244fced1b7bcc09d8820069e37c5b50f8b2243845ac0993f2ef195d97281fb",
+            "internal/contracts/runtimepermissions/types.gen.go": "6f26e5e2d6b9b27b9af010021854431066de2eb35ef5f172d031c30b343934ef",
+            "internal/session/multimodal.go": "1eecd7ac35cc5bcfb20d6e03771dd319c9013a0d0151b3aa40fbd05c1bee5741",
+            "internal/session/runtime_permissions.go": "5c04bbd3e02cf4f8dcf9565bea95c4962ea438e0d9da3db9e94aba8ab9c68537",
+            "internal/session/service.go": "c5570227c9526f24b7e0939b3d1897d074aa80a6bf9cc5ae9db39bd0686c5681",
+            "internal/session/store.go": "ab934f9c22c1a9af723fde46bedb2c07681faab548346127d8f0ff66906dcc38"
+          }
+        },
+        "local_scope": "Exact local/demo_fast. Retained v4, Skills and Runtime locks remain authoritative for their own surfaces."
+      }
+    }
+  }
+}

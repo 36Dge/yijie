@@ -1,0 +1,224 @@
+{
+  "recorded_at": "2026-09-10T10:27:17.832188+00:00",
+  "kind": "candidate implementation verification; not canonical or D4",
+  "checks": [
+    {
+      "repository": "yijie-contracts",
+      "command": "node --test tests/native-mcp-v2.test.mjs",
+      "exit_code": 0,
+      "result": "3 passed"
+    },
+    {
+      "repository": "yijie-contracts",
+      "command": "pnpm check-generated:safe",
+      "exit_code": 0,
+      "result": "57 generated SDK files current"
+    },
+    {
+      "repository": "yijie-contracts",
+      "command": "pnpm lint",
+      "exit_code": 0,
+      "result": "OpenAPI/JSON Schema/protobuf/TS/go vet passed; 2 NativeEvent unused-component warnings retained"
+    },
+    {
+      "repository": "yijie-contracts",
+      "command": "bash scripts/check-breaking.sh BASE",
+      "baselines": [
+        "db7a607c1c091fc4f4243829d68d5b673eb7e2c3",
+        "f16a497e1377f45747f8ff9292b4b60cf2027f88",
+        "6f632f155eacdaf93df0e0b00b5dab9e369c5442"
+      ],
+      "exit_code": 0,
+      "result": "all applicable comparisons passed after preserving baseline relative references"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "command": "GOPROXY=off go test -race ./internal/codex ./internal/session ./internal/app -run ^TestFEAT144",
+      "exit_code": 0,
+      "result": "all selected packages passed; native config/catalog/Prompt, authorization, legacy boundary, safe text/JSON capacity"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "command": "go test ./internal/codex ./internal/session ./internal/app with selected RuntimePermission/FEAT132 native conformance filters",
+      "exit_code": 0,
+      "result": "existing ask/auto/full, requested scope, written callback, native review and source conformance passed"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "CARGO_NET_OFFLINE=true cargo check --locked --manifest-path src-tauri/Cargo.toml --lib",
+      "exit_code": 0,
+      "result": "passed"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "CARGO_NET_OFFLINE=true cargo test --locked --manifest-path src-tauri/Cargo.toml --lib feat144_",
+      "exit_code": 0,
+      "result": "4 passed: migration, persistence, worker/history and display capacity"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo test --locked --manifest-path src-tauri/Cargo.toml --lib with retained normal-reopen and populated-schema13 filters",
+      "exit_code": 0,
+      "result": "both selected existing normal-data regressions passed"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "pnpm exec vue-tsc --noEmit",
+      "exit_code": 0,
+      "result": "passed"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "pnpm exec vitest run src/components/chat/ChatNativeToolItem.test.ts src/api/runtime-permission-mcp.test.ts src/domain/conversation-native-view.test.ts src/api/chat-client.test.ts --exclude **/.local/** --exclude **/.contracts-source/** --exclude **/.agent-host-source/** --maxWorkers=2",
+      "exit_code": 0,
+      "result": "33 passed in 4 current-source files"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "pnpm exec vitest run src/components/chat/ChatToolItem.test.ts -t renders-with-status (exact recorded filter: renders .* with status text)",
+      "exit_code": 0,
+      "result": "5 selected passed; other 4 not run; not a full-file PASS"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "focused ESLint on touched TS/Vue and check-native-mcp.mjs; bash -n scripts/run-local-demo-fast.sh; node scripts/sync-runtime-permissions.mjs --check",
+      "exit_code": 0,
+      "result": "passed"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "node scripts/check-native-mcp.mjs --candidate",
+      "exit_code": 0,
+      "result": "candidate provenance and generated adapter passed; not committed activation approval"
+    },
+    {
+      "repository": "yijie",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict and --gate D0 docs/features/FEAT-144-desktop-real-tool-producer-items; pnpm lint",
+      "exit_code": 0,
+      "result": "Final strict, D0 and meta lint passed after implementation evidence synchronization."
+    }
+  ],
+  "reader_isolated_source": {
+    "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat144-reader-check/source-9efslz0y/yijie-desktop",
+    "writer_format": 1,
+    "checks": [
+      {
+        "check": "reader_generation",
+        "command": [
+          "node",
+          "scripts/generate-native-conversation.mjs",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "check": "reader_types",
+        "command": [
+          "pnpm",
+          "exec",
+          "vue-tsc",
+          "--noEmit"
+        ],
+        "exit_code": 1,
+        "stdout": "Scope: all 3 workspace projects\n[ERR_PNPM_ABORTED_REMOVE_MODULES_DIR_NO_TTY] Aborted removal of modules directory due to no TTY\n\nIf you are running pnpm in CI, set the CI environment variable to \"true\", or set \"confirmModulesPurge\" to \"false\".\n[ERROR] Command failed with exit code 1: /Users/jack/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node /Users/jack/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/bin/pnpm.mjs install\n\npnpm: Command failed with exit code 1: /Users/jack/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node /Users/jack/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/bin/pnpm.mjs install\n    at getFinalError (file:///Users/jack/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:88973:14)\n    at makeError (file:///Users/jack/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:91280:21)\n    at getSyncResult (file:///Users/jack/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:93124:10)\n    at spawnSubprocessSync (file:///Users/jack/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:93084:14)\n    at execaCoreSync (file:///Users/jack/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:93014:23)\n    at callBoundExeca (file:///Users/jack/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:95542:23)\n    at boundExeca (file:///Users/jack/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:95519:49)\n    at sync2 (file:///Users/jack/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:95678:10)\n    at runPnpmCli (file:///Users/jack/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:252207:5)\n    at runDepsStatusCheck (file:///Users/jack/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/dist/pnpm.mjs:253973:7)\n",
+        "stderr": ""
+      }
+    ],
+    "followup_checks": [
+      {
+        "check": "reader_types_direct_existing_compiler",
+        "command": [
+          "node",
+          "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/node_modules/vue-tsc/bin/vue-tsc.js",
+          "--noEmit"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "check": "reader_formats",
+        "command": [
+          "cargo",
+          "test",
+          "--locked",
+          "--manifest-path",
+          "src-tauri/Cargo.toml",
+          "--lib",
+          "feat144_"
+        ],
+        "exit_code": 0,
+        "stdout": "\nrunning 3 tests\ntest chat::migrations::tests::feat144_schema14_adds_format_markers_without_rewriting_native_json ... ok\ntest chat::worker::feat144_reader_tests::feat144_unknown_format_crosses_worker_and_history_without_rebuilding ... ok\ntest chat::database::tests::feat144_native_formats_preserve_history_and_block_unsupported_recovery ... ok\n\ntest result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 340 filtered out; finished in 0.75s\n\n",
+        "stderr": "   Compiling yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat144-reader-check/source-9efslz0y/yijie-desktop/src-tauri)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 15.80s\n     Running unittests src/lib.rs (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/target/debug/deps/yijie_desktop_lib-e35083c500fe2f8d)\n"
+      }
+    ],
+    "setup_note": "The first pnpm exec in an archived tree tried automatic dependency reconciliation and stopped before purging modules. Used the same already-installed vue-tsc directly; no dependency reinstall or check relaxation."
+  },
+  "fixed_native_parser": {
+    "kind": "fixed_native_config_parser_only",
+    "runtime_sha256": "4efe16d2848680752cf9aacf4c17741ab2eeb7415894a66c2bb03652b00a322d",
+    "exit_code": 0,
+    "native_features": {
+      "hooks": "false",
+      "plugins": "false",
+      "apps": "false",
+      "tool_suggest": "false",
+      "shell_snapshot": "false",
+      "multi_agent": "false",
+      "js_repl": "false",
+      "memories": "false",
+      "tool_call_mcp_elicitation": "true"
+    },
+    "expected_features_match": true,
+    "stderr": "",
+    "external_mcp_operations": 0,
+    "model_turns": 0,
+    "credential_supplied": false
+  },
+  "known_initial_failures": [
+    {
+      "issue": "breaking checker flattened relative OpenAPI references",
+      "resolution": "restore the complete baseline OpenAPI tree; all 3 baselines rerun successfully"
+    },
+    {
+      "issue": "initial reader pnpm command attempted dependency reconciliation",
+      "resolution": "stopped before purge; used the identical installed compiler directly"
+    },
+    {
+      "issue": "initial test fixture/selection mismatches",
+      "resolution": "aligned source-version assertions and selected current source instead of .local archived tests; retained in work transcript"
+    }
+  ],
+  "budget": {
+    "business": {
+      "authorized_attempts": 10,
+      "used": 0
+    },
+    "metadata": {
+      "authorized_operations": 10,
+      "used": 8
+    },
+    "model": {
+      "authorized": 0,
+      "used": 0
+    },
+    "images": {
+      "authorized": 0,
+      "used": 0
+    }
+  },
+  "canonical": "NOT RUN",
+  "d4": "NOT RUN",
+  "active_ac_count": 9,
+  "ac004": "OWNER_EXCLUDED / NOT RUN",
+  "committed": false,
+  "pushed": false,
+  "final_document_checks": {
+    "strict": 0,
+    "D0": 0,
+    "meta_lint": 0,
+    "diff_check": 0
+  }
+}

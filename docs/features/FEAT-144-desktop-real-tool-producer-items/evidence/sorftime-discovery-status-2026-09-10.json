@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-144",
+  "date": "2026-09-10",
+  "status": "NOT RUN",
+  "reason": "Query credential has reachable native log leakage paths; Authorization header support unverified; no discovery authorization.",
+  "server_name": "sorftime",
+  "origin": "https://mcp.sorftime.com",
+  "user_transport_label": "streamableHttp",
+  "candidate_only": "product_detail",
+  "actual_tools": null,
+  "input_schema": null,
+  "output_schema": null,
+  "read_only": null,
+  "idempotency": null,
+  "billing": null,
+  "normal_failure_sample": null,
+  "success_sample": null,
+  "authorization_header_support": "UNKNOWN",
+  "credential_processed": false,
+  "authorized_limits": {
+    "model": 0,
+    "mcp_metadata": 0,
+    "mcp_business": 0,
+    "images": 0
+  },
+  "actual_calls": {
+    "model": 0,
+    "mcp_metadata": 0,
+    "mcp_business": 0,
+    "images": 0
+  },
+  "discovery_entrypoint": "mcpServerStatus/list(threadId, detail=toolsAndAuthOnly)",
+  "discovery_plan_executable": false,
+  "native_approval_design": "Stable mcpServer/elicitation/request, prompt, empty form only; native request/thread/turn binding; no invented itemId.",
+  "d0_status": "BLOCKED",
+  "evidence": "../05-d0-preflight-2026-09-10.md",
+  "record_scope": "Historical pre-authorization stage 05; original status and counters below are preserved, not current state",
+  "superseded_by": "sorftime-discovery-ledger-2026-09-10.json",
+  "current_report": "../13-connection-closure-and-d0-review-2026-09-10.md"
+}

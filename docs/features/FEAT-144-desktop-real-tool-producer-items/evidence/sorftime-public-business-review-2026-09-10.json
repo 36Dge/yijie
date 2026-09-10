@@ -1,0 +1,32 @@
+{
+  "recorded_at": "2026-09-10T03:31:45.604579+00:00",
+  "scope": "Unauthenticated public documentation only; not MCP endpoint traffic, no account or business API calls",
+  "sources": [
+    {
+      "url": "https://www.sorftime.com/zh-CN/mcp/index?tag=",
+      "sha256": "041a5e479ed05bf3382fec81c869f7f3221dc6517c4113cd7d644ff017e949ed",
+      "byte_count": 193756
+    },
+    {
+      "url": "https://open.sorftime.com/mcp",
+      "sha256": "ac2eebc159c3fda081ac77136c1d5e3e4212117dcc55473fc78ea33323f62a53",
+      "byte_count": 6432
+    },
+    {
+      "url": "https://open.sorftime.com/1788743428657/js/app.js",
+      "sha256": "ffe5f22181959343a66d5d8fe1e28b9886108a9a3e6d00ddf5b1eeb3237962aa",
+      "byte_count": 3418804
+    }
+  ],
+  "findings": {
+    "tool_name_and_input": "Already established by native operation 5; not inferred from public UI code",
+    "readonly": "Query semantics described; no formal no-side-effect guarantee or returned annotation",
+    "idempotency": "Not established; read-only business intent does not guarantee identical data or billing idempotence",
+    "mcp_account_pricing": "Not established; do not reuse API/CLI pricing",
+    "output_schema": "Absent in native operation 5; no business sample obtained",
+    "safe_business_failure": "No supported normal failure condition established",
+    "console": "Unauthenticated page is JavaScript shell. Public router marks /mcp as requiring login; no account login or backend API called."
+  },
+  "runtime_fixed_initialize_protocol": "2025-06-18",
+  "runtime_protocol_override_supported_config_found": false
+}

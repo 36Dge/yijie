@@ -1,52 +1,90 @@
-# FEAT-144 — Delivery Log
+# FEAT-144 — 需求调整记录
 
-> 当前批次仅完成 D0 package/preflight；D0 exit blocked。没有实现、启动、真实调用或 Tool D4。
+## 原MCP包与初始审计
 
-## 1. 2026-08-30 — Feature 分配与范围迁移
+2026-08-30建立原四文件包，承接CAP-017/GS-004，D0 BLOCKED、8AC pending、真实D4/调用未执行。2026-09-10只读审计再次确认原生MCP已具备、Host/Desktop适配不完整、具体producer/入口未定以及v5对账/封口要求过期。原四文件已从元仓6f12939aa85f8a9c1f55e89f1018c60501a2f494逐字归档。
 
-- 对 CrossBSD 与 Desktop Epic source 执行 Feature ID 唯一性检查；FEAT-144 未被占用，且不使用已取消的 FEAT-138。
-- CAP-017 / GS-004 从 FEAT-136 的混合 Command/Tool 范围迁移到本独立 Feature。
-- FEAT-136 已存在的 generic Tool contract、Host mapper 与 Desktop consumer/UI 只作为 foundation；不视为真实产品 Tool 或 D4 证据。
-- Feature 使用 schema v3 / demo_fast / local，8 个 Must 全部 pending。
-- 因真实 producer、产品入口、安全/权限边界与调用额度未决，Product/UX 与 D0 gate 均为 blocked/pending；Feature/implementation 标为 blocked，verification 标为 NOT RUN。
+## 用户委托与未实施备选
 
-## 2. 当前冻结输入
+用户要求模型自行选择内置工具、确定完整方案、必须复用Codex且只落需求。曾形成view_image/可选Command备选，D0/strict机器检查通过，元仓50项测试/19包审计通过；没有实施/调用。分离审查指出用户结果与完成事件、history来源文案、旧reader兼容需要补强。
 
-| Repository | Commit / version | Role |
-|---|---|---|
-| yijie-codex | `b2b20e2fc4a0c94834f34d8cc459e488a1b56277` / 0.144.6 | 最终冻结 Runtime；不得修改 |
-| yijie-contracts | `87f94c9aa6d4848cb67aa8a1265bd21474edb0bb` / v0.7.0 | producer-neutral v5 authority foundation |
-| yijie-agent-host | `96b1fa19783694aef583b614c492fd2b6b5c15cc` | generic Tool mapper foundation |
-| yijie-desktop | `7026b47828961e58854b06c822c9c9e11252260d` | closed consumer/persistence/UI foundation |
+## 用户提供真实Sorftime后的当前主线
 
-候选正常责任边界是 Connector 执行、Skill 声明、Host 加载/投影、Contracts 约束、Desktop 呈现；它不是 Owner 决策，不得在本 D0 中当作已选路线。
+用户随后给出服务sorftime、streamableHttp和秘密连接信息，要求更新真实MCP需求。内置备选归档于history/2026-09-10-builtin-proposal，不再作为当前主线，不算MCP验收；秘密值从未写入文件或工具调用。
 
-## 3. Owner decision checklist
+首期推荐US单ASIN商品详情，product_detail为公开维护者资料中的候选，实际schema/费用以后受权发现确认。恢复CAP-017/GS-004为当前未完成目标。只读审查补充：Codex原生HTTP/白名单/超时/调用/历史可复用；无url_env_var；query-key秘密路径未证；默认shell环境需显式排除秘密；Host原生MCP审批承接缺失；MCP自身有重试，不能写成零重试。以上均已落需求，未通过真实连接验证。
 
-- [ ] 选择真实 Tool 与用户价值。
-- [ ] 选择产品入口和 producer repository/owner。
-- [ ] 冻结数据分类、允许参数、权限、副作用、网络/文件/账户边界。
-- [ ] 冻结成功与代表性安全失败形式。
-- [ ] 确认 contract/ADR 影响；若业务 producer 进入 Runtime/Host，取得新的明确授权。
-- [ ] 单独授权 fresh real 调用额度与证据 redaction。
+本轮重写四文件、完整审计/决策、场景、机器记录与项目记忆/Epic范围说明。当前D0因manifest/秘密安全/审批前置保持BLOCKED，不能靠product_ux字段改绿。只执行文档检查；当前结果见02-verification.md。
 
-## 4. 本批实际执行
+## 执行边界
 
-| Activity | Result |
-|---|---|
-| Feature ID uniqueness | PASS |
-| Four-file package creation | PASS |
-| Schema/strict structural validation | PASS |
-| D0 exit gate | BLOCKED / exit 1：`product_ux.status must be PASS for D0`；真实入口和阻断性产品/安全决策未关闭 |
-| Code change | NOT RUN |
-| App / Runtime / Provider / model startup | NOT RUN |
-| Real calls | 0 |
-| Tool D4 | NOT RUN |
+产品代码、契约源、生成物、实际配置、连接/发现/调用、模型、应用启动、提交/推送/部署均NOT RUN。用户提供凭据只用于需求输入，不自动授权费用或权限扩大。当前MCP与模型调用0；Desktop并发修改不触碰。后续必须先有适用实施/发现/费用授权并完成前置安全核验。
 
-## 5. Stop conditions
+## D0前置核验（2026-09-10，后续阶段）
 
-- 不注册或临时配置 MCP/Connector/dynamic tool。
-- 不从模型文本、fixture 或 generic projection 补造 producer。
-- 不触达 FEAT-138、FileChange、Diff、Command 或写权限扩展。
-- 不执行 destructive/fault/attack 验证。
-- 本次 D0 package/preflight 后停止；D0 保持 blocked，等待 Owner decision。
+用户授权先核验方案，发现另取最小授权、D0后再授权实施。完成11仓工作区及47来源摘要核验；Desktop并发11路径由其它工作提交228a95a4929a53bbb6aafc76156161d642d72153，本任务只更新元仓文档。
+
+源码深查确认query-key内存候选存在原生OAuth/普通错误到独立日志的可达泄漏，未找到原生总关闭配置；公开资料未证明Authorization支持，未试连/使用密钥。原生稳定elicitation空表单审批与reader-first兼容设计已明确，产品未实施不作为D0门禁前提。D0仍因安全/真实schema/费用/失败依据BLOCKED。完整证据见05及新增两个JSON；模型、元数据、业务、图片全部0，不提交或推送。
+
+## 官方Header及5次授权核验（2026-09-10）
+
+用户提供搜索截图和官网并授权5次真实测试。已直接核实Sorftime官方Codex/ClaudeCode网页支持无query URL＋Authorization Bearer Account-SK；不再保留“header未知”为当前结论。两项独立源码复核确认原生无thread status发现可行，但没有全链路5 HTTP硬上限，工具next_cursor亦未完整消费；已请求明确5次计数口径。当前未连接/处理密钥，实际全部0；不扩大D0到模型/业务调用。详见06与当前台账。
+
+## 第1次真实发现与用户暂停
+
+已按明确口径使用1/5次原生发现；初始化连接错误未取schema，正常EOF exit0。未启动模型/业务/图片，密钥无持久命中且已释放。系统HTTPS代理与原生插件同步关闭作为第2次准备，专项审查可行，但用户随后暂停，未运行。当前恢复依据07与台账；无提交/推送。
+
+## 恢复执行及第2、3次结果（2026-09-10）
+
+用户“继续执行”后核对暂停快照和未变源码。第2次复用现有系统代理、原生关闭无关插件同步，status快速返回但无schema；第3次补充仅HTTP状态/类别诊断，明确原生初始化POST返回400。累计3/5，三次正常EOF exit0，模型/业务/图片0，秘密扫描无命中。没有新修正依据不再使用剩余2次；D0仍BLOCKED，产品未实施。当前结论08与台账，原暂停点保持历史意义。
+
+## 本地Codex应用原生验证成功（2026-09-10）
+
+用户再次提供MCP配置并额外授权5次，累计上限10。未使用yijie应用或修改全局MCP配置；用本地Codex应用自带0.153.4运行时，临时空线程收到原生ready（第4次），随后读取97工具（第5次），确认product_detail、asin/amz_site输入schema。正常unsubscribe/EOF exit0，密钥扫描无命中，模型/业务/图片0。配置连接有效；项目固定Runtime、输出/计费/业务失败仍待验证。最新09与共用台账，保留旧0.144.6的400事实，不机械升级/repin。
+
+## 固定 Runtime 同流程复测与 D0 决策（2026-09-10）
+
+按本轮明确任务执行来源/47摘要核验，复用操作4/5的成功编排，仅切换固定0.144.6。操作6原生startup为failed，错误明确在initialize返回HTTP400/request error；未继续列举。正常unsubscribe/EOF exit0，秘密无命中。累计6/10、剩余4；模型/业务/图片0。无新证据不盲测、不改Runtime。公开MCP资料核验未取得费用/结果/正常错误完整依据，D0仍BLOCKED。
+
+定稿首期内存秘密、原生环境exclude及set重注入检查、稳定elicitation、结果安全边界与reader-first方案，见10；实现与D4未执行。本轮写入后分离自审和适用检查见02及本轮JSON，未提交推送。
+
+## 再次深入诊断与独立工作（2026-09-10）
+
+用户确认继续FEAT-144中不依赖连接的工作。只读比对公开0.153.4源码，并让两个实际二进制连接普通localhost健康MCP服务，均ready及EOF exit0。实际初始化仅clientInfo.version不同，HTTP头另有User-Agent差异：固定版本未发送，新版发送codex-mcp-client/0.153.4。已准备通过原生http_headers补真实0.144.6 UA的最小修正，经分离审查通过，等待系统隐藏输入；尚未新增Sorftime调用。累计仍6/10，模型/业务/图片0。
+
+完成ZIP只读审计、12契约/reader设计与既有原生基线检查，未实施产品或migration。未来database_change候选改expand，以明确格式版本和旧binary拒绝需求；不能据此执行用户数据迁移。当前D0仍BLOCKED，详见11/12及实际证据；不升级Runtime，不提交推送。
+
+## 固定原生连接关闭与D0重新审查（2026-09-10）
+
+上节“等待隐藏输入、6/10”是历史暂停点。随后操作7/8已正常完成：固定0.144.6通过无query URL、原生Bearer环境引用和真实版本User-Agent初始化ready并返回97工具。共用台账已同步8/10、剩余2，模型/业务/图片0；新目录/输出秘密扫描无命中，正常unsubscribe/EOF exit0。服务端唯一拒绝规则未证明，先前HTTP400失败证据保留。本轮没有重复网络调用。
+
+完成当前需求/场景/验证说明、FEAT-131引用及项目记忆同步；补充原生文本块安全投影、实际审批参数、recordDiagnostics与冷读隔离、数据库格式版本和回滚边界。Contracts/Host/Desktop/Codex及来源锁不变；未实施产品/migration，未提交推送。分离审查不冒称独立人工批准。
+
+当前权威为[13](13-connection-closure-and-d0-review-2026-09-10.md)，业务候选取样方案[14](14-bounded-native-business-sample-2026-09-10.md)尚未授权/执行。D0仍待正常业务失败方案；计费与具体预算在业务激活前确认，缺失outputSchema/annotations/progress不单独阻断已明确的文本展示方案，也不要求先编码/D4。真实检查输出记录在[本轮门禁](evidence/d0-closure-checks-2026-09-10.json)；历史检查不继承为当前结论。
+
+分离复核后进一步区分：D0的实际规划缺口是AC-004缺少有依据的安全普通失败方案；账户计费和具体预算在业务激活前确认。14改为备用取样，当前不申请/不执行，不把尚未取得成功样本当D0门槛。另补入原生Never/full-access可能自动批准的真实边界：首期Sorftime只在核实有效的请求批准/user/Prompt与受管审批配置下激活，其它FEAT-152模式不改语义；正常切换时须让工具实际不可用，不能只隐藏UI。原生Prompt不复用Auto批准缓存；不增加批准引擎。
+
+## 用户排除业务失败并授权10次业务请求（2026-09-10）
+
+用户直接决定不做业务失败场景验证、跳过该逻辑实现，并确认余额充足、授权10次真实Sorftime业务请求。原AC-004/F144-S03及调整前四文件逐字归档；活动Must保留其余9项pending，AC-004标OWNER_EXCLUDED/NOT RUN、不算PASS。没有业务失败分支、专用字段/样本或失败触发逻辑进入本期实现。既有原生状态/安全处理继续复用。
+
+当前权威[15](15-owner-scope-and-business-budget-2026-09-10.md)覆盖13中的旧D0前置与费用阻塞。业务预算按包含原生重发的10次tools/call尝试保守记账，已用0/10；元数据8/10独立，模型/图片未授权，本轮没有外部调用。不重新索取同范围业务预算；产品实施/migration及提交推送尚未开始。
+
+需求、场景、验证说明、兼容计划、Epic引用和项目记忆同步后重新运行D0与文档检查；实际结果见evidence/owner-scope-d0-checks-2026-09-10.json。不修改全局门禁，不假造AC-004通过，不将普通权限拒绝冒充远端业务失败。
+
+该范围调整后的D0已实跑PASS（exit0），strict、lint、50/50元仓测试、19个已提交需求包审计及Shell/diff均通过；历史5个schema v1警告保留。业务已用0/10，元数据8/10，模型/图片0，本轮不调用、不编码、不提交推送。
+
+
+## 本轮七步实施进度（2026-09-10）
+
+用户已授权产品代码、前向migration和定向验证。源契约、兼容reader候选、Host原生适配及Desktop Native Tool已实现；保存了writer=1的独立reader候选。修复真实的容量回退、旧DTO伪填和历史忙碌问题，并保留仍有消费者的旧协议。原生元数据注册使用已验证配置与固定schema，不复制客户端或历史构建器。
+
+固定Runtime的本地配置解析通过且没有连接MCP；尚未启动canonical或真实D4。详细实施、实际网络/秘密路径和预算编排见[16](16-native-implementation-2026-09-10.md)。本地提交、完整来源pin及模型预算仍需本次明确授权；不继承此前其它需求的授权。各历史D0/失败记录保留原适用范围。
+
+
+## 本次授权补充
+
+用户已明确授权本次 Contracts → Host → Desktop 兼容 reader → Desktop 最终展示/写入 → 元仓的本地提交及同范围必要修复，并单独授权最多 8 次 MiniMax-M3 文本 API 请求（含实际转发的自动请求、重试及审查）。推送、tag、部署未授权。当前累计业务 0/10、元数据 8/10、模型 0/8、图片 0；该授权更新覆盖上文等待授权的阶段状态，不改变既有测试或 D4 结论。详见 [授权与预算](evidence/delivery-authorization-and-budget-2026-09-10.json)。
+
+
+当前进度以[18：来源固定与真实验收](18-committed-sources-and-d4-2026-09-10.md)为准：Contracts、Host、Desktop reader及最终writer已本地提交，真实来源锁已固定；本次模型预算0/8已授权，业务0/10、元数据8/10、图片0。此前“等待提交/模型授权”仅为历史阶段状态，canonical及D4仍未完成。

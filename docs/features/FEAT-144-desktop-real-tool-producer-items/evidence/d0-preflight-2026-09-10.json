@@ -1,0 +1,602 @@
+{
+  "schema_version": 1,
+  "stage": "FEAT-144 D0 read-only preflight",
+  "captured_at": "2026-09-09T17:47:17.027751+00:00",
+  "repositories": {
+    "yijie": {
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "6f12939aa85f8a9c1f55e89f1018c60501a2f494",
+      "remote": "https://github.com/36Dge/yijie.git",
+      "changes": [
+        {
+          "status": " M",
+          "path": "docs/dev/codex-project-memory.md",
+          "sha256": "635ef1ebd2c36b67142f7204104800ff758f0b1cf1cb44479d588c9047342dde"
+        },
+        {
+          "status": " M",
+          "path": "docs/features/FEAT-131-desktop-codex-parity-baseline/03-capability-matrix.md",
+          "sha256": "a86dc58d281175351e7152c410a465faa4e41de6df6029c70e65987bfddbe6e5"
+        },
+        {
+          "status": " M",
+          "path": "docs/features/FEAT-131-desktop-codex-parity-baseline/04-golden-scenarios.md",
+          "sha256": "13211670d834d1ae0801b401360a7a419be8cd75023362a30de4f0c3fba7b0c8"
+        },
+        {
+          "status": " M",
+          "path": "docs/features/FEAT-131-desktop-codex-parity-baseline/05-reference-evidence-index.md",
+          "sha256": "7b6202c615ba57aefec30c9f11045c1d1ead79a6ccd7e75cf9c58300b033b7ac"
+        },
+        {
+          "status": " M",
+          "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/00-feature-brief.md",
+          "sha256": "f67f764767d1bfccaf8aded1bffa9181ee3b024fc87ab87846eb5f45c2030c6a"
+        },
+        {
+          "status": " M",
+          "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/01-delivery-log.md",
+          "sha256": "5e3c78a006e850b323a047bfd8c1fe18de35518cbd8342a5c9b3a9a24f6350f7"
+        },
+        {
+          "status": " M",
+          "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/02-verification.md",
+          "sha256": "fb92d51f62a4cbb62691740a9c43180fe91bbfec19ce3a91a24002c54cb7b212"
+        },
+        {
+          "status": " M",
+          "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/feature.yaml",
+          "sha256": "37a938b0e6ab677803d51205bb4d8ddd7b151d884d5cdeda6645e051fc53f959"
+        },
+        {
+          "status": "??",
+          "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/03-native-audit-and-decisions-2026-09-10.md",
+          "sha256": "b07c0d22ff095bd9e9eca9f1b93df61359f606f11cd92e69933389195c7d8a85"
+        },
+        {
+          "status": "??",
+          "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/04-acceptance-scenarios.md",
+          "sha256": "86b179d8c870b0260ce8787c075e73cbeafc1aa23d9b2cf775b76b4282a7c5e6"
+        },
+        {
+          "status": "??",
+          "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/requirements-audit-2026-09-10.json",
+          "sha256": "d60a85332efcd563847be2f076608ac6aa4eb4cd79a1971a9d480877b72022f1"
+        },
+        {
+          "status": "??",
+          "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-08-30/00-feature-brief.md",
+          "sha256": "84b8c5bd667ef95728497f51bc46d9252417b1a6415627b99f75986dbd01765d"
+        },
+        {
+          "status": "??",
+          "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-08-30/01-delivery-log.md",
+          "sha256": "79f3fa4e69b580191d72310a7403fe6c240ac50f866511784d880b91944e8c6a"
+        },
+        {
+          "status": "??",
+          "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-08-30/02-verification.md",
+          "sha256": "740ed009cf8945287c711572b8153d93ec7333c304d0dd27130aed4cbf727a0d"
+        },
+        {
+          "status": "??",
+          "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-08-30/feature.yaml",
+          "sha256": "edd1159a11c3e10c1597082e192486b3f1b7b411731823601f3b5bb51af43376"
+        },
+        {
+          "status": "??",
+          "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-builtin-proposal/00-feature-brief.md",
+          "sha256": "cfabd32daa774a8da3f6a8deebd86c2fcb658608c3caa288eca3af4948cdc427"
+        },
+        {
+          "status": "??",
+          "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-builtin-proposal/01-delivery-log.md",
+          "sha256": "6d3771d6e4a74c00780e8248c6020731c6bde38331c0e4e0247f47d117c76e37"
+        },
+        {
+          "status": "??",
+          "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-builtin-proposal/02-verification.md",
+          "sha256": "838b9bd50c7abdf868dab1cf6288a3a08f0210f8c580f2e1c0bfb62b613db9d6"
+        },
+        {
+          "status": "??",
+          "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-builtin-proposal/03-native-audit-and-decisions-2026-09-10.md",
+          "sha256": "b4a4db0e7a5fcea9f17cae002f16c417a2e77e0c144e2f56ec1707c6a50d8b0f"
+        },
+        {
+          "status": "??",
+          "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-builtin-proposal/04-acceptance-scenarios.md",
+          "sha256": "36a29f54aeb23b08bc01348b779868fc20a7eed386a5facf2795578b93267d7f"
+        },
+        {
+          "status": "??",
+          "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-builtin-proposal/README.md",
+          "sha256": "5ed8baee327cda2c2b6ff3260a6542c2ccd56851925b0c59732b0b05edf7b04c"
+        },
+        {
+          "status": "??",
+          "path": "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-builtin-proposal/feature.yaml",
+          "sha256": "49caa260556ce7bcd3393fc3adf1fe2110dea4998162ebc1e492ac14b3954e1e"
+        }
+      ]
+    },
+    "yijie-admin-web": {
+      "branch": "develop",
+      "head": "d009cafccb112c098114c075d60f67ee5e0296d8",
+      "remote": "https://github.com/36Dge/yijie-admin-web.git",
+      "changes": []
+    },
+    "yijie-agent-host": {
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+      "remote": "https://github.com/36Dge/yijie-agent-host.git",
+      "changes": []
+    },
+    "yijie-api": {
+      "branch": "feat/feat-126-foundation-closure",
+      "head": "f9d730a157bcb012a8fe178cbfebcd4ea27419fc",
+      "remote": "https://github.com/36Dge/yijie-api.git",
+      "changes": []
+    },
+    "yijie-codex": {
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "remote": "https://github.com/36Dge/yijie-codex.git",
+      "changes": []
+    },
+    "yijie-connectors": {
+      "branch": "develop",
+      "head": "273eec40bbbfeb17e817643f283db7c81e9b190c",
+      "remote": "https://github.com/36Dge/yijie-connectors.git",
+      "changes": []
+    },
+    "yijie-contracts": {
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "db7a607c1c091fc4f4243829d68d5b673eb7e2c3",
+      "remote": "https://github.com/36Dge/yijie-contracts.git",
+      "changes": []
+    },
+    "yijie-desktop": {
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "228a95a4929a53bbb6aafc76156161d642d72153",
+      "remote": "https://github.com/36Dge/yijie-desktop.git",
+      "changes": []
+    },
+    "yijie-infra": {
+      "branch": "feat/feat-126-s10e",
+      "head": "19b7920696904f83030a8ddaba71af15c3c05ad8",
+      "remote": "https://github.com/36Dge/yijie-infra.git",
+      "changes": []
+    },
+    "yijie-knowledge": {
+      "branch": "develop",
+      "head": "e9091d2b673ba779ecb39271ce9148e3a41fc256",
+      "remote": "https://github.com/36Dge/yijie-knowledge.git",
+      "changes": []
+    },
+    "yijie-skills": {
+      "branch": "develop",
+      "head": "488714a8d96f40806a257aae097683815b1dd458",
+      "remote": "https://github.com/36Dge/yijie-skills.git",
+      "changes": []
+    }
+  },
+  "source_checks": [
+    {
+      "consumer": "yijie-agent-host",
+      "lock": "api/native-conversation.lock.json",
+      "sha256": "d526d213454bcb42e7c8bef58d3b18a379defff1af8fd4710d49649bd5493b34",
+      "sources": [
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "openapi/native-conversation/native-conversation.yaml",
+          "sha256": "ad4c7f0eece6acb99029358a8284535757ee5d7c97858d65b8813631f56ad651",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "sdks/go/openapi/native-conversation/client.gen.go",
+          "sha256": "eefcaeab74a0309a78cda03ad131966cb3b35fa05e66a7e058f1145228124a16",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "sdks/typescript/src/openapi/native-conversation.gen.ts",
+          "sha256": "b8303ceb4bacd41646848f6844b20a0cdf63148708c6f005c9314e8ae93e4f2b",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "compatibility/agent-host-native-conversation-v1.json",
+          "sha256": "5ae920d8fb1ad34c39dc80d824a9192274b5708016ceb124adb6b01ea7156d46",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "scripts/generate.mjs",
+          "sha256": "684fbfc59a94ce3475a8fc30242bf2f7a7a2bf031eccbf9c9bb0b2bb1f850463",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "scripts/sync-native-conversation.mjs",
+          "sha256": "795cdc2337f5bed26a04b4dd66ff32bf0bdec0f6e168155610e77b5e4bbd1255",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "package.json",
+          "sha256": "d53fedd8cba4cfd7238b1f60121803905ce6c0127a2e0cde16ba9af18a6333c6",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "pnpm-lock.yaml",
+          "sha256": "57eece158a0405a85ea9b8fd2c382af130e4248897b67af587878737bbf86313",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "go.mod",
+          "sha256": "4bd3ff739f9383a42d641a0cbfcf17d812bf2c260c19be379effff5c528bfc35",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "go.sum",
+          "sha256": "0bb3ffbefa7ef6a6507a59feed3708cf92ac542e4c9911241eb2d9f4a7604b36",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "openapi-typescript.redocly.yaml",
+          "sha256": "b5458ce34977d7c1eef3246846d6372bd1b0be20a8366d8c142170bae4b58ec7",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        }
+      ]
+    },
+    {
+      "consumer": "yijie-agent-host",
+      "lock": "api/runtime-permissions.lock.json",
+      "sha256": "e77e19cb7b020ab4f98c02d9f977813e87f102a1461d8a774b211f94770ae7aa",
+      "sources": [
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "openapi/runtime-permissions/runtime-permissions.yaml",
+          "sha256": "0cd99d5ee3f7035bf43c0996648dc855f71a447595dcb61d903232d81b602a99",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "sdks/go/openapi/runtime-permissions/source.bundle.yaml",
+          "sha256": "613032548bc666f6724b62f73444ef0052f07f71af715bdc5a436da6fb887fc1",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "sdks/go/openapi/runtime-permissions/client.gen.go",
+          "sha256": "e1129eeb3eb1985a5be8f95aa2e4cca1a4c211fe96f3fefcc8ae1f7d8433bc2b",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "sdks/typescript/src/openapi/runtime-permissions.gen.ts",
+          "sha256": "70cc7af6c1102b813ef3aa501ffa86a49891194dcbf9cd3445b39d1e33167bd8",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "scripts/generate.mjs",
+          "sha256": "684fbfc59a94ce3475a8fc30242bf2f7a7a2bf031eccbf9c9bb0b2bb1f850463",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        }
+      ]
+    },
+    {
+      "consumer": "yijie-desktop",
+      "lock": "contracts/native-conversation.lock.json",
+      "sha256": "d526d213454bcb42e7c8bef58d3b18a379defff1af8fd4710d49649bd5493b34",
+      "sources": [
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "openapi/native-conversation/native-conversation.yaml",
+          "sha256": "ad4c7f0eece6acb99029358a8284535757ee5d7c97858d65b8813631f56ad651",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "sdks/go/openapi/native-conversation/client.gen.go",
+          "sha256": "eefcaeab74a0309a78cda03ad131966cb3b35fa05e66a7e058f1145228124a16",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "sdks/typescript/src/openapi/native-conversation.gen.ts",
+          "sha256": "b8303ceb4bacd41646848f6844b20a0cdf63148708c6f005c9314e8ae93e4f2b",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "compatibility/agent-host-native-conversation-v1.json",
+          "sha256": "5ae920d8fb1ad34c39dc80d824a9192274b5708016ceb124adb6b01ea7156d46",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "scripts/generate.mjs",
+          "sha256": "684fbfc59a94ce3475a8fc30242bf2f7a7a2bf031eccbf9c9bb0b2bb1f850463",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "scripts/sync-native-conversation.mjs",
+          "sha256": "795cdc2337f5bed26a04b4dd66ff32bf0bdec0f6e168155610e77b5e4bbd1255",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "package.json",
+          "sha256": "d53fedd8cba4cfd7238b1f60121803905ce6c0127a2e0cde16ba9af18a6333c6",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "pnpm-lock.yaml",
+          "sha256": "57eece158a0405a85ea9b8fd2c382af130e4248897b67af587878737bbf86313",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "go.mod",
+          "sha256": "4bd3ff739f9383a42d641a0cbfcf17d812bf2c260c19be379effff5c528bfc35",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "go.sum",
+          "sha256": "0bb3ffbefa7ef6a6507a59feed3708cf92ac542e4c9911241eb2d9f4a7604b36",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "openapi-typescript.redocly.yaml",
+          "sha256": "b5458ce34977d7c1eef3246846d6372bd1b0be20a8366d8c142170bae4b58ec7",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        }
+      ]
+    },
+    {
+      "consumer": "yijie-desktop",
+      "lock": "contracts/runtime-permissions.lock.json",
+      "sha256": "5252b8ea1a04d0f088f78d895639ba3ff7f3e1108cce455b0f58f85ebab71070",
+      "sources": [
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "openapi/runtime-permissions/runtime-permissions.yaml",
+          "sha256": "0cd99d5ee3f7035bf43c0996648dc855f71a447595dcb61d903232d81b602a99",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "sdks/go/openapi/runtime-permissions/source.bundle.yaml",
+          "sha256": "613032548bc666f6724b62f73444ef0052f07f71af715bdc5a436da6fb887fc1",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "sdks/go/openapi/runtime-permissions/client.gen.go",
+          "sha256": "e1129eeb3eb1985a5be8f95aa2e4cca1a4c211fe96f3fefcc8ae1f7d8433bc2b",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "sdks/typescript/src/openapi/runtime-permissions.gen.ts",
+          "sha256": "70cc7af6c1102b813ef3aa501ffa86a49891194dcbf9cd3445b39d1e33167bd8",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-contracts",
+          "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+          "path": "scripts/generate.mjs",
+          "sha256": "684fbfc59a94ce3475a8fc30242bf2f7a7a2bf031eccbf9c9bb0b2bb1f850463",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-agent-host",
+          "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+          "path": "api/openapi/runtime-permissions.yaml",
+          "sha256": "613032548bc666f6724b62f73444ef0052f07f71af715bdc5a436da6fb887fc1",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-agent-host",
+          "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+          "path": "api/runtime-permissions.lock.json",
+          "sha256": "e77e19cb7b020ab4f98c02d9f977813e87f102a1461d8a774b211f94770ae7aa",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-agent-host",
+          "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+          "path": "go.mod",
+          "sha256": "7a360b4877255da78e522fae2de8c165c965eb6f546b023883aba6dd1c631f3f",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-agent-host",
+          "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+          "path": "go.sum",
+          "sha256": "f4a3ff159e90d65c0db8336657a2634a3932c7db8e0a5ac415fc3dae017f3d3c",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-agent-host",
+          "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+          "path": "internal/app/app.go",
+          "sha256": "f8f43c4b6981a762e6ef56157c3a3e2809e68898bf253d6e07dd21aeb5ae8ae7",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-agent-host",
+          "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+          "path": "internal/app/runtime_permission_verification.go",
+          "sha256": "1309dc277590710819a7565d8af3e89bc22bbdcd5421c46d874993ea830d61c4",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-agent-host",
+          "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+          "path": "internal/app/runtime_permissions.go",
+          "sha256": "6476b42ec0240f21bc8e3209cf78135f21552559ba69f84ce2d4ca2de6e5abab",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-agent-host",
+          "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+          "path": "internal/codex/runtime.go",
+          "sha256": "51c3cce114ad69dff1c52aebcc2a4d30b8f8df31efd2e43bdef8d5e85c3d9a25",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-agent-host",
+          "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+          "path": "internal/codex/runtime_permissions.go",
+          "sha256": "b653057920f12aff6208743523802f51596bc311c7453d5cf89a77efae53f27f",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-agent-host",
+          "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+          "path": "internal/codex/session_protocol.go",
+          "sha256": "111b88829d9eeea371b7ae898b1be5af00c188de6d7f2bc78cce515677e3d0e2",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-agent-host",
+          "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+          "path": "internal/contracts/runtimepermissions/types.gen.go",
+          "sha256": "6f26e5e2d6b9b27b9af010021854431066de2eb35ef5f172d031c30b343934ef",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-agent-host",
+          "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+          "path": "internal/session/multimodal.go",
+          "sha256": "1eecd7ac35cc5bcfb20d6e03771dd319c9013a0d0151b3aa40fbd05c1bee5741",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-agent-host",
+          "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+          "path": "internal/session/runtime_permissions.go",
+          "sha256": "f09ef504cfe6e1ebfdcdbfaaaec382d6c40bd60f57ef253964ab163b50b8c358",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-agent-host",
+          "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+          "path": "internal/session/service.go",
+          "sha256": "a2c882db2cf18a5ba122cd0622b9b538992880223c0b26611b07106fa354a35f",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        },
+        {
+          "repository": "yijie-agent-host",
+          "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+          "path": "internal/session/store.go",
+          "sha256": "ab934f9c22c1a9af723fde46bedb2c07681faab548346127d8f0ff66906dcc38",
+          "pinned_matches": true,
+          "working_tree_matches": true
+        }
+      ]
+    }
+  ],
+  "calls": {
+    "model": 0,
+    "mcp_metadata": 0,
+    "mcp_business": 0,
+    "images": 0
+  },
+  "scope": "No product code, runtime, settings, credentials, consumer locks, commits or network MCP requests changed.",
+  "runtime": {
+    "build_commit": "b2b20e2fc4a0c94834f34d8cc459e488a1b56277",
+    "codex_rs_diff": "",
+    "rmcp_auth_dependency_sha256": "a254f08a7d657f30bec0167e203cfd1b311a69e3bd52a28a64d1a47ced5bb138"
+  }
+}

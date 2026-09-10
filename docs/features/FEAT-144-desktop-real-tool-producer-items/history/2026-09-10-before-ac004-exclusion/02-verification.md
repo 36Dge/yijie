@@ -1,6 +1,6 @@
-# FEAT-144 — 当前实施与验收记录
+# FEAT-144 — 当前 D0 核验记录
 
-2026-09-10。固定Runtime连接已通过。用户已明确排除AC-004业务失败实现/验证，并确认余额充足、授权10次业务请求；当前权威为[15范围与预算](15-owner-scope-and-business-budget-2026-09-10.md)。D0按新范围实跑PASS，结果见[本轮检查](evidence/owner-scope-d0-checks-2026-09-10.json)，产品实现及定向验证正在进行，详见[16实施记录](16-native-implementation-2026-09-10.md)；canonical/D4仍NOT RUN。
+2026-09-10。**固定Runtime原生元数据连接阻塞已关闭；D0仍BLOCKED，产品实现/canonical/D4均NOT RUN。** 当前权威为[13](13-connection-closure-and-d0-review-2026-09-10.md)，调用以[共用台账](evidence/sorftime-discovery-ledger-2026-09-10.json)为准。
 
 ## 当前事实
 
@@ -10,29 +10,29 @@
 | 已验证配置 | 无query HTTPS URL、原生Bearer环境引用、真实User-Agent codex-mcp-client/0.144.6；二进制不变 |
 | 历史失败与结论边界 | 操作6 initialize HTTP400/request error原样保留；真实UA配置修正有效，不声称已证明服务端唯一拒绝规则 |
 | 工具/inputSchema | product_detail、asin必填、amz_site枚举含US/default Unknow；当前来源为固定Runtime操作8，与操作5一致；未证明完整工具目录 |
-| 调用台账 | 元数据8/10；业务另获10次（含原生重发），已用0/10；模型/图片0且未授权；本轮新增调用0 |
+| 调用台账 | 8/10次元数据操作，剩余2；本轮文档收尾新增0；模型/业务/图片均0 |
 | HTTP计数 | 操作7/8的6 POST span是同一进程共享摘要，不相加为12；完整底层HTTP尝试数未知 |
 | 正常退出及秘密 | 正常unsubscribe/stdio EOF exit0；新目录和stdout/stderr秘密精确值扫描无命中；无等待输入/存留Runtime，不证明未来模型环境隔离 |
 | 入口与范围 | 仅隔离原生app-server空临时线程；没有turn/start、yijie应用启动或永久MCP配置；不是业务或D4 |
 | 展示设计 | 原生文本块及索引、有界纯文本和既有脱敏；不依赖缺失的outputSchema，不猜商品字段/原生终态 |
-| 安全/审批/兼容 | 候选已实现内存秘密路径、exclude/set检查、原生Prompt、reader和格式保护；定向检查与真实D4分别记账，真实产品路径尚未验证 |
-| 当前范围与费用 | 业务失败场景已由用户排除，不再索取失败条件；用户确认余额充足并授权10次，不再因扣费细则未知阻塞；不据此声称已核实官方定价或重发免费 |
-| D0/Must/D4 | D0实跑exit0/PASS，产品/UX规划通过；9项活动Must pending，AC-004为OWNER_EXCLUDED/NOT RUN、不算PASS；产品D4未运行 |
+| 安全/审批/兼容 | 内存秘密+exclude/set检查；原生elicitation实际参数呈现；reader先行、单条recordDiagnostics隔离、高数据库版本拒绝及回滚边界；均待产品实施验证 |
+| 剩余业务依据 | 当前账户计费/重试扣费与可安全执行的正常业务失败条件未明确；不承诺幂等，不套用API/CLI价格；空结果不能代替failed |
+| D0/Must/D4 | D0 BLOCKED、product_ux pending、十项Must pending；连接、缺失outputSchema/annotations/progress、未编码或未运行D4不再列作D0阻塞 |
 | 来源与交付 | 11仓来源、47锁定摘要及Desktop并发内容保护；仅元仓文档/证据修改，产品仓与pin不改；未提交/推送/tag/部署/触发CI |
 
-## 前次连接闭环检查与分离审查（历史）
+## 本轮检查与分离审查
 
 原生成功证据见[成功摘要](evidence/fixed-runtime-user-agent-success-2026-09-10.json)、[操作8](evidence/sorftime-native-discovery-operation-8-2026-09-10.json)及[固定版本工具schema](evidence/sorftime-product-detail-fixed-schema-2026-09-10.json)。官方资料/只读包审计和原生取样边界见[业务依据复核](evidence/d0-business-basis-review-2026-09-10.json)。
 
 本轮实际检查：文档strict最终PASS；元仓lint、50/50测试、19个已提交需求包审计、7个Shell文件逐个语法检查及diff检查PASS。审计保留5个旧schema v1警告，且其“19包”仅覆盖已提交版本，不冒称覆盖本轮未提交修改；当前FEAT-144工作树另以strict/D0直接检查。strict首轮及后续说明中的相同占位字样被严格检查拒绝，已改为具体缺口说明，未更改状态或放宽检查器。
 
-**前次D0实跑exit1；当时AC-004仍为Must，缺少业务失败方案。该结论保留历史，已由用户当前范围决策解除，不能覆盖本轮新D0结果。** native/v4来源与FEAT-137永久退役检查PASS。实际命令输出见[门禁记录](evidence/d0-closure-checks-2026-09-10.json)；D0不能由诊断成功、文档strict或旧测试PASS代替。
+**D0实跑exit1，机器输出为product_ux.status必须PASS；实际保留pending的依据为AC-004缺少可执行的安全普通失败方案。** native/v4来源与FEAT-137永久退役检查PASS。实际命令输出见[门禁记录](evidence/d0-closure-checks-2026-09-10.json)；D0不能由诊断成功、文档strict或旧测试PASS代替。
 
 [最终保护检查](evidence/d0-closure-final-workspace-2026-09-10.json)：11仓HEAD/分支/远端不变、10个产品仓干净、无暂存修改、4个来源锁和47项工作树/提交摘要一致、固定Runtime二进制/manifest未变、原四文件历史逐字相等、当前Markdown链接可解析、JSON有效、通用秘密模式无命中。本轮仅元仓文档和证据更新；该通用模式扫描不冒称再次检索用户秘密或数据库。
 
 设计与执行阶段分开的代理审查覆盖原生结果/status/参数、文本块与脱敏、单条未知格式隔离、数据库版本保护，以及可选手工取样不经过模型工具预审批且不产生Tool Item的边界；不声称独立人工批准。必要的新字段设计见[12](12-independent-contract-and-reader-plan-2026-09-10.md)及13。Host/Native展示/SQLCipher的[既有基线](evidence/independent-native-baseline-checks-2026-09-10.json)仅作未来回归依据，不是本轮产品AC通过。
 
-[14](14-bounded-native-business-sample-2026-09-10.md)是业务预算内未启用的备用取样，不作D0必经步骤；元数据与业务不互借。产品实施仍按此前授权边界，当前仅更新需求/预算。
+[14](14-bounded-native-business-sample-2026-09-10.md)仅为具体可审查的取样提案，NOT AUTHORIZED/NOT RUN；一次取样不能解决账户计费规则或保证找到自然失败。元数据剩余额度不能转作业务预算。D0通过且另获实施授权后才能编码。
 
 ## 操作1–5历史证据和审查范围
 
@@ -51,28 +51,3 @@
 | 5次授权与暂停 | [06](06-header-auth-and-discovery-budget-2026-09-10.md)记录授权口径，[07](07-paused-state-2026-09-10.md)保留当时1/5暂停状态，后续累计8/10，以当前台账为准 |
 
 此前豁免、冷历史/进度缺失及未执行项目均保持原范围；没有复制用户数据库、测试攻击载荷、故障注入或Runtime修改。
-
-## 本次用户范围调整的审查与检查
-
-原AC-004和旧四文件已逐字归档；活动Must由10项改为9项且不重用编号，排除不记PASS。业务失败分支/错误扩展/专用样本已移出设计，原生事实、安全拒绝及通用保护保留。通用D4代表性拒绝仅评价AC-007仍要求的原生权限边界，不能变相计为AC-004业务失败通过。
-
-当前用户直接授权覆盖业务额度和余额决定；按更保守的10次tools/call尝试（含原生重发）分账，不解读为20次业务尝试或模型额度。本轮在文档落地后再自审；未新启子代理，不把前轮分离审查说成本轮独立审查。
-
-适用strict/D0、元仓lint/test、已提交需求包审计、Shell及工作区/来源核验见[本轮实际检查](evidence/owner-scope-d0-checks-2026-09-10.json)。前次50项测试与门禁结果不自动继承。
-
-本轮最终结果：strict/D0均exit0；lint、50/50测试、19个已提交需求包审计（5个历史schema v1警告）、7个Shell逐个语法与diff检查通过。没有新MCP/模型调用，未实施产品或修改全局检查器；适用工作树和来源保护见本轮JSON证据。
-
-
-## 本轮产品实施（尚未真实验收）
-
-源契约、兼容reader/格式迁移、Host原生薄适配、Native Tool展示与容量修复均已进入候选代码。精确文件、删除/保留理由、调用编排及剩余限制见16。新源规范生成一致性、三组baseline兼容检查、Host原生适配定向/race检查、Rust reader/正常重开/容量及Vue定向检查有本轮结果；不将这些单元/集成结果写成真实D4。
-
-普通canonical入口尚未运行，原因是本次真实本地提交和来源pin尚未固定；模型预算也尚未授权。未推送、未触发远端CI。元数据8/10、业务0/10、模型/图片0不变；AC-004不实现、不验证、不计PASS。
-
-
-## 本次授权补充
-
-用户已明确授权本次 Contracts → Host → Desktop 兼容 reader → Desktop 最终展示/写入 → 元仓的本地提交及同范围必要修复，并单独授权最多 8 次 MiniMax-M3 文本 API 请求（含实际转发的自动请求、重试及审查）。推送、tag、部署未授权。当前累计业务 0/10、元数据 8/10、模型 0/8、图片 0；该授权更新覆盖上文等待授权的阶段状态，不改变既有测试或 D4 结论。详见 [授权与预算](evidence/delivery-authorization-and-budget-2026-09-10.json)。
-
-
-当前进度以[18：来源固定与真实验收](18-committed-sources-and-d4-2026-09-10.md)为准：Contracts、Host、Desktop reader及最终writer已本地提交，真实来源锁已固定；本次模型预算0/8已授权，业务0/10、元数据8/10、图片0。此前“等待提交/模型授权”仅为历史阶段状态，canonical及D4仍未完成。

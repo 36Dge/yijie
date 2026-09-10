@@ -1,0 +1,722 @@
+{
+  "recorded_at": "2026-09-10T06:39:37.038771+00:00",
+  "scope": "Read-only source/workspace check; no secret retrieval, database copies or network requests",
+  "checks": {
+    "all_11_heads_unchanged": true,
+    "all_branches_and_remotes_unchanged": true,
+    "all_10_product_repositories_clean": true,
+    "all_no_staged_changes": true,
+    "four_source_locks_unchanged": true,
+    "all_47_source_entries_match_worktree_and_commit": true,
+    "runtime_artifacts_unchanged": true,
+    "original_four_history_files_byte_equal": true,
+    "no_generic_secret_pattern_hits": true,
+    "all_json_parse": true,
+    "current_markdown_links_resolve": true,
+    "each_meta_shell_syntax_passes": true
+  },
+  "repositories": {
+    "yijie": {
+      "head": "6f12939aa85f8a9c1f55e89f1018c60501a2f494",
+      "branch": "chore/retirement-baseline-20260905",
+      "remote": "https://github.com/36Dge/yijie.git",
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "remote_unchanged": true,
+      "status": " M docs/dev/codex-project-memory.md\n M docs/features/FEAT-131-desktop-codex-parity-baseline/03-capability-matrix.md\n M docs/features/FEAT-131-desktop-codex-parity-baseline/04-golden-scenarios.md\n M docs/features/FEAT-131-desktop-codex-parity-baseline/05-reference-evidence-index.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/00-feature-brief.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/01-delivery-log.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/02-verification.md\n M docs/features/FEAT-144-desktop-real-tool-producer-items/feature.yaml\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/03-native-audit-and-decisions-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/04-acceptance-scenarios.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/05-d0-preflight-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/06-header-auth-and-discovery-budget-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/07-paused-state-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/08-discovery-results-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/09-local-codex-validation-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/10-fixed-runtime-d0-decision-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/11-native-http-differential-diagnosis-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/12-independent-contract-and-reader-plan-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/13-connection-closure-and-d0-review-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/14-bounded-native-business-sample-2026-09-10.md\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/\n?? docs/features/FEAT-144-desktop-real-tool-producer-items/history/\n",
+      "no_staged_changes": true
+    },
+    "yijie-admin-web": {
+      "head": "d009cafccb112c098114c075d60f67ee5e0296d8",
+      "branch": "develop",
+      "remote": "https://github.com/36Dge/yijie-admin-web.git",
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "remote_unchanged": true,
+      "status": "",
+      "no_staged_changes": true
+    },
+    "yijie-agent-host": {
+      "head": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+      "branch": "chore/retirement-baseline-20260905",
+      "remote": "https://github.com/36Dge/yijie-agent-host.git",
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "remote_unchanged": true,
+      "status": "",
+      "no_staged_changes": true
+    },
+    "yijie-api": {
+      "head": "f9d730a157bcb012a8fe178cbfebcd4ea27419fc",
+      "branch": "feat/feat-126-foundation-closure",
+      "remote": "https://github.com/36Dge/yijie-api.git",
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "remote_unchanged": true,
+      "status": "",
+      "no_staged_changes": true
+    },
+    "yijie-codex": {
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "branch": "chore/retirement-baseline-20260905",
+      "remote": "https://github.com/36Dge/yijie-codex.git",
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "remote_unchanged": true,
+      "status": "",
+      "no_staged_changes": true
+    },
+    "yijie-connectors": {
+      "head": "273eec40bbbfeb17e817643f283db7c81e9b190c",
+      "branch": "develop",
+      "remote": "https://github.com/36Dge/yijie-connectors.git",
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "remote_unchanged": true,
+      "status": "",
+      "no_staged_changes": true
+    },
+    "yijie-contracts": {
+      "head": "db7a607c1c091fc4f4243829d68d5b673eb7e2c3",
+      "branch": "chore/retirement-baseline-20260905",
+      "remote": "https://github.com/36Dge/yijie-contracts.git",
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "remote_unchanged": true,
+      "status": "",
+      "no_staged_changes": true
+    },
+    "yijie-desktop": {
+      "head": "228a95a4929a53bbb6aafc76156161d642d72153",
+      "branch": "chore/retirement-baseline-20260905",
+      "remote": "https://github.com/36Dge/yijie-desktop.git",
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "remote_unchanged": true,
+      "status": "",
+      "no_staged_changes": true
+    },
+    "yijie-infra": {
+      "head": "19b7920696904f83030a8ddaba71af15c3c05ad8",
+      "branch": "feat/feat-126-s10e",
+      "remote": "https://github.com/36Dge/yijie-infra.git",
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "remote_unchanged": true,
+      "status": "",
+      "no_staged_changes": true
+    },
+    "yijie-knowledge": {
+      "head": "e9091d2b673ba779ecb39271ce9148e3a41fc256",
+      "branch": "develop",
+      "remote": "https://github.com/36Dge/yijie-knowledge.git",
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "remote_unchanged": true,
+      "status": "",
+      "no_staged_changes": true
+    },
+    "yijie-skills": {
+      "head": "488714a8d96f40806a257aae097683815b1dd458",
+      "branch": "develop",
+      "remote": "https://github.com/36Dge/yijie-skills.git",
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "remote_unchanged": true,
+      "status": "",
+      "no_staged_changes": true
+    }
+  },
+  "locks": [
+    {
+      "consumer": "yijie-agent-host",
+      "path": "api/native-conversation.lock.json",
+      "sha256": "d526d213454bcb42e7c8bef58d3b18a379defff1af8fd4710d49649bd5493b34",
+      "unchanged": true
+    },
+    {
+      "consumer": "yijie-agent-host",
+      "path": "api/runtime-permissions.lock.json",
+      "sha256": "e77e19cb7b020ab4f98c02d9f977813e87f102a1461d8a774b211f94770ae7aa",
+      "unchanged": true
+    },
+    {
+      "consumer": "yijie-desktop",
+      "path": "contracts/native-conversation.lock.json",
+      "sha256": "d526d213454bcb42e7c8bef58d3b18a379defff1af8fd4710d49649bd5493b34",
+      "unchanged": true
+    },
+    {
+      "consumer": "yijie-desktop",
+      "path": "contracts/runtime-permissions.lock.json",
+      "sha256": "5252b8ea1a04d0f088f78d895639ba3ff7f3e1108cce455b0f58f85ebab71070",
+      "unchanged": true
+    }
+  ],
+  "source_entries": [
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "openapi/native-conversation/native-conversation.yaml",
+      "sha256": "ad4c7f0eece6acb99029358a8284535757ee5d7c97858d65b8813631f56ad651",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "sdks/go/openapi/native-conversation/client.gen.go",
+      "sha256": "eefcaeab74a0309a78cda03ad131966cb3b35fa05e66a7e058f1145228124a16",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "sdks/typescript/src/openapi/native-conversation.gen.ts",
+      "sha256": "b8303ceb4bacd41646848f6844b20a0cdf63148708c6f005c9314e8ae93e4f2b",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "compatibility/agent-host-native-conversation-v1.json",
+      "sha256": "5ae920d8fb1ad34c39dc80d824a9192274b5708016ceb124adb6b01ea7156d46",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "scripts/generate.mjs",
+      "sha256": "684fbfc59a94ce3475a8fc30242bf2f7a7a2bf031eccbf9c9bb0b2bb1f850463",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "scripts/sync-native-conversation.mjs",
+      "sha256": "795cdc2337f5bed26a04b4dd66ff32bf0bdec0f6e168155610e77b5e4bbd1255",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "package.json",
+      "sha256": "d53fedd8cba4cfd7238b1f60121803905ce6c0127a2e0cde16ba9af18a6333c6",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "pnpm-lock.yaml",
+      "sha256": "57eece158a0405a85ea9b8fd2c382af130e4248897b67af587878737bbf86313",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "go.mod",
+      "sha256": "4bd3ff739f9383a42d641a0cbfcf17d812bf2c260c19be379effff5c528bfc35",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "go.sum",
+      "sha256": "0bb3ffbefa7ef6a6507a59feed3708cf92ac542e4c9911241eb2d9f4a7604b36",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "openapi-typescript.redocly.yaml",
+      "sha256": "b5458ce34977d7c1eef3246846d6372bd1b0be20a8366d8c142170bae4b58ec7",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "openapi/runtime-permissions/runtime-permissions.yaml",
+      "sha256": "0cd99d5ee3f7035bf43c0996648dc855f71a447595dcb61d903232d81b602a99",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "sdks/go/openapi/runtime-permissions/source.bundle.yaml",
+      "sha256": "613032548bc666f6724b62f73444ef0052f07f71af715bdc5a436da6fb887fc1",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "sdks/go/openapi/runtime-permissions/client.gen.go",
+      "sha256": "e1129eeb3eb1985a5be8f95aa2e4cca1a4c211fe96f3fefcc8ae1f7d8433bc2b",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "sdks/typescript/src/openapi/runtime-permissions.gen.ts",
+      "sha256": "70cc7af6c1102b813ef3aa501ffa86a49891194dcbf9cd3445b39d1e33167bd8",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "scripts/generate.mjs",
+      "sha256": "684fbfc59a94ce3475a8fc30242bf2f7a7a2bf031eccbf9c9bb0b2bb1f850463",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "openapi/native-conversation/native-conversation.yaml",
+      "sha256": "ad4c7f0eece6acb99029358a8284535757ee5d7c97858d65b8813631f56ad651",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "sdks/go/openapi/native-conversation/client.gen.go",
+      "sha256": "eefcaeab74a0309a78cda03ad131966cb3b35fa05e66a7e058f1145228124a16",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "sdks/typescript/src/openapi/native-conversation.gen.ts",
+      "sha256": "b8303ceb4bacd41646848f6844b20a0cdf63148708c6f005c9314e8ae93e4f2b",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "compatibility/agent-host-native-conversation-v1.json",
+      "sha256": "5ae920d8fb1ad34c39dc80d824a9192274b5708016ceb124adb6b01ea7156d46",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "scripts/generate.mjs",
+      "sha256": "684fbfc59a94ce3475a8fc30242bf2f7a7a2bf031eccbf9c9bb0b2bb1f850463",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "scripts/sync-native-conversation.mjs",
+      "sha256": "795cdc2337f5bed26a04b4dd66ff32bf0bdec0f6e168155610e77b5e4bbd1255",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "package.json",
+      "sha256": "d53fedd8cba4cfd7238b1f60121803905ce6c0127a2e0cde16ba9af18a6333c6",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "pnpm-lock.yaml",
+      "sha256": "57eece158a0405a85ea9b8fd2c382af130e4248897b67af587878737bbf86313",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "go.mod",
+      "sha256": "4bd3ff739f9383a42d641a0cbfcf17d812bf2c260c19be379effff5c528bfc35",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "go.sum",
+      "sha256": "0bb3ffbefa7ef6a6507a59feed3708cf92ac542e4c9911241eb2d9f4a7604b36",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "openapi-typescript.redocly.yaml",
+      "sha256": "b5458ce34977d7c1eef3246846d6372bd1b0be20a8366d8c142170bae4b58ec7",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "openapi/runtime-permissions/runtime-permissions.yaml",
+      "sha256": "0cd99d5ee3f7035bf43c0996648dc855f71a447595dcb61d903232d81b602a99",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "sdks/go/openapi/runtime-permissions/source.bundle.yaml",
+      "sha256": "613032548bc666f6724b62f73444ef0052f07f71af715bdc5a436da6fb887fc1",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "sdks/go/openapi/runtime-permissions/client.gen.go",
+      "sha256": "e1129eeb3eb1985a5be8f95aa2e4cca1a4c211fe96f3fefcc8ae1f7d8433bc2b",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "sdks/typescript/src/openapi/runtime-permissions.gen.ts",
+      "sha256": "70cc7af6c1102b813ef3aa501ffa86a49891194dcbf9cd3445b39d1e33167bd8",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "commit": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "path": "scripts/generate.mjs",
+      "sha256": "684fbfc59a94ce3475a8fc30242bf2f7a7a2bf031eccbf9c9bb0b2bb1f850463",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-agent-host",
+      "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+      "path": "api/openapi/runtime-permissions.yaml",
+      "sha256": "613032548bc666f6724b62f73444ef0052f07f71af715bdc5a436da6fb887fc1",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-agent-host",
+      "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+      "path": "api/runtime-permissions.lock.json",
+      "sha256": "e77e19cb7b020ab4f98c02d9f977813e87f102a1461d8a774b211f94770ae7aa",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-agent-host",
+      "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+      "path": "go.mod",
+      "sha256": "7a360b4877255da78e522fae2de8c165c965eb6f546b023883aba6dd1c631f3f",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-agent-host",
+      "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+      "path": "go.sum",
+      "sha256": "f4a3ff159e90d65c0db8336657a2634a3932c7db8e0a5ac415fc3dae017f3d3c",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-agent-host",
+      "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+      "path": "internal/app/app.go",
+      "sha256": "f8f43c4b6981a762e6ef56157c3a3e2809e68898bf253d6e07dd21aeb5ae8ae7",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-agent-host",
+      "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+      "path": "internal/app/runtime_permission_verification.go",
+      "sha256": "1309dc277590710819a7565d8af3e89bc22bbdcd5421c46d874993ea830d61c4",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-agent-host",
+      "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+      "path": "internal/app/runtime_permissions.go",
+      "sha256": "6476b42ec0240f21bc8e3209cf78135f21552559ba69f84ce2d4ca2de6e5abab",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-agent-host",
+      "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+      "path": "internal/codex/runtime.go",
+      "sha256": "51c3cce114ad69dff1c52aebcc2a4d30b8f8df31efd2e43bdef8d5e85c3d9a25",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-agent-host",
+      "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+      "path": "internal/codex/runtime_permissions.go",
+      "sha256": "b653057920f12aff6208743523802f51596bc311c7453d5cf89a77efae53f27f",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-agent-host",
+      "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+      "path": "internal/codex/session_protocol.go",
+      "sha256": "111b88829d9eeea371b7ae898b1be5af00c188de6d7f2bc78cce515677e3d0e2",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-agent-host",
+      "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+      "path": "internal/contracts/runtimepermissions/types.gen.go",
+      "sha256": "6f26e5e2d6b9b27b9af010021854431066de2eb35ef5f172d031c30b343934ef",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-agent-host",
+      "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+      "path": "internal/session/multimodal.go",
+      "sha256": "1eecd7ac35cc5bcfb20d6e03771dd319c9013a0d0151b3aa40fbd05c1bee5741",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-agent-host",
+      "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+      "path": "internal/session/runtime_permissions.go",
+      "sha256": "f09ef504cfe6e1ebfdcdbfaaaec382d6c40bd60f57ef253964ab163b50b8c358",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-agent-host",
+      "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+      "path": "internal/session/service.go",
+      "sha256": "a2c882db2cf18a5ba122cd0622b9b538992880223c0b26611b07106fa354a35f",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    },
+    {
+      "repository": "yijie-agent-host",
+      "commit": "f4cf01bd6f7e9f37792ef743d44f0ce10527c10b",
+      "path": "internal/session/store.go",
+      "sha256": "ab934f9c22c1a9af723fde46bedb2c07681faab548346127d8f0ff66906dcc38",
+      "match": true,
+      "working_tree_match": true,
+      "committed_match": true
+    }
+  ],
+  "runtime": {
+    "codex": {
+      "sha256": "4efe16d2848680752cf9aacf4c17741ab2eeb7415894a66c2bb03652b00a322d",
+      "unchanged": true
+    },
+    "runtime-manifest.json": {
+      "sha256": "1cfa2e0a139b2213f4d29b1efeed71d4810110ac865f0bcbd931ff33b0062c1b",
+      "unchanged": true
+    }
+  },
+  "original_history": [
+    {
+      "file": "00-feature-brief.md",
+      "byte_equal": true,
+      "sha256": "84b8c5bd667ef95728497f51bc46d9252417b1a6415627b99f75986dbd01765d"
+    },
+    {
+      "file": "01-delivery-log.md",
+      "byte_equal": true,
+      "sha256": "79f3fa4e69b580191d72310a7403fe6c240ac50f866511784d880b91944e8c6a"
+    },
+    {
+      "file": "02-verification.md",
+      "byte_equal": true,
+      "sha256": "740ed009cf8945287c711572b8153d93ec7333c304d0dd27130aed4cbf727a0d"
+    },
+    {
+      "file": "feature.yaml",
+      "byte_equal": true,
+      "sha256": "edd1159a11c3e10c1597082e192486b3f1b7b411731823601f3b5bb51af43376"
+    }
+  ],
+  "generic_secret_pattern_hits_paths_only": [],
+  "json_parse_errors": [],
+  "current_markdown_links_missing": [],
+  "shell_syntax": [
+    {
+      "file": "scripts/bootstrap.sh",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "file": "scripts/checkout-all.sh",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "file": "scripts/dev-down.sh",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "file": "scripts/dev-up.sh",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "file": "scripts/generate-all.sh",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "file": "scripts/lint-all.sh",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "file": "scripts/test-all.sh",
+      "exit_code": 0,
+      "output": ""
+    }
+  ],
+  "meta_file_sha256_before_receipt": {
+    "docs/dev/codex-project-memory.md": "9c0336af7329cc41dc8fff71b043c9282d1871e6f38af31f96dc6adc798b908f",
+    "docs/features/FEAT-131-desktop-codex-parity-baseline/03-capability-matrix.md": "e689695acd90b697ec3b94998ce92376f5562c0516746e439540f672a3d94d8a",
+    "docs/features/FEAT-131-desktop-codex-parity-baseline/04-golden-scenarios.md": "2c26cea45146fe491c20b1f2b5bfb810e528dbf0f348fe473dc509c94ff44d81",
+    "docs/features/FEAT-131-desktop-codex-parity-baseline/05-reference-evidence-index.md": "2545f5acfd2392ce631b7dff2e0b7d2cf5e62fce943834c84246e347b84eb78e",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/00-feature-brief.md": "505a989b31aa5b36a176831a2f17814af60d491d07e5c4d213d12ccba29a78c7",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/01-delivery-log.md": "7bc9bdbfd53c1ffbfac243d374a3099cd616c84e206749ad5408cb45ec330b0e",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/02-verification.md": "92c3d18105bbafe76d7301bffceb4f82124bd26328c31a8a2cd6b4ff0517869a",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/03-native-audit-and-decisions-2026-09-10.md": "4aebbd4be7109e1ab54a4b18a1ad9b9a28331ce240d670c7f351a8e93d05a458",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/04-acceptance-scenarios.md": "11f02c865e98db9b8229f495c6c894aa489cea61a7a99a6682b0b8ff188f5d80",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/05-d0-preflight-2026-09-10.md": "dba1648ae411863f404bfdf36e50c7036ecf10854ebc4d592714e4772109e40b",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/06-header-auth-and-discovery-budget-2026-09-10.md": "a1fd6dac2db944fdf41145705a3d2c7b5114e897e2c79ce38a123ad74ccc7cdf",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/07-paused-state-2026-09-10.md": "c546cf156542a7b95f4361a86b259d9cd07e030874dc8cef4f71cc1ae9ae2409",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/08-discovery-results-2026-09-10.md": "aaae86121b5d2eed41d4f5311aa1889cb8861522d9077c8f16579adbfba7b9bf",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/09-local-codex-validation-2026-09-10.md": "4e5c08da34b77b93a029c7c74fd83107c1cfea01b37de6f286bbb5444e317c1d",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/10-fixed-runtime-d0-decision-2026-09-10.md": "91b056943707a615a3929cf5b5d998566e1588ea7059dc450fa029556889051a",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/11-native-http-differential-diagnosis-2026-09-10.md": "c2a58e7d4f872394bd6a9c73a9f4d16c5bdca22e23b86884da1e5a113406f253",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/12-independent-contract-and-reader-plan-2026-09-10.md": "063dad58100d36acdc02944c3673ef8424e3b865c615a487eca55aef485faa3a",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/13-connection-closure-and-d0-review-2026-09-10.md": "29e6fcf7950bf8a1b14689a928b983db0dfcc219c9e5ec506a90714ddc27fcc8",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/14-bounded-native-business-sample-2026-09-10.md": "6bff0b2d77e31559de7425657c8be8eb548e351ec5663f8a6fd5205f07773985",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/d0-business-basis-review-2026-09-10.json": "ca4c282fc8b9e0b2a434056a7ade34f318474adf24f424051d3f7f320a9f96a7",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/d0-closure-checks-2026-09-10.json": "f737310418c7318fc48d4a3592d514b2a5ebb38653e1ba20d9db989b591e554d",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/d0-closure-preflight-2026-09-10.json": "33e5af2a08adecef843cefa6c0fc9855f931704beff7b15f0ec03fbaca3913b0",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/d0-document-checks-2026-09-10.json": "3e64dbfd17ea021775de5f7fd71c42e5953d3b3c7e53ca76fdb9ec61a140632a",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/d0-preflight-2026-09-10.json": "3942fb40770bac33c802f52ebfa86ca2126dc737915697f299d2e6fa614b5f07",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/deep-diagnostic-preflight-2026-09-10.json": "e2235277aedc53cd4cec8ae49d765003945a466241f2c9e1f77019d3a29be37a",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/deep-document-checks-2026-09-10.json": "6617bc1c6db0bc3c843d989655d425e84915595f9960f349a16a0df44a1077c9",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/deep-final-workspace-2026-09-10.json": "e0209e1983de23eaddce81db88de9ddbe1e61dc1800853c5df042b72df682e35",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/fixed-runtime-comparison-preflight-2026-09-10.json": "89fd9a6da00bcbe896621f72757155c1b81e1fd4acc912889bd4dbee2b490ccf",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/fixed-runtime-d0-checks-2026-09-10.json": "bb78a1fb871c0fe6784e1aacb04b36431c5a075b69f62fa0a25656ac90282a20",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/fixed-runtime-d0-final-workspace-2026-09-10.json": "2c5de6c270fa7c6139b6835dc6c185c5d300cfe6411b430de8b800343cee72af",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/fixed-runtime-user-agent-success-2026-09-10.json": "6192834b80c7c3f0a098c0d29e0a5fc2381099bb289bcc15027c54bcf02f76c6",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/independent-native-baseline-checks-2026-09-10.json": "321a32e628f5ba58b74ec2ca06fabc55aaf7e5d09b57675e82fbc2cbdb998fc5",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/local-codex-app-source-2026-09-10.json": "eac284fc62c3aeb1dafe56874ef16a73ac9602fb0508e04d0b5ec1cbb8503455",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/local-codex-document-checks-2026-09-10.json": "2f17b3d6650e4e7e108a3698e37602935bf295266e6f4cca7da74f8195cc28a1",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/local-codex-final-receipt-2026-09-10.json": "bf8b340af58fe6523cac1e98376aa7ddc5772aed792644c3c14ec0360e834946",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/native-local-wire-comparison-2026-09-10.json": "e5ceb9ebcc0c983b34b4324220457e94537f9c282df44ed54689685eccee9a1a",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/pause-receipt-2026-09-10.json": "057687ee4809a2a985a4b07f9832775db1f8ea38e03ac0c603c1cd40cd693505",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/requirements-audit-2026-09-10.json": "d60a85332efcd563847be2f076608ac6aa4eb4cd79a1971a9d480877b72022f1",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/resumed-document-checks-2026-09-10.json": "f1d7e19db4948f70c37da8ba0a615746db4125a7289dcd217137f2e1c15c68f6",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/resumed-workspace-receipt-2026-09-10.json": "b38b82d363762aa0826254a68d79f74c2ee766c987efd23d8ac43bf356bfceb9",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-archive-audit-2026-09-10.json": "897141d163f12dc76c00894cff0501f2af4f846d5058386ce159a136374db8a2",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-discovery-ledger-2026-09-10.json": "edae82bb98268c2401f2fef21d708006574677e6ebc0d98bd7071b9973b5cffa",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-discovery-status-2026-09-10.json": "b57e2aa455093000b13c0c42acdca624dce1993fc48fc38cbb52f1257d06a305",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-native-discovery-operation-1-2026-09-10.json": "4bb234a89682b13739ddc585237a7bc4e4cb04f3e538765328aac53c8af9a049",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-native-discovery-operation-2-2026-09-10.json": "191153bf1808eb4db0c125fb97c27e93eae14c947853cfa5d81cf70b700aa8f3",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-native-discovery-operation-3-2026-09-10.json": "d289a86a041a41f83d0a9158ad47a0694314025ff42eb12d83f24110f7801b81",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-native-discovery-operation-5-2026-09-10.json": "db7431066ac554c64b0d442d9292b526a65d104fb4b99973d03387a689900567",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-native-discovery-operation-6-2026-09-10.json": "5cf043d14f61b62109e8f435f2459478e87511fe8833e42a1ceeca56466a28bc",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-native-discovery-operation-8-2026-09-10.json": "da04891267eab74faf9373c212a2cc24fb8b0358a75361fd38092baefc760b74",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-product-detail-fixed-schema-2026-09-10.json": "5dca30db412365ba6f9d13715b1bd0aae8b8daf47410169b3c194c53065955b2",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-product-detail-schema-2026-09-10.json": "6e4eece3d320328b3d3ae09781f7d1993af3cfe69785b651c5802df6b5f39b74",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/sorftime-public-business-review-2026-09-10.json": "1f3d382a92f4a7a4398660190a13d246c6c2de300bce2840f03847a4f48fc31b",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/evidence/upstream-01534-readonly-comparison-2026-09-10.json": "92e6ef1ccb62c4fa6af09068fa412cee748e5bfc98e65f0fda5d7a6c21c4b10e",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/feature.yaml": "fc2eaf17daed01b9dace1d440b2a8ade7ee36280e9d874e6a7fe3b60f90773b4",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-08-30/00-feature-brief.md": "84b8c5bd667ef95728497f51bc46d9252417b1a6415627b99f75986dbd01765d",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-08-30/01-delivery-log.md": "79f3fa4e69b580191d72310a7403fe6c240ac50f866511784d880b91944e8c6a",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-08-30/02-verification.md": "740ed009cf8945287c711572b8153d93ec7333c304d0dd27130aed4cbf727a0d",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-08-30/feature.yaml": "edd1159a11c3e10c1597082e192486b3f1b7b411731823601f3b5bb51af43376",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-builtin-proposal/00-feature-brief.md": "cfabd32daa774a8da3f6a8deebd86c2fcb658608c3caa288eca3af4948cdc427",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-builtin-proposal/01-delivery-log.md": "6d3771d6e4a74c00780e8248c6020731c6bde38331c0e4e0247f47d117c76e37",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-builtin-proposal/02-verification.md": "838b9bd50c7abdf868dab1cf6288a3a08f0210f8c580f2e1c0bfb62b613db9d6",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-builtin-proposal/03-native-audit-and-decisions-2026-09-10.md": "b4a4db0e7a5fcea9f17cae002f16c417a2e77e0c144e2f56ec1707c6a50d8b0f",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-builtin-proposal/04-acceptance-scenarios.md": "36a29f54aeb23b08bc01348b779868fc20a7eed386a5facf2795578b93267d7f",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-builtin-proposal/README.md": "5ed8baee327cda2c2b6ff3260a6542c2ccd56851925b0c59732b0b05edf7b04c",
+    "docs/features/FEAT-144-desktop-real-tool-producer-items/history/2026-09-10-builtin-proposal/feature.yaml": "49caa260556ce7bcd3393fc3adf1fe2110dea4998162ebc1e492ac14b3954e1e"
+  },
+  "receipt_self_hash_excluded": true,
+  "document_receipt_refreshed_at": "2026-09-10T06:41:41.369060+00:00"
+}

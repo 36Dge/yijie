@@ -1,0 +1,75 @@
+{
+  "server_name": "sorftime",
+  "native_server_info": {
+    "name": "Sorftime MCP",
+    "title": "Sorftime Model Context Protocol MCP Host",
+    "version": "1.1.6",
+    "description": null,
+    "icons": null,
+    "websiteUrl": null
+  },
+  "discovered_with": "Installed Codex app native runtime 0.153.4",
+  "discovery_operation": 5,
+  "tool": {
+    "name": "product_detail",
+    "description": "Query the detailed data of a product on the Amazon platform.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "asin": {
+          "description": "Product ASIN, single-ASIN query only.",
+          "type": "string"
+        },
+        "amz_site": {
+          "description": "Amazon marketplace site. ",
+          "type": "string",
+          "enum": [
+            "Unknow",
+            "US",
+            "GB",
+            "DE",
+            "FR",
+            "IN",
+            "CA",
+            "JP",
+            "ES",
+            "IT",
+            "MX",
+            "AE",
+            "AU",
+            "BR",
+            "SA"
+          ],
+          "default": "Unknow"
+        }
+      },
+      "required": [
+        "asin"
+      ]
+    }
+  },
+  "input_schema_canonical_sha256": "8fba19a74826bb3fcd9b3a98a6ee74137568194a330cadbdf77c584bc5500f77",
+  "observed_tool_count": 97,
+  "catalog_completeness": "Not established",
+  "product_policy": {
+    "enabled_tools": [
+      "product_detail"
+    ],
+    "explicit_arguments": {
+      "amz_site": "US",
+      "asin": "one user-specified public ASIN"
+    },
+    "no_implicit_Unknow_default": true
+  },
+  "not_proven_by_discovery": [
+    "business result success",
+    "read-only and idempotency guarantee",
+    "account pricing",
+    "normal business failure condition",
+    "yijie frozen Runtime compatibility"
+  ],
+  "response_fields_absent_in_native_result": [
+    "outputSchema",
+    "annotations"
+  ]
+}

@@ -1,0 +1,5 @@
+# 未实施的内置工具备选
+
+2026-09-10，模型按用户最初委托选出view_image/可选Command方案，仅落需求并通过当时的D0/strict机器检查，未实施、未调用。用户随后提供真实sorftime streamableHttp服务配置，当前主线恢复为真实MCP；这里保留未实施备选，不是当前入口或验收权威。
+
+分离审查指出备选需补强用户结果与ImageView记录的独立验收、thread/read文案，以及旧reader的deny_unknown_fields兼容顺序。备选停止推进；通用要求已转入当前Sorftime包。不会因其机器门禁通过而声明旧MCP已交付。

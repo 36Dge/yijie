@@ -1,0 +1,45 @@
+{
+  "recorded_at": "2026-09-10T06:24:30.442495+00:00",
+  "scope": "D0 public sources and fixed native code; no extra network MCP/model/business calls",
+  "native_schema_source_operation": 8,
+  "official_archive": {
+    "path": "/Users/jack/Desktop/sorftime-mcp.zip",
+    "sha256": "61fff0b57fcdc04c6dc25450df10dafff788741bc4e4cb62b1edf06ea8ff49c4",
+    "billing_claim": "MCP resource package from RMB99/30000 calls/month; package statement only, not current account pricing",
+    "billing_location": "SKILL.md:77"
+  },
+  "public_sources": [
+    "https://www.sorftime.com/en-US/mcp",
+    "https://www.sorftime.com/zh-CN/mcp/index?tag=",
+    "https://www.amazon.com/dp/B07H9PZDQW"
+  ],
+  "sample_candidate": {
+    "asin": "B07H9PZDQW",
+    "amz_site": "US",
+    "public_item": "Gaiam yoga mat",
+    "source": "Official ZIP example and Amazon US product page",
+    "sorftime_data_availability_proven": false
+  },
+  "design_conclusions": {
+    "readonly": "Single-product query use; no guarantee of no cache/meter updates",
+    "idempotency": "No constant-result, service deduplication or free-retry promise",
+    "result": "Bounded original-index native text block projection; outputSchema/annotations not required to design this",
+    "normal_failure": "No established supported safe business failure condition; empty/approval denial cannot replace AC004",
+    "retry": "Native404session recovery may repeat tools/call once; normal transient list/init retry does not generalize to business",
+    "billing": "Account/tool weight and failed/empty/replay charging unknown"
+  },
+  "manual_sample_boundary": {
+    "native_method": "mcpServer/tool/call",
+    "stable": true,
+    "model_turns_needed": false,
+    "native_enabled_tools_enforced": true,
+    "model_tool_preapproval_path_used": false,
+    "mcp_tool_items_generated": false,
+    "authority": "New exact user authorization required; not current metadata authorization or product/D4 approval",
+    "status": "NOT AUTHORIZED / NOT RUN"
+  },
+  "added_calls": 0,
+  "reviewed_d0_boundary": "D0 blocked by missing executable safe ordinary AC004 failure plan; account charging and exact budgets confirmed before business activation, not requiring a success sample to design native text projection",
+  "sample_current_decision": "Inactive fallback; do not request or execute now because it cannot close the remaining failure-plan gap or establish charging",
+  "product_permission_activation": "First release Sorftime only under verified PermissionAsk -> on-request/user/workspaceWrite/networkAccess=false and native tool Prompt with no approval replacement hooks/plugins; other FEAT152 modes unchanged, Sorftime inactive. Validate actual native config/thread response, not only UI. Normal mode switch must make tool unavailable before entering auto/full. Not implemented."
+}

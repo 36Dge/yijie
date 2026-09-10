@@ -1,5 +1,7 @@
 # FEAT-131 — Codex 风格近似对话黄金场景
 
+> 2026-09-10 FEAT-144 当前范围：sorftime单工具product_detail、US单公开ASIN；固定0.144.6已通过无query URL＋原生Bearer环境引用＋真实版本User-Agent完成操作7/8初始化/列举，累计8/10元数据操作，模型/业务0。连接阻塞关闭，用户已排除业务失败实现/验证并确认余额、授权10次业务请求；D0按调整范围实跑PASS；产品实现/GS-004/D4 NOT RUN。原失败历史和未实施view_image备选保留，不替代真实MCP交付。详见[FEAT-144当前结论](../FEAT-144-desktop-real-tool-producer-items/15-owner-scope-and-business-budget-2026-09-10.md)。
+
 > 2026-09-09：历史场景结果不自动继承到 native v7；当前职责、日常入口与不可恢复的旧机制见[一致性复核](06-native-consistency-review-2026-09-09.md)。
 
 > 当前范围修订（2026-09-05）：FEAT-137 已由 Owner 永久终止且未完成验收，未来不重启。CAP-019 / GS-005 为 `owner-terminated-unaccepted`，不再属于 active 交付范围；现行 active 范围排除 FEAT-137/138。下文旧 active 范围及 FEAT-137 source PASS 为历史记录，不构成审批可用或 D4 PASS。最终权威见 [FEAT-137 永久终止记录](../FEAT-137-desktop-approval-interaction/03-termination.md)。
@@ -30,7 +32,7 @@
 | GS-001 | 普通问题的流式回答与最终完成 | `available` | FEAT-134、FEAT-135 | `owner-approved-inference` | `synthetic: PASS`；current canonical `real-runtime: PASS`；predecessor `pre-runtime: FAIL` |
 | GS-002 | 多段过程更新与用户可见推理信息 | `available` | FEAT-134 | `owner-approved-inference` | 2026-09-09 native 分段/phase/plan 定向检查与既有数据 local D4 PASS；summary/raw 正向组合为 synthetic，不冒称新模型完整样本 |
 | GS-003 | Command 执行成功和失败 | `available` | FEAT-136；完整状态顺序后移 FEAT-143 | `owner-approved-inference` | 2026-08-30 v5 D4 保留历史；2026-09-09 native 调整 D4 PASS，真实 completed/failed 各1、正常重开，3/10文本；不声明独立 delta 顺序 |
-| GS-004 | Tool 调用成功和失败 | `requires Host/Contracts projection` | FEAT-144 | `owner-approved-inference` | generic source conformance `PASS`；real producer/entrypoint decision `BLOCKED`；Tool D4 `NOT RUN` |
+| GS-004 | Tool 调用成功和失败 | `requires Host/Contracts projection` | FEAT-144 | `owner-approved-inference` | 固定0.144.6原生元数据接入/输入schema已验证，8/10元数据；用户已排除业务失败场景并授权业务10次；D0按新范围实跑PASS，产品真实MCP成功/D4 NOT RUN，业务失败场景用户排除 |
 | GS-005 | 命令审批一次性允许、取消和过期（历史场景） | `owner-terminated-unaccepted` | FEAT-137（永久终止） | `owner-explicit-decision` | 未完成验收；不再实现、不重启 |
 | GS-006 | 文件修改与 Diff | `intentional product difference` | FEAT-131 scope decision | `owner-excluded` | metadata-only exclusion；无 fixture、无真实验收 |
 | GS-007 | 执行中补充指令 | `requires Host/Contracts projection` | FEAT-139 | `owner-approved-inference` | metadata only；projection unavailable |
@@ -84,7 +86,7 @@
 - 可用动作：展开/折叠安全参数摘要与结果；不显示 raw secret、绝对路径或未批准重试。
 - 最终结果：成功/失败由真实 completed Item 决定；未知 Tool 安全降级但不阻断其它 Item。
 - Reference basis：`owner-approved-inference`。
-- Provenance：Contracts/Host/Desktop generic Tool source conformance 为 `PASS`，但没有 Owner-approved real producer 或产品入口，因此 real success/failure 与 D4 保持 `BLOCKED / NOT RUN`；不使用 experimental dynamic tool、临时注册或 fixture 冒充。
+- Provenance：generic Tool source conformance仅历史基础；用户已提供sorftime服务来源，实际manifest、秘密注入与原生MCP审批仍待验证，真实success/failure/D4保持BLOCKED / NOT RUN；不使用内置看图、Command、dynamic image或fixture冒充。
 - Owner：FEAT-144。
 
 ### GS-005 — 命令审批一次性允许、取消和过期

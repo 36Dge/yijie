@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-144",
+  "recorded_at": "2026-09-10T07:28:43.174Z",
+  "authorization": {
+    "granted": true,
+    "approved_by": "段成威",
+    "source": "用户：不做业务失败场景的验证，跳过这个逻辑实现；业务激活余额充足，可以放心的真实调用，先授权10次。",
+    "max_tools_call_attempts": 10,
+    "count_unit": "tools/call attempts including native resend",
+    "interpretation": "Conservative cap; not 10 logical calls plus extra retries. One native call can resend once on session404: reserve 2 attempts before each logical call unless a smaller bound is proven; never start with insufficient reserve. No outer retry.",
+    "scope": {
+      "server": "sorftime",
+      "tool": "product_detail",
+      "single_public_asin": true,
+      "amz_site": "US",
+      "model_requests": 0,
+      "images": 0
+    },
+    "account_balance": "Sufficient, asserted by user; no private balance query performed",
+    "billing_detail": "Not independently verified; no promise of free retries or exact charging. No longer a prerequisite under this explicit grant.",
+    "other_authorizations": "Existing metadata ledger remains independent at 8/10. This does not authorize Runtime/permissions changes, product implementation/migration, commits or pushes."
+  },
+  "actual": {
+    "logical_calls": 0,
+    "tools_call_attempts": 0,
+    "reserved_attempt_upper_bound": 0
+  },
+  "remaining_attempt_budget": 10,
+  "records": [],
+  "metadata_ledger": "sorftime-discovery-ledger-2026-09-10.json",
+  "business_failure_scenario": "OWNER_EXCLUDED / NOT RUN; no special implementation",
+  "execution": "No business call required to close D0; reserve for useful success validation after applicable prerequisites."
+}

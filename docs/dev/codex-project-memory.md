@@ -4,7 +4,7 @@
 
 - 状态：Accepted
 - Owner：段成威
-- 最后更新：2026-09-09
+- 最后更新：2026-09-10
 - 适用范围：`yijie` 多仓项目的需求起草、调查、设计、实现、验证、评审与发布协作
 
 ## FEAT-132 当前权威（2026-09-09）
@@ -34,6 +34,32 @@ FEAT-134 四个本地提交在用户“授权执行”后已按 Contracts → Ho
 FEAT-136 现状审计确认：命令执行和最终输出来自 Codex，Desktop 复用 FEAT-132 native v7/唯一缓冲/SQLCipher；Host native 主动不传 Command delta 正文，等待 aggregatedOutput 后安全投影。旧 v5 有真实兼容路由和容量计数，不能整包删除。审计发现的目录标签、输出完整性、空输出与历史 running 文案问题已按[执行方案](../features/FEAT-136-desktop-command-tool-items/03-native-command-audit-and-plan-2026-09-09.md) 实施并取得本次八项 local D4 PASS；真实3/10文本、0图片，两条 Command 成功/失败及正常重开通过。本次交付收尾已另获明确授权，Desktop 8bfa5ca284fddb86d7cdd2a406c5041c49367688 → 元仓 4e6645574fdfe7d29f7c551564bf807cf8222d48 已普通推送且远端 SHA 相等；两提交 CI 未触发，NOT RUN。详见 FEAT-136 的 04-delivery-closure-2026-09-09.md。原验收 base commit 与逐文件 SHA-256 保留；原 2026-08-30 五项 Command D4 保持历史语义，Tool 仍属 FEAT-144 blocked / NOT RUN。
 
 六项需求已补充当前依赖与证据适用范围，能力矩阵修正为当前 native 事实。后续不恢复 ConversationState/reducer、正文对账、身份猜测、自动封口或历史重建；日常 app 与原 stable 隔离数据、FEAT-152 与已终止 FEAT-137 分开记录。详见[整体一致性复核](../features/FEAT-131-desktop-codex-parity-baseline/06-native-consistency-review-2026-09-09.md)。审计阶段模型调用为0，授权后的FEAT-136实施验收为3/10文本、0图片。
+
+## FEAT-144 当前需求权威（2026-09-10，AC-004用户排除、业务授权10次）
+
+固定Runtime0.144.6原生元数据连接阻塞已关闭：操作7初始化ready、操作8返回97工具/Sorftime MCP1.1.6；无query URL、原生bearer_token_env_var引用及真实User-Agent codex-mcp-client/0.144.6。连接技术依据保留13；当前范围/预算权威为[15用户决策](../features/FEAT-144-desktop-real-tool-producer-items/15-owner-scope-and-business-budget-2026-09-10.md)及分账台账。没有等待输入或存留诊断Runtime，不重复消耗额度验证同一连接。
+
+累计10次元数据操作授权（含正常握手/重试/清理），实际8次、剩余2；模型/业务/图片均0，本轮文档收尾新增0。正常unsubscribe/EOF exit0、新目录和输出秘密精确扫描无命中；操作7/8的6 POST span来自共享进程摘要，不能重复加为12；完整HTTP尝试数未知。产品环境隔离/canonical/D4仍未执行。
+
+原操作1–3及6的HTTP400/request error失败历史保留。两版实际二进制对普通localhost服务的初始化观测除真实版本外一致，固定版缺User-Agent；仅补真实UA后固定版远端成功，足以确认该原生配置可用，不等于证明服务端唯一拒绝规则。操作4/5的本地Codex0.153.4对照仍为历史证据。固定binary SHA 4efe16d2848680752cf9aacf4c17741ab2eeb7415894a66c2bb03652b00a322d不变；未升级/修改/替换Runtime或安装ZIP bridge。
+
+product_detail及asin/amz_site输入schema当前由固定操作8确认，asin必填、US显式传入；只启用该单工具。enabled_tools不限制参数，审批要呈现原生tool_params中的实际ASIN/站点；参数不明或越界拒绝，不从助手正文推定授权。首期只读US公开商品查询，无商家写入，不承诺服务端幂等或免费。
+
+结果采用原生text块/稳定索引、最多32个原始content条目和既有256KiB UTF-8容量、复用既有完整文本脱敏后纯文本展示。safeNativeText仅NUL/容量处理，不能冒称脱敏。未返回outputSchema/annotations或progress不补造，也不独立阻断该展示设计；没有可展示文本不代表商品无数据。status/availability/诊断/busy分离，原生failed即使error=null也不改completed。
+
+[12契约与reader方案](../features/FEAT-144-desktop-real-tool-producer-items/12-independent-contract-and-reader-plan-2026-09-10.md)已细化：Contract First；兼容reader/格式版本拒绝先于新producer写入；未知格式用本地recordDiagnostics定位，不生成NativeView或触发冷读补建；DB user_version过高仍整体拒绝。未来expand migration仅设计候选，旧JSON/历史migration不改，回滚仅到已验证兼容reader，不复制用户DB。
+
+秘密首期只存受管进程内存，正常重开重新输入；原生shell_environment_policy.exclude需核对set和实际执行环境不重注入。稳定elicitation空form按request/thread/可信turn关联，原生accept/decline/cancel/resolved处理，无itemId不猜卡片；其它未支持请求继续拒绝。FEAT-152语义不变，FEAT-137永久退役。
+
+首期Sorftime只在“请求批准”及已核实原生on-request/user/workspaceWrite/networkAccess=false、工具approval_mode=prompt的受管配置下激活；不把prompt当必出面板的保证。自动审查/完全访问保持FEAT-152原语义，但本期Sorftime不在这些模式激活，不自动切换模式；未知有效配置或审批被hook/插件替代时不激活。实际thread响应/配置有效性及正常模式切换工具失效尚待产品验证；原生Prompt不复用Auto批准缓存。
+
+用户已明确“不做业务失败场景的验证，跳过这个逻辑实现”：AC-004/F144-S03从当前Must范围移出，标OWNER_EXCLUDED/NOT RUN，原编号不复用、旧四文件逐字归档、不算PASS。不新增Sorftime业务错误字段、分类器、失败专用分支或样本；已有原生failed与通用安全处理仍如实保留。无需再索取官方正常失败条件，不用成功/空结果或权限拒绝替代业务失败通过。
+
+用户确认业务余额充足并授权10次Sorftime业务请求。保守口径为tools/call尝试共10次，含原生404重发；每个逻辑调用先预留最多2次，不足则不启动，不能视为10逻辑加10重试。业务已用0/10，元数据8/10独立，模型/图片0且未授权。扣费公式未核实但不再阻塞该明确预算，不承诺重试免费。14备用取样在这份预算内但非D0必要步骤，本轮不消耗额度。
+
+D0根据用户新范围与授权重新审定并实跑PASS（exit0），strict及50项元仓测试通过；9项活动Must pending，产品实现/canonical/D4 NOT RUN。通用D4仍保留AC-007的既有输入/原生权限正常拒绝检查，不能冒充AC-004或另做业务失败逻辑。继续复用Codex与FEAT-132唯一缓冲/SQLCipher/thread-read，不造执行器/推演/对账/重建/封口。后续Contracts→兼容reader→Host/Desktop→定向验证→canonical→D4；产品实施/migration、模型预算、提交推送仍依据各自明确授权，业务预算不代替它们。
+
+本轮仅元仓需求/证据更新，无产品代码/migration/提交/推送/tag/部署；Desktop228a95a4929a53bbb6aafc76156161d642d72153并发界面内容保护，47来源锁不机械更新。原包和05–12阶段历史保留，当前事实以15和分账台账为准。
 
 ## 1. 单人开发角色默认值
 

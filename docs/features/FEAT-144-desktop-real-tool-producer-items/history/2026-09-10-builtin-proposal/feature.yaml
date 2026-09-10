@@ -1,0 +1,175 @@
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+feature:
+  id: FEAT-144
+  slug: desktop-real-tool-producer-items
+  title: Codex 内置本地图片查看与原生工具记录
+  status: draft
+  created_at: 2026-08-30
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+# 以下是后续功能实现的计划影响；本轮只有需求文档修改，实际 contract-impact=none。
+scope:
+  risk_level: high
+  data_classification: restricted
+  contract_impact: breaking
+  database_change: none
+  persistence_change: durable
+  runtime_change: none
+  auth_permission_change: none
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: tool
+repositories:
+  - yijie
+  - yijie-contracts
+  - yijie-agent-host
+  - yijie-desktop
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+product_ux:
+  status: PASS
+  primary_user: 在当前项目会话中明确请求理解本地截图、商品图片或设计图片的本地用户。
+  problem: 固定 Codex 已有 view_image 与原生 ImageView，但当前 native 投影降为 unknown；旧 FEAT-144 仍要求未选定的 MCP producer 和过期 v5 对账/封口机制。
+  user_outcome: 用户通过现有 Composer 请求看指定图片，看到真实 ImageView 观察记录与独立模型解释；可选路径检查复用既有 Command，信息缺失与历史来源清楚。
+  in_scope:
+    - 用户于2026-09-10委托模型选择工具、确定产品/访问/安全验收并定稿需求；本轮不实施。
+    - 唯一新增类型为 Codex 内置 view_image 产生的原生 ImageView；普通项目 PNG/JPEG，默认 detail。
+    - 可选路径检查复用当前原生 exec_command/CommandExecution 与 FEAT-136，不增加隐藏命令或强制预检状态机。
+    - 原生 id/type/观察方法及安全路径标签；完整对象直接替换；执行事实、availability、busy 分开。
+    - 源契约先行的版本化安全投影，复用 FEAT-132 唯一 NativeDisplayBuffer、SQLCipher 与 thread/read/resume。
+    - 真实看图、显式只读 Command 检查失败及用户恢复、正常重开、相关UI和权限定向回归。
+  out_of_scope:
+    - 本轮只落需求；不改代码/契约源、不生成、不启动、不模型请求、不提交或推送。
+    - 原 CAP-017/GS-004 真实 MCP 仍延期未交付，D4 NOT RUN；不以 ImageView/Command/dynamic image 代替。
+    - 不新增 MCP server/Connector/Skill/工具注册器/图片读取执行器，不修改或升级 Codex Runtime。
+    - 不新增状态推演、正文对账、身份猜测、历史重建、第二累计或自动封口；不解析 rollout/复制 HistoryBuilder/启用实验历史。
+    - 不新增图片预览/打开文件/下载/Artifact/缓存库，不保存新的图片bytes/base64；无新表或历史migration修改。
+    - 不扩权限、不重启FEAT-137、不改FEAT-152，不做FileChange/Diff、图片生成/编辑或外部搜索。
+    - 不强杀、故障注入、破坏权限、替换二进制或用攻击fixture；不复制DB/凭据、不转用旧额度。
+  main_flow:
+    - 用户在日常canonical当前项目会话通过普通Composer明确指定相对图片路径并正常发送。
+    - Codex按既有内置注册/权限/sandbox决定和执行view_image；没有真实ImageView不因提示词或模型文字造卡。
+    - Host只投影原生身份/类型与安全标签；Desktop经唯一native缓冲和SQLCipher显示真实观察记录，模型回答独立。
+    - 用户可显式请求现有Command检查普通路径；失败由真实Command事实展示，改为有效图片需新的明确用户意图。
+    - 正常退出重开读取已保存原生记录；缺失冷历史保持缺失，旧记录只读，不补发/猜接管。
+  visual_direction: 复用现有Timeline/Item shell、设计token、折叠、键盘与安全复制；标题查看本地图片，不展示原始路径或虚构状态，助手分析独立；不增加新的执行入口。
+  ui_states:
+    idle: 无原生ImageView不显示图片工具卡；用户仍可通过普通Composer发送。
+    loading: item/started只表达已观察到查看开始；忙碌沿用可信活跃Turn/订阅，不能因历史started持续旋转。
+    success: item/completed只表达已观察到图片查看记录结束，不代表解码或模型分析成功；无status字段不补造。
+    empty: 路径不可安全展示则显示图片路径已隐藏与独立availability；缺字段/冷历史保持缺失。
+    error: Command检查失败只按原生status/exit显示；ImageView读取错误在Item之前，不能按助手文字或无Item造failed/error码。
+    retry: 只有新的明确用户意图才重试，不自动修复路径、补发调用、搜索其它文件或扩大权限。
+    cancel: 复用现有turn/interrupt；Turn结果不封口ImageView，不新增工具取消接口。
+must_acceptance:
+  - id: AC-001
+    statement: 通过现有项目/Composer入口使用真实内置view_image；不新增MCP/工具执行器，原MCP目标与本期范围分开。
+    verification: 入口/注册源码审查及F144-S01真实原生ImageView，附件或模型口述不算；当前未执行。
+    status: pending
+  - id: AC-002
+    statement: 新安全投影保留原生ImageView id/type及允许标签；在唯一native缓冲中完整替换，不重复、不串项、不伪填旧Tool来源。
+    verification: F144-S01/S08的原生适配到卡片测试、完整对象/多Item/Unicode/既有入口去重与真实记录数量；当前未执行。
+    status: pending
+  - id: AC-003
+    statement: 卡片仅表达原生观察方法；无status/error/duration/progress不补造，completed不等于已解码或模型理解，安全标签不泄露raw路径/图片。
+    verification: F144-S01/S03/S06普通字段/缺失/纯文本/容量测试和真实卡片审查；当前未执行。
+    status: pending
+  - id: AC-004
+    statement: 显式只读路径检查出现真实Command失败并可由新用户意图恢复看图；Command失败、ImageView错误不可见和模型解释分别记录，不补造failed ImageView。
+    verification: F144-S02真实test -f普通缺失路径及随后有效图片；F144-S03源码/安全定向边界测试，不额外制造失败调用；当前未执行。
+    status: pending
+  - id: AC-005
+    statement: Item/Turn独立；Turn结束、历史或订阅不可信时停用busy，缺Item结束记录明确显示，不能生成其终态或结束时间。
+    verification: F144-S04普通合成三类Turn终态/缺记录/订阅/并发测试及会话切换；原生中断仅自然观察，不故障注入；当前未执行。
+    status: pending
+  - id: AC-006
+    statement: 已观察ImageView在现有SQLCipher正常重开保持身份/来源/语义；冷历史缺失不覆盖已观察内容，不猜ID或重建；旧历史可访问。
+    verification: F144-S05同一真实任务正常退出重开及安全的持久读取方向测试；无新图片库/表/迁移/rollout解析；当前未执行。
+    status: pending
+  - id: AC-007
+    statement: 仅在明确用户意图与既有原生权限/sandbox内查看图片或检查路径，不自动补发/扩大权限；图片输入费用与生图区分，日志/复制/证据不含敏感内容。
+    verification: F144-S02/S04/S06安全普通测试、请求批准入口、无隐藏重试和专属台账审查；当前额度0，未执行。
+    status: pending
+  - id: AC-008
+    statement: canonical正常启动、切换、退出重启；新ImageView的light/dark、1180×760、200%、键盘/折叠/复制可用，Composer/Command/附件/Artifact/FEAT-152无定向回归。
+    verification: F144-S07实际UI和定向测试；先保护Desktop并发改动；不继承旧测试数量或恢复其它需求豁免；当前未执行。
+    status: pending
+  - id: AC-009
+    statement: Contracts先固定版本化ImageView安全投影，旧v7/旧history保持合同；生成类型、真实来源/pin、旧新消费者及保存方向兼容通过，不放宽门禁。
+    verification: F144-S08源契约/生成/版本拒绝/旧新数据与消费者检查；后续Contracts→Host→Desktop，当前契约未实施。
+    status: pending
+  - id: AC-010
+    statement: 能复用Codex及FEAT-132/134/136的机制必须复用；无新增执行器/状态推演/对账/重建/自动封口，兼容保留有依赖证据，MCP延期和原生限制如实记录。
+    verification: F144-S08与实现阶段分离的审查、删除/保留清单、Runtime不变和最终真实验收报告；当前仅需求审查。
+    status: pending
+contract:
+  impact: breaking
+  authority: 冻结Codex ImageView canonical schema为事实源；当前FEAT-132 native安全投影/生成私有view/SQLCipher为既有通道，旧v5仅历史兼容。本轮不改契约源码。
+  source_first_plan: 按breaking保守治理闭合enum；推荐候选native v8事件与独立版本history面，具体路由/schema先在Contracts固定，旧v7及旧history不原地扩类型。复用单一缓冲/保存，验证旧新消费者及持久读取，只有受影响来源更新真实pin。无Runtime升级/新表/权限改动。
+  status: NOT RUN
+  checks: []
+external_authorizations:
+  paid_calls: { allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A }
+  destructive_operations: { allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A }
+  production_writes: { allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A }
+implementation:
+  status: pending
+  real_entrypoint: 未来使用pnpm tauri:demo-fast:app，当前项目会话普通Composer，原生view_image；可选路径检查复用exec_command。用户本轮只授权落需求，不实施。
+  mock_only: false
+verification:
+  status: NOT RUN
+  verified_at: NOT RUN
+  startup:
+    status: NOT RUN
+    command_or_steps: 未来canonical正常启动/退出重启，先让活跃Turn正常结束。
+    environment: 普通com.yijie.ai、现有app-data及Host Home、冻结Runtime、请求批准；不复制数据。
+    actual_result: 本轮仅需求，未启动。
+  real_smoke:
+    status: NOT RUN
+    command_or_steps: 未来新建普通验证项目，通过Composer请求view_image读取合成PNG，观察原生ImageView并正常重开。
+    environment: 现有MiniMax声明图片输入，实际调用须FEAT-144独立授权；附件与生图不算工具证据。
+    actual_result: 本轮真实调用0，无新ImageView验收。
+  representative_failure:
+    status: NOT RUN
+    command_or_steps: 未来显式exec_command执行test -f普通未创建路径，观察Command失败，再新意图查看有效PNG恢复；ImageView自身失败不可见单列限制。
+    environment: 只读、无故障/攻击/权限破坏/文件删除，保持请求批准。
+    actual_result: 未执行；不能将Command失败写成ImageView或MCP失败。
+  focused_checks: []
+  artifacts:
+    - 03-native-audit-and-decisions-2026-09-10.md
+    - 04-acceptance-scenarios.md
+    - evidence/requirements-audit-2026-09-10.json
+    - history/2026-08-30/02-verification.md
+  diff_review:
+    status: NOT RUN
+    summary: 本轮只有需求；完成写作后进行分离阶段审查，产品实现审查尚未运行。
+  known_limitations:
+    - 原2026-08-30 MCP四文件D0阻塞/8AC pending完整归档；CAP-017/GS-004延期未交付，不能用本期ImageView关闭。
+    - Codex ImageView只有id/path；无status/error/duration/progress，读取失败可能发生在Item创建前；助手解释不是原生失败证据。
+    - item/completed在后续解码/模型理解之前，不能等同图片分析成功。
+    - 固定Legacy冷历史可能缺ImageView；只保证本期实际观察并保存记录的正常重开，不解析rollout补齐。
+    - 可选路径检查复用FEAT-136；exit1只表示普通文件检查不通过，不推出唯一原因或ImageView失败。
+    - 图片作为现有模型输入，非离线；当前FEAT-144额度0，未来建议另批10次含图Responses、0生图，不转用旧额度。
+    - 版本化契约/实现/真实可用性尚未验证；默认不改DB schema，持久兼容仍必须验证。
+    - Desktop十处并发修改独立保护；不改变FEAT-137退役、FEAT-152权限或旧需求豁免。
+public_readiness:
+  required: false
+  status: not_applicable
+  checks: []
+  external_smoke:
+    status: NOT RUN
+    command_or_steps: N/A：local需求规划，无公开入口或部署。
+    actual_result: N/A：未发布。
+documents:
+  brief: 00-feature-brief.md
+  delivery_log: 01-delivery-log.md
+  verification: 02-verification.md

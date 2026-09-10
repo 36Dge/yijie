@@ -1,0 +1,69 @@
+{
+  "server_name": "sorftime",
+  "native_server_info": {
+    "name": "Sorftime MCP",
+    "title": "Sorftime Model Context Protocol MCP Host",
+    "version": "1.1.6",
+    "description": null,
+    "icons": null,
+    "websiteUrl": null
+  },
+  "discovered_with": "Project frozen Codex0.144.6 plus truthful native User-Agent",
+  "discovery_operation": 8,
+  "tool": {
+    "name": "product_detail",
+    "description": "Query the detailed data of a product on the Amazon platform.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "asin": {
+          "description": "Product ASIN, single-ASIN query only.",
+          "type": "string"
+        },
+        "amz_site": {
+          "description": "Amazon marketplace site. ",
+          "type": "string",
+          "enum": [
+            "Unknow",
+            "US",
+            "GB",
+            "DE",
+            "FR",
+            "IN",
+            "CA",
+            "JP",
+            "ES",
+            "IT",
+            "MX",
+            "AE",
+            "AU",
+            "BR",
+            "SA"
+          ],
+          "default": "Unknow"
+        }
+      },
+      "required": [
+        "asin"
+      ]
+    }
+  },
+  "input_schema_canonical_sha256": "8fba19a74826bb3fcd9b3a98a6ee74137568194a330cadbdf77c584bc5500f77",
+  "matches_operation5_input_schema": true,
+  "response_fields_absent_in_native_result": [
+    "outputSchema",
+    "annotations"
+  ],
+  "product_policy": {
+    "enabled_tools": [
+      "product_detail"
+    ],
+    "explicit_arguments": {
+      "amz_site": "US",
+      "asin": "one user-specified public ASIN"
+    },
+    "no_implicit_Unknow_default": true
+  },
+  "complete_catalog_proven": false,
+  "source_result_sha256": "da04891267eab74faf9373c212a2cc24fb8b0358a75361fd38092baefc760b74"
+}

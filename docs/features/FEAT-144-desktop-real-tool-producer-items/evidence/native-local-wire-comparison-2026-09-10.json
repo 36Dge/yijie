@@ -1,0 +1,433 @@
+{
+  "summary": {
+    "created_at": "2026-09-10T04:45:56.172621+00:00",
+    "run_directory": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat144-d0-tools/local-wire-compare-gfr_ivro",
+    "script_sha256": "6d596cab7c455400dfe060eaa4644243ec42d6e7832224800455af391ed89e4e",
+    "fixture": "Healthy local stateless MCP 2025-06-18, tools/list empty",
+    "scope": "Synthetic localhost comparison; not evidence of Sorftime compatibility",
+    "sorftime_ledger_modified": false,
+    "metadata_budget_consumed": 0,
+    "real_credentials_used": false,
+    "model_turns": 0,
+    "business_calls": 0,
+    "fixture_guard_violations": [],
+    "profiles": [
+      {
+        "profile": "fixed-0.144.6",
+        "binary": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.local/runtime-artifacts/feat-136-b2b20e2fc4a0/codex",
+        "binary_sha256": "4efe16d2848680752cf9aacf4c17741ab2eeb7415894a66c2bb03652b00a322d",
+        "endpoint": "http://127.0.0.1:51103/mcp",
+        "nonsecret_native_overrides": [
+          "mcp_servers={local_wire={url=\"http://127.0.0.1:51103/mcp\",bearer_token_env_var=\"YIJIE_FEAT144_PUBLIC_LOCAL_MCP_TOKEN\",startup_timeout_sec=30,tool_timeout_sec=30}}",
+          "cli_auth_credentials_store=\"file\"",
+          "mcp_oauth_credentials_store=\"file\"",
+          "feedback.enabled=false",
+          "features.plugins=false",
+          "shell_environment_policy.inherit=\"none\""
+        ],
+        "comparison_limits": [
+          "Local HTTP stateless service differs from Sorftime HTTPS/proxy/service.",
+          "Both profiles preserve default capability flags except plugins=false, as in the remote probe; file-only empty auth and shell inherit=none are local safety differences, no model Turn is created.",
+          "Compare captured capabilities directly; do not assume a local PASS proves remote compatibility."
+        ],
+        "runtime_exit_code": 0,
+        "normal_eof_shutdown": true,
+        "thread_created": true,
+        "unsubscribed": true,
+        "native_startup_events": [
+          {
+            "threadId": "01a089a2-fd80-7b90-aef3-6bc176daf58c",
+            "name": "local_wire",
+            "status": "starting",
+            "error": null,
+            "failureReason": null
+          },
+          {
+            "threadId": "01a089a2-fd80-7b90-aef3-6bc176daf58c",
+            "name": "local_wire",
+            "status": "ready",
+            "error": null,
+            "failureReason": null
+          }
+        ],
+        "failure": null,
+        "guard_violations": [],
+        "model_turns": 0,
+        "business_calls": 0,
+        "external_mcp_servers_configured": 0,
+        "real_credentials_used": false
+      },
+      {
+        "profile": "installed-0.153.4",
+        "binary": "/Applications/ChatGPT.app/Contents/Resources/codex",
+        "binary_sha256": "c147aa90d34139599711fb568102ceefc6319ca1ac5cb6f4056ca46a1834edd9",
+        "endpoint": "http://127.0.0.1:51103/mcp",
+        "nonsecret_native_overrides": [
+          "mcp_servers={local_wire={url=\"http://127.0.0.1:51103/mcp\",bearer_token_env_var=\"YIJIE_FEAT144_PUBLIC_LOCAL_MCP_TOKEN\",startup_timeout_sec=30,tool_timeout_sec=30}}",
+          "cli_auth_credentials_store=\"file\"",
+          "mcp_oauth_credentials_store=\"file\"",
+          "feedback.enabled=false",
+          "features.plugins=false",
+          "shell_environment_policy.inherit=\"none\""
+        ],
+        "comparison_limits": [
+          "Local HTTP stateless service differs from Sorftime HTTPS/proxy/service.",
+          "Both profiles preserve default capability flags except plugins=false, as in the remote probe; file-only empty auth and shell inherit=none are local safety differences, no model Turn is created.",
+          "Compare captured capabilities directly; do not assume a local PASS proves remote compatibility."
+        ],
+        "runtime_exit_code": 0,
+        "normal_eof_shutdown": true,
+        "thread_created": true,
+        "unsubscribed": true,
+        "native_startup_events": [
+          {
+            "threadId": "01a089a2-fe4d-7f31-9bcc-6ecc00863288",
+            "name": "local_wire",
+            "status": "starting",
+            "error": null,
+            "failureReason": null
+          },
+          {
+            "threadId": "01a089a2-fe4d-7f31-9bcc-6ecc00863288",
+            "name": "local_wire",
+            "status": "ready",
+            "error": null,
+            "failureReason": null
+          }
+        ],
+        "failure": null,
+        "guard_violations": [],
+        "model_turns": 0,
+        "business_calls": 0,
+        "external_mcp_servers_configured": 0,
+        "real_credentials_used": false
+      }
+    ]
+  },
+  "http_requests": [
+    {
+      "profile": "fixed-0.144.6",
+      "method": "POST",
+      "path": "/mcp",
+      "headers": [
+        [
+          "accept",
+          "text/event-stream, application/json"
+        ],
+        [
+          "content-type",
+          "application/json"
+        ],
+        [
+          "authorization",
+          "Bearer public-synthetic-local-fixture-not-a-credential"
+        ],
+        [
+          "host",
+          "127.0.0.1:51103"
+        ],
+        [
+          "content-length",
+          "217"
+        ]
+      ],
+      "body": {
+        "jsonrpc": "2.0",
+        "id": 0,
+        "method": "initialize",
+        "params": {
+          "protocolVersion": "2025-06-18",
+          "capabilities": {
+            "elicitation": {
+              "form": {},
+              "url": {}
+            }
+          },
+          "clientInfo": {
+            "name": "codex-mcp-client",
+            "title": "Codex",
+            "version": "0.144.6"
+          }
+        }
+      },
+      "response_status": 200,
+      "response_body": {
+        "jsonrpc": "2.0",
+        "id": 0,
+        "result": {
+          "protocolVersion": "2025-06-18",
+          "capabilities": {
+            "tools": {
+              "listChanged": false
+            }
+          },
+          "serverInfo": {
+            "name": "feat144-local-healthy-fixture",
+            "version": "1.0.0"
+          }
+        }
+      }
+    },
+    {
+      "profile": "fixed-0.144.6",
+      "method": "POST",
+      "path": "/mcp",
+      "headers": [
+        [
+          "mcp-protocol-version",
+          "2025-06-18"
+        ],
+        [
+          "accept",
+          "text/event-stream, application/json"
+        ],
+        [
+          "content-type",
+          "application/json"
+        ],
+        [
+          "authorization",
+          "Bearer public-synthetic-local-fixture-not-a-credential"
+        ],
+        [
+          "host",
+          "127.0.0.1:51103"
+        ],
+        [
+          "content-length",
+          "54"
+        ]
+      ],
+      "body": {
+        "jsonrpc": "2.0",
+        "method": "notifications/initialized"
+      },
+      "response_status": 202
+    },
+    {
+      "profile": "fixed-0.144.6",
+      "method": "POST",
+      "path": "/mcp",
+      "headers": [
+        [
+          "mcp-protocol-version",
+          "2025-06-18"
+        ],
+        [
+          "accept",
+          "text/event-stream, application/json"
+        ],
+        [
+          "content-type",
+          "application/json"
+        ],
+        [
+          "authorization",
+          "Bearer public-synthetic-local-fixture-not-a-credential"
+        ],
+        [
+          "host",
+          "127.0.0.1:51103"
+        ],
+        [
+          "content-length",
+          "85"
+        ]
+      ],
+      "body": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/list",
+        "params": {
+          "_meta": {
+            "progressToken": 0
+          }
+        }
+      },
+      "response_status": 200,
+      "response_body": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "tools": []
+        }
+      }
+    },
+    {
+      "profile": "installed-0.153.4",
+      "method": "POST",
+      "path": "/mcp",
+      "headers": [
+        [
+          "user-agent",
+          "codex-mcp-client/0.153.4"
+        ],
+        [
+          "accept",
+          "text/event-stream, application/json"
+        ],
+        [
+          "content-type",
+          "application/json"
+        ],
+        [
+          "authorization",
+          "Bearer public-synthetic-local-fixture-not-a-credential"
+        ],
+        [
+          "host",
+          "127.0.0.1:51103"
+        ],
+        [
+          "content-length",
+          "217"
+        ]
+      ],
+      "body": {
+        "jsonrpc": "2.0",
+        "id": 0,
+        "method": "initialize",
+        "params": {
+          "protocolVersion": "2025-06-18",
+          "capabilities": {
+            "elicitation": {
+              "form": {},
+              "url": {}
+            }
+          },
+          "clientInfo": {
+            "name": "codex-mcp-client",
+            "title": "Codex",
+            "version": "0.153.4"
+          }
+        }
+      },
+      "response_status": 200,
+      "response_body": {
+        "jsonrpc": "2.0",
+        "id": 0,
+        "result": {
+          "protocolVersion": "2025-06-18",
+          "capabilities": {
+            "tools": {
+              "listChanged": false
+            }
+          },
+          "serverInfo": {
+            "name": "feat144-local-healthy-fixture",
+            "version": "1.0.0"
+          }
+        }
+      }
+    },
+    {
+      "profile": "installed-0.153.4",
+      "method": "POST",
+      "path": "/mcp",
+      "headers": [
+        [
+          "user-agent",
+          "codex-mcp-client/0.153.4"
+        ],
+        [
+          "mcp-protocol-version",
+          "2025-06-18"
+        ],
+        [
+          "accept",
+          "text/event-stream, application/json"
+        ],
+        [
+          "content-type",
+          "application/json"
+        ],
+        [
+          "authorization",
+          "Bearer public-synthetic-local-fixture-not-a-credential"
+        ],
+        [
+          "host",
+          "127.0.0.1:51103"
+        ],
+        [
+          "content-length",
+          "54"
+        ]
+      ],
+      "body": {
+        "jsonrpc": "2.0",
+        "method": "notifications/initialized"
+      },
+      "response_status": 202
+    },
+    {
+      "profile": "installed-0.153.4",
+      "method": "POST",
+      "path": "/mcp",
+      "headers": [
+        [
+          "user-agent",
+          "codex-mcp-client/0.153.4"
+        ],
+        [
+          "mcp-protocol-version",
+          "2025-06-18"
+        ],
+        [
+          "accept",
+          "text/event-stream, application/json"
+        ],
+        [
+          "content-type",
+          "application/json"
+        ],
+        [
+          "authorization",
+          "Bearer public-synthetic-local-fixture-not-a-credential"
+        ],
+        [
+          "host",
+          "127.0.0.1:51103"
+        ],
+        [
+          "content-length",
+          "85"
+        ]
+      ],
+      "body": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/list",
+        "params": {
+          "_meta": {
+            "progressToken": 0
+          }
+        }
+      },
+      "response_status": 200,
+      "response_body": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "tools": []
+        }
+      }
+    }
+  ],
+  "comparison": {
+    "same_initialize_body_except_real_client_version": true,
+    "only_initial_http_header_difference": {
+      "header": "user-agent",
+      "fixed": null,
+      "installed": "codex-mcp-client/0.153.4"
+    },
+    "no_modern_server_discover_observed": true,
+    "both_native_startup_ready": true,
+    "no_sorftime_budget_used": true,
+    "local_only_not_remote_compatibility_pass": true
+  },
+  "raw_evidence_sha256": {
+    "http-wire.json": "bd77a0a90e3aaacbe748f7b15a3d74d2cfd4d73d0de49fa98e7f2a8acc54f6b2",
+    "comparison-summary.json": "f3b75fc5475c85b2f104361a3368863323c8e5c4a8b339196a4cb12e09306790"
+  }
+}

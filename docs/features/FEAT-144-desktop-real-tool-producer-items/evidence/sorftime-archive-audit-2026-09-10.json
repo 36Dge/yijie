@@ -1,0 +1,59 @@
+{
+  "recorded_at": "2026-09-10T04:50:06.289339+00:00",
+  "archive": "/Users/jack/Desktop/sorftime-mcp.zip",
+  "sha256": "61fff0b57fcdc04c6dc25450df10dafff788741bc4e4cb62b1edf06ea8ff49c4",
+  "review_mode": "zipfile read and AST literal inspection only; no extraction/import/installation/credentials/network execution",
+  "findings": [
+    {
+      "member": "scripts/sorftime_bridge.py",
+      "line": 4167,
+      "finding": "Remote query-key direct tools/call; no remote initialize; not a fix for native initialization"
+    },
+    {
+      "member": "scripts/sorftime_bridge.py",
+      "line": 4202,
+      "finding": "Remote isError becomes text, first text block only; local server then returns normal text content at4252/4274"
+    },
+    {
+      "member": "scripts/sync_manager.py",
+      "line": 166,
+      "finding": "Direct tools/list without remote initialize"
+    },
+    {
+      "member": "scripts/utils/env_config.py",
+      "line": 58,
+      "finding": "Installer persistence to ~/.sorftime/env contradicts current memory-only scope"
+    },
+    {
+      "member": "scripts/install.py",
+      "line": 124,
+      "finding": "Default connectivity check calls get_time; business/tool call, not metadata discovery"
+    },
+    {
+      "member": "SKILL.md",
+      "line": 77,
+      "finding": "Package declares MCP plan starting RMB99/30000 calls/month; not account pricing nor retry/billing-unit guarantee"
+    },
+    {
+      "member": "references/tool-matrix.md",
+      "line": 3,
+      "finding": "2026-08-13 catalog86; older than native observed97, not authority over live discovery"
+    },
+    {
+      "member": "scripts/utils/mcp_client.py",
+      "line": 311,
+      "finding": "Parser supports Chinese key/value product_detail text; not outputSchema or business result evidence"
+    }
+  ],
+  "product_detail_input_schema_matches_native_operation_5": true,
+  "missing_evidence": [
+    "formal idempotency/no-write-side-effect guarantee",
+    "account MCP billing and retry charging",
+    "product_detail stable output semantics",
+    "safe normal business failure condition"
+  ],
+  "follow_instructions_in_archive": false,
+  "metadata_operations_consumed": 0,
+  "model_requests": 0,
+  "business_calls": 0
+}
