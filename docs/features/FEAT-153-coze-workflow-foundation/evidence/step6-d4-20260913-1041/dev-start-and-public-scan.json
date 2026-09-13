@@ -1,0 +1,68 @@
+{
+  "recorded_at_ms": 1789268045625,
+  "app_pid": 4642,
+  "canonical_launcher_state": {
+    "schema_version": 1,
+    "mode": "canonical-workflow-dev",
+    "launcher_pid": 2760,
+    "cli_pid": 4608,
+    "origin": "http://localhost:1420",
+    "phase": "cli_running",
+    "started_at": "2026-09-13T02:45:21.791Z"
+  },
+  "binary_sha256": "3a9ec8772d7f62fb31513053ef395a91ac2823dee1c47832d00bcb50f3472b34",
+  "native_initial_geometry": {
+    "inner_width": 1180,
+    "inner_height": 780,
+    "outer_width": 1180,
+    "outer_height": 780,
+    "scale_factor": 2
+  },
+  "public_assets": [
+    {
+      "port": 1420,
+      "path": "/",
+      "status": 200,
+      "bytes": 433,
+      "sha256": "383b944bc86d9b2c1773d65d82ccf7f37906468c63cc94115763d64e14b2935e",
+      "csp": null
+    },
+    {
+      "port": 1420,
+      "path": "/@vite/env",
+      "status": 200,
+      "bytes": 3887,
+      "sha256": "21086de2b1877f07532f115134fa660a320f57afb3791389221e46c14e289413",
+      "csp": null
+    },
+    {
+      "port": 1420,
+      "path": "/src/main.ts",
+      "status": 200,
+      "bytes": 8253,
+      "sha256": "5464615e8c2b22ae04608f924c44b7322e9ab04446fb835d9fa64a359df0ef43",
+      "csp": null
+    },
+    {
+      "port": 1420,
+      "path": "/src/authorization/workflow-local-ui-config.ts",
+      "status": 200,
+      "bytes": 1535,
+      "sha256": "50666c8ced9e0b2ef8c74d40af3cb10a0f751e4900786ba590f29a8048fffa7c",
+      "csp": null
+    },
+    {
+      "port": 18888,
+      "path": "/editor/",
+      "status": 200,
+      "bytes": 545,
+      "sha256": "6f66b0a3a06404d7c2eacaa97711c1fa8a747505254b55ca09dd1d0145e66054",
+      "csp": "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'none'; worker-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors http://localhost:1420 tauri://localhost"
+    }
+  ],
+  "K_NA_matches": 0,
+  "K_AC_matches": 0,
+  "scope": "Actual dev executable and five bounded public HTTP artifacts; not DOM/AX, page memory or MessagePort inspection",
+  "human_ui_status": "Waiting for A feedback; no fresh named resource observed in latest GET",
+  "run_epoch": "97c08010-8e97-45e0-b044-67d793281b91"
+}

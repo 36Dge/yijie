@@ -1,0 +1,27 @@
+FEAT-153 API final safe verification — 2026-09-12
+Working directory: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-api
+Command:
+GOTOOLCHAIN=local GOPROXY=off GOSUMDB=off make workflow-lint workflow-test workflow-build WORKFLOW_GO=/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go
+
+Initial output (first tool chunk):
+Go vet invoked for the independent workflow packages and commands.
+Canonical Contracts consumer checker: Verified yijie-api workflow-local candidate; old public/Runtime locks untouched.
+Go test -race -count=1 invoked for the independent workflow packages and commands.
+
+Completion output (verbatim):
+ok  	github.com/36Dge/yijie-api/internal/modules/workflows/application	1.807s
+ok  	github.com/36Dge/yijie-api/internal/modules/workflows/domain	1.418s
+ok  	github.com/36Dge/yijie-api/internal/modules/workflows/infrastructure/coze	2.141s
+?   	github.com/36Dge/yijie-api/internal/modules/workflows/infrastructure/postgres	[no test files]
+ok  	github.com/36Dge/yijie-api/internal/modules/workflows/interfaces/http	3.017s
+ok  	github.com/36Dge/yijie-api/internal/modules/workflows/transport	2.540s
+ok  	github.com/36Dge/yijie-api/internal/workflowlocal	3.323s
+?   	github.com/36Dge/yijie-api/cmd/workflow-local-server	[no test files]
+?   	github.com/36Dge/yijie-api/cmd/workflow-local-migrate	[no test files]
+mkdir -p bin/workflow-local
+/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go build -o bin/workflow-local/workflow-local-server ./cmd/workflow-local-server
+/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go build -o bin/workflow-local/workflow-local-migrate ./cmd/workflow-local-migrate
+
+Exit code: 0
+No server binary, Docker container or real migration was executed. This is compilation, ordinary focused unit/httptest validation and canonical development build only.
+

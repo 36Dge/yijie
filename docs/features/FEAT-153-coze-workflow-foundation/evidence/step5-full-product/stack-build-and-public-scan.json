@@ -1,0 +1,136 @@
+{
+  "at_ms": 1789214844129,
+  "run_epoch": "864454a9-2674-4614-8bcf-cde02de4d278",
+  "stack_phase": "ready",
+  "editor": {
+    "schema_version": 1,
+    "bundle_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/dist",
+    "manifest_sha256": "0b704a085096ab82827e96f60b715eda94ecb911481c79a46a93e7cdc365eb87",
+    "source_commit": "fefb05ff27be1da939612fbf9faf5db62583b8ae",
+    "manifest_source_digest": "f053ecb9861017d8db7ec509a92b0883a48eaa4966accbf72473f60a36a9905d",
+    "coze_candidate": "f053ecb9861017d8db7ec509a92b0883a48eaa4966accbf72473f60a36a9905d",
+    "contracts_source_lock_sha256": "f800e51eb4bd10f574a8ac34222293de0d080c72806ffbb072626e724ebf23fd",
+    "consumer_lock_sha256": {
+      "api": "45025097b4af2a665e94d90915ca3410bbad317e7869b8ff31bfd03dd688178d",
+      "coze": "63959748561bbca5b6390fcef4ccb6084b3b660943fde5bd166d7b751f19c6f3",
+      "desktop": "ee1d038eeedee98af520a3750db93165218399546f550b97f84c42a314dedff8"
+    },
+    "deployment_schema_sha256": "d3016433e02f492493df3cdcbaacfe054e0de27afd5c61a115b4555f4b586aae",
+    "file_count": 6,
+    "total_asset_bytes": 3474109,
+    "entry": {
+      "path": "index.html",
+      "sha256": "c6e1033940c1aa5fd40bc15802e8488c4aa889bb8e56cae2818f2957099981cf",
+      "bytes": 545,
+      "content_type": "text/html; charset=utf-8"
+    }
+  },
+  "container_states": [
+    {
+      "name": "yijie-feat153-workflow-workflow-api-1",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-12T12:06:28.093893833Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy"
+    },
+    {
+      "name": "yijie-feat153-workflow-coze-workflow-1",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-12T12:06:24.352757804Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy"
+    },
+    {
+      "name": "yijie-feat153-workflow-api-migrate-864454a9",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-12T12:06:24.021991971Z",
+        "FinishedAt": "2026-09-12T12:06:24.108275137Z"
+      },
+      "health": "unhealthy"
+    },
+    {
+      "name": "yijie-feat153-workflow-coze-migrate-864454a9",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-12T12:06:23.67008322Z",
+        "FinishedAt": "2026-09-12T12:06:23.792381012Z"
+      },
+      "health": "unhealthy"
+    },
+    {
+      "name": "yijie-feat153-workflow-workflow-postgres-1",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-12T12:06:17.864431593Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy"
+    },
+    {
+      "name": "yijie-feat153-workflow-coze-workflow-redis-1",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-12T12:06:17.884889259Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy"
+    },
+    {
+      "name": "yijie-feat153-workflow-coze-workflow-mysql-1",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-12T12:06:17.884363426Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy"
+    },
+    {
+      "name": "yijie-feat153-workflow-coze-workflow-minio-1",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-12T12:06:17.883791176Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy"
+    }
+  ],
+  "public_editor_status": 200,
+  "csp": "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'none'; worker-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors http://localhost:1420 tauri://localhost",
+  "credential_scan": {
+    "scope": "regular files in canonical App bundle/Desktop dist/Coze editor dist; no App page or heap inspected this turn",
+    "files": 91,
+    "K_NA_matches": 0,
+    "K_AC_matches": 0,
+    "skipped": []
+  },
+  "binary_sha256": "5d49cf5de24105c5fde48e6e28e0f46d67fe83e9dac72a15499f3fc18eb59073"
+}

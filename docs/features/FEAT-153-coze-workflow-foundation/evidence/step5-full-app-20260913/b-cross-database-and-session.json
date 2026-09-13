@@ -1,0 +1,61 @@
+{
+  "observed_at_ms": 1789231881202,
+  "workflow_id": "7684687185122951168",
+  "revision": "7684692064230965248",
+  "canvas_and_positions_match": true,
+  "counts": {
+    "versions": 2,
+    "executions": 4
+  },
+  "shared_completed_receipts": 10,
+  "shared_receipts_match": true,
+  "normal_rejected_incomplete_test": [
+    "01a09675-8720-7a02-a2ec-83a19c883ebb"
+  ],
+  "separate_readonly_snapshots": true,
+  "native_close_confirmations": [
+    {
+      "app_pid": 19114,
+      "generation": 1,
+      "bridge_id": "01a09675-47e0-75d1-aca3-1e8e99ad76a2",
+      "remote_closed": true,
+      "run_epoch": "b5a2c028-e3ac-41d2-9ce6-7edeb7441d2d"
+    },
+    {
+      "app_pid": 19114,
+      "generation": 2,
+      "bridge_id": "01a0967b-77a1-7fa2-852e-84bf7c6fbc3a",
+      "remote_closed": true,
+      "run_epoch": "b5a2c028-e3ac-41d2-9ce6-7edeb7441d2d"
+    },
+    {
+      "app_pid": 19114,
+      "generation": 3,
+      "bridge_id": "01a09680-6fa3-7552-9af4-bd0364077f4a",
+      "remote_closed": true,
+      "run_epoch": "b5a2c028-e3ac-41d2-9ce6-7edeb7441d2d"
+    },
+    {
+      "app_pid": 19114,
+      "generation": 4,
+      "bridge_id": "01a09681-7f25-7aa0-b165-e2811d9e1592",
+      "remote_closed": true,
+      "run_epoch": "b5a2c028-e3ac-41d2-9ce6-7edeb7441d2d"
+    },
+    {
+      "app_pid": 19114,
+      "generation": 5,
+      "bridge_id": "01a09686-8596-7e83-98bf-e361340cca7b",
+      "remote_closed": true,
+      "run_epoch": "b5a2c028-e3ac-41d2-9ce6-7edeb7441d2d"
+    }
+  ],
+  "launcher_exit_code": 0,
+  "app_pid_absent_after_quit": true,
+  "draft_expiry": {
+    "normal_300_seconds": true,
+    "dirty_prefix_preserved": "保留草稿验收：",
+    "explicit_reconnect_then_save_revision": "7684692064230965248"
+  },
+  "no_api_business_writes": true
+}

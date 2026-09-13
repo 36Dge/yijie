@@ -1,0 +1,147 @@
+{
+  "recorded_at_ms": 1789275100075,
+  "qualification_id": "ea50e666-898c-4107-9568-10e3e3d63416",
+  "D4": "PASS",
+  "resources": [
+    {
+      "entry": "dev",
+      "workflow_id": "7684864630077784064",
+      "revision": "7684866728114782208",
+      "canvas_sha256": "719043d0c5c5ba210d1147c5b2977bb221df5ad1da92c31f115b7c8b81daa522",
+      "nodes": [
+        {
+          "id": "100001",
+          "type": "1",
+          "position": {
+            "x": 80,
+            "y": 160
+          },
+          "prefix": null
+        },
+        {
+          "id": "200001",
+          "type": "15",
+          "position": {
+            "x": 410,
+            "y": 110
+          },
+          "prefix": "KEY DEV 到期稿："
+        },
+        {
+          "id": "900001",
+          "type": "2",
+          "position": {
+            "x": 760,
+            "y": 160
+          },
+          "prefix": null
+        }
+      ],
+      "versions": 2,
+      "runs": 3,
+      "all_succeeded": true
+    },
+    {
+      "entry": "app",
+      "workflow_id": "7684868190886690816",
+      "revision": "7684870673625251840",
+      "canvas_sha256": "77f1fc4d60fb0fa324dc53534373583591d3f5c5c463bdc49798e07ffa10d003",
+      "nodes": [
+        {
+          "id": "100001",
+          "type": "1",
+          "position": {
+            "x": 80,
+            "y": 160
+          },
+          "prefix": null
+        },
+        {
+          "id": "200001",
+          "type": "15",
+          "position": {
+            "x": 447.2682926829268,
+            "y": 195.198606271777
+          },
+          "prefix": "KEY APP 到期稿："
+        },
+        {
+          "id": "900001",
+          "type": "2",
+          "position": {
+            "x": 760,
+            "y": 160
+          },
+          "prefix": null
+        }
+      ],
+      "versions": 2,
+      "runs": 3,
+      "all_succeeded": true
+    }
+  ],
+  "actual_theme_size_images": [
+    {
+      "theme": "light",
+      "file": "app-03-light-min-reopened.png",
+      "logical_width": 1180,
+      "logical_height": 760,
+      "sha256": "3ce7695643ab5a21248f207f7f4fa16efb632b0622b423338409f28232a723af"
+    },
+    {
+      "theme": "light",
+      "file": "app-04-light-min-results.png",
+      "logical_width": 1180,
+      "logical_height": 760,
+      "sha256": "a6e5ef97bc47c0e44de98821fc774ad45a8974d8f821836378b38b1e76892d54"
+    },
+    {
+      "theme": "dark",
+      "file": "app-05-dark-min-dirty.png",
+      "logical_width": 1180,
+      "logical_height": 760,
+      "sha256": "1097f5c1ce55b1c73d3e7a5d984a1bd0761a19128a41cdb78fab5529c0dfe074"
+    },
+    {
+      "theme": "dark",
+      "file": "app-06-dark-min-results-history.png",
+      "logical_width": 1180,
+      "logical_height": 760,
+      "sha256": "2069529ceb81d82410437d64442d85d02189a29109800e2c248c5b820c48eefb"
+    },
+    {
+      "theme": "dark",
+      "file": "app-10-dark-large-canvas.png",
+      "logical_width": 1440,
+      "logical_height": 900,
+      "sha256": "60bc13c632f75a807829e8248068f790c348f19ab362346c65d58167dffdcccb"
+    },
+    {
+      "theme": "dark",
+      "file": "app-11-dark-large-results-history.png",
+      "logical_width": 1440,
+      "logical_height": 900,
+      "sha256": "d57bade64d7a5f7bdfb662cf4ad8eb51a07a596b640058f63dcdffec58ad866d"
+    },
+    {
+      "theme": "light",
+      "file": "app-13-light-large-canvas.png",
+      "logical_width": 1440,
+      "logical_height": 900,
+      "sha256": "2b7c88167d7c15988a54fe33092817b7c1891469d9295115942c2031506fc61a"
+    },
+    {
+      "theme": "light",
+      "file": "app-12-light-large-results-history.png",
+      "logical_width": 1440,
+      "logical_height": 900,
+      "sha256": "75ce5a872dfebf41d2119eddcbb7884c962ce34415240f42602de463991305e4"
+    }
+  ],
+  "scope": "current frozen local candidate; ordinary safe tests only",
+  "supplementary_first_open_cancel": "Actual transient control not hit; ordinary pending-open UI/native tests PASS; no delay injection",
+  "native_restart_close": "both resource sessions closed=true; launcher exit0",
+  "cleanup": "all owned workspace processes exited;8containers exit0;4volumes retained;Docker Desktop normally stopped",
+  "external_model_merchant_paid_calls": 0,
+  "git_operations": "no commit/push/tag/remote changes"
+}

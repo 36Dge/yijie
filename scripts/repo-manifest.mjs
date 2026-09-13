@@ -26,7 +26,8 @@ export async function loadManifest() {
     if (names.has(repo.name) || paths.has(repo.path)) {
       throw new Error(`duplicate repository name or path: ${repo.name}`);
     }
-    if (!repo.path.startsWith("../yijie-") || !repo.url.startsWith("https://github.com/36Dge/")) {
+    if (!repo.path.startsWith("../yijie-")
+      || !repo.url.startsWith("https://github.com/36Dge/")) {
       throw new Error(`repository ${repo.name} has an unexpected path or URL`);
     }
     names.add(repo.name);

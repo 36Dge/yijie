@@ -1,0 +1,989 @@
+{
+  "schema_version": 1,
+  "observation": "packaged_full_app_resource_b_readonly",
+  "completed_read": true,
+  "workflow_id": "7684687185122951168",
+  "run_epoch": "b5a2c028-e3ac-41d2-9ce6-7edeb7441d2d",
+  "recorded_at": "2026-09-12T16:50:13.230881+00:00",
+  "observed_revision": "7684692064230965248",
+  "snapshot_note": "MySQL and PostgreSQL are separate read-only snapshots; UI may save afterwards. This is not the final revision or full UI/session-close qualification.",
+  "postgres": {
+    "started_at": "2026-09-12T16:50:13.135928+00:00",
+    "finished_at": "2026-09-12T16:50:13.185578+00:00",
+    "container_id": "8f90dc0943e1cdf670035dfa83078d349cf5fd4f0146f3769dd23f5d1d3b0c3e",
+    "image_id": "sha256:4e6e670bb069649261c9c18031f0aded7bb249a5b6664ddec29c013a89310d50",
+    "facts": {
+      "snapshot": [
+        {
+          "database": "yijie_workflow_local",
+          "observed_at": "2026-09-12T16:50:13.178481+00:00",
+          "read_only": "on"
+        }
+      ],
+      "resource": [
+        {
+          "workflow_id": "7684687185122951168",
+          "scope_key": "feat-153-local-v1",
+          "created_at": "2026-09-12T16:31:03.612092+00:00",
+          "owner_user_id": "12500000-0000-4000-8000-000000000001",
+          "tenant_id": "12500000-0000-4000-8000-100000000001",
+          "coze_user_id": "7684521418742038528",
+          "coze_space_id": "7684521418742054912"
+        }
+      ],
+      "operation": [
+        {
+          "operation_id": "01a09675-47b1-7013-9592-6f7366f4eab9",
+          "kind": "create",
+          "phase": "completed",
+          "workflow_id": "7684687185122951168",
+          "created_at": "2026-09-12T16:31:03.60184+00:00",
+          "updated_at": "2026-09-12T16:31:03.612092+00:00",
+          "receipt": {
+            "kind": "create",
+            "phase": "completed",
+            "revision": "7684687185131339776",
+            "workflow_id": "7684687185122951168",
+            "operation_id": "01a09675-47b1-7013-9592-6f7366f4eab9"
+          }
+        },
+        {
+          "operation_id": "01a09675-8720-7a02-a2ec-83a19c883ebb",
+          "kind": "test",
+          "phase": "rejected",
+          "workflow_id": "7684687185122951168",
+          "created_at": "2026-09-12T16:31:19.840694+00:00",
+          "updated_at": "2026-09-12T16:31:19.847034+00:00",
+          "receipt": {
+            "kind": "test",
+            "phase": "rejected",
+            "error_code": "invalid_draft",
+            "workflow_id": "7684687185122951168",
+            "operation_id": "01a09675-8720-7a02-a2ec-83a19c883ebb"
+          }
+        },
+        {
+          "operation_id": "01a09676-3950-7960-b83c-d65cdae0732f",
+          "kind": "save",
+          "phase": "completed",
+          "workflow_id": "7684687185122951168",
+          "created_at": "2026-09-12T16:32:05.457283+00:00",
+          "updated_at": "2026-09-12T16:32:05.466613+00:00",
+          "receipt": {
+            "kind": "save",
+            "phase": "completed",
+            "revision": "7684687450811138048",
+            "workflow_id": "7684687185122951168",
+            "operation_id": "01a09676-3950-7960-b83c-d65cdae0732f"
+          }
+        },
+        {
+          "operation_id": "01a09676-4e04-7bc0-ae50-09705aa5b082",
+          "kind": "test",
+          "phase": "completed",
+          "workflow_id": "7684687185122951168",
+          "created_at": "2026-09-12T16:32:10.757645+00:00",
+          "updated_at": "2026-09-12T16:32:10.773774+00:00",
+          "receipt": {
+            "kind": "test",
+            "phase": "completed",
+            "run_id": "7684687473561042944",
+            "revision": "7684687450811138048",
+            "workflow_id": "7684687185122951168",
+            "operation_id": "01a09676-4e04-7bc0-ae50-09705aa5b082"
+          }
+        },
+        {
+          "operation_id": "01a09676-78bf-7ec1-af9e-1d81be11fda1",
+          "kind": "publish",
+          "phase": "completed",
+          "workflow_id": "7684687185122951168",
+          "created_at": "2026-09-12T16:32:21.695521+00:00",
+          "updated_at": "2026-09-12T16:32:21.703947+00:00",
+          "receipt": {
+            "kind": "publish",
+            "phase": "completed",
+            "version": "v0.0.1",
+            "revision": "7684687450811138048",
+            "workflow_id": "7684687185122951168",
+            "operation_id": "01a09676-78bf-7ec1-af9e-1d81be11fda1"
+          }
+        },
+        {
+          "operation_id": "01a09676-b4ea-73f0-b3ae-05c2a9f2c0a9",
+          "kind": "run",
+          "phase": "completed",
+          "workflow_id": "7684687185122951168",
+          "created_at": "2026-09-12T16:32:37.038479+00:00",
+          "updated_at": "2026-09-12T16:32:37.05434+00:00",
+          "receipt": {
+            "kind": "run",
+            "phase": "completed",
+            "run_id": "7684687586501066752",
+            "version": "v0.0.1",
+            "revision": "7684687450811138048",
+            "workflow_id": "7684687185122951168",
+            "operation_id": "01a09676-b4ea-73f0-b3ae-05c2a9f2c0a9"
+          }
+        },
+        {
+          "operation_id": "01a0967f-936f-7b33-84ec-6005a14961de",
+          "kind": "save",
+          "phase": "completed",
+          "workflow_id": "7684687185122951168",
+          "created_at": "2026-09-12T16:42:18.352509+00:00",
+          "updated_at": "2026-09-12T16:42:18.364741+00:00",
+          "receipt": {
+            "kind": "save",
+            "phase": "completed",
+            "revision": "7684690083189882880",
+            "workflow_id": "7684687185122951168",
+            "operation_id": "01a0967f-936f-7b33-84ec-6005a14961de"
+          }
+        },
+        {
+          "operation_id": "01a0967f-a2d0-73f1-bd5e-dcc2d0b3e324",
+          "kind": "test",
+          "phase": "completed",
+          "workflow_id": "7684687185122951168",
+          "created_at": "2026-09-12T16:42:22.28873+00:00",
+          "updated_at": "2026-09-12T16:42:22.301265+00:00",
+          "receipt": {
+            "kind": "test",
+            "phase": "completed",
+            "run_id": "7684690100101316608",
+            "revision": "7684690083189882880",
+            "workflow_id": "7684687185122951168",
+            "operation_id": "01a0967f-a2d0-73f1-bd5e-dcc2d0b3e324"
+          }
+        },
+        {
+          "operation_id": "01a0967f-c195-7562-a35b-fab109f4cc49",
+          "kind": "publish",
+          "phase": "completed",
+          "workflow_id": "7684687185122951168",
+          "created_at": "2026-09-12T16:42:30.16659+00:00",
+          "updated_at": "2026-09-12T16:42:30.176005+00:00",
+          "receipt": {
+            "kind": "publish",
+            "phase": "completed",
+            "version": "v0.0.2",
+            "revision": "7684690083189882880",
+            "workflow_id": "7684687185122951168",
+            "operation_id": "01a0967f-c195-7562-a35b-fab109f4cc49"
+          }
+        },
+        {
+          "operation_id": "01a09680-d3ef-79f2-bf3e-d398c3b19e45",
+          "kind": "run",
+          "phase": "completed",
+          "workflow_id": "7684687185122951168",
+          "created_at": "2026-09-12T16:43:40.399874+00:00",
+          "updated_at": "2026-09-12T16:43:40.41265+00:00",
+          "receipt": {
+            "kind": "run",
+            "phase": "completed",
+            "run_id": "7684690435574333440",
+            "version": "v0.0.1",
+            "revision": "7684687450811138048",
+            "workflow_id": "7684687185122951168",
+            "operation_id": "01a09680-d3ef-79f2-bf3e-d398c3b19e45"
+          }
+        },
+        {
+          "operation_id": "01a09686-9d33-7162-85df-9679212ef8a4",
+          "kind": "save",
+          "phase": "completed",
+          "workflow_id": "7684687185122951168",
+          "created_at": "2026-09-12T16:49:59.604777+00:00",
+          "updated_at": "2026-09-12T16:49:59.619929+00:00",
+          "receipt": {
+            "kind": "save",
+            "phase": "completed",
+            "revision": "7684692064230965248",
+            "workflow_id": "7684687185122951168",
+            "operation_id": "01a09686-9d33-7162-85df-9679212ef8a4"
+          }
+        }
+      ],
+      "audit": [
+        {
+          "id": "267",
+          "operation_id": "01a09675-47b1-7013-9592-6f7366f4eab9",
+          "workflow_id": null,
+          "action": "create",
+          "outcome_code": "recorded",
+          "occurred_at": "2026-09-12T16:31:03.60184+00:00"
+        },
+        {
+          "id": "268",
+          "operation_id": "01a09675-47b1-7013-9592-6f7366f4eab9",
+          "workflow_id": "7684687185122951168",
+          "action": "create",
+          "outcome_code": "completed",
+          "occurred_at": "2026-09-12T16:31:03.612092+00:00"
+        },
+        {
+          "id": "270",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "read",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:31:03.63893+00:00"
+        },
+        {
+          "id": "271",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:31:03.646557+00:00"
+        },
+        {
+          "id": "272",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "history",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:31:03.660271+00:00"
+        },
+        {
+          "id": "273",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:31:03.784693+00:00"
+        },
+        {
+          "id": "274",
+          "operation_id": "01a09675-8720-7a02-a2ec-83a19c883ebb",
+          "workflow_id": "7684687185122951168",
+          "action": "test",
+          "outcome_code": "recorded",
+          "occurred_at": "2026-09-12T16:31:19.840694+00:00"
+        },
+        {
+          "id": "275",
+          "operation_id": "01a09675-8720-7a02-a2ec-83a19c883ebb",
+          "workflow_id": "7684687185122951168",
+          "action": "test",
+          "outcome_code": "rejected",
+          "occurred_at": "2026-09-12T16:31:19.847034+00:00"
+        },
+        {
+          "id": "276",
+          "operation_id": "01a09676-3950-7960-b83c-d65cdae0732f",
+          "workflow_id": "7684687185122951168",
+          "action": "save",
+          "outcome_code": "recorded",
+          "occurred_at": "2026-09-12T16:32:05.457283+00:00"
+        },
+        {
+          "id": "277",
+          "operation_id": "01a09676-3950-7960-b83c-d65cdae0732f",
+          "workflow_id": "7684687185122951168",
+          "action": "save",
+          "outcome_code": "completed",
+          "occurred_at": "2026-09-12T16:32:05.466613+00:00"
+        },
+        {
+          "id": "278",
+          "operation_id": "01a09676-4e04-7bc0-ae50-09705aa5b082",
+          "workflow_id": "7684687185122951168",
+          "action": "test",
+          "outcome_code": "recorded",
+          "occurred_at": "2026-09-12T16:32:10.757645+00:00"
+        },
+        {
+          "id": "279",
+          "operation_id": "01a09676-4e04-7bc0-ae50-09705aa5b082",
+          "workflow_id": "7684687185122951168",
+          "action": "test",
+          "outcome_code": "completed",
+          "occurred_at": "2026-09-12T16:32:10.773774+00:00"
+        },
+        {
+          "id": "280",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "history",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:32:10.785711+00:00"
+        },
+        {
+          "id": "281",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "read_run",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:32:15.918729+00:00"
+        },
+        {
+          "id": "282",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "history",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:32:15.930496+00:00"
+        },
+        {
+          "id": "283",
+          "operation_id": "01a09676-78bf-7ec1-af9e-1d81be11fda1",
+          "workflow_id": "7684687185122951168",
+          "action": "publish",
+          "outcome_code": "recorded",
+          "occurred_at": "2026-09-12T16:32:21.695521+00:00"
+        },
+        {
+          "id": "284",
+          "operation_id": "01a09676-78bf-7ec1-af9e-1d81be11fda1",
+          "workflow_id": "7684687185122951168",
+          "action": "publish",
+          "outcome_code": "completed",
+          "occurred_at": "2026-09-12T16:32:21.703947+00:00"
+        },
+        {
+          "id": "285",
+          "operation_id": "01a09676-b4ea-73f0-b3ae-05c2a9f2c0a9",
+          "workflow_id": "7684687185122951168",
+          "action": "run",
+          "outcome_code": "recorded",
+          "occurred_at": "2026-09-12T16:32:37.038479+00:00"
+        },
+        {
+          "id": "286",
+          "operation_id": "01a09676-b4ea-73f0-b3ae-05c2a9f2c0a9",
+          "workflow_id": "7684687185122951168",
+          "action": "run",
+          "outcome_code": "completed",
+          "occurred_at": "2026-09-12T16:32:37.05434+00:00"
+        },
+        {
+          "id": "287",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "history",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:32:37.063792+00:00"
+        },
+        {
+          "id": "288",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "read_run",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:32:43.576007+00:00"
+        },
+        {
+          "id": "289",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "history",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:33:55.290179+00:00"
+        },
+        {
+          "id": "290",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "read",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:37:49.081256+00:00"
+        },
+        {
+          "id": "291",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:37:49.08746+00:00"
+        },
+        {
+          "id": "292",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:37:49.099591+00:00"
+        },
+        {
+          "id": "293",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "read",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:41:39.710785+00:00"
+        },
+        {
+          "id": "294",
+          "operation_id": "01a0967f-936f-7b33-84ec-6005a14961de",
+          "workflow_id": "7684687185122951168",
+          "action": "save",
+          "outcome_code": "recorded",
+          "occurred_at": "2026-09-12T16:42:18.352509+00:00"
+        },
+        {
+          "id": "295",
+          "operation_id": "01a0967f-936f-7b33-84ec-6005a14961de",
+          "workflow_id": "7684687185122951168",
+          "action": "save",
+          "outcome_code": "completed",
+          "occurred_at": "2026-09-12T16:42:18.364741+00:00"
+        },
+        {
+          "id": "296",
+          "operation_id": "01a0967f-a2d0-73f1-bd5e-dcc2d0b3e324",
+          "workflow_id": "7684687185122951168",
+          "action": "test",
+          "outcome_code": "recorded",
+          "occurred_at": "2026-09-12T16:42:22.28873+00:00"
+        },
+        {
+          "id": "297",
+          "operation_id": "01a0967f-a2d0-73f1-bd5e-dcc2d0b3e324",
+          "workflow_id": "7684687185122951168",
+          "action": "test",
+          "outcome_code": "completed",
+          "occurred_at": "2026-09-12T16:42:22.301265+00:00"
+        },
+        {
+          "id": "298",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "history",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:42:22.311989+00:00"
+        },
+        {
+          "id": "299",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "read_run",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:42:26.043812+00:00"
+        },
+        {
+          "id": "300",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "history",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:42:26.053968+00:00"
+        },
+        {
+          "id": "301",
+          "operation_id": "01a0967f-c195-7562-a35b-fab109f4cc49",
+          "workflow_id": "7684687185122951168",
+          "action": "publish",
+          "outcome_code": "recorded",
+          "occurred_at": "2026-09-12T16:42:30.16659+00:00"
+        },
+        {
+          "id": "302",
+          "operation_id": "01a0967f-c195-7562-a35b-fab109f4cc49",
+          "workflow_id": "7684687185122951168",
+          "action": "publish",
+          "outcome_code": "completed",
+          "occurred_at": "2026-09-12T16:42:30.176005+00:00"
+        },
+        {
+          "id": "303",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "read",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:43:14.717342+00:00"
+        },
+        {
+          "id": "304",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:43:14.721936+00:00"
+        },
+        {
+          "id": "305",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:43:14.733778+00:00"
+        },
+        {
+          "id": "306",
+          "operation_id": "01a09680-d3ef-79f2-bf3e-d398c3b19e45",
+          "workflow_id": "7684687185122951168",
+          "action": "run",
+          "outcome_code": "recorded",
+          "occurred_at": "2026-09-12T16:43:40.399874+00:00"
+        },
+        {
+          "id": "307",
+          "operation_id": "01a09680-d3ef-79f2-bf3e-d398c3b19e45",
+          "workflow_id": "7684687185122951168",
+          "action": "run",
+          "outcome_code": "completed",
+          "occurred_at": "2026-09-12T16:43:40.41265+00:00"
+        },
+        {
+          "id": "308",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "history",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:43:40.425582+00:00"
+        },
+        {
+          "id": "309",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "read_run",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:43:44.92406+00:00"
+        },
+        {
+          "id": "310",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "history",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:43:49.39112+00:00"
+        },
+        {
+          "id": "312",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "read",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:44:24.222538+00:00"
+        },
+        {
+          "id": "313",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:44:24.227841+00:00"
+        },
+        {
+          "id": "314",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "history",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:44:24.242482+00:00"
+        },
+        {
+          "id": "315",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:44:24.345684+00:00"
+        },
+        {
+          "id": "316",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "read",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:49:53.550325+00:00"
+        },
+        {
+          "id": "317",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:49:53.556582+00:00"
+        },
+        {
+          "id": "318",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:49:53.568517+00:00"
+        },
+        {
+          "id": "319",
+          "operation_id": "01a09686-9d33-7162-85df-9679212ef8a4",
+          "workflow_id": "7684687185122951168",
+          "action": "save",
+          "outcome_code": "recorded",
+          "occurred_at": "2026-09-12T16:49:59.604777+00:00"
+        },
+        {
+          "id": "320",
+          "operation_id": "01a09686-9d33-7162-85df-9679212ef8a4",
+          "workflow_id": "7684687185122951168",
+          "action": "save",
+          "outcome_code": "completed",
+          "occurred_at": "2026-09-12T16:49:59.619929+00:00"
+        },
+        {
+          "id": "322",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "read",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:50:12.90487+00:00"
+        },
+        {
+          "id": "323",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "history",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:50:12.911375+00:00"
+        },
+        {
+          "id": "324",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "read_run",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:50:12.916729+00:00"
+        },
+        {
+          "id": "325",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "read_run",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:50:12.922382+00:00"
+        },
+        {
+          "id": "326",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "read_run",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:50:12.927182+00:00"
+        },
+        {
+          "id": "327",
+          "operation_id": null,
+          "workflow_id": "7684687185122951168",
+          "action": "read_run",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T16:50:12.932425+00:00"
+        }
+      ]
+    }
+  },
+  "mysql": {
+    "started_at": "2026-09-12T16:50:13.068712+00:00",
+    "finished_at": "2026-09-12T16:50:13.135890+00:00",
+    "container_id": "df82bb081152f88837620fde1ace6ea7ed0cd87d5ecd7a85c08a6414257d513c",
+    "image_id": "sha256:679e7e924f38a3cbb62a3d7df32924b83f7321a602d3f9f967c01b3df18495d6",
+    "facts": {
+      "snapshot": [
+        {
+          "database": "coze_workflow_local",
+          "observed_at": "2026-09-12 16:50:13.129636",
+          "session_default_read_only": 0
+        }
+      ],
+      "resource": [
+        {
+          "name": "FEAT-153 主题尺寸验收 20260913-B",
+          "app_id": "0",
+          "modified": 1,
+          "revision": "7684692064230965248",
+          "space_id": "7684521418742054912",
+          "creator_id": "7684521418742038528",
+          "workflow_id": "7684687185122951168",
+          "updated_at_ms": 1789231799613,
+          "latest_version": "v0.0.2",
+          "principal_scope": "12500000-0000-4000-8000-000000000001:12500000-0000-4000-8000-100000000001",
+          "test_run_success": 0,
+          "server_canvas_bytes": 1101,
+          "server_canvas_sha256": "f2cb8a72f5daf3161791ca1dbb37be67c4a0afd24ff63edff5881cf8b4eaf866",
+          "canvas_bytes": 1101,
+          "canvas_sha256": "f2cb8a72f5daf3161791ca1dbb37be67c4a0afd24ff63edff5881cf8b4eaf866",
+          "nodes": [
+            {
+              "id": "100001",
+              "type": "1",
+              "position": {
+                "x": 80,
+                "y": 160
+              },
+              "prefix": null
+            },
+            {
+              "id": "200001",
+              "type": "15",
+              "position": {
+                "x": 406.51685393258424,
+                "y": 106.06741573033707
+              },
+              "prefix": "保留草稿验收："
+            },
+            {
+              "id": "900001",
+              "type": "2",
+              "position": {
+                "x": 760,
+                "y": 160
+              },
+              "prefix": null
+            }
+          ],
+          "edges": [
+            {
+              "sourceNodeID": "100001",
+              "targetNodeID": "200001"
+            },
+            {
+              "sourceNodeID": "200001",
+              "targetNodeID": "900001"
+            }
+          ],
+          "node_count": 3,
+          "edge_count": 2
+        }
+      ],
+      "operation": [
+        {
+          "kind": "create",
+          "run_id": "0",
+          "receipt": {
+            "kind": "create",
+            "phase": "completed",
+            "revision": "7684687185131339776",
+            "workflow_id": "7684687185122951168",
+            "operation_id": "01a09675-47b1-7013-9592-6f7366f4eab9"
+          },
+          "run_epoch": "b5a2c028-e3ac-41d2-9ce6-7edeb7441d2d",
+          "workflow_id": "7684687185122951168",
+          "operation_id": "01a09675-47b1-7013-9592-6f7366f4eab9",
+          "created_at_ms": 1789230663609
+        },
+        {
+          "kind": "save",
+          "run_id": "0",
+          "receipt": {
+            "kind": "save",
+            "phase": "completed",
+            "revision": "7684687450811138048",
+            "workflow_id": "7684687185122951168",
+            "operation_id": "01a09676-3950-7960-b83c-d65cdae0732f"
+          },
+          "run_epoch": "b5a2c028-e3ac-41d2-9ce6-7edeb7441d2d",
+          "workflow_id": "7684687185122951168",
+          "operation_id": "01a09676-3950-7960-b83c-d65cdae0732f",
+          "created_at_ms": 1789230725463
+        },
+        {
+          "kind": "test",
+          "run_id": "7684687473561042944",
+          "receipt": {
+            "kind": "test",
+            "phase": "completed",
+            "run_id": "7684687473561042944",
+            "revision": "7684687450811138048",
+            "workflow_id": "7684687185122951168",
+            "operation_id": "01a09676-4e04-7bc0-ae50-09705aa5b082"
+          },
+          "run_epoch": "b5a2c028-e3ac-41d2-9ce6-7edeb7441d2d",
+          "workflow_id": "7684687185122951168",
+          "operation_id": "01a09676-4e04-7bc0-ae50-09705aa5b082",
+          "created_at_ms": 1789230730769
+        },
+        {
+          "kind": "publish",
+          "run_id": "0",
+          "receipt": {
+            "kind": "publish",
+            "phase": "completed",
+            "version": "v0.0.1",
+            "revision": "7684687450811138048",
+            "workflow_id": "7684687185122951168",
+            "operation_id": "01a09676-78bf-7ec1-af9e-1d81be11fda1"
+          },
+          "run_epoch": "b5a2c028-e3ac-41d2-9ce6-7edeb7441d2d",
+          "workflow_id": "7684687185122951168",
+          "operation_id": "01a09676-78bf-7ec1-af9e-1d81be11fda1",
+          "created_at_ms": 1789230741700
+        },
+        {
+          "kind": "run",
+          "run_id": "7684687586501066752",
+          "receipt": {
+            "kind": "run",
+            "phase": "completed",
+            "run_id": "7684687586501066752",
+            "version": "v0.0.1",
+            "revision": "7684687450811138048",
+            "workflow_id": "7684687185122951168",
+            "operation_id": "01a09676-b4ea-73f0-b3ae-05c2a9f2c0a9"
+          },
+          "run_epoch": "b5a2c028-e3ac-41d2-9ce6-7edeb7441d2d",
+          "workflow_id": "7684687185122951168",
+          "operation_id": "01a09676-b4ea-73f0-b3ae-05c2a9f2c0a9",
+          "created_at_ms": 1789230757048
+        },
+        {
+          "kind": "save",
+          "run_id": "0",
+          "receipt": {
+            "kind": "save",
+            "phase": "completed",
+            "revision": "7684690083189882880",
+            "workflow_id": "7684687185122951168",
+            "operation_id": "01a0967f-936f-7b33-84ec-6005a14961de"
+          },
+          "run_epoch": "b5a2c028-e3ac-41d2-9ce6-7edeb7441d2d",
+          "workflow_id": "7684687185122951168",
+          "operation_id": "01a0967f-936f-7b33-84ec-6005a14961de",
+          "created_at_ms": 1789231338361
+        },
+        {
+          "kind": "test",
+          "run_id": "7684690100101316608",
+          "receipt": {
+            "kind": "test",
+            "phase": "completed",
+            "run_id": "7684690100101316608",
+            "revision": "7684690083189882880",
+            "workflow_id": "7684687185122951168",
+            "operation_id": "01a0967f-a2d0-73f1-bd5e-dcc2d0b3e324"
+          },
+          "run_epoch": "b5a2c028-e3ac-41d2-9ce6-7edeb7441d2d",
+          "workflow_id": "7684687185122951168",
+          "operation_id": "01a0967f-a2d0-73f1-bd5e-dcc2d0b3e324",
+          "created_at_ms": 1789231342297
+        },
+        {
+          "kind": "publish",
+          "run_id": "0",
+          "receipt": {
+            "kind": "publish",
+            "phase": "completed",
+            "version": "v0.0.2",
+            "revision": "7684690083189882880",
+            "workflow_id": "7684687185122951168",
+            "operation_id": "01a0967f-c195-7562-a35b-fab109f4cc49"
+          },
+          "run_epoch": "b5a2c028-e3ac-41d2-9ce6-7edeb7441d2d",
+          "workflow_id": "7684687185122951168",
+          "operation_id": "01a0967f-c195-7562-a35b-fab109f4cc49",
+          "created_at_ms": 1789231350172
+        },
+        {
+          "kind": "run",
+          "run_id": "7684690435574333440",
+          "receipt": {
+            "kind": "run",
+            "phase": "completed",
+            "run_id": "7684690435574333440",
+            "version": "v0.0.1",
+            "revision": "7684687450811138048",
+            "workflow_id": "7684687185122951168",
+            "operation_id": "01a09680-d3ef-79f2-bf3e-d398c3b19e45"
+          },
+          "run_epoch": "b5a2c028-e3ac-41d2-9ce6-7edeb7441d2d",
+          "workflow_id": "7684687185122951168",
+          "operation_id": "01a09680-d3ef-79f2-bf3e-d398c3b19e45",
+          "created_at_ms": 1789231420409
+        },
+        {
+          "kind": "save",
+          "run_id": "0",
+          "receipt": {
+            "kind": "save",
+            "phase": "completed",
+            "revision": "7684692064230965248",
+            "workflow_id": "7684687185122951168",
+            "operation_id": "01a09686-9d33-7162-85df-9679212ef8a4"
+          },
+          "run_epoch": "b5a2c028-e3ac-41d2-9ce6-7edeb7441d2d",
+          "workflow_id": "7684687185122951168",
+          "operation_id": "01a09686-9d33-7162-85df-9679212ef8a4",
+          "created_at_ms": 1789231799614
+        }
+      ],
+      "counts": [
+        {
+          "versions": 2,
+          "executions": 4
+        }
+      ]
+    }
+  },
+  "cross_database": {
+    "scope_identity_match": true,
+    "shared_operations": [
+      {
+        "operation_id": "01a09675-47b1-7013-9592-6f7366f4eab9",
+        "fields_match": true,
+        "pg_phase": "completed",
+        "mysql_phase": "completed"
+      },
+      {
+        "operation_id": "01a09676-3950-7960-b83c-d65cdae0732f",
+        "fields_match": true,
+        "pg_phase": "completed",
+        "mysql_phase": "completed"
+      },
+      {
+        "operation_id": "01a09676-4e04-7bc0-ae50-09705aa5b082",
+        "fields_match": true,
+        "pg_phase": "completed",
+        "mysql_phase": "completed"
+      },
+      {
+        "operation_id": "01a09676-78bf-7ec1-af9e-1d81be11fda1",
+        "fields_match": true,
+        "pg_phase": "completed",
+        "mysql_phase": "completed"
+      },
+      {
+        "operation_id": "01a09676-b4ea-73f0-b3ae-05c2a9f2c0a9",
+        "fields_match": true,
+        "pg_phase": "completed",
+        "mysql_phase": "completed"
+      },
+      {
+        "operation_id": "01a0967f-936f-7b33-84ec-6005a14961de",
+        "fields_match": true,
+        "pg_phase": "completed",
+        "mysql_phase": "completed"
+      },
+      {
+        "operation_id": "01a0967f-a2d0-73f1-bd5e-dcc2d0b3e324",
+        "fields_match": true,
+        "pg_phase": "completed",
+        "mysql_phase": "completed"
+      },
+      {
+        "operation_id": "01a0967f-c195-7562-a35b-fab109f4cc49",
+        "fields_match": true,
+        "pg_phase": "completed",
+        "mysql_phase": "completed"
+      },
+      {
+        "operation_id": "01a09680-d3ef-79f2-bf3e-d398c3b19e45",
+        "fields_match": true,
+        "pg_phase": "completed",
+        "mysql_phase": "completed"
+      },
+      {
+        "operation_id": "01a09686-9d33-7162-85df-9679212ef8a4",
+        "fields_match": true,
+        "pg_phase": "completed",
+        "mysql_phase": "completed"
+      }
+    ],
+    "postgres_only": [
+      "01a09675-8720-7a02-a2ec-83a19c883ebb"
+    ],
+    "mysql_only": []
+  },
+  "session_close": "NOT OBSERVED: API sessions are memory-only; database rows do not prove revocation",
+  "script_sha256": "d29866e1369b4965dfc9429e6e0c919491076506dd72ca527bffcaf365ba0f98"
+}

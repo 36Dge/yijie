@@ -1,0 +1,14 @@
+{
+  "observed_at_ms": 1789209561598,
+  "run_epoch": "bdc6b8e8-0314-4a7d-9e33-f0ea4902c54a",
+  "workflow": {
+    "canvas": "{\"nodes\":[{\"id\":\"100001\",\"type\":\"1\",\"data\":{\"nodeMeta\":{\"title\":\"开始\"},\"outputs\":[{\"name\":\"input\",\"type\":\"string\",\"required\":true}]}},{\"id\":\"900001\",\"type\":\"2\",\"data\":{\"nodeMeta\":{\"title\":\"结束\"},\"inputs\":{\"terminatePlan\":\"returnVariables\",\"inputParameters\":[{\"name\":\"result\",\"input\":{\"type\":\"string\",\"value\":{\"type\":\"ref\",\"content\":{\"source\":\"block-output\",\"blockID\":\"\",\"name\":\"\"}}}}]}}}],\"edges\":[],\"versions\":{\"loop\":\"v2\"}}",
+    "name": "FEAT-153 Dev App 闭环 20260912-1840",
+    "revision": "7684595660326174720",
+    "runnable": false,
+    "updated_at_ms": 1789209353834,
+    "workflow_id": "7684595660317786112"
+  },
+  "canvas_sha256": "387b86c4b1473d8c555bf21bdc925794ffe2fd5dd7b6ea644dc444ca98e3d375",
+  "source": "read-only API of uniquely App-created resource; no CLI create/save"
+}

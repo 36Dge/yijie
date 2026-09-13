@@ -1,0 +1,52 @@
+{
+  "observed_at_ms": 1789210363580,
+  "run_epoch": "bdc6b8e8-0314-4a7d-9e33-f0ea4902c54a",
+  "workflow": {
+    "canvas": "{\"edges\":[{\"sourceNodeID\":\"100001\",\"targetNodeID\":\"200001\"},{\"sourceNodeID\":\"200001\",\"targetNodeID\":\"900001\"}],\"nodes\":[{\"data\":{\"nodeMeta\":{\"title\":\"开始\"},\"outputs\":[{\"name\":\"input\",\"required\":true,\"type\":\"string\"}]},\"id\":\"100001\",\"meta\":{\"position\":{\"x\":80,\"y\":160}},\"type\":\"1\"},{\"data\":{\"inputs\":{\"concatParams\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":\"真实 Desktop 验收：{{input}}\",\"type\":\"literal\"}},\"name\":\"concatResult\"}],\"inputParameters\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":{\"blockID\":\"100001\",\"name\":\"input\",\"source\":\"block-output\"},\"type\":\"ref\"}},\"name\":\"input\"}],\"method\":\"concat\"},\"nodeMeta\":{\"title\":\"文本处理\"},\"outputs\":[{\"name\":\"output\",\"type\":\"string\"}]},\"id\":\"200001\",\"meta\":{\"position\":{\"x\":405,\"y\":91}},\"type\":\"15\"},{\"data\":{\"inputs\":{\"inputParameters\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":{\"blockID\":\"200001\",\"name\":\"output\",\"source\":\"block-output\"},\"type\":\"ref\"}},\"name\":\"result\"}],\"terminatePlan\":\"returnVariables\"},\"nodeMeta\":{\"title\":\"结束\"}},\"id\":\"900001\",\"meta\":{\"position\":{\"x\":760,\"y\":160}},\"type\":\"2\"}]}",
+    "name": "FEAT-153 Dev App 验收 20260912-1840",
+    "revision": "7684599752406597632",
+    "runnable": true,
+    "updated_at_ms": 1789210306591,
+    "workflow_id": "7684595660317786112"
+  },
+  "canvas_sha256": "c363ec4295881057b275c06ddae8092610aced33e4bdf9b50bcc3301de49e5dc",
+  "canvas_summary": {
+    "nodes": [
+      {
+        "id": "100001",
+        "type": "1",
+        "position": {
+          "x": 80,
+          "y": 160
+        }
+      },
+      {
+        "id": "200001",
+        "type": "15",
+        "position": {
+          "x": 405,
+          "y": 91
+        }
+      },
+      {
+        "id": "900001",
+        "type": "2",
+        "position": {
+          "x": 760,
+          "y": 160
+        }
+      }
+    ],
+    "edges": [
+      {
+        "sourceNodeID": "100001",
+        "targetNodeID": "200001"
+      },
+      {
+        "sourceNodeID": "200001",
+        "targetNodeID": "900001"
+      }
+    ]
+  },
+  "source": "read-only API for a workflow created and saved through real App; no API create/save"
+}

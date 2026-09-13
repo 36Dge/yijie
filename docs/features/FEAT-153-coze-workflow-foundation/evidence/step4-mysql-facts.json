@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "qualification": "independent_coze_mysql_readonly",
+  "result": "failed",
+  "project": "yijie-feat153-workflow",
+  "run_epoch": "7ab70fd4-1928-4fe8-80f7-007cb717af2d",
+  "workflow_id": "7684523782928596992",
+  "http_evidence_sha256": "f95509965a317331c9b8682833d3211ad8bd6e899c0a62c3be0d294490d56a84",
+  "mysql_container_id": "bc01d8c4a6ff9dae1ca0e6c44d23e3804725e1bce6d5dde9651c72e3dc78082d",
+  "checks": {
+    "dedicated_database_and_58_tables": true,
+    "exact_private_migration": true,
+    "one_fixed_principal": true,
+    "native_principal_membership": true,
+    "one_native_workflow": true,
+    "native_workflow_scope_and_draft": true,
+    "ten_completed_operation_ids_and_kinds": true,
+    "rejected_save_absent_from_committed_operations": true,
+    "one_valid_historical_operation_epoch": true,
+    "operation_087e04a8-0be6-4b0e-932e-3b4f999cfabf": true,
+    "operation_753649f6-54c0-4f06-a759-20645b7354d1": true,
+    "operation_36805436-ab32-4c08-8825-8dd5a4dd84fc": true,
+    "operation_2e470d2d-cb7e-43a6-9b33-bdaf647f901c": true,
+    "operation_ae175e12-6f53-4e76-aa2a-8e042c4b7a29": false
+  },
+  "observed_at": "2026-09-12T06:00:47.328587+00:00"
+}

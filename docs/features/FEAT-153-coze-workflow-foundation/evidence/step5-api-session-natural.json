@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "qualification": "api_editor_session_lifecycle",
+  "complete": true,
+  "started_at_ms": 1789201594802,
+  "finished_at_ms": 1789201895868,
+  "run_epoch": "8f00e418-a7e5-47a5-a945-f60c9285c9e5",
+  "workflow_id": "7684562335599427584",
+  "revision": "7684562335603621888",
+  "canvas_sha256": "387b86c4b1473d8c555bf21bdc925794ffe2fd5dd7b6ea644dc444ca98e3d375",
+  "create_operation_id": "6395df25-a9b7-4aaf-b58d-50a052f39483",
+  "create_receipt_before": {
+    "kind": "create",
+    "operation_id": "6395df25-a9b7-4aaf-b58d-50a052f39483",
+    "phase": "completed",
+    "revision": "7684562335603621888",
+    "workflow_id": "7684562335599427584"
+  },
+  "create_receipt_after": {
+    "kind": "create",
+    "operation_id": "6395df25-a9b7-4aaf-b58d-50a052f39483",
+    "phase": "completed",
+    "revision": "7684562335603621888",
+    "workflow_id": "7684562335599427584"
+  },
+  "first_open_started_at_ms": 1789201594832,
+  "first_open_received_at_ms": 1789201594837,
+  "first_server_expires_at_ms": 1789201894835,
+  "second_open_received_at_ms": 1789201895851,
+  "second_server_expires_at_ms": 1789202195849,
+  "second_close_elapsed_ms": 6,
+  "natural_elapsed_ms": 301000,
+  "midpoint_read_elapsed_ms": 150014,
+  "new_session_distinct": true,
+  "reopened_same_resource": true,
+  "closed_before_expiry": true,
+  "workflow_unchanged": true,
+  "create_receipt_unchanged": true,
+  "no_executions": true,
+  "known_sessions_closed": true,
+  "stage": "completed",
+  "observations": [
+    {
+      "stage": "create",
+      "elapsed_ms": 28,
+      "http_status": 201
+    },
+    {
+      "stage": "create_receipt",
+      "elapsed_ms": 29,
+      "http_status": 200
+    },
+    {
+      "stage": "open_first",
+      "elapsed_ms": 34,
+      "http_status": 201
+    },
+    {
+      "stage": "bootstrap_initial",
+      "elapsed_ms": 38,
+      "http_status": 200
+    },
+    {
+      "stage": "bootstrap_midpoint_no_renewal",
+      "elapsed_ms": 150049,
+      "http_status": 200
+    },
+    {
+      "stage": "natural_expiry_rejected",
+      "elapsed_ms": 301039,
+      "http_status": 401,
+      "error_code": "session_expired"
+    },
+    {
+      "stage": "expired_close",
+      "elapsed_ms": 301039,
+      "http_status": 200
+    },
+    {
+      "stage": "expired_close_idempotent",
+      "elapsed_ms": 301040,
+      "http_status": 200
+    },
+    {
+      "stage": "open_explicit_reconnect",
+      "elapsed_ms": 301048,
+      "http_status": 201
+    },
+    {
+      "stage": "bootstrap_reconnected",
+      "elapsed_ms": 301054,
+      "http_status": 200
+    },
+    {
+      "stage": "close_before_expiry",
+      "elapsed_ms": 301055,
+      "http_status": 200
+    },
+    {
+      "stage": "closed_session_rejected",
+      "elapsed_ms": 301056,
+      "http_status": 401,
+      "error_code": "session_expired"
+    },
+    {
+      "stage": "machine_read_after_close",
+      "elapsed_ms": 301059,
+      "http_status": 200
+    },
+    {
+      "stage": "machine_create_receipt_after_close",
+      "elapsed_ms": 301060,
+      "http_status": 200
+    },
+    {
+      "stage": "machine_empty_history",
+      "elapsed_ms": 301065,
+      "http_status": 200
+    }
+  ]
+}

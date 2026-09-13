@@ -1,0 +1,55 @@
+{
+  "project": "yijie-feat153-workflow",
+  "dataset": "workflow-local-v1",
+  "run_epoch": "3702ff9d-9c0b-4804-8104-807d8ffec174",
+  "phase": "ready",
+  "built": {
+    "api": {
+      "image_id": "sha256:b2a2693368d03b4116b64438fd7c96cf00189dbf8e9e5289a11411247805b464",
+      "source_digest": "c2fd3adbe0f80c7d1c1814d9ec3e2fcdb9976950727a06c670b002770ff99a2c",
+      "repository": "yijie-api",
+      "local_tag": "yijie-local/feat153-api:c2fd3adbe0f80c7d",
+      "go_image": "golang:1.26.5-bookworm@sha256:53eeac89074db483fdf0ab3be1df32bf6e47562263d2d0d6baa7f26acb4957dd"
+    },
+    "api-test": {
+      "image_id": "sha256:084dafd60268b8148562bd7bb14307d8bb613ff67c336f506000087a0f735e63",
+      "source_digest": "c2fd3adbe0f80c7d1c1814d9ec3e2fcdb9976950727a06c670b002770ff99a2c",
+      "repository": "yijie-api",
+      "local_tag": "yijie-local/feat153-api-test:c2fd3adbe0f80c7d",
+      "go_image": "golang:1.26.5-bookworm@sha256:53eeac89074db483fdf0ab3be1df32bf6e47562263d2d0d6baa7f26acb4957dd"
+    },
+    "coze": {
+      "image_id": "sha256:8a54ffb05dd3c152d12251ef07257dbb360534171dab7913fe5f88e03b039795",
+      "source_digest": "4d1bf84f7e5ba31fba1516dc1ee0c45697e4c1dadc26c3c16f5c94b573a6f003",
+      "repository": "yijie-coze",
+      "local_tag": "yijie-local/feat153-coze:4d1bf84f7e5ba31f",
+      "go_image": "golang:1.26.5-bookworm@sha256:53eeac89074db483fdf0ab3be1df32bf6e47562263d2d0d6baa7f26acb4957dd"
+    }
+  },
+  "editor": {
+    "schema_version": 1,
+    "bundle_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/dist",
+    "manifest_sha256": "2120725211a538abeb5ca1efbb1c192f6a2e0368dbee031c06935e021744f989",
+    "source_commit": "fefb05ff27be1da939612fbf9faf5db62583b8ae",
+    "manifest_source_digest": "4d1bf84f7e5ba31fba1516dc1ee0c45697e4c1dadc26c3c16f5c94b573a6f003",
+    "coze_candidate": "4d1bf84f7e5ba31fba1516dc1ee0c45697e4c1dadc26c3c16f5c94b573a6f003",
+    "contracts_source_lock_sha256": "f800e51eb4bd10f574a8ac34222293de0d080c72806ffbb072626e724ebf23fd",
+    "consumer_lock_sha256": {
+      "api": "45025097b4af2a665e94d90915ca3410bbad317e7869b8ff31bfd03dd688178d",
+      "coze": "63959748561bbca5b6390fcef4ccb6084b3b660943fde5bd166d7b751f19c6f3",
+      "desktop": "ee1d038eeedee98af520a3750db93165218399546f550b97f84c42a314dedff8"
+    },
+    "deployment_schema_sha256": "d3016433e02f492493df3cdcbaacfe054e0de27afd5c61a115b4555f4b586aae",
+    "file_count": 6,
+    "total_asset_bytes": 3476605,
+    "entry": {
+      "path": "index.html",
+      "sha256": "0ded386c3fe980c5549ccc287781b8101dc40da87853b158a9ddb1ea9e2322f7",
+      "bytes": 545,
+      "content_type": "text/html; charset=utf-8"
+    }
+  },
+  "recorded_at_ms": 1789271929821,
+  "dev_pid": 11566,
+  "launch_session": 19453
+}

@@ -1,0 +1,43 @@
+{
+  "observed_at_ms": 1789230349778,
+  "entry": "canonical pnpm tauri:demo-fast:app",
+  "app_pid": 10814,
+  "actual_parent": "tauri://localhost/workflows",
+  "workflow_id": "7684681543721156608",
+  "actions": [
+    "UI create",
+    "normal invalid_draft on incomplete test",
+    "add/prefix/two edges/move/save",
+    "test R1/update real succeeded/publish v0.0.1",
+    "edit/save R2/test/update succeeded/publish v0.0.2",
+    "natural E expiry",
+    "independent release v0.0.1/update/three nodes/history",
+    "return/reopen/initial fit",
+    "dirty prefix retained across actual OS light-to-dark/save R3",
+    "return/normal CmdQ exit"
+  ],
+  "results": {
+    "initial_fit_two_nodes": "PASS",
+    "initial_fit_saved_three_nodes": "PASS",
+    "full_core_flow": "PASS",
+    "old_version_immutable": "PASS",
+    "expiry_independent_release_query": "PASS",
+    "theme_switch_draft_retained": "PASS",
+    "dark_canvas_background": "FAIL: upstream fixed light background; source fix pending fresh visual run"
+  },
+  "close_events": [
+    {
+      "generation": 1,
+      "bridge_id": "01a09661-3d01-7682-ae29-e523712166be",
+      "remote_closed": true
+    },
+    {
+      "generation": 2,
+      "bridge_id": "01a09667-b4bb-7621-b9da-dd6a948ec0ea",
+      "remote_closed": true
+    }
+  ],
+  "normal_app_exit_code": 0,
+  "screenshot_scope": "inline CUA App screenshots in task; no local screenshot files and no dev screenshot reused",
+  "actual_window_size": "not yet measured on this first build; scaled screenshots not native dimensions"
+}

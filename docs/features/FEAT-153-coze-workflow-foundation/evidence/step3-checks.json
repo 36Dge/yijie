@@ -1,0 +1,209 @@
+{
+  "checked_at": "2026-09-12T04:59:58.640258+00:00",
+  "feature": "FEAT-153",
+  "step": 3,
+  "contract_impact": "semantic",
+  "contract_mode": "local_candidate",
+  "source_lock_sha256": "d63b98caa435e300e6f110cbeb74e6c7123782ad61f607a698863b84c9229177",
+  "source_lock": {
+    "schema_version": 1,
+    "contract_version": "1.0.0-local-candidate",
+    "mode": "local_candidate",
+    "base_commit": "811f38d6b104fa18477107e7ac91a85e19c445d1",
+    "repository": "https://github.com/36Dge/yijie-contracts.git",
+    "sources": [
+      {
+        "path": "openapi/workflow-local/workflow-local.yaml",
+        "sha256": "dae53395934ce9856563f8281fda25562d8a9f6e03ddf1ec2c6b03174cd7aae0"
+      },
+      {
+        "path": "jsonschema/workflow-editor/bridge-v1.schema.json",
+        "sha256": "12731e0870e042a048063ff09d4de02a9304ac2f6e385eb25c572adb14bc9280"
+      },
+      {
+        "path": "scripts/generate-workflow-local.mjs",
+        "sha256": "1079ac59afc03465168f835fd926bef99f8cbb7a17537c44525f8425da2d165c"
+      }
+    ],
+    "generated": [
+      {
+        "path": "sdks/go/openapi/workflow-local/types.gen.go",
+        "sha256": "aea622412894575a1a2e2ee76192345bf1068c768a67f02cee4727f16fe836cd"
+      },
+      {
+        "path": "sdks/typescript/src/openapi/workflow-local.gen.ts",
+        "sha256": "56d4755ad37c0ff5f14f6b454f4c1005199f0f43bd75a74f2133513ae9474fde"
+      },
+      {
+        "path": "sdks/rust/workflow-local/types.gen.rs",
+        "sha256": "7fc8ff8f442b501fc40e692f45e0a9338b75c42b02d5da154cdb61daf86be132"
+      },
+      {
+        "path": "sdks/jsonschema/workflow-local.schema.json",
+        "sha256": "8d2a68cdadc97ec55c31fd96de60048f851d7ecfa84bb74da621e04f3aad1d90"
+      },
+      {
+        "path": "sdks/jsonschema/workflow-editor-bridge-v1.schema.json",
+        "sha256": "8dbb4c30c883fa677cf42068156c664c346845b1a2e1f940cc8ca4cec3c85bc7"
+      },
+      {
+        "path": "sdks/typescript/src/jsonschema/workflow-editor-bridge-v1.gen.ts",
+        "sha256": "669aafc90a483c776e8b1cd3de41bdb4dc1f067792f6e7433adb79f49478abd9"
+      },
+      {
+        "path": "sdks/openapi/workflow-internal.gen.json",
+        "sha256": "f315a99c76436e99de68ecf96f8629a60bdc45a6b286ba43b295c718a1461915"
+      }
+    ],
+    "generators": {
+      "go": "oapi-codegen/v2@v2.7.2",
+      "typescript": "openapi-typescript@7.13.0",
+      "rust": "source-local deterministic subset; existing serde"
+    },
+    "release": false
+  },
+  "checks": [
+    {
+      "repository": "yijie-contracts",
+      "command": "pnpm generate:safe",
+      "exit_code": 0,
+      "log": "step3-contracts-generate.txt",
+      "scope": "Safe full generation; no historical archive fixture generation",
+      "log_sha256": "d688952d15e8dd07af733cb7e3da85d6b66ff4942c55313cf819f13061a4e9cc"
+    },
+    {
+      "repository": "yijie-contracts",
+      "command": "pnpm check-generated:safe",
+      "exit_code": 0,
+      "log": "step3-contracts-generated-check.txt",
+      "scope": "Deterministic full SDK and workflow projection generation",
+      "log_sha256": "8e6787414cd5046c04c854d128ef51a6847ab2e865159679bbd02f297378371a"
+    },
+    {
+      "repository": "yijie-contracts",
+      "command": "pnpm lint",
+      "exit_code": 0,
+      "log": "step3-contracts-lint.txt",
+      "scope": "Full static checks; 11 retained warnings including 9 IPC-only components",
+      "log_sha256": "70c1ed08537fb098faa14cf168ed049261de28e5515e64af9408430d5f46b3ae"
+    },
+    {
+      "repository": "yijie-contracts",
+      "command": "pnpm test:workflow",
+      "exit_code": 0,
+      "log": "step3-contracts-tests.txt",
+      "tests": 7,
+      "log_sha256": "05fa6b6cf7499fa346d9c7b5839d642694d5a33e4959dd9608493fe278040692"
+    },
+    {
+      "repository": "yijie-contracts",
+      "command": "bash scripts/check-breaking.sh 811f38d6b104fa18477107e7ac91a85e19c445d1",
+      "exit_code": 0,
+      "log": "step3-breaking-fallback.txt",
+      "baseline": "811f38d6b104fa18477107e7ac91a85e19c445d1",
+      "scope": "New family absent at baseline; structural checks preserve existing supported families",
+      "log_sha256": "8e5cd19181ccf67b5c7b5975d0cf79376c9796f12899b46e0dada5dbf24b71db"
+    },
+    {
+      "repository": "yijie-contracts",
+      "command": "bash scripts/check-breaking.sh f16a497e1377f45747f8ff9292b4b60cf2027f88",
+      "exit_code": 0,
+      "log": "step3-breaking-published.txt",
+      "baseline": "f16a497e1377f45747f8ff9292b4b60cf2027f88",
+      "scope": "New family absent at baseline; structural checks preserve existing supported families",
+      "log_sha256": "473af2145cebda0c06842e3478ada4dc2792fca5ac911650b4954a872c991db2"
+    },
+    {
+      "repository": "yijie-contracts",
+      "command": "bash scripts/check-breaking.sh 29317b6426578749dc698fc2ad32b986ee5c8e9f",
+      "exit_code": 0,
+      "log": "step3-breaking-api-pin.txt",
+      "baseline": "29317b6426578749dc698fc2ad32b986ee5c8e9f",
+      "scope": "New family absent at baseline; structural checks preserve existing supported families",
+      "log_sha256": "9156d9e2ecf64bd54c1fd27b566f31040aa37294e7776135ccfa2a75283cc740"
+    },
+    {
+      "repository": "yijie-api",
+      "command": "make workflow-lint workflow-test workflow-build WORKFLOW_GO=<original cached Go1.26.5>",
+      "exit_code": 0,
+      "log": "step3-api-checks.txt",
+      "tests": 16,
+      "route_subtests": 9,
+      "scope": "Focused race/vet/build; no real PostgreSQL or Coze server",
+      "log_sha256": "1cf4de9a01283d34824e631acfab8117e3f9742fd115fe0febef1fad8fee8ba9"
+    },
+    {
+      "repository": "yijie-coze",
+      "command": "make workflow-contract-check workflow-lint workflow-test workflow-build",
+      "exit_code": 0,
+      "log": "step3-coze-focused.txt",
+      "tests": 9,
+      "scope": "Real Coze/Eino engine with SQLite/miniredis; not MySQL/real Redis/full stack",
+      "log_sha256": "1676249334d5b03b22c081fda2a3acf2fb77cbc0b221386801049a9a763887b4"
+    },
+    {
+      "repository": "yijie-coze",
+      "command": "go test -race -count=1 ./domain/workflow/localadapter ./application/workflowlocal ./domain/workflow/internal/execute",
+      "exit_code": 0,
+      "log": "step3-coze-race.txt",
+      "scope": "Three reviewed packages; ordinary tests only",
+      "log_sha256": "c9c73e3700956893768a01fab8fa5792f221a5b4957960676ddf25bcc54048bc"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --locked --lib workflows:: -- --test-threads=1",
+      "exit_code": 0,
+      "log": "step3-desktop-native-tests.txt",
+      "tests": 10,
+      "scope": "Normal loopback/native lifecycle; no App/WebView",
+      "log_sha256": "7fc05cedc2756704d0a2c77a4b6217facb16ce477d9b36ad3fa076c5461c6b7f"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo check; cargo fmt --check; cargo clippy --locked --lib -- -D warnings; canonical consumer --check",
+      "exit_code": 0,
+      "log": "step3-desktop-native-verification.txt",
+      "scope": "Production library static checks and source synchronization",
+      "log_sha256": "835f2abf299e9d2b25950278e62d9e48641c02234af626da9b5071aafe17f0ca"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo clippy --locked --lib --tests -- -D warnings",
+      "status": "BLOCKED_BY_EXISTING_LINT",
+      "reason": "src/chat/mod.rs:1351 cloned_ref_to_slice_refs; old Chat file unmodified",
+      "log": "step3-desktop-native-verification.txt",
+      "log_sha256": "835f2abf299e9d2b25950278e62d9e48641c02234af626da9b5071aafe17f0ca"
+    },
+    {
+      "repository": "yijie",
+      "command": "pnpm lint; pnpm test; check-feature-package --strict / --gate D0; validate-feature-package --audit-claims",
+      "exit_code": 0,
+      "tests": 50,
+      "log": "step3-governance.txt",
+      "log_sha256": "6e731c14cae00cc1538a5cb8cca7e16a2215143fe498560ed613345c810a184d",
+      "scope": "Meta governance and D0 only, D4 not run"
+    },
+    {
+      "repository": "yijie-coze",
+      "command": "make lint test; git diff --check",
+      "exit_code": 0,
+      "log": "step3-coze-source.txt",
+      "log_sha256": "eab7a273c99af25a471c2c3ea4b1ead4b7273b07d43b30d80fe363d0d97713ca",
+      "scope": "15,297 unchanged upstream files; two declared overlays; six preexisting deletions retained"
+    }
+  ],
+  "not_run": [
+    "Full Docker stack",
+    "Real PostgreSQL/MySQL migrations and transactions",
+    "Canonical App/React iframe/MessageChannel qualification",
+    "Fresh D4 or production/public release",
+    "Unsafe historical fixture/fault/attack tests"
+  ],
+  "business_model_paid_calls": 0,
+  "commits_pushes_tags": 0,
+  "final_review_additions": [
+    "Native server-clock offset bounded by original monotonic 300s deadline; failed session installation normally revoked",
+    "MySQL normal zero-changed-row publication confirmed by locking current revision read; no clientFoundRows workaround",
+    "Explicit container Coze listener and parseTime deployment inputs documented"
+  ]
+}

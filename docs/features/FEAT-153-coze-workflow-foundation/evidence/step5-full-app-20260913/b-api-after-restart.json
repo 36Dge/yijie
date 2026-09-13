@@ -1,0 +1,233 @@
+{
+  "observed_at_ms": 1789232036597,
+  "run_epoch": "c8287004-65b9-4f00-b522-5ea87eea7b3d",
+  "workflow": {
+    "canvas": "{\"edges\":[{\"sourceNodeID\":\"100001\",\"targetNodeID\":\"200001\"},{\"sourceNodeID\":\"200001\",\"targetNodeID\":\"900001\"}],\"nodes\":[{\"data\":{\"nodeMeta\":{\"title\":\"开始\"},\"outputs\":[{\"name\":\"input\",\"required\":true,\"type\":\"string\"}]},\"id\":\"100001\",\"meta\":{\"position\":{\"x\":80,\"y\":160}},\"type\":\"1\"},{\"data\":{\"inputs\":{\"concatParams\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":\"保留草稿验收：{{input}}\",\"type\":\"literal\"}},\"name\":\"concatResult\"}],\"inputParameters\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":{\"blockID\":\"100001\",\"name\":\"input\",\"source\":\"block-output\"},\"type\":\"ref\"}},\"name\":\"input\"}],\"method\":\"concat\"},\"nodeMeta\":{\"title\":\"文本处理\"},\"outputs\":[{\"name\":\"output\",\"type\":\"string\"}]},\"id\":\"200001\",\"meta\":{\"position\":{\"x\":406.51685393258424,\"y\":106.06741573033707}},\"type\":\"15\"},{\"data\":{\"inputs\":{\"inputParameters\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":{\"blockID\":\"200001\",\"name\":\"output\",\"source\":\"block-output\"},\"type\":\"ref\"}},\"name\":\"result\"}],\"terminatePlan\":\"returnVariables\"},\"nodeMeta\":{\"title\":\"结束\"}},\"id\":\"900001\",\"meta\":{\"position\":{\"x\":760,\"y\":160}},\"type\":\"2\"}]}",
+    "name": "FEAT-153 主题尺寸验收 20260913-B",
+    "published_version": "v0.0.2",
+    "revision": "7684692064230965248",
+    "runnable": true,
+    "updated_at_ms": 1789231799613,
+    "workflow_id": "7684687185122951168"
+  },
+  "canvas_sha256": "f2cb8a72f5daf3161791ca1dbb37be67c4a0afd24ff63edff5881cf8b4eaf866",
+  "history": {
+    "items": [
+      {
+        "finished_at_ms": 1789231420423,
+        "mode": "release",
+        "operation_id": "01a09680-d3ef-79f2-bf3e-d398c3b19e45",
+        "revision": "7684687450811138048",
+        "run_id": "7684690435574333440",
+        "started_at_ms": 1789231420409,
+        "state": "succeeded",
+        "terminal": true,
+        "version": "v0.0.1",
+        "workflow_id": "7684687185122951168"
+      },
+      {
+        "finished_at_ms": 1789231342309,
+        "mode": "debug",
+        "operation_id": "01a0967f-a2d0-73f1-bd5e-dcc2d0b3e324",
+        "revision": "7684690083189882880",
+        "run_id": "7684690100101316608",
+        "started_at_ms": 1789231342297,
+        "state": "succeeded",
+        "terminal": true,
+        "workflow_id": "7684687185122951168"
+      },
+      {
+        "finished_at_ms": 1789230757062,
+        "mode": "release",
+        "operation_id": "01a09676-b4ea-73f0-b3ae-05c2a9f2c0a9",
+        "revision": "7684687450811138048",
+        "run_id": "7684687586501066752",
+        "started_at_ms": 1789230757048,
+        "state": "succeeded",
+        "terminal": true,
+        "version": "v0.0.1",
+        "workflow_id": "7684687185122951168"
+      },
+      {
+        "finished_at_ms": 1789230730782,
+        "mode": "debug",
+        "operation_id": "01a09676-4e04-7bc0-ae50-09705aa5b082",
+        "revision": "7684687450811138048",
+        "run_id": "7684687473561042944",
+        "started_at_ms": 1789230730769,
+        "state": "succeeded",
+        "terminal": true,
+        "workflow_id": "7684687185122951168"
+      }
+    ]
+  },
+  "runs": [
+    {
+      "finished_at_ms": 1789231420423,
+      "input": {
+        "input": "大窗口固定版本"
+      },
+      "mode": "release",
+      "nodes": [
+        {
+          "node_id": "100001",
+          "output": "大窗口固定版本",
+          "state": "3"
+        },
+        {
+          "node_id": "200001",
+          "output": "尺寸验收一：大窗口固定版本",
+          "state": "3"
+        },
+        {
+          "node_id": "900001",
+          "output": "尺寸验收一：大窗口固定版本",
+          "state": "3"
+        }
+      ],
+      "operation_id": "01a09680-d3ef-79f2-bf3e-d398c3b19e45",
+      "output": "尺寸验收一：大窗口固定版本",
+      "revision": "7684687450811138048",
+      "run_id": "7684690435574333440",
+      "started_at_ms": 1789231420409,
+      "state": "succeeded",
+      "terminal": true,
+      "version": "v0.0.1",
+      "workflow_id": "7684687185122951168"
+    },
+    {
+      "finished_at_ms": 1789231342309,
+      "input": {
+        "input": "普通文本 B"
+      },
+      "mode": "debug",
+      "nodes": [
+        {
+          "node_id": "100001",
+          "output": "普通文本 B",
+          "state": "3"
+        },
+        {
+          "node_id": "200001",
+          "output": "尺寸验收二：普通文本 B",
+          "state": "3"
+        },
+        {
+          "node_id": "900001",
+          "output": "尺寸验收二：普通文本 B",
+          "state": "3"
+        }
+      ],
+      "operation_id": "01a0967f-a2d0-73f1-bd5e-dcc2d0b3e324",
+      "output": "尺寸验收二：普通文本 B",
+      "revision": "7684690083189882880",
+      "run_id": "7684690100101316608",
+      "started_at_ms": 1789231342297,
+      "state": "succeeded",
+      "terminal": true,
+      "workflow_id": "7684687185122951168"
+    },
+    {
+      "finished_at_ms": 1789230757062,
+      "input": {
+        "input": "暗色最小窗口"
+      },
+      "mode": "release",
+      "nodes": [
+        {
+          "node_id": "100001",
+          "output": "暗色最小窗口",
+          "state": "3"
+        },
+        {
+          "node_id": "200001",
+          "output": "尺寸验收一：暗色最小窗口",
+          "state": "3"
+        },
+        {
+          "node_id": "900001",
+          "output": "尺寸验收一：暗色最小窗口",
+          "state": "3"
+        }
+      ],
+      "operation_id": "01a09676-b4ea-73f0-b3ae-05c2a9f2c0a9",
+      "output": "尺寸验收一：暗色最小窗口",
+      "revision": "7684687450811138048",
+      "run_id": "7684687586501066752",
+      "started_at_ms": 1789230757048,
+      "state": "succeeded",
+      "terminal": true,
+      "version": "v0.0.1",
+      "workflow_id": "7684687185122951168"
+    },
+    {
+      "finished_at_ms": 1789230730782,
+      "input": {
+        "input": "普通文本 B"
+      },
+      "mode": "debug",
+      "nodes": [
+        {
+          "node_id": "100001",
+          "output": "普通文本 B",
+          "state": "3"
+        },
+        {
+          "node_id": "200001",
+          "output": "尺寸验收一：普通文本 B",
+          "state": "3"
+        },
+        {
+          "node_id": "900001",
+          "output": "尺寸验收一：普通文本 B",
+          "state": "3"
+        }
+      ],
+      "operation_id": "01a09676-4e04-7bc0-ae50-09705aa5b082",
+      "output": "尺寸验收一：普通文本 B",
+      "revision": "7684687450811138048",
+      "run_id": "7684687473561042944",
+      "started_at_ms": 1789230730769,
+      "state": "succeeded",
+      "terminal": true,
+      "workflow_id": "7684687185122951168"
+    }
+  ],
+  "receipts": [
+    {
+      "kind": "run",
+      "operation_id": "01a09680-d3ef-79f2-bf3e-d398c3b19e45",
+      "phase": "completed",
+      "revision": "7684687450811138048",
+      "run_id": "7684690435574333440",
+      "version": "v0.0.1",
+      "workflow_id": "7684687185122951168"
+    },
+    {
+      "kind": "test",
+      "operation_id": "01a0967f-a2d0-73f1-bd5e-dcc2d0b3e324",
+      "phase": "completed",
+      "revision": "7684690083189882880",
+      "run_id": "7684690100101316608",
+      "workflow_id": "7684687185122951168"
+    },
+    {
+      "kind": "run",
+      "operation_id": "01a09676-b4ea-73f0-b3ae-05c2a9f2c0a9",
+      "phase": "completed",
+      "revision": "7684687450811138048",
+      "run_id": "7684687586501066752",
+      "version": "v0.0.1",
+      "workflow_id": "7684687185122951168"
+    },
+    {
+      "kind": "test",
+      "operation_id": "01a09676-4e04-7bc0-ae50-09705aa5b082",
+      "phase": "completed",
+      "revision": "7684687450811138048",
+      "run_id": "7684687473561042944",
+      "workflow_id": "7684687185122951168"
+    }
+  ],
+  "source": "Bounded read-only API; all create/save/test/publish/run actions were performed in the real App through CUA."
+}

@@ -2,7 +2,7 @@
 
 ## 适用范围与指令优先级
 
-本文件的文件系统指令范围仅覆盖 `yijie` 元仓库。十个业务/平台仓库位于它的兄弟目录，不会自动继承本文件；修改兄弟仓库前必须重新读取该仓库自己的 `AGENTS.md`、README、SECURITY 和相关设计文档。
+本文件的文件系统指令范围仅覆盖 `yijie` 元仓库。十一个业务/平台仓库位于它的兄弟目录，不会自动继承本文件；修改兄弟仓库前必须重新读取该仓库自己的 `AGENTS.md`、README、SECURITY 和相关设计文档。
 
 本文件同时记录易界多仓项目的中央治理基线。兄弟仓规则可以细化实现方式，但不得在没有新 Accepted ADR 和用户明确确认的情况下弱化本文的 Contract First、安全、审批、审计或发布红线。只在兄弟仓单独工作的 Agent 仍需依靠该仓 `AGENTS.md` 和 CI 执行这些规则，不能把本文件误称为自动生效的全局指令。
 
@@ -12,7 +12,8 @@
 
 当前工作区采用兄弟仓库模式：
 
-- `repos.yaml` 记录十个子仓库的路径、HTTPS 远端、类型、Owner 和默认 `develop` 分支；
+- `repos.yaml` 记录十一个子仓库的路径、HTTPS 远端、类型、Owner 和默认 `develop` 分支；
+  `yijie-coze` 使用用户授权的私有`36Dge/yijie-coze`，显式覆盖为`main`，Coze上游来源由该仓lock固定；
 - 子仓库位于 `../yijie-*`，每个仓库有独立 `.git`、分支、提交和发布历史；
 - 当前不使用 Git submodule，`.gitmodules` 只是说明占位；
 - `apps/`、`services/`、`packages/`、`codex/`、`platform/` 仅是职责索引，不挂载或复制业务代码；
@@ -141,6 +142,7 @@ tag、生产兼容或 Consumer 批准。进入 public/production 前必须补齐
 
 - 修改 `repos.yaml` 时同步更新 manifest 测试、README、架构、CODEOWNERS 和相关脚本；
 - 新增、删除、重命名仓库或改变 Owner、远端、默认分支前必须取得用户明确确认；
+  FEAT-153 用户已授权接入、Git提交/推送和创建私有`36Dge/yijie-coze`；不允许向Coze上游推送易界修改；
 - `scripts/bootstrap.sh` 会检查本地工具、安装元仓依赖并调用 checkout 脚本；
 - `scripts/checkout-all.sh` 会 clone 缺失仓库、fetch 现有仓库，并可能为缺少 origin 的仓库添加远端；
 - `checkout-all.sh` 虽名为 checkout，但不会切换现有仓库当前分支，也不会覆盖工作区；
@@ -155,14 +157,17 @@ pnpm test              # 只测试 manifest 结构
 bash -n scripts/*.sh   # 只检查元仓 Shell 语法
 make bootstrap         # 安装元仓依赖并 clone/fetch 兄弟仓库
 make checkout          # clone/fetch/remote 检查，不切换现有分支
-make lint              # 元仓 manifest + 十个兄弟仓库 make lint
-make test              # 元仓 manifest + 十个兄弟仓库 make test
-make generate          # 对十个兄弟仓库执行 generate，可能改写多个工作区
-make contract-governance # 要求十个 sibling 均存在并校验其 Contract First 最小门禁
+make lint              # 元仓 manifest + 十一个兄弟仓库 make lint
+make test              # 元仓 manifest + 十一个兄弟仓库 make test
+make generate          # 对十一个兄弟仓库执行 generate，可能改写多个工作区
+make contract-governance # 要求十一个 sibling 均存在并校验其 Contract First 最小门禁
 make dev-up            # 启动 infra Compose，但当前不等待健康检查
 make dev-down          # 停止 infra Compose并保留命名 volume
 ```
 
+- `yijie-coze` 的 `make lint/test` 在 FEAT-153 仓库接入阶段只检查集成治理与源文件保持，
+  不代表 Coze 全套测试或工作流运行通过。用户禁止的历史攻击 fixture、危险归档与权限故障测试
+  必须跳过并登记原因/影响；跨仓 `make lint/test/generate` 不因命令名常规而自动安全。
 - 根仓文档或 manifest 小改动先运行 `pnpm lint && pnpm test && bash -n scripts/*.sh`；
 - 修改多仓脚本、清单或全局门禁时再运行 `make lint` 和必要的 `make test`；
 - `make generate` 会跨仓写文件，且部分子仓 generate 仍是占位。执行前必须确认各仓干净或已记录改动，成功也不代表所有生成能力真实存在；
@@ -175,7 +180,7 @@ make dev-down          # 停止 infra Compose并保留命名 volume
 - `develop` 是日常集成分支，`staging` 是预发基线，`main` 是生产基线；
 - 功能和常规修复从 `develop` 建短期分支，通过 PR 合回；长期分支间通过 PR 晋升；
 - hotfix 从 `main` 创建，并回灌 `staging` 和 `develop`；
-- 十一个仓库独立提交和发布，元仓文档提交不能替代业务仓实现提交；
+- 十二个仓库独立提交和发布，元仓文档提交不能替代业务仓实现提交；
 - 跨仓 PR 需要互相引用，说明合并顺序、兼容窗口、migration、灰度和回滚；
 - 未经用户明确要求，不推送、合并、打 tag、改分支保护或触发发布。
 

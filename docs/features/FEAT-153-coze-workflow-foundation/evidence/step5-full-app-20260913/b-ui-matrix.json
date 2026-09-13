@@ -1,0 +1,71 @@
+{
+  "observed_at_ms": 1789231668439,
+  "source": "Actual CUA App screenshots and AX observations plus native window_geometry; images are inline conversation evidence, not local screenshot files",
+  "app_pid": 19114,
+  "workflow_id": "7684687185122951168",
+  "run_epoch": "b5a2c028-e3ac-41d2-9ce6-7edeb7441d2d",
+  "editor_manifest_sha256": "4053ced07c85188dfa17ef9be905792446277a738095997879c5e7bafaa518b4",
+  "matrix": [
+    {
+      "theme": "light",
+      "logical_width": 1180,
+      "logical_height": 760,
+      "canvas": "PASS",
+      "results_and_history": "PASS",
+      "native_scale_factor": 2
+    },
+    {
+      "theme": "light",
+      "logical_width": 1440,
+      "logical_height": 900,
+      "canvas": "PASS",
+      "results_and_history": "PASS",
+      "native_scale_factor": 2
+    },
+    {
+      "theme": "dark",
+      "logical_width": 1180,
+      "logical_height": 760,
+      "canvas": "PASS",
+      "results_and_history": "PASS",
+      "native_scale_factor": 2
+    },
+    {
+      "theme": "dark",
+      "logical_width": 1440,
+      "logical_height": 900,
+      "canvas": "PASS",
+      "results_and_history": "PASS",
+      "native_scale_factor": 2
+    }
+  ],
+  "initial_fit": {
+    "created_two_nodes": "PASS",
+    "reopened_three_nodes_dark_1440x900": "PASS",
+    "resize_behavior": "Retains viewport; shrinking can clip nodes, explicit Fit restores all nodes without a save"
+  },
+  "ui_actions": {
+    "normal_incomplete_test": "invalid_draft, corrected with actual two edges and moved text node",
+    "revision_1": "7684687450811138048",
+    "debug_1": "7684687473561042944",
+    "publish_1": "v0.0.1",
+    "release_1": "7684687586501066752",
+    "revision_2": "7684690083189882880",
+    "debug_2": "7684690100101316608",
+    "publish_2": "v0.0.2",
+    "release_old_version": "7684690435574333440",
+    "old_version_output": "尺寸验收一：大窗口固定版本",
+    "history_refresh": "Explicit separate snapshot; refreshed after terminal read; not automatic streaming"
+  },
+  "keyboard": "Return activated selected-version execution. Light large unsaved dialog Tab/Tab/Shift+Tab/Return selects Continue editing. Dark large Chat cancel preserved same iframe and dirty prefix.",
+  "found_navigation_bug": "After cancelled Chat navigation, URL and content remain workflows but document title changed to 新建任务. Confirmed by normal regression test, source fix added; fresh App retest pending.",
+  "display_adjustments": {
+    "original": "1512x982 default",
+    "temporary": "1800x1169 to fit true 900pt height",
+    "restored_default_screenshot": true,
+    "dock_shortcut_toggles": 2,
+    "final_dock_autohide": "off",
+    "final_theme": "light"
+  },
+  "d4": "NOT RUN: current dev UI control unavailable; not all fresh Must AC qualified"
+}

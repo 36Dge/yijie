@@ -1,0 +1,53 @@
+{
+  "observed_at_ms": 1789231299712,
+  "run_epoch": "b5a2c028-e3ac-41d2-9ce6-7edeb7441d2d",
+  "workflow": {
+    "canvas": "{\"edges\":[{\"sourceNodeID\":\"100001\",\"targetNodeID\":\"200001\"},{\"sourceNodeID\":\"200001\",\"targetNodeID\":\"900001\"}],\"nodes\":[{\"data\":{\"nodeMeta\":{\"title\":\"开始\"},\"outputs\":[{\"name\":\"input\",\"required\":true,\"type\":\"string\"}]},\"id\":\"100001\",\"meta\":{\"position\":{\"x\":80,\"y\":160}},\"type\":\"1\"},{\"data\":{\"inputs\":{\"concatParams\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":\"尺寸验收一：{{input}}\",\"type\":\"literal\"}},\"name\":\"concatResult\"}],\"inputParameters\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":{\"blockID\":\"100001\",\"name\":\"input\",\"source\":\"block-output\"},\"type\":\"ref\"}},\"name\":\"input\"}],\"method\":\"concat\"},\"nodeMeta\":{\"title\":\"文本处理\"},\"outputs\":[{\"name\":\"output\",\"type\":\"string\"}]},\"id\":\"200001\",\"meta\":{\"position\":{\"x\":406.51685393258424,\"y\":106.06741573033707}},\"type\":\"15\"},{\"data\":{\"inputs\":{\"inputParameters\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":{\"blockID\":\"200001\",\"name\":\"output\",\"source\":\"block-output\"},\"type\":\"ref\"}},\"name\":\"result\"}],\"terminatePlan\":\"returnVariables\"},\"nodeMeta\":{\"title\":\"结束\"}},\"id\":\"900001\",\"meta\":{\"position\":{\"x\":760,\"y\":160}},\"type\":\"2\"}]}",
+    "name": "FEAT-153 主题尺寸验收 20260913-B",
+    "published_version": "v0.0.1",
+    "revision": "7684687450811138048",
+    "runnable": true,
+    "updated_at_ms": 1789230741700,
+    "workflow_id": "7684687185122951168"
+  },
+  "canvas_sha256": "738a229652702704907bd67574710892ad9992197dd800561f13313e46645a51",
+  "canvas_summary": {
+    "nodes": [
+      {
+        "id": "100001",
+        "type": "1",
+        "position": {
+          "x": 80,
+          "y": 160
+        }
+      },
+      {
+        "id": "200001",
+        "type": "15",
+        "position": {
+          "x": 406.51685393258424,
+          "y": 106.06741573033707
+        }
+      },
+      {
+        "id": "900001",
+        "type": "2",
+        "position": {
+          "x": 760,
+          "y": 160
+        }
+      }
+    ],
+    "edges": [
+      {
+        "sourceNodeID": "100001",
+        "targetNodeID": "200001"
+      },
+      {
+        "sourceNodeID": "200001",
+        "targetNodeID": "900001"
+      }
+    ]
+  },
+  "source": "read-only API for a workflow created and saved through real App; no API create/save"
+}

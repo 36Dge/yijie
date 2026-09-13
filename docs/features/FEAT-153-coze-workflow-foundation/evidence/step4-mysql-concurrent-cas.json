@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "qualification": "ordinary_mysql_concurrent_cas",
+  "complete": true,
+  "source_lock_sha256": "d63b98caa435e300e6f110cbeb74e6c7123782ad61f607a698863b84c9229177",
+  "create_operation_id": "414a5306-02e7-4b37-833d-71e15b29288b",
+  "save_operation_ids": [
+    "d63227f7-1a6f-42fd-af61-ad082823509c",
+    "f82432b2-499d-4780-900a-8d878207ec6f"
+  ],
+  "workflow": {
+    "canvas": "{\"nodes\":[{\"id\":\"100001\",\"type\":\"1\",\"data\":{\"nodeMeta\":{\"title\":\"开始\"},\"outputs\":[{\"name\":\"input\",\"type\":\"string\",\"required\":true}]}},{\"id\":\"900001\",\"type\":\"2\",\"data\":{\"nodeMeta\":{\"title\":\"结束\"},\"inputs\":{\"terminatePlan\":\"returnVariables\",\"inputParameters\":[{\"name\":\"result\",\"input\":{\"type\":\"string\",\"value\":{\"type\":\"ref\",\"content\":{\"source\":\"block-output\",\"blockID\":\"\",\"name\":\"\"}}}}]}}}],\"edges\":[],\"versions\":{\"loop\":\"v2\"}}",
+    "name": "FEAT-153 普通并发 CAS W2 2c9058c3 A",
+    "revision": "7684523869620666368",
+    "runnable": false,
+    "updated_at_ms": 1789192638755,
+    "workflow_id": "7684523869528391680"
+  },
+  "observations": [
+    {
+      "operation_id": "d63227f7-1a6f-42fd-af61-ad082823509c",
+      "transport_completed": true,
+      "http_status": 200,
+      "revision": "7684523869620666368"
+    },
+    {
+      "operation_id": "f82432b2-499d-4780-900a-8d878207ec6f",
+      "transport_completed": true,
+      "http_status": 409,
+      "error_code": "revision_conflict"
+    }
+  ],
+  "receipts": [
+    {
+      "kind": "create",
+      "operation_id": "414a5306-02e7-4b37-833d-71e15b29288b",
+      "phase": "completed",
+      "revision": "7684523869528408064",
+      "workflow_id": "7684523869528391680"
+    },
+    {
+      "kind": "save",
+      "operation_id": "d63227f7-1a6f-42fd-af61-ad082823509c",
+      "phase": "completed",
+      "revision": "7684523869620666368",
+      "workflow_id": "7684523869528391680"
+    },
+    {
+      "error": {
+        "code": "revision_conflict",
+        "message": "revision_conflict",
+        "operation_id": "f82432b2-499d-4780-900a-8d878207ec6f"
+      },
+      "kind": "save",
+      "operation_id": "f82432b2-499d-4780-900a-8d878207ec6f",
+      "phase": "rejected",
+      "workflow_id": "7684523869528391680"
+    }
+  ],
+  "session_closed": true,
+  "original_revision": "7684523869528408064",
+  "winner_operation_id": "d63227f7-1a6f-42fd-af61-ad082823509c",
+  "loser_operation_id": "f82432b2-499d-4780-900a-8d878207ec6f"
+}

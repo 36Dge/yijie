@@ -1,0 +1,36 @@
+{
+  "observed_at_ms": 1789272570737,
+  "workflow_id": "7684864630077784064",
+  "final_revision": "7684866728114782208",
+  "dev_entry": "canonical pnpm tauri:dev / localhost:1420",
+  "pid": 11566,
+  "qualifications": {
+    "initial_fit_create_save_reopen": "PASS",
+    "keyboard_edges_and_movement": "PASS; Tab/Enter created both edges; Shift+Up/Left moved text to410,110; exact readback",
+    "ordinary_invalid_draft_retry": "PASS",
+    "versions": "v0.0.1 and v0.0.2",
+    "runs": [
+      {
+        "run_id": "7684865563226537984",
+        "state": "succeeded",
+        "output": "KEY DEV 一：固定版验收"
+      },
+      {
+        "run_id": "7684865466296172544",
+        "state": "succeeded",
+        "output": "KEY DEV 二：键盘验收"
+      },
+      {
+        "run_id": "7684865343960907776",
+        "state": "succeeded",
+        "output": "KEY DEV 一：键盘验收"
+      }
+    ],
+    "natural_expiry_reconnect_save": "PASS; actual300s; retained KEY DEV 到期稿",
+    "dirty_departure_cancel_Chat": "PASS",
+    "normal_fast_open_cancellation": "NOT HIT; actual enabled cancel was not observed during normal bounded AX inspection; no timing/fault injection; ordinary focused pending-open tests separately PASS",
+    "close": "remote_closed=true generations1,2,3,4; normalCmdQ; launcher19453 exit0"
+  },
+  "all_dev_pids_gone": true,
+  "D4": "NOT RUN; packaged fresh, theme/size, restart and final audit pending"
+}

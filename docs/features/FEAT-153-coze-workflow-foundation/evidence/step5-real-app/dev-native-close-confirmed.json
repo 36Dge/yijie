@@ -1,0 +1,28 @@
+{
+  "observed_native_stderr": {
+    "app_pid": 94626,
+    "bridge_id": "01a0954c-6152-7210-9fd3-6e14c0c941ba",
+    "event": "remote_close_confirmed",
+    "generation": 1,
+    "remote_closed": true,
+    "run_epoch": "bdc6b8e8-0314-4a7d-9e33-f0ea4902c54a",
+    "workflow_id": "7684595660317786112"
+  },
+  "stdout_source": "canonical dev exec session 27437, chunk b4341e",
+  "ui": {
+    "observed_at_ms": 1789211219728,
+    "app_pid": 94626,
+    "workflow_iframe_present": false,
+    "workflow_list_entry_present": true,
+    "action": "normal visible Return workflow button click"
+  },
+  "opened_ui_at_ms": 1789211206760,
+  "interpretation": "API authenticated DELETE returned 200 and typed closed=true; no secret/session ID exported; not an old-E replay probe",
+  "native_source_sha256": "8d464a977c99dd94a4090a7e6f4d932fea884cc36b70411ab235c9fb0a534efa",
+  "app_binary_sha256": "58bceb25c6e00803e71c97a62f39c46bc3e6b201180cb23c7bb6d81791072add",
+  "checks": {
+    "fmt": true,
+    "clippy_lib_warnings_denied": true,
+    "focused_native_tests_passed": 13
+  }
+}

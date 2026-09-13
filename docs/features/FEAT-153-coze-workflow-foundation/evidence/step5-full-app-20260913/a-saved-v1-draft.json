@@ -1,0 +1,48 @@
+{
+  "observed_at_ms": 1789229554647,
+  "run_epoch": "94935fff-6e10-44a4-855b-0f259e97b596",
+  "workflow": {
+    "canvas": "{\"edges\":[{\"sourceNodeID\":\"100001\",\"targetNodeID\":\"200001\"}],\"nodes\":[{\"data\":{\"nodeMeta\":{\"title\":\"开始\"},\"outputs\":[{\"name\":\"input\",\"required\":true,\"type\":\"string\"}]},\"id\":\"100001\",\"meta\":{\"position\":{\"x\":80,\"y\":160}},\"type\":\"1\"},{\"data\":{\"inputs\":{\"concatParams\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":\"版本一：{{input}}\",\"type\":\"literal\"}},\"name\":\"concatResult\"}],\"inputParameters\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":{\"blockID\":\"100001\",\"name\":\"input\",\"source\":\"block-output\"},\"type\":\"ref\"}},\"name\":\"input\"}],\"method\":\"concat\"},\"nodeMeta\":{\"title\":\"文本处理\"},\"outputs\":[{\"name\":\"output\",\"type\":\"string\"}]},\"id\":\"200001\",\"meta\":{\"position\":{\"x\":420,\"y\":160}},\"type\":\"15\"},{\"data\":{\"inputs\":{\"inputParameters\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":{\"blockID\":\"200001\",\"name\":\"output\",\"source\":\"block-output\"},\"type\":\"ref\"}},\"name\":\"result\"}],\"terminatePlan\":\"returnVariables\"},\"nodeMeta\":{\"title\":\"结束\"}},\"id\":\"900001\",\"meta\":{\"position\":{\"x\":760,\"y\":160}},\"type\":\"2\"}]}",
+    "name": "FEAT-153 完整App验收 20260913-A",
+    "revision": "7684682367583125504",
+    "runnable": false,
+    "updated_at_ms": 1789229541944,
+    "workflow_id": "7684681543721156608"
+  },
+  "canvas_sha256": "e5d7aa770151aa8463cdca3dc293f30b4488529c8a60cecf50ac16362e1752ac",
+  "canvas_summary": {
+    "nodes": [
+      {
+        "id": "100001",
+        "type": "1",
+        "position": {
+          "x": 80,
+          "y": 160
+        }
+      },
+      {
+        "id": "200001",
+        "type": "15",
+        "position": {
+          "x": 420,
+          "y": 160
+        }
+      },
+      {
+        "id": "900001",
+        "type": "2",
+        "position": {
+          "x": 760,
+          "y": 160
+        }
+      }
+    ],
+    "edges": [
+      {
+        "sourceNodeID": "100001",
+        "targetNodeID": "200001"
+      }
+    ]
+  },
+  "source": "read-only API for a workflow created and saved through real App; no API create/save"
+}

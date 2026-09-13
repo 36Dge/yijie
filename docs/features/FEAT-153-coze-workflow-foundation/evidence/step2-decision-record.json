@@ -1,0 +1,31 @@
+{
+  "recorded_at": "2026-09-12T03:26:50.022363+00:00",
+  "feature": "FEAT-153",
+  "step": 2,
+  "user_approval": {
+    "date": "2026-09-12",
+    "verbatim": "批准该方案，继续第 2 步",
+    "scope": [
+      "same Desktop window, independent editor",
+      "fixed local address",
+      "no native capability granted to editor",
+      "native/server fixed identity and short editor session"
+    ]
+  },
+  "technical_refinement": {
+    "authority": "05-local-integration-design.md",
+    "decision": "HTTP static iframe + typed MessageChannel to named native workflow commands; E only in native/API memory",
+    "author": "Codex, within approved architecture; no claim of separate field-by-field human review",
+    "excluded": [
+      "WK third-party cookie dependence",
+      "system CA/trust changes",
+      "custom URI scheme",
+      "arbitrary native/HTTP proxy"
+    ]
+  },
+  "step2_actual_changes": "Governance/design/feasibility documentation only; no source contracts, provider, UI/native implementation, runtime startup, migration, or credentials created",
+  "runtime_qualification": "NOT RUN",
+  "D4": "NOT RUN",
+  "paid_model_platform_calls": 0,
+  "commit_push": false
+}

@@ -1,0 +1,771 @@
+{
+  "at": "2026-09-12T11:26:07.055059+00:00",
+  "scope": "Read-only final workspace protection audit. Sole write is this evidence artifact. No business/source/build changes, tests, generation, runtime operations, network or credentials read.",
+  "contract_impact": "none: this subtask only reads workspace metadata/source hashes and records evidence; it does not alter any wire or runtime behavior.",
+  "authority": "yijie/repos.yaml (11 child repositories) plus yijie meta repository",
+  "manifest_sha256": "a5da67cfebc61528b62098832ec5837b68ab1071c02974ade89212ec9054deaa",
+  "baselines": {
+    "repositories": "../step5-headless-workspace-final.json",
+    "origins": "../step5-workspace-before.json",
+    "original_desktop_design": "../step5-workspace-before.json",
+    "headless_desktop_design": "../step5-headless-checks.json",
+    "dev_candidate": "dev-candidate.json",
+    "packaged_candidate": "packaged-candidate-and-public-scan.json",
+    "editor_assets": "../step5-headless-final-artifacts.json"
+  },
+  "repositories": [
+    {
+      "repository": "yijie",
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie",
+      "head": "d59e1725f988df6f1f3fe1abbf0b4546ab419819",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie.git",
+      "status": "M AGENTS.md\n M CODEOWNERS\n M README.md\n M docs/adr/README.md\n M docs/architecture/000-overview.md\n M docs/architecture/002-repo-strategy.md\n M repos.yaml\n M scripts/repo-manifest.mjs\n M services/README.md\n M tests/repo-manifest.test.mjs\n?? docs/adr/ADR-0019-coze-workflow-foundation.md\n?? docs/features/FEAT-153-coze-workflow-foundation/",
+      "diff_check_exit": 0,
+      "diff_check_output": "",
+      "diff_check_stderr": "",
+      "staged_diff_check_exit": 0,
+      "staged_diff_check_output": "",
+      "staged_diff_check_stderr": "",
+      "comparison": {
+        "head_equals_headless": true,
+        "branch_equals_headless": true,
+        "status_equals_headless": true,
+        "origin_equals_step5_before": true,
+        "origin_equals_manifest": null,
+        "origin_baseline_note": "headless-workspace-final has no origin field; compared against step5-workspace-before"
+      }
+    },
+    {
+      "repository": "yijie-codex",
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex",
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-codex.git",
+      "status": "",
+      "diff_check_exit": 0,
+      "diff_check_output": "",
+      "diff_check_stderr": "",
+      "staged_diff_check_exit": 0,
+      "staged_diff_check_output": "",
+      "staged_diff_check_stderr": "",
+      "comparison": {
+        "head_equals_headless": true,
+        "branch_equals_headless": true,
+        "status_equals_headless": true,
+        "origin_equals_step5_before": true,
+        "origin_equals_manifest": true,
+        "origin_baseline_note": "headless-workspace-final has no origin field; compared against step5-workspace-before"
+      }
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+      "head": "5964e2f7c31ea298f801df02086abbc8d6676b91",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-desktop.git",
+      "status": "M docs/design/docs/design/05-patterns/16-feat-151-workflow-showcase.md\n M eslint.config.js\n M scripts/run-local-demo-fast.sh\n M src-tauri/src/chat/sidecar.rs\n M src-tauri/src/lib.rs\n M src-tauri/src/native_auth/runtime.rs\n M src/components/workflows/RecommendedWorkflowCard.vue\n M src/components/workflows/WorkflowSummaryCard.vue\n M src/components/yijie/YjPageHeader.vue\n M src/pages/workflows/WorkflowPage.test.ts\n M src/pages/workflows/WorkflowPage.vue\n M src/vite-env.d.ts\n?? contracts/workflow-editor-bridge-v1.schema.json\n?? contracts/workflow-local.lock.json\n?? contracts/workflow-local.schema.json\n?? docs/verification/workflow-interactions-and-lime-20260911.md\n?? scripts/run-workflow-dev.mjs\n?? scripts/workflow-desktop-foundation.test.mjs\n?? src-tauri/src/workflows/\n?? src-tauri/tauri.workflow-local.conf.json\n?? src/api/generated/workflow-local-validator.gen.d.ts\n?? src/api/generated/workflow-local-validator.gen.js\n?? src/api/workflow-editor-channel.ts\n?? src/api/workflow-native-client.ts\n?? src/authorization/workflow-local-ui-config.ts\n?? src/components/workflows/WorkflowEditorPane.vue\n?? src/components/workflows/WorkflowLocalWorkspace.vue\n?? src/components/workflows/workflow-showcase.css\n?? src/domain/workflow-editor-bridge.generated.ts\n?? src/domain/workflow-local.generated.ts\n?? src/pages/workflows/use-workflow-workspace.test.ts\n?? src/pages/workflows/use-workflow-workspace.ts",
+      "diff_check_exit": 0,
+      "diff_check_output": "",
+      "diff_check_stderr": "",
+      "staged_diff_check_exit": 0,
+      "staged_diff_check_output": "",
+      "staged_diff_check_stderr": "",
+      "comparison": {
+        "head_equals_headless": true,
+        "branch_equals_headless": true,
+        "status_equals_headless": true,
+        "origin_equals_step5_before": true,
+        "origin_equals_manifest": true,
+        "origin_baseline_note": "headless-workspace-final has no origin field; compared against step5-workspace-before"
+      }
+    },
+    {
+      "repository": "yijie-admin-web",
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-admin-web",
+      "head": "d009cafccb112c098114c075d60f67ee5e0296d8",
+      "branch": "develop",
+      "origin": "https://github.com/36Dge/yijie-admin-web.git",
+      "status": "",
+      "diff_check_exit": 0,
+      "diff_check_output": "",
+      "diff_check_stderr": "",
+      "staged_diff_check_exit": 0,
+      "staged_diff_check_output": "",
+      "staged_diff_check_stderr": "",
+      "comparison": {
+        "head_equals_headless": true,
+        "branch_equals_headless": true,
+        "status_equals_headless": true,
+        "origin_equals_step5_before": true,
+        "origin_equals_manifest": true,
+        "origin_baseline_note": "headless-workspace-final has no origin field; compared against step5-workspace-before"
+      }
+    },
+    {
+      "repository": "yijie-api",
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-api",
+      "head": "f9d730a157bcb012a8fe178cbfebcd4ea27419fc",
+      "branch": "feat/feat-126-foundation-closure",
+      "origin": "https://github.com/36Dge/yijie-api.git",
+      "status": "M AGENTS.md\n M Makefile\n M README.md\n?? Dockerfile.workflow-local\n?? Dockerfile.workflow-local.dockerignore\n?? cmd/workflow-local-migrate/\n?? cmd/workflow-local-qualify/\n?? cmd/workflow-local-server/\n?? config/workflow-editor-assets.schema.json\n?? config/workflow-local-runtime.schema.json\n?? contracts/workflow-local.lock.json\n?? contracts/workflow-local.schema.json\n?? contracts/workflow-local.source-lock.json\n?? contracts/workflow_schema.go\n?? docs/workflow-editor-assets.md\n?? docs/workflow-local.md\n?? internal/contracts/workflowlocal/\n?? internal/modules/workflows/\n?? internal/workflowlocal/",
+      "diff_check_exit": 0,
+      "diff_check_output": "",
+      "diff_check_stderr": "",
+      "staged_diff_check_exit": 0,
+      "staged_diff_check_output": "",
+      "staged_diff_check_stderr": "",
+      "comparison": {
+        "head_equals_headless": true,
+        "branch_equals_headless": true,
+        "status_equals_headless": true,
+        "origin_equals_step5_before": true,
+        "origin_equals_manifest": true,
+        "origin_baseline_note": "headless-workspace-final has no origin field; compared against step5-workspace-before"
+      }
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-agent-host.git",
+      "status": "",
+      "diff_check_exit": 0,
+      "diff_check_output": "",
+      "diff_check_stderr": "",
+      "staged_diff_check_exit": 0,
+      "staged_diff_check_output": "",
+      "staged_diff_check_stderr": "",
+      "comparison": {
+        "head_equals_headless": true,
+        "branch_equals_headless": true,
+        "status_equals_headless": true,
+        "origin_equals_step5_before": true,
+        "origin_equals_manifest": true,
+        "origin_baseline_note": "headless-workspace-final has no origin field; compared against step5-workspace-before"
+      }
+    },
+    {
+      "repository": "yijie-skills",
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills",
+      "head": "488714a8d96f40806a257aae097683815b1dd458",
+      "branch": "develop",
+      "origin": "https://github.com/36Dge/yijie-skills.git",
+      "status": "",
+      "diff_check_exit": 0,
+      "diff_check_output": "",
+      "diff_check_stderr": "",
+      "staged_diff_check_exit": 0,
+      "staged_diff_check_output": "",
+      "staged_diff_check_stderr": "",
+      "comparison": {
+        "head_equals_headless": true,
+        "branch_equals_headless": true,
+        "status_equals_headless": true,
+        "origin_equals_step5_before": true,
+        "origin_equals_manifest": true,
+        "origin_baseline_note": "headless-workspace-final has no origin field; compared against step5-workspace-before"
+      }
+    },
+    {
+      "repository": "yijie-connectors",
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors",
+      "head": "273eec40bbbfeb17e817643f283db7c81e9b190c",
+      "branch": "develop",
+      "origin": "https://github.com/36Dge/yijie-connectors.git",
+      "status": "",
+      "diff_check_exit": 0,
+      "diff_check_output": "",
+      "diff_check_stderr": "",
+      "staged_diff_check_exit": 0,
+      "staged_diff_check_output": "",
+      "staged_diff_check_stderr": "",
+      "comparison": {
+        "head_equals_headless": true,
+        "branch_equals_headless": true,
+        "status_equals_headless": true,
+        "origin_equals_step5_before": true,
+        "origin_equals_manifest": true,
+        "origin_baseline_note": "headless-workspace-final has no origin field; compared against step5-workspace-before"
+      }
+    },
+    {
+      "repository": "yijie-knowledge",
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-knowledge",
+      "head": "e9091d2b673ba779ecb39271ce9148e3a41fc256",
+      "branch": "develop",
+      "origin": "https://github.com/36Dge/yijie-knowledge.git",
+      "status": "",
+      "diff_check_exit": 0,
+      "diff_check_output": "",
+      "diff_check_stderr": "",
+      "staged_diff_check_exit": 0,
+      "staged_diff_check_output": "",
+      "staged_diff_check_stderr": "",
+      "comparison": {
+        "head_equals_headless": true,
+        "branch_equals_headless": true,
+        "status_equals_headless": true,
+        "origin_equals_step5_before": true,
+        "origin_equals_manifest": true,
+        "origin_baseline_note": "headless-workspace-final has no origin field; compared against step5-workspace-before"
+      }
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+      "head": "811f38d6b104fa18477107e7ac91a85e19c445d1",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-contracts.git",
+      "status": "M Makefile\n M docs/supported-baselines.md\n M redocly.yaml\n M scripts/check-breaking.sh\n M scripts/check-generated.mjs\n M scripts/validate-json-schemas.mjs\n M sdks/typescript/src/index.ts\n?? compatibility/workflow-local/\n?? docs/workflow-local-candidate-generation.md\n?? docs/workflow-local-v1.md\n?? jsonschema/workflow-editor/\n?? openapi/workflow-local/\n?? scripts/check-workflow-local.mjs\n?? scripts/generate-workflow-browser.mjs\n?? scripts/generate-workflow-local.mjs\n?? scripts/sync-workflow-consumer.mjs\n?? scripts/workflow-schema-validator.mjs\n?? sdks/go/openapi/workflow-local/\n?? sdks/jsonschema/\n?? sdks/openapi/\n?? sdks/rust/\n?? sdks/typescript/src/browser/\n?? sdks/typescript/src/jsonschema/workflow-editor-bridge-v1.gen.ts\n?? sdks/typescript/src/openapi/workflow-local.gen.ts\n?? tests/types/\n?? tests/workflow-local-browser.test.mjs\n?? tests/workflow-local.test.mjs",
+      "diff_check_exit": 0,
+      "diff_check_output": "",
+      "diff_check_stderr": "",
+      "staged_diff_check_exit": 0,
+      "staged_diff_check_output": "",
+      "staged_diff_check_stderr": "",
+      "comparison": {
+        "head_equals_headless": true,
+        "branch_equals_headless": true,
+        "status_equals_headless": true,
+        "origin_equals_step5_before": true,
+        "origin_equals_manifest": true,
+        "origin_baseline_note": "headless-workspace-final has no origin field; compared against step5-workspace-before"
+      }
+    },
+    {
+      "repository": "yijie-infra",
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra",
+      "head": "19b7920696904f83030a8ddaba71af15c3c05ad8",
+      "branch": "feat/feat-126-s10e",
+      "origin": "https://github.com/36Dge/yijie-infra.git",
+      "status": "M .gitignore\n M AGENTS.md\n M Makefile\n M package.json\n?? compose/\n?? config/workflow-local/\n?? docs/workflow-local.md\n?? scripts/workflow-local-cas.mjs\n?? scripts/workflow-local-model.mjs\n?? scripts/workflow-local-mysql-read.py\n?? scripts/workflow-local.py\n?? tests/workflow-local.test.mjs",
+      "diff_check_exit": 0,
+      "diff_check_output": "",
+      "diff_check_stderr": "",
+      "staged_diff_check_exit": 0,
+      "staged_diff_check_output": "",
+      "staged_diff_check_stderr": "",
+      "comparison": {
+        "head_equals_headless": true,
+        "branch_equals_headless": true,
+        "status_equals_headless": true,
+        "origin_equals_step5_before": true,
+        "origin_equals_manifest": true,
+        "origin_baseline_note": "headless-workspace-final has no origin field; compared against step5-workspace-before"
+      }
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze",
+      "head": "fefb05ff27be1da939612fbf9faf5db62583b8ae",
+      "branch": "main",
+      "origin": "https://github.com/coze-dev/coze-studio.git",
+      "status": "M Makefile\n M backend/domain/workflow/internal/compose/workflow_run.go\n D docs/nats-eventbus-integration-guide-en.md\n D docs/nats-eventbus-integration-guide.md\n D docs/oceanbase-integration-guide-en.md\n D docs/oceanbase-integration-guide.md\n D docs/pulsar-eventbus-integration-guide-en.md\n D docs/pulsar-eventbus-integration-guide.md\n?? .codex/\n?? AGENTS.md\n?? README.yijie.md\n?? backend/api/model/workflowlocal/\n?? backend/application/workflowlocal/\n?? backend/cmd/\n?? backend/domain/user/service/local_principal.go\n?? backend/domain/workflow/internal/execute/local_controls.go\n?? backend/domain/workflow/internal/execute/local_controls_test.go\n?? backend/domain/workflow/localadapter/\n?? backend/domain/workflow/service/local_execute.go\n?? contracts/\n?? docker/workflow-local/\n?? docs/workflow-editor-csp-review.md\n?? frontend/apps/workflow-local/\n?? scripts/yijie/\n?? yijie-upstream.lock.json",
+      "diff_check_exit": 0,
+      "diff_check_output": "",
+      "diff_check_stderr": "",
+      "staged_diff_check_exit": 0,
+      "staged_diff_check_output": "",
+      "staged_diff_check_stderr": "",
+      "comparison": {
+        "head_equals_headless": true,
+        "branch_equals_headless": true,
+        "status_equals_headless": true,
+        "origin_equals_step5_before": true,
+        "origin_equals_manifest": true,
+        "origin_baseline_note": "headless-workspace-final has no origin field; compared against step5-workspace-before"
+      }
+    }
+  ],
+  "protected_desktop_design_files": [
+    {
+      "repository": "yijie-desktop",
+      "path": "docs/design/docs/design/05-patterns/16-feat-151-workflow-showcase.md",
+      "original_sha256": "0bbf61011611dc6f44d5844068b35e559de9788a0f3839f0df75b01f5ec2570b",
+      "headless_sha256": "0bbf61011611dc6f44d5844068b35e559de9788a0f3839f0df75b01f5ec2570b",
+      "current_sha256": "0bbf61011611dc6f44d5844068b35e559de9788a0f3839f0df75b01f5ec2570b",
+      "equals_original": true,
+      "equals_headless": true,
+      "authorized_prior_integration": false
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/workflows/RecommendedWorkflowCard.vue",
+      "original_sha256": "3ededb7050fb50450e72daed9592a9ec9af631d9e51450cede893780bd600c8a",
+      "headless_sha256": "3ededb7050fb50450e72daed9592a9ec9af631d9e51450cede893780bd600c8a",
+      "current_sha256": "3ededb7050fb50450e72daed9592a9ec9af631d9e51450cede893780bd600c8a",
+      "equals_original": true,
+      "equals_headless": true,
+      "authorized_prior_integration": false
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/workflows/WorkflowSummaryCard.vue",
+      "original_sha256": "fd235745a7adce5683e674b27bf97aed36b51fa24530a795c0bf90b6e026f955",
+      "headless_sha256": "fd235745a7adce5683e674b27bf97aed36b51fa24530a795c0bf90b6e026f955",
+      "current_sha256": "fd235745a7adce5683e674b27bf97aed36b51fa24530a795c0bf90b6e026f955",
+      "equals_original": true,
+      "equals_headless": true,
+      "authorized_prior_integration": false
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/yijie/YjPageHeader.vue",
+      "original_sha256": "aa4b992cf54e4c3e7e33b523c9bb7a11a32e11f7bf13549ee796e78086bef564",
+      "headless_sha256": "aa4b992cf54e4c3e7e33b523c9bb7a11a32e11f7bf13549ee796e78086bef564",
+      "current_sha256": "aa4b992cf54e4c3e7e33b523c9bb7a11a32e11f7bf13549ee796e78086bef564",
+      "equals_original": true,
+      "equals_headless": true,
+      "authorized_prior_integration": false
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/pages/workflows/WorkflowPage.test.ts",
+      "original_sha256": "d6d5bc37679e9aa8728157157bacc687153fbdd74c4daac94d2a41c3f58950e4",
+      "headless_sha256": "d6d5bc37679e9aa8728157157bacc687153fbdd74c4daac94d2a41c3f58950e4",
+      "current_sha256": "d6d5bc37679e9aa8728157157bacc687153fbdd74c4daac94d2a41c3f58950e4",
+      "equals_original": true,
+      "equals_headless": true,
+      "authorized_prior_integration": false
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/pages/workflows/WorkflowPage.vue",
+      "original_sha256": "7f986634d6933f6cea9696a982d2362fb1aa3da1f52c65857e66ea8e0fcbf11e",
+      "headless_sha256": "25a831cebb80179e31691818b8ecf51a92a6846cd17525abd320a4dca2e956bf",
+      "current_sha256": "25a831cebb80179e31691818b8ecf51a92a6846cd17525abd320a4dca2e956bf",
+      "equals_original": false,
+      "equals_headless": true,
+      "authorized_prior_integration": true
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "docs/verification/workflow-interactions-and-lime-20260911.md",
+      "original_sha256": "e69a2073873d6f548011d149c83fe15245c98fddbab12eea953fdb95fba8799b",
+      "headless_sha256": "e69a2073873d6f548011d149c83fe15245c98fddbab12eea953fdb95fba8799b",
+      "current_sha256": "e69a2073873d6f548011d149c83fe15245c98fddbab12eea953fdb95fba8799b",
+      "equals_original": true,
+      "equals_headless": true,
+      "authorized_prior_integration": false
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/workflows/workflow-showcase.css",
+      "original_sha256": "d0f20ab96f79b3771849220b61dfab622d7f270a01ff728b32529514d38540a4",
+      "headless_sha256": "d0f20ab96f79b3771849220b61dfab622d7f270a01ff728b32529514d38540a4",
+      "current_sha256": "d0f20ab96f79b3771849220b61dfab622d7f270a01ff728b32529514d38540a4",
+      "equals_original": true,
+      "equals_headless": true,
+      "authorized_prior_integration": false
+    }
+  ],
+  "known_current_round_changes": {
+    "root_agent_report": "Desktop src-tauri/src/workflows/runtime.rs native-only nonsecret close diagnostic, and meta repository FEAT-153 qualification evidence/documentation.",
+    "native_runtime": {
+      "path": "yijie-desktop/src-tauri/src/workflows/runtime.rs",
+      "dev_initial_sha256": "36d29e0108847efdc56a8e35749f37ef2436992d7f10333aab187d127684d0b8",
+      "current_sha256": "8d464a977c99dd94a4090a7e6f4d932fea884cc36b70411ab235c9fb0a534efa",
+      "matches_packaged_candidate": true,
+      "inspected_diagnostic": "Emitted only in exact local enabled mode after authenticated DELETE succeeds and typed CloseResult.closed is true. Fields: event, app_pid, workflow_id, bridge_id, generation, run_epoch, remote_closed; no session_id, secret or credentials included.",
+      "limitation": "runtime.rs was already untracked in headless status. Baseline has hashes but no complete prior file content snapshot; changed hash and inspected current block corroborate the reported change, not an exhaustive old/new text diff."
+    },
+    "dev_source_subset": [
+      {
+        "path": "yijie-desktop/src-tauri/src/workflows/runtime.rs",
+        "dev_initial_sha256": "36d29e0108847efdc56a8e35749f37ef2436992d7f10333aab187d127684d0b8",
+        "current_sha256": "8d464a977c99dd94a4090a7e6f4d932fea884cc36b70411ab235c9fb0a534efa",
+        "equals_dev_initial": false
+      },
+      {
+        "path": "yijie-desktop/src/api/workflow-editor-channel.ts",
+        "dev_initial_sha256": "61fe3b048643d6950af0bf48835551918f7c900ff56f414439e6c49f1ffe2365",
+        "current_sha256": "61fe3b048643d6950af0bf48835551918f7c900ff56f414439e6c49f1ffe2365",
+        "equals_dev_initial": true
+      },
+      {
+        "path": "yijie-desktop/src/api/workflow-native-client.ts",
+        "dev_initial_sha256": "0c9d60733e924739b5c37d534eb8f2879b5f5027d3e319ae1d595ae7f23893b4",
+        "current_sha256": "0c9d60733e924739b5c37d534eb8f2879b5f5027d3e319ae1d595ae7f23893b4",
+        "equals_dev_initial": true
+      },
+      {
+        "path": "yijie-desktop/src/components/workflows/WorkflowEditorPane.vue",
+        "dev_initial_sha256": "095b9068c68d157f6b2f8646ea28e1ef4eb2c8bfd7dd4992783b3681e8eee78b",
+        "current_sha256": "095b9068c68d157f6b2f8646ea28e1ef4eb2c8bfd7dd4992783b3681e8eee78b",
+        "equals_dev_initial": true
+      },
+      {
+        "path": "yijie-desktop/src/pages/workflows/use-workflow-workspace.ts",
+        "dev_initial_sha256": "0db607ff5ca1f57d7a51a9aba3188e606fffc3ac4b45166c5c92b05db7ebb696",
+        "current_sha256": "0db607ff5ca1f57d7a51a9aba3188e606fffc3ac4b45166c5c92b05db7ebb696",
+        "equals_dev_initial": true
+      },
+      {
+        "path": "yijie-coze/frontend/apps/workflow-local/src/native-canvas.tsx",
+        "dev_initial_sha256": "91d5bd358c8bf306ff98719d27dedc006948eae2683883b14b1d123bdb7642f8",
+        "current_sha256": "91d5bd358c8bf306ff98719d27dedc006948eae2683883b14b1d123bdb7642f8",
+        "equals_dev_initial": true
+      }
+    ]
+  },
+  "contract_source_lock": {
+    "path": "yijie-contracts/compatibility/workflow-local/source.lock.json",
+    "sha256": "f800e51eb4bd10f574a8ac34222293de0d080c72806ffbb072626e724ebf23fd",
+    "source_and_generated_files": [
+      {
+        "group": "sources",
+        "path": "openapi/workflow-local/workflow-local.yaml",
+        "expected_sha256": "90e13e8a386036ca09e19502204d629417c7b82fbd664d1d063d5cb846316a1c",
+        "current_sha256": "90e13e8a386036ca09e19502204d629417c7b82fbd664d1d063d5cb846316a1c",
+        "matches": true
+      },
+      {
+        "group": "sources",
+        "path": "jsonschema/workflow-editor/bridge-v1.schema.json",
+        "expected_sha256": "12731e0870e042a048063ff09d4de02a9304ac2f6e385eb25c572adb14bc9280",
+        "current_sha256": "12731e0870e042a048063ff09d4de02a9304ac2f6e385eb25c572adb14bc9280",
+        "matches": true
+      },
+      {
+        "group": "sources",
+        "path": "scripts/generate-workflow-local.mjs",
+        "expected_sha256": "20d8dfa108065bfc64aa851a26f8206dfcc6c2a99fab00d0e4d2f3c3ebfaea5d",
+        "current_sha256": "20d8dfa108065bfc64aa851a26f8206dfcc6c2a99fab00d0e4d2f3c3ebfaea5d",
+        "matches": true
+      },
+      {
+        "group": "sources",
+        "path": "scripts/generate-workflow-browser.mjs",
+        "expected_sha256": "8122cc1aa2239e1af2530d18932af8e79b24470b7f6b0d17908a63806c09fad0",
+        "current_sha256": "8122cc1aa2239e1af2530d18932af8e79b24470b7f6b0d17908a63806c09fad0",
+        "matches": true
+      },
+      {
+        "group": "sources",
+        "path": "scripts/sync-workflow-consumer.mjs",
+        "expected_sha256": "6100ef433313fa891cbc19d563d49e062bbea7e2c83aea437f1139a218882ce1",
+        "current_sha256": "6100ef433313fa891cbc19d563d49e062bbea7e2c83aea437f1139a218882ce1",
+        "matches": true
+      },
+      {
+        "group": "generated",
+        "path": "sdks/go/openapi/workflow-local/types.gen.go",
+        "expected_sha256": "aea622412894575a1a2e2ee76192345bf1068c768a67f02cee4727f16fe836cd",
+        "current_sha256": "aea622412894575a1a2e2ee76192345bf1068c768a67f02cee4727f16fe836cd",
+        "matches": true
+      },
+      {
+        "group": "generated",
+        "path": "sdks/typescript/src/openapi/workflow-local.gen.ts",
+        "expected_sha256": "db92537ea5e4de3747ff98b5b8029b6361e105a4037f5e467672c5c686a48dcb",
+        "current_sha256": "db92537ea5e4de3747ff98b5b8029b6361e105a4037f5e467672c5c686a48dcb",
+        "matches": true
+      },
+      {
+        "group": "generated",
+        "path": "sdks/rust/workflow-local/types.gen.rs",
+        "expected_sha256": "7fc8ff8f442b501fc40e692f45e0a9338b75c42b02d5da154cdb61daf86be132",
+        "current_sha256": "7fc8ff8f442b501fc40e692f45e0a9338b75c42b02d5da154cdb61daf86be132",
+        "matches": true
+      },
+      {
+        "group": "generated",
+        "path": "sdks/jsonschema/workflow-local.schema.json",
+        "expected_sha256": "6739ca5e21e9ce7de2fe28744d89226e6980fa50c6e9e80f482cbec2a5beb9d4",
+        "current_sha256": "6739ca5e21e9ce7de2fe28744d89226e6980fa50c6e9e80f482cbec2a5beb9d4",
+        "matches": true
+      },
+      {
+        "group": "generated",
+        "path": "sdks/jsonschema/workflow-editor-bridge-v1.schema.json",
+        "expected_sha256": "8dbb4c30c883fa677cf42068156c664c346845b1a2e1f940cc8ca4cec3c85bc7",
+        "current_sha256": "8dbb4c30c883fa677cf42068156c664c346845b1a2e1f940cc8ca4cec3c85bc7",
+        "matches": true
+      },
+      {
+        "group": "generated",
+        "path": "sdks/typescript/src/jsonschema/workflow-editor-bridge-v1.gen.ts",
+        "expected_sha256": "669aafc90a483c776e8b1cd3de41bdb4dc1f067792f6e7433adb79f49478abd9",
+        "current_sha256": "669aafc90a483c776e8b1cd3de41bdb4dc1f067792f6e7433adb79f49478abd9",
+        "matches": true
+      },
+      {
+        "group": "generated",
+        "path": "sdks/typescript/src/browser/workflow-local-validator.gen.js",
+        "expected_sha256": "70eb5c58eb4e1e9c59d08ffeb6390c717220490d8585fc2e45c93998b74cc70b",
+        "current_sha256": "70eb5c58eb4e1e9c59d08ffeb6390c717220490d8585fc2e45c93998b74cc70b",
+        "matches": true
+      },
+      {
+        "group": "generated",
+        "path": "sdks/typescript/src/browser/workflow-local-validator.gen.d.ts",
+        "expected_sha256": "3bbbd5a1c452ff7e58dece7d8761c72b58783bd52624d40c1d1a5b83d21703b7",
+        "current_sha256": "3bbbd5a1c452ff7e58dece7d8761c72b58783bd52624d40c1d1a5b83d21703b7",
+        "matches": true
+      },
+      {
+        "group": "generated",
+        "path": "sdks/openapi/workflow-internal.gen.json",
+        "expected_sha256": "6f6000985cc7321dcaa645552ab0ece694f2de7ec470d0338b5e942ffd20e92b",
+        "current_sha256": "6f6000985cc7321dcaa645552ab0ece694f2de7ec470d0338b5e942ffd20e92b",
+        "matches": true
+      }
+    ],
+    "consumers": [
+      {
+        "repository": "yijie-desktop",
+        "lock_sha256": "ee1d038eeedee98af520a3750db93165218399546f550b97f84c42a314dedff8",
+        "source_fields_equal_canonical": true,
+        "source_copy": {
+          "exists": false,
+          "sha256": null,
+          "equals_canonical": null
+        },
+        "consumed": [
+          {
+            "path": "src-tauri/src/workflows/generated.rs",
+            "expected_sha256": "7fc8ff8f442b501fc40e692f45e0a9338b75c42b02d5da154cdb61daf86be132",
+            "current_sha256": "7fc8ff8f442b501fc40e692f45e0a9338b75c42b02d5da154cdb61daf86be132",
+            "matches": true
+          },
+          {
+            "path": "src/domain/workflow-local.generated.ts",
+            "expected_sha256": "db92537ea5e4de3747ff98b5b8029b6361e105a4037f5e467672c5c686a48dcb",
+            "current_sha256": "db92537ea5e4de3747ff98b5b8029b6361e105a4037f5e467672c5c686a48dcb",
+            "matches": true
+          },
+          {
+            "path": "contracts/workflow-local.schema.json",
+            "expected_sha256": "6739ca5e21e9ce7de2fe28744d89226e6980fa50c6e9e80f482cbec2a5beb9d4",
+            "current_sha256": "6739ca5e21e9ce7de2fe28744d89226e6980fa50c6e9e80f482cbec2a5beb9d4",
+            "matches": true
+          },
+          {
+            "path": "contracts/workflow-editor-bridge-v1.schema.json",
+            "expected_sha256": "8dbb4c30c883fa677cf42068156c664c346845b1a2e1f940cc8ca4cec3c85bc7",
+            "current_sha256": "8dbb4c30c883fa677cf42068156c664c346845b1a2e1f940cc8ca4cec3c85bc7",
+            "matches": true
+          },
+          {
+            "path": "src/domain/workflow-editor-bridge.generated.ts",
+            "expected_sha256": "0ac77519c393e9281a9e5fcee3ba5239d668fd30465b4e9f30964bf47654b7a9",
+            "current_sha256": "0ac77519c393e9281a9e5fcee3ba5239d668fd30465b4e9f30964bf47654b7a9",
+            "matches": true
+          },
+          {
+            "path": "src/api/generated/workflow-local-validator.gen.js",
+            "expected_sha256": "70eb5c58eb4e1e9c59d08ffeb6390c717220490d8585fc2e45c93998b74cc70b",
+            "current_sha256": "70eb5c58eb4e1e9c59d08ffeb6390c717220490d8585fc2e45c93998b74cc70b",
+            "matches": true
+          },
+          {
+            "path": "src/api/generated/workflow-local-validator.gen.d.ts",
+            "expected_sha256": "2dcf54b09556e76de80c157d9329e25a164e3f4f3867ebe91190e02cdd81df85",
+            "current_sha256": "2dcf54b09556e76de80c157d9329e25a164e3f4f3867ebe91190e02cdd81df85",
+            "matches": true
+          }
+        ]
+      },
+      {
+        "repository": "yijie-api",
+        "lock_sha256": "45025097b4af2a665e94d90915ca3410bbad317e7869b8ff31bfd03dd688178d",
+        "source_fields_equal_canonical": true,
+        "source_copy": {
+          "exists": true,
+          "sha256": "f800e51eb4bd10f574a8ac34222293de0d080c72806ffbb072626e724ebf23fd",
+          "equals_canonical": true
+        },
+        "consumed": [
+          {
+            "path": "internal/contracts/workflowlocal/types.gen.go",
+            "expected_sha256": "aea622412894575a1a2e2ee76192345bf1068c768a67f02cee4727f16fe836cd",
+            "current_sha256": "aea622412894575a1a2e2ee76192345bf1068c768a67f02cee4727f16fe836cd",
+            "matches": true
+          },
+          {
+            "path": "contracts/workflow-local.schema.json",
+            "expected_sha256": "6739ca5e21e9ce7de2fe28744d89226e6980fa50c6e9e80f482cbec2a5beb9d4",
+            "current_sha256": "6739ca5e21e9ce7de2fe28744d89226e6980fa50c6e9e80f482cbec2a5beb9d4",
+            "matches": true
+          },
+          {
+            "path": "contracts/workflow-local.source-lock.json",
+            "expected_sha256": "f800e51eb4bd10f574a8ac34222293de0d080c72806ffbb072626e724ebf23fd",
+            "current_sha256": "f800e51eb4bd10f574a8ac34222293de0d080c72806ffbb072626e724ebf23fd",
+            "matches": true
+          }
+        ]
+      },
+      {
+        "repository": "yijie-coze",
+        "lock_sha256": "63959748561bbca5b6390fcef4ccb6084b3b660943fde5bd166d7b751f19c6f3",
+        "source_fields_equal_canonical": true,
+        "source_copy": {
+          "exists": true,
+          "sha256": "f800e51eb4bd10f574a8ac34222293de0d080c72806ffbb072626e724ebf23fd",
+          "equals_canonical": true
+        },
+        "consumed": [
+          {
+            "path": "backend/api/model/workflowlocal/types.gen.go",
+            "expected_sha256": "aea622412894575a1a2e2ee76192345bf1068c768a67f02cee4727f16fe836cd",
+            "current_sha256": "aea622412894575a1a2e2ee76192345bf1068c768a67f02cee4727f16fe836cd",
+            "matches": true
+          },
+          {
+            "path": "contracts/workflow-local.schema.json",
+            "expected_sha256": "6739ca5e21e9ce7de2fe28744d89226e6980fa50c6e9e80f482cbec2a5beb9d4",
+            "current_sha256": "6739ca5e21e9ce7de2fe28744d89226e6980fa50c6e9e80f482cbec2a5beb9d4",
+            "matches": true
+          },
+          {
+            "path": "contracts/workflow-internal.openapi.json",
+            "expected_sha256": "6f6000985cc7321dcaa645552ab0ece694f2de7ec470d0338b5e942ffd20e92b",
+            "current_sha256": "6f6000985cc7321dcaa645552ab0ece694f2de7ec470d0338b5e942ffd20e92b",
+            "matches": true
+          },
+          {
+            "path": "contracts/workflow-local.source-lock.json",
+            "expected_sha256": "f800e51eb4bd10f574a8ac34222293de0d080c72806ffbb072626e724ebf23fd",
+            "current_sha256": "f800e51eb4bd10f574a8ac34222293de0d080c72806ffbb072626e724ebf23fd",
+            "matches": true
+          },
+          {
+            "path": "contracts/workflow-editor-bridge-v1.schema.json",
+            "expected_sha256": "8dbb4c30c883fa677cf42068156c664c346845b1a2e1f940cc8ca4cec3c85bc7",
+            "current_sha256": "8dbb4c30c883fa677cf42068156c664c346845b1a2e1f940cc8ca4cec3c85bc7",
+            "matches": true
+          },
+          {
+            "path": "frontend/apps/workflow-local/src/generated/workflow-local.gen.ts",
+            "expected_sha256": "db92537ea5e4de3747ff98b5b8029b6361e105a4037f5e467672c5c686a48dcb",
+            "current_sha256": "db92537ea5e4de3747ff98b5b8029b6361e105a4037f5e467672c5c686a48dcb",
+            "matches": true
+          },
+          {
+            "path": "frontend/apps/workflow-local/src/generated/workflow-editor-bridge.gen.ts",
+            "expected_sha256": "bb373c3547511c24493daad8681b227b672102842e7387ed76a7ed4d2908232b",
+            "current_sha256": "bb373c3547511c24493daad8681b227b672102842e7387ed76a7ed4d2908232b",
+            "matches": true
+          },
+          {
+            "path": "frontend/apps/workflow-local/src/generated/workflow-local.validators.js",
+            "expected_sha256": "70eb5c58eb4e1e9c59d08ffeb6390c717220490d8585fc2e45c93998b74cc70b",
+            "current_sha256": "70eb5c58eb4e1e9c59d08ffeb6390c717220490d8585fc2e45c93998b74cc70b",
+            "matches": true
+          },
+          {
+            "path": "frontend/apps/workflow-local/src/generated/workflow-local.validators.d.ts",
+            "expected_sha256": "0871f0db752367553a20fae7978b91b9a25a0e304c01acba1af87f0aa2334f3f",
+            "current_sha256": "0871f0db752367553a20fae7978b91b9a25a0e304c01acba1af87f0aa2334f3f",
+            "matches": true
+          }
+        ]
+      }
+    ],
+    "scope_note": "Exact local file/hash comparisons only; no generator, conformance test, schema validation, release or compatibility qualification run."
+  },
+  "coze_existing_missing_files": {
+    "source": "yijie-coze/yijie-upstream.lock.json",
+    "upstream_lock_sha256": "b6d4acb89aba2551616bcbe6c132716a0fb6899c05563b0911c1cfeed6f1ac31",
+    "files": [
+      {
+        "path": "docs/nats-eventbus-integration-guide-en.md",
+        "exists": false,
+        "was_missing_in_headless": true
+      },
+      {
+        "path": "docs/nats-eventbus-integration-guide.md",
+        "exists": false,
+        "was_missing_in_headless": true
+      },
+      {
+        "path": "docs/oceanbase-integration-guide-en.md",
+        "exists": false,
+        "was_missing_in_headless": true
+      },
+      {
+        "path": "docs/oceanbase-integration-guide.md",
+        "exists": false,
+        "was_missing_in_headless": true
+      },
+      {
+        "path": "docs/pulsar-eventbus-integration-guide-en.md",
+        "exists": false,
+        "was_missing_in_headless": true
+      },
+      {
+        "path": "docs/pulsar-eventbus-integration-guide.md",
+        "exists": false,
+        "was_missing_in_headless": true
+      }
+    ],
+    "exactly_same_deleted_paths_as_headless": true,
+    "exactly_same_deleted_paths_as_lock": true,
+    "full_upstream_source_inventory_rechecked": false
+  },
+  "coze_editor_artifact": {
+    "manifest_sha256": "fdbb9a3fb1b76d12efe38de13f44e74e98e323e72b9a86181d97db4614792007",
+    "headless_manifest_sha256": "fdbb9a3fb1b76d12efe38de13f44e74e98e323e72b9a86181d97db4614792007",
+    "manifest_equals_headless": true,
+    "assets": [
+      {
+        "path": "assets/css/784.315ae3bf.css",
+        "headless_sha256": "900dc2c46419fbcba941531f9dd0e7aa8de4ebf2b46e4de94bf17fc945650534",
+        "current_sha256": "900dc2c46419fbcba941531f9dd0e7aa8de4ebf2b46e4de94bf17fc945650534",
+        "equals_headless": true
+      },
+      {
+        "path": "assets/css/index.f907440e.css",
+        "headless_sha256": "21a8914463167744b7082bf1712e38cf8a6ae92d84872556a0a0ee1e2d867477",
+        "current_sha256": "21a8914463167744b7082bf1712e38cf8a6ae92d84872556a0a0ee1e2d867477",
+        "equals_headless": true
+      },
+      {
+        "path": "assets/js/784.b1db7a4f.js",
+        "headless_sha256": "8f71929d45531af5985d99e055f33944a9551af6e23672ab1b80378155ba77d8",
+        "current_sha256": "8f71929d45531af5985d99e055f33944a9551af6e23672ab1b80378155ba77d8",
+        "equals_headless": true
+      },
+      {
+        "path": "assets/js/index.7e8851c2.js",
+        "headless_sha256": "1c1cd068b5ad88b2b63a4328a96041ba969f3fe33ba6c3e2a980f7f09234369a",
+        "current_sha256": "1c1cd068b5ad88b2b63a4328a96041ba969f3fe33ba6c3e2a980f7f09234369a",
+        "equals_headless": true
+      },
+      {
+        "path": "assets/js/lib-react.a3e3a619.js",
+        "headless_sha256": "8a55f0e39ff69ff692fec32ec10ea110c713642ca9fc9c1afdb2cd8747053349",
+        "current_sha256": "8a55f0e39ff69ff692fec32ec10ea110c713642ca9fc9c1afdb2cd8747053349",
+        "equals_headless": true
+      },
+      {
+        "path": "index.html",
+        "headless_sha256": "ba7dc946445d060a9560fe50d0132b396265972f0346ae9486feb9db884fcf37",
+        "current_sha256": "ba7dc946445d060a9560fe50d0132b396265972f0346ae9486feb9db884fcf37",
+        "equals_headless": true
+      }
+    ],
+    "scope_note": "Read-only manifest/asset hashes. No rebuild or fresh canonical build check; no UI verdict inferred."
+  },
+  "summary": {
+    "repository_count": 12,
+    "all_head_branch_origin_baselines_unchanged": true,
+    "all_git_diff_checks_exit_zero": true,
+    "all_statuses_equal_headless": true,
+    "seven_original_design_files_byte_identical": true,
+    "all_eight_design_files_unchanged_since_headless": true,
+    "all_contract_file_hashes_match": true,
+    "six_existing_missing_coze_docs_preserved": true,
+    "ui_qualification_verdict": "NOT ASSESSED by this read-only subtask",
+    "D4_verdict": "NOT ASSESSED by this read-only subtask"
+  },
+  "limitations": [
+    "git status does not detect edits within an already untracked directory or prove content identity for every source file; only explicitly listed hashes are content comparisons.",
+    "HEAD/branch/origin checks are current-state comparisons, not proof of historical absence of every Git operation. This subtask performed no commit, push, reset, fetch, tag or remote mutation.",
+    "Meta evidence/documentation was concurrently being finalized by the root agent; status is a point-in-time snapshot.",
+    "No App, database, session, credentials, paid/model service, or process lifecycle check was performed here."
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "scope": "FEAT-153 step5 AOT and API static host preparation",
+  "files": [
+    {
+      "path": "yijie-api/config/workflow-editor-assets.schema.json",
+      "sha256": "d3016433e02f492493df3cdcbaacfe054e0de27afd5c61a115b4555f4b586aae"
+    },
+    {
+      "path": "yijie-api/config/workflow-local-runtime.schema.json",
+      "sha256": "e689ee845ed67db93e3f749b9f23342b527632bed02c536bf1e907c45836afc4"
+    },
+    {
+      "path": "yijie-api/contracts/workflow_schema.go",
+      "sha256": "c7f1108cdabeba06b5dd441558d5bac4e859174060d62119d71f8cc840d8c32e"
+    },
+    {
+      "path": "yijie-api/contracts/workflow-local.source-lock.json",
+      "sha256": "f800e51eb4bd10f574a8ac34222293de0d080c72806ffbb072626e724ebf23fd"
+    },
+    {
+      "path": "yijie-api/internal/workflowlocal/config.go",
+      "sha256": "7ac0c05ba4e807b31cb44b10f0f33c8313b28384559452dfe004cf6cea846f2f"
+    },
+    {
+      "path": "yijie-api/internal/workflowlocal/config_test.go",
+      "sha256": "ef72eb88132f6cd88d058d0b72e38c4157d86ba606ac6a3db927d22bf45e01a1"
+    },
+    {
+      "path": "yijie-api/internal/modules/workflows/interfaces/editorassets/bundle.go",
+      "sha256": "ff9529c8639b5c2babf5e41268c94062f3648f7b4fa53c6586b60cc12659b0d7"
+    },
+    {
+      "path": "yijie-api/internal/modules/workflows/interfaces/editorassets/handler.go",
+      "sha256": "aebec7f8dfe07a80ce100038a4a2a4f20725e9fa68075aa8a0f0a65554991783"
+    },
+    {
+      "path": "yijie-api/internal/modules/workflows/interfaces/editorassets/handler_test.go",
+      "sha256": "81ceb5d718f573bb3b431c1588578ae71452b6ed3c5239ae4118943d9d9d9a75"
+    },
+    {
+      "path": "yijie-api/cmd/workflow-local-server/main.go",
+      "sha256": "8af3166430cfea0b181a32e930501f96d29d6ca9d2a6f9a006bfb23e4377d6b7"
+    },
+    {
+      "path": "yijie-api/Dockerfile.workflow-local",
+      "sha256": "f6572ab204e5833582ac3b478c132c3b0ee51e28443a0e4d33259cb1bbac6723"
+    },
+    {
+      "path": "yijie-api/Dockerfile.workflow-local.dockerignore",
+      "sha256": "b9c81e6e4aec27011ca763df276e0e478d0e293408166f8b2b24144932d89dd3"
+    },
+    {
+      "path": "yijie-contracts/scripts/generate-workflow-browser.mjs",
+      "sha256": "8122cc1aa2239e1af2530d18932af8e79b24470b7f6b0d17908a63806c09fad0"
+    },
+    {
+      "path": "yijie-contracts/scripts/generate-workflow-local.mjs",
+      "sha256": "20d8dfa108065bfc64aa851a26f8206dfcc6c2a99fab00d0e4d2f3c3ebfaea5d"
+    },
+    {
+      "path": "yijie-contracts/scripts/sync-workflow-consumer.mjs",
+      "sha256": "6100ef433313fa891cbc19d563d49e062bbea7e2c83aea437f1139a218882ce1"
+    },
+    {
+      "path": "yijie-contracts/compatibility/workflow-local/source.lock.json",
+      "sha256": "f800e51eb4bd10f574a8ac34222293de0d080c72806ffbb072626e724ebf23fd"
+    },
+    {
+      "path": "yijie-contracts/sdks/typescript/src/browser/workflow-local-validator.gen.js",
+      "sha256": "70eb5c58eb4e1e9c59d08ffeb6390c717220490d8585fc2e45c93998b74cc70b"
+    },
+    {
+      "path": "yijie-contracts/sdks/typescript/src/browser/workflow-local-validator.gen.d.ts",
+      "sha256": "3bbbd5a1c452ff7e58dece7d8761c72b58783bd52624d40c1d1a5b83d21703b7"
+    }
+  ],
+  "source_tests_pass": 11,
+  "api_focused_tests_pass": 21,
+  "runtime_editor_qualification": false,
+  "dangerous_tests_run": false
+}

@@ -1,0 +1,24 @@
+node scripts/workflow-local-model.mjs
+FEAT-153 workflow static model passed; Docker/runtime readiness was not executed.
+node --test tests/workflow-local.test.mjs
+✔ workflow stack has a stable private six-service data set and one loopback gateway (1.130333ms)
+✔ workflow credentials stay in exact read-only files with separate native and Coze access (0.312625ms)
+✔ dependency and builder images retain the reviewed version, digest and local platform (0.113459ms)
+✔ workflow lifecycle retains ownership and stops in dependency order without force escalation (0.761667ms)
+✔ normal reopening checks the port, records one epoch and derives authenticated readiness (0.211875ms)
+✔ build then reopen retains known old images for cleanup and requires current images for ready (0.058708ms)
+✔ PG qualification has three private mounts, a fixed internal image and natural stop observation (0.147333ms)
+✔ CAS qualification uses two normal concurrent saves and real source-validated readback (0.11625ms)
+✔ readiness probes use the real application entrypoints and migrations are explicit (0.67075ms)
+✔ the complete candidate satisfies the static review without claiming runtime qualification (0.9625ms)
+✔ editor overlay adds only one public read-only mount and three opt-in API inputs (0.042083ms)
+✔ editor registration pins canonical bundle, independent candidate and consumer locks while stopped (0.1ms)
+✔ editor readiness checks public bytes after existing authenticated API readiness (0.037291ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 86.797625

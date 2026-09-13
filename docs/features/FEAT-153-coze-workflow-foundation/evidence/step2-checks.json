@@ -1,0 +1,68 @@
+{
+  "verified_at": "2026-09-12T03:28:11.179863+00:00",
+  "scope": "step2 documentation and D0 only; no runtime qualification",
+  "checks": [
+    {
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation"
+      ],
+      "cwd": "yijie",
+      "exit": 0,
+      "result": "PASS"
+    },
+    {
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--gate",
+        "D0",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation"
+      ],
+      "cwd": "yijie",
+      "exit": 0,
+      "result": "PASS"
+    },
+    {
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--audit-claims",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation"
+      ],
+      "cwd": "yijie",
+      "exit": 0,
+      "result": "PASS"
+    },
+    {
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "cwd": "yijie",
+      "exit": 0,
+      "result": "PASS"
+    },
+    {
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "cwd": "yijie",
+      "exit": 0,
+      "result": "PASS"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "yijie",
+      "exit": 0,
+      "result": "PASS"
+    }
+  ]
+}

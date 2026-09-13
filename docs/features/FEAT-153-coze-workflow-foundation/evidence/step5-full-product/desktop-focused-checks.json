@@ -1,0 +1,36 @@
+[
+  {
+    "name": "desktop-lint",
+    "command": [
+      "pnpm",
+      "lint"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 5.557
+  },
+  {
+    "name": "desktop-tests",
+    "command": [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "src/pages/workflows/WorkflowPage.test.ts",
+      "src/pages/workflows/use-workflow-workspace.test.ts",
+      "src/pages/workflows/use-workflow-runs.test.ts",
+      "src/components/workflows/WorkflowLocalWorkspace.test.ts",
+      "scripts/workflow-desktop-foundation.test.mjs",
+      "--maxWorkers=4",
+      "--exclude",
+      "**/.local/**",
+      "--exclude",
+      "**/.contracts-source/**",
+      "--exclude",
+      "**/.agent-host-source/**",
+      "--exclude",
+      "**/.skills-source/**"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 1.363
+  }
+]

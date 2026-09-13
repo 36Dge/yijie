@@ -1,0 +1,66 @@
+{
+  "observed_at_ms": 1789215264575,
+  "desktop": {
+    "lint": "PASS",
+    "focused_tests": 26,
+    "focused_log": "desktop-tests.txt",
+    "canonical_build": "env without credential values; VITE_YIJIE_WORKFLOW_ENABLED=true pnpm tauri:build:demo-fast --config src-tauri/tauri.workflow-local.conf.json",
+    "canonical_build_exit_code": 0,
+    "binary_sha256": "5d49cf5de24105c5fde48e6e28e0f46d67fe83e9dac72a15499f3fc18eb59073",
+    "docs_build_exit_code": 0,
+    "rust_workflows_tests": 13,
+    "rust_command": "cargo test --lib workflows::",
+    "rust_exit_code": 0,
+    "rust_source_changed_this_turn": false
+  },
+  "coze": {
+    "focused_tests": 21,
+    "focused_log": "coze-editor-tests.txt",
+    "canonical_commands": [
+      "node scripts/yijie/workflow-editor.mjs prepare",
+      "node scripts/yijie/workflow-editor.mjs build",
+      "node scripts/yijie/workflow-editor.mjs check"
+    ],
+    "exit_codes": [
+      0,
+      0,
+      0
+    ],
+    "manifest_sha256": "0b704a085096ab82827e96f60b715eda94ecb911481c79a46a93e7cdc365eb87"
+  },
+  "infra": {
+    "canonical_steps": [
+      "editor",
+      "build",
+      "up",
+      "stop"
+    ],
+    "exit_codes": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "run_epoch": "864454a9-2674-4614-8bcf-cde02de4d278",
+    "services_ready": 6,
+    "migrations_exit_zero": 2,
+    "old_app_resource_full_readback_equal": true
+  },
+  "actual_app_full_flow": "NOT RUN",
+  "themes_sizes": "NOT RUN",
+  "D4": "NOT RUN",
+  "limits": [
+    "CUA twice reported Mac locked; unlock requested, no response",
+    "No full-repository tests: historical forbidden attack/permission/force-stop/runtime fixtures omitted",
+    "Vite existing >500k chunk soft warning retained",
+    "No full heap or MessagePort credential dump; only generated regular files scanned"
+  ],
+  "governance": {
+    "feature_strict_exit_code": 0,
+    "feature_claims_exit_code": 0,
+    "meta_lint_exit_code": 0,
+    "meta_tests_passed": 50,
+    "meta_tests_failed": 0,
+    "scope": "feature schema/claims and repository governance; D4 not invoked"
+  }
+}

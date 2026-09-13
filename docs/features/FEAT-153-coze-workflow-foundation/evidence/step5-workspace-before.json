@@ -1,0 +1,261 @@
+{
+  "at": "2026-09-12T06:36:33.295411+00:00",
+  "repositories": [
+    {
+      "repository": "yijie",
+      "head": "d59e1725f988df6f1f3fe1abbf0b4546ab419819",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie.git",
+      "status": [
+        "M AGENTS.md",
+        " M CODEOWNERS",
+        " M README.md",
+        " M docs/adr/README.md",
+        " M docs/architecture/000-overview.md",
+        " M docs/architecture/002-repo-strategy.md",
+        " M repos.yaml",
+        " M scripts/repo-manifest.mjs",
+        " M services/README.md",
+        " M tests/repo-manifest.test.mjs",
+        "?? docs/adr/ADR-0019-coze-workflow-foundation.md",
+        "?? docs/features/FEAT-153-coze-workflow-foundation/"
+      ]
+    },
+    {
+      "repository": "yijie-admin-web",
+      "head": "d009cafccb112c098114c075d60f67ee5e0296d8",
+      "branch": "develop",
+      "origin": "https://github.com/36Dge/yijie-admin-web.git",
+      "status": []
+    },
+    {
+      "repository": "yijie-agent-host",
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-agent-host.git",
+      "status": []
+    },
+    {
+      "repository": "yijie-api",
+      "head": "f9d730a157bcb012a8fe178cbfebcd4ea27419fc",
+      "branch": "feat/feat-126-foundation-closure",
+      "origin": "https://github.com/36Dge/yijie-api.git",
+      "status": [
+        "M AGENTS.md",
+        " M Makefile",
+        " M README.md",
+        "?? Dockerfile.workflow-local",
+        "?? Dockerfile.workflow-local.dockerignore",
+        "?? cmd/workflow-local-migrate/",
+        "?? cmd/workflow-local-qualify/",
+        "?? cmd/workflow-local-server/",
+        "?? config/workflow-local-runtime.schema.json",
+        "?? contracts/workflow-local.lock.json",
+        "?? contracts/workflow-local.schema.json",
+        "?? contracts/workflow_schema.go",
+        "?? docs/workflow-local.md",
+        "?? internal/contracts/workflowlocal/",
+        "?? internal/modules/workflows/",
+        "?? internal/workflowlocal/"
+      ]
+    },
+    {
+      "repository": "yijie-codex",
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-codex.git",
+      "status": []
+    },
+    {
+      "repository": "yijie-connectors",
+      "head": "273eec40bbbfeb17e817643f283db7c81e9b190c",
+      "branch": "develop",
+      "origin": "https://github.com/36Dge/yijie-connectors.git",
+      "status": []
+    },
+    {
+      "repository": "yijie-contracts",
+      "head": "811f38d6b104fa18477107e7ac91a85e19c445d1",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-contracts.git",
+      "status": [
+        "M docs/supported-baselines.md",
+        " M package.json",
+        " M redocly.yaml",
+        " M scripts/check-breaking.sh",
+        " M scripts/check-generated.mjs",
+        " M scripts/generate.mjs",
+        " M scripts/validate-json-schemas.mjs",
+        " M sdks/typescript/src/index.ts",
+        "?? compatibility/workflow-local/",
+        "?? docs/workflow-local-v1.md",
+        "?? jsonschema/workflow-editor/",
+        "?? openapi/workflow-local/",
+        "?? scripts/check-workflow-local.mjs",
+        "?? scripts/generate-workflow-local.mjs",
+        "?? scripts/sync-workflow-consumer.mjs",
+        "?? scripts/workflow-schema-validator.mjs",
+        "?? sdks/go/openapi/workflow-local/",
+        "?? sdks/jsonschema/",
+        "?? sdks/openapi/",
+        "?? sdks/rust/",
+        "?? sdks/typescript/src/jsonschema/workflow-editor-bridge-v1.gen.ts",
+        "?? sdks/typescript/src/openapi/workflow-local.gen.ts",
+        "?? tests/workflow-local.test.mjs"
+      ]
+    },
+    {
+      "repository": "yijie-coze",
+      "head": "fefb05ff27be1da939612fbf9faf5db62583b8ae",
+      "branch": "main",
+      "origin": "https://github.com/coze-dev/coze-studio.git",
+      "status": [
+        "M Makefile",
+        " M backend/domain/workflow/internal/compose/workflow_run.go",
+        " D docs/nats-eventbus-integration-guide-en.md",
+        " D docs/nats-eventbus-integration-guide.md",
+        " D docs/oceanbase-integration-guide-en.md",
+        " D docs/oceanbase-integration-guide.md",
+        " D docs/pulsar-eventbus-integration-guide-en.md",
+        " D docs/pulsar-eventbus-integration-guide.md",
+        "?? .codex/",
+        "?? AGENTS.md",
+        "?? README.yijie.md",
+        "?? backend/api/model/workflowlocal/",
+        "?? backend/application/workflowlocal/",
+        "?? backend/cmd/",
+        "?? backend/domain/user/service/local_principal.go",
+        "?? backend/domain/workflow/internal/execute/local_controls.go",
+        "?? backend/domain/workflow/internal/execute/local_controls_test.go",
+        "?? backend/domain/workflow/localadapter/",
+        "?? backend/domain/workflow/service/local_execute.go",
+        "?? contracts/",
+        "?? docker/workflow-local/",
+        "?? scripts/yijie/",
+        "?? yijie-upstream.lock.json"
+      ]
+    },
+    {
+      "repository": "yijie-desktop",
+      "head": "5964e2f7c31ea298f801df02086abbc8d6676b91",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-desktop.git",
+      "status": [
+        "M docs/design/docs/design/05-patterns/16-feat-151-workflow-showcase.md",
+        " M src-tauri/src/lib.rs",
+        " M src-tauri/src/native_auth/runtime.rs",
+        " M src/components/workflows/RecommendedWorkflowCard.vue",
+        " M src/components/workflows/WorkflowSummaryCard.vue",
+        " M src/components/yijie/YjPageHeader.vue",
+        " M src/pages/workflows/WorkflowPage.test.ts",
+        " M src/pages/workflows/WorkflowPage.vue",
+        "?? contracts/workflow-editor-bridge-v1.schema.json",
+        "?? contracts/workflow-local.lock.json",
+        "?? contracts/workflow-local.schema.json",
+        "?? docs/verification/workflow-interactions-and-lime-20260911.md",
+        "?? src-tauri/src/workflows/",
+        "?? src/components/workflows/workflow-showcase.css",
+        "?? src/domain/workflow-local.generated.ts"
+      ]
+    },
+    {
+      "repository": "yijie-infra",
+      "head": "19b7920696904f83030a8ddaba71af15c3c05ad8",
+      "branch": "feat/feat-126-s10e",
+      "origin": "https://github.com/36Dge/yijie-infra.git",
+      "status": [
+        "M .gitignore",
+        " M AGENTS.md",
+        " M Makefile",
+        " M package.json",
+        "?? compose/",
+        "?? config/workflow-local/",
+        "?? docs/workflow-local.md",
+        "?? scripts/workflow-local-cas.mjs",
+        "?? scripts/workflow-local-model.mjs",
+        "?? scripts/workflow-local-mysql-read.py",
+        "?? scripts/workflow-local.py",
+        "?? tests/workflow-local.test.mjs"
+      ]
+    },
+    {
+      "repository": "yijie-knowledge",
+      "head": "e9091d2b673ba779ecb39271ce9148e3a41fc256",
+      "branch": "develop",
+      "origin": "https://github.com/36Dge/yijie-knowledge.git",
+      "status": []
+    },
+    {
+      "repository": "yijie-skills",
+      "head": "488714a8d96f40806a257aae097683815b1dd458",
+      "branch": "develop",
+      "origin": "https://github.com/36Dge/yijie-skills.git",
+      "status": []
+    }
+  ],
+  "preexisting_desktop_files": [
+    {
+      "repository": "yijie-desktop",
+      "path": "docs/design/docs/design/05-patterns/16-feat-151-workflow-showcase.md",
+      "sha256": "0bbf61011611dc6f44d5844068b35e559de9788a0f3839f0df75b01f5ec2570b",
+      "step5_before_sha256": "0bbf61011611dc6f44d5844068b35e559de9788a0f3839f0df75b01f5ec2570b"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/workflows/RecommendedWorkflowCard.vue",
+      "sha256": "3ededb7050fb50450e72daed9592a9ec9af631d9e51450cede893780bd600c8a",
+      "step5_before_sha256": "3ededb7050fb50450e72daed9592a9ec9af631d9e51450cede893780bd600c8a"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/workflows/WorkflowSummaryCard.vue",
+      "sha256": "fd235745a7adce5683e674b27bf97aed36b51fa24530a795c0bf90b6e026f955",
+      "step5_before_sha256": "fd235745a7adce5683e674b27bf97aed36b51fa24530a795c0bf90b6e026f955"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/yijie/YjPageHeader.vue",
+      "sha256": "aa4b992cf54e4c3e7e33b523c9bb7a11a32e11f7bf13549ee796e78086bef564",
+      "step5_before_sha256": "aa4b992cf54e4c3e7e33b523c9bb7a11a32e11f7bf13549ee796e78086bef564"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/pages/workflows/WorkflowPage.test.ts",
+      "sha256": "d6d5bc37679e9aa8728157157bacc687153fbdd74c4daac94d2a41c3f58950e4",
+      "step5_before_sha256": "d6d5bc37679e9aa8728157157bacc687153fbdd74c4daac94d2a41c3f58950e4"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/pages/workflows/WorkflowPage.vue",
+      "sha256": "7f986634d6933f6cea9696a982d2362fb1aa3da1f52c65857e66ea8e0fcbf11e",
+      "step5_before_sha256": "7f986634d6933f6cea9696a982d2362fb1aa3da1f52c65857e66ea8e0fcbf11e"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "docs/verification/workflow-interactions-and-lime-20260911.md",
+      "sha256": "e69a2073873d6f548011d149c83fe15245c98fddbab12eea953fdb95fba8799b",
+      "step5_before_sha256": "e69a2073873d6f548011d149c83fe15245c98fddbab12eea953fdb95fba8799b"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/workflows/workflow-showcase.css",
+      "sha256": "d0f20ab96f79b3771849220b61dfab622d7f270a01ff728b32529514d38540a4",
+      "step5_before_sha256": "d0f20ab96f79b3771849220b61dfab622d7f270a01ff728b32529514d38540a4"
+    }
+  ],
+  "docker_daemon_available_before": false,
+  "original_pending_clients": [
+    "54721  1035 01:16:55 Ss   docker",
+    "54731 54721 01:16:55 S    /Users/jack/.docker/cli-plugins/docker-buildx",
+    "54732 54731 01:16:55 S    docker-credential-desktop",
+    "54815  1035 01:15:41 Ss   /Users/jack/Applications/Docker.app/Contents/Resources/bin/docker",
+    "54816 54815 01:15:41 S    docker-credential-desktop",
+    "54817  1035 01:15:40 Ss   /Users/jack/Applications/Docker.app/Contents/Resources/bin/docker",
+    "54818 54817 01:15:40 S    docker-credential-desktop",
+    "54819  1035 01:15:39 Ss   /Users/jack/Applications/Docker.app/Contents/Resources/bin/docker",
+    "54820 54819 01:15:39 S    docker-credential-desktop",
+    "54822  1035 01:15:37 Ss   /Users/jack/Applications/Docker.app/Contents/Resources/bin/docker",
+    "54823 54822 01:15:37 S    docker-credential-desktop"
+  ],
+  "authorization": "User explicitly authorized step5 in four ordered stages; preserve original page design while adding real functionality; no forced termination, paid/model/platform calls, commit/push/tag."
+}

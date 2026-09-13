@@ -1,0 +1,178 @@
+{
+  "observed_at_ms": 1789229909586,
+  "run_epoch": "94935fff-6e10-44a4-855b-0f259e97b596",
+  "workflow": {
+    "canvas": "{\"edges\":[{\"sourceNodeID\":\"100001\",\"targetNodeID\":\"200001\"},{\"sourceNodeID\":\"200001\",\"targetNodeID\":\"900001\"}],\"nodes\":[{\"data\":{\"nodeMeta\":{\"title\":\"开始\"},\"outputs\":[{\"name\":\"input\",\"required\":true,\"type\":\"string\"}]},\"id\":\"100001\",\"meta\":{\"position\":{\"x\":80,\"y\":160}},\"type\":\"1\"},{\"data\":{\"inputs\":{\"concatParams\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":\"主题切换草稿：{{input}}\",\"type\":\"literal\"}},\"name\":\"concatResult\"}],\"inputParameters\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":{\"blockID\":\"100001\",\"name\":\"input\",\"source\":\"block-output\"},\"type\":\"ref\"}},\"name\":\"input\"}],\"method\":\"concat\"},\"nodeMeta\":{\"title\":\"文本处理\"},\"outputs\":[{\"name\":\"output\",\"type\":\"string\"}]},\"id\":\"200001\",\"meta\":{\"position\":{\"x\":401,\"y\":106}},\"type\":\"15\"},{\"data\":{\"inputs\":{\"inputParameters\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":{\"blockID\":\"200001\",\"name\":\"output\",\"source\":\"block-output\"},\"type\":\"ref\"}},\"name\":\"result\"}],\"terminatePlan\":\"returnVariables\"},\"nodeMeta\":{\"title\":\"结束\"}},\"id\":\"900001\",\"meta\":{\"position\":{\"x\":760,\"y\":160}},\"type\":\"2\"}]}",
+    "name": "FEAT-153 完整App验收 20260913-A",
+    "published_version": "v0.0.2",
+    "revision": "7684683724541132800",
+    "runnable": true,
+    "updated_at_ms": 1789229857883,
+    "workflow_id": "7684681543721156608"
+  },
+  "history": {
+    "items": [
+      {
+        "finished_at_ms": 1789229676070,
+        "mode": "release",
+        "operation_id": "01a09666-3611-7180-9951-4b11288c2489",
+        "revision": "7684682576279109632",
+        "run_id": "7684682943674974208",
+        "started_at_ms": 1789229676057,
+        "state": "succeeded",
+        "terminal": true,
+        "version": "v0.0.1",
+        "workflow_id": "7684681543721156608"
+      },
+      {
+        "finished_at_ms": 1789229635415,
+        "mode": "debug",
+        "operation_id": "01a09665-973e-7362-ae6c-b5a44a9afd92",
+        "revision": "7684682741815705600",
+        "run_id": "7684682769036738560",
+        "started_at_ms": 1789229635402,
+        "state": "succeeded",
+        "terminal": true,
+        "workflow_id": "7684681543721156608"
+      },
+      {
+        "finished_at_ms": 1789229596426,
+        "mode": "debug",
+        "operation_id": "01a09664-fee7-7fc3-9734-644e44eed87c",
+        "revision": "7684682576279109632",
+        "run_id": "7684682601549791232",
+        "started_at_ms": 1789229596407,
+        "state": "succeeded",
+        "terminal": true,
+        "workflow_id": "7684681543721156608"
+      }
+    ]
+  },
+  "runs": [
+    {
+      "finished_at_ms": 1789229676070,
+      "input": {
+        "input": "固定版本验证"
+      },
+      "mode": "release",
+      "nodes": [
+        {
+          "node_id": "100001",
+          "output": "固定版本验证",
+          "state": "3"
+        },
+        {
+          "node_id": "200001",
+          "output": "版本一：固定版本验证",
+          "state": "3"
+        },
+        {
+          "node_id": "900001",
+          "output": "版本一：固定版本验证",
+          "state": "3"
+        }
+      ],
+      "operation_id": "01a09666-3611-7180-9951-4b11288c2489",
+      "output": "版本一：固定版本验证",
+      "revision": "7684682576279109632",
+      "run_id": "7684682943674974208",
+      "started_at_ms": 1789229676057,
+      "state": "succeeded",
+      "terminal": true,
+      "version": "v0.0.1",
+      "workflow_id": "7684681543721156608"
+    },
+    {
+      "finished_at_ms": 1789229635415,
+      "input": {
+        "input": "验收输入 A"
+      },
+      "mode": "debug",
+      "nodes": [
+        {
+          "node_id": "100001",
+          "output": "验收输入 A",
+          "state": "3"
+        },
+        {
+          "node_id": "200001",
+          "output": "版本二：验收输入 A",
+          "state": "3"
+        },
+        {
+          "node_id": "900001",
+          "output": "版本二：验收输入 A",
+          "state": "3"
+        }
+      ],
+      "operation_id": "01a09665-973e-7362-ae6c-b5a44a9afd92",
+      "output": "版本二：验收输入 A",
+      "revision": "7684682741815705600",
+      "run_id": "7684682769036738560",
+      "started_at_ms": 1789229635402,
+      "state": "succeeded",
+      "terminal": true,
+      "workflow_id": "7684681543721156608"
+    },
+    {
+      "finished_at_ms": 1789229596426,
+      "input": {
+        "input": "验收输入 A"
+      },
+      "mode": "debug",
+      "nodes": [
+        {
+          "node_id": "100001",
+          "output": "验收输入 A",
+          "state": "3"
+        },
+        {
+          "node_id": "200001",
+          "output": "版本一：验收输入 A",
+          "state": "3"
+        },
+        {
+          "node_id": "900001",
+          "output": "版本一：验收输入 A",
+          "state": "3"
+        }
+      ],
+      "operation_id": "01a09664-fee7-7fc3-9734-644e44eed87c",
+      "output": "版本一：验收输入 A",
+      "revision": "7684682576279109632",
+      "run_id": "7684682601549791232",
+      "started_at_ms": 1789229596407,
+      "state": "succeeded",
+      "terminal": true,
+      "workflow_id": "7684681543721156608"
+    }
+  ],
+  "receipts": [
+    {
+      "kind": "run",
+      "operation_id": "01a09666-3611-7180-9951-4b11288c2489",
+      "phase": "completed",
+      "revision": "7684682576279109632",
+      "run_id": "7684682943674974208",
+      "version": "v0.0.1",
+      "workflow_id": "7684681543721156608"
+    },
+    {
+      "kind": "test",
+      "operation_id": "01a09665-973e-7362-ae6c-b5a44a9afd92",
+      "phase": "completed",
+      "revision": "7684682741815705600",
+      "run_id": "7684682769036738560",
+      "workflow_id": "7684681543721156608"
+    },
+    {
+      "kind": "test",
+      "operation_id": "01a09664-fee7-7fc3-9734-644e44eed87c",
+      "phase": "completed",
+      "revision": "7684682576279109632",
+      "run_id": "7684682601549791232",
+      "workflow_id": "7684681543721156608"
+    }
+  ],
+  "source": "Read-only API after actual App operations; no API business writes"
+}

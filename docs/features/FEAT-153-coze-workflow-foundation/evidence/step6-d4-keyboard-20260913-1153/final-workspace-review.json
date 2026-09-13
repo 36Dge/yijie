@@ -1,0 +1,58 @@
+{
+  "recorded_at_ms": 1789274970870,
+  "candidate_equal": true,
+  "repo_identities_unchanged": true,
+  "protected_files_unchanged": true,
+  "all_twelve_diff_checks_passed": true,
+  "report_links_exist": true,
+  "statuses": [
+    {
+      "repo": "yijie",
+      "status": "M AGENTS.md\n M CODEOWNERS\n M README.md\n M docs/adr/README.md\n M docs/architecture/000-overview.md\n M docs/architecture/002-repo-strategy.md\n M repos.yaml\n M scripts/repo-manifest.mjs\n M services/README.md\n M tests/repo-manifest.test.mjs\n?? docs/adr/ADR-0019-coze-workflow-foundation.md\n?? docs/features/FEAT-153-coze-workflow-foundation/"
+    },
+    {
+      "repo": "yijie-admin-web",
+      "status": ""
+    },
+    {
+      "repo": "yijie-agent-host",
+      "status": ""
+    },
+    {
+      "repo": "yijie-api",
+      "status": "M AGENTS.md\n M Makefile\n M README.md\n?? Dockerfile.workflow-local\n?? Dockerfile.workflow-local.dockerignore\n?? cmd/workflow-local-migrate/\n?? cmd/workflow-local-qualify/\n?? cmd/workflow-local-server/\n?? config/workflow-editor-assets.schema.json\n?? config/workflow-local-runtime.schema.json\n?? contracts/workflow-local.lock.json\n?? contracts/workflow-local.schema.json\n?? contracts/workflow-local.source-lock.json\n?? contracts/workflow_schema.go\n?? docs/workflow-editor-assets.md\n?? docs/workflow-local.md\n?? internal/contracts/workflowlocal/\n?? internal/modules/workflows/\n?? internal/workflowlocal/"
+    },
+    {
+      "repo": "yijie-codex",
+      "status": ""
+    },
+    {
+      "repo": "yijie-connectors",
+      "status": ""
+    },
+    {
+      "repo": "yijie-contracts",
+      "status": "M Makefile\n M docs/supported-baselines.md\n M redocly.yaml\n M scripts/check-breaking.sh\n M scripts/check-generated.mjs\n M scripts/validate-json-schemas.mjs\n M sdks/typescript/src/index.ts\n?? compatibility/workflow-local/\n?? docs/workflow-local-candidate-generation.md\n?? docs/workflow-local-v1.md\n?? jsonschema/workflow-editor/\n?? openapi/workflow-local/\n?? scripts/check-workflow-local.mjs\n?? scripts/generate-workflow-browser.mjs\n?? scripts/generate-workflow-local.mjs\n?? scripts/sync-workflow-consumer.mjs\n?? scripts/workflow-schema-validator.mjs\n?? sdks/go/openapi/workflow-local/\n?? sdks/jsonschema/\n?? sdks/openapi/\n?? sdks/rust/\n?? sdks/typescript/src/browser/\n?? sdks/typescript/src/jsonschema/workflow-editor-bridge-v1.gen.ts\n?? sdks/typescript/src/openapi/workflow-local.gen.ts\n?? tests/types/\n?? tests/workflow-local-browser.test.mjs\n?? tests/workflow-local.test.mjs"
+    },
+    {
+      "repo": "yijie-coze",
+      "status": "M Makefile\n M backend/domain/workflow/internal/compose/workflow_run.go\n D docs/nats-eventbus-integration-guide-en.md\n D docs/nats-eventbus-integration-guide.md\n D docs/oceanbase-integration-guide-en.md\n D docs/oceanbase-integration-guide.md\n D docs/pulsar-eventbus-integration-guide-en.md\n D docs/pulsar-eventbus-integration-guide.md\n?? .codex/\n?? AGENTS.md\n?? README.yijie.md\n?? backend/api/model/workflowlocal/\n?? backend/application/workflowlocal/\n?? backend/cmd/\n?? backend/domain/user/service/local_principal.go\n?? backend/domain/workflow/internal/execute/local_controls.go\n?? backend/domain/workflow/internal/execute/local_controls_test.go\n?? backend/domain/workflow/localadapter/\n?? backend/domain/workflow/service/local_execute.go\n?? contracts/\n?? docker/workflow-local/\n?? docs/workflow-editor-csp-review.md\n?? frontend/apps/workflow-local/\n?? scripts/yijie/\n?? yijie-upstream.lock.json"
+    },
+    {
+      "repo": "yijie-desktop",
+      "status": "M docs/design/docs/design/05-patterns/16-feat-151-workflow-showcase.md\n M eslint.config.js\n M scripts/run-local-demo-fast.sh\n M src-tauri/src/chat/sidecar.rs\n M src-tauri/src/lib.rs\n M src-tauri/src/native_auth/runtime.rs\n M src/components/workflows/RecommendedWorkflowCard.vue\n M src/components/workflows/WorkflowSummaryCard.vue\n M src/components/yijie/YjPageHeader.vue\n M src/pages/workflows/WorkflowPage.test.ts\n M src/pages/workflows/WorkflowPage.vue\n M src/router/index.ts\n M src/vite-env.d.ts\n?? contracts/workflow-editor-bridge-v1.schema.json\n?? contracts/workflow-local.lock.json\n?? contracts/workflow-local.schema.json\n?? docs/verification/workflow-interactions-and-lime-20260911.md\n?? scripts/run-workflow-dev.mjs\n?? scripts/workflow-desktop-foundation.test.mjs\n?? src-tauri/src/workflows/\n?? src-tauri/tauri.workflow-local.conf.json\n?? src/api/generated/workflow-local-validator.gen.d.ts\n?? src/api/generated/workflow-local-validator.gen.js\n?? src/api/workflow-editor-channel.ts\n?? src/api/workflow-native-client.ts\n?? src/authorization/workflow-local-ui-config.ts\n?? src/components/workflows/WorkflowEditorPane.vue\n?? src/components/workflows/WorkflowLocalWorkspace.test.ts\n?? src/components/workflows/WorkflowLocalWorkspace.vue\n?? src/components/workflows/WorkflowRunPanel.vue\n?? src/components/workflows/workflow-showcase.css\n?? src/domain/workflow-editor-bridge.generated.ts\n?? src/domain/workflow-local.generated.ts\n?? src/pages/workflows/use-workflow-runs.test.ts\n?? src/pages/workflows/use-workflow-runs.ts\n?? src/pages/workflows/use-workflow-workspace.test.ts\n?? src/pages/workflows/use-workflow-workspace.ts\n?? src/router/workflow-navigation.test.ts"
+    },
+    {
+      "repo": "yijie-infra",
+      "status": "M .gitignore\n M AGENTS.md\n M Makefile\n M package.json\n?? compose/\n?? config/workflow-local/\n?? docs/workflow-local.md\n?? scripts/workflow-local-cas.mjs\n?? scripts/workflow-local-model.mjs\n?? scripts/workflow-local-mysql-read.py\n?? scripts/workflow-local.py\n?? tests/workflow-local.test.mjs"
+    },
+    {
+      "repo": "yijie-knowledge",
+      "status": ""
+    },
+    {
+      "repo": "yijie-skills",
+      "status": ""
+    }
+  ]
+}

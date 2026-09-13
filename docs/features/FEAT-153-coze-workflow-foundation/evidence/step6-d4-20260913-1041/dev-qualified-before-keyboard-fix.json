@@ -1,0 +1,56 @@
+{
+  "recorded_at_ms": 1789271590632,
+  "candidate": "candidate-freeze.json (before keyboard-equivalent fix)",
+  "workflow_id": "7684858221588119552",
+  "revision_after_expiry": "7684861162336288768",
+  "versions": "v0.0.2",
+  "runs": [
+    {
+      "run_id": "7684860662341697536",
+      "state": "succeeded",
+      "output": "DEV D4 一：固定版验收"
+    },
+    {
+      "run_id": "7684860156550578176",
+      "state": "succeeded",
+      "output": "DEV D4 二：验收文本"
+    },
+    {
+      "run_id": "7684859782179586048",
+      "state": "succeeded",
+      "output": "DEV D4 一：验收文本"
+    }
+  ],
+  "actual_ui": "macOS AX/CGEvent explicitly authorized by user",
+  "dev_A": "PASS by new independently observed actual UI, separate from earlier unmatched manual A report",
+  "dev_B": "PASS for natural expiry, retained draft, Enter reconnect/save, Tab/ShiftTab/Enter fields/actions, dirty Chat cancel and normal discard/Chat navigation",
+  "keyboard_canvas": "GAP: node movement and edge editing have no keyboard equivalents; fixing before unified D4",
+  "first_open_cancel": "NOT HIT in normal fast opens; focused ordinary pending-open tests PASS, not claimed as actual cancellation click",
+  "remote_close_confirmed_generations": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "app_normal_exit": {
+    "pid": 4642,
+    "launcher_session": 46477,
+    "exit_code": 0,
+    "method": "normal Cmd+Q after returning to Chat; no signal"
+  },
+  "credential_AX_scan": "K_NA/K_AC actual value matches0; no heap/MessagePort claim",
+  "native_helper": {
+    "source_sha256": "39e9ff94a239615bb40de689d80eb9be9335a7f9e42493e644a3ab98c5dff38f",
+    "binary": "/tmp/feat153-dev-ui-assist-4642-v11",
+    "binary_sha256": "022ceb1304a62ef3e258230bc97dc78e95353ac80364e36850ee9b2289c2a5b9",
+    "preliminary_helper_corrections": "v1 helper init failed; later helper revisions corrected event initialization, foreground gating, mouse release, modifier flags and focused AX editing. No App executable replacement or permission changes. Only observed and read-back-verified actions counted."
+  },
+  "db": {
+    "scope_identity_match": true,
+    "shared_receipts_match": true,
+    "postgres_only": [
+      "01a098d5-2961-7f51-9d6f-74cf41de5fc2"
+    ]
+  },
+  "D4": "NOT RUN: fresh candidate with keyboard equivalents and packaged qualification remain"
+}

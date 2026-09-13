@@ -1,0 +1,63 @@
+[
+  {
+    "name": "meta-lint",
+    "command": [
+      "pnpm",
+      "lint"
+    ],
+    "exit_code": 0,
+    "evidence": "step4-meta-lint.txt"
+  },
+  {
+    "name": "meta-test",
+    "command": [
+      "pnpm",
+      "test"
+    ],
+    "exit_code": 0,
+    "evidence": "step4-meta-test.txt"
+  },
+  {
+    "name": "contract-governance",
+    "command": [
+      "make",
+      "contract-governance"
+    ],
+    "exit_code": 0,
+    "evidence": "step4-contract-governance.txt"
+  },
+  {
+    "name": "feature-strict",
+    "command": [
+      "bash",
+      "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+      "--strict",
+      "docs/features/FEAT-153-coze-workflow-foundation"
+    ],
+    "exit_code": 0,
+    "evidence": "step4-feature-strict.txt"
+  },
+  {
+    "name": "feature-d0",
+    "command": [
+      "bash",
+      "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+      "--gate",
+      "D0",
+      "docs/features/FEAT-153-coze-workflow-foundation"
+    ],
+    "exit_code": 0,
+    "evidence": "step4-feature-d0.txt"
+  },
+  {
+    "name": "feature-claims",
+    "command": [
+      "node",
+      "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+      "--audit-claims",
+      "docs/features/FEAT-153-coze-workflow-foundation"
+    ],
+    "exit_code": 0,
+    "evidence": "step4-feature-claims.txt"
+  }
+]

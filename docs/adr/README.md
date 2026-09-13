@@ -9,6 +9,11 @@ ADR 用于记录跨仓、跨团队、长期影响的架构决策。
 - Deprecated：已废弃；
 - Superseded：被后续 ADR 替代。
 
+## 当前新增决策
+
+- [ADR-0019：Coze 工作流基础集成](ADR-0019-coze-workflow-foundation.md) — Accepted；
+  FEAT-153 第 2 步用户批准及本地身份/编辑器设计已明确，运行集成与 D4 尚未完成。
+
 ## 模板
 
 ```markdown

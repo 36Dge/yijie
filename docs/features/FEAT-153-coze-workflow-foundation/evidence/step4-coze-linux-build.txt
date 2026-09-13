@@ -1,0 +1,6 @@
+Command (backend/): GOTOOLCHAIN=local GOFLAGS=-mod=readonly CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -trimpath -buildvcs=false -ldflags=-buildid= -o ../bin/workflow-local/workflow-local-server-linux-arm64 ./cmd/workflow-local
+Observed exec completion: exit 0; compiler output empty.
+go version go1.26.4 darwin/arm64
+/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-local/workflow-local-server-linux-arm64: ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), statically linked, with debug_info, not stripped
+Artifact SHA256: a746dc4a7b6947124750915bb194514bc588e0bec3b4ab2c702484e730a63cb1
+New reproducible development output only; artifact was not executed. Docker image build is separately orchestrated by Infra.

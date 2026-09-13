@@ -36,6 +36,10 @@ Contract & Infra Layer
 
 ## 核心原则
 
+FEAT-153 已将 `yijie-coze` 的来源与仓库管理纳入项目。其工作流编排/执行与现有 Agent Runtime
+保持独立，已批准集成设计见 [ADR-0019](../adr/ADR-0019-coze-workflow-foundation.md)。当前仅仓库登记，
+该设计链路尚未激活，不改变下方既有 MVP 的实现或验收状态。
+
 - Codex 是 Runtime 内核，不承载跨境电商业务逻辑；
 - `yijie-agent-host` 是薄适配层，不重建完整 Agent 平台；
 - 平台 token 留在业务后端或连接器安全边界内；

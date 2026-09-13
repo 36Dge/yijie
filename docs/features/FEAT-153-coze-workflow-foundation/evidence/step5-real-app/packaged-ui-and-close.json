@@ -1,0 +1,41 @@
+{
+  "source": "canonical packaged native stderr observed during Return and Chat navigation",
+  "app_pid": 96901,
+  "events": [
+    {
+      "app_pid": 96901,
+      "bridge_id": "01a09551-b4bf-7603-bdb0-d415afdc9d72",
+      "event": "remote_close_confirmed",
+      "generation": 1,
+      "remote_closed": true,
+      "run_epoch": "bdc6b8e8-0314-4a7d-9e33-f0ea4902c54a",
+      "workflow_id": "7684605114128007168"
+    },
+    {
+      "app_pid": 96901,
+      "bridge_id": "01a09555-36a1-7692-aa54-d15cf1556144",
+      "event": "remote_close_confirmed",
+      "generation": 2,
+      "remote_closed": true,
+      "run_epoch": "bdc6b8e8-0314-4a7d-9e33-f0ea4902c54a",
+      "workflow_id": "7684605114128007168"
+    }
+  ],
+  "ui_observations": {
+    "parent_url": "tauri://localhost/workflows",
+    "workflow_id": "7684605114128007168",
+    "saved_revision": "7684605840325607424",
+    "prefix": "Packaged 中文验收：",
+    "two_visible_edges": true,
+    "node_drag_preserved_on_reopen": true,
+    "tab_from_prefix_to_parent_control": true,
+    "shift_tab_returns_to_prefix": true,
+    "final_chat_url": "tauri://localhost/chat",
+    "final_workflow_iframe_removed": true,
+    "model_or_platform_turn_sent": false
+  },
+  "limitations": [
+    "First viewport can clip Start until the existing Fit canvas action is used.",
+    "No complete heap or MessagePort dump; public surfaces and source-defined native projection were checked."
+  ]
+}

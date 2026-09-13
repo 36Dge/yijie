@@ -1,0 +1,383 @@
+{
+  "schema_version": 1,
+  "observation": "dev_app_single_resource_readonly",
+  "completed_read": true,
+  "workflow_id": "7684595660317786112",
+  "run_epoch": "bdc6b8e8-0314-4a7d-9e33-f0ea4902c54a",
+  "recorded_at": "2026-09-12T10:50:53.108410+00:00",
+  "observed_revision": "7684598045123543040",
+  "snapshot_note": "MySQL and PostgreSQL are separate read-only snapshots; UI may save afterwards. This is not the final revision or full UI/session-close qualification.",
+  "postgres": {
+    "started_at": "2026-09-12T10:50:53.009403+00:00",
+    "finished_at": "2026-09-12T10:50:53.063409+00:00",
+    "container_id": "71985ce36956a965b92806b1da979225206b7aa82568f4121224112e72f2d277",
+    "image_id": "sha256:4e6e670bb069649261c9c18031f0aded7bb249a5b6664ddec29c013a89310d50",
+    "facts": {
+      "snapshot": [
+        {
+          "database": "yijie_workflow_local",
+          "observed_at": "2026-09-12T10:50:53.056877+00:00",
+          "read_only": "on"
+        }
+      ],
+      "resource": [
+        {
+          "workflow_id": "7684595660317786112",
+          "scope_key": "feat-153-local-v1",
+          "created_at": "2026-09-12T10:35:53.837285+00:00",
+          "owner_user_id": "12500000-0000-4000-8000-000000000001",
+          "tenant_id": "12500000-0000-4000-8000-100000000001",
+          "coze_user_id": "7684521418742038528",
+          "coze_space_id": "7684521418742054912"
+        }
+      ],
+      "operation": [
+        {
+          "operation_id": "01a09530-1e63-7463-901f-36df42813e37",
+          "kind": "create",
+          "phase": "completed",
+          "workflow_id": "7684595660317786112",
+          "created_at": "2026-09-12T10:35:53.827341+00:00",
+          "updated_at": "2026-09-12T10:35:53.837285+00:00",
+          "receipt": {
+            "kind": "create",
+            "phase": "completed",
+            "revision": "7684595660326174720",
+            "workflow_id": "7684595660317786112",
+            "operation_id": "01a09530-1e63-7463-901f-36df42813e37"
+          }
+        },
+        {
+          "operation_id": "01a09535-fce7-78e1-984b-b2bb56544b34",
+          "kind": "save",
+          "phase": "completed",
+          "workflow_id": "7684595660317786112",
+          "created_at": "2026-09-12T10:42:18.471773+00:00",
+          "updated_at": "2026-09-12T10:42:18.481603+00:00",
+          "receipt": {
+            "kind": "save",
+            "phase": "completed",
+            "revision": "7684597312391217152",
+            "workflow_id": "7684595660317786112",
+            "operation_id": "01a09535-fce7-78e1-984b-b2bb56544b34"
+          }
+        },
+        {
+          "operation_id": "01a09538-9748-73a0-981f-64544548bf42",
+          "kind": "save",
+          "phase": "completed",
+          "workflow_id": "7684595660317786112",
+          "created_at": "2026-09-12T10:45:09.064819+00:00",
+          "updated_at": "2026-09-12T10:45:09.075167+00:00",
+          "receipt": {
+            "kind": "save",
+            "phase": "completed",
+            "revision": "7684598045123543040",
+            "workflow_id": "7684595660317786112",
+            "operation_id": "01a09538-9748-73a0-981f-64544548bf42"
+          }
+        }
+      ],
+      "audit": [
+        {
+          "id": "149",
+          "operation_id": "01a09530-1e63-7463-901f-36df42813e37",
+          "workflow_id": null,
+          "action": "create",
+          "outcome_code": "recorded",
+          "occurred_at": "2026-09-12T10:35:53.827341+00:00"
+        },
+        {
+          "id": "150",
+          "operation_id": "01a09530-1e63-7463-901f-36df42813e37",
+          "workflow_id": "7684595660317786112",
+          "action": "create",
+          "outcome_code": "completed",
+          "occurred_at": "2026-09-12T10:35:53.837285+00:00"
+        },
+        {
+          "id": "152",
+          "operation_id": null,
+          "workflow_id": "7684595660317786112",
+          "action": "read",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T10:35:53.865357+00:00"
+        },
+        {
+          "id": "153",
+          "operation_id": null,
+          "workflow_id": "7684595660317786112",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T10:35:53.869159+00:00"
+        },
+        {
+          "id": "154",
+          "operation_id": null,
+          "workflow_id": "7684595660317786112",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T10:35:54.139515+00:00"
+        },
+        {
+          "id": "156",
+          "operation_id": null,
+          "workflow_id": "7684595660317786112",
+          "action": "read",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T10:39:21.596785+00:00"
+        },
+        {
+          "id": "157",
+          "operation_id": null,
+          "workflow_id": "7684595660317786112",
+          "action": "read",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T10:41:21.506072+00:00"
+        },
+        {
+          "id": "158",
+          "operation_id": null,
+          "workflow_id": "7684595660317786112",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T10:41:21.513041+00:00"
+        },
+        {
+          "id": "159",
+          "operation_id": null,
+          "workflow_id": "7684595660317786112",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T10:41:21.523859+00:00"
+        },
+        {
+          "id": "160",
+          "operation_id": "01a09535-fce7-78e1-984b-b2bb56544b34",
+          "workflow_id": "7684595660317786112",
+          "action": "save",
+          "outcome_code": "recorded",
+          "occurred_at": "2026-09-12T10:42:18.471773+00:00"
+        },
+        {
+          "id": "161",
+          "operation_id": "01a09535-fce7-78e1-984b-b2bb56544b34",
+          "workflow_id": "7684595660317786112",
+          "action": "save",
+          "outcome_code": "completed",
+          "occurred_at": "2026-09-12T10:42:18.481603+00:00"
+        },
+        {
+          "id": "163",
+          "operation_id": null,
+          "workflow_id": "7684595660317786112",
+          "action": "read",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T10:42:26.390914+00:00"
+        },
+        {
+          "id": "164",
+          "operation_id": null,
+          "workflow_id": "7684595660317786112",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T10:42:26.399908+00:00"
+        },
+        {
+          "id": "165",
+          "operation_id": null,
+          "workflow_id": "7684595660317786112",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T10:42:26.462535+00:00"
+        },
+        {
+          "id": "166",
+          "operation_id": "01a09538-9748-73a0-981f-64544548bf42",
+          "workflow_id": "7684595660317786112",
+          "action": "save",
+          "outcome_code": "recorded",
+          "occurred_at": "2026-09-12T10:45:09.064819+00:00"
+        },
+        {
+          "id": "167",
+          "operation_id": "01a09538-9748-73a0-981f-64544548bf42",
+          "workflow_id": "7684595660317786112",
+          "action": "save",
+          "outcome_code": "completed",
+          "occurred_at": "2026-09-12T10:45:09.075167+00:00"
+        },
+        {
+          "id": "168",
+          "operation_id": null,
+          "workflow_id": "7684595660317786112",
+          "action": "read",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T10:48:11.86551+00:00"
+        },
+        {
+          "id": "169",
+          "operation_id": null,
+          "workflow_id": "7684595660317786112",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T10:48:11.871584+00:00"
+        },
+        {
+          "id": "170",
+          "operation_id": null,
+          "workflow_id": "7684595660317786112",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-12T10:48:11.88084+00:00"
+        }
+      ]
+    }
+  },
+  "mysql": {
+    "started_at": "2026-09-12T10:50:52.952242+00:00",
+    "finished_at": "2026-09-12T10:50:53.009361+00:00",
+    "container_id": "250777bd6ce034fe53522005509002064b179022b15db36c49d0b1c3a0f5a51d",
+    "image_id": "sha256:679e7e924f38a3cbb62a3d7df32924b83f7321a602d3f9f967c01b3df18495d6",
+    "facts": {
+      "snapshot": [
+        {
+          "database": "coze_workflow_local",
+          "observed_at": "2026-09-12 10:50:53.003110",
+          "session_default_read_only": 0
+        }
+      ],
+      "resource": [
+        {
+          "name": "FEAT-153 Dev App 闭环 20260912-1840FEAT-153 Dev App 闭环 20260912-1840 自然到期",
+          "app_id": "0",
+          "modified": 1,
+          "revision": "7684598045123543040",
+          "space_id": "7684521418742054912",
+          "creator_id": "7684521418742038528",
+          "workflow_id": "7684595660317786112",
+          "updated_at_ms": 1789209909070,
+          "latest_version": "",
+          "principal_scope": "12500000-0000-4000-8000-000000000001:12500000-0000-4000-8000-100000000001",
+          "test_run_success": 0,
+          "server_canvas_bytes": 975,
+          "server_canvas_sha256": "cc7549f98d9a24a03c403089d503ff9a5b5ebc65b155490de36acd4a10ab2b3c",
+          "canvas_bytes": 975,
+          "canvas_sha256": "cc7549f98d9a24a03c403089d503ff9a5b5ebc65b155490de36acd4a10ab2b3c",
+          "nodes": [
+            {
+              "id": "100001",
+              "type": "1",
+              "position": {
+                "x": 80,
+                "y": 160
+              },
+              "prefix": null
+            },
+            {
+              "id": "200001",
+              "type": "15",
+              "position": {
+                "x": 470,
+                "y": 131
+              },
+              "prefix": "真实 Desktop 验收："
+            },
+            {
+              "id": "900001",
+              "type": "2",
+              "position": {
+                "x": 760,
+                "y": 160
+              },
+              "prefix": null
+            }
+          ],
+          "edges": [],
+          "node_count": 3,
+          "edge_count": 0
+        }
+      ],
+      "operation": [
+        {
+          "kind": "create",
+          "run_id": "0",
+          "receipt": {
+            "kind": "create",
+            "phase": "completed",
+            "revision": "7684595660326174720",
+            "workflow_id": "7684595660317786112",
+            "operation_id": "01a09530-1e63-7463-901f-36df42813e37"
+          },
+          "run_epoch": "bdc6b8e8-0314-4a7d-9e33-f0ea4902c54a",
+          "workflow_id": "7684595660317786112",
+          "operation_id": "01a09530-1e63-7463-901f-36df42813e37",
+          "created_at_ms": 1789209353834
+        },
+        {
+          "kind": "save",
+          "run_id": "0",
+          "receipt": {
+            "kind": "save",
+            "phase": "completed",
+            "revision": "7684597312391217152",
+            "workflow_id": "7684595660317786112",
+            "operation_id": "01a09535-fce7-78e1-984b-b2bb56544b34"
+          },
+          "run_epoch": "bdc6b8e8-0314-4a7d-9e33-f0ea4902c54a",
+          "workflow_id": "7684595660317786112",
+          "operation_id": "01a09535-fce7-78e1-984b-b2bb56544b34",
+          "created_at_ms": 1789209738478
+        },
+        {
+          "kind": "save",
+          "run_id": "0",
+          "receipt": {
+            "kind": "save",
+            "phase": "completed",
+            "revision": "7684598045123543040",
+            "workflow_id": "7684595660317786112",
+            "operation_id": "01a09538-9748-73a0-981f-64544548bf42"
+          },
+          "run_epoch": "bdc6b8e8-0314-4a7d-9e33-f0ea4902c54a",
+          "workflow_id": "7684595660317786112",
+          "operation_id": "01a09538-9748-73a0-981f-64544548bf42",
+          "created_at_ms": 1789209909071
+        }
+      ],
+      "counts": [
+        {
+          "versions": 0,
+          "executions": 0
+        }
+      ]
+    }
+  },
+  "cross_database": {
+    "scope_identity_match": true,
+    "shared_operations": [
+      {
+        "operation_id": "01a09530-1e63-7463-901f-36df42813e37",
+        "fields_match": true,
+        "pg_phase": "completed",
+        "mysql_phase": "completed"
+      },
+      {
+        "operation_id": "01a09535-fce7-78e1-984b-b2bb56544b34",
+        "fields_match": true,
+        "pg_phase": "completed",
+        "mysql_phase": "completed"
+      },
+      {
+        "operation_id": "01a09538-9748-73a0-981f-64544548bf42",
+        "fields_match": true,
+        "pg_phase": "completed",
+        "mysql_phase": "completed"
+      }
+    ],
+    "postgres_only": [],
+    "mysql_only": []
+  },
+  "session_close": "NOT OBSERVED: API sessions are memory-only; database rows do not prove revocation",
+  "script_sha256": "41438c4e41746bf709b839127a918639168613b14816fca78b3fd4e50d713075"
+}

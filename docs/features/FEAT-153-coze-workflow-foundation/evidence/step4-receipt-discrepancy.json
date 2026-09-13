@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "result": "confirmed_mapping_defect",
+  "workflow_id": "7684523782928596992",
+  "operation_id": "ae175e12-6f53-4e76-aa2a-8e042c4b7a29",
+  "observation": {
+    "kind": "save",
+    "revision": "7684523784379826176",
+    "coze_persisted_version": null,
+    "api_receipt_version": "v0.0.1"
+  },
+  "effect": "API copied the previous published_version into a new save receipt; draft/version contents and engine execution remained real. Coze reconciliation would omit this unrelated version.",
+  "scope": "semantic mapping discrepancy, not JSON Schema shape violation",
+  "handling": "Keep initial HTTP/failed MySQL evidence and historical records; clarify optional source field, repair producer projection, qualify a new workflow with the corrected candidate. No historical audit rewrite."
+}

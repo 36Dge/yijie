@@ -1,0 +1,18 @@
+   Compiling yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.98s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/yijie_desktop_lib-e35083c500fe2f8d)
+
+running 10 tests
+test workflows::config::tests::normally_created_owner_only_credential_file_is_readable ... ok
+test workflows::config::tests::ordinary_deployment_credential_decodes_without_exposing_token_in_debug ... ok
+test workflows::config::tests::profile_is_opt_in_and_never_needs_credentials_when_disabled ... ok
+test workflows::runtime::tests::disabled_profile_never_requires_an_editor_or_network_for_status ... ok
+test workflows::runtime::tests::normal_clock_offsets_keep_the_original_monotonic_session_cap ... ok
+test workflows::runtime::tests::normal_close_invalidates_a_queued_editor_reopen ... ok
+test workflows::runtime::tests::normal_context_change_during_open_retires_the_late_session ... ok
+test workflows::runtime::tests::normal_loopback_native_consumer_preserves_resources_operations_and_expired_close ... ok
+test workflows::runtime::tests::source_validator_enforces_utf8_and_preserves_new_engine_state ... ok
+test workflows::runtime::tests::uncertain_write_keeps_the_native_operation_id_without_reissuing_it ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 347 filtered out; finished in 0.04s
+

@@ -1,0 +1,2 @@
+FAIL: 检查范围仍有未完成标记：
+docs/features/FEAT-153-coze-workflow-foundation/01-delivery-log.md:147:用户确认需求完成后明确要求暂存、提交并推送。先形成 Contracts 不可变提交，补齐生成基线重放和完整提交逐文件验证，再同步三个消费者；九份wire/schema/validator保持D4字节。Contracts/API/Infra/Desktop已按顺序提交并推送且远端SHA相等，Coze已本地提交、独立远端待确认，元仓最后记录需求与证据。未向coze-dev推送。Desktop混合文件按来源暂存，两个既有共享设计依赖具名纳入，其余设计改动与Coze既有删除保留。暂存快照类型检查、21项测试、构建及source/consumer/baseline检查通过。完整提交和实际远端状态见[18](18-git-delivery.md)，不声明CI/merge/tag或生产发布。

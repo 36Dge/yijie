@@ -1,0 +1,47 @@
+node scripts/generate-workflow-local.mjs
+✨ openapi-typescript 7.13.0
+ ⚠  Component: "ListRequest" is never used. at #/components/schemas/ListRequest
+ ⚠  Component: "CreateInput" is never used. at #/components/schemas/CreateInput
+ ⚠  Component: "RunInput" is never used. at #/components/schemas/RunInput
+ ⚠  Component: "EditorOpenedView" is never used. at #/components/schemas/EditorOpenedView
+ ⚠  Component: "EditorExchangeInput" is never used. at #/components/schemas/EditorExchangeInput
+ ⚠  Component: "EditorExchangeResult" is never used. at #/components/schemas/EditorExchangeResult
+ ⚠  Component: "EditorCloseInput" is never used. at #/components/schemas/EditorCloseInput
+ ⚠  Component: "RunQueryInput" is never used. at #/components/schemas/RunQueryInput
+ ⚠  Component: "RunQueryResult" is never used. at #/components/schemas/RunQueryResult
+🚀 openapi/workflow-local/workflow-local.yaml → sdks/typescript/src/openapi/workflow-local.gen.ts [48.8ms]
+Generated isolated workflow-local Go/TypeScript/Rust models and schema projections. Local candidate only.
+node scripts/check-workflow-local.mjs
+✨ openapi-typescript 7.13.0
+ ⚠  Component: "ListRequest" is never used. at #/components/schemas/ListRequest
+ ⚠  Component: "CreateInput" is never used. at #/components/schemas/CreateInput
+ ⚠  Component: "RunInput" is never used. at #/components/schemas/RunInput
+ ⚠  Component: "EditorOpenedView" is never used. at #/components/schemas/EditorOpenedView
+ ⚠  Component: "EditorExchangeInput" is never used. at #/components/schemas/EditorExchangeInput
+ ⚠  Component: "EditorExchangeResult" is never used. at #/components/schemas/EditorExchangeResult
+ ⚠  Component: "EditorCloseInput" is never used. at #/components/schemas/EditorCloseInput
+ ⚠  Component: "RunQueryInput" is never used. at #/components/schemas/RunQueryInput
+ ⚠  Component: "RunQueryResult" is never used. at #/components/schemas/RunQueryResult
+🚀 openapi/workflow-local/workflow-local.yaml → sdks/typescript/src/openapi/workflow-local.gen.ts [49.5ms]
+Generated isolated workflow-local Go/TypeScript/Rust models and schema projections. Local candidate only.
+Verified deterministic workflow outputs and 41 component validators plus editor bridge.
+node --test tests/workflow-local.test.mjs tests/workflow-local-browser.test.mjs
+✔ browser AOT matches source for ordinary Unicode and optional query fields (46.51925ms)
+✔ browser AOT validates existing connect ready and normal request-response envelope (0.84075ms)
+✔ browser module runs with runtime string code generation disabled (42.766417ms)
+✔ canonical browser declarations preserve source optional defaults (368.331375ms)
+✔ workflow source separates native secret responses from renderer views (0.898834ms)
+✔ UTF-8 text bounds measure bytes rather than characters (0.221292ms)
+✔ normal editor saves require the expected revision and complete save fields (0.5875ms)
+✔ run queries remain valid independently of an editor lease (0.317792ms)
+✔ unknown engine status is retained while published versions and receipt semantics stay bounded (0.478083ms)
+✔ MessageChannel response has one typed outcome and generation binding (0.402ms)
+✔ list summaries exclude bulk content while details retain it (0.04925ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 536.471834

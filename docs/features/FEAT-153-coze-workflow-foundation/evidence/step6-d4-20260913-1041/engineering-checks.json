@@ -1,0 +1,38 @@
+{
+  "phase": "engineering_checks_complete_human_dev_pending",
+  "contract": "PASS: deterministic source check, 41 validators, 11 normal tests, all 3 consumer source checks",
+  "source_candidates_unchanged": true,
+  "ui_state_tests": {
+    "chunk_id": "ff0230",
+    "wall_time_seconds": 7.5e-7,
+    "exit_code": 0,
+    "original_token_count": 89,
+    "output": "(node:5860) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  4 passed (4)\n      Tests  16 passed (16)\n   Start at  10:47:06\n   Duration  1.31s (transform 630ms, setup 0ms, import 1.54s, tests 418ms, environment 811ms)\n\n"
+  },
+  "native_tests": {
+    "chunk_id": "15b293",
+    "wall_time_seconds": 0.00000225,
+    "exit_code": 0,
+    "original_token_count": 401,
+    "output": "    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.22s\n     Running unittests src/lib.rs (target/debug/deps/yijie_desktop_lib-e35083c500fe2f8d)\n\nrunning 13 tests\ntest workflows::runtime::tests::normal_clock_offsets_keep_the_original_monotonic_session_cap ... ok\ntest workflows::local_gate_tests::workflow_local_cleanup_and_window_gate_is_exact_and_opt_in ... ok\ntest workflows::runtime::tests::uncertain_write_keeps_the_native_operation_id_without_reissuing_it ... ok\ntest workflows::config::tests::profile_is_opt_in_and_never_needs_credentials_when_disabled ... ok\ntest workflows::window::tests::ordinary_app_routes_and_exact_editor_entry_are_the_navigation_surface ... ok\ntest workflows::config::tests::ordinary_deployment_credential_decodes_without_exposing_token_in_debug ... ok\ntest workflows::config::tests::normally_created_owner_only_credential_file_is_readable ... ok\ntest workflows::runtime::tests::source_validator_enforces_utf8_and_preserves_new_engine_state ... ok\ntest workflows::runtime::tests::disabled_profile_never_requires_an_editor_or_network_for_status ... ok\ntest workflows::runtime::tests::normal_context_change_during_open_retires_the_late_session ... ok\ntest workflows::runtime::tests::normal_close_invalidates_a_queued_editor_reopen ... ok\ntest workflows::runtime::tests::delayed_normal_window_cleanup_preserves_a_new_context_binding ... ok\ntest workflows::runtime::tests::normal_loopback_native_consumer_preserves_resources_operations_and_expired_close ... ok\n\ntest result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 347 filtered out; finished in 0.03s\n\n"
+  },
+  "api": {
+    "chunk_id": "a4781c",
+    "wall_time_seconds": 4.58e-7,
+    "exit_code": 0,
+    "original_token_count": 216,
+    "output": "ok  \tgithub.com/36Dge/yijie-api/internal/modules/workflows/application\t1.501s\nok  \tgithub.com/36Dge/yijie-api/internal/modules/workflows/domain\t1.885s\nok  \tgithub.com/36Dge/yijie-api/internal/modules/workflows/infrastructure/coze\t2.681s\n?   \tgithub.com/36Dge/yijie-api/internal/modules/workflows/infrastructure/postgres\t[no test files]\nok  \tgithub.com/36Dge/yijie-api/internal/modules/workflows/interfaces/editorassets\t2.270s\nok  \tgithub.com/36Dge/yijie-api/internal/modules/workflows/interfaces/http\t4.005s\nok  \tgithub.com/36Dge/yijie-api/internal/modules/workflows/transport\t3.180s\nok  \tgithub.com/36Dge/yijie-api/internal/workflowlocal\t4.316s\n?   \tgithub.com/36Dge/yijie-api/cmd/workflow-local-server\t[no test files]\n?   \tgithub.com/36Dge/yijie-api/cmd/workflow-local-migrate\t[no test files]\nok  \tgithub.com/36Dge/yijie-api/cmd/workflow-local-qualify\t4.736s\n"
+  },
+  "coze": {
+    "chunk_id": "9a178c",
+    "wall_time_seconds": 0.000001292,
+    "exit_code": 0,
+    "original_token_count": 79,
+    "output": "ok  \tgithub.com/coze-dev/coze-studio/backend/domain/workflow/localadapter\t3.835s\nok  \tgithub.com/coze-dev/coze-studio/backend/application/workflowlocal\t4.154s\nok  \tgithub.com/coze-dev/coze-studio/backend/cmd/workflow-local\t2.826s\nok  \tgithub.com/coze-dev/coze-studio/backend/domain/workflow/internal/execute\t1.949s\n"
+  },
+  "infra": "PASS: 13 normal static tests and authenticated canonical six-service readiness",
+  "actual_new_dev_ui": "NOT RUN; awaiting human A feedback and corresponding new resource",
+  "first_open_cancel": "Normal ordering unit/native PASS; actual App click NOT RUN",
+  "accessibility": "Declared palette text/focus pairs and semantic source review complete; actual keyboard pending; no full keyboard graph or WCAG claim",
+  "d4": "NOT RUN"
+}

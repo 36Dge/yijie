@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "complete": true,
+  "workflow": {
+    "canvas": "{\"edges\":[{\"sourceNodeID\":\"100001\",\"targetNodeID\":\"200001\"},{\"sourceNodeID\":\"200001\",\"targetNodeID\":\"900001\"}],\"nodes\":[{\"data\":{\"nodeMeta\":{\"title\":\"开始\"},\"outputs\":[{\"name\":\"input\",\"required\":true,\"type\":\"string\"}]},\"id\":\"100001\",\"type\":\"1\"},{\"data\":{\"inputs\":{\"concatParams\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":\"v2:{{input}}\",\"type\":\"literal\"}},\"name\":\"concatResult\"}],\"inputParameters\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":{\"blockID\":\"100001\",\"name\":\"input\",\"source\":\"block-output\"},\"type\":\"ref\"}},\"name\":\"input\"}],\"method\":\"concat\"},\"nodeMeta\":{\"title\":\"文本拼接\"},\"outputs\":[{\"name\":\"output\",\"type\":\"string\"}]},\"id\":\"200001\",\"type\":\"15\"},{\"data\":{\"inputs\":{\"inputParameters\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":{\"blockID\":\"200001\",\"name\":\"output\",\"source\":\"block-output\"},\"type\":\"ref\"}},\"name\":\"result\"}],\"terminatePlan\":\"returnVariables\"},\"nodeMeta\":{\"title\":\"结束\"}},\"id\":\"900001\",\"type\":\"2\"}],\"versions\":{\"loop\":\"v2\"}}",
+    "name": "FEAT-153 正常文本资格 0605aca2",
+    "published_version": "v0.0.3",
+    "revision": "7684526621897785344",
+    "runnable": true,
+    "updated_at_ms": 1789193279857,
+    "workflow_id": "7684526620584968192"
+  },
+  "runs": [
+    {
+      "finished_at_ms": 1789193279296,
+      "input": {
+        "input": "正常输入"
+      },
+      "mode": "debug",
+      "nodes": [
+        {
+          "node_id": "100001",
+          "output": "正常输入",
+          "state": "3"
+        },
+        {
+          "node_id": "200001",
+          "output": "v1:正常输入",
+          "state": "3"
+        },
+        {
+          "node_id": "900001",
+          "output": "v1:正常输入",
+          "state": "3"
+        }
+      ],
+      "operation_id": "0b111c74-051a-40a3-840d-46d8d6e08d70",
+      "output": "v1:正常输入",
+      "revision": "7684526620647882752",
+      "run_id": "7684526620723380224",
+      "started_at_ms": 1789193279287,
+      "state": "succeeded",
+      "terminal": true,
+      "workflow_id": "7684526620584968192"
+    },
+    {
+      "finished_at_ms": 1789193279587,
+      "input": {
+        "input": "正常输入"
+      },
+      "mode": "debug",
+      "nodes": [
+        {
+          "node_id": "100001",
+          "output": "正常输入",
+          "state": "3"
+        },
+        {
+          "node_id": "200001",
+          "output": "v2:正常输入",
+          "state": "3"
+        },
+        {
+          "node_id": "900001",
+          "output": "v2:正常输入",
+          "state": "3"
+        }
+      ],
+      "operation_id": "b8c777df-86b3-4fc7-a532-ab06ad7d222e",
+      "output": "v2:正常输入",
+      "revision": "7684526621897785344",
+      "run_id": "7684526621943922688",
+      "started_at_ms": 1789193279578,
+      "state": "succeeded",
+      "terminal": true,
+      "workflow_id": "7684526620584968192"
+    },
+    {
+      "finished_at_ms": 1789193279876,
+      "input": {
+        "input": "版本回读"
+      },
+      "mode": "release",
+      "nodes": [
+        {
+          "node_id": "100001",
+          "output": "版本回读",
+          "state": "3"
+        },
+        {
+          "node_id": "200001",
+          "output": "v2:版本回读",
+          "state": "3"
+        },
+        {
+          "node_id": "900001",
+          "output": "v2:版本回读",
+          "state": "3"
+        }
+      ],
+      "operation_id": "7a4b1199-9c7f-4f05-85c1-171091fcb1d1",
+      "output": "v2:版本回读",
+      "revision": "7684526621897785344",
+      "run_id": "7684526623156076544",
+      "started_at_ms": 1789193279868,
+      "state": "succeeded",
+      "terminal": true,
+      "version": "v0.0.2",
+      "workflow_id": "7684526620584968192"
+    },
+    {
+      "finished_at_ms": 1789193280164,
+      "input": {
+        "input": "版本回读"
+      },
+      "mode": "release",
+      "nodes": [
+        {
+          "node_id": "100001",
+          "output": "版本回读",
+          "state": "3"
+        },
+        {
+          "node_id": "200001",
+          "output": "v1:版本回读",
+          "state": "3"
+        },
+        {
+          "node_id": "900001",
+          "output": "v1:版本回读",
+          "state": "3"
+        }
+      ],
+      "operation_id": "334eff06-c572-41b9-b5fd-300c84b5adf2",
+      "output": "v1:版本回读",
+      "revision": "7684526620647882752",
+      "run_id": "7684526624447922176",
+      "started_at_ms": 1789193280152,
+      "state": "succeeded",
+      "terminal": true,
+      "version": "v0.0.1",
+      "workflow_id": "7684526620584968192"
+    }
+  ],
+  "operations": [
+    {
+      "kind": "create",
+      "operation_id": "72d732c1-04ba-439a-9f70-3f9a32bc4a31",
+      "phase": "completed",
+      "revision": "7684526620584984576",
+      "workflow_id": "7684526620584968192"
+    },
+    {
+      "kind": "save",
+      "operation_id": "36b0f829-6bfa-44de-8a8b-9a9b64ad36da",
+      "phase": "completed",
+      "revision": "7684526620647882752",
+      "workflow_id": "7684526620584968192"
+    },
+    {
+      "error": {
+        "code": "revision_conflict",
+        "message": "revision_conflict",
+        "operation_id": "b6475d48-72fd-47cd-9a34-2e8c0982c65a"
+      },
+      "kind": "save",
+      "operation_id": "b6475d48-72fd-47cd-9a34-2e8c0982c65a",
+      "phase": "rejected",
+      "workflow_id": "7684526620584968192"
+    },
+    {
+      "kind": "test",
+      "operation_id": "0b111c74-051a-40a3-840d-46d8d6e08d70",
+      "phase": "completed",
+      "revision": "7684526620647882752",
+      "run_id": "7684526620723380224",
+      "workflow_id": "7684526620584968192"
+    },
+    {
+      "kind": "publish",
+      "operation_id": "bd012a10-bd59-458c-b808-329f8a56cb67",
+      "phase": "completed",
+      "revision": "7684526620647882752",
+      "version": "v0.0.1",
+      "workflow_id": "7684526620584968192"
+    },
+    {
+      "kind": "save",
+      "operation_id": "c0760f2a-5e1e-411e-b5aa-33d137b5a938",
+      "phase": "completed",
+      "revision": "7684526621897785344",
+      "workflow_id": "7684526620584968192"
+    },
+    {
+      "kind": "test",
+      "operation_id": "b8c777df-86b3-4fc7-a532-ab06ad7d222e",
+      "phase": "completed",
+      "revision": "7684526621897785344",
+      "run_id": "7684526621943922688",
+      "workflow_id": "7684526620584968192"
+    },
+    {
+      "kind": "publish",
+      "operation_id": "45eb7996-4ef1-489d-b0f3-1d2fbede6ec5",
+      "phase": "completed",
+      "revision": "7684526621897785344",
+      "version": "v0.0.2",
+      "workflow_id": "7684526620584968192"
+    },
+    {
+      "kind": "publish",
+      "operation_id": "d25e1d1c-de8e-4433-8926-1391d4754547",
+      "phase": "completed",
+      "revision": "7684526621897785344",
+      "version": "v0.0.3",
+      "workflow_id": "7684526620584968192"
+    },
+    {
+      "kind": "run",
+      "operation_id": "7a4b1199-9c7f-4f05-85c1-171091fcb1d1",
+      "phase": "completed",
+      "revision": "7684526621897785344",
+      "run_id": "7684526623156076544",
+      "version": "v0.0.2",
+      "workflow_id": "7684526620584968192"
+    },
+    {
+      "kind": "run",
+      "operation_id": "334eff06-c572-41b9-b5fd-300c84b5adf2",
+      "phase": "completed",
+      "revision": "7684526620647882752",
+      "run_id": "7684526624447922176",
+      "version": "v0.0.1",
+      "workflow_id": "7684526620584968192"
+    }
+  ],
+  "attempted_operation_ids": [
+    "72d732c1-04ba-439a-9f70-3f9a32bc4a31",
+    "36b0f829-6bfa-44de-8a8b-9a9b64ad36da",
+    "b6475d48-72fd-47cd-9a34-2e8c0982c65a",
+    "0b111c74-051a-40a3-840d-46d8d6e08d70",
+    "bd012a10-bd59-458c-b808-329f8a56cb67",
+    "c0760f2a-5e1e-411e-b5aa-33d137b5a938",
+    "b8c777df-86b3-4fc7-a532-ab06ad7d222e",
+    "45eb7996-4ef1-489d-b0f3-1d2fbede6ec5",
+    "d25e1d1c-de8e-4433-8926-1391d4754547",
+    "7a4b1199-9c7f-4f05-85c1-171091fcb1d1",
+    "334eff06-c572-41b9-b5fd-300c84b5adf2"
+  ]
+}

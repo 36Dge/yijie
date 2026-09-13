@@ -1,0 +1,257 @@
+{
+  "date": "2026-09-12",
+  "repository": "yijie-api",
+  "base_commit": "f9d730a157bcb012a8fe178cbfebcd4ea27419fc",
+  "scope": "FEAT-153 step 3 local candidate; no real service run",
+  "contract_mode": "local_candidate",
+  "source_lock_sha256": "399932c26a06e416ed763fe88af10042c12ffd104499c178b8e0ab360d069fbb",
+  "protected_files": [
+    {
+      "path": "cmd/api-server/main.go",
+      "sha256": "f66c0ea2d8443d336c9b55d112f69092d1efab1ea339a5423830f2f2e69ce718",
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": "internal/app/app.go",
+      "sha256": "1e02597debd84692684a66486c9b833875a60abe552f515fe7a3e1891c963fb2",
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": "internal/platform/migrations/migrations.go",
+      "sha256": "42c474ead79a260769bcff80568beb9a396e24f1b92d47357c3020eb75d98ff1",
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": "contracts/public-api.lock.json",
+      "sha256": "a46392c0c643071496cce568b77558b7e08cb31883428c4c66bbf9c40a94755c",
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": "internal/interfaces/publicapi/types.gen.go",
+      "sha256": "438b084d65a925ebb7ccef6d7ab5d16fdc9d0990dc14ab536ee073ff298fab33",
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": "go.mod",
+      "sha256": "deb22ebc2f4108418cf8892f886a9e4c5d44b0a8881d0be6864af368f441023f",
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": "go.sum",
+      "sha256": "a2908344039de7b3cb865ccb8fbc00b949f949e1fe13160ddad6cd4f4d5ca08f",
+      "unchanged_from_HEAD": true
+    }
+  ],
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "75e61c6a1e01513238129dab2a17ec7224b0cf8707ce5631db794f6aa9060718"
+    },
+    {
+      "path": "Makefile",
+      "sha256": "ff53b99929ac54ebf3adceee01681148bf54191742e247758d5e497c1ad70a81"
+    },
+    {
+      "path": "README.md",
+      "sha256": "5952a844569810c8920e9bfb8bd108b284e91015c09f00473bcecc08568b2be6"
+    },
+    {
+      "path": "cmd/workflow-local-migrate/main.go",
+      "sha256": "310ddf77c559bd7dbd5989a204059609297a913378074c0765c4122656ac4f47"
+    },
+    {
+      "path": "cmd/workflow-local-server/main.go",
+      "sha256": "681a46c97b11ad00467acb2ab66523fba9649fad044425c0da5bdf133b27316d"
+    },
+    {
+      "path": "config/workflow-local-runtime.schema.json",
+      "sha256": "03033d5d1ac4ed2ffd72c6ada37314af5e5600a762bce0220ec18e5b00a1881b"
+    },
+    {
+      "path": "contracts/workflow-local.lock.json",
+      "sha256": "399932c26a06e416ed763fe88af10042c12ffd104499c178b8e0ab360d069fbb"
+    },
+    {
+      "path": "contracts/workflow-local.schema.json",
+      "sha256": "8d2a68cdadc97ec55c31fd96de60048f851d7ecfa84bb74da621e04f3aad1d90"
+    },
+    {
+      "path": "contracts/workflow_schema.go",
+      "sha256": "eff9b0fb23dc861bdd3e15921a8cfda71222d594880f9557247be0224d77d5f9"
+    },
+    {
+      "path": "docs/workflow-local.md",
+      "sha256": "695f27cb4de18af82f552050d76a296e651197c479a474cf7bdb301a26766f04"
+    },
+    {
+      "path": "internal/contracts/workflowlocal/types.gen.go",
+      "sha256": "aea622412894575a1a2e2ee76192345bf1068c768a67f02cee4727f16fe836cd"
+    },
+    {
+      "path": "internal/modules/workflows/application/service.go",
+      "sha256": "26d0c5b998c4f2c15a57d02198d1c9936fdb504ad9ce9a21cf6547a1f2bb6945"
+    },
+    {
+      "path": "internal/modules/workflows/application/service_test.go",
+      "sha256": "ddad6662605014132da8997fd756da12a668562e17bec2c18eb6b613c08bee9f"
+    },
+    {
+      "path": "internal/modules/workflows/domain/canvas.go",
+      "sha256": "37ac1439fe7a6d68d97536b6c5c495686b6d7c23b7eeae79bfbdd8cec478c021"
+    },
+    {
+      "path": "internal/modules/workflows/domain/canvas_test.go",
+      "sha256": "8f5a6389790dd31f5303dc3ba8eb3d2c0aad48c85d49732cc7fef9c236f8056d"
+    },
+    {
+      "path": "internal/modules/workflows/domain/model.go",
+      "sha256": "43dd4b6ac089b0d278d40a28430f6018b249b3f2712072e6270dcc6efe6649ff"
+    },
+    {
+      "path": "internal/modules/workflows/infrastructure/coze/client.go",
+      "sha256": "9bd49cf6f08c6765b40cc25cd430874fe783efe6712c2f4fce8d390c5bc95c91"
+    },
+    {
+      "path": "internal/modules/workflows/infrastructure/coze/client_test.go",
+      "sha256": "e1c93113804a8a7ad394fbce22f66e8403bd2dd2909608f5897e31b3dba4f252"
+    },
+    {
+      "path": "internal/modules/workflows/infrastructure/postgres/migrate.go",
+      "sha256": "77c1e192ee8570e0e52cd88be0645181611ff1d5bec8f5b3b1f422ffe2ae5e60"
+    },
+    {
+      "path": "internal/modules/workflows/infrastructure/postgres/migrations/00001_workflows.sql",
+      "sha256": "d0c4ce32099e87eae7710891555f849d52458d1f4dbc6969b4cb40ecc35567d8"
+    },
+    {
+      "path": "internal/modules/workflows/infrastructure/postgres/repository.go",
+      "sha256": "4df1b35642220752ec9bc2aef51f295e5fd38261b2b93629ccf46213fae4ae89"
+    },
+    {
+      "path": "internal/modules/workflows/interfaces/http/handler.go",
+      "sha256": "445f22eda1491a531639c1dded93479cee6ade45062051cc63b24f0f7fa90eea"
+    },
+    {
+      "path": "internal/modules/workflows/interfaces/http/handler_test.go",
+      "sha256": "c7200504f22dc36e353b9aa409792b051686ad47ea24377ebff7e1308cb2f854"
+    },
+    {
+      "path": "internal/modules/workflows/transport/mapping.go",
+      "sha256": "8fe86ff0ed6dca249da7fa7556212559a34ba713ee87593f2faccc984285cedb"
+    },
+    {
+      "path": "internal/modules/workflows/transport/mapping_test.go",
+      "sha256": "d8e908c4b6a0dac87628b4e5a154bfacfe9f31f3689f90e5dde057332a2b1652"
+    },
+    {
+      "path": "internal/modules/workflows/transport/schema.go",
+      "sha256": "c865f4950e6a51d9873acbf3c24e40a9bc288f51e6fd90f560a4d3c92880bec1"
+    },
+    {
+      "path": "internal/workflowlocal/config.go",
+      "sha256": "e589f29af44c5ce37d9a3c9888bc0a92a193e7a0fa7cf4eaeee7206a9c92d4d1"
+    },
+    {
+      "path": "internal/workflowlocal/config_test.go",
+      "sha256": "e3e5c590b545dcc755da3f88ab1c72a92afbf3e33d82b940486a637da08edb82"
+    }
+  ],
+  "top_level_test_count": 16,
+  "tests": [
+    {
+      "path": "internal/modules/workflows/transport/mapping_test.go",
+      "name": "TestEmptyNodeAndRunOutputPreserved"
+    },
+    {
+      "path": "internal/modules/workflows/transport/mapping_test.go",
+      "name": "TestNormalMultibyteInputUsesUTF8Limit"
+    },
+    {
+      "path": "internal/modules/workflows/application/service_test.go",
+      "name": "TestCreateIntentReplayAndChangedContentConflict"
+    },
+    {
+      "path": "internal/modules/workflows/application/service_test.go",
+      "name": "TestRecordedOperationQueriesThenReconcilesWithoutRedispatch"
+    },
+    {
+      "path": "internal/modules/workflows/application/service_test.go",
+      "name": "TestRegisteredRunPreservesEngineUnknownAndReceiptMeaning"
+    },
+    {
+      "path": "internal/modules/workflows/application/service_test.go",
+      "name": "TestNormalMissingResourceDoesNotReachEngine"
+    },
+    {
+      "path": "internal/modules/workflows/domain/canvas_test.go",
+      "name": "TestNormalIncompleteDraftAndPrefixBound"
+    },
+    {
+      "path": "internal/modules/workflows/interfaces/http/handler_test.go",
+      "name": "TestEditorSessionAbsoluteExpiryAndIdempotentClose"
+    },
+    {
+      "path": "internal/modules/workflows/interfaces/http/handler_test.go",
+      "name": "TestNormalRoutesProduceSourceConformantStatuses"
+    },
+    {
+      "path": "internal/modules/workflows/interfaces/http/handler_test.go",
+      "name": "TestOrdinaryRequiredNameValidation"
+    },
+    {
+      "path": "internal/modules/workflows/interfaces/http/handler_test.go",
+      "name": "TestResponseBudgetCheckedBeforeHeaders"
+    },
+    {
+      "path": "internal/modules/workflows/interfaces/http/handler_test.go",
+      "name": "TestCommittedWriteResponseBudgetReturnsOriginalUnknownOperation"
+    },
+    {
+      "path": "internal/modules/workflows/infrastructure/coze/client_test.go",
+      "name": "TestClientAuthenticatedSourceConformantUnknownRun"
+    },
+    {
+      "path": "internal/modules/workflows/infrastructure/coze/client_test.go",
+      "name": "TestClientNormalListUsesSummaryContract"
+    },
+    {
+      "path": "internal/workflowlocal/config_test.go",
+      "name": "TestNormalDedicatedRuntimeConfig"
+    },
+    {
+      "path": "internal/workflowlocal/config_test.go",
+      "name": "TestDisabledConfigurationDoesNotReadCredentialFiles"
+    }
+  ],
+  "named_route_subtests": 9,
+  "all_15_http_operations_exercised": true,
+  "final_safe_command_exit_code": 0,
+  "binaries": [
+    {
+      "path": "bin/workflow-local/workflow-local-server",
+      "sha256": "4d3c326e703139a72f1e043bef6ce2eef9839c13ee3a9329e7b2e20b5bd653f1",
+      "executed": false
+    },
+    {
+      "path": "bin/workflow-local/workflow-local-migrate",
+      "sha256": "cf07edcbcbeccd998d4b0e285312ac9c3d43d3db6c2829734fa301dcb24ce125",
+      "executed": false
+    }
+  ],
+  "not_run": [
+    "PostgreSQL migration and transaction integration",
+    "real Coze adapter requests",
+    "Docker/readiness/normal stack stop-reopen",
+    "editor/native WebView qualification",
+    "unsafe historical fixture or fault-injection tests",
+    "public/production/model/platform/paid calls"
+  ],
+  "deployment_documentation_review": {
+    "date": "2026-09-12",
+    "scope": "Explicit Coze container listen address and required MySQL parseTime=true",
+    "runtime_code_changed": false,
+    "json_parse": "PASS",
+    "existing_tests_repeated": false,
+    "real_services_started": false
+  }
+}

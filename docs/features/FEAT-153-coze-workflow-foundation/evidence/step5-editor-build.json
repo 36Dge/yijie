@@ -1,0 +1,292 @@
+{
+  "at": "2026-09-12T07:36:34.561914+00:00",
+  "manifest": {
+    "schema_version": 1,
+    "base_path": "/editor/",
+    "source_repository": "yijie-coze",
+    "source_commit": "fefb05ff27be1da939612fbf9faf5db62583b8ae",
+    "source_digest": "03bb8649c1ee408b7f44071200c5574011151f4b33c47a89b58eded8781246f2",
+    "contracts_lock_sha256": "f800e51eb4bd10f574a8ac34222293de0d080c72806ffbb072626e724ebf23fd",
+    "files": [
+      {
+        "path": "assets/css/784.315ae3bf.css",
+        "sha256": "900dc2c46419fbcba941531f9dd0e7aa8de4ebf2b46e4de94bf17fc945650534",
+        "bytes": 688429,
+        "content_type": "text/css; charset=utf-8"
+      },
+      {
+        "path": "assets/css/index.f907440e.css",
+        "sha256": "21a8914463167744b7082bf1712e38cf8a6ae92d84872556a0a0ee1e2d867477",
+        "bytes": 10928,
+        "content_type": "text/css; charset=utf-8"
+      },
+      {
+        "path": "assets/js/784.b1db7a4f.js",
+        "sha256": "8f71929d45531af5985d99e055f33944a9551af6e23672ab1b80378155ba77d8",
+        "bytes": 2264861,
+        "content_type": "text/javascript; charset=utf-8"
+      },
+      {
+        "path": "assets/js/index.42c4a0b3.js",
+        "sha256": "123a84c9528a8fa0c6a8731b4372b23f78579f8ab03ff3a4f985ad033924eec0",
+        "bytes": 358127,
+        "content_type": "text/javascript; charset=utf-8"
+      },
+      {
+        "path": "assets/js/lib-react.a3e3a619.js",
+        "sha256": "8a55f0e39ff69ff692fec32ec10ea110c713642ca9fc9c1afdb2cd8747053349",
+        "bytes": 141213,
+        "content_type": "text/javascript; charset=utf-8"
+      },
+      {
+        "path": "index.html",
+        "sha256": "00bc80ddbcd1107bebf5388cb89cd92cae1e850c0a694f11443a688487441b05",
+        "bytes": 545,
+        "content_type": "text/html; charset=utf-8"
+      }
+    ]
+  },
+  "manifest_sha256": "dc5c1f979d4475ff4210d74c3312910ce6384888522b48de9c110c325e740b48",
+  "dependencies": {
+    "source_lock": "common/config/subspaces/default/pnpm-lock.yaml",
+    "source_sha256": "e99ee18bbfda44e1e34f339f27ff5e6ffe33686ad96804cc385efc5f7ac0c9d3",
+    "derived_lock_sha256": "fb65777a0b0295a1811a3b010baecbcc8e8bc1689a6aa2cc93a0e541c8c5024d",
+    "pnpm_version": "8.15.8",
+    "scripts": "ignored",
+    "workspaces": [
+      {
+        "name": "@coze-arch/bot-env",
+        "source": "frontend/packages/arch/bot-env"
+      },
+      {
+        "name": "@coze-arch/bot-flags",
+        "source": "frontend/packages/arch/bot-flags"
+      },
+      {
+        "name": "@coze-arch/bot-typings",
+        "source": "frontend/packages/arch/bot-typings"
+      },
+      {
+        "name": "@coze-arch/logger",
+        "source": "frontend/packages/arch/logger"
+      },
+      {
+        "name": "@coze-arch/report-tti",
+        "source": "frontend/packages/arch/report-tti"
+      },
+      {
+        "name": "@coze-studio/bot-env-adapter",
+        "source": "frontend/packages/arch/bot-env-adapter"
+      },
+      {
+        "name": "@coze-studio/slardar-interface",
+        "source": "frontend/packages/arch/slardar-interface"
+      },
+      {
+        "name": "@coze-workflow/render",
+        "source": "frontend/packages/workflow/render"
+      },
+      {
+        "name": "@flowgram-adapter/common",
+        "source": "frontend/packages/common/flowgram-adapter/common"
+      },
+      {
+        "name": "@flowgram-adapter/free-layout-editor",
+        "source": "frontend/packages/common/flowgram-adapter/free-layout-editor"
+      }
+    ],
+    "root_dependencies": {
+      "@coze-workflow/render": {
+        "specifier": "workspace:*",
+        "version": "link:../coze-workflow__render"
+      },
+      "@flowgram-adapter/common": {
+        "specifier": "workspace:*",
+        "version": "link:../flowgram-adapter__common"
+      },
+      "@flowgram-adapter/free-layout-editor": {
+        "specifier": "workspace:*",
+        "version": "link:../flowgram-adapter__free-layout-editor"
+      },
+      "@babel/core": {
+        "specifier": "7.27.4",
+        "version": "7.27.4"
+      },
+      "@rsbuild/core": {
+        "specifier": "1.1.13",
+        "version": "1.1.13"
+      },
+      "@rsbuild/plugin-react": {
+        "specifier": "1.1.1",
+        "version": "1.1.1(@rsbuild/core@1.1.13)"
+      },
+      "@rsbuild/plugin-less": {
+        "specifier": "1.1.1",
+        "version": "1.1.1(@rsbuild/core@1.1.13)"
+      },
+      "@rsbuild/plugin-sass": {
+        "specifier": "1.1.2",
+        "version": "1.1.2(@rsbuild/core@1.1.13)"
+      },
+      "@types/react": {
+        "specifier": "18.2.37",
+        "version": "18.2.37"
+      },
+      "@types/react-dom": {
+        "specifier": "18.2.15",
+        "version": "18.2.15"
+      },
+      "inversify": {
+        "specifier": "6.0.2",
+        "version": "6.0.2"
+      },
+      "less": {
+        "specifier": "3.13.1",
+        "version": "3.13.1"
+      },
+      "react": {
+        "specifier": "18.2.0",
+        "version": "18.2.0"
+      },
+      "react-dom": {
+        "specifier": "18.2.0",
+        "version": "18.2.0(react@18.2.0)"
+      },
+      "react-is": {
+        "specifier": "19.1.0",
+        "version": "19.1.0"
+      },
+      "reflect-metadata": {
+        "specifier": "0.1.14",
+        "version": "0.1.14"
+      },
+      "sass": {
+        "specifier": "1.89.2",
+        "version": "1.89.2"
+      },
+      "styled-components": {
+        "specifier": "6.1.19",
+        "version": "6.1.19(react-dom@18.2.0)(react@18.2.0)"
+      },
+      "typescript": {
+        "specifier": "5.8.2",
+        "version": "5.8.2"
+      }
+    },
+    "source_build_dependency_projections": [
+      {
+        "workspace": "@coze-arch/bot-flags",
+        "source_section": "devDependencies",
+        "dependency": "@types/react",
+        "locked_version": "18.2.37",
+        "derived_section": "dependencies"
+      },
+      {
+        "workspace": "@coze-arch/bot-flags",
+        "source_section": "devDependencies",
+        "dependency": "react",
+        "locked_version": "18.2.0",
+        "derived_section": "dependencies"
+      },
+      {
+        "workspace": "@coze-arch/logger",
+        "source_section": "devDependencies",
+        "dependency": "@types/lodash-es",
+        "locked_version": "4.17.12",
+        "derived_section": "dependencies"
+      },
+      {
+        "workspace": "@coze-arch/logger",
+        "source_section": "devDependencies",
+        "dependency": "@types/react",
+        "locked_version": "18.2.37",
+        "derived_section": "dependencies"
+      },
+      {
+        "workspace": "@coze-arch/report-tti",
+        "source_section": "devDependencies",
+        "dependency": "@types/react",
+        "locked_version": "18.2.37",
+        "derived_section": "dependencies"
+      },
+      {
+        "workspace": "@coze-workflow/render",
+        "source_section": "devDependencies",
+        "dependency": "@types/react",
+        "locked_version": "18.2.37",
+        "derived_section": "dependencies"
+      },
+      {
+        "workspace": "@coze-workflow/render",
+        "source_section": "devDependencies",
+        "dependency": "@types/react-dom",
+        "locked_version": "18.2.15",
+        "derived_section": "dependencies"
+      },
+      {
+        "workspace": "@coze-workflow/render",
+        "source_section": "devDependencies",
+        "dependency": "react",
+        "locked_version": "18.2.0",
+        "derived_section": "dependencies"
+      },
+      {
+        "workspace": "@coze-workflow/render",
+        "source_section": "devDependencies",
+        "dependency": "react-dom",
+        "locked_version": "18.2.0(react@18.2.0)",
+        "derived_section": "dependencies"
+      },
+      {
+        "workspace": "@flowgram-adapter/common",
+        "source_section": "devDependencies",
+        "dependency": "@types/react",
+        "locked_version": "18.2.37",
+        "derived_section": "dependencies"
+      },
+      {
+        "workspace": "@flowgram-adapter/common",
+        "source_section": "devDependencies",
+        "dependency": "@types/react-dom",
+        "locked_version": "18.2.15",
+        "derived_section": "dependencies"
+      },
+      {
+        "workspace": "@flowgram-adapter/free-layout-editor",
+        "source_section": "devDependencies",
+        "dependency": "@types/react",
+        "locked_version": "18.2.37",
+        "derived_section": "dependencies"
+      },
+      {
+        "workspace": "@flowgram-adapter/free-layout-editor",
+        "source_section": "devDependencies",
+        "dependency": "@types/react-dom",
+        "locked_version": "18.2.15",
+        "derived_section": "dependencies"
+      }
+    ],
+    "source_manifest_projections": [
+      {
+        "workspace": "@coze-arch/report-tti",
+        "export_subpath": "./custom-perf-metric",
+        "before": "./src/utils/custom-perf-metric",
+        "after": "./src/utils/custom-perf-metric.ts",
+        "types_versions_key": "custom-perf-metric",
+        "source_sha256": "7beee396c0a2bc978b47abca66984d505e7f31f1c1e954aa5b4346546c035c40"
+      }
+    ]
+  },
+  "build": {
+    "typescript": "PASS",
+    "rsbuild": "PASS",
+    "canonical_check": "PASS",
+    "assets": 6,
+    "runtime_WK": "NOT RUN"
+  },
+  "normal_state_tests": {
+    "passed": 5,
+    "total": 5
+  },
+  "dynamic_execution_policy": "API CSP unchanged; fixed vendor + exact runtime static review; actual WK qualification NOT RUN"
+}

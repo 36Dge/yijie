@@ -1,0 +1,356 @@
+schema_version: 3
+delivery_profile: "demo_fast"
+exposure: "local"
+
+feature:
+  id: "FEAT-153"
+  slug: "coze-workflow-foundation"
+  title: "yijie-coze 仓库接入与工作流基础集成"
+  status: "usable" #最终本地D4通过；见17；Git交付另见18；不包含公开运行发布
+  created_at: "2026-09-12"
+  requirement_owner: "段成威"
+  technical_owner: "段成威"
+  reviewer: "段成威"
+  release_owner: "段成威"
+
+scope:
+  risk_level: "high"
+  data_classification: "internal"
+  contract_impact: "semantic" #整体semantic；5.4消费已有业务wire，首次fit只改变本地视口
+  database_change: "expand" #两库独立expand migration已在真实local栈显式执行
+  persistence_change: "durable" #合成草稿、内部版本、原生执行/节点历史已写入且正常重开读回
+  runtime_change: "platform" # 增加 Coze 工作流服务；不修改 Codex Runtime
+  auth_permission_change: "both" #local机器凭据/epoch、App固定scope与原生关闭确认已按第5步实测
+  user_workflow_change: "user_visible"
+  ui_change: "interactive"
+  ai_behavior_change: "none"
+
+repositories:
+  - "yijie"
+  - "yijie-coze"
+  - "yijie-contracts"
+  - "yijie-api"
+  - "yijie-infra"
+  - "yijie-desktop"
+
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+
+product_ux:
+  status: "PASS" # 已批准方向，05完成native/session/CSP与资源设计；D0由实际检查验证
+  primary_user: "在本机验证易界工作流能力的产品负责人；后续跨境卖家服务以此为基础，本期仅合成通用流程。"
+  problem: "初始 Coze 目录未治理、工作流页仅静态；第1步已完成本地来源与仓库接入，仍缺同一易界入口的编排、持久保存、版本执行和历史闭环。"
+  user_outcome: "从现有工作流页零登录进入真实编辑器，创建并保存通用三节点流程，试运行后内部发布，执行固定版本并查看结果和历史；正常退出重开后仍可使用。"
+  in_scope:
+    - 先审计，再恢复已核实的上游 Git 元数据、固定 source provenance，接入 12 仓清单与专用开发治理。
+    - 同一 Desktop 内独立 HTTP 静态 Coze React iframe，固定127.0.0.1:18888；MessageChannel只转发版本化工作流操作，经具名native进入API，editor无native capability。
+    - exact local + demo_fast + YIJIE_WORKFLOW_ENABLED=true；native/server固定scope、两段服务机密及300秒resource-bound编辑会话E只在原生/服务端。
+    - 真实列表、创建、读取、草稿保存/重开、revision 冲突、试运行、内部发布、固定版本执行、结果/历史查询。
+    - 开始/原生文本concat/结束；安全但不完整草稿可保存，完整三节点才可运行发布；4KiB input/1KiB prefix/5KiB output/256KiB canvas/512KiB message，共用1个在途槽位和30秒合作式预算。
+    - 独立 Coze 数据与受控 local Infra、loopback、readiness、正常停止/重开、安全 focused checks。
+  out_of_scope:
+    - "任何具体 ERP 或电商服务、真实店铺数据、平台凭据、商家 API、订单或资金写入。"
+    - "模型/AI 节点、HTTP/Code/插件节点、Agent/Runtime 节点、外部 provider 调用及任何付费调用，预算均为 0。"
+    - "完整 Agent/应用/知识库产品、定时触发、持久队列、在途执行自动恢复、补偿与长任务承诺。"
+    - "public/production、多租户上线、真实用户身份、DP/G5/G6、全量 CVE/渗透或生产供应链认证。"
+    - "未经用户明确授权创建远端或发布；tag/release、删除 volume 或重建用户数据。2026-09-13用户已另行授权FEAT-153 commit/push。"
+    - "改写既有 Chat/Host 数据、修改 Codex Runtime、恢复 FEAT-137、暗改用户保留的布局/青柠色或继承历史 D4。"
+  main_flow:
+    - "按 canonical local demo_fast 入口正常启动同一个 Desktop，零登录进入现有主页面，再打开工作流；不选工作流时 Coze 未就绪不阻断原 Chat 启动。"
+    - "工作流服务未就绪时显示明确提示和正常启动/重试入口；ready 后读真实资源列表，静态 ERP 推荐不得伪装已实现。"
+    - "创建通用流程，受信 native/server 自动绑定固定本地 scope 和 Coze 资源，进入同一 App 内真实编辑器，无第二次登录。"
+    - "配置开始→文本拼接→结束，保存草稿，返回列表并重开同一 ID；只在 provider 确认保存后显示成功。"
+    - "试运行草稿并检查节点输出；成功后内部发布固定版本，不使用 Force，也不向公网发布。"
+    - "从易界执行已发布版本，按真实 run ID 查询原生状态、结果与历史；以后保存草稿不改变已发布版本或历史。"
+    - "普通输入错误修正后重试；结果不确定先查询，不自动重复创建/发布/执行；执行完成后正常停止并重开核对数据。"
+  visual_direction: >-
+    保留用户当前工作流页布局、自然换行分类、无图标底板、灰色热门/推荐标签、青柠执行主按钮和中性演示次按钮；新编辑器有清晰返回、保存、试运行、内部发布与版本执行入口。 复用既有主题与焦点样式；亮/暗主题、1180×760 和 1440×900 核验新增 UI。已知白底青柠说明为 1.28:1、1 项 serious color-contrast，保留用户配色并独立记录，不能写全页 axe PASS。
+  ui_states:
+    idle: "显示真实流程及草稿/内部版本、可执行性与最近运行；Coze 未启用时显示尚未就绪，不用演示卡状态代替。"
+    loading: "区分服务准备、列表、编辑器、保存、试运行/执行；禁用重复写入，显示当前 operation/run，保留返回与可行的取消入口。"
+    success: "仅在 provider 确认后更新资源 ID/revision/version；运行成功以原生终态及结果为准，不由前端计时猜测。"
+    empty: "没有真实流程时提示创建通用流程；没有历史时明确空历史，静态 ERP 卡标示示意且不宣称可执行。"
+    error: "分别呈现服务不可用、编辑器加载失败、无权/资源不存在、保存冲突、输入错误和运行失败；保留未保存内容及已知状态。"
+    retry: "读请求可显式重试；写结果未知先查询原operation/run，不自动新建操作。E到期保留同一iframe内存草稿并禁写，可信父页显式重连新E/port/generation且核对revision，不reload或自动覆盖画布。"
+    cancel: "返回/关闭有未保存内容时确认保留或放弃；停止等待仅取消本地等待，不标远端已取消；首期不承诺运行中止，须等待真实终态再正常停止服务。"
+
+must_acceptance:
+  - id: "AC-001"
+    statement: "Coze 以已核实上游 main/完整 SHA 接入 12 仓清单并可检查 provenance，保留 6 份既有缺失文件及全部既有工作区改动；不创建虚构远端；Git动作仅按用户后续明确授权执行，实际交付见18。"
+    verification: "已完成：源 blob/mode 对照、source lock、Git HEAD/origin、12 仓清单、Coze 专用治理检查及全部既有状态保护；证据见 evidence/step1-verification.json 与 02-verification.md。 最终当前候选证据与AC对应结论见17-d4-final-qualification.md。"
+    status: "PASS"
+  - id: "AC-002"
+    statement: "工作流归一化协议 source-first，API/Coze/Desktop 映射与权限/错误语义同源；原 Chat、公开 OIDC 和既有 wire 不被新 local adapter 改写。"
+    verification: "Contracts 安全生成、明确 candidate 来源与摘要、producer/consumer focused conformance、旧入口源码差异与正常回归；不冒称发布 pin 或生产全基线通过。 最终当前候选证据与AC对应结论见17-d4-final-qualification.md。"
+    status: "PASS"
+  - id: "AC-003"
+    statement: "canonical local Desktop 到工作流全程零登录，native/server 固定 synthetic scope 并校验真实资源归属，renderer 不得选择身份或获得 PAT/session 秘密；非 local/profile 缺失时 bridge 不启用。"
+    verification: "按已批准05设计核验native/server固定scope、机器密钥隔离、300秒E与关闭/换epoch失效；E不进入renderer/WK。后续同一App实测零登录及正常配置/资源归属focused checks，不进行攻击请求。 最终当前候选证据与AC对应结论见17-d4-final-qualification.md。"
+    status: "PASS"
+  - id: "AC-004"
+    statement: "从现有工作流页在同一 App 打开真实独立 Coze editor，正常加载、返回和重开；只允许批准的 origin/消息和资源，editor 不获得 native capability。"
+    verification: "第5步在最小真实provider/受控栈就绪后核验canonical dev与packaged的MessageChannel握手/port绑定、具名IPC隔离、CSP、到期不reload重连、导航/返回和错误恢复；不把cookie store成功当作通过。 最终当前候选证据与AC对应结论见17-d4-final-qualification.md。"
+    status: "PASS"
+  - id: "AC-005"
+    statement: "用户能真实创建、命名并保存开始→文本拼接→结束的有效流程，返回列表重开同一 ID/revision 与内容；并发保存冲突明确提示且不静默覆盖。"
+    verification: "正常 UI 创建/保存/读回与重开截图，provider request ID/revision 证据；合成正常并发保存 focused test，不能通过直接 seed Store 假造成功。 最终当前候选证据与AC对应结论见17-d4-final-qualification.md。"
+    status: "PASS"
+  - id: "AC-006"
+    statement: "草稿试运行成功后才能内部发布固定版本，用户能区分保存/试运行/内部发布；不开放 Force，后续草稿修改不改变该内部版本。"
+    verification: "真实三节点试运行及节点输出、内部发布响应/版本读回、修改草稿后版本对照；内部发布不等于 Git tag 或公网发布。 最终当前候选证据与AC对应结论见17-d4-final-qualification.md。"
+    status: "PASS"
+  - id: "AC-007"
+    statement: "从易界执行选定内部版本，显示真实 run ID、原生状态、输出与节点结果，列表历史可重新查询并关联该版本；未知状态不猜完成。"
+    verification: "正常入口真实执行与输入/预期拼接输出对照、provider 状态/历史读回；核实历史列表 adapter 能力和分页，不把按 execute ID 查询冒充列表。 最终当前候选证据与AC对应结论见17-d4-final-qualification.md。"
+    status: "PASS"
+  - id: "AC-008"
+    statement: "首期仅允许三类无循环节点和冻结的输入/图规模/并发/超时限制；普通输入错误可修正重试，结果不确定先查询，返回/关闭不伪称运行已取消。"
+    verification: "核验已冻结input/prefix/output/canvas/message上限、debug/release共用槽位、30秒Coze合作式预算与未知终态；正常错误修正、并发与重连focused checks，不用HTTP超时或强杀制造终态。 最终当前候选证据与AC对应结论见17-d4-final-qualification.md。"
+    status: "PASS"
+  - id: "AC-009"
+    statement: "受控独立 local 栈使用固定来源、loopback 与真实 readiness；已完成短流程后正常退出/停止并重开，草稿/版本/历史保留且原 Chat 数据不变，Coze 未 ready 不阻断 Chat 启动。"
+    verification: "记录实际 image/build source 与独立数据范围；同一 canonical run 正常退出、受管端口/进程释放、保留 volume 重开读回；无法正常退出立即停止并报告，禁止强杀。 最终当前候选证据与AC对应结论见17-d4-final-qualification.md。"
+    status: "PASS"
+  - id: "AC-010"
+    statement: "新增 UI 在既有布局/颜色、亮暗主题、最小窗口和键盘操作下可用，静态 ERP 示例不冒充服务；只用安全 focused checks 与合成数据，模型/商家/付费调用均为 0，既有对比度问题和禁止测试如实保留。"
+    verification: "1180×760/1440×900 截图、键盘与新增可访问性复核、diff/已有文件摘要核对、调用预算 0 记录和未执行项表；不继承历史 D4 或全仓 PASS。 最终当前候选证据与AC对应结论见17-d4-final-qualification.md。"
+    status: "PASS"
+
+contract:
+  impact: "semantic"
+  authority: >-
+    易界归一化 workflow API/共享消息由 yijie-contracts 源契约权威定义；Coze 原始 IDL/行为固定已审计上游来源，新增易界跨仓协议仍遵循 Contract First。 API 私有映射/审计与 Coze 私有数据各由所属服务 migration 治理；local identity/session 新边界须 FEAT-153 明确决策，部署接口由服务仓与 Infra 共同治理。
+  source_first_plan: >-
+    第1来源审计/接入、第2设计/D0、第3源契约与API/Coze/native实现、第4受控栈和真实数据库、第5完整产品页及第6统一真实dev/packaged D4均已完成，最终资格见17。整体semantic；旧public/OIDC/Chat保持。用户于2026-09-13授权Git交付后，Contracts先形成32dd76298fd5ba2346fe2429f78b2b3e2f32a7e4，API/Coze/Desktop通过canonical sync固定同一完整source_commit并验证其源/生成字节。版本仍为1.0.0-local-candidate、release=false；交付工具元数据修正为none。实际逐仓提交/推送及部署摘要更新边界见18，不把本地D4当作tag/CI/merge或生产发布。
+  status: "PASS" # N/A when impact=none; otherwise NOT RUN | PASS
+  checks:
+    - repository: yijie-contracts
+      command: pnpm generate:safe; pnpm check-generated:safe; pnpm lint; pnpm test:workflow; check-breaking.sh at three full baselines
+      status: PASS
+      exit_code: 0
+      evidence: evidence/step3-checks.json
+      scope: Local candidate only; 7 focused tests; three applicable fixed baseline structural comparisons; existing wire retained.
+    - repository: yijie-api / yijie-coze / yijie-desktop
+      command: sync-workflow-consumer --check for all three; source-conformant focused provider/consumer tests
+      status: PASS
+      exit_code: 0
+      evidence: 06-step3-implementation.md
+      scope: Generated source/digests, normal API/Coze/native conformance; no immutable release pin or App E2E claim.
+
+external_authorizations:
+  paid_calls: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+  destructive_operations: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+  production_writes: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+
+implementation:
+  status: "complete"
+  real_entrypoint: >-
+    标准 pnpm tauri:dev 与 pnpm tauri:demo-fast:app → 工作流 → 同一 App 的真实 Coze 编辑器。第6步授权AX补齐dev后，修复键盘移动/连线入口，仅改Coze三个本地UI文件并重新冻结候选。最终dev与packaged独立新资源均完成创建、普通错误修正、键盘/鼠标编排、保存返回重开、试运行、两版内部发布、旧版执行、结果/历史、自然到期重连及正常停止重启读回。实际资格和边界见17。
+  mock_only: false
+
+verification:
+  status: "PASS" #当前候选真实dev/packaged统一D4
+  verified_at: "2026-09-13T04:45:14.218Z"
+  startup:
+    status: "PASS"
+    command_or_steps: "第3/4步实现后，以原厂Docker Desktop正常启动受控独立栈，现有canonical Desktop进入/workflows并检查真实readiness；停止遵循SIGTERM且无有限超时强杀回退。"
+    environment: "macOS arm64 / local / demo_fast；原厂Docker Desktop与Compose5.3.0、Engine29.6.1；专用六服务，最终正常停止保留卷。"
+    actual_result: "最终标准dev PID11566和packaged PID12569/18073均真实零登录启动。packaged在工作流栈正常停止时仍进入Chat，工作流页明确未就绪；canonical up后同一App显式重试读回真实列表。独立6服务healthy、宿主认证ready，两migration exit0。App和栈均正常退出，四卷保留；见17与final-normal-cleanup-and-candidate.json。"
+  real_smoke:
+    status: "PASS"
+    command_or_steps: "同一 fresh canonical run 完成 AC-001 至 AC-010：创建保存重开→试运行→内部发布→固定版本执行→结果/历史→正常停止重开。"
+    environment: "独立 FEAT-153 synthetic 数据，三节点普通文本处理；无模型、ERP、平台或付费请求。"
+    actual_result: "最终固定候选新建DEV 7684864630077784064与APP 7684868190886690816；每个资源2内部版本、3次成功运行、3节点2条边。键盘移动/连接与鼠标路径、保存返回重开、旧v0.0.1输出、结果和历史均由真实App完成。正常App/栈重启后，两资源完整workflow/canvas/history/runs/receipts相等；PID18073实际再次读回两个资源和旧运行结果。最终revision分别7684866728114782208、7684870673625251840。"
+  representative_failure:
+    status: "PASS"
+    command_or_steps: "普通输入校验错误→用户修正→真实试运行成功；正常服务未 ready 时提示并在正常启动后显式重试，结果未知先查询。"
+    environment: "同一 local synthetic 工作流；不强杀、不篡改 binary、不破坏权限、不构造危险归档或攻击 fixture。"
+    actual_result: "同一新候选两入口均经历普通未完成图invalid_draft，真实修正后成功试运行/发布；当前revision未经试运行不能发布。未保存内容自然300秒到期后保留且编辑区inert，显式重连再保存；未保存切Chat可Tab/Enter取消并保留内容/路由/标题。packaged服务未ready后正常up与显式重试成功。未注入延迟、故障或攻击。"
+  focused_checks:
+    - repository: yijie-coze
+      command: node scripts/yijie/workflow-editor.mjs build
+      status: PASS
+      exit_code: 0
+      actual_result: "Current three-file keyboard fix: tsc and Rsbuild succeeded; six assets, reviewed manifest2120725211a538abeb5ca1efbb1c192f6a2e0368dbee031c06935e021744f989"
+      artifact: evidence/step6-d4-keyboard-20260913-1153/candidate-freeze.json
+    - repository: yijie-coze
+      command: node --test scripts/yijie/workflow-editor-state.test.mjs scripts/yijie/workflow-editor-bridge.test.mjs scripts/yijie/workflow-editor-run.test.mjs frontend/apps/workflow-local/src/initial-canvas-fit.test.mjs
+      status: PASS
+      exit_code: 0
+      actual_result: 21 ordinary tests passed on final candidate; formal command lists four existing files
+      artifact: evidence/step6-d4-keyboard-20260913-1153/final-editor-tests.json
+    - repository: yijie-coze
+      command: make lint test
+      status: PASS
+      exit_code: 0
+      actual_result: 15297 unchanged source files,6 preexisting missing,2 declared overlays; not upstream test suite
+      artifact: evidence/step6-d4-keyboard-20260913-1153/candidate-freeze.json
+    - repository: yijie-coze
+      command: node scripts/yijie/workflow-editor.mjs check
+      status: PASS
+      exit_code: 0
+      actual_result: Bounded manifest, source and Contracts lock verified
+      artifact: evidence/step6-d4-keyboard-20260913-1153/ready-build-provenance.json
+    - repository: yijie-contracts
+      command: make workflow-check workflow-test
+      status: PASS
+      exit_code: 0
+      actual_result: 11 ordinary tests;41 validators; source lock unchanged in final candidate
+      artifact: evidence/step6-d4-20260913-1041/engineering-checks.json
+    - repository: yijie-desktop
+      command: pnpm exec vitest run src/router/workflow-navigation.test.ts src/pages/workflows/use-workflow-workspace.test.ts src/pages/workflows/use-workflow-runs.test.ts src/components/workflows/WorkflowLocalWorkspace.test.ts --maxWorkers=4
+      status: PASS
+      exit_code: 0
+      actual_result: 16 UI/state tests passed this qualification; Desktop candidate unchanged
+      artifact: evidence/step6-d4-20260913-1041/engineering-checks.json
+    - repository: yijie-desktop/src-tauri
+      command: "cargo test --lib workflows::"
+      status: PASS
+      exit_code: 0
+      actual_result: 13 native tests passed this qualification; normal pending-open/close and monotonic expiry; no attack/fault fixtures
+      artifact: evidence/step6-d4-20260913-1041/engineering-checks.json
+    - repository: yijie-api
+      command: make workflow-test
+      status: PASS
+      exit_code: 0
+      actual_result: Ordinary targeted Go race tests passed; API candidate unchanged
+      artifact: evidence/step6-d4-20260913-1041/engineering-checks.json
+    - repository: yijie-coze
+      command: make workflow-test
+      status: PASS
+      exit_code: 0
+      actual_result: Four ordinary Go package tests passed; backend source unchanged by three-file UI fix
+      artifact: evidence/step6-d4-20260913-1041/engineering-checks.json
+    - repository: yijie-infra
+      command: make workflow-check
+      status: PASS
+      exit_code: 0
+      actual_result: 13 normal static tests passed; Infra candidate unchanged
+      artifact: evidence/step6-d4-20260913-1041/engineering-checks.json
+  artifacts:
+    - 13-unified-d4-qualification.md
+    - 14-cross-repository-delivery-order.md
+    - 18-git-delivery.md
+    - evidence/step6-d4-20260913-1041/candidate-freeze.json
+    - evidence/step6-d4-20260913-1041/engineering-checks.json
+    - evidence/step6-d4-20260913-1041/accessibility-source-review.json
+    - evidence/step6-d4-20260913-1041/dev-start-and-public-scan.json
+    - 12-full-app-theme-size-qualification.md
+    - evidence/step5-full-app-20260913/qualification-checks.json
+    - evidence/step5-full-app-20260913/final-app-retest.json
+    - evidence/step5-full-app-20260913/normal-cleanup.json
+    - evidence/step5-full-app-20260913/b-ui-matrix.json
+    - evidence/step5-full-app-20260913/b-cross-database-and-session.json
+    - evidence/step5-full-app-20260913/normal-reopen-readback.json
+    - evidence/step5-full-app-20260913/final-candidate-and-public-scan.json
+    - evidence/step5-full-app-20260913/workspace-final.json
+    - evidence/step5-full-app-20260913/dev-control-blocker.json
+    - 11-step5-full-workflow-product.md
+    - evidence/step5-full-product/implementation-checks.json
+    - evidence/step5-full-product/workspace-final.json
+    - evidence/step5-full-product-ui-review.md
+    - evidence/step5-initial-fit-readonly-review.md
+    - evidence/step5-full-product/workspace-before.json
+    - evidence/step5-full-product/stack-build-and-public-scan.json
+    - evidence/step5-full-product/prior-packaged-reopen-readonly.json
+    - evidence/step5-full-product/ui-blocker-and-retention.json
+    - evidence/step5-full-product/normal-cleanup.json
+    - evidence/step5-full-product-api-audit.md
+    - 10-step5-real-app-qualification.md
+    - evidence/step5-real-app/dev-native-close-confirmed.json
+    - evidence/step5-real-app/dev-final-db-readonly.json
+    - evidence/step5-real-app/packaged-final-db-readonly.json
+    - evidence/step5-real-app/packaged-ui-and-close.json
+    - evidence/step5-real-app/packaged-candidate-and-public-scan.json
+    - evidence/step5-real-app/workspace-final.json
+    - evidence/step5-real-app/normal-cleanup.json
+    - evidence/step5-real-app/qualification-checks.json
+    - 09-step5-headless-progress.md
+    - evidence/step5-headless-editor-review.md
+    - evidence/step5-api-session-natural.json
+    - evidence/step5-api-session-provenance.json
+    - evidence/step5-packaged-build.json
+    - evidence/step5-dev-normal-quit.json
+    - evidence/step5-headless-stack-ready.json
+    - evidence/step5-headless-final-artifacts.json
+    - evidence/step5-headless-normal-cleanup.json
+    - evidence/step5-headless-checks.json
+    - 08-step5-desktop-integration.md
+    - evidence/step5-editor-build-review.md
+    - evidence/step5-editor-build.json
+    - evidence/step5-editor-stack-ready.json
+    - evidence/step5-dev-start-and-static.json
+    - evidence/step5-desktop-ui-tests.md
+    - evidence/step5-infra-editor-overlay.md
+    - evidence/step5-desktop-native-launcher-audit.md
+    - 03-pre-integration-audit.md
+    - evidence/coze-audit.md
+    - evidence/desktop-audit.md
+    - evidence/boundaries-audit.md
+    - evidence/step1-verification.json
+    - 05-local-integration-design.md
+    - evidence/step2-decision-record.json
+    - evidence/step2-checks.json
+    - evidence/step2-review.json
+    - 06-step3-implementation.md
+    - evidence/step3-checks.json
+    - evidence/step3-workspace-review.json
+    - evidence/step3-api-implementation.md
+    - evidence/step3-coze-focused.txt
+    - evidence/step3-coze-race.txt
+    - evidence/step3-desktop-native-tests.txt
+    - 07-step4-local-stack.md
+    - evidence/step4-api-receipt-semantic-fix.md
+    - evidence/step4-http-final.json
+    - evidence/step4-mysql-final.json
+    - evidence/step4-mysql-cas-final.json
+    - evidence/step4-postgres-final.txt
+    - evidence/step4-reopen-runtime.json
+    - evidence/step4-mysql-reopen.json
+    - evidence/step4-final-cleanup.json
+    - evidence/step4-infra-review.md
+    - evidence/step4-final-coze-checks.txt
+    - evidence/step4-final-coze-race.txt
+    - evidence/step4-final-desktop-checks.md
+    - evidence/step4-final-workspace-review.json
+    - evidence/step4-governance-checks.json
+    - 16-keyboard-canvas-completion.md
+    - 17-d4-final-qualification.md
+    - evidence/step6-d4-keyboard-20260913-1153/candidate-freeze.json
+    - evidence/step6-d4-keyboard-20260913-1153/restart-api-equality.json
+    - evidence/step6-d4-keyboard-20260913-1153/app-restart-native-close.json
+    - evidence/step6-d4-keyboard-20260913-1153/final-normal-cleanup-and-candidate.json
+  diff_review:
+    status: PASS
+    summary: 当前最终候选自审与摘要复核完成。收口新增仅Coze本地UI三文件：键盘移动/具名连接按钮、焦点/错误关联与提示，仍使用同一WorkflowDocument和既有canvas/wire，无新服务/原生权限。四个其他候选、十二仓身份与受保护设计文件不变；Coze6份原缺失保留，15297上游文件保持、2声明overlay。运行时实测与来源/交付顺序见17和14；不伪称独立人工审查或已提交。
+  known_limitations:
+    - 本地demo_fast D4通过，不代表DP、production_hardened、发布tag、CI/merge或公网/生产就绪。用户已授权Git交付；各仓实际commit/push和Coze远端状态见18。上游origin禁止推送本地适配。跨仓顺序见14。
+    - 首次打开中的取消在正常快速响应及一次有界AX观察中未命中，真实取消点击未执行；按13预先约定单列，普通UI/native pending-open时序测试PASS。无延迟或故障注入，不伪称真实点击通过。
+    - 新增控件与核心键盘编排、亮暗两尺寸可用；不声明全页axe/WCAG认证。原白底青柠1.28:1对比度例外按用户要求保留；disabled透明度和所有边框/端口未作全量对比度认证。
+    - 机器凭据扫描覆盖实际AX、dev5个公开HTTP资源、最终49公开文件和真实native binary；未进行heap或MessagePort dump。E隔离结合源契约/native投影、CSP及真实自然生命周期验证；不把秘密注入页面测试。
+    - 旧Chat合成记录只读打开后原DEMO_FAST_OK回答仍在；该旧记录同时显示删除尚未完成提示，本轮未触发删除/修复，也未发送Chat消息，不宣称Chat全量验收或消除此独立历史状态。
+    - 运行中缩窗保留当前视口，可手动适应画布；不承诺每次尺寸变化都自动重置。中间被macOS钳制的1346尺寸截图不计目标尺寸通过，最终1440x900和1180x760均有实际几何与原尺寸PNG。
+    - 历史API回执和旧诊断数据保持原事实，不补写或改写。已完成操作若后续草稿改变，完整Workflow回放可返回operation_unknown；独立receipt仍为真实completed，不将后来的画布冒充旧结果。
+    - Coze与依赖仅internal；API另连专用edge支持Docker loopback发布，不能宣称物理禁止API全部出站。实际业务仅固定Coze地址，无模型/平台/通用代理。
+    - 历史攻击、危险归档、权限破坏、强杀和Runtime篡改测试依用户长期规则未执行；只声称安全focused范围，不声称全仓通过。Desktop旧Chat tests-target clippy问题没有在本需求改写。
+    - 模型/商家/平台/付费调用为0；不实现具体ERP节点、长任务/在途恢复、生产多租户、数据删除或schema降级。
+    - 凭据助手历史等待记录保留；最终没有残留，不将其消失描述为强杀、反复信号或Keychain修复。App/栈正常退出，四数据卷保留，原厂Docker正常停止。
+
+public_readiness:
+  required: false
+  status: "not_applicable" # N/A | pending | PASS
+  checks: []
+  external_smoke:
+    status: "NOT RUN"
+    command_or_steps: "不执行外部 smoke：FEAT-153 exposure 固定 local，公网和生产不在范围。"
+    actual_result: "NOT RUN：没有公开部署、真实用户/商家或平台调用；模型和付费预算均为 0。"
+
+documents:
+  brief: "00-feature-brief.md"
+  delivery_log: "01-delivery-log.md"
+  verification: "02-verification.md"

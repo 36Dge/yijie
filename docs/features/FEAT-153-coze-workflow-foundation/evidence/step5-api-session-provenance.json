@@ -1,0 +1,57 @@
+{
+  "at": "2026-09-12T08:25:53.048022+00:00",
+  "run_epoch": "8f00e418-a7e5-47a5-a945-f60c9285c9e5",
+  "running_built_images": {
+    "api": {
+      "image_id": "sha256:b66cb4f713bc842cb7368e1d06f6b02a03a857c5b6e6cf494b30e344c68e6fb6",
+      "source_digest": "f3d95918950fe29b59c485780ec33459aaf16d50f08c2925aa543186d4bcf9a9",
+      "repository": "yijie-api",
+      "local_tag": "yijie-local/feat153-api:f3d95918950fe29b",
+      "go_image": "golang:1.26.5-bookworm@sha256:53eeac89074db483fdf0ab3be1df32bf6e47562263d2d0d6baa7f26acb4957dd"
+    },
+    "api-test": {
+      "image_id": "sha256:69a19f0160142aed31e74fb4a9170efe7911e761788040bc6406b9c1dd8e952c",
+      "source_digest": "f3d95918950fe29b59c485780ec33459aaf16d50f08c2925aa543186d4bcf9a9",
+      "repository": "yijie-api",
+      "local_tag": "yijie-local/feat153-api-test:f3d95918950fe29b",
+      "go_image": "golang:1.26.5-bookworm@sha256:53eeac89074db483fdf0ab3be1df32bf6e47562263d2d0d6baa7f26acb4957dd"
+    },
+    "coze": {
+      "image_id": "sha256:5879bfca4fcbbb57cfba271eeeff61f881bd11fc490dc60462af05f111efd19e",
+      "source_digest": "03bb8649c1ee408b7f44071200c5574011151f4b33c47a89b58eded8781246f2",
+      "repository": "yijie-coze",
+      "local_tag": "yijie-local/feat153-coze:03bb8649c1ee408b",
+      "go_image": "golang:1.26.5-bookworm@sha256:53eeac89074db483fdf0ab3be1df32bf6e47562263d2d0d6baa7f26acb4957dd"
+    }
+  },
+  "running_editor": {
+    "schema_version": 1,
+    "bundle_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/dist",
+    "manifest_sha256": "dc5c1f979d4475ff4210d74c3312910ce6384888522b48de9c110c325e740b48",
+    "source_commit": "fefb05ff27be1da939612fbf9faf5db62583b8ae",
+    "manifest_source_digest": "03bb8649c1ee408b7f44071200c5574011151f4b33c47a89b58eded8781246f2",
+    "coze_candidate": "03bb8649c1ee408b7f44071200c5574011151f4b33c47a89b58eded8781246f2",
+    "contracts_source_lock_sha256": "f800e51eb4bd10f574a8ac34222293de0d080c72806ffbb072626e724ebf23fd",
+    "consumer_lock_sha256": {
+      "api": "45025097b4af2a665e94d90915ca3410bbad317e7869b8ff31bfd03dd688178d",
+      "coze": "63959748561bbca5b6390fcef4ccb6084b3b660943fde5bd166d7b751f19c6f3",
+      "desktop": "ee1d038eeedee98af520a3750db93165218399546f550b97f84c42a314dedff8"
+    },
+    "deployment_schema_sha256": "d3016433e02f492493df3cdcbaacfe054e0de27afd5c61a115b4555f4b586aae",
+    "file_count": 6,
+    "total_asset_bytes": 3464103,
+    "entry": {
+      "path": "index.html",
+      "sha256": "00bc80ddbcd1107bebf5388cb89cd92cae1e850c0a694f11443a688487441b05",
+      "bytes": 545,
+      "content_type": "text/html; charset=utf-8"
+    }
+  },
+  "qualifier_sha256": "6ab9c85db0928a0f7d8a5a7484288af2246d3600841106e4c42948eb6fc28835",
+  "qualifier_sources": {
+    "yijie-api/cmd/workflow-local-qualify/session_lifecycle_test.go": "f5f5ccd6b4199ea4b30a41a8031693cead87c3e72f55074d9efa426c2c4263aa",
+    "yijie-api/cmd/workflow-local-qualify/session_lifecycle.go": "7a4a6e45e3ae06f550c6842b05b665a5ec92e35c67d2f53d13ba05ac1cf07317",
+    "yijie-api/cmd/workflow-local-qualify/main.go": "d210ceb82659e5521d75621619befa0333139381a51373a94bcbc949f441e3bf"
+  },
+  "scope": "new session-only CLI against already running exact provider images; no server source/SQL changes; current UI edits are not deployed yet"
+}

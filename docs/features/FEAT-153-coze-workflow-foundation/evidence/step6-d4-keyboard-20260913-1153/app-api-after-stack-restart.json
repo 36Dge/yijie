@@ -1,0 +1,179 @@
+{
+  "observed_at_ms": 1789273862755,
+  "run_epoch": "0cb8e640-7ddc-4870-bdfd-8e1353cbe0e4",
+  "workflow": {
+    "canvas": "{\"edges\":[{\"sourceNodeID\":\"100001\",\"targetNodeID\":\"200001\"},{\"sourceNodeID\":\"200001\",\"targetNodeID\":\"900001\"}],\"nodes\":[{\"data\":{\"nodeMeta\":{\"title\":\"开始\"},\"outputs\":[{\"name\":\"input\",\"required\":true,\"type\":\"string\"}]},\"id\":\"100001\",\"meta\":{\"position\":{\"x\":80,\"y\":160}},\"type\":\"1\"},{\"data\":{\"inputs\":{\"concatParams\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":\"KEY APP 到期稿：{{input}}\",\"type\":\"literal\"}},\"name\":\"concatResult\"}],\"inputParameters\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":{\"blockID\":\"100001\",\"name\":\"input\",\"source\":\"block-output\"},\"type\":\"ref\"}},\"name\":\"input\"}],\"method\":\"concat\"},\"nodeMeta\":{\"title\":\"文本处理\"},\"outputs\":[{\"name\":\"output\",\"type\":\"string\"}]},\"id\":\"200001\",\"meta\":{\"position\":{\"x\":447.2682926829268,\"y\":195.198606271777}},\"type\":\"15\"},{\"data\":{\"inputs\":{\"inputParameters\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":{\"blockID\":\"200001\",\"name\":\"output\",\"source\":\"block-output\"},\"type\":\"ref\"}},\"name\":\"result\"}],\"terminatePlan\":\"returnVariables\"},\"nodeMeta\":{\"title\":\"结束\"}},\"id\":\"900001\",\"meta\":{\"position\":{\"x\":760,\"y\":160}},\"type\":\"2\"}]}",
+    "name": "FEAT-153 D4 KEY APP 20260913-1153",
+    "published_version": "v0.0.2",
+    "revision": "7684870673625251840",
+    "runnable": true,
+    "updated_at_ms": 1789273385346,
+    "workflow_id": "7684868190886690816"
+  },
+  "canvas_sha256": "77f1fc4d60fb0fa324dc53534373583591d3f5c5c463bdc49798e07ffa10d003",
+  "history": {
+    "items": [
+      {
+        "finished_at_ms": 1789273040825,
+        "mode": "release",
+        "operation_id": "01a098fb-e7a4-7bf0-91bc-738e3b12ddc6",
+        "revision": "7684868623487205376",
+        "run_id": "7684869193811886080",
+        "started_at_ms": 1789273040812,
+        "state": "succeeded",
+        "terminal": true,
+        "version": "v0.0.1",
+        "workflow_id": "7684868190886690816"
+      },
+      {
+        "finished_at_ms": 1789272992605,
+        "mode": "debug",
+        "operation_id": "01a098fb-2b42-7fa3-ad5d-e9a0cef31a8d",
+        "revision": "7684868964807081984",
+        "run_id": "7684868986713931776",
+        "started_at_ms": 1789272992589,
+        "state": "succeeded",
+        "terminal": true,
+        "workflow_id": "7684868190886690816"
+      },
+      {
+        "finished_at_ms": 1789272967723,
+        "mode": "debug",
+        "operation_id": "01a098fa-ca10-7a81-8811-8c88e3212c85",
+        "revision": "7684868623487205376",
+        "run_id": "7684868879838871552",
+        "started_at_ms": 1789272967708,
+        "state": "succeeded",
+        "terminal": true,
+        "workflow_id": "7684868190886690816"
+      }
+    ]
+  },
+  "runs": [
+    {
+      "finished_at_ms": 1789273040825,
+      "input": {
+        "input": "固定版验收"
+      },
+      "mode": "release",
+      "nodes": [
+        {
+          "node_id": "100001",
+          "output": "固定版验收",
+          "state": "3"
+        },
+        {
+          "node_id": "200001",
+          "output": "KEY APP 一：固定版验收",
+          "state": "3"
+        },
+        {
+          "node_id": "900001",
+          "output": "KEY APP 一：固定版验收",
+          "state": "3"
+        }
+      ],
+      "operation_id": "01a098fb-e7a4-7bf0-91bc-738e3b12ddc6",
+      "output": "KEY APP 一：固定版验收",
+      "revision": "7684868623487205376",
+      "run_id": "7684869193811886080",
+      "started_at_ms": 1789273040812,
+      "state": "succeeded",
+      "terminal": true,
+      "version": "v0.0.1",
+      "workflow_id": "7684868190886690816"
+    },
+    {
+      "finished_at_ms": 1789272992605,
+      "input": {
+        "input": "键盘验收"
+      },
+      "mode": "debug",
+      "nodes": [
+        {
+          "node_id": "100001",
+          "output": "键盘验收",
+          "state": "3"
+        },
+        {
+          "node_id": "200001",
+          "output": "KEY APP 二：键盘验收",
+          "state": "3"
+        },
+        {
+          "node_id": "900001",
+          "output": "KEY APP 二：键盘验收",
+          "state": "3"
+        }
+      ],
+      "operation_id": "01a098fb-2b42-7fa3-ad5d-e9a0cef31a8d",
+      "output": "KEY APP 二：键盘验收",
+      "revision": "7684868964807081984",
+      "run_id": "7684868986713931776",
+      "started_at_ms": 1789272992589,
+      "state": "succeeded",
+      "terminal": true,
+      "workflow_id": "7684868190886690816"
+    },
+    {
+      "finished_at_ms": 1789272967723,
+      "input": {
+        "input": "键盘验收"
+      },
+      "mode": "debug",
+      "nodes": [
+        {
+          "node_id": "100001",
+          "output": "键盘验收",
+          "state": "3"
+        },
+        {
+          "node_id": "200001",
+          "output": "KEY APP 一：键盘验收",
+          "state": "3"
+        },
+        {
+          "node_id": "900001",
+          "output": "KEY APP 一：键盘验收",
+          "state": "3"
+        }
+      ],
+      "operation_id": "01a098fa-ca10-7a81-8811-8c88e3212c85",
+      "output": "KEY APP 一：键盘验收",
+      "revision": "7684868623487205376",
+      "run_id": "7684868879838871552",
+      "started_at_ms": 1789272967708,
+      "state": "succeeded",
+      "terminal": true,
+      "workflow_id": "7684868190886690816"
+    }
+  ],
+  "receipts": [
+    {
+      "kind": "run",
+      "operation_id": "01a098fb-e7a4-7bf0-91bc-738e3b12ddc6",
+      "phase": "completed",
+      "revision": "7684868623487205376",
+      "run_id": "7684869193811886080",
+      "version": "v0.0.1",
+      "workflow_id": "7684868190886690816"
+    },
+    {
+      "kind": "test",
+      "operation_id": "01a098fb-2b42-7fa3-ad5d-e9a0cef31a8d",
+      "phase": "completed",
+      "revision": "7684868964807081984",
+      "run_id": "7684868986713931776",
+      "workflow_id": "7684868190886690816"
+    },
+    {
+      "kind": "test",
+      "operation_id": "01a098fa-ca10-7a81-8811-8c88e3212c85",
+      "phase": "completed",
+      "revision": "7684868623487205376",
+      "run_id": "7684868879838871552",
+      "workflow_id": "7684868190886690816"
+    }
+  ],
+  "source": "Bounded read-only API; all create/save/test/publish/run actions were performed in the real App through CUA in the real packaged App. Native AX/ScreenCaptureKit only observe and set the two approved window sizes."
+}

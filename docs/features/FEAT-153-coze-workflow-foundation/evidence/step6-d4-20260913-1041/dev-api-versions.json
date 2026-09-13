@@ -1,0 +1,179 @@
+{
+  "observed_at_ms": 1789271068178,
+  "run_epoch": "97c08010-8e97-45e0-b044-67d793281b91",
+  "workflow": {
+    "canvas": "{\"edges\":[{\"sourceNodeID\":\"100001\",\"targetNodeID\":\"200001\"},{\"sourceNodeID\":\"200001\",\"targetNodeID\":\"900001\"}],\"nodes\":[{\"data\":{\"nodeMeta\":{\"title\":\"开始\"},\"outputs\":[{\"name\":\"input\",\"required\":true,\"type\":\"string\"}]},\"id\":\"100001\",\"meta\":{\"position\":{\"x\":80,\"y\":160}},\"type\":\"1\"},{\"data\":{\"inputs\":{\"concatParams\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":\"DEV D4 二：{{input}}\",\"type\":\"literal\"}},\"name\":\"concatResult\"}],\"inputParameters\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":{\"blockID\":\"100001\",\"name\":\"input\",\"source\":\"block-output\"},\"type\":\"ref\"}},\"name\":\"input\"}],\"method\":\"concat\"},\"nodeMeta\":{\"title\":\"文本处理\"},\"outputs\":[{\"name\":\"output\",\"type\":\"string\"}]},\"id\":\"200001\",\"meta\":{\"position\":{\"x\":405.39325842696627,\"y\":121.79775280898876}},\"type\":\"15\"},{\"data\":{\"inputs\":{\"inputParameters\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":{\"blockID\":\"200001\",\"name\":\"output\",\"source\":\"block-output\"},\"type\":\"ref\"}},\"name\":\"result\"}],\"terminatePlan\":\"returnVariables\"},\"nodeMeta\":{\"title\":\"结束\"}},\"id\":\"900001\",\"meta\":{\"position\":{\"x\":760,\"y\":160}},\"type\":\"2\"}]}",
+    "name": "FEAT-153 D4 DEV 20260913-1041",
+    "published_version": "v0.0.2",
+    "revision": "7684860110132215808",
+    "runnable": true,
+    "updated_at_ms": 1789270961244,
+    "workflow_id": "7684858221588119552"
+  },
+  "canvas_sha256": "712af52d950574c4c4876c13a5424d22eabf3e73439aa9d28e45b6a547900774",
+  "history": {
+    "items": [
+      {
+        "finished_at_ms": 1789271054428,
+        "mode": "release",
+        "operation_id": "01a098dd-9843-7391-9b34-f8b71d16f40a",
+        "revision": "7684859241240199168",
+        "run_id": "7684860662341697536",
+        "started_at_ms": 1789271054416,
+        "state": "succeeded",
+        "terminal": true,
+        "version": "v0.0.1",
+        "workflow_id": "7684858221588119552"
+      },
+      {
+        "finished_at_ms": 1789270936671,
+        "mode": "debug",
+        "operation_id": "01a098db-cc47-79d2-993b-b54cbcb096b0",
+        "revision": "7684860110132215808",
+        "run_id": "7684860156550578176",
+        "started_at_ms": 1789270936658,
+        "state": "succeeded",
+        "terminal": true,
+        "workflow_id": "7684858221588119552"
+      },
+      {
+        "finished_at_ms": 1789270849504,
+        "mode": "debug",
+        "operation_id": "01a098da-77c4-7c32-b163-e2070f71626a",
+        "revision": "7684859241240199168",
+        "run_id": "7684859782179586048",
+        "started_at_ms": 1789270849489,
+        "state": "succeeded",
+        "terminal": true,
+        "workflow_id": "7684858221588119552"
+      }
+    ]
+  },
+  "runs": [
+    {
+      "finished_at_ms": 1789271054428,
+      "input": {
+        "input": "固定版验收"
+      },
+      "mode": "release",
+      "nodes": [
+        {
+          "node_id": "100001",
+          "output": "固定版验收",
+          "state": "3"
+        },
+        {
+          "node_id": "200001",
+          "output": "DEV D4 一：固定版验收",
+          "state": "3"
+        },
+        {
+          "node_id": "900001",
+          "output": "DEV D4 一：固定版验收",
+          "state": "3"
+        }
+      ],
+      "operation_id": "01a098dd-9843-7391-9b34-f8b71d16f40a",
+      "output": "DEV D4 一：固定版验收",
+      "revision": "7684859241240199168",
+      "run_id": "7684860662341697536",
+      "started_at_ms": 1789271054416,
+      "state": "succeeded",
+      "terminal": true,
+      "version": "v0.0.1",
+      "workflow_id": "7684858221588119552"
+    },
+    {
+      "finished_at_ms": 1789270936671,
+      "input": {
+        "input": "验收文本"
+      },
+      "mode": "debug",
+      "nodes": [
+        {
+          "node_id": "100001",
+          "output": "验收文本",
+          "state": "3"
+        },
+        {
+          "node_id": "200001",
+          "output": "DEV D4 二：验收文本",
+          "state": "3"
+        },
+        {
+          "node_id": "900001",
+          "output": "DEV D4 二：验收文本",
+          "state": "3"
+        }
+      ],
+      "operation_id": "01a098db-cc47-79d2-993b-b54cbcb096b0",
+      "output": "DEV D4 二：验收文本",
+      "revision": "7684860110132215808",
+      "run_id": "7684860156550578176",
+      "started_at_ms": 1789270936658,
+      "state": "succeeded",
+      "terminal": true,
+      "workflow_id": "7684858221588119552"
+    },
+    {
+      "finished_at_ms": 1789270849504,
+      "input": {
+        "input": "验收文本"
+      },
+      "mode": "debug",
+      "nodes": [
+        {
+          "node_id": "100001",
+          "output": "验收文本",
+          "state": "3"
+        },
+        {
+          "node_id": "200001",
+          "output": "DEV D4 一：验收文本",
+          "state": "3"
+        },
+        {
+          "node_id": "900001",
+          "output": "DEV D4 一：验收文本",
+          "state": "3"
+        }
+      ],
+      "operation_id": "01a098da-77c4-7c32-b163-e2070f71626a",
+      "output": "DEV D4 一：验收文本",
+      "revision": "7684859241240199168",
+      "run_id": "7684859782179586048",
+      "started_at_ms": 1789270849489,
+      "state": "succeeded",
+      "terminal": true,
+      "workflow_id": "7684858221588119552"
+    }
+  ],
+  "receipts": [
+    {
+      "kind": "run",
+      "operation_id": "01a098dd-9843-7391-9b34-f8b71d16f40a",
+      "phase": "completed",
+      "revision": "7684859241240199168",
+      "run_id": "7684860662341697536",
+      "version": "v0.0.1",
+      "workflow_id": "7684858221588119552"
+    },
+    {
+      "kind": "test",
+      "operation_id": "01a098db-cc47-79d2-993b-b54cbcb096b0",
+      "phase": "completed",
+      "revision": "7684860110132215808",
+      "run_id": "7684860156550578176",
+      "workflow_id": "7684858221588119552"
+    },
+    {
+      "kind": "test",
+      "operation_id": "01a098da-77c4-7c32-b163-e2070f71626a",
+      "phase": "completed",
+      "revision": "7684859241240199168",
+      "run_id": "7684859782179586048",
+      "workflow_id": "7684858221588119552"
+    }
+  ],
+  "source": "Bounded read-only API; all create/save/test/publish/run actions were performed in the real App through user-authorized macOS AX/CGEvent."
+}

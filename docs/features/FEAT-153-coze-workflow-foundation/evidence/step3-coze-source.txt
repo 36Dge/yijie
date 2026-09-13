@@ -1,0 +1,6 @@
+python3 scripts/yijie/check-integration.py governance
+PASS: local source identity and Yijie onboarding governance; application lint NOT RUN
+python3 scripts/yijie/check-integration.py source
+PASS: local source identity and Yijie onboarding governance; application lint NOT RUN
+PASS: 15297 unchanged source files; 6 preserved deletions; 2 declared integration overlay(s)
+Scope: source preservation only. Coze backend/frontend tests and real workflow execution NOT RUN.

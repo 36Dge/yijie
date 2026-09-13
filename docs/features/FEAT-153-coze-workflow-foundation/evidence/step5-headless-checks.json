@@ -1,0 +1,90 @@
+{
+  "at": "2026-09-12T08:45:51.866287+00:00",
+  "user_authorization": "Skip unlocking-dependent verification while away; continue independent FEAT-153 work",
+  "contract_impact": "semantic; existing source/wire unchanged",
+  "checks": {
+    "coze_state_and_bridge_tests": {
+      "pass": 11,
+      "total": 11
+    },
+    "coze_typescript_rsbuild_manifest": "PASS",
+    "coze_source_governance": "PASS: 15297 unchanged upstream source files, 6 preserved missing files, 2 registered integration overlays",
+    "desktop_lint_typescript": "PASS",
+    "desktop_workflow_tests": {
+      "pass": 12,
+      "total": 12
+    },
+    "desktop_foundation_static": {
+      "pass": 6,
+      "total": 6
+    },
+    "desktop_packaged_standard_build": "PASS",
+    "desktop_docs_build": "PASS",
+    "api_qualifier_tests": {
+      "top_level_pass": 4,
+      "mode_subcases_pass": 3
+    },
+    "api_qualifier_race_vet_build": "PASS",
+    "api_natural_session": "PASS: 301000 milliseconds",
+    "dev_packaged_normal_process_exit": "PASS: both launchers exit 0 and owned children gone",
+    "latest_static_host_and_reopen": "PASS"
+  },
+  "preexisting_desktop_files": [
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/docs/design/docs/design/05-patterns/16-feat-151-workflow-showcase.md",
+      "before": "0bbf61011611dc6f44d5844068b35e559de9788a0f3839f0df75b01f5ec2570b",
+      "current": "0bbf61011611dc6f44d5844068b35e559de9788a0f3839f0df75b01f5ec2570b",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src/components/workflows/RecommendedWorkflowCard.vue",
+      "before": "3ededb7050fb50450e72daed9592a9ec9af631d9e51450cede893780bd600c8a",
+      "current": "3ededb7050fb50450e72daed9592a9ec9af631d9e51450cede893780bd600c8a",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src/components/workflows/WorkflowSummaryCard.vue",
+      "before": "fd235745a7adce5683e674b27bf97aed36b51fa24530a795c0bf90b6e026f955",
+      "current": "fd235745a7adce5683e674b27bf97aed36b51fa24530a795c0bf90b6e026f955",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src/components/yijie/YjPageHeader.vue",
+      "before": "aa4b992cf54e4c3e7e33b523c9bb7a11a32e11f7bf13549ee796e78086bef564",
+      "current": "aa4b992cf54e4c3e7e33b523c9bb7a11a32e11f7bf13549ee796e78086bef564",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src/pages/workflows/WorkflowPage.test.ts",
+      "before": "d6d5bc37679e9aa8728157157bacc687153fbdd74c4daac94d2a41c3f58950e4",
+      "current": "d6d5bc37679e9aa8728157157bacc687153fbdd74c4daac94d2a41c3f58950e4",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src/pages/workflows/WorkflowPage.vue",
+      "before": "7f986634d6933f6cea9696a982d2362fb1aa3da1f52c65857e66ea8e0fcbf11e",
+      "current": "25a831cebb80179e31691818b8ecf51a92a6846cd17525abd320a4dca2e956bf",
+      "unchanged": false
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/docs/verification/workflow-interactions-and-lime-20260911.md",
+      "before": "e69a2073873d6f548011d149c83fe15245c98fddbab12eea953fdb95fba8799b",
+      "current": "e69a2073873d6f548011d149c83fe15245c98fddbab12eea953fdb95fba8799b",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src/components/workflows/workflow-showcase.css",
+      "before": "d0f20ab96f79b3771849220b61dfab622d7f270a01ff728b32529514d38540a4",
+      "current": "d0f20ab96f79b3771849220b61dfab622d7f270a01ff728b32529514d38540a4",
+      "unchanged": true
+    }
+  ],
+  "remaining": "Real WK/editor/visual/input qualification, then full product page, then fresh D4",
+  "runtime_safety": {
+    "force_kills": 0,
+    "attack_fixture_or_permission_damage": 0,
+    "model_platform_paid_calls": 0,
+    "commits_push_tags": 0
+  },
+  "docker_daemon_available": false
+}

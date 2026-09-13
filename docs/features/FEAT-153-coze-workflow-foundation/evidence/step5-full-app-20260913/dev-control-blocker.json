@@ -1,0 +1,33 @@
+{
+  "observed_at_ms": 1789230451754,
+  "launcher": "pnpm tauri:dev",
+  "app_pid": 18299,
+  "host_pid": 18396,
+  "runtime_pid": 18399,
+  "origin": "http://localhost:1420",
+  "startup_geometry": {
+    "inner_width": 1180,
+    "inner_height": 780,
+    "outer_width": 1180,
+    "outer_height": 780,
+    "scale_factor": 2
+  },
+  "ui_control": "NOT RUN",
+  "attempts": [
+    "CUA executable path: Invalid app",
+    "CUA bundle identifier: ambiguous historical bundles",
+    "CUA exact canonical package path: timeoutReached",
+    "CUA previous handle CmdQ: not active for target"
+  ],
+  "source_metadata_attempt": "Standard project Info.plist with original com.yijie.ai built through Tauri, did not resolve control; source file removed, running binary not replaced",
+  "requested_user_action": "Normal CmdQ for current dev instance; no force-stop or alternative UI technology",
+  "shutdown": "User confirmed normal CmdQ; canonical dev launcher exited zero",
+  "launcher_exit_code": 0,
+  "pids_gone": [
+    18299,
+    18396,
+    18399
+  ],
+  "final_source_info_plist_exists": false,
+  "normal_quit_observed_at_ms": 1789230558627
+}

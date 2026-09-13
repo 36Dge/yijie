@@ -1,0 +1,30 @@
+{
+  "recorded_at": "2026-09-13T04:51:40.018Z",
+  "qualification_id": "ea50e666-898c-4107-9568-10e3e3d63416",
+  "d4": "PASS",
+  "strict_D4": {
+    "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict --gate D4 docs/features/FEAT-153-coze-workflow-foundation",
+    "exit_code": 0,
+    "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，且 D4 范围与语义门禁通过。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。"
+  },
+  "claimed_feature_audit": {
+    "chunk_id": "692ea8",
+    "wall_time_seconds": 0.000003459,
+    "exit_code": 0,
+    "original_token_count": 40,
+    "output": "{\n  \"scope\": \"FEAT-153 only; actual claimed-feature validator, not a zero-package directory audit\",\n  \"schemaVersion\": 3,\n  \"errors\": [],\n  \"warnings\": []\n}\n"
+  },
+  "workspace_audit": {
+    "chunk_id": "084c15",
+    "wall_time_seconds": 1.17370475,
+    "exit_code": 0,
+    "original_token_count": 31,
+    "output": "{\"candidate_equal\": true, \"twelve_repo_identities_and_diff_checks\": true, \"protected_files\": true, \"report_links\": true}\n"
+  },
+  "initial_format_failure": {
+    "exit_code": 1,
+    "cause": "17 phase summaries lacked repository/command/exit_code required by D4. Historical records preserved; replaced focused_checks with actual command-backed records.",
+    "archive": "historical-focused-check-summaries.json"
+  },
+  "scope": "local demo_fast only; no Git, public, production or complete WCAG claim"
+}

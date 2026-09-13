@@ -1,0 +1,126 @@
+{
+  "observed_at_ms": 1789267927917,
+  "source_sha256": "f909d566c79c137a3c06297c98f39cb3499d8add4f1305466a001e10340bb650",
+  "method": "Declared local editor CSS palette arithmetic only; not computed browser styles or an axe scan",
+  "pairs": [
+    {
+      "theme": "light",
+      "foreground_token": "text-body",
+      "background_token": "bg-card",
+      "foreground": "#25282b",
+      "background": "#ffffff",
+      "ratio": 14.819,
+      "scope": "normal text"
+    },
+    {
+      "theme": "light",
+      "foreground_token": "text-secondary",
+      "background_token": "bg-card",
+      "foreground": "#51565d",
+      "background": "#ffffff",
+      "ratio": 7.397,
+      "scope": "labels and helper text"
+    },
+    {
+      "theme": "light",
+      "foreground_token": "on-brand",
+      "background_token": "brand-primary",
+      "foreground": "#25282b",
+      "background": "#c3f35b",
+      "ratio": 11.497,
+      "scope": "primary action text"
+    },
+    {
+      "theme": "light",
+      "foreground_token": "focus-ring",
+      "background_token": "bg-card",
+      "foreground": "#25282b",
+      "background": "#ffffff",
+      "ratio": 14.819,
+      "scope": "focus outline"
+    },
+    {
+      "theme": "light",
+      "foreground_token": "semantic-error-ink",
+      "background_token": "bg-card",
+      "foreground": "#b91c1c",
+      "background": "#ffffff",
+      "ratio": 6.47,
+      "scope": "error text"
+    },
+    {
+      "theme": "light",
+      "foreground_token": "semantic-warning-ink",
+      "background_token": "bg-card",
+      "foreground": "#92400e",
+      "background": "#ffffff",
+      "ratio": 7.09,
+      "scope": "dirty state"
+    },
+    {
+      "theme": "dark",
+      "foreground_token": "text-body",
+      "background_token": "bg-card",
+      "foreground": "#e6e9ed",
+      "background": "#25282b",
+      "ratio": 12.168,
+      "scope": "normal text"
+    },
+    {
+      "theme": "dark",
+      "foreground_token": "text-secondary",
+      "background_token": "bg-card",
+      "foreground": "#c2c7ce",
+      "background": "#25282b",
+      "ratio": 8.718,
+      "scope": "labels and helper text"
+    },
+    {
+      "theme": "dark",
+      "foreground_token": "on-brand",
+      "background_token": "brand-primary",
+      "foreground": "#25282b",
+      "background": "#c3f35b",
+      "ratio": 11.497,
+      "scope": "primary action text"
+    },
+    {
+      "theme": "dark",
+      "foreground_token": "focus-ring",
+      "background_token": "bg-card",
+      "foreground": "#f5f7fa",
+      "background": "#25282b",
+      "ratio": 13.808,
+      "scope": "focus outline"
+    },
+    {
+      "theme": "dark",
+      "foreground_token": "semantic-error-ink",
+      "background_token": "bg-card",
+      "foreground": "#fca5a5",
+      "background": "#25282b",
+      "ratio": 7.808,
+      "scope": "error text"
+    },
+    {
+      "theme": "dark",
+      "foreground_token": "semantic-warning-ink",
+      "background_token": "bg-card",
+      "foreground": "#fcd34d",
+      "background": "#25282b",
+      "ratio": 10.278,
+      "scope": "dirty state"
+    }
+  ],
+  "active_text_and_focus_pairs_meet_reference_thresholds": true,
+  "unfocused_border_ratios": {
+    "light": 1.265,
+    "dark": 1.6
+  },
+  "limits": [
+    "Disabled opacity, hover composite styles, connector ports and all visual component-boundary contrast not fully assessed by this arithmetic.",
+    "Native canvas node dragging and port connection are pointer-based in the local adapter; no local keyboard-only alternative is implemented here. Command/input keyboard behavior is a separate manual check.",
+    "Original white-on-lime/lime-on-white showcase contrast exception is preserved; no full-page axe or WCAG compliance claim."
+  ],
+  "actual_app_keyboard": "PENDING user/manual and subsequent packaged observations"
+}

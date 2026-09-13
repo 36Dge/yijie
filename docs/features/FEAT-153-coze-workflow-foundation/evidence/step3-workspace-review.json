@@ -1,0 +1,829 @@
+{
+  "checked_at": "2026-09-12T04:59:58.640258+00:00",
+  "repositories": [
+    {
+      "name": "yijie",
+      "head": "d59e1725f988df6f1f3fe1abbf0b4546ab419819",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie.git",
+      "status": [
+        "M AGENTS.md",
+        " M CODEOWNERS",
+        " M README.md",
+        " M docs/adr/README.md",
+        " M docs/architecture/000-overview.md",
+        " M docs/architecture/002-repo-strategy.md",
+        " M repos.yaml",
+        " M scripts/repo-manifest.mjs",
+        " M services/README.md",
+        " M tests/repo-manifest.test.mjs",
+        "?? docs/adr/ADR-0019-coze-workflow-foundation.md",
+        "?? docs/features/FEAT-153-coze-workflow-foundation/"
+      ]
+    },
+    {
+      "name": "yijie-admin-web",
+      "head": "d009cafccb112c098114c075d60f67ee5e0296d8",
+      "branch": "develop",
+      "origin": "https://github.com/36Dge/yijie-admin-web.git",
+      "status": []
+    },
+    {
+      "name": "yijie-agent-host",
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-agent-host.git",
+      "status": []
+    },
+    {
+      "name": "yijie-api",
+      "head": "f9d730a157bcb012a8fe178cbfebcd4ea27419fc",
+      "branch": "feat/feat-126-foundation-closure",
+      "origin": "https://github.com/36Dge/yijie-api.git",
+      "status": [
+        "M AGENTS.md",
+        " M Makefile",
+        " M README.md",
+        "?? cmd/workflow-local-migrate/",
+        "?? cmd/workflow-local-server/",
+        "?? config/workflow-local-runtime.schema.json",
+        "?? contracts/workflow-local.lock.json",
+        "?? contracts/workflow-local.schema.json",
+        "?? contracts/workflow_schema.go",
+        "?? docs/workflow-local.md",
+        "?? internal/contracts/workflowlocal/",
+        "?? internal/modules/workflows/",
+        "?? internal/workflowlocal/"
+      ]
+    },
+    {
+      "name": "yijie-codex",
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-codex.git",
+      "status": []
+    },
+    {
+      "name": "yijie-connectors",
+      "head": "273eec40bbbfeb17e817643f283db7c81e9b190c",
+      "branch": "develop",
+      "origin": "https://github.com/36Dge/yijie-connectors.git",
+      "status": []
+    },
+    {
+      "name": "yijie-contracts",
+      "head": "811f38d6b104fa18477107e7ac91a85e19c445d1",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-contracts.git",
+      "status": [
+        "M docs/supported-baselines.md",
+        " M package.json",
+        " M redocly.yaml",
+        " M scripts/check-breaking.sh",
+        " M scripts/check-generated.mjs",
+        " M scripts/generate.mjs",
+        " M scripts/validate-json-schemas.mjs",
+        " M sdks/typescript/src/index.ts",
+        "?? compatibility/workflow-local/",
+        "?? docs/workflow-local-v1.md",
+        "?? jsonschema/workflow-editor/",
+        "?? openapi/workflow-local/",
+        "?? scripts/check-workflow-local.mjs",
+        "?? scripts/generate-workflow-local.mjs",
+        "?? scripts/sync-workflow-consumer.mjs",
+        "?? scripts/workflow-schema-validator.mjs",
+        "?? sdks/go/openapi/workflow-local/",
+        "?? sdks/jsonschema/",
+        "?? sdks/openapi/",
+        "?? sdks/rust/",
+        "?? sdks/typescript/src/jsonschema/workflow-editor-bridge-v1.gen.ts",
+        "?? sdks/typescript/src/openapi/workflow-local.gen.ts",
+        "?? tests/workflow-local.test.mjs"
+      ]
+    },
+    {
+      "name": "yijie-desktop",
+      "head": "5964e2f7c31ea298f801df02086abbc8d6676b91",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-desktop.git",
+      "status": [
+        "M docs/design/docs/design/05-patterns/16-feat-151-workflow-showcase.md",
+        " M src-tauri/src/lib.rs",
+        " M src-tauri/src/native_auth/runtime.rs",
+        " M src/components/workflows/RecommendedWorkflowCard.vue",
+        " M src/components/workflows/WorkflowSummaryCard.vue",
+        " M src/components/yijie/YjPageHeader.vue",
+        " M src/pages/workflows/WorkflowPage.test.ts",
+        " M src/pages/workflows/WorkflowPage.vue",
+        "?? contracts/workflow-editor-bridge-v1.schema.json",
+        "?? contracts/workflow-local.lock.json",
+        "?? contracts/workflow-local.schema.json",
+        "?? docs/verification/workflow-interactions-and-lime-20260911.md",
+        "?? src-tauri/src/workflows/",
+        "?? src/components/workflows/workflow-showcase.css",
+        "?? src/domain/workflow-local.generated.ts"
+      ]
+    },
+    {
+      "name": "yijie-infra",
+      "head": "19b7920696904f83030a8ddaba71af15c3c05ad8",
+      "branch": "feat/feat-126-s10e",
+      "origin": "https://github.com/36Dge/yijie-infra.git",
+      "status": []
+    },
+    {
+      "name": "yijie-knowledge",
+      "head": "e9091d2b673ba779ecb39271ce9148e3a41fc256",
+      "branch": "develop",
+      "origin": "https://github.com/36Dge/yijie-knowledge.git",
+      "status": []
+    },
+    {
+      "name": "yijie-skills",
+      "head": "488714a8d96f40806a257aae097683815b1dd458",
+      "branch": "develop",
+      "origin": "https://github.com/36Dge/yijie-skills.git",
+      "status": []
+    },
+    {
+      "name": "yijie-coze",
+      "head": "fefb05ff27be1da939612fbf9faf5db62583b8ae",
+      "branch": "main",
+      "origin": "https://github.com/coze-dev/coze-studio.git",
+      "status": [
+        "M Makefile",
+        " M backend/domain/workflow/internal/compose/workflow_run.go",
+        " D docs/nats-eventbus-integration-guide-en.md",
+        " D docs/nats-eventbus-integration-guide.md",
+        " D docs/oceanbase-integration-guide-en.md",
+        " D docs/oceanbase-integration-guide.md",
+        " D docs/pulsar-eventbus-integration-guide-en.md",
+        " D docs/pulsar-eventbus-integration-guide.md",
+        "?? .codex/",
+        "?? AGENTS.md",
+        "?? README.yijie.md",
+        "?? backend/api/model/workflowlocal/",
+        "?? backend/application/workflowlocal/",
+        "?? backend/cmd/",
+        "?? backend/domain/user/service/local_principal.go",
+        "?? backend/domain/workflow/internal/execute/local_controls.go",
+        "?? backend/domain/workflow/internal/execute/local_controls_test.go",
+        "?? backend/domain/workflow/localadapter/",
+        "?? backend/domain/workflow/service/local_execute.go",
+        "?? contracts/",
+        "?? scripts/yijie/",
+        "?? yijie-upstream.lock.json"
+      ]
+    }
+  ],
+  "preserved_desktop_files": [
+    {
+      "repository": "yijie-desktop",
+      "path": "docs/design/docs/design/05-patterns/16-feat-151-workflow-showcase.md",
+      "sha256": "0bbf61011611dc6f44d5844068b35e559de9788a0f3839f0df75b01f5ec2570b",
+      "unchanged": true
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/workflows/RecommendedWorkflowCard.vue",
+      "sha256": "3ededb7050fb50450e72daed9592a9ec9af631d9e51450cede893780bd600c8a",
+      "unchanged": true
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/workflows/WorkflowSummaryCard.vue",
+      "sha256": "fd235745a7adce5683e674b27bf97aed36b51fa24530a795c0bf90b6e026f955",
+      "unchanged": true
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/yijie/YjPageHeader.vue",
+      "sha256": "aa4b992cf54e4c3e7e33b523c9bb7a11a32e11f7bf13549ee796e78086bef564",
+      "unchanged": true
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/pages/workflows/WorkflowPage.test.ts",
+      "sha256": "d6d5bc37679e9aa8728157157bacc687153fbdd74c4daac94d2a41c3f58950e4",
+      "unchanged": true
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/pages/workflows/WorkflowPage.vue",
+      "sha256": "7f986634d6933f6cea9696a982d2362fb1aa3da1f52c65857e66ea8e0fcbf11e",
+      "unchanged": true
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "docs/verification/workflow-interactions-and-lime-20260911.md",
+      "sha256": "e69a2073873d6f548011d149c83fe15245c98fddbab12eea953fdb95fba8799b",
+      "unchanged": true
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/workflows/workflow-showcase.css",
+      "sha256": "d0f20ab96f79b3771849220b61dfab622d7f270a01ff728b32529514d38540a4",
+      "unchanged": true
+    }
+  ],
+  "existing_contract_wire_sdk_changes": [
+    "sdks/typescript/src/index.ts"
+  ],
+  "coze_overlay": [
+    "Makefile",
+    "backend/domain/workflow/internal/compose/workflow_run.go"
+  ],
+  "scope": "All original HEAD/branch/origin preserved; seven unaffected repositories unchanged; new code only in authorized step 3 repositories. No commit/push.",
+  "review_findings_closed": [
+    "list summary bounds",
+    "source operation-specific field rules",
+    "local budget without optional static config",
+    "node string output vs serialized internal JSON",
+    "correct private HTTP status/payload",
+    "unknown after accepted write",
+    "descriptor credential and container network boundaries",
+    "context revision and normal late-open retirement",
+    "Native server-clock offset bounded by original monotonic 300s deadline; failed session installation normally revoked",
+    "MySQL normal zero-changed-row publication confirmed by locking current revision read; no clientFoundRows workaround",
+    "Explicit container Coze listener and parseTime deployment inputs documented"
+  ],
+  "real_runtime_D4": "NOT RUN",
+  "independent_cross_boundary_review": "step3-cross-boundary-review.md",
+  "candidate_file_manifest": [
+    {
+      "repository": "yijie-contracts",
+      "path": "compatibility/workflow-local/source.lock.json",
+      "sha256": "d63b98caa435e300e6f110cbeb74e6c7123782ad61f607a698863b84c9229177"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "docs/supported-baselines.md",
+      "sha256": "88542b3163d198932b738da809091bef7843276438d2bf9bf8e586a6b2fab5b1"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "docs/workflow-local-v1.md",
+      "sha256": "74f679ae6c4c35ff87233981a8d29d44f4e89bb7b821278a09ca7c354ddf9eaf"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "jsonschema/workflow-editor/bridge-v1.schema.json",
+      "sha256": "12731e0870e042a048063ff09d4de02a9304ac2f6e385eb25c572adb14bc9280"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "openapi/workflow-local/workflow-local.yaml",
+      "sha256": "dae53395934ce9856563f8281fda25562d8a9f6e03ddf1ec2c6b03174cd7aae0"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "package.json",
+      "sha256": "1c2652268916c8b97e2414b6097bd8d7c394610a6a88ddb9addc68dc3e652503"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "redocly.yaml",
+      "sha256": "7968f06b1339b5c625a1fd404c64334b0411f0e4927fc94da61982b88c077a39"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "scripts/check-breaking.sh",
+      "sha256": "2d0620a364e5a2142de2314c0085859e59b1d4c0eba603a30bf46a5b6faa4940"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "scripts/check-generated.mjs",
+      "sha256": "bcf7facf8d45a094b03b7a59baaf7181ea66455d17486088b502b24d04eaf60a"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "scripts/check-workflow-local.mjs",
+      "sha256": "ba9ce37dd4dc233d5077f21c9da53673c5759514e3fd729ad5d38af071056d66"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "scripts/generate-workflow-local.mjs",
+      "sha256": "1079ac59afc03465168f835fd926bef99f8cbb7a17537c44525f8425da2d165c"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "scripts/generate.mjs",
+      "sha256": "987f4d5c1bf9ecd12233740c3192e1b8d83d9f5051b5aa3cddeaa2dbd36d98d1"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "scripts/sync-workflow-consumer.mjs",
+      "sha256": "2cf224e961b45ea8acc9b4c79bd28b58436eb8f305021bdbe8fa3c7c8b73b36f"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "scripts/validate-json-schemas.mjs",
+      "sha256": "7b671e70c62d44a611b548a77e4d8fc5a147cc4cb5ef3df2329fae0cc741479f"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "scripts/workflow-schema-validator.mjs",
+      "sha256": "e99fdb7f1a07a09cc56638afe29633fa8de83995dd6416c7e77937b2786680ba"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "sdks/go/openapi/workflow-local/types.gen.go",
+      "sha256": "aea622412894575a1a2e2ee76192345bf1068c768a67f02cee4727f16fe836cd"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "sdks/jsonschema/workflow-editor-bridge-v1.schema.json",
+      "sha256": "8dbb4c30c883fa677cf42068156c664c346845b1a2e1f940cc8ca4cec3c85bc7"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "sdks/jsonschema/workflow-local.schema.json",
+      "sha256": "8d2a68cdadc97ec55c31fd96de60048f851d7ecfa84bb74da621e04f3aad1d90"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "sdks/openapi/workflow-internal.gen.json",
+      "sha256": "f315a99c76436e99de68ecf96f8629a60bdc45a6b286ba43b295c718a1461915"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "sdks/rust/workflow-local/types.gen.rs",
+      "sha256": "7fc8ff8f442b501fc40e692f45e0a9338b75c42b02d5da154cdb61daf86be132"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "sdks/typescript/src/index.ts",
+      "sha256": "9777803d850316222897693d47e2351a6b4851d3e0d0334e9d356eda8afe36ef"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "sdks/typescript/src/jsonschema/workflow-editor-bridge-v1.gen.ts",
+      "sha256": "669aafc90a483c776e8b1cd3de41bdb4dc1f067792f6e7433adb79f49478abd9"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "sdks/typescript/src/openapi/workflow-local.gen.ts",
+      "sha256": "56d4755ad37c0ff5f14f6b454f4c1005199f0f43bd75a74f2133513ae9474fde"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "tests/workflow-local.test.mjs",
+      "sha256": "ebf9a7cc0e726d90721df9588874c16babb761fc82c0815f20972d4b5c19220a"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "AGENTS.md",
+      "sha256": "75e61c6a1e01513238129dab2a17ec7224b0cf8707ce5631db794f6aa9060718"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "Makefile",
+      "sha256": "ff53b99929ac54ebf3adceee01681148bf54191742e247758d5e497c1ad70a81"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "README.md",
+      "sha256": "5952a844569810c8920e9bfb8bd108b284e91015c09f00473bcecc08568b2be6"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "cmd/workflow-local-migrate/main.go",
+      "sha256": "310ddf77c559bd7dbd5989a204059609297a913378074c0765c4122656ac4f47"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "cmd/workflow-local-server/main.go",
+      "sha256": "681a46c97b11ad00467acb2ab66523fba9649fad044425c0da5bdf133b27316d"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "config/workflow-local-runtime.schema.json",
+      "sha256": "03033d5d1ac4ed2ffd72c6ada37314af5e5600a762bce0220ec18e5b00a1881b"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "contracts/workflow-local.lock.json",
+      "sha256": "399932c26a06e416ed763fe88af10042c12ffd104499c178b8e0ab360d069fbb"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "contracts/workflow-local.schema.json",
+      "sha256": "8d2a68cdadc97ec55c31fd96de60048f851d7ecfa84bb74da621e04f3aad1d90"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "contracts/workflow_schema.go",
+      "sha256": "eff9b0fb23dc861bdd3e15921a8cfda71222d594880f9557247be0224d77d5f9"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "docs/workflow-local.md",
+      "sha256": "695f27cb4de18af82f552050d76a296e651197c479a474cf7bdb301a26766f04"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/contracts/workflowlocal/types.gen.go",
+      "sha256": "aea622412894575a1a2e2ee76192345bf1068c768a67f02cee4727f16fe836cd"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/workflows/application/service.go",
+      "sha256": "26d0c5b998c4f2c15a57d02198d1c9936fdb504ad9ce9a21cf6547a1f2bb6945"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/workflows/application/service_test.go",
+      "sha256": "ddad6662605014132da8997fd756da12a668562e17bec2c18eb6b613c08bee9f"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/workflows/domain/canvas.go",
+      "sha256": "37ac1439fe7a6d68d97536b6c5c495686b6d7c23b7eeae79bfbdd8cec478c021"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/workflows/domain/canvas_test.go",
+      "sha256": "8f5a6389790dd31f5303dc3ba8eb3d2c0aad48c85d49732cc7fef9c236f8056d"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/workflows/domain/model.go",
+      "sha256": "43dd4b6ac089b0d278d40a28430f6018b249b3f2712072e6270dcc6efe6649ff"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/workflows/infrastructure/coze/client.go",
+      "sha256": "9bd49cf6f08c6765b40cc25cd430874fe783efe6712c2f4fce8d390c5bc95c91"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/workflows/infrastructure/coze/client_test.go",
+      "sha256": "e1c93113804a8a7ad394fbce22f66e8403bd2dd2909608f5897e31b3dba4f252"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/workflows/infrastructure/postgres/migrate.go",
+      "sha256": "77c1e192ee8570e0e52cd88be0645181611ff1d5bec8f5b3b1f422ffe2ae5e60"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/workflows/infrastructure/postgres/migrations/00001_workflows.sql",
+      "sha256": "d0c4ce32099e87eae7710891555f849d52458d1f4dbc6969b4cb40ecc35567d8"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/workflows/infrastructure/postgres/repository.go",
+      "sha256": "4df1b35642220752ec9bc2aef51f295e5fd38261b2b93629ccf46213fae4ae89"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/workflows/interfaces/http/handler.go",
+      "sha256": "445f22eda1491a531639c1dded93479cee6ade45062051cc63b24f0f7fa90eea"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/workflows/interfaces/http/handler_test.go",
+      "sha256": "c7200504f22dc36e353b9aa409792b051686ad47ea24377ebff7e1308cb2f854"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/workflows/transport/mapping.go",
+      "sha256": "8fe86ff0ed6dca249da7fa7556212559a34ba713ee87593f2faccc984285cedb"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/workflows/transport/mapping_test.go",
+      "sha256": "d8e908c4b6a0dac87628b4e5a154bfacfe9f31f3689f90e5dde057332a2b1652"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/modules/workflows/transport/schema.go",
+      "sha256": "c865f4950e6a51d9873acbf3c24e40a9bc288f51e6fd90f560a4d3c92880bec1"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/workflowlocal/config.go",
+      "sha256": "e589f29af44c5ce37d9a3c9888bc0a92a193e7a0fa7cf4eaeee7206a9c92d4d1"
+    },
+    {
+      "repository": "yijie-api",
+      "path": "internal/workflowlocal/config_test.go",
+      "sha256": "e3e5c590b545dcc755da3f88ab1c72a92afbf3e33d82b940486a637da08edb82"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": ".codex/config.toml",
+      "sha256": "87f87a167a458b9145520c8d6f346e6cb9f4c0579a0e78953e6e5737ef2e155e"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": ".codex/prompts/workflow-foundation.md",
+      "sha256": "f0f9507cd62eb2e9422fd49676e391c5fa61b916fcf458b8bd6d991841693148"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": ".codex/tasks/README.md",
+      "sha256": "5e73274973f83809e1c6c890434b52216d65867f452b94750276cfd72168dc10"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "AGENTS.md",
+      "sha256": "d606ce435da9bf8715a1b2a5cf96709d5dff0be852d96253edaa58f46c2d138c"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "Makefile",
+      "sha256": "c3b41982adfb2f8b7fd9ce8fd332a6c09ad9c7107f40de640783830fa38e3098"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "README.yijie.md",
+      "sha256": "2495c550011d6d5fe9e2ba3277aa3cf37a773a5dac055685b3e76b1c007499e6"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "backend/api/model/workflowlocal/types.gen.go",
+      "sha256": "aea622412894575a1a2e2ee76192345bf1068c768a67f02cee4727f16fe836cd"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "backend/application/workflowlocal/config.go",
+      "sha256": "08ab8a400e526aed44e5764b936bc9e32f6c692a866a9805b90f2cbb9930a3c7"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "backend/application/workflowlocal/config_test.go",
+      "sha256": "24ec8aec6013e8cd9b09ccd97148fc7407347e080fd75e7c981231b740ebba17"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "backend/application/workflowlocal/handler.go",
+      "sha256": "8333a77d1dd1b2c358d63276e6fbc6926d6ebfdfb5e4fa9881e7d66a06c4f86c"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "backend/cmd/workflow-local/main.go",
+      "sha256": "da31df18c9e66908b25ebdad4942c4fd8bb73bb33d6d0401d1b9f764f0f4be68"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "backend/domain/user/service/local_principal.go",
+      "sha256": "78dc74f0f059abf39e0e20a9c6f9d13a4f368accdee8ac45f4d6bf9e9d556295"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "backend/domain/workflow/internal/compose/workflow_run.go",
+      "sha256": "6ec7179c4f95684781cfc69149dc7d961684e65195324b1f4c3cfe5612f33533"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "backend/domain/workflow/internal/execute/local_controls.go",
+      "sha256": "0b4a7c5dfae95e01a73cf690c3775e05ee8f65fecbfcad364a9664253fd1a3b3"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "backend/domain/workflow/internal/execute/local_controls_test.go",
+      "sha256": "2fd5d8664957f71fb07e48f8e14e05b018281b72a724ceda54a8328acb8227d1"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "backend/domain/workflow/localadapter/contract_lock_test.go",
+      "sha256": "899a8055e4b533ca512f7da7cb882786e5ba8ea68f556e4deb5a85cda34acff7"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "backend/domain/workflow/localadapter/execution.go",
+      "sha256": "b5f31788ac31acddfbb3b9d746cf2755e78f15d9dbb1b5116600c923410ae94c"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "backend/domain/workflow/localadapter/history.go",
+      "sha256": "d3a00ca40fbe12750069652e92fb6f6ef22fea246c20d465eba680fe636f870b"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "backend/domain/workflow/localadapter/http_conformance_test.go",
+      "sha256": "7941def617ca013db3e493d50e96a8f14cacb9ae8cb28c163efc518bc2d70113"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "backend/domain/workflow/localadapter/local_test.go",
+      "sha256": "28845743660ac7a28d70380589478b8bf22e623c32a42393b48bfce2c6959926"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "backend/domain/workflow/localadapter/migration.go",
+      "sha256": "a0f4376eb9cec783e6631ed5238aadbdcb7c42846339d85b595f839c5d6da409"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "backend/domain/workflow/localadapter/migrations/001_local_adapter.sql",
+      "sha256": "f242370466196b5f0f760b9dd5dc752b09cb55de696078b25324de1b76ddb728"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "backend/domain/workflow/localadapter/mutations.go",
+      "sha256": "b282f948aedfd48bbc121177c455d41e24d3702aee9ef9daef229e7278d0c5dd"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "backend/domain/workflow/localadapter/policy.go",
+      "sha256": "ca2a0b45446e7c5e55f1f3f7248e17cf5526ffdf4595a4d24038daaa787eec72"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "backend/domain/workflow/localadapter/store.go",
+      "sha256": "bf70f17b5cf3f70aaeac3467db17d098e68946ad58547decdd140df4036d6c75"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "backend/domain/workflow/service/local_execute.go",
+      "sha256": "144cf4e2c7dba097ac406e680f9ffbf2a8c18135d0e315eb6398be72b1dcea3e"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "contracts/workflow-internal.openapi.json",
+      "sha256": "f315a99c76436e99de68ecf96f8629a60bdc45a6b286ba43b295c718a1461915"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "contracts/workflow-local.lock.json",
+      "sha256": "ca1cda647e9f6969405270b926e2e4394546ddc38e1a66c8a06505f9abb2ce59"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "contracts/workflow-local.schema.json",
+      "sha256": "8d2a68cdadc97ec55c31fd96de60048f851d7ecfa84bb74da621e04f3aad1d90"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "docs/nats-eventbus-integration-guide-en.md",
+      "state": "preexisting_missing"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "docs/nats-eventbus-integration-guide.md",
+      "state": "preexisting_missing"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "docs/oceanbase-integration-guide-en.md",
+      "state": "preexisting_missing"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "docs/oceanbase-integration-guide.md",
+      "state": "preexisting_missing"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "docs/pulsar-eventbus-integration-guide-en.md",
+      "state": "preexisting_missing"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "docs/pulsar-eventbus-integration-guide.md",
+      "state": "preexisting_missing"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "scripts/yijie/check-integration.py",
+      "sha256": "79418580abc44b1a9cf8a9b95448d685fa6421ab226b3170b905064392ed3740"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "yijie-upstream.lock.json",
+      "sha256": "b6d4acb89aba2551616bcbe6c132716a0fb6899c05563b0911c1cfeed6f1ac31"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "contracts/workflow-editor-bridge-v1.schema.json",
+      "sha256": "8dbb4c30c883fa677cf42068156c664c346845b1a2e1f940cc8ca4cec3c85bc7"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "contracts/workflow-local.lock.json",
+      "sha256": "fe728726a79b07beb3ed4c7d8d4697bccfd40b4609652a748d2981be5dff4538"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "contracts/workflow-local.schema.json",
+      "sha256": "8d2a68cdadc97ec55c31fd96de60048f851d7ecfa84bb74da621e04f3aad1d90"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "docs/design/docs/design/05-patterns/16-feat-151-workflow-showcase.md",
+      "sha256": "0bbf61011611dc6f44d5844068b35e559de9788a0f3839f0df75b01f5ec2570b"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "docs/verification/workflow-interactions-and-lime-20260911.md",
+      "sha256": "e69a2073873d6f548011d149c83fe15245c98fddbab12eea953fdb95fba8799b"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/lib.rs",
+      "sha256": "4f3dcb4dabd7c706f3bcb040be2d02d070d41c63dd785f35d27bb48c71725fc7"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/native_auth/runtime.rs",
+      "sha256": "f31735bf514d16eb3ef901ea474ca599ac20e4110ea5b8e218d221a3a63a8383"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/workflows/commands.rs",
+      "sha256": "7a34a51740cf6898f6bc87ff328171f2da69dd38137e2fc5acb677e6116c03f8"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/workflows/config.rs",
+      "sha256": "c5c4cc5468aa014e5711de64dae68f380be696413a0c966988b4abacd9ad352a"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/workflows/generated.rs",
+      "sha256": "7fc8ff8f442b501fc40e692f45e0a9338b75c42b02d5da154cdb61daf86be132"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/workflows/mod.rs",
+      "sha256": "71c7cdf758ab2fc886ae60904ca4135cd7e6b5473c59927bef744561c6c49657"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/workflows/runtime.rs",
+      "sha256": "08a17f1378d14685c78abce01edc35d4e23e5533f6bf1497a8fe1d9317b1d2db"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/workflows/tests.rs",
+      "sha256": "f25557760efe432a0003a70c399974f9beea4f8b5c07800d4f4a44840283735b"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/workflows/transport.rs",
+      "sha256": "552dd587ffa50c7f42b00bae140adb1980f2a8032c8d40e414df954a334b36a6"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/workflows/validation.rs",
+      "sha256": "59ed1b95739e783f93582beb7fad27a7ff4cac8faae07b11227f8594f2b39a3e"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/workflows/RecommendedWorkflowCard.vue",
+      "sha256": "3ededb7050fb50450e72daed9592a9ec9af631d9e51450cede893780bd600c8a"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/workflows/WorkflowSummaryCard.vue",
+      "sha256": "fd235745a7adce5683e674b27bf97aed36b51fa24530a795c0bf90b6e026f955"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/workflows/workflow-showcase.css",
+      "sha256": "d0f20ab96f79b3771849220b61dfab622d7f270a01ff728b32529514d38540a4"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/yijie/YjPageHeader.vue",
+      "sha256": "aa4b992cf54e4c3e7e33b523c9bb7a11a32e11f7bf13549ee796e78086bef564"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/domain/workflow-local.generated.ts",
+      "sha256": "56d4755ad37c0ff5f14f6b454f4c1005199f0f43bd75a74f2133513ae9474fde"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/pages/workflows/WorkflowPage.test.ts",
+      "sha256": "d6d5bc37679e9aa8728157157bacc687153fbdd74c4daac94d2a41c3f58950e4"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/pages/workflows/WorkflowPage.vue",
+      "sha256": "7f986634d6933f6cea9696a982d2362fb1aa3da1f52c65857e66ea8e0fcbf11e"
+    }
+  ],
+  "standard_build_artifacts": [
+    {
+      "repository": "yijie-api",
+      "path": "bin/workflow-local/workflow-local-server",
+      "sha256": "4d3c326e703139a72f1e043bef6ce2eef9839c13ee3a9329e7b2e20b5bd653f1",
+      "executed": false
+    },
+    {
+      "repository": "yijie-api",
+      "path": "bin/workflow-local/workflow-local-migrate",
+      "sha256": "cf07edcbcbeccd998d4b0e285312ac9c3d43d3db6c2829734fa301dcb24ce125",
+      "executed": false
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "bin/workflow-local/workflow-local-server",
+      "sha256": "71a3852bf7085fa9595cc78ca797591002f5eef49b9b9b07e647add558f4ced5",
+      "executed": false
+    }
+  ]
+}

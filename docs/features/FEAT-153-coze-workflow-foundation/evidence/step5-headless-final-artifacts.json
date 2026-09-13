@@ -1,0 +1,137 @@
+{
+  "at": "2026-09-12T08:39:26.638Z",
+  "run_epoch": "fa64325e-61d5-45bd-a217-ec5a83c84e22",
+  "images": {
+    "api": {
+      "image_id": "sha256:be87c2633951c6d75f291dc1e1150ad1d57ae5171c0f78117672b099abe2549a",
+      "source_digest": "c2fd3adbe0f80c7d1c1814d9ec3e2fcdb9976950727a06c670b002770ff99a2c",
+      "repository": "yijie-api",
+      "local_tag": "yijie-local/feat153-api:c2fd3adbe0f80c7d",
+      "go_image": "golang:1.26.5-bookworm@sha256:53eeac89074db483fdf0ab3be1df32bf6e47562263d2d0d6baa7f26acb4957dd"
+    },
+    "api-test": {
+      "image_id": "sha256:1723936de09e8b0bd0c95823b7af3517436239478044ed245d60e91f90ce78c6",
+      "source_digest": "c2fd3adbe0f80c7d1c1814d9ec3e2fcdb9976950727a06c670b002770ff99a2c",
+      "repository": "yijie-api",
+      "local_tag": "yijie-local/feat153-api-test:c2fd3adbe0f80c7d",
+      "go_image": "golang:1.26.5-bookworm@sha256:53eeac89074db483fdf0ab3be1df32bf6e47562263d2d0d6baa7f26acb4957dd"
+    },
+    "coze": {
+      "image_id": "sha256:3fb22119e3c59897d828747faee6f5c4092244cdbe1cda4c8a49369f9e68efc2",
+      "source_digest": "3445ba15846a1109b609ac477dc0bd2940d3e2f250c41c910f2f2661e8a27e8b",
+      "repository": "yijie-coze",
+      "local_tag": "yijie-local/feat153-coze:3445ba15846a1109",
+      "go_image": "golang:1.26.5-bookworm@sha256:53eeac89074db483fdf0ab3be1df32bf6e47562263d2d0d6baa7f26acb4957dd"
+    }
+  },
+  "editor_manifest_sha256": "fdbb9a3fb1b76d12efe38de13f44e74e98e323e72b9a86181d97db4614792007",
+  "editor_source_digest": "3445ba15846a1109b609ac477dc0bd2940d3e2f250c41c910f2f2661e8a27e8b",
+  "assets": [
+    {
+      "path": "assets/css/784.315ae3bf.css",
+      "status": 200,
+      "sha256": "900dc2c46419fbcba941531f9dd0e7aa8de4ebf2b46e4de94bf17fc945650534",
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "688429",
+        "content-security-policy": "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'none'; worker-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors http://localhost:1420 tauri://localhost",
+        "content-type": "text/css; charset=utf-8",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "no-referrer",
+        "x-content-type-options": "nosniff",
+        "date": "Sat, 12 Sep 2026 08:39:26 GMT"
+      }
+    },
+    {
+      "path": "assets/css/index.f907440e.css",
+      "status": 200,
+      "sha256": "21a8914463167744b7082bf1712e38cf8a6ae92d84872556a0a0ee1e2d867477",
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "10928",
+        "content-security-policy": "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'none'; worker-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors http://localhost:1420 tauri://localhost",
+        "content-type": "text/css; charset=utf-8",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "no-referrer",
+        "x-content-type-options": "nosniff",
+        "date": "Sat, 12 Sep 2026 08:39:26 GMT"
+      }
+    },
+    {
+      "path": "assets/js/784.b1db7a4f.js",
+      "status": 200,
+      "sha256": "8f71929d45531af5985d99e055f33944a9551af6e23672ab1b80378155ba77d8",
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "2264861",
+        "content-security-policy": "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'none'; worker-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors http://localhost:1420 tauri://localhost",
+        "content-type": "text/javascript; charset=utf-8",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "no-referrer",
+        "x-content-type-options": "nosniff",
+        "date": "Sat, 12 Sep 2026 08:39:26 GMT"
+      }
+    },
+    {
+      "path": "assets/js/index.7e8851c2.js",
+      "status": 200,
+      "sha256": "1c1cd068b5ad88b2b63a4328a96041ba969f3fe33ba6c3e2a980f7f09234369a",
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "359998",
+        "content-security-policy": "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'none'; worker-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors http://localhost:1420 tauri://localhost",
+        "content-type": "text/javascript; charset=utf-8",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "no-referrer",
+        "x-content-type-options": "nosniff",
+        "date": "Sat, 12 Sep 2026 08:39:26 GMT"
+      }
+    },
+    {
+      "path": "assets/js/lib-react.a3e3a619.js",
+      "status": 200,
+      "sha256": "8a55f0e39ff69ff692fec32ec10ea110c713642ca9fc9c1afdb2cd8747053349",
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "141213",
+        "content-security-policy": "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'none'; worker-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors http://localhost:1420 tauri://localhost",
+        "content-type": "text/javascript; charset=utf-8",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "no-referrer",
+        "x-content-type-options": "nosniff",
+        "date": "Sat, 12 Sep 2026 08:39:26 GMT"
+      }
+    },
+    {
+      "path": "index.html",
+      "status": 200,
+      "sha256": "ba7dc946445d060a9560fe50d0132b396265972f0346ae9486feb9db884fcf37",
+      "headers": {
+        "cache-control": "no-store",
+        "content-length": "545",
+        "content-security-policy": "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'none'; worker-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors http://localhost:1420 tauri://localhost",
+        "content-type": "text/html; charset=utf-8",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "no-referrer",
+        "x-content-type-options": "nosniff",
+        "date": "Sat, 12 Sep 2026 08:39:26 GMT"
+      }
+    }
+  ],
+  "credential_scan": {
+    "scope": "exact current K_NA/K_AC values in served editor and packaged distribution bytes; not live renderer memory",
+    "public_files": 90,
+    "public_bytes": 82022093,
+    "K_NA_matches": 0,
+    "K_AC_matches": 0
+  },
+  "reopen": {
+    "prior_epoch": "8f00e418-a7e5-47a5-a945-f60c9285c9e5",
+    "new_epoch": "fa64325e-61d5-45bd-a217-ec5a83c84e22",
+    "workflow_id": "7684562335599427584",
+    "revision": "7684562335603621888",
+    "canvas_sha256": "387b86c4b1473d8c555bf21bdc925794ffe2fd5dd7b6ea644dc444ca98e3d375",
+    "resource_and_receipt_unchanged": true
+  },
+  "real_WK": "NOT RUN"
+}

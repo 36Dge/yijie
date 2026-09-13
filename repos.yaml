@@ -62,3 +62,11 @@ repos:
     url: https://github.com/36Dge/yijie-infra.git
     type: infra
     owner: devops-team
+
+  # FEAT-153: private Yijie integration; original Coze provenance stays in its source lock.
+  - name: yijie-coze
+    path: ../yijie-coze
+    url: https://github.com/36Dge/yijie-coze.git
+    branch: main
+    type: workflow-engine
+    owner: backend-team

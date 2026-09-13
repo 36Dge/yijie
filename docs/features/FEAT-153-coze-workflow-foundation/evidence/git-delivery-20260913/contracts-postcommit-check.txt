@@ -1,0 +1,14 @@
+node scripts/check-workflow-local.mjs
+✨ openapi-typescript 7.13.0
+ ⚠  Component: "ListRequest" is never used. at #/components/schemas/ListRequest
+ ⚠  Component: "CreateInput" is never used. at #/components/schemas/CreateInput
+ ⚠  Component: "RunInput" is never used. at #/components/schemas/RunInput
+ ⚠  Component: "EditorOpenedView" is never used. at #/components/schemas/EditorOpenedView
+ ⚠  Component: "EditorExchangeInput" is never used. at #/components/schemas/EditorExchangeInput
+ ⚠  Component: "EditorExchangeResult" is never used. at #/components/schemas/EditorExchangeResult
+ ⚠  Component: "EditorCloseInput" is never used. at #/components/schemas/EditorCloseInput
+ ⚠  Component: "RunQueryInput" is never used. at #/components/schemas/RunQueryInput
+ ⚠  Component: "RunQueryResult" is never used. at #/components/schemas/RunQueryResult
+🚀 openapi/workflow-local/workflow-local.yaml → sdks/typescript/src/openapi/workflow-local.gen.ts [49.7ms]
+Generated isolated workflow-local Go/TypeScript/Rust models and schema projections. Local candidate only.
+Verified deterministic workflow outputs and 41 component validators plus editor bridge.

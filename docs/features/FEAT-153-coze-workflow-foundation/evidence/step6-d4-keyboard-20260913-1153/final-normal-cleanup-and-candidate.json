@@ -1,0 +1,130 @@
+{
+  "recorded_at_ms": 1789274232389,
+  "phase": "stopped",
+  "run_epoch": "0cb8e640-7ddc-4870-bdfd-8e1353cbe0e4",
+  "containers": [
+    {
+      "service": "workflow-api",
+      "id": "2ba7a0ae8423cf5822e44363faf267c6c43019275dc9eb656dbed046ce20c064",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-13T04:30:17.627711881Z",
+        "FinishedAt": "2026-09-13T04:35:56.283647094Z"
+      }
+    },
+    {
+      "service": "coze-workflow",
+      "id": "3358a25c9eb4312d430bac7c6348b52f9ec121a60a5a4c31ec11150125bf010a",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-13T04:30:13.887893963Z",
+        "FinishedAt": "2026-09-13T04:35:56.613289886Z"
+      }
+    },
+    {
+      "service": "workflow-api",
+      "id": "dea49741ab8428b37ff6b89b4f35baf2fd3d276c0e51223fee8d2e54f650e3c7",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-13T04:30:13.57183263Z",
+        "FinishedAt": "2026-09-13T04:30:13.63701088Z"
+      }
+    },
+    {
+      "service": "coze-workflow",
+      "id": "3d59e37847a8ba9aa9927006f7d3c4ee13898ea7cfaa505fbffb1326955385e7",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-13T04:30:13.274943546Z",
+        "FinishedAt": "2026-09-13T04:30:13.341474129Z"
+      }
+    },
+    {
+      "service": "workflow-postgres",
+      "id": "d9a008d40ccf833451bca2d101356169fa17e16a06a46606185d6562094df50f",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-13T04:30:07.503616918Z",
+        "FinishedAt": "2026-09-13T04:35:56.843557969Z"
+      }
+    },
+    {
+      "service": "coze-workflow-redis",
+      "id": "eb533df1074cf095a915944a2effea16407ebfe215d25dc26522cb7f8692682a",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-13T04:30:07.504532043Z",
+        "FinishedAt": "2026-09-13T04:35:56.877241261Z"
+      }
+    },
+    {
+      "service": "coze-workflow-mysql",
+      "id": "deab8b6a3a676b2b972047c23f93a981b04239174610120a98b47596059eba6e",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-13T04:30:07.50404721Z",
+        "FinishedAt": "2026-09-13T04:35:57.479247594Z"
+      }
+    },
+    {
+      "service": "coze-workflow-minio",
+      "id": "1ce8659964b062dc40bc09a4aa1ab249cc3fb167db585169b505846fd5f6f3e0",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-13T04:30:07.482630543Z",
+        "FinishedAt": "2026-09-13T04:35:56.838045761Z"
+      }
+    }
+  ],
+  "retained_volumes": [
+    "yijie-feat153-workflow_minio-data",
+    "yijie-feat153-workflow_mysql-data",
+    "yijie-feat153-workflow_postgres-data",
+    "yijie-feat153-workflow_redis-data"
+  ],
+  "all_other_running_containers": [],
+  "owned_app_host_credential_helpers_remaining": [],
+  "ports_released": {
+    "1420": true,
+    "1421": true,
+    "18888": true
+  },
+  "candidate_digest": {
+    "yijie-contracts": "53cc727aef050c2366f01471aa28a350a7c76ec05431a0425b64e21893c8d95a",
+    "yijie-api": "c2fd3adbe0f80c7d1c1814d9ec3e2fcdb9976950727a06c670b002770ff99a2c",
+    "yijie-coze": "4d1bf84f7e5ba31fba1516dc1ee0c45697e4c1dadc26c3c16f5c94b573a6f003",
+    "yijie-desktop": "cf8756f9efe24ced475ee2fafbc9cafb0cd63d13ca77fa2a6ac55e3ca02776c3",
+    "yijie-infra": "451ce3ab3f3093b2209742a1927b35ffa9f1a49068f79d3eade9a2ac1d1d920a"
+  },
+  "candidate_double_sample_equal": true,
+  "protected_files_unchanged": true,
+  "packaged_binary_sha256": "3c4aafcdf97aec8bf3a8da9a60aaadf5b295d7c54bca87fabd45e68aa6e6ff77",
+  "public_asset_files_scanned": 49,
+  "machine_credentials_matches": 0,
+  "screen_preferences": "CUA restored light and1512x982 default; Dock unchanged; Settings closed",
+  "docker_desktop_stop": "next normal supported CLI step; no containers running"
+}

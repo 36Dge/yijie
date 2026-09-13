@@ -1,0 +1,115 @@
+{
+  "date": "2026-09-12",
+  "scope": "FEAT-153 step 4 API preparation freeze; runtime qualification belongs to root-controlled follow-up evidence",
+  "base_commit": "f9d730a157bcb012a8fe178cbfebcd4ea27419fc",
+  "files": [
+    {
+      "path": "Dockerfile.workflow-local",
+      "sha256": "af8e28c32e58b0e20ba0d0d126ba592d96cfaa2c33c6b0a05db4fb789df7f7cc"
+    },
+    {
+      "path": "Dockerfile.workflow-local.dockerignore",
+      "sha256": "7a89f0b1c19661d79b4dd61d427b00515254c4d7220813ad30e45611880bd92b"
+    },
+    {
+      "path": "Makefile",
+      "sha256": "0e5724fd9dcaebe1358ef26418b9ab8a6fab11c1ce0350784b9bc11aab8d6228"
+    },
+    {
+      "path": "config/workflow-local-runtime.schema.json",
+      "sha256": "a98cfc53fd30b54b505b77567150df4c98aa1bc6584919a67159f8f8d26a1762"
+    },
+    {
+      "path": "docs/workflow-local.md",
+      "sha256": "f451c261726fc96d24249030e8ce52ed90e7d9f2d925a054b85c50823015d4ca"
+    },
+    {
+      "path": "cmd/workflow-local-server/main.go",
+      "sha256": "4088cf5e126b570ddb88340f217096388e41fb682e650a0f94283ba1343103ab"
+    },
+    {
+      "path": "cmd/workflow-local-server/readiness.go",
+      "sha256": "7bb816d2df8efe5738f28c522b5c5d3e153d1096d4a324a31c558d7b0d63ac3d"
+    },
+    {
+      "path": "cmd/workflow-local-qualify/main.go",
+      "sha256": "fe8daf19e487147d3278ebc158e7e8f199962091a43369eaba11181d1deb05f6"
+    },
+    {
+      "path": "internal/workflowlocal/config.go",
+      "sha256": "00c9a67bd2c12c2653fd17eebdde58d6781f390bb265c75b31417795d1289523"
+    },
+    {
+      "path": "internal/workflowlocal/config_test.go",
+      "sha256": "0c0fcd3c58f21331dcf45daea6bd5f88b0cc35bad5668680ab7c3be4b0b6126c"
+    },
+    {
+      "path": "internal/modules/workflows/infrastructure/postgres/repository_workflow_integration_test.go",
+      "sha256": "44a0eac64d3565bda5ef0de71de357480448f5871f5fac41a962fdf88cff9f9a"
+    }
+  ],
+  "protected_files": [
+    {
+      "path": "cmd/api-server/main.go",
+      "sha256": "f66c0ea2d8443d336c9b55d112f69092d1efab1ea339a5423830f2f2e69ce718",
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": "internal/app/app.go",
+      "sha256": "1e02597debd84692684a66486c9b833875a60abe552f515fe7a3e1891c963fb2",
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": "internal/platform/migrations/migrations.go",
+      "sha256": "42c474ead79a260769bcff80568beb9a396e24f1b92d47357c3020eb75d98ff1",
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": "contracts/public-api.lock.json",
+      "sha256": "a46392c0c643071496cce568b77558b7e08cb31883428c4c66bbf9c40a94755c",
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": "internal/interfaces/publicapi/types.gen.go",
+      "sha256": "438b084d65a925ebb7ccef6d7ab5d16fdc9d0990dc14ab536ee073ff298fab33",
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": "go.mod",
+      "sha256": "deb22ebc2f4108418cf8892f886a9e4c5d44b0a8881d0be6864af368f441023f",
+      "unchanged_from_HEAD": true
+    },
+    {
+      "path": "go.sum",
+      "sha256": "a2908344039de7b3cb865ccb8fbc00b949f949e1fe13160ddad6cd4f4d5ca08f",
+      "unchanged_from_HEAD": true
+    }
+  ],
+  "source_lock_sha256": "399932c26a06e416ed763fe88af10042c12ffd104499c178b8e0ab360d069fbb",
+  "host_builds": [
+    {
+      "path": "bin/workflow-local/workflow-local-server",
+      "sha256": "7590988a019b3028406f4045ee75a1891a629751eb750d92fbf196906fab6f19",
+      "executed": false
+    },
+    {
+      "path": "bin/workflow-local/workflow-local-migrate",
+      "sha256": "f1fbb3b50de9455d06d8c67dcfcb20704357a3f54c89fe498f5b41e90499e22d",
+      "executed": false
+    },
+    {
+      "path": "bin/workflow-local/workflow-local-qualify",
+      "sha256": "23321048d7af887b45dcf218cca6bf5064b74b0c45b08c335f51a8acbb01670c",
+      "executed": false
+    }
+  ],
+  "verification": {
+    "runtime_config_normal_top_level_tests": 2,
+    "runtime_config_test_invocations": 2,
+    "pg_integration_compile_only_invocations": 1,
+    "real_pg_tests_run_by_this_agent": 0,
+    "real_http_qualification_runs_by_this_agent": 0,
+    "docker_builds_or_containers_started_by_this_agent": 0
+  },
+  "runtime_status": "PREPARED; waiting for root controlled Docker build/start/migrate/qualification"
+}

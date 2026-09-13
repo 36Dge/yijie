@@ -1,0 +1,127 @@
+{
+  "recorded_at": "2026-09-13T05:25:20.406638+00:00",
+  "contract_impact": "none",
+  "qualification_id": "ea50e666-898c-4107-9568-10e3e3d63416",
+  "wire_generated_all_unchanged": true,
+  "source_commit": "32dd76298fd5ba2346fe2429f78b2b3e2f32a7e4",
+  "consumer_pins": {
+    "yijie-api": "32dd76298fd5ba2346fe2429f78b2b3e2f32a7e4",
+    "yijie-coze": "32dd76298fd5ba2346fe2429f78b2b3e2f32a7e4",
+    "yijie-desktop": "32dd76298fd5ba2346fe2429f78b2b3e2f32a7e4"
+  },
+  "protected_worktree": [
+    {
+      "path": "docs/design/docs/design/05-patterns/16-feat-151-workflow-showcase.md",
+      "unchanged_from_pre_delivery": true,
+      "sha256": "0bbf61011611dc6f44d5844068b35e559de9788a0f3839f0df75b01f5ec2570b"
+    },
+    {
+      "path": "src/components/workflows/RecommendedWorkflowCard.vue",
+      "unchanged_from_pre_delivery": true,
+      "sha256": "3ededb7050fb50450e72daed9592a9ec9af631d9e51450cede893780bd600c8a"
+    },
+    {
+      "path": "src/components/workflows/WorkflowSummaryCard.vue",
+      "unchanged_from_pre_delivery": true,
+      "sha256": "fd235745a7adce5683e674b27bf97aed36b51fa24530a795c0bf90b6e026f955"
+    },
+    {
+      "path": "src/components/yijie/YjPageHeader.vue",
+      "unchanged_from_pre_delivery": true,
+      "sha256": "aa4b992cf54e4c3e7e33b523c9bb7a11a32e11f7bf13549ee796e78086bef564"
+    },
+    {
+      "path": "src/pages/workflows/WorkflowPage.test.ts",
+      "unchanged_from_pre_delivery": true,
+      "sha256": "d6d5bc37679e9aa8728157157bacc687153fbdd74c4daac94d2a41c3f58950e4"
+    },
+    {
+      "path": "src/pages/workflows/WorkflowPage.vue",
+      "unchanged_from_pre_delivery": true,
+      "sha256": "742d402443d5177a98e359ab906c7a7bd7380c44b2bc9f502c4b811e72b730f1"
+    },
+    {
+      "path": "docs/verification/workflow-interactions-and-lime-20260911.md",
+      "unchanged_from_pre_delivery": true,
+      "sha256": "e69a2073873d6f548011d149c83fe15245c98fddbab12eea953fdb95fba8799b"
+    },
+    {
+      "path": "src/components/workflows/workflow-showcase.css",
+      "unchanged_from_pre_delivery": true,
+      "sha256": "d0f20ab96f79b3771849220b61dfab622d7f270a01ff728b32529514d38540a4"
+    }
+  ],
+  "coze_editor_manifest": {
+    "schema_version": 1,
+    "base_path": "/editor/",
+    "source_repository": "yijie-coze",
+    "source_commit": "05a81edab974b3041fa3bae27124d7994ca875ff",
+    "source_digest": "41a246bb27a79352ccd6cbdd7d36c7db94e81f5a35fdf656272fb6951bd9258b",
+    "contracts_lock_sha256": "acd3c7510a6308b49aa327f65d043253b4043a42b318e97eb92d39df70da474f",
+    "files": [
+      {
+        "path": "assets/css/784.315ae3bf.css",
+        "sha256": "900dc2c46419fbcba941531f9dd0e7aa8de4ebf2b46e4de94bf17fc945650534",
+        "bytes": 688429,
+        "content_type": "text/css; charset=utf-8"
+      },
+      {
+        "path": "assets/css/index.78ed8ed6.css",
+        "sha256": "c6167e2e20b1d00f4f1d066b99977976f7265daf2d831c904162e600992308b1",
+        "bytes": 12061,
+        "content_type": "text/css; charset=utf-8"
+      },
+      {
+        "path": "assets/js/784.b1db7a4f.js",
+        "sha256": "8f71929d45531af5985d99e055f33944a9551af6e23672ab1b80378155ba77d8",
+        "bytes": 2264861,
+        "content_type": "text/javascript; charset=utf-8"
+      },
+      {
+        "path": "assets/js/index.c87f4530.js",
+        "sha256": "7ea0e4428db1ba93e22aa1e59ae741a34a92759b8d2f4c28b042e724592dbe13",
+        "bytes": 369496,
+        "content_type": "text/javascript; charset=utf-8"
+      },
+      {
+        "path": "assets/js/lib-react.a3e3a619.js",
+        "sha256": "8a55f0e39ff69ff692fec32ec10ea110c713642ca9fc9c1afdb2cd8747053349",
+        "bytes": 141213,
+        "content_type": "text/javascript; charset=utf-8"
+      },
+      {
+        "path": "index.html",
+        "sha256": "0ded386c3fe980c5549ccc287781b8101dc40da87853b158a9ddb1ea9e2322f7",
+        "bytes": 545,
+        "content_type": "text/html; charset=utf-8"
+      }
+    ]
+  },
+  "coze_manifest_sha256": "b0f90f4d8714c219fc7dccdd1780dfa814ee3a646aa3f818cf8aee5f564d2991",
+  "runtime_restarted": false,
+  "database_migrations": false,
+  "paid_calls": 0,
+  "limits": [
+    "D4 original candidate evidence retained; metadata pinning does not create a new real App D4 run.",
+    "Desktop staged page excludes pre-existing showcase interactions; exact staged snapshot typecheck, 21 tests and frontend build passed. Existing shared stylesheet and header slot included as dependencies.",
+    "Initial temp snapshot pnpm exec requested dependency refresh and aborted without TTY; direct installed tool entrypoints were then used successfully without reinstalling dependencies.",
+    "Initial short source commit argument was rejected before consumer writes; canonical sync then succeeded with full SHA.",
+    "API workflow-contract-check target does not exist; actual workflow-generate-check target passed.",
+    "Initial meta test/D4 rejected the then-pending Coze remote marker; after explicit private-repository authorization and actual push, final meta 50 tests and strict D4 passed."
+  ],
+  "earlier_postcommit_manifest_sha256": "0296fb78e8ed98eb0aee87d03972026156145c994aa29d4d999beaf28c3040a7",
+  "asset_bytes_unchanged_after_remote_governance_commit": true,
+  "fresh_private_remote_clone": {
+    "commit": "05a81edab974b3041fa3bae27124d7994ca875ff",
+    "source_check": "PASS",
+    "unchanged_upstream_files": 15303,
+    "original_six_documents_present": true
+  },
+  "meta_checks": {
+    "lint": "PASS",
+    "tests": 50,
+    "d4_strict": "PASS",
+    "claim_audit_errors": 0,
+    "claim_audit_warnings": 0
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "observed_at_ms": 1789229145999,
+  "repos": [
+    {
+      "repo": "yijie",
+      "head": "d59e1725f988df6f1f3fe1abbf0b4546ab419819",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie.git",
+      "status": "M AGENTS.md\n M CODEOWNERS\n M README.md\n M docs/adr/README.md\n M docs/architecture/000-overview.md\n M docs/architecture/002-repo-strategy.md\n M repos.yaml\n M scripts/repo-manifest.mjs\n M services/README.md\n M tests/repo-manifest.test.mjs\n?? docs/adr/ADR-0019-coze-workflow-foundation.md\n?? docs/features/FEAT-153-coze-workflow-foundation/",
+      "same_identity_as_previous": true
+    },
+    {
+      "repo": "yijie-admin-web",
+      "head": "d009cafccb112c098114c075d60f67ee5e0296d8",
+      "branch": "develop",
+      "origin": "https://github.com/36Dge/yijie-admin-web.git",
+      "status": "",
+      "same_identity_as_previous": true
+    },
+    {
+      "repo": "yijie-agent-host",
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-agent-host.git",
+      "status": "",
+      "same_identity_as_previous": true
+    },
+    {
+      "repo": "yijie-api",
+      "head": "f9d730a157bcb012a8fe178cbfebcd4ea27419fc",
+      "branch": "feat/feat-126-foundation-closure",
+      "origin": "https://github.com/36Dge/yijie-api.git",
+      "status": "M AGENTS.md\n M Makefile\n M README.md\n?? Dockerfile.workflow-local\n?? Dockerfile.workflow-local.dockerignore\n?? cmd/workflow-local-migrate/\n?? cmd/workflow-local-qualify/\n?? cmd/workflow-local-server/\n?? config/workflow-editor-assets.schema.json\n?? config/workflow-local-runtime.schema.json\n?? contracts/workflow-local.lock.json\n?? contracts/workflow-local.schema.json\n?? contracts/workflow-local.source-lock.json\n?? contracts/workflow_schema.go\n?? docs/workflow-editor-assets.md\n?? docs/workflow-local.md\n?? internal/contracts/workflowlocal/\n?? internal/modules/workflows/\n?? internal/workflowlocal/",
+      "same_identity_as_previous": true
+    },
+    {
+      "repo": "yijie-codex",
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-codex.git",
+      "status": "",
+      "same_identity_as_previous": true
+    },
+    {
+      "repo": "yijie-connectors",
+      "head": "273eec40bbbfeb17e817643f283db7c81e9b190c",
+      "branch": "develop",
+      "origin": "https://github.com/36Dge/yijie-connectors.git",
+      "status": "",
+      "same_identity_as_previous": true
+    },
+    {
+      "repo": "yijie-contracts",
+      "head": "811f38d6b104fa18477107e7ac91a85e19c445d1",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-contracts.git",
+      "status": "M Makefile\n M docs/supported-baselines.md\n M redocly.yaml\n M scripts/check-breaking.sh\n M scripts/check-generated.mjs\n M scripts/validate-json-schemas.mjs\n M sdks/typescript/src/index.ts\n?? compatibility/workflow-local/\n?? docs/workflow-local-candidate-generation.md\n?? docs/workflow-local-v1.md\n?? jsonschema/workflow-editor/\n?? openapi/workflow-local/\n?? scripts/check-workflow-local.mjs\n?? scripts/generate-workflow-browser.mjs\n?? scripts/generate-workflow-local.mjs\n?? scripts/sync-workflow-consumer.mjs\n?? scripts/workflow-schema-validator.mjs\n?? sdks/go/openapi/workflow-local/\n?? sdks/jsonschema/\n?? sdks/openapi/\n?? sdks/rust/\n?? sdks/typescript/src/browser/\n?? sdks/typescript/src/jsonschema/workflow-editor-bridge-v1.gen.ts\n?? sdks/typescript/src/openapi/workflow-local.gen.ts\n?? tests/types/\n?? tests/workflow-local-browser.test.mjs\n?? tests/workflow-local.test.mjs",
+      "same_identity_as_previous": true
+    },
+    {
+      "repo": "yijie-coze",
+      "head": "fefb05ff27be1da939612fbf9faf5db62583b8ae",
+      "branch": "main",
+      "origin": "https://github.com/coze-dev/coze-studio.git",
+      "status": "M Makefile\n M backend/domain/workflow/internal/compose/workflow_run.go\n D docs/nats-eventbus-integration-guide-en.md\n D docs/nats-eventbus-integration-guide.md\n D docs/oceanbase-integration-guide-en.md\n D docs/oceanbase-integration-guide.md\n D docs/pulsar-eventbus-integration-guide-en.md\n D docs/pulsar-eventbus-integration-guide.md\n?? .codex/\n?? AGENTS.md\n?? README.yijie.md\n?? backend/api/model/workflowlocal/\n?? backend/application/workflowlocal/\n?? backend/cmd/\n?? backend/domain/user/service/local_principal.go\n?? backend/domain/workflow/internal/execute/local_controls.go\n?? backend/domain/workflow/internal/execute/local_controls_test.go\n?? backend/domain/workflow/localadapter/\n?? backend/domain/workflow/service/local_execute.go\n?? contracts/\n?? docker/workflow-local/\n?? docs/workflow-editor-csp-review.md\n?? frontend/apps/workflow-local/\n?? scripts/yijie/\n?? yijie-upstream.lock.json",
+      "same_identity_as_previous": true
+    },
+    {
+      "repo": "yijie-desktop",
+      "head": "5964e2f7c31ea298f801df02086abbc8d6676b91",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-desktop.git",
+      "status": "M docs/design/docs/design/05-patterns/16-feat-151-workflow-showcase.md\n M eslint.config.js\n M scripts/run-local-demo-fast.sh\n M src-tauri/src/chat/sidecar.rs\n M src-tauri/src/lib.rs\n M src-tauri/src/native_auth/runtime.rs\n M src/components/workflows/RecommendedWorkflowCard.vue\n M src/components/workflows/WorkflowSummaryCard.vue\n M src/components/yijie/YjPageHeader.vue\n M src/pages/workflows/WorkflowPage.test.ts\n M src/pages/workflows/WorkflowPage.vue\n M src/vite-env.d.ts\n?? contracts/workflow-editor-bridge-v1.schema.json\n?? contracts/workflow-local.lock.json\n?? contracts/workflow-local.schema.json\n?? docs/verification/workflow-interactions-and-lime-20260911.md\n?? scripts/run-workflow-dev.mjs\n?? scripts/workflow-desktop-foundation.test.mjs\n?? src-tauri/src/workflows/\n?? src-tauri/tauri.workflow-local.conf.json\n?? src/api/generated/workflow-local-validator.gen.d.ts\n?? src/api/generated/workflow-local-validator.gen.js\n?? src/api/workflow-editor-channel.ts\n?? src/api/workflow-native-client.ts\n?? src/authorization/workflow-local-ui-config.ts\n?? src/components/workflows/WorkflowEditorPane.vue\n?? src/components/workflows/WorkflowLocalWorkspace.test.ts\n?? src/components/workflows/WorkflowLocalWorkspace.vue\n?? src/components/workflows/WorkflowRunPanel.vue\n?? src/components/workflows/workflow-showcase.css\n?? src/domain/workflow-editor-bridge.generated.ts\n?? src/domain/workflow-local.generated.ts\n?? src/pages/workflows/use-workflow-runs.test.ts\n?? src/pages/workflows/use-workflow-runs.ts\n?? src/pages/workflows/use-workflow-workspace.test.ts\n?? src/pages/workflows/use-workflow-workspace.ts",
+      "same_identity_as_previous": true
+    },
+    {
+      "repo": "yijie-infra",
+      "head": "19b7920696904f83030a8ddaba71af15c3c05ad8",
+      "branch": "feat/feat-126-s10e",
+      "origin": "https://github.com/36Dge/yijie-infra.git",
+      "status": "M .gitignore\n M AGENTS.md\n M Makefile\n M package.json\n?? compose/\n?? config/workflow-local/\n?? docs/workflow-local.md\n?? scripts/workflow-local-cas.mjs\n?? scripts/workflow-local-model.mjs\n?? scripts/workflow-local-mysql-read.py\n?? scripts/workflow-local.py\n?? tests/workflow-local.test.mjs",
+      "same_identity_as_previous": true
+    },
+    {
+      "repo": "yijie-knowledge",
+      "head": "e9091d2b673ba779ecb39271ce9148e3a41fc256",
+      "branch": "develop",
+      "origin": "https://github.com/36Dge/yijie-knowledge.git",
+      "status": "",
+      "same_identity_as_previous": true
+    },
+    {
+      "repo": "yijie-skills",
+      "head": "488714a8d96f40806a257aae097683815b1dd458",
+      "branch": "develop",
+      "origin": "https://github.com/36Dge/yijie-skills.git",
+      "status": "",
+      "same_identity_as_previous": true
+    }
+  ],
+  "changed_sources": []
+}

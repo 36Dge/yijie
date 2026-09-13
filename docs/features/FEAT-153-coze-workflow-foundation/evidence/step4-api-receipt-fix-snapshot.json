@@ -1,0 +1,41 @@
+{
+  "date": "2026-09-12",
+  "scope": "receipt version semantic fix; old W1 receipts retained",
+  "files": [
+    {
+      "path": "yijie-contracts/openapi/workflow-local/workflow-local.yaml",
+      "sha256": "90e13e8a386036ca09e19502204d629417c7b82fbd664d1d063d5cb846316a1c"
+    },
+    {
+      "path": "yijie-contracts/docs/workflow-local-v1.md",
+      "sha256": "0cad98779205a87efa4520edc4369434240dea815f783054afaf74c2451a394f"
+    },
+    {
+      "path": "yijie-contracts/compatibility/workflow-local/source.lock.json",
+      "sha256": "51ac0d57c102c93016d26c8ec600ca242fe71b8bcbeaa27bdba646df3b221f01"
+    },
+    {
+      "path": "yijie-api/internal/modules/workflows/application/service.go",
+      "sha256": "93735b74109b13857f6ec43cb2d82b3d5320c25323242222bfebdaadc4958f2b"
+    },
+    {
+      "path": "yijie-api/internal/modules/workflows/application/service_test.go",
+      "sha256": "1fea02493724327bb028dd572c1d9033abfecb8b5cf0c543a828672ac69df8d2"
+    },
+    {
+      "path": "yijie-api/contracts/workflow-local.lock.json",
+      "sha256": "6ad24a2b1f6b758c2719aed0c8c70a7791e1f278f25d9baef459a0f386bf566b"
+    },
+    {
+      "path": "yijie-coze/contracts/workflow-local.lock.json",
+      "sha256": "9e2e54e37931a3eba6da0e46a90913253500e8a147dd40b20dfa3a3e46b95e77"
+    },
+    {
+      "path": "yijie-desktop/contracts/workflow-local.lock.json",
+      "sha256": "9aa83fbec1c5f585b677d854da6e4f6d513e0d19a3826479d15f4e69fc468fd6"
+    }
+  ],
+  "source_tests_pass": 7,
+  "api_focused_top_level_tests_pass": 17,
+  "new_runtime_qualification_by_this_agent": false
+}

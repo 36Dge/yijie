@@ -1,0 +1,129 @@
+{
+  "observed_at": "2026-09-12T02:44:32.695149+00:00",
+  "scope": "FEAT-153 onboarding implementation and governance; uncommitted local files, not a release pin",
+  "files": [
+    {
+      "repository": "yijie",
+      "path": "AGENTS.md",
+      "sha256": "fd307bf32fbf27830f9d4c60e48e91cbb32a02c894306bf19c387ea49de407c1"
+    },
+    {
+      "repository": "yijie",
+      "path": "CODEOWNERS",
+      "sha256": "6e922a04545659b2993f805006b325fc131660549eddd0a79305b83dac80f694"
+    },
+    {
+      "repository": "yijie",
+      "path": "README.md",
+      "sha256": "222379776a64fc6451437ec2cf5a51701c560491862be50478c2d977d268e4be"
+    },
+    {
+      "repository": "yijie",
+      "path": "repos.yaml",
+      "sha256": "a5da67cfebc61528b62098832ec5837b68ab1071c02974ade89212ec9054deaa"
+    },
+    {
+      "repository": "yijie",
+      "path": "scripts/repo-manifest.mjs",
+      "sha256": "ee765f3069466833784502c4e18053416dbc2f22bd144317885a96ea31b0fa18"
+    },
+    {
+      "repository": "yijie",
+      "path": "tests/repo-manifest.test.mjs",
+      "sha256": "93afc90fcd85f043031661c8af8e880bdf6e11bd10df9cf8c0daa230b4df07d0"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/architecture/000-overview.md",
+      "sha256": "d04c11544e73b91ea936c23ca3a883e3891f090febcc4c0ee9364622efe94b78"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/architecture/002-repo-strategy.md",
+      "sha256": "35e4c94bafc44342a437c37cad252e2e05c3ffe6b9f0f6d2d6acc24942481317"
+    },
+    {
+      "repository": "yijie",
+      "path": "services/README.md",
+      "sha256": "800b11838d711f3b7519ad7f97b82e333abde4c3b7f3ccaed2039e381ec2d4e2"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/adr/README.md",
+      "sha256": "5f3f3ffaae9b827d1f0455e1f814097bd9e706096e1b38a12d283f6bab78fca5"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/adr/ADR-0019-coze-workflow-foundation.md",
+      "sha256": "0d34fa71fba583777a1ea7a27fbc10862a244cba6beb20a42b4d3afba4ba98e3"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "Makefile",
+      "sha256": "0cc5baa5cddfd3a031a2fd126fb26d8ffd525ef7dcaeb34eb270ba35fe7099ab"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "AGENTS.md",
+      "sha256": "2d84cdcc958625f4df15771eca3351e060828cce7cf7374ac0647a064aee0b1f"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "README.yijie.md",
+      "sha256": "621fe6e68c6cdd1141ce9a41c1ffba3d3e762c318a20234a1f974280e4fbef1e"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "yijie-upstream.lock.json",
+      "sha256": "49e617a60f511b41ac1df99f055d2a23446af1cf50101ee2c38a49e0ae9f7e12"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": "scripts/yijie/check-integration.py",
+      "sha256": "79418580abc44b1a9cf8a9b95448d685fa6421ab226b3170b905064392ed3740"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": ".codex/config.toml",
+      "sha256": "87f87a167a458b9145520c8d6f346e6cb9f4c0579a0e78953e6e5737ef2e155e"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": ".codex/prompts/workflow-foundation.md",
+      "sha256": "f0f9507cd62eb2e9422fd49676e391c5fa61b916fcf458b8bd6d991841693148"
+    },
+    {
+      "repository": "yijie-coze",
+      "path": ".codex/tasks/README.md",
+      "sha256": "5e73274973f83809e1c6c890434b52216d65867f452b94750276cfd72168dc10"
+    }
+  ],
+  "document_checks": [
+    {
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-153-coze-workflow-foundation",
+      "cwd": "yijie",
+      "exit": 0,
+      "result": "PASS; document structure and schema only"
+    },
+    {
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-153-coze-workflow-foundation",
+      "cwd": "yijie",
+      "exit": 0,
+      "result": "PASS; no unsupported D0/D4 claims"
+    },
+    {
+      "command": "Markdown local links and trailing whitespace check",
+      "exit": 0,
+      "result": "PASS; 9 markdown files, 15 local links"
+    }
+  ],
+  "review": {
+    "kind": "independent agent read-only review, not human approval",
+    "findings_fixed": [
+      "P2 inaccurate README claim of manifest validation removed",
+      "P2 editor qualification moved after Contracts/provider/Infra prerequisites"
+    ],
+    "D0": "pending",
+    "D4": "NOT RUN"
+  }
+}

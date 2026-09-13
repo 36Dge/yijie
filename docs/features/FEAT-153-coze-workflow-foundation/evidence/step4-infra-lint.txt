@@ -1,0 +1,13 @@
+./scripts/plan.sh
+$ pnpm validate:compose && pnpm validate:feat-125-local-assets && pnpm validate:feat-125-local-template && pnpm validate:feat-125-template && pnpm validate:feat-126-s10
+$ node scripts/validate-compose.mjs
+Validated local Compose services, images, ports, healthchecks, and volumes.
+$ node scripts/validate-feat-125-local-assets.mjs
+Validated FEAT-125 local Keycloak realm and Caddy security boundaries.
+$ node scripts/validate-feat-125-local.mjs --mode template environments/local/feat-125.local-lab.template.yaml
+FEAT-125 G3-NP-LOCAL template validation passed
+$ node scripts/validate-feat-125-nonprod.mjs --mode template environments/nonproduction/feat-125.template.yaml
+FEAT-125 nonproduction template configuration passed
+$ node scripts/validate-feat-126-s10.mjs
+Validated the default-off FEAT-126 S10E Compose and TLS projection.
+Docker Compose semantic validation passed.

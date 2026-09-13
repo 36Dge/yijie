@@ -1,0 +1,52 @@
+$ node scripts/generate.mjs --skip-skill-fixture-generation
+✨ openapi-typescript 7.13.0
+🚀 openapi/public/public.yaml → sdks/typescript/src/openapi/public.gen.ts [40.6ms]
+✨ openapi-typescript 7.13.0
+🚀 openapi/admin/admin.yaml → sdks/typescript/src/openapi/admin.gen.ts [29.4ms]
+✨ openapi-typescript 7.13.0
+🚀 openapi/internal/internal.yaml → sdks/typescript/src/openapi/internal.gen.ts [31.4ms]
+✨ openapi-typescript 7.13.0
+🚀 openapi/agent-host/agent-host.yaml → sdks/typescript/src/openapi/agent-host.gen.ts [67.2ms]
+✨ openapi-typescript 7.13.0
+🚀 openapi/runtime-permissions/runtime-permissions.yaml → sdks/typescript/src/openapi/runtime-permissions.gen.ts [41ms]
+bundling openapi/runtime-permissions/runtime-permissions.yaml...
+📦 Created a bundle for openapi/runtime-permissions/runtime-permissions.yaml at sdks/go/openapi/runtime-permissions/source.bundle.yaml 9ms.
+✨ openapi-typescript 7.13.0
+🚀 openapi/native-conversation/native-conversation.yaml → sdks/typescript/src/openapi/native-conversation.gen.ts [35.5ms]
+ ⚠  Component: "NativeEvent" is never used. at #/components/schemas/NativeEvent
+✨ openapi-typescript 7.13.0
+🚀 openapi/native-conversation-v2/native-conversation-v2.yaml → sdks/typescript/src/openapi/native-conversation-v2.gen.ts [36.9ms]
+ ⚠  Component: "NativeEvent" is never used. at #/components/schemas/NativeEvent
+✨ openapi-typescript 7.13.0
+🚀 openapi/runtime-permissions-v2/runtime-permissions-v2.yaml → sdks/typescript/src/openapi/runtime-permissions-v2.gen.ts [34.5ms]
+(node:35427) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:35446) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:35430) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:35428) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:35429) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:35426) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:35462) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:35467) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+bundling asyncapi/events.yaml using configuration for api 'events@v1'...
+📦 Created a bundle for asyncapi/events.yaml at sdks/asyncapi/events.bundle.json 22ms.
+✨ openapi-typescript 7.13.0
+ ⚠  Component: "ListRequest" is never used. at #/components/schemas/ListRequest
+ ⚠  Component: "CreateInput" is never used. at #/components/schemas/CreateInput
+ ⚠  Component: "RunInput" is never used. at #/components/schemas/RunInput
+ ⚠  Component: "EditorOpenedView" is never used. at #/components/schemas/EditorOpenedView
+ ⚠  Component: "EditorExchangeInput" is never used. at #/components/schemas/EditorExchangeInput
+ ⚠  Component: "EditorExchangeResult" is never used. at #/components/schemas/EditorExchangeResult
+ ⚠  Component: "EditorCloseInput" is never used. at #/components/schemas/EditorCloseInput
+ ⚠  Component: "RunQueryInput" is never used. at #/components/schemas/RunQueryInput
+ ⚠  Component: "RunQueryResult" is never used. at #/components/schemas/RunQueryResult
+🚀 openapi/workflow-local/workflow-local.yaml → sdks/typescript/src/openapi/workflow-local.gen.ts [45.7ms]
+Generated isolated workflow-local Go/TypeScript/Rust models and schema projections. Local candidate only.
+Generated OpenAPI, Protobuf, and 21 JSON Schema SDK sources.

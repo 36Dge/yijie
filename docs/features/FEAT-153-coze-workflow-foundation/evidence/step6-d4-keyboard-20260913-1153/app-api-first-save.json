@@ -1,0 +1,19 @@
+{
+  "observed_at_ms": 1789272952772,
+  "run_epoch": "04fb6a04-459b-488d-8f0c-6ea52e6b492b",
+  "workflow": {
+    "canvas": "{\"edges\":[{\"sourceNodeID\":\"100001\",\"targetNodeID\":\"200001\"},{\"sourceNodeID\":\"200001\",\"targetNodeID\":\"900001\"}],\"nodes\":[{\"data\":{\"nodeMeta\":{\"title\":\"开始\"},\"outputs\":[{\"name\":\"input\",\"required\":true,\"type\":\"string\"}]},\"id\":\"100001\",\"meta\":{\"position\":{\"x\":80,\"y\":160}},\"type\":\"1\"},{\"data\":{\"inputs\":{\"concatParams\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":\"KEY APP 一：{{input}}\",\"type\":\"literal\"}},\"name\":\"concatResult\"}],\"inputParameters\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":{\"blockID\":\"100001\",\"name\":\"input\",\"source\":\"block-output\"},\"type\":\"ref\"}},\"name\":\"input\"}],\"method\":\"concat\"},\"nodeMeta\":{\"title\":\"文本处理\"},\"outputs\":[{\"name\":\"output\",\"type\":\"string\"}]},\"id\":\"200001\",\"meta\":{\"position\":{\"x\":430,\"y\":210}},\"type\":\"15\"},{\"data\":{\"inputs\":{\"inputParameters\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":{\"blockID\":\"200001\",\"name\":\"output\",\"source\":\"block-output\"},\"type\":\"ref\"}},\"name\":\"result\"}],\"terminatePlan\":\"returnVariables\"},\"nodeMeta\":{\"title\":\"结束\"}},\"id\":\"900001\",\"meta\":{\"position\":{\"x\":760,\"y\":160}},\"type\":\"2\"}]}",
+    "name": "FEAT-153 D4 KEY APP 20260913-1153",
+    "revision": "7684868623487205376",
+    "runnable": true,
+    "updated_at_ms": 1789272908002,
+    "workflow_id": "7684868190886690816"
+  },
+  "canvas_sha256": "6f9557887459afaaeb0ab9a60d83cf48a5c7f557b60d950829498a46e4b366a6",
+  "history": {
+    "items": []
+  },
+  "runs": [],
+  "receipts": [],
+  "source": "Bounded read-only API; all create/save/test/publish/run actions were performed in the real App through CUA in the real packaged App. Native AX/ScreenCaptureKit only observe and set the two approved window sizes."
+}

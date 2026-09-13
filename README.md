@@ -32,6 +32,7 @@ yijie-ai/
   yijie-knowledge
   yijie-contracts
   yijie-infra
+  yijie-coze
 ```
 
 ## 架构分层
@@ -84,9 +85,16 @@ Contract & Infra Layer
 make contract-governance
 ```
 
-`make contract-governance` 要求十个兄弟仓库都存在，并校验中央规范、PR 模板和每个
+`make contract-governance` 要求十一个兄弟仓库都存在，并校验中央规范、PR 模板和每个
 仓库 `AGENTS.md` 的 Contract First 最小门禁。独立元仓 CI 只能验证中央文件，不能
 替代下游仓的版本锁、生成漂移和 conformance CI。
+
+`yijie-coze` 在FEAT-153作为独立工作流仓接入，用户已授权创建私有
+`https://github.com/36Dge/yijie-coze.git`，分支`main`，与其它子仓默认`develop`区分。
+Coze上游基线由该仓`yijie-upstream.lock.json`固定；本机upstream保留原始来源，不向上游推送易界修改。
+受控local栈、Desktop/API接入和真实dev/packaged统一D4已通过，Git交付见
+[FEAT-153/18](docs/features/FEAT-153-coze-workflow-foundation/18-git-delivery.md)。
+该仓`make lint/test`仅校验接入规则和来源；运行、界面及已知限制以[最终验收](docs/features/FEAT-153-coze-workflow-foundation/17-d4-final-qualification.md)为准，不声明生产或全量Coze资格。
 
 ## 文档入口
 
@@ -140,3 +148,4 @@ Codex 修改代码时必须遵循对应仓库的 `AGENTS.md`。
 | yijie-knowledge | Data AI Team |
 | yijie-contracts | Platform Team |
 | yijie-infra | DevOps Team |
+| yijie-coze | Backend Team（实际负责人：段成威） |

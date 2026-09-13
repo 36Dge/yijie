@@ -1,0 +1,48 @@
+FEAT-153 第 3 步 Desktop native 候选验证
+日期：2026-09-12
+范围：独立 workflow Rust/native 模块与源契约 consumer；不是第 5 步真实载体资格或第 6 步 D4。
+
+实现事实
+- 八个具名 command 使用 Contracts 生成 Rust DTO；未新增 Cargo/pnpm 依赖。
+- exact local/demo_fast/enable gate + 原生固定主体/workspace.use；status/list/create 和独立 run/query 无 editor 前置依赖。
+- 仅固定 http://127.0.0.1:18888 的具名 API 路径；禁用环境代理、HTTP 重定向、自动 HTTP 重试；无 renderer URL/header/token 输入。
+- K_NA 从绝对配置路径安全读取：普通文件、当前 euid、0400/0600、单链接、1 KiB 上限、O_NOFOLLOW、读前后元信息核对。测试临时文件直接正常创建为 0600，无 chmod/错误属主/权限故障。
+- 测试 token/E 均由运行时 CSPRNG 生成，无硬编码 token fixture/default/example；日志与 Debug 不输出机密。
+- E 由生成的 EditorSessionSecret 专门直接反序列化，立即移动到现有 Zeroizing SecretValue；不构建 E 的 serde_json::Value 中间副本。返回 editor 视图无 secret/session_id。
+- E 绝对 300 秒与 monotonic deadline；保留服务端 expires_at_ms，native deadline 始终不晚于请求开始 monotonic+300s。05/源没有要求主机与容器时钟严格同步，服务端稍领先导致 remaining>300s 时正常接受但仍按该本地上限封顶，不扩大 TTL。每次 exchange 校验当前 bridge/generation/epoch/有效期；到期拒绝 exchange 并清本地 E；close 不需要 E，保持幂等。已取得有效解码 session 后的安装流程统一返回 Result，所有不能安装分支（含时间读取、generation 与视图校验失败）都在释放状态锁后正常 DELETE。
+- input/response 按同步 schema 校验 UTF-8 字节限额、字段/未知 enum/协议版本/具名操作；操作的必需和可选字段取源 x-operation-* 与 required。列表只含源生成的摘要。
+- 写操作 ID 由 native UUIDv7 生成；不确定错误保留原 operation_id，不自动重复 HTTP 写；相同 editor request_id 不重复写；operation 查询校验原查询 ID。
+- context revision 在 open 第一次 await 前捕获；上下文失效、epoch 更换、正常退出及匹配 binding 的 close 推进 revision；迟到 open 正常 DELETE 新会话，不重新建立失效 binding。上下文失效先清已有 binding，再 best-effort 正常 DELETE；服务不可达时不恢复 binding，由服务端绝对 TTL 封顶。
+- app 正常退出先关闭 workflow 会话，再走既有 Chat shutdown；关闭 editor/到期不取消真实 run，不删除工作流业务数据。
+
+最终正常验证
+1. yijie-desktop:
+   cargo test --manifest-path src-tauri/Cargo.toml --locked --lib workflows:: -- --test-threads=1
+   PASS：10 passed, 0 failed, 0 ignored, 347 filtered out；见 step3-desktop-native-tests.txt 原始输出。
+   正常 loopback consumer 覆盖列表/创建/保存/重开/bootstrap/test/publish/run/历史/operation 查询、同 request 不重复写、E 到期正常关闭、上下文失效与正常退出的服务端会话关闭、未来 engine state 原样保留、关闭后独立查询。
+   两个正常并发次序覆盖：正常 bootstrap 响应前切换上下文；已有 binding 关闭时另一个 open 等待正常序列锁。无故障响应、断流、强杀或攻击 payload。
+   纯时间计算测试覆盖普通正负两秒时钟偏移、已到服务端期限、已到原生 300 秒上限；未改变系统或容器时间。
+   fixture 只是一份生成契约驱动的进程内 HTTP provider，临时监听 127.0.0.1 随机端口并用 oneshot/正常 socket shutdown 停止；不是 Coze、第二 Desktop app 或真实验收替身。
+2. yijie-desktop:
+   cargo fmt --manifest-path src-tauri/Cargo.toml -- --check
+   PASS。
+3. yijie-desktop:
+   cargo clippy --manifest-path src-tauri/Cargo.toml --locked --lib -- -D warnings
+   PASS（最终源）。
+4. yijie-desktop:
+   cargo check --manifest-path src-tauri/Cargo.toml --locked --lib
+   PASS；后续最终源由第 1/3 项重新编译验证。
+5. yijie-contracts:
+   node scripts/sync-workflow-consumer.mjs desktop --check
+   PASS：Verified yijie-desktop workflow-local candidate; old public/Runtime locks untouched.
+6. yijie-desktop:
+   git diff --check
+   PASS。
+
+未通过/未执行与影响
+- 已执行 cargo clippy --manifest-path src-tauri/Cargo.toml --locked --lib --tests -- -D warnings：被既有 src/chat/mod.rs:1351 的 clippy::cloned_ref_to_slice_refs 阻挡。未修改 Chat 或添加 lint 抑制，不将含全库测试的严格 Clippy 报成 PASS。
+- 未执行全 Rust/production-hardened/攻击 fixture/generate:check；只执行已审阅安全的 workflows:: 定向测试和 canonical consumer --check。未对既有其他模块全量回归作结论。
+- 未启动 Desktop、Docker、受控 API/Coze 栈；未验证真实三节点 engine、数据库持久化、MessagePort、iframe IPC 隔离或 macOS WKWebView dev/packaged 行为，保留为第 4/5/6 步。
+- 尚无 iframe、CSP、导航事件/父页取消接线；原生函数的来源检查与上下文失效接口不等于已完成真实 WebView 资格。首次 open 尚无 binding 时父页取消后处理迟到结果并关闭 bridge 属第 5 步，当前未实现。
+- 未触碰原 Vue/CSS/设计文件的既有用户 dirty 改动；未修改原 public/Runtime lock、Cargo.lock、pnpm-lock、签名构建、系统信任或生产配置。
+- 当前为 source+digest local candidate 消费，不是不可变发布引用；不得合并/启用 production 或报 FEAT-153 全部完成。
