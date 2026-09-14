@@ -1,0 +1,247 @@
+Native conversation verified: 811f38d6b104fa18477107e7ac91a85e19c445d1; published=false
+FEAT-132 native sources, generated consumer snapshots and retired-engine boundary verified.
+Native MCP verified: 811f38d6b104fa18477107e7ac91a85e19c445d1
+FEAT-144 native sources and single display adapter checked; candidate checks do not authorize activation.
+FEAT-134 v4 immutable objects verified at Contracts 87f94c9aa6d4848cb67aa8a1265bd21474edb0bb and Agent Host 96b1fa19783694aef583b614c492fd2b6b5c15cc; activation is exact local/demo_fast/stable only.
+FEAT-137 permanent retirement authority verified: 4d3f967938dde1c86ca34003a0a5628717f96262; acceptance remains NOT PASSED
+$ node scripts/sync-desktop-skill-resources.mjs --channel local-development
+Synchronized local-development: 38 installable Skills, categories 5/9/7/9/8.
+$ env YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast YIJIE_RUNTIME_PERMISSIONS_ENABLED=true VITE_YIJIE_RUNTIME_PERMISSIONS_ENABLED=true pnpm skills:sync:local && env -u YIJIE_FEAT134_STREAMING_ENABLED -u VITE_YIJIE_FEAT134_STREAMING_ENABLED -u YIJIE_FEAT136_COMMAND_TOOL_ITEMS_ENABLED -u VITE_YIJIE_FEAT136_EXECUTION_ENABLED -u YIJIE_FEAT137_COMMAND_APPROVAL_ENABLED -u VITE_YIJIE_FEAT137_APPROVAL_ENABLED VITE_YIJIE_RUNTIME_PERMISSIONS_ENABLED=true VITE_YIJIE_ENV=local VITE_YIJIE_LOCAL_PROFILE=demo_fast VITE_YIJIE_CHAT_LOCAL_UI_ENABLED=true VITE_YIJIE_AUTHORITATIVE_PERMISSION_UI_ENABLED=true VITE_YIJIE_LOCAL_WHITELIST_LOGIN_ENABLED=false tauri build --debug --bundles app --no-sign --config src-tauri/tauri.demo-fast.conf.json --config src-tauri/tauri.workflow-local.conf.json
+$ node scripts/sync-desktop-skill-resources.mjs --channel local-development
+Synchronized local-development: 38 installable Skills, categories 5/9/7/9/8.
+        Warn --no-sign flag detected: Signing will be skipped.
+        Info Looking up installed tauri packages to check mismatched versions...
+     Running beforeBuildCommand `pnpm build`
+$ vue-tsc --noEmit && vite build
+vite v8.1.3 building client environment for production...
+[2Ktransforming...✓ 5386 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                      0.40 kB │ gzip:   0.27 kB
+dist/assets/YjIcon-BmPrxpO0.css                      0.51 kB │ gzip:   0.19 kB
+dist/assets/YjLogo-V2YNPyyf.css                      0.94 kB │ gzip:   0.30 kB
+dist/assets/AccessDeniedPage-C549waJM.css            1.05 kB │ gzip:   0.39 kB
+dist/assets/YjEmpty-gVjCw_m1.css                     1.16 kB │ gzip:   0.40 kB
+dist/assets/workflow-showcase-DPzBrt9i.css           1.75 kB │ gzip:   0.46 kB
+dist/assets/component-colors-BhkuEDh2.css            2.02 kB │ gzip:   0.60 kB
+dist/assets/YjSection-x4hfk_o0.css                   2.19 kB │ gzip:   0.59 kB
+dist/assets/main-DY-H5o4H.css                        2.19 kB │ gzip:   0.68 kB
+dist/assets/YjChartCard-CAEZYe0m.css                 3.73 kB │ gzip:   0.90 kB
+dist/assets/SettingsPage-BcjdlT4n.css                4.90 kB │ gzip:   0.95 kB
+dist/assets/SkillMarketplacePage-Dh-mR3_0.css        5.81 kB │ gzip:   1.19 kB
+dist/assets/WorkflowEditorPage-9lVkiLBJ.css          6.38 kB │ gzip:   1.30 kB
+dist/assets/StorePage-NANoTVw0.css                   7.51 kB │ gzip:   1.19 kB
+dist/assets/WorkflowPage-yp9Z4ZuS.css                9.98 kB │ gzip:   1.74 kB
+dist/assets/App-D_PXG35d.css                        17.32 kB │ gzip:   3.54 kB
+dist/assets/ChatPage-DhOiPYZT.css                   84.71 kB │ gzip:   9.84 kB
+dist/assets/_plugin-vue_export-helper-BDNMzG2s.js    0.08 kB │ gzip:   0.09 kB
+dist/assets/use-compitable-q6Tf196v.js               0.16 kB │ gzip:   0.15 kB
+dist/assets/AccessDeniedPage-Cm1LS0mX.js             0.80 kB │ gzip:   0.58 kB
+dist/assets/YjEmpty-BoZwSAW3.js                      0.84 kB │ gzip:   0.50 kB
+dist/assets/light-ChPFVixD.js                        1.73 kB │ gzip:   0.62 kB
+dist/assets/YjSection-DV_7BDIF.js                    2.10 kB │ gzip:   0.87 kB
+dist/assets/_common-D8ca3kLU.js                      2.28 kB │ gzip:   0.89 kB
+dist/assets/index-C9LRy9Wa.js                        4.64 kB │ gzip:   2.17 kB
+dist/assets/router-C5wYnzGA.js                       5.25 kB │ gzip:   1.97 kB
+dist/assets/pinia-CywJvUAb.js                        7.49 kB │ gzip:   3.31 kB
+dist/assets/Tag-D3-uNG1w.js                          9.73 kB │ gzip:   2.99 kB
+dist/assets/SettingsPage-CnrV20rz.js                11.97 kB │ gzip:   4.57 kB
+dist/assets/WorkflowPage-CBk8o9FD.js                13.29 kB │ gzip:   4.72 kB
+dist/assets/WorkflowEditorPage-BnlYzyP7.js          23.09 kB │ gzip:   8.39 kB
+dist/assets/StorePage-BJFslWGT.js                   25.36 kB │ gzip:   8.23 kB
+dist/assets/YjIcon-xz0uDMc7.js                      26.28 kB │ gzip:   9.23 kB
+dist/assets/permission.store--PK3UCPy.js            33.67 kB │ gzip:  12.73 kB
+dist/assets/event-DCoE7zjo.js                       37.98 kB │ gzip:  12.39 kB
+dist/assets/SkillMarketplacePage-DJ26Xb2Y.js        46.96 kB │ gzip:  15.37 kB
+dist/assets/Modal-D7GMAwkR.js                       57.31 kB │ gzip:  16.79 kB
+dist/assets/Card-B7qiiG_o.js                        74.73 kB │ gzip:  24.45 kB
+dist/assets/vue.runtime.esm-bundler-B-tr_3O5.js    111.08 kB │ gzip:  42.60 kB
+dist/assets/App-DMzNgCLC.js                        195.04 kB │ gzip:  51.68 kB
+dist/assets/ChatPage-OMSkmcYr.js                   201.36 kB │ gzip:  55.49 kB
+dist/assets/YjLogo-C0jGG7eD.js                     273.15 kB │ gzip:  54.40 kB
+dist/assets/workflow-showcase-BgypyNzo.js          317.10 kB │ gzip:  24.74 kB
+dist/assets/YjChartCard-Z8QoIGtE.js                543.38 kB │ gzip: 185.55 kB
+
+✓ built in 388ms
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+   Compiling yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 8.19s
+       Built application at: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/target/debug/yijie-desktop
+    Bundling 易界 AI.app (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/target/debug/bundle/macos/易界 AI.app)
+        Warn Skipping signing due to --no-sign flag.
+    Finished 1 bundle at:
+        /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/target/debug/bundle/macos/易界 AI.app
+
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":780.0,"inner_width":1180.0,"outer_height":780.0,"outer_width":1180.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":790.0,"inner_width":1204.0,"outer_height":790.0,"outer_width":1204.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":803.0,"inner_width":1234.0,"outer_height":803.0,"outer_width":1234.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":815.0,"inner_width":1264.0,"outer_height":815.0,"outer_width":1264.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":833.0,"inner_width":1307.0,"outer_height":833.0,"outer_width":1307.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":839.0,"inner_width":1320.0,"outer_height":839.0,"outer_width":1320.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":843.0,"inner_width":1330.0,"outer_height":843.0,"outer_width":1330.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":846.0,"inner_width":1337.0,"outer_height":846.0,"outer_width":1337.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":848.0,"inner_width":1342.0,"outer_height":848.0,"outer_width":1342.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":849.0,"inner_width":1345.0,"outer_height":849.0,"outer_width":1345.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":849.0,"inner_width":1346.0,"outer_height":849.0,"outer_width":1346.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":842.0,"inner_width":1333.0,"outer_height":842.0,"outer_width":1333.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":828.0,"inner_width":1307.0,"outer_height":828.0,"outer_width":1307.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":811.0,"inner_width":1275.0,"outer_height":811.0,"outer_width":1275.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":797.0,"inner_width":1248.0,"outer_height":797.0,"outer_width":1248.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":786.0,"inner_width":1227.0,"outer_height":786.0,"outer_width":1227.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":777.0,"inner_width":1212.0,"outer_height":777.0,"outer_width":1212.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":771.0,"inner_width":1200.0,"outer_height":771.0,"outer_width":1200.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":767.0,"inner_width":1192.0,"outer_height":767.0,"outer_width":1192.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":764.0,"inner_width":1187.0,"outer_height":764.0,"outer_width":1187.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":762.0,"inner_width":1183.0,"outer_height":762.0,"outer_width":1183.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":761.0,"inner_width":1181.0,"outer_height":761.0,"outer_width":1181.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":760.0,"inner_width":1180.0,"outer_height":760.0,"outer_width":1180.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":763.0,"inner_width":1187.0,"outer_height":763.0,"outer_width":1187.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":766.0,"inner_width":1195.0,"outer_height":766.0,"outer_width":1195.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":770.0,"inner_width":1207.0,"outer_height":770.0,"outer_width":1207.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":775.0,"inner_width":1223.0,"outer_height":775.0,"outer_width":1223.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":781.0,"inner_width":1241.0,"outer_height":781.0,"outer_width":1241.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":788.0,"inner_width":1261.0,"outer_height":788.0,"outer_width":1261.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":795.0,"inner_width":1280.0,"outer_height":795.0,"outer_width":1280.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":802.0,"inner_width":1299.0,"outer_height":802.0,"outer_width":1299.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":808.0,"inner_width":1317.0,"outer_height":808.0,"outer_width":1317.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":813.0,"inner_width":1333.0,"outer_height":813.0,"outer_width":1333.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":818.0,"inner_width":1347.0,"outer_height":818.0,"outer_width":1347.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":823.0,"inner_width":1360.0,"outer_height":823.0,"outer_width":1360.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":827.0,"inner_width":1371.0,"outer_height":827.0,"outer_width":1371.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":830.0,"inner_width":1382.0,"outer_height":830.0,"outer_width":1382.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":833.0,"inner_width":1391.0,"outer_height":833.0,"outer_width":1391.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":836.0,"inner_width":1398.0,"outer_height":836.0,"outer_width":1398.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":838.0,"inner_width":1405.0,"outer_height":838.0,"outer_width":1405.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":841.0,"inner_width":1412.0,"outer_height":841.0,"outer_width":1412.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":842.0,"inner_width":1417.0,"outer_height":842.0,"outer_width":1417.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":844.0,"inner_width":1422.0,"outer_height":844.0,"outer_width":1422.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":845.0,"inner_width":1426.0,"outer_height":845.0,"outer_width":1426.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":847.0,"inner_width":1429.0,"outer_height":847.0,"outer_width":1429.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":848.0,"inner_width":1432.0,"outer_height":848.0,"outer_width":1432.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":848.0,"inner_width":1435.0,"outer_height":848.0,"outer_width":1435.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":849.0,"inner_width":1436.0,"outer_height":849.0,"outer_width":1436.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":850.0,"inner_width":1438.0,"outer_height":850.0,"outer_width":1438.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":850.0,"inner_width":1439.0,"outer_height":850.0,"outer_width":1439.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":850.0,"inner_width":1440.0,"outer_height":850.0,"outer_width":1440.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"bridge_id":"01a099f0-f5e0-7213-815a-c348ad3eebb4","event":"remote_close_confirmed","generation":1,"remote_closed":true,"run_epoch":"292bdd01-ebd8-4c90-b0a1-54a77da84752","workflow_id":"7684938170672087040"}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":847.0,"inner_width":1430.0,"outer_height":847.0,"outer_width":1430.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":843.0,"inner_width":1419.0,"outer_height":843.0,"outer_width":1419.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":838.0,"inner_width":1405.0,"outer_height":838.0,"outer_width":1405.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":832.0,"inner_width":1388.0,"outer_height":832.0,"outer_width":1388.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":826.0,"inner_width":1369.0,"outer_height":826.0,"outer_width":1369.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":819.0,"inner_width":1349.0,"outer_height":819.0,"outer_width":1349.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":812.0,"inner_width":1330.0,"outer_height":812.0,"outer_width":1330.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":806.0,"inner_width":1312.0,"outer_height":806.0,"outer_width":1312.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":800.0,"inner_width":1295.0,"outer_height":800.0,"outer_width":1295.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":788.0,"inner_width":1260.0,"outer_height":788.0,"outer_width":1260.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":784.0,"inner_width":1249.0,"outer_height":784.0,"outer_width":1249.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":781.0,"inner_width":1239.0,"outer_height":781.0,"outer_width":1239.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":778.0,"inner_width":1230.0,"outer_height":778.0,"outer_width":1230.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":775.0,"inner_width":1222.0,"outer_height":775.0,"outer_width":1222.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":772.0,"inner_width":1215.0,"outer_height":772.0,"outer_width":1215.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":770.0,"inner_width":1209.0,"outer_height":770.0,"outer_width":1209.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":769.0,"inner_width":1204.0,"outer_height":769.0,"outer_width":1204.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":767.0,"inner_width":1199.0,"outer_height":767.0,"outer_width":1199.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":766.0,"inner_width":1195.0,"outer_height":766.0,"outer_width":1195.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":764.0,"inner_width":1192.0,"outer_height":764.0,"outer_width":1192.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":763.0,"inner_width":1189.0,"outer_height":763.0,"outer_width":1189.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":763.0,"inner_width":1186.0,"outer_height":763.0,"outer_width":1186.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":762.0,"inner_width":1184.0,"outer_height":762.0,"outer_width":1184.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":761.0,"inner_width":1183.0,"outer_height":761.0,"outer_width":1183.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":761.0,"inner_width":1182.0,"outer_height":761.0,"outer_width":1182.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":761.0,"inner_width":1181.0,"outer_height":761.0,"outer_width":1181.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":760.0,"inner_width":1180.0,"outer_height":760.0,"outer_width":1180.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":764.0,"inner_width":1191.0,"outer_height":764.0,"outer_width":1191.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":768.0,"inner_width":1202.0,"outer_height":768.0,"outer_width":1202.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":773.0,"inner_width":1216.0,"outer_height":773.0,"outer_width":1216.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":779.0,"inner_width":1233.0,"outer_height":779.0,"outer_width":1233.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":785.0,"inner_width":1252.0,"outer_height":785.0,"outer_width":1252.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":792.0,"inner_width":1272.0,"outer_height":792.0,"outer_width":1272.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":799.0,"inner_width":1291.0,"outer_height":799.0,"outer_width":1291.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":805.0,"inner_width":1309.0,"outer_height":805.0,"outer_width":1309.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":811.0,"inner_width":1326.0,"outer_height":811.0,"outer_width":1326.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":823.0,"inner_width":1361.0,"outer_height":823.0,"outer_width":1361.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":827.0,"inner_width":1372.0,"outer_height":827.0,"outer_width":1372.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":830.0,"inner_width":1382.0,"outer_height":830.0,"outer_width":1382.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":833.0,"inner_width":1391.0,"outer_height":833.0,"outer_width":1391.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":836.0,"inner_width":1399.0,"outer_height":836.0,"outer_width":1399.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":839.0,"inner_width":1406.0,"outer_height":839.0,"outer_width":1406.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":841.0,"inner_width":1412.0,"outer_height":841.0,"outer_width":1412.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":842.0,"inner_width":1417.0,"outer_height":842.0,"outer_width":1417.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":844.0,"inner_width":1422.0,"outer_height":844.0,"outer_width":1422.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":845.0,"inner_width":1426.0,"outer_height":845.0,"outer_width":1426.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":847.0,"inner_width":1429.0,"outer_height":847.0,"outer_width":1429.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":848.0,"inner_width":1432.0,"outer_height":848.0,"outer_width":1432.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":848.0,"inner_width":1435.0,"outer_height":848.0,"outer_width":1435.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":849.0,"inner_width":1437.0,"outer_height":849.0,"outer_width":1437.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":850.0,"inner_width":1438.0,"outer_height":850.0,"outer_width":1438.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":850.0,"inner_width":1439.0,"outer_height":850.0,"outer_width":1439.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":850.0,"inner_width":1440.0,"outer_height":850.0,"outer_width":1440.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"bridge_id":"01a099f2-b8fa-78c0-ba5f-e8874e4d4ed8","event":"remote_close_confirmed","generation":2,"remote_closed":true,"run_epoch":"292bdd01-ebd8-4c90-b0a1-54a77da84752","workflow_id":"7684938170672087040"}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":848.0,"inner_width":1434.0,"outer_height":848.0,"outer_width":1434.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":845.0,"inner_width":1425.0,"outer_height":845.0,"outer_width":1425.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":841.0,"inner_width":1412.0,"outer_height":841.0,"outer_width":1412.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":835.0,"inner_width":1396.0,"outer_height":835.0,"outer_width":1396.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":829.0,"inner_width":1378.0,"outer_height":829.0,"outer_width":1378.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":822.0,"inner_width":1358.0,"outer_height":822.0,"outer_width":1358.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":815.0,"inner_width":1339.0,"outer_height":815.0,"outer_width":1339.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":809.0,"inner_width":1320.0,"outer_height":809.0,"outer_width":1320.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":803.0,"inner_width":1303.0,"outer_height":803.0,"outer_width":1303.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":797.0,"inner_width":1287.0,"outer_height":797.0,"outer_width":1287.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":792.0,"inner_width":1272.0,"outer_height":792.0,"outer_width":1272.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":788.0,"inner_width":1260.0,"outer_height":788.0,"outer_width":1260.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":784.0,"inner_width":1248.0,"outer_height":784.0,"outer_width":1248.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":781.0,"inner_width":1238.0,"outer_height":781.0,"outer_width":1238.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":778.0,"inner_width":1230.0,"outer_height":778.0,"outer_width":1230.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":775.0,"inner_width":1222.0,"outer_height":775.0,"outer_width":1222.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":772.0,"inner_width":1215.0,"outer_height":772.0,"outer_width":1215.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":770.0,"inner_width":1209.0,"outer_height":770.0,"outer_width":1209.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":768.0,"inner_width":1203.0,"outer_height":768.0,"outer_width":1203.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":767.0,"inner_width":1199.0,"outer_height":767.0,"outer_width":1199.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":765.0,"inner_width":1195.0,"outer_height":765.0,"outer_width":1195.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":764.0,"inner_width":1191.0,"outer_height":764.0,"outer_width":1191.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":763.0,"inner_width":1189.0,"outer_height":763.0,"outer_width":1189.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":762.0,"inner_width":1186.0,"outer_height":762.0,"outer_width":1186.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":762.0,"inner_width":1184.0,"outer_height":762.0,"outer_width":1184.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":761.0,"inner_width":1183.0,"outer_height":761.0,"outer_width":1183.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":761.0,"inner_width":1182.0,"outer_height":761.0,"outer_width":1182.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":761.0,"inner_width":1181.0,"outer_height":761.0,"outer_width":1181.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":760.0,"inner_width":1180.0,"outer_height":760.0,"outer_width":1180.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":763.0,"inner_width":1187.0,"outer_height":763.0,"outer_width":1187.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":766.0,"inner_width":1196.0,"outer_height":766.0,"outer_width":1196.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":770.0,"inner_width":1209.0,"outer_height":770.0,"outer_width":1209.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":776.0,"inner_width":1225.0,"outer_height":776.0,"outer_width":1225.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":782.0,"inner_width":1243.0,"outer_height":782.0,"outer_width":1243.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":789.0,"inner_width":1263.0,"outer_height":789.0,"outer_width":1263.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":796.0,"inner_width":1282.0,"outer_height":796.0,"outer_width":1282.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":802.0,"inner_width":1301.0,"outer_height":802.0,"outer_width":1301.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":808.0,"inner_width":1318.0,"outer_height":808.0,"outer_width":1318.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":814.0,"inner_width":1334.0,"outer_height":814.0,"outer_width":1334.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":819.0,"inner_width":1349.0,"outer_height":819.0,"outer_width":1349.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":823.0,"inner_width":1361.0,"outer_height":823.0,"outer_width":1361.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":827.0,"inner_width":1373.0,"outer_height":827.0,"outer_width":1373.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":830.0,"inner_width":1383.0,"outer_height":830.0,"outer_width":1383.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":834.0,"inner_width":1391.0,"outer_height":834.0,"outer_width":1391.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":836.0,"inner_width":1399.0,"outer_height":836.0,"outer_width":1399.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":839.0,"inner_width":1406.0,"outer_height":839.0,"outer_width":1406.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":841.0,"inner_width":1412.0,"outer_height":841.0,"outer_width":1412.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":843.0,"inner_width":1418.0,"outer_height":843.0,"outer_width":1418.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":844.0,"inner_width":1422.0,"outer_height":844.0,"outer_width":1422.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":846.0,"inner_width":1426.0,"outer_height":846.0,"outer_width":1426.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":847.0,"inner_width":1430.0,"outer_height":847.0,"outer_width":1430.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":848.0,"inner_width":1432.0,"outer_height":848.0,"outer_width":1432.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":849.0,"inner_width":1435.0,"outer_height":849.0,"outer_width":1435.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":849.0,"inner_width":1437.0,"outer_height":849.0,"outer_width":1437.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":850.0,"inner_width":1438.0,"outer_height":850.0,"outer_width":1438.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":850.0,"inner_width":1439.0,"outer_height":850.0,"outer_width":1439.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"event":"window_geometry","inner_height":850.0,"inner_width":1440.0,"outer_height":850.0,"outer_width":1440.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"bridge_id":"01a099fd-02d9-7bf3-8569-b815ed11ab5f","event":"remote_close_confirmed","generation":3,"remote_closed":true,"run_epoch":"292bdd01-ebd8-4c90-b0a1-54a77da84752","workflow_id":"7684934079279529984"}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"bridge_id":"01a099fd-7d65-7190-863a-b94e82160b74","event":"remote_close_confirmed","generation":4,"remote_closed":true,"run_epoch":"292bdd01-ebd8-4c90-b0a1-54a77da84752","workflow_id":"7684523782928596992"}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"bridge_id":"01a099ff-79b2-7bb2-bb4b-275d67a6c690","event":"remote_close_confirmed","generation":5,"remote_closed":true,"run_epoch":"292bdd01-ebd8-4c90-b0a1-54a77da84752","workflow_id":"7684938170672087040"}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"bridge_id":"01a099ff-f26d-7f62-bda7-e1fbefac6f19","event":"remote_close_confirmed","generation":6,"remote_closed":true,"run_epoch":"292bdd01-ebd8-4c90-b0a1-54a77da84752","workflow_id":"7684523782928596992"}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"bridge_id":"01a09a00-0e0c-7e80-8b05-92aaf7f6ec2b","event":"remote_close_confirmed","generation":7,"remote_closed":true,"run_epoch":"292bdd01-ebd8-4c90-b0a1-54a77da84752","workflow_id":"7684523782928596992"}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":19207,"bridge_id":"01a09a09-2147-7c02-be41-1f384415533a","event":"remote_close_confirmed","generation":8,"remote_closed":true,"run_epoch":"292bdd01-ebd8-4c90-b0a1-54a77da84752","workflow_id":"7684523782928596992"}

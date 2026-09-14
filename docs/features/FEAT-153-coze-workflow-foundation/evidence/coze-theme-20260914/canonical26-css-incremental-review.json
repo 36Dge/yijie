@@ -1,0 +1,55 @@
+{
+  "comparison": [
+    "canonical25",
+    "canonical26"
+  ],
+  "same_js_paths_bytes_sha256": true,
+  "js_count": 235,
+  "unchanged_asset_count": 383,
+  "changed_common_paths": [
+    "index.html"
+  ],
+  "removed": [
+    "assets/css/index.fcac3690.css"
+  ],
+  "added": [
+    "assets/css/index.311b3360.css"
+  ],
+  "old": {
+    "index.html": {
+      "sha256": "a823c302b2d995f45ed65bfc073e46da613d7a34299b70bab6ec4528bc94ac7f",
+      "bytes": 617
+    },
+    "assets/css/index.fcac3690.css": {
+      "sha256": "25015a324abfd4d8433e2d93178746eb0049579340582ff6d5aadb49ed6fcd52",
+      "bytes": 227652
+    }
+  },
+  "new": {
+    "index.html": {
+      "sha256": "2770dbf3e1087ac052efd50ee390ea75094ca444e01f531e760e9edc97eda937",
+      "bytes": 617
+    },
+    "assets/css/index.311b3360.css": {
+      "sha256": "b8f8ce46f3a2b27ddc3808088dda3591faa72c5466f92b2aaeba6191a3c9b71f",
+      "bytes": 227734
+    }
+  },
+  "css_text_delta": {
+    "removed": "",
+    "inserted": "html:root body [class~=\"text-[#ff441e]\"]{color:var(--yj-color-semantic-error-ink)}"
+  },
+  "html_only_change": "Updated entry CSS asset filename",
+  "file_count": 385,
+  "total_bytes": 45317972,
+  "max_file_bytes": 9227636,
+  "manifest_sha256": "725750097a463c3dc3a323b04c8b22e3650bfdc27ace60453f1c93ce2d00810c",
+  "manifest_bytes": 85242,
+  "source_digest": "236d36286e96b4f7ad7fe5bb874528c67505c0835020b238cfe21179263bb120",
+  "canonical26_build_exit_code": 0,
+  "canonical26_check_exit_code": 0,
+  "csp_catalog_changed": false,
+  "canonical27": "Not run: parent explicitly requested no repeated build after exact JS identity and narrow CSS-only evidence. No claim of a 26/27 repeatability comparison.",
+  "runtime_scope": "No App/service activation; UI qualification separate. Runtime CSP, original dependency lock, build config and budgets unchanged.",
+  "preserved_snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/review-snapshots/canonical26"
+}

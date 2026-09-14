@@ -1,0 +1,9 @@
+# canonical19/20 own-save比较修复审查
+
+新增纯document-key helper复制并排序顶层nodes/edges比较，所有原字段、嵌套数组顺序和原对象不变；SaveService仅3处整图比较切换。普通helper4项测试与其他10项focused检查均通过，未修改原依赖、构建配置、运行时CSP或预算。
+
+逐文件diff显示381/385资产字节保持；async9484仅新增397935纯helper、修改929167 SaveService，并由标准tree-shaking移除659179不再使用的旧比较函数导出。main637模块字节全部保持，main和worker只传播新的分片/全构建hash。完整AST仍131敏感位点/301辅助命中，无新增类别或模块集合，含WASM/Worker/间接eval/Function别名逐条分类保持。精确审查清单仍45项，只更新3个明确变化文件，未扩大范围。
+
+canonical20完整build/check均exit0，19/20全部385资产路径/bytes/SHA一致。HTML/CSS资源引用和既有预算通过。manifest SHA256 `d5176e19616f5935ec85d1aa3e9efa7c54ef8d15d7de97a19270009b0a5fa79a`。
+
+未启动App或栈。源修复只解决首次own-save因顶层数组顺序不同而误reload的问题，仍需真实新建合成流程验证首次保存保留侧栏/历史，以及核心闭环；静态和构建结果不得替代App资格。

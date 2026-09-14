@@ -1,0 +1,48 @@
+{
+  "scope": "Read-only source audit after real WK canonical12 failure. No runtime modifications, builds, WASM or network execution.",
+  "observed_error": "Unhandled Promise Rejection CompileError: WebAssembly denied by script-src self without unsafe-eval/wasm-unsafe-eval",
+  "actual_source_chain": [
+    "playground eagerly imports code-editor-adapter for original setters",
+    "code-editor-adapter index.tsx:17 imports preset-code themes for registration",
+    "@coze-editor/preset-code index.js:109 eagerly creates highlighterPromise",
+    "shiki3.6.0 bundle-full.mjs defaults to createOnigurumaEngine(import(shiki/wasm))",
+    "engine-oniguruma3.6.0 ultimately calls WebAssembly.instantiate"
+  ],
+  "prior_audit_limitation": "Worker/eval/Function checks and Text-vs-TS-worker lazy review did not cover eager Shiki WASM startup. Canonical12 static build pass did not qualify actual App.",
+  "real_existing_alternative": "shiki3.6.0 publicly exports createJavaScriptRegexEngine using locked @shikijs/engine-javascript3.6.0 and oniguruma-to-es4.3.3 native RegExp. Select through genuine createHighlighter options, retaining original grammar/theme/highlighter.",
+  "suggested_scope": "Exact shiki root compiler alias to transparent source wrapper; original subpaths unmodified; override only createHighlighter default engine. Keep CSP unchanged. Normal language/theme smoke and App verification required.",
+  "sources": [
+    {
+      "path": "bin/workflow-editor/build-workspace/node_modules/.pnpm/@coze-editor+preset-code@0.1.0-alpha.dd871b_@codemirror+commands@6.8.1_@codemirror+state@6.5._li7wkx55lyvnjaodoueopwudre/node_modules/@coze-editor/preset-code/dist/esm/index.js",
+      "sha256": "bce9228b9d1cd5c28ac59c511a8081cbfb4af6efa575e123c59ab57e68bdd44b"
+    },
+    {
+      "path": "bin/workflow-editor/build-workspace/node_modules/.pnpm/shiki@3.6.0/node_modules/shiki/dist/bundle-full.mjs",
+      "sha256": "7f0ec0ba5ed58230df607f3f9dafa11c22e8d675b1cff3a5c6888e1c4bd5f499"
+    },
+    {
+      "path": "bin/workflow-editor/build-workspace/node_modules/.pnpm/@shikijs+engine-oniguruma@3.6.0/node_modules/@shikijs/engine-oniguruma/dist/index.mjs",
+      "sha256": "ca1ddeee6e9941a2078b15c24317d7a5da235bd170a08aa8150d34ad4a65ba0c"
+    },
+    {
+      "path": "bin/workflow-editor/build-workspace/node_modules/.pnpm/@shikijs+engine-javascript@3.6.0/node_modules/@shikijs/engine-javascript/dist/engine-compile.mjs",
+      "sha256": "84a3e2722e186124eb0f679eb14422a3bf387490e50d88ffae2e0b3ad53029a1"
+    },
+    {
+      "path": "bin/workflow-editor/build-workspace/node_modules/.pnpm/oniguruma-to-es@4.3.3/node_modules/oniguruma-to-es/dist/esm/index.js",
+      "sha256": "5c8c46ecd0c685b4323193ea8b2b161c210ffe7f26301543a4a77c261d0965a7"
+    },
+    {
+      "path": "frontend/packages/workflow/adapter/code-editor/src/index.tsx",
+      "sha256": "33e7d77a5e0d91dae0e628a9cfc9fd228936402b290e2c3fb0dc1e2e431d263b"
+    },
+    {
+      "path": "frontend/packages/workflow/playground/src/form-extensions/setters/code/code-with-biz-ide.tsx",
+      "sha256": "b6b0cdf263df779def059b984ec28dede532c21ad25f8712bdc6e0063262f666"
+    },
+    {
+      "path": "frontend/packages/workflow/playground/src/form-extensions/setters/code/biz-ide-panel/biz-ide.tsx",
+      "sha256": "f7bad60dd7e8d61df27a6afcee6ef14a46e8d46b6f1e82479d3c44b73c3f1056"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "scope": "Read-only original undo registration/focus/history audit while App live; no source/build/runtime mutation.",
+  "registered_commands": {
+    "undo": [
+      "meta z",
+      "ctrl z"
+    ],
+    "redo": [
+      "meta shift z",
+      "ctrl shift z"
+    ]
+  },
+  "history_plugin": {
+    "enable": true,
+    "limit": 50
+  },
+  "key_route": "Original ShortcutsLayer requires isFocused and event.target===playgroundNode. Node keyboard button focus does not satisfy this; editor readonly also disables undo.",
+  "local_save": "Local Header calls adapter.save; no unconditional clear. Native free-history plugin clears on document.onReload. Known first-save order reload therefore clears prior history.",
+  "actual_ui_followup_from_root": "Root independently reconnected, focused real blank canvas, ran CmdZ twice and saved; API coordinates restored (690,-10)->(640,0). Native undo verified; no shortcut/history source change needed.",
+  "ui_evidence": "native-keyboard-move-undo-verified.json",
+  "sources": [
+    {
+      "path": "frontend/packages/workflow/history/src/workflow-history-shortcuts-contribution.ts",
+      "sha256": "4b2ba7f309ba2caf6277abf39277853c6922215c6eb7dead9a40f073cd33f532"
+    },
+    {
+      "path": "frontend/packages/workflow/history/src/workflow-history-container-module.ts",
+      "sha256": "9bf2af58c096e1efbf87d75a2faca934c0eba2640e429c7ab7fa65d2b95b1a8b"
+    },
+    {
+      "path": "frontend/packages/workflow/history/src/workflow-history-config.ts",
+      "sha256": "a41fce1581f56d3fdb53b006b300f4e1eedf895c0edb3a5fd610f335ec4709e2"
+    },
+    {
+      "path": "frontend/packages/workflow/render/src/layer/shortcuts-layer.tsx",
+      "sha256": "399ecf90b85c583da3bf5783aad34929e7a44a37436b9861aa17d3f3faed1484"
+    },
+    {
+      "path": "frontend/packages/workflow/playground/src/hooks/use-workflow-preset.tsx",
+      "sha256": "aaf446e78c075afef81a86bcfba994bc7b1d8dd988432adfe22321f12c74cbf9"
+    },
+    {
+      "path": "frontend/packages/workflow/playground/src/services/local-workflow-keyboard-service.ts",
+      "sha256": "fc37f2161a236ec938ffd5c223106b1afe0b47e410db180887ab540eaa0d5199"
+    },
+    {
+      "path": "frontend/packages/workflow/playground/src/services/workflow-save-service.ts",
+      "sha256": "3c1299ae14f1d30bca6410e9a8e0679e6103cf8771728119a772a6e6614c2859"
+    }
+  ]
+}

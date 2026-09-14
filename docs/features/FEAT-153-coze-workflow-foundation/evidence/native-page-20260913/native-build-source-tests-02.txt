@@ -1,0 +1,39 @@
+✔ package aliases preserve normal imported modules and authored text (1.261375ms)
+✔ root level imports, side effects and CSS imports use the owning package (0.127584ms)
+✔ root build outputs are excluded while authored output modules are preserved (0.151875ms)
+✖ original exports resolve to real files and original source subpaths (3.116625ms)
+✔ reviewed native closure is reproducible from original locked source packages (1031.035625ms)
+✔ fixed compiler definitions cover original globals without environment input (0.569416ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1105.975709
+
+✖ failing tests:
+
+test at scripts/yijie/workflow-editor-source.test.mjs:47:1
+✖ original exports resolve to real files and original source subpaths (3.116625ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + './src/components/plugin_modal/types/index.ts'
+  - './src/components/plugin_modal/types.ts'
+  
+      at TestContext.<anonymous> (file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/scripts/yijie/workflow-editor-source.test.mjs:52:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:831:18)
+      at Test.postRun (node:internal/test_runner/test:1330:19)
+      at Test.run (node:internal/test_runner/test:1258:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: './src/components/plugin_modal/types/index.ts',
+    expected: './src/components/plugin_modal/types.ts',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

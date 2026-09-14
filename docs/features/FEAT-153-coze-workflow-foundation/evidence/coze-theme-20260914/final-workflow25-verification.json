@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-13T16:53:15.851272+00:00",
+  "source_snapshot": "final-workflow25.json",
+  "source_sha256": "629a46d3ef68dedd4cff7ba897ca3cd348460d5de9364f04b59dc1908f2785a8",
+  "workflow_id": "7685061713409867776",
+  "revision": "7685062443604639744",
+  "run_id": "7685063555988586496",
+  "expected_input": "亮暗切换",
+  "expected_output": "易界主题：亮暗切换",
+  "published_version": "v0.0.1",
+  "checks": {
+    "exact_workflow": true,
+    "first_saved_canvas_revision_preserved": true,
+    "published_v0_0_1": true,
+    "published_canvas_and_revision_match": true,
+    "exact_single_run_history": true,
+    "api_trial_succeeded": true,
+    "api_exact_input_output": true,
+    "mysql_trial_succeeded": true,
+    "mysql_exact_input_output": true,
+    "cross_database_shared_receipts_match": true,
+    "no_unmatched_operations": true
+  },
+  "all_pass": true,
+  "scope": "Offline comparison of recorded GET/SELECT snapshot only; no service connection or writes; no new runtime execution."
+}

@@ -1,0 +1,797 @@
+{
+  "schema_version": 1,
+  "scope": "Read-only TypeScript 5.8.2 JavaScript AST and symbol-resolved alias scan; includes WebAssembly operations. No bundle/Worker/WASM/eval/network code executed",
+  "source_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze",
+  "files": 3,
+  "bytes": 7367586,
+  "inventory": [
+    {
+      "file": "assets/js/async/7605.99adfc21.js",
+      "bytes": 2341,
+      "sha256": "a06b5484b56edcaf3f41720124dae19a8ca1e25948c5e55c5f2bc1000fb00acf"
+    },
+    {
+      "file": "assets/js/async/9484.018f52fe.js",
+      "bytes": 4117442,
+      "sha256": "9c6fbf8776052e219fec571e6b3e2cd34400e94b20eeed8f4bed29062f27a806"
+    },
+    {
+      "file": "assets/js/index.ebba751c.js",
+      "bytes": 3247803,
+      "sha256": "f82ff268a0e00b38e454cb996ebe86a5f49fe4cae9a0d816b971e470f6789c3e"
+    }
+  ],
+  "counts": {
+    "dynamic_function": 2,
+    "network_primitive": 4,
+    "script_element_loader": 1,
+    "worker_import_scripts": 1
+  },
+  "records": [
+    {
+      "file": "assets/js/async/7605.99adfc21.js",
+      "kind": "dynamic_function",
+      "start": 1299,
+      "end": 1322,
+      "line": 1,
+      "column": 1300,
+      "expression": "Function",
+      "expression_start": 1299,
+      "expression_end": 1307,
+      "context": "69\"})[n]+\".js\"},o.miniCssF=function(n){return\"\"+n+\".css\"},o.h=function(){return\"46c7237d57c4760e\"},o.g=function(){if(\"object\"==typeof globalThis)return globalThis;try{return this||Function(\"return this\")()}catch(n){if(\"object\"==typeof window)return window}}(),o.o=function(n,r){return Object.prototype.hasOwnProperty.call(n,r)},(()=>{var n=[];o.O=function(r,t,e,i){if(t){i=i||0;for(var u=n.length;u>0&&n[u-1][2]>i;u--)n[u]=",
+      "module_id": null,
+      "enclosing_functions": [
+        {
+          "name": "<anonymous>",
+          "start": 1222,
+          "immediately_invoked": true
+        },
+        {
+          "name": "<anonymous>",
+          "start": 1,
+          "immediately_invoked": true
+        }
+      ]
+    },
+    {
+      "file": "assets/js/async/7605.99adfc21.js",
+      "kind": "worker_import_scripts",
+      "start": 2019,
+      "end": 2044,
+      "line": 1,
+      "column": 2020,
+      "expression": "importScripts",
+      "expression_start": 2019,
+      "expression_end": 2032,
+      "context": "\"/editor/\",o.rv=function(){return\"1.1.8\"},(()=>{var n=o.x;o.x=function(){return Promise.all([o.e(\"1166\"),o.e(\"8944\")]).then(n)}})(),(()=>{var n={7605:1};o.f.i=function(r,t){!n[r]&&importScripts(o.p+o.u(r))};var r=globalThis.webpackChunk_yijie_coze_workflow_local=globalThis.webpackChunk_yijie_coze_workflow_local||[],t=r.push.bind(r);r.push=function(r){var e=r[0],i=r[1],u=r[2];for(var c in i)o.o(i,c)&&(o.m[c]=i[c]);for(u&&u",
+      "module_id": null,
+      "enclosing_functions": [
+        {
+          "name": "<anonymous>",
+          "start": 1998,
+          "immediately_invoked": false
+        },
+        {
+          "name": "<anonymous>",
+          "start": 1972,
+          "immediately_invoked": true
+        },
+        {
+          "name": "<anonymous>",
+          "start": 1,
+          "immediately_invoked": true
+        }
+      ]
+    },
+    {
+      "file": "assets/js/async/9484.018f52fe.js",
+      "kind": "network_primitive",
+      "start": 1468444,
+      "end": 1468452,
+      "line": 6,
+      "column": 80391,
+      "expression": "fetch",
+      "expression_start": 1468444,
+      "expression_end": 1468449,
+      "context": "ion(e,t,n){n.d(t,{S:function(){return a}});var r=n(397458),i=n(652983),o=n(99753);let a=e=>{let{fileUrl:t}=e,[n,a]=(0,i.useState)(\"\"),[s,l]=(0,i.useState)(!0);(0,i.useEffect)(()=>{fetch(t).then(e=>e.text()).then(e=>{l(!1),a(e)})},[t]);let c=(0,i.useRef)(null);return(0,i.useEffect)(()=>{(async function e(){if(c.current){for(let e=0,t=n.length;e<Math.ceil(t/5e4);e++)await new Promise(e=>setTimeout(e,10)),c.",
+      "module_id": "426961",
+      "enclosing_functions": [
+        {
+          "name": "<anonymous>",
+          "start": 1468439,
+          "immediately_invoked": true
+        },
+        {
+          "name": "a",
+          "start": 1468352,
+          "immediately_invoked": false
+        },
+        {
+          "name": "426961",
+          "start": 1468259,
+          "immediately_invoked": false
+        }
+      ],
+      "primitive": "fetch",
+      "static_target": null
+    },
+    {
+      "file": "assets/js/async/9484.018f52fe.js",
+      "kind": "network_primitive",
+      "start": 1469326,
+      "end": 1469334,
+      "line": 6,
+      "column": 81273,
+      "expression": "fetch",
+      "expression_start": 1469326,
+      "expression_end": 1469331,
+      "context": "ion(e,t,n){n.d(t,{T:function(){return a}});var r=n(397458),i=n(652983),o=n(99753);let a=e=>{let{fileUrl:t}=e,[n,a]=(0,i.useState)(\"\"),[s,l]=(0,i.useState)(!0);(0,i.useEffect)(()=>{fetch(t).then(e=>e.text()).then(e=>{l(!1),a(e)})},[t]);let c=(0,i.useRef)(null);return(0,i.useEffect)(()=>{(async function e(){if(c.current){for(let e=0,t=n.length;e<Math.ceil(t/5e4);e++)await new Promise(e=>setTimeout(e,10)),c.",
+      "module_id": "868156",
+      "enclosing_functions": [
+        {
+          "name": "<anonymous>",
+          "start": 1469321,
+          "immediately_invoked": true
+        },
+        {
+          "name": "a",
+          "start": 1469234,
+          "immediately_invoked": false
+        },
+        {
+          "name": "868156",
+          "start": 1469141,
+          "immediately_invoked": false
+        }
+      ],
+      "primitive": "fetch",
+      "static_target": null
+    },
+    {
+      "file": "assets/js/async/9484.018f52fe.js",
+      "kind": "network_primitive",
+      "start": 1516507,
+      "end": 1516534,
+      "line": 6,
+      "column": 128454,
+      "expression": "fetch",
+      "expression_start": 1516507,
+      "expression_end": 1516512,
+      "context": "n(400420),n(571710)},403950:function(e,t,n){n.d(t,{z:function(){return i}});var r=n(267979);let i=e=>{let{data:t,loading:n,error:i}=(0,r.Z)(async()=>{if(!e)return null;let t=await fetch(e,{cache:\"no-cache\"});if(!t.ok)throw Error(\"Failed to fetch content\");return t.json()},{refreshDeps:[e]});return{content:t,loading:n,error:i}}},595331:function(e,t,n){n.d(t,{S:function(){return r}});let r=()=>{let e=new URLSearchParams(locat",
+      "module_id": "403950",
+      "enclosing_functions": [
+        {
+          "name": "<anonymous>",
+          "start": 1516467,
+          "immediately_invoked": true
+        },
+        {
+          "name": "i",
+          "start": 1516425,
+          "immediately_invoked": false
+        },
+        {
+          "name": "403950",
+          "start": 1516355,
+          "immediately_invoked": false
+        }
+      ],
+      "primitive": "fetch",
+      "static_target": null
+    },
+    {
+      "file": "assets/js/async/9484.018f52fe.js",
+      "kind": "network_primitive",
+      "start": 2443309,
+      "end": 2443317,
+      "line": 20,
+      "column": 193267,
+      "expression": "fetch",
+      "expression_start": 2443309,
+      "expression_end": 2443314,
+      "context": "10:function(e,t,n){n.d(t,{E:function(){return i}});var r=n(620748);function i(e){let{info:{name:t}}=(0,r.j1)();return()=>{e.forEach(e=>{o(e,t)})}}async function o(e,t){let n=await fetch(e),r=await n.blob(),i=URL.createObjectURL(r),o=document.createElement(\"a\");o.href=i,o.download=t,document.body.appendChild(o),o.click(),document.body.removeChild(o)}},353468:function(e,t,n){n.d(t,{R:function(){return i}});",
+      "module_id": "651410",
+      "enclosing_functions": [
+        {
+          "name": "o",
+          "start": 2443275,
+          "immediately_invoked": false
+        },
+        {
+          "name": "651410",
+          "start": 2443132,
+          "immediately_invoked": false
+        }
+      ],
+      "primitive": "fetch",
+      "static_target": null
+    },
+    {
+      "file": "assets/js/index.ebba751c.js",
+      "kind": "dynamic_function",
+      "start": 2940504,
+      "end": 2940527,
+      "line": 1,
+      "column": 2940505,
+      "expression": "Function",
+      "expression_start": 2940504,
+      "expression_end": 2940512,
+      "context": "3:\"b6f5ebf8\",8014:\"63dd081a\",9484:\"69a812f3\"})[e]+\".css\"},a.h=function(){return\"46c7237d57c4760e\"},a.g=function(){if(\"object\"==typeof globalThis)return globalThis;try{return this||Function(\"return this\")()}catch(e){if(\"object\"==typeof window)return window}}(),a.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},(()=>{var e={},t=\"@yijie-coze/workflow-local:\";a.l=function(o,_,i,r){if(e[o]){e[o].push(_);retu",
+      "module_id": null,
+      "enclosing_functions": [
+        {
+          "name": "<anonymous>",
+          "start": 2940427,
+          "immediately_invoked": true
+        },
+        {
+          "name": "<anonymous>",
+          "start": 1,
+          "immediately_invoked": true
+        }
+      ]
+    },
+    {
+      "file": "assets/js/index.ebba751c.js",
+      "kind": "script_element_loader",
+      "start": 2940941,
+      "end": 2940973,
+      "line": 1,
+      "column": 2940942,
+      "expression": "document.createElement",
+      "expression_start": 2940941,
+      "expression_end": 2940963,
+      "context": "=i){for(var n,l,s=document.getElementsByTagName(\"script\"),c=0;c<s.length;c++){var d=s[c];if(d.getAttribute(\"src\")==o||d.getAttribute(\"data-webpack\")==t+i){n=d;break}}}!n&&(l=!0,(n=document.createElement(\"script\")).charset=\"utf-8\",n.timeout=120,a.nc&&n.setAttribute(\"nonce\",a.nc),n.setAttribute(\"data-webpack\",t+i),n.src=o),e[o]=[_];var u=function(t,a){n.onerror=n.onload=null,clearTimeout(p);var _=e[o];if(delete e[o],n.parentNode&&",
+      "module_id": null,
+      "enclosing_functions": [
+        {
+          "name": "<anonymous>",
+          "start": 2940703,
+          "immediately_invoked": false
+        },
+        {
+          "name": "<anonymous>",
+          "start": 2940653,
+          "immediately_invoked": true
+        },
+        {
+          "name": "<anonymous>",
+          "start": 1,
+          "immediately_invoked": true
+        }
+      ]
+    }
+  ],
+  "regex_aid_matches": [
+    {
+      "file": "assets/js/async/7605.99adfc21.js",
+      "start": 1299,
+      "matched": "Function(",
+      "classification": "actual_dynamic_function",
+      "context": "n(){if(\"object\"==typeof globalThis)return globalThis;try{return this||Function(\"return this\")()}catch(n){if(\"object\"==typeof window)return window}}(),o.o=function(n,r){re"
+    },
+    {
+      "file": "assets/js/index.ebba751c.js",
+      "start": 2940504,
+      "matched": "Function(",
+      "classification": "actual_dynamic_function",
+      "context": "n(){if(\"object\"==typeof globalThis)return globalThis;try{return this||Function(\"return this\")()}catch(e){if(\"object\"==typeof window)return window}}(),a.o=function(e,t){re"
+    }
+  ],
+  "url_literal_origins": [
+    {
+      "origin": "http://localhost:1420",
+      "count": 1,
+      "examples": [
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "http://localhost:1420"
+        }
+      ]
+    },
+    {
+      "origin": "http://www.w3.org",
+      "count": 578,
+      "examples": [
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "http://www.w3.org/2000/svg"
+        },
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "http://www.w3.org/2000/svg"
+        },
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "http://www.w3.org/2000/svg"
+        }
+      ]
+    },
+    {
+      "origin": "https://0.0.0.7",
+      "count": 1,
+      "examples": [
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "//7/qf3qrtrFneAAAM2klEQVR4nO2daXeiPBuANQlLFkBErIIbWtxx6Tv//7e9xLZTtRJUAjLnyfVhZs4ZSnOb5N4TGw2FQqFQKBQKhUKhUCgUCoVCoVAoFAqFQqFQKBQKhUKhUAigHPvzz/SvVw9HIhQhaEGo+fF0fmIa+xrkoH9fTEpTKeL1YnnoBy23yb7Q3daq31l2oym1rH9WTC2VDmvrzcBrOYAQ0NSbZhM0v9EJIYbjBp1x5GPrXxTShjieva10g4AfsX6hg1T01mgz71no1SN+iHRtzseew5qGaW"
+        }
+      ]
+    },
+    {
+      "origin": "https://9x9",
+      "count": 1,
+      "examples": [
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "//9X9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAopkssUEbTTOscaAszsQFUDkkk8ACvlH4l/tf/DPwQZdP8Pu3ijU0yvl2TAWqMP79wQVP/bMP+FcmMx+HwsOfETUV/Wy3Z7eRcN5nnNf6vllCVSXktF6vZLzbR9Y1514z+LXw4+H6H/hLfEFnYygEi3L+Zcn6Qx7pP/HcV+UPxA/am+Lvj0y2y6l/YWnSZH2TS8wkqezzZ81vf5gD6V86SO8sjSysXdzlmYksx9STyTX"
+        }
+      ]
+    },
+    {
+      "origin": "https://aauf",
+      "count": 2,
+      "examples": [
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "//AAUF/ZbVcr8Rr9zx8i+DfHQb838OKvH+9QBAv/BQj9l1hk+PdTTno3g7xmT9fk0Jh+ufagD+dLGODwaAPqfxMP8AjD34XEH/AJrP4/B9j/YGjEfoc4980AfL9vH5jgZxtwemfoP89s0AdDCUG3IIxxuGMDuMg5J7c/0oA9X+B0K3Pxy+Dqj7w+KPgNxz/wA8/E+mPn1524x26UAeY/EMEeP/AByCckeMfEwJ9SNavcn8aAOOoA1I9F1OWC3uUtWMF1G8tvIZIUEsaTzWzuoeRW2rPbzRZIHzRtjjmgB506"
+        },
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "//AAUF/ZbVcr8Rr9zx8i+DfHQb838OKvH+9QBAv/BQj9l1hk+PdTTno3g7xmT9fk0Jh+ufagD+dLGODwaAPqfxMP8AjD34XEH/AJrP4/B9j/YGjEfoc4980AfL9vH5jgZxtwemfoP89s0AdDCUG3IIxxuGMDuMg5J7c/0oA9X+B0K3Pxy+Dqj7w+KPgNxz/wA8/E+mPn1524x26UAeY/EMEeP/AByCckeMfEwJ9SNavcn8aAOOoA1I9F1OWC3uUtWMF1G8tvIZIUEsaTzWzuoeRW2rPbzRZIHzRtjjmgB506"
+        }
+      ]
+    },
+    {
+      "origin": "https://add",
+      "count": 1,
+      "examples": [
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "//add"
+        }
+      ]
+    },
+    {
+      "origin": "https://aikfjt",
+      "count": 2,
+      "examples": [
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "//AIKfjT/86GgCVPh74PYZf46fC+M5xj+xfjU2Rgc5Hwh9cjHtQB5VQB7dOif8KInkdXaQeLvh2lu4clIEP/DQDXatH0je6ZbEo5GZhZuq/wCoagB37P2ltefEGw1az1CGHXvCkumeJfDmjy+H18SP4j1Wz1/SLdbCOwudS0rSlg0+3u59f1e51q8/su10HSNVuru2vI4GtZQD9r7j4i+GdD0nTfFOj+E/FPgHQfGsWr3cuj+Mr/wl4PfU1lltbbxT4W1jwh4r1XxBrVhrfim+0LWr7QbDwvpUgvvCSaWNR1"
+        },
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "//AIKfjT/86GgCVPh74PYZf46fC+M5xj+xfjU2Rgc5Hwh9cjHtQB5VQB7dOif8KInkdXaQeLvh2lu4clIEP/DQDXatH0je6ZbEo5GZhZuq/wCoagB37P2ltefEGw1az1CGHXvCkumeJfDmjy+H18SP4j1Wz1/SLdbCOwudS0rSlg0+3u59f1e51q8/su10HSNVuru2vI4GtZQD9r7j4i+GdD0nTfFOj+E/FPgHQfGsWr3cuj+Mr/wl4PfU1lltbbxT4W1jwh4r1XxBrVhrfim+0LWr7QbDwvpUgvvCSaWNR1"
+        }
+      ]
+    },
+    {
+      "origin": "https://api.example.com",
+      "count": 2,
+      "examples": [
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://api.example.com/data?key=your_key_here"
+        },
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://api.example.com/data?key=your_key_here"
+        }
+      ]
+    },
+    {
+      "origin": "https://authprovider.com",
+      "count": 2,
+      "examples": [
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://authprovider.com/authorize"
+        },
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://authprovider.com/authorize"
+        }
+      ]
+    },
+    {
+      "origin": "https://begin",
+      "count": 1,
+      "examples": [
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "//BEGIN:"
+        }
+      ]
+    },
+    {
+      "origin": "https://bytedance.larkoffice.com",
+      "count": 4,
+      "examples": [
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://bytedance.larkoffice.com/wiki/S2W2wcqzGiWuBBkG8mfcRl4pn0f"
+        },
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://bytedance.larkoffice.com/docx/IKeZdIKrjolpxgxklv6cWHHMnpN"
+        },
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://bytedance.larkoffice.com/wiki/S2W2wcqzGiWuBBkG8mfcRl4pn0f"
+        }
+      ]
+    },
+    {
+      "origin": "https://console.volcengine.com",
+      "count": 10,
+      "examples": [
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://console.volcengine.com/coze-pro"
+        },
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://console.volcengine.com/coze-pro"
+        },
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://console.volcengine.com/coze-pro"
+        }
+      ]
+    },
+    {
+      "origin": "https://end",
+      "count": 2,
+      "examples": [
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "//END:"
+        },
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "//END:"
+        }
+      ]
+    },
+    {
+      "origin": "https://f9fvnrh9+w6atp4ef9ykmjlj4aopq6xjm4o8vdxcuxwjdrv+58haav1dd027ewj4efjy0a0olahc7vdhnm1tbedaeiaucsfsom7caaewaber",
+      "count": 1,
+      "examples": [
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "//f9Fvnrh9+w6aTp4EF9YKmJlJ4aOPq6XjM4O8vDxcuXwJdrv+58haAV1dd027eWJ4eFjY0A0OLAHC7VdhNm1tbeDAEiAUCsFsOm7cAAeWABER/symv78fHHQLkJqdxdBQDGYTi8UxK2zRi24BJicmZA5gNmTD+Pg49KJbgOnpaREGZ176d5vNhtzcXHB53RyUgr/KjtehW4CZVEqKoEVFRQXOnT2Dq+0hNDUdR1FREeZLcXExmk4cl3Ocbj6FqqoqzetSwg5TBEiL946eshYNf9eLPP1d+XtZMIhdu36ZV7"
+        }
+      ]
+    },
+    {
+      "origin": "https://filepath",
+      "count": 2,
+      "examples": [
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "//FILEPATH:/cloudide/workspace/demo-nodejs-reactvite/02.js"
+        },
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "//FILEPATH:/cloudide/workspace/demo-nodejs-reactvite/02.js"
+        }
+      ]
+    },
+    {
+      "origin": "https://gafq29tchjlc3nlzcbiesbqcgvnlxjly29tchjlc3p",
+      "count": 2,
+      "examples": [
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "//gAfQ29tcHJlc3NlZCBieSBqcGVnLXJlY29tcHJlc3P/2wCEAAQEBAQEBAQEBAQGBgUGBggHBwcHCAwJCQkJCQwTDA4MDA4MExEUEA8QFBEeFxUVFx4iHRsdIiolJSo0MjRERFwBBAQEBAQEBAQEBAYGBQYGCAcHBwcIDAkJCQkJDBMMDgwMDgwTERQQDxAUER4XFRUXHiIdGx0iKiUlKjQyNEREXP/CABEIADwAPAMBIgACEQEDEQH/xAAcAAACAgMBAQAAAAAAAAAAAAAAAQUGAgQIAwf/2gAIAQEAAAA"
+        },
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "//gAfQ29tcHJlc3NlZCBieSBqcGVnLXJlY29tcHJlc3P/2wCEAAQEBAQEBAQEBAQGBgUGBggHBwcHCAwJCQkJCQwTDA4MDA4MExEUEA8QFBEeFxUVFx4iHRsdIiolJSo0MjRERFwBBAQEBAQEBAQEBAYGBQYGCAcHBwcIDAkJCQkJDBMMDgwMDgwTERQQDxAUER4XFRUXHiIdGx0iKiUlKjQyNEREXP/CABEIADwAPAMBIgACEQEDEQH/xAAcAAACAgMBAQAAAAAAAAAAAAAAAQUGAgQIAwf/2gAIAQEAAAA"
+        }
+      ]
+    },
+    {
+      "origin": "https://gwi1e7aymowabvtnmx8qnx68op2drrsn",
+      "count": 1,
+      "examples": [
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "//gWi1E7aYmoWabVTNMX8qNX68Op2drRSN/TmRvjnv1/THa9cAr4sno3w8Q9HlyPpmPrGLIErgNWUYO86OoEpVEzGkQRXGUDQPO2FrgY3cSM79hHbWwEoiCgY75FzeHD6fxIW80Y8IQ2z+l8y842LtdxwAAAABJRU5ErkJggg=="
+        }
+      ]
+    },
+    {
+      "origin": "https://if",
+      "count": 1,
+      "examples": [
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "//If"
+        }
+      ]
+    },
+    {
+      "origin": "https://import-schema.json",
+      "count": 1,
+      "examples": [
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "//import-schema.json"
+        }
+      ]
+    },
+    {
+      "origin": "https://json-import",
+      "count": 1,
+      "examples": [
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "//json-import/data.json"
+        }
+      ]
+    },
+    {
+      "origin": "https://jtaeismz5wonkfz",
+      "count": 1,
+      "examples": [
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "//jTaeISmZ5WONkFZ/IcvHANBPjF0AAACExcjjq149SzLfzf6hgousLuFzaSCP8R8oAAAAQsMYc9zgAY+2Sro7y0faRnr58OweA0B/MHYBAAAQKmlrrzq26vVfSVqW5UNdmOXXB9APjF0AAACETdkjsbVXvxNtP0VZff+umWp17NTsvT6A/mDsAgAAIIy226P6+dMkfS+7hwk4uwvkKcYuAAAAwurEQfWPtkvm9iwe4wirY7bL4usD6CPGLgAAAEIrkK7atfbZayT7dpYOYST77Sy9NoB+YOwCAAAgzGLzvI"
+        }
+      ]
+    },
+    {
+      "origin": "https://knowledge",
+      "count": 1,
+      "examples": [
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "//knowledge/"
+        }
+      ]
+    },
+    {
+      "origin": "https://lezgase15ef10a4mtfpja",
+      "count": 1,
+      "examples": [
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "//leZGaSe15ef10a4MtfpJa/AQE0TX4uKxesiBTPcgTJYnTEVGFw97+gzMLd98VB+2nrC5e0nFgURNb/yvd54VYeChnbxS8HEnLHNlRoWAdusymCfLAAO2bmwPOurNaWvDWxTeZaXv4hlYzg+gdxHNrlgYgvnIaow9L8ffrr2NW9Dd4BZMX8RxKPQ/w1kzbb4xk2e5AAAAABJRU5ErkJggg=="
+        }
+      ]
+    },
+    {
+      "origin": "https://lf-cdn.coze.cn",
+      "count": 2,
+      "examples": [
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "//lf-cdn.coze.cn/obj/unpkg/pdfjs-dist/"
+        },
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "//lf-cdn.coze.cn/obj/unpkg/pdfjs-dist/"
+        }
+      ]
+    },
+    {
+      "origin": "https://lf3-static.bytednsdoc.com",
+      "count": 2,
+      "examples": [
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://lf3-static.bytednsdoc.com/obj/eden-cn/dvsmryvd_avi_dvsm/ljhwZthlaukjlkulzlp/icon/icon-Question.png"
+        },
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://lf3-static.bytednsdoc.com/obj/eden-cn/dvsmryvd_avi_dvsm/ljhwZthlaukjlkulzlp/icon/icon-Question.png"
+        }
+      ]
+    },
+    {
+      "origin": "https://localhost",
+      "count": 1,
+      "examples": [
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "//localhost"
+        }
+      ]
+    },
+    {
+      "origin": "https://more",
+      "count": 1,
+      "examples": [
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "//more"
+        }
+      ]
+    },
+    {
+      "origin": "https://move",
+      "count": 1,
+      "examples": [
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "//move"
+        }
+      ]
+    },
+    {
+      "origin": "https://schemas",
+      "count": 10,
+      "examples": [
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "//schemas/idl_marketplace_public_api"
+        },
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "//schemas/idl_marketplace_public_api"
+        },
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "//schemas/idl_marketplace_public_api"
+        }
+      ]
+    },
+    {
+      "origin": "https://schemas.yijie.ai",
+      "count": 81,
+      "examples": [
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://schemas.yijie.ai/workflow-local/v1#/$defs/Identifier/maxLength"
+        },
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://schemas.yijie.ai/workflow-local/v1#/$defs/Identifier/minLength"
+        },
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://schemas.yijie.ai/workflow-local/v1#/$defs/Identifier/pattern"
+        }
+      ]
+    },
+    {
+      "origin": "https://service",
+      "count": 1,
+      "examples": [
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "//service"
+        }
+      ]
+    },
+    {
+      "origin": "https://sze8bkehpkw7uf42z3o4h0vay",
+      "count": 1,
+      "examples": [
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "//Sze8bKEHpkW7uF42z3O4h0vAY/I+/G27TaN3So5XpbQI/F+vAfEO24CHoGnT//433gZP0voEbhw4Ss3cpxQJjAEM4FDtT/ht/Pbw/9C+lBnz64XMpnAoa5f/+GjhHfmzErZ3NwsZPJIHQjVHqljAkMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUMwAUM"
+        }
+      ]
+    },
+    {
+      "origin": "https://v3vn8magv3f1egngrbgkymvbysj3iuemwgp4qrgvmvhgtmunzuelwsc+jzy0gpqhrhjlkc79hwhl4plrbwd2n6f1vexxrzqucxheyyyilbrgqqf4x",
+      "count": 1,
+      "examples": [
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "//V3Vn8maGv3f1EGNGRbgkYmVbYsJ3iUeMWgp4qrgvMvHgtMunzuelWSc+JZY0gpqhrhJLKc79HwHl4plrbWD2N6f1VeXxRzqUcxhEyYYilBRgQQF4X/8044/ji1yV2BQLo8CLMpESRETssTz0KFhEjJxCEHqkLhz634PrfvJbW3vFZhtcM4v2tpCAzidoZPV29p4BBgaAG7qTDVUR+qh9uZywPsJMJgChu8os2HmwiF3e38M6Hvh/GMM8B0CdpXzryPO7RqFn4Er/QcXKWq8MSlPPgAADdRJREFUeAHt3M9"
+        }
+      ]
+    },
+    {
+      "origin": "https://www.coze.cn",
+      "count": 4,
+      "examples": [
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "https://www.coze.cn/store/plugin/"
+        },
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://www.coze.cn/docs/guides/content_principles"
+        },
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://www.coze.cn/docs/guides/content_principles"
+        }
+      ]
+    },
+    {
+      "origin": "https://www.coze.com",
+      "count": 9,
+      "examples": [
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://www.coze.com/privacy/account]"
+        },
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://www.coze.com/"
+        },
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://www.coze.com/"
+        }
+      ]
+    },
+    {
+      "origin": "https://www.feishu.cn",
+      "count": 4,
+      "examples": [
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://www.feishu.cn/privacy"
+        },
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://www.feishu.cn/terms"
+        },
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://www.feishu.cn/privacy"
+        }
+      ]
+    },
+    {
+      "origin": "https://yourapp.com",
+      "count": 2,
+      "examples": [
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://yourapp.com/callback"
+        },
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "https://yourapp.com/callback"
+        }
+      ]
+    },
+    {
+      "origin": "https://z+k+qvsnzuldrcn95rnkkkjjctlgm",
+      "count": 1,
+      "examples": [
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "//z+K+qVSNzUldrCN95RnkkkJJcTLgM/zzn1JllnSioS5fc6cGc886fdH7xIAS40EwBYBA8YIGDBGwIAxAgaMETBgjIABYwQMGCNgwBgBA8YIGDBGwIAxAgaMETBgjIABYwQMGCNgwBgBA8YIGDBGwIAxAgaMETBgjIABYwQMGCNgwBgBA8YIGDBGwIAxAgaMETBgjIABYwQMGCNgwBgBA8YIGDBGwIAxAgaMETBgjIABYwQMGCNgwBgBA8YIGDBGwIAxAgaMETBgjIABYwQMGCNgwBgBA8YIGDBGwIAxAga"
+        }
+      ]
+    },
+    {
+      "origin": "https://z0+fnyb22t",
+      "count": 1,
+      "examples": [
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "//z0+fNyb22t/wyjECwqixAdmJ7uP/b3HvM7d5Ztmze/DlQVN5486Yds5dGj/r+Xe89Q1aaytPSiwHtEjE7NzZUvZmf7oaoTp6oiWpfu3CnLq6uvR2XwLoLFW96M1PyOHWU9DeJ18e7dAn8nWLwWoTqzd28523uMYyRVR4y0YsT1zc2bRl28JlhMVKjeJUZbwkUQrI6LUC3u2zeRoXpTxOr87dvlXO9BdwlWRx3Yvr1c+PTT/nMmEa6jV64YbXWUjaMdFKOq306cSBersHvr1vKfhYXydW9USPcYYXVIfNkv"
+        }
+      ]
+    },
+    {
+      "origin": "https://znznzpnztx7bwc1uxyrkadvbybxmc+odqmgj0toozn6gdiycvbgcaw53dwrmzo6asay1p69vlsjegl7zv6q9c",
+      "count": 1,
+      "examples": [
+        {
+          "file": "assets/js/index.ebba751c.js",
+          "url": "//znznzPnztx7BwC1UxyRKAdVByBXmC+ODQmgj0tOoZN6gDIYCVBgCAw53DwRMzo6AsAy1P69vLsJEGl7zV6q9c/+/1o0ePw8LgBINMRpvDxuLsSHAMCruCJxPgBEKW82LV8kxbACLTEMEOLFUpwhx1VSnCbH+2Q28bEsiFsAUFLhcMQZAKi2Q55ewM2AGqr9EDsKeQIhAGp0iH1zc6fwIE6F2BraiCCW6jPSftDJ+Jtm2rAmh5MxjOVzkRWlQEGeKIcz4/9Mx/8uuTmSIR+WsKpkikNjpXOGebudPSVcilU"
+        }
+      ]
+    },
+    {
+      "origin": "https://zwn3ngrv76vtjbbd99frhyqv31ejvq9ltoczrlsfxttfpjmlld7b54o",
+      "count": 1,
+      "examples": [
+        {
+          "file": "assets/js/async/9484.018f52fe.js",
+          "url": "//zwN3ngrv76vTjbbD99frhYqv31ejvq9LtoczrlsfxttfpjMLld7b54O/1y+O+L3/OQ5Lrl8baUp/CNIQABM2HAAAADXRSTlMAf9+AzyAQv1/vvnBgSmwi0AAAAV9JREFUWMPszLsRQEAABUDObwxPCwz99yiWsLnbArb5h7Gb8qp09AwlX7ZWopLvSKY1EMnUSyRTJILJIpgsgskimCyCySKYLILJIpkCLpkCjg2miB2miBOmmONRLRCRGSJToxrVqEY3+3SSwjAMQwH0BOJbg4dmgt7/krU/yT7OqoX+h"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-13T18:06:59.525850+00:00",
+  "workflow_id": "7685078769316397056",
+  "before_file": "final28.json",
+  "before_sha256": "8b51e29e56375bdb11ed686835d5aacff9f54a469745c5a6c23659aa53054401",
+  "before_recorded_at": "2026-09-13T17:55:53.517279+00:00",
+  "after_file": "final29.json",
+  "after_sha256": "247c032a5b427fe70ffe9c0f52da69a11889a981a3e54176594952cf539c166a",
+  "after_recorded_at": "2026-09-13T18:05:11.159361+00:00",
+  "manifest_sha256": "2a2fa3d5ac83d50994970b8ba62077f7743366aab8b683da171761e06e0b2a44",
+  "source_digest": "8ccbc99c0529a85dc93e9694d53b1b51e9c441bd54af52c5fc19cd4ea052a689",
+  "before_run_epoch": "6c55b77f-fca4-4adb-b732-4b00e243834f",
+  "after_run_epoch": "0dc2f6f0-a5a2-4e2b-a7bd-ea58641ba75e",
+  "overall": "DIFFERENT: an additional completed save changed the draft between observations; do not claim exact post-restart business equality.",
+  "checks": {
+    "workflow_id": true,
+    "legacy": false,
+    "workflow": false,
+    "canvas_sha256": false,
+    "canvas_bytes": false,
+    "node_summary": false,
+    "edges": true,
+    "history": true,
+    "runs": true,
+    "workflow_description": true,
+    "workflow_name": true,
+    "workflow_revision": false,
+    "workflow_runnable": true,
+    "workflow_updated_at_ms": false,
+    "workflow_workflow_id": true,
+    "prior_mysql_receipts_preserved": true,
+    "prior_postgres_receipts_preserved": true,
+    "new_snapshot_api_mysql_canvas_and_ownership_match": true,
+    "new_snapshot_shared_receipts_match": true,
+    "old_two_workflows_full_response_equal_to_round28_before_ui": true,
+    "original_trial_success_and_result_preserved": true
+  },
+  "workflow_metadata_differences": [
+    {
+      "path": "workflow.revision",
+      "before": "7685079325527244800",
+      "after": "7685082330511179776"
+    },
+    {
+      "path": "workflow.updated_at_ms",
+      "before": 1789322097350,
+      "after": 1789322665560
+    }
+  ],
+  "canvas_differences": [
+    {
+      "path": "canvas.nodes[0].data.trigger_parameters",
+      "before": [
+        {
+          "name": "input",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "after": []
+    },
+    {
+      "path": "canvas.nodes[0].meta.position.x",
+      "before": 180,
+      "after": 182.4187725631769
+    },
+    {
+      "path": "canvas.nodes[0].meta.position.y",
+      "before": 13.450000000000003,
+      "after": -158.1361010830325
+    },
+    {
+      "path": "canvas.nodes[1].meta.position.x",
+      "before": 640,
+      "after": 636.3718411552346
+    },
+    {
+      "path": "canvas.nodes[1].meta.position.y",
+      "before": 0,
+      "after": -72.13610108303249
+    },
+    {
+      "path": "canvas.nodes[2].meta.position.x",
+      "before": 1100,
+      "after": 1073.3935018050543
+    },
+    {
+      "path": "canvas.nodes[2].meta.position.y",
+      "before": 0.45000000000000284,
+      "after": -193.0518050541516
+    }
+  ],
+  "canvas_before_sha256": "45270caa430eaa37e9a6e07f99e968c191616187fee5269af44f9c315cce952e",
+  "canvas_after_sha256": "701c9fb273bd9cbf5a197b748239166dba0d8182ddd56254f464406414055b31",
+  "databases": {
+    "mysql": {
+      "fact_comparisons": {
+        "execution": true,
+        "operation": false,
+        "resource": false
+      },
+      "previous_operations_preserved": true,
+      "added_operations": [
+        {
+          "kind": "save",
+          "run_id": "0",
+          "receipt": {
+            "kind": "save",
+            "phase": "completed",
+            "revision": "7685082330511179776",
+            "workflow_id": "7685078769316397056",
+            "operation_id": "01a09bf1-1e52-74f2-b0ce-307e600d31bf"
+          },
+          "run_epoch": "0dc2f6f0-a5a2-4e2b-a7bd-ea58641ba75e",
+          "workflow_id": "7685078769316397056",
+          "operation_id": "01a09bf1-1e52-74f2-b0ce-307e600d31bf"
+        }
+      ],
+      "removed_operation_ids": []
+    },
+    "postgres": {
+      "fact_comparisons": {
+        "operation": false,
+        "resource": true
+      },
+      "previous_operations_preserved": true,
+      "added_operations": [
+        {
+          "operation_id": "01a09bf1-1e52-74f2-b0ce-307e600d31bf",
+          "kind": "save",
+          "phase": "completed",
+          "workflow_id": "7685078769316397056",
+          "receipt": {
+            "kind": "save",
+            "phase": "completed",
+            "revision": "7685082330511179776",
+            "workflow_id": "7685078769316397056",
+            "operation_id": "01a09bf1-1e52-74f2-b0ce-307e600d31bf"
+          }
+        }
+      ],
+      "removed_operation_ids": []
+    }
+  },
+  "postgres_audit": {
+    "before_count": 16,
+    "after_count": 31,
+    "previous_rows_preserved_in_order": true,
+    "appended_count": 15,
+    "appended_action_outcome_counts": [
+      {
+        "action": "bootstrap",
+        "outcome": "success",
+        "count": 4
+      },
+      {
+        "action": "history",
+        "outcome": "success",
+        "count": 3
+      },
+      {
+        "action": "read",
+        "outcome": "success",
+        "count": 5
+      },
+      {
+        "action": "read_run",
+        "outcome": "success",
+        "count": 1
+      },
+      {
+        "action": "save",
+        "outcome": "completed",
+        "count": 1
+      },
+      {
+        "action": "save",
+        "outcome": "recorded",
+        "count": 1
+      }
+    ],
+    "appended_rows": [
+      {
+        "operation_id": null,
+        "workflow_id": "7685078769316397056",
+        "action": "read",
+        "outcome_code": "success",
+        "occurred_at": "2026-09-13T17:56:04.895367+00:00"
+      },
+      {
+        "operation_id": null,
+        "workflow_id": "7685078769316397056",
+        "action": "bootstrap",
+        "outcome_code": "success",
+        "occurred_at": "2026-09-13T17:56:04.899052+00:00"
+      },
+      {
+        "operation_id": null,
+        "workflow_id": "7685078769316397056",
+        "action": "history",
+        "outcome_code": "success",
+        "occurred_at": "2026-09-13T17:56:04.907305+00:00"
+      },
+      {
+        "operation_id": null,
+        "workflow_id": "7685078769316397056",
+        "action": "bootstrap",
+        "outcome_code": "success",
+        "occurred_at": "2026-09-13T17:56:04.989534+00:00"
+      },
+      {
+        "operation_id": null,
+        "workflow_id": "7685078769316397056",
+        "action": "read",
+        "outcome_code": "success",
+        "occurred_at": "2026-09-13T18:03:47.000793+00:00"
+      },
+      {
+        "operation_id": null,
+        "workflow_id": "7685078769316397056",
+        "action": "bootstrap",
+        "outcome_code": "success",
+        "occurred_at": "2026-09-13T18:03:47.00751+00:00"
+      },
+      {
+        "operation_id": null,
+        "workflow_id": "7685078769316397056",
+        "action": "history",
+        "outcome_code": "success",
+        "occurred_at": "2026-09-13T18:03:47.024336+00:00"
+      },
+      {
+        "operation_id": null,
+        "workflow_id": "7685078769316397056",
+        "action": "bootstrap",
+        "outcome_code": "success",
+        "occurred_at": "2026-09-13T18:03:47.214116+00:00"
+      },
+      {
+        "operation_id": "01a09bf1-1e52-74f2-b0ce-307e600d31bf",
+        "workflow_id": "7685078769316397056",
+        "action": "save",
+        "outcome_code": "recorded",
+        "occurred_at": "2026-09-13T18:04:25.555275+00:00"
+      },
+      {
+        "operation_id": "01a09bf1-1e52-74f2-b0ce-307e600d31bf",
+        "workflow_id": "7685078769316397056",
+        "action": "save",
+        "outcome_code": "completed",
+        "occurred_at": "2026-09-13T18:04:25.565808+00:00"
+      },
+      {
+        "operation_id": null,
+        "workflow_id": "7685078769316397056",
+        "action": "read",
+        "outcome_code": "success",
+        "occurred_at": "2026-09-13T18:04:26.982979+00:00"
+      },
+      {
+        "operation_id": null,
+        "workflow_id": "7685078769316397056",
+        "action": "read",
+        "outcome_code": "success",
+        "occurred_at": "2026-09-13T18:05:10.91935+00:00"
+      },
+      {
+        "operation_id": null,
+        "workflow_id": "7685078769316397056",
+        "action": "read",
+        "outcome_code": "success",
+        "occurred_at": "2026-09-13T18:05:10.92348+00:00"
+      },
+      {
+        "operation_id": null,
+        "workflow_id": "7685078769316397056",
+        "action": "history",
+        "outcome_code": "success",
+        "occurred_at": "2026-09-13T18:05:10.927765+00:00"
+      },
+      {
+        "operation_id": null,
+        "workflow_id": "7685078769316397056",
+        "action": "read_run",
+        "outcome_code": "success",
+        "occurred_at": "2026-09-13T18:05:10.932993+00:00"
+      }
+    ],
+    "interpretation": "Ordinary GET/UI reads may append successful read, bootstrap, history and read_run audit rows. The additional save recorded/completed pair corresponds to a completed save receipt in both databases. Actor/trigger cannot be identified from these snapshots alone."
+  },
+  "existing_workflow_preservation_file": "existing-workflows-preserved-after29.json",
+  "existing_workflow_preservation_sha256": "1856ade984643ca5cb6aafbcd70806540899621330c5edb93dea01a5fbe8528c",
+  "scope": "Offline comparison of exact-ID independent API GET and database SELECT snapshots. No business mutations performed by these observers. Snapshot metadata and read audit are not treated as business equality requirements. No whole-database equality, atomic snapshot, UI/theme, dev or D4 PASS claim. All service connections ended after final29 and old-workflow preservation reads."
+}

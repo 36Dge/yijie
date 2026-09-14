@@ -1,0 +1,75 @@
+{
+  "status": "IMPLEMENTED_PENDING_REAL_APP_THEME_VALIDATION",
+  "feature": "FEAT-153",
+  "theme_document": "23-native-coze-yijie-theme.md",
+  "package": {
+    "name": "@flowgram.ai/minimap-plugin",
+    "version": "0.1.28",
+    "exports": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/index.js"
+    },
+    "files": [
+      {
+        "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@flowgram.ai+minimap-plugin@0.1.28_react-dom@18.2.0_react@18.2.0_styled-components@6.1.19/node_modules/@flowgram.ai/minimap-plugin/package.json",
+        "sha256": "52951aa8c044714043aa9c13f2930d1e352c5db940a73ab93a8903b0b39b0dc5"
+      },
+      {
+        "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@flowgram.ai+minimap-plugin@0.1.28_react-dom@18.2.0_react@18.2.0_styled-components@6.1.19/node_modules/@flowgram.ai/minimap-plugin/dist/esm/index.js",
+        "sha256": "dddac7eb53bd95d1fe4aed0e30fd520860ae05ad3c19e5a63571c327f2e87b86"
+      },
+      {
+        "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@flowgram.ai+minimap-plugin@0.1.28_react-dom@18.2.0_react@18.2.0_styled-components@6.1.19/node_modules/@flowgram.ai/minimap-plugin/dist/index.js",
+        "sha256": "57bf813f17e99d5e28cf2988d269431db311a22ed745cddfc4e9206c2c2437e7"
+      },
+      {
+        "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@flowgram.ai+minimap-plugin@0.1.28_react-dom@18.2.0_react@18.2.0_styled-components@6.1.19/node_modules/@flowgram.ai/minimap-plugin/dist/index.d.ts",
+        "sha256": "607d5d29e212c3ec336b5d2e2d3cfd66b89e35a34969e487b37bb8529c850cce"
+      }
+    ]
+  },
+  "adapter": {
+    "path": "frontend/packages/workflow/playground/src/components/toolbar/hooks/local-minimap-theme-adapter.ts",
+    "sha256": "53852a2e75c312302fd2148779cbdfb083adf40ce69dd5c0184926c294a8bd6a",
+    "kind": "Explicit version-pinned private style/render adaptation; NOT an upstream public API",
+    "private_contract": {
+      "style": "existing object with six string color fields",
+      "render": "existing function called as a method of the same service"
+    },
+    "upgrade_requirement": "Re-audit the exact original package source and typings before changing minimap-plugin version or source; structural guard alone is not a replacement for upgrade review."
+  },
+  "colors": {
+    "canvasBackground": "computed --yj-color-bg-elevated",
+    "viewportBackground": "computed --yj-color-control-hover",
+    "viewportBorderColor": "computed --yj-color-border-control",
+    "nodeColor": "computed --yj-color-bg-card",
+    "nodeBorderColor": "computed --yj-color-border-control",
+    "overlayColor": "rgba(0, 0, 0, 0), preserves original transparent-overlay semantics"
+  },
+  "preserved": "Existing service, canvas, renderer, graph, positions, dimensions, padding, radii, behavior and subscriptions. No init/dispose/recreate, no CSS var string sent to CanvasRenderingContext2D.",
+  "hook": {
+    "path": "frontend/packages/workflow/playground/src/components/toolbar/components/minimap.tsx",
+    "local_only": true,
+    "visible_only": true,
+    "observed_attributes": [
+      "html.class",
+      "body.theme-mode"
+    ],
+    "scheduling": "coalesced requestAnimationFrame after computed theme changes",
+    "cleanup": [
+      "observer.disconnect",
+      "cancelAnimationFrame"
+    ]
+  },
+  "validation": {
+    "typescript": "5.8.2, two changed files syntax, 0 errors",
+    "source": "make test PASS; 15242 unchanged original files, 6 preserved deletions, 57 declared overlays",
+    "result_tool_chunk": "a0e8db",
+    "not_run": [
+      "Product build by this agent",
+      "Real App minimap theme switch",
+      "Mirror renderer tests"
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+node ../yijie-contracts/scripts/sync-workflow-consumer.mjs coze --check
+Verified yijie-coze workflow-local local candidate; old public/Runtime locks untouched.
+cd backend && go test -count=1 ./domain/workflow/localadapter ./application/workflowlocal ./cmd/workflow-local ./domain/workflow/internal/execute
+ok  	github.com/coze-dev/coze-studio/backend/domain/workflow/localadapter	1.489s
+ok  	github.com/coze-dev/coze-studio/backend/application/workflowlocal	1.392s
+ok  	github.com/coze-dev/coze-studio/backend/cmd/workflow-local	0.512s
+ok  	github.com/coze-dev/coze-studio/backend/domain/workflow/internal/execute	1.650s

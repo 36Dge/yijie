@@ -1,0 +1,686 @@
+PREPARED: 190 original Coze playground workspaces, exact upstream external versions/integrities, isolated derived lock; 1029 source alias projections
+{
+  "compiler": "typescript@5.8.2",
+  "original_source_commit": "fefb05ff27be1da939612fbf9faf5db62583b8ae",
+  "current_diagnostics": 126,
+  "baseline_diagnostics": 126,
+  "unchanged_inherited": 126,
+  "unqualified": 0,
+  "qualification": "PASS_WITH_REPORTED_UPSTREAM_BASELINE"
+}
+
+  Rsbuild v1.1.13
+
+ready   Built in 13.0 s (web)
+warn    Compile Warning: 
+File: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@typescript+vfs@1.6.1_typescript@5.8.2/node_modules/@typescript/vfs/dist/vfs.esm.js:1:1
+  ⚠ Critical dependency: the request of a dependency is an expression
+     ╭─[548:17]
+ 546 │ }
+ 547 │ var requirePath = function requirePath() {
+ 548 │   return require(String.fromCharCode(112, 97, 116, 104));
+     ·                  ───────────────────────────────────────
+ 549 │ };
+ 550 │ var requireFS = function requireFS() {
+     ╰────
+
+ @ ../../node_modules/.pnpm/@coze-editor+code-language-typescript@0.1.0-alpha.dd871b_@codemirror+language@6.11.1_@codemir_nuczhsjzse27d4sfguju6my3j4/node_modules/@coze-editor/code-language-typescript/dist/esm/worker.js
+ @ ../../node_modules/.pnpm/@coze-editor+editor@0.1.0-alpha.dd871b_@codemirror+autocomplete@6.18.6_@codemirror+language@6_tp4cwurszbyecg6wddl2oydsbu/node_modules/@coze-editor/editor/dist/esm/language-typescript-worker.js
+ @ ../coze-workflow__code-editor-adapter/src/components/editor/typescript-editor-utils.ts
+ @ ../coze-workflow__code-editor-adapter/src/components/editor/typescript-editor.tsx
+ @ ../coze-workflow__code-editor-adapter/src/components/editor/editor.tsx
+ @ ../coze-workflow__code-editor-adapter/src/components/editor/index.tsx
+ @ ../coze-workflow__code-editor-adapter/src/index.tsx
+ @ ../coze-workflow__playground/src/form-extensions/setters/code/code-with-biz-ide.tsx
+ @ ../coze-workflow__playground/src/form-extensions/setters/code/index.tsx
+ @ ../coze-workflow__playground/src/form-extensions/setters/index.tsx
+ @ ../coze-workflow__playground/src/form-extensions/form-ability-extensions-form-contribution/form-ability-extensions-form-contribution.ts
+ @ ../coze-workflow__playground/src/form-extensions/form-ability-extensions-form-contribution/index.ts
+ @ ../coze-workflow__playground/src/form-extensions/index.ts
+ @ ../coze-workflow__playground/src/container/workflow-page-container-module.ts
+ @ ../coze-workflow__playground/src/workflow-playground.tsx
+ @ ./src/main.tsx
+
+File: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@typescript+vfs@1.6.1_typescript@5.8.2/node_modules/@typescript/vfs/dist/vfs.esm.js:1:1
+  ⚠ Critical dependency: the request of a dependency is an expression
+     ╭─[551:17]
+ 549 │ };
+ 550 │ var requireFS = function requireFS() {
+ 551 │   return require(String.fromCharCode(102, 115));
+     ·                  ──────────────────────────────
+ 552 │ };
+ 553 │ 
+     ╰────
+
+ @ ../../node_modules/.pnpm/@coze-editor+code-language-typescript@0.1.0-alpha.dd871b_@codemirror+language@6.11.1_@codemir_nuczhsjzse27d4sfguju6my3j4/node_modules/@coze-editor/code-language-typescript/dist/esm/worker.js
+ @ ../../node_modules/.pnpm/@coze-editor+editor@0.1.0-alpha.dd871b_@codemirror+autocomplete@6.18.6_@codemirror+language@6_tp4cwurszbyecg6wddl2oydsbu/node_modules/@coze-editor/editor/dist/esm/language-typescript-worker.js
+ @ ../coze-workflow__code-editor-adapter/src/components/editor/typescript-editor-utils.ts
+ @ ../coze-workflow__code-editor-adapter/src/components/editor/typescript-editor.tsx
+ @ ../coze-workflow__code-editor-adapter/src/components/editor/editor.tsx
+ @ ../coze-workflow__code-editor-adapter/src/components/editor/index.tsx
+ @ ../coze-workflow__code-editor-adapter/src/index.tsx
+ @ ../coze-workflow__playground/src/form-extensions/setters/code/code-with-biz-ide.tsx
+ @ ../coze-workflow__playground/src/form-extensions/setters/code/index.tsx
+ @ ../coze-workflow__playground/src/form-extensions/setters/index.tsx
+ @ ../coze-workflow__playground/src/form-extensions/form-ability-extensions-form-contribution/form-ability-extensions-form-contribution.ts
+ @ ../coze-workflow__playground/src/form-extensions/form-ability-extensions-form-contribution/index.ts
+ @ ../coze-workflow__playground/src/form-extensions/index.ts
+ @ ../coze-workflow__playground/src/container/workflow-page-container-module.ts
+ @ ../coze-workflow__playground/src/workflow-playground.tsx
+ @ ./src/main.tsx
+
+File: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/typescript@5.8.2/node_modules/typescript/lib/typescript.js:1:1
+  ⚠ Critical dependency: the request of a dependency is an expression
+      ╭─[8395:35]
+ 8393 │         try {
+ 8394 │           const modulePath = resolveJSModule(moduleName, baseDir, nodeSystem);
+ 8395 │           return { module: require(modulePath), modulePath, error: void 0 };
+      ·                                    ───────────
+ 8396 │         } catch (error2) {
+ 8397 │           return { module: void 0, modulePath: void 0, error: error2 };
+      ╰────
+
+ @ ../../node_modules/.pnpm/@coze-editor+code-language-typescript@0.1.0-alpha.dd871b_@codemirror+language@6.11.1_@codemir_nuczhsjzse27d4sfguju6my3j4/node_modules/@coze-editor/code-language-typescript/dist/esm/index.js
+ @ ../../node_modules/.pnpm/@coze-editor+editor@0.1.0-alpha.dd871b_@codemirror+autocomplete@6.18.6_@codemirror+language@6_tp4cwurszbyecg6wddl2oydsbu/node_modules/@coze-editor/editor/dist/esm/language-typescript.js
+ @ ../coze-workflow__code-editor-adapter/src/components/editor/typescript-editor-utils.ts
+ @ ../coze-workflow__code-editor-adapter/src/components/editor/typescript-editor.tsx
+ @ ../coze-workflow__code-editor-adapter/src/components/editor/editor.tsx
+ @ ../coze-workflow__code-editor-adapter/src/components/editor/index.tsx
+ @ ../coze-workflow__code-editor-adapter/src/index.tsx
+ @ ../coze-workflow__playground/src/form-extensions/setters/code/code-with-biz-ide.tsx
+ @ ../coze-workflow__playground/src/form-extensions/setters/code/index.tsx
+ @ ../coze-workflow__playground/src/form-extensions/setters/index.tsx
+ @ ../coze-workflow__playground/src/form-extensions/form-ability-extensions-form-contribution/form-ability-extensions-form-contribution.ts
+ @ ../coze-workflow__playground/src/form-extensions/form-ability-extensions-form-contribution/index.ts
+ @ ../coze-workflow__playground/src/form-extensions/index.ts
+ @ ../coze-workflow__playground/src/container/workflow-page-container-module.ts
+ @ ../coze-workflow__playground/src/workflow-playground.tsx
+ @ ./src/main.tsx
+
+File: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/grid.scss:1:1
+  ⚠ ModuleWarning: Deprecation Warning on line 61, column 19 of file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/mixin.scss:61:19:
+  │ Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+  │ Use math.percentage instead.
+  │ 
+  │ More info and automated migrator: https://sass-lang.com/d/import
+  │ 
+  │ 61 |             width: percentage(math.div($i , $width-grid_columns));
+  │ 
+  │ 
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/mixin.scss 62:20  loop-grid-columns()
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/mixin.scss 112:5  make-grid()
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/grid.scss 74:1    root stylesheet
+  │  (from: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@rsbuild+plugin-sass@1.1.2_@rsbuild+core@1.1.13/node_modules/@rsbuild/plugin-sass/compiled/sass-loader/index.js??ruleSet[1].rules[10].use[5])
+
+File: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/grid.scss:1:1
+  ⚠ ModuleWarning: Deprecation Warning on line 65, column 18 of file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/mixin.scss:65:18:
+  │ Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+  │ Use math.percentage instead.
+  │ 
+  │ More info and automated migrator: https://sass-lang.com/d/import
+  │ 
+  │ 65 |             left: percentage(math.div($i , $width-grid_columns));
+  │ 
+  │ 
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/mixin.scss 66:19  loop-grid-columns()
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/mixin.scss 112:5  make-grid()
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/grid.scss 74:1    root stylesheet
+  │  (from: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@rsbuild+plugin-sass@1.1.2_@rsbuild+core@1.1.13/node_modules/@rsbuild/plugin-sass/compiled/sass-loader/index.js??ruleSet[1].rules[10].use[5])
+
+File: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/grid.scss:1:1
+  ⚠ ModuleWarning: Deprecation Warning on line 69, column 19 of file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/mixin.scss:69:19:
+  │ Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+  │ Use math.percentage instead.
+  │ 
+  │ More info and automated migrator: https://sass-lang.com/d/import
+  │ 
+  │ 69 |             right: percentage(math.div($i , $width-grid_columns));
+  │ 
+  │ 
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/mixin.scss 70:20  loop-grid-columns()
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/mixin.scss 112:5  make-grid()
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/grid.scss 74:1    root stylesheet
+  │  (from: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@rsbuild+plugin-sass@1.1.2_@rsbuild+core@1.1.13/node_modules/@rsbuild/plugin-sass/compiled/sass-loader/index.js??ruleSet[1].rules[10].use[5])
+
+File: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/grid.scss:1:1
+  ⚠ ModuleWarning: Deprecation Warning on line 73, column 25 of file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/mixin.scss:73:25:
+  │ Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+  │ Use math.percentage instead.
+  │ 
+  │ More info and automated migrator: https://sass-lang.com/d/import
+  │ 
+  │ 73 |             margin-left: percentage(math.div($i , $width-grid_columns));
+  │ 
+  │ 
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/mixin.scss 74:26  loop-grid-columns()
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/mixin.scss 112:5  make-grid()
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/grid.scss 74:1    root stylesheet
+  │  (from: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@rsbuild+plugin-sass@1.1.2_@rsbuild+core@1.1.13/node_modules/@rsbuild/plugin-sass/compiled/sass-loader/index.js??ruleSet[1].rules[10].use[5])
+
+File: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/grid.scss:1:1
+  ⚠ ModuleWarning: Deprecation Warning on line 103, column 30 of file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/mixin.scss:103:30:
+  │ Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+  │ Use math.percentage instead.
+  │ 
+  │ More info and automated migrator: https://sass-lang.com/d/import
+  │ 
+  │ 103 |                 margin-right: percentage(math.div($i , $width-grid_columns));
+  │ 
+  │ 
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/mixin.scss 104:31  loop-grid-columns-rtl()
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/mixin.scss 114:5   make-grid()
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/grid/grid.scss 74:1     root stylesheet
+  │  (from: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@rsbuild+plugin-sass@1.1.2_@rsbuild+core@1.1.13/node_modules/@rsbuild/plugin-sass/compiled/sass-loader/index.js??ruleSet[1].rules[10].use[5])
+
+File: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/popover/popover.scss:1:1
+  ⚠ ModuleWarning: Deprecation Warning on line 31, column 42 of file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tooltip/variables.scss:31:42:
+  │ In future versions of Sass, round() will be interpreted as a CSS round() calculation. This requires an explicit modulus when rounding numbers with units. If you want to use the Sass function, call math.round() instead.
+  │ 
+  │ See https://sass-lang.com/d/import
+  │ 
+  │ 31 | $spacing-tooltip_arrow_adjusted_offset-x: round($horizontal-rate * $width-tooltip_arrow); // 水平方向上的校正偏移量，主要修正三角形有棱角的问题 ignore-semi-css-trans
+  │ 
+  │ 
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tooltip/variables.scss 32:43  @import
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/popover/popover.scss 3:9      root stylesheet
+  │  (from: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@rsbuild+plugin-sass@1.1.2_@rsbuild+core@1.1.13/node_modules/@rsbuild/plugin-sass/compiled/sass-loader/index.js??ruleSet[1].rules[10].use[5])
+
+File: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/popover/popover.scss:1:1
+  ⚠ ModuleWarning: Deprecation Warning on line 22, column 42 of file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/popover/variables.scss:22:42:
+  │ In future versions of Sass, round() will be interpreted as a CSS round() calculation. This requires an explicit modulus when rounding numbers with units. If you want to use the Sass function, call math.round() instead.
+  │ 
+  │ See https://sass-lang.com/d/import
+  │ 
+  │ 22 | $spacing-tooltip_arrow_adjusted_offset-x: round($horizontal-rate * $width-tooltip_arrow); // 水平方向上的校正偏移量，主要修正三角形有棱角的问题 ignore-semi-css-trans
+  │ 
+  │ 
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/popover/variables.scss 23:43  @import
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/popover/popover.scss 5:9      root stylesheet
+  │  (from: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@rsbuild+plugin-sass@1.1.2_@rsbuild+core@1.1.13/node_modules/@rsbuild/plugin-sass/compiled/sass-loader/index.js??ruleSet[1].rules[10].use[5])
+
+File: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tag/tag.scss:1:1
+  ⚠ ModuleWarning: Deprecation Warning on line 8, column 26 of file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tag/mixin.scss:8:26:
+  │ Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+  │ Use string.unquote instead.
+  │ 
+  │ More info and automated migrator: https://sass-lang.com/d/import
+  │ 
+  │ 8 |         border: 1px solid unquote("rgba(var(--semi-#{$color}-4), 1)");
+  │ 
+  │ 
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tag/mixin.scss 9:27  tag-style()
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tag/tag.scss 199:13  root stylesheet
+  │  (from: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@rsbuild+plugin-sass@1.1.2_@rsbuild+core@1.1.13/node_modules/@rsbuild/plugin-sass/compiled/sass-loader/index.js??ruleSet[1].rules[10].use[5])
+
+File: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tag/tag.scss:1:1
+  ⚠ ModuleWarning: Deprecation Warning on line 9, column 15 of file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tag/mixin.scss:9:15:
+  │ Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+  │ Use string.unquote instead.
+  │ 
+  │ More info and automated migrator: https://sass-lang.com/d/import
+  │ 
+  │ 9 |         color: unquote("rgba(var(--semi-#{$color}-5), 1)");
+  │ 
+  │ 
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tag/mixin.scss 10:16  tag-style()
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tag/tag.scss 199:13   root stylesheet
+  │  (from: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@rsbuild+plugin-sass@1.1.2_@rsbuild+core@1.1.13/node_modules/@rsbuild/plugin-sass/compiled/sass-loader/index.js??ruleSet[1].rules[10].use[5])
+
+File: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tag/tag.scss:1:1
+  ⚠ ModuleWarning: Deprecation Warning on line 2, column 26 of file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tag/mixin.scss:2:26:
+  │ Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+  │ Use string.unquote instead.
+  │ 
+  │ More info and automated migrator: https://sass-lang.com/d/import
+  │ 
+  │ 2 |         background-color: unquote("rgba(var(--semi-#{$color}-5), 1)");
+  │ 
+  │ 
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tag/mixin.scss 3:27  tag-style()
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tag/tag.scss 199:13  root stylesheet
+  │  (from: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@rsbuild+plugin-sass@1.1.2_@rsbuild+core@1.1.13/node_modules/@rsbuild/plugin-sass/compiled/sass-loader/index.js??ruleSet[1].rules[10].use[5])
+
+File: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tag/tag.scss:1:1
+  ⚠ ModuleWarning: Deprecation Warning on line 13, column 26 of file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tag/mixin.scss:13:26:
+  │ Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+  │ Use string.unquote instead.
+  │ 
+  │ More info and automated migrator: https://sass-lang.com/d/import
+  │ 
+  │ 13 |         background-color: unquote("rgba(var(--semi-#{$color}-5), 0.15)");
+  │ 
+  │ 
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tag/mixin.scss 14:27  tag-style()
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tag/tag.scss 199:13   root stylesheet
+  │  (from: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@rsbuild+plugin-sass@1.1.2_@rsbuild+core@1.1.13/node_modules/@rsbuild/plugin-sass/compiled/sass-loader/index.js??ruleSet[1].rules[10].use[5])
+
+File: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tag/tag.scss:1:1
+  ⚠ ModuleWarning: Deprecation Warning on line 14, column 15 of file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tag/mixin.scss:14:15:
+  │ Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+  │ Use string.unquote instead.
+  │ 
+  │ More info and automated migrator: https://sass-lang.com/d/import
+  │ 
+  │ 14 |         color: unquote("rgba(var(--semi-#{$color}-8), 1)");
+  │ 
+  │ 
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tag/mixin.scss 15:16  tag-style()
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tag/tag.scss 199:13   root stylesheet
+  │  (from: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@rsbuild+plugin-sass@1.1.2_@rsbuild+core@1.1.13/node_modules/@rsbuild/plugin-sass/compiled/sass-loader/index.js??ruleSet[1].rules[10].use[5])
+
+File: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tooltip/tooltip.scss:1:1
+  ⚠ ModuleWarning: Deprecation Warning on line 31, column 42 of file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tooltip/variables.scss:31:42:
+  │ In future versions of Sass, round() will be interpreted as a CSS round() calculation. This requires an explicit modulus when rounding numbers with units. If you want to use the Sass function, call math.round() instead.
+  │ 
+  │ See https://sass-lang.com/d/import
+  │ 
+  │ 31 | $spacing-tooltip_arrow_adjusted_offset-x: round($horizontal-rate * $width-tooltip_arrow); // 水平方向上的校正偏移量，主要修正三角形有棱角的问题 ignore-semi-css-trans
+  │ 
+  │ 
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tooltip/variables.scss 32:43  @import
+  │ ../../../../../@douyinfe+semi-foundation@2.72.3_acorn@8.15.0/node_modules/@douyinfe/semi-foundation/lib/es/tooltip/tooltip.scss 5:9      root stylesheet
+  │  (from: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/build-workspace/node_modules/.pnpm/@rsbuild+plugin-sass@1.1.2_@rsbuild+core@1.1.13/node_modules/@rsbuild/plugin-sass/compiled/sass-loader/index.js??ruleSet[1].rules[10].use[5])
+
+
+  File (web)                                                              Size          Gzip    
+  ../../../dist/assets/js/async/4095.e0f958f2.js                          0.25 kB       0.18 kB
+  ../../../dist/index.html                                                0.69 kB       0.35 kB
+  ../../../dist/assets/js/async/6582.c3df4b73.js                          0.88 kB       0.52 kB
+  ../../../dist/assets/js/async/7456.38e03ccf.js                          1.0 kB        0.55 kB
+  ../../../dist/assets/js/async/9167.7986a1db.js                          1.1 kB        0.69 kB
+  ../../../dist/assets/js/async/6114.905fa0f5.js                          1.1 kB        0.53 kB
+  ../../../dist/assets/js/async/9873.6f556904.js                          1.2 kB        0.74 kB
+  ../../../dist/assets/js/async/1008.477fa243.js                          1.3 kB        0.63 kB
+  ../../../dist/assets/css/async/6195.745aa45f.css                        1.4 kB        0.61 kB
+  ../../../dist/assets/css/async/627.745aa45f.css                         1.4 kB        0.61 kB
+  ../../../dist/assets/js/async/627.4b5ce30b.js                           1.5 kB        0.91 kB
+  ../../../dist/assets/js/async/6195.05f477d5.js                          1.6 kB        0.96 kB
+  ../../../dist/assets/js/async/5435.3a25462d.js                          1.7 kB        0.88 kB
+  ../../../dist/assets/js/async/5750.2421ad47.js                          1.9 kB        0.97 kB
+  ../../../dist/assets/js/async/3317.b2d9047a.js                          2.3 kB        0.70 kB
+  ../../../dist/assets/js/async/7605.b7c6e23d.js                          2.3 kB        1.1 kB
+  ../../../dist/assets/js/async/7257.c00dc135.js                          3.1 kB        0.90 kB
+  ../../../dist/assets/js/async/1582.8cee5fba.js                          3.3 kB        0.98 kB
+  ../../../dist/assets/js/async/1779.8298d94b.js                          3.8 kB        1.5 kB
+  ../../../dist/assets/js/async/5838.7303ad5f.js                          4.0 kB        1.7 kB
+  ../../../dist/assets/images/error-default.c280688e.png                  4.3 kB        4.3 kB
+  ../../../dist/assets/images/icon-team-tag.f79bb76d.svg                  4.3 kB        1.9 kB
+  ../../../dist/assets/images/imageflow.32d803fe.svg                      4.4 kB        1.8 kB
+  ../../../dist/assets/fonts/KaTeX_Size3-Regular.9acaf01c.woff            4.4 kB        4.4 kB
+  ../../../dist/assets/images/icon-style-set.80900aac.svg                 4.5 kB        2.1 kB
+  ../../../dist/assets/images/icon-upload-md.6cfd277d.svg                 4.5 kB        1.3 kB
+  ../../../dist/assets/images/icon-memory.a3a1d23f.svg                    4.6 kB        1.7 kB
+  ../../../dist/assets/images/coze-logo.e054c463.png                      4.6 kB        4.7 kB
+  ../../../dist/assets/images/error-unbind.c95b427c.png                   4.7 kB        4.7 kB
+  ../../../dist/assets/images/reference-4.508b4514.jpg                    4.8 kB        4.6 kB
+  ../../../dist/assets/fonts/KaTeX_Size4-Regular.10d95fd3.woff2           4.9 kB        5.0 kB
+  ../../../dist/assets/images/icon_bot_store_memory.023bf19b.svg          5.2 kB        2.2 kB
+  ../../../dist/assets/fonts/KaTeX_Size2-Regular.5916a24f.woff2           5.2 kB        5.2 kB
+  ../../../dist/assets/images/brand-en-white-row.21470343.svg             5.2 kB        2.0 kB
+  ../../../dist/assets/images/brand-en-black-row.d234a025.svg             5.2 kB        2.0 kB
+  ../../../dist/assets/images/icon_memory_down_menu.ee5e0cd4.svg          5.3 kB        2.4 kB
+  ../../../dist/assets/images/sug_layout_limit.8c79e9c6.png               5.4 kB        4.8 kB
+  ../../../dist/assets/fonts/KaTeX_Size1-Regular.eae34984.woff2           5.5 kB        5.5 kB
+  ../../../dist/assets/js/async/6925.4fcc2f57.js                          5.5 kB        1.5 kB
+  ../../../dist/assets/images/sug_layout_full.ca664c1b.png                5.5 kB        4.9 kB
+  ../../../dist/assets/js/async/6734.c8c767a2.js                          5.6 kB        1.3 kB
+  ../../../dist/assets/js/async/7267.f5c97b9b.js                          5.6 kB        1.3 kB
+  ../../../dist/assets/images/icon-upload-api.759e3518.svg                5.6 kB        2.1 kB
+  ../../../dist/assets/js/async/7027.de3d3774.js                          5.9 kB        1.5 kB
+  ../../../dist/assets/images/6.53110bf5.jpg                              5.9 kB        5.7 kB
+  ../../../dist/assets/images/reference-3.ed9360a1.jpg                    5.9 kB        5.7 kB
+  ../../../dist/assets/fonts/KaTeX_Size4-Regular.7a996c9d.woff            6.0 kB        5.9 kB
+  ../../../dist/assets/images/weixin.12fa215f.svg                         6.2 kB        4.3 kB
+  ../../../dist/assets/fonts/KaTeX_Size2-Regular.57727022.woff            6.2 kB        6.1 kB
+  ../../../dist/assets/fonts/KaTeX_Size1-Regular.e1e279cb.woff            6.5 kB        6.5 kB
+  ../../../dist/assets/images/icon-arena-model.e5e9a552.svg               6.6 kB        2.7 kB
+  ../../../dist/assets/images/2.18496873.jpg                              6.8 kB        6.6 kB
+  ../../../dist/assets/fonts/KaTeX_Caligraphic-Regular.55fac258.woff2     6.9 kB        6.9 kB
+  ../../../dist/assets/fonts/KaTeX_Caligraphic-Bold.ec17d132.woff2        6.9 kB        6.9 kB
+  ../../../dist/assets/js/async/4436.fa7aec6d.js                          7.0 kB        1.4 kB
+  ../../../dist/assets/js/async/5097.1b748b00.js                          7.1 kB        1.7 kB
+  ../../../dist/assets/images/4.f655d59f.jpg                              7.4 kB        7.2 kB
+  ../../../dist/assets/images/arena-rank-icon.5df2d88a.svg                7.5 kB        3.0 kB
+  ../../../dist/assets/images/8.f9124baa.png                              7.6 kB        7.6 kB
+  ../../../dist/assets/fonts/KaTeX_Size3-Regular.a144ef58.ttf             7.6 kB        4.3 kB
+  ../../../dist/assets/fonts/KaTeX_Caligraphic-Regular.dad44a7f.woff      7.7 kB        7.6 kB
+  ../../../dist/assets/fonts/KaTeX_Caligraphic-Bold.b6770918.woff         7.7 kB        7.7 kB
+  ../../../dist/assets/images/5.2500b80f.jpg                              8.2 kB        7.9 kB
+  ../../../dist/assets/js/async/619.f3a7f8a4.js                           8.3 kB        2.7 kB
+  ../../../dist/assets/images/icon-logo.cc898da7.svg                      8.4 kB        1.6 kB
+  ../../../dist/assets/js/async/9931.48c0054f.js                          8.4 kB        1.9 kB
+  ../../../dist/assets/images/brand-round.62d0cdad.svg                    8.4 kB        1.6 kB
+  ../../../dist/assets/js/async/8957.c7e4a987.js                          8.5 kB        2.3 kB
+  ../../../dist/assets/images/reference-7.4b4eb723.png                    8.6 kB        8.7 kB
+  ../../../dist/assets/js/async/179.1a73fabd.js                           8.7 kB        1.8 kB
+  ../../../dist/assets/js/async/373.bc9d3bb1.js                           8.7 kB        3.3 kB
+  ../../../dist/assets/js/async/3944.3674a288.js                          8.8 kB        2.3 kB
+  ../../../dist/assets/images/icon_reddit_colorful.f175d636.svg           8.8 kB        2.1 kB
+  ../../../dist/assets/js/async/642.6ed1a516.js                           8.9 kB        2.8 kB
+  ../../../dist/assets/images/icon_coze_logo.59c615cd.svg                 9.0 kB        1.6 kB
+  ../../../dist/assets/js/async/3089.97860c1e.js                          9.1 kB        2.1 kB
+  ../../../dist/assets/js/async/7328.7f647b5b.js                          9.2 kB        3.9 kB
+  ../../../dist/assets/images/icon-menu-logo.c6831fb5.svg                 9.5 kB        1.6 kB
+  ../../../dist/assets/fonts/KaTeX_Script-Regular.03e9641d.woff2          9.6 kB        9.7 kB
+  ../../../dist/assets/js/async/6675.e630a691.js                          9.7 kB        3.1 kB
+  ../../../dist/assets/images/reference-5.a52c57a8.jpg                    9.7 kB        9.5 kB
+  ../../../dist/assets/images/reference-6.5e45be04.jpg                    9.8 kB        9.5 kB
+  ../../../dist/assets/js/async/6955.8f31d60f.js                          9.9 kB        1.9 kB
+  ../../../dist/assets/js/async/419.8b24c0c6.js                           10.1 kB       3.8 kB
+  ../../../dist/assets/fonts/KaTeX_SansSerif-Regular.ba21ed5f.woff2       10.3 kB       10.4 kB
+  ../../../dist/assets/fonts/KaTeX_Size4-Regular.fbccdabe.ttf             10.4 kB       5.9 kB
+  ../../../dist/assets/css/async/6723.b6f5ebf8.css                        10.5 kB       2.6 kB
+  ../../../dist/assets/images/1.5a00868e.jpg                              10.6 kB       10.3 kB
+  ../../../dist/assets/fonts/KaTeX_Script-Regular.07505710.woff           10.6 kB       10.5 kB
+  ../../../dist/assets/images/icon-query-empty.9707eccb.svg               10.6 kB       4.0 kB
+  ../../../dist/assets/images/brand-cn-black-column.2a48c578.svg          10.7 kB       2.1 kB
+  ../../../dist/assets/js/async/340.2bd0f0ea.js                           10.7 kB       2.7 kB
+  ../../../dist/assets/js/async/6434.3182fec6.js                          10.7 kB       4.1 kB
+  ../../../dist/assets/images/3.d7259dfe.jpg                              10.8 kB       10.6 kB
+  ../../../dist/assets/images/brand-cn-white-column.6bf88078.svg          11.2 kB       2.1 kB
+  ../../../dist/assets/images/icon-workflow.24a43b14.svg                  11.2 kB       7.7 kB
+  ../../../dist/assets/fonts/KaTeX_Fraktur-Regular.d3c882a6.woff2         11.3 kB       11.3 kB
+  ../../../dist/assets/fonts/KaTeX_Fraktur-Bold.d42a5579.woff2            11.3 kB       11.4 kB
+  ../../../dist/assets/js/async/8459.6564bb33.js                          11.4 kB       2.6 kB
+  ../../../dist/assets/images/image.48e1fd29.png                          11.5 kB       10.7 kB
+  ../../../dist/assets/images/icon-plugin.9cdef80f.svg                    11.5 kB       8.2 kB
+  ../../../dist/assets/fonts/KaTeX_Size2-Regular.d6b476ec.ttf             11.5 kB       6.1 kB
+  ../../../dist/assets/js/async/3914.c52e8406.js                          11.6 kB       2.6 kB
+  ../../../dist/assets/js/async/6058.7bc4edc7.js                          11.6 kB       2.7 kB
+  ../../../dist/assets/js/async/1915.54ed9ff2.js                          11.6 kB       2.2 kB
+  ../../../dist/assets/js/async/5367.02299e28.js                          11.7 kB       2.7 kB
+  ../../../dist/assets/js/async/365.b7c55e1f.js                           11.7 kB       4.3 kB
+  ../../../dist/assets/js/async/1429.137bb593.js                          11.8 kB       2.9 kB
+  ../../../dist/assets/images/brand-en-white-column.7bdcb107.svg          12.0 kB       2.6 kB
+  ../../../dist/assets/images/brand-en-black-column.3d53672f.svg          12.0 kB       2.6 kB
+  ../../../dist/assets/images/icon-chatflow.2508b3c4.svg                  12.0 kB       8.6 kB
+  ../../../dist/assets/images/icon-coze-en.af19ebba.svg                   12.0 kB       2.6 kB
+  ../../../dist/assets/fonts/KaTeX_SansSerif-Italic.3b1e59b3.woff2        12.0 kB       12.1 kB
+  ../../../dist/assets/js/async/5570.bbc8275d.js                          12.2 kB       2.3 kB
+  ../../../dist/assets/fonts/KaTeX_SansSerif-Bold.8c5b5494.woff2          12.2 kB       12.2 kB
+  ../../../dist/assets/fonts/KaTeX_Size1-Regular.fabc004a.ttf             12.2 kB       6.4 kB
+  ../../../dist/assets/js/async/4067.7abc9607.js                          12.2 kB       4.6 kB
+  ../../../dist/assets/js/async/296.690ea800.js                           12.3 kB       1.7 kB
+  ../../../dist/assets/fonts/KaTeX_SansSerif-Regular.74048478.woff        12.3 kB       12.3 kB
+  ../../../dist/assets/fonts/KaTeX_Caligraphic-Regular.07ef19e7.ttf       12.3 kB       7.7 kB
+  ../../../dist/assets/fonts/KaTeX_Caligraphic-Bold.cce5b8ec.ttf          12.4 kB       7.7 kB
+  ../../../dist/assets/js/async/9624.c4f54682.js                          12.4 kB       5.1 kB
+  ../../../dist/assets/js/async/106.2ba88ae6.js                           12.6 kB       3.8 kB
+  ../../../dist/assets/js/async/6769.d3f45057.js                          12.8 kB       2.6 kB
+  ../../../dist/assets/js/async/6260.d12742fc.js                          12.9 kB       3.2 kB
+  ../../../dist/assets/js/async/504.f99b6c48.js                           12.9 kB       2.1 kB
+  ../../../dist/assets/js/async/31.fcedd43b.js                            13.1 kB       3.3 kB
+  ../../../dist/assets/fonts/KaTeX_Fraktur-Regular.7c187121.woff          13.2 kB       13.2 kB
+  ../../../dist/assets/fonts/KaTeX_Fraktur-Bold.9f256b85.woff             13.3 kB       13.3 kB
+  ../../../dist/assets/js/async/6610.33b89600.js                          13.4 kB       4.0 kB
+  ../../../dist/assets/js/async/3732.55858f35.js                          13.4 kB       2.8 kB
+  ../../../dist/assets/fonts/KaTeX_Typewriter-Regular.a8709e36.woff2      13.6 kB       13.6 kB
+  ../../../dist/assets/images/empty-library-icon.580a6d83.svg             13.6 kB       2.1 kB
+  ../../../dist/assets/js/async/889.b1bad6c7.js                           13.8 kB       3.2 kB
+  ../../../dist/assets/js/async/3058.cc6f8a02.js                          13.8 kB       2.4 kB
+  ../../../dist/assets/js/async/2948.6d1af52a.js                          13.9 kB       3.2 kB
+  ../../../dist/assets/js/async/1076.d3368ebe.js                          13.9 kB       4.7 kB
+  ../../../dist/assets/js/async/2067.6dbe5d97.js                          13.9 kB       3.2 kB
+  ../../../dist/assets/js/async/5008.ab5ab56d.js                          14.0 kB       2.7 kB
+  ../../../dist/assets/fonts/KaTeX_SansSerif-Italic.7c9bc82b.woff         14.1 kB       14.1 kB
+  ../../../dist/assets/js/async/6037.b51853ca.js                          14.2 kB       3.0 kB
+  ../../../dist/assets/js/async/1719.a7e9cd52.js                          14.2 kB       2.7 kB
+  ../../../dist/assets/js/async/8604.782c3a4a.js                          14.3 kB       2.5 kB
+  ../../../dist/assets/js/async/1666.3e2f1243.js                          14.3 kB       3.2 kB
+  ../../../dist/assets/fonts/KaTeX_SansSerif-Bold.bf59d231.woff           14.4 kB       14.4 kB
+  ../../../dist/assets/js/async/1990.3033fa56.js                          14.5 kB       3.1 kB
+  ../../../dist/assets/js/async/5876.282ff25a.js                          14.6 kB       5.6 kB
+  ../../../dist/assets/js/async/5105.910b9790.js                          14.6 kB       3.3 kB
+  ../../../dist/assets/js/async/5358.142b7f73.js                          14.6 kB       3.3 kB
+  ../../../dist/assets/js/async/2525.85b2ae2e.js                          14.7 kB       4.8 kB
+  ../../../dist/assets/js/async/9776.b15344a6.js                          14.8 kB       3.2 kB
+  ../../../dist/assets/js/async/392.cb5b4e28.js                           14.8 kB       3.4 kB
+  ../../../dist/assets/js/async/2233.612b544f.js                          15.0 kB       2.4 kB
+  ../../../dist/assets/js/async/3015.88a3f205.js                          15.0 kB       3.4 kB
+  ../../../dist/assets/images/icon-knowledge.7fb9df6b.svg                 15.1 kB       10.1 kB
+  ../../../dist/assets/js/async/1801.f5c9c2d5.js                          15.1 kB       3.2 kB
+  ../../../dist/assets/images/scene-list-empty.1f37d102.svg               15.2 kB       2.1 kB
+  ../../../dist/assets/js/async/8450.3371d8cf.js                          15.3 kB       2.8 kB
+  ../../../dist/assets/js/async/1820.eaff1c25.js                          15.3 kB       4.0 kB
+  ../../../dist/assets/js/async/6894.80ade001.js                          15.4 kB       3.2 kB
+  ../../../dist/assets/images/icon-database.92d2c48b.svg                  15.8 kB       10.6 kB
+  ../../../dist/assets/fonts/KaTeX_Typewriter-Regular.6258592b.woff       16.0 kB       16.0 kB
+  ../../../dist/assets/js/async/6888.a9757f15.js                          16.0 kB       6.0 kB
+  ../../../dist/assets/js/async/5034.96678658.js                          16.1 kB       4.1 kB
+  ../../../dist/assets/js/async/6306.b8965276.js                          16.3 kB       3.1 kB
+  ../../../dist/assets/images/icon-segment-empty.ff0bfc07.svg             16.4 kB       6.4 kB
+  ../../../dist/assets/fonts/KaTeX_Math-BoldItalic.572d331f.woff2         16.4 kB       16.4 kB
+  ../../../dist/assets/js/async/9954.3307dbc0.js                          16.4 kB       2.1 kB
+  ../../../dist/assets/js/async/9286.70338f76.js                          16.4 kB       3.2 kB
+  ../../../dist/assets/fonts/KaTeX_Math-Italic.f28c23ac.woff2             16.4 kB       16.5 kB
+  ../../../dist/assets/js/async/2669.986fece4.js                          16.5 kB       2.8 kB
+  ../../../dist/assets/images/key-example.59a92fee.png                    16.5 kB       13.3 kB
+  ../../../dist/assets/fonts/KaTeX_Script-Regular.fe9cbbe1.ttf            16.6 kB       10.7 kB
+  ../../../dist/assets/fonts/KaTeX_Main-BoldItalic.6f2bb1df.woff2         16.8 kB       16.8 kB
+  ../../../dist/assets/js/async/806.488b596c.js                           16.8 kB       2.6 kB
+  ../../../dist/assets/fonts/KaTeX_Main-Italic.8916142b.woff2             17.0 kB       17.0 kB
+  ../../../dist/assets/js/async/6747.3f68602e.js                          17.2 kB       3.1 kB
+  ../../../dist/assets/js/async/9527.d840836b.js                          17.3 kB       3.0 kB
+  ../../../dist/assets/js/async/8630.4efec4b6.js                          17.3 kB       3.0 kB
+  ../../../dist/assets/js/async/4604.73cadfe1.js                          17.3 kB       3.1 kB
+  ../../../dist/assets/js/async/6527.453a58fb.js                          17.4 kB       5.1 kB
+  ../../../dist/assets/images/line-case-i18n.c84eeec2.png                 17.5 kB       17.3 kB
+  ../../../dist/assets/images/line-case-cn.ef8e1b07.png                   17.5 kB       17.3 kB
+  ../../../dist/assets/js/async/3182.af4ed0b9.js                          18.1 kB       2.6 kB
+  ../../../dist/assets/images/level-operation.423f9b14.png                18.3 kB       17.4 kB
+  ../../../dist/assets/images/icon-national-emblem.0ece13d3.svg           18.6 kB       14.0 kB
+  ../../../dist/assets/js/async/4322.d27aa412.js                          18.6 kB       3.5 kB
+  ../../../dist/assets/fonts/KaTeX_Math-BoldItalic.f1035d8d.woff          18.7 kB       18.6 kB
+  ../../../dist/assets/fonts/KaTeX_Math-Italic.5295ba48.woff              18.7 kB       18.7 kB
+  ../../../dist/assets/js/async/3428.2e99b57d.js                          18.8 kB       3.2 kB
+  ../../../dist/assets/js/async/8162.90c6a1c6.js                          18.8 kB       3.2 kB
+  ../../../dist/assets/js/async/2265.609217cc.js                          18.8 kB       3.3 kB
+  ../../../dist/assets/js/async/303.d273e367.js                           18.8 kB       3.2 kB
+  ../../../dist/assets/js/async/7301.bbb62750.js                          18.8 kB       3.2 kB
+  ../../../dist/assets/js/async/9145.e694a6a3.js                          19.0 kB       3.8 kB
+  ../../../dist/assets/js/async/7493.09aa3873.js                          19.0 kB       4.7 kB
+  ../../../dist/assets/js/async/7825.8d49d60d.js                          19.4 kB       3.7 kB
+  ../../../dist/assets/fonts/KaTeX_Main-BoldItalic.e3f82f9d.woff          19.4 kB       19.4 kB
+  ../../../dist/assets/fonts/KaTeX_SansSerif-Regular.d4d7ba48.ttf         19.4 kB       12.4 kB
+  ../../../dist/assets/fonts/KaTeX_Fraktur-Regular.ed38e79f.ttf           19.6 kB       13.3 kB
+  ../../../dist/assets/fonts/KaTeX_Fraktur-Bold.b18f59e1.ttf              19.6 kB       13.3 kB
+  ../../../dist/assets/fonts/KaTeX_Main-Italic.9024d815.woff              19.7 kB       19.7 kB
+  ../../../dist/assets/js/async/7717.0bff41eb.js                          20.0 kB       5.1 kB
+  ../../../dist/assets/js/async/4193.5f518d14.js                          20.2 kB       3.0 kB
+  ../../../dist/assets/js/async/8385.1d79f458.js                          20.2 kB       3.0 kB
+  ../../../dist/assets/js/async/5063.0a6ad2aa.js                          20.3 kB       4.2 kB
+  ../../../dist/assets/js/async/3319.16ff1e91.js                          20.5 kB       6.9 kB
+  ../../../dist/assets/js/async/208.5cde0b65.js                           21.0 kB       4.0 kB
+  ../../../dist/assets/js/async/5338.0547075a.js                          21.1 kB       3.7 kB
+  ../../../dist/assets/js/async/686.9837f6c0.js                           21.1 kB       3.7 kB
+  ../../../dist/assets/js/async/6543.9b35ddc0.js                          21.1 kB       5.8 kB
+  ../../../dist/assets/js/async/5113.57969ce3.js                          21.2 kB       4.1 kB
+  ../../../dist/assets/js/async/7672.4794d46f.js                          21.3 kB       4.2 kB
+  ../../../dist/assets/js/async/3472.ce45ec84.js                          21.6 kB       3.0 kB
+  ../../../dist/assets/js/async/3254.e1b26e5c.js                          21.9 kB       4.0 kB
+  ../../../dist/assets/js/async/5117.d36d9b43.js                          21.9 kB       4.0 kB
+  ../../../dist/assets/js/async/5530.406e2e89.js                          21.9 kB       4.0 kB
+  ../../../dist/assets/js/async/5355.59f00f16.js                          22.0 kB       4.2 kB
+  ../../../dist/assets/js/async/7370.08a8ade3.js                          22.0 kB       4.2 kB
+  ../../../dist/assets/js/async/62.78a89bc5.js                            22.0 kB       4.2 kB
+  ../../../dist/assets/js/async/8698.b79801c5.js                          22.0 kB       4.2 kB
+  ../../../dist/assets/js/async/6555.acfdd000.js                          22.0 kB       4.2 kB
+  ../../../dist/assets/js/async/8673.948304c0.js                          22.0 kB       4.2 kB
+  ../../../dist/assets/fonts/KaTeX_SansSerif-Italic.b4c20c84.ttf          22.4 kB       14.3 kB
+  ../../../dist/assets/js/async/1218.6b9c46f8.js                          22.8 kB       6.2 kB
+  ../../../dist/assets/images/tooltip.e3555304.png                        22.8 kB       22.4 kB
+  ../../../dist/assets/js/async/2866.e70c24f7.js                          22.8 kB       6.2 kB
+  ../../../dist/assets/js/async/9816.81daed1d.js                          22.8 kB       4.4 kB
+  ../../../dist/assets/images/image-empty.6f1819b4.png                    23.4 kB       23.4 kB
+  ../../../dist/assets/js/async/703.b7e835e2.js                           23.6 kB       7.5 kB
+  ../../../dist/assets/js/async/8114.ee460b85.js                          23.8 kB       2.7 kB
+  ../../../dist/assets/js/async/5589.1aff9cca.js                          23.9 kB       3.3 kB
+  ../../../dist/assets/js/async/3770.32df3438.js                          24.1 kB       5.5 kB
+  ../../../dist/assets/js/async/4108.3933fbac.js                          24.4 kB       4.8 kB
+  ../../../dist/assets/js/async/2337.e71647a6.js                          24.4 kB       4.0 kB
+  ../../../dist/assets/fonts/KaTeX_SansSerif-Bold.94e1e8dc.ttf            24.5 kB       14.6 kB
+  ../../../dist/assets/js/async/8776.fa9aeb3d.js                          24.7 kB       4.1 kB
+  ../../../dist/assets/images/large-empty.fdf508f4.svg                    24.8 kB       8.9 kB
+  ../../../dist/assets/js/async/5112.028c52cd.js                          25.2 kB       3.5 kB
+  ../../../dist/assets/fonts/KaTeX_Main-Bold.c3fb5ac2.woff2               25.3 kB       25.4 kB
+  ../../../dist/assets/js/async/464.3d681f7b.js                           25.5 kB       4.2 kB
+  ../../../dist/assets/js/async/1770.af23473c.js                          25.5 kB       3.8 kB
+  ../../../dist/assets/js/async/7878.bb1876ac.js                          25.7 kB       3.5 kB
+  ../../../dist/assets/fonts/KaTeX_Main-Regular.0462f03b.woff2            26.3 kB       26.3 kB
+  ../../../dist/assets/images/empty-prompt-icon.54a00a6a.svg              26.4 kB       9.3 kB
+  ../../../dist/assets/js/async/2723.020ad53e.js                          26.4 kB       4.9 kB
+  ../../../dist/assets/js/async/6149.8453d840.js                          26.9 kB       4.5 kB
+  ../../../dist/assets/js/async/9492.9eaee10e.js                          27.1 kB       3.9 kB
+  ../../../dist/assets/js/async/9099.b130378d.js                          27.4 kB       4.3 kB
+  ../../../dist/assets/js/async/4694.1b43a29d.js                          27.4 kB       4.4 kB
+  ../../../dist/assets/fonts/KaTeX_Typewriter-Regular.d97aaf4a.ttf        27.6 kB       16.3 kB
+  ../../../dist/assets/js/async/6998.43a53a49.js                          27.6 kB       6.4 kB
+  ../../../dist/assets/images/icon-google.554291d2.svg                    27.7 kB       15.1 kB
+  ../../../dist/assets/fonts/KaTeX_AMS-Regular.a79f1c31.woff2             28.1 kB       28.1 kB
+  ../../../dist/assets/js/async/5454.a3a9cbce.js                          28.5 kB       3.6 kB
+  ../../../dist/assets/js/async/6958.5ef6abe2.js                          29.1 kB       4.0 kB
+  ../../../dist/assets/js/async/2729.df0e36db.js                          29.1 kB       5.3 kB
+  ../../../dist/assets/js/async/4000.b821d9c4.js                          29.5 kB       4.5 kB
+  ../../../dist/assets/js/async/3920.83936e96.js                          29.8 kB       6.1 kB
+  ../../../dist/assets/fonts/KaTeX_Main-Bold.d181c465.woff                29.9 kB       29.9 kB
+  ../../../dist/assets/css/async/8014.63dd081a.css                        30.3 kB       7.4 kB
+  ../../../dist/assets/images/tips-template-cn.5f0790d9.png               30.5 kB       26.9 kB
+  ../../../dist/assets/fonts/KaTeX_Main-Regular.7f51fe03.woff             30.8 kB       30.8 kB
+  ../../../dist/assets/js/async/8595.475f121c.js                          31.1 kB       8.9 kB
+  ../../../dist/assets/fonts/KaTeX_Math-BoldItalic.a879cf83.ttf           31.2 kB       19.0 kB
+  ../../../dist/assets/images/customize-prompt-zh.fac726f3.png            31.3 kB       29.5 kB
+  ../../../dist/assets/js/async/8718.0e1c650e.js                          31.3 kB       8.1 kB
+  ../../../dist/assets/fonts/KaTeX_Math-Italic.939bc644.ttf               31.3 kB       19.1 kB
+  ../../../dist/assets/js/async/124.01647c91.js                           31.6 kB       5.3 kB
+  ../../../dist/assets/js/async/934.56f62ed9.js                           32.1 kB       8.5 kB
+  ../../../dist/assets/js/async/4597.fa45a84e.js                          32.7 kB       8.6 kB
+  ../../../dist/assets/fonts/KaTeX_Main-BoldItalic.70d8b0a5.ttf           33.0 kB       19.7 kB
+  ../../../dist/assets/images/tips-template-en.07b81dd1.png               33.0 kB       30.2 kB
+  ../../../dist/assets/js/async/4808.0f4d04e9.js                          33.4 kB       9.8 kB
+  ../../../dist/assets/fonts/KaTeX_AMS-Regular.1608a09b.woff              33.5 kB       33.5 kB
+  ../../../dist/assets/fonts/KaTeX_Main-Italic.47373d1e.ttf               33.6 kB       20.0 kB
+  ../../../dist/assets/js/async/3843.1e6a2d6e.js                          33.6 kB       5.7 kB
+  ../../../dist/assets/js/async/108.2f390b68.js                           33.7 kB       5.6 kB
+  ../../../dist/assets/js/async/2197.714440b6.js                          34.0 kB       5.6 kB
+  ../../../dist/assets/images/bot-generate-dis-sprite.5e79ec93.png        34.3 kB       34.0 kB
+  ../../../dist/assets/js/async/2239.da7e4e4c.js                          35.2 kB       4.4 kB
+  ../../../dist/assets/js/async/3405.68f0baa0.js                          35.3 kB       6.0 kB
+  ../../../dist/assets/js/async/6171.d3550c94.js                          35.6 kB       5.9 kB
+  ../../../dist/assets/js/async/684.40b37e32.js                           35.8 kB       6.4 kB
+  ../../../dist/assets/js/async/349.b068ef68.js                           37.7 kB       4.5 kB
+  ../../../dist/assets/js/async/5303.d399077e.js                          37.9 kB       10.6 kB
+  ../../../dist/assets/images/image-fail.8273cb5f.png                     38.8 kB       34.5 kB
+  ../../../dist/assets/js/async/6666.b97bca67.js                          38.8 kB       9.6 kB
+  ../../../dist/assets/js/async/6092.64f88a57.js                          39.3 kB       10.9 kB
+  ../../../dist/assets/js/lib-axios.d4055676.js                           39.9 kB       14.8 kB
+  ../../../dist/assets/js/async/5548.c2899ffe.js                          40.9 kB       8.3 kB
+  ../../../dist/assets/js/async/3099.864b9239.js                          41.7 kB       6.2 kB
+  ../../../dist/assets/js/async/2780.b1e99f09.js                          41.8 kB       6.5 kB
+  ../../../dist/assets/js/async/1273.5baba87d.js                          43.8 kB       12.6 kB
+  ../../../dist/assets/js/async/5326.c97eb3fb.js                          44.0 kB       8.5 kB
+  ../../../dist/assets/js/async/6723.20062f05.js                          44.2 kB       14.4 kB
+  ../../../dist/assets/images/insert-blank-slot-guide-en.3ab331a5.png     44.4 kB       44.0 kB
+  ../../../dist/assets/js/async/3520.31aff563.js                          45.1 kB       18.3 kB
+  ../../../dist/assets/js/async/3420.25585177.js                          45.3 kB       5.2 kB
+  ../../../dist/assets/images/customize-prompt-en.87037176.png            45.4 kB       43.4 kB
+  ../../../dist/assets/js/async/4714.430af873.js                          45.6 kB       13.7 kB
+  ../../../dist/assets/images/insert-blank-slot-guide-cn.c3118879.png     46.2 kB       45.8 kB
+  ../../../dist/assets/js/async/332.e272d343.js                           46.3 kB       6.8 kB
+  ../../../dist/assets/js/async/5324.623392b4.js                          47.0 kB       8.1 kB
+  ../../../dist/assets/js/async/3882.a8a4dad6.js                          47.0 kB       8.1 kB
+  ../../../dist/assets/js/async/182.b3574e07.js                           47.0 kB       8.1 kB
+  ../../../dist/assets/js/async/2062.599f7b60.js                          47.0 kB       8.1 kB
+  ../../../dist/assets/js/async/9518.d94fbb75.js                          48.3 kB       6.2 kB
+  ../../../dist/assets/js/async/4686.d5e8a848.js                          48.7 kB       5.7 kB
+  ../../../dist/assets/images/concat_example_zh.d05a0671.png              48.9 kB       46.6 kB
+  ../../../dist/assets/js/async/9054.517ec14c.js                          49.2 kB       12.0 kB
+  ../../../dist/assets/js/async/2861.6c32eed5.js                          50.1 kB       9.6 kB
+  ../../../dist/assets/js/async/7822.1617cf44.js                          50.9 kB       7.4 kB
+  ../../../dist/assets/fonts/KaTeX_Main-Bold.b74a1a8b.ttf                 51.3 kB       30.6 kB
+  ../../../dist/assets/fonts/KaTeX_Main-Regular.b7f8fe9b.ttf              53.6 kB       31.5 kB
+  ../../../dist/assets/js/async/8318.09a4f981.js                          53.9 kB       8.6 kB
+  ../../../dist/assets/js/async/6539.ea7e61ea.js                          53.9 kB       8.6 kB
+  ../../../dist/assets/js/async/9278.a7d2b787.js                          55.9 kB       15.3 kB
+  ../../../dist/assets/js/async/9737.efba08ed.js                          56.1 kB       5.6 kB
+  ../../../dist/assets/js/async/7790.9f81b394.js                          56.2 kB       4.8 kB
+  ../../../dist/assets/js/async/3922.b6a004d5.js                          57.2 kB       12.4 kB
+  ../../../dist/assets/images/concat_example_en.06234682.png              57.6 kB       54.7 kB
+  ../../../dist/assets/js/async/7446.16a129fc.js                          57.7 kB       11.9 kB
+  ../../../dist/assets/js/async/1399.a1f5e2dc.js                          58.9 kB       8.3 kB
+  ../../../dist/assets/js/async/5434.4af73cd3.js                          62.7 kB       5.2 kB
+  ../../../dist/assets/images/telegram.b3d7c689.svg                       63.3 kB       45.7 kB
+  ../../../dist/assets/fonts/KaTeX_AMS-Regular.4aafdb68.ttf               63.6 kB       34.6 kB
+  ../../../dist/assets/js/async/2029.23daad6a.js                          69.6 kB       9.3 kB
+  ../../../dist/assets/images/icon-dy.51bcd71b.svg                        70.2 kB       51.0 kB
+  ../../../dist/assets/js/async/626.97a0a448.js                           70.3 kB       9.3 kB
+  ../../../dist/assets/js/async/913.684c07e1.js                           72.3 kB       10.6 kB
+  ../../../dist/assets/js/async/6133.71a46037.js                          75.0 kB       10.8 kB
+  ../../../dist/assets/js/async/web-streams-polyfill.994cbd77.js          76.5 kB       17.4 kB
+  ../../../dist/assets/fonts/codicon.f1c9615d.ttf                         77.4 kB       42.6 kB
+  ../../../dist/assets/js/async/7646.68332ef2.js                          79.1 kB       8.8 kB
+  ../../../dist/assets/js/async/6553.9f722051.js                          80.4 kB       26.1 kB
+  ../../../dist/assets/js/async/8927.6ac9c10d.js                          85.3 kB       12.6 kB
+  ../../../dist/assets/js/async/7382.15fcbaec.js                          85.8 kB       10.3 kB
+  ../../../dist/assets/js/async/4099.cdd5c3f9.js                          86.4 kB       14.9 kB
+  ../../../dist/assets/js/async/554.fc22fabf.js                           87.2 kB       7.3 kB
+  ../../../dist/assets/js/async/5468.b4737108.js                          87.4 kB       11.0 kB
+  ../../../dist/assets/js/async/9550.46c8b16b.js                          92.0 kB       35.1 kB
+  ../../../dist/assets/js/async/4110.645c2f5b.js                          92.6 kB       15.2 kB
+  ../../../dist/assets/js/async/8774.a3467eb9.js                          98.1 kB       14.9 kB
+  ../../../dist/assets/js/lib-router.0c12504e.js                          101.8 kB      30.3 kB
+  ../../../dist/assets/js/async/8231.3a6e1129.js                          105.6 kB      23.5 kB
+  ../../../dist/assets/js/async/7289.fa187372.js                          113.3 kB      29.7 kB
+  ../../../dist/assets/js/async/7658.a06d22cd.js                          114.0 kB      29.0 kB
+  ../../../dist/assets/images/bot-generate-loading-sprite.22e763a4.png    115.2 kB      114.9 kB
+  ../../../dist/assets/css/async/4678.9bd6f7b2.css                        116.1 kB      18.6 kB
+  ../../../dist/assets/images/line-error-case-cn.2a05dfda.svg             124.4 kB      16.9 kB
+  ../../../dist/assets/images/line-error-case-i18n.a2bed08b.svg           128.8 kB      17.8 kB
+  ../../../dist/assets/js/async/8174.45aa48a4.js                          134.5 kB      35.2 kB
+  ../../../dist/assets/js/async/3567.ae90a26d.js                          136.3 kB      23.7 kB
+  ../../../dist/assets/js/lib-react.74360115.js                           145.0 kB      45.7 kB
+  ../../../dist/assets/images/delete-operation.97fc5d6f.png               154.4 kB      151.4 kB
+  ../../../dist/assets/images/delete-operation-en.44b1f340.png            154.9 kB      152.0 kB
+  ../../../dist/assets/images/onboarding.504ea410.png                     161.7 kB      161.8 kB
+  ../../../dist/assets/js/async/8643.3fcca670.js                          172.3 kB      30.9 kB
+  ../../../dist/assets/js/async/135.94d730ce.js                           175.0 kB      16.7 kB
+  ../../../dist/assets/js/async/5.c5de3725.js                             175.7 kB      16.7 kB
+  ../../../dist/assets/js/async/1859.bb0fbbd1.js                          178.0 kB      16.8 kB
+  ../../../dist/assets/js/async/1678.573abb3e.js                          181.2 kB      16.2 kB
+  ../../../dist/assets/js/async/2429.f3340ad8.js                          184.1 kB      16.8 kB
+  ../../../dist/assets/images/merge-operation-en.76af0b44.png             191.9 kB      189.7 kB
+  ../../../dist/assets/images/merge-operation.d9654306.png                195.8 kB      193.5 kB
+  ../../../dist/assets/js/async/5457.181eabc5.js                          248.9 kB      115.4 kB
+  ../../../dist/assets/js/async/2155.b3d67f95.js                          262.6 kB      77.2 kB
+  ../../../dist/assets/js/async/501.fd2d0ee7.js                           298.2 kB      87.8 kB
+  ../../../dist/assets/js/async/3666.44ca45cd.js                          304.9 kB      88.5 kB
+  ../../../dist/assets/js/async/8014.027b68df.js                          475.0 kB      133.5 kB
+  ../../../dist/assets/js/async/7649.0aa5bef5.js                          622.7 kB      231.5 kB
+  ../../../dist/assets/js/async/6889.7632ce21.js                          638.6 kB      47.6 kB
+  ../../../dist/assets/css/index.1ac3cc23.css                             643.3 kB      109.6 kB
+  ../../../dist/assets/css/6245.6cef632e.css                              746.8 kB      92.7 kB
+  ../../../dist/assets/js/async/8034.0711e253.js                          780.0 kB      196.6 kB
+  ../../../dist/assets/js/async/3542.97bca2aa.js                          784.0 kB      162.1 kB
+  ../../../dist/assets/js/async/8944.c7bc1e69.js                          2374.8 kB     320.0 kB
+  ../../../dist/assets/js/async/4678.62755d33.js                          3276.7 kB     833.1 kB
+  ../../../dist/assets/js/async/1166.c02d5f72.js                          3469.5 kB     967.5 kB
+  ../../../dist/assets/js/index.862a78e9.js                               7359.1 kB     1853.8 kB
+  ../../../dist/assets/js/6245.7dc08b2e.js                                11804.6 kB    3334.3 kB
+
+  Total: 45218.7 kB (gzip: 12882.4 kB)
+
+file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/scripts/yijie/workflow-editor.mjs:28
+const requireValue = (value, message) => { if (!value) throw new Error(message); };
+                                                             ^
+
+Error: Editor script requires a worker review: assets/js/6245.7dc08b2e.js
+    at requireValue (file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/scripts/yijie/workflow-editor.mjs:28:62)
+    at checkScript (file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/scripts/yijie/workflow-editor.mjs:308:3)
+    at walk (file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/scripts/yijie/workflow-editor.mjs:336:34)
+    at walk (file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/scripts/yijie/workflow-editor.mjs:326:9)
+    at walk (file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/scripts/yijie/workflow-editor.mjs:326:9)
+    at bundleFiles (file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/scripts/yijie/workflow-editor.mjs:341:3)
+    at manifest (file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/scripts/yijie/workflow-editor.mjs:406:17)
+    at file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/scripts/yijie/workflow-editor.mjs:441:3
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+
+Node.js v26.0.0

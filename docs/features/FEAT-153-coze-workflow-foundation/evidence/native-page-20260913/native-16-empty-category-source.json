@@ -1,0 +1,25 @@
+{
+  "scope": "Read-only source diagnosis of actual canonical16 Add Text failure; live App/stack not modified.",
+  "error": "Cannot destructure property categoryName from null or undefined value",
+  "cause_chain": [
+    "Local useTemplateNodeList removes Text template once a Text node exists, leaving legitimate empty category array.",
+    "NodeList list.tsx:192 constructs [nodeCategoryList[0]], yielding [undefined] for empty array.",
+    "AtomCategoryList index.tsx:39 destructures categoryName in map and fails."
+  ],
+  "minimal_fix": "Pass nodeCategoryList.slice(0,1) to the original first AtomCategoryList, retaining empty array and existing category ordering. Do not fabricate data or relax one-Text constraint.",
+  "runtime_inference": "Observed add-node operation precedes list failure; exact transient render timing not reconstructed by source read alone.",
+  "sources": [
+    {
+      "path": "frontend/packages/workflow/playground/src/components/node-panel/hooks/use-template-node-list.ts",
+      "sha256": "70c755268af45016a46dbb2c6dde59d3ee11e8fce84e7683c7bf6a7e73b9973d"
+    },
+    {
+      "path": "frontend/packages/workflow/playground/src/components/node-panel/components/list.tsx",
+      "sha256": "18d1106df98276f6ecb79e317b9cd99c84c42686eb0d590d763da18b2f708f91"
+    },
+    {
+      "path": "frontend/packages/workflow/playground/src/components/node-panel/components/atom-category-list/index.tsx",
+      "sha256": "c0ec0ec017e47fde981313e19a5093c2f5cf6d91ed8d9ca17a2408e7ed1312ad"
+    }
+  ]
+}

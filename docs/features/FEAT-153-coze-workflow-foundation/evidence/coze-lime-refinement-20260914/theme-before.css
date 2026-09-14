@@ -1,0 +1,299 @@
+/* Coze-native widgets keep their layout and behavior. Only this embedded
+ * document receives Yijie colors, including portals mounted on body. RGB
+ * primitives cover the upstream library; aliases cover workflow components. */
+html:root, html:root body {
+  --coze-bg-0: var(--yj-rgb-bg-page);
+  --coze-bg-0-alpha: 1;
+  --coze-bg-1: var(--yj-rgb-bg-page);
+  --coze-bg-1-alpha: 1;
+  --coze-bg-2: var(--yj-rgb-bg-card);
+  --coze-bg-2-alpha: 1;
+  --coze-bg-3: var(--yj-rgb-bg-elevated);
+  --coze-bg-3-alpha: 1;
+  --coze-bg-4: var(--yj-rgb-bg-subtle);
+  --coze-bg-4-alpha: 1;
+  --coze-bg-5: var(--yj-rgb-control-hover);
+  --coze-bg-5-alpha: 1;
+  --coze-bg-6: var(--yj-rgb-control-pressed);
+  --coze-bg-6-alpha: 1;
+  --coze-bg-7: var(--yj-rgb-control-pressed);
+  --coze-bg-7-alpha: 1;
+  --coze-bg-8: var(--yj-rgb-border-strong);
+  --coze-bg-8-alpha: 1;
+  --coze-fg-1: var(--yj-rgb-text-tertiary);
+  --coze-fg-1-alpha: 1;
+  --coze-fg-2: var(--yj-rgb-text-secondary);
+  --coze-fg-2-alpha: 1;
+  --coze-fg-3: var(--yj-rgb-text-primary);
+  --coze-fg-3-alpha: 1;
+  --coze-fg-4: var(--yj-rgb-text-primary);
+  --coze-fg-4-alpha: 1;
+  --coze-fg-5: var(--yj-rgb-on-brand);
+  --coze-fg-5-alpha: 1;
+  --coze-fg-6: var(--yj-rgb-on-brand);
+  --coze-fg-6-alpha: 1;
+  --coze-fg-7: var(--yj-rgb-text-on-danger);
+  --coze-fg-7-alpha: 1;
+  --coze-brand-0: var(--yj-rgb-bg-card);
+  --coze-brand-0-alpha: 1;
+  --coze-brand-1: var(--yj-rgb-control-hover);
+  --coze-brand-1-alpha: 1;
+  --coze-brand-2: var(--yj-rgb-control-pressed);
+  --coze-brand-2-alpha: 1;
+  --coze-brand-3: var(--yj-rgb-control-disabled-bg);
+  --coze-brand-3-alpha: 1;
+  --coze-brand-5: var(--yj-rgb-brand-primary);
+  --coze-brand-5-alpha: 1;
+  --coze-brand-6: var(--yj-rgb-brand-hover);
+  --coze-brand-6-alpha: 1;
+  --coze-brand-7: var(--yj-rgb-brand-active);
+  --coze-brand-7-alpha: 1;
+  --coze-brand-30: var(--yj-rgb-control-disabled-bg);
+  --coze-brand-30-alpha: 1;
+  --coze-brand-50: var(--yj-rgb-brand-primary);
+  --coze-brand-50-alpha: 1;
+  --coze-stroke-5: var(--yj-rgb-border-default);
+  --coze-stroke-5-alpha: 1;
+  --coze-stroke-6: var(--yj-rgb-border-strong);
+  --coze-stroke-6-alpha: 1;
+  --coze-stroke-7: var(--yj-rgb-border-control);
+  --coze-stroke-7-alpha: 1;
+  --coze-stroke-opaque: var(--yj-rgb-border-default);
+  --coze-red-5: var(--yj-rgb-error);
+  --coze-red-5-alpha: 1;
+  --coze-red-6: var(--yj-rgb-error);
+  --coze-red-6-alpha: 1;
+  --coze-red-7: var(--yj-rgb-error);
+  --coze-red-7-alpha: 1;
+  --coze-green-5: var(--yj-rgb-success);
+  --coze-green-5-alpha: 1;
+  --coze-green-6: var(--yj-rgb-success);
+  --coze-green-6-alpha: 1;
+  --coze-green-7: var(--yj-rgb-success);
+  --coze-green-7-alpha: 1;
+  --coze-yellow-5: var(--yj-rgb-warning);
+  --coze-yellow-5-alpha: 1;
+  --coze-yellow-6: var(--yj-rgb-warning);
+  --coze-yellow-6-alpha: 1;
+  --coze-yellow-7: var(--yj-rgb-warning);
+  --coze-yellow-7-alpha: 1;
+  --coz-fg: var(--yj-color-text-primary);
+  --coz-fg-primary: var(--yj-color-text-primary);
+  --coz-fg-plus: var(--yj-color-text-primary);
+  --coz-fg-secondary: var(--yj-color-text-secondary);
+  --coz-fg-dim: var(--yj-color-text-tertiary);
+  --coz-fg-hglt: var(--yj-color-text-primary);
+  --coz-fg-hglt-dim: var(--yj-color-text-disabled);
+  --coz-fg-hglt-plus: var(--yj-color-on-brand);
+  --coz-fg-color-brand: var(--yj-color-text-primary);
+  --coz-bg: var(--yj-color-bg-page);
+  --coz-bg-primary: var(--yj-color-bg-page);
+  --coz-bg-secondary: var(--yj-color-bg-page);
+  --coz-bg-plus: var(--yj-color-bg-card);
+  --coz-bg-max: var(--yj-color-bg-elevated);
+  --coz-mg-card: var(--yj-color-bg-card);
+  --coz-mg-card-hovered: var(--yj-color-bg-card);
+  --coz-mg-card-pressed: var(--yj-color-bg-card);
+  --coz-mg-primary: var(--yj-color-control-hover);
+  --coz-mg-primary-hovered: var(--yj-color-control-pressed);
+  --coz-mg-primary-pressed: var(--yj-color-control-pressed);
+  --coz-mg-secondary: var(--yj-color-bg-card);
+  --coz-mg-secondary-hovered: var(--yj-color-control-hover);
+  --coz-mg-secondary-pressed: var(--yj-color-control-pressed);
+  --coz-mg-plus: var(--yj-color-control-hover);
+  --coz-mg-plus-hovered: var(--yj-color-control-pressed);
+  --coz-mg-plus-pressed: var(--yj-color-control-pressed);
+  --coz-mg-hglt: var(--yj-color-control-hover);
+  --coz-mg-hglt-hovered: var(--yj-color-control-pressed);
+  --coz-mg-hglt-pressed: var(--yj-color-control-pressed);
+  --coz-mg-hglt-plus: var(--yj-color-brand-primary);
+  --coz-mg-hglt-plus-hovered: var(--yj-color-brand-hover);
+  --coz-mg-hglt-plus-pressed: var(--yj-color-brand-active);
+  --coz-mg-hglt-plus-dim: var(--yj-color-control-disabled-bg);
+  --coz-stroke-primary: var(--yj-color-border-default);
+  --coz-stroke-plus: var(--yj-color-border-default);
+  --coz-stroke-max: var(--yj-color-border-control);
+  --coz-stroke-opaque: var(--yj-color-border-default);
+  --coz-stroke-hglt: var(--yj-color-focus-ring);
+  --semi-color-bg-0: var(--yj-color-bg-page);
+  --semi-color-bg-1: var(--yj-color-bg-card);
+  --semi-color-bg-2: var(--yj-color-bg-elevated);
+  --semi-color-bg-3: var(--yj-color-bg-elevated);
+  --semi-color-bg-4: var(--yj-color-bg-elevated);
+  --semi-color-nav-bg: var(--yj-color-bg-nav);
+  --semi-color-text-0: var(--yj-color-text-primary);
+  --semi-color-text-1: var(--yj-color-text-body);
+  --semi-color-text-2: var(--yj-color-text-secondary);
+  --semi-color-text-3: var(--yj-color-text-tertiary);
+  --semi-color-fill-0: var(--yj-color-control-hover);
+  --semi-color-fill-1: var(--yj-color-control-pressed);
+  --semi-color-fill-2: var(--yj-color-control-pressed);
+  --semi-color-border: var(--yj-color-border-default);
+  --semi-color-border-1: var(--yj-color-border-default);
+  --semi-color-border-2: var(--yj-color-border-control);
+  --semi-color-primary: var(--yj-color-text-primary);
+  --semi-color-primary-hover: var(--yj-color-text-primary);
+  --semi-color-primary-active: var(--yj-color-text-primary);
+  --semi-color-primary-disabled: var(--yj-color-text-disabled);
+  --semi-color-primary-light-default: var(--yj-color-control-hover);
+  --semi-color-primary-light-hover: var(--yj-color-control-pressed);
+  --semi-color-primary-light-active: var(--yj-color-control-pressed);
+  --semi-color-focus-border: var(--yj-color-focus-ring);
+  --semi-color-default: var(--yj-color-bg-card);
+  --semi-color-link: var(--yj-color-text-primary);
+  --semi-color-link-hover: var(--yj-color-text-primary);
+  --semi-color-link-active: var(--yj-color-text-primary);
+  --semi-color-link-visited: var(--yj-color-text-primary);
+  --semi-color-disabled-text: var(--yj-color-text-disabled);
+  --semi-color-disabled-fill: var(--yj-color-control-disabled-bg);
+  --semi-color-disabled-border: var(--yj-color-border-default);
+  --semi-color-danger: var(--yj-color-semantic-error-ink);
+  --semi-color-danger-hover: var(--yj-color-semantic-error-ink);
+  --semi-color-danger-active: var(--yj-color-semantic-error-ink);
+  --semi-color-danger-light-default: var(--yj-color-error-soft);
+  --semi-color-warning: var(--yj-color-semantic-warning-ink);
+  --semi-color-warning-light-default: var(--yj-color-warning-soft);
+  --semi-color-success: var(--yj-color-semantic-success-ink);
+  --semi-color-success-light-default: var(--yj-color-success-soft);
+  --semi-color-info: var(--yj-color-semantic-info-ink);
+  --coz-shadow-default: var(--yj-shadow-popover);
+  --coz-shadow-small: var(--yj-shadow-popover);
+  --coz-shadow-large: var(--yj-shadow-popover);
+  --g-selection-background: var(--yj-color-focus-ring);
+  --g-editor-background: var(--yj-color-bg-page);
+  --g-playground-select: var(--yj-color-focus-ring);
+  --g-playground-hover: var(--yj-color-focus-ring);
+  --g-playground-line: var(--yj-color-focus-ring);
+  --g-playground-selectBox-outline: var(--yj-color-focus-ring);
+  --g-playground-selectBox-background: rgba(var(--yj-rgb-brand-primary), .16);
+  --g-playground-select-hover-background: var(--yj-color-control-hover);
+  --g-workflow-node-header-tint: var(--yj-color-bg-card);
+  --g-workflow-node-label: var(--yj-color-text-secondary);
+  --g-workflow-expression-background: var(--yj-color-bg-card);
+  --g-workflow-expression-foreground: var(--yj-color-text-body);
+  --g-workflow-expression-reference: var(--yj-color-text-primary);
+  --g-workflow-expression-border: var(--yj-color-border-control);
+  --g-workflow-node-icon-background: var(--yj-color-on-brand);
+  --g-workflow-node-icon-foreground: var(--yj-color-brand-primary);
+  --g-workflow-port-background: var(--yj-color-bg-card);
+  --g-workflow-port-outline: var(--yj-color-text-primary);
+  --g-workflow-port-foreground: var(--yj-color-text-primary);
+  --g-workflow-port-active: var(--yj-color-brand-primary);
+  --g-workflow-port-error: var(--yj-color-semantic-error-ink);
+  --g-workflow-line-default: var(--yj-color-text-secondary);
+  --g-workflow-line-drawing: var(--yj-color-text-primary);
+  --g-workflow-line-hovered: var(--yj-color-text-primary);
+  --g-workflow-line-selected: var(--yj-color-text-primary);
+  --g-workflow-line-error: var(--yj-color-semantic-error-ink);
+  --g-workflow-node-selected-border: var(--yj-color-text-primary);
+  --g-workflow-node-shadow: none;
+}
+
+html:root body { color: var(--yj-color-text-body); background: var(--yj-color-bg-page); }
+html:root body ::selection { color: var(--yj-color-on-brand); background: var(--yj-color-brand-primary); }
+html:root body .editor-shell { --g-editor-background: var(--yj-color-bg-page); }
+html:root body .gedit-grid-svg circle { fill: var(--yj-color-border-subtle); stroke: var(--yj-color-border-subtle); }
+
+/* Tiny highlight tools remain neutral; explicit primary actions are lime. */
+html:root body[theme-mode] .coz-button.semi-button.coz-btn-highlight { color: var(--yj-color-text-primary); background: var(--yj-color-control-hover); }
+html:root body[theme-mode] .coz-button.semi-button.coz-btn-highlight:not(:disabled):hover { background: var(--yj-color-control-pressed); }
+html:root body[theme-mode] .coz-button.semi-button.coz-btn-highlight:not(:disabled):active { background: var(--yj-color-control-pressed); }
+html:root body[theme-mode] .coz-button.semi-button:is(.coz-btn-brand, [data-testid="workflow.detail.toolbar.add-node"]) {
+  color: var(--yj-color-on-brand); background: var(--yj-color-brand-primary);
+  border: 1px solid var(--yj-color-on-brand);
+}
+html:root body[theme-mode] .coz-button.semi-button:is(.coz-btn-brand, [data-testid="workflow.detail.toolbar.add-node"]):not(:disabled):hover { color: var(--yj-color-on-brand); background: var(--yj-color-brand-hover); }
+html:root body[theme-mode] .coz-button.semi-button:is(.coz-btn-brand, [data-testid="workflow.detail.toolbar.add-node"]):not(:disabled):active { color: var(--yj-color-on-brand); background: var(--yj-color-brand-active); }
+html:root body[theme-mode] .coz-button.semi-button:disabled, html:root body[theme-mode] .coz-button.semi-button.semi-button-disabled {
+  color: var(--yj-color-text-disabled); background: var(--yj-color-control-disabled-bg);
+  border-color: var(--yj-color-border-default); opacity: 1;
+}
+html:root body[theme-mode] .coz-button.semi-button:disabled:hover, html:root body[theme-mode] .coz-button.semi-button:disabled:active { color: var(--yj-color-text-disabled); background: var(--yj-color-control-disabled-bg); }
+html:root body[theme-mode] .coz-button.semi-button:focus-visible, html:root body [tabindex="0"]:focus-visible {
+  outline: var(--yj-focus-ring-width) solid var(--yj-color-focus-ring); outline-offset: 2px;
+}
+html:root body :is(.coz-fg-hglt, .coz-fg-color-brand, .coz-fg-hglt-blue) { color: var(--yj-color-text-primary); }
+html:root body :is(.coz-fg-dim, .coz-fg-hglt-dim) { color: var(--yj-color-text-tertiary); }
+html:root body :is(.semi-input-wrapper, .semi-input-number, .semi-select, .semi-datepicker-input, .semi-input-textarea-wrapper) {
+  color: var(--yj-color-text-body); background: var(--yj-color-bg-card);
+  border-color: var(--yj-color-border-control); box-shadow: none;
+}
+html:root body :is(.semi-input, .semi-input-textarea) { color: var(--yj-color-text-body); }
+html:root body :is(.semi-input, .semi-input-textarea)::placeholder { color: var(--yj-color-text-tertiary); }
+html:root body :is(.semi-input-wrapper, .semi-select, .semi-input-textarea-wrapper):focus-within {
+  outline: var(--yj-focus-ring-width) solid var(--yj-color-focus-ring); outline-offset: 2px;
+}
+html:root body :is(.semi-input-wrapper-error, .semi-input-textarea-wrapper-error, .semi-select-error) { border-color: var(--yj-color-semantic-error-ink); }
+html:root body :is(.semi-input-wrapper-disabled, .semi-input-textarea-wrapper-disabled, .semi-select-disabled) { color: var(--yj-color-text-disabled); background: var(--yj-color-control-disabled-bg); border-color: var(--yj-color-border-default); }
+html:root body :is(.semi-modal-content, .semi-popover-wrapper, .semi-dropdown-menu, .semi-select-option-list) { background: var(--yj-color-bg-elevated); color: var(--yj-color-text-body); }
+html:root.dark body :is(.semi-modal, .semi-popover-wrapper, .semi-dropdown, .semi-select-dropdown) { --yj-color-border-control: var(--yj-color-border-control-hover); }
+html:root body :is(input, textarea):disabled { color: var(--yj-color-text-disabled); -webkit-text-fill-color: var(--yj-color-text-disabled); opacity: 1; }
+
+/* Upstream expression decorations and suggestions use legacy theme roles. */
+html:root, html:root body {
+  --g-workflow-node-focus: var(--yj-color-focus-ring);
+  --g-workflow-selection-surface: rgba(var(--yj-rgb-brand-primary), .16);
+  --g-workflow-expression-suggestion-background: var(--yj-color-bg-elevated);
+  --light-usage-bg-color-bg-3: var(--yj-color-bg-elevated);
+  --light-usage-text-color-text-0: var(--yj-color-text-primary);
+  --light-usage-text-color-text-2: var(--yj-color-text-secondary);
+  --light-usage-fill-color-fill-1: var(--yj-color-control-hover);
+  --light-usage-fill-color-fill-2: var(--yj-color-control-pressed);
+  --light-usage-warning-color-warning: var(--yj-color-semantic-warning-ink);
+  --light-usage-primary-color-primary: var(--yj-color-text-primary);
+}
+html:root body .cm-editor { color: var(--yj-color-text-body); caret-color: var(--yj-color-text-primary); }
+html:root body .cm-editor .cm-decoration-interpolation-valid { color: var(--yj-color-text-primary); caret-color: var(--yj-color-text-primary); text-decoration: underline; text-decoration-color: var(--yj-color-border-control); }
+html:root body .cm-editor .cm-decoration-interpolation-invalid { color: var(--yj-color-semantic-error-ink); }
+html:root body .cm-editor .cm-decoration-interpolation-active { background: var(--yj-color-control-hover); }
+html:root body .cm-editor .cm-cursor { border-left-color: var(--yj-color-text-primary); }
+
+/* Status foreground and filled actions are distinct semantic roles. */
+html:root, html:root body {
+  --coz-fg-hglt-red: var(--yj-color-semantic-error-ink);
+  --coz-fg-hglt-green: var(--yj-color-semantic-success-ink);
+  --coz-fg-hglt-yellow: var(--yj-color-semantic-warning-ink);
+}
+html:root body .coz-fg-hglt-red { color: var(--yj-color-semantic-error-ink); }
+html:root body .coz-fg-hglt-green { color: var(--yj-color-semantic-success-ink); }
+html:root body .coz-fg-hglt-yellow { color: var(--yj-color-semantic-warning-ink); }
+html:root body[theme-mode] .coz-button.semi-button:is(.coz-btn-green, .coz-btn-yellow):not(:disabled) { color: var(--yj-color-on-brand); }
+html:root body[theme-mode] .coz-button.semi-button.coz-btn-red:not(:disabled) { color: var(--yj-color-text-on-danger); }
+html:root body[theme-mode] .coz-input.semi-input-wrapper.semi-input-wrapper-focus,
+html:root body[theme-mode] .coz-textarea.semi-input-textarea-wrapper:focus-within,
+html:root body[theme-mode] .coz-select.semi-select.semi-select-focus { border-color: var(--yj-color-border-control-hover); box-shadow: none; }
+html:root body[theme-mode] .coz-input.semi-input-wrapper.semi-input-wrapper-error,
+html:root body[theme-mode] .coz-textarea.semi-input-textarea-wrapper.semi-input-textarea-wrapper-error,
+html:root body[theme-mode] .coz-select.semi-select.semi-select-error { border-color: var(--yj-color-semantic-error-ink); }
+
+/* Native menu variants have their own primitive colors rather than fg aliases. */
+html:root body[theme-mode] .coz-menu.semi-dropdown-menu .coz-list-item > .coz-item-text:is(.coz-item-primary, .coz-item-secondary) { color: var(--yj-color-text-primary); }
+html:root body[theme-mode] .coz-menu.semi-dropdown-menu .coz-list-item > .coz-item-text.coz-item-danger { color: var(--yj-color-semantic-error-ink); }
+html:root body[theme-mode] .coz-menu.semi-dropdown-menu .coz-list-item > .coz-item-text.coz-item-warning { color: var(--yj-color-semantic-warning-ink); }
+html:root body[theme-mode] .coz-menu.semi-dropdown-menu .coz-list-item > .coz-item-text.coz-item-text-disabled,
+html:root body[theme-mode] .coz-menu.semi-dropdown-menu .coz-list-item:is(.semi-dropdown-item-disabled, [aria-disabled="true"]) > .coz-item-text { color: var(--yj-color-text-disabled); }
+html:root body[theme-mode] .coz-menu.semi-dropdown-menu .coz-list-item:is(.semi-dropdown-item-disabled, [aria-disabled="true"]) { background-color: transparent; }
+
+/* Original interaction guidance and MiniMap shell also consume local colors. */
+html:root, html:root body {
+  --g-workflow-guide-action-background: var(--yj-color-brand-primary);
+  --g-workflow-guide-action-hover: var(--yj-color-brand-hover);
+  --g-workflow-guide-action-active: var(--yj-color-brand-active);
+  --g-workflow-guide-action-foreground: var(--yj-color-on-brand);
+  --g-workflow-guide-description: var(--yj-color-text-secondary);
+  --g-workflow-column-heading: var(--yj-color-text-secondary);
+  --g-workflow-guide-icon: var(--yj-color-text-primary);
+  --g-workflow-mouse-selected-icon: var(--yj-color-text-primary);
+  --g-workflow-mouse-border: var(--yj-color-border-control);
+  --g-workflow-mouse-hover: var(--yj-color-control-hover);
+  --g-workflow-mouse-active: var(--yj-color-control-pressed);
+  --g-workflow-mouse-focus: var(--yj-color-focus-ring);
+  --g-workflow-mouse-shadow: var(--yj-shadow-popover);
+  --g-workflow-minimap-panel-background: var(--yj-color-bg-elevated);
+  --g-workflow-minimap-panel-border: var(--yj-color-border-default);
+  --g-workflow-minimap-panel-shadow: var(--yj-shadow-popover);
+}
+
+/* Native Feedback/ErrorMessage share this legacy Tailwind color class.
+ * Keep their original markup and validation, but give errors readable Yijie ink. */
+html:root body [class~="text-[#ff441e]"] { color: var(--yj-color-semantic-error-ink); }

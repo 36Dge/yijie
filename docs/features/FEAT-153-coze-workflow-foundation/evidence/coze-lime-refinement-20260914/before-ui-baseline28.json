@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-09-13T17:51:14.455932+00:00",
+  "completed_at": "2026-09-13T17:51:14.480253+00:00",
+  "phase": "fresh_before_UI_baseline",
+  "run_epoch": "6c55b77f-fca4-4adb-b732-4b00e243834f",
+  "manifest_sha256": "6cf9228ae89480f94197ff48193fdaa0e0580a65cae893ae8c93001489b12def",
+  "source_digest": "b69117dec6ff31092f6078dad3281d5ca73270042f2e6ebf05a43dd5cebe1fdf",
+  "activation_file": "activation28.json",
+  "activation_sha256": "dd3cd488d815d66437aada9dd7c413732fe4c41ac8545bde20da90de0278094b",
+  "workflows": [
+    {
+      "workflow_id": "7685061713409867776",
+      "name": "FEAT153 易界主题验收 0914",
+      "revision": "7685062443604639744",
+      "updated_at_ms": 1789318308369,
+      "canvas_sha256": "76cf4bd812f4b489424b0e05aecc2476a5a8d739327c672c244843b1527de897",
+      "evidence_file": "workflow-7685061713409867776-before-ui28.json",
+      "evidence_sha256": "cbd705e5f782612e618778665550fdb109535b8afc3dc68d564df514eebb72b7"
+    },
+    {
+      "workflow_id": "7685031373442121728",
+      "name": "FEAT153 原生终验 0913",
+      "revision": "7685031776485376000",
+      "updated_at_ms": 1789311071343,
+      "canvas_sha256": "d62300209130d59fa372aa80f59e48afadabe1e186cc9b780e8e83812d1e1a21",
+      "evidence_file": "workflow-7685031373442121728-before-ui28.json",
+      "evidence_sha256": "36d1d9299c3ec72969c3a6eef5439ccab28b9b4dcb4fdb055cfc7bb561c67a9b"
+    }
+  ],
+  "scope": "GET both projections for these two exact existing workflows only. This records their current state; it does not compare to earlier task snapshots or claim the user has not modified them since then.",
+  "limits": "Not an after-UI preservation result, UI qualification, database snapshot or D4 claim. GET may append normal successful read audits; no workflow business writes.",
+  "script_sha256": "7f0a5f7ed09e15f0e5d00a03bc18e12494914c035c20a6f3c4ef2e222be28e39",
+  "helper_sha256": "4b9222cc9fb2f18837789d947856f664f352e9a7b2627ad55bd7d4bf7c968289"
+}

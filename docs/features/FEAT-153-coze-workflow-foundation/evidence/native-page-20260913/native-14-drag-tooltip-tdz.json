@@ -1,0 +1,29 @@
+{
+  "scope": "Read-only source audit for real canonical14 TDZ error; no source/build/runtime edits.",
+  "observed": "ReferenceError Cannot access p before initialization index.c392c541.js:18:9678",
+  "bundle": "assets/js/index.c392c541.js",
+  "bundle_sha256": "af562746ba6b204becfa434db728b8a4ff8a3fd2595b5819aff7b237a5af7923",
+  "module_id": "571362",
+  "utf16_offset": 2297633,
+  "root_cause": "DragTooltip destructures item/currentOffset from useDragLayer while its collector reads those outer uninitialized lexical bindings. useDragLayer synchronously uses useCollector -> useState(() => collect(monitor)) during first render. Not a circular import.",
+  "source_fix": "Read item and currentOffset directly from monitor into collector-local variables before computeCanDrop and reuse in its return; remove unused outer item destructuring. Preserve original drag tooltip and service.",
+  "empty_drag": "computeCanDrop explicitly returns allowDrop false if no dragNode type; no custom replacement is needed.",
+  "sources": [
+    {
+      "path": "bin/workflow-editor/build-workspace/node_modules/.pnpm/react-dnd@16.0.1_@types+node@18.18.9_@types+react@18.2.37_react@18.2.0/node_modules/react-dnd/dist/hooks/useCollector.js",
+      "sha256": "79cc7093f2a9a60468af0f67342461b6e4d4f1b4861b876f360b81175a43f93a"
+    },
+    {
+      "path": "bin/workflow-editor/build-workspace/node_modules/.pnpm/react-dnd@16.0.1_@types+node@18.18.9_@types+react@18.2.37_react@18.2.0/node_modules/react-dnd/dist/hooks/useDragLayer.js",
+      "sha256": "501f9495e48f651781ceef566b3d98c67475d880c2b0f0324cfeb66394823a9d"
+    },
+    {
+      "path": "frontend/packages/workflow/playground/src/components/drag-tooltip/index.tsx",
+      "sha256": "d5d4452a63e1d1f55f3d2a38012f46fb211d08e33a22f3a44d4f9eac8107e9aa"
+    },
+    {
+      "path": "frontend/packages/workflow/playground/src/services/workflow-drag-service.ts",
+      "sha256": "22fa4116b4a96c6e64719d3e92838a65b4f15603722088f16a070964f8639012"
+    }
+  ]
+}

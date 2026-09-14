@@ -1,0 +1,18 @@
+✔ every explicitly reviewed native script matches the actual built bytes (87.797666ms)
+✔ ordinary source edits require a fresh explicit byte review (1.351583ms)
+✔ a WebAssembly namespace reference needs an explicit static classification (0.107916ms)
+✔ package aliases preserve normal imported modules and authored text (1.349459ms)
+✔ root level imports, side effects and CSS imports use the owning package (0.140417ms)
+✔ root build outputs are excluded while authored output modules are preserved (0.1615ms)
+✔ original exports resolve to real files and original source subpaths (6.912417ms)
+✔ cross-package audio mask URLs retain original SVGs in the copied workspace (0.531333ms)
+✔ reviewed native closure is reproducible from original locked source packages (703.816667ms)
+✔ fixed compiler definitions cover original globals without environment input (0.350667ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 777.494041

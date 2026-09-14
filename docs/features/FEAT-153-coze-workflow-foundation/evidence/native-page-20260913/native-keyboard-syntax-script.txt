@@ -1,0 +1,15 @@
+node <<'JS'
+const fs = require('node:fs');
+const ts = require('./bin/workflow-editor/build-workspace/node_modules/.pnpm/typescript@5.8.2/node_modules/typescript/lib/typescript.js');
+const { execFileSync } = require('node:child_process');
+const changed = execFileSync('git', ['diff', '--name-only', '--', 'frontend/packages/workflow/playground', 'frontend/packages/workflow/render', 'frontend/packages/workflow/nodes'], {encoding:'utf8'}).trim().split('\n');
+const added = execFileSync('git', ['ls-files', '--others', '--exclude-standard', '--', 'frontend/packages/workflow/playground', 'frontend/packages/workflow/render'], {encoding:'utf8'}).trim().split('\n');
+const files = [...new Set([...changed,...added])].filter(p => /\.tsx?$/.test(p));
+const failures=[];
+for (const file of files) {
+ const result=ts.transpileModule(fs.readFileSync(file,'utf8'), {fileName:file, reportDiagnostics:true, compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS,jsx:ts.JsxEmit.ReactJSX,experimentalDecorators:true}});
+ for (const d of result.diagnostics||[]) if(d.category===ts.DiagnosticCategory.Error) failures.push({file,message:ts.flattenDiagnosticMessageText(d.messageText,'\n')});
+}
+console.log(JSON.stringify({checked:files.length,scope:'syntax only; canonical build validates types',failures},null,2));
+if(failures.length)process.exitCode=1;
+JS

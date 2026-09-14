@@ -1,0 +1,21 @@
+(node:65988) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/frontend/apps/workflow-local/src/draft-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/frontend/apps/workflow-local/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ a saved draft accepts opaque Coze revisions and preserves subsequent local edits (0.68925ms)
+✔ reconnect to the same revision keeps the unsaved canvas and original base revision (0.082625ms)
+✔ a changed server revision retains the dirty draft and requires conflict review (0.175292ms)
+✔ reading matching content alone does not confirm an unresolved save receipt (0.081875ms)
+✔ native text configuration retains literal multilingual prefixes (0.145167ms)
+✔ an explicit expired-session save rejection retains a draft that can be saved after reconnect (0.642917ms)
+✔ an unresolved save still blocks leaving when visible content returns to the previous baseline (0.116667ms)
+✔ typed service preflight rejection without an operation ID permits explicit retry after reconnect (0.0725ms)
+✔ reading a valid native draft preserves its existing text-node ID (0.139791ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 99.8275

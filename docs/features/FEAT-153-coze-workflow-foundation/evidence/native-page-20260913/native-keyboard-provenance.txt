@@ -1,0 +1,10 @@
+These files preserve the exact successful shell scripts and stdout previously executed in /root/native_editor_audit. They were originally inline exec_command cells; no separate files existed at execution time. This archival step does not rerun the tests or assert applicability to a later source candidate.
+
+Syntax check: TypeScript 5.8.2 transpileModule, 46 changed/new TS/TSX files in playground/render/nodes at that execution. Syntax only, not full typecheck.
+An earlier first attempt to require build-workspace/node_modules/typescript failed MODULE_NOT_FOUND (chunk_id 393354, exit 1). The archived successful script used the verified pinned .pnpm/typescript@5.8.2 path and produced chunk d04cbe above.
+
+Keyboard check: actual service source was transpiled and evaluated with isolated normal service collaborators (DI decorators, emitter, node metadata/positions, history, line manager, and panel manager). It validates handler branching and collaborator calls, not real native engine, browser DOM focus, real Undo, network/session isolation, or Desktop acceptance.
+
+No independent execution-time source digest or timestamp was captured in these two original commands. Do not backfill the current candidate hash as an execution-time hash; final canonical build and real App evidence remain separate.
+
+12 checks: normal move; Shift move; Ctrl ignored; IME ignored; readonly rejected; Enter opens node panel; output arms connection; disallowed target rejected; allowed target creates line; Delete disconnects; Escape cancels; upstream mode ignored.

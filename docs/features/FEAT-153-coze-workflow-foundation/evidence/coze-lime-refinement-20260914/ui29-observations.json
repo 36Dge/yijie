@@ -1,0 +1,99 @@
+{
+  "candidate": "canonical29",
+  "entry": "canonical packaged",
+  "app_pid": 47855,
+  "workflow_id": "7685078769316397056",
+  "current_revision": "7685082330511179776",
+  "observed_at": "2026-09-13T18:11:56.157704+00:00",
+  "window_sizes_points": [
+    [
+      1180,
+      760
+    ],
+    [
+      1346,
+      848
+    ]
+  ],
+  "requested_large_size": [
+    1440,
+    850
+  ],
+  "large_size_note": "macOS constrained the actual window to 1346 x 848; not a 1440 x 850 pass",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "final_theme": "light",
+  "screenshots": [
+    {
+      "file": "final29-dark-large-panel.png",
+      "sha256": "f064398a557570d8ad89fea3577881ce4a82f93df6b17fbc7b9e8a4c6557d753",
+      "pixels": [
+        2692,
+        1696
+      ]
+    },
+    {
+      "file": "final29-dark-small-panel.png",
+      "sha256": "894e5a2a50e8d0d0ebdb3d3e6692f9c13270a3babe5657c12687e45db61ff21c",
+      "pixels": [
+        2360,
+        1520
+      ]
+    },
+    {
+      "file": "final29-dark-trial.png",
+      "sha256": "55a9b9af9807602db32c2aaaf9eb7e2e64fd38e8633e6b160311bda96ae816df",
+      "pixels": [
+        2360,
+        1520
+      ]
+    },
+    {
+      "file": "final29-light-large-canvas.png",
+      "sha256": "792ead46b99b181c8a704ff64942ada4d51ddf6180960312b6db1557cc1cf95f",
+      "pixels": [
+        2692,
+        1696
+      ]
+    },
+    {
+      "file": "final29-light-large-panel.png",
+      "sha256": "30108463d6c08703c7896646d13b42b3d8f5e29ae8b209236a9e84c3cb7bf3aa",
+      "pixels": [
+        2692,
+        1696
+      ]
+    },
+    {
+      "file": "final29-light-small-canvas.png",
+      "sha256": "24870051bdba60bfc35edfff51ab17f085d04c9dff00fb693c53bf15009b6bce",
+      "pixels": [
+        2360,
+        1520
+      ]
+    },
+    {
+      "file": "final29-light-small-panel.png",
+      "sha256": "4eea5c8e848228c83cd895871445602edcd7950e180d9a544b47342e34836732",
+      "pixels": [
+        2360,
+        1520
+      ]
+    }
+  ],
+  "observed": [
+    "Header workflow SVG visible on transparent avatar background in both themes",
+    "Original subtle node and side-panel header gradients retained",
+    "Lime edges, arrows and ports with background halos, no graphite stroke",
+    "Original icon glyphs retained without added backplates or outlines",
+    "Pale highlight controls and borderless solid lime trial/publish actions",
+    "Light and dark native panels readable at both measured sizes",
+    "Current saved revision trial succeeded in real App; no publish clicked",
+    "Final canvas status saved; save disabled, no unsaved content"
+  ],
+  "latest_trial_input": "最终青柠复验",
+  "latest_trial_output": "轻盈青柠：最终青柠复验",
+  "scope": "Visual follow-up and bounded text regression only; not full dev, unified D4, accessibility or production qualification. Actual aesthetic acceptance remains with user."
+}

@@ -1,0 +1,74 @@
+
+ RUN  v4.1.10 /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop
+
+ ❯ .local/chat-ui-sync-20260908-source/src/pages/workflows/WorkflowPage.test.ts (5 tests | 4 failed) 10ms
+     × FEAT-151 renders the complete reference information in the approved order 6ms
+     × FEAT-151 renders every workflow timestamp, recommendation node, usage, and action label 1ms
+     × FEAT-151 keeps every page-local control display-only 1ms
+     × FEAT-151 has no serious or critical accessibility violations 1ms
+ ❯ .local/skill-card-build-source/src/pages/workflows/WorkflowPage.test.ts (5 tests | 4 failed) 10ms
+     × FEAT-151 renders the complete reference information in the approved order 6ms
+     × FEAT-151 renders every workflow timestamp, recommendation node, usage, and action label 1ms
+     × FEAT-151 keeps every page-local control display-only 1ms
+     × FEAT-151 has no serious or critical accessibility violations 1ms
+(node:9703) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:9710) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .local/chat-ui-sync-20260908-source/src/pages/workflows/WorkflowPage.test.ts > WorkflowPage > FEAT-151 renders the complete reference information in the approved order
+ FAIL  .local/chat-ui-sync-20260908-source/src/pages/workflows/WorkflowPage.test.ts > WorkflowPage > FEAT-151 renders every workflow timestamp, recommendation node, usage, and action label
+ FAIL  .local/chat-ui-sync-20260908-source/src/pages/workflows/WorkflowPage.test.ts > WorkflowPage > FEAT-151 keeps every page-local control display-only
+ FAIL  .local/chat-ui-sync-20260908-source/src/pages/workflows/WorkflowPage.test.ts > WorkflowPage > FEAT-151 has no serious or critical accessibility violations
+TypeError: Cannot read properties of null (reading 'ce')
+ ❯ renderSlot node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:3268:32
+ ❯ Proxy._sfc_render .local/chat-ui-sync-20260908-source/src/components/yijie/YjPage.vue:11:5
+      9| <template>
+     10|   <div class="yj-page" :class="`yj-page--${width}`">
+     11|     <slot />
+       |     ^
+     12|   </div>
+     13| </template>
+ ❯ renderComponentRoot .local/chat-ui-sync-20260908-source/node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:4589:16
+ ❯ ReactiveEffect.componentUpdateFn [as fn] .local/chat-ui-sync-20260908-source/node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:6121:46
+ ❯ ReactiveEffect.run .local/chat-ui-sync-20260908-source/node_modules/.pnpm/@vue+reactivity@3.5.39/node_modules/@vue/reactivity/dist/reactivity.cjs.js:264:19
+ ❯ setupRenderEffect .local/chat-ui-sync-20260908-source/node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:6256:5
+ ❯ mountComponent .local/chat-ui-sync-20260908-source/node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:6028:7
+ ❯ processComponent .local/chat-ui-sync-20260908-source/node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5980:9
+ ❯ patch .local/chat-ui-sync-20260908-source/node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5485:11
+ ❯ ReactiveEffect.componentUpdateFn [as fn] .local/chat-ui-sync-20260908-source/node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:6128:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  .local/skill-card-build-source/src/pages/workflows/WorkflowPage.test.ts > WorkflowPage > FEAT-151 renders the complete reference information in the approved order
+ FAIL  .local/skill-card-build-source/src/pages/workflows/WorkflowPage.test.ts > WorkflowPage > FEAT-151 renders every workflow timestamp, recommendation node, usage, and action label
+ FAIL  .local/skill-card-build-source/src/pages/workflows/WorkflowPage.test.ts > WorkflowPage > FEAT-151 keeps every page-local control display-only
+ FAIL  .local/skill-card-build-source/src/pages/workflows/WorkflowPage.test.ts > WorkflowPage > FEAT-151 has no serious or critical accessibility violations
+TypeError: Cannot read properties of null (reading 'ce')
+ ❯ renderSlot node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:3268:32
+ ❯ Proxy._sfc_render .local/skill-card-build-source/src/components/yijie/YjPage.vue:11:5
+      9| <template>
+     10|   <div class="yj-page" :class="`yj-page--${width}`">
+     11|     <slot />
+       |     ^
+     12|   </div>
+     13| </template>
+ ❯ renderComponentRoot .local/skill-card-build-source/node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:4589:16
+ ❯ ReactiveEffect.componentUpdateFn [as fn] .local/skill-card-build-source/node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:6121:46
+ ❯ ReactiveEffect.run .local/skill-card-build-source/node_modules/.pnpm/@vue+reactivity@3.5.39/node_modules/@vue/reactivity/dist/reactivity.cjs.js:264:19
+ ❯ setupRenderEffect .local/skill-card-build-source/node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:6256:5
+ ❯ mountComponent .local/skill-card-build-source/node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:6028:7
+ ❯ processComponent .local/skill-card-build-source/node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5980:9
+ ❯ patch .local/skill-card-build-source/node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5485:11
+ ❯ ReactiveEffect.componentUpdateFn [as fn] .local/skill-card-build-source/node_modules/.pnpm/@vue+runtime-core@3.5.39/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:6128:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+
+ Test Files  2 failed | 17 passed (19)
+      Tests  8 failed | 192 passed (200)
+   Start at  16:24:36
+   Duration  4.27s (transform 6.20s, setup 0ms, import 2.81s, tests 10.76s, environment 1.26s)
+

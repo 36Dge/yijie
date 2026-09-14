@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-13T17:00:21.901530+00:00",
+  "workflow_id": "7685061713409867776",
+  "before_file": "final-workflow25.json",
+  "before_sha256": "629a46d3ef68dedd4cff7ba897ca3cd348460d5de9364f04b59dc1908f2785a8",
+  "after_file": "final-workflow26.json",
+  "after_sha256": "77fe632396f381ca607300270a97afa043adfb371220c9706cfc33e18c15ca14",
+  "previous_run_epoch": "60a17c21-85a1-4571-9171-9c90a43c6055",
+  "new_run_epoch": "90ddcf58-1e9f-422c-bd5c-65552f12bad4",
+  "previous_manifest_sha256": "062565c6cfe993f1676a72b4a7e4249d228c628484d75c1ca8b00c440feee147",
+  "new_manifest_sha256": "725750097a463c3dc3a323b04c8b22e3650bfdc27ace60453f1c93ce2d00810c",
+  "checks": {
+    "workflow_id": true,
+    "legacy": true,
+    "workflow": true,
+    "canvas_sha256": true,
+    "canvas_bytes": true,
+    "node_summary": true,
+    "edges": true,
+    "history": true,
+    "runs": true,
+    "mysql_business_rows_unchanged": true,
+    "postgres_business_rows_unchanged": true,
+    "existing_audit_prefix_preserved": true,
+    "old_screenshot_full_responses_unchanged": true,
+    "known_trial_still_success": true,
+    "known_exact_input_output": true,
+    "published_version_preserved": true
+  },
+  "all_core_checks_pass": true,
+  "audit": {
+    "before_count": 25,
+    "after_count": 33,
+    "appended_count": 8,
+    "appended_actions": [
+      {
+        "action": "bootstrap",
+        "outcome_code": "success",
+        "count": 2
+      },
+      {
+        "action": "history",
+        "outcome_code": "success",
+        "count": 2
+      },
+      {
+        "action": "read",
+        "outcome_code": "success",
+        "count": 3
+      },
+      {
+        "action": "read_run",
+        "outcome_code": "success",
+        "count": 1
+      }
+    ],
+    "all_appended_are_successful_reads": true,
+    "note": "GET and normal editor read/reopen append audit records. Audit total counts and snapshot timestamps are explicitly excluded from exact business-data equality; the previous audit prefix is separately preserved."
+  },
+  "scope": "Offline comparison of fixed-ID snapshots only; no UI, service connection or data mutation; not a whole-database equality claim or fresh D4."
+}

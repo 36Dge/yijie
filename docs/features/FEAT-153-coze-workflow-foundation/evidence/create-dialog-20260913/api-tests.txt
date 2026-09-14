@@ -1,0 +1,14 @@
+node "../yijie-contracts/scripts/sync-workflow-consumer.mjs" api --check
+Verified yijie-api workflow-local local candidate; old public/Runtime locks untouched.
+go test -race -count=1 ./internal/modules/workflows/... ./internal/workflowlocal ./cmd/workflow-local-server ./cmd/workflow-local-migrate ./cmd/workflow-local-qualify
+ok  	github.com/36Dge/yijie-api/internal/modules/workflows/application	1.274s
+ok  	github.com/36Dge/yijie-api/internal/modules/workflows/domain	1.425s
+ok  	github.com/36Dge/yijie-api/internal/modules/workflows/infrastructure/coze	1.526s
+?   	github.com/36Dge/yijie-api/internal/modules/workflows/infrastructure/postgres	[no test files]
+ok  	github.com/36Dge/yijie-api/internal/modules/workflows/interfaces/editorassets	1.701s
+ok  	github.com/36Dge/yijie-api/internal/modules/workflows/interfaces/http	2.513s
+ok  	github.com/36Dge/yijie-api/internal/modules/workflows/transport	2.063s
+ok  	github.com/36Dge/yijie-api/internal/workflowlocal	2.792s
+?   	github.com/36Dge/yijie-api/cmd/workflow-local-server	[no test files]
+?   	github.com/36Dge/yijie-api/cmd/workflow-local-migrate	[no test files]
+ok  	github.com/36Dge/yijie-api/cmd/workflow-local-qualify	2.628s

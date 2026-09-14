@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-13T17:56:52.793979+00:00",
+  "run_epoch": "6c55b77f-fca4-4adb-b732-4b00e243834f",
+  "baseline_observed_at": "2026-09-13T17:51:14.455932+00:00",
+  "baseline_index_sha256": "483b1e0c479b3999b5e2b34d6d309c1a609b9d019b82e5ffd0dc068c68e38cc1",
+  "manifest_sha256": "6cf9228ae89480f94197ff48193fdaa0e0580a65cae893ae8c93001489b12def",
+  "source_digest": "b69117dec6ff31092f6078dad3281d5ca73270042f2e6ebf05a43dd5cebe1fdf",
+  "workflows": [
+    {
+      "workflow_id": "7685061713409867776",
+      "name": "FEAT153 易界主题验收 0914",
+      "revision": "7685062443604639744",
+      "before_file": "workflow-7685061713409867776-before-ui28.json",
+      "before_sha256": "cbd705e5f782612e618778665550fdb109535b8afc3dc68d564df514eebb72b7",
+      "after_file": "workflow-7685061713409867776-after-ui28.json",
+      "after_sha256": "cbd705e5f782612e618778665550fdb109535b8afc3dc68d564df514eebb72b7",
+      "legacy_complete_equal": true,
+      "metadata_complete_equal": true,
+      "full_response_object_equal": true
+    },
+    {
+      "workflow_id": "7685031373442121728",
+      "name": "FEAT153 原生终验 0913",
+      "revision": "7685031776485376000",
+      "before_file": "workflow-7685031373442121728-before-ui28.json",
+      "before_sha256": "36d1d9299c3ec72969c3a6eef5439ccab28b9b4dcb4fdb055cfc7bb561c67a9b",
+      "after_file": "workflow-7685031373442121728-after-ui28.json",
+      "after_sha256": "36d1d9299c3ec72969c3a6eef5439ccab28b9b4dcb4fdb055cfc7bb561c67a9b",
+      "legacy_complete_equal": true,
+      "metadata_complete_equal": true,
+      "full_response_object_equal": true
+    }
+  ],
+  "all_full_responses_equal": true,
+  "scope": "Fresh current-round before-UI versus after-UI GET responses for two exact existing workflows. Earlier round timestamps are not used as preservation evidence. No business writes; ordinary GET audit may be appended.",
+  "script_sha256": "0c875ac4755f138da03fc259d2c7af6c33607fb282391cf549c2d50548b8eddb"
+}

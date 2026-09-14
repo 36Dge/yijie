@@ -1,0 +1,713 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-13T15:03:45.059738+00:00",
+  "phase": "after-normal-restart",
+  "run_epoch": "b13e0089-5888-43ac-b25b-0440956373ea",
+  "workflow_id": "7685031373442121728",
+  "scope": "Exact root-created canonical 20 workflow; GET + SELECT only, no runtime mutation",
+  "manifest_sha256": "d5176e19616f5935ec85d1aa3e9efa7c54ef8d15d7de97a19270009b0a5fa79a",
+  "source_digest": "feaa8e90180db13d2b479c0cd36bd24c624df20dc176e144837c5e950ab4d95c",
+  "workflow": {
+    "canvas": "{\"edges\":[{\"sourceNodeID\":\"100001\",\"targetNodeID\":\"200001\"},{\"sourceNodeID\":\"200001\",\"targetNodeID\":\"900001\"}],\"nodes\":[{\"data\":{\"nodeMeta\":{\"icon\":\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiByeD0iNCIgZmlsbD0iIzRENTNFOCIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTguNjI4MDQgNi45Njg3NUM4LjI3OCA2LjM4ODIyIDcuNjQxMzcgNiA2LjkxNDA2IDZDNS44MDk0OSA2IDQuOTE0MDYgNi44OTU0MyA0LjkxNDA2IDhDNC45MTQwNiA5LjEwNDU3IDUuODA5NDkgMTAgNi45MTQwNiAxMEM3LjY2NzE3IDEwIDguMzIzMDYgOS41ODM3NCA4LjY2NDIgOC45Njg3NUwxMi43NTI2IDguOTY4NzVDMTMuMzA0OSA4Ljk2ODc1IDEzLjc1MjYgOC41MjEwMyAxMy43NTI2IDcuOTY4NzVDMTMuNzUyNiA3LjQxNjQ2IDEzLjMwNDkgNi45Njg3NSAxMi43NTI2IDYuOTY4NzVMOC42MjgwNCA2Ljk2ODc1WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik05LjUwNjM3IDUuNDA2OTdDOS4yNDYwNCA1LjY2NzMgOC44MjY3MiA1LjY1OTIzIDguNTE1NTcgNS40NjI0NUM3LjM1NjA3IDQuNzI5MTQgNS44MDM0OCA0Ljg2Nzg3IDQuNzkyNzEgNS44Nzg2NEMzLjYyMTEzIDcuMDUwMjEgMy42MjExMyA4Ljk0OTcxIDQuNzkyNzEgMTAuMTIxM0M1LjgwMzYzIDExLjEzMjIgNy4zNTY1MiAxMS4yNzA4IDguNTE2MDggMTAuNTM3MUM4LjgyNzE1IDEwLjM0MDMgOS4yNDYzOCAxMC4zMzIyIDkuNTA2NzUgMTAuNTkyNEM5Ljc2NzI2IDEwLjg1MjcgOS43Njk4NyAxMS4yOCA5LjQ3Mjg4IDExLjQ5NzhDNy43Nzc1MSAxMi43NDEgNS4zODI0MiAxMi41OTY2IDMuODQ5OSAxMS4wNjQxQzIuMTU3NjMgOS4zNzE4MiAyLjE1NzYzIDYuNjI4MSAzLjg0OTkgNC45MzU4M0M1LjM4MjM0IDMuNDAzMzkgNy43NzY5OSAzLjI1ODY1IDkuNDcyMyA0LjUwMTYzQzkuNzY5MjYgNC43MTkzNSA5Ljc2Njc0IDUuMTQ2NTkgOS41MDYzNyA1LjQwNjk3WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==\",\"subTitle\":\"\",\"title\":\"开始\"},\"outputs\":[{\"name\":\"input\",\"required\":true,\"type\":\"string\"}],\"trigger_parameters\":[{\"name\":\"input\",\"required\":true,\"type\":\"string\"}]},\"id\":\"100001\",\"meta\":{\"position\":{\"x\":180,\"y\":13.450000000000003}},\"type\":\"1\"},{\"data\":{\"inputs\":{\"concatParams\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":\"原生终验：{{input}}\",\"rawMeta\":{\"type\":1},\"type\":\"literal\"}},\"name\":\"concatResult\"},{\"input\":{\"type\":\"string\",\"value\":{\"content\":\"\",\"rawMeta\":{\"type\":1},\"type\":\"literal\"}},\"name\":\"arrayItemConcatChar\"}],\"inputParameters\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":{\"blockID\":\"100001\",\"name\":\"input\",\"source\":\"block-output\"},\"type\":\"ref\"}},\"name\":\"input\"}],\"method\":\"concat\"},\"nodeMeta\":{\"icon\":\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTciIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNyAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEuODMyMDMgMS4zMzM2NkMxLjgzMjAzIDAuOTY1NDY5IDIuMTMwNTEgMC42NjY5OTIgMi40OTg3IDAuNjY2OTkySDExLjU2MThDMTIuNTE3NSAwLjY2Njk5MiAxMy40MzQxIDEuMDMwNTggMTQuMTA5OSAxLjY3Nzc2QzE0Ljc4NTcgMi4zMjQ5NSAxNS4xNjU0IDMuMjAyNzIgMTUuMTY1NCA0LjExNzk3VjE0LjY2N0MxNS4xNjU0IDE1LjAzNTIgMTQuODY2OSAxNS4zMzM3IDE0LjQ5ODcgMTUuMzMzN0g1LjQzNTYzQzQuNDc5OSAxNS4zMzM3IDMuNTYzMzEgMTQuOTcwMSAyLjg4NzUgMTQuMzIyOUMyLjIxMTcgMTMuNjc1NyAxLjgzMjAzIDEyLjc5NzkgMS44MzIwMyAxMS44ODI3VjEuMzMzNjZaTTQuOTk4NyA1LjMzMzY2QzQuOTk4NyA1LjcwMTg1IDUuMjk3MTcgNi4wMDAzMyA1LjY2NTM2IDYuMDAwMzNIMTEuMzMyQzExLjcwMDIgNi4wMDAzMyAxMS45OTg3IDUuNzAxODUgMTEuOTk4NyA1LjMzMzY2QzExLjk5ODcgNC45NjU0NyAxMS43MDAyIDQuNjY2OTkgMTEuMzMyIDQuNjY2OTlINS42NjUzNkM1LjI5NzE3IDQuNjY2OTkgNC45OTg3IDQuOTY1NDcgNC45OTg3IDUuMzMzNjZaTTQuOTk4NyA4LjAwMDMzQzQuOTk4NyA4LjM2ODUyIDUuMjk3MTcgOC42NjY5OSA1LjY2NTM2IDguNjY2OTlIMTEuMzMyQzExLjcwMDIgOC42NjY5OSAxMS45OTg3IDguMzY4NTIgMTEuOTk4NyA4LjAwMDMzQzExLjk5ODcgNy42MzIxMyAxMS43MDAyIDcuMzMzNjYgMTEuMzMyIDcuMzMzNjZINS42NjUzNkM1LjI5NzE3IDcuMzMzNjYgNC45OTg3IDcuNjMyMTMgNC45OTg3IDguMDAwMzNaTTUuNjY1MzYgMTAuMDAwM0M1LjI5NzE3IDEwLjAwMDMgNC45OTg3IDEwLjI5ODggNC45OTg3IDEwLjY2N0M0Ljk5ODcgMTEuMDM1MiA1LjI5NzE3IDExLjMzMzcgNS42NjUzNiAxMS4zMzM3SDguNjY1MzZDOS4wMzM1NSAxMS4zMzM3IDkuMzMyMDMgMTEuMDM1MiA5LjMzMjAzIDEwLjY2N0M5LjMzMjAzIDEwLjI5ODggOS4wMzM1NSAxMC4wMDAzIDguNjY1MzYgMTAuMDAwM0g1LjY2NTM2WiIgZmlsbD0iIzRENTNFOCIvPgo8L3N2Zz4K\",\"subTitle\":\"文本处理\",\"title\":\"文本处理\"},\"outputs\":[{\"name\":\"output\",\"type\":\"string\"}]},\"id\":\"200001\",\"meta\":{\"position\":{\"x\":640,\"y\":0}},\"type\":\"15\"},{\"data\":{\"inputs\":{\"inputParameters\":[{\"input\":{\"type\":\"string\",\"value\":{\"content\":{\"blockID\":\"200001\",\"name\":\"output\",\"source\":\"block-output\"},\"rawMeta\":{\"type\":1},\"type\":\"ref\"}},\"name\":\"result\"}],\"terminatePlan\":\"returnVariables\"},\"nodeMeta\":{\"icon\":\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiByeD0iNCIgZmlsbD0iIzRENTNFOCIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTcuMzcxOTYgNi45Njg3NUM3LjcyMiA2LjM4ODIyIDguMzU4NjMgNiA5LjA4NTk0IDZDMTAuMTkwNSA2IDExLjA4NTkgNi44OTU0MyAxMS4wODU5IDhDMTEuMDg1OSA5LjEwNDU3IDEwLjE5MDUgMTAgOS4wODU5NCAxMEM4LjMzMjgzIDEwIDcuNjc2OTQgOS41ODM3NCA3LjMzNTggOC45Njg3NUwzLjI0NzM5IDguOTY4NzVDMi42OTUxMSA4Ljk2ODc1IDIuMjQ3MzkgOC41MjEwMyAyLjI0NzM5IDcuOTY4NzVDMi4yNDczOSA3LjQxNjQ2IDIuNjk1MTEgNi45Njg3NSAzLjI0NzM5IDYuOTY4NzVMNy4zNzE5NiA2Ljk2ODc1WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik02LjQ5MzYzIDUuNDA2OTdDNi43NTM5NiA1LjY2NzMgNy4xNzMyOCA1LjY1OTIzIDcuNDg0NDMgNS40NjI0NUM4LjY0MzkzIDQuNzI5MTQgMTAuMTk2NSA0Ljg2Nzg3IDExLjIwNzMgNS44Nzg2NEMxMi4zNzg5IDcuMDUwMjEgMTIuMzc4OSA4Ljk0OTcxIDExLjIwNzMgMTAuMTIxM0MxMC4xOTY0IDExLjEzMjIgOC42NDM0OCAxMS4yNzA4IDcuNDgzOTIgMTAuNTM3MUM3LjE3Mjg1IDEwLjM0MDMgNi43NTM2MiAxMC4zMzIyIDYuNDkzMjUgMTAuNTkyNEM2LjIzMjc0IDEwLjg1MjcgNi4yMzAxMyAxMS4yOCA2LjUyNzEyIDExLjQ5NzhDOC4yMjI0OSAxMi43NDEgMTAuNjE3NiAxMi41OTY2IDEyLjE1MDEgMTEuMDY0MUMxMy44NDI0IDkuMzcxODIgMTMuODQyNCA2LjYyODEgMTIuMTUwMSA0LjkzNTgzQzEwLjYxNzcgMy40MDMzOSA4LjIyMzAxIDMuMjU4NjUgNi41Mjc3IDQuNTAxNjNDNi4yMzA3NCA0LjcxOTM1IDYuMjMzMjYgNS4xNDY1OSA2LjQ5MzYzIDUuNDA2OTdaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K\",\"subTitle\":\"\",\"title\":\"结束\"}},\"id\":\"900001\",\"meta\":{\"position\":{\"x\":1100,\"y\":0.45000000000000284}},\"type\":\"2\"}]}",
+    "description": "合成文本工作流，验证原生 Coze 页面首次保存、撤销与主题布局。",
+    "name": "FEAT153 原生终验 0913",
+    "published_version": "v0.0.1",
+    "revision": "7685031776485376000",
+    "runnable": true,
+    "updated_at_ms": 1789311071343,
+    "workflow_id": "7685031373442121728"
+  },
+  "canvas_sha256": "d62300209130d59fa372aa80f59e48afadabe1e186cc9b780e8e83812d1e1a21",
+  "history": {
+    "items": [
+      {
+        "finished_at_ms": 1789311095497,
+        "mode": "release",
+        "operation_id": "01a09b40-92af-74f1-a073-c97d83077e0e",
+        "revision": "7685031776485376000",
+        "run_id": "7685032637395632128",
+        "started_at_ms": 1789311095483,
+        "state": "succeeded",
+        "terminal": true,
+        "version": "v0.0.1",
+        "workflow_id": "7685031373442121728"
+      },
+      {
+        "finished_at_ms": 1789311050471,
+        "mode": "debug",
+        "operation_id": "01a09b3f-e2bd-7e21-b1a7-0f1a6cdffa4c",
+        "revision": "7685031776485376000",
+        "run_id": "7685032443987886080",
+        "started_at_ms": 1789311050449,
+        "state": "succeeded",
+        "terminal": true,
+        "workflow_id": "7685031373442121728"
+      }
+    ]
+  },
+  "runs": [
+    {
+      "finished_at_ms": 1789311050471,
+      "input": {
+        "input": "页面终验"
+      },
+      "mode": "debug",
+      "nodes": [
+        {
+          "node_id": "100001",
+          "output": "页面终验",
+          "state": "3"
+        },
+        {
+          "node_id": "200001",
+          "output": "原生终验：页面终验",
+          "state": "3"
+        },
+        {
+          "node_id": "900001",
+          "output": "原生终验：页面终验",
+          "state": "3"
+        }
+      ],
+      "operation_id": "01a09b3f-e2bd-7e21-b1a7-0f1a6cdffa4c",
+      "output": "原生终验：页面终验",
+      "revision": "7685031776485376000",
+      "run_id": "7685032443987886080",
+      "started_at_ms": 1789311050449,
+      "state": "succeeded",
+      "terminal": true,
+      "workflow_id": "7685031373442121728"
+    },
+    {
+      "finished_at_ms": 1789311095497,
+      "input": {
+        "input": "版本终验"
+      },
+      "mode": "release",
+      "nodes": [
+        {
+          "node_id": "100001",
+          "output": "版本终验",
+          "state": "3"
+        },
+        {
+          "node_id": "200001",
+          "output": "原生终验：版本终验",
+          "state": "3"
+        },
+        {
+          "node_id": "900001",
+          "output": "原生终验：版本终验",
+          "state": "3"
+        }
+      ],
+      "operation_id": "01a09b40-92af-74f1-a073-c97d83077e0e",
+      "output": "原生终验：版本终验",
+      "revision": "7685031776485376000",
+      "run_id": "7685032637395632128",
+      "started_at_ms": 1789311095483,
+      "state": "succeeded",
+      "terminal": true,
+      "version": "v0.0.1",
+      "workflow_id": "7685031373442121728"
+    }
+  ],
+  "mysql": {
+    "started_at": "2026-09-13T15:03:44.940771+00:00",
+    "finished_at": "2026-09-13T15:03:44.987237+00:00",
+    "container_id": "554a729991a3646bf0a5f8123bf5f360768447861495c7da663fc24ee8936223",
+    "image_id": "sha256:679e7e924f38a3cbb62a3d7df32924b83f7321a602d3f9f967c01b3df18495d6",
+    "statements": "SELECT only; ordinary autocommit reads, not a cross-database atomic snapshot",
+    "facts": {
+      "snapshot": [
+        {
+          "database": "coze_workflow_local",
+          "observed_at": "2026-09-13 15:03:44.979554"
+        }
+      ],
+      "resource": [
+        {
+          "name": "FEAT153 原生终验 0913",
+          "app_id": "0",
+          "revision": "7685031776485376000",
+          "space_id": "7684521418742054912",
+          "creator_id": "7684521418742038528",
+          "description": "合成文本工作流，验证原生 Coze 页面首次保存、撤销与主题布局。",
+          "workflow_id": "7685031373442121728",
+          "canvas_bytes": 5854,
+          "canvas_sha256": "d62300209130d59fa372aa80f59e48afadabe1e186cc9b780e8e83812d1e1a21",
+          "updated_at_ms": 1789311071343,
+          "latest_version": "v0.0.1",
+          "principal_scope": "12500000-0000-4000-8000-000000000001:12500000-0000-4000-8000-100000000001"
+        }
+      ],
+      "version": [
+        {
+          "version": "v0.0.1",
+          "revision": "7685031776485376000",
+          "workflow_id": "7685031373442121728",
+          "canvas_bytes": 5854,
+          "canvas_sha256": "d62300209130d59fa372aa80f59e48afadabe1e186cc9b780e8e83812d1e1a21",
+          "created_at_ms": 1789311071343
+        }
+      ],
+      "execution": [
+        {
+          "mode": 1,
+          "input": "{\"input\":\"页面终验\"}",
+          "output": "{\"result\":\"原生终验：页面终验\"}",
+          "run_id": "7685032443987886080",
+          "status": 2,
+          "version": "",
+          "revision": "7685031776485376000",
+          "error_code": "",
+          "workflow_id": "7685031373442121728",
+          "created_at_ms": 1789311050449,
+          "updated_at_ms": 1789311050471
+        },
+        {
+          "mode": 2,
+          "input": "{\"input\":\"版本终验\"}",
+          "output": "{\"result\":\"原生终验：版本终验\"}",
+          "run_id": "7685032637395632128",
+          "status": 2,
+          "version": "v0.0.1",
+          "revision": "7685031776485376000",
+          "error_code": "",
+          "workflow_id": "7685031373442121728",
+          "created_at_ms": 1789311095483,
+          "updated_at_ms": 1789311095497
+        }
+      ],
+      "operation": [
+        {
+          "kind": "create",
+          "run_id": "0",
+          "receipt": {
+            "kind": "create",
+            "phase": "completed",
+            "revision": "7685031373442138112",
+            "workflow_id": "7685031373442121728",
+            "operation_id": "01a09b3c-1516-7c23-911b-6732e3a4194e"
+          },
+          "run_epoch": "28a9b428-3eed-4b0e-ae96-5d1dc2001b92",
+          "workflow_id": "7685031373442121728",
+          "operation_id": "01a09b3c-1516-7c23-911b-6732e3a4194e"
+        },
+        {
+          "kind": "save",
+          "run_id": "0",
+          "receipt": {
+            "kind": "save",
+            "phase": "completed",
+            "revision": "7685031776485376000",
+            "workflow_id": "7685031373442121728",
+            "operation_id": "01a09b3d-83a5-7341-95e6-5ad490dfd4bf"
+          },
+          "run_epoch": "28a9b428-3eed-4b0e-ae96-5d1dc2001b92",
+          "workflow_id": "7685031373442121728",
+          "operation_id": "01a09b3d-83a5-7341-95e6-5ad490dfd4bf"
+        },
+        {
+          "kind": "test",
+          "run_id": "7685032443987886080",
+          "receipt": {
+            "kind": "test",
+            "phase": "completed",
+            "run_id": "7685032443987886080",
+            "revision": "7685031776485376000",
+            "workflow_id": "7685031373442121728",
+            "operation_id": "01a09b3f-e2bd-7e21-b1a7-0f1a6cdffa4c"
+          },
+          "run_epoch": "28a9b428-3eed-4b0e-ae96-5d1dc2001b92",
+          "workflow_id": "7685031373442121728",
+          "operation_id": "01a09b3f-e2bd-7e21-b1a7-0f1a6cdffa4c"
+        },
+        {
+          "kind": "publish",
+          "run_id": "0",
+          "receipt": {
+            "kind": "publish",
+            "phase": "completed",
+            "version": "v0.0.1",
+            "revision": "7685031776485376000",
+            "workflow_id": "7685031373442121728",
+            "operation_id": "01a09b40-3469-79d0-baa7-0645f8715f59"
+          },
+          "run_epoch": "28a9b428-3eed-4b0e-ae96-5d1dc2001b92",
+          "workflow_id": "7685031373442121728",
+          "operation_id": "01a09b40-3469-79d0-baa7-0645f8715f59"
+        },
+        {
+          "kind": "run",
+          "run_id": "7685032637395632128",
+          "receipt": {
+            "kind": "run",
+            "phase": "completed",
+            "run_id": "7685032637395632128",
+            "version": "v0.0.1",
+            "revision": "7685031776485376000",
+            "workflow_id": "7685031373442121728",
+            "operation_id": "01a09b40-92af-74f1-a073-c97d83077e0e"
+          },
+          "run_epoch": "28a9b428-3eed-4b0e-ae96-5d1dc2001b92",
+          "workflow_id": "7685031373442121728",
+          "operation_id": "01a09b40-92af-74f1-a073-c97d83077e0e"
+        }
+      ]
+    }
+  },
+  "postgres": {
+    "started_at": "2026-09-13T15:03:44.987285+00:00",
+    "finished_at": "2026-09-13T15:03:45.059291+00:00",
+    "container_id": "42d7a5148ca97828d99728ddb04150c4f65b880063ef9525fb549b7a088820b3",
+    "image_id": "sha256:4e6e670bb069649261c9c18031f0aded7bb249a5b6664ddec29c013a89310d50",
+    "statements": "SELECT only; ordinary autocommit reads, not a cross-database atomic snapshot",
+    "facts": {
+      "snapshot": [
+        {
+          "database": "yijie_workflow_local",
+          "observed_at": "2026-09-13T15:03:45.049085+00:00"
+        }
+      ],
+      "resource": [
+        {
+          "workflow_id": "7685031373442121728",
+          "scope_key": "feat-153-local-v1",
+          "owner_user_id": "12500000-0000-4000-8000-000000000001",
+          "tenant_id": "12500000-0000-4000-8000-100000000001",
+          "coze_user_id": "7684521418742038528",
+          "coze_space_id": "7684521418742054912"
+        }
+      ],
+      "operation": [
+        {
+          "operation_id": "01a09b3c-1516-7c23-911b-6732e3a4194e",
+          "kind": "create",
+          "phase": "completed",
+          "workflow_id": "7685031373442121728",
+          "receipt": {
+            "kind": "create",
+            "phase": "completed",
+            "revision": "7685031373442138112",
+            "workflow_id": "7685031373442121728",
+            "operation_id": "01a09b3c-1516-7c23-911b-6732e3a4194e"
+          }
+        },
+        {
+          "operation_id": "01a09b3d-83a5-7341-95e6-5ad490dfd4bf",
+          "kind": "save",
+          "phase": "completed",
+          "workflow_id": "7685031373442121728",
+          "receipt": {
+            "kind": "save",
+            "phase": "completed",
+            "revision": "7685031776485376000",
+            "workflow_id": "7685031373442121728",
+            "operation_id": "01a09b3d-83a5-7341-95e6-5ad490dfd4bf"
+          }
+        },
+        {
+          "operation_id": "01a09b3f-e2bd-7e21-b1a7-0f1a6cdffa4c",
+          "kind": "test",
+          "phase": "completed",
+          "workflow_id": "7685031373442121728",
+          "receipt": {
+            "kind": "test",
+            "phase": "completed",
+            "run_id": "7685032443987886080",
+            "revision": "7685031776485376000",
+            "workflow_id": "7685031373442121728",
+            "operation_id": "01a09b3f-e2bd-7e21-b1a7-0f1a6cdffa4c"
+          }
+        },
+        {
+          "operation_id": "01a09b40-3469-79d0-baa7-0645f8715f59",
+          "kind": "publish",
+          "phase": "completed",
+          "workflow_id": "7685031373442121728",
+          "receipt": {
+            "kind": "publish",
+            "phase": "completed",
+            "version": "v0.0.1",
+            "revision": "7685031776485376000",
+            "workflow_id": "7685031373442121728",
+            "operation_id": "01a09b40-3469-79d0-baa7-0645f8715f59"
+          }
+        },
+        {
+          "operation_id": "01a09b40-92af-74f1-a073-c97d83077e0e",
+          "kind": "run",
+          "phase": "completed",
+          "workflow_id": "7685031373442121728",
+          "receipt": {
+            "kind": "run",
+            "phase": "completed",
+            "run_id": "7685032637395632128",
+            "version": "v0.0.1",
+            "revision": "7685031776485376000",
+            "workflow_id": "7685031373442121728",
+            "operation_id": "01a09b40-92af-74f1-a073-c97d83077e0e"
+          }
+        }
+      ],
+      "audit": [
+        {
+          "operation_id": "01a09b3c-1516-7c23-911b-6732e3a4194e",
+          "workflow_id": "7685031373442121728",
+          "action": "create",
+          "outcome_code": "completed",
+          "occurred_at": "2026-09-13T14:46:41.189345+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "read",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:46:41.238754+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:46:41.243084+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "history",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:46:41.253401+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:46:41.464982+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "read",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:48:04.212005+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "read",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:48:04.217399+00:00"
+        },
+        {
+          "operation_id": "01a09b3d-83a5-7341-95e6-5ad490dfd4bf",
+          "workflow_id": "7685031373442121728",
+          "action": "save",
+          "outcome_code": "recorded",
+          "occurred_at": "2026-09-13T14:48:15.015299+00:00"
+        },
+        {
+          "operation_id": "01a09b3d-83a5-7341-95e6-5ad490dfd4bf",
+          "workflow_id": "7685031373442121728",
+          "action": "save",
+          "outcome_code": "completed",
+          "occurred_at": "2026-09-13T14:48:15.02596+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "read",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:48:28.827218+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "read",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:48:28.833212+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "read",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:50:03.842075+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:50:03.846429+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "history",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:50:03.854381+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:50:04.035886+00:00"
+        },
+        {
+          "operation_id": "01a09b3f-e2bd-7e21-b1a7-0f1a6cdffa4c",
+          "workflow_id": "7685031373442121728",
+          "action": "test",
+          "outcome_code": "recorded",
+          "occurred_at": "2026-09-13T14:50:50.429905+00:00"
+        },
+        {
+          "operation_id": "01a09b3f-e2bd-7e21-b1a7-0f1a6cdffa4c",
+          "workflow_id": "7685031373442121728",
+          "action": "test",
+          "outcome_code": "completed",
+          "occurred_at": "2026-09-13T14:50:50.456634+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "history",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:50:50.470027+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "read_run",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:50:59.609745+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "history",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:50:59.620533+00:00"
+        },
+        {
+          "operation_id": "01a09b40-3469-79d0-baa7-0645f8715f59",
+          "workflow_id": "7685031373442121728",
+          "action": "publish",
+          "outcome_code": "recorded",
+          "occurred_at": "2026-09-13T14:51:11.337825+00:00"
+        },
+        {
+          "operation_id": "01a09b40-3469-79d0-baa7-0645f8715f59",
+          "workflow_id": "7685031373442121728",
+          "action": "publish",
+          "outcome_code": "completed",
+          "occurred_at": "2026-09-13T14:51:11.348257+00:00"
+        },
+        {
+          "operation_id": "01a09b40-92af-74f1-a073-c97d83077e0e",
+          "workflow_id": "7685031373442121728",
+          "action": "run",
+          "outcome_code": "recorded",
+          "occurred_at": "2026-09-13T14:51:35.47241+00:00"
+        },
+        {
+          "operation_id": "01a09b40-92af-74f1-a073-c97d83077e0e",
+          "workflow_id": "7685031373442121728",
+          "action": "run",
+          "outcome_code": "completed",
+          "occurred_at": "2026-09-13T14:51:35.487215+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "history",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:51:35.499614+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "read_run",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:51:41.384487+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "history",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:51:42.000715+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "read",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:52:05.018212+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "read",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:54:10.571339+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "history",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:54:10.57781+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "read_run",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:54:10.582453+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "read_run",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:54:10.586785+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "read",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:55:09.40551+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:55:09.411105+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T14:55:09.431931+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "read",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T15:03:38.949058+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T15:03:38.954081+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "history",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T15:03:38.965867+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "bootstrap",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T15:03:39.140326+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "read",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T15:03:44.919861+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "history",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T15:03:44.925043+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "read_run",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T15:03:44.931257+00:00"
+        },
+        {
+          "operation_id": null,
+          "workflow_id": "7685031373442121728",
+          "action": "read_run",
+          "outcome_code": "success",
+          "occurred_at": "2026-09-13T15:03:44.939267+00:00"
+        }
+      ]
+    }
+  },
+  "cross_database": {
+    "ownership_match": true,
+    "canvas_utf8_bytes_sha256_match": true,
+    "version_canvas_revision_match": true,
+    "exact_expected_runs_match": true,
+    "shared_receipts": [
+      {
+        "operation_id": "01a09b3c-1516-7c23-911b-6732e3a4194e",
+        "match": true
+      },
+      {
+        "operation_id": "01a09b3d-83a5-7341-95e6-5ad490dfd4bf",
+        "match": true
+      },
+      {
+        "operation_id": "01a09b3f-e2bd-7e21-b1a7-0f1a6cdffa4c",
+        "match": true
+      },
+      {
+        "operation_id": "01a09b40-3469-79d0-baa7-0645f8715f59",
+        "match": true
+      },
+      {
+        "operation_id": "01a09b40-92af-74f1-a073-c97d83077e0e",
+        "match": true
+      }
+    ],
+    "postgres_only_operations": [],
+    "mysql_only_operations": []
+  },
+  "limits": "Does not operate or independently qualify actual UI, native Undo/Redo, session revocation, dev or unified D4. SQL is independent ordinary SELECT snapshots.",
+  "script_sha256": "f71b522c66a21fc90f481757cec50b6a0c90651495b42932b6d8a4fd3e949145",
+  "helper_sha256": "4b9222cc9fb2f18837789d947856f664f352e9a7b2627ad55bd7d4bf7c968289",
+  "normal_restart_comparison": {
+    "checks": {
+      "manifest_sha256": true,
+      "source_digest": true,
+      "workflow": true,
+      "canvas_sha256": true,
+      "history": true,
+      "runs": true,
+      "mysql_persistent_rows": true,
+      "postgres_persistent_rows": true,
+      "existing_audit_rows_preserved": true,
+      "appended_audit_rows_only_successful_reads": true
+    },
+    "baseline_sha256": "e6eab533f451235f98b08740f31bd57f9ae08f408216c3221b32e18acaca79e8",
+    "previous_run_epoch": "28a9b428-3eed-4b0e-ae96-5d1dc2001b92",
+    "new_run_epoch": "b13e0089-5888-43ac-b25b-0440956373ea",
+    "activation_evidence": "activation-20-restart-verification.json",
+    "activation_sha256": "9ae02a4fe7139a3de165316a9b9bd09591e88ac88e06b32055925c57ec2a4533",
+    "audit_note": "Normal App/API reads append service audit entries. Existing audit rows must remain identical and appended rows must contain only successful read/bootstrap/history/read_run actions; business resource/operation/version/execution rows are compared exactly.",
+    "appended_successful_read_audit_rows": 11
+  }
+}

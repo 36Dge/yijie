@@ -1,0 +1,26 @@
+FEAT-153 resume pin review
+Observed at: 2026-09-14T22:55:16.223040+08:00
+Scope: read-only consumer checks, theme provenance and breaking documentation. No network, build, generation, Git mutation or service lifecycle operations.
+
+Verified yijie-api workflow-local 0543b21c61c39ea1d18833b25c5d376a32913979; old public/Runtime locks untouched.
+Consumer HEAD: d38bb9e851a34244498e09c8b188901f9261b9b9
+Working tree: clean
+Verified yijie-desktop workflow-local 0543b21c61c39ea1d18833b25c5d376a32913979; old public/Runtime locks untouched.
+Consumer HEAD: 6078855f7966a531b4d740dd6e654cf60d4180d8
+Working tree: clean
+Verified yijie-coze workflow-local 0543b21c61c39ea1d18833b25c5d376a32913979; old public/Runtime locks untouched.
+Consumer HEAD: 10faf164d7af194b7697a93cb3c4a6886ddc64b5
+Working tree: clean
+
+Desktop theme projection verified: 44 tokens per theme
+source_head: 6078855f7966a531b4d740dd6e654cf60d4180d8
+source_sha256: b94fde95272830f26031324c2b6c9a07b921f3c8e1cd13b3642d9d667fa2eaac
+palette_sha256: 16e94f0fee69e7dbe4cda428990efd78e0e76fd0de8d8e876c11fb9025693d4e
+generated_css_sha256: e040fab99fee4f8fa6204bb8aa0bb29737e4ecf1f6f962ac37ae665f16f43ca8
+token_count: 44
+scope: local sibling source projection; not an immutable release pin
+Breaking correction present: yijie-contracts/docs/workflow-local-v1.md:75
+Breaking correction present: yijie/docs/features/FEAT-153-coze-workflow-foundation/22-native-coze-workflow-page.md:28
+
+Compatibility conclusion retained: old strict Desktop readers reject request_history; source/consumer update precedes Coze producer activation, same-source paired local candidates only. No rolling-upgrade or production approval inferred.
+Result: PASS (bounded resume verification only; not full tests or live App acceptance).

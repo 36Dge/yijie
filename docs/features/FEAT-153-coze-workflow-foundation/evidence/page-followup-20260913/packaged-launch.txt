@@ -1,0 +1,114 @@
+Native conversation verified: 811f38d6b104fa18477107e7ac91a85e19c445d1; published=false
+FEAT-132 native sources, generated consumer snapshots and retired-engine boundary verified.
+Native MCP verified: 811f38d6b104fa18477107e7ac91a85e19c445d1
+FEAT-144 native sources and single display adapter checked; candidate checks do not authorize activation.
+FEAT-134 v4 immutable objects verified at Contracts 87f94c9aa6d4848cb67aa8a1265bd21474edb0bb and Agent Host 96b1fa19783694aef583b614c492fd2b6b5c15cc; activation is exact local/demo_fast/stable only.
+FEAT-137 permanent retirement authority verified: 4d3f967938dde1c86ca34003a0a5628717f96262; acceptance remains NOT PASSED
+$ node scripts/sync-desktop-skill-resources.mjs --channel local-development
+Synchronized local-development: 38 installable Skills, categories 5/9/7/9/8.
+$ env YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast YIJIE_RUNTIME_PERMISSIONS_ENABLED=true VITE_YIJIE_RUNTIME_PERMISSIONS_ENABLED=true pnpm skills:sync:local && env -u YIJIE_FEAT134_STREAMING_ENABLED -u VITE_YIJIE_FEAT134_STREAMING_ENABLED -u YIJIE_FEAT136_COMMAND_TOOL_ITEMS_ENABLED -u VITE_YIJIE_FEAT136_EXECUTION_ENABLED -u YIJIE_FEAT137_COMMAND_APPROVAL_ENABLED -u VITE_YIJIE_FEAT137_APPROVAL_ENABLED VITE_YIJIE_RUNTIME_PERMISSIONS_ENABLED=true VITE_YIJIE_ENV=local VITE_YIJIE_LOCAL_PROFILE=demo_fast VITE_YIJIE_CHAT_LOCAL_UI_ENABLED=true VITE_YIJIE_AUTHORITATIVE_PERMISSION_UI_ENABLED=true VITE_YIJIE_LOCAL_WHITELIST_LOGIN_ENABLED=false tauri build --debug --bundles app --no-sign --config src-tauri/tauri.demo-fast.conf.json --config src-tauri/tauri.workflow-local.conf.json
+$ node scripts/sync-desktop-skill-resources.mjs --channel local-development
+Synchronized local-development: 38 installable Skills, categories 5/9/7/9/8.
+        Warn --no-sign flag detected: Signing will be skipped.
+        Info Looking up installed tauri packages to check mismatched versions...
+     Running beforeBuildCommand `pnpm build`
+$ vue-tsc --noEmit && vite build
+vite v8.1.3 building client environment for production...
+[2Ktransforming...✓ 5386 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                      0.40 kB │ gzip:   0.27 kB
+dist/assets/YjIcon-BmPrxpO0.css                      0.51 kB │ gzip:   0.19 kB
+dist/assets/YjLogo-V2YNPyyf.css                      0.94 kB │ gzip:   0.30 kB
+dist/assets/AccessDeniedPage-C549waJM.css            1.05 kB │ gzip:   0.39 kB
+dist/assets/YjEmpty-gVjCw_m1.css                     1.16 kB │ gzip:   0.40 kB
+dist/assets/workflow-showcase-DPzBrt9i.css           1.75 kB │ gzip:   0.46 kB
+dist/assets/component-colors-BhkuEDh2.css            2.02 kB │ gzip:   0.60 kB
+dist/assets/YjSection-x4hfk_o0.css                   2.19 kB │ gzip:   0.59 kB
+dist/assets/main-DY-H5o4H.css                        2.19 kB │ gzip:   0.68 kB
+dist/assets/YjChartCard-CAEZYe0m.css                 3.73 kB │ gzip:   0.90 kB
+dist/assets/SettingsPage-BcjdlT4n.css                4.90 kB │ gzip:   0.95 kB
+dist/assets/SkillMarketplacePage-Dh-mR3_0.css        5.81 kB │ gzip:   1.19 kB
+dist/assets/WorkflowEditorPage-DlMA_L58.css          6.38 kB │ gzip:   1.30 kB
+dist/assets/StorePage-NANoTVw0.css                   7.51 kB │ gzip:   1.19 kB
+dist/assets/WorkflowPage-yp9Z4ZuS.css                9.98 kB │ gzip:   1.74 kB
+dist/assets/App-DQWyXLoj.css                        17.32 kB │ gzip:   3.54 kB
+dist/assets/ChatPage-DhOiPYZT.css                   84.71 kB │ gzip:   9.84 kB
+dist/assets/_plugin-vue_export-helper-BDNMzG2s.js    0.08 kB │ gzip:   0.09 kB
+dist/assets/use-compitable-q6Tf196v.js               0.16 kB │ gzip:   0.15 kB
+dist/assets/AccessDeniedPage-Cm1LS0mX.js             0.80 kB │ gzip:   0.58 kB
+dist/assets/YjEmpty-BoZwSAW3.js                      0.84 kB │ gzip:   0.50 kB
+dist/assets/light-ChPFVixD.js                        1.73 kB │ gzip:   0.62 kB
+dist/assets/YjSection-DV_7BDIF.js                    2.10 kB │ gzip:   0.87 kB
+dist/assets/_common-BhSv-T5-.js                      2.28 kB │ gzip:   0.89 kB
+dist/assets/index-BbmMNXrJ.js                        4.64 kB │ gzip:   2.17 kB
+dist/assets/router-60LrXHZ6.js                       5.25 kB │ gzip:   1.98 kB
+dist/assets/pinia-CywJvUAb.js                        7.49 kB │ gzip:   3.31 kB
+dist/assets/Tag-C9nNgWG8.js                          9.73 kB │ gzip:   2.99 kB
+dist/assets/SettingsPage-Dwz6reU2.js                11.97 kB │ gzip:   4.57 kB
+dist/assets/WorkflowPage-DsDUE9p5.js                13.29 kB │ gzip:   4.72 kB
+dist/assets/WorkflowEditorPage-Chy2ssyQ.js          22.86 kB │ gzip:   8.35 kB
+dist/assets/StorePage-BJFslWGT.js                   25.36 kB │ gzip:   8.23 kB
+dist/assets/YjIcon-xz0uDMc7.js                      26.28 kB │ gzip:   9.23 kB
+dist/assets/permission.store-BZGC9bSm.js            33.67 kB │ gzip:  12.73 kB
+dist/assets/event-FjavVmeX.js                       37.98 kB │ gzip:  12.38 kB
+dist/assets/SkillMarketplacePage-C40VfNa6.js        46.96 kB │ gzip:  15.37 kB
+dist/assets/Modal-D7GMAwkR.js                       57.31 kB │ gzip:  16.79 kB
+dist/assets/Card-B7qiiG_o.js                        74.73 kB │ gzip:  24.45 kB
+dist/assets/vue.runtime.esm-bundler-B-tr_3O5.js    111.08 kB │ gzip:  42.60 kB
+dist/assets/App-D-zFQjxq.js                        194.98 kB │ gzip:  51.66 kB
+dist/assets/ChatPage-A-DGFzKv.js                   201.36 kB │ gzip:  55.49 kB
+dist/assets/YjLogo-IYDq7arw.js                     273.15 kB │ gzip:  54.40 kB
+dist/assets/workflow-showcase-YIeGJIxj.js          317.10 kB │ gzip:  24.74 kB
+dist/assets/YjChartCard-Z8QoIGtE.js                543.38 kB │ gzip: 185.55 kB
+
+✓ built in 463ms
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+   Compiling yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 16.64s
+       Built application at: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/target/debug/yijie-desktop
+    Bundling 易界 AI.app (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/target/debug/bundle/macos/易界 AI.app)
+        Warn Skipping signing due to --no-sign flag.
+    Finished 1 bundle at:
+        /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/target/debug/bundle/macos/易界 AI.app
+
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":780.0,"inner_width":1180.0,"outer_height":780.0,"outer_width":1180.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":780.0,"inner_width":1194.0,"outer_height":780.0,"outer_width":1194.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":780.0,"inner_width":1206.0,"outer_height":780.0,"outer_width":1206.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":780.0,"inner_width":1223.0,"outer_height":780.0,"outer_width":1223.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":780.0,"inner_width":1239.0,"outer_height":780.0,"outer_width":1239.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":780.0,"inner_width":1259.0,"outer_height":780.0,"outer_width":1259.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":780.0,"inner_width":1282.0,"outer_height":780.0,"outer_width":1282.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":780.0,"inner_width":1306.0,"outer_height":780.0,"outer_width":1306.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":780.0,"inner_width":1332.0,"outer_height":780.0,"outer_width":1332.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":780.0,"inner_width":1346.0,"outer_height":780.0,"outer_width":1346.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":782.0,"inner_width":1346.0,"outer_height":782.0,"outer_width":1346.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":785.0,"inner_width":1346.0,"outer_height":785.0,"outer_width":1346.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":788.0,"inner_width":1346.0,"outer_height":788.0,"outer_width":1346.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":797.0,"inner_width":1346.0,"outer_height":797.0,"outer_width":1346.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":803.0,"inner_width":1346.0,"outer_height":803.0,"outer_width":1346.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":811.0,"inner_width":1346.0,"outer_height":811.0,"outer_width":1346.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":819.0,"inner_width":1346.0,"outer_height":819.0,"outer_width":1346.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":828.0,"inner_width":1346.0,"outer_height":828.0,"outer_width":1346.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":842.0,"inner_width":1346.0,"outer_height":842.0,"outer_width":1346.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":849.0,"inner_width":1346.0,"outer_height":849.0,"outer_width":1346.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"bridge_id":"01a099e2-6cba-7733-b4f6-15dae0bf9554","event":"remote_close_confirmed","generation":1,"remote_closed":true,"run_epoch":"104a0e4d-c955-464c-b2cd-7814919d96a1","workflow_id":"7684934079279529984"}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":851.0,"inner_width":1351.0,"outer_height":851.0,"outer_width":1351.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":854.0,"inner_width":1364.0,"outer_height":854.0,"outer_width":1364.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":858.0,"inner_width":1382.0,"outer_height":858.0,"outer_width":1382.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":862.0,"inner_width":1398.0,"outer_height":862.0,"outer_width":1398.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":865.0,"inner_width":1411.0,"outer_height":865.0,"outer_width":1411.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":867.0,"inner_width":1420.0,"outer_height":867.0,"outer_width":1420.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":868.0,"inner_width":1427.0,"outer_height":868.0,"outer_width":1427.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":870.0,"inner_width":1433.0,"outer_height":870.0,"outer_width":1433.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":871.0,"inner_width":1436.0,"outer_height":871.0,"outer_width":1436.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":871.0,"inner_width":1439.0,"outer_height":871.0,"outer_width":1439.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":871.0,"inner_width":1440.0,"outer_height":871.0,"outer_width":1440.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":871.0,"inner_width":1452.0,"outer_height":871.0,"outer_width":1452.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":871.0,"inner_width":1457.0,"outer_height":871.0,"outer_width":1457.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"event":"window_geometry","inner_height":871.0,"inner_width":1464.0,"outer_height":871.0,"outer_width":1464.0,"scale_factor":2.0}
+YIJIE_WORKFLOW_LOCAL_DIAGNOSTIC {"app_pid":10028,"bridge_id":"01a099e9-b5ef-7dc2-8e2c-f71333c26bf9","event":"remote_close_confirmed","generation":2,"remote_closed":true,"run_epoch":"104a0e4d-c955-464c-b2cd-7814919d96a1","workflow_id":"7684934079279529984"}

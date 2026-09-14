@@ -1,0 +1,165 @@
+{
+  "created_at": "2026-09-14T14:55:26.930398+00:00",
+  "credential_field_candidates": [
+    {
+      "category": "structured_credential_string",
+      "file": "docs/features/FEAT-153-coze-workflow-foundation/evidence/coze-lime-refinement-20260914/observe.py",
+      "line": 10,
+      "review": "code constructs an Authorization Bearer header from a private-file token at runtime; no credential literal",
+      "value_length": 7
+    },
+    {
+      "category": "structured_credential_string",
+      "file": "docs/features/FEAT-153-coze-workflow-foundation/evidence/coze-theme-20260914/observe.py",
+      "line": 10,
+      "review": "code constructs an Authorization Bearer header from a private-file token at runtime; no credential literal",
+      "value_length": 7
+    },
+    {
+      "category": "structured_credential_string",
+      "file": "docs/features/FEAT-153-coze-workflow-foundation/evidence/coze-theme-20260914/screenshot-readback-25.py",
+      "line": 24,
+      "review": "code constructs an Authorization Bearer header from a private-file token at runtime; no credential literal",
+      "value_length": 7
+    },
+    {
+      "category": "structured_credential_string",
+      "file": "docs/features/FEAT-153-coze-workflow-foundation/evidence/coze-theme-20260914/screenshot-readback-26.py",
+      "line": 24,
+      "review": "code constructs an Authorization Bearer header from a private-file token at runtime; no credential literal",
+      "value_length": 7
+    },
+    {
+      "category": "structured_credential_string",
+      "file": "docs/features/FEAT-153-coze-workflow-foundation/evidence/create-dialog-20260913/observe.py",
+      "line": 10,
+      "review": "code constructs an Authorization Bearer header from a private-file token at runtime; no credential literal",
+      "value_length": 7
+    },
+    {
+      "category": "structured_credential_string",
+      "file": "docs/features/FEAT-153-coze-workflow-foundation/evidence/native-page-20260913/canonical20-readback.py",
+      "line": 34,
+      "review": "code constructs an Authorization Bearer header from a private-file token at runtime; no credential literal",
+      "value_length": 7
+    },
+    {
+      "category": "structured_credential_string",
+      "file": "docs/features/FEAT-153-coze-workflow-foundation/evidence/native-page-20260913/observe.py",
+      "line": 10,
+      "review": "code constructs an Authorization Bearer header from a private-file token at runtime; no credential literal",
+      "value_length": 7
+    }
+  ],
+  "credential_field_unresolved_count": 0,
+  "credential_sources_read": [
+    "k-na.json",
+    "k-ac.json"
+  ],
+  "current_credential_match_count": 0,
+  "current_credential_match_locations": [],
+  "file_count": 562,
+  "format_counts": {
+    "png": 52,
+    "utf8-text": 510
+  },
+  "high_confidence_pattern_findings": [],
+  "ignored_but_in_candidate": [],
+  "markdown_reference_count": 99,
+  "missing_markdown_refs": [],
+  "native_executables": [],
+  "other_binary_files": [],
+  "over_1MiB": [],
+  "png_ocr_review": {
+    "current_credentials_loaded": 2,
+    "error_files": [],
+    "findings": [],
+    "png_files": 52,
+    "recognized_text_observations": 2607,
+    "scope": "Read-only Apple Vision OCR on candidate PNGs; no UI actions or source/helper execution. OCR is supplemental and can miss text; no OCR text or credential values recorded."
+  },
+  "scope": "Current modified/untracked metarepo files. Read-only repository audit; no historical helper scripts executed. Concurrent root report edits may change counts.",
+  "suffix_counts": {
+    ".css": 1,
+    ".json": 256,
+    ".jsonl": 2,
+    ".md": 28,
+    ".mjs": 3,
+    ".png": 52,
+    ".py": 24,
+    ".swift": 3,
+    ".txt": 193
+  },
+  "total_bytes": 30578653,
+  "utf8_text_files": 510,
+  "documented_final_png_integrity": {
+    "file_count": 7,
+    "all_pass": true,
+    "files": [
+      {
+        "file": "docs/features/FEAT-153-coze-workflow-foundation/evidence/coze-lime-refinement-20260914/final29-dark-large-panel.png",
+        "sha256_matches_observation": true,
+        "pixel_dimensions_match_observation": true
+      },
+      {
+        "file": "docs/features/FEAT-153-coze-workflow-foundation/evidence/coze-lime-refinement-20260914/final29-dark-small-panel.png",
+        "sha256_matches_observation": true,
+        "pixel_dimensions_match_observation": true
+      },
+      {
+        "file": "docs/features/FEAT-153-coze-workflow-foundation/evidence/coze-lime-refinement-20260914/final29-dark-trial.png",
+        "sha256_matches_observation": true,
+        "pixel_dimensions_match_observation": true
+      },
+      {
+        "file": "docs/features/FEAT-153-coze-workflow-foundation/evidence/coze-lime-refinement-20260914/final29-light-large-canvas.png",
+        "sha256_matches_observation": true,
+        "pixel_dimensions_match_observation": true
+      },
+      {
+        "file": "docs/features/FEAT-153-coze-workflow-foundation/evidence/coze-lime-refinement-20260914/final29-light-large-panel.png",
+        "sha256_matches_observation": true,
+        "pixel_dimensions_match_observation": true
+      },
+      {
+        "file": "docs/features/FEAT-153-coze-workflow-foundation/evidence/coze-lime-refinement-20260914/final29-light-small-canvas.png",
+        "sha256_matches_observation": true,
+        "pixel_dimensions_match_observation": true
+      },
+      {
+        "file": "docs/features/FEAT-153-coze-workflow-foundation/evidence/coze-lime-refinement-20260914/final29-light-small-panel.png",
+        "sha256_matches_observation": true,
+        "pixel_dimensions_match_observation": true
+      }
+    ]
+  },
+  "historical_state_review": {
+    "status": "no blocking misrepresentation found in reviewed chronology",
+    "files": [
+      "docs/features/FEAT-153-coze-workflow-foundation/19-workflow-page-followup.md",
+      "docs/features/FEAT-153-coze-workflow-foundation/20-workflow-create-dialog.md",
+      "docs/features/FEAT-153-coze-workflow-foundation/21-workflow-card-menu.md",
+      "docs/features/FEAT-153-coze-workflow-foundation/22-native-coze-workflow-page.md",
+      "docs/features/FEAT-153-coze-workflow-foundation/23-native-coze-yijie-theme.md",
+      "docs/features/FEAT-153-coze-workflow-foundation/24-native-coze-lime-refinement.md",
+      "docs/features/FEAT-153-coze-workflow-foundation/25-lime-refinement-pause-handoff.md"
+    ],
+    "findings": [
+      "19-23 describe bounded earlier rounds and may contain then-current App or Git status. New Git delivery should explicitly supersede these historical status statements.",
+      "23 explicitly points to 24 and distinguishes technical evidence from user visual approval.",
+      "24 records canonical29 final evidence, then subsequent resume observed App exited; it does not assert present running state.",
+      "25 explicitly marks pause resolved and points to 24 as current closeout.",
+      "24 preserves actual post-restart save and changed revision instead of claiming complete snapshot equality.",
+      "This repository hygiene review is not UI revalidation, new D4 or production qualification."
+    ]
+  },
+  "conclusion": {
+    "blocking_findings": 0,
+    "credential_field_unresolved": 0,
+    "limitations": [
+      "Current credential exact matching does not detect arbitrary historical secrets.",
+      "Pattern scanning and OCR are supplemental, not a proof that all possible sensitive content is absent.",
+      "No network, UI, historical helper script, business operation, or repository mutation was performed; only this permitted audit report was written."
+    ]
+  }
+}

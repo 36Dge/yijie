@@ -1,0 +1,90 @@
+{
+  "recorded_at": "2026-09-13T08:51:20.030722+00:00",
+  "scope": "FEAT-153 follow-up: color, independent editor route, newest-first shared cards and horizontal rail",
+  "result": "PASS",
+  "contract_impact": "none",
+  "final_source_unchanged": {
+    "yijie-desktop": true,
+    "yijie-coze": true,
+    "yijie-api": true,
+    "yijie-infra": true,
+    "yijie-contracts": true
+  },
+  "app_pid": 19207,
+  "surface": "canonical packaged, tauri://localhost",
+  "final_workflow": {
+    "id": "7684938170672087040",
+    "name": "FEAT-153 新页面最终验收",
+    "revision": "7684938243699113984",
+    "prefix": "最终页面：",
+    "nodes": 3,
+    "connected_edges": 2,
+    "published_version": "v0.0.1",
+    "test_run_id": "7684938379464540160",
+    "test_output": "最终页面：验收",
+    "create_save_return_first_card_reopen": "PASS"
+  },
+  "first_round": {
+    "workflow_id": "7684934079279529984",
+    "ordinary_incomplete_graph_error_then_fix": "PASS",
+    "dirty_leave_cancel_retained": "PASS",
+    "version_run_id": "7684934996351516672",
+    "version_output": "独立页面：版本闭环",
+    "normal_app_and_stack_restart_readback": "PASS"
+  },
+  "checks": {
+    "focused_frontend_tests": 45,
+    "sidebar_tests": 9,
+    "lint_and_typecheck": "PASS",
+    "design_docs_build": "PASS",
+    "canonical_packaged_build": "PASS",
+    "coze_canonical_build_and_source_checks": "PASS",
+    "unchanged_contract_pin": "32dd76298fd5ba2346fe2429f78b2b3e2f32a7e4"
+  },
+  "theme_sizes": {
+    "dark_min": "1180x760",
+    "dark_large": "1440x850",
+    "light_min": "1180x760",
+    "light_large": "1440x850"
+  },
+  "credential_scan": {
+    "files": 94,
+    "known_values": 8,
+    "matches": []
+  },
+  "native_close_events": [
+    {
+      "app_pid": 19207,
+      "bridge_id": "01a099f0-f5e0-7213-815a-c348ad3eebb4",
+      "event": "remote_close_confirmed",
+      "generation": 1,
+      "remote_closed": true,
+      "run_epoch": "292bdd01-ebd8-4c90-b0a1-54a77da84752",
+      "workflow_id": "7684938170672087040"
+    },
+    {
+      "app_pid": 19207,
+      "bridge_id": "01a099f2-b8fa-78c0-ba5f-e8874e4d4ed8",
+      "event": "remote_close_confirmed",
+      "generation": 2,
+      "remote_closed": true,
+      "run_epoch": "292bdd01-ebd8-4c90-b0a1-54a77da84752",
+      "workflow_id": "7684938170672087040"
+    }
+  ],
+  "left_running": {
+    "app": true,
+    "workflow_stack": true,
+    "purpose": "User can directly use the updated workflow overview",
+    "system_theme_restored": "light",
+    "settings_window_closed": true
+  },
+  "not_claimed": [
+    "No new full dev qualification; this UI follow-up was verified in the actual packaged App.",
+    "No production, CI, full upstream tests, paid/model/platform calls or Git delivery in this follow-up.",
+    "Initial archive copies under .local produced duplicate Vue runtime test failures; exact active source tests passed with .local excluded.",
+    "First capture selected the system sharing indicator; its image is excluded. AX helper was corrected to target the largest owned window.",
+    "Resize requests were initially clamped or sampled during animation; final images use settled actual window geometry, 1440x850 instead of 1440x900."
+  ],
+  "horizontal_validation": "Actual previous/next controls moved the horizontal rail and updated endpoint disabled state. Native CUA wheel attempts gave no AX-visible change; no separate trackpad gesture pass is claimed."
+}

@@ -1,0 +1,13 @@
+{
+  "command": "bash -n each scripts/*.sh",
+  "files": [
+    "scripts/bootstrap.sh",
+    "scripts/checkout-all.sh",
+    "scripts/dev-down.sh",
+    "scripts/dev-up.sh",
+    "scripts/generate-all.sh",
+    "scripts/lint-all.sh",
+    "scripts/test-all.sh"
+  ],
+  "all_exit_zero": true
+}

@@ -1,0 +1,30 @@
+node <<'JS'
+const fs=require('node:fs');const vm=require('node:vm');const assert=require('node:assert/strict');
+const ts=require('./bin/workflow-editor/build-workspace/node_modules/.pnpm/typescript@5.8.2/node_modules/typescript/lib/typescript.js');
+class Emitter { constructor(){this.listeners=new Set()} event=(f)=>{this.listeners.add(f);return{dispose:()=>this.listeners.delete(f)}};fire(){this.listeners.forEach(f=>f())}dispose(){this.listeners.clear()} }
+const tokens={};for(const key of ['FlowNodeFormData','HistoryService','Playground','TransformData','WorkflowDocument','WorkflowLinesManager','WorkflowSelectService']) tokens[key]=class {};
+tokens.FreeOperationType={dragNodes:'dragNodes'};
+const exports={};const result=ts.transpileModule(fs.readFileSync('frontend/packages/workflow/playground/src/services/local-workflow-keyboard-service.ts','utf8'),{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS,experimentalDecorators:true}});
+vm.runInNewContext(result.outputText,{exports,document:{addEventListener(){},removeEventListener(){}},require(name){if(name==='inversify')return{inject:()=>()=>{},injectable:()=>value=>value,postConstruct:()=>{}};if(name==='@flowgram-adapter/common')return{Emitter};if(name==='@flowgram-adapter/free-layout-editor')return tokens;if(name.endsWith('workflow-global-state-entity'))return{WorkflowGlobalStateEntity:class{}};if(name.endsWith('workflow-float-layout-service'))return{WorkflowFloatLayoutService:class{}};if(name==='../constants')return{LayoutPanelKey:{NodeForm:'nodeForm'}};throw new Error(name)}});
+const service=new exports.LocalWorkflowKeyboardService();const position={x:20,y:30};const operations=[];const opened=[];let editable=true;let canLink=false;let creates=0;let removes=0;
+const node=(id,title)=>({id,flowNodeType:id==='s'?'1':id==='t'?'15':'2',disposed:false,getData(token){return token===tokens.FlowNodeFormData?{getFormModel:()=>({getValueIn:()=>title})}:{position}}});
+const start=node('s','开始'),text=node('t','文本处理'),end=node('e','结束');
+const out={id:'out',portType:'output',portID:'',node:start,disabled:false,lines:[]};const input={id:'in',portType:'input',portID:'',node:text,disabled:false,lines:[]};const wrong={...input,id:'wrong',node:end};const ports=new Map([[out.id,out],[input.id,input],[wrong.id,wrong]]);
+service.state={playgroundProps:{localAdapter:{}},get readonly(){return !editable}};service.playground={config:{readonly:false,disabled:false}};service.selection={selectNode(){}};service.panels={open(...args){opened.push(args)}};
+service.history={pushOperation(op){operations.push(op);Object.assign(position,op.value.value[0])}};
+service.lines={getPortById:id=>ports.get(id),canAddLine(source,target){assert.equal(source,out);return canLink&&target===input},canRemove:()=>true,createLine(){creates++;const line={isDrawing:false,dispose(){removes++;input.lines=[];out.lines=[]}};input.lines=[line];out.lines=[line];return line}};
+const key=(name,extras={})=>({key:name,shiftKey:false,ctrlKey:false,altKey:false,metaKey:false,preventDefault(){},stopPropagation(){},...extras});let checks=0;const check=fn=>{fn();checks++};
+check(()=>{service.nodeKey(key('ArrowRight'),start);assert.equal(position.x,30);assert.equal(operations[0].type,'dragNodes')});
+check(()=>{service.nodeKey(key('ArrowUp',{shiftKey:true}),start);assert.equal(position.y,-20)});
+check(()=>{service.nodeKey(key('ArrowLeft',{ctrlKey:true}),start);assert.equal(operations.length,2)});
+check(()=>{service.nodeKey(key('ArrowLeft',{nativeEvent:{isComposing:true}}),start);assert.equal(operations.length,2)});
+check(()=>{editable=false;service.nodeKey(key('ArrowLeft'),start);assert.equal(position.x,30);editable=true});
+check(()=>{service.nodeKey(key('Enter'),start);assert.equal(opened[0][0],'nodeForm');assert.equal(opened[0][2].node,start)});
+check(()=>{service.portKey(key('Enter'),out);assert.equal(service.getSnapshot().sourcePortId,'out')});
+check(()=>{service.portKey(key('Enter'),wrong);assert.equal(creates,0);assert.equal(service.getSnapshot().sourcePortId,'out')});
+check(()=>{canLink=true;service.portKey(key('Enter'),input);assert.equal(creates,1);assert.equal(service.getSnapshot().sourcePortId,'')});
+check(()=>{service.portKey(key('Delete'),input);assert.equal(removes,1)});
+check(()=>{service.portKey(key('Enter'),out);service.portKey(key('Escape'),input);assert.equal(service.getSnapshot().sourcePortId,'');assert.equal(creates,1)});
+check(()=>{service.state.playgroundProps={};service.nodeKey(key('ArrowRight'),start);service.portKey(key('Enter'),out);assert.equal(position.x,30);assert.equal(creates,1)});
+console.log(JSON.stringify({passed:checks,scope:'normal isolated keyboard handler unit checks with service collaborators; not native engine or App acceptance'},null,2));
+JS

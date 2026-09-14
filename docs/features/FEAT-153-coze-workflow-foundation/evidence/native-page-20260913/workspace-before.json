@@ -1,0 +1,43 @@
+{
+  "observed_at": "2026-09-13T11:17:01.077831+00:00",
+  "previous_baseline": "../card-menu-20260913/final-git-status.json",
+  "note": "Source audit completed; bounded source agents may have started their owned source edits. No build artifacts or live services changed.",
+  "repos": {
+    "yijie": {
+      "head": "590830d26e972d1638d1d2801f17ce70af49b472",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie.git (fetch)\norigin\thttps://github.com/36Dge/yijie.git (push)",
+      "status": "M docs/features/FEAT-153-coze-workflow-foundation/01-delivery-log.md\n M docs/features/FEAT-153-coze-workflow-foundation/02-verification.md\n?? docs/features/FEAT-153-coze-workflow-foundation/19-workflow-page-followup.md\n?? docs/features/FEAT-153-coze-workflow-foundation/20-workflow-create-dialog.md\n?? docs/features/FEAT-153-coze-workflow-foundation/21-workflow-card-menu.md\n?? docs/features/FEAT-153-coze-workflow-foundation/evidence/card-menu-20260913/\n?? docs/features/FEAT-153-coze-workflow-foundation/evidence/create-dialog-20260913/\n?? docs/features/FEAT-153-coze-workflow-foundation/evidence/page-followup-20260913/"
+    },
+    "yijie-coze": {
+      "head": "05a81edab974b3041fa3bae27124d7994ca875ff",
+      "branch": "main",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-coze.git (fetch)\norigin\thttps://github.com/36Dge/yijie-coze.git (push)\nupstream\thttps://github.com/coze-dev/coze-studio.git (fetch)\nupstream\thttps://github.com/coze-dev/coze-studio.git (push)",
+      "status": "M backend/api/model/workflowlocal/types.gen.go\n M backend/application/workflowlocal/handler.go\n M backend/domain/workflow/localadapter/history.go\n M backend/domain/workflow/localadapter/http_conformance_test.go\n M backend/domain/workflow/localadapter/local_test.go\n M backend/domain/workflow/localadapter/mutations.go\n M backend/domain/workflow/localadapter/store.go\n M contracts/workflow-internal.openapi.json\n M contracts/workflow-local.lock.json\n M contracts/workflow-local.schema.json\n M contracts/workflow-local.source-lock.json\n D docs/nats-eventbus-integration-guide-en.md\n D docs/nats-eventbus-integration-guide.md\n D docs/oceanbase-integration-guide-en.md\n D docs/oceanbase-integration-guide.md\n D docs/pulsar-eventbus-integration-guide-en.md\n D docs/pulsar-eventbus-integration-guide.md\n M frontend/apps/workflow-local/src/generated/workflow-local.gen.ts\n M frontend/apps/workflow-local/src/generated/workflow-local.validators.js\n M frontend/apps/workflow-local/src/main.tsx\n?? backend/domain/workflow/localadapter/deletion.go"
+    },
+    "yijie-contracts": {
+      "head": "32dd76298fd5ba2346fe2429f78b2b3e2f32a7e4",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-contracts.git (fetch)\norigin\thttps://github.com/36Dge/yijie-contracts.git (push)",
+      "status": "M compatibility/workflow-local/source.lock.json\n M openapi/workflow-local/workflow-local.yaml\n M scripts/sync-workflow-consumer.mjs\n M sdks/go/openapi/workflow-local/types.gen.go\n M sdks/jsonschema/workflow-local.schema.json\n M sdks/openapi/workflow-internal.gen.json\n M sdks/rust/workflow-local/types.gen.rs\n M sdks/typescript/src/browser/workflow-local-validator.gen.js\n M sdks/typescript/src/openapi/workflow-local.gen.ts\n M tests/workflow-local.test.mjs"
+    },
+    "yijie-api": {
+      "head": "5e97b18cca1492ac29d4a506411d1e7fc70c9628",
+      "branch": "feat/feat-126-foundation-closure",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-api.git (fetch)\norigin\thttps://github.com/36Dge/yijie-api.git (push)",
+      "status": "M contracts/workflow-local.lock.json\n M contracts/workflow-local.schema.json\n M contracts/workflow-local.source-lock.json\n M internal/contracts/workflowlocal/types.gen.go\n M internal/modules/workflows/application/service.go\n M internal/modules/workflows/application/service_test.go\n M internal/modules/workflows/domain/model.go\n M internal/modules/workflows/infrastructure/coze/client.go\n M internal/modules/workflows/interfaces/http/handler.go\n M internal/modules/workflows/interfaces/http/handler_test.go\n M internal/modules/workflows/transport/mapping.go\n M internal/modules/workflows/transport/mapping_test.go"
+    },
+    "yijie-desktop": {
+      "head": "db3938a24fad2f24c2b72ecc8556b541dc0b1d38",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-desktop.git (fetch)\norigin\thttps://github.com/36Dge/yijie-desktop.git (push)",
+      "status": "M contracts/workflow-local.lock.json\n M contracts/workflow-local.schema.json\n M docs/design/docs/design/05-patterns/16-feat-151-workflow-showcase.md\n M src-tauri/src/lib.rs\n M src-tauri/src/workflows/commands.rs\n M src-tauri/src/workflows/generated.rs\n M src-tauri/src/workflows/runtime.rs\n M src-tauri/src/workflows/tests.rs\n M src-tauri/src/workflows/transport.rs\n M src/api/generated/workflow-local-validator.gen.js\n M src/api/workflow-native-client.ts\n M src/authorization/app-permission-policy.ts\n M src/components/workflows/RecommendedWorkflowCard.vue\n M src/components/workflows/WorkflowEditorPane.vue\n M src/components/workflows/WorkflowLocalWorkspace.test.ts\n M src/components/workflows/WorkflowLocalWorkspace.vue\n M src/components/workflows/WorkflowSummaryCard.vue\n M src/components/yijie/YjSidebar.test.ts\n M src/components/yijie/YjSidebar.vue\n M src/domain/workflow-local.generated.ts\n M src/pages/workflows/WorkflowPage.test.ts\n M src/pages/workflows/WorkflowPage.vue\n M src/pages/workflows/use-workflow-workspace.test.ts\n M src/pages/workflows/use-workflow-workspace.ts\n M src/router/index.ts\n M src/router/workflow-navigation.test.ts\n M src/styles/variables.css\n?? docs/verification/workflow-interactions-and-lime-20260911.md\n?? src/components/workflows/WorkflowCardRail.vue\n?? src/components/workflows/WorkflowCreateDialog.vue\n?? src/components/workflows/WorkflowDeleteDialog.vue\n?? src/pages/workflows/WorkflowCardMenu.test.ts\n?? src/pages/workflows/WorkflowCreation.test.ts\n?? src/pages/workflows/WorkflowEditorPage.vue\n?? src/pages/workflows/use-workflow-deletion.ts\n?? src/pages/workflows/workflow-cards.test.ts\n?? src/pages/workflows/workflow-cards.ts"
+    },
+    "yijie-infra": {
+      "head": "2b238d93cecd446dfd9b22fef681e2bd5ed70f02",
+      "branch": "feat/feat-126-s10e",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-infra.git (fetch)\norigin\thttps://github.com/36Dge/yijie-infra.git (push)",
+      "status": ""
+    }
+  }
+}

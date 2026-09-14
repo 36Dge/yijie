@@ -1,0 +1,15 @@
+file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/scripts/yijie/workflow-editor.mjs:28
+const requireValue = (value, message) => { if (!value) throw new Error(message); };
+                                                             ^
+
+Error: Expected one reviewed upstream version for shiki@3.6.0
+    at requireValue (file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/scripts/yijie/workflow-editor.mjs:28:62)
+    at findVersion (file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/scripts/yijie/workflow-editor.mjs:131:5)
+    at add (file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/scripts/yijie/workflow-editor.mjs:155:113)
+    at prepare (file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/scripts/yijie/workflow-editor.mjs:189:3)
+    at file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/scripts/yijie/workflow-editor.mjs:419:32
+    at ModuleJob.run (node:internal/modules/esm/module_job:437:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:642:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v26.0.0

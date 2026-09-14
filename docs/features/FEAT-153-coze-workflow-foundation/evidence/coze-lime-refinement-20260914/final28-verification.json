@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-13T17:57:44.947315+00:00",
+  "workflow_id": "7685078769316397056",
+  "name": "FEAT153 青柠轻量验收 0914",
+  "revision": "7685079325527244800",
+  "run_id": "7685079889996677120",
+  "expected_input": "原生渐变",
+  "expected_output": "轻盈青柠：原生渐变",
+  "published_version": null,
+  "stored_version_count": 0,
+  "checks": {
+    "exact_workflow_id": true,
+    "exact_three_nodes_two_edges": true,
+    "exact_single_history_run": true,
+    "api_trial_succeeded": true,
+    "api_exact_input_output": true,
+    "mysql_trial_succeeded": true,
+    "mysql_exact_input_output": true,
+    "api_mysql_canvas_match": true,
+    "cross_database_ownership_match": true,
+    "run_operation_recorded_in_both_databases": true,
+    "shared_receipts_match": true,
+    "no_unmatched_operations": true,
+    "existing_workflows_match_this_round_fresh_baseline": true
+  },
+  "all_pass": true,
+  "source_snapshot": "final28.json",
+  "source_sha256": "8b51e29e56375bdb11ed686835d5aacff9f54a469745c5a6c23659aa53054401",
+  "scope": "Offline verification only, of already completed exact-ID GET/SELECT snapshot. No new run, business write, UI or service connection; not a whole-database equality claim."
+}
