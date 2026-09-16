@@ -14,10 +14,10 @@ feature:
 request_boundary:
   owner_scope_reaffirmation: 整个FEAT-154仅在工作流中注册30个电商节点并实现画布展示、属性表单和页面内交互；不实现节点接口调用逻辑，不实现任何节点业务处理逻辑。
   owner_test_run_clarification: 试运行入口保持可点击；点击仅展示未接入提示，不进行接口调用或业务处理，也不生成模拟运行结果。canTest只表示实际执行资格，不驱动纯展示入口禁用。
-  current_delivery: local_commit_baseline
+  current_delivery: current_environment_verified_local_commits_complete
   implementation_authorized: true
   current_change_contract_impact: none
-  note: 用户已授权逐仓本地提交及Contracts完整SHA固定；实现完成，验收未全部完成。现存App是此前验收构建，本轮未重建激活。浅色1180×760为历史通过项；1440×900及暗色NOT RUN，AC-009 pending、D4 NOT RUN。
+  note: 19五步及77878acf同一候选30节点/共用交互复验已收口，原稿和窗口恢复；搜索修复已本地提交6d5b3095，元仓证据随本轮归档。AC-009的1440×900及暗色保留NOT RUN，完整D4未通过，见20。
 scope:
   risk_level: medium
   data_classification: internal
@@ -122,6 +122,17 @@ contract:
   source_first_plan: 权威源先行并已本地提交为db4458fe94572c4df41a114005d54a049bb79b1f，API/Coze/Desktop已canonical固定该完整SHA并通过同步检查；仍为1.4.0-local-candidate，release=false。32dd历史request_history不兼容保持；无tag或发布，详见18。
   status: PASS
   checks:
+    - repository: yijie-contracts
+      command: "make workflow-test"
+      status: PASS
+      exit_code: 0
+      evidence: evidence/local-commits/contracts-focused.json
+    - repository: yijie-infra
+      command: "make workflow-editor"
+      status: PASS
+      exit_code: 0
+      evidence: evidence/d4-current-environment/search-fix-register.json
+  historical_check_artifacts:
     - evidence/step2-implementation/contract-source-consumer-checks.json
 
 external_authorizations:
@@ -145,25 +156,64 @@ implementation:
   real_entrypoint: yijie-desktop canonical pnpm tauri:demo-fast:app → /workflows → workflow-local main.tsx → WorkflowPlayground；R2同一候选逐一添加30节点、打开侧栏并填写代表字段，见14。
   mock_only: false
 verification:
-  status: NOT RUN
+  status: BLOCKED
   verified_at: NOT RUN
   startup:
     status: PASS
-    command_or_steps: 旧环境受控恢复并正常停止；Coze canonical构建/检查、Infra登记/build/up/status与Desktop canonical启动完成
-    environment: local Desktop/Coze工作流宿主，AC-009最终 run_epoch 8d5a65b9-8656-430d-9554-e6ffd490f253
-    actual_result: AC-009最终候选canonical构建/登记/启动完成，六项主服务就绪；目录键盘、复杂表单与恢复原稿实测通过，原稿已保存。
-    evidence: evidence/ac009-verification/activated-runtime-final.json
+    command_or_steps: 原稿恢复后Cmd+Q及workflow-stop；搜索修复标准构建/静态审阅/登记/build/up；Desktop canonical packaged启动
+    environment: local Desktop/Coze，修复候选run_epoch 21c88100-ca6e-4ebb-a1c6-4d1a2ec37110
+    actual_result: 六项服务健康，新App进程47333；用户解锁后正常入口进入原稿，原生1180×760；同一候选30节点已实际操作
+    evidence: evidence/d4-current-environment/search-fix-services-ready-runtime.json
   real_smoke:
     status: PASS
-    command_or_steps: 逐一添加30节点并查看卡片/填写表单/切换保留/明确离开；无业务执行
-    environment: 同一正常Desktop产品入口，合成普通字段
-    actual_result: R2完成30节点逐项添加/代表字段及核心交互，历史证据保持。AC-009最终候选新增30目录连续Tab、Esc/Enter、05复杂表单和24长标题回归，浅色1180×760通过；未重新冒称全634字段人工输入，完整D4待目标尺寸及暗色。
+    command_or_steps: 新候选重做完整名称搜索、30节点与共用交互
+    environment: 当前系统浅色，原生1180×760，同一App47333及77878acf候选
+    actual_result: 同一77878acf全30节点及共用实例/删除撤销/引用失效恢复/历史/试运行提示/离开取消/原稿恢复通过；试运行数据和审计增量0，详见attempt2-shared-results
+    evidence: evidence/d4-current-environment/attempt2-shared-results.json
   representative_failure:
     status: PASS
-    command_or_steps: 普通必填/数字格式错误→修正；搜索无结果→清空；取消离开保留配置
-    environment: 正常UI输入，不故障或攻击注入
-    actual_result: R2实际观察05小数1.2.3提示与修正、无结果搜索清空恢复、取消删除/离开、引用来源移除与撤销恢复、自然到期后正常重连；未实施故障或攻击注入。
+    command_or_steps: 新候选普通格式错误修正、无结果搜索恢复、删除与离开取消、正常重连
+    environment: 正常原生UI；禁止故障/时钟/攻击注入
+    actual_result: 同一候选1.2.3原文保留并修正0.15、零值保留、无结果恢复、删除和离开取消、自然到期重连均通过；无故障或攻击注入
+    evidence: evidence/d4-current-environment/attempt2-shared-results.json
   focused_checks:
+    - repository: yijie-coze
+      command: "python3 scripts/yijie/workflow-editor-ecommerce-source.py --check"
+      status: PASS
+      exit_code: 0
+      evidence: evidence/d4-current-environment/source-field-check.json
+    - repository: yijie-coze
+      command: "node --test frontend/packages/workflow/playground/src/local-ecommerce/search.test.mjs frontend/packages/workflow/playground/src/local-ecommerce/value-state.test.mjs scripts/yijie/workflow-editor-ecommerce-draft.test.mjs scripts/yijie/workflow-editor-ecommerce-registration.test.mjs scripts/yijie/workflow-editor-state.test.mjs scripts/yijie/workflow-editor-bridge.test.mjs"
+      status: PASS
+      exit_code: 0
+      evidence: evidence/d4-current-environment/search-fix-focused.json
+    - repository: yijie-coze
+      command: "node --test scripts/yijie/workflow-editor-csp-review.test.mjs"
+      status: PASS
+      exit_code: 0
+      evidence: evidence/d4-current-environment/search-fix-csp-tests.json
+    - repository: yijie-coze
+      command: "make lint test"
+      status: PASS
+      exit_code: 0
+      evidence: evidence/d4-current-environment/search-fix-source-preservation.json
+    - repository: yijie-coze
+      command: "node scripts/yijie/workflow-editor.mjs build"
+      status: PASS
+      exit_code: 0
+      evidence: evidence/d4-current-environment/search-fix-editor-build-reviewed.json
+    - repository: yijie-infra
+      command: "make workflow-editor"
+      status: PASS
+      exit_code: 0
+      evidence: evidence/d4-current-environment/search-fix-register.json
+  historical_focused_check_artifacts:
+    - evidence/d4-current-environment/search-fix-focused.txt
+    - evidence/d4-current-environment/search-fix-csp-tests.txt
+    - evidence/d4-current-environment/search-fix-editor-build-reviewed.txt
+    - evidence/committed-candidate-regression/editor-build.txt
+    - evidence/committed-candidate-regression/editor-csp-check.txt
+    - evidence/committed-candidate-regression/editor-register.txt
     - evidence/delivery-package/command-output/ac009-verification/focused-checks-final.txt
     - evidence/delivery-package/command-output/ac009-verification/csp-checks-final.txt
     - evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt
@@ -175,6 +225,15 @@ verification:
     - evidence/delivery-package/command-output/recovery-execution/value-state-recheck-r6.txt
     - evidence/delivery-package/command-output/recovery-execution/csp-tests-r7.txt
   artifacts:
+    - 20-d4-current-environment.md
+    - evidence/d4-current-environment/attempt1-result.json
+    - evidence/d4-current-environment/attempt2-candidate.json
+    - evidence/d4-current-environment/search-fix-source-review.json
+    - 19-committed-candidate-regression.md
+    - evidence/committed-candidate-regression/candidate.json
+    - evidence/committed-candidate-regression/ui-observations.json
+    - evidence/committed-candidate-regression/ui-persistence-comparison.json
+    - evidence/committed-candidate-regression/final-checks.json
     - 18-local-commit-baseline.md
     - evidence/local-commits/commit-baseline.json
     - evidence/local-commits/meta-final-checks.json
@@ -212,10 +271,10 @@ verification:
     - evidence/recovery-execution/dark-theme-deferral-and-step2-closure.json
   diff_review:
     status: PASS
-    summary: AC-009增量仅4个目录组件/样式文件及精确产物CSP记录，保留原主题和字段定义；最终七仓/15保护文件核对，新增类型问题0，无提交推送。完整D4仍待剩余AC-009。
+    summary: D4增量仅Coze本地搜索hook/匹配函数/回归测试及精确CSP审阅记录4文件；无公共契约或业务执行变化，其他源码仓未改。新manifest与消费者源锁一致，15主题文件保持；元仓记录各轮真实边界，搜索修复已获用户授权本地提交6d5b3095，元仓证据随本轮归档，无推送。
   known_limitations:
     - 30节点实现和核心真实UI验收完成；AC-009及完整D4仍未完成
-    - 浅色1180×760完整本轮键盘/焦点/滚动检查通过；1440×900未达到，系统Fill实测1512×875不能替代目标，暗色矩阵待补验
+    - f608历史浅色1180×760键盘/焦点/滚动通过；本次77878acf全30节点/搜索及共用交互已复验，原稿恢复。1440×900及暗色仍未执行，1512×875不能替代目标
     - 暗色实测NOT RUN，用户明确要求保持系统外观并后续补齐
     - Ctrl+Z/Ctrl+Shift+Z已在原生App实测，Cmd+Z未作通过声明
     - 634为顶层表格字段行数，嵌套描述/示例保留但不重复计数；逐节点实测代表字段，不冒称634字段均人工填写
@@ -370,8 +429,53 @@ local_commit_baseline:
   evidence: evidence/local-commits/commit-baseline.json
   contracts_source_commit: db4458fe94572c4df41a114005d54a049bb79b1f
   consumer_pins: API_Coze_Desktop_fixed_to_source_commit
-  new_runtime_build: NOT RUN
-  new_runtime_activation: NOT RUN
-  runtime_candidate: historical_f608_retained
+  new_runtime_build: PASS
+  new_runtime_activation: PASS
+  runtime_candidate: committed_source_b90096c_see_19
   push: NOT RUN
   d4: NOT RUN
+
+committed_candidate_regression:
+  status: complete_targeted_regression_screenshot_gap_recorded
+  authorization: 用户明确要求执行已提交版本构建激活与定向回归五步方案
+  contract_impact: none
+  record: 19-committed-candidate-regression.md
+  evidence: evidence/committed-candidate-regression/candidate.json
+  manifest_sha256: b90096c02c9dd6b332344eafc1e817fa717db7f764e245bcc70c19df6ae7a06c
+  source_digest: 3b1e71a727d8179238bf85cdef1fca85da05fbd14f912b7597983bdf08f28d37
+  active_run_epoch: 84966cf7-bf7d-479d-a1e5-5abf81717be7
+  desktop_binary_sha256: fd52d1b413ac108fdf6482e573cabb2575b9446ede4438a29c07c259eba2488f
+  light_1180x760_targeted: PASS
+  ui_business_facts_unchanged: true
+  trial_audit_delta: 0
+  screenshots_exported: 0
+  screenshot_gap: evidence/committed-candidate-regression/screenshot-ledger.json
+  original_draft: restored_saved
+  light_1440x900: NOT RUN
+  dark: deferred_by_owner_NOT_RUN
+  ac009: pending
+  d4: NOT RUN
+
+d4_current_environment:
+  status: complete_current_environment_ac009_pending
+  record: 20-d4-current-environment.md
+  full_node_matrix: evidence/d4-current-environment/attempt2-node-matrix.json
+  shared_progress: evidence/d4-current-environment/attempt2-progress.json
+  first_attempt: FAIL_AC001_full_name_search
+  first_attempt_evidence: evidence/d4-current-environment/attempt1-result.json
+  fix: local_ecommerce_search_space_normalization
+  fixed_candidate_manifest: 77878acf3629b5555ab74483a8c4018da3f6d862425d80aaba40bd0562dcb308
+  fixed_candidate_source_digest: 39000526e47f09e2bbf0403a8a87d940733e1532e695efe5033dff6c5d211fad
+  fixed_candidate_epoch: 21c88100-ca6e-4ebb-a1c6-4d1a2ec37110
+  fixed_candidate_native_ui: full30_search_and_shared_checks_PASS
+  focused_checks: 45_pass
+  csp_checks: 3_pass
+  source_changes_uncommitted: false
+  source_local_commit: 6d5b309519c2c027fee4a37a107f15c56d554645
+  final_shared_results: evidence/d4-current-environment/attempt2-shared-results.json
+  final_persistence: evidence/d4-current-environment/final-persistence-comparison.json
+  original_draft: restored_saved
+  restored_window: 1180x780
+  light_1440x900: NOT RUN
+  dark: owner_deferred_NOT_RUN
+  d4: INCOMPLETE

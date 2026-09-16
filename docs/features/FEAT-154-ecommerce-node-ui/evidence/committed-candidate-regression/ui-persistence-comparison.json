@@ -1,0 +1,48 @@
+{
+  "recorded_at": "2026-09-16T18:13:05.473755+08:00",
+  "all_non_audit_facts_equal": {
+    "api": {
+      "schema_version": true,
+      "database": true,
+      "scope_bindings": true,
+      "resources": true,
+      "operations": true
+    },
+    "coze": {
+      "database": true,
+      "workflows": true,
+      "executions": true,
+      "operations": true,
+      "principals": true,
+      "schema_version": true,
+      "node_executions": true
+    }
+  },
+  "original_audit_rows_retained": true,
+  "audit_delta": 9,
+  "added_audit_categories": [
+    [
+      "bootstrap",
+      "success"
+    ],
+    [
+      "read",
+      "success"
+    ]
+  ],
+  "trial_comparison": "trial-comparison.json",
+  "explanation": "UI session initialization/reconnection are ordinary existing reads; no node API/operation/execution or persistent workflow change.",
+  "sources": [
+    "ui-before.json",
+    "ui-after.json"
+  ],
+  "restored_native_geometry": {
+    "app_pid": 36673,
+    "event": "window_geometry",
+    "inner_height": 780.0,
+    "inner_width": 1180.0,
+    "outer_height": 780.0,
+    "outer_width": 1180.0,
+    "scale_factor": 2.0
+  }
+}

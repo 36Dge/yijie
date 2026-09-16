@@ -1,0 +1,27 @@
+{
+  "recorded_at": "2026-09-16T18:49:58.676258+08:00",
+  "non_audit_facts_equal": {
+    "api": {
+      "schema_version": true,
+      "database": true,
+      "scope_bindings": true,
+      "resources": true,
+      "operations": true
+    },
+    "coze": {
+      "database": true,
+      "workflows": true,
+      "executions": true,
+      "operations": true,
+      "principals": true,
+      "schema_version": true,
+      "node_executions": true
+    }
+  },
+  "audit_delta": 12,
+  "sources": [
+    "before.json",
+    "before-search-fix-stop.json"
+  ],
+  "scope": "First D4 attempt before search fix: list/editor reads and two ordinary reconnects; no business data changes."
+}

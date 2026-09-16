@@ -1,0 +1,74 @@
+{
+  "recorded_at": "2026-09-16T19:31:37.735399+08:00",
+  "status": "completed_current_environment",
+  "candidate_manifest": "77878acf3629b5555ab74483a8c4018da3f6d862425d80aaba40bd0562dcb308",
+  "full30": "PASS per attempt2-node-matrix.json",
+  "search_fix": "Native exact full name Listing 综合诊断, no-space variant, SEO spaced name and lowercase Listing match; no-result query recovers and Escape closes.",
+  "shared_completed": {
+    "05_A": {
+      "candidate_id": "D4R2-05-A",
+      "multiline": "合成商品说明\n用于页面保留验收",
+      "min_cohort_size": 0,
+      "winsorize_lower": 0.1,
+      "max_imputed_weight": 0.15
+    },
+    "05_B": {
+      "name": "选品机会评估_1",
+      "initial_candidate_rows": 0,
+      "candidate_id": "D4R2-05-B",
+      "min_cohort_size": 20,
+      "winsorize_lower": 0.05,
+      "winsorize_upper": 0.95,
+      "max_imputed_weight": 0.2
+    },
+    "switching": "Returned to A and verified original candidate/multiline and changed numeric values retained.",
+    "ordinary_error": "1.2.3 retained with 请输入数字；当前填写内容仍保留。; corrected0.15 removed error. Tool pipe closed during initial action; actual state inspected before counting success.",
+    "tool_recovery": "App PID47333 remained alive; native connection rebound and later documented js_reset used. No App/service restart or process kill.",
+    "reference_target": "B candidate_products → A ranked_candidates; native AX confirmed."
+  },
+  "pending": [
+    "AC009 light1440x900 and dark matrix retained NOT RUN",
+    "Native screenshot local export gap recorded"
+  ],
+  "original_current": "Restored FEAT153 原生终验 0913 / 已保存 / original3+2edges /1180x780/nav expanded",
+  "non_audit_facts_equal": {
+    "api": {
+      "schema_version": true,
+      "database": true,
+      "scope_bindings": true,
+      "resources": true,
+      "operations": true
+    },
+    "coze": {
+      "database": true,
+      "workflows": true,
+      "executions": true,
+      "operations": true,
+      "principals": true,
+      "schema_version": true,
+      "node_executions": true
+    }
+  },
+  "normal_read_audit_delta": 38,
+  "data_sources": [
+    "unlocked-before.json",
+    "final-shared-after.json"
+  ],
+  "D4": "INCOMPLETE; AC009 constraints remain",
+  "updated_at": "2026-09-16T20:22:18.959179+08:00",
+  "reference_owner_confirmation": {
+    "mode_switch": "User reported 已成功切换; native AX observed Value: 引用页面字段 and output selector present",
+    "candidate_list": "Native AX lists B:候选排名,待确认候选,已排除候选, all list<object>",
+    "target_selection": "User replied 已经完成. Native AX actually observed B/选品机会评估_1 candidate_products referencing A/选品机会评估 ranked_candidates (list<object>), with 仅引用定义; actual direction recorded rather than assuming requested A→B."
+  },
+  "tool_recovery_extra": "Native Dock lookup timed out. Finder was used only to locate/open the already-running exact App; original Downloads folder and prior selected folder restored. No new binary or settings change.",
+  "last_ui_state": "Final native screenshot observed original draft with no modal; candidate App/services remain running.",
+  "audit_action_counts": {
+    "list": 1,
+    "read": 12,
+    "bootstrap": 24,
+    "history": 1
+  },
+  "final_result": "attempt2-shared-results.json",
+  "source_local_commit": "6d5b309519c2c027fee4a37a107f15c56d554645"
+}

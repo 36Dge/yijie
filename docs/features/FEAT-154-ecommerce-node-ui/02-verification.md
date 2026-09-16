@@ -135,3 +135,17 @@ product_ux=PASS，design_checkpoint已确认；feature仍draft表示尚未进入
 用户授权并在中断后要求继续执行。FEAT-153主题、Contracts权威源、API/Coze/Desktop消费者与实现、Infra已分别提交；元仓需求及证据由包含本文的M1提交记录。完整SHA和检查见[18](18-local-commit-baseline.md)。三份consumer lock增加实际Contracts源提交；Coze暂存检查另修正一个末尾LF，无业务行为改变。
 
 本轮通过Contracts16项、Coze43项及既有CSP3项、Desktop23项、恢复9项及生命周期13项检查，相关lint/源与消费者一致性通过。元仓检查及来源资料原文whitespace登记见[evidence/local-commits/meta-final-checks.json](evidence/local-commits/meta-final-checks.json)。未重建/激活产品；历史R2及AC-009的App资格不移植到新源码提交。AC-009 pending、D4 NOT RUN、暗色延期和显示设置拒绝均保持。
+
+## 15. 已提交候选构建激活与定向回归（2026-09-16）
+
+本轮正常停止旧环境后，已从18记录的提交完成Coze标准构建、三消费者锁检查、Infra登记/build/up和Desktop canonical packaged启动。新manifest/epoch见[19](19-committed-candidate-regression.md)。当前浅色1180×760的30目录、05/15代表表单、独立实例、画布焦点撤销、自然重连、试运行提示、取消离开及恢复原稿均通过；不冒称全部30表单、634字段或完整D4重新验证。
+
+试运行前后全部私有事实相等、审计增量0；UI整轮业务事实不变，正常重连增加9条bootstrap/read审计。原三节点与名称已恢复“已保存”，导航展开及1180×780恢复。真实截图在原生工具中显示但未能导出本地文件，0张导出及具体尝试已登记。1440×900与暗色继续NOT RUN，AC-009 pending、D4 NOT RUN保持。全部新证据位于evidence/committed-candidate-regression，最终检查见该目录final-checks.json。
+
+## D4首轮缺陷与修复后复验状态（2026-09-16）
+
+用户追加要求继续D4。19五步收口后开启新序列，01–08代表字段检查通过，09完整名称搜索复现失败；本地匹配空格处理已修复，45聚焦检查/3 CSP检查、标准构建登记及新App启动通过。当前manifest为77878acf…，含4个未提交Coze修复/测试/审阅文件。新候选UI复验因Mac锁定暂停，已请求手动解锁；当前不能声明搜索修复已通过真实UI或D4通过。具体边界、证据和恢复点见[20](20-d4-current-environment.md)。
+
+## 2026-09-16 · 当前环境共用复验与提交收口
+
+上节锁屏暂停属于历史；用户解锁并继续授权剩余工作后，同一77878acf候选的30节点、搜索、双实例、普通格式错误、删除取消、引用失效/撤销/重做、历史、试运行无调用、可选布尔/键盘、发布模式、离开取消和恢复原稿完成。原名称及三节点两连线回到“已保存”，窗口1180×780恢复。全轮非审计事实相等，试运行窄窗口全部事实/审计相等。Coze修复已提交6d5b309519c2c027fee4a37a107f15c56d554645；元仓证据随本节归档，无推送。1440×900与暗色继续NOT RUN，截图本地导出0张，AC-009 pending、完整D4未通过。具体结果和工具限制见[20](20-d4-current-environment.md)。

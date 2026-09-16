@@ -1,0 +1,268 @@
+{
+  "recorded_at": "2026-09-16T19:42:54.750126+08:00",
+  "phase": "ready",
+  "run_epoch": "21c88100-ca6e-4ebb-a1c6-4d1a2ec37110",
+  "editor": {
+    "schema_version": 1,
+    "bundle_dir": "${WORKSPACE}/yijie-coze/bin/workflow-editor/dist",
+    "manifest_sha256": "77878acf3629b5555ab74483a8c4018da3f6d862425d80aaba40bd0562dcb308",
+    "source_commit": "144e4c259a5460fed57fc280f2439cbbf9a18539",
+    "manifest_source_digest": "39000526e47f09e2bbf0403a8a87d940733e1532e695efe5033dff6c5d211fad",
+    "coze_candidate": "39000526e47f09e2bbf0403a8a87d940733e1532e695efe5033dff6c5d211fad",
+    "contracts_source_lock_sha256": "42bd8a32df97d2c3354593dc431bb2f7dd65ef7236061ff85d9dbd55471f0eb9",
+    "consumer_lock_sha256": {
+      "api": "0d710bc4cb69394f83e8e9bd0f7ce7ba7e95ba94cfc127f57a10e09fe8540c24",
+      "coze": "57db2720c94487255b860a77178a07eed7cd9fd8b7ffc64029edaa3a11ce7746",
+      "desktop": "9124556f7dfc6c6bfb4e127b2160140555334ef855a8ceb936f26c131b3c3591"
+    },
+    "deployment_schema_sha256": "d3016433e02f492493df3cdcbaacfe054e0de27afd5c61a115b4555f4b586aae",
+    "file_count": 385,
+    "total_asset_bytes": 45568421,
+    "entry": {
+      "path": "index.html",
+      "sha256": "7f33d6935413d3a472f6b4acc76db4dc922293487611a9cdef7f6256d6d4f18c",
+      "bytes": 617,
+      "content_type": "text/html; charset=utf-8"
+    }
+  },
+  "built": {
+    "api": {
+      "image_id": "sha256:7db578ad7279527d12e2282b1e2a3d765a2c766b43416726359fe75a689fe9b6",
+      "source_digest": "5b7c961e58af551f2f3f6d947e27272c7a77da6c812d69bc95528906622fd63e",
+      "repository": "yijie-api",
+      "local_tag": "yijie-local/feat153-api:5b7c961e58af551f",
+      "go_image": "golang:1.26.5-bookworm@sha256:53eeac89074db483fdf0ab3be1df32bf6e47562263d2d0d6baa7f26acb4957dd"
+    },
+    "api-test": {
+      "image_id": "sha256:ce0b2b3df60c753f08c7895566d2c8c837a1b134a005c5a809a6342dbcc7c233",
+      "source_digest": "5b7c961e58af551f2f3f6d947e27272c7a77da6c812d69bc95528906622fd63e",
+      "repository": "yijie-api",
+      "local_tag": "yijie-local/feat153-api-test:5b7c961e58af551f",
+      "go_image": "golang:1.26.5-bookworm@sha256:53eeac89074db483fdf0ab3be1df32bf6e47562263d2d0d6baa7f26acb4957dd"
+    },
+    "coze": {
+      "image_id": "sha256:c91db2b6a531c3f6e69b2aefeaf4cbb8de1cd7b3e3efeacf66236172f9e6b6db",
+      "source_digest": "39000526e47f09e2bbf0403a8a87d940733e1532e695efe5033dff6c5d211fad",
+      "repository": "yijie-coze",
+      "local_tag": "yijie-local/feat153-coze:39000526e47f09e2",
+      "go_image": "golang:1.26.5-bookworm@sha256:53eeac89074db483fdf0ab3be1df32bf6e47562263d2d0d6baa7f26acb4957dd"
+    }
+  },
+  "main_services": {
+    "workflow-postgres": {
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T10:44:14.347510254Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy",
+      "image_id": "sha256:4e6e670bb069649261c9c18031f0aded7bb249a5b6664ddec29c013a89310d50",
+      "container_id": "5185f4f729e8eb5100c54cf6813a37da4aa80b999d125095cbd196ddd9623110"
+    },
+    "coze-workflow-mysql": {
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T10:44:14.367999463Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy",
+      "image_id": "sha256:679e7e924f38a3cbb62a3d7df32924b83f7321a602d3f9f967c01b3df18495d6",
+      "container_id": "680b799a129b5ae947387fa4bcd00fba17ce81c2c2605ec43b788b1860c012a9"
+    },
+    "coze-workflow-redis": {
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T10:44:14.367612504Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy",
+      "image_id": "sha256:25c0ae32c6c2301798579f5944af53729766a18eff5660bbef196fc2e6214a9c",
+      "container_id": "3abf492cee40011a80eccfeb985c3b01d2b401a292891f1513350a646b12f9c2"
+    },
+    "coze-workflow-minio": {
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T10:44:14.368502504Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy",
+      "image_id": "sha256:064117214caceaa8d8a90ef7caa58f2b2aeb316b5156afe9ee8da5b4d83e12c8",
+      "container_id": "9f15c430163e2ea8d7223207ff69d13ec916b755af456aecfad804b8db4d377f"
+    },
+    "coze-workflow": {
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T10:44:20.774833382Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy",
+      "image_id": "sha256:c91db2b6a531c3f6e69b2aefeaf4cbb8de1cd7b3e3efeacf66236172f9e6b6db",
+      "container_id": "194b589928fb88a024cd6931767853cbfe66f0e478d2726adf2357876df6eda7"
+    },
+    "workflow-api": {
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T10:44:24.545162592Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy",
+      "image_id": "sha256:7db578ad7279527d12e2282b1e2a3d765a2c766b43416726359fe75a689fe9b6",
+      "container_id": "d0bee9268df025dfae5168bcc1e0abcff3ad7ecac1d28787a608d45c93e46745"
+    }
+  },
+  "private_review": {
+    "api": {
+      "operations": 130,
+      "resources": 21,
+      "known_storage_qualification_unknown": [
+        "374fae06-429a-452c-a626-9fc3799e086d",
+        "e4ef3b28-77d1-4dec-aa40-b6be83d59517"
+      ]
+    },
+    "coze": {
+      "executions": 36,
+      "nodes": 108,
+      "operations": 117,
+      "active_run_id_retained": "7685083794788843520",
+      "workflows": [
+        {
+          "id": "7684523782928596992",
+          "revision": "7684523784379826176",
+          "name_sha256": "d3f7383221081039dcdde0bca3994c45ef159d383609cdc535706bb5ff0afc25",
+          "canvas_sha256": "ec6a9b0ce657fd41531c330c456134161bf3882a5219d6e09ab645e444868bde",
+          "published_version": "v0.0.3"
+        },
+        {
+          "id": "7684523869528391680",
+          "revision": "7684523869620666368",
+          "name_sha256": "a1ae0afb25088a42b9afb85ce7563e1ad11f1c5031220c929e22be08f5242f7d",
+          "canvas_sha256": "387b86c4b1473d8c555bf21bdc925794ffe2fd5dd7b6ea644dc444ca98e3d375",
+          "published_version": ""
+        },
+        {
+          "id": "7684526620584968192",
+          "revision": "7684526621897785344",
+          "name_sha256": "edfeac0d75b7a11a76e653f42fdcb915d896e4060fe2a026d0448e16ab65a2a9",
+          "canvas_sha256": "ec6a9b0ce657fd41531c330c456134161bf3882a5219d6e09ab645e444868bde",
+          "published_version": "v0.0.3"
+        },
+        {
+          "id": "7684526837740863488",
+          "revision": "7684526837795389440",
+          "name_sha256": "d8cbabb655ff52b2c4e06414ded967cb4393a21fcae4049780ce431b7207e12e",
+          "canvas_sha256": "387b86c4b1473d8c555bf21bdc925794ffe2fd5dd7b6ea644dc444ca98e3d375",
+          "published_version": ""
+        },
+        {
+          "id": "7684562335599427584",
+          "revision": "7684562335603621888",
+          "name_sha256": "f2191f350db50b13bc94858433d471761e2a1438f44606dd4ad051224b77f3a6",
+          "canvas_sha256": "387b86c4b1473d8c555bf21bdc925794ffe2fd5dd7b6ea644dc444ca98e3d375",
+          "published_version": ""
+        },
+        {
+          "id": "7684595660317786112",
+          "revision": "7684601577516040192",
+          "name_sha256": "ae8b05fc1252cde80fa66436153743713bdf1511dfb87185875f71c80d9630c1",
+          "canvas_sha256": "2d2236353cdb83e3b0663d254fc1f9eccbc7462948ee0c9b495dd56489947f0c",
+          "published_version": ""
+        },
+        {
+          "id": "7684605114128007168",
+          "revision": "7684605840325607424",
+          "name_sha256": "ec6064affb825379b5c7bbd046508c193afe13b458b45af7394945f5924a11ca",
+          "canvas_sha256": "816b358192a921523e9ac4e8d821890914f5e2fc745bd0d12104f5a64658c93c",
+          "published_version": ""
+        },
+        {
+          "id": "7684681543721156608",
+          "revision": "7684683724541132800",
+          "name_sha256": "4664a95cc698afdcf766485e4e4774ba83c6d828c54473a7ce3c6e28ae2a77b0",
+          "canvas_sha256": "8fc0a4d26b308f3284d21eacd0f3553d9ca33b503ae3d75eccfe22c0989944e2",
+          "published_version": "v0.0.2"
+        },
+        {
+          "id": "7684687185122951168",
+          "revision": "7684692064230965248",
+          "name_sha256": "6437f4a74b785c5285db22a63bcb099811efa16bd8736fb3f8ae4e087f2815a9",
+          "canvas_sha256": "f2cb8a72f5daf3161791ca1dbb37be67c4a0afd24ff63edff5881cf8b4eaf866",
+          "published_version": "v0.0.2"
+        },
+        {
+          "id": "7684858221588119552",
+          "revision": "7684861162336288768",
+          "name_sha256": "3f7de0dff14f45b2c2228e650880571a15d6e6e3fd291e6c9595187021a98269",
+          "canvas_sha256": "247f9dd1fd2288c736d51505785d51b36593a196824723aa1c48e44419d2703c",
+          "published_version": "v0.0.2"
+        },
+        {
+          "id": "7684864630077784064",
+          "revision": "7684866728114782208",
+          "name_sha256": "b07bbed8d851b2f6dbf6db566537d68d7feb99d29f13b6157622879784c87e4c",
+          "canvas_sha256": "719043d0c5c5ba210d1147c5b2977bb221df5ad1da92c31f115b7c8b81daa522",
+          "published_version": "v0.0.2"
+        },
+        {
+          "id": "7684868190886690816",
+          "revision": "7684870673625251840",
+          "name_sha256": "7484d215758e29102f58c71433724c66b0781b4a41341fe65cbe0e1e77356c10",
+          "canvas_sha256": "77f1fc4d60fb0fa324dc53534373583591d3f5c5c463bdc49798e07ffa10d003",
+          "published_version": "v0.0.2"
+        },
+        {
+          "id": "7684934079279529984",
+          "revision": "7684934733314129920",
+          "name_sha256": "2e99c2a375b73d331ed71e9cfadf1f168820460ae239dedc190b8b49413cb4ee",
+          "canvas_sha256": "dea8f5391e50f21a83ebd1b71db3da0e08d0b87cf781315c2e843970c6510394",
+          "published_version": "v0.0.1"
+        },
+        {
+          "id": "7684938170672087040",
+          "revision": "7684938243699113984",
+          "name_sha256": "e66725e9765f23d3dc1d8e851720c1ea549a0cd54873cfb7e8e9211ce8049905",
+          "canvas_sha256": "a07f1d7d1093473405061021cb0839ea90b332b1707530d4d17c66adf66c36a4",
+          "published_version": "v0.0.1"
+        },
+        {
+          "id": "7684953519702409216",
+          "revision": "7684953618658623488",
+          "name_sha256": "b31c93a737ddac8555da7ab4655c7fd828b4f40a1cdf811888a5952f275cd0b4",
+          "canvas_sha256": "0ede2167160887057f4f1d182e622d5d4b289049753d0a8109a820d77e0e83f7",
+          "published_version": ""
+        },
+        {
+          "id": "7685009958215090176",
+          "revision": "7685025666160394240",
+          "name_sha256": "5d32fa86802626d87fa0252b677ddcaa69da9d2a1fef29c5289b133fef0d8e49",
+          "canvas_sha256": "db1d6a4d08514e59b84defc087cbd71667e4b32433e0670cdc15789188ad5cd4",
+          "published_version": "v0.0.1"
+        },
+        {
+          "id": "7685031373442121728",
+          "revision": "7685440890323599360",
+          "name_sha256": "ebfe39001e998c850bdb15d081a37ca076cab13db86724e89665f783c5fad988",
+          "canvas_sha256": "e5f7a12907c9202d4ea7c4b96c738e8c1e7404197ab6df87d3217017554d7ae3",
+          "published_version": "v0.0.1"
+        }
+      ]
+    }
+  }
+}

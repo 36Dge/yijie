@@ -1,0 +1,36 @@
+{
+  "recorded_at": "2026-09-16T20:22:18.959179+08:00",
+  "status": "PASS",
+  "scope": "Entire fixed-candidate UI run, unlocked-before to final-shared-after",
+  "all_non_audit_facts_equal": {
+    "api": {
+      "schema_version": true,
+      "database": true,
+      "scope_bindings": true,
+      "resources": true,
+      "operations": true
+    },
+    "coze": {
+      "database": true,
+      "workflows": true,
+      "executions": true,
+      "operations": true,
+      "principals": true,
+      "schema_version": true,
+      "node_executions": true
+    }
+  },
+  "audit_delta": 38,
+  "audit_action_counts": {
+    "list": 1,
+    "read": 12,
+    "bootstrap": 24,
+    "history": 1
+  },
+  "audit_outcomes": {
+    "success": 38
+  },
+  "business_write_or_execution_delta": 0,
+  "trial_window": "final-trial-comparison.json",
+  "original_draft": "Private workflow facts unchanged; native original name/three nodes/two edges and 已保存 verified; no Save/Publish clicked."
+}

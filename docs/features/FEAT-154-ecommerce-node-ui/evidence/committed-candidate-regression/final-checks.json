@@ -1,0 +1,150 @@
+{
+  "recorded_at": "2026-09-16T18:24:37.044501+08:00",
+  "status": "PASS",
+  "scope": "Committed-source build/activation/targeted regression closure; not D4 qualification",
+  "checks": {
+    "seven_source_heads_branches_origins": "PASS",
+    "six_source_worktrees_clean": "PASS",
+    "protected_theme_files": {
+      "status": "PASS",
+      "count": 15
+    },
+    "four_original_documents_and_snapshots": "PASS",
+    "editor_manifest_and_desktop_binary": "PASS",
+    "app_pid_present": 36673,
+    "three_consumer_pins_and_consumed_files": {
+      "status": "PASS",
+      "count": 19
+    },
+    "command_receipts": {
+      "normal-stop": 0,
+      "meta-shell": 0,
+      "meta-strict": 0,
+      "editor-csp-check": 0,
+      "service-build": 0,
+      "editor-register": 0,
+      "meta-lint": 0,
+      "meta-tests": 0,
+      "meta-claims": 0,
+      "service-up": 0,
+      "editor-build": 0
+    },
+    "meta_tests": {
+      "pass": 50,
+      "fail": 0
+    },
+    "tracked_diff_whitespace": "PASS",
+    "changed_markdown_links": {
+      "status": "PASS",
+      "count": 125
+    },
+    "evidence_json_nonignored_and_selected_secret_patterns": "PASS",
+    "development_path_redactions": {
+      "services-ready-runtime.json": 1,
+      "ui-before-runtime.json": 1,
+      "candidate.json": 1,
+      "pre-stop-runtime.json": 1,
+      "trial-before-runtime.json": 1,
+      "trial-after-runtime.json": 1,
+      "ui-after-runtime.json": 1
+    },
+    "evidence_sha256": {
+      "ui-observations.json": "ac6655a47d4ab51425432a062d78886a54b412a2379112012f87ae31bb532c6a",
+      "services-ready-runtime.json": "939e4dc83b174e8c7774e099ba9eb697dd0210049578d0a88ae4a4b4efb26feb",
+      "normal-stop.json": "03c4711624ec255a8fa254fb94cc194d257b125cb6cdb49355cd0a85a461f9dc",
+      "meta-shell.json": "c892af02c0a33819b7d981b950b9bf5cd05dea661a2580dfe171807a6b5dc07c",
+      "services-ready.json": "6a6171545415f5b2036e63751918d3fc6d46bd8d7e8d198c23f352a832b76dbd",
+      "trial-comparison.json": "b4f6a8362ba370be9ab19fc311ed1f9a387a8f0ca68c2d6c2088899e5ebd5ba8",
+      "editor-build.txt": "e004b5b8a654c2eddd5ade2dc2c86a711c080b362cf48bf61c419513ee85443b",
+      "meta-strict.json": "08d772fcda8de42f986381ae859f5e34075dc64bf1cad46d2b6d256e900a8af8",
+      "editor-csp-check.json": "461c573856572ad8186c7dbe7fad1f41a36f5704af78fcaff314898a89d3e618",
+      "trial-after.json": "5b8f13d96f84e95b4ff43f6915ebea56de2979ccbb68022b3ca932d4d53dff65",
+      "ui-before-runtime.json": "0f6eb58468a3aff942da03cb25727ce7c195b7a5312c072470df2a38897975e7",
+      "service-build.json": "5259b11b51033ddbda37d54fc1406de2df2859e17df9d3d70d03c17d62844795",
+      "candidate.json": "52f395bc0c409b54a8e3c263f2d3b098a9faefdd278a03a793c6db2cf3c447c7",
+      "meta-strict.txt": "b9f9c63fc02c70944a6be36145b71f7aa06a1244687cccee2b992b1282376bf8",
+      "startup-persistence-comparison.json": "2c7d65f4793adcdfee9c76b3be065e1bb101a2b0422b7487d632b0f3287b93c4",
+      "desktop-log-snapshot.json": "849da382c7fa9d3c0577a1b0becc672b138a87a370a7e8827310a4bf8f2e3ea1",
+      "desktop-launch.txt": "2be44a1a7d2621f175859cdb1c111d1a7bae03d4f14737ba4c64db092c7e3fe3",
+      "desktop-activation.json": "23cb09a007b43952dacfd15653884f50fd467a250d3600a3689c5818cd2dd99a",
+      "service-up.txt": "0f6076dbe8fa8ddc07625b44a4b50541e7acfe57e53c34d21fb68db15d2c4eb7",
+      "meta-claims.txt": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4",
+      "screenshot-ledger.json": "56d4b687d9df0472780d942b901bf7fafa4c132d1801c192f82d4123d8dfa22c",
+      "editor-csp-check.txt": "699332de142f963a8b443cb2c6ec41e13f1fd2d20d461f8d217a365a29f32e48",
+      "editor-register.json": "3b6b6a7a46f49c22a7fd6962abde83372cb18130de186833e1e20fca42782366",
+      "pre-stop-runtime.json": "638b5bbcfcdee0c49d56107871aa86cbd5f136701088ea4a4cddc9beba4421ff",
+      "meta-lint.json": "3b75b314a14a5a5a732aa728e41044ca6445018704948544f235cf98ad6e2fcd",
+      "ui-before.json": "5b303cb824557f2509ac121f3ff9f9f45c0b30f8f9a0e20909d5305ed1866612",
+      "ui-persistence-comparison.json": "514339a464bf057cae98b66638d99220793ab087e153a296c6dfe4a91ab825f2",
+      "trial-before-runtime.json": "d9317e313a2bc0e4365ec634bf888ed1b6bfd5292c1ad30a94e26385322e62df",
+      "meta-tests.json": "a16cf39acc938bfbd5062f0c548bc57d57aeb3126d315509227267e0a6f289ea",
+      "meta-shell.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "normal-stop.txt": "1c6441b53af92a1c082d00968d8d8a54f89e8be252452e788f35d0049a03c07c",
+      "meta-lint.txt": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c",
+      "ui-after.json": "9a60094c936a6d56ef8853e45c1e345a2d1d6624488151366bc33ef0d8a1d668",
+      "trial-before.json": "eaa8e6f3735bb3f62bc2abfbbf064f10ab073fb1be054f3f7157a7e9338168c2",
+      "meta-claims.json": "8c316121f0ab58b26dc07bc249bbfcf3618d54f440712bce96aeeeebbfcc7028",
+      "pre-stop.json": "8c9ebe143f494e8728ed4cc14759250c52d371484bada9208ed0d73b5868bcda",
+      "editor-register.txt": "7f9646e3a4101ac9c4acb048dbc5a62901a05cf11fec333e67f17cae38f9694c",
+      "trial-after-runtime.json": "3ea5ba17028d7abef7436120cb88fd7700f9ad8db475d28aac87e1e80799237d",
+      "meta-tests.txt": "cf010b2a548b6382ccf48d5226304d5031bf8e3e11eac89a0784b0232ef336de",
+      "ui-after-runtime.json": "940a44cf2de2c66da87d0a6de0fffdf39142c1b16a03456e478f86113146236e",
+      "workspace-before.json": "873fe6e5f721de036e8058dc88b1cffc618a150e3c8e6d5c08cf3cee9f51ec8d",
+      "service-build.txt": "fd33926900e7a960d7b304347a3627a8d129679dcf7728f051595ca512e6785d",
+      "service-up.json": "491137e90c8c26a7a40fa36fdc6fd7791277f85ea7f3b77fc635492c011a072e",
+      "editor-build.json": "36eb882d9e1520dd75c3c38208ad544743ded0c917010147d79457995b50f41e",
+      "normal-stop-observation.json": "3cd1b1a1091f6a448ddb6f82a8244b4fa361b2d7c93a9c1e70c395807e5f5575"
+    }
+  },
+  "repositories_after": {
+    "yijie-contracts": {
+      "head": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-contracts.git",
+      "status": ""
+    },
+    "yijie-api": {
+      "head": "041f40c69919e81ec72ccee4ea6dbb3ea012142d",
+      "branch": "feat/feat-126-foundation-closure",
+      "origin": "https://github.com/36Dge/yijie-api.git",
+      "status": ""
+    },
+    "yijie-coze": {
+      "head": "144e4c259a5460fed57fc280f2439cbbf9a18539",
+      "branch": "main",
+      "origin": "https://github.com/36Dge/yijie-coze.git",
+      "status": ""
+    },
+    "yijie-desktop": {
+      "head": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-desktop.git",
+      "status": ""
+    },
+    "yijie-infra": {
+      "head": "66b481552eb76d46b00875ac27794ed8e1eb504a",
+      "branch": "feat/feat-126-s10e",
+      "origin": "https://github.com/36Dge/yijie-infra.git",
+      "status": ""
+    },
+    "yijie": {
+      "head": "9c1da175ea997f41667aa6cc6539a6a60804f553",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie.git",
+      "status": "M docs/features/FEAT-154-ecommerce-node-ui/00-feature-brief.md\n M docs/features/FEAT-154-ecommerce-node-ui/01-delivery-log.md\n M docs/features/FEAT-154-ecommerce-node-ui/02-verification.md\n M docs/features/FEAT-154-ecommerce-node-ui/16-delivery-status-and-evidence.md\n M docs/features/FEAT-154-ecommerce-node-ui/18-local-commit-baseline.md\n M docs/features/FEAT-154-ecommerce-node-ui/feature.yaml\n?? docs/features/FEAT-154-ecommerce-node-ui/19-committed-candidate-regression.md\n?? docs/features/FEAT-154-ecommerce-node-ui/evidence/committed-candidate-regression/"
+    },
+    "yijie-agent-host": {
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-agent-host.git",
+      "status": ""
+    }
+  },
+  "source_changes": false,
+  "new_git_commit_or_push": false,
+  "screenshot_exported_files": 0,
+  "screenshot_status": "NOT_EXPORTED; explicit ledger",
+  "ac009": "pending",
+  "d4_at_this_round_closure": "NOT RUN; user subsequently authorized a separate fresh D4 attempt",
+  "next_work": "Continue same candidate into D4 according to new user instruction; previous system-display and appearance restrictions remain."
+}

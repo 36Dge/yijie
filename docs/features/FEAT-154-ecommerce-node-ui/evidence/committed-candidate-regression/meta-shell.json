@@ -1,0 +1,12 @@
+{
+  "started_at": "2026-09-16T18:22:45.254808+08:00",
+  "finished_at": "2026-09-16T18:22:45.273995+08:00",
+  "repository": "yijie",
+  "command": [
+    "bash",
+    "-c",
+    "for script in scripts/*.sh; do bash -n \"$script\" || exit; done"
+  ],
+  "exit_code": 0,
+  "output": "meta-shell.txt"
+}

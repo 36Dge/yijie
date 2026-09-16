@@ -1,0 +1,26 @@
+{
+  "recorded_at": "2026-09-16T18:18:02.284483+08:00",
+  "status": "NOT_EXPORTED",
+  "exported_real_app_image_files": 0,
+  "native_tool_images_observed": [
+    "New editor initial layout",
+    "Search 选品 with visible keyboard focus",
+    "Natural expiration retaining05-A",
+    "15 long form and readonly outputs",
+    "Expiration after undo retaining05-B",
+    "Restored original at1180x760"
+  ],
+  "attempts": [
+    {
+      "method": "Native UI Cmd+Shift+4, Space, window click",
+      "result": "No new Desktop PNG. Space activated the focused first catalog item instead; the temporary01 UI instance was later discarded during original restoration."
+    },
+    {
+      "method": "cua.getApp for the existing system Screenshot.app",
+      "result": "Native tool timed out; no exported image path was returned and no new Desktop PNG appeared. No screenshot preferences or system display settings changed."
+    }
+  ],
+  "availability": "Current documented native tools returned inline images without a local image path. No filesystem or unsupported screenshot API was used to bypass the UI interface.",
+  "impact": "Stored observations, native geometry, source/build and data-comparison records are reviewable. Historic visual appearance cannot be independently rechecked from this repository alone. No static preview or fabricated path substitutes for a real screenshot.",
+  "prior_gap": "Earlier D0/R2/AC009 screenshot classification remains unchanged; this round does not claim to export historic images."
+}

@@ -1,0 +1,107 @@
+{
+  "recorded_at": "2026-09-16T18:46:23.878140+08:00",
+  "status": "built_activated_waiting_for_native_ui_retest",
+  "source_scope": "Previously committed baseline plus four uncommitted Coze UI-search/test/review files; no new Git commit or push",
+  "repositories": {
+    "yijie": {
+      "head": "9c1da175ea997f41667aa6cc6539a6a60804f553",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie.git",
+      "status": "M docs/features/FEAT-154-ecommerce-node-ui/00-feature-brief.md\n M docs/features/FEAT-154-ecommerce-node-ui/01-delivery-log.md\n M docs/features/FEAT-154-ecommerce-node-ui/02-verification.md\n M docs/features/FEAT-154-ecommerce-node-ui/16-delivery-status-and-evidence.md\n M docs/features/FEAT-154-ecommerce-node-ui/18-local-commit-baseline.md\n M docs/features/FEAT-154-ecommerce-node-ui/feature.yaml\n?? docs/features/FEAT-154-ecommerce-node-ui/19-committed-candidate-regression.md\n?? docs/features/FEAT-154-ecommerce-node-ui/evidence/committed-candidate-regression/\n?? docs/features/FEAT-154-ecommerce-node-ui/evidence/d4-current-environment/"
+    },
+    "yijie-contracts": {
+      "head": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-contracts.git",
+      "status": ""
+    },
+    "yijie-api": {
+      "head": "041f40c69919e81ec72ccee4ea6dbb3ea012142d",
+      "branch": "feat/feat-126-foundation-closure",
+      "origin": "https://github.com/36Dge/yijie-api.git",
+      "status": ""
+    },
+    "yijie-coze": {
+      "head": "144e4c259a5460fed57fc280f2439cbbf9a18539",
+      "branch": "main",
+      "origin": "https://github.com/36Dge/yijie-coze.git",
+      "status": "M frontend/packages/workflow/playground/src/components/node-panel/hooks/use-search-node.ts\n M scripts/yijie/workflow-editor-csp-reviewed.json\n?? frontend/packages/workflow/playground/src/local-ecommerce/search.test.mjs\n?? frontend/packages/workflow/playground/src/local-ecommerce/search.ts"
+    },
+    "yijie-desktop": {
+      "head": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-desktop.git",
+      "status": ""
+    },
+    "yijie-infra": {
+      "head": "66b481552eb76d46b00875ac27794ed8e1eb504a",
+      "branch": "feat/feat-126-s10e",
+      "origin": "https://github.com/36Dge/yijie-infra.git",
+      "status": ""
+    },
+    "yijie-agent-host": {
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-agent-host.git",
+      "status": ""
+    }
+  },
+  "editor": {
+    "schema_version": 1,
+    "bundle_dir": "${WORKSPACE}/yijie-coze/bin/workflow-editor/dist",
+    "manifest_sha256": "77878acf3629b5555ab74483a8c4018da3f6d862425d80aaba40bd0562dcb308",
+    "source_commit": "144e4c259a5460fed57fc280f2439cbbf9a18539",
+    "manifest_source_digest": "39000526e47f09e2bbf0403a8a87d940733e1532e695efe5033dff6c5d211fad",
+    "coze_candidate": "39000526e47f09e2bbf0403a8a87d940733e1532e695efe5033dff6c5d211fad",
+    "contracts_source_lock_sha256": "42bd8a32df97d2c3354593dc431bb2f7dd65ef7236061ff85d9dbd55471f0eb9",
+    "consumer_lock_sha256": {
+      "api": "0d710bc4cb69394f83e8e9bd0f7ce7ba7e95ba94cfc127f57a10e09fe8540c24",
+      "coze": "57db2720c94487255b860a77178a07eed7cd9fd8b7ffc64029edaa3a11ce7746",
+      "desktop": "9124556f7dfc6c6bfb4e127b2160140555334ef855a8ceb936f26c131b3c3591"
+    },
+    "deployment_schema_sha256": "d3016433e02f492493df3cdcbaacfe054e0de27afd5c61a115b4555f4b586aae",
+    "file_count": 385,
+    "total_asset_bytes": 45568421,
+    "entry": {
+      "path": "index.html",
+      "sha256": "7f33d6935413d3a472f6b4acc76db4dc922293487611a9cdef7f6256d6d4f18c",
+      "bytes": 617,
+      "content_type": "text/html; charset=utf-8"
+    }
+  },
+  "built_services": {
+    "api": {
+      "image_id": "sha256:7db578ad7279527d12e2282b1e2a3d765a2c766b43416726359fe75a689fe9b6",
+      "source_digest": "5b7c961e58af551f2f3f6d947e27272c7a77da6c812d69bc95528906622fd63e",
+      "repository": "yijie-api",
+      "local_tag": "yijie-local/feat153-api:5b7c961e58af551f",
+      "go_image": "golang:1.26.5-bookworm@sha256:53eeac89074db483fdf0ab3be1df32bf6e47562263d2d0d6baa7f26acb4957dd"
+    },
+    "api-test": {
+      "image_id": "sha256:ce0b2b3df60c753f08c7895566d2c8c837a1b134a005c5a809a6342dbcc7c233",
+      "source_digest": "5b7c961e58af551f2f3f6d947e27272c7a77da6c812d69bc95528906622fd63e",
+      "repository": "yijie-api",
+      "local_tag": "yijie-local/feat153-api-test:5b7c961e58af551f",
+      "go_image": "golang:1.26.5-bookworm@sha256:53eeac89074db483fdf0ab3be1df32bf6e47562263d2d0d6baa7f26acb4957dd"
+    },
+    "coze": {
+      "image_id": "sha256:c91db2b6a531c3f6e69b2aefeaf4cbb8de1cd7b3e3efeacf66236172f9e6b6db",
+      "source_digest": "39000526e47f09e2bbf0403a8a87d940733e1532e695efe5033dff6c5d211fad",
+      "repository": "yijie-coze",
+      "local_tag": "yijie-local/feat153-coze:39000526e47f09e2",
+      "go_image": "golang:1.26.5-bookworm@sha256:53eeac89074db483fdf0ab3be1df32bf6e47562263d2d0d6baa7f26acb4957dd"
+    }
+  },
+  "run_epoch": "21c88100-ca6e-4ebb-a1c6-4d1a2ec37110",
+  "desktop_binary_sha256": "9130eb7be07f4a4ffb0e54e5511b052c1557fa92406ed70ea7d36f555526a742",
+  "app_pid": 47333,
+  "launcher_session": 39209,
+  "desktop_build_log": "search-fix-desktop-launch-snapshot.txt",
+  "ui_status": "NOT RUN on fixed candidate: CUA explicitly reported Mac locked and unable to automatically unlock; manual unlock requested",
+  "prior_attempt": "attempt1-result.json",
+  "field_source_check": "source-field-check.txt",
+  "focused_tests": "search-fix-focused.txt",
+  "csp_tests": "search-fix-csp-tests.txt",
+  "d4": "INCOMPLETE",
+  "ac009": "pending; prior display/appearance restrictions remain"
+}

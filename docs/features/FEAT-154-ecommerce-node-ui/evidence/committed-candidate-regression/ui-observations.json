@@ -1,0 +1,78 @@
+{
+  "recorded_at": "2026-09-16T18:18:02.284289+08:00",
+  "candidate_manifest_sha256": "b90096c02c9dd6b332344eafc1e817fa717db7f764e245bcc70c19df6ae7a06c",
+  "run_epoch": "84966cf7-bf7d-479d-a1e5-5abf81717be7",
+  "method": "Real native App through documented cua_repl accessibility, keyboard, mouse and screenshot operations. No DOM injection, database mutation, fault injection or simulated UI result.",
+  "window": {
+    "native_verified_width": 1180,
+    "native_verified_height": 760,
+    "system_appearance": "existing light",
+    "system_display_changed": false,
+    "sidebar": "began expanded; temporarily collapsed during long-form regression; restored expanded",
+    "restored_width": 1180,
+    "restored_height": 780
+  },
+  "checks": [
+    {
+      "id": "directory",
+      "status": "PASS",
+      "actual": "Original Add Node panel exposed all 30 expected Chinese node buttons across five groups. Search 选品 and 多语言 matched the intended nodes; zz未匹配节点 displayed 暂无相关结果 and recovered after changing the query. Tab from search focused the named node with a visible inset focus border, Return added it."
+    },
+    {
+      "id": "forms-05",
+      "status": "PASS",
+      "actual": "Added candidate_products row, entered commit-ui-05-A, multi-line synthetic product description, and 合成类目. Confirmed object defaults lower0.05/upper0.95 and score thresholds75/60; changed lower to0.1. Float input preserved 1.2.3 with 请输入数字；当前填写内容仍保留。, then accepted0.15 and removed the error. Long sidebar scrolled normally."
+    },
+    {
+      "id": "independent-instances",
+      "status": "PASS",
+      "actual": "Second 05 instance was uniquely titled 选品机会评估_1 and initially had no candidate row. Filled commit-ui-05-B; switched to original05 and observed commit-ui-05-A, its multiline description and category retained. Closing and reopening the sidebar preserved configuration."
+    },
+    {
+      "id": "forms-15",
+      "status": "PASS",
+      "actual": "Added 多语言翻译与本地化 with initial0/18 filled, entered commit-ui-15 合成源内容包, expanded the ten-item supplementary/conditional group. Optional local_override_inventory_complete was 未选择, then explicitly 否, then cleared back to 未选择. Outputs remained readonly definitions, no generated results."
+    },
+    {
+      "id": "normal-reconnect",
+      "status": "PASS",
+      "actual": "Three natural session expirations occurred without clock or failure injection. Normal reconnect retained the original test name and page design. The first retained05-A plus multiline/category; the last retained restored05-B after undo. A boolean selection attempted at the expiration boundary was retried after reconnect before being counted as successful."
+    },
+    {
+      "id": "trial",
+      "status": "PASS",
+      "actual": "Node trial, toolbar opening the trial panel, and the panel trial button were clickable. Both trial clicks displayed 暂未接入试运行，当前仅展示节点配置。. All private before/after facts were identical including audit delta0; source handlers remain frontend Toast-only."
+    },
+    {
+      "id": "delete-undo",
+      "status": "PASS",
+      "actual": "Deleting05-B requested confirmation. Cancel retained the node. Confirm removed it; after focusing the blank canvas, Ctrl+Z restored the original 选品机会评估_1 and commit-ui-05-B. Earlier shortcut attempts while HTML/tooltip had focus did not perform undo and were not counted as passes. Redo was not repeated this round."
+    },
+    {
+      "id": "cancel-leave",
+      "status": "PASS",
+      "actual": "Return to workflows opened 有未保存或待确认的内容 with the page-local loss explanation. 继续编辑 kept the design, its instances and05-B value."
+    },
+    {
+      "id": "restore-original",
+      "status": "PASS",
+      "actual": "Esc cancelled the Restore Original confirmation without losing design. Explicit restore removed all four temporary ecommerce instances and restored Start/Text/End plus connected ports while preserving the pre-design unsaved name FEAT154-COMMIT原稿. Reverting only that test name returned FEAT153 原生终验0913 and 已保存; Save was not clicked."
+    }
+  ],
+  "coverage_limits": [
+    "This is targeted regression of the committed candidate: all30 directory entries, actual05/15 representative forms, two05 instances, and one temporary01 instance. Not all30 form-entry paths or634 field edits repeated; R2 remains historical full-node evidence.",
+    "01 was added during a native screenshot-shortcut attempt because Space reached the focused directory item. It stayed only in page-local design and was discarded with the other temporary nodes; no business call.",
+    "Full30 keyboard traversal,1440x900,dark theme and full D4 not rerun.",
+    "Screenshots appeared in native tool outputs; local export failed and is explicitly recorded in screenshot-ledger.json."
+  ],
+  "final_original": {
+    "workflow_id": "7685031373442121728",
+    "name": "FEAT153 原生终验 0913",
+    "status": "已保存",
+    "original_nodes": 3,
+    "original_edges": 2,
+    "temporary_ecommerce_instances_remaining": 0
+  },
+  "persistence_evidence": "ui-persistence-comparison.json",
+  "trial_evidence": "trial-comparison.json"
+}

@@ -1,0 +1,22 @@
+{
+  "recorded_at": "2026-09-16T18:43:30.955903+08:00",
+  "contract_impact": "none; only local catalog search normalization; no public protocol, persisted state, execution or deployment semantics change",
+  "files": {
+    "frontend/packages/workflow/playground/src/local-ecommerce/search.test.mjs": "27b1b054b47331f1780a88ea7a1ce5358bc92afd9266608e58bf19c19604682b",
+    "frontend/packages/workflow/playground/src/local-ecommerce/search.ts": "ce2dd9488858a68c8d281e024b2dfcfc22525ce6b4335495ede356dd2191ad40",
+    "frontend/packages/workflow/playground/src/components/node-panel/hooks/use-search-node.ts": "38ac057980fad3158ad1ed146c3f4d3bb4ba26924c7be0bd366691cefc4c9990",
+    "scripts/yijie/workflow-editor-csp-reviewed.json": "4f325036510e50ada8664bad9fbb97e90667e5648076d4fc25511a9cf7053301"
+  },
+  "app_stop": {
+    "method": "Cmd+Q native UI after original restored saved",
+    "old_app_pid": 36673,
+    "old_launcher_pid": 36652,
+    "launcher_session": 90905,
+    "launcher_exit_code": 0,
+    "pids_absent": true
+  },
+  "service_stop_receipt": "search-fix-stop.json",
+  "source_review": "Local ecommerce early return normalizes candidate terms and keyword consistently with existing panel behavior. Upstream plugin/network search branch unchanged. Test covers all30 actual source names and ordinary descriptions/field aliases; no attacks or new dependencies.",
+  "build_review": "search-fix-csp-comparison.json",
+  "first_build_exit1_reason": "New generated chunks require fresh exact-byte CSP source review; review completed; second canonical build uses new reviewed identities."
+}

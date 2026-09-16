@@ -1,0 +1,111 @@
+{
+  "recorded_at": "2026-09-16T18:18:02.284578+08:00",
+  "status": "committed_source_built_activated_targeted_ui_regression_pass",
+  "repositories": {
+    "yijie-contracts": {
+      "head": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-contracts.git",
+      "status": ""
+    },
+    "yijie-api": {
+      "head": "041f40c69919e81ec72ccee4ea6dbb3ea012142d",
+      "branch": "feat/feat-126-foundation-closure",
+      "origin": "https://github.com/36Dge/yijie-api.git",
+      "status": ""
+    },
+    "yijie-coze": {
+      "head": "144e4c259a5460fed57fc280f2439cbbf9a18539",
+      "branch": "main",
+      "origin": "https://github.com/36Dge/yijie-coze.git",
+      "status": ""
+    },
+    "yijie-desktop": {
+      "head": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-desktop.git",
+      "status": ""
+    },
+    "yijie-infra": {
+      "head": "66b481552eb76d46b00875ac27794ed8e1eb504a",
+      "branch": "feat/feat-126-s10e",
+      "origin": "https://github.com/36Dge/yijie-infra.git",
+      "status": ""
+    },
+    "yijie": {
+      "head": "9c1da175ea997f41667aa6cc6539a6a60804f553",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie.git",
+      "status": ""
+    },
+    "yijie-agent-host": {
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-agent-host.git",
+      "status": ""
+    }
+  },
+  "editor": {
+    "schema_version": 1,
+    "bundle_dir": "${WORKSPACE}/yijie-coze/bin/workflow-editor/dist",
+    "manifest_sha256": "b90096c02c9dd6b332344eafc1e817fa717db7f764e245bcc70c19df6ae7a06c",
+    "source_commit": "144e4c259a5460fed57fc280f2439cbbf9a18539",
+    "manifest_source_digest": "3b1e71a727d8179238bf85cdef1fca85da05fbd14f912b7597983bdf08f28d37",
+    "coze_candidate": "3b1e71a727d8179238bf85cdef1fca85da05fbd14f912b7597983bdf08f28d37",
+    "contracts_source_lock_sha256": "42bd8a32df97d2c3354593dc431bb2f7dd65ef7236061ff85d9dbd55471f0eb9",
+    "consumer_lock_sha256": {
+      "api": "0d710bc4cb69394f83e8e9bd0f7ce7ba7e95ba94cfc127f57a10e09fe8540c24",
+      "coze": "57db2720c94487255b860a77178a07eed7cd9fd8b7ffc64029edaa3a11ce7746",
+      "desktop": "9124556f7dfc6c6bfb4e127b2160140555334ef855a8ceb936f26c131b3c3591"
+    },
+    "deployment_schema_sha256": "d3016433e02f492493df3cdcbaacfe054e0de27afd5c61a115b4555f4b586aae",
+    "file_count": 385,
+    "total_asset_bytes": 45568238,
+    "entry": {
+      "path": "index.html",
+      "sha256": "572f190b163ce815c745e1a01278294151b99a9daf9086865237258993981042",
+      "bytes": 617,
+      "content_type": "text/html; charset=utf-8"
+    }
+  },
+  "built_services": {
+    "api": {
+      "image_id": "sha256:d1a240f6dc8c1f2edee1b47b787a34fdef0e138b12e4fa7b2e87bfa92a74ec03",
+      "source_digest": "5b7c961e58af551f2f3f6d947e27272c7a77da6c812d69bc95528906622fd63e",
+      "repository": "yijie-api",
+      "local_tag": "yijie-local/feat153-api:5b7c961e58af551f",
+      "go_image": "golang:1.26.5-bookworm@sha256:53eeac89074db483fdf0ab3be1df32bf6e47562263d2d0d6baa7f26acb4957dd"
+    },
+    "api-test": {
+      "image_id": "sha256:bb18413541c031ac0539a1e1bb42efee7156ce13428235b687c745c433e6cd44",
+      "source_digest": "5b7c961e58af551f2f3f6d947e27272c7a77da6c812d69bc95528906622fd63e",
+      "repository": "yijie-api",
+      "local_tag": "yijie-local/feat153-api-test:5b7c961e58af551f",
+      "go_image": "golang:1.26.5-bookworm@sha256:53eeac89074db483fdf0ab3be1df32bf6e47562263d2d0d6baa7f26acb4957dd"
+    },
+    "coze": {
+      "image_id": "sha256:b421d69a9bf9ba969453d3371a805736672f632832ea040519b95a9b7f4955dc",
+      "source_digest": "3b1e71a727d8179238bf85cdef1fca85da05fbd14f912b7597983bdf08f28d37",
+      "repository": "yijie-coze",
+      "local_tag": "yijie-local/feat153-coze:3b1e71a727d81792",
+      "go_image": "golang:1.26.5-bookworm@sha256:53eeac89074db483fdf0ab3be1df32bf6e47562263d2d0d6baa7f26acb4957dd"
+    }
+  },
+  "run_epoch": "84966cf7-bf7d-479d-a1e5-5abf81717be7",
+  "desktop_binary_sha256": "fd52d1b413ac108fdf6482e573cabb2575b9446ede4438a29c07c259eba2488f",
+  "app_pid": 36673,
+  "entrypoint": "canonical pnpm tauri:demo-fast:app with existing local workflow opt-in; /workflows/7685031373442121728",
+  "prior_candidate_manifest_sha256": "f608fde5478d47d3db3ee75ea4e14a012025a9436af21e1043439b09d5e43526",
+  "qualification": {
+    "directory30": "PASS",
+    "representative_forms05_15": "PASS",
+    "light1180x760_targeted": "PASS",
+    "light1440x900": "NOT RUN",
+    "dark": "NOT RUN; owner-deferred",
+    "AC009": "pending",
+    "D4": "NOT RUN"
+  },
+  "screenshot_export": "NOT_EXPORTED; ledger retained",
+  "no_source_changes": true,
+  "no_new_git_commit_or_push": true
+}

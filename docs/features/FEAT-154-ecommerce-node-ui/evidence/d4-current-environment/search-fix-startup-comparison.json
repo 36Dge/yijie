@@ -1,0 +1,27 @@
+{
+  "recorded_at": "2026-09-16T18:45:24.276402+08:00",
+  "non_audit_facts_equal": {
+    "api": {
+      "schema_version": true,
+      "database": true,
+      "scope_bindings": true,
+      "resources": true,
+      "operations": true
+    },
+    "coze": {
+      "database": true,
+      "workflows": true,
+      "executions": true,
+      "operations": true,
+      "principals": true,
+      "schema_version": true,
+      "node_executions": true
+    }
+  },
+  "normal_startup_audit_delta": 1,
+  "sources": [
+    "before-search-fix-stop.json",
+    "search-fix-services-ready.json"
+  ],
+  "note": "Only existing startup EnsurePrincipal audit; no workflow or node processing data change."
+}

@@ -1,0 +1,109 @@
+{
+  "recorded_at": "2026-09-16T17:51:09.501809+08:00",
+  "app_quit": "Cmd+Q sent through native UI; original PID14354 and launcher PID14334 no longer exist. AX read timed out after exit. Original exec handle unavailable, so numeric App exit status is not asserted.",
+  "app_pid_after": null,
+  "app_exit_code": null,
+  "app_exit_code_note": "not available; not inferred",
+  "controller_phase": "stopped",
+  "containers": [
+    {
+      "id": "5e731bc4e34775d1d76c3c3a75b204e2ab4cea6d5c2a07f7396141ea63e06288",
+      "service": "workflow-api",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T06:36:54.982213261Z",
+        "FinishedAt": "2026-09-16T09:50:47.411753839Z"
+      }
+    },
+    {
+      "id": "5a535957b520a96277d2807b1ed9bfb2fce5074218d4f11f711a951e053b2705",
+      "service": "coze-workflow",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T06:36:51.247265384Z",
+        "FinishedAt": "2026-09-16T09:50:47.812216798Z"
+      }
+    },
+    {
+      "id": "1abc2e6bfcf2d5ff04a72974791b0e0c651bb3addcbe2b9ab458ca2a17e309a0",
+      "service": "workflow-api",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T06:36:50.911512884Z",
+        "FinishedAt": "2026-09-16T06:36:50.983722467Z"
+      }
+    },
+    {
+      "id": "473740e21987195301f8327ecc4d4a172e479011db5fc9e9712f3154a905fca3",
+      "service": "coze-workflow",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T06:36:50.549026842Z",
+        "FinishedAt": "2026-09-16T06:36:50.670073258Z"
+      }
+    },
+    {
+      "id": "da0d9e49b8fb573a889314d66a3e25a2a940f3401b19505edba41fb1993dfff8",
+      "service": "workflow-postgres",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T06:36:44.712920797Z",
+        "FinishedAt": "2026-09-16T09:50:48.06901909Z"
+      }
+    },
+    {
+      "id": "f0548df56109a114136eee724cba50529b4c71308bdb7839a1c6ba0b87d4725b",
+      "service": "coze-workflow-redis",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T06:36:44.731302672Z",
+        "FinishedAt": "2026-09-16T09:50:48.107571006Z"
+      }
+    },
+    {
+      "id": "d5cd418bfcbf9a4657a232ef04824a55e598199de6c54aaa0b6de6bbaa6a3206",
+      "service": "coze-workflow-mysql",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T06:36:44.733323589Z",
+        "FinishedAt": "2026-09-16T09:50:48.898571257Z"
+      }
+    },
+    {
+      "id": "c8527cf890f5a1d4f6d129ecc0870bf328f1a5bae458447beb6ec27d8d49adda",
+      "service": "coze-workflow-minio",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T06:36:44.730941422Z",
+        "FinishedAt": "2026-09-16T09:50:48.057213715Z"
+      }
+    }
+  ],
+  "all_container_exits_zero": true,
+  "volume_deletion": false,
+  "forced_termination": false
+}

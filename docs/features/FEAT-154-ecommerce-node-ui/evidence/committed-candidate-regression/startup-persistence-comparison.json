@@ -1,0 +1,33 @@
+{
+  "recorded_at": "2026-09-16T17:54:21.197202+08:00",
+  "all_non_audit_facts_equal": {
+    "api": {
+      "schema_version": true,
+      "database": true,
+      "scope_bindings": true,
+      "resources": true,
+      "operations": true
+    },
+    "coze": {
+      "database": true,
+      "workflows": true,
+      "executions": true,
+      "operations": true,
+      "principals": true,
+      "schema_version": true,
+      "node_executions": true
+    }
+  },
+  "original_audit_rows_retained": true,
+  "normal_startup_audit_added": [
+    {
+      "id": 1365,
+      "operation_id": null,
+      "workflow_id": null,
+      "action": "principal",
+      "outcome_code": "success"
+    }
+  ],
+  "node_business_operations_added": 0,
+  "new_executions": 0
+}

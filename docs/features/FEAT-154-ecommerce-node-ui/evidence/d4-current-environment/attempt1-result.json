@@ -1,0 +1,82 @@
+{
+  "recorded_at": "2026-09-16T18:38:10.167778+08:00",
+  "status": "FAIL; real AC001 defect found; this attempt not D4 PASS",
+  "candidate": "b90096c02c9dd6b332344eafc1e817fa717db7f764e245bcc70c19df6ae7a06c",
+  "completed_nodes": [
+    {
+      "id": "01",
+      "name": "商品采集",
+      "field": "来源类型",
+      "value": "D4-01-合成来源",
+      "value_readback": true,
+      "output_section_observed": false
+    },
+    {
+      "id": "02",
+      "name": "商品信息清洗与标准化",
+      "field": "目标市场.平台",
+      "value": "D4-02-合成平台",
+      "value_readback": true,
+      "output_section_observed": false
+    },
+    {
+      "id": "03",
+      "name": "类目与属性智能匹配",
+      "field": "商品 ID",
+      "value": "D4-03-合成商品",
+      "value_readback": true,
+      "output_section_observed": true
+    },
+    {
+      "id": "04",
+      "name": "SKU／变体结构重建",
+      "field": "商品标识",
+      "value": "D4-04-合成商品",
+      "value_readback": true,
+      "output_section_observed": true
+    },
+    {
+      "id": "05",
+      "name": "选品机会评估",
+      "field": "平台",
+      "value": "D4-05-合成平台",
+      "value_readback": true,
+      "output_section_observed": true
+    },
+    {
+      "id": "06",
+      "name": "竞品商品采集",
+      "field": "目标站点",
+      "value": "D4-06-合成站点",
+      "value_readback": true,
+      "output_section_observed": true
+    },
+    {
+      "id": "07",
+      "name": "竞品对标分析",
+      "field": "商品事实",
+      "value": "D4-07-合成商品事实",
+      "value_readback": true,
+      "output_section_observed": true
+    },
+    {
+      "id": "08",
+      "name": "成本利润与定价测算",
+      "field": "SKU标识/折扣前商品价/含税",
+      "value": "D4-08-合成SKU; 0; 否",
+      "value_readback": true,
+      "output_section_observed": true
+    }
+  ],
+  "failure": {
+    "query": "Listing 综合诊断",
+    "expected": "Visible catalog name should match itself",
+    "actual": "暂无相关结果, reproduced twice; shorter 综合诊断 matches",
+    "input_characters_verified": "ASCII space U+0020; native AX same displayed name",
+    "root_cause": "NodeList removes ASCII spaces from input, while useSearchNode compares against original spaced names. Pure local matching normalization must be symmetric."
+  },
+  "normal_reconnections": 2,
+  "note": "First expiry during03 row addition; later03-08 passed; final expiry after09 diagnosis retained original unsaved name. No fault injection. One extra13 was added beneath catalog overlay during automation and discarded before02; not counted as completed13. Helper stale-state/AX visibility limitations were corrected, not treated as product defects.",
+  "end_original": "FEAT153 原生终验 0913; 已保存; Start/Text/End and two connected edges; all temporary instances discarded",
+  "next": "Fix local search, focused check, canonical rebuild/activate, start new UI sequence. No old results relabeled as new candidate."
+}

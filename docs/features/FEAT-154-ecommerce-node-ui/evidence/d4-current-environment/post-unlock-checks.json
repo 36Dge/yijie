@@ -1,0 +1,36 @@
+{
+  "recorded_at": "2026-09-16T19:42:54.898012+08:00",
+  "status": "PASS source/evidence consistency only; UI task incomplete",
+  "full30_native_matrix": "attempt2-node-matrix.json",
+  "shared_progress": "attempt2-progress.json",
+  "four_source_files_unchanged": true,
+  "15_theme_files_unchanged": true,
+  "non_audit_facts_equal": {
+    "api": {
+      "schema_version": true,
+      "database": true,
+      "scope_bindings": true,
+      "resources": true,
+      "operations": true
+    },
+    "coze": {
+      "database": true,
+      "workflows": true,
+      "executions": true,
+      "operations": true,
+      "principals": true,
+      "schema_version": true,
+      "node_executions": true
+    }
+  },
+  "normal_read_audit_delta": 23,
+  "source_changes_this_unlock_turn": false,
+  "new_commit_or_push": false,
+  "current_ui": "Two05 instances and test name still retained; waiting for manual reference target; original restoration not yet performed",
+  "D4": "INCOMPLETE; shared UI and AC009 not complete",
+  "checks": [
+    "post-unlock-progress-strict.json",
+    "post-unlock-progress-claims.json"
+  ],
+  "real_screenshot_exports": 0
+}
