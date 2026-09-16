@@ -1,0 +1,90 @@
+{
+  "observed_at": "2026-09-14T16:39:06.178988+00:00",
+  "workflow_id": "7685061713409867776",
+  "workflow_title": "FEAT153 易界主题验收 0914",
+  "discard_authorization": "User explicitly selected 放弃未保存修改，再退出更新 for this draft on 2026-09-15",
+  "normal_exit": {
+    "old_pid": 23462,
+    "ui_actions": [
+      "返回工作流",
+      "放弃本地内容并返回",
+      "Cmd+Q"
+    ],
+    "process_exit_observed": true
+  },
+  "controlled_lifecycle": [
+    "make workflow-stop: STOPPED; named volumes retained",
+    "workflow-editor.mjs build/check: passed",
+    "make workflow-editor/workflow-build/workflow-up: passed; ready=true",
+    "run-local-demo-fast.sh --packaged: normal canonical build and start"
+  ],
+  "app": {
+    "pid": 33507,
+    "window_id": 599,
+    "points": [
+      1180,
+      780
+    ],
+    "theme": "light",
+    "canvas_zoom_percent": 70,
+    "observed_state": "已保存; node settings opened without edits"
+  },
+  "served_css": {
+    "path": "assets/css/index.80dd9d11.css",
+    "sha256": "d1637bcfbbcd0e8ce68e14aa5fe722b8822df2e2c317a5ee8a725eb4ca0af008",
+    "matches_manifest": true
+  },
+  "screenshots": [
+    {
+      "path": "canvas.png",
+      "sha256": "625a698c1df5bb36e0567d8b73593100330e48d6d846866f822a3939a4bd2267",
+      "pixel_size": [
+        2360,
+        1560
+      ],
+      "embedded_profile": "Display",
+      "analysis_space": "sRGB, converted in memory for counting; screenshot bytes unchanged",
+      "primary_b0db55_pixels": 13899,
+      "background_f2f3f5_pixels": 2595059,
+      "white_ffffff_pixels": 737171
+    },
+    {
+      "path": "end-sidebar.png",
+      "sha256": "8678629382ed6789fb6e5c04fc89856306d17535cb01159a843f9b5a17d3f2c0",
+      "pixel_size": [
+        2360,
+        1560
+      ],
+      "embedded_profile": "Display",
+      "analysis_space": "sRGB, converted in memory for counting; screenshot bytes unchanged",
+      "primary_b0db55_pixels": 15329,
+      "background_f2f3f5_pixels": 1742301,
+      "white_ffffff_pixels": 1547683
+    },
+    {
+      "path": "text-sidebar.png",
+      "sha256": "6fd087676edd272dff6a68dd2ccc086a8af4d66fdcc77b582f270c01376ab025",
+      "pixel_size": [
+        2360,
+        1560
+      ],
+      "embedded_profile": "Display",
+      "analysis_space": "sRGB, converted in memory for counting; screenshot bytes unchanged",
+      "primary_b0db55_pixels": 15601,
+      "background_f2f3f5_pixels": 1742297,
+      "white_ffffff_pixels": 1545084
+    }
+  ],
+  "visual_observations": [
+    "Deeper lime workflow and node icons, edges, ports, selected outline and trial button",
+    "Node and sidebar faint header gradients retained",
+    "Background #F2F3F5 and native grid retained",
+    "White foreground panels and neutral controls remain distinct"
+  ],
+  "limits": [
+    "No business create/save/run/publish performed in this visual-only update",
+    "No fresh dark-theme or full D4 run claimed",
+    "Keyboard focus remains its existing separate accessible state",
+    "No Git commit/push performed"
+  ]
+}

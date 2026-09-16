@@ -1,0 +1,75 @@
+{
+  "observed_at": "2026-09-14T17:06:58.414062+00:00",
+  "workflow_id": "7685078769316397056",
+  "workflow_title": "FEAT153 青柠轻量验收 0914",
+  "discard_authorization": "User explicitly selected 放弃这份未保存修改，再退出更新 for this current draft",
+  "normal_exit": {
+    "old_pid": 41279,
+    "ui_actions": [
+      "返回工作流",
+      "放弃本地内容并返回",
+      "Cmd+Q"
+    ],
+    "process_exit_observed": true
+  },
+  "controlled_lifecycle": [
+    "workflow-stop STOPPED, named volumes retained",
+    "canonical editor build/check passed",
+    "workflow-editor/workflow-build/workflow-up passed, ready=true",
+    "canonical run-local-demo-fast.sh --packaged started"
+  ],
+  "app": {
+    "pid": 48694,
+    "window_id": 786,
+    "points": [
+      1180,
+      780
+    ],
+    "theme": "light",
+    "canvas_zoom_percent": 72,
+    "observed_state": "已保存; opened text settings without edits"
+  },
+  "served_css": {
+    "path": "assets/css/index.b8ef42b0.css",
+    "sha256": "06d4096faeb025fa972627ead355106ed0119acbc9f3ff06d65eb8c6ad5aec6a",
+    "matches_manifest": true
+  },
+  "screenshots": [
+    {
+      "path": "canvas.png",
+      "sha256": "72f8218092332000c1f0e1ddd10217f1bcd0f81805026afff11a5c79f2361d66",
+      "pixel_size": [
+        2360,
+        1560
+      ],
+      "embedded_profile": "Display",
+      "analysis_space": "sRGB in memory; original screenshot bytes unchanged",
+      "primary_b7f03d_pixels": 0,
+      "background_f2f3f5_pixels": 2583341,
+      "primary_within_one_channel_step_pixels": 14524
+    },
+    {
+      "path": "text-sidebar.png",
+      "sha256": "806293e5afede81d80d57e68fd57e2ea043f93a99a31b76de20e5faf55176a06",
+      "pixel_size": [
+        2360,
+        1560
+      ],
+      "embedded_profile": "Display",
+      "analysis_space": "sRGB in memory; original screenshot bytes unchanged",
+      "primary_b7f03d_pixels": 0,
+      "background_f2f3f5_pixels": 1734898,
+      "primary_within_one_channel_step_pixels": 16487
+    }
+  ],
+  "visual_observations": [
+    "New requested lime on workflow/node/reference icons, edges, ports, selected outline and trial button",
+    "Faint node/sidebar gradients retained",
+    "Native #F2F3F5 background and grid retained"
+  ],
+  "limits": [
+    "No business create/save/run/publish performed",
+    "No fresh dark-theme or full D4 run claimed",
+    "No Git commit/push performed"
+  ]
+}
