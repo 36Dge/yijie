@@ -1,0 +1,55 @@
+{
+  "scope": "Actual canonical packaged App R5; native CUA interactions and inline screenshots. Not final Step2 qualification.",
+  "run_epoch": "ba90d1bc-9263-40d6-9ad0-5193140116a2",
+  "workflow_id": "7685031373442121728",
+  "passed": [
+    {
+      "case": "trial UI",
+      "observed": "Canvas toolbar, local test panel and ecommerce card buttons enabled; clicks displayed 暂未接入试运行，当前仅展示节点配置。; no execution/output status created."
+    },
+    {
+      "case": "sample fields",
+      "observed": "01: input3/settings6/output4=13; 10: input12/settings2/output12=26; 17: input7/settings2/output9=18. All 57 top-level source keys observed in actual native sidebar while switching groups and scrolling. Output groups expanded and show read-only definitions."
+    },
+    {
+      "case": "independent instances",
+      "observed": "First collection sources entry sample-a/local-reference-a; second collection has no sources. After switching, first retained values. Second max_items=0 and store_raw_snapshot=false observed."
+    },
+    {
+      "case": "list and object",
+      "observed": "Image appearance image-sample, nested colors explicitly empty list. Reference mode only offers current page output definitions, selected Listing meta."
+    },
+    {
+      "case": "mode switch",
+      "observed": "Listing product_snapshot=listing-sample; assemble_only automatically expands component group; title_result=component-a; switch to full_generate succeeds. Reopen value retention needs final follow-up."
+    },
+    {
+      "case": "natural reconnect",
+      "observed": "300-second session expired naturally. Reconnect retained four sample instances, mode, sidebar and listing-sample. No fault injection."
+    },
+    {
+      "case": "leave and restore",
+      "observed": "Cancel page leave retained design. Cancel restore retained design. Confirm restore removed all ecommerce nodes and restored prior unsaved name FEAT154 with 有未保存修改; original three nodes and connections shown."
+    }
+  ],
+  "unresolved": [
+    {
+      "case": "drag from catalog",
+      "observed": "Three normal CUA drag attempts did not add a node; one separate attempt interrupted by user state change. Click adding all three works. Source drag uses original React DnD/native drop path; cause not established, not marked PASS."
+    },
+    {
+      "case": "menu delete confirmation",
+      "observed": "Node menu deleted filled Listing immediately, unlike keyboard confirmation. Local header confirmation patch prepared for R6."
+    },
+    {
+      "case": "reference deletion refresh",
+      "observed": "After Listing deletion, image reference retained old available label. Final graph refresh after native DELETE_NODE disposal patch prepared for R6."
+    },
+    {
+      "case": "undo keyboard",
+      "observed": "Commands from root/canvas did not visibly restore deleted node. Source upstream listener only accepts canvas root target; local accessible node focus drops modifier keys. Forwarding to existing registered native handlers prepared for R6, verification pending."
+    }
+  ],
+  "persistence": "ui-r5-persistence-comparison.json: API operations/resources; Coze operations/executions/node_executions/workflows all exactly unchanged from before App UI interactions.",
+  "cleanup": "Restored original unsaved pre-design state, then normally quit App; launcher exit0. make workflow-stop returned STOPPED, volumes retained. R6 source edits not yet active."
+}

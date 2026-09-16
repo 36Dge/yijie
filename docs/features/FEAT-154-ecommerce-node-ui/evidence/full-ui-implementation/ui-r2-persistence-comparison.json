@@ -1,0 +1,22 @@
+{
+  "recorded_at": "2026-09-16T02:48:02.529971+08:00",
+  "all_trial_facts_equal": true,
+  "trial_audit_delta": 0,
+  "business_groups_equal": {
+    "api.resources": true,
+    "api.operations": true,
+    "coze.workflows": true,
+    "coze.operations": true,
+    "coze.executions": true,
+    "coze.node_executions": true
+  },
+  "whole_ui_audit_delta": 17,
+  "audit_note": "Whole UI includes normal session initialization, natural reconnect and explicit history reads; these are distinct from trial clicks. No new business operations/executions/resources/workflow changes.",
+  "sources": [
+    "ui-before-r2.json",
+    "ui-after-r2.json",
+    "trial-before-r2.json",
+    "trial-after-r2.json",
+    "trial-after-panel-r2.json"
+  ]
+}

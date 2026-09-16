@@ -1,0 +1,10 @@
+python3 scripts/workflow-local.py editor
+START editor-check-api
+END editor-check-api exit 0
+START editor-check-coze
+END editor-check-coze exit 0
+START editor-check-desktop
+END editor-check-desktop exit 0
+START editor-check-bundle
+END editor-check-bundle exit 0
+EDITOR_REGISTERED: reviewed public bundle recorded; no images built or services started

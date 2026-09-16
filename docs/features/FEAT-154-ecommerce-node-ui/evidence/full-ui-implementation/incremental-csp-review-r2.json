@@ -1,0 +1,503 @@
+{
+  "scope": "R2 labels, read-only byte/AST review; no browser permission or runtime execution",
+  "reason": "Reviewed eight retained callsites across three changed chunks. Global resolvers, same manifest-local script/worker loaders and four dormant upstream helpers retain prior classification. All AST kind/module/expression identities match R1.",
+  "counts": {
+    "dynamic_function": 18,
+    "dynamic_function_alias": 2,
+    "dynamic_import": 10,
+    "indirect_eval": 1,
+    "network_primitive": 78,
+    "script_element_loader": 10,
+    "wasm_operation": 4,
+    "worker_constructor": 7,
+    "worker_import_scripts": 1
+  },
+  "changed_chunks": [
+    {
+      "before": {
+        "path": "assets/js/async/7605.7cbfe095.js",
+        "sha256": "b760c4cb63c18566aa6482c26e14913c468cbc7f8abebce4e88cfe19a62eccc0",
+        "bytes": 2341,
+        "static_aid_counts": {
+          "worker": 0,
+          "function": 1,
+          "eval": 0,
+          "wasm": 0
+        },
+        "review_scope": "static_source_bytes_only",
+        "reason": "FEAT-154 full-node UI incremental byte/AST review: same original module/callsite identities and categories; only private metadata and controls added. Runtime CSP and deployment permissions unchanged.",
+        "data_classifications": [],
+        "callsites": [
+          {
+            "kind": "dynamic_function",
+            "module_id": null,
+            "offset": 1299,
+            "expression": "Function",
+            "category": "rspack_global_resolver",
+            "dependency": "Rspack1.1.8",
+            "reason": "Returns globalThis before Function fallback in normal WK browser."
+          },
+          {
+            "kind": "worker_import_scripts",
+            "module_id": null,
+            "offset": 2019,
+            "expression": "importScripts",
+            "category": "typescript_worker_chunk_loader",
+            "dependency": null,
+            "reason": "Dedicated language-typescript Worker entry imports manifest-relative /editor/ chunks; Worker is unavailable in local text scope and prohibited by worker-src none."
+          }
+        ]
+      },
+      "after": {
+        "path": "assets/js/async/7605.501dbfeb.js",
+        "sha256": "db4b85b2896b6643c0a567462ab81cfade19c8faaf4bceb084a08d0a29a48bd3",
+        "bytes": 2341,
+        "static_aid_counts": {
+          "worker": 0,
+          "function": 1,
+          "eval": 0,
+          "wasm": 0
+        },
+        "review_scope": "static_source_bytes_only",
+        "reason": "FEAT-154 R2 label-only incremental review: original module/callsite identities retained; no new network or dynamic execution implementation. Runtime permissions unchanged.",
+        "data_classifications": [],
+        "callsites": [
+          {
+            "kind": "dynamic_function",
+            "module_id": null,
+            "offset": 1299,
+            "expression": "Function",
+            "category": "rspack_global_resolver",
+            "dependency": "Rspack1.1.8",
+            "reason": "Returns globalThis before Function fallback in normal WK browser."
+          },
+          {
+            "kind": "worker_import_scripts",
+            "module_id": null,
+            "offset": 2019,
+            "expression": "importScripts",
+            "category": "typescript_worker_chunk_loader",
+            "dependency": null,
+            "reason": "Dedicated language-typescript Worker entry imports manifest-relative /editor/ chunks; Worker is unavailable in local text scope and prohibited by worker-src none."
+          }
+        ]
+      },
+      "reviewed_contexts": [
+        {
+          "file": "assets/js/async/7605.501dbfeb.js",
+          "kind": "dynamic_function",
+          "start": 1299,
+          "end": 1322,
+          "line": 1,
+          "column": 1300,
+          "expression": "Function",
+          "expression_start": 1299,
+          "expression_end": 1307,
+          "context": "69\"})[n]+\".js\"},o.miniCssF=function(n){return\"\"+n+\".css\"},o.h=function(){return\"24b0d5c5d78e0b5f\"},o.g=function(){if(\"object\"==typeof globalThis)return globalThis;try{return this||Function(\"return this\")()}catch(n){if(\"object\"==typeof window)return window}}(),o.o=function(n,r){return Object.prototype.hasOwnProperty.call(n,r)},(()=>{var n=[];o.O=function(r,t,e,i){if(t){i=i||0;for(var u=n.length;u>0&&n[u-1][2]>i;u--)n[u]=",
+          "module_id": null,
+          "enclosing_functions": [
+            {
+              "name": "<anonymous>",
+              "start": 1222,
+              "immediately_invoked": true
+            },
+            {
+              "name": "<anonymous>",
+              "start": 1,
+              "immediately_invoked": true
+            }
+          ]
+        },
+        {
+          "file": "assets/js/async/7605.501dbfeb.js",
+          "kind": "worker_import_scripts",
+          "start": 2019,
+          "end": 2044,
+          "line": 1,
+          "column": 2020,
+          "expression": "importScripts",
+          "expression_start": 2019,
+          "expression_end": 2032,
+          "context": "\"/editor/\",o.rv=function(){return\"1.1.8\"},(()=>{var n=o.x;o.x=function(){return Promise.all([o.e(\"1166\"),o.e(\"8944\")]).then(n)}})(),(()=>{var n={7605:1};o.f.i=function(r,t){!n[r]&&importScripts(o.p+o.u(r))};var r=globalThis.webpackChunk_yijie_coze_workflow_local=globalThis.webpackChunk_yijie_coze_workflow_local||[],t=r.push.bind(r);r.push=function(r){var e=r[0],i=r[1],u=r[2];for(var c in i)o.o(i,c)&&(o.m[c]=i[c]);for(u&&u",
+          "module_id": null,
+          "enclosing_functions": [
+            {
+              "name": "<anonymous>",
+              "start": 1998,
+              "immediately_invoked": false
+            },
+            {
+              "name": "<anonymous>",
+              "start": 1972,
+              "immediately_invoked": true
+            },
+            {
+              "name": "<anonymous>",
+              "start": 1,
+              "immediately_invoked": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "before": {
+        "path": "assets/js/async/9484.db8e99d9.js",
+        "sha256": "fe354b455a7d8b38277253a7d5c346d4781834ea9b8ac9d91d9bef8b3e3b5f45",
+        "bytes": 4352338,
+        "static_aid_counts": {
+          "worker": 0,
+          "function": 0,
+          "eval": 0,
+          "wasm": 0
+        },
+        "review_scope": "static_source_bytes_only",
+        "reason": "FEAT-154 full-node UI incremental byte/AST review: same original module/callsite identities and categories; only private metadata and controls added. Runtime CSP and deployment permissions unchanged.",
+        "data_classifications": [],
+        "callsites": [
+          {
+            "kind": "network_primitive",
+            "module_id": "426961",
+            "offset": 1468464,
+            "expression": "fetch",
+            "category": "knowledge_document_http",
+            "dependency": "original knowledge doc-preview preview-md.tsx",
+            "reason": "Mounted Markdown document preview fetches fileUrl. Not a local text workflow component."
+          },
+          {
+            "kind": "network_primitive",
+            "module_id": "868156",
+            "offset": 1469346,
+            "expression": "fetch",
+            "category": "knowledge_document_http",
+            "dependency": "original knowledge doc-preview preview-txt.tsx",
+            "reason": "Mounted text document preview fetches fileUrl. Not a local text workflow component."
+          },
+          {
+            "kind": "network_primitive",
+            "module_id": "403950",
+            "offset": 1516527,
+            "expression": "fetch",
+            "category": "knowledge_tos_http",
+            "dependency": "original knowledge use-tos-content.tsx",
+            "reason": "Hook fetches supplied content URL; local knowledge capability unavailable."
+          },
+          {
+            "kind": "network_primitive",
+            "module_id": "651410",
+            "offset": 2444668,
+            "expression": "fetch",
+            "category": "trial_image_download_http",
+            "dependency": "original workflow playground img-log/use-download-images.ts",
+            "reason": "Image trial log download fetches supplied image URLs. Local execution produces bounded text results and does not expose legacy image trial log."
+          }
+        ]
+      },
+      "after": {
+        "path": "assets/js/async/9484.4320e8c3.js",
+        "sha256": "a19ec18d908e86e0a8d4e5f8cfcf14312345023ff0795f08fd6cf70b4e2864f3",
+        "bytes": 4353969,
+        "static_aid_counts": {
+          "worker": 0,
+          "function": 0,
+          "eval": 0,
+          "wasm": 0
+        },
+        "review_scope": "static_source_bytes_only",
+        "reason": "FEAT-154 R2 label-only incremental review: original module/callsite identities retained; no new network or dynamic execution implementation. Runtime permissions unchanged.",
+        "data_classifications": [],
+        "callsites": [
+          {
+            "kind": "network_primitive",
+            "module_id": "426961",
+            "offset": 1468464,
+            "expression": "fetch",
+            "category": "knowledge_document_http",
+            "dependency": "original knowledge doc-preview preview-md.tsx",
+            "reason": "Mounted Markdown document preview fetches fileUrl. Not a local text workflow component."
+          },
+          {
+            "kind": "network_primitive",
+            "module_id": "868156",
+            "offset": 1469346,
+            "expression": "fetch",
+            "category": "knowledge_document_http",
+            "dependency": "original knowledge doc-preview preview-txt.tsx",
+            "reason": "Mounted text document preview fetches fileUrl. Not a local text workflow component."
+          },
+          {
+            "kind": "network_primitive",
+            "module_id": "403950",
+            "offset": 1516527,
+            "expression": "fetch",
+            "category": "knowledge_tos_http",
+            "dependency": "original knowledge use-tos-content.tsx",
+            "reason": "Hook fetches supplied content URL; local knowledge capability unavailable."
+          },
+          {
+            "kind": "network_primitive",
+            "module_id": "651410",
+            "offset": 2444668,
+            "expression": "fetch",
+            "category": "trial_image_download_http",
+            "dependency": "original workflow playground img-log/use-download-images.ts",
+            "reason": "Image trial log download fetches supplied image URLs. Local execution produces bounded text results and does not expose legacy image trial log."
+          }
+        ]
+      },
+      "reviewed_contexts": [
+        {
+          "file": "assets/js/async/9484.4320e8c3.js",
+          "kind": "network_primitive",
+          "start": 1468464,
+          "end": 1468472,
+          "line": 6,
+          "column": 80391,
+          "expression": "fetch",
+          "expression_start": 1468464,
+          "expression_end": 1468469,
+          "context": "ion(e,t,r){r.d(t,{S:function(){return a}});var n=r(397458),i=r(652983),o=r(99753);let a=e=>{let{fileUrl:t}=e,[r,a]=(0,i.useState)(\"\"),[s,l]=(0,i.useState)(!0);(0,i.useEffect)(()=>{fetch(t).then(e=>e.text()).then(e=>{l(!1),a(e)})},[t]);let c=(0,i.useRef)(null);return(0,i.useEffect)(()=>{(async function e(){if(c.current){for(let e=0,t=r.length;e<Math.ceil(t/5e4);e++)await new Promise(e=>setTimeout(e,10)),c.",
+          "module_id": "426961",
+          "enclosing_functions": [
+            {
+              "name": "<anonymous>",
+              "start": 1468459,
+              "immediately_invoked": true
+            },
+            {
+              "name": "a",
+              "start": 1468372,
+              "immediately_invoked": false
+            },
+            {
+              "name": "426961",
+              "start": 1468279,
+              "immediately_invoked": false
+            }
+          ],
+          "primitive": "fetch",
+          "static_target": null
+        },
+        {
+          "file": "assets/js/async/9484.4320e8c3.js",
+          "kind": "network_primitive",
+          "start": 1469346,
+          "end": 1469354,
+          "line": 6,
+          "column": 81273,
+          "expression": "fetch",
+          "expression_start": 1469346,
+          "expression_end": 1469351,
+          "context": "ion(e,t,r){r.d(t,{T:function(){return a}});var n=r(397458),i=r(652983),o=r(99753);let a=e=>{let{fileUrl:t}=e,[r,a]=(0,i.useState)(\"\"),[s,l]=(0,i.useState)(!0);(0,i.useEffect)(()=>{fetch(t).then(e=>e.text()).then(e=>{l(!1),a(e)})},[t]);let c=(0,i.useRef)(null);return(0,i.useEffect)(()=>{(async function e(){if(c.current){for(let e=0,t=r.length;e<Math.ceil(t/5e4);e++)await new Promise(e=>setTimeout(e,10)),c.",
+          "module_id": "868156",
+          "enclosing_functions": [
+            {
+              "name": "<anonymous>",
+              "start": 1469341,
+              "immediately_invoked": true
+            },
+            {
+              "name": "a",
+              "start": 1469254,
+              "immediately_invoked": false
+            },
+            {
+              "name": "868156",
+              "start": 1469161,
+              "immediately_invoked": false
+            }
+          ],
+          "primitive": "fetch",
+          "static_target": null
+        },
+        {
+          "file": "assets/js/async/9484.4320e8c3.js",
+          "kind": "network_primitive",
+          "start": 1516527,
+          "end": 1516554,
+          "line": 6,
+          "column": 128454,
+          "expression": "fetch",
+          "expression_start": 1516527,
+          "expression_end": 1516532,
+          "context": "r(400420),r(571710)},403950:function(e,t,r){r.d(t,{z:function(){return i}});var n=r(267979);let i=e=>{let{data:t,loading:r,error:i}=(0,n.Z)(async()=>{if(!e)return null;let t=await fetch(e,{cache:\"no-cache\"});if(!t.ok)throw Error(\"Failed to fetch content\");return t.json()},{refreshDeps:[e]});return{content:t,loading:r,error:i}}},595331:function(e,t,r){r.d(t,{S:function(){return n}});let n=()=>{let e=new URLSearchParams(locat",
+          "module_id": "403950",
+          "enclosing_functions": [
+            {
+              "name": "<anonymous>",
+              "start": 1516487,
+              "immediately_invoked": true
+            },
+            {
+              "name": "i",
+              "start": 1516445,
+              "immediately_invoked": false
+            },
+            {
+              "name": "403950",
+              "start": 1516375,
+              "immediately_invoked": false
+            }
+          ],
+          "primitive": "fetch",
+          "static_target": null
+        },
+        {
+          "file": "assets/js/async/9484.4320e8c3.js",
+          "kind": "network_primitive",
+          "start": 2444668,
+          "end": 2444676,
+          "line": 20,
+          "column": 194174,
+          "expression": "fetch",
+          "expression_start": 2444668,
+          "expression_end": 2444673,
+          "context": "10:function(e,t,r){r.d(t,{E:function(){return i}});var n=r(620748);function i(e){let{info:{name:t}}=(0,n.j1)();return()=>{e.forEach(e=>{o(e,t)})}}async function o(e,t){let r=await fetch(e),n=await r.blob(),i=URL.createObjectURL(n),o=document.createElement(\"a\");o.href=i,o.download=t,document.body.appendChild(o),o.click(),document.body.removeChild(o)}},353468:function(e,t,r){r.d(t,{R:function(){return i}});",
+          "module_id": "651410",
+          "enclosing_functions": [
+            {
+              "name": "o",
+              "start": 2444634,
+              "immediately_invoked": false
+            },
+            {
+              "name": "651410",
+              "start": 2444491,
+              "immediately_invoked": false
+            }
+          ],
+          "primitive": "fetch",
+          "static_target": null
+        }
+      ]
+    },
+    {
+      "before": {
+        "path": "assets/js/index.f4a046e0.js",
+        "sha256": "ff7ee8e7a1c9ec994b423481043c875660f526dce9c31baa5b60528f0b3ccb50",
+        "bytes": 3259937,
+        "static_aid_counts": {
+          "worker": 0,
+          "function": 1,
+          "eval": 0,
+          "wasm": 0
+        },
+        "review_scope": "static_source_bytes_only",
+        "reason": "FEAT-154 full-node UI incremental byte/AST review: same original module/callsite identities and categories; only private metadata and controls added. Runtime CSP and deployment permissions unchanged.",
+        "data_classifications": [],
+        "callsites": [
+          {
+            "kind": "dynamic_function",
+            "module_id": null,
+            "offset": 2951660,
+            "expression": "Function",
+            "category": "rspack_global_resolver",
+            "dependency": "Rspack1.1.8",
+            "reason": "Returns globalThis before Function fallback in normal WK browser."
+          },
+          {
+            "kind": "script_element_loader",
+            "module_id": null,
+            "offset": 2952097,
+            "expression": "document.createElement",
+            "category": "rspack_local_chunk_loader",
+            "dependency": null,
+            "reason": "Normal native async modules use fixed publicPath /editor/ and manifest-listed local chunks; permitted only by unchanged script-src self."
+          }
+        ]
+      },
+      "after": {
+        "path": "assets/js/index.c432d9a0.js",
+        "sha256": "f629c0e2262909e5f3a5b07b275ecd338d8d558c272900982d040e069dabbda7",
+        "bytes": 3259937,
+        "static_aid_counts": {
+          "worker": 0,
+          "function": 1,
+          "eval": 0,
+          "wasm": 0
+        },
+        "review_scope": "static_source_bytes_only",
+        "reason": "FEAT-154 R2 label-only incremental review: original module/callsite identities retained; no new network or dynamic execution implementation. Runtime permissions unchanged.",
+        "data_classifications": [],
+        "callsites": [
+          {
+            "kind": "dynamic_function",
+            "module_id": null,
+            "offset": 2951660,
+            "expression": "Function",
+            "category": "rspack_global_resolver",
+            "dependency": "Rspack1.1.8",
+            "reason": "Returns globalThis before Function fallback in normal WK browser."
+          },
+          {
+            "kind": "script_element_loader",
+            "module_id": null,
+            "offset": 2952097,
+            "expression": "document.createElement",
+            "category": "rspack_local_chunk_loader",
+            "dependency": null,
+            "reason": "Normal native async modules use fixed publicPath /editor/ and manifest-listed local chunks; permitted only by unchanged script-src self."
+          }
+        ]
+      },
+      "reviewed_contexts": [
+        {
+          "file": "assets/js/index.c432d9a0.js",
+          "kind": "dynamic_function",
+          "start": 2951660,
+          "end": 2951683,
+          "line": 1,
+          "column": 2951661,
+          "expression": "Function",
+          "expression_start": 2951660,
+          "expression_end": 2951668,
+          "context": "3:\"b6f5ebf8\",8014:\"63dd081a\",9484:\"68170ad7\"})[e]+\".css\"},a.h=function(){return\"24b0d5c5d78e0b5f\"},a.g=function(){if(\"object\"==typeof globalThis)return globalThis;try{return this||Function(\"return this\")()}catch(e){if(\"object\"==typeof window)return window}}(),a.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},(()=>{var e={},t=\"@yijie-coze/workflow-local:\";a.l=function(o,_,i,r){if(e[o]){e[o].push(_);retu",
+          "module_id": null,
+          "enclosing_functions": [
+            {
+              "name": "<anonymous>",
+              "start": 2951583,
+              "immediately_invoked": true
+            },
+            {
+              "name": "<anonymous>",
+              "start": 1,
+              "immediately_invoked": true
+            }
+          ]
+        },
+        {
+          "file": "assets/js/index.c432d9a0.js",
+          "kind": "script_element_loader",
+          "start": 2952097,
+          "end": 2952129,
+          "line": 1,
+          "column": 2952098,
+          "expression": "document.createElement",
+          "expression_start": 2952097,
+          "expression_end": 2952119,
+          "context": "=i){for(var n,l,s=document.getElementsByTagName(\"script\"),c=0;c<s.length;c++){var d=s[c];if(d.getAttribute(\"src\")==o||d.getAttribute(\"data-webpack\")==t+i){n=d;break}}}!n&&(l=!0,(n=document.createElement(\"script\")).charset=\"utf-8\",n.timeout=120,a.nc&&n.setAttribute(\"nonce\",a.nc),n.setAttribute(\"data-webpack\",t+i),n.src=o),e[o]=[_];var u=function(t,a){n.onerror=n.onload=null,clearTimeout(p);var _=e[o];if(delete e[o],n.parentNode&&",
+          "module_id": null,
+          "enclosing_functions": [
+            {
+              "name": "<anonymous>",
+              "start": 2951859,
+              "immediately_invoked": false
+            },
+            {
+              "name": "<anonymous>",
+              "start": 2951809,
+              "immediately_invoked": true
+            },
+            {
+              "name": "<anonymous>",
+              "start": 1,
+              "immediately_invoked": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "runtime_CSP_changed": false
+}

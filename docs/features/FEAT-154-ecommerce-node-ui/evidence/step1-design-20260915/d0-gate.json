@@ -1,0 +1,17 @@
+{
+  "verified_at": "2026-09-15T20:46:12.504797+08:00",
+  "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate D0 docs/features/FEAT-154-ecommerce-node-ui",
+  "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie",
+  "exit_code": 0,
+  "status": "PASS",
+  "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，且 D0 范围与语义门禁通过。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n",
+  "checked_input_sha256": {
+    "feature.yaml": "a4cd31f4f0740456125e1162d17a9ec9391824702b7fc96b71671de8543d87d7",
+    "00-feature-brief.md": "bd6ae0dcaa4cad4426af42ab191fb81e0fd3951f2bd031e490b0c79305ed72cc"
+  },
+  "owner_confirmation": "d0-owner-confirmation.json",
+  "scope": "D0 design gate only, not implementation or product acceptance",
+  "step_2_implementation_started": false,
+  "product_D4": "NOT RUN",
+  "independent_read_only_review": "03/04/08/09/10 and visual hashes matched review-candidate; 15 protected files and five sibling statuses unchanged"
+}

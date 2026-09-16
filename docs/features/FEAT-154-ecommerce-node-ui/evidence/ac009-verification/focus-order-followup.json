@@ -1,0 +1,19 @@
+{
+  "recorded_at": "2026-09-16T14:23:23.755365+08:00",
+  "candidate_manifest": "737e37fb041d3cf489affa80c2528bd03dc68d67837d4bd97b70c819b630cdf9",
+  "app_pid": 9103,
+  "passed": [
+    "NodeCard focusedring nowvisible",
+    "Escape fromNodeCard andscrollcontainer bothclosecatalog andreturnfocus to添加节点",
+    "Enter onreturned添加节点 reopenscatalog",
+    "All30catalog buttons reachedinorder byTab; viewportautoscrollslastbutton intoview"
+  ],
+  "finding": {
+    "id": "AC009-F3",
+    "actual": "Each tooltip wrapper adds an unnamed tabbable container before its actionable NodeCard; all30reachable but redundant focus stops.",
+    "source": "Pinned Semi Tooltip cloneElement uses children.props.tabIndex ||0.",
+    "fix": "Local CustomDragCard wrapper tabIndex=-1; inner namedNodeCard remains0; normal tooltip mouse/focus bubbling anddrag preserved."
+  },
+  "cleanup": "No ecommerce nodes added thisround; originalgraph已保存; CmdQ exited0; canonicalstop requestednormally.",
+  "later_focus_identity_clarification": "The unnamed container initially described as viewport/scrollcontainer wasidentifiedbythepinnedTooltipsource and30Tabcomparison astheouterTooltipwrapper; thefinalfixremovesitsduplicateTabstop. Actualobservedkeyresultsremainunchanged."
+}

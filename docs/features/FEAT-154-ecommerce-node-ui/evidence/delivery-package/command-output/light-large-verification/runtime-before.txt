@@ -1,0 +1,113 @@
+python3 scripts/workflow-local.py status
+{
+  "project": "yijie-feat153-workflow",
+  "phase": "ready",
+  "ready": true,
+  "run_epoch": "8d5a65b9-8656-430d-9554-e6ffd490f253",
+  "containers": [
+    {
+      "name": "yijie-feat153-workflow-workflow-api-1",
+      "service": "workflow-api",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T06:36:54.982213261Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy"
+    },
+    {
+      "name": "yijie-feat153-workflow-coze-workflow-1",
+      "service": "coze-workflow",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T06:36:51.247265384Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy"
+    },
+    {
+      "name": "yijie-feat153-workflow-api-migrate-8d5a65b9",
+      "service": "workflow-api",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T06:36:50.911512884Z",
+        "FinishedAt": "2026-09-16T06:36:50.983722467Z"
+      },
+      "health": "unhealthy"
+    },
+    {
+      "name": "yijie-feat153-workflow-coze-migrate-8d5a65b9",
+      "service": "coze-workflow",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T06:36:50.549026842Z",
+        "FinishedAt": "2026-09-16T06:36:50.670073258Z"
+      },
+      "health": "unhealthy"
+    },
+    {
+      "name": "yijie-feat153-workflow-workflow-postgres-1",
+      "service": "workflow-postgres",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T06:36:44.712920797Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy"
+    },
+    {
+      "name": "yijie-feat153-workflow-coze-workflow-redis-1",
+      "service": "coze-workflow-redis",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T06:36:44.731302672Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy"
+    },
+    {
+      "name": "yijie-feat153-workflow-coze-workflow-mysql-1",
+      "service": "coze-workflow-mysql",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T06:36:44.733323589Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy"
+    },
+    {
+      "name": "yijie-feat153-workflow-coze-workflow-minio-1",
+      "service": "coze-workflow-minio",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T06:36:44.730941422Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy"
+    }
+  ]
+}

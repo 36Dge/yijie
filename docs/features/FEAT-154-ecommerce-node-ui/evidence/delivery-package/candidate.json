@@ -1,0 +1,43 @@
+{
+  "recorded_at": "2026-09-16T08:39:17.043094+00:00",
+  "status": "implementation complete; acceptance incomplete; not released",
+  "candidate_source": "Historical AC009 final activation plus current read-only binary checksum; no fresh runtime health or UI verification performed by this packaging task",
+  "editor_manifest_sha256": "f608fde5478d47d3db3ee75ea4e14a012025a9436af21e1043439b09d5e43526",
+  "source_digest": "e4d15b39758eea4eecafc3d5008dfb88795765abcf37e44c23ef12b504452350",
+  "source_commit": "10faf164d7af194b7697a93cb3c4a6886ddc64b5",
+  "includes_dirty_changes": true,
+  "run_epoch": "8d5a65b9-8656-430d-9554-e6ffd490f253",
+  "assets": {
+    "count": 385,
+    "bytes": 45568238
+  },
+  "contracts": {
+    "version": "1.4.0-local-candidate",
+    "mode": "local_candidate",
+    "new_immutable_source_commit": null,
+    "source_lock_sha256": "42bd8a32df97d2c3354593dc431bb2f7dd65ef7236061ff85d9dbd55471f0eb9",
+    "consumer_lock_sha256": {
+      "api": "5e8065bc73462e0699da65de2cd6ca435a78a38c657ee89c5ba243d97abf75dc",
+      "coze": "c1461cd97fcc4af2b6f699a7f4c371df8f9aa3b575e981fbbbbfde8a78f3e3bf",
+      "desktop": "3e5f4e1159e9454600894bef2ae2aaecb0961ab915dd36ed6823d483a9cd7706"
+    }
+  },
+  "desktop_binary": {
+    "path": "yijie-desktop/src-tauri/target/debug/bundle/macos/易界 AI.app/Contents/MacOS/yijie-desktop",
+    "historical_sha256": "f5d6966a5f7613d07fddb4aae7e3c728c9e5a8cf21c512980186492434643686",
+    "current_sha256": "f5d6966a5f7613d07fddb4aae7e3c728c9e5a8cf21c512980186492434643686",
+    "same_as_qualified": true
+  },
+  "qualification": {
+    "D0": "PASS",
+    "implementation": "complete",
+    "R2_all_30_core": "historical PASS on a9317e…; not a fresh all-30 run on latest candidate",
+    "light_1180x760_keyboard": "PASS on f608fd…",
+    "light_1440x900": "NOT RUN; system display change declined",
+    "dark": "NOT RUN; deferred by user",
+    "AC009": "pending",
+    "D4": "NOT RUN"
+  },
+  "runtime_archive": "evidence/ac009-verification/activated-runtime-final.json",
+  "no_new_build_activation_or_ui_run": true
+}

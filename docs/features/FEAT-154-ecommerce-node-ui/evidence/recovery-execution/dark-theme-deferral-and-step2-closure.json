@@ -1,0 +1,65 @@
+{
+  "recorded_at": "2026-09-16T01:02:58.169487+08:00",
+  "timestamp_meaning": "Record creation time; the conversation did not supply a separate user reply timestamp.",
+  "source": "Explicit user reply to the pending question about temporarily changing macOS appearance for dark-theme testing.",
+  "user_reply": "保持系统外观，暗色实测留到后续",
+  "decision": {
+    "system_appearance": "preserve_current",
+    "dark_theme_real_app_status": "NOT RUN",
+    "dark_theme_disposition": "deferred_by_user",
+    "follow_up": "后续补做真实App暗色验收；全量AC-009的主题/尺寸矩阵与D4仍待完成"
+  },
+  "delivery_conclusion": {
+    "basis": "Existing R5/R6/R7 core sample evidence plus the user decision to defer dark-theme testing.",
+    "step2_status": "complete_with_dark_theme_deferred",
+    "completed_scope": "共用UI骨架与01/10/17三样板57字段、恢复五步计划及核心真实App交互；范围详见13执行记录",
+    "feature_status": "in_progress",
+    "implementation_status": "in_progress",
+    "full_feature_D4_status": "NOT RUN",
+    "remaining_nodes": 27,
+    "full_feature_AC_009_status": "pending",
+    "limitations": [
+      "亮色仅实测1180×780，不声明1180×760与1440×900完整矩阵通过",
+      "Ctrl+Z/Ctrl+Shift+Z实测通过，Cmd+Z不作通过声明",
+      "延期决定不等于暗色验收通过，也不删减全量30节点范围"
+    ]
+  },
+  "feature_boundary": {
+    "node_api_call_logic": "not_implemented_and_out_of_scope",
+    "node_business_logic": "not_implemented_and_out_of_scope",
+    "trial_entry": "clickable; frontend notice only, no API dispatch and no simulated result"
+  },
+  "this_turn": {
+    "documentation_only": true,
+    "contract_impact": "none",
+    "system_appearance_changed": false,
+    "runtime_actions_performed": false,
+    "runtime_reverified": false
+  },
+  "historical_evidence": [
+    {
+      "path": "evidence/recovery-execution/ui-r5-observations.json",
+      "sha256": "f8b0d64e7a184f3c6480f9ca9d7dc039187820bc7ef141407af529385c44a314"
+    },
+    {
+      "path": "evidence/recovery-execution/ui-r6-observations.json",
+      "sha256": "c439aab10d69b78d361964167948fefe8e11cfa08e52d18dcfa91ae1ce07064f"
+    },
+    {
+      "path": "evidence/recovery-execution/ui-r7-observations.json",
+      "sha256": "3a7afb2f75daca11599a294e2e72da13ff4736cffc1443cba016b63b230e7e28"
+    },
+    {
+      "path": "evidence/recovery-execution/ui-r7-persistence-comparison.json",
+      "sha256": "7e2762e22e75634ffb755fa10a72f5ab2127e14f1fe4b503f02fc9b080ade392"
+    },
+    {
+      "path": "evidence/recovery-execution/activated-runtime-r7.json",
+      "sha256": "ca7f70fafd46cc08a121dc8095fd9fea363153696e66568e05022a8468c1b70f"
+    },
+    {
+      "path": "evidence/recovery-execution/workspace-r7-final.json",
+      "sha256": "390cb32195362b9df1b4449a491a96e0c32e93fc0a58fc8bde11459ee19a4ff4"
+    }
+  ]
+}

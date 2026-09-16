@@ -1,0 +1,55 @@
+{
+  "recorded_at": "2026-09-15T13:11:52.593669+00:00",
+  "scope": "read-only independent review of in-progress Step2 root lifetime implementation",
+  "status": "findings delivered to root; fix verification pending",
+  "positive_observations": [
+    "first design activation happens synchronously before native super.create",
+    "strict provider DraftModel remains separate from ecommerce document",
+    "explicit original restoration retains both snapshots until current epoch acknowledgement",
+    "save/test/publish action handlers check design.writeBlocked independently of UI disabled state",
+    "history host busy remains independent of page protection dirty"
+  ],
+  "findings": [
+    {
+      "id": "lifetime-1",
+      "path": "frontend/packages/workflow/playground/src/services/workflow-save-service.ts",
+      "area": "local subscription and reload continuation",
+      "scenario": "clean remote B begins native reload, next bootstrap C arrives while localReplacing; C notification is skipped, B completion rejects stale revision, finally only reapplies flags without loading C",
+      "impact": "visible native graph can remain B while provider model/revision is C and editing reopens",
+      "suggestion": "serialize replacement processing and consume latest snapshot after completion; keep editing blocked until current target normalization succeeds"
+    },
+    {
+      "id": "lifetime-2",
+      "path": "frontend/apps/workflow-local/src/main.tsx",
+      "area": "bootstrap OperationTicket versus candidate model switch",
+      "scenario": "loadLatest reload begins, normal reconnect starts bootstrap at old revision A, native ack switches model to B before bootstrap B returns",
+      "impact": "receiveCurrent rejects matching remote B because ticket captured A; editor ready remains false although host channel is ready",
+      "suggestion": "coordinate bootstrap and document epoch transaction; defer candidate switch or bootstrap again after a switch; stale result discard must not strand ready/busy state"
+    },
+    {
+      "id": "lifetime-3",
+      "path": "frontend/packages/workflow/playground/src/services/workflow-save-service.ts",
+      "area": "automatic clean remote replacement failure",
+      "scenario": "non-requested reload or normalize rejects",
+      "impact": "catch sets savingError, finally overwrites it from clean snapshot and permits editing despite missing normalization acknowledgement",
+      "suggestion": "put automatic remote replacement under the same explicit failed replacement state, preserving original content and requiring safe retry"
+    }
+  ],
+  "runtime_recovery_review": {
+    "existing_controller_actions": [
+      "init",
+      "editor",
+      "build",
+      "up",
+      "status",
+      "stop",
+      "qualify-pg"
+    ],
+    "existing_safe_recovery_entry": null,
+    "source": "yijie-infra/docs/workflow-local.md explicitly excludes fault recovery; controller and workflow-local-model.mjs require normal stopped exit0 before registration",
+    "observed_by_root": "existing Coze and MySQL exit137; all containers not running; normal stop refused nonzero prior exit",
+    "safe_current_action": "retain containers/volumes/evidence; continue offline work; no live artifact replacement or activation",
+    "future_recovery_needs": "explicit reviewed canonical recovery preserving abnormal history and data, normal startup/health/normal stop; not a direct state/ExitCode rewrite",
+    "performed": "read only; no start/stop/build/recovery/container or controller mutation by this agent"
+  }
+}

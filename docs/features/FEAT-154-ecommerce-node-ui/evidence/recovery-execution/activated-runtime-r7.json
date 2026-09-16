@@ -1,0 +1,519 @@
+{
+  "phase": "ready",
+  "run_epoch": "43881871-7e3c-4127-906f-8fa353b86362",
+  "built": {
+    "api": {
+      "image_id": "sha256:3eaa6f6e4e81a78f03da8acfe2a0aec321ea7f5ba9309ec1bf47519acca91384",
+      "source_digest": "bcd756aaa613e642b48807a72461b156386a2839eba7e4fac09b8434d3ec60d9",
+      "repository": "yijie-api",
+      "local_tag": "yijie-local/feat153-api:bcd756aaa613e642",
+      "go_image": "golang:1.26.5-bookworm@sha256:53eeac89074db483fdf0ab3be1df32bf6e47562263d2d0d6baa7f26acb4957dd"
+    },
+    "api-test": {
+      "image_id": "sha256:5d9d5c6b64895c6df0f7652eba2239f31ac3c33db05cb9ed8e74e22b1a9fa3cd",
+      "source_digest": "bcd756aaa613e642b48807a72461b156386a2839eba7e4fac09b8434d3ec60d9",
+      "repository": "yijie-api",
+      "local_tag": "yijie-local/feat153-api-test:bcd756aaa613e642",
+      "go_image": "golang:1.26.5-bookworm@sha256:53eeac89074db483fdf0ab3be1df32bf6e47562263d2d0d6baa7f26acb4957dd"
+    },
+    "coze": {
+      "image_id": "sha256:e275a6b731736160b4e0711cb5d549e5de5680608b3508892d243a8aed1b6941",
+      "source_digest": "6ec7eb5c70fcc8472410a91dba5bbafe74302a893d061c297ad735dd5ae70798",
+      "repository": "yijie-coze",
+      "local_tag": "yijie-local/feat153-coze:6ec7eb5c70fcc847",
+      "go_image": "golang:1.26.5-bookworm@sha256:53eeac89074db483fdf0ab3be1df32bf6e47562263d2d0d6baa7f26acb4957dd"
+    }
+  },
+  "editor": {
+    "schema_version": 1,
+    "bundle_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/dist",
+    "manifest_sha256": "d8cb7daefc4a7f582caccb942f2bcf32f2c7ec6299e6006779119cfa62853800",
+    "source_commit": "10faf164d7af194b7697a93cb3c4a6886ddc64b5",
+    "manifest_source_digest": "6ec7eb5c70fcc8472410a91dba5bbafe74302a893d061c297ad735dd5ae70798",
+    "coze_candidate": "6ec7eb5c70fcc8472410a91dba5bbafe74302a893d061c297ad735dd5ae70798",
+    "contracts_source_lock_sha256": "42bd8a32df97d2c3354593dc431bb2f7dd65ef7236061ff85d9dbd55471f0eb9",
+    "consumer_lock_sha256": {
+      "api": "5e8065bc73462e0699da65de2cd6ca435a78a38c657ee89c5ba243d97abf75dc",
+      "coze": "c1461cd97fcc4af2b6f699a7f4c371df8f9aa3b575e981fbbbbfde8a78f3e3bf",
+      "desktop": "3e5f4e1159e9454600894bef2ae2aaecb0961ab915dd36ed6823d483a9cd7706"
+    },
+    "deployment_schema_sha256": "d3016433e02f492493df3cdcbaacfe054e0de27afd5c61a115b4555f4b586aae",
+    "file_count": 385,
+    "total_asset_bytes": 45375840,
+    "entry": {
+      "path": "index.html",
+      "sha256": "f7720b140f14a56fafb7fbda18b88035219d2f48ff47734ffb0826d8ecf8589f",
+      "bytes": 617,
+      "content_type": "text/html; charset=utf-8"
+    }
+  },
+  "containers": [
+    {
+      "id": "92fb743e1d510a2180b5ae0f82b9dd0b8e023a33ed5b0d8ee662174c9eeeccc3",
+      "name": "yijie-feat153-workflow-workflow-api-1",
+      "image_id": "sha256:3eaa6f6e4e81a78f03da8acfe2a0aec321ea7f5ba9309ec1bf47519acca91384",
+      "labels": {
+        "ai.yijie.dataset": "workflow-local-v1",
+        "ai.yijie.feature": "FEAT-153",
+        "ai.yijie.run-epoch": "43881871-7e3c-4127-906f-8fa353b86362",
+        "ai.yijie.source-digest": "bcd756aaa613e642b48807a72461b156386a2839eba7e4fac09b8434d3ec60d9",
+        "com.docker.compose.config-hash": "088ba1b2cf4d8a99dc39c02f06039e06331186c713b7d7f217164694e911da5a",
+        "com.docker.compose.container-number": "1",
+        "com.docker.compose.depends_on": "",
+        "com.docker.compose.image": "sha256:3eaa6f6e4e81a78f03da8acfe2a0aec321ea7f5ba9309ec1bf47519acca91384",
+        "com.docker.compose.oneoff": "False",
+        "com.docker.compose.project": "yijie-feat153-workflow",
+        "com.docker.compose.project.config_files": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/compose/workflow-local.yml,/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/compose/workflow-editor.yml",
+        "com.docker.compose.project.environment_file": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/compose.env",
+        "com.docker.compose.project.working_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/compose",
+        "com.docker.compose.service": "workflow-api",
+        "com.docker.compose.version": "5.3.0"
+      },
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-15T16:36:27.542979096Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy",
+      "mounts": [
+        {
+          "type": "bind",
+          "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/private/k-na.json",
+          "target": "/run/workflow-private/k-na.json",
+          "rw": false
+        },
+        {
+          "type": "bind",
+          "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/private/k-ac.json",
+          "target": "/run/workflow-private/k-ac.json",
+          "rw": false
+        },
+        {
+          "type": "bind",
+          "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/private/postgres-dsn",
+          "target": "/run/workflow-private/postgres-dsn",
+          "rw": false
+        },
+        {
+          "type": "bind",
+          "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/dist",
+          "target": "/opt/yijie/workflow-editor",
+          "rw": false
+        }
+      ]
+    },
+    {
+      "id": "4e268a2f42f25f7d7d716b41717bc6e1addd4903d56ccd19cfcdcaa8caa9aa66",
+      "name": "yijie-feat153-workflow-coze-workflow-1",
+      "image_id": "sha256:e275a6b731736160b4e0711cb5d549e5de5680608b3508892d243a8aed1b6941",
+      "labels": {
+        "ai.yijie.dataset": "workflow-local-v1",
+        "ai.yijie.feature": "FEAT-153",
+        "ai.yijie.run-epoch": "43881871-7e3c-4127-906f-8fa353b86362",
+        "ai.yijie.source-digest": "6ec7eb5c70fcc8472410a91dba5bbafe74302a893d061c297ad735dd5ae70798",
+        "com.docker.compose.config-hash": "6ea6b4e1731b682b18702c51f7ac643c06094db6f6528e3a38f5f94ce5073545",
+        "com.docker.compose.container-number": "1",
+        "com.docker.compose.depends_on": "",
+        "com.docker.compose.image": "sha256:e275a6b731736160b4e0711cb5d549e5de5680608b3508892d243a8aed1b6941",
+        "com.docker.compose.oneoff": "False",
+        "com.docker.compose.project": "yijie-feat153-workflow",
+        "com.docker.compose.project.config_files": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/compose/workflow-local.yml,/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/compose/workflow-editor.yml",
+        "com.docker.compose.project.environment_file": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/compose.env",
+        "com.docker.compose.project.working_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/compose",
+        "com.docker.compose.service": "coze-workflow",
+        "com.docker.compose.version": "5.3.0"
+      },
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-15T16:36:23.791649845Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy",
+      "mounts": [
+        {
+          "type": "bind",
+          "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/private/minio-access",
+          "target": "/run/workflow-private/minio-access",
+          "rw": false
+        },
+        {
+          "type": "bind",
+          "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/private/minio-secret",
+          "target": "/run/workflow-private/minio-secret",
+          "rw": false
+        },
+        {
+          "type": "bind",
+          "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/private/k-ac.json",
+          "target": "/run/workflow-private/k-ac.json",
+          "rw": false
+        },
+        {
+          "type": "bind",
+          "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/private/mysql-dsn",
+          "target": "/run/workflow-private/mysql-dsn",
+          "rw": false
+        },
+        {
+          "type": "bind",
+          "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/private/redis-password",
+          "target": "/run/workflow-private/redis-password",
+          "rw": false
+        }
+      ]
+    },
+    {
+      "id": "7c67d4acc95aa8a5aba5de0b4b19f9dd46786f0991e3b6c851f9c6006e51058d",
+      "name": "yijie-feat153-workflow-api-migrate-43881871",
+      "image_id": "sha256:3eaa6f6e4e81a78f03da8acfe2a0aec321ea7f5ba9309ec1bf47519acca91384",
+      "labels": {
+        "ai.yijie.dataset": "workflow-local-v1",
+        "ai.yijie.feature": "FEAT-153",
+        "ai.yijie.run-epoch": "43881871-7e3c-4127-906f-8fa353b86362",
+        "ai.yijie.source-digest": "bcd756aaa613e642b48807a72461b156386a2839eba7e4fac09b8434d3ec60d9",
+        "com.docker.compose.config-hash": "838fafd89ca7ef1be714208e58c7b53e9e0a1483c5f929e432cb5c27d7033e01",
+        "com.docker.compose.depends_on": "",
+        "com.docker.compose.image": "sha256:3eaa6f6e4e81a78f03da8acfe2a0aec321ea7f5ba9309ec1bf47519acca91384",
+        "com.docker.compose.oneoff": "True",
+        "com.docker.compose.project": "yijie-feat153-workflow",
+        "com.docker.compose.project.config_files": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/compose/workflow-local.yml,/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/compose/workflow-editor.yml",
+        "com.docker.compose.project.environment_file": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/compose.env",
+        "com.docker.compose.project.working_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/compose",
+        "com.docker.compose.service": "workflow-api",
+        "com.docker.compose.slug": "38bfe97b8fa7e26ff08a197602a82544f2d5ef8c15fb2155fd907d231eaa2070",
+        "com.docker.compose.version": "5.3.0"
+      },
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-15T16:36:23.465627594Z",
+        "FinishedAt": "2026-09-15T16:36:23.541291636Z"
+      },
+      "health": "unhealthy",
+      "mounts": [
+        {
+          "type": "bind",
+          "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/private/k-ac.json",
+          "target": "/run/workflow-private/k-ac.json",
+          "rw": false
+        },
+        {
+          "type": "bind",
+          "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/private/postgres-dsn",
+          "target": "/run/workflow-private/postgres-dsn",
+          "rw": false
+        },
+        {
+          "type": "bind",
+          "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/private/k-na.json",
+          "target": "/run/workflow-private/k-na.json",
+          "rw": false
+        },
+        {
+          "type": "bind",
+          "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/dist",
+          "target": "/opt/yijie/workflow-editor",
+          "rw": false
+        }
+      ]
+    },
+    {
+      "id": "48813d2913aeb24f2de88cc29618a9f10090db194ee9035650901704152cf5ef",
+      "name": "yijie-feat153-workflow-coze-migrate-43881871",
+      "image_id": "sha256:e275a6b731736160b4e0711cb5d549e5de5680608b3508892d243a8aed1b6941",
+      "labels": {
+        "ai.yijie.dataset": "workflow-local-v1",
+        "ai.yijie.feature": "FEAT-153",
+        "ai.yijie.run-epoch": "43881871-7e3c-4127-906f-8fa353b86362",
+        "ai.yijie.source-digest": "6ec7eb5c70fcc8472410a91dba5bbafe74302a893d061c297ad735dd5ae70798",
+        "com.docker.compose.config-hash": "f60a8c11e127b6e945a9a3ea42d8713e7c230d8ce538f7f55368d90a476eb53d",
+        "com.docker.compose.depends_on": "",
+        "com.docker.compose.image": "sha256:e275a6b731736160b4e0711cb5d549e5de5680608b3508892d243a8aed1b6941",
+        "com.docker.compose.oneoff": "True",
+        "com.docker.compose.project": "yijie-feat153-workflow",
+        "com.docker.compose.project.config_files": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/compose/workflow-local.yml,/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/compose/workflow-editor.yml",
+        "com.docker.compose.project.environment_file": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/compose.env",
+        "com.docker.compose.project.working_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/compose",
+        "com.docker.compose.service": "coze-workflow",
+        "com.docker.compose.slug": "3daa030b7bce9dddab2677de26974c091624d1a8ab453ec7a01af4c1adc234e6",
+        "com.docker.compose.version": "5.3.0"
+      },
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-15T16:36:23.187068469Z",
+        "FinishedAt": "2026-09-15T16:36:23.248890719Z"
+      },
+      "health": "unhealthy",
+      "mounts": [
+        {
+          "type": "bind",
+          "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/private/redis-password",
+          "target": "/run/workflow-private/redis-password",
+          "rw": false
+        },
+        {
+          "type": "bind",
+          "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/private/minio-access",
+          "target": "/run/workflow-private/minio-access",
+          "rw": false
+        },
+        {
+          "type": "bind",
+          "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/private/minio-secret",
+          "target": "/run/workflow-private/minio-secret",
+          "rw": false
+        },
+        {
+          "type": "bind",
+          "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/private/k-ac.json",
+          "target": "/run/workflow-private/k-ac.json",
+          "rw": false
+        },
+        {
+          "type": "bind",
+          "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/private/mysql-dsn",
+          "target": "/run/workflow-private/mysql-dsn",
+          "rw": false
+        }
+      ]
+    },
+    {
+      "id": "8b035c953cf90492099743f10ad8fc4eabd73dd433d3ba6d1b31208472682427",
+      "name": "yijie-feat153-workflow-workflow-postgres-1",
+      "image_id": "sha256:4e6e670bb069649261c9c18031f0aded7bb249a5b6664ddec29c013a89310d50",
+      "labels": {
+        "ai.yijie.dataset": "workflow-local-v1",
+        "ai.yijie.feature": "FEAT-153",
+        "ai.yijie.run-epoch": "43881871-7e3c-4127-906f-8fa353b86362",
+        "com.docker.compose.config-hash": "242153845a44e6db4588dbf6a96a23046033cf24dbc526b6f67fabb839812d07",
+        "com.docker.compose.container-number": "1",
+        "com.docker.compose.depends_on": "",
+        "com.docker.compose.image": "sha256:4e6e670bb069649261c9c18031f0aded7bb249a5b6664ddec29c013a89310d50",
+        "com.docker.compose.oneoff": "False",
+        "com.docker.compose.project": "yijie-feat153-workflow",
+        "com.docker.compose.project.config_files": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/compose/workflow-local.yml,/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/compose/workflow-editor.yml",
+        "com.docker.compose.project.environment_file": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/compose.env",
+        "com.docker.compose.project.working_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/compose",
+        "com.docker.compose.service": "workflow-postgres",
+        "com.docker.compose.version": "5.3.0"
+      },
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-15T16:36:17.404292383Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy",
+      "mounts": [
+        {
+          "type": "volume",
+          "source": "yijie-feat153-workflow_postgres-data",
+          "target": "/var/lib/postgresql/data",
+          "rw": true
+        },
+        {
+          "type": "bind",
+          "source": "/host_mnt/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/private/postgres-password",
+          "target": "/run/private/postgres-password",
+          "rw": false
+        }
+      ]
+    },
+    {
+      "id": "d23d78e68224c4beff98fa862f825f33b8caa40442ea2548ce9f4e9ca8e69df6",
+      "name": "yijie-feat153-workflow-coze-workflow-redis-1",
+      "image_id": "sha256:25c0ae32c6c2301798579f5944af53729766a18eff5660bbef196fc2e6214a9c",
+      "labels": {
+        "ai.yijie.dataset": "workflow-local-v1",
+        "ai.yijie.feature": "FEAT-153",
+        "ai.yijie.run-epoch": "43881871-7e3c-4127-906f-8fa353b86362",
+        "com.docker.compose.config-hash": "f9e885685df77dd3b333dbb7952e89565d7aff8aa2f76caf0ce50584eff791f7",
+        "com.docker.compose.container-number": "1",
+        "com.docker.compose.depends_on": "",
+        "com.docker.compose.image": "sha256:25c0ae32c6c2301798579f5944af53729766a18eff5660bbef196fc2e6214a9c",
+        "com.docker.compose.oneoff": "False",
+        "com.docker.compose.project": "yijie-feat153-workflow",
+        "com.docker.compose.project.config_files": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/compose/workflow-local.yml,/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/compose/workflow-editor.yml",
+        "com.docker.compose.project.environment_file": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/compose.env",
+        "com.docker.compose.project.working_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/compose",
+        "com.docker.compose.service": "coze-workflow-redis",
+        "com.docker.compose.version": "5.3.0"
+      },
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-15T16:36:17.404953133Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy",
+      "mounts": [
+        {
+          "type": "volume",
+          "source": "yijie-feat153-workflow_redis-data",
+          "target": "/data",
+          "rw": true
+        },
+        {
+          "type": "bind",
+          "source": "/host_mnt/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/private/redis.conf",
+          "target": "/run/private/redis.conf",
+          "rw": false
+        },
+        {
+          "type": "bind",
+          "source": "/host_mnt/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/private/redis-password",
+          "target": "/run/private/redis-password",
+          "rw": false
+        }
+      ]
+    },
+    {
+      "id": "199e7cd6cff588143ac2938474170ca6a4ac55d46d818aeba6abea8327a6c52e",
+      "name": "yijie-feat153-workflow-coze-workflow-mysql-1",
+      "image_id": "sha256:679e7e924f38a3cbb62a3d7df32924b83f7321a602d3f9f967c01b3df18495d6",
+      "labels": {
+        "ai.yijie.dataset": "workflow-local-v1",
+        "ai.yijie.feature": "FEAT-153",
+        "ai.yijie.run-epoch": "43881871-7e3c-4127-906f-8fa353b86362",
+        "com.docker.compose.config-hash": "c5313c604d6a01e7be5d7573227c9e1a0c9e198280ffe17d37f45f0253854569",
+        "com.docker.compose.container-number": "1",
+        "com.docker.compose.depends_on": "",
+        "com.docker.compose.image": "sha256:679e7e924f38a3cbb62a3d7df32924b83f7321a602d3f9f967c01b3df18495d6",
+        "com.docker.compose.oneoff": "False",
+        "com.docker.compose.project": "yijie-feat153-workflow",
+        "com.docker.compose.project.config_files": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/compose/workflow-local.yml,/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/compose/workflow-editor.yml",
+        "com.docker.compose.project.environment_file": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/compose.env",
+        "com.docker.compose.project.working_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/compose",
+        "com.docker.compose.service": "coze-workflow-mysql",
+        "com.docker.compose.version": "5.3.0"
+      },
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-15T16:36:17.405641008Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy",
+      "mounts": [
+        {
+          "type": "volume",
+          "source": "yijie-feat153-workflow_mysql-data",
+          "target": "/var/lib/mysql",
+          "rw": true
+        },
+        {
+          "type": "bind",
+          "source": "/host_mnt/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/private/mysql-root-password",
+          "target": "/run/private/mysql-root-password",
+          "rw": false
+        },
+        {
+          "type": "bind",
+          "source": "/host_mnt/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/private/mysql-password",
+          "target": "/run/private/mysql-password",
+          "rw": false
+        },
+        {
+          "type": "bind",
+          "source": "/host_mnt/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/upstream-schema.sql",
+          "target": "/docker-entrypoint-initdb.d/001-upstream.sql",
+          "rw": false
+        }
+      ]
+    },
+    {
+      "id": "0d684d1502fdfc9409e6636a62c5d996916aa7bb09ec872cf8ea0f0ad9677a93",
+      "name": "yijie-feat153-workflow-coze-workflow-minio-1",
+      "image_id": "sha256:064117214caceaa8d8a90ef7caa58f2b2aeb316b5156afe9ee8da5b4d83e12c8",
+      "labels": {
+        "ai.yijie.dataset": "workflow-local-v1",
+        "ai.yijie.feature": "FEAT-153",
+        "ai.yijie.run-epoch": "43881871-7e3c-4127-906f-8fa353b86362",
+        "architecture": "aarch64",
+        "build-date": "2025-06-11T09:14:48",
+        "com.docker.compose.config-hash": "026f77d1300ee1f983e1c63314a7475289351f8c53e722dec0df821aa50680f8",
+        "com.docker.compose.container-number": "1",
+        "com.docker.compose.depends_on": "",
+        "com.docker.compose.image": "sha256:064117214caceaa8d8a90ef7caa58f2b2aeb316b5156afe9ee8da5b4d83e12c8",
+        "com.docker.compose.oneoff": "False",
+        "com.docker.compose.project": "yijie-feat153-workflow",
+        "com.docker.compose.project.config_files": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/compose/workflow-local.yml,/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/compose/workflow-editor.yml",
+        "com.docker.compose.project.environment_file": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/compose.env",
+        "com.docker.compose.project.working_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/compose",
+        "com.docker.compose.service": "coze-workflow-minio",
+        "com.docker.compose.version": "5.3.0",
+        "com.redhat.component": "ubi9-micro-container",
+        "com.redhat.license_terms": "https://www.redhat.com/en/about/red-hat-end-user-license-agreements#UBI",
+        "description": "MinIO object storage is fundamentally different. Designed for performance and the S3 API, it is 100% open-source. MinIO is ideal for large, private cloud environments with stringent security requirements and delivers mission-critical availability across a diverse range of workloads.",
+        "distribution-scope": "public",
+        "io.buildah.version": "1.39.0-dev",
+        "io.k8s.description": "Very small image which doesn't install the package manager.",
+        "io.k8s.display-name": "Red Hat Universal Base Image 9 Micro",
+        "io.openshift.expose-services": "",
+        "maintainer": "MinIO Inc <dev@min.io>",
+        "name": "MinIO",
+        "release": "RELEASE.2025-06-13T11-33-47Z",
+        "summary": "MinIO is a High Performance Object Storage, API compatible with Amazon S3 cloud storage service.",
+        "url": "https://www.redhat.com",
+        "vcs-ref": "5b5052c387dc3e97454afeb772c52540231c77fe",
+        "vcs-type": "git",
+        "vendor": "MinIO Inc <dev@min.io>",
+        "version": "RELEASE.2025-06-13T11-33-47Z"
+      },
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-15T16:36:17.386802216Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy",
+      "mounts": [
+        {
+          "type": "volume",
+          "source": "yijie-feat153-workflow_minio-data",
+          "target": "/data",
+          "rw": true
+        },
+        {
+          "type": "bind",
+          "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/private/minio-access",
+          "target": "/run/private/minio-access",
+          "rw": false
+        },
+        {
+          "type": "bind",
+          "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/private/minio-secret",
+          "target": "/run/private/minio-secret",
+          "rw": false
+        }
+      ]
+    }
+  ],
+  "recovery_history": [
+    {
+      "recovery_id": "f910d233-e4fc-41bd-b02d-783897bd5339",
+      "original_sha256": "6c69ae1228ab53f5870787d62a167f553e29a8d5359a978f97314b70095aa3dc",
+      "completed_at_ms": 1789485700563
+    }
+  ],
+  "credentials": "native only; values omitted"
+}

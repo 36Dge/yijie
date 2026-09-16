@@ -1,0 +1,39 @@
+{
+  "run_epoch": "43881871-7e3c-4127-906f-8fa353b86362",
+  "manifest_sha256": "d8cb7daefc4a7f582caccb942f2bcf32f2c7ec6299e6006779119cfa62853800",
+  "scope": "R7 canonical real App, frontend-only samples01/10/17; full30 feature/D4 still pending",
+  "passed": [
+    {
+      "case": "undo deletion and redo",
+      "observed": "Collection sources[].source_type set to history-r7. Confirmed deletion removed collection. After a natural reconnect, node-focused Ctrl+Z restored it with 7/9 configured. Ctrl+Shift+Z deleted it again, then Ctrl+Z restored it. Opening restored sidebar directly showed source_type=history-r7."
+    },
+    {
+      "case": "last ecommerce deletion",
+      "observed": "Deleting the sole configured ecommerce node left 仅本页配置 badge, 恢复原草稿, disabled persistence actions and clickable trial. Explicit restore later recovered the original three-node graph and connections."
+    },
+    {
+      "case": "independent instances and three samples",
+      "observed": "Final page contained image0/9, restored collection7/9, second collection6/9 and Listing0/14. Native auto-layout positioned these independently. All catalog/source field counts still pass source tests; full57 sidebar review is recorded in R5."
+    },
+    {
+      "case": "no-op trial",
+      "observed": "Toolbar opened local trial panel; enabled button showed 暂未接入试运行，当前仅展示节点配置。. Direct database reads immediately before/after show every fact including API audit identical, zero new audit rows. Node trial uses the same notice and was clicked during keyboard focus setup."
+    },
+    {
+      "case": "cancel leave and history modal",
+      "observed": "Continue editing cancelled page leave. Opening/closing native history showed v0.0.1 and two old historical records, retained four UI instances. Existing version execution remained available but was not invoked."
+    },
+    {
+      "case": "original dirty restoration and cleanup",
+      "observed": "Restore returned original three nodes, two connected edges and pre-design unsaved name FEAT154-restore-r7. Reverting only our test name to FEAT153 原生终验 0913 returned 已保存, without pressing Save. Navigated to Settings normally afterward."
+    }
+  ],
+  "limits": [
+    "Ctrl+Z/Ctrl+Shift+Z directly verified after keyboard focus on node. Cmd+Z did not visibly work through automation and is not reported PASS.",
+    "A normal native menu automation misstep removed the original text node inside the temporary design graph. Explicit restore recovered it and its two connections; no persistence operation occurred.",
+    "App follows macOS prefers-color-scheme; no independent theme toggle. System-level dark-mode check awaiting owner confirmation; current original theme light.",
+    "Direct native screenshot evidence is in this task, not invented local image files."
+  ],
+  "persistence": "ui-r7-persistence-comparison.json: all six business fact groups unchanged; trial all facts/audit unchanged",
+  "current_app": "Running R7, Settings page, saved original workflow restored. No page design pending."
+}

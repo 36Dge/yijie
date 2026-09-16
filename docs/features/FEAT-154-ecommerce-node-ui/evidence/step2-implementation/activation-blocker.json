@@ -1,0 +1,137 @@
+{
+  "recorded_at": "2026-09-15T21:19:28.041155+08:00",
+  "status_command": "make workflow-status",
+  "status_exit_code": 0,
+  "observed_status": {
+    "project": "yijie-feat153-workflow",
+    "phase": "stopping",
+    "ready": false,
+    "run_epoch": "ab2f2c6f-664a-4574-a11e-d8f3d9159f61",
+    "containers": [
+      {
+        "name": "yijie-feat153-workflow-workflow-api-1",
+        "service": "workflow-api",
+        "state": {
+          "Status": "exited",
+          "Running": false,
+          "ExitCode": 0,
+          "OOMKilled": false,
+          "StartedAt": "2026-09-14T18:00:23.925424255Z",
+          "FinishedAt": "2026-09-14T18:38:29.081029673Z"
+        },
+        "health": "unhealthy"
+      },
+      {
+        "name": "yijie-feat153-workflow-coze-workflow-1",
+        "service": "coze-workflow",
+        "state": {
+          "Status": "exited",
+          "Running": false,
+          "ExitCode": 137,
+          "OOMKilled": false,
+          "StartedAt": "2026-09-14T18:00:20.195766628Z",
+          "FinishedAt": "2026-09-14T18:38:30.101452841Z"
+        },
+        "health": "unhealthy"
+      },
+      {
+        "name": "yijie-feat153-workflow-api-migrate-ab2f2c6f",
+        "service": "workflow-api",
+        "state": {
+          "Status": "exited",
+          "Running": false,
+          "ExitCode": 0,
+          "OOMKilled": false,
+          "StartedAt": "2026-09-14T18:00:19.847722794Z",
+          "FinishedAt": "2026-09-14T18:00:19.938642336Z"
+        },
+        "health": "unhealthy"
+      },
+      {
+        "name": "yijie-feat153-workflow-coze-migrate-ab2f2c6f",
+        "service": "coze-workflow",
+        "state": {
+          "Status": "exited",
+          "Running": false,
+          "ExitCode": 0,
+          "OOMKilled": false,
+          "StartedAt": "2026-09-14T18:00:19.543697294Z",
+          "FinishedAt": "2026-09-14T18:00:19.614682002Z"
+        },
+        "health": "unhealthy"
+      },
+      {
+        "name": "yijie-feat153-workflow-workflow-postgres-1",
+        "service": "workflow-postgres",
+        "state": {
+          "Status": "exited",
+          "Running": false,
+          "ExitCode": 0,
+          "OOMKilled": false,
+          "StartedAt": "2026-09-14T18:00:13.769659375Z",
+          "FinishedAt": "2026-09-14T18:38:29.08812784Z"
+        },
+        "health": "unhealthy"
+      },
+      {
+        "name": "yijie-feat153-workflow-coze-workflow-redis-1",
+        "service": "coze-workflow-redis",
+        "state": {
+          "Status": "exited",
+          "Running": false,
+          "ExitCode": 0,
+          "OOMKilled": false,
+          "StartedAt": "2026-09-14T18:00:13.752235291Z",
+          "FinishedAt": "2026-09-14T18:38:29.105863465Z"
+        },
+        "health": "unhealthy"
+      },
+      {
+        "name": "yijie-feat153-workflow-coze-workflow-mysql-1",
+        "service": "coze-workflow-mysql",
+        "state": {
+          "Status": "exited",
+          "Running": false,
+          "ExitCode": 137,
+          "OOMKilled": false,
+          "StartedAt": "2026-09-14T18:00:13.76919Z",
+          "FinishedAt": "2026-09-14T18:38:30.145223674Z"
+        },
+        "health": "unhealthy"
+      },
+      {
+        "name": "yijie-feat153-workflow-coze-workflow-minio-1",
+        "service": "coze-workflow-minio",
+        "state": {
+          "Status": "exited",
+          "Running": false,
+          "ExitCode": 0,
+          "OOMKilled": false,
+          "StartedAt": "2026-09-14T18:00:13.770819Z",
+          "FinishedAt": "2026-09-14T18:38:29.082911923Z"
+        },
+        "health": "unhealthy"
+      }
+    ]
+  },
+  "normal_stop_command": "make workflow-stop",
+  "normal_stop_exit_code": 2,
+  "normal_stop_result": "WORKFLOW: Containers retained; inspect nonzero exit or OOM before claiming normal stop",
+  "preexisting_abnormal_exits": true,
+  "abnormal_finished_at_utc": "2026-09-14T18:38:30Z",
+  "actions_this_turn": [
+    "CUA attempted normal open of original Docker Desktop; tool timed out, subsequent controller status succeeded",
+    "read canonical workflow status",
+    "one canonical workflow-stop attempt; failed before any running targets existed",
+    "canonical editor prepare writes only owned build-workspace source copies",
+    "canonical typecheck and focused tests"
+  ],
+  "not_executed": [
+    "workflow editor dist build/check/registration",
+    "Infra build/up",
+    "Desktop App startup and real UI verification",
+    "container recovery/restart/removal",
+    "force kill or data/permission changes"
+  ],
+  "reason": "Existing Coze/MySQL exit137 retained; current canonical controller has no abnormal-exit recovery command. Activation stopped under permanent user safety rules and repository normal-stop prerequisite."
+}

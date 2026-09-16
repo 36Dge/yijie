@@ -1,0 +1,10 @@
+{
+  "recorded_at": "2026-09-16T08:58:54.521336+00:00",
+  "repository": "yijie-contracts",
+  "command": [
+    "make",
+    "workflow-test"
+  ],
+  "exit_code": 0,
+  "output": "node --test tests/workflow-local.test.mjs tests/workflow-local-browser.test.mjs\n✔ browser AOT matches source for ordinary Unicode and optional query fields (48.809333ms)\n✔ browser AOT validates existing connect ready and normal request-response envelope (0.873666ms)\n✔ browser and source agree on protected and cleared page notifications after reconnect (25.924916ms)\n✔ browser module runs with runtime string code generation disabled (44.909333ms)\n✔ canonical browser declarations preserve source optional defaults (442.255875ms)\n✔ page protection retains the existing boolean envelope for drafts, UI design and query context (0.934917ms)\n✔ workflow source separates native secret responses from renderer views (0.621833ms)\n✔ UTF-8 text bounds measure bytes rather than characters (0.245291ms)\n✔ normal editor saves require the expected revision and complete save fields (0.600959ms)\n✔ run queries remain valid independently of an editor lease (0.266084ms)\n✔ unknown engine status is retained while published versions and receipt semantics stay bounded (0.442375ms)\n✔ MessageChannel response has one typed outcome and generation binding (0.186667ms)\n✔ history navigation is bound to the editor without an operation or resource payload (0.633ms)\n✔ list summaries exclude bulk content while details retain it (0.066625ms)\n✔ description is optional with a 600 code-point boundary and Unicode names remain compatible (0.145291ms)\n✔ deletion is revision-bound and leaves legacy receipt kinds unchanged (0.204166ms)\nℹ tests 16\nℹ suites 0\nℹ pass 16\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 652.77825\n"
+}

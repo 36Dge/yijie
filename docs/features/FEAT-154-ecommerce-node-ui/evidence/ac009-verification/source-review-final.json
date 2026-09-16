@@ -1,0 +1,28 @@
+{
+  "recorded_at": "2026-09-16T14:49:55.863787+08:00",
+  "method": "Post-implementation read-only source review, separate from edits. No independent human approval claimed.",
+  "contract_impact": "none",
+  "files": {
+    "frontend/packages/workflow/playground/src/components/node-panel/components/list.tsx": "462c0d028fa9643213fa191b144bf271c0e47bcd053e4d613623b4ee87b5db70",
+    "frontend/packages/workflow/playground/src/components/node-panel/components/panel.tsx": "e554d4223289b281fe9ceeab6a5ae592c3ebe35046415e32a1bbee95c917ba36",
+    "frontend/packages/workflow/playground/src/components/node-panel/components/styles.module.less": "8e1d0dc07a9f04391d6550e8bb6520be439341433cabb4361fa05fdb25e39cb5",
+    "scripts/yijie/workflow-editor-csp-reviewed.json": "5e8a4bdb16b7414d099555e20a3f781147a69c9098cacd6ea08804aa929dcca3",
+    "frontend/packages/workflow/playground/src/components/node-panel/components/custom-drag-card.tsx": "f8b19112044c20717e5059b65a036a4e9a4e267d2e0fdf4abb75549e08f2e6a4"
+  },
+  "review": [
+    "Capture handler installed only for localAdapter NodePanel; upstream/default path retains existing behavior.",
+    "Escape only, IME composing excluded, in-progress add guard retained, existingclosepathused.",
+    "Focus returns to connected existinganchor or opener; no business/native/API calls.",
+    "Inset focus ring scoped to local role=button cards; avoids overflowhidden clipping, existing userthemefile untouched.",
+    "Node definitions, field values, instance factory, graph guard and history logic unchanged.",
+    "CSP exactbytes/AST reviewed separately; no permission expansion.",
+    "Pinned coze-design0.0.7-alpha.985c0d uses SemiUI~2.72.3; Tooltipcloneschild withtabIndex=child.props.tabIndex||0. Localwrapper-1 retainsnamedinnercard0 and removesduplicateTabstop without changingdrag refs ortooltip events."
+  ],
+  "required_runtime_followup": [
+    "ActualcardandviewportEscape/anchorfocus",
+    "Actualvisibleinsetfocus at1180x760",
+    "30catalog keyboardnavigation andrepresentativeEnter add",
+    "FormSelect/array/object/modalkeyboard andretain/recovery"
+  ],
+  "final_csp_review": "incremental-csp-review-final.json"
+}

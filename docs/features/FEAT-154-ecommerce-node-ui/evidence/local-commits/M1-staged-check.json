@@ -1,0 +1,938 @@
+{
+  "recorded_at": "2026-09-16T09:33:49.540383+00:00",
+  "command": [
+    "git",
+    "diff",
+    "--cached",
+    "--check"
+  ],
+  "exit_code": 2,
+  "result": "REVIEWED_ARCHIVED_WHITESPACE_ONLY; not a zero-warning PASS",
+  "reason": "Preserve the original user source snapshot and full archived console output byte-for-byte. All six files match their retained SHA-256; authored code/doc whitespace otherwise clean. No whitespace/global-check settings changed.",
+  "expected_paths_and_warning_counts": {
+    "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/desktop-launch-final.txt": 1,
+    "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt": 55,
+    "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/desktop-launch-r2.txt": 1,
+    "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt": 55,
+    "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt": 55,
+    "docs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md": 16
+  },
+  "warnings": [
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/desktop-launch-final.txt",
+      "line": 69,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 15,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 52,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 104,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 106,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 108,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 109,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 119,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 121,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 123,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 124,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 134,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 136,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 138,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 139,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 149,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 151,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 153,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 154,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 164,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 166,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 168,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 169,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 178,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 180,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 182,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 183,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 191,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 193,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 195,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 196,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 205,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 207,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 209,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 210,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 219,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 221,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 223,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 224,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 233,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 235,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 237,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 238,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 247,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 249,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 251,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 252,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 261,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 263,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 265,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 266,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 274,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 276,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 278,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 279,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "line": 285,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/desktop-launch-r2.txt",
+      "line": 69,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 15,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 52,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 104,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 106,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 108,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 109,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 119,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 121,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 123,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 124,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 134,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 136,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 138,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 139,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 149,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 151,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 153,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 154,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 164,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 166,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 168,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 169,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 178,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 180,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 182,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 183,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 191,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 193,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 195,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 196,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 205,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 207,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 209,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 210,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 219,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 221,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 223,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 224,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 233,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 235,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 237,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 238,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 247,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 249,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 251,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 252,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 261,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 263,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 265,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 266,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 274,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 276,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 278,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 279,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "line": 285,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 15,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 52,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 104,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 106,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 108,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 109,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 119,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 121,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 123,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 124,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 134,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 136,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 138,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 139,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 149,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 151,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 153,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 154,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 164,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 166,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 168,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 169,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 178,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 180,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 182,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 183,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 191,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 193,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 195,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 196,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 205,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 207,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 209,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 210,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 219,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 221,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 223,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 224,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 233,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 235,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 237,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 238,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 247,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 249,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 251,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 252,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 261,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 263,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 265,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 266,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 274,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 276,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 278,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 279,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "line": 285,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md",
+      "line": 5,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md",
+      "line": 57,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md",
+      "line": 111,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md",
+      "line": 227,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md",
+      "line": 315,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md",
+      "line": 378,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md",
+      "line": 438,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md",
+      "line": 518,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md",
+      "line": 598,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md",
+      "line": 661,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md",
+      "line": 665,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md",
+      "line": 670,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md",
+      "line": 674,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md",
+      "line": 678,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md",
+      "line": 680,
+      "warning": "trailing whitespace"
+    },
+    {
+      "path": "docs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md",
+      "line": 688,
+      "warning": "trailing whitespace"
+    }
+  ],
+  "output": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/desktop-launch-final.txt:69: trailing whitespace.\n+[plugin builtin:vite-reporter] \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:15: trailing whitespace.\n+warn    Compile Warning: \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:52: trailing whitespace.\n+ 553 │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:104: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:106: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:108: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:109: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:119: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:121: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:123: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:124: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:134: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:136: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:138: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:139: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:149: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:151: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:153: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:154: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:164: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:166: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:168: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:169: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:178: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:180: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:182: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:183: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:191: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:193: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:195: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:196: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:205: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:207: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:209: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:210: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:219: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:221: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:223: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:224: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:233: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:235: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:237: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:238: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:247: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:249: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:251: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:252: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:261: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:263: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:265: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:266: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:274: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:276: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:278: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:279: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt:285: trailing whitespace.\n+  File (web)                                                              Size         Gzip    \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/desktop-launch-r2.txt:69: trailing whitespace.\n+[plugin builtin:vite-reporter] \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:15: trailing whitespace.\n+warn    Compile Warning: \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:52: trailing whitespace.\n+ 553 │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:104: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:106: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:108: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:109: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:119: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:121: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:123: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:124: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:134: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:136: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:138: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:139: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:149: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:151: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:153: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:154: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:164: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:166: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:168: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:169: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:178: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:180: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:182: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:183: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:191: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:193: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:195: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:196: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:205: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:207: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:209: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:210: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:219: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:221: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:223: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:224: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:233: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:235: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:237: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:238: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:247: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:249: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:251: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:252: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:261: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:263: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:265: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:266: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:274: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:276: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:278: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:279: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt:285: trailing whitespace.\n+  File (web)                                                              Size         Gzip    \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:15: trailing whitespace.\n+warn    Compile Warning: \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:52: trailing whitespace.\n+ 553 │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:104: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:106: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:108: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:109: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:119: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:121: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:123: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:124: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:134: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:136: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:138: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:139: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:149: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:151: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:153: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:154: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:164: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:166: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:168: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:169: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:178: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:180: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:182: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:183: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:191: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:193: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:195: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:196: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:205: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:207: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:209: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:210: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:219: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:221: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:223: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:224: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:233: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:235: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:237: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:238: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:247: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:249: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:251: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:252: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:261: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:263: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:265: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:266: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:274: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:276: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:278: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:279: trailing whitespace.\n+  │ \ndocs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt:285: trailing whitespace.\n+  File (web)                                                              Size         Gzip    \ndocs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md:5: trailing whitespace.\n+**执行粒度**：单商品或批量来源  \ndocs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md:57: trailing whitespace.\n+**执行粒度**：单商品或商品列表  \ndocs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md:111: trailing whitespace.\n+**执行粒度**：商品列表 × 目标平台/站点列表  \ndocs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md:227: trailing whitespace.\n+**执行粒度**：单个父商品及其来源 SKU 列表，可批量处理多个父商品  \ndocs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md:315: trailing whitespace.\n+**执行粒度**：同一平台、站点、类目和可比时间窗口下的一批候选商品  \ndocs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md:378: trailing whitespace.\n+   \ndocs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md:438: trailing whitespace.\n+**执行粒度**：单平台、单站点、单类目/研究主题的一次竞品集合构建  \ndocs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md:518: trailing whitespace.\n+**执行粒度**：一个自有商品对一个可比较竞品集合  \ndocs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md:598: trailing whitespace.\n+**执行粒度**：商品/SKU × 平台履约情景 × 价格情景  \ndocs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md:661: trailing whitespace.\n+   \ndocs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md:665: trailing whitespace.\n+   \ndocs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md:670: trailing whitespace.\n+   \ndocs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md:674: trailing whitespace.\n+   \ndocs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md:678: trailing whitespace.\n+   \ndocs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md:680: trailing whitespace.\n+   \ndocs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md:688: trailing whitespace.\n+   \n"
+}

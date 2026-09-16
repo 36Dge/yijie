@@ -1,0 +1,45 @@
+{
+  "recorded_at": "2026-09-15T19:47:57.752229+08:00",
+  "method": "Read-only source review, no application startup or product tests",
+  "sha256": {
+    "yijie-coze": {
+      "frontend/apps/workflow-local/src/main.tsx": "22bd4ef2e5c3556c1911bec3b02f47759f635df5c5a57dbe4c9470b99d7775a1",
+      "frontend/apps/workflow-local/src/bridge.ts": "4a1570b3c86b075df2d45220cf39bbe41e2029dd9a9d71b76ab9020b4befae13",
+      "frontend/apps/workflow-local/src/canvas-data.ts": "95a9f0a1ed520f26ce9854da9279438aa9238ccacdffadc624122d209a287969",
+      "frontend/apps/workflow-local/src/draft-model.ts": "5afad1e757d754c45ea6cd4823c0905991b57b9af316d7380f1e64197e2d8aa4",
+      "frontend/packages/workflow/playground/src/workflow-playground-context.ts": "d5289d2d3b003986360d70b95bde3f39e17ee73469f2e1d2f65e91ec25a21ec6",
+      "frontend/packages/workflow/playground/src/typing/local-workflow-adapter.ts": "fe5978cf8233ae478477cb3c3a70997e3c93f841eede22e7aeb841b48d1eb057",
+      "frontend/packages/workflow/playground/src/services/local-workflow-document.ts": "c90b0abce4ac4d6cdbe1e06760f8b3d708600a85b1fab1f1614a1f3b5dd85900",
+      "frontend/packages/workflow/playground/src/services/workflow-save-service.ts": "6b77c93cf3dff2272a29d618381b4de754588b8033547344986c740fd408b408",
+      "frontend/packages/workflow/playground/src/components/node-panel/components/panel.tsx": "3d1044853efd65f2d1b9369c340c48384bc9c173e1022406faabd515618833ed",
+      "frontend/packages/workflow/playground/src/components/node-panel/components/custom-drag-card.tsx": "aa33f98c73bf70be03894cfffd663898076353dbb96f6cbc0ada93756dbdbb69",
+      "frontend/packages/workflow/playground/src/container/workflow-nodes-v2-contribution.ts": "a96bc1ee01ff3c072add846ad1c58273ecc13de838dfb923f6b9742ebfacfc73",
+      "frontend/packages/workflow/nodes/src/workflow-json-format.ts": "2630ed1c75835dffb050fa5dc55a2e7a68806dd583c85c6e40b0c9da3b131d63",
+      "frontend/packages/workflow/history/src/hooks/use-clear-history.ts": "593fa36e304669c115092f8d1794cd2c812c456a824398af65d8373a111cd73b"
+    },
+    "yijie-contracts": {
+      "jsonschema/workflow-editor/bridge-v1.schema.json": "21d567f90726231b539d04812df43619690cdbef7cd7c41f78a566a04c9cbd66",
+      "docs/workflow-local-v1.md": "e86c9d261501072629dd3094f64b72c6f003557e55d575de2a74cb7df3c75ca2",
+      "openapi/workflow-local/workflow-local.yaml": "b1edf7475e472f2b70f9b251f9a0d157539849301263fd82c1296b8d19b82f0a",
+      "compatibility/workflow-local/source.lock.json": "86a5e8158aa492630e7494eb9f021b6feb8d9a710cd73bb3bfe934a955a4381d",
+      "scripts/generate-workflow-local.mjs": "51625698d34c846c8a437b103a5ed5e9ecef05ef595283699c7d85bcb3389c93",
+      "scripts/sync-workflow-consumer.mjs": "bb718139381497098e1ec406b77279f34139b60797dddc51add3d4b7fb39d1d8"
+    },
+    "yijie-desktop": {
+      "src/api/workflow-editor-channel.ts": "7ceb8f568eac11dc0095f41bd80c4daf1e278e5e3b605b4965982f9d63100323",
+      "src/components/workflows/WorkflowEditorPane.vue": "e07d75bbc20803083c5a4aa6efbefdeedb07e3e8281820fe7c7cac70e37032bc",
+      "src/components/workflows/WorkflowLocalWorkspace.vue": "964f5827b7e51525801e4ee769b87a8b23bc87c3d720aea3f161a22fda864e26",
+      "src/components/workflows/WorkflowRunPanel.vue": "ca4f2d870e27a85bf82e2a5d3e4675de49af6a843b98016617bce473de10283d",
+      "src/pages/workflows/use-workflow-workspace.ts": "e7c80bf24aa0e407c420efe430fdf961bd5a2c237e63026bac111de497090878",
+      "src-tauri/src/lib.rs": "a95c0789db3b2f02fc521029be2b411991ab4c2e9071439632f927be6ee6b5b7",
+      "src-tauri/src/workflows/commands.rs": "362eed25ba6281dbe3dcbd9f8ef1fcb0eec952c03291113d81929456388ad859",
+      "src-tauri/src/workflows/runtime.rs": "ac83d5ff37d18ce3405abb3b851542101146e1256e1a88495f9449e85c1d10ba",
+      "src-tauri/capabilities/default.json": "48da0d1c21c4d1a2f98f3cad92f25f6eadba36abd309bc86fc10a7dd88f46e39"
+    }
+  },
+  "native_close_guard_found": false,
+  "dirty_consumer_autosave_found": false,
+  "history_unmounts_editor": false,
+  "contract_impact_for_implementation": "semantic",
+  "planned_version_not_generated": "1.4.0-local-candidate"
+}

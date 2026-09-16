@@ -1,0 +1,129 @@
+{
+  "recorded_at": "2026-09-16T02:51:50.317781+08:00",
+  "document_checks": [
+    {
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "docs/features/FEAT-154-ecommerce-node-ui"
+      ],
+      "exit": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，所有模板变量和未完成标记已处理。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+    },
+    {
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--audit-claims",
+        "docs/features/FEAT-154-ecommerce-node-ui"
+      ],
+      "exit": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\n"
+    }
+  ],
+  "current_doc_links_missing": [],
+  "protected": {
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/26-canvas-background-contrast.md": true,
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/27-workflow-lime-variant.md": true,
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/frontend/apps/workflow-local/src/yijie-coze-theme.css": true,
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/canvas-background-20260914/reference-style.json": true,
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/activation.json": true,
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/text-sidebar.png": true,
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/end-sidebar.png": true,
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/source-check.json": true,
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/visual-verification.json": true,
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/canvas.png": true,
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/activation.json": true,
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/text-sidebar.png": true,
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/source-check.json": true,
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/visual-verification.json": true,
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/canvas.png": true
+  },
+  "repositories": {
+    "yijie": {
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "diff_check_exit": 0
+    },
+    "yijie-coze": {
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "diff_check_exit": 0
+    },
+    "yijie-desktop": {
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "diff_check_exit": 0
+    },
+    "yijie-contracts": {
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "diff_check_exit": 0
+    },
+    "yijie-api": {
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "diff_check_exit": 0
+    },
+    "yijie-infra": {
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "diff_check_exit": 0
+    },
+    "yijie-agent-host": {
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "diff_check_exit": 0
+    }
+  },
+  "changed_preexisting_files_since_baseline": {
+    "yijie": [
+      "docs/features/FEAT-154-ecommerce-node-ui/00-feature-brief.md",
+      "docs/features/FEAT-154-ecommerce-node-ui/01-delivery-log.md",
+      "docs/features/FEAT-154-ecommerce-node-ui/02-verification.md",
+      "docs/features/FEAT-154-ecommerce-node-ui/feature.yaml"
+    ],
+    "yijie-coze": [
+      "frontend/packages/workflow/playground/src/local-ecommerce/catalog-source.ts",
+      "frontend/packages/workflow/playground/src/local-ecommerce/catalog.ts",
+      "frontend/packages/workflow/playground/src/local-ecommerce/field-control.tsx",
+      "frontend/packages/workflow/playground/src/local-ecommerce/form.tsx",
+      "frontend/packages/workflow/playground/src/local-ecommerce/style.less",
+      "frontend/packages/workflow/playground/src/local-ecommerce/types.ts",
+      "frontend/packages/workflow/playground/src/local-ecommerce/value-state.test.mjs",
+      "frontend/packages/workflow/playground/src/local-ecommerce/value-state.ts",
+      "scripts/yijie/workflow-editor-ecommerce-registration.test.mjs",
+      "scripts/yijie/workflow-editor-csp-reviewed.json"
+    ],
+    "yijie-desktop": [],
+    "yijie-contracts": [],
+    "yijie-api": [],
+    "yijie-infra": [],
+    "yijie-agent-host": []
+  },
+  "review_scope": "Coze incremental UI definitions/controls/tests/CSP reviewed exact callsites; meta feature docs and evidence. No new edits to contracts/API/Desktop/Infra/Host this increment. Existing earlier changes retained. No independent human review claimed.",
+  "completed": "30 nodes source and core real UI verification",
+  "remaining": "AC-009: 1440x900 and deferred dark/complete keyboard/theme-size matrix; D4 NOT RUN",
+  "preserved_meta_checks": [
+    "meta-lint.log",
+    "meta-tests.log"
+  ],
+  "runtime": "R2 left running with restored original saved graph; no forced lifecycle actions.",
+  "final_runtime_readonly_check": {
+    "observed_at": "2026-09-16T02:52:26.949482+08:00",
+    "command": "make workflow-status; ps -p 15709 -o pid=,comm=",
+    "exit_codes": [
+      0,
+      0
+    ],
+    "ready": true,
+    "run_epoch": "754e5e78-9129-4490-a449-016c5b597ca9",
+    "healthy_running_main_services": 6,
+    "migration_exit_codes": [
+      0,
+      0
+    ],
+    "app_pid": 15709
+  }
+}

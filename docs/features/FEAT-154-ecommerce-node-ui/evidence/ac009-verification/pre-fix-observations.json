@@ -1,0 +1,38 @@
+{
+  "recorded_at": "2026-09-16T14:13:03.544644+08:00",
+  "candidate": "R2 retained editor, new activation102f5436-d4f4-4cb2-a3e3-b6c78b567490",
+  "native_app_pid": 3402,
+  "scope": "Normal native CUA, light1180x760. No system appearance/display preference changes.",
+  "passed": [
+    "Search input → Tab viewport → Tab node button → Enter adds05",
+    "05 Select Enter/ArrowDown/ArrowUp/Enter changesmode; Esc collapsesdropdown",
+    "Tab/ShiftTab input/clear/select/textarea/targetfield order; focus visible",
+    "Enter addsarrayrow; candidateac009-candidate, categoryac009-category, textareaEnter preservesline1 newline line2",
+    "RepeatedTab scrollsform to marketobject; focus inviewport",
+    "Editnamemodal Esc cancel returnstofocusednameedittrigger; name unchanged",
+    "Natural expiry; Return onfocusedreconnect button restorespage",
+    "Explicitrestore returnsStart/Text/End and已保存; CmdQ app exits0; canonicalworkflowstop0"
+  ],
+  "findings": [
+    {
+      "id": "AC009-F1",
+      "status": "reproduced",
+      "actual": "NodeCard is keyboardfocused andEnter works, butfocus ring absent in screenshot. Existing .card overflow:hidden clips outer outline.",
+      "fix": "Retain existingoutline and addinset ring forlocal role=button focus-visible."
+    },
+    {
+      "id": "AC009-F2",
+      "status": "reproduced",
+      "actual": "Escape fromNodeCard orviewport doesnotclosecatalog; Escape fromsearchinput closes.",
+      "fix": "Local NodeList capture Escape, retainadding/compositionguards; closeexistingpanel andfocusanchor."
+    }
+  ],
+  "1440x900": {
+    "status": "NOT RUN",
+    "actual_fill": "1512x875",
+    "meaning": "NativeFill didnotreach900height; no substitute pass, no claim of absolute hardwaremaximum."
+  },
+  "dark": "deferred_by_user_NOT_RUN",
+  "source_changes": "Three NodePanel files only; contract-impact none, renderer-private focus/keyboard behavior.",
+  "later_focus_identity_clarification": "The unnamed container initially described as viewport/scrollcontainer wasidentifiedbythepinnedTooltipsource and30Tabcomparison astheouterTooltipwrapper; thefinalfixremovesitsduplicateTabstop. Actualobservedkeyresultsremainunchanged."
+}

@@ -1,0 +1,25 @@
+{
+  "run_epoch": "996303df-897f-4434-b0fd-4dc83acd2d97",
+  "scope": "R6 real canonical App, source unchanged during its UI qualification until the next history-only patch; not final Step2 PASS",
+  "passed": [
+    "Owner manually dragged 商品图片生成 from catalog and replied 已经拖入. CUA then directly observed the new node and its card on the canvas. Previous failed automated dragging is an automation limitation, not proof of a product defect.",
+    "Focusing node via Tab navigation then Ctrl+Z removed the dragged instance. Reconnect kept this resulting graph and ecommerce mode.",
+    "Node menu now shows 删除此电商节点？ with explicit cancel/delete. Cancel retained Listing. Confirm removed it.",
+    "Image product_snapshot reference to Listing meta changed immediately after source deletion to 引用节点已移除；请选择其他字段或清除引用。, retaining the reference identity.",
+    "Confirm restore retained the exact pre-design unsaved name FEAT154-restore-r6, original three nodes and dirty status.",
+    "App quit normally (launcher exit0), runtime stopped normally, volumes retained."
+  ],
+  "unresolved": [
+    "Redo/undo deletion restore was rejected by original Coze history add-node operation passing isClone=true into the private node factory. R7 adapts only that private type to the validated normal restore path; source regression test passed, actual R7 UI pending.",
+    "Cmd+Z did not produce a visible undo through this native automation; Ctrl+Z is directly verified. Do not report Cmd+Z PASS."
+  ],
+  "persistence": {
+    "api.operations": true,
+    "api.resources": true,
+    "coze.operations": true,
+    "coze.executions": true,
+    "coze.node_executions": true,
+    "coze.workflows": true
+  },
+  "screenshots": "Direct native CUA images in task; no fabricated local screenshot paths"
+}

@@ -1,0 +1,2765 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-16T08:47:43.888455+00:00",
+  "scope": "Current dirty files only; all untracked paths expanded. This is a review manifest, not a staging or commit operation.",
+  "path_base": "Paths are repository-relative; sibling checkouts are next to yijie.",
+  "self_reference_policy": "Three metadata files have null SHA to avoid self-referential hashing: this JSON, its Markdown rendering, package-checks.json. All are included as paths; final check validates other hashes and names.",
+  "repositories": {
+    "yijie-contracts": {
+      "head": "0543b21c61c39ea1d18833b25c5d376a32913979",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-contracts.git",
+      "dirty_file_count": 10,
+      "files": [
+        {
+          "path": "compatibility/workflow-local/source.lock.json",
+          "git_status": " M",
+          "commit_unit": "C1",
+          "role": "canonical generated output/source lock",
+          "bytes": 2814,
+          "sha256": "42bd8a32df97d2c3354593dc431bb2f7dd65ef7236061ff85d9dbd55471f0eb9"
+        },
+        {
+          "path": "docs/workflow-local-v1.md",
+          "git_status": " M",
+          "commit_unit": "C1",
+          "role": "contract documentation/conformance test",
+          "bytes": 13861,
+          "sha256": "5df43b9fae81663ce20efce20fa5df9c3d7525bd113e85022c35ba17358fdcc7"
+        },
+        {
+          "path": "jsonschema/workflow-editor/bridge-v1.schema.json",
+          "git_status": " M",
+          "commit_unit": "C1",
+          "role": "canonical contract source",
+          "bytes": 4947,
+          "sha256": "34d08a752d8c38245bc25202e805a518fcda1adf7910d0c31a4c01ffeb337044"
+        },
+        {
+          "path": "openapi/workflow-local/workflow-local.yaml",
+          "git_status": " M",
+          "commit_unit": "C1",
+          "role": "canonical contract source",
+          "bytes": 91774,
+          "sha256": "4e47f00fe146e87b7b64a45b35e1bad9b391472af0b6d60496c9011cb3067a53"
+        },
+        {
+          "path": "sdks/jsonschema/workflow-editor-bridge-v1.schema.json",
+          "git_status": " M",
+          "commit_unit": "C1",
+          "role": "canonical generated output/source lock",
+          "bytes": 4865,
+          "sha256": "63203b5944e91bab4501e6e846d15f229a1bf196250e1a5d3179d0517d1cf41e"
+        },
+        {
+          "path": "sdks/openapi/workflow-internal.gen.json",
+          "git_status": " M",
+          "commit_unit": "C1",
+          "role": "canonical generated output/source lock",
+          "bytes": 82859,
+          "sha256": "e5052e02e33539543cd8ba073420b485cfcc955db1b563dff0c86a84f2b42684"
+        },
+        {
+          "path": "sdks/typescript/src/browser/workflow-local-validator.gen.js",
+          "git_status": " M",
+          "commit_unit": "C1",
+          "role": "canonical generated output/source lock",
+          "bytes": 493442,
+          "sha256": "9879f080864fb3df0e3e63f99ea0c14f186ed7de4104de50eb2c6736141591f7"
+        },
+        {
+          "path": "sdks/typescript/src/jsonschema/workflow-editor-bridge-v1.gen.ts",
+          "git_status": " M",
+          "commit_unit": "C1",
+          "role": "canonical generated output/source lock",
+          "bytes": 7687,
+          "sha256": "c95ce60d02b3f56386cbd8c4bec06f15e1bac40a1851f9f0cda3344db8abedb3"
+        },
+        {
+          "path": "tests/workflow-local-browser.test.mjs",
+          "git_status": " M",
+          "commit_unit": "C1",
+          "role": "contract documentation/conformance test",
+          "bytes": 3419,
+          "sha256": "4ec9db88e4ac4b32ef24fc59541af1b9ad908b003a17eb3715a6f244a0959b24"
+        },
+        {
+          "path": "tests/workflow-local.test.mjs",
+          "git_status": " M",
+          "commit_unit": "C1",
+          "role": "contract documentation/conformance test",
+          "bytes": 5969,
+          "sha256": "2e1013bcd9d2e09942bc4294d3b9aba3af5b5b882dca99001435968d7a985737"
+        }
+      ]
+    },
+    "yijie-api": {
+      "head": "d38bb9e851a34244498e09c8b188901f9261b9b9",
+      "branch": "feat/feat-126-foundation-closure",
+      "origin": "https://github.com/36Dge/yijie-api.git",
+      "dirty_file_count": 4,
+      "files": [
+        {
+          "path": "contracts/workflow-local.lock.json",
+          "git_status": " M",
+          "commit_unit": "A1",
+          "role": "canonical Contracts-derived consumer projection or lock",
+          "bytes": 3515,
+          "sha256": "5e8065bc73462e0699da65de2cd6ca435a78a38c657ee89c5ba243d97abf75dc"
+        },
+        {
+          "path": "contracts/workflow-local.source-lock.json",
+          "git_status": " M",
+          "commit_unit": "A1",
+          "role": "canonical Contracts-derived consumer projection or lock",
+          "bytes": 2814,
+          "sha256": "42bd8a32df97d2c3354593dc431bb2f7dd65ef7236061ff85d9dbd55471f0eb9"
+        },
+        {
+          "path": "internal/modules/workflows/infrastructure/postgres/operations/recovery-read.sql",
+          "git_status": "??",
+          "commit_unit": "A1",
+          "role": "private recovery read, controller, test or runbook; no node business API",
+          "bytes": 1104,
+          "sha256": "eddf71726a463ce2b039f894567196becba1ad2c728d23f64d7591e2837537ff"
+        },
+        {
+          "path": "internal/modules/workflows/infrastructure/postgres/operations/recovery_read.py",
+          "git_status": "??",
+          "commit_unit": "A1",
+          "role": "private recovery read, controller, test or runbook; no node business API",
+          "bytes": 2483,
+          "sha256": "13de7e4192372f9ce067670e6a7253357354abdc22f9d8ef2410a4a32288937b"
+        }
+      ]
+    },
+    "yijie-coze": {
+      "head": "10faf164d7af194b7697a93cb3c4a6886ddc64b5",
+      "branch": "main",
+      "origin": "https://github.com/36Dge/yijie-coze.git",
+      "dirty_file_count": 72,
+      "files": [
+        {
+          "path": "backend/domain/workflow/localadapter/recovery-read.sql",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "private recovery read, controller, test or runbook; no node business API",
+          "bytes": 1578,
+          "sha256": "7fb3e8dd6b24a5e36f1b0c87131401b0f53c79a65b792f54a28e9b64647b317f"
+        },
+        {
+          "path": "backend/domain/workflow/localadapter/recovery_read.py",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "private recovery read, controller, test or runbook; no node business API",
+          "bytes": 1647,
+          "sha256": "d0b40597ece1f5b051a98324a0359707766f7d956b423eb75ef613d8b0f78fb4"
+        },
+        {
+          "path": "contracts/workflow-editor-bridge-v1.schema.json",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "canonical Contracts-derived consumer projection or lock",
+          "bytes": 4865,
+          "sha256": "63203b5944e91bab4501e6e846d15f229a1bf196250e1a5d3179d0517d1cf41e"
+        },
+        {
+          "path": "contracts/workflow-internal.openapi.json",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "canonical Contracts-derived consumer projection or lock",
+          "bytes": 82859,
+          "sha256": "e5052e02e33539543cd8ba073420b485cfcc955db1b563dff0c86a84f2b42684"
+        },
+        {
+          "path": "contracts/workflow-local.lock.json",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "canonical Contracts-derived consumer projection or lock",
+          "bytes": 5571,
+          "sha256": "c1461cd97fcc4af2b6f699a7f4c371df8f9aa3b575e981fbbbbfde8a78f3e3bf"
+        },
+        {
+          "path": "contracts/workflow-local.source-lock.json",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "canonical Contracts-derived consumer projection or lock",
+          "bytes": 2814,
+          "sha256": "42bd8a32df97d2c3354593dc431bb2f7dd65ef7236061ff85d9dbd55471f0eb9"
+        },
+        {
+          "path": "frontend/apps/workflow-local/src/ecommerce-ui-draft-model.ts",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 5729,
+          "sha256": "89e0b942ec0151e3ff1d161d2f22b4ad2fc2a8073bfb9f2b6622e69e8a1f1077"
+        },
+        {
+          "path": "frontend/apps/workflow-local/src/generated/workflow-editor-bridge.gen.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "canonical Contracts-derived consumer projection or lock",
+          "bytes": 7678,
+          "sha256": "3da009e52bd260a500d7bee522cb1d49533d0d81673e5c0d1ce906fe72a7a0e2"
+        },
+        {
+          "path": "frontend/apps/workflow-local/src/generated/workflow-local.validators.js",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "canonical Contracts-derived consumer projection or lock",
+          "bytes": 493442,
+          "sha256": "9879f080864fb3df0e3e63f99ea0c14f186ed7de4104de50eb2c6736141591f7"
+        },
+        {
+          "path": "frontend/apps/workflow-local/src/main.tsx",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 27244,
+          "sha256": "ccd9e8cbeee97cff821ba31b7f0f6ec0c86a1e6aafd39069b1ea7b85f9c456d0"
+        },
+        {
+          "path": "frontend/apps/workflow-local/src/yijie-coze-theme.css",
+          "git_status": " M",
+          "commit_unit": "T0",
+          "role": "separate pre-existing FEAT-153 theme dependency",
+          "bytes": 20308,
+          "sha256": "c05eb803a63a84e1097fb2851109c2302e8c7d76e8ffe53d409f0014c1593820"
+        },
+        {
+          "path": "frontend/packages/workflow/base/src/entities/workflow-node.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 3934,
+          "sha256": "d93ff5ae5562f5c9780922d5c9c35f5b4204e3fc174e992c1cabf1eea5bfa782"
+        },
+        {
+          "path": "frontend/packages/workflow/base/src/types/index.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 4430,
+          "sha256": "f4fed38b1debadc67030b87cec6ec3e0eede5bf7f5b34a656244f9afc065d012"
+        },
+        {
+          "path": "frontend/packages/workflow/base/src/types/local-editor-node-type.ts",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 407,
+          "sha256": "45db453625f9b80b13db957570d725fc91625d7ea8ab50ea4b5ca2cd5515bec9"
+        },
+        {
+          "path": "frontend/packages/workflow/base/src/types/registry.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 6766,
+          "sha256": "328f07dd219f1ffdc72ea83e22eac0e2e560808f448b02dc4595e7f3f2db1721"
+        },
+        {
+          "path": "frontend/packages/workflow/history/src/operation-metas/add-node.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 1803,
+          "sha256": "e2b3ae73390f7e27877c5610de6a34ff104a5c0a8067b2b96846c2eb7af82b24"
+        },
+        {
+          "path": "frontend/packages/workflow/nodes/src/typings/playground-context.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 1575,
+          "sha256": "9b194cca28194aed9b31610f8834827566e426177c566d8057f8322ce3cc43fe"
+        },
+        {
+          "path": "frontend/packages/workflow/nodes/src/utils/add-node-data.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 1934,
+          "sha256": "1853835575fb3af95626eff22d855b229254ef14fd71e929551596990372d0f2"
+        },
+        {
+          "path": "frontend/packages/workflow/nodes/src/workflow-json-format.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 8776,
+          "sha256": "1e16d752763c640f2784ec914c9a8a3e6a24c6471e218d9f103896794b1320e0"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/components/node-panel/components/atom-category-list/index.tsx",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 2394,
+          "sha256": "8c021e9772e21fc831119291debe4e77c5b7243b0afef886c9dcc8e0cd907fff"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/components/node-panel/components/atom-node-list.tsx",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 3082,
+          "sha256": "3aa0a64952093392ac752524eac01af75a8980e949e0734a4228ffd91307a0c7"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/components/node-panel/components/custom-drag-card.tsx",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 5789,
+          "sha256": "f8b19112044c20717e5059b65a036a4e9a4e267d2e0fdf4abb75549e08f2e6a4"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/components/node-panel/components/list.tsx",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 7314,
+          "sha256": "462c0d028fa9643213fa191b144bf271c0e47bcd053e4d613623b4ee87b5db70"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/components/node-panel/components/panel.tsx",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 11383,
+          "sha256": "e554d4223289b281fe9ceeab6a5ae592c3ebe35046415e32a1bbee95c917ba36"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/components/node-panel/components/styles.module.less",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 3219,
+          "sha256": "8e1d0dc07a9f04391d6550e8bb6520be439341433cabb4361fa05fdb25e39cb5"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/components/node-panel/hooks/use-search-node.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 5635,
+          "sha256": "cd7b85c5ad7d57aafd3829192c897fcb49231d5a02267ddf0518dc0b9ec1d74b"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/components/node-panel/hooks/use-template-node-list.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 2277,
+          "sha256": "133946077f5abb067f8431d48be1a47592c7f736dcaa0e8ac9ba7b7c61d54b12"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/components/node-render/node-render-new/content/index.tsx",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 4993,
+          "sha256": "0bd09a3ac4e84d232bbaf9f9563682573399b1b49ae951b63d9d0cfc1f1ac209"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/components/node-render/node-render-new/ports.tsx",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 5339,
+          "sha256": "aa9aa43b856b338ba04f3cfc24551baae2f4b62a0bc70df3c848c8223b73ecd2"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/components/test-run/local-test-form-panel.tsx",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 3212,
+          "sha256": "85e35149e6216ddb43ed757ef934145294e213fe824c1e16e3bbe969352c181a"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/components/toolbar/components/add-node.tsx",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 2538,
+          "sha256": "064b1526a9687261e8d86c6e837f7efead1f709a2af17ddeb16f0609625fc667"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/components/toolbar/hooks/use-add-node.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 8990,
+          "sha256": "86175ff520bf24a8512485213e5b55a98d7a44b297645a2926c4461655c3e25f"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/components/workflow-header-info/index.tsx",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 4570,
+          "sha256": "9dd7886e98b0412ecc9899d3d8f75cbbfc3c8bce88d1fc2d91b246e79bff5f12"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/components/workflow-header/index.tsx",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 4157,
+          "sha256": "11fb2eb7d1198549d19ec0f757fdaeae543558748065ef3d228b16faba3973ba"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/container/workflow-nodes-v2-contribution.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 2354,
+          "sha256": "ee8445880dcce128d636e7cee256af4f4bfede87136743c2426d57cc0f08b503"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/form-extensions/components/node-header/index.tsx",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 18854,
+          "sha256": "2565673eff25def14a00f06403b968f46ee91f965cd77fb0eae2f732a98d051e"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/local-ecommerce/catalog-additional.ts",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 6915,
+          "sha256": "85f725171ae93269c30002f3cf7d2284b1625c090c1b88591cacddcea9a60470"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/local-ecommerce/catalog-children.ts",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 25137,
+          "sha256": "15179c7146c25c34c5843857a9e2bbb2a142b6361ce82517cc078e87501672ce"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/local-ecommerce/catalog-labels.ts",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 32289,
+          "sha256": "6df7bb161db61cc806044b46e30885ade233079e49f663470aa44e1e68cf5377"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/local-ecommerce/catalog-samples.ts",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 9869,
+          "sha256": "2b39eb95ea9b5fe235a00a1d916a5b56479219e420efd8cb8b143bc51ae96b7d"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/local-ecommerce/catalog-source.ts",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "generated field catalog from approved meta-repository Markdown snapshots",
+          "bytes": 195483,
+          "sha256": "e4828a740dceb37f9fc00aa77fd6985ed3d7d5e3ca4f5b6c4c47679abe618e76"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/local-ecommerce/catalog.ts",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 1803,
+          "sha256": "70c4731dcba61e9bb566362fcaecbdfa7c222039c58839c1d8f80d97e5d9c8e1"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/local-ecommerce/create-node.ts",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 2245,
+          "sha256": "3050a7a83ae3597204aebba3583b454f5ee48f751ea7570701964b038dfc6cb0"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/local-ecommerce/field-control.tsx",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 8526,
+          "sha256": "2ae77f2e51850df9afdd24f119374319ecc4f0e62e5d80cba2a7b89bbd4456a5"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/local-ecommerce/form-meta.tsx",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 636,
+          "sha256": "a2ff50e9de50c3d05243104956f65dda77363a3663ff5ebf27e309f0ee5648c9"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/local-ecommerce/form.tsx",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 5715,
+          "sha256": "f6eec130a675427753fee8bb07c2a2be2f8fa51adcaba2f6ca9072b08c60c3c4"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/local-ecommerce/node-content.tsx",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 1889,
+          "sha256": "0a31e485875cc938cce511e633fa0c4aa80aca15f92ef1ab2a7be8ddce80ad97"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/local-ecommerce/node-registry.ts",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 752,
+          "sha256": "51db45a206974167a3ddcb926e6dd0ccd79019651c55caace9512b9779f930c2"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/local-ecommerce/reference-picker.tsx",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 3089,
+          "sha256": "25c2e44dacea3ce68595d5ce896ca34386da2990ad1f34abff3fe6edc7f99cf2"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/local-ecommerce/style.less",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 2615,
+          "sha256": "8ff41f9a33ccbbed21698616cf50ab6ca4c076bf24adf27e0eb5973c12cca654"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/local-ecommerce/test-run.tsx",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 652,
+          "sha256": "2525261221515406fa9775ffd6c845aa9380c1dbd53108a91e785c33261a562c"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/local-ecommerce/types.ts",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 2880,
+          "sha256": "82420dcf7a6252ed9f111f4e5ce4980a2b2c236e8c74dbb81b52b1992e77b6cd"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/local-ecommerce/value-state.test.mjs",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "focused local UI test",
+          "bytes": 4804,
+          "sha256": "c8f4ce61b5f44a25ab847bdc3fbfb790776322dc9a8d485923d1fee59a292aaa"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/local-ecommerce/value-state.ts",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 2362,
+          "sha256": "43d424a92438ecf763bcc4915f1dad70b0ad8b8f0332814791f472daf84489ed"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/nodes-v2/hooks/use-default-node-meta.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 1581,
+          "sha256": "e12fd5015cb9b5cd3ab15fa376c2ed638776a5d8d71e4b2daa381d1dc9fc4127"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/nodes-v2/utils.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 1448,
+          "sha256": "c30e36cb64cc9cc34c77b7e5ae2e56f1590db0b1286bacba1f435bd32cc610ab"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/services/local-workflow-document.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 6762,
+          "sha256": "d2661a8a9682826d0fe59b85c14768ae622882825068ef3008d4b57ecb346ebe"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/services/local-workflow-keyboard-service.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 7667,
+          "sha256": "2187ca81618e1ee2e6f1e52ea0c8a9de6f543bbb6a79adf3bf026dccc764a9c8"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/services/workflow-drag-service.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 8790,
+          "sha256": "caf6bf2da96324463aa9cf16e840ee3de2d047a0ce8dec112ff1b67599ad3616"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/services/workflow-edit-service.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 9376,
+          "sha256": "00c27f81aa9ece7e7e2f65d241d14d164d0d0baee5859b034696b24ce9c00d27"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/services/workflow-save-service.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 27367,
+          "sha256": "09ce572d6cdc8aa756339dbf3eba7f5f84b736f8cbf9d3a79c197b915ae0bd04"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/shortcuts/contributions/delete/index.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 3908,
+          "sha256": "16991cbb02435b2d917794f52a62d5743cef0e78f6d28b536c18e38c07d7832d"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/typing/index.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 12511,
+          "sha256": "cc4186e6108545d033361fe694baa834197e3c29248793edc8d84d2e47c1b8f8"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/typing/local-workflow-adapter.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 1830,
+          "sha256": "20d5621ae44ba9616ae38bfa6f4ca1f14fa08d163cc6432ad47a091b8963b94d"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/utils/index.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 958,
+          "sha256": "68775d163b873a1b191c090faf22dee1520a4a14cdd2ac7820092db201d98dfd"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/utils/node-template.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 2075,
+          "sha256": "ec988f2d581b84ee8a174c8f5764a6c50736d8e0984862d5a8e795df00dba8e4"
+        },
+        {
+          "path": "frontend/packages/workflow/playground/src/workflow-playground-context.ts",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 13507,
+          "sha256": "bb90342b55d0a43969ea1d55808dc3bcb40572976db274e513d4a66e237b1b34"
+        },
+        {
+          "path": "scripts/yijie/workflow-editor-csp-reviewed.json",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "reviewed built-asset dynamic-call metadata; coupled to editor build",
+          "bytes": 83188,
+          "sha256": "5e8a4bdb16b7414d099555e20a3f781147a69c9098cacd6ea08804aa929dcca3"
+        },
+        {
+          "path": "scripts/yijie/workflow-editor-ecommerce-draft.test.mjs",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "focused local UI test",
+          "bytes": 8427,
+          "sha256": "5a11f72de71a87b9dc6208e37acb9cecd8e95a4356dc5de831a2688c2c051567"
+        },
+        {
+          "path": "scripts/yijie/workflow-editor-ecommerce-registration.test.mjs",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "focused local UI test",
+          "bytes": 12206,
+          "sha256": "1089f79ae23ce2c94a724259c9d257ea8c78b9cedc0b4f337fc6ea2ef0fc7ba4"
+        },
+        {
+          "path": "scripts/yijie/workflow-editor-ecommerce-source.py",
+          "git_status": "??",
+          "commit_unit": "Z1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 4064,
+          "sha256": "d1932a134f11f30a724c19f7d84cc94e49f6aabdf1369ab2654058d19c4bef0f"
+        },
+        {
+          "path": "yijie-upstream.lock.json",
+          "git_status": " M",
+          "commit_unit": "Z1",
+          "role": "upstream source preservation/overlay declaration; existing FEAT-153 entries retained",
+          "bytes": 28032,
+          "sha256": "ed6cc2588f438a6b9005a0b198ee7fd4d03ca920f75587feda5900c5f674c630"
+        }
+      ]
+    },
+    "yijie-desktop": {
+      "head": "6078855f7966a531b4d740dd6e654cf60d4180d8",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-desktop.git",
+      "dirty_file_count": 7,
+      "files": [
+        {
+          "path": "contracts/workflow-editor-bridge-v1.schema.json",
+          "git_status": " M",
+          "commit_unit": "D1",
+          "role": "canonical Contracts-derived consumer projection or lock",
+          "bytes": 4865,
+          "sha256": "63203b5944e91bab4501e6e846d15f229a1bf196250e1a5d3179d0517d1cf41e"
+        },
+        {
+          "path": "contracts/workflow-local.lock.json",
+          "git_status": " M",
+          "commit_unit": "D1",
+          "role": "canonical Contracts-derived consumer projection or lock",
+          "bytes": 5071,
+          "sha256": "3e5f4e1159e9454600894bef2ae2aaecb0961ab915dd36ed6823d483a9cd7706"
+        },
+        {
+          "path": "src/api/generated/workflow-local-validator.gen.js",
+          "git_status": " M",
+          "commit_unit": "D1",
+          "role": "canonical Contracts-derived consumer projection or lock",
+          "bytes": 493442,
+          "sha256": "9879f080864fb3df0e3e63f99ea0c14f186ed7de4104de50eb2c6736141591f7"
+        },
+        {
+          "path": "src/components/workflows/WorkflowLocalWorkspace.test.ts",
+          "git_status": " M",
+          "commit_unit": "D1",
+          "role": "focused local UI test",
+          "bytes": 10497,
+          "sha256": "773cc0ec5d127493ef6fecc34762d67a77fc78a8b3b76dd1b7c73a4a2602d499"
+        },
+        {
+          "path": "src/components/workflows/WorkflowLocalWorkspace.vue",
+          "git_status": " M",
+          "commit_unit": "D1",
+          "role": "pure UI implementation/lifecycle adapter",
+          "bytes": 6691,
+          "sha256": "af8e4fc019bd809f5be92701b45373eb5ecd217ae76111802df0aa3670a34a69"
+        },
+        {
+          "path": "src/domain/workflow-editor-bridge.generated.ts",
+          "git_status": " M",
+          "commit_unit": "D1",
+          "role": "canonical Contracts-derived consumer projection or lock",
+          "bytes": 7684,
+          "sha256": "761e8622e73fbc53aba69186b65aefd740eb761be45704875e46b0e09c7a9120"
+        },
+        {
+          "path": "src/pages/workflows/use-workflow-workspace.test.ts",
+          "git_status": " M",
+          "commit_unit": "D1",
+          "role": "focused local UI test",
+          "bytes": 18817,
+          "sha256": "75fc498da353a7e3f7539ace9af0cdf4ca0a6f2ebe6ebffd2816d92714391eb0"
+        }
+      ]
+    },
+    "yijie-infra": {
+      "head": "2b238d93cecd446dfd9b22fef681e2bd5ed70f02",
+      "branch": "feat/feat-126-s10e",
+      "origin": "https://github.com/36Dge/yijie-infra.git",
+      "dirty_file_count": 6,
+      "files": [
+        {
+          "path": "Makefile",
+          "git_status": " M",
+          "commit_unit": "I1",
+          "role": "recovery orchestration and documentation",
+          "bytes": 12582,
+          "sha256": "f2f25a8fa9db1d6cc24f2d6f69232c79f406973560afa52d58a077eaa5ebbcb5"
+        },
+        {
+          "path": "docs/workflow-local-recovery.md",
+          "git_status": "??",
+          "commit_unit": "I1",
+          "role": "private recovery read, controller, test or runbook; no node business API",
+          "bytes": 4426,
+          "sha256": "46a1eea5680668582af37efa95d46d91911983c89c3601feb4b2edcb46ffb224"
+        },
+        {
+          "path": "docs/workflow-local.md",
+          "git_status": " M",
+          "commit_unit": "I1",
+          "role": "recovery orchestration and documentation",
+          "bytes": 6679,
+          "sha256": "f4fa5914f8971dd3ecf886a7f7d2906a8a55d169c9c6ca4841c36eec56e46486"
+        },
+        {
+          "path": "scripts/workflow-local.py",
+          "git_status": " M",
+          "commit_unit": "I1",
+          "role": "recovery orchestration and documentation",
+          "bytes": 40137,
+          "sha256": "7fd0450319467d5ad97eb56f2bb713ac411ea19c8708ab2529ffcf6d350194ea"
+        },
+        {
+          "path": "scripts/workflow_recovery.py",
+          "git_status": "??",
+          "commit_unit": "I1",
+          "role": "private recovery read, controller, test or runbook; no node business API",
+          "bytes": 23114,
+          "sha256": "9e8f02487962f8d28a1f259362efc04dcc9c8c53a17ffe5d2f35182c5d9c4589"
+        },
+        {
+          "path": "tests/workflow_recovery_test.py",
+          "git_status": "??",
+          "commit_unit": "I1",
+          "role": "private recovery read, controller, test or runbook; no node business API",
+          "bytes": 6394,
+          "sha256": "71edc5182be8a8ff47ee7c82fef9aef8777d5c16b14f86c98f8e14b413525f93"
+        }
+      ]
+    },
+    "yijie": {
+      "head": "87a1e5550d946892fc90dd6f94dfbebf1409a18a",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie.git",
+      "dirty_file_count": 196,
+      "files": [
+        {
+          "path": "docs/features/FEAT-153-coze-workflow-foundation/26-canvas-background-contrast.md",
+          "git_status": "??",
+          "commit_unit": "T1",
+          "role": "separate FEAT-153 theme docs/evidence dependency",
+          "bytes": 3479,
+          "sha256": "7a46982fd4257edb439117db18c3b100129f035a78e308abcf309a0bd36907e7"
+        },
+        {
+          "path": "docs/features/FEAT-153-coze-workflow-foundation/27-workflow-lime-variant.md",
+          "git_status": "??",
+          "commit_unit": "T1",
+          "role": "separate FEAT-153 theme docs/evidence dependency",
+          "bytes": 7327,
+          "sha256": "2790be6fae153b1b6e155d755fd7137c41e7c8e26138aa3f28026fbfad4a6b98"
+        },
+        {
+          "path": "docs/features/FEAT-153-coze-workflow-foundation/evidence/canvas-background-20260914/reference-style.json",
+          "git_status": "??",
+          "commit_unit": "T1",
+          "role": "separate FEAT-153 theme docs/evidence dependency",
+          "bytes": 1378,
+          "sha256": "997e2de9c84b95d7283f92227f5055de383acbcd7807ed9b9df05b0c76eb3938"
+        },
+        {
+          "path": "docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/activation.json",
+          "git_status": "??",
+          "commit_unit": "T1",
+          "role": "separate FEAT-153 theme docs/evidence dependency",
+          "bytes": 1116,
+          "sha256": "41daaac8877d07819cc0285c4eabd37d0bb3e99879a1eb846821e527f72d586a"
+        },
+        {
+          "path": "docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/activation.json",
+          "git_status": "??",
+          "commit_unit": "T1",
+          "role": "separate FEAT-153 theme docs/evidence dependency",
+          "bytes": 1116,
+          "sha256": "b7d9364ec104debe293099134e0a1f96c3026b0605db09398bebf05feb051a58"
+        },
+        {
+          "path": "docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/canvas.png",
+          "git_status": "??",
+          "commit_unit": "T1",
+          "role": "separate FEAT-153 theme docs/evidence dependency",
+          "bytes": 257854,
+          "sha256": "72f8218092332000c1f0e1ddd10217f1bcd0f81805026afff11a5c79f2361d66"
+        },
+        {
+          "path": "docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/source-check.json",
+          "git_status": "??",
+          "commit_unit": "T1",
+          "role": "separate FEAT-153 theme docs/evidence dependency",
+          "bytes": 752,
+          "sha256": "49aa50e28b75a38d623da1c201823de37dcd5270ef0be2895e14bb95bad97273"
+        },
+        {
+          "path": "docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/text-sidebar.png",
+          "git_status": "??",
+          "commit_unit": "T1",
+          "role": "separate FEAT-153 theme docs/evidence dependency",
+          "bytes": 296347,
+          "sha256": "806293e5afede81d80d57e68fd57e2ea043f93a99a31b76de20e5faf55176a06"
+        },
+        {
+          "path": "docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/visual-verification.json",
+          "git_status": "??",
+          "commit_unit": "T1",
+          "role": "separate FEAT-153 theme docs/evidence dependency",
+          "bytes": 2398,
+          "sha256": "a32a997d765d477da922d40494eb108406f958603e956a0c4f1fa5ea10948897"
+        },
+        {
+          "path": "docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/canvas.png",
+          "git_status": "??",
+          "commit_unit": "T1",
+          "role": "separate FEAT-153 theme docs/evidence dependency",
+          "bytes": 248780,
+          "sha256": "625a698c1df5bb36e0567d8b73593100330e48d6d846866f822a3939a4bd2267"
+        },
+        {
+          "path": "docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/end-sidebar.png",
+          "git_status": "??",
+          "commit_unit": "T1",
+          "role": "separate FEAT-153 theme docs/evidence dependency",
+          "bytes": 265487,
+          "sha256": "8678629382ed6789fb6e5c04fc89856306d17535cb01159a843f9b5a17d3f2c0"
+        },
+        {
+          "path": "docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/source-check.json",
+          "git_status": "??",
+          "commit_unit": "T1",
+          "role": "separate FEAT-153 theme docs/evidence dependency",
+          "bytes": 904,
+          "sha256": "fc70344ea94884135631f99e15d664df763302222031068b34fbd7ca390cfed7"
+        },
+        {
+          "path": "docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/text-sidebar.png",
+          "git_status": "??",
+          "commit_unit": "T1",
+          "role": "separate FEAT-153 theme docs/evidence dependency",
+          "bytes": 288401,
+          "sha256": "6fd087676edd272dff6a68dd2ccc086a8af4d66fdcc77b582f270c01376ab025"
+        },
+        {
+          "path": "docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/visual-verification.json",
+          "git_status": "??",
+          "commit_unit": "T1",
+          "role": "separate FEAT-153 theme docs/evidence dependency",
+          "bytes": 3029,
+          "sha256": "e7896a66adc139c35d2f94b120d78a69c2bf6d171b5a3d29cd9ab188236477c6"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/00-feature-brief.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 12468,
+          "sha256": "45ab8d68e60d9a4b74416ef8c76941ae36be39a24bdaf3d6a4ca5f9f42bcb7e7"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/01-delivery-log.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 12057,
+          "sha256": "aee045921ec2ce75d079ee4f65f647cb68fe07d26f18263147d0f23f153d1cd7"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/02-verification.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 12933,
+          "sha256": "35a4476bf82243e07deaea9238482c6d8d5f203b4b5d3b6bfab3c1d0d5fcd4e5"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/03-ui-requirements.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 9608,
+          "sha256": "93cd295573d7e4c7b039233e712046a36b3d7b007b84e5403d72a8e9c8f4f2ea"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/04-node-ui-catalog.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "approved source snapshot / catalog / source provenance, committed with complete feature package",
+          "bytes": 127517,
+          "sha256": "c8fd884b03afea276ecdd022b7520b4ab0731b9cd96baf398e427ccd4e94d33f"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/05-engineering-boundaries.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 12338,
+          "sha256": "6d31a4efd15d9119eb1b04ed9b3a8fe5e8b234bba244db71cd593d2be25541cf"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/06-execution-plan.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 8251,
+          "sha256": "896b2a438cb551ad7452018c609cd94da3fff12457eb655d023a78707a54d709"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/07-integration-design.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 18239,
+          "sha256": "90178a03879e2a228adc181e357f9e0fa83a43f093edbc1d7d4df9063f6c37aa"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/08-node-registration-design.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 18161,
+          "sha256": "53fe47c5189e87637472b338b04a558ae1fc795326af2f6db3598bdb4b6cbe75"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/09-field-control-design.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 25381,
+          "sha256": "66937742ad9ae9116cf480c4f57c797200ca29646295639f97c067d6e56c96f8"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/10-lifecycle-contract-design.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 19997,
+          "sha256": "09adb0b38b813a5a92fdf4888ad753f5a8c080f8f4b0f7701db1b24e0f5ed38e"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/11-step2-implementation.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 7897,
+          "sha256": "c8152c676b698b2e75224ecf0061770088a8e52bd3e331bd43339e12b529c8e8"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/12-recovery-and-step2-verification-plan.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 8299,
+          "sha256": "11a4248f821bd2b390e152afcb0f88e973f55ff36d408d25e0daec715034d65a"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/13-recovery-and-sample-verification.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 9833,
+          "sha256": "d54c7b8e1a9a2459119c1051d5a4f06bcb0cb5dd7a3fb9cf270ce2add5fed099"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/14-full-node-ui-implementation.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 8513,
+          "sha256": "a96895452f78a4d0066130d545804788477d6f47a77baa947f4968f7bbacfe37"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/15-ac009-keyboard-and-window-verification.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 6453,
+          "sha256": "9ad840ecf5268d7053373d07d79eeebdf2693844ef9b506e85389695837b1167"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/16-delivery-status-and-evidence.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 7128,
+          "sha256": "5ca5f356f31e3c5cef5ef30176be5ea3d3d0429489a494c1a168b408bf4b3d42"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/17-cross-repository-commit-plan.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 9424,
+          "sha256": "db10d2a4d0bf184dd05341be97fafae9b34907c717f022d852bf102ee1280710"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/activated-runtime-final.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 4412,
+          "sha256": "0a00be0f59a72cb2c5c34f3053fed063c7beccf0b46a8eb44fd0513c6c697720"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/activated-runtime-fixed.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 4409,
+          "sha256": "bb2d31a3813801512cb99527a64a6ba136c90f5a67e73fe457c29b48b5da1ee1"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/activated-runtime.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 4411,
+          "sha256": "dd078e08ef9f4bf1afe7572cff53030b206df4d10aba20f441bdb3979e0a99ec"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/built-csp-ast-audit-final.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 370449,
+          "sha256": "5f558c6493c343f6799ec4ad9d6451828bbbff7b17eb61778f62d52de8b60f41"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/built-csp-ast-audit.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 370449,
+          "sha256": "d0ffd2616275aee415d62b44e2a2be7e041a580094f7af6229a9a68c7cb830a0"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/final-checks.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 7059,
+          "sha256": "856deadf0fa8d4c4e6fa1e13f57f806ee7f87e2e3ee665b7f86f0d9a03c34aa2"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/final-ui-observations.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 22488,
+          "sha256": "4b850be5ba863e07c2188b715427e22350934d169916f0758bab48df5ec604bd"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/focus-order-followup.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 1269,
+          "sha256": "087e3720ad2fe5bc2812ad9f9cab1860720aa32e70c6fa18e0de89f0c9be9508"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/incremental-csp-review-final.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 22259,
+          "sha256": "737e13cae63d59a01481c87ec4c50a334f14c2267e1369b246cdc2896fc77b36"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/incremental-csp-review.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 21163,
+          "sha256": "4ad9c980f14adbbee025c9da450b66e62c814f5163775d9c5ec9845eb3ae6167"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/persistence-comparison.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 508,
+          "sha256": "0d88a4757a260ae5da05f3f362aa95369decc0d7ac8ed21c33a824c723957159"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/pre-fix-observations.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 2182,
+          "sha256": "3a3d9db37088862cb288f020919271d097e0069f66a5f36099b53a6d646a36e0"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/source-review-final.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 2164,
+          "sha256": "619bdb0cb05327c862d8873a1060b6b32d0e20765264d83a6a716bdcfedf86f6"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/source-review.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 1703,
+          "sha256": "3224115989bd876bda30e791b079b265a63d403ec2ccfeba82a8ec06343c367b"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/trial-after-final.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 379246,
+          "sha256": "6443f589b1aff6e86787706eae743598fb57ddbc158a8b627f77bd04b460c9bb"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/trial-before-final.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 379246,
+          "sha256": "9b0ce3a2564c630e33166d0f876e4b40086a467ac70bc0c535e0b4d9e17e7917"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/ui-after-final.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 379817,
+          "sha256": "bc513f06228c4ced5a96733d00ef5befbff6e9bf98c3e0db5ddc1dc31759c3a0"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/ui-before-final.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 378315,
+          "sha256": "0e42ce4e8687991de905042d95d86e141c17df886f46a552eba1513d689a4495"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/ui-before-fixed.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 377371,
+          "sha256": "a3bc0badda72c36d8058a28b96d60b2a796ccfbc10fd67240313ffb71d22c734"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/ui-before.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 375479,
+          "sha256": "14264c24fc4b51b9990e09ff98b2e0b9d49a18d3c7a187ad748bea35832b673d"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/workspace-before.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 45664,
+          "sha256": "38b4bf255b19363815bec621fe4ac6e9ed1557328338761be41e20811ea66616"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/code-facts-sources.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 1948,
+          "sha256": "a3c4842e3dd035f89167970c9ece6ff8035d8842dc179ad8eb27c8a95c8400c0"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/README.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 6327,
+          "sha256": "a63e6933118cecc1684174921819601f92a35ca33b822b5faac044109e2923c5"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/candidate.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 2064,
+          "sha256": "770a0c01e62f1b409bce7f680fbf0f7bb4865c91efbae2e3b09fdf8603c9ba0c"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/csp-checks-final.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 370,
+          "sha256": "d492af1953aef6fcc6a64d2f4845f441f36747bec29643cc8351a8b867344268"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/desktop-launch-final.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 7841,
+          "sha256": "3446ef343e64a71fb6c1cb51e8b49c73c78c458dc9e1e7427545c467ba18b1db"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 61759,
+          "sha256": "50b417aba47d5fcb364e0cf02f9ac7fd2b88ce69dee0f574ac01eb2b85dd300e"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-registration-final.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 349,
+          "sha256": "7f9646e3a4101ac9c4acb048dbc5a62901a05cf11fec333e67f17cae38f9694c"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/focused-checks-final.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 6314,
+          "sha256": "137bbe376777c978c8eb6b45836e4488d929e0a487ac47b6df863ce6c4bd1243"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/runtime-before.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 3228,
+          "sha256": "c6639650513c8790b0826f1eafb9b3a8e4ded8d882b49637dd16ce5983dd08d3"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/runtime-final.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 3153,
+          "sha256": "931572919f3bc7b00f0593abd9ecba1e86814a555025f12b038ca1cfb7667920"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/service-build-final.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 665,
+          "sha256": "fd33926900e7a960d7b304347a3627a8d129679dcf7728f051595ca512e6785d"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/service-stop-before-fix.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 124,
+          "sha256": "1c6441b53af92a1c082d00968d8d8a54f89e8be252452e788f35d0049a03c07c"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/service-stop-before-focus-order-fix.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 124,
+          "sha256": "1c6441b53af92a1c082d00968d8d8a54f89e8be252452e788f35d0049a03c07c"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/service-up-final.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 3869,
+          "sha256": "75d69ec85ee8ee46ccba06da55bfcc45630be77c672bfc4a4f8e4287cc09e6ac"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/source-checks-final.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 468,
+          "sha256": "a6a34967d226e14100379f148856f5940f1c5f566701629cc36fb41f0e569b3e"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/csp-checks-r2.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 366,
+          "sha256": "f27158f544dd16708b08eb891df087e8ea5e8ba519083af0cd5efacb2feb6e9d"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/desktop-launch-r2.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 18815,
+          "sha256": "57ce158eb839e27a83f4a4d5aeb1c7f13c341d95e5972acaf42bb9d26ff09ef6"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 62844,
+          "sha256": "4554b9a614e9c2d84936171badf127ff9e95cf5b42af4ce00fed3cf826500733"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 61759,
+          "sha256": "2df7c6603a60d6c5177749622a88dae73aa98028b56cd9b1ea3f910d420d029d"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-registration-r2.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 349,
+          "sha256": "7f9646e3a4101ac9c4acb048dbc5a62901a05cf11fec333e67f17cae38f9694c"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/focused-checks-r2.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 6311,
+          "sha256": "5ffbe0d5ffd71ce6d338214adfa9b1db6e06a722c54dda027de480ee5a8755bd"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/service-build-r2.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 665,
+          "sha256": "fd33926900e7a960d7b304347a3627a8d129679dcf7728f051595ca512e6785d"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/service-stop-r1.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 124,
+          "sha256": "1c6441b53af92a1c082d00968d8d8a54f89e8be252452e788f35d0049a03c07c"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/service-up-r2.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 3868,
+          "sha256": "7459aa66a5be5281628fd297216c85125bb9cbd6b9b8584f4989963c0ccc9cdd"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/upstream-source-check.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 278,
+          "sha256": "b707f6dadd0bf447f9c2c2943ff060c8f79aad38d68ffc47007a64e78287b6af"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/light-large-verification/editor-source-check.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 145,
+          "sha256": "9c0fcdeca2897fd054fa29d90a0384fd7ec99b8825443ad081ac96213953df11"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/light-large-verification/runtime-before.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 3153,
+          "sha256": "931572919f3bc7b00f0593abd9ecba1e86814a555025f12b038ca1cfb7667920"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/recovery-execution/csp-tests-r7.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 371,
+          "sha256": "9e237b68a6f55a87881e1c941bbedd6582adcf3b35fcc0309a8df7e68bdc0f07"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/recovery-execution/editor-check-r7.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 145,
+          "sha256": "9c0fcdeca2897fd054fa29d90a0384fd7ec99b8825443ad081ac96213953df11"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/recovery-execution/focused-recheck-r7.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 4430,
+          "sha256": "4ffff72c13b2ac103d05e31e2dc790aa29cf293c579cd29a55651e55231a3ba2"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/recovery-execution/value-state-recheck-r6.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 1101,
+          "sha256": "928d9ce82001acf356b95e079bc9c2ad33daa70ea790e4b15e5dcc0f61076a75"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/step2-implementation/contract-breaking-29317b64.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 429,
+          "sha256": "9156d9e2ecf64bd54c1fd27b566f31040aa37294e7776135ccfa2a75283cc740"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/step2-implementation/contract-breaking-32dd7629.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 764,
+          "sha256": "f09220def71cdef3b2658c2e76b2dc9a40303a2338ea98ab6dcd680dfd1c73dc"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/step2-implementation/contract-breaking-811f38d6.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 329,
+          "sha256": "8e5cd19181ccf67b5c7b5975d0cf79376c9796f12899b46e0dada5dbf24b71db"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/step2-implementation/contract-breaking-f16a497e.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 429,
+          "sha256": "473af2145cebda0c06842e3478ada4dc2792fca5ac911650b4954a872c991db2"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/step2-implementation/coze-focused-tests.txt",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 7057,
+          "sha256": "8dc5e508744177ecd7da91c5b09d03c540d47b673d24e8abf29ed2f1d5687b27"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/cross-repository-files.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": null,
+          "sha256": null,
+          "hash_exception": "self-referential metadata or final verification output"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/cross-repository-files.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": null,
+          "sha256": null,
+          "hash_exception": "self-referential metadata or final verification output"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/document-checks.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 6989,
+          "sha256": "a1fa32346ef5dce66c9e4501e632ebfd6558a0d2a7bd4e7844c42dc8aa5feda0"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/log-archive-manifest.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 34371,
+          "sha256": "21abc679c1aa00e5733399a3283ac6540d435423d57e0f4dd8d68ba36913795a"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/package-checks.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": null,
+          "sha256": null,
+          "hash_exception": "self-referential metadata or final verification output"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/screenshot-ledger.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 2911,
+          "sha256": "dad4b543871816acfbba62dee81d4945a446c4beb98e63d161d28c40dd0b4672"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/workspace-before.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 50725,
+          "sha256": "64007fbf221c232eec498277193f235ce094c69dd395edd2a624e871b8605ef4"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/document-checks.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 5942,
+          "sha256": "f373b8fbc7b1ffca4fb2e346aea22515c15e2d93a31dd7e70ae2690207d216c0"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/activated-runtime-r2.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 5329,
+          "sha256": "c2ac74887224136cd60d154ca67b38097a6f4c1a53addb6e48f32e299d1a751b"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/activated-runtime.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 5767,
+          "sha256": "aa8b533683a39507f8fe13bde4031619e39178c94068601d9d75859bcd7ab923"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/built-csp-ast-audit-r2.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 370449,
+          "sha256": "eda42c9bfbc16589ba0af762310e277d00202b43a9cc1c57ef7cbaf95c555963"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/built-csp-ast-audit.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 370449,
+          "sha256": "4ca1b700d86889a41f983554599cdb652eafc0b3cc946e28a6c5def876afa9d1"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/final-checks.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 6413,
+          "sha256": "2feb5346cfcaa6f69dd4490145ff24761aa48e4f4e4ede403a511556363585c4"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/incremental-csp-review-r2.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 21132,
+          "sha256": "67319a85f51f993597e07384cf6cde88afb662f382899dc854355b00e40b15db"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/incremental-csp-review.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 16336,
+          "sha256": "1a162ededf4da498745edc6e4139e13a6c99d4d5a1fa25acf9b9a2c49b799c10"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/recovery-result.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 3821,
+          "sha256": "39d4065eddeb84c22d578651ba40f2b18374d18be629397b59e3ce7792a3ebe8"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/runtime-before.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 1927,
+          "sha256": "a2e2f8bb9efc0186f48c8afbebb7ac492d5f74b602c07f64029c51dcf4dca092"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/source-extract.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 303834,
+          "sha256": "836c79f0d046d32a0a629e5240e8170a909376c4429ddf0ec5974ea1744903e9"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/structured-review.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 3857,
+          "sha256": "020c9b49480caefc5060f84f64b9781d2c8d9131315605ea666ddb31bf18cdcd"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/trial-after-panel-r2.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 374786,
+          "sha256": "e888837f98b88708cea087be5ecfbcf62b7e387e479ef811ff44b0510ecd072a"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/trial-after-r2.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 374786,
+          "sha256": "143e831449c5140549e52c2ca55257d7f1f91b8f04706cea7a50b5340177fc83"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/trial-before-r2.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 374786,
+          "sha256": "104aa2d84593b3c0e84d52736a63d5466da062b3907c64ec14240895b496744a"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/ui-after-r2.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 375357,
+          "sha256": "6550cb77532f77d1f2dcfd38c2806cdb26efe89d7288011860ec2d5b3b6d2b9a"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/ui-after.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 371967,
+          "sha256": "f1e61a7736278ef15c5878da644e961945522cd657347e93fffb39f808975700"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/ui-before-r2.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 372142,
+          "sha256": "06804fade40dabaf1d18058e58f65f7b6b1a14c7a51df51c37ee2e6e7c0ff4ca"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/ui-before.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 370465,
+          "sha256": "ad755cd837d41deddabce950464ef44a2389ae2be7990bfe397c8fb03f749fce"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/ui-r1-observations.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 1307,
+          "sha256": "02f3b34ca1b3894297f16e24007f623b66eea28561ab889702b5a550161a0489"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/ui-r2-node-matrix.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 6893,
+          "sha256": "2788701b3e5fad82c87a4226971b251c658c38af6a778db0c347ee733df4d3b8"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/ui-r2-persistence-comparison.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 727,
+          "sha256": "6b8b967e585d10c480a909c0f55e4127622d92b6d6d5019f282ca6d51709afe3"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/ui-r2-shared-observations.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 17890,
+          "sha256": "b89f87e2a1dc01483cdf53bece8fae12e78386621c8ae904abb689fef50d1aab"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/workspace-before.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 40477,
+          "sha256": "a37e644d03728fcbc5224cdd5c2d5a0d1d4eaf03d80530470a3b9ebeebbbb5d3"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/workspace-r2-check.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 3308,
+          "sha256": "befa8838c847471e04571d04a3b9e143e2b8f4e8ba7b2e7c1fcb0ad5ce4544e5"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/light-large-verification/owner-decision-document-checks.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 3498,
+          "sha256": "6627290a2ec80ef3a3e91851f58dc9aa14acf2e83712064faebef67d967f5f0f"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/light-large-verification/owner-display-change-decision.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 708,
+          "sha256": "efadd2f94c59368945f75654ee209fc86ac315376df460870ce3ad9dcba6ec65"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/light-large-verification/readiness.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 1191,
+          "sha256": "5581d03f435425fd1e91bc92add68cc5ef8198dafb92f448bcd0cc6e4f232a10"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/light-large-verification/ui-before-large.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 379817,
+          "sha256": "93ad27a76b465ab7d69bc464c1aafe03ba9fb91e4fafdb62d3cc028d890e148f"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/light-large-verification/verified-runtime.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 4412,
+          "sha256": "fc0dffb2ce90e605e70d55260262637073ddd722c287f253d93d73698ebd1dc7"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/light-large-verification/workspace-before.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 50120,
+          "sha256": "9e6f24374c979fa5543f4079cc2a7ae871f555cd84e7f5c17051f3ee59961da0"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/protected-files-before.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 3289,
+          "sha256": "fdfb8e770090ed52e2ccabbef6c2df69a035f2c66fff0a816340bcf832d02bc0"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/activated-runtime-r5.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 26253,
+          "sha256": "ed8e02695bf2da523cbed51f613c60e6f8126f11b336ef325529951c7408e08e"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/activated-runtime-r6.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 26228,
+          "sha256": "c18a4a766d3b9774dc8effc39f1109a73461831e6931edbc3fd73363bca6b725"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/activated-runtime-r7.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 26238,
+          "sha256": "ca7f70fafd46cc08a121dc8095fd9fea363153696e66568e05022a8468c1b70f"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/activated-runtime.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 26270,
+          "sha256": "6b64b18b6d3943ff34a7d3ded01c63875bf48d4ca4fdb16a9f6913f426f453ce"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/before.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 30427,
+          "sha256": "b0661431b35905454529e3e54a333ab5ae898e9674a8a39b5801c542a33ef87d"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/built-csp-ast-audit-r2.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 370449,
+          "sha256": "92707b4c834b09695beeb62abb01281ca50893e7868931315b185b05b975cff8"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/built-csp-ast-audit-r5.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 370449,
+          "sha256": "a90538e019f31743517d60c899ca2b3ee97b1bbe22d3b9b4889fd48f6e73ff2d"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/built-csp-ast-audit-r6.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 370449,
+          "sha256": "95304817f3f9887e5344ba7eb5c470aba5bc24f17180f7329bfb339819e531ac"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/built-csp-ast-audit-r7.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 370449,
+          "sha256": "2947201a695613740178e228cb981459c40d925e4610ccdcd5ea63e298cc6c8e"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/built-csp-ast-audit.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 370449,
+          "sha256": "93ead236479aa57bfa3a66c3991270c2623b36394e51698baed6d519d44e8f5e"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/dark-theme-deferral-and-step2-closure.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 2903,
+          "sha256": "b79a4aa556f09e51d4e6ac78497c142668d6ba06631445901b8e9b3505b06b64"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/editor-build-result.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 308,
+          "sha256": "e1c3f3bc1f0805b7c244e4bc61c8a99e04b979ab4c84fd8c6d6883f1ac82fb02"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/incremental-csp-review-r2.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 21515,
+          "sha256": "9c58a98392101bd14539f3c4873cff371a4dbd984c701f37b9b104e10e6f8071"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/incremental-csp-review-r5.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 21515,
+          "sha256": "69a0920e767b3b8d2362384b8155180f17593be93dcb0ce15133975280a6955a"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/incremental-csp-review-r6.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 21515,
+          "sha256": "11773c1e8dd272b54fd7850587acb4af77c35565ef0e7cbabf1104a1b77cdc23"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/incremental-csp-review-r7.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 21515,
+          "sha256": "c7ab96f424fb22dc7ded3b7fe5d6414b4d8c2d500f6ba38dfe5b28d86a0e5cb3"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/incremental-csp-review.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 21761,
+          "sha256": "003f856bf96e706177a6a546e3829ca2bf716a9c3e3471b595143fd2839981bc"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/recovery-result.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 12554,
+          "sha256": "fd562cbb4c8871d4e7fecbf45c57f5a7878f122ca15929f32f6cc5cbddc9dd01"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/step2-closure-document-checks.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 7167,
+          "sha256": "be93138ea73297eecf6da95a51ff2d5e3ecab20d1ed5b18bf42e4bd198d134f9"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r5-after-trial.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 365069,
+          "sha256": "07c4d6bba85c619adae6f6d810a62caaa8a354c6726f85f6f8ab6b1f5167724f"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r5-after.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 366211,
+          "sha256": "dc8383e9374c83f14ff93cedeca0a39f015ad76a4120522f268bf1a12699ee2e"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r5-before.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 364138,
+          "sha256": "6cc067d4115ed133541be66704152104e1264be6dd871ca4bf611cdc53e623df"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r5-observations.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 3477,
+          "sha256": "f8b0d64e7a184f3c6480f9ca9d7dc039187820bc7ef141407af529385c44a314"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r5-persistence-comparison.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 166,
+          "sha256": "bfde581115017ca456a6b9e8d7d5918ea62922e236dcfdd746c38edb92e97d1b"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r6-after.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 368459,
+          "sha256": "7d199babde8ffc58b8564c41badb72196ec587250266acd4a67f6393aa3d3613"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r6-before.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 366386,
+          "sha256": "b22cd08115cbcd9bdf975ba7e210b1958326821d309879ced7996b47556f5105"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r6-observations.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 1850,
+          "sha256": "c439aab10d69b78d361964167948fefe8e11cfa08e52d18dcfa91ae1ce07064f"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r6-persistence-comparison.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 166,
+          "sha256": "bfde581115017ca456a6b9e8d7d5918ea62922e236dcfdd746c38edb92e97d1b"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r7-after-core.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 370306,
+          "sha256": "fde3a6a622474a428b1000ddd486c805070fc2e6508af7af444a61ebea70502a"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r7-after-trial.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 370136,
+          "sha256": "1b4f19f6868a6e7ddadbac4657a48b7608001e6e79fca87d3aaaad37e2c40bbe"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r7-before-trial.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 370136,
+          "sha256": "664243607e4cbe9683424a0f027dbfcb338cfa164dbc61e42fec622bd50508db"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r7-before.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 368634,
+          "sha256": "abc9dd5a262a2e162ca64a45643105e8bc24606572973dcc737f0f2a6f259d2c"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r7-observations.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 3106,
+          "sha256": "3a7afb2f75daca11599a294e2e72da13ff4736cffc1443cba016b63b230e7e28"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r7-persistence-comparison.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 209,
+          "sha256": "7e2762e22e75634ffb755fa10a72f5ab2127e14f1fe4b503f02fc9b080ade392"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/workspace-r6-check.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 11017,
+          "sha256": "63fe4587908ed3aae45ad0c5b429364485a2674863d5ba60fb2b02ec532fc540"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/workspace-r7-final.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 11046,
+          "sha256": "390cb32195362b9df1b4449a491a96e0c32e93fc0a58fc8bde11459ee19a4ff4"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/requirements-integrity.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 784,
+          "sha256": "0a78ebf78f90687cbf894a2e976c1f9e1b7e606c945474e60d051b343bfb6640"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/source-manifest.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "approved source snapshot / catalog / source provenance, committed with complete feature package",
+          "bytes": 1385,
+          "sha256": "2e0bdbe2580c2b36f4460b22f2bf13b3d76be945946ec6c58c7ab38b356225b4"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/step1-design-20260915/d0-gate.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 1094,
+          "sha256": "e7548347a7c5d553d1eb3ff85bb589c8833e1830ea40ed9a0c5423659465ccec"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/step1-design-20260915/d0-owner-confirmation.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 1398,
+          "sha256": "95c3528388b905af7a26304dc36518447cb11ee29a51f93cdc0742ec1ce0aa78"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/step1-design-20260915/design-preview-checks.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 424,
+          "sha256": "738ab73ab222e5b3f485f47fcfaaec53ae2b93cd5322bf3e275651c9bfba0282"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/step1-design-20260915/design-preview-dark.png",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 96272,
+          "sha256": "84a7c0b5d166bd5876a3fbccf6d751bb6c4d0cbed63919643c8df37cfbaec317"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/step1-design-20260915/design-preview-light.png",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 96748,
+          "sha256": "0a81a27115913e9f2989c29daec030a075d1c2d65564275bbcd20b1218938043"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/step1-design-20260915/design-preview-narrow.png",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 65561,
+          "sha256": "089cf7249516b6c45ff844c258054fffae64bf11ec28c7bf9ba863d99d9d55d7"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/step1-design-20260915/document-integrity.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 297,
+          "sha256": "c1f7fbad3fced75a4174b8f4edeaec2fcfeb2d27b7b3fa91d0cc04bed5363ce1"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/step1-design-20260915/meta-checks.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 5776,
+          "sha256": "08228042617014a5240c507af58ecda9336ea4e3c14d9afcc25abdb593ee48ce"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/step1-design-20260915/review-candidate.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 1221,
+          "sha256": "6ff82c0c89107c640ec1db970dcfa3d8f72cd6d9a199d7c4edd704937fc47142"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/step1-design-20260915/source-audit.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 4090,
+          "sha256": "ea886dcd77492b079016cafd256bf44a45af1713e9382aef9312a2a96f565fe8"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/step1-design-20260915/workspace-after.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 2195,
+          "sha256": "2d1674e6021c8dcf9caea0529abe941084e66057ece53bd95078a05b52cbf005"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/step1-design-20260915/workspace-before.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 5592,
+          "sha256": "16d537e6d20a5ed99ca67d17b3011a8eb002f0e4e45402bae66ededbae1885cc"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/step2-implementation/activation-blocker.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 4683,
+          "sha256": "43fedd5aa6bae86417118712d48e52cbd253aa7df302a2a5fa8db3b9175d0e6b"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/step2-implementation/contract-build-launch-review.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 4455,
+          "sha256": "59450660afa68eef3a3e65f287e9d7080d9360009422b3962c4a453712f712ff"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/step2-implementation/contract-lifetime-review.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 3548,
+          "sha256": "5249838367c2f67036811287810fbf100dec0765b3460941a45e7af645170d2e"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/step2-implementation/contract-source-consumer-checks.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 7912,
+          "sha256": "6e821bbd1466353b08d2fe48fd6edb67d6a969715ae8fb084a6d43831f3f86a1"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/step2-implementation/coze-typecheck-details.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 43767,
+          "sha256": "95a686aae5b3b26097a0dc25a06c7d5935e44f9a036a421c360e1661612b79e3"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/step2-implementation/coze-typecheck-summary.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 279,
+          "sha256": "fbe7a3aff085c4b0089ac736be85a5877d064f4eec6f3d24208d424b5d4f5dd1"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/step2-implementation/implementation-checks.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 21064,
+          "sha256": "a76e5ae06c972311f32474d422a0f6b1d3b56116e56ba07900a884f653cd9d9d"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/step2-implementation/next-plan-observation.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 4137,
+          "sha256": "025050be9984744ad8b88531a0737265849a1cb305ec1356df28d60fcca33f78"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/step2-implementation/sample-source-review.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 9991,
+          "sha256": "f5841d4f992f8fdbfecc7f350ae9edd7bb98c1f3880f6c81e48141bec9d86f89"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/step2-implementation/workspace-before.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 5688,
+          "sha256": "37238c235a5620d4221f45d0a551be5c4fc7bafbafca94f28fdd2ebd3ae21b82"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/workspace-after.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 2195,
+          "sha256": "2d1674e6021c8dcf9caea0529abe941084e66057ece53bd95078a05b52cbf005"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/evidence/workspace-before.json",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 2149,
+          "sha256": "07ca3d5a9d366c05248f6b07b69248de183ee48f0e85e0b6656f8b52cd35cc00"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/feature.yaml",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "FEAT-154 delivery document or evidence",
+          "bytes": 19277,
+          "sha256": "437e92e86f801a093dca7afc10ff39bbac0a55c288fcbc3786e885c23fbe3287"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "approved source snapshot / catalog / source provenance, committed with complete feature package",
+          "bytes": 61829,
+          "sha256": "7e4debe7312385b8449bb65ffd4e768252678e37c8bab3aba209de09964dad02"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/sources/17-30.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "approved source snapshot / catalog / source provenance, committed with complete feature package",
+          "bytes": 120945,
+          "sha256": "e98d83fd0810be2a19a4fdf08e85551f22be27ce26c81248ad84ba9e407e2e1d"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/sources/9-16.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "approved source snapshot / catalog / source provenance, committed with complete feature package",
+          "bytes": 78840,
+          "sha256": "4438312f35575f369cd17814560d82f1418551246223d1a6c730fb899e669e7e"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/sources/README.md",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "approved source snapshot / catalog / source provenance, committed with complete feature package",
+          "bytes": 1057,
+          "sha256": "983fc5fb9db84f08436b15698976c328ae414e7b9978ff744873a5923c8362e8"
+        },
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/sources/电商节点 UI界面.pdf",
+          "git_status": "??",
+          "commit_unit": "M1",
+          "role": "approved source snapshot / catalog / source provenance, committed with complete feature package",
+          "bytes": 975729,
+          "sha256": "94bf84d4ed7b54fc7710c4a161746ba367aafe16ac0b8a5d29554a7299e3bd48"
+        }
+      ]
+    },
+    "yijie-agent-host": {
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-agent-host.git",
+      "dirty_file_count": 0,
+      "files": []
+    }
+  },
+  "excluded_generated_runtime": "App/binary/editor dist/container images/.local/volumes/data copies/node_modules and ignored originals are outside the commit list; no broad force-add.",
+  "units": {
+    "C1": {
+      "repository": "yijie-contracts",
+      "files": [
+        "compatibility/workflow-local/source.lock.json",
+        "docs/workflow-local-v1.md",
+        "jsonschema/workflow-editor/bridge-v1.schema.json",
+        "openapi/workflow-local/workflow-local.yaml",
+        "sdks/jsonschema/workflow-editor-bridge-v1.schema.json",
+        "sdks/openapi/workflow-internal.gen.json",
+        "sdks/typescript/src/browser/workflow-local-validator.gen.js",
+        "sdks/typescript/src/jsonschema/workflow-editor-bridge-v1.gen.ts",
+        "tests/workflow-local-browser.test.mjs",
+        "tests/workflow-local.test.mjs"
+      ]
+    },
+    "A1": {
+      "repository": "yijie-api",
+      "files": [
+        "contracts/workflow-local.lock.json",
+        "contracts/workflow-local.source-lock.json",
+        "internal/modules/workflows/infrastructure/postgres/operations/recovery-read.sql",
+        "internal/modules/workflows/infrastructure/postgres/operations/recovery_read.py"
+      ]
+    },
+    "Z1": {
+      "repository": "yijie-coze",
+      "files": [
+        "contracts/workflow-editor-bridge-v1.schema.json",
+        "contracts/workflow-internal.openapi.json",
+        "contracts/workflow-local.lock.json",
+        "contracts/workflow-local.source-lock.json",
+        "frontend/apps/workflow-local/src/generated/workflow-editor-bridge.gen.ts",
+        "frontend/apps/workflow-local/src/generated/workflow-local.validators.js",
+        "frontend/apps/workflow-local/src/main.tsx",
+        "frontend/packages/workflow/base/src/entities/workflow-node.ts",
+        "frontend/packages/workflow/base/src/types/index.ts",
+        "frontend/packages/workflow/base/src/types/registry.ts",
+        "frontend/packages/workflow/history/src/operation-metas/add-node.ts",
+        "frontend/packages/workflow/nodes/src/typings/playground-context.ts",
+        "frontend/packages/workflow/nodes/src/utils/add-node-data.ts",
+        "frontend/packages/workflow/nodes/src/workflow-json-format.ts",
+        "frontend/packages/workflow/playground/src/components/node-panel/components/atom-category-list/index.tsx",
+        "frontend/packages/workflow/playground/src/components/node-panel/components/atom-node-list.tsx",
+        "frontend/packages/workflow/playground/src/components/node-panel/components/custom-drag-card.tsx",
+        "frontend/packages/workflow/playground/src/components/node-panel/components/list.tsx",
+        "frontend/packages/workflow/playground/src/components/node-panel/components/panel.tsx",
+        "frontend/packages/workflow/playground/src/components/node-panel/components/styles.module.less",
+        "frontend/packages/workflow/playground/src/components/node-panel/hooks/use-search-node.ts",
+        "frontend/packages/workflow/playground/src/components/node-panel/hooks/use-template-node-list.ts",
+        "frontend/packages/workflow/playground/src/components/node-render/node-render-new/content/index.tsx",
+        "frontend/packages/workflow/playground/src/components/node-render/node-render-new/ports.tsx",
+        "frontend/packages/workflow/playground/src/components/test-run/local-test-form-panel.tsx",
+        "frontend/packages/workflow/playground/src/components/toolbar/components/add-node.tsx",
+        "frontend/packages/workflow/playground/src/components/toolbar/hooks/use-add-node.ts",
+        "frontend/packages/workflow/playground/src/components/workflow-header-info/index.tsx",
+        "frontend/packages/workflow/playground/src/components/workflow-header/index.tsx",
+        "frontend/packages/workflow/playground/src/container/workflow-nodes-v2-contribution.ts",
+        "frontend/packages/workflow/playground/src/form-extensions/components/node-header/index.tsx",
+        "frontend/packages/workflow/playground/src/nodes-v2/hooks/use-default-node-meta.ts",
+        "frontend/packages/workflow/playground/src/nodes-v2/utils.ts",
+        "frontend/packages/workflow/playground/src/services/local-workflow-document.ts",
+        "frontend/packages/workflow/playground/src/services/local-workflow-keyboard-service.ts",
+        "frontend/packages/workflow/playground/src/services/workflow-drag-service.ts",
+        "frontend/packages/workflow/playground/src/services/workflow-edit-service.ts",
+        "frontend/packages/workflow/playground/src/services/workflow-save-service.ts",
+        "frontend/packages/workflow/playground/src/shortcuts/contributions/delete/index.ts",
+        "frontend/packages/workflow/playground/src/typing/index.ts",
+        "frontend/packages/workflow/playground/src/typing/local-workflow-adapter.ts",
+        "frontend/packages/workflow/playground/src/utils/index.ts",
+        "frontend/packages/workflow/playground/src/utils/node-template.ts",
+        "frontend/packages/workflow/playground/src/workflow-playground-context.ts",
+        "scripts/yijie/workflow-editor-csp-reviewed.json",
+        "yijie-upstream.lock.json",
+        "backend/domain/workflow/localadapter/recovery-read.sql",
+        "backend/domain/workflow/localadapter/recovery_read.py",
+        "frontend/apps/workflow-local/src/ecommerce-ui-draft-model.ts",
+        "frontend/packages/workflow/base/src/types/local-editor-node-type.ts",
+        "frontend/packages/workflow/playground/src/local-ecommerce/catalog-additional.ts",
+        "frontend/packages/workflow/playground/src/local-ecommerce/catalog-children.ts",
+        "frontend/packages/workflow/playground/src/local-ecommerce/catalog-labels.ts",
+        "frontend/packages/workflow/playground/src/local-ecommerce/catalog-samples.ts",
+        "frontend/packages/workflow/playground/src/local-ecommerce/catalog-source.ts",
+        "frontend/packages/workflow/playground/src/local-ecommerce/catalog.ts",
+        "frontend/packages/workflow/playground/src/local-ecommerce/create-node.ts",
+        "frontend/packages/workflow/playground/src/local-ecommerce/field-control.tsx",
+        "frontend/packages/workflow/playground/src/local-ecommerce/form-meta.tsx",
+        "frontend/packages/workflow/playground/src/local-ecommerce/form.tsx",
+        "frontend/packages/workflow/playground/src/local-ecommerce/node-content.tsx",
+        "frontend/packages/workflow/playground/src/local-ecommerce/node-registry.ts",
+        "frontend/packages/workflow/playground/src/local-ecommerce/reference-picker.tsx",
+        "frontend/packages/workflow/playground/src/local-ecommerce/style.less",
+        "frontend/packages/workflow/playground/src/local-ecommerce/test-run.tsx",
+        "frontend/packages/workflow/playground/src/local-ecommerce/types.ts",
+        "frontend/packages/workflow/playground/src/local-ecommerce/value-state.test.mjs",
+        "frontend/packages/workflow/playground/src/local-ecommerce/value-state.ts",
+        "scripts/yijie/workflow-editor-ecommerce-draft.test.mjs",
+        "scripts/yijie/workflow-editor-ecommerce-registration.test.mjs",
+        "scripts/yijie/workflow-editor-ecommerce-source.py"
+      ]
+    },
+    "T0": {
+      "repository": "yijie-coze",
+      "files": [
+        "frontend/apps/workflow-local/src/yijie-coze-theme.css"
+      ]
+    },
+    "D1": {
+      "repository": "yijie-desktop",
+      "files": [
+        "contracts/workflow-editor-bridge-v1.schema.json",
+        "contracts/workflow-local.lock.json",
+        "src/api/generated/workflow-local-validator.gen.js",
+        "src/components/workflows/WorkflowLocalWorkspace.test.ts",
+        "src/components/workflows/WorkflowLocalWorkspace.vue",
+        "src/domain/workflow-editor-bridge.generated.ts",
+        "src/pages/workflows/use-workflow-workspace.test.ts"
+      ]
+    },
+    "I1": {
+      "repository": "yijie-infra",
+      "files": [
+        "Makefile",
+        "docs/workflow-local.md",
+        "scripts/workflow-local.py",
+        "docs/workflow-local-recovery.md",
+        "scripts/workflow_recovery.py",
+        "tests/workflow_recovery_test.py"
+      ]
+    },
+    "T1": {
+      "repository": "yijie",
+      "files": [
+        "docs/features/FEAT-153-coze-workflow-foundation/26-canvas-background-contrast.md",
+        "docs/features/FEAT-153-coze-workflow-foundation/27-workflow-lime-variant.md",
+        "docs/features/FEAT-153-coze-workflow-foundation/evidence/canvas-background-20260914/reference-style.json",
+        "docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/activation.json",
+        "docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/activation.json",
+        "docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/canvas.png",
+        "docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/source-check.json",
+        "docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/text-sidebar.png",
+        "docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/visual-verification.json",
+        "docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/canvas.png",
+        "docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/end-sidebar.png",
+        "docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/source-check.json",
+        "docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/text-sidebar.png",
+        "docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/visual-verification.json"
+      ]
+    },
+    "M1": {
+      "repository": "yijie",
+      "files": [
+        "docs/features/FEAT-154-ecommerce-node-ui/00-feature-brief.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/01-delivery-log.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/02-verification.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/03-ui-requirements.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/04-node-ui-catalog.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/05-engineering-boundaries.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/06-execution-plan.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/07-integration-design.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/08-node-registration-design.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/09-field-control-design.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/10-lifecycle-contract-design.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/11-step2-implementation.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/12-recovery-and-step2-verification-plan.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/13-recovery-and-sample-verification.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/14-full-node-ui-implementation.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/15-ac009-keyboard-and-window-verification.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/16-delivery-status-and-evidence.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/17-cross-repository-commit-plan.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/activated-runtime-final.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/activated-runtime-fixed.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/activated-runtime.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/built-csp-ast-audit-final.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/built-csp-ast-audit.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/final-checks.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/final-ui-observations.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/focus-order-followup.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/incremental-csp-review-final.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/incremental-csp-review.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/persistence-comparison.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/pre-fix-observations.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/source-review-final.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/source-review.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/trial-after-final.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/trial-before-final.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/ui-after-final.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/ui-before-final.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/ui-before-fixed.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/ui-before.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/ac009-verification/workspace-before.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/code-facts-sources.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/README.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/candidate.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/csp-checks-final.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/desktop-launch-final.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/editor-registration-final.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/focused-checks-final.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/runtime-before.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/runtime-final.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/service-build-final.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/service-stop-before-fix.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/service-stop-before-focus-order-fix.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/service-up-final.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/ac009-verification/source-checks-final.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/csp-checks-r2.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/desktop-launch-r2.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/editor-registration-r2.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/focused-checks-r2.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/service-build-r2.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/service-stop-r1.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/service-up-r2.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/full-ui-implementation/upstream-source-check.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/light-large-verification/editor-source-check.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/light-large-verification/runtime-before.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/recovery-execution/csp-tests-r7.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/recovery-execution/editor-check-r7.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/recovery-execution/focused-recheck-r7.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/recovery-execution/value-state-recheck-r6.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/step2-implementation/contract-breaking-29317b64.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/step2-implementation/contract-breaking-32dd7629.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/step2-implementation/contract-breaking-811f38d6.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/step2-implementation/contract-breaking-f16a497e.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/command-output/step2-implementation/coze-focused-tests.txt",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/cross-repository-files.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/cross-repository-files.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/document-checks.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/log-archive-manifest.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/package-checks.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/screenshot-ledger.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/delivery-package/workspace-before.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/document-checks.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/activated-runtime-r2.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/activated-runtime.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/built-csp-ast-audit-r2.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/built-csp-ast-audit.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/final-checks.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/incremental-csp-review-r2.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/incremental-csp-review.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/recovery-result.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/runtime-before.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/source-extract.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/structured-review.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/trial-after-panel-r2.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/trial-after-r2.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/trial-before-r2.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/ui-after-r2.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/ui-after.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/ui-before-r2.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/ui-before.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/ui-r1-observations.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/ui-r2-node-matrix.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/ui-r2-persistence-comparison.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/ui-r2-shared-observations.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/workspace-before.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/full-ui-implementation/workspace-r2-check.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/light-large-verification/owner-decision-document-checks.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/light-large-verification/owner-display-change-decision.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/light-large-verification/readiness.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/light-large-verification/ui-before-large.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/light-large-verification/verified-runtime.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/light-large-verification/workspace-before.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/protected-files-before.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/activated-runtime-r5.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/activated-runtime-r6.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/activated-runtime-r7.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/activated-runtime.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/before.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/built-csp-ast-audit-r2.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/built-csp-ast-audit-r5.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/built-csp-ast-audit-r6.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/built-csp-ast-audit-r7.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/built-csp-ast-audit.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/dark-theme-deferral-and-step2-closure.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/editor-build-result.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/incremental-csp-review-r2.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/incremental-csp-review-r5.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/incremental-csp-review-r6.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/incremental-csp-review-r7.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/incremental-csp-review.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/recovery-result.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/step2-closure-document-checks.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r5-after-trial.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r5-after.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r5-before.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r5-observations.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r5-persistence-comparison.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r6-after.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r6-before.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r6-observations.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r6-persistence-comparison.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r7-after-core.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r7-after-trial.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r7-before-trial.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r7-before.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r7-observations.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/ui-r7-persistence-comparison.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/workspace-r6-check.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/recovery-execution/workspace-r7-final.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/requirements-integrity.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/source-manifest.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/step1-design-20260915/d0-gate.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/step1-design-20260915/d0-owner-confirmation.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/step1-design-20260915/design-preview-checks.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/step1-design-20260915/design-preview-dark.png",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/step1-design-20260915/design-preview-light.png",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/step1-design-20260915/design-preview-narrow.png",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/step1-design-20260915/document-integrity.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/step1-design-20260915/meta-checks.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/step1-design-20260915/review-candidate.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/step1-design-20260915/source-audit.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/step1-design-20260915/workspace-after.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/step1-design-20260915/workspace-before.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/step2-implementation/activation-blocker.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/step2-implementation/contract-build-launch-review.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/step2-implementation/contract-lifetime-review.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/step2-implementation/contract-source-consumer-checks.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/step2-implementation/coze-typecheck-details.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/step2-implementation/coze-typecheck-summary.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/step2-implementation/implementation-checks.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/step2-implementation/next-plan-observation.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/step2-implementation/sample-source-review.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/step2-implementation/workspace-before.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/workspace-after.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/evidence/workspace-before.json",
+        "docs/features/FEAT-154-ecommerce-node-ui/feature.yaml",
+        "docs/features/FEAT-154-ecommerce-node-ui/sources/1-8.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/sources/17-30.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/sources/9-16.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/sources/README.md",
+        "docs/features/FEAT-154-ecommerce-node-ui/sources/电商节点 UI界面.pdf"
+      ]
+    }
+  }
+}

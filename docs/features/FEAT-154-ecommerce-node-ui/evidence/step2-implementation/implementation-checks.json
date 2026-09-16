@@ -1,0 +1,230 @@
+{
+  "recorded_at": "2026-09-15T21:19:28.041155+08:00",
+  "scope": "Step2 shared framework and samples01/10/17; actual App qualification pending",
+  "focused_coze": {
+    "exit_code": 0,
+    "tests": 47,
+    "passed": 47,
+    "failed": 0,
+    "log": "coze-focused-tests.log"
+  },
+  "canonical_typecheck": {
+    "compiler": "typescript@5.8.2",
+    "original_source_commit": "fefb05ff27be1da939612fbf9faf5db62583b8ae",
+    "current_diagnostics": 126,
+    "baseline_diagnostics": 126,
+    "unchanged_inherited": 126,
+    "unqualified": 0,
+    "qualification": "PASS_WITH_REPORTED_UPSTREAM_BASELINE"
+  },
+  "coze_governance": {
+    "make_lint_exit": 0,
+    "make_test_exit": 0,
+    "unchanged_upstream_files": 15222,
+    "preserved_deletions": 6,
+    "declared_overlays": 77,
+    "qualification": "source preservation only"
+  },
+  "meta_checks": {
+    "pnpm_lint_exit": 0,
+    "pnpm_test_exit": 0,
+    "tests": 50,
+    "passed": 50,
+    "shell_syntax_exit": 0,
+    "feature_package_strict_exit": 0,
+    "claim_audit_exit": 0,
+    "claim_audit_command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-154-ecommerce-node-ui",
+    "command_correction": "Initial shell wrapper --audit-claims invocation rejected unsupported flag(exit2); used documented Node validator and passed. No source changes caused by failed invocation."
+  },
+  "protected_files": [
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/26-canvas-background-contrast.md",
+      "expected": "7a46982fd4257edb439117db18c3b100129f035a78e308abcf309a0bd36907e7",
+      "actual": "7a46982fd4257edb439117db18c3b100129f035a78e308abcf309a0bd36907e7",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/27-workflow-lime-variant.md",
+      "expected": "2790be6fae153b1b6e155d755fd7137c41e7c8e26138aa3f28026fbfad4a6b98",
+      "actual": "2790be6fae153b1b6e155d755fd7137c41e7c8e26138aa3f28026fbfad4a6b98",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/frontend/apps/workflow-local/src/yijie-coze-theme.css",
+      "expected": "c05eb803a63a84e1097fb2851109c2302e8c7d76e8ffe53d409f0014c1593820",
+      "actual": "c05eb803a63a84e1097fb2851109c2302e8c7d76e8ffe53d409f0014c1593820",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/canvas-background-20260914/reference-style.json",
+      "expected": "997e2de9c84b95d7283f92227f5055de383acbcd7807ed9b9df05b0c76eb3938",
+      "actual": "997e2de9c84b95d7283f92227f5055de383acbcd7807ed9b9df05b0c76eb3938",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/activation.json",
+      "expected": "41daaac8877d07819cc0285c4eabd37d0bb3e99879a1eb846821e527f72d586a",
+      "actual": "41daaac8877d07819cc0285c4eabd37d0bb3e99879a1eb846821e527f72d586a",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/text-sidebar.png",
+      "expected": "6fd087676edd272dff6a68dd2ccc086a8af4d66fdcc77b582f270c01376ab025",
+      "actual": "6fd087676edd272dff6a68dd2ccc086a8af4d66fdcc77b582f270c01376ab025",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/end-sidebar.png",
+      "expected": "8678629382ed6789fb6e5c04fc89856306d17535cb01159a843f9b5a17d3f2c0",
+      "actual": "8678629382ed6789fb6e5c04fc89856306d17535cb01159a843f9b5a17d3f2c0",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/source-check.json",
+      "expected": "fc70344ea94884135631f99e15d664df763302222031068b34fbd7ca390cfed7",
+      "actual": "fc70344ea94884135631f99e15d664df763302222031068b34fbd7ca390cfed7",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/visual-verification.json",
+      "expected": "e7896a66adc139c35d2f94b120d78a69c2bf6d171b5a3d29cd9ab188236477c6",
+      "actual": "e7896a66adc139c35d2f94b120d78a69c2bf6d171b5a3d29cd9ab188236477c6",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/canvas.png",
+      "expected": "625a698c1df5bb36e0567d8b73593100330e48d6d846866f822a3939a4bd2267",
+      "actual": "625a698c1df5bb36e0567d8b73593100330e48d6d846866f822a3939a4bd2267",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/activation.json",
+      "expected": "b7d9364ec104debe293099134e0a1f96c3026b0605db09398bebf05feb051a58",
+      "actual": "b7d9364ec104debe293099134e0a1f96c3026b0605db09398bebf05feb051a58",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/text-sidebar.png",
+      "expected": "806293e5afede81d80d57e68fd57e2ea043f93a99a31b76de20e5faf55176a06",
+      "actual": "806293e5afede81d80d57e68fd57e2ea043f93a99a31b76de20e5faf55176a06",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/source-check.json",
+      "expected": "49aa50e28b75a38d623da1c201823de37dcd5270ef0be2895e14bb95bad97273",
+      "actual": "49aa50e28b75a38d623da1c201823de37dcd5270ef0be2895e14bb95bad97273",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/visual-verification.json",
+      "expected": "a32a997d765d477da922d40494eb108406f958603e956a0c4f1fa5ea10948897",
+      "actual": "a32a997d765d477da922d40494eb108406f958603e956a0c4f1fa5ea10948897",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/canvas.png",
+      "expected": "72f8218092332000c1f0e1ddd10217f1bcd0f81805026afff11a5c79f2361d66",
+      "actual": "72f8218092332000c1f0e1ddd10217f1bcd0f81805026afff11a5c79f2361d66",
+      "unchanged": true
+    }
+  ],
+  "repositories": {
+    "yijie": {
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "87a1e5550d946892fc90dd6f94dfbebf1409a18a",
+      "status": "?? docs/features/FEAT-153-coze-workflow-foundation/26-canvas-background-contrast.md\n?? docs/features/FEAT-153-coze-workflow-foundation/27-workflow-lime-variant.md\n?? docs/features/FEAT-153-coze-workflow-foundation/evidence/canvas-background-20260914/\n?? docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/\n?? docs/features/FEAT-154-ecommerce-node-ui/",
+      "diff_check_exit": 0
+    },
+    "yijie-coze": {
+      "branch": "main",
+      "head": "10faf164d7af194b7697a93cb3c4a6886ddc64b5",
+      "status": "M contracts/workflow-editor-bridge-v1.schema.json\n M contracts/workflow-internal.openapi.json\n M contracts/workflow-local.lock.json\n M contracts/workflow-local.source-lock.json\n M frontend/apps/workflow-local/src/generated/workflow-editor-bridge.gen.ts\n M frontend/apps/workflow-local/src/generated/workflow-local.validators.js\n M frontend/apps/workflow-local/src/main.tsx\n M frontend/apps/workflow-local/src/yijie-coze-theme.css\n M frontend/packages/workflow/base/src/entities/workflow-node.ts\n M frontend/packages/workflow/base/src/types/index.ts\n M frontend/packages/workflow/base/src/types/registry.ts\n M frontend/packages/workflow/nodes/src/typings/playground-context.ts\n M frontend/packages/workflow/nodes/src/utils/add-node-data.ts\n M frontend/packages/workflow/nodes/src/workflow-json-format.ts\n M frontend/packages/workflow/playground/src/components/node-panel/components/atom-category-list/index.tsx\n M frontend/packages/workflow/playground/src/components/node-panel/components/atom-node-list.tsx\n M frontend/packages/workflow/playground/src/components/node-panel/components/custom-drag-card.tsx\n M frontend/packages/workflow/playground/src/components/node-panel/components/panel.tsx\n M frontend/packages/workflow/playground/src/components/node-panel/hooks/use-search-node.ts\n M frontend/packages/workflow/playground/src/components/node-panel/hooks/use-template-node-list.ts\n M frontend/packages/workflow/playground/src/components/node-render/node-render-new/content/index.tsx\n M frontend/packages/workflow/playground/src/components/node-render/node-render-new/ports.tsx\n M frontend/packages/workflow/playground/src/components/toolbar/hooks/use-add-node.ts\n M frontend/packages/workflow/playground/src/components/workflow-header-info/index.tsx\n M frontend/packages/workflow/playground/src/components/workflow-header/index.tsx\n M frontend/packages/workflow/playground/src/container/workflow-nodes-v2-contribution.ts\n M frontend/packages/workflow/playground/src/nodes-v2/hooks/use-default-node-meta.ts\n M frontend/packages/workflow/playground/src/nodes-v2/utils.ts\n M frontend/packages/workflow/playground/src/services/local-workflow-document.ts\n M frontend/packages/workflow/playground/src/services/workflow-drag-service.ts\n M frontend/packages/workflow/playground/src/services/workflow-edit-service.ts\n M frontend/packages/workflow/playground/src/services/workflow-save-service.ts\n M frontend/packages/workflow/playground/src/shortcuts/contributions/delete/index.ts\n M frontend/packages/workflow/playground/src/typing/index.ts\n M frontend/packages/workflow/playground/src/typing/local-workflow-adapter.ts\n M frontend/packages/workflow/playground/src/utils/index.ts\n M frontend/packages/workflow/playground/src/utils/node-template.ts\n M frontend/packages/workflow/playground/src/workflow-playground-context.ts\n M yijie-upstream.lock.json\n?? frontend/apps/workflow-local/src/ecommerce-ui-draft-model.ts\n?? frontend/packages/workflow/base/src/types/local-editor-node-type.ts\n?? frontend/packages/workflow/playground/src/local-ecommerce/\n?? scripts/yijie/workflow-editor-ecommerce-draft.test.mjs\n?? scripts/yijie/workflow-editor-ecommerce-registration.test.mjs",
+      "diff_check_exit": 0
+    },
+    "yijie-desktop": {
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "6078855f7966a531b4d740dd6e654cf60d4180d8",
+      "status": "M contracts/workflow-editor-bridge-v1.schema.json\n M contracts/workflow-local.lock.json\n M src/api/generated/workflow-local-validator.gen.js\n M src/components/workflows/WorkflowLocalWorkspace.test.ts\n M src/components/workflows/WorkflowLocalWorkspace.vue\n M src/domain/workflow-editor-bridge.generated.ts\n M src/pages/workflows/use-workflow-workspace.test.ts",
+      "diff_check_exit": 0
+    },
+    "yijie-contracts": {
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "0543b21c61c39ea1d18833b25c5d376a32913979",
+      "status": "M compatibility/workflow-local/source.lock.json\n M docs/workflow-local-v1.md\n M jsonschema/workflow-editor/bridge-v1.schema.json\n M openapi/workflow-local/workflow-local.yaml\n M sdks/jsonschema/workflow-editor-bridge-v1.schema.json\n M sdks/openapi/workflow-internal.gen.json\n M sdks/typescript/src/browser/workflow-local-validator.gen.js\n M sdks/typescript/src/jsonschema/workflow-editor-bridge-v1.gen.ts\n M tests/workflow-local-browser.test.mjs\n M tests/workflow-local.test.mjs",
+      "diff_check_exit": 0
+    },
+    "yijie-api": {
+      "branch": "feat/feat-126-foundation-closure",
+      "head": "d38bb9e851a34244498e09c8b188901f9261b9b9",
+      "status": "M contracts/workflow-local.lock.json\n M contracts/workflow-local.source-lock.json",
+      "diff_check_exit": 0
+    },
+    "yijie-infra": {
+      "branch": "feat/feat-126-s10e",
+      "head": "2b238d93cecd446dfd9b22fef681e2bd5ed70f02",
+      "status": "",
+      "diff_check_exit": 0
+    }
+  },
+  "coze_changed_file_sha256": {
+    "frontend/apps/workflow-local/src/ecommerce-ui-draft-model.ts": "89e0b942ec0151e3ff1d161d2f22b4ad2fc2a8073bfb9f2b6622e69e8a1f1077",
+    "frontend/packages/workflow/base/src/types/local-editor-node-type.ts": "45db453625f9b80b13db957570d725fc91625d7ea8ab50ea4b5ca2cd5515bec9",
+    "frontend/packages/workflow/playground/src/local-ecommerce/catalog-source.ts": "6c475c844cdd13b8256249aee36bb7ba7ce6b0cab873d9f5e579b5977d91b492",
+    "frontend/packages/workflow/playground/src/local-ecommerce/catalog.ts": "393622c5fa622c8b7d64727751a00f1fdd65088af1966e6b534c40ed5a26ffef",
+    "frontend/packages/workflow/playground/src/local-ecommerce/create-node.ts": "3050a7a83ae3597204aebba3583b454f5ee48f751ea7570701964b038dfc6cb0",
+    "frontend/packages/workflow/playground/src/local-ecommerce/field-control.tsx": "0fac888a528e94df185a07afc91a28cf5c5a5abc28bb09f99c78556b31173c1f",
+    "frontend/packages/workflow/playground/src/local-ecommerce/form-meta.tsx": "a2ff50e9de50c3d05243104956f65dda77363a3663ff5ebf27e309f0ee5648c9",
+    "frontend/packages/workflow/playground/src/local-ecommerce/form.tsx": "633fa37fe949ea6871792be6b79c461114fd5735f9d4efff3412c28e42b8bd8d",
+    "frontend/packages/workflow/playground/src/local-ecommerce/node-content.tsx": "a0e318f3226121ec27b72dfad6323e1914344e0ecf93bd382fea0f3e9a7933e6",
+    "frontend/packages/workflow/playground/src/local-ecommerce/node-registry.ts": "1a3ad9fb2ce379f60b195f289577ac1452502127ef845366ee4bce26a7abe07c",
+    "frontend/packages/workflow/playground/src/local-ecommerce/reference-picker.tsx": "25c2e44dacea3ce68595d5ce896ca34386da2990ad1f34abff3fe6edc7f99cf2",
+    "frontend/packages/workflow/playground/src/local-ecommerce/style.less": "1fa22f9519238e96bdac0c6684f6caa6c6f98760b1b902e3e94a2ee8ae67f360",
+    "frontend/packages/workflow/playground/src/local-ecommerce/types.ts": "ee776bf29f05b6acd1d558ecea2fc1ec319c25d637d71a999c1585ddb5614aec",
+    "frontend/packages/workflow/playground/src/local-ecommerce/value-state.test.mjs": "f9a8906d640912d4ecb21cfdb30dddc93a653eb785392eb119a2b4596d1de611",
+    "frontend/packages/workflow/playground/src/local-ecommerce/value-state.ts": "2de64da0632246b6533631c1fc8555b3abe888add38327975a2c5fa173684025",
+    "scripts/yijie/workflow-editor-ecommerce-draft.test.mjs": "5a11f72de71a87b9dc6208e37acb9cecd8e95a4356dc5de831a2688c2c051567",
+    "scripts/yijie/workflow-editor-ecommerce-registration.test.mjs": "3640c8bd50c2aa26a597aca864b98fb39efaa44826426aa91fc768b500056478",
+    "contracts/workflow-editor-bridge-v1.schema.json": "63203b5944e91bab4501e6e846d15f229a1bf196250e1a5d3179d0517d1cf41e",
+    "contracts/workflow-internal.openapi.json": "e5052e02e33539543cd8ba073420b485cfcc955db1b563dff0c86a84f2b42684",
+    "contracts/workflow-local.lock.json": "c1461cd97fcc4af2b6f699a7f4c371df8f9aa3b575e981fbbbbfde8a78f3e3bf",
+    "contracts/workflow-local.source-lock.json": "42bd8a32df97d2c3354593dc431bb2f7dd65ef7236061ff85d9dbd55471f0eb9",
+    "frontend/apps/workflow-local/src/generated/workflow-editor-bridge.gen.ts": "3da009e52bd260a500d7bee522cb1d49533d0d81673e5c0d1ce906fe72a7a0e2",
+    "frontend/apps/workflow-local/src/generated/workflow-local.validators.js": "9879f080864fb3df0e3e63f99ea0c14f186ed7de4104de50eb2c6736141591f7",
+    "frontend/apps/workflow-local/src/main.tsx": "ccd9e8cbeee97cff821ba31b7f0f6ec0c86a1e6aafd39069b1ea7b85f9c456d0",
+    "frontend/apps/workflow-local/src/yijie-coze-theme.css": "c05eb803a63a84e1097fb2851109c2302e8c7d76e8ffe53d409f0014c1593820",
+    "frontend/packages/workflow/base/src/entities/workflow-node.ts": "d93ff5ae5562f5c9780922d5c9c35f5b4204e3fc174e992c1cabf1eea5bfa782",
+    "frontend/packages/workflow/base/src/types/index.ts": "f4fed38b1debadc67030b87cec6ec3e0eede5bf7f5b34a656244f9afc065d012",
+    "frontend/packages/workflow/base/src/types/registry.ts": "328f07dd219f1ffdc72ea83e22eac0e2e560808f448b02dc4595e7f3f2db1721",
+    "frontend/packages/workflow/nodes/src/typings/playground-context.ts": "9b194cca28194aed9b31610f8834827566e426177c566d8057f8322ce3cc43fe",
+    "frontend/packages/workflow/nodes/src/utils/add-node-data.ts": "1853835575fb3af95626eff22d855b229254ef14fd71e929551596990372d0f2",
+    "frontend/packages/workflow/nodes/src/workflow-json-format.ts": "1e16d752763c640f2784ec914c9a8a3e6a24c6471e218d9f103896794b1320e0",
+    "frontend/packages/workflow/playground/src/components/node-panel/components/atom-category-list/index.tsx": "8c021e9772e21fc831119291debe4e77c5b7243b0afef886c9dcc8e0cd907fff",
+    "frontend/packages/workflow/playground/src/components/node-panel/components/atom-node-list.tsx": "3aa0a64952093392ac752524eac01af75a8980e949e0734a4228ffd91307a0c7",
+    "frontend/packages/workflow/playground/src/components/node-panel/components/custom-drag-card.tsx": "d0417c96c3757f8dc1220a54f6d03975bc4dc6429129e120b73000232da7a59a",
+    "frontend/packages/workflow/playground/src/components/node-panel/components/panel.tsx": "ad515895c9be8df92f119ddc0140affbf17d434d1280f9f88305e128fb6b2bda",
+    "frontend/packages/workflow/playground/src/components/node-panel/hooks/use-search-node.ts": "cd7b85c5ad7d57aafd3829192c897fcb49231d5a02267ddf0518dc0b9ec1d74b",
+    "frontend/packages/workflow/playground/src/components/node-panel/hooks/use-template-node-list.ts": "133946077f5abb067f8431d48be1a47592c7f736dcaa0e8ac9ba7b7c61d54b12",
+    "frontend/packages/workflow/playground/src/components/node-render/node-render-new/content/index.tsx": "0bd09a3ac4e84d232bbaf9f9563682573399b1b49ae951b63d9d0cfc1f1ac209",
+    "frontend/packages/workflow/playground/src/components/node-render/node-render-new/ports.tsx": "aa9aa43b856b338ba04f3cfc24551baae2f4b62a0bc70df3c848c8223b73ecd2",
+    "frontend/packages/workflow/playground/src/components/toolbar/hooks/use-add-node.ts": "86175ff520bf24a8512485213e5b55a98d7a44b297645a2926c4461655c3e25f",
+    "frontend/packages/workflow/playground/src/components/workflow-header-info/index.tsx": "9dd7886e98b0412ecc9899d3d8f75cbbfc3c8bce88d1fc2d91b246e79bff5f12",
+    "frontend/packages/workflow/playground/src/components/workflow-header/index.tsx": "11fb2eb7d1198549d19ec0f757fdaeae543558748065ef3d228b16faba3973ba",
+    "frontend/packages/workflow/playground/src/container/workflow-nodes-v2-contribution.ts": "ee8445880dcce128d636e7cee256af4f4bfede87136743c2426d57cc0f08b503",
+    "frontend/packages/workflow/playground/src/nodes-v2/hooks/use-default-node-meta.ts": "e12fd5015cb9b5cd3ab15fa376c2ed638776a5d8d71e4b2daa381d1dc9fc4127",
+    "frontend/packages/workflow/playground/src/nodes-v2/utils.ts": "c30e36cb64cc9cc34c77b7e5ae2e56f1590db0b1286bacba1f435bd32cc610ab",
+    "frontend/packages/workflow/playground/src/services/local-workflow-document.ts": "d2661a8a9682826d0fe59b85c14768ae622882825068ef3008d4b57ecb346ebe",
+    "frontend/packages/workflow/playground/src/services/workflow-drag-service.ts": "caf6bf2da96324463aa9cf16e840ee3de2d047a0ce8dec112ff1b67599ad3616",
+    "frontend/packages/workflow/playground/src/services/workflow-edit-service.ts": "00c27f81aa9ece7e7e2f65d241d14d164d0d0baee5859b034696b24ce9c00d27",
+    "frontend/packages/workflow/playground/src/services/workflow-save-service.ts": "2f1a36292b63a6b5a8f06834d019c2ad1fcef217c29b282e91c59bff716a5c37",
+    "frontend/packages/workflow/playground/src/shortcuts/contributions/delete/index.ts": "16991cbb02435b2d917794f52a62d5743cef0e78f6d28b536c18e38c07d7832d",
+    "frontend/packages/workflow/playground/src/typing/index.ts": "cc4186e6108545d033361fe694baa834197e3c29248793edc8d84d2e47c1b8f8",
+    "frontend/packages/workflow/playground/src/typing/local-workflow-adapter.ts": "20d5621ae44ba9616ae38bfa6f4ca1f14fa08d163cc6432ad47a091b8963b94d",
+    "frontend/packages/workflow/playground/src/utils/index.ts": "68775d163b873a1b191c090faf22dee1520a4a14cdd2ac7820092db201d98dfd",
+    "frontend/packages/workflow/playground/src/utils/node-template.ts": "ec988f2d581b84ee8a174c8f5764a6c50736d8e0984862d5a8e795df00dba8e4",
+    "frontend/packages/workflow/playground/src/workflow-playground-context.ts": "bb90342b55d0a43969ea1d55808dc3bcb40572976db274e513d4a66e237b1b34",
+    "yijie-upstream.lock.json": "cf2e8caab4522af93f1572747c4ca6e96f24973802992a5902f76c9813e32617"
+  },
+  "real_app": "NOT RUN — activation-blocker.json",
+  "d4": "NOT RUN",
+  "historical_test_correction": "First new draft-model test compared against unnormalized fixture rather than captured pre-entry canvas; corrected expected baseline capture, then47 final tests passed. Product strict decoder was not weakened."
+}

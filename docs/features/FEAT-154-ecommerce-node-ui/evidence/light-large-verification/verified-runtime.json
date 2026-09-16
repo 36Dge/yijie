@@ -1,0 +1,119 @@
+{
+  "recorded_at": "2026-09-16T15:49:06.741032+08:00",
+  "phase": "ready",
+  "run_epoch": "8d5a65b9-8656-430d-9554-e6ffd490f253",
+  "editor": {
+    "schema_version": 1,
+    "bundle_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze/bin/workflow-editor/dist",
+    "manifest_sha256": "f608fde5478d47d3db3ee75ea4e14a012025a9436af21e1043439b09d5e43526",
+    "source_commit": "10faf164d7af194b7697a93cb3c4a6886ddc64b5",
+    "manifest_source_digest": "e4d15b39758eea4eecafc3d5008dfb88795765abcf37e44c23ef12b504452350",
+    "coze_candidate": "e4d15b39758eea4eecafc3d5008dfb88795765abcf37e44c23ef12b504452350",
+    "contracts_source_lock_sha256": "42bd8a32df97d2c3354593dc431bb2f7dd65ef7236061ff85d9dbd55471f0eb9",
+    "consumer_lock_sha256": {
+      "api": "5e8065bc73462e0699da65de2cd6ca435a78a38c657ee89c5ba243d97abf75dc",
+      "coze": "c1461cd97fcc4af2b6f699a7f4c371df8f9aa3b575e981fbbbbfde8a78f3e3bf",
+      "desktop": "3e5f4e1159e9454600894bef2ae2aaecb0961ab915dd36ed6823d483a9cd7706"
+    },
+    "deployment_schema_sha256": "d3016433e02f492493df3cdcbaacfe054e0de27afd5c61a115b4555f4b586aae",
+    "file_count": 385,
+    "total_asset_bytes": 45568238,
+    "entry": {
+      "path": "index.html",
+      "sha256": "572f190b163ce815c745e1a01278294151b99a9daf9086865237258993981042",
+      "bytes": 617,
+      "content_type": "text/html; charset=utf-8"
+    }
+  },
+  "built": {
+    "api": {
+      "image_id": "sha256:6d3cb2056951e3b9f3b31e9a77d79c014713facf92fddce31c5025372e93d836",
+      "source_digest": "bcd756aaa613e642b48807a72461b156386a2839eba7e4fac09b8434d3ec60d9",
+      "repository": "yijie-api",
+      "local_tag": "yijie-local/feat153-api:bcd756aaa613e642",
+      "go_image": "golang:1.26.5-bookworm@sha256:53eeac89074db483fdf0ab3be1df32bf6e47562263d2d0d6baa7f26acb4957dd"
+    },
+    "api-test": {
+      "image_id": "sha256:5cd4509d834daed15e826903aabd1eadd7eaae97a1753b71b28e3466ce7be441",
+      "source_digest": "bcd756aaa613e642b48807a72461b156386a2839eba7e4fac09b8434d3ec60d9",
+      "repository": "yijie-api",
+      "local_tag": "yijie-local/feat153-api-test:bcd756aaa613e642",
+      "go_image": "golang:1.26.5-bookworm@sha256:53eeac89074db483fdf0ab3be1df32bf6e47562263d2d0d6baa7f26acb4957dd"
+    },
+    "coze": {
+      "image_id": "sha256:a2a5e39f8dc14208a20c52624e58e4ac22d2f073b76ed60902dd677e879f1146",
+      "source_digest": "e4d15b39758eea4eecafc3d5008dfb88795765abcf37e44c23ef12b504452350",
+      "repository": "yijie-coze",
+      "local_tag": "yijie-local/feat153-coze:e4d15b39758eea4e",
+      "go_image": "golang:1.26.5-bookworm@sha256:53eeac89074db483fdf0ab3be1df32bf6e47562263d2d0d6baa7f26acb4957dd"
+    }
+  },
+  "main_services": {
+    "workflow-postgres": {
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T06:36:44.712920797Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy"
+    },
+    "coze-workflow-mysql": {
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T06:36:44.733323589Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy"
+    },
+    "coze-workflow-redis": {
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T06:36:44.731302672Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy"
+    },
+    "coze-workflow-minio": {
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T06:36:44.730941422Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy"
+    },
+    "coze-workflow": {
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T06:36:51.247265384Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy"
+    },
+    "workflow-api": {
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-16T06:36:54.982213261Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "health": "healthy"
+    }
+  }
+}

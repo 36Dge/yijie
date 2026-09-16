@@ -1,0 +1,12 @@
+{
+  "recorded_at": "2026-09-16T09:25:35.747482+00:00",
+  "repository": "yijie-infra",
+  "command": [
+    "git",
+    "commit",
+    "-F",
+    "/tmp/feat154-I1-commit-message.txt"
+  ],
+  "exit_code": 0,
+  "output": "[feat/feat-126-s10e 66b4815] feat(feat-154): add explicit local workflow recovery\n Committer: [local Git identity redacted]\nYour name and email address were configured automatically based\non your username and hostname. Please check that they are accurate.\nYou can suppress this message by setting them explicitly:\n\n    git config --global user.name \"Your Name\"\n    git config --global user.email you@example.com\n\nAfter doing this, you may fix the identity used for this commit with:\n\n    git commit --amend --reset-author\n\n 6 files changed, 546 insertions(+), 3 deletions(-)\n create mode 100644 docs/workflow-local-recovery.md\n create mode 100644 scripts/workflow_recovery.py\n create mode 100644 tests/workflow_recovery_test.py\n"
+}

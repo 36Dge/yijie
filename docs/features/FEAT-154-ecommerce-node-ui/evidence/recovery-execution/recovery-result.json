@@ -1,0 +1,289 @@
+{
+  "recorded_at": "2026-09-15T23:23:02.954493+08:00",
+  "recovery_id": "f910d233-e4fc-41bd-b02d-783897bd5339",
+  "stage": "complete",
+  "original_snapshot_sha256": "6c69ae1228ab53f5870787d62a167f553e29a8d5359a978f97314b70095aa3dc",
+  "original_abnormal": [
+    {
+      "name": "yijie-feat153-workflow-coze-workflow-1",
+      "exit_code": 137,
+      "finished_at": "2026-09-14T18:38:30.101452841Z"
+    },
+    {
+      "name": "yijie-feat153-workflow-coze-workflow-mysql-1",
+      "exit_code": 137,
+      "finished_at": "2026-09-14T18:38:30.145223674Z"
+    }
+  ],
+  "original_assets": {
+    "manifest_sha256": "b732e7eb505cea4ff5704af8fec99608e2954784818a74f816a21006f3584d6c",
+    "files": 385,
+    "bytes": 45316624
+  },
+  "data_copies": {
+    "workflow-postgres": {
+      "files": 1326,
+      "bytes": 65932446,
+      "inventory_sha256": "ef5938fcb2a7cbf7836b4646dff0a4ffd927c65c29dd18e5843c1c53bb26bf74"
+    },
+    "coze-workflow-mysql": {
+      "files": 288,
+      "bytes": 231869960,
+      "inventory_sha256": "cd3cf139c75abd92ea26d200bf03a2d38b4d752a3d293c6e2ebb00952ffbaec0"
+    },
+    "coze-workflow-redis": {
+      "files": 5,
+      "bytes": 45633,
+      "inventory_sha256": "9ca3cdb81acfc1c8fff189c720456c4bb44b80d7516a3989cf38c65ecb4a08bf"
+    },
+    "coze-workflow-minio": {
+      "files": 70,
+      "bytes": 32784,
+      "inventory_sha256": "13589fbc8dc61179200c281d91be63c80881d575674d5fa9aa5222849c24de30"
+    }
+  },
+  "copy_total_bytes": 297880823,
+  "private_copy_directory": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/environments/local/generated/feat-153/recoveries/f910d233-e4fc-41bd-b02d-783897bd5339/copies",
+  "storage_review": {
+    "api": {
+      "known_storage_qualification_unknown": [
+        "374fae06-429a-452c-a626-9fc3799e086d",
+        "e4ef3b28-77d1-4dec-aa40-b6be83d59517"
+      ],
+      "operations": 130,
+      "resources": 21
+    },
+    "coze": {
+      "active_run_id_retained": "7685083794788843520",
+      "executions": 36,
+      "nodes": 108,
+      "operations": 117,
+      "workflows": [
+        {
+          "canvas_sha256": "ec6a9b0ce657fd41531c330c456134161bf3882a5219d6e09ab645e444868bde",
+          "id": "7684523782928596992",
+          "name_sha256": "d3f7383221081039dcdde0bca3994c45ef159d383609cdc535706bb5ff0afc25",
+          "published_version": "v0.0.3",
+          "revision": "7684523784379826176"
+        },
+        {
+          "canvas_sha256": "387b86c4b1473d8c555bf21bdc925794ffe2fd5dd7b6ea644dc444ca98e3d375",
+          "id": "7684523869528391680",
+          "name_sha256": "a1ae0afb25088a42b9afb85ce7563e1ad11f1c5031220c929e22be08f5242f7d",
+          "published_version": "",
+          "revision": "7684523869620666368"
+        },
+        {
+          "canvas_sha256": "ec6a9b0ce657fd41531c330c456134161bf3882a5219d6e09ab645e444868bde",
+          "id": "7684526620584968192",
+          "name_sha256": "edfeac0d75b7a11a76e653f42fdcb915d896e4060fe2a026d0448e16ab65a2a9",
+          "published_version": "v0.0.3",
+          "revision": "7684526621897785344"
+        },
+        {
+          "canvas_sha256": "387b86c4b1473d8c555bf21bdc925794ffe2fd5dd7b6ea644dc444ca98e3d375",
+          "id": "7684526837740863488",
+          "name_sha256": "d8cbabb655ff52b2c4e06414ded967cb4393a21fcae4049780ce431b7207e12e",
+          "published_version": "",
+          "revision": "7684526837795389440"
+        },
+        {
+          "canvas_sha256": "387b86c4b1473d8c555bf21bdc925794ffe2fd5dd7b6ea644dc444ca98e3d375",
+          "id": "7684562335599427584",
+          "name_sha256": "f2191f350db50b13bc94858433d471761e2a1438f44606dd4ad051224b77f3a6",
+          "published_version": "",
+          "revision": "7684562335603621888"
+        },
+        {
+          "canvas_sha256": "2d2236353cdb83e3b0663d254fc1f9eccbc7462948ee0c9b495dd56489947f0c",
+          "id": "7684595660317786112",
+          "name_sha256": "ae8b05fc1252cde80fa66436153743713bdf1511dfb87185875f71c80d9630c1",
+          "published_version": "",
+          "revision": "7684601577516040192"
+        },
+        {
+          "canvas_sha256": "816b358192a921523e9ac4e8d821890914f5e2fc745bd0d12104f5a64658c93c",
+          "id": "7684605114128007168",
+          "name_sha256": "ec6064affb825379b5c7bbd046508c193afe13b458b45af7394945f5924a11ca",
+          "published_version": "",
+          "revision": "7684605840325607424"
+        },
+        {
+          "canvas_sha256": "8fc0a4d26b308f3284d21eacd0f3553d9ca33b503ae3d75eccfe22c0989944e2",
+          "id": "7684681543721156608",
+          "name_sha256": "4664a95cc698afdcf766485e4e4774ba83c6d828c54473a7ce3c6e28ae2a77b0",
+          "published_version": "v0.0.2",
+          "revision": "7684683724541132800"
+        },
+        {
+          "canvas_sha256": "f2cb8a72f5daf3161791ca1dbb37be67c4a0afd24ff63edff5881cf8b4eaf866",
+          "id": "7684687185122951168",
+          "name_sha256": "6437f4a74b785c5285db22a63bcb099811efa16bd8736fb3f8ae4e087f2815a9",
+          "published_version": "v0.0.2",
+          "revision": "7684692064230965248"
+        },
+        {
+          "canvas_sha256": "247f9dd1fd2288c736d51505785d51b36593a196824723aa1c48e44419d2703c",
+          "id": "7684858221588119552",
+          "name_sha256": "3f7de0dff14f45b2c2228e650880571a15d6e6e3fd291e6c9595187021a98269",
+          "published_version": "v0.0.2",
+          "revision": "7684861162336288768"
+        },
+        {
+          "canvas_sha256": "719043d0c5c5ba210d1147c5b2977bb221df5ad1da92c31f115b7c8b81daa522",
+          "id": "7684864630077784064",
+          "name_sha256": "b07bbed8d851b2f6dbf6db566537d68d7feb99d29f13b6157622879784c87e4c",
+          "published_version": "v0.0.2",
+          "revision": "7684866728114782208"
+        },
+        {
+          "canvas_sha256": "77f1fc4d60fb0fa324dc53534373583591d3f5c5c463bdc49798e07ffa10d003",
+          "id": "7684868190886690816",
+          "name_sha256": "7484d215758e29102f58c71433724c66b0781b4a41341fe65cbe0e1e77356c10",
+          "published_version": "v0.0.2",
+          "revision": "7684870673625251840"
+        },
+        {
+          "canvas_sha256": "dea8f5391e50f21a83ebd1b71db3da0e08d0b87cf781315c2e843970c6510394",
+          "id": "7684934079279529984",
+          "name_sha256": "2e99c2a375b73d331ed71e9cfadf1f168820460ae239dedc190b8b49413cb4ee",
+          "published_version": "v0.0.1",
+          "revision": "7684934733314129920"
+        },
+        {
+          "canvas_sha256": "a07f1d7d1093473405061021cb0839ea90b332b1707530d4d17c66adf66c36a4",
+          "id": "7684938170672087040",
+          "name_sha256": "e66725e9765f23d3dc1d8e851720c1ea549a0cd54873cfb7e8e9211ce8049905",
+          "published_version": "v0.0.1",
+          "revision": "7684938243699113984"
+        },
+        {
+          "canvas_sha256": "0ede2167160887057f4f1d182e622d5d4b289049753d0a8109a820d77e0e83f7",
+          "id": "7684953519702409216",
+          "name_sha256": "b31c93a737ddac8555da7ab4655c7fd828b4f40a1cdf811888a5952f275cd0b4",
+          "published_version": "",
+          "revision": "7684953618658623488"
+        },
+        {
+          "canvas_sha256": "db1d6a4d08514e59b84defc087cbd71667e4b32433e0670cdc15789188ad5cd4",
+          "id": "7685009958215090176",
+          "name_sha256": "5d32fa86802626d87fa0252b677ddcaa69da9d2a1fef29c5289b133fef0d8e49",
+          "published_version": "v0.0.1",
+          "revision": "7685025666160394240"
+        },
+        {
+          "canvas_sha256": "e5f7a12907c9202d4ea7c4b96c738e8c1e7404197ab6df87d3217017554d7ae3",
+          "id": "7685031373442121728",
+          "name_sha256": "ebfe39001e998c850bdb15d081a37ca076cab13db86724e89665f783c5fad988",
+          "published_version": "v0.0.1",
+          "revision": "7685440890323599360"
+        }
+      ]
+    }
+  },
+  "startup_audit": {
+    "normal_principal_audit_added": 1257,
+    "original_audit_rows_retained": 1256
+  },
+  "normal_stop": {
+    "phase": "stopped",
+    "containers": [
+      {
+        "id": "75e5f2539b6f7b5e2fd9bb8b737e0ad87ef000eda7b5ae057bd3f60ab92421b4",
+        "service": "workflow-api",
+        "running": false,
+        "exit_code": 0
+      },
+      {
+        "id": "57464bec90074470368b9867475723cfabffa98d20622fe6f5994b136ad827f6",
+        "service": "coze-workflow",
+        "running": false,
+        "exit_code": 0
+      },
+      {
+        "id": "6ac1dbeb3135ceffba14039434c3c7c0534faa8ad3b4960f1f7d7026767b8c7a",
+        "service": "workflow-api",
+        "running": false,
+        "exit_code": 0
+      },
+      {
+        "id": "876fde882777eb55bc2687682c3df75c606fe76d9c05111258e66a1c95b59b30",
+        "service": "coze-workflow",
+        "running": false,
+        "exit_code": 0
+      },
+      {
+        "id": "69bd98fe8c02124752e732c0ef2bfab66bd6c957730bd5b870f75ef8d6f981d6",
+        "service": "workflow-postgres",
+        "running": false,
+        "exit_code": 0
+      },
+      {
+        "id": "ea0b9df6a87d2afa899fe2274e4255e37159212013c9e6574293d188ef04a6dd",
+        "service": "coze-workflow-redis",
+        "running": false,
+        "exit_code": 0
+      },
+      {
+        "id": "9e24d5d48fd8794edc9d176102a69d3091d5b20197dd67a29ef8304fc5aa0704",
+        "service": "coze-workflow-mysql",
+        "running": false,
+        "exit_code": 0
+      },
+      {
+        "id": "c43b900b48e37d78ecb38097c0ce9d979cb9472b7f2685eb386b5411babd3aaa",
+        "service": "coze-workflow-minio",
+        "running": false,
+        "exit_code": 0
+      }
+    ]
+  },
+  "corrections": [
+    {
+      "reason": "Correct PostgreSQL private domain.Receipt JSON keys Phase/ErrorCode; preserve exact source correction provenance",
+      "previous_sha256": "156c968988fbca7334b50266bed84c6d40f0d62ad67bf22e379ccf960fa9de00",
+      "sources": {
+        "yijie-api/internal/modules/workflows/infrastructure/postgres/operations/recovery_read.py": "54995db6f273500c98ec9474dcf6eecdd742773e4c8a3574ec9ccd24c56b2c48",
+        "yijie-coze/backend/domain/workflow/localadapter/recovery_read.py": "d0b40597ece1f5b051a98324a0359707766f7d956b423eb75ef613d8b0f78fb4",
+        "yijie-api/internal/modules/workflows/infrastructure/postgres/operations/recovery-read.sql": "eddf71726a463ce2b039f894567196becba1ad2c728d23f64d7591e2837537ff",
+        "yijie-coze/backend/domain/workflow/localadapter/recovery-read.sql": "7fb3e8dd6b24a5e36f1b0c87131401b0f53c79a65b792f54a28e9b64647b317f",
+        "yijie-infra/scripts/workflow_recovery.py": "2ddcf3583159f31153eb75179123106af00345c4cd26bed468bd4ba9609ad313",
+        "yijie-infra/scripts/workflow-local.py": "7fd0450319467d5ad97eb56f2bb713ac411ea19c8708ab2529ffcf6d350194ea"
+      },
+      "changed": [
+        "yijie-api/internal/modules/workflows/infrastructure/postgres/operations/recovery-read.sql",
+        "yijie-infra/scripts/workflow-local.py",
+        "yijie-infra/scripts/workflow_recovery.py"
+      ],
+      "reviewed_at_ms": 1789485574388
+    },
+    {
+      "reason": "Correct private Receipt JSON mapping and account for repository EnsurePrincipal startup audit; preserve all original records and exact source provenance",
+      "previous_sha256": "aeb43dd11854e013935a0ca6e57ea0083a7ff6484bbb69416689a6aab6f35620",
+      "sources": {
+        "yijie-api/internal/modules/workflows/infrastructure/postgres/operations/recovery_read.py": "13de7e4192372f9ce067670e6a7253357354abdc22f9d8ef2410a4a32288937b",
+        "yijie-coze/backend/domain/workflow/localadapter/recovery_read.py": "d0b40597ece1f5b051a98324a0359707766f7d956b423eb75ef613d8b0f78fb4",
+        "yijie-api/internal/modules/workflows/infrastructure/postgres/operations/recovery-read.sql": "eddf71726a463ce2b039f894567196becba1ad2c728d23f64d7591e2837537ff",
+        "yijie-coze/backend/domain/workflow/localadapter/recovery-read.sql": "7fb3e8dd6b24a5e36f1b0c87131401b0f53c79a65b792f54a28e9b64647b317f",
+        "yijie-infra/scripts/workflow_recovery.py": "9e8f02487962f8d28a1f259362efc04dcc9c8c53a17ffe5d2f35182c5d9c4589",
+        "yijie-infra/scripts/workflow-local.py": "7fd0450319467d5ad97eb56f2bb713ac411ea19c8708ab2529ffcf6d350194ea"
+      },
+      "changed": [
+        "yijie-api/internal/modules/workflows/infrastructure/postgres/operations/recovery_read.py",
+        "yijie-infra/scripts/workflow_recovery.py"
+      ],
+      "reviewed_at_ms": 1789485697072
+    }
+  ],
+  "focused_tests": {
+    "recovery": 9,
+    "existing_lifecycle": 13,
+    "failed": 0
+  },
+  "limits": [
+    "Raw stopped-volume copies are not a tested database restore",
+    "Historical exit137 cause remains unknown",
+    "No engine replay, table updates, migrations, volume deletion, force-stop or node business calls",
+    "App UI qualification is separate and still in progress"
+  ]
+}

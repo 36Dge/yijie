@@ -1,0 +1,17 @@
+{
+  "recorded_at": "2026-09-16T09:01:37.629875+00:00",
+  "repository": "yijie-desktop",
+  "command": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "src/components/workflows/WorkflowLocalWorkspace.test.ts",
+    "src/pages/workflows/use-workflow-workspace.test.ts",
+    "src/components/workflows/WorkflowEditorPane.test.ts",
+    "src/pages/workflows/use-workflow-runs.test.ts",
+    "--maxWorkers=2"
+  ],
+  "exit_code": 0,
+  "output": "\n RUN  v4.1.10 ${WORKSPACE}/yijie-desktop\n\n\n Test Files  4 passed (4)\n      Tests  23 passed (23)\n   Start at  17:01:35\n   Duration  1.65s (transform 431ms, setup 0ms, import 1.36s, tests 844ms, environment 580ms)\n\n"
+}

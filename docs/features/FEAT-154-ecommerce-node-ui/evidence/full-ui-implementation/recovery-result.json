@@ -1,0 +1,125 @@
+{
+  "recorded_at": "2026-09-16T01:45:13.907331+08:00",
+  "recovery_id": "16bee495-cac3-4d0e-b826-ece27226e608",
+  "stage": "complete",
+  "original_sha256": "339141a41b3d2eeca2dd499a1b08dc51f5dc5879437dc6496e260dc5a0230b34",
+  "copies": {
+    "workflow-postgres": {
+      "files": 1326,
+      "bytes": 65855105,
+      "inventory_sha256": "1cf16994bc82f8142190f9dcc9eda831da8b7741db25282642fbcb11130b6c32"
+    },
+    "coze-workflow-mysql": {
+      "files": 294,
+      "bytes": 231872849,
+      "inventory_sha256": "f548958e405e6d0139a16e7c4767bf5ed56c571a367c4405579b228c9728e976"
+    },
+    "coze-workflow-redis": {
+      "files": 5,
+      "bytes": 45619,
+      "inventory_sha256": "fadd1766d4edcbb65f8fd775a9c1df02629b4bd1f0656a0f138bff965bfacd6f"
+    },
+    "coze-workflow-minio": {
+      "files": 79,
+      "bytes": 37407,
+      "inventory_sha256": "3e0f5523dee3726513daadcba11e5b6fa33453117abbfe14d7e309e969ecc54a"
+    }
+  },
+  "copy_bytes": 297810980,
+  "result": "Original dependencies and applications restored, private storage review passed, canonical normal stop completed; no volume replacement or business replay",
+  "state_phase": "stopped",
+  "containers": [
+    {
+      "name": "yijie-feat153-workflow-workflow-api-1",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-15T17:44:23.977333212Z",
+        "FinishedAt": "2026-09-15T17:44:28.739489881Z"
+      }
+    },
+    {
+      "name": "yijie-feat153-workflow-coze-workflow-1",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-15T17:44:19.381677585Z",
+        "FinishedAt": "2026-09-15T17:44:29.064596381Z"
+      }
+    },
+    {
+      "name": "yijie-feat153-workflow-api-migrate-43881871",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-15T16:36:23.465627594Z",
+        "FinishedAt": "2026-09-15T16:36:23.541291636Z"
+      }
+    },
+    {
+      "name": "yijie-feat153-workflow-coze-migrate-43881871",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-15T16:36:23.187068469Z",
+        "FinishedAt": "2026-09-15T16:36:23.248890719Z"
+      }
+    },
+    {
+      "name": "yijie-feat153-workflow-workflow-postgres-1",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-15T17:43:58.528857506Z",
+        "FinishedAt": "2026-09-15T17:44:29.289066756Z"
+      }
+    },
+    {
+      "name": "yijie-feat153-workflow-coze-workflow-redis-1",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-15T17:44:09.93742297Z",
+        "FinishedAt": "2026-09-15T17:44:29.317981173Z"
+      }
+    },
+    {
+      "name": "yijie-feat153-workflow-coze-workflow-mysql-1",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-15T17:44:03.160800175Z",
+        "FinishedAt": "2026-09-15T17:44:30.58343709Z"
+      }
+    },
+    {
+      "name": "yijie-feat153-workflow-coze-workflow-minio-1",
+      "state": {
+        "Status": "exited",
+        "Running": false,
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-09-15T17:44:14.535115847Z",
+        "FinishedAt": "2026-09-15T17:44:29.28365159Z"
+      }
+    }
+  ],
+  "limitations": [
+    "Original simultaneous exit255 reason unknown",
+    "Protective copy does not prove database restore qualification"
+  ]
+}

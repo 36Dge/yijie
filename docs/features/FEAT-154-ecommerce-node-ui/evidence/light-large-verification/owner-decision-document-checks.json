@@ -1,0 +1,35 @@
+{
+  "recorded_at": "2026-09-16T16:01:22.647724+08:00",
+  "scope": "Owner decision and verification status documentation only",
+  "checks": [
+    {
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exit": 0,
+      "output": "Validated 11 repository entries.\nValidated central Contract First governance and 11 sibling AGENTS.md files.\n$ node scripts/repo-manifest.mjs validate && node scripts/check-contract-governance.mjs\n"
+    },
+    {
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exit": 0,
+      "output": "s)\n✔ failure ledger evolution is append-only across the CI base ref (0.367417ms)\n✔ a package absent from the CI base must start at schema v3 with an explicit profile (0.152041ms)\n✔ a legacy v1 manifest is immutable until it is migrated to schema v2 (0.10625ms)\n✔ harness taxonomy is closed to four failure owners (0.054292ms)\n✔ an evident cross-boundary trigger cannot mark G2V not applicable (0.039042ms)\n✔ closed scope enums and required slice applicability fail closed (0.109792ms)\n✔ final E2E evidence binds a qualified harness digest and canonical report reference (0.092375ms)\n✔ schema v3 demo_fast accepts one product/UX checkpoint and one real-service done checkpoint (0.319708ms)\n✔ permanent termination preserves historical D0 but cannot claim acceptance (0.11925ms)\n✔ permanent termination requires explicit Owner authority and cannot be reopened (0.256042ms)\n✔ demo_fast D4 rejects mock-only, missing real smoke, and failed Must acceptance (0.058917ms)\n✔ demo_fast DP is public-only and enforces the minimum public safety floor (0.142875ms)\n✔ schema v3 production_hardened preserves the full schema v2 gate semantics (0.097708ms)\n✔ schema v1 remains readable but cannot claim any downstream gate (0.039667ms)\n✔ shell checker treats legacy packages as historical-only at G3 (69.948666ms)\n✔ feature.yaml duplicate keys fail closed (2.494041ms)\n✔ schema version comments cannot bypass the required temporal matrix file (8.580375ms)\n✔ verification evidence references must resolve to one report marker (8.435459ms)\n✔ CI claim audit rejects a v2 slice that claims PASS with missing evidence (16.867583ms)\n✔ repository audit applies the authoritative full-document shell check (73.572834ms)\n✔ repository CI audits every committed historical and profile-aware claim (166.778959ms)\n✔ the repository Feature Package audit entrypoint scans committed packages (4247.483084ms)\n✔ delivery shell entrypoints remain syntactically valid (2.60925ms)\n✔ new-feature defaults to compact schema v3 demo_fast local (100.49075ms)\n✔ new-feature creates production_hardened only when explicitly selected (137.60675ms)\n✔ shell checker enforces demo_fast D0, D4, and profile separation (177.89875ms)\n✔ shell checker enforces schema v2 G2V and per-slice G3 semantics (170.345334ms)\n✔ repository manifest contains eleven owned children with the explicit Coze main branch (5.608959ms)\nℹ tests 50\nℹ suites 0\nℹ pass 50\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 5273.844708\n$ node --test tests/*.test.mjs\n"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit": 0,
+      "output": ""
+    }
+  ],
+  "shell_syntax": "PASS",
+  "strict_and_claims": "PASS; precedingactualcommands",
+  "system_settings_changed": false,
+  "product_acceptance": "1440x900NOT RUN; darkdeferred; AC009pending; D4NOT RUN"
+}

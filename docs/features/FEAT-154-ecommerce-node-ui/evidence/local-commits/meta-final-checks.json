@@ -1,0 +1,171 @@
+{
+  "recorded_at": "2026-09-16T09:33:49.883225+00:00",
+  "status": "PASS_WITH_PRESERVED_SOURCE_AND_LOG_WHITESPACE",
+  "qualification": "Documentation and local commit verification only; AC009 pending and D4 NOT RUN",
+  "document_commands": {
+    "meta-strict": 0,
+    "meta-claims": 0,
+    "meta-lint": 0,
+    "meta-tests": 0,
+    "meta-shell-syntax": 0
+  },
+  "final_document_recheck": [
+    {
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "docs/features/FEAT-154-ecommerce-node-ui"
+      ],
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，所有模板变量和未完成标记已处理。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+    },
+    {
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--audit-claims",
+        "docs/features/FEAT-154-ecommerce-node-ui"
+      ],
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\n"
+    }
+  ],
+  "meta_test_count": 50,
+  "source_snapshots": [
+    {
+      "path": "sources/电商节点 UI界面.pdf",
+      "sha256": "94bf84d4ed7b54fc7710c4a161746ba367aafe16ac0b8a5d29554a7299e3bd48",
+      "matches_original": true
+    },
+    {
+      "path": "sources/1-8.md",
+      "sha256": "7e4debe7312385b8449bb65ffd4e768252678e37c8bab3aba209de09964dad02",
+      "matches_original": true
+    },
+    {
+      "path": "sources/9-16.md",
+      "sha256": "4438312f35575f369cd17814560d82f1418551246223d1a6c730fb899e669e7e",
+      "matches_original": true
+    },
+    {
+      "path": "sources/17-30.md",
+      "sha256": "e98d83fd0810be2a19a4fdf08e85551f22be27ce26c81248ad84ba9e407e2e1d",
+      "matches_original": true
+    }
+  ],
+  "archived_outputs_verified": 33,
+  "protected_files_unchanged": 15,
+  "committed_implementation_blob_checks": [
+    {
+      "unit": "I1",
+      "repository": "yijie-infra",
+      "commit": "66b481552eb76d46b00875ac27794ed8e1eb504a",
+      "committed_file_blobs_match_receipt": true
+    },
+    {
+      "unit": "C1",
+      "repository": "yijie-contracts",
+      "commit": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "committed_file_blobs_match_receipt": true
+    },
+    {
+      "unit": "D1",
+      "repository": "yijie-desktop",
+      "commit": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "committed_file_blobs_match_receipt": true
+    },
+    {
+      "unit": "A1",
+      "repository": "yijie-api",
+      "commit": "041f40c69919e81ec72ccee4ea6dbb3ea012142d",
+      "committed_file_blobs_match_receipt": true
+    },
+    {
+      "unit": "T1",
+      "repository": "yijie",
+      "commit": "8b03461d563cf07566676ca20ca5ce504ff0da9e",
+      "committed_file_blobs_match_receipt": true
+    },
+    {
+      "unit": "T0",
+      "repository": "yijie-coze",
+      "commit": "cdbc822c8de3207c9e261649e52aa6323eae1ca1",
+      "committed_file_blobs_match_receipt": true
+    },
+    {
+      "unit": "Z1",
+      "repository": "yijie-coze",
+      "commit": "144e4c259a5460fed57fc280f2439cbbf9a18539",
+      "committed_file_blobs_match_receipt": true
+    }
+  ],
+  "portable_evidence_review": {
+    "file_count": 246,
+    "relative_internal_markdown_links_checked": 541,
+    "missing": [],
+    "original_ignored_logs_copied": false,
+    "cross_repository_links": "checked against sibling source paths; implementations not copied to meta"
+  },
+  "secret_scan": {
+    "categories": [
+      "private_key",
+      "credential_url",
+      "bearer_value",
+      "jwt_value",
+      "access_key"
+    ],
+    "findings": [],
+    "scope": "Selected textual commit files; original private log roots already redacted; local Git identity hidden in new commit transcripts. Not a proof against every possible secret format."
+  },
+  "whitespace_review": "M1-staged-check.json: raw exit 2 retained, exact six immutable input/log files reviewed; no authored code/doc error and no checker settings changed",
+  "file_inventory": "commit-file-list.json",
+  "repositories": {
+    "yijie-contracts": {
+      "head": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "branch_unchanged": true,
+      "origin_unchanged": true,
+      "worktree_clean": true
+    },
+    "yijie-api": {
+      "head": "041f40c69919e81ec72ccee4ea6dbb3ea012142d",
+      "branch_unchanged": true,
+      "origin_unchanged": true,
+      "worktree_clean": true
+    },
+    "yijie-coze": {
+      "head": "144e4c259a5460fed57fc280f2439cbbf9a18539",
+      "branch_unchanged": true,
+      "origin_unchanged": true,
+      "worktree_clean": true
+    },
+    "yijie-desktop": {
+      "head": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "branch_unchanged": true,
+      "origin_unchanged": true,
+      "worktree_clean": true
+    },
+    "yijie-infra": {
+      "head": "66b481552eb76d46b00875ac27794ed8e1eb504a",
+      "branch_unchanged": true,
+      "origin_unchanged": true,
+      "worktree_clean": true
+    },
+    "yijie": {
+      "head": "8b03461d563cf07566676ca20ca5ce504ff0da9e",
+      "branch_unchanged": true,
+      "origin_unchanged": true,
+      "worktree_clean": "M1 staged reviewed feature package only"
+    },
+    "yijie-agent-host": {
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch_unchanged": true,
+      "origin_unchanged": true,
+      "worktree_clean": true
+    }
+  },
+  "new_runtime_build_or_activation": false,
+  "system_display_or_appearance_changes": false,
+  "push_tag_release": false,
+  "meta_commit_resolution": "The final M1 SHA is obtained from git log for commit-baseline.json; final clean-tree verification follows commit without rewriting this immutable record."
+}

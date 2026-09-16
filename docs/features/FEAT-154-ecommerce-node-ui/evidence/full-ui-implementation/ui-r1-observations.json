@@ -1,0 +1,36 @@
+{
+  "scope": "R1 initial UI round before nested-label refinement; not full30 acceptance",
+  "nodes_exercised": [
+    "05",
+    "01",
+    "02",
+    "03",
+    "04",
+    "06"
+  ],
+  "observations": [
+    "Full30 catalog and five groups visible; search empty and clearing restored catalog",
+    "05 market platform ui-05 and winsorize lower 0.05→0.15, upper0.95; thresholds75/60 and decimals0.8/0.2/0.7 visible",
+    "01 source_type=ui-01;02 list description=ui-02;03 product ID=ui-03;04 product_id=ui-04;06 marketplace=ui-06",
+    "Natural300-second expiry and reconnect preserved six nodes and their configured counts",
+    "Explicit restore retained pre-design unsaved name FEAT154-ALL30-原稿保护; reverting only test name to original returned 已保存 and original3nodes/2edges; normalAppexit0"
+  ],
+  "business_facts_equal": {
+    "api": {
+      "operations": true,
+      "resources": true
+    },
+    "coze": {
+      "operations": true,
+      "executions": true,
+      "node_executions": true,
+      "workflows": true
+    }
+  },
+  "audit_delta": 8,
+  "limitations": [
+    "Some nested original machine labels need Chinese primary labels before final candidate",
+    "Only six nodes tested in R1, remaining UI not claimed",
+    "Native CUA snapshots shown inline; no invented screenshot files"
+  ]
+}

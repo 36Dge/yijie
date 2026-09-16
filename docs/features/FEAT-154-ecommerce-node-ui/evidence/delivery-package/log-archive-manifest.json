@@ -1,0 +1,667 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-16T08:39:17.034559+00:00",
+  "selection": "Final AC009 and R2 checks/build/activation/normal stops; R7 sample and value-state checks; source/consumer historical compatibility including failure; denied-large-window preflight. Original logs preserved byte-for-byte. Archives contain full output, not excerpts.",
+  "redaction_policy": "Only local filesystem roots and ephemeral paths replaced. Digests, epochs, test totals, warnings/failures, synthetic workflow identity and native geometry retained. No credential values detected by scan/review; not an assurance against all possible secret formats.",
+  "entries": [
+    {
+      "original": "evidence/ac009-verification/focused-checks-final.log",
+      "archive": "evidence/delivery-package/command-output/ac009-verification/focused-checks-final.txt",
+      "round": "ac009-verification",
+      "original_bytes": 6570,
+      "original_sha256": "a3f66ce1f813762280f7e98b8a57a95cebe8e5d0b8b866eaa195d16703304ad0",
+      "archive_bytes": 6314,
+      "archive_sha256": "137bbe376777c978c8eb6b45836e4488d929e0a487ac47b6df863ce6c4bd1243",
+      "redactions": [
+        {
+          "rule": "workspace path",
+          "replacement": "${WORKSPACE}",
+          "occurrences": 8
+        }
+      ],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/ac009-verification/csp-checks-final.log",
+      "archive": "evidence/delivery-package/command-output/ac009-verification/csp-checks-final.txt",
+      "round": "ac009-verification",
+      "original_bytes": 370,
+      "original_sha256": "d492af1953aef6fcc6a64d2f4845f441f36747bec29643cc8351a8b867344268",
+      "archive_bytes": 370,
+      "archive_sha256": "d492af1953aef6fcc6a64d2f4845f441f36747bec29643cc8351a8b867344268",
+      "redactions": [],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/ac009-verification/editor-build-final.log",
+      "archive": "evidence/delivery-package/command-output/ac009-verification/editor-build-final.txt",
+      "round": "ac009-verification",
+      "original_bytes": 63103,
+      "original_sha256": "98be74106dac9fc9a0b86ccd75c150f1c6ecb85260b65d856feb327570bb7109",
+      "archive_bytes": 61759,
+      "archive_sha256": "50b417aba47d5fcb364e0cf02f9ac7fd2b88ce69dee0f574ac01eb2b85dd300e",
+      "redactions": [
+        {
+          "rule": "workspace path",
+          "replacement": "${WORKSPACE}",
+          "occurrences": 42
+        }
+      ],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/ac009-verification/source-checks-final.log",
+      "archive": "evidence/delivery-package/command-output/ac009-verification/source-checks-final.txt",
+      "round": "ac009-verification",
+      "original_bytes": 468,
+      "original_sha256": "a6a34967d226e14100379f148856f5940f1c5f566701629cc36fb41f0e569b3e",
+      "archive_bytes": 468,
+      "archive_sha256": "a6a34967d226e14100379f148856f5940f1c5f566701629cc36fb41f0e569b3e",
+      "redactions": [],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/ac009-verification/editor-registration-final.log",
+      "archive": "evidence/delivery-package/command-output/ac009-verification/editor-registration-final.txt",
+      "round": "ac009-verification",
+      "original_bytes": 349,
+      "original_sha256": "7f9646e3a4101ac9c4acb048dbc5a62901a05cf11fec333e67f17cae38f9694c",
+      "archive_bytes": 349,
+      "archive_sha256": "7f9646e3a4101ac9c4acb048dbc5a62901a05cf11fec333e67f17cae38f9694c",
+      "redactions": [],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/ac009-verification/service-build-final.log",
+      "archive": "evidence/delivery-package/command-output/ac009-verification/service-build-final.txt",
+      "round": "ac009-verification",
+      "original_bytes": 665,
+      "original_sha256": "fd33926900e7a960d7b304347a3627a8d129679dcf7728f051595ca512e6785d",
+      "archive_bytes": 665,
+      "archive_sha256": "fd33926900e7a960d7b304347a3627a8d129679dcf7728f051595ca512e6785d",
+      "redactions": [],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/ac009-verification/service-up-final.log",
+      "archive": "evidence/delivery-package/command-output/ac009-verification/service-up-final.txt",
+      "round": "ac009-verification",
+      "original_bytes": 3869,
+      "original_sha256": "75d69ec85ee8ee46ccba06da55bfcc45630be77c672bfc4a4f8e4287cc09e6ac",
+      "archive_bytes": 3869,
+      "archive_sha256": "75d69ec85ee8ee46ccba06da55bfcc45630be77c672bfc4a4f8e4287cc09e6ac",
+      "redactions": [],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/ac009-verification/desktop-launch-final.log",
+      "archive": "evidence/delivery-package/command-output/ac009-verification/desktop-launch-final.txt",
+      "round": "ac009-verification",
+      "original_bytes": 7969,
+      "original_sha256": "fd2c42620a41756cb987c3e478663426d60547f0f989897cd9481334491c6509",
+      "archive_bytes": 7841,
+      "archive_sha256": "3446ef343e64a71fb6c1cb51e8b49c73c78c458dc9e1e7427545c467ba18b1db",
+      "redactions": [
+        {
+          "rule": "workspace path",
+          "replacement": "${WORKSPACE}",
+          "occurrences": 4
+        }
+      ],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/ac009-verification/runtime-before.log",
+      "archive": "evidence/delivery-package/command-output/ac009-verification/runtime-before.txt",
+      "round": "ac009-verification",
+      "original_bytes": 3228,
+      "original_sha256": "c6639650513c8790b0826f1eafb9b3a8e4ded8d882b49637dd16ce5983dd08d3",
+      "archive_bytes": 3228,
+      "archive_sha256": "c6639650513c8790b0826f1eafb9b3a8e4ded8d882b49637dd16ce5983dd08d3",
+      "redactions": [],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/ac009-verification/runtime-final.log",
+      "archive": "evidence/delivery-package/command-output/ac009-verification/runtime-final.txt",
+      "round": "ac009-verification",
+      "original_bytes": 3153,
+      "original_sha256": "931572919f3bc7b00f0593abd9ecba1e86814a555025f12b038ca1cfb7667920",
+      "archive_bytes": 3153,
+      "archive_sha256": "931572919f3bc7b00f0593abd9ecba1e86814a555025f12b038ca1cfb7667920",
+      "redactions": [],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/ac009-verification/service-stop-before-fix.log",
+      "archive": "evidence/delivery-package/command-output/ac009-verification/service-stop-before-fix.txt",
+      "round": "ac009-verification",
+      "original_bytes": 124,
+      "original_sha256": "1c6441b53af92a1c082d00968d8d8a54f89e8be252452e788f35d0049a03c07c",
+      "archive_bytes": 124,
+      "archive_sha256": "1c6441b53af92a1c082d00968d8d8a54f89e8be252452e788f35d0049a03c07c",
+      "redactions": [],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/ac009-verification/service-stop-before-focus-order-fix.log",
+      "archive": "evidence/delivery-package/command-output/ac009-verification/service-stop-before-focus-order-fix.txt",
+      "round": "ac009-verification",
+      "original_bytes": 124,
+      "original_sha256": "1c6441b53af92a1c082d00968d8d8a54f89e8be252452e788f35d0049a03c07c",
+      "archive_bytes": 124,
+      "archive_sha256": "1c6441b53af92a1c082d00968d8d8a54f89e8be252452e788f35d0049a03c07c",
+      "redactions": [],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/full-ui-implementation/focused-checks-r2.log",
+      "archive": "evidence/delivery-package/command-output/full-ui-implementation/focused-checks-r2.txt",
+      "round": "full-ui-implementation",
+      "original_bytes": 6567,
+      "original_sha256": "a1abd90664429090f1629eef7ba2046be9cdb209d46981373d7036e6a3a14c0a",
+      "archive_bytes": 6311,
+      "archive_sha256": "5ffbe0d5ffd71ce6d338214adfa9b1db6e06a722c54dda027de480ee5a8755bd",
+      "redactions": [
+        {
+          "rule": "workspace path",
+          "replacement": "${WORKSPACE}",
+          "occurrences": 8
+        }
+      ],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/full-ui-implementation/csp-checks-r2.log",
+      "archive": "evidence/delivery-package/command-output/full-ui-implementation/csp-checks-r2.txt",
+      "round": "full-ui-implementation",
+      "original_bytes": 366,
+      "original_sha256": "f27158f544dd16708b08eb891df087e8ea5e8ba519083af0cd5efacb2feb6e9d",
+      "archive_bytes": 366,
+      "archive_sha256": "f27158f544dd16708b08eb891df087e8ea5e8ba519083af0cd5efacb2feb6e9d",
+      "redactions": [],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/full-ui-implementation/editor-build-reviewed-r2.log",
+      "archive": "evidence/delivery-package/command-output/full-ui-implementation/editor-build-reviewed-r2.txt",
+      "round": "full-ui-implementation",
+      "original_bytes": 63103,
+      "original_sha256": "a7d6f0da16f18f7521390d512f863539e75eb7542bf1568304757a6d9a51c78b",
+      "archive_bytes": 61759,
+      "archive_sha256": "2df7c6603a60d6c5177749622a88dae73aa98028b56cd9b1ea3f910d420d029d",
+      "redactions": [
+        {
+          "rule": "workspace path",
+          "replacement": "${WORKSPACE}",
+          "occurrences": 42
+        }
+      ],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/full-ui-implementation/editor-build-r2.log",
+      "archive": "evidence/delivery-package/command-output/full-ui-implementation/editor-build-r2.txt",
+      "round": "full-ui-implementation",
+      "original_bytes": 64508,
+      "original_sha256": "e428878c7d417a40206af074ccb248ba8a921d27eaa4d0d12591425336806ddc",
+      "archive_bytes": 62844,
+      "archive_sha256": "4554b9a614e9c2d84936171badf127ff9e95cf5b42af4ce00fed3cf826500733",
+      "redactions": [
+        {
+          "rule": "workspace path",
+          "replacement": "${WORKSPACE}",
+          "occurrences": 52
+        }
+      ],
+      "disposition": "review gate stopped build pending CSP review; reviewed-r2 is the succeeding build; not a final PASS"
+    },
+    {
+      "original": "evidence/full-ui-implementation/editor-registration-r2.log",
+      "archive": "evidence/delivery-package/command-output/full-ui-implementation/editor-registration-r2.txt",
+      "round": "full-ui-implementation",
+      "original_bytes": 349,
+      "original_sha256": "7f9646e3a4101ac9c4acb048dbc5a62901a05cf11fec333e67f17cae38f9694c",
+      "archive_bytes": 349,
+      "archive_sha256": "7f9646e3a4101ac9c4acb048dbc5a62901a05cf11fec333e67f17cae38f9694c",
+      "redactions": [],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/full-ui-implementation/service-build-r2.log",
+      "archive": "evidence/delivery-package/command-output/full-ui-implementation/service-build-r2.txt",
+      "round": "full-ui-implementation",
+      "original_bytes": 665,
+      "original_sha256": "fd33926900e7a960d7b304347a3627a8d129679dcf7728f051595ca512e6785d",
+      "archive_bytes": 665,
+      "archive_sha256": "fd33926900e7a960d7b304347a3627a8d129679dcf7728f051595ca512e6785d",
+      "redactions": [],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/full-ui-implementation/service-up-r2.log",
+      "archive": "evidence/delivery-package/command-output/full-ui-implementation/service-up-r2.txt",
+      "round": "full-ui-implementation",
+      "original_bytes": 3868,
+      "original_sha256": "7459aa66a5be5281628fd297216c85125bb9cbd6b9b8584f4989963c0ccc9cdd",
+      "archive_bytes": 3868,
+      "archive_sha256": "7459aa66a5be5281628fd297216c85125bb9cbd6b9b8584f4989963c0ccc9cdd",
+      "redactions": [],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/full-ui-implementation/desktop-launch-r2.log",
+      "archive": "evidence/delivery-package/command-output/full-ui-implementation/desktop-launch-r2.txt",
+      "round": "full-ui-implementation",
+      "original_bytes": 18943,
+      "original_sha256": "0823d722777a9e95b783154463ad4b1fa053917b1056925b3fe3a7c6f1d0e2fd",
+      "archive_bytes": 18815,
+      "archive_sha256": "57ce158eb839e27a83f4a4d5aeb1c7f13c341d95e5972acaf42bb9d26ff09ef6",
+      "redactions": [
+        {
+          "rule": "workspace path",
+          "replacement": "${WORKSPACE}",
+          "occurrences": 4
+        }
+      ],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/full-ui-implementation/service-stop-r1.log",
+      "archive": "evidence/delivery-package/command-output/full-ui-implementation/service-stop-r1.txt",
+      "round": "full-ui-implementation",
+      "original_bytes": 124,
+      "original_sha256": "1c6441b53af92a1c082d00968d8d8a54f89e8be252452e788f35d0049a03c07c",
+      "archive_bytes": 124,
+      "archive_sha256": "1c6441b53af92a1c082d00968d8d8a54f89e8be252452e788f35d0049a03c07c",
+      "redactions": [],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/full-ui-implementation/upstream-source-check.log",
+      "archive": "evidence/delivery-package/command-output/full-ui-implementation/upstream-source-check.txt",
+      "round": "full-ui-implementation",
+      "original_bytes": 278,
+      "original_sha256": "b707f6dadd0bf447f9c2c2943ff060c8f79aad38d68ffc47007a64e78287b6af",
+      "archive_bytes": 278,
+      "archive_sha256": "b707f6dadd0bf447f9c2c2943ff060c8f79aad38d68ffc47007a64e78287b6af",
+      "redactions": [],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/recovery-execution/focused-recheck-r7.log",
+      "archive": "evidence/delivery-package/command-output/recovery-execution/focused-recheck-r7.txt",
+      "round": "recovery-execution",
+      "original_bytes": 4558,
+      "original_sha256": "da9637e54d4900cd85fda19e5be3f7823c1c92fdcb169f0253f4f21c6733adc7",
+      "archive_bytes": 4430,
+      "archive_sha256": "4ffff72c13b2ac103d05e31e2dc790aa29cf293c579cd29a55651e55231a3ba2",
+      "redactions": [
+        {
+          "rule": "workspace path",
+          "replacement": "${WORKSPACE}",
+          "occurrences": 4
+        }
+      ],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/recovery-execution/value-state-recheck-r6.log",
+      "archive": "evidence/delivery-package/command-output/recovery-execution/value-state-recheck-r6.txt",
+      "round": "recovery-execution",
+      "original_bytes": 1165,
+      "original_sha256": "a5def453438051f150de5910f972769d2cb5640e847ac8b0015ba2771f0089c0",
+      "archive_bytes": 1101,
+      "archive_sha256": "928d9ce82001acf356b95e079bc9c2ad33daa70ea790e4b15e5dcc0f61076a75",
+      "redactions": [
+        {
+          "rule": "workspace path",
+          "replacement": "${WORKSPACE}",
+          "occurrences": 2
+        }
+      ],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/recovery-execution/csp-tests-r7.log",
+      "archive": "evidence/delivery-package/command-output/recovery-execution/csp-tests-r7.txt",
+      "round": "recovery-execution",
+      "original_bytes": 371,
+      "original_sha256": "9e237b68a6f55a87881e1c941bbedd6582adcf3b35fcc0309a8df7e68bdc0f07",
+      "archive_bytes": 371,
+      "archive_sha256": "9e237b68a6f55a87881e1c941bbedd6582adcf3b35fcc0309a8df7e68bdc0f07",
+      "redactions": [],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/recovery-execution/editor-check-r7.log",
+      "archive": "evidence/delivery-package/command-output/recovery-execution/editor-check-r7.txt",
+      "round": "recovery-execution",
+      "original_bytes": 145,
+      "original_sha256": "9c0fcdeca2897fd054fa29d90a0384fd7ec99b8825443ad081ac96213953df11",
+      "archive_bytes": 145,
+      "archive_sha256": "9c0fcdeca2897fd054fa29d90a0384fd7ec99b8825443ad081ac96213953df11",
+      "redactions": [],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/step2-implementation/coze-focused-tests.log",
+      "archive": "evidence/delivery-package/command-output/step2-implementation/coze-focused-tests.txt",
+      "round": "step2-implementation",
+      "original_bytes": 7377,
+      "original_sha256": "ad326292cfb32000ff9419666f6de8d40cdbe9af181586fb8b1eff8f41685372",
+      "archive_bytes": 7057,
+      "archive_sha256": "8dc5e508744177ecd7da91c5b09d03c540d47b673d24e8abf29ed2f1d5687b27",
+      "redactions": [
+        {
+          "rule": "workspace path",
+          "replacement": "${WORKSPACE}",
+          "occurrences": 10
+        }
+      ],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/step2-implementation/contract-breaking-29317b64.log",
+      "archive": "evidence/delivery-package/command-output/step2-implementation/contract-breaking-29317b64.txt",
+      "round": "step2-implementation",
+      "original_bytes": 429,
+      "original_sha256": "9156d9e2ecf64bd54c1fd27b566f31040aa37294e7776135ccfa2a75283cc740",
+      "archive_bytes": 429,
+      "archive_sha256": "9156d9e2ecf64bd54c1fd27b566f31040aa37294e7776135ccfa2a75283cc740",
+      "redactions": [],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/step2-implementation/contract-breaking-32dd7629.log",
+      "archive": "evidence/delivery-package/command-output/step2-implementation/contract-breaking-32dd7629.txt",
+      "round": "step2-implementation",
+      "original_bytes": 828,
+      "original_sha256": "e6922604a27a4942a2f3797a1dde79c442f00c393a624b915e8a86c63eec91d0",
+      "archive_bytes": 764,
+      "archive_sha256": "f09220def71cdef3b2658c2e76b2dc9a40303a2338ea98ab6dcd680dfd1c73dc",
+      "redactions": [
+        {
+          "rule": "workspace path",
+          "replacement": "${WORKSPACE}",
+          "occurrences": 2
+        }
+      ],
+      "disposition": "FAIL retained: pre-existing 1.3 request_history incompatibility against historical baseline; not a passed baseline"
+    },
+    {
+      "original": "evidence/step2-implementation/contract-breaking-811f38d6.log",
+      "archive": "evidence/delivery-package/command-output/step2-implementation/contract-breaking-811f38d6.txt",
+      "round": "step2-implementation",
+      "original_bytes": 329,
+      "original_sha256": "8e5cd19181ccf67b5c7b5975d0cf79376c9796f12899b46e0dada5dbf24b71db",
+      "archive_bytes": 329,
+      "archive_sha256": "8e5cd19181ccf67b5c7b5975d0cf79376c9796f12899b46e0dada5dbf24b71db",
+      "redactions": [],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/step2-implementation/contract-breaking-f16a497e.log",
+      "archive": "evidence/delivery-package/command-output/step2-implementation/contract-breaking-f16a497e.txt",
+      "round": "step2-implementation",
+      "original_bytes": 429,
+      "original_sha256": "473af2145cebda0c06842e3478ada4dc2792fca5ac911650b4954a872c991db2",
+      "archive_bytes": 429,
+      "archive_sha256": "473af2145cebda0c06842e3478ada4dc2792fca5ac911650b4954a872c991db2",
+      "redactions": [],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/light-large-verification/editor-source-check.log",
+      "archive": "evidence/delivery-package/command-output/light-large-verification/editor-source-check.txt",
+      "round": "light-large-verification",
+      "original_bytes": 145,
+      "original_sha256": "9c0fcdeca2897fd054fa29d90a0384fd7ec99b8825443ad081ac96213953df11",
+      "archive_bytes": 145,
+      "archive_sha256": "9c0fcdeca2897fd054fa29d90a0384fd7ec99b8825443ad081ac96213953df11",
+      "redactions": [],
+      "disposition": "historical captured command output; see round report for exit/status"
+    },
+    {
+      "original": "evidence/light-large-verification/runtime-before.log",
+      "archive": "evidence/delivery-package/command-output/light-large-verification/runtime-before.txt",
+      "round": "light-large-verification",
+      "original_bytes": 3153,
+      "original_sha256": "931572919f3bc7b00f0593abd9ecba1e86814a555025f12b038ca1cfb7667920",
+      "archive_bytes": 3153,
+      "archive_sha256": "931572919f3bc7b00f0593abd9ecba1e86814a555025f12b038ca1cfb7667920",
+      "redactions": [],
+      "disposition": "historical captured command output; see round report for exit/status"
+    }
+  ],
+  "unselected_local_only": [
+    {
+      "original": "evidence/ac009-verification/csp-audit-final.log",
+      "sha256": "b2e050150fa78da3b752a3e89f51cda0e3a19e8e8bfdb636ae225627666d9ea6",
+      "bytes": 347,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/ac009-verification/csp-audit.log",
+      "sha256": "ea1d20b82894eb58ff479e893e1382c435243c053ba04a22382d925d1026362c",
+      "bytes": 347,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/ac009-verification/csp-checks.log",
+      "sha256": "92fe28a153811a54d6c8491ae6d9adafe4791f83bc3114444f41c7bc60a3428b",
+      "bytes": 371,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/ac009-verification/desktop-launch-fixed.log",
+      "sha256": "97b3097f2b35ea225c800f122cdef1890a7b80433865d042c7d702fa7a9d62cd",
+      "bytes": 7530,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/ac009-verification/desktop-launch.log",
+      "sha256": "e6987c872168952d54eb8678607d727f5899165902ef3c5b12725fdb50452b77",
+      "bytes": 18111,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/ac009-verification/editor-build-focus-order.log",
+      "sha256": "bc9f59602ddac47f16b9265678bde43ce0aba28dbeb4302d49f06d4078b0c9da",
+      "bytes": 64508,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/ac009-verification/editor-build-reviewed.log",
+      "sha256": "58c671feb62781f0fb0df839d2d741a60ed4f4bbc2d83ba44b86ade2b7f85d6c",
+      "bytes": 63111,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/ac009-verification/editor-build.log",
+      "sha256": "e3ab3bbf36f371abb782eca0394c9519efeba20a445e12a51ee8504d6582a9db",
+      "bytes": 64516,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/ac009-verification/editor-install.log",
+      "sha256": "800104784210a5891124dc362eeb35c2a030c26a7c167920ee05c452e615880f",
+      "bytes": 209,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/ac009-verification/editor-prepare.log",
+      "sha256": "851b8b687c76d573b5af7f58ee6e4265ae17a4e84bb9fa3816f647f58e5479e9",
+      "bytes": 150,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/ac009-verification/editor-registration.log",
+      "sha256": "7f9646e3a4101ac9c4acb048dbc5a62901a05cf11fec333e67f17cae38f9694c",
+      "bytes": 349,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/ac009-verification/focused-checks.log",
+      "sha256": "48b0f75c6aa53b586fd9f7ab826b2bb02677cabcccda17a47a59880f26f7ee05",
+      "bytes": 6568,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/ac009-verification/meta-lint.log",
+      "sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c",
+      "bytes": 197,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/ac009-verification/meta-tests.log",
+      "sha256": "fbd009ae15e39aa9c5da54d441dab1dfdd453f74161b775938142c41e1962a65",
+      "bytes": 4438,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/ac009-verification/service-build.log",
+      "sha256": "fd33926900e7a960d7b304347a3627a8d129679dcf7728f051595ca512e6785d",
+      "bytes": 665,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/ac009-verification/service-up-fixed.log",
+      "sha256": "7c35c83e19b38123a61858b35dd36df6a24f5a9309bd63000692abb0789838c2",
+      "bytes": 3866,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/ac009-verification/service-up.log",
+      "sha256": "13ec01bb537536b69d3b6eeb8add07ab058c2079c6bd133dc4b3f279e5c8ba38",
+      "bytes": 3866,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/ac009-verification/source-checks.log",
+      "sha256": "a6a34967d226e14100379f148856f5940f1c5f566701629cc36fb41f0e569b3e",
+      "bytes": 468,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/full-ui-implementation/csp-checks.log",
+      "sha256": "02c4e929d1726260942d0ae3c1b5be164dea991525e68d57d6369bb22763d7dc",
+      "bytes": 371,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/full-ui-implementation/desktop-launch.log",
+      "sha256": "830ec8ec4fbb498924637c1888016bf8411e2929de30acb1f90ae5c5b6b93f83",
+      "bytes": 7609,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/full-ui-implementation/editor-build-reviewed.log",
+      "sha256": "1ceb2eae8269e940c97a6949660041dbdc974debe1581f4fd3954814b36cf0a7",
+      "bytes": 63103,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/full-ui-implementation/editor-build.log",
+      "sha256": "eca2f8823c3c5705018f02b2fcf0bd1e7779e244b051ad3cb81329bc2739de71",
+      "bytes": 64508,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/full-ui-implementation/editor-install.log",
+      "sha256": "310b8d2221f8aa3256431ed498323cbc8779838d2aa4f82b9a10b87f97cf93d5",
+      "bytes": 209,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/full-ui-implementation/editor-prepare.log",
+      "sha256": "851b8b687c76d573b5af7f58ee6e4265ae17a4e84bb9fa3816f647f58e5479e9",
+      "bytes": 150,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/full-ui-implementation/editor-registration.log",
+      "sha256": "7f9646e3a4101ac9c4acb048dbc5a62901a05cf11fec333e67f17cae38f9694c",
+      "bytes": 349,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/full-ui-implementation/focused-checks.log",
+      "sha256": "4d3f2f4f31ec325b450fa0788085ff4992f38fca14dd26406bf6d89e6ad19dcc",
+      "bytes": 6459,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/full-ui-implementation/meta-lint.log",
+      "sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c",
+      "bytes": 197,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/full-ui-implementation/meta-tests.log",
+      "sha256": "a9c99fcd804e26ed996e0579f20ffcc8622632f42b86dcfbb4d9e7a1a4be20cd",
+      "bytes": 4433,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/full-ui-implementation/service-build.log",
+      "sha256": "fd33926900e7a960d7b304347a3627a8d129679dcf7728f051595ca512e6785d",
+      "bytes": 665,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/full-ui-implementation/service-up.log",
+      "sha256": "9810dd5b11310efe0574cf35acb10062bdd63fc54dbf16708ed9134d9d8299d3",
+      "bytes": 3866,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/recovery-execution/csp-tests-r5.log",
+      "sha256": "fd3fafd751877efb3a6ec5807b7df13a511d7f2c0587a755dc6c3668f848fc08",
+      "bytes": 368,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/recovery-execution/csp-tests-r6.log",
+      "sha256": "05c4ad967a28b563c1fc1a253bdb1ae921684fec930b3d35a05e2eb3b472167e",
+      "bytes": 371,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/recovery-execution/csp-tests.log",
+      "sha256": "bb7bf8dbd8698ba937051f58dc512b719f7b95e51270de08e1dbe37cc980777a",
+      "bytes": 368,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/recovery-execution/editor-check-r5.log",
+      "sha256": "9c0fcdeca2897fd054fa29d90a0384fd7ec99b8825443ad081ac96213953df11",
+      "bytes": 145,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/recovery-execution/editor-check-r6.log",
+      "sha256": "9c0fcdeca2897fd054fa29d90a0384fd7ec99b8825443ad081ac96213953df11",
+      "bytes": 145,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/recovery-execution/editor-check.log",
+      "sha256": "9c0fcdeca2897fd054fa29d90a0384fd7ec99b8825443ad081ac96213953df11",
+      "bytes": 145,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/recovery-execution/focused-recheck-r6.log",
+      "sha256": "5c9fa90b1120c232a23eece6766e4a4e51170520755bc186bda32b9ff4d62167",
+      "bytes": 4441,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    },
+    {
+      "original": "evidence/recovery-execution/focused-recheck.log",
+      "sha256": "32fc804710870fd1098f283cb425b0c69578651e37b182135097f462ad440a2a",
+      "bytes": 4439,
+      "disposition": "local original retained; intermediate/duplicate output not needed for selected final-round claims; not in prepared commit"
+    }
+  ]
+}

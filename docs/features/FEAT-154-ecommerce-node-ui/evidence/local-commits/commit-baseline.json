@@ -1,0 +1,185 @@
+{
+  "recorded_at": "2026-09-16T09:30:05.202976+00:00",
+  "owner_authorization": "Execute the per-repository local commit plan, including separate FEAT-153 dependencies, source-first contract pinning, checks and final meta records; continued explicitly after interruption.",
+  "status": "implementation_sources_locally_committed; meta package is the commit containing this record",
+  "commits": [
+    {
+      "unit": "T0",
+      "repository": "yijie-coze",
+      "commit": "cdbc822c8de3207c9e261649e52aa6323eae1ca1",
+      "parent": "10faf164d7af194b7697a93cb3c4a6886ddc64b5",
+      "branch": "main",
+      "title": "style(feat-153): preserve workflow canvas and lime theme"
+    },
+    {
+      "unit": "T1",
+      "repository": "yijie",
+      "commit": "8b03461d563cf07566676ca20ca5ce504ff0da9e",
+      "parent": "87a1e5550d946892fc90dd6f94dfbebf1409a18a",
+      "branch": "chore/retirement-baseline-20260905",
+      "title": "docs(feat-153): record preserved workflow theme"
+    },
+    {
+      "unit": "C1",
+      "repository": "yijie-contracts",
+      "commit": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "parent": "0543b21c61c39ea1d18833b25c5d376a32913979",
+      "branch": "chore/retirement-baseline-20260905",
+      "title": "feat(feat-154): clarify page-local dirty bridge semantics"
+    },
+    {
+      "unit": "A1",
+      "repository": "yijie-api",
+      "commit": "041f40c69919e81ec72ccee4ea6dbb3ea012142d",
+      "parent": "d38bb9e851a34244498e09c8b188901f9261b9b9",
+      "branch": "feat/feat-126-foundation-closure",
+      "title": "feat(feat-154): pin workflow contract and add recovery reads"
+    },
+    {
+      "unit": "Z1",
+      "repository": "yijie-coze",
+      "commit": "144e4c259a5460fed57fc280f2439cbbf9a18539",
+      "parent": "cdbc822c8de3207c9e261649e52aa6323eae1ca1",
+      "branch": "main",
+      "title": "feat(feat-154): register 30 ecommerce nodes for UI design"
+    },
+    {
+      "unit": "D1",
+      "repository": "yijie-desktop",
+      "commit": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "parent": "6078855f7966a531b4d740dd6e654cf60d4180d8",
+      "branch": "chore/retirement-baseline-20260905",
+      "title": "feat(feat-154): clarify page-local design leave protection"
+    },
+    {
+      "unit": "I1",
+      "repository": "yijie-infra",
+      "commit": "66b481552eb76d46b00875ac27794ed8e1eb504a",
+      "parent": "2b238d93cecd446dfd9b22fef681e2bd5ed70f02",
+      "branch": "feat/feat-126-s10e",
+      "title": "feat(feat-154): add explicit local workflow recovery"
+    }
+  ],
+  "source_baseline": {
+    "yijie-contracts": {
+      "commit": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-contracts.git",
+      "worktree_clean": true
+    },
+    "yijie-api": {
+      "commit": "041f40c69919e81ec72ccee4ea6dbb3ea012142d",
+      "branch": "feat/feat-126-foundation-closure",
+      "origin": "https://github.com/36Dge/yijie-api.git",
+      "worktree_clean": true,
+      "contract_pin": {
+        "source_commit": "db4458fe94572c4df41a114005d54a049bb79b1f",
+        "consumer_lock_sha256": "0d710bc4cb69394f83e8e9bd0f7ce7ba7e95ba94cfc127f57a10e09fe8540c24",
+        "contract_version": "1.4.0-local-candidate",
+        "mode": "local_candidate",
+        "release": false
+      }
+    },
+    "yijie-coze": {
+      "commit": "144e4c259a5460fed57fc280f2439cbbf9a18539",
+      "branch": "main",
+      "origin": "https://github.com/36Dge/yijie-coze.git",
+      "worktree_clean": true,
+      "contract_pin": {
+        "source_commit": "db4458fe94572c4df41a114005d54a049bb79b1f",
+        "consumer_lock_sha256": "57db2720c94487255b860a77178a07eed7cd9fd8b7ffc64029edaa3a11ce7746",
+        "contract_version": "1.4.0-local-candidate",
+        "mode": "local_candidate",
+        "release": false
+      }
+    },
+    "yijie-desktop": {
+      "commit": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-desktop.git",
+      "worktree_clean": true,
+      "contract_pin": {
+        "source_commit": "db4458fe94572c4df41a114005d54a049bb79b1f",
+        "consumer_lock_sha256": "9124556f7dfc6c6bfb4e127b2160140555334ef855a8ceb936f26c131b3c3591",
+        "contract_version": "1.4.0-local-candidate",
+        "mode": "local_candidate",
+        "release": false
+      }
+    },
+    "yijie-infra": {
+      "commit": "66b481552eb76d46b00875ac27794ed8e1eb504a",
+      "branch": "feat/feat-126-s10e",
+      "origin": "https://github.com/36Dge/yijie-infra.git",
+      "worktree_clean": true
+    },
+    "yijie-agent-host": {
+      "commit": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-agent-host.git",
+      "worktree_clean": true
+    }
+  },
+  "meta_commit": {
+    "repository": "yijie",
+    "parent": "8b03461d563cf07566676ca20ca5ce504ff0da9e",
+    "branch": "chore/retirement-baseline-20260905",
+    "self_reference": "This file is part of the M1 documentation commit; its own immutable hash cannot be embedded in itself. Resolve the commit using the Git command below, or the final task receipt.",
+    "resolve_command": [
+      "git",
+      "log",
+      "-1",
+      "--format=%H",
+      "--",
+      "docs/features/FEAT-154-ecommerce-node-ui/evidence/local-commits/commit-baseline.json"
+    ]
+  },
+  "changes_during_commit_step": {
+    "canonical_sync": "Only API/Coze/Desktop contracts/workflow-local.lock.json gains the verified full source_commit. Shared DTO and validator bytes unchanged.",
+    "format_only": "Coze reference-picker.tsx removed one final LF after staged check caught a formerly untracked blank EOF; no behavior change. See format-only-correction.json.",
+    "feature_semantic_history": "retained; no added node API or business execution logic"
+  },
+  "last_tested_runtime": {
+    "manifest_sha256": "f608fde5478d47d3db3ee75ea4e14a012025a9436af21e1043439b09d5e43526",
+    "desktop_binary_sha256": "f5d6966a5f7613d07fddb4aae7e3c728c9e5a8cf21c512980186492434643686",
+    "same_manifest_as_previous": true,
+    "same_binary_as_previous": true,
+    "activation_epoch": "8d5a65b9-8656-430d-9554-e6ffd490f253",
+    "built_from_new_commits": false,
+    "runtime_health_rechecked": false,
+    "qualification": "Historical pre-pin f608 candidate retained. No rebuild, registration, service start/stop or new UI run. New source baseline must be canonically built and qualified before it is called a new runtime candidate."
+  },
+  "checks": {
+    "Contracts": "deterministic workflow generation; 16 focused tests; lint with 12 existing warnings; incremental breaking check against 0543b21c61c39ea1d18833b25c5d376a32913979 PASS",
+    "Coze": "43 focused UI/state/bridge tests; 3 existing CSP asset checks; source preservation 15221 unchanged, 78 overlays, 6 preserved deletions PASS",
+    "Desktop": "4 test files / 23 tests; lint/typecheck PASS",
+    "Infra_API_Coze_recovery": "9 private recovery-policy tests + 13 existing static/lifecycle tests PASS; no database or Docker runtime actions",
+    "consumers": "API/Coze/Desktop canonical --source-commit synchronization and --check PASS; only three consumer lock files changed by synchronization"
+  },
+  "protected_files_unchanged": {
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/26-canvas-background-contrast.md": "7a46982fd4257edb439117db18c3b100129f035a78e308abcf309a0bd36907e7",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/27-workflow-lime-variant.md": "2790be6fae153b1b6e155d755fd7137c41e7c8e26138aa3f28026fbfad4a6b98",
+    "yijie-coze/frontend/apps/workflow-local/src/yijie-coze-theme.css": "c05eb803a63a84e1097fb2851109c2302e8c7d76e8ffe53d409f0014c1593820",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/canvas-background-20260914/reference-style.json": "997e2de9c84b95d7283f92227f5055de383acbcd7807ed9b9df05b0c76eb3938",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/activation.json": "41daaac8877d07819cc0285c4eabd37d0bb3e99879a1eb846821e527f72d586a",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/text-sidebar.png": "6fd087676edd272dff6a68dd2ccc086a8af4d66fdcc77b582f270c01376ab025",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/end-sidebar.png": "8678629382ed6789fb6e5c04fc89856306d17535cb01159a843f9b5a17d3f2c0",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/source-check.json": "fc70344ea94884135631f99e15d664df763302222031068b34fbd7ca390cfed7",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/visual-verification.json": "e7896a66adc139c35d2f94b120d78a69c2bf6d171b5a3d29cd9ab188236477c6",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/canvas.png": "625a698c1df5bb36e0567d8b73593100330e48d6d846866f822a3939a4bd2267",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/activation.json": "b7d9364ec104debe293099134e0a1f96c3026b0605db09398bebf05feb051a58",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/text-sidebar.png": "806293e5afede81d80d57e68fd57e2ea043f93a99a31b76de20e5faf55176a06",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/source-check.json": "49aa50e28b75a38d623da1c201823de37dcd5270ef0be2895e14bb95bad97273",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/visual-verification.json": "a32a997d765d477da922d40494eb108406f958603e956a0c4f1fa5ea10948897",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/canvas.png": "72f8218092332000c1f0e1ddd10217f1bcd0f81805026afff11a5c79f2361d66"
+  },
+  "remaining": {
+    "AC009": "pending",
+    "light_1440x900": "NOT RUN; display change declined",
+    "dark": "NOT RUN; deferred",
+    "D4": "NOT RUN",
+    "historical_real_screenshots": "no exported files; existing ledger retained"
+  },
+  "git_push": "NOT RUN",
+  "tag_release_deployment": "NOT RUN",
+  "system_display_appearance_changes": false
+}

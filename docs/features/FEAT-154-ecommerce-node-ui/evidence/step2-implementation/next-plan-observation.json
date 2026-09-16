@@ -1,0 +1,96 @@
+{
+  "read_only_inspect_exit": 0,
+  "recorded_phase": "stopping",
+  "containers": [
+    {
+      "id": "75e5f2539b6f7b5e2fd9bb8b737e0ad87ef000eda7b5ae057bd3f60ab92421b4",
+      "name": "/yijie-feat153-workflow-workflow-api-1",
+      "service": "workflow-api",
+      "image_id": "sha256:027dbc9e7f423ab92c137b06ded8cbd77a67a1113ca188bc4266c21b9d31a740",
+      "running": false,
+      "exit_code": 0,
+      "oom_killed": false,
+      "finished_at": "2026-09-14T18:38:29.081029673Z"
+    },
+    {
+      "id": "57464bec90074470368b9867475723cfabffa98d20622fe6f5994b136ad827f6",
+      "name": "/yijie-feat153-workflow-coze-workflow-1",
+      "service": "coze-workflow",
+      "image_id": "sha256:566d74602e2217c8c725ca3422045ad0c4e758d58157dc48c93b6d4563b91fc2",
+      "running": false,
+      "exit_code": 137,
+      "oom_killed": false,
+      "finished_at": "2026-09-14T18:38:30.101452841Z"
+    },
+    {
+      "id": "6ac1dbeb3135ceffba14039434c3c7c0534faa8ad3b4960f1f7d7026767b8c7a",
+      "name": "/yijie-feat153-workflow-api-migrate-ab2f2c6f",
+      "service": "workflow-api",
+      "image_id": "sha256:027dbc9e7f423ab92c137b06ded8cbd77a67a1113ca188bc4266c21b9d31a740",
+      "running": false,
+      "exit_code": 0,
+      "oom_killed": false,
+      "finished_at": "2026-09-14T18:00:19.938642336Z"
+    },
+    {
+      "id": "876fde882777eb55bc2687682c3df75c606fe76d9c05111258e66a1c95b59b30",
+      "name": "/yijie-feat153-workflow-coze-migrate-ab2f2c6f",
+      "service": "coze-workflow",
+      "image_id": "sha256:566d74602e2217c8c725ca3422045ad0c4e758d58157dc48c93b6d4563b91fc2",
+      "running": false,
+      "exit_code": 0,
+      "oom_killed": false,
+      "finished_at": "2026-09-14T18:00:19.614682002Z"
+    },
+    {
+      "id": "69bd98fe8c02124752e732c0ef2bfab66bd6c957730bd5b870f75ef8d6f981d6",
+      "name": "/yijie-feat153-workflow-workflow-postgres-1",
+      "service": "workflow-postgres",
+      "image_id": "sha256:4e6e670bb069649261c9c18031f0aded7bb249a5b6664ddec29c013a89310d50",
+      "running": false,
+      "exit_code": 0,
+      "oom_killed": false,
+      "finished_at": "2026-09-14T18:38:29.08812784Z"
+    },
+    {
+      "id": "ea0b9df6a87d2afa899fe2274e4255e37159212013c9e6574293d188ef04a6dd",
+      "name": "/yijie-feat153-workflow-coze-workflow-redis-1",
+      "service": "coze-workflow-redis",
+      "image_id": "sha256:25c0ae32c6c2301798579f5944af53729766a18eff5660bbef196fc2e6214a9c",
+      "running": false,
+      "exit_code": 0,
+      "oom_killed": false,
+      "finished_at": "2026-09-14T18:38:29.105863465Z"
+    },
+    {
+      "id": "9e24d5d48fd8794edc9d176102a69d3091d5b20197dd67a29ef8304fc5aa0704",
+      "name": "/yijie-feat153-workflow-coze-workflow-mysql-1",
+      "service": "coze-workflow-mysql",
+      "image_id": "sha256:679e7e924f38a3cbb62a3d7df32924b83f7321a602d3f9f967c01b3df18495d6",
+      "running": false,
+      "exit_code": 137,
+      "oom_killed": false,
+      "finished_at": "2026-09-14T18:38:30.145223674Z"
+    },
+    {
+      "id": "c43b900b48e37d78ecb38097c0ce9d979cb9472b7f2685eb386b5411babd3aaa",
+      "name": "/yijie-feat153-workflow-coze-workflow-minio-1",
+      "service": "coze-workflow-minio",
+      "image_id": "sha256:064117214caceaa8d8a90ef7caa58f2b2aeb316b5156afe9ee8da5b4d83e12c8",
+      "running": false,
+      "exit_code": 0,
+      "oom_killed": false,
+      "finished_at": "2026-09-14T18:38:29.082911923Z"
+    }
+  ],
+  "registered_bundle_unchanged": true,
+  "recorded_at": "2026-09-15T21:35:44.601201+08:00",
+  "scope": "read-only plan observation; no recovery or service mutation",
+  "coze_changed_since_step2": [],
+  "source_sha256": {
+    "yijie-infra/scripts/workflow-local.py": "3e69ec10c116397144d0ca90547e926ee8aad13e51b165450ef964fcbc828495",
+    "yijie-infra/docs/workflow-local.md": "83a9b561467b975b3c2c7ec43cc0195f749f2816dcaa0d60e4f2d773a836546a",
+    "yijie/docs/features/FEAT-154-ecommerce-node-ui/11-step2-implementation.md": "dcc64e10efbcca4360fca9b43c50ed4e0ee116c6f592a2a6800141c18d06e039",
+    "yijie/docs/features/FEAT-154-ecommerce-node-ui/12-recovery-and-step2-verification-plan.md": "7e888c1ede3e808398e74bb691f1e118ff6f76366abc1f0aa0ad549ccf124e9a"
+  }
+}

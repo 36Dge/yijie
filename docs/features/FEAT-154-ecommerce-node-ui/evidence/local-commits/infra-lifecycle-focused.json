@@ -1,0 +1,10 @@
+{
+  "recorded_at": "2026-09-16T08:59:21.211085+00:00",
+  "repository": "yijie-infra",
+  "command": [
+    "make",
+    "workflow-check"
+  ],
+  "exit_code": 0,
+  "output": "node scripts/workflow-local-model.mjs\nFEAT-153 workflow static model passed; Docker/runtime readiness was not executed.\nnode --test tests/workflow-local.test.mjs\n✔ workflow stack has a stable private six-service data set and one loopback gateway (0.738833ms)\n✔ workflow credentials stay in exact read-only files with separate native and Coze access (0.222458ms)\n✔ dependency and builder images retain the reviewed version, digest and local platform (0.092ms)\n✔ workflow lifecycle retains ownership and stops in dependency order without force escalation (0.709041ms)\n✔ normal reopening checks the port, records one epoch and derives authenticated readiness (0.181666ms)\n✔ build then reopen retains known old images for cleanup and requires current images for ready (0.055417ms)\n✔ PG qualification has three private mounts, a fixed internal image and natural stop observation (0.133584ms)\n✔ CAS qualification uses two normal concurrent saves and real source-validated readback (0.106208ms)\n✔ readiness probes use the real application entrypoints and migrations are explicit (0.634375ms)\n✔ the complete candidate satisfies the static review without claiming runtime qualification (0.971375ms)\n✔ editor overlay adds only one public read-only mount and three opt-in API inputs (0.041167ms)\n✔ editor registration pins canonical bundle, independent candidate and consumer locks while stopped (0.101416ms)\n✔ editor readiness checks public bytes after existing authenticated API readiness (0.035875ms)\nℹ tests 13\nℹ suites 0\nℹ pass 13\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 76.746834\n"
+}

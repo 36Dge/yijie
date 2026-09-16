@@ -1,0 +1,55 @@
+{
+  "recorded_at": "2026-09-16T08:39:17.042688+00:00",
+  "real_app_exported_file_count": 0,
+  "status": "UNAVAILABLE_FOR_EXPORT_FROM_EXISTING_EVIDENCE",
+  "reason": "Prior real App screenshots were returned inline by native UI tools. Existing feature directory contains no real App image files and no exported local path for those tool images. This packaging step cannot archive those historical image bytes through the available documented interface; no replacement screenshot was generated.",
+  "impact": "Reviewer can inspect operation matrices, native geometry diagnostics, source/build checks and persistence comparisons, but cannot independently recheck historic visual appearance from the Git evidence package alone. Text records are observations, not image-level proof. Future permitted real acceptance must retain exportable screenshots; this gap is not silently passed.",
+  "rounds": [
+    {
+      "round": "R7 samples 01/10/17",
+      "record": "evidence/recovery-execution/ui-r7-observations.json",
+      "image_file": null,
+      "status": "historical tool-inline only"
+    },
+    {
+      "round": "R2 all 30 and 05 manual drag",
+      "record": "evidence/full-ui-implementation/ui-r2-node-matrix.json",
+      "shared_record": "evidence/full-ui-implementation/ui-r2-shared-observations.json",
+      "image_file": null,
+      "status": "historical tool-inline only"
+    },
+    {
+      "round": "AC009 final 1180x760 keyboard/forms",
+      "record": "evidence/ac009-verification/final-ui-observations.json",
+      "image_file": null,
+      "status": "historical tool-inline only"
+    },
+    {
+      "round": "1440x900 / dark",
+      "record": "evidence/light-large-verification/owner-display-change-decision.json",
+      "image_file": null,
+      "status": "NOT RUN; no screenshot expected"
+    }
+  ],
+  "existing_local_images": [
+    {
+      "path": "evidence/step1-design-20260915/design-preview-dark.png",
+      "sha256": "84a7c0b5d166bd5876a3fbccf6d751bb6c4d0cbed63919643c8df37cfbaec317",
+      "classification": "D0 static design preview; NOT a real App screenshot",
+      "commit_disposition": "keep as design artifact only"
+    },
+    {
+      "path": "evidence/step1-design-20260915/design-preview-light.png",
+      "sha256": "0a81a27115913e9f2989c29daec030a075d1c2d65564275bbcd20b1218938043",
+      "classification": "D0 static design preview; NOT a real App screenshot",
+      "commit_disposition": "keep as design artifact only"
+    },
+    {
+      "path": "evidence/step1-design-20260915/design-preview-narrow.png",
+      "sha256": "089cf7249516b6c45ff844c258054fffae64bf11ec28c7bf9ba863d99d9d55d7",
+      "classification": "D0 static design preview; NOT a real App screenshot",
+      "commit_disposition": "keep as design artifact only"
+    }
+  ],
+  "feat153_images": "Existing FEAT-153 theme screenshots remain separate dependency evidence; not relabeled as FEAT-154 App verification."
+}
