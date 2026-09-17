@@ -1,0 +1,312 @@
+{
+  "recorded_at": "2026-09-16T23:40:59.379579+08:00",
+  "status": "PASS_WITH_D4_BLOCKED",
+  "scope": "Canonical source alignment, current targeted native regression, real screenshot archival and document consistency; not full final Must qualification",
+  "checks": {
+    "editor-build": 0,
+    "editor-check": 0,
+    "editor-register": 0,
+    "editor-check-final": 0,
+    "services-up": 0,
+    "recover": 0,
+    "meta-lint": 0,
+    "meta-test": 0,
+    "meta-shell": 0,
+    "meta-strict": 0,
+    "meta-claims": 0,
+    "meta-strict-final": 0,
+    "meta-claims-final": 0,
+    "d4-gate": 1
+  },
+  "d4_expected_failure": "AC-009 pending; feature not usable, verification BLOCKED and no final verified_at. Not overridden.",
+  "repositories": {
+    "yijie": {
+      "head": "c769f44e2869fe80569658dacfd690911a32f9d9",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie.git",
+      "status": "M docs/features/FEAT-154-ecommerce-node-ui/00-feature-brief.md\n M docs/features/FEAT-154-ecommerce-node-ui/01-delivery-log.md\n M docs/features/FEAT-154-ecommerce-node-ui/02-verification.md\n M docs/features/FEAT-154-ecommerce-node-ui/16-delivery-status-and-evidence.md\n M docs/features/FEAT-154-ecommerce-node-ui/feature.yaml\n?? docs/features/FEAT-154-ecommerce-node-ui/21-editor-source-alignment.md\n?? docs/features/FEAT-154-ecommerce-node-ui/evidence/editor-source-alignment/"
+    },
+    "yijie-contracts": {
+      "head": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-contracts.git",
+      "status": ""
+    },
+    "yijie-api": {
+      "head": "041f40c69919e81ec72ccee4ea6dbb3ea012142d",
+      "branch": "feat/feat-126-foundation-closure",
+      "origin": "https://github.com/36Dge/yijie-api.git",
+      "status": ""
+    },
+    "yijie-coze": {
+      "head": "6d5b309519c2c027fee4a37a107f15c56d554645",
+      "branch": "main",
+      "origin": "https://github.com/36Dge/yijie-coze.git",
+      "status": ""
+    },
+    "yijie-desktop": {
+      "head": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-desktop.git",
+      "status": ""
+    },
+    "yijie-infra": {
+      "head": "66b481552eb76d46b00875ac27794ed8e1eb504a",
+      "branch": "feat/feat-126-s10e",
+      "origin": "https://github.com/36Dge/yijie-infra.git",
+      "status": ""
+    },
+    "yijie-agent-host": {
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-agent-host.git",
+      "status": ""
+    }
+  },
+  "protected_theme_files": {
+    "count": 15,
+    "unchanged": true
+  },
+  "original_source_documents_and_snapshots": {
+    "count": 4,
+    "unchanged": true
+  },
+  "prior_d4_evidence_ledger": {
+    "files": 109,
+    "unchanged": true
+  },
+  "runtime_identity": "candidate-final.json; manifest/binary hashes and App PID independently checked",
+  "services": "six healthy; no active child, pending stop or recovery",
+  "temporary_export_app": "TextEdit normally quit; no process remains",
+  "tracked_diff_whitespace": "PASS all seven repositories; not a claim of zero trailing whitespace in exact new raw build logs",
+  "document_relative_links_checked": 118,
+  "evidence_parse_and_selected_secret_scan": "PASS; local user paths redacted, no selected bearer/private-key patterns; screenshots visually inspected",
+  "source_implementation_changed": false,
+  "git_commit_push": "NOT RUN this round; only meta feature docs/evidence pending",
+  "reviewed_document_sha256": {
+    "00-feature-brief.md": "d87d18f3a0176fe1166901e7797d918c7bd3cf8bf745cee92abfb9bc8a9e2cf5",
+    "01-delivery-log.md": "2cc07c2a4576a707cc19d6c9c09c23bd56aff707966a1a6e930fa59f9a0f8e89",
+    "02-verification.md": "f785f9723092994c0694f2cfbdb66cedd0324f2ff6b1dc78c3ff8dd5a6f77649",
+    "16-delivery-status-and-evidence.md": "a7d8103e970595180e03df18527d86521bd3651a1af1a80a94bb8a02410d156b",
+    "21-editor-source-alignment.md": "68597d976e54134b69c5a1c80e1046d6745560485a4b7c2c04f1567398b18bc5",
+    "feature.yaml": "5b4592c9a20653ec74dc1153e6b3861c74139911b0a472a7f8ac0ad42c2a169f"
+  },
+  "evidence_files": {
+    "01-catalog-light-1180x760.jpg": {
+      "bytes": 105611,
+      "sha256": "8ea5caac5c0dcddd5d6cfd6fe6246b05a4d4867159946c56c627dc477539d0ac"
+    },
+    "02-form-focus-light-1180x760.jpg": {
+      "bytes": 102447,
+      "sha256": "f5cbf5775d5b446bb681fcbedd63b46ee0a321176d0cf7a3b3c62595de7c8bc3"
+    },
+    "artifact-reuse.json": {
+      "bytes": 2336,
+      "sha256": "e08f7f0525e0cfe4f22a9dff0ac215e140e1849bcca47cedd9d7bdea38de488d"
+    },
+    "before-desktop.json": {
+      "bytes": 400363,
+      "sha256": "61d14baed9302f9fac21ec7f73df715082c6820230470838dad30e66d2797061"
+    },
+    "candidate-final.json": {
+      "bytes": 2122,
+      "sha256": "f462d9050ee71a8b90490242a6d84d6986636cdec0f80704b833629421a0055c"
+    },
+    "candidate.json": {
+      "bytes": 1915,
+      "sha256": "ae2b5b27f2e56230e5e03e7bd69e7c76bee9c59a7017d5082a82ca64f204d97a"
+    },
+    "d4-gate.json": {
+      "bytes": 353,
+      "sha256": "2b439405a8a0438079b14c3e1ff568dfb0f049fb3384e0160109bbb017c21c0b"
+    },
+    "d4-gate.txt": {
+      "bytes": 211,
+      "sha256": "a0c8b920e026764a16a98a61f7155485904d698c0ad32202dbc3344d5a716205"
+    },
+    "desktop-launch-final.txt": {
+      "bytes": 22077,
+      "sha256": "215274bfcdf9268f3377b0fd94229bfe0a20a54caad8ecd0ae2e299b25faae14"
+    },
+    "desktop-launch.txt": {
+      "bytes": 6969,
+      "sha256": "de53fb0e0fc98dc78d41828276cd86252778c3608262fd426f6cee3bdc2d7b95"
+    },
+    "editor-build.json": {
+      "bytes": 273,
+      "sha256": "4667981076a11eb3a500cf741434880044e2bed6a2bd002b184418a5fecb1316"
+    },
+    "editor-build.txt": {
+      "bytes": 61759,
+      "sha256": "373a76a5885a0e804d5a604d153e3ba4fb685ae583cd73ca75ea0dec09532954"
+    },
+    "editor-check-final.json": {
+      "bytes": 279,
+      "sha256": "662cd3ae975971c75c2c4d8ce1f8c6a81b24fc57947ad9e017a7725ca74049b3"
+    },
+    "editor-check-final.txt": {
+      "bytes": 145,
+      "sha256": "9c0fcdeca2897fd054fa29d90a0384fd7ec99b8825443ad081ac96213953df11"
+    },
+    "editor-check.json": {
+      "bytes": 273,
+      "sha256": "e7cf5144de96a62fac3b93a0954c16b8b4013a6e534eac8a8da3330dc29d0e8d"
+    },
+    "editor-check.txt": {
+      "bytes": 145,
+      "sha256": "9c0fcdeca2897fd054fa29d90a0384fd7ec99b8825443ad081ac96213953df11"
+    },
+    "editor-register.json": {
+      "bytes": 246,
+      "sha256": "154a5e617cf4bc0ae7f7fa09e2c69fd830ac8a83a1e0c8f0f42d9d0fb3e68486"
+    },
+    "editor-register.txt": {
+      "bytes": 349,
+      "sha256": "7f9646e3a4101ac9c4acb048dbc5a62901a05cf11fec333e67f17cae38f9694c"
+    },
+    "manifest-comparison.json": {
+      "bytes": 536,
+      "sha256": "7731ad0c0d061e84880788e9ea3f7db112769a956702f9c0e0295b7ab489c4d7"
+    },
+    "meta-claims-final.json": {
+      "bytes": 365,
+      "sha256": "7625b484d00e754b3da38b2adfda84f360e8e2251cedc0ee0a57bcdf21dfcaf7"
+    },
+    "meta-claims-final.txt": {
+      "bytes": 50,
+      "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4"
+    },
+    "meta-claims.json": {
+      "bytes": 359,
+      "sha256": "6ff8b2a86147d25d82aa31215bc393764860978ade457e870f1056f3a8247a3c"
+    },
+    "meta-claims.txt": {
+      "bytes": 50,
+      "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4"
+    },
+    "meta-lint.json": {
+      "bytes": 223,
+      "sha256": "b536ae66e4abd995ee425f1adde6a5c628273bcbe3c5b203265b03d50e33bae3"
+    },
+    "meta-lint.txt": {
+      "bytes": 197,
+      "sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c"
+    },
+    "meta-shell.json": {
+      "bytes": 290,
+      "sha256": "11a5c4ddaa164e3adbe52d2e29adb0b8c51b89f058adda803c9e2e5d5455937b"
+    },
+    "meta-shell.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "meta-strict-final.json": {
+      "bytes": 355,
+      "sha256": "90a74e787475e20f5b79ae0580fccfffb0d93f48df334b2f6fd87d2039b967d2"
+    },
+    "meta-strict-final.txt": {
+      "bytes": 227,
+      "sha256": "b9f9c63fc02c70944a6be36145b71f7aa06a1244687cccee2b992b1282376bf8"
+    },
+    "meta-strict.json": {
+      "bytes": 349,
+      "sha256": "bddce5ec2b57ef0af75128e8b8eed9223a72da60f995f5b4ca70008b8365bfd2"
+    },
+    "meta-strict.txt": {
+      "bytes": 227,
+      "sha256": "b9f9c63fc02c70944a6be36145b71f7aa06a1244687cccee2b992b1282376bf8"
+    },
+    "meta-test.json": {
+      "bytes": 223,
+      "sha256": "d56bf944cdd16cb2a75b3b1d185a316777ea3c621cab6acd0818ca11750e6014"
+    },
+    "meta-test.txt": {
+      "bytes": 4436,
+      "sha256": "5d4b5ca1af0e197dd7dfaa0e2201bbfbb91c30afb01fe385d5c6dec753f4ff69"
+    },
+    "normally-stopped.json": {
+      "bytes": 24259,
+      "sha256": "59feba637ad30cc2bd758d84f3715d28778e50e9f73139cdbf4af05bbba71623"
+    },
+    "recover.json": {
+      "bytes": 295,
+      "sha256": "f4a9d355ecd4991a2410612c86827a0e7a55bb03820e48eccb1b214d6713015d"
+    },
+    "recover.txt": {
+      "bytes": 1141,
+      "sha256": "9e32f83ac987fe99fd929cff73b5471380fab3f59ec89933482fd6d712b3a63b"
+    },
+    "recovery-plan.json": {
+      "bytes": 251,
+      "sha256": "0e01ad19e4a55e4c20a20d35878086823f75ad303b72eec43963d9dd799c4e91"
+    },
+    "recovery-plan.txt": {
+      "bytes": 166,
+      "sha256": "e473140b8a387e99a325a368193b76a221187bd375d84d0292b202d10235620f"
+    },
+    "recovery-result.json": {
+      "bytes": 1741,
+      "sha256": "889195d0983e14438f6196030f7cde60726f8706afb0f676c8d7dea0fed5e4f2"
+    },
+    "recovery-storage-before-apps.json": {
+      "bytes": 393924,
+      "sha256": "3f9ea322e478d500d00865e593a9c1e11bf74f98757bc4aba600738fc79386b7"
+    },
+    "runtime-before.json": {
+      "bytes": 24261,
+      "sha256": "e045d76305500939f876ecbcc68458aafb3eaf1d1ac0fd1868ee003f065109d8"
+    },
+    "runtime-final.json": {
+      "bytes": 24213,
+      "sha256": "949ff9d8fd428b7cf809584f59fdba5437630ad3a638028157ab4e27c99c2c37"
+    },
+    "screenshot-ledger.json": {
+      "bytes": 1980,
+      "sha256": "803b507992cd87e34b61db0aac74c52455cc86ed7aea305f84705e61e10403d9"
+    },
+    "services-ready.json": {
+      "bytes": 24213,
+      "sha256": "c44e8b256072734f66b1a75bc7105de88261a395364a3f9697f89a1cad46a9b2"
+    },
+    "services-up.json": {
+      "bytes": 238,
+      "sha256": "c9525741ad6c3d3158deb274f495f892da5b81965ce316323b303235ad4b89b9"
+    },
+    "services-up.txt": {
+      "bytes": 3868,
+      "sha256": "4b7e7c90d4783d0c25a21375b9fc912612ba690c762d3ae937c9be29fe3abec3"
+    },
+    "trial-after.json": {
+      "bytes": 401865,
+      "sha256": "0db2c7b05f615fae22654b9cbe825dd932e229b2374757844fd3409235148e44"
+    },
+    "trial-before.json": {
+      "bytes": 401865,
+      "sha256": "b90e2e89f17175fffd76e12a942e53c60cc067743c69f49706ef706c17904b20"
+    },
+    "trial-comparison.json": {
+      "bytes": 266,
+      "sha256": "a2ec9b9808afcb62a009c5e431ae8a740c08ef702d68fa33e9be94e31c8829ae"
+    },
+    "ui-final.json": {
+      "bytes": 402436,
+      "sha256": "4f7f9b03f31c9055cf7a08ff4c8103dd94c87c678d8640c8bb1c0db60cccaa8c"
+    },
+    "ui-observations.json": {
+      "bytes": 2264,
+      "sha256": "df531902a7748f038c194fa1f157911c49dbc35c2f2b7cb326ae94e9d02ae234"
+    },
+    "ui-persistence-comparison.json": {
+      "bytes": 2610,
+      "sha256": "ef1c3896da4ed9e565672e6efb2afdb898d5abdc7611f049f9ea440b747e2508"
+    },
+    "window-geometry.json": {
+      "bytes": 816,
+      "sha256": "73e3730aa833e66e62d06015dc5e37855162a76ce3cc13d6dc61875c58afd6f9"
+    },
+    "workspace-before.json": {
+      "bytes": 4857,
+      "sha256": "50bbc756d1301068701bca71d360e0b4ef2466ef76973570a8d066860d5f89ae"
+    }
+  }
+}

@@ -1,0 +1,302 @@
+{
+  "recorded_at": "2026-09-17T02:20:18.501479+08:00",
+  "status": "PASS_D4_LOCAL_UI",
+  "checks": {
+    "source-fields": 0,
+    "focused": 0,
+    "editor-check-final": 0,
+    "meta-lint": 0,
+    "meta-test": 0,
+    "meta-strict-final": 0,
+    "meta-claims-final": 0,
+    "d4-gate-final": 0
+  },
+  "scope": "Same586e23d3candidate30nodes, representative complex controls, shared lifecycle, four native logical theme/size combinations; source634/children checked separately; no node business/API implementation",
+  "nodes_observed": 30,
+  "real_screenshot_exports": 12,
+  "screenshots_visual_review": "All12checked in native tool or local exact-byte images;03selectedvoice text readability supplemented by actualAXvalue, no screenshotediting",
+  "candidate_identity": {
+    "recorded_at": "2026-09-17T01:23:14.673482+08:00",
+    "manifest_sha256": "586e23d360480e758921366a318d980f01d06aa3d4f917366cbc1af7a5d145e2",
+    "source_commit": "6d5b309519c2c027fee4a37a107f15c56d554645",
+    "source_digest": "c226f744f587b85f01b31362416d2b946a7c9bf17c86e54a3b7944d75ee03392",
+    "contracts_lock_sha256": "42bd8a32df97d2c3354593dc431bb2f7dd65ef7236061ff85d9dbd55471f0eb9",
+    "asset_count": 385,
+    "run_epoch": "9bb04654-0186-44ba-9467-165fd035bfba",
+    "desktop_binary_sha256": "feb95f72f020e58db1c8d614a4baa81b4d7211cbca5d5310fe5106b041aff9b1",
+    "app_pid": 36779,
+    "native_window": {
+      "width": 1180,
+      "height": 760
+    },
+    "coze_status": " M frontend/apps/workflow-local/src/main.tsx\n M frontend/packages/common/flowgram-adapter/free-layout-editor/src/index.ts\n M frontend/packages/workflow/playground/src/components/node-icon/themed-node-icon.module.less\n M frontend/packages/workflow/playground/src/components/node-icon/themed-node-icon.tsx\n M frontend/packages/workflow/playground/src/components/node-panel/components/custom-drag-card.tsx\n M frontend/packages/workflow/playground/src/components/workflow-container/index.tsx\n M frontend/packages/workflow/playground/src/local-ecommerce/catalog-additional.ts\n M frontend/packages/workflow/playground/src/local-ecommerce/catalog-samples.ts\n M scripts/yijie/workflow-editor-csp-reviewed.json\n M yijie-upstream.lock.json\n?? frontend/apps/workflow-local/src/node-panel-theme.css\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/LICENSE\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/README.md\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/calculator.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/captions.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/chart-no-axes-combined.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/clapperboard.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/clipboard-check.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/crop.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/files.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/git-fork.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/headset.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/image-plus.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/languages.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/list-checks.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/list-filter.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/megaphone.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/message-square-quote.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/package.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/paintbrush.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/panels-top-left.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/rows-3.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/scale.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/scan-search.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/search.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/shield-check.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/tags.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/target.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/type.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/upload.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/video.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/wand-sparkles.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/warehouse.svg\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-node-icons.tsx\n?? frontend/packages/workflow/playground/src/components/node-panel/components/local-catalog-drag.ts\n?? frontend/packages/workflow/playground/src/local-ecommerce/catalog-icons.ts\n?? scripts/yijie/workflow-local-catalog-drag.test.mjs\n?? scripts/yijie/workflow-node-panel.test.mjs\n",
+    "candidate_status": "Independent four UI adjustments verified. User manual drag success; automated drag limitation retained; see native-observations and screenshot-ledger.",
+    "git": "uncommitted; no commit or push"
+  },
+  "repositories": {
+    "yijie": {
+      "head": "c769f44e2869fe80569658dacfd690911a32f9d9",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie.git",
+      "status": "M docs/features/FEAT-154-ecommerce-node-ui/00-feature-brief.md\n M docs/features/FEAT-154-ecommerce-node-ui/01-delivery-log.md\n M docs/features/FEAT-154-ecommerce-node-ui/02-verification.md\n M docs/features/FEAT-154-ecommerce-node-ui/16-delivery-status-and-evidence.md\n M docs/features/FEAT-154-ecommerce-node-ui/feature.yaml\n?? docs/dev/workflow-node-panel-adjustments-2026-09-17/\n?? docs/features/FEAT-154-ecommerce-node-ui/21-editor-source-alignment.md\n?? docs/features/FEAT-154-ecommerce-node-ui/22-dark-appearance-verification.md\n?? docs/features/FEAT-154-ecommerce-node-ui/23-final-d4-qualification.md\n?? docs/features/FEAT-154-ecommerce-node-ui/evidence/dark-verification/\n?? docs/features/FEAT-154-ecommerce-node-ui/evidence/editor-source-alignment/\n?? docs/features/FEAT-154-ecommerce-node-ui/evidence/final-d4-20260917/"
+    },
+    "yijie-contracts": {
+      "head": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-contracts.git",
+      "status": ""
+    },
+    "yijie-api": {
+      "head": "041f40c69919e81ec72ccee4ea6dbb3ea012142d",
+      "branch": "feat/feat-126-foundation-closure",
+      "origin": "https://github.com/36Dge/yijie-api.git",
+      "status": ""
+    },
+    "yijie-coze": {
+      "head": "6d5b309519c2c027fee4a37a107f15c56d554645",
+      "branch": "main",
+      "origin": "https://github.com/36Dge/yijie-coze.git",
+      "status": "M frontend/apps/workflow-local/src/main.tsx\n M frontend/packages/common/flowgram-adapter/free-layout-editor/src/index.ts\n M frontend/packages/workflow/playground/src/components/node-icon/themed-node-icon.module.less\n M frontend/packages/workflow/playground/src/components/node-icon/themed-node-icon.tsx\n M frontend/packages/workflow/playground/src/components/node-panel/components/custom-drag-card.tsx\n M frontend/packages/workflow/playground/src/components/workflow-container/index.tsx\n M frontend/packages/workflow/playground/src/local-ecommerce/catalog-additional.ts\n M frontend/packages/workflow/playground/src/local-ecommerce/catalog-samples.ts\n M scripts/yijie/workflow-editor-csp-reviewed.json\n M yijie-upstream.lock.json\n?? frontend/apps/workflow-local/src/node-panel-theme.css\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-node-icons.tsx\n?? frontend/packages/workflow/playground/src/components/node-panel/components/local-catalog-drag.ts\n?? frontend/packages/workflow/playground/src/local-ecommerce/catalog-icons.ts\n?? scripts/yijie/workflow-local-catalog-drag.test.mjs\n?? scripts/yijie/workflow-node-panel.test.mjs"
+    },
+    "yijie-desktop": {
+      "head": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-desktop.git",
+      "status": ""
+    },
+    "yijie-infra": {
+      "head": "66b481552eb76d46b00875ac27794ed8e1eb504a",
+      "branch": "feat/feat-126-s10e",
+      "origin": "https://github.com/36Dge/yijie-infra.git",
+      "status": ""
+    },
+    "yijie-agent-host": {
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-agent-host.git",
+      "status": ""
+    }
+  },
+  "protected_theme_files_unchanged": 15,
+  "original_source_files_unchanged": 4,
+  "runtime": "six healthy, same epoch, no pending stop/recovery",
+  "restored_window": {
+    "app_pid": 36779,
+    "event": "window_geometry",
+    "inner_height": 780.0,
+    "inner_width": 1180.0,
+    "outer_height": 780.0,
+    "outer_width": 1180.0,
+    "scale_factor": 2.0
+  },
+  "original_page": "FEAT153 原生终验 0913 / 已保存 / Start Text End andtwoedges; reconnection rechecked",
+  "temporary_textedit": "saved transfer file and quit normally",
+  "links_checked": 132,
+  "selected_path_secret_scan": "PASS",
+  "validation_limitations": [
+    "No independent human review claimed",
+    "Native drag user manual confirmation, tool automatic drag limitation retained",
+    "Extra native menu retest skipped by owner; keyboard Delete/undo/redo actualPASS",
+    "No prohibited failure/attack injection",
+    "No git commit/push or public production qualification"
+  ],
+  "document_sha256": {
+    "docs/features/FEAT-154-ecommerce-node-ui/00-feature-brief.md": "df69c3ef39f230954f047d468e1731db73501d12eb0c70d570a5014f88f67a62",
+    "docs/features/FEAT-154-ecommerce-node-ui/01-delivery-log.md": "20aac685ad36d7b8d7d6a82783d271f61204c5054c4baa732c5399be815d6e82",
+    "docs/features/FEAT-154-ecommerce-node-ui/02-verification.md": "010831fb54d3f92566df25a6d4162a6385332839f44a470dd6514ad85fd6b08e",
+    "docs/features/FEAT-154-ecommerce-node-ui/16-delivery-status-and-evidence.md": "bdb6aa99524b088adcf0041d6f877b54558c14c8d39f51f149bc010cf995b985",
+    "docs/features/FEAT-154-ecommerce-node-ui/23-final-d4-qualification.md": "c88437bec9654f0b511111ad1dcf5c43c111c341acfc4cc07e1d244964760d20",
+    "docs/dev/workflow-node-panel-adjustments-2026-09-17/README.md": "c7f52f81f917b526242273879b3fcf00309752d5628e7e7fa8d82328a3208e9e",
+    "docs/features/FEAT-154-ecommerce-node-ui/feature.yaml": "4767082d0bcc0e122af94c4c6359b4249a49e19075c3e68963231c496d1c1ef4"
+  },
+  "evidence_files": {
+    "01-dark-small-reference.jpg": {
+      "sha256": "6e7aba8d97df4a1d7160e0e75cb0f92b027a4edba2da7e07821771ed5e83c2f0",
+      "bytes": 135786
+    },
+    "02-dark-small-leave-confirm.jpg": {
+      "sha256": "e9e01aa5c35de7628408e0b2df7a7e702c6f5513af36bf48db4864a28874b96a",
+      "bytes": 107387
+    },
+    "03-dark-large-voice-form.jpg": {
+      "sha256": "d35799d4f36bff5d811b9773fc952c771560bd605487edfb165134005d6e07c3",
+      "bytes": 131238
+    },
+    "04-dark-large-readonly-outputs.jpg": {
+      "sha256": "ce06bd2a49feff949e40ce55175092e54abcfe9514ec466c41bc2dba2498571f",
+      "bytes": 141999
+    },
+    "05-dark-large-catalog.jpg": {
+      "sha256": "f7a9e5297e4bb6174ae5da96e9f2ca683da454283e71e50435662e699f27aebe",
+      "bytes": 125572
+    },
+    "06-light-large-price-fields.jpg": {
+      "sha256": "30ed0a12608c1be13c040026d5c1e22bf96229393747b473b02a8bc93182ab17",
+      "bytes": 137893
+    },
+    "07-light-large-zero-false.jpg": {
+      "sha256": "8ea1fc83017ca8e030409846cd167c409b67f02c55cf9534476777937eb3e3d5",
+      "bytes": 136815
+    },
+    "08-light-large-catalog.jpg": {
+      "sha256": "170bd1c3ed08b151aa7393f9faa153933e00edb2bd35e329107852e23fa5ce65",
+      "bytes": 128858
+    },
+    "09-light-small-localization-keyboard.jpg": {
+      "sha256": "c4f1219dfe7a320ace992a9957c261b6363d81214e4cba6b573fe6f171449d7f",
+      "bytes": 124665
+    },
+    "10-light-small-trial-notice.jpg": {
+      "sha256": "ca8d1c1f33e29e88a56935e31f4ba5b08230ead0f6b8c2e2a31d42dca3d33d73",
+      "bytes": 110712
+    },
+    "11-original-unsaved-draft-preserved.jpg": {
+      "sha256": "b1880f8386fd1a67995bf31789d4fec2739b4cc365834d6549d9827faaa5a641",
+      "bytes": 90872
+    },
+    "12-original-environment-restored.jpg": {
+      "sha256": "074dbe1d8e7b2b7b1dd8ed374329e983bb4408a5c2c073154dbc72fe24939c06",
+      "bytes": 96549
+    },
+    "authorization.json": {
+      "sha256": "1443cea8ee3a220b2dd1b4249b47e83c73b6926e6df573e85f7b888ce46a70d6",
+      "bytes": 755
+    },
+    "d4-gate-final.json": {
+      "sha256": "8c3e85a07312e5c2733bcc150f73e1f76cf09758cd3d562fd54fd37cb7f23b2f",
+      "bytes": 375
+    },
+    "d4-gate-final.txt": {
+      "sha256": "8a7fb8f6caf75c5613a5e4cd7a54ee8860f50151a48f4f7b5e780f0e1429aa54",
+      "bytes": 216
+    },
+    "d4-gate.json": {
+      "sha256": "6fdfb1daa1defc262234fbea6aa803fd9ca1b5bb610d01066f1ba14b90f910ad",
+      "bytes": 369
+    },
+    "d4-gate.txt": {
+      "sha256": "8a7fb8f6caf75c5613a5e4cd7a54ee8860f50151a48f4f7b5e780f0e1429aa54",
+      "bytes": 216
+    },
+    "editor-check-final.json": {
+      "sha256": "05987003bd7d97460959f754c56bcf9f4f320eb64f4787bcd6936d0740bc125f",
+      "bytes": 279
+    },
+    "editor-check-final.txt": {
+      "sha256": "9c0fcdeca2897fd054fa29d90a0384fd7ec99b8825443ad081ac96213953df11",
+      "bytes": 145
+    },
+    "focused.json": {
+      "sha256": "47bacb6856b05e6846b06dbb53ac078cfe7df85432b0fd6c00413ea005178bd8",
+      "bytes": 739
+    },
+    "focused.txt": {
+      "sha256": "d0f6392c6e1696d2a7e6eb1b893197472c2c4dfa231da0bdfa7430ebb9feecd7",
+      "bytes": 7926
+    },
+    "meta-claims-final.json": {
+      "sha256": "f106d7e91666bef92143664a4b82f9f3577c3b9aeb110af438474fb3faf933ba",
+      "bytes": 365
+    },
+    "meta-claims-final.txt": {
+      "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4",
+      "bytes": 50
+    },
+    "meta-claims.json": {
+      "sha256": "eae1d52c818d0546e4f5aca5d72e70b1ff89dc75a7c7259211e93f1b4b34f29a",
+      "bytes": 359
+    },
+    "meta-claims.txt": {
+      "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4",
+      "bytes": 50
+    },
+    "meta-lint.json": {
+      "sha256": "0a525ae7bae2b55bd998a85b5f499337ad74be00b0d4b8815f803b4457d993c1",
+      "bytes": 223
+    },
+    "meta-lint.txt": {
+      "sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c",
+      "bytes": 197
+    },
+    "meta-strict-final.json": {
+      "sha256": "728886c5615691b4271a18d01c05ac6b30f7085c269478c6d5b5dbaede61f946",
+      "bytes": 355
+    },
+    "meta-strict-final.txt": {
+      "sha256": "b9f9c63fc02c70944a6be36145b71f7aa06a1244687cccee2b992b1282376bf8",
+      "bytes": 227
+    },
+    "meta-strict.json": {
+      "sha256": "73baa601385c56466f401d6e833e91d5405f4dd39fedecbbab10b28c7fc4f203",
+      "bytes": 349
+    },
+    "meta-strict.txt": {
+      "sha256": "b9f9c63fc02c70944a6be36145b71f7aa06a1244687cccee2b992b1282376bf8",
+      "bytes": 227
+    },
+    "meta-test.json": {
+      "sha256": "ec47ed878375d1770e1763c121565a5b0d301be1db2a3de4cad3a709e408b1d5",
+      "bytes": 223
+    },
+    "meta-test.txt": {
+      "sha256": "b5b1a30b979873b34dc33f21f20358890af80aa74142e02fe814f3d3c6899a67",
+      "bytes": 4437
+    },
+    "native-observations.json": {
+      "sha256": "6b6b861540b452d554cce431f8c47627157d8edefce9115dd38b52f529b6edfd",
+      "bytes": 12811
+    },
+    "persistence-comparison.json": {
+      "sha256": "ef235231cedaae1045308ff0e655ab353babedf15a29a6445cc7d7423b76baca",
+      "bytes": 1040
+    },
+    "planned-fields.json": {
+      "sha256": "eef48e1abbd2b23027d1ca51298ee20968bbe11e54ebeef0ab1123f122f74ea2",
+      "bytes": 6365
+    },
+    "runtime-final.json": {
+      "sha256": "f0089b8998d9960250ec983bb45c98977bb2a089e5bed06cc2a05023c90d6320",
+      "bytes": 24187
+    },
+    "screenshot-ledger.json": {
+      "sha256": "d4366410e7e51b57a684ab275266cf9256d037020c0c83e328a1d439936ce43f",
+      "bytes": 4644
+    },
+    "source-fields.json": {
+      "sha256": "861dacb4fcdf92991950d792b77c877db62a6658ba674ced703ec4f6384d2eba",
+      "bytes": 295
+    },
+    "source-fields.txt": {
+      "sha256": "245d05a1a9d11f08bec469c81c1aeabe5cc9d82aaf835118cab96cf015d60cfc",
+      "bytes": 76
+    },
+    "storage-after.json": {
+      "sha256": "6d7972f60620b976f136539d1f8e970f6ddd046d83aad09f2f5ae25b575fe8d0",
+      "bytes": 415420
+    },
+    "storage-before.json": {
+      "sha256": "4765d1d2f95a1e74e146bafa41a7af73449c42af847d01cbba1e2a5e09d7b6e1",
+      "bytes": 411994
+    },
+    "storage-final.json": {
+      "sha256": "d1cadfba338bdbd9206878a619180a6f42fcbe3278b42cca45fd25c2ad54034d",
+      "bytes": 415991
+    },
+    "trial-after.json": {
+      "sha256": "cb7240a19b26b0edf76536211c944b6d7366c54f2522c1a3e7efc57ae710be1f",
+      "bytes": 415420
+    },
+    "trial-before.json": {
+      "sha256": "7e412ba34fa47b1d65d9eb7abef903338444eae610be5cd82f1930a5d5dd88bc",
+      "bytes": 415420
+    },
+    "window-geometry.json": {
+      "sha256": "3f1b6a703150a7baab23e260c386f66b6a5a941273cbaf5ddabd2defce5b59f9",
+      "bytes": 1623
+    },
+    "workspace-before.json": {
+      "sha256": "45884c12ec9327bdb0003e96b037c511f4ad6088351f141a588485633407937d",
+      "bytes": 7012
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "recorded_at": "2026-09-16T23:16:59.850200+08:00",
+  "recovery_id": "e8d6e427-4c70-4132-a813-2088d28ca26f",
+  "stage": "complete",
+  "copies": {
+    "workflow-postgres": {
+      "files": 1324,
+      "bytes": 65578801,
+      "inventory_sha256": "8a69b764016c78d6d1e9e3c5097f14187fdda2dc04e195b8453586d4d1832380"
+    },
+    "coze-workflow-mysql": {
+      "files": 302,
+      "bytes": 231876860,
+      "inventory_sha256": "45697db91b2b1a6a7c8b4dfe71fea4f1b7d1f5d310cb7f39493fa3f891985ae1"
+    },
+    "coze-workflow-redis": {
+      "files": 5,
+      "bytes": 45635,
+      "inventory_sha256": "e030602c255c49136b3722fec28aca253acc4a50c1325de386a505dee3d56fc3"
+    },
+    "coze-workflow-minio": {
+      "files": 34,
+      "bytes": 18835,
+      "inventory_sha256": "af44c49ad3c75cf33a849fd9c232580ba75991eaef73a2442e4b06546aa42c5d"
+    }
+  },
+  "original_manifest_unchanged_during_recovery": true,
+  "non_audit_facts_equal_to_previous_restored_draft": {
+    "api": {
+      "schema_version": true,
+      "database": true,
+      "scope_bindings": true,
+      "resources": true,
+      "operations": true
+    },
+    "coze": {
+      "database": true,
+      "workflows": true,
+      "executions": true,
+      "operations": true,
+      "principals": true,
+      "schema_version": true,
+      "node_executions": true
+    }
+  },
+  "original_snapshot_sha256": "a37e3519ce6f0ca83c034861476510494ae4455f816dffda9a7efee50d612bac",
+  "normal_stop": "normally-stopped.json",
+  "historical_exit_codes": "runtime-before.json",
+  "storage_before_apps_evidence": "recovery-storage-before-apps.json",
+  "note": "Copy inventory protects stopped bytes; no restore drill claimed. Historical exit137 is retained; completed normal stop exit0 observed independently."
+}

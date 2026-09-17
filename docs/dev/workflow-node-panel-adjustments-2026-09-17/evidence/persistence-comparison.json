@@ -1,0 +1,24 @@
+{
+  "before": "storage-before.json",
+  "after": "mouse-storage-final.json",
+  "equal_non_audit_facts": {
+    "api": {
+      "schema_version": true,
+      "database": true,
+      "scope_bindings": true,
+      "resources": true,
+      "operations": true
+    },
+    "coze": {
+      "database": true,
+      "workflows": true,
+      "executions": true,
+      "operations": true,
+      "principals": true,
+      "schema_version": true,
+      "node_executions": true
+    }
+  },
+  "audit_delta": 30,
+  "trial_all_facts_including_audit_equal": true
+}

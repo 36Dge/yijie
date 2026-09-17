@@ -1,0 +1,33 @@
+{
+  "recorded_at": "2026-09-17T02:13:00.860680+08:00",
+  "business_and_workflow_tables_equal": {
+    "api": {
+      "schema_version": true,
+      "database": true,
+      "scope_bindings": true,
+      "resources": true,
+      "operations": true
+    },
+    "coze": {
+      "database": true,
+      "workflows": true,
+      "executions": true,
+      "operations": true,
+      "principals": true,
+      "schema_version": true,
+      "node_executions": true
+    }
+  },
+  "audit_before": 1497,
+  "audit_after": 1515,
+  "audit_delta_explanation": "Normal editor initialization/reconnection/history reads; no new saved workflows, operations or executions. Narrow trial interval all facts including audit identical.",
+  "trial_all_facts_equal": true,
+  "trial_audit_before": 1515,
+  "trial_audit_after": 1515,
+  "post_archive_reconnect": {
+    "final_audit": 1518,
+    "total_audit_delta": 21,
+    "non_audit_facts_equal": true,
+    "reason": "Normal session reconnect after document/screenshot archival, visible original saved draft remained"
+  }
+}

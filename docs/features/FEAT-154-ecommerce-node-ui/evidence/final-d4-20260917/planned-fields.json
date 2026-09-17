@@ -1,0 +1,290 @@
+[
+  {
+    "number": "01",
+    "name": "商品采集",
+    "field": {
+      "label": "批次标识",
+      "control": "text",
+      "group": "商品补充信息",
+      "section": "输入",
+      "sourcePath": "idempotency_key"
+    }
+  },
+  {
+    "number": "02",
+    "name": "商品信息清洗与标准化",
+    "field": {
+      "label": "HTML处理方式",
+      "control": "text",
+      "group": "业务设置",
+      "section": "业务配置",
+      "sourcePath": "html_policy"
+    }
+  },
+  {
+    "number": "03",
+    "name": "类目与属性智能匹配",
+    "field": {
+      "label": "参考时间",
+      "control": "text",
+      "group": "补充与条件资料",
+      "section": "输入",
+      "sourcePath": "reference_time"
+    }
+  },
+  {
+    "number": "04",
+    "name": "SKU／变体结构重建",
+    "field": {
+      "label": "组合处理方式",
+      "control": "text",
+      "group": "业务设置",
+      "section": "业务配置",
+      "sourcePath": "combination_policy"
+    }
+  },
+  {
+    "number": "05",
+    "name": "选品机会评估",
+    "field": {
+      "label": "评估策略版本",
+      "control": "text",
+      "group": "业务设置",
+      "section": "业务配置",
+      "sourcePath": "policy_version"
+    }
+  },
+  {
+    "number": "06",
+    "name": "竞品商品采集",
+    "field": {
+      "label": "目标站点",
+      "control": "text",
+      "group": "主要信息",
+      "section": "输入",
+      "sourcePath": "marketplace"
+    }
+  },
+  {
+    "number": "07",
+    "name": "竞品对标分析",
+    "field": {
+      "label": "分析目标",
+      "control": "text",
+      "group": "主要信息",
+      "section": "输入",
+      "sourcePath": "analysis_objective"
+    }
+  },
+  {
+    "number": "08",
+    "name": "成本利润与定价测算",
+    "field": {
+      "label": "计算口径",
+      "control": "text",
+      "group": "业务设置",
+      "section": "业务配置",
+      "sourcePath": "calculation_view"
+    }
+  },
+  {
+    "number": "09",
+    "name": "Listing 综合诊断",
+    "field": {
+      "label": "目标规则快照",
+      "control": "reference",
+      "group": "主要信息",
+      "section": "输入",
+      "sourcePath": "rule_bundle_ref"
+    }
+  },
+  {
+    "number": "10",
+    "name": "Listing 一键优化",
+    "field": {
+      "label": "目标规则快照",
+      "control": "reference",
+      "group": "商品与目标",
+      "section": "输入",
+      "sourcePath": "rule_bundle_ref"
+    }
+  },
+  {
+    "number": "11",
+    "name": "SEO 关键词挖掘",
+    "field": {
+      "label": "目标规则快照",
+      "control": "reference",
+      "group": "主要信息",
+      "section": "输入",
+      "sourcePath": "rule_bundle_ref"
+    }
+  },
+  {
+    "number": "12",
+    "name": "商品标题优化",
+    "field": {
+      "label": "标题规则快照",
+      "control": "reference",
+      "group": "主要信息",
+      "section": "输入",
+      "sourcePath": "rule_bundle_ref"
+    }
+  },
+  {
+    "number": "13",
+    "name": "核心卖点／五点描述生成",
+    "field": {
+      "label": "卖点规则快照",
+      "control": "reference",
+      "group": "主要信息",
+      "section": "输入",
+      "sourcePath": "rule_bundle_ref"
+    }
+  },
+  {
+    "number": "14",
+    "name": "商品详情描述／A+ 内容生成",
+    "field": {
+      "label": "详情规则快照",
+      "control": "reference",
+      "group": "主要信息",
+      "section": "输入",
+      "sourcePath": "rule_bundle_ref"
+    }
+  },
+  {
+    "number": "15",
+    "name": "多语言翻译与本地化",
+    "field": {
+      "label": "源语言与地区",
+      "control": "text",
+      "group": "主要信息",
+      "section": "输入",
+      "sourcePath": "source_locale"
+    }
+  },
+  {
+    "number": "16",
+    "name": "规格名称与变体文案优化",
+    "field": {
+      "label": "变体规则快照",
+      "control": "reference",
+      "group": "主要信息",
+      "section": "输入",
+      "sourcePath": "rule_bundle_ref"
+    }
+  },
+  {
+    "number": "17",
+    "name": "商品图片生成",
+    "field": null
+  },
+  {
+    "number": "18",
+    "name": "商品图片处理与平台适配",
+    "field": {
+      "label": "素材输出方式",
+      "control": "text",
+      "group": "业务设置",
+      "section": "业务配置",
+      "sourcePath": "upload_mode"
+    }
+  },
+  {
+    "number": "19",
+    "name": "图片文案翻译与重绘",
+    "field": {
+      "label": "源语言与地区",
+      "control": "text",
+      "group": "主要信息",
+      "section": "输入",
+      "sourcePath": "source_locale"
+    }
+  },
+  {
+    "number": "20",
+    "name": "商品视频脚本生成",
+    "field": {
+      "label": "视频创作目标",
+      "control": "text",
+      "group": "业务设置",
+      "section": "业务配置",
+      "sourcePath": "creative_goal"
+    }
+  },
+  {
+    "number": "21",
+    "name": "商品短视频生成",
+    "field": null
+  },
+  {
+    "number": "22",
+    "name": "视频字幕、配音与本地化",
+    "field": {
+      "label": "视频母版引用",
+      "control": "reference",
+      "group": "主要信息",
+      "section": "输入",
+      "sourcePath": "source_video"
+    }
+  },
+  {
+    "number": "23",
+    "name": "商品合规判断",
+    "field": {
+      "label": "商品标识",
+      "control": "text",
+      "group": "主要信息",
+      "section": "输入",
+      "sourcePath": "product_id"
+    }
+  },
+  {
+    "number": "24",
+    "name": "知识产权与品牌侵权风险检查",
+    "field": {
+      "label": "商品标识",
+      "control": "text",
+      "group": "主要信息",
+      "section": "输入",
+      "sourcePath": "product_id"
+    }
+  },
+  {
+    "number": "25",
+    "name": "Listing 全素材合规审核",
+    "field": null
+  },
+  {
+    "number": "26",
+    "name": "商品发布与上架校验",
+    "field": {
+      "label": "幂等标识",
+      "control": "text",
+      "group": "补充与条件资料",
+      "section": "输入",
+      "sourcePath": "idempotency_key"
+    }
+  },
+  {
+    "number": "27",
+    "name": "库存与履约风险监控",
+    "field": null
+  },
+  {
+    "number": "28",
+    "name": "评论与差评洞察",
+    "field": null
+  },
+  {
+    "number": "29",
+    "name": "客服回复生成",
+    "field": null
+  },
+  {
+    "number": "30",
+    "name": "广告与流量投放优化",
+    "field": null
+  }
+]

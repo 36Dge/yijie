@@ -1,75 +1,54 @@
 # FEAT-154 当前交付状态与证据入口
 
-> 2026-09-16 · **实现完成，验收未全部完成** · `demo_fast / local` · 本地源码提交完成；未推送、未发布。
+> 2026-09-17 · **实现及本地D4验收完成** · `demo_fast / local` · `feature=usable` · 本轮源码和记录未提交；未推送、未发布。
 
-## 当前：30节点与共用复验完成，AC-009保留待验
+## 当前结论
 
-同一修复候选`77878acf…`已完成全30节点和共用交互实际复验，原稿/窗口已恢复。搜索修复已本地提交为`6d5b3095…`；元仓19/20及证据随本次收口归档。**实现完成、当前环境复验完成，完整D4未通过**：1440×900与暗色保持NOT RUN，真实截图本地导出缺口保留。最新来源、最终数据比较及提交解析见[20](20-d4-current-environment.md)。
+30个电商节点／634个顶层字段已实现，AC-001–010通过，D4门禁通过。当前候选`586e23d3`在同一次App启动中完成全30节点操作、共用交互及浅/暗色1180×760和1440×900检查。[最终报告与证据](23-final-d4-qualification.md)。
 
-## 0. 前序已提交版本构建与定向回归（19，历史）
+用户已授权临时调整显示缩放；实际使用1800×1169空间取得原生1440×900。结束恢复1512×982默认显示、浅色、1180×780窗口、原名称和已保存原稿。额外原生菜单复验按用户决定跳过；本轮删除/撤销/重做使用正常键盘，取消覆盖目录、历史、恢复和离开。
 
-本轮已完成标准构建、登记、启动及浅色1180×760定向回归。当前manifest为`b90096c02c9dd6b332344eafc1e817fa717db7f764e245bcc70c19df6ae7a06c`，epoch为`84966cf7-bf7d-479d-a1e5-5abf81717be7`；三消费者固定Contracts源，具体结果见[19](19-committed-candidate-regression.md)。原稿和窗口已恢复，新App/服务保留运行。AC-009及完整D4仍未完成，截图导出缺口如实登记。
+## 交付边界
 
-### 本地提交记录
+- 仅工作流注册、画布卡片、属性表单和页面内交互；299输入、64独立配置、271只读输出，明示子项另行映射。634不代表每个字段都人工填写。
+- 不实现节点API或业务处理；试运行可点击、仅提示，无模拟结果。配置限当前页面，关闭App不保证保留。
+- 用户另提的拖入、按钮底色、30独立图标和字体适配已完成，单独记在[独立调整](../../dev/workflow-node-panel-adjustments-2026-09-17/README.md)，不加入本需求或AC。
+- 本轮最终验收`contract-impact=none`；第2步dirty语义扩大的历史`semantic`记录保留，公共契约消费者仍固定既有Contracts提交。
 
-用户已授权并继续执行逐仓本地提交。Contracts源为 `db4458fe94572c4df41a114005d54a049bb79b1f`，API、Coze、Desktop已同步固定；FEAT-153主题和实现仓分别提交。各仓完整SHA、实际检查及元仓自身提交解析方式见[18 本地提交基线](18-local-commit-baseline.md)。
+## 当前候选与检查
 
-18保留原逐仓提交，最新Coze搜索修复及当前运行候选以20为准。下文f608表和旧轮次结果保留为历史，不替代新候选记录。
-
-## 1. 交付结果与边界
-
-30 个电商节点已在原生 Coze 工作流目录注册，并具备画布卡片、属性表单和页面内交互。覆盖 634 个顶层字段（299 输入、64 独立配置、271 只读输出），明示嵌套内容另行映射；634 不代表每个字段都人工填写，也不代表原文未定义的内层 Schema 已补全。
-
-整个需求不实现节点接口调用或业务处理。试运行入口保持可点击，仅显示前端未接入提示，不发送请求或生成模拟结果。配置只在页面内保留，页面离开确认；用户已选择关闭 App／刷新不保证保留。详见 [需求边界](00-feature-brief.md)和[原始资料](sources/README.md)。
-
-证据准备阶段仅归档证据、整理跨仓归属及准备提交，`contract-impact=none`。第2步扩大既有 dirty 页面保护含义的 `semantic` 历史仍保留，不能以本次文档工作覆盖它。
-
-## 2. 此前f608验收候选（历史，已由19的新构建替代）
-
-| 项目 | 当前记录 |
+| 项目 | 当前事实 |
 |---|---|
-| 编辑器 manifest SHA-256 | `f608fde5478d47d3db3ee75ea4e14a012025a9436af21e1043439b09d5e43526` |
-| Coze 源码摘要 | `e4d15b39758eea4eecafc3d5008dfb88795765abcf37e44c23ef12b504452350` |
-| Coze 基础 HEAD | `10faf164d7af194b7697a93cb3c4a6886ddc64b5`，含当时清单所列未提交增量及 FEAT-153 主题 |
-| 最后验收激活 epoch | `8d5a65b9-8656-430d-9554-e6ffd490f253` |
-| 编辑器产物 | 385 项，45,568,238 字节 |
-| Desktop 可执行文件 SHA-256 | `f5d6966a5f7613d07fddb4aae7e3c728c9e5a8cf21c512980186492434643686`；本次只读重算一致 |
-| Contracts | `1.4.0-local-candidate`；API／Coze／Desktop 同源本地消费，表中为历史构建的旧锁；当前源码已固定新提交，见18 |
-| 原稿与运行状态 | 上轮已恢复原 Start/Text/End、两条连线、原名称和“已保存”；六项主服务当时健康。本次不启停或重做 UI／健康验收 |
+| manifest | `586e23d360480e758921366a318d980f01d06aa3d4f917366cbc1af7a5d145e2` |
+| source digest | `c226f744f587b85f01b31362416d2b946a7c9bf17c86e54a3b7944d75ee03392` |
+| Coze基础HEAD | `6d5b309519c2c027fee4a37a107f15c56d554645`，含已登记未提交修改 |
+| epoch | `9bb04654-0186-44ba-9467-165fd035bfba` |
+| 启动与来源 | canonical构建/CSP/登记/启动通过，六主服务健康；原生App PID36779 |
+| 源码检查 | 30节点634字段及明示子项核对，54项聚焦检查通过；类型新增0，继承126 |
+| 数据 | 本轮非审计事实全部相等；试运行窄区间全部事实连同审计完全相等 |
+| 门禁 | 严格文档、完成声明审计、D4均PASS；元仓lint及50项测试PASS |
 
-全部源锁、消费者锁及 binary 路径见[机器可读候选](evidence/delivery-package/candidate.json)，原始激活记录见[AC-009 final](evidence/ac009-verification/activated-runtime-final.json)。这固定的是此前**本地运行候选身份**。当前源码已在18所列提交固定，三份消费者锁已变化；后续19已通过标准构建建立新manifest/epoch，19为前序轮次，当前运行关联以20为准。
+[来源候选](../../dev/workflow-node-panel-adjustments-2026-09-17/evidence/mouse-candidate.json)、[当前运行](evidence/final-d4-20260917/runtime-final.json)、[数据比较](evidence/final-d4-20260917/persistence-comparison.json)、[最终完整性](evidence/final-d4-20260917/final-checks.json)。
 
-## 3. 分轮验收及可信范围
+## 真实截图与历史记录
 
-| 轮次 | 已取得的证据 | 结论边界与入口 |
-|---|---|---|
-| D0 接入定稿 | Owner 明确确认；机器 D0 PASS | [Owner 确认](evidence/step1-design-20260915/d0-owner-confirmation.json)、[D0 门禁](evidence/step1-design-20260915/d0-gate.json)；预览是静态设计示意 |
-| Contracts／样板 R7 | 权威源先行、三消费者同步；01/10/17 共57字段及共用生命周期 | [契约检查](evidence/step2-implementation/contract-source-consumer-checks.json)、[样板结果](13-recovery-and-sample-verification.md)；旧 `32dd7629…` 基线已有 request_history 不兼容，未假报通过 |
-| 环境恢复 | 显式恢复阶段、停止数据副本、私有只读状态核对、正常退出 | [首次恢复](evidence/recovery-execution/recovery-result.json)、[全量前恢复](evidence/full-ui-implementation/recovery-result.json)；不是数据副本还原演练，未解释的历史退出原因保留 |
-| 全量 R2：`a9317ebc…` | 同一候选逐个添加30节点、打开侧栏、填写代表字段；同类隔离、手动拖入、撤销、重连、离开取消、原稿恢复 | [逐节点矩阵](evidence/full-ui-implementation/ui-r2-node-matrix.json)、[交互记录](evidence/full-ui-implementation/ui-r2-shared-observations.json)、[持久数据比较](evidence/full-ui-implementation/ui-r2-persistence-comparison.json)、[R2报告](14-full-node-ui-implementation.md) |
-| AC-009 final：`f608fde5…` | 修复目录焦点裁切、Esc 退出、重复 Tab 停靠；30目录键盘顺序、05复杂表单、24长标题、试运行与恢复回归；浅色1180×760通过 | [操作与原生尺寸](evidence/ac009-verification/final-ui-observations.json)、[持久数据比较](evidence/ac009-verification/persistence-comparison.json)、[报告](15-ac009-keyboard-and-window-verification.md)；没有在此候选重跑全量 Must |
-| 大窗口预检 | 来源核对、显示条件及用户决定 | [不允许调整显示](evidence/light-large-verification/owner-display-change-decision.json)；1440×900未执行，不用1512×875替代 |
+本轮12张原生JPEG完成原字节导出和SHA256登记，浅/暗两个尺寸均有实拍；加21/22的9张，FEAT-154累计21张。四项独立调整的8张另行保存。[本轮截图清单](evidence/final-d4-20260917/screenshot-ledger.json)。历史不能导出的轮次仍保留0张及限制，不用新截图冒充旧候选。
 
-AC-001–008、AC-010已有实现及历史记录，本轮30节点与共用补验见20；AC-009仍待验。完整 D4 需要同一最终候选的一次 fresh run 覆盖全部 Must，不能拼接历史轮次宣称通过。
+| 轮次 | 事实与入口 |
+|---|---|
+| D0 | [Owner确认](evidence/step1-design-20260915/d0-owner-confirmation.json)、[D0门禁](evidence/step1-design-20260915/d0-gate.json) |
+| 样板与恢复 | [13](13-recovery-and-sample-verification.md)；旧失败、退出记录及只读保护副本均保留 |
+| 全30节点R2 | [14](14-full-node-ui-implementation.md)；旧候选逐项结果不替代23 |
+| 目录键盘修复 | [15](15-ac009-keyboard-and-window-verification.md)；当时大窗口/暗色未执行 |
+| 证据包及逐仓提交 | [证据包](evidence/delivery-package/README.md)、[17提交计划](17-cross-repository-commit-plan.md)、[18实际提交](18-local-commit-baseline.md) |
+| 已提交版本激活 | [19](19-committed-candidate-regression.md) |
+| 搜索修复及全30复验 | [20](20-d4-current-environment.md)，Coze搜索修复已提交6d5b3095 |
+| 来源对齐 | [21](21-editor-source-alignment.md)，2张真实截图 |
+| 暗色最小窗口/图标修复 | [22](22-dark-appearance-verification.md)，7张真实截图；当时大尺寸仍未执行 |
+| 当前最终D4 | [23](23-final-d4-qualification.md)，12张新截图；本地纯UI范围完成 |
 
-| 剩余验收 | 当前状态 | 后续条件 |
-|---|---|---|
-| 浅色1440×900 | NOT RUN | 需可提供目标逻辑尺寸的允许环境；用户已拒绝调整当前系统显示，不重复请求或擅改 |
-| 暗色1180×760、1440×900 | NOT RUN | 用户明确延期；等待后续安排，保持现有外观 |
-| 历史真实截图的离线复核 | 缺口已登记 | 没有可导出的本地文件；后续获准实际验收时保留可导出的原始截图 |
-| AC-009／完整 D4 | pending／INCOMPLETE | 上述条件齐备后再安排完整真实验收；未删除 AC、未取得验收豁免 |
+## 提交与后续
 
-## 4. 可交付证据包
+7仓HEAD保持，Contracts源仍为`db4458fe94572c4df41a114005d54a049bb79b1f`，API/Coze/Desktop固定消费；15个受保护主题文件和4份原始资料字节不变。历史FEAT-153主题及Contracts归属见18。
 
-[证据包 README](evidence/delivery-package/README.md)是日志、摘要及检查入口。
-
-- 从71份原始日志选择33份必要完整输出，保存为可跟踪 `.txt`；178处开发机路径替换，原件不变。逐份原文/归档 SHA-256、字节数、替换次数和另外38份本地中间日志的保留原因见[归档清单](evidence/delivery-package/log-archive-manifest.json)。历史失败和CSP待审门禁也保留。
-- 当前人类可读报告及 `feature.yaml` 的选中日志引用已改到归档副本。历史 JSON 内原日志路径保持其原始记录身份，由归档清单映射，不当作可点击交付链接。
-- 可导出的 FEAT-154 真实 App 截图 **0 张**；现存3张仅为 D0 静态示意。[截图登记](evidence/delivery-package/screenshot-ledger.json)逐轮列明缺口及影响：审阅者可核对操作记录、原生尺寸与数据比较，但不能仅靠本包重新判断历史视觉效果。未生成替代图片或冒称已导出。
-- [检查结果](evidence/delivery-package/package-checks.json)记录提交准备阶段的文档、归档、链接、来源及保护检查；本轮提交检查见[收口检查](evidence/local-commits/meta-final-checks.json)。文档检查不是新的产品验收。
-
-## 5. 跨仓交付与下一动作
-
-[原逐仓提交计划](17-cross-repository-commit-plan.md)列明文件归属、生成来源、FEAT-153主题依赖、顺序和验证说明；[精确逐文件清单](evidence/delivery-package/cross-repository-files.json)包含完整路径、Git状态和工作树 SHA-256。
-
-本地提交已按用户授权执行，实际结果见18。系统外观、显示设置、运行数据和15个主题保护文件字节保持；未推送、创建分支或更改远端。19已完成新提交基线的标准构建、激活与定向复验。接下来等待允许的目标尺寸/暗色条件，再安排完整Must验收；AC-009与D4继续保持未完成。
+当前剩余交付操作是审阅并提交本轮Coze改动与元仓记录；已有前序未提交改动保留。四项独立调整和前序FEAT-154图标/CSP改动含同文件增量，应按归属拆分审阅。本轮没有获得新的提交/推送指令，因此未执行。业务接口或节点处理不属于FEAT-154后续欠项。

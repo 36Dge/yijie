@@ -1,0 +1,22 @@
+PREPARED: 190 original Coze playground workspaces, exact upstream external versions/integrities, isolated derived lock; 1032 source alias projections
+{
+  "compiler": "typescript@5.8.2",
+  "original_source_commit": "fefb05ff27be1da939612fbf9faf5db62583b8ae",
+  "current_diagnostics": 127,
+  "baseline_diagnostics": 126,
+  "unchanged_inherited": 126,
+  "unqualified": 1,
+  "qualification": "FAIL"
+}
+frontend/packages/workflow/playground/src/components/node-panel/components/local-catalog-drag.ts:2 TS2724 '"@flowgram-adapter/free-layout-editor"' has no exported member named 'PlaygroundDrag'. Did you mean 'Playground'?
+file://${WORKSPACE}/yijie-coze/scripts/yijie/workflow-editor.mjs:229
+    child.on('close', code => code === 0 && bytes <= 1048576 ? resolve(capture ? Buffer.concat(chunks).toString().trim() : undefined) : reject(new Error('Editor build command did not complete successfully')));
+                                                                                                                                               ^
+
+Error: Editor build command did not complete successfully
+    at ChildProcess.<anonymous> (file://${WORKSPACE}/yijie-coze/scripts/yijie/workflow-editor.mjs:229:144)
+    at ChildProcess.emit (node:events:509:20)
+    at maybeClose (node:internal/child_process:1108:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+
+Node.js v26.0.0

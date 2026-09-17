@@ -1,0 +1,47 @@
+✖ every explicitly reviewed native script matches the actual built bytes (0.593542ms)
+✖ ordinary source edits require a fresh explicit byte review (0.062791ms)
+✔ a WebAssembly namespace reference needs an explicit static classification (0.759709ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 1
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 71.160167
+
+✖ failing tests:
+
+test at scripts/yijie/workflow-editor-csp-review.test.mjs:14:1
+✖ every explicitly reviewed native script matches the actual built bytes (0.593542ms)
+  Error: ENOENT: no such file or directory, open '${WORKSPACE}/yijie-coze/bin/workflow-editor/dist/assets/js/6716.dd6ef1f8.js'
+      at Object.openSync (node:fs:556:18)
+      at readFileSync (node:fs:440:35)
+      at TestContext.<anonymous> (file://${WORKSPACE}/yijie-coze/scripts/yijie/workflow-editor-csp-review.test.mjs:17:19)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.start (node:internal/test_runner/test:1096:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '${WORKSPACE}/yijie-coze/bin/workflow-editor/dist/assets/js/6716.dd6ef1f8.js'
+  }
+
+test at scripts/yijie/workflow-editor-csp-review.test.mjs:25:1
+✖ ordinary source edits require a fresh explicit byte review (0.062791ms)
+  Error: ENOENT: no such file or directory, open '${WORKSPACE}/yijie-coze/bin/workflow-editor/dist/assets/js/6716.dd6ef1f8.js'
+      at Object.openSync (node:fs:556:18)
+      at readFileSync (node:fs:440:35)
+      at TestContext.<anonymous> (file://${WORKSPACE}/yijie-coze/scripts/yijie/workflow-editor-csp-review.test.mjs:27:20)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:831:18)
+      at Test.postRun (node:internal/test_runner/test:1330:19)
+      at Test.run (node:internal/test_runner/test:1258:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '${WORKSPACE}/yijie-coze/bin/workflow-editor/dist/assets/js/6716.dd6ef1f8.js'
+  }

@@ -1,0 +1,10 @@
+{
+  "recorded_at": "2026-09-16T23:48:13.351973+08:00",
+  "finding": "DARK-01: image/video nodes17–22 icon currentColor SVG falls back to black when loaded as img; low contrast on dark catalog. Actual native screenshot captured.",
+  "cause": "CSS currentColor in external SVG does not inherit foreground from host img; existing themed registry did not cover media icon.",
+  "fix": "Use existing local-only ThemedNodeIcon rendering and existing text-kind foreground token for original image SVG. Original icon URL/geometry and data untouched; common upstream path without localAdapter remains unchanged.",
+  "contract_impact": "none; renderer-only color handling, no protocol, persistence or execution behavior changes",
+  "changed_source": "frontend/packages/workflow/playground/src/components/node-icon/themed-node-icon.tsx",
+  "original_svg_sha256": "cdc34a750ee08e68c7b2b4d48313e7319d5e5f6c8d45ebe82aa8c6b8d3d55041",
+  "owner_authorization": "Current steps4-6 dark acceptance plus prior authorized actual UI fix/canonical build scope. Dark appearance may be changed temporarily; display scaling still declined."
+}

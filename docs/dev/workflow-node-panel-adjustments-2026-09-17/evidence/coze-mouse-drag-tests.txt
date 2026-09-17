@@ -1,0 +1,17 @@
+✔ Coze tracker receives viewport coordinates; short clicks do not create or suppress a click (19.242792ms)
+✔ drag uses the exact release point once and removes the preview/listeners (11.074583ms)
+✔ release over the catalog, a control or outside the window cancels without creating (6.827875ms)
+✔ Escape, blur and component disposal clean up without a delayed create (5.951417ms)
+✔ permission change or a lost mouse release prevents insertion (4.719792ms)
+✔ the native HTML5 drag source stays connected with the same DOM identity while dragging (11.452542ms)
+✔ only the source begins/ends a drag, monitor reads are side-effect free, intent has no shared instance (0.639208ms)
+✔ drag rechecks readonly and current local draft permissions (0.052209ms)
+✔ all 30 catalog icons have distinct visible geometry and valid static SVG (16.012833ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 478.802875

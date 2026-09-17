@@ -5,7 +5,7 @@ feature:
   id: FEAT-154
   slug: ecommerce-node-ui
   title: 电商节点前端 UI
-  status: in_progress
+  status: usable
   created_at: 2026-09-15
   requirement_owner: 段成威
   technical_owner: 段成威
@@ -14,10 +14,10 @@ feature:
 request_boundary:
   owner_scope_reaffirmation: 整个FEAT-154仅在工作流中注册30个电商节点并实现画布展示、属性表单和页面内交互；不实现节点接口调用逻辑，不实现任何节点业务处理逻辑。
   owner_test_run_clarification: 试运行入口保持可点击；点击仅展示未接入提示，不进行接口调用或业务处理，也不生成模拟运行结果。canTest只表示实际执行资格，不驱动纯展示入口禁用。
-  current_delivery: current_environment_verified_local_commits_complete
+  current_delivery: final_local_d4_verified_usable
   implementation_authorized: true
   current_change_contract_impact: none
-  note: 19五步及77878acf同一候选30节点/共用交互复验已收口，原稿和窗口恢复；搜索修复已本地提交6d5b3095，元仓证据随本轮归档。AC-009的1440×900及暗色保留NOT RUN，完整D4未通过，见20。
+  note: 用户已授权显示缩放；23在同一586e23d3候选完成30节点、共用交互和四种主题尺寸，12张真实截图归档。原稿/默认显示/浅色/窗口恢复。FEAT-154纯UI本地验收完成；四项独立面板调整另行记录，本轮源码和证据未提交。额外原生菜单复验仍依用户决定跳过。
 scope:
   risk_level: medium
   data_classification: internal
@@ -111,7 +111,7 @@ must_acceptance:
   - id: AC-009
     statement: 沿用当前主题与原生组件；浅/暗色在 1180×760、1440×900 下长表单可滚动，焦点可见、键盘可用
     verification: 主题/尺寸截图；Tab/Enter/Esc、侧栏滚动、长名称/数组/对象检查
-    status: pending
+    status: pass
   - id: AC-010
     statement: 同一正常 Desktop 产品入口真实可操作；既有三节点边界与用户主题改动保持，验证如实记录
     verification: 最终 diff、正常入口 UI fresh run、聚焦构建检查；禁止项 NOT RUN，外部调用 0
@@ -131,7 +131,7 @@ contract:
       command: "make workflow-editor"
       status: PASS
       exit_code: 0
-      evidence: evidence/d4-current-environment/search-fix-register.json
+      evidence: evidence/dark-verification/editor-register.json
   historical_check_artifacts:
     - evidence/step2-implementation/contract-source-consumer-checks.json
 
@@ -153,60 +153,60 @@ external_authorizations:
     approved_at: N/A
 implementation:
   status: complete
-  real_entrypoint: yijie-desktop canonical pnpm tauri:demo-fast:app → /workflows → workflow-local main.tsx → WorkflowPlayground；R2同一候选逐一添加30节点、打开侧栏并填写代表字段，见14。
+  real_entrypoint: canonical Desktop → /workflows → workflow-local → WorkflowPlayground；23记录同一586e23d3候选全30节点、共用交互及四种外观尺寸最终验收
   mock_only: false
 verification:
-  status: BLOCKED
-  verified_at: NOT RUN
+  status: PASS
+  verified_at: 2026-09-17T02:16:27.529676+08:00
   startup:
     status: PASS
-    command_or_steps: 原稿恢复后Cmd+Q及workflow-stop；搜索修复标准构建/静态审阅/登记/build/up；Desktop canonical packaged启动
-    environment: local Desktop/Coze，修复候选run_epoch 21c88100-ca6e-4ebb-a1c6-4d1a2ec37110
-    actual_result: 六项服务健康，新App进程47333；用户解锁后正常入口进入原稿，原生1180×760；同一候选30节点已实际操作
-    evidence: evidence/d4-current-environment/search-fix-services-ready-runtime.json
+    command_or_steps: 用户授权丢弃临时页后正常Cmd+Q及workflow-stop；canonical Coze构建/CSP审阅/登记/build/up和Desktop打包启动
+    environment: local Desktop PID36779；586e23d3候选；epoch 9bb04654-0186-44ba-9467-165fd035bfba
+    actual_result: 六主服务健康，manifest/source digest/Contracts锁及Desktop binary核验通过；继承类型诊断126，新增0
+    evidence: evidence/final-d4-20260917/runtime-final.json
   real_smoke:
     status: PASS
-    command_or_steps: 新候选重做完整名称搜索、30节点与共用交互
-    environment: 当前系统浅色，原生1180×760，同一App47333及77878acf候选
-    actual_result: 同一77878acf全30节点及共用实例/删除撤销/引用失效恢复/历史/试运行提示/离开取消/原稿恢复通过；试运行数据和审计增量0，详见attempt2-shared-results
-    evidence: evidence/d4-current-environment/attempt2-shared-results.json
+    command_or_steps: 同一App候选30节点逐项添加/侧栏/代表字段，独立实例、引用、撤销重做、历史/离开/恢复及四种主题尺寸
+    environment: light/dark 1180x760 and 1440x900，原生window_geometry核对，整个阶段候选与源码不变
+    actual_result: 全部Must通过；12张真实截图，试运行所有事实含审计相等；原稿及原显示/浅色/1180x780恢复
+    evidence: 23-final-d4-qualification.md
   representative_failure:
     status: PASS
-    command_or_steps: 新候选普通格式错误修正、无结果搜索恢复、删除与离开取消、正常重连
-    environment: 正常原生UI；禁止故障/时钟/攻击注入
-    actual_result: 同一候选1.2.3原文保留并修正0.15、零值保留、无结果恢复、删除和离开取消、自然到期重连均通过；无故障或攻击注入
-    evidence: evidence/d4-current-environment/attempt2-shared-results.json
+    command_or_steps: 普通整数格式错误、无结果搜索、引用来源删除、自然会话到期重连、离开/恢复取消
+    environment: 正常原生UI，不注入故障；额外原生菜单路径依用户决定跳过
+    actual_result: 错误提示可修正；引用失效随撤销恢复；配置跨重连保留；恢复原稿保留进入前未保存名称
+    evidence: evidence/final-d4-20260917/native-observations.json
   focused_checks:
+    - repository: yijie-coze
+      command: "node scripts/yijie/workflow-editor.mjs check"
+      status: PASS
+      exit_code: 0
+      evidence: evidence/final-d4-20260917/editor-check-final.json
     - repository: yijie-coze
       command: "python3 scripts/yijie/workflow-editor-ecommerce-source.py --check"
       status: PASS
       exit_code: 0
-      evidence: evidence/d4-current-environment/source-field-check.json
+      evidence: evidence/final-d4-20260917/source-fields.json
     - repository: yijie-coze
-      command: "node --test frontend/packages/workflow/playground/src/local-ecommerce/search.test.mjs frontend/packages/workflow/playground/src/local-ecommerce/value-state.test.mjs scripts/yijie/workflow-editor-ecommerce-draft.test.mjs scripts/yijie/workflow-editor-ecommerce-registration.test.mjs scripts/yijie/workflow-editor-state.test.mjs scripts/yijie/workflow-editor-bridge.test.mjs"
+      command: "node --test focused ecommerce, draft, state, bridge and catalog tests"
       status: PASS
       exit_code: 0
-      evidence: evidence/d4-current-environment/search-fix-focused.json
-    - repository: yijie-coze
-      command: "node --test scripts/yijie/workflow-editor-csp-review.test.mjs"
-      status: PASS
-      exit_code: 0
-      evidence: evidence/d4-current-environment/search-fix-csp-tests.json
-    - repository: yijie-coze
-      command: "make lint test"
-      status: PASS
-      exit_code: 0
-      evidence: evidence/d4-current-environment/search-fix-source-preservation.json
+      evidence: evidence/final-d4-20260917/focused.json
     - repository: yijie-coze
       command: "node scripts/yijie/workflow-editor.mjs build"
       status: PASS
       exit_code: 0
-      evidence: evidence/d4-current-environment/search-fix-editor-build-reviewed.json
+      evidence: ../../dev/workflow-node-panel-adjustments-2026-09-17/evidence/mouse-editor-build-reviewed.json
     - repository: yijie-infra
       command: "make workflow-editor"
       status: PASS
       exit_code: 0
-      evidence: evidence/d4-current-environment/search-fix-register.json
+      evidence: ../../dev/workflow-node-panel-adjustments-2026-09-17/evidence/mouse-editor-register.json
+    - repository: yijie-coze
+      command: "node --test scripts/yijie/workflow-editor-csp-review.test.mjs"
+      status: PASS
+      exit_code: 0
+      evidence: ../../dev/workflow-node-panel-adjustments-2026-09-17/evidence/mouse-csp-tests-final.json
   historical_focused_check_artifacts:
     - evidence/d4-current-environment/search-fix-focused.txt
     - evidence/d4-current-environment/search-fix-csp-tests.txt
@@ -225,6 +225,22 @@ verification:
     - evidence/delivery-package/command-output/recovery-execution/value-state-recheck-r6.txt
     - evidence/delivery-package/command-output/recovery-execution/csp-tests-r7.txt
   artifacts:
+    - 22-dark-appearance-verification.md
+    - evidence/dark-verification/candidate-final.json
+    - evidence/dark-verification/finding-and-fix.json
+    - evidence/dark-verification/csp-comparison.json
+    - evidence/dark-verification/final-native-observations.json
+    - evidence/dark-verification/window-and-appearance.json
+    - evidence/dark-verification/persistence-comparison.json
+    - evidence/dark-verification/screenshot-ledger.json
+    - evidence/dark-verification/final-checks.json
+    - 21-editor-source-alignment.md
+    - evidence/editor-source-alignment/candidate-final.json
+    - evidence/editor-source-alignment/manifest-comparison.json
+    - evidence/editor-source-alignment/ui-observations.json
+    - evidence/editor-source-alignment/ui-persistence-comparison.json
+    - evidence/editor-source-alignment/screenshot-ledger.json
+    - evidence/editor-source-alignment/final-checks.json
     - 20-d4-current-environment.md
     - evidence/d4-current-environment/attempt1-result.json
     - evidence/d4-current-environment/attempt2-candidate.json
@@ -271,16 +287,18 @@ verification:
     - evidence/recovery-execution/dark-theme-deferral-and-step2-closure.json
   diff_review:
     status: PASS
-    summary: D4增量仅Coze本地搜索hook/匹配函数/回归测试及精确CSP审阅记录4文件；无公共契约或业务执行变化，其他源码仓未改。新manifest与消费者源锁一致，15主题文件保持；元仓记录各轮真实边界，搜索修复已获用户授权本地提交6d5b3095，元仓证据随本轮归档，无推送。
+    summary: 最终验收阶段源码不变；候选含另行归属的四项面板调整及前序图标/CSP增量。复用Coze拖动与创建机制；协议、业务执行及持久化不变。15保护文件和4原始资料保持，来源检查通过；非独立人工批准。本轮不提交推送。
   known_limitations:
-    - 30节点实现和核心真实UI验收完成；AC-009及完整D4仍未完成
-    - f608历史浅色1180×760键盘/焦点/滚动通过；本次77878acf全30节点/搜索及共用交互已复验，原稿恢复。1440×900及暗色仍未执行，1512×875不能替代目标
-    - 暗色实测NOT RUN，用户明确要求保持系统外观并后续补齐
-    - Ctrl+Z/Ctrl+Shift+Z已在原生App实测，Cmd+Z未作通过声明
-    - 634为顶层表格字段行数，嵌套描述/示例保留但不重复计数；逐节点实测代表字段，不冒称634字段均人工填写
-    - 部分object未给完整内层Schema、枚举或初值，不擅造
-    - 用户已确认仅页面内存/页面离开保护，App关闭不保证保留；新节点业务调用/媒体处理/执行/审批发布均不实现
-    - 用户禁止的强杀、权限故障、攻击fixture与binary伪装测试永久不执行
+    - FEAT-154纯UI本地实现与D4完成；无节点业务接口或执行逻辑，不扩张为公网或生产资格
+    - 本轮12张真实截图，21和22合计9张；此前历史轮次本地截图缺口仍保留
+    - 自动工具拖入未成功确认；同候选用户手动拖入成功，取消/越界分支用正常单元测试验证
+    - 额外原生菜单复验按用户决定跳过；本轮键盘Delete、Cmd+Z及Cmd+Shift+Z实际通过，取消覆盖页面与弹层
+    - 634为顶层字段行；真实UI逐节点填写代表字段，完整源映射与明示子项另行核对，不声称全部人工填写
+    - 原文未定义完整内层Schema、枚举或初值时不擅造
+    - 配置仅页面内存；App关闭不保证保留，试运行仅提示
+    - 强杀、权限故障、攻击fixture及binary伪装测试永久不执行
+    - 本轮源码和元仓证据未提交、未推送；四项额外面板调整不计入FEAT-154
+
 public_readiness:
   required: false
   status: not_applicable
@@ -343,6 +361,7 @@ repository_roles:
     role: 显式恢复入口、阶段证据、数据保护与canonical本地激活
 
 recovery_execution:
+  record_scope: historical_round_current_candidate_see_final_d4_qualification
   status: complete_with_dark_theme_deferred
   authorization: 用户明确要求执行12中的恢复预检、恢复入口、旧环境恢复、新版本激活、三样板验收五步方案
   plan: 12-recovery-and-step2-verification-plan.md
@@ -362,6 +381,7 @@ recovery_execution:
     evidence: evidence/recovery-execution/dark-theme-deferral-and-step2-closure.json
 
 full_ui_implementation:
+  record_scope: historical_round_current_candidate_see_final_d4_qualification
   status: core_complete_verification_pending
   authorization: 用户明确要求执行补齐剩余27节点和全量UI集成验证的五步方案
   contract_impact: none
@@ -375,6 +395,7 @@ full_ui_implementation:
   active_run_epoch: 8d5a65b9-8656-430d-9554-e6ffd490f253
 
 ac009_verification:
+  record_scope: historical_round_current_candidate_see_final_d4_qualification
   status: light_minimum_keyboard_pass_remaining_not_run
   authorization: 用户明确要求执行五步尺寸与键盘验收，包含实际UI问题修复与标准构建激活
   contract_impact: none
@@ -393,6 +414,7 @@ ac009_verification:
   d4: NOT RUN
 
 large_window_display_decision:
+  record_scope: historical_round_current_candidate_see_final_d4_qualification
   status: paused_display_change_declined_by_owner
   owner_reply: 不允许
   original_display: 1512×982（默认）
@@ -405,6 +427,7 @@ large_window_display_decision:
   evidence: evidence/light-large-verification/owner-display-change-decision.json
 
 delivery_preparation:
+  record_scope: historical_round_current_candidate_see_final_d4_qualification
   status: completed_by_authorized_local_commits
   contract_impact: none
   entrypoint: 16-delivery-status-and-evidence.md
@@ -422,6 +445,7 @@ delivery_preparation:
   d4: NOT RUN
 
 local_commit_baseline:
+  record_scope: historical_round_current_candidate_see_final_d4_qualification
   status: complete_local_only
   authorization: 用户明确要求执行逐仓本地提交四步方案，并在中断后要求继续执行
   contract_impact_incremental: none
@@ -436,6 +460,7 @@ local_commit_baseline:
   d4: NOT RUN
 
 committed_candidate_regression:
+  record_scope: historical_round_current_candidate_see_final_d4_qualification
   status: complete_targeted_regression_screenshot_gap_recorded
   authorization: 用户明确要求执行已提交版本构建激活与定向回归五步方案
   contract_impact: none
@@ -457,6 +482,7 @@ committed_candidate_regression:
   d4: NOT RUN
 
 d4_current_environment:
+  record_scope: historical_round_current_candidate_see_final_d4_qualification
   status: complete_current_environment_ac009_pending
   record: 20-d4-current-environment.md
   full_node_matrix: evidence/d4-current-environment/attempt2-node-matrix.json
@@ -479,3 +505,82 @@ d4_current_environment:
   light_1440x900: NOT RUN
   dark: owner_deferred_NOT_RUN
   d4: INCOMPLETE
+
+editor_source_alignment:
+  record_scope: historical_round_current_candidate_see_final_d4_qualification
+  status: complete_targeted_regression_ac009_pending
+  authorization: 用户授权六步执行，并要求当作正常停止继续任务；不更改此前系统显示拒绝、暗色延期和额外原生菜单复验跳过决定
+  contract_impact: none
+  record: 21-editor-source-alignment.md
+  evidence: evidence/editor-source-alignment/candidate-final.json
+  source_commit: 6d5b309519c2c027fee4a37a107f15c56d554645
+  manifest_sha256: b17f052dc9985579157bfe7bce141951a5f62e9d54d58f7f91a0e6bdda732d22
+  source_digest: 39000526e47f09e2bbf0403a8a87d940733e1532e695efe5033dff6c5d211fad
+  run_epoch: 4b160abe-3fee-459e-971b-78d39421df0d
+  normal_stop: confirmed_exit0_after_canonical_recovery_historical137_preserved
+  services: six_healthy_reused_verified_images
+  desktop: canonical_incremental_build_and_packaged_launch
+  source_worktrees: unchanged_clean
+  light_1180x760_targeted: PASS
+  screenshots_exported: 2
+  screenshot_ledger: evidence/editor-source-alignment/screenshot-ledger.json
+  original_draft: restored_saved
+  restored_window: 1180x780
+  light_1440x900: NOT RUN
+  dark_two_sizes: deferred_by_owner_NOT_RUN
+  extra_native_menu_retest: skipped_by_owner
+  ac009: pending
+  d4: BLOCKED
+  this_round_document_evidence_commit: NOT RUN
+  push: NOT RUN
+
+dark_appearance_verification:
+  record_scope: historical_round_current_candidate_see_final_d4_qualification
+  status: minimum_dark_pass_large_sizes_pending
+  authorization: 用户要求继续步骤4–6并开始暗色验收；临时切换暗色后恢复原浅色，未解除系统显示缩放拒绝
+  contract_impact: none
+  record: 22-dark-appearance-verification.md
+  candidate: evidence/dark-verification/candidate-final.json
+  source_base_commit: 6d5b309519c2c027fee4a37a107f15c56d554645
+  source_digest: fed130babaa4fe0264c0774c7dc3c316db4e1e6a046b3f98d8e7e092d34690ba
+  manifest_sha256: de585dcc9bfa76a599818d167db83588fc32ed4003c40f017b5983082c931f4c
+  run_epoch: c864d4c5-5ac5-42b4-8608-785de7a1b66e
+  source_changes_uncommitted: true
+  changed_coze_files: 2
+  finding: DARK-01_media_icon_low_contrast_FIXED_VERIFIED
+  dark_1180x760: PASS_documented_representative_scope
+  light_1180x760_affected_regression: PASS
+  light_1440x900: NOT RUN
+  dark_1440x900: NOT RUN
+  normal_zoom_measured: 1512x875_not_target
+  system_display_changed: false
+  original_appearance_restored: light
+  original_draft: restored_saved
+  restored_window: 1180x780
+  screenshots_this_round: 7
+  screenshots_total: 9
+  screenshot_ledger: evidence/dark-verification/screenshot-ledger.json
+  extra_native_menu_retest: skipped_by_owner
+  ac009: pending
+  d4: BLOCKED
+  git_commit_push: NOT RUN_this_round
+
+final_d4_qualification:
+  status: PASS
+  record: 23-final-d4-qualification.md
+  candidate_manifest: 586e23d360480e758921366a318d980f01d06aa3d4f917366cbc1af7a5d145e2
+  source_digest: c226f744f587b85f01b31362416d2b946a7c9bf17c86e54a3b7944d75ee03392
+  run_epoch: 9bb04654-0186-44ba-9467-165fd035bfba
+  all_30_nodes: PASS
+  source_fields_634_and_explicit_children: PASS
+  all_four_theme_sizes: PASS
+  screenshot_count_this_round: 12
+  screenshot_count_feature_total: 21
+  screenshots: evidence/final-d4-20260917/screenshot-ledger.json
+  source_unchanged_during_final_qualification: true
+  original_draft_and_environment: restored
+  business_facts_equal: true
+  trial_all_facts_including_audit_equal: true
+  independent_four_adjustments: outside_FEAT154
+  extra_native_menu_retest: skipped_by_owner_keyboard_path_verified
+  git_commit_push: NOT RUN_this_round

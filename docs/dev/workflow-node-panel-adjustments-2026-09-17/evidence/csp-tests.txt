@@ -1,0 +1,29 @@
+✖ every explicitly reviewed native script matches the actual built bytes (61.243792ms)
+✔ ordinary source edits require a fresh explicit byte review (1.267291ms)
+✔ a WebAssembly namespace reference needs an explicit static classification (0.125334ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 136.79675
+
+✖ failing tests:
+
+test at scripts/yijie/workflow-editor-csp-review.test.mjs:14:1
+✖ every explicitly reviewed native script matches the actual built bytes (61.243792ms)
+  Error: ENOENT: no such file or directory, open '${WORKSPACE}/yijie-coze/bin/workflow-editor/dist/assets/js/async/7605.548d5a8a.js'
+      at Object.openSync (node:fs:556:18)
+      at readFileSync (node:fs:440:35)
+      at TestContext.<anonymous> (file://${WORKSPACE}/yijie-coze/scripts/yijie/workflow-editor-csp-review.test.mjs:17:19)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.start (node:internal/test_runner/test:1096:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '${WORKSPACE}/yijie-coze/bin/workflow-editor/dist/assets/js/async/7605.548d5a8a.js'
+  }

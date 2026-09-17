@@ -1,0 +1,19 @@
+{
+  "recorded_at": "2026-09-17T00:51:19.518539+08:00",
+  "scope": [
+    "catalog press-and-drag to canvas",
+    "slightly stronger Add Node lime background",
+    "30 individually distinct icons",
+    "theme-compatible catalog font and size"
+  ],
+  "feature_scope": "Independent UI maintenance; not part of FEAT-154 requirements or acceptance",
+  "drag_requirement": "User explicitly requires reuse of existing Coze interaction mechanism",
+  "quit_permission": "User explicitly answered: 直接退出，不保留. App Cmd+Q exit confirmed; do not restore discarded page configuration.",
+  "constraints": [
+    "No node API calls or business processing",
+    "Trial remains clickable and only displays local notice",
+    "Do not change system display scaling",
+    "Dark appearance testing authorized; restore light afterwards",
+    "No new commit/push authorization"
+  ]
+}

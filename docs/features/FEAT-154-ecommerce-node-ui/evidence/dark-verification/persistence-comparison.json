@@ -1,0 +1,108 @@
+{
+  "recorded_at": "2026-09-17T00:08:40.620745+08:00",
+  "whole_task_non_audit_equal": {
+    "api": {
+      "schema_version": true,
+      "database": true,
+      "scope_bindings": true,
+      "resources": true,
+      "operations": true
+    },
+    "coze": {
+      "database": true,
+      "workflows": true,
+      "executions": true,
+      "operations": true,
+      "principals": true,
+      "schema_version": true,
+      "node_executions": true
+    }
+  },
+  "final_candidate_ui_non_audit_equal": {
+    "api": {
+      "schema_version": true,
+      "database": true,
+      "scope_bindings": true,
+      "resources": true,
+      "operations": true
+    },
+    "coze": {
+      "database": true,
+      "workflows": true,
+      "executions": true,
+      "operations": true,
+      "principals": true,
+      "schema_version": true,
+      "node_executions": true
+    }
+  },
+  "whole_task_audit_delta": 12,
+  "final_candidate_ui_audit_delta": 8,
+  "final_candidate_audit_actions": {
+    "list": 1,
+    "read": 2,
+    "bootstrap": 4,
+    "history": 1
+  },
+  "final_candidate_new_audit": [
+    {
+      "id": 1451,
+      "operation_id": null,
+      "workflow_id": null,
+      "action": "list",
+      "outcome_code": "success"
+    },
+    {
+      "id": 1452,
+      "operation_id": null,
+      "workflow_id": "7685031373442121728",
+      "action": "read",
+      "outcome_code": "success"
+    },
+    {
+      "id": 1453,
+      "operation_id": null,
+      "workflow_id": "7685031373442121728",
+      "action": "bootstrap",
+      "outcome_code": "success"
+    },
+    {
+      "id": 1454,
+      "operation_id": null,
+      "workflow_id": "7685031373442121728",
+      "action": "history",
+      "outcome_code": "success"
+    },
+    {
+      "id": 1455,
+      "operation_id": null,
+      "workflow_id": "7685031373442121728",
+      "action": "bootstrap",
+      "outcome_code": "success"
+    },
+    {
+      "id": 1456,
+      "operation_id": null,
+      "workflow_id": "7685031373442121728",
+      "action": "read",
+      "outcome_code": "success"
+    },
+    {
+      "id": 1457,
+      "operation_id": null,
+      "workflow_id": "7685031373442121728",
+      "action": "bootstrap",
+      "outcome_code": "success"
+    },
+    {
+      "id": 1458,
+      "operation_id": null,
+      "workflow_id": "7685031373442121728",
+      "action": "bootstrap",
+      "outcome_code": "success"
+    }
+  ],
+  "trial_all_facts_including_audit_equal": true,
+  "trial_audit_delta": 0,
+  "original_draft": "restored_saved"
+}

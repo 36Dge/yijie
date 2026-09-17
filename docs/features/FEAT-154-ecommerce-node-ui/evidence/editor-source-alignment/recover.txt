@@ -1,0 +1,23 @@
+python3 scripts/workflow-local.py recover --recovery-id "e8d6e427-4c70-4132-a813-2088d28ca26f"
+START recovery-copy-workflow-postgres
+END recovery-copy-workflow-postgres exit 0
+START recovery-copy-coze-workflow-mysql
+END recovery-copy-coze-workflow-mysql exit 0
+START recovery-copy-coze-workflow-redis
+END recovery-copy-coze-workflow-redis exit 0
+START recovery-copy-coze-workflow-minio
+END recovery-copy-coze-workflow-minio exit 0
+START recovery-start-workflow-postgres
+END recovery-start-workflow-postgres exit 0
+START recovery-start-coze-workflow-mysql
+END recovery-start-coze-workflow-mysql exit 0
+START recovery-start-coze-workflow-redis
+END recovery-start-coze-workflow-redis exit 0
+START recovery-start-coze-workflow-minio
+END recovery-start-coze-workflow-minio exit 0
+START recovery-start-coze-workflow
+END recovery-start-coze-workflow exit 0
+START recovery-start-workflow-api
+END recovery-start-workflow-api exit 0
+STOPPED: owned containers exited normally; named volumes and other projects retained
+RECOVERY_COMPLETE e8d6e427-4c70-4132-a813-2088d28ca26f — original data retained, historical failure archived, normal stop verified

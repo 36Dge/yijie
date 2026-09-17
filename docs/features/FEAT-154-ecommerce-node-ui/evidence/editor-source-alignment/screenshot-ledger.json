@@ -1,0 +1,45 @@
+{
+  "recorded_at": "2026-09-16T23:34:29.147205+08:00",
+  "candidate_manifest_sha256": "b17f052dc9985579157bfe7bce141951a5f62e9d54d58f7f91a0e6bdda732d22",
+  "run_epoch": "4b160abe-3fee-459e-971b-78d39421df0d",
+  "app_pid": 6596,
+  "capture_time": "During this round after canonical activation and before draft restoration; precise capture timestamp not supplied by CUA. recorded_at is archive time.",
+  "source": "CUA app.getScreenshot({emit:false}) native window JPEG bytes",
+  "export_method": "Exact JPEG bytes encoded as hex in memory, saved through a new temporary local TextEdit plain-text document, decoded to JPEG by bytes.fromhex. Captured byte lengths and CRC32 independently checked before archival; no image editing or reconstruction. Temporary document closed and TextEdit normally quit.",
+  "exported_count": 2,
+  "images": [
+    {
+      "path": "01-catalog-light-1180x760.jpg",
+      "bytes": 105611,
+      "crc32_at_capture": "1fbb7230",
+      "sha256": "8ea5caac5c0dcddd5d6cfd6fe6246b05a4d4867159946c56c627dc477539d0ac",
+      "pixel_size": [
+        1180,
+        760
+      ],
+      "logical_window": [
+        1180,
+        760
+      ],
+      "theme": "light",
+      "caption": "原添加节点目录；画面为可滚动目录的当前可见部分，30项总数另由原生AX核对。"
+    },
+    {
+      "path": "02-form-focus-light-1180x760.jpg",
+      "bytes": 102447,
+      "crc32_at_capture": "c9fa253f",
+      "sha256": "f5cbf5775d5b446bb681fcbedd63b46ee0a321176d0cf7a3b3c62595de7c8bc3",
+      "pixel_size": [
+        1180,
+        760
+      ],
+      "logical_window": [
+        1180,
+        760
+      ],
+      "theme": "light",
+      "caption": "05选品机会评估：对象下界0.1、上界0.95及Tab到清除按钮后的可见焦点。零值字段不在该截图可见区域。"
+    }
+  ],
+  "historical_gap": "All earlier rounds still have zero locally exported real screenshots; these two new images do not backfill historical visual evidence."
+}

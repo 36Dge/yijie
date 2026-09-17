@@ -1,0 +1,110 @@
+{
+  "recorded_at": "2026-09-16T23:34:29.147205+08:00",
+  "before": "before-desktop.json",
+  "after": "ui-final.json",
+  "non_audit_equal": {
+    "api": {
+      "schema_version": true,
+      "database": true,
+      "scope_bindings": true,
+      "resources": true,
+      "operations": true
+    },
+    "coze": {
+      "database": true,
+      "workflows": true,
+      "executions": true,
+      "operations": true,
+      "principals": true,
+      "schema_version": true,
+      "node_executions": true
+    }
+  },
+  "prior_audit_rows_unchanged": true,
+  "audit_added": [
+    {
+      "id": 1436,
+      "operation_id": null,
+      "workflow_id": null,
+      "action": "list",
+      "outcome_code": "success"
+    },
+    {
+      "id": 1437,
+      "operation_id": null,
+      "workflow_id": "7685031373442121728",
+      "action": "read",
+      "outcome_code": "success"
+    },
+    {
+      "id": 1438,
+      "operation_id": null,
+      "workflow_id": "7685031373442121728",
+      "action": "bootstrap",
+      "outcome_code": "success"
+    },
+    {
+      "id": 1439,
+      "operation_id": null,
+      "workflow_id": "7685031373442121728",
+      "action": "history",
+      "outcome_code": "success"
+    },
+    {
+      "id": 1440,
+      "operation_id": null,
+      "workflow_id": "7685031373442121728",
+      "action": "bootstrap",
+      "outcome_code": "success"
+    },
+    {
+      "id": 1441,
+      "operation_id": null,
+      "workflow_id": "7685031373442121728",
+      "action": "read",
+      "outcome_code": "success"
+    },
+    {
+      "id": 1442,
+      "operation_id": null,
+      "workflow_id": "7685031373442121728",
+      "action": "bootstrap",
+      "outcome_code": "success"
+    },
+    {
+      "id": 1443,
+      "operation_id": null,
+      "workflow_id": "7685031373442121728",
+      "action": "bootstrap",
+      "outcome_code": "success"
+    },
+    {
+      "id": 1444,
+      "operation_id": null,
+      "workflow_id": "7685031373442121728",
+      "action": "read",
+      "outcome_code": "success"
+    },
+    {
+      "id": 1445,
+      "operation_id": null,
+      "workflow_id": "7685031373442121728",
+      "action": "bootstrap",
+      "outcome_code": "success"
+    },
+    {
+      "id": 1446,
+      "operation_id": null,
+      "workflow_id": "7685031373442121728",
+      "action": "bootstrap",
+      "outcome_code": "success"
+    }
+  ],
+  "audit_added_by_action": {
+    "list": 1,
+    "read": 3,
+    "bootstrap": 6,
+    "history": 1
+  },
+  "scope": "Whole UI round; list/read/bootstrap/history are existing editor reads/session actions, not new node execution. Narrow trial comparison is trial-comparison.json."
+}

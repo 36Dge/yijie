@@ -1,0 +1,1965 @@
+{
+  "schema_version": 1,
+  "candidate": "feat154-dark-media-icon-contrast-fix",
+  "source_upstream_commit": "fefb05ff27be1da939612fbf9faf5db62583b8ae",
+  "upstream_lock_sha256": "e99ee18bbfda44e1e34f339f27ff5e6ffe33686ad96804cc385efc5f7ac0c9d3",
+  "approval_scope": "conservative_static_aid_only; browser CSP and deployment budgets unchanged",
+  "review_evidence": "../yijie/docs/features/FEAT-154-ecommerce-node-ui/evidence/dark-verification/csp-comparison.json",
+  "coverage": {
+    "bundle_files": 385,
+    "bundle_bytes": 45568463,
+    "ast_counts": {
+      "dynamic_function": 18,
+      "dynamic_function_alias": 2,
+      "dynamic_import": 10,
+      "indirect_eval": 1,
+      "network_primitive": 78,
+      "script_element_loader": 10,
+      "wasm_operation": 4,
+      "worker_constructor": 7,
+      "worker_import_scripts": 1
+    },
+    "regex_aid_matches": 301,
+    "same_name_fetch_note": "Network syntax aid includes classified non-network parser/query/router/completion methods.",
+    "shiki_scope": "Transparent wrapper preserves explicitly supplied engine and original singleton shortcut APIs. Current root consumer uses createHighlighter only; future singleton/default engine callers require a fresh review and may enter Oniguruma. No global promise that all Shiki APIs avoid WASM."
+  },
+  "files": [
+    {
+      "path": "assets/js/6716.dd6ef1f8.js",
+      "sha256": "087851956c1a0db1bb356f58f1fbd4556f42cd28558f1426eb788bebe84aa3e4",
+      "bytes": 2636057,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 4,
+        "eval": 0,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Explicit canonical17 full split-chunk byte/AST review including aliases/WASM, with independent Shiki/Text callers. No runtime CSP permission; actual App qualification separate.",
+      "data_classifications": [],
+      "callsites": [
+        {
+          "kind": "network_primitive",
+          "module_id": "175857",
+          "offset": 182018,
+          "expression": "fetch",
+          "category": "image_download",
+          "dependency": "Semi foundation image utility",
+          "reason": "Fetch-to-Blob download helper, only invoked by image download action; no image capability in local text workflow."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "624521",
+          "offset": 370485,
+          "expression": "XMLHttpRequest",
+          "category": "upload_http",
+          "dependency": "Semi foundation upload",
+          "reason": "Upload foundation post() constructs XMLHttpRequest only after upload action; no local upload action."
+        },
+        {
+          "kind": "dynamic_function",
+          "module_id": "783250",
+          "offset": 1468246,
+          "expression": "Function",
+          "category": "global_object_fallback",
+          "dependency": "lodash@4.17.21",
+          "reason": "Finds global/self first; Function fallback only when missing."
+        },
+        {
+          "kind": "dynamic_function",
+          "module_id": "224197",
+          "offset": 1545552,
+          "expression": "Function",
+          "category": "global_object_fallback",
+          "dependency": "reflect-metadata@0.1.14",
+          "reason": "global/self/this object checks precede Function. The normal browser returns earlier."
+        },
+        {
+          "kind": "dynamic_function",
+          "module_id": "820759",
+          "offset": 1555946,
+          "expression": "Function",
+          "category": "global_object_fallback",
+          "dependency": "resize-observer-polyfill@1.5.1",
+          "reason": "Global/self/window Math equality checks precede Function; normal window is sufficient."
+        },
+        {
+          "kind": "dynamic_function",
+          "module_id": "925676",
+          "offset": 2592478,
+          "expression": "Function",
+          "category": "global_object_fallback",
+          "dependency": "lodash-es@4.17.21",
+          "reason": "Global/self object checks precede Function."
+        }
+      ]
+    },
+    {
+      "path": "assets/js/async/1166.c02d5f72.js",
+      "sha256": "7bc8b0fd19ae580c0fcc17cd0cbea6dbbaaa4e3ab094d4b89439a70ac0652a24",
+      "bytes": 3469465,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 2,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/1218.6b9c46f8.js",
+      "sha256": "8dd51bdff5839b7f1a00e31cfd7477bafde0b5e56d1e69f11f75d2996c88ac3a",
+      "bytes": 22769,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 3,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/135.94d730ce.js",
+      "sha256": "4e9601fbeb1ef61e806dc25fd6326148213959c279bbfc4b84bc4e21d6c78d8c",
+      "bytes": 174994,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 6,
+        "eval": 0,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/1678.573abb3e.js",
+      "sha256": "a97a8af70d0f81d70cc3863ef5920972e763a97956a7d90ae7d0126edfa1456b",
+      "bytes": 181247,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 6,
+        "eval": 0,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/1859.bb0fbbd1.js",
+      "sha256": "41f98097aa9bbae78dcba0cc92ab882b9f3765cdcfe9f4c337e30fc1115f5d49",
+      "bytes": 177972,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 6,
+        "eval": 0,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/2029.23daad6a.js",
+      "sha256": "fe321ceac4e71fdf1f5d98d100597d17335f88f2cb4ceee5d8c38246287ada0a",
+      "bytes": 69606,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 1,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/2429.f3340ad8.js",
+      "sha256": "b32734a2e47543ee4e6225b9c1168b54d30ec50fd70f0759b0e89bd8b159dbd8",
+      "bytes": 184074,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 6,
+        "eval": 0,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/2525.85b2ae2e.js",
+      "sha256": "aa17c8424f99916cb88d5a3562eadb72921fd9c437aa2659165a6f226217998c",
+      "bytes": 14723,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 0,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Explicit canonical17 full split-chunk byte/AST review including aliases/WASM, with independent Shiki/Text callers. No runtime CSP permission; actual App qualification separate.",
+      "data_classifications": [],
+      "callsites": [
+        {
+          "kind": "script_element_loader",
+          "module_id": "739684",
+          "offset": 2888,
+          "expression": "document.createElement",
+          "category": "monaco_amd_loader",
+          "dependency": null,
+          "reason": "Original Monaco loader.init injects config.paths.vs + /loader.js; no CodeEditor is available in local text scope."
+        }
+      ]
+    },
+    {
+      "path": "assets/js/async/3011.31cd757e.js",
+      "sha256": "dfea8f99c5e101faa31d029e7c789bdc009d6678239d4d17adca977ab8eb92c7",
+      "bytes": 9227636,
+      "static_aid_counts": {
+        "worker": 4,
+        "function": 11,
+        "eval": 4,
+        "wasm": 8
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Explicit canonical17 full split-chunk byte/AST review including aliases/WASM, with independent Shiki/Text callers. No runtime CSP permission; actual App qualification separate.",
+      "data_classifications": [
+        "builtin_eval_reference_in_get_intrinsic_table",
+        "mathjax_command_name_data",
+        "string_or_template_data",
+        "wasm_namespace_capability_or_instanceof_reference"
+      ],
+      "callsites": [
+        {
+          "kind": "dynamic_function",
+          "module_id": "611407",
+          "offset": 775895,
+          "expression": "Function",
+          "category": "formily_schema_expression_codegen",
+          "dependency": "@formily/json-schema@2.3.7",
+          "reason": "The two schema compiler Function calls require {{...}} string expressions. Current local forms use Flowgram field hooks and native CodeMirror; no Formily string-schema expression dependency was found."
+        },
+        {
+          "kind": "dynamic_function",
+          "module_id": "611407",
+          "offset": 775969,
+          "expression": "Function",
+          "category": "formily_schema_expression_codegen",
+          "dependency": "@formily/json-schema@2.3.7",
+          "reason": "The two schema compiler Function calls require {{...}} string expressions. Current local forms use Flowgram field hooks and native CodeMirror; no Formily string-schema expression dependency was found."
+        },
+        {
+          "kind": "dynamic_function",
+          "module_id": "215787",
+          "offset": 842185,
+          "expression": "Function",
+          "category": "global_object_fallback",
+          "dependency": "@formily/shared@2.3.7",
+          "reason": "self/window/global checks precede Function; normal WK browser returns earlier."
+        },
+        {
+          "kind": "dynamic_function",
+          "module_id": "864672",
+          "offset": 868510,
+          "expression": "Function",
+          "category": "global_object_fallback",
+          "dependency": "@formily/shared@2.3.7",
+          "reason": "self/window/global checks precede Function; normal WK browser returns earlier."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "261562",
+          "offset": 1692685,
+          "expression": "fetch",
+          "category": "chart_resource_http",
+          "dependency": "@visactor/vrender-kits@0.18.6 browser contribution",
+          "reason": "loadJson/loadArrayBuffer/loadBlob fetch explicit supplied chart resources; local text canvas is Flowgram and does not supply chart resources."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "261562",
+          "offset": 1692823,
+          "expression": "fetch",
+          "category": "chart_resource_http",
+          "dependency": "@visactor/vrender-kits@0.18.6 browser contribution",
+          "reason": "loadJson/loadArrayBuffer/loadBlob fetch explicit supplied chart resources; local text canvas is Flowgram and does not supply chart resources."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "261562",
+          "offset": 1692958,
+          "expression": "fetch",
+          "category": "chart_resource_http",
+          "dependency": "@visactor/vrender-kits@0.18.6 browser contribution",
+          "reason": "loadJson/loadArrayBuffer/loadBlob fetch explicit supplied chart resources; local text canvas is Flowgram and does not supply chart resources."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "235749",
+          "offset": 2060452,
+          "expression": "fetch",
+          "category": "chart_resource_http",
+          "dependency": "@visactor/vrender-kits@0.18.6 node contribution",
+          "reason": "Node rendering resource functions fetch supplied URLs; browser text scope does not select node environment."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "235749",
+          "offset": 2060590,
+          "expression": "fetch",
+          "category": "chart_resource_http",
+          "dependency": "@visactor/vrender-kits@0.18.6 node contribution",
+          "reason": "Node rendering resource functions fetch supplied URLs; browser text scope does not select node environment."
+        },
+        {
+          "kind": "dynamic_function",
+          "module_id": "670366",
+          "offset": 2316097,
+          "expression": "Function",
+          "category": "json_schema_codegen",
+          "dependency": "ajv@8.12.0",
+          "reason": "Runtime compile generates validators. Native output default validator invokes this only for JSON-type nonempty defaults; local Start/End are readonly strings. Legacy trial form also compiles schemas, but local trial action uses localAdapter.test. Adding JSON input/defaults would require a new CSP-compatible implementation."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "430736",
+          "offset": 2666889,
+          "expression": "XMLHttpRequest",
+          "category": "image_crop_http",
+          "dependency": "cropperjs@1.6.2",
+          "reason": "Cropper source reload uses XHR for non-data image URL; no local cropper/image upload."
+        },
+        {
+          "kind": "dynamic_function",
+          "module_id": "837330",
+          "offset": 2698803,
+          "expression": "Function",
+          "category": "csv_object_codegen",
+          "dependency": "d3-dsv@2.0.0",
+          "reason": "Original src/dsv.js:8 objectConverter compiles column-to-property mapping for CSV/DSV parsing. No CSV import capability is exposed in local Start/Text/End scope."
+        },
+        {
+          "kind": "dynamic_function",
+          "module_id": "192888",
+          "offset": 2808495,
+          "expression": "Function",
+          "category": "legacy_bind_polyfill",
+          "dependency": "function-bind@1.1.2",
+          "reason": "Constructs Function only in bind polyfill implementation. Export selects Function.prototype.bind when present in WK."
+        },
+        {
+          "kind": "dynamic_function_alias",
+          "module_id": "794687",
+          "offset": 2809168,
+          "expression": "x",
+          "category": "intrinsic_constructor_alias_codegen",
+          "dependency": "get-intrinsic@1.3.0",
+          "reason": "Full canonical10 AST caller audit: only604823(call-bound),693200(Map) and659111(WeakMap) require794687; call-bound has only the two side-channel callers. All fixed parameters are String.prototype.indexOf, Map/WeakMap constructors and get/set/has/delete/size. None requests Async/Generator/AsyncIterator. See native-csp-10-intrinsic-callers.json."
+        },
+        {
+          "kind": "script_element_loader",
+          "module_id": "883680",
+          "offset": 3018591,
+          "expression": "e.document.createElement",
+          "category": "legacy_promise_scheduler",
+          "dependency": null,
+          "reason": "Old readyState scheduling script element with no src; MutationObserver/MessageChannel branches selected in modern WK."
+        },
+        {
+          "kind": "script_element_loader",
+          "module_id": "883680",
+          "offset": 3018643,
+          "expression": "e.document.createElement",
+          "category": "legacy_promise_scheduler",
+          "dependency": null,
+          "reason": "Old readyState scheduling script element with no src; MutationObserver/MessageChannel branches selected in modern WK."
+        },
+        {
+          "kind": "dynamic_function",
+          "module_id": "139378",
+          "offset": 3050628,
+          "expression": "Function",
+          "category": "lodash_global_or_template_codegen",
+          "dependency": "lodash@4.17.21",
+          "reason": "Includes global-object fallback and Function alias used by lodash.template. No lodash.template invocation was found in visible local text components; any future template execution remains forbidden by CSP."
+        },
+        {
+          "kind": "dynamic_function_alias",
+          "module_id": "139378",
+          "offset": 3109756,
+          "expression": "tE",
+          "category": "lodash_global_or_template_codegen",
+          "dependency": "lodash@4.17.21",
+          "reason": "Includes global-object fallback and Function alias used by lodash.template. No lodash.template invocation was found in visible local text components; any future template execution remains forbidden by CSP."
+        },
+        {
+          "kind": "worker_constructor",
+          "module_id": "499655",
+          "offset": 4954088,
+          "expression": "Worker",
+          "category": "guarded_worker_constructor",
+          "dependency": "prismjs@1.30.0",
+          "reason": "highlightElement(element, async, callback) requires async truthy and window.Worker; default async=false. Normal Prism highlightAll calls highlightElement with async===true and starts without async."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "499655",
+          "offset": 4968815,
+          "expression": "XMLHttpRequest",
+          "category": "prism_file_highlight_http",
+          "dependency": "prismjs@1.30.0",
+          "reason": "file-highlight plugin selects pre[data-src] then XHR source; local expression editor uses CodeMirror, no data-src code preview."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "646801",
+          "offset": 5524739,
+          "expression": "fetch",
+          "category": "upload_analytics_http",
+          "dependency": "tt-uploader@1.5.0",
+          "reason": "Embedded upload and analytics SDK methods contain fetch/XHR; requires SDK/action initialization. No local upload scope; no blanket assertion all callers dormant. Real App must observe no forbidden connection."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "646801",
+          "offset": 5568815,
+          "expression": "fetch",
+          "category": "upload_analytics_http",
+          "dependency": "tt-uploader@1.5.0",
+          "reason": "Embedded upload and analytics SDK methods contain fetch/XHR; requires SDK/action initialization. No local upload scope; no blanket assertion all callers dormant. Real App must observe no forbidden connection."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "646801",
+          "offset": 5569572,
+          "expression": "XMLHttpRequest",
+          "category": "upload_analytics_http",
+          "dependency": "tt-uploader@1.5.0",
+          "reason": "Embedded upload and analytics SDK methods contain fetch/XHR; requires SDK/action initialization. No local upload scope; no blanket assertion all callers dormant. Real App must observe no forbidden connection."
+        },
+        {
+          "kind": "script_element_loader",
+          "module_id": "646801",
+          "offset": 5571058,
+          "expression": "document.createElement",
+          "category": "upload_analytics_plugin_loader",
+          "dependency": null,
+          "reason": "SDK devtools/heatmap/plugin methods inject configured URLs after initialization/actions; local upload is unavailable and external scripts remain blocked."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "646801",
+          "offset": 5633710,
+          "expression": "fetch",
+          "category": "upload_analytics_http",
+          "dependency": "tt-uploader@1.5.0",
+          "reason": "Embedded upload and analytics SDK methods contain fetch/XHR; requires SDK/action initialization. No local upload scope; no blanket assertion all callers dormant. Real App must observe no forbidden connection."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "646801",
+          "offset": 5633827,
+          "expression": "fetch",
+          "category": "upload_analytics_http",
+          "dependency": "tt-uploader@1.5.0",
+          "reason": "Embedded upload and analytics SDK methods contain fetch/XHR; requires SDK/action initialization. No local upload scope; no blanket assertion all callers dormant. Real App must observe no forbidden connection."
+        },
+        {
+          "kind": "script_element_loader",
+          "module_id": "646801",
+          "offset": 5639775,
+          "expression": "document.createElement",
+          "category": "upload_analytics_plugin_loader",
+          "dependency": null,
+          "reason": "SDK devtools/heatmap/plugin methods inject configured URLs after initialization/actions; local upload is unavailable and external scripts remain blocked."
+        },
+        {
+          "kind": "script_element_loader",
+          "module_id": "646801",
+          "offset": 5647773,
+          "expression": "document.createElement",
+          "category": "upload_analytics_plugin_loader",
+          "dependency": null,
+          "reason": "SDK devtools/heatmap/plugin methods inject configured URLs after initialization/actions; local upload is unavailable and external scripts remain blocked."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "646801",
+          "offset": 5693549,
+          "expression": "fetch",
+          "category": "upload_analytics_http",
+          "dependency": "tt-uploader@1.5.0",
+          "reason": "Embedded upload and analytics SDK methods contain fetch/XHR; requires SDK/action initialization. No local upload scope; no blanket assertion all callers dormant. Real App must observe no forbidden connection."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "646801",
+          "offset": 5694195,
+          "expression": "XMLHttpRequest",
+          "category": "upload_analytics_http",
+          "dependency": "tt-uploader@1.5.0",
+          "reason": "Embedded upload and analytics SDK methods contain fetch/XHR; requires SDK/action initialization. No local upload scope; no blanket assertion all callers dormant. Real App must observe no forbidden connection."
+        },
+        {
+          "kind": "script_element_loader",
+          "module_id": "646801",
+          "offset": 5695890,
+          "expression": "document.createElement",
+          "category": "upload_analytics_plugin_loader",
+          "dependency": null,
+          "reason": "SDK devtools/heatmap/plugin methods inject configured URLs after initialization/actions; local upload is unavailable and external scripts remain blocked."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "646801",
+          "offset": 5751368,
+          "expression": "fetch",
+          "category": "upload_analytics_http",
+          "dependency": "tt-uploader@1.5.0",
+          "reason": "Embedded upload and analytics SDK methods contain fetch/XHR; requires SDK/action initialization. No local upload scope; no blanket assertion all callers dormant. Real App must observe no forbidden connection."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "646801",
+          "offset": 5751485,
+          "expression": "fetch",
+          "category": "upload_analytics_http",
+          "dependency": "tt-uploader@1.5.0",
+          "reason": "Embedded upload and analytics SDK methods contain fetch/XHR; requires SDK/action initialization. No local upload scope; no blanket assertion all callers dormant. Real App must observe no forbidden connection."
+        },
+        {
+          "kind": "script_element_loader",
+          "module_id": "646801",
+          "offset": 5756966,
+          "expression": "document.createElement",
+          "category": "upload_analytics_plugin_loader",
+          "dependency": null,
+          "reason": "SDK devtools/heatmap/plugin methods inject configured URLs after initialization/actions; local upload is unavailable and external scripts remain blocked."
+        },
+        {
+          "kind": "script_element_loader",
+          "module_id": "646801",
+          "offset": 5763134,
+          "expression": "document.createElement",
+          "category": "upload_analytics_plugin_loader",
+          "dependency": null,
+          "reason": "SDK devtools/heatmap/plugin methods inject configured URLs after initialization/actions; local upload is unavailable and external scripts remain blocked."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "646801",
+          "offset": 5796554,
+          "expression": "XMLHttpRequest",
+          "category": "upload_analytics_http",
+          "dependency": "tt-uploader@1.5.0",
+          "reason": "Embedded upload and analytics SDK methods contain fetch/XHR; requires SDK/action initialization. No local upload scope; no blanket assertion all callers dormant. Real App must observe no forbidden connection."
+        },
+        {
+          "kind": "worker_constructor",
+          "module_id": "646801",
+          "offset": 5821016,
+          "expression": "Worker",
+          "category": "guarded_worker_constructor",
+          "dependency": "tt-uploader@1.5.0",
+          "reason": "Uploader upload-task start calls initWorker(); initWorker constructs helper ir/im which tries Blob URL then data URL fallback. Module import itself only decodes a static worker string and creates Blob."
+        },
+        {
+          "kind": "worker_constructor",
+          "module_id": "646801",
+          "offset": 5821046,
+          "expression": "Worker",
+          "category": "guarded_worker_constructor",
+          "dependency": "tt-uploader@1.5.0",
+          "reason": "Uploader upload-task start calls initWorker(); initWorker constructs helper ir/im which tries Blob URL then data URL fallback. Module import itself only decodes a static worker string and creates Blob."
+        },
+        {
+          "kind": "dynamic_function",
+          "module_id": "671695",
+          "offset": 6076386,
+          "expression": "Function",
+          "category": "global_object_fallback",
+          "dependency": "core-js global-this helper",
+          "reason": "Checks globalThis/window/self/global/this before Function. Exact installed helper bytes included in evidence."
+        },
+        {
+          "kind": "dynamic_function",
+          "module_id": "389453",
+          "offset": 6107320,
+          "expression": "Function",
+          "category": "global_object_fallback_including_indirect_eval",
+          "dependency": "reflect-metadata@0.2.2",
+          "reason": "Checks globalThis/global/self/this; only if absent calls Function fallback and then indirect (0,eval). No direct eval invocation is present elsewhere in the scanned bundle."
+        },
+        {
+          "kind": "indirect_eval",
+          "module_id": "389453",
+          "offset": 6107383,
+          "expression": "(0,eval)",
+          "category": "global_object_fallback_including_indirect_eval",
+          "dependency": "reflect-metadata@0.2.2",
+          "reason": "Checks globalThis/global/self/this; only if absent calls Function fallback and then indirect (0,eval). No direct eval invocation is present elsewhere in the scanned bundle."
+        },
+        {
+          "kind": "wasm_operation",
+          "module_id": "775620",
+          "offset": 7195057,
+          "expression": "WebAssembly.instantiate",
+          "category": "shiki_oniguruma_wasm_loader",
+          "dependency": "@shikijs/engine-oniguruma@3.6.0",
+          "reason": "The original Oniguruma loaders instantiate WASM only when that engine is selected. Local exact shiki root adapter supplies genuine JavaScript regex engine to original createHighlighter before eager preset-code initialization. Explicit engine short-circuits the default engine factory. Current root import only uses createHighlighter. Runtime CSP still forbids WASM; actual App qualification is required."
+        },
+        {
+          "kind": "wasm_operation",
+          "module_id": "775620",
+          "offset": 7195569,
+          "expression": "WebAssembly.instantiateStreaming",
+          "category": "shiki_oniguruma_wasm_loader",
+          "dependency": "@shikijs/engine-oniguruma@3.6.0",
+          "reason": "The original Oniguruma loaders instantiate WASM only when that engine is selected. Local exact shiki root adapter supplies genuine JavaScript regex engine to original createHighlighter before eager preset-code initialization. Explicit engine short-circuits the default engine factory. Current root import only uses createHighlighter. Runtime CSP still forbids WASM; actual App qualification is required."
+        },
+        {
+          "kind": "wasm_operation",
+          "module_id": "775620",
+          "offset": 7195688,
+          "expression": "WebAssembly.instantiate",
+          "category": "shiki_oniguruma_wasm_loader",
+          "dependency": "@shikijs/engine-oniguruma@3.6.0",
+          "reason": "The original Oniguruma loaders instantiate WASM only when that engine is selected. Local exact shiki root adapter supplies genuine JavaScript regex engine to original createHighlighter before eager preset-code initialization. Explicit engine short-circuits the default engine factory. Current root import only uses createHighlighter. Runtime CSP still forbids WASM; actual App qualification is required."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "574401",
+          "offset": 7241386,
+          "expression": "this.fetch",
+          "category": "query_method_not_fetch_api",
+          "dependency": "@tanstack/query-core",
+          "reason": "InfiniteQueryObserver.fetchNextPage/PreviousPage calls its own fetch scheduling method; not a direct browser fetch API call."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "574401",
+          "offset": 7241472,
+          "expression": "this.fetch",
+          "category": "query_method_not_fetch_api",
+          "dependency": "@tanstack/query-core",
+          "reason": "InfiniteQueryObserver.fetchNextPage/PreviousPage calls its own fetch scheduling method; not a direct browser fetch API call."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "840037",
+          "offset": 7257608,
+          "expression": "e.fetch",
+          "category": "query_method_not_fetch_api",
+          "dependency": "@tanstack/query-core",
+          "reason": "QueryClient calls Query.fetch; actual transport supplied by queryFn, not direct browser fetch at this site."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "840037",
+          "offset": 7257876,
+          "expression": "n.fetch",
+          "category": "query_method_not_fetch_api",
+          "dependency": "@tanstack/query-core",
+          "reason": "QueryClient calls Query.fetch; actual transport supplied by queryFn, not direct browser fetch at this site."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "403989",
+          "offset": 7261370,
+          "expression": "this.fetch",
+          "category": "query_method_not_fetch_api",
+          "dependency": "@tanstack/query-core",
+          "reason": "QueryObserver calls own/Query.fetch scheduling methods; transport depends queryFn."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "403989",
+          "offset": 7261521,
+          "expression": "n.fetch",
+          "category": "query_method_not_fetch_api",
+          "dependency": "@tanstack/query-core",
+          "reason": "QueryObserver calls own/Query.fetch scheduling methods; transport depends queryFn."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "403989",
+          "offset": 7261692,
+          "expression": "this.#M.fetch",
+          "category": "query_method_not_fetch_api",
+          "dependency": "@tanstack/query-core",
+          "reason": "QueryObserver calls own/Query.fetch scheduling methods; transport depends queryFn."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "269639",
+          "offset": 7429897,
+          "expression": "XMLHttpRequest",
+          "category": "image_palette_http",
+          "dependency": "colorthief",
+          "reason": "getImageData requests an image for palette extraction; no local image capability."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7668885,
+          "expression": "r.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7686401,
+          "expression": "e.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7686468,
+          "expression": "e.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7686576,
+          "expression": "e.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7687678,
+          "expression": "e.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7694927,
+          "expression": "s.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7694978,
+          "expression": "s.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7697649,
+          "expression": "e.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7766480,
+          "expression": "this.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7766540,
+          "expression": "this.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7766562,
+          "expression": "this.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7767329,
+          "expression": "this.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7768125,
+          "expression": "this.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7768690,
+          "expression": "this.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7769351,
+          "expression": "this.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7769401,
+          "expression": "this.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7769610,
+          "expression": "this.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7769902,
+          "expression": "this.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7771555,
+          "expression": "this.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7771696,
+          "expression": "this.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7771738,
+          "expression": "this.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7771877,
+          "expression": "this.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7771988,
+          "expression": "this.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7772021,
+          "expression": "this.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7773622,
+          "expression": "this.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7773782,
+          "expression": "this.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "425048",
+          "offset": 7774592,
+          "expression": "this.fetch",
+          "category": "parser_method_not_network",
+          "dependency": "KaTeX",
+          "reason": "All27 fetch() methods are parser token lookahead on gullet; not network APIs."
+        },
+        {
+          "kind": "dynamic_function",
+          "module_id": "559645",
+          "offset": 8081284,
+          "expression": "Function",
+          "category": "pdf_eval_capability_probe",
+          "dependency": "pdfjs-dist@4.4.168",
+          "reason": "Lazy FeatureTest.isEvalSupported probes Function(\"\") inside try/catch. PDF unavailable in local scope; do not count a caught CSP violation as commercial qualification."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "559645",
+          "offset": 8087983,
+          "expression": "fetch",
+          "category": "pdf_resource_http",
+          "dependency": "pdfjs-dist@4.4.168",
+          "reason": "PDF fetch/XHR and cMap/font resource factory calls require opening a PDF; no PDF preview in local text scope."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "559645",
+          "offset": 8088181,
+          "expression": "XMLHttpRequest",
+          "category": "pdf_resource_http",
+          "dependency": "pdfjs-dist@4.4.168",
+          "reason": "PDF fetch/XHR and cMap/font resource factory calls require opening a PDF; no PDF preview in local text scope."
+        },
+        {
+          "kind": "dynamic_import",
+          "module_id": "559645",
+          "offset": 8151776,
+          "expression": "import",
+          "category": "pdf_node_packages",
+          "dependency": null,
+          "reason": "Node builtins require PDF isNodeJS branch (false in WK); fake-worker import requires PDF operation, unavailable in local scope. External workerSrc is not granted script access."
+        },
+        {
+          "kind": "dynamic_import",
+          "module_id": "559645",
+          "offset": 8151797,
+          "expression": "import",
+          "category": "pdf_node_packages",
+          "dependency": null,
+          "reason": "Node builtins require PDF isNodeJS branch (false in WK); fake-worker import requires PDF operation, unavailable in local scope. External workerSrc is not granted script access."
+        },
+        {
+          "kind": "dynamic_import",
+          "module_id": "559645",
+          "offset": 8151820,
+          "expression": "import",
+          "category": "pdf_node_packages",
+          "dependency": null,
+          "reason": "Node builtins require PDF isNodeJS branch (false in WK); fake-worker import requires PDF operation, unavailable in local scope. External workerSrc is not granted script access."
+        },
+        {
+          "kind": "dynamic_import",
+          "module_id": "559645",
+          "offset": 8151897,
+          "expression": "import",
+          "category": "pdf_node_packages",
+          "dependency": null,
+          "reason": "Node builtins require PDF isNodeJS branch (false in WK); fake-worker import requires PDF operation, unavailable in local scope. External workerSrc is not granted script access."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "559645",
+          "offset": 8212329,
+          "expression": "fetch",
+          "category": "pdf_resource_http",
+          "dependency": "pdfjs-dist@4.4.168",
+          "reason": "PDF fetch/XHR and cMap/font resource factory calls require opening a PDF; no PDF preview in local text scope."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "559645",
+          "offset": 8213882,
+          "expression": "fetch",
+          "category": "pdf_resource_http",
+          "dependency": "pdfjs-dist@4.4.168",
+          "reason": "PDF fetch/XHR and cMap/font resource factory calls require opening a PDF; no PDF preview in local text scope."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "559645",
+          "offset": 8214842,
+          "expression": "XMLHttpRequest",
+          "category": "pdf_resource_http",
+          "dependency": "pdfjs-dist@4.4.168",
+          "reason": "PDF fetch/XHR and cMap/font resource factory calls require opening a PDF; no PDF preview in local text scope."
+        },
+        {
+          "kind": "worker_constructor",
+          "module_id": "559645",
+          "offset": 8254921,
+          "expression": "Worker",
+          "category": "guarded_worker_constructor",
+          "dependency": "react-pdf@9.1.1 -> pdfjs-dist@4.4.168",
+          "reason": "PDFWorker constructor -> _initialize after opening a PDF; skipped if workers disabled or a main-thread handler is available; cross-origin worker URL is wrapped before construction."
+        },
+        {
+          "kind": "dynamic_import",
+          "module_id": "559645",
+          "offset": 8256907,
+          "expression": "import",
+          "category": "pdf_fake_worker_loader",
+          "dependency": null,
+          "reason": "Node builtins require PDF isNodeJS branch (false in WK); fake-worker import requires PDF operation, unavailable in local scope. External workerSrc is not granted script access."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "559645",
+          "offset": 8263352,
+          "expression": "this.cMapReaderFactory.fetch",
+          "category": "pdf_resource_http",
+          "dependency": "pdfjs-dist@4.4.168",
+          "reason": "PDF fetch/XHR and cMap/font resource factory calls require opening a PDF; no PDF preview in local text scope."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "559645",
+          "offset": 8263604,
+          "expression": "this.standardFontDataFactory.fetch",
+          "category": "pdf_resource_http",
+          "dependency": "pdfjs-dist@4.4.168",
+          "reason": "PDF fetch/XHR and cMap/font resource factory calls require opening a PDF; no PDF preview in local text scope."
+        }
+      ]
+    },
+    {
+      "path": "assets/js/async/3015.88a3f205.js",
+      "sha256": "42401f335e9b9e9384ea7677c0fdd3fae31e8fd30016fcdba946674359559836",
+      "bytes": 14965,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 1,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/3099.864b9239.js",
+      "sha256": "f3d5a044e1cc802609383f8518939b4ba617b3054b3fe3841365ca917453c08c",
+      "bytes": 41659,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 2,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/3472.ce45ec84.js",
+      "sha256": "9e2f13272f906aed23fac259b95743ae5693b49590a32af54d97a6dda012b111",
+      "bytes": 21646,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 0,
+        "wasm": 1
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/3520.31aff563.js",
+      "sha256": "72fcb8443d85713849d7aec2c494cd471997349841d1eb06fadc3980df4b8df3",
+      "bytes": 45069,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 1,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/3666.44ca45cd.js",
+      "sha256": "97d168d2e4f0cd2302d39748c836d54a88a9b8aa1c2aaa004ebe156949c2691e",
+      "bytes": 304910,
+      "static_aid_counts": {
+        "worker": 1,
+        "function": 1,
+        "eval": 0,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Explicit canonical17 full split-chunk byte/AST review including aliases/WASM, with independent Shiki/Text callers. No runtime CSP permission; actual App qualification separate.",
+      "data_classifications": [],
+      "callsites": [
+        {
+          "kind": "dynamic_function",
+          "module_id": "677119",
+          "offset": 7174,
+          "expression": "Function",
+          "category": "pdf_eval_capability_probe",
+          "dependency": "pdfjs-dist@4.3.136",
+          "reason": "Same PDF-only capability probe."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "677119",
+          "offset": 13793,
+          "expression": "fetch",
+          "category": "pdf_resource_http",
+          "dependency": "pdfjs-dist@4.3.136",
+          "reason": "PDF fetch/XHR and cMap/font resource factory calls require opening a PDF; no PDF preview in local text scope."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "677119",
+          "offset": 13991,
+          "expression": "XMLHttpRequest",
+          "category": "pdf_resource_http",
+          "dependency": "pdfjs-dist@4.3.136",
+          "reason": "PDF fetch/XHR and cMap/font resource factory calls require opening a PDF; no PDF preview in local text scope."
+        },
+        {
+          "kind": "dynamic_import",
+          "module_id": "677119",
+          "offset": 75652,
+          "expression": "import",
+          "category": "pdf_node_packages",
+          "dependency": null,
+          "reason": "Node builtins require PDF isNodeJS branch (false in WK); fake-worker import requires PDF operation, unavailable in local scope. External workerSrc is not granted script access."
+        },
+        {
+          "kind": "dynamic_import",
+          "module_id": "677119",
+          "offset": 75673,
+          "expression": "import",
+          "category": "pdf_node_packages",
+          "dependency": null,
+          "reason": "Node builtins require PDF isNodeJS branch (false in WK); fake-worker import requires PDF operation, unavailable in local scope. External workerSrc is not granted script access."
+        },
+        {
+          "kind": "dynamic_import",
+          "module_id": "677119",
+          "offset": 75696,
+          "expression": "import",
+          "category": "pdf_node_packages",
+          "dependency": null,
+          "reason": "Node builtins require PDF isNodeJS branch (false in WK); fake-worker import requires PDF operation, unavailable in local scope. External workerSrc is not granted script access."
+        },
+        {
+          "kind": "dynamic_import",
+          "module_id": "677119",
+          "offset": 75773,
+          "expression": "import",
+          "category": "pdf_node_packages",
+          "dependency": null,
+          "reason": "Node builtins require PDF isNodeJS branch (false in WK); fake-worker import requires PDF operation, unavailable in local scope. External workerSrc is not granted script access."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "677119",
+          "offset": 136205,
+          "expression": "fetch",
+          "category": "pdf_resource_http",
+          "dependency": "pdfjs-dist@4.3.136",
+          "reason": "PDF fetch/XHR and cMap/font resource factory calls require opening a PDF; no PDF preview in local text scope."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "677119",
+          "offset": 137758,
+          "expression": "fetch",
+          "category": "pdf_resource_http",
+          "dependency": "pdfjs-dist@4.3.136",
+          "reason": "PDF fetch/XHR and cMap/font resource factory calls require opening a PDF; no PDF preview in local text scope."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "677119",
+          "offset": 138718,
+          "expression": "XMLHttpRequest",
+          "category": "pdf_resource_http",
+          "dependency": "pdfjs-dist@4.3.136",
+          "reason": "PDF fetch/XHR and cMap/font resource factory calls require opening a PDF; no PDF preview in local text scope."
+        },
+        {
+          "kind": "worker_constructor",
+          "module_id": "677119",
+          "offset": 178481,
+          "expression": "Worker",
+          "category": "guarded_worker_constructor",
+          "dependency": "@coze-arch/pdfjs-shadow -> pdfjs-dist@4.3.136",
+          "reason": "PDFWorker initialization only after original PDF preview/upload parsing requests a document."
+        },
+        {
+          "kind": "dynamic_import",
+          "module_id": "677119",
+          "offset": 180697,
+          "expression": "import",
+          "category": "pdf_fake_worker_loader",
+          "dependency": null,
+          "reason": "Node builtins require PDF isNodeJS branch (false in WK); fake-worker import requires PDF operation, unavailable in local scope. External workerSrc is not granted script access."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "677119",
+          "offset": 187142,
+          "expression": "this.cMapReaderFactory.fetch",
+          "category": "pdf_resource_http",
+          "dependency": "pdfjs-dist@4.3.136",
+          "reason": "PDF fetch/XHR and cMap/font resource factory calls require opening a PDF; no PDF preview in local text scope."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "677119",
+          "offset": 187394,
+          "expression": "this.standardFontDataFactory.fetch",
+          "category": "pdf_resource_http",
+          "dependency": "pdfjs-dist@4.3.136",
+          "reason": "PDF fetch/XHR and cMap/font resource factory calls require opening a PDF; no PDF preview in local text scope."
+        }
+      ]
+    },
+    {
+      "path": "assets/js/async/373.bc9d3bb1.js",
+      "sha256": "00d59f5f468fc9ddc9ac6e2ca9041a6259b843b6753a1f1ef48e02a4523d552e",
+      "bytes": 8701,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 1,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/4110.645c2f5b.js",
+      "sha256": "2014d1177c37f94efae2b22c025cc7d90204095bbe776e332fe21e425c338d75",
+      "bytes": 92569,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 10,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/419.8b24c0c6.js",
+      "sha256": "6e651688303d89d5b57230129c324a032e160cc018c1bb03926a7a9a527a14d8",
+      "bytes": 10089,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 2,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/4678.1201339c.js",
+      "sha256": "dd434466237dbb65a74bd54ef653f8991a2d38abbdd361e7809882b245d43f6a",
+      "bytes": 3276730,
+      "static_aid_counts": {
+        "worker": 1,
+        "function": 0,
+        "eval": 0,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Explicit canonical17 full split-chunk byte/AST review including aliases/WASM, with independent Shiki/Text callers. No runtime CSP permission; actual App qualification separate.",
+      "data_classifications": [],
+      "callsites": [
+        {
+          "kind": "worker_constructor",
+          "module_id": "121713",
+          "offset": 5316,
+          "expression": "Worker",
+          "category": "guarded_worker_constructor",
+          "dependency": "monaco-editor@0.45.0",
+          "reason": "Worker factory invoked for Monaco language service; requires MonacoEnvironment.getWorker or getWorkerUrl."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "817270",
+          "offset": 2450064,
+          "expression": "this._source.fetch",
+          "category": "completion_method_not_fetch_api",
+          "dependency": "monaco-editor@0.45.0",
+          "reason": "Inline-completion source.fetch is Monaco completion scheduling, not direct browser fetch; code editor unavailable locally."
+        }
+      ]
+    },
+    {
+      "path": "assets/js/async/4686.d5e8a848.js",
+      "sha256": "7c044f79e3c2cb7dc9dc0fc7037b312ce7ddd7211d4e750dfa5634eefb4cccb0",
+      "bytes": 48707,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 2,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/5.c5de3725.js",
+      "sha256": "1ebc8672181a56e5477bc04f66465040567bce4e8e283497fe5f3b6e8dff705a",
+      "bytes": 175713,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 6,
+        "eval": 0,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/501.fd2d0ee7.js",
+      "sha256": "762f2cb3b5db8818f310033b5025ab22458c91b892ad48183ae0d3a1d9a7c04b",
+      "bytes": 298223,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 0,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Explicit canonical17 full split-chunk byte/AST review including aliases/WASM, with independent Shiki/Text callers. No runtime CSP permission; actual App qualification separate.",
+      "data_classifications": [],
+      "callsites": [
+        {
+          "kind": "network_primitive",
+          "module_id": "897655",
+          "offset": 129489,
+          "expression": "(b()).XMLHttpRequest",
+          "category": "image_editor_http",
+          "dependency": "fabric",
+          "reason": "Fabric request helper obtains XMLHttpRequest from environment when image/canvas resources requested; native local Flowgram text nodes do not expose image editor."
+        }
+      ]
+    },
+    {
+      "path": "assets/js/async/5548.c2899ffe.js",
+      "sha256": "668bb60b5b1172505dc2775db0e15810bfb159f066bf87e31432df65b83779ac",
+      "bytes": 40896,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 1,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/5570.bbc8275d.js",
+      "sha256": "07cb417868b14736a1d6153b441d14d129300071e7dbfadb83b4427a53b9fc17",
+      "bytes": 12191,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 0,
+        "wasm": 1
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/5750.2421ad47.js",
+      "sha256": "ee482acad1554d22d788a6b7c6a00216898ac91041764418461364e467759c06",
+      "bytes": 1916,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 1,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/5838.7303ad5f.js",
+      "sha256": "b5acaacb20de7ad7f3cf977c75effbf2157ca2af66c94bd6d7f1fd2ec26ea63f",
+      "bytes": 3999,
+      "static_aid_counts": {
+        "worker": 1,
+        "function": 0,
+        "eval": 0,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Explicit canonical17 full split-chunk byte/AST review including aliases/WASM, with independent Shiki/Text callers. No runtime CSP permission; actual App qualification separate.",
+      "data_classifications": [],
+      "callsites": [
+        {
+          "kind": "worker_constructor",
+          "module_id": "403356",
+          "offset": 733,
+          "expression": "Worker",
+          "category": "guarded_worker_constructor",
+          "dependency": "original workflow code-editor adapter + @coze-editor/editor@0.1.0-alpha.dd871b language-typescript",
+          "reason": "Helper module 403356 defines initTypescriptServer (cH), without invoking it. Separate TypescriptEditor module 888018 invokes cH at evaluation. CodeEditor module 878803 React.lazy imports chunk5838/module888018."
+        }
+      ]
+    },
+    {
+      "path": "assets/js/async/6133.71a46037.js",
+      "sha256": "05095bbe7abefdc2fe9430068482c766ac8b86b31c3e61ca399321e08a2d0a4d",
+      "bytes": 74981,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 1,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/626.97a0a448.js",
+      "sha256": "e82f11c1518cc445b30502e86688da7fa383c7583a43b3600bcc766030736a36",
+      "bytes": 70283,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 1,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/6553.9f722051.js",
+      "sha256": "f41c56db8cefe8497d8eaa8892c3c62332761a8e457956f19fbed41747e6ae1c",
+      "bytes": 80422,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 1,
+        "eval": 0,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/6998.43a53a49.js",
+      "sha256": "61e25d7495ba30b797ec0bc584e6d9fba1718c7fe0cf7558c8897124ef0455e9",
+      "bytes": 27603,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 1,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/7289.fa187372.js",
+      "sha256": "9837159602843498549ab4341fe0112b2a118a5c4aab8bfdd4c1664bf9b59606",
+      "bytes": 113324,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 1,
+        "eval": 2,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/7328.7f647b5b.js",
+      "sha256": "c8a948ae1e8ee6ef05a60d7bde8b345fc35fa82592993986816eaffb1e132e6b",
+      "bytes": 9247,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 1,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/7605.548d5a8a.js",
+      "sha256": "26bace379ceee9e4c4d3e06bc934c4e36270ded2ba540f5139bc962a47dbd644",
+      "bytes": 2341,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 1,
+        "eval": 0,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "FEAT-154 dark icon qualification: original image SVG now uses existing local theme foreground renderer. Full AST identities, classified aid contexts and URL origins unchanged; two Rspack runtime hash strings updated. Browser CSP and deployment permissions unchanged.",
+      "data_classifications": [],
+      "callsites": [
+        {
+          "kind": "dynamic_function",
+          "module_id": null,
+          "offset": 1299,
+          "expression": "Function",
+          "category": "rspack_global_resolver",
+          "dependency": "Rspack1.1.8",
+          "reason": "Returns globalThis before Function fallback in normal WK browser."
+        },
+        {
+          "kind": "worker_import_scripts",
+          "module_id": null,
+          "offset": 2019,
+          "expression": "importScripts",
+          "category": "typescript_worker_chunk_loader",
+          "dependency": null,
+          "reason": "Dedicated language-typescript Worker entry imports manifest-relative /editor/ chunks; Worker is unavailable in local text scope and prohibited by worker-src none."
+        }
+      ]
+    },
+    {
+      "path": "assets/js/async/7649.0aa5bef5.js",
+      "sha256": "5529f029537fb63ba9a5c32ea6bb85925bb648286ffd4cb44082811951807886",
+      "bytes": 622673,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 0,
+        "wasm": 1
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Explicit canonical17 full split-chunk byte/AST review including aliases/WASM, with independent Shiki/Text callers. No runtime CSP permission; actual App qualification separate.",
+      "data_classifications": [],
+      "callsites": [
+        {
+          "kind": "wasm_operation",
+          "module_id": "428107",
+          "offset": 622449,
+          "expression": "WebAssembly.instantiate",
+          "category": "shiki_oniguruma_wasm_loader",
+          "dependency": "@shikijs/engine-oniguruma@3.6.0",
+          "reason": "The original Oniguruma loaders instantiate WASM only when that engine is selected. Local exact shiki root adapter supplies genuine JavaScript regex engine to original createHighlighter before eager preset-code initialization. Explicit engine short-circuits the default engine factory. Current root import only uses createHighlighter. Runtime CSP still forbids WASM; actual App qualification is required."
+        }
+      ]
+    },
+    {
+      "path": "assets/js/async/7658.a06d22cd.js",
+      "sha256": "3328104f1903ad62783345a2079cd7494ea40245f1fac5528b39fb5881c33c56",
+      "bytes": 113973,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 1,
+        "eval": 2,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/8034.0711e253.js",
+      "sha256": "38754a5d8c5d544a63bc204b64bbf323712d49ea3386eb3a8c1a1baae215ffa8",
+      "bytes": 780037,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 125,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/8927.6ac9c10d.js",
+      "sha256": "8b2ff294091082d96643b59539c0a07004dce2ca9fab85a562612dbe6f9edf66",
+      "bytes": 85263,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 1,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/8944.c7bc1e69.js",
+      "sha256": "dd4df9901f48782d71e45fe948b00a8500d771484e208ea258133ef1d9bdecab",
+      "bytes": 2374841,
+      "static_aid_counts": {
+        "worker": 2,
+        "function": 0,
+        "eval": 1,
+        "wasm": 46
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/8957.c7e4a987.js",
+      "sha256": "1075232fbc3c480c4d51c8a01c1a8db43d5201c48bb6cecbc2d9dc01e89806cd",
+      "bytes": 8466,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 1,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/9278.a7d2b787.js",
+      "sha256": "011674ce0318fb3222fb83bb7ae5d7579d0e6cdd40c6574dee5918712bfd670a",
+      "bytes": 55946,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 2,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/9363.c4ef251d.js",
+      "sha256": "fb03d681866d55757cb3bf3f94ddd11d878a99aef17064e544fa6833b74d7d04",
+      "bytes": 792206,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 15,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Exact language-definition/documentation string or regular-expression data review; no audited Worker/WASM/Function/eval/loader invocation. Runtime CSP unchanged.",
+      "data_classifications": [
+        "regular_expression_data",
+        "string_or_template_data"
+      ],
+      "callsites": []
+    },
+    {
+      "path": "assets/js/async/9484.ccdb46ed.js",
+      "sha256": "922e14da570768b6ff7f7e1ec45c0ca0db2b91c610070b3fcfdb34429e5473ff",
+      "bytes": 4354686,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 0,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "FEAT-154 dark icon qualification: original image SVG now uses existing local theme foreground renderer. Full AST identities, classified aid contexts and URL origins unchanged; two Rspack runtime hash strings updated. Browser CSP and deployment permissions unchanged.",
+      "data_classifications": [],
+      "callsites": [
+        {
+          "kind": "network_primitive",
+          "module_id": "426961",
+          "offset": 1468464,
+          "expression": "fetch",
+          "category": "knowledge_document_http",
+          "dependency": "original knowledge doc-preview preview-md.tsx",
+          "reason": "Mounted Markdown document preview fetches fileUrl. Not a local text workflow component."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "868156",
+          "offset": 1469346,
+          "expression": "fetch",
+          "category": "knowledge_document_http",
+          "dependency": "original knowledge doc-preview preview-txt.tsx",
+          "reason": "Mounted text document preview fetches fileUrl. Not a local text workflow component."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "403950",
+          "offset": 1516527,
+          "expression": "fetch",
+          "category": "knowledge_tos_http",
+          "dependency": "original knowledge use-tos-content.tsx",
+          "reason": "Hook fetches supplied content URL; local knowledge capability unavailable."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "651410",
+          "offset": 2445221,
+          "expression": "fetch",
+          "category": "trial_image_download_http",
+          "dependency": "original workflow playground img-log/use-download-images.ts",
+          "reason": "Image trial log download fetches supplied image URLs. Local execution produces bounded text results and does not expose legacy image trial log."
+        }
+      ]
+    },
+    {
+      "path": "assets/js/async/lib-axios.d4055676.js",
+      "sha256": "81904897f306b35a551500d755b047444a456bdc73eec85b3402f54f3b9389d7",
+      "bytes": 39854,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 0,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Explicit canonical17 full split-chunk byte/AST review including aliases/WASM, with independent Shiki/Text callers. No runtime CSP permission; actual App qualification separate.",
+      "data_classifications": [],
+      "callsites": [
+        {
+          "kind": "network_primitive",
+          "module_id": "342627",
+          "offset": 3565,
+          "expression": "fetch",
+          "category": "axios_transport_http",
+          "dependency": "axios",
+          "reason": "Standard Fetch adapter only when invoked by an API request; local adapter replaces upstream workflow requests with finite native bridge. This source classification does not prove runtime nonuse."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "622046",
+          "offset": 4803,
+          "expression": "XMLHttpRequest",
+          "category": "axios_transport_http",
+          "dependency": "axios",
+          "reason": "Standard XHR adapter only when invoked by an API request; local adapter replaces upstream workflow requests with finite native bridge. Runtime must show no connect-src violations."
+        }
+      ]
+    },
+    {
+      "path": "assets/js/index.2bc2e15b.js",
+      "sha256": "abcfcf95d1fcf33c8bd83b709f112277fd10af77c334a006385db8c6a387fe37",
+      "bytes": 3259937,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 1,
+        "eval": 0,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "FEAT-154 dark icon qualification: original image SVG now uses existing local theme foreground renderer. Full AST identities, classified aid contexts and URL origins unchanged; two Rspack runtime hash strings updated. Browser CSP and deployment permissions unchanged.",
+      "data_classifications": [],
+      "callsites": [
+        {
+          "kind": "dynamic_function",
+          "module_id": null,
+          "offset": 2951660,
+          "expression": "Function",
+          "category": "rspack_global_resolver",
+          "dependency": "Rspack1.1.8",
+          "reason": "Returns globalThis before Function fallback in normal WK browser."
+        },
+        {
+          "kind": "script_element_loader",
+          "module_id": null,
+          "offset": 2952097,
+          "expression": "document.createElement",
+          "category": "rspack_local_chunk_loader",
+          "dependency": null,
+          "reason": "Normal native async modules use fixed publicPath /editor/ and manifest-listed local chunks; permitted only by unchanged script-src self."
+        }
+      ]
+    },
+    {
+      "path": "assets/js/lib-router.0c12504e.js",
+      "sha256": "833ceb0f23a56476c7707b5b804c3121c250144fbe6e9891213ad1b351497f4a",
+      "bytes": 101821,
+      "static_aid_counts": {
+        "worker": 0,
+        "function": 0,
+        "eval": 0,
+        "wasm": 0
+      },
+      "review_scope": "static_source_bytes_only",
+      "reason": "Explicit canonical17 full split-chunk byte/AST review including aliases/WASM, with independent Shiki/Text callers. No runtime CSP permission; actual App qualification separate.",
+      "data_classifications": [],
+      "callsites": [
+        {
+          "kind": "network_primitive",
+          "module_id": "354377",
+          "offset": 67320,
+          "expression": "e.fetch",
+          "category": "router_method_not_fetch_api",
+          "dependency": "react-router-dom@6.30.1",
+          "reason": "Data-router fetcher invokes router.fetch, not global fetch. Local app uses MemoryRouter; no network data router configured."
+        },
+        {
+          "kind": "network_primitive",
+          "module_id": "354377",
+          "offset": 81875,
+          "expression": "o.fetch",
+          "category": "router_method_not_fetch_api",
+          "dependency": "react-router-dom@6.30.1",
+          "reason": "Data-router fetcher invokes router.fetch, not global fetch. Local app uses MemoryRouter; no network data router configured."
+        }
+      ]
+    }
+  ]
+}

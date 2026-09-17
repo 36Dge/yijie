@@ -1,0 +1,368 @@
+{
+  "recorded_at": "2026-09-17T00:53:14.842302+08:00",
+  "scope": "Read-only full AST review; no JS evaluation/network/browser permissions change",
+  "old_report": "../../../features/FEAT-154-ecommerce-node-ui/evidence/dark-verification/csp-ast.json",
+  "new_report": "csp-ast.json",
+  "same_ast_identities": true,
+  "contexts_equal_except_generated_hashes": true,
+  "normalization": "8hex generated chunk hashes; only .h=function return16hex exact old/new compilation hashes normalized",
+  "same_classified_regex_contexts": true,
+  "same_url_origin_set": true,
+  "svg_namespace_literal_delta": 30,
+  "all_other_url_counts_and_examples_unchanged": true,
+  "changed_contexts": [
+    {
+      "old": {
+        "file": "assets/js/async/7605.548d5a8a.js",
+        "kind": "dynamic_function",
+        "start": 1299,
+        "end": 1322,
+        "line": 1,
+        "column": 1300,
+        "expression": "Function",
+        "expression_start": 1299,
+        "expression_end": 1307,
+        "context": "69\"})[n]+\".js\"},o.miniCssF=function(n){return\"\"+n+\".css\"},o.h=function(){return\"5c27f84ceba3ff23\"},o.g=function(){if(\"object\"==typeof globalThis)return globalThis;try{return this||Function(\"return this\")()}catch(n){if(\"object\"==typeof window)return window}}(),o.o=function(n,r){return Object.prototype.hasOwnProperty.call(n,r)},(()=>{var n=[];o.O=function(r,t,e,i){if(t){i=i||0;for(var u=n.length;u>0&&n[u-1][2]>i;u--)n[u]=",
+        "module_id": null,
+        "enclosing_functions": [
+          {
+            "name": "<anonymous>",
+            "start": 1222,
+            "immediately_invoked": true
+          },
+          {
+            "name": "<anonymous>",
+            "start": 1,
+            "immediately_invoked": true
+          }
+        ]
+      },
+      "new": {
+        "file": "assets/js/async/7605.34cdd09e.js",
+        "kind": "dynamic_function",
+        "start": 1299,
+        "end": 1322,
+        "line": 1,
+        "column": 1300,
+        "expression": "Function",
+        "expression_start": 1299,
+        "expression_end": 1307,
+        "context": "69\"})[n]+\".js\"},o.miniCssF=function(n){return\"\"+n+\".css\"},o.h=function(){return\"c2413b5ab28f17a9\"},o.g=function(){if(\"object\"==typeof globalThis)return globalThis;try{return this||Function(\"return this\")()}catch(n){if(\"object\"==typeof window)return window}}(),o.o=function(n,r){return Object.prototype.hasOwnProperty.call(n,r)},(()=>{var n=[];o.O=function(r,t,e,i){if(t){i=i||0;for(var u=n.length;u>0&&n[u-1][2]>i;u--)n[u]=",
+        "module_id": null,
+        "enclosing_functions": [
+          {
+            "name": "<anonymous>",
+            "start": 1222,
+            "immediately_invoked": true
+          },
+          {
+            "name": "<anonymous>",
+            "start": 1,
+            "immediately_invoked": true
+          }
+        ]
+      }
+    },
+    {
+      "old": {
+        "file": "assets/js/index.2bc2e15b.js",
+        "kind": "dynamic_function",
+        "start": 2951660,
+        "end": 2951683,
+        "line": 1,
+        "column": 2951661,
+        "expression": "Function",
+        "expression_start": 2951660,
+        "expression_end": 2951668,
+        "context": "3:\"b6f5ebf8\",8014:\"63dd081a\",9484:\"15a17f0e\"})[e]+\".css\"},a.h=function(){return\"5c27f84ceba3ff23\"},a.g=function(){if(\"object\"==typeof globalThis)return globalThis;try{return this||Function(\"return this\")()}catch(e){if(\"object\"==typeof window)return window}}(),a.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},(()=>{var e={},t=\"@yijie-coze/workflow-local:\";a.l=function(o,_,i,r){if(e[o]){e[o].push(_);retu",
+        "module_id": null,
+        "enclosing_functions": [
+          {
+            "name": "<anonymous>",
+            "start": 2951583,
+            "immediately_invoked": true
+          },
+          {
+            "name": "<anonymous>",
+            "start": 1,
+            "immediately_invoked": true
+          }
+        ]
+      },
+      "new": {
+        "file": "assets/js/index.c44a916a.js",
+        "kind": "dynamic_function",
+        "start": 2948904,
+        "end": 2948927,
+        "line": 1,
+        "column": 2948905,
+        "expression": "Function",
+        "expression_start": 2948904,
+        "expression_end": 2948912,
+        "context": "3:\"b6f5ebf8\",8014:\"63dd081a\",9484:\"5ea01a14\"})[e]+\".css\"},a.h=function(){return\"c2413b5ab28f17a9\"},a.g=function(){if(\"object\"==typeof globalThis)return globalThis;try{return this||Function(\"return this\")()}catch(e){if(\"object\"==typeof window)return window}}(),a.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},(()=>{var e={},t=\"@yijie-coze/workflow-local:\";a.l=function(o,_,i,r){if(e[o]){e[o].push(_);retu",
+        "module_id": null,
+        "enclosing_functions": [
+          {
+            "name": "<anonymous>",
+            "start": 2948827,
+            "immediately_invoked": true
+          },
+          {
+            "name": "<anonymous>",
+            "start": 1,
+            "immediately_invoked": true
+          }
+        ]
+      }
+    }
+  ],
+  "changed_reviewed_chunks": [
+    {
+      "before": {
+        "path": "assets/js/async/7605.548d5a8a.js",
+        "sha256": "26bace379ceee9e4c4d3e06bc934c4e36270ded2ba540f5139bc962a47dbd644",
+        "bytes": 2341,
+        "static_aid_counts": {
+          "worker": 0,
+          "function": 1,
+          "eval": 0,
+          "wasm": 0
+        },
+        "review_scope": "static_source_bytes_only",
+        "reason": "FEAT-154 dark icon qualification: original image SVG now uses existing local theme foreground renderer. Full AST identities, classified aid contexts and URL origins unchanged; two Rspack runtime hash strings updated. Browser CSP and deployment permissions unchanged.",
+        "data_classifications": [],
+        "callsites": [
+          {
+            "kind": "dynamic_function",
+            "module_id": null,
+            "offset": 1299,
+            "expression": "Function",
+            "category": "rspack_global_resolver",
+            "dependency": "Rspack1.1.8",
+            "reason": "Returns globalThis before Function fallback in normal WK browser."
+          },
+          {
+            "kind": "worker_import_scripts",
+            "module_id": null,
+            "offset": 2019,
+            "expression": "importScripts",
+            "category": "typescript_worker_chunk_loader",
+            "dependency": null,
+            "reason": "Dedicated language-typescript Worker entry imports manifest-relative /editor/ chunks; Worker is unavailable in local text scope and prohibited by worker-src none."
+          }
+        ]
+      },
+      "after": {
+        "path": "assets/js/async/7605.34cdd09e.js",
+        "sha256": "f381c4319c8f9c65fd3bfb569f7415e37f61987554aa47f018da998c5a82aaf7",
+        "bytes": 2341,
+        "static_aid_counts": {
+          "worker": 0,
+          "function": 1,
+          "eval": 0,
+          "wasm": 0
+        },
+        "review_scope": "static_source_bytes_only",
+        "reason": "Independent catalog UI adjustment: stable Coze drag source, 30 local Lucide SVG geometries, catalog typography and Add Node background. Full AST identities and classified aid contexts unchanged; URL origins unchanged, with exactly 30 added SVG namespace literals (http://www.w3.org/2000/svg); two Rspack runtime hash strings updated. Browser CSP and deployment permissions unchanged.",
+        "data_classifications": [],
+        "callsites": [
+          {
+            "kind": "dynamic_function",
+            "module_id": null,
+            "offset": 1299,
+            "expression": "Function",
+            "category": "rspack_global_resolver",
+            "dependency": "Rspack1.1.8",
+            "reason": "Returns globalThis before Function fallback in normal WK browser."
+          },
+          {
+            "kind": "worker_import_scripts",
+            "module_id": null,
+            "offset": 2019,
+            "expression": "importScripts",
+            "category": "typescript_worker_chunk_loader",
+            "dependency": null,
+            "reason": "Dedicated language-typescript Worker entry imports manifest-relative /editor/ chunks; Worker is unavailable in local text scope and prohibited by worker-src none."
+          }
+        ]
+      }
+    },
+    {
+      "before": {
+        "path": "assets/js/async/9484.ccdb46ed.js",
+        "sha256": "922e14da570768b6ff7f7e1ec45c0ca0db2b91c610070b3fcfdb34429e5473ff",
+        "bytes": 4354686,
+        "static_aid_counts": {
+          "worker": 0,
+          "function": 0,
+          "eval": 0,
+          "wasm": 0
+        },
+        "review_scope": "static_source_bytes_only",
+        "reason": "FEAT-154 dark icon qualification: original image SVG now uses existing local theme foreground renderer. Full AST identities, classified aid contexts and URL origins unchanged; two Rspack runtime hash strings updated. Browser CSP and deployment permissions unchanged.",
+        "data_classifications": [],
+        "callsites": [
+          {
+            "kind": "network_primitive",
+            "module_id": "426961",
+            "offset": 1468464,
+            "expression": "fetch",
+            "category": "knowledge_document_http",
+            "dependency": "original knowledge doc-preview preview-md.tsx",
+            "reason": "Mounted Markdown document preview fetches fileUrl. Not a local text workflow component."
+          },
+          {
+            "kind": "network_primitive",
+            "module_id": "868156",
+            "offset": 1469346,
+            "expression": "fetch",
+            "category": "knowledge_document_http",
+            "dependency": "original knowledge doc-preview preview-txt.tsx",
+            "reason": "Mounted text document preview fetches fileUrl. Not a local text workflow component."
+          },
+          {
+            "kind": "network_primitive",
+            "module_id": "403950",
+            "offset": 1516527,
+            "expression": "fetch",
+            "category": "knowledge_tos_http",
+            "dependency": "original knowledge use-tos-content.tsx",
+            "reason": "Hook fetches supplied content URL; local knowledge capability unavailable."
+          },
+          {
+            "kind": "network_primitive",
+            "module_id": "651410",
+            "offset": 2445221,
+            "expression": "fetch",
+            "category": "trial_image_download_http",
+            "dependency": "original workflow playground img-log/use-download-images.ts",
+            "reason": "Image trial log download fetches supplied image URLs. Local execution produces bounded text results and does not expose legacy image trial log."
+          }
+        ]
+      },
+      "after": {
+        "path": "assets/js/async/9484.b13e50c8.js",
+        "sha256": "8cf3ee7d4d7c551dec4f94f0f0ca861b1daf3040dc9d719898da4a411b83a4de",
+        "bytes": 4387302,
+        "static_aid_counts": {
+          "worker": 0,
+          "function": 0,
+          "eval": 0,
+          "wasm": 0
+        },
+        "review_scope": "static_source_bytes_only",
+        "reason": "Independent catalog UI adjustment: stable Coze drag source, 30 local Lucide SVG geometries, catalog typography and Add Node background. Full AST identities and classified aid contexts unchanged; URL origins unchanged, with exactly 30 added SVG namespace literals (http://www.w3.org/2000/svg); two Rspack runtime hash strings updated. Browser CSP and deployment permissions unchanged.",
+        "data_classifications": [],
+        "callsites": [
+          {
+            "kind": "network_primitive",
+            "module_id": "426961",
+            "offset": 1468464,
+            "expression": "fetch",
+            "category": "knowledge_document_http",
+            "dependency": "original knowledge doc-preview preview-md.tsx",
+            "reason": "Mounted Markdown document preview fetches fileUrl. Not a local text workflow component."
+          },
+          {
+            "kind": "network_primitive",
+            "module_id": "868156",
+            "offset": 1469346,
+            "expression": "fetch",
+            "category": "knowledge_document_http",
+            "dependency": "original knowledge doc-preview preview-txt.tsx",
+            "reason": "Mounted text document preview fetches fileUrl. Not a local text workflow component."
+          },
+          {
+            "kind": "network_primitive",
+            "module_id": "403950",
+            "offset": 1516527,
+            "expression": "fetch",
+            "category": "knowledge_tos_http",
+            "dependency": "original knowledge use-tos-content.tsx",
+            "reason": "Hook fetches supplied content URL; local knowledge capability unavailable."
+          },
+          {
+            "kind": "network_primitive",
+            "module_id": "651410",
+            "offset": 2446833,
+            "expression": "fetch",
+            "category": "trial_image_download_http",
+            "dependency": "original workflow playground img-log/use-download-images.ts",
+            "reason": "Image trial log download fetches supplied image URLs. Local execution produces bounded text results and does not expose legacy image trial log."
+          }
+        ]
+      }
+    },
+    {
+      "before": {
+        "path": "assets/js/index.2bc2e15b.js",
+        "sha256": "abcfcf95d1fcf33c8bd83b709f112277fd10af77c334a006385db8c6a387fe37",
+        "bytes": 3259937,
+        "static_aid_counts": {
+          "worker": 0,
+          "function": 1,
+          "eval": 0,
+          "wasm": 0
+        },
+        "review_scope": "static_source_bytes_only",
+        "reason": "FEAT-154 dark icon qualification: original image SVG now uses existing local theme foreground renderer. Full AST identities, classified aid contexts and URL origins unchanged; two Rspack runtime hash strings updated. Browser CSP and deployment permissions unchanged.",
+        "data_classifications": [],
+        "callsites": [
+          {
+            "kind": "dynamic_function",
+            "module_id": null,
+            "offset": 2951660,
+            "expression": "Function",
+            "category": "rspack_global_resolver",
+            "dependency": "Rspack1.1.8",
+            "reason": "Returns globalThis before Function fallback in normal WK browser."
+          },
+          {
+            "kind": "script_element_loader",
+            "module_id": null,
+            "offset": 2952097,
+            "expression": "document.createElement",
+            "category": "rspack_local_chunk_loader",
+            "dependency": null,
+            "reason": "Normal native async modules use fixed publicPath /editor/ and manifest-listed local chunks; permitted only by unchanged script-src self."
+          }
+        ]
+      },
+      "after": {
+        "path": "assets/js/index.c44a916a.js",
+        "sha256": "aa6e65608f87be66105f51ee7a586c7ece4c53e47e54298885a073b740500de5",
+        "bytes": 3257181,
+        "static_aid_counts": {
+          "worker": 0,
+          "function": 1,
+          "eval": 0,
+          "wasm": 0
+        },
+        "review_scope": "static_source_bytes_only",
+        "reason": "Independent catalog UI adjustment: stable Coze drag source, 30 local Lucide SVG geometries, catalog typography and Add Node background. Full AST identities and classified aid contexts unchanged; URL origins unchanged, with exactly 30 added SVG namespace literals (http://www.w3.org/2000/svg); two Rspack runtime hash strings updated. Browser CSP and deployment permissions unchanged.",
+        "data_classifications": [],
+        "callsites": [
+          {
+            "kind": "dynamic_function",
+            "module_id": null,
+            "offset": 2948904,
+            "expression": "Function",
+            "category": "rspack_global_resolver",
+            "dependency": "Rspack1.1.8",
+            "reason": "Returns globalThis before Function fallback in normal WK browser."
+          },
+          {
+            "kind": "script_element_loader",
+            "module_id": null,
+            "offset": 2949341,
+            "expression": "document.createElement",
+            "category": "rspack_local_chunk_loader",
+            "dependency": null,
+            "reason": "Normal native async modules use fixed publicPath /editor/ and manifest-listed local chunks; permitted only by unchanged script-src self."
+          }
+        ]
+      }
+    }
+  ],
+  "new_source_diff": "Reuse Coze DnD lifecycle, 30 theme-aware static Lucide SVGs and local presentation CSS. No wire, business processing, persistence or browser permissions changes."
+}

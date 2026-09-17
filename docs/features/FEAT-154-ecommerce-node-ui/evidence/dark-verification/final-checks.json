@@ -1,0 +1,383 @@
+{
+  "recorded_at": "2026-09-17T00:16:16.846075+08:00",
+  "status": "PASS_WITH_D4_BLOCKED",
+  "scope": "Dark1180×760 documented representative UI qualification, media icon repair, affected light regression, original appearance/draft/window restoration; not full Must final fresh run",
+  "checks": {
+    "editor-check": 0,
+    "normal-stop": 0,
+    "source-preservation": 0,
+    "focused": 0,
+    "editor-build": 1,
+    "csp-audit": 0,
+    "csp-checks": 0,
+    "editor-build-reviewed": 0,
+    "editor-register": 0,
+    "services-build": 0,
+    "services-up": 0,
+    "editor-check-final": 0,
+    "meta-lint": 0,
+    "meta-test": 0,
+    "meta-shell": 0,
+    "meta-strict": 0,
+    "meta-claims": 0,
+    "d4-gate": 1
+  },
+  "expected_failures": {
+    "editor-build": "Static exact-byte review required; retained; completed explicit AST review then canonical rebuild passed",
+    "d4-gate": "AC009large-size light/dark not run; feature/verification remain incomplete, no final verified_at claimed"
+  },
+  "repositories": {
+    "yijie": {
+      "head": "c769f44e2869fe80569658dacfd690911a32f9d9",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie.git",
+      "status": "M docs/features/FEAT-154-ecommerce-node-ui/00-feature-brief.md\n M docs/features/FEAT-154-ecommerce-node-ui/01-delivery-log.md\n M docs/features/FEAT-154-ecommerce-node-ui/02-verification.md\n M docs/features/FEAT-154-ecommerce-node-ui/16-delivery-status-and-evidence.md\n M docs/features/FEAT-154-ecommerce-node-ui/feature.yaml\n?? docs/features/FEAT-154-ecommerce-node-ui/21-editor-source-alignment.md\n?? docs/features/FEAT-154-ecommerce-node-ui/22-dark-appearance-verification.md\n?? docs/features/FEAT-154-ecommerce-node-ui/evidence/dark-verification/\n?? docs/features/FEAT-154-ecommerce-node-ui/evidence/editor-source-alignment/"
+    },
+    "yijie-contracts": {
+      "head": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-contracts.git",
+      "status": ""
+    },
+    "yijie-api": {
+      "head": "041f40c69919e81ec72ccee4ea6dbb3ea012142d",
+      "branch": "feat/feat-126-foundation-closure",
+      "origin": "https://github.com/36Dge/yijie-api.git",
+      "status": ""
+    },
+    "yijie-coze": {
+      "head": "6d5b309519c2c027fee4a37a107f15c56d554645",
+      "branch": "main",
+      "origin": "https://github.com/36Dge/yijie-coze.git",
+      "status": "M frontend/packages/workflow/playground/src/components/node-icon/themed-node-icon.tsx\n M scripts/yijie/workflow-editor-csp-reviewed.json"
+    },
+    "yijie-desktop": {
+      "head": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-desktop.git",
+      "status": ""
+    },
+    "yijie-infra": {
+      "head": "66b481552eb76d46b00875ac27794ed8e1eb504a",
+      "branch": "feat/feat-126-s10e",
+      "origin": "https://github.com/36Dge/yijie-infra.git",
+      "status": ""
+    },
+    "yijie-agent-host": {
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-agent-host.git",
+      "status": ""
+    }
+  },
+  "protected_theme_files": {
+    "count": 15,
+    "unchanged": true
+  },
+  "original_documents_and_snapshots": {
+    "count": 4,
+    "unchanged": true
+  },
+  "prior21_evidence_unchanged": 54,
+  "prior21_report_unchanged": true,
+  "original_svg_bytes_unchanged": true,
+  "candidate_identity": "Manifest, binary, PID, dirty source files and digests checked",
+  "runtime": "six healthy, same epoch, no pending stop/recovery",
+  "window_restored": {
+    "app_pid": 15168,
+    "event": "window_geometry",
+    "inner_height": 780.0,
+    "inner_width": 1180.0,
+    "outer_height": 780.0,
+    "outer_width": 1180.0,
+    "scale_factor": 2.0
+  },
+  "appearance_restored": "Native System Settings light selected; App light screenshot07; display scale unchanged",
+  "temporary_export_app": "TextEdit quit normally, no remaining process",
+  "document_links_checked": 128,
+  "evidence_json_and_selected_secret_pattern_scan": "PASS; workspace/user paths redacted; screenshots visually inspected",
+  "diff_whitespace": "PASS tracked changes in seven repos; exact new build logs may retain original whitespace",
+  "document_sha256": {
+    "00-feature-brief.md": "39da96475173c1a8f27c8680a8098c5fe1a3a5bdecbedbd6e5a3d18ca98ceb3e",
+    "01-delivery-log.md": "f27d1b7f1e94caa9bd083565b4beb486b84203cd12a3e9d31a18521cfb4567dd",
+    "02-verification.md": "ce23c4d280e3cfa86d6035408c7202d189a8ce866fabc835d474bfbb692a873a",
+    "16-delivery-status-and-evidence.md": "14116c651808f645a5a851efb2a85c764ec20e210a862e6283be4c370d4a6bd0",
+    "22-dark-appearance-verification.md": "08972c5627a76136a39abb558170474f67027a71c7bba76903bc700e25237661",
+    "feature.yaml": "3dad9503f40b2581f5f4a5440a55dcfda59b023353725b70f6df1cd4fe894505"
+  },
+  "evidence_files": {
+    "01-catalog-before-fix.jpg": {
+      "sha256": "2aab5f53137dd03e5775e918c44c7bc829419769c2a8a25631125ee47c86a1dd",
+      "bytes": 123915
+    },
+    "02-catalog-dark-fixed.jpg": {
+      "sha256": "9ffc97ff362014ee9ab4f14b8ccab9c4da040cae1d82a08733cbdd8f9d69e552",
+      "bytes": 121952
+    },
+    "03-image-form-dark.jpg": {
+      "sha256": "9cd7f92bf57a23766085643c8cfc3fa7e97cb7bbe0733f81e59b3cec1fded626",
+      "bytes": 112814
+    },
+    "04-object-values-dark.jpg": {
+      "sha256": "32ac124414fb1e4c5a801e4a6954433d6484789521fdd38d1471be9d4ba3a6cd",
+      "bytes": 120161
+    },
+    "05-long-name-dark.jpg": {
+      "sha256": "5f8d96c8c7b44fc74c4a29f5ddd293bf78a9a829906d48e616ffb36be1430202",
+      "bytes": 119999
+    },
+    "06-leave-confirm-dark.jpg": {
+      "sha256": "14afcb46b1adef6de3c7fd793b06256f4069a0b2f1b28b5fda281325911fea90",
+      "bytes": 112396
+    },
+    "07-image-form-light-regression.jpg": {
+      "sha256": "e13c1b3e7b86f1e9d4d1309beff06142380a8e714cfa23d0355b98d40e94b69d",
+      "bytes": 114605
+    },
+    "activated-runtime.json": {
+      "sha256": "f5802fa0121ad320bb0894c550ab358f0f9be6ac44c61b9c97f3f9d427e9f9ec",
+      "bytes": 24213
+    },
+    "authorization-and-scope.json": {
+      "sha256": "39fe17a482c62817818c1cac85b0dd529f267615f48715c21efdd84ab4630f9a",
+      "bytes": 964
+    },
+    "before-final-ui.json": {
+      "sha256": "61f788fd6269913885b83fd6efb5d157be3be55282878e04b690b53039067426",
+      "bytes": 403182
+    },
+    "before-native-observations.json": {
+      "sha256": "5048dad72ca13697a914a9a8f537e1ae98a771af6d8468bfcc98a4c0bd6a2322",
+      "bytes": 2163
+    },
+    "before-stop.json": {
+      "sha256": "bbd4670319aa86b7467f60681928c9f67f33bf22be16fa2c241a283d278dbbac",
+      "bytes": 403007
+    },
+    "candidate-build.json": {
+      "sha256": "8cc353d874f63b3919747c0987a0b7a750770d851848ec7eebef738b78ab5765",
+      "bytes": 90696
+    },
+    "candidate-final.json": {
+      "sha256": "a582fd7e1822865144bfddb710652cee602d287eaf9297544b31da0c68af5789",
+      "bytes": 1167
+    },
+    "csp-ast.json": {
+      "sha256": "ff7df41af1b66e9b665b0e86ad0c4f566f35d83223286b3e2436a9a2d2bfe82d",
+      "bytes": 370417
+    },
+    "csp-audit.json": {
+      "sha256": "72b0360b930a3be6f6418aeee9fc14cf17d74173d2dfbee64b54115cf0751363",
+      "bytes": 337
+    },
+    "csp-audit.txt": {
+      "sha256": "744b930c7f083555fd2dc5ed82dc96c02e057c4b2bcc089e1b28b14f0d3a69a2",
+      "bytes": 347
+    },
+    "csp-checks.json": {
+      "sha256": "fe0636dbb6dba1b604fe9d9bb6613e3f02416078d38e1902d1b7712d6756d4de",
+      "bytes": 288
+    },
+    "csp-checks.txt": {
+      "sha256": "8edf81d9dedd82ab0788e8f6cdc068b0175758aa86b33a9afed83c82458099fb",
+      "bytes": 371
+    },
+    "csp-comparison.json": {
+      "sha256": "48a9f124b7dbbcd6f15a60bd24374f5c485636346ee95fda600021ca91f921bd",
+      "bytes": 15802
+    },
+    "csp-reviewed-before.json": {
+      "sha256": "4f325036510e50ada8664bad9fbb97e90667e5648076d4fc25511a9cf7053301",
+      "bytes": 83196
+    },
+    "d4-gate.json": {
+      "sha256": "09ed72501276dace336dd3f4ab816db8f2583a3dd8a2a5ada1b0b4f82a55b2da",
+      "bytes": 353
+    },
+    "d4-gate.txt": {
+      "sha256": "a0c8b920e026764a16a98a61f7155485904d698c0ad32202dbc3344d5a716205",
+      "bytes": 211
+    },
+    "data-before.json": {
+      "sha256": "fb815cba1687c9b61beeb45e0a6407261e306ed839a5c2f26d2566f8b0cb19d2",
+      "bytes": 402436
+    },
+    "data-final.json": {
+      "sha256": "0f7f91c63533513614e4b3be6982b7d800c448e3be42d75a59c1024c7fbdc994",
+      "bytes": 404684
+    },
+    "desktop-launch.txt": {
+      "sha256": "40dab1138334ac6c91146e0ee057e9dae80c2578bad3f3ccd3a537e8a19a9940",
+      "bytes": 22340
+    },
+    "editor-build-reviewed.json": {
+      "sha256": "443003d3352f1080675c66992cb0b3ad1bfede220a36de98db7027a94f2afd47",
+      "bytes": 282
+    },
+    "editor-build-reviewed.txt": {
+      "sha256": "bf5ea335a01376b689c8d1a49ba0932327b2c579f9484f843af2aa783b5dc7a5",
+      "bytes": 61759
+    },
+    "editor-build.json": {
+      "sha256": "4f04fb58e73ac46a30ca9ee5759490e82ac16086b69eb2a703832d631d572e2d",
+      "bytes": 273
+    },
+    "editor-build.txt": {
+      "sha256": "287d0066f95933e89b33c1217a427c4cae3b05f72a0a0ef5b7306401a6cf0a0a",
+      "bytes": 62844
+    },
+    "editor-check-final.json": {
+      "sha256": "a6c7d853e7406252ce9c59d1b0563e744585257714c18e4abfd83c565ef870ae",
+      "bytes": 279
+    },
+    "editor-check-final.txt": {
+      "sha256": "9c0fcdeca2897fd054fa29d90a0384fd7ec99b8825443ad081ac96213953df11",
+      "bytes": 145
+    },
+    "editor-check.json": {
+      "sha256": "1a9e50fbd66048d53c0651e71aa719497396ec11d23c8abe0e8c91825b78c8be",
+      "bytes": 273
+    },
+    "editor-check.txt": {
+      "sha256": "9c0fcdeca2897fd054fa29d90a0384fd7ec99b8825443ad081ac96213953df11",
+      "bytes": 145
+    },
+    "editor-register.json": {
+      "sha256": "784f55f6f3c7c15b2d3c4d8304c821a8a150c77196cd5ffc57e5a443cf1bc5ee",
+      "bytes": 246
+    },
+    "editor-register.txt": {
+      "sha256": "7f9646e3a4101ac9c4acb048dbc5a62901a05cf11fec333e67f17cae38f9694c",
+      "bytes": 349
+    },
+    "final-native-observations.json": {
+      "sha256": "19662db9f7c8aca4cd0cb89143dc74bff8f3beedf2785719f30b81de29aa02d3",
+      "bytes": 4245
+    },
+    "finding-and-fix.json": {
+      "sha256": "21bf4766726b2bdb6332110aa53519c19a8a79f0d6a5d2f354e6165985995d80",
+      "bytes": 1118
+    },
+    "focused.json": {
+      "sha256": "58f8fa804969a0e568c14ad897d6bd87c69f58a4f7cb1487b25d0343599c349a",
+      "bytes": 631
+    },
+    "focused.txt": {
+      "sha256": "d78854bf74429f31a401f07ebfe8c576ad12f5366d22df1dc14096e6ab6d2bf7",
+      "bytes": 7077
+    },
+    "manifest-before.json": {
+      "sha256": "b17f052dc9985579157bfe7bce141951a5f62e9d54d58f7f91a0e6bdda732d22",
+      "bytes": 85242
+    },
+    "meta-claims.json": {
+      "sha256": "d996eed75be6e02439f91b122e3d4501f7b4c1ab25ef88f752a527680c6eb7b6",
+      "bytes": 359
+    },
+    "meta-claims.txt": {
+      "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4",
+      "bytes": 50
+    },
+    "meta-lint.json": {
+      "sha256": "6b5322f1bea298b847c51175db998f2b21554d26a297df46fa5e4f4f6c9ac7db",
+      "bytes": 223
+    },
+    "meta-lint.txt": {
+      "sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c",
+      "bytes": 197
+    },
+    "meta-shell.json": {
+      "sha256": "4ad32fa031cbaf02811cf3e8d207e61b4e077fd22e788a8d2d19d1a6abfaa17f",
+      "bytes": 290
+    },
+    "meta-shell.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "meta-strict.json": {
+      "sha256": "574059dfcca154b92c45104e51156630975e0479b8046b67138b9419e5a7be77",
+      "bytes": 349
+    },
+    "meta-strict.txt": {
+      "sha256": "b9f9c63fc02c70944a6be36145b71f7aa06a1244687cccee2b992b1282376bf8",
+      "bytes": 227
+    },
+    "meta-test.json": {
+      "sha256": "a8b5ff9c49f9dc4c3b79461c9873e45d742973d73bfe6454ee1123cc343d6ea1",
+      "bytes": 223
+    },
+    "meta-test.txt": {
+      "sha256": "5afa36859a72dc2547ed2a11bb044fa6d9de6887bd032ad612dfee0518100f0f",
+      "bytes": 4436
+    },
+    "normal-stop.json": {
+      "sha256": "3a9e536aad094737d4bed3615ce85371745929241200661968841aee7d17b797",
+      "bytes": 240
+    },
+    "normal-stop.txt": {
+      "sha256": "1c6441b53af92a1c082d00968d8d8a54f89e8be252452e788f35d0049a03c07c",
+      "bytes": 124
+    },
+    "persistence-comparison.json": {
+      "sha256": "e433469a3319c55f33edeffed73ad6a23659acdbfe85cf43083a028cbb36871f",
+      "bytes": 2472
+    },
+    "runtime-before.json": {
+      "sha256": "a1dddfdfd2bf5ce26040b0320daa202adcc4175e034e9db2fd010a5ce310c04d",
+      "bytes": 24213
+    },
+    "runtime-final.json": {
+      "sha256": "4dce143c57842100107f0a4967a2f26a40370fd2dcd5c715fe3ea52671428935",
+      "bytes": 24213
+    },
+    "screenshot-ledger.json": {
+      "sha256": "9f1c3e994ae3ee7e4f9d7fe574bea6263ed46afb82da4c604babfc773311a032",
+      "bytes": 3443
+    },
+    "services-build.json": {
+      "sha256": "8bfc4b508ddf8fc6556243bcc99d5e2957f94249321b62f33b1c14a69d4cca49",
+      "bytes": 244
+    },
+    "services-build.txt": {
+      "sha256": "fd33926900e7a960d7b304347a3627a8d129679dcf7728f051595ca512e6785d",
+      "bytes": 665
+    },
+    "services-up.json": {
+      "sha256": "b35818a7774cc04d80ef6e754ad165e672063ececdcdc0f55f1cb125010731e3",
+      "bytes": 238
+    },
+    "services-up.txt": {
+      "sha256": "f5d21b635ab314b66d7efb2d8bdea4932d20a96e62357545bcfd2ea59fc09058",
+      "bytes": 3868
+    },
+    "source-preservation.json": {
+      "sha256": "5f6ef8aa9a9265f33268433afdee8f87aafc59c092e6ace17033232371783a83",
+      "bytes": 250
+    },
+    "source-preservation.txt": {
+      "sha256": "a6a34967d226e14100379f148856f5940f1c5f566701629cc36fb41f0e569b3e",
+      "bytes": 468
+    },
+    "stopped.json": {
+      "sha256": "d534025598811c5cb018425b1700e1a9351a7d54552dd9373e62e968993c054d",
+      "bytes": 24287
+    },
+    "trial-after.json": {
+      "sha256": "8ad03e8d449077889fd909fb594a3663c206b1eeceb9cb05162e7507acb0cc4e",
+      "bytes": 404684
+    },
+    "trial-before.json": {
+      "sha256": "f0d9803909059eeefdb6f6261b617d58d3fd18403a98650bf74f82c9fddf72eb",
+      "bytes": 404684
+    },
+    "window-and-appearance.json": {
+      "sha256": "9d51aeb9c428db717f4fd96be11ae8daba45ae346981111f906fd11ecf85f27a",
+      "bytes": 1157
+    },
+    "workspace-before.json": {
+      "sha256": "ec0d22e18d24faabf08eec06543ded396862e60e3a701995b8372adef5c0559a",
+      "bytes": 5394
+    }
+  },
+  "git_commit_push": "NOT RUN; Coze two files plus meta current and prior21 pending changes retained"
+}

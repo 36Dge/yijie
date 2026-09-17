@@ -1,0 +1,69 @@
+{
+  "recorded_at": "2026-09-17T01:36:37.592219+08:00",
+  "contract_impact": "none; final native UI qualification on the same existing candidate; no source, wire, persistence or deployment semantics changes",
+  "repositories": {
+    "yijie": {
+      "head": "c769f44e2869fe80569658dacfd690911a32f9d9",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie.git",
+      "status": "M docs/features/FEAT-154-ecommerce-node-ui/00-feature-brief.md\n M docs/features/FEAT-154-ecommerce-node-ui/01-delivery-log.md\n M docs/features/FEAT-154-ecommerce-node-ui/02-verification.md\n M docs/features/FEAT-154-ecommerce-node-ui/16-delivery-status-and-evidence.md\n M docs/features/FEAT-154-ecommerce-node-ui/feature.yaml\n?? docs/dev/workflow-node-panel-adjustments-2026-09-17/\n?? docs/features/FEAT-154-ecommerce-node-ui/21-editor-source-alignment.md\n?? docs/features/FEAT-154-ecommerce-node-ui/22-dark-appearance-verification.md\n?? docs/features/FEAT-154-ecommerce-node-ui/evidence/dark-verification/\n?? docs/features/FEAT-154-ecommerce-node-ui/evidence/editor-source-alignment/"
+    },
+    "yijie-contracts": {
+      "head": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-contracts.git",
+      "status": ""
+    },
+    "yijie-api": {
+      "head": "041f40c69919e81ec72ccee4ea6dbb3ea012142d",
+      "branch": "feat/feat-126-foundation-closure",
+      "origin": "https://github.com/36Dge/yijie-api.git",
+      "status": ""
+    },
+    "yijie-coze": {
+      "head": "6d5b309519c2c027fee4a37a107f15c56d554645",
+      "branch": "main",
+      "origin": "https://github.com/36Dge/yijie-coze.git",
+      "status": "M frontend/apps/workflow-local/src/main.tsx\n M frontend/packages/common/flowgram-adapter/free-layout-editor/src/index.ts\n M frontend/packages/workflow/playground/src/components/node-icon/themed-node-icon.module.less\n M frontend/packages/workflow/playground/src/components/node-icon/themed-node-icon.tsx\n M frontend/packages/workflow/playground/src/components/node-panel/components/custom-drag-card.tsx\n M frontend/packages/workflow/playground/src/components/workflow-container/index.tsx\n M frontend/packages/workflow/playground/src/local-ecommerce/catalog-additional.ts\n M frontend/packages/workflow/playground/src/local-ecommerce/catalog-samples.ts\n M scripts/yijie/workflow-editor-csp-reviewed.json\n M yijie-upstream.lock.json\n?? frontend/apps/workflow-local/src/node-panel-theme.css\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-icons/\n?? frontend/packages/workflow/playground/src/components/node-icon/catalog-node-icons.tsx\n?? frontend/packages/workflow/playground/src/components/node-panel/components/local-catalog-drag.ts\n?? frontend/packages/workflow/playground/src/local-ecommerce/catalog-icons.ts\n?? scripts/yijie/workflow-local-catalog-drag.test.mjs\n?? scripts/yijie/workflow-node-panel.test.mjs"
+    },
+    "yijie-desktop": {
+      "head": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-desktop.git",
+      "status": ""
+    },
+    "yijie-infra": {
+      "head": "66b481552eb76d46b00875ac27794ed8e1eb504a",
+      "branch": "feat/feat-126-s10e",
+      "origin": "https://github.com/36Dge/yijie-infra.git",
+      "status": ""
+    },
+    "yijie-agent-host": {
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-agent-host.git",
+      "status": ""
+    }
+  },
+  "protected_files": {
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/26-canvas-background-contrast.md": "7a46982fd4257edb439117db18c3b100129f035a78e308abcf309a0bd36907e7",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/27-workflow-lime-variant.md": "2790be6fae153b1b6e155d755fd7137c41e7c8e26138aa3f28026fbfad4a6b98",
+    "yijie-coze/frontend/apps/workflow-local/src/yijie-coze-theme.css": "c05eb803a63a84e1097fb2851109c2302e8c7d76e8ffe53d409f0014c1593820",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/canvas-background-20260914/reference-style.json": "997e2de9c84b95d7283f92227f5055de383acbcd7807ed9b9df05b0c76eb3938",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/activation.json": "41daaac8877d07819cc0285c4eabd37d0bb3e99879a1eb846821e527f72d586a",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/text-sidebar.png": "6fd087676edd272dff6a68dd2ccc086a8af4d66fdcc77b582f270c01376ab025",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/end-sidebar.png": "8678629382ed6789fb6e5c04fc89856306d17535cb01159a843f9b5a17d3f2c0",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/source-check.json": "fc70344ea94884135631f99e15d664df763302222031068b34fbd7ca390cfed7",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/visual-verification.json": "e7896a66adc139c35d2f94b120d78a69c2bf6d171b5a3d29cd9ab188236477c6",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/canvas.png": "625a698c1df5bb36e0567d8b73593100330e48d6d846866f822a3939a4bd2267",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/activation.json": "b7d9364ec104debe293099134e0a1f96c3026b0605db09398bebf05feb051a58",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/text-sidebar.png": "806293e5afede81d80d57e68fd57e2ea043f93a99a31b76de20e5faf55176a06",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/source-check.json": "49aa50e28b75a38d623da1c201823de37dcd5270ef0be2895e14bb95bad97273",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/visual-verification.json": "a32a997d765d477da922d40494eb108406f958603e956a0c4f1fa5ea10948897",
+    "yijie/docs/features/FEAT-153-coze-workflow-foundation/evidence/workflow-lime-20260915/b7f03d/canvas.png": "72f8218092332000c1f0e1ddd10217f1bcd0f81805026afff11a5c79f2361d66"
+  },
+  "old_manifest_sha256": "586e23d360480e758921366a318d980f01d06aa3d4f917366cbc1af7a5d145e2",
+  "old_desktop_binary_sha256": "feb95f72f020e58db1c8d614a4baa81b4d7211cbca5d5310fe5106b041aff9b1",
+  "app_initial": "Current canonical App PID36779, manifest586e23d3, existing Coze mouse candidate; no source changes planned during final D4.",
+  "constraints": "User instructed final D4 after independent four adjustments, and now explicitly authorizes temporary display scaling change. Restore original1512x982/light/window after final tests. Use normal keyboard deletion/undo path, do not retry stalled native context menus. No node API/business logic or commits/push; no strong kill."
+}
