@@ -9,7 +9,7 @@
 
 ## FEAT-155 当前交付权威（2026-09-24）
 
-本机隔离候选D4及获明确授权的五仓本地版本固化完成。最终Runtime `fb79b1d53501ec90084b584af5fdbe221c7a25aa` → Contracts `54be9314dce5319b049dc0a236800fd1a1fdd7a1` → Host `56e9a924454e850bd181c452c35078b3e0a36954` → Desktop `be15d237fc0422f6072d0b6ec6d668b49d4c692e`；元仓由包含报告的Git提交定位。原生回归发现的已释放旧interrupt重复claim已最小修复，132项复验及最终canonical正常启动/重开通过。详见[50关闭报告](../features/FEAT-155-desktop-scheduled-tasks/50-local-version-freeze-and-closure-report.md)。没有push、tag、合并或发布；全仓make lint仍被既有Skills HEAD不匹配阻断，不宣称全仓CI通过。
+本机隔离候选D4及获明确授权的五仓本地版本固化完成。最终Runtime `fb79b1d53501ec90084b584af5fdbe221c7a25aa` → Contracts `54be9314dce5319b049dc0a236800fd1a1fdd7a1` → Host `56e9a924454e850bd181c452c35078b3e0a36954` → Desktop `be15d237fc0422f6072d0b6ec6d668b49d4c692e`；元仓由包含报告的Git提交定位。原生回归发现的已释放旧interrupt重复claim已最小修复，132项复验及最终canonical正常启动/重开通过。详见[50关闭报告](../features/FEAT-155-desktop-scheduled-tasks/50-local-version-freeze-and-closure-report.md)。后续已明确授权全部仓库提交并普通推送，当前远端同步见[51](../features/FEAT-155-desktop-scheduled-tasks/51-remote-delivery-2026-09-24.md)；没有tag、合并或产品发布。全仓make lint仍被既有Skills HEAD不匹配阻断，不宣称全仓CI通过。
 
 持续边界：本地计划同一SQLCipher/worker，复用Coordinator/outbox与Codex执行、审批、历史；草案采用已核实的input-only原生扩展。普通SQL15/Store5、显式隔离候选26/6，无日常库迁移。有限自动授权和单次许可分开，历史不重发，未知不伪终态。用户明确移除防自动空闲睡眠与睡眠后停止发送，系统通知延期；不擅自恢复这些需求或扩大为云调度。真实文本13/14、余1；本次固化付费与本机请求均0，不以余量扩大验收。
 
