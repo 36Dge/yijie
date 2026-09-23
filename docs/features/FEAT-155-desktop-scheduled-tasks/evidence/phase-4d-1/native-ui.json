@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "application": "canonical Tauri demo_fast explicitly selected scheduled candidate",
+  "ordinary": "SQL15/Store5",
+  "candidate": "SQL26/Store6",
+  "evidence_medium": "实际原生 CUA 截图与 AX 树保存在本任务工具记录中；本JSON为观察索引，没有另存截图或伪称DOM测量",
+  "runtime_qualification": "runtime-clock-qualification.json",
+  "checks": [
+    "固定Runtime SQL25手动首轮，热读取与正常退出/重开冷读取相同；先于SQL26 writer启用",
+    "SQL26列表/详情显示原运行16:14:57与独立重跑16:50:30，Asia/Shanghai，耗时均0.44秒；没有按秒级差值推算",
+    "亮暗主题下时间、说明与详情按钮可见；按原生窗口下限1180×760检查；原系统浅色恢复",
+    "Tab从重跑入口转到查看完整对话，Return打开同一会话第2轮；Escape关闭详情回到原记录按钮",
+    "正常重开前台读取缓存不变，后台独立补读9条此前未取得时钟的历史；已有失败运行仍显示失败，有时间不等于成功",
+    "未执行槽仍显示未开始；实际空值/格式/冲突等未知路径以合成检查验证，不伪称旧库天然存在所有异常",
+    "最终列表与详情可读；应用和Provider正常退出，18081/18083无监听，未使用强杀"
+  ],
+  "result_location": "/chat/01a0cd55-08db-7130-9b24-1807862efbdd?turn=01a0cd75-947d-7842-b424-1ae58ca0084d",
+  "final_ledger": {
+    "evidence": "checks/ledger-final-stopped.log",
+    "timing_rows": 11,
+    "new_background_reads": 9,
+    "reopen_clock_persisted": true,
+    "nonclock_ledger_unchanged_after_rerun": true,
+    "reservations": 0,
+    "plans": "paused or deleted",
+    "provider_request_count": 2
+  },
+  "calls": {
+    "real_text_batch": 0,
+    "real_text_total": 10,
+    "real_text_limit": 14,
+    "real_text_remaining": 4,
+    "local_provider": 2,
+    "local_provider_limit": 2,
+    "images": 0,
+    "merchant_external": 0
+  },
+  "daily_database_accessed": false,
+  "daily_database_migrated": false,
+  "runtime_modified": false,
+  "normal_exit": {
+    "canonical_exit_code": 0,
+    "local_provider_exit_code": 0,
+    "system_theme_restored": "light",
+    "settings_closed": true
+  },
+  "full_feature_d4_claimed": false
+}

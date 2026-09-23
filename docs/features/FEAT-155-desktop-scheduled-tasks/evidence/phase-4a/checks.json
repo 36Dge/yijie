@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-155",
+  "batch": "4A",
+  "contract_impact": "breaking",
+  "ordinary_desktop_schema": 15,
+  "candidate_desktop_schema": 23,
+  "ordinary_host_store": 5,
+  "candidate_host_store": 6,
+  "real_text_calls_this_batch": 0,
+  "real_text_calls_total": 0,
+  "text_budget": 12,
+  "image_calls": 0,
+  "merchant_calls": 0,
+  "checks": {
+    "frontend_focused": {
+      "passed": 53
+    },
+    "cold_management_without_host": {
+      "passed": 1
+    },
+    "chat_leave_guard": {
+      "passed": 1
+    },
+    "feat155_native_regression": {
+      "passed": 101
+    },
+    "additional_22_23_old_chat_reopen": {
+      "passed": 1
+    },
+    "existing_context_contract": {
+      "passed": 1
+    },
+    "strict_private_ipc": {
+      "commands": 24,
+      "exchanges": 29,
+      "result": "PASS"
+    },
+    "lint": "PASS",
+    "cargo_fmt": "PASS",
+    "clippy_all_targets": "PASS",
+    "desktop_build": "PASS",
+    "desktop_docs_build": "PASS",
+    "observed_receipt_requires_plan": {
+      "passed": 1
+    },
+    "final_4a_native": {
+      "passed": 5,
+      "overlaps_prior_native_checks": true
+    },
+    "final_frontend_receipt_and_form": {
+      "passed": 5,
+      "overlaps_prior_frontend_checks": true
+    },
+    "package_strict_d0": "PASS",
+    "meta_lint": "PASS",
+    "meta_tests": {
+      "passed": 50
+    },
+    "generic_claim_audit": "0 committed packages audited; not used as current-package evidence"
+  },
+  "baseline_limitations": {
+    "chat_page_old_assertions": 3,
+    "baseline_source_sha256": "da7607eec79b7c4b06379db8a6fc40b6fb19f05a092d8fff32decc7c04ec0c66",
+    "same_failures_reproduced_on_initial_source": true
+  },
+  "scope": "Local candidate only; no D4 or whole-feature acceptance"
+}

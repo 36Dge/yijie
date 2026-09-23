@@ -1,0 +1,40 @@
+{
+  "recorded_at": "2026-09-23T16:37:03.977804+00:00",
+  "scope": "isolated SQL26/Store6 local scheduled candidate",
+  "first_desktop_commit": "98447609e16b5c63781dbeedfd6bc32d8c343807",
+  "first_start": {
+    "command": "canonical pnpm tauri:demo-fast:app",
+    "pid": 66358,
+    "host_pid": 6549,
+    "runtime_pid": 6554,
+    "home_and_navigation": "PASS; scheduled task list, preserved paused states, automatic grant exhausted label",
+    "history": "PASS; three native approval-test records, latest 2026/09/23 GMT+08:00 22:58:57 Asia/Shanghai, 0.426 sec; previous 1 min 9.895 sec",
+    "location": "tauri://localhost/chat/01a0cec2-3d79-7870-bbd4-f8732ff7cdce?turn=01a0cec6-e85e-7d00-841c-9cd9c429183b",
+    "ui": "AX and actual screenshot verified focused third turn, prior command remains rejected, Ask unchanged",
+    "exit": "Cmd+Q, launcher exit 0; original owned Host/Runtime absent afterwards",
+    "cua_after_exit_note": "A getAXState call after normal quit opened a separate unconfigured settings-only app (PID7083, PPID1). It was immediately normally quit via Cmd+Q without further UI observations; shell confirmed no app/Host/Runtime. No send, authorization, or database migration was performed. Later exits are checked only through the launcher and process inventory."
+  },
+  "ledger_after_first": "byte identical to ledger-before.txt",
+  "provider_requests": 0,
+  "paid_requests": 0,
+  "final_commit_validation": "PASS",
+  "final_desktop_commit": "be15d237fc0422f6072d0b6ec6d668b49d4c692e",
+  "final_start": {
+    "pid": 9329,
+    "host_pid": 48856,
+    "runtime_pid": 48859,
+    "history_and_location": "PASS; 0.426 sec, correct third turn, prior native command rejection preserved",
+    "normal_exit_code": 0,
+    "owned_processes_after_exit": [],
+    "ledger_equal_before": true
+  },
+  "final_reopen": {
+    "pid": 49472,
+    "host_pid": 88293,
+    "runtime_pid": 88296,
+    "history": "PASS; same native chat three turns, previous command remains rejected, Ask unchanged",
+    "normal_exit_code": 0,
+    "owned_processes_after_exit": [],
+    "ledger_equal_before": true
+  }
+}

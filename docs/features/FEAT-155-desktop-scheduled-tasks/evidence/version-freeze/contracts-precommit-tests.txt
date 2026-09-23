@@ -1,0 +1,79 @@
+✖ native timing generation and consumer copies match source (402.95175ms)
+✔ native timing keeps zero, unknown, invalid and time units distinct (4.353791ms)
+✔ clock response has exact identity and no lifecycle authority (2.740667ms)
+✔ native input-only schema distinguishes actual restricted evidence and ordinary null (0.733042ms)
+✔ native policy receipt is closed and does not default missing restrictions to safe (0.119875ms)
+✔ local candidate authority keeps experimental disabled and FEAT-137 retired (0.90825ms)
+✔ all draft definitions and canonical localized model schema strictly compile (18.309042ms)
+✔ fixed purpose requests are versioned, text only and exclude authority or paths (6.698958ms)
+✔ availability needs an explicit reason and receipts carry no saved plan or native config (2.658375ms)
+✔ fixed output is exactly the canonical clarification/candidate projection (3.165375ms)
+✔ five owner bearer routes refer to the authoritative family (5.361416ms)
+✔ read-only recovery binds persistent purpose and mapping without inventing origin (1.810458ms)
+✔ execution identities project the unchanged storage identity authority (2.2085ms)
+✔ finite confirmation cannot grant scope, mode, enabled state or caller authority (1.840208ms)
+✔ workspace references distinguish native policy from user project and reject raw paths (0.687167ms)
+✔ run intent, native outcome and delivery state are distinct closed values (3.741209ms)
+✔ save and revision fields remain paired, and no caller identity/grant is accepted (6.611916ms)
+✔ existing target requires local ID; managed targets cannot take a caller binding (1.450292ms)
+✔ time shape is projected from original draft, with no independent calendar schema (2.823875ms)
+✔ views allow missing target tombstones; preview instants and slots are paired (4.689292ms)
+✔ all original scheduled sources and projected definitions compile strictly (32.595ms)
+✔ pre-closure payload decisions are identical in canonical sources and generated projections (336.602125ms)
+✔ registered version annotation keeps strict unknown-keyword and metadata-type rejection (12.380666ms)
+✔ projection rejects unregistered IDs and absent fragments without a remote loader (0.618375ms)
+✔ accepted identifies an original turn; pending and uncertain never supply a turn (3.585375ms)
+✔ reserved mapping, optional responder identity and minimal bounded payload (1.545916ms)
+✔ query inputs require canonical nonzero IDs and preserve existing bearer boundary (0.872375ms)
+✔ bounded draft distinguishes clarification from candidate and has no authority or save result (5.846084ms)
+✔ draft calendar and target intent preserve three modes and native resolution (0.237ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 28
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 510.927708
+
+✖ failing tests:
+
+test at tests/native-turn-timing.test.mjs:10:1
+✖ native timing generation and consumer copies match source (402.95175ms)
+  Error: Command failed: /opt/homebrew/Cellar/node/26.0.0/bin/node scripts/sync-native-turn-timing.mjs --check
+  node:internal/modules/run_main:107
+      triggerUncaughtException(
+      ^
+  
+  AssertionError [ERR_ASSERTION]: Explicit committed FEAT-155 Contracts source required
+      at consumerSourceLock (file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts/scripts/scheduled-consumer-source.mjs:12:10)
+      at file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts/scripts/sync-native-turn-timing.mjs:20:105
+      at ModuleJob.run (node:internal/modules/esm/module_job:437:25)
+      at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:642:26)
+      at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /^[0-9a-f]{40}$/,
+    operator: 'match',
+    diff: 'simple'
+  }
+  
+  Node.js v26.0.0
+  
+      at genericNodeError (node:internal/errors:998:15)
+      at wrappedFn (node:internal/errors:543:14)
+      at checkExecSyncError (node:child_process:925:11)
+      at execFileSync (node:child_process:961:15)
+      at TestContext.<anonymous> (file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts/tests/native-turn-timing.test.mjs:11:2)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.start (node:internal/test_runner/test:1096:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    status: 1,
+    signal: null,
+    output: [ null, <Buffer 4e 61 74 69 76 65 20 74 69 6d 69 6e 67 20 76 65 72 69 66 69 65 64 3b 20 6c 6f 63 61 6c 20 63 61 6e 64 69 64 61 74 65 20 6f 6e 6c 79 2e 0a>, <Buffer 6e 6f 64 65 3a 69 6e 74 65 72 6e 61 6c 2f 6d 6f 64 75 6c 65 73 2f 72 75 6e 5f 6d 61 69 6e 3a 31 30 37 0a 20 20 20 20 74 72 69 67 67 65 72 55 6e 63 61 ... 759 more bytes> ],
+    pid: 46136,
+    stdout: <Buffer 4e 61 74 69 76 65 20 74 69 6d 69 6e 67 20 76 65 72 69 66 69 65 64 3b 20 6c 6f 63 61 6c 20 63 61 6e 64 69 64 61 74 65 20 6f 6e 6c 79 2e 0a>,
+    stderr: <Buffer 6e 6f 64 65 3a 69 6e 74 65 72 6e 61 6c 2f 6d 6f 64 75 6c 65 73 2f 72 75 6e 5f 6d 61 69 6e 3a 31 30 37 0a 20 20 20 20 74 72 69 67 67 65 72 55 6e 63 61 ... 759 more bytes>
+  }

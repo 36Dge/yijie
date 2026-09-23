@@ -1,0 +1,43 @@
+{
+  "GrantConfirmation": {
+    "expected_revision": 1,
+    "expires_at": 1789747248,
+    "max_runs": 2,
+    "plan_id": "01a0b508-d5fd-7273-bad9-a0cd718e18d8",
+    "request_id": "01a0b508-d614-7273-8ce1-d334c4410d87"
+  },
+  "GrantView": {
+    "authorization_revision": 1,
+    "definition_digest": "f94e22cde3376dc9be636e01756f96b4b71e2a91c2bfb325a23a88ebca060566",
+    "expires_at": 1789747248,
+    "grant_id": "01a0b508-d614-7273-8ce1-d34c066bf9b6",
+    "max_runs": 2,
+    "occupied_runs": 0,
+    "plan_id": "01a0b508-d5fd-7273-bad9-a0cd718e18d8",
+    "plan_revision": 1,
+    "state": "active",
+    "workspace": {
+      "resource_id": "01a0b508-d5fd-7273-bad9-a0cd718e18d8",
+      "source": "managed_schedule"
+    }
+  },
+  "RunView": {
+    "delivery_state": "reserved",
+    "grant_id": "01a0b508-d614-7273-8ce1-d34c066bf9b6",
+    "native_outcome": "unobserved",
+    "needs_attention": false,
+    "operation_id": "01a0b508-d61c-7f31-af3a-fdd1df9a452a",
+    "permission_mode": "ask",
+    "plan_id": "01a0b508-d5fd-7273-bad9-a0cd718e18d8",
+    "plan_revision": 1,
+    "request_id": "01a0b508-d61c-7f31-af3a-fdbb1ce0042b",
+    "run_id": "01a0b508-d61c-7f31-af3a-fdcadc0d3f0e",
+    "schedule_epoch": 1,
+    "snapshot_digest": "19c4a829dfa8e4037c7bfce22ad918a2fe7c6209433f12f4c7945a17121b70cb",
+    "trigger": "manual",
+    "workspace": {
+      "resource_id": "01a0b508-d5fd-7273-bad9-a0cd718e18d8",
+      "source": "managed_schedule"
+    }
+  }
+}

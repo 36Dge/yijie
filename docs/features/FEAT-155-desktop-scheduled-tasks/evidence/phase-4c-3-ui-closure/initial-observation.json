@@ -1,0 +1,31 @@
+{
+  "recorded_at": "2026-09-23T04:51:56.073882+00:00",
+  "entry": "canonical packaged explicit scheduled candidate; PID4723",
+  "product_source_changes_before_reproduction": 0,
+  "prior_4c3_report_40_desktop_hashes_identical": true,
+  "visible_modal": "PASS without product patch",
+  "dark_theme": "PASS shell/card/modal synchronized without product patch",
+  "keyboard": [
+    "default cancel focused",
+    "Enter cancelled and returned to originating immediate-run button",
+    "Tab moved to confirm; Shift+Tab returned to cancel",
+    "Escape returned list rerun focus; detail rerun returned to corresponding list rerun button"
+  ],
+  "reproduced_defect": {
+    "id": "UI-4C3-02",
+    "description": "At1180x760, long rerun diff overflows whole card; cancel is focused but below visible viewport until inner scroll. Both list and detail entry reproduce.",
+    "root_cause": "Confirmation buttons and content share the same whole-card overflow:auto scroll container.",
+    "minimal_fix": "Use existing NCard footer for single-run permit and actions; scroll body only; keep header/footer visible."
+  },
+  "historical_UI_4C3_01": "not reproduced with unchanged product sources; historical exact cause unknown, not asserted to be a specific tool or product bug",
+  "real_provider_requests": 0,
+  "local_provider_requests": 0,
+  "normal_launcher_exit": 0,
+  "additional_findings": [
+    {
+      "id": "UI-4C3-03",
+      "description": "After body became keyboard-focusable, detail-to-rerun overlap left focus on body instead of cancel; list entry correctly focused cancel. Stable AX observation confirmed body focus.",
+      "fix": "Close record detail first; on after-leave invoke existing read-only rerun preview. Clear queued UI handoff on authorization/context change and allowed route leave."
+    }
+  ]
+}

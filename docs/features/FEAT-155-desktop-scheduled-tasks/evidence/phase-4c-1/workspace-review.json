@@ -1,0 +1,266 @@
+{
+  "feature": "FEAT-155",
+  "phase": "4C-1",
+  "reviewed_by": "same task, source and scope audit; no separate human/agent approval claimed",
+  "recorded_at": "2026-09-22T15:14:16.896712+00:00",
+  "repositories": {
+    "yijie-desktop": {
+      "head": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "same_head": true,
+      "changed": [
+        {
+          "path": "contracts/scheduled-host-build.candidate.json",
+          "before": "b51c8bab62ba0819abd66d3b9e53268ec3fb523ada8603bc833b735121bbe0ac",
+          "after": "2f5120af63bf03f28dc206c090d95f2ee7f947573a8eb7ab0f675fa91a21a0b8"
+        },
+        {
+          "path": "contracts/scheduled-ipc.candidate.json",
+          "before": "633c029f8b628f9cc6adf682e30458cd375951e4e26020638bac7cb57c6a417d",
+          "after": "0a38e2d722bb8bb29607a7fffe50818d90376343edd7cb8ead7f480b9020b7a3"
+        },
+        {
+          "path": "src-tauri/schemas/scheduled-task-ipc-resolved.schema.json",
+          "before": "1c988fc341fe9f1fb1559ead9f97ab5222f043182d49f4b8dc98eae9c49ab6e6",
+          "after": "49410dc9dd9c74f1498113d1ba4d25ed4fdfaf4d3d54c8fef4a685d418b6bcef"
+        },
+        {
+          "path": "src-tauri/schemas/scheduled-task-ipc-v1.schema.json",
+          "before": "76043de64104141e7bde2d1bab0f6f416f1f8cd715b064d37cf1c8d0b3f3fc0d",
+          "after": "a12a636232c77336509919171db5ec6b0171f6d358acfab7115bc6b8fb2651ca"
+        },
+        {
+          "path": "src-tauri/src/chat/application.rs",
+          "before": "6cca01c9db28b5ca0604107d27aeeb516204f255ab67adfeb55ce6a9bce227bd",
+          "after": "b7e093b4ae7b761977647fa44643a5f94860907fcaa072ecffdba48c37c95abf"
+        },
+        {
+          "path": "src-tauri/src/chat/database.rs",
+          "before": "269c7452f3bc1d18f40d75a287718eaacd8bc7bb9a97d8ca2938e7a4eec5d39e",
+          "after": "bb1a45ca2e159af7baaa6c2d4fe1234e6c49e9a73bdc3babcc421b506b40b1ce"
+        },
+        {
+          "path": "src-tauri/src/chat/host_bridge.rs",
+          "before": "5bd7e49acaa22febcb97dac1ef1ba5f7d00c0a377e3ca18f9c243bdf3d1aa9c3",
+          "after": "4b882d4955ecbbece3f3b69cb27859e62bbc4cb0919a06276645f62b8665f39a"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/dispatch_tests.rs",
+          "before": "588ef6a37529c4207847bf71bb84ba6ada949ecf50b87c34d2fc16df146f0325",
+          "after": "95d28521fead8e102f8b80dca48b2e660bcfb56f56a8d6aebb8b5d9a260ca62a"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/draft_runtime.rs",
+          "before": "a1eecf13d476e58711255b8a2e1743334259f9e90d656762c9bc2b0da792b0c3",
+          "after": "358c6385d0f3cd8bbd9f21bc1cff1b303714978b64da1bbd305b815b69cdabe3"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution/dispatch.rs",
+          "before": "ce41db1a76ff4a2e3040f8c56df2bc6d49997d4ded69cbd0aa84385b66a3638c",
+          "after": "e69df3ffec13e451a647200fc756f6878225af236b6c5f39b79703a5b83f47f8"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution_guard.rs",
+          "before": "0c35d585f3ad6645aa300dd4507154e953c5f70ea338bd188b0cba98b75c48e6",
+          "after": "7e5fd1a74946f10565069c71c0230e93bfbcb5b7c2018f730ac18be55a91de93"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/ipc.rs",
+          "before": "1f8b9ee32076de6331c6f195da9247d64f010bb1fd4bb06cf763015338029e2e",
+          "after": "d405d56241282de94dbfe8917b41c6903cb8a3e3b22b1c18d61bce26a1d1ab6e"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/ipc/query.rs",
+          "before": "102c4c2f78dbc89d7896aace0c7297ea7f6e082e15e1006fd776ec158f345587",
+          "after": "4183d441702c1304c39003bccabd7c5be4317fd8e4b896f439dd0c1fed93238e"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/ipc/tests.rs",
+          "before": "c869e3effed6b7dfdf5588309f91da58d21f0358ebad9a40ada4eea3b25b43e8",
+          "after": "7e830d7afb3e414d544f226caa2ff755f608bf39f341ee8e1a4643d0e83f58f0"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/ipc/tests/manual_tests.rs",
+          "before": null,
+          "after": "4b72573773ca93052c59e71993e1605cb54b7be85acae2b9ea6227ae52621dd5"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/ipc_commands_generated.rs",
+          "before": "6da60f81035f2af290c5ff33c3ffcc5f8db81382c4a3dd21e7da353a97105edb",
+          "after": "c7f1f5a785295353fecf7208d79339e1d7ce96c455ed4a134b6b0061100eb33a"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/ipc_generated.rs",
+          "before": "cc58c307cc9351d194e1d9a4b3d9f1ee88ad97f652a2179e4b0681a7577aeecf",
+          "after": "e5382d07cb3652a30cf0d594cbbb74382b7c00bb857672805c05e3d27751dc70"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/manual.rs",
+          "before": null,
+          "after": "ad05e835b4fc025cae6c0b9a29d7ef11b98c0a1b0c7e19852518301d1821d5bf"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/manual_composition_tests.rs",
+          "before": null,
+          "after": "cdca26a77a3f97eef401ffbca85227d534c251162d157079b31160c8d9b5d912"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/mod.rs",
+          "before": "1f23dd42e067e4d153c797efd4cc98aa20a804f17a3f4b52b2ac8dd4bb43807d",
+          "after": "20bb4d71672fd18b924e65c1537ffdc316bd3b1d05edaf1fbd8b56f95e77cf75"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/recovery.rs",
+          "before": "7f3db5b21e48b2f47c10b04ab260ca58d8b4b79c9abbb9ca4ce154d9e6310a2d",
+          "after": "7315ea2807891f547578e67a19d549a2ac4e2718cf36b7a680f53c6541ab9e77"
+        },
+        {
+          "path": "src-tauri/src/chat/worker.rs",
+          "before": "636307a6098b0c487674dca9fe99a1d00e8815f4ec040ab05186303e0a8652f2",
+          "after": "86a719e6461e0ea46092214a3153e5d268670e27cea3bbb086f801e4b5319300"
+        },
+        {
+          "path": "src-tauri/src/lib.rs",
+          "before": "f65e84f8862861d8a424d3eb6174dad106d710cc9d7cbaff2ff40eaf8bd512c9",
+          "after": "51c3a4eb78b362001bff40e4fad4387f64d1c64f3f7a8055993660d592c599a8"
+        },
+        {
+          "path": "src/App.vue",
+          "before": "85c11853c50ae766237f343f32705fbfce3bd2b4dff50d34f12c0ccbfaa074c1",
+          "after": "0a38b83f9c13a0c13ea4e1868ffe6fe2608d8559b92860d9a700d200d4122be5"
+        },
+        {
+          "path": "src/api/generated/scheduled-task-ipc-validator.gen.d.ts",
+          "before": "3672d1ca0c9fdb89a4b4ef9ce25dd23ebf6d44978033edd1dd8bdad2bc440ed6",
+          "after": "0e625eadd4f75f50bcdd01eca6c6c6e4dc6c49b5ed971e16b0448178ee8c5d42"
+        },
+        {
+          "path": "src/api/generated/scheduled-task-ipc-validator.gen.js",
+          "before": "024f173211bc590255a8d5e5b06a215e27764dc4b561f7462dca46e38339d975",
+          "after": "4dc81059035e2c31ab0baadb82458d68aec2ad256f2dba857b73715a4a1cfcc2"
+        },
+        {
+          "path": "src/api/generated/scheduled-task-ipc.gen.ts",
+          "before": "dec8b7c85282787adde2a6295c915cec63a491f96b9149287b8bfb7f1577b932",
+          "after": "6256cdd4c3684f2e0d93f39d65a5bde2473252752460110a749d33fc97df4e43"
+        },
+        {
+          "path": "src/authorization/chat-authority-recovery.ts",
+          "before": "f2eae5232e65d47d8e8fa1b311d4e092bada6293cbd320579af89eb664fc0f38",
+          "after": "182c21218e3b647fc347fb8ebb6270e034bb4eae7dc5845408fe0d1327d9ad17"
+        },
+        {
+          "path": "src/authorization/chat-permission-lifecycle.test.ts",
+          "before": "8d188f242683f409f58d299044aca257479d7e21780e14f9339873d255576f8f",
+          "after": "9250d0ee911a717f18f45cd27bfda0afcf7845a52cb4749faf7d076ca0c0e1cd"
+        },
+        {
+          "path": "src/authorization/chat-permission-lifecycle.ts",
+          "before": "e84e53b6ae8800c90c71addbe4b9ab8557807a12478f741e082e10864c09d0be",
+          "after": "cd62c5be5a60ae74c69a85186984d0bae612e9c48d80b87f5aad709ebbc314cd"
+        },
+        {
+          "path": "src/components/chat/ChatTimeline.vue",
+          "before": "4bd9e9dfc9e17c5adba20a77060f485f2b286bc95da1370447ce4b7ca3bb1137",
+          "after": "ec434c029f2ad64ee0e5d5649d52daccbe4eb7f947483026aace09146fbd8861"
+        },
+        {
+          "path": "src/components/schedules/ScheduledPlanForm.vue",
+          "before": "388fcad5ed4d88390d9755fe889817e8430b569c2501ddea8267b3a12f42dfef",
+          "after": "3c8fe47eafcc012fac002517423b3684a97b88cc7f04cdec078291025b7c4173"
+        },
+        {
+          "path": "src/domain/locate-chat-turn.test.ts",
+          "before": null,
+          "after": "03f6c985fb8e94f390139b47c6fd806e65b545db83ebea1ab3f11d1d41915df3"
+        },
+        {
+          "path": "src/domain/locate-chat-turn.ts",
+          "before": null,
+          "after": "1a994781690dd81ebeb8825633b2203d29009de7feda6655c94fec37fc5a3e2b"
+        },
+        {
+          "path": "src/domain/scheduled-task-ui.ts",
+          "before": "07a3476db27022e1070e5f1d4469676b8b90ced7aff3f8de5347fcf2d3614fc7",
+          "after": "c5b149f801347acef884e1fa03307630de5fd7f4eb2a531f506a73d467e88725"
+        },
+        {
+          "path": "src/pages/chat/ChatPage.test.ts",
+          "before": "f0a7ddc61955a8d56d085368be1b806af256ace1cb8809de0c30a2dc6d05c13d",
+          "after": "ff1cfd963db2bf7c0bdb1242521af37fe03139be18c2dac3c0d50c2b933ebc6a"
+        },
+        {
+          "path": "src/pages/chat/ChatPage.vue",
+          "before": "bbc548fb1c5639c65809915f0c31e0eaa1a587006e24b54a39da7b9a1440d79a",
+          "after": "9f51dd2ca1ff511ace9883c079f78fe1706ec2e1fe8e947e2af6c496f13648e2"
+        },
+        {
+          "path": "src/pages/schedules/ScheduledTasksPage.vue",
+          "before": "230103d494b1fb3c81d13c400306def9bf207ebfff75ad08d7aaba96b05c74f5",
+          "after": "1779f84465f3d28e3dc4f2427366d16e47f8e5992d73955e444f03ad2efc6d7d"
+        },
+        {
+          "path": "src/pages/schedules/use-scheduled-manual.test.ts",
+          "before": null,
+          "after": "de91338ce66309ab2f864520af340a9686d884c8d09ba2ff3b0a3569d0626625"
+        },
+        {
+          "path": "src/pages/schedules/use-scheduled-manual.ts",
+          "before": null,
+          "after": "f971a1c8b14dadbd0cfb1b3e12c18276a4b7587785968ab4ca5d75a46f4c10a0"
+        }
+      ],
+      "removed": [],
+      "prior_dirty_changes_preserved": true
+    },
+    "yijie-agent-host": {
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "same_head": true,
+      "changed": [
+        {
+          "path": "internal/codex/scheduled_manual_integration_test.go",
+          "before": null,
+          "after": "a96ea85c15443fd8436331a2306be011fd99ed3795bd57b1508a4a13a9425ff6"
+        },
+        {
+          "path": "scripts/permission-smoke-meter.py",
+          "before": "b42dd6ac727528ac9400e1d5ec5ec22af4791337a96988ca55d36afabde1f25f",
+          "after": "3505551c801bf3340f5119b92a6487a32f662c8e74d09f87ec71eddb989ab55a"
+        }
+      ],
+      "removed": [],
+      "prior_dirty_changes_preserved": true
+    },
+    "yijie-contracts": {
+      "head": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "same_head": true,
+      "changed": [],
+      "removed": [],
+      "prior_dirty_changes_preserved": true
+    },
+    "yijie-codex": {
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "same_head": true,
+      "changed": [],
+      "removed": [],
+      "prior_dirty_changes_preserved": true
+    }
+  },
+  "findings": [],
+  "fixed_artifact": {
+    "codex": "bd7d26205e2d735dcac0f35fc089a7b30a5c18a54586b94a2c7f624f2f5b7672",
+    "runtime-manifest.json": "14d4073de87be137cf39f770c091b8ab62a7c34933bc49dc50f12b4ddd3a494a"
+  },
+  "reviewed_boundaries": [
+    "Private source-first receipt definition and all 26 registered commands",
+    "ManualOnly write/claim/final POST; current UI + Host nonce + lifecycle + plan/grant/run identities",
+    "No read, repeated grant/manual or normal restart remints volatile permits",
+    "Never-sent one-time refund; attempted retained unknown releases only exact normal-stop evidence",
+    "Same worker/outbox/Coordinator/Host; automatic lifecycle not installed",
+    "Original partial/native history preserved; bounded exact-turn navigation; no fabricated business result or clock",
+    "Ordinary SQL15/Store5 and candidate23/6; no migration edits",
+    "Source query title uses exact scoped target; UI cannot switch target during confirmation",
+    "Prior source hashes unchanged before adding exact Host qualification-test pin",
+    "Budget kept by existing meter; diagnostic records exception class only; all prior failed requests retained"
+  ],
+  "unresolved_blockers": []
+}

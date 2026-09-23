@@ -1,0 +1,1664 @@
+[
+  {
+    "command": "schedule_save_plan_v1",
+    "request": {
+      "contextId": "01a0c993-6203-7132-b82b-1e1de496ba00",
+      "payload": {
+        "definition": {
+          "content": "仅检查本地记录",
+          "name": "合成计划",
+          "rule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "target": {
+            "mode": "new_chat_each_run"
+          }
+        },
+        "request_id": "01a0c993-6203-7132-b82b-1e2d6233fb5b"
+      },
+      "requestId": "01a0c993-6203-7132-b82b-1e2d6233fb5b",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "definition": {
+          "content": "仅检查本地记录",
+          "name": "合成计划",
+          "rule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "target": {
+            "mode": "new_chat_each_run"
+          }
+        },
+        "effective_from": 1790088274,
+        "next_at": 1790125200,
+        "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+        "revision": 1,
+        "rule_version": 1,
+        "schedule_epoch": 1,
+        "state": "paused",
+        "target_state": "unbound",
+        "tzdb_version": "2025b"
+      },
+      "requestId": "01a0c993-6203-7132-b82b-1e2d6233fb5b",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_confirm_grant_v1",
+    "request": {
+      "contextId": "01a0c993-6203-7132-b82b-1e1de496ba00",
+      "payload": {
+        "expected_revision": 1,
+        "expires_at": 1790091874,
+        "max_runs": 2,
+        "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+        "request_id": "01a0c993-6221-7b41-b8ba-a138576b6148"
+      },
+      "requestId": "01a0c993-6221-7b41-b8ba-a138576b6148",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "authorization_revision": 1,
+        "definition_digest": "5f6e80e11cc4cacb5de4d84d446515657212913bce520c0f6a29043d3e6fed7c",
+        "expires_at": 1790091874,
+        "grant_id": "01a0c993-6225-7081-a9f6-0b8b572a4d92",
+        "max_runs": 2,
+        "occupied_runs": 0,
+        "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+        "plan_revision": 1,
+        "state": "active",
+        "workspace": {
+          "resource_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+          "source": "managed_schedule"
+        }
+      },
+      "requestId": "01a0c993-6221-7b41-b8ba-a138576b6148",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_manual_run_v1",
+    "request": {
+      "contextId": "01a0c993-6203-7132-b82b-1e1de496ba00",
+      "payload": {
+        "grant_id": "01a0c993-6225-7081-a9f6-0b8b572a4d92",
+        "revision": 1
+      },
+      "requestId": "01a0c993-622b-7730-8d11-8e2b32bb565d",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "delivery_state": "reserved",
+        "grant_id": "01a0c993-6225-7081-a9f6-0b8b572a4d92",
+        "native_outcome": "unobserved",
+        "needs_attention": false,
+        "operation_id": "01a0c993-6247-7e93-8b4a-7916350ad6b1",
+        "permission_mode": "ask",
+        "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+        "plan_revision": 1,
+        "request_id": "01a0c993-622b-7730-8d11-8e2b32bb565d",
+        "run_id": "01a0c993-6247-7e93-8b4a-7905e77a4288",
+        "schedule_epoch": 1,
+        "snapshot_digest": "85c93e12929ef1e598267447719a2263306e0ac25b5dcd949d6cd2daa3085e25",
+        "trigger": "manual",
+        "workspace": {
+          "resource_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+          "source": "managed_schedule"
+        }
+      },
+      "requestId": "01a0c993-622b-7730-8d11-8e2b32bb565d",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_availability_v1",
+    "request": {
+      "contextId": "01a0c993-6203-7132-b82b-1e1de496ba00",
+      "payload": {},
+      "requestId": "01a0c993-6269-7370-aa30-dc40b58e6656",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "dispatch": "disabled",
+        "platform_qualified": false,
+        "preparation_enabled": true,
+        "readable": true,
+        "schema_version": 21,
+        "writable": true
+      },
+      "requestId": "01a0c993-6269-7370-aa30-dc40b58e6656",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_list_plans_v1",
+    "request": {
+      "contextId": "01a0c993-6203-7132-b82b-1e1de496ba00",
+      "payload": {},
+      "requestId": "01a0c993-626a-7a71-8b7c-9901b5b685af",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "items": [
+          {
+            "effective_state": "paused",
+            "name": "合成计划",
+            "next_at": 1790125200,
+            "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+            "raw_state": "paused",
+            "revision": 1,
+            "target_mode": "new_chat_each_run",
+            "target_state": "unbound"
+          }
+        ]
+      },
+      "requestId": "01a0c993-626a-7a71-8b7c-9901b5b685af",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_get_plan_v1",
+    "request": {
+      "contextId": "01a0c993-6203-7132-b82b-1e1de496ba00",
+      "payload": {
+        "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c"
+      },
+      "requestId": "01a0c993-6291-74f2-b5ea-6f85fa596f12",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "grant": {
+          "authorization_revision": 1,
+          "definition_digest": "5f6e80e11cc4cacb5de4d84d446515657212913bce520c0f6a29043d3e6fed7c",
+          "expires_at": 1790091874,
+          "grant_id": "01a0c993-6225-7081-a9f6-0b8b572a4d92",
+          "max_runs": 2,
+          "occupied_runs": 1,
+          "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+          "plan_revision": 1,
+          "state": "active",
+          "workspace": {
+            "resource_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+            "source": "managed_schedule"
+          }
+        },
+        "plan": {
+          "authorization_expires_at": 1790091874,
+          "authorization_ref": "01a0c993-6225-7081-a9f6-0b8b572a4d92",
+          "definition": {
+            "content": "仅检查本地记录",
+            "name": "合成计划",
+            "rule": {
+              "frequency": "daily",
+              "local_time": "09:00",
+              "time_zone": "Asia/Shanghai"
+            },
+            "target": {
+              "mode": "new_chat_each_run"
+            }
+          },
+          "effective_from": 1790088274,
+          "next_at": 1790125200,
+          "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+          "revision": 1,
+          "rule_version": 1,
+          "schedule_epoch": 1,
+          "state": "paused",
+          "target_state": "unbound",
+          "tzdb_version": "2025b"
+        },
+        "summary": {
+          "effective_state": "paused",
+          "name": "合成计划",
+          "next_at": 1790125200,
+          "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+          "raw_state": "paused",
+          "revision": 1,
+          "target_mode": "new_chat_each_run",
+          "target_state": "unbound"
+        }
+      },
+      "requestId": "01a0c993-6291-74f2-b5ea-6f85fa596f12",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_list_records_v1",
+    "request": {
+      "contextId": "01a0c993-6203-7132-b82b-1e1de496ba00",
+      "payload": {},
+      "requestId": "01a0c993-6295-7ee1-a0b8-53bedd0f2dca",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "items": [
+          {
+            "attention": "none",
+            "business_result": "not_evaluated",
+            "conversation": {
+              "conversation_id": "01a0c993-624e-7ee1-b948-1f938aeee14f",
+              "local_turn_id": "01a0c993-624e-7ee1-b948-1fba9919ba4e",
+              "status": "available"
+            },
+            "key": {
+              "kind": "run",
+              "run_id": "01a0c993-6247-7e93-8b4a-7905e77a4288"
+            },
+            "kind": "run",
+            "plan": {
+              "effective_state": "paused",
+              "name": "合成计划",
+              "next_at": 1790125200,
+              "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+              "raw_state": "paused",
+              "revision": 1,
+              "target_mode": "new_chat_each_run",
+              "target_state": "unbound"
+            },
+            "run": {
+              "delivery_state": "reserved",
+              "grant_id": "01a0c993-6225-7081-a9f6-0b8b572a4d92",
+              "native_outcome": "unobserved",
+              "needs_attention": false,
+              "operation_id": "01a0c993-6247-7e93-8b4a-7916350ad6b1",
+              "permission_mode": "ask",
+              "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+              "plan_revision": 1,
+              "request_id": "01a0c993-622b-7730-8d11-8e2b32bb565d",
+              "run_id": "01a0c993-6247-7e93-8b4a-7905e77a4288",
+              "schedule_epoch": 1,
+              "snapshot_digest": "85c93e12929ef1e598267447719a2263306e0ac25b5dcd949d6cd2daa3085e25",
+              "trigger": "manual",
+              "workspace": {
+                "resource_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+                "source": "managed_schedule"
+              }
+            },
+            "timing": {
+              "duration": "not_started",
+              "execution_time": "not_started",
+              "source": "no_execution_clock"
+            }
+          }
+        ]
+      },
+      "requestId": "01a0c993-6295-7ee1-a0b8-53bedd0f2dca",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_get_record_v1",
+    "request": {
+      "contextId": "01a0c993-6203-7132-b82b-1e1de496ba00",
+      "payload": {
+        "kind": "run",
+        "run_id": "01a0c993-6247-7e93-8b4a-7905e77a4288"
+      },
+      "requestId": "01a0c993-6313-7c03-84d9-004daf32a40d",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "configuration": {
+          "content": "仅检查本地记录",
+          "name": "合成计划",
+          "rule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "target_mode": "new_chat_each_run"
+        },
+        "record": {
+          "attention": "none",
+          "business_result": "not_evaluated",
+          "conversation": {
+            "conversation_id": "01a0c993-624e-7ee1-b948-1f938aeee14f",
+            "local_turn_id": "01a0c993-624e-7ee1-b948-1fba9919ba4e",
+            "status": "available"
+          },
+          "key": {
+            "kind": "run",
+            "run_id": "01a0c993-6247-7e93-8b4a-7905e77a4288"
+          },
+          "kind": "run",
+          "plan": {
+            "effective_state": "paused",
+            "name": "合成计划",
+            "next_at": 1790125200,
+            "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+            "raw_state": "paused",
+            "revision": 1,
+            "target_mode": "new_chat_each_run",
+            "target_state": "unbound"
+          },
+          "run": {
+            "delivery_state": "reserved",
+            "grant_id": "01a0c993-6225-7081-a9f6-0b8b572a4d92",
+            "native_outcome": "unobserved",
+            "needs_attention": false,
+            "operation_id": "01a0c993-6247-7e93-8b4a-7916350ad6b1",
+            "permission_mode": "ask",
+            "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+            "plan_revision": 1,
+            "request_id": "01a0c993-622b-7730-8d11-8e2b32bb565d",
+            "run_id": "01a0c993-6247-7e93-8b4a-7905e77a4288",
+            "schedule_epoch": 1,
+            "snapshot_digest": "85c93e12929ef1e598267447719a2263306e0ac25b5dcd949d6cd2daa3085e25",
+            "trigger": "manual",
+            "workspace": {
+              "resource_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+              "source": "managed_schedule"
+            }
+          },
+          "timing": {
+            "duration": "not_started",
+            "execution_time": "not_started",
+            "source": "no_execution_clock"
+          }
+        }
+      },
+      "requestId": "01a0c993-6313-7c03-84d9-004daf32a40d",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_list_targets_v1",
+    "request": {
+      "contextId": "01a0c993-6203-7132-b82b-1e1de496ba00",
+      "payload": {},
+      "requestId": "01a0c993-6317-74b2-bf40-aada9182dfbc",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "items": [
+          {
+            "can_save": true,
+            "conversation_id": "01a0c993-624e-7ee1-b948-1f938aeee14f",
+            "execution": "blocked",
+            "reason": "native_identity_unavailable",
+            "title": "仅检查本地记录",
+            "updated_at": 1790088274,
+            "workspace_source": "managed_schedule"
+          }
+        ]
+      },
+      "requestId": "01a0c993-6317-74b2-bf40-aada9182dfbc",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_preview_time_v1",
+    "request": {
+      "contextId": "01a0c993-6203-7132-b82b-1e1de496ba00",
+      "payload": {
+        "rule": {
+          "frequency": "daily",
+          "local_time": "09:00",
+          "time_zone": "Asia/Shanghai"
+        }
+      },
+      "requestId": "01a0c993-631d-7af2-99e4-50a1cd781294",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "candidates_examined": 2,
+        "logical_slot": "2026-09-23T09:00",
+        "next_at": 1790125200,
+        "rule_version": 1,
+        "skipped_slots": [],
+        "tzdb_version": "2025b"
+      },
+      "requestId": "01a0c993-631d-7af2-99e4-50a1cd781294",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_preview_rerun_v1",
+    "request": {
+      "contextId": "01a0c993-6203-7132-b82b-1e1de496ba00",
+      "payload": {
+        "original_run_id": "01a0c993-6247-7e93-8b4a-7905e77a4288"
+      },
+      "requestId": "01a0c993-631d-7af2-99e4-50bfd790c58f",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "confirmation": {
+          "definition_digest": "7ab76553f525b3b1436f882ac0741892c442631c6cc017ad787162a070f372a4",
+          "grant_id": "01a0c993-6225-7081-a9f6-0b8b572a4d92",
+          "original_run_id": "01a0c993-6247-7e93-8b4a-7905e77a4288",
+          "original_snapshot_digest": "85c93e12929ef1e598267447719a2263306e0ac25b5dcd949d6cd2daa3085e25",
+          "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+          "revision": 1
+        },
+        "current": {
+          "content": "仅检查本地记录",
+          "name": "合成计划",
+          "rule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "target": {
+            "mode": "new_chat_each_run"
+          }
+        },
+        "original": {
+          "content": "仅检查本地记录",
+          "name": "合成计划",
+          "rule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "target": {
+            "mode": "new_chat_each_run"
+          }
+        }
+      },
+      "requestId": "01a0c993-631d-7af2-99e4-50bfd790c58f",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_preview_rerun_v1",
+    "request": {
+      "contextId": "01a0c993-6203-7132-b82b-1e1de496ba00",
+      "payload": {
+        "original_run_id": "01a0c993-6247-7e93-8b4a-7905e77a4288"
+      },
+      "requestId": "01a0c993-631f-7bd1-bfa4-55f8e9148f89",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "confirmation": {
+          "definition_digest": "7ab76553f525b3b1436f882ac0741892c442631c6cc017ad787162a070f372a4",
+          "grant_id": "01a0c993-6225-7081-a9f6-0b8b572a4d92",
+          "original_run_id": "01a0c993-6247-7e93-8b4a-7905e77a4288",
+          "original_snapshot_digest": "85c93e12929ef1e598267447719a2263306e0ac25b5dcd949d6cd2daa3085e25",
+          "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+          "revision": 1
+        },
+        "current": {
+          "content": "仅检查本地记录",
+          "name": "合成计划",
+          "rule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "target": {
+            "mode": "new_chat_each_run"
+          }
+        },
+        "original": {
+          "content": "仅检查本地记录",
+          "name": "合成计划",
+          "rule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "target": {
+            "mode": "new_chat_each_run"
+          }
+        }
+      },
+      "requestId": "01a0c993-631f-7bd1-bfa4-55f8e9148f89",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_confirm_rerun_v1",
+    "request": {
+      "contextId": "01a0c993-6203-7132-b82b-1e1de496ba00",
+      "payload": {
+        "definition_digest": "7ab76553f525b3b1436f882ac0741892c442631c6cc017ad787162a070f372a4",
+        "grant_id": "01a0c993-6225-7081-a9f6-0b8b572a4d92",
+        "original_run_id": "01a0c993-6247-7e93-8b4a-7905e77a4288",
+        "original_snapshot_digest": "85c93e12929ef1e598267447719a2263306e0ac25b5dcd949d6cd2daa3085e25",
+        "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+        "revision": 1
+      },
+      "requestId": "01a0c993-633a-78b1-a098-b0d4588beb5e",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "delivery_state": "reserved",
+        "grant_id": "01a0c993-6225-7081-a9f6-0b8b572a4d92",
+        "native_outcome": "unobserved",
+        "needs_attention": false,
+        "operation_id": "01a0c993-635d-7812-986d-0334dea03502",
+        "original_run_id": "01a0c993-6247-7e93-8b4a-7905e77a4288",
+        "permission_mode": "ask",
+        "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+        "plan_revision": 1,
+        "request_id": "01a0c993-633a-78b1-a098-b0d4588beb5e",
+        "run_id": "01a0c993-635d-7812-986d-032daced193b",
+        "schedule_epoch": 1,
+        "snapshot_digest": "85c93e12929ef1e598267447719a2263306e0ac25b5dcd949d6cd2daa3085e25",
+        "trigger": "rerun",
+        "workspace": {
+          "resource_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+          "source": "managed_schedule"
+        }
+      },
+      "requestId": "01a0c993-633a-78b1-a098-b0d4588beb5e",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_pause_plan_v1",
+    "request": {
+      "contextId": "01a0c993-6203-7132-b82b-1e1de496ba00",
+      "payload": {
+        "expected_revision": 1,
+        "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c"
+      },
+      "requestId": "01a0c993-6397-7ed1-89a8-5fcc68e8f091",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "authorization_expires_at": 1790091874,
+        "authorization_ref": "01a0c993-6225-7081-a9f6-0b8b572a4d92",
+        "definition": {
+          "content": "仅检查本地记录",
+          "name": "合成计划",
+          "rule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "target": {
+            "mode": "new_chat_each_run"
+          }
+        },
+        "effective_from": 1790088274,
+        "next_at": 1790125200,
+        "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+        "revision": 1,
+        "rule_version": 1,
+        "schedule_epoch": 1,
+        "state": "paused",
+        "target_state": "unbound",
+        "tzdb_version": "2025b"
+      },
+      "requestId": "01a0c993-6397-7ed1-89a8-5fcc68e8f091",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_confirm_enable_v1",
+    "request": {
+      "contextId": "01a0c993-6203-7132-b82b-1e1de496ba00",
+      "payload": {
+        "expected_revision": 1,
+        "expires_at": 1790091874,
+        "max_runs": 1,
+        "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+        "request_id": "01a0c993-639c-75d3-ace5-3bb0acdcbb72"
+      },
+      "requestId": "01a0c993-639c-75d3-ace5-3bb0acdcbb72",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "grant": {
+          "authorization_revision": 1,
+          "definition_digest": "9c67b1d047e2d4b0dcc8200d8608e16c1dc8e3f8f4063ddabb124b40ce740e59",
+          "expires_at": 1790091874,
+          "grant_id": "01a0c993-63aa-78e3-aa2d-9eb1cfeefd1c",
+          "max_runs": 1,
+          "occupied_runs": 0,
+          "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+          "plan_revision": 2,
+          "state": "active",
+          "workspace": {
+            "resource_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+            "source": "managed_schedule"
+          }
+        },
+        "plan": {
+          "authorization_expires_at": 1790091874,
+          "authorization_ref": "01a0c993-63aa-78e3-aa2d-9eb1cfeefd1c",
+          "definition": {
+            "content": "仅检查本地记录",
+            "name": "合成计划",
+            "rule": {
+              "frequency": "daily",
+              "local_time": "09:00",
+              "time_zone": "Asia/Shanghai"
+            },
+            "target": {
+              "mode": "new_chat_each_run"
+            }
+          },
+          "effective_from": 1790088274,
+          "next_at": 1790125200,
+          "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+          "revision": 2,
+          "rule_version": 1,
+          "schedule_epoch": 1,
+          "state": "enabled",
+          "target_state": "unbound",
+          "tzdb_version": "2025b"
+        }
+      },
+      "requestId": "01a0c993-639c-75d3-ace5-3bb0acdcbb72",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_delete_plan_v1",
+    "request": {
+      "contextId": "01a0c993-6203-7132-b82b-1e1de496ba00",
+      "payload": {
+        "expected_revision": 2,
+        "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c"
+      },
+      "requestId": "01a0c993-63cf-77d2-b59a-2abc4e9f8ba3",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "definition": {
+          "content": "仅检查本地记录",
+          "name": "合成计划",
+          "rule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "target": {
+            "mode": "new_chat_each_run"
+          }
+        },
+        "effective_from": 1790088274,
+        "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+        "revision": 3,
+        "rule_version": 1,
+        "schedule_epoch": 1,
+        "state": "deleted",
+        "target_state": "missing",
+        "tzdb_version": "2025b"
+      },
+      "requestId": "01a0c993-63cf-77d2-b59a-2abc4e9f8ba3",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_list_plan_cards_v1",
+    "request": {
+      "contextId": "01a0c993-6203-7132-b82b-1e1de496ba00",
+      "payload": {},
+      "requestId": "01a0c993-63f1-7d51-bab0-6a9902c14aab",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "items": []
+      },
+      "requestId": "01a0c993-63f1-7d51-bab0-6a9902c14aab",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_list_record_rows_v1",
+    "request": {
+      "contextId": "01a0c993-6203-7132-b82b-1e1de496ba00",
+      "payload": {},
+      "requestId": "01a0c993-641e-77e0-94da-0418c4b4f583",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "items": [
+          {
+            "content_preview": "仅检查本地记录",
+            "name": "合成计划",
+            "record": {
+              "attention": "none",
+              "business_result": "not_evaluated",
+              "conversation": {
+                "conversation_id": "01a0c993-6366-7860-9317-88640e0fc669",
+                "local_turn_id": "01a0c993-6366-7860-9317-8882d54cc415",
+                "status": "available"
+              },
+              "key": {
+                "kind": "run",
+                "run_id": "01a0c993-635d-7812-986d-032daced193b"
+              },
+              "kind": "run",
+              "plan": {
+                "effective_state": "deleted",
+                "name": "合成计划",
+                "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+                "raw_state": "deleted",
+                "revision": 3,
+                "target_mode": "new_chat_each_run",
+                "target_state": "missing"
+              },
+              "run": {
+                "delivery_state": "cancelled",
+                "grant_id": "01a0c993-6225-7081-a9f6-0b8b572a4d92",
+                "native_outcome": "unobserved",
+                "needs_attention": false,
+                "operation_id": "01a0c993-635d-7812-986d-0334dea03502",
+                "original_run_id": "01a0c993-6247-7e93-8b4a-7905e77a4288",
+                "permission_mode": "ask",
+                "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+                "plan_revision": 1,
+                "request_id": "01a0c993-633a-78b1-a098-b0d4588beb5e",
+                "run_id": "01a0c993-635d-7812-986d-032daced193b",
+                "schedule_epoch": 1,
+                "snapshot_digest": "85c93e12929ef1e598267447719a2263306e0ac25b5dcd949d6cd2daa3085e25",
+                "trigger": "rerun",
+                "workspace": {
+                  "resource_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+                  "source": "managed_schedule"
+                }
+              },
+              "timing": {
+                "duration": "not_started",
+                "execution_time": "not_started",
+                "source": "no_execution_clock"
+              }
+            },
+            "source": "run_snapshot"
+          },
+          {
+            "content_preview": "仅检查本地记录",
+            "name": "合成计划",
+            "record": {
+              "attention": "none",
+              "business_result": "not_evaluated",
+              "conversation": {
+                "conversation_id": "01a0c993-624e-7ee1-b948-1f938aeee14f",
+                "local_turn_id": "01a0c993-624e-7ee1-b948-1fba9919ba4e",
+                "status": "available"
+              },
+              "key": {
+                "kind": "run",
+                "run_id": "01a0c993-6247-7e93-8b4a-7905e77a4288"
+              },
+              "kind": "run",
+              "plan": {
+                "effective_state": "deleted",
+                "name": "合成计划",
+                "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+                "raw_state": "deleted",
+                "revision": 3,
+                "target_mode": "new_chat_each_run",
+                "target_state": "missing"
+              },
+              "run": {
+                "delivery_state": "cancelled",
+                "grant_id": "01a0c993-6225-7081-a9f6-0b8b572a4d92",
+                "native_outcome": "unobserved",
+                "needs_attention": false,
+                "operation_id": "01a0c993-6247-7e93-8b4a-7916350ad6b1",
+                "permission_mode": "ask",
+                "plan_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+                "plan_revision": 1,
+                "request_id": "01a0c993-622b-7730-8d11-8e2b32bb565d",
+                "run_id": "01a0c993-6247-7e93-8b4a-7905e77a4288",
+                "schedule_epoch": 1,
+                "snapshot_digest": "85c93e12929ef1e598267447719a2263306e0ac25b5dcd949d6cd2daa3085e25",
+                "trigger": "manual",
+                "workspace": {
+                  "resource_id": "01a0c993-6204-7fc1-8adb-2e2c4f1d156c",
+                  "source": "managed_schedule"
+                }
+              },
+              "timing": {
+                "duration": "not_started",
+                "execution_time": "not_started",
+                "source": "no_execution_clock"
+              }
+            },
+            "source": "run_snapshot"
+          }
+        ]
+      },
+      "requestId": "01a0c993-641e-77e0-94da-0418c4b4f583",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_read_plan_mutation_receipt_v1",
+    "request": {
+      "contextId": "01a0c993-6203-7132-b82b-1e1de496ba00",
+      "payload": {
+        "original_request_id": "01a0c993-649e-7f53-8610-28629c11864a"
+      },
+      "requestId": "01a0c993-649e-7f53-8610-287c00c354dc",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "observation": "not_observed"
+      },
+      "requestId": "01a0c993-649e-7f53-8610-287c00c354dc",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_submit_draft_v1",
+    "request": {
+      "contextId": "01a0c993-4702-7181-a289-d9274c20a80b",
+      "payload": {
+        "text": "每天九点总结"
+      },
+      "requestId": "01a0c993-4702-7181-a289-d930eedd1100",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "conversation_id": "01a0c993-4703-7422-af4c-09ec5d8aab43",
+        "local_turn_id": "01a0c993-4703-7422-af4c-0a0be2b3ed1e",
+        "operation_id": "01a0c993-4703-7422-af4c-0a15baf2af88",
+        "source_id": "01a0c993-4715-7ef3-9075-f66fa264305c",
+        "status": "accepted"
+      },
+      "requestId": "01a0c993-4702-7181-a289-d930eedd1100",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_preview_draft_v1",
+    "request": {
+      "contextId": "01a0c993-4702-7181-a289-d9274c20a80b",
+      "payload": {
+        "source_id": "01a0c993-4715-7ef3-9075-f66fa264305c"
+      },
+      "requestId": "01a0c993-47b9-7b71-a282-904cc555d828",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "output": {
+          "content": "总结当天信息",
+          "kind": "candidate",
+          "name": "每天总结",
+          "schedule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "schema_version": 1,
+          "target": {
+            "mode": "dedicated_chat"
+          }
+        },
+        "source_digest": "079f6c5c6fca03f494f4728c54578d052abe87d5df386258d59e248a1199ebab",
+        "source_id": "01a0c993-4715-7ef3-9075-f66fa264305c",
+        "status": "candidate"
+      },
+      "requestId": "01a0c993-47b9-7b71-a282-904cc555d828",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_confirm_draft_v1",
+    "request": {
+      "contextId": "01a0c993-4702-7181-a289-d9274c20a80b",
+      "payload": {
+        "definition": {
+          "content": "仅检查本地记录",
+          "name": "合成计划",
+          "rule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "target": {
+            "mode": "dedicated_chat"
+          }
+        },
+        "source_digest": "079f6c5c6fca03f494f4728c54578d052abe87d5df386258d59e248a1199ebab",
+        "source_id": "01a0c993-4715-7ef3-9075-f66fa264305c"
+      },
+      "requestId": "01a0c993-47bc-7093-b1bc-d552a6704c58",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "definition": {
+          "content": "仅检查本地记录",
+          "name": "合成计划",
+          "rule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "target": {
+            "mode": "dedicated_chat"
+          }
+        },
+        "effective_from": 1790088267,
+        "next_at": 1790125200,
+        "plan_id": "01a0c993-47be-7a81-bde1-29537fd7320e",
+        "revision": 1,
+        "rule_version": 1,
+        "schedule_epoch": 1,
+        "state": "paused",
+        "target_state": "unbound",
+        "tzdb_version": "2025b"
+      },
+      "requestId": "01a0c993-47bc-7093-b1bc-d552a6704c58",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_confirm_draft_v1",
+    "request": {
+      "contextId": "01a0c993-4702-7181-a289-d9274c20a80b",
+      "payload": {
+        "definition": {
+          "content": "仅检查本地记录",
+          "name": "合成计划",
+          "rule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "target": {
+            "mode": "dedicated_chat"
+          }
+        },
+        "source_digest": "079f6c5c6fca03f494f4728c54578d052abe87d5df386258d59e248a1199ebab",
+        "source_id": "01a0c993-4715-7ef3-9075-f66fa264305c"
+      },
+      "requestId": "01a0c993-47e6-79d3-9890-a25ebdb1ddca",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "definition": {
+          "content": "仅检查本地记录",
+          "name": "合成计划",
+          "rule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "target": {
+            "mode": "dedicated_chat"
+          }
+        },
+        "effective_from": 1790088267,
+        "next_at": 1790125200,
+        "plan_id": "01a0c993-47be-7a81-bde1-29537fd7320e",
+        "revision": 1,
+        "rule_version": 1,
+        "schedule_epoch": 1,
+        "state": "paused",
+        "target_state": "unbound",
+        "tzdb_version": "2025b"
+      },
+      "requestId": "01a0c993-47e6-79d3-9890-a25ebdb1ddca",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_submit_draft_v1",
+    "request": {
+      "contextId": "01a0c993-8aed-7d00-b073-d89a274283c2",
+      "payload": {
+        "text": "每天九点总结"
+      },
+      "requestId": "01a0c993-8aed-7d00-b073-d8aace846aba",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "conversation_id": "01a0c993-8af0-7dd3-bc9a-29537e837338",
+        "local_turn_id": "01a0c993-8af0-7dd3-bc9a-297a33577a9d",
+        "operation_id": "01a0c993-8af0-7dd3-bc9a-2980ea6713cf",
+        "source_id": "01a0c993-8afe-72b1-a130-d961ab8ec09a",
+        "status": "accepted"
+      },
+      "requestId": "01a0c993-8aed-7d00-b073-d8aace846aba",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_find_draft_source_v1",
+    "request": {
+      "contextId": "01a0c993-8aed-7d00-b073-d89a274283c2",
+      "payload": {
+        "conversation_id": "01a0c993-8af0-7dd3-bc9a-29537e837338",
+        "local_turn_id": "01a0c993-8af0-7dd3-bc9a-297a33577a9d"
+      },
+      "requestId": "01a0c993-8ba2-79e1-b811-a2ad60ba2114",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "found": true,
+        "source": {
+          "conversation_id": "01a0c993-8af0-7dd3-bc9a-29537e837338",
+          "local_turn_id": "01a0c993-8af0-7dd3-bc9a-297a33577a9d",
+          "operation_id": "01a0c993-8af0-7dd3-bc9a-2980ea6713cf",
+          "source_id": "01a0c993-8afe-72b1-a130-d961ab8ec09a",
+          "status": "accepted"
+        }
+      },
+      "requestId": "01a0c993-8ba2-79e1-b811-a2ad60ba2114",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_operation_capabilities_v1",
+    "request": {
+      "contextId": "01a0c993-8aed-7d00-b073-d89a274283c2",
+      "payload": {},
+      "requestId": "01a0c993-8ba3-7131-8e00-db0e9f18c68d",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "automatic": {
+          "available": false,
+          "reason": "candidate_disabled"
+        },
+        "draft": {
+          "available": true,
+          "reason": "ready"
+        },
+        "manual": {
+          "available": false,
+          "reason": "candidate_disabled"
+        },
+        "read": {
+          "available": true,
+          "reason": "ready"
+        },
+        "save": {
+          "available": true,
+          "reason": "ready"
+        }
+      },
+      "requestId": "01a0c993-8ba3-7131-8e00-db0e9f18c68d",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_continue_draft_source_v1",
+    "request": {
+      "contextId": "01a0c993-8aed-7d00-b073-d89a274283c2",
+      "payload": {
+        "source_id": "01a0c993-8afe-72b1-a130-d961ab8ec09a"
+      },
+      "requestId": "01a0c993-8ba3-7131-8e00-db1dc9d9af41",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "conversation_id": "01a0c993-8af0-7dd3-bc9a-29537e837338",
+        "local_turn_id": "01a0c993-8af0-7dd3-bc9a-297a33577a9d",
+        "operation_id": "01a0c993-8af0-7dd3-bc9a-2980ea6713cf",
+        "source_id": "01a0c993-8afe-72b1-a130-d961ab8ec09a",
+        "status": "accepted"
+      },
+      "requestId": "01a0c993-8ba3-7131-8e00-db1dc9d9af41",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_continue_draft_source_v1",
+    "request": {
+      "contextId": "01a0c993-8aed-7d00-b073-d89a274283c2",
+      "payload": {
+        "source_id": "01a0c993-8afe-72b1-a130-d961ab8ec09a"
+      },
+      "requestId": "01a0c993-8bb3-7341-a9e6-f1a0aa9c8cf3",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "conversation_id": "01a0c993-8af0-7dd3-bc9a-29537e837338",
+        "local_turn_id": "01a0c993-8af0-7dd3-bc9a-297a33577a9d",
+        "operation_id": "01a0c993-8af0-7dd3-bc9a-2980ea6713cf",
+        "source_id": "01a0c993-8afe-72b1-a130-d961ab8ec09a",
+        "status": "accepted"
+      },
+      "requestId": "01a0c993-8bb3-7341-a9e6-f1a0aa9c8cf3",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_preview_draft_v1",
+    "request": {
+      "contextId": "01a0c993-8aed-7d00-b073-d89a274283c2",
+      "payload": {
+        "source_id": "01a0c993-8afe-72b1-a130-d961ab8ec09a"
+      },
+      "requestId": "01a0c993-8c0f-7d81-85b0-1189d9f696c3",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "source_id": "01a0c993-8afe-72b1-a130-d961ab8ec09a",
+        "status": "unavailable"
+      },
+      "requestId": "01a0c993-8c0f-7d81-85b0-1189d9f696c3",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_read_draft_submission_receipt_v1",
+    "request": {
+      "contextId": "01a0c993-2a0d-7881-ba6c-ffe9c6768c57",
+      "payload": {
+        "original_request_id": "01a0c993-2a0d-7881-ba6c-fff6c3482c25"
+      },
+      "requestId": "01a0c993-2a0d-7881-ba6d-000374310d7a",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "observation": "not_observed"
+      },
+      "requestId": "01a0c993-2a0d-7881-ba6d-000374310d7a",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_submit_draft_v1",
+    "request": {
+      "contextId": "01a0c993-2a0d-7881-ba6c-ffe9c6768c57",
+      "payload": {
+        "text": "本地合成草案"
+      },
+      "requestId": "01a0c993-2a0d-7881-ba6c-fff6c3482c25",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "conversation_id": "01a0c993-2a15-7b23-adba-ad7a38776687",
+        "local_turn_id": "01a0c993-2a15-7b23-adba-ad9a81f13a40",
+        "operation_id": "01a0c993-2a15-7b23-adba-ada7a877c680",
+        "source_id": "01a0c993-2a26-74d3-a998-dc9164f324c8",
+        "status": "accepted"
+      },
+      "requestId": "01a0c993-2a0d-7881-ba6c-fff6c3482c25",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_read_draft_submission_receipt_v1",
+    "request": {
+      "contextId": "01a0c993-2a0d-7881-ba6c-ffe9c6768c57",
+      "payload": {
+        "original_request_id": "01a0c993-2a0d-7881-ba6c-fff6c3482c25"
+      },
+      "requestId": "01a0c993-2a32-7ef2-8e43-ed209bdfcab5",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "observation": "observed",
+        "receipt": {
+          "conversation_id": "01a0c993-2a15-7b23-adba-ad7a38776687",
+          "local_turn_id": "01a0c993-2a15-7b23-adba-ad9a81f13a40",
+          "operation_id": "01a0c993-2a15-7b23-adba-ada7a877c680",
+          "source_id": "01a0c993-2a26-74d3-a998-dc9164f324c8",
+          "status": "accepted"
+        }
+      },
+      "requestId": "01a0c993-2a32-7ef2-8e43-ed209bdfcab5",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_read_draft_submission_receipt_v1",
+    "request": {
+      "contextId": "01a0c993-2a0d-7881-ba6c-ffe9c6768c57",
+      "payload": {
+        "original_request_id": "01a0c993-2a0d-7881-ba6c-fff6c3482c25"
+      },
+      "requestId": "01a0c993-2a8f-7663-864b-18a1c0a08111",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "observation": "source_deleted",
+        "source_id": "01a0c993-2a26-74d3-a998-dc9164f324c8"
+      },
+      "requestId": "01a0c993-2a8f-7663-864b-18a1c0a08111",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_save_plan_v1",
+    "request": {
+      "contextId": "01a0c993-8427-7e02-bb41-39c835e4be9c",
+      "payload": {
+        "definition": {
+          "content": "仅检查本地记录",
+          "name": "本次手动许可",
+          "rule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "target": {
+            "mode": "dedicated_chat"
+          }
+        },
+        "request_id": "01a0c993-8427-7e02-bb41-39f27f412a3f"
+      },
+      "requestId": "01a0c993-8427-7e02-bb41-39f27f412a3f",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "definition": {
+          "content": "仅检查本地记录",
+          "name": "本次手动许可",
+          "rule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "target": {
+            "mode": "dedicated_chat"
+          }
+        },
+        "effective_from": 1790088283,
+        "next_at": 1790125200,
+        "plan_id": "01a0c993-8427-7e02-bb41-3a2d4770848c",
+        "revision": 1,
+        "rule_version": 1,
+        "schedule_epoch": 1,
+        "state": "paused",
+        "target_state": "unbound",
+        "tzdb_version": "2025b"
+      },
+      "requestId": "01a0c993-8427-7e02-bb41-39f27f412a3f",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_operation_capabilities_v1",
+    "request": {
+      "contextId": "01a0c993-8427-7e02-bb41-39c835e4be9c",
+      "payload": {},
+      "requestId": "01a0c993-8452-7f21-8592-4a0f1460ba8b",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "automatic": {
+          "available": false,
+          "reason": "candidate_disabled"
+        },
+        "draft": {
+          "available": false,
+          "reason": "candidate_disabled"
+        },
+        "manual": {
+          "available": true,
+          "reason": "ready"
+        },
+        "read": {
+          "available": true,
+          "reason": "ready"
+        },
+        "save": {
+          "available": true,
+          "reason": "ready"
+        }
+      },
+      "requestId": "01a0c993-8452-7f21-8592-4a0f1460ba8b",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_confirm_grant_v1",
+    "request": {
+      "contextId": "01a0c993-8427-7e02-bb41-39c835e4be9c",
+      "payload": {
+        "expected_revision": 1,
+        "expires_at": 1790088883,
+        "max_runs": 1,
+        "plan_id": "01a0c993-8427-7e02-bb41-3a2d4770848c",
+        "request_id": "01a0c993-8453-7a33-ae61-7556116654ab"
+      },
+      "requestId": "01a0c993-8453-7a33-ae61-7556116654ab",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "authorization_revision": 1,
+        "definition_digest": "b7de4bffb3263aa28fa930e1e9f3372fd6901b77365dd21ed415c8d6cfdf8e5b",
+        "expires_at": 1790088883,
+        "grant_id": "01a0c993-8455-7ab0-8b24-4911bd10f44e",
+        "max_runs": 1,
+        "occupied_runs": 0,
+        "plan_id": "01a0c993-8427-7e02-bb41-3a2d4770848c",
+        "plan_revision": 1,
+        "state": "active",
+        "workspace": {
+          "resource_id": "01a0c993-8427-7e02-bb41-3a2d4770848c",
+          "source": "managed_schedule"
+        }
+      },
+      "requestId": "01a0c993-8453-7a33-ae61-7556116654ab",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_read_execution_receipt_v1",
+    "request": {
+      "contextId": "01a0c993-8427-7e02-bb41-39c835e4be9c",
+      "payload": {
+        "operation": "grant",
+        "original_request_id": "01a0c993-8453-7a33-ae61-7556116654ab"
+      },
+      "requestId": "01a0c993-845c-7cd0-9937-e08955bb83b0",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "grant": {
+          "authorization_revision": 1,
+          "definition_digest": "b7de4bffb3263aa28fa930e1e9f3372fd6901b77365dd21ed415c8d6cfdf8e5b",
+          "expires_at": 1790088883,
+          "grant_id": "01a0c993-8455-7ab0-8b24-4911bd10f44e",
+          "max_runs": 1,
+          "occupied_runs": 0,
+          "plan_id": "01a0c993-8427-7e02-bb41-3a2d4770848c",
+          "plan_revision": 1,
+          "state": "active",
+          "workspace": {
+            "resource_id": "01a0c993-8427-7e02-bb41-3a2d4770848c",
+            "source": "managed_schedule"
+          }
+        },
+        "observation": "grant_observed"
+      },
+      "requestId": "01a0c993-845c-7cd0-9937-e08955bb83b0",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_manual_run_v1",
+    "request": {
+      "contextId": "01a0c993-8427-7e02-bb41-39c835e4be9c",
+      "payload": {
+        "grant_id": "01a0c993-8455-7ab0-8b24-4911bd10f44e",
+        "revision": 1
+      },
+      "requestId": "01a0c993-845d-7173-9c4c-82a80b974bbb",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "delivery_state": "reserved",
+        "grant_id": "01a0c993-8455-7ab0-8b24-4911bd10f44e",
+        "native_outcome": "unobserved",
+        "needs_attention": false,
+        "operation_id": "01a0c993-847b-7d82-8819-372ad3811b83",
+        "permission_mode": "ask",
+        "plan_id": "01a0c993-8427-7e02-bb41-3a2d4770848c",
+        "plan_revision": 1,
+        "request_id": "01a0c993-845d-7173-9c4c-82a80b974bbb",
+        "run_id": "01a0c993-847b-7d82-8819-3716bf10612d",
+        "schedule_epoch": 1,
+        "snapshot_digest": "b9706db4dc65d7523a239cc34d42635cf91c4ba3cfb21d897f5f31599e9e11d0",
+        "trigger": "manual",
+        "workspace": {
+          "resource_id": "01a0c993-8427-7e02-bb41-3a2d4770848c",
+          "source": "managed_schedule"
+        }
+      },
+      "requestId": "01a0c993-845d-7173-9c4c-82a80b974bbb",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_manual_run_v1",
+    "request": {
+      "contextId": "01a0c993-8427-7e02-bb41-39c835e4be9c",
+      "payload": {
+        "grant_id": "01a0c993-8455-7ab0-8b24-4911bd10f44e",
+        "revision": 1
+      },
+      "requestId": "01a0c993-845d-7173-9c4c-82a80b974bbb",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "delivery_state": "reserved",
+        "grant_id": "01a0c993-8455-7ab0-8b24-4911bd10f44e",
+        "native_outcome": "unobserved",
+        "needs_attention": false,
+        "operation_id": "01a0c993-847b-7d82-8819-372ad3811b83",
+        "permission_mode": "ask",
+        "plan_id": "01a0c993-8427-7e02-bb41-3a2d4770848c",
+        "plan_revision": 1,
+        "request_id": "01a0c993-845d-7173-9c4c-82a80b974bbb",
+        "run_id": "01a0c993-847b-7d82-8819-3716bf10612d",
+        "schedule_epoch": 1,
+        "snapshot_digest": "b9706db4dc65d7523a239cc34d42635cf91c4ba3cfb21d897f5f31599e9e11d0",
+        "trigger": "manual",
+        "workspace": {
+          "resource_id": "01a0c993-8427-7e02-bb41-3a2d4770848c",
+          "source": "managed_schedule"
+        }
+      },
+      "requestId": "01a0c993-845d-7173-9c4c-82a80b974bbb",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_get_plan_v1",
+    "request": {
+      "contextId": "01a0c993-8427-7e02-bb41-39c835e4be9c",
+      "payload": {
+        "plan_id": "01a0c993-8427-7e02-bb41-3a2d4770848c"
+      },
+      "requestId": "01a0c993-849b-7193-be72-9cbd6e29f725",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "grant": {
+          "authorization_revision": 1,
+          "definition_digest": "b7de4bffb3263aa28fa930e1e9f3372fd6901b77365dd21ed415c8d6cfdf8e5b",
+          "expires_at": 1790088883,
+          "grant_id": "01a0c993-8455-7ab0-8b24-4911bd10f44e",
+          "max_runs": 1,
+          "occupied_runs": 1,
+          "plan_id": "01a0c993-8427-7e02-bb41-3a2d4770848c",
+          "plan_revision": 1,
+          "state": "exhausted",
+          "workspace": {
+            "resource_id": "01a0c993-8427-7e02-bb41-3a2d4770848c",
+            "source": "managed_schedule"
+          }
+        },
+        "plan": {
+          "authorization_expires_at": 1790088883,
+          "authorization_ref": "01a0c993-8455-7ab0-8b24-4911bd10f44e",
+          "definition": {
+            "content": "仅检查本地记录",
+            "name": "本次手动许可",
+            "rule": {
+              "frequency": "daily",
+              "local_time": "09:00",
+              "time_zone": "Asia/Shanghai"
+            },
+            "target": {
+              "mode": "dedicated_chat"
+            }
+          },
+          "effective_from": 1790088283,
+          "next_at": 1790125200,
+          "plan_id": "01a0c993-8427-7e02-bb41-3a2d4770848c",
+          "revision": 1,
+          "rule_version": 1,
+          "schedule_epoch": 1,
+          "state": "paused",
+          "target_state": "unbound",
+          "tzdb_version": "2025b"
+        },
+        "summary": {
+          "effective_state": "paused",
+          "name": "本次手动许可",
+          "next_at": 1790125200,
+          "plan_id": "01a0c993-8427-7e02-bb41-3a2d4770848c",
+          "raw_state": "paused",
+          "revision": 1,
+          "target_mode": "dedicated_chat",
+          "target_state": "unbound"
+        }
+      },
+      "requestId": "01a0c993-849b-7193-be72-9cbd6e29f725",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_manual_run_v1",
+    "request": {
+      "contextId": "01a0c993-8427-7e02-bb41-39c835e4be9c",
+      "payload": {
+        "grant_id": "01a0c993-8455-7ab0-8b24-4911bd10f44e",
+        "revision": 1
+      },
+      "requestId": "01a0c993-845d-7173-9c4c-82a80b974bbb",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "delivery_state": "reserved",
+        "grant_id": "01a0c993-8455-7ab0-8b24-4911bd10f44e",
+        "native_outcome": "unobserved",
+        "needs_attention": false,
+        "operation_id": "01a0c993-847b-7d82-8819-372ad3811b83",
+        "permission_mode": "ask",
+        "plan_id": "01a0c993-8427-7e02-bb41-3a2d4770848c",
+        "plan_revision": 1,
+        "request_id": "01a0c993-845d-7173-9c4c-82a80b974bbb",
+        "run_id": "01a0c993-847b-7d82-8819-3716bf10612d",
+        "schedule_epoch": 1,
+        "snapshot_digest": "b9706db4dc65d7523a239cc34d42635cf91c4ba3cfb21d897f5f31599e9e11d0",
+        "trigger": "manual",
+        "workspace": {
+          "resource_id": "01a0c993-8427-7e02-bb41-3a2d4770848c",
+          "source": "managed_schedule"
+        }
+      },
+      "requestId": "01a0c993-845d-7173-9c4c-82a80b974bbb",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_read_execution_receipt_v1",
+    "request": {
+      "contextId": "01a0c993-8427-7e02-bb41-39c835e4be9c",
+      "payload": {
+        "operation": "manual",
+        "original_request_id": "01a0c993-845d-7173-9c4c-82a80b974bbb"
+      },
+      "requestId": "01a0c993-84ba-78e3-9103-fa24d65da94d",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "observation": "manual_observed",
+        "run": {
+          "delivery_state": "reserved",
+          "grant_id": "01a0c993-8455-7ab0-8b24-4911bd10f44e",
+          "native_outcome": "unobserved",
+          "needs_attention": false,
+          "operation_id": "01a0c993-847b-7d82-8819-372ad3811b83",
+          "permission_mode": "ask",
+          "plan_id": "01a0c993-8427-7e02-bb41-3a2d4770848c",
+          "plan_revision": 1,
+          "request_id": "01a0c993-845d-7173-9c4c-82a80b974bbb",
+          "run_id": "01a0c993-847b-7d82-8819-3716bf10612d",
+          "schedule_epoch": 1,
+          "snapshot_digest": "b9706db4dc65d7523a239cc34d42635cf91c4ba3cfb21d897f5f31599e9e11d0",
+          "trigger": "manual",
+          "workspace": {
+            "resource_id": "01a0c993-8427-7e02-bb41-3a2d4770848c",
+            "source": "managed_schedule"
+          }
+        }
+      },
+      "requestId": "01a0c993-84ba-78e3-9103-fa24d65da94d",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_preview_rerun_v1",
+    "request": {
+      "contextId": "01a0c993-8427-7e02-bb41-39c835e4be9c",
+      "payload": {
+        "original_run_id": "01a0c993-847b-7d82-8819-3716bf10612d"
+      },
+      "requestId": "01a0c993-84f1-7110-9295-d643a0a170b6",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "confirmation": {
+          "definition_digest": "3478e28cd11b1689f91ef584c8abf642fafba69d0e8e19ad503ccae7a9d73494",
+          "grant_id": "01a0c993-8455-7ab0-8b24-4911bd10f44e",
+          "original_run_id": "01a0c993-847b-7d82-8819-3716bf10612d",
+          "original_snapshot_digest": "b9706db4dc65d7523a239cc34d42635cf91c4ba3cfb21d897f5f31599e9e11d0",
+          "plan_id": "01a0c993-8427-7e02-bb41-3a2d4770848c",
+          "revision": 1
+        },
+        "current": {
+          "content": "仅检查本地记录",
+          "name": "本次手动许可",
+          "rule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "target": {
+            "mode": "dedicated_chat"
+          }
+        },
+        "original": {
+          "content": "仅检查本地记录",
+          "name": "本次手动许可",
+          "rule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "target": {
+            "mode": "dedicated_chat"
+          }
+        }
+      },
+      "requestId": "01a0c993-84f1-7110-9295-d643a0a170b6",
+      "schemaVersion": 1
+    }
+  }
+]

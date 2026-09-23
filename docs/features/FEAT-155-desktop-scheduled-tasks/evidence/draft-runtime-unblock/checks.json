@@ -1,0 +1,232 @@
+{
+  "date": "2026-09-19",
+  "checks": [
+    {
+      "name": "native-core",
+      "repository": "yijie-codex",
+      "command": "CARGO_TARGET_DIR=codex-rs/target cargo test --offline --locked --manifest-path <owned-native-workspace>/Cargo.toml -p codex-core --lib input_only_ -- --nocapture",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "core-tests-output-boundary.log",
+      "scope": "actual patched source; no tool execution",
+      "passed_tests": 4
+    },
+    {
+      "name": "canonical-final-build",
+      "repository": "yijie-codex",
+      "command": "make input-only-build",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "canonical-build-output-boundary.log",
+      "scope": "immutable archive + exact active patches + offline lock + release + stable schema/manifest"
+    },
+    {
+      "name": "native-format",
+      "repository": "yijie-codex",
+      "command": "rustfmt --edition 2024 --check --config skip_children=true <19 changed native Rust files>",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "native-fmt.log",
+      "scope": "targeted source formatting"
+    },
+    {
+      "name": "runtime-lint",
+      "repository": "yijie-codex",
+      "command": "make lint",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "runtime-lint.log",
+      "scope": "shell/Python syntax only"
+    },
+    {
+      "name": "source-generation",
+      "repository": "yijie-contracts",
+      "command": "node scripts/generate-runtime-input-only.mjs && node scripts/sync-runtime-input-only.mjs",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "contracts-native-generation.log",
+      "scope": "native authority before Host consumption"
+    },
+    {
+      "name": "source-check",
+      "repository": "yijie-contracts",
+      "command": "make runtime-input-only-check scheduled-draft-check",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "contracts-final-check.log",
+      "scope": "final candidate digests, same-source projection and strict draft lint"
+    },
+    {
+      "name": "contract-focused",
+      "repository": "yijie-contracts",
+      "command": "node --test tests/runtime-input-only.test.mjs tests/scheduled-draft.test.mjs",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "contracts-final-tests.log",
+      "scope": "schema conformance, not a native qualification substitute",
+      "passed_tests": 8
+    },
+    {
+      "name": "contracts-lint",
+      "repository": "yijie-contracts",
+      "command": "GOPROXY=off GOSUMDB=off GOTOOLCHAIN=local pnpm lint",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "contracts-lint.log",
+      "scope": "full lint; 12 existing Redocly warnings; final repin changes constants only, consumer compilation independently passed"
+    },
+    {
+      "name": "breaking-fallback",
+      "repository": "yijie-contracts",
+      "command": "bash scripts/check-breaking.sh db4458fe94572c4df41a114005d54a049bb79b1f",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "contracts-breaking-fallback.log",
+      "scope": "structural only; native new-method compatibility is separately verified"
+    },
+    {
+      "name": "breaking-f16a497e",
+      "repository": "yijie-contracts",
+      "command": "bash scripts/check-breaking.sh f16a497e1377f45747f8ff9292b4b60cf2027f88",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "contracts-breaking-f16a497e.log",
+      "scope": "structural only; native new-method compatibility is separately verified"
+    },
+    {
+      "name": "breaking-6f632f15",
+      "repository": "yijie-contracts",
+      "command": "bash scripts/check-breaking.sh 6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "contracts-breaking-6f632f15.log",
+      "scope": "structural only; native new-method compatibility is separately verified"
+    },
+    {
+      "name": "breaking-811f38d6",
+      "repository": "yijie-contracts",
+      "command": "bash scripts/check-breaking.sh 811f38d6b104fa18477107e7ac91a85e19c445d1",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "contracts-breaking-811f38d6.log",
+      "scope": "structural only; native new-method compatibility is separately verified"
+    },
+    {
+      "name": "host-final-native-race",
+      "repository": "yijie-agent-host",
+      "command": "YIJIE_CODEX_INTEGRATION_BINARY=<final candidate>/codex YIJIE_CODEX_INTEGRATION_MANIFEST=<final candidate>/runtime-manifest.json GOPROXY=off GOSUMDB=off GOTOOLCHAIN=local go test -race ./internal/codex ./internal/session ./internal/app ./internal/contracts/runtimeinputonly -run '^(TestFEAT155Draft|TestNativeInputOnly|TestRetirementRuntimePolicyMatchesImmutableAuthority$|TestRuntimePermissionModes$|TestRuntimePermissionVerificationPolicyIsOptIn$|TestRuntimePermissionAdmissionPreservesAcceptedReplay$|TestFEAT144NativeRootMigrationPreservesTrustBytes$|TestFEAT144NativeManagedFileStillRequiresExactSource$)' -count=1 -v",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "host-final-native-focused.log",
+      "scope": "actual production artifact admission; genuine Runtime + original transport; 2 loopback text requests, no real Provider",
+      "passed_tests": 14
+    },
+    {
+      "name": "host-vet",
+      "repository": "yijie-agent-host",
+      "command": "GOPROXY=off GOSUMDB=off GOTOOLCHAIN=local go vet ./internal/codex ./internal/session ./internal/app ./internal/contracts/runtimeinputonly",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "host-final-vet.log",
+      "scope": "scoped vet"
+    },
+    {
+      "name": "meta-strict",
+      "repository": "yijie",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-155-desktop-scheduled-tasks",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "meta-strict.log",
+      "scope": "document governance, not product acceptance"
+    },
+    {
+      "name": "meta-d0",
+      "repository": "yijie",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate D0 docs/features/FEAT-155-desktop-scheduled-tasks",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "meta-d0.log",
+      "scope": "document governance, not product acceptance"
+    },
+    {
+      "name": "meta-audit-claims",
+      "repository": "yijie",
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-155-desktop-scheduled-tasks",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "meta-audit-claims.log",
+      "scope": "D4 remains NOT RUN"
+    },
+    {
+      "name": "meta-lint",
+      "repository": "yijie",
+      "command": "pnpm lint",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "meta-lint.log",
+      "scope": "manifest and governance"
+    },
+    {
+      "name": "meta-test",
+      "repository": "yijie",
+      "command": "pnpm test",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "meta-test.log",
+      "scope": "governance tests",
+      "passed_tests": 50
+    }
+  ],
+  "toolchain": {
+    "rust": "1.95.0",
+    "go": "1.26.5"
+  },
+  "intermediate_failure": {
+    "log": "policy-check.log",
+    "reason": "Option<Vec<_>> has no is_empty; fixed to prompt.tools; final build passed"
+  },
+  "intermediate_builds": [
+    "canonical-build.log",
+    "canonical-build-final.log"
+  ],
+  "final_native_artifact": "final-provenance.json",
+  "schema_delta": "schema-compatibility.json",
+  "source_review": "workspace-review.json",
+  "calls": {
+    "real_text": 0,
+    "authorized_text_total": 12,
+    "final_local_http_text_fixture": 2,
+    "earlier_local_http_text_fixture": 2,
+    "images": 0,
+    "merchant_mcp_external": 0
+  },
+  "not_run": [
+    {
+      "item": "historical all-tests/default Runtime build/test",
+      "reason": "contains retired patch assumptions or user-prohibited process/permission/attack fixtures",
+      "impact": "no full-suite or production qualification claim"
+    },
+    {
+      "item": "real Provider, Desktop activation, daily DB, UI, power, D4",
+      "reason": "outside this qualification blocker fix",
+      "impact": "FEAT-155 incomplete; next native assembly/recovery then product acceptance"
+    }
+  ],
+  "final_document_checks": {
+    "metadata_audit": {
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "meta-audit-claims-final.log"
+    },
+    "local_links": {
+      "status": "PASS",
+      "count": 174,
+      "evidence": "links.json"
+    },
+    "workspace_diff": {
+      "status": "PASS",
+      "repositories": 5,
+      "evidence": "workspace-review.json"
+    }
+  }
+}

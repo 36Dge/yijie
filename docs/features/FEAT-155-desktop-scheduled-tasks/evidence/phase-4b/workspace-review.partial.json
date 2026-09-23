@@ -1,0 +1,97 @@
+{
+  "yijie": {
+    "head_unchanged": true,
+    "files_changed_this_batch": [
+      "docs/features/FEAT-154-ecommerce-node-ui/sources/电商节点 UI界面.pdf",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/04-owner-approval-and-implementation.md",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/34-phase-4b-conversation-draft-implementation-plan.md",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-4b/conformance/all-ipc.json",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-4b/conformance/desktop-draft-producer.json",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-4b/conformance/draft-ipc-producer.json",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-4b/conformance/draft-recovery-ipc-producer.json",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-4b/conformance/ipc-4b.json",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-4b/conformance/native-producer.json",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-4b/conformance/phase-3a-native-producer.json",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-4b/conformance/phase-3b1-native-producer.json",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-4b/conformance/phase-3c2-trigger-producer.json",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-4b/conformance/phase-3c3a-ipc-producer.json",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-4b/conformance/phase-3c3a-validator-parity.json",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-4b/host-reviewed.diff",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-4b/provider-ledger-before-extension.json",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-4b/provider-ledger.json",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/feature.yaml"
+    ],
+    "source_file_count": 2495
+  },
+  "yijie-desktop": {
+    "head_unchanged": true,
+    "files_changed_this_batch": [
+      "SECURITY.md",
+      "contracts/scheduled-host-build.candidate.json",
+      "contracts/scheduled-ipc.candidate.json",
+      "docs/design/docs/design/05-patterns/02-chat-workspace.md",
+      "package.json",
+      "scripts/generate-chat-session-purpose.mjs",
+      "src-tauri/schemas/chat-ipc-v1.schema.json",
+      "src-tauri/schemas/scheduled-task-ipc-resolved.schema.json",
+      "src-tauri/schemas/scheduled-task-ipc-v1.schema.json",
+      "src-tauri/src/chat/application.rs",
+      "src-tauri/src/chat/ipc.rs",
+      "src-tauri/src/chat/mod.rs",
+      "src-tauri/src/chat/schedules/drafts.rs",
+      "src-tauri/src/chat/schedules/ipc.rs",
+      "src-tauri/src/chat/schedules/ipc/tests/draft_tests.rs",
+      "src-tauri/src/chat/schedules/ipc_commands_generated.rs",
+      "src-tauri/src/chat/schedules/ipc_generated.rs",
+      "src-tauri/src/chat/session_purpose_generated.rs",
+      "src-tauri/src/lib.rs",
+      "src/api/chat-client.ts",
+      "src/api/generated/scheduled-task-ipc-validator.gen.d.ts",
+      "src/api/generated/scheduled-task-ipc-validator.gen.js",
+      "src/api/generated/scheduled-task-ipc.gen.ts",
+      "src/components/chat/ChatComposer.vue",
+      "src/components/chat/ChatSidebarTree.test.ts",
+      "src/components/chat/ChatSidebarTree.vue",
+      "src/components/chat/ChatTimeline.vue",
+      "src/components/chat/ChatTurnGroup.test.ts",
+      "src/components/chat/ChatTurnGroup.vue",
+      "src/components/schedules/ScheduledDraftPanel.vue",
+      "src/components/schedules/ScheduledPlanForm.vue",
+      "src/domain/chat-ipc.ts",
+      "src/domain/chat-session-purpose.generated.ts",
+      "src/domain/chat-session-purpose.test.ts",
+      "src/domain/scheduled-draft-intent.ts",
+      "src/domain/scheduled-task-ui.ts",
+      "src/pages/chat/ChatPage.test.ts",
+      "src/pages/chat/ChatPage.vue",
+      "src/pages/chat/ScheduledDraftPage.test.ts",
+      "src/pages/schedules/ScheduledTasksPage.vue",
+      "src/pages/schedules/use-scheduled-draft.test.ts",
+      "src/pages/schedules/use-scheduled-draft.ts",
+      "src/stores/chat.store.test.ts",
+      "src/stores/chat.store.ts"
+    ],
+    "source_file_count": 770
+  },
+  "yijie-contracts": {
+    "head_unchanged": true,
+    "files_changed_this_batch": [],
+    "source_file_count": 386
+  },
+  "yijie-agent-host": {
+    "head_unchanged": true,
+    "files_changed_this_batch": [
+      "SECURITY.md",
+      "internal/codex/runtime_permissions.go",
+      "internal/codex/scheduled_draft.go",
+      "internal/codex/scheduled_draft_meter_integration_test.go",
+      "internal/codex/scheduled_draft_test.go"
+    ],
+    "source_file_count": 306
+  },
+  "yijie-codex": {
+    "head_unchanged": true,
+    "files_changed_this_batch": [],
+    "source_file_count": 5568
+  }
+}

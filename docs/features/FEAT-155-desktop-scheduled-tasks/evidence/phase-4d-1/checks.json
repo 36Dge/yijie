@@ -1,0 +1,170 @@
+{
+  "recorded_at": "2026-09-23T11:18:36.614568+00:00",
+  "checks": [
+    {
+      "id": "contracts_generation",
+      "status": "PASS",
+      "evidence": "checks/contracts-generation.log",
+      "detail": "新时间契约生成；最终同步检查同源，旧 pin 不改"
+    },
+    {
+      "id": "contracts_leaf_tests",
+      "status": "PASS",
+      "evidence": "checks/contracts-tests.log",
+      "detail": "3项同源与严格 schema 检查"
+    },
+    {
+      "id": "contracts_lint",
+      "status": "PASS",
+      "evidence": "checks/contracts-lint.log",
+      "detail": "全仓 lint；12个既有 Redocly 提示保留"
+    },
+    {
+      "id": "host_lint",
+      "status": "PASS",
+      "evidence": "checks/host-lint.log",
+      "detail": "make lint"
+    },
+    {
+      "id": "host_timing_recovery",
+      "status": "PASS",
+      "evidence": "checks/host-focused.log",
+      "detail": "session/app 定向 race 测试"
+    },
+    {
+      "id": "host_legacy_native",
+      "status": "PASS",
+      "evidence": "checks/host-legacy-native.log",
+      "detail": "4项已审查的旧 native 协议检查"
+    },
+    {
+      "id": "desktop_frontend",
+      "status": "PASS",
+      "evidence": "checks/frontend-focused.log",
+      "detail": "5个文件28项定向检查"
+    },
+    {
+      "id": "desktop_lint_type",
+      "status": "PASS",
+      "evidence": "checks/frontend-lint-final.log",
+      "detail": "eslint 与 vue-tsc"
+    },
+    {
+      "id": "desktop_ipc",
+      "status": "PASS",
+      "evidence": "checks/ipc-generation-final.log",
+      "detail": "私有 IPC 生成一致性；最终 --check 再验证通过"
+    },
+    {
+      "id": "desktop_native",
+      "status": "PASS",
+      "evidence": "checks/native-regression-final-130.log",
+      "detail": "130项 FEAT-155 检查，包含新迁移/时钟与原执行路径"
+    },
+    {
+      "id": "desktop_background",
+      "status": "PASS",
+      "evidence": "checks/background-clock-regression.log",
+      "detail": "普通 HostBridge 无发送准入也能补读已完成运行，POST数不变，正常停止"
+    },
+    {
+      "id": "desktop_clippy",
+      "status": "PASS",
+      "evidence": "checks/clippy-collector-final.log",
+      "detail": "cargo clippy --all-targets -- -D warnings"
+    },
+    {
+      "id": "desktop_docs",
+      "status": "PASS",
+      "evidence": "checks/docs-build.log",
+      "detail": "设计文档构建"
+    },
+    {
+      "id": "canonical_app",
+      "status": "PASS",
+      "evidence": "checks/canonical-final-reopen.log",
+      "detail": "标准 canonical 候选构建、正常重开与退出；非签名发布构建"
+    },
+    {
+      "id": "desktop_full_entry",
+      "status": "BLOCKED",
+      "evidence": "checks/frontend-full-entry.log",
+      "detail": "pnpm test 在既有 Contracts tracked changes 保护处停止，未绕过"
+    },
+    {
+      "id": "breaking_db4458fe",
+      "status": "PASS",
+      "evidence": "checks/breaking-db4458fe.log",
+      "detail": "逐登记支持/回退基线比较，独立新族无旧基线；旧族保持"
+    },
+    {
+      "id": "breaking_f16a497e",
+      "status": "PASS",
+      "evidence": "checks/breaking-f16a497e.log",
+      "detail": "逐登记支持/回退基线比较，独立新族无旧基线；旧族保持"
+    },
+    {
+      "id": "breaking_6f632f15",
+      "status": "PASS",
+      "evidence": "checks/breaking-6f632f15.log",
+      "detail": "逐登记支持/回退基线比较，独立新族无旧基线；旧族保持"
+    },
+    {
+      "id": "breaking_811f38d6",
+      "status": "PASS",
+      "evidence": "checks/breaking-811f38d6.log",
+      "detail": "逐登记支持/回退基线比较，独立新族无旧基线；旧族保持"
+    },
+    {
+      "id": "meta_lint",
+      "status": "PASS",
+      "evidence": "checks/meta-lint.log",
+      "detail": "manifest与Contract First治理"
+    },
+    {
+      "id": "meta_tests",
+      "status": "PASS",
+      "evidence": "checks/meta-tests.log",
+      "detail": "元仓50项检查"
+    },
+    {
+      "id": "meta_d0",
+      "status": "PASS",
+      "evidence": "checks/meta-d0.log",
+      "detail": "D0结构和声明语义；非D4验收"
+    },
+    {
+      "id": "meta_shell_syntax",
+      "status": "PASS",
+      "detail": "bash -n scripts/*.sh"
+    },
+    {
+      "id": "workspace_links_diff",
+      "status": "PASS",
+      "evidence": "workspace-review.json",
+      "detail": "五仓diff check、HEAD/分支/远端及报告链接核对"
+    }
+  ],
+  "not_run": [
+    {
+      "scope": "Contracts全量generate/test",
+      "reason": "历史生成路径包含用户禁止的危险归档fixture，且已有dirty工作树；只执行适用新族生成和conformance",
+      "impact": "不声称全仓生成及所有测试通过"
+    },
+    {
+      "scope": "Host/Desktop/Runtime全量故障套件",
+      "reason": "历史强杀、故障可执行文件、权限破坏及攻击fixture违反长期安全条款",
+      "impact": "仅已审查的非破坏性定向检查通过"
+    },
+    {
+      "scope": "真实Provider及全部Must同次fresh验收",
+      "reason": "本批授权边界为4D-1零真实调用；其他功能仍有后续工作",
+      "impact": "不是完整FEAT-155 D4"
+    }
+  ],
+  "initial_failures_resolved": [
+    "IPC允许版本上界仍停在25，已扩到26；Availability schema历史上界22同步修正为26",
+    "后台采集误以发送准入为条件，改为候选缓存writer和读取权限，新增原Coordinator组合回归并实际重开复核"
+  ],
+  "full_suite_pass_claimed": false
+}

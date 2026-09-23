@@ -1,0 +1,98 @@
+{
+  "captured_at": "2026-09-18T17:21:32.452805+00:00",
+  "checks": [
+    {
+      "name": "strict",
+      "repository": "yijie",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-155-desktop-scheduled-tasks",
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "strict.log"
+    },
+    {
+      "name": "d0",
+      "repository": "yijie",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate D0 docs/features/FEAT-155-desktop-scheduled-tasks",
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "d0.log"
+    },
+    {
+      "name": "audit-claims",
+      "repository": "yijie",
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-155-desktop-scheduled-tasks",
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "audit-claims.log"
+    },
+    {
+      "name": "meta-lint",
+      "repository": "yijie",
+      "command": "pnpm lint",
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "meta-lint.log"
+    },
+    {
+      "name": "meta-test",
+      "repository": "yijie",
+      "command": "pnpm test",
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "meta-test.log"
+    },
+    {
+      "name": "shell-syntax",
+      "repository": "yijie",
+      "command": "bash -n separately for each scripts/*.sh",
+      "files": 7,
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "host-focused",
+      "repository": "yijie-agent-host",
+      "command": "env -u YIJIE_FEAT155_CONFORMANCE_DIR GOPROXY=off GOSUMDB=off GOTOOLCHAIN=local /Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go test -race ./internal/codex ./internal/session ./internal/app -run '^(TestFEAT155Draft.*|TestRuntimePermissionModes|TestRuntimePermissionVerificationPolicyIsOptIn|TestRuntimePermissionAdmissionPreservesAcceptedReplay|TestFEAT144NativeRootMigrationPreservesTrustBytes|TestFEAT144NativeManagedFileStillRequiresExactSource)$' -count=1 -v",
+      "exit_code": 0,
+      "tests": 11,
+      "status": "PASS",
+      "log": "host-focused-go1265.log",
+      "runtime_process_started": false
+    },
+    {
+      "name": "host-vet",
+      "repository": "yijie-agent-host",
+      "command": "env GOPROXY=off GOSUMDB=off GOTOOLCHAIN=local /Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go vet ./internal/codex ./internal/session ./internal/app",
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "host-vet.log"
+    },
+    {
+      "name": "initial-toolchain-rejection",
+      "repository": "yijie-agent-host",
+      "status": "FAIL",
+      "exit_code": 1,
+      "reason": "GOTOOLCHAIN=local selected Homebrew Go 1.26.4 below required 1.26.5; no tests ran",
+      "log": "host-focused.log",
+      "resolution": "Used existing cached Go1.26.5 binary with downloads disabled; no dependency or lock changes"
+    },
+    {
+      "name": "changed-document-local-links",
+      "status": "PASS",
+      "exit_code": 0,
+      "checked_links": 134,
+      "documents": [
+        "00-feature-brief.md",
+        "01-delivery-log.md",
+        "02-verification.md",
+        "04-owner-approval-and-implementation.md",
+        "26-phase-3c-3b-3a-qualification-plan.md",
+        "27-phase-3c-3b-3a-qualification-report.md"
+      ],
+      "scope": "file targets only; historical acceptance claims not re-run"
+    }
+  ],
+  "real_runtime_observations": "NOT RUN",
+  "qualification": "NOT QUALIFIED",
+  "scope": "Safety gate/local interface regressions, source review and documentation checks; not live Runtime or Provider acceptance"
+}

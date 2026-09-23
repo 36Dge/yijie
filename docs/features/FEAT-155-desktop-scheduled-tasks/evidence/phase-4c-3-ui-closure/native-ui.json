@@ -1,0 +1,54 @@
+{
+  "feature": "FEAT-155",
+  "phase": "4C-3 UI closure",
+  "recorded_at": "2026-09-23T05:07:17.611993+00:00",
+  "status": "PASS for authorized UI closure",
+  "source": "CUA actual native AX plus screenshots in this task; canonical app launches; readonly SQLCipher comparison",
+  "candidate_schema_store": "25/6",
+  "ordinary_schema_store": "15/5",
+  "minimum_window": "1180x760 configured native minimum, reached by resizing; screenshots observed at minimum",
+  "historical_capture_issue": {
+    "old_cause": "unknown",
+    "before_product_patch": "40 prior-report Desktop file hashes identical; overlay and dark UI visibly correct in current run",
+    "no_claim": "not attributed conclusively to a specific tool or WebKit fault"
+  },
+  "fixed_findings": [
+    "UI-4C3-02 long content placed focused cancel outside viewport: fixed body scrolling and existing footer",
+    "UI-4C3-03 detail-to-rerun overlapping modal focus: wait for detail after-leave before original read-only preview"
+  ],
+  "final_native_observations": {
+    "immediate_run_review": "visible, paused configuration, Ask and separate one-run/max10min permit; default cancel",
+    "rerun_from_list": "visible original/current differences and no-change notice on existing run",
+    "rerun_from_detail": "one review after old detail leaves; initial cancel focus confirmed",
+    "keyboard": "Tab confirm -> named body -> cancel; Shift+Tab body; PageDown/PageUp scroll body; Enter cancels; Escape returns to corresponding record/immediate action",
+    "long_content": "header, one-run permit and actions remain visible while body scrolls",
+    "theme_switch": "light/dark shell, card, overlay and text synchronous, current review retained",
+    "result_route": "/chat/01a0cc09-ad6a-7041-bdf5-0e36b511c29c?turn=01a0cc09-ad6a-7041-bdf5-0e5611018757",
+    "result_text": "4C3 独立重跑验证通过",
+    "result_is_old_record_from_41": true,
+    "provider_phase_missing_preserved": true,
+    "normal_reopen": "paused plans, modal and cancel focus correct; zero replay",
+    "all_plan_states_native_ui_tested_this_turn": false,
+    "all_plan_states_note": "native reviewed existing paused plans; enabled/completed execution rules unchanged and covered by 41/focused tests"
+  },
+  "cleanup": {
+    "normal_app_exits": true,
+    "normal_provider_exit": true,
+    "restored_system_theme": "Light",
+    "no_force_kill": true,
+    "readonly_ledger_exact_before_after": true,
+    "reservation_count": 0,
+    "new_grants_runs_outbox": 0
+  },
+  "requests": {
+    "real_text": 0,
+    "local_declared_provider": 0,
+    "images": 0,
+    "merchant_mcp_external": 0,
+    "cumulative_real_text": 10,
+    "limit": 12,
+    "remaining": 2
+  },
+  "screenshots": "Shown in CUA tool transcript; not separately saved image files",
+  "full_feature_D4": "NOT RUN"
+}

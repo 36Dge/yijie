@@ -1,0 +1,66 @@
+{
+  "yijie": {
+    "changed_files": [
+      "docs/adr/ADR-0020-local-scheduled-task-authority.md",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/00-feature-brief.md",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/01-delivery-log.md",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/02-verification.md",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/04-owner-approval-and-implementation.md",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/47-remaining-delivery-plan.md",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/remaining-delivery/initial-workspace.json",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/remaining-delivery/local-provider-ledger.json",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/remaining-delivery/local-provider.py",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/remaining-delivery/native-ui-observations.json",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/remaining-delivery/provider-ledger.json",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/feature.yaml",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/history/before-remaining-delivery/00-feature-brief.md",
+      "docs/features/FEAT-155-desktop-scheduled-tasks/history/before-remaining-delivery/02-verification.md"
+    ],
+    "removed_files": [],
+    "head_unchanged": true
+  },
+  "yijie-desktop": {
+    "changed_files": [
+      "SECURITY.md",
+      "contracts/scheduled-ipc.candidate.json",
+      "src-tauri/schemas/scheduled-task-ipc-resolved.schema.json",
+      "src-tauri/schemas/scheduled-task-ipc-v1.schema.json",
+      "src-tauri/src/chat/schedules/ipc.rs",
+      "src-tauri/src/chat/schedules/ipc/query.rs",
+      "src-tauri/src/chat/schedules/ipc/tests.rs",
+      "src-tauri/src/chat/schedules/ipc_commands_generated.rs",
+      "src-tauri/src/chat/schedules/ipc_generated.rs",
+      "src-tauri/src/lib.rs",
+      "src/App.vue",
+      "src/api/generated/scheduled-task-ipc-validator.gen.d.ts",
+      "src/api/generated/scheduled-task-ipc-validator.gen.js",
+      "src/api/generated/scheduled-task-ipc.gen.ts",
+      "src/components/schedules/ScheduledCardAction.vue",
+      "src/components/schedules/ScheduledPlanForm.vue",
+      "src/components/schedules/ScheduledUpdates.vue",
+      "src/domain/scheduled-task-ui.ts",
+      "src/icons/registry.test.ts",
+      "src/icons/registry.ts",
+      "src/pages/schedules/ScheduledTasksPage.vue",
+      "src/pages/schedules/use-scheduled-updates.test.ts",
+      "src/pages/schedules/use-scheduled-updates.ts"
+    ],
+    "removed_files": [],
+    "head_unchanged": true
+  },
+  "yijie-agent-host": {
+    "changed_files": [],
+    "removed_files": [],
+    "head_unchanged": true
+  },
+  "yijie-contracts": {
+    "changed_files": [],
+    "removed_files": [],
+    "head_unchanged": true
+  },
+  "yijie-codex": {
+    "changed_files": [],
+    "removed_files": [],
+    "head_unchanged": true
+  }
+}

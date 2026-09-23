@@ -1,0 +1,148 @@
+[
+  {
+    "command": "schedule_submit_draft_v1",
+    "request": {
+      "contextId": "01a0c9f1-175c-7521-886a-37737ccf1292",
+      "payload": {
+        "text": "每天九点总结"
+      },
+      "requestId": "01a0c9f1-175c-7521-886a-378ecbc11d09",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "conversation_id": "01a0c9f1-175e-7852-8c73-e41a2e05d61d",
+        "local_turn_id": "01a0c9f1-175e-7852-8c73-e43b69be38df",
+        "operation_id": "01a0c9f1-175e-7852-8c73-e44ae8c1478d",
+        "source_id": "01a0c9f1-176e-79d1-b796-67925ffc2421",
+        "status": "accepted"
+      },
+      "requestId": "01a0c9f1-175c-7521-886a-378ecbc11d09",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_find_draft_source_v1",
+    "request": {
+      "contextId": "01a0c9f1-175c-7521-886a-37737ccf1292",
+      "payload": {
+        "conversation_id": "01a0c9f1-175e-7852-8c73-e41a2e05d61d",
+        "local_turn_id": "01a0c9f1-175e-7852-8c73-e43b69be38df"
+      },
+      "requestId": "01a0c9f1-1822-7a71-bd88-21078889882d",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "found": true,
+        "source": {
+          "conversation_id": "01a0c9f1-175e-7852-8c73-e41a2e05d61d",
+          "local_turn_id": "01a0c9f1-175e-7852-8c73-e43b69be38df",
+          "operation_id": "01a0c9f1-175e-7852-8c73-e44ae8c1478d",
+          "source_id": "01a0c9f1-176e-79d1-b796-67925ffc2421",
+          "status": "accepted"
+        }
+      },
+      "requestId": "01a0c9f1-1822-7a71-bd88-21078889882d",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_operation_capabilities_v1",
+    "request": {
+      "contextId": "01a0c9f1-175c-7521-886a-37737ccf1292",
+      "payload": {},
+      "requestId": "01a0c9f1-1822-7a71-bd88-211d0ad98bc9",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "automatic": {
+          "available": false,
+          "reason": "candidate_disabled"
+        },
+        "draft": {
+          "available": true,
+          "reason": "ready"
+        },
+        "manual": {
+          "available": false,
+          "reason": "candidate_disabled"
+        },
+        "read": {
+          "available": true,
+          "reason": "ready"
+        },
+        "save": {
+          "available": true,
+          "reason": "ready"
+        }
+      },
+      "requestId": "01a0c9f1-1822-7a71-bd88-211d0ad98bc9",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_continue_draft_source_v1",
+    "request": {
+      "contextId": "01a0c9f1-175c-7521-886a-37737ccf1292",
+      "payload": {
+        "source_id": "01a0c9f1-176e-79d1-b796-67925ffc2421"
+      },
+      "requestId": "01a0c9f1-1823-7912-8b70-33466c13249b",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "conversation_id": "01a0c9f1-175e-7852-8c73-e41a2e05d61d",
+        "local_turn_id": "01a0c9f1-175e-7852-8c73-e43b69be38df",
+        "operation_id": "01a0c9f1-175e-7852-8c73-e44ae8c1478d",
+        "source_id": "01a0c9f1-176e-79d1-b796-67925ffc2421",
+        "status": "accepted"
+      },
+      "requestId": "01a0c9f1-1823-7912-8b70-33466c13249b",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_continue_draft_source_v1",
+    "request": {
+      "contextId": "01a0c9f1-175c-7521-886a-37737ccf1292",
+      "payload": {
+        "source_id": "01a0c9f1-176e-79d1-b796-67925ffc2421"
+      },
+      "requestId": "01a0c9f1-1834-7683-8f0f-5f0203406c2e",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "conversation_id": "01a0c9f1-175e-7852-8c73-e41a2e05d61d",
+        "local_turn_id": "01a0c9f1-175e-7852-8c73-e43b69be38df",
+        "operation_id": "01a0c9f1-175e-7852-8c73-e44ae8c1478d",
+        "source_id": "01a0c9f1-176e-79d1-b796-67925ffc2421",
+        "status": "accepted"
+      },
+      "requestId": "01a0c9f1-1834-7683-8f0f-5f0203406c2e",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_preview_draft_v1",
+    "request": {
+      "contextId": "01a0c9f1-175c-7521-886a-37737ccf1292",
+      "payload": {
+        "source_id": "01a0c9f1-176e-79d1-b796-67925ffc2421"
+      },
+      "requestId": "01a0c9f1-1895-7a01-9bd9-f88c9a91bf30",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "source_id": "01a0c9f1-176e-79d1-b796-67925ffc2421",
+        "status": "unavailable"
+      },
+      "requestId": "01a0c9f1-1895-7a01-9bd9-f88c9a91bf30",
+      "schemaVersion": 1
+    }
+  }
+]

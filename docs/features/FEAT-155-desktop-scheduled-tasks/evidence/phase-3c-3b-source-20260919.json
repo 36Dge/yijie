@@ -1,0 +1,1132 @@
+{
+  "feature": "FEAT-155",
+  "phase": "phase_3c_3b_1_and_2",
+  "captured_at": "2026-09-18T16:36:37.110284+00:00",
+  "contract_impact": "breaking",
+  "overall_feature_contract_impact": "breaking",
+  "authority": "Contracts fixed draft v1; Desktop private IPC; private Host6/Desktop22 compatible candidate",
+  "release": false,
+  "baseline_snapshot_directory": "/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat155-3c3b-hhdrol84",
+  "baseline_snapshot_sha256": "d99cfece43bbef7dc9765ae4bd257161ffb6c9b7b40f03d673c0a7a07495e5ca",
+  "baseline_evidence": {
+    "path": "evidence/phase-3c-3a-source-20260918.json",
+    "sha256": "914ee22d3fb76c0da0e395ba244453f3278b2ad661148b61055e6ea0ecced7e9",
+    "123_candidate_hashes_matched_before_start": true
+  },
+  "repositories": {
+    "yijie": {
+      "head": "2f616f4d24c001812c6279a520ba69ea9875247e",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie.git (fetch)\norigin\thttps://github.com/36Dge/yijie.git (push)",
+      "status_entries": 3,
+      "files": []
+    },
+    "yijie-contracts": {
+      "head": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-contracts.git (fetch)\norigin\thttps://github.com/36Dge/yijie-contracts.git (push)",
+      "status_entries": 52,
+      "files": [
+        {
+          "path": "Makefile",
+          "sha256": "6ceddfa0c093b5d5e8190ea1774db95d98575926bff5348c0aa1369a1e4adad2"
+        },
+        {
+          "path": "compatibility/scheduled-draft/source.lock.json",
+          "sha256": "ebff05853f8afbdb3f4d902105f2b634a367ef3ecbd0130987b4ae9b1673247c"
+        },
+        {
+          "path": "compatibility/scheduled-execution/source.lock.json",
+          "sha256": "27ffc07595e155ffef87f8892a4982326457244fac72d01e122ab00a82f55c63"
+        },
+        {
+          "path": "compatibility/scheduled-plan/source.lock.json",
+          "sha256": "c1e44503f23268930181410dac5d81dbe39f84c093f89143845fd7dc4aa3aef5"
+        },
+        {
+          "path": "compatibility/scheduled-task-recovery/source.lock.json",
+          "sha256": "0da991a16e14b20115f339b9e0d2edd8162a4e1a56d4c0555ed6fc6f61e2692e"
+        },
+        {
+          "path": "docs/scheduled-draft-v1.md",
+          "sha256": "d65926e637d19ddeb90767d75b74b21ed6c49cd8b536799caa493b4171b0625d"
+        },
+        {
+          "path": "docs/scheduled-execution-v1.md",
+          "sha256": "7da5a63a0236abf316c2b2381c688dc8766366e04da672e9f1fc44f39aa3cac6"
+        },
+        {
+          "path": "docs/scheduled-plan-v1.md",
+          "sha256": "531e363c225eecd4664c64d0669a7a4990f6d7ac49efcff985c58b675072eeef"
+        },
+        {
+          "path": "docs/scheduled-task-recovery-v1.md",
+          "sha256": "ed37162b92c5cad30c848cf8059f848903381e8ab34ef4d0a50fc90ad22f875a"
+        },
+        {
+          "path": "docs/supported-baselines.md",
+          "sha256": "dab05eaf7207269a9bfc4b2e2c98ea2e00b26691a501cc6eb39fefa51e149374"
+        },
+        {
+          "path": "jsonschema/scheduled-tasks/draft-execution-v1.schema.json",
+          "sha256": "75a2488ee1b045e263d377461715a506079249e0addf03aefd3a32d26920d928"
+        },
+        {
+          "path": "jsonschema/scheduled-tasks/execution-v1.schema.json",
+          "sha256": "dec7517a4d7d3cff42eb3058c8c49c7cf5d94db751ccc16b1b7acacf2811ec3e"
+        },
+        {
+          "path": "jsonschema/scheduled-tasks/plan-draft-v1.schema.json",
+          "sha256": "267efaf2f7ba9ada27f7494c9042473c6775b7d9eeecab4f3673cc84d0814171"
+        },
+        {
+          "path": "jsonschema/scheduled-tasks/plan-storage-v1.schema.json",
+          "sha256": "0883ab69c0cbcda311113fd2a966ea98065ddc47b301e36611e2447620667cd2"
+        },
+        {
+          "path": "openapi/scheduled-plan-draft/scheduled-plan-draft.yaml",
+          "sha256": "5b5721f8186d24b401d622bb9ca5d8dc9bedc15b1f16aff393c12fe75c5b90f3"
+        },
+        {
+          "path": "openapi/scheduled-task-recovery/scheduled-task-recovery.yaml",
+          "sha256": "47a1d7f4e5e858116d9f0b80faf86a0e1e5936dfab1ebf6673c9579e5246e9e2"
+        },
+        {
+          "path": "scripts/check-breaking.sh",
+          "sha256": "8de1d70c31578f024d4fff7cff425dc16df4056af554f05d423d779b00e66472"
+        },
+        {
+          "path": "scripts/check-scheduled-draft-producer.mjs",
+          "sha256": "2d4533ca724a69ad282acfc5d4d344f410d59812b36dafeb1b5025d875b90342"
+        },
+        {
+          "path": "scripts/check-scheduled-draft.mjs",
+          "sha256": "509cab0cdff8ef4c36d275f07eee1edb8662a09ed61c8fd65cd4efdef970fe54"
+        },
+        {
+          "path": "scripts/check-scheduled-execution-producer.mjs",
+          "sha256": "aa02c9f58ddec96ad1ae3fc7cc99af77412d0d2ab45bfb08d9ac624ceb10e81a"
+        },
+        {
+          "path": "scripts/check-scheduled-execution.mjs",
+          "sha256": "d5db5b5506f5dd326978891d939c9ba18ac059661a8a1d0d8bec760149164e30"
+        },
+        {
+          "path": "scripts/check-scheduled-plan-producer.mjs",
+          "sha256": "5b6917b9f600c0e9959ace4e06f3a32baca86cd8c067818b255339485188679e"
+        },
+        {
+          "path": "scripts/check-scheduled-plan.mjs",
+          "sha256": "34ca1b051ad110624cd490b71f8cbd0279e8df97706021bf440a772836b6496f"
+        },
+        {
+          "path": "scripts/check-scheduled-recovery-producer.mjs",
+          "sha256": "6200ec0da5c20c5ebe802cc0b1a60ac0294e849d0396032205470ca0aee965fe"
+        },
+        {
+          "path": "scripts/check-scheduled-task-recovery.mjs",
+          "sha256": "6337191558167c196ac2f6791dfe2b70d7f2d5fd60c822b741eaffd3af62ca27"
+        },
+        {
+          "path": "scripts/generate-scheduled-draft.mjs",
+          "sha256": "8dadf4483715c60106b2ada008fab99b09cc5e021b2123d3d39864d965a398c6"
+        },
+        {
+          "path": "scripts/generate-scheduled-execution.mjs",
+          "sha256": "06b0155849225749e14c422f4846a8e5861f8d901957b2a160970b4325ff0eb9"
+        },
+        {
+          "path": "scripts/generate-scheduled-plan.mjs",
+          "sha256": "44aa6dcf1ffa7dbb7b593268d2614e49f8600fce7c14734fc778bc670d1ec80b"
+        },
+        {
+          "path": "scripts/generate-scheduled-task-recovery.mjs",
+          "sha256": "8c3798b42fd3e4484114a226bc1cab7cf2244ae3428e4d01239420bbbae3970a"
+        },
+        {
+          "path": "scripts/scheduled-schema-source.mjs",
+          "sha256": "4afa5abda0bb8fd76a3c01759605a8b1f3c59f5548ac93587750e07cd08f406c"
+        },
+        {
+          "path": "scripts/sync-scheduled-draft.mjs",
+          "sha256": "fb6bdd9a0993ea785a41f58a73f68a196b1db20b27a35923890843d3db1748a1"
+        },
+        {
+          "path": "scripts/sync-scheduled-execution.mjs",
+          "sha256": "3215f92ed004959b066d7a4696247ecd5cb0851cedd228149d5216b4d96abadb"
+        },
+        {
+          "path": "scripts/sync-scheduled-plan.mjs",
+          "sha256": "af414a9990c8bd48d34d7db630e0c53e3dcbbf2cabca6f1701198147fcb7edc8"
+        },
+        {
+          "path": "scripts/sync-scheduled-task-recovery.mjs",
+          "sha256": "85608c8554f7dc198a65b1164d12387f6af2532b27363381e7669f57bbf146b6"
+        },
+        {
+          "path": "scripts/validate-json-schemas.mjs",
+          "sha256": "7434113933392ac89faa435c0888ce01a697eeccc97c33ff052b2b3b9ed7468d"
+        },
+        {
+          "path": "sdks/go/openapi/scheduled-draft/types.gen.go",
+          "sha256": "8505b8137dd735f0489f7191a7d4caa209b8ab8feb8c5865654fe8ea4edc9072"
+        },
+        {
+          "path": "sdks/go/openapi/scheduled-task-recovery/types.gen.go",
+          "sha256": "03a35f5c9c16db1eb272b2ab7020ac08466deb5c716dc364f492f7a21c9a7f6d"
+        },
+        {
+          "path": "sdks/jsonschema/scheduled-draft-output.schema.json",
+          "sha256": "f7844573f4a65e9b9493a1a5039ce6688e7e3a077279133bd6be30795cdde2e5"
+        },
+        {
+          "path": "sdks/jsonschema/scheduled-draft.schema.json",
+          "sha256": "87aaba61e1a57e634b65a4eae2e1a7ecd9965568c29036709e259e4a4de33866"
+        },
+        {
+          "path": "sdks/jsonschema/scheduled-execution.schema.json",
+          "sha256": "b6c9763e00285d75c79c21b195929c52ad997f050ecadeb735f51507c7609df9"
+        },
+        {
+          "path": "sdks/jsonschema/scheduled-plan.schema.json",
+          "sha256": "8ab948f965e5681859d129f91a18a5931cfed89cfd32c0e866db9b5edf9283f4"
+        },
+        {
+          "path": "sdks/jsonschema/scheduled-task-recovery.schema.json",
+          "sha256": "0b790fc93d6037efe4802c1822a6a0d2a979dbbab427f019658b5b3413277f5b"
+        },
+        {
+          "path": "sdks/rust/scheduled-draft/types.gen.rs",
+          "sha256": "eee76bbfe2fbb7bc7a19fdfd23a3fd06430d9a0d1a4f57bfa0affe7d4cec1d32"
+        },
+        {
+          "path": "sdks/rust/scheduled-execution/types.gen.rs",
+          "sha256": "f53ed95baf4548dc0ad1eddf4872afffd88975984e1e67af6174834305b7d778"
+        },
+        {
+          "path": "sdks/rust/scheduled-plan/types.gen.rs",
+          "sha256": "1223692af5937b691453edb57b5a8689a419472af9be806b04855247a09a1614"
+        },
+        {
+          "path": "sdks/rust/scheduled-task-recovery/types.gen.rs",
+          "sha256": "a0f8812a804440f3ecd259e5bac3c4136d7a0f3e2a6433408b0e5bdeabd29b3d"
+        },
+        {
+          "path": "sdks/typescript/src/jsonschema/scheduled-draft.gen.ts",
+          "sha256": "b2cea9faeeddecae8d1b81b94edb3e06e1d580a24603c0c9656c0ece52fc69d6"
+        },
+        {
+          "path": "sdks/typescript/src/jsonschema/scheduled-execution.gen.ts",
+          "sha256": "70184382b025d57155098b8a597e6c3994d903813191188f6532fd7655a612bf"
+        },
+        {
+          "path": "sdks/typescript/src/jsonschema/scheduled-plan.gen.ts",
+          "sha256": "34d152ce71516f533b258bf79456d772ca2895bd3925028bdaa21ce445834185"
+        },
+        {
+          "path": "tests/fixtures/scheduled-schema-closure.json",
+          "sha256": "d472fa8bac39807394c644712b20303909a5f6487113e2b39d6c7e104903505a"
+        },
+        {
+          "path": "tests/scheduled-draft.test.mjs",
+          "sha256": "e692781b5c185bcb100dbb3a3df14fa59fc1854663645796fde06cfc31166f13"
+        },
+        {
+          "path": "tests/scheduled-execution.test.mjs",
+          "sha256": "77f916ea2de09bd96c29bbeeff09cc0993eb47213adb4464f17b02a08f5b195f"
+        },
+        {
+          "path": "tests/scheduled-plan.test.mjs",
+          "sha256": "2ce82fb705d0b91f27fa59e15ae3cc192df8bdfcad46c4ae3ce8d579c8c7fec8"
+        },
+        {
+          "path": "tests/scheduled-schema-closure.test.mjs",
+          "sha256": "fb4a111d885456ad8666082c1607c05685632607fd5d31fe319c4c25702af5b4"
+        },
+        {
+          "path": "tests/scheduled-task-recovery.test.mjs",
+          "sha256": "15b95b1b7eb962357343238308ccf22edc0659abdeb41cde5756629de62a6889"
+        }
+      ]
+    },
+    "yijie-agent-host": {
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-agent-host.git (fetch)\norigin\thttps://github.com/36Dge/yijie-agent-host.git (push)",
+      "status_entries": 29,
+      "files": [
+        {
+          "path": "Makefile",
+          "sha256": "eea89b9660ed126386af2703e9d722d227f73f92a8f880e0462a5bb206030abf"
+        },
+        {
+          "path": "README.md",
+          "sha256": "bb2bce0def60a1072490ced0f032811904c57e1719302a4e573ba17d70ba97ae"
+        },
+        {
+          "path": "SECURITY.md",
+          "sha256": "dbb7496b21c7350c3f38a0cc5a814ac7b77113c44dac0a0a5143f01898edee1a"
+        },
+        {
+          "path": "api/openapi/scheduled-plan-draft.yaml",
+          "sha256": "5b5721f8186d24b401d622bb9ca5d8dc9bedc15b1f16aff393c12fe75c5b90f3"
+        },
+        {
+          "path": "api/openapi/scheduled-task-recovery.yaml",
+          "sha256": "47a1d7f4e5e858116d9f0b80faf86a0e1e5936dfab1ebf6673c9579e5246e9e2"
+        },
+        {
+          "path": "api/scheduled-draft.candidate.json",
+          "sha256": "ebff05853f8afbdb3f4d902105f2b634a367ef3ecbd0130987b4ae9b1673247c"
+        },
+        {
+          "path": "api/scheduled-task-recovery.candidate.json",
+          "sha256": "4b902509aae045e1d3237c2252d1dc0577afa3b4b27db56dbe65be1cfeb45326"
+        },
+        {
+          "path": "api/schemas/scheduled-task-recovery.schema.json",
+          "sha256": "0b790fc93d6037efe4802c1822a6a0d2a979dbbab427f019658b5b3413277f5b"
+        },
+        {
+          "path": "docs/scheduled-plan-draft.md",
+          "sha256": "fa3d3071e589a16d4f39d69e733ad86d7e51f2a8db1dc6fa9129cba68428335f"
+        },
+        {
+          "path": "docs/scheduled-task-recovery.md",
+          "sha256": "b473ac1ba6abdebc6d9aa34ca789b6c13b37a551c425aa75b5a1adb926b3b6b1"
+        },
+        {
+          "path": "internal/app/app.go",
+          "sha256": "a5ed5f58f0785a21e040185fc45f31bfd38dd1d704a397dcb37ee4ebeb1873e2"
+        },
+        {
+          "path": "internal/app/scheduled_draft.go",
+          "sha256": "a34920bf4bbe234e9e3cc0141680696abf4c23a45ddfa74c7a3cdf9953be2c48"
+        },
+        {
+          "path": "internal/app/scheduled_draft_test.go",
+          "sha256": "5bbb212ade03e15e6ca0d3163e666a67fef5e004f3e82600b7259120bf6f869e"
+        },
+        {
+          "path": "internal/app/scheduled_recovery.go",
+          "sha256": "81c74c7902d0d925c5a8599c15a139483a311da5f94dfa6e439e075944e276b8"
+        },
+        {
+          "path": "internal/app/scheduled_recovery_test.go",
+          "sha256": "c45c21ddaa9e6b3044aa8b547ef349e8829ab165b209b847e93fc75dff0a65c9"
+        },
+        {
+          "path": "internal/codex/scheduled_draft.go",
+          "sha256": "e6b8a99fb9d9002bcc4d5948daacd98336978bf21147e01095a76967e6128ce6"
+        },
+        {
+          "path": "internal/codex/scheduled_draft_test.go",
+          "sha256": "eed892d3b96a1aa8aa267fbd33e3475fe7daa4518281a38bbe4a93803b7d390a"
+        },
+        {
+          "path": "internal/codex/session_protocol.go",
+          "sha256": "74ff3ba2fbfb592c382aa5cbac6d689ef9c904cc7de2efd8c57e896456a94c33"
+        },
+        {
+          "path": "internal/contracts/scheduledraft/output.schema.json",
+          "sha256": "f7844573f4a65e9b9493a1a5039ce6688e7e3a077279133bd6be30795cdde2e5"
+        },
+        {
+          "path": "internal/contracts/scheduledraft/schema.json",
+          "sha256": "87aaba61e1a57e634b65a4eae2e1a7ecd9965568c29036709e259e4a4de33866"
+        },
+        {
+          "path": "internal/contracts/scheduledraft/types.gen.go",
+          "sha256": "8505b8137dd735f0489f7191a7d4caa209b8ab8feb8c5865654fe8ea4edc9072"
+        },
+        {
+          "path": "internal/contracts/scheduledraft/validate.go",
+          "sha256": "763323ddc09b18a655861d36fb155ba23206e7341f54ca2c0b4b26a937f26131"
+        },
+        {
+          "path": "internal/contracts/scheduledrecovery/types.gen.go",
+          "sha256": "03a35f5c9c16db1eb272b2ab7020ac08466deb5c716dc364f492f7a21c9a7f6d"
+        },
+        {
+          "path": "internal/session/multimodal.go",
+          "sha256": "02540e95597ac57ac3d288e59fee996a4364a0c43eacdf80dfb328910a922590"
+        },
+        {
+          "path": "internal/session/runtime_permissions.go",
+          "sha256": "aef121e8c15a6a680f141d0dd5abfa837b27d89bfafe9ee7c9520241ed2512e6"
+        },
+        {
+          "path": "internal/session/scheduled_draft.go",
+          "sha256": "064329289ea5e895d8ff0fad6d2458c73035975e694da3e6f1ba33bec37d6fc0"
+        },
+        {
+          "path": "internal/session/scheduled_draft_test.go",
+          "sha256": "e0e8dabfc023ca3c04685e02e7639fe393433a0918f4dcd766ffae035c39a13c"
+        },
+        {
+          "path": "internal/session/scheduled_recovery.go",
+          "sha256": "32efafa8436b7f3db824a1f18686826014592977558bc47c2bdbc90e72287055"
+        },
+        {
+          "path": "internal/session/scheduled_recovery_test.go",
+          "sha256": "5e988088007e70e20fbdb34109ce859dfb153e1f62960e9d05727ea137618a89"
+        },
+        {
+          "path": "internal/session/service.go",
+          "sha256": "2fb7d3bea8e5cb71068c78f4a96ee9c6777badb2f5b62d4e814be463e25510c6"
+        },
+        {
+          "path": "internal/session/store.go",
+          "sha256": "90b28998e6f29744a8b00c7b23fd30eb04a7c5fb361a28b0fad7a153c62c1c91"
+        },
+        {
+          "path": "internal/session/title.go",
+          "sha256": "aedd3af5837fb1c666c587ca60875699742ea4b4cacd163670f8ce55a6116486"
+        }
+      ]
+    },
+    "yijie-desktop": {
+      "head": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-desktop.git (fetch)\norigin\thttps://github.com/36Dge/yijie-desktop.git (push)",
+      "status_entries": 52,
+      "files": [
+        {
+          "path": "THIRD_PARTY_NOTICES.md",
+          "sha256": "f95cbec09d030dddf0807c42400b5df40b8bd75789b3079d3ae5b49659120f45"
+        },
+        {
+          "path": "contracts/scheduled-draft.candidate.json",
+          "sha256": "ebff05853f8afbdb3f4d902105f2b634a367ef3ecbd0130987b4ae9b1673247c"
+        },
+        {
+          "path": "contracts/scheduled-draft.schema.json",
+          "sha256": "87aaba61e1a57e634b65a4eae2e1a7ecd9965568c29036709e259e4a4de33866"
+        },
+        {
+          "path": "contracts/scheduled-execution.candidate.json",
+          "sha256": "27ffc07595e155ffef87f8892a4982326457244fac72d01e122ab00a82f55c63"
+        },
+        {
+          "path": "contracts/scheduled-execution.schema.json",
+          "sha256": "b6c9763e00285d75c79c21b195929c52ad997f050ecadeb735f51507c7609df9"
+        },
+        {
+          "path": "contracts/scheduled-ipc.candidate.json",
+          "sha256": "5c9c1171bb249feb5b016a71ce40209bcfe48d4ced9556f6c932b3d8e4feea9a"
+        },
+        {
+          "path": "contracts/scheduled-plan.candidate.json",
+          "sha256": "c1e44503f23268930181410dac5d81dbe39f84c093f89143845fd7dc4aa3aef5"
+        },
+        {
+          "path": "contracts/scheduled-plan.schema.json",
+          "sha256": "8ab948f965e5681859d129f91a18a5931cfed89cfd32c0e866db9b5edf9283f4"
+        },
+        {
+          "path": "contracts/scheduled-task-recovery.candidate.json",
+          "sha256": "0da991a16e14b20115f339b9e0d2edd8162a4e1a56d4c0555ed6fc6f61e2692e"
+        },
+        {
+          "path": "contracts/scheduled-task-recovery.schema.json",
+          "sha256": "0b790fc93d6037efe4802c1822a6a0d2a979dbbab427f019658b5b3413277f5b"
+        },
+        {
+          "path": "docs/feat155-scheduled-foundation.md",
+          "sha256": "90a871146c60e9f05691a456ca3f225f62d667100de22db89701a36eaf772b4c"
+        },
+        {
+          "path": "eslint.config.js",
+          "sha256": "656454679b4e3b6a51d99fd59776767a3c1c450d607e6f5ec56f2cc81aa287d7"
+        },
+        {
+          "path": "package.json",
+          "sha256": "b07f4c4217bb2efd58230f48744a6e076aae8047ca25c7955f80c511f4ac7281"
+        },
+        {
+          "path": "scripts/check-scheduled-ipc.mjs",
+          "sha256": "eed925cd758f867a1081f09455feeb9c60535dfdaaaecb61e4a5bc15ded60381"
+        },
+        {
+          "path": "scripts/generate-scheduled-ipc.mjs",
+          "sha256": "66642da68f6d9a0a90b49e41117daeeb820b722241357767a61aadb6e271da8c"
+        },
+        {
+          "path": "src-tauri/Cargo.lock",
+          "sha256": "be9c564c61a061169033adffe170af67ba837278d7f6683f304544b1cc0d2bd1"
+        },
+        {
+          "path": "src-tauri/Cargo.toml",
+          "sha256": "4bd88d889a1a4c987c266d1d9638f1be45eff0d6759f0b4c7cb370c00acb1ee4"
+        },
+        {
+          "path": "src-tauri/migrations/chat/0016_scheduled_plan_foundation.sql",
+          "sha256": "70d00d5582f03f8d2cf81ff9f59b3f6c7a6506d85333cea93399157c6b8a5129"
+        },
+        {
+          "path": "src-tauri/migrations/chat/0017_scheduled_execution_foundation.sql",
+          "sha256": "41de05497a1567a3db2d99c37f186e7d5c887eda5b65d2edaeb15efd220a05a1"
+        },
+        {
+          "path": "src-tauri/migrations/chat/0018_scheduled_local_preparation.sql",
+          "sha256": "2c2abf1c0774754fd8f66333d1a95a190a0bfcfcb7f4fbfcface9af18ec08de5"
+        },
+        {
+          "path": "src-tauri/migrations/chat/0019_scheduled_recovery.sql",
+          "sha256": "7ade049b4aa6fbe74196dbae585e3366b524ebd2eabac809046636136d52a39b"
+        },
+        {
+          "path": "src-tauri/migrations/chat/0020_scheduled_dispatch.sql",
+          "sha256": "296732b5f9b86be15a56f39752049a31d2cf13fa3618c7d8e90339872792a648"
+        },
+        {
+          "path": "src-tauri/migrations/chat/0021_scheduled_triggers.sql",
+          "sha256": "1117d471918f3ac7421e5e7a5ffdabf4ce2d42cc2f9b46eccd8b77029b2ab528"
+        },
+        {
+          "path": "src-tauri/migrations/chat/0022_scheduled_draft_sources.sql",
+          "sha256": "0b5aa168216ea5d68ebbeadad98e1237b16490f11438606f401e7198ba0bfcb4"
+        },
+        {
+          "path": "src-tauri/schemas/scheduled-task-ipc-resolved.schema.json",
+          "sha256": "3db469ca1a68d25407dcb81944851f5b9fc4daeb761f13838870d7e8eb9b4d29"
+        },
+        {
+          "path": "src-tauri/schemas/scheduled-task-ipc-v1.schema.json",
+          "sha256": "7a92c665eeaea20f784ab608342d3952460fcee68e6517b7aa224bdb18424744"
+        },
+        {
+          "path": "src-tauri/src/chat/application.rs",
+          "sha256": "6cbd136b8198b4b91038f03d89099d2e56ad132088da223e3a4d5aed9dcf6ab7"
+        },
+        {
+          "path": "src-tauri/src/chat/authorization.rs",
+          "sha256": "0585d07e324a7d1a4f6b1ab14bab8b74c7c04ca4cd785a72d78d7eafc5f6bd69"
+        },
+        {
+          "path": "src-tauri/src/chat/database.rs",
+          "sha256": "2cb648d933156fd05316399e83031f509d82d99cccfc9a230e13bee82311f231"
+        },
+        {
+          "path": "src-tauri/src/chat/exit_owner.rs",
+          "sha256": "e70a4f12bdf153333e967b9c9b66f93100d496c793381114b8d2cbfbeb776feb"
+        },
+        {
+          "path": "src-tauri/src/chat/host_bridge.rs",
+          "sha256": "1d21604768f123c196b7423be4cc99f6846d51d621d4d5d277f16abbcc0ed7e3"
+        },
+        {
+          "path": "src-tauri/src/chat/host_bridge/scheduled_draft.rs",
+          "sha256": "879ac6c5765843943c2b6ad11aa557a7aa353b0a4ba2e2b1ef420bb871324e42"
+        },
+        {
+          "path": "src-tauri/src/chat/ipc.rs",
+          "sha256": "3d64891422c2a40e91eb71de7ee7c44a4aa0e148c068b87593fc7fff89acf22a"
+        },
+        {
+          "path": "src-tauri/src/chat/lifecycle.rs",
+          "sha256": "bd458be29254d2ee9daa0a370db60a6d4bb6648e11a9c5bcc1ac4f6c4e7896a6"
+        },
+        {
+          "path": "src-tauri/src/chat/migrations.rs",
+          "sha256": "73cca99e1d5e3e13f4f2c9f57dae9da91216a286fb59d9de834f50b39e2fa69d"
+        },
+        {
+          "path": "src-tauri/src/chat/mod.rs",
+          "sha256": "636c7c52be629cd5e281e712b947e170ae130f2826a3ea6209dc517f6840889c"
+        },
+        {
+          "path": "src-tauri/src/chat/native_conversation_storage.rs",
+          "sha256": "ea35de57ff13d480c580fb4f7a90e981650b16e6cb9cd0838ab5bd14c30de1ff"
+        },
+        {
+          "path": "src-tauri/src/chat/platform_lifecycle.rs",
+          "sha256": "a65542b51265ae8b8cac0574742f08847bbd02c83ebe440b2281154ef7d09f8c"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/dispatch_tests.rs",
+          "sha256": "85825c1b280eb31f39428df4b2c87207aae4c5aa54b36a7c3dd5a229f71f553a"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/draft_generated.rs",
+          "sha256": "eee76bbfe2fbb7bc7a19fdfd23a3fd06430d9a0d1a4f57bfa0affe7d4cec1d32"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/drafts.rs",
+          "sha256": "a7e60617c44598ecccda774a4ca039a81c5efdf431bb1888b4624af60920dad2"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution.rs",
+          "sha256": "0c0d384a03b47e5120794e1c1068e360f40e05c7468cebce5ce6a5d9bc555226"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution/dispatch.rs",
+          "sha256": "a736ddb85198b9f3ec9f4783156d631de15da825a8dac82a23a6b8ef0a70bbf0"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution/preparation.rs",
+          "sha256": "ce5cf59d8ef730247f5705616bf596c08661c72261f1eff224756aa8fc7e3add"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution/preparation/tests.rs",
+          "sha256": "8a0126724fd271df06fd773f45039b6aac5e90927df1f35c1576d305aaa6e56a"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution/tests.rs",
+          "sha256": "c183b6791a170e0710db47ee36f4eefe4e0d71513ce5ec21b50f42c9b887ae4b"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution/triggers.rs",
+          "sha256": "c192ddd98d6038ca113a59d55b8fc465475165f18b47227d559ef48d73b6b7fb"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution_generated.rs",
+          "sha256": "f53ed95baf4548dc0ad1eddf4872afffd88975984e1e67af6174834305b7d778"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution_guard.rs",
+          "sha256": "0c35d585f3ad6645aa300dd4507154e953c5f70ea338bd188b0cba98b75c48e6"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/generated.rs",
+          "sha256": "1223692af5937b691453edb57b5a8689a419472af9be806b04855247a09a1614"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/ipc.rs",
+          "sha256": "487b7b208c77cc7ca2eef582515d8fb9b52dbf3f4eec4354f7455ef3651a3ba5"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/ipc/query.rs",
+          "sha256": "bd0649c6af3f49a50eef933b20437ef35ce42c0f48a6c9879b8d2e11c438885f"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/ipc/tests.rs",
+          "sha256": "962e66c0799c2512fe15eadc89b3ec9149792d632998853226ca05deff0fca14"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/ipc/tests/draft_tests.rs",
+          "sha256": "13bef29fbde60480e07e043f75fe7f903984e5c621af8880f0fc8bcc79fc4ade"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/ipc/validation.rs",
+          "sha256": "459a578ca5dd990c090b6a115d42cff6157ef0317b06aa386545c2ca23645672"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/ipc_commands_generated.rs",
+          "sha256": "6d67b0eea5057b680aa48f9c4f2d4d07eeef6fc31b2fb4d6d151b415fc41a6ef"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/ipc_generated.rs",
+          "sha256": "23735ac036f41b490192088cc47cf7c8e7455c3b8a19294a16dc1449dd1848aa"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/mod.rs",
+          "sha256": "867f62e6b2c6d55ccf9bc4e2c5476039adf5af33384b619b67d6041eee212738"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/recovery.rs",
+          "sha256": "7f3db5b21e48b2f47c10b04ab260ca58d8b4b79c9abbb9ca4ce154d9e6310a2d"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/recovery_generated.rs",
+          "sha256": "a0f8812a804440f3ecd259e5bac3c4136d7a0f3e2a6433408b0e5bdeabd29b3d"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/store.rs",
+          "sha256": "31446fe7fb0e1ac86f38d5371a4bb7d40a6bc11c111889c040bdd50d94f60e74"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/tests.rs",
+          "sha256": "9234e9707fbdeab74120fc5077ca00bdf1fe7b205d6c77ca3600076cba55fcc8"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/time.rs",
+          "sha256": "41845fd0f159849aef257a156a482f0c2e6c0e2b22f53e17c25d637ce523d0cc"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/trigger_tests.rs",
+          "sha256": "d231c67372ecbf3a4cb75eeb8b84cf9130dd48eecf2ca2eb59916b4656b2add5"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/workspace.rs",
+          "sha256": "23b61a14db9def93a1a73711ba7e5d522a18124daa14aa25f220d6c467ef4a1e"
+        },
+        {
+          "path": "src-tauri/src/chat/sidecar.rs",
+          "sha256": "f41237f49f1884f2810bc1623d85b5b6643e53da76e52c7882ea883b687c047e"
+        },
+        {
+          "path": "src-tauri/src/chat/worker.rs",
+          "sha256": "1964cba2b46a234daf0e905f635d97d3a4dc400b14764230dde9c0a9f167f26f"
+        },
+        {
+          "path": "src-tauri/src/lib.rs",
+          "sha256": "7a81e5de805afe9c7f89f697fa2f706adf225994fbbceecaaa2056b9fcc32fe6"
+        },
+        {
+          "path": "src-tauri/src/native_auth/runtime.rs",
+          "sha256": "ac46d184ad4140bb3abc0e6fee01b20c47d0c91f476fde65cff8d0518a5d52dd"
+        },
+        {
+          "path": "src/api/generated/scheduled-task-ipc-formats.gen.js",
+          "sha256": "04eff1224c7c1b2c597e66faee72271d82f4146c603bd0da11a86e5e0f1a9373"
+        },
+        {
+          "path": "src/api/generated/scheduled-task-ipc-validator.gen.d.ts",
+          "sha256": "204cfc0f3c560b8dbfb6c64ff84e356bab800a975198e004d1a037a77f01eab5"
+        },
+        {
+          "path": "src/api/generated/scheduled-task-ipc-validator.gen.js",
+          "sha256": "a7bd43fccf13e6411ee924c1115ae8d32a23f3686805a1fa33d87d09f77dc4c2"
+        },
+        {
+          "path": "src/api/generated/scheduled-task-ipc.gen.ts",
+          "sha256": "a2e8186f5eadb3cf79d1a649f4c32ec1cf70c15ed8338997e0f6b304f32864fa"
+        },
+        {
+          "path": "src/api/scheduled-task-native-client.test.ts",
+          "sha256": "d95152857b3d50f3b124eb3edc7817cadbc9b30771a0dbab535b914c812a989f"
+        },
+        {
+          "path": "src/api/scheduled-task-native-client.ts",
+          "sha256": "cec0aae06e1668030c1e40de70adb6d9b1d7653753e7f7c3f2c7f72cdce6246c"
+        },
+        {
+          "path": "src/domain/scheduled-draft.generated.ts",
+          "sha256": "b2cea9faeeddecae8d1b81b94edb3e06e1d580a24603c0c9656c0ece52fc69d6"
+        },
+        {
+          "path": "src/domain/scheduled-execution.generated.ts",
+          "sha256": "70184382b025d57155098b8a597e6c3994d903813191188f6532fd7655a612bf"
+        },
+        {
+          "path": "src/domain/scheduled-plan.generated.ts",
+          "sha256": "34d152ce71516f533b258bf79456d772ca2895bd3925028bdaa21ce445834185"
+        }
+      ]
+    },
+    "yijie-codex": {
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-codex.git (fetch)\norigin\thttps://github.com/36Dge/yijie-codex.git (push)\nupstream\thttps://github.com/openai/codex.git (fetch)\nupstream\tDISABLED (push)",
+      "status_entries": 0,
+      "files": [],
+      "all_5296_starting_files_unchanged": true
+    }
+  },
+  "batch_changes": {
+    "yijie": {
+      "changed": [
+        "docs/features/FEAT-155-desktop-scheduled-tasks/00-feature-brief.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/01-delivery-log.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/02-verification.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/04-owner-approval-and-implementation.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/23-phase-3c-3b-1-implementation-plan.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/feature.yaml"
+      ],
+      "new": [
+        "docs/features/FEAT-155-desktop-scheduled-tasks/24-phase-3c-3b-execution-definition.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/25-phase-3c-3b-implementation-report.md"
+      ],
+      "deleted": []
+    },
+    "yijie-contracts": {
+      "changed": [
+        "Makefile",
+        "scripts/check-breaking.sh"
+      ],
+      "new": [
+        "compatibility/scheduled-draft/source.lock.json",
+        "docs/scheduled-draft-v1.md",
+        "jsonschema/scheduled-tasks/draft-execution-v1.schema.json",
+        "openapi/scheduled-plan-draft/scheduled-plan-draft.yaml",
+        "scripts/check-scheduled-draft-producer.mjs",
+        "scripts/check-scheduled-draft.mjs",
+        "scripts/generate-scheduled-draft.mjs",
+        "scripts/sync-scheduled-draft.mjs",
+        "sdks/go/openapi/scheduled-draft/types.gen.go",
+        "sdks/jsonschema/scheduled-draft-output.schema.json",
+        "sdks/jsonschema/scheduled-draft.schema.json",
+        "sdks/rust/scheduled-draft/types.gen.rs",
+        "sdks/typescript/src/jsonschema/scheduled-draft.gen.ts",
+        "tests/scheduled-draft.test.mjs"
+      ],
+      "deleted": []
+    },
+    "yijie-agent-host": {
+      "changed": [
+        "internal/app/app.go",
+        "internal/codex/session_protocol.go",
+        "internal/session/multimodal.go",
+        "internal/session/runtime_permissions.go",
+        "internal/session/service.go",
+        "internal/session/store.go",
+        "internal/session/title.go"
+      ],
+      "new": [
+        "api/openapi/scheduled-plan-draft.yaml",
+        "api/scheduled-draft.candidate.json",
+        "docs/scheduled-plan-draft.md",
+        "internal/app/scheduled_draft.go",
+        "internal/app/scheduled_draft_test.go",
+        "internal/codex/scheduled_draft.go",
+        "internal/codex/scheduled_draft_test.go",
+        "internal/contracts/scheduledraft/output.schema.json",
+        "internal/contracts/scheduledraft/schema.json",
+        "internal/contracts/scheduledraft/types.gen.go",
+        "internal/contracts/scheduledraft/validate.go",
+        "internal/session/scheduled_draft.go",
+        "internal/session/scheduled_draft_test.go"
+      ],
+      "deleted": []
+    },
+    "yijie-desktop": {
+      "changed": [
+        "contracts/scheduled-ipc.candidate.json",
+        "docs/feat155-scheduled-foundation.md",
+        "scripts/check-scheduled-ipc.mjs",
+        "scripts/generate-scheduled-ipc.mjs",
+        "src-tauri/schemas/scheduled-task-ipc-resolved.schema.json",
+        "src-tauri/schemas/scheduled-task-ipc-v1.schema.json",
+        "src-tauri/src/chat/schedules/dispatch_tests.rs",
+        "src-tauri/src/chat/schedules/execution/preparation.rs",
+        "src-tauri/src/chat/schedules/execution_guard.rs",
+        "src-tauri/src/chat/schedules/ipc.rs",
+        "src-tauri/src/chat/schedules/ipc/query.rs",
+        "src-tauri/src/chat/schedules/ipc/tests.rs",
+        "src-tauri/src/chat/schedules/ipc/validation.rs",
+        "src-tauri/src/chat/schedules/ipc_commands_generated.rs",
+        "src-tauri/src/chat/schedules/ipc_generated.rs",
+        "src-tauri/src/chat/schedules/mod.rs",
+        "src-tauri/src/chat/schedules/store.rs",
+        "src/api/generated/scheduled-task-ipc-validator.gen.d.ts",
+        "src/api/generated/scheduled-task-ipc-validator.gen.js",
+        "src/api/generated/scheduled-task-ipc.gen.ts",
+        "src/api/scheduled-task-native-client.test.ts",
+        "src-tauri/src/chat/application.rs",
+        "src-tauri/src/chat/database.rs",
+        "src-tauri/src/chat/host_bridge.rs",
+        "src-tauri/src/chat/migrations.rs",
+        "src-tauri/src/chat/mod.rs",
+        "src-tauri/src/chat/worker.rs",
+        "src-tauri/src/lib.rs"
+      ],
+      "new": [
+        "contracts/scheduled-draft.candidate.json",
+        "contracts/scheduled-draft.schema.json",
+        "src-tauri/migrations/chat/0022_scheduled_draft_sources.sql",
+        "src-tauri/src/chat/host_bridge/scheduled_draft.rs",
+        "src-tauri/src/chat/schedules/draft_generated.rs",
+        "src-tauri/src/chat/schedules/drafts.rs",
+        "src-tauri/src/chat/schedules/ipc/tests/draft_tests.rs",
+        "src/domain/scheduled-draft.generated.ts"
+      ],
+      "deleted": []
+    },
+    "yijie-codex": {
+      "changed": [],
+      "new": [],
+      "deleted": []
+    }
+  },
+  "ordinary_schema": {
+    "desktop": 15,
+    "host": 5
+  },
+  "candidate_schema": {
+    "desktop": 22,
+    "host": 6
+  },
+  "real_text_calls": 0,
+  "real_images_calls": 0,
+  "merchant_calls": 0,
+  "effective_runtime_policy": "NOT QUALIFIED; production Manager denies draft I/O; no bypass",
+  "actual_native_artifacts": [
+    {
+      "path": "evidence/phase-3c-3b/aggregate-generation.log",
+      "sha256": "14b7427c4f8bcd1560209f6d49542ac6124389f209d43bdc7db596bd016c2f35"
+    },
+    {
+      "path": "evidence/phase-3c-3b/breaking-6f632f15.log",
+      "sha256": "a4ff6b26d8cfcc650e5b05ff900c0dc2688a807b8102f3b1789e041ebdc058f0"
+    },
+    {
+      "path": "evidence/phase-3c-3b/breaking-811f38d6.log",
+      "sha256": "8e5cd19181ccf67b5c7b5975d0cf79376c9796f12899b46e0dada5dbf24b71db"
+    },
+    {
+      "path": "evidence/phase-3c-3b/breaking-baselines.json",
+      "sha256": "bbca8fd3d260c0f60b8249ad67e07676f8c9959c3bf7a99aa954d5d779bb212a"
+    },
+    {
+      "path": "evidence/phase-3c-3b/breaking-db4458fe.log",
+      "sha256": "a5e1b9e74f6b8f8c79943589dddc7776571b1f9404d9467a5eca1ce3c921fce1"
+    },
+    {
+      "path": "evidence/phase-3c-3b/breaking-f16a497e.log",
+      "sha256": "473af2145cebda0c06842e3478ada4dc2792fca5ac911650b4954a872c991db2"
+    },
+    {
+      "path": "evidence/phase-3c-3b/clippy.log",
+      "sha256": "df89cfeac9ce290d0b4eb6e686ad134f6b13095fe715b44cd34d5ae24690d99a"
+    },
+    {
+      "path": "evidence/phase-3c-3b/combined-ipc-producer.json",
+      "sha256": "87aed71dcca7e8d14ddb82c8db10dbb8858cd9dd29827542a43f5660f6423fb5"
+    },
+    {
+      "path": "evidence/phase-3c-3b/contract-go.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/phase-3c-3b/contract-tests.log",
+      "sha256": "003e5cd6da6a1ed06ae06127152671f8d6f5b39fc18b3263fd0b9008041fcbca"
+    },
+    {
+      "path": "evidence/phase-3c-3b/contract-ts.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/phase-3c-3b/desktop-build.log",
+      "sha256": "e59983cf9f4ad3fc8412eaeca96b1334437da22a100c1d5431615faa8becf7a1"
+    },
+    {
+      "path": "evidence/phase-3c-3b/desktop-check.log",
+      "sha256": "71d7d48edbab499a01a3393b6ad76d73355f07144aa8b4bc7689e56aa3e55daf"
+    },
+    {
+      "path": "evidence/phase-3c-3b/desktop-draft-producer.json",
+      "sha256": "07a7a7d4d7980ffdc404a3ad6161656b649ee6c027d6c94f13d5ed41f689cfe9"
+    },
+    {
+      "path": "evidence/phase-3c-3b/desktop-lint.log",
+      "sha256": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6"
+    },
+    {
+      "path": "evidence/phase-3c-3b/desktop-tests.log",
+      "sha256": "ecf49b2810aeee14daadabdff858491c57cb94752978fe9337accd9d987fe68a"
+    },
+    {
+      "path": "evidence/phase-3c-3b/desktop-ts-tests.log",
+      "sha256": "be3328dbf2e6a61d6437bea4ccc38de6614855aeea5a618aa59517f79947c71c"
+    },
+    {
+      "path": "evidence/phase-3c-3b/draft-ipc-producer.json",
+      "sha256": "fe688293010265ed866b882cd9a801a30929fa45f1a6f0bd510e2d74a6ea9bbd"
+    },
+    {
+      "path": "evidence/phase-3c-3b/draft-lint.log",
+      "sha256": "98965c5f4953d628fcc9f97c5258d95f7b9dfde8f76224a1ad548e6132e4ba92"
+    },
+    {
+      "path": "evidence/phase-3c-3b/execution-conformance.log",
+      "sha256": "bed96f07f386ad9b20b769a51b331a1c5a8adf22bd1e4c3b9aa3d2eaa206d8b0"
+    },
+    {
+      "path": "evidence/phase-3c-3b/fmt.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/phase-3c-3b/host-compile.log",
+      "sha256": "8282921b97f4f5bd2647d0c3e26197adf1c894eb749ea04b8433caaab3b5553d"
+    },
+    {
+      "path": "evidence/phase-3c-3b/host-draft-producer.json",
+      "sha256": "4d689c985b4516a8994a0ea62e2e3f05d70d94efb5ba559bee78aaed49709cc1"
+    },
+    {
+      "path": "evidence/phase-3c-3b/host-race.log",
+      "sha256": "ab70b15f4312fac201a3f25bc708018643723d76f30eff9497754875b0fac1d6"
+    },
+    {
+      "path": "evidence/phase-3c-3b/host-regressions.log",
+      "sha256": "67574e64b9a6aee20a8145dd9af3cc01bb56d5ffa0d89cc566892fdbe7d38060"
+    },
+    {
+      "path": "evidence/phase-3c-3b/host-tests.log",
+      "sha256": "c61d91a3c67e99462e77c95916281aedf184ad8de32709a1c79b7439f4622bf0"
+    },
+    {
+      "path": "evidence/phase-3c-3b/host-vet.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/phase-3c-3b/ipc-conformance.log",
+      "sha256": "4247a75143666f54b965da8b85094301e0250c3a24be7c604013e678b6864446"
+    },
+    {
+      "path": "evidence/phase-3c-3b/ipc-generation.log",
+      "sha256": "fe2215f14359323d0eaaa8dc0b25f139f1ab9dec0602af5d8c6a932aad791c17"
+    },
+    {
+      "path": "evidence/phase-3c-3b/meta-audit.log",
+      "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4"
+    },
+    {
+      "path": "evidence/phase-3c-3b/meta-d0.log",
+      "sha256": "ccc00513c27f044ca664925a882399ed124d51bef8632ed931606e5b1e0f01c3"
+    },
+    {
+      "path": "evidence/phase-3c-3b/meta-lint.log",
+      "sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c"
+    },
+    {
+      "path": "evidence/phase-3c-3b/meta-strict.log",
+      "sha256": "b9f9c63fc02c70944a6be36145b71f7aa06a1244687cccee2b992b1282376bf8"
+    },
+    {
+      "path": "evidence/phase-3c-3b/meta-tests.log",
+      "sha256": "c494d0ded025222fb51f867ad85fff0b8269ca6be06a3676c03cfdecf0cf1037"
+    },
+    {
+      "path": "evidence/phase-3c-3b/native-final.log",
+      "sha256": "08cb065d44df0cb627dddab79720f05609d259a33e5115f0b32d042552ed8dfc"
+    },
+    {
+      "path": "evidence/phase-3c-3b/native-producer.json",
+      "sha256": "701b9dc775fd20d4966bd1875231d078452f46dc193bce36c00e41f7245697db"
+    },
+    {
+      "path": "evidence/phase-3c-3b/native-suite.log",
+      "sha256": "5a2cd7a5d16b1e19ab99fae0c7dacd6ddb2539741fbcccea078dc5b7a141f034"
+    },
+    {
+      "path": "evidence/phase-3c-3b/phase-3a-native-producer.json",
+      "sha256": "685c8d4a9b6e4cc81b9f2847270c5ae224f59b070fd9ddd6e631cc4ae39c14b0"
+    },
+    {
+      "path": "evidence/phase-3c-3b/phase-3b1-native-producer.json",
+      "sha256": "835fec9ffecef8cd244d49500d939bb10511c20d51ad3a5d5363c4078b60f0c1"
+    },
+    {
+      "path": "evidence/phase-3c-3b/phase-3c2-trigger-producer.json",
+      "sha256": "56743856c463cb5294152de56507925360336e8a4d1ca4bb1168311ded652e7e"
+    },
+    {
+      "path": "evidence/phase-3c-3b/phase-3c3a-ipc-producer.json",
+      "sha256": "0b37a693442c17545cf0f8ca49dbad4a982dbff1c105a80ed81fa9f04b5c9970"
+    },
+    {
+      "path": "evidence/phase-3c-3b/phase-3c3a-validator-parity.json",
+      "sha256": "356dcbdca4963ca658e93e9d15228b849b9012478dff20285bb914178663df97"
+    },
+    {
+      "path": "evidence/phase-3c-3b/plan-conformance.log",
+      "sha256": "c338050ae6fcefc0b42c0419a5d3720cb329629401c871918ec31e7f0ed03957"
+    },
+    {
+      "path": "evidence/phase-3c-3b/preparation-conformance.log",
+      "sha256": "bed96f07f386ad9b20b769a51b331a1c5a8adf22bd1e4c3b9aa3d2eaa206d8b0"
+    },
+    {
+      "path": "evidence/phase-3c-3b/regression-summary.log",
+      "sha256": "92f160e0675c92d0af1aac94f5a2d9377bce6e0d100c9148f5b442e42b79f4a8"
+    },
+    {
+      "path": "evidence/phase-3c-3b/regressions.json",
+      "sha256": "870ff95e577fd90a87b6e61a4e1bb3edcd1fee8c0e8f130ef29e07785ad10e09"
+    },
+    {
+      "path": "evidence/phase-3c-3b/regressions.log",
+      "sha256": "075a66547d23059113248ae99c588ecbd85bc60b08774b441398a92b03d49d91"
+    },
+    {
+      "path": "evidence/phase-3c-3b/resume-regression.log",
+      "sha256": "93f96534d256a4a56ab719d9d6d3363f0966cf6ad90b6dfde36e9bd75655bef0"
+    },
+    {
+      "path": "evidence/phase-3c-3b/schema-lint.log",
+      "sha256": "c68475a624359b6a4df1281c600dba3e2c835e2870f3447fa97c33db8de79e7a"
+    },
+    {
+      "path": "evidence/phase-3c-3b/wire-conformance.log",
+      "sha256": "3666d015912fba66ccc3d19bd1383467b38d5220356a46fc631803d468256efe"
+    }
+  ],
+  "unchanged_21_migrations": [
+    {
+      "path": "src-tauri/migrations/chat/0001_chat_core.sql",
+      "sha256": "3ed7f9661f4d85360670cce524599e2f3cad991581f4dc407a5c38dfd7dadc2b"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0002_chat_reasoning_v2.sql",
+      "sha256": "68d0daeb1910f606699f86b97498d8ca681f936cc6eb0377db43da04652ed3c1"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0003_chat_application_domain.sql",
+      "sha256": "62a2e895f7c7137ececfc9533381a37f921ef0ea2ddf08c7877b4bc56a608315"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0004_chat_s7c_orchestration.sql",
+      "sha256": "39f3f5d311b36834bdf88c5eeafe437a1045a3027b3a948dd3d2a525b666a047"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0005_chat_public_task_control_plane.sql",
+      "sha256": "9b67508a563cb3f6ecdc925d41ce7dcb8f1443cabdda466ecad7b3bcc9f77916"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0006_chat_attachments.sql",
+      "sha256": "60b08d6cfa053bc4e8cc64a4d18d357c4f4f2694ddc52d0ca9c1004333c856e2"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0007_chat_attachment_draft_targets.sql",
+      "sha256": "aae67ca5a5b73d476f68800fc15c950abcbeb09a4dedeeed48fb3c0e448a6a57"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0008_chat_output_artifacts.sql",
+      "sha256": "bec50a16583b216380f5f19728342772ff211ca2ebb88c0ff83b2e44d3fa9a15"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0009_chat_timeline_v4.sql",
+      "sha256": "f4d3e99d9425068a0729a48824df42b815973158cc4e310201890c79bc13608c"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0010_chat_command_tool_v5.sql",
+      "sha256": "0e04e00d5b3f1ac8609d79ce70a1c4dedf2df4a1157b9d7187a13b9418623efa"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0011_chat_approval_v6.sql",
+      "sha256": "d7ca4c2a86099def2ac1998c96e4cfe155a8dea5c9966f089b2617a7c944bdef"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0012_chat_approval_v6_process_protection.sql",
+      "sha256": "98c635f3acf5191a4aa7be9891bb263bcfd52468c9cc9fc5730a06609ab87720"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0013_chat_permission_modes.sql",
+      "sha256": "f0bde431aa15b603ec663c25df3e3452fb4ec926a367f83e24aa580abb97fda8"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0014_chat_native_conversation.sql",
+      "sha256": "e4a5306fbc980599521af4ec429c51fac6b7ca7ab7354210e14bf1d38f76fc5a"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0015_chat_native_formats.sql",
+      "sha256": "01dac0c864378e90c24490065c000e71bc721957d4c1680c409966de2d40b5f2"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0016_scheduled_plan_foundation.sql",
+      "sha256": "70d00d5582f03f8d2cf81ff9f59b3f6c7a6506d85333cea93399157c6b8a5129"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0017_scheduled_execution_foundation.sql",
+      "sha256": "41de05497a1567a3db2d99c37f186e7d5c887eda5b65d2edaeb15efd220a05a1"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0018_scheduled_local_preparation.sql",
+      "sha256": "2c2abf1c0774754fd8f66333d1a95a190a0bfcfcb7f4fbfcface9af18ec08de5"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0019_scheduled_recovery.sql",
+      "sha256": "7ade049b4aa6fbe74196dbae585e3366b524ebd2eabac809046636136d52a39b"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0020_scheduled_dispatch.sql",
+      "sha256": "296732b5f9b86be15a56f39752049a31d2cf13fa3618c7d8e90339872792a648"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0021_scheduled_triggers.sql",
+      "sha256": "1117d471918f3ac7421e5e7a5ffdabf4ce2d42cc2f9b46eccd8b77029b2ab528"
+    }
+  ]
+}

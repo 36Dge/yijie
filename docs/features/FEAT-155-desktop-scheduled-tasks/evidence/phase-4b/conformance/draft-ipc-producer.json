@@ -1,0 +1,160 @@
+[
+  {
+    "command": "schedule_submit_draft_v1",
+    "request": {
+      "contextId": "01a0b8df-0de5-7bb3-9e11-0fcfd7fa7aac",
+      "payload": {
+        "text": "每天九点总结"
+      },
+      "requestId": "01a0b8df-0de5-7bb3-9e11-0fd0fc54d403",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "conversation_id": "01a0b8df-0de6-73c1-8939-5a70e0c9584e",
+        "local_turn_id": "01a0b8df-0de6-73c1-8939-5a9c3aecb044",
+        "operation_id": "01a0b8df-0de6-73c1-8939-5aa297f2e7f6",
+        "source_id": "01a0b8df-0deb-7483-882a-d4c629ffbf9e",
+        "status": "accepted"
+      },
+      "requestId": "01a0b8df-0de5-7bb3-9e11-0fd0fc54d403",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_preview_draft_v1",
+    "request": {
+      "contextId": "01a0b8df-0de5-7bb3-9e11-0fcfd7fa7aac",
+      "payload": {
+        "source_id": "01a0b8df-0deb-7483-882a-d4c629ffbf9e"
+      },
+      "requestId": "01a0b8df-0e2e-74c2-b6fc-1df4ae63134b",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "output": {
+          "content": "总结当天信息",
+          "kind": "candidate",
+          "name": "每天总结",
+          "schedule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "schema_version": 1,
+          "target": {
+            "mode": "dedicated_chat"
+          }
+        },
+        "source_digest": "931243ad33fddf75120027eae338cdbaaf125d8ecb9e0d797dda26e4a7044103",
+        "source_id": "01a0b8df-0deb-7483-882a-d4c629ffbf9e",
+        "status": "candidate"
+      },
+      "requestId": "01a0b8df-0e2e-74c2-b6fc-1df4ae63134b",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_confirm_draft_v1",
+    "request": {
+      "contextId": "01a0b8df-0de5-7bb3-9e11-0fcfd7fa7aac",
+      "payload": {
+        "definition": {
+          "content": "仅检查本地记录",
+          "name": "合成计划",
+          "rule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "target": {
+            "mode": "dedicated_chat"
+          }
+        },
+        "source_digest": "931243ad33fddf75120027eae338cdbaaf125d8ecb9e0d797dda26e4a7044103",
+        "source_id": "01a0b8df-0deb-7483-882a-d4c629ffbf9e"
+      },
+      "requestId": "01a0b8df-0e30-77f1-ba4d-238b5e60c79b",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "definition": {
+          "content": "仅检查本地记录",
+          "name": "合成计划",
+          "rule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "target": {
+            "mode": "dedicated_chat"
+          }
+        },
+        "effective_from": 1789808021,
+        "next_at": 1789866000,
+        "plan_id": "01a0b8df-0e31-7662-add7-bd188ddea165",
+        "revision": 1,
+        "rule_version": 1,
+        "schedule_epoch": 1,
+        "state": "paused",
+        "target_state": "unbound",
+        "tzdb_version": "2025b"
+      },
+      "requestId": "01a0b8df-0e30-77f1-ba4d-238b5e60c79b",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_confirm_draft_v1",
+    "request": {
+      "contextId": "01a0b8df-0de5-7bb3-9e11-0fcfd7fa7aac",
+      "payload": {
+        "definition": {
+          "content": "仅检查本地记录",
+          "name": "合成计划",
+          "rule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "target": {
+            "mode": "dedicated_chat"
+          }
+        },
+        "source_digest": "931243ad33fddf75120027eae338cdbaaf125d8ecb9e0d797dda26e4a7044103",
+        "source_id": "01a0b8df-0deb-7483-882a-d4c629ffbf9e"
+      },
+      "requestId": "01a0b8df-0e3d-7842-b892-dbaca15dbbf8",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "definition": {
+          "content": "仅检查本地记录",
+          "name": "合成计划",
+          "rule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "target": {
+            "mode": "dedicated_chat"
+          }
+        },
+        "effective_from": 1789808021,
+        "next_at": 1789866000,
+        "plan_id": "01a0b8df-0e31-7662-add7-bd188ddea165",
+        "revision": 1,
+        "rule_version": 1,
+        "schedule_epoch": 1,
+        "state": "paused",
+        "target_state": "unbound",
+        "tzdb_version": "2025b"
+      },
+      "requestId": "01a0b8df-0e3d-7842-b892-dbaca15dbbf8",
+      "schemaVersion": 1
+    }
+  }
+]

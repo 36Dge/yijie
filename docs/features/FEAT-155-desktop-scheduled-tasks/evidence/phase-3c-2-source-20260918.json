@@ -1,0 +1,824 @@
+{
+  "feature": "FEAT-155",
+  "phase": "phase_3c_2",
+  "captured_at": "2026-09-18T14:13:24.831232+00:00",
+  "contract_impact": "breaking",
+  "authority": "Desktop private schema21 / native trigger semantics; shared wire, Host and Runtime unchanged",
+  "release": false,
+  "baseline_evidence": {
+    "path": "evidence/phase-3c-1-source-20260918.json",
+    "sha256": "3fd9b95295ac30078fe4091fbdea4dfd87418dcdcbfa8013127368e5a500a119",
+    "99_candidate_hashes_matched_before_start": true
+  },
+  "baseline_snapshot_directory": "/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat155-3c2-sql1fweb",
+  "repositories": {
+    "yijie-contracts": {
+      "head": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-contracts.git (fetch)\norigin\thttps://github.com/36Dge/yijie-contracts.git (push)",
+      "status_entries": 38,
+      "files": [
+        {
+          "path": "Makefile",
+          "sha256": "1b7ce74feb833bfb3c5a65b2259a15f82010ebf58797f9e3ce0f745e5ab8ba00"
+        },
+        {
+          "path": "compatibility/scheduled-execution/source.lock.json",
+          "sha256": "27ffc07595e155ffef87f8892a4982326457244fac72d01e122ab00a82f55c63"
+        },
+        {
+          "path": "compatibility/scheduled-plan/source.lock.json",
+          "sha256": "c1e44503f23268930181410dac5d81dbe39f84c093f89143845fd7dc4aa3aef5"
+        },
+        {
+          "path": "compatibility/scheduled-task-recovery/source.lock.json",
+          "sha256": "0da991a16e14b20115f339b9e0d2edd8162a4e1a56d4c0555ed6fc6f61e2692e"
+        },
+        {
+          "path": "docs/scheduled-execution-v1.md",
+          "sha256": "7da5a63a0236abf316c2b2381c688dc8766366e04da672e9f1fc44f39aa3cac6"
+        },
+        {
+          "path": "docs/scheduled-plan-v1.md",
+          "sha256": "531e363c225eecd4664c64d0669a7a4990f6d7ac49efcff985c58b675072eeef"
+        },
+        {
+          "path": "docs/scheduled-task-recovery-v1.md",
+          "sha256": "ed37162b92c5cad30c848cf8059f848903381e8ab34ef4d0a50fc90ad22f875a"
+        },
+        {
+          "path": "docs/supported-baselines.md",
+          "sha256": "dab05eaf7207269a9bfc4b2e2c98ea2e00b26691a501cc6eb39fefa51e149374"
+        },
+        {
+          "path": "jsonschema/scheduled-tasks/execution-v1.schema.json",
+          "sha256": "dec7517a4d7d3cff42eb3058c8c49c7cf5d94db751ccc16b1b7acacf2811ec3e"
+        },
+        {
+          "path": "jsonschema/scheduled-tasks/plan-draft-v1.schema.json",
+          "sha256": "267efaf2f7ba9ada27f7494c9042473c6775b7d9eeecab4f3673cc84d0814171"
+        },
+        {
+          "path": "jsonschema/scheduled-tasks/plan-storage-v1.schema.json",
+          "sha256": "0883ab69c0cbcda311113fd2a966ea98065ddc47b301e36611e2447620667cd2"
+        },
+        {
+          "path": "openapi/scheduled-task-recovery/scheduled-task-recovery.yaml",
+          "sha256": "47a1d7f4e5e858116d9f0b80faf86a0e1e5936dfab1ebf6673c9579e5246e9e2"
+        },
+        {
+          "path": "scripts/check-scheduled-execution-producer.mjs",
+          "sha256": "aa02c9f58ddec96ad1ae3fc7cc99af77412d0d2ab45bfb08d9ac624ceb10e81a"
+        },
+        {
+          "path": "scripts/check-scheduled-execution.mjs",
+          "sha256": "d5db5b5506f5dd326978891d939c9ba18ac059661a8a1d0d8bec760149164e30"
+        },
+        {
+          "path": "scripts/check-scheduled-plan-producer.mjs",
+          "sha256": "5b6917b9f600c0e9959ace4e06f3a32baca86cd8c067818b255339485188679e"
+        },
+        {
+          "path": "scripts/check-scheduled-plan.mjs",
+          "sha256": "34ca1b051ad110624cd490b71f8cbd0279e8df97706021bf440a772836b6496f"
+        },
+        {
+          "path": "scripts/check-scheduled-recovery-producer.mjs",
+          "sha256": "6200ec0da5c20c5ebe802cc0b1a60ac0294e849d0396032205470ca0aee965fe"
+        },
+        {
+          "path": "scripts/check-scheduled-task-recovery.mjs",
+          "sha256": "6337191558167c196ac2f6791dfe2b70d7f2d5fd60c822b741eaffd3af62ca27"
+        },
+        {
+          "path": "scripts/generate-scheduled-execution.mjs",
+          "sha256": "06b0155849225749e14c422f4846a8e5861f8d901957b2a160970b4325ff0eb9"
+        },
+        {
+          "path": "scripts/generate-scheduled-plan.mjs",
+          "sha256": "44aa6dcf1ffa7dbb7b593268d2614e49f8600fce7c14734fc778bc670d1ec80b"
+        },
+        {
+          "path": "scripts/generate-scheduled-task-recovery.mjs",
+          "sha256": "8c3798b42fd3e4484114a226bc1cab7cf2244ae3428e4d01239420bbbae3970a"
+        },
+        {
+          "path": "scripts/scheduled-schema-source.mjs",
+          "sha256": "4afa5abda0bb8fd76a3c01759605a8b1f3c59f5548ac93587750e07cd08f406c"
+        },
+        {
+          "path": "scripts/sync-scheduled-execution.mjs",
+          "sha256": "3215f92ed004959b066d7a4696247ecd5cb0851cedd228149d5216b4d96abadb"
+        },
+        {
+          "path": "scripts/sync-scheduled-plan.mjs",
+          "sha256": "af414a9990c8bd48d34d7db630e0c53e3dcbbf2cabca6f1701198147fcb7edc8"
+        },
+        {
+          "path": "scripts/sync-scheduled-task-recovery.mjs",
+          "sha256": "85608c8554f7dc198a65b1164d12387f6af2532b27363381e7669f57bbf146b6"
+        },
+        {
+          "path": "scripts/validate-json-schemas.mjs",
+          "sha256": "7434113933392ac89faa435c0888ce01a697eeccc97c33ff052b2b3b9ed7468d"
+        },
+        {
+          "path": "sdks/go/openapi/scheduled-task-recovery/types.gen.go",
+          "sha256": "03a35f5c9c16db1eb272b2ab7020ac08466deb5c716dc364f492f7a21c9a7f6d"
+        },
+        {
+          "path": "sdks/jsonschema/scheduled-execution.schema.json",
+          "sha256": "b6c9763e00285d75c79c21b195929c52ad997f050ecadeb735f51507c7609df9"
+        },
+        {
+          "path": "sdks/jsonschema/scheduled-plan.schema.json",
+          "sha256": "8ab948f965e5681859d129f91a18a5931cfed89cfd32c0e866db9b5edf9283f4"
+        },
+        {
+          "path": "sdks/jsonschema/scheduled-task-recovery.schema.json",
+          "sha256": "0b790fc93d6037efe4802c1822a6a0d2a979dbbab427f019658b5b3413277f5b"
+        },
+        {
+          "path": "sdks/rust/scheduled-execution/types.gen.rs",
+          "sha256": "f53ed95baf4548dc0ad1eddf4872afffd88975984e1e67af6174834305b7d778"
+        },
+        {
+          "path": "sdks/rust/scheduled-plan/types.gen.rs",
+          "sha256": "1223692af5937b691453edb57b5a8689a419472af9be806b04855247a09a1614"
+        },
+        {
+          "path": "sdks/rust/scheduled-task-recovery/types.gen.rs",
+          "sha256": "a0f8812a804440f3ecd259e5bac3c4136d7a0f3e2a6433408b0e5bdeabd29b3d"
+        },
+        {
+          "path": "sdks/typescript/src/jsonschema/scheduled-execution.gen.ts",
+          "sha256": "70184382b025d57155098b8a597e6c3994d903813191188f6532fd7655a612bf"
+        },
+        {
+          "path": "sdks/typescript/src/jsonschema/scheduled-plan.gen.ts",
+          "sha256": "34d152ce71516f533b258bf79456d772ca2895bd3925028bdaa21ce445834185"
+        },
+        {
+          "path": "tests/fixtures/scheduled-schema-closure.json",
+          "sha256": "d472fa8bac39807394c644712b20303909a5f6487113e2b39d6c7e104903505a"
+        },
+        {
+          "path": "tests/scheduled-execution.test.mjs",
+          "sha256": "77f916ea2de09bd96c29bbeeff09cc0993eb47213adb4464f17b02a08f5b195f"
+        },
+        {
+          "path": "tests/scheduled-plan.test.mjs",
+          "sha256": "2ce82fb705d0b91f27fa59e15ae3cc192df8bdfcad46c4ae3ce8d579c8c7fec8"
+        },
+        {
+          "path": "tests/scheduled-schema-closure.test.mjs",
+          "sha256": "fb4a111d885456ad8666082c1607c05685632607fd5d31fe319c4c25702af5b4"
+        },
+        {
+          "path": "tests/scheduled-task-recovery.test.mjs",
+          "sha256": "15b95b1b7eb962357343238308ccf22edc0659abdeb41cde5756629de62a6889"
+        }
+      ],
+      "unchanged_this_batch": true
+    },
+    "yijie-desktop": {
+      "head": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-desktop.git (fetch)\norigin\thttps://github.com/36Dge/yijie-desktop.git (push)",
+      "status_entries": 32,
+      "files": [
+        {
+          "path": "contracts/scheduled-execution.candidate.json",
+          "sha256": "27ffc07595e155ffef87f8892a4982326457244fac72d01e122ab00a82f55c63"
+        },
+        {
+          "path": "contracts/scheduled-execution.schema.json",
+          "sha256": "b6c9763e00285d75c79c21b195929c52ad997f050ecadeb735f51507c7609df9"
+        },
+        {
+          "path": "contracts/scheduled-plan.candidate.json",
+          "sha256": "c1e44503f23268930181410dac5d81dbe39f84c093f89143845fd7dc4aa3aef5"
+        },
+        {
+          "path": "contracts/scheduled-plan.schema.json",
+          "sha256": "8ab948f965e5681859d129f91a18a5931cfed89cfd32c0e866db9b5edf9283f4"
+        },
+        {
+          "path": "contracts/scheduled-task-recovery.candidate.json",
+          "sha256": "0da991a16e14b20115f339b9e0d2edd8162a4e1a56d4c0555ed6fc6f61e2692e"
+        },
+        {
+          "path": "contracts/scheduled-task-recovery.schema.json",
+          "sha256": "0b790fc93d6037efe4802c1822a6a0d2a979dbbab427f019658b5b3413277f5b"
+        },
+        {
+          "path": "docs/feat155-scheduled-foundation.md",
+          "sha256": "3f072733da2a113b3ef13d8110635dbefcb450c5b2b8be8e64526285e4093a94"
+        },
+        {
+          "path": "src-tauri/Cargo.lock",
+          "sha256": "be9c564c61a061169033adffe170af67ba837278d7f6683f304544b1cc0d2bd1"
+        },
+        {
+          "path": "src-tauri/Cargo.toml",
+          "sha256": "4bd88d889a1a4c987c266d1d9638f1be45eff0d6759f0b4c7cb370c00acb1ee4"
+        },
+        {
+          "path": "src-tauri/migrations/chat/0016_scheduled_plan_foundation.sql",
+          "sha256": "70d00d5582f03f8d2cf81ff9f59b3f6c7a6506d85333cea93399157c6b8a5129"
+        },
+        {
+          "path": "src-tauri/migrations/chat/0017_scheduled_execution_foundation.sql",
+          "sha256": "41de05497a1567a3db2d99c37f186e7d5c887eda5b65d2edaeb15efd220a05a1"
+        },
+        {
+          "path": "src-tauri/migrations/chat/0018_scheduled_local_preparation.sql",
+          "sha256": "2c2abf1c0774754fd8f66333d1a95a190a0bfcfcb7f4fbfcface9af18ec08de5"
+        },
+        {
+          "path": "src-tauri/migrations/chat/0019_scheduled_recovery.sql",
+          "sha256": "7ade049b4aa6fbe74196dbae585e3366b524ebd2eabac809046636136d52a39b"
+        },
+        {
+          "path": "src-tauri/migrations/chat/0020_scheduled_dispatch.sql",
+          "sha256": "296732b5f9b86be15a56f39752049a31d2cf13fa3618c7d8e90339872792a648"
+        },
+        {
+          "path": "src-tauri/migrations/chat/0021_scheduled_triggers.sql",
+          "sha256": "1117d471918f3ac7421e5e7a5ffdabf4ce2d42cc2f9b46eccd8b77029b2ab528"
+        },
+        {
+          "path": "src-tauri/src/chat/application.rs",
+          "sha256": "746af7dac6b869a445edbc94bc9f51594c0a1a02b558f3bd09384826234661ac"
+        },
+        {
+          "path": "src-tauri/src/chat/database.rs",
+          "sha256": "86361964f9e2d320a79717b2e2d5bff932e7f63d27a9efcc63e76347d921dc26"
+        },
+        {
+          "path": "src-tauri/src/chat/exit_owner.rs",
+          "sha256": "e70a4f12bdf153333e967b9c9b66f93100d496c793381114b8d2cbfbeb776feb"
+        },
+        {
+          "path": "src-tauri/src/chat/host_bridge.rs",
+          "sha256": "ed59eefad91191d6d8ffa106092c84b2e230c75c5afdb06fd6bac916f0cff597"
+        },
+        {
+          "path": "src-tauri/src/chat/ipc.rs",
+          "sha256": "3d64891422c2a40e91eb71de7ee7c44a4aa0e148c068b87593fc7fff89acf22a"
+        },
+        {
+          "path": "src-tauri/src/chat/lifecycle.rs",
+          "sha256": "bd458be29254d2ee9daa0a370db60a6d4bb6648e11a9c5bcc1ac4f6c4e7896a6"
+        },
+        {
+          "path": "src-tauri/src/chat/migrations.rs",
+          "sha256": "0e5e837bc56c7b503a8d869af94f248b0c60d776bee68c4c83798062ef218c57"
+        },
+        {
+          "path": "src-tauri/src/chat/mod.rs",
+          "sha256": "8943aa7b2d5f667021de982a0fc808f4da605364d2584a6e5c4e09e010aaf2b8"
+        },
+        {
+          "path": "src-tauri/src/chat/native_conversation_storage.rs",
+          "sha256": "ea35de57ff13d480c580fb4f7a90e981650b16e6cb9cd0838ab5bd14c30de1ff"
+        },
+        {
+          "path": "src-tauri/src/chat/platform_lifecycle.rs",
+          "sha256": "a65542b51265ae8b8cac0574742f08847bbd02c83ebe440b2281154ef7d09f8c"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/dispatch_tests.rs",
+          "sha256": "e3fc3368771af74f5e6e7a5b5fd37038197b744f7c75e87852e51ae4ea675cf5"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution.rs",
+          "sha256": "c21352540c909de83daf2f3bb1ae91661af28eb2edfa43eae6a8ea300e36048f"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution/dispatch.rs",
+          "sha256": "a736ddb85198b9f3ec9f4783156d631de15da825a8dac82a23a6b8ef0a70bbf0"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution/preparation.rs",
+          "sha256": "1c0466fbd044a001caa17c733814dab76dfeac6ece161f9471ed9406e65e1941"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution/preparation/tests.rs",
+          "sha256": "8a0126724fd271df06fd773f45039b6aac5e90927df1f35c1576d305aaa6e56a"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution/tests.rs",
+          "sha256": "c183b6791a170e0710db47ee36f4eefe4e0d71513ce5ec21b50f42c9b887ae4b"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution/triggers.rs",
+          "sha256": "9a6852c033dbb4af1116d54d880105e3e2b55718ca01d78daeacd7112603763b"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution_generated.rs",
+          "sha256": "f53ed95baf4548dc0ad1eddf4872afffd88975984e1e67af6174834305b7d778"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution_guard.rs",
+          "sha256": "6fd3745d0b47ab2be44c81956495e5fd81e04b1cb2cdd4b4784b52161c73eb2b"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/generated.rs",
+          "sha256": "1223692af5937b691453edb57b5a8689a419472af9be806b04855247a09a1614"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/mod.rs",
+          "sha256": "1ec57a305eec22b67171ba6ac203120cfbf71cf6779af584179d982ef14e1cd5"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/recovery.rs",
+          "sha256": "7f3db5b21e48b2f47c10b04ab260ca58d8b4b79c9abbb9ca4ce154d9e6310a2d"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/recovery_generated.rs",
+          "sha256": "a0f8812a804440f3ecd259e5bac3c4136d7a0f3e2a6433408b0e5bdeabd29b3d"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/store.rs",
+          "sha256": "8fcfea063b1a321a97cbba433b1df871b8dcb7a2ea91b7ac904821ff91748fd2"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/tests.rs",
+          "sha256": "9234e9707fbdeab74120fc5077ca00bdf1fe7b205d6c77ca3600076cba55fcc8"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/time.rs",
+          "sha256": "41845fd0f159849aef257a156a482f0c2e6c0e2b22f53e17c25d637ce523d0cc"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/trigger_tests.rs",
+          "sha256": "d231c67372ecbf3a4cb75eeb8b84cf9130dd48eecf2ca2eb59916b4656b2add5"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/workspace.rs",
+          "sha256": "23b61a14db9def93a1a73711ba7e5d522a18124daa14aa25f220d6c467ef4a1e"
+        },
+        {
+          "path": "src-tauri/src/chat/sidecar.rs",
+          "sha256": "f41237f49f1884f2810bc1623d85b5b6643e53da76e52c7882ea883b687c047e"
+        },
+        {
+          "path": "src-tauri/src/chat/worker.rs",
+          "sha256": "d5e982c23b7f420e499227bc930d0e51e5126dca400845602327030888555497"
+        },
+        {
+          "path": "src-tauri/src/lib.rs",
+          "sha256": "88611816a828c10cd4d80d18610d5f2d078537ad01ea29a3fb72b568561f5997"
+        },
+        {
+          "path": "src-tauri/src/native_auth/runtime.rs",
+          "sha256": "ac46d184ad4140bb3abc0e6fee01b20c47d0c91f476fde65cff8d0518a5d52dd"
+        },
+        {
+          "path": "src/domain/scheduled-execution.generated.ts",
+          "sha256": "70184382b025d57155098b8a597e6c3994d903813191188f6532fd7655a612bf"
+        },
+        {
+          "path": "src/domain/scheduled-plan.generated.ts",
+          "sha256": "34d152ce71516f533b258bf79456d772ca2895bd3925028bdaa21ce445834185"
+        }
+      ],
+      "changed_this_batch": [
+        "docs/feat155-scheduled-foundation.md",
+        "src-tauri/migrations/chat/0021_scheduled_triggers.sql",
+        "src-tauri/src/chat/application.rs",
+        "src-tauri/src/chat/database.rs",
+        "src-tauri/src/chat/lifecycle.rs",
+        "src-tauri/src/chat/migrations.rs",
+        "src-tauri/src/chat/schedules/dispatch_tests.rs",
+        "src-tauri/src/chat/schedules/execution.rs",
+        "src-tauri/src/chat/schedules/execution/dispatch.rs",
+        "src-tauri/src/chat/schedules/execution/preparation.rs",
+        "src-tauri/src/chat/schedules/execution/preparation/tests.rs",
+        "src-tauri/src/chat/schedules/execution/triggers.rs",
+        "src-tauri/src/chat/schedules/execution_guard.rs",
+        "src-tauri/src/chat/schedules/mod.rs",
+        "src-tauri/src/chat/schedules/recovery.rs",
+        "src-tauri/src/chat/schedules/store.rs",
+        "src-tauri/src/chat/schedules/trigger_tests.rs",
+        "src-tauri/src/chat/worker.rs"
+      ]
+    },
+    "yijie-agent-host": {
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-agent-host.git (fetch)\norigin\thttps://github.com/36Dge/yijie-agent-host.git (push)",
+      "status_entries": 13,
+      "files": [
+        {
+          "path": "Makefile",
+          "sha256": "eea89b9660ed126386af2703e9d722d227f73f92a8f880e0462a5bb206030abf"
+        },
+        {
+          "path": "README.md",
+          "sha256": "bb2bce0def60a1072490ced0f032811904c57e1719302a4e573ba17d70ba97ae"
+        },
+        {
+          "path": "SECURITY.md",
+          "sha256": "dbb7496b21c7350c3f38a0cc5a814ac7b77113c44dac0a0a5143f01898edee1a"
+        },
+        {
+          "path": "api/openapi/scheduled-task-recovery.yaml",
+          "sha256": "47a1d7f4e5e858116d9f0b80faf86a0e1e5936dfab1ebf6673c9579e5246e9e2"
+        },
+        {
+          "path": "api/scheduled-task-recovery.candidate.json",
+          "sha256": "4b902509aae045e1d3237c2252d1dc0577afa3b4b27db56dbe65be1cfeb45326"
+        },
+        {
+          "path": "api/schemas/scheduled-task-recovery.schema.json",
+          "sha256": "0b790fc93d6037efe4802c1822a6a0d2a979dbbab427f019658b5b3413277f5b"
+        },
+        {
+          "path": "docs/scheduled-task-recovery.md",
+          "sha256": "b473ac1ba6abdebc6d9aa34ca789b6c13b37a551c425aa75b5a1adb926b3b6b1"
+        },
+        {
+          "path": "internal/app/app.go",
+          "sha256": "e936d3a82c7d7ab980b87eb0d219e90a5daa9acecb4fe0fd69fd1a2d6902722f"
+        },
+        {
+          "path": "internal/app/scheduled_recovery.go",
+          "sha256": "81c74c7902d0d925c5a8599c15a139483a311da5f94dfa6e439e075944e276b8"
+        },
+        {
+          "path": "internal/app/scheduled_recovery_test.go",
+          "sha256": "c45c21ddaa9e6b3044aa8b547ef349e8829ab165b209b847e93fc75dff0a65c9"
+        },
+        {
+          "path": "internal/contracts/scheduledrecovery/types.gen.go",
+          "sha256": "03a35f5c9c16db1eb272b2ab7020ac08466deb5c716dc364f492f7a21c9a7f6d"
+        },
+        {
+          "path": "internal/session/scheduled_recovery.go",
+          "sha256": "32efafa8436b7f3db824a1f18686826014592977558bc47c2bdbc90e72287055"
+        },
+        {
+          "path": "internal/session/scheduled_recovery_test.go",
+          "sha256": "5e988088007e70e20fbdb34109ce859dfb153e1f62960e9d05727ea137618a89"
+        }
+      ],
+      "unchanged_this_batch": true
+    },
+    "yijie": {
+      "head": "2f616f4d24c001812c6279a520ba69ea9875247e",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie.git (fetch)\norigin\thttps://github.com/36Dge/yijie.git (push)",
+      "status_entries": 3
+    },
+    "yijie-codex": {
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-codex.git (fetch)\norigin\thttps://github.com/36Dge/yijie-codex.git (push)\nupstream\thttps://github.com/openai/codex.git (fetch)\nupstream\tDISABLED (push)",
+      "status_entries": 0,
+      "unchanged_this_batch": true
+    }
+  },
+  "old_migrations": [
+    {
+      "path": "src-tauri/migrations/chat/0001_chat_core.sql",
+      "sha256": "3ed7f9661f4d85360670cce524599e2f3cad991581f4dc407a5c38dfd7dadc2b",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0002_chat_reasoning_v2.sql",
+      "sha256": "68d0daeb1910f606699f86b97498d8ca681f936cc6eb0377db43da04652ed3c1",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0003_chat_application_domain.sql",
+      "sha256": "62a2e895f7c7137ececfc9533381a37f921ef0ea2ddf08c7877b4bc56a608315",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0004_chat_s7c_orchestration.sql",
+      "sha256": "39f3f5d311b36834bdf88c5eeafe437a1045a3027b3a948dd3d2a525b666a047",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0005_chat_public_task_control_plane.sql",
+      "sha256": "9b67508a563cb3f6ecdc925d41ce7dcb8f1443cabdda466ecad7b3bcc9f77916",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0006_chat_attachments.sql",
+      "sha256": "60b08d6cfa053bc4e8cc64a4d18d357c4f4f2694ddc52d0ca9c1004333c856e2",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0007_chat_attachment_draft_targets.sql",
+      "sha256": "aae67ca5a5b73d476f68800fc15c950abcbeb09a4dedeeed48fb3c0e448a6a57",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0008_chat_output_artifacts.sql",
+      "sha256": "bec50a16583b216380f5f19728342772ff211ca2ebb88c0ff83b2e44d3fa9a15",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0009_chat_timeline_v4.sql",
+      "sha256": "f4d3e99d9425068a0729a48824df42b815973158cc4e310201890c79bc13608c",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0010_chat_command_tool_v5.sql",
+      "sha256": "0e04e00d5b3f1ac8609d79ce70a1c4dedf2df4a1157b9d7187a13b9418623efa",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0011_chat_approval_v6.sql",
+      "sha256": "d7ca4c2a86099def2ac1998c96e4cfe155a8dea5c9966f089b2617a7c944bdef",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0012_chat_approval_v6_process_protection.sql",
+      "sha256": "98c635f3acf5191a4aa7be9891bb263bcfd52468c9cc9fc5730a06609ab87720",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0013_chat_permission_modes.sql",
+      "sha256": "f0bde431aa15b603ec663c25df3e3452fb4ec926a367f83e24aa580abb97fda8",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0014_chat_native_conversation.sql",
+      "sha256": "e4a5306fbc980599521af4ec429c51fac6b7ca7ab7354210e14bf1d38f76fc5a",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0015_chat_native_formats.sql",
+      "sha256": "01dac0c864378e90c24490065c000e71bc721957d4c1680c409966de2d40b5f2",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0016_scheduled_plan_foundation.sql",
+      "sha256": "70d00d5582f03f8d2cf81ff9f59b3f6c7a6506d85333cea93399157c6b8a5129",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0017_scheduled_execution_foundation.sql",
+      "sha256": "41de05497a1567a3db2d99c37f186e7d5c887eda5b65d2edaeb15efd220a05a1",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0018_scheduled_local_preparation.sql",
+      "sha256": "2c2abf1c0774754fd8f66333d1a95a190a0bfcfcb7f4fbfcface9af18ec08de5",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0019_scheduled_recovery.sql",
+      "sha256": "7ade049b4aa6fbe74196dbae585e3366b524ebd2eabac809046636136d52a39b",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0020_scheduled_dispatch.sql",
+      "sha256": "296732b5f9b86be15a56f39752049a31d2cf13fa3618c7d8e90339872792a648",
+      "unchanged": true
+    }
+  ],
+  "producer_artifacts": [
+    {
+      "path": "evidence/phase-3c-2-plan-native-producer.json",
+      "sha256": "a78af49f65b6d679c51c29bf26bb640c540ecbe88b6f5b9cb810f8ba1f4bab93",
+      "check_status": "PASS"
+    },
+    {
+      "path": "evidence/phase-3c-2-foundation-native-producer.json",
+      "sha256": "d9ec94a24722a2b350c972ea3a21d37cbbc61e4a903a5a2f7a4867049c4f8a73",
+      "check_status": "PASS"
+    },
+    {
+      "path": "evidence/phase-3c-2-preparation-native-producer.json",
+      "sha256": "abe514967cfaf3980327478e12d8cb0903b80763514524ba6a85134ddd8973e5",
+      "check_status": "PASS"
+    },
+    {
+      "path": "evidence/phase-3c-2-recovery-native-producer.json",
+      "sha256": "3d85bee23c6fdd6ec1720a153faba34d7d6d626ade68850cad2872c7c263dc7c",
+      "check_status": "PASS"
+    },
+    {
+      "path": "evidence/phase-3c-2-trigger-native-producer.json",
+      "sha256": "d03f311776318495b97e3cafd8b832b00dfb76cda1d351879493aaf68eff72db",
+      "check_status": "PASS"
+    }
+  ],
+  "checks": [
+    {
+      "name": "native",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --lib feat155 -- --test-threads=4",
+      "status": "PASS",
+      "exit_code": 0,
+      "passed": 74,
+      "log": "evidence/phase-3c-2-logs/native.log",
+      "sha256": "96fcbbd51168160aecca343d3769f95a5c990a67692a52cdda2aea4e80410b5b"
+    },
+    {
+      "name": "closure",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --lib feat155_3c2 -- --test-threads=4",
+      "status": "PASS",
+      "exit_code": 0,
+      "passed": 17,
+      "log": "evidence/phase-3c-2-logs/closure.log",
+      "sha256": "4bfd33b67470ce9aa6ab0e3059d36a6b6ec5edd66d87127b8e616dd41c21061d"
+    },
+    {
+      "name": "clippy",
+      "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings",
+      "status": "PASS",
+      "exit_code": 0,
+      "passed": null,
+      "log": "evidence/phase-3c-2-logs/clippy.log",
+      "sha256": "761547f04609319a2c49901cbfc319396d3e48290b5a8b34e8cb47bf9a1ad006"
+    },
+    {
+      "name": "lint",
+      "command": "pnpm lint",
+      "status": "PASS",
+      "exit_code": 0,
+      "passed": null,
+      "log": "evidence/phase-3c-2-logs/lint.log",
+      "sha256": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6"
+    },
+    {
+      "name": "build",
+      "command": "pnpm build",
+      "status": "PASS",
+      "exit_code": 0,
+      "passed": null,
+      "log": "evidence/phase-3c-2-logs/build.log",
+      "sha256": "d44f3729e36c891b2bca9a5a82d37560d44f1f7a5ebe7c18fcbc3f0c764e1853"
+    },
+    {
+      "name": "docs_build",
+      "command": "pnpm docs:build",
+      "status": "PASS",
+      "exit_code": 0,
+      "passed": null,
+      "log": "evidence/phase-3c-2-logs/docs_build.log",
+      "sha256": "ce8f834b53f446e4902b56ba5dac9d9d0711e84cee8d58d6e285dfa74bba0d9e"
+    },
+    {
+      "name": "old_regressions",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --lib <listed safe case> -- --test-threads=1",
+      "status": "PASS",
+      "exit_code": 0,
+      "passed": 19,
+      "log": "evidence/phase-3c-2-logs/old_regressions.log",
+      "sha256": "f2fefff59f283ad4f7694cc3f42ed93d5d32e578fc2009a344e3b1d0d2a2fea3"
+    },
+    {
+      "name": "fmt",
+      "command": "cargo fmt --manifest-path src-tauri/Cargo.toml --check",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "name": "producer_conformance",
+      "command": "Canonical plan/execution/recovery checkers + Ajv2020 strict RunView for automatic/rerun",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "name": "meta_strict",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-155-desktop-scheduled-tasks",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "evidence/phase-3c-2-logs/meta-strict.log",
+      "sha256": "b9f9c63fc02c70944a6be36145b71f7aa06a1244687cccee2b992b1282376bf8"
+    },
+    {
+      "name": "meta_d0",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate D0 docs/features/FEAT-155-desktop-scheduled-tasks",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "evidence/phase-3c-2-logs/meta-d0.log",
+      "sha256": "ccc00513c27f044ca664925a882399ed124d51bef8632ed931606e5b1e0f01c3"
+    },
+    {
+      "name": "meta_audit",
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-155-desktop-scheduled-tasks",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "evidence/phase-3c-2-logs/meta-audit.log",
+      "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4"
+    },
+    {
+      "name": "meta_lint",
+      "command": "pnpm lint",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "evidence/phase-3c-2-logs/meta-lint.log",
+      "sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c"
+    },
+    {
+      "name": "meta_tests",
+      "command": "pnpm test",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "evidence/phase-3c-2-logs/meta-tests.log",
+      "sha256": "ada90e3cc93b09bb6d0b318faddb033af5b6ec5d1183b9fcdf1d4d6f2459feb3"
+    },
+    {
+      "name": "shell_syntax",
+      "command": "for file in scripts/*.sh; do bash -n \"$file\" || exit; done",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "name": "links_and_source_integrity",
+      "status": "PASS",
+      "markdown_links": 155,
+      "candidate_hashes": 102,
+      "verbatim_producers": 5,
+      "old_migrations": 20,
+      "five_repo_diff_check": true
+    }
+  ],
+  "real_platform_status": "NOT RUN",
+  "real_provider_status": "NOT RUN",
+  "paid_text_calls_used": 0,
+  "paid_text_calls_limit": 12,
+  "paid_images_calls_used": 0,
+  "merchant_calls_used": 0,
+  "regressions": [
+    {
+      "case": "embedded_migrations_validate_and_write_checksum_ledger",
+      "exit_code": 0
+    },
+    {
+      "case": "populated_v1_migrates_to_current_and_repeated_startup_is_idempotent",
+      "exit_code": 0
+    },
+    {
+      "case": "project_repository_is_scope_bound_and_remove_never_deletes_directory",
+      "exit_code": 0
+    },
+    {
+      "case": "expired_outbox_lease_recovers_after_restart_without_creating_duplicate_rows",
+      "exit_code": 0
+    },
+    {
+      "case": "public_task_host_identity_becomes_bound_only_after_normal_atomic_host_bind",
+      "exit_code": 0
+    },
+    {
+      "case": "multimodal_blocks_bind_atomically_dispatch_v2_and_expire_content",
+      "exit_code": 0
+    },
+    {
+      "case": "feat152_permission_storage_boundary_survives_normal_reopen",
+      "exit_code": 0
+    },
+    {
+      "case": "reasoning_is_terminal_transactional_bounded_and_cascades_on_delete",
+      "exit_code": 0
+    },
+    {
+      "case": "feat132_native_facts_survive_normal_reopen_and_cold_history_conflict",
+      "exit_code": 0
+    },
+    {
+      "case": "feat132_submission_failure_stays_local_and_allows_a_new_operation",
+      "exit_code": 0
+    },
+    {
+      "case": "finished_coordinator_handle_is_not_reported_as_running",
+      "exit_code": 0
+    },
+    {
+      "case": "feat132_open_native_stream_dispatches_interrupt_before_terminal",
+      "exit_code": 0
+    },
+    {
+      "case": "feat132_native_sse_commits_final_objects_without_legacy_body_reconciliation",
+      "exit_code": 0
+    },
+    {
+      "case": "feat132_coordinator_recovers_missing_cursor_from_confirmed_previous_host",
+      "exit_code": 0
+    },
+    {
+      "case": "feat134_v2_first_claim_starts_same_operation_once_without_resume",
+      "exit_code": 0
+    },
+    {
+      "case": "feat132_invalid_accepted_response_suspends_without_binding_or_replay",
+      "exit_code": 0
+    },
+    {
+      "case": "app_exit_shutdown_clears_host_bridge_and_is_idempotent",
+      "exit_code": 0
+    },
+    {
+      "case": "chat::authorization::tests::",
+      "exit_code": 0
+    }
+  ]
+}

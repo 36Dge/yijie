@@ -1,0 +1,42 @@
+node:internal/errors:998
+  const err = new Error(message);
+              ^
+
+Error: Command failed: /opt/homebrew/Cellar/node/26.0.0/bin/node scripts/generate-scheduled-draft.mjs --check
+file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts/scripts/generate-scheduled-draft.mjs:39
+for(const [p,b]of Object.entries(outputs)){const target=path.join(root,p);if(process.argv.includes('--check')){if(readFileSync(target,'utf8')!==b)throw Error('Generation drift '+p);}else{mkdirSync(path.dirname(target),{recursive:true});writeFileSync(target,b);}}
+                                                                                                                                                        ^
+
+Error: Generation drift compatibility/scheduled-draft/source.lock.json
+    at file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts/scripts/generate-scheduled-draft.mjs:39:153
+    at ModuleJob.run (node:internal/modules/esm/module_job:437:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:642:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v26.0.0
+
+    at genericNodeError (node:internal/errors:998:15)
+    at wrappedFn (node:internal/errors:543:14)
+    at ChildProcess.exithandler (node:child_process:417:12)
+    at ChildProcess.emit (node:events:509:20)
+    at maybeClose (node:internal/child_process:1108:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5) {
+  code: 1,
+  killed: false,
+  signal: null,
+  cmd: '/opt/homebrew/Cellar/node/26.0.0/bin/node scripts/generate-scheduled-draft.mjs --check',
+  stdout: '',
+  stderr: 'file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts/scripts/generate-scheduled-draft.mjs:39\n' +
+    "for(const [p,b]of Object.entries(outputs)){const target=path.join(root,p);if(process.argv.includes('--check')){if(readFileSync(target,'utf8')!==b)throw Error('Generation drift '+p);}else{mkdirSync(path.dirname(target),{recursive:true});writeFileSync(target,b);}}\n" +
+    '                                                                                                                                                        ^\n' +
+    '\n' +
+    'Error: Generation drift compatibility/scheduled-draft/source.lock.json\n' +
+    '    at file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts/scripts/generate-scheduled-draft.mjs:39:153\n' +
+    '    at ModuleJob.run (node:internal/modules/esm/module_job:437:25)\n' +
+    '    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:642:26)\n' +
+    '    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n' +
+    '\n' +
+    'Node.js v26.0.0\n'
+}
+
+Node.js v26.0.0

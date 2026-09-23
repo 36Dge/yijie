@@ -1,0 +1,189 @@
+{
+  "recorded_at": "2026-09-22T15:51:38.188018+00:00",
+  "current_scope": "read_only_investigation_and_document_plan",
+  "contract_impact_this_turn": "none",
+  "planned_contract_impact": "breaking_conservative",
+  "product_implementation_started": false,
+  "real_calls_this_turn": 0,
+  "real_calls_total": 8,
+  "total_limit": 12,
+  "remaining": 4,
+  "proposed_next_batch_real_call_limit": 1,
+  "current_storage": {
+    "ordinary_sql": 15,
+    "ordinary_host": 5,
+    "candidate_sql": 23,
+    "candidate_host": 6
+  },
+  "planned_storage": {
+    "ordinary_sql": 15,
+    "ordinary_host": 5,
+    "candidate_sql": 24,
+    "candidate_host": 6
+  },
+  "reviews": [
+    {
+      "agent": "feat155_next_trigger_review",
+      "scope": "native automatic authority, startup/reopen, legacy consent and cleanup",
+      "outcome": "PASS after plan revisions: A/B startup reasons; independent bounded clock recovery; native expected_next_at comparison and idempotency."
+    },
+    {
+      "agent": "feat155_4c2_ui_scope_review",
+      "scope": "finite confirmation UI, receipts, compatibility, phased scope and Provider budget",
+      "outcome": "PASS after same targeted revisions; no remaining plan blocker or important omission."
+    }
+  ],
+  "review_limit": "Read-only agent reviews are not independent human approval, implementation evidence or D4.",
+  "decisions": [
+    "Only automatic enable/trigger/pause, independent rerun deferred",
+    "Minimal SQL24 nullable automatic_consent_version on existing enable_receipts; no legacy backfill or silent activation",
+    "Reuse original finite grant, outbox, Host, Runtime and Coordinator",
+    "Native startup distinguishes future automatic intent from recovery-only unfinished runs; clocks advance independently",
+    "Private expected_next_at compared natively within enable transaction; source-first generation",
+    "Maximum one real Provider text request proposed; current total remains 8/12"
+  ],
+  "checks": {
+    "strict_d0": {
+      "status": "PASS",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict --gate D0 docs/features/FEAT-155-desktop-scheduled-tasks",
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，且 D0 范围与语义门禁通过。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+    },
+    "meta_lint": {
+      "status": "PASS",
+      "command": "pnpm lint",
+      "exit_code": 0,
+      "output": "$ node scripts/repo-manifest.mjs validate && node scripts/check-contract-governance.mjs\nValidated 11 repository entries.\nValidated central Contract First governance and 11 sibling AGENTS.md files.\n"
+    },
+    "meta_tests": {
+      "status": "PASS",
+      "command": "pnpm test",
+      "exit_code": 0,
+      "output": "$ node --test tests/*.test.mjs\n✔ schema v2 accepts qualified G2V, per-slice G3, and split G4 evidence (3.126584ms)\n✔ schema v2 G3 is per-slice and rejects required NOT RUN evidence (0.327209ms)\n✔ slice evidence N/A requires an explicit Owner exception and local evidence is never optional (0.168583ms)\n✔ per-slice freshness must bind the current implementation and harness (0.154375ms)\n✔ a passing slice cannot depend on a falsely passing prerequisite (0.248667ms)\n✔ cross-repository slice freshness includes every transitive prerequisite commit (0.248ms)\n✔ serial slices in one repository can bind both immutable slice commits (0.138167ms)\n✔ G2V rejects an unqualified harness (0.096541ms)\n✔ temporal contract invariants require executable conformance tests (0.113958ms)\n✔ a required temporal invariant cannot be backed only by an N/A conformance test (0.135375ms)\n✔ a slice cannot borrow temporal conformance assigned to another slice (0.11925ms)\n✔ temporal scenarios form one acyclic ordered contract (0.08525ms)\n✔ declared persistence/runtime scope cannot erase mandatory temporal phases (0.088708ms)\n✔ G2V evidence binds every declared participating repository (0.057042ms)\n✔ G2V cannot substitute a browser mock for the qualified real platform (0.053458ms)\n✔ G2V requires positive, negative, timeout, cleanup, and content-free harness controls (0.059583ms)\n✔ G4 keeps core, accessibility/visual, and teardown verdicts independent (0.092791ms)\n✔ the third equivalent failure trips the circuit breaker (0.101834ms)\n✔ the third failure cannot be marked resolved without an approved RCA cycle (0.047958ms)\n✔ an open three-failure breaker blocks G2V and per-slice G3 (0.12925ms)\n✔ renaming evidence IDs cannot split one equivalent failure to reset the fuse (0.095375ms)\n✔ one Owner-authorized post-RCA success can resolve a tripped incident (0.448125ms)\n✔ failure ledger evolution is append-only across the CI base ref (0.392333ms)\n✔ a package absent from the CI base must start at schema v3 with an explicit profile (0.174667ms)\n✔ a legacy v1 manifest is immutable until it is migrated to schema v2 (0.120041ms)\n✔ harness taxonomy is closed to four failure owners (0.050292ms)\n✔ an evident cross-boundary trigger cannot mark G2V not applicable (0.040875ms)\n✔ closed scope enums and required slice applicability fail closed (0.119333ms)\n✔ final E2E evidence binds a qualified harness digest and canonical report reference (0.1035ms)\n✔ schema v3 demo_fast accepts one product/UX checkpoint and one real-service done checkpoint (0.553417ms)\n✔ permanent termination preserves historical D0 but cannot claim acceptance (0.178875ms)\n✔ permanent termination requires explicit Owner authority and cannot be reopened (0.357583ms)\n✔ demo_fast D4 rejects mock-only, missing real smoke, and failed Must acceptance (0.069458ms)\n✔ demo_fast DP is public-only and enforces the minimum public safety floor (0.168291ms)\n✔ schema v3 production_hardened preserves the full schema v2 gate semantics (0.138334ms)\n✔ schema v1 remains readable but cannot claim any downstream gate (0.052209ms)\n✔ shell checker treats legacy packages as historical-only at G3 (73.449583ms)\n✔ feature.yaml duplicate keys fail closed (2.594959ms)\n✔ schema version comments cannot bypass the required temporal matrix file (9.142792ms)\n✔ verification evidence references must resolve to one report marker (8.681625ms)\n✔ CI claim audit rejects a v2 slice that claims PASS with missing evidence (17.080958ms)\n✔ repository audit applies the authoritative full-document shell check (73.735334ms)\n✔ repository CI audits every committed historical and profile-aware claim (175.708333ms)\n✔ the repository Feature Package audit entrypoint scans committed packages (4574.828583ms)\n✔ delivery shell entrypoints remain syntactically valid (2.558792ms)\n✔ new-feature defaults to compact schema v3 demo_fast local (105.124375ms)\n✔ new-feature creates production_hardened only when explicitly selected (139.169666ms)\n✔ shell checker enforces demo_fast D0, D4, and profile separation (154.837666ms)\n✔ shell checker enforces schema v2 G2V and per-slice G3 semantics (155.184917ms)\n✔ repository manifest contains eleven owned children with the explicit Coze main branch (5.879916ms)\nℹ tests 50\nℹ suites 0\nℹ pass 50\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 5584.491291\n"
+    },
+    "shell_syntax": {
+      "status": "PASS",
+      "command": "for script in scripts/*.sh; do bash -n \"$script\" || exit; done",
+      "exit_code": 0,
+      "output": ""
+    },
+    "product_tests": {
+      "status": "NOT RUN",
+      "reason": "Planning-only turn; 4C-1 implementation evidence remains in report37."
+    },
+    "links": {
+      "status": "PASS",
+      "checked": 160,
+      "missing": []
+    },
+    "document_whitespace": {
+      "status": "PASS",
+      "issues": []
+    }
+  },
+  "safety": [
+    "No product edits or product tests",
+    "No service startup/shutdown or real Provider calls",
+    "No daily database access/migration",
+    "No protected binaries altered or Runtime source changes",
+    "No force kill, permission sabotage, attack fixtures",
+    "No commit/push/tag/deployment"
+  ],
+  "baseline_recorded_at": "2026-09-22T15:37:07.314988+00:00",
+  "repositories": {
+    "yijie": {
+      "head": "2f616f4d24c001812c6279a520ba69ea9875247e",
+      "branch": "chore/retirement-baseline-20260905",
+      "remote": "origin\thttps://github.com/36Dge/yijie.git (fetch)\norigin\thttps://github.com/36Dge/yijie.git (push)",
+      "git_identity_unchanged": true,
+      "starting_status": " M docs/adr/README.md\n?? docs/adr/ADR-0020-local-scheduled-task-authority.md\n?? docs/features/FEAT-155-desktop-scheduled-tasks/\n",
+      "final_status": "M docs/adr/README.md\n?? docs/adr/ADR-0020-local-scheduled-task-authority.md\n?? docs/features/FEAT-155-desktop-scheduled-tasks/",
+      "changed_files_this_turn": [
+        {
+          "path": "docs/features/FEAT-155-desktop-scheduled-tasks/00-feature-brief.md",
+          "before_sha256": "b571583f5b76492b4e1461a33c5783bc53d245d755841e7b348ed2a2567975d8",
+          "after_sha256": "c748a9496f9e293351e12c23a43a6abbc97a1319bdc48d1ee7f313648641b5a6"
+        },
+        {
+          "path": "docs/features/FEAT-155-desktop-scheduled-tasks/01-delivery-log.md",
+          "before_sha256": "a917088ae472d6bd6b4822c43dd01262971a90d82a44248de3041524e56e95d3",
+          "after_sha256": "3f4deac19d7782fddf2b92a547887bef32d3c4cea14378d637cb781ed7f1ec91"
+        },
+        {
+          "path": "docs/features/FEAT-155-desktop-scheduled-tasks/02-verification.md",
+          "before_sha256": "60c46ca978168b326d63a069644f3c9213045adc5092c3ee9bae4690cfe6a20e",
+          "after_sha256": "9eb35ffff6ee4ea56c154b82a5256165f05dc442650b382c0ef7f98c72ef627d"
+        },
+        {
+          "path": "docs/features/FEAT-155-desktop-scheduled-tasks/04-owner-approval-and-implementation.md",
+          "before_sha256": "1fa143c7d9b860564f0010ff04971f402efa905153df290485e80e14dab1e3b7",
+          "after_sha256": "bd993a2e845fc01116e66d4c1b789b948349e615e396f927521e54810e69cdea"
+        },
+        {
+          "path": "docs/features/FEAT-155-desktop-scheduled-tasks/38-phase-4c-2-automatic-execution-plan.md",
+          "before_sha256": null,
+          "after_sha256": "7489c31b5c3a84fd610be2856387ceb105d24fcacd113b5e7557c0b1c39e15b6"
+        },
+        {
+          "path": "docs/features/FEAT-155-desktop-scheduled-tasks/feature.yaml",
+          "before_sha256": "aeb67083809581f9536bac963b122aa7a7e87632aff0d40956991faa9b3d154f",
+          "after_sha256": "29e384a7a7c7d30a960a55384002743225f505fc9202f50ace6ea392d279489e"
+        }
+      ],
+      "unbaselined_preexisting_files": [
+        {
+          "path": "docs/features/FEAT-154-ecommerce-node-ui/sources/电商节点 UI界面.pdf",
+          "sha256": "94bf84d4ed7b54fc7710c4a161746ba367aafe16ac0b8a5d29554a7299e3bd48",
+          "mtime_utc": "2026-09-15T09:36:59.295590+00:00",
+          "note": "Pre-existing file absent from initial hash map; outside task and not edited. Hash equality cannot be claimed without baseline."
+        }
+      ],
+      "hashed_files": 2517
+    },
+    "yijie-desktop": {
+      "head": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "branch": "chore/retirement-baseline-20260905",
+      "remote": "origin\thttps://github.com/36Dge/yijie-desktop.git (fetch)\norigin\thttps://github.com/36Dge/yijie-desktop.git (push)",
+      "git_identity_unchanged": true,
+      "starting_status": " M SECURITY.md\n M THIRD_PARTY_NOTICES.md\n M docs/design/docs/design/05-patterns/02-chat-workspace.md\n M eslint.config.js\n M package.json\n M scripts/local-permission-candidate.mjs\n M scripts/run-local-demo-fast.sh\n M src-tauri/Cargo.lock\n M src-tauri/Cargo.toml\n M src-tauri/schemas/chat-ipc-v1.schema.json\n M src-tauri/src/chat/application.rs\n M src-tauri/src/chat/authorization.rs\n M src-tauri/src/chat/database.rs\n M src-tauri/src/chat/host_bridge.rs\n M src-tauri/src/chat/ipc.rs\n M src-tauri/src/chat/migrations.rs\n M src-tauri/src/chat/mod.rs\n M src-tauri/src/chat/native_conversation_storage.rs\n M src-tauri/src/chat/sidecar.rs\n M src-tauri/src/chat/worker.rs\n M src-tauri/src/lib.rs\n M src-tauri/src/native_auth/runtime.rs\n M src/App.vue\n M src/api/chat-client.ts\n M src/authorization/app-permission-policy.test.ts\n M src/authorization/app-permission-policy.ts\n M src/authorization/chat-authority-recovery.ts\n M src/authorization/chat-permission-lifecycle.test.ts\n M src/authorization/chat-permission-lifecycle.ts\n M src/components/chat/ChatComposer.vue\n M src/components/chat/ChatSidebarTree.test.ts\n M src/components/chat/ChatSidebarTree.vue\n M src/components/chat/ChatTimeline.vue\n M src/components/chat/ChatTurnGroup.test.ts\n M src/components/chat/ChatTurnGroup.vue\n M src/domain/chat-ipc.ts\n M src/navigation/app-nav.test.ts\n M src/navigation/app-nav.ts\n M src/pages/chat/ChatPage.test.ts\n M src/pages/chat/ChatPage.vue\n M src/router/index.test.ts\n M src/router/index.ts\n M src/stores/chat.store.test.ts\n M src/stores/chat.store.ts\n?? contracts/runtime-input-only.candidate.json\n?? contracts/scheduled-draft.candidate.json\n?? contracts/scheduled-draft.schema.json\n?? contracts/scheduled-execution.candidate.json\n?? contracts/scheduled-execution.schema.json\n?? contracts/scheduled-host-build.candidate.json\n?? contracts/scheduled-ipc.candidate.json\n?? contracts/scheduled-plan.candidate.json\n?? contracts/scheduled-plan.schema.json\n?? contracts/scheduled-task-recovery.candidate.json\n?? contracts/scheduled-task-recovery.schema.json\n?? docs/feat155-scheduled-foundation.md\n?? scripts/check-scheduled-ipc.mjs\n?? scripts/generate-chat-session-purpose.mjs\n?? scripts/generate-scheduled-ipc.mjs\n?? scripts/scheduled-host-build-candidate.mjs\n?? scripts/scheduled-host-build-candidate.test.mjs\n?? src-tauri/migrations/chat/0016_scheduled_plan_foundation.sql\n?? src-tauri/migrations/chat/0017_scheduled_execution_foundation.sql\n?? src-tauri/migrations/chat/0018_scheduled_local_preparation.sql\n?? src-tauri/migrations/chat/0019_scheduled_recovery.sql\n?? src-tauri/migrations/chat/0020_scheduled_dispatch.sql\n?? src-tauri/migrations/chat/0021_scheduled_triggers.sql\n?? src-tauri/migrations/chat/0022_scheduled_draft_sources.sql\n?? src-tauri/migrations/chat/0023_scheduled_plan_created_at.sql\n?? src-tauri/schemas/scheduled-task-ipc-resolved.schema.json\n?? src-tauri/schemas/scheduled-task-ipc-v1.schema.json\n?? src-tauri/src/chat/exit_owner.rs\n?? src-tauri/src/chat/host_bridge/\n?? src-tauri/src/chat/lifecycle.rs\n?? src-tauri/src/chat/platform_lifecycle.rs\n?? src-tauri/src/chat/schedules/\n?? src-tauri/src/chat/session_purpose_generated.rs\n?? src/api/generated/scheduled-task-ipc-formats.gen.js\n?? src/api/generated/scheduled-task-ipc-validator.gen.d.ts\n?? src/api/generated/scheduled-task-ipc-validator.gen.js\n?? src/api/generated/scheduled-task-ipc.gen.ts\n?? src/api/scheduled-task-native-client.test.ts\n?? src/api/scheduled-task-native-client.ts\n?? src/components/schedules/\n?? src/domain/chat-session-purpose.generated.ts\n?? src/domain/chat-session-purpose.test.ts\n?? src/domain/locate-chat-turn.test.ts\n?? src/domain/locate-chat-turn.ts\n?? src/domain/scheduled-draft-intent.ts\n?? src/domain/scheduled-draft.generated.ts\n?? src/domain/scheduled-execution.generated.ts\n?? src/domain/scheduled-plan.generated.ts\n?? src/domain/scheduled-task-ui.ts\n?? src/pages/chat/ScheduledDraftPage.test.ts\n?? src/pages/schedules/\n",
+      "final_status": "M SECURITY.md\n M THIRD_PARTY_NOTICES.md\n M docs/design/docs/design/05-patterns/02-chat-workspace.md\n M eslint.config.js\n M package.json\n M scripts/local-permission-candidate.mjs\n M scripts/run-local-demo-fast.sh\n M src-tauri/Cargo.lock\n M src-tauri/Cargo.toml\n M src-tauri/schemas/chat-ipc-v1.schema.json\n M src-tauri/src/chat/application.rs\n M src-tauri/src/chat/authorization.rs\n M src-tauri/src/chat/database.rs\n M src-tauri/src/chat/host_bridge.rs\n M src-tauri/src/chat/ipc.rs\n M src-tauri/src/chat/migrations.rs\n M src-tauri/src/chat/mod.rs\n M src-tauri/src/chat/native_conversation_storage.rs\n M src-tauri/src/chat/sidecar.rs\n M src-tauri/src/chat/worker.rs\n M src-tauri/src/lib.rs\n M src-tauri/src/native_auth/runtime.rs\n M src/App.vue\n M src/api/chat-client.ts\n M src/authorization/app-permission-policy.test.ts\n M src/authorization/app-permission-policy.ts\n M src/authorization/chat-authority-recovery.ts\n M src/authorization/chat-permission-lifecycle.test.ts\n M src/authorization/chat-permission-lifecycle.ts\n M src/components/chat/ChatComposer.vue\n M src/components/chat/ChatSidebarTree.test.ts\n M src/components/chat/ChatSidebarTree.vue\n M src/components/chat/ChatTimeline.vue\n M src/components/chat/ChatTurnGroup.test.ts\n M src/components/chat/ChatTurnGroup.vue\n M src/domain/chat-ipc.ts\n M src/navigation/app-nav.test.ts\n M src/navigation/app-nav.ts\n M src/pages/chat/ChatPage.test.ts\n M src/pages/chat/ChatPage.vue\n M src/router/index.test.ts\n M src/router/index.ts\n M src/stores/chat.store.test.ts\n M src/stores/chat.store.ts\n?? contracts/runtime-input-only.candidate.json\n?? contracts/scheduled-draft.candidate.json\n?? contracts/scheduled-draft.schema.json\n?? contracts/scheduled-execution.candidate.json\n?? contracts/scheduled-execution.schema.json\n?? contracts/scheduled-host-build.candidate.json\n?? contracts/scheduled-ipc.candidate.json\n?? contracts/scheduled-plan.candidate.json\n?? contracts/scheduled-plan.schema.json\n?? contracts/scheduled-task-recovery.candidate.json\n?? contracts/scheduled-task-recovery.schema.json\n?? docs/feat155-scheduled-foundation.md\n?? scripts/check-scheduled-ipc.mjs\n?? scripts/generate-chat-session-purpose.mjs\n?? scripts/generate-scheduled-ipc.mjs\n?? scripts/scheduled-host-build-candidate.mjs\n?? scripts/scheduled-host-build-candidate.test.mjs\n?? src-tauri/migrations/chat/0016_scheduled_plan_foundation.sql\n?? src-tauri/migrations/chat/0017_scheduled_execution_foundation.sql\n?? src-tauri/migrations/chat/0018_scheduled_local_preparation.sql\n?? src-tauri/migrations/chat/0019_scheduled_recovery.sql\n?? src-tauri/migrations/chat/0020_scheduled_dispatch.sql\n?? src-tauri/migrations/chat/0021_scheduled_triggers.sql\n?? src-tauri/migrations/chat/0022_scheduled_draft_sources.sql\n?? src-tauri/migrations/chat/0023_scheduled_plan_created_at.sql\n?? src-tauri/schemas/scheduled-task-ipc-resolved.schema.json\n?? src-tauri/schemas/scheduled-task-ipc-v1.schema.json\n?? src-tauri/src/chat/exit_owner.rs\n?? src-tauri/src/chat/host_bridge/\n?? src-tauri/src/chat/lifecycle.rs\n?? src-tauri/src/chat/platform_lifecycle.rs\n?? src-tauri/src/chat/schedules/\n?? src-tauri/src/chat/session_purpose_generated.rs\n?? src/api/generated/scheduled-task-ipc-formats.gen.js\n?? src/api/generated/scheduled-task-ipc-validator.gen.d.ts\n?? src/api/generated/scheduled-task-ipc-validator.gen.js\n?? src/api/generated/scheduled-task-ipc.gen.ts\n?? src/api/scheduled-task-native-client.test.ts\n?? src/api/scheduled-task-native-client.ts\n?? src/components/schedules/\n?? src/domain/chat-session-purpose.generated.ts\n?? src/domain/chat-session-purpose.test.ts\n?? src/domain/locate-chat-turn.test.ts\n?? src/domain/locate-chat-turn.ts\n?? src/domain/scheduled-draft-intent.ts\n?? src/domain/scheduled-draft.generated.ts\n?? src/domain/scheduled-execution.generated.ts\n?? src/domain/scheduled-plan.generated.ts\n?? src/domain/scheduled-task-ui.ts\n?? src/pages/chat/ScheduledDraftPage.test.ts\n?? src/pages/schedules/",
+      "changed_files_this_turn": [],
+      "unbaselined_preexisting_files": [],
+      "hashed_files": 777
+    },
+    "yijie-agent-host": {
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "remote": "origin\thttps://github.com/36Dge/yijie-agent-host.git (fetch)\norigin\thttps://github.com/36Dge/yijie-agent-host.git (push)",
+      "git_identity_unchanged": true,
+      "starting_status": " M Makefile\n M README.md\n M SECURITY.md\n M cmd/desktop-host/main.go\n M internal/app/app.go\n M internal/codex/baseline.go\n M internal/codex/runtime.go\n M internal/codex/runtime_permissions.go\n M internal/codex/session_protocol.go\n M internal/session/multimodal.go\n M internal/session/runtime_permissions.go\n M internal/session/service.go\n M internal/session/store.go\n M internal/session/title.go\n M scripts/permission-smoke-meter.py\n?? api/openapi/scheduled-plan-draft.yaml\n?? api/openapi/scheduled-task-recovery.yaml\n?? api/runtime-input-only.candidate.json\n?? api/scheduled-draft.candidate.json\n?? api/scheduled-task-recovery.candidate.json\n?? api/schemas/scheduled-task-recovery.schema.json\n?? docs/scheduled-draft-input-only.md\n?? docs/scheduled-plan-draft.md\n?? docs/scheduled-task-recovery.md\n?? internal/app/scheduled_candidate.go\n?? internal/app/scheduled_candidate_test.go\n?? internal/app/scheduled_draft.go\n?? internal/app/scheduled_draft_test.go\n?? internal/app/scheduled_recovery.go\n?? internal/app/scheduled_recovery_test.go\n?? internal/codex/scheduled_draft.go\n?? internal/codex/scheduled_draft_integration_test.go\n?? internal/codex/scheduled_draft_meter_integration_test.go\n?? internal/codex/scheduled_draft_test.go\n?? internal/codex/scheduled_manual_integration_test.go\n?? internal/contracts/runtimeinputonly/\n?? internal/contracts/scheduledraft/\n?? internal/contracts/scheduledrecovery/\n?? internal/session/scheduled_draft.go\n?? internal/session/scheduled_draft_test.go\n?? internal/session/scheduled_recovery.go\n?? internal/session/scheduled_recovery_test.go\n",
+      "final_status": "M Makefile\n M README.md\n M SECURITY.md\n M cmd/desktop-host/main.go\n M internal/app/app.go\n M internal/codex/baseline.go\n M internal/codex/runtime.go\n M internal/codex/runtime_permissions.go\n M internal/codex/session_protocol.go\n M internal/session/multimodal.go\n M internal/session/runtime_permissions.go\n M internal/session/service.go\n M internal/session/store.go\n M internal/session/title.go\n M scripts/permission-smoke-meter.py\n?? api/openapi/scheduled-plan-draft.yaml\n?? api/openapi/scheduled-task-recovery.yaml\n?? api/runtime-input-only.candidate.json\n?? api/scheduled-draft.candidate.json\n?? api/scheduled-task-recovery.candidate.json\n?? api/schemas/scheduled-task-recovery.schema.json\n?? docs/scheduled-draft-input-only.md\n?? docs/scheduled-plan-draft.md\n?? docs/scheduled-task-recovery.md\n?? internal/app/scheduled_candidate.go\n?? internal/app/scheduled_candidate_test.go\n?? internal/app/scheduled_draft.go\n?? internal/app/scheduled_draft_test.go\n?? internal/app/scheduled_recovery.go\n?? internal/app/scheduled_recovery_test.go\n?? internal/codex/scheduled_draft.go\n?? internal/codex/scheduled_draft_integration_test.go\n?? internal/codex/scheduled_draft_meter_integration_test.go\n?? internal/codex/scheduled_draft_test.go\n?? internal/codex/scheduled_manual_integration_test.go\n?? internal/contracts/runtimeinputonly/\n?? internal/contracts/scheduledraft/\n?? internal/contracts/scheduledrecovery/\n?? internal/session/scheduled_draft.go\n?? internal/session/scheduled_draft_test.go\n?? internal/session/scheduled_recovery.go\n?? internal/session/scheduled_recovery_test.go",
+      "changed_files_this_turn": [],
+      "unbaselined_preexisting_files": [],
+      "hashed_files": 307
+    },
+    "yijie-contracts": {
+      "head": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "branch": "chore/retirement-baseline-20260905",
+      "remote": "origin\thttps://github.com/36Dge/yijie-contracts.git (fetch)\norigin\thttps://github.com/36Dge/yijie-contracts.git (push)",
+      "git_identity_unchanged": true,
+      "starting_status": " M Makefile\n M README.md\n M SECURITY.md\n M docs/supported-baselines.md\n M scripts/check-breaking.sh\n M scripts/validate-json-schemas.mjs\n?? compatibility/runtime-input-only/\n?? compatibility/scheduled-draft/\n?? compatibility/scheduled-execution/\n?? compatibility/scheduled-plan/\n?? compatibility/scheduled-task-recovery/\n?? docs/scheduled-draft-v1.md\n?? docs/scheduled-execution-v1.md\n?? docs/scheduled-plan-v1.md\n?? docs/scheduled-task-recovery-v1.md\n?? jsonschema/scheduled-tasks/\n?? openapi/scheduled-plan-draft/\n?? openapi/scheduled-task-recovery/\n?? scripts/check-scheduled-draft-producer.mjs\n?? scripts/check-scheduled-draft.mjs\n?? scripts/check-scheduled-execution-producer.mjs\n?? scripts/check-scheduled-execution.mjs\n?? scripts/check-scheduled-plan-producer.mjs\n?? scripts/check-scheduled-plan.mjs\n?? scripts/check-scheduled-recovery-producer.mjs\n?? scripts/check-scheduled-task-recovery.mjs\n?? scripts/generate-runtime-input-only.mjs\n?? scripts/generate-scheduled-draft.mjs\n?? scripts/generate-scheduled-execution.mjs\n?? scripts/generate-scheduled-plan.mjs\n?? scripts/generate-scheduled-task-recovery.mjs\n?? scripts/scheduled-schema-source.mjs\n?? scripts/sync-runtime-input-only.mjs\n?? scripts/sync-scheduled-draft.mjs\n?? scripts/sync-scheduled-execution.mjs\n?? scripts/sync-scheduled-plan.mjs\n?? scripts/sync-scheduled-task-recovery.mjs\n?? sdks/go/openapi/runtime-input-only/\n?? sdks/go/openapi/scheduled-draft/\n?? sdks/go/openapi/scheduled-task-recovery/\n?? sdks/jsonschema/runtime-input-only/\n?? sdks/jsonschema/scheduled-draft-output.schema.json\n?? sdks/jsonschema/scheduled-draft.schema.json\n?? sdks/jsonschema/scheduled-execution.schema.json\n?? sdks/jsonschema/scheduled-plan.schema.json\n?? sdks/jsonschema/scheduled-task-recovery.schema.json\n?? sdks/rust/scheduled-draft/\n?? sdks/rust/scheduled-execution/\n?? sdks/rust/scheduled-plan/\n?? sdks/rust/scheduled-task-recovery/\n?? sdks/typescript/src/jsonschema/scheduled-draft.gen.ts\n?? sdks/typescript/src/jsonschema/scheduled-execution.gen.ts\n?? sdks/typescript/src/jsonschema/scheduled-plan.gen.ts\n?? tests/fixtures/scheduled-schema-closure.json\n?? tests/runtime-input-only.test.mjs\n?? tests/scheduled-draft.test.mjs\n?? tests/scheduled-execution.test.mjs\n?? tests/scheduled-plan.test.mjs\n?? tests/scheduled-schema-closure.test.mjs\n?? tests/scheduled-task-recovery.test.mjs\n",
+      "final_status": "M Makefile\n M README.md\n M SECURITY.md\n M docs/supported-baselines.md\n M scripts/check-breaking.sh\n M scripts/validate-json-schemas.mjs\n?? compatibility/runtime-input-only/\n?? compatibility/scheduled-draft/\n?? compatibility/scheduled-execution/\n?? compatibility/scheduled-plan/\n?? compatibility/scheduled-task-recovery/\n?? docs/scheduled-draft-v1.md\n?? docs/scheduled-execution-v1.md\n?? docs/scheduled-plan-v1.md\n?? docs/scheduled-task-recovery-v1.md\n?? jsonschema/scheduled-tasks/\n?? openapi/scheduled-plan-draft/\n?? openapi/scheduled-task-recovery/\n?? scripts/check-scheduled-draft-producer.mjs\n?? scripts/check-scheduled-draft.mjs\n?? scripts/check-scheduled-execution-producer.mjs\n?? scripts/check-scheduled-execution.mjs\n?? scripts/check-scheduled-plan-producer.mjs\n?? scripts/check-scheduled-plan.mjs\n?? scripts/check-scheduled-recovery-producer.mjs\n?? scripts/check-scheduled-task-recovery.mjs\n?? scripts/generate-runtime-input-only.mjs\n?? scripts/generate-scheduled-draft.mjs\n?? scripts/generate-scheduled-execution.mjs\n?? scripts/generate-scheduled-plan.mjs\n?? scripts/generate-scheduled-task-recovery.mjs\n?? scripts/scheduled-schema-source.mjs\n?? scripts/sync-runtime-input-only.mjs\n?? scripts/sync-scheduled-draft.mjs\n?? scripts/sync-scheduled-execution.mjs\n?? scripts/sync-scheduled-plan.mjs\n?? scripts/sync-scheduled-task-recovery.mjs\n?? sdks/go/openapi/runtime-input-only/\n?? sdks/go/openapi/scheduled-draft/\n?? sdks/go/openapi/scheduled-task-recovery/\n?? sdks/jsonschema/runtime-input-only/\n?? sdks/jsonschema/scheduled-draft-output.schema.json\n?? sdks/jsonschema/scheduled-draft.schema.json\n?? sdks/jsonschema/scheduled-execution.schema.json\n?? sdks/jsonschema/scheduled-plan.schema.json\n?? sdks/jsonschema/scheduled-task-recovery.schema.json\n?? sdks/rust/scheduled-draft/\n?? sdks/rust/scheduled-execution/\n?? sdks/rust/scheduled-plan/\n?? sdks/rust/scheduled-task-recovery/\n?? sdks/typescript/src/jsonschema/scheduled-draft.gen.ts\n?? sdks/typescript/src/jsonschema/scheduled-execution.gen.ts\n?? sdks/typescript/src/jsonschema/scheduled-plan.gen.ts\n?? tests/fixtures/scheduled-schema-closure.json\n?? tests/runtime-input-only.test.mjs\n?? tests/scheduled-draft.test.mjs\n?? tests/scheduled-execution.test.mjs\n?? tests/scheduled-plan.test.mjs\n?? tests/scheduled-schema-closure.test.mjs\n?? tests/scheduled-task-recovery.test.mjs",
+      "changed_files_this_turn": [],
+      "unbaselined_preexisting_files": [],
+      "hashed_files": 386
+    },
+    "yijie-codex": {
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "branch": "chore/retirement-baseline-20260905",
+      "remote": "origin\thttps://github.com/36Dge/yijie-codex.git (fetch)\norigin\thttps://github.com/36Dge/yijie-codex.git (push)\nupstream\thttps://github.com/openai/codex.git (fetch)\nupstream\tDISABLED (push)",
+      "git_identity_unchanged": true,
+      "starting_status": " M CHANGELOG.yijie.md\n M Makefile\n M README.md\n M SECURITY.md\n M UPSTREAM.md\n M scripts/write-runtime-manifest.py\n?? .yijie/patches/input-only/\n?? .yijie/schemas/input-only-app-server/\n?? docs/input-only-execution.md\n?? scripts/build-input-only.sh\n",
+      "final_status": "M CHANGELOG.yijie.md\n M Makefile\n M README.md\n M SECURITY.md\n M UPSTREAM.md\n M scripts/write-runtime-manifest.py\n?? .yijie/patches/input-only/\n?? .yijie/schemas/input-only-app-server/\n?? docs/input-only-execution.md\n?? scripts/build-input-only.sh",
+      "changed_files_this_turn": [],
+      "unbaselined_preexisting_files": [],
+      "hashed_files": 5568
+    }
+  },
+  "evidence_self_hash_excluded": true
+}

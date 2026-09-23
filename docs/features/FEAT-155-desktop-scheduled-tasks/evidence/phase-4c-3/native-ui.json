@@ -1,0 +1,95 @@
+{
+  "feature": "FEAT-155",
+  "phase": "4C-3",
+  "recorded_at": "2026-09-23T02:20:03.766393+00:00",
+  "source": "actual native app via CUA AX and screenshots; SQLCipher readonly inspector; canonical launcher and Provider ledgers",
+  "entry": "canonical pnpm tauri:demo-fast:app with explicit scheduled candidate and loopback metered Provider",
+  "ordinary_schema_store": "15/5",
+  "candidate_schema_store": "25/6",
+  "daily_db_accessed_or_migrated": false,
+  "local": {
+    "provider": "declared fixture; 0 real requests",
+    "requests": 2,
+    "plan_id": "01a0c9fc-2ff8-72b2-a0df-8b6f86f78aa6",
+    "automatic_grant": "01a0cbf6-a6f7-7ac3-abc1-1c3cfc00db4e",
+    "automatic_occupied_before_after": [
+      0,
+      0
+    ],
+    "automatic_revision_before_after": [
+      5,
+      5
+    ],
+    "manual_run": "01a0cc02-759d-7083-8471-6258d4369405",
+    "rerun": "01a0cc03-4321-7df2-b061-3cec65589ae9",
+    "original_run": "01a0c9ff-ce44-7830-9a76-c7534bd41bb1",
+    "target": "dedicated_chat",
+    "outcomes": [
+      "completed",
+      "completed"
+    ],
+    "result_route": "/chat/01a0c9ff-ce45-7cf2-9f46-563e9ef1f9ee?turn=01a0cc03-4321-7df2-b061-3d01b138504c",
+    "visible_turn": 3,
+    "visible_text": "4C3 本机单次与重跑验证完成"
+  },
+  "real": {
+    "requests": 1,
+    "http_status": 200,
+    "native_outcome": "completed",
+    "plan_id": "01a0ca03-f2d1-7dd0-a2ea-7122e07552b1",
+    "original_run": "01a0ca0a-cad7-7153-b65d-12f205b48826",
+    "run": "01a0cc09-ad69-7aa3-a7aa-2013c3da4587",
+    "single_grant": "01a0cc09-ad5e-7ff1-90a5-edfb3ebe0448",
+    "operation": "01a0cc09-ad69-7aa3-a7aa-2025741f24f3",
+    "conversation": "01a0cc09-ad6a-7041-bdf5-0e36b511c29c",
+    "local_turn": "01a0cc09-ad6a-7041-bdf5-0e5611018757",
+    "target": "new_chat_each_run",
+    "automatic_grant": "01a0cc09-4014-7291-9384-db60f7216b34",
+    "automatic_occupied_before_after": [
+      0,
+      0
+    ],
+    "automatic_revision_before_after": [
+      5,
+      5
+    ],
+    "automatic_next": "2026-09-24T00:55:00+08:00",
+    "visible_text": "4C3 独立重跑验证通过",
+    "provider_phase_missing": true,
+    "display": "未分类模型消息；展开显示真实返回，未伪造 final phase"
+  },
+  "confirmation_ax": {
+    "old_and_current_name_content": true,
+    "current_revision": true,
+    "Ask": true,
+    "one_run_max_10_minutes": true,
+    "new_chat_semantics": true,
+    "automatic_quota_independent": true,
+    "escape_clears_review": true
+  },
+  "visual": {
+    "status": "NOT PASSED / pending diagnosis",
+    "light_management_and_result_screens": "observed",
+    "minimum_window": "1180x760 outer window attempted; base content readable; overlay layout not verified",
+    "dialog_screenshot": "AX has operative modal, screenshot shows underlying page. Normal reopen, raise, Window menu activation and focus did not resolve capture discrepancy. Root cause unknown.",
+    "dark_screenshot": "shell darkens but cards retain light surface and low-contrast metadata; not accepted as passing. Root cause not established.",
+    "default_focus_and_return_focus": "not visually verified; implementation hooks present; no PASS claimed",
+    "user_clarification": "asked whether dialog visible after manual foreground; no response recorded by final checks",
+    "system_appearance_restored": "Light"
+  },
+  "cleanup": {
+    "both_validation_plans_explicitly_paused": true,
+    "final_revisions": [
+      6,
+      6
+    ],
+    "normal_reopen_equal_ledger": true,
+    "reservation_count": 0,
+    "real_requests_after_reopen": 1,
+    "app_normal_exit_code": 0,
+    "local_provider_normal_exit_code": 0,
+    "meter_normal_exit_code": 0,
+    "no_force_kill": true
+  },
+  "full_D4": "NOT RUN"
+}

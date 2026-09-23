@@ -1,0 +1,31 @@
+{
+  "recorded_at": "2026-09-19T09:02:01.392887+00:00",
+  "mode": "real_canonical_packaged_app_CUA",
+  "candidate_only": true,
+  "normal_entry_command": "YIJIE_FEAT155_SCHEDULED_CANDIDATE=true YIJIE_PERMISSION_VERIFICATION_BASE_URL=http://127.0.0.1:18083/v1 ./scripts/run-local-demo-fast.sh --packaged",
+  "conversation_id": "01a0b8c7-b620-7833-9653-ccf272672fa8",
+  "plan_id": "01a0b8de-7cf5-7fe3-ab5d-128f81e7a193",
+  "observations": [
+    "管理入口只预填；未发送合成文本切换时默认留在对话，原输入保留。",
+    "受限文本模式不展示附件、项目选择和普通权限切换；新建与侧栏恢复均沿原聊天页面。",
+    "亮色与暗色实际检查，系统外观恢复原Light；最小截图JPEG SOF 1180×760，缩放100%。",
+    "Tab可到输入区；首次CUA AX点击部分按钮只聚焦，键盘Return完成动作，未把未写入操作计为Provider调用。",
+    "第1/2次真实输出不符schema，未保存。第3次原生合法澄清，第4次同一会话合法候选。",
+    "摘要每天09:00、Asia/Shanghai、专属聊天；审阅表单改名为4B 合成摘要验收（已审阅）。",
+    "Escape触发脏表单保护，默认焦点继续编辑；Return保留修改，随后明确保存paused。",
+    "管理页按同一plan_id定位，revision=1；启用与立即运行禁用。",
+    "正常退出、canonical重开、侧栏原会话回查，已确认来源仍返回同一暂停计划。",
+    "执行记录显示还没有执行记录；模型请求数保持4，无重发或计划执行。"
+  ],
+  "screenshots": "已通过CUA工具内联观察；未伪造或另生成产品截图。",
+  "normal_cleanup": {
+    "app_host_runtime_exited": true,
+    "meter_stopped_normally": true,
+    "system_settings_closed": true
+  },
+  "limits": [
+    "itemsComplete=false保留显示内容不完整",
+    "真实Provider仅覆盖daily/dedicated_chat",
+    "完整FEAT155 Must fresh run和D4未执行"
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "feature": "FEAT-155",
+  "phase": "4C-1",
+  "native_regression": {
+    "passed": 111,
+    "log": "checks/native-111.log"
+  },
+  "native_latest_focused": {
+    "passed": 14,
+    "includes_prior_tests": true,
+    "log": "checks/native-last-14.log"
+  },
+  "native_new_manual": {
+    "passed": 6,
+    "log": "checks/native-manual-6.log"
+  },
+  "frontend_focused": {
+    "passed": 43,
+    "log": "checks/frontend-43.log"
+  },
+  "chat_page": {
+    "passed": 46,
+    "known_existing_failures": 3,
+    "new_exact_turn_location_test_passed": true,
+    "log": "checks/chat-regression-existing-3.log"
+  },
+  "host_ask_qualification": {
+    "race_passed": 1,
+    "local_fixture_requests": 2,
+    "paid_calls": 0,
+    "actual_fixed_runtime": true,
+    "effective_policy": "on-request/user/workspaceWrite/networkAccess=false",
+    "log": "checks/host-ask-qualification.log"
+  },
+  "conformance": {
+    "exchanges": 43,
+    "commands": 26,
+    "log": "checks/strict-conformance.log"
+  },
+  "checks": {
+    "vue_tsc": "PASS",
+    "focused_eslint": "PASS",
+    "rust_fmt": "PASS",
+    "rust_clippy_lib_deny_warnings": "PASS",
+    "host_scoped_vet": "PASS",
+    "canonical_build": "PASS",
+    "normal_quit_reopen": "PASS",
+    "runtime_and_contracts_unchanged": "PASS"
+  },
+  "real_provider": {
+    "original_batch_limit": 3,
+    "extra_authorized": 2,
+    "extra_used": 1,
+    "approved_batch_limit": 5,
+    "actual_meter_limit": 4,
+    "used_this_phase": 4,
+    "feature_used": 8,
+    "feature_limit": 12,
+    "feature_remaining": 4,
+    "completed": 3,
+    "transport_ended": 1,
+    "image_calls": 0,
+    "merchant_mcp_external_calls": 0
+  },
+  "safety": "Normal non-destructive checks only; no kill, permission sabotage, attack fixtures or protected binary replacement.",
+  "all_tests_green_claimed": false,
+  "full_feature_d4_claimed": false,
+  "auto_advance": false,
+  "meta": {
+    "strict_D0": "PASS",
+    "lint": "PASS",
+    "markdown_links_checked": 325
+  },
+  "recorded_at": "2026-09-22T15:15:29.623890+00:00",
+  "log_sha256": {
+    "canonical-build.log": "59eff2278074f2f9cd2090a08d16a311e95238406969cc6673d4110d010d0674",
+    "canonical-final.log": "7ec2f2d89311deb61f56f9f61218b3e578db076fcd9f67b1d7ac2e152614226b",
+    "canonical-reopen.log": "1d3b30c29ad65a425a2b977394fafdab72df9a6fed9852840d11321841b3d630",
+    "chat-regression-existing-3.log": "b53b1d2b06ba91b38497d305386815288cd2ffcb7559a1be1cc132c0d79b4813",
+    "clippy.log": "aa5644c8746fbabe749f2f28bcf3d8893b7d927c762d1a14fadc22b4498da1e9",
+    "frontend-43.log": "56d8604f62eb232d8164e0a6a7c85777265611c5167dfa5a97419f5b9f3c1313",
+    "generation.log": "1863b523e79da108ab13098bac819cde2faf6760d8f6586e09d6b18179dac70d",
+    "host-ask-qualification.log": "019a669b803406222b0b3a640a5635547aa5ccc99f441aff77d5e8cc0aba2f80",
+    "host-vet.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "lint.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "meta-d0.log": "ccc00513c27f044ca664925a882399ed124d51bef8632ed931606e5b1e0f01c3",
+    "meta-lint.log": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c",
+    "native-111.log": "38e2bc6a4f0a4777accf534a9f09cb2662397dcf0c5b3ebb1e27e81374904ed3",
+    "native-last-14.log": "0b0829698fe7c6e094dc8b2fc454faa52bfabde2c66eac4b8298fbd019ac306b",
+    "native-manual-6.log": "ecd024521f809771b1ec2ded628324f66e8c91b956853ca8d1e62f12c27713c8",
+    "strict-conformance.log": "86843f8461990243f719ef0b03a36af21159e616fc0c66a280e81064b9325b0e",
+    "ts.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

@@ -1,0 +1,84 @@
+[chore/retirement-baseline-20260905 ccbae06] feat(contracts): freeze scheduled task sources and native policy projection
+ Committer: Jack <jack@JackdeMacBook-Pro.local>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 77 files changed, 13067 insertions(+), 2 deletions(-)
+ create mode 100644 compatibility/native-turn-timing/source.lock.json
+ create mode 100644 compatibility/runtime-input-only/README.md
+ create mode 100644 compatibility/runtime-input-only/source.lock.json
+ create mode 100644 compatibility/scheduled-draft/source.lock.json
+ create mode 100644 compatibility/scheduled-execution/source.lock.json
+ create mode 100644 compatibility/scheduled-plan/source.lock.json
+ create mode 100644 compatibility/scheduled-task-recovery/source.lock.json
+ create mode 100644 docs/native-turn-timing-v1.md
+ create mode 100644 docs/scheduled-draft-v1.md
+ create mode 100644 docs/scheduled-execution-v1.md
+ create mode 100644 docs/scheduled-plan-v1.md
+ create mode 100644 docs/scheduled-task-recovery-v1.md
+ create mode 100644 jsonschema/scheduled-tasks/draft-execution-v1.schema.json
+ create mode 100644 jsonschema/scheduled-tasks/execution-v1.schema.json
+ create mode 100644 jsonschema/scheduled-tasks/plan-draft-v1.schema.json
+ create mode 100644 jsonschema/scheduled-tasks/plan-storage-v1.schema.json
+ create mode 100644 openapi/native-turn-timing/native-turn-timing.yaml
+ create mode 100644 openapi/scheduled-plan-draft/scheduled-plan-draft.yaml
+ create mode 100644 openapi/scheduled-task-recovery/scheduled-task-recovery.yaml
+ create mode 100644 scripts/check-scheduled-draft-producer.mjs
+ create mode 100644 scripts/check-scheduled-draft.mjs
+ create mode 100644 scripts/check-scheduled-execution-producer.mjs
+ create mode 100644 scripts/check-scheduled-execution.mjs
+ create mode 100644 scripts/check-scheduled-plan-producer.mjs
+ create mode 100644 scripts/check-scheduled-plan.mjs
+ create mode 100644 scripts/check-scheduled-recovery-producer.mjs
+ create mode 100644 scripts/check-scheduled-task-recovery.mjs
+ create mode 100644 scripts/generate-native-turn-timing.mjs
+ create mode 100644 scripts/generate-runtime-input-only.mjs
+ create mode 100644 scripts/generate-scheduled-draft.mjs
+ create mode 100644 scripts/generate-scheduled-execution.mjs
+ create mode 100644 scripts/generate-scheduled-plan.mjs
+ create mode 100644 scripts/generate-scheduled-task-recovery.mjs
+ create mode 100644 scripts/scheduled-consumer-source.mjs
+ create mode 100644 scripts/scheduled-schema-source.mjs
+ create mode 100644 scripts/sync-native-turn-timing.mjs
+ create mode 100644 scripts/sync-runtime-input-only.mjs
+ create mode 100644 scripts/sync-scheduled-draft.mjs
+ create mode 100644 scripts/sync-scheduled-execution.mjs
+ create mode 100644 scripts/sync-scheduled-plan.mjs
+ create mode 100644 scripts/sync-scheduled-task-recovery.mjs
+ create mode 100644 sdks/go/openapi/native-turn-timing/types.gen.go
+ create mode 100644 sdks/go/openapi/runtime-input-only/types.gen.go
+ create mode 100644 sdks/go/openapi/scheduled-draft/types.gen.go
+ create mode 100644 sdks/go/openapi/scheduled-task-recovery/types.gen.go
+ create mode 100644 sdks/jsonschema/native-turn-timing.schema.json
+ create mode 100644 sdks/jsonschema/runtime-input-only/request.schema.json
+ create mode 100644 sdks/jsonschema/runtime-input-only/response.schema.json
+ create mode 100644 sdks/jsonschema/scheduled-draft-output.schema.json
+ create mode 100644 sdks/jsonschema/scheduled-draft.schema.json
+ create mode 100644 sdks/jsonschema/scheduled-execution.schema.json
+ create mode 100644 sdks/jsonschema/scheduled-plan.schema.json
+ create mode 100644 sdks/jsonschema/scheduled-task-recovery.schema.json
+ create mode 100644 sdks/rust/native-turn-timing/types.gen.rs
+ create mode 100644 sdks/rust/scheduled-draft/types.gen.rs
+ create mode 100644 sdks/rust/scheduled-execution/types.gen.rs
+ create mode 100644 sdks/rust/scheduled-plan/types.gen.rs
+ create mode 100644 sdks/rust/scheduled-task-recovery/types.gen.rs
+ create mode 100644 sdks/typescript/src/jsonschema/scheduled-draft.gen.ts
+ create mode 100644 sdks/typescript/src/jsonschema/scheduled-execution.gen.ts
+ create mode 100644 sdks/typescript/src/jsonschema/scheduled-plan.gen.ts
+ create mode 100644 sdks/typescript/src/openapi/native-turn-timing.gen.ts
+ create mode 100644 tests/fixtures/scheduled-schema-closure.json
+ create mode 100644 tests/native-turn-timing.test.mjs
+ create mode 100644 tests/runtime-input-only.test.mjs
+ create mode 100644 tests/scheduled-draft.test.mjs
+ create mode 100644 tests/scheduled-execution.test.mjs
+ create mode 100644 tests/scheduled-plan.test.mjs
+ create mode 100644 tests/scheduled-schema-closure.test.mjs
+ create mode 100644 tests/scheduled-task-recovery.test.mjs

@@ -1,0 +1,79 @@
+{
+  "feature": "FEAT-155",
+  "phase": "4C-3 UI closure",
+  "status": "PASS scoped closure; full feature D4 NOT RUN",
+  "frontend_focused": {
+    "status": "PASS",
+    "files": 11,
+    "passed": 76,
+    "log": "checks/frontend-focused-final.log"
+  },
+  "lint_types": {
+    "status": "PASS",
+    "log": "checks/lint-final.log"
+  },
+  "canonical_build": {
+    "status": "PASS",
+    "log": "checks/canonical-reopen.log",
+    "normal_exit": 0
+  },
+  "private_ipc_generation": {
+    "status": "PASS",
+    "log": "checks/generation.log"
+  },
+  "full_frontend": {
+    "status": "BLOCKED",
+    "log": "checks/frontend-full-entry.log",
+    "reason": "Existing Contracts tracked changes gate; no bypass"
+  },
+  "native_tests": {
+    "status": "NOT RERUN",
+    "reason": "No native/IPC/storage code changed; 41 contains prior124 pass; prohibited full-suite fault fixtures not executed"
+  },
+  "native_ui": {
+    "status": "PASS",
+    "record": "native-ui.json"
+  },
+  "ledger_invariants": {
+    "status": "PASS",
+    "same_before_cancel_restart_final": true,
+    "new_grants_runs_outbox": 0,
+    "final": "ledger-final-read-only.log"
+  },
+  "real_calls": 0,
+  "local_calls": 0,
+  "metadata": {
+    "lint": "PASS",
+    "tests": {
+      "passed": 50,
+      "failed": 0
+    },
+    "shell_syntax": "PASS",
+    "strict_D0": "PASS",
+    "current_links_checked": 12
+  },
+  "log_sha256": {
+    "canonical-after.log": "4078d12261b574309041d2815a8a61f08dbd089c0a7b045dc9072d8ccbe56179",
+    "canonical-before.log": "614a78f199a52fa9f6991f95ab8e0afbe83c0e1dae55e3494794ecb049563e7e",
+    "canonical-closure.log": "59f3e717c1139d903cfefe5aa0d4d4cee1c8c60435feb88fd12435c36c5ca276",
+    "canonical-final.log": "ba54cce3f2b6124c6d4314944720bd939f33b58710862a99bad764da368ed7e5",
+    "canonical-reopen.log": "b5eaf7d0906768fe1ff3129ee5c3defa35c8cd3601142950e0bb7393e5ed5416",
+    "frontend-focused-final.log": "379612aa2a57e9dfd816c5f41a8f4dbc417278b2f024b9889c630803fad02723",
+    "frontend-focused.log": "52bc15df0b7e2caf14940cd038780e708e876a14ca5a1bc93bb030f0d806ec78",
+    "frontend-full-entry.log": "e4d4b10d3370699fafa8670acf8dd0a18d9faa921ee369b20804ac7b5b5f06bf",
+    "generation.log": "1863b523e79da108ab13098bac819cde2faf6760d8f6586e09d6b18179dac70d",
+    "inspector-build.log": "b352b8e34576c5f4c77804cb1d89643898ae9ed405247e5831a228afdf3883f3",
+    "ledger-after-cancels.log": "e9d859bd29cf7e78abf8c01c15d31593736d3cb38aba2cf982a01e93a836dd25",
+    "ledger-before-reopen.log": "e9d859bd29cf7e78abf8c01c15d31593736d3cb38aba2cf982a01e93a836dd25",
+    "ledger-before.log": "e9d859bd29cf7e78abf8c01c15d31593736d3cb38aba2cf982a01e93a836dd25",
+    "lint-final.log": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6",
+    "lint.log": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6",
+    "meta-lint.log": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c",
+    "meta-test.log": "08a558a077788683ffc5a19a84f68638b6ecaf9e03971591248c175e892032e5",
+    "strict-d0.log": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4"
+  },
+  "diff_check": {
+    "yijie": "PASS",
+    "yijie-desktop": "PASS"
+  }
+}

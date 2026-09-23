@@ -1,0 +1,163 @@
+{
+  "feature": "FEAT-155",
+  "phase": "4C-2",
+  "recorded_at": "2026-09-22T17:03:40.894893+00:00",
+  "native_regression": {
+    "status": "PASS",
+    "passed": 117,
+    "log": "checks/native-regression.log"
+  },
+  "native_latest_focused": {
+    "status": "PASS",
+    "passed": 12,
+    "includes_prior_tests": true,
+    "log": "checks/native-focused.log"
+  },
+  "frontend_focused": {
+    "status": "PASS",
+    "passed": 42,
+    "files": 9,
+    "log": "checks/frontend-focused.log"
+  },
+  "frontend_latest_ui": {
+    "status": "PASS",
+    "passed": 5,
+    "includes_prior_tests": true,
+    "log": "checks/frontend-ui-fix.log"
+  },
+  "strict_ipc": {
+    "status": "PASS",
+    "actual_exchanges": 52,
+    "commands": 26,
+    "log": "checks/strict-conformance.log",
+    "input": "all-ipc.json"
+  },
+  "generation": {
+    "status": "PASS",
+    "command": "pnpm check:scheduled-ipc"
+  },
+  "lint_type": {
+    "status": "PASS",
+    "command": "pnpm lint",
+    "log": "checks/lint-final.log"
+  },
+  "fmt": {
+    "status": "PASS",
+    "command": "cargo fmt --manifest-path src-tauri/Cargo.toml --check",
+    "log": "checks/fmt-final.log"
+  },
+  "clippy": {
+    "status": "PASS",
+    "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings",
+    "log": "checks/clippy-final.log"
+  },
+  "docs": {
+    "status": "PASS",
+    "command": "pnpm docs:build",
+    "log": "checks/docs-build.log"
+  },
+  "canonical_build": {
+    "status": "PASS",
+    "command": "pnpm tauri:demo-fast:app (explicit scheduled candidate; metered loopback provider)",
+    "log": "checks/canonical-real-final-reopen.log",
+    "normal_launcher_exit": 0
+  },
+  "host_runtime_ask": {
+    "status": "PASS",
+    "test": "TestFEAT1554C1OrdinaryAskMeterStartResume with race",
+    "local_requests": 2,
+    "paid_requests": 0,
+    "log": "checks/host-ask-qualification.log"
+  },
+  "full_frontend": {
+    "status": "BLOCKED",
+    "command": "pnpm test",
+    "reason": "existing contracts checkout has tracked changes, generation checker stops before Vitest",
+    "log": "checks/frontend-full.log",
+    "no_gate_bypass": true
+  },
+  "full_native": {
+    "status": "NOT RUN",
+    "reason": "user safety instructions prohibit legacy executable-fault and permission-fault fixtures; safe scoped FEAT155 tests run instead",
+    "examples": [
+      "src-tauri/src/chat/sidecar.rs::distinct_test_profile_lifecycles_record_content_free_child_crash_evidence",
+      "src-tauri/src/feat126_secure_storage.rs::symlink_wrong_mode_and_non_temp_roots_fail_closed"
+    ]
+  },
+  "historical_chatpage": {
+    "status": "not rerun as full suite",
+    "baseline": "reports33/35/37 list three pre-existing display assertions, not claimed fixed"
+  },
+  "native_ui": {
+    "status": "PASS",
+    "record": "native-ui.json",
+    "real_automatic_requests": 1,
+    "native_outcome": "completed",
+    "local_automatic_requests": 1,
+    "explicit_pause_and_reopen": true,
+    "normal_cleanup": true
+  },
+  "provider": {
+    "ledger": "provider-ledger.json",
+    "batch_limit": 1,
+    "batch_used": 1,
+    "feature_total_used": 9,
+    "feature_total_limit": 12,
+    "remaining": 3,
+    "image": 0,
+    "merchant_external_mcp": 0
+  },
+  "metadata": {
+    "lint": "PASS",
+    "test_passed": 50,
+    "shell_syntax": "PASS",
+    "strict_D0": "PASS",
+    "logs": [
+      "checks/meta-lint.log",
+      "checks/meta-test.log",
+      "checks/strict-d0.log"
+    ]
+  },
+  "normal_reopen_ledger": {
+    "status": "PASS",
+    "exact_before_after_equal": true,
+    "reservation_count": 0,
+    "record": "ledger-final-read-only.log"
+  },
+  "full_feature_D4": "NOT RUN",
+  "log_sha256": {
+    "canonical-local-reopen.log": "8b303efadcb24febe0eea362f8f42cb978408212901e7675db6fe74db5fddf8f",
+    "canonical-local.log": "2f4a7b4bcbc7c701be92c382cf18be8e4ea7a634fa4a8699a7eba0766bf7823a",
+    "canonical-real-final-reopen.log": "3010ac69590a5e78de469375470d223ff6881e0fbcd9bf5e73c357909c091578",
+    "canonical-real-reopen.log": "5a31c3667019cf058d6a7bd0f86cb5e54f726babf8be57073b3b12580c43be60",
+    "canonical-real.log": "2d11f5822c7e34a645e9450e562b1a6a723e75579569c7a3a390401de7c977c1",
+    "clippy-final.log": "0203225d708b17ff40107952e60521318c1837389f74922032a3a974a9c3ca2e",
+    "clippy.log": "115b121d4dc5252018a2213391da8d5c39a171674f4cc73d4bad27fdb2039612",
+    "docs-build.log": "a2d43ce2f9fc3de069976e4a0bb57fdf19c4b29adc85330a84bbe1aba9c4a9cd",
+    "fmt-final.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "frontend-focused.log": "a1d7090f8368dad03cd9c890dc4791618728c9dca74f1d8c268bab0f540f8adb",
+    "frontend-full.log": "e4d4b10d3370699fafa8670acf8dd0a18d9faa921ee369b20804ac7b5b5f06bf",
+    "frontend-ui-fix.log": "db66080d5405b67e44743ce922d4e3fdbbf1d85156ae77662d8e5c5c96eefded",
+    "host-ask-qualification.log": "96bcfebd25ac3c398e87087070eea9f1f2d9539cf057536a7849e07552ec24d9",
+    "ledger-before.log": "b97b00a5929c1105959551215a14be3112d26a4f096a105547afaf24bb21fc20",
+    "ledger-final-read-only.log": "76e4431fafd8300f8a53e268c679e576a0ca44f6905af25bee1ff13825d275c8",
+    "ledger-local-completed.log": "95b475525767bdac5ff4bdcdeadc6091b299febaadf969ba7f039f901fe7868f",
+    "ledger-local-enabled-reopen.log": "1abccbce31e2cdbf9fb1aee815ed94bc3a898a67e93ea2fab768fd849a4a61a4",
+    "ledger-real-after-reopen-before-due.log": "719a1eabbd997654f9e1789cc1f446dd708fb8647a0ed36e7c9f5ac487083666",
+    "ledger-real-completed.log": "514743c12dfe5f1d7e47ade1794b6431deb14c995fc41389f2df4e1dcc58bcc7",
+    "ledger-real-enabled-before-reopen.log": "719a1eabbd997654f9e1789cc1f446dd708fb8647a0ed36e7c9f5ac487083666",
+    "ledger-real-paused-stopped.log": "76e4431fafd8300f8a53e268c679e576a0ca44f6905af25bee1ff13825d275c8",
+    "lint-final.log": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6",
+    "lint.log": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6",
+    "meta-lint.log": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c",
+    "meta-test.log": "f14452b144eff302a51fb153ed373a1b24916fb3d5806c42323700732f6fb374",
+    "native-focused.log": "ab8baac9901913a63684d7abdccdde2f8bb454b287791c6acc2fb11d4f63db8a",
+    "native-regression.log": "5419d0f2aa691cbf46b24cfe98dcb7cd5c853fe0b9876f79a8ce3d06bde8ccfe",
+    "strict-conformance.log": "f7b02658159416a578c8efe8a539c7a46fc3f031bcd3e41c9ce8d303f554c072",
+    "strict-d0.log": "ccc00513c27f044ca664925a882399ed124d51bef8632ed931606e5b1e0f01c3"
+  },
+  "diff_check": {
+    "yijie": "PASS",
+    "yijie-desktop": "PASS"
+  }
+}

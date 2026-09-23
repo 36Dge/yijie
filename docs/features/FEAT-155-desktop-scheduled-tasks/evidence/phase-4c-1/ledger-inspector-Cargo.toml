@@ -1,0 +1,6 @@
+[package]
+name="feat155-ledger-inspector"
+version="0.0.0"
+edition="2021"
+[dependencies]
+rusqlite = { version = "=0.40.1", default-features = false, features = ["blob", "bundled-sqlcipher", "uuid", "limits"] }

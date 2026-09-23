@@ -1,0 +1,193 @@
+{
+  "yijie-codex": {
+    "head": "fb79b1d53501ec90084b584af5fdbe221c7a25aa",
+    "status": "",
+    "files_changed_since_audit": [],
+    "additional_paths_since_audit": [],
+    "audited_paths": 278,
+    "final_feature_paths": 278
+  },
+  "yijie-contracts": {
+    "head": "54be9314dce5319b049dc0a236800fd1a1fdd7a1",
+    "status": "",
+    "files_changed_since_audit": [
+      {
+        "path": "compatibility/native-turn-timing/source.lock.json",
+        "final_sha256": "0c4cfb3a7b79f50a7d708fd35c2499676ffe8abc3cfd541ab625aad4ca4a0c40"
+      },
+      {
+        "path": "compatibility/runtime-input-only/README.md",
+        "final_sha256": "efa0455fcab384786c18597dc9b0883cf7d4e8d3d792e82a602813fa8aa8aedb"
+      },
+      {
+        "path": "compatibility/runtime-input-only/source.lock.json",
+        "final_sha256": "1fa0510593ad1944838d34fc4ee490414766a16ec15faf26a08f3c262f3cbc4e"
+      },
+      {
+        "path": "compatibility/scheduled-draft/source.lock.json",
+        "final_sha256": "052352cd7cef4117ddb4361b49a8fec659820f3a2d659958b395ca49e6e3a5e0"
+      },
+      {
+        "path": "compatibility/scheduled-execution/source.lock.json",
+        "final_sha256": "e8fc232592ccd8cb5b6bce9b8c75623aa695176aa84ad552e0231eebcce14f7d"
+      },
+      {
+        "path": "compatibility/scheduled-plan/source.lock.json",
+        "final_sha256": "9b839132775b3ddbd69a4218738c6eebc365879ed3124861d9a0bc1adc20ac70"
+      },
+      {
+        "path": "compatibility/scheduled-task-recovery/source.lock.json",
+        "final_sha256": "f6312410160c261227c5a6ae3348ca6b83bd2616104dd2e334bb9b51ce656942"
+      },
+      {
+        "path": "docs/scheduled-task-recovery-v1.md",
+        "final_sha256": "9d4d5a8ee7d2f9493f113f4f5c9080c79d072796c040cb09b23a8e9d5a9e4aa5"
+      },
+      {
+        "path": "scripts/generate-native-turn-timing.mjs",
+        "final_sha256": "dff4287b61427fdd9b922462c36d6294d6d616448b31661781ee2b977d72d81f"
+      },
+      {
+        "path": "scripts/generate-runtime-input-only.mjs",
+        "final_sha256": "808cd01aab1283da4c2bbd6bed6937c9314c63cc3b88d7a0084a2c6ad45a3b34"
+      },
+      {
+        "path": "scripts/generate-scheduled-draft.mjs",
+        "final_sha256": "72bedaa8a09eb8aeab4eebefdd72c9c177d7b3e0225dbc2b1bc5a50ee65ba8ac"
+      },
+      {
+        "path": "scripts/generate-scheduled-execution.mjs",
+        "final_sha256": "83b96c91dd33ab79cdbe5dc240f36d505b033073745d7d629a980b217212fa79"
+      },
+      {
+        "path": "scripts/generate-scheduled-plan.mjs",
+        "final_sha256": "429b9691adcd2aef37986654f172167d5faeed98a17a4b183054295e45a12362"
+      },
+      {
+        "path": "scripts/generate-scheduled-task-recovery.mjs",
+        "final_sha256": "b384eeaceaca8419dab4d062e8bf797702f965dd70a8fd2ce0a03f3726051305"
+      },
+      {
+        "path": "scripts/sync-native-turn-timing.mjs",
+        "final_sha256": "3c5013d4af9694e02f4587383efa1dc82e2b6bffd50e30dc73dfb5a5136bfc1c"
+      },
+      {
+        "path": "scripts/sync-runtime-input-only.mjs",
+        "final_sha256": "6fdecb6db2095ccfda9739d50a4e543f840180b6020a1169718b758456cebf8f"
+      },
+      {
+        "path": "scripts/sync-scheduled-draft.mjs",
+        "final_sha256": "80affa494f6e0129b907d90fc9cf1081aaf42de45e409c70ebf388bd2fab54c1"
+      },
+      {
+        "path": "scripts/sync-scheduled-execution.mjs",
+        "final_sha256": "2b8f149392e01fad7049fdae98b60ecc83bfedb14ed253dfab28b6d2d46be0d3"
+      },
+      {
+        "path": "scripts/sync-scheduled-plan.mjs",
+        "final_sha256": "3724df87f56d70d3981aa360eb2e662223764172a34f0e802a1be0c44c590667"
+      },
+      {
+        "path": "scripts/sync-scheduled-task-recovery.mjs",
+        "final_sha256": "eccba702fa2d70b68807e3288c082d9834fe400dec5122f14bdc2022980965f3"
+      }
+    ],
+    "additional_paths_since_audit": [
+      "scripts/scheduled-consumer-source.mjs"
+    ],
+    "audited_paths": 76,
+    "final_feature_paths": 77
+  },
+  "yijie-agent-host": {
+    "head": "56e9a924454e850bd181c452c35078b3e0a36954",
+    "status": "",
+    "files_changed_since_audit": [
+      {
+        "path": "api/native-turn-timing.candidate.json",
+        "final_sha256": "9c40c175cf192de6f2a1ce33bc847ecd56b323e899e667878202ac1c75800f9b"
+      },
+      {
+        "path": "api/runtime-input-only.candidate.json",
+        "final_sha256": "f3dff38e087538e6f3a5a12b7b6a18c1f9737af10db0559c68e038c26d5716fb"
+      },
+      {
+        "path": "api/scheduled-draft.candidate.json",
+        "final_sha256": "804115c26401029f1f6d555255d81e5feceea32d383a4251b615ea65c3b08874"
+      },
+      {
+        "path": "api/scheduled-task-recovery.candidate.json",
+        "final_sha256": "b111633640c57639415d3a20e0a4028561e3c7d707b9fe08dc2e132cece32186"
+      },
+      {
+        "path": "docs/scheduled-task-recovery.md",
+        "final_sha256": "fc6e1d33e1911b93277077c7535b4a064aa527321d109146fe077e7688d457b6"
+      }
+    ],
+    "additional_paths_since_audit": [],
+    "audited_paths": 58,
+    "final_feature_paths": 58
+  },
+  "yijie-desktop": {
+    "head": "be15d237fc0422f6072d0b6ec6d668b49d4c692e",
+    "status": "",
+    "files_changed_since_audit": [
+      {
+        "path": "contracts/native-turn-timing.candidate.json",
+        "final_sha256": "9c40c175cf192de6f2a1ce33bc847ecd56b323e899e667878202ac1c75800f9b"
+      },
+      {
+        "path": "contracts/runtime-input-only.candidate.json",
+        "final_sha256": "f3dff38e087538e6f3a5a12b7b6a18c1f9737af10db0559c68e038c26d5716fb"
+      },
+      {
+        "path": "contracts/scheduled-draft.candidate.json",
+        "final_sha256": "804115c26401029f1f6d555255d81e5feceea32d383a4251b615ea65c3b08874"
+      },
+      {
+        "path": "contracts/scheduled-execution.candidate.json",
+        "final_sha256": "5bd40be5ce6518a856946ea9276d398cc5577c82b102f60b2621b9ded7b85a79"
+      },
+      {
+        "path": "contracts/scheduled-host-build.candidate.json",
+        "final_sha256": "c39dfbf265ac5a7523e93fd08fcec17aaaa5b3bd58255a99dcc16ea4ed5e7ae8"
+      },
+      {
+        "path": "contracts/scheduled-ipc.candidate.json",
+        "final_sha256": "3230ee01d1d909e5a59d78aa015179ca407cf05c6f230f2143371ba4701d1e09"
+      },
+      {
+        "path": "contracts/scheduled-plan.candidate.json",
+        "final_sha256": "3e38c834d41a6f16b09b39426ce83e80228c69e5ce0ff8e784805e71db82fc40"
+      },
+      {
+        "path": "contracts/scheduled-task-recovery.candidate.json",
+        "final_sha256": "55e082316084519f88b547805907a663b42afa0fad55378f985b9aba34f55ad1"
+      },
+      {
+        "path": "docs/feat155-scheduled-foundation.md",
+        "final_sha256": "c415b7c71218f2f878f950768085fba542acd7e0aa5d3f3891a7c5f5ed60d0c1"
+      },
+      {
+        "path": "scripts/generate-scheduled-ipc.mjs",
+        "final_sha256": "4f937120b42bbdb2c8a3be9b54d21590cd23eb7f20d722fbf306a125ca780e93"
+      },
+      {
+        "path": "scripts/scheduled-host-build-candidate.mjs",
+        "final_sha256": "4df5a575c7132c6fc7173883c0e1330b93550bbcc3dd3c213e9e090a6c60be26"
+      },
+      {
+        "path": "src-tauri/src/chat/schedules/execution/preparation/tests.rs",
+        "final_sha256": "2acd02aa55116d5e1b6435f12d16ba04a10cd64b8e6095cb1a46979b3c1e9ddb"
+      },
+      {
+        "path": "src-tauri/src/chat/schedules/execution_guard.rs",
+        "final_sha256": "b48b757b826d6233042fbd1502eda7a1ec5537ee228a3efa6f18e218f3f9ae47"
+      }
+    ],
+    "additional_paths_since_audit": [
+      "contracts/runtime-permissions.lock.json"
+    ],
+    "audited_paths": 161,
+    "final_feature_paths": 162
+  }
+}

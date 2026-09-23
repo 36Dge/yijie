@@ -1,0 +1,357 @@
+{
+  "feature": "FEAT-155",
+  "phase": "3C-3B3A",
+  "captured_at": "2026-09-18T17:22:20.407813+00:00",
+  "contract_impact": "none",
+  "overall_feature_contract_impact": "breaking",
+  "result": "investigation_complete_not_qualified",
+  "runtime_qualification": "NOT QUALIFIED",
+  "host_change": "not_applied_precondition_unsatisfied",
+  "baseline_snapshot_directory": "/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat155-b3a-gtv0bpwv",
+  "baseline_snapshot_sha256": "0435abed150c43785b8b4a41c00a2e92a693b1acbe1d80f3297d008dc5925115",
+  "prior_business_candidate_hashes_matched": 165,
+  "repositories": {
+    "yijie": {
+      "head": "2f616f4d24c001812c6279a520ba69ea9875247e",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie.git (fetch)\norigin\thttps://github.com/36Dge/yijie.git (push)",
+      "status": "M docs/adr/README.md\n?? docs/adr/ADR-0020-local-scheduled-task-authority.md\n?? docs/features/FEAT-155-desktop-scheduled-tasks/",
+      "start_file_count": 2441,
+      "current_file_count": 2445,
+      "unchanged_start_files": 2435,
+      "changed_or_added_paths": [
+        "docs/features/FEAT-155-desktop-scheduled-tasks/00-feature-brief.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/01-delivery-log.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/02-verification.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/04-owner-approval-and-implementation.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/26-phase-3c-3b-3a-qualification-plan.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/27-phase-3c-3b-3a-qualification-report.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-3c-3b-3a-source-20260919.json",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-3c-3b-3a/checks.json",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-3c-3b-3a/fixed-provenance.json",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/feature.yaml"
+      ],
+      "diff_check_exit_code": 0
+    },
+    "yijie-contracts": {
+      "head": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-contracts.git (fetch)\norigin\thttps://github.com/36Dge/yijie-contracts.git (push)",
+      "status": "M Makefile\n M docs/supported-baselines.md\n M scripts/check-breaking.sh\n M scripts/validate-json-schemas.mjs\n?? compatibility/scheduled-draft/\n?? compatibility/scheduled-execution/\n?? compatibility/scheduled-plan/\n?? compatibility/scheduled-task-recovery/\n?? docs/scheduled-draft-v1.md\n?? docs/scheduled-execution-v1.md\n?? docs/scheduled-plan-v1.md\n?? docs/scheduled-task-recovery-v1.md\n?? jsonschema/scheduled-tasks/\n?? openapi/scheduled-plan-draft/\n?? openapi/scheduled-task-recovery/\n?? scripts/check-scheduled-draft-producer.mjs\n?? scripts/check-scheduled-draft.mjs\n?? scripts/check-scheduled-execution-producer.mjs\n?? scripts/check-scheduled-execution.mjs\n?? scripts/check-scheduled-plan-producer.mjs\n?? scripts/check-scheduled-plan.mjs\n?? scripts/check-scheduled-recovery-producer.mjs\n?? scripts/check-scheduled-task-recovery.mjs\n?? scripts/generate-scheduled-draft.mjs\n?? scripts/generate-scheduled-execution.mjs\n?? scripts/generate-scheduled-plan.mjs\n?? scripts/generate-scheduled-task-recovery.mjs\n?? scripts/scheduled-schema-source.mjs\n?? scripts/sync-scheduled-draft.mjs\n?? scripts/sync-scheduled-execution.mjs\n?? scripts/sync-scheduled-plan.mjs\n?? scripts/sync-scheduled-task-recovery.mjs\n?? sdks/go/openapi/scheduled-draft/\n?? sdks/go/openapi/scheduled-task-recovery/\n?? sdks/jsonschema/scheduled-draft-output.schema.json\n?? sdks/jsonschema/scheduled-draft.schema.json\n?? sdks/jsonschema/scheduled-execution.schema.json\n?? sdks/jsonschema/scheduled-plan.schema.json\n?? sdks/jsonschema/scheduled-task-recovery.schema.json\n?? sdks/rust/scheduled-draft/\n?? sdks/rust/scheduled-execution/\n?? sdks/rust/scheduled-plan/\n?? sdks/rust/scheduled-task-recovery/\n?? sdks/typescript/src/jsonschema/scheduled-draft.gen.ts\n?? sdks/typescript/src/jsonschema/scheduled-execution.gen.ts\n?? sdks/typescript/src/jsonschema/scheduled-plan.gen.ts\n?? tests/fixtures/scheduled-schema-closure.json\n?? tests/scheduled-draft.test.mjs\n?? tests/scheduled-execution.test.mjs\n?? tests/scheduled-plan.test.mjs\n?? tests/scheduled-schema-closure.test.mjs\n?? tests/scheduled-task-recovery.test.mjs",
+      "start_file_count": 378,
+      "current_file_count": 378,
+      "unchanged_start_files": 378,
+      "changed_or_added_paths": [],
+      "diff_check_exit_code": 0
+    },
+    "yijie-agent-host": {
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-agent-host.git (fetch)\norigin\thttps://github.com/36Dge/yijie-agent-host.git (push)",
+      "status": "M Makefile\n M README.md\n M SECURITY.md\n M internal/app/app.go\n M internal/codex/session_protocol.go\n M internal/session/multimodal.go\n M internal/session/runtime_permissions.go\n M internal/session/service.go\n M internal/session/store.go\n M internal/session/title.go\n?? api/openapi/scheduled-plan-draft.yaml\n?? api/openapi/scheduled-task-recovery.yaml\n?? api/scheduled-draft.candidate.json\n?? api/scheduled-task-recovery.candidate.json\n?? api/schemas/scheduled-task-recovery.schema.json\n?? docs/scheduled-plan-draft.md\n?? docs/scheduled-task-recovery.md\n?? internal/app/scheduled_draft.go\n?? internal/app/scheduled_draft_test.go\n?? internal/app/scheduled_recovery.go\n?? internal/app/scheduled_recovery_test.go\n?? internal/codex/scheduled_draft.go\n?? internal/codex/scheduled_draft_test.go\n?? internal/contracts/scheduledraft/\n?? internal/contracts/scheduledrecovery/\n?? internal/session/scheduled_draft.go\n?? internal/session/scheduled_draft_test.go\n?? internal/session/scheduled_recovery.go\n?? internal/session/scheduled_recovery_test.go",
+      "start_file_count": 295,
+      "current_file_count": 295,
+      "unchanged_start_files": 295,
+      "changed_or_added_paths": [],
+      "diff_check_exit_code": 0
+    },
+    "yijie-desktop": {
+      "head": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-desktop.git (fetch)\norigin\thttps://github.com/36Dge/yijie-desktop.git (push)",
+      "status": "M THIRD_PARTY_NOTICES.md\n M eslint.config.js\n M package.json\n M src-tauri/Cargo.lock\n M src-tauri/Cargo.toml\n M src-tauri/src/chat/application.rs\n M src-tauri/src/chat/authorization.rs\n M src-tauri/src/chat/database.rs\n M src-tauri/src/chat/host_bridge.rs\n M src-tauri/src/chat/ipc.rs\n M src-tauri/src/chat/migrations.rs\n M src-tauri/src/chat/mod.rs\n M src-tauri/src/chat/native_conversation_storage.rs\n M src-tauri/src/chat/sidecar.rs\n M src-tauri/src/chat/worker.rs\n M src-tauri/src/lib.rs\n M src-tauri/src/native_auth/runtime.rs\n?? contracts/scheduled-draft.candidate.json\n?? contracts/scheduled-draft.schema.json\n?? contracts/scheduled-execution.candidate.json\n?? contracts/scheduled-execution.schema.json\n?? contracts/scheduled-ipc.candidate.json\n?? contracts/scheduled-plan.candidate.json\n?? contracts/scheduled-plan.schema.json\n?? contracts/scheduled-task-recovery.candidate.json\n?? contracts/scheduled-task-recovery.schema.json\n?? docs/feat155-scheduled-foundation.md\n?? scripts/check-scheduled-ipc.mjs\n?? scripts/generate-scheduled-ipc.mjs\n?? src-tauri/migrations/chat/0016_scheduled_plan_foundation.sql\n?? src-tauri/migrations/chat/0017_scheduled_execution_foundation.sql\n?? src-tauri/migrations/chat/0018_scheduled_local_preparation.sql\n?? src-tauri/migrations/chat/0019_scheduled_recovery.sql\n?? src-tauri/migrations/chat/0020_scheduled_dispatch.sql\n?? src-tauri/migrations/chat/0021_scheduled_triggers.sql\n?? src-tauri/migrations/chat/0022_scheduled_draft_sources.sql\n?? src-tauri/schemas/scheduled-task-ipc-resolved.schema.json\n?? src-tauri/schemas/scheduled-task-ipc-v1.schema.json\n?? src-tauri/src/chat/exit_owner.rs\n?? src-tauri/src/chat/host_bridge/\n?? src-tauri/src/chat/lifecycle.rs\n?? src-tauri/src/chat/platform_lifecycle.rs\n?? src-tauri/src/chat/schedules/\n?? src/api/generated/scheduled-task-ipc-formats.gen.js\n?? src/api/generated/scheduled-task-ipc-validator.gen.d.ts\n?? src/api/generated/scheduled-task-ipc-validator.gen.js\n?? src/api/generated/scheduled-task-ipc.gen.ts\n?? src/api/scheduled-task-native-client.test.ts\n?? src/api/scheduled-task-native-client.ts\n?? src/domain/scheduled-draft.generated.ts\n?? src/domain/scheduled-execution.generated.ts\n?? src/domain/scheduled-plan.generated.ts",
+      "start_file_count": 744,
+      "current_file_count": 744,
+      "unchanged_start_files": 744,
+      "changed_or_added_paths": [],
+      "diff_check_exit_code": 0
+    },
+    "yijie-codex": {
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-codex.git (fetch)\norigin\thttps://github.com/36Dge/yijie-codex.git (push)\nupstream\thttps://github.com/openai/codex.git (fetch)\nupstream\tDISABLED (push)",
+      "status": "",
+      "start_file_count": 5296,
+      "current_file_count": 5296,
+      "unchanged_start_files": 5296,
+      "changed_or_added_paths": [],
+      "diff_check_exit_code": 0
+    }
+  },
+  "reviewed_source_files": {
+    "yijie-codex": [
+      {
+        "path": "codex-rs/app-server-protocol/src/protocol/common.rs",
+        "sha256": "5679cbc5b3e935a2edd69fbe62b82b956eff4d5d050c9969b090ccc9d367fdee"
+      },
+      {
+        "path": "codex-rs/app-server-protocol/src/protocol/v1.rs",
+        "sha256": "bec8dfc4beb1460fca9483b6224d436605bf1fd7b0796fc7e72b6cb1a43f5fe7"
+      },
+      {
+        "path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs",
+        "sha256": "9e492d1a3b7b00a77bb27cb21892e0d24183fb3f2a062ea1f631fc49fc240acc"
+      },
+      {
+        "path": "codex-rs/app-server-protocol/src/protocol/v2/config.rs",
+        "sha256": "e194d017aafae8f62a5e742198fd0f9910fbabb3a55b9fdccabc7df2e422f331"
+      },
+      {
+        "path": "codex-rs/app-server-protocol/src/protocol/v2/permissions.rs",
+        "sha256": "472c1a71f92b303606fd3fc85f2b438a8f1244b6d1d5ae3b7a78165e64db141d"
+      },
+      {
+        "path": "codex-rs/app-server-protocol/src/protocol/v2/mcp.rs",
+        "sha256": "7d8df4ce829023ab872038468422cf284fb7954fddf9b78911c0662faa4c78e7"
+      },
+      {
+        "path": "codex-rs/app-server-protocol/src/protocol/v2/plugin.rs",
+        "sha256": "41ffe4a2f02c8df31b1323c1b95102af2ded85c3fa8bfffe2f9d61f90a1d6ac3"
+      },
+      {
+        "path": "codex-rs/app-server-protocol/src/protocol/v2/attestation.rs",
+        "sha256": "4cbea60ddeef79183753dc677070f0676182caeca07608fb172e9730f2402d11"
+      },
+      {
+        "path": "codex-rs/protocol/src/models.rs",
+        "sha256": "882d00aa17a414b417376a86b4c01e5a80d253eeee72b3eecac140433519111d"
+      },
+      {
+        "path": "codex-rs/config/src/merge.rs",
+        "sha256": "b0fc074472a234b7d9375003d864a187ee3eb222317b599719d5fba948055fc2"
+      },
+      {
+        "path": "codex-rs/features/src/lib.rs",
+        "sha256": "67438e073ef25f02ed2b526e79e4034092345d323dc13bd1dec0100ae47a628b"
+      },
+      {
+        "path": "codex-rs/app-server/src/config_manager.rs",
+        "sha256": "1746c0db96f6c2bd97ea81dc2b9617f98d02bd2dab121f70dfccf1f1080bd13f"
+      },
+      {
+        "path": "codex-rs/app-server/src/config_manager_service.rs",
+        "sha256": "2a1fdabca165394f5243c2b8cf05a721745ec9d01b6fe276025bc34b3fc3f384"
+      },
+      {
+        "path": "codex-rs/app-server/src/message_processor.rs",
+        "sha256": "2607559ee2d298d2fc7a46dced4cd205c4ef9475ca6b829aaaeac18368ec1df1"
+      },
+      {
+        "path": "codex-rs/app-server/src/models_refresh_worker.rs",
+        "sha256": "7990ba5acb1367cb14a00c89b9e20f3bc9da8c976d719535e855f9f260ea74bf"
+      },
+      {
+        "path": "codex-rs/app-server/src/request_processors/catalog_processor.rs",
+        "sha256": "4cf5d0446be8ebb5f2b8ff356b278ebd5c1eeccb19f2fc4dd5294725dc3dda16"
+      },
+      {
+        "path": "codex-rs/app-server/src/request_processors/mcp_processor.rs",
+        "sha256": "731915a1f51c709a367477f0caf3e61d57411b5ec31c4b58083bea79983a8e45"
+      },
+      {
+        "path": "codex-rs/app-server/src/request_processors/thread_processor.rs",
+        "sha256": "9efe2ce97cffec5d014da4a0a79a0be34ca643d714d9128d2f1a1e311d494e8e"
+      },
+      {
+        "path": "codex-rs/core/src/config/mod.rs",
+        "sha256": "538e507c7541e29f743775cea0c322e4878a597f192b72663ee573fdf6ef1a57"
+      },
+      {
+        "path": "codex-rs/core/src/config/permissions.rs",
+        "sha256": "79577f2ce24abf5d99bc926ad30e63fe89a9578b1545228c9880d09e5f092e60"
+      },
+      {
+        "path": "codex-rs/core/src/session/config_lock.rs",
+        "sha256": "2aa7c9e9df633e4ca5f72a2cfc97463af4d2cef774ec779fb52c6e95977e0937"
+      },
+      {
+        "path": "codex-rs/core/src/session/session.rs",
+        "sha256": "12ad2e9372b24cba635ef33f1a5f6697103196e706d721695edde69fc6525c3e"
+      },
+      {
+        "path": "codex-rs/core/src/session/mod.rs",
+        "sha256": "0a1045a7c54655df6743f2bab9275001e772c5b3e695dc8e07d63d1fd9d39a14"
+      },
+      {
+        "path": "codex-rs/core/src/session_startup_prewarm.rs",
+        "sha256": "adb0d520c9469d2c1e9539751eecb1a534de120ce90884175f554763dfd75bd4"
+      },
+      {
+        "path": "codex-rs/core/src/tools/spec_plan.rs",
+        "sha256": "34e703396d8e495175f4fda2c53c61e67fab17e40b9b3d623ba93fc504a26a34"
+      },
+      {
+        "path": "codex-rs/core/src/tools/handlers/view_image.rs",
+        "sha256": "f079addc5955aac9fa1f998d054b8ca5229a1f9067a4f862b43e4323aba11c4b"
+      },
+      {
+        "path": "codex-rs/core-skills/src/loader.rs",
+        "sha256": "acc354079afe6adddf60a96f848f9e923af889822b8958456b58f7ba9c8a69e2"
+      },
+      {
+        "path": "codex-rs/tools/src/tool_config.rs",
+        "sha256": "3357bef5f4cf60d38065b918a696724b7cfd16a5e9b879f1bbce05f79b2d55e3"
+      },
+      {
+        "path": "codex-rs/models-manager/src/manager.rs",
+        "sha256": "5b470bf65e881d3b8959f4ca7958afb37fc35e89b580c21788a1c99cfddcb01e"
+      },
+      {
+        "path": "scripts/runtime_manifest.py",
+        "sha256": "1f4d32eb03440288f4bd3d386a3c6a3b363ec6b976fe32dcf13b6e81a1a7aea0"
+      },
+      {
+        "path": "docs/feat137-retirement.md",
+        "sha256": "f7fc8ed370453c119fa55487adb857460a6feebc167b35a39cc06c85c8db755b"
+      }
+    ],
+    "yijie-agent-host": [
+      {
+        "path": "internal/codex/baseline.go",
+        "sha256": "c6e962a4a669cca5959d03a4dc2da8a3c9a86d8a2d0c865c81d341aecea334e0"
+      },
+      {
+        "path": "internal/codex/scheduled_draft.go",
+        "sha256": "e6b8a99fb9d9002bcc4d5948daacd98336978bf21147e01095a76967e6128ce6"
+      },
+      {
+        "path": "internal/codex/scheduled_draft_test.go",
+        "sha256": "eed892d3b96a1aa8aa267fbd33e3475fe7daa4518281a38bbe4a93803b7d390a"
+      },
+      {
+        "path": "internal/codex/provider.go",
+        "sha256": "def7866b49e68b74bc64ded9ad87d21a12670451699652909d48a50f55135c31"
+      },
+      {
+        "path": "internal/codex/sorftime.go",
+        "sha256": "449298fb8a7ffc8fd35685ada503eca7073e3ced5684fd7c1ec55c61cb43ae5f"
+      },
+      {
+        "path": "internal/codex/native_config_layers.go",
+        "sha256": "ff550d6bc26a073013eff46c44c6480ec1a74068ebda89a72b544661005f4322"
+      },
+      {
+        "path": "internal/codex/native_config_layers_test.go",
+        "sha256": "622370251b137cbc3623ca238ebd7c6a5b6a80db1bfc92a309fca75481de33bb"
+      },
+      {
+        "path": "internal/codex/runtime.go",
+        "sha256": "abf34dd882ec592441f6120870d8343f918c2f9af94c765319b058340ab28803"
+      },
+      {
+        "path": "internal/codex/runtime_permissions_test.go",
+        "sha256": "60e9e1fd48a220ea2ceeb2a8ad09adf1ef87744291cd796837097d9830a09df9"
+      },
+      {
+        "path": "internal/session/scheduled_draft.go",
+        "sha256": "064329289ea5e895d8ff0fad6d2458c73035975e694da3e6f1ba33bec37d6fc0"
+      },
+      {
+        "path": "internal/session/scheduled_draft_test.go",
+        "sha256": "e0e8dabfc023ca3c04685e02e7639fe393433a0918f4dcd766ffae035c39a13c"
+      },
+      {
+        "path": "internal/session/runtime_permissions_test.go",
+        "sha256": "c10b539c8ce01d7ec3a23ecff03bfb17b0a9b0d049a9de4b0eddd3e06c459d1f"
+      },
+      {
+        "path": "internal/app/scheduled_draft.go",
+        "sha256": "a34920bf4bbe234e9e3cc0141680696abf4c23a45ddfa74c7a3cdf9953be2c48"
+      },
+      {
+        "path": "internal/app/scheduled_draft_test.go",
+        "sha256": "5bbb212ade03e15e6ca0d3163e666a67fef5e004f3e82600b7259120bf6f869e"
+      }
+    ]
+  },
+  "evidence_files": [
+    {
+      "path": "evidence/phase-3c-3b-3a/audit-claims.log",
+      "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4"
+    },
+    {
+      "path": "evidence/phase-3c-3b-3a/checks.json",
+      "sha256": "9b37fd632b4103e77146000c66a5df8e5bf6a64a59f39cc36584f60f0442a0f0"
+    },
+    {
+      "path": "evidence/phase-3c-3b-3a/d0.log",
+      "sha256": "ccc00513c27f044ca664925a882399ed124d51bef8632ed931606e5b1e0f01c3"
+    },
+    {
+      "path": "evidence/phase-3c-3b-3a/fixed-provenance.json",
+      "sha256": "8c23017f20a481e83522c8258b971152d48f1ec7bfc7d8df12bc412bd0885d5f"
+    },
+    {
+      "path": "evidence/phase-3c-3b-3a/host-focused-go1265.log",
+      "sha256": "f8812c205cb0f8094f2a903a8f18d9a8a52ccf7e7b01de912769b9ad1adc56d6"
+    },
+    {
+      "path": "evidence/phase-3c-3b-3a/host-focused.log",
+      "sha256": "0d21a17d43a95eec6fe3c40b4b76cd2e42a56ab4293e1f82a5b18cea3d449ac5"
+    },
+    {
+      "path": "evidence/phase-3c-3b-3a/host-vet.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/phase-3c-3b-3a/meta-lint.log",
+      "sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c"
+    },
+    {
+      "path": "evidence/phase-3c-3b-3a/meta-test.log",
+      "sha256": "069779ad22942a3946696d2a4859b422287bdf462969105957507e60aad74728"
+    },
+    {
+      "path": "evidence/phase-3c-3b-3a/strict.log",
+      "sha256": "b9f9c63fc02c70944a6be36145b71f7aa06a1244687cccee2b992b1282376bf8"
+    }
+  ],
+  "ordinary_schema": {
+    "desktop": 15,
+    "host": 5
+  },
+  "candidate_schema": {
+    "desktop": 22,
+    "host": 6
+  },
+  "real_runtime_process_started": false,
+  "real_text_calls": 0,
+  "text_total": 0,
+  "text_budget": 12,
+  "real_image_calls": 0,
+  "merchant_mcp_external_calls": 0,
+  "daily_database_or_keychain_accessed": false,
+  "pending_decision": "DEC-155-09 (proposed, not approved)",
+  "automatic_next_step": false,
+  "release": false,
+  "changed_feature_documents": [
+    {
+      "path": "00-feature-brief.md",
+      "sha256": "afa1ada8b41bb108e0a838dc4d72f1b77b0305e89ebee9f72b2d2b1d187e8f1a"
+    },
+    {
+      "path": "01-delivery-log.md",
+      "sha256": "2e0ceef10fe613ed505b03f0debf3a8fce2909fad59887ece903cc0ef14ff3e4"
+    },
+    {
+      "path": "02-verification.md",
+      "sha256": "56bb444761aabb6437536a971fddf020dfc337c0da92ed7732da4a5790c5b88d"
+    },
+    {
+      "path": "04-owner-approval-and-implementation.md",
+      "sha256": "04db4cf0fdb6dd66ba5aeca88da8e942e98edc3a48846af2d8949f32d2143894"
+    },
+    {
+      "path": "26-phase-3c-3b-3a-qualification-plan.md",
+      "sha256": "06c52561c4851bfe8248f0d59739ee30f225951e5de0e0a1245698d3712c0270"
+    },
+    {
+      "path": "27-phase-3c-3b-3a-qualification-report.md",
+      "sha256": "0e17b61f6b972c35b4fe1f2baed7d41bcf679e1b8c2ddc324c59c793564f1d10"
+    },
+    {
+      "path": "feature.yaml",
+      "sha256": "0ee4cc354e5e8427d273ea9b357ceebbe507e1c74b159656daa143d9f7d042b0"
+    }
+  ]
+}

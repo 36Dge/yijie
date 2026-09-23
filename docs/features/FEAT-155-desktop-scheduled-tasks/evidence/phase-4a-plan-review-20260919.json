@@ -1,0 +1,119 @@
+{
+  "date": "2026-09-19",
+  "mode": "read_only_source_review_and_plan_documents",
+  "contract_impact_this_turn": "none",
+  "planned_contract_impact": "breaking",
+  "plan": "32-phase-4a-management-ui-implementation-plan.md",
+  "product_tests_run": false,
+  "product_code_changed": false,
+  "services_started": false,
+  "real_model_calls": 0,
+  "candidate_schema_current": 22,
+  "candidate_schema_proposed": 23,
+  "checks": [
+    {
+      "name": "strict",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-155-desktop-scheduled-tasks",
+      "exit_code": 0,
+      "log": "phase-4a-plan/strict.log"
+    },
+    {
+      "name": "d0",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate D0 docs/features/FEAT-155-desktop-scheduled-tasks",
+      "exit_code": 0,
+      "log": "phase-4a-plan/d0.log"
+    },
+    {
+      "name": "audit-claims",
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-155-desktop-scheduled-tasks",
+      "exit_code": 0,
+      "log": "phase-4a-plan/audit-claims.log"
+    },
+    {
+      "name": "lint",
+      "command": "pnpm lint",
+      "exit_code": 0,
+      "log": "phase-4a-plan/lint.log"
+    },
+    {
+      "name": "test",
+      "command": "pnpm test",
+      "exit_code": 0,
+      "log": "phase-4a-plan/test.log"
+    },
+    {
+      "name": "shell",
+      "command": "bash -n scripts/*.sh",
+      "exit_code": 0,
+      "log": "phase-4a-plan/shell.log"
+    }
+  ],
+  "governance_tests": 50,
+  "local_links": 135,
+  "workspaces": {
+    "yijie": {
+      "head": "2f616f4d24c001812c6279a520ba69ea9875247e",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie.git (fetch)\norigin\thttps://github.com/36Dge/yijie.git (push)",
+      "changed_existing": [
+        "docs/features/FEAT-155-desktop-scheduled-tasks/00-feature-brief.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/01-delivery-log.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/02-verification.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/04-owner-approval-and-implementation.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/feature.yaml"
+      ],
+      "new_paths": [
+        "docs/features/FEAT-155-desktop-scheduled-tasks/32-phase-4a-management-ui-implementation-plan.md"
+      ],
+      "unchanged_starting_files": 2466,
+      "diff_check": 0
+    },
+    "yijie-codex": {
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-codex.git (fetch)\norigin\thttps://github.com/36Dge/yijie-codex.git (push)\nupstream\thttps://github.com/openai/codex.git (fetch)\nupstream\tDISABLED (push)",
+      "changed_existing": [],
+      "new_paths": [],
+      "unchanged_starting_files": 5568,
+      "diff_check": 0
+    },
+    "yijie-contracts": {
+      "head": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-contracts.git (fetch)\norigin\thttps://github.com/36Dge/yijie-contracts.git (push)",
+      "changed_existing": [],
+      "new_paths": [],
+      "unchanged_starting_files": 386,
+      "diff_check": 0
+    },
+    "yijie-agent-host": {
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-agent-host.git (fetch)\norigin\thttps://github.com/36Dge/yijie-agent-host.git (push)",
+      "changed_existing": [],
+      "new_paths": [],
+      "unchanged_starting_files": 305,
+      "diff_check": 0
+    },
+    "yijie-desktop": {
+      "head": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-desktop.git (fetch)\norigin\thttps://github.com/36Dge/yijie-desktop.git (push)",
+      "changed_existing": [],
+      "new_paths": [],
+      "unchanged_starting_files": 750,
+      "diff_check": 0
+    }
+  },
+  "reviews": [
+    {
+      "scope": "UI/query/storage",
+      "result": "no remaining blocker; SQL15/legacy timestamps/composer protection clarified"
+    },
+    {
+      "scope": "context/receipts/validation",
+      "result": "no remaining blocker; in-flight unknown scope retention and zero new execution counts clarified"
+    }
+  ],
+  "plan_sha256": "ba8a6fc249be192438967df7c938fbf6bb567be72f2978ed61a8cb28491519ca"
+}

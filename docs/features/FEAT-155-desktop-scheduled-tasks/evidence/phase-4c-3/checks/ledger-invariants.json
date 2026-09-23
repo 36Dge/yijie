@@ -1,0 +1,25 @@
+{
+  "old_run_grant_binding_recovery_outbox_facts_unchanged": 34,
+  "automatic_independence": {
+    "local": {
+      "status": "PASS",
+      "unchanged_facts": [
+        "grant=01a0cbf6-a6f7-7ac3-abc1-1c3cfc00db4e;max=1;occupied=0;expires=1790182380",
+        "plan=01a0c9fc-2ff8-72b2-a0df-8b6f86f78aa6;state=enabled;revision=5;grant=01a0cbf6-a6f7-7ac3-abc1-1c3cfc00db4e",
+        "future=01a0c9fc-2ff8-72b2-a0df-8b6f86f78aa6;next=1790181780;hold=none",
+        "slot=01a0c9fc-2ff8-72b2-a0df-8b6f86f78aa6;at=1790095380;disposition=consumed;run=01a0c9ff-ce44-7830-9a76-c7534bd41bb1",
+        "slot=01a0c9fc-2ff8-72b2-a0df-8b6f86f78aa6;at=1790181780;disposition=planned;run=none"
+      ]
+    },
+    "real": {
+      "status": "PASS",
+      "unchanged_facts": [
+        "grant=01a0cc09-4014-7291-9384-db60f7216b34;max=1;occupied=0;expires=1790183100",
+        "plan=01a0ca03-f2d1-7dd0-a2ea-7122e07552b1;state=enabled;revision=5;grant=01a0cc09-4014-7291-9384-db60f7216b34",
+        "future=01a0ca03-f2d1-7dd0-a2ea-7122e07552b1;next=1790182500;hold=none",
+        "slot=01a0ca03-f2d1-7dd0-a2ea-7122e07552b1;at=1790096100;disposition=consumed;run=01a0ca0a-cad7-7153-b65d-12f205b48826",
+        "slot=01a0ca03-f2d1-7dd0-a2ea-7122e07552b1;at=1790182500;disposition=planned;run=none"
+      ]
+    }
+  }
+}

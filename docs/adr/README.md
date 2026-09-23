@@ -11,6 +11,9 @@ ADR 用于记录跨仓、跨团队、长期影响的架构决策。
 
 ## 当前新增决策
 
+- [ADR-0020：本地定时任务权威、Codex 执行复用与正常生命周期](ADR-0020-local-scheduled-task-authority.md) — Accepted；
+  Owner已接受FEAT-155本地方案及16小时例外；2026-09-23排除两项电源需求，系统通知延期；本地候选D4及2026-09-24五仓本地版本固化通过；完整来源与残余全仓门禁见FEAT-155报告50。
+
 - [ADR-0019：Coze 工作流基础集成](ADR-0019-coze-workflow-foundation.md) — Accepted；
   FEAT-153 第 2 步用户批准及本地身份/编辑器设计已明确，运行集成与 D4 尚未完成。
 

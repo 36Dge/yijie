@@ -1,0 +1,207 @@
+{
+  "date": "2026-09-19",
+  "mode": "read_only_source_review_and_plan_documents",
+  "contract_impact_this_turn": "none",
+  "planned_contract_impact": "breaking",
+  "plan": "30-phase-3c-3b-3b-implementation-plan.md",
+  "plan_sha256": "b2698c52f7b6f154d789c8b7bf2a654d23025806c2e19b47ee1e855d4db2ae14",
+  "checks": [
+    {
+      "name": "strict",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-155-desktop-scheduled-tasks",
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "phase-3c-3b-3b-plan/strict.log"
+    },
+    {
+      "name": "d0",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate D0 docs/features/FEAT-155-desktop-scheduled-tasks",
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "phase-3c-3b-3b-plan/d0.log"
+    },
+    {
+      "name": "audit-claims",
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-155-desktop-scheduled-tasks",
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "phase-3c-3b-3b-plan/audit-claims.log"
+    },
+    {
+      "name": "lint",
+      "command": "pnpm lint",
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "phase-3c-3b-3b-plan/lint.log"
+    },
+    {
+      "name": "test",
+      "command": "pnpm test",
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "phase-3c-3b-3b-plan/test.log"
+    },
+    {
+      "name": "shell",
+      "command": "bash -n scripts/*.sh",
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "phase-3c-3b-3b-plan/shell.log"
+    }
+  ],
+  "governance_tests": 50,
+  "product_tests_run": false,
+  "services_started": false,
+  "real_model_calls": 0,
+  "text_budget_used": 0,
+  "text_budget_total": 12,
+  "image_calls": 0,
+  "merchant_calls": 0,
+  "workspaces": {
+    "yijie": {
+      "head": "2f616f4d24c001812c6279a520ba69ea9875247e",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie.git (fetch)\norigin\thttps://github.com/36Dge/yijie.git (push)",
+      "initial_status": "M docs/adr/README.md\n?? docs/adr/ADR-0020-local-scheduled-task-authority.md\n?? docs/features/FEAT-155-desktop-scheduled-tasks/",
+      "final_status": "M docs/adr/README.md\n?? docs/adr/ADR-0020-local-scheduled-task-authority.md\n?? docs/features/FEAT-155-desktop-scheduled-tasks/",
+      "changed_existing": [
+        "docs/features/FEAT-155-desktop-scheduled-tasks/00-feature-brief.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/01-delivery-log.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/02-verification.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/04-owner-approval-and-implementation.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/29-draft-runtime-unblock-report.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/feature.yaml"
+      ],
+      "new_paths": [
+        "docs/features/FEAT-155-desktop-scheduled-tasks/30-phase-3c-3b-3b-implementation-plan.md"
+      ],
+      "unchanged_starting_files": 2447
+    },
+    "yijie-codex": {
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-codex.git (fetch)\norigin\thttps://github.com/36Dge/yijie-codex.git (push)\nupstream\thttps://github.com/openai/codex.git (fetch)\nupstream\tDISABLED (push)",
+      "initial_status": "M CHANGELOG.yijie.md\n M Makefile\n M README.md\n M SECURITY.md\n M UPSTREAM.md\n M scripts/write-runtime-manifest.py\n?? .yijie/patches/input-only/\n?? .yijie/schemas/input-only-app-server/\n?? docs/input-only-execution.md\n?? scripts/build-input-only.sh",
+      "final_status": "M CHANGELOG.yijie.md\n M Makefile\n M README.md\n M SECURITY.md\n M UPSTREAM.md\n M scripts/write-runtime-manifest.py\n?? .yijie/patches/input-only/\n?? .yijie/schemas/input-only-app-server/\n?? docs/input-only-execution.md\n?? scripts/build-input-only.sh",
+      "changed_existing": [],
+      "new_paths": [],
+      "unchanged_starting_files": 5568
+    },
+    "yijie-contracts": {
+      "head": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-contracts.git (fetch)\norigin\thttps://github.com/36Dge/yijie-contracts.git (push)",
+      "initial_status": "M Makefile\n M README.md\n M SECURITY.md\n M docs/supported-baselines.md\n M scripts/check-breaking.sh\n M scripts/validate-json-schemas.mjs\n?? compatibility/runtime-input-only/\n?? compatibility/scheduled-draft/\n?? compatibility/scheduled-execution/\n?? compatibility/scheduled-plan/\n?? compatibility/scheduled-task-recovery/\n?? docs/scheduled-draft-v1.md\n?? docs/scheduled-execution-v1.md\n?? docs/scheduled-plan-v1.md\n?? docs/scheduled-task-recovery-v1.md\n?? jsonschema/scheduled-tasks/\n?? openapi/scheduled-plan-draft/\n?? openapi/scheduled-task-recovery/\n?? scripts/check-scheduled-draft-producer.mjs\n?? scripts/check-scheduled-draft.mjs\n?? scripts/check-scheduled-execution-producer.mjs\n?? scripts/check-scheduled-execution.mjs\n?? scripts/check-scheduled-plan-producer.mjs\n?? scripts/check-scheduled-plan.mjs\n?? scripts/check-scheduled-recovery-producer.mjs\n?? scripts/check-scheduled-task-recovery.mjs\n?? scripts/generate-runtime-input-only.mjs\n?? scripts/generate-scheduled-draft.mjs\n?? scripts/generate-scheduled-execution.mjs\n?? scripts/generate-scheduled-plan.mjs\n?? scripts/generate-scheduled-task-recovery.mjs\n?? scripts/scheduled-schema-source.mjs\n?? scripts/sync-runtime-input-only.mjs\n?? scripts/sync-scheduled-draft.mjs\n?? scripts/sync-scheduled-execution.mjs\n?? scripts/sync-scheduled-plan.mjs\n?? scripts/sync-scheduled-task-recovery.mjs\n?? sdks/go/openapi/runtime-input-only/\n?? sdks/go/openapi/scheduled-draft/\n?? sdks/go/openapi/scheduled-task-recovery/\n?? sdks/jsonschema/runtime-input-only/\n?? sdks/jsonschema/scheduled-draft-output.schema.json\n?? sdks/jsonschema/scheduled-draft.schema.json\n?? sdks/jsonschema/scheduled-execution.schema.json\n?? sdks/jsonschema/scheduled-plan.schema.json\n?? sdks/jsonschema/scheduled-task-recovery.schema.json\n?? sdks/rust/scheduled-draft/\n?? sdks/rust/scheduled-execution/\n?? sdks/rust/scheduled-plan/\n?? sdks/rust/scheduled-task-recovery/\n?? sdks/typescript/src/jsonschema/scheduled-draft.gen.ts\n?? sdks/typescript/src/jsonschema/scheduled-execution.gen.ts\n?? sdks/typescript/src/jsonschema/scheduled-plan.gen.ts\n?? tests/fixtures/scheduled-schema-closure.json\n?? tests/runtime-input-only.test.mjs\n?? tests/scheduled-draft.test.mjs\n?? tests/scheduled-execution.test.mjs\n?? tests/scheduled-plan.test.mjs\n?? tests/scheduled-schema-closure.test.mjs\n?? tests/scheduled-task-recovery.test.mjs",
+      "final_status": "M Makefile\n M README.md\n M SECURITY.md\n M docs/supported-baselines.md\n M scripts/check-breaking.sh\n M scripts/validate-json-schemas.mjs\n?? compatibility/runtime-input-only/\n?? compatibility/scheduled-draft/\n?? compatibility/scheduled-execution/\n?? compatibility/scheduled-plan/\n?? compatibility/scheduled-task-recovery/\n?? docs/scheduled-draft-v1.md\n?? docs/scheduled-execution-v1.md\n?? docs/scheduled-plan-v1.md\n?? docs/scheduled-task-recovery-v1.md\n?? jsonschema/scheduled-tasks/\n?? openapi/scheduled-plan-draft/\n?? openapi/scheduled-task-recovery/\n?? scripts/check-scheduled-draft-producer.mjs\n?? scripts/check-scheduled-draft.mjs\n?? scripts/check-scheduled-execution-producer.mjs\n?? scripts/check-scheduled-execution.mjs\n?? scripts/check-scheduled-plan-producer.mjs\n?? scripts/check-scheduled-plan.mjs\n?? scripts/check-scheduled-recovery-producer.mjs\n?? scripts/check-scheduled-task-recovery.mjs\n?? scripts/generate-runtime-input-only.mjs\n?? scripts/generate-scheduled-draft.mjs\n?? scripts/generate-scheduled-execution.mjs\n?? scripts/generate-scheduled-plan.mjs\n?? scripts/generate-scheduled-task-recovery.mjs\n?? scripts/scheduled-schema-source.mjs\n?? scripts/sync-runtime-input-only.mjs\n?? scripts/sync-scheduled-draft.mjs\n?? scripts/sync-scheduled-execution.mjs\n?? scripts/sync-scheduled-plan.mjs\n?? scripts/sync-scheduled-task-recovery.mjs\n?? sdks/go/openapi/runtime-input-only/\n?? sdks/go/openapi/scheduled-draft/\n?? sdks/go/openapi/scheduled-task-recovery/\n?? sdks/jsonschema/runtime-input-only/\n?? sdks/jsonschema/scheduled-draft-output.schema.json\n?? sdks/jsonschema/scheduled-draft.schema.json\n?? sdks/jsonschema/scheduled-execution.schema.json\n?? sdks/jsonschema/scheduled-plan.schema.json\n?? sdks/jsonschema/scheduled-task-recovery.schema.json\n?? sdks/rust/scheduled-draft/\n?? sdks/rust/scheduled-execution/\n?? sdks/rust/scheduled-plan/\n?? sdks/rust/scheduled-task-recovery/\n?? sdks/typescript/src/jsonschema/scheduled-draft.gen.ts\n?? sdks/typescript/src/jsonschema/scheduled-execution.gen.ts\n?? sdks/typescript/src/jsonschema/scheduled-plan.gen.ts\n?? tests/fixtures/scheduled-schema-closure.json\n?? tests/runtime-input-only.test.mjs\n?? tests/scheduled-draft.test.mjs\n?? tests/scheduled-execution.test.mjs\n?? tests/scheduled-plan.test.mjs\n?? tests/scheduled-schema-closure.test.mjs\n?? tests/scheduled-task-recovery.test.mjs",
+      "changed_existing": [],
+      "new_paths": [],
+      "unchanged_starting_files": 386
+    },
+    "yijie-agent-host": {
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-agent-host.git (fetch)\norigin\thttps://github.com/36Dge/yijie-agent-host.git (push)",
+      "initial_status": "M Makefile\n M README.md\n M SECURITY.md\n M internal/app/app.go\n M internal/codex/baseline.go\n M internal/codex/runtime.go\n M internal/codex/session_protocol.go\n M internal/session/multimodal.go\n M internal/session/runtime_permissions.go\n M internal/session/service.go\n M internal/session/store.go\n M internal/session/title.go\n?? api/openapi/scheduled-plan-draft.yaml\n?? api/openapi/scheduled-task-recovery.yaml\n?? api/runtime-input-only.candidate.json\n?? api/scheduled-draft.candidate.json\n?? api/scheduled-task-recovery.candidate.json\n?? api/schemas/scheduled-task-recovery.schema.json\n?? docs/scheduled-draft-input-only.md\n?? docs/scheduled-plan-draft.md\n?? docs/scheduled-task-recovery.md\n?? internal/app/scheduled_draft.go\n?? internal/app/scheduled_draft_test.go\n?? internal/app/scheduled_recovery.go\n?? internal/app/scheduled_recovery_test.go\n?? internal/codex/scheduled_draft.go\n?? internal/codex/scheduled_draft_integration_test.go\n?? internal/codex/scheduled_draft_test.go\n?? internal/contracts/runtimeinputonly/\n?? internal/contracts/scheduledraft/\n?? internal/contracts/scheduledrecovery/\n?? internal/session/scheduled_draft.go\n?? internal/session/scheduled_draft_test.go\n?? internal/session/scheduled_recovery.go\n?? internal/session/scheduled_recovery_test.go",
+      "final_status": "M Makefile\n M README.md\n M SECURITY.md\n M internal/app/app.go\n M internal/codex/baseline.go\n M internal/codex/runtime.go\n M internal/codex/session_protocol.go\n M internal/session/multimodal.go\n M internal/session/runtime_permissions.go\n M internal/session/service.go\n M internal/session/store.go\n M internal/session/title.go\n?? api/openapi/scheduled-plan-draft.yaml\n?? api/openapi/scheduled-task-recovery.yaml\n?? api/runtime-input-only.candidate.json\n?? api/scheduled-draft.candidate.json\n?? api/scheduled-task-recovery.candidate.json\n?? api/schemas/scheduled-task-recovery.schema.json\n?? docs/scheduled-draft-input-only.md\n?? docs/scheduled-plan-draft.md\n?? docs/scheduled-task-recovery.md\n?? internal/app/scheduled_draft.go\n?? internal/app/scheduled_draft_test.go\n?? internal/app/scheduled_recovery.go\n?? internal/app/scheduled_recovery_test.go\n?? internal/codex/scheduled_draft.go\n?? internal/codex/scheduled_draft_integration_test.go\n?? internal/codex/scheduled_draft_test.go\n?? internal/contracts/runtimeinputonly/\n?? internal/contracts/scheduledraft/\n?? internal/contracts/scheduledrecovery/\n?? internal/session/scheduled_draft.go\n?? internal/session/scheduled_draft_test.go\n?? internal/session/scheduled_recovery.go\n?? internal/session/scheduled_recovery_test.go",
+      "changed_existing": [],
+      "new_paths": [],
+      "unchanged_starting_files": 303
+    },
+    "yijie-desktop": {
+      "head": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-desktop.git (fetch)\norigin\thttps://github.com/36Dge/yijie-desktop.git (push)",
+      "initial_status": "M THIRD_PARTY_NOTICES.md\n M eslint.config.js\n M package.json\n M src-tauri/Cargo.lock\n M src-tauri/Cargo.toml\n M src-tauri/src/chat/application.rs\n M src-tauri/src/chat/authorization.rs\n M src-tauri/src/chat/database.rs\n M src-tauri/src/chat/host_bridge.rs\n M src-tauri/src/chat/ipc.rs\n M src-tauri/src/chat/migrations.rs\n M src-tauri/src/chat/mod.rs\n M src-tauri/src/chat/native_conversation_storage.rs\n M src-tauri/src/chat/sidecar.rs\n M src-tauri/src/chat/worker.rs\n M src-tauri/src/lib.rs\n M src-tauri/src/native_auth/runtime.rs\n?? contracts/scheduled-draft.candidate.json\n?? contracts/scheduled-draft.schema.json\n?? contracts/scheduled-execution.candidate.json\n?? contracts/scheduled-execution.schema.json\n?? contracts/scheduled-ipc.candidate.json\n?? contracts/scheduled-plan.candidate.json\n?? contracts/scheduled-plan.schema.json\n?? contracts/scheduled-task-recovery.candidate.json\n?? contracts/scheduled-task-recovery.schema.json\n?? docs/feat155-scheduled-foundation.md\n?? scripts/check-scheduled-ipc.mjs\n?? scripts/generate-scheduled-ipc.mjs\n?? src-tauri/migrations/chat/0016_scheduled_plan_foundation.sql\n?? src-tauri/migrations/chat/0017_scheduled_execution_foundation.sql\n?? src-tauri/migrations/chat/0018_scheduled_local_preparation.sql\n?? src-tauri/migrations/chat/0019_scheduled_recovery.sql\n?? src-tauri/migrations/chat/0020_scheduled_dispatch.sql\n?? src-tauri/migrations/chat/0021_scheduled_triggers.sql\n?? src-tauri/migrations/chat/0022_scheduled_draft_sources.sql\n?? src-tauri/schemas/scheduled-task-ipc-resolved.schema.json\n?? src-tauri/schemas/scheduled-task-ipc-v1.schema.json\n?? src-tauri/src/chat/exit_owner.rs\n?? src-tauri/src/chat/host_bridge/\n?? src-tauri/src/chat/lifecycle.rs\n?? src-tauri/src/chat/platform_lifecycle.rs\n?? src-tauri/src/chat/schedules/\n?? src/api/generated/scheduled-task-ipc-formats.gen.js\n?? src/api/generated/scheduled-task-ipc-validator.gen.d.ts\n?? src/api/generated/scheduled-task-ipc-validator.gen.js\n?? src/api/generated/scheduled-task-ipc.gen.ts\n?? src/api/scheduled-task-native-client.test.ts\n?? src/api/scheduled-task-native-client.ts\n?? src/domain/scheduled-draft.generated.ts\n?? src/domain/scheduled-execution.generated.ts\n?? src/domain/scheduled-plan.generated.ts",
+      "final_status": "M THIRD_PARTY_NOTICES.md\n M eslint.config.js\n M package.json\n M src-tauri/Cargo.lock\n M src-tauri/Cargo.toml\n M src-tauri/src/chat/application.rs\n M src-tauri/src/chat/authorization.rs\n M src-tauri/src/chat/database.rs\n M src-tauri/src/chat/host_bridge.rs\n M src-tauri/src/chat/ipc.rs\n M src-tauri/src/chat/migrations.rs\n M src-tauri/src/chat/mod.rs\n M src-tauri/src/chat/native_conversation_storage.rs\n M src-tauri/src/chat/sidecar.rs\n M src-tauri/src/chat/worker.rs\n M src-tauri/src/lib.rs\n M src-tauri/src/native_auth/runtime.rs\n?? contracts/scheduled-draft.candidate.json\n?? contracts/scheduled-draft.schema.json\n?? contracts/scheduled-execution.candidate.json\n?? contracts/scheduled-execution.schema.json\n?? contracts/scheduled-ipc.candidate.json\n?? contracts/scheduled-plan.candidate.json\n?? contracts/scheduled-plan.schema.json\n?? contracts/scheduled-task-recovery.candidate.json\n?? contracts/scheduled-task-recovery.schema.json\n?? docs/feat155-scheduled-foundation.md\n?? scripts/check-scheduled-ipc.mjs\n?? scripts/generate-scheduled-ipc.mjs\n?? src-tauri/migrations/chat/0016_scheduled_plan_foundation.sql\n?? src-tauri/migrations/chat/0017_scheduled_execution_foundation.sql\n?? src-tauri/migrations/chat/0018_scheduled_local_preparation.sql\n?? src-tauri/migrations/chat/0019_scheduled_recovery.sql\n?? src-tauri/migrations/chat/0020_scheduled_dispatch.sql\n?? src-tauri/migrations/chat/0021_scheduled_triggers.sql\n?? src-tauri/migrations/chat/0022_scheduled_draft_sources.sql\n?? src-tauri/schemas/scheduled-task-ipc-resolved.schema.json\n?? src-tauri/schemas/scheduled-task-ipc-v1.schema.json\n?? src-tauri/src/chat/exit_owner.rs\n?? src-tauri/src/chat/host_bridge/\n?? src-tauri/src/chat/lifecycle.rs\n?? src-tauri/src/chat/platform_lifecycle.rs\n?? src-tauri/src/chat/schedules/\n?? src/api/generated/scheduled-task-ipc-formats.gen.js\n?? src/api/generated/scheduled-task-ipc-validator.gen.d.ts\n?? src/api/generated/scheduled-task-ipc-validator.gen.js\n?? src/api/generated/scheduled-task-ipc.gen.ts\n?? src/api/scheduled-task-native-client.test.ts\n?? src/api/scheduled-task-native-client.ts\n?? src/domain/scheduled-draft.generated.ts\n?? src/domain/scheduled-execution.generated.ts\n?? src/domain/scheduled-plan.generated.ts",
+      "changed_existing": [],
+      "new_paths": [],
+      "unchanged_starting_files": 744
+    }
+  },
+  "source_files": [
+    {
+      "path": "yijie-agent-host/cmd/desktop-host/main.go",
+      "sha256": "ee86efb7f69224a125fbeb064b7fc008e4fcab1e51ac735afb96dd7e6e2541d4"
+    },
+    {
+      "path": "yijie-agent-host/internal/app/scheduled_recovery.go",
+      "sha256": "81c74c7902d0d925c5a8599c15a139483a311da5f94dfa6e439e075944e276b8"
+    },
+    {
+      "path": "yijie-agent-host/internal/session/scheduled_draft.go",
+      "sha256": "064329289ea5e895d8ff0fad6d2458c73035975e694da3e6f1ba33bec37d6fc0"
+    },
+    {
+      "path": "yijie-agent-host/internal/session/scheduled_recovery.go",
+      "sha256": "32efafa8436b7f3db824a1f18686826014592977558bc47c2bdbc90e72287055"
+    },
+    {
+      "path": "yijie-contracts/jsonschema/scheduled-tasks/draft-execution-v1.schema.json",
+      "sha256": "75a2488ee1b045e263d377461715a506079249e0addf03aefd3a32d26920d928"
+    },
+    {
+      "path": "yijie-contracts/openapi/scheduled-plan-draft/scheduled-plan-draft.yaml",
+      "sha256": "5b5721f8186d24b401d622bb9ca5d8dc9bedc15b1f16aff393c12fe75c5b90f3"
+    },
+    {
+      "path": "yijie-desktop/src-tauri/src/chat/worker.rs",
+      "sha256": "1964cba2b46a234daf0e905f635d97d3a4dc400b14764230dde9c0a9f167f26f"
+    },
+    {
+      "path": "yijie-desktop/src-tauri/src/chat/mod.rs",
+      "sha256": "636c7c52be629cd5e281e712b947e170ae130f2826a3ea6209dc517f6840889c"
+    },
+    {
+      "path": "yijie-desktop/src-tauri/src/chat/application.rs",
+      "sha256": "6cbd136b8198b4b91038f03d89099d2e56ad132088da223e3a4d5aed9dcf6ab7"
+    },
+    {
+      "path": "yijie-desktop/src-tauri/src/chat/database.rs",
+      "sha256": "2cb648d933156fd05316399e83031f509d82d99cccfc9a230e13bee82311f231"
+    },
+    {
+      "path": "yijie-desktop/src-tauri/src/chat/schedules/drafts.rs",
+      "sha256": "a7e60617c44598ecccda774a4ca039a81c5efdf431bb1888b4624af60920dad2"
+    },
+    {
+      "path": "yijie-desktop/src-tauri/src/chat/schedules/recovery.rs",
+      "sha256": "7f3db5b21e48b2f47c10b04ab260ca58d8b4b79c9abbb9ca4ce154d9e6310a2d"
+    },
+    {
+      "path": "yijie-desktop/src-tauri/src/chat/host_bridge/scheduled_draft.rs",
+      "sha256": "879ac6c5765843943c2b6ad11aa557a7aa353b0a4ba2e2b1ef420bb871324e42"
+    },
+    {
+      "path": "yijie-desktop/src-tauri/migrations/chat/0022_scheduled_draft_sources.sql",
+      "sha256": "0b5aa168216ea5d68ebbeadad98e1237b16490f11438606f401e7198ba0bfcb4"
+    }
+  ],
+  "local_links_checked": 135,
+  "missing_links": [],
+  "technical_reviews": [
+    {
+      "reviewer": "Codex primary agent",
+      "scope": "cross-repository plan, boundaries and integration of findings"
+    },
+    {
+      "reviewer": "/root/feat155_b3b_source_review",
+      "scope": "Desktop assembly, attempt/claim and recovered observation",
+      "mode": "read-only"
+    },
+    {
+      "reviewer": "/root/feat155_b3b_host_review",
+      "scope": "Host recovery contract, startup and zero-call evidence",
+      "mode": "read-only"
+    }
+  ],
+  "resolved_plan_findings": [
+    "draft-specific GET needed for persistent purpose/workspace/version; never POST create as lookup",
+    "final POST admission after asynchronous preparation",
+    "recover create binding without implicitly queueing original turn",
+    "NULL original generation requires exact recovered-draft observation eligibility",
+    "already-pending never-attempted turn needs current-generation explicit submit/continue eligibility"
+  ],
+  "review_limit": "Technical plan review only, not independent human approval or product validation; implementation not started",
+  "navigation_correction": "29 only changes the mistaken 24 B3B link to the actual follow-up scope in26; qualification results unchanged",
+  "final_added_link_verified": true
+}

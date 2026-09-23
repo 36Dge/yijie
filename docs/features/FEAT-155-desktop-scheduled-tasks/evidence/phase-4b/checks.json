@@ -1,0 +1,66 @@
+{
+  "native": {
+    "passed": 106,
+    "log": "checks/native-106.log"
+  },
+  "frontend_targeted": {
+    "files": 15,
+    "passed": 264,
+    "log": "checks/frontend-264.log"
+  },
+  "host": {
+    "race_passed": 3,
+    "actual_fixed_runtime_local_fixture": true,
+    "external_calls": 0,
+    "log": "checks/host-race-3.log"
+  },
+  "conformance": {
+    "exchanges": 33,
+    "commands": 25,
+    "log": "checks/conformance.log"
+  },
+  "lint_types": "PASS",
+  "rust_fmt_clippy": "PASS",
+  "canonical_build": "PASS",
+  "docs_build": "PASS",
+  "meta_document_checks": {
+    "strict_D0": "PASS",
+    "lint": "PASS",
+    "tests_passed": 50,
+    "links_checked": 153
+  },
+  "all_tests_green_claimed": false,
+  "known_existing_failures": {
+    "count": 3,
+    "suite": "ChatPage.test.ts",
+    "baseline_evidence": "33-phase-4a-management-ui-implementation-report.md",
+    "log": "checks/initial-focused-existing-failures.log"
+  },
+  "actual_provider": {
+    "calls": 4,
+    "batch_limit": 5,
+    "feature_limit": 12,
+    "remaining": 8,
+    "ledger": "provider-ledger.json"
+  },
+  "safety": "正常非破坏性验证；未强杀、未改权限制造故障、未注入攻击载荷、未替换固定Runtime。",
+  "log_sha256": {
+    "canonical-build-reopen.log": "7fdf1fc2103cccc3d7ade463d7c0065d8696c791399a9af60504bdd79c3309da",
+    "clippy.log": "be663750612529d8f628d66f72d641719aa4053229e0f57f7f4b3b5253e0e398",
+    "conformance.log": "2d1688917a3c650ed3575f8c82bde2e3ae2e40359c47471759d8fab49365eea1",
+    "docs-build.log": "565934430fae9cf0dfb22ac223d4e4fad92404586d2961f5964b062354489add",
+    "frontend-264.log": "95f5d81cc2715bcdd914fceb13446b88ae73241ebf1124758168a2b5ea74f88c",
+    "generation.log": "9a2fdefad8ffd0ab9b1756f6bada7b87b0b591ffa48fc5ffeb705ee6ac9121eb",
+    "host-race-3.log": "085de4fe8f49497232eb95eed88258d5d460d7157bbc5aa221085cbbee3a958e",
+    "host-vet.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "initial-focused-existing-failures.log": "5f805c7a128a16c2029c1d004f755c566d9a6640f8ec418f10966f5a4d79107a",
+    "lint-types.log": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6",
+    "meta-d0.log": "ccc00513c27f044ca664925a882399ed124d51bef8632ed931606e5b1e0f01c3",
+    "meta-lint.log": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c",
+    "meta-tests-50.log": "29d99939384e6cb64d2648e39dca26930970f0711e454a2a5b96d8f91728a7d0",
+    "native-106.log": "f1584d685a226823a8462bbef9d5ffb4820af8acb855a6e3cd3a875de9292b4e",
+    "rust-fmt.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "recorded_at": "2026-09-19T09:03:30.683269+00:00",
+  "diff_check": "PASS: yijie, Desktop, Host"
+}

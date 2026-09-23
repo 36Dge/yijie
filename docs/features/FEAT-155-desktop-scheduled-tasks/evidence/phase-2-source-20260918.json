@@ -1,0 +1,348 @@
+{
+  "feature": "FEAT-155",
+  "phase": "phase_2",
+  "captured_at": "2026-09-18T04:59:30.641590+00:00",
+  "repositories": {
+    "yijie-contracts": {
+      "head": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-contracts.git",
+      "files": [
+        {
+          "path": "Makefile",
+          "sha256": "55146802f33561a365234e78916c05a8627c31ffb5b9f5b2f276ac37d2d193b7",
+          "unchanged_phase_1": true
+        },
+        {
+          "path": "compatibility/scheduled-plan/source.lock.json",
+          "sha256": "148b3b7101dfecc3feba26181fb047491509074aa386c752c1e49c44d32b46e6",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "compatibility/scheduled-task-recovery/source.lock.json",
+          "sha256": "e8a729e0a3ac1e873f43cb70e5d01d8494ad3a56ecae867a0241d67c325d73c7",
+          "unchanged_phase_1": true
+        },
+        {
+          "path": "docs/scheduled-plan-v1.md",
+          "sha256": "be51e947c34b73a999332d660f39b0a26b14049585c8803eabaadb34d83a3529",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "docs/scheduled-task-recovery-v1.md",
+          "sha256": "32b77826c59611418b68c0cf52f853f784f88dbca4c6dbb575cba559422e816f",
+          "unchanged_phase_1": true
+        },
+        {
+          "path": "docs/supported-baselines.md",
+          "sha256": "e87a815297ab24f828814eb4b757784300fe230d6a5eca840a5e104b7d608e1b",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "jsonschema/scheduled-tasks/plan-draft-v1.schema.json",
+          "sha256": "e1c56a242edcc413ecb6ae68849ae821a1645a4ac2530d315ee62ddee904fb19",
+          "unchanged_phase_1": true
+        },
+        {
+          "path": "jsonschema/scheduled-tasks/plan-storage-v1.schema.json",
+          "sha256": "e2fcb3212198cb5f972be4c6698477c81d5de869b96780d635059577e09ba2ec",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "openapi/scheduled-task-recovery/scheduled-task-recovery.yaml",
+          "sha256": "47a1d7f4e5e858116d9f0b80faf86a0e1e5936dfab1ebf6673c9579e5246e9e2",
+          "unchanged_phase_1": true
+        },
+        {
+          "path": "scripts/check-scheduled-plan-producer.mjs",
+          "sha256": "8002c2b7d923f6e380a4441bfe54ef6665117c5cd4f68849911225b527519629",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "scripts/check-scheduled-plan.mjs",
+          "sha256": "57214faa7cd8b2c61066f3144dc8807ed8989a20c93a25f7709d94bb27562d40",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "scripts/check-scheduled-task-recovery.mjs",
+          "sha256": "35017883f6a60380a5a90512d8fd744fb28ec5e9df1507377437046def6da332",
+          "unchanged_phase_1": true
+        },
+        {
+          "path": "scripts/generate-scheduled-plan.mjs",
+          "sha256": "0fa6a427b36e385c18b89e04a52a195ccab89596e62cc296938dc81e4bbc800c",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "scripts/generate-scheduled-task-recovery.mjs",
+          "sha256": "029b0452da8e526d66aa6cf42fdbb4fb426d1d09e1b26468aad31727823091ad",
+          "unchanged_phase_1": true
+        },
+        {
+          "path": "scripts/sync-scheduled-plan.mjs",
+          "sha256": "af414a9990c8bd48d34d7db630e0c53e3dcbbf2cabca6f1701198147fcb7edc8",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "scripts/sync-scheduled-task-recovery.mjs",
+          "sha256": "a0bf162a60a0efd21642e462c519d331f2a90c26de26d690fe305fe6b8630760",
+          "unchanged_phase_1": true
+        },
+        {
+          "path": "sdks/go/openapi/scheduled-task-recovery/types.gen.go",
+          "sha256": "03a35f5c9c16db1eb272b2ab7020ac08466deb5c716dc364f492f7a21c9a7f6d",
+          "unchanged_phase_1": true
+        },
+        {
+          "path": "sdks/jsonschema/scheduled-plan.schema.json",
+          "sha256": "9b4bb45e3adf68807a71aeda361b6ea288d57764855fb2844c1d02cecde96a7b",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "sdks/jsonschema/scheduled-task-recovery.schema.json",
+          "sha256": "905dab1e0d4f8ad7ae080263b573ff91a65c0b0f2c80de44eda6f7ebc8d5113a",
+          "unchanged_phase_1": true
+        },
+        {
+          "path": "sdks/rust/scheduled-plan/types.gen.rs",
+          "sha256": "1223692af5937b691453edb57b5a8689a419472af9be806b04855247a09a1614",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "sdks/typescript/src/jsonschema/scheduled-plan.gen.ts",
+          "sha256": "34d152ce71516f533b258bf79456d772ca2895bd3925028bdaa21ce445834185",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "tests/scheduled-plan.test.mjs",
+          "sha256": "d187f1bd97fa1d6ab590158896d046a38b94c4d4c7ac4d18fc371ead9734fd88",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "tests/scheduled-task-recovery.test.mjs",
+          "sha256": "51ceb8ddbacf1664fbf56fe9a87820f9aefd5cff8760b4fa86ab9e94004f941b",
+          "unchanged_phase_1": true
+        }
+      ],
+      "status": "M Makefile\n M docs/supported-baselines.md\n?? compatibility/scheduled-plan/\n?? compatibility/scheduled-task-recovery/\n?? docs/scheduled-plan-v1.md\n?? docs/scheduled-task-recovery-v1.md\n?? jsonschema/scheduled-tasks/\n?? openapi/scheduled-task-recovery/\n?? scripts/check-scheduled-plan-producer.mjs\n?? scripts/check-scheduled-plan.mjs\n?? scripts/check-scheduled-task-recovery.mjs\n?? scripts/generate-scheduled-plan.mjs\n?? scripts/generate-scheduled-task-recovery.mjs\n?? scripts/sync-scheduled-plan.mjs\n?? scripts/sync-scheduled-task-recovery.mjs\n?? sdks/go/openapi/scheduled-task-recovery/\n?? sdks/jsonschema/scheduled-plan.schema.json\n?? sdks/jsonschema/scheduled-task-recovery.schema.json\n?? sdks/rust/scheduled-plan/\n?? sdks/typescript/src/jsonschema/scheduled-plan.gen.ts\n?? tests/scheduled-plan.test.mjs\n?? tests/scheduled-task-recovery.test.mjs"
+    },
+    "yijie-desktop": {
+      "head": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-desktop.git",
+      "files": [
+        {
+          "path": "contracts/scheduled-plan.candidate.json",
+          "sha256": "148b3b7101dfecc3feba26181fb047491509074aa386c752c1e49c44d32b46e6",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "contracts/scheduled-plan.schema.json",
+          "sha256": "9b4bb45e3adf68807a71aeda361b6ea288d57764855fb2844c1d02cecde96a7b",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "docs/feat155-scheduled-foundation.md",
+          "sha256": "48a4b2328e4359fb1c3358cbfc380211d11c7665f4dbc9564bbfdf2468b2d98d",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "src-tauri/Cargo.lock",
+          "sha256": "c9408312cbcab39147318073936d6479fbcef141b84dbf22a939285d49d1f527",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "src-tauri/Cargo.toml",
+          "sha256": "233be7ab6c1ced2f3f641494996ebc031cb790b4fa856de273c42086eaad07db",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "src-tauri/migrations/chat/0016_scheduled_plan_foundation.sql",
+          "sha256": "70d00d5582f03f8d2cf81ff9f59b3f6c7a6506d85333cea93399157c6b8a5129",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "src-tauri/src/chat/database.rs",
+          "sha256": "8810c9503d07b12c25edb249d789c746fe2662066b530b06a622b4fa6661a8da",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "src-tauri/src/chat/migrations.rs",
+          "sha256": "1fb2ed45818f6e0b63b8c06a037010832dd1536f012f5a8cb97eaea7e99fb317",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "src-tauri/src/chat/mod.rs",
+          "sha256": "d7451987358bee3aa2484c518d72e4ae35b3393d8b65dd4783dcc19d5e8b6b05",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/generated.rs",
+          "sha256": "1223692af5937b691453edb57b5a8689a419472af9be806b04855247a09a1614",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/mod.rs",
+          "sha256": "d1d2fcb1d7f9846bfb42615530effaf1523a9f01150947877d1303b1f4c76d32",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/store.rs",
+          "sha256": "b1eba620939f0deb9b80689fc11a12be03fe503bec00f8d17257318537c57b83",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/tests.rs",
+          "sha256": "9234e9707fbdeab74120fc5077ca00bdf1fe7b205d6c77ca3600076cba55fcc8",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/time.rs",
+          "sha256": "41845fd0f159849aef257a156a482f0c2e6c0e2b22f53e17c25d637ce523d0cc",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "src-tauri/src/chat/worker.rs",
+          "sha256": "a7f3397373eeffdc33edca5762c99ff8e84f00641a06c9c121cfa4d5136607ae",
+          "unchanged_phase_1": false
+        },
+        {
+          "path": "src/domain/scheduled-plan.generated.ts",
+          "sha256": "34d152ce71516f533b258bf79456d772ca2895bd3925028bdaa21ce445834185",
+          "unchanged_phase_1": false
+        }
+      ],
+      "status": "M src-tauri/Cargo.lock\n M src-tauri/Cargo.toml\n M src-tauri/src/chat/database.rs\n M src-tauri/src/chat/migrations.rs\n M src-tauri/src/chat/mod.rs\n M src-tauri/src/chat/worker.rs\n?? contracts/scheduled-plan.candidate.json\n?? contracts/scheduled-plan.schema.json\n?? docs/feat155-scheduled-foundation.md\n?? src-tauri/migrations/chat/0016_scheduled_plan_foundation.sql\n?? src-tauri/src/chat/schedules/\n?? src/domain/scheduled-plan.generated.ts"
+    },
+    "yijie-agent-host": {
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-agent-host.git",
+      "files": [
+        {
+          "path": "Makefile",
+          "sha256": "eea89b9660ed126386af2703e9d722d227f73f92a8f880e0462a5bb206030abf",
+          "unchanged_phase_1": true
+        },
+        {
+          "path": "README.md",
+          "sha256": "bb2bce0def60a1072490ced0f032811904c57e1719302a4e573ba17d70ba97ae",
+          "unchanged_phase_1": true
+        },
+        {
+          "path": "SECURITY.md",
+          "sha256": "dbb7496b21c7350c3f38a0cc5a814ac7b77113c44dac0a0a5143f01898edee1a",
+          "unchanged_phase_1": true
+        },
+        {
+          "path": "api/openapi/scheduled-task-recovery.yaml",
+          "sha256": "47a1d7f4e5e858116d9f0b80faf86a0e1e5936dfab1ebf6673c9579e5246e9e2",
+          "unchanged_phase_1": true
+        },
+        {
+          "path": "api/scheduled-task-recovery.candidate.json",
+          "sha256": "ccd1171b6018ad917c7b628de9b466b2a6464a80ccaa9c7c0bec79b67c5ab801",
+          "unchanged_phase_1": true
+        },
+        {
+          "path": "api/schemas/scheduled-task-recovery.schema.json",
+          "sha256": "905dab1e0d4f8ad7ae080263b573ff91a65c0b0f2c80de44eda6f7ebc8d5113a",
+          "unchanged_phase_1": true
+        },
+        {
+          "path": "docs/scheduled-task-recovery.md",
+          "sha256": "b473ac1ba6abdebc6d9aa34ca789b6c13b37a551c425aa75b5a1adb926b3b6b1",
+          "unchanged_phase_1": true
+        },
+        {
+          "path": "internal/app/app.go",
+          "sha256": "e936d3a82c7d7ab980b87eb0d219e90a5daa9acecb4fe0fd69fd1a2d6902722f",
+          "unchanged_phase_1": true
+        },
+        {
+          "path": "internal/app/scheduled_recovery.go",
+          "sha256": "81c74c7902d0d925c5a8599c15a139483a311da5f94dfa6e439e075944e276b8",
+          "unchanged_phase_1": true
+        },
+        {
+          "path": "internal/app/scheduled_recovery_test.go",
+          "sha256": "c45c21ddaa9e6b3044aa8b547ef349e8829ab165b209b847e93fc75dff0a65c9",
+          "unchanged_phase_1": true
+        },
+        {
+          "path": "internal/contracts/scheduledrecovery/types.gen.go",
+          "sha256": "03a35f5c9c16db1eb272b2ab7020ac08466deb5c716dc364f492f7a21c9a7f6d",
+          "unchanged_phase_1": true
+        },
+        {
+          "path": "internal/session/scheduled_recovery.go",
+          "sha256": "32efafa8436b7f3db824a1f18686826014592977558bc47c2bdbc90e72287055",
+          "unchanged_phase_1": true
+        },
+        {
+          "path": "internal/session/scheduled_recovery_test.go",
+          "sha256": "5e988088007e70e20fbdb34109ce859dfb153e1f62960e9d05727ea137618a89",
+          "unchanged_phase_1": true
+        }
+      ],
+      "status": "M Makefile\n M README.md\n M SECURITY.md\n M internal/app/app.go\n?? api/openapi/scheduled-task-recovery.yaml\n?? api/scheduled-task-recovery.candidate.json\n?? api/schemas/scheduled-task-recovery.schema.json\n?? docs/scheduled-task-recovery.md\n?? internal/app/scheduled_recovery.go\n?? internal/app/scheduled_recovery_test.go\n?? internal/contracts/scheduledrecovery/\n?? internal/session/scheduled_recovery.go\n?? internal/session/scheduled_recovery_test.go"
+    },
+    "yijie-codex": {
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-codex.git",
+      "files": [],
+      "status": ""
+    },
+    "yijie-skills": {
+      "head": "488714a8d96f40806a257aae097683815b1dd458",
+      "branch": "develop",
+      "origin": "https://github.com/36Dge/yijie-skills.git",
+      "files": [],
+      "status": ""
+    }
+  },
+  "added_cargo_packages": [
+    [
+      "chrono-tz",
+      "0.10.4"
+    ],
+    [
+      "phf",
+      "0.12.1"
+    ],
+    [
+      "phf_shared",
+      "0.12.1"
+    ],
+    [
+      "rrule",
+      "0.14.0"
+    ]
+  ],
+  "removed_or_upgraded_existing_packages": [],
+  "time_versions": {
+    "rrule": "0.14.0",
+    "chrono": "0.4.45",
+    "chrono_tz": "0.10.4",
+    "iana_tzdb": "2025b"
+  },
+  "default_schema_target": 15,
+  "maximum_readable_schema": 16,
+  "model_calls": 0,
+  "max_text_calls": 12,
+  "image_calls": 0,
+  "merchant_calls": 0,
+  "daily_database_migrated": false,
+  "real_runtime_started": false,
+  "release": false,
+  "notes": [
+    "HEAD values are bases, not commits containing the candidate.",
+    "Only new temporary SQLCipher databases were used.",
+    "Temporary detached sparse source checkouts were normally removed; only AGENTS.md was materialized."
+  ],
+  "native_producer_artifact": {
+    "path": "evidence/phase-2-native-producer.json",
+    "sha256": "b84e576368622fc8a17bf10bec357238aa48ec1ec648d368a871b4c7e539b37b"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "limit": 4,
+  "requests": [
+    {
+      "ordinal": 1,
+      "admitted_at": "2026-09-22T14:49:00Z",
+      "status": "transport_ended",
+      "model": "MiniMax-M3",
+      "structured_output": false,
+      "upstream": "https://api.minimaxi.com/v1/responses"
+    },
+    {
+      "ordinal": 2,
+      "admitted_at": "2026-09-22T14:52:22Z",
+      "status": "completed",
+      "model": "MiniMax-M3",
+      "structured_output": false,
+      "upstream": "https://api.minimaxi.com/v1/responses",
+      "http_status": 200
+    },
+    {
+      "ordinal": 3,
+      "admitted_at": "2026-09-22T14:55:04Z",
+      "status": "completed",
+      "model": "MiniMax-M3",
+      "structured_output": false,
+      "upstream": "https://api.minimaxi.com/v1/responses",
+      "http_status": 200
+    },
+    {
+      "ordinal": 4,
+      "admitted_at": "2026-09-22T15:10:53Z",
+      "status": "completed",
+      "model": "MiniMax-M3",
+      "structured_output": false,
+      "upstream": "https://api.minimaxi.com/v1/responses",
+      "http_status": 200
+    }
+  ],
+  "feature": "FEAT-155",
+  "phase": "4C-1",
+  "starting_feature_used": 4,
+  "feature_limit": 12,
+  "prior_ledger": "../phase-4b/provider-ledger.json",
+  "prior_ledger_sha256": "abb562c69e85f37b685d69b188564cbbb384b482fb9f2b0559540663dcba0589",
+  "authorization": "2026-09-22 \u7528\u6237\u6388\u67434C-1\uff0c\u672c\u6279\u6700\u591a3\u6b21\u771f\u5b9e\u6587\u672c\uff1b\u56fe\u7247\u3001\u5546\u5bb6\u3001MCP\u5916\u90e8\u8c03\u75280",
+  "limit_history": [
+    {
+      "from": 3,
+      "to": 4,
+      "authorized_batch_max": 5,
+      "additional_authorized": 2,
+      "operational_extension": 1,
+      "unused_additional_reserve": 1,
+      "authorization": "2026-09-22 \u7528\u6237\uff1a\u7b2c\u4e00\u8f6e\u7684\u5931\u8d25\u73b0\u5728\u53ef\u4ee5\u518d\u6388\u67432\u6b21\uff0c\u7531Codex\u5224\u65ad\u662f\u5426\u9700\u8981\uff1b\u51b3\u5b9a\u5148\u4f7f\u75281\u6b21\u8865\u9f50\u6bcf\u6b21\u65b0\u5efa\u804a\u5929\u771f\u5b9e\u95ed\u73af\uff0c\u4e0d\u62694C-1",
+      "feature_limit": 12,
+      "recorded_at": "2026-09-22T15:09:22.401649+00:00"
+    }
+  ]
+}

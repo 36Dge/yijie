@@ -1,0 +1,129 @@
+[chore/retirement-baseline-20260905 9844760] feat(desktop): complete FEAT-155 local scheduled tasks
+ Committer: Jack <jack@JackdeMacBook-Pro.local>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 162 files changed, 39092 insertions(+), 330 deletions(-)
+ create mode 100644 contracts/native-turn-timing.candidate.json
+ create mode 100644 contracts/native-turn-timing.schema.json
+ create mode 100644 contracts/runtime-input-only.candidate.json
+ create mode 100644 contracts/scheduled-draft.candidate.json
+ create mode 100644 contracts/scheduled-draft.schema.json
+ create mode 100644 contracts/scheduled-execution.candidate.json
+ create mode 100644 contracts/scheduled-execution.schema.json
+ create mode 100644 contracts/scheduled-host-build.candidate.json
+ create mode 100644 contracts/scheduled-ipc.candidate.json
+ create mode 100644 contracts/scheduled-plan.candidate.json
+ create mode 100644 contracts/scheduled-plan.schema.json
+ create mode 100644 contracts/scheduled-task-recovery.candidate.json
+ create mode 100644 contracts/scheduled-task-recovery.schema.json
+ create mode 100644 docs/feat155-scheduled-foundation.md
+ create mode 100644 scripts/check-scheduled-ipc.mjs
+ create mode 100644 scripts/generate-chat-session-purpose.mjs
+ create mode 100644 scripts/generate-scheduled-ipc.mjs
+ create mode 100644 scripts/scheduled-host-build-candidate.mjs
+ create mode 100644 scripts/scheduled-host-build-candidate.test.mjs
+ create mode 100644 src-tauri/migrations/chat/0016_scheduled_plan_foundation.sql
+ create mode 100644 src-tauri/migrations/chat/0017_scheduled_execution_foundation.sql
+ create mode 100644 src-tauri/migrations/chat/0018_scheduled_local_preparation.sql
+ create mode 100644 src-tauri/migrations/chat/0019_scheduled_recovery.sql
+ create mode 100644 src-tauri/migrations/chat/0020_scheduled_dispatch.sql
+ create mode 100644 src-tauri/migrations/chat/0021_scheduled_triggers.sql
+ create mode 100644 src-tauri/migrations/chat/0022_scheduled_draft_sources.sql
+ create mode 100644 src-tauri/migrations/chat/0023_scheduled_plan_created_at.sql
+ create mode 100644 src-tauri/migrations/chat/0024_scheduled_automatic_consent.sql
+ create mode 100644 src-tauri/migrations/chat/0025_scheduled_single_run_grants.sql
+ create mode 100644 src-tauri/migrations/chat/0026_scheduled_execution_timing.sql
+ create mode 100644 src-tauri/schemas/scheduled-task-ipc-resolved.schema.json
+ create mode 100644 src-tauri/schemas/scheduled-task-ipc-v1.schema.json
+ create mode 100644 src-tauri/src/chat/exit_owner.rs
+ create mode 100644 src-tauri/src/chat/host_bridge/scheduled_draft.rs
+ create mode 100644 src-tauri/src/chat/lifecycle.rs
+ create mode 100644 src-tauri/src/chat/platform_lifecycle.rs
+ create mode 100644 src-tauri/src/chat/schedules/automatic.rs
+ create mode 100644 src-tauri/src/chat/schedules/candidate.rs
+ create mode 100644 src-tauri/src/chat/schedules/dispatch_tests.rs
+ create mode 100644 src-tauri/src/chat/schedules/draft_admission.rs
+ create mode 100644 src-tauri/src/chat/schedules/draft_generated.rs
+ create mode 100644 src-tauri/src/chat/schedules/draft_recovery.rs
+ create mode 100644 src-tauri/src/chat/schedules/draft_runtime.rs
+ create mode 100644 src-tauri/src/chat/schedules/drafts.rs
+ create mode 100644 src-tauri/src/chat/schedules/execution.rs
+ create mode 100644 src-tauri/src/chat/schedules/execution/dispatch.rs
+ create mode 100644 src-tauri/src/chat/schedules/execution/preparation.rs
+ create mode 100644 src-tauri/src/chat/schedules/execution/preparation/tests.rs
+ create mode 100644 src-tauri/src/chat/schedules/execution/preparation/timing_tests.rs
+ create mode 100644 src-tauri/src/chat/schedules/execution/single.rs
+ create mode 100644 src-tauri/src/chat/schedules/execution/tests.rs
+ create mode 100644 src-tauri/src/chat/schedules/execution/triggers.rs
+ create mode 100644 src-tauri/src/chat/schedules/execution_generated.rs
+ create mode 100644 src-tauri/src/chat/schedules/execution_guard.rs
+ create mode 100644 src-tauri/src/chat/schedules/generated.rs
+ create mode 100644 src-tauri/src/chat/schedules/ipc.rs
+ create mode 100644 src-tauri/src/chat/schedules/ipc/query.rs
+ create mode 100644 src-tauri/src/chat/schedules/ipc/tests.rs
+ create mode 100644 src-tauri/src/chat/schedules/ipc/tests/automatic_tests.rs
+ create mode 100644 src-tauri/src/chat/schedules/ipc/tests/draft_tests.rs
+ create mode 100644 src-tauri/src/chat/schedules/ipc/tests/management_tests.rs
+ create mode 100644 src-tauri/src/chat/schedules/ipc/tests/manual_tests.rs
+ create mode 100644 src-tauri/src/chat/schedules/ipc/tests/recovery_tests.rs
+ create mode 100644 src-tauri/src/chat/schedules/ipc/tests/single_tests.rs
+ create mode 100644 src-tauri/src/chat/schedules/ipc/validation.rs
+ create mode 100644 src-tauri/src/chat/schedules/ipc_commands_generated.rs
+ create mode 100644 src-tauri/src/chat/schedules/ipc_generated.rs
+ create mode 100644 src-tauri/src/chat/schedules/manual.rs
+ create mode 100644 src-tauri/src/chat/schedules/manual_composition_tests.rs
+ create mode 100644 src-tauri/src/chat/schedules/mod.rs
+ create mode 100644 src-tauri/src/chat/schedules/recovery.rs
+ create mode 100644 src-tauri/src/chat/schedules/recovery_generated.rs
+ create mode 100644 src-tauri/src/chat/schedules/single_composition_tests.rs
+ create mode 100644 src-tauri/src/chat/schedules/store.rs
+ create mode 100644 src-tauri/src/chat/schedules/tests.rs
+ create mode 100644 src-tauri/src/chat/schedules/time.rs
+ create mode 100644 src-tauri/src/chat/schedules/timing.rs
+ create mode 100644 src-tauri/src/chat/schedules/timing_generated.rs
+ create mode 100644 src-tauri/src/chat/schedules/timing_runtime.rs
+ create mode 100644 src-tauri/src/chat/schedules/trigger_tests.rs
+ create mode 100644 src-tauri/src/chat/schedules/workspace.rs
+ create mode 100644 src-tauri/src/chat/session_purpose_generated.rs
+ create mode 100644 src/api/generated/scheduled-task-ipc-formats.gen.js
+ create mode 100644 src/api/generated/scheduled-task-ipc-validator.gen.d.ts
+ create mode 100644 src/api/generated/scheduled-task-ipc-validator.gen.js
+ create mode 100644 src/api/generated/scheduled-task-ipc.gen.ts
+ create mode 100644 src/api/scheduled-task-native-client.test.ts
+ create mode 100644 src/api/scheduled-task-native-client.ts
+ create mode 100644 src/components/schedules/ScheduledCardAction.vue
+ create mode 100644 src/components/schedules/ScheduledDraftPanel.vue
+ create mode 100644 src/components/schedules/ScheduledPlanForm.test.ts
+ create mode 100644 src/components/schedules/ScheduledPlanForm.vue
+ create mode 100644 src/components/schedules/ScheduledUpdates.vue
+ create mode 100644 src/domain/chat-session-purpose.generated.ts
+ create mode 100644 src/domain/chat-session-purpose.test.ts
+ create mode 100644 src/domain/locate-chat-turn.test.ts
+ create mode 100644 src/domain/locate-chat-turn.ts
+ create mode 100644 src/domain/scheduled-draft-intent.ts
+ create mode 100644 src/domain/scheduled-draft.generated.ts
+ create mode 100644 src/domain/scheduled-execution.generated.ts
+ create mode 100644 src/domain/scheduled-plan.generated.ts
+ create mode 100644 src/domain/scheduled-task-timing.test.ts
+ create mode 100644 src/domain/scheduled-task-ui.ts
+ create mode 100644 src/pages/chat/ScheduledDraftPage.test.ts
+ create mode 100644 src/pages/schedules/ScheduledTasksPage.vue
+ create mode 100644 src/pages/schedules/use-scheduled-automatic.test.ts
+ create mode 100644 src/pages/schedules/use-scheduled-automatic.ts
+ create mode 100644 src/pages/schedules/use-scheduled-draft.test.ts
+ create mode 100644 src/pages/schedules/use-scheduled-draft.ts
+ create mode 100644 src/pages/schedules/use-scheduled-management.test.ts
+ create mode 100644 src/pages/schedules/use-scheduled-management.ts
+ create mode 100644 src/pages/schedules/use-scheduled-manual.test.ts
+ create mode 100644 src/pages/schedules/use-scheduled-manual.ts
+ create mode 100644 src/pages/schedules/use-scheduled-updates.test.ts
+ create mode 100644 src/pages/schedules/use-scheduled-updates.ts

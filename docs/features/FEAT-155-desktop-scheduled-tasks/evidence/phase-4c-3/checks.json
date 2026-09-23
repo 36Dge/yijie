@@ -1,0 +1,165 @@
+{
+  "feature": "FEAT-155",
+  "phase": "4C-3",
+  "recorded_at": "2026-09-23T02:23:54.946772+00:00",
+  "overall": "IMPLEMENTED; REAL EXECUTION PASS; VISUAL ACCEPTANCE PENDING",
+  "native_final_regression": {
+    "status": "PASS",
+    "passed": 124,
+    "failed": 0,
+    "filtered_other_tests": 361,
+    "command": "cargo test --manifest-path src-tauri/Cargo.toml --locked --lib feat155_ -- --nocapture",
+    "log": "checks/native-regression-final.log"
+  },
+  "native_latest_focused": {
+    "status": "PASS",
+    "passed": 17,
+    "overlaps_final_regression": true,
+    "log": "checks/native-latest-focused.log"
+  },
+  "native_unknown_purpose": {
+    "status": "PASS",
+    "passed": 1,
+    "overlaps_final_regression": true,
+    "log": "checks/native-unknown-purpose.log"
+  },
+  "frontend_focused": {
+    "status": "PASS",
+    "files": 8,
+    "passed": 35,
+    "log": "checks/frontend-focused-final.log"
+  },
+  "strict_ipc": {
+    "status": "PASS",
+    "actual_exchanges": 68,
+    "commands": 27,
+    "input": "all-ipc.json",
+    "log": "checks/strict-conformance.log"
+  },
+  "generation": {
+    "status": "PASS",
+    "command": "pnpm check:scheduled-ipc",
+    "log": "checks/generation.log"
+  },
+  "lint_type": {
+    "status": "PASS",
+    "command": "pnpm lint",
+    "log": "checks/lint-latest.log"
+  },
+  "clippy": {
+    "status": "PASS",
+    "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings",
+    "log": "checks/clippy-final.log"
+  },
+  "docs": {
+    "status": "PASS",
+    "command": "pnpm docs:build",
+    "log": "checks/docs-build.log"
+  },
+  "canonical_build": {
+    "status": "PASS",
+    "command": "pnpm tauri:demo-fast:app with explicit isolated candidate and metered Provider",
+    "log": "checks/canonical-final-reopen.log",
+    "final_normal_launcher_exit": 0
+  },
+  "full_frontend": {
+    "status": "BLOCKED",
+    "command": "pnpm test",
+    "reason": "Existing Contracts tracked changes gate stops before full Vitest; not bypassed",
+    "log": "checks/frontend-full-entry.log"
+  },
+  "full_native": {
+    "status": "NOT RUN",
+    "reason": "User prohibition on legacy executable/permission fault fixtures; safe FEAT155 scope run",
+    "examples": [
+      "sidecar::distinct_test_profile_lifecycles_record_content_free_child_crash_evidence",
+      "feat126_secure_storage::symlink_wrong_mode_and_non_temp_roots_fail_closed"
+    ]
+  },
+  "historical_chatpage": {
+    "status": "not rerun as whole suite; not claimed fixed"
+  },
+  "native_ui": {
+    "functional_status": "PASS",
+    "visual_status": "PENDING UI-4C3-01",
+    "record": "native-ui.json",
+    "light_dark_modal_keyboard_full_pass_claimed": false
+  },
+  "provider": {
+    "ledger": "provider-ledger.json",
+    "local_requests": 2,
+    "batch_limit": 1,
+    "batch_used": 1,
+    "feature_total_used": 10,
+    "feature_total_limit": 12,
+    "remaining": 2,
+    "image": 0,
+    "merchant_external_mcp": 0
+  },
+  "normal_reopen": {
+    "status": "PASS",
+    "identical_ledger": true,
+    "reservation_count": 0,
+    "all_validation_plans_paused_or_deleted": true,
+    "extra_real_requests": 0,
+    "record": "ledger-final-read-only.log"
+  },
+  "metadata": {
+    "lint": "PASS",
+    "passed_tests": 50,
+    "shell_syntax": "PASS",
+    "strict_D0": "PASS",
+    "link_check": "PASS"
+  },
+  "full_feature_D4": "NOT RUN",
+  "log_sha256": {
+    "canonical-final-reopen.log": "6ad6b6d36e67add95c2c03aff0d58c4522bf3154ea6d12d91438c91456e97340",
+    "canonical-local-reopen.log": "30e7d77385fcd10c3ad39578f3426a5c8f8c38c1f78af2fb60dae7f9f5535890",
+    "canonical-local-start.log": "a518eb1a9117fde6da4ec28a016a29673bcde6de17958d0158e0f0c4b3c9f295",
+    "canonical-real-start.log": "d752fe16dd3a274b13f07a9fbca603552f920f320d0e4665bfcc62b11013e790",
+    "clippy-final.log": "af50d2dfb9db401f9e41c25129ec255add7f3b13f946fb88e96d47c197ffd4b0",
+    "clippy.log": "9b2538955c89287f567acd8442c6c3ede6ff03f107c43166c547c9de550a177b",
+    "docs-build.log": "135d82850718264eb1b7188d7b857047c9f8206dad55175de4cb72209db56a30",
+    "fmt-final.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "frontend-first-type.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "frontend-focused-final.log": "b80a65354efadd3eb94d0b5be53525b32a471cb0d7b6b281505df249db47eaf8",
+    "frontend-focused.log": "d62d32fc305728c760fe8823388ea15548b6fe8bb0c6d9547570f01152e002f8",
+    "frontend-full-entry.log": "e4d4b10d3370699fafa8670acf8dd0a18d9faa921ee369b20804ac7b5b5f06bf",
+    "frontend-single-first.log": "70372ba61812dbe4c780b9d73e4a23883a6d541e29d1accd12d205e697ce2cd9",
+    "generation.log": "1863b523e79da108ab13098bac819cde2faf6760d8f6586e09d6b18179dac70d",
+    "inspector-build.log": "4b2242bcbaec5b83e333b1bbb1749c2cf31980b974db7d45b5eb35bb330b97b4",
+    "ledger-before-final-reopen.log": "e9d859bd29cf7e78abf8c01c15d31593736d3cb38aba2cf982a01e93a836dd25",
+    "ledger-before.log": "30c96bef338a3a9e652e8131730590e5e8d4c8fc359f1b0c7fa68d59346d7b44",
+    "ledger-local-enabled.log": "dba7eba3c61e4712f6b2cb64f05df1e567ae64fc283ff145627f8d86fac11a21",
+    "ledger-local-manual.log": "f8cbe45d83b72f73eba243bb04fc943f57161f853ca2e57c24a8942eb00d6157",
+    "ledger-local-rerun.log": "4d82b2b4358c228e26da53f2bc0e1c258c9f48b9244c22c6ec7e14eaff599089",
+    "ledger-real-after.log": "b3a0b771b562a29791214a44c19893825497bb564e94498ab6b976f91fcab626",
+    "ledger-real-before.log": "f6c9c383bc2face972fd0fc8aa14e15c48330491e110ee972e8b50bf85cf44fa",
+    "lint-final.log": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6",
+    "lint-latest.log": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6",
+    "lint.log": "c5615f0a5e5e78e277057747e0829c83f5c2ceacacd6420e888a09e44f97f9fc",
+    "meta-lint.log": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c",
+    "meta-test.log": "f89a9ce89b70f3b7a4da3ae371a84397464ad5bfbd0b7029341fd7d5cc06623b",
+    "native-first-check.log": "4e8d2c5c9356d30b75dc156eb1226320e6c72b655d8152492c5faf1f675743f1",
+    "native-latest-focused.log": "21f272d41508d1c7d77e40ce3d30b4e248b01357d9cc061653b12c73e0cc66fa",
+    "native-regression-compile.log": "55c328d8c46ffa0aa11676cf59c647de48765c60764d954ecab87b212d634d95",
+    "native-regression-final.log": "91ec4f7f1b559bf867b0f1bbd584798cda1d2a7343d7ceb664b890a3214e779f",
+    "native-regression.log": "0a1baf48484b8a8ac3b984b1b976a0f9e5cd3adccaacf68614afc515dbc3afe8",
+    "native-rerun-diagnostic.log": "2e36ce9b0c75e242e6d4af65e1452d273cbd7c316b7fa91fa7de2bac4e23263c",
+    "native-single-first.log": "ccdef2c1e6cae3833ef7062170d6bc532ec51b5ac313d65e351fbb1021b34f38",
+    "native-single-focused.log": "c56bb47572554bce19640ce5f3b297672d53dcd54751b3c1f8ba46e22bb9fa6d",
+    "native-unknown-purpose.log": "dbeed3f06081cd78b3f9a034484b574ffb00bf8580f6ca951c8fb09e97c31ad5",
+    "reopen-comparison.log": "80b4b38db48b79369782d1cbe6f2908e3552a7594be24c71f529e9ce9a8645a1",
+    "strict-conformance.log": "cabd89ea959614c35b8b070e4a5e035eb48f9382967af1f665d0237a9bf34623",
+    "strict-d0.log": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4"
+  },
+  "fmt": {
+    "status": "PASS",
+    "command": "cargo fmt --manifest-path src-tauri/Cargo.toml --check",
+    "log": "checks/fmt-final.log"
+  },
+  "diff_check": {
+    "yijie": "PASS",
+    "yijie-desktop": "PASS"
+  }
+}

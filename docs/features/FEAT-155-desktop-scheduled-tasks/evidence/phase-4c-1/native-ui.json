@@ -1,0 +1,36 @@
+{
+  "feature": "FEAT-155",
+  "phase": "4C-1",
+  "batch_limit": 5,
+  "batch_used": 4,
+  "feature_starting_used": 4,
+  "feature_used": 8,
+  "feature_remaining": 4,
+  "image_calls": 0,
+  "merchant_mcp_external_calls": 0,
+  "mode": "real canonical UI, actual fixed Runtime and MiniMax, isolated candidate SQL23/Store6",
+  "observations": [
+    "取消确认不创建授权或run；默认焦点取消，关闭后回到原运行按钮",
+    "专属聊天首次运行传输失败，原生failed，native_terminal释放，无自动重试；TLS与无模型GET检查正常，无法从旧计数器追溯该次具体传输异常",
+    "明确新手动确认复用同一专属聊天，第二次Provider HTTP200、原生completed，展开未分类文本读取真实回复",
+    "已有聊天仅能选择本批普通聊天，草案聊天不在候选列表；第三次HTTP200、同一会话第3轮completed",
+    "记录显示独立run、paused计划和未知执行时钟；完整对话分别定位第1、第2、第3轮，旧失败记录未跳到最新轮",
+    "正常退出与canonical重开后3个run、3个grant、4个定时outbox、绑定与占用计数相同；reservation=0，均max_runs=1/occupied_runs=1",
+    "亮暗主题、1180x760原生最小窗口、默认取消与焦点恢复已通过CUA检查；原浅色外观已恢复",
+    "重开后的确认目标标题、管理文案修正已在实际页面复核；未再确认运行",
+    "用户追加授权后仅使用1次，第四次真实返回4C1新建聊天验证通过，精确定位新会话第1轮；正常退出后只读库4run/4grant/6相关outbox、预约0"
+  ],
+  "real_target_matrix": {
+    "dedicated_chat": "completed plus retained initial failed attempt",
+    "existing_chat": "completed",
+    "new_chat_each_run": "HTTP200, completed; separate new conversation first turn; repeated allocations covered by zero-call composition"
+  },
+  "runtime_result_limit": "Provider未提供可用phase，原UI诚实显示未分类模型消息/partial和既有历史差异提示；展开后文本可读，不伪造final_answer或完整历史。",
+  "process_cleanup": "both canonical runs normal exit; meter normal KeyboardInterrupt; CUA post-quit query accidentally relaunched no-env UI, separately normally quit; no force kill",
+  "evidence_surface": "CUA AX and screenshots in this task; aggregate readonly SQLCipher logs; paid Provider ledger",
+  "auto_advance": false,
+  "active_hard_limit": 4,
+  "additional_authorized": 2,
+  "additional_used": 1,
+  "additional_unused": 1
+}

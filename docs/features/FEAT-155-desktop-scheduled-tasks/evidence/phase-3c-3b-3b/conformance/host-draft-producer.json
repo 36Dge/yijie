@@ -1,0 +1,137 @@
+[
+  {
+    "method": "GET",
+    "path": "/v1/scheduled-plan-draft-capability",
+    "schema": "Capability",
+    "status": 200,
+    "value": {
+      "available": true,
+      "reason": "ready",
+      "schema_version": 1
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/v1/scheduled-plan-draft-capability",
+    "schema": "Error",
+    "status": 401,
+    "value": {
+      "code": "unauthorized",
+      "schema_version": 1
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/v1/scheduled-plan-draft-sessions",
+    "schema": "SessionReceipt",
+    "status": 200,
+    "value": {
+      "agent_session_id": "9c6cdcfb-a89b-4cc7-b9e3-c0ea590a5294",
+      "policy_version": 1,
+      "purpose": "scheduled_plan_draft",
+      "schema_version": 1,
+      "task_id": "04a88766-3af4-4d37-8b9a-bb92b9f5a85e",
+      "workspace_id": "b2bd688f-d667-4e09-b111-1d4005536101"
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/v1/scheduled-plan-draft-sessions",
+    "schema": "SessionReceipt",
+    "status": 200,
+    "value": {
+      "agent_session_id": "9c6cdcfb-a89b-4cc7-b9e3-c0ea590a5294",
+      "policy_version": 1,
+      "purpose": "scheduled_plan_draft",
+      "schema_version": 1,
+      "task_id": "04a88766-3af4-4d37-8b9a-bb92b9f5a85e",
+      "workspace_id": "b2bd688f-d667-4e09-b111-1d4005536101"
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/v1/scheduled-plan-draft-session-mappings/04a88766-3af4-4d37-8b9a-bb92b9f5a85e",
+    "schema": "RecoveryMapping",
+    "status": 200,
+    "value": {
+      "agent_session_id": "9c6cdcfb-a89b-4cc7-b9e3-c0ea590a5294",
+      "codex_thread_id": "548b9b12-13b2-4b8c-801b-6aad0d80246b",
+      "mapping_state": "bound",
+      "policy_version": 1,
+      "purpose": "scheduled_plan_draft",
+      "schema_version": 1,
+      "task_id": "04a88766-3af4-4d37-8b9a-bb92b9f5a85e",
+      "workspace_id": "b2bd688f-d667-4e09-b111-1d4005536101"
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/v1/scheduled-plan-draft-sessions/9c6cdcfb-a89b-4cc7-b9e3-c0ea590a5294/resume",
+    "schema": "SessionReceipt",
+    "status": 200,
+    "value": {
+      "agent_session_id": "9c6cdcfb-a89b-4cc7-b9e3-c0ea590a5294",
+      "policy_version": 1,
+      "purpose": "scheduled_plan_draft",
+      "schema_version": 1,
+      "task_id": "04a88766-3af4-4d37-8b9a-bb92b9f5a85e",
+      "workspace_id": "b2bd688f-d667-4e09-b111-1d4005536101"
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/v1/scheduled-plan-draft-sessions/9c6cdcfb-a89b-4cc7-b9e3-c0ea590a5294/turns",
+    "schema": "TurnReceipt",
+    "status": 200,
+    "value": {
+      "agent_session_id": "9c6cdcfb-a89b-4cc7-b9e3-c0ea590a5294",
+      "operation_id": "768b32a4-194b-40e3-85bb-8638943f9530",
+      "policy_version": 1,
+      "schema_version": 1,
+      "turn_id": "c1002e7e-055e-4615-841f-3a25b316aaf0"
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/v1/scheduled-plan-draft-sessions/9c6cdcfb-a89b-4cc7-b9e3-c0ea590a5294/turns",
+    "schema": "TurnReceipt",
+    "status": 200,
+    "value": {
+      "agent_session_id": "9c6cdcfb-a89b-4cc7-b9e3-c0ea590a5294",
+      "operation_id": "768b32a4-194b-40e3-85bb-8638943f9530",
+      "policy_version": 1,
+      "schema_version": 1,
+      "turn_id": "c1002e7e-055e-4615-841f-3a25b316aaf0"
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/v1/scheduled-plan-draft-sessions/9c6cdcfb-a89b-4cc7-b9e3-c0ea590a5294/resume",
+    "schema": "Error",
+    "status": 409,
+    "value": {
+      "code": "busy",
+      "schema_version": 1
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/v1/scheduled-plan-draft-sessions/9c6cdcfb-a89b-4cc7-b9e3-c0ea590a5294/turns",
+    "schema": "Error",
+    "status": 409,
+    "value": {
+      "code": "request_conflict",
+      "schema_version": 1
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/v1/scheduled-plan-draft-sessions/9c6cdcfb-a89b-4cc7-b9e3-c0ea590a5294/resume",
+    "schema": "Error",
+    "status": 400,
+    "value": {
+      "code": "invalid_request",
+      "schema_version": 1
+    }
+  }
+]

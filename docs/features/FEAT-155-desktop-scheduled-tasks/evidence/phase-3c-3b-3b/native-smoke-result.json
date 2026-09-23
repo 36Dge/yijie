@@ -1,0 +1,186 @@
+{
+  "kind": "real-host-runtime-no-model",
+  "root": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.local/feat155-b3b-smoke-y97ou3sh",
+  "model_turn_posts": 0,
+  "runs": [
+    {
+      "pid": 26576,
+      "nonce": "a0aee249-a0e1-4528-9cdd-b2cd718d17d8",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/readyz",
+          "status": 503,
+          "value": {
+            "runtime_state": "verifying",
+            "status": "not_ready"
+          }
+        },
+        {
+          "method": "GET",
+          "path": "/readyz",
+          "status": 200,
+          "value": {
+            "runtime_state": "ready",
+            "status": "ready"
+          }
+        },
+        {
+          "method": "GET",
+          "path": "/v1/scheduled-plan-draft-capability",
+          "status": 200,
+          "value": {
+            "schema_version": 1,
+            "available": true,
+            "reason": "ready"
+          }
+        },
+        {
+          "method": "POST",
+          "path": "/v1/scheduled-plan-draft-sessions",
+          "status": 200,
+          "value": {
+            "schema_version": 1,
+            "policy_version": 1,
+            "purpose": "scheduled_plan_draft",
+            "task_id": "72c29da2-ba7a-433d-a665-8864ad029ab4",
+            "agent_session_id": "91482170-aebd-49a7-b768-56e44ff1ac2e",
+            "workspace_id": "c8ee9222-4aa7-4383-8e80-9ba05f16140c"
+          }
+        },
+        {
+          "method": "GET",
+          "path": "/v1/scheduled-plan-draft-session-mappings/72c29da2-ba7a-433d-a665-8864ad029ab4",
+          "status": 200,
+          "value": {
+            "schema_version": 1,
+            "policy_version": 1,
+            "purpose": "scheduled_plan_draft",
+            "task_id": "72c29da2-ba7a-433d-a665-8864ad029ab4",
+            "agent_session_id": "91482170-aebd-49a7-b768-56e44ff1ac2e",
+            "workspace_id": "c8ee9222-4aa7-4383-8e80-9ba05f16140c",
+            "mapping_state": "bound",
+            "codex_thread_id": "01a0b829-aa92-7aa1-83f1-f051981dceb7",
+            "responding_host_instance_id": "a0aee249-a0e1-4528-9cdd-b2cd718d17d8"
+          }
+        },
+        {
+          "method": "POST",
+          "path": "/v1/scheduled-plan-draft-sessions/91482170-aebd-49a7-b768-56e44ff1ac2e/resume",
+          "status": 200,
+          "value": {
+            "schema_version": 1,
+            "policy_version": 1,
+            "purpose": "scheduled_plan_draft",
+            "task_id": "72c29da2-ba7a-433d-a665-8864ad029ab4",
+            "agent_session_id": "91482170-aebd-49a7-b768-56e44ff1ac2e",
+            "workspace_id": "c8ee9222-4aa7-4383-8e80-9ba05f16140c"
+          }
+        }
+      ],
+      "explicit_resume_status": 200,
+      "mapping_preserved": true,
+      "exit_code": 0
+    },
+    {
+      "pid": 26601,
+      "nonce": "48404bc4-6755-445e-bbe0-1093a0d65f46",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/readyz",
+          "status": 503,
+          "value": {
+            "runtime_state": "verifying",
+            "status": "not_ready"
+          }
+        },
+        {
+          "method": "GET",
+          "path": "/readyz",
+          "status": 200,
+          "value": {
+            "runtime_state": "ready",
+            "status": "ready"
+          }
+        },
+        {
+          "method": "GET",
+          "path": "/v1/scheduled-plan-draft-capability",
+          "status": 200,
+          "value": {
+            "schema_version": 1,
+            "available": true,
+            "reason": "ready"
+          }
+        },
+        {
+          "method": "GET",
+          "path": "/v1/scheduled-plan-draft-session-mappings/72c29da2-ba7a-433d-a665-8864ad029ab4",
+          "status": 200,
+          "value": {
+            "schema_version": 1,
+            "policy_version": 1,
+            "purpose": "scheduled_plan_draft",
+            "task_id": "72c29da2-ba7a-433d-a665-8864ad029ab4",
+            "agent_session_id": "91482170-aebd-49a7-b768-56e44ff1ac2e",
+            "workspace_id": "c8ee9222-4aa7-4383-8e80-9ba05f16140c",
+            "mapping_state": "bound",
+            "codex_thread_id": "01a0b829-aa92-7aa1-83f1-f051981dceb7",
+            "responding_host_instance_id": "48404bc4-6755-445e-bbe0-1093a0d65f46"
+          }
+        },
+        {
+          "method": "POST",
+          "path": "/v1/scheduled-plan-draft-sessions/91482170-aebd-49a7-b768-56e44ff1ac2e/resume",
+          "status": 503,
+          "value": {
+            "schema_version": 1,
+            "code": "operation_unknown"
+          }
+        },
+        {
+          "method": "GET",
+          "path": "/v1/agent-sessions/91482170-aebd-49a7-b768-56e44ff1ac2e",
+          "status": 200,
+          "value": {
+            "session": {
+              "active_turn_id": "",
+              "agent_session_id": "91482170-aebd-49a7-b768-56e44ff1ac2e",
+              "codex_thread_id": "01a0b829-aa92-7aa1-83f1-f051981dceb7",
+              "created_at": "2026-09-19T05:35:33.511139Z",
+              "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.local/feat155-b3b-smoke-y97ou3sh/scheduled-workspaces/00000000-0000-4000-8000-000000000156/00000000-0000-4000-8000-000000000155/c8ee9222-4aa7-4383-8e80-9ba05f16140c",
+              "failure_code": "",
+              "model": "MiniMax-M3",
+              "model_provider": "minimax",
+              "state": "idle",
+              "task_id": "72c29da2-ba7a-433d-a665-8864ad029ab4",
+              "updated_at": "2026-09-19T05:35:33.556172Z"
+            }
+          }
+        },
+        {
+          "method": "GET",
+          "path": "/v1/scheduled-plan-draft-session-mappings/72c29da2-ba7a-433d-a665-8864ad029ab4",
+          "status": 200,
+          "value": {
+            "schema_version": 1,
+            "policy_version": 1,
+            "purpose": "scheduled_plan_draft",
+            "task_id": "72c29da2-ba7a-433d-a665-8864ad029ab4",
+            "agent_session_id": "91482170-aebd-49a7-b768-56e44ff1ac2e",
+            "workspace_id": "c8ee9222-4aa7-4383-8e80-9ba05f16140c",
+            "mapping_state": "bound",
+            "codex_thread_id": "01a0b829-aa92-7aa1-83f1-f051981dceb7",
+            "responding_host_instance_id": "48404bc4-6755-445e-bbe0-1093a0d65f46"
+          }
+        }
+      ],
+      "explicit_resume_status": 503,
+      "cold_empty_history": "unavailable_preserved",
+      "mapping_preserved": true,
+      "exit_code": 0
+    }
+  ],
+  "passed": true
+}

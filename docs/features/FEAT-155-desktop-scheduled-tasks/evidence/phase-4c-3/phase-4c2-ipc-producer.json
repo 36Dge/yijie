@@ -1,0 +1,529 @@
+[
+  {
+    "command": "schedule_save_plan_v1",
+    "request": {
+      "contextId": "01a0cbf6-0ae2-79b1-9856-8469340b9502",
+      "payload": {
+        "definition": {
+          "content": "仅检查本地记录",
+          "name": "自动确认",
+          "rule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "target": {
+            "mode": "dedicated_chat"
+          }
+        },
+        "request_id": "01a0cbf6-0ae2-79b1-9856-84753e508f0e"
+      },
+      "requestId": "01a0cbf6-0ae2-79b1-9856-84753e508f0e",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "definition": {
+          "content": "仅检查本地记录",
+          "name": "自动确认",
+          "rule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "target": {
+            "mode": "dedicated_chat"
+          }
+        },
+        "effective_from": 1790128294,
+        "next_at": 1790211600,
+        "plan_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+        "revision": 1,
+        "rule_version": 1,
+        "schedule_epoch": 1,
+        "state": "paused",
+        "target_state": "unbound",
+        "tzdb_version": "2025b"
+      },
+      "requestId": "01a0cbf6-0ae2-79b1-9856-84753e508f0e",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_preview_time_v1",
+    "request": {
+      "contextId": "01a0cbf6-0ae2-79b1-9856-8469340b9502",
+      "payload": {
+        "rule": {
+          "frequency": "daily",
+          "local_time": "09:00",
+          "time_zone": "Asia/Shanghai"
+        }
+      },
+      "requestId": "01a0cbf6-0af3-7432-9118-16130d330060",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "candidates_examined": 2,
+        "logical_slot": "2026-09-24T09:00",
+        "next_at": 1790211600,
+        "rule_version": 1,
+        "skipped_slots": [],
+        "tzdb_version": "2025b"
+      },
+      "requestId": "01a0cbf6-0af3-7432-9118-16130d330060",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_confirm_enable_v1",
+    "request": {
+      "contextId": "01a0cbf6-0ae2-79b1-9856-8469340b9502",
+      "payload": {
+        "confirmation": {
+          "expected_revision": 1,
+          "expires_at": 1790212200,
+          "max_runs": 1,
+          "plan_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+          "request_id": "01a0cbf6-0af3-7432-9118-1620071eb974"
+        },
+        "expected_next_at": 1790211600
+      },
+      "requestId": "01a0cbf6-0af3-7432-9118-1620071eb974",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "automatic_consent": true,
+        "grant": {
+          "authorization_revision": 1,
+          "definition_digest": "32a0dac60731fc885f279f8e209b2cb67546a75084902ab7a7ac2507cec7c4c5",
+          "expires_at": 1790212200,
+          "grant_id": "01a0cbf6-0afd-77a3-a9af-81be8a604d40",
+          "max_runs": 1,
+          "occupied_runs": 0,
+          "plan_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+          "plan_revision": 2,
+          "state": "active",
+          "workspace": {
+            "resource_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+            "source": "managed_schedule"
+          }
+        },
+        "plan": {
+          "authorization_expires_at": 1790212200,
+          "authorization_ref": "01a0cbf6-0afd-77a3-a9af-81be8a604d40",
+          "definition": {
+            "content": "仅检查本地记录",
+            "name": "自动确认",
+            "rule": {
+              "frequency": "daily",
+              "local_time": "09:00",
+              "time_zone": "Asia/Shanghai"
+            },
+            "target": {
+              "mode": "dedicated_chat"
+            }
+          },
+          "effective_from": 1790128294,
+          "next_at": 1790211600,
+          "plan_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+          "revision": 2,
+          "rule_version": 1,
+          "schedule_epoch": 1,
+          "state": "enabled",
+          "target_state": "unbound",
+          "tzdb_version": "2025b"
+        }
+      },
+      "requestId": "01a0cbf6-0af3-7432-9118-1620071eb974",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_read_execution_receipt_v1",
+    "request": {
+      "contextId": "01a0cbf6-0ae2-79b1-9856-8469340b9502",
+      "payload": {
+        "operation": "enable",
+        "original_request_id": "01a0cbf6-0af3-7432-9118-1620071eb974"
+      },
+      "requestId": "01a0cbf6-0b0b-72b2-9e93-ec14cc696a5f",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "observation": "enable_observed",
+        "result": {
+          "automatic_consent": true,
+          "grant": {
+            "authorization_revision": 1,
+            "definition_digest": "32a0dac60731fc885f279f8e209b2cb67546a75084902ab7a7ac2507cec7c4c5",
+            "expires_at": 1790212200,
+            "grant_id": "01a0cbf6-0afd-77a3-a9af-81be8a604d40",
+            "max_runs": 1,
+            "occupied_runs": 0,
+            "plan_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+            "plan_revision": 2,
+            "state": "active",
+            "workspace": {
+              "resource_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+              "source": "managed_schedule"
+            }
+          },
+          "plan": {
+            "authorization_expires_at": 1790212200,
+            "authorization_ref": "01a0cbf6-0afd-77a3-a9af-81be8a604d40",
+            "definition": {
+              "content": "仅检查本地记录",
+              "name": "自动确认",
+              "rule": {
+                "frequency": "daily",
+                "local_time": "09:00",
+                "time_zone": "Asia/Shanghai"
+              },
+              "target": {
+                "mode": "dedicated_chat"
+              }
+            },
+            "effective_from": 1790128294,
+            "next_at": 1790211600,
+            "plan_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+            "revision": 2,
+            "rule_version": 1,
+            "schedule_epoch": 1,
+            "state": "enabled",
+            "target_state": "unbound",
+            "tzdb_version": "2025b"
+          }
+        }
+      },
+      "requestId": "01a0cbf6-0b0b-72b2-9e93-ec14cc696a5f",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_confirm_enable_v1",
+    "request": {
+      "contextId": "01a0cbf6-0ae2-79b1-9856-8469340b9502",
+      "payload": {
+        "confirmation": {
+          "expected_revision": 1,
+          "expires_at": 1790212200,
+          "max_runs": 1,
+          "plan_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+          "request_id": "01a0cbf6-0af3-7432-9118-1620071eb974"
+        },
+        "expected_next_at": 1790211600
+      },
+      "requestId": "01a0cbf6-0af3-7432-9118-1620071eb974",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "automatic_consent": true,
+        "grant": {
+          "authorization_revision": 1,
+          "definition_digest": "32a0dac60731fc885f279f8e209b2cb67546a75084902ab7a7ac2507cec7c4c5",
+          "expires_at": 1790212200,
+          "grant_id": "01a0cbf6-0afd-77a3-a9af-81be8a604d40",
+          "max_runs": 1,
+          "occupied_runs": 0,
+          "plan_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+          "plan_revision": 2,
+          "state": "active",
+          "workspace": {
+            "resource_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+            "source": "managed_schedule"
+          }
+        },
+        "plan": {
+          "authorization_expires_at": 1790212200,
+          "authorization_ref": "01a0cbf6-0afd-77a3-a9af-81be8a604d40",
+          "definition": {
+            "content": "仅检查本地记录",
+            "name": "自动确认",
+            "rule": {
+              "frequency": "daily",
+              "local_time": "09:00",
+              "time_zone": "Asia/Shanghai"
+            },
+            "target": {
+              "mode": "dedicated_chat"
+            }
+          },
+          "effective_from": 1790128294,
+          "next_at": 1790211600,
+          "plan_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+          "revision": 2,
+          "rule_version": 1,
+          "schedule_epoch": 1,
+          "state": "enabled",
+          "target_state": "unbound",
+          "tzdb_version": "2025b"
+        }
+      },
+      "requestId": "01a0cbf6-0af3-7432-9118-1620071eb974",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_get_plan_v1",
+    "request": {
+      "contextId": "01a0cbf6-0ae2-79b1-9856-8469340b9502",
+      "payload": {
+        "plan_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26"
+      },
+      "requestId": "01a0cbf6-0b0c-7233-8659-030d135789a9",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "grant": {
+          "authorization_revision": 1,
+          "definition_digest": "32a0dac60731fc885f279f8e209b2cb67546a75084902ab7a7ac2507cec7c4c5",
+          "expires_at": 1790212200,
+          "grant_id": "01a0cbf6-0afd-77a3-a9af-81be8a604d40",
+          "max_runs": 1,
+          "occupied_runs": 0,
+          "plan_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+          "plan_revision": 2,
+          "state": "active",
+          "workspace": {
+            "resource_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+            "source": "managed_schedule"
+          }
+        },
+        "plan": {
+          "authorization_expires_at": 1790212200,
+          "authorization_ref": "01a0cbf6-0afd-77a3-a9af-81be8a604d40",
+          "definition": {
+            "content": "仅检查本地记录",
+            "name": "自动确认",
+            "rule": {
+              "frequency": "daily",
+              "local_time": "09:00",
+              "time_zone": "Asia/Shanghai"
+            },
+            "target": {
+              "mode": "dedicated_chat"
+            }
+          },
+          "effective_from": 1790128294,
+          "next_at": 1790211600,
+          "plan_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+          "revision": 2,
+          "rule_version": 1,
+          "schedule_epoch": 1,
+          "state": "enabled",
+          "target_state": "unbound",
+          "tzdb_version": "2025b"
+        },
+        "summary": {
+          "effective_state": "enabled",
+          "name": "自动确认",
+          "next_at": 1790211600,
+          "plan_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+          "raw_state": "enabled",
+          "revision": 2,
+          "target_mode": "dedicated_chat",
+          "target_state": "unbound"
+        }
+      },
+      "requestId": "01a0cbf6-0b0c-7233-8659-030d135789a9",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_list_plans_v1",
+    "request": {
+      "contextId": "01a0cbf6-0ae2-79b1-9856-8469340b9502",
+      "payload": {
+        "state": "enabled"
+      },
+      "requestId": "01a0cbf6-0b0e-77a1-b693-f3e79d5fdd0f",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "items": [
+          {
+            "effective_state": "enabled",
+            "name": "自动确认",
+            "next_at": 1790211600,
+            "plan_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+            "raw_state": "enabled",
+            "revision": 2,
+            "target_mode": "dedicated_chat",
+            "target_state": "unbound"
+          }
+        ]
+      },
+      "requestId": "01a0cbf6-0b0e-77a1-b693-f3e79d5fdd0f",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_pause_plan_v1",
+    "request": {
+      "contextId": "01a0cbf6-0ae2-79b1-9856-8469340b9502",
+      "payload": {
+        "expected_revision": 2,
+        "plan_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26"
+      },
+      "requestId": "01a0cbf6-0b1a-7f02-8e3e-8eba950c5b38",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "definition": {
+          "content": "仅检查本地记录",
+          "name": "自动确认",
+          "rule": {
+            "frequency": "daily",
+            "local_time": "09:00",
+            "time_zone": "Asia/Shanghai"
+          },
+          "target": {
+            "mode": "dedicated_chat"
+          }
+        },
+        "effective_from": 1790128294,
+        "next_at": 1790211600,
+        "plan_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+        "revision": 3,
+        "rule_version": 1,
+        "schedule_epoch": 1,
+        "state": "paused",
+        "target_state": "unbound",
+        "tzdb_version": "2025b"
+      },
+      "requestId": "01a0cbf6-0b1a-7f02-8e3e-8eba950c5b38",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_confirm_enable_v1",
+    "request": {
+      "contextId": "01a0cbf6-0ae2-79b1-9856-8469340b9502",
+      "payload": {
+        "confirmation": {
+          "expected_revision": 1,
+          "expires_at": 1790212200,
+          "max_runs": 1,
+          "plan_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+          "request_id": "01a0cbf6-0af3-7432-9118-1620071eb974"
+        },
+        "expected_next_at": 1790211600
+      },
+      "requestId": "01a0cbf6-0af3-7432-9118-1620071eb974",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "automatic_consent": true,
+        "grant": {
+          "authorization_revision": 1,
+          "definition_digest": "32a0dac60731fc885f279f8e209b2cb67546a75084902ab7a7ac2507cec7c4c5",
+          "expires_at": 1790212200,
+          "grant_id": "01a0cbf6-0afd-77a3-a9af-81be8a604d40",
+          "max_runs": 1,
+          "occupied_runs": 0,
+          "plan_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+          "plan_revision": 2,
+          "state": "stale",
+          "workspace": {
+            "resource_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+            "source": "managed_schedule"
+          }
+        },
+        "plan": {
+          "definition": {
+            "content": "仅检查本地记录",
+            "name": "自动确认",
+            "rule": {
+              "frequency": "daily",
+              "local_time": "09:00",
+              "time_zone": "Asia/Shanghai"
+            },
+            "target": {
+              "mode": "dedicated_chat"
+            }
+          },
+          "effective_from": 1790128294,
+          "next_at": 1790211600,
+          "plan_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+          "revision": 3,
+          "rule_version": 1,
+          "schedule_epoch": 1,
+          "state": "paused",
+          "target_state": "unbound",
+          "tzdb_version": "2025b"
+        }
+      },
+      "requestId": "01a0cbf6-0af3-7432-9118-1620071eb974",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_read_execution_receipt_v1",
+    "request": {
+      "contextId": "01a0cbf6-0ae2-79b1-9856-8469340b9502",
+      "payload": {
+        "operation": "enable",
+        "original_request_id": "01a0cbf6-0af3-7432-9118-1620071eb974"
+      },
+      "requestId": "01a0cbf6-0b26-7da1-8f5d-3c3623525471",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "observation": "enable_observed",
+        "result": {
+          "automatic_consent": true,
+          "grant": {
+            "authorization_revision": 1,
+            "definition_digest": "32a0dac60731fc885f279f8e209b2cb67546a75084902ab7a7ac2507cec7c4c5",
+            "expires_at": 1790212200,
+            "grant_id": "01a0cbf6-0afd-77a3-a9af-81be8a604d40",
+            "max_runs": 1,
+            "occupied_runs": 0,
+            "plan_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+            "plan_revision": 2,
+            "state": "stale",
+            "workspace": {
+              "resource_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+              "source": "managed_schedule"
+            }
+          },
+          "plan": {
+            "definition": {
+              "content": "仅检查本地记录",
+              "name": "自动确认",
+              "rule": {
+                "frequency": "daily",
+                "local_time": "09:00",
+                "time_zone": "Asia/Shanghai"
+              },
+              "target": {
+                "mode": "dedicated_chat"
+              }
+            },
+            "effective_from": 1790128294,
+            "next_at": 1790211600,
+            "plan_id": "01a0cbf6-0ae2-79b1-9856-84ad4a861a26",
+            "revision": 3,
+            "rule_version": 1,
+            "schedule_epoch": 1,
+            "state": "paused",
+            "target_state": "unbound",
+            "tzdb_version": "2025b"
+          }
+        }
+      },
+      "requestId": "01a0cbf6-0b26-7da1-8f5d-3c3623525471",
+      "schemaVersion": 1
+    }
+  }
+]

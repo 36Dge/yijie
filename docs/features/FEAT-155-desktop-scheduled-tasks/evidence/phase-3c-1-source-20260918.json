@@ -1,0 +1,959 @@
+{
+  "feature": "FEAT-155",
+  "phase": "phase_3c_1",
+  "captured_at": "2026-09-18T12:06:31.724703+00:00",
+  "contract_impact": "breaking",
+  "authority": "Desktop private schema20 and native dispatch semantics; shared wire and Runtime unchanged",
+  "release": false,
+  "baseline_evidence": {
+    "path": "evidence/phase-3b-2-source-20260918.json",
+    "sha256": "94df616f9c23462f82b5ebd29f67b9797dc7e916c1ff3ed3314b0949dd581730",
+    "96_candidate_hashes_matched_before_start": true
+  },
+  "baseline_snapshot_directory": "/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat155-3c1-ipymep3g",
+  "repositories": {
+    "yijie-contracts": {
+      "head": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-contracts.git (fetch)\norigin\thttps://github.com/36Dge/yijie-contracts.git (push)",
+      "files": [
+        {
+          "path": "Makefile",
+          "sha256": "1b7ce74feb833bfb3c5a65b2259a15f82010ebf58797f9e3ce0f745e5ab8ba00",
+          "before_sha256": "1b7ce74feb833bfb3c5a65b2259a15f82010ebf58797f9e3ce0f745e5ab8ba00",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "compatibility/scheduled-execution/source.lock.json",
+          "sha256": "27ffc07595e155ffef87f8892a4982326457244fac72d01e122ab00a82f55c63",
+          "before_sha256": "27ffc07595e155ffef87f8892a4982326457244fac72d01e122ab00a82f55c63",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "compatibility/scheduled-plan/source.lock.json",
+          "sha256": "c1e44503f23268930181410dac5d81dbe39f84c093f89143845fd7dc4aa3aef5",
+          "before_sha256": "c1e44503f23268930181410dac5d81dbe39f84c093f89143845fd7dc4aa3aef5",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "compatibility/scheduled-task-recovery/source.lock.json",
+          "sha256": "0da991a16e14b20115f339b9e0d2edd8162a4e1a56d4c0555ed6fc6f61e2692e",
+          "before_sha256": "0da991a16e14b20115f339b9e0d2edd8162a4e1a56d4c0555ed6fc6f61e2692e",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "docs/scheduled-execution-v1.md",
+          "sha256": "7da5a63a0236abf316c2b2381c688dc8766366e04da672e9f1fc44f39aa3cac6",
+          "before_sha256": "7da5a63a0236abf316c2b2381c688dc8766366e04da672e9f1fc44f39aa3cac6",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "docs/scheduled-plan-v1.md",
+          "sha256": "531e363c225eecd4664c64d0669a7a4990f6d7ac49efcff985c58b675072eeef",
+          "before_sha256": "531e363c225eecd4664c64d0669a7a4990f6d7ac49efcff985c58b675072eeef",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "docs/scheduled-task-recovery-v1.md",
+          "sha256": "ed37162b92c5cad30c848cf8059f848903381e8ab34ef4d0a50fc90ad22f875a",
+          "before_sha256": "ed37162b92c5cad30c848cf8059f848903381e8ab34ef4d0a50fc90ad22f875a",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "docs/supported-baselines.md",
+          "sha256": "dab05eaf7207269a9bfc4b2e2c98ea2e00b26691a501cc6eb39fefa51e149374",
+          "before_sha256": "dab05eaf7207269a9bfc4b2e2c98ea2e00b26691a501cc6eb39fefa51e149374",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "jsonschema/scheduled-tasks/execution-v1.schema.json",
+          "sha256": "dec7517a4d7d3cff42eb3058c8c49c7cf5d94db751ccc16b1b7acacf2811ec3e",
+          "before_sha256": "dec7517a4d7d3cff42eb3058c8c49c7cf5d94db751ccc16b1b7acacf2811ec3e",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "jsonschema/scheduled-tasks/plan-draft-v1.schema.json",
+          "sha256": "267efaf2f7ba9ada27f7494c9042473c6775b7d9eeecab4f3673cc84d0814171",
+          "before_sha256": "267efaf2f7ba9ada27f7494c9042473c6775b7d9eeecab4f3673cc84d0814171",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "jsonschema/scheduled-tasks/plan-storage-v1.schema.json",
+          "sha256": "0883ab69c0cbcda311113fd2a966ea98065ddc47b301e36611e2447620667cd2",
+          "before_sha256": "0883ab69c0cbcda311113fd2a966ea98065ddc47b301e36611e2447620667cd2",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "openapi/scheduled-task-recovery/scheduled-task-recovery.yaml",
+          "sha256": "47a1d7f4e5e858116d9f0b80faf86a0e1e5936dfab1ebf6673c9579e5246e9e2",
+          "before_sha256": "47a1d7f4e5e858116d9f0b80faf86a0e1e5936dfab1ebf6673c9579e5246e9e2",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "scripts/check-scheduled-execution-producer.mjs",
+          "sha256": "aa02c9f58ddec96ad1ae3fc7cc99af77412d0d2ab45bfb08d9ac624ceb10e81a",
+          "before_sha256": "aa02c9f58ddec96ad1ae3fc7cc99af77412d0d2ab45bfb08d9ac624ceb10e81a",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "scripts/check-scheduled-execution.mjs",
+          "sha256": "d5db5b5506f5dd326978891d939c9ba18ac059661a8a1d0d8bec760149164e30",
+          "before_sha256": "d5db5b5506f5dd326978891d939c9ba18ac059661a8a1d0d8bec760149164e30",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "scripts/check-scheduled-plan-producer.mjs",
+          "sha256": "5b6917b9f600c0e9959ace4e06f3a32baca86cd8c067818b255339485188679e",
+          "before_sha256": "5b6917b9f600c0e9959ace4e06f3a32baca86cd8c067818b255339485188679e",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "scripts/check-scheduled-plan.mjs",
+          "sha256": "34ca1b051ad110624cd490b71f8cbd0279e8df97706021bf440a772836b6496f",
+          "before_sha256": "34ca1b051ad110624cd490b71f8cbd0279e8df97706021bf440a772836b6496f",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "scripts/check-scheduled-recovery-producer.mjs",
+          "sha256": "6200ec0da5c20c5ebe802cc0b1a60ac0294e849d0396032205470ca0aee965fe",
+          "before_sha256": "6200ec0da5c20c5ebe802cc0b1a60ac0294e849d0396032205470ca0aee965fe",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "scripts/check-scheduled-task-recovery.mjs",
+          "sha256": "6337191558167c196ac2f6791dfe2b70d7f2d5fd60c822b741eaffd3af62ca27",
+          "before_sha256": "6337191558167c196ac2f6791dfe2b70d7f2d5fd60c822b741eaffd3af62ca27",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "scripts/generate-scheduled-execution.mjs",
+          "sha256": "06b0155849225749e14c422f4846a8e5861f8d901957b2a160970b4325ff0eb9",
+          "before_sha256": "06b0155849225749e14c422f4846a8e5861f8d901957b2a160970b4325ff0eb9",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "scripts/generate-scheduled-plan.mjs",
+          "sha256": "44aa6dcf1ffa7dbb7b593268d2614e49f8600fce7c14734fc778bc670d1ec80b",
+          "before_sha256": "44aa6dcf1ffa7dbb7b593268d2614e49f8600fce7c14734fc778bc670d1ec80b",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "scripts/generate-scheduled-task-recovery.mjs",
+          "sha256": "8c3798b42fd3e4484114a226bc1cab7cf2244ae3428e4d01239420bbbae3970a",
+          "before_sha256": "8c3798b42fd3e4484114a226bc1cab7cf2244ae3428e4d01239420bbbae3970a",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "scripts/scheduled-schema-source.mjs",
+          "sha256": "4afa5abda0bb8fd76a3c01759605a8b1f3c59f5548ac93587750e07cd08f406c",
+          "before_sha256": "4afa5abda0bb8fd76a3c01759605a8b1f3c59f5548ac93587750e07cd08f406c",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "scripts/sync-scheduled-execution.mjs",
+          "sha256": "3215f92ed004959b066d7a4696247ecd5cb0851cedd228149d5216b4d96abadb",
+          "before_sha256": "3215f92ed004959b066d7a4696247ecd5cb0851cedd228149d5216b4d96abadb",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "scripts/sync-scheduled-plan.mjs",
+          "sha256": "af414a9990c8bd48d34d7db630e0c53e3dcbbf2cabca6f1701198147fcb7edc8",
+          "before_sha256": "af414a9990c8bd48d34d7db630e0c53e3dcbbf2cabca6f1701198147fcb7edc8",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "scripts/sync-scheduled-task-recovery.mjs",
+          "sha256": "85608c8554f7dc198a65b1164d12387f6af2532b27363381e7669f57bbf146b6",
+          "before_sha256": "85608c8554f7dc198a65b1164d12387f6af2532b27363381e7669f57bbf146b6",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "scripts/validate-json-schemas.mjs",
+          "sha256": "7434113933392ac89faa435c0888ce01a697eeccc97c33ff052b2b3b9ed7468d",
+          "before_sha256": "7434113933392ac89faa435c0888ce01a697eeccc97c33ff052b2b3b9ed7468d",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "sdks/go/openapi/scheduled-task-recovery/types.gen.go",
+          "sha256": "03a35f5c9c16db1eb272b2ab7020ac08466deb5c716dc364f492f7a21c9a7f6d",
+          "before_sha256": "03a35f5c9c16db1eb272b2ab7020ac08466deb5c716dc364f492f7a21c9a7f6d",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "sdks/jsonschema/scheduled-execution.schema.json",
+          "sha256": "b6c9763e00285d75c79c21b195929c52ad997f050ecadeb735f51507c7609df9",
+          "before_sha256": "b6c9763e00285d75c79c21b195929c52ad997f050ecadeb735f51507c7609df9",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "sdks/jsonschema/scheduled-plan.schema.json",
+          "sha256": "8ab948f965e5681859d129f91a18a5931cfed89cfd32c0e866db9b5edf9283f4",
+          "before_sha256": "8ab948f965e5681859d129f91a18a5931cfed89cfd32c0e866db9b5edf9283f4",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "sdks/jsonschema/scheduled-task-recovery.schema.json",
+          "sha256": "0b790fc93d6037efe4802c1822a6a0d2a979dbbab427f019658b5b3413277f5b",
+          "before_sha256": "0b790fc93d6037efe4802c1822a6a0d2a979dbbab427f019658b5b3413277f5b",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "sdks/rust/scheduled-execution/types.gen.rs",
+          "sha256": "f53ed95baf4548dc0ad1eddf4872afffd88975984e1e67af6174834305b7d778",
+          "before_sha256": "f53ed95baf4548dc0ad1eddf4872afffd88975984e1e67af6174834305b7d778",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "sdks/rust/scheduled-plan/types.gen.rs",
+          "sha256": "1223692af5937b691453edb57b5a8689a419472af9be806b04855247a09a1614",
+          "before_sha256": "1223692af5937b691453edb57b5a8689a419472af9be806b04855247a09a1614",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "sdks/rust/scheduled-task-recovery/types.gen.rs",
+          "sha256": "a0f8812a804440f3ecd259e5bac3c4136d7a0f3e2a6433408b0e5bdeabd29b3d",
+          "before_sha256": "a0f8812a804440f3ecd259e5bac3c4136d7a0f3e2a6433408b0e5bdeabd29b3d",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "sdks/typescript/src/jsonschema/scheduled-execution.gen.ts",
+          "sha256": "70184382b025d57155098b8a597e6c3994d903813191188f6532fd7655a612bf",
+          "before_sha256": "70184382b025d57155098b8a597e6c3994d903813191188f6532fd7655a612bf",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "sdks/typescript/src/jsonschema/scheduled-plan.gen.ts",
+          "sha256": "34d152ce71516f533b258bf79456d772ca2895bd3925028bdaa21ce445834185",
+          "before_sha256": "34d152ce71516f533b258bf79456d772ca2895bd3925028bdaa21ce445834185",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "tests/fixtures/scheduled-schema-closure.json",
+          "sha256": "d472fa8bac39807394c644712b20303909a5f6487113e2b39d6c7e104903505a",
+          "before_sha256": "d472fa8bac39807394c644712b20303909a5f6487113e2b39d6c7e104903505a",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "tests/scheduled-execution.test.mjs",
+          "sha256": "77f916ea2de09bd96c29bbeeff09cc0993eb47213adb4464f17b02a08f5b195f",
+          "before_sha256": "77f916ea2de09bd96c29bbeeff09cc0993eb47213adb4464f17b02a08f5b195f",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "tests/scheduled-plan.test.mjs",
+          "sha256": "2ce82fb705d0b91f27fa59e15ae3cc192df8bdfcad46c4ae3ce8d579c8c7fec8",
+          "before_sha256": "2ce82fb705d0b91f27fa59e15ae3cc192df8bdfcad46c4ae3ce8d579c8c7fec8",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "tests/scheduled-schema-closure.test.mjs",
+          "sha256": "fb4a111d885456ad8666082c1607c05685632607fd5d31fe319c4c25702af5b4",
+          "before_sha256": "fb4a111d885456ad8666082c1607c05685632607fd5d31fe319c4c25702af5b4",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "tests/scheduled-task-recovery.test.mjs",
+          "sha256": "15b95b1b7eb962357343238308ccf22edc0659abdeb41cde5756629de62a6889",
+          "before_sha256": "15b95b1b7eb962357343238308ccf22edc0659abdeb41cde5756629de62a6889",
+          "phase_3c_1_changed": false
+        }
+      ]
+    },
+    "yijie-desktop": {
+      "head": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-desktop.git (fetch)\norigin\thttps://github.com/36Dge/yijie-desktop.git (push)",
+      "files": [
+        {
+          "path": "contracts/scheduled-execution.candidate.json",
+          "sha256": "27ffc07595e155ffef87f8892a4982326457244fac72d01e122ab00a82f55c63",
+          "before_sha256": "27ffc07595e155ffef87f8892a4982326457244fac72d01e122ab00a82f55c63",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "contracts/scheduled-execution.schema.json",
+          "sha256": "b6c9763e00285d75c79c21b195929c52ad997f050ecadeb735f51507c7609df9",
+          "before_sha256": "b6c9763e00285d75c79c21b195929c52ad997f050ecadeb735f51507c7609df9",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "contracts/scheduled-plan.candidate.json",
+          "sha256": "c1e44503f23268930181410dac5d81dbe39f84c093f89143845fd7dc4aa3aef5",
+          "before_sha256": "c1e44503f23268930181410dac5d81dbe39f84c093f89143845fd7dc4aa3aef5",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "contracts/scheduled-plan.schema.json",
+          "sha256": "8ab948f965e5681859d129f91a18a5931cfed89cfd32c0e866db9b5edf9283f4",
+          "before_sha256": "8ab948f965e5681859d129f91a18a5931cfed89cfd32c0e866db9b5edf9283f4",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "contracts/scheduled-task-recovery.candidate.json",
+          "sha256": "0da991a16e14b20115f339b9e0d2edd8162a4e1a56d4c0555ed6fc6f61e2692e",
+          "before_sha256": "0da991a16e14b20115f339b9e0d2edd8162a4e1a56d4c0555ed6fc6f61e2692e",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "contracts/scheduled-task-recovery.schema.json",
+          "sha256": "0b790fc93d6037efe4802c1822a6a0d2a979dbbab427f019658b5b3413277f5b",
+          "before_sha256": "0b790fc93d6037efe4802c1822a6a0d2a979dbbab427f019658b5b3413277f5b",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "docs/feat155-scheduled-foundation.md",
+          "sha256": "c3d13daa0dd8fc6f1fcc72195d530a6297139530fd1016b50ea0b19740b3062e",
+          "before_sha256": "ea852ef8deeb288707e0c3ea6c9094ca618327d413ff012d330438c39a9639ad",
+          "phase_3c_1_changed": true
+        },
+        {
+          "path": "src-tauri/Cargo.lock",
+          "sha256": "be9c564c61a061169033adffe170af67ba837278d7f6683f304544b1cc0d2bd1",
+          "before_sha256": "be9c564c61a061169033adffe170af67ba837278d7f6683f304544b1cc0d2bd1",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "src-tauri/Cargo.toml",
+          "sha256": "4bd88d889a1a4c987c266d1d9638f1be45eff0d6759f0b4c7cb370c00acb1ee4",
+          "before_sha256": "4bd88d889a1a4c987c266d1d9638f1be45eff0d6759f0b4c7cb370c00acb1ee4",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "src-tauri/migrations/chat/0016_scheduled_plan_foundation.sql",
+          "sha256": "70d00d5582f03f8d2cf81ff9f59b3f6c7a6506d85333cea93399157c6b8a5129",
+          "before_sha256": "70d00d5582f03f8d2cf81ff9f59b3f6c7a6506d85333cea93399157c6b8a5129",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "src-tauri/migrations/chat/0017_scheduled_execution_foundation.sql",
+          "sha256": "41de05497a1567a3db2d99c37f186e7d5c887eda5b65d2edaeb15efd220a05a1",
+          "before_sha256": "41de05497a1567a3db2d99c37f186e7d5c887eda5b65d2edaeb15efd220a05a1",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "src-tauri/migrations/chat/0018_scheduled_local_preparation.sql",
+          "sha256": "2c2abf1c0774754fd8f66333d1a95a190a0bfcfcb7f4fbfcface9af18ec08de5",
+          "before_sha256": "2c2abf1c0774754fd8f66333d1a95a190a0bfcfcb7f4fbfcface9af18ec08de5",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "src-tauri/migrations/chat/0019_scheduled_recovery.sql",
+          "sha256": "7ade049b4aa6fbe74196dbae585e3366b524ebd2eabac809046636136d52a39b",
+          "before_sha256": "7ade049b4aa6fbe74196dbae585e3366b524ebd2eabac809046636136d52a39b",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "src-tauri/migrations/chat/0020_scheduled_dispatch.sql",
+          "sha256": "296732b5f9b86be15a56f39752049a31d2cf13fa3618c7d8e90339872792a648",
+          "before_sha256": null,
+          "phase_3c_1_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/application.rs",
+          "sha256": "37ec6e4f5f2bc0c51ea76c30eced5c7be78d6d33dfc7cd8f384d293bc6a0dc02",
+          "before_sha256": "4d2709370217eeb6efea2374dd92fd23a839bcf47a4964fd21c1c181d5d555b7",
+          "phase_3c_1_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/database.rs",
+          "sha256": "e99530951d648c57b2e9c788be22241359471d66fb62abdc1a53215ebb9b960a",
+          "before_sha256": "7b209770abae9ebe1bd138e535039ba9b02dafe1269e6b167b83f193f5f3314e",
+          "phase_3c_1_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/exit_owner.rs",
+          "sha256": "e70a4f12bdf153333e967b9c9b66f93100d496c793381114b8d2cbfbeb776feb",
+          "before_sha256": "e70a4f12bdf153333e967b9c9b66f93100d496c793381114b8d2cbfbeb776feb",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/host_bridge.rs",
+          "sha256": "ed59eefad91191d6d8ffa106092c84b2e230c75c5afdb06fd6bac916f0cff597",
+          "before_sha256": "d3f08144624560a3a2347bc8cf72d783c157460ea886bd7d1035dd1ef0083abe",
+          "phase_3c_1_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/ipc.rs",
+          "sha256": "3d64891422c2a40e91eb71de7ee7c44a4aa0e148c068b87593fc7fff89acf22a",
+          "before_sha256": "3d64891422c2a40e91eb71de7ee7c44a4aa0e148c068b87593fc7fff89acf22a",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/lifecycle.rs",
+          "sha256": "9988dfc2278376688f2275f8179f7073a6951b6c76fc29c5ab7850fb6b6f5857",
+          "before_sha256": "9988dfc2278376688f2275f8179f7073a6951b6c76fc29c5ab7850fb6b6f5857",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/migrations.rs",
+          "sha256": "5f79afe5b958ea34b63e17fb8bcb2fc594b80b5a23474ba5c745a3a61db910f1",
+          "before_sha256": "d3ac2e3578a44d27f884244fb4fd5c526da91257a970061001b5edf62bf4124f",
+          "phase_3c_1_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/mod.rs",
+          "sha256": "8943aa7b2d5f667021de982a0fc808f4da605364d2584a6e5c4e09e010aaf2b8",
+          "before_sha256": "8943aa7b2d5f667021de982a0fc808f4da605364d2584a6e5c4e09e010aaf2b8",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/native_conversation_storage.rs",
+          "sha256": "ea35de57ff13d480c580fb4f7a90e981650b16e6cb9cd0838ab5bd14c30de1ff",
+          "before_sha256": "ea35de57ff13d480c580fb4f7a90e981650b16e6cb9cd0838ab5bd14c30de1ff",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/platform_lifecycle.rs",
+          "sha256": "a65542b51265ae8b8cac0574742f08847bbd02c83ebe440b2281154ef7d09f8c",
+          "before_sha256": "a65542b51265ae8b8cac0574742f08847bbd02c83ebe440b2281154ef7d09f8c",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/dispatch_tests.rs",
+          "sha256": "9f969f9934551fefd5ad87cd4772443b5c65563d503ef511dd69cde7ded9d30b",
+          "before_sha256": null,
+          "phase_3c_1_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution.rs",
+          "sha256": "21b637011a5ab7dfd33f7c1ea0e14926978f4072665edfbad17adb04ab39d242",
+          "before_sha256": "842881833f6f85e324004f6081abaf781825354b83dd5a1676ab6d5eef8ca57a",
+          "phase_3c_1_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution/dispatch.rs",
+          "sha256": "62259849a95419831638d530f9d427be8d622fda78d82c6fbc6562d0164f1b5e",
+          "before_sha256": null,
+          "phase_3c_1_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution/preparation.rs",
+          "sha256": "d4b0223329beec28a2a0390d7e1f32124ce3a8aaa471e119c1b29c000e61aa40",
+          "before_sha256": "d4b0223329beec28a2a0390d7e1f32124ce3a8aaa471e119c1b29c000e61aa40",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution/preparation/tests.rs",
+          "sha256": "09135432ef66f2445801a5cef03785543574a0e5095e01f93dd8d1781c80cb7c",
+          "before_sha256": "09135432ef66f2445801a5cef03785543574a0e5095e01f93dd8d1781c80cb7c",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution/tests.rs",
+          "sha256": "c183b6791a170e0710db47ee36f4eefe4e0d71513ce5ec21b50f42c9b887ae4b",
+          "before_sha256": "c183b6791a170e0710db47ee36f4eefe4e0d71513ce5ec21b50f42c9b887ae4b",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution_generated.rs",
+          "sha256": "f53ed95baf4548dc0ad1eddf4872afffd88975984e1e67af6174834305b7d778",
+          "before_sha256": "f53ed95baf4548dc0ad1eddf4872afffd88975984e1e67af6174834305b7d778",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution_guard.rs",
+          "sha256": "cc28376b31140b94af05615c620674f7858d99ce6916548e4324cc67f1d651cb",
+          "before_sha256": "25641c423a45f84628bf74435624bb5f1c85419f74ebb18a5def862b1a4d570e",
+          "phase_3c_1_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/generated.rs",
+          "sha256": "1223692af5937b691453edb57b5a8689a419472af9be806b04855247a09a1614",
+          "before_sha256": "1223692af5937b691453edb57b5a8689a419472af9be806b04855247a09a1614",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/mod.rs",
+          "sha256": "8f45c830013472d178bfca3eb899258ef4f5d26361ac0eae7f04a213c8299c3a",
+          "before_sha256": "a9deaccfa04d72096a216215cc8cace733efafd91d22b553c6434b48516c661f",
+          "phase_3c_1_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/recovery.rs",
+          "sha256": "2066f007b8357168b68f9513b01d2b05e8b06ce8364c567ca3db25cb34dba807",
+          "before_sha256": "7c8f6b11432c7cef2715d3e46591f598f15e31f7adaf8a464f57a328656f145a",
+          "phase_3c_1_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/recovery_generated.rs",
+          "sha256": "a0f8812a804440f3ecd259e5bac3c4136d7a0f3e2a6433408b0e5bdeabd29b3d",
+          "before_sha256": "a0f8812a804440f3ecd259e5bac3c4136d7a0f3e2a6433408b0e5bdeabd29b3d",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/store.rs",
+          "sha256": "7a013275b7a41a2d7336d5a9535b6c09cb5fbcc32544ac1e8f34d195117386b1",
+          "before_sha256": "76e8bf7931b0c534645958191002824af8fb159e5fae76233ea0dfa670984de4",
+          "phase_3c_1_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/tests.rs",
+          "sha256": "9234e9707fbdeab74120fc5077ca00bdf1fe7b205d6c77ca3600076cba55fcc8",
+          "before_sha256": "9234e9707fbdeab74120fc5077ca00bdf1fe7b205d6c77ca3600076cba55fcc8",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/time.rs",
+          "sha256": "41845fd0f159849aef257a156a482f0c2e6c0e2b22f53e17c25d637ce523d0cc",
+          "before_sha256": "41845fd0f159849aef257a156a482f0c2e6c0e2b22f53e17c25d637ce523d0cc",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/workspace.rs",
+          "sha256": "23b61a14db9def93a1a73711ba7e5d522a18124daa14aa25f220d6c467ef4a1e",
+          "before_sha256": "3546f2ee156679f13f99e6f8180ccabd4a87b7e2e16370dbf81097114b3d5756",
+          "phase_3c_1_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/sidecar.rs",
+          "sha256": "f41237f49f1884f2810bc1623d85b5b6643e53da76e52c7882ea883b687c047e",
+          "before_sha256": "f41237f49f1884f2810bc1623d85b5b6643e53da76e52c7882ea883b687c047e",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/worker.rs",
+          "sha256": "07a93bed33b1e9b24ab32762c45071c1cfa2dbd1c1bfb6dff95cbdb3a9b9c03f",
+          "before_sha256": "22cde162144209827e60d4423d40cdb78dc0fbb96a185136dd4592c98f12b2bc",
+          "phase_3c_1_changed": true
+        },
+        {
+          "path": "src-tauri/src/lib.rs",
+          "sha256": "88611816a828c10cd4d80d18610d5f2d078537ad01ea29a3fb72b568561f5997",
+          "before_sha256": "88611816a828c10cd4d80d18610d5f2d078537ad01ea29a3fb72b568561f5997",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "src-tauri/src/native_auth/runtime.rs",
+          "sha256": "ac46d184ad4140bb3abc0e6fee01b20c47d0c91f476fde65cff8d0518a5d52dd",
+          "before_sha256": "ac46d184ad4140bb3abc0e6fee01b20c47d0c91f476fde65cff8d0518a5d52dd",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "src/domain/scheduled-execution.generated.ts",
+          "sha256": "70184382b025d57155098b8a597e6c3994d903813191188f6532fd7655a612bf",
+          "before_sha256": "70184382b025d57155098b8a597e6c3994d903813191188f6532fd7655a612bf",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "src/domain/scheduled-plan.generated.ts",
+          "sha256": "34d152ce71516f533b258bf79456d772ca2895bd3925028bdaa21ce445834185",
+          "before_sha256": "34d152ce71516f533b258bf79456d772ca2895bd3925028bdaa21ce445834185",
+          "phase_3c_1_changed": false
+        }
+      ]
+    },
+    "yijie-agent-host": {
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-agent-host.git (fetch)\norigin\thttps://github.com/36Dge/yijie-agent-host.git (push)",
+      "files": [
+        {
+          "path": "Makefile",
+          "sha256": "eea89b9660ed126386af2703e9d722d227f73f92a8f880e0462a5bb206030abf",
+          "before_sha256": "eea89b9660ed126386af2703e9d722d227f73f92a8f880e0462a5bb206030abf",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "README.md",
+          "sha256": "bb2bce0def60a1072490ced0f032811904c57e1719302a4e573ba17d70ba97ae",
+          "before_sha256": "bb2bce0def60a1072490ced0f032811904c57e1719302a4e573ba17d70ba97ae",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "SECURITY.md",
+          "sha256": "dbb7496b21c7350c3f38a0cc5a814ac7b77113c44dac0a0a5143f01898edee1a",
+          "before_sha256": "dbb7496b21c7350c3f38a0cc5a814ac7b77113c44dac0a0a5143f01898edee1a",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "api/openapi/scheduled-task-recovery.yaml",
+          "sha256": "47a1d7f4e5e858116d9f0b80faf86a0e1e5936dfab1ebf6673c9579e5246e9e2",
+          "before_sha256": "47a1d7f4e5e858116d9f0b80faf86a0e1e5936dfab1ebf6673c9579e5246e9e2",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "api/scheduled-task-recovery.candidate.json",
+          "sha256": "4b902509aae045e1d3237c2252d1dc0577afa3b4b27db56dbe65be1cfeb45326",
+          "before_sha256": "4b902509aae045e1d3237c2252d1dc0577afa3b4b27db56dbe65be1cfeb45326",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "api/schemas/scheduled-task-recovery.schema.json",
+          "sha256": "0b790fc93d6037efe4802c1822a6a0d2a979dbbab427f019658b5b3413277f5b",
+          "before_sha256": "0b790fc93d6037efe4802c1822a6a0d2a979dbbab427f019658b5b3413277f5b",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "docs/scheduled-task-recovery.md",
+          "sha256": "b473ac1ba6abdebc6d9aa34ca789b6c13b37a551c425aa75b5a1adb926b3b6b1",
+          "before_sha256": "b473ac1ba6abdebc6d9aa34ca789b6c13b37a551c425aa75b5a1adb926b3b6b1",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "internal/app/app.go",
+          "sha256": "e936d3a82c7d7ab980b87eb0d219e90a5daa9acecb4fe0fd69fd1a2d6902722f",
+          "before_sha256": "e936d3a82c7d7ab980b87eb0d219e90a5daa9acecb4fe0fd69fd1a2d6902722f",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "internal/app/scheduled_recovery.go",
+          "sha256": "81c74c7902d0d925c5a8599c15a139483a311da5f94dfa6e439e075944e276b8",
+          "before_sha256": "81c74c7902d0d925c5a8599c15a139483a311da5f94dfa6e439e075944e276b8",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "internal/app/scheduled_recovery_test.go",
+          "sha256": "c45c21ddaa9e6b3044aa8b547ef349e8829ab165b209b847e93fc75dff0a65c9",
+          "before_sha256": "c45c21ddaa9e6b3044aa8b547ef349e8829ab165b209b847e93fc75dff0a65c9",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "internal/contracts/scheduledrecovery/types.gen.go",
+          "sha256": "03a35f5c9c16db1eb272b2ab7020ac08466deb5c716dc364f492f7a21c9a7f6d",
+          "before_sha256": "03a35f5c9c16db1eb272b2ab7020ac08466deb5c716dc364f492f7a21c9a7f6d",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "internal/session/scheduled_recovery.go",
+          "sha256": "32efafa8436b7f3db824a1f18686826014592977558bc47c2bdbc90e72287055",
+          "before_sha256": "32efafa8436b7f3db824a1f18686826014592977558bc47c2bdbc90e72287055",
+          "phase_3c_1_changed": false
+        },
+        {
+          "path": "internal/session/scheduled_recovery_test.go",
+          "sha256": "5e988088007e70e20fbdb34109ce859dfb153e1f62960e9d05727ea137618a89",
+          "before_sha256": "5e988088007e70e20fbdb34109ce859dfb153e1f62960e9d05727ea137618a89",
+          "phase_3c_1_changed": false
+        }
+      ]
+    },
+    "yijie": {
+      "head": "2f616f4d24c001812c6279a520ba69ea9875247e",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie.git (fetch)\norigin\thttps://github.com/36Dge/yijie.git (push)"
+    },
+    "yijie-codex": {
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-codex.git (fetch)\norigin\thttps://github.com/36Dge/yijie-codex.git (push)\nupstream\thttps://github.com/openai/codex.git (fetch)\nupstream\tDISABLED (push)"
+    }
+  },
+  "old_migrations": [
+    {
+      "path": "src-tauri/migrations/chat/0001_chat_core.sql",
+      "sha256": "3ed7f9661f4d85360670cce524599e2f3cad991581f4dc407a5c38dfd7dadc2b",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0002_chat_reasoning_v2.sql",
+      "sha256": "68d0daeb1910f606699f86b97498d8ca681f936cc6eb0377db43da04652ed3c1",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0003_chat_application_domain.sql",
+      "sha256": "62a2e895f7c7137ececfc9533381a37f921ef0ea2ddf08c7877b4bc56a608315",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0004_chat_s7c_orchestration.sql",
+      "sha256": "39f3f5d311b36834bdf88c5eeafe437a1045a3027b3a948dd3d2a525b666a047",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0005_chat_public_task_control_plane.sql",
+      "sha256": "9b67508a563cb3f6ecdc925d41ce7dcb8f1443cabdda466ecad7b3bcc9f77916",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0006_chat_attachments.sql",
+      "sha256": "60b08d6cfa053bc4e8cc64a4d18d357c4f4f2694ddc52d0ca9c1004333c856e2",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0007_chat_attachment_draft_targets.sql",
+      "sha256": "aae67ca5a5b73d476f68800fc15c950abcbeb09a4dedeeed48fb3c0e448a6a57",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0008_chat_output_artifacts.sql",
+      "sha256": "bec50a16583b216380f5f19728342772ff211ca2ebb88c0ff83b2e44d3fa9a15",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0009_chat_timeline_v4.sql",
+      "sha256": "f4d3e99d9425068a0729a48824df42b815973158cc4e310201890c79bc13608c",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0010_chat_command_tool_v5.sql",
+      "sha256": "0e04e00d5b3f1ac8609d79ce70a1c4dedf2df4a1157b9d7187a13b9418623efa",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0011_chat_approval_v6.sql",
+      "sha256": "d7ca4c2a86099def2ac1998c96e4cfe155a8dea5c9966f089b2617a7c944bdef",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0012_chat_approval_v6_process_protection.sql",
+      "sha256": "98c635f3acf5191a4aa7be9891bb263bcfd52468c9cc9fc5730a06609ab87720",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0013_chat_permission_modes.sql",
+      "sha256": "f0bde431aa15b603ec663c25df3e3452fb4ec926a367f83e24aa580abb97fda8",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0014_chat_native_conversation.sql",
+      "sha256": "e4a5306fbc980599521af4ec429c51fac6b7ca7ab7354210e14bf1d38f76fc5a",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0015_chat_native_formats.sql",
+      "sha256": "01dac0c864378e90c24490065c000e71bc721957d4c1680c409966de2d40b5f2",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0016_scheduled_plan_foundation.sql",
+      "sha256": "70d00d5582f03f8d2cf81ff9f59b3f6c7a6506d85333cea93399157c6b8a5129",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0017_scheduled_execution_foundation.sql",
+      "sha256": "41de05497a1567a3db2d99c37f186e7d5c887eda5b65d2edaeb15efd220a05a1",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0018_scheduled_local_preparation.sql",
+      "sha256": "2c2abf1c0774754fd8f66333d1a95a190a0bfcfcb7f4fbfcface9af18ec08de5",
+      "unchanged": true
+    },
+    {
+      "path": "src-tauri/migrations/chat/0019_scheduled_recovery.sql",
+      "sha256": "7ade049b4aa6fbe74196dbae585e3366b524ebd2eabac809046636136d52a39b",
+      "unchanged": true
+    }
+  ],
+  "producer_artifacts": [
+    {
+      "path": "evidence/phase-3c-1-plan-native-producer.json",
+      "sha256": "d7604e590905894e1ebb5648dd54cac865b933e72668b7aedbc5b62493acb7c8",
+      "check_status": "PASS"
+    },
+    {
+      "path": "evidence/phase-3c-1-foundation-native-producer.json",
+      "sha256": "7b4258e9415044e76038861f474bb231a47e28ca1e0805ed30bd904e04b733ee",
+      "check_status": "PASS"
+    },
+    {
+      "path": "evidence/phase-3c-1-preparation-native-producer.json",
+      "sha256": "e5088d92072d5d6a53dc90fbaa501f9862a273db2ff2dc75cd1026a42d46428c",
+      "check_status": "PASS"
+    },
+    {
+      "path": "evidence/phase-3c-1-recovery-native-producer.json",
+      "sha256": "3d85bee23c6fdd6ec1720a153faba34d7d6d626ade68850cad2872c7c263dc7c",
+      "check_status": "PASS"
+    }
+  ],
+  "checks": [
+    {
+      "label": "FEAT155 57/57",
+      "log": "/tmp/feat155-3c1-full-final.log",
+      "sha256": "76be51a4f38940267449024877a5efa9e7d6335e5085200836b0dbb0e3c78bd0",
+      "tail": [
+        "test chat::schedules::execution::tests::feat155_3a_reader_15_16_17_and_disabled_writer_preserve_old_chat ... ok",
+        "test chat::schedules::tests::feat155_storage_default_reader_forward_reopen_and_old_chat ... ok",
+        "test chat::schedules::tests::feat155_worker_serializes_duplicate_confirmations_and_edits ... ok",
+        "test chat::schedules::tests::feat155_storage_scoped_targets_and_compatible_deletion ... ok",
+        "",
+        "test result: ok. 57 passed; 0 failed; 0 ignored; 0 measured; 361 filtered out; finished in 35.16s",
+        ""
+      ]
+    },
+    {
+      "label": "intermediate candidate composition 11/11; final full includes 12",
+      "log": "/tmp/feat155-3c1-composition-final.log",
+      "sha256": "2ba37bf6b67268b774c7c88611e3a9001d7981a5c6b3907b3fcd89e88d9f32d3",
+      "tail": [
+        "test chat::application::scheduled_dispatch_tests::feat155_3c1_pending_approval_blocks_then_same_operation_can_start ... ok",
+        "test chat::application::scheduled_dispatch_tests::feat155_3c1_three_targets_last_debit_and_dedicated_reuse ... ok",
+        "test chat::application::scheduled_dispatch_tests::feat155_3c1_claim_rechecks_edit_ask_target_and_other_occupancy ... ok",
+        "test chat::application::scheduled_dispatch_tests::feat155_3c1_reader_reopens_20_preserving_run_and_default_15 ... ok",
+        "",
+        "test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 406 filtered out; finished in 10.26s",
+        ""
+      ]
+    },
+    {
+      "label": "fmt/clippy all-targets",
+      "log": "/tmp/feat155-3c1-clippy-verified.log",
+      "sha256": "b1a6ee4737951e79fe1ad4a1df374d6d6c0f5de458b50bf86ad9dcd36a62477d",
+      "tail": [
+        "    Checking yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri)",
+        "    Finished `dev` profile [unoptimized + debuginfo] target(s) in 4.52s"
+      ]
+    },
+    {
+      "label": "Desktop lint",
+      "log": "/tmp/feat155-3c1-desktop-lint.log",
+      "sha256": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6",
+      "tail": [
+        "$ eslint . --max-warnings 0 && vue-tsc --noEmit"
+      ]
+    },
+    {
+      "label": "Desktop build",
+      "log": "/tmp/feat155-3c1-desktop-build.log",
+      "sha256": "01e33cdf81c4f14786793d1def5df7bcd481ca37b708ffff9da4d89013ca82ad",
+      "tail": [
+        "",
+        "✓ built in 594ms",
+        "[plugin builtin:vite-reporter] ",
+        "(!) Some chunks are larger than 500 kB after minification. Consider:",
+        "- Using dynamic import() to code-split the application",
+        "- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting",
+        "- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit."
+      ]
+    },
+    {
+      "label": "Desktop docs build",
+      "log": "/tmp/feat155-3c1-desktop-docs.log",
+      "sha256": "bf80d956f8130c57a929e99be168674fad68388c6180f341aaaf4eaaebdfe2e1",
+      "tail": [
+        "  vitepress v1.6.4",
+        "",
+        "- building client + server bundles...",
+        "\u001b[32m✓\u001b[0m building client + server bundles...",
+        "- rendering pages...",
+        "\u001b[32m✓\u001b[0m rendering pages...",
+        "build complete in 4.76s."
+      ]
+    },
+    {
+      "label": "recovered create after normal owner stop",
+      "log": "/tmp/feat155-3c1-recovered-create-final.log",
+      "sha256": "5bab591b61e78817be2b7a159f7dddc80ea09e8e8a40c99ab29203c567d1d5c7",
+      "tail": [
+        "     Running unittests src/lib.rs (src-tauri/target/debug/deps/yijie_desktop_lib-6d0ab7e7a0bde530)",
+        "",
+        "running 1 test",
+        "test chat::application::scheduled_dispatch_tests::feat155_3c1_mapping_recovery_enqueues_only_original_turn_once ... ok",
+        "",
+        "test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 417 filtered out; finished in 0.68s",
+        ""
+      ]
+    },
+    {
+      "label": "old unknown owner stop",
+      "log": "/tmp/feat155-3c1-stopped-unknown-final.log",
+      "sha256": "479c6f100a01f211f66e1a64017e52c632342b351dbb1d61e6939ad9459957fb",
+      "tail": [
+        "     Running unittests src/lib.rs (src-tauri/target/debug/deps/yijie_desktop_lib-6d0ab7e7a0bde530)",
+        "",
+        "running 1 test",
+        "test chat::schedules::execution::preparation::tests::feat155_3b2_stopped_unknown_releases_index_without_changing_history_or_quota ... ok",
+        "",
+        "test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 417 filtered out; finished in 0.57s",
+        ""
+      ]
+    }
+  ],
+  "real_platform_status": "NOT RUN",
+  "real_provider_status": "NOT RUN",
+  "paid_text_calls_used": 0,
+  "paid_text_calls_limit": 12,
+  "regressions": [
+    {
+      "case": "chat::migrations::tests::embedded_migrations_validate_and_write_checksum_ledger",
+      "passed": 1,
+      "log": "/tmp/feat155-3c1-regression-chat_migrations_tests_embedded_migrations_validate_and_write_checksum_ledger.log"
+    },
+    {
+      "case": "chat::migrations::tests::populated_v1_migrates_to_current_and_repeated_startup_is_idempotent",
+      "passed": 1,
+      "log": "/tmp/feat155-3c1-regression-chat_migrations_tests_populated_v1_migrates_to_current_and_repeated_startup_is_idempotent.log"
+    },
+    {
+      "case": "chat::database::tests::project_repository_is_scope_bound_and_remove_never_deletes_directory",
+      "passed": 1,
+      "log": "/tmp/feat155-3c1-regression-chat_database_tests_project_repository_is_scope_bound_and_remove_never_deletes_directory.log"
+    },
+    {
+      "case": "chat::database::tests::expired_outbox_lease_recovers_after_restart_without_creating_duplicate_rows",
+      "passed": 1,
+      "log": "/tmp/feat155-3c1-regression-chat_database_tests_expired_outbox_lease_recovers_after_restart_without_creating_duplicate_rows.log"
+    },
+    {
+      "case": "chat::database::tests::public_task_host_identity_becomes_bound_only_after_normal_atomic_host_bind",
+      "passed": 1,
+      "log": "/tmp/feat155-3c1-regression-chat_database_tests_public_task_host_identity_becomes_bound_only_after_normal_atomic_host_bind.log"
+    },
+    {
+      "case": "chat::database::tests::multimodal_blocks_bind_atomically_dispatch_v2_and_expire_content",
+      "passed": 1,
+      "log": "/tmp/feat155-3c1-regression-chat_database_tests_multimodal_blocks_bind_atomically_dispatch_v2_and_expire_content.log"
+    },
+    {
+      "case": "chat::database::tests::feat152_permission_storage_boundary_survives_normal_reopen",
+      "passed": 1,
+      "log": "/tmp/feat155-3c1-regression-chat_database_tests_feat152_permission_storage_boundary_survives_normal_reopen.log"
+    },
+    {
+      "case": "chat::database::tests::reasoning_is_terminal_transactional_bounded_and_cascades_on_delete",
+      "passed": 1,
+      "log": "/tmp/feat155-3c1-regression-chat_database_tests_reasoning_is_terminal_transactional_bounded_and_cascades_on_delete.log"
+    },
+    {
+      "case": "chat::database::tests::feat132_native_facts_survive_normal_reopen_and_cold_history_conflict",
+      "passed": 1,
+      "log": "/tmp/feat155-3c1-regression-chat_database_tests_feat132_native_facts_survive_normal_reopen_and_cold_history_conflict.log"
+    },
+    {
+      "case": "chat::database::tests::feat132_submission_failure_stays_local_and_allows_a_new_operation",
+      "passed": 1,
+      "log": "/tmp/feat155-3c1-regression-chat_database_tests_feat132_submission_failure_stays_local_and_allows_a_new_operation.log"
+    },
+    {
+      "case": "chat::application::tests::finished_coordinator_handle_is_not_reported_as_running",
+      "passed": 1,
+      "log": "/tmp/feat155-3c1-regression-chat_application_tests_finished_coordinator_handle_is_not_reported_as_running.log"
+    },
+    {
+      "case": "chat::application::tests::feat132_open_native_stream_dispatches_interrupt_before_terminal",
+      "passed": 1,
+      "log": "/tmp/feat155-3c1-regression-chat_application_tests_feat132_open_native_stream_dispatches_interrupt_before_terminal.log"
+    },
+    {
+      "case": "chat::application::tests::feat132_native_sse_commits_final_objects_without_legacy_body_reconciliation",
+      "passed": 1,
+      "log": "/tmp/feat155-3c1-regression-chat_application_tests_feat132_native_sse_commits_final_objects_without_legacy_body_reconciliation.log"
+    },
+    {
+      "case": "chat::application::tests::feat132_coordinator_recovers_missing_cursor_from_confirmed_previous_host",
+      "passed": 1,
+      "log": "/tmp/feat155-3c1-regression-chat_application_tests_feat132_coordinator_recovers_missing_cursor_from_confirmed_previous_host.log"
+    },
+    {
+      "case": "chat::application::tests::feat134_v2_first_claim_starts_same_operation_once_without_resume",
+      "passed": 1,
+      "log": "/tmp/feat155-3c1-regression-chat_application_tests_feat134_v2_first_claim_starts_same_operation_once_without_resume.log"
+    },
+    {
+      "case": "chat::application::tests::feat132_invalid_accepted_response_suspends_without_binding_or_replay",
+      "passed": 1,
+      "log": "/tmp/feat155-3c1-regression-chat_application_tests_feat132_invalid_accepted_response_suspends_without_binding_or_replay.log"
+    },
+    {
+      "case": "chat::tests::app_exit_shutdown_clears_host_bridge_and_is_idempotent",
+      "passed": 1,
+      "log": "/tmp/feat155-3c1-regression-chat_tests_app_exit_shutdown_clears_host_bridge_and_is_idempotent.log"
+    },
+    {
+      "case": "chat::authorization::tests::",
+      "passed": 2,
+      "log": "/tmp/feat155-3c1-regression-chat_authorization_tests_.log"
+    }
+  ]
+}

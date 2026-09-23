@@ -1,0 +1,5 @@
+YIJIE_DESKTOP_CONTRACTS_DIR="../yijie-contracts" pnpm generate:check
+$ node scripts/generate-public-api.mjs --check && node scripts/check-agent-host-contract.mjs --check && node scripts/check-agent-host-v3-contract.mjs && node scripts/check-agent-host-skills-contract.mjs && node scripts/check-agent-host-v4-contract.mjs && pnpm check:native
+contracts checkout has tracked changes
+[ELIFECYCLE] Command failed with exit code 1.
+make: *** [lint] Error 1

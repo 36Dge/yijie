@@ -1,0 +1,239 @@
+{
+  "feature": "FEAT-155",
+  "date": "2026-09-19",
+  "scope": "read_only_investigation_and_plan",
+  "plan": "34-phase-4b-conversation-draft-implementation-plan.md",
+  "reviewer": "Current task structured source and scenario self-review; no sub-agent or independent human approval claimed",
+  "result": "PLAN_READY_NOT_IMPLEMENTED",
+  "contract_impact_this_turn": "none",
+  "proposed_implementation_contract_impact": "semantic",
+  "checks": [
+    {
+      "name": "strict_d0",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict --gate D0 docs/features/FEAT-155-desktop-scheduled-tasks",
+      "exit_code": 0,
+      "result": "PASS"
+    },
+    {
+      "name": "meta_lint",
+      "command": "pnpm lint",
+      "exit_code": 0,
+      "result": "PASS"
+    },
+    {
+      "name": "meta_tests",
+      "command": "pnpm test",
+      "exit_code": 0,
+      "result": "PASS",
+      "tests": 50,
+      "passed": 50,
+      "failed": 0
+    },
+    {
+      "name": "shell_syntax",
+      "command": "bash -n scripts/*.sh",
+      "exit_code": 0,
+      "result": "PASS"
+    },
+    {
+      "name": "tracked_diff_whitespace",
+      "command": "git diff --check",
+      "exit_code": 0,
+      "result": "PASS",
+      "limitation": "Untracked feature documents were separately checked for whitespace."
+    },
+    {
+      "name": "local_markdown_links",
+      "result": "PASS",
+      "links_checked": 143,
+      "broken": 0
+    },
+    {
+      "name": "workspace_bytes",
+      "result": "PASS",
+      "product_repositories_changed": 0,
+      "source_files_hashed": 26
+    }
+  ],
+  "review_findings": [
+    {
+      "issue": "Missing draft submission receipt after transport uncertainty",
+      "evidence": "draft_runtime.rs lookup needs conversation and local turn; drafts.rs already persists scoped request_id",
+      "resolution": "Add a scoped read-only request receipt; reuse original identity for explicit retry."
+    },
+    {
+      "issue": "Renderer lacks durable conversation purpose",
+      "evidence": "ChatPage submit uses normal chat methods; native draft_conversation and write guards already exist",
+      "resolution": "Add task.read-scoped purpose query, do not add schedule.read requirement to normal chat."
+    },
+    {
+      "issue": "Management context does not bootstrap Host",
+      "evidence": "App shared promotion exists; local_host_bridge reads cache only",
+      "resolution": "Reuse App-level promotion and existing native startup; capability reads remain reads."
+    },
+    {
+      "issue": "Draft does not consume existing verification meter config",
+      "evidence": "permissionVerificationConfig called only by ordinary session_protocol, not scheduledDraftStartParams",
+      "resolution": "Minimal Host meter projection for draft start/resume, excluding auto_review.policy; enforce <=3 actual requests before real validation."
+    },
+    {
+      "issue": "Confirmation must retain provenance and uniqueness",
+      "evidence": "confirm_draft has source/digest transaction and source-unique saved plan",
+      "resolution": "Reuse form fields, call confirm_draft rather than save_plan; use source preview to resolve uncertain confirmation."
+    },
+    {
+      "issue": "No automatic phase or execution activation",
+      "evidence": "worker start_scheduled_candidate installs draft authority only; 4A report stops",
+      "resolution": "4B saves paused, no grant/run; all remaining Must and D4 stay pending."
+    },
+    {
+      "issue": "ChatPage baseline failures and provider output are not yet proven",
+      "evidence": "4A report has three pre-existing display assertion failures; real provider NOT RUN",
+      "resolution": "Recheck affected paths, record failures honestly; up to3 real calls only after zero-call preflight."
+    }
+  ],
+  "workspace": {
+    "yijie": {
+      "head": "2f616f4d24c001812c6279a520ba69ea9875247e",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie.git (fetch)\norigin\thttps://github.com/36Dge/yijie.git (push)",
+      "initial_files": 2478,
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "remotes_unchanged": true,
+      "changed_from_start": [
+        "docs/features/FEAT-155-desktop-scheduled-tasks/00-feature-brief.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/01-delivery-log.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/02-verification.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/04-owner-approval-and-implementation.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/feature.yaml"
+      ],
+      "added_from_start": [
+        "docs/features/FEAT-155-desktop-scheduled-tasks/34-phase-4b-conversation-draft-implementation-plan.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-4b-plan-review-20260919.json"
+      ],
+      "removed_from_start": [],
+      "initial_dirty_entries": 3,
+      "final_dirty_entries": 3
+    },
+    "yijie-desktop": {
+      "head": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-desktop.git (fetch)\norigin\thttps://github.com/36Dge/yijie-desktop.git (push)",
+      "initial_files": 761,
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "remotes_unchanged": true,
+      "changed_from_start": [],
+      "added_from_start": [],
+      "removed_from_start": [],
+      "initial_dirty_entries": 78,
+      "final_dirty_entries": 78
+    },
+    "yijie-contracts": {
+      "head": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-contracts.git (fetch)\norigin\thttps://github.com/36Dge/yijie-contracts.git (push)",
+      "initial_files": 386,
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "remotes_unchanged": true,
+      "changed_from_start": [],
+      "added_from_start": [],
+      "removed_from_start": [],
+      "initial_dirty_entries": 60,
+      "final_dirty_entries": 60
+    },
+    "yijie-agent-host": {
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-agent-host.git (fetch)\norigin\thttps://github.com/36Dge/yijie-agent-host.git (push)",
+      "initial_files": 305,
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "remotes_unchanged": true,
+      "changed_from_start": [],
+      "added_from_start": [],
+      "removed_from_start": [],
+      "initial_dirty_entries": 38,
+      "final_dirty_entries": 38
+    },
+    "yijie-codex": {
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-codex.git (fetch)\norigin\thttps://github.com/36Dge/yijie-codex.git (push)\nupstream\thttps://github.com/openai/codex.git (fetch)\nupstream\tDISABLED (push)",
+      "initial_files": 5568,
+      "head_unchanged": true,
+      "branch_unchanged": true,
+      "remotes_unchanged": true,
+      "changed_from_start": [],
+      "added_from_start": [],
+      "removed_from_start": [],
+      "initial_dirty_entries": 10,
+      "final_dirty_entries": 10
+    }
+  },
+  "inspected_source_sha256": {
+    "yijie-desktop": {
+      "src/pages/chat/ChatPage.vue": "2211fef2b3368449555eb3126e27de98d60edc9f1941d5d98bd2fe00cd9298f7",
+      "src/pages/schedules/ScheduledTasksPage.vue": "80f9677012fa3cbff75f032abe9d27330428ddba7987bb7367814551c8687907",
+      "src/pages/schedules/use-scheduled-management.ts": "dd54fdb7f5e626fbfaaae4adc6b90d6028d218155de537398fe6a2196d2d1a7f",
+      "src/components/schedules/ScheduledPlanForm.vue": "efc57f6d442d03f3c464525bfd52b101c332fecfebe9426c9e96ed996b6cb49d",
+      "src/App.vue": "85c11853c50ae766237f343f32705fbfce3bd2b4dff50d34f12c0ccbfaa074c1",
+      "src/stores/chat.store.ts": "91ff72bb6275e0ce634e6df8972c9177102cf30af91bbe73c2be6b85943a0821",
+      "src/authorization/chat-permission-lifecycle.ts": "e84e53b6ae8800c90c71addbe4b9ab8557807a12478f741e082e10864c09d0be",
+      "src-tauri/schemas/chat-ipc-v1.schema.json": "84bf0ff9f154dd8e9693b6a2a2ea11f0ea7a4c04eaa2be2519823d71fe07d4bf",
+      "src-tauri/schemas/scheduled-task-ipc-v1.schema.json": "53cf819168e21f3787057af8b8aa2ef563e1d24fcf87781e99e7413ae05d2792",
+      "src-tauri/src/chat/mod.rs": "634df427ccd127902f3521cf0de0bdd176de51dba52718af2f861c5954909fff",
+      "src-tauri/src/chat/authorization.rs": "0585d07e324a7d1a4f6b1ab14bab8b74c7c04ca4cd785a72d78d7eafc5f6bd69",
+      "src-tauri/src/chat/ipc.rs": "04c10f9e45f8d423db5fb94cf1bb37184fa507481cb3659bf5c27f4863767b7b",
+      "src-tauri/src/chat/worker.rs": "636307a6098b0c487674dca9fe99a1d00e8815f4ec040ab05186303e0a8652f2",
+      "src-tauri/src/chat/schedules/drafts.rs": "a612063677910ef5e9422bfbde33d1707fea745049057ef78927d48644c667fa",
+      "src-tauri/src/chat/schedules/draft_runtime.rs": "a1eecf13d476e58711255b8a2e1743334259f9e90d656762c9bc2b0da792b0c3",
+      "src-tauri/src/chat/schedules/draft_recovery.rs": "9d97087042920c2db60264f3768b846030715fc1d04ddd0bdfaf3d0258318026",
+      "src-tauri/src/chat/schedules/ipc.rs": "ea6a6e3c5697a4d1405e9d6a875676567192f2daf1e04d7525dad186fe7e0bb6",
+      "src-tauri/migrations/chat/0022_scheduled_draft_sources.sql": "0b5aa168216ea5d68ebbeadad98e1237b16490f11438606f401e7198ba0bfcb4",
+      "src-tauri/migrations/chat/0023_scheduled_plan_created_at.sql": "064afd20aff96035716f4a328927678cce921186a6e4965fc7d595351a4b30fd",
+      "contracts/scheduled-host-build.candidate.json": "272fde9784d7691388bd15cb7dc3a85280af2b56a061e56bcdd060c80a6bce40",
+      "scripts/run-local-demo-fast.sh": "54f2b06146fc738a1e4888984367cc8da87be405136ce78fe41780fb81fd44bb"
+    },
+    "yijie-agent-host": {
+      "internal/codex/scheduled_draft.go": "465cdf7cd8b4108556b26d76434c4cd4576a89ed258374896ccf2d56f5fb3629",
+      "internal/codex/runtime_permissions.go": "b444194dba6c10758d7d33fb3bb8dc46db2958009cb05a98119dddcde2b234f9",
+      "internal/codex/session_protocol.go": "548c3a76bdcd2bb1bee9928e3b85c46155cfe62042c7f76a4aad1e3cf87ca90c",
+      "scripts/permission-smoke-meter.py": "b42dd6ac727528ac9400e1d5ec5ec22af4791337a96988ca55d36afabde1f25f",
+      "internal/app/runtime_permission_verification.go": "1309dc277590710819a7565d8af3e89bc22bbdcd5421c46d874993ea830d61c4"
+    }
+  },
+  "product_code_changed": false,
+  "product_tests_run": false,
+  "services_started": false,
+  "databases_opened_or_migrated": false,
+  "runtime_built_or_changed": false,
+  "real_text_calls_this_turn": 0,
+  "real_text_calls_total": 0,
+  "real_text_total_limit": 12,
+  "proposed_batch_real_text_limit": 3,
+  "image_calls": 0,
+  "merchant_mcp_external_calls": 0,
+  "ordinary_storage": {
+    "desktop_sql": 15,
+    "host_store": 5
+  },
+  "candidate_storage": {
+    "desktop_sql": 23,
+    "host_store": 6
+  },
+  "all_must_acceptance": "pending",
+  "D4": "NOT RUN",
+  "auto_advance": false,
+  "checker_correction": "Initial local-link checker failed to URL-decode the existing PDF %20 link. Corrected checker resolved all 143 links; no source PDF or link changed.",
+  "not_run": [
+    "Product implementation and tests",
+    "Runtime or Provider activation",
+    "Daily database migration",
+    "Real model calls",
+    "Wake/notifications/full FEAT-155 acceptance",
+    "Git commit/push/publish"
+  ]
+}

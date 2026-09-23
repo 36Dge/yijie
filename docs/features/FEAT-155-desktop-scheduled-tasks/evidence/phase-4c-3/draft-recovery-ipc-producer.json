@@ -1,0 +1,152 @@
+[
+  {
+    "command": "schedule_submit_draft_v1",
+    "request": {
+      "contextId": "01a0cbf4-c52a-7310-a838-835930e94465",
+      "payload": {
+        "text": "每天九点总结"
+      },
+      "requestId": "01a0cbf4-c52a-7310-a838-836385ddb1ff",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "conversation_id": "01a0cbf4-c52b-7c12-a895-b0bf2596053a",
+        "local_turn_id": "01a0cbf4-c52b-7c12-a895-b0df6fe75933",
+        "operation_id": "01a0cbf4-c52b-7c12-a895-b0e1b10cbb39",
+        "source_id": "01a0cbf4-c531-79e0-aadf-02b75d940863",
+        "status": "accepted"
+      },
+      "requestId": "01a0cbf4-c52a-7310-a838-836385ddb1ff",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_find_draft_source_v1",
+    "request": {
+      "contextId": "01a0cbf4-c52a-7310-a838-835930e94465",
+      "payload": {
+        "conversation_id": "01a0cbf4-c52b-7c12-a895-b0bf2596053a",
+        "local_turn_id": "01a0cbf4-c52b-7c12-a895-b0df6fe75933"
+      },
+      "requestId": "01a0cbf4-c57f-7c10-be51-61b58aeffaab",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "found": true,
+        "source": {
+          "conversation_id": "01a0cbf4-c52b-7c12-a895-b0bf2596053a",
+          "local_turn_id": "01a0cbf4-c52b-7c12-a895-b0df6fe75933",
+          "operation_id": "01a0cbf4-c52b-7c12-a895-b0e1b10cbb39",
+          "source_id": "01a0cbf4-c531-79e0-aadf-02b75d940863",
+          "status": "accepted"
+        }
+      },
+      "requestId": "01a0cbf4-c57f-7c10-be51-61b58aeffaab",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_operation_capabilities_v1",
+    "request": {
+      "contextId": "01a0cbf4-c52a-7310-a838-835930e94465",
+      "payload": {},
+      "requestId": "01a0cbf4-c57f-7c10-be51-61c3c4d4f97f",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "automatic": {
+          "available": false,
+          "reason": "candidate_disabled"
+        },
+        "draft": {
+          "available": true,
+          "reason": "ready"
+        },
+        "manual": {
+          "available": false,
+          "reason": "candidate_disabled"
+        },
+        "read": {
+          "available": true,
+          "reason": "ready"
+        },
+        "save": {
+          "available": true,
+          "reason": "ready"
+        },
+        "single_run": {
+          "available": false,
+          "reason": "candidate_disabled"
+        }
+      },
+      "requestId": "01a0cbf4-c57f-7c10-be51-61c3c4d4f97f",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_continue_draft_source_v1",
+    "request": {
+      "contextId": "01a0cbf4-c52a-7310-a838-835930e94465",
+      "payload": {
+        "source_id": "01a0cbf4-c531-79e0-aadf-02b75d940863"
+      },
+      "requestId": "01a0cbf4-c57f-7c10-be51-61d394c518fb",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "conversation_id": "01a0cbf4-c52b-7c12-a895-b0bf2596053a",
+        "local_turn_id": "01a0cbf4-c52b-7c12-a895-b0df6fe75933",
+        "operation_id": "01a0cbf4-c52b-7c12-a895-b0e1b10cbb39",
+        "source_id": "01a0cbf4-c531-79e0-aadf-02b75d940863",
+        "status": "accepted"
+      },
+      "requestId": "01a0cbf4-c57f-7c10-be51-61d394c518fb",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_continue_draft_source_v1",
+    "request": {
+      "contextId": "01a0cbf4-c52a-7310-a838-835930e94465",
+      "payload": {
+        "source_id": "01a0cbf4-c531-79e0-aadf-02b75d940863"
+      },
+      "requestId": "01a0cbf4-c589-7b13-af47-e19bf1073193",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "conversation_id": "01a0cbf4-c52b-7c12-a895-b0bf2596053a",
+        "local_turn_id": "01a0cbf4-c52b-7c12-a895-b0df6fe75933",
+        "operation_id": "01a0cbf4-c52b-7c12-a895-b0e1b10cbb39",
+        "source_id": "01a0cbf4-c531-79e0-aadf-02b75d940863",
+        "status": "accepted"
+      },
+      "requestId": "01a0cbf4-c589-7b13-af47-e19bf1073193",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_preview_draft_v1",
+    "request": {
+      "contextId": "01a0cbf4-c52a-7310-a838-835930e94465",
+      "payload": {
+        "source_id": "01a0cbf4-c531-79e0-aadf-02b75d940863"
+      },
+      "requestId": "01a0cbf4-c5b2-7b60-b5bf-005a3d80af78",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "source_id": "01a0cbf4-c531-79e0-aadf-02b75d940863",
+        "status": "unavailable"
+      },
+      "requestId": "01a0cbf4-c5b2-7b60-b5bf-005a3d80af78",
+      "schemaVersion": 1
+    }
+  }
+]

@@ -1,0 +1,411 @@
+{
+  "workspaces": {
+    "yijie": {
+      "head": "2f616f4d24c001812c6279a520ba69ea9875247e",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie.git (fetch)\norigin\thttps://github.com/36Dge/yijie.git (push)",
+      "changed_existing": [
+        {
+          "path": "docs/features/FEAT-155-desktop-scheduled-tasks/00-feature-brief.md",
+          "before": "17157ead62c84d496efa5b7a85b73f04524c27a2dffdc59bea571a3176236eee",
+          "after": "e36db7b88c1bb588c59ced4a299f12f743521b4f82b047ce8827afbe9e53775e"
+        },
+        {
+          "path": "docs/features/FEAT-155-desktop-scheduled-tasks/01-delivery-log.md",
+          "before": "0e5ce3b50d0e5c865c7135a8e4a3e99141c49c11ec4da0be6df67c6dc889b798",
+          "after": "08fb302832d3841a8ee3edd3895f210caa6a7d56888d27d08077ba9ca4c6f5b9"
+        },
+        {
+          "path": "docs/features/FEAT-155-desktop-scheduled-tasks/02-verification.md",
+          "before": "2dd2d7e81508ed1c66dff35682583b68f49eee36c9349aa51205d37bcb0ccf76",
+          "after": "4196a3f1ada6d52eac33425198f2796a240b05496281fa0194acf04eaf0b1e25"
+        },
+        {
+          "path": "docs/features/FEAT-155-desktop-scheduled-tasks/04-owner-approval-and-implementation.md",
+          "before": "885597810a4bd68db94edd00a4cbf66a4eff387aac413fbecb7f69ad83b44277",
+          "after": "8f0da894e364141933367e433528863518f6b3a24665c293be312b4b438f811f"
+        },
+        {
+          "path": "docs/features/FEAT-155-desktop-scheduled-tasks/30-phase-3c-3b-3b-implementation-plan.md",
+          "before": "b2698c52f7b6f154d789c8b7bf2a654d23025806c2e19b47ee1e855d4db2ae14",
+          "after": "ff5543bbabf93a1032f80dda4f5a37b6db042d2add2db2ca5ae31e0521a47ca9"
+        },
+        {
+          "path": "docs/features/FEAT-155-desktop-scheduled-tasks/feature.yaml",
+          "before": "e5ba5824f01a8135873ecac1283cf50302fc30cb012486719f11b34ac23c6ff7",
+          "after": "6f6f9b8c861b61ca293359fb0283a802df273d424b2d734eca788c13d8208acb"
+        }
+      ],
+      "new_paths": [
+        "docs/features/FEAT-155-desktop-scheduled-tasks/31-phase-3c-3b-3b-implementation-report.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-3c-3b-3b/checks.json",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-3c-3b-3b/conformance/all-ipc.json",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-3c-3b-3b/conformance/desktop-draft-producer.json",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-3c-3b-3b/conformance/draft-ipc-producer.json",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-3c-3b-3b/conformance/draft-recovery-ipc-producer.json",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-3c-3b-3b/conformance/host-draft-producer.json",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-3c-3b-3b/conformance/native-producer.json",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-3c-3b-3b/conformance/phase-3a-native-producer.json",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-3c-3b-3b/conformance/phase-3b1-native-producer.json",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-3c-3b-3b/conformance/phase-3c2-trigger-producer.json",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-3c-3b-3b/conformance/phase-3c3a-ipc-producer.json",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-3c-3b-3b/conformance/phase-3c3a-validator-parity.json",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-3c-3b-3b/native-smoke-result.json",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-3c-3b-3b/native-smoke.py",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/phase-3c-3b-3b/workspace-review.json"
+      ],
+      "missing_starting_files": [],
+      "unchanged_starting_files": 2449,
+      "diff_check_exit": 0
+    },
+    "yijie-codex": {
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-codex.git (fetch)\norigin\thttps://github.com/36Dge/yijie-codex.git (push)\nupstream\thttps://github.com/openai/codex.git (fetch)\nupstream\tDISABLED (push)",
+      "changed_existing": [],
+      "new_paths": [],
+      "missing_starting_files": [],
+      "unchanged_starting_files": 5568,
+      "diff_check_exit": 0
+    },
+    "yijie-contracts": {
+      "head": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-contracts.git (fetch)\norigin\thttps://github.com/36Dge/yijie-contracts.git (push)",
+      "changed_existing": [
+        {
+          "path": "compatibility/runtime-input-only/source.lock.json",
+          "before": "c80d38a607a08478257766f0414ba68a10de042453e293468debd6ec2b3abb47",
+          "after": "1ff21ae0ee29147ad4640568ce6dc89a68ff1e75a0a0b8cd86947f6d5bd6f0dc"
+        },
+        {
+          "path": "compatibility/scheduled-draft/source.lock.json",
+          "before": "ebff05853f8afbdb3f4d902105f2b634a367ef3ecbd0130987b4ae9b1673247c",
+          "after": "1841b1a90493fc50fe88ffd892f88873d011a3968ccbe1a9268d40af75cedfe6"
+        },
+        {
+          "path": "docs/scheduled-draft-v1.md",
+          "before": "d65926e637d19ddeb90767d75b74b21ed6c49cd8b536799caa493b4171b0625d",
+          "after": "700a6fef84a7ff4c852ba256e2e6e503130aa6af484dfe8576af5a5241702ac0"
+        },
+        {
+          "path": "jsonschema/scheduled-tasks/draft-execution-v1.schema.json",
+          "before": "75a2488ee1b045e263d377461715a506079249e0addf03aefd3a32d26920d928",
+          "after": "071a15a9db131148ca1d82896da1fb198696fd340a210df802e65d7694335ba8"
+        },
+        {
+          "path": "openapi/scheduled-plan-draft/scheduled-plan-draft.yaml",
+          "before": "5b5721f8186d24b401d622bb9ca5d8dc9bedc15b1f16aff393c12fe75c5b90f3",
+          "after": "bb0e63ef235ef0f20ef5226632eb92887a2b5dbbd073472976ef01ba3469427f"
+        },
+        {
+          "path": "scripts/sync-runtime-input-only.mjs",
+          "before": "5d1354a7b1a55318d420c9d3dbdab7c804ea862d8720847aa23cb619166c45f6",
+          "after": "07856e65851225e0a69c9589decdaee17440905490d8fa2f24dc8b6b24a44fa4"
+        },
+        {
+          "path": "sdks/go/openapi/scheduled-draft/types.gen.go",
+          "before": "8505b8137dd735f0489f7191a7d4caa209b8ab8feb8c5865654fe8ea4edc9072",
+          "after": "834b5ebef2989b099d8101f636c6f60a3f66181f89751233c69a218a97994a21"
+        },
+        {
+          "path": "sdks/jsonschema/scheduled-draft.schema.json",
+          "before": "87aaba61e1a57e634b65a4eae2e1a7ecd9965568c29036709e259e4a4de33866",
+          "after": "176451e4ad3d515f42bc16ad4a348dc6fcabd4d42aa7f24f5926b285f19d3279"
+        },
+        {
+          "path": "sdks/rust/scheduled-draft/types.gen.rs",
+          "before": "eee76bbfe2fbb7bc7a19fdfd23a3fd06430d9a0d1a4f57bfa0affe7d4cec1d32",
+          "after": "6fb73f144d0c12159c0eeea1ca0b039956a9e1655a798c8c05cb9eed601e55ee"
+        },
+        {
+          "path": "sdks/typescript/src/jsonschema/scheduled-draft.gen.ts",
+          "before": "b2cea9faeeddecae8d1b81b94edb3e06e1d580a24603c0c9656c0ece52fc69d6",
+          "after": "77171f77a5f9ddcb088a997aad749ff16092e4bb5b5d3ece7e280ea4de50f521"
+        },
+        {
+          "path": "tests/scheduled-draft.test.mjs",
+          "before": "e692781b5c185bcb100dbb3a3df14fa59fc1854663645796fde06cfc31166f13",
+          "after": "05feb08d8332926b8afd3eed5023a51a81672e1fa37a4d4d47225841f9de709f"
+        }
+      ],
+      "new_paths": [],
+      "missing_starting_files": [],
+      "unchanged_starting_files": 375,
+      "diff_check_exit": 0
+    },
+    "yijie-agent-host": {
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-agent-host.git (fetch)\norigin\thttps://github.com/36Dge/yijie-agent-host.git (push)",
+      "changed_existing": [
+        {
+          "path": "api/openapi/scheduled-plan-draft.yaml",
+          "before": "5b5721f8186d24b401d622bb9ca5d8dc9bedc15b1f16aff393c12fe75c5b90f3",
+          "after": "bb0e63ef235ef0f20ef5226632eb92887a2b5dbbd073472976ef01ba3469427f"
+        },
+        {
+          "path": "api/runtime-input-only.candidate.json",
+          "before": "c80d38a607a08478257766f0414ba68a10de042453e293468debd6ec2b3abb47",
+          "after": "1ff21ae0ee29147ad4640568ce6dc89a68ff1e75a0a0b8cd86947f6d5bd6f0dc"
+        },
+        {
+          "path": "api/scheduled-draft.candidate.json",
+          "before": "ebff05853f8afbdb3f4d902105f2b634a367ef3ecbd0130987b4ae9b1673247c",
+          "after": "1841b1a90493fc50fe88ffd892f88873d011a3968ccbe1a9268d40af75cedfe6"
+        },
+        {
+          "path": "docs/scheduled-draft-input-only.md",
+          "before": "9152a6696f2619f491d0dd94ef0bba9e7becd704983a7ab585c684922c85ec03",
+          "after": "dc8f2a42f976469212bcad6c59500960ed803f25c4cc81ab93cf81318c4ae01f"
+        },
+        {
+          "path": "docs/scheduled-plan-draft.md",
+          "before": "fa3d3071e589a16d4f39d69e733ad86d7e51f2a8db1dc6fa9129cba68428335f",
+          "after": "efcb3aa582ead7db17c6eb87d08aff8b5060e37354cafcca5cc7986332dd5106"
+        },
+        {
+          "path": "internal/app/scheduled_draft.go",
+          "before": "a34920bf4bbe234e9e3cc0141680696abf4c23a45ddfa74c7a3cdf9953be2c48",
+          "after": "6e3587f59c8c7c89ff261e6d85cb49523122d84c94dd6a0612cefcd5fc011b6a"
+        },
+        {
+          "path": "internal/app/scheduled_draft_test.go",
+          "before": "5bbb212ade03e15e6ca0d3163e666a67fef5e004f3e82600b7259120bf6f869e",
+          "after": "aef0be126457ac2f59449f0f222c470e015bbf4a1c40b156d985b43c73348130"
+        },
+        {
+          "path": "internal/codex/scheduled_draft.go",
+          "before": "57a075aad216d3d4b153285f2e2c642a5548113b4f4937ce6ace9ad96e85b618",
+          "after": "465cdf7cd8b4108556b26d76434c4cd4576a89ed258374896ccf2d56f5fb3629"
+        },
+        {
+          "path": "internal/contracts/scheduledraft/schema.json",
+          "before": "87aaba61e1a57e634b65a4eae2e1a7ecd9965568c29036709e259e4a4de33866",
+          "after": "176451e4ad3d515f42bc16ad4a348dc6fcabd4d42aa7f24f5926b285f19d3279"
+        },
+        {
+          "path": "internal/contracts/scheduledraft/types.gen.go",
+          "before": "8505b8137dd735f0489f7191a7d4caa209b8ab8feb8c5865654fe8ea4edc9072",
+          "after": "834b5ebef2989b099d8101f636c6f60a3f66181f89751233c69a218a97994a21"
+        },
+        {
+          "path": "internal/session/scheduled_draft.go",
+          "before": "064329289ea5e895d8ff0fad6d2458c73035975e694da3e6f1ba33bec37d6fc0",
+          "after": "743d81a3cbfab0f9aa5d9516b5e597a57bc0248d781d9b3edc01dd449dcb0efe"
+        },
+        {
+          "path": "SECURITY.md",
+          "before": "592dab913e3d04b3527bfa53689f5d87df1ac0213bbd5306248d1e393b5076f5",
+          "after": "b55455259fc8a22e283dd9eeaf40530b76bfc6963dd2455f36fb0d8bd2cafdee"
+        },
+        {
+          "path": "cmd/desktop-host/main.go",
+          "before": "ee86efb7f69224a125fbeb064b7fc008e4fcab1e51ac735afb96dd7e6e2541d4",
+          "after": "03cabe6accc39f5a8e7207af8b86b29b65516a234194d4f5273b1d3819471bcb"
+        },
+        {
+          "path": "internal/app/app.go",
+          "before": "a5ed5f58f0785a21e040185fc45f31bfd38dd1d704a397dcb37ee4ebeb1873e2",
+          "after": "af358e0d89325c4b861fa0b47bfffaaa090931d59359e73d40d28e1c5f22e5f3"
+        },
+        {
+          "path": "internal/session/service.go",
+          "before": "2fb7d3bea8e5cb71068c78f4a96ee9c6777badb2f5b62d4e814be463e25510c6",
+          "after": "729d646980b8e155752d7e21f8b6c55ce598f26d2b275e6d2b411186e257eb30"
+        }
+      ],
+      "new_paths": [
+        "internal/app/scheduled_candidate.go",
+        "internal/app/scheduled_candidate_test.go"
+      ],
+      "missing_starting_files": [],
+      "unchanged_starting_files": 288,
+      "diff_check_exit": 0
+    },
+    "yijie-desktop": {
+      "head": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-desktop.git (fetch)\norigin\thttps://github.com/36Dge/yijie-desktop.git (push)",
+      "changed_existing": [
+        {
+          "path": "contracts/scheduled-draft.candidate.json",
+          "before": "ebff05853f8afbdb3f4d902105f2b634a367ef3ecbd0130987b4ae9b1673247c",
+          "after": "1841b1a90493fc50fe88ffd892f88873d011a3968ccbe1a9268d40af75cedfe6"
+        },
+        {
+          "path": "contracts/scheduled-draft.schema.json",
+          "before": "87aaba61e1a57e634b65a4eae2e1a7ecd9965568c29036709e259e4a4de33866",
+          "after": "176451e4ad3d515f42bc16ad4a348dc6fcabd4d42aa7f24f5926b285f19d3279"
+        },
+        {
+          "path": "contracts/scheduled-ipc.candidate.json",
+          "before": "5c9c1171bb249feb5b016a71ce40209bcfe48d4ced9556f6c932b3d8e4feea9a",
+          "after": "2e6129caf86ac054b47b012932e256cbbd788535c10a6d74cd5fad7c74f4b5e3"
+        },
+        {
+          "path": "docs/feat155-scheduled-foundation.md",
+          "before": "90a871146c60e9f05691a456ca3f225f62d667100de22db89701a36eaf772b4c",
+          "after": "eb1c9ba8f55835049025a58472197f0f5f4dec5cb808745fdcf20f676f3dae13"
+        },
+        {
+          "path": "src-tauri/schemas/scheduled-task-ipc-resolved.schema.json",
+          "before": "3db469ca1a68d25407dcb81944851f5b9fc4daeb761f13838870d7e8eb9b4d29",
+          "after": "2fa991126aef2714a4ae30753dd27acaddf0e55dbff24a7510e3e56777ac8a3c"
+        },
+        {
+          "path": "src-tauri/schemas/scheduled-task-ipc-v1.schema.json",
+          "before": "7a92c665eeaea20f784ab608342d3952460fcee68e6517b7aa224bdb18424744",
+          "after": "5a76b29e2261d3feb21727c70334ef2270e8f7daf541dd1dbe5111dd546811ca"
+        },
+        {
+          "path": "src-tauri/src/chat/host_bridge/scheduled_draft.rs",
+          "before": "879ac6c5765843943c2b6ad11aa557a7aa353b0a4ba2e2b1ef420bb871324e42",
+          "after": "406722e38afcfde5a940c3598afd96d1963bdd2b24cf6ecca4356b8aeb549993"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/dispatch_tests.rs",
+          "before": "85825c1b280eb31f39428df4b2c87207aae4c5aa54b36a7c3dd5a229f71f553a",
+          "after": "588ef6a37529c4207847bf71bb84ba6ada949ecf50b87c34d2fc16df146f0325"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/draft_generated.rs",
+          "before": "eee76bbfe2fbb7bc7a19fdfd23a3fd06430d9a0d1a4f57bfa0affe7d4cec1d32",
+          "after": "6fb73f144d0c12159c0eeea1ca0b039956a9e1655a798c8c05cb9eed601e55ee"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/drafts.rs",
+          "before": "a7e60617c44598ecccda774a4ca039a81c5efdf431bb1888b4624af60920dad2",
+          "after": "a612063677910ef5e9422bfbde33d1707fea745049057ef78927d48644c667fa"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution/dispatch.rs",
+          "before": "a736ddb85198b9f3ec9f4783156d631de15da825a8dac82a23a6b8ef0a70bbf0",
+          "after": "ce41db1a76ff4a2e3040f8c56df2bc6d49997d4ded69cbd0aa84385b66a3638c"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/ipc.rs",
+          "before": "487b7b208c77cc7ca2eef582515d8fb9b52dbf3f4eec4354f7455ef3651a3ba5",
+          "after": "a6a9397bf06c186a1c22ee125cb61a54c2e6c42b0f148d80c847c5dfb8c26ccb"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/ipc/tests.rs",
+          "before": "962e66c0799c2512fe15eadc89b3ec9149792d632998853226ca05deff0fca14",
+          "after": "3d0169d369a543b455f26d5c44723310ca91bee99a0facb9e5c06a7ea8554ba2"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/ipc/tests/draft_tests.rs",
+          "before": "13bef29fbde60480e07e043f75fe7f903984e5c621af8880f0fc8bcc79fc4ade",
+          "after": "f7d8fce02dbebe9761ea70b9f45eb2bac97ed91a8dbea55ccd62e24ef2df8e60"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/ipc_commands_generated.rs",
+          "before": "6d67b0eea5057b680aa48f9c4f2d4d07eeef6fc31b2fb4d6d151b415fc41a6ef",
+          "after": "20cd8a0b80ad312865d87d1de894bdcc6d0000a2536f7dc2d3f9f36bb7c80b12"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/ipc_generated.rs",
+          "before": "23735ac036f41b490192088cc47cf7c8e7455c3b8a19294a16dc1449dd1848aa",
+          "after": "d9504461f0c43c2f9d3efbeaa7529c40d08b421903c1749e087090c4ef0ad997"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/mod.rs",
+          "before": "867f62e6b2c6d55ccf9bc4e2c5476039adf5af33384b619b67d6041eee212738",
+          "after": "1f23dd42e067e4d153c797efd4cc98aa20a804f17a3f4b52b2ac8dd4bb43807d"
+        },
+        {
+          "path": "src/api/generated/scheduled-task-ipc-validator.gen.d.ts",
+          "before": "204cfc0f3c560b8dbfb6c64ff84e356bab800a975198e004d1a037a77f01eab5",
+          "after": "269e789bd7309dd59e9d485c9d20e0e52b953d6098921ec9f3a6b9f2f37f863b"
+        },
+        {
+          "path": "src/api/generated/scheduled-task-ipc-validator.gen.js",
+          "before": "a7bd43fccf13e6411ee924c1115ae8d32a23f3686805a1fa33d87d09f77dc4c2",
+          "after": "d0a37bb45afcc3fffaea0f83bec874b1bca513d81f9b5bc12b00e06c803b0651"
+        },
+        {
+          "path": "src/api/generated/scheduled-task-ipc.gen.ts",
+          "before": "a2e8186f5eadb3cf79d1a649f4c32ec1cf70c15ed8338997e0f6b304f32864fa",
+          "after": "c33b6639271bdb2a7df6faa5f8e0ebd62428a88effe1566a61e665473c4b01b6"
+        },
+        {
+          "path": "src/api/scheduled-task-native-client.test.ts",
+          "before": "d95152857b3d50f3b124eb3edc7817cadbc9b30771a0dbab535b914c812a989f",
+          "after": "2acb03c2bce81b1d55c4107f9279fccdbcdbcaf1327a634bd499a6082d244ec4"
+        },
+        {
+          "path": "src/domain/scheduled-draft.generated.ts",
+          "before": "b2cea9faeeddecae8d1b81b94edb3e06e1d580a24603c0c9656c0ece52fc69d6",
+          "after": "77171f77a5f9ddcb088a997aad749ff16092e4bb5b5d3ece7e280ea4de50f521"
+        },
+        {
+          "path": "SECURITY.md",
+          "before": "296cb9839444e62570b6c6b04cdfbc50d09f5499bc4eae3f3a5babb4ca744b93",
+          "after": "7188bdb5a499ce3d26951cdc89585dff2d79e35170d6f0bcf323774a7192b38b"
+        },
+        {
+          "path": "scripts/run-local-demo-fast.sh",
+          "before": "364398f749083a15851d27e762c69a8b07455f62fbad84d8fb486994827c08df",
+          "after": "2d1cc9c583e1bc2dbe06f5f6edd89f2dee1fc5c44765dec0cb679be17e980d88"
+        },
+        {
+          "path": "src-tauri/src/chat/application.rs",
+          "before": "6cbd136b8198b4b91038f03d89099d2e56ad132088da223e3a4d5aed9dcf6ab7",
+          "after": "0a0c3f6f31840335d9449d7dae2744c768f992632887a5f55045aa8886c5731a"
+        },
+        {
+          "path": "src-tauri/src/chat/database.rs",
+          "before": "2cb648d933156fd05316399e83031f509d82d99cccfc9a230e13bee82311f231",
+          "after": "2371b0edd9f9cf1a729e6fa3d33d69ec0c27aaa81b52b960eb160f8e411160cf"
+        },
+        {
+          "path": "src-tauri/src/chat/host_bridge.rs",
+          "before": "1d21604768f123c196b7423be4cc99f6846d51d621d4d5d277f16abbcc0ed7e3",
+          "after": "5bd7e49acaa22febcb97dac1ef1ba5f7d00c0a377e3ca18f9c243bdf3d1aa9c3"
+        },
+        {
+          "path": "src-tauri/src/chat/mod.rs",
+          "before": "636c7c52be629cd5e281e712b947e170ae130f2826a3ea6209dc517f6840889c",
+          "after": "634df427ccd127902f3521cf0de0bdd176de51dba52718af2f861c5954909fff"
+        },
+        {
+          "path": "src-tauri/src/chat/sidecar.rs",
+          "before": "f41237f49f1884f2810bc1623d85b5b6643e53da76e52c7882ea883b687c047e",
+          "after": "69068b8a4d6a29052fcdd3d6dc4b14089aa2e6824d0bd7d960fc4469d82518c6"
+        },
+        {
+          "path": "src-tauri/src/chat/worker.rs",
+          "before": "1964cba2b46a234daf0e905f635d97d3a4dc400b14764230dde9c0a9f167f26f",
+          "after": "9d86f6053d1033afbc5e6818083cd4618f94d3b0a0dedb9bd071b1a064abf76d"
+        },
+        {
+          "path": "src-tauri/src/lib.rs",
+          "before": "7a81e5de805afe9c7f89f697fa2f706adf225994fbbceecaaa2056b9fcc32fe6",
+          "after": "c3749bed7cf8ef89b86a784d7879bd683ae7e0d0604f6753e00462aeb21df1ff"
+        }
+      ],
+      "new_paths": [
+        "contracts/runtime-input-only.candidate.json",
+        "src-tauri/src/chat/schedules/candidate.rs",
+        "src-tauri/src/chat/schedules/draft_admission.rs",
+        "src-tauri/src/chat/schedules/draft_recovery.rs",
+        "src-tauri/src/chat/schedules/draft_runtime.rs",
+        "src-tauri/src/chat/schedules/ipc/tests/recovery_tests.rs"
+      ],
+      "missing_starting_files": [],
+      "unchanged_starting_files": 713,
+      "diff_check_exit": 0
+    }
+  },
+  "artifacts": {
+    "yijie-codex/.yijie/build/input-only/aarch64-apple-darwin/codex": "bd7d26205e2d735dcac0f35fc089a7b30a5c18a54586b94a2c7f624f2f5b7672",
+    "yijie-codex/.yijie/build/input-only/aarch64-apple-darwin/runtime-manifest.json": "14d4073de87be137cf39f770c091b8ab62a7c34933bc49dc50f12b4ddd3a494a",
+    "yijie-agent-host/.local/runtime-artifacts/feat-136-b2b20e2fc4a0/codex": "4efe16d2848680752cf9aacf4c17741ab2eeb7415894a66c2bb03652b00a322d",
+    "yijie-agent-host/.local/runtime-artifacts/feat-136-b2b20e2fc4a0/runtime-manifest.json": "1cfa2e0a139b2213f4d29b1efeed71d4810110ac865f0bcbd931ff33b0062c1b"
+  },
+  "no_runtime_source_or_schema_changes": true,
+  "no_existing_files_deleted": true,
+  "new_sql_schema": false,
+  "new_host_store_version": false,
+  "review": "primary agent source/compatibility/admission/recovery audit; no new delegation or independent human approval"
+}

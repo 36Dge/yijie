@@ -1,0 +1,45 @@
+{
+  "provider": "declared_local_fixture",
+  "real_calls": 0,
+  "requests": [
+    {
+      "at": "2026-09-23T14:30:58Z",
+      "model": "MiniMax-M3"
+    },
+    {
+      "at": "2026-09-23T14:35:27Z",
+      "model": "MiniMax-M3"
+    },
+    {
+      "at": "2026-09-23T14:56:45Z",
+      "model": "MiniMax-M3",
+      "fixture": "normal_native_approval",
+      "available_tool_names": [
+        "exec_command",
+        "write_stdin",
+        "update_plan",
+        "request_user_input",
+        "view_image",
+        "multi_agent_v1",
+        "close_agent",
+        "resume_agent",
+        "send_input",
+        "spawn_agent",
+        "wait_agent",
+        "get_goal",
+        "create_goal",
+        "update_goal"
+      ]
+    },
+    {
+      "at": "2026-09-23T14:57:54Z",
+      "model": "MiniMax-M3",
+      "fixture": "normal_native_approval"
+    },
+    {
+      "at": "2026-09-23T14:58:57Z",
+      "model": "MiniMax-M3",
+      "fixture": "normal_native_approval"
+    }
+  ]
+}

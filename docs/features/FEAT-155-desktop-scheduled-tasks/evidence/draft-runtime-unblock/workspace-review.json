@@ -1,0 +1,1350 @@
+{
+  "baseline_snapshot_sha256": "53e4a2938ae4b11ee8f54af579e8f53dba85983cb6ce29aa7e283386349b5906",
+  "baseline_snapshot_path": "/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat155-unblock-alvd_1xi/start.json",
+  "reviewer": "Codex primary agent; no independent human review",
+  "repositories": {
+    "yijie": {
+      "head_before": "2f616f4d24c001812c6279a520ba69ea9875247e",
+      "head_after": "2f616f4d24c001812c6279a520ba69ea9875247e",
+      "branch_before": "chore/retirement-baseline-20260905",
+      "branch_after": "chore/retirement-baseline-20260905",
+      "remotes_before": "origin\thttps://github.com/36Dge/yijie.git (fetch)\norigin\thttps://github.com/36Dge/yijie.git (push)",
+      "remotes_after": "origin\thttps://github.com/36Dge/yijie.git (fetch)\norigin\thttps://github.com/36Dge/yijie.git (push)",
+      "initial_status": "M docs/adr/README.md\n?? docs/adr/ADR-0020-local-scheduled-task-authority.md\n?? docs/features/FEAT-155-desktop-scheduled-tasks/",
+      "final_status": "M docs/adr/README.md\n?? docs/adr/ADR-0020-local-scheduled-task-authority.md\n?? docs/features/FEAT-155-desktop-scheduled-tasks/",
+      "unchanged_existing_files": 2439,
+      "changed_existing_files": [
+        {
+          "path": "docs/adr/ADR-0020-local-scheduled-task-authority.md",
+          "before": "0da38e7f6fc23fd2e6d837bc604b441eb1c96d31573fd4cea5fb018ce756b06a",
+          "after": "c29e2c5bb196e1b85a864a95303280534fb4eb11caeaa6a196b326ce9498a872"
+        },
+        {
+          "path": "docs/features/FEAT-155-desktop-scheduled-tasks/00-feature-brief.md",
+          "before": "afa1ada8b41bb108e0a838dc4d72f1b77b0305e89ebee9f72b2d2b1d187e8f1a",
+          "after": "693703b7b8e2f111ae71ec7d7d422c8e94bf66f612364b9fd391fb98f62c4a94"
+        },
+        {
+          "path": "docs/features/FEAT-155-desktop-scheduled-tasks/01-delivery-log.md",
+          "before": "2e0ceef10fe613ed505b03f0debf3a8fce2909fad59887ece903cc0ef14ff3e4",
+          "after": "0f50761dcd2eb07958065872147b4dc0b9425108f874fdbcd026289feff4767e"
+        },
+        {
+          "path": "docs/features/FEAT-155-desktop-scheduled-tasks/02-verification.md",
+          "before": "56bb444761aabb6437536a971fddf020dfc337c0da92ed7732da4a5790c5b88d",
+          "after": "1aa2b503caf174a19608b3519115fd1f2d1c8fbdc6e2662f82f98b1578a0a360"
+        },
+        {
+          "path": "docs/features/FEAT-155-desktop-scheduled-tasks/04-owner-approval-and-implementation.md",
+          "before": "04db4cf0fdb6dd66ba5aeca88da8e942e98edc3a48846af2d8949f32d2143894",
+          "after": "6c6076831a7cab0964406a7b71b88ff8b8a8689f28173e4fce823f9bcda324a0"
+        },
+        {
+          "path": "docs/features/FEAT-155-desktop-scheduled-tasks/feature.yaml",
+          "before": "0ee4cc354e5e8427d273ea9b357ceebbe507e1c74b159656daa143d9f7d042b0",
+          "after": "8c4bdf005d5ab58fd16b209883e74d8c5d1f778fb3dd6c304e7e94e6d773a1a7"
+        }
+      ],
+      "added_non_evidence_files": [
+        {
+          "path": "docs/features/FEAT-155-desktop-scheduled-tasks/28-draft-qualification-unblock-execution.md",
+          "sha256": "85ec3acbfc5c967e2dc61272ab92f68420bc7d4ca52b5e52f8360e3a8fd98d2b"
+        },
+        {
+          "path": "docs/features/FEAT-155-desktop-scheduled-tasks/29-draft-runtime-unblock-report.md",
+          "sha256": "784e3301a9551c1c1a95d0046a39138380322197b3a8b3bbcd8a199e0014e31a"
+        }
+      ]
+    },
+    "yijie-codex": {
+      "head_before": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "head_after": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "branch_before": "chore/retirement-baseline-20260905",
+      "branch_after": "chore/retirement-baseline-20260905",
+      "remotes_before": "origin\thttps://github.com/36Dge/yijie-codex.git (fetch)\norigin\thttps://github.com/36Dge/yijie-codex.git (push)\nupstream\thttps://github.com/openai/codex.git (fetch)\nupstream\tDISABLED (push)",
+      "remotes_after": "origin\thttps://github.com/36Dge/yijie-codex.git (fetch)\norigin\thttps://github.com/36Dge/yijie-codex.git (push)\nupstream\thttps://github.com/openai/codex.git (fetch)\nupstream\tDISABLED (push)",
+      "initial_status": "",
+      "final_status": "M CHANGELOG.yijie.md\n M Makefile\n M README.md\n M SECURITY.md\n M UPSTREAM.md\n M scripts/write-runtime-manifest.py\n?? .yijie/patches/input-only/\n?? .yijie/schemas/input-only-app-server/\n?? docs/input-only-execution.md\n?? scripts/build-input-only.sh",
+      "unchanged_existing_files": 5290,
+      "changed_existing_files": [
+        {
+          "path": "CHANGELOG.yijie.md",
+          "before": "3ef4f3d53e69b1cfecd31019a1e50cec7a8c8fb2805e5d088414a564ee407dd6",
+          "after": "d5dda4d1aa3b442abb79a1ce5c07f143e60c82a6c0b98c58fb5c02e28f603b52"
+        },
+        {
+          "path": "Makefile",
+          "before": "12c2229eb60e0c60b54d5fa24bca8473d31588de966f375cbf4f65ab5b1d9a43",
+          "after": "c4374a9be911a4f8d792bf127de84a3c1c60e181c78785e28e6a2353ad1b818e"
+        },
+        {
+          "path": "README.md",
+          "before": "8e1ec7cdd3db21be33ce9d8d0aa0c59eedb9c85d111c683810b37a9202b0cac1",
+          "after": "b5ef3f6208da151d756b5950d78b2d3a43e2b2a1535f72ec43ece4123d06632d"
+        },
+        {
+          "path": "SECURITY.md",
+          "before": "f9931dbba24b308726d09fb1f51f5c4c22fbbf61b77f43048e6ac48fbcae8a34",
+          "after": "4904cdfa91579b4d1cb53a5e9b147f5d4aba08fa3b393fb65999dae4ac643892"
+        },
+        {
+          "path": "UPSTREAM.md",
+          "before": "d9689ff017588efd7442a2e49f8234cc911eaa57aba6f3233f695aab2655d557",
+          "after": "7c0215e077ba30f112f3b35828d330672eb26b1d90b3e829b89cb8f1a244cb0b"
+        },
+        {
+          "path": "scripts/write-runtime-manifest.py",
+          "before": "d5eba8d90833dfb177dc6c27f572453aa9d4d2f41d0ed349902661513c3f01c1",
+          "after": "1d453ce35466468d26db5f7eda2bfd8df31e81e36c67ba79407a96664378126e"
+        }
+      ],
+      "added_non_evidence_files": [
+        {
+          "path": ".yijie/patches/input-only/0003-input-only-execution.patch",
+          "sha256": "c340b6fc17419bcdc1ff45eebe3da40e5fde740c029102eb7a188f6b14eb41d8"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/ApplyPatchApprovalParams.json",
+          "sha256": "e68302955246549cdb1841c2ecf3389ddf40174bce46e086b325a04dae9428c6"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/ApplyPatchApprovalResponse.json",
+          "sha256": "6ef5fd7826b8dc537038041e6ba82126a10173b74f962d9093e8020c60d9b903"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/AttestationGenerateParams.json",
+          "sha256": "6243090d60043789a61db8cb641df7b18f7949a24d6488a4c2924ca586aeac29"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/AttestationGenerateResponse.json",
+          "sha256": "ca84dfe71eaf48520832479300ddd22ece3a88ef8ffa55eb071482a8c3c3d46e"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/ChatgptAuthTokensRefreshParams.json",
+          "sha256": "05569856a6427c23c2348789ff37690f00515a89599941fd77470e968377f075"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/ChatgptAuthTokensRefreshResponse.json",
+          "sha256": "381d7d52941196220167ffd37449fd2d24b8ef8502a2326d21b4352220f74e63"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/ClientNotification.json",
+          "sha256": "f36c3cc912cb67c5f2543a3c8898d9b5e06be15782d9f34f2920b321b7601537"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/ClientRequest.json",
+          "sha256": "edb4f4bc6f532a5b00b5b384ac8372efdb3ccda2778948949e7f2d884c33d631"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/CommandExecutionRequestApprovalParams.json",
+          "sha256": "9a4a32a860c0b40b2e77b116677d9188510e67a5d437d802f01cad2ad8c9678e"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/CommandExecutionRequestApprovalResponse.json",
+          "sha256": "db8384b633b9cee62f152328c5053ebaaa90299e0e686451c13de75fc01bafbd"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/DynamicToolCallParams.json",
+          "sha256": "5cdd0a8ce9e50224f61ee098a722618642e7071d89250f4caaa65dd18653616c"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/DynamicToolCallResponse.json",
+          "sha256": "868ddfe5b2015bea25e206e16f440fccadabc7fbba165c1931310900e75efb09"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/ExecCommandApprovalParams.json",
+          "sha256": "bdb1e2025a8c8c7062f1b2dc9be18c66c1e260ef07ac5ccbff03830863ce8a89"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/ExecCommandApprovalResponse.json",
+          "sha256": "bb9923cbb0281d0381445c9d845ee40f7c1e077ee4c9b55a3db09fb6ff06ed7e"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/FileChangeRequestApprovalParams.json",
+          "sha256": "5ea3306b3ab54f2063bd249f430208b999cef9a51d1ab70072aad663803767f4"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/FileChangeRequestApprovalResponse.json",
+          "sha256": "754fe47cb7693b93c5837c2784f999d54c1ca37eea6b329c333266a9b9c0cada"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/FuzzyFileSearchParams.json",
+          "sha256": "30e7a6e8d71f9f6a6a16335a409f38b4df7dc81fa34a797c4df94f9f83427a52"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/FuzzyFileSearchResponse.json",
+          "sha256": "bd0aeadeb2b887ed61349f471cd975cfb6b116f31f91d19b7e08218f895f75e4"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/FuzzyFileSearchSessionCompletedNotification.json",
+          "sha256": "ca047ece958ed7334663e5561a178b52a8d8bab70d782923b64c153977bfa12e"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/FuzzyFileSearchSessionUpdatedNotification.json",
+          "sha256": "82b984eaacdc033d7fd64eff79465221fb4d521d54495a6c6d08a45eedc5da0d"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/JSONRPCError.json",
+          "sha256": "232419b67fb42391e76fc377f1328fee053b84d558cf3a584937f4490a0bc7fc"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/JSONRPCErrorError.json",
+          "sha256": "8cc4ddb128d839846e73d5c6b41627b78d63cec06ab07467294bddf84e775aa6"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/JSONRPCMessage.json",
+          "sha256": "1321400ef0faaeb24c57edbe93d892358e2b81cd0ae233fa0baeb32e49392f38"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/JSONRPCNotification.json",
+          "sha256": "32b60f31d7cbb1d70b24354f9c06cf9d1fbf20de610b2f02d389d6961344131d"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/JSONRPCRequest.json",
+          "sha256": "5afa8697d4ca57308db741caf725eda3d769b60a33e20724530633f92f9b76ab"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/JSONRPCResponse.json",
+          "sha256": "ed901185fc1edd740fce9cc1cdc3689c011bd71f08226098c12f0e92e0e1e83d"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/McpServerElicitationRequestParams.json",
+          "sha256": "1bb165eee93a24842ea3ab8b6c79fba7e35d57d1b41b0e583105bb609cc605b0"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/McpServerElicitationRequestResponse.json",
+          "sha256": "5d62379a1f9303cc4a4a493fb04b47d6643adf9a4085cb85a4ea9b026c85797f"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/PermissionsRequestApprovalParams.json",
+          "sha256": "1c86d6fb89b8b664382661e7b377678cbcb9569ae50f786e0352db1998ba569b"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/PermissionsRequestApprovalResponse.json",
+          "sha256": "9ea789933d727eb4488da44a8abb1984ca3ce2ae2f6354c80d29358556c7e713"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/RequestId.json",
+          "sha256": "c545c6a859577dd1f9fb2832261c75a503698f44ee0e197ed9deee22e544a2a2"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/ServerNotification.json",
+          "sha256": "cf64e0f4a26e0e6c34f242d6c96f9151eb90484fc37d0bf206cd4b0bff1f3d58"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/ServerRequest.json",
+          "sha256": "58dde2ece68714cf5349428fcef0d413ecac58dc6dda8d47ef2d7d6aa9884337"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/ToolRequestUserInputParams.json",
+          "sha256": "f287110bd94e6697c2129c1d97e0b2d53c4da6556ae74c2ca38ae844add9676f"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/ToolRequestUserInputResponse.json",
+          "sha256": "4f2fe3e98cd00462df03e51fe2b984ae4f63feb6337d5f21b72d8bdbee88011f"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/codex_app_server_protocol.schemas.json",
+          "sha256": "5cc099fe07569fecc590d2805a67e58278ae4b54ecb2ced20173ef5e205a6257"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/codex_app_server_protocol.v2.schemas.json",
+          "sha256": "b4bfd86233fdb26b6a291c7627e289aa3f3512b46f49db0be73ce294fd3459d4"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v1/InitializeParams.json",
+          "sha256": "f3c81741ff8fa23eecb30add4df730f80dbc4227421b29b694520d6effe5d2e6"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v1/InitializeResponse.json",
+          "sha256": "5ad5e3fdc499d12175f8c7b72d6ee93b267069d00c49e99373380d751d1bc234"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/AccountLoginCompletedNotification.json",
+          "sha256": "ccafedfb0ef0b34598512ed7489692a7453ae764200c89e2dc985e8d2c756d75"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/AccountRateLimitsUpdatedNotification.json",
+          "sha256": "2ab34779e93237b1ba69dd6ca29bb59454fe84250f0f00fda3e844cb8ddd2912"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/AccountUpdatedNotification.json",
+          "sha256": "53f4b218ecf6a680781aa9fc922fb58a58f6a9339ff1e9e435f687cbc4ce32ba"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/AgentMessageDeltaNotification.json",
+          "sha256": "ddd87e04a01b837cbdb9488ebd51f7a48ac786b4f90d65765f3c3fe08944c86a"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/AppListUpdatedNotification.json",
+          "sha256": "40ab09e3900a5a3a2aabf6571e9d60a69393b00c1b203dc50abddb82007fc884"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/AppsListParams.json",
+          "sha256": "d6345092ec2f19724fa91a682a35f5e0f38f60f074ec157b2d127a10fe357335"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/AppsListResponse.json",
+          "sha256": "e75d31590c5b50c899de53d95f765caf47c5ec6a9734aa5a21a940480210b59a"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/CancelLoginAccountParams.json",
+          "sha256": "0c8f02afbf87b6a7059862a15e86c5fdd64e8951114c245fa14083766789195b"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/CancelLoginAccountResponse.json",
+          "sha256": "ffc841a320f9f2e91493a92fc7fdd5851a0d2826ba846017af952451ca70e793"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/CommandExecOutputDeltaNotification.json",
+          "sha256": "c231408aa2b0252ba669ce4601828305f7f83c69d6b46706c722ecf13251b9c8"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/CommandExecParams.json",
+          "sha256": "74dacff810e25c14b8f24669835cba4d0eca7b2356b91dad4f9ea7ee970025cb"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/CommandExecResizeParams.json",
+          "sha256": "78d4312ad9260b3d523ce3195fc275dc6ff9f1a3558d0317c519ad47c122bf4e"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/CommandExecResizeResponse.json",
+          "sha256": "dade29e40434a39b6d922de40040fadef5c5551065d883279b00be90fdaabf7a"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/CommandExecResponse.json",
+          "sha256": "a08d77e9d27711a09bf22d60983ab7f3cf2b52ae3e5b5181ffca65738480b5f1"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/CommandExecTerminateParams.json",
+          "sha256": "66ffeb8900c2280289e39dd00d891901011b5e499a87844055770704e796f209"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/CommandExecTerminateResponse.json",
+          "sha256": "95a281f49d77fe8f429fbcd97d060abd31a937bc5fd88481a792262ddbe58264"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/CommandExecWriteParams.json",
+          "sha256": "0f35c72bda9ede2176991684247192a7b81c4b483086d63143518004fae0b494"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/CommandExecWriteResponse.json",
+          "sha256": "0c39618ee251911b0b6fbe4fa5095f26652b0a88ff1003ea0d6178e49f35cc94"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/CommandExecutionOutputDeltaNotification.json",
+          "sha256": "c9b3933eb77ed1ad0e38ee82b94162628124690069f65736589997c335606c55"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ConfigBatchWriteParams.json",
+          "sha256": "fb382df3fbfb02c782f8373b7d553e757b461f502c3587223dc0b74e8515d202"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ConfigReadParams.json",
+          "sha256": "33a40eaea92538f8d1572436bf424e033718617812c3b4dc320a2673f87beeaa"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ConfigReadResponse.json",
+          "sha256": "35a1fd31b9c3e7f599704034fe433ee48d0a8ba6baa9a16a169154fab0fa3a37"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ConfigRequirementsReadResponse.json",
+          "sha256": "623ca34a4c54c8168b5be1a9b641c667ac4319c2118235e4f5ab8eef21b13729"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ConfigValueWriteParams.json",
+          "sha256": "e98deb6427986a3d8afeabad89d371fce4b7d9c2887df031c07355f35ef22f33"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ConfigWarningNotification.json",
+          "sha256": "fcfce3de3e01542266f139ae2e5c0d773f6fb66bf1bc83b87e47987f37c3bd6e"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ConfigWriteResponse.json",
+          "sha256": "8cd93ef4e2af27f896f967f17f50cf1b25b91cbaae0d135a29ccd8ce8fbd0aef"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ConsumeAccountRateLimitResetCreditParams.json",
+          "sha256": "470340e88131a1ccc7442c4905a326d5efa12b30c575009ecbe8be59ed630f0c"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ConsumeAccountRateLimitResetCreditResponse.json",
+          "sha256": "fd66746e6b99816d9d7c737159829011686d5ae98fc3c7b5785458f04d790708"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ContextCompactedNotification.json",
+          "sha256": "0c568f2a30cb3de4eae8339af11471b1c0cd41d6dc1c3fe1119ffcfd2f572a66"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/DeprecationNoticeNotification.json",
+          "sha256": "48582d1cd535c6b49b070744acfa162d65e337ecaf66745bf45a88d99511ab6c"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ErrorNotification.json",
+          "sha256": "26bf56d53455d431a054d27a0a72b037d42a2cc5ee5f767f4eb0553e499161aa"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ExperimentalFeatureEnablementSetParams.json",
+          "sha256": "41ca7439a6d71a7fa80d138782c3dc8013a367c9628fa5a498a0398d8917ec3e"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ExperimentalFeatureEnablementSetResponse.json",
+          "sha256": "78c87d19ba641424ca2a38a2b178bca523d1c0e3c9ee65efc695394b31477fb5"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ExperimentalFeatureListParams.json",
+          "sha256": "2510e96b9322d29df822a7ed74e055281e29a34df5f94b15deb1015cba5c8e2c"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ExperimentalFeatureListResponse.json",
+          "sha256": "1bff5c80afab7e81bfcd162cae4a33a2c03fc52737f9e416ec5cee8375270de8"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ExternalAgentConfigDetectParams.json",
+          "sha256": "d77c38eb001333818f79145c47bf45f91f16ad215c46790109a23ed285c72cc4"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ExternalAgentConfigDetectResponse.json",
+          "sha256": "1a7f5b670d19d877de0527139443f181006fa431415980b4e6bcb9b0dfc12183"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ExternalAgentConfigImportCompletedNotification.json",
+          "sha256": "baa7c08de265e3b9278be21794da6cf04f4880ad8f11ec64464a114c0ae1fd1e"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ExternalAgentConfigImportHistoriesReadResponse.json",
+          "sha256": "344c849c6d38f976a17f7cfafc866ba2315a2e7db55474d7a2909206a3681bf6"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ExternalAgentConfigImportParams.json",
+          "sha256": "90ffc7617b596ed796f552b3a8761a058f3fabf031a19097c232856a0698ddff"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ExternalAgentConfigImportProgressNotification.json",
+          "sha256": "12a46cb8641ef72da03155d7898c5572553362d32879e4bf12eba53fde264372"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ExternalAgentConfigImportResponse.json",
+          "sha256": "3669c913ca37efd60e8ab6f8438c9cfff64f4a3e5f808e030def2a7f68c3e803"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/FeedbackUploadParams.json",
+          "sha256": "80a97cbc77a6e1b9cfe4aff6e30a3006a64eba587f060307526947df8f693394"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/FeedbackUploadResponse.json",
+          "sha256": "eb3f91dfdc68e44a9f291fe9e540bffeb30da9cf51bf5f704e88a26569a17362"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/FileChangeOutputDeltaNotification.json",
+          "sha256": "248defd75592f5962066c398c18e4a805fbaa73724809ff58830f94c7d574c56"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/FileChangePatchUpdatedNotification.json",
+          "sha256": "c233b8096b9a50b22985a7695acc4ad9944ce1201bfa671278dc991a7bdbd89c"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/FsChangedNotification.json",
+          "sha256": "37f15a184e0677c60f831263bbaf5f86ede2fdf70ff3d06ddb16e08847f7c86b"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/FsCopyParams.json",
+          "sha256": "41609f849c7f25179766b1ced3fb239f82e5b24725b9a578d814bed0712531e6"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/FsCopyResponse.json",
+          "sha256": "e543d0f423d5f5dbf2119ea947ee030e5e86090692134b376f283462558c80b1"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/FsCreateDirectoryParams.json",
+          "sha256": "2e1b305ded4c0796c62f63d277bff508c04c251343838675f81f0320d08214c4"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/FsCreateDirectoryResponse.json",
+          "sha256": "858c42aba7a981f9486ffc5d06a9874edb10b2466af0dbeb55f401cb6fc2a53e"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/FsGetMetadataParams.json",
+          "sha256": "d4cc9f6780969819f049c2a822aa75681e33bb6ace59c49aaeed8a4f6d218a45"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/FsGetMetadataResponse.json",
+          "sha256": "7cad6a29afd446be541c95e7f1c1981f332f75b00f3bdf636659e3a1cd1054ee"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/FsReadDirectoryParams.json",
+          "sha256": "fb2613d84761fa5042ce25719a5362d67b93335575825057012a534f542019cf"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/FsReadDirectoryResponse.json",
+          "sha256": "6269315c271be79107eda8241743f640f3fdf5cb4a887302a670c356bf4eb801"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/FsReadFileParams.json",
+          "sha256": "d3d368186e51bdc9e5672be87b5363392cdbe0405a7ffaee1698c80525eb3480"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/FsReadFileResponse.json",
+          "sha256": "64495bccf3b660393c130f8ca19656860fe28e5a2a0e821210fcb9d30863a9af"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/FsRemoveParams.json",
+          "sha256": "fd561167065f4e7fb305f393a012c40809a228184da552c39ccbbc8fed1bb4c4"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/FsRemoveResponse.json",
+          "sha256": "d97ee9bb666fd8eb47cd9df9b6d0c923336a47d9328953bfca246ffcf544999a"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/FsUnwatchParams.json",
+          "sha256": "8aa0a86dad187eac27cb6a93f659d1bfcda1afc4e18e50c6e53a6d1de5840b70"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/FsUnwatchResponse.json",
+          "sha256": "7066a6ad643cc3a5a5bb2420392ca0f0ed7e98144dec8ee0be9f52dd6c2d9e21"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/FsWatchParams.json",
+          "sha256": "43050596ecc4b6113b9674d7a1a5ef0df97186621fc95036b78b9efd4aa267d0"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/FsWatchResponse.json",
+          "sha256": "b010af6e6a30394010cc5bbee15705078eaba0853f797b5cfd0d8caab177c6a8"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/FsWriteFileParams.json",
+          "sha256": "4bc1a830c159b7269f3925eb6623a515cc96919eb73c93d633f07ccc148cb2ad"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/FsWriteFileResponse.json",
+          "sha256": "030ef8c7460a48ccd29a7b46feceda6e273158c0be261cc9c96a7cec62b364ab"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/GetAccountParams.json",
+          "sha256": "46ec5f6ed955eb6c03056fea6f28b902710bf3e1dce7a71ab1f9542122e2223e"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/GetAccountRateLimitsResponse.json",
+          "sha256": "51acf76ab3e6dc5784399c10fa021885e50c0b59d5d65e8535084eefb2e3bd11"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/GetAccountResponse.json",
+          "sha256": "5b6695ef613f5ed549fcf92cc324bbf8b604718512af417113e2f7d8d9c941e7"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/GetAccountTokenUsageResponse.json",
+          "sha256": "8b572418e3eb65ef745515313cce77cfc36128bd41ad3e879bc4b33bc844e481"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/GetWorkspaceMessagesResponse.json",
+          "sha256": "7522f5536a4cf08ac5ad0e8e9a8987b48528d026fb9aa983b5ba98b0b13b0741"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/GuardianWarningNotification.json",
+          "sha256": "80528008f26bf1480718952058beb77be9aa94c90cc73a8b3a4d7a277f9e124b"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/HookCompletedNotification.json",
+          "sha256": "453109605e314d8b520b719b44ee5c892b07a5a9de09299cadd2ccc8120eeedc"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/HookStartedNotification.json",
+          "sha256": "b9ea6672e16b2879e553593de6cc2a4f6f6e6cb6c0c72e539558683ea5ae1fae"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/HooksListParams.json",
+          "sha256": "4d28e827aa477ad42b6647788b9780eabc5b0e0de2e6ea7244a24ae9c7798856"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/HooksListResponse.json",
+          "sha256": "ae4a520a218692740f537528465666e7e7f94153f5fd28320aaa76a0cd7a8596"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ItemCompletedNotification.json",
+          "sha256": "61069cfc51ca8ef2b746ff4df1e638598b253e3c1069332009df9f7b6038b7fb"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ItemGuardianApprovalReviewCompletedNotification.json",
+          "sha256": "69b9946373cd74a03217ef9d315b16552425425f791ec05d23cc3eee7ac27afa"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ItemGuardianApprovalReviewStartedNotification.json",
+          "sha256": "9106a26f37877864748fc40195caf4b6efaa117a51fa09464a36ee39ea3fbfaa"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ItemStartedNotification.json",
+          "sha256": "15948826c565087f449332c20c5517516a09beb25ec7b928b5708c0b0bb43c5c"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ListMcpServerStatusParams.json",
+          "sha256": "f5f21effc0733133a387487a4288883bd49dd79139406966d5e82ba32013d7f6"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ListMcpServerStatusResponse.json",
+          "sha256": "30a56f2d60d73a565d116d4b97888df133c764c86ffe2c6c9f3ffe224ed5cc10"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/LoginAccountParams.json",
+          "sha256": "aff18a6ba3119aa8a0e88e127ff0817b56a3cff5165601bb04e9e56033f17168"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/LoginAccountResponse.json",
+          "sha256": "b84964a47015361d714569d35eb0dd9ad84f4cff8b05bc4b82ed1bb14b40c5f8"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/LogoutAccountResponse.json",
+          "sha256": "325094a79befac5c38a98c9e950db523015773cceaa0cf28019219a1e30da873"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/MarketplaceAddParams.json",
+          "sha256": "0fa0bd86e34883d2cb38383efbb4bdde4b6bd6fae1c9684260d804144524e851"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/MarketplaceAddResponse.json",
+          "sha256": "29fea6719d7c140b4886390b47b612960afd75b3b576f6a86555e39fc40001aa"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/MarketplaceRemoveParams.json",
+          "sha256": "b0fd550d5a9d6e74821308257eb9e5b2e9c83799ab62ab42069ca85a008d1e83"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/MarketplaceRemoveResponse.json",
+          "sha256": "b0d1e9a4a3f157a472924ba714f4b3bb20ae16c7f5a783796c77bdd7ac4a1aa6"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/MarketplaceUpgradeParams.json",
+          "sha256": "d4d3cc4e10416d3fa1a2a27e616e3085e748967fbc98abbf18dfabef18214e52"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/MarketplaceUpgradeResponse.json",
+          "sha256": "f0a16f90d1d7da944467f4d51346be8700110b5e29e55ed09794e1352718c9be"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/McpResourceReadParams.json",
+          "sha256": "f1d5eec014da5c06689755e1383aaeb31d25aad2ccc391b623955cf44f050663"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/McpResourceReadResponse.json",
+          "sha256": "0cef3bdaca8d26fa3aa06eb35d745d2daf0f7b3499cac8d9747e981e3ba8567e"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/McpServerOauthLoginCompletedNotification.json",
+          "sha256": "c2500d2dc8c912478bdb888969a4ccc284004ca7ff9ef0ffb4892b4432b500a3"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/McpServerOauthLoginParams.json",
+          "sha256": "f70dca927f0063d349c896f4a240ac61a48b07695c000284e2b74ad2e322cd4a"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/McpServerOauthLoginResponse.json",
+          "sha256": "1b3d6406a53026c48879c9a6a16812d02da234ac478e08fb52c7ead2c4f1427a"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/McpServerRefreshResponse.json",
+          "sha256": "d11f45f5e48f4f57a91dd8fb7202e42d442e97fbaee863fee9f48c8c31cb8f8c"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/McpServerStatusUpdatedNotification.json",
+          "sha256": "114c88b43effc3e1b3c8211d4db6be01e63dfdbfc345e6ccdc82f3a85daaa6d1"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/McpServerToolCallParams.json",
+          "sha256": "84d1e471dccbcb96e8744d032e6e2e2fd38c816705259027977179baf68db623"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/McpServerToolCallResponse.json",
+          "sha256": "2bae283269e50103d4a2dda0e7bdded267a3e538183a3cb6498bf3d84efd51b5"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/McpToolCallProgressNotification.json",
+          "sha256": "7eafafb4c70f1a0c3ecf8325ce2150c6d1e3da6fac320c280c9ffd663b37e9a2"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ModelListParams.json",
+          "sha256": "cc13f3c7539c64a19015576a661179ed72c7de79bb2520b23c4893e2e58dfb4a"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ModelListResponse.json",
+          "sha256": "95db94226effaf058063ad1f4005855062604a1290552c54e18039deb6fe4062"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ModelProviderCapabilitiesReadParams.json",
+          "sha256": "e61eb9e0ae4c0547fdb8705f071de349786149785bca8e0fb36de4b413fd8006"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ModelProviderCapabilitiesReadResponse.json",
+          "sha256": "87c4b395e95da811bc85445119ff5b8703a9d97956260907eefbeb88f583d454"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ModelReroutedNotification.json",
+          "sha256": "a6a7e735472aba3067be92f8c68f0dbb9de5e3128a476c2ee1ee3abf42f94aef"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ModelSafetyBufferingUpdatedNotification.json",
+          "sha256": "3655c6ec7857d488bf53ce69a0ddfd3584bb72ff255069f0ed8b39e89fd8636b"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ModelVerificationNotification.json",
+          "sha256": "88612adc72d22a2563ae73483acb3289c6f58c66168083f3667e02b44f8386fd"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PermissionProfileListParams.json",
+          "sha256": "c409b951f7af2064a42c83525fee2fab8e0bfc2dc38fad15fe52266e07cab850"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PermissionProfileListResponse.json",
+          "sha256": "7fbb2d4de619d4965e2f4c8483fbe3077265f8b1f897394e4051c38d06a13249"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PlanDeltaNotification.json",
+          "sha256": "dabf85e514a36601c28f098d5f9383ed60b3d61f98d596a52d292e7ce040bceb"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PluginInstallParams.json",
+          "sha256": "f3e5aad97936b92056c746bba3f3992331caa502ba0c5e1cf500011be197adb7"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PluginInstallResponse.json",
+          "sha256": "4dcb927d3bdb76242bd72f63efd81f9ccae17a46b14f84c4b486a29cc2ba039a"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PluginInstalledParams.json",
+          "sha256": "a21eb4b3acd4299add5062e8647259abf263dcc9e6555438193774ad92680a5b"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PluginInstalledResponse.json",
+          "sha256": "92c4504b6cf41501dadede80f20a4a11c0449f95f3ff4b12bbd79082532ea750"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PluginListParams.json",
+          "sha256": "657f8398975391b8a123b44d333b46cefd6a9be7934bedba782150060027651d"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PluginListResponse.json",
+          "sha256": "95172683ddab70bd0c3c08ca3ce5e4bedad81dc0221019ca644af6d8cbff4e3b"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PluginReadParams.json",
+          "sha256": "c20bdd1203e8bdf4a7d1da95347b74264e0bfff5ab8e54a3a29d1fcc01132094"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PluginReadResponse.json",
+          "sha256": "338cec519e01f6b2a07e5896bbc2608ad7938e14d41f4629ed5b9280f1cfe652"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PluginShareCheckoutParams.json",
+          "sha256": "eb7dc39f4db4b915fca2a8a7adce59c8f879a97065773bed22d1d4637af7edc7"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PluginShareCheckoutResponse.json",
+          "sha256": "f3a53c6c558c8ace7681771183686a34401b7e1490a7cf0aca9cc170bf757240"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PluginShareDeleteParams.json",
+          "sha256": "b00fe47d493e689184e2d621d46c67d5f259bcec3cd32e8d146f78728f423eae"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PluginShareDeleteResponse.json",
+          "sha256": "80810a1d5dc2070709a573407b4763d9c0f19aee5e67f38246017e9d48730be4"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PluginShareListParams.json",
+          "sha256": "2b727b55266db985166df115337829c99e4d8707e1b5a9d14440a6b5622a4b93"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PluginShareListResponse.json",
+          "sha256": "962d63dcfa3fb195a14b5bd69eac60a35e588463725c6fdf0c4156a93a91ea7c"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PluginShareSaveParams.json",
+          "sha256": "c09f51e43b0274bdb4d461fbe3c67b5aa9cd7af03a916d0caa4eab4d31b7fd9b"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PluginShareSaveResponse.json",
+          "sha256": "44a235d5b492fd1e914fbb5fa1662fa5a6d63ef3b3cd3b289a7bf02c0b9e8dff"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PluginShareUpdateTargetsParams.json",
+          "sha256": "c8b1f839ca823c15ca4bbfbf20f665129b84ad5fae6521e64a089c2165ba00d2"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PluginShareUpdateTargetsResponse.json",
+          "sha256": "fc0d575d1db4417d7cfb19ed9288d6c3ba14e744bc1c9691b730840f78c6b378"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PluginSkillReadParams.json",
+          "sha256": "305ffb221594d4e90a653169c3ed1e30218115d9f9b533a1a0bff36306c76094"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PluginSkillReadResponse.json",
+          "sha256": "54fe688bf7248c016ace700cd2c5274511e439ca942c00d101ee3415673e0383"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PluginUninstallParams.json",
+          "sha256": "e05bd593a32790f0d290fb8f14bd361d36879b5ef82bc6f6887fcb7386848311"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/PluginUninstallResponse.json",
+          "sha256": "c7692bacbcd079deb60ebd01520b84a4a9e563a9d5f7ef189d4640f6bd739588"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ProcessExitedNotification.json",
+          "sha256": "a4ce6ba248d2e10f87b9e6cec0542d634f0bca8895c0fe1c1f07cd56593ebfa2"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ProcessOutputDeltaNotification.json",
+          "sha256": "44bffdc9a98777c851a3d975c2530c7e08c0e0f1505433650fa83b8e230ede83"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/RawResponseItemCompletedNotification.json",
+          "sha256": "79e25dab520b6ddc55d76590d5a19d9a87afca3681dbc62e2cbf363f57a74451"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ReasoningSummaryPartAddedNotification.json",
+          "sha256": "6ec825a3f5252a91b788798dc5a93fa7331081f89c2c7ea164fbb0043cf8cd81"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ReasoningSummaryTextDeltaNotification.json",
+          "sha256": "adb19b5db1310d062abd682ad71ff1fbc07d04b78ce0e4d205005c2eae63b268"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ReasoningTextDeltaNotification.json",
+          "sha256": "08766e1b865cf84867596b78e5714dcb5c247055c1aa3e4e560c06c77a11a8d6"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/RemoteControlStatusChangedNotification.json",
+          "sha256": "9015c1b6b560eb676d8248442a6546ef66f5c5c5734a02ef74aca6df4623e4a6"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ReviewStartParams.json",
+          "sha256": "6eae229bf62224c2f97feaae1d5fbb9086bcdc9a7d66d7e021180941e2c78177"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ReviewStartResponse.json",
+          "sha256": "0df637044a872bacc54fe76daff0b5d70207689f91d845034c6b924dce137148"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/SendAddCreditsNudgeEmailParams.json",
+          "sha256": "a419905eda3b2bbea3d796de6eaa7613b620278b4f0521255fcab565d1bb985c"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/SendAddCreditsNudgeEmailResponse.json",
+          "sha256": "e6011cd99c4f70a954a5700507f42c0cf50618c64bc6759613b1ed5f5ab7bb67"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ServerRequestResolvedNotification.json",
+          "sha256": "60ac5cfa626515ceee856d9cf705bf7c81b293d31c4b7b9a5caac7648ee19440"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/SkillsChangedNotification.json",
+          "sha256": "b97212ffe519228ed5cb76e936bf0d6c12dd737293e5a81b508c69e27240796e"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/SkillsConfigWriteParams.json",
+          "sha256": "e1c75048d12169c9d14360e3990b642b9b70a1be9bdafdc26db1d43e1792ac99"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/SkillsConfigWriteResponse.json",
+          "sha256": "26b311cc0e2d5d21b4fd66c712b92d32859bade5a6bba341a2b0676afa10543f"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/SkillsExtraRootsSetParams.json",
+          "sha256": "a105ca877c716c0d481a4144016a51305a3378802f64778e5fb54074dc1c573b"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/SkillsExtraRootsSetResponse.json",
+          "sha256": "a059454350ab95027009d47974e83b8a91dc9974561137a829f72e9b413f0a5c"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/SkillsListParams.json",
+          "sha256": "c55c6376ff29d180826aefd68ee3b817ea13e598aad8eea204851cfedb1c159b"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/SkillsListResponse.json",
+          "sha256": "59a9b4ab84251d0b3a0a5c5da2524d5c23e8b61697c2bd6e83141e202ee7e00b"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/TerminalInteractionNotification.json",
+          "sha256": "fb3b79d9d355f315629545a8ac46f4e2ae9bfa7f2d1a8bdb2290a8d23cbeb72c"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadApproveGuardianDeniedActionParams.json",
+          "sha256": "5b85f6d66b8ce74d7c8ab29362a21b6c27afec222f11689e78c252e27e4f880c"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadApproveGuardianDeniedActionResponse.json",
+          "sha256": "d311dd38456da87bfed790f1b257aa956c692be50e3268c5427d7e4d24c21e51"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadArchiveParams.json",
+          "sha256": "199e09f2e1ec4c1131ba1000e4bcb9c6db28b5203558ef6471181b71b28ac45a"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadArchiveResponse.json",
+          "sha256": "18bf864a2ca1659364f17008dceb6d15d0a31cb485907f044c69ed97d8101ca3"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadArchivedNotification.json",
+          "sha256": "5adf14de59640253dbba5fc68c8e45a8597fd30fba1529d033fc245b18ff07cd"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadClosedNotification.json",
+          "sha256": "6cdf1085d6f7297faa90e4f3a345510a2564ad2f3ea545cb8205728704f13785"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadCompactStartParams.json",
+          "sha256": "1d4b7002b10dfb327680bbdad256d6b94c8ef3bc87fad990fc20b5afa75699ca"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadCompactStartResponse.json",
+          "sha256": "b5694f59dd879df87e5fbb930be78c41333005f7fae6ab5f5e2e5977d03687b3"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadDeleteParams.json",
+          "sha256": "6340de7a762c541daad8177cfb78362633b35c3ef4b62bf47e0c1b9acede8a7e"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadDeleteResponse.json",
+          "sha256": "09643381957f02d4ada165e7488bf02cb17ef753135dd6b48dc63418e026c42b"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadDeletedNotification.json",
+          "sha256": "99daedbf2db63f5e90a9441481036a78dcb4c0226ddebec8b2444826260f2d50"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadForkParams.json",
+          "sha256": "cabb90b388ecc4bf35603fe52ea1feac0229d2f1f24644217027e0799ec505b1"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadForkResponse.json",
+          "sha256": "506c94594a78985c640f2610491ff67f880e35f863b114dbc0662bccea046bfa"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadGoalClearParams.json",
+          "sha256": "90bcc72956056049e84ee65898187454ec5ac140fab3a67a937ca5e5cfe93194"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadGoalClearResponse.json",
+          "sha256": "bdf0fe3027c1ac5bab98ea78eae4ef96ce956826f68f09803522c882f770b36a"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadGoalClearedNotification.json",
+          "sha256": "aac550bc07a5820427073763bdb11bb27ce4c934f0776c07109cce927f03e568"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadGoalGetParams.json",
+          "sha256": "75345b4108909a0166be5c0af6f22d3d7479465f099ca0d8005e0ba25edce947"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadGoalGetResponse.json",
+          "sha256": "d5825d4185d10dacfce83e41344878588826118cb9594b0a08a0fd66abe7ec0b"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadGoalSetParams.json",
+          "sha256": "a67824513a657e8ab9777daffc4042415b64fb874d6489ad132a1a937789a661"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadGoalSetResponse.json",
+          "sha256": "70f630259aa399e7ebed00b62a94138c386db243f2e3204b783cadbbe79a4bde"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadGoalUpdatedNotification.json",
+          "sha256": "0286c0f5a7e353c4f787a36a717ec174fed2d34ceab7da63cc5ac548a4ab0f56"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadInjectItemsParams.json",
+          "sha256": "bc985421897a1d22324bc2c39d3948ff229cd01820203d5438c2999f67c20475"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadInjectItemsResponse.json",
+          "sha256": "e6991355375c3b5eb4ec311035d0ea5ba7310f4cfa9f9f3464583253a0534d18"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadInputOnlyPolicyReadParams.json",
+          "sha256": "c9fb6bcbab669a0fc0a460274947a07a2bf6213c17a698513cb66e225f75d201"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadInputOnlyPolicyReadResponse.json",
+          "sha256": "b17e3771df1f9027f6caf96ae250d17649a334e0de4a524ecab4673745074898"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadListParams.json",
+          "sha256": "1ff0fbba8036e717bbe63f606b7c58e0c7d6802f56866161c35ff4018ad2b080"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadListResponse.json",
+          "sha256": "dd7eb4323c27efbdb861682844f12c902601931eaebbf8a258704c19fb6d0231"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadLoadedListParams.json",
+          "sha256": "d8007dcd37317d09e39fc9cd993a0b2cda827314664af077ab547ef90e7dfcaa"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadLoadedListResponse.json",
+          "sha256": "e6ac3eb50e04ccf1af9a46d85225b8df9a47f47511bcc16f4ab86cd9e9936aef"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadMetadataUpdateParams.json",
+          "sha256": "51a92e2ff665f16108533b6a386f332fc13c51959a6db79883ddd46e572735d9"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadMetadataUpdateResponse.json",
+          "sha256": "fd84c4b4954ce5040037b1213773794cdd6e724dccfd8bbf8a549a77079f6764"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadNameUpdatedNotification.json",
+          "sha256": "d138670981b00de5efbc7412e29937ea69d4789761c0aef3aac656b0eb3df58e"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadReadParams.json",
+          "sha256": "4c337663139e583dd11f7632644ddbdce5605daa76c1a437cba8937da58fabad"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadReadResponse.json",
+          "sha256": "6100887d082e7a72c37a561aa0d7b9f744c8a1c6a8c92c536144582a44e2cea8"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadRealtimeClosedNotification.json",
+          "sha256": "625715d7de74ceee1bb21ed526de9ec29237c708cb6c4804ebec9bd9d84f4a01"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadRealtimeErrorNotification.json",
+          "sha256": "133ee3da04d5b1fe709f7f3be781321d5d1120edf9562d6a63093ea1ec8566f2"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadRealtimeItemAddedNotification.json",
+          "sha256": "7a20152e0f87516da40d368abba07469a45635bfaace7cddac2103683bbf7e74"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadRealtimeOutputAudioDeltaNotification.json",
+          "sha256": "8729d47b2bd8076ac346c557962b557aa6b5fec3a7bd73b29367714e67e0f51d"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadRealtimeSdpNotification.json",
+          "sha256": "c6a75ff87347ba113a42867f55f4d42838ca3b9e16d7ff302bc0a75f0abcae6f"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadRealtimeStartedNotification.json",
+          "sha256": "72812df4a1b22629adcc4483f92709835d7c60bc6c8891f7896acd081adb7df4"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadRealtimeTranscriptDeltaNotification.json",
+          "sha256": "35c6607a2ecdb811245acf372c4202494cdc2159c6bf3d7bd85ada22cc493288"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadRealtimeTranscriptDoneNotification.json",
+          "sha256": "afb026f20bc3482dbe494c3af14b40245e88c3c03b0e68767a7d1351ade98cc2"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadResumeParams.json",
+          "sha256": "95354ccb2f597df9e2b1bbf56ceb13554af62c6bad643b776a5728d6533d9ce8"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadResumeResponse.json",
+          "sha256": "e71df4842d48e45c4ed5e486a4a4b359cbbf642289e3d7e376d7d822ba531772"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadRollbackParams.json",
+          "sha256": "fb0ba20ad8e0935c61045d5f56b3e8a4146cd2df94b0f1be2a858546592869b3"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadRollbackResponse.json",
+          "sha256": "c6eb44ec5d3a98ffe8b30e63b15b2572f4ef789780806d7846ec53d6951fff76"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadSetNameParams.json",
+          "sha256": "b8ad41f0e4ff55c91b8474ce403b43dd81ac8fb56445ddeb27c3e9bf73307666"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadSetNameResponse.json",
+          "sha256": "09f5f76b23dcbac776735f5451c07a0d74d1b36fa41477951559ecf7f15be949"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadSettingsUpdatedNotification.json",
+          "sha256": "b0cc264ed6c3c90b6b951a39a2db1157b135950ca87c0f99b95d0baac8c8ce7d"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadShellCommandParams.json",
+          "sha256": "c7a74a2f1cf5f45eeeff427c2427abb2d6db5f9a1225260ae8556ed8eb19e465"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadShellCommandResponse.json",
+          "sha256": "6be83a88ad3db37877b168c88511907b4c00775e8b38f21f05428d965857de97"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadStartParams.json",
+          "sha256": "4b942bdf3451bda7bb463af5edb769dbcd41858d5aa94168648a8bf47622377c"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadStartResponse.json",
+          "sha256": "71daa46ee50452a344bd82ba3abf28d99cb01e9ff90f3aa3ef3ad06bece8a1dc"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadStartedNotification.json",
+          "sha256": "adf4b7344731b7315101f7d96bfba567013f786cc3bfed50dd8ab83f74bf66e2"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadStatusChangedNotification.json",
+          "sha256": "ddff44a91ca31c7f14a58f21210a291a7e56ea3e0cb8aacad7664d5925ac5b76"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadTokenUsageUpdatedNotification.json",
+          "sha256": "0ab6f22fa3f6e8227a6d2f9d6241ed7cb45beb8bacc8a18a307aa7526d4f8bd1"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadUnarchiveParams.json",
+          "sha256": "945bac4c24474403245848299858774709c53187e7db6b22093d47f0e1c4b436"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadUnarchiveResponse.json",
+          "sha256": "41e86e923a7a151fe289384ef3ddbe3da6eb2607e37df8cdc3bd8da137a74d75"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadUnarchivedNotification.json",
+          "sha256": "a860036ea37c8ed6a8aae8731f8171fb16c84c0beeb59680c8d0dae5183b2cac"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadUnsubscribeParams.json",
+          "sha256": "4b6dba28b46634515096d23fd22907a52e796456d4f1abf5915c4c123160493a"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/ThreadUnsubscribeResponse.json",
+          "sha256": "0716eae69127a45900a63578b5f4335582e9799054f6a71fec1b6becddb03e2c"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/TurnCompletedNotification.json",
+          "sha256": "92031b880c81246ad2cb60550994eb183ff36a3836ec4840cabea33941a75fd4"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/TurnDiffUpdatedNotification.json",
+          "sha256": "af9cc2edc81c7c5f8789d40110e8c3d98cf1b0254b5ad44ea2d5d3997f139818"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/TurnInterruptParams.json",
+          "sha256": "d0e0909fe178be5ce13bfb5df761722dc798ecd0a17b40e7f3158854da2e4547"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/TurnInterruptResponse.json",
+          "sha256": "bf7c7e4c125a0d8a20e73143486ec1c60c5ad9c9746fe261e8d2d00a285b8293"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/TurnModerationMetadataNotification.json",
+          "sha256": "cc18b7554a3b83f28e64bfe80612292b5d93d4352b8e976a509fc7a15b415c9d"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/TurnPlanUpdatedNotification.json",
+          "sha256": "1577cbb03839c8e784b26497292db66a0e3c02bf3f5babf2ca521efaa398effb"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/TurnStartParams.json",
+          "sha256": "befb5c2c14416ff6cc67e1b8b7b17e5966378e7ccf3bc30f771c75ab762e67ed"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/TurnStartResponse.json",
+          "sha256": "4ba948ee0f605654296178dd0b1ca8dbd6c902fe97fbfa43559b5b171ec1833b"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/TurnStartedNotification.json",
+          "sha256": "9b535a04e2900c0939f500900d5e818fe5e7d2b8aecdecce95322c109affe967"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/TurnSteerParams.json",
+          "sha256": "7e0e7827869182838efcba1c2375e16cb69011b2692d5162e71d8f8673a9cf9f"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/TurnSteerResponse.json",
+          "sha256": "fe782ecf0ba6516616967c8fb5366fd1253cd834f6903502fb03f8c57986b671"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/WarningNotification.json",
+          "sha256": "26081476a468f3c4f82347dbc3d6fcf679857a414536b23d6fa8aaea50b52c4f"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/WindowsSandboxReadinessResponse.json",
+          "sha256": "39c88589e709cf8dd403d4e7bb548a95801b8125f7c69050516139b40dbfd90c"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/WindowsSandboxSetupCompletedNotification.json",
+          "sha256": "1a388093e8b6aac2929b4a605762018e9c01ee2108fbbda7101d19584067e73a"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/WindowsSandboxSetupStartParams.json",
+          "sha256": "26d86e24fa2d6a0d7d00b7bd2f97d03e00d92a84c62a96117f898101662aa9f0"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/WindowsSandboxSetupStartResponse.json",
+          "sha256": "11c062bf2b25a8e6e3ea3e291925743944804a7b90673fcb2018dd25ba09a57e"
+        },
+        {
+          "path": ".yijie/schemas/input-only-app-server/generated-json-schema/v2/WindowsWorldWritableWarningNotification.json",
+          "sha256": "3ac5e40fbc3d032a9a0aa1060abb9a304954c56f12551c49a6ef07cd6ab7036c"
+        },
+        {
+          "path": "docs/input-only-execution.md",
+          "sha256": "19787c0feb648366dd02a5f8377d32b3b3f7e0e1bdde458cc93e92938cd2a20e"
+        },
+        {
+          "path": "scripts/build-input-only.sh",
+          "sha256": "2c22db3856854431cd8340c98a008fcb1fdfd46b9d82809ccfb96abb5cc2681a"
+        }
+      ]
+    },
+    "yijie-contracts": {
+      "head_before": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "head_after": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "branch_before": "chore/retirement-baseline-20260905",
+      "branch_after": "chore/retirement-baseline-20260905",
+      "remotes_before": "origin\thttps://github.com/36Dge/yijie-contracts.git (fetch)\norigin\thttps://github.com/36Dge/yijie-contracts.git (push)",
+      "remotes_after": "origin\thttps://github.com/36Dge/yijie-contracts.git (fetch)\norigin\thttps://github.com/36Dge/yijie-contracts.git (push)",
+      "initial_status": "M Makefile\n M docs/supported-baselines.md\n M scripts/check-breaking.sh\n M scripts/validate-json-schemas.mjs\n?? compatibility/scheduled-draft/\n?? compatibility/scheduled-execution/\n?? compatibility/scheduled-plan/\n?? compatibility/scheduled-task-recovery/\n?? docs/scheduled-draft-v1.md\n?? docs/scheduled-execution-v1.md\n?? docs/scheduled-plan-v1.md\n?? docs/scheduled-task-recovery-v1.md\n?? jsonschema/scheduled-tasks/\n?? openapi/scheduled-plan-draft/\n?? openapi/scheduled-task-recovery/\n?? scripts/check-scheduled-draft-producer.mjs\n?? scripts/check-scheduled-draft.mjs\n?? scripts/check-scheduled-execution-producer.mjs\n?? scripts/check-scheduled-execution.mjs\n?? scripts/check-scheduled-plan-producer.mjs\n?? scripts/check-scheduled-plan.mjs\n?? scripts/check-scheduled-recovery-producer.mjs\n?? scripts/check-scheduled-task-recovery.mjs\n?? scripts/generate-scheduled-draft.mjs\n?? scripts/generate-scheduled-execution.mjs\n?? scripts/generate-scheduled-plan.mjs\n?? scripts/generate-scheduled-task-recovery.mjs\n?? scripts/scheduled-schema-source.mjs\n?? scripts/sync-scheduled-draft.mjs\n?? scripts/sync-scheduled-execution.mjs\n?? scripts/sync-scheduled-plan.mjs\n?? scripts/sync-scheduled-task-recovery.mjs\n?? sdks/go/openapi/scheduled-draft/\n?? sdks/go/openapi/scheduled-task-recovery/\n?? sdks/jsonschema/scheduled-draft-output.schema.json\n?? sdks/jsonschema/scheduled-draft.schema.json\n?? sdks/jsonschema/scheduled-execution.schema.json\n?? sdks/jsonschema/scheduled-plan.schema.json\n?? sdks/jsonschema/scheduled-task-recovery.schema.json\n?? sdks/rust/scheduled-draft/\n?? sdks/rust/scheduled-execution/\n?? sdks/rust/scheduled-plan/\n?? sdks/rust/scheduled-task-recovery/\n?? sdks/typescript/src/jsonschema/scheduled-draft.gen.ts\n?? sdks/typescript/src/jsonschema/scheduled-execution.gen.ts\n?? sdks/typescript/src/jsonschema/scheduled-plan.gen.ts\n?? tests/fixtures/scheduled-schema-closure.json\n?? tests/scheduled-draft.test.mjs\n?? tests/scheduled-execution.test.mjs\n?? tests/scheduled-plan.test.mjs\n?? tests/scheduled-schema-closure.test.mjs\n?? tests/scheduled-task-recovery.test.mjs",
+      "final_status": "M Makefile\n M README.md\n M SECURITY.md\n M docs/supported-baselines.md\n M scripts/check-breaking.sh\n M scripts/validate-json-schemas.mjs\n?? compatibility/runtime-input-only/\n?? compatibility/scheduled-draft/\n?? compatibility/scheduled-execution/\n?? compatibility/scheduled-plan/\n?? compatibility/scheduled-task-recovery/\n?? docs/scheduled-draft-v1.md\n?? docs/scheduled-execution-v1.md\n?? docs/scheduled-plan-v1.md\n?? docs/scheduled-task-recovery-v1.md\n?? jsonschema/scheduled-tasks/\n?? openapi/scheduled-plan-draft/\n?? openapi/scheduled-task-recovery/\n?? scripts/check-scheduled-draft-producer.mjs\n?? scripts/check-scheduled-draft.mjs\n?? scripts/check-scheduled-execution-producer.mjs\n?? scripts/check-scheduled-execution.mjs\n?? scripts/check-scheduled-plan-producer.mjs\n?? scripts/check-scheduled-plan.mjs\n?? scripts/check-scheduled-recovery-producer.mjs\n?? scripts/check-scheduled-task-recovery.mjs\n?? scripts/generate-runtime-input-only.mjs\n?? scripts/generate-scheduled-draft.mjs\n?? scripts/generate-scheduled-execution.mjs\n?? scripts/generate-scheduled-plan.mjs\n?? scripts/generate-scheduled-task-recovery.mjs\n?? scripts/scheduled-schema-source.mjs\n?? scripts/sync-runtime-input-only.mjs\n?? scripts/sync-scheduled-draft.mjs\n?? scripts/sync-scheduled-execution.mjs\n?? scripts/sync-scheduled-plan.mjs\n?? scripts/sync-scheduled-task-recovery.mjs\n?? sdks/go/openapi/runtime-input-only/\n?? sdks/go/openapi/scheduled-draft/\n?? sdks/go/openapi/scheduled-task-recovery/\n?? sdks/jsonschema/runtime-input-only/\n?? sdks/jsonschema/scheduled-draft-output.schema.json\n?? sdks/jsonschema/scheduled-draft.schema.json\n?? sdks/jsonschema/scheduled-execution.schema.json\n?? sdks/jsonschema/scheduled-plan.schema.json\n?? sdks/jsonschema/scheduled-task-recovery.schema.json\n?? sdks/rust/scheduled-draft/\n?? sdks/rust/scheduled-execution/\n?? sdks/rust/scheduled-plan/\n?? sdks/rust/scheduled-task-recovery/\n?? sdks/typescript/src/jsonschema/scheduled-draft.gen.ts\n?? sdks/typescript/src/jsonschema/scheduled-execution.gen.ts\n?? sdks/typescript/src/jsonschema/scheduled-plan.gen.ts\n?? tests/fixtures/scheduled-schema-closure.json\n?? tests/runtime-input-only.test.mjs\n?? tests/scheduled-draft.test.mjs\n?? tests/scheduled-execution.test.mjs\n?? tests/scheduled-plan.test.mjs\n?? tests/scheduled-schema-closure.test.mjs\n?? tests/scheduled-task-recovery.test.mjs",
+      "unchanged_existing_files": 374,
+      "changed_existing_files": [
+        {
+          "path": "Makefile",
+          "before": "6ceddfa0c093b5d5e8190ea1774db95d98575926bff5348c0aa1369a1e4adad2",
+          "after": "7caa15b2de9ffcfed06601b95ea6a958f42e2e30c1652e95d5b1b3fb3b662f0a"
+        },
+        {
+          "path": "README.md",
+          "before": "2b19c402ce40fbab1ce979847387e23f168268abab7618b378cd85db2649b583",
+          "after": "200ec751fac8073cd457f61ac4606a6af0dde0191799f747eaf417e6fdb4945d"
+        },
+        {
+          "path": "SECURITY.md",
+          "before": "596be57570214628149bafdcc5c4e7fc749a4c7f4b8f7d858ba28f90668a5c2a",
+          "after": "3927e05bdcd2552c1e047a0bfd948f2f25776ecbed1a4147697076dbcdaea2d1"
+        },
+        {
+          "path": "docs/supported-baselines.md",
+          "before": "dab05eaf7207269a9bfc4b2e2c98ea2e00b26691a501cc6eb39fefa51e149374",
+          "after": "d05092839e817f9186bb3f0b405c17f8594071404581fbca5c4e97aa4e2f2b93"
+        }
+      ],
+      "added_non_evidence_files": [
+        {
+          "path": "compatibility/runtime-input-only/README.md",
+          "sha256": "dd284f9fbc0763d9b95cb453edd74a1d0ddbcda596506c6a5c2f1a5f7f3b275a"
+        },
+        {
+          "path": "compatibility/runtime-input-only/source.lock.json",
+          "sha256": "c80d38a607a08478257766f0414ba68a10de042453e293468debd6ec2b3abb47"
+        },
+        {
+          "path": "scripts/generate-runtime-input-only.mjs",
+          "sha256": "fe4c0ba3a04c96060db23f225469844b6ee6f6432bcccda9e04b1a4cee4c9a37"
+        },
+        {
+          "path": "scripts/sync-runtime-input-only.mjs",
+          "sha256": "5d1354a7b1a55318d420c9d3dbdab7c804ea862d8720847aa23cb619166c45f6"
+        },
+        {
+          "path": "sdks/go/openapi/runtime-input-only/types.gen.go",
+          "sha256": "4c5dcf2b892bc5f86dcb8b613e19842b081f90ea38cadba7a84b30256114ff00"
+        },
+        {
+          "path": "sdks/jsonschema/runtime-input-only/request.schema.json",
+          "sha256": "c9fb6bcbab669a0fc0a460274947a07a2bf6213c17a698513cb66e225f75d201"
+        },
+        {
+          "path": "sdks/jsonschema/runtime-input-only/response.schema.json",
+          "sha256": "b17e3771df1f9027f6caf96ae250d17649a334e0de4a524ecab4673745074898"
+        },
+        {
+          "path": "tests/runtime-input-only.test.mjs",
+          "sha256": "5e6a13116b87e1d9748b41355c7ee2590c3925ba51b92ac4fe09f6b5479db797"
+        }
+      ]
+    },
+    "yijie-agent-host": {
+      "head_before": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "head_after": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch_before": "chore/retirement-baseline-20260905",
+      "branch_after": "chore/retirement-baseline-20260905",
+      "remotes_before": "origin\thttps://github.com/36Dge/yijie-agent-host.git (fetch)\norigin\thttps://github.com/36Dge/yijie-agent-host.git (push)",
+      "remotes_after": "origin\thttps://github.com/36Dge/yijie-agent-host.git (fetch)\norigin\thttps://github.com/36Dge/yijie-agent-host.git (push)",
+      "initial_status": "M Makefile\n M README.md\n M SECURITY.md\n M internal/app/app.go\n M internal/codex/session_protocol.go\n M internal/session/multimodal.go\n M internal/session/runtime_permissions.go\n M internal/session/service.go\n M internal/session/store.go\n M internal/session/title.go\n?? api/openapi/scheduled-plan-draft.yaml\n?? api/openapi/scheduled-task-recovery.yaml\n?? api/scheduled-draft.candidate.json\n?? api/scheduled-task-recovery.candidate.json\n?? api/schemas/scheduled-task-recovery.schema.json\n?? docs/scheduled-plan-draft.md\n?? docs/scheduled-task-recovery.md\n?? internal/app/scheduled_draft.go\n?? internal/app/scheduled_draft_test.go\n?? internal/app/scheduled_recovery.go\n?? internal/app/scheduled_recovery_test.go\n?? internal/codex/scheduled_draft.go\n?? internal/codex/scheduled_draft_test.go\n?? internal/contracts/scheduledraft/\n?? internal/contracts/scheduledrecovery/\n?? internal/session/scheduled_draft.go\n?? internal/session/scheduled_draft_test.go\n?? internal/session/scheduled_recovery.go\n?? internal/session/scheduled_recovery_test.go",
+      "final_status": "M Makefile\n M README.md\n M SECURITY.md\n M internal/app/app.go\n M internal/codex/baseline.go\n M internal/codex/runtime.go\n M internal/codex/session_protocol.go\n M internal/session/multimodal.go\n M internal/session/runtime_permissions.go\n M internal/session/service.go\n M internal/session/store.go\n M internal/session/title.go\n?? api/openapi/scheduled-plan-draft.yaml\n?? api/openapi/scheduled-task-recovery.yaml\n?? api/runtime-input-only.candidate.json\n?? api/scheduled-draft.candidate.json\n?? api/scheduled-task-recovery.candidate.json\n?? api/schemas/scheduled-task-recovery.schema.json\n?? docs/scheduled-draft-input-only.md\n?? docs/scheduled-plan-draft.md\n?? docs/scheduled-task-recovery.md\n?? internal/app/scheduled_draft.go\n?? internal/app/scheduled_draft_test.go\n?? internal/app/scheduled_recovery.go\n?? internal/app/scheduled_recovery_test.go\n?? internal/codex/scheduled_draft.go\n?? internal/codex/scheduled_draft_integration_test.go\n?? internal/codex/scheduled_draft_test.go\n?? internal/contracts/runtimeinputonly/\n?? internal/contracts/scheduledraft/\n?? internal/contracts/scheduledrecovery/\n?? internal/session/scheduled_draft.go\n?? internal/session/scheduled_draft_test.go\n?? internal/session/scheduled_recovery.go\n?? internal/session/scheduled_recovery_test.go",
+      "unchanged_existing_files": 289,
+      "changed_existing_files": [
+        {
+          "path": "README.md",
+          "before": "bb2bce0def60a1072490ced0f032811904c57e1719302a4e573ba17d70ba97ae",
+          "after": "9e9058c872ddc15fd51bf1d079b167195582782811f6e88cf79b11fd82bf1fa5"
+        },
+        {
+          "path": "SECURITY.md",
+          "before": "dbb7496b21c7350c3f38a0cc5a814ac7b77113c44dac0a0a5143f01898edee1a",
+          "after": "592dab913e3d04b3527bfa53689f5d87df1ac0213bbd5306248d1e393b5076f5"
+        },
+        {
+          "path": "internal/codex/baseline.go",
+          "before": "c6e962a4a669cca5959d03a4dc2da8a3c9a86d8a2d0c865c81d341aecea334e0",
+          "after": "73aa8c0356ac88dc19beace4c84c786cd34b0d996e4ccc42c04c87cd5242517e"
+        },
+        {
+          "path": "internal/codex/runtime.go",
+          "before": "abf34dd882ec592441f6120870d8343f918c2f9af94c765319b058340ab28803",
+          "after": "f36b914105e3f276b71c297232e7773088937e6fb21afe942ca52b93b1fd43fd"
+        },
+        {
+          "path": "internal/codex/scheduled_draft.go",
+          "before": "e6b8a99fb9d9002bcc4d5948daacd98336978bf21147e01095a76967e6128ce6",
+          "after": "57a075aad216d3d4b153285f2e2c642a5548113b4f4937ce6ace9ad96e85b618"
+        },
+        {
+          "path": "internal/codex/session_protocol.go",
+          "before": "74ff3ba2fbfb592c382aa5cbac6d689ef9c904cc7de2efd8c57e896456a94c33",
+          "after": "548c3a76bdcd2bb1bee9928e3b85c46155cfe62042c7f76a4aad1e3cf87ca90c"
+        }
+      ],
+      "added_non_evidence_files": [
+        {
+          "path": "api/runtime-input-only.candidate.json",
+          "sha256": "c80d38a607a08478257766f0414ba68a10de042453e293468debd6ec2b3abb47"
+        },
+        {
+          "path": "docs/scheduled-draft-input-only.md",
+          "sha256": "9152a6696f2619f491d0dd94ef0bba9e7becd704983a7ab585c684922c85ec03"
+        },
+        {
+          "path": "internal/codex/scheduled_draft_integration_test.go",
+          "sha256": "e245b811e83691570330ee1ed5841d8df08686a940924da35bf475cf58d19b94"
+        },
+        {
+          "path": "internal/contracts/runtimeinputonly/request.schema.json",
+          "sha256": "c9fb6bcbab669a0fc0a460274947a07a2bf6213c17a698513cb66e225f75d201"
+        },
+        {
+          "path": "internal/contracts/runtimeinputonly/response.schema.json",
+          "sha256": "b17e3771df1f9027f6caf96ae250d17649a334e0de4a524ecab4673745074898"
+        },
+        {
+          "path": "internal/contracts/runtimeinputonly/types.gen.go",
+          "sha256": "4c5dcf2b892bc5f86dcb8b613e19842b081f90ea38cadba7a84b30256114ff00"
+        },
+        {
+          "path": "internal/contracts/runtimeinputonly/validate.go",
+          "sha256": "b523495b1ef297a1a586a2559ee6e8afdc6f9c84aa8044c9c48001e13e262d1c"
+        },
+        {
+          "path": "internal/contracts/runtimeinputonly/validate_test.go",
+          "sha256": "1c059be78b4e68ba850a08831dbaf830bed7ee3395c27efe0d5b32c0dc125f14"
+        }
+      ]
+    },
+    "yijie-desktop": {
+      "head_before": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "head_after": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "branch_before": "chore/retirement-baseline-20260905",
+      "branch_after": "chore/retirement-baseline-20260905",
+      "remotes_before": "origin\thttps://github.com/36Dge/yijie-desktop.git (fetch)\norigin\thttps://github.com/36Dge/yijie-desktop.git (push)",
+      "remotes_after": "origin\thttps://github.com/36Dge/yijie-desktop.git (fetch)\norigin\thttps://github.com/36Dge/yijie-desktop.git (push)",
+      "initial_status": "M THIRD_PARTY_NOTICES.md\n M eslint.config.js\n M package.json\n M src-tauri/Cargo.lock\n M src-tauri/Cargo.toml\n M src-tauri/src/chat/application.rs\n M src-tauri/src/chat/authorization.rs\n M src-tauri/src/chat/database.rs\n M src-tauri/src/chat/host_bridge.rs\n M src-tauri/src/chat/ipc.rs\n M src-tauri/src/chat/migrations.rs\n M src-tauri/src/chat/mod.rs\n M src-tauri/src/chat/native_conversation_storage.rs\n M src-tauri/src/chat/sidecar.rs\n M src-tauri/src/chat/worker.rs\n M src-tauri/src/lib.rs\n M src-tauri/src/native_auth/runtime.rs\n?? contracts/scheduled-draft.candidate.json\n?? contracts/scheduled-draft.schema.json\n?? contracts/scheduled-execution.candidate.json\n?? contracts/scheduled-execution.schema.json\n?? contracts/scheduled-ipc.candidate.json\n?? contracts/scheduled-plan.candidate.json\n?? contracts/scheduled-plan.schema.json\n?? contracts/scheduled-task-recovery.candidate.json\n?? contracts/scheduled-task-recovery.schema.json\n?? docs/feat155-scheduled-foundation.md\n?? scripts/check-scheduled-ipc.mjs\n?? scripts/generate-scheduled-ipc.mjs\n?? src-tauri/migrations/chat/0016_scheduled_plan_foundation.sql\n?? src-tauri/migrations/chat/0017_scheduled_execution_foundation.sql\n?? src-tauri/migrations/chat/0018_scheduled_local_preparation.sql\n?? src-tauri/migrations/chat/0019_scheduled_recovery.sql\n?? src-tauri/migrations/chat/0020_scheduled_dispatch.sql\n?? src-tauri/migrations/chat/0021_scheduled_triggers.sql\n?? src-tauri/migrations/chat/0022_scheduled_draft_sources.sql\n?? src-tauri/schemas/scheduled-task-ipc-resolved.schema.json\n?? src-tauri/schemas/scheduled-task-ipc-v1.schema.json\n?? src-tauri/src/chat/exit_owner.rs\n?? src-tauri/src/chat/host_bridge/\n?? src-tauri/src/chat/lifecycle.rs\n?? src-tauri/src/chat/platform_lifecycle.rs\n?? src-tauri/src/chat/schedules/\n?? src/api/generated/scheduled-task-ipc-formats.gen.js\n?? src/api/generated/scheduled-task-ipc-validator.gen.d.ts\n?? src/api/generated/scheduled-task-ipc-validator.gen.js\n?? src/api/generated/scheduled-task-ipc.gen.ts\n?? src/api/scheduled-task-native-client.test.ts\n?? src/api/scheduled-task-native-client.ts\n?? src/domain/scheduled-draft.generated.ts\n?? src/domain/scheduled-execution.generated.ts\n?? src/domain/scheduled-plan.generated.ts",
+      "final_status": "M THIRD_PARTY_NOTICES.md\n M eslint.config.js\n M package.json\n M src-tauri/Cargo.lock\n M src-tauri/Cargo.toml\n M src-tauri/src/chat/application.rs\n M src-tauri/src/chat/authorization.rs\n M src-tauri/src/chat/database.rs\n M src-tauri/src/chat/host_bridge.rs\n M src-tauri/src/chat/ipc.rs\n M src-tauri/src/chat/migrations.rs\n M src-tauri/src/chat/mod.rs\n M src-tauri/src/chat/native_conversation_storage.rs\n M src-tauri/src/chat/sidecar.rs\n M src-tauri/src/chat/worker.rs\n M src-tauri/src/lib.rs\n M src-tauri/src/native_auth/runtime.rs\n?? contracts/scheduled-draft.candidate.json\n?? contracts/scheduled-draft.schema.json\n?? contracts/scheduled-execution.candidate.json\n?? contracts/scheduled-execution.schema.json\n?? contracts/scheduled-ipc.candidate.json\n?? contracts/scheduled-plan.candidate.json\n?? contracts/scheduled-plan.schema.json\n?? contracts/scheduled-task-recovery.candidate.json\n?? contracts/scheduled-task-recovery.schema.json\n?? docs/feat155-scheduled-foundation.md\n?? scripts/check-scheduled-ipc.mjs\n?? scripts/generate-scheduled-ipc.mjs\n?? src-tauri/migrations/chat/0016_scheduled_plan_foundation.sql\n?? src-tauri/migrations/chat/0017_scheduled_execution_foundation.sql\n?? src-tauri/migrations/chat/0018_scheduled_local_preparation.sql\n?? src-tauri/migrations/chat/0019_scheduled_recovery.sql\n?? src-tauri/migrations/chat/0020_scheduled_dispatch.sql\n?? src-tauri/migrations/chat/0021_scheduled_triggers.sql\n?? src-tauri/migrations/chat/0022_scheduled_draft_sources.sql\n?? src-tauri/schemas/scheduled-task-ipc-resolved.schema.json\n?? src-tauri/schemas/scheduled-task-ipc-v1.schema.json\n?? src-tauri/src/chat/exit_owner.rs\n?? src-tauri/src/chat/host_bridge/\n?? src-tauri/src/chat/lifecycle.rs\n?? src-tauri/src/chat/platform_lifecycle.rs\n?? src-tauri/src/chat/schedules/\n?? src/api/generated/scheduled-task-ipc-formats.gen.js\n?? src/api/generated/scheduled-task-ipc-validator.gen.d.ts\n?? src/api/generated/scheduled-task-ipc-validator.gen.js\n?? src/api/generated/scheduled-task-ipc.gen.ts\n?? src/api/scheduled-task-native-client.test.ts\n?? src/api/scheduled-task-native-client.ts\n?? src/domain/scheduled-draft.generated.ts\n?? src/domain/scheduled-execution.generated.ts\n?? src/domain/scheduled-plan.generated.ts",
+      "unchanged_existing_files": 744,
+      "changed_existing_files": [],
+      "added_non_evidence_files": []
+    }
+  }
+}

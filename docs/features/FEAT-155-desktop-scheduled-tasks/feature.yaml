@@ -1,0 +1,951 @@
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+feature:
+  id: FEAT-155
+  slug: desktop-scheduled-tasks
+  title: 定时任务管理与 Codex 机制复用
+  status: usable
+  created_at: 2026-09-18
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+request_boundary:
+  current_delivery: local_delivery_closed
+  implementation_authorized: true
+  current_change_contract_impact: semantic
+  source_instructions_are_execution_authorization: false
+  note: 用户已明确授权实现剩余需求；防自动空闲睡眠与睡眠后停止发送均OWNER_EXCLUDED，来源PDF仍不是执行许可。
+  previous_execution_boundary: 45已完成4D-1执行时间与耗时；普通15/5、候选26/6，本批真实0、累计10/14余4次。报告后停止，不迁移日常库，不自动推进电源或通知。
+  current_execution_boundary: 50完成获授权的五仓本地固化、最小恢复缺陷修复与固定版复验；两项电源需求OWNER_EXCLUDED、系统通知延期；普通15/5、候选26/6保持，无日常库迁移或Git发布。
+source:
+  path: /Users/jack/Desktop/定时任务相关 UI 页面.pdf
+  bytes: 794974
+  sha256: 71f2e0303423e15e6c2451dfb3732171f5b4543cbaf00d5185d1a68f712facb5
+  pages: 5
+  blank_pages:
+    - 5
+  reviewed_pages:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+  interpretation: 明示、图示、建议补全和未知分开；P01至P16逐项映射见00；原PDF只读，截图不是产品验收证据。
+scope:
+  risk_level: high
+  data_classification: internal
+  contract_impact: breaking
+  database_change: expand
+  persistence_change: durable
+  runtime_change: platform
+  auth_permission_change: permission
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: prompt
+scope_note: ADR-0020与Q-01至04已接受；source-first，本地计划同库扩展与兼容reader先行，整体breaking；固定上游不升级，DEC-155-09补最小原生input-only候选；outputSchema草案不新增tool服务。
+repositories:
+  - yijie
+  - yijie-desktop
+  - yijie-contracts
+  - yijie-agent-host
+  - yijie-codex
+read_only_reference_repositories:
+  - yijie-api
+  - yijie-infra
+repository_scope_note: 50按49清单固化五仓现有FEAT155及来源锁；单独修复Desktop旧interrupt领取遗漏。没有新增功能、共享wire或migration，SQL26/Store6不变。
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+product_ux:
+  status: PASS
+  primary_user: 使用易界桌面端的跨境电商卖家
+  problem: 用户需要通过对话或表单建立本机定时计划，并以明确授权、真实运行记录和正确对话定位管理结果。
+  user_outcome: 通过对话或手动设置建立本机计划，管理启停与运行，查记录并打开对应完整对话。
+  in_scope:
+    - 既有定时任务导航与独立页面，两Tab、搜索刷新排序及空态；移除会员营销和推荐案例
+    - 对话预填与草稿保护，发送后澄清确认、与手动创建同源保存
+    - 任务表单、跨境占位词、时间时区、运行于三种聊天模式
+    - 卡片启停编辑、查看历史、立即执行、删除确认
+    - 执行记录指定四状态筛选、详情、独立重跑和完整对话
+    - 真实Codex执行复用、本地持久恢复、权限审批及应用内重要更新
+    - 易界2.1.0组件规范、亮暗主题、最小窗口和键盘等效交互
+  out_of_scope:
+    - Git提交推送、部署与生产写入
+    - 会员订阅、推荐案例、项目创建/筛选、高级Cron或RRULE编辑器
+    - 云调度、跨设备、OS常驻守护进程与退出App后的自动运行
+    - Coze工作流/电商节点业务、自动商家写操作、多租户生产或SLA
+    - 未批准的Runtime升级替换、自建调度引擎、第二套聊天状态机或明文历史
+    - macOS系统通知首期延期；防自动空闲睡眠及睡眠后停止发送由用户明确排除；应用内重要更新仍在范围
+  main_flow:
+    - canonical local零登录首页，点击既有定时任务菜单进入管理页
+    - 通过对话预填后由用户发送确认，或手动填写名称内容时间和运行目标再保存
+    - 权威保存成功显示卡片与下一次执行，按计划或显式手动触发并沿既有Codex执行链运行
+    - 查看执行记录/详情，打开正确完整对话，支持暂停编辑/安全删除与正常重开
+  visual_direction: 易界Design System 2.1.0纯白/石墨/青柠，沿用Yj页面与Naive UI组件；PDF只参考信息结构与交互。
+  ui_states:
+    idle: 显示已确认计划与历史；引导词仅是未发送草稿。
+    loading: 首屏骨架与局部操作loading，禁重复提交，保留安全离开和状态查询出口。
+    success: 权威回执后更新卡片/记录；受理成功不等于运行成功。
+    empty: 区分无计划、无记录、无搜索结果、无可选聊天，提供对应下一步。
+    error: 保留草稿或最后确认状态，展示安全原因，不静默跳换会话或伪造终态。
+    retry: 读取/保存可安全重试；投递不确定先查询，运行重试为显式新记录。
+    cancel: 草稿取消不保存、脏数据需确认；删除取消无副作用；运行取消沿原生中断。
+must_acceptance:
+  - id: AC-001
+    statement: 既有导航进入完整管理页，无会员订阅推荐；两Tab、搜索刷新排序与各类空态可用。
+    verification: 02-verification.md T01及48报告；当前候选定向、原生UI/账本/Provider证据按分层记录。
+    status: PASS
+  - id: AC-002
+    statement: 对话入口只预填并保护原草稿，发送后缺参澄清、摘要确认、同源保存且失败不假报成功。
+    verification: 02-verification.md T02及48报告；当前候选定向、原生UI/账本/Provider证据按分层记录。
+    status: PASS
+  - id: AC-003
+    statement: 手动创建字段和跨境文案正确，无额外加号高级项目入口；校验、取消、幂等保存和重开完整。
+    verification: 02-verification.md T03及48报告；当前候选定向、原生UI/账本/Provider证据按分层记录。
+    status: PASS
+  - id: AC-004
+    statement: 时间时区及下次执行一致，三类运行于目标各有正确会话关联，忙碌无权删除目标不被错误投递。
+    verification: 02-verification.md T04及48报告；当前候选定向、原生UI/账本/Provider证据按分层记录。
+    status: PASS
+  - id: AC-005
+    statement: 卡片真实、启停恢复和编辑正确；计划状态与运行结果分开，在途执行不被暂停操作强停。
+    verification: 02-verification.md T05及48报告；当前候选定向、原生UI/账本/Provider证据按分层记录。
+    status: PASS
+  - id: AC-006
+    statement: 三图标tooltip与键盘等效可用，立即执行/重跑产生独立真实记录，重复并发超时不重复投递。
+    verification: 02-verification.md T06及48报告；当前候选定向、原生UI/账本/Provider证据按分层记录。
+    status: PASS
+  - id: AC-007
+    statement: 删除确认与取消失败可恢复，成功停止未来调度且保留历史对话，运行中不偷偷终止或级联删除。
+    verification: 02-verification.md T07及48报告；当前候选定向、原生UI/账本/Provider证据按分层记录。
+    status: PASS
+  - id: AC-008
+    statement: 执行记录无全部项目；指定四状态按已批准计划语义筛选，运行状态独立、按ID过滤并保留删除历史。
+    verification: 02-verification.md T08及48报告；当前候选定向、原生UI/账本/Provider证据按分层记录。
+    status: PASS
+  - id: AC-009
+    statement: 记录详情字段真实、重跑差异明确；完整对话正确跳到对应会话/turn，缺失或未投递有真实反馈。
+    verification: 02-verification.md T09及48报告；当前候选定向、原生UI/账本/Provider证据按分层记录。
+    status: PASS
+  - id: AC-010
+    statement: 按证实Codex机制复用并完成正常定时触发、持久恢复及错过去重；权限预算及应用内重要更新真实、主题窗口键盘可用；两项电源需求OWNER_EXCLUDED。
+    verification: 02-verification.md T10及48报告；当前候选定向、原生UI/账本/Provider证据按分层记录。
+    status: PASS
+contract:
+  impact: breaking
+  authority: 固定Codex canonical schema负责原生执行；yijie-contracts负责易界跨仓API/tool/共享领域payload及兼容投影；Desktop私有IPC封套/UI投影沿既有Desktop源schema治理，私有存储归所属仓。
+  source_first_plan: ADR-0020含DEC-155-09；Runtime权威源码/稳定schema先行，Contracts投影生成/严格校验后由Host消费；其余共享域和兼容reader先行规则保持。
+  status: PASS
+  phase_1_status: PASS
+  phase_2_status: PASS
+  phase_3a_focused_status: PASS
+  phase_3a_contract_closure_status: PASS
+  phase_3b_1_focused_status: PASS
+  phase_3b_2_focused_status: PASS
+  phase_3b_2_platform_status: NOT RUN
+  phase_3c_1_focused_status: PASS
+  phase_3c_1_activation_status: NOT RUN
+  phase_3c_2_focused_status: PASS
+  phase_3c_2_activation_status: NOT RUN
+  phase_3c_3a_focused_status: PASS
+  phase_3c_3a_activation_status: NOT RUN
+  phase_3c_3b_focused_status: PASS
+  phase_3c_3b_runtime_qualification: PASS
+  phase_3c_3b_runtime_qualification_scope: 29的精确本地候选和受管配置；旧固定产物仍不具备草案资格，Provider资格不在此PASS内。
+  phase_3c_3b_activation_status: NOT RUN
+  phase_3c_3b_3a_investigation_status: complete
+  phase_3c_3b_3a_focused_status: PASS
+  phase_3c_3b_3a_host_change: applied_after_native_candidate_proof
+  phase_4b_private_ipc_status: PASS
+  phase_4b_scope: 25命令与33组原生交换同源校验；普通15/5、候选23/6保持，无公共wire或Runtime修改。
+  full_repository_lint_status: PASS
+  full_repository_lint_note: 本轮Contracts全仓pnpm lint通过，保留12条已有Redocly warning；Host仅定向race/vet，Runtime定向原生测试/格式与canonical构建，不声明禁止fixture全量测试通过。
+  checks:
+    - repository: yijie-desktop
+      command: node scripts/generate-scheduled-ipc.mjs --check
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: cargo test --manifest-path src-tauri/Cargo.toml --lib feat155 --offline -- --test-threads=4
+      status: PASS
+      exit_code: 0
+  note: 本地候选source-first与适用定向检查通过；当前新增Desktop私有只读查询additive，无公共跨仓修改。整体FEAT仍breaking；不等同不可变发布来源、生产兼容或Owner发布批准。
+pending_decisions:
+  - id: Q-01
+    title: 调度权威、原生能力、数据/权限/兼容及正常生命周期
+    owner: 段成威
+    status: accepted
+    investigation_status: complete
+    proposal_status: accepted
+    approval_status: accepted
+    decision_ref: 03-scheduling-and-codex-reuse-decision.md
+    adr_ref: ../../adr/ADR-0020-local-scheduled-task-authority.md
+    recommendation: Desktop native同库计划/投递账本加成熟时间库，复用同一Coordinator/Host/Codex；新增native授权/工作目录/恢复和正常退出边界；原始不patch决定由DEC-155-09在受限草案所需最小原生能力范围内补充。
+    approved_by: 段成威
+    approved_at: 2026-09-18
+  - id: Q-02
+    title: 三种运行于目标、默认专属聊天与按当前计划重跑
+    owner: 段成威
+    status: accepted
+    recommendation: 保留图5三模式，默认专属聊天；新聊使用明确native受管目录，已有聊沿原目录；独立plan/run/task ID，重跑当前配置前显示差异。
+    approved_by: 段成威
+    approved_at: 2026-09-18
+  - id: Q-03
+    title: 四状态筛选与计划完成语义
+    owner: 段成威
+    status: accepted
+    recommendation: 筛选计划当前生命周期，单次成功失败独立；删除历史留在全部状态。
+    approved_by: 段成威
+    approved_at: 2026-09-18
+  - id: Q-04
+    title: 重要更新通知与电源范围取舍
+    owner: 段成威
+    status: accepted
+    recommendation: 2026-09-23用户排除防自动空闲睡眠与睡眠后停止发送；应用内重要更新保留，系统通知延期。
+    approved_by: 段成威
+    approved_at: 2026-09-18
+design_decisions:
+  status: Accepted
+  owner_approval: accepted
+  implementation_authorized: true
+  q01_document: 03-scheduling-and-codex-reuse-decision.md
+  source_evidence: evidence/q01-source-audit-20260918.json
+  full_scope_estimate_hours:
+    - 20
+    - 32
+  timebox_change_authorized: true
+  scope_reduction_authorized: true
+  scope_reduction_basis: 仅防自动空闲睡眠与睡眠后停止发送两个明确子项；其余Must保持。
+  d0_blockers: []
+  approval_record: 04-owner-approval-and-implementation.md
+external_authorizations:
+  paid_calls:
+    allowed: true
+    max_actions: 14
+    approved_by: 段成威
+    approved_at: 2026-09-18T01:54:41Z
+    approved_at_basis: 用户已在本会话明确授权；此值为2026-09-18T01:54:41Z登记时刻，不推定原消息的精确发送秒。
+  destructive_operations:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  production_writes:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  paid_call_scope: 累计上限14、已用13余1；本轮实际3次文本HTTP200，图片及商家/外部MCP0；声明式本机Provider5次分账，见04和remaining-delivery台账。
+implementation:
+  status: complete
+  real_entrypoint: canonical pnpm tauri:demo-fast:app，显式隔离FEAT155候选；普通15/5、候选26/6。48完成最终管理、通知、原生恢复及真实未来自动闭环。
+  mock_only: false
+  note: 剩余实现与适用Must完成；两项电源需求按用户明确排除，系统通知延期。仅本人本机候选，不代表普通入口开放或发布。
+verification:
+  status: PASS
+  verified_at: 2026-09-23T15:06:51.099Z
+  startup:
+    status: PASS
+    command_or_steps: canonical显式候选完整启动、正常退出及最终重开；日志canonical-final-confirmed.log。
+    environment: macOS本人本机demo_fast/local隔离SQL26/Store6；普通日常库未迁移。
+    actual_result: 原生worker/Coordinator/Host/固定Runtime装配成功；最终重开账本逐行一致、预约0、无新增请求，见final-reopen-comparison.json。
+  real_smoke:
+    status: PASS
+    command_or_steps: 当前真实受限草案→审阅保存暂停→有限启用/暂停/重新启用→正常退出重开→22:52未来自动执行→详情/正确对话；应用内通知另有当前真实手动与原生本机证据。
+    environment: 最终源码候选；真实MiniMax-M3由已有计数代理硬限额4次。
+    actual_result: 真实HTTP3次200，总13/14；自动run 01a0cec0-8aa3-7f73-b13b-46b52b913f36，4147ms，原回答可展开。第3次仅文字审批，不冒称原生审批；后者由同候选Runtime+声明式普通工具响应验证。
+  representative_failure:
+    status: PASS
+    command_or_steps: 当前原生待审批→再次确认运行busy拒绝/删除拒绝→原对话正常拒绝→预约释放→编辑配置并审阅差异→显式独立重跑。
+    environment: 同一最终候选，真实固定Runtime及原生UI；声明式本机Provider，无上游或命令副作用。
+    actual_result: run 01a0cec4-e3f7-7de1-92ac-bbf5ced96e0b真实待审批，工具已拒绝；占用0后新run 01a0cec6-e85e-7d00-841c-9cbeddbf496c完成于第3轮，旧快照/拒绝保持；没有强杀/攻击fixture。
+  focused_checks:
+    - repository: yijie-desktop
+      command: node scripts/generate-scheduled-ipc.mjs --check
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: cargo test --manifest-path src-tauri/Cargo.toml --lib feat155 --offline -- --test-threads=4 (132 tests)
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: pnpm exec vitest run src/pages/schedules src/api/scheduled-task-native-client.test.ts src/domain/scheduled-task-timing.test.ts src/icons/registry.test.ts --maxWorkers=2 --exclude '**/.local/**' --exclude '**/.contracts-source/**' --exclude '**/.agent-host-source/**'
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: pnpm lint
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: cargo fmt --manifest-path src-tauri/Cargo.toml --check
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --offline -- -D warnings
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: pnpm build and pnpm docs:build; canonical packaged build
+      status: PASS
+      exit_code: 0
+  artifacts:
+    - 43-phase-4c-3-ui-closure-report.md
+    - evidence/phase-4c-3-ui-closure/checks.json
+    - evidence/phase-4c-3-ui-closure/native-ui.json
+    - evidence/phase-4c-3-ui-closure/workspace-review.json
+    - evidence/phase-4c-3-ui-closure/ledger-final-read-only.log
+    - 41-phase-4c-3-single-run-and-rerun-report.md
+    - evidence/phase-4c-3/checks.json
+    - evidence/phase-4c-3/native-ui.json
+    - evidence/phase-4c-3/workspace-review.json
+    - evidence/phase-4c-3/provider-ledger.json
+    - evidence/phase-4c-3/ledger-final-read-only.log
+    - 39-phase-4c-2-automatic-execution-report.md
+    - evidence/phase-4c-2/checks.json
+    - evidence/phase-4c-2/native-ui.json
+    - evidence/phase-4c-2/workspace-review.json
+    - evidence/phase-4c-2/provider-ledger.json
+    - evidence/phase-4c-2/ledger-final-read-only.log
+    - 34-phase-4b-conversation-draft-implementation-plan.md
+    - evidence/phase-4b-plan-review-20260919.json
+    - 32-phase-4a-management-ui-implementation-plan.md
+    - 33-phase-4a-management-ui-implementation-report.md
+    - evidence/phase-4a/checks.json
+    - evidence/phase-4a/native-ui.json
+    - evidence/phase-4a/workspace-review.json
+    - 31-phase-3c-3b-3b-implementation-report.md
+    - 30-phase-3c-3b-3b-implementation-plan.md
+    - evidence/phase-3c-3b-3b-plan-review-20260919.json
+    - 29-draft-runtime-unblock-report.md
+    - 28-draft-qualification-unblock-execution.md
+    - evidence/draft-runtime-unblock/final-provenance.json
+    - evidence/draft-runtime-unblock/host-final-native-focused.log
+    - evidence/draft-runtime-unblock/checks.json
+    - evidence/draft-runtime-unblock/workspace-review.json
+    - 27-phase-3c-3b-3a-qualification-report.md
+    - evidence/phase-3c-3b-3a-source-20260919.json
+    - evidence/phase-3c-3b-3a/fixed-provenance.json
+    - evidence/phase-3c-3b-3a/host-focused-go1265.log
+    - evidence/phase-3c-3b-3a/checks.json
+    - 26-phase-3c-3b-3a-qualification-plan.md
+    - 24-phase-3c-3b-execution-definition.md
+    - 25-phase-3c-3b-implementation-report.md
+    - evidence/phase-3c-3b-source-20260919.json
+    - evidence/phase-3c-3b/combined-ipc-producer.json
+    - evidence/phase-3c-3b/regressions.json
+    - 22-phase-3c-3a-implementation-report.md
+    - evidence/phase-3c-3a-source-20260918.json
+    - evidence/phase-3c-3a/phase-3c3a-ipc-producer.json
+    - evidence/phase-3c-3a/phase-3c3a-validator-parity.json
+    - evidence/phase-3c-3a/regressions.json
+    - 06-phase-1-implementation-report.md
+    - evidence/phase-1-source-20260918.json
+    - 08-phase-2-implementation-report.md
+    - evidence/phase-2-source-20260918.json
+    - evidence/phase-2-native-producer.json
+    - 10-phase-3a-implementation-report.md
+    - evidence/phase-3a-source-20260918.json
+    - evidence/phase-3a-native-producer.json
+    - 12-phase-3a-contract-closure-report.md
+    - evidence/phase-3a-contract-closure-source-20260918.json
+    - evidence/contract-closure/native-producer.json
+    - evidence/contract-closure/phase-3a-native-producer.json
+    - 14-phase-3b-1-implementation-report.md
+    - evidence/phase-3b-1-source-20260918.json
+    - evidence/phase-3b-1-native-producer.json
+    - evidence/phase-3b-1-plan-native-producer.json
+    - evidence/phase-3b-1-foundation-native-producer.json
+    - 16-phase-3b-2-implementation-report.md
+    - evidence/phase-3b-2-source-20260918.json
+    - evidence/phase-3b-2-recovery-native-producer.json
+    - evidence/phase-3b-2-plan-native-producer.json
+    - evidence/phase-3b-2-foundation-native-producer.json
+    - evidence/phase-3b-2-preparation-native-producer.json
+    - 18-phase-3c-1-implementation-report.md
+    - evidence/phase-3c-1-source-20260918.json
+    - evidence/phase-3c-1-plan-native-producer.json
+    - evidence/phase-3c-1-foundation-native-producer.json
+    - evidence/phase-3c-1-preparation-native-producer.json
+    - evidence/phase-3c-1-recovery-native-producer.json
+    - 20-phase-3c-2-implementation-report.md
+    - evidence/phase-3c-2-source-20260918.json
+    - evidence/phase-3c-2-plan-native-producer.json
+    - evidence/phase-3c-2-foundation-native-producer.json
+    - evidence/phase-3c-2-preparation-native-producer.json
+    - evidence/phase-3c-2-recovery-native-producer.json
+    - evidence/phase-3c-2-trigger-native-producer.json
+    - 48-remaining-delivery-report.md
+    - evidence/remaining-delivery/native-ui-observations.json
+    - evidence/remaining-delivery/provider-ledger.json
+    - evidence/remaining-delivery/local-provider-ledger.json
+    - evidence/remaining-delivery/final-reopen-comparison.json
+    - evidence/remaining-delivery/final-source-review.json
+  diff_review:
+    status: PASS
+    summary: 本任务源码自审，未冒称独立批准。Desktop23文件含源schema/同源生成物/只读查询/观察器及UI；仅当前scope读取，无发送权、无存储新版本。Host/Contracts/Runtime起点摘要不变，五仓HEAD不变，保护已有dirty改动。见final-source-review.json。
+  known_limitations:
+    - 两项电源需求OWNER_EXCLUDED、系统通知延期；不保证睡眠/退出/关机后运行。
+    - 普通SQL15/Store5、隔离候选26/6；无日常库迁移、不可变发布来源、Git提交/推送/生产批准。
+    - 标准make lint因Contracts tracked changes保护BLOCKED，未绕过；全量测试和用户禁止fixture未执行，不能声称全仓full-green。
+    - Provider缺phase保留未分类消息；冷空历史/未知不伪造，completed不等于业务成功。真实Ask本次只文字确认，原生批准证据来自固定Runtime+声明式普通工具响应。
+    - 本批新付费只专属目标；其它目标由当前原生组合检查及既有真实记录当前回读支持，不冒称所有组合都新付费测试。
+    - 应用内提示为有界feed/内存去重，结束提示15秒，完整历史持久保留，无通知中心或送达保证；既有大chunk警告未扩成优化专项。
+public_readiness:
+  required: false
+  status: N/A
+  checks: []
+  external_smoke:
+    status: NOT RUN
+    command_or_steps: 本包local，不进行公开访问或生产验收。
+    actual_result: 未公开、未部署。
+documents:
+  brief: 00-feature-brief.md
+  delivery_log: 01-delivery-log.md
+  verification: 02-verification.md
+owner_timebox_override:
+  approved_by: 段成威
+  approved_at: 2026-09-18
+  applies_only_to: FEAT-155
+  hard_stop_enforced: false
+  reason: 用户明确允许超过16小时，不因时间阻断或缩减范围；timebox数字保留为schema历史默认，不用于本需求停止。
+  record: 04-owner-approval-and-implementation.md
+phased_execution:
+  requested_by: 段成威
+  requested_at: 2026-09-23
+  current_phase: phase_4
+  current_status: remaining_requirements_complete
+  current_batch: remaining_delivery
+  current_batch_status: complete
+  plan: 47-remaining-delivery-plan.md
+  scope: 完成除两项电源OWNER_EXCLUDED及系统通知延期外的FEAT155本机候选需求；普通15/5、候选26/6保持。
+  auto_advance: false
+  product_code_started: true
+  report: 48-remaining-delivery-report.md
+  next_phase_started: false
+  next_phase: phase_4
+  next_phase_plan_status: not_planned
+  next_batch_started: false
+  next_action: await_user_next_batch
+  next_action_status: not_started
+  next_batch: not_selected
+  next_batch_plan: N/A
+  next_action_started: false
+  contract_closure_report: 12-phase-3a-contract-closure-report.md
+  completed_phases: [ phase_1, phase_2 ]
+  completed_batches: [ phase_3a, phase_3a_contract_closure, phase_3b_1, phase_3b_2, phase_3c_1, phase_3c_2, phase_3c_3a, phase_3c_3b_1, phase_3c_3b_2, draft_runtime_qualification_unblock, phase_3c_3b_3b, phase_4a, phase_4b, phase_4c_1, phase_4c_2, phase_4c_3, phase_4c_3_ui_closure, phase_4d_1 ]
+
+phase_3c_3b_3a_qualification:
+  historical_report: true
+  superseded_by: 29-draft-runtime-unblock-report.md
+  plan: 26-phase-3c-3b-3a-qualification-plan.md
+  report: 27-phase-3c-3b-3a-qualification-report.md
+  investigation_status: complete
+  result: NOT QUALIFIED
+  actual_host_ready: false
+  product_changes: none
+  real_protocol_observation: NOT RUN
+  reason: MCP继承和hooks/指令加载有具体缺口，stable缺最终会话权限/工具及初始化封闭证据；零外部请求预检未通过。
+  decision:
+    id: DEC-155-09
+    owner: 段成威
+    status: proposed_not_approved
+    recommendation: 单独批准最小原生受限能力设计评审，暂不批准Runtime实施或替换；保持同一Host/Runtime和两种创建原目标。
+    changes_accepted_adr: false
+    runtime_implementation_authorized: false
+    automatic_next_step: false
+  text_calls_this_batch: 0
+  text_calls_total: 0
+  image_calls: 0
+  merchant_mcp_external_calls: 0
+
+draft_runtime_unblock:
+  report: 29-draft-runtime-unblock-report.md
+  decision: DEC-155-09
+  runtime_implementation_authorized: true
+  result: PASS_LOCAL_CANDIDATE
+  actual_native_lifecycle: PASS
+  tested_host_ready: true
+  test_processes_normally_closed: true
+  provider_qualification: NOT RUN
+  product_activation: NOT RUN
+  ordinary_desktop_schema: 15
+  candidate_desktop_schema: 22
+  ordinary_host_store: 5
+  candidate_host_store: 6
+  text_calls_this_batch: 0
+  text_calls_total: 0
+  final_run_local_http_fixture_requests: 2
+  total_local_http_fixture_requests: 4
+  image_calls: 0
+  merchant_mcp_external_calls: 0
+
+phase_3c_3b_3b_plan:
+  plan: 30-phase-3c-3b-3b-implementation-plan.md
+  status: implemented_and_reported
+  current_turn_contract_impact: breaking
+  planned_contract_impact: breaking
+  implementation_started: true
+  code_edited_this_turn: true
+  product_tests_run_this_turn: true
+  real_provider_calls: 0
+  planned_candidate_desktop_schema: 22
+  planned_candidate_host_store: 6
+  ordinary_desktop_schema: 15
+  ordinary_host_store: 5
+  runtime_scope: consume_exact_29_candidate_only
+  required_closures:
+    - draft_specific_read_only_mapping
+    - unified_native_assembly_and_final_post_admission
+    - read_only_recovery_without_implicit_turn_enqueue
+    - exact_recovered_draft_observation_with_unknown_origin
+    - source_rediscovery_and_explicit_unattempted_turn_continuation
+    - paused_plan_unique_confirmation_and_zero_real_call_checks
+  stop_after_report: true
+
+phase_3c_3b_3b_result:
+  report: 31-phase-3c-3b-3b-implementation-report.md
+  result: PASS_LOCAL_CANDIDATE_WITH_DOCUMENTED_LIMITATION
+  actual_host_runtime_no_model_lifecycle: PASS
+  cold_empty_history: unavailable_preserved_unknown
+  provider_qualification: NOT RUN
+  full_app_ui_acceptance: NOT RUN
+  ordinary_desktop_schema: 15
+  candidate_desktop_schema: 22
+  ordinary_host_store: 5
+  candidate_host_store: 6
+  text_calls_this_batch: 0
+  text_calls_total: 0
+  image_calls: 0
+  merchant_mcp_external_calls: 0
+  auto_advance: false
+
+phase_4a_plan:
+  plan: 32-phase-4a-management-ui-implementation-plan.md
+  status: implemented_and_reported
+  current_turn_contract_impact: breaking
+  planned_contract_impact: breaking
+  implementation_started: true
+  product_tests_run_this_turn: true
+  current_candidate_desktop_schema: 23
+  proposed_candidate_desktop_schema: 23
+  schema_reason: native_plan_created_at_only_old_values_remain_unknown
+  ordinary_desktop_schema: 15
+  ordinary_host_store: 5
+  candidate_host_store: 6
+  real_text_calls_planned: 0
+  real_text_calls_total: 0
+  stop_after_report: true
+
+phase_4a_result:
+  report: 33-phase-4a-management-ui-implementation-report.md
+  result: PASS_LOCAL_CANDIDATE
+  native_management_ui: PASS
+  normal_reopen: PASS
+  ordinary_desktop_schema: 15
+  candidate_desktop_schema: 23
+  ordinary_host_store: 5
+  candidate_host_store: 6
+  daily_database_migrated: false
+  text_calls_this_batch: 0
+  text_calls_total: 0
+  image_calls: 0
+  merchant_calls: 0
+  execution_activation: NOT RUN
+  provider_qualification: NOT RUN
+  auto_advance: false
+
+phase_4b_plan:
+  plan: 34-phase-4b-conversation-draft-implementation-plan.md
+  status: completed
+  current_turn_contract_impact: semantic
+  planned_contract_impact: semantic
+  implementation_started: true
+  product_code_edited_this_turn: true
+  product_tests_run_this_turn: true
+  ordinary_desktop_schema: 15
+  candidate_desktop_schema: 23
+  ordinary_host_store: 5
+  candidate_host_store: 6
+  new_migration: false
+  runtime_change: none
+  required_closures:
+    - native_conversation_purpose_without_new_normal_chat_permissions
+    - original_draft_submission_read_only_receipt
+    - metered_draft_start_and_resume_without_policy_inheritance
+    - protected_prefill_and_shared_chat_preparation
+    - restricted_conversation_and_unique_paused_confirmation
+    - normal_reopen_and_bounded_real_provider_validation
+  real_text_calls_planned_max: 5
+  real_text_calls_existing_total_limit: 12
+  real_text_calls_used_total: 4
+  image_calls: 0
+  merchant_mcp_external_calls: 0
+  execution_activation_in_scope: false
+  stop_after_report: true
+  auto_advance: false
+
+phase_4b_result:
+  report: 35-phase-4b-conversation-draft-implementation-report.md
+  status: completed_stopped
+  real_provider_path: clarification_candidate_review_unique_paused_save_normal_reopen
+  checks: evidence/phase-4b/checks.json
+  actual_native_ui: evidence/phase-4b/native-ui.json
+  native_tests_passed: 106
+  frontend_targeted_tests_passed: 264
+  ipc_commands: 25
+  native_ipc_exchanges: 33
+  text_calls_this_batch: 4
+  text_calls_total: 4
+  batch_text_call_limit: 5
+  feature_text_call_limit: 12
+  feature_text_calls_remaining: 8
+  image_calls: 0
+  merchant_mcp_external_calls: 0
+  new_paused_plans: 1
+  plan_grants: 0
+  plan_runs: 0
+  daily_database_migrated: false
+  runtime_changed: false
+  next_batch_started: false
+  complete_feature_d4_claimed: false
+
+phase_4c_1_plan:
+  plan: 36-phase-4c-1-manual-execution-plan.md
+  status: implemented_stopped
+  current_turn_contract_impact: breaking
+  planned_contract_impact: breaking
+  planned_contract_impact_reason: 候选写操作及存量出站准入收紧，按最高风险保守审查；私有只读查询本身additive。
+  implementation_started: true
+  product_code_edited_this_turn: true
+  product_tests_run_this_turn: true
+  source_review: evidence/phase-4c-1-plan-review-20260919.json
+  ordinary_desktop_schema: 15
+  candidate_desktop_schema: 23
+  ordinary_host_store: 5
+  candidate_host_store: 6
+  new_migration_planned: false
+  runtime_change_planned: false
+  scope:
+    - native_manual_only_entry_claim_and_post_admission
+    - scoped_grant_and_manual_original_request_read_receipts
+    - fixed_candidate_runtime_ordinary_ask_qualification
+    - one_run_ten_minute_explicit_confirmation
+    - action_expiry_and_trusted_normal_stop_reservation_release
+    - run_record_and_exact_conversation_turn_location
+  real_text_calls_planned_max: 3
+  real_text_calls_used_this_turn: 4
+  real_text_calls_used_total: 8
+  real_text_calls_total_limit: 12
+  real_text_calls_remaining: 4
+  image_calls: 0
+  merchant_mcp_external_calls: 0
+  automatic_trigger_in_scope: false
+  rerun_in_scope: false
+  power_notification_in_scope: false
+  stop_after_report: true
+  auto_advance: false
+  report: 37-phase-4c-1-manual-execution-report.md
+  evidence: evidence/phase-4c-1/checks.json
+  actual_completed_runs: 3
+  actual_failed_runs: 1
+  actual_run_reservations_remaining: 0
+  daily_database_migrated: false
+  complete_feature_d4_claimed: false
+  additional_real_text_calls_authorized: 2
+  approved_batch_real_text_limit: 5
+  active_meter_real_text_limit: 4
+  unused_additional_reserve: 1
+
+phase_4c_2_plan:
+  plan: 38-phase-4c-2-automatic-execution-plan.md
+  status: completed_stopped
+  report: 39-phase-4c-2-automatic-execution-report.md
+  implementation_review: evidence/phase-4c-2/workspace-review.json
+  checks: evidence/phase-4c-2/checks.json
+  native_ui: evidence/phase-4c-2/native-ui.json
+  actual_candidate_desktop_schema: 24
+  actual_real_automatic_result: completed
+  current_turn_contract_impact: breaking
+  current_turn_contract_impact_reason: 按38方案新增私有确认字段、SQL24及现役自动准入，保守按breaking处理。
+  planned_contract_impact: breaking
+  planned_contract_impact_reason: 新增候选持久确认字段并收紧旧自动确认的实际执行资格，按最高风险保守审查。
+  implementation_started: true
+  product_code_edited_this_turn: true
+  product_tests_run_this_turn: true
+  source_review: evidence/phase-4c-2-plan-review-20260922.json
+  ordinary_desktop_schema: 15
+  existing_candidate_desktop_schema: 23
+  planned_candidate_desktop_schema: 24
+  ordinary_host_store: 5
+  candidate_host_store: 6
+  new_migration_planned: true
+  migration_scope: enable_receipts追加nullable automatic_consent_version，旧记录不回填；仅临时候选库，不改旧迁移。
+  runtime_change_planned: false
+  public_wire_change_planned: false
+  scope:
+    - scoped_enable_original_request_read_receipt
+    - native_expected_next_at_confirmation_and_idempotency
+    - durable_finite_automatic_consent_and_legacy_read_compatibility
+    - manual_automatic_rerun_distinct_native_admission
+    - native_startup_and_future_only_normal_reopen
+    - explicit_enable_reconfirm_pause_and_effective_status_ui
+    - automatic_slot_original_outbox_result_and_exact_turn_closed_loop
+  real_text_calls_planned_max: 1
+  real_text_calls_used_this_turn: 1
+  real_text_calls_used_total: 9
+  real_text_calls_total_limit: 12
+  real_text_calls_remaining: 3
+  image_calls: 0
+  merchant_mcp_external_calls: 0
+  automatic_trigger_in_scope: true
+  rerun_in_scope: false
+  full_history_clock_in_scope: false
+  power_notification_in_scope: false
+  daily_database_migrated: false
+  stop_after_report: true
+  auto_advance: false
+  complete_feature_d4_claimed: false
+
+phase_4c_3_plan:
+  plan: 40-phase-4c-3-single-run-and-rerun-plan.md
+  status: completed_with_ui_closure_report_43
+  current_turn_contract_impact: breaking
+  current_turn_contract_impact_reason: 按40方案实施私有单次用途确认、SQL25和现役重跑接线，按breaking保守审查。
+  planned_contract_impact: breaking
+  planned_contract_impact_reason: 私有重跑预览及单次授权语义、新用途持久解释和准入改变，保守按breaking审查。
+  implementation_started: true
+  product_code_edited_this_turn: true
+  product_tests_run_this_turn: true
+  services_started_this_turn: true
+  source_review: evidence/phase-4c-3-plan-review-20260923.json
+  ordinary_desktop_schema: 15
+  existing_candidate_desktop_schema: 24
+  planned_candidate_desktop_schema: 25
+  ordinary_host_store: 5
+  candidate_host_store: 6
+  new_migration_planned: true
+  migration_scope: 仅新增单次grant用途关联及格式版本，复用原次数期限账本；旧记录不回填，仅隔离候选/临时库。
+  runtime_change_planned: false
+  public_wire_change_planned: false
+  scope:
+    - grant_independent_read_only_rerun_review
+    - single_run_purpose_proof_and_compatible_reader
+    - one_time_native_permit_and_source_specific_admission
+    - manual_run_for_enabled_paused_completed_without_replacing_automatic_grant
+    - independent_rerun_current_definition_confirmation_and_original_request_receipt
+    - original_combined_transaction_recovery_and_exact_result_location
+  real_text_calls_planned_max: 1
+  real_text_calls_used_this_turn: 1
+  real_text_calls_used_total: 10
+  real_text_calls_total_limit: 12
+  real_text_calls_remaining: 2
+  image_calls: 0
+  merchant_mcp_external_calls: 0
+  full_history_clock_in_scope: false
+  power_notification_in_scope: false
+  daily_database_migrated: false
+  stop_after_report: true
+  auto_advance: false
+  complete_feature_d4_claimed: false
+  report: 41-phase-4c-3-single-run-and-rerun-report.md
+  actual_candidate_desktop_schema: 25
+  real_execution_closed: true
+  normal_cleanup_complete: true
+  actual_run_reservations_remaining: 0
+  visual_acceptance: PASS_by_report_43
+  full_batch_acceptance_claimed: true
+  implementation_review: evidence/phase-4c-3/workspace-review.json
+  checks: evidence/phase-4c-3/checks.json
+
+phase_4c_3_ui_closure_plan:
+  plan: 42-phase-4c-3-ui-closure-plan.md
+  status: completed_and_stopped
+  source_review: evidence/phase-4c-3-ui-closure-plan-review-20260923.json
+  current_turn_contract_impact: none
+  current_turn_contract_impact_reason: 仅单次确认框滚动布局和详情弹层焦点交接，不改变IPC、授权、存储或重放行为。
+  planned_contract_impact: none
+  planned_contract_impact_condition: 仅弹层、主题与焦点等纯UI最小修正；任何native授权、IPC或存储语义变化须重新判定范围。
+  implementation_started: true
+  product_code_edited_this_turn: true
+  product_tests_run_this_turn: true
+  services_started_this_turn: true
+  ordinary_desktop_schema: 15
+  candidate_desktop_schema: 25
+  ordinary_host_store: 5
+  candidate_host_store: 6
+  new_migration_planned: false
+  runtime_change_planned: false
+  public_wire_change_planned: false
+  real_text_calls_planned_max: 0
+  real_text_calls_used_this_turn: 0
+  real_text_calls_used_total: 10
+  real_text_calls_total_limit: 12
+  real_text_calls_remaining: 2
+  image_calls: 0
+  merchant_mcp_external_calls: 0
+  daily_database_migrated: false
+  full_history_clock_in_scope: false
+  power_notification_in_scope: false
+  stop_after_report: true
+  auto_advance: false
+  complete_feature_d4_claimed: false
+  report: 43-phase-4c-3-ui-closure-report.md
+  checks: evidence/phase-4c-3-ui-closure/checks.json
+  native_ui: evidence/phase-4c-3-ui-closure/native-ui.json
+  actual_local_provider_requests: 0
+  visual_acceptance: PASS
+  normal_cleanup_complete: true
+
+phase_4d_1_plan:
+  historical_snapshot: true
+  implementation_result: 45-phase-4d-1-execution-timing-report.md
+  plan: 44-phase-4d-1-execution-timing-plan.md
+  status: planned_not_implemented
+  source_review: evidence/phase-4d-1-plan-review-20260923.json
+  current_turn_contract_impact: none
+  planned_contract_impact: breaking
+  planned_contract_impact_reason: 独立只读HTTP新增本身additive，私有严格Timing结构及候选SQL26持久兼容按最高风险breaking。
+  implementation_started: false
+  product_code_edited_this_turn: false
+  product_tests_run_this_turn: false
+  services_started_this_turn: false
+  ordinary_desktop_schema: 15
+  current_candidate_desktop_schema: 25
+  proposed_candidate_desktop_schema: 26
+  ordinary_host_store: 5
+  candidate_host_store: 6
+  new_migration_planned: true
+  migration_scope: 仅同库run时间事实与有界补读所需来源索引；旧迁移不改、历史不伪造、native格式1/2保持。
+  runtime_change_planned: false
+  shared_wire_change_planned: independent_local_read_only_native_turn_timing
+  legacy_native_wire_change_planned: false
+  scope:
+    - fixed_runtime_clock_read_qualification
+    - contract_first_independent_read_only_timing_projection
+    - compatible_reader_and_candidate_sql26
+    - bounded_native_collection_and_normal_recovery
+    - truthful_record_and_detail_clock_display
+    - zero_real_call_native_validation_and_normal_cleanup
+  real_text_calls_planned_max: 0
+  local_provider_requests_planned_max: 2
+  real_text_calls_used_this_turn: 0
+  real_text_calls_used_total: 10
+  real_text_calls_total_limit: 12
+  real_text_calls_remaining: 2
+  image_calls: 0
+  merchant_mcp_external_calls: 0
+  daily_database_accessed: false
+  daily_database_migrated: false
+  power_notification_in_scope: false
+  stop_after_report: true
+  auto_advance: false
+  complete_feature_d4_claimed: false
+
+phase_4d_1_additional_call_authorization:
+  approved_by: 段成威
+  approved_at: 2026-09-23
+  user_instruction: 可以在额外追加2次调用授权
+  additional_text_calls: 2
+  cumulative_text_limit: 14
+  used_text_calls: 10
+  remaining_text_calls: 4
+  image_calls_limit: 0
+  merchant_calls_limit: 0
+  batch_target_real_calls: 0
+  scope_expanded: false
+
+phase_4d_1_implementation:
+  status: complete_and_stopped
+  plan: 44-phase-4d-1-execution-timing-plan.md
+  report: 45-phase-4d-1-execution-timing-report.md
+  evidence: evidence/phase-4d-1/checks.json
+  native_evidence: evidence/phase-4d-1/native-ui.json
+  review: evidence/phase-4d-1/workspace-review.json
+  contract_impact: breaking
+  independent_http_impact: additive
+  implementation_started: true
+  ordinary_desktop_schema: 15
+  candidate_desktop_schema: 26
+  ordinary_host_store: 5
+  candidate_host_store: 6
+  runtime_source_or_binary_changed: false
+  legacy_native_wire_changed: false
+  old_migrations_changed: false
+  daily_database_accessed: false
+  daily_database_migrated: false
+  native_regression_passed: 130
+  frontend_focused_passed: 28
+  full_suite_pass_claimed: false
+  real_text_calls_batch: 0
+  real_text_calls_total: 10
+  real_text_calls_limit: 14
+  real_text_calls_remaining: 4
+  local_provider_calls: 2
+  local_provider_limit: 2
+  image_calls: 0
+  merchant_mcp_external_calls: 0
+  reservations_after_cleanup: 0
+  normal_cleanup: true
+  power_notification_started: false
+  stop_after_report: true
+  auto_advance: false
+  complete_feature_d4_claimed: false
+
+remaining_delivery:
+  plan: 47-remaining-delivery-plan.md
+  status: complete
+  authorized_by: 段成威
+  power_idle_sleep: OWNER_EXCLUDED
+  power_exclusion_instruction: 防自动空闲睡眠，这个功能现在明确不实现
+  sleep_stop_sending: OWNER_EXCLUDED
+  sleep_stop_instruction: 睡眠后停止发送这个需求也明确移除，不实现
+  system_notifications: deferred
+  in_app_important_updates: implemented_and_verified
+  ordinary_desktop_schema: 15
+  candidate_desktop_schema: 26
+  ordinary_host_store: 5
+  candidate_host_store: 6
+  paid_text_used_at_start: 10
+  paid_text_total_limit: 14
+  paid_text_batch_limit: 4
+  image_limit: 0
+  merchant_external_limit: 0
+  daily_database_migration: false
+  git_release_authorized: false
+  report: 48-remaining-delivery-report.md
+  paid_text_batch_used: 3
+  paid_text_total_used: 13
+  paid_text_remaining: 1
+  declared_local_requests: 5
+  d4: PASS
+delivery_closure:
+  status: complete_local
+  closed_at: 2026-09-24
+  audit: 49-five-repository-audit-and-freeze-plan.md
+  report: 50-local-version-freeze-and-closure-report.md
+  scope_manifest: evidence/version-freeze-audit/scope-and-baseline.json
+  authorization: 用户对49具体清单明确回复授权
+  local_commit_authorized: true
+  product_local_commits_created: 7
+  runtime_commit: fb79b1d53501ec90084b584af5fdbe221c7a25aa
+  contracts_commit: 54be9314dce5319b049dc0a236800fd1a1fdd7a1
+  host_commit: 56e9a924454e850bd181c452c35078b3e0a36954
+  desktop_commit: be15d237fc0422f6072d0b6ec6d668b49d4c692e
+  meta_commit_locator: 包含50关闭报告的Git提交
+  pins_frozen: true
+  fixed_version_verification: PASS
+  native_regression: 132_PASS
+  required_repair: released_interrupt_claim_predicate
+  standard_make_lint: BLOCKED_existing_Skills_HEAD_mismatch
+  push_authorized: false
+  daily_database_migration_authorized: false
+  real_calls_used: 0
+  local_provider_requests: 0
+  real_calls_total_used: 13
+  real_calls_remaining: 1

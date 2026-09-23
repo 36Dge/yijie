@@ -1,0 +1,253 @@
+{
+  "date": "2026-09-19",
+  "go_toolchain": "go1.26.5 cached darwin-arm64",
+  "go_env": {
+    "GOPROXY": "off",
+    "GOSUMDB": "off",
+    "GOTOOLCHAIN": "local"
+  },
+  "conformance_directory": "/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat155-b3b-implementation-3katgl88/conformance",
+  "checks": [
+    {
+      "name": "leaf source sync",
+      "repo": "yijie-contracts",
+      "command": "make scheduled-draft-check runtime-input-only-check",
+      "exit_code": 0,
+      "log": "contracts-leaf-check.log",
+      "sha256": "f3b67f5417ee22f1371b8a15bf8db73f316ce510690ddf8d7787a60ef22038b4"
+    },
+    {
+      "name": "contracts focused",
+      "repo": "yijie-contracts",
+      "command": "node --test tests/scheduled-draft.test.mjs tests/runtime-input-only.test.mjs",
+      "exit_code": 0,
+      "log": "contracts-tests.log",
+      "sha256": "c8fc4664f5c6176190d46edb8e5d4a053b94158d987703c99430841ee4a32f08"
+    },
+    {
+      "name": "full lint",
+      "repo": "yijie-contracts",
+      "command": "pnpm lint",
+      "exit_code": 0,
+      "log": "contracts-lint.log",
+      "sha256": "0a9fd01ddf6370d558b256a7c0c23dd92716a8820a7f6fe3209c5cd96ab3ef56"
+    },
+    {
+      "name": "structure baseline db4458fe94572c4df41a114005d54a049bb79b1f",
+      "repo": "yijie-contracts",
+      "command": "bash scripts/check-breaking.sh db4458fe94572c4df41a114005d54a049bb79b1f",
+      "exit_code": 0,
+      "log": "breaking-db4458fe.log",
+      "sha256": "a5e1b9e74f6b8f8c79943589dddc7776571b1f9404d9467a5eca1ce3c921fce1"
+    },
+    {
+      "name": "structure baseline f16a497e1377f45747f8ff9292b4b60cf2027f88",
+      "repo": "yijie-contracts",
+      "command": "bash scripts/check-breaking.sh f16a497e1377f45747f8ff9292b4b60cf2027f88",
+      "exit_code": 0,
+      "log": "breaking-f16a497e.log",
+      "sha256": "473af2145cebda0c06842e3478ada4dc2792fca5ac911650b4954a872c991db2"
+    },
+    {
+      "name": "structure baseline 6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "repo": "yijie-contracts",
+      "command": "bash scripts/check-breaking.sh 6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "exit_code": 0,
+      "log": "breaking-6f632f15.log",
+      "sha256": "a4ff6b26d8cfcc650e5b05ff900c0dc2688a807b8102f3b1789e041ebdc058f0"
+    },
+    {
+      "name": "structure baseline 811f38d6b104fa18477107e7ac91a85e19c445d1",
+      "repo": "yijie-contracts",
+      "command": "bash scripts/check-breaking.sh 811f38d6b104fa18477107e7ac91a85e19c445d1",
+      "exit_code": 0,
+      "log": "breaking-811f38d6.log",
+      "sha256": "8e5cd19181ccf67b5c7b5975d0cf79376c9796f12899b46e0dada5dbf24b71db"
+    },
+    {
+      "name": "97 scoped tests before final audit fixes",
+      "repo": "yijie-desktop",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --offline --lib feat155_ -- --nocapture",
+      "exit_code": 0,
+      "log": "desktop-feat155-final.log",
+      "sha256": "c1a4a399626042095f350e4452513d620918760ea1f0e654e52cb02f69447114"
+    },
+    {
+      "name": "12 final draft regressions",
+      "repo": "yijie-desktop",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --offline --lib feat155_draft -- --nocapture",
+      "exit_code": 0,
+      "log": "desktop-draft-final.log",
+      "sha256": "f826c693bd1c0f868d68dc8c2db9bb90ea9d338838c5f5538864ae325259c155"
+    },
+    {
+      "name": "8 old-path regressions",
+      "repo": "yijie-desktop",
+      "command": "Seven cargo test --offline --lib invocations, exact selected filters recorded in log",
+      "exit_code": 0,
+      "log": "desktop-old-paths.log",
+      "sha256": "e7fd2df6fe1761c5d3aeefc02dbc0e10b9febdcc947187d7f961a71f7625e189"
+    },
+    {
+      "name": "clippy final",
+      "repo": "yijie-desktop",
+      "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --offline --all-targets -- -D warnings",
+      "exit_code": 0,
+      "log": "desktop-clippy-final.log",
+      "sha256": "deeb502451e30e3a5ce98d4192e75b059c6319307fbe6f72aa330a3db5c85a74"
+    },
+    {
+      "name": "lint",
+      "repo": "yijie-desktop",
+      "command": "pnpm lint",
+      "exit_code": 0,
+      "log": "desktop-lint.log",
+      "sha256": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6"
+    },
+    {
+      "name": "build",
+      "repo": "yijie-desktop",
+      "command": "pnpm build",
+      "exit_code": 0,
+      "log": "desktop-build.log",
+      "sha256": "a5437ab71e639ecf788d37f7588aab9d0a1d7970fde4d332890c36a19722c1fb"
+    },
+    {
+      "name": "typed client",
+      "repo": "yijie-desktop",
+      "command": "pnpm exec vitest run src/api/scheduled-task-native-client.test.ts --maxWorkers=1",
+      "exit_code": 0,
+      "log": "desktop-client.log",
+      "sha256": "791aaaae36c232a806fdc12b242173bb388422b6a5629c4e3f6c88b24a6b88c7"
+    },
+    {
+      "name": "21 commands strict conformance",
+      "repo": "yijie-desktop",
+      "command": "node scripts/check-scheduled-ipc.mjs <conformance/all-ipc.json> <conformance/phase-3c3a-validator-parity.json>",
+      "exit_code": 0,
+      "log": "ipc-conformance.log",
+      "sha256": "24c5aa7ba887550c41a0948f0d6f2005115cf74f908461b713542b9160183145"
+    },
+    {
+      "name": "Host/Desktop wire conformance",
+      "repo": "yijie-contracts",
+      "command": "node scripts/check-scheduled-draft-producer.mjs <conformance/host-draft-producer.json> <conformance/desktop-draft-producer.json>",
+      "exit_code": 0,
+      "log": "draft-producer-conformance.log",
+      "sha256": "bf223ac0870ffe6cf70cc7eb045f2790f7a4554dab31c04b5f3010f0fbaf9d3e"
+    },
+    {
+      "name": "Host race",
+      "repo": "yijie-agent-host",
+      "command": "go test -race ./internal/app ./internal/session ./internal/codex -run ^TestFEAT155(Draft|Recovery) -count=1 -v",
+      "exit_code": 0,
+      "log": "host-draft-final.log",
+      "sha256": "6c10605bf1ee04e51ad176407d53657c54310311440a36fbaf8a127ccb4a5634"
+    },
+    {
+      "name": "Host vet",
+      "repo": "yijie-agent-host",
+      "command": "go vet ./internal/app ./internal/session ./internal/codex ./cmd/desktop-host",
+      "exit_code": 0,
+      "log": "host-vet.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "canonical native immutable gate",
+      "repo": "yijie-desktop",
+      "command": "node scripts/check-native-conversation.mjs --require-committed",
+      "exit_code": 0,
+      "log": "launcher-native-pin.log",
+      "sha256": "bad24c2447ffec2ca1e8efc157824a6bc6774c432fe05b2713786e5fd51c436d"
+    },
+    {
+      "name": "canonical MCP immutable gate",
+      "repo": "yijie-desktop",
+      "command": "node scripts/check-native-mcp.mjs --require-committed",
+      "exit_code": 0,
+      "log": "launcher-mcp-pin.log",
+      "sha256": "146865c944af22799ed2e229711e5946d46a0aa80446988f75feea3550c36917"
+    },
+    {
+      "name": "real Host/Runtime no model",
+      "repo": "workspace",
+      "command": "go build -o <owned-temp>/desktop-host ./cmd/desktop-host; python3 <owned-temp>/native-smoke.py (exact measurement script preserved here)",
+      "exit_code": 0,
+      "log": "native-smoke-result.json",
+      "sha256": "5501c2c69877f99a1ee24d1f33d116f66e5669146a7fd0c7a20bf4e53da8b4da"
+    },
+    {
+      "name": "strict",
+      "repo": "yijie",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-155-desktop-scheduled-tasks",
+      "exit_code": 0,
+      "log": "strict.log",
+      "sha256": "b9f9c63fc02c70944a6be36145b71f7aa06a1244687cccee2b992b1282376bf8"
+    },
+    {
+      "name": "d0",
+      "repo": "yijie",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate D0 docs/features/FEAT-155-desktop-scheduled-tasks",
+      "exit_code": 0,
+      "log": "d0.log",
+      "sha256": "ccc00513c27f044ca664925a882399ed124d51bef8632ed931606e5b1e0f01c3"
+    },
+    {
+      "name": "audit-claims",
+      "repo": "yijie",
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-155-desktop-scheduled-tasks",
+      "exit_code": 0,
+      "log": "audit-claims.log",
+      "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4"
+    },
+    {
+      "name": "governance-lint",
+      "repo": "yijie",
+      "command": "pnpm lint",
+      "exit_code": 0,
+      "log": "governance-lint.log",
+      "sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c"
+    },
+    {
+      "name": "governance-tests",
+      "repo": "yijie",
+      "command": "pnpm test",
+      "exit_code": 0,
+      "log": "governance-tests.log",
+      "sha256": "adfd63b1d836a47c162a6586f1b8c35e7bcb9addd365e1a129dd8d301060d0d0"
+    },
+    {
+      "name": "link-check",
+      "repo": "yijie",
+      "command": "Resolve changed feature Markdown local links",
+      "exit_code": 0,
+      "log": "link-check.log",
+      "sha256": "44e8af7b888551ad8a76f16eb646968ce4aac3ba3cebba44089ae6a21559dc03"
+    },
+    {
+      "name": "format-check",
+      "repo": "workspace",
+      "command": "Changed Rust files: rustfmt --edition 2021 --config skip_children=true --check; changed Go: gofmt -l",
+      "exit_code": 0,
+      "log": "format-check.log",
+      "sha256": "3422d4f3df2288086c4640e03b0c7db5ca49e8bc14602d1f64c76804510dd4c2"
+    },
+    {
+      "name": "ipc-generation",
+      "repo": "yijie-desktop",
+      "command": "node scripts/generate-scheduled-ipc.mjs --check",
+      "exit_code": 0,
+      "log": "ipc-generation.log",
+      "sha256": "fe2215f14359323d0eaaa8dc0b25f139f1ab9dec0602af5d8c6a932aad791c17"
+    }
+  ],
+  "skipped": [
+    "real MiniMax/Provider qualification",
+    "full Tauri/App UI and power acceptance",
+    "daily DB/Keychain",
+    "historical destructive/fault/attack suites",
+    "previous native text-provider fixture integration (not this no-model scope)"
+  ],
+  "real_text_calls": 0,
+  "text_budget_total": 12
+}

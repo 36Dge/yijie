@@ -1,0 +1,617 @@
+{
+  "captured_at": "2026-09-18T01:21:22.875704+00:00",
+  "purpose": "Q-01 read-only source audit; not product verification",
+  "product_execution": false,
+  "repositories": [
+    {
+      "name": "yijie",
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "2f616f4d24c001812c6279a520ba69ea9875247e",
+      "remotes": [
+        "origin\thttps://github.com/36Dge/yijie.git (fetch)",
+        "origin\thttps://github.com/36Dge/yijie.git (push)"
+      ],
+      "status": [
+        "?? docs/features/FEAT-155-desktop-scheduled-tasks/"
+      ],
+      "source_files": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "421e9f83c3004f88fb3d9c9419ab018809457d8a26047757c61053cc5853529b",
+          "bytes": 19584,
+          "lines": 220
+        },
+        {
+          "path": "docs/adr/ADR-0013-desktop-local-conversation-data-authority.md",
+          "sha256": "f4668bf1a1a980b410de5296f9232ee35d207238bbe93842b2a8ed0da8d50818",
+          "bytes": 8070,
+          "lines": 126
+        },
+        {
+          "path": "docs/adr/ADR-0014-desktop-conversation-protection-and-deletion-boundary.md",
+          "sha256": "3fe493d7a38ae1fc14ebb8c1ed4febd596fda8d8854de17fb27f9f1fac0f0086",
+          "bytes": 11663,
+          "lines": 192
+        },
+        {
+          "path": "docs/adr/ADR-0018-local-demo-direct-entry.md",
+          "sha256": "5642e1fea9cc6c122154a39a1fedaf88a75c3cbe889ad0e70bfbc1568a9deb2d",
+          "bytes": 4672,
+          "lines": 75
+        },
+        {
+          "path": "docs/dev/contract-first.md",
+          "sha256": "e21c81e2990f28d85fc2f593804f08579c39933b1870a0735c1b0910e1041f5c",
+          "bytes": 12922,
+          "lines": 165
+        }
+      ]
+    },
+    {
+      "name": "yijie-desktop",
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "remotes": [
+        "origin\thttps://github.com/36Dge/yijie-desktop.git (fetch)",
+        "origin\thttps://github.com/36Dge/yijie-desktop.git (push)"
+      ],
+      "status": [],
+      "source_files": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "b5687a7b76b23c55e912e9c4b42fca14177eacfbc9406fb36e8654a85730b5cc",
+          "bytes": 8491,
+          "lines": 122
+        },
+        {
+          "path": "src-tauri/Cargo.toml",
+          "sha256": "94b2d7e52074627ca7c99f7c8645b99b6812bf1080d800c3924255621584f7cb",
+          "bytes": 2433,
+          "lines": 60
+        },
+        {
+          "path": "src-tauri/src/lib.rs",
+          "sha256": "a95c0789db3b2f02fc521029be2b411991ab4c2e9071439632f927be6ee6b5b7",
+          "bytes": 18754,
+          "lines": 447
+        },
+        {
+          "path": "src-tauri/src/single_instance.rs",
+          "sha256": "bab00c4cc1e4d4f30315e7a4f5708d604b424362c413af70f97c8bd8a163bb00",
+          "bytes": 6170,
+          "lines": 193
+        },
+        {
+          "path": "src-tauri/src/chat/application.rs",
+          "sha256": "411cab51174bd821c941730625f3a47d20b8feb633bdb8d17bc036fdf58e8f1d",
+          "bytes": 155113,
+          "lines": 4156
+        },
+        {
+          "path": "src-tauri/src/chat/database.rs",
+          "sha256": "273a012db1c368efb879aebbe17467168d8e114d208c86a5bcc56cd6cd8ab873",
+          "bytes": 420549,
+          "lines": 10878
+        },
+        {
+          "path": "src-tauri/src/chat/worker.rs",
+          "sha256": "a784960245440ef87de857b6c152fd67216c564ed3c4fe186587ac8d1ea1ed92",
+          "bytes": 37746,
+          "lines": 1146
+        },
+        {
+          "path": "src-tauri/src/chat/ipc.rs",
+          "sha256": "f43f9a85ed6611d52f8ae65ef13a73e750e48a270869d0832cc0559eb0da2b45",
+          "bytes": 355952,
+          "lines": 9809
+        },
+        {
+          "path": "src-tauri/src/chat/authorization.rs",
+          "sha256": "e359069ca6696e6bb684d169216bf8ede778319d4c8f2d7fd1656fe4bf606699",
+          "bytes": 15544,
+          "lines": 478
+        },
+        {
+          "path": "src-tauri/src/chat/migrations.rs",
+          "sha256": "ee8e838ec214b2ca332fe0f008a05c518cec67a87ca974fffc2f42b66f8f0f43",
+          "bytes": 63935,
+          "lines": 1501
+        },
+        {
+          "path": "src-tauri/src/chat/native_conversation_storage.rs",
+          "sha256": "190d2b03fb1ea5c3444170ed7bb2e99593afdee5773ee8826dab2f764abbe63d",
+          "bytes": 20759,
+          "lines": 430
+        },
+        {
+          "path": "src-tauri/src/chat/runtime_permissions.rs",
+          "sha256": "ae3410227b85220688bc38c0f95c78f9df7d9a3469d00e30e4ddc3a23fa81a9a",
+          "bytes": 4707,
+          "lines": 148
+        },
+        {
+          "path": "src-tauri/src/chat/sidecar.rs",
+          "sha256": "e23a5557795fd97555c7a8eea9611096cab346624a0fb42b41d7f342e2452767",
+          "bytes": 115432,
+          "lines": 3009
+        },
+        {
+          "path": "src-tauri/src/chat/mod.rs",
+          "sha256": "965b2abdbf55bb754ab9aefb1a83af955d8b08591e9baf7357d8a11a3a18a6aa",
+          "bytes": 65624,
+          "lines": 1676
+        },
+        {
+          "path": "src-tauri/src/native_auth/runtime.rs",
+          "sha256": "f31735bf514d16eb3ef901ea474ca599ac20e4110ea5b8e218d221a3a63a8383",
+          "bytes": 64844,
+          "lines": 1758
+        },
+        {
+          "path": "src-tauri/migrations/chat/0001_chat_core.sql",
+          "sha256": "3ed7f9661f4d85360670cce524599e2f3cad991581f4dc407a5c38dfd7dadc2b",
+          "bytes": 4264,
+          "lines": 110
+        },
+        {
+          "path": "src-tauri/migrations/chat/0014_chat_native_conversation.sql",
+          "sha256": "e4a5306fbc980599521af4ec429c51fac6b7ca7ab7354210e14bf1d38f76fc5a",
+          "bytes": 1916,
+          "lines": 39
+        },
+        {
+          "path": "src/composables/useRuntimePermissions.ts",
+          "sha256": "4e396aa90fda5dc057437805f37cade628b43be7d16a7638fe2a8415191b3fed",
+          "bytes": 4906,
+          "lines": 80
+        },
+        {
+          "path": "src/App.vue",
+          "sha256": "c66af64f7e4767f4c3f7addeab4324df167618d65cf3a4c8260a2cf01a5f0c13",
+          "bytes": 9688,
+          "lines": 274
+        },
+        {
+          "path": "src-tauri/capabilities/default.json",
+          "sha256": "48da0d1c21c4d1a2f98f3cad92f25f6eadba36abd309bc86fc10a7dd88f46e39",
+          "bytes": 312,
+          "lines": 12
+        },
+        {
+          "path": "src-tauri/Cargo.lock",
+          "sha256": "63ff4f986a9c9dd6ddfbfebdaa08612c7624d70f3c69e5fcb7c23d8755a87707",
+          "bytes": 144165,
+          "lines": 5936
+        },
+        {
+          "path": "src/pages/chat/ChatPage.vue",
+          "sha256": "da7607eec79b7c4b06379db8a6fc40b6fb19f05a092d8fff32decc7c04ec0c66",
+          "bytes": 47569,
+          "lines": 1034
+        }
+      ]
+    },
+    {
+      "name": "yijie-agent-host",
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "remotes": [
+        "origin\thttps://github.com/36Dge/yijie-agent-host.git (fetch)",
+        "origin\thttps://github.com/36Dge/yijie-agent-host.git (push)"
+      ],
+      "status": [],
+      "source_files": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "feb0ce6990b9e8a4ea1114ddfcb5efdf59b19697f40e4da6695f65f72ab1cdfe",
+          "bytes": 14922,
+          "lines": 172
+        },
+        {
+          "path": "internal/session/store.go",
+          "sha256": "ab934f9c22c1a9af723fde46bedb2c07681faab548346127d8f0ff66906dcc38",
+          "bytes": 40539,
+          "lines": 1237
+        },
+        {
+          "path": "internal/session/service.go",
+          "sha256": "c5570227c9526f24b7e0939b3d1897d074aa80a6bf9cc5ae9db39bd0686c5681",
+          "bytes": 48472,
+          "lines": 1504
+        },
+        {
+          "path": "internal/codex/session_protocol.go",
+          "sha256": "66244fced1b7bcc09d8820069e37c5b50f8b2243845ac0993f2ef195d97281fb",
+          "bytes": 33449,
+          "lines": 929
+        },
+        {
+          "path": "internal/codex/provider.go",
+          "sha256": "def7866b49e68b74bc64ded9ad87d21a12670451699652909d48a50f55135c31",
+          "bytes": 13979,
+          "lines": 423
+        },
+        {
+          "path": "internal/codex/title.go",
+          "sha256": "1811b528d23a5ba67e2a0bd91dc0f1ce1b34660a254711a08a623db34f88d12b",
+          "bytes": 7376,
+          "lines": 234
+        },
+        {
+          "path": "internal/app/app.go",
+          "sha256": "2f2bed54023b31ccb11ef8c83fdab836e8bdb9a36a8a70cd1eff16b023fe61a0",
+          "bytes": 86540,
+          "lines": 2124
+        },
+        {
+          "path": "internal/session/multimodal.go",
+          "sha256": "1eecd7ac35cc5bcfb20d6e03771dd319c9013a0d0151b3aa40fbd05c1bee5741",
+          "bytes": 21320,
+          "lines": 663
+        },
+        {
+          "path": "internal/session/native_conversation.go",
+          "sha256": "49af0489c438d73e744be12d3e65734c85e8477abdd73aca9752d4b88b740fa1",
+          "bytes": 13447,
+          "lines": 401
+        },
+        {
+          "path": "internal/session/native_thread_status.go",
+          "sha256": "a41d8f3903c2febe2f3297cbc17ef83bbe75496b03b88181c8ae335b3551f6fc",
+          "bytes": 1513,
+          "lines": 42
+        },
+        {
+          "path": "internal/session/runtime_permissions.go",
+          "sha256": "5c04bbd3e02cf4f8dcf9565bea95c4962ea438e0d9da3db9e94aba8ab9c68537",
+          "bytes": 3169,
+          "lines": 109
+        },
+        {
+          "path": "internal/codex/runtime_permissions.go",
+          "sha256": "b444194dba6c10758d7d33fb3bb8dc46db2958009cb05a98119dddcde2b234f9",
+          "bytes": 14149,
+          "lines": 421
+        },
+        {
+          "path": "internal/app/runtime_permissions.go",
+          "sha256": "0fdbb5e03f0cbd72bad357a05376842905cef54a7c8e88fac44aa0d14c78f0d1",
+          "bytes": 4484,
+          "lines": 109
+        },
+        {
+          "path": "cmd/cloud-runner/.gitkeep",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "lines": 0
+        }
+      ]
+    },
+    {
+      "name": "yijie-codex",
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "remotes": [
+        "origin\thttps://github.com/36Dge/yijie-codex.git (fetch)",
+        "origin\thttps://github.com/36Dge/yijie-codex.git (push)",
+        "upstream\thttps://github.com/openai/codex.git (fetch)",
+        "upstream\tDISABLED (push)"
+      ],
+      "status": [],
+      "source_files": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "42785b4242ffedbdada393131cdd75bdf58456337a58fd78dc6fe1bb558af2ed",
+          "bytes": 8415,
+          "lines": 101
+        },
+        {
+          "path": ".yijie/upstream.env",
+          "sha256": "33caf5655c94738bbdac3f4691d227b210ba7c470e78243a3a75ce87805bbe04",
+          "bytes": 333,
+          "lines": 7
+        },
+        {
+          "path": ".yijie/schemas/app-server/generated-json-schema/ClientRequest.json",
+          "sha256": "124aba86045345f2588175b070886b444fbbf090ec83ad1bd684e7aaea155e2b",
+          "bytes": 166090,
+          "lines": 6926
+        },
+        {
+          "path": ".yijie/schemas/app-server/generated-json-schema/v2/TurnStartParams.json",
+          "sha256": "befb5c2c14416ff6cc67e1b8b7b17e5966378e7ccf3bc30f771c75ab762e67ed",
+          "bytes": 15397,
+          "lines": 629
+        },
+        {
+          "path": "codex-rs/app-server-protocol/src/protocol/v2/turn.rs",
+          "sha256": "8c6311bb5e1a1eaa5f37efa495ab1f2f1125151d8281bc49f31753156466a09a",
+          "bytes": 15501,
+          "lines": 452
+        },
+        {
+          "path": "UPSTREAM.md",
+          "sha256": "d9689ff017588efd7442a2e49f8234cc911eaa57aba6f3233f695aab2655d557",
+          "bytes": 8054,
+          "lines": 72
+        },
+        {
+          "path": "codex-rs/app-server-protocol/src/protocol/common.rs",
+          "sha256": "5679cbc5b3e935a2edd69fbe62b82b956eff4d5d050c9969b090ccc9d367fdee",
+          "bytes": 140314,
+          "lines": 3770
+        },
+        {
+          "path": "codex-rs/app-server-protocol/src/protocol/v2/thread.rs",
+          "sha256": "9e492d1a3b7b00a77bb27cb21892e0d24183fb3f2a062ea1f631fc49fc240acc",
+          "bytes": 56781,
+          "lines": 1503
+        },
+        {
+          "path": "codex-rs/app-server/src/message_processor.rs",
+          "sha256": "2607559ee2d298d2fc7a46dced4cd205c4ef9475ca6b829aaaeac18368ec1df1",
+          "bytes": 59637,
+          "lines": 1441
+        },
+        {
+          "path": "codex-rs/app-server/src/request_processors/turn_processor.rs",
+          "sha256": "663378bf3eda8a12a8c4d508149688541fa68cf096d0bc3214a40956656771ae",
+          "bytes": 55200,
+          "lines": 1450
+        },
+        {
+          "path": "codex-rs/core/src/tools/handlers/tool_search.rs",
+          "sha256": "58b0222cfa2190a897feab5be9bfdf6066b323040b5b95253a5bb294de3ef5c3",
+          "bytes": 12665,
+          "lines": 350
+        },
+        {
+          "path": "codex-rs/state/migrations/0014_agent_jobs.sql",
+          "sha256": "a0bcc52368ee5f212771874eaafcbca23708755e62e931e57cec5431780e71b2",
+          "bytes": 1150,
+          "lines": 38
+        },
+        {
+          "path": "codex-rs/ext/goal/src/runtime.rs",
+          "sha256": "68f7c4275958820c35c4d9410f8cb1e86d1eb805ecae02867be4b5ede078d5c6",
+          "bytes": 20084,
+          "lines": 575
+        },
+        {
+          "path": "codex-rs/app-server/src/current_time.rs",
+          "sha256": "9e173061b47ce5157379554f7313adcbb49d0e59f496076d70ec9164d18b2e0b",
+          "bytes": 6123,
+          "lines": 177
+        },
+        {
+          "path": "codex-rs/protocol/src/protocol.rs",
+          "sha256": "375808be883656cf1d1e2fe591696ac547b20f90362ac8f17ce61eb9031e4bc3",
+          "bytes": 220588,
+          "lines": 6201
+        }
+      ]
+    },
+    {
+      "name": "yijie-contracts",
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "remotes": [
+        "origin\thttps://github.com/36Dge/yijie-contracts.git (fetch)",
+        "origin\thttps://github.com/36Dge/yijie-contracts.git (push)"
+      ],
+      "status": [],
+      "source_files": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "e17bda7a35451f5a121e72c943ae0db8331799177be2f463433c73c60a38b547",
+          "bytes": 13138,
+          "lines": 176
+        },
+        {
+          "path": "openapi/public/public.yaml",
+          "sha256": "f70a88bab6f8fa6e813a828ed58f8559edeb3651812c601f31e2b8a516086518",
+          "bytes": 24171,
+          "lines": 736
+        }
+      ]
+    },
+    {
+      "name": "yijie-api",
+      "branch": "feat/feat-126-foundation-closure",
+      "head": "041f40c69919e81ec72ccee4ea6dbb3ea012142d",
+      "remotes": [
+        "origin\thttps://github.com/36Dge/yijie-api.git (fetch)",
+        "origin\thttps://github.com/36Dge/yijie-api.git (push)"
+      ],
+      "status": [],
+      "source_files": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "001a39a9069faf73b14ba1826ba132481e6d8a3943d216651d478de785d4a91e",
+          "bytes": 9276,
+          "lines": 139
+        },
+        {
+          "path": "cmd/scheduler/.gitkeep",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "lines": 0
+        }
+      ]
+    },
+    {
+      "name": "yijie-infra",
+      "branch": "feat/feat-126-s10e",
+      "head": "66b481552eb76d46b00875ac27794ed8e1eb504a",
+      "remotes": [
+        "origin\thttps://github.com/36Dge/yijie-infra.git (fetch)",
+        "origin\thttps://github.com/36Dge/yijie-infra.git (push)"
+      ],
+      "status": [],
+      "source_files": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "d4f9a2b3aa352c22059ded5c1b89a775821be2a8ee967b561d7cc2cfc93e33c9",
+          "bytes": 13489,
+          "lines": 165
+        }
+      ]
+    }
+  ],
+  "baseline_feature_files": [
+    {
+      "path": "00-feature-brief.md",
+      "sha256": "8459cde6bab2aebdd3ca29fe0a726db44659223d3ed3b799c5c0a14b4dcdae65"
+    },
+    {
+      "path": "01-delivery-log.md",
+      "sha256": "afb59823bca6888773d3a17c99dcc782cf2e6246c1c31cdf2ec81ccbfd8403bd"
+    },
+    {
+      "path": "02-verification.md",
+      "sha256": "db700b7cd57cc62dd1acac765a858e80e9a8ca9f8291b39eff0440ab5f94e562"
+    },
+    {
+      "path": "feature.yaml",
+      "sha256": "4871d5da736b413152bc2d3adeddae369617a2dea7d73de9b8ce6d9cbcbd8804"
+    }
+  ],
+  "missing_requested_files": [],
+  "runtime_method_inventory": {
+    "source": "yijie-codex/.yijie/schemas/app-server/generated-json-schema/ClientRequest.json",
+    "schema_file_count": 267,
+    "method_count": 87,
+    "methods": [
+      "account/login/cancel",
+      "account/login/start",
+      "account/logout",
+      "account/rateLimitResetCredit/consume",
+      "account/rateLimits/read",
+      "account/read",
+      "account/sendAddCreditsNudgeEmail",
+      "account/usage/read",
+      "account/workspaceMessages/read",
+      "app/list",
+      "command/exec",
+      "command/exec/resize",
+      "command/exec/terminate",
+      "command/exec/write",
+      "config/batchWrite",
+      "config/mcpServer/reload",
+      "config/read",
+      "config/value/write",
+      "configRequirements/read",
+      "experimentalFeature/enablement/set",
+      "experimentalFeature/list",
+      "externalAgentConfig/detect",
+      "externalAgentConfig/import",
+      "externalAgentConfig/import/readHistories",
+      "feedback/upload",
+      "fs/copy",
+      "fs/createDirectory",
+      "fs/getMetadata",
+      "fs/readDirectory",
+      "fs/readFile",
+      "fs/remove",
+      "fs/unwatch",
+      "fs/watch",
+      "fs/writeFile",
+      "fuzzyFileSearch",
+      "hooks/list",
+      "initialize",
+      "marketplace/add",
+      "marketplace/remove",
+      "marketplace/upgrade",
+      "mcpServer/oauth/login",
+      "mcpServer/resource/read",
+      "mcpServer/tool/call",
+      "mcpServerStatus/list",
+      "model/list",
+      "modelProvider/capabilities/read",
+      "permissionProfile/list",
+      "plugin/install",
+      "plugin/installed",
+      "plugin/list",
+      "plugin/read",
+      "plugin/share/checkout",
+      "plugin/share/delete",
+      "plugin/share/list",
+      "plugin/share/save",
+      "plugin/share/updateTargets",
+      "plugin/skill/read",
+      "plugin/uninstall",
+      "review/start",
+      "skills/config/write",
+      "skills/extraRoots/set",
+      "skills/list",
+      "thread/approveGuardianDeniedAction",
+      "thread/archive",
+      "thread/compact/start",
+      "thread/delete",
+      "thread/fork",
+      "thread/goal/clear",
+      "thread/goal/get",
+      "thread/goal/set",
+      "thread/inject_items",
+      "thread/list",
+      "thread/loaded/list",
+      "thread/metadata/update",
+      "thread/name/set",
+      "thread/read",
+      "thread/resume",
+      "thread/rollback",
+      "thread/shellCommand",
+      "thread/start",
+      "thread/unarchive",
+      "thread/unsubscribe",
+      "turn/interrupt",
+      "turn/start",
+      "turn/steer",
+      "windowsSandbox/readiness",
+      "windowsSandbox/setupStart"
+    ],
+    "claim": "No schedule/automation CRUD or durable calendar trigger method in this fixed ClientRequest inventory; other Codex products are not assessed by this absence."
+  },
+  "local_dependency_evidence": [
+    {
+      "name": "tauri",
+      "version": "2.11.5",
+      "source_path": "/Users/jack/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tauri-2.11.5/src/app.rs",
+      "sha256": "50606eba378383efe0bec17c6cc192d8b68769e77fa55258129c0a783b508d08",
+      "symbols": [
+        "ExitRequestApi::prevent_exit",
+        "RunEvent::ExitRequested",
+        "CloseRequestApi::prevent_close"
+      ],
+      "note": "Read cached dependency source only; no install/build; restart code has prevent_exit exception, so future restart/update needs normal-stop preflight."
+    }
+  ],
+  "external_reference_reads": [
+    {
+      "url": "https://learn.chatgpt.com/docs/automations?surface=app",
+      "read_date": "2026-09-18",
+      "use": "Product distinction only; not fixed Runtime source"
+    },
+    {
+      "url": "https://learn.chatgpt.com/docs/app-server",
+      "read_date": "2026-09-18",
+      "use": "Protocol orientation only; fixed source takes precedence"
+    },
+    {
+      "url": "https://docs.rs/rrule/0.14.0/rrule/",
+      "read_date": "2026-09-18",
+      "use": "Dependency candidate only; not installed or qualified"
+    },
+    {
+      "url": "https://developer.apple.com/library/archive/qa/qa1340/_index.html",
+      "read_date": "2026-09-18",
+      "use": "Idle/forced sleep and assertion/notification platform boundary"
+    },
+    {
+      "url": "https://v2.tauri.app/plugin/notification/",
+      "read_date": "2026-09-18",
+      "use": "Separate notification setup and permission requirements"
+    }
+  ],
+  "additional_missing_files": []
+}

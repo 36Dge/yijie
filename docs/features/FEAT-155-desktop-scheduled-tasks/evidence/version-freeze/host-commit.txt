@@ -1,0 +1,57 @@
+[chore/retirement-baseline-20260905 a885c1d] feat(host): support scheduled execution recovery and restricted drafts
+ Committer: Jack <jack@JackdeMacBook-Pro.local>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 58 files changed, 6245 insertions(+), 16 deletions(-)
+ create mode 100644 api/native-turn-timing.candidate.json
+ create mode 100644 api/openapi/native-turn-timing.yaml
+ create mode 100644 api/openapi/scheduled-plan-draft.yaml
+ create mode 100644 api/openapi/scheduled-task-recovery.yaml
+ create mode 100644 api/runtime-input-only.candidate.json
+ create mode 100644 api/scheduled-draft.candidate.json
+ create mode 100644 api/scheduled-task-recovery.candidate.json
+ create mode 100644 api/schemas/native-turn-timing.schema.json
+ create mode 100644 api/schemas/scheduled-task-recovery.schema.json
+ create mode 100644 docs/native-turn-timing.md
+ create mode 100644 docs/scheduled-draft-input-only.md
+ create mode 100644 docs/scheduled-plan-draft.md
+ create mode 100644 docs/scheduled-task-recovery.md
+ create mode 100644 internal/app/native_timing.go
+ create mode 100644 internal/app/native_timing_test.go
+ create mode 100644 internal/app/scheduled_candidate.go
+ create mode 100644 internal/app/scheduled_candidate_test.go
+ create mode 100644 internal/app/scheduled_draft.go
+ create mode 100644 internal/app/scheduled_draft_test.go
+ create mode 100644 internal/app/scheduled_recovery.go
+ create mode 100644 internal/app/scheduled_recovery_test.go
+ create mode 100644 internal/codex/scheduled_draft.go
+ create mode 100644 internal/codex/scheduled_draft_integration_test.go
+ create mode 100644 internal/codex/scheduled_draft_meter_integration_test.go
+ create mode 100644 internal/codex/scheduled_draft_test.go
+ create mode 100644 internal/codex/scheduled_manual_integration_test.go
+ create mode 100644 internal/contracts/nativetiming/types.gen.go
+ create mode 100644 internal/contracts/runtimeinputonly/request.schema.json
+ create mode 100644 internal/contracts/runtimeinputonly/response.schema.json
+ create mode 100644 internal/contracts/runtimeinputonly/types.gen.go
+ create mode 100644 internal/contracts/runtimeinputonly/validate.go
+ create mode 100644 internal/contracts/runtimeinputonly/validate_test.go
+ create mode 100644 internal/contracts/scheduledraft/output.schema.json
+ create mode 100644 internal/contracts/scheduledraft/schema.json
+ create mode 100644 internal/contracts/scheduledraft/types.gen.go
+ create mode 100644 internal/contracts/scheduledraft/validate.go
+ create mode 100644 internal/contracts/scheduledrecovery/types.gen.go
+ create mode 100644 internal/session/native_timing.go
+ create mode 100644 internal/session/native_timing_test.go
+ create mode 100644 internal/session/scheduled_draft.go
+ create mode 100644 internal/session/scheduled_draft_test.go
+ create mode 100644 internal/session/scheduled_recovery.go
+ create mode 100644 internal/session/scheduled_recovery_test.go

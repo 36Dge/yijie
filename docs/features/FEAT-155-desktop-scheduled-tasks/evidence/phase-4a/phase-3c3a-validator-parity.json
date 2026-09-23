@@ -1,0 +1,153 @@
+[
+  {
+    "schema": "ListPlansRequest",
+    "valid": true,
+    "value": {
+      "contextId": "01a0b85e-21e3-7953-af1b-3a8efd0d3499",
+      "payload": {
+        "limit": 20
+      },
+      "requestId": "01a0b85e-21e3-7953-af1b-3a74f54b80ad",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "schema": "ListPlansRequest",
+    "valid": false,
+    "value": {
+      "contextId": "01a0b85e-21e3-7953-af1b-3a8efd0d3499",
+      "payload": {
+        "limit": 0
+      },
+      "requestId": "01a0b85e-21e3-7953-af1b-3a74f54b80ad",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "schema": "ListPlansRequest",
+    "valid": false,
+    "value": {
+      "contextId": "01a0b85e-21e3-7953-af1b-3a8efd0d3499",
+      "payload": {
+        "limit": 101
+      },
+      "requestId": "01a0b85e-21e3-7953-af1b-3a74f54b80ad",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "schema": "ListPlansRequest",
+    "valid": false,
+    "value": {
+      "contextId": "01a0b85e-21e3-7953-af1b-3a8efd0d3499",
+      "payload": {
+        "limit": 1.5
+      },
+      "requestId": "01a0b85e-21e3-7953-af1b-3a74f54b80ad",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "schema": "ListPlansRequest",
+    "valid": false,
+    "value": {
+      "contextId": "01a0b85e-21e3-7953-af1b-3a8efd0d3499",
+      "payload": {
+        "cursor": null,
+        "limit": 20
+      },
+      "requestId": "01a0b85e-21e3-7953-af1b-3a74f54b80ad",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "schema": "ListPlansRequest",
+    "valid": false,
+    "value": {
+      "contextId": "01a0b85e-21e3-7953-af1b-3a8efd0d3499",
+      "payload": {
+        "limit": 20,
+        "state": "unknown"
+      },
+      "requestId": "01a0b85e-21e3-7953-af1b-3a74f54b80ad",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "schema": "ListPlansRequest",
+    "valid": false,
+    "value": {
+      "contextId": "01a0b85e-21e3-7953-af1b-3a8efd0d3499",
+      "payload": {
+        "authority": false,
+        "limit": 20
+      },
+      "requestId": "01a0b85e-21e3-7953-af1b-3a74f54b80ad",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "schema": "PreviewTimeRequest",
+    "valid": true,
+    "value": {
+      "contextId": "01a0b85e-21e3-7953-af1b-3aae62bf089f",
+      "payload": {
+        "rule": {
+          "frequency": "daily",
+          "local_time": "23:59",
+          "time_zone": "Asia/Shanghai"
+        }
+      },
+      "requestId": "01a0b85e-21e3-7953-af1b-3a94cd3603fc",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "schema": "PreviewTimeRequest",
+    "valid": false,
+    "value": {
+      "contextId": "01a0b85e-21e3-7953-af1b-3ac853111310",
+      "payload": {
+        "rule": {
+          "frequency": "daily",
+          "local_time": "24:00",
+          "time_zone": "Asia/Shanghai"
+        }
+      },
+      "requestId": "01a0b85e-21e3-7953-af1b-3ab3c0cb9e95",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "schema": "PreviewTimeRequest",
+    "valid": false,
+    "value": {
+      "contextId": "01a0b85e-21e3-7953-af1b-3aeb4deb24ba",
+      "payload": {
+        "rule": {
+          "frequency": "daily",
+          "local_time": "09:60",
+          "time_zone": "Asia/Shanghai"
+        }
+      },
+      "requestId": "01a0b85e-21e3-7953-af1b-3ad175cad17a",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "schema": "PreviewTimeRequest",
+    "valid": false,
+    "value": {
+      "contextId": "01a0b85e-21e3-7953-af1b-3b028767006a",
+      "payload": {
+        "rule": {
+          "frequency": "daily",
+          "local_time": "上午",
+          "time_zone": "Asia/Shanghai"
+        }
+      },
+      "requestId": "01a0b85e-21e3-7953-af1b-3af2af81f6ba",
+      "schemaVersion": 1
+    }
+  }
+]

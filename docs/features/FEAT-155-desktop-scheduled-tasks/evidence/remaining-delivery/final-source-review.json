@@ -1,0 +1,124 @@
+{
+  "recorded_at": "2026-09-23T15:10:18.596009+00:00",
+  "review_type": "current-task self-review; no independent approval claim",
+  "repositories": {
+    "yijie": {
+      "changed_files_sha256": {
+        "docs/adr/ADR-0020-local-scheduled-task-authority.md": "fd186a67ffc35eda09b85b5acfc55ec9baf653aec69a576c3fb00e53392913ce",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/00-feature-brief.md": "2c545d06f5ed6e36d0d8faa837eee36148208024ee82ccd6c0d47d532274c07a",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/01-delivery-log.md": "acf9f472ee92687e38eab6461966309fdb29761ba180846b989b0ed750f9199a",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/02-verification.md": "107afba520990a10502043b56e6b9f8cc09359006db19b464a08f234417b66be",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/03-scheduling-and-codex-reuse-decision.md": "d0919528d57d8fc72f3b4894d4197becb97edd59b3d3431def81fe47639fd0a0",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/04-owner-approval-and-implementation.md": "6f7265ebd044f6bc295dfd36badd6500d440e053ddf21c2ec4117da219c442ef",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/46-full-requirement-audit-and-current-status.md": "cf8af08ae5619226d07f4af9792186af318ca8cd17bfb3277be10c262409280d",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/47-remaining-delivery-plan.md": "f639210fe08e70a8950967d6dd67937ff70203d4e4bb2c78b7f34e445910e1e8",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/48-remaining-delivery-report.md": "8521c4d2fab9e17e9d7b71080ee3d0782158532848b8efc40677eb305ed31832",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/remaining-delivery/approval-provider.py": "8842cf75b7e1fc19a9a886d5e3de5865040d34537ac0cbb1b4cd1f3b652e1b82",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/remaining-delivery/delta-checkpoint.json": "2e90a2746143f3bda26dea74243700f5b920985b5a4d974f5999c41329ad1cb8",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/remaining-delivery/final-reopen-comparison.json": "53923ec8040f35e302f3bf7ace9b101c85a6af3ec9bdd83a2264be80fca4ef12",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/remaining-delivery/initial-workspace.json": "316627fd0269e66ec826430292fd8b452bfa46dcdab450cbde883af7817c675e",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/remaining-delivery/local-provider-ledger.json": "31ec52c3dd641ea0c02ac8289794eff26465b6ff4ab592984bd1047ab5703a08",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/remaining-delivery/local-provider.py": "5658da13cf4d2d972fbeed24174143fcc4a524b42719d6dc39826e30060302af",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/remaining-delivery/native-ui-observations.json": "f84358eb95b8e75efbd2e1ff0d6510acc7a8cef8ebccaa368db849cd890c16d5",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/evidence/remaining-delivery/provider-ledger.json": "cf3a2ba205f5d42fc39114b88d7723f899945bb86184715c9793a19058851300",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/feature.yaml": "bd23638090af104893f0185a4f6b3bed7c9ea533f7a9c7ab1363fb167e8cdb5d",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/history/before-remaining-delivery/00-feature-brief.md": "3dbb665e42032662caccf81dd8476fb20f3998988013fa56635f2d406f53ec7e",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/history/before-remaining-delivery/01-delivery-log.md": "a83a66f30a567ad2a5854ff1c71e8c9632d3bdd6b110a39581cc2cac8e495ddb",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/history/before-remaining-delivery/02-verification.md": "228fe2905cb633107f7de45edd569e0305ccebe999057e358c1ec5fe7d70ddc5",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/history/before-remaining-delivery/04-owner-approval-and-implementation.md": "37478db8c7835031f8b922ff10bf07854a01022504de0bae6e8d605c5af332df"
+      },
+      "removed_files": [],
+      "head_unchanged": true,
+      "branch": "chore/retirement-baseline-20260905",
+      "final_status": " M docs/adr/README.md\n?? docs/adr/ADR-0020-local-scheduled-task-authority.md\n?? docs/features/FEAT-155-desktop-scheduled-tasks/\n",
+      "tracked_and_untracked_file_count": 2614
+    },
+    "yijie-desktop": {
+      "changed_files_sha256": {
+        "SECURITY.md": "facc2fc31ff154df094fac131d7e2aee26d3da2fb16901fb39226f2cd164acd1",
+        "contracts/scheduled-ipc.candidate.json": "faef2a6ccc332edac3f0332d2884b18570a5df3748d4f8d81b464731015cd1d7",
+        "src-tauri/schemas/scheduled-task-ipc-resolved.schema.json": "0d0265fc75d84ee61f19ad0fcfdfacf42d5f007e50dfbdd6bec48ef7daa27fe8",
+        "src-tauri/schemas/scheduled-task-ipc-v1.schema.json": "62e3415c7fa00cb7afba72ae379f9a012daea5ef2e449136a36c92c80ba9cfeb",
+        "src-tauri/src/chat/schedules/ipc.rs": "277014d5ffeb2868350ad4ba8c15b8ca9d7f181fc75aa13229f52e4f8bc0b26f",
+        "src-tauri/src/chat/schedules/ipc/query.rs": "c237577bfb071f8a31d89fd036d9534752cda958caf1f2b19fa1fd3660ef7b4c",
+        "src-tauri/src/chat/schedules/ipc/tests.rs": "39ef1391ab22b1c3f1525676649a0ebaf107d3d3c13ab2e829bd7c21c8328104",
+        "src-tauri/src/chat/schedules/ipc_commands_generated.rs": "7c5d039242c65a36b14347b5b171b67521f7e79347726b08ef39428dd00f1d7c",
+        "src-tauri/src/chat/schedules/ipc_generated.rs": "c3faf308d91747e6847af7bebd18f6c1df60506ebd0bef6176c94e71dfc5059c",
+        "src-tauri/src/lib.rs": "21d45faf23d95ce73f0636a57858e727eb2eed7b98d8caacb929c0ff974b0655",
+        "src/App.vue": "82bfc9457e08f036eef609f739a0cd0144ac30aaadb857173cfdf30f596f4a7b",
+        "src/api/generated/scheduled-task-ipc-validator.gen.d.ts": "9d95f7c25327bb5d589ead09ed725e334c36e42e3295a4dd180b2d3f3858f421",
+        "src/api/generated/scheduled-task-ipc-validator.gen.js": "b99e791cadba93798b732fc9a92ff920d55ec3a2b4309866baff20a41b3e1633",
+        "src/api/generated/scheduled-task-ipc.gen.ts": "c4eaa2ad96ce1f3c0260d43245c56e44ab4e8edc1110a1a9c542fd8d6ff86e4c",
+        "src/components/schedules/ScheduledCardAction.vue": "bbece3a4455cbd0a84ea19b7e31d38384c620c1388fad42d028a9dc5f32611ee",
+        "src/components/schedules/ScheduledPlanForm.vue": "216f747e836ac111e4db9d1aeb9a50d2884ab79a70a981fc7dda47a2f1b70126",
+        "src/components/schedules/ScheduledUpdates.vue": "43cc1d37bdc744e77bc48602523f9b50c28a85f3e6c563d39fa969e557fab64c",
+        "src/domain/scheduled-task-ui.ts": "c274ddbb00561a362ac6666803dc4d72dbc14f2f5d6d85d448fef113b4634627",
+        "src/icons/registry.test.ts": "03718a270dd9cf413d3daa9630436ac6b86a7abd31adb120a183772f5ada37cb",
+        "src/icons/registry.ts": "f8256b1b12a7a66aa947cb97b2bbf1144982f58365a6c28cc1eba9e993f2fbc8",
+        "src/pages/schedules/ScheduledTasksPage.vue": "f1ac9c4f55e1aba292c81a35b6b0924e66e9ad6b1b82437ce4b212fb52636dab",
+        "src/pages/schedules/use-scheduled-updates.test.ts": "ee48248e667402a38757ad462a872e35652a5415fef26674bddbca4b35d475d8",
+        "src/pages/schedules/use-scheduled-updates.ts": "5fecf6feb05e5b15f88747174e34d14db861d372557d230827a0d0c507e4ba41"
+      },
+      "removed_files": [],
+      "head_unchanged": true,
+      "branch": "chore/retirement-baseline-20260905",
+      "final_status": " M SECURITY.md\n M THIRD_PARTY_NOTICES.md\n M docs/design/docs/design/05-patterns/02-chat-workspace.md\n M eslint.config.js\n M package.json\n M scripts/local-permission-candidate.mjs\n M scripts/run-local-demo-fast.sh\n M src-tauri/Cargo.lock\n M src-tauri/Cargo.toml\n M src-tauri/schemas/chat-ipc-v1.schema.json\n M src-tauri/src/chat/application.rs\n M src-tauri/src/chat/authorization.rs\n M src-tauri/src/chat/database.rs\n M src-tauri/src/chat/host_bridge.rs\n M src-tauri/src/chat/ipc.rs\n M src-tauri/src/chat/migrations.rs\n M src-tauri/src/chat/mod.rs\n M src-tauri/src/chat/native_conversation_storage.rs\n M src-tauri/src/chat/sidecar.rs\n M src-tauri/src/chat/worker.rs\n M src-tauri/src/lib.rs\n M src-tauri/src/native_auth/runtime.rs\n M src/App.vue\n M src/api/chat-client.ts\n M src/authorization/app-permission-policy.test.ts\n M src/authorization/app-permission-policy.ts\n M src/authorization/chat-authority-recovery.ts\n M src/authorization/chat-permission-lifecycle.test.ts\n M src/authorization/chat-permission-lifecycle.ts\n M src/components/chat/ChatComposer.vue\n M src/components/chat/ChatSidebarTree.test.ts\n M src/components/chat/ChatSidebarTree.vue\n M src/components/chat/ChatTimeline.vue\n M src/components/chat/ChatTurnGroup.test.ts\n M src/components/chat/ChatTurnGroup.vue\n M src/domain/chat-ipc.ts\n M src/icons/registry.test.ts\n M src/icons/registry.ts\n M src/navigation/app-nav.test.ts\n M src/navigation/app-nav.ts\n M src/pages/chat/ChatPage.test.ts\n M src/pages/chat/ChatPage.vue\n M src/router/index.test.ts\n M src/router/index.ts\n M src/stores/chat.store.test.ts\n M src/stores/chat.store.ts\n?? contracts/native-turn-timing.candidate.json\n?? contracts/native-turn-timing.schema.json\n?? contracts/runtime-input-only.candidate.json\n?? contracts/scheduled-draft.candidate.json\n?? contracts/scheduled-draft.schema.json\n?? contracts/scheduled-execution.candidate.json\n?? contracts/scheduled-execution.schema.json\n?? contracts/scheduled-host-build.candidate.json\n?? contracts/scheduled-ipc.candidate.json\n?? contracts/scheduled-plan.candidate.json\n?? contracts/scheduled-plan.schema.json\n?? contracts/scheduled-task-recovery.candidate.json\n?? contracts/scheduled-task-recovery.schema.json\n?? docs/feat155-scheduled-foundation.md\n?? scripts/check-scheduled-ipc.mjs\n?? scripts/generate-chat-session-purpose.mjs\n?? scripts/generate-scheduled-ipc.mjs\n?? scripts/scheduled-host-build-candidate.mjs\n?? scripts/scheduled-host-build-candidate.test.mjs\n?? src-tauri/migrations/chat/0016_scheduled_plan_foundation.sql\n?? src-tauri/migrations/chat/0017_scheduled_execution_foundation.sql\n?? src-tauri/migrations/chat/0018_scheduled_local_preparation.sql\n?? src-tauri/migrations/chat/0019_scheduled_recovery.sql\n?? src-tauri/migrations/chat/0020_scheduled_dispatch.sql\n?? src-tauri/migrations/chat/0021_scheduled_triggers.sql\n?? src-tauri/migrations/chat/0022_scheduled_draft_sources.sql\n?? src-tauri/migrations/chat/0023_scheduled_plan_created_at.sql\n?? src-tauri/migrations/chat/0024_scheduled_automatic_consent.sql\n?? src-tauri/migrations/chat/0025_scheduled_single_run_grants.sql\n?? src-tauri/migrations/chat/0026_scheduled_execution_timing.sql\n?? src-tauri/schemas/scheduled-task-ipc-resolved.schema.json\n?? src-tauri/schemas/scheduled-task-ipc-v1.schema.json\n?? src-tauri/src/chat/exit_owner.rs\n?? src-tauri/src/chat/host_bridge/\n?? src-tauri/src/chat/lifecycle.rs\n?? src-tauri/src/chat/platform_lifecycle.rs\n?? src-tauri/src/chat/schedules/\n?? src-tauri/src/chat/session_purpose_generated.rs\n?? src/api/generated/scheduled-task-ipc-formats.gen.js\n?? src/api/generated/scheduled-task-ipc-validator.gen.d.ts\n?? src/api/generated/scheduled-task-ipc-validator.gen.js\n?? src/api/generated/scheduled-task-ipc.gen.ts\n?? src/api/scheduled-task-native-client.test.ts\n?? src/api/scheduled-task-native-client.ts\n?? src/components/schedules/\n?? src/domain/chat-session-purpose.generated.ts\n?? src/domain/chat-session-purpose.test.ts\n?? src/domain/locate-chat-turn.test.ts\n?? src/domain/locate-chat-turn.ts\n?? src/domain/scheduled-draft-intent.ts\n?? src/domain/scheduled-draft.generated.ts\n?? src/domain/scheduled-execution.generated.ts\n?? src/domain/scheduled-plan.generated.ts\n?? src/domain/scheduled-task-timing.test.ts\n?? src/domain/scheduled-task-ui.ts\n?? src/pages/chat/ScheduledDraftPage.test.ts\n?? src/pages/schedules/\n",
+      "tracked_and_untracked_file_count": 798
+    },
+    "yijie-agent-host": {
+      "changed_files_sha256": {},
+      "removed_files": [],
+      "head_unchanged": true,
+      "branch": "chore/retirement-baseline-20260905",
+      "final_status": " M Makefile\n M README.md\n M SECURITY.md\n M cmd/desktop-host/main.go\n M internal/app/app.go\n M internal/codex/baseline.go\n M internal/codex/runtime.go\n M internal/codex/runtime_permissions.go\n M internal/codex/session_protocol.go\n M internal/session/multimodal.go\n M internal/session/runtime_permissions.go\n M internal/session/service.go\n M internal/session/store.go\n M internal/session/title.go\n M scripts/permission-smoke-meter.py\n?? api/native-turn-timing.candidate.json\n?? api/openapi/native-turn-timing.yaml\n?? api/openapi/scheduled-plan-draft.yaml\n?? api/openapi/scheduled-task-recovery.yaml\n?? api/runtime-input-only.candidate.json\n?? api/scheduled-draft.candidate.json\n?? api/scheduled-task-recovery.candidate.json\n?? api/schemas/native-turn-timing.schema.json\n?? api/schemas/scheduled-task-recovery.schema.json\n?? docs/native-turn-timing.md\n?? docs/scheduled-draft-input-only.md\n?? docs/scheduled-plan-draft.md\n?? docs/scheduled-task-recovery.md\n?? internal/app/native_timing.go\n?? internal/app/native_timing_test.go\n?? internal/app/scheduled_candidate.go\n?? internal/app/scheduled_candidate_test.go\n?? internal/app/scheduled_draft.go\n?? internal/app/scheduled_draft_test.go\n?? internal/app/scheduled_recovery.go\n?? internal/app/scheduled_recovery_test.go\n?? internal/codex/scheduled_draft.go\n?? internal/codex/scheduled_draft_integration_test.go\n?? internal/codex/scheduled_draft_meter_integration_test.go\n?? internal/codex/scheduled_draft_test.go\n?? internal/codex/scheduled_manual_integration_test.go\n?? internal/contracts/nativetiming/\n?? internal/contracts/runtimeinputonly/\n?? internal/contracts/scheduledraft/\n?? internal/contracts/scheduledrecovery/\n?? internal/session/native_timing.go\n?? internal/session/native_timing_test.go\n?? internal/session/scheduled_draft.go\n?? internal/session/scheduled_draft_test.go\n?? internal/session/scheduled_recovery.go\n?? internal/session/scheduled_recovery_test.go\n",
+      "tracked_and_untracked_file_count": 316
+    },
+    "yijie-contracts": {
+      "changed_files_sha256": {},
+      "removed_files": [],
+      "head_unchanged": true,
+      "branch": "chore/retirement-baseline-20260905",
+      "final_status": " M Makefile\n M README.md\n M SECURITY.md\n M docs/supported-baselines.md\n M redocly.yaml\n M scripts/check-breaking.sh\n M scripts/validate-json-schemas.mjs\n?? compatibility/native-turn-timing/\n?? compatibility/runtime-input-only/\n?? compatibility/scheduled-draft/\n?? compatibility/scheduled-execution/\n?? compatibility/scheduled-plan/\n?? compatibility/scheduled-task-recovery/\n?? docs/native-turn-timing-v1.md\n?? docs/scheduled-draft-v1.md\n?? docs/scheduled-execution-v1.md\n?? docs/scheduled-plan-v1.md\n?? docs/scheduled-task-recovery-v1.md\n?? jsonschema/scheduled-tasks/\n?? openapi/native-turn-timing/\n?? openapi/scheduled-plan-draft/\n?? openapi/scheduled-task-recovery/\n?? scripts/check-scheduled-draft-producer.mjs\n?? scripts/check-scheduled-draft.mjs\n?? scripts/check-scheduled-execution-producer.mjs\n?? scripts/check-scheduled-execution.mjs\n?? scripts/check-scheduled-plan-producer.mjs\n?? scripts/check-scheduled-plan.mjs\n?? scripts/check-scheduled-recovery-producer.mjs\n?? scripts/check-scheduled-task-recovery.mjs\n?? scripts/generate-native-turn-timing.mjs\n?? scripts/generate-runtime-input-only.mjs\n?? scripts/generate-scheduled-draft.mjs\n?? scripts/generate-scheduled-execution.mjs\n?? scripts/generate-scheduled-plan.mjs\n?? scripts/generate-scheduled-task-recovery.mjs\n?? scripts/scheduled-schema-source.mjs\n?? scripts/sync-native-turn-timing.mjs\n?? scripts/sync-runtime-input-only.mjs\n?? scripts/sync-scheduled-draft.mjs\n?? scripts/sync-scheduled-execution.mjs\n?? scripts/sync-scheduled-plan.mjs\n?? scripts/sync-scheduled-task-recovery.mjs\n?? sdks/go/openapi/native-turn-timing/\n?? sdks/go/openapi/runtime-input-only/\n?? sdks/go/openapi/scheduled-draft/\n?? sdks/go/openapi/scheduled-task-recovery/\n?? sdks/jsonschema/native-turn-timing.schema.json\n?? sdks/jsonschema/runtime-input-only/\n?? sdks/jsonschema/scheduled-draft-output.schema.json\n?? sdks/jsonschema/scheduled-draft.schema.json\n?? sdks/jsonschema/scheduled-execution.schema.json\n?? sdks/jsonschema/scheduled-plan.schema.json\n?? sdks/jsonschema/scheduled-task-recovery.schema.json\n?? sdks/rust/native-turn-timing/\n?? sdks/rust/scheduled-draft/\n?? sdks/rust/scheduled-execution/\n?? sdks/rust/scheduled-plan/\n?? sdks/rust/scheduled-task-recovery/\n?? sdks/typescript/src/jsonschema/scheduled-draft.gen.ts\n?? sdks/typescript/src/jsonschema/scheduled-execution.gen.ts\n?? sdks/typescript/src/jsonschema/scheduled-plan.gen.ts\n?? sdks/typescript/src/openapi/native-turn-timing.gen.ts\n?? tests/fixtures/scheduled-schema-closure.json\n?? tests/native-turn-timing.test.mjs\n?? tests/runtime-input-only.test.mjs\n?? tests/scheduled-draft.test.mjs\n?? tests/scheduled-execution.test.mjs\n?? tests/scheduled-plan.test.mjs\n?? tests/scheduled-schema-closure.test.mjs\n?? tests/scheduled-task-recovery.test.mjs\n",
+      "tracked_and_untracked_file_count": 396
+    },
+    "yijie-codex": {
+      "changed_files_sha256": {},
+      "removed_files": [],
+      "head_unchanged": true,
+      "branch": "chore/retirement-baseline-20260905",
+      "final_status": " M CHANGELOG.yijie.md\n M Makefile\n M README.md\n M SECURITY.md\n M UPSTREAM.md\n M scripts/write-runtime-manifest.py\n?? .yijie/patches/input-only/\n?? .yijie/schemas/input-only-app-server/\n?? docs/input-only-execution.md\n?? scripts/build-input-only.sh\n",
+      "tracked_and_untracked_file_count": 5568
+    }
+  },
+  "decisions": [
+    "Private read command follows native scope/read authorization; bounded metadata only; no store migration or execution qualification.",
+    "Observer is read-only, single in-flight request, revocation discards late responses; native execution remains authority.",
+    "Existing plan revision/receipts, single/automatic grant separation, shared reservations, approvals and Coordinator/outbox reused.",
+    "Deep link revalidates run/conversation association; old snapshots retained; deletion refused while pending approval.",
+    "No Host/Contracts/Runtime source deltas this batch; source and generated artifacts checked; 23 Desktop files changed.",
+    "Both power subrequirements OWNER_EXCLUDED; OS notifications deferred; no larger scheduler/notification framework.",
+    "Only current project canonical reproducible builds; normal quit/stop; no attack, permission damage, executable spoofing, user DB migration or Git writes."
+  ],
+  "verification_refs": [
+    "native-regression.log",
+    "frontend-focused-current.log",
+    "ipc-check.log",
+    "frontend-full-lint.log",
+    "fmt-check.log",
+    "clippy.log",
+    "frontend-build.log",
+    "docs-build.log",
+    "native-ui-observations.json",
+    "provider-ledger.json",
+    "local-provider-ledger.json",
+    "final-reopen-comparison.json"
+  ],
+  "final_meta_checks": {
+    "D4": "PASS (declared local demo scope only)",
+    "pnpm lint": "PASS",
+    "pnpm test": "50/50 PASS",
+    "shell syntax": "PASS",
+    "diff check": "PASS",
+    "process_cleanup": "canonical app, Host, and verification Provider normally stopped"
+  }
+}

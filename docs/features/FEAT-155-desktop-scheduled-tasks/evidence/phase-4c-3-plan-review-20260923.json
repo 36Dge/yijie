@@ -1,0 +1,189 @@
+{
+  "feature": "FEAT-155",
+  "phase": "4C-3 planning only",
+  "recorded_at": "2026-09-23T01:23:18.939786+00:00",
+  "plan": "40-phase-4c-3-single-run-and-rerun-plan.md",
+  "contract_impact": "none",
+  "planned_implementation_impact": "breaking",
+  "product_implementation_started": false,
+  "product_tests_run": false,
+  "service_started": false,
+  "database_accessed_or_migrated": false,
+  "model_calls_this_turn": 0,
+  "current_total_text_used": 9,
+  "total_text_limit": 12,
+  "remaining": 3,
+  "next_batch_proposed_max_text": 1,
+  "repositories": {
+    "yijie": {
+      "head": "2f616f4d24c001812c6279a520ba69ea9875247e",
+      "branch": "chore/retirement-baseline-20260905",
+      "remote": "origin\thttps://github.com/36Dge/yijie.git (fetch)\norigin\thttps://github.com/36Dge/yijie.git (push)",
+      "starting_status": "M docs/adr/README.md\n?? docs/adr/ADR-0020-local-scheduled-task-authority.md\n?? docs/features/FEAT-155-desktop-scheduled-tasks/",
+      "changed_this_turn": [
+        "docs/features/FEAT-155-desktop-scheduled-tasks/00-feature-brief.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/01-delivery-log.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/02-verification.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/04-owner-approval-and-implementation.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/40-phase-4c-3-single-run-and-rerun-plan.md",
+        "docs/features/FEAT-155-desktop-scheduled-tasks/feature.yaml"
+      ],
+      "tracked_and_untracked_files_compared": 2542,
+      "product_bytes_unchanged": null
+    },
+    "yijie-desktop": {
+      "head": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "branch": "chore/retirement-baseline-20260905",
+      "remote": "origin\thttps://github.com/36Dge/yijie-desktop.git (fetch)\norigin\thttps://github.com/36Dge/yijie-desktop.git (push)",
+      "starting_status": "M SECURITY.md\n M THIRD_PARTY_NOTICES.md\n M docs/design/docs/design/05-patterns/02-chat-workspace.md\n M eslint.config.js\n M package.json\n M scripts/local-permission-candidate.mjs\n M scripts/run-local-demo-fast.sh\n M src-tauri/Cargo.lock\n M src-tauri/Cargo.toml\n M src-tauri/schemas/chat-ipc-v1.schema.json\n M src-tauri/src/chat/application.rs\n M src-tauri/src/chat/authorization.rs\n M src-tauri/src/chat/database.rs\n M src-tauri/src/chat/host_bridge.rs\n M src-tauri/src/chat/ipc.rs\n M src-tauri/src/chat/migrations.rs\n M src-tauri/src/chat/mod.rs\n M src-tauri/src/chat/native_conversation_storage.rs\n M src-tauri/src/chat/sidecar.rs\n M src-tauri/src/chat/worker.rs\n M src-tauri/src/lib.rs\n M src-tauri/src/native_auth/runtime.rs\n M src/App.vue\n M src/api/chat-client.ts\n M src/authorization/app-permission-policy.test.ts\n M src/authorization/app-permission-policy.ts\n M src/authorization/chat-authority-recovery.ts\n M src/authorization/chat-permission-lifecycle.test.ts\n M src/authorization/chat-permission-lifecycle.ts\n M src/components/chat/ChatComposer.vue\n M src/components/chat/ChatSidebarTree.test.ts\n M src/components/chat/ChatSidebarTree.vue\n M src/components/chat/ChatTimeline.vue\n M src/components/chat/ChatTurnGroup.test.ts\n M src/components/chat/ChatTurnGroup.vue\n M src/domain/chat-ipc.ts\n M src/navigation/app-nav.test.ts\n M src/navigation/app-nav.ts\n M src/pages/chat/ChatPage.test.ts\n M src/pages/chat/ChatPage.vue\n M src/router/index.test.ts\n M src/router/index.ts\n M src/stores/chat.store.test.ts\n M src/stores/chat.store.ts\n?? contracts/runtime-input-only.candidate.json\n?? contracts/scheduled-draft.candidate.json\n?? contracts/scheduled-draft.schema.json\n?? contracts/scheduled-execution.candidate.json\n?? contracts/scheduled-execution.schema.json\n?? contracts/scheduled-host-build.candidate.json\n?? contracts/scheduled-ipc.candidate.json\n?? contracts/scheduled-plan.candidate.json\n?? contracts/scheduled-plan.schema.json\n?? contracts/scheduled-task-recovery.candidate.json\n?? contracts/scheduled-task-recovery.schema.json\n?? docs/feat155-scheduled-foundation.md\n?? scripts/check-scheduled-ipc.mjs\n?? scripts/generate-chat-session-purpose.mjs\n?? scripts/generate-scheduled-ipc.mjs\n?? scripts/scheduled-host-build-candidate.mjs\n?? scripts/scheduled-host-build-candidate.test.mjs\n?? src-tauri/migrations/chat/0016_scheduled_plan_foundation.sql\n?? src-tauri/migrations/chat/0017_scheduled_execution_foundation.sql\n?? src-tauri/migrations/chat/0018_scheduled_local_preparation.sql\n?? src-tauri/migrations/chat/0019_scheduled_recovery.sql\n?? src-tauri/migrations/chat/0020_scheduled_dispatch.sql\n?? src-tauri/migrations/chat/0021_scheduled_triggers.sql\n?? src-tauri/migrations/chat/0022_scheduled_draft_sources.sql\n?? src-tauri/migrations/chat/0023_scheduled_plan_created_at.sql\n?? src-tauri/migrations/chat/0024_scheduled_automatic_consent.sql\n?? src-tauri/schemas/scheduled-task-ipc-resolved.schema.json\n?? src-tauri/schemas/scheduled-task-ipc-v1.schema.json\n?? src-tauri/src/chat/exit_owner.rs\n?? src-tauri/src/chat/host_bridge/\n?? src-tauri/src/chat/lifecycle.rs\n?? src-tauri/src/chat/platform_lifecycle.rs\n?? src-tauri/src/chat/schedules/\n?? src-tauri/src/chat/session_purpose_generated.rs\n?? src/api/generated/scheduled-task-ipc-formats.gen.js\n?? src/api/generated/scheduled-task-ipc-validator.gen.d.ts\n?? src/api/generated/scheduled-task-ipc-validator.gen.js\n?? src/api/generated/scheduled-task-ipc.gen.ts\n?? src/api/scheduled-task-native-client.test.ts\n?? src/api/scheduled-task-native-client.ts\n?? src/components/schedules/\n?? src/domain/chat-session-purpose.generated.ts\n?? src/domain/chat-session-purpose.test.ts\n?? src/domain/locate-chat-turn.test.ts\n?? src/domain/locate-chat-turn.ts\n?? src/domain/scheduled-draft-intent.ts\n?? src/domain/scheduled-draft.generated.ts\n?? src/domain/scheduled-execution.generated.ts\n?? src/domain/scheduled-plan.generated.ts\n?? src/domain/scheduled-task-ui.ts\n?? src/pages/chat/ScheduledDraftPage.test.ts\n?? src/pages/schedules/",
+      "changed_this_turn": [],
+      "tracked_and_untracked_files_compared": 782,
+      "product_bytes_unchanged": true
+    },
+    "yijie-agent-host": {
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "remote": "origin\thttps://github.com/36Dge/yijie-agent-host.git (fetch)\norigin\thttps://github.com/36Dge/yijie-agent-host.git (push)",
+      "starting_status": "M Makefile\n M README.md\n M SECURITY.md\n M cmd/desktop-host/main.go\n M internal/app/app.go\n M internal/codex/baseline.go\n M internal/codex/runtime.go\n M internal/codex/runtime_permissions.go\n M internal/codex/session_protocol.go\n M internal/session/multimodal.go\n M internal/session/runtime_permissions.go\n M internal/session/service.go\n M internal/session/store.go\n M internal/session/title.go\n M scripts/permission-smoke-meter.py\n?? api/openapi/scheduled-plan-draft.yaml\n?? api/openapi/scheduled-task-recovery.yaml\n?? api/runtime-input-only.candidate.json\n?? api/scheduled-draft.candidate.json\n?? api/scheduled-task-recovery.candidate.json\n?? api/schemas/scheduled-task-recovery.schema.json\n?? docs/scheduled-draft-input-only.md\n?? docs/scheduled-plan-draft.md\n?? docs/scheduled-task-recovery.md\n?? internal/app/scheduled_candidate.go\n?? internal/app/scheduled_candidate_test.go\n?? internal/app/scheduled_draft.go\n?? internal/app/scheduled_draft_test.go\n?? internal/app/scheduled_recovery.go\n?? internal/app/scheduled_recovery_test.go\n?? internal/codex/scheduled_draft.go\n?? internal/codex/scheduled_draft_integration_test.go\n?? internal/codex/scheduled_draft_meter_integration_test.go\n?? internal/codex/scheduled_draft_test.go\n?? internal/codex/scheduled_manual_integration_test.go\n?? internal/contracts/runtimeinputonly/\n?? internal/contracts/scheduledraft/\n?? internal/contracts/scheduledrecovery/\n?? internal/session/scheduled_draft.go\n?? internal/session/scheduled_draft_test.go\n?? internal/session/scheduled_recovery.go\n?? internal/session/scheduled_recovery_test.go",
+      "changed_this_turn": [],
+      "tracked_and_untracked_files_compared": 307,
+      "product_bytes_unchanged": true
+    },
+    "yijie-contracts": {
+      "head": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "branch": "chore/retirement-baseline-20260905",
+      "remote": "origin\thttps://github.com/36Dge/yijie-contracts.git (fetch)\norigin\thttps://github.com/36Dge/yijie-contracts.git (push)",
+      "starting_status": "M Makefile\n M README.md\n M SECURITY.md\n M docs/supported-baselines.md\n M scripts/check-breaking.sh\n M scripts/validate-json-schemas.mjs\n?? compatibility/runtime-input-only/\n?? compatibility/scheduled-draft/\n?? compatibility/scheduled-execution/\n?? compatibility/scheduled-plan/\n?? compatibility/scheduled-task-recovery/\n?? docs/scheduled-draft-v1.md\n?? docs/scheduled-execution-v1.md\n?? docs/scheduled-plan-v1.md\n?? docs/scheduled-task-recovery-v1.md\n?? jsonschema/scheduled-tasks/\n?? openapi/scheduled-plan-draft/\n?? openapi/scheduled-task-recovery/\n?? scripts/check-scheduled-draft-producer.mjs\n?? scripts/check-scheduled-draft.mjs\n?? scripts/check-scheduled-execution-producer.mjs\n?? scripts/check-scheduled-execution.mjs\n?? scripts/check-scheduled-plan-producer.mjs\n?? scripts/check-scheduled-plan.mjs\n?? scripts/check-scheduled-recovery-producer.mjs\n?? scripts/check-scheduled-task-recovery.mjs\n?? scripts/generate-runtime-input-only.mjs\n?? scripts/generate-scheduled-draft.mjs\n?? scripts/generate-scheduled-execution.mjs\n?? scripts/generate-scheduled-plan.mjs\n?? scripts/generate-scheduled-task-recovery.mjs\n?? scripts/scheduled-schema-source.mjs\n?? scripts/sync-runtime-input-only.mjs\n?? scripts/sync-scheduled-draft.mjs\n?? scripts/sync-scheduled-execution.mjs\n?? scripts/sync-scheduled-plan.mjs\n?? scripts/sync-scheduled-task-recovery.mjs\n?? sdks/go/openapi/runtime-input-only/\n?? sdks/go/openapi/scheduled-draft/\n?? sdks/go/openapi/scheduled-task-recovery/\n?? sdks/jsonschema/runtime-input-only/\n?? sdks/jsonschema/scheduled-draft-output.schema.json\n?? sdks/jsonschema/scheduled-draft.schema.json\n?? sdks/jsonschema/scheduled-execution.schema.json\n?? sdks/jsonschema/scheduled-plan.schema.json\n?? sdks/jsonschema/scheduled-task-recovery.schema.json\n?? sdks/rust/scheduled-draft/\n?? sdks/rust/scheduled-execution/\n?? sdks/rust/scheduled-plan/\n?? sdks/rust/scheduled-task-recovery/\n?? sdks/typescript/src/jsonschema/scheduled-draft.gen.ts\n?? sdks/typescript/src/jsonschema/scheduled-execution.gen.ts\n?? sdks/typescript/src/jsonschema/scheduled-plan.gen.ts\n?? tests/fixtures/scheduled-schema-closure.json\n?? tests/runtime-input-only.test.mjs\n?? tests/scheduled-draft.test.mjs\n?? tests/scheduled-execution.test.mjs\n?? tests/scheduled-plan.test.mjs\n?? tests/scheduled-schema-closure.test.mjs\n?? tests/scheduled-task-recovery.test.mjs",
+      "changed_this_turn": [],
+      "tracked_and_untracked_files_compared": 386,
+      "product_bytes_unchanged": true
+    },
+    "yijie-codex": {
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "branch": "chore/retirement-baseline-20260905",
+      "remote": "origin\thttps://github.com/36Dge/yijie-codex.git (fetch)\norigin\thttps://github.com/36Dge/yijie-codex.git (push)\nupstream\thttps://github.com/openai/codex.git (fetch)\nupstream\tDISABLED (push)",
+      "starting_status": "M CHANGELOG.yijie.md\n M Makefile\n M README.md\n M SECURITY.md\n M UPSTREAM.md\n M scripts/write-runtime-manifest.py\n?? .yijie/patches/input-only/\n?? .yijie/schemas/input-only-app-server/\n?? docs/input-only-execution.md\n?? scripts/build-input-only.sh",
+      "changed_this_turn": [],
+      "tracked_and_untracked_files_compared": 5568,
+      "product_bytes_unchanged": true
+    }
+  },
+  "source_sha256": {
+    "src-tauri/src/chat/schedules/execution.rs": "0c0d384a03b47e5120794e1c1068e360f40e05c7468cebce5ce6a5d9bc555226",
+    "src-tauri/src/chat/schedules/execution/triggers.rs": "886d3cbbe2f7ce97b8ae126c331e475e4ca41cabc7fc0586a3921c0d30cb79c5",
+    "src-tauri/src/chat/schedules/execution/preparation.rs": "ce5cf59d8ef730247f5705616bf596c08661c72261f1eff224756aa8fc7e3add",
+    "src-tauri/src/chat/schedules/execution/dispatch.rs": "3f161df6c07bdbbaa32ca5ca22e67154c845ba59f118c17f41ae562cc5cbe930",
+    "src-tauri/src/chat/schedules/manual.rs": "cb584341bd9359c92c3660b3c229aa7bbf00fadc2907a03f570118e6587176ee",
+    "src-tauri/src/chat/schedules/automatic.rs": "a9686a58fc55f018270bc5b95d804b2146fec096e2ffc9fc00b39b9a83a42b56",
+    "src-tauri/src/chat/schedules/ipc.rs": "b664e28c0dcea43a90a0a2638f590e0a694b7fae59515b76e005b4321b9102b2",
+    "src-tauri/src/chat/schedules/ipc/query.rs": "c64b96d1dbde43ebd67f467d5607e73bf919e11c355f9c93c2a19aae5f2bc177",
+    "src-tauri/src/chat/schedules/recovery.rs": "241139bda243b5cc005e4740e49fe3f34e6758496387955d902fffc3fe0c7d99",
+    "src-tauri/src/chat/schedules/store.rs": "0d72cfebcebc1d7f43931c95f226bc15f66a68cea23f44145bf49e5818d3c478",
+    "src-tauri/src/chat/schedules/execution_guard.rs": "2bdda81d33156c8bd29e32467add9331ace78e7634bfbc240f4477fdaca5547f",
+    "src-tauri/src/chat/worker.rs": "c6b2121e9c2979bd14a7234809d51db05648a13541d900840a072affeb1d76f2",
+    "src-tauri/src/chat/migrations.rs": "16a01792291c2d6153b3014c7f1845cacfd6bf5358a73e760da285cf38743e51",
+    "src-tauri/schemas/scheduled-task-ipc-v1.schema.json": "90650c14b4b82660acbe63fb2e1479d66cb095bed11f6df7143a34f2cade6340",
+    "src-tauri/migrations/chat/0017_scheduled_execution_foundation.sql": "41de05497a1567a3db2d99c37f186e7d5c887eda5b65d2edaeb15efd220a05a1",
+    "src-tauri/migrations/chat/0024_scheduled_automatic_consent.sql": "744c760ca073a81d6e5c7b313f0c7b5494577c84c34874b03b4cb848f7cdfeeb",
+    "src/pages/schedules/use-scheduled-manual.ts": "f971a1c8b14dadbd0cfb1b3e12c18276a4b7587785968ab4ca5d75a46f4c10a0",
+    "src/pages/schedules/use-scheduled-automatic.ts": "3d4e99418f4bae9b658d6eadd062f503d24f2468cc98b876c9667b4096d6abad",
+    "src/pages/schedules/ScheduledTasksPage.vue": "79dac736a1c8a26633ff5e48b86b19ac042b1ff1791203dc658b795201aad28b",
+    "docs/feat155-scheduled-foundation.md": "75198b8aa21634bb31d80caaebbb3041f806341730e764e236d5581e1e141384",
+    "SECURITY.md": "fb553167daa3711b241bbc8f5ea6998284d29de1e935f2f72ae49cbd94c81ac8",
+    "docs/design/docs/design/05-patterns/02-chat-workspace.md": "1c2bc074dd944adc436e4b44ac60151b49caa3814aa30631d056eed1c9ef926e"
+  },
+  "facts": [
+    {
+      "source": "execution/triggers.rs:102-133",
+      "finding": "Preview requires plan.authorization_ref and errors before new authorization when absent."
+    },
+    {
+      "source": "execution.rs:172-218,262-317",
+      "finding": "Grant interpretation checks plan current pointer; confirm rejects enabled and overwrites pointer."
+    },
+    {
+      "source": "manual.rs:47-69,75-185",
+      "finding": "Current permit requires paused/manual/current grant, current UI/Host/epoch and one finite run."
+    },
+    {
+      "source": "execution/dispatch.rs:88-107,373-390",
+      "finding": "Claim and final POST still check current plan grant and non-automatic Host identity."
+    },
+    {
+      "source": "automatic.rs:43-51,61-96",
+      "finding": "Rerun is denied and complete never rerun is unconditionally expired in current phase."
+    },
+    {
+      "source": "ipc.rs:208-233,394-396,532-563",
+      "finding": "Candidate confirm rerun denied; Host readiness observation lacks rerun command."
+    },
+    {
+      "source": "manual.rs:188-221 and private schema",
+      "finding": "No rerun receipt observation currently exists."
+    },
+    {
+      "source": "execution/preparation.rs:142-240",
+      "finding": "Existing original outbox preparation transaction and three-target directory preparation reusable."
+    }
+  ],
+  "decision": {
+    "scope": "single-run grant separation + immediate run for enabled/paused/completed + independent current-config rerun",
+    "proposed_sql": 25,
+    "reason": "New explicit purpose proof distinguishes single-run grants while retaining the single existing quota ledger and automatic plan authority. No legacy backfill.",
+    "ordinary_sql_store": "15/5",
+    "current_candidate_sql_store": "24/6",
+    "proposed_candidate_sql_store": "25/6",
+    "host_contracts_runtime_changes_planned": false
+  },
+  "review": {
+    "type": "self review separate from drafting; no subagents or independent human approval",
+    "scenarios": [
+      "missing/expired/exhausted plan grant preview",
+      "enabled plan grant pointer collision",
+      "completed once immediate run remains completed",
+      "rerun preview differences and stale revision",
+      "request replay/unknown separate grant and run receipts",
+      "last occupied debit and no second charge",
+      "current rerun must not be expired by old cleanup",
+      "unknown requires trusted release and retains old result/hold",
+      "background startup cannot rebuild one-time UI permit",
+      "automatic due tick busy skip remains independent",
+      "old trigger facts format kept readable",
+      "no snapshot or deleted chat resurrection"
+    ],
+    "remaining_plan_blockers": [],
+    "product_qualification": "NOT RUN"
+  },
+  "checks": {
+    "meta_lint": {
+      "status": "PASS",
+      "command": "pnpm lint",
+      "exit_code": 0,
+      "output": "$ node scripts/repo-manifest.mjs validate && node scripts/check-contract-governance.mjs\nValidated 11 repository entries.\nValidated central Contract First governance and 11 sibling AGENTS.md files.\n"
+    },
+    "meta_test": {
+      "status": "PASS",
+      "command": "pnpm test",
+      "exit_code": 0,
+      "output": "$ node --test tests/*.test.mjs\n✔ schema v2 accepts qualified G2V, per-slice G3, and split G4 evidence (3.481958ms)\n✔ schema v2 G3 is per-slice and rejects required NOT RUN evidence (0.34025ms)\n✔ slice evidence N/A requires an explicit Owner exception and local evidence is never optional (0.180417ms)\n✔ per-slice freshness must bind the current implementation and harness (0.151208ms)\n✔ a passing slice cannot depend on a falsely passing prerequisite (0.251792ms)\n✔ cross-repository slice freshness includes every transitive prerequisite commit (0.253ms)\n✔ serial slices in one repository can bind both immutable slice commits (0.138584ms)\n✔ G2V rejects an unqualified harness (0.098042ms)\n✔ temporal contract invariants require executable conformance tests (0.208875ms)\n✔ a required temporal invariant cannot be backed only by an N/A conformance test (0.209875ms)\n✔ a slice cannot borrow temporal conformance assigned to another slice (0.150042ms)\n✔ temporal scenarios form one acyclic ordered contract (0.098959ms)\n✔ declared persistence/runtime scope cannot erase mandatory temporal phases (0.116875ms)\n✔ G2V evidence binds every declared participating repository (0.069042ms)\n✔ G2V cannot substitute a browser mock for the qualified real platform (0.057833ms)\n✔ G2V requires positive, negative, timeout, cleanup, and content-free harness controls (0.066083ms)\n✔ G4 keeps core, accessibility/visual, and teardown verdicts independent (0.096208ms)\n✔ the third equivalent failure trips the circuit breaker (0.121958ms)\n✔ the third failure cannot be marked resolved without an approved RCA cycle (0.048875ms)\n✔ an open three-failure breaker blocks G2V and per-slice G3 (0.122416ms)\n✔ renaming evidence IDs cannot split one equivalent failure to reset the fuse (0.087791ms)\n✔ one Owner-authorized post-RCA success can resolve a tripped incident (0.832792ms)\n✔ failure ledger evolution is append-only across the CI base ref (0.419917ms)\n✔ a package absent from the CI base must start at schema v3 with an explicit profile (0.164125ms)\n✔ a legacy v1 manifest is immutable until it is migrated to schema v2 (0.1095ms)\n✔ harness taxonomy is closed to four failure owners (0.057167ms)\n✔ an evident cross-boundary trigger cannot mark G2V not applicable (0.041083ms)\n✔ closed scope enums and required slice applicability fail closed (0.121583ms)\n✔ final E2E evidence binds a qualified harness digest and canonical report reference (0.096958ms)\n✔ schema v3 demo_fast accepts one product/UX checkpoint and one real-service done checkpoint (0.365834ms)\n✔ permanent termination preserves historical D0 but cannot claim acceptance (0.236209ms)\n✔ permanent termination requires explicit Owner authority and cannot be reopened (0.311917ms)\n✔ demo_fast D4 rejects mock-only, missing real smoke, and failed Must acceptance (0.07675ms)\n✔ demo_fast DP is public-only and enforces the minimum public safety floor (0.281083ms)\n✔ schema v3 production_hardened preserves the full schema v2 gate semantics (0.193583ms)\n✔ schema v1 remains readable but cannot claim any downstream gate (0.063083ms)\n✔ shell checker treats legacy packages as historical-only at G3 (84.256334ms)\n✔ feature.yaml duplicate keys fail closed (2.62325ms)\n✔ schema version comments cannot bypass the required temporal matrix file (9.411583ms)\n✔ verification evidence references must resolve to one report marker (9.420292ms)\n✔ CI claim audit rejects a v2 slice that claims PASS with missing evidence (18.714667ms)\n✔ repository audit applies the authoritative full-document shell check (83.486875ms)\n✔ repository CI audits every committed historical and profile-aware claim (170.909792ms)\n✔ the repository Feature Package audit entrypoint scans committed packages (4874.120042ms)\n✔ delivery shell entrypoints remain syntactically valid (2.896042ms)\n✔ new-feature defaults to compact schema v3 demo_fast local (124.924ms)\n✔ new-feature creates production_hardened only when explicitly selected (162.101875ms)\n✔ shell checker enforces demo_fast D0, D4, and profile separation (173.080375ms)\n✔ shell checker enforces schema v2 G2V and per-slice G3 semantics (174.21025ms)\n✔ repository manifest contains eleven owned children with the explicit Coze main branch (6.407042ms)\nℹ tests 50\nℹ suites 0\nℹ pass 50\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 5989.868458\n"
+    },
+    "shell_syntax": {
+      "status": "PASS",
+      "command": "bash -n scripts/*.sh",
+      "exit_code": 0,
+      "output": ""
+    },
+    "strict_D0": {
+      "status": "PASS",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict --gate D0 docs/features/FEAT-155-desktop-scheduled-tasks",
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，且 D0 范围与语义门禁通过。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+    },
+    "links": {
+      "status": "PASS",
+      "scope": "40 plan relative document links resolve"
+    }
+  },
+  "plan_sha256": "7c308ffc853133218a815390ba1afd253faf19c71ed37da7ed931f09e461d8f9",
+  "self_digest_note": "Review file itself is excluded from starting/final changed-file comparison."
+}

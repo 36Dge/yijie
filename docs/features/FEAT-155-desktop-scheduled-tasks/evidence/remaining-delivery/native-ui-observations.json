@@ -1,0 +1,94 @@
+{
+  "verification_cycle": "remaining-delivery-20260923",
+  "source": "actual canonical macOS app through CUA; screenshots in task tool trace, not source PDF",
+  "ordinary_database_migrated": false,
+  "candidate_versions": {
+    "sql": 26,
+    "host": 6
+  },
+  "power_requirements": "OWNER_EXCLUDED: prevent idle sleep and stop sending after sleep",
+  "checks": [
+    {
+      "check": "manual fields and validation",
+      "result": "PASS",
+      "observed": "Cross-border placeholders; invalid 25:61, empty weekday and existing-chat without selection disabled save. Weekly Monday saved paused."
+    },
+    {
+      "check": "save positioning",
+      "result": "PASS",
+      "observed": "FEAT155 保存定位与筛选 displayed first; focused new title button after save; no execution authorization."
+    },
+    {
+      "check": "scope and status filters",
+      "result": "PASS",
+      "observed": "全部状态/已开启/已暂停/已完成; enabled empty filter and clear filter. History uses selected plan ID."
+    },
+    {
+      "check": "local manual and rerun",
+      "result": "PASS",
+      "observed": "Two declared local Provider calls, actual fixed Runtime completed, separate run/turn IDs. Not paid-model evidence."
+    },
+    {
+      "check": "global completion notification",
+      "result": "PASS",
+      "observed": "Shown while /chat active; second notification action opened matching run detail and original conversation turn 2."
+    },
+    {
+      "check": "delete with history",
+      "result": "PASS",
+      "observed": "Cancelled delete preserved plan; later native deletion retained two records and original chat; deleted-plan rerun disabled, chat located turn 2."
+    },
+    {
+      "check": "light dark minimum window",
+      "result": "PASS",
+      "observed": "Actual native window dragged to configured 1180x760 minimum; light cards, dark form scroll and automatic confirmation visible; restored original light theme."
+    },
+    {
+      "check": "keyboard and cancellation",
+      "result": "PASS",
+      "observed": "Focus reveals card actions and history tooltip; automatic confirmation defaults cancel, Tab reaches confirm, Escape cancels and returns switch off; edit Escape writes nothing."
+    },
+    {
+      "check": "real draft",
+      "result": "PASS",
+      "observed": "One actual structured request; native validated complete candidate; review confirmed unique paused plan 01a0cebc-3fbf-7820-8a1a-c70390d0bde7 from conversation 01a0cebb-22e7-7601-861f-8a931bb711c9."
+    },
+    {
+      "check": "real automatic after normal reopen",
+      "result": "PASS",
+      "observed": "Run 01a0cec0-8aa3-7f73-b13b-46b52b913f36 at 22:52:00, 4147 ms; right conversation turn 1; budget exhausted paused. Actual output visible in unclassified message."
+    },
+    {
+      "check": "real ordinary Ask provider boundary",
+      "result": "LIMITATION",
+      "observed": "Real request 3 emitted only a textual approval request, no tool call. Not counted as native approval proof."
+    },
+    {
+      "check": "native approval and attention notification",
+      "result": "PASS",
+      "observed": "Declared ordinary exec_command response; fixed Runtime generated original approval. Important update opened correct run and turn2; native Reject made tool rejected, no true command executed."
+    },
+    {
+      "check": "representative native busy failure and retry",
+      "result": "PASS",
+      "observed": "While approval pending, confirmed rerun rejected busy and delete rejected; no Provider request. After normal deny, reservation0. Revision2 edit and rerun diff confirmed, new run 01a0cec6-e85e-7d00-841c-9cbeddbf496c completed at turn3 in same chat, old snapshot and denial preserved."
+    },
+    {
+      "check": "final normal reopen",
+      "result": "PASS",
+      "observed": "ledger-before-final-reopen and ledger-final exactly equal; 3 real and 5 local requests unchanged; no active reservations; turn3 focus persists."
+    }
+  ],
+  "local_execution": {
+    "plan": "01a0ceac-ad22-7f52-8701-aae56f029c36",
+    "manual": "01a0cead-4901-7c83-bc52-c407e176906d",
+    "rerun": "01a0ceb1-6476-7cd2-ae67-f9658b410bce",
+    "conversation": "01a0cead-4902-74e2-b93c-21d89d59cdfa",
+    "rerun_turn": "01a0ceb1-6476-7cd2-ae67-f98a232c8ec8"
+  },
+  "real_calls_at_checkpoint": 3,
+  "status": "complete",
+  "declared_local_calls": 5,
+  "actual_approval_run": "01a0cec4-e3f7-7de1-92ac-bbf5ced96e0b",
+  "retry_run": "01a0cec6-e85e-7d00-841c-9cbeddbf496c"
+}

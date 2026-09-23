@@ -1,0 +1,39 @@
+{
+  "upstream": {
+    "commit": "5d1fbf26c43abc65a203928b2e31561cb039e06d",
+    "tag": "rust-v0.144.6",
+    "url": "https://github.com/openai/codex.git"
+  },
+  "candidate_binary": {
+    "binary": "codex",
+    "reportedVersion": "codex-cli 0.144.6",
+    "sha256": "bd7d26205e2d735dcac0f35fc089a7b30a5c18a54586b94a2c7f624f2f5b7672",
+    "sizeBytes": 356184808,
+    "target": "aarch64-apple-darwin",
+    "version": "0.144.6"
+  },
+  "candidate_manifest_sha256": "14d4073de87be137cf39f770c091b8ab62a7c34933bc49dc50f12b4ddd3a494a",
+  "candidate_schema": {
+    "experimentalApi": false,
+    "schemaFileCount": 269,
+    "schemaTreeSha256": "34d353815dc8d800cb432a876d5b43350511f63b91ad9766f861e8bc8290cc92",
+    "transport": "stdio"
+  },
+  "patches": [
+    {
+      "path": ".yijie/patches/0001-feat-126-filter-persistent-diagnostics.patch",
+      "sha256": "6b337a02caf064c6819fab5c7367a485004c85cce0d42acb06fa6d5003e599a0"
+    },
+    {
+      "path": ".yijie/patches/0002-feat-136-unified-exec-pre-emitter-command-lifecycle.patch",
+      "sha256": "43de168e1443f4b9ca60d7f61e3de2daf20e1cfea14d2e196d28ba417bf3e06d"
+    },
+    {
+      "path": ".yijie/patches/input-only/0003-input-only-execution.patch",
+      "sha256": "c340b6fc17419bcdc1ff45eebe3da40e5fde740c029102eb7a188f6b14eb41d8"
+    }
+  ],
+  "native_source_tree": "755f32c45a4c30e805e3c7fe1db89dcb4dcc6e41",
+  "old_binary_sha256": "4efe16d2848680752cf9aacf4c17741ab2eeb7415894a66c2bb03652b00a322d",
+  "old_manifest_sha256": "1cfa2e0a139b2213f4d29b1efeed71d4810110ac865f0bcbd931ff33b0062c1b"
+}

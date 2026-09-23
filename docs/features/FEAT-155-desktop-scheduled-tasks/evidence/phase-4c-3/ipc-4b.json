@@ -1,0 +1,86 @@
+[
+  {
+    "command": "schedule_read_draft_submission_receipt_v1",
+    "request": {
+      "contextId": "01a0cbf4-4243-7433-9711-6f96356cc8ba",
+      "payload": {
+        "original_request_id": "01a0cbf4-4243-7433-9711-6fa90839168a"
+      },
+      "requestId": "01a0cbf4-4243-7433-9711-6fb3016dc609",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "observation": "not_observed"
+      },
+      "requestId": "01a0cbf4-4243-7433-9711-6fb3016dc609",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_submit_draft_v1",
+    "request": {
+      "contextId": "01a0cbf4-4243-7433-9711-6f96356cc8ba",
+      "payload": {
+        "text": "本地合成草案"
+      },
+      "requestId": "01a0cbf4-4243-7433-9711-6fa90839168a",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "conversation_id": "01a0cbf4-4244-7970-af1a-ada211980cc3",
+        "local_turn_id": "01a0cbf4-4244-7970-af1a-adce94de8585",
+        "operation_id": "01a0cbf4-4244-7970-af1a-addc191ecded",
+        "source_id": "01a0cbf4-4249-7293-bcba-393bad5c0cff",
+        "status": "accepted"
+      },
+      "requestId": "01a0cbf4-4243-7433-9711-6fa90839168a",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_read_draft_submission_receipt_v1",
+    "request": {
+      "contextId": "01a0cbf4-4243-7433-9711-6f96356cc8ba",
+      "payload": {
+        "original_request_id": "01a0cbf4-4243-7433-9711-6fa90839168a"
+      },
+      "requestId": "01a0cbf4-4251-7502-a686-cc6ea28dc467",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "observation": "observed",
+        "receipt": {
+          "conversation_id": "01a0cbf4-4244-7970-af1a-ada211980cc3",
+          "local_turn_id": "01a0cbf4-4244-7970-af1a-adce94de8585",
+          "operation_id": "01a0cbf4-4244-7970-af1a-addc191ecded",
+          "source_id": "01a0cbf4-4249-7293-bcba-393bad5c0cff",
+          "status": "accepted"
+        }
+      },
+      "requestId": "01a0cbf4-4251-7502-a686-cc6ea28dc467",
+      "schemaVersion": 1
+    }
+  },
+  {
+    "command": "schedule_read_draft_submission_receipt_v1",
+    "request": {
+      "contextId": "01a0cbf4-4243-7433-9711-6f96356cc8ba",
+      "payload": {
+        "original_request_id": "01a0cbf4-4243-7433-9711-6fa90839168a"
+      },
+      "requestId": "01a0cbf4-4267-7493-a4ee-33e7b32a03ac",
+      "schemaVersion": 1
+    },
+    "response": {
+      "data": {
+        "observation": "source_deleted",
+        "source_id": "01a0cbf4-4249-7293-bcba-393bad5c0cff"
+      },
+      "requestId": "01a0cbf4-4267-7493-a4ee-33e7b32a03ac",
+      "schemaVersion": 1
+    }
+  }
+]

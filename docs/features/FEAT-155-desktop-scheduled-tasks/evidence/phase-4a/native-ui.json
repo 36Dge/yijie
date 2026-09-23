@@ -1,0 +1,41 @@
+{
+  "feature": "FEAT-155",
+  "batch": "4A",
+  "entry": "YIJIE_FEAT155_SCHEDULED_CANDIDATE=true ./scripts/run-local-demo-fast.sh --packaged",
+  "application": "same canonical Desktop app and existing native worker",
+  "observations": [
+    "Paused save: one real plan, revision 1, native next time displayed",
+    "Edit: weekly Monday / new chat each run; revision 2, creation time unchanged",
+    "Normal quit and canonical reopen: same paused plan and content remained",
+    "Read-only records remained empty after save/edit; no runtime result fabricated",
+    "Delete confirmation default focus Cancel; explicit delete returned deleted revision 3",
+    "Empty existing-chat selector cannot save; no chat created for choosing other target modes",
+    "Keyboard tabs and select controls; form preview and dirty-close confirmation",
+    "Dirty close default focus corrected to Continue editing and verified",
+    "Chat leave confirmation: cancel retains text under stable authority; explicit discard navigates",
+    "Light/dark themes and window resized to native minimum 1180x760 reviewed",
+    "Original light system appearance restored"
+  ],
+  "non_claims": [
+    "Populated run history and pagination rely on native composition tests, not fabricated UI data",
+    "Existing-chat actual execution is not activated",
+    "No Provider, model, merchant, wake or notification acceptance"
+  ],
+  "ledger_after_cleanup": {
+    "schema": 23,
+    "plans": 1,
+    "plan_state": "deleted",
+    "plan_revision": 3,
+    "management_requests": 3,
+    "grants": 0,
+    "runs": 0,
+    "outbox": 0,
+    "turns": 0,
+    "sessions": 0,
+    "draft_sources": 0
+  },
+  "evidence_surface": "CUA AX observations and screenshots in current task; redacted aggregate SQLCipher read-only output in ledger-read-only.log",
+  "test_processes_normally_closed": true,
+  "final_read_only_history_option": "Deleted plan remains selectable by stable plan ID; no run exists",
+  "system_appearance_restored": "light"
+}

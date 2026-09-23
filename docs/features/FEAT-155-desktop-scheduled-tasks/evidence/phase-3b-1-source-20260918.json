@@ -1,0 +1,816 @@
+{
+  "feature": "FEAT-155",
+  "phase": "phase_3b_1",
+  "captured_at": "2026-09-18T08:57:07.047801+00:00",
+  "contract_impact": "breaking",
+  "authority": "Desktop private schema18; shared wire unchanged",
+  "release": false,
+  "baseline_evidence": {
+    "path": "evidence/phase-3a-contract-closure-source-20260918.json",
+    "sha256": "594af8bcf78dcf84a1a368c421f46f76910e93572c9a01b41a27306140b75319",
+    "77_candidate_hashes_matched_before_start": true
+  },
+  "baseline_snapshot_directory": "/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat155-3b1-n5zczpks",
+  "repositories": {
+    "yijie-contracts": {
+      "head": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-contracts.git (fetch)\norigin\thttps://github.com/36Dge/yijie-contracts.git (push)",
+      "files": [
+        {
+          "path": "Makefile",
+          "sha256": "1b7ce74feb833bfb3c5a65b2259a15f82010ebf58797f9e3ce0f745e5ab8ba00",
+          "before_sha256": "1b7ce74feb833bfb3c5a65b2259a15f82010ebf58797f9e3ce0f745e5ab8ba00",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "compatibility/scheduled-execution/source.lock.json",
+          "sha256": "27ffc07595e155ffef87f8892a4982326457244fac72d01e122ab00a82f55c63",
+          "before_sha256": "27ffc07595e155ffef87f8892a4982326457244fac72d01e122ab00a82f55c63",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "compatibility/scheduled-plan/source.lock.json",
+          "sha256": "c1e44503f23268930181410dac5d81dbe39f84c093f89143845fd7dc4aa3aef5",
+          "before_sha256": "c1e44503f23268930181410dac5d81dbe39f84c093f89143845fd7dc4aa3aef5",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "compatibility/scheduled-task-recovery/source.lock.json",
+          "sha256": "8c580e9e7ec3ac5beaab5b347b93400f7c2112ea9e7f777f8f327918681baa3c",
+          "before_sha256": "8c580e9e7ec3ac5beaab5b347b93400f7c2112ea9e7f777f8f327918681baa3c",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "docs/scheduled-execution-v1.md",
+          "sha256": "7da5a63a0236abf316c2b2381c688dc8766366e04da672e9f1fc44f39aa3cac6",
+          "before_sha256": "7da5a63a0236abf316c2b2381c688dc8766366e04da672e9f1fc44f39aa3cac6",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "docs/scheduled-plan-v1.md",
+          "sha256": "531e363c225eecd4664c64d0669a7a4990f6d7ac49efcff985c58b675072eeef",
+          "before_sha256": "531e363c225eecd4664c64d0669a7a4990f6d7ac49efcff985c58b675072eeef",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "docs/scheduled-task-recovery-v1.md",
+          "sha256": "45b790e1402d7fa74481d6edbc402e7514b94ad712027d207d4eb71a7e3e36fd",
+          "before_sha256": "45b790e1402d7fa74481d6edbc402e7514b94ad712027d207d4eb71a7e3e36fd",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "docs/supported-baselines.md",
+          "sha256": "dab05eaf7207269a9bfc4b2e2c98ea2e00b26691a501cc6eb39fefa51e149374",
+          "before_sha256": "dab05eaf7207269a9bfc4b2e2c98ea2e00b26691a501cc6eb39fefa51e149374",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "jsonschema/scheduled-tasks/execution-v1.schema.json",
+          "sha256": "dec7517a4d7d3cff42eb3058c8c49c7cf5d94db751ccc16b1b7acacf2811ec3e",
+          "before_sha256": "dec7517a4d7d3cff42eb3058c8c49c7cf5d94db751ccc16b1b7acacf2811ec3e",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "jsonschema/scheduled-tasks/plan-draft-v1.schema.json",
+          "sha256": "267efaf2f7ba9ada27f7494c9042473c6775b7d9eeecab4f3673cc84d0814171",
+          "before_sha256": "267efaf2f7ba9ada27f7494c9042473c6775b7d9eeecab4f3673cc84d0814171",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "jsonschema/scheduled-tasks/plan-storage-v1.schema.json",
+          "sha256": "0883ab69c0cbcda311113fd2a966ea98065ddc47b301e36611e2447620667cd2",
+          "before_sha256": "0883ab69c0cbcda311113fd2a966ea98065ddc47b301e36611e2447620667cd2",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "openapi/scheduled-task-recovery/scheduled-task-recovery.yaml",
+          "sha256": "47a1d7f4e5e858116d9f0b80faf86a0e1e5936dfab1ebf6673c9579e5246e9e2",
+          "before_sha256": "47a1d7f4e5e858116d9f0b80faf86a0e1e5936dfab1ebf6673c9579e5246e9e2",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "scripts/check-scheduled-execution-producer.mjs",
+          "sha256": "aa02c9f58ddec96ad1ae3fc7cc99af77412d0d2ab45bfb08d9ac624ceb10e81a",
+          "before_sha256": "aa02c9f58ddec96ad1ae3fc7cc99af77412d0d2ab45bfb08d9ac624ceb10e81a",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "scripts/check-scheduled-execution.mjs",
+          "sha256": "d5db5b5506f5dd326978891d939c9ba18ac059661a8a1d0d8bec760149164e30",
+          "before_sha256": "d5db5b5506f5dd326978891d939c9ba18ac059661a8a1d0d8bec760149164e30",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "scripts/check-scheduled-plan-producer.mjs",
+          "sha256": "5b6917b9f600c0e9959ace4e06f3a32baca86cd8c067818b255339485188679e",
+          "before_sha256": "5b6917b9f600c0e9959ace4e06f3a32baca86cd8c067818b255339485188679e",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "scripts/check-scheduled-plan.mjs",
+          "sha256": "34ca1b051ad110624cd490b71f8cbd0279e8df97706021bf440a772836b6496f",
+          "before_sha256": "34ca1b051ad110624cd490b71f8cbd0279e8df97706021bf440a772836b6496f",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "scripts/check-scheduled-task-recovery.mjs",
+          "sha256": "6337191558167c196ac2f6791dfe2b70d7f2d5fd60c822b741eaffd3af62ca27",
+          "before_sha256": "6337191558167c196ac2f6791dfe2b70d7f2d5fd60c822b741eaffd3af62ca27",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "scripts/generate-scheduled-execution.mjs",
+          "sha256": "06b0155849225749e14c422f4846a8e5861f8d901957b2a160970b4325ff0eb9",
+          "before_sha256": "06b0155849225749e14c422f4846a8e5861f8d901957b2a160970b4325ff0eb9",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "scripts/generate-scheduled-plan.mjs",
+          "sha256": "44aa6dcf1ffa7dbb7b593268d2614e49f8600fce7c14734fc778bc670d1ec80b",
+          "before_sha256": "44aa6dcf1ffa7dbb7b593268d2614e49f8600fce7c14734fc778bc670d1ec80b",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "scripts/generate-scheduled-task-recovery.mjs",
+          "sha256": "c903ad4d61e2244c78338a5b3e4235a9175218b5646e8246112d36bf6e3072e4",
+          "before_sha256": "c903ad4d61e2244c78338a5b3e4235a9175218b5646e8246112d36bf6e3072e4",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "scripts/scheduled-schema-source.mjs",
+          "sha256": "4afa5abda0bb8fd76a3c01759605a8b1f3c59f5548ac93587750e07cd08f406c",
+          "before_sha256": "4afa5abda0bb8fd76a3c01759605a8b1f3c59f5548ac93587750e07cd08f406c",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "scripts/sync-scheduled-execution.mjs",
+          "sha256": "3215f92ed004959b066d7a4696247ecd5cb0851cedd228149d5216b4d96abadb",
+          "before_sha256": "3215f92ed004959b066d7a4696247ecd5cb0851cedd228149d5216b4d96abadb",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "scripts/sync-scheduled-plan.mjs",
+          "sha256": "af414a9990c8bd48d34d7db630e0c53e3dcbbf2cabca6f1701198147fcb7edc8",
+          "before_sha256": "af414a9990c8bd48d34d7db630e0c53e3dcbbf2cabca6f1701198147fcb7edc8",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "scripts/sync-scheduled-task-recovery.mjs",
+          "sha256": "a0bf162a60a0efd21642e462c519d331f2a90c26de26d690fe305fe6b8630760",
+          "before_sha256": "a0bf162a60a0efd21642e462c519d331f2a90c26de26d690fe305fe6b8630760",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "scripts/validate-json-schemas.mjs",
+          "sha256": "7434113933392ac89faa435c0888ce01a697eeccc97c33ff052b2b3b9ed7468d",
+          "before_sha256": "7434113933392ac89faa435c0888ce01a697eeccc97c33ff052b2b3b9ed7468d",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "sdks/go/openapi/scheduled-task-recovery/types.gen.go",
+          "sha256": "03a35f5c9c16db1eb272b2ab7020ac08466deb5c716dc364f492f7a21c9a7f6d",
+          "before_sha256": "03a35f5c9c16db1eb272b2ab7020ac08466deb5c716dc364f492f7a21c9a7f6d",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "sdks/jsonschema/scheduled-execution.schema.json",
+          "sha256": "b6c9763e00285d75c79c21b195929c52ad997f050ecadeb735f51507c7609df9",
+          "before_sha256": "b6c9763e00285d75c79c21b195929c52ad997f050ecadeb735f51507c7609df9",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "sdks/jsonschema/scheduled-plan.schema.json",
+          "sha256": "8ab948f965e5681859d129f91a18a5931cfed89cfd32c0e866db9b5edf9283f4",
+          "before_sha256": "8ab948f965e5681859d129f91a18a5931cfed89cfd32c0e866db9b5edf9283f4",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "sdks/jsonschema/scheduled-task-recovery.schema.json",
+          "sha256": "0b790fc93d6037efe4802c1822a6a0d2a979dbbab427f019658b5b3413277f5b",
+          "before_sha256": "0b790fc93d6037efe4802c1822a6a0d2a979dbbab427f019658b5b3413277f5b",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "sdks/rust/scheduled-execution/types.gen.rs",
+          "sha256": "f53ed95baf4548dc0ad1eddf4872afffd88975984e1e67af6174834305b7d778",
+          "before_sha256": "f53ed95baf4548dc0ad1eddf4872afffd88975984e1e67af6174834305b7d778",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "sdks/rust/scheduled-plan/types.gen.rs",
+          "sha256": "1223692af5937b691453edb57b5a8689a419472af9be806b04855247a09a1614",
+          "before_sha256": "1223692af5937b691453edb57b5a8689a419472af9be806b04855247a09a1614",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "sdks/typescript/src/jsonschema/scheduled-execution.gen.ts",
+          "sha256": "70184382b025d57155098b8a597e6c3994d903813191188f6532fd7655a612bf",
+          "before_sha256": "70184382b025d57155098b8a597e6c3994d903813191188f6532fd7655a612bf",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "sdks/typescript/src/jsonschema/scheduled-plan.gen.ts",
+          "sha256": "34d152ce71516f533b258bf79456d772ca2895bd3925028bdaa21ce445834185",
+          "before_sha256": "34d152ce71516f533b258bf79456d772ca2895bd3925028bdaa21ce445834185",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "tests/fixtures/scheduled-schema-closure.json",
+          "sha256": "d472fa8bac39807394c644712b20303909a5f6487113e2b39d6c7e104903505a",
+          "before_sha256": "d472fa8bac39807394c644712b20303909a5f6487113e2b39d6c7e104903505a",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "tests/scheduled-execution.test.mjs",
+          "sha256": "77f916ea2de09bd96c29bbeeff09cc0993eb47213adb4464f17b02a08f5b195f",
+          "before_sha256": "77f916ea2de09bd96c29bbeeff09cc0993eb47213adb4464f17b02a08f5b195f",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "tests/scheduled-plan.test.mjs",
+          "sha256": "2ce82fb705d0b91f27fa59e15ae3cc192df8bdfcad46c4ae3ce8d579c8c7fec8",
+          "before_sha256": "2ce82fb705d0b91f27fa59e15ae3cc192df8bdfcad46c4ae3ce8d579c8c7fec8",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "tests/scheduled-schema-closure.test.mjs",
+          "sha256": "fb4a111d885456ad8666082c1607c05685632607fd5d31fe319c4c25702af5b4",
+          "before_sha256": "fb4a111d885456ad8666082c1607c05685632607fd5d31fe319c4c25702af5b4",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "tests/scheduled-task-recovery.test.mjs",
+          "sha256": "15b95b1b7eb962357343238308ccf22edc0659abdeb41cde5756629de62a6889",
+          "before_sha256": "15b95b1b7eb962357343238308ccf22edc0659abdeb41cde5756629de62a6889",
+          "phase_3b_1_changed": false
+        }
+      ],
+      "phase_3b_1_changed_count": 0
+    },
+    "yijie-desktop": {
+      "head": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-desktop.git (fetch)\norigin\thttps://github.com/36Dge/yijie-desktop.git (push)",
+      "files": [
+        {
+          "path": "contracts/scheduled-execution.candidate.json",
+          "sha256": "27ffc07595e155ffef87f8892a4982326457244fac72d01e122ab00a82f55c63",
+          "before_sha256": "27ffc07595e155ffef87f8892a4982326457244fac72d01e122ab00a82f55c63",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "contracts/scheduled-execution.schema.json",
+          "sha256": "b6c9763e00285d75c79c21b195929c52ad997f050ecadeb735f51507c7609df9",
+          "before_sha256": "b6c9763e00285d75c79c21b195929c52ad997f050ecadeb735f51507c7609df9",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "contracts/scheduled-plan.candidate.json",
+          "sha256": "c1e44503f23268930181410dac5d81dbe39f84c093f89143845fd7dc4aa3aef5",
+          "before_sha256": "c1e44503f23268930181410dac5d81dbe39f84c093f89143845fd7dc4aa3aef5",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "contracts/scheduled-plan.schema.json",
+          "sha256": "8ab948f965e5681859d129f91a18a5931cfed89cfd32c0e866db9b5edf9283f4",
+          "before_sha256": "8ab948f965e5681859d129f91a18a5931cfed89cfd32c0e866db9b5edf9283f4",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "docs/feat155-scheduled-foundation.md",
+          "sha256": "55f1b876c1f7f1b930e4172dbc904736a76d8f414d308b78fc2952586f88a236",
+          "before_sha256": "2a8e87e8b7e165b6005dd1a3817c6ae133cd821ce413cb8e55214ee42bf5f8b2",
+          "phase_3b_1_changed": true
+        },
+        {
+          "path": "src-tauri/Cargo.lock",
+          "sha256": "c9408312cbcab39147318073936d6479fbcef141b84dbf22a939285d49d1f527",
+          "before_sha256": "c9408312cbcab39147318073936d6479fbcef141b84dbf22a939285d49d1f527",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "src-tauri/Cargo.toml",
+          "sha256": "233be7ab6c1ced2f3f641494996ebc031cb790b4fa856de273c42086eaad07db",
+          "before_sha256": "233be7ab6c1ced2f3f641494996ebc031cb790b4fa856de273c42086eaad07db",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "src-tauri/migrations/chat/0016_scheduled_plan_foundation.sql",
+          "sha256": "70d00d5582f03f8d2cf81ff9f59b3f6c7a6506d85333cea93399157c6b8a5129",
+          "before_sha256": "70d00d5582f03f8d2cf81ff9f59b3f6c7a6506d85333cea93399157c6b8a5129",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "src-tauri/migrations/chat/0017_scheduled_execution_foundation.sql",
+          "sha256": "41de05497a1567a3db2d99c37f186e7d5c887eda5b65d2edaeb15efd220a05a1",
+          "before_sha256": "41de05497a1567a3db2d99c37f186e7d5c887eda5b65d2edaeb15efd220a05a1",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "src-tauri/migrations/chat/0018_scheduled_local_preparation.sql",
+          "sha256": "2c2abf1c0774754fd8f66333d1a95a190a0bfcfcb7f4fbfcface9af18ec08de5",
+          "before_sha256": null,
+          "phase_3b_1_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/application.rs",
+          "sha256": "65f20f44c069912bd497cedd495a2acb0ffaddeb8059c4ed2d12909d0a9cd2e2",
+          "before_sha256": "65f20f44c069912bd497cedd495a2acb0ffaddeb8059c4ed2d12909d0a9cd2e2",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/database.rs",
+          "sha256": "a23b8ba94c78da08d78974faa448ca4bab2ce808c0cc561eec3778d49c7ceec6",
+          "before_sha256": "a5a63600578b92ce3525a2e5b47de52808b88a4064c779098c770e69070d6f53",
+          "phase_3b_1_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/migrations.rs",
+          "sha256": "9d5f4dea6bedfb6f8353519a0f76f8b94abdf8bf61498a0683806224f071a0be",
+          "before_sha256": "3b18b1132ef0708af39c04e526e118d0741d979b99fcb9821abf8674e7637363",
+          "phase_3b_1_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/mod.rs",
+          "sha256": "d7451987358bee3aa2484c518d72e4ae35b3393d8b65dd4783dcc19d5e8b6b05",
+          "before_sha256": "d7451987358bee3aa2484c518d72e4ae35b3393d8b65dd4783dcc19d5e8b6b05",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution.rs",
+          "sha256": "70a4bf4c598d2d49633a35e19e88e2269c2e53aa7ec1315914ba49f524f76dde",
+          "before_sha256": "30314bf6bfe5a44a5ef3469fd6d98565311fd41532083948379c6c79bc8c1ea4",
+          "phase_3b_1_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution/preparation.rs",
+          "sha256": "5b5c334cf6e0d183e8eadff5a8446bd2fcc9d07d835ac26ed894676e6cda015b",
+          "before_sha256": null,
+          "phase_3b_1_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution/preparation/tests.rs",
+          "sha256": "9346f250ea7fcc918cec71314f66ea10f90404d4e99309c59023f226873a9bf9",
+          "before_sha256": null,
+          "phase_3b_1_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution/tests.rs",
+          "sha256": "50fd89715cda2b790639fd9bbf1a26e5ded7b31dfeec44a11c0df33a60b86553",
+          "before_sha256": "50fd89715cda2b790639fd9bbf1a26e5ded7b31dfeec44a11c0df33a60b86553",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution_generated.rs",
+          "sha256": "f53ed95baf4548dc0ad1eddf4872afffd88975984e1e67af6174834305b7d778",
+          "before_sha256": "f53ed95baf4548dc0ad1eddf4872afffd88975984e1e67af6174834305b7d778",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution_guard.rs",
+          "sha256": "dfb0ad0a2620748993490e722cac3cbedeee29e65df9cb37833e8427d556fccb",
+          "before_sha256": "14fc0d4f2d96e286b2778f95b66634cb8e7d372fd77b57e28b28de0d93be2755",
+          "phase_3b_1_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/generated.rs",
+          "sha256": "1223692af5937b691453edb57b5a8689a419472af9be806b04855247a09a1614",
+          "before_sha256": "1223692af5937b691453edb57b5a8689a419472af9be806b04855247a09a1614",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/mod.rs",
+          "sha256": "edb3cdc1d0a9038b06d0b8a5c9b81dd90856c5f51ab54d25d8306956a70e424d",
+          "before_sha256": "6a6fc07583ffaac11a454c9ba4fd17e2ca8c48a725f60a1967158ddb7780944f",
+          "phase_3b_1_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/store.rs",
+          "sha256": "1f47c7257a197ef113143760ed2212f152416cfb660a9e30232d202fcfd3b8a0",
+          "before_sha256": "c1986be28a8e72b1b58b05d55a8cc27c408dcee45cb1694cf0460ba4ab29e363",
+          "phase_3b_1_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/tests.rs",
+          "sha256": "9234e9707fbdeab74120fc5077ca00bdf1fe7b205d6c77ca3600076cba55fcc8",
+          "before_sha256": "9234e9707fbdeab74120fc5077ca00bdf1fe7b205d6c77ca3600076cba55fcc8",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/time.rs",
+          "sha256": "41845fd0f159849aef257a156a482f0c2e6c0e2b22f53e17c25d637ce523d0cc",
+          "before_sha256": "41845fd0f159849aef257a156a482f0c2e6c0e2b22f53e17c25d637ce523d0cc",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/workspace.rs",
+          "sha256": "13b50bf64fe108001ac71bafdad65a6026b41ac68276a147f1672e78836c279c",
+          "before_sha256": null,
+          "phase_3b_1_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/worker.rs",
+          "sha256": "6996fd28b131592bfc819726ac896ab22a02dae4bdd56b8228f11eec5d3c3f78",
+          "before_sha256": "6996fd28b131592bfc819726ac896ab22a02dae4bdd56b8228f11eec5d3c3f78",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "src-tauri/src/native_auth/runtime.rs",
+          "sha256": "ac46d184ad4140bb3abc0e6fee01b20c47d0c91f476fde65cff8d0518a5d52dd",
+          "before_sha256": "ac46d184ad4140bb3abc0e6fee01b20c47d0c91f476fde65cff8d0518a5d52dd",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "src/domain/scheduled-execution.generated.ts",
+          "sha256": "70184382b025d57155098b8a597e6c3994d903813191188f6532fd7655a612bf",
+          "before_sha256": "70184382b025d57155098b8a597e6c3994d903813191188f6532fd7655a612bf",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "src/domain/scheduled-plan.generated.ts",
+          "sha256": "34d152ce71516f533b258bf79456d772ca2895bd3925028bdaa21ce445834185",
+          "before_sha256": "34d152ce71516f533b258bf79456d772ca2895bd3925028bdaa21ce445834185",
+          "phase_3b_1_changed": false
+        }
+      ],
+      "phase_3b_1_changed_count": 11
+    },
+    "yijie-agent-host": {
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-agent-host.git (fetch)\norigin\thttps://github.com/36Dge/yijie-agent-host.git (push)",
+      "files": [
+        {
+          "path": "Makefile",
+          "sha256": "eea89b9660ed126386af2703e9d722d227f73f92a8f880e0462a5bb206030abf",
+          "before_sha256": "eea89b9660ed126386af2703e9d722d227f73f92a8f880e0462a5bb206030abf",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "README.md",
+          "sha256": "bb2bce0def60a1072490ced0f032811904c57e1719302a4e573ba17d70ba97ae",
+          "before_sha256": "bb2bce0def60a1072490ced0f032811904c57e1719302a4e573ba17d70ba97ae",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "SECURITY.md",
+          "sha256": "dbb7496b21c7350c3f38a0cc5a814ac7b77113c44dac0a0a5143f01898edee1a",
+          "before_sha256": "dbb7496b21c7350c3f38a0cc5a814ac7b77113c44dac0a0a5143f01898edee1a",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "api/openapi/scheduled-task-recovery.yaml",
+          "sha256": "47a1d7f4e5e858116d9f0b80faf86a0e1e5936dfab1ebf6673c9579e5246e9e2",
+          "before_sha256": "47a1d7f4e5e858116d9f0b80faf86a0e1e5936dfab1ebf6673c9579e5246e9e2",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "api/scheduled-task-recovery.candidate.json",
+          "sha256": "70992fe2ba4395ddb783d2e54666e6ccd682bbe834ab774d478413fb26cda581",
+          "before_sha256": "70992fe2ba4395ddb783d2e54666e6ccd682bbe834ab774d478413fb26cda581",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "api/schemas/scheduled-task-recovery.schema.json",
+          "sha256": "0b790fc93d6037efe4802c1822a6a0d2a979dbbab427f019658b5b3413277f5b",
+          "before_sha256": "0b790fc93d6037efe4802c1822a6a0d2a979dbbab427f019658b5b3413277f5b",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "docs/scheduled-task-recovery.md",
+          "sha256": "b473ac1ba6abdebc6d9aa34ca789b6c13b37a551c425aa75b5a1adb926b3b6b1",
+          "before_sha256": "b473ac1ba6abdebc6d9aa34ca789b6c13b37a551c425aa75b5a1adb926b3b6b1",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "internal/app/app.go",
+          "sha256": "e936d3a82c7d7ab980b87eb0d219e90a5daa9acecb4fe0fd69fd1a2d6902722f",
+          "before_sha256": "e936d3a82c7d7ab980b87eb0d219e90a5daa9acecb4fe0fd69fd1a2d6902722f",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "internal/app/scheduled_recovery.go",
+          "sha256": "81c74c7902d0d925c5a8599c15a139483a311da5f94dfa6e439e075944e276b8",
+          "before_sha256": "81c74c7902d0d925c5a8599c15a139483a311da5f94dfa6e439e075944e276b8",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "internal/app/scheduled_recovery_test.go",
+          "sha256": "c45c21ddaa9e6b3044aa8b547ef349e8829ab165b209b847e93fc75dff0a65c9",
+          "before_sha256": "c45c21ddaa9e6b3044aa8b547ef349e8829ab165b209b847e93fc75dff0a65c9",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "internal/contracts/scheduledrecovery/types.gen.go",
+          "sha256": "03a35f5c9c16db1eb272b2ab7020ac08466deb5c716dc364f492f7a21c9a7f6d",
+          "before_sha256": "03a35f5c9c16db1eb272b2ab7020ac08466deb5c716dc364f492f7a21c9a7f6d",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "internal/session/scheduled_recovery.go",
+          "sha256": "32efafa8436b7f3db824a1f18686826014592977558bc47c2bdbc90e72287055",
+          "before_sha256": "32efafa8436b7f3db824a1f18686826014592977558bc47c2bdbc90e72287055",
+          "phase_3b_1_changed": false
+        },
+        {
+          "path": "internal/session/scheduled_recovery_test.go",
+          "sha256": "5e988088007e70e20fbdb34109ce859dfb153e1f62960e9d05727ea137618a89",
+          "before_sha256": "5e988088007e70e20fbdb34109ce859dfb153e1f62960e9d05727ea137618a89",
+          "phase_3b_1_changed": false
+        }
+      ],
+      "phase_3b_1_changed_count": 0
+    },
+    "yijie-codex": {
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "branch": "chore/retirement-baseline-20260905",
+      "remotes": "origin\thttps://github.com/36Dge/yijie-codex.git (fetch)\norigin\thttps://github.com/36Dge/yijie-codex.git (push)\nupstream\thttps://github.com/openai/codex.git (fetch)\nupstream\tDISABLED (push)",
+      "files": [],
+      "phase_3b_1_changed_count": 0
+    }
+  },
+  "preserved_migrations": [
+    {
+      "path": "src-tauri/migrations/chat/0001_chat_core.sql",
+      "sha256": "3ed7f9661f4d85360670cce524599e2f3cad991581f4dc407a5c38dfd7dadc2b"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0002_chat_reasoning_v2.sql",
+      "sha256": "68d0daeb1910f606699f86b97498d8ca681f936cc6eb0377db43da04652ed3c1"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0003_chat_application_domain.sql",
+      "sha256": "62a2e895f7c7137ececfc9533381a37f921ef0ea2ddf08c7877b4bc56a608315"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0004_chat_s7c_orchestration.sql",
+      "sha256": "39f3f5d311b36834bdf88c5eeafe437a1045a3027b3a948dd3d2a525b666a047"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0005_chat_public_task_control_plane.sql",
+      "sha256": "9b67508a563cb3f6ecdc925d41ce7dcb8f1443cabdda466ecad7b3bcc9f77916"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0006_chat_attachments.sql",
+      "sha256": "60b08d6cfa053bc4e8cc64a4d18d357c4f4f2694ddc52d0ca9c1004333c856e2"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0007_chat_attachment_draft_targets.sql",
+      "sha256": "aae67ca5a5b73d476f68800fc15c950abcbeb09a4dedeeed48fb3c0e448a6a57"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0008_chat_output_artifacts.sql",
+      "sha256": "bec50a16583b216380f5f19728342772ff211ca2ebb88c0ff83b2e44d3fa9a15"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0009_chat_timeline_v4.sql",
+      "sha256": "f4d3e99d9425068a0729a48824df42b815973158cc4e310201890c79bc13608c"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0010_chat_command_tool_v5.sql",
+      "sha256": "0e04e00d5b3f1ac8609d79ce70a1c4dedf2df4a1157b9d7187a13b9418623efa"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0011_chat_approval_v6.sql",
+      "sha256": "d7ca4c2a86099def2ac1998c96e4cfe155a8dea5c9966f089b2617a7c944bdef"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0012_chat_approval_v6_process_protection.sql",
+      "sha256": "98c635f3acf5191a4aa7be9891bb263bcfd52468c9cc9fc5730a06609ab87720"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0013_chat_permission_modes.sql",
+      "sha256": "f0bde431aa15b603ec663c25df3e3452fb4ec926a367f83e24aa580abb97fda8"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0014_chat_native_conversation.sql",
+      "sha256": "e4a5306fbc980599521af4ec429c51fac6b7ca7ab7354210e14bf1d38f76fc5a"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0015_chat_native_formats.sql",
+      "sha256": "01dac0c864378e90c24490065c000e71bc721957d4c1680c409966de2d40b5f2"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0016_scheduled_plan_foundation.sql",
+      "sha256": "70d00d5582f03f8d2cf81ff9f59b3f6c7a6506d85333cea93399157c6b8a5129"
+    },
+    {
+      "path": "src-tauri/migrations/chat/0017_scheduled_execution_foundation.sql",
+      "sha256": "41de05497a1567a3db2d99c37f186e7d5c887eda5b65d2edaeb15efd220a05a1"
+    }
+  ],
+  "checks": [
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo fmt --manifest-path src-tauri/Cargo.toml --check",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --locked --all-targets -- -D warnings",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "YIJIE_FEAT155_CONFORMANCE_DIR=<temporary producer directory> cargo test --manifest-path src-tauri/Cargo.toml --locked --lib feat155_ -- --nocapture",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "pnpm lint",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "pnpm build",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "pnpm docs:build",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-contracts",
+      "command": "node scripts/check-scheduled-plan-producer.mjs <evidence/phase-3b-1-plan-native-producer.json>",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-contracts",
+      "command": "node scripts/check-scheduled-execution-producer.mjs <evidence/phase-3b-1-foundation-native-producer.json>",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-contracts",
+      "command": "node scripts/check-scheduled-execution-producer.mjs <evidence/phase-3b-1-native-producer.json>",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --locked --lib chat::migrations::tests::embedded_migrations_validate_and_write_checksum_ledger -- --exact --nocapture",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --locked --lib chat::migrations::tests::populated_v1_migrates_to_current_and_repeated_startup_is_idempotent -- --exact --nocapture",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --locked --lib chat::database::tests::project_repository_is_scope_bound_and_remove_never_deletes_directory -- --exact --nocapture",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --locked --lib chat::database::tests::expired_outbox_lease_recovers_after_restart_without_creating_duplicate_rows -- --exact --nocapture",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --locked --lib chat::database::tests::public_task_host_identity_becomes_bound_only_after_normal_atomic_host_bind -- --exact --nocapture",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --locked --lib chat::database::tests::multimodal_blocks_bind_atomically_dispatch_v2_and_expire_content -- --exact --nocapture",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --locked --lib chat::database::tests::feat152_permission_storage_boundary_survives_normal_reopen -- --exact --nocapture",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --locked --lib chat::database::tests::reasoning_is_terminal_transactional_bounded_and_cascades_on_delete -- --exact --nocapture",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --locked --lib chat::authorization::tests:: -- --nocapture",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests": 2
+    }
+  ],
+  "actual_native_producer_artifacts": [
+    {
+      "path": "evidence/phase-3b-1-plan-native-producer.json",
+      "sha256": "9531ce3c99fa2beffd106deab0e376451f1697171325b6c7b777da5b0773a1d4",
+      "origin": "actual Rust output from final 31-test safe native run",
+      "strict_source_conformance": "PASS"
+    },
+    {
+      "path": "evidence/phase-3b-1-foundation-native-producer.json",
+      "sha256": "8b188895d6820acaef6716305944bf65fb74c72d9d116add5fc66fe424d885b5",
+      "origin": "actual Rust output from final 31-test safe native run",
+      "strict_source_conformance": "PASS"
+    },
+    {
+      "path": "evidence/phase-3b-1-native-producer.json",
+      "sha256": "2ae6f818b64e41084cc7c72cfc8e37031bdb0732780e28ed67dad35236402599",
+      "origin": "actual Rust output from final 31-test safe native run",
+      "strict_source_conformance": "PASS"
+    }
+  ],
+  "meta_repository": {
+    "head": "2f616f4d24c001812c6279a520ba69ea9875247e",
+    "branch": "chore/retirement-baseline-20260905",
+    "checks": [
+      {
+        "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-155-desktop-scheduled-tasks",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate D0 docs/features/FEAT-155-desktop-scheduled-tasks",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-155-desktop-scheduled-tasks",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "command": "pnpm lint",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "command": "pnpm test (50/50)",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "command": "bash -n each scripts/*.sh",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "command": "git diff --check and recorded status/hash equality in five repositories",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "command": "13/14 local links and whitespace",
+        "status": "PASS",
+        "exit_code": 0
+      }
+    ]
+  },
+  "boundaries": {
+    "ordinary_migration_target": 15,
+    "reader_maximum": 18,
+    "scheduled_dispatch": "blocked at claim and dispatch",
+    "new_renderer_commands": 0,
+    "phase_3b_2_started": false,
+    "phase_3c_started": false,
+    "services_started": false,
+    "daily_user_database_accessed": false,
+    "keychain_accessed": false,
+    "text_calls_used": 0,
+    "text_calls_limit": 12,
+    "image_calls": 0,
+    "merchant_calls": 0,
+    "D4": "NOT RUN",
+    "commit_push_release": false
+  },
+  "final_review": {
+    "time": "2026-09-18T09:01:08.043353+00:00",
+    "kind": "structured Codex self-review, no independent human approval or sub-agent",
+    "desktop_changed_files": 11,
+    "new_files": 4,
+    "candidate_files_recorded": 81,
+    "old_migration_files_preserved": 17,
+    "native_tests": 31,
+    "legacy_regressions": 10,
+    "actual_producer_files": 3,
+    "issues_resolved": [
+      "same-request replay before own reservation/quota validation",
+      "native binding outside grant definition",
+      "deletion checked inside transaction",
+      "scheduled create-to-turn marker retained",
+      "parent table migration with precommit FK check and enforcement restored"
+    ],
+    "stop": "phase3b1 complete; phase3b2/3c not started"
+  }
+}

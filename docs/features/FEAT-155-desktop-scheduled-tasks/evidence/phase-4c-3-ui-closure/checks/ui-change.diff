@@ -1,0 +1,67 @@
+--- /tmp/feat155-ui-ScheduledTasksPage-before.vue	2026-09-23 12:51:54
++++ src/pages/schedules/ScheduledTasksPage.vue	2026-09-23 12:58:56
+@@ -52,6 +52,17 @@
+ function restoreRunFocus() { document.getElementById(runReturnFocus.value)?.focus(); }
+ const formOpen = ref(false); const editing = shallowRef<PlanView | null>(null); const form = ref<InstanceType<typeof ScheduledPlanForm>>();
+ const recordDetail = shallowRef<RecordDetail | null>(null); const recordName = ref("");
++let detailRerunId: string | null = null;
++function rerunFromDetail() {
++  if (recordDetail.value?.record.kind !== "run") return;
++  detailRerunId = recordDetail.value.record.run.run_id;
++  recordDetail.value = null;
++}
++function afterRecordLeave() {
++  const id = detailRerunId; detailRerunId = null;
++  // Finish the old focus trap before the new confirmation takes focus.
++  if (id) void manual.openRerun(id);
++}
+ const planOptions = ref<{ label: string; value: string }[]>([]); const optionsCursor = ref<string>(); const optionsSearch = ref(""); const optionsLoading = ref(false); const optionsError = ref("");
+ let optionEpoch = 0; let openingEpoch = 0;
+ const unavailable = computed(() => capabilities.value && !capabilities.value.read.available);
+@@ -113,7 +124,7 @@
+   try { await openConversation(await m.call("schedule_get_record_v1", row.record.key)); } catch (e) { report(e); }
+ }
+ watch([context, () => permissions.authorizationRevision], () => {
+-  openingEpoch++; optionEpoch++; formOpen.value = false; editing.value = null; recordDetail.value = null; planOptions.value = []; optionsCursor.value = undefined;
++  openingEpoch++; optionEpoch++; detailRerunId = null; formOpen.value = false; editing.value = null; recordDetail.value = null; planOptions.value = []; optionsCursor.value = undefined;
+ }, { flush: "sync" });
+ watch(tab, value => { if (value === "records" && context.value && capabilities.value?.read.available) void loadOptions(); });
+ async function checkReceipt() { await m.queryReceipt(); if (!pending.value) formOpen.value = false; }
+@@ -121,6 +132,7 @@
+ onBeforeRouteLeave(() => {
+   if (pending.value || writing.value || runPending.value || runningAction.value || autoPending.value || autoBusy.value) { notice.value = "请先查证原请求，再离开此页面。"; return false; }
+   if (formOpen.value && form.value?.dirty) { form.value.close(); return false; }
++  detailRerunId = null;
+   return true;
+ });
+ </script>
+@@ -196,13 +208,13 @@
+         <p v-if="autoPending" role="status">{{ autoNotice || '正在提交自动授权…' }}</p><div class="schedules-actions"><NButton id="schedule-auto-cancel" autofocus :disabled="autoBusy || autoPending" @click="automatic.close">取消</NButton><NButton v-if="!autoPending" type="primary" :disabled="!autoValid" :loading="autoBusy" @click="automatic.confirm">确认并启用</NButton><template v-else><NButton :disabled="autoBusy || !context" @click="automatic.query">查证原启用请求</NButton><NButton :disabled="autoBusy || !context" @click="automatic.retry">重试原启用请求</NButton></template></div>
+       </NCard></NModal>
+       <ScheduledPlanForm v-if="formOpen" ref="form" :plan="editing" :busy="writing" :uncertain="!!pending && !writing" :error="scheduleError(error)" :preview="rule => m.call('schedule_preview_time_v1', { rule })" :targets="(search, cursor) => m.call('schedule_list_targets_v1', { search, limit: 30, ...(cursor ? { cursor } : {}) })" @close="formOpen = false" @save="save" @query="checkReceipt" @retry="retryWrite" />
+-      <NModal :show="!!runReview" @after-enter="focusRunCancel" @after-leave="restoreRunFocus" :mask-closable="!runningAction && !runPending" :close-on-esc="!runningAction && !runPending" @update:show="manual.closeReview"><NCard class="scheduled-record-detail" :title="rerunReview ? '确认重新执行一次' : '确认运行一次'" role="dialog" aria-modal="true" :aria-label="rerunReview ? '确认重新执行一次' : '确认运行一次'">
+-        <template v-if="runReview"><NAlert v-if="rerunReview" type="info" :show-icon="false">使用当前已保存配置创建一次新运行，保留原记录及其结果。</NAlert><template v-if="rerunReview"><section v-for="change in rerunChanges" :key="change.label" class="scheduled-rerun-change"><h3>{{ change.label }}已变化</h3><p class="schedules-meta">原运行配置</p><p class="scheduled-record-body">{{ change.original }}</p><p class="schedules-meta">本次采用的当前配置</p><p class="scheduled-record-body">{{ change.current }}</p></section><p v-if="!rerunChanges.length">当前配置与原运行快照一致，仍会创建新运行。</p></template><h2>{{ runReview.plan.definition.name }}</h2><p class="schedules-meta">当前版本 {{ runReview.plan.revision }} · 运行于{{ targetLabels[runReview.plan.definition.target.mode] }}</p><p v-if="runReview.plan.definition.target.mode === 'existing_chat'">目标聊天：{{ manual.targetTitle.value || '已选择的聊天' }}<br>使用该聊天的原目录；权限模式固定为 Ask。</p><p v-else>使用应用为计划管理的独立目录；权限模式固定为 Ask。</p><p class="scheduled-record-body">{{ runReview.plan.definition.content }}</p><p>仅允许本次运行 1 次，许可最长 10 分钟，同时受当前会话授权限制。本次许可不改变计划状态、下一次时间或自动额度。</p><p>计划当前：{{ stateLabels[runReview.summary.effective_state] }}。{{ runReview.plan.definition.target.mode === 'new_chat_each_run' ? '本次将创建新聊天。' : '沿当前有效聊天关联执行，不恢复已删除的聊天。' }}</p><p v-if="runIntent?.grant">本次许可截止：{{ timeLabel(runIntent.grant.expires_at) }}</p><p>需要审批时，请进入完整对话处理；关闭详情不会停止已开始的任务。</p></template>
+-        <NAlert v-if="runError" type="error">{{ executionError(runError) }}</NAlert><p v-if="runPending" role="status">{{ runNotice || '正在提交，请稍候。' }}</p>
+-        <div class="schedules-actions"><NButton id="schedule-run-cancel" autofocus :disabled="runningAction || runPending" @click="manual.closeReview">取消</NButton><NButton v-if="!runPending" type="primary" :loading="runningAction" @click="manual.confirm">确认并运行一次</NButton><template v-else><NButton :disabled="runningAction || !context" @click="manual.query">查证本次原请求</NButton><NButton :disabled="runningAction || !context" @click="manual.retry">{{ runIntent?.grant && !runIntent.manualAttempted ? '继续本次运行' : '重试本次原请求' }}</NButton></template></div>
++      <NModal :show="!!runReview" @after-enter="focusRunCancel" @after-leave="restoreRunFocus" :mask-closable="!runningAction && !runPending" :close-on-esc="!runningAction && !runPending" @update:show="manual.closeReview"><NCard class="scheduled-record-detail scheduled-run-confirmation" content-style="min-height: 0; display: flex; flex-direction: column; overflow: hidden" :title="rerunReview ? '确认重新执行一次' : '确认运行一次'" role="dialog" aria-modal="true" :aria-label="rerunReview ? '确认重新执行一次' : '确认运行一次'">
++        <section class="scheduled-run-body" tabindex="0" aria-label="本次运行配置与差异"><template v-if="runReview"><NAlert v-if="rerunReview" type="info" :show-icon="false">使用当前已保存配置创建一次新运行，保留原记录及其结果。</NAlert><template v-if="rerunReview"><section v-for="change in rerunChanges" :key="change.label" class="scheduled-rerun-change"><h3>{{ change.label }}已变化</h3><p class="schedules-meta">原运行配置</p><p class="scheduled-record-body">{{ change.original }}</p><p class="schedules-meta">本次采用的当前配置</p><p class="scheduled-record-body">{{ change.current }}</p></section><p v-if="!rerunChanges.length">当前配置与原运行快照一致，仍会创建新运行。</p></template><h2>{{ runReview.plan.definition.name }}</h2><p class="schedules-meta">当前版本 {{ runReview.plan.revision }} · 运行于{{ targetLabels[runReview.plan.definition.target.mode] }}</p><p v-if="runReview.plan.definition.target.mode === 'existing_chat'">目标聊天：{{ manual.targetTitle.value || '已选择的聊天' }}<br>使用该聊天的原目录；权限模式固定为 Ask。</p><p v-else>使用应用为计划管理的独立目录；权限模式固定为 Ask。</p><p class="scheduled-record-body">{{ runReview.plan.definition.content }}</p><p>计划当前：{{ stateLabels[runReview.summary.effective_state] }}。{{ runReview.plan.definition.target.mode === 'new_chat_each_run' ? '本次将创建新聊天。' : '沿当前有效聊天关联执行，不恢复已删除的聊天。' }}</p><p v-if="runIntent?.grant">本次许可截止：{{ timeLabel(runIntent.grant.expires_at) }}</p><p>需要审批时，请进入完整对话处理；关闭详情不会停止已开始的任务。</p></template>
++        <NAlert v-if="runError" type="error">{{ executionError(runError) }}</NAlert><p v-if="runPending" role="status">{{ runNotice || '正在提交，请稍候。' }}</p></section>
++        <template #footer><p v-if="runReview">仅允许本次运行 1 次，许可最长 10 分钟，同时受当前会话授权限制。本次许可不改变计划状态、下一次时间或自动额度。</p><div class="schedules-actions"><NButton id="schedule-run-cancel" autofocus :disabled="runningAction || runPending" @click="manual.closeReview">取消</NButton><NButton v-if="!runPending" type="primary" :loading="runningAction" @click="manual.confirm">确认并运行一次</NButton><template v-else><NButton :disabled="runningAction || !context" @click="manual.query">查证本次原请求</NButton><NButton :disabled="runningAction || !context" @click="manual.retry">{{ runIntent?.grant && !runIntent.manualAttempted ? '继续本次运行' : '重试本次原请求' }}</NButton></template></div></template>
+       </NCard></NModal>
+-      <NModal :show="!!recordDetail" @update:show="recordDetail = null"><NCard class="scheduled-record-detail" :title="recordName" closable role="dialog" aria-modal="true" aria-label="执行记录详情" @close="recordDetail = null">
+-        <template v-if="recordDetail"><p>{{ recordStatus(recordDetail.record) }}</p><template v-if="recordDetail.configuration"><p>{{ ruleLabel(recordDetail.configuration.rule) }} · {{ targetLabels[recordDetail.configuration.target_mode] }}</p><p class="scheduled-record-body">{{ recordDetail.configuration.content }}</p></template><p v-else>此项未执行，没有运行时配置快照。</p><p>执行时间和耗时仅显示已记录的事实；当前记录未提供可靠执行时钟。</p><template v-if="recordDetail.record.kind === 'run'"><NButton :disabled="!canPrepare || recordDetail.record.plan.raw_state === 'deleted' || recordDetail.record.plan.target_state === 'missing' || runningAction || runPending || autoBusy || autoPending" @click="recordDetail.record.kind === 'run' && manual.openRerun(recordDetail.record.run.run_id).then(() => { if (runReview) recordDetail = null; })">审阅并重新执行</NButton><p>触发方式：{{ { manual: '手动运行', automatic: '自动触发', rerun: '独立重跑' }[recordDetail.record.run.trigger] }} · 业务结果尚未评估</p><NButton :disabled="recordDetail.record.conversation.status !== 'available'" @click="openConversation(recordDetail)">查看完整对话</NButton><p v-if="recordDetail.record.conversation.status !== 'available'">对应对话已删除或关联尚不可用。</p></template></template>
++      <NModal :show="!!recordDetail" @after-leave="afterRecordLeave" @update:show="recordDetail = null"><NCard class="scheduled-record-detail" :title="recordName" closable role="dialog" aria-modal="true" aria-label="执行记录详情" @close="recordDetail = null">
++        <template v-if="recordDetail"><p>{{ recordStatus(recordDetail.record) }}</p><template v-if="recordDetail.configuration"><p>{{ ruleLabel(recordDetail.configuration.rule) }} · {{ targetLabels[recordDetail.configuration.target_mode] }}</p><p class="scheduled-record-body">{{ recordDetail.configuration.content }}</p></template><p v-else>此项未执行，没有运行时配置快照。</p><p>执行时间和耗时仅显示已记录的事实；当前记录未提供可靠执行时钟。</p><template v-if="recordDetail.record.kind === 'run'"><NButton :disabled="!canPrepare || recordDetail.record.plan.raw_state === 'deleted' || recordDetail.record.plan.target_state === 'missing' || runningAction || runPending || autoBusy || autoPending" @click="rerunFromDetail">审阅并重新执行</NButton><p>触发方式：{{ { manual: '手动运行', automatic: '自动触发', rerun: '独立重跑' }[recordDetail.record.run.trigger] }} · 业务结果尚未评估</p><NButton :disabled="recordDetail.record.conversation.status !== 'available'" @click="openConversation(recordDetail)">查看完整对话</NButton><p v-if="recordDetail.record.conversation.status !== 'available'">对应对话已删除或关联尚不可用。</p></template></template>
+       </NCard></NModal>
+     </div>
+   </YjPage>
+@@ -220,6 +232,9 @@
+ .schedules-actions { display: flex; flex-wrap: wrap; gap: var(--yj-space-2); margin-top: var(--yj-space-3); }
+ .schedules-more { display: flex; justify-content: center; padding: var(--yj-space-4); }
+ .scheduled-record-detail { width: min(var(--yj-layout-form-max), calc(100vw - var(--yj-space-12))); max-height: calc(100vh - var(--yj-space-12)); overflow: auto; }
++.scheduled-run-confirmation { overflow: hidden; }
++.scheduled-run-body { flex: 1; min-height: 0; overflow: auto; }
++.scheduled-run-body:focus-visible { outline: var(--yj-focus-ring-width) solid var(--yj-color-focus-ring); outline-offset: calc(-1 * var(--yj-focus-ring-width)); }
+ .scheduled-rerun-change { border-bottom: var(--yj-border-width) solid var(--yj-color-border-default); padding-bottom: var(--yj-space-3); }
+ .scheduled-record-body { white-space: pre-wrap; overflow-wrap: anywhere; }
+ @media (max-width: 900px) { .schedules-toolbar { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .schedules-grid { grid-template-columns: minmax(0, 1fr); } }

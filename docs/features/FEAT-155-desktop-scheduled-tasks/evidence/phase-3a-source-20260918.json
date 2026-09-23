@@ -1,0 +1,470 @@
+{
+  "feature": "FEAT-155",
+  "phase": "phase_3a",
+  "captured_at": "2026-09-18T06:44:20.894647+00:00",
+  "repositories": {
+    "yijie-contracts": {
+      "head": "db4458fe94572c4df41a114005d54a049bb79b1f",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-contracts.git",
+      "files": [
+        {
+          "path": "Makefile",
+          "sha256": "1b7ce74feb833bfb3c5a65b2259a15f82010ebf58797f9e3ce0f745e5ab8ba00",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "compatibility/scheduled-execution/source.lock.json",
+          "sha256": "f2d1b3231194cebe4b49a3fd57772de26c367380075c0f8b1378c163c6c39265",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "compatibility/scheduled-plan/source.lock.json",
+          "sha256": "148b3b7101dfecc3feba26181fb047491509074aa386c752c1e49c44d32b46e6",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "compatibility/scheduled-task-recovery/source.lock.json",
+          "sha256": "e8a729e0a3ac1e873f43cb70e5d01d8494ad3a56ecae867a0241d67c325d73c7",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "docs/scheduled-execution-v1.md",
+          "sha256": "e4123f22b51cc6df191e239c3b5de5f838633f7f9eb88f6fed65182d053b06f0",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "docs/scheduled-plan-v1.md",
+          "sha256": "be51e947c34b73a999332d660f39b0a26b14049585c8803eabaadb34d83a3529",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "docs/scheduled-task-recovery-v1.md",
+          "sha256": "32b77826c59611418b68c0cf52f853f784f88dbca4c6dbb575cba559422e816f",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "docs/supported-baselines.md",
+          "sha256": "dab05eaf7207269a9bfc4b2e2c98ea2e00b26691a501cc6eb39fefa51e149374",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "jsonschema/scheduled-tasks/execution-v1.schema.json",
+          "sha256": "e2f8eb58596ee6c3044e0000e890454a45813663c14dba9485f61349b2ddffa2",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "jsonschema/scheduled-tasks/plan-draft-v1.schema.json",
+          "sha256": "e1c56a242edcc413ecb6ae68849ae821a1645a4ac2530d315ee62ddee904fb19",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "jsonschema/scheduled-tasks/plan-storage-v1.schema.json",
+          "sha256": "e2fcb3212198cb5f972be4c6698477c81d5de869b96780d635059577e09ba2ec",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "openapi/scheduled-task-recovery/scheduled-task-recovery.yaml",
+          "sha256": "47a1d7f4e5e858116d9f0b80faf86a0e1e5936dfab1ebf6673c9579e5246e9e2",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "scripts/check-scheduled-execution-producer.mjs",
+          "sha256": "a10d44e23be2b9ebc9b337851b48bcff1e71b945ffe9e111405b6e79c1c97911",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "scripts/check-scheduled-execution.mjs",
+          "sha256": "d5db5b5506f5dd326978891d939c9ba18ac059661a8a1d0d8bec760149164e30",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "scripts/check-scheduled-plan-producer.mjs",
+          "sha256": "8002c2b7d923f6e380a4441bfe54ef6665117c5cd4f68849911225b527519629",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "scripts/check-scheduled-plan.mjs",
+          "sha256": "57214faa7cd8b2c61066f3144dc8807ed8989a20c93a25f7709d94bb27562d40",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "scripts/check-scheduled-task-recovery.mjs",
+          "sha256": "35017883f6a60380a5a90512d8fd744fb28ec5e9df1507377437046def6da332",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "scripts/generate-scheduled-execution.mjs",
+          "sha256": "56a4f90effb1aca43584a3e2c7402022121996a31db381585ffc12fff65a99f4",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "scripts/generate-scheduled-plan.mjs",
+          "sha256": "0fa6a427b36e385c18b89e04a52a195ccab89596e62cc296938dc81e4bbc800c",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "scripts/generate-scheduled-task-recovery.mjs",
+          "sha256": "029b0452da8e526d66aa6cf42fdbb4fb426d1d09e1b26468aad31727823091ad",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "scripts/sync-scheduled-execution.mjs",
+          "sha256": "3215f92ed004959b066d7a4696247ecd5cb0851cedd228149d5216b4d96abadb",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "scripts/sync-scheduled-plan.mjs",
+          "sha256": "af414a9990c8bd48d34d7db630e0c53e3dcbbf2cabca6f1701198147fcb7edc8",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "scripts/sync-scheduled-task-recovery.mjs",
+          "sha256": "a0bf162a60a0efd21642e462c519d331f2a90c26de26d690fe305fe6b8630760",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "sdks/go/openapi/scheduled-task-recovery/types.gen.go",
+          "sha256": "03a35f5c9c16db1eb272b2ab7020ac08466deb5c716dc364f492f7a21c9a7f6d",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "sdks/jsonschema/scheduled-execution.schema.json",
+          "sha256": "b6c9763e00285d75c79c21b195929c52ad997f050ecadeb735f51507c7609df9",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "sdks/jsonschema/scheduled-plan.schema.json",
+          "sha256": "9b4bb45e3adf68807a71aeda361b6ea288d57764855fb2844c1d02cecde96a7b",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "sdks/jsonschema/scheduled-task-recovery.schema.json",
+          "sha256": "905dab1e0d4f8ad7ae080263b573ff91a65c0b0f2c80de44eda6f7ebc8d5113a",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "sdks/rust/scheduled-execution/types.gen.rs",
+          "sha256": "f53ed95baf4548dc0ad1eddf4872afffd88975984e1e67af6174834305b7d778",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "sdks/rust/scheduled-plan/types.gen.rs",
+          "sha256": "1223692af5937b691453edb57b5a8689a419472af9be806b04855247a09a1614",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "sdks/typescript/src/jsonschema/scheduled-execution.gen.ts",
+          "sha256": "70184382b025d57155098b8a597e6c3994d903813191188f6532fd7655a612bf",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "sdks/typescript/src/jsonschema/scheduled-plan.gen.ts",
+          "sha256": "34d152ce71516f533b258bf79456d772ca2895bd3925028bdaa21ce445834185",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "tests/scheduled-execution.test.mjs",
+          "sha256": "c4cd8db816ad4b3dd37511d08e74cec927595c9397464cd00701a3d976997156",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "tests/scheduled-plan.test.mjs",
+          "sha256": "d187f1bd97fa1d6ab590158896d046a38b94c4d4c7ac4d18fc371ead9734fd88",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "tests/scheduled-task-recovery.test.mjs",
+          "sha256": "51ceb8ddbacf1664fbf56fe9a87820f9aefd5cff8760b4fa86ab9e94004f941b",
+          "phase_3a_changed": false
+        }
+      ]
+    },
+    "yijie-desktop": {
+      "head": "4a8a67bec4903624ca98a1098572fa26f3a20849",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-desktop.git",
+      "files": [
+        {
+          "path": "contracts/scheduled-execution.candidate.json",
+          "sha256": "f2d1b3231194cebe4b49a3fd57772de26c367380075c0f8b1378c163c6c39265",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "contracts/scheduled-execution.schema.json",
+          "sha256": "b6c9763e00285d75c79c21b195929c52ad997f050ecadeb735f51507c7609df9",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "contracts/scheduled-plan.candidate.json",
+          "sha256": "148b3b7101dfecc3feba26181fb047491509074aa386c752c1e49c44d32b46e6",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "contracts/scheduled-plan.schema.json",
+          "sha256": "9b4bb45e3adf68807a71aeda361b6ea288d57764855fb2844c1d02cecde96a7b",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "docs/feat155-scheduled-foundation.md",
+          "sha256": "2a8e87e8b7e165b6005dd1a3817c6ae133cd821ce413cb8e55214ee42bf5f8b2",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "src-tauri/Cargo.lock",
+          "sha256": "c9408312cbcab39147318073936d6479fbcef141b84dbf22a939285d49d1f527",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "src-tauri/Cargo.toml",
+          "sha256": "233be7ab6c1ced2f3f641494996ebc031cb790b4fa856de273c42086eaad07db",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "src-tauri/migrations/chat/0016_scheduled_plan_foundation.sql",
+          "sha256": "70d00d5582f03f8d2cf81ff9f59b3f6c7a6506d85333cea93399157c6b8a5129",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "src-tauri/migrations/chat/0017_scheduled_execution_foundation.sql",
+          "sha256": "41de05497a1567a3db2d99c37f186e7d5c887eda5b65d2edaeb15efd220a05a1",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/application.rs",
+          "sha256": "65f20f44c069912bd497cedd495a2acb0ffaddeb8059c4ed2d12909d0a9cd2e2",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/database.rs",
+          "sha256": "a5a63600578b92ce3525a2e5b47de52808b88a4064c779098c770e69070d6f53",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/migrations.rs",
+          "sha256": "3b18b1132ef0708af39c04e526e118d0741d979b99fcb9821abf8674e7637363",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/mod.rs",
+          "sha256": "d7451987358bee3aa2484c518d72e4ae35b3393d8b65dd4783dcc19d5e8b6b05",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution.rs",
+          "sha256": "30314bf6bfe5a44a5ef3469fd6d98565311fd41532083948379c6c79bc8c1ea4",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution/tests.rs",
+          "sha256": "50fd89715cda2b790639fd9bbf1a26e5ded7b31dfeec44a11c0df33a60b86553",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution_generated.rs",
+          "sha256": "f53ed95baf4548dc0ad1eddf4872afffd88975984e1e67af6174834305b7d778",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution_guard.rs",
+          "sha256": "14fc0d4f2d96e286b2778f95b66634cb8e7d372fd77b57e28b28de0d93be2755",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/generated.rs",
+          "sha256": "1223692af5937b691453edb57b5a8689a419472af9be806b04855247a09a1614",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/mod.rs",
+          "sha256": "6a6fc07583ffaac11a454c9ba4fd17e2ca8c48a725f60a1967158ddb7780944f",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/store.rs",
+          "sha256": "c1986be28a8e72b1b58b05d55a8cc27c408dcee45cb1694cf0460ba4ab29e363",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/tests.rs",
+          "sha256": "9234e9707fbdeab74120fc5077ca00bdf1fe7b205d6c77ca3600076cba55fcc8",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/time.rs",
+          "sha256": "41845fd0f159849aef257a156a482f0c2e6c0e2b22f53e17c25d637ce523d0cc",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "src-tauri/src/chat/worker.rs",
+          "sha256": "6996fd28b131592bfc819726ac896ab22a02dae4bdd56b8228f11eec5d3c3f78",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "src-tauri/src/native_auth/runtime.rs",
+          "sha256": "ac46d184ad4140bb3abc0e6fee01b20c47d0c91f476fde65cff8d0518a5d52dd",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "src/domain/scheduled-execution.generated.ts",
+          "sha256": "70184382b025d57155098b8a597e6c3994d903813191188f6532fd7655a612bf",
+          "phase_3a_changed": true
+        },
+        {
+          "path": "src/domain/scheduled-plan.generated.ts",
+          "sha256": "34d152ce71516f533b258bf79456d772ca2895bd3925028bdaa21ce445834185",
+          "phase_3a_changed": false
+        }
+      ]
+    },
+    "yijie-agent-host": {
+      "head": "0e47766f494977c94bfea0e89cfbdf45a7fafa2b",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-agent-host.git",
+      "files": [
+        {
+          "path": "Makefile",
+          "sha256": "eea89b9660ed126386af2703e9d722d227f73f92a8f880e0462a5bb206030abf",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "README.md",
+          "sha256": "bb2bce0def60a1072490ced0f032811904c57e1719302a4e573ba17d70ba97ae",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "SECURITY.md",
+          "sha256": "dbb7496b21c7350c3f38a0cc5a814ac7b77113c44dac0a0a5143f01898edee1a",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "api/openapi/scheduled-task-recovery.yaml",
+          "sha256": "47a1d7f4e5e858116d9f0b80faf86a0e1e5936dfab1ebf6673c9579e5246e9e2",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "api/scheduled-task-recovery.candidate.json",
+          "sha256": "ccd1171b6018ad917c7b628de9b466b2a6464a80ccaa9c7c0bec79b67c5ab801",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "api/schemas/scheduled-task-recovery.schema.json",
+          "sha256": "905dab1e0d4f8ad7ae080263b573ff91a65c0b0f2c80de44eda6f7ebc8d5113a",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "docs/scheduled-task-recovery.md",
+          "sha256": "b473ac1ba6abdebc6d9aa34ca789b6c13b37a551c425aa75b5a1adb926b3b6b1",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "internal/app/app.go",
+          "sha256": "e936d3a82c7d7ab980b87eb0d219e90a5daa9acecb4fe0fd69fd1a2d6902722f",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "internal/app/scheduled_recovery.go",
+          "sha256": "81c74c7902d0d925c5a8599c15a139483a311da5f94dfa6e439e075944e276b8",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "internal/app/scheduled_recovery_test.go",
+          "sha256": "c45c21ddaa9e6b3044aa8b547ef349e8829ab165b209b847e93fc75dff0a65c9",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "internal/contracts/scheduledrecovery/types.gen.go",
+          "sha256": "03a35f5c9c16db1eb272b2ab7020ac08466deb5c716dc364f492f7a21c9a7f6d",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "internal/session/scheduled_recovery.go",
+          "sha256": "32efafa8436b7f3db824a1f18686826014592977558bc47c2bdbc90e72287055",
+          "phase_3a_changed": false
+        },
+        {
+          "path": "internal/session/scheduled_recovery_test.go",
+          "sha256": "5e988088007e70e20fbdb34109ce859dfb153e1f62960e9d05727ea137618a89",
+          "phase_3a_changed": false
+        }
+      ]
+    },
+    "yijie-codex": {
+      "head": "6c1ad767f0997845b8258a1c452fd4eb7577579f",
+      "branch": "chore/retirement-baseline-20260905",
+      "origin": "https://github.com/36Dge/yijie-codex.git",
+      "files": []
+    }
+  },
+  "phase_3a_changed_files": [
+    "yijie-contracts/Makefile",
+    "yijie-contracts/compatibility/scheduled-execution/source.lock.json",
+    "yijie-contracts/docs/scheduled-execution-v1.md",
+    "yijie-contracts/docs/supported-baselines.md",
+    "yijie-contracts/jsonschema/scheduled-tasks/execution-v1.schema.json",
+    "yijie-contracts/scripts/check-scheduled-execution-producer.mjs",
+    "yijie-contracts/scripts/check-scheduled-execution.mjs",
+    "yijie-contracts/scripts/generate-scheduled-execution.mjs",
+    "yijie-contracts/scripts/sync-scheduled-execution.mjs",
+    "yijie-contracts/sdks/jsonschema/scheduled-execution.schema.json",
+    "yijie-contracts/sdks/rust/scheduled-execution/types.gen.rs",
+    "yijie-contracts/sdks/typescript/src/jsonschema/scheduled-execution.gen.ts",
+    "yijie-contracts/tests/scheduled-execution.test.mjs",
+    "yijie-desktop/contracts/scheduled-execution.candidate.json",
+    "yijie-desktop/contracts/scheduled-execution.schema.json",
+    "yijie-desktop/docs/feat155-scheduled-foundation.md",
+    "yijie-desktop/src-tauri/migrations/chat/0017_scheduled_execution_foundation.sql",
+    "yijie-desktop/src-tauri/src/chat/application.rs",
+    "yijie-desktop/src-tauri/src/chat/database.rs",
+    "yijie-desktop/src-tauri/src/chat/migrations.rs",
+    "yijie-desktop/src-tauri/src/chat/schedules/execution.rs",
+    "yijie-desktop/src-tauri/src/chat/schedules/execution/tests.rs",
+    "yijie-desktop/src-tauri/src/chat/schedules/execution_generated.rs",
+    "yijie-desktop/src-tauri/src/chat/schedules/execution_guard.rs",
+    "yijie-desktop/src-tauri/src/chat/schedules/mod.rs",
+    "yijie-desktop/src-tauri/src/chat/schedules/store.rs",
+    "yijie-desktop/src-tauri/src/chat/worker.rs",
+    "yijie-desktop/src-tauri/src/native_auth/runtime.rs",
+    "yijie-desktop/src/domain/scheduled-execution.generated.ts"
+  ],
+  "runtime_modified": false,
+  "daily_schema_target": 15,
+  "max_readable_schema": 17,
+  "daily_database_migrated": false,
+  "registered_renderer_commands": 0,
+  "scheduled_executable_producer": false,
+  "model_calls_used": 0,
+  "model_calls_limit": 12,
+  "image_calls": 0,
+  "merchant_calls": 0,
+  "remaining_batches_not_started": [
+    "phase_3b",
+    "phase_3c",
+    "phase_4"
+  ],
+  "artifact": {
+    "path": "evidence/phase-3a-native-producer.json",
+    "sha256": "da49298f4670be41ac9869c98048c3c1946dfb38c5e0b947ef7f4079086c3491"
+  },
+  "checks": {
+    "native_feat155": {
+      "passed": 22,
+      "new_phase_3a": 12
+    },
+    "legacy_native_regressions": {
+      "passed": 8
+    },
+    "contract_tests": {
+      "passed": 13
+    },
+    "strict_execution_schema_lint": "PASS",
+    "actual_native_producer_conformance": "PASS",
+    "rust_fmt": "PASS",
+    "rust_clippy": "PASS",
+    "desktop_lint_build_docs": "PASS",
+    "breaking_baselines": 4,
+    "contracts_full_lint": "FAIL: generic validator unknown x-family-version; scoped strict execution lint PASS",
+    "real_services": "NOT RUN",
+    "d4": "NOT RUN"
+  }
+}
