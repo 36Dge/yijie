@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-25",
+  "scope": "UI removal and read-only investigation; daily schedule activation awaiting owner decision",
+  "root_cause": "ordinary launcher selects SQL15/Store5 and retained FEAT136 Runtime; capabilities read/save are storage_disabled",
+  "button_removed": "both ordinary ChatPage branches and now-unused entry helper",
+  "existing_creation_entry_preserved": "scheduled management -> through conversation -> dedicated draft mode",
+  "native_ui": "homepage verified in actual rebuilt app; red-box action absent, original project/permission/attachment controls and history list retained",
+  "app_restart": "normal Cmd+Q, no force; initially restarted ordinary entry, then restored original workflow-enabled canonical entry",
+  "current_app_pid": 18340,
+  "current_host_pid": 21578,
+  "current_runtime_pid": 21581,
+  "workflow_enabled": true,
+  "daily_migration": false,
+  "new_model_requests_initiated": 0,
+  "checks": {
+    "frontend_lint": "PASS",
+    "draft_and_route_guard_tests": "2 PASS",
+    "other_ChatPage_tests": "46 PASS / 3 FAIL; same 3 fail against unchanged HEAD component",
+    "native_scheduled_regression": "132 PASS",
+    "host_compatible_store_tests": "2 targeted tests PASS",
+    "canonical_ui_build": "PASS"
+  },
+  "test_discovery_note": "First Vitest filter also matched ignored .local snapshots. Those outputs retained but excluded from current-source counts. Corrected command explicitly excludes .local and sibling source snapshots. No test failures masked or source expectations changed."
+}

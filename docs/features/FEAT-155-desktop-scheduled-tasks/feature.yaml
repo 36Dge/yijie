@@ -18,7 +18,7 @@ request_boundary:
   source_instructions_are_execution_authorization: false
   note: 用户已明确授权实现剩余需求；防自动空闲睡眠与睡眠后停止发送均OWNER_EXCLUDED，来源PDF仍不是执行许可。
   previous_execution_boundary: 45已完成4D-1执行时间与耗时；普通15/5、候选26/6，本批真实0、累计10/14余4次。报告后停止，不迁移日常库，不自动推进电源或通知。
-  current_execution_boundary: 50完成获授权的五仓本地固化、最小恢复缺陷修复与固定版复验；两项电源需求OWNER_EXCLUDED、系统通知延期；普通15/5、候选26/6保持，无日常库迁移或Git发布。
+  current_execution_boundary: 53按用户明确授权接通canonical日常入口，原日常数据兼容升级至26/6，保持原目录与既有功能；完成历史占用与从未发送专属占位修复、原生本机文本闭环。两项电源需求仍OWNER_EXCLUDED，系统通知延期；真实调用新增0。
 source:
   path: /Users/jack/Desktop/定时任务相关 UI 页面.pdf
   bytes: 794974
@@ -960,3 +960,19 @@ remote_delivery:
   forced_push: false
   merge_tag_product_release: false
   new_model_requests: 0
+daily_entry_activation:
+  authorization_date: 2026-09-25
+  authorization: 用户明确确认接通普通客户端日常定时任务入口
+  report: 53-daily-entry-activation-report.md
+  daily_database_migration_authorized: true
+  daily_sql_schema: 26
+  daily_host_store: 6
+  desktop_commit: cb78880058a883c9a0b3b3a522de689d72ae5de4
+  host_commit: 1d62b198d2430be985d2a1164647b7163edfcd92
+  native_focused_tests_passed: 135
+  paid_requests: 0
+  local_text_requests: 6
+  original_data_roots_preserved: true
+  ordinary_images_and_workflow_preserved: true
+  final_provider_restored: true
+  test_plan_left_paused: true

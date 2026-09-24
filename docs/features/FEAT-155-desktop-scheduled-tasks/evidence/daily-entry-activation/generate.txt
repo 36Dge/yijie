@@ -1,0 +1,6 @@
+$ node scripts/generate-public-api.mjs --check && node scripts/check-agent-host-contract.mjs --check && node scripts/check-agent-host-v3-contract.mjs && node scripts/check-agent-host-skills-contract.mjs && node scripts/check-agent-host-v4-contract.mjs && pnpm check:native
+Public API types verified at 164b14f609537d727a52326832da04430aecc4ab with openapi-typescript 7.13.0/TypeScript 5.9.3.
+Agent Host v2 turn contract verified at 164b14f609537d727a52326832da04430aecc4ab; hand-written-rust-adapter is covered by EXC-127-002.
+Agent Host v3 Artifact contract and 10 Desktop implementation pins verified at 164b14f609537d727a52326832da04430aecc4ab; adapter is implemented.
+Skills HEAD is 488714a8d96f40806a257aae097683815b1dd458, expected 10c45bec29603b002e861e1499d5b4e684251af5
+[ELIFECYCLE] Command failed with exit code 1.

@@ -55,3 +55,5 @@
 最终正常重开对照PASS，账本逐行一致，预约0，无新增请求；D4结论及机器声明校验见48报告、feature.yaml与d4-check.log。
 
 固定版本关闭：Runtime→Contracts→Host→Desktop完整SHA及源差异、后续缺陷修复、两次canonical正常启动/退出与不变账本见50。全仓门禁当前阻断从Contracts dirty前进到既有Skills HEAD不匹配；未改变Skills锁或降低门禁。D4的本地范围保持，不代表远端CI/public/生产通过。
+
+2026-09-25日常入口追加验证：Owner授权原日常库升级，36张旧业务表及Host三类映射索引对照保持；最终135项native回归、22项定向前端检查、lint/类型、Clippy、typed IPC源校验通过，实际普通客户端本机文本闭环与最终正常重开通过，详见[53](53-daily-entry-activation-report.md)。本轮真实模型0，不将localhost文本服务表述为新的真实Provider通过；既有Skills全量门禁与3项ChatPage基线问题照实保留。

@@ -1,0 +1,6 @@
+$ node scripts/generate-chat-session-purpose.mjs --check && node scripts/generate-native-conversation.mjs --check && node scripts/check-native-conversation.mjs && pnpm check:scheduled-ipc
+Private session purpose source generation verified.
+Native conversation verified: 811f38d6b104fa18477107e7ac91a85e19c445d1; published=false
+FEAT-132 native sources, generated consumer snapshots and retired-engine boundary verified.
+$ node scripts/generate-scheduled-ipc.mjs --check
+Scheduled private IPC source, pinned shared types and strict generation verified.

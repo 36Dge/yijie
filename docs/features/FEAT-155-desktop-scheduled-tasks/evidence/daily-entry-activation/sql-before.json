@@ -1,0 +1,560 @@
+{
+  "mode": "read_only",
+  "schema": 15,
+  "tables": {
+    "chat_approval_items_v6": {
+      "columns": [
+        "approval_request_id",
+        "session_id",
+        "turn_id",
+        "item_id",
+        "status",
+        "revision",
+        "requested_at",
+        "expires_at",
+        "outcome",
+        "decision_id",
+        "decision",
+        "resolved_at",
+        "source_event_id",
+        "source_sequence",
+        "source_occurred_at",
+        "durable_sequence"
+      ],
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "chat_artifact_cleanup_receipts": {
+      "columns": [
+        "artifact_id",
+        "outcome_code",
+        "completed_at",
+        "schema_version"
+      ],
+      "count": 2,
+      "sha256": "f647bf975f80a0a51322617597c6a5dd7d0e1802feb1d33377e69dba9b65534f"
+    },
+    "chat_attachment_chunks": {
+      "columns": [
+        "attachment_id",
+        "chunk_ordinal",
+        "content",
+        "byte_count"
+      ],
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "chat_attachments": {
+      "columns": [
+        "id",
+        "owner_user_id",
+        "tenant_id",
+        "kind",
+        "safe_name",
+        "media_type",
+        "byte_size",
+        "sha256",
+        "state",
+        "imported_at",
+        "expires_at",
+        "content_blob",
+        "message_id",
+        "draft_target_kind",
+        "draft_session_id",
+        "draft_ordinal"
+      ],
+      "count": 2,
+      "sha256": "9b1aa5fa6a20f60dc53124915be64d209dffca794c5eb90f93a820d99c8ba931"
+    },
+    "chat_command_cwd_segments_v5": {
+      "columns": [
+        "turn_id",
+        "item_id",
+        "ordinal",
+        "segment",
+        "byte_count"
+      ],
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "chat_command_items_v5": {
+      "columns": [
+        "turn_id",
+        "item_id",
+        "status",
+        "started_source_event_id",
+        "started_source_sequence",
+        "started_source_occurred_at",
+        "last_source_event_id",
+        "last_source_sequence",
+        "last_source_occurred_at",
+        "command_summary",
+        "command_summary_bytes",
+        "command_summary_truncated",
+        "command_summary_truncation_reason",
+        "cwd_kind",
+        "live_output",
+        "live_output_bytes",
+        "live_output_truncated",
+        "live_output_truncation_reason",
+        "output_retention",
+        "output_text",
+        "output_head",
+        "output_tail",
+        "output_reason",
+        "output_truncated",
+        "output_truncation_reason",
+        "duration_ms",
+        "exit_code",
+        "error_code",
+        "error_summary"
+      ],
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "chat_deletion_jobs": {
+      "columns": [
+        "operation_id",
+        "keyed_session_hash",
+        "encrypted_retry_ids",
+        "desktop_state",
+        "host_state",
+        "runtime_state",
+        "requested_at",
+        "lease_expires_at",
+        "session_id",
+        "updated_at",
+        "next_attempt_at",
+        "attempt_count",
+        "outcome_code",
+        "last_error_code"
+      ],
+      "count": 2,
+      "sha256": "4cd251ef7369ffbebe84d9158532cbcd7d0c70c57317117ac3515c3a179ef612"
+    },
+    "chat_deletion_receipts": {
+      "columns": [
+        "operation_id",
+        "keyed_session_hash",
+        "desktop_state",
+        "host_state",
+        "runtime_state",
+        "outcome",
+        "outcome_code",
+        "requested_at",
+        "completed_at",
+        "expires_at",
+        "schema_version"
+      ],
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "chat_event_cursors": {
+      "columns": [
+        "session_id",
+        "stream_id",
+        "sequence",
+        "event_id"
+      ],
+      "count": 6,
+      "sha256": "6531f98a357a1f46a50174877f9075d90cb082fe72c8131b6dec108752ac31c2"
+    },
+    "chat_message_content_blocks": {
+      "columns": [
+        "message_id",
+        "block_ordinal",
+        "block_type",
+        "text_content",
+        "attachment_id"
+      ],
+      "count": 4,
+      "sha256": "0419bdaf8d55a5abd6042533a126dfd981df291867839fdb2edb8768ba119fd5"
+    },
+    "chat_messages": {
+      "columns": [
+        "id",
+        "session_id",
+        "turn_id",
+        "role",
+        "content",
+        "status",
+        "ordinal",
+        "created_at"
+      ],
+      "count": 39,
+      "sha256": "85537170d08b49abe82c74cd76d1d8cac200b711c25618dbabf96342eecf28fe"
+    },
+    "chat_native_bindings": {
+      "columns": [
+        "turn_id",
+        "session_id",
+        "runtime_thread_id",
+        "runtime_turn_id",
+        "host_instance_nonce"
+      ],
+      "count": 10,
+      "sha256": "ebef023c56d4d5b349dd24fabdcb758c71eee7d24fceada8d5868f683f848b72"
+    },
+    "chat_native_facts": {
+      "columns": [
+        "turn_id",
+        "event_id",
+        "method",
+        "fact_json",
+        "format_version"
+      ],
+      "count": 84,
+      "sha256": "0c8d07abc827d8764a41426803dd66b93b530a993458347bd262d71788d27243"
+    },
+    "chat_native_views": {
+      "columns": [
+        "turn_id",
+        "session_id",
+        "source",
+        "revision",
+        "view_json",
+        "format_version"
+      ],
+      "count": 10,
+      "sha256": "28ac7f68d4b0ca641baf576e79a1dfeabfb7620ad873d43c319aa9dfa6d95bad"
+    },
+    "chat_observed_events_v4": {
+      "columns": [
+        "event_id",
+        "session_id",
+        "turn_id",
+        "stream_id",
+        "sequence",
+        "durable_sequence",
+        "event_type",
+        "source_occurred_at",
+        "observed_at_ms",
+        "source_schema_version"
+      ],
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "chat_outbox": {
+      "columns": [
+        "operation_id",
+        "session_id",
+        "kind",
+        "state",
+        "attempt_count",
+        "next_attempt_at",
+        "payload_version",
+        "encrypted_payload"
+      ],
+      "count": 34,
+      "sha256": "ad63c65bf665187c7d0a5f05d5b509b192236be614374b509ca66bc8f6384829"
+    },
+    "chat_output_artifacts": {
+      "columns": [
+        "artifact_id",
+        "owner_user_id",
+        "tenant_id",
+        "session_id",
+        "turn_id",
+        "kind",
+        "provenance",
+        "state",
+        "progress_stage",
+        "progress_percent",
+        "ordinal",
+        "display_name",
+        "media_type",
+        "byte_size",
+        "sha256",
+        "content_blob",
+        "poster_media_type",
+        "poster_byte_size",
+        "poster_sha256",
+        "poster_blob",
+        "local_committed_at",
+        "expires_at",
+        "ack_id",
+        "ack_state",
+        "acknowledged_at",
+        "error_code",
+        "retryable"
+      ],
+      "count": 2,
+      "sha256": "e5c4c426a457d63bc4ef6bfa1f3d1bb586002da2aebfd7698ebe7ea17ffa5f2c"
+    },
+    "chat_permission_preferences": {
+      "columns": [
+        "owner_user_id",
+        "tenant_id",
+        "draft_mode",
+        "full_access_confirmed"
+      ],
+      "count": 1,
+      "sha256": "a8e6cfb4680faffba9ed5686c2c01e38ef0f1361f27176db977b2cdcc4ffe136"
+    },
+    "chat_projection_counters_v4": {
+      "columns": [
+        "session_id",
+        "last_sequence"
+      ],
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "chat_projects": {
+      "columns": [
+        "id",
+        "owner_user_id",
+        "tenant_id",
+        "safe_name",
+        "canonical_hash",
+        "bookmark_ref",
+        "pinned_at",
+        "last_used_at",
+        "removed_at"
+      ],
+      "count": 7,
+      "sha256": "970c141dc9de1a5e7b8d2caad5aee285e782b0fa6ca772ed3a39811e50d411e0"
+    },
+    "chat_public_task_bindings": {
+      "columns": [
+        "session_id",
+        "client_reference_id",
+        "create_operation_id",
+        "public_task_id",
+        "host_operation_id",
+        "state",
+        "authorization_revision",
+        "attempt_count",
+        "lease_expires_at",
+        "next_attempt_at",
+        "last_error_code",
+        "created_at",
+        "updated_at",
+        "bound_at"
+      ],
+      "count": 15,
+      "sha256": "afda5928ebc955b055b004b7bca66a7f349dce55b39d6911486ef0f047cfcc27"
+    },
+    "chat_reasoning_items": {
+      "columns": [
+        "turn_id",
+        "item_id",
+        "item_ordinal",
+        "status",
+        "reason_code",
+        "total_bytes",
+        "finalized_at_ms"
+      ],
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "chat_reasoning_parts": {
+      "columns": [
+        "turn_id",
+        "item_id",
+        "content_index",
+        "text",
+        "byte_count"
+      ],
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "chat_schema_migrations": {
+      "columns": [
+        "version",
+        "name",
+        "sha256",
+        "applied_at"
+      ],
+      "count": 15,
+      "sha256": "5d2ac85c9e2561d28c6b2aa270671329e99b8d930cf5cee2f948f255acbd20bf"
+    },
+    "chat_sessions": {
+      "columns": [
+        "id",
+        "owner_user_id",
+        "tenant_id",
+        "project_id",
+        "title",
+        "title_source",
+        "title_job_status",
+        "pinned_at",
+        "created_at",
+        "last_activity_at",
+        "agent_session_id",
+        "runtime_thread_id"
+      ],
+      "count": 15,
+      "sha256": "af404143e19c3d91144c1213e79f486f4424e0096938647af785b5e19b9a8c97"
+    },
+    "chat_task_permissions": {
+      "columns": [
+        "session_id",
+        "mode"
+      ],
+      "count": 9,
+      "sha256": "f9e767bc88d9a61d145c7b97de2f9dc15584bb7cd9204825e4a8d04a9e41ae27"
+    },
+    "chat_timeline_items_v4": {
+      "columns": [
+        "turn_id",
+        "item_id",
+        "item_ordinal",
+        "item_type",
+        "phase",
+        "status",
+        "text",
+        "reasoning_status",
+        "reasoning_reason_code",
+        "reasoning_finalized_at_ms",
+        "started_at_ms",
+        "completed_at_ms",
+        "source_event_id",
+        "source_sequence",
+        "source_occurred_at",
+        "source_schema_version"
+      ],
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "chat_timeline_notices_v4": {
+      "columns": [
+        "source_event_id",
+        "session_id",
+        "turn_id",
+        "source_sequence",
+        "source_occurred_at",
+        "scope",
+        "severity",
+        "code",
+        "will_retry",
+        "observed_at_ms"
+      ],
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "chat_timeline_reasoning_parts_v4": {
+      "columns": [
+        "turn_id",
+        "item_id",
+        "content_index",
+        "text",
+        "byte_count"
+      ],
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "chat_tool_items_v5": {
+      "columns": [
+        "turn_id",
+        "item_id",
+        "status",
+        "started_source_event_id",
+        "started_source_sequence",
+        "started_source_occurred_at",
+        "last_source_event_id",
+        "last_source_sequence",
+        "last_source_occurred_at",
+        "identity_resolution",
+        "server_name",
+        "tool_name",
+        "arguments_summary",
+        "arguments_summary_bytes",
+        "arguments_summary_truncated",
+        "arguments_summary_truncation_reason",
+        "duration_ms",
+        "result_summary",
+        "result_summary_bytes",
+        "result_summary_truncated",
+        "result_summary_truncation_reason",
+        "error_code",
+        "error_summary"
+      ],
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "chat_tool_progress_v5": {
+      "columns": [
+        "turn_id",
+        "item_id",
+        "progress_index",
+        "source_event_id",
+        "source_sequence",
+        "source_occurred_at",
+        "summary",
+        "summary_bytes",
+        "summary_truncated",
+        "summary_truncation_reason"
+      ],
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "chat_turn_plan_steps_v4": {
+      "columns": [
+        "turn_id",
+        "ordinal",
+        "step",
+        "status"
+      ],
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "chat_turn_plans_v4": {
+      "columns": [
+        "turn_id",
+        "source_event_id",
+        "source_sequence",
+        "source_occurred_at",
+        "explanation",
+        "observed_at_ms"
+      ],
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "chat_turn_projection_counters_v4": {
+      "columns": [
+        "turn_id",
+        "observed_event_count",
+        "observed_event_bytes"
+      ],
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "chat_turn_stream_versions_v6": {
+      "columns": [
+        "turn_id",
+        "schema_version"
+      ],
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "chat_turn_terminals_v4": {
+      "columns": [
+        "turn_id",
+        "source_event_id",
+        "source_sequence",
+        "source_occurred_at",
+        "status",
+        "code",
+        "observed_at_ms"
+      ],
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "chat_turns": {
+      "columns": [
+        "id",
+        "session_id",
+        "operation_id",
+        "runtime_turn_id",
+        "status",
+        "terminal_at",
+        "reasoning_status",
+        "reasoning_reason_code",
+        "terminal_code",
+        "submission_status"
+      ],
+      "count": 21,
+      "sha256": "fe13ffb21af4e9f2a90423bd8948e31cdff0670093327e40cd55ea32cc8f48e0"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "source": "Actual canonical packaged native UI via CUA; declared localhost text fixture, not a real Provider pass",
+  "plan_id": "01a0d46c-bbf6-7630-99d7-b2d3eae6f267",
+  "run_id": "01a0d47c-f6d8-79b0-b1ec-3dd4db429bea",
+  "conversation_id": "01a0d47c-f6d8-79b0-b1ec-3e064bf86ff9",
+  "turn_id": "01a0d47c-f6d8-79b0-b1ec-3e2573a038b5",
+  "observed": [
+    "ordinary scheduled page read/create enabled",
+    "homepage button removed",
+    "existing user chat opened",
+    "draft generated then saved paused",
+    "same paused plan survives normal reopen",
+    "manual native receipt then terminal completed",
+    "execution time 2026-09-25 01:35:54 Asia/Shanghai; elapsed 0.021 s",
+    "result opens exact conversation and turn",
+    "in-app important update shown",
+    "old never-sent run cancelled/refunded and not resent; new run has new native identity"
+  ],
+  "ui_local_text_requests": 2,
+  "host_native_coexist_local_text_requests": 4,
+  "paid_requests": 0,
+  "image_requests": 0,
+  "merchant_requests": 0,
+  "external_mcp_requests": 0,
+  "final_reopen": {
+    "normal_provider": "MiniMax-M3 at https://api.minimaxi.com/v1",
+    "local_text_server_stopped": true,
+    "workflow_entry_preserved": true,
+    "original_new_task_preference_restored": "帮我批准",
+    "plan_state": "paused",
+    "record_reopened": "completed at 01:35:54; 0.021 seconds",
+    "unattempted_prior_record": "cancelled; not resent",
+    "daily_app_left_running": true
+  }
+}

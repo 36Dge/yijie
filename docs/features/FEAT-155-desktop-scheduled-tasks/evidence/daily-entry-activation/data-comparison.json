@@ -1,0 +1,22 @@
+{
+  "sql_before": 15,
+  "sql_after": 26,
+  "old_nonmigration_tables_unchanged": true,
+  "old_table_count": 36,
+  "preserved_counts": {
+    "chat_sessions": 15,
+    "chat_projects": 7,
+    "chat_turns": 21,
+    "chat_messages": 39,
+    "chat_outbox": 34,
+    "chat_native_bindings": 10,
+    "chat_native_facts": 84
+  },
+  "host_before": "5",
+  "host_after": "6",
+  "host_mapping_indexes_unchanged": true,
+  "host_records_before": 15,
+  "host_records_after": 15,
+  "host_raw_records_digest_unchanged": false,
+  "note": "Store6 explicitly records ordinary purpose; opening existing conversation also permits normal native metadata refresh. Raw session record equality is not claimed."
+}

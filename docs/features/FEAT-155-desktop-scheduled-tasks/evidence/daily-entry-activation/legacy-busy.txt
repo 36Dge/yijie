@@ -1,0 +1,22 @@
+   Compiling yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.38s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/yijie_desktop_lib-6d0ab7e7a0bde530)
+
+running 1 test
+test chat::schedules::execution::preparation::tests::feat155_daily_failed_legacy_queue_and_exhausted_cleanup_do_not_hold_global_lane ... FAILED
+
+failures:
+
+---- chat::schedules::execution::preparation::tests::feat155_daily_failed_legacy_queue_and_exhausted_cleanup_do_not_hold_global_lane stdout ----
+
+thread 'chat::schedules::execution::preparation::tests::feat155_daily_failed_legacy_queue_and_exhausted_cleanup_do_not_hold_global_lane' (306809) panicked at src/chat/schedules/execution/preparation/tests.rs:1036:10:
+called `Result::unwrap()` on an `Err` value: SqliteFailure(Error { code: ConstraintViolation, extended_code: 275 }, Some("CHECK constraint failed: (state IN ('blocked_auth', 'retry_wait', 'denied', 'failed')) = (last_error_code IS NOT NULL)"))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    chat::schedules::execution::preparation::tests::feat155_daily_failed_legacy_queue_and_exhausted_cleanup_do_not_hold_global_lane
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 494 filtered out; finished in 0.96s
+
+error: test failed, to rerun pass `--lib`

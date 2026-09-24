@@ -1,0 +1,80 @@
+
+ RUN  v4.1.10 /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop
+
+(node:13328) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:13329) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+stderr | src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > does not treat an active empty reasoning Item as historical authority loss
+[Vue Router warn]: No active route record was found when calling `onBeforeRouteLeave()`. Make sure you call this function inside a component child of <router-view>. Maybe you called it inside of App.vue?
+[Vue Router warn]: No active route record was found when calling `onBeforeRouteUpdate()`. Make sure you call this function inside a component child of <router-view>. Maybe you called it inside of App.vue?
+
+stderr | src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > keeps one accepted user identity and never restores its drafts after failed
+[Vue Router warn]: No active route record was found when calling `onBeforeRouteLeave()`. Make sure you call this function inside a component child of <router-view>. Maybe you called it inside of App.vue?
+[Vue Router warn]: No active route record was found when calling `onBeforeRouteUpdate()`. Make sure you call this function inside a component child of <router-view>. Maybe you called it inside of App.vue?
+
+stderr | src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > keeps one accepted user identity and never restores its drafts after interrupted
+[Vue Router warn]: No active route record was found when calling `onBeforeRouteLeave()`. Make sure you call this function inside a component child of <router-view>. Maybe you called it inside of App.vue?
+[Vue Router warn]: No active route record was found when calling `onBeforeRouteUpdate()`. Make sure you call this function inside a component child of <router-view>. Maybe you called it inside of App.vue?
+
+ ❯ src/pages/chat/ChatPage.test.ts (49 tests | 3 failed) 476ms
+     × does not treat an active empty reasoning Item as historical authority loss 8ms
+     × keeps one accepted user identity and never restores its drafts after failed 13ms
+     × keeps one accepted user identity and never restores its drafts after interrupted 10ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > does not treat an active empty reasoning Item as historical authority loss
+AssertionError: expected '本地合成任务Synthetic Workspace本地运行环境已就绪第 1…' to contain '本轮正在处理中'
+
+Expected: "本轮正在处理中"
+Received: "本地合成任务Synthetic Workspace本地运行环境已就绪第 1 轮 旧版记录，当前执行状态未确认  · 旧版记录过程记录仅有已观察记录，当前进度待确认仅有已观察记录，当前进度待确认Synthetic Workspace输入你的任务需求权限审批只读 · 禁止写入"
+
+ ❯ src/pages/chat/ChatPage.test.ts:757:28
+    755|     expect(wrapper.find(".chat-turn").exists()).toBe(false);
+    756|     expect(wrapper.text()).toContain("过程记录");
+    757|     expect(wrapper.text()).toContain("本轮正在处理中");
+       |                            ^
+    758|     expect(wrapper.text()).not.toContain("仅包含状态元数据");
+    759|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > keeps one accepted user identity and never restores its drafts after failed
+AssertionError: expected '本地合成任务Synthetic Workspace本地运行环境已就绪第 1…' to contain '等待处理'
+
+Expected: "等待处理"
+Received: "本地合成任务Synthetic Workspace本地运行环境已就绪第 1 轮 已完成  · 旧版记录 模型推理记录 推理记录已完成 · 1 项 · 12 字节用户消息已完成检查标题synthetic-brief.pdf文件 · 4 KB过程记录已完成此过程仅包含状态元数据；详情未进入当前对话投影。模型回答已完成标题检查完成第 2 轮 旧版记录，当前执行状态未确认  · 旧版记录用户消息已完成提交后 failedsynthetic-brief.pdf文件 · 4 KBSynthetic Workspace输入你的任务需求权限审批只读 · 禁止写入"
+
+ ❯ src/pages/chat/ChatPage.test.ts:1281:30
+    1279|       expect(queuedUsers).toHaveLength(1);
+    1280|       expect(wrapper.text()).toContain(input);
+    1281|       expect(wrapper.text()).toContain("等待处理");
+       |                              ^
+    1282|       expect((wrapper.get("textarea").element as HTMLTextAreaElement).…
+    1283|       expect(store.draftAttachments).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > keeps one accepted user identity and never restores its drafts after interrupted
+AssertionError: expected '本地合成任务Synthetic Workspace本地运行环境已就绪第 1…' to contain '等待处理'
+
+Expected: "等待处理"
+Received: "本地合成任务Synthetic Workspace本地运行环境已就绪第 1 轮 已完成  · 旧版记录 模型推理记录 推理记录已完成 · 1 项 · 12 字节用户消息已完成检查标题synthetic-brief.pdf文件 · 4 KB过程记录已完成此过程仅包含状态元数据；详情未进入当前对话投影。模型回答已完成标题检查完成第 2 轮 旧版记录，当前执行状态未确认  · 旧版记录用户消息已完成提交后 interruptedsynthetic-brief.pdf文件 · 4 KBSynthetic Workspace输入你的任务需求权限审批只读 · 禁止写入"
+
+ ❯ src/pages/chat/ChatPage.test.ts:1281:30
+    1279|       expect(queuedUsers).toHaveLength(1);
+    1280|       expect(wrapper.text()).toContain(input);
+    1281|       expect(wrapper.text()).toContain("等待处理");
+       |                              ^
+    1282|       expect((wrapper.get("textarea").element as HTMLTextAreaElement).…
+    1283|       expect(store.draftAttachments).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  3 failed | 48 passed (51)
+   Start at  00:42:11
+   Duration  1.61s (transform 818ms, setup 0ms, import 1.90s, tests 562ms, environment 198ms)
+

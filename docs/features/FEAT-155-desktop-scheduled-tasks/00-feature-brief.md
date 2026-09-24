@@ -76,3 +76,5 @@ D4要求当前候选一次fresh验证周期内全部适用Must、真实主路径
 整体契约影响仍breaking；当前剩余交互新增私有只读投影为additive，同源schema→Rust/TS/client。旧Host/Runtime协议、SQL26和旧迁移保持。候选reader兼容先行，回退保留兼容reader，不降库、不复制或清空用户库试错。
 
 用户授权完成剩余需求，不授权Git提交/推送/发布/生产操作。只允许正常非破坏性开发验证；正常退出失败保留进程并报告，不强杀、不篡改受保护二进制、不破坏权限、不用攻击fixture。
+
+2026-09-25当前入口补充：Owner已明确授权接通普通客户端，原日常库兼容升级SQL26/Store6；功能不再只在隔离candidate可用。复用原目录、worker/Coordinator/Host与固定Runtime，首页快捷按钮移除，管理页两种创建方式保留。原因、兼容修复与本机原生闭环见[53](53-daily-entry-activation-report.md)。两项电源需求排除与系统通知延期不变。
