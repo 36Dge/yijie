@@ -11,4 +11,4 @@
 - 最后原生重开：MiniMax草案保持MiniMax，远山主聊保持Kimi及中断历史，默认新聊Kimi；系统浅色、缩放100%、原窗口恢复。
 - 资格：Runtime4新/34全部SSE、真实固定Runtime本机6请求、Contracts确定生成/同步、Host模型与权限协议、Desktop7原生/27模型与计划/2页面、lint/fmt/clippy/build/generate/docs通过。完整命令和边界见02。
 - 限制：ChatPage既有5项基线失败；FEAT155授权刷新会关闭未提交计划表单，基线逻辑未改；禁止的历史攻击/伪Runtime/破坏测试未运行；真实生图/MCP/标题未运行；未作全量CI或生产发布承诺。
-- Owner已授权“审查并提交，暂不推送”。四个产品仓已按顺序本地提交，元仓本记录随需求包提交；完整SHA见evidence/local-commit-review.json。初始20份Desktop改动全部保留未提交。未推送、未打tag、未发版；新增家族仍是显式local candidate。
+- Owner先授权分仓提交，后明确授权当前目录所有仓库改动推送。四个产品仓已成功推送到各自origin的chore/retirement-baseline-20260905；Desktop原20份界面改动单独提交为b133af65ac5d572b88c4a4f4cbbb30a04c1dc166，全部纳入本次推送。元仓随本记录提交后推送；其余7仓与远端一致。完整回执见01 §22。本地提交阶段的保留事实仍由evidence/local-commit-review.json记录。未打tag或生产发布，新家族仍为local candidate。

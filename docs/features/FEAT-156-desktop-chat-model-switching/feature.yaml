@@ -233,10 +233,11 @@ verification:
     - evidence/local-commit-review.json
   diff_review:
     status: PASS
-    summary: 五仓按Owner授权分开本地提交；Runtime→Contracts→Host→Desktop来源按顺序重新生成校验。Desktop仅暂存FEAT-156，初始20份改动全部保留为未提交，19份原hash验证通过；4份混合文件只提交功能增量。纯暂存前端lint/build、27项定向及2项页面回归通过。无push/tag/release。
+    summary: FEAT-156五仓独立提交并按Runtime→Contracts→Host→Desktop校验来源；初始20份Desktop改动在FEAT提交中保留，后续全仓推送授权下单独提交为b133af6。纯FEAT暂存lint/build及29项、完整UI
+      lint/build及80项通过；未混入secret/cache/binary。推送到各自origin当前分支，未创建tag或生产发布。
   known_limitations:
-    - 仅demo_fast/local可用。FEAT-156已按Owner授权分仓本地提交，未推送/打tag/发布；新模型家族仍为release=false的local
-      candidate，非生产来源晋升，DP不适用。
+    - 仅demo_fast/local可用。FEAT-156已分仓提交，后续Owner已明确授权全仓推送；回执见01
+      §22。未打tag/生产发布；新家族仍为release=false的local candidate，DP不适用。
     - 实际44/50次HTTP、4/4图片理解；meter正常停止，余6次未使用。最终App恢复直连受管Provider，验收不再发送。
     - ChatPage原同名5失败/48通过已用HEAD对照复现；保留该基线事实，未宣称全量CI通过。
     - 既有FEAT155

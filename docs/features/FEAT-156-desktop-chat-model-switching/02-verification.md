@@ -228,3 +228,9 @@ Desktop初始20份修改仍全部留在工作区，其中4个混合文件只把F
 为验证独立提交，将Git index导出到临时源码目录，复用现有node_modules，不复制Rust缓存。纯暂存版本lint、vue-tsc/build、27项模型/计划/launcher及2项页面回归PASS。该导出没有重复进行真实原生D4，§8的原生观察仍对应当时完整工作树；此处明确区分验证范围。初始pnpm因临时目录位置变化尝试自动同步依赖，在修改前停止；改用已安装pnpm支持的warn模式运行相同依赖，未安装或清空依赖。Contracts7项、lint、确定生成/consumer检查、Host三包TestChatModel和vet、Desktop当前来源generate:check及docs:build均PASS。
 
 Runtime补丁文件的4个单空格行是unified diff必需的空上下文标记，外层git whitespace检查将其识别为新增空格；逐行检查补丁实际新增源码无尾空白，普通文本检查通过，原资格patchhash保持，没有关闭hook或产品门禁。原ChatPage5项基线失败与FEAT155授权刷新表单限制继续保留。新家族的local candidate语义没有因commit自动晋升为production/release。
+
+## 10. 后续全仓推送授权与界面改动提交
+
+Owner随后明确要求推送当前目录所有仓库改动。因此将§9中原先保留的20份Desktop界面修改独立提交为 `b133af65ac5d572b88c4a4f4cbbb30a04c1dc166`，当前FEAT-156提交和界面提交可分别追溯。该批7文件80项普通组件/计时测试、lint及build通过；没有把ChatPage既有5项基线失败改为通过，没有执行禁止的故障/攻击测试。
+
+12仓origin当前分支已逐一读取核对；4个产品仓push成功回执及7个无需变动的仓库见01 §22。元仓本记录与先前需求包提交一起推送，最终逐仓远端SHA在提交后核对。所有原改动均已纳入提交；没有新增模型请求、密钥、缓存、运行二进制、远端强制更新或生产发布。

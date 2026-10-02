@@ -294,3 +294,11 @@ Owner再次解锁并明确“授权追加16次及2次图片理解”：任务总
 Owner明确授权审查并提交FEAT-156、暂不推送。核对最终源码摘要无漂移后按Runtime→Contracts→Host→Desktop提交；Runtime提交变化由原generator重新生成精确来源投影，Host提交后由canonical freeze生成Desktop构建快照，未改已资格的二进制/manifest。两处Desktop文档更新旧阶段文案，Host补Kimi凭据隔离说明。
 
 Desktop四份混合文件通过index-only内容拆分，只提交FEAT-156；全部初始20份用户改动留在工作树，19份初始hash逐项验证。纯暂存源码单独lint/build及29个定向用例通过，不依赖未提交流式/图标/耗时修改。源码与本地提交清单、运行工具的小范围修正和已知限制见02 §9及evidence/local-commit-review.json。无新增付费调用、强杀、二进制覆盖、推送或发布。
+
+### 22. Owner授权当前目录全部仓库推送
+
+后续用户明确：“当前目录所有仓库的改动推送至对应的远端仓库”。此授权覆盖先前保留的Desktop20份界面修改；审查其展示层范围、秘密和差异后，独立提交 `b133af65ac5d572b88c4a4f4cbbb30a04c1dc166`，未混入FEAT-156原提交。该批contract-impact=none，lint/build及7文件80项定向测试PASS；docs:build已在相同源码通过，无新增付费调用、协议/权限/持久化改动。
+
+扫描当前目录12个项目仓，逐一只读核对origin当前跟踪分支；远端没有新分歧。随后使用非强制、明确目标ref的git push，已取得四个产品仓成功回执：Runtime `fb79b1d535..7fd463bcef`、Contracts `54be931..1a213ac`、Host `24d1bcc..a5bd6c2`、Desktop `a135796..b133af6`，目标均为各自36Dge仓的 `chore/retirement-baseline-20260905`。没有向Codex或Coze上游推送。
+
+Admin Web、API、Connectors、Coze、Infra、Knowledge、Skills七仓当前分支与origin相同，无未提交改动，无需新增提交。元仓FEAT-156提交 `1ed0464` 与本交付记录提交随后一起推送到元仓同名分支；最终用户回复以推送后的逐仓远端SHA核对为准。没有force、分支删除、tag、合并或生产部署。此前§21/02 §9“20份保留未提交、未推送”是当时阶段事实，不再表示本阶段目标。
