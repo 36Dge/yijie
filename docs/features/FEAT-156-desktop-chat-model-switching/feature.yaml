@@ -1,0 +1,260 @@
+# Owner resumed execution at 2026-10-02T17:16:40+08:00; previous pause snapshot: PAUSED-STATE.md.
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+
+feature:
+  id: FEAT-156
+  slug: desktop-chat-model-switching
+  title: "聊天模型切换与 Kimi K3 默认接入"
+  status: usable
+  created_at: "2026-10-02"
+  requirement_owner: "段成威"
+  technical_owner: "段成威"
+  reviewer: "段成威"
+  release_owner: "段成威"
+
+# 2026-10-02 Owner: 开始执行 feat-156 需求. Local implementation authorized; no Git delivery or paid calls implied.
+scope:
+  risk_level: high
+  data_classification: restricted
+  contract_impact: breaking
+  database_change: expand
+  persistence_change: durable
+  runtime_change: platform
+  auth_permission_change: none
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: model
+
+repositories:
+  - yijie
+  - yijie-contracts
+  - yijie-agent-host
+  - yijie-desktop
+  - yijie-codex
+
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+
+product_ux:
+  status: PASS
+  primary_user: "使用易界桌面端完成对话任务的跨境电商用户"
+  problem: "现有聊天只接入 MiniMax M3，输入框没有可真实生效的模型选择入口"
+  user_outcome: "发送或停止左侧可选择 Kimi K3 / MiniMax M3；新聊天默认 Kimi K3，精确 max 推理；会话、重试和实际路由一致"
+  in_scope:
+    - "普通新聊天、已有聊天下一轮、定时计划草案共用模型入口"
+    - "Kimi 原生 Responses 接入与 MiniMax 兼容"
+    - "每会话选择、每操作模型快照、幂等和正常恢复"
+    - "计划确认/授权/run 模型一致性与旧授权保护"
+    - "canonical 本地装配、受管凭据、focused checks 与真实整体验收"
+  out_of_scope:
+    - "未单独授权的付费模型/商家/MCP调用及Git交付"
+    - "自定义模型URL、模型市场、推理选择器、密钥管理UI、语音与视频新通道"
+    - "自动fallback、全局最近模型记忆、Coze节点模型与专用图片Provider替换"
+    - "公网、生产、云同步、完整性能/韧性专项及生产发布"
+  main_flow:
+    - "canonical日常入口免登录进入Chat；新建显示Kimi K3/max，已有会话恢复自己的选择"
+    - "空闲时展开两项菜单，选择只准备配置，不发送prompt；已有thread经原生回执核验"
+    - "发送时native校验scope/revision并冻结profile/provider/model/effort随outbox原子持久化"
+    - "模型执行、工具和审批沿原生事实；失败安全恢复，无隐式改模型或重复发送"
+    - "空闲可继续同thread切换；正常重开保留选择和历史；计划执行使用经确认快照"
+  visual_direction: "易界2.1.0活跃token、Naive/YjIcon；760px内容/24px输入框；模型入口紧邻发送或停止左侧，不新\
+    增麦克风；亮暗、最小窗与键盘可用"
+  ui_states:
+    idle: "显示当前模型与下拉箭头，两项菜单和当前勾选；打开不发模型请求"
+    loading: "目录加载/原生切换有局部反馈，锁定发送与重复切换，保留正文附件"
+    success: "匹配target与revision的有效回执确认后更新选择；不把配置成功称作调用成功"
+    empty: "空输入可选模型不可发送；空目录显示暂无可用模型与刷新"
+    error: "安全原因、保留草稿/最后确认值；结果不明先查证，禁止静默fallback"
+    retry: "配置读取/切换可显式重试；已提交未知请求沿原ID与快照查证，不重复付费"
+    cancel: "Esc/外部点击仅关菜单；同项无副作用；运行中正常停止保持原生语义"
+
+must_acceptance:
+  - id: AC-001
+    statement: "三类Composer入口的位置、两项菜单、键盘/取消及亮暗最小窗口缩放均正确"
+    verification: "02 T01：组件/页面及canonical原生视觉"
+    status: PASS
+  - id: AC-002
+    statement: "新聊天默认Kimi/max；已有会话独立恢复，旧MiniMax不改写，未知不伪造"
+    verification: "02 T02：新建/切页/旧reader/正常重开"
+    status: PASS
+  - id: AC-003
+    statement: "Kimi真实请求kimi-k3/max与MiniMax均可对话，同thread双向切换延续上下文"
+    verification: "02 T03：参数conformance与获授权的Kimi→MiniMax→Kimi真实链"
+    status: PASS
+  - id: AC-004
+    statement: "busy/queued/approval/uncertain/预约锁定；请求快照和幂等模型不串台"
+    verification: "02 T04：原生状态/并发/outbox与正常UI"
+    status: PASS
+  - id: AC-005
+    statement: "文本图片文件与原生工具审批Artifact适配且保留MiniMax能力，无丢附件或静默换模型"
+    verification: "02 T05：能力矩阵、正常输入、工具回合与审批"
+    status: PASS
+  - id: AC-006
+    statement: "选择/有效模型/每轮快照分离持久化，兼容旧数据，正常重开不重发，回滚不降库"
+    verification: "02 T06：版本/迁移/reader及正常重开"
+    status: PASS
+  - id: AC-007
+    statement: "受管模型与scope再校验；密钥不进入renderer/存储/日志/子工具，权限审批不变"
+    verification: "02 T07：秘密传递审查及无真实secret的普通状态检查"
+    status: PASS
+  - id: AC-008
+    statement: "草案所选模型有效，新计划确认模型快照，旧授权不迁移，三目标冲突不误投"
+    verification: "02 T08：草案/确认/grant/run/三目标兼容"
+    status: PASS
+  - id: AC-009
+    statement: "安全错误可恢复，无隐式fallback/降effort/未知重发，正常停止不伪终态"
+    verification: "02 T09：正常未配置→修复→显式重试及声明式错误返回"
+    status: PASS
+  - id: AC-010
+    statement: "canonical装配真实两模型，一次fresh run覆盖全部Must、主路径、失败恢复与证据"
+    verification: "02 T10：获得实施及调用授权后的整体本地验收"
+    status: PASS
+
+contract:
+  impact: breaking
+  authority: "易界Host wire以yijie-contracts源为权威；app-server以固定Runtime canonical
+    schema为权威并作兼容投影；Provider以Kimi官方Responses规范为权威；Desktop private
+    IPC与存储走同源schema/migration"
+  source_first_plan: "固定原生能力核对→Contracts源/兼容投影与IPC源→生成conformance→Host及兼容reader→n\
+    ative快照/计划→Vue；新请求provider-first，新响应reader-first；不改旧digest，不复制DTO；实施按本地候选依赖\
+    顺序执行"
+  status: "PASS"
+  checks:
+    - repository: yijie-contracts
+      command: 源先行模型/计划/执行0.2.0及IPC生成；focused conformance与pnpm lint；exact local
+        candidate同步
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: 旧clean固定来源generate:check；SQL29旧数据/摘要/FK/trigger/不降库迁移测试
+      status: PASS
+      exit_code: 0
+
+external_authorizations:
+  paid_calls:
+    {
+      allowed: true,
+      max_actions: 50,
+      approved_by: "段成威",
+      approved_at: "2026-10-02T14:31:47.766Z"
+    }
+  destructive_operations:
+    allowed: true
+    max_actions: 1
+    approved_by: 段成威
+    approved_at: 2026-10-02T19:16:19+08:00
+  production_writes: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+
+implementation:
+  status: complete
+  real_entrypoint: "canonical run-local-demo-fast.sh --packaged，原 daily
+    数据/18081默认双模型；SQL29/Host7；独立 chat-models-stream-args
+    Runtime0005；最终已恢复无计数器的日常入口。"
+  mock_only: false
+
+verification:
+  status: "PASS"
+  verified_at: "2026-10-02T14:31:47.766Z"
+  startup:
+    status: PASS
+    command_or_steps: YIJIE_PERMISSION_VERIFICATION_BASE_URL=http://127.0.0.1:18083/v1
+      ./scripts/run-local-demo-fast.sh --packaged
+    environment: canonical日常入口、原daily数据、SQL29、双模型；计数器限定已批准额度
+    actual_result: 最终候选正常打包启动，Kimi/max默认、旧MiniMax保留；SQL29/Host7及Runtime0005精确资格通过。最终无meter环境/readyz=ready，正常重开没有历史重发。
+  real_smoke:
+    status: PASS
+    command_or_steps: canonical原生对话/文件图片/工具/草案/三目标计划；普通API与被动SSE诊断逐次记账
+    environment: 累计授权50HTTP/4图片、单次8192；实际44HTTP/4图片。最终候选fresh周期31–44，含正常停止43；无图片生成、外部MCP或标题请求。
+    actual_result: Kimi31→MiniMax32–34→Kimi39同thread保留远山/文件合计12；两模型工具exit0、图片35/36、空工具结构草案37/44、三目标计划38–40全部完成。模型冲突在Provider前拒投、重审后旧run仍MiniMax；测试计划均关闭。
+  representative_failure:
+    status: "PASS"
+    command_or_steps: "canonical显式空Kimi配置→默认禁发/草稿保留→显式MiniMax→正常重开恢复受管配置→Kimi真实调用"
+    environment: "明确未配置的正常local配置；不破坏现有secret或权限"
+    actual_result: "最终同源候选显式空Kimi配置，默认禁发/保留草稿/显式MiniMax可用；恢复受管配置后31真实Kimi正确。43正常Sto\
+      p显示中断/保留部分内容并恢复操作，正常重开不重发。MiniMax中间空参数缺口由0005修复；原失败历史保留。"
+  focused_checks:
+    - repository: yijie-contracts
+      command: chat-models3、scheduled-execution4；确定生成/sync；pnpm lint
+      status: PASS
+      exit_code: 0
+    - repository: yijie-agent-host
+      command: go test ./internal/codex ./internal/session ./internal/app -run
+        ^TestChatModel -count=1；go vet；原生权限/审批in-process定向测试
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: pnpm lint；cargo fmt --check；cargo clippy --all-targets -- -D
+        warnings；canonical packaged build；docs:build；generate:check
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: 显式local/demo_fast/model writer cargo test feat156_ -- --include-ignored
+        --test-threads=1：7PASS
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: 模型client/composable/计划模型及launcher，按canonical
+        excludes排除.local历史checkout：4文件27PASS；ChatPage只读模型用例1PASS
+      status: PASS
+      exit_code: 0
+    - repository: yijie-codex
+      command: canonical0005独立构建；4新SSE用例+全34SSE、clippy codex-api
+        lib、269schema逐字节、补丁重放/反向、正常EOF握手
+      status: PASS
+      exit_code: 0
+    - repository: yijie-agent-host
+      command: 真实固定Runtime+Host本地普通SSE：终态参数恢复/只读命令/续推2请求及两模型同thread/input-only4请求，全部零远程费用
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: 新增取消计划草案后默认Kimi回归先失败后通过；ChatPage只读与重置2PASS、lint、最终canonical打包、generate:check及docs:build
+      status: PASS
+      exit_code: 0
+  artifacts:
+    - evidence/paid-call-ledger.json
+    - evidence/native-model-switch.json
+    - evidence/runtime-chat-models-qualification.json
+    - evidence/desktop-fresh-observations.json
+    - evidence/scheduled-model-observations.json
+    - evidence/daily-entry-observations.json
+    - evidence/minimax-tool-arguments-failure.json
+    - evidence/source-review-20261002.json
+    - 03-runtime-stream-arguments-proposal.md
+    - 02-verification.md
+    - evidence/runtime-stream-arguments-qualification.json
+    - evidence/final-fresh-cycle.json
+    - evidence/local-commit-review.json
+  diff_review:
+    status: PASS
+    summary: 五仓按Owner授权分开本地提交；Runtime→Contracts→Host→Desktop来源按顺序重新生成校验。Desktop仅暂存FEAT-156，初始20份改动全部保留为未提交，19份原hash验证通过；4份混合文件只提交功能增量。纯暂存前端lint/build、27项定向及2项页面回归通过。无push/tag/release。
+  known_limitations:
+    - 仅demo_fast/local可用。FEAT-156已按Owner授权分仓本地提交，未推送/打tag/发布；新模型家族仍为release=false的local
+      candidate，非生产来源晋升，DP不适用。
+    - 实际44/50次HTTP、4/4图片理解；meter正常停止，余6次未使用。最终App恢复直连受管Provider，验收不再发送。
+    - ChatPage原同名5失败/48通过已用HEAD对照复现；保留该基线事实，未宣称全量CI通过。
+    - 既有FEAT155
+      context/authority刷新会关闭未提交计划表单；源码基线已有。验收重开审阅，保存与执行证据明确；未扩大本需求去修改授权刷新语义。
+    - 标题原生既有门禁关闭，无真实标题请求；审批/Artifact走适用原生协议回归，未真实调用收费图片生成或外部MCP。
+    - 含fake executable、攻击fixture或破坏性故障注入的历史全量测试未运行；只采用正常非破坏性验证。
+    - 全部已保存验收计划关闭；额外MiniMax草案仅生成/审阅取消，未保存计划。仅失败147a52f0按明确授权正常永久删除，其余历史保留。
+
+public_readiness:
+  required: false
+  status: "N/A"
+  checks: []
+  external_smoke:
+    status: "NOT RUN"
+    command_or_steps: "本期local且无公开部署，不适用公网smoke"
+    actual_result: "未公开"
+
+documents:
+  brief: "00-feature-brief.md"
+  delivery_log: "01-delivery-log.md"
+  verification: "02-verification.md"

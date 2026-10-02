@@ -1,0 +1,52 @@
+{
+  "recorded_at": "2026-10-02T18:14:17+08:00",
+  "source": "read-only SQLCipher inspection of isolated FEAT-156 candidate; credential remained in process memory, never printed",
+  "cause": "Host validatePurposeWrite accepted Store6 only, while FEAT156 model writer uses Store7; Reserve rejected before Runtime start",
+  "local_state": [
+    {
+      "state": [
+        "01a0fbfe-ac8e-71f0-98d4-8385af1ab039",
+        "01a0fbfe-ac8d-7810-8a64-7084147a52f0",
+        "01a0fbfe-ac8d-7810-8a64-70b9f06c9d07",
+        "b80445ea-8940-4eb6-b612-42991677d7fc",
+        1,
+        0
+      ],
+      "table": "draft"
+    },
+    {
+      "state": [
+        "b80445ea-8940-4eb6-b612-42991677d7fc",
+        "create_session",
+        "pending",
+        2
+      ],
+      "table": "draft_outbox"
+    },
+    {
+      "state": [
+        "01a0fbfe-ac8d-7810-8a64-7084147a52f0",
+        "01a0fbfe-ac8d-7810-8a64-709d014880ce",
+        "bound",
+        "01a0fbfe-ac8d-7810-8a64-709d014880ce"
+      ],
+      "table": "draft_binding"
+    },
+    {
+      "state": [
+        "01a0fbfe-ac8d-7810-8a64-7084147a52f0",
+        null,
+        null
+      ],
+      "table": "draft_session"
+    }
+  ],
+  "paid_requests_for_failed_source": 0,
+  "fix": "accept the already-reviewed Store7 draft writer while retaining purpose identity validation and draftWriter requirement",
+  "checks": [
+    "TestChatModelStorePreservesDraftPurposeInVersionSeven PASS",
+    "native feat156_model_draft_enters_original_claim_and_recovery_path PASS, explicit environment, ordinary synthetic records"
+  ],
+  "recovery": "Owner explicitly authorized permanent deletion on 2026-10-02. Product confirmation identified exact failed147a52f0; native deletion started, then app navigated back and failed row/project disappeared. No SQL/attempt edits or resend.",
+  "recovered_at": "2026-10-02T11:17:16.055099+00:00"
+}

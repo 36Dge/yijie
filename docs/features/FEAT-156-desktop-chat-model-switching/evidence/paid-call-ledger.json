@@ -1,0 +1,932 @@
+{
+  "authorization": {
+    "owner": "\u6bb5\u6210\u5a01",
+    "date": "2026-10-02",
+    "source": "\u539f24+\u8ffd\u52a016+\u8ffd\u52a010\u6b21\uff0c\u56fe\u7247\u539f\u7d2f\u8ba14\u6b21\u4e0d\u53d8",
+    "max_http_requests": 50,
+    "max_image_understanding_requests": 4,
+    "max_output_tokens_per_request": 8192,
+    "image_generation_allowed": false,
+    "external_mcp_allowed": false,
+    "amended_at": "2026-10-02T14:18:03.943368+00:00"
+  },
+  "real_http_requests": 44,
+  "image_understanding_requests": 4,
+  "local_synthetic_provider_requests": 17,
+  "requests": [
+    {
+      "ordinal": 1,
+      "admitted_at": "2026-10-02T00:58:38Z",
+      "status": "completed",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 200
+    },
+    {
+      "ordinal": 2,
+      "admitted_at": "2026-10-02T00:58:49Z",
+      "status": "completed",
+      "model": "MiniMax-M3",
+      "effort": "high",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "upstream": "https://api.minimaxi.com/v1/responses",
+      "http_status": 200
+    },
+    {
+      "ordinal": 3,
+      "admitted_at": "2026-10-02T00:58:51Z",
+      "status": "completed",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 200
+    },
+    {
+      "ordinal": 4,
+      "admitted_at": "2026-10-02T00:58:56Z",
+      "status": "completed",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": true,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 400
+    },
+    {
+      "ordinal": 5,
+      "admitted_at": "2026-10-02T01:01:02Z",
+      "status": "completed",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": true,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 400,
+      "error_code": "invalid_request_error",
+      "error_message": "invalid_request_error: responses: unsupported tool_choice value: \"none\""
+    },
+    {
+      "ordinal": 6,
+      "admitted_at": "2026-10-02T09:16:39Z",
+      "status": "completed",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": true,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 0,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 200
+    },
+    {
+      "ordinal": 7,
+      "admitted_at": "2026-10-02T09:28:57Z",
+      "status": "completed",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 10,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 200
+    },
+    {
+      "ordinal": 8,
+      "admitted_at": "2026-10-02T09:30:15Z",
+      "status": "completed",
+      "model": "MiniMax-M3",
+      "effort": "high",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 10,
+      "upstream": "https://api.minimaxi.com/v1/responses",
+      "http_status": 200
+    },
+    {
+      "ordinal": 9,
+      "admitted_at": "2026-10-02T09:31:36Z",
+      "status": "completed",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 10,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 200
+    },
+    {
+      "ordinal": 10,
+      "admitted_at": "2026-10-02T09:36:47Z",
+      "status": "completed",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 10,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 200
+    },
+    {
+      "ordinal": 11,
+      "admitted_at": "2026-10-02T09:36:57Z",
+      "status": "completed",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 10,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 200
+    },
+    {
+      "ordinal": 12,
+      "admitted_at": "2026-10-02T09:39:48Z",
+      "status": "completed",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": false,
+      "image_understanding": true,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 10,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 200
+    },
+    {
+      "ordinal": 13,
+      "admitted_at": "2026-10-02T09:41:20Z",
+      "status": "completed",
+      "model": "MiniMax-M3",
+      "effort": "high",
+      "structured_output": false,
+      "image_understanding": true,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 10,
+      "upstream": "https://api.minimaxi.com/v1/responses",
+      "http_status": 200
+    },
+    {
+      "ordinal": 14,
+      "admitted_at": "2026-10-02T10:35:10Z",
+      "status": "completed",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": true,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 0,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 200
+    },
+    {
+      "ordinal": 15,
+      "admitted_at": "2026-10-02T10:36:48Z",
+      "status": "transport_ended",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 10,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 200,
+      "transport_error_class": "BrokenPipeError"
+    },
+    {
+      "ordinal": 16,
+      "admitted_at": "2026-10-02T10:54:48Z",
+      "status": "completed",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 10,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 200
+    },
+    {
+      "ordinal": 17,
+      "admitted_at": "2026-10-02T11:18:27Z",
+      "status": "completed",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 10,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 200
+    },
+    {
+      "ordinal": 18,
+      "admitted_at": "2026-10-02T11:20:59Z",
+      "status": "completed",
+      "model": "MiniMax-M3",
+      "effort": "high",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 10,
+      "upstream": "https://api.minimaxi.com/v1/responses",
+      "http_status": 200
+    },
+    {
+      "ordinal": 19,
+      "admitted_at": "2026-10-02T11:22:43Z",
+      "status": "completed",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 10,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 200
+    },
+    {
+      "ordinal": 20,
+      "admitted_at": "2026-10-02T12:04:23Z",
+      "status": "completed",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 10,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 200
+    },
+    {
+      "ordinal": 21,
+      "admitted_at": "2026-10-02T12:16:56Z",
+      "status": "completed",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 11,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 200
+    },
+    {
+      "ordinal": 22,
+      "admitted_at": "2026-10-02T12:19:22Z",
+      "status": "completed",
+      "model": "MiniMax-M3",
+      "effort": "high",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 11,
+      "upstream": "https://api.minimaxi.com/v1/responses",
+      "http_status": 200
+    },
+    {
+      "ordinal": 23,
+      "admitted_at": "2026-10-02T12:19:26Z",
+      "status": "completed",
+      "model": "MiniMax-M3",
+      "effort": "high",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 11,
+      "upstream": "https://api.minimaxi.com/v1/responses",
+      "http_status": 200
+    },
+    {
+      "ordinal": 24,
+      "admitted_at": "2026-10-02T12:19:29Z",
+      "status": "completed",
+      "model": "MiniMax-M3",
+      "effort": "high",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 11,
+      "upstream": "https://api.minimaxi.com/v1/responses",
+      "http_status": 200
+    },
+    {
+      "ordinal": 25,
+      "admitted_at": "2026-10-02T12:48:35Z",
+      "status": "completed",
+      "model": "MiniMax-M3",
+      "effort": "high",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 1,
+      "upstream": "https://api.minimaxi.com/v1/responses",
+      "http_status": 200,
+      "tool_stream": {
+        "items": [
+          {
+            "item_sha256": "02095bb6cf07f1e7f10d6f664b4e9aa0b61da3aa866b3f613ed8ba1ee96f734d",
+            "delta_count": 7,
+            "delta_bytes": 19,
+            "item_added": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "json_object": false
+            },
+            "arguments_done": {
+              "bytes": 19,
+              "sha256": "b68f6817e26d78b10995a083327ff3268c52813173b61b44c5f97a614d2979c2",
+              "json_object": true
+            },
+            "item_done": {
+              "bytes": 19,
+              "sha256": "b68f6817e26d78b10995a083327ff3268c52813173b61b44c5f97a614d2979c2",
+              "json_object": true
+            },
+            "response_completed": {
+              "bytes": 19,
+              "sha256": "b68f6817e26d78b10995a083327ff3268c52813173b61b44c5f97a614d2979c2",
+              "json_object": true
+            },
+            "delta_sha256": "b68f6817e26d78b10995a083327ff3268c52813173b61b44c5f97a614d2979c2"
+          }
+        ],
+        "truncated": false
+      }
+    },
+    {
+      "ordinal": 26,
+      "admitted_at": "2026-10-02T12:52:59Z",
+      "status": "completed",
+      "model": "MiniMax-M3",
+      "effort": "high",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 11,
+      "upstream": "https://api.minimaxi.com/v1/responses",
+      "http_status": 200,
+      "tool_stream": {
+        "items": [
+          {
+            "item_sha256": "6c50c189c7b04581ff18847c3be49cf1b79ce3f898ed3449bf3da824c94d6ec7",
+            "delta_count": 9,
+            "delta_bytes": 46,
+            "item_added": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "json_object": false
+            },
+            "arguments_done": {
+              "bytes": 46,
+              "sha256": "7139722823568b102bd052781c46e1d778c8f9e24be79c1e5e5b3cc5329f351e",
+              "json_object": true
+            },
+            "item_done": {
+              "bytes": 46,
+              "sha256": "7139722823568b102bd052781c46e1d778c8f9e24be79c1e5e5b3cc5329f351e",
+              "json_object": true
+            },
+            "response_completed": {
+              "bytes": 46,
+              "sha256": "7139722823568b102bd052781c46e1d778c8f9e24be79c1e5e5b3cc5329f351e",
+              "json_object": true
+            },
+            "delta_sha256": "7139722823568b102bd052781c46e1d778c8f9e24be79c1e5e5b3cc5329f351e"
+          }
+        ],
+        "truncated": false
+      }
+    },
+    {
+      "ordinal": 27,
+      "admitted_at": "2026-10-02T12:53:03Z",
+      "status": "completed",
+      "model": "MiniMax-M3",
+      "effort": "high",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 11,
+      "upstream": "https://api.minimaxi.com/v1/responses",
+      "http_status": 200,
+      "tool_stream": {
+        "items": [],
+        "truncated": false
+      }
+    },
+    {
+      "ordinal": 28,
+      "admitted_at": "2026-10-02T12:55:25Z",
+      "status": "completed",
+      "model": "MiniMax-M3",
+      "effort": "high",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 11,
+      "upstream": "https://api.minimaxi.com/v1/responses",
+      "http_status": 200,
+      "tool_stream": {
+        "items": [
+          {
+            "item_sha256": "01bc13ab4e54aa681a5274832e1458e324ad9892f8b4bd3d589b46532065b2be",
+            "delta_count": 1,
+            "delta_bytes": 125,
+            "item_added": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "json_object": false
+            },
+            "arguments_done": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "json_object": false
+            },
+            "item_done": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "json_object": false
+            },
+            "response_completed": {
+              "bytes": 125,
+              "sha256": "204e6700890eebed02303fe2daf4187326c3fdfbce3fb21d6dbaca122b1be175",
+              "json_object": true
+            },
+            "delta_sha256": "204e6700890eebed02303fe2daf4187326c3fdfbce3fb21d6dbaca122b1be175"
+          }
+        ],
+        "truncated": false
+      }
+    },
+    {
+      "ordinal": 29,
+      "admitted_at": "2026-10-02T12:55:29Z",
+      "status": "completed",
+      "model": "MiniMax-M3",
+      "effort": "high",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 11,
+      "upstream": "https://api.minimaxi.com/v1/responses",
+      "http_status": 200,
+      "tool_stream": {
+        "items": [
+          {
+            "item_sha256": "874fbb430bf80b1bbbe357b0b94af88157fa13de4b102db9f93419626bde09ed",
+            "delta_count": 1,
+            "delta_bytes": 18,
+            "item_added": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "json_object": false
+            },
+            "arguments_done": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "json_object": false
+            },
+            "item_done": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "json_object": false
+            },
+            "response_completed": {
+              "bytes": 18,
+              "sha256": "37a9b7b91fb8ceef14d477f11d2fb9b185c718efe1697a67736711f2b879f192",
+              "json_object": true
+            },
+            "delta_sha256": "37a9b7b91fb8ceef14d477f11d2fb9b185c718efe1697a67736711f2b879f192"
+          }
+        ],
+        "truncated": false
+      }
+    },
+    {
+      "ordinal": 30,
+      "admitted_at": "2026-10-02T12:55:32Z",
+      "status": "completed",
+      "model": "MiniMax-M3",
+      "effort": "high",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 11,
+      "upstream": "https://api.minimaxi.com/v1/responses",
+      "http_status": 200,
+      "tool_stream": {
+        "items": [],
+        "truncated": false
+      }
+    },
+    {
+      "ordinal": 31,
+      "admitted_at": "2026-10-02T13:48:16Z",
+      "status": "completed",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 11,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 200,
+      "tool_stream": {
+        "items": [],
+        "truncated": false
+      }
+    },
+    {
+      "ordinal": 32,
+      "admitted_at": "2026-10-02T13:50:07Z",
+      "status": "completed",
+      "model": "MiniMax-M3",
+      "effort": "high",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 11,
+      "upstream": "https://api.minimaxi.com/v1/responses",
+      "http_status": 200,
+      "tool_stream": {
+        "items": [
+          {
+            "item_sha256": "a3bc66628f9414d95f96a2ba80e49873fed80940153eb1f4a164980dbb4439f9",
+            "delta_count": 1,
+            "delta_bytes": 2,
+            "item_added": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "json_object": false
+            },
+            "arguments_done": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "json_object": false
+            },
+            "item_done": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "json_object": false
+            },
+            "response_completed": {
+              "bytes": 2,
+              "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "json_object": true
+            },
+            "delta_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+          }
+        ],
+        "truncated": false
+      }
+    },
+    {
+      "ordinal": 33,
+      "admitted_at": "2026-10-02T13:50:12Z",
+      "status": "completed",
+      "model": "MiniMax-M3",
+      "effort": "high",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 11,
+      "upstream": "https://api.minimaxi.com/v1/responses",
+      "http_status": 200,
+      "tool_stream": {
+        "items": [
+          {
+            "item_sha256": "be491e91b1889a8edfbbe464a4d52b1240f7123f66177ab7507c7a372af111ff",
+            "delta_count": 1,
+            "delta_bytes": 18,
+            "item_added": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "json_object": false
+            },
+            "arguments_done": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "json_object": false
+            },
+            "item_done": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "json_object": false
+            },
+            "response_completed": {
+              "bytes": 18,
+              "sha256": "37a9b7b91fb8ceef14d477f11d2fb9b185c718efe1697a67736711f2b879f192",
+              "json_object": true
+            },
+            "delta_sha256": "37a9b7b91fb8ceef14d477f11d2fb9b185c718efe1697a67736711f2b879f192"
+          }
+        ],
+        "truncated": false
+      }
+    },
+    {
+      "ordinal": 34,
+      "admitted_at": "2026-10-02T13:50:16Z",
+      "status": "completed",
+      "model": "MiniMax-M3",
+      "effort": "high",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 11,
+      "upstream": "https://api.minimaxi.com/v1/responses",
+      "http_status": 200,
+      "tool_stream": {
+        "items": [],
+        "truncated": false
+      }
+    },
+    {
+      "ordinal": 35,
+      "admitted_at": "2026-10-02T13:53:42Z",
+      "status": "completed",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": false,
+      "image_understanding": true,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 11,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 200,
+      "tool_stream": {
+        "items": [],
+        "truncated": false
+      }
+    },
+    {
+      "ordinal": 36,
+      "admitted_at": "2026-10-02T13:55:48Z",
+      "status": "completed",
+      "model": "MiniMax-M3",
+      "effort": "high",
+      "structured_output": false,
+      "image_understanding": true,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 11,
+      "upstream": "https://api.minimaxi.com/v1/responses",
+      "http_status": 200,
+      "tool_stream": {
+        "items": [],
+        "truncated": false
+      }
+    },
+    {
+      "ordinal": 37,
+      "admitted_at": "2026-10-02T13:59:47Z",
+      "status": "completed",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": true,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 0,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 200,
+      "tool_stream": {
+        "items": [],
+        "truncated": false
+      }
+    },
+    {
+      "ordinal": 38,
+      "admitted_at": "2026-10-02T14:07:42Z",
+      "status": "completed",
+      "model": "MiniMax-M3",
+      "effort": "high",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 11,
+      "upstream": "https://api.minimaxi.com/v1/responses",
+      "http_status": 200,
+      "tool_stream": {
+        "items": [],
+        "truncated": false
+      }
+    },
+    {
+      "ordinal": 39,
+      "admitted_at": "2026-10-02T14:10:07Z",
+      "status": "completed",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 11,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 200,
+      "tool_stream": {
+        "items": [],
+        "truncated": false
+      }
+    },
+    {
+      "ordinal": 40,
+      "admitted_at": "2026-10-02T14:12:28Z",
+      "status": "completed",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 11,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 200,
+      "tool_stream": {
+        "items": [],
+        "truncated": false
+      }
+    },
+    {
+      "ordinal": 41,
+      "admitted_at": "2026-10-02T14:20:13Z",
+      "status": "completed",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 11,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 200,
+      "tool_stream": {
+        "items": [
+          {
+            "item_sha256": "8afcc7f79667ebf5ba6219bca52679bfe961cb7d64b7a1da843b5dd5265754b3",
+            "delta_count": 6,
+            "delta_bytes": 18,
+            "item_added": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "json_object": false
+            },
+            "arguments_done": {
+              "bytes": 18,
+              "sha256": "37a9b7b91fb8ceef14d477f11d2fb9b185c718efe1697a67736711f2b879f192",
+              "json_object": true
+            },
+            "item_done": {
+              "bytes": 18,
+              "sha256": "37a9b7b91fb8ceef14d477f11d2fb9b185c718efe1697a67736711f2b879f192",
+              "json_object": true
+            },
+            "response_completed": {
+              "bytes": 18,
+              "sha256": "37a9b7b91fb8ceef14d477f11d2fb9b185c718efe1697a67736711f2b879f192",
+              "json_object": true
+            },
+            "delta_sha256": "37a9b7b91fb8ceef14d477f11d2fb9b185c718efe1697a67736711f2b879f192"
+          }
+        ],
+        "truncated": false
+      }
+    },
+    {
+      "ordinal": 42,
+      "admitted_at": "2026-10-02T14:20:19Z",
+      "status": "completed",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 11,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 200,
+      "tool_stream": {
+        "items": [],
+        "truncated": false
+      }
+    },
+    {
+      "ordinal": 43,
+      "admitted_at": "2026-10-02T14:21:44Z",
+      "status": "transport_ended",
+      "model": "kimi-k3",
+      "effort": "max",
+      "structured_output": false,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 11,
+      "upstream": "https://api.moonshot.cn/v1/responses",
+      "http_status": 200,
+      "transport_error_class": "BrokenPipeError",
+      "tool_stream": {
+        "items": [],
+        "truncated": false
+      }
+    },
+    {
+      "ordinal": 44,
+      "admitted_at": "2026-10-02T14:22:50Z",
+      "status": "completed",
+      "model": "MiniMax-M3",
+      "effort": "high",
+      "structured_output": true,
+      "image_understanding": false,
+      "max_output_tokens": 8192,
+      "tool_choice": "auto",
+      "tool_count": 0,
+      "upstream": "https://api.minimaxi.com/v1/responses",
+      "http_status": 200,
+      "tool_stream": {
+        "items": [],
+        "truncated": false
+      }
+    }
+  ],
+  "meter_state": "stopped_normally",
+  "authorization_history": [
+    {
+      "owner": "\u6bb5\u6210\u5a01",
+      "date": "2026-10-02",
+      "source": "\u6388\u6743\u4e0a\u8ff0 24 \u6b21\u9a8c\u6536\u989d\u5ea6",
+      "max_http_requests": 24,
+      "max_image_understanding_requests": 2,
+      "max_output_tokens_per_request": 8192,
+      "image_generation_allowed": false,
+      "external_mcp_allowed": false
+    },
+    {
+      "owner": "\u6bb5\u6210\u5a01",
+      "recorded_at": "2026-10-02T12:47:57.390151+00:00",
+      "source": "\u6388\u6743\u8ffd\u52a0 16 \u6b21\u53ca 2 \u6b21\u56fe\u7247\u7406\u89e3",
+      "additional_http_requests": 16,
+      "additional_image_understanding_requests": 2,
+      "max_output_tokens_per_request": 8192,
+      "image_generation_allowed": false,
+      "external_mcp_allowed": false
+    },
+    {
+      "approved_at": "2026-10-02T14:18:03.943368+00:00",
+      "source": "Owner\u660e\u786e\uff1a\u53ef\u4ee5\u5728\u989d\u5916\u6388\u674310\u6b21\u8bf7\u6c42",
+      "previous_max_http_requests": 40,
+      "additional_http_requests": 10,
+      "max_http_requests": 50,
+      "max_image_understanding_requests": 4,
+      "max_output_tokens_per_request": 8192,
+      "image_generation_allowed": false,
+      "external_mcp_allowed": false
+    }
+  ],
+  "synthetic_reconciliation": "Original7 plus4 native local-only requests during resumed Host qualification; recorded after normal meter shutdown. New0005artifact normal native loopback6 requests:2tool lifecycle+4model/input-only, zero remote."
+}

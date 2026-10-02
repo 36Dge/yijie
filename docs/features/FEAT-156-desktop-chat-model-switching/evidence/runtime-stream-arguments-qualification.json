@@ -1,0 +1,69 @@
+{
+  "recorded_at": "2026-10-02T13:43:35.066187+00:00",
+  "status": "qualified_local_candidate_real_native_regression_pass",
+  "authorization": "Owner2026-10-02:审计并批准最小修复方案然后执行剩余需求",
+  "artifact_path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/chat-models-stream-args/aarch64-apple-darwin",
+  "runtime": {
+    "binary": "codex",
+    "reportedVersion": "codex-cli 0.144.6",
+    "sha256": "aad49041bd7d34c853fb55c274711e3cc810725720d2c097469822d310fb02f9",
+    "sizeBytes": 356210616,
+    "target": "aarch64-apple-darwin",
+    "version": "0.144.6"
+  },
+  "manifest_sha256": "8b86a1a661f50beda1e0a0c96f81ddbdf959a9a07c2e756cc4b9b0eabc053b27",
+  "schema": {
+    "experimentalApi": false,
+    "schemaFileCount": 269,
+    "schemaTreeSha256": "34d353815dc8d800cb432a876d5b43350511f63b91ad9766f861e8bc8290cc92",
+    "transport": "stdio"
+  },
+  "patches": [
+    {
+      "path": ".yijie/patches/0001-feat-126-filter-persistent-diagnostics.patch",
+      "sha256": "6b337a02caf064c6819fab5c7367a485004c85cce0d42acb06fa6d5003e599a0"
+    },
+    {
+      "path": ".yijie/patches/0002-feat-136-unified-exec-pre-emitter-command-lifecycle.patch",
+      "sha256": "43de168e1443f4b9ca60d7f61e3de2daf20e1cfea14d2e196d28ba417bf3e06d"
+    },
+    {
+      "path": ".yijie/patches/input-only/0003-input-only-execution.patch",
+      "sha256": "c340b6fc17419bcdc1ff45eebe3da40e5fde740c029102eb7a188f6b14eb41d8"
+    },
+    {
+      "path": ".yijie/patches/chat-models/0004-feat-156-upstream-tool-choice.patch",
+      "sha256": "828f913fead29da08c015d73ef6c7102a8adf9afd3811ab5469891ec5efc2abf"
+    },
+    {
+      "path": ".yijie/patches/chat-models/0005-feat-156-terminal-tool-arguments.patch",
+      "sha256": "f1d6689f44056c252530ad940bb253e8a0ace60e810b88857440699ba908917e"
+    }
+  ],
+  "checks": {
+    "targeted_stream_tests": "4PASS",
+    "all_existing_and_new_responses_sse_tests": "34PASS",
+    "clippy_codex_api_lib": "PASS",
+    "release_build": "PASS6m55s; existingbaseapp-server unused_mut warning retained",
+    "schema": "269 files byte-equal retained input-only",
+    "lifecycle": "normalEOF handshake and shutdownPASS",
+    "replay_reverse": "PASS0004and0005",
+    "native_Host": "real artifact throughManager:2local requests -> recoveredterminal arguments -> /bin/pwd exit0 -> completed;4more same-thread Kimi/MiniMax/Kimi andinput-onlydraft allPASS",
+    "Contracts": "exact manifest/projection generation andconsumer syncCHECKPASS"
+  },
+  "paid_requests": 0,
+  "local_provider_requests": 6,
+  "cache": "original codex-rs/target reused; no second cache copied",
+  "retained_artifacts": {
+    "input-only": {
+      "codex": "bd7d26205e2d735dcac0f35fc089a7b30a5c18a54586b94a2c7f624f2f5b7672",
+      "runtime-manifest.json": "14d4073de87be137cf39f770c091b8ab62a7c34933bc49dc50f12b4ddd3a494a"
+    },
+    "chat-models": {
+      "codex": "2d970213298964c8e65887631528b6d6efaa800ccc7c7da4dd7334b62f057d46",
+      "runtime-manifest.json": "537b9bdb8ba2da7426815ee1cfce55483239bf412aa41a56c0fa115c8bfe6bf4"
+    }
+  },
+  "final_evidence": "final-fresh-cycle.json",
+  "final_protected_hash_recheck": "PASS originalinput-onlyandchat-models binary/manifestbytesunchanged"
+}

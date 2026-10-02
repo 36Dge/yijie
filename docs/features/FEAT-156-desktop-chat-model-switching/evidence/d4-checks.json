@@ -1,0 +1,50 @@
+{
+  "recorded_at": "2026-10-02T14:47:25.739210+00:00",
+  "delivery_profile": "demo_fast",
+  "exposure": "local",
+  "D4": "PASS",
+  "meaning": "documentstructureanddeclarationsvalidated; realnativeevidenceinfinal-fresh-cycle and02section8; notproductionorfullCI",
+  "checks": [
+    {
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs FEATURE_DIR",
+      "exit_code": 0
+    },
+    {
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims FEATURE_DIR",
+      "exit_code": 0
+    },
+    {
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate D4 FEATURE_DIR",
+      "exit_code": 0
+    },
+    {
+      "command": "pnpm lint",
+      "exit_code": 0
+    },
+    {
+      "command": "pnpm test",
+      "exit_code": 0,
+      "tests": 50,
+      "pass": 50,
+      "fail": 0
+    },
+    {
+      "command": "bash -n scripts/*.sh",
+      "exit_code": 0
+    },
+    {
+      "command": "five git diff --check plus untracked text/secret review",
+      "exit_code": 0
+    }
+  ],
+  "first_gate_attempt": "Rejected historical待确认 phrase describing14oldfailure; replacedwithaccuratehistoricalresultunknownandlinked17Ownerapprovedresolution. No testsorcheckerrelaxed.",
+  "known_baseline": "Desktop ChatPage5existing failures; separatefromthese50metagovernancetests",
+  "paid": {
+    "used": 44,
+    "cap": 50,
+    "images_used": 4,
+    "images_cap": 4,
+    "synthetic": 17
+  },
+  "release": "none"
+}

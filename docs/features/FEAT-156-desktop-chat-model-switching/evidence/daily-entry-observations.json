@@ -1,0 +1,33 @@
+{
+  "recorded_at": "2026-10-02T12:36:53.840761+00:00",
+  "status": "partial_failed",
+  "entry": "YIJIE_PERMISSION_VERIFICATION_BASE_URL=http://127.0.0.1:18083/v1 ./scripts/run-local-demo-fast.sh --packaged",
+  "explicit_model_opt_in": false,
+  "isolated_data_flag": false,
+  "port": 18081,
+  "storage_schema": 29,
+  "conversation": "01a0fc8b-d07e-72a3-b040-5bce140847ee",
+  "native_thread": "01a0fc8b-d0a7-7af3-bbfa-774dbc753317",
+  "observations": {
+    "default": "new independent daily chat is Kimi K3/max without model opt-in",
+    "legacy": "read-only visit to existing MiniMax conversation retained MiniMax; returned to new task showed Kimi; no old user chat submitted or deleted",
+    "request21": "Kimi/max HTTP200, native completed in6s, correct synthetic marker 远山",
+    "selection": "keyboard Down/Enter selected MiniMax in same chat without HTTP",
+    "attachment": "138-byte synthetic attachment.txt imported and retained in turn2",
+    "requests22_to24": "MiniMax/high HTTP200 each; native received3 exec_command function calls with arguments=\"\"; all3 rejected by argument parser before executing a command; no final answer",
+    "budget": "subsequent continuation blocked locally at24/24; Runtime logged429, app showed生成失败/未完成 and retained confirmed history; no25th upstream request",
+    "switch_after_error": "explicit Kimi selection failed; Host SwitchThread rejected terminal systemError; pending original operation preserved",
+    "fix": "Host now permits fixed-native terminal systemError via normal read/unsubscribe/resume; active/unknown remain rejected; in-process RPC regression failed before and passed after change",
+    "rebuild": "normal Cmd+Q exited0; candidate provenance refrozen, canonical packaged build succeeded; new Host ready on18081",
+    "latest_ui": "Owner unlocked; original pending operation replay succeeded, Kimi selected; no history resend and no HTTP during recovery."
+  },
+  "paid_requests": 30,
+  "image_requests": 2,
+  "runtime_binary_changed": false,
+  "pending": [
+    "Owner approval of narrowly scoped Runtime streaming compatibility patch",
+    "independent new artifact/projection and final fresh acceptance"
+  ],
+  "diagnostic_support": "optional passive --observe-tool-stream records only event-stage argument lengths/hash/json-object validity, never content; ordinary split-chunk validation passed; current live meter is previous code and cap remains24",
+  "cleanup": "Normal Cmd+Q launcher88467 exit0; then meter10346 normalCtrl-C exit0. No in-flight HTTP. Pending Runtime proposal decision."
+}

@@ -1,0 +1,40 @@
+{
+  "recorded_at": "2026-10-02T10:58:33.790088+00:00",
+  "status": "historical_stage_observations",
+  "entry": "canonical run-local-demo-fast.sh --packaged, isolated FEAT-156, port18087",
+  "runtime_sha256": "2d970213298964c8e65887631528b6d6efaa800ccc7c7da4dd7334b62f057d46",
+  "main_conversation": "01a0fbf2-0675-7c13-8a7a-1846eca32906",
+  "image_conversation": "01a0fbfb-f57e-77b0-8970-1ad1150027b0",
+  "observed": {
+    "new_chat_default": "Kimi K3",
+    "catalog": "two items Kimi K3/max and MiniMax M3",
+    "keyboard": "Down/Enter selects MiniMax; Home/Enter selects Kimi; Escape closes",
+    "light_1180x760_200_percent": "model menu inside viewport, both options visible, no duplicated zoom displacement",
+    "dark_1180x760_100_percent": "actual OS dark mode, menu and current item readable",
+    "system_appearance_restored": "original Light selected after inspection; explicit user approval received",
+    "busy_model_control": "disabled during real turn, enabled after native completion",
+    "context": "same UI conversation Kimi remembers 青山, MiniMax answers 青山, Kimi answers 青山",
+    "attachment": "synthetic attachment.txt 7+5 read as12",
+    "tool": "one native command completed, exit0, follow-up answered12 and青山",
+    "title": "existing titleV2 gate remains disabled in app.LoadConfig; no title requests, no gate expansion",
+    "images": "request12 Kimi: Kimi-K3; request13 MiniMax: 麦克风（语音输入）图标; 2/2 complete",
+    "normal_reopen": "original Kimi main conversation and MiniMax image conversation restored with history; no resend, ledger unchanged at13",
+    "scheduled_draft": "request14 Kimi kimi-k3/max, HTTP200, structured output, auto with0tools; native schema accepted; plan saved paused/off with Kimi/max",
+    "scheduled_plan_id": "01a0fc2f-5ce9-7821-9913-107c041503be",
+    "scheduled_draft_conversation": "01a0fc2e-a560-7160-9a6a-748ed8cf9b38",
+    "normal_stop": "request15 real Kimi; normal UI Stop -> native interrupted; partial text retained; model control returns enabled; meter transport ended after cancellation, not counted as completed response",
+    "missing_configuration": "canonical explicit empty Kimi keyfile; no secret file changes. After fixing terminal-history startup resume, new default Kimi shows not configured and blocks send; draft text retained; explicit MiniMax selection works; existing Kimi history readable; no implicit fallback",
+    "configuration_recovery": "normalQuit exit0; restored managed default key source; new chats Kimi, main history restored MiniMax; explicit switch Kimi retained text; request16 HTTP200/max answers青山; no automatic resend",
+    "final_runtime_hashes": "new and original binary/manifest SHA256 rechecked unchanged"
+  },
+  "remaining": [
+    "See daily-entry-observations.json and current verification matrix"
+  ],
+  "notes": [
+    "Native provider-switch warning is presented as existing generic conversation_warning notice; dialogue completed.",
+    "File picker used keyboard selection/Return; initial accessibility clicks did not choose a file. No attachment loss is claimed.",
+    "System screenshots observed inline in this session, no screenshot files claimed.",
+    "R09 paused-only draft confirmation and bound dedicated-chat model review corrected; focused frontend46 and native bound-target atomicity regression passed, new canonical UI run pending.",
+    "Updated: failed draft was explicitly authorized and normally deleted; three plan targets passed. Later daily MiniMax tool failure preventsD4."
+  ]
+}

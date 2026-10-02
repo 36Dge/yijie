@@ -1,0 +1,66 @@
+{
+  "recorded_at": "2026-10-02T10:46:34+08:00",
+  "status": "local_verification_in_progress",
+  "feature": "FEAT-156",
+  "paid_calls_this_resume": 0,
+  "runtime_artifact_directory": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/chat-models/aarch64-apple-darwin",
+  "runtime": {
+    "binary": "codex",
+    "reportedVersion": "codex-cli 0.144.6",
+    "sha256": "2d970213298964c8e65887631528b6d6efaa800ccc7c7da4dd7334b62f057d46",
+    "sizeBytes": 356167624,
+    "target": "aarch64-apple-darwin",
+    "version": "0.144.6"
+  },
+  "manifest_sha256": "537b9bdb8ba2da7426815ee1cfce55483239bf412aa41a56c0fa115c8bfe6bf4",
+  "schemas": {
+    "experimentalApi": false,
+    "schemaFileCount": 269,
+    "schemaTreeSha256": "34d353815dc8d800cb432a876d5b43350511f63b91ad9766f861e8bc8290cc92",
+    "transport": "stdio"
+  },
+  "patches": [
+    {
+      "path": ".yijie/patches/0001-feat-126-filter-persistent-diagnostics.patch",
+      "sha256": "6b337a02caf064c6819fab5c7367a485004c85cce0d42acb06fa6d5003e599a0"
+    },
+    {
+      "path": ".yijie/patches/0002-feat-136-unified-exec-pre-emitter-command-lifecycle.patch",
+      "sha256": "43de168e1443f4b9ca60d7f61e3de2daf20e1cfea14d2e196d28ba417bf3e06d"
+    },
+    {
+      "path": ".yijie/patches/input-only/0003-input-only-execution.patch",
+      "sha256": "c340b6fc17419bcdc1ff45eebe3da40e5fde740c029102eb7a188f6b14eb41d8"
+    },
+    {
+      "path": ".yijie/patches/chat-models/0004-feat-156-upstream-tool-choice.patch",
+      "sha256": "828f913fead29da08c015d73ef6c7102a8adf9afd3811ab5469891ec5efc2abf"
+    }
+  ],
+  "preserved_input_only": {
+    "binary_sha256": "bd7d26205e2d735dcac0f35fc089a7b30a5c18a54586b94a2c7f624f2f5b7672",
+    "manifest_sha256": "14d4073de87be137cf39f770c091b8ab62a7c34933bc49dc50f12b4ddd3a494a"
+  },
+  "shared_cache": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/codex-rs/target",
+  "cache_copied": false,
+  "checks": {
+    "canonical_release_build": "PASS (9m36s)",
+    "runtime_upstream_subtree": "PASS",
+    "runtime_lint": "PASS",
+    "patch_replay_and_reverse": "PASS",
+    "client_rs_equal_upstream_after_0004": "PASS",
+    "regenerated_269_schemas_equal_input_only": "PASS",
+    "normal_eof_stdio_handshake": "PASS",
+    "contracts_runtime_chat_models_generation_and_consumer_sync": "PASS",
+    "latest_host_consumption_compilation": "PASS go vet and TestChatModel",
+    "new_runtime_host_loopback": "PASS 4 synthetic requests, same-thread marker and canonical draft",
+    "new_runtime_real_kimi_draft": "PASS request 6, HTTP200, canonical needs_clarification, Kimi/max, auto, empty tools",
+    "final_desktop_build_and_ui": "NOT RUN",
+    "D4": "NOT RUN"
+  },
+  "logs": {
+    "build": "/tmp/feat156-runtime-build.log",
+    "qualification": "/tmp/feat156-runtime-qualification.log",
+    "old_source_generation": "/tmp/feat156-generate-retained-clean.log"
+  }
+}

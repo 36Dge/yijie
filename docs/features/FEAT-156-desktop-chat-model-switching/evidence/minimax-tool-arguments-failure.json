@@ -1,0 +1,50 @@
+{
+  "recorded_at": "2026-10-02T12:58:34.344872+00:00",
+  "classification": "confirmed_stream_item_arguments_omission",
+  "ac": [
+    "AC-005",
+    "AC-009",
+    "AC-010"
+  ],
+  "source": "daily canonical app, normal user-authorized file+read-only command turn",
+  "request_ordinals": [
+    22,
+    23,
+    24
+  ],
+  "http_statuses": [
+    200,
+    200,
+    200
+  ],
+  "native_turn": "01a0fc8e-0a7c-72b3-a4d0-d85f95b563ba",
+  "function_call_argument_bytes": [
+    0,
+    0,
+    0
+  ],
+  "native_error": "failed to parse function arguments: EOF while parsing a value at line 1 column 0",
+  "command_executed": false,
+  "upstream_requests_beyond_budget": 0,
+  "known": "Requests28/29: delta and response.completed contain equal125/18byte valid JSON objects; arguments.done and output_item.done containempty strings. Fixed Runtime dispatches output_item.done and ignores function argument deltas.",
+  "unknown": "Requests22-24 had no passive stream metadata; their exact wire sequence cannot be retrospectively asserted.",
+  "official_reference": "https://platform.minimaxi.com/docs/api-reference/responses-create.md",
+  "official_reference_observation": "GET2026-10-02 via redirected platform.minimax.cn; function_call.arguments is documented as JSON string. Public document does not establish what these3 actual SSE responses contained.",
+  "next_step": "Resolved byOwnerapproved0005,qualifiedlocalartifact andreal33commandexit0.Originalfailurehistoryretained.",
+  "diagnostic_request_ordinals": [
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ],
+  "independent_native_tool_control": "requests26/27 succeeded with46byte arguments identical across delta/done/item/terminal and commandexit0",
+  "resolution": {
+    "at": "2026-10-02T14:31:47.766Z",
+    "artifact_sha256": "aad49041bd7d34c853fb55c274711e3cc810725720d2c097469822d310fb02f9",
+    "request": 33,
+    "proof": "delta/terminal18bytes samehash;done/itemdoneempty;nativecommandexecutedexit0;34continuationkept12/远山",
+    "ordinary_path": "Kimi41/42commandexit0;MiniMax44input-onlytools0"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "recorded_at": "2026-10-02T12:36:53.840761+00:00",
+  "status": "three_targets_observed",
+  "failed_draft_cleanup": "explicit Owner approval received, product permanent delete completed; no manual SQL cleanup",
+  "paid_total": 20,
+  "dedicated": {
+    "plan": "01a0fc2f-5ce9-7821-9913-107c041503be",
+    "chat": "01a0fc56-43f9-7a30-9638-aca9c53d9f58",
+    "first_turn": "01a0fc56-43f9-7a30-9638-accf66e4b79f",
+    "request17": "Kimi/max, completed, FEAT156计划完成",
+    "conflict": "explicit chat switch to MiniMax; unchanged Kimi plan rejected grant_stale before HTTP; card remained Kimi",
+    "review": "edit reads bound chat MiniMax, requires reviewed save; plan remains off",
+    "request18": "MiniMax/high, HTTP200 completed, same dedicated target; old run detail still Kimi"
+  },
+  "new_chat_each_run": {
+    "chat": "01a0fc5a-2b9d-7143-9834-ea0572e312bd",
+    "turn": "01a0fc5a-2b9d-7143-9834-ea271b115f2d",
+    "request19": "Kimi/max, completed, FEAT156新聊天完成",
+    "switch": "manual plan initially follows inherited active-save UI; immediately toggled off before any scheduled occurrence; single run only"
+  },
+  "existing_chat": {
+    "conversation": "01a0fbf2-0675-7c13-8a7a-1846eca32906",
+    "turn": "01a0fc80-5272-7f03-808e-1b4bd1288d2f",
+    "request20": "Kimi/max HTTP200, native completed4s and returned original marker青山",
+    "plan_name": "FEAT156已有聊天验收",
+    "state": "saved then immediately toggled off; explicit single execution; original history and attachment remained"
+  },
+  "pending_source_fix": {
+    "contract": "scheduled-execution0.2.0, managed_chat enum, unreleased local candidate; legacy values unchanged",
+    "migration": "SQL29 replaces grant/run tables preserving values, digests, FKs, unique/CHECK constraints and proof/timing triggers; canonical migration FK check and restoration; no manual live DB changes",
+    "tests": [
+      "strict schema/deterministic generation/sync PASS",
+      "projectless target native IPC + scoped grant workspace PASS",
+      "migration old grant/run/snapshot/FK/triggers/no-downgrade PASS",
+      "frontend25 PASS",
+      "fmt/clippy/lint PASS",
+      "Contracts full pnpm lint PASS (12 existing OpenAPI warnings)",
+      "Desktop full generate:check via existing clean pinned source dirs PASS",
+      "Desktop docs:build PASS",
+      "feature audit-claims PASS"
+    ],
+    "status": "SQL29 canonical built and real existing-target execution passed before daily acceptance"
+  },
+  "environment": "All3 synthetic acceptance plans remain off in isolated candidate data; no automatic future paid execution authorized."
+}
