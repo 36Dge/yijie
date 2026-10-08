@@ -1,0 +1,21 @@
+$ node scripts/generate-chat-turn-timing.mjs --check && node scripts/generate-chat-session-purpose.mjs --check && node scripts/generate-native-conversation.mjs --check && node scripts/check-native-conversation.mjs && pnpm check:scheduled-ipc && pnpm check:market-connectors && pnpm check:market-selection && pnpm check:market-provider && pnpm check:market-host
+Private session purpose source generation verified.
+Native conversation verified: 811f38d6b104fa18477107e7ac91a85e19c445d1; published=false
+FEAT-132 native sources, generated consumer snapshots and retired-engine boundary verified.
+$ node scripts/generate-scheduled-ipc.mjs --check
+Scheduled private IPC source, pinned shared types and strict generation verified.
+$ node ../yijie-contracts/scripts/sync-market-connectors.mjs --consumer=desktop --check && node scripts/sync-market-catalog.mjs --check
+Market connectors generation verified: 55 definitions, 9 IPC commands; local candidate only.
+Market connectors desktop checked; development hashes only, no immutable/release provenance claim.
+49-entry non-secret Connectors catalog verified; no provider activation.
+$ node ../yijie-contracts/scripts/sync-market-selection.mjs --consumer=desktop --check
+Market selection checked; 18 source definitions, one disabled Native submit candidate; no Host route or execution authority.
+Market connectors generation verified: 55 definitions, 9 IPC commands; local candidate only.
+Chat models source generation verified; unreleased local candidate.
+Market selection Desktop checked; no immutable/release provenance claim.
+$ node ../yijie-contracts/scripts/sync-market-provider.mjs --consumer=desktop --check
+Market provider checked: 24 definitions; no secret fields.
+Market provider desktop checked; local candidate.
+$ node ../yijie-contracts/scripts/sync-market-host.mjs --consumer=desktop --check
+Market Host checked: 70 definitions; existing v2 content and private Native authority.
+Market Host desktop checked; local candidate.

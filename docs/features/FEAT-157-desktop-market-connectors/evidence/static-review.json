@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-07",
+  "status": "PASS",
+  "checks": {
+    "csv_exact_reference_rows": 51,
+    "assets_source_sha256": 51,
+    "auth_counts": {
+      "oauth": 44,
+      "gateway-oauth": 1,
+      "none": 6
+    },
+    "markdown_relative_links": "PASS",
+    "trailing_whitespace": "PASS",
+    "template_placeholders": "none",
+    "repositories_unchanged_heads": 8,
+    "sibling_statuses_unchanged": 7,
+    "source_pdf_pages_reviewed": 9
+  },
+  "workspace_after": {
+    "yijie": {
+      "head": "e1ebb5785aca4c1dbbfd85cecf12f8b74d2abac1",
+      "status": "?? docs/features/FEAT-157-desktop-market-connectors/"
+    },
+    "yijie-desktop": {
+      "head": "8d74159e64b9ca87a15ecda13d019b5d180162d0",
+      "status": "M docs/store-dashboard-plan-2.md\n M src/pages/store/StorePage.vue\n M src/styles/store-dashboard.css"
+    },
+    "yijie-agent-host": {
+      "head": "a5bd6c2e7a619768eafaa63bcca7f774d1134bd3",
+      "status": ""
+    },
+    "yijie-contracts": {
+      "head": "1a213ac8383e95ac6ec69363937687904fa3591c",
+      "status": ""
+    },
+    "yijie-connectors": {
+      "head": "273eec40bbbfeb17e817643f283db7c81e9b190c",
+      "status": ""
+    },
+    "yijie-codex": {
+      "head": "7fd463bcef07f37b0211acd9f62b9f93ea0a4b12",
+      "status": ""
+    },
+    "yijie-api": {
+      "head": "041f40c69919e81ec72ccee4ea6dbb3ea012142d",
+      "status": ""
+    },
+    "yijie-infra": {
+      "head": "66b481552eb76d46b00875ac27794ed8e1eb504a",
+      "status": ""
+    }
+  },
+  "qualification": "document_checks_only_not_product_D0_or_D4"
+}

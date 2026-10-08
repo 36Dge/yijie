@@ -1,0 +1,98 @@
+{
+  "recordedAt": "2026-10-08T13:41:00+08:00",
+  "feature": "FEAT-157",
+  "authorization": "用户明确要求对FEAT-157执行git add、git commit并推送到对应远端仓库。",
+  "repositories": [
+    {
+      "repository": "yijie-contracts",
+      "remote": "https://github.com/36Dge/yijie-contracts.git",
+      "branch": "chore/retirement-baseline-20260905",
+      "commit": "2e587b708abc83a126adf8cd1d03944adee09e22",
+      "push": "PASS",
+      "lsRemote": "MATCH"
+    },
+    {
+      "repository": "yijie-connectors",
+      "remote": "https://github.com/36Dge/yijie-connectors.git",
+      "branch": "develop",
+      "commit": "629d3975b793c6a147e8b1027c9035ad870a4fc6",
+      "push": "PASS",
+      "lsRemote": "MATCH"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "remote": "https://github.com/36Dge/yijie-agent-host.git",
+      "branch": "chore/retirement-baseline-20260905",
+      "commit": "379542c1b3adedfc1dda007f942beb2dd40803ac",
+      "push": "PASS",
+      "lsRemote": "MATCH"
+    },
+    {
+      "repository": "yijie-desktop",
+      "remote": "https://github.com/36Dge/yijie-desktop.git",
+      "branch": "feat/157-market-connectors",
+      "commit": "7a10fb0c3b40e9aa45746725963d22069e3322e9",
+      "push": "PASS",
+      "lsRemote": "MATCH"
+    }
+  ],
+  "metaRepository": "This record is committed with the feature package on yijie/chore/retirement-baseline-20260905; its containing commit identifies the meta delivery.",
+  "desktopLocalCommit": "83800dfbaad1ec6ef80328853c37d218db99478e",
+  "desktopRemoteBase": "8d74159e64b9ca87a15ecda13d019b5d180162d0",
+  "desktopUnrelatedCommitNotPushed": "7c0bf92c5a86a89fbd317482faece8c051f452c8",
+  "desktopPatchesByteIdentical": true,
+  "preservedUncommittedDesktopFiles": [
+    "docs/design/docs/design/05-patterns/02-chat-workspace.md",
+    "docs/design/docs/design/05-patterns/16-feat-151-workflow-showcase.md",
+    "docs/store-dashboard-plan-2.md",
+    "src/components/chat/ChatComposer.test.ts",
+    "src/components/chat/ChatComposer.vue",
+    "src/components/store/StoreAiOperations.vue",
+    "src/components/workflows/RecommendedWorkflowCard.vue",
+    "src/components/workflows/WorkflowSummaryCard.vue",
+    "src/domain/workflow-showcase.test.ts",
+    "src/domain/workflow-showcase.ts",
+    "src/icons/registry.test.ts",
+    "src/icons/registry.ts",
+    "src/pages/workflows/WorkflowPage.test.ts",
+    "src/styles/store-ai-operations.css"
+  ],
+  "protectedStoreDiffSha256": "8719058979fab66ccebf2bf0a0d6e593be7c7439fde1c35db920804b64337a20",
+  "runtimeChanged": false,
+  "additionalModelCalls": 0,
+  "additionalProviderCalls": 0,
+  "forcePush": false,
+  "releaseOrDeployment": false,
+  "checks": [
+    {
+      "name": "isolated-ui",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "evidence/git-delivery/isolated-ui.log",
+      "sha256": "94547f947209f1faffcbff722f6f42de9be3f7ebe1141fd757281ffc008a3325"
+    },
+    {
+      "name": "isolated-extra",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "evidence/git-delivery/isolated-extra.log",
+      "sha256": "0106f6645d6760854be3d122bdf760fa5d7d56e142af63b96c5dcb8c522babb7"
+    },
+    {
+      "name": "isolated-lint",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "evidence/git-delivery/isolated-lint.log",
+      "sha256": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6"
+    },
+    {
+      "name": "isolated-build",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "evidence/git-delivery/isolated-build.log",
+      "sha256": "a4d7a9c4a72b2fbafed152cf9288e00b98aac2329b2070f7c7ff59806236161d"
+    }
+  ],
+  "rawEvidencePreservation": "Raw historical logs retain exact bytes/digests. Eleven original logs have a trailing blank line reported by git diff --check; no source/doc whitespace errors, no evidence was rewritten to hide this.",
+  "packaging": "Excluded Rust target caches; normalized only whitespace in one imported SVG with unchanged element/path geometry and updated asset hash. Regenerated Desktop source snapshots after upstream commits."
+}

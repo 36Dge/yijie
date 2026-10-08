@@ -1,0 +1,286 @@
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+
+feature:
+  id: FEAT-157
+  slug: desktop-market-connectors
+  title: "49 个市场 MCP 连接器与对话选用"
+  status: usable
+  created_at: "2026-10-07"
+  requirement_owner: "段成威"
+  technical_owner: "段成威"
+  reviewer: "段成威"
+  release_owner: "段成威"
+
+# Owner当前49项实现/代码审计（移除淘宝闪购和豆蔻医生，AE恢复接入）；真实服务仅Tushare；非空选集仅请求批准。原2轮/1查询及追加4轮/2查询均用完；Owner后续已授权Git交付，记录见19。
+scope:
+  risk_level: high
+  data_classification: restricted
+  contract_impact: breaking
+  database_change: expand
+  persistence_change: durable
+  runtime_change: platform
+  auth_permission_change: both
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: tool
+
+repositories:
+  - yijie
+  - yijie-contracts
+  - yijie-connectors
+  - yijie-agent-host
+  - yijie-desktop
+  - yijie-codex
+  - yijie-api
+  - yijie-infra
+
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+
+product_ux:
+  status: PASS
+  primary_user: "通过易界桌面端使用外部应用和服务完成任务的用户"
+  problem: "没有市场MCP管理和聊天选用闭环，另一宿主参考不能直接作为易界授权与执行架构"
+  user_outcome: "发现安装配置并启用当前49项范围内的服务，在店铺授权右侧选择本轮应用并看到标签，实际执行和审批可追踪"
+  in_scope:
+    - "49项六分类市场、已安装单列表、详情安装配置授权启停卸载"
+    - "HTTP OAuth/自备凭据、两个Google官方远程服务；AE按导出Header安全配置；淘宝闪购及豆蔻医生已移除"
+    - "聊天入口标签、管理往返、草稿隔离、快照幂等与历史"
+    - "保持token边界并复用Codex MCP库/原生工具执行审批展示"
+    - "Contract First、持久兼容、canonical装配；本轮真实服务验收只选Tushare"
+  out_of_scope:
+    - "自定义MCP、任意URL或JSON导入、截图中额外应用"
+    - "重做插件市场/店铺演示、Coze节点、自动扩展定时任务权限"
+    - "云同步、团队共享、生产激活、未获准真实敏感数据/付费/写操作"
+  main_flow:
+    - "canonical免易界登录进入连接器市场，只读本地49项目录"
+    - "详情安装默认关闭，显式配置授权并经过MCP可用性验证后启用"
+    - "店铺右侧弹层点击已启用行加入本轮标签，管理往返保留草稿"
+    - "提交冻结连接版本/选集/模型/正文附件，Host/Broker可信校验，Codex原生执行"
+    - "原生结果审批与历史复用；停用卸载撤销未来能力、正常清理、保留真实在途结果"
+  visual_direction: "PDF交互和补图位置；易界活跃Yj/Naive/token/石墨青柠；品牌logo原色contain，亮暗1180x760和键盘可用"
+  ui_states:
+    idle: "目录卡片/已安装状态可读；安装启用与本轮选择分离"
+    loading: "目录/操作局部busy，禁止重复请求，保留草稿和最后权威状态"
+    success: "只有匹配attempt/generation且凭据/初始化/工具目录完成后才显示可用"
+    empty: "空已安装引导市场；搜索无结果可清除；空选集不调用市场工具"
+    error: "错误安全且可理解；缺配置、权限、供应商资格、不兼容分别有出口"
+    retry: "沿原operation查询/重试幂等；未知外部写入不自动重发"
+    cancel: "关闭UI与取消连接分离；取消attempt保留安装，迟到完成不反启用"
+
+must_acceptance:
+  - id: AC-001
+    statement: "导航、唯一49项六分类图标和两tab正确，无自定义接入"
+    verification: "18逐项收尾矩阵；evidence/closeout-verification-2026-10-08.json；既有真实与正常本地证据边界分别标注"
+    status: PASS
+  - id: AC-002
+    statement: "详情和安装幂等持久、默认关闭，不自动外部调用或运行依赖"
+    verification: "18逐项收尾矩阵；evidence/closeout-verification-2026-10-08.json；既有真实与正常本地证据边界分别标注"
+    status: PASS
+  - id: AC-003
+    statement: "49项按明确的认证适配路径完成代码接入（AE实际Header由官方导出配置提供），授权取消/迟到/过期不误启用；真实账号验证仅Tushare"
+    verification: "18逐项收尾矩阵；evidence/closeout-verification-2026-10-08.json；既有真实与正常本地证据边界分别标注"
+    status: PASS
+  - id: AC-004
+    statement: "启停卸载三处一致，清理失败和在途真实，无强杀/假撤销"
+    verification: "18逐项收尾矩阵；evidence/closeout-verification-2026-10-08.json；既有真实与正常本地证据边界分别标注"
+    status: PASS
+  - id: AC-005
+    statement: "店铺右侧入口/标签/管理往返正确，正文附件选集隔离，两个submit分支一致"
+    verification: "18逐项收尾矩阵；evidence/closeout-verification-2026-10-08.json；既有真实与正常本地证据边界分别标注"
+    status: PASS
+  - id: AC-006
+    statement: "所选且仍有效工具才可执行，可信binding/审批与平台token边界成立"
+    verification: "18逐项收尾矩阵；evidence/closeout-verification-2026-10-08.json；既有真实与正常本地证据边界分别标注"
+    status: PASS
+  - id: AC-007
+    statement: "唯一数据权威、名称快照、模型重试重开与旧历史兼容，不串选不重发"
+    verification: "18逐项收尾矩阵；evidence/closeout-verification-2026-10-08.json；既有真实与正常本地证据边界分别标注"
+    status: PASS
+  - id: AC-008
+    statement: "所有异常/取消/未知有恢复出口，幂等且不盲目重试外部写入"
+    verification: "18逐项收尾矩阵；evidence/closeout-verification-2026-10-08.json；既有真实与正常本地证据边界分别标注"
+    status: PASS
+  - id: AC-009
+    statement: "易界亮暗主题、最小窗口缩放长名称和键盘焦点通过"
+    verification: "18逐项收尾矩阵；evidence/closeout-verification-2026-10-08.json；既有真实与正常本地证据边界分别标注"
+    status: PASS
+  - id: AC-010
+    statement: "canonical完整主路径与失败恢复有Tushare真实证据，其余48项完成代码审计与适用本地测试，目录不替代接入"
+    verification: "18收尾矩阵与Owner分阶段证据确认（2026-10-08T13:20:34+08:00）；f8真实Tushare批准/拒绝＋ea84最新本地回归；不合称同构建实跑"
+    status: PASS
+
+contract:
+  impact: breaking
+  authority: "易界wire以Contracts源为权威；Codex固定canonical协议及兼容投影；第三方以官方协议；本地数据走所属store/migration"
+  source_first_plan: "原生无秘密资格→Contracts版本化源/生成/方向验证→Broker/Host provider与兼容reader→Native快照→Vue；不扩旧严格decoder，不复制影子DTO"
+  status: PASS
+  checks:
+    - repository: yijie-contracts
+      command: "market-connectors 独立 family 生成与 JS/Go/Rust conformance、lint；三历史基线兼容"
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: "pnpm check:native（既有 Native/计划与新连接器源码生成一致性）"
+      status: PASS
+      exit_code: 0
+
+external_authorizations:
+  paid_calls: { allowed: true, max_actions: 6, approved_by: "段成威", approved_at: "2026-10-08T09:29:59+08:00" }
+  destructive_operations: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+  production_writes: { allowed: false, max_actions: 0, approved_by: "N/A", approved_at: "N/A" }
+
+implementation:
+  status: complete
+  real_entrypoint: "当前ea84标准构建已完成49项范围、本地管理持久/取消卸载/草稿往返及授权页恢复；Tushare f8真实批准与拒绝证据保留。Owner已明确接受f8真实调用＋ea84本地回归的分阶段证据，AC001-010及本地D4通过，见18；无新增付费调用"
+  mock_only: false
+
+verification:
+  status: PASS
+  verified_at: "2026-10-08T13:20:34+08:00"
+  startup:
+    status: PASS
+    command_or_steps: "标准tauri:dev及tauri:demo-fast:app；market/models/scheduled-candidate显式启用，端口18087"
+    environment: "demo_fast/local，demo-fast-model-candidate-v1隔离数据及Host Home，固定Runtime，worker f8f85fa4 generic-mcp-v1（真实调用）；ea84c360为最新49项标准构建与本地回归"
+    actual_result: "2026-10-08通用标准构建正常进入聊天，Tushare复用Keyring恢复启用、所选标签、批准和拒绝均可用；最新49项标准制品管理/持久/正常重启/历史查看通过，分阶段证据经Owner接受"
+  real_smoke:
+    status: PASS
+    command_or_steps: "Tushare单服务主链：已有Keyring恢复Enable→选择→同会话实际续轮→批准单代码单日daily→校验结果；此PASS仅表示该主链，其余Must不据此通过"
+    environment: "获批准的账号/调用范围与f8真实候选；最新ea84仅本地回归，Owner接受此分阶段证据"
+    actual_result: "最终通用候选12:10批准f88876fb查询恰好1次HTTP200，000001.SZ/20260105/close=11.5；12:12拒绝af9b7165发送0次。追加4轮/2查询已耗尽；不覆盖历史失败事实"
+  representative_failure:
+    status: PASS
+    command_or_steps: "真实Tushare审批卡片拒绝一次，验证模型和工具说明一致且未发外部查询"
+    environment: "无强杀、无权限破坏、无攻击fixture"
+    actual_result: "af9b7165仅call_approval started与call_admission rejected；无backend/HTTP事件，工具与模型都明确拒绝且未发送。OAuth早期超时正常cleanup保留原记录，不计整个异常矩阵通过"
+  focused_checks:
+    - repository: yijie-desktop
+      command: "授权恢复后Native39/Clippy；UI59+当前源邻近69；lint/check:native；标准重建和本地安装/重启/卸载/草稿往返"
+      status: PASS
+      exit_code: 0
+    - repository: yijie-contracts
+      command: "管理0.2.0 JS11/Go/Rust6；Selection/Broker/Host JS22；source-first及所有依赖同步"
+      status: PASS
+      exit_code: 0
+    - repository: yijie-connectors
+      command: "generic-mcp-v1 worker56/Clippy/source-check；目录Go race、Go vet；canonical worker-build"
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: "Native connectors38/Clippy；前端8文件56项；pnpm lint/check:native"
+      status: PASS
+      exit_code: 0
+    - repository: yijie-contracts
+      command: "Broker/Host专项15项，Provider/Host源生成与全部consumer同源校验"
+      status: PASS
+      exit_code: 0
+    - repository: yijie-contracts
+      command: "market-broker-control JS7/Go5/Rust6、Clippy、lint及两consumer source-sync"
+      status: PASS
+      exit_code: 0
+    - repository: yijie-agent-host
+      command: "market-broker 6单元+4真实owner集成（5child，含两动作满1024回执退役）race；lint/source-sync"
+      status: PASS
+      exit_code: 0
+    - repository: yijie-connectors
+      command: "worker 19项Rust专项/Clippy，固定真实Runtime→Rust Gateway run06首次批准/续轮拒绝及40控制帧同源验证"
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: "审计后Native16项+SQL31新增1项通过；原授权2项/模型1项回归；Clippy；前端11文件97项；lint/build/check:native"
+      status: PASS
+      exit_code: 0
+    - repository: yijie-contracts
+      command: "market-selection独立源JS7/Rust5/Go2、Clippy、TS、source-sync、make lint"
+      status: PASS
+      exit_code: 0
+    - repository: yijie-connectors
+      command: "owner预取消/Close永久关准入真实worker race专项；专属env carrier固定Runtime正常本地资格"
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: "最终 pnpm lint/build；UI/路由/权限/草稿9文件84项专项；亮暗1180x760及200%组件视觉"
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: "cargo test feat157 --lib（8项）；cargo clippy --all-targets -- -D warnings；客户端专项8项"
+      status: PASS
+      exit_code: 0
+    - repository: yijie-connectors
+      command: "固定源worker构建/Clippy/Rust tests；真实worker正常往返；Go race/vet"
+      status: PASS
+      exit_code: 0
+    - repository: yijie-codex
+      command: "既有固定Runtime loopback合成MCP/Responses Q-SEL-01/02/05，正常EOF退出；固定库公开stdio bridge正常资格"
+      status: PASS
+      exit_code: 0
+  artifacts:
+    - 19-git-delivery-2026-10-08.md
+    - evidence/git-delivery-2026-10-08.json
+    - 18-closeout-audit-and-acceptance-matrix.md
+    - evidence/closeout-verification-2026-10-08.json
+    - evidence/scope49-local-verification-2026-10-08.json
+    - 13-tushare-real-query-and-permissions.md
+    - 14-completion-audit-2026-10-08.md
+    - 15-generic-provider-execution-plan.md
+    - 16-generic-implementation-progress.md
+    - 17-generic-provider-implementation-and-scope.md
+    - evidence/generic-final-acceptance-2026-10-08.json
+    - sources/catalog-51.json
+    - sources/assets-manifest.json
+    - evidence/workspace-before.json
+    - 03-product-and-ux.md
+    - 04-architecture-and-contracts.md
+    - 05-service-catalog.md
+    - 06-decisions-and-rollout.md
+    - 07-implementation-progress.md
+    - 08-implementation-audit-and-next-step.md
+    - 09-broker-control-implementation.md
+    - 10-product-execution-and-tushare.md
+    - evidence/broker-qualification/README.md
+    - evidence/broker-qualification/run-06/verification.json
+    - evidence/broker-control-checks.json
+    - evidence/carrier-qualification/README.md
+    - evidence/ui-uninstall-audit.md
+    - evidence/audit-implementation-checks.json
+    - evidence/audit-ui-tests.log
+    - evidence/implementation-start.json
+    - evidence/implementation-checks.json
+    - evidence/runtime-qualification/README.md
+    - evidence/ui-verification.md
+    - evidence/ui-specialized-tests.log
+    - evidence/chatpage-baseline-tests.log
+  diff_review:
+    status: PASS
+    summary: "17/18完成49项代码审计与授权页恢复补缺；Worker56/Native39/UI59及邻近69、管理JS11/Rust6/Go、依赖JS22/Host9通过。f8真实Tushare与ea84本地回归保留各自构建标识，Owner明确接受分阶段证据完成本地D4；固定Runtime和店铺受保护差异未改"
+  known_limitations:
+    - "Owner于2026-10-08T13:20:34+08:00明确接受分阶段证据完成本地D4；未在ea84重复真实调用，此任务决定不修改全局fresh-run规则或证明生产可用"
+    - "通用发现/逐次审批代码已实现；49项逐项代码记录见17和Connectors后续审计。仅Tushare真实验收，其余48项不要求真实调用"
+    - "本轮补历史轮次索引、按原名称查看工具结果及未知审批决定跨会话防重复；未改变执行授权或新增迁移"
+    - "Google改用官方远程MCP复用HTTP/Keyring；日历需预览资格与自有应用；淘宝闪购和豆蔻医生已退出需求范围；AE需按导出HTTP Header配置"
+    - "旧诊断不足保留历史记录，Owner明确不再作为阻塞项，不为此重复付费调用"
+    - "追加4轮模型/2次查询现全部用完；本阶段最后2轮模型/1次查询已完成，不再进行付费调用"
+    - "已有Desktop店铺三文件不修改；固定Codex Runtime不修改"
+    - "ChatPage既有5项legacy失败已有HEAD复现；不宣称全仓CI通过"
+    - "SQL33仅隔离候选，回退使用兼容reader；没有日常库降级或发布；D4后获准Git提交推送见19"
+
+public_readiness:
+  required: false
+  status: "N/A"
+  checks: []
+  external_smoke:
+    status: "NOT RUN"
+    command_or_steps: "本期local需求，不执行公网smoke"
+    actual_result: "未公开"
+
+documents:
+  brief: "00-feature-brief.md"
+  delivery_log: "01-delivery-log.md"
+  verification: "02-verification.md"

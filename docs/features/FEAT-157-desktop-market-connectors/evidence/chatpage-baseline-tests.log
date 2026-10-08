@@ -1,0 +1,130 @@
+
+ RUN  v4.1.10 /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop
+
+(node:58024) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+stderr | src/pages/chat/feat157-baseline-chat.test.ts > FEAT-126 ChatPage > does not switch the renderer when metadata-only reasoning enters the projection
+[Vue Router warn]: No active route record was found when calling `onBeforeRouteLeave()`. Make sure you call this function inside a component child of <router-view>. Maybe you called it inside of App.vue?
+[Vue Router warn]: No active route record was found when calling `onBeforeRouteUpdate()`. Make sure you call this function inside a component child of <router-view>. Maybe you called it inside of App.vue?
+
+stderr | src/pages/chat/feat157-baseline-chat.test.ts > FEAT-126 ChatPage > does not treat an active empty reasoning Item as historical authority loss
+[Vue Router warn]: No active route record was found when calling `onBeforeRouteLeave()`. Make sure you call this function inside a component child of <router-view>. Maybe you called it inside of App.vue?
+[Vue Router warn]: No active route record was found when calling `onBeforeRouteUpdate()`. Make sure you call this function inside a component child of <router-view>. Maybe you called it inside of App.vue?
+
+stderr | src/pages/chat/feat157-baseline-chat.test.ts > FEAT-126 ChatPage > selects through the unified plus entry and permits an attachment-only task
+[Vue Router warn]: No active route record was found when calling `onBeforeRouteLeave()`. Make sure you call this function inside a component child of <router-view>. Maybe you called it inside of App.vue?
+[Vue Router warn]: No active route record was found when calling `onBeforeRouteUpdate()`. Make sure you call this function inside a component child of <router-view>. Maybe you called it inside of App.vue?
+
+stderr | src/pages/chat/feat157-baseline-chat.test.ts > FEAT-126 ChatPage > keeps one accepted user identity and never restores its drafts after failed
+[Vue Router warn]: No active route record was found when calling `onBeforeRouteLeave()`. Make sure you call this function inside a component child of <router-view>. Maybe you called it inside of App.vue?
+[Vue Router warn]: No active route record was found when calling `onBeforeRouteUpdate()`. Make sure you call this function inside a component child of <router-view>. Maybe you called it inside of App.vue?
+
+stderr | src/pages/chat/feat157-baseline-chat.test.ts > FEAT-126 ChatPage > keeps one accepted user identity and never restores its drafts after interrupted
+[Vue Router warn]: No active route record was found when calling `onBeforeRouteLeave()`. Make sure you call this function inside a component child of <router-view>. Maybe you called it inside of App.vue?
+[Vue Router warn]: No active route record was found when calling `onBeforeRouteUpdate()`. Make sure you call this function inside a component child of <router-view>. Maybe you called it inside of App.vue?
+
+ ❯ src/pages/chat/feat157-baseline-chat.test.ts (57 tests | 5 failed | 2 skipped) 696ms
+     × does not switch the renderer when metadata-only reasoning enters the projection 13ms
+     × does not treat an active empty reasoning Item as historical authority loss 10ms
+     × selects through the unified plus entry and permits an attachment-only task 11ms
+     × keeps one accepted user identity and never restores its drafts after failed 15ms
+     × keeps one accepted user identity and never restores its drafts after interrupted 13ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/pages/chat/feat157-baseline-chat.test.ts > FEAT-126 ChatPage > does not switch the renderer when metadata-only reasoning enters the projection
+AssertionError: expected '本地合成任务Synthetic Workspace 模型推理记录 推理记录…' to contain '过程记录'
+
+Expected: "过程记录"
+Received: "本地合成任务Synthetic Workspace 模型推理记录 推理记录已完成 · 1 项 · 12 字节检查标题synthetic-brief.pdf文件 · 4 KB08:00处理过程此过程仅包含状态元数据；详情未进入当前对话投影。标题检查完成输入你的任务需求关联店铺Synthetic Workspace权限审批只读 · 禁止写入"
+
+ ❯ src/pages/chat/feat157-baseline-chat.test.ts:756:28
+    754|     expect(wrapper.getComponent(ChatTimeline).element).toBe(timelineEl…
+    755|     expect(wrapper.find(".chat-turn").exists()).toBe(false);
+    756|     expect(wrapper.text()).toContain("过程记录");
+       |                            ^
+    757|     expect(wrapper.text()).toContain("此过程仅包含状态元数据；详情未进入当前对话投影。");
+    758|     expect(wrapper.text()).toContain("标题检查完成");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  src/pages/chat/feat157-baseline-chat.test.ts > FEAT-126 ChatPage > does not treat an active empty reasoning Item as historical authority loss
+AssertionError: expected '本地合成任务Synthetic Workspace 旧版记录，当前执行状态…' to contain '本轮正在处理中'
+
+Expected: "本轮正在处理中"
+Received: "本地合成任务Synthetic Workspace 旧版记录，当前执行状态未确认  · 旧版记录过程记录仅有已观察记录，当前进度待确认仅有已观察记录，当前进度待确认输入你的任务需求关联店铺Synthetic Workspace权限审批只读 · 禁止写入"
+
+ ❯ src/pages/chat/feat157-baseline-chat.test.ts:808:28
+    806|     expect(wrapper.find(".chat-turn").exists()).toBe(false);
+    807|     expect(wrapper.text()).toContain("过程记录");
+    808|     expect(wrapper.text()).toContain("本轮正在处理中");
+       |                            ^
+    809|     expect(wrapper.text()).not.toContain("仅包含状态元数据");
+    810|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  src/pages/chat/feat157-baseline-chat.test.ts > FEAT-126 ChatPage > selects through the unified plus entry and permits an attachment-only task
+AssertionError: expected "wrappedAction" to be called with arguments: [ …(2) ]
+
+Received:
+
+  1st wrappedAction call:
+
+  [
+-   "019c1a00-0000-7000-8000-000000000001",
++   null,
+    "",
+  ]
+
+
+Number of calls: 1
+
+ ❯ src/pages/chat/feat157-baseline-chat.test.ts:1186:27
+    1184|     await flushPromises();
+    1185|
+    1186|     expect(createSession).toHaveBeenCalledWith(PROJECT_ID, "");
+       |                           ^
+    1187|     expect(router.currentRoute.value.path).toBe(`/chat/${SESSION_ID}`);
+    1188|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  src/pages/chat/feat157-baseline-chat.test.ts > FEAT-126 ChatPage > keeps one accepted user identity and never restores its drafts after failed
+AssertionError: expected '本地合成任务Synthetic Workspace 模型推理记录 推理记录…' to contain '等待处理'
+
+Expected: "等待处理"
+Received: "本地合成任务Synthetic Workspace 模型推理记录 推理记录已完成 · 1 项 · 12 字节检查标题synthetic-brief.pdf文件 · 4 KB08:00处理过程此过程仅包含状态元数据；详情未进入当前对话投影。标题检查完成 旧版记录，当前执行状态未确认  · 旧版记录提交后 failedsynthetic-brief.pdf文件 · 4 KB08:00输入你的任务需求关联店铺Synthetic Workspace权限审批只读 · 禁止写入"
+
+ ❯ src/pages/chat/feat157-baseline-chat.test.ts:1427:30
+    1425|       expect(queuedUsers).toHaveLength(1);
+    1426|       expect(wrapper.text()).toContain(input);
+    1427|       expect(wrapper.text()).toContain("等待处理");
+       |                              ^
+    1428|       expect((wrapper.get("textarea").element as HTMLTextAreaElement).…
+    1429|       expect(store.draftAttachments).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  src/pages/chat/feat157-baseline-chat.test.ts > FEAT-126 ChatPage > keeps one accepted user identity and never restores its drafts after interrupted
+AssertionError: expected '本地合成任务Synthetic Workspace 模型推理记录 推理记录…' to contain '等待处理'
+
+Expected: "等待处理"
+Received: "本地合成任务Synthetic Workspace 模型推理记录 推理记录已完成 · 1 项 · 12 字节检查标题synthetic-brief.pdf文件 · 4 KB08:00处理过程此过程仅包含状态元数据；详情未进入当前对话投影。标题检查完成 旧版记录，当前执行状态未确认  · 旧版记录提交后 interruptedsynthetic-brief.pdf文件 · 4 KB08:00输入你的任务需求关联店铺Synthetic Workspace权限审批只读 · 禁止写入"
+
+ ❯ src/pages/chat/feat157-baseline-chat.test.ts:1427:30
+    1425|       expect(queuedUsers).toHaveLength(1);
+    1426|       expect(wrapper.text()).toContain(input);
+    1427|       expect(wrapper.text()).toContain("等待处理");
+       |                              ^
+    1428|       expect((wrapper.get("textarea").element as HTMLTextAreaElement).…
+    1429|       expect(store.draftAttachments).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed | 50 passed | 2 skipped (57)
+   Start at  18:12:14
+   Duration  2.19s (transform 801ms, setup 0ms, import 1.31s, tests 696ms, environment 94ms)
+

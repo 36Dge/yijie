@@ -1,0 +1,347 @@
+{
+  "feature": "FEAT-157",
+  "date": "2026-10-07",
+  "mode": "local_candidate",
+  "release": false,
+  "product_d4": "NOT_RUN",
+  "repositories": {
+    "yijie": {
+      "base_commit": "e1ebb5785aca4c1dbbfd85cecf12f8b74d2abac1",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": [
+        " M docs/adr/README.md",
+        "?? docs/adr/ADR-0021-local-market-connector-authority.md",
+        "?? docs/features/FEAT-157-desktop-market-connectors/"
+      ]
+    },
+    "yijie-contracts": {
+      "base_commit": "1a213ac8383e95ac6ec69363937687904fa3591c",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": [
+        " M Makefile",
+        " M README.md",
+        " M docs/supported-baselines.md",
+        " M scripts/validate-json-schemas.mjs",
+        "?? compatibility/market-broker-control/",
+        "?? compatibility/market-connectors/",
+        "?? compatibility/market-selection/",
+        "?? docs/market-broker-control-v1.md",
+        "?? docs/market-broker-control-validation-2026-10-07.md",
+        "?? docs/market-connectors-broker-control-candidate.md",
+        "?? docs/market-connectors-v1.md",
+        "?? docs/market-connectors-validation-2026-10-07.md",
+        "?? docs/market-selection-v1.md",
+        "?? docs/market-selection-validation-2026-10-07.md",
+        "?? fixtures/",
+        "?? openapi/market-connectors/",
+        "?? scripts/generate-market-broker.mjs",
+        "?? scripts/generate-market-connectors.mjs",
+        "?? scripts/generate-market-selection.mjs",
+        "?? scripts/market-broker-codegen.mjs",
+        "?? scripts/market-broker-source.mjs",
+        "?? scripts/market-selection-source.mjs",
+        "?? scripts/sync-market-broker.mjs",
+        "?? scripts/sync-market-connectors.mjs",
+        "?? scripts/sync-market-selection.mjs",
+        "?? sdks/go/market-broker-control/",
+        "?? sdks/go/market-connectors/",
+        "?? sdks/go/market-selection/",
+        "?? sdks/jsonschema/market-broker-control.schema.json",
+        "?? sdks/jsonschema/market-connectors.schema.json",
+        "?? sdks/jsonschema/market-selection.schema.json",
+        "?? sdks/rust/market-broker-control/",
+        "?? sdks/rust/market-connectors/",
+        "?? sdks/rust/market-selection/",
+        "?? sdks/typescript/src/api/",
+        "?? sdks/typescript/src/domain/",
+        "?? tests/market-broker.test.mjs",
+        "?? tests/market-connectors.test.mjs",
+        "?? tests/market-selection.test.mjs",
+        "?? tests/rust-market-broker/",
+        "?? tests/rust-market-connectors/",
+        "?? tests/rust-market-selection/"
+      ]
+    },
+    "yijie-agent-host": {
+      "base_commit": "a5bd6c2e7a619768eafaa63bcca7f774d1134bd3",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": [
+        " M Makefile",
+        " M README.md",
+        " M SECURITY.md",
+        " M internal/codex/runtime.go",
+        "?? api/market-broker-control.candidate.json",
+        "?? api/market-broker-control.schema.json",
+        "?? docs/market-broker-control.md",
+        "?? docs/market-broker-verification.json",
+        "?? internal/codex/market_environment_test.go",
+        "?? internal/contracts/marketbrokercontrol/",
+        "?? internal/contracts/marketconnectors/",
+        "?? internal/contracts/marketselection/",
+        "?? internal/marketbroker/"
+      ]
+    },
+    "yijie-connectors": {
+      "base_commit": "273eec40bbbfeb17e817643f283db7c81e9b190c",
+      "branch": "develop",
+      "status": [
+        " M .gitignore",
+        " M AGENTS.md",
+        " M Makefile",
+        " M README.md",
+        " M SECURITY.md",
+        "?? api/market-broker-control.candidate.json",
+        "?? api/market-broker-control.schema.json",
+        "?? api/market-connectors.candidate.json",
+        "?? api/market-connectors.schema.json",
+        "?? catalog/",
+        "?? cmd/connector-catalog/",
+        "?? docs/market-broker-control.md",
+        "?? docs/market-broker-verification.json",
+        "?? docs/market-connectors-foundation-verification.json",
+        "?? docs/market-connectors-foundation.md",
+        "?? docs/market-owner-lifecycle-verification.json",
+        "?? internal/app/market.go",
+        "?? internal/contracts/",
+        "?? internal/worker/",
+        "?? scripts/build-market-broker-qualification.sh",
+        "?? scripts/build-market-worker.sh",
+        "?? scripts/check-worker-source.py",
+        "?? worker/"
+      ]
+    },
+    "yijie-desktop": {
+      "base_commit": "8d74159e64b9ca87a15ecda13d019b5d180162d0",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": [
+        " M docs/store-dashboard-plan-2.md",
+        " M eslint.config.js",
+        " M package.json",
+        " M scripts/run-local-demo-fast.sh",
+        " M src-tauri/src/chat/authorization.rs",
+        " M src-tauri/src/chat/database.rs",
+        " M src-tauri/src/chat/ipc.rs",
+        " M src-tauri/src/chat/migrations.rs",
+        " M src-tauri/src/chat/mod.rs",
+        " M src-tauri/src/chat/models.rs",
+        " M src-tauri/src/chat/schedules/drafts.rs",
+        " M src-tauri/src/chat/schedules/execution/preparation.rs",
+        " M src-tauri/src/chat/schedules/execution_guard.rs",
+        " M src-tauri/src/lib.rs",
+        " M src-tauri/src/local_profile.rs",
+        " M src/App.vue",
+        " M src/authorization/app-permission-policy.test.ts",
+        " M src/authorization/app-permission-policy.ts",
+        " M src/authorization/chat-permission-lifecycle.ts",
+        " M src/components/chat/ChatComposer.test.ts",
+        " M src/components/chat/ChatComposer.vue",
+        " M src/components/yijie/YjAppShell.vue",
+        " M src/components/yijie/YjSection.vue",
+        " M src/composables/useChatModels.ts",
+        " M src/domain/chat-composer-draft.ts",
+        " M src/domain/permissions.ts",
+        " M src/icons/registry.ts",
+        " M src/navigation/app-nav.test.ts",
+        " M src/navigation/app-nav.ts",
+        " M src/pages/chat/ChatPage.vue",
+        " M src/pages/store/StorePage.vue",
+        " M src/router/index.ts",
+        " M src/styles/store-dashboard.css",
+        " M src/styles/variables.css",
+        "?? contracts/market-catalog.candidate.json",
+        "?? contracts/market-catalog.json",
+        "?? contracts/market-connectors.candidate.json",
+        "?? contracts/market-connectors.schema.json",
+        "?? contracts/market-selection.candidate.json",
+        "?? contracts/market-selection.schema.json",
+        "?? docs/market-connectors-local-candidate.md",
+        "?? scripts/sync-market-catalog.mjs",
+        "?? src-tauri/migrations/chat/0030_market_connectors.sql",
+        "?? src-tauri/migrations/chat/0031_market_selection.sql",
+        "?? src-tauri/src/chat/connectors/",
+        "?? src/api/generated/market-connectors-validator.gen.d.ts",
+        "?? src/api/generated/market-connectors-validator.gen.js",
+        "?? src/api/generated/market-selection-validator.gen.d.ts",
+        "?? src/api/generated/market-selection-validator.gen.js",
+        "?? src/api/market-connectors-client.test.ts",
+        "?? src/api/market-connectors-client.ts",
+        "?? src/assets/connectors/",
+        "?? src/components/chat/ChatConnectorChips.vue",
+        "?? src/components/chat/ChatConnectorControl.test.ts",
+        "?? src/components/chat/ChatConnectorControl.vue",
+        "?? src/components/connectors/",
+        "?? src/composables/useMarketConnectorBinding.ts",
+        "?? src/domain/connector-ui.ts",
+        "?? src/domain/market-connectors-ui.test.ts",
+        "?? src/domain/market-connectors-ui.ts",
+        "?? src/domain/market-connectors.generated.ts",
+        "?? src/domain/market-selection.generated.ts",
+        "?? src/icons/connector-icons.ts",
+        "?? src/pages/connectors/",
+        "?? src/stores/chat-composer-drafts.store.test.ts",
+        "?? src/stores/chat-composer-drafts.store.ts",
+        "?? src/stores/market-connectors.store.test.ts",
+        "?? src/stores/market-connectors.store.ts"
+      ]
+    },
+    "yijie-codex": {
+      "base_commit": "7fd463bcef07f37b0211acd9f62b9f93ea0a4b12",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": []
+    }
+  },
+  "product_worker": {
+    "schemaVersion": 1,
+    "candidateOnly": true,
+    "binary": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/bin/market-worker/f36db7e719175d4a60b7f0133776704cfe5d30faaf930f8981f75dff4322f415/yijie-mcp-worker",
+    "sha256": "f36db7e719175d4a60b7f0133776704cfe5d30faaf930f8981f75dff4322f415",
+    "sizeBytes": 48862256,
+    "codexSource": "7fd463bcef07f37b0211acd9f62b9f93ea0a4b12",
+    "externalCallsEnabled": false,
+    "qualificationOnly": false
+  },
+  "qualification_worker": {
+    "schemaVersion": 1,
+    "candidateOnly": true,
+    "qualificationOnly": true,
+    "binary": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/bin/market-broker-qualification/68d4e5c98d3ce46fc9703133f20bb8c2dc3e697ef6792219ec182f2893fb4fea/market-broker-qualification",
+    "sha256": "68d4e5c98d3ce46fc9703133f20bb8c2dc3e697ef6792219ec182f2893fb4fea",
+    "sizeBytes": 17822608,
+    "codexSource": "7fd463bcef07f37b0211acd9f62b9f93ea0a4b12",
+    "externalCallsEnabled": false,
+    "sources": {
+      "worker/Cargo.toml": "7e8a8f5fe1d6a741df0d003e24fa29a2d3539ad4b8349b4e5158237df6ce6589",
+      "worker/Cargo.lock": "48c41f810e468d159574cf956d0c946cee3ec491af16ed64bc8592c367d4d74c",
+      "worker/src/broker.rs": "790e2b3e855f20358afc6e5de1461156f0672bd73c40e21c0522448a7c533e73",
+      "worker/src/gateway.rs": "b758843030fbe4e74e5fd95166eedc03ae72f9bb28b7ce24becc6fc5f7ded473",
+      "worker/src/broker_generated.rs": "2d0b9e88e66784b286cfedaa508005013224d1af6b1be8d6ed7aa3b1e194a9fb",
+      "worker/src/selection_generated.rs": "902f396bac10b7ea109629a6cd6cca49cff393335a902455e31b7ced238c09c5",
+      "worker/src/generated.rs": "175d0d58a5be5507133ddc7a0922d5f2a184400d4c6041d33cecf8dab494437a",
+      "worker/qualification/broker.rs": "152f1fe22123c6bb511a59a6f9f51104b6968f2466c6ee20692c201373039fc3",
+      "worker/source.lock.json": "e1e11408a149f9e796f4f1a492f59953313217ede5733739845a022eb069ac59"
+    }
+  },
+  "source_equivalence": {
+    "kind": "Clippy let-chain equivalent rewrite after run-06",
+    "binary_bytes_identical": true,
+    "changed_sources": {
+      "worker/src/gateway.rs": {
+        "at_run_sha256": "fdae2e2ff4edeb1097f7a8b45c7c3307bcf576d20329c05234d98f379cefc033",
+        "current_sha256": "b758843030fbe4e74e5fd95166eedc03ae72f9bb28b7ce24becc6fc5f7ded473"
+      }
+    }
+  },
+  "verification": {
+    "status": "PASS",
+    "control_frames": 40,
+    "actual_native_turns": 2,
+    "actual_gateway_elicitations": 2,
+    "admitted_synthetic_lookup": 1,
+    "rejected_synthetic_lookup": 1,
+    "evidence_only_not_product_D4": true,
+    "result_sha256": "26e957ecb4d3c0ee309dca5b2b43c35e18537ad4ca5e1b5845f1ef3cf9ce8382",
+    "wire_sha256": "c3863904acb919c065d2049c285eb74c2c62684ad82b6eea0c6caf9c2ebbdc06",
+    "source_schema_sha256": "898c1bd1600433145202f1b2592d55a15bff1c805ab1b7a3581cf3b485177645"
+  },
+  "host_checks": [
+    {
+      "command": "make market-broker-test",
+      "result": "PASS",
+      "tests": 6,
+      "race": true,
+      "includes_capacity_helper_subcases": 6
+    },
+    {
+      "command": "YIJIE_MARKET_BROKER_TEST_MANIFEST=<canonical Connectors current.json> make market-broker-integration",
+      "result": "PASS",
+      "tests": 4,
+      "race": true,
+      "normal_exit_code_zero": 5,
+      "capacity_termination_subcases": [
+        "revoke",
+        "shutdown"
+      ]
+    },
+    {
+      "command": "make lint",
+      "result": "PASS"
+    },
+    {
+      "command": "git diff --check",
+      "result": "PASS"
+    }
+  ],
+  "protected_user_diff_sha256": "50ca7a1165be0732b4e74d119340303c39529e5bd40b9845bed0c02d672b4eeb",
+  "external_model_platform_oauth_calls": 0,
+  "runtime_source_worktree_clean": true,
+  "meta_governance_status": "PASS",
+  "evidence_sha256": {
+    "yijie/docs/features/FEAT-157-desktop-market-connectors/09-broker-control-implementation.md": "c5e8f63c27360796e27bc06664350cbac37b4c2b6cafb1614b6c0fc9e100dce9",
+    "yijie/docs/features/FEAT-157-desktop-market-connectors/evidence/broker-qualification/qualify_broker_runtime.py": "adbefbd75df4f296a68e43d08c2caefbb6163396957f2a3e5f297816bfb143b2",
+    "yijie/docs/features/FEAT-157-desktop-market-connectors/evidence/broker-qualification/verify_broker_runtime.mjs": "bf02e13e9ce1192fab281651b1c3e094dfe1e44bf82043a3cc7e68cee139e9ab",
+    "yijie/docs/features/FEAT-157-desktop-market-connectors/evidence/broker-qualification/run-06/result.json": "26e957ecb4d3c0ee309dca5b2b43c35e18537ad4ca5e1b5845f1ef3cf9ce8382",
+    "yijie/docs/features/FEAT-157-desktop-market-connectors/evidence/broker-qualification/run-06/wire.jsonl": "c3863904acb919c065d2049c285eb74c2c62684ad82b6eea0c6caf9c2ebbdc06",
+    "yijie/docs/features/FEAT-157-desktop-market-connectors/evidence/broker-qualification/run-06/verification.json": "a8f6469a763a8dd39c352eb7964ce6ba09319806bd443b785dedeeac4228adde",
+    "yijie-contracts/compatibility/market-broker-control/wire.schema.json": "0ccb5725f23f5519259f70e1163fd53872f283367d4d7c91e2716c1f55c3376b",
+    "yijie-contracts/compatibility/market-broker-control/control.json": "689681da1b2f80b45b630e04fea75301b233401499bd5707b5fbfc2a36d77daf",
+    "yijie-contracts/compatibility/market-broker-control/source.lock.json": "46b382293ef4cd2ff215b22e89950d6eed5834f04a2219e4ca6dd092cb34e62e",
+    "yijie-contracts/docs/market-broker-control-validation-2026-10-07.md": "04172cf259f0e64c43789483ec59f29ea4fcdcae05f1ad54ce598269c625fa75",
+    "yijie-connectors/docs/market-broker-verification.json": "02904d0ee924aea5b62a7290e8584659e933022516aaa109cb7160bb715af1cd",
+    "yijie-agent-host/docs/market-broker-verification.json": "543d297488615b9f914a4de8de6a813c7d4950fe2647a253302469c0ea2a2cf4"
+  },
+  "meta_checks": [
+    {
+      "command": "pnpm lint",
+      "exit_code": 0
+    },
+    {
+      "command": "pnpm test",
+      "exit_code": 0,
+      "tests": 50
+    },
+    {
+      "command": "check-feature-package.sh FEAT-157",
+      "exit_code": 0
+    },
+    {
+      "command": "validate-feature-package.mjs --audit-claims FEAT-157",
+      "exit_code": 0
+    },
+    {
+      "command": "new documentation link check and six repository git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "qualification_attempts": [
+    {
+      "run": "run-01",
+      "status": "INCOMPLETE",
+      "local_responses_requests": 0
+    },
+    {
+      "run": "run-02",
+      "status": "INCOMPLETE",
+      "local_responses_requests": 1
+    },
+    {
+      "run": "run-03",
+      "status": "INCOMPLETE",
+      "local_responses_requests": 2
+    },
+    {
+      "run": "run-04",
+      "status": "INCOMPLETE",
+      "local_responses_requests": 2
+    },
+    {
+      "run": "run-05",
+      "status": "COMPLETED_OBSERVATIONS",
+      "local_responses_requests": 4
+    },
+    {
+      "run": "run-06",
+      "status": "COMPLETED_OBSERVATIONS",
+      "local_responses_requests": 4
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+model = "qualification-text"
+model_provider = "qualification"
+model_catalog_json = "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-elicitation-lin98c9w/codex-home/catalog.json"
+check_for_update_on_startup = false
+web_search = "disabled"
+mcp_oauth_credentials_store = "file"
+approval_policy = "on-request"
+sandbox_mode = "read-only"
+[analytics]
+enabled = false
+[features]
+hooks = false
+plugins = false
+apps = false
+tool_suggest = false
+shell_snapshot = false
+multi_agent = false
+memories = false
+shell_tool = false
+unified_exec = false
+[model_providers.qualification]
+name = "Local protocol qualification"
+base_url = "http://127.0.0.1:64476/v1"
+wire_api = "responses"
+requires_openai_auth = false
+supports_websockets = false
+request_max_retries = 0
+stream_max_retries = 0
+[mcp_servers.gateway]
+url = "http://127.0.0.1:64476/mcp/gateway"
+enabled = true
+enabled_tools = ["lookup"]
+default_tools_approval_mode = "auto"
+startup_timeout_sec = 5
+tool_timeout_sec = 20
+supports_parallel_tool_calls = false

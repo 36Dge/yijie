@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-08",
+  "status": "AUDIT_REPAIRS_VERIFIED_GENERIC_PROVIDER_DECISION_PENDING",
+  "featureComplete": false,
+  "validationPolicy": {
+    "realServices": [
+      "tushareMcp"
+    ],
+    "otherServices": "code_audit_and_local_tests_only",
+    "historicalUndiagnosedFailureIsBlocking": false
+  },
+  "additionalPaidUse": {
+    "modelTurns": 0,
+    "businessQueries": 0
+  },
+  "remainingApprovedBudget": {
+    "modelTurns": 2,
+    "readQueries": 1
+  },
+  "checks": {
+    "desktopUIFocused": {
+      "status": "PASS",
+      "files": 4,
+      "tests": 22
+    },
+    "nativeConnectors": {
+      "status": "PASS",
+      "tests": 36
+    },
+    "nativeClippyAllTargets": "PASS",
+    "desktopLint": "PASS",
+    "nativeSourceSync": "PASS",
+    "contractsHostJS": {
+      "status": "PASS",
+      "tests": 8
+    },
+    "contractsHostGo": "PASS",
+    "hostMarketRace": {
+      "status": "PASS",
+      "topLevelTests": 9
+    },
+    "hostVet": "PASS",
+    "catalogGo": "PASS",
+    "canonicalBuild": "PASS",
+    "readiness": "ready",
+    "realHistoryRead": {
+      "status": "PASS",
+      "sessionId": "01a1178e-53f2-7db2-9ed1-6f2bd58c8ec9",
+      "boundTurnsShown": 4,
+      "historicalResult": "original 09:31 approved daily returned close=11.5; latest 09:32 refusal retained",
+      "replayedApproval": false,
+      "newModelOrProviderQuery": false
+    },
+    "featureSchema": "PASS",
+    "protectedStoreFilesDigest": "50ca7a1165be0732b4e74d119340303c39529e5bd40b9845bed0c02d672b4eeb",
+    "unchangedRuntimeSha256": "aad49041bd7d34c853fb55c274711e3cc810725720d2c097469822d310fb02f9"
+  },
+  "sources": [
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/connectors/observe.rs",
+      "sha256": "2a5a922c6b1982c546f9675c47cee5333af9f73bccaaa23d905a2fcfb140c56a"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/composables/useMarketChat.ts",
+      "sha256": "23160b75e4df619babffbd8ed3b28d20e896863e1745693e8d293e690cf73c60"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/chat/MarketChatActivity.vue",
+      "sha256": "61a56a4e9b0447be428b4d51690dfe3f92f1337460f9f418519aa6211fab5dad"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/pages/chat/ChatPage.vue",
+      "sha256": "0fb8a64cb1cba90556a8b757497a1931aa413cf32cba5dbb027cdd7606b71967"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/domain/market-connectors-ui.ts",
+      "sha256": "e2164d708a1536fe878d2425e3d8d7be01edc31fc4b8c6f49e13fe9d07b5f744"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/chat/ChatConnectorControl.vue",
+      "sha256": "992cbd6f9a0ace2e50a1f1454971582ab4a4da9569b092f9d807e4fe4ab5ffef"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "compatibility/market-host/wire.schema.json",
+      "sha256": "828f946606168f68c46b0ae3fc9365b12f062fc425bdbc0c87213073b524fe0d"
+    },
+    {
+      "repository": "yijie-contracts",
+      "path": "compatibility/market-host/transport.json",
+      "sha256": "b70b21b452cf3e1a8d0f13149094834bda9c29cc6fd644fb82f7af86bea5c4a5"
+    }
+  ],
+  "notRun": [
+    "real authentication or tool calls for the other 50 providers (Owner instruction)",
+    "additional paid Tushare queries (unnecessary for read-only history verification)",
+    "force-kill, executable substitution, permission fault or attack fixtures (Owner prohibition)",
+    "full legacy suite / overall D4 / Git commit / push / release"
+  ],
+  "remaining": [
+    "generic provider auth and execution code for other services",
+    "Owner choice on dynamic tool admission vs pre-registered per-tool whitelist"
+  ]
+}

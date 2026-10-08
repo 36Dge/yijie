@@ -1,0 +1,1239 @@
+{
+  "runtime_source": {
+    "repository": "https://github.com/36Dge/yijie-codex.git",
+    "base_commit": "7fd463bcef07f37b0211acd9f62b9f93ea0a4b12"
+  },
+  "runtime_artifact": {
+    "binary": "codex",
+    "reportedVersion": "codex-cli 0.144.6",
+    "sha256": "aad49041bd7d34c853fb55c274711e3cc810725720d2c097469822d310fb02f9",
+    "sizeBytes": 356210616,
+    "target": "aarch64-apple-darwin",
+    "version": "0.144.6"
+  },
+  "runtime_manifest_sha256": "8b86a1a661f50beda1e0a0c96f81ddbdf959a9a07c2e756cc4b9b0eabc053b27",
+  "runtime_schema": {
+    "experimentalApi": false,
+    "schemaFileCount": 269,
+    "schemaTreeSha256": "34d353815dc8d800cb432a876d5b43350511f63b91ad9766f861e8bc8290cc92",
+    "transport": "stdio"
+  },
+  "temp_root": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t",
+  "external_calls": 0,
+  "real_model_calls": 0,
+  "cases": [
+    {
+      "label": "empty_object_start",
+      "thread_id": "01a115bf-0779-72c1-935e-d76d4e056160",
+      "config": {
+        "mcp_servers": {}
+      },
+      "response": {
+        "thread": {
+          "id": "01a115bf-0779-72c1-935e-d76d4e056160",
+          "extra": null,
+          "sessionId": "01a115bf-0779-72c1-935e-d76d4e056160",
+          "forkedFromId": null,
+          "parentThreadId": null,
+          "preview": "",
+          "ephemeral": false,
+          "historyMode": "legacy",
+          "modelProvider": "qualification",
+          "createdAt": 1791366203,
+          "updatedAt": 1791366203,
+          "recencyAt": 1791366203,
+          "status": {
+            "type": "idle"
+          },
+          "path": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/codex-home/sessions/2026/10/07/rollout-2026-10-07T17-43-23-01a115bf-0779-72c1-935e-d76d4e056160.jsonl",
+          "cwd": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/workspace",
+          "cliVersion": "0.144.6",
+          "source": "vscode",
+          "threadSource": null,
+          "agentNickname": null,
+          "agentRole": null,
+          "gitInfo": null,
+          "name": null,
+          "turns": []
+        },
+        "model": "qualification-text",
+        "modelProvider": "qualification",
+        "serviceTier": null,
+        "cwd": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/workspace",
+        "runtimeWorkspaceRoots": [
+          "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/workspace"
+        ],
+        "instructionSources": [],
+        "approvalPolicy": "never",
+        "approvalsReviewer": "user",
+        "sandbox": {
+          "type": "readOnly",
+          "networkAccess": false
+        },
+        "activePermissionProfile": null,
+        "reasoningEffort": null,
+        "multiAgentMode": "explicitRequestOnly"
+      }
+    },
+    {
+      "label": "empty_object_inventory",
+      "thread_id": "01a115bf-0779-72c1-935e-d76d4e056160",
+      "inventory": {
+        "global": [
+          "global_read"
+        ]
+      },
+      "pages": [
+        {
+          "data": [
+            {
+              "name": "global",
+              "serverInfo": {
+                "name": "qualification_global",
+                "title": null,
+                "version": "1.0.0",
+                "description": null,
+                "icons": null,
+                "websiteUrl": null
+              },
+              "tools": {
+                "global_read": {
+                  "name": "global_read",
+                  "description": "Read a fixed public synthetic value.",
+                  "inputSchema": {
+                    "type": "object",
+                    "properties": {},
+                    "additionalProperties": false
+                  },
+                  "annotations": {
+                    "readOnlyHint": true,
+                    "destructiveHint": false,
+                    "idempotentHint": true,
+                    "openWorldHint": false
+                  }
+                }
+              },
+              "resources": [],
+              "resourceTemplates": [],
+              "authStatus": "unsupported"
+            }
+          ],
+          "nextCursor": null
+        }
+      ]
+    },
+    {
+      "label": "explicit_empty_start",
+      "thread_id": "01a115bf-078e-72e3-b1b3-b051a407d7a2",
+      "config": {
+        "mcp_servers.global.enabled": false
+      },
+      "response": {
+        "thread": {
+          "id": "01a115bf-078e-72e3-b1b3-b051a407d7a2",
+          "extra": null,
+          "sessionId": "01a115bf-078e-72e3-b1b3-b051a407d7a2",
+          "forkedFromId": null,
+          "parentThreadId": null,
+          "preview": "",
+          "ephemeral": false,
+          "historyMode": "legacy",
+          "modelProvider": "qualification",
+          "createdAt": 1791366203,
+          "updatedAt": 1791366203,
+          "recencyAt": 1791366203,
+          "status": {
+            "type": "idle"
+          },
+          "path": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/codex-home/sessions/2026/10/07/rollout-2026-10-07T17-43-23-01a115bf-078e-72e3-b1b3-b051a407d7a2.jsonl",
+          "cwd": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/workspace",
+          "cliVersion": "0.144.6",
+          "source": "vscode",
+          "threadSource": null,
+          "agentNickname": null,
+          "agentRole": null,
+          "gitInfo": null,
+          "name": null,
+          "turns": []
+        },
+        "model": "qualification-text",
+        "modelProvider": "qualification",
+        "serviceTier": null,
+        "cwd": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/workspace",
+        "runtimeWorkspaceRoots": [
+          "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/workspace"
+        ],
+        "instructionSources": [],
+        "approvalPolicy": "never",
+        "approvalsReviewer": "user",
+        "sandbox": {
+          "type": "readOnly",
+          "networkAccess": false
+        },
+        "activePermissionProfile": null,
+        "reasoningEffort": null,
+        "multiAgentMode": "explicitRequestOnly"
+      }
+    },
+    {
+      "label": "explicit_empty_inventory",
+      "thread_id": "01a115bf-078e-72e3-b1b3-b051a407d7a2",
+      "inventory": {
+        "global": []
+      },
+      "pages": [
+        {
+          "data": [
+            {
+              "name": "global",
+              "serverInfo": null,
+              "tools": {},
+              "resources": [],
+              "resourceTemplates": [],
+              "authStatus": "unsupported"
+            }
+          ],
+          "nextCursor": null
+        }
+      ]
+    },
+    {
+      "label": "alpha_start",
+      "thread_id": "01a115bf-0792-74f2-a6a2-930ad3e7ed34",
+      "config": {
+        "mcp_servers.global.enabled": false,
+        "mcp_servers.alpha": {
+          "url": "http://127.0.0.1:59126/mcp/alpha",
+          "enabled": true,
+          "startup_timeout_sec": 5,
+          "tool_timeout_sec": 5
+        }
+      },
+      "response": {
+        "thread": {
+          "id": "01a115bf-0792-74f2-a6a2-930ad3e7ed34",
+          "extra": null,
+          "sessionId": "01a115bf-0792-74f2-a6a2-930ad3e7ed34",
+          "forkedFromId": null,
+          "parentThreadId": null,
+          "preview": "",
+          "ephemeral": false,
+          "historyMode": "legacy",
+          "modelProvider": "qualification",
+          "createdAt": 1791366203,
+          "updatedAt": 1791366203,
+          "recencyAt": 1791366203,
+          "status": {
+            "type": "idle"
+          },
+          "path": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/codex-home/sessions/2026/10/07/rollout-2026-10-07T17-43-23-01a115bf-0792-74f2-a6a2-930ad3e7ed34.jsonl",
+          "cwd": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/workspace",
+          "cliVersion": "0.144.6",
+          "source": "vscode",
+          "threadSource": null,
+          "agentNickname": null,
+          "agentRole": null,
+          "gitInfo": null,
+          "name": null,
+          "turns": []
+        },
+        "model": "qualification-text",
+        "modelProvider": "qualification",
+        "serviceTier": null,
+        "cwd": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/workspace",
+        "runtimeWorkspaceRoots": [
+          "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/workspace"
+        ],
+        "instructionSources": [],
+        "approvalPolicy": "never",
+        "approvalsReviewer": "user",
+        "sandbox": {
+          "type": "readOnly",
+          "networkAccess": false
+        },
+        "activePermissionProfile": null,
+        "reasoningEffort": null,
+        "multiAgentMode": "explicitRequestOnly"
+      }
+    },
+    {
+      "label": "beta_start",
+      "thread_id": "01a115bf-0797-7273-ad3a-f57963b524b6",
+      "config": {
+        "mcp_servers.global.enabled": false,
+        "mcp_servers.beta": {
+          "url": "http://127.0.0.1:59126/mcp/beta",
+          "enabled": true,
+          "startup_timeout_sec": 5,
+          "tool_timeout_sec": 5
+        }
+      },
+      "response": {
+        "thread": {
+          "id": "01a115bf-0797-7273-ad3a-f57963b524b6",
+          "extra": null,
+          "sessionId": "01a115bf-0797-7273-ad3a-f57963b524b6",
+          "forkedFromId": null,
+          "parentThreadId": null,
+          "preview": "",
+          "ephemeral": false,
+          "historyMode": "legacy",
+          "modelProvider": "qualification",
+          "createdAt": 1791366203,
+          "updatedAt": 1791366203,
+          "recencyAt": 1791366203,
+          "status": {
+            "type": "idle"
+          },
+          "path": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/codex-home/sessions/2026/10/07/rollout-2026-10-07T17-43-23-01a115bf-0797-7273-ad3a-f57963b524b6.jsonl",
+          "cwd": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/workspace",
+          "cliVersion": "0.144.6",
+          "source": "vscode",
+          "threadSource": null,
+          "agentNickname": null,
+          "agentRole": null,
+          "gitInfo": null,
+          "name": null,
+          "turns": []
+        },
+        "model": "qualification-text",
+        "modelProvider": "qualification",
+        "serviceTier": null,
+        "cwd": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/workspace",
+        "runtimeWorkspaceRoots": [
+          "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/workspace"
+        ],
+        "instructionSources": [],
+        "approvalPolicy": "never",
+        "approvalsReviewer": "user",
+        "sandbox": {
+          "type": "readOnly",
+          "networkAccess": false
+        },
+        "activePermissionProfile": null,
+        "reasoningEffort": null,
+        "multiAgentMode": "explicitRequestOnly"
+      }
+    },
+    {
+      "label": "alpha_inventory",
+      "thread_id": "01a115bf-0792-74f2-a6a2-930ad3e7ed34",
+      "inventory": {
+        "alpha": [
+          "alpha_read"
+        ],
+        "global": []
+      },
+      "pages": [
+        {
+          "data": [
+            {
+              "name": "alpha",
+              "serverInfo": {
+                "name": "qualification_alpha",
+                "title": null,
+                "version": "1.0.0",
+                "description": null,
+                "icons": null,
+                "websiteUrl": null
+              },
+              "tools": {
+                "alpha_read": {
+                  "name": "alpha_read",
+                  "description": "Read a fixed public synthetic value.",
+                  "inputSchema": {
+                    "type": "object",
+                    "properties": {},
+                    "additionalProperties": false
+                  },
+                  "annotations": {
+                    "readOnlyHint": true,
+                    "destructiveHint": false,
+                    "idempotentHint": true,
+                    "openWorldHint": false
+                  }
+                }
+              },
+              "resources": [],
+              "resourceTemplates": [],
+              "authStatus": "unsupported"
+            }
+          ],
+          "nextCursor": "1"
+        },
+        {
+          "data": [
+            {
+              "name": "global",
+              "serverInfo": null,
+              "tools": {},
+              "resources": [],
+              "resourceTemplates": [],
+              "authStatus": "unsupported"
+            }
+          ],
+          "nextCursor": null
+        }
+      ]
+    },
+    {
+      "label": "beta_inventory",
+      "thread_id": "01a115bf-0797-7273-ad3a-f57963b524b6",
+      "inventory": {
+        "beta": [
+          "beta_read"
+        ],
+        "global": []
+      },
+      "pages": [
+        {
+          "data": [
+            {
+              "name": "beta",
+              "serverInfo": {
+                "name": "qualification_beta",
+                "title": null,
+                "version": "1.0.0",
+                "description": null,
+                "icons": null,
+                "websiteUrl": null
+              },
+              "tools": {
+                "beta_read": {
+                  "name": "beta_read",
+                  "description": "Read a fixed public synthetic value.",
+                  "inputSchema": {
+                    "type": "object",
+                    "properties": {},
+                    "additionalProperties": false
+                  },
+                  "annotations": {
+                    "readOnlyHint": true,
+                    "destructiveHint": false,
+                    "idempotentHint": true,
+                    "openWorldHint": false
+                  }
+                }
+              },
+              "resources": [],
+              "resourceTemplates": [],
+              "authStatus": "unsupported"
+            }
+          ],
+          "nextCursor": "1"
+        },
+        {
+          "data": [
+            {
+              "name": "global",
+              "serverInfo": null,
+              "tools": {},
+              "resources": [],
+              "resourceTemplates": [],
+              "authStatus": "unsupported"
+            }
+          ],
+          "nextCursor": null
+        }
+      ]
+    },
+    {
+      "label": "alpha_recheck_inventory",
+      "thread_id": "01a115bf-0792-74f2-a6a2-930ad3e7ed34",
+      "inventory": {
+        "alpha": [
+          "alpha_read"
+        ],
+        "global": []
+      },
+      "pages": [
+        {
+          "data": [
+            {
+              "name": "alpha",
+              "serverInfo": {
+                "name": "qualification_alpha",
+                "title": null,
+                "version": "1.0.0",
+                "description": null,
+                "icons": null,
+                "websiteUrl": null
+              },
+              "tools": {
+                "alpha_read": {
+                  "name": "alpha_read",
+                  "description": "Read a fixed public synthetic value.",
+                  "inputSchema": {
+                    "type": "object",
+                    "properties": {},
+                    "additionalProperties": false
+                  },
+                  "annotations": {
+                    "readOnlyHint": true,
+                    "destructiveHint": false,
+                    "idempotentHint": true,
+                    "openWorldHint": false
+                  }
+                }
+              },
+              "resources": [],
+              "resourceTemplates": [],
+              "authStatus": "unsupported"
+            }
+          ],
+          "nextCursor": "1"
+        },
+        {
+          "data": [
+            {
+              "name": "global",
+              "serverInfo": null,
+              "tools": {},
+              "resources": [],
+              "resourceTemplates": [],
+              "authStatus": "unsupported"
+            }
+          ],
+          "nextCursor": null
+        }
+      ]
+    },
+    {
+      "label": "loaded_resume_inventory",
+      "thread_id": "01a115bf-0792-74f2-a6a2-930ad3e7ed34",
+      "inventory": {
+        "alpha": [
+          "alpha_read"
+        ],
+        "global": []
+      },
+      "pages": [
+        {
+          "data": [
+            {
+              "name": "alpha",
+              "serverInfo": {
+                "name": "qualification_alpha",
+                "title": null,
+                "version": "1.0.0",
+                "description": null,
+                "icons": null,
+                "websiteUrl": null
+              },
+              "tools": {
+                "alpha_read": {
+                  "name": "alpha_read",
+                  "description": "Read a fixed public synthetic value.",
+                  "inputSchema": {
+                    "type": "object",
+                    "properties": {},
+                    "additionalProperties": false
+                  },
+                  "annotations": {
+                    "readOnlyHint": true,
+                    "destructiveHint": false,
+                    "idempotentHint": true,
+                    "openWorldHint": false
+                  }
+                }
+              },
+              "resources": [],
+              "resourceTemplates": [],
+              "authStatus": "unsupported"
+            }
+          ],
+          "nextCursor": "1"
+        },
+        {
+          "data": [
+            {
+              "name": "global",
+              "serverInfo": null,
+              "tools": {},
+              "resources": [],
+              "resourceTemplates": [],
+              "authStatus": "unsupported"
+            }
+          ],
+          "nextCursor": null
+        }
+      ]
+    },
+    {
+      "label": "cold_resume_inventory",
+      "thread_id": "01a115bf-0792-74f2-a6a2-930ad3e7ed34",
+      "inventory": {
+        "alpha": [],
+        "beta": [
+          "beta_read"
+        ],
+        "global": []
+      },
+      "pages": [
+        {
+          "data": [
+            {
+              "name": "alpha",
+              "serverInfo": null,
+              "tools": {},
+              "resources": [],
+              "resourceTemplates": [],
+              "authStatus": "unsupported"
+            }
+          ],
+          "nextCursor": "1"
+        },
+        {
+          "data": [
+            {
+              "name": "beta",
+              "serverInfo": {
+                "name": "qualification_beta",
+                "title": null,
+                "version": "1.0.0",
+                "description": null,
+                "icons": null,
+                "websiteUrl": null
+              },
+              "tools": {
+                "beta_read": {
+                  "name": "beta_read",
+                  "description": "Read a fixed public synthetic value.",
+                  "inputSchema": {
+                    "type": "object",
+                    "properties": {},
+                    "additionalProperties": false
+                  },
+                  "annotations": {
+                    "readOnlyHint": true,
+                    "destructiveHint": false,
+                    "idempotentHint": true,
+                    "openWorldHint": false
+                  }
+                }
+              },
+              "resources": [],
+              "resourceTemplates": [],
+              "authStatus": "unsupported"
+            }
+          ],
+          "nextCursor": "2"
+        },
+        {
+          "data": [
+            {
+              "name": "global",
+              "serverInfo": null,
+              "tools": {},
+              "resources": [],
+              "resourceTemplates": [],
+              "authStatus": "unsupported"
+            }
+          ],
+          "nextCursor": null
+        }
+      ]
+    }
+  ],
+  "normal_shutdown": [
+    {
+      "pid": 47483,
+      "exit_code": 0,
+      "normal_eof": true
+    }
+  ],
+  "initialize": {
+    "userAgent": "yijie_feat157_qualification/0.144.6 (Mac OS 26.5.0; arm64) unknown (yijie_feat157_qualification; 0.1.0)",
+    "codexHome": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/codex-home",
+    "platformFamily": "unix",
+    "platformOs": "macos"
+  },
+  "empty_object_inventory": {
+    "global": [
+      "global_read"
+    ]
+  },
+  "explicit_empty_inventory": {
+    "global": []
+  },
+  "alpha_inventory": {
+    "alpha": [
+      "alpha_read"
+    ],
+    "global": []
+  },
+  "beta_inventory": {
+    "beta": [
+      "beta_read"
+    ],
+    "global": []
+  },
+  "alpha_recheck_inventory": {
+    "alpha": [
+      "alpha_read"
+    ],
+    "global": []
+  },
+  "synthetic_turns": [
+    {
+      "label": "explicit_empty_model_surface",
+      "thread_id": "01a115bf-078e-72e3-b1b3-b051a407d7a2",
+      "response": {
+        "turn": {
+          "id": "01a115bf-07b7-78e1-a81a-0caa5b2c1fd1",
+          "items": [],
+          "itemsView": "notLoaded",
+          "status": "inProgress",
+          "error": null,
+          "startedAt": null,
+          "completedAt": null,
+          "durationMs": null
+        }
+      },
+      "terminal": {
+        "method": "turn/completed",
+        "params": {
+          "threadId": "01a115bf-078e-72e3-b1b3-b051a407d7a2",
+          "turn": {
+            "id": "01a115bf-07b7-78e1-a81a-0caa5b2c1fd1",
+            "items": [],
+            "itemsView": "notLoaded",
+            "status": "completed",
+            "error": null,
+            "startedAt": 1791366203,
+            "completedAt": 1791366203,
+            "durationMs": 5
+          }
+        }
+      },
+      "loopback_request_index": 0
+    },
+    {
+      "label": "alpha_before_resume",
+      "thread_id": "01a115bf-0792-74f2-a6a2-930ad3e7ed34",
+      "response": {
+        "turn": {
+          "id": "01a115bf-07f3-7ca3-8b25-4a25c6e9e905",
+          "items": [],
+          "itemsView": "notLoaded",
+          "status": "inProgress",
+          "error": null,
+          "startedAt": null,
+          "completedAt": null,
+          "durationMs": null
+        }
+      },
+      "terminal": {
+        "method": "turn/completed",
+        "params": {
+          "threadId": "01a115bf-0792-74f2-a6a2-930ad3e7ed34",
+          "turn": {
+            "id": "01a115bf-07f3-7ca3-8b25-4a25c6e9e905",
+            "items": [],
+            "itemsView": "notLoaded",
+            "status": "completed",
+            "error": null,
+            "startedAt": 1791366203,
+            "completedAt": 1791366203,
+            "durationMs": 5
+          }
+        }
+      },
+      "loopback_request_index": 1
+    },
+    {
+      "label": "beta_after_cold_resume",
+      "thread_id": "01a115bf-0792-74f2-a6a2-930ad3e7ed34",
+      "response": {
+        "turn": {
+          "id": "01a115bf-085c-7c61-8051-0bdccd317651",
+          "items": [],
+          "itemsView": "notLoaded",
+          "status": "inProgress",
+          "error": null,
+          "startedAt": null,
+          "completedAt": null,
+          "durationMs": null
+        }
+      },
+      "terminal": {
+        "method": "turn/completed",
+        "params": {
+          "threadId": "01a115bf-0792-74f2-a6a2-930ad3e7ed34",
+          "turn": {
+            "id": "01a115bf-085c-7c61-8051-0bdccd317651",
+            "items": [],
+            "itemsView": "notLoaded",
+            "status": "completed",
+            "error": null,
+            "startedAt": 1791366203,
+            "completedAt": 1791366203,
+            "durationMs": 4
+          }
+        }
+      },
+      "loopback_request_index": 2
+    }
+  ],
+  "native_before_resume": {
+    "thread": {
+      "id": "01a115bf-0792-74f2-a6a2-930ad3e7ed34",
+      "extra": null,
+      "sessionId": "01a115bf-0792-74f2-a6a2-930ad3e7ed34",
+      "forkedFromId": null,
+      "parentThreadId": null,
+      "preview": "Record one ordinary local qualification response.",
+      "ephemeral": false,
+      "historyMode": "legacy",
+      "modelProvider": "qualification",
+      "createdAt": 1791366203,
+      "updatedAt": 1791366203,
+      "recencyAt": 1791366203,
+      "status": {
+        "type": "idle"
+      },
+      "path": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/codex-home/sessions/2026/10/07/rollout-2026-10-07T17-43-23-01a115bf-0792-74f2-a6a2-930ad3e7ed34.jsonl",
+      "cwd": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/workspace",
+      "cliVersion": "0.144.6",
+      "source": "vscode",
+      "threadSource": null,
+      "agentNickname": null,
+      "agentRole": null,
+      "gitInfo": null,
+      "name": null,
+      "turns": [
+        {
+          "id": "01a115bf-07f3-7ca3-8b25-4a25c6e9e905",
+          "items": [
+            {
+              "type": "userMessage",
+              "id": "item-1",
+              "clientId": null,
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Record one ordinary local qualification response.",
+                  "text_elements": []
+                }
+              ]
+            },
+            {
+              "type": "agentMessage",
+              "id": "item-2",
+              "text": "Local protocol qualification completed.",
+              "phase": "final_answer",
+              "memoryCitation": null
+            }
+          ],
+          "itemsView": "full",
+          "status": "completed",
+          "error": null,
+          "startedAt": 1791366203,
+          "completedAt": 1791366203,
+          "durationMs": 5
+        }
+      ]
+    }
+  },
+  "loaded_resume": {
+    "id": 17,
+    "result": {
+      "thread": {
+        "id": "01a115bf-0792-74f2-a6a2-930ad3e7ed34",
+        "extra": null,
+        "sessionId": "01a115bf-0792-74f2-a6a2-930ad3e7ed34",
+        "forkedFromId": null,
+        "parentThreadId": null,
+        "preview": "Record one ordinary local qualification response.",
+        "ephemeral": false,
+        "historyMode": "legacy",
+        "modelProvider": "qualification",
+        "createdAt": 1791366203,
+        "updatedAt": 1791366203,
+        "recencyAt": 1791366203,
+        "status": {
+          "type": "idle"
+        },
+        "path": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/codex-home/sessions/2026/10/07/rollout-2026-10-07T17-43-23-01a115bf-0792-74f2-a6a2-930ad3e7ed34.jsonl",
+        "cwd": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/workspace",
+        "cliVersion": "0.144.6",
+        "source": "vscode",
+        "threadSource": null,
+        "agentNickname": null,
+        "agentRole": null,
+        "gitInfo": null,
+        "name": null,
+        "turns": [
+          {
+            "id": "01a115bf-07f3-7ca3-8b25-4a25c6e9e905",
+            "items": [
+              {
+                "type": "userMessage",
+                "id": "item-1",
+                "clientId": null,
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Record one ordinary local qualification response.",
+                    "text_elements": []
+                  }
+                ]
+              },
+              {
+                "type": "agentMessage",
+                "id": "item-2",
+                "text": "Local protocol qualification completed.",
+                "phase": "final_answer",
+                "memoryCitation": null
+              }
+            ],
+            "itemsView": "full",
+            "status": "completed",
+            "error": null,
+            "startedAt": 1791366203,
+            "completedAt": 1791366203,
+            "durationMs": 5
+          }
+        ]
+      },
+      "model": "qualification-text",
+      "modelProvider": "qualification",
+      "serviceTier": null,
+      "cwd": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/workspace",
+      "runtimeWorkspaceRoots": [
+        "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/workspace"
+      ],
+      "instructionSources": [],
+      "approvalPolicy": "never",
+      "approvalsReviewer": "user",
+      "sandbox": {
+        "type": "readOnly",
+        "networkAccess": false
+      },
+      "activePermissionProfile": null,
+      "reasoningEffort": null,
+      "multiAgentMode": "explicitRequestOnly",
+      "initialTurnsPage": null
+    }
+  },
+  "loaded_resume_inventory": {
+    "alpha": [
+      "alpha_read"
+    ],
+    "global": []
+  },
+  "unsubscribe": {
+    "status": "unsubscribed"
+  },
+  "idle_unsubscribed_status": {
+    "thread": {
+      "id": "01a115bf-0792-74f2-a6a2-930ad3e7ed34",
+      "extra": null,
+      "sessionId": "01a115bf-0792-74f2-a6a2-930ad3e7ed34",
+      "forkedFromId": null,
+      "parentThreadId": null,
+      "preview": "Record one ordinary local qualification response.",
+      "ephemeral": false,
+      "historyMode": "legacy",
+      "modelProvider": "qualification",
+      "createdAt": 1791366203,
+      "updatedAt": 1791366203,
+      "recencyAt": 1791366203,
+      "status": {
+        "type": "idle"
+      },
+      "path": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/codex-home/sessions/2026/10/07/rollout-2026-10-07T17-43-23-01a115bf-0792-74f2-a6a2-930ad3e7ed34.jsonl",
+      "cwd": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/workspace",
+      "cliVersion": "0.144.6",
+      "source": "vscode",
+      "threadSource": null,
+      "agentNickname": null,
+      "agentRole": null,
+      "gitInfo": null,
+      "name": null,
+      "turns": []
+    }
+  },
+  "cold_resume": {
+    "id": 22,
+    "result": {
+      "thread": {
+        "id": "01a115bf-0792-74f2-a6a2-930ad3e7ed34",
+        "extra": null,
+        "sessionId": "01a115bf-0792-74f2-a6a2-930ad3e7ed34",
+        "forkedFromId": null,
+        "parentThreadId": null,
+        "preview": "Record one ordinary local qualification response.",
+        "ephemeral": false,
+        "historyMode": "legacy",
+        "modelProvider": "qualification",
+        "createdAt": 1791366203,
+        "updatedAt": 1791366203,
+        "recencyAt": 1791366203,
+        "status": {
+          "type": "idle"
+        },
+        "path": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/codex-home/sessions/2026/10/07/rollout-2026-10-07T17-43-23-01a115bf-0792-74f2-a6a2-930ad3e7ed34.jsonl",
+        "cwd": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/workspace",
+        "cliVersion": "0.144.6",
+        "source": "vscode",
+        "threadSource": null,
+        "agentNickname": null,
+        "agentRole": null,
+        "gitInfo": null,
+        "name": null,
+        "turns": [
+          {
+            "id": "01a115bf-07f3-7ca3-8b25-4a25c6e9e905",
+            "items": [
+              {
+                "type": "userMessage",
+                "id": "item-1",
+                "clientId": null,
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Record one ordinary local qualification response.",
+                    "text_elements": []
+                  }
+                ]
+              },
+              {
+                "type": "agentMessage",
+                "id": "item-2",
+                "text": "Local protocol qualification completed.",
+                "phase": "final_answer",
+                "memoryCitation": null
+              }
+            ],
+            "itemsView": "full",
+            "status": "completed",
+            "error": null,
+            "startedAt": 1791366203,
+            "completedAt": 1791366203,
+            "durationMs": 5
+          }
+        ]
+      },
+      "model": "qualification-text",
+      "modelProvider": "qualification",
+      "serviceTier": null,
+      "cwd": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/workspace",
+      "runtimeWorkspaceRoots": [
+        "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/workspace"
+      ],
+      "instructionSources": [],
+      "approvalPolicy": "never",
+      "approvalsReviewer": "user",
+      "sandbox": {
+        "type": "readOnly",
+        "networkAccess": false
+      },
+      "activePermissionProfile": null,
+      "reasoningEffort": null,
+      "multiAgentMode": "explicitRequestOnly",
+      "initialTurnsPage": null
+    }
+  },
+  "cold_resume_inventory": {
+    "alpha": [],
+    "beta": [
+      "beta_read"
+    ],
+    "global": []
+  },
+  "native_after_resume": {
+    "thread": {
+      "id": "01a115bf-0792-74f2-a6a2-930ad3e7ed34",
+      "extra": null,
+      "sessionId": "01a115bf-0792-74f2-a6a2-930ad3e7ed34",
+      "forkedFromId": null,
+      "parentThreadId": null,
+      "preview": "Record one ordinary local qualification response.",
+      "ephemeral": false,
+      "historyMode": "legacy",
+      "modelProvider": "qualification",
+      "createdAt": 1791366203,
+      "updatedAt": 1791366203,
+      "recencyAt": 1791366203,
+      "status": {
+        "type": "idle"
+      },
+      "path": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/codex-home/sessions/2026/10/07/rollout-2026-10-07T17-43-23-01a115bf-0792-74f2-a6a2-930ad3e7ed34.jsonl",
+      "cwd": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/workspace",
+      "cliVersion": "0.144.6",
+      "source": "vscode",
+      "threadSource": null,
+      "agentNickname": null,
+      "agentRole": null,
+      "gitInfo": null,
+      "name": null,
+      "turns": [
+        {
+          "id": "01a115bf-07f3-7ca3-8b25-4a25c6e9e905",
+          "items": [
+            {
+              "type": "userMessage",
+              "id": "item-1",
+              "clientId": null,
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Record one ordinary local qualification response.",
+                  "text_elements": []
+                }
+              ]
+            },
+            {
+              "type": "agentMessage",
+              "id": "item-2",
+              "text": "Local protocol qualification completed.",
+              "phase": "final_answer",
+              "memoryCitation": null
+            }
+          ],
+          "itemsView": "full",
+          "status": "completed",
+          "error": null,
+          "startedAt": 1791366203,
+          "completedAt": 1791366203,
+          "durationMs": 5
+        }
+      ]
+    }
+  },
+  "native_after_second_turn": {
+    "thread": {
+      "id": "01a115bf-0792-74f2-a6a2-930ad3e7ed34",
+      "extra": null,
+      "sessionId": "01a115bf-0792-74f2-a6a2-930ad3e7ed34",
+      "forkedFromId": null,
+      "parentThreadId": null,
+      "preview": "Record one ordinary local qualification response.",
+      "ephemeral": false,
+      "historyMode": "legacy",
+      "modelProvider": "qualification",
+      "createdAt": 1791366203,
+      "updatedAt": 1791366203,
+      "recencyAt": 1791366203,
+      "status": {
+        "type": "idle"
+      },
+      "path": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/codex-home/sessions/2026/10/07/rollout-2026-10-07T17-43-23-01a115bf-0792-74f2-a6a2-930ad3e7ed34.jsonl",
+      "cwd": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-mcp-25qzhp8t/workspace",
+      "cliVersion": "0.144.6",
+      "source": "vscode",
+      "threadSource": null,
+      "agentNickname": null,
+      "agentRole": null,
+      "gitInfo": null,
+      "name": null,
+      "turns": [
+        {
+          "id": "01a115bf-07f3-7ca3-8b25-4a25c6e9e905",
+          "items": [
+            {
+              "type": "userMessage",
+              "id": "item-1",
+              "clientId": null,
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Record one ordinary local qualification response.",
+                  "text_elements": []
+                }
+              ]
+            },
+            {
+              "type": "agentMessage",
+              "id": "item-2",
+              "text": "Local protocol qualification completed.",
+              "phase": "final_answer",
+              "memoryCitation": null
+            }
+          ],
+          "itemsView": "full",
+          "status": "completed",
+          "error": null,
+          "startedAt": 1791366203,
+          "completedAt": 1791366203,
+          "durationMs": 5
+        },
+        {
+          "id": "01a115bf-085c-7c61-8051-0bdccd317651",
+          "items": [
+            {
+              "type": "userMessage",
+              "id": "item-3",
+              "clientId": null,
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Record one ordinary local qualification response.",
+                  "text_elements": []
+                }
+              ]
+            },
+            {
+              "type": "agentMessage",
+              "id": "item-4",
+              "text": "Local protocol qualification completed.",
+              "phase": "final_answer",
+              "memoryCitation": null
+            }
+          ],
+          "itemsView": "full",
+          "status": "completed",
+          "error": null,
+          "startedAt": 1791366203,
+          "completedAt": 1791366203,
+          "durationMs": 4
+        }
+      ]
+    }
+  },
+  "same_thread_and_prior_history": true,
+  "status": "COMPLETED_OBSERVATIONS",
+  "runtime_stderr_lines": 37,
+  "loopback_responses_requests": 3,
+  "mcp_method_counts": {
+    "initialize": 16,
+    "notifications/initialized": 16,
+    "tools/list": 16
+  },
+  "loopback_provider_tool_names": [
+    [
+      "update_plan",
+      "request_user_input",
+      "view_image",
+      "get_goal",
+      "create_goal",
+      "update_goal"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "update_plan",
+      "request_user_input",
+      "view_image",
+      "mcp__alpha",
+      "get_goal",
+      "create_goal",
+      "update_goal"
+    ],
+    [
+      "list_mcp_resources",
+      "list_mcp_resource_templates",
+      "read_mcp_resource",
+      "update_plan",
+      "request_user_input",
+      "view_image",
+      "mcp__beta",
+      "get_goal",
+      "create_goal",
+      "update_goal"
+    ]
+  ],
+  "temporary_data_removed_after_exit": true
+}

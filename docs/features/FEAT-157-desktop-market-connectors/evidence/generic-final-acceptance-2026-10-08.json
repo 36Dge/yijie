@@ -1,0 +1,79 @@
+{
+  "status": "representative_acceptance_pass",
+  "activeServiceCount": 50,
+  "removedByOwner": [
+    "taobao-flash-sale-retail"
+  ],
+  "candidateWorkerSha256": "f8f85fa4bafbc3c8a4745b8d5443891a1332bd063d42bf9043aa3c7153ca6d5f",
+  "originalAllowance": {
+    "modelRounds": 2,
+    "queries": 1,
+    "remainingModelRounds": 0,
+    "remainingQueries": 0
+  },
+  "additionalAllowance": {
+    "modelRounds": 4,
+    "queries": 2,
+    "previouslyUsedModelRounds": 2,
+    "previouslyUsedQueries": 1,
+    "currentRunUsedModelRounds": 2,
+    "currentRunUsedQueries": 1
+  },
+  "planned": "one Tushare approve_once daily query 000001.SZ/20260105, then one Tushare rejected request; no other provider real calls; no automatic resend",
+  "googleRealCalls": 0,
+  "taobaoActive": false,
+  "forbiddenTestsExecuted": false,
+  "firstModelRound": "reserved before explicit UI send; no retries",
+  "queryReservation": "reserved before approving exact 000001.SZ / 20260105 daily; no retry",
+  "conversationId": "01a119b4-c082-7aa1-95b8-22dd55e16427",
+  "approvedQuery": {
+    "status": "UI verified success",
+    "tsCode": "000001.SZ",
+    "tradeDate": "20260105",
+    "close": 11.5,
+    "callRef": "f88876fb-e265-42e9-be1d-99f130a8d0a7",
+    "httpRequests": 1,
+    "httpStatus": 200
+  },
+  "secondModelRound": "reserved before explicit rejection-only send; do not approve any further external query",
+  "rejectedQuery": {
+    "callRef": "af9b7165-dfc8-4459-a1db-c28b33183628",
+    "admission": "rejected",
+    "httpRequests": 0,
+    "retry": false,
+    "uiState": "completed, rejected, external request not sent"
+  },
+  "providerProbeOperation": "72e38e4e-12c7-42a0-b74a-ee24aa1ccf07",
+  "remainingModelRounds": 0,
+  "remainingQueries": 0,
+  "historicalToolBindingLimitation": "Runtime elicitation has no item id; result callRef/service are intentionally not inferred by tool name. Approval service identity and per-turn selected display remain explicit.",
+  "subsequentScopeUpdate": {
+    "catalogRevision": 5,
+    "activeServiceCount": 49,
+    "removedByOwner": [
+      "taobao-flash-sale-retail",
+      "doukou-doctor"
+    ],
+    "workerSha256": "c39ce878d8bdb0a6356176bbb31acae13ded11d6e8eaecc86c5ae84cc57a2928",
+    "validation": "scope49-local-verification-2026-10-08.json",
+    "extraModelRounds": 0,
+    "extraBusinessQueries": 0,
+    "note": "Original live candidateWorkerSha256 and 50-service scope above remain historical facts; later non-Tushare changes are local-tested, not a new fresh live run."
+  },
+  "finalOwnerAcceptance": {
+    "status": "accepted",
+    "recordedAt": "2026-10-08T13:20:34+08:00",
+    "owner": "段成威",
+    "question": "是否接受“已通过的 Tushare 真实批准/拒绝 + 最新构建的本地回归”，作为 FEAT-157 本地 D4 验收证据？若选择同构建复验，则授权最多再用 2 轮 Kimi-K3、1 次 Tushare 只读查询（000001.SZ，2026-01-05），失败不重发、不充值、不订阅。",
+    "answer": "接受分阶段证据，完成本地 D4（推荐）",
+    "scope": "FEAT-157 demo_fast/local D4 only; task-specific acceptance of phased evidence instead of a same-build fresh live rerun",
+    "liveWorkerSha256": "f8f85fa4bafbc3c8a4745b8d5443891a1332bd063d42bf9043aa3c7153ca6d5f",
+    "localRegressionWorkerSha256": "ea84c3604f1c129e244c12966bce3c687a2158dad1ef986c98c5d0653b045c58",
+    "evidence": "closeout-verification-2026-10-08.json",
+    "extraModelRounds": 0,
+    "extraBusinessQueries": 0,
+    "newCallAllowanceGranted": false,
+    "publicOrProductionApproval": false,
+    "gitDeliveryAuthorized": false
+  }
+}

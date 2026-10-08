@@ -1,0 +1,284 @@
+{
+  "asOf": "2026-10-08T13:20:34+08:00",
+  "scope": "FEAT-157 49 services; original-operation authorization-page recovery and no-cost acceptance closeout",
+  "implementation": "complete",
+  "D4": "PASS",
+  "checks": [
+    {
+      "name": "ui-tests",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "evidence/closeout-checks/ui-tests.log",
+      "sha256": "fa1d05fba538641dfd91b815625f152e186094d3233ff125c613f36fa2cfa620"
+    },
+    {
+      "name": "ui-lint",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "evidence/closeout-checks/ui-lint.log",
+      "sha256": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6"
+    },
+    {
+      "name": "source-check",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "evidence/closeout-checks/source-check.log",
+      "sha256": "3a4460421e71fee24475e61035b681e79303ca09523ad78e88a985c9619321a8"
+    },
+    {
+      "name": "native-tests",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "evidence/closeout-checks/native-tests.log",
+      "sha256": "9fe6a6bf973bcfa17b2001dfc0de2ee535ca07b0f313f4aa35da281e03d5c1ce"
+    },
+    {
+      "name": "native-clippy",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "evidence/closeout-checks/native-clippy.log",
+      "sha256": "f1bece87d177c87fa66f12620eead6d4d76ce891d55d59b5e50cb9f140098cc3"
+    },
+    {
+      "name": "contracts-tests",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "evidence/closeout-checks/contracts-tests.log",
+      "sha256": "c076ba7520d9494e490506265c87d683bd9d44dec0ff59fe1579c7038e9b50c9"
+    },
+    {
+      "name": "contracts-go",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "evidence/closeout-checks/contracts-go.log",
+      "sha256": "c4183ee46b527fc5d3a19b0e0b62827759753ccab44de80b083ee3e878ef078c"
+    },
+    {
+      "name": "contracts-rust",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "evidence/closeout-checks/contracts-rust.log",
+      "sha256": "f8ea15ca203ceefd778cef77e48e12571fe163e894619a6471a208ea589d46a0"
+    },
+    {
+      "name": "contracts-dependencies",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "evidence/closeout-checks/contracts-dependencies.log",
+      "sha256": "6e395897b1a6fb1533ee98f7ab9a2e77e28670b5db33a09c54c50dc8cd39f2e9"
+    },
+    {
+      "name": "worker-tests",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "evidence/closeout-checks/worker-tests.log",
+      "sha256": "18c17231cc05845453460f6bcc7599c6df7184f1b749765303be171f1c6bfa7a"
+    },
+    {
+      "name": "worker-lint",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "evidence/closeout-checks/worker-lint.log",
+      "sha256": "8513fb1090e5ccec63b461badb29b9004015e7710a24153833ac47eeb35e1cf6"
+    },
+    {
+      "name": "worker-build",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "evidence/closeout-checks/worker-build.log",
+      "sha256": "2cde7166061279246b35243d34a41ec8c9620abf32318912cae882bb0fcde451"
+    },
+    {
+      "name": "host-freeze",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "evidence/closeout-checks/host-freeze.log",
+      "sha256": "c58382e588195456a234ee9922c5e0e275c4a729ccf8438c166c301a62bbebc4"
+    },
+    {
+      "name": "host-tests",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "evidence/closeout-checks/host-tests.log",
+      "sha256": "189ae30469f4e1bef361fac58b6d335014076cd8d5d6ab5d889bd8e14e555054"
+    },
+    {
+      "name": "host-sync",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "evidence/closeout-checks/host-sync.log",
+      "sha256": "38c9b73936e8c8a4e12181c8fed5e2fd21c020c7cfe88dd55cfbc70e69acf9fd"
+    },
+    {
+      "name": "adjacent-current-tests",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "evidence/closeout-checks/adjacent-current-tests.log",
+      "sha256": "50ddd4a747429eb7257af0894f1008a9fa1699398444671cae233e8b7fcfa8b5"
+    },
+    {
+      "name": "final-d4",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "evidence/closeout-checks/final-d4.log",
+      "sha256": "8a7fb8f6caf75c5613a5e4cd7a54ee8860f50151a48f4f7b5e780f0e1429aa54"
+    },
+    {
+      "name": "final-claims",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "evidence/closeout-checks/final-claims.log",
+      "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4"
+    }
+  ],
+  "sourceHashes": [
+    {
+      "path": "yijie-contracts/openapi/market-connectors/market-connectors.yaml",
+      "sha256": "5e83116f339df103157270ec82818b2f03981d2ad8b04e4517c0162e3e1afb13"
+    },
+    {
+      "path": "yijie-desktop/src-tauri/src/chat/connectors/mod.rs",
+      "sha256": "7b3f1fc484407d397acb57533ad3f097c28932b1fea5aa587c01b48fc5b359af"
+    },
+    {
+      "path": "yijie-desktop/src-tauri/src/chat/connectors/provider.rs",
+      "sha256": "55447ddd87c781a61a0ccf7e1b30a5b62c6bedff12fabb635efb70fe2bdff1b4"
+    },
+    {
+      "path": "yijie-desktop/src/api/market-connectors-client.ts",
+      "sha256": "cdbbfa59dfacc0f105200087989775a660e5ff4feaa28bb93be6805e3b70f7a0"
+    },
+    {
+      "path": "yijie-desktop/src/stores/market-connectors.store.ts",
+      "sha256": "1836918f4f899d9cc86a0ffd71f8af7591cc209bdf15a48c67dbe197c7364ce5"
+    },
+    {
+      "path": "yijie-desktop/src/domain/market-connectors-ui.ts",
+      "sha256": "0b455bf87913188305b22808031e3977ea94072accc63d9affdfc66e41d0015e"
+    },
+    {
+      "path": "yijie-desktop/src/components/connectors/ConnectorDetailsDialog.vue",
+      "sha256": "9a828bc8ab92c28f669d6088b5a41fe2259d14a6d47dc3f24078644554a156db"
+    },
+    {
+      "path": "yijie-connectors/catalog/market-catalog.v1.json",
+      "sha256": "400621e346e94ef7115a1f7dc7562d8614fb24cc1ebe653c6152f44416d089d3"
+    }
+  ],
+  "contract": {
+    "impact": "semantic",
+    "managementVersion": "0.2.0",
+    "managementCommands": 10,
+    "existingPayloadsChanged": false,
+    "newDatabaseMigration": false,
+    "runtimeSourceChanged": false
+  },
+  "tests": {
+    "uiFocused": 59,
+    "adjacentCurrentSource": 69,
+    "nativeConnectors": 39,
+    "worker": 56,
+    "managementJS": 11,
+    "managementRust": 6,
+    "dependencyJS": 22,
+    "hostMarket": 9
+  },
+  "ui": {
+    "standardApp": "PASS",
+    "installation": "Agentic local record created; installed count1->2, disabled and configuration required; no external auth/probe",
+    "draftRoundtrip": "test draft and Kimi-K3/ask preserved through manager; test draft removed without sending",
+    "restart": "normal Command-Q/EOF; same isolated candidate; installation retained and no automatic connection",
+    "uninstall": "keyboard Return opens confirmation; Escape preserves entry and restores focus; confirmed removal count2->1, only temporary AE record removed",
+    "inputSelection": "unconfigured AE row navigates to configuration details; does not create a selected execution chip",
+    "visual": {
+      "size": [
+        1180,
+        760
+      ],
+      "light": "100% three controls visible",
+      "dark": "200% three controls bottom688 within760",
+      "preview": "real components with ordinary synthetic state only; no Native or provider calls; normal Vite close exit0"
+    },
+    "historicalResults": "Existing Tushare conversation reopened read-only; successful close11.50 and rejected results visible; no new executable approval or model/tool request"
+  },
+  "budgetThisTurn": {
+    "modelRounds": 0,
+    "businessQueries": 0,
+    "nonTushareRealAuthOrMetadata": 0
+  },
+  "liveEvidence": "generic-final-acceptance-2026-10-08.json (f8 build unchanged; never relabelled as latest build)",
+  "knownLimits": [
+    "AE fixed Header field not independently confirmed by public docs; user supplies exact exported remote Header configuration",
+    "Tushare only daily; generic destructive tools without dedicated strategy denied",
+    "No final single-build live rerun; Owner explicitly accepted phased evidence for local D4; no new call budget",
+    "No full legacy CI claim; user-prohibited destructive/attack tests not performed"
+  ],
+  "diagnosticRuns": [
+    {
+      "name": "adjacent test filter matched historical .local snapshots",
+      "exitCode": 1,
+      "result": "39 files, 32 failures all under .local backups; current-source rerun with canonical excludes: 6 files/69 PASS",
+      "originalLog": "/tmp/feat157-closeout-adjacent-tests.log",
+      "sha256": "d0f7052c745a2fa14cb58124167dfbe193657d216276211b4b28092f6431fc07"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "yijie-desktop/src-tauri/target/debug/bundle/macos/易界 AI.app/Contents/MacOS/yijie-desktop",
+      "sha256": "75735535f109b1a0a90119914e69480bbc36ebe3e9df3833b480bff8ca732d95"
+    },
+    {
+      "path": "yijie-connectors/bin/market-worker/ea84c3604f1c129e244c12966bce3c687a2158dad1ef986c98c5d0653b045c58/yijie-mcp-worker",
+      "sha256": "ea84c3604f1c129e244c12966bce3c687a2158dad1ef986c98c5d0653b045c58"
+    },
+    {
+      "path": "yijie-codex/.yijie/build/chat-models-stream-args/aarch64-apple-darwin/codex",
+      "sha256": "aad49041bd7d34c853fb55c274711e3cc810725720d2c097469822d310fb02f9"
+    }
+  ],
+  "protectedStoreDiffSha256": "8719058979fab66ccebf2bf0a0d6e593be7c7439fde1c35db920804b64337a20",
+  "acceptanceCriteria": {
+    "AC-001": "PASS",
+    "AC-002": "PASS",
+    "AC-003": "PASS",
+    "AC-004": "PASS",
+    "AC-005": "PASS",
+    "AC-006": "PASS",
+    "AC-007": "PASS",
+    "AC-008": "PASS",
+    "AC-009": "PASS",
+    "AC-010": "PASS"
+  },
+  "ownerAcceptance": {
+    "status": "accepted",
+    "recordedAt": "2026-10-08T13:20:34+08:00",
+    "owner": "段成威",
+    "question": "是否接受“已通过的 Tushare 真实批准/拒绝 + 最新构建的本地回归”，作为 FEAT-157 本地 D4 验收证据？若选择同构建复验，则授权最多再用 2 轮 Kimi-K3、1 次 Tushare 只读查询（000001.SZ，2026-01-05），失败不重发、不充值、不订阅。",
+    "answer": "接受分阶段证据，完成本地 D4（推荐）",
+    "scope": "FEAT-157 demo_fast/local D4 only; task-specific acceptance of phased evidence instead of a same-build fresh live rerun",
+    "liveWorkerSha256": "f8f85fa4bafbc3c8a4745b8d5443891a1332bd063d42bf9043aa3c7153ca6d5f",
+    "localRegressionWorkerSha256": "ea84c3604f1c129e244c12966bce3c687a2158dad1ef986c98c5d0653b045c58",
+    "evidence": "closeout-verification-2026-10-08.json",
+    "extraModelRounds": 0,
+    "extraBusinessQueries": 0,
+    "newCallAllowanceGranted": false,
+    "publicOrProductionApproval": false,
+    "gitDeliveryAuthorized": false
+  },
+  "finalDeliveryChecks": {
+    "D4Gate": "PASS",
+    "claimAudit": "PASS",
+    "metaLint": "PASS: manifest and Contract First governance",
+    "metaTests": "PASS: 50 tests",
+    "metaShellSyntax": "PASS",
+    "sourceArtifactAndLogHashes": {
+      "status": "PASS",
+      "verifiedEntries": 27
+    },
+    "protectedStoreDiffSha256": "8719058979fab66ccebf2bf0a0d6e593be7c7439fde1c35db920804b64337a20",
+    "fixedRuntimeRepository": "clean",
+    "diffCheck": "PASS across all six affected/source repositories",
+    "workspaceSnapshot": "evidence/closeout-workspace-after.json",
+    "note": "Worktrees contain pre-existing and current FEAT-157 changes; no commit, push or release performed."
+  }
+}

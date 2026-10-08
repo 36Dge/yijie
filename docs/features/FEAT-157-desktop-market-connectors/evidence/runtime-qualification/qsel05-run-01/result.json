@@ -1,0 +1,368 @@
+{
+  "harness_sha256": "cffc39eb16b295daa9a53a4619f791632a56d7ae3b1306e030c898ca10a09b30",
+  "runtime_artifact": {
+    "binary": "codex",
+    "reportedVersion": "codex-cli 0.144.6",
+    "sha256": "aad49041bd7d34c853fb55c274711e3cc810725720d2c097469822d310fb02f9",
+    "sizeBytes": 356210616,
+    "target": "aarch64-apple-darwin",
+    "version": "0.144.6"
+  },
+  "runtime_manifest_sha256": "8b86a1a661f50beda1e0a0c96f81ddbdf959a9a07c2e756cc4b9b0eabc053b27",
+  "runtime_source": {
+    "repository": "https://github.com/36Dge/yijie-codex.git",
+    "base_commit": "7fd463bcef07f37b0211acd9f62b9f93ea0a4b12"
+  },
+  "temp_root": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-elicitation-lin98c9w",
+  "external_calls": 0,
+  "real_model_calls": 0,
+  "credentials_read_or_written": 0,
+  "cases": [
+    {
+      "decision": "accept",
+      "threadId": "01a115e1-bfd5-72e3-9f11-551e455c6a62",
+      "turnId": "01a115e1-bfe6-7631-82f6-293544dfba8c",
+      "callbacks": [
+        {
+          "nativeRequest": {
+            "method": "mcpServer/elicitation/request",
+            "id": 0,
+            "params": {
+              "threadId": "01a115e1-bfd5-72e3-9f11-551e455c6a62",
+              "turnId": "01a115e1-bfe6-7631-82f6-293544dfba8c",
+              "serverName": "gateway",
+              "mode": "form",
+              "_meta": {
+                "yijieCallRef": "0e6d29ee-c694-41f7-bdb1-8b6fd30b763c",
+                "yijieKind": "gateway_call_approval"
+              },
+              "message": "Review the registered local lookup through the trusted control channel.",
+              "requestedSchema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          },
+          "trustedRecord": {
+            "callRef": "0e6d29ee-c694-41f7-bdb1-8b6fd30b763c",
+            "rpcCallId": 2,
+            "server": "gateway",
+            "tool": "lookup",
+            "arguments": {
+              "key": "public-synthetic-record"
+            },
+            "argumentsDigest": "54e4e37a5f1a55ab32d8d2be9494b05b4ca88bee2a719bd621fc30b03c832bca",
+            "threadId": "01a115e1-bfd5-72e3-9f11-551e455c6a62",
+            "turnId": "01a115e1-bfe6-7631-82f6-293544dfba8c",
+            "state": "awaiting_decision",
+            "controlDecision": null,
+            "elicitationResult": null
+          },
+          "decision": "accept"
+        }
+      ],
+      "terminal": {
+        "method": "turn/completed",
+        "params": {
+          "threadId": "01a115e1-bfd5-72e3-9f11-551e455c6a62",
+          "turn": {
+            "id": "01a115e1-bfe6-7631-82f6-293544dfba8c",
+            "items": [],
+            "itemsView": "notLoaded",
+            "status": "completed",
+            "error": null,
+            "startedAt": 1791368478,
+            "completedAt": 1791368478,
+            "durationMs": 20
+          }
+        }
+      },
+      "nativeHistory": {
+        "thread": {
+          "id": "01a115e1-bfd5-72e3-9f11-551e455c6a62",
+          "extra": null,
+          "sessionId": "01a115e1-bfd5-72e3-9f11-551e455c6a62",
+          "forkedFromId": null,
+          "parentThreadId": null,
+          "preview": "Please use the local Gateway lookup for the public synthetic record.",
+          "ephemeral": false,
+          "historyMode": "legacy",
+          "modelProvider": "qualification",
+          "createdAt": 1791368478,
+          "updatedAt": 1791368478,
+          "recencyAt": 1791368478,
+          "status": {
+            "type": "idle"
+          },
+          "path": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-elicitation-lin98c9w/codex-home/sessions/2026/10/07/rollout-2026-10-07T18-21-18-01a115e1-bfd5-72e3-9f11-551e455c6a62.jsonl",
+          "cwd": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-elicitation-lin98c9w/workspace",
+          "cliVersion": "0.144.6",
+          "source": "vscode",
+          "threadSource": null,
+          "agentNickname": null,
+          "agentRole": null,
+          "gitInfo": null,
+          "name": null,
+          "turns": [
+            {
+              "id": "01a115e1-bfe6-7631-82f6-293544dfba8c",
+              "items": [
+                {
+                  "type": "userMessage",
+                  "id": "item-1",
+                  "clientId": null,
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Please use the local Gateway lookup for the public synthetic record.",
+                      "text_elements": []
+                    }
+                  ]
+                },
+                {
+                  "type": "mcpToolCall",
+                  "id": "model_call_accept",
+                  "server": "gateway",
+                  "tool": "lookup",
+                  "status": "completed",
+                  "arguments": {
+                    "key": "public-synthetic-record"
+                  },
+                  "appContext": null,
+                  "pluginId": null,
+                  "result": {
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "public-synthetic-value"
+                      }
+                    ],
+                    "structuredContent": null,
+                    "_meta": null
+                  },
+                  "error": null,
+                  "durationMs": 7
+                },
+                {
+                  "type": "agentMessage",
+                  "id": "item-2",
+                  "text": "Local approval qualification finished.",
+                  "phase": "final_answer",
+                  "memoryCitation": null
+                }
+              ],
+              "itemsView": "full",
+              "status": "completed",
+              "error": null,
+              "startedAt": 1791368478,
+              "completedAt": 1791368478,
+              "durationMs": 20
+            }
+          ]
+        }
+      },
+      "gatewayFinal": {
+        "callRef": "0e6d29ee-c694-41f7-bdb1-8b6fd30b763c",
+        "rpcCallId": 2,
+        "server": "gateway",
+        "tool": "lookup",
+        "arguments": {
+          "key": "public-synthetic-record"
+        },
+        "argumentsDigest": "54e4e37a5f1a55ab32d8d2be9494b05b4ca88bee2a719bd621fc30b03c832bca",
+        "threadId": "01a115e1-bfd5-72e3-9f11-551e455c6a62",
+        "turnId": "01a115e1-bfe6-7631-82f6-293544dfba8c",
+        "state": "completed",
+        "controlDecision": "accept",
+        "elicitationResult": {
+          "action": "accept",
+          "content": {}
+        }
+      }
+    },
+    {
+      "decision": "decline",
+      "threadId": "01a115e1-c009-7f92-9c05-10af81ed035e",
+      "turnId": "01a115e1-c026-7961-870a-7f17231e8170",
+      "callbacks": [
+        {
+          "nativeRequest": {
+            "method": "mcpServer/elicitation/request",
+            "id": 1,
+            "params": {
+              "threadId": "01a115e1-c009-7f92-9c05-10af81ed035e",
+              "turnId": "01a115e1-c026-7961-870a-7f17231e8170",
+              "serverName": "gateway",
+              "mode": "form",
+              "_meta": {
+                "yijieCallRef": "9cd75455-a1b3-4f76-a401-073648e80e47",
+                "yijieKind": "gateway_call_approval"
+              },
+              "message": "Review the registered local lookup through the trusted control channel.",
+              "requestedSchema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          },
+          "trustedRecord": {
+            "callRef": "9cd75455-a1b3-4f76-a401-073648e80e47",
+            "rpcCallId": 2,
+            "server": "gateway",
+            "tool": "lookup",
+            "arguments": {
+              "key": "public-synthetic-record"
+            },
+            "argumentsDigest": "54e4e37a5f1a55ab32d8d2be9494b05b4ca88bee2a719bd621fc30b03c832bca",
+            "threadId": "01a115e1-c009-7f92-9c05-10af81ed035e",
+            "turnId": "01a115e1-c026-7961-870a-7f17231e8170",
+            "state": "awaiting_decision",
+            "controlDecision": null,
+            "elicitationResult": null
+          },
+          "decision": "decline"
+        }
+      ],
+      "terminal": {
+        "method": "turn/completed",
+        "params": {
+          "threadId": "01a115e1-c009-7f92-9c05-10af81ed035e",
+          "turn": {
+            "id": "01a115e1-c026-7961-870a-7f17231e8170",
+            "items": [],
+            "itemsView": "notLoaded",
+            "status": "completed",
+            "error": null,
+            "startedAt": 1791368478,
+            "completedAt": 1791368478,
+            "durationMs": 19
+          }
+        }
+      },
+      "nativeHistory": {
+        "thread": {
+          "id": "01a115e1-c009-7f92-9c05-10af81ed035e",
+          "extra": null,
+          "sessionId": "01a115e1-c009-7f92-9c05-10af81ed035e",
+          "forkedFromId": null,
+          "parentThreadId": null,
+          "preview": "Please use the local Gateway lookup for the public synthetic record.",
+          "ephemeral": false,
+          "historyMode": "legacy",
+          "modelProvider": "qualification",
+          "createdAt": 1791368478,
+          "updatedAt": 1791368478,
+          "recencyAt": 1791368478,
+          "status": {
+            "type": "idle"
+          },
+          "path": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-elicitation-lin98c9w/codex-home/sessions/2026/10/07/rollout-2026-10-07T18-21-18-01a115e1-c009-7f92-9c05-10af81ed035e.jsonl",
+          "cwd": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-local-elicitation-lin98c9w/workspace",
+          "cliVersion": "0.144.6",
+          "source": "vscode",
+          "threadSource": null,
+          "agentNickname": null,
+          "agentRole": null,
+          "gitInfo": null,
+          "name": null,
+          "turns": [
+            {
+              "id": "01a115e1-c026-7961-870a-7f17231e8170",
+              "items": [
+                {
+                  "type": "userMessage",
+                  "id": "item-1",
+                  "clientId": null,
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Please use the local Gateway lookup for the public synthetic record.",
+                      "text_elements": []
+                    }
+                  ]
+                },
+                {
+                  "type": "mcpToolCall",
+                  "id": "model_call_decline",
+                  "server": "gateway",
+                  "tool": "lookup",
+                  "status": "failed",
+                  "arguments": {
+                    "key": "public-synthetic-record"
+                  },
+                  "appContext": null,
+                  "pluginId": null,
+                  "result": {
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Lookup was not approved; no lookup executed."
+                      }
+                    ],
+                    "structuredContent": null,
+                    "_meta": null
+                  },
+                  "error": null,
+                  "durationMs": 11
+                },
+                {
+                  "type": "agentMessage",
+                  "id": "item-2",
+                  "text": "Local approval qualification finished.",
+                  "phase": "final_answer",
+                  "memoryCitation": null
+                }
+              ],
+              "itemsView": "full",
+              "status": "completed",
+              "error": null,
+              "startedAt": 1791368478,
+              "completedAt": 1791368478,
+              "durationMs": 19
+            }
+          ]
+        }
+      },
+      "gatewayFinal": {
+        "callRef": "9cd75455-a1b3-4f76-a401-073648e80e47",
+        "rpcCallId": 2,
+        "server": "gateway",
+        "tool": "lookup",
+        "arguments": {
+          "key": "public-synthetic-record"
+        },
+        "argumentsDigest": "54e4e37a5f1a55ab32d8d2be9494b05b4ca88bee2a719bd621fc30b03c832bca",
+        "threadId": "01a115e1-c009-7f92-9c05-10af81ed035e",
+        "turnId": "01a115e1-c026-7961-870a-7f17231e8170",
+        "state": "declined",
+        "controlDecision": "decline",
+        "elicitationResult": {
+          "action": "decline"
+        }
+      }
+    }
+  ],
+  "status": "COMPLETED_OBSERVATIONS",
+  "normal_shutdown": {
+    "pid": 58909,
+    "exit_code": 0,
+    "normal_eof": true
+  },
+  "executions": [
+    {
+      "callRef": "0e6d29ee-c694-41f7-bdb1-8b6fd30b763c",
+      "tool": "lookup",
+      "argumentsDigest": "54e4e37a5f1a55ab32d8d2be9494b05b4ca88bee2a719bd621fc30b03c832bca",
+      "result": "public-synthetic-value"
+    }
+  ],
+  "local_responses_requests": 4,
+  "mcp_method_counts": {
+    "elicitation_response": 2,
+    "initialize": 2,
+    "notifications/initialized": 2,
+    "tools/call": 2,
+    "tools/list": 2
+  },
+  "temporary_data_removed_after_exit": true
+}

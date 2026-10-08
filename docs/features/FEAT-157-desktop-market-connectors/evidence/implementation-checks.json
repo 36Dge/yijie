@@ -1,0 +1,83 @@
+{
+  "date": "2026-10-07",
+  "scope": "partial local implementation; no product D4",
+  "featureComplete": false,
+  "d4": "NOT RUN",
+  "repositories": {
+    "yijie": {
+      "head": "e1ebb5785aca4c1dbbfd85cecf12f8b74d2abac1",
+      "diffCheckExit": 0,
+      "trackedDiffSha256": "8c114c463c9d2c6b026cbaebc00f3a7258440f6ee700b05a9f305c3ad1273c23"
+    },
+    "yijie-desktop": {
+      "head": "8d74159e64b9ca87a15ecda13d019b5d180162d0",
+      "diffCheckExit": 0,
+      "trackedDiffSha256": "d953225b36788e55f8cb916d3c756dda10deeb930a12b8552801b9db787c46db"
+    },
+    "yijie-contracts": {
+      "head": "1a213ac8383e95ac6ec69363937687904fa3591c",
+      "diffCheckExit": 0,
+      "trackedDiffSha256": "493932551d8f64f22dccce3e06ca05ac7bea0fa4afeac62d7c7246f4a3b8253d"
+    },
+    "yijie-connectors": {
+      "head": "273eec40bbbfeb17e817643f283db7c81e9b190c",
+      "diffCheckExit": 0,
+      "trackedDiffSha256": "abc54176882599b2c69c100e1d835af3f23a14d46226bc35e7c37dfe06a26f00"
+    },
+    "yijie-agent-host": {
+      "head": "a5bd6c2e7a619768eafaa63bcca7f774d1134bd3",
+      "diffCheckExit": 0,
+      "trackedDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "yijie-codex": {
+      "head": "7fd463bcef07f37b0211acd9f62b9f93ea0a4b12",
+      "diffCheckExit": 0,
+      "trackedDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "originalDesktopDiffPreserved": "50ca7a1165be0732b4e74d119340303c39529e5bd40b9845bed0c02d672b4eeb",
+  "desktop": {
+    "finalLint": "PASS",
+    "finalBuild": "PASS; existing large chunk warning",
+    "uiSpecializedTests": 84,
+    "clientSpecializedTests": 8,
+    "nativeSpecializedTests": 8,
+    "clippy": "PASS",
+    "fmt": "PASS",
+    "generatedNativeCheck": "PASS",
+    "canonicalAppStartup": "NOT RUN",
+    "ordinaryDatabaseMigration": "in-memory SQL29 to SQL30 PASS",
+    "userDatabaseMigration": "NOT RUN",
+    "chatPageLegacyBaseline": {
+      "failed": 5,
+      "passed": 50,
+      "skipped": 2,
+      "sameFailuresOnOriginalHead": true
+    }
+  },
+  "runtimeLocalQualification": {
+    "Q-SEL-01": "PASS for recorded scope",
+    "Q-SEL-02": "PASS for recorded scope",
+    "Q-SEL-05": "PASS for recorded mechanism only",
+    "stdioBridge": "PASS for ordinary project-built server; real Google packages NOT RUN"
+  },
+  "external": {
+    "providerCalls": 0,
+    "realModelCalls": 0,
+    "oauth": 0,
+    "realCredentialReadsWrites": 0
+  },
+  "gitDelivery": {
+    "commit": false,
+    "push": false,
+    "release": false
+  },
+  "limits": [
+    "Control carrier and product Gateway execution not implemented",
+    "All 51 real providers remain unqualified",
+    "No full repository test PASS claim",
+    "Existing fallback schema download EOF recorded in Contracts",
+    "No destructive or attack-injection tests performed"
+  ],
+  "cleanup": "Runtime and worker qualifications used normal EOF; visual Vite server normal close; no force kill"
+}

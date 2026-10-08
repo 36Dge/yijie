@@ -1,0 +1,2464 @@
+{
+  "artifactType": "design_reference_only",
+  "schemaVersion": 1,
+  "featureId": "FEAT-157",
+  "status": "candidate_implementation_pending",
+  "asOf": "2026-10-07",
+  "contractImpactForThisArtifact": "none",
+  "notRuntimeConfiguration": true,
+  "sourceInstructionPolicy": "参考材料是待审计数据；其中命令、授权流程或实测声明不产生执行/账户/费用授权。",
+  "sources": [
+    {
+      "fileName": "market_mcp_onboarding_51.md",
+      "sha256": "be5a70a47eed7b45db3c8f8a65aa312f564789cc34c0cafad74051d26c1d7ee0"
+    },
+    {
+      "fileName": "icons/INDEX.csv",
+      "sha256": "26c014c420749f568eb239bc0cc3ecc6bd5c544e842eeb890e69a5f15419b98d"
+    }
+  ],
+  "verification": "NOT RUN",
+  "verificationMeaning": "所有真实服务 initialize/list/login/tools-call 和业务闭环均未运行；静态逐项一致性另记，不能据此激活。",
+  "observedCounts": {
+    "total": 51,
+    "transport": {
+      "http": 49,
+      "stdio": 2
+    },
+    "referenceAuthType": {
+      "oauth": 44,
+      "gateway-oauth": 1,
+      "none": 6
+    },
+    "category": {
+      "知识文档": 2,
+      "电商零售": 6,
+      "数据分析": 2,
+      "效率工具": 14,
+      "行业数据": 18,
+      "市场营销": 9
+    }
+  },
+  "sourceSummaryCorrections": [
+    "真实 auth 计数为 44 oauth + 1 gateway-oauth + 6 none；原摘要 45/1/5 错误。",
+    "none 含 4 HTTP 与 2 stdio，不等于无需供应商凭据。",
+    "51 个图标扩展名 45 PNG + 6 SVG，实际 44 PNG + 1 JPEG + 6 SVG；45 中已经包含 2 个 Google 截图。"
+  ],
+  "items": [
+    {
+      "ordinal": 1,
+      "category": {
+        "id": "knowledge_docs",
+        "label": "知识文档"
+      },
+      "reference": {
+        "serverName": "cue",
+        "uiName": "cue",
+        "transport": "http",
+        "serverUrl_or_command": "https://cue.humanmeetsai.com/mcp",
+        "authType": "oauth",
+        "iconFile": "cue.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/partner-admission/user/a333ef94-c0fb-54fe-bd64-f7f80b583153/connector_icon/Hws4D4du-Cqam7LCeW1OOOjN1Eq2aKgM/cue-icon-240.png.sealed-y3-QhLsSF7K4Gw550-TLDEYNFSxdoRe2"
+      },
+      "referenceMarkdownLine": 23,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 2,
+      "category": {
+        "id": "knowledge_docs",
+        "label": "知识文档"
+      },
+      "reference": {
+        "serverName": "baixiao-mcp",
+        "uiName": "百晓智能",
+        "transport": "http",
+        "serverUrl_or_command": "https://mcp.know-pa.cn/qw/mcp",
+        "authType": "oauth",
+        "iconFile": "baixiao-mcp.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/iyPHF0nByVz8h1byqcelYoDPyGUILO7S/Image_20260828232725_2379_15.png"
+      },
+      "referenceMarkdownLine": 24,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": {
+        "reviewRequired": true,
+        "marker": "/qw/",
+        "notes": "宿主缩写路径，是否渠道专属待供应商确认",
+        "portableToYijie": "UNKNOWN"
+      },
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 3,
+      "category": {
+        "id": "ecommerce_retail",
+        "label": "电商零售"
+      },
+      "reference": {
+        "serverName": "dxe-mcp-server",
+        "uiName": "单小二",
+        "transport": "http",
+        "serverUrl_or_command": "https://api.zhongyifu.cn/mcp",
+        "authType": "oauth",
+        "iconFile": "dxe-mcp-server.svg",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/6j-i34Gzb0ZE-Eyj9Vg3mcvU-cUWFLrG/logo_(2).svg"
+      },
+      "referenceMarkdownLine": 30,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 4,
+      "category": {
+        "id": "ecommerce_retail",
+        "label": "电商零售"
+      },
+      "reference": {
+        "serverName": "Hologrow",
+        "uiName": "Hologrow",
+        "transport": "http",
+        "serverUrl_or_command": "https://mcp.hologrow.ai/mcp",
+        "authType": "oauth",
+        "iconFile": "Hologrow.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/TbWDEikNxrH-0LOKZppI4uu1hJBLW-v4/48px.png"
+      },
+      "referenceMarkdownLine": 31,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 5,
+      "category": {
+        "id": "ecommerce_retail",
+        "label": "电商零售"
+      },
+      "reference": {
+        "serverName": "X-Store",
+        "uiName": "好多店",
+        "transport": "http",
+        "serverUrl_or_command": "https://mcp-ai.coolstore.cn/mcp",
+        "authType": "oauth",
+        "iconFile": "X-Store.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/LpC2LtK7zOXJ-FYfsq9ki2_Ldp1pB-mz/3c3f656a-b54e-4dbe-b5d1-aaa551f0613c.png"
+      },
+      "referenceMarkdownLine": 32,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 6,
+      "category": {
+        "id": "ecommerce_retail",
+        "label": "电商零售"
+      },
+      "reference": {
+        "serverName": "yintai-open-platform",
+        "uiName": "银泰商业开放平台",
+        "transport": "http",
+        "serverUrl_or_command": "https://open.linkheer.com/mcp",
+        "authType": "oauth",
+        "iconFile": "yintai-open-platform.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/kerNe-5pIsDMIIiAr_to5JK1EEe9JDt5/银泰商业_logo_200x200.png"
+      },
+      "referenceMarkdownLine": 33,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 7,
+      "category": {
+        "id": "ecommerce_retail",
+        "label": "电商零售"
+      },
+      "reference": {
+        "serverName": "yuyidata",
+        "uiName": "语忆Neosight",
+        "transport": "http",
+        "serverUrl_or_command": "https://service-api.yuyidata.com/gateway/ai-chat/mcp/v2/neosight",
+        "authType": "oauth",
+        "iconFile": "yuyidata.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/9ewYkSfzqEd90_7drSAFEB66WBH_Equ2/140.png"
+      },
+      "referenceMarkdownLine": 34,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 8,
+      "category": {
+        "id": "ecommerce_retail",
+        "label": "电商零售"
+      },
+      "reference": {
+        "serverName": "taobao-flash-sale-retail",
+        "uiName": "淘宝闪购零售商家版",
+        "transport": "http",
+        "serverUrl_or_command": "https://mcp.qwenwork.cn/connectors/taobao-flash-sale-retail/mcp",
+        "authType": "gateway-oauth",
+        "iconFile": "taobao-flash-sale-retail.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/0GTGkCPvevZyoL8BiRiNw29x3Dvq4kAh/零售商家.png"
+      },
+      "referenceMarkdownLine": 35,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "provider_gateway_adapter_not_designed",
+      "credentialRequirements": [
+        {
+          "status": "DOCUMENTED_GENERAL_OAUTH_ONLY",
+          "name": "AppKey / AppSecret / registered callback",
+          "binding": null,
+          "required": true,
+          "secret": true,
+          "notes": "一般淘宝开放平台 OAuth 的必要条件；不能证明淘宝闪购业务权限或本参考网关可用。AppSecret 归服务端，具体 MCP 契约 UNKNOWN。",
+          "evidence": "https://developer.alibaba.com/docs/doc.htm?articleId=102635&docType=1&treeId=154"
+        }
+      ],
+      "providerDocumentation": [
+        "https://developer.alibaba.com/docs/doc.htm?articleId=102635&docType=1&treeId=154"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "yijie 自有开放平台应用资格/AppKey/服务端 AppSecret/登记回调",
+        "淘宝闪购零售业务 API 及商家授权范围",
+        "供应商授权的 MCP endpoint 或经评审的 Connectors 适配层",
+        "不得复用千问办公私有 connector-oauth 路由/账户/会话/网关授权"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": {
+        "reviewRequired": true,
+        "marker": "mcp.qwenwork.cn",
+        "notes": "第三方宿主网关，非已证明可复用的供应商公共 MCP",
+        "portableToYijie": "UNKNOWN"
+      },
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 9,
+      "category": {
+        "id": "data_analytics",
+        "label": "数据分析"
+      },
+      "reference": {
+        "serverName": "FTShare",
+        "uiName": "FTShare 金融数据",
+        "transport": "http",
+        "serverUrl_or_command": "https://market.ft.tech/gateway/mcp",
+        "authType": "none",
+        "iconFile": "FTShare.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/HqT8GAwKgENpFb-OehfAPEQ_lIxjTI5X/a2fe8d17-f996-422a-8967-082371a9f018.png"
+      },
+      "referenceMarkdownLine": 41,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "provider_api_key_header_candidate",
+      "credentialRequirements": [
+        {
+          "status": "DOCUMENTED",
+          "name": "FTSHARE_API_KEY",
+          "binding": {
+            "kind": "http_header",
+            "key": "FTSHARE_API_KEY"
+          },
+          "required": true,
+          "secret": true,
+          "notes": "维护者当前中文 README 明确要求；仅记录字段名，不含凭据值。yijie 实现仍未验证。",
+          "evidence": "https://github.com/FTShare-Lab/FTShare-MCP"
+        }
+      ],
+      "providerDocumentation": [
+        "https://github.com/FTShare-Lab/FTShare-MCP"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 10,
+      "category": {
+        "id": "data_analytics",
+        "label": "数据分析"
+      },
+      "reference": {
+        "serverName": "yunting-consumerlens",
+        "uiName": "云听ConsumerLens",
+        "transport": "http",
+        "serverUrl_or_command": "https://open-mcp.sv.yuntingai.com/mcp",
+        "authType": "oauth",
+        "iconFile": "yunting-consumerlens.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/GJp4H2Y6fYV0T2qEsCUBEhVeKmzHzGQq/200-200.png"
+      },
+      "referenceMarkdownLine": 42,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 11,
+      "category": {
+        "id": "productivity",
+        "label": "效率工具"
+      },
+      "reference": {
+        "serverName": "google-calendar",
+        "uiName": "Google 日历",
+        "transport": "stdio",
+        "serverUrl_or_command": "command: npx @cocal/google-calendar-mcp",
+        "authType": "none",
+        "iconFile": "google-calendar.png",
+        "iconUrl": "(EN 生态无远程图标；本文件为市场页截图裁剪 80px)"
+      },
+      "referenceMarkdownLine": 48,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "stdio_server_managed_google_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "DOCUMENTED",
+          "name": "GOOGLE_OAUTH_CREDENTIALS",
+          "binding": {
+            "kind": "environment_variable",
+            "key": "GOOGLE_OAUTH_CREDENTIALS",
+            "valueType": "absolute_file_path"
+          },
+          "required": true,
+          "secret": false,
+          "referencedFileContainsSecrets": true,
+          "notes": "所指文件为 Google Desktop App OAuth client credentials JSON；server 仍需完成自身 Google OAuth，不能仅凭进程启动标已授权。",
+          "evidence": "https://github.com/nspady/google-calendar-mcp"
+        }
+      ],
+      "providerDocumentation": [
+        "https://github.com/nspady/google-calendar-mcp",
+        "https://github.com/nspady/google-calendar-mcp/blob/main/docs/authentication.md"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "固定包版本/来源与 Node runtime 兼容",
+        "用户提供有效 Desktop App OAuth credentials JSON",
+        "Google Calendar API、consent/test-user 与 server-managed OAuth",
+        "凭据文件和 server 自管 token 的受管存储边界"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 12,
+      "category": {
+        "id": "productivity",
+        "label": "效率工具"
+      },
+      "reference": {
+        "serverName": "google-maps",
+        "uiName": "Google 地图",
+        "transport": "stdio",
+        "serverUrl_or_command": "command: npx -y @modelcontextprotocol/server-google-maps",
+        "authType": "none",
+        "iconFile": "google-maps.png",
+        "iconUrl": "(EN 生态无远程图标；本文件为市场页截图裁剪 80px)"
+      },
+      "referenceMarkdownLine": 49,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "stdio_api_key_environment_candidate",
+      "credentialRequirements": [
+        {
+          "status": "DOCUMENTED",
+          "name": "GOOGLE_MAPS_API_KEY",
+          "binding": {
+            "kind": "environment_variable",
+            "key": "GOOGLE_MAPS_API_KEY"
+          },
+          "required": true,
+          "secret": true,
+          "notes": "reference package 已归档且不再维护；不代表当前 Google API 兼容性已验证。",
+          "evidence": "https://github.com/modelcontextprotocol/servers-archived/blob/main/src/google-maps/README.md"
+        }
+      ],
+      "providerDocumentation": [
+        "https://github.com/modelcontextprotocol/servers-archived/blob/main/src/google-maps/README.md",
+        "https://github.com/modelcontextprotocol/servers-archived"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "固定包版本/来源与 Node runtime 兼容",
+        "归档包当前 Google API 兼容性",
+        "Google Maps 项目/API Key/启用 API/额度和计费配置"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 13,
+      "category": {
+        "id": "productivity",
+        "label": "效率工具"
+      },
+      "reference": {
+        "serverName": "speechclaw",
+        "uiName": "思必驰AI办公",
+        "transport": "http",
+        "serverUrl_or_command": "https://officeclaw.beta.duiopen.com/speechclaw/mcp",
+        "authType": "oauth",
+        "iconFile": "speechclaw.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/zruQ_xlbNMSDYeL6i8ptgQ6SMz36lmK0/闪记logo.png"
+      },
+      "referenceMarkdownLine": 50,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": "beta 域名，当前环境及可用于 yijie 的服务级别 UNKNOWN。",
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 14,
+      "category": {
+        "id": "productivity",
+        "label": "效率工具"
+      },
+      "reference": {
+        "serverName": "caoliao",
+        "uiName": "草料二维码",
+        "transport": "http",
+        "serverUrl_or_command": "https://open.cli.im/mcp",
+        "authType": "oauth",
+        "iconFile": "caoliao.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/cyx3GZkOe123oSMu64Si8_Emhkv3T7Ih/icon-240.png"
+      },
+      "referenceMarkdownLine": 51,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 15,
+      "category": {
+        "id": "productivity",
+        "label": "效率工具"
+      },
+      "reference": {
+        "serverName": "wavenote",
+        "uiName": "WaveNote",
+        "transport": "http",
+        "serverUrl_or_command": "https://mcp.wavenote.cn/mcp/audio",
+        "authType": "oauth",
+        "iconFile": "wavenote.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/poL9_OLXpJBYOIKe2d17bmdP_-EkpE-S/20260918-100620.png"
+      },
+      "referenceMarkdownLine": 52,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 16,
+      "category": {
+        "id": "productivity",
+        "label": "效率工具"
+      },
+      "reference": {
+        "serverName": "yida",
+        "uiName": "宜搭",
+        "transport": "http",
+        "serverUrl_or_command": "https://www.aliwork.com/openyida/agent-api/mcp",
+        "authType": "oauth",
+        "iconFile": "yida.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/bNQw-2t8NA3cxfkVzrf6wqvch3dzXs6R/yida.png"
+      },
+      "referenceMarkdownLine": 53,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 17,
+      "category": {
+        "id": "productivity",
+        "label": "效率工具"
+      },
+      "reference": {
+        "serverName": "qingflow",
+        "uiName": "轻流",
+        "transport": "http",
+        "serverUrl_or_command": "https://mcp.qingflow.com/mcp",
+        "authType": "oauth",
+        "iconFile": "qingflow.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/o2yG3hQZWTPpTDcqcEbCVjbAA3xLxsKQ/qingflow.png"
+      },
+      "referenceMarkdownLine": 54,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 18,
+      "category": {
+        "id": "productivity",
+        "label": "效率工具"
+      },
+      "reference": {
+        "serverName": "uupt",
+        "uiName": "UU跑腿",
+        "transport": "http",
+        "serverUrl_or_command": "https://api-open.uupt.com/mcp/order?source=qwenwork",
+        "authType": "oauth",
+        "iconFile": "uupt.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/M9C2PqS7kniSgCKgid0ljnGQTUd54MKu/uupt.png"
+      },
+      "referenceMarkdownLine": 55,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": {
+        "reviewRequired": true,
+        "marker": "source=qwenwork",
+        "notes": "显式来源参数",
+        "portableToYijie": "UNKNOWN"
+      },
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 19,
+      "category": {
+        "id": "productivity",
+        "label": "效率工具"
+      },
+      "reference": {
+        "serverName": "fenbeitong",
+        "uiName": "分贝通",
+        "transport": "http",
+        "serverUrl_or_command": "https://mcp.fenbeitong.com/mcp/source/qwenwork",
+        "authType": "oauth",
+        "iconFile": "fenbeitong.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/S_eUTCu_O_y4fK3w5mnTASOR6yttmwac/fenbeitong-v101.png"
+      },
+      "referenceMarkdownLine": 56,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": {
+        "reviewRequired": true,
+        "marker": "/source/qwenwork",
+        "notes": "显式渠道路径",
+        "portableToYijie": "UNKNOWN"
+      },
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 20,
+      "category": {
+        "id": "productivity",
+        "label": "效率工具"
+      },
+      "reference": {
+        "serverName": "bazhuayu",
+        "uiName": "数阔八爪鱼",
+        "transport": "http",
+        "serverUrl_or_command": "https://mcp.bazhuayu.com",
+        "authType": "oauth",
+        "iconFile": "bazhuayu.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/ZL13M0GnkwhP-4x3UZTyI3BDXxiiQQPo/bazhuayutubiao.png"
+      },
+      "referenceMarkdownLine": 57,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 21,
+      "category": {
+        "id": "productivity",
+        "label": "效率工具"
+      },
+      "reference": {
+        "serverName": "camscanner-mcp",
+        "uiName": "扫描全能王",
+        "transport": "http",
+        "serverUrl_or_command": "https://ai-tools.camscanner.com/mcp",
+        "authType": "oauth",
+        "iconFile": "camscanner-mcp.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/V9DWTQKH8ix9qV0SXL0UpBNPLmE-ZlAn/camscanner-mcp.png"
+      },
+      "referenceMarkdownLine": 58,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 22,
+      "category": {
+        "id": "productivity",
+        "label": "效率工具"
+      },
+      "reference": {
+        "serverName": "todoist",
+        "uiName": "Todoist",
+        "transport": "http",
+        "serverUrl_or_command": "https://ai.todoist.net/mcp",
+        "authType": "oauth",
+        "iconFile": "todoist.svg",
+        "iconUrl": "https://img.alicdn.com/imgextra/i4/O1CN01rxrzym2055CbSs7a0_!!6000000006797-55-tps-40-40.svg"
+      },
+      "referenceMarkdownLine": 59,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 23,
+      "category": {
+        "id": "productivity",
+        "label": "效率工具"
+      },
+      "reference": {
+        "serverName": "agentkey-qwen",
+        "uiName": "Agentkey",
+        "transport": "http",
+        "serverUrl_or_command": "https://api.agentkey.app/qwen/v1/mcp",
+        "authType": "oauth",
+        "iconFile": "agentkey-qwen.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/vsc9VqDlzlpfQ9tSBqT2XyHDxCYuMDaP/agentkey.png"
+      },
+      "referenceMarkdownLine": 60,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": {
+        "reviewRequired": true,
+        "marker": "/qwen/",
+        "notes": "显式渠道路径及 serverName",
+        "portableToYijie": "UNKNOWN"
+      },
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 24,
+      "category": {
+        "id": "productivity",
+        "label": "效率工具"
+      },
+      "reference": {
+        "serverName": "huida-erp",
+        "uiName": "惠搭ERP",
+        "transport": "http",
+        "serverUrl_or_command": "https://mcp.3cuan.com/mcp",
+        "authType": "oauth",
+        "iconFile": "huida-erp.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/oC4d29XwkY1Kjc8VeUGjI4bNuArzYC8b/huida-erp.png"
+      },
+      "referenceMarkdownLine": 61,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 25,
+      "category": {
+        "id": "industry_data",
+        "label": "行业数据"
+      },
+      "reference": {
+        "serverName": "FastMoss",
+        "uiName": "FastMoss",
+        "transport": "http",
+        "serverUrl_or_command": "https://mcp.fastmoss.com/mcp",
+        "authType": "oauth",
+        "iconFile": "FastMoss.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/GrrryUUzzg6TB1r0HHqbsz8FIzxAbTja/icon_(4).png"
+      },
+      "referenceMarkdownLine": 67,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 26,
+      "category": {
+        "id": "industry_data",
+        "label": "行业数据"
+      },
+      "reference": {
+        "serverName": "smartsalary",
+        "uiName": "薪智·市场人才薪酬数据",
+        "transport": "http",
+        "serverUrl_or_command": "https://ai.smartsalary.cn/smartsalary-mcp/mcp",
+        "authType": "oauth",
+        "iconFile": "smartsalary.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/tfULO-Kq8UMxc5zvWoVkXc6gFSqcpTRD/smartsalary.png"
+      },
+      "referenceMarkdownLine": 68,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 27,
+      "category": {
+        "id": "industry_data",
+        "label": "行业数据"
+      },
+      "reference": {
+        "serverName": "qixin_insight",
+        "uiName": "启信慧眼",
+        "transport": "http",
+        "serverUrl_or_command": "https://mcp.qixin.com/mcp",
+        "authType": "oauth",
+        "iconFile": "qixin_insight.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/3OGjAPIC6gWy1F8ApNBbRAUaBEo91ZGY/icon.png"
+      },
+      "referenceMarkdownLine": 69,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 28,
+      "category": {
+        "id": "industry_data",
+        "label": "行业数据"
+      },
+      "reference": {
+        "serverName": "zerone",
+        "uiName": "执中·金融数据",
+        "transport": "http",
+        "serverUrl_or_command": "https://ai.zerone.com.cn/mcp/pe",
+        "authType": "none",
+        "iconFile": "zerone.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/v-zZaZEIR5L606stZUJB0hk8vvSGwKPL/zerone.png"
+      },
+      "referenceMarkdownLine": 70,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "provider_credentials_unknown",
+      "credentialRequirements": [
+        {
+          "status": "PARTIALLY_DOCUMENTED",
+          "name": "API_KEY",
+          "binding": null,
+          "required": true,
+          "secret": true,
+          "notes": "官网明确 API_KEY；清单 HTTP endpoint 的承载位置和格式 UNKNOWN，不猜 Bearer/query。",
+          "evidence": "https://www.zerone.com.cn/products/mcp"
+        }
+      ],
+      "providerDocumentation": [
+        "https://www.zerone.com.cn/products/mcp"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "与 https://ai.zerone.com.cn/mcp/pe 对应的正式凭据承载契约"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 29,
+      "category": {
+        "id": "industry_data",
+        "label": "行业数据"
+      },
+      "reference": {
+        "serverName": "patent-analysis",
+        "uiName": "智慧芽·专利分析",
+        "transport": "http",
+        "serverUrl_or_command": "https://connect.zhihuiya.com/e14e5f/logic-mcp",
+        "authType": "oauth",
+        "iconFile": "patent-analysis.svg",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/-BNsEqwFdM2ObgCoJmegWvtApG4SiTGR/patsnap-logo.svg"
+      },
+      "referenceMarkdownLine": 71,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": "e14e5f 为不透明路径片段，租户/渠道含义 UNKNOWN。",
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 30,
+      "category": {
+        "id": "industry_data",
+        "label": "行业数据"
+      },
+      "reference": {
+        "serverName": "thinkingdata",
+        "uiName": "Agentic Engine",
+        "transport": "http",
+        "serverUrl_or_command": "https://ta-sdk-service.thinkingdata.cn/mcp",
+        "authType": "none",
+        "iconFile": "thinkingdata.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/pmrLVJdfMDjLpUFvj192aq3kpSz5IQjH/100-100-jpg.unknown"
+      },
+      "referenceMarkdownLine": 72,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "provider_credentials_unknown",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": null,
+          "binding": null,
+          "required": null,
+          "notes": "参考 HTTP endpoint 的凭据契约 UNKNOWN。当前官网展示另一 stdio 方案及 API_TOKEN 环境变量，不能搬作本 HTTP endpoint 的 header。",
+          "evidence": "https://www.thinkingai.cn/product/mcp-service/"
+        }
+      ],
+      "providerDocumentation": [
+        "https://www.thinkingai.cn/product/mcp-service/"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "参考 HTTP endpoint 的正式凭据契约及与官网另一 stdio 方案的关系"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 31,
+      "category": {
+        "id": "industry_data",
+        "label": "行业数据"
+      },
+      "reference": {
+        "serverName": "morningstar",
+        "uiName": "晨星 Morningstar",
+        "transport": "http",
+        "serverUrl_or_command": "https://mcp.morningstar.cn/mcp",
+        "authType": "oauth",
+        "iconFile": "morningstar.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/T6mHo6Jy9dZ5h7MTb_UVcu24jpeSnNhF/morningstar.png"
+      },
+      "referenceMarkdownLine": 73,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 32,
+      "category": {
+        "id": "industry_data",
+        "label": "行业数据"
+      },
+      "reference": {
+        "serverName": "dichanai-mcp",
+        "uiName": "CRIC 克而瑞地产数据",
+        "transport": "http",
+        "serverUrl_or_command": "https://mcp.dichanai.com/mcp-server",
+        "authType": "oauth",
+        "iconFile": "dichanai-mcp.svg",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/8_VOUHWPCcnMOArCGgRoxnP-X9Sbfqe7/icon.svg"
+      },
+      "referenceMarkdownLine": 74,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 33,
+      "category": {
+        "id": "industry_data",
+        "label": "行业数据"
+      },
+      "reference": {
+        "serverName": "Yingmi",
+        "uiName": "盈米基金",
+        "transport": "http",
+        "serverUrl_or_command": "https://stargate-partner.yingmi.com/mcp/v2/oauth/qieman",
+        "authType": "oauth",
+        "iconFile": "Yingmi.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/mx6GTV4qlrfh9BXnzDwfa1rJsEvR4Qkh/AI.png"
+      },
+      "referenceMarkdownLine": 75,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": "qieman 路径保持原值；不推断为 yijie 或千问专属。",
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 34,
+      "category": {
+        "id": "industry_data",
+        "label": "行业数据"
+      },
+      "reference": {
+        "serverName": "wind",
+        "uiName": "Wind Alice万得金融数据",
+        "transport": "http",
+        "serverUrl_or_command": "https://mcp.wind.com.cn/vserver_qwenwork/mcp/",
+        "authType": "oauth",
+        "iconFile": "wind.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/i_4FT2bV6S7QJsyfwlZA-yGvjLQrecZT/Wind_Alice万得金融数据.png"
+      },
+      "referenceMarkdownLine": 76,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": {
+        "reviewRequired": true,
+        "marker": "/vserver_qwenwork/",
+        "notes": "显式渠道路径",
+        "portableToYijie": "UNKNOWN"
+      },
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 35,
+      "category": {
+        "id": "industry_data",
+        "label": "行业数据"
+      },
+      "reference": {
+        "serverName": "yidian-company",
+        "uiName": "质数幻方·企业数据",
+        "transport": "http",
+        "serverUrl_or_command": "https://mcp.yidian.cn/mcp/company",
+        "authType": "oauth",
+        "iconFile": "yidian-company.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/LDvtVrd_EL9pD5fJKQCS5ZpAeS6sfzIs/yidian-company.png"
+      },
+      "referenceMarkdownLine": 77,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 36,
+      "category": {
+        "id": "industry_data",
+        "label": "行业数据"
+      },
+      "reference": {
+        "serverName": "investoday",
+        "uiName": "今日投资·金融数据",
+        "transport": "http",
+        "serverUrl_or_command": "https://data-api.investoday.net/data/mcp?source=qwen_work",
+        "authType": "oauth",
+        "iconFile": "investoday.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/-4RHdIzplz4Ih38pQ5AJeOFkkGCckZqX/investoday.png"
+      },
+      "referenceMarkdownLine": 78,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": {
+        "reviewRequired": true,
+        "marker": "source=qwen_work",
+        "notes": "显式来源参数",
+        "portableToYijie": "UNKNOWN"
+      },
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 37,
+      "category": {
+        "id": "industry_data",
+        "label": "行业数据"
+      },
+      "reference": {
+        "serverName": "dzh-mcp",
+        "uiName": "大智慧",
+        "transport": "http",
+        "serverUrl_or_command": "https://mcpali.dzh.com.cn/mcp",
+        "authType": "oauth",
+        "iconFile": "dzh-mcp.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/AGUZ2EmnCi4Tm8jHfwLKnBnVMzG52rNV/59736e67435d4e0bb67d9972f54164f3.png"
+      },
+      "referenceMarkdownLine": 79,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 38,
+      "category": {
+        "id": "industry_data",
+        "label": "行业数据"
+      },
+      "reference": {
+        "serverName": "Octoparse-data-hub",
+        "uiName": "八爪鱼Data Hub",
+        "transport": "http",
+        "serverUrl_or_command": "https://mcp-v2.bazhuayu.com",
+        "authType": "oauth",
+        "iconFile": "Octoparse-data-hub.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/6e3jc1ADTfggs4hO8QDZFixZvmYNLdtX/八爪鱼Data_Hub.png"
+      },
+      "referenceMarkdownLine": 80,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 39,
+      "category": {
+        "id": "industry_data",
+        "label": "行业数据"
+      },
+      "reference": {
+        "serverName": "doukou-doctor",
+        "uiName": "豆蔻医生",
+        "transport": "http",
+        "serverUrl_or_command": "https://mcp.testonelife.com/mcp-servers/deap-clinical-server",
+        "authType": "none",
+        "iconFile": "doukou-doctor.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/TPibJ6kjgbJqyPZkoC_tQmGjxY2kXxW7/doukou_doctor_icon.png"
+      },
+      "referenceMarkdownLine": 81,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "provider_credentials_unknown",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": null,
+          "binding": null,
+          "required": null,
+          "notes": "未取得该 HTTP endpoint 的供应商公开鉴权契约；none 不等于无凭据。"
+        }
+      ],
+      "providerDocumentation": [],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "供应商正式凭据契约与健康数据相关业务范围"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 40,
+      "category": {
+        "id": "industry_data",
+        "label": "行业数据"
+      },
+      "reference": {
+        "serverName": "tushareMcp",
+        "uiName": "Tushare·金融数据",
+        "transport": "http",
+        "serverUrl_or_command": "https://api.tushare.pro/mcp/",
+        "authType": "oauth",
+        "iconFile": "tushareMcp.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/6s4VLl87cpkrbKd9FSkqcLIYqBEO3__h/tushare.png"
+      },
+      "referenceMarkdownLine": 82,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 41,
+      "category": {
+        "id": "industry_data",
+        "label": "行业数据"
+      },
+      "reference": {
+        "serverName": "eastmoney",
+        "uiName": "东方财富妙想MCP",
+        "transport": "http",
+        "serverUrl_or_command": "https://mxapi.eastmoney.com/mxds/v2/mcp",
+        "authType": "oauth",
+        "iconFile": "eastmoney.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/OSgJ-z6Fazl-YdUCwB9Aw65DvelYRDeU/7d872dc3ea29d8b6ff034f2410f5343a.png"
+      },
+      "referenceMarkdownLine": 83,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 42,
+      "category": {
+        "id": "industry_data",
+        "label": "行业数据"
+      },
+      "reference": {
+        "serverName": "gildata_finance_data_qwen",
+        "uiName": "恒生聚源金融问数",
+        "transport": "http",
+        "serverUrl_or_command": "https://ft.gildata.com/ai-sso/mcp/qoderwork",
+        "authType": "oauth",
+        "iconFile": "gildata_finance_data_qwen.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/PDBCYUr7hBR1OpNCmlsgfMRmvGdM8NhT/gildata.png"
+      },
+      "referenceMarkdownLine": 84,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": {
+        "reviewRequired": true,
+        "marker": "/qoderwork",
+        "notes": "渠道路径及 qwen serverName",
+        "portableToYijie": "UNKNOWN"
+      },
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 43,
+      "category": {
+        "id": "marketing",
+        "label": "市场营销"
+      },
+      "reference": {
+        "serverName": "fanruan-growth-advisor",
+        "uiName": "MOSS增长谋士",
+        "transport": "http",
+        "serverUrl_or_command": "https://www.mossdo.com/api/v1/mcp",
+        "authType": "oauth",
+        "iconFile": "fanruan-growth-advisor.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/0HvG0zHwYjILH5QHwVSD_Ngjo7SjUdJf/moss-new-final.png"
+      },
+      "referenceMarkdownLine": 90,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 44,
+      "category": {
+        "id": "marketing",
+        "label": "市场营销"
+      },
+      "reference": {
+        "serverName": "weibo",
+        "uiName": "微博",
+        "transport": "http",
+        "serverUrl_or_command": "https://cli.weibo.com/mcp",
+        "authType": "oauth",
+        "iconFile": "weibo.svg",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/PF2C0BnmAjklvx4Pk0J8bZG4-mIhPBSK/weibo-logo.svg"
+      },
+      "referenceMarkdownLine": 91,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 45,
+      "category": {
+        "id": "marketing",
+        "label": "市场营销"
+      },
+      "reference": {
+        "serverName": "jinshuju",
+        "uiName": "金数据",
+        "transport": "http",
+        "serverUrl_or_command": "https://jinshuju.net/mcp",
+        "authType": "oauth",
+        "iconFile": "jinshuju.svg",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/TkdChLw_yqvfS8rnJruA9TW916hBSeIh/金数据.svg"
+      },
+      "referenceMarkdownLine": 92,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 46,
+      "category": {
+        "id": "marketing",
+        "label": "市场营销"
+      },
+      "reference": {
+        "serverName": "xiaoe-mcp",
+        "uiName": "小鹅通",
+        "transport": "http",
+        "serverUrl_or_command": "https://agent.xiaoe-tech.com/mcp",
+        "authType": "oauth",
+        "iconFile": "xiaoe-mcp.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/rTMAhdGB8lkksdHZ-HQkRhVgX4OWYsTf/小鹅通logo_240x240.png"
+      },
+      "referenceMarkdownLine": 93,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 47,
+      "category": {
+        "id": "marketing",
+        "label": "市场营销"
+      },
+      "reference": {
+        "serverName": "feisentry",
+        "uiName": "飞哨GEO",
+        "transport": "http",
+        "serverUrl_or_command": "https://mcp.feisentry.com.cn/mcp",
+        "authType": "oauth",
+        "iconFile": "feisentry.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/Oxg2Z9kCGXb67uBcPN7cuCZ1K4BW4W9o/feisentry-new.png"
+      },
+      "referenceMarkdownLine": 94,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 48,
+      "category": {
+        "id": "marketing",
+        "label": "市场营销"
+      },
+      "reference": {
+        "serverName": "xiaoliebian",
+        "uiName": "小裂变SCRM",
+        "transport": "http",
+        "serverUrl_or_command": "https://w.xiaoliebian.com/api/demo-wechat-work/mcp/scrm",
+        "authType": "oauth",
+        "iconFile": "xiaoliebian.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/70a_EG8zV8hFV6_j1JK3UD1BN4ZHrKw4/bf3b667d-fc9b-4a22-9862-e9a7c9be749d_(1).png"
+      },
+      "referenceMarkdownLine": 95,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": "demo-wechat-work 路径，环境/租户含义 UNKNOWN。",
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 49,
+      "category": {
+        "id": "marketing",
+        "label": "市场营销"
+      },
+      "reference": {
+        "serverName": "ysk_mcp_3f824505d1faf80bc60c052729620929",
+        "uiName": "智客AI",
+        "transport": "http",
+        "serverUrl_or_command": "https://open.yscredit.com/ys-mcp/report",
+        "authType": "oauth",
+        "iconFile": "ysk_mcp_3f824505d1faf80bc60c052729620929.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/1alodgFqBvkelVUwhg_rQJMpxOawsxKu/zhike-ai.png"
+      },
+      "referenceMarkdownLine": 96,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 50,
+      "category": {
+        "id": "marketing",
+        "label": "市场营销"
+      },
+      "reference": {
+        "serverName": "3chat",
+        "uiName": "3Chat私域客户运营",
+        "transport": "http",
+        "serverUrl_or_command": "https://app.3chatai.cn/mcp",
+        "authType": "oauth",
+        "iconFile": "3chat.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/R440qG3-xWTZol2huGXuJ_IYhVICNaje/3chat.png"
+      },
+      "referenceMarkdownLine": 97,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    },
+    {
+      "ordinal": 51,
+      "category": {
+        "id": "marketing",
+        "label": "市场营销"
+      },
+      "reference": {
+        "serverName": "xiaoliebian-geo",
+        "uiName": "小裂变GEO",
+        "transport": "http",
+        "serverUrl_or_command": "https://w.xiaoliebian.com/api/xiaoliebian-geo/mcp/geo",
+        "authType": "oauth",
+        "iconFile": "xiaoliebian-geo.png",
+        "iconUrl": "https://skills-assets.qwenwork.cn/qwenwork-cn-shanghai/skill-hub/icons/DFZmgJmip5FIA7BDwAMDTEuCOFOrEcPJ/GEO240-240.png"
+      },
+      "referenceMarkdownLine": 98,
+      "verification": "NOT RUN",
+      "runtimeConfig": false,
+      "effectiveAuthStrategy": null,
+      "proposedAuthStrategy": "standard_mcp_oauth_candidate",
+      "credentialRequirements": [
+        {
+          "status": "UNKNOWN",
+          "name": "provider_oauth_registration",
+          "binding": null,
+          "required": null,
+          "notes": "发现 registration/预注册/client metadata、允许的回调及 scopes 后确定；不得借用参考宿主 client_id、secret 或回调。"
+        }
+      ],
+      "providerDocumentation": [
+        "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization"
+      ],
+      "externalPrerequisites": [
+        "当前可达性和协议兼容性",
+        "账号/套餐/额度与调用费用",
+        "真实 tools/list、风险与读写范围",
+        "真实授权、取消、重试、停用和重开后的行为",
+        "授权服务器 metadata、注册方式、PKCE、scope、resource audience 及 yijie 回调适用性"
+      ],
+      "activationStatus": "NOT IMPLEMENTED",
+      "channelDependency": null,
+      "endpointNotes": null,
+      "notes": [
+        "reference.authType 是原宿主目录值，不是 yijie 已验证认证结论；任何凭据字段定义均不含值。"
+      ]
+    }
+  ]
+}

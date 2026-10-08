@@ -1,0 +1,61 @@
+{
+  "status": "INCOMPLETE",
+  "temp_root": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-rust-gateway-g36z17lz",
+  "external_calls": 0,
+  "real_model_calls": 0,
+  "platform_credentials_read_or_written": 0,
+  "cases": [],
+  "harness_sha256": "b1859c9d154fb4f8cd09d5be7dcaa57b8da2176130214988b31463628edc1df8",
+  "reused_harness_sources": {
+    "qualify_runtime.py": "6e8975882f4b468799ac8a39773b8d5c9baa2f3cfb5a0675e1e18e8df5a3e635",
+    "qualify_elicitation.py": "73ddc6382d3f5e02481be97fbd0418df27f84f0b4dc5eb79393a04550d44b6ff"
+  },
+  "runtime_artifact": {
+    "binary": "codex",
+    "reportedVersion": "codex-cli 0.144.6",
+    "sha256": "aad49041bd7d34c853fb55c274711e3cc810725720d2c097469822d310fb02f9",
+    "sizeBytes": 356210616,
+    "target": "aarch64-apple-darwin",
+    "version": "0.144.6"
+  },
+  "runtime_manifest_sha256": "8b86a1a661f50beda1e0a0c96f81ddbdf959a9a07c2e756cc4b9b0eabc053b27",
+  "worker_manifest": {
+    "schemaVersion": 1,
+    "candidateOnly": true,
+    "qualificationOnly": true,
+    "binary": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/bin/market-broker-qualification/45467d60198f591ca6e267516ba5c46e28018452c97e5858ed2896ebc0445bd3/market-broker-qualification",
+    "sha256": "45467d60198f591ca6e267516ba5c46e28018452c97e5858ed2896ebc0445bd3",
+    "sizeBytes": 17820880,
+    "codexSource": "7fd463bcef07f37b0211acd9f62b9f93ea0a4b12",
+    "externalCallsEnabled": false,
+    "sources": {
+      "worker/Cargo.toml": "7e8a8f5fe1d6a741df0d003e24fa29a2d3539ad4b8349b4e5158237df6ce6589",
+      "worker/Cargo.lock": "48c41f810e468d159574cf956d0c946cee3ec491af16ed64bc8592c367d4d74c",
+      "worker/src/broker.rs": "19a4140ab27ace5199de5cb5fcb99f49948b88f1d8b4957e38c4555a9ab6a98d",
+      "worker/src/gateway.rs": "a78659540f135c3b35f4ce9c02af7dce5c97cbbefcf6da087b9a70262278d052",
+      "worker/src/broker_generated.rs": "2d0b9e88e66784b286cfedaa508005013224d1af6b1be8d6ed7aa3b1e194a9fb",
+      "worker/src/selection_generated.rs": "902f396bac10b7ea109629a6cd6cca49cff393335a902455e31b7ced238c09c5",
+      "worker/src/generated.rs": "175d0d58a5be5507133ddc7a0922d5f2a184400d4c6041d33cecf8dab494437a",
+      "worker/qualification/broker.rs": "152f1fe22123c6bb511a59a6f9f51104b6968f2466c6ee20692c201373039fc3",
+      "worker/source.lock.json": "e1e11408a149f9e796f4f1a492f59953313217ede5733739845a022eb069ac59"
+    }
+  },
+  "worker_manifest_sha256": "1e094c45405e907ac1af7579a696d24ff6d31497af2be03a3b4cf88352fed67e",
+  "error": "Expected one actual lookup, one elicitation and ordinary completed Turn",
+  "normal_shutdown": {
+    "runtime": {
+      "pid": 82265,
+      "exit_code": 0,
+      "normal_eof": true
+    },
+    "worker": {
+      "normal_eof": true,
+      "exit_code": 0,
+      "pid": 82220
+    }
+  },
+  "local_responses_requests": 2,
+  "internal_capability_in_observed_wire": false,
+  "internal_capability_in_temporary_files": [],
+  "temporary_data_removed_after_exit": true
+}

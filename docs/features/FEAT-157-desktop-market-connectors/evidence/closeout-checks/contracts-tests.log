@@ -1,0 +1,19 @@
+✔ new source command table uses ten versioned commands and existing context binding (1.155ms)
+✔ source and standalone accept normal non-secret local requests and observations (28.161291ms)
+✔ request envelope requires context, identity, schema version and closed payload (0.216375ms)
+✔ idempotent management carries explicit revisions and credential generations (0.134375ms)
+✔ response unknown fields are forward compatible; known fields/enums stay strict (0.252125ms)
+✔ local authorization capability is optional false and independent of tool qualification (0.242208ms)
+✔ selection references are bounded versioned identities without configuration (0.669625ms)
+✔ worker policy/status cannot claim qualified execution or silent secret storage fallback (0.72375ms)
+✔ front-end source exposes no arbitrary platform configuration or plaintext secret field (0.239625ms)
+✔ canonical generation stays synchronized without running legacy generation or provider calls (167.4905ms)
+✔ authorization page recovery has scoped original-operation authority without a new auth intent (0.186958ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 349.168667

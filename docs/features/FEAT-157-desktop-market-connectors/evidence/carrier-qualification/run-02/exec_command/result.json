@@ -1,0 +1,72 @@
+{
+  "tool": "exec_command",
+  "temp_root": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-carrier-k8i_f4f1",
+  "status": "PASS",
+  "effective_environment_policy": {
+    "inherit": "core",
+    "ignore_default_excludes": null,
+    "exclude": [
+      "YIJIE_MARKET_QUALIFICATION_TOKEN",
+      "YIJIE_FEAT144_SORFTIME_ACCOUNT_SK",
+      "YIJIE_FEAT144_SORFTIME_ENABLED",
+      "MINIMAX_API_KEY",
+      "KIMI_API_KEY",
+      "MOONSHOT_API_KEY",
+      "YIJIE_KIMI_API_KEY",
+      "YIJIE_KIMI_API_KEY_FILE"
+    ],
+    "set": {},
+    "include_only": null,
+    "experimental_use_profile": null
+  },
+  "native_terminal": "completed",
+  "cold_history_command_count": 0,
+  "command_observation_source": "actual item/completed with exact native thread, turn and call item",
+  "command_observations": [
+    {
+      "status": "completed",
+      "exitCode": 0,
+      "output": "MARKER_ABSENT\n"
+    }
+  ],
+  "lookup_observations": [
+    {
+      "status": "completed",
+      "server": "gateway",
+      "tool": "lookup"
+    }
+  ],
+  "environment_marker_absent": true,
+  "mcp_lookup_completed": true,
+  "native_output_marker_absent": true,
+  "normal_shutdown": {
+    "pid": 63328,
+    "exit_code": 0,
+    "normal_eof": true
+  },
+  "mcp_observations": [
+    {
+      "method": "initialize",
+      "bearer_matches_marker": true
+    },
+    {
+      "method": "notifications/initialized",
+      "bearer_matches_marker": true
+    },
+    {
+      "method": "tools/list",
+      "bearer_matches_marker": true
+    },
+    {
+      "method": "tools/call",
+      "bearer_matches_marker": true
+    }
+  ],
+  "mcp_bearer_observed": true,
+  "synthetic_provider_requests": 3,
+  "provider_input_marker_absent": true,
+  "temporary_files_scanned": 66,
+  "temporary_files_containing_marker": [],
+  "journal_marker_observations": 0,
+  "temporary_data_removed_after_exit": true
+}

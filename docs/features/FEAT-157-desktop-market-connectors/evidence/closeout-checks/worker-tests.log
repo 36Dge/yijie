@@ -1,0 +1,76 @@
+node ../yijie-contracts/scripts/sync-market-connectors.mjs --consumer=connectors --check
+Market connectors generation verified: 56 definitions, 10 IPC commands; local candidate only.
+Market connectors connectors checked; development hashes only, no immutable/release provenance claim.
+node ../yijie-contracts/scripts/sync-market-broker.mjs --consumer=connectors --check
+Market Broker checked: 55 definitions / 8 private actions; external network capability is distinct from tool qualification.
+Market Broker connectors checked; private local candidate only.
+node ../yijie-contracts/scripts/sync-market-provider.mjs --consumer=connectors --check
+Market provider checked: 24 definitions; no secret fields.
+Market provider connectors checked; local candidate.
+python3 scripts/check-worker-source.py
+Fixed Codex source and explicitly pinned worker/schema validation dependencies verified; local candidate only
+CARGO_TARGET_DIR="/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/codex-rs/target" cargo test --offline --locked --manifest-path worker/Cargo.toml --bin yijie-mcp-worker
+   Compiling yijie-mcp-worker v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/worker)
+    Finished `test` profile [unoptimized] target(s) in 10.24s
+     Running unittests src/main.rs (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/codex-rs/target/debug/deps/yijie_mcp_worker-1b44e4b909422ccc)
+
+running 56 tests
+test credentials::tests::documented_ftshare_header_and_explicit_provider_header_are_distinct ... ok
+test broker::tests::read_only_query_cannot_create_pending_call ... ok
+test broker::tests::existing_thread_constraint_and_single_live_bound_turn_are_enforced ... ok
+test broker::tests::authorization_renewal_does_not_recreate_expired_original_turn ... ok
+test broker::tests::authorization_expiry_clamps_monotonic_deadline ... ok
+test broker::tests::owner_stop_revokes_admission_and_never_respawns ... ok
+test broker::tests::real_provider_refs_remain_unqualified ... ok
+test broker::tests::same_mutation_changed_intent_conflicts_and_new_turn_requires_revoke ... ok
+test credentials::tests::normal_expiration_and_user_cancel_close_configuration_admission ... ok
+test broker::tests::first_thread_can_be_prepared_before_actual_native_ids_exist ... ok
+test broker::tests::ordinary_empty_selection_lease_replay_preserves_deadline_and_digest ... ok
+test daily::tests::normal_cancel_before_send_spends_no_http_permit ... ok
+test gateway::outcome_tests::admission_outcomes_do_not_confuse_rejection_with_unknown_execution ... ok
+test daily::tests::reviews_full_forwarded_union_branches_not_supplier_annotations ... ok
+test credentials::tests::agentic_configuration_uses_explicit_exported_header_without_inferred_scheme ... ok
+test credentials::tests::documented_zerone_query_is_encoded_only_for_its_fixed_resource ... ok
+test credentials::tests::normal_configuration_page_submits_once_without_echoing_credentials ... ok
+test credentials::tests::normal_google_configuration_has_explicit_scope_choice_and_owned_continuation ... ok
+test daily::tests::approved_http_permit_is_consumed_at_most_once ... ok
+test daily::tests::ordinary_multirow_response_requires_different_qualification ... ok
+test native_library::tests::stable_alias_isolated_by_both_scope_and_connection ... ok
+test generic::tests::inert_results_keep_provider_error_and_structured_values ... ok
+test providers::tests::authorization_commit_waits_for_metadata_and_connection_failure_preserves_it ... ok
+test providers::tests::cancelling_connection_check_preserves_completed_authorization ... ok
+test providers::tests::credential_rotation_requires_a_new_installation_generation ... ok
+test daily::tests::identity_only_is_not_a_price_observation_or_an_empty_result ... ok
+test providers::tests::forget_cancel_only_reads_original_fact ... ok
+test providers::tests::expired_metadata_step_never_erases_committed_authorization ... ok
+test providers::tests::normal_scope_renewal_reads_same_operation_without_restarting_it ... ok
+test provider_registry::tests::all_49_entries_match_catalog_without_network_or_credentials ... ok
+test providers::tests::ordinary_cancel_before_oauth_callback_owner_exists_closes_admission ... ok
+test daily::tests::projects_only_public_fields_and_one_row ... ok
+test providers::tests::qualification_profile_cannot_start_real_oauth ... ok
+test providers::tests::provider_status_queries_do_not_require_or_create_runtime_identity ... ok
+test providers::tests::removed_providers_do_not_start_authentication_or_discovery ... ok
+test oauth_policy::tests::normal_discovery_supports_path_issuer_and_exact_registered_endpoints ... ok
+test oauth_policy::tests::normal_custom_resource_metadata_and_multiple_issuers_follow_one_selected_chain ... ok
+test google_calendar::tests::normal_refresh_uses_private_registered_client_once ... ok
+test providers::tests::successful_auth_is_never_a_qualified_tool_or_enabled_installation ... ok
+test providers::tests::qualification_projection_retains_structure_without_supplier_text ... ok
+test tushare_oauth::tests::metadata_client_requires_owned_authorization_and_never_calls_tools ... ok
+test tushare_oauth::tests::persistent_alias_excludes_runtime_epochs_and_preserves_installation_isolation ... ok
+test tushare_oauth::tests::normal_zerone_query_is_injected_after_single_call_admission ... ok
+test tests::ordinary_unknown_service_is_distinct_from_unqualified_service ... ok
+test tests::every_known_service_reports_unqualified_without_external_io ... ok
+test tushare_oauth::tests::diagnostic_is_bounded_to_enum_and_numeric_fields ... ok
+test google_calendar::tests::registered_oauth_normal_callback_uses_rmcp_state_and_token_exchange_without_network ... ok
+test tushare_oauth::tests::ordinary_owner_close_before_start_does_not_register_or_save ... ok
+test daily::tests::fixed_client_reads_ordinary_inprocess_result_and_closes_normally ... ok
+test broker::tests::ordinary_daily_binding_requires_both_decisions_and_keeps_original_lease ... ok
+test generic::tests::explicitly_destructive_tool_waits_for_a_dedicated_policy ... ok
+test generic::tests::normal_discovery_freezes_schema_and_separates_service_names ... ok
+test broker::tests::discovered_two_service_calls_bind_exact_ref_and_consume_once ... ok
+test google_calendar::tests::normal_registered_client_session_uses_pkce_and_explicit_read_scopes_without_io ... ok
+test tushare_oauth::tests::ordinary_cancel_stops_callback_and_never_commits_tokens ... ok
+test tushare_oauth::tests::ordinary_oauth_pkce_callback_saves_only_inside_owned_vault ... ok
+
+test result: ok. 56 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.11s
+

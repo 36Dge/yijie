@@ -1,0 +1,46 @@
+   Compiling yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 12.44s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/yijie_desktop_lib-6d0ab7e7a0bde530)
+
+running 38 tests
+test chat::connectors::control::tests::closed_owner_does_not_write_again ... ok
+test chat::connectors::control::tests::ordinary_private_exchange_and_normal_eof ... ok
+test chat::connectors::provider::tests::google_client_setup_and_registered_oauth_use_separate_owned_browser_steps ... ok
+test chat::connectors::observe::tests::native_market_observe_approval_uses_actual_turn_and_original_selection ... ok
+test chat::connectors::provider::tests::typed_control_rejection_is_not_reported_as_transport_unknown ... ok
+test chat::connectors::observe::tests::native_market_observe_local_scope_and_unmanaged_history ... ok
+test chat::connectors::observe::tests::native_market_observe_pending_snapshot_has_no_fabricated_host_binding ... ok
+test chat::connectors::observe::tests::native_market_observe_history_keeps_original_names_and_bounds_the_index ... ok
+test chat::connectors::provider::tests::ordinary_user_cancel_has_terminal_receipt_without_reopening_authorization ... ok
+test chat::connectors::provider::tests::disable_fences_pending_auth_before_forget_receipt_and_late_auth_stays_stale ... ok
+test chat::connectors::provider::tests::disable_revision_supersedes_original_enable_locator ... ok
+test chat::connectors::provider::tests::known_rejection_can_finish_new_intent_but_never_erase_unknown_original ... ok
+test chat::connectors::provider::tests::explicit_enable_persists_only_intent_and_original_binding ... ok
+test chat::connectors::provider::tests::current_enable_poll_projects_readiness_and_normal_close_removes_it ... ok
+test chat::connectors::tests::feat157_authorization_adapter_availability_does_not_claim_execution_readiness ... ok
+test chat::connectors::tests::feat157_catalog_preserves_49_distinct_non_secret_services ... ok
+test chat::connectors::tests::feat157_connector_permission_lease_fences_context_and_keeps_read_only_scope ... ok
+test chat::connectors::provider::tests::existing_pending_without_observation_is_not_fresh_dispatch ... ok
+test chat::connectors::provider::tests::authorized_metadata_never_enables_unqualified_business ... ok
+test chat::connectors::selection::tests::feat157_selection_sql31_preserves_sql30_installations_and_receipts ... ok
+test chat::connectors::tests::feat157_install_receipt_is_atomic_scoped_and_survives_replay ... ok
+test chat::connectors::tests::feat157_same_operation_different_normal_intent_conflicts ... ok
+test chat::connectors::selection::tests::feat157_selection_late_model_conflict_rolls_back_message_and_outbox ... ok
+test chat::connectors::selection::tests::feat157_selection_empty_uses_chat_permission_and_nonempty_requires_connector_use ... ok
+test chat::connectors::selection::tests::feat157_selection_same_operation_binds_complete_intent_and_never_adopts_legacy ... ok
+test chat::connectors::dispatch::tests::native_market_unknown_retains_original_operation_for_read_only_recovery ... ok
+test chat::connectors::dispatch::tests::native_market_first_turn_reuses_content_and_commits_actual_binding_atomically ... ok
+test chat::connectors::tests::feat157_retired_service_installation_is_hidden_without_erasing_history ... ok
+test chat::connectors::tests::feat157_sql30_expands_sql29_preserving_existing_rows_and_ledger ... ok
+test chat::connectors::tests::feat157_snapshot_and_mutation_follow_the_generated_wire_contract ... ok
+test chat::connectors::tests::feat157_unconfigured_enable_never_claims_ready ... ok
+test chat::connectors::selection_gate_tests::feat157_market_reader_keeps_blocked_authority_state_and_uses_keyed_intent_digest ... ok
+test chat::connectors::selection_gate_tests::feat157_market_reader_fences_materialized_turn_resume_and_legacy_writes ... ok
+test chat::connectors::selection_gate_tests::feat157_market_reader_leaves_create_alias_and_exhaustion_untouched ... ok
+test chat::connectors::selection::tests::feat157_selection_unready_provider_does_not_enqueue_even_empty_selection ... ok
+test chat::connectors::tests::feat157_uninstall_reinstall_fences_old_generation_without_erasing_receipts ... ok
+test chat::connectors::selection::tests::feat157_selection_first_turn_snapshot_is_atomic_and_survives_normal_reopen ... ok
+test chat::connectors::selection::tests::feat157_nonempty_selection_requires_explicit_ask_but_empty_preserves_modes ... ok
+
+test result: ok. 38 passed; 0 failed; 0 ignored; 0 measured; 526 filtered out; finished in 24.54s
+

@@ -1,0 +1,110 @@
+{
+  "date": "2026-10-07",
+  "scope": "implementation audit, corrections and next-step Native selection foundation",
+  "featureComplete": false,
+  "d4": "NOT RUN",
+  "repositories": {
+    "yijie": {
+      "head": "e1ebb5785aca4c1dbbfd85cecf12f8b74d2abac1",
+      "branch": "chore/retirement-baseline-20260905",
+      "diffCheck": "PASS",
+      "trackedDiffSha256": "8c114c463c9d2c6b026cbaebc00f3a7258440f6ee700b05a9f305c3ad1273c23"
+    },
+    "yijie-desktop": {
+      "head": "8d74159e64b9ca87a15ecda13d019b5d180162d0",
+      "branch": "chore/retirement-baseline-20260905",
+      "diffCheck": "PASS",
+      "trackedDiffSha256": "d1649f3c94437fab7462268d6b27c1e5fd383bccf469c4a4579a659c29af0766"
+    },
+    "yijie-contracts": {
+      "head": "1a213ac8383e95ac6ec69363937687904fa3591c",
+      "branch": "chore/retirement-baseline-20260905",
+      "diffCheck": "PASS",
+      "trackedDiffSha256": "b9413ede72768285d11576c477a470c13ce8ea66a79f9363c43753ebdb0b22a6"
+    },
+    "yijie-connectors": {
+      "head": "273eec40bbbfeb17e817643f283db7c81e9b190c",
+      "branch": "develop",
+      "diffCheck": "PASS",
+      "trackedDiffSha256": "abc54176882599b2c69c100e1d835af3f23a14d46226bc35e7c37dfe06a26f00"
+    },
+    "yijie-agent-host": {
+      "head": "a5bd6c2e7a619768eafaa63bcca7f774d1134bd3",
+      "branch": "chore/retirement-baseline-20260905",
+      "diffCheck": "PASS",
+      "trackedDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "yijie-codex": {
+      "head": "7fd463bcef07f37b0211acd9f62b9f93ea0a4b12",
+      "branch": "chore/retirement-baseline-20260905",
+      "diffCheck": "PASS",
+      "trackedDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "originalDesktopDiffPreserved": "50ca7a1165be0732b4e74d119340303c39529e5bd40b9845bed0c02d672b4eeb",
+  "files": {
+    "yijie-desktop/src-tauri/migrations/chat/0031_market_selection.sql": "b77d7e7bf7a9fd57909e3bfaf97aad769616b7b5ea41475dde36b1a7ae87fe3c",
+    "yijie-desktop/src-tauri/src/chat/connectors/selection.rs": "0487551b5ebe3757b325ec979785cdb7167a9e3be834f7290f9532dc04d46faf",
+    "yijie-desktop/src-tauri/src/chat/connectors/selection_tests.rs": "d0f05e6e32a42639c86043adce3526a44f8bb687bf0858cda3520c48ab324a52",
+    "yijie-desktop/src-tauri/src/chat/connectors/selection_gate_tests.rs": "e719868518753f3f06f5808bf7de191fc69053b6467dc1c8ca405d8396e851bc",
+    "yijie-desktop/src-tauri/src/chat/authorization.rs": "7dde640365ecbddbdb30df19d6748283247073ad2fe4291116a8c54d009aace9",
+    "yijie-desktop/src-tauri/src/chat/database.rs": "552a6d34646a38ad1879eb36d0d7a921b05290c37be5502d90cd1932c14b2aad",
+    "yijie-desktop/src-tauri/src/chat/models.rs": "451e37e29ea1e59768a82126b4069e7a6327b9095a94fc10b0079b889069d9b4",
+    "yijie-desktop/src-tauri/src/chat/schedules/execution_guard.rs": "a3dd9574261004b0a94437037a5f0cf95841126006b29f47c5626c8814cc63c6",
+    "yijie-desktop/src/components/connectors/ConnectorMarketView.vue": "948cb4a8ff4e832b15ab39905e99e57a0cf261498821844e29941e9bf95c22e7",
+    "yijie-desktop/src/components/connectors/ConnectorDetailsDialog.vue": "10e911041ce423042bfc7d6ced40f5a766874e4378223abbb6c4d479abdbc25b",
+    "yijie-connectors/internal/worker/worker.go": "83f356d79548bd943837fa1a856fc0bb366eee348e0fbfc44475fe7e2f91a25d",
+    "yijie-contracts/compatibility/market-selection/wire.schema.json": "09305bd815d63b4067daf88f74d0aa06bea97a222e70f66be9bc04c6dc4b2387",
+    "yijie-contracts/compatibility/market-selection/native-ipc.json": "4ba2b7076ce4c2ee40b738c24f1aea11ea36688317baeb9d8647e32df9adc0dd"
+  },
+  "results": {
+    "confirmedP2Fixes": 3,
+    "uiTests": {
+      "files": 11,
+      "passed": 97
+    },
+    "nativeFeat157Tests": {
+      "uniquePassed": 17,
+      "execution": "16-item suite, then added SQL31 test; changed permission test rechecked"
+    },
+    "nativeExistingRegressions": {
+      "authorizationPassed": 2,
+      "modelOutboxPassed": 1
+    },
+    "nativeFmt": "PASS",
+    "nativeClippy": "PASS",
+    "desktopLint": "PASS",
+    "desktopBuild": "PASS with existing chunk warning",
+    "nativeSourceCheck": "PASS",
+    "newSelectionContractTests": {
+      "javascript": 7,
+      "rust": 5,
+      "go": 2
+    },
+    "contractSourceLintSync": "PASS",
+    "workerRaceAndLint": "PASS",
+    "environmentCarrierQualification": "PASS; run-02 only, read README limits",
+    "uiVisual": "PASS with synthetic component state; no D4"
+  },
+  "retainedFailures": [
+    "Initial UI CLI mistakenly included historical .local copies; corrected to canonical excludes without modifying their assertions",
+    "Initial new Native fixtures omitted display_json and a test selected an inappropriate model-gated fixture; corrected ordinary fixtures, no relaxed schema",
+    "Generated enum naming failed Desktop Clippy; fixed canonical generator and synchronized",
+    "Carrier run-01 observer incorrectly expected Command in cold history; run-02 uses exact native item completion",
+    "Existing Contracts fallback remote schema EOF remains separate"
+  ],
+  "executionBoundary": {
+    "newMarketSubmissions": "execution_unavailable before new outbox; accepted same-intent receipts readable",
+    "versionedHostProvider": "NOT IMPLEMENTED",
+    "productGateway": "NOT IMPLEMENTED",
+    "realProvidersQualified": 0,
+    "userDatabaseMigrated": false,
+    "realModelCalls": 0,
+    "externalMcpCalls": 0,
+    "realCredentialAccess": 0,
+    "runtimeModified": false,
+    "gitCommit": false,
+    "gitPush": false,
+    "release": false
+  }
+}

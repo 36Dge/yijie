@@ -1,0 +1,57 @@
+{
+  "cleanup": {
+    "Ok": {
+      "childReaped": true,
+      "exitCode": 0,
+      "inputBridgeEnded": true,
+      "normalEOF": true,
+      "outputBridgeEnded": true,
+      "pid": 59462
+    }
+  },
+  "codexSource": "7fd463bcef07f37b0211acd9f62b9f93ea0a4b12",
+  "credentialsReadOrWritten": 0,
+  "externalCalls": 0,
+  "forceKillFallback": false,
+  "operation": {
+    "Ok": {
+      "lookup": {
+        "content": [
+          {
+            "text": "public-stdio-value",
+            "type": "text"
+          }
+        ],
+        "isError": false
+      },
+      "serverInfo": {
+        "name": "yijie-ordinary-stdio-qualification",
+        "version": "1.0.0"
+      },
+      "tools": [
+        {
+          "annotations": {
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false,
+            "readOnlyHint": true
+          },
+          "description": "Read an ordinary public synthetic value.",
+          "inputSchema": {
+            "additionalProperties": false,
+            "properties": {},
+            "type": "object"
+          },
+          "name": "lookup"
+        }
+      ]
+    }
+  },
+  "productionBridge": "NOT IMPLEMENTED",
+  "realNpmPackages": "NOT RUN",
+  "serverBinary": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/codex-rs/target/debug/stdio-qualification-server",
+  "serverSha256": "de456dcd375ef89b96061e484e5c9ac2ea8c524f569e9ee8d8b140a86e229902",
+  "spawnCount": 1,
+  "status": "PASS",
+  "transport": "public InProcessTransportFactory DuplexStream to separately owned stdio pipes"
+}

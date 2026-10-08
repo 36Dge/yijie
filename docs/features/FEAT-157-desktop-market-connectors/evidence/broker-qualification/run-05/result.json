@@ -1,0 +1,832 @@
+{
+  "status": "COMPLETED_OBSERVATIONS",
+  "temp_root": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-rust-gateway-4gxqexrx",
+  "external_calls": 0,
+  "real_model_calls": 0,
+  "platform_credentials_read_or_written": 0,
+  "cases": [
+    {
+      "decision": "accept",
+      "threadId": "01a1165c-24b8-77d0-bb92-4348be6dec5d",
+      "turnId": "01a1165c-24c2-7612-823b-ba41417a9693",
+      "agentSessionId": "f4702ab5-5f57-4b32-8311-41000b1c1cc4",
+      "firstTurn": true,
+      "binding": {
+        "capabilityRef": "e8afca4c-6dee-4fde-9800-a5ace4575513",
+        "context": {
+          "agentSessionId": "f4702ab5-5f57-4b32-8311-41000b1c1cc4",
+          "nativeThreadId": null,
+          "process": {
+            "hostInstanceId": "7cae003d-3088-4ee7-935e-736fc13df342",
+            "runtimeGeneration": "8ebdf034-57bc-4253-9617-f53d21ba2f9e"
+          },
+          "scope": {
+            "authorizationExpiresAtUnixMs": 1791376739894,
+            "authorizationRevision": 1,
+            "nativeProcessEpoch": "80f16420-7498-4458-bb21-5e8a928602bb",
+            "ownerUserId": "c3ea6ea4-2e98-4c48-add1-b1347b315382",
+            "tenantId": "277e689f-360a-4587-8440-538c582cccc3"
+          }
+        },
+        "selectionDigest": "2f7ae1538c844f1e4fe5096fa27d1f1194153aac3a9ff47280ba1dc79d8fcb3b",
+        "turnOperationId": "d63890ca-917b-436a-a00b-65dfb876daa2"
+      },
+      "callbacks": [
+        {
+          "request": {
+            "method": "mcpServer/elicitation/request",
+            "id": 0,
+            "params": {
+              "threadId": "01a1165c-24b8-77d0-bb92-4348be6dec5d",
+              "turnId": "01a1165c-24c2-7612-823b-ba41417a9693",
+              "serverName": "gateway",
+              "mode": "form",
+              "_meta": {
+                "yijieMarketCallRef": "459109c8-1d94-49fb-b51f-c7f4c2eec5eb",
+                "yijieKind": "gateway_call_approval"
+              },
+              "message": "Read the public value from the in-process qualification service. No external account or provider is contacted.",
+              "requestedSchema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          },
+          "pending": {
+            "identity": {
+              "argsDigest": "4678f9b705a26d6a0813d2f8620659bfc543a8361d835db02170037012c59d22",
+              "argsEncoding": "worker-json-v1",
+              "binding": {
+                "capabilityRef": "e8afca4c-6dee-4fde-9800-a5ace4575513",
+                "context": {
+                  "agentSessionId": "f4702ab5-5f57-4b32-8311-41000b1c1cc4",
+                  "nativeThreadId": null,
+                  "process": {
+                    "hostInstanceId": "7cae003d-3088-4ee7-935e-736fc13df342",
+                    "runtimeGeneration": "8ebdf034-57bc-4253-9617-f53d21ba2f9e"
+                  },
+                  "scope": {
+                    "authorizationExpiresAtUnixMs": 1791376739894,
+                    "authorizationRevision": 1,
+                    "nativeProcessEpoch": "80f16420-7498-4458-bb21-5e8a928602bb",
+                    "ownerUserId": "c3ea6ea4-2e98-4c48-add1-b1347b315382",
+                    "tenantId": "277e689f-360a-4587-8440-538c582cccc3"
+                  }
+                },
+                "selectionDigest": "2f7ae1538c844f1e4fe5096fa27d1f1194153aac3a9ff47280ba1dc79d8fcb3b",
+                "turnOperationId": "d63890ca-917b-436a-a00b-65dfb876daa2"
+              },
+              "callRef": "459109c8-1d94-49fb-b51f-c7f4c2eec5eb",
+              "nativeThreadId": "01a1165c-24b8-77d0-bb92-4348be6dec5d",
+              "nativeTurnId": "01a1165c-24c2-7612-823b-ba41417a9693",
+              "reference": {
+                "generation": 1,
+                "installationId": "11111111-1111-4111-8111-111111111111",
+                "revision": 1
+              },
+              "serviceId": "market-qualification",
+              "toolName": "lookup"
+            },
+            "remainingTtlMs": 59992,
+            "review": {
+              "risk": "read",
+              "summary": "Read the public value from the in-process qualification service. No external account or provider is contacted.",
+              "title": "Local synthetic lookup"
+            },
+            "revision": 1,
+            "state": "pending"
+          },
+          "decisionReceipt": {
+            "decision": "approve_once",
+            "decisionId": "544ac5e3-97a9-4fc0-90af-a17bec847cb7",
+            "identity": {
+              "argsDigest": "4678f9b705a26d6a0813d2f8620659bfc543a8361d835db02170037012c59d22",
+              "argsEncoding": "worker-json-v1",
+              "binding": {
+                "capabilityRef": "e8afca4c-6dee-4fde-9800-a5ace4575513",
+                "context": {
+                  "agentSessionId": "f4702ab5-5f57-4b32-8311-41000b1c1cc4",
+                  "nativeThreadId": null,
+                  "process": {
+                    "hostInstanceId": "7cae003d-3088-4ee7-935e-736fc13df342",
+                    "runtimeGeneration": "8ebdf034-57bc-4253-9617-f53d21ba2f9e"
+                  },
+                  "scope": {
+                    "authorizationExpiresAtUnixMs": 1791376739894,
+                    "authorizationRevision": 1,
+                    "nativeProcessEpoch": "80f16420-7498-4458-bb21-5e8a928602bb",
+                    "ownerUserId": "c3ea6ea4-2e98-4c48-add1-b1347b315382",
+                    "tenantId": "277e689f-360a-4587-8440-538c582cccc3"
+                  }
+                },
+                "selectionDigest": "2f7ae1538c844f1e4fe5096fa27d1f1194153aac3a9ff47280ba1dc79d8fcb3b",
+                "turnOperationId": "d63890ca-917b-436a-a00b-65dfb876daa2"
+              },
+              "callRef": "459109c8-1d94-49fb-b51f-c7f4c2eec5eb",
+              "nativeThreadId": "01a1165c-24b8-77d0-bb92-4348be6dec5d",
+              "nativeTurnId": "01a1165c-24c2-7612-823b-ba41417a9693",
+              "reference": {
+                "generation": 1,
+                "installationId": "11111111-1111-4111-8111-111111111111",
+                "revision": 1
+              },
+              "serviceId": "market-qualification",
+              "toolName": "lookup"
+            },
+            "remainingTtlMs": 59991,
+            "review": {
+              "risk": "read",
+              "summary": "Read the public value from the in-process qualification service. No external account or provider is contacted.",
+              "title": "Local synthetic lookup"
+            },
+            "revision": 2,
+            "state": "approved"
+          }
+        }
+      ],
+      "prepareReplayPreserved": true,
+      "terminal": {
+        "method": "turn/completed",
+        "params": {
+          "threadId": "01a1165c-24b8-77d0-bb92-4348be6dec5d",
+          "turn": {
+            "id": "01a1165c-24c2-7612-823b-ba41417a9693",
+            "items": [],
+            "itemsView": "notLoaded",
+            "status": "completed",
+            "error": null,
+            "startedAt": 1791376499,
+            "completedAt": 1791376499,
+            "durationMs": 20
+          }
+        }
+      },
+      "callFinal": {
+        "decision": "approve_once",
+        "decisionId": "544ac5e3-97a9-4fc0-90af-a17bec847cb7",
+        "identity": {
+          "argsDigest": "4678f9b705a26d6a0813d2f8620659bfc543a8361d835db02170037012c59d22",
+          "argsEncoding": "worker-json-v1",
+          "binding": {
+            "capabilityRef": "e8afca4c-6dee-4fde-9800-a5ace4575513",
+            "context": {
+              "agentSessionId": "f4702ab5-5f57-4b32-8311-41000b1c1cc4",
+              "nativeThreadId": null,
+              "process": {
+                "hostInstanceId": "7cae003d-3088-4ee7-935e-736fc13df342",
+                "runtimeGeneration": "8ebdf034-57bc-4253-9617-f53d21ba2f9e"
+              },
+              "scope": {
+                "authorizationExpiresAtUnixMs": 1791376739894,
+                "authorizationRevision": 1,
+                "nativeProcessEpoch": "80f16420-7498-4458-bb21-5e8a928602bb",
+                "ownerUserId": "c3ea6ea4-2e98-4c48-add1-b1347b315382",
+                "tenantId": "277e689f-360a-4587-8440-538c582cccc3"
+              }
+            },
+            "selectionDigest": "2f7ae1538c844f1e4fe5096fa27d1f1194153aac3a9ff47280ba1dc79d8fcb3b",
+            "turnOperationId": "d63890ca-917b-436a-a00b-65dfb876daa2"
+          },
+          "callRef": "459109c8-1d94-49fb-b51f-c7f4c2eec5eb",
+          "nativeThreadId": "01a1165c-24b8-77d0-bb92-4348be6dec5d",
+          "nativeTurnId": "01a1165c-24c2-7612-823b-ba41417a9693",
+          "reference": {
+            "generation": 1,
+            "installationId": "11111111-1111-4111-8111-111111111111",
+            "revision": 1
+          },
+          "serviceId": "market-qualification",
+          "toolName": "lookup"
+        },
+        "remainingTtlMs": 0,
+        "review": {
+          "risk": "read",
+          "summary": "Read the public value from the in-process qualification service. No external account or provider is contacted.",
+          "title": "Local synthetic lookup"
+        },
+        "revision": 3,
+        "state": "consumed"
+      },
+      "nativeTool": {
+        "type": "mcpToolCall",
+        "id": "call_accept",
+        "server": "gateway",
+        "tool": "lookup",
+        "status": "completed",
+        "arguments": {
+          "query": "public-synthetic-record"
+        },
+        "appContext": null,
+        "pluginId": null,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"query\":\"public-synthetic-record\",\"value\":\"public-synthetic-value\"}"
+            }
+          ],
+          "structuredContent": null,
+          "_meta": null
+        },
+        "error": null,
+        "durationMs": 10
+      },
+      "nativeHistory": {
+        "thread": {
+          "id": "01a1165c-24b8-77d0-bb92-4348be6dec5d",
+          "extra": null,
+          "sessionId": "01a1165c-24b8-77d0-bb92-4348be6dec5d",
+          "forkedFromId": null,
+          "parentThreadId": null,
+          "preview": "Use the local synthetic lookup once for the public synthetic record.",
+          "ephemeral": false,
+          "historyMode": "legacy",
+          "modelProvider": "qualification",
+          "createdAt": 1791376499,
+          "updatedAt": 1791376499,
+          "recencyAt": 1791376499,
+          "status": {
+            "type": "idle"
+          },
+          "path": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-rust-gateway-4gxqexrx/codex-home/sessions/2026/10/07/rollout-2026-10-07T20-34-59-01a1165c-24b8-77d0-bb92-4348be6dec5d.jsonl",
+          "cwd": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-rust-gateway-4gxqexrx/workspace",
+          "cliVersion": "0.144.6",
+          "source": "vscode",
+          "threadSource": null,
+          "agentNickname": null,
+          "agentRole": null,
+          "gitInfo": null,
+          "name": null,
+          "turns": [
+            {
+              "id": "01a1165c-24c2-7612-823b-ba41417a9693",
+              "items": [
+                {
+                  "type": "userMessage",
+                  "id": "item-1",
+                  "clientId": null,
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Use the local synthetic lookup once for the public synthetic record.",
+                      "text_elements": []
+                    }
+                  ]
+                },
+                {
+                  "type": "mcpToolCall",
+                  "id": "call_accept",
+                  "server": "gateway",
+                  "tool": "lookup",
+                  "status": "completed",
+                  "arguments": {
+                    "query": "public-synthetic-record"
+                  },
+                  "appContext": null,
+                  "pluginId": null,
+                  "result": {
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "{\"query\":\"public-synthetic-record\",\"value\":\"public-synthetic-value\"}"
+                      }
+                    ],
+                    "structuredContent": null,
+                    "_meta": null
+                  },
+                  "error": null,
+                  "durationMs": 10
+                },
+                {
+                  "type": "agentMessage",
+                  "id": "item-2",
+                  "text": "Local qualification finished.",
+                  "phase": "final_answer",
+                  "memoryCitation": null
+                }
+              ],
+              "itemsView": "full",
+              "status": "completed",
+              "error": null,
+              "startedAt": 1791376499,
+              "completedAt": 1791376499,
+              "durationMs": 20
+            }
+          ]
+        }
+      },
+      "revoked": {
+        "binding": {
+          "capabilityRef": "e8afca4c-6dee-4fde-9800-a5ace4575513",
+          "context": {
+            "agentSessionId": "f4702ab5-5f57-4b32-8311-41000b1c1cc4",
+            "nativeThreadId": null,
+            "process": {
+              "hostInstanceId": "7cae003d-3088-4ee7-935e-736fc13df342",
+              "runtimeGeneration": "8ebdf034-57bc-4253-9617-f53d21ba2f9e"
+            },
+            "scope": {
+              "authorizationExpiresAtUnixMs": 1791376739894,
+              "authorizationRevision": 1,
+              "nativeProcessEpoch": "80f16420-7498-4458-bb21-5e8a928602bb",
+              "ownerUserId": "c3ea6ea4-2e98-4c48-add1-b1347b315382",
+              "tenantId": "277e689f-360a-4587-8440-538c582cccc3"
+            }
+          },
+          "selectionDigest": "2f7ae1538c844f1e4fe5096fa27d1f1194153aac3a9ff47280ba1dc79d8fcb3b",
+          "turnOperationId": "d63890ca-917b-436a-a00b-65dfb876daa2"
+        },
+        "boundNativeThreadId": "01a1165c-24b8-77d0-bb92-4348be6dec5d",
+        "nativeTurnId": "01a1165c-24c2-7612-823b-ba41417a9693",
+        "remainingTtlMs": 0,
+        "revision": 3,
+        "snapshot": {
+          "schemaVersion": 1,
+          "selection": [
+            {
+              "generation": 1,
+              "installationId": "11111111-1111-4111-8111-111111111111",
+              "revision": 1
+            }
+          ],
+          "selectionDigest": "2f7ae1538c844f1e4fe5096fa27d1f1194153aac3a9ff47280ba1dc79d8fcb3b",
+          "turnOperationId": "d63890ca-917b-436a-a00b-65dfb876daa2"
+        },
+        "state": "revoked"
+      },
+      "reprepare": {
+        "code": "lease_revoked",
+        "requestId": "35f3b41f-92a9-4f9a-a0af-31044ec68fb5",
+        "retryable": false,
+        "schemaVersion": 1
+      }
+    },
+    {
+      "decision": "decline",
+      "threadId": "01a1165c-24b8-77d0-bb92-4348be6dec5d",
+      "turnId": "01a1165c-24ed-7a71-b5c5-8572d9168ec7",
+      "agentSessionId": "f4702ab5-5f57-4b32-8311-41000b1c1cc4",
+      "firstTurn": false,
+      "binding": {
+        "capabilityRef": "137a60e4-8ab1-43a0-a4d0-b3a2bc5bf907",
+        "context": {
+          "agentSessionId": "f4702ab5-5f57-4b32-8311-41000b1c1cc4",
+          "nativeThreadId": "01a1165c-24b8-77d0-bb92-4348be6dec5d",
+          "process": {
+            "hostInstanceId": "7cae003d-3088-4ee7-935e-736fc13df342",
+            "runtimeGeneration": "8ebdf034-57bc-4253-9617-f53d21ba2f9e"
+          },
+          "scope": {
+            "authorizationExpiresAtUnixMs": 1791376739894,
+            "authorizationRevision": 1,
+            "nativeProcessEpoch": "80f16420-7498-4458-bb21-5e8a928602bb",
+            "ownerUserId": "c3ea6ea4-2e98-4c48-add1-b1347b315382",
+            "tenantId": "277e689f-360a-4587-8440-538c582cccc3"
+          }
+        },
+        "selectionDigest": "14f289704c91b095347a09298294c3f4f395966a73e1df25eb19e1c4771dae6c",
+        "turnOperationId": "8a1e36ea-125a-4eed-bef1-261e03bc7768"
+      },
+      "callbacks": [
+        {
+          "request": {
+            "method": "mcpServer/elicitation/request",
+            "id": 1,
+            "params": {
+              "threadId": "01a1165c-24b8-77d0-bb92-4348be6dec5d",
+              "turnId": "01a1165c-24ed-7a71-b5c5-8572d9168ec7",
+              "serverName": "gateway",
+              "mode": "form",
+              "_meta": {
+                "yijieMarketCallRef": "872c30a6-3b46-4da4-bdc1-98d0422972de",
+                "yijieKind": "gateway_call_approval"
+              },
+              "message": "Read the public value from the in-process qualification service. No external account or provider is contacted.",
+              "requestedSchema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          },
+          "pending": {
+            "identity": {
+              "argsDigest": "4678f9b705a26d6a0813d2f8620659bfc543a8361d835db02170037012c59d22",
+              "argsEncoding": "worker-json-v1",
+              "binding": {
+                "capabilityRef": "137a60e4-8ab1-43a0-a4d0-b3a2bc5bf907",
+                "context": {
+                  "agentSessionId": "f4702ab5-5f57-4b32-8311-41000b1c1cc4",
+                  "nativeThreadId": "01a1165c-24b8-77d0-bb92-4348be6dec5d",
+                  "process": {
+                    "hostInstanceId": "7cae003d-3088-4ee7-935e-736fc13df342",
+                    "runtimeGeneration": "8ebdf034-57bc-4253-9617-f53d21ba2f9e"
+                  },
+                  "scope": {
+                    "authorizationExpiresAtUnixMs": 1791376739894,
+                    "authorizationRevision": 1,
+                    "nativeProcessEpoch": "80f16420-7498-4458-bb21-5e8a928602bb",
+                    "ownerUserId": "c3ea6ea4-2e98-4c48-add1-b1347b315382",
+                    "tenantId": "277e689f-360a-4587-8440-538c582cccc3"
+                  }
+                },
+                "selectionDigest": "14f289704c91b095347a09298294c3f4f395966a73e1df25eb19e1c4771dae6c",
+                "turnOperationId": "8a1e36ea-125a-4eed-bef1-261e03bc7768"
+              },
+              "callRef": "872c30a6-3b46-4da4-bdc1-98d0422972de",
+              "nativeThreadId": "01a1165c-24b8-77d0-bb92-4348be6dec5d",
+              "nativeTurnId": "01a1165c-24ed-7a71-b5c5-8572d9168ec7",
+              "reference": {
+                "generation": 1,
+                "installationId": "11111111-1111-4111-8111-111111111111",
+                "revision": 1
+              },
+              "serviceId": "market-qualification",
+              "toolName": "lookup"
+            },
+            "remainingTtlMs": 59991,
+            "review": {
+              "risk": "read",
+              "summary": "Read the public value from the in-process qualification service. No external account or provider is contacted.",
+              "title": "Local synthetic lookup"
+            },
+            "revision": 1,
+            "state": "pending"
+          },
+          "decisionReceipt": {
+            "decision": "reject",
+            "decisionId": "ca90a116-c2c3-442e-ae61-953f2bc84f01",
+            "identity": {
+              "argsDigest": "4678f9b705a26d6a0813d2f8620659bfc543a8361d835db02170037012c59d22",
+              "argsEncoding": "worker-json-v1",
+              "binding": {
+                "capabilityRef": "137a60e4-8ab1-43a0-a4d0-b3a2bc5bf907",
+                "context": {
+                  "agentSessionId": "f4702ab5-5f57-4b32-8311-41000b1c1cc4",
+                  "nativeThreadId": "01a1165c-24b8-77d0-bb92-4348be6dec5d",
+                  "process": {
+                    "hostInstanceId": "7cae003d-3088-4ee7-935e-736fc13df342",
+                    "runtimeGeneration": "8ebdf034-57bc-4253-9617-f53d21ba2f9e"
+                  },
+                  "scope": {
+                    "authorizationExpiresAtUnixMs": 1791376739894,
+                    "authorizationRevision": 1,
+                    "nativeProcessEpoch": "80f16420-7498-4458-bb21-5e8a928602bb",
+                    "ownerUserId": "c3ea6ea4-2e98-4c48-add1-b1347b315382",
+                    "tenantId": "277e689f-360a-4587-8440-538c582cccc3"
+                  }
+                },
+                "selectionDigest": "14f289704c91b095347a09298294c3f4f395966a73e1df25eb19e1c4771dae6c",
+                "turnOperationId": "8a1e36ea-125a-4eed-bef1-261e03bc7768"
+              },
+              "callRef": "872c30a6-3b46-4da4-bdc1-98d0422972de",
+              "nativeThreadId": "01a1165c-24b8-77d0-bb92-4348be6dec5d",
+              "nativeTurnId": "01a1165c-24ed-7a71-b5c5-8572d9168ec7",
+              "reference": {
+                "generation": 1,
+                "installationId": "11111111-1111-4111-8111-111111111111",
+                "revision": 1
+              },
+              "serviceId": "market-qualification",
+              "toolName": "lookup"
+            },
+            "remainingTtlMs": 0,
+            "review": {
+              "risk": "read",
+              "summary": "Read the public value from the in-process qualification service. No external account or provider is contacted.",
+              "title": "Local synthetic lookup"
+            },
+            "revision": 2,
+            "state": "rejected"
+          }
+        }
+      ],
+      "prepareReplayPreserved": true,
+      "terminal": {
+        "method": "turn/completed",
+        "params": {
+          "threadId": "01a1165c-24b8-77d0-bb92-4348be6dec5d",
+          "turn": {
+            "id": "01a1165c-24ed-7a71-b5c5-8572d9168ec7",
+            "items": [],
+            "itemsView": "notLoaded",
+            "status": "completed",
+            "error": null,
+            "startedAt": 1791376499,
+            "completedAt": 1791376499,
+            "durationMs": 17
+          }
+        }
+      },
+      "callFinal": {
+        "decision": "reject",
+        "decisionId": "ca90a116-c2c3-442e-ae61-953f2bc84f01",
+        "identity": {
+          "argsDigest": "4678f9b705a26d6a0813d2f8620659bfc543a8361d835db02170037012c59d22",
+          "argsEncoding": "worker-json-v1",
+          "binding": {
+            "capabilityRef": "137a60e4-8ab1-43a0-a4d0-b3a2bc5bf907",
+            "context": {
+              "agentSessionId": "f4702ab5-5f57-4b32-8311-41000b1c1cc4",
+              "nativeThreadId": "01a1165c-24b8-77d0-bb92-4348be6dec5d",
+              "process": {
+                "hostInstanceId": "7cae003d-3088-4ee7-935e-736fc13df342",
+                "runtimeGeneration": "8ebdf034-57bc-4253-9617-f53d21ba2f9e"
+              },
+              "scope": {
+                "authorizationExpiresAtUnixMs": 1791376739894,
+                "authorizationRevision": 1,
+                "nativeProcessEpoch": "80f16420-7498-4458-bb21-5e8a928602bb",
+                "ownerUserId": "c3ea6ea4-2e98-4c48-add1-b1347b315382",
+                "tenantId": "277e689f-360a-4587-8440-538c582cccc3"
+              }
+            },
+            "selectionDigest": "14f289704c91b095347a09298294c3f4f395966a73e1df25eb19e1c4771dae6c",
+            "turnOperationId": "8a1e36ea-125a-4eed-bef1-261e03bc7768"
+          },
+          "callRef": "872c30a6-3b46-4da4-bdc1-98d0422972de",
+          "nativeThreadId": "01a1165c-24b8-77d0-bb92-4348be6dec5d",
+          "nativeTurnId": "01a1165c-24ed-7a71-b5c5-8572d9168ec7",
+          "reference": {
+            "generation": 1,
+            "installationId": "11111111-1111-4111-8111-111111111111",
+            "revision": 1
+          },
+          "serviceId": "market-qualification",
+          "toolName": "lookup"
+        },
+        "remainingTtlMs": 0,
+        "review": {
+          "risk": "read",
+          "summary": "Read the public value from the in-process qualification service. No external account or provider is contacted.",
+          "title": "Local synthetic lookup"
+        },
+        "revision": 2,
+        "state": "rejected"
+      },
+      "nativeTool": {
+        "type": "mcpToolCall",
+        "id": "call_decline",
+        "server": "gateway",
+        "tool": "lookup",
+        "status": "failed",
+        "arguments": {
+          "query": "public-synthetic-record"
+        },
+        "appContext": null,
+        "pluginId": null,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "Connector call was not admitted."
+            }
+          ],
+          "structuredContent": null,
+          "_meta": null
+        },
+        "error": null,
+        "durationMs": 10
+      },
+      "nativeHistory": {
+        "thread": {
+          "id": "01a1165c-24b8-77d0-bb92-4348be6dec5d",
+          "extra": null,
+          "sessionId": "01a1165c-24b8-77d0-bb92-4348be6dec5d",
+          "forkedFromId": null,
+          "parentThreadId": null,
+          "preview": "Use the local synthetic lookup once for the public synthetic record.",
+          "ephemeral": false,
+          "historyMode": "legacy",
+          "modelProvider": "qualification",
+          "createdAt": 1791376499,
+          "updatedAt": 1791376499,
+          "recencyAt": 1791376499,
+          "status": {
+            "type": "idle"
+          },
+          "path": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-rust-gateway-4gxqexrx/codex-home/sessions/2026/10/07/rollout-2026-10-07T20-34-59-01a1165c-24b8-77d0-bb92-4348be6dec5d.jsonl",
+          "cwd": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-rust-gateway-4gxqexrx/workspace",
+          "cliVersion": "0.144.6",
+          "source": "vscode",
+          "threadSource": null,
+          "agentNickname": null,
+          "agentRole": null,
+          "gitInfo": null,
+          "name": null,
+          "turns": [
+            {
+              "id": "01a1165c-24c2-7612-823b-ba41417a9693",
+              "items": [
+                {
+                  "type": "userMessage",
+                  "id": "item-1",
+                  "clientId": null,
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Use the local synthetic lookup once for the public synthetic record.",
+                      "text_elements": []
+                    }
+                  ]
+                },
+                {
+                  "type": "mcpToolCall",
+                  "id": "call_accept",
+                  "server": "gateway",
+                  "tool": "lookup",
+                  "status": "completed",
+                  "arguments": {
+                    "query": "public-synthetic-record"
+                  },
+                  "appContext": null,
+                  "pluginId": null,
+                  "result": {
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "{\"query\":\"public-synthetic-record\",\"value\":\"public-synthetic-value\"}"
+                      }
+                    ],
+                    "structuredContent": null,
+                    "_meta": null
+                  },
+                  "error": null,
+                  "durationMs": 10
+                },
+                {
+                  "type": "agentMessage",
+                  "id": "item-2",
+                  "text": "Local qualification finished.",
+                  "phase": "final_answer",
+                  "memoryCitation": null
+                }
+              ],
+              "itemsView": "full",
+              "status": "completed",
+              "error": null,
+              "startedAt": 1791376499,
+              "completedAt": 1791376499,
+              "durationMs": 20
+            },
+            {
+              "id": "01a1165c-24ed-7a71-b5c5-8572d9168ec7",
+              "items": [
+                {
+                  "type": "userMessage",
+                  "id": "item-3",
+                  "clientId": null,
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Use the local synthetic lookup once for the public synthetic record.",
+                      "text_elements": []
+                    }
+                  ]
+                },
+                {
+                  "type": "mcpToolCall",
+                  "id": "call_decline",
+                  "server": "gateway",
+                  "tool": "lookup",
+                  "status": "failed",
+                  "arguments": {
+                    "query": "public-synthetic-record"
+                  },
+                  "appContext": null,
+                  "pluginId": null,
+                  "result": {
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Connector call was not admitted."
+                      }
+                    ],
+                    "structuredContent": null,
+                    "_meta": null
+                  },
+                  "error": null,
+                  "durationMs": 10
+                },
+                {
+                  "type": "agentMessage",
+                  "id": "item-4",
+                  "text": "Local qualification finished.",
+                  "phase": "final_answer",
+                  "memoryCitation": null
+                }
+              ],
+              "itemsView": "full",
+              "status": "completed",
+              "error": null,
+              "startedAt": 1791376499,
+              "completedAt": 1791376499,
+              "durationMs": 17
+            }
+          ]
+        }
+      },
+      "revoked": {
+        "binding": {
+          "capabilityRef": "137a60e4-8ab1-43a0-a4d0-b3a2bc5bf907",
+          "context": {
+            "agentSessionId": "f4702ab5-5f57-4b32-8311-41000b1c1cc4",
+            "nativeThreadId": "01a1165c-24b8-77d0-bb92-4348be6dec5d",
+            "process": {
+              "hostInstanceId": "7cae003d-3088-4ee7-935e-736fc13df342",
+              "runtimeGeneration": "8ebdf034-57bc-4253-9617-f53d21ba2f9e"
+            },
+            "scope": {
+              "authorizationExpiresAtUnixMs": 1791376739894,
+              "authorizationRevision": 1,
+              "nativeProcessEpoch": "80f16420-7498-4458-bb21-5e8a928602bb",
+              "ownerUserId": "c3ea6ea4-2e98-4c48-add1-b1347b315382",
+              "tenantId": "277e689f-360a-4587-8440-538c582cccc3"
+            }
+          },
+          "selectionDigest": "14f289704c91b095347a09298294c3f4f395966a73e1df25eb19e1c4771dae6c",
+          "turnOperationId": "8a1e36ea-125a-4eed-bef1-261e03bc7768"
+        },
+        "boundNativeThreadId": "01a1165c-24b8-77d0-bb92-4348be6dec5d",
+        "nativeTurnId": "01a1165c-24ed-7a71-b5c5-8572d9168ec7",
+        "remainingTtlMs": 0,
+        "revision": 3,
+        "snapshot": {
+          "schemaVersion": 1,
+          "selection": [
+            {
+              "generation": 1,
+              "installationId": "11111111-1111-4111-8111-111111111111",
+              "revision": 1
+            }
+          ],
+          "selectionDigest": "14f289704c91b095347a09298294c3f4f395966a73e1df25eb19e1c4771dae6c",
+          "turnOperationId": "8a1e36ea-125a-4eed-bef1-261e03bc7768"
+        },
+        "state": "revoked"
+      },
+      "reprepare": {
+        "code": "lease_revoked",
+        "requestId": "bf2f2c89-b1af-4a08-a03d-16103d989f6b",
+        "retryable": false,
+        "schemaVersion": 1
+      }
+    }
+  ],
+  "harness_sha256": "adbefbd75df4f296a68e43d08c2caefbb6163396957f2a3e5f297816bfb143b2",
+  "reused_harness_sources": {
+    "qualify_runtime.py": "6e8975882f4b468799ac8a39773b8d5c9baa2f3cfb5a0675e1e18e8df5a3e635",
+    "qualify_elicitation.py": "73ddc6382d3f5e02481be97fbd0418df27f84f0b4dc5eb79393a04550d44b6ff"
+  },
+  "runtime_artifact": {
+    "binary": "codex",
+    "reportedVersion": "codex-cli 0.144.6",
+    "sha256": "aad49041bd7d34c853fb55c274711e3cc810725720d2c097469822d310fb02f9",
+    "sizeBytes": 356210616,
+    "target": "aarch64-apple-darwin",
+    "version": "0.144.6"
+  },
+  "runtime_manifest_sha256": "8b86a1a661f50beda1e0a0c96f81ddbdf959a9a07c2e756cc4b9b0eabc053b27",
+  "worker_manifest": {
+    "schemaVersion": 1,
+    "candidateOnly": true,
+    "qualificationOnly": true,
+    "binary": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/bin/market-broker-qualification/c9519862b83a0997f9a704691f0e1c030ced30d209d891122b4c41e23eabaf05/market-broker-qualification",
+    "sha256": "c9519862b83a0997f9a704691f0e1c030ced30d209d891122b4c41e23eabaf05",
+    "sizeBytes": 17820528,
+    "codexSource": "7fd463bcef07f37b0211acd9f62b9f93ea0a4b12",
+    "externalCallsEnabled": false,
+    "sources": {
+      "worker/Cargo.toml": "7e8a8f5fe1d6a741df0d003e24fa29a2d3539ad4b8349b4e5158237df6ce6589",
+      "worker/Cargo.lock": "48c41f810e468d159574cf956d0c946cee3ec491af16ed64bc8592c367d4d74c",
+      "worker/src/broker.rs": "19a4140ab27ace5199de5cb5fcb99f49948b88f1d8b4957e38c4555a9ab6a98d",
+      "worker/src/gateway.rs": "4f93c44fd6e42906a65f258937761ffcef52cfd8643fc42efa10c05f48bca7fc",
+      "worker/src/broker_generated.rs": "2d0b9e88e66784b286cfedaa508005013224d1af6b1be8d6ed7aa3b1e194a9fb",
+      "worker/src/selection_generated.rs": "902f396bac10b7ea109629a6cd6cca49cff393335a902455e31b7ced238c09c5",
+      "worker/src/generated.rs": "175d0d58a5be5507133ddc7a0922d5f2a184400d4c6041d33cecf8dab494437a",
+      "worker/qualification/broker.rs": "152f1fe22123c6bb511a59a6f9f51104b6968f2466c6ee20692c201373039fc3",
+      "worker/source.lock.json": "e1e11408a149f9e796f4f1a492f59953313217ede5733739845a022eb069ac59"
+    }
+  },
+  "worker_manifest_sha256": "34f90c4d29f49219f37ab82eb37a17e8bc610ee72d1a58fa810a46f4942dcea8",
+  "shutdown_receipt": {
+    "externalOutcomes": "not_asserted",
+    "state": "stopping",
+    "stoppedAdmissions": true
+  },
+  "normal_shutdown": {
+    "runtime": {
+      "pid": 82798,
+      "exit_code": 0,
+      "normal_eof": true
+    },
+    "worker": {
+      "normal_eof": true,
+      "exit_code": 0,
+      "pid": 82797
+    }
+  },
+  "local_responses_requests": 4,
+  "internal_capability_in_observed_wire": false,
+  "internal_capability_in_temporary_files": [],
+  "temporary_data_removed_after_exit": true
+}

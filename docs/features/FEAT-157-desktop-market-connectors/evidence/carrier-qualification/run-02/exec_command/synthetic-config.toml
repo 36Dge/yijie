@@ -1,0 +1,40 @@
+model = "qualification-text"
+model_provider = "qualification"
+model_catalog_json = "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat157-carrier-k8i_f4f1/codex-home/catalog.json"
+check_for_update_on_startup = false
+web_search = "disabled"
+approval_policy = "never"
+sandbox_mode = "read-only"
+[analytics]
+enabled = false
+[features]
+hooks = false
+plugins = false
+apps = false
+tool_suggest = false
+shell_snapshot = false
+multi_agent = false
+memories = false
+js_repl = false
+shell_tool = true
+unified_exec = true
+[shell_environment_policy]
+inherit = "core"
+exclude = ["YIJIE_MARKET_QUALIFICATION_TOKEN", "YIJIE_FEAT144_SORFTIME_ACCOUNT_SK", "YIJIE_FEAT144_SORFTIME_ENABLED", "MINIMAX_API_KEY", "KIMI_API_KEY", "MOONSHOT_API_KEY", "YIJIE_KIMI_API_KEY", "YIJIE_KIMI_API_KEY_FILE"]
+set = {}
+[model_providers.qualification]
+name = "Local synthetic carrier qualification"
+base_url = "http://127.0.0.1:53566/v1"
+wire_api = "responses"
+requires_openai_auth = false
+supports_websockets = false
+request_max_retries = 0
+stream_max_retries = 0
+[mcp_servers.gateway]
+url = "http://127.0.0.1:53566/mcp/gateway"
+bearer_token_env_var = "YIJIE_MARKET_QUALIFICATION_TOKEN"
+enabled = true
+enabled_tools = ["lookup"]
+default_tools_approval_mode = "auto"
+startup_timeout_sec = 5
+tool_timeout_sec = 5
