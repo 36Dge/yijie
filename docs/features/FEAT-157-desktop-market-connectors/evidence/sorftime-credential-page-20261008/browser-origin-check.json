@@ -1,0 +1,17 @@
+{
+  "method": "Ordinary empty cancel POST through Chrome on a loopback visual fixture. Request body not read or stored.",
+  "before": {
+    "referrerPolicy": "no-referrer",
+    "originMatchesHost": false,
+    "originIsNull": true,
+    "referrerPresent": false
+  },
+  "after": {
+    "referrerPolicy": "same-origin",
+    "originMatchesHost": true,
+    "originIsNull": false,
+    "referrerPresent": true
+  },
+  "externalCalls": 0,
+  "realCredentials": false
+}

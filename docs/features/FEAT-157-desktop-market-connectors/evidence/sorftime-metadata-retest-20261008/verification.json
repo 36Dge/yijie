@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-08T20:47:33.299946+08:00",
+  "scope": "Sorftime saved-key connection and tools/list retest only",
+  "authorization": "Owner explicitly allowed one saved-key connection/tools discovery check, retries on failure, and model calls if needed.",
+  "operationId": "bc3fad0e-bed6-4f56-9920-7536bcebc935",
+  "appSha256": "1f2f62a1bdc18255dd78db0ef48dd508cd3f1398892c01c9d6790465d76fff78",
+  "worker": {
+    "schemaVersion": 2,
+    "candidateOnly": true,
+    "binary": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/bin/market-worker/da3c31537e6be46bb826a2ec44b0541456cbbf2810772aabbba5df1023400f81/yijie-mcp-worker",
+    "sha256": "da3c31537e6be46bb826a2ec44b0541456cbbf2810772aabbba5df1023400f81",
+    "sizeBytes": 84307840,
+    "codexSource": "7fd463bcef07f37b0211acd9f62b9f93ea0a4b12",
+    "externalCallsEnabled": true,
+    "qualificationOnly": false,
+    "providerProfile": "generic-mcp-v1"
+  },
+  "results": {
+    "keyring_preflight": "succeeded",
+    "initialize": "succeeded",
+    "tools_list": "succeeded",
+    "httpStatuses": [
+      200,
+      202,
+      200
+    ],
+    "ui": "configured, not enabled; enable action available; error cleared"
+  },
+  "actualUsage": {
+    "connectionDiscoveryWorkflows": 1,
+    "retries": 0,
+    "metadataHttpRequests": 3,
+    "modelTurns": 0,
+    "businessCalls": 0
+  },
+  "limits": "This proves connection and discovery, not business query/approval/rejection acceptance. No claim that every service was called.",
+  "artifacts": {
+    "provider-diagnostic.jsonl": "22e01baa6e9781bc99e4fbd0b61289e707285f4c58d1810903d7d0d1a69385cc",
+    "passed.jpg": "a7771165d8de3d273b2c1fd0b8bd671e5011a55e4e31c4f94480524eee7753aa"
+  },
+  "codeChangedThisTurn": false
+}

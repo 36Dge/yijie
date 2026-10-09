@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-08",
+  "kind": "public_document_review_only",
+  "ownerProvidedUrl": "https://www.sorftime.com/zh-CN/mcp/index?tag=MjAxODA5MTMyMzIwMzU1NzAwMDE~",
+  "sourceHtmlSha256": "5a0c7e5cb0b0f743450b7817ccf9ed1c1f45c70ac084ca9fa3b46c1a4a158d15",
+  "sourceFetchedWithoutCookiesOrCredentials": true,
+  "findings": [
+    "The provided page describes registering/logging in, activating MCP, obtaining the MCP service address and key, then configuring clients.",
+    "Official Codex instructions require Account-SK and Authorization Bearer.",
+    "Official Claude Desktop instructions use a key query parameter.",
+    "Official Accio application-authorization menu still leads to manual key-bearing MCP URL configuration; this is not evidence of a delegated OAuth protocol."
+  ],
+  "publicOAuthDocumentationFound": false,
+  "privatePartnerOAuthAvailability": "unknown; requires official confirmation",
+  "noAuthorizationOrTokenEndpointsAdvertisedInReviewedDocs": true,
+  "conclusion": "Publicly documented key-based access is confirmed. OAuth or equivalent delegated account authorization for Yijie is unconfirmed, not proven nonexistent.",
+  "mcpConnectionsStarted": 0,
+  "modelOrBusinessCalls": 0,
+  "liveAcceptanceStillPaused": true,
+  "sources": [
+    "https://www.sorftime.com/zh-CN/mcp/Codex",
+    "https://www.sorftime.com/zh-CN/mcp/ClaudeDesktop",
+    "https://www.sorftime.com/zh-CN/Mcp/Accio"
+  ]
+}

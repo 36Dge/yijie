@@ -1,0 +1,152 @@
+{
+  "date": "2026-10-08",
+  "scope": "FEAT-157 composer compact cascading menus",
+  "contract_impact": "none",
+  "external_model_requests": 0,
+  "external_mcp_requests": 0,
+  "geometry": {
+    "primary_width_css_px": 200,
+    "primary_row_css_px": 36,
+    "resource_width_css_px": 260,
+    "gap_css_px": 8
+  },
+  "focused": {
+    "status": "passed",
+    "files": 4,
+    "tests": 36,
+    "command": "pnpm exec vitest run --maxWorkers=4 --exclude '**/.contracts-source/**' --exclude '**/.agent-host-source/**' --exclude '**/.skills-source/**' --exclude '**/.local/**' src/components/chat/ChatAddControl.test.ts src/components/chat/ChatSkillControl.test.ts src/components/chat/ChatConnectorControl.test.ts src/components/chat/ChatComposer.test.ts"
+  },
+  "static": {
+    "make_lint": "passed with clean existing Contracts/Host snapshots",
+    "final_component_eslint": "passed",
+    "final_vue_tsc": "passed",
+    "make_build": "passed",
+    "docs_build": "passed",
+    "final_packaged_app": "passed"
+  },
+  "full_frontend": {
+    "passed": 1485,
+    "failed": 17,
+    "skipped": 2,
+    "failed_tests": [
+      "scripts/check-agent-host-v4-contract.test.mjs > FEAT-134 Agent Host v4 exact pin > verifies immutable v4 objects while current clean siblings provide v6 execution",
+      "scripts/check-feat128-s9b-d-dependencies.test.mjs > FEAT-128 S9B-D dependency boundary > checks the actual package, lock, notice and static import boundary",
+      "scripts/native-conversation-bundle.test.mjs > browser bundle validates native Items and preserves Unicode length limits",
+      "scripts/sync-desktop-skill-resources.test.mjs > Desktop v2 Skill resources > builds demo_fast with its exact compile-time profile and local channel",
+      "src/domain/conversation-timeline.test.ts > selectConversationTimeline > wires the FEAT-137 policy into the ChatPage projection boundary",
+      "src/domain/conversation-timeline.test.ts > selectConversationTimeline > maps every Thread and Turn status without inventing timing or permission facts",
+      "src/domain/conversation-timeline.test.ts > selectConversationTimeline > keeps Turn progress and aggregated notices separate from domain Items",
+      "tests/feat-131/chat-event-replay-harness.test.ts > FEAT-131 raw event replay: GS-001-streaming-complete.synthetic.json > passes raw payloads through the production parser and store deterministically",
+      "tests/feat-131/chat-event-replay-harness.test.ts > FEAT-131 raw event replay: GS-012-resync-recovery.synthetic.json > passes raw payloads through the production parser and store deterministically",
+      "tests/feat-131/chat-event-replay-harness.test.ts > FEAT-131 raw event replay: GS-013-sequence-gap.synthetic.json > passes raw payloads through the production parser and store deterministically",
+      "src/components/yijie/YjSidebar.test.ts > YjSidebar permission rendering > FEAT-130 renders the approved main order and a non-navigable history tree",
+      "src/components/yijie/YjSidebar.test.ts > YjSidebar permission rendering > hides task history in icon mode and preserves collapsed directories when restored",
+      "src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > does not switch the renderer when metadata-only reasoning enters the projection",
+      "src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > does not treat an active empty reasoning Item as historical authority loss",
+      "src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > selects through the unified plus entry and permits an attachment-only task",
+      "src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > keeps one accepted user identity and never restores its drafts after failed",
+      "src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > keeps one accepted user identity and never restores its drafts after interrupted"
+    ],
+    "same_failed_tests_reproduced_with_before_task_components": true,
+    "baseline_failed": 19,
+    "baseline_extra_failures": [
+      "scripts/sync-desktop-skill-resources.test.mjs > Desktop v2 Skill resources > validates both channels, 38 entries, 5/9/7/9/8 and byte-identical archives",
+      "scripts/sync-desktop-skill-resources.test.mjs > Desktop v2 Skill resources > keeps default resources empty and maps exact demo/release overlays"
+    ],
+    "baseline_method": "Vite pre-load serves four pre-task SFCs from .local/composer-cascade-before under original file IDs; no source rollback"
+  },
+  "native_full": {
+    "status": "interrupted_not_passed",
+    "exit_code": 130,
+    "reason": "Mistakenly launched full suite before identifying prohibited permission/symlink/fault fixtures. Stopped normally via Ctrl-C immediately on discovery; some prohibited fixtures already executed. Disclosed to owner; not rerun.",
+    "impact": "No full native acceptance claim; this task changes no Rust/native source."
+  },
+  "visual": {
+    "browser": [
+      "hover opens skills/connectors with parent retained",
+      "no hover focus theft",
+      "light/dark",
+      "1180x760",
+      "document zoom 200%",
+      "long list scroll/footer",
+      "left flip",
+      "management button has no Naive border nodes",
+      "keyboard navigation and nested Escape"
+    ],
+    "native": [
+      "canonical packaged app",
+      "rapid open then End/Right enters connectors with stable 8px gap after removing scale animation",
+      "skills resource shown with actual installed entry",
+      "management skills route /plugins",
+      "management connectors route /connectors?from=/chat"
+    ],
+    "live_state": "Sorftime remains connection incomplete; no configure/reconnect/enable or business request performed."
+  },
+  "source_sha256": {
+    "src/components/chat/ChatAddControl.vue": "dab9314a96790f32d828600a7f58efbf3bfc343dadd5f3d21e5cfab317de9686",
+    "src/components/chat/ChatResourcePanel.vue": "e421547a8dda5b208d827cb581d68edce3e2b388f18c512b5408a362c8015dbf",
+    "src/components/chat/ChatSkillControl.vue": "c1c4408766010f581e719e3ab0a3148f93cf8afa2b9f02a4690da369eaf3aaee",
+    "src/components/chat/ChatConnectorControl.vue": "2539efc584c022eeda6f2d710fc882985ef45c6e60b68b78195f8fab59067560",
+    "src/components/chat/ChatAddControl.test.ts": "e670705b6b3f063e3b3c5f5ae380e422977199f71baff8385f4fa740c7e9effa",
+    "src/components/chat/ChatSkillControl.test.ts": "2cf28ecd163f61671d10a8885d770b28b4bd4ac6d16d7370dd931b263440b4c4",
+    "src/components/chat/ChatConnectorControl.test.ts": "af4c448cabe54a330da4ea1cfc4a9743621cea8fd0c17f17e25c1ee5cab8bede",
+    "src/styles/variables.css": "a9ad9b7dd2ba21f324cde5bd3a59513ade289a7d37524a054dddcd7986e9d12d",
+    "docs/design/docs/design/05-patterns/02-chat-workspace.md": "b1fbb713c9305b98c157f20d2ab1ba25a0c382971e0acecc1f9eae932c145932"
+  },
+  "app_sha256": "1f2f62a1bdc18255dd78db0ef48dd508cd3f1398892c01c9d6790465d76fff78",
+  "logs": {
+    "focused": {
+      "local_path": "/tmp/feat157-cascade-targeted-final-canonical-scope.log",
+      "sha256": "b865205fe872db5eec01b8ac2d33a5c0a07c4546b26dce23dc06dd10769c0af0"
+    },
+    "lint": {
+      "local_path": "/tmp/feat157-cascade-lint.log",
+      "sha256": "9f3349ce28c71c8769daa097486516fc89e6cd0fcecbe561a25914a5bb39a573"
+    },
+    "frontend_full": {
+      "local_path": "/tmp/feat157-cascade-test.log",
+      "sha256": "cafdb2a1734106fae826bc075939c111fafb3848533e050e08cf6f35c42ce3d0"
+    },
+    "baseline": {
+      "local_path": "/tmp/feat157-cascade-baseline-tests.log",
+      "sha256": "de010ddc81aba1a083916108edf4fe724b9c532d3f188843946c838303f04670"
+    },
+    "docs_build": {
+      "local_path": "/tmp/feat157-cascade-docs.log",
+      "sha256": "667d30a08e788bb09fd98eba44c8417c36966aae6405d6ab4d1fcb3b95592325"
+    },
+    "web_build": {
+      "local_path": "/tmp/feat157-cascade-build.log",
+      "sha256": "9417408ab3db001ba79e9c983212c3678ca6cc60279d1e8a98ba3921f66a0468"
+    },
+    "app_build": {
+      "local_path": "/tmp/feat157-cascade-app-final.log",
+      "sha256": "c6e6f8d7af56515a4149a74a74bb85a3ef610adb2fbe981069a8085eda9bed34"
+    },
+    "native_interrupted": {
+      "local_path": "/tmp/feat157-cascade-native-tests.log",
+      "sha256": "a17b48d7a731af876ee1900b69921c2416b05c3518b894d39f96952dc1ba917a"
+    }
+  },
+  "screenshots": {
+    "cascade-connectors-light.jpg": "59416d53e0bde0e60b14aed3b861f3da481e930b3252ea8c72e1d11d485eca70",
+    "cascade-skills-light.jpg": "61e5de4a1cc582f202f0eb7373635d369d8495b9ad865e7ceebf382043e59593",
+    "cascade-zoom-200.jpg": "5f04702c93221dfdc079f6c643348c1bdb51353231820767acca403b834ee375",
+    "cascade-native-connectors.jpg": "def8e8d45e4f540ad39ad9eb0cb5c4cfc3693f263187c335a4146d12475bca6d",
+    "cascade-dark.jpg": "7fd46b0a6213d9c0bbec62e6f43965fd633b8f27a89eeb14cbb7614088592dc2",
+    "cascade-native-skills.jpg": "df5df3f1cf2fbf6caa5f320686c4b9abef849ba987a0334d02e5a3ca0b2df089",
+    "cascade-left-scroll.jpg": "68b6dee83d226db53fe2f0461bff57ae96574c01592a6784d801937b99dcdf49"
+  },
+  "git": "uncommitted; no push",
+  "meta_checks": {
+    "lint": "passed",
+    "tests": {
+      "passed": 50,
+      "failed": 0
+    },
+    "shell_syntax": "passed",
+    "note": "Initial document-marker check matched literal pending wording in the delivery log. Clarified completed OAuth decision and retained explicit no-new-authorization/no-Sorftime-retest facts, then reran successfully.",
+    "log": "/tmp/feat157-cascade-meta-final.log",
+    "log_sha256": "112d01328be43bec7513604878660d26ec58f8be1fde4916678f3f90da955de7"
+  }
+}

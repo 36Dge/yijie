@@ -1,5 +1,19 @@
 # 易界项目 Codex 长期协作记忆
 
+2026-10-08 Sorftime 最新状态：Owner已填密钥，但两条19:19/19:20元数据初始化仍unavailable。审计发现通用HTTP迁移漏带旧链路已验证有效的User-Agent；已补真实yijie-mcp-worker/0.1.0及受限HTTP阶段/状态码诊断，未伪装旧客户端、未改固定Codex。63本地测试/lint/标准App构建通过，说明已左对齐。新worker da3c31537e6be46bb826a2ec44b0541456cbbf2810772aabbba5df1023400f81。尚未真实复验，已申请仅1次连接/发现、0模型/0业务；因先前失败不自动重发，等待用户答复。Keyring已有用户保存密钥，不要再要求重填/卸载或读取密钥。详见FEAT-157/21及sorftime-user-agent-20261008证据。
+
+2026-10-08 19:19 Sorftime 最新续办：Owner 要求明确本机钥匙串/不传易界云端文案并重启重填。已更新文案、62测试/lint通过，标准App重启；以产品正常卸载/重装清理旧连接配置，新安全页已打开，等待Owner本人填写Account-SK并保存。不要读取密钥。此前Owner操作留下两次metadata_initialize unavailable、HTTP状态缺失，未判定原因。此轮agent模型/外部发现/业务调用仍0；Owner明确授权本次重新填写后的单次尝试，失败不自动重发。状态以FEAT-157/evidence/sorftime-market-live-20261008/ledger.json为准。
+
+2026-10-08 Sorftime 最新决定（覆盖下方 OAuth 待确认记录）：Owner 已确认无一键 OAuth，接受手工复制 Account-SK，要求重做正式产品视觉。专用安全页已实现：沿用易界 tokens/原 SVG，单密钥字段、获取入口、保存并连接/取消，去掉 Header/Bearer/旧链路说明。62 worker 测试、lint 和亮暗/窄屏 CUA 检查通过；标准构建已实机验证新页面与正常取消同步，修复 Chrome 原 no-referrer 导致 Origin:null 的共享表单问题；精确 Origin/nonce 校验保留。App 留在 Sorftime 详情且无待处理配置，继续真实验收须用户输入 Account-SK；见 FEAT-157/21。保留原 Keyring/固定端点/逐次审批，真实业务验收额度另记，当前本轮 UI 工作未新增模型/供应商调用。
+
+2026-10-08 Sorftime最新体验确认：Owner期望官方账号登录→授权给易界→返回连接，与Tushare一致。现有Account-SK/Bearer配置未满足该体验，不能仅改按钮/枚举冒称OAuth。本轮仅查代码与公开官方文档；公开教程仍是密钥方式，未查到第三方OAuth接入文档，须确认官方OAuth/合作授权能力后复用现有框架。不要擅自实现另一种密钥替代体验或抓取Cookie。真实验收仍暂停，之前已授权2模型/2连接发现/1只读业务额度未由本轮消耗。详见FEAT-157/20末尾。
+
+2026-10-08 Sorftime真实验收已由Owner明确暂停：已授权本轮最多2轮Kimi-K3、2次连接/工具发现流程、1次product_detail只读查询（B07H9PZDQW，US），一次批准与一次拒绝；失败不重发、不充值订阅，密钥须用户在本机安全页输入。当前使用量全部0；尚未安装Sorftime、未打开配置页、无外部请求在途。仅查看窗口并创建台账，点击详情被用户操作保护拒绝后未继续；暂停前未输入凭据。后续仅在Owner明确继续后恢复，沿用此轮授权与零用量，不混用已耗尽的旧FEAT-157额度。台账：FEAT-157/evidence/sorftime-market-live-20261008/ledger.json。
+
+2026-10-08 FEAT-157最新续办：Owner将FastMoss迁入跨境电商；目录revision7，总58项，跨境10/行业16。标准worker/App已重建，同构建Native窗口分类、搜索、FastMoss/Sorftime详情及聊天管理入口已通过；原锁屏窗口复验缺项关闭。17项前端、1项Native目录及Go目录检查通过，无外部/模型调用。本扩展仍未提交推送，App保留在跨境目录。详见FEAT-157/20和fastmoss-window-recheck.json。
+
+2026-10-08 FEAT-157跨境扩展最新：9项新增完成，目录revision6/58项/7分类，Shopify明确Global Catalog。Sorftime按Owner决定统一市场配置/启用/聊天选择/逐次批准，旧弹窗/密钥环境handoff/专用执行已退役；旧历史与原生trust迁移、通用线程锁保留。34契约/59worker/40+2Native/69前端专项及Host/固定Runtime正常重启通过；canonical App曾确认58目录与9应用，最终512工具容量重建成功后Mac锁屏，未再操作最终窗口。没有新增外部或模型调用，原额度仍耗尽；未提交推送本扩展，原49项Git授权已经执行完毕。实现/证据详见FEAT-157/20。保持用户原有UI/启动器改动，严禁强杀或故障/攻击注入。
+
 ## 文档状态
 
 - 状态：Accepted

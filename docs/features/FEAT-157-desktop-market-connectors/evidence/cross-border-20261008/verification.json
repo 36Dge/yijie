@@ -1,0 +1,152 @@
+{
+  "feature": "FEAT-157",
+  "scope": "cross_border_9_and_sorftime_retirement",
+  "date": "2026-10-08",
+  "contractImpact": "breaking",
+  "release": false,
+  "realModelCalls": 0,
+  "realProviderMetadataCalls": 0,
+  "realProviderBusinessCalls": 0,
+  "tests": {
+    "contracts": {
+      "passed": 34
+    },
+    "worker": {
+      "passed": 59
+    },
+    "nativeConnectors": {
+      "passed": 40
+    },
+    "nativeHistory": {
+      "passed": 2
+    },
+    "uiClientStoreComponentsLauncher": {
+      "passed": 69
+    },
+    "host": {
+      "status": "pass",
+      "packages": [
+        "internal/codex",
+        "internal/app",
+        "internal/session"
+      ],
+      "race": true
+    },
+    "pinnedRuntimeNormalLifecycle": {
+      "passed": 1,
+      "modelOrMcpCalls": 0
+    },
+    "desktopLintTypecheck": "pass",
+    "workerClippySourceAndFormatting": "pass",
+    "connectorCatalogRaceAndVet": "pass"
+  },
+  "workerArtifact": {
+    "schemaVersion": 2,
+    "candidateOnly": true,
+    "binary": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/bin/market-worker/033b27a838b3b7b4d7d119766fad8c897f9955e9d13250b3ccc607dc5265f3e0/yijie-mcp-worker",
+    "sha256": "033b27a838b3b7b4d7d119766fad8c897f9955e9d13250b3ccc607dc5265f3e0",
+    "sizeBytes": 84256368,
+    "codexSource": "7fd463bcef07f37b0211acd9f62b9f93ea0a4b12",
+    "externalCallsEnabled": true,
+    "qualificationOnly": false,
+    "providerProfile": "generic-mcp-v1"
+  },
+  "appArtifact": {
+    "path": "yijie-desktop/src-tauri/target/debug/bundle/macos/易界 AI.app/Contents/MacOS/yijie-desktop",
+    "sha256": "58c084ab5fecd236140a30bcec7401c39eccea456e384529d1c933165c5d8f7e",
+    "signed": false,
+    "buildCommand": "pnpm tauri:demo-fast:app",
+    "buildStatus": "passed"
+  },
+  "uiEvidence": {
+    "native": {
+      "catalogCount": 58,
+      "categories": 7,
+      "crossBorderCount": 9,
+      "search": "passed",
+      "sorftimeDetail": "passed",
+      "externalInstallationOrAuth": false,
+      "lastRebuildReinspection": "not_performed_mac_locked; prior standard App visual check passed before final tool-limit-only change"
+    },
+    "component": {
+      "viewport": "1180x760",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "icons": 9,
+      "searchAndDetail": "passed",
+      "state": "explicit local synthetic uninstalled state, production components"
+    },
+    "screenshots": "yijie-desktop/.local/feat157-crossborder-visual/"
+  },
+  "safety": {
+    "forceKills": 0,
+    "executableImpersonation": false,
+    "permissionSabotage": false,
+    "attackFixtures": false,
+    "legacyFaultSuites": "not_run; ordinary local tests and normal Cmd-Q/EOF used"
+  },
+  "git": {
+    "commitCreated": false,
+    "pushed": false
+  },
+  "logs": {
+    "contracts-tests.log": {
+      "sha256": "fe7a1b859f7325ebd2c064c625f7949041d0e53e433661e744c481c65468ddc0",
+      "bytes": 3463
+    },
+    "worker-tests-final.log": {
+      "sha256": "19a940a8b3c287d6978c1096ede3fa131d6ad3be6b68f08506727b8d8cb91899",
+      "bytes": 6916
+    },
+    "worker-lint-final.log": {
+      "sha256": "3b778bfb7b2b8094634934b767dd190414e702634e21226c07ff69da05a7a2c3",
+      "bytes": 1696
+    },
+    "native-retirement-tests.log": {
+      "sha256": "189ba1d913a8a0288e29b071275a5a5491ca64d629df805303c8ffe0b7f1af22",
+      "bytes": 5082
+    },
+    "native-history-tests.log": {
+      "sha256": "ca91c7dce6a510508cc6756676b7aec4de79f035bcc37c440b165cc1169a6059",
+      "bytes": 717
+    },
+    "ui-client-tests.log": {
+      "sha256": "7c7c5c3e3735fa2b02539037a70f0c1d8d8d4ec50078a1dcde5e9fa26674553d",
+      "bytes": 429
+    },
+    "host-retirement-tests.log": {
+      "sha256": "a055f1a6f882949c258cea0cff0b6db1f11ef2f4ad1950656e8b658954f3ab4d",
+      "bytes": 183
+    },
+    "native-runtime-retirement.log": {
+      "sha256": "397776115efcdce5991d6a581a8fb4118ca8d6e1763ff9f32832681a04d443e1",
+      "bytes": 196
+    },
+    "desktop-lint.log": {
+      "sha256": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6",
+      "bytes": 48
+    },
+    "host-freeze.log": {
+      "sha256": "c58382e588195456a234ee9922c5e0e275c4a729ccf8438c166c301a62bbebc4",
+      "bytes": 57
+    },
+    "worker-build.log": {
+      "sha256": "2dd6bce9e9fc262f2b9426440fd6ee2869fd0dce2a94f80bb7f04f0556ff6212",
+      "bytes": 1006
+    },
+    "canonical-app-final.log": {
+      "sha256": "4f8858bc566f3171f9ad7cb4eb2faa2dcba245018440112881210bd7ac617ec4",
+      "bytes": 15830
+    }
+  },
+  "preexistingUnrelatedFilesUnchanged": [
+    "docs/design/docs/design/05-patterns/02-chat-workspace.md",
+    "docs/local-development.md",
+    "src/components/chat/ChatComposer.vue",
+    "src/components/chat/ChatPermissionControl.vue",
+    "src/components/chat/ChatWorkspaceControl.vue"
+  ],
+  "preexistingLauncherChanges": "preserved; only legacy Sorftime opt-in, prompt and handoff removed and retirement regression added"
+}

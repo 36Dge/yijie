@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-08",
+  "feature": "FEAT-157",
+  "contractImpact": "semantic",
+  "catalogRevision": 7,
+  "catalogCount": 58,
+  "crossBorderCount": 10,
+  "industryDataCount": 16,
+  "serviceId": "FastMoss",
+  "existingIdentityAuthAndExecutionUnchanged": true,
+  "tests": {
+    "catalogGo": "pass",
+    "clientAndComponent": 17,
+    "nativeCatalog": 1,
+    "canonicalWorkerAndAppBuild": "pass",
+    "sameBuildNativeWindow": {
+      "chatConnectorMenu": "pass: 0 installed, management navigation works",
+      "categoryCountAndPlacement": "pass: 10 cross-border, 16 industry, FastMoss only in cross-border",
+      "fastmossSearchAndDetails": "pass",
+      "sorftimeDetails": "pass",
+      "status": "passed_after_owner_unlocked_mac"
+    }
+  },
+  "appSha256": "491f6d85f2d97e7fd1af2469ebf2c30bf09f8ed86f606fda7c4cb457be579be3",
+  "workerArtifact": {
+    "schemaVersion": 2,
+    "candidateOnly": true,
+    "binary": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/bin/market-worker/4ed837244233ef94b43c2d78a749acdf0e121cb8376540094b58159064f0987b/yijie-mcp-worker",
+    "sha256": "4ed837244233ef94b43c2d78a749acdf0e121cb8376540094b58159064f0987b",
+    "sizeBytes": 84256368,
+    "codexSource": "7fd463bcef07f37b0211acd9f62b9f93ea0a4b12",
+    "externalCallsEnabled": true,
+    "qualificationOnly": false,
+    "providerProfile": "generic-mcp-v1"
+  },
+  "screenshot": "yijie-desktop/.local/feat157-crossborder-visual/crossborder-fastmoss-native.jpg",
+  "screenshotSha256": "81322745629892d97b7a5932d57179d8080a12a3aea5a934aed8c0caaa71e47f",
+  "modelCalls": 0,
+  "providerCalls": 0,
+  "credentialsEntered": false,
+  "gitCommittedOrPushed": false,
+  "logs": {
+    "fastmoss-worker-build.log": "5357ad105c746bb72966fd6710e3411c1b28b845af4ca67dbe1aa2ef7b077d52",
+    "fastmoss-ui-tests.log": "ac8e76b8c9f605561e1eb3889b22773376b90b653394695683b8353133a7b49e",
+    "fastmoss-native-tests.log": "0e7df08b3c6c2600413adb4557442cce05e8f30c43d7dc7f377ca3727b3cf71e",
+    "fastmoss-canonical-app.log": "d65ec2ea54a678c2a47af25d3103639859e8df1d75cfbdce1baf4de683091b19"
+  }
+}

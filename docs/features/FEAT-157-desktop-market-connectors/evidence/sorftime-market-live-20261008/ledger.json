@@ -1,0 +1,112 @@
+{
+  "date": "2026-10-08",
+  "feature": "FEAT-157",
+  "provider": "sorftime",
+  "scope": "market_generic_mcp_v1_live_acceptance",
+  "ownerAuthorization": "Explicitly approved 2 Kimi-K3 turns, 2 connection/discovery workflows, 1 read-only product_detail query for B07H9PZDQW / US, one approve and one reject; no retries/recharge/subscription; user enters key locally.",
+  "limits": {
+    "modelTurns": 2,
+    "connectionDiscoveryWorkflows": 2,
+    "businessCalls": 1
+  },
+  "used": {
+    "modelTurns": 0,
+    "connectionDiscoveryWorkflows": 1,
+    "businessCalls": 0
+  },
+  "status": "metadata_retest_passed_configured_not_enabled",
+  "appSha256": "491f6d85f2d97e7fd1af2469ebf2c30bf09f8ed86f606fda7c4cb457be579be3",
+  "workerArtifact": {
+    "schemaVersion": 2,
+    "candidateOnly": true,
+    "binary": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/bin/market-worker/4ed837244233ef94b43c2d78a749acdf0e121cb8376540094b58159064f0987b/yijie-mcp-worker",
+    "sha256": "4ed837244233ef94b43c2d78a749acdf0e121cb8376540094b58159064f0987b",
+    "sizeBytes": 84256368,
+    "codexSource": "7fd463bcef07f37b0211acd9f62b9f93ea0a4b12",
+    "externalCallsEnabled": true,
+    "qualificationOnly": false,
+    "providerProfile": "generic-mcp-v1"
+  },
+  "events": [
+    {
+      "event": "owner_requested_pause",
+      "stage": "before_local_installation",
+      "externalCallsStarted": false,
+      "credentialPageOpened": false,
+      "reason": "User explicitly requested pause; last UI action was rejected after user interaction, no installation mutation completed."
+    },
+    {
+      "event": "owner_confirmed_manual_account_sk_and_requested_production_ui",
+      "stage": "credential_page_redesign",
+      "externalCallsStarted": false,
+      "note": "OAuth question closed by owner. UI-only local regression and production-renderer visual checks use no real credential or provider/model calls. Existing live budget retained."
+    },
+    {
+      "event": "credential_ui_canonical_verification_complete",
+      "localUiSessions": 2,
+      "credentialSubmitted": false,
+      "externalCallsStarted": false,
+      "nativeStatus": "连接已取消，服务未启用。",
+      "note": "Local opening/cancel checks only, no Sorftime connection/discovery request sent. Existing installation observed from owner; did not install/uninstall. Live usage remains zero."
+    },
+    {
+      "event": "owner_explicitly_requested_restart_and_one_repeat",
+      "reason": "Owner reported temporarily unavailable and will personally re-enter Account-SK.",
+      "localActions": "Standard build/restart; normal UI uninstall/reinstall to avoid reusing saved key.",
+      "historicalOwnerObservations": {
+        "metadataInitializeUnavailable": 2,
+        "httpStatusAvailable": false,
+        "keyringPreflightSucceeded": true
+      },
+      "agentExternalCallsThisTurn": 0,
+      "credentialSubmittedByAgent": false
+    },
+    {
+      "event": "fresh_credential_page_opened_for_owner",
+      "openedLocalTime": "2026-10-08T19:18:59+08:00",
+      "credentialSubmittedByAgent": false,
+      "stage": "awaiting_owner_entry",
+      "workerSha256": "6aa78dd71d11b3a0c49a2aed52556c773e62d019c2ca40b87236de7b5b45487d",
+      "note": "Owner explicitly requested one new attempt after reporting unavailable. Do not auto-retry; observe result after owner saves."
+    },
+    {
+      "event": "owner_reported_credential_entry_complete_initialization_still_failed",
+      "observedOperationIds": [
+        "83f520f2-ba46-45e6-bce4-4e04ad60beaa",
+        "fbb7a1de-7c65-4e1c-85fe-c24b9e7e4b6e"
+      ],
+      "observedFailure": "metadata_initialize unavailable, no tools/list",
+      "agentExternalCallsThisTurn": 0,
+      "fix": "Actual worker User-Agent plus bounded metadata HTTP diagnostics; 63 local tests passed.",
+      "requestedAuthorization": "One connection/discovery retest using saved key, no model or business query, stop on failure.",
+      "approval": "pending"
+    },
+    {
+      "event": "owner_authorized_saved_key_connection_retest_with_retries_and_model_if_needed",
+      "at": "2026-10-08T20:43:39.067398+08:00",
+      "scope": "Use saved Sorftime key for one connection/tools discovery check; owner now permits retries and model calls if needed. No recharge/subscription or expanded business query scope.",
+      "plan": "Start with one UI configure operation; diagnose before any retry. No model or business call needed for metadata check.",
+      "workerSha256": "da3c31537e6be46bb826a2ec44b0541456cbbf2810772aabbba5df1023400f81"
+    },
+    {
+      "event": "saved_key_metadata_retest_passed",
+      "at": "2026-10-08T20:47:33.299053+08:00",
+      "operationId": "bc3fad0e-bed6-4f56-9920-7536bcebc935",
+      "connectionDiscoveryWorkflows": 1,
+      "retries": 0,
+      "modelTurns": 0,
+      "businessCalls": 0,
+      "httpStatuses": [
+        200,
+        202,
+        200
+      ],
+      "keyringPreflight": "succeeded",
+      "metadataInitialize": "succeeded",
+      "metadataToolsList": "succeeded",
+      "ui": "Sorftime installed but not enabled; Enable Sorftime is available; previous error cleared.",
+      "note": "No credential page opened, no secret read/exported by agent. Runtime used existing Keyring entry through the normal product flow. Enable not clicked because it starts another discovery workflow."
+    }
+  ],
+  "uiOnlySessions": 2
+}

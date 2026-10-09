@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-08",
+  "scope": "Sorftime credential UI only",
+  "worker": {
+    "schemaVersion": 2,
+    "candidateOnly": true,
+    "binary": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/bin/market-worker/5117eb8606ff5aa6e030ff32c46467948ce295ed0d582f725e54b373ac47ad1f/yijie-mcp-worker",
+    "sha256": "5117eb8606ff5aa6e030ff32c46467948ce295ed0d582f725e54b373ac47ad1f",
+    "sizeBytes": 84306992,
+    "codexSource": "7fd463bcef07f37b0211acd9f62b9f93ea0a4b12",
+    "externalCallsEnabled": true,
+    "qualificationOnly": false,
+    "providerProfile": "generic-mcp-v1"
+  },
+  "appSha256": "ae8cfed5b6e43bc8ef9ba500f2863a44ae9c8ec5284c6d07c703e4e9def385fe",
+  "checks": {
+    "workerTests": {
+      "passed": 62,
+      "failed": 0
+    },
+    "workerLint": "passed",
+    "designSnapshot": "passed",
+    "javascriptSyntax": "passed",
+    "visual": {
+      "light": "1180x760",
+      "dark": "1180x760 (preview media selection)",
+      "narrowError": "390x844",
+      "normalLocalExpiry": "passed",
+      "emptyInputFocus": "passed",
+      "showHide": "passed",
+      "submittedReceipt": "does not claim saved or connected"
+    },
+    "canonicalApplication": {
+      "pageOpenedFromSorftimeDetails": true,
+      "browserCancel": "已取消连接",
+      "nativeOperationStatus": "连接已取消，服务未启用。",
+      "actualKeyEntered": false
+    }
+  },
+  "realUsageThisUiStage": {
+    "modelTurns": 0,
+    "sorftimeDiscovery": 0,
+    "sorftimeBusinessCalls": 0
+  },
+  "uiOnlySessions": 2,
+  "note": "First UI-only session exposed no-referrer / Origin:null incompatibility, ended with Native cancel. Final standard rebuild verified browser cancel end-to-end. No force kills, injection, real key submission, commit or push. Earlier worker-build.log is the pre-header-fix intermediate artifact; canonical-app-build.log and worker manifest identify final build."
+}

@@ -1,0 +1,21 @@
+Focused: 4 files / 36 tests PASS
+Full frontend: 177 passed files, 8 failed files; 1485 passed / 17 failed / 2 skipped tests
+All 17 failures reproduced with pre-task menu components.
+
+scripts/check-agent-host-v4-contract.test.mjs > FEAT-134 Agent Host v4 exact pin > verifies immutable v4 objects while current clean siblings provide v6 execution
+scripts/check-feat128-s9b-d-dependencies.test.mjs > FEAT-128 S9B-D dependency boundary > checks the actual package, lock, notice and static import boundary
+scripts/native-conversation-bundle.test.mjs > browser bundle validates native Items and preserves Unicode length limits
+scripts/sync-desktop-skill-resources.test.mjs > Desktop v2 Skill resources > builds demo_fast with its exact compile-time profile and local channel
+src/domain/conversation-timeline.test.ts > selectConversationTimeline > wires the FEAT-137 policy into the ChatPage projection boundary
+src/domain/conversation-timeline.test.ts > selectConversationTimeline > maps every Thread and Turn status without inventing timing or permission facts
+src/domain/conversation-timeline.test.ts > selectConversationTimeline > keeps Turn progress and aggregated notices separate from domain Items
+tests/feat-131/chat-event-replay-harness.test.ts > FEAT-131 raw event replay: GS-001-streaming-complete.synthetic.json > passes raw payloads through the production parser and store deterministically
+tests/feat-131/chat-event-replay-harness.test.ts > FEAT-131 raw event replay: GS-012-resync-recovery.synthetic.json > passes raw payloads through the production parser and store deterministically
+tests/feat-131/chat-event-replay-harness.test.ts > FEAT-131 raw event replay: GS-013-sequence-gap.synthetic.json > passes raw payloads through the production parser and store deterministically
+src/components/yijie/YjSidebar.test.ts > YjSidebar permission rendering > FEAT-130 renders the approved main order and a non-navigable history tree
+src/components/yijie/YjSidebar.test.ts > YjSidebar permission rendering > hides task history in icon mode and preserves collapsed directories when restored
+src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > does not switch the renderer when metadata-only reasoning enters the projection
+src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > does not treat an active empty reasoning Item as historical authority loss
+src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > selects through the unified plus entry and permits an attachment-only task
+src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > keeps one accepted user identity and never restores its drafts after failed
+src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > keeps one accepted user identity and never restores its drafts after interrupted

@@ -122,3 +122,16 @@ Owner明确选择“接受分阶段证据，完成本地 D4（推荐）”：AC0
 ## 2026-10-08 Git交付
 
 Owner在本地D4完成后明确授权提交推送。已按契约→Connectors→Host→Desktop顺序交付，Desktop独立功能分支避免携带已有店铺提交和其他未提交UI修改；元仓随后提交本包和跨仓交付记录。详见[19](19-git-delivery-2026-10-08.md)。本阶段新增真实模型和供应商调用均0。
+
+
+2026-10-08跨境扩展已实现：新增9项及图标、目录58/7分类；契约源先行生成，Shopify Global Catalog无密钥UCP、Sorftime旧执行退役。修复Native/worker/renderer数量限制及领星大目录容量。34项契约、59项worker、40+2项Native、69项UI/client/store/launcher和Host/Runtime普通专项通过（Host固定Runtime正常退出重启亦通过）。标准App曾确认58项/九应用搜索与Sorftime详情；最终容量调整重建成功后Mac锁屏，未冒称同构建再次实机通过。外部与模型调用0，未Git提交推送。详见[20](20-cross-border-commerce-extension.md)及证据JSON。
+
+2026-10-08后续：按Owner要求将FastMoss从行业数据移至跨境电商，目录revision7（10/16，总58）；原身份/认证/执行保持不变。已重建并完成解锁后的同构建窗口检查，关闭先前锁屏缺项。17项前端/1项Native目录检查与Go目录检查通过，无真实调用，未提交推送；详见20和fastmoss-window-recheck证据。
+
+
+2026-10-08 Sorftime 配置页重设计：Owner 确认手工 Account-SK 方案，OAuth 决策已关闭。worker 安全页采用易界 token/品牌与 Sorftime 原图标，隐藏 Header/格式，提供获取密钥、显示/隐藏、保存并连接、取消及一致的错误/过期/回执。62 worker 回归、Clippy/rustfmt、JS 语法、token 快照检查和亮暗/窄屏视觉检查通过。细节与标准构建记录见 [21](21-sorftime-credential-page.md)。本阶段未发生模型或供应商请求，未提交推送。
+
+2026-10-08 对话菜单精简：主菜单行高36px，添加文件与连接器图标区分；技能/连接器悬停展开260px级联，保留父菜单；子菜单只保留搜索、列表、必要状态与无描边管理按钮。快速展开的动画测量重叠已修复，最终标准App与管理导航检查完成。36项专项、lint、类型和构建通过；全量前端17项失败在改动前菜单上均复现，未冒称全套通过。误启动含禁止fixture的Native全套后已正常中断、披露并登记，不重跑、不计通过。详情见[22](22-composer-cascade-refinement.md)。本次外部/模型调用0，Sorftime真实复验尚未获得新一次请求授权，因此没有执行，未提交推送。
+
+
+2026-10-08 20:44 Sorftime已保存密钥复验通过：Owner放开1次连接/发现及必要重试/模型；实际只发起1次正常配置流程，初始化和工具列表均成功，HTTP200/202/200，UI旧错误清除并显示可启用。重试0、模型0、业务0；保留待启用状态，未宣称业务批准/拒绝已验收。详见21最新段落与`sorftime-metadata-retest-20261008`证据。本轮无产品代码变更、无Git提交推送。
