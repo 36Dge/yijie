@@ -1,0 +1,78 @@
+{
+  "date": "2026-10-09",
+  "contractImpact": "none",
+  "repoHead": "a539f9892ee1d24235b796c708a9c69052e744a7",
+  "implementation": [
+    "native textarea first-line connector prefix with wrapping fallback",
+    "native scroll/IME/undo/selection kept",
+    "click and start-of-text Backspace remove",
+    "sent prefix from original native turn snapshot only",
+    "20px connector list icons and 32px rows"
+  ],
+  "checks": {
+    "focusedTests": {
+      "files": 3,
+      "passed": 31,
+      "failed": 0
+    },
+    "makeLint": "passed with existing clean immutable contract/host snapshots",
+    "makeBuild": "passed",
+    "docsBuild": "passed",
+    "fullSuites": "not run: known prohibited attack/permission/fault fixtures; no full-suite PASS claim",
+    "metaRepository": {
+      "lint": "passed",
+      "testsPassed": 50,
+      "shellSyntax": "passed"
+    }
+  },
+  "visual": {
+    "viewport": "1180x760",
+    "cases": [
+      "one connector with inline text",
+      "sent native turn presentation",
+      "two connectors and newline aligned left",
+      "light/dark",
+      "340px composer with multiple/long names",
+      "200% zoom",
+      "32px list row and 20px icon"
+    ],
+    "mode": "production Vue components with local synthetic state; no real model send",
+    "consoleErrorsAndWarnings": []
+  },
+  "nativeWindow": {
+    "status": "awaiting_owner_normal_quit",
+    "reason": "Running unpackaged target/debug/yijie-desktop is not connected to CUA; packaged-app selection timed out. Owner requested to quit via Cmd-Q; no forced termination."
+  },
+  "externalUsage": {
+    "models": 0,
+    "metadataWorkflows": 0,
+    "businessCalls": 0
+  },
+  "sourceSha256": {
+    "src/components/chat/ChatComposer.vue": "1fdda1cf939f7fe30928306cd82f5212c5d6b62a0ce23afc1d3e60f9f8d7b171",
+    "src/components/chat/ChatComposer.test.ts": "2232a8e71baafd89a921792c2c4ba324e57f31a9ac2d021a5a0274bbeb294763",
+    "src/components/chat/ChatConnectorChips.vue": "460b445c6e01bb8199532eca3491d7055239270f939e04e3a8d408cb4a18edd9",
+    "src/components/chat/ChatConnectorControl.vue": "25d289329852adf07f3673903cbc136bb1e80ef8e7c46d07f15d915e8634583f",
+    "src/components/chat/ChatSafeContent.vue": "dd22520d4b2cb55c5f53f022e118f2e8b005bee775d5cbe547e228aab385c075",
+    "src/components/chat/ChatTimeline.vue": "3c97f5d78dad721fdb6ddeb7d6cf2be55a25fb0f1554f4711595bf400539470b",
+    "src/components/chat/ChatTurnGroup.vue": "e0e6589f38d3ad4b20e644b5bc34faa9cf1332f7a730d8f98220dc66d6f97df8",
+    "src/components/chat/ChatConnectorPresentation.test.ts": "ccbf7db585de2da6429b4b500f235fc78456422459a5dbcf74a5a71499056594",
+    "src/components/connectors/ConnectorIcon.vue": "6e31a242d6a240ee5d169da86343845408d20837ba7bfec3c96a62d69aaf9057",
+    "src/pages/chat/ChatPage.vue": "f6856e17d6db7f490dbfa25c189a894860480637d2284ecf7b0182866ed347d6",
+    "src/styles/variables.css": "b7da34907bf281ed0b4c72c573a8312e2d483684038cc04f3381049743bb0260"
+  },
+  "screenshots": {
+    "mention-narrow.jpg": "41add674bd8716bfb257f6660e1a8c85906492f2879753648aa298ad3d967c97",
+    "mention-menu.jpg": "bf9145ce91ca573e57bdf8ab2b55a23517e9340d39c14869d573c2ae63b0f86a",
+    "mention-sent-light.jpg": "6ad15c4b7a212e25f8f32c0a681455b345cdd38a8c5b4602242a4b57b657909c",
+    "mention-draft-light.jpg": "9334d1f6308a1be4878e973b2da82ea0b1df63685bdcbdc5db3be63d40117cc6",
+    "mention-multiple.jpg": "0b3f55dcb8518d2af6f401cf1e148113d8e7c1b49d55b3898f7b151d3d087656",
+    "mention-dark.jpg": "2fa02629f1cc4a003b15fcd6117ffcc9f08aaef3c3a9eeea4520910c61b0268c",
+    "mention-zoom.jpg": "49de8215be9027a681e1c9f0d80231a1c61a40219d9920ed6ae0b404e7b5c280"
+  },
+  "unrelatedPreexisting": [
+    "contracts/chat-model-host-build.candidate.json",
+    "contracts/market-catalog.candidate.json"
+  ],
+  "git": "not committed or pushed"
+}
