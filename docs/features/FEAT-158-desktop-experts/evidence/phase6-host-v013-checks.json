@@ -1,0 +1,45 @@
+{
+  "recordedAt": "2026-10-11T14:24:17.111900+00:00",
+  "version": "0.1.3",
+  "bundleVersion": "0.4.3",
+  "contractImpact": "semantic: current reviewed content catalog pin only; no wire/schema/Runtime/store behavior change",
+  "baseline": ".local/feat158-phase6-v013-host-baseline.json",
+  "manifestSha256": "46e3e5b9e101c252a4dcb0bc9d27c1da024ea6457be43e5be5736ccf047c6b58",
+  "authoritySha256": "351327f5b93b60323fbe7833454c6e53f96f0bacef7da500c9db9c24a6311b53",
+  "sourceSha256": {
+    "internal/skills/experts_candidate.go": "73948104a477149822174584cb6183074d70c807cab561c4b25bb9ed10a44d0d",
+    "internal/skills/experts_test.go": "c1de031d0cb4f77d474e82c3b75f4a4f12b9b923cd215089f723474ceb3cd44f",
+    "internal/session/expert_resources_test.go": "001b61567220bf42d7ede350558edcf132500c47af175e99481f604dc3af65f1",
+    "internal/session/experts_recovery_test.go": "459e092e848865a9c6bfdb13e13736ecbb246c9f9d73dad6d851cd0afa99928b",
+    "docs/experts-host-candidate.md": "78649e9217cd9891a12c1ba22158dfa0511ac2f814c290a0558257e3a67cbccf"
+  },
+  "checks": [
+    {
+      "command": "YIJIE_EXPERT_TEST_BUNDLE=/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills/dist/skills-experts-candidate-v013 YIJIE_EXPERT_TEST_MANIFEST_SHA256=46e3e5b9e101c252a4dcb0bc9d27c1da024ea6457be43e5be5736ccf047c6b58 GOTOOLCHAIN=local GOPROXY=off GOSUMDB=off /Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go test ./internal/skills ./internal/session ./internal/app -run '^TestFEAT158(ActualCandidateManagedResources|ActualResourceLifecycleReusesCoreJournalAndProtectsReferences|ExplicitResourceRecoveryRejectsOnlyUnstartedOriginals|ExpertLaunch)' -count=1 -v",
+      "result": "PASS",
+      "topLevelTests": 5,
+      "nestedNormalStateCases": 6,
+      "actualRoleBytes": 3188,
+      "shortIndexBytes": 4420,
+      "globalRuntimeProjectionCount": 0
+    },
+    {
+      "command": "GOTOOLCHAIN=local GOPROXY=off GOSUMDB=off /Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go vet ./internal/skills ./internal/session ./internal/app",
+      "result": "PASS"
+    },
+    {
+      "command": "git diff --check; gofmt -d on four changed Go files",
+      "result": "PASS",
+      "formatDiffEmpty": true
+    }
+  ],
+  "limits": [
+    "No new model/UI/network/service invocation or product startup.",
+    "No Runtime, generated DTO, schema, permission or reference guard change.",
+    "Only fresh temporary managed-install directories used; previous content packages, actual installs and historical databases preserved.",
+    "No additional real MCP metadata attempt, diagnostic feature or speculative handshake protocol change.",
+    "No full historical unsafe test-suite claim and no model-content acceptance claim.",
+    "No standalone Host canonical binary build performed here; Desktop performs source freeze/check as needed."
+  ],
+  "evidenceNote": "Observed command outputs summarized; no preserved full-log claim."
+}

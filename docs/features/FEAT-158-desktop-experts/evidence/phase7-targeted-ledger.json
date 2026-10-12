@@ -1,0 +1,103 @@
+{
+  "feature": "FEAT-158",
+  "scope": "Only quick-prompt replacement and Shopify initialize handshake root causes; no expanded acceptance",
+  "authorization_quote": "继续认真从代码逻辑上排查快捷问题替换和连接器握手的问题，找到明确根因再修复，不要猜改，可追加真实模型调用，但不要扩大验收范围。",
+  "created_at": "2026-10-11T14:34:11.879105+00:00",
+  "real_model_messages": 0,
+  "business_tools_call": 0,
+  "metadata_flows": [
+    {
+      "id": "public-handshake-shape",
+      "status": "observation_complete",
+      "max_http_requests": 3,
+      "scope": "One initialize, one initialized notification, and only if server returns a session a normal DELETE cleanup; fixed public Shopify endpoint, no credentials or business data",
+      "requests": [
+        {
+          "method": "initialize",
+          "started_at": "2026-10-11T14:35:02.266121+00:00",
+          "curl_exit": 0,
+          "http_status": 200,
+          "media_type": "application/json",
+          "body_bytes": 249,
+          "body_sha256": "e07ba76d74b058724c61cf2cf1e8d5b5d4c24205a4180c3a42dd8d7160510e49",
+          "session_header_present": false,
+          "json_shape": {
+            "keys": [
+              "id",
+              "jsonrpc",
+              "result"
+            ],
+            "jsonrpc_2": true,
+            "has_id": true,
+            "matching_request_id": true,
+            "result_kind": "dict",
+            "has_error": false,
+            "result_keys": [
+              "capabilities",
+              "protocolVersion",
+              "serverInfo"
+            ],
+            "protocol_version": "2025-11-25"
+          }
+        },
+        {
+          "method": "notifications/initialized",
+          "started_at": "2026-10-11T14:35:03.082346+00:00",
+          "curl_exit": 0,
+          "http_status": 200,
+          "media_type": "application/json",
+          "body_bytes": 4,
+          "body_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+          "session_header_present": false,
+          "json_shape": "JSON null",
+          "exact_body_class": "four-byte JSON literal null (length and SHA256 match)"
+        }
+      ],
+      "started_at": "2026-10-11T14:35:02.265790+00:00",
+      "limitations": "Direct official public metadata shape only; no product qualification, no tools/list or tools/call, raw body/session headers not persisted"
+    },
+    {
+      "id": "notification-response-length",
+      "status": "observation_complete",
+      "max_http_requests": 3,
+      "reason": "Determine an exact non-consuming compatibility guard; initial observation did not retain Content-Length. Same metadata pair only; no business calls.",
+      "requests": [
+        {
+          "method": "initialize",
+          "started_at": "2026-10-11T14:38:39.139068+00:00",
+          "curl_exit": 0,
+          "http_status": 200,
+          "media_type": "application/json",
+          "content_length": 249,
+          "transfer_encoding": "absent",
+          "body_bytes": 249,
+          "body_sha256": "e07ba76d74b058724c61cf2cf1e8d5b5d4c24205a4180c3a42dd8d7160510e49",
+          "exact_json_null": false,
+          "session_header_present": false
+        },
+        {
+          "method": "notifications/initialized",
+          "started_at": "2026-10-11T14:38:39.770429+00:00",
+          "curl_exit": 0,
+          "http_status": 200,
+          "media_type": "application/json",
+          "content_length": 4,
+          "transfer_encoding": "absent",
+          "body_bytes": 4,
+          "body_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+          "exact_json_null": true,
+          "session_header_present": false
+        }
+      ]
+    }
+  ],
+  "ui_actions": [],
+  "appearance": "OWNER_SKIPPED",
+  "full_acceptance": "NOT RUN",
+  "initial_model_message_cap": 2,
+  "cap_origin": "Agent bounded targeted execution cap under latest user authorization; no model call necessary so far",
+  "scope_status": "Targeted code root-cause repairs and local verification complete",
+  "metadata_http_requests": 4,
+  "app_launches": 0,
+  "product_retest": "NOT RUN; not promoted to whole FEAT-158 acceptance"
+}

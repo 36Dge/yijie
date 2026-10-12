@@ -1,0 +1,62 @@
+{
+  "recorded_at": "2026-10-12T16:53:07.734370+00:00",
+  "native_session": "01a130e5-e734-7b62-9b95-f8a25b7c8a4a",
+  "runtime_thread": "01a130e5-e792-76b1-b691-e673783cf425",
+  "turns": [
+    {
+      "ordinal": 1,
+      "turn_id": "01a130e5-e7c8-78e2-a795-d6863c3f2344",
+      "model": "kimi-k3",
+      "effort": "max",
+      "approval": "on-request",
+      "completed": true,
+      "tool_count": 3
+    },
+    {
+      "ordinal": 2,
+      "turn_id": "01a130fa-6ff7-7863-b238-fd8a96c6ac78",
+      "model": "kimi-k3",
+      "effort": "max",
+      "approval": "on-request",
+      "completed": true,
+      "tool_count": 1
+    },
+    {
+      "ordinal": 3,
+      "turn_id": "01a130fc-a1dd-7241-a37f-5499583a384a",
+      "model": "kimi-k3",
+      "effort": "max",
+      "approval": "on-request",
+      "completed": true,
+      "tool_count": 0
+    },
+    {
+      "ordinal": 4,
+      "turn_id": "01a13105-375b-7fd3-90c6-171bb261d188",
+      "model": "MiniMax-M3",
+      "effort": "high",
+      "approval": "on-request",
+      "completed": true,
+      "tool_count": 1
+    }
+  ],
+  "checks": {
+    "quick_prompt_keep_then_replace": "PASS real UI, retained attachment/model/workspace, zero turns before explicit send",
+    "existing_session_return": "PASS exact native session route",
+    "nonempty_connector_selection": "PASS explicitly selected qualified Shopify and Native accepted expert turn",
+    "native_approval_decline": "PASS actual card declined, native CreateProcess rejected by user, one proposed command and no retry",
+    "declined_output_file_exists": false,
+    "ordinary_after_remove": "PASS same thread, normal two-sentence answer and zero tools",
+    "historical_resource_removal": "PASS UI rejected;27 installed files byte-identical",
+    "same_artifact_reopen": "PASS exact app and receipt hashes plus canonical --reopen check",
+    "model_and_expert_restored": "PASS MiniMax-M3/high and0.1.3 reference reread",
+    "new_empty_draft_isolation": "PASS no expert, defaultKimi in real UI; previous ordinary B model evidence reused without additional message"
+  },
+  "limits": [
+    "session_meta base is creation metadata, not direct proof of current resumed instructions; use actual switches/read plus existing composition tests",
+    "Unknown delivery branches use normal typed journal tests and retained prior real read-only evidence, not forced failures",
+    "MiniMax lifecycle answer is not merged into fixed Kimi content grading",
+    "Content c01 FAIL, c02-c12 NOT RUN in this phase, D4 not passed",
+    "Appearance skipped"
+  ]
+}

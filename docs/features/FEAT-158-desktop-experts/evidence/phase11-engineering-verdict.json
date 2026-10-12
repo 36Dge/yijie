@@ -1,0 +1,93 @@
+{
+  "recorded_at": "2026-10-12T17:16:20.054105+00:00",
+  "scope": "AC-010 / D4 engineering closure only; AC-007 removed,appearance SKIPPED",
+  "contract_impact": "none; no product source,protocol,permission or persistence changes",
+  "final_receipt": "phase9-v013-final-build-receipt.json",
+  "final_receipt_sha256": "9a2836ff801763e7941fc2f44e47ae18f4fb8fb2598083f3c3b9138073c9d839",
+  "app_sha256": "3f37a9ab850a36e3f5197dae8e352e43143a658c696155fc30ab87585dabe776",
+  "build_comparison": [
+    {
+      "before": "phase9-v013-build-receipt.json",
+      "desktop_sources_identical": true,
+      "build_environment_digests_identical": true,
+      "changed_worker_inputs": [
+        "worker/src/shopify_ack_tests.rs",
+        "worker/src/tushare_oauth.rs"
+      ],
+      "changed_bundle_files": [
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/target/debug/bundle/macos/易界 AI FEAT-158 内容 0.1.3.app/Contents/MacOS/yijie-desktop"
+      ],
+      "host_runtime_and_expert_resource_bytes_unchanged": true
+    },
+    {
+      "before": "phase9-v013-diagnostic-build-receipt.json",
+      "desktop_sources_identical": true,
+      "build_environment_digests_identical": true,
+      "changed_worker_inputs": [
+        "worker/src/shopify_ack_tests.rs",
+        "worker/src/tushare_oauth.rs"
+      ],
+      "changed_bundle_files": [
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/target/debug/bundle/macos/易界 AI FEAT-158 内容 0.1.3.app/Contents/MacOS/yijie-desktop"
+      ],
+      "host_runtime_and_expert_resource_bytes_unchanged": true
+    }
+  ],
+  "source_candidate_check": {
+    "command": "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast YIJIE_EXPERTS_ENABLED=true YIJIE_CHAT_MODELS_ENABLED=true YIJIE_MARKET_CONNECTORS_ENABLED=true YIJIE_RUNTIME_PERMISSIONS_ENABLED=true node scripts/chat-model-build-candidate.mjs",
+    "repository": "yijie-desktop",
+    "exit_code": 0,
+    "output": "FEAT-158 local source candidate verified; release=false.",
+    "host_source_files": 351,
+    "contract_pins": 17,
+    "source_locks": 6,
+    "consumers": "Existing canonical check-only scripts verify applicable model,market,expert consumers and Skills resource slots; no freeze,generate,build or launch"
+  },
+  "final_build_model_evidence": [
+    {
+      "turn_id": "01a130fa-6ff7-7863-b238-fd8a96c6ac78",
+      "model": "kimi-k3",
+      "completed": true,
+      "completed_at": "2026-10-12T16:39:04.400Z",
+      "case": "native approval declined with explicit expert+Shopify selection"
+    },
+    {
+      "turn_id": "01a130fc-a1dd-7241-a37f-5499583a384a",
+      "model": "kimi-k3",
+      "completed": true,
+      "completed_at": "2026-10-12T16:40:32.977Z",
+      "case": "ordinary mode after expert removal"
+    },
+    {
+      "turn_id": "01a13105-375b-7fd3-90c6-171bb261d188",
+      "model": "MiniMax-M3",
+      "completed": true,
+      "completed_at": "2026-10-12T16:50:04.254Z",
+      "case": "rebound expert resumed after same-artifact Quit/reopen; read0.1.3 M03"
+    }
+  ],
+  "excluded_from_final_build_smoke": {
+    "turn_id": "01a130e5-e7c8-78e2-a795-d6863c3f2344",
+    "reason": "c01 executed before final worker/App build; historical content FAIL unchanged and AC-007 removed; not used as final-build happy-path proof"
+  },
+  "final_build_window": "Canonical final build at2026-10-12T16:34Z; successful enable16:36Z,turns2/3 at16:38-16:40Z,reference guard16:43Z,same-artifact Quit/reopen and turn4 by16:50Z; unchanged-build no-model UI completion in this turn",
+  "scope_of_reuse": "Earlier focused domain/compatibility tests supplement unchanged source branches; never represented as live UI coverage of every unknown state or as different build runs merged into one",
+  "historical_evidence_unchanged_count": 136,
+  "models_added": 0,
+  "models_cumulative": 28,
+  "new_metadata_http_requests": 3,
+  "business_tools_call": 0,
+  "implementation_changes": [],
+  "active_ac_status": {
+    "AC-001": "pass",
+    "AC-002": "pass",
+    "AC-003": "pass",
+    "AC-004": "pass",
+    "AC-005": "pass",
+    "AC-006": "pass",
+    "AC-008": "pass",
+    "AC-009": "pass",
+    "AC-010": "pass"
+  },
+  "decision": "Engineering evidence supports AC-010 and local D4; package gate check recorded separately; not a content-quality or appearance PASS"
+}

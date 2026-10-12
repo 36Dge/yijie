@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-158",
+  "profile": "content-v011",
+  "recorded_at_utc": "2026-10-11T11:13:23.062364+00:00",
+  "contract_impact": "semantic: explicit fixed local deployment profile only; existing wire, business schema, source pin, preparation installer and reference guards are reused",
+  "canonical_command": "YIJIE_EXPERTS_ENABLED=true ./scripts/run-local-demo-fast.sh --packaged --experts-content-v011",
+  "selection": {
+    "required_gate": "Explicit YIJIE_EXPERTS_ENABLED=true; canonical launcher fixes local/demo_fast and requires current model/market/runtime-permissions qualification",
+    "identifier": "com.yijie.ai.feat158-content-v011",
+    "product_name": "易界 AI FEAT-158 内容 0.1.1",
+    "runtime_root": ".local/feat158-content-v011-candidate",
+    "host_home": "host-home under runtime_root",
+    "codex_home": "codex-home under runtime_root",
+    "host_binary": "bin/yijie-agent-host under runtime_root",
+    "host_port_default": 18159,
+    "native_install_root": "Native app_data/skills/installed",
+    "source_pin": "contracts/experts-assets.candidate.json (same current pin as default)",
+    "producer_output": "dist/skills-experts-candidate-v011",
+    "generated_resource_slot": ".local/skill-packages-experts (shared current generated resources)",
+    "bundled_resource_slot": "skill-packages-experts",
+    "single_instance_lock": "com.yijie.ai.feat158-content-v011.instance.lock"
+  },
+  "preservation": {
+    "default_profile_unchanged": true,
+    "old_app_bundle_not_targeted_by_new_product_name": true,
+    "copies_old_database": false,
+    "changes_reference_guards": false,
+    "replaces_old_managed_installation": false,
+    "second_asset_pin_added": false,
+    "new_business_installer_added": false,
+    "note": "Current generated build cache may be updated through the original canonical sync. Real run5 DB/installations/homes and old built app remain separate. Root/content agent owns old producer evidence snapshots and pin update."
+  },
+  "checks": [
+    {
+      "command": "bash -n scripts/run-local-demo-fast.sh",
+      "exit_code": 0
+    },
+    {
+      "command": "pnpm exec vitest run scripts/run-local-demo-fast.test.mjs --exclude '.local/**' --maxWorkers=2",
+      "exit_code": 0,
+      "passed": 28,
+      "failed": 0,
+      "note": "Original 20 plus 8 profile/roots/source-path tests; pure shell profile selection and source checks only, no launcher build/service execution."
+    },
+    {
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --lib single_instance::tests::feat158_isolated_lock_requires_both_local_gate_and_compiled_identity -- --exact --test-threads=1",
+      "exit_code": 0,
+      "passed": 1,
+      "failed": 0,
+      "filtered_out": 609,
+      "note": "Normal temporary flock lifetimes; no permission fault/link fixture tests selected."
+    },
+    {
+      "command": "pnpm exec eslint scripts/run-local-demo-fast.test.mjs scripts/sync-desktop-expert-resources.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "cargo fmt --manifest-path src-tauri/Cargo.toml --check",
+      "exit_code": 0
+    },
+    {
+      "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings",
+      "exit_code": 0,
+      "note": "Reported finish 17.60s; static all-target check, not full tests."
+    },
+    {
+      "command": "pnpm docs:build",
+      "exit_code": 0,
+      "note": "Brand16/reference typecheck/VitePress succeeded; existing >500kB chunk warning retained."
+    },
+    {
+      "command": "git diff --check -- scripts/run-local-demo-fast.sh scripts/run-local-demo-fast.test.mjs scripts/sync-desktop-expert-resources.mjs src-tauri/src/single_instance.rs docs/local-development.md",
+      "exit_code": 0
+    }
+  ],
+  "source_sha256": [
+    {
+      "path": "scripts/run-local-demo-fast.sh",
+      "sha256": "9edc0d48244dabe3da8fdf9338be461a1d5f4ed72d762d74a5f58e71869f8d30",
+      "bytes": 21065
+    },
+    {
+      "path": "scripts/run-local-demo-fast.test.mjs",
+      "sha256": "9232615c17772b5501c7a9e7f4d098e0cc1cbc0b11ae42364680112daf33add0",
+      "bytes": 20365
+    },
+    {
+      "path": "scripts/sync-desktop-expert-resources.mjs",
+      "sha256": "c612bcc0e66972e671d30dbfcbd4b371b5c3a036f89df0720469b81f2807e00f",
+      "bytes": 6896
+    },
+    {
+      "path": "src-tauri/tauri.experts-content-v011.conf.json",
+      "sha256": "d2b76b7b83a1a5c539292727047a4d66df45a0c0c73d08f86f12659af57eb200",
+      "bytes": 269
+    },
+    {
+      "path": "src-tauri/src/single_instance.rs",
+      "sha256": "005c17b36acad6c65da96269a65e251ffe34368ecbfcc46f4d318b41af783d35",
+      "bytes": 8390
+    },
+    {
+      "path": "docs/local-development.md",
+      "sha256": "e4f75fabe8e628a71152ff994db72de5c6571c9278c7fe970b06d90af3ec6031",
+      "bytes": 12853
+    }
+  ],
+  "first_new_root_observation": {
+    "observed_at_utc": "2026-10-11T11:12:20.124785+00:00",
+    "paths": [
+      {
+        "path": "/Users/jack/Library/Application Support/com.yijie.ai.feat158-content-v011",
+        "exists": false
+      },
+      {
+        "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat158-content-v011-candidate",
+        "exists": false
+      },
+      {
+        "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/target/debug/bundle/macos/易界 AI FEAT-158 内容 0.1.1.app",
+        "exists": false
+      }
+    ]
+  },
+  "not_run": [
+    "This agent did not run the full canonical launcher, build/start a new App, call a real model or business service, or open a user database.",
+    "New producer pin/Host manifest alignment and final canonical source freeze are performed by the parent, not asserted by these profile tests.",
+    "Whole historical suites containing prohibited executable/permission/attack fixtures were not run."
+  ],
+  "evidence_basis": "Retrospective structured record of observed tool command results; source hashes collected after this agent finished changes; this is not a release or complete product-acceptance claim."
+}

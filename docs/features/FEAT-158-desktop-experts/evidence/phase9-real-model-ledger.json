@@ -1,0 +1,129 @@
+{
+  "feature": "FEAT-158",
+  "phase": 9,
+  "authorization_quote": "现在Shopify 连机器安装启用问题已经解决，现在开始继续完成feat-158 需求，外观验收先跳过。",
+  "constraints": [
+    "logic first",
+    "minimal necessary real calls",
+    "no appearance acceptance",
+    "no forced termination/permission destruction/attack fixtures",
+    "no platform business calls/writes"
+  ],
+  "prior_model_messages": 24,
+  "planned_additional_message_limit": 15,
+  "limit_origin": "agent bounded execution plan under existing additional-call authorization, not a number specified by user",
+  "messages_started": 4,
+  "messages": [
+    {
+      "step": 1,
+      "cases": [
+        "c01"
+      ],
+      "prompt": "这是京东POP合成新店，自有现货。请先列上架前的新店设置，再把附件商品事实整理成上架字段。列出事项、所需数据、负责人和完成证据，未知项待填；按相关本地场景给出文件和内容版本依据。只咨询，不联网、不操作店铺。",
+      "prior_plan_step": 1,
+      "recorded_at": "2026-10-12T16:15:29.023993+00:00",
+      "state": "completed",
+      "verdict": "fail_fact_boundary",
+      "observed_issue": "已确认值写无销量记录；输入仅为无销量资料，不能确认全历史记录不存在。未写销量0，但事实状态与资料可用性混写。"
+    },
+    {
+      "step": 13,
+      "cases": [
+        "native_approval_decline"
+      ],
+      "prompt": "请把合成京东商品上架待办草稿“核对标题材质和数量；品牌资料未提供，待确认。”保存为/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat158-phase9-approval-output/normal-note.txt。这是当前任务工作空间以外的明确目标，请走正常请求批准流程并等待决定；如被拒绝，停止写入，不换目录、不重试、不联网、不操作店铺。",
+      "prior_plan_step": 14,
+      "ordinal": 2,
+      "state": "completed",
+      "recorded_at": "2026-10-12T16:37:43.032911+00:00",
+      "selection": [
+        "shopify"
+      ],
+      "expert": "jd-ops-expert@0.1.3",
+      "verdict": "native_approval_decline_pass",
+      "output_file_created": false,
+      "business_tools_call": 0
+    },
+    {
+      "step": 14,
+      "cases": [
+        "A_removed"
+      ],
+      "prompt": "请用两句话解释给本地文件统一命名的好处，仅回答文字，不读资料或执行操作。",
+      "prior_plan_step": 16,
+      "ordinal": 3,
+      "state": "completed",
+      "recorded_at": "2026-10-12T16:40:09.950881+00:00",
+      "expert": null,
+      "selection": [],
+      "verdict": "ordinary_answer_pass",
+      "business_tools_call": 0
+    },
+    {
+      "step": 15,
+      "cases": [
+        "A_reselected_minimax_reopen"
+      ],
+      "prompt": "继续前面已确认的京东POP收纳袋商品，给3项最优先的上架一致性检查，并引用本轮实际读取的M03场景与版本；不发布。",
+      "prior_plan_step": 17,
+      "ordinal": 4,
+      "state": "completed",
+      "recorded_at": "2026-10-12T16:49:36.206428+00:00",
+      "model": "MiniMax-M3",
+      "expert": "jd-ops-expert@0.1.3",
+      "selection": [],
+      "verdict": "same_thread_reopen_model_switch_and_reference_read_pass"
+    }
+  ],
+  "metadata_actions": [
+    {
+      "kind": "one Shopify install/enable in content-v013 candidate",
+      "scope": "initialize and tools/list only; required for existing AC006 nonempty selection",
+      "state": "failed",
+      "recorded_at": "2026-10-12T16:22:28.406105+00:00",
+      "operation_id": "b2e3422e-ffa6-436d-988c-b127573cccf8",
+      "http_requests": 6,
+      "result": "initialize unavailable; no tools/list; safe enum logs alone cannot identify cause"
+    },
+    {
+      "kind": "one post-diagnostic Shopify enable",
+      "scope": "same public metadata only; diagnose actual failing response shape",
+      "state": "failed",
+      "recorded_at": "2026-10-12T16:27:44.724918+00:00",
+      "operation_id": "f7d58201-e0b6-4f4c-bcc4-dfa198193b75",
+      "http_requests": 6,
+      "result": "all three notification responses: HTTP200 JSON, no Content-Length, Transfer-Encoding present; exact request classified, bridge not applied"
+    },
+    {
+      "kind": "bounded exact-body confirmation",
+      "scope": "initialize + initialized only; max2 HTTP; no response body recorded",
+      "state": "succeeded",
+      "recorded_at": "2026-10-12T16:32:01.233796+00:00",
+      "http_requests": 2,
+      "result": "actual initialize uses chunked framing; initialized response exactly4bytes null, chunked, no Content-Length"
+    },
+    {
+      "kind": "one post-root-cause repair enable",
+      "scope": "same metadata only; confirm chunked-null handshake and use nonempty selection",
+      "state": "succeeded",
+      "recorded_at": "2026-10-12T16:33:52.843459+00:00",
+      "operation_id": "2eafc69c-d39c-493c-9f21-cea674f464d6",
+      "http_requests": 3,
+      "result": "initialize/tools-list/artifact succeeded; real UI enabled; this successful notification used Content-Length4. Chunked variant confirmed in prior live observation and passed local fixed-SDK regression; no claim of post-fix live chunked response."
+    }
+  ],
+  "plan": "same fixed 12 benign cases on content 0.1.3; reuse these turns for connector-selection/lifecycle evidence; at most 3 additional turns for native approval rejection, ordinary mode and same-build reopen/model switch",
+  "status": "bounded_run_complete_feature_not_complete",
+  "execution_revision": {
+    "recorded_at": "2026-10-12T16:21:28.003564+00:00",
+    "reason": "First case fails; stop remaining bulk content evaluation on known failing version; complete only outstanding engineering/lifecycle checks. No speculative runtime patch or repeated sampling.",
+    "fixed_eval_remaining": "c02-c12 NOT RUN in phase9; prior outcomes preserved",
+    "model_budget_unchanged": 15
+  },
+  "model_messages": 4,
+  "cumulative_model_messages": 28,
+  "business_tools_call": 0,
+  "total_metadata_http_requests": 17,
+  "content_eval_remaining": "c02-c12 NOT RUN this phase after c01 failure",
+  "appearance": "OWNER_SKIPPED_NOT_PASS"
+}

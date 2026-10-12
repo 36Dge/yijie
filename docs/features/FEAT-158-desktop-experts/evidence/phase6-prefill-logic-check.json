@@ -1,0 +1,72 @@
+{
+  "feature": "FEAT-158",
+  "stage": "logical-check-only after real run8 observation",
+  "recorded_at": "2026-10-11T14:19:44.970187+00:00",
+  "observed_report": "Main agent reported replacement of quick prompt after keeping an existing draft and returning through selected capsule did not prefill/navigate in real WebView. Kept as unresolved observed behavior.",
+  "new_test": {
+    "path": "src/pages/plugins/ExtensionsPage.prefill.test.ts",
+    "sha256": "892adb9df3b2892c2754ca1bad25550ef32622ed09ea81acdbe0135f2f5799a6",
+    "real_components": [
+      "memory router with actual app route guards",
+      "ExtensionsPage",
+      "ExpertMarketPanel with real Naive NModal",
+      "useExpertSummon",
+      "NDialogProvider confirmation",
+      "ChatExpertChip",
+      "shared draft/expert stores"
+    ],
+    "substituted_boundaries": [
+      "Chat destination harness uses shared store and chip without starting Native/Host subscriptions",
+      "synthetic stable ready permission/chat context",
+      "Native Skill list/scan/subscription are in-memory test responses"
+    ],
+    "sequence": [
+      "Original nonempty new draft",
+      "Unselected expert details first prompt",
+      "Keep current draft and return /chat?focus=composer",
+      "Selected real capsule opens exact-version deep link",
+      "Second prompt and explicit replace",
+      "Return /chat?focus=composer with second prompt in store and textarea"
+    ],
+    "outcome": "PASS; observed real WebView failure was not reproduced",
+    "native_mutations": {
+      "submit": 0,
+      "prepare": 0,
+      "setBinding": 0
+    }
+  },
+  "production_change": "None for the quick-prompt issue: no same-expert early-return found; no speculative repair or guard weakening.",
+  "checks": [
+    {
+      "command": "pnpm exec vitest run --dir src src/pages/plugins/ExtensionsPage.prefill.test.ts --maxWorkers=1",
+      "exit_code": 0,
+      "tests": 1,
+      "warning": "Existing experimental localStorage warning; no test failures"
+    },
+    {
+      "command": "pnpm exec eslint src/pages/plugins/ExtensionsPage.prefill.test.ts",
+      "exit_code": 0
+    },
+    {
+      "command": "pnpm exec vue-tsc --noEmit",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "limits": [
+    "Not a real WebView reproduction",
+    "Does not prove which route/context/busy guard cancelled the observed action",
+    "No App, CUA, network, model or wider fresh run",
+    "No executable/permission fault or attack fixtures"
+  ],
+  "intermediate_records": [
+    {
+      "command": "pnpm exec vue-tsc --noEmit",
+      "exit_code": 2,
+      "detail": "New-test Array.at usage unsupported by repository target lib. Changed only test to ordinary indexed lookup. Final type check and the same one-test rerun passed; no product validation changed."
+    }
+  ]
+}

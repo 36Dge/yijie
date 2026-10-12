@@ -1,0 +1,313 @@
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+feature:
+  id: FEAT-158
+  slug: desktop-experts
+  title: 扩展入口与会话专家接入
+  status: usable
+  created_at: 2026-10-11
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+scope:
+  risk_level: high
+  data_classification: internal
+  contract_impact: breaking
+  database_change: expand
+  persistence_change: durable
+  runtime_change: platform
+  auth_permission_change: none
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: prompt
+repositories:
+  - yijie
+  - yijie-contracts
+  - yijie-skills
+  - yijie-agent-host
+  - yijie-desktop
+  - yijie-connectors
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+product_ux:
+  status: PASS
+  primary_user: 需要京东运营操作建议的易界卖家
+  problem: 重复描述专家角色和知识背景，缺少可持续选用的专业会话入口
+  user_outcome: 在扩展中召唤京东专家，同一对话持续咨询，引用可追溯，并能移除恢复普通模式
+  in_scope:
+    - 扩展入口和技能专家双Tab，原技能功能保留
+    - 首个资深电商运营操盘手，明确京东专向
+    - 详情快捷问题、召唤、单专家会话绑定与胶囊移除
+    - 复用受管Skills资产、原生会话切换和SQLCipher outbox
+    - 复用现有受管知识的按需读取、版本身份和来源定位机制
+  out_of_scope:
+    - AC-007内容质量验收依2026-10-13用户明确指令移除，不再作为FEAT-158或D4完成门槛；历史评分保留，见13
+    - 外观验收按用户指令跳过；继续原FEAT-158剩余需求，逻辑优先，仅补必要真实调用，不扩增评测集或平台业务操作
+    - 任意第三方插件导入、多专家团队、自动经营和自动转交
+    - 独立专家执行器、第二安装器、新RAG或私有知识摄取
+    - 自动连接器授权、自动继承到定时计划、云同步和公开发布
+  main_flow:
+    - canonical本地入口免登录进入扩展，默认技能，切到专家
+    - 详情或卡片召唤，受管资源就绪后回正确对话草稿，不自动发送
+    - 用户发送，原有事务冻结专家版本与绑定revision，经Host与固定Runtime执行
+    - 会话持续使用专家，移除后下一轮恢复普通指令，历史保留
+  visual_direction: 复用技能页和易界主题组件，胶囊放店铺授权右侧，保持当前连接器菜单和行内前缀
+  ui_states:
+    idle: 浏览搜索和详情不产生模型调用
+    loading: 准备中保留原界面，操作互斥，不提前宣告加载成功
+    success: 正确草稿出现专家胶囊，正文附件模型保持，输入框获得焦点
+    empty: 无条目或搜索零结果明确显示并可清除搜索
+    error: 显示原因和重试返回入口，保留草稿和旧有效绑定
+    retry: 先查询原操作；绑定与资源提供明确的原操作恢复入口，消息仍沿原快照且不自动重发
+    cancel: 取消待选意图或关闭详情，已安全准备资源可留缓存但不自动选用
+must_acceptance:
+  - id: AC-001
+    statement: 扩展入口双Tab和默认技能正确，原技能功能保留，首期一名专家
+    verification: 02-verification.md T01
+    status: pass
+  - id: AC-002
+    statement: 卡片详情快捷问题一致，京东能力边界和真实元数据准确
+    verification: 02-verification.md T02
+    status: pass
+  - id: AC-003
+    statement: 召唤幂等准备资源并返回正确草稿，不丢内容或自动发送
+    verification: 02-verification.md T03
+    status: pass
+  - id: AC-004
+    statement: 单会话单专家持续生效，其他会话隔离，活跃或未知投递时阻止切换
+    verification: 02-verification.md T04
+    status: pass
+  - id: AC-005
+    statement: 胶囊位置和移除操作正确，普通模式真实恢复，历史保持
+    verification: 02-verification.md T05
+    status: pass
+  - id: AC-006
+    statement: 复用同一原生执行和审批链，专家不扩权或污染全局技能，不隐式选连接器
+    verification: 02-verification.md T06
+    status: pass
+  - id: AC-008
+    statement: 绑定快照回执重开可恢复，版本不自动升级，未知结果不重复发送，旧历史可读
+    verification: 02-verification.md T08
+    status: pass
+  - id: AC-009
+    statement: 所有关键界面状态可恢复，权限不足不扩权，正常重试和资源移除不丢草稿
+    verification: 02-verification.md T09
+    status: pass
+  - id: AC-010
+    statement: 键盘交互可用，同一最终构建的一次真实fresh run覆盖AC-001至006、008、009和正常失败恢复；不包含已移除的AC-007，外观验收跳过且不计PASS
+    verification: 02-verification.md T10 与 14-final-engineering-acceptance.md
+    status: pass
+contract:
+  impact: breaking
+  authority: 易界跨仓wire归yijie-contracts；共享包schema归yijie-contracts，内容和打包实现归yijie-skills；Runtime归固定canonical
+    schema；私有存储归各仓migration
+  source_first_plan: 先定义版本化包与跨仓契约，生成和定向兼容校验，再Host provider与Native reader，最后Desktop writer和UI；详见04
+  status: PASS
+  checks:
+    - repository: yijie-contracts
+      command: node scripts/generate-experts.mjs --check
+      status: PASS
+      exit_code: 0
+    - repository: yijie-contracts
+      command: node scripts/sync-experts.mjs --consumer=desktop --check
+      status: PASS
+      exit_code: 0
+    - repository: yijie-contracts
+      command: node scripts/sync-experts.mjs --consumer=agent-host --check
+      status: PASS
+      exit_code: 0
+    - repository: yijie-contracts
+      command: node scripts/sync-experts.mjs --consumer=skills --check
+      status: PASS
+      exit_code: 0
+external_authorizations:
+  paid_calls:
+    allowed: true
+    max_actions: 15
+    approved_by: 段成威
+    approved_at: 2026-10-11T14:49:02.127Z
+  destructive_operations:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  production_writes:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+implementation:
+  status: complete
+  real_entrypoint: ./scripts/run-local-demo-fast.sh --packaged；日常canonical默认启用专家，复用原com.yijie.ai及数据根；正常Quit后追加--reopen复用同构建，见15。
+  mock_only: false
+verification:
+  status: PASS
+  verified_at: 2026-10-12T17:50:42Z
+  startup:
+    status: PASS
+    command_or_steps: ./scripts/run-local-demo-fast.sh --packaged；两次正常Quit后追加--reopen
+    environment: 日常com.yijie.ai，原demo-fast数据根；SQL35/Host10，内容0.1.3；App335b54c49ee5，回执b13b187a2c63
+    actual_result: 日常启动与两次同制品重开通过，正常退出码0且释放18081。实际SQL33→35、Host8→10；原667条SQL记录、8条Host会话和6份Runtime历史保留。最终专家会话及Kimi模型恢复，见15。
+  real_smoke:
+    status: PASS
+    command_or_steps: 保留14中9项活动Must工程结论；日常仅补真实数据迁移、原历史/普通Skill、专家资源准备、1条合成只读问题及同构建重开，见15
+    environment: 日常App335b54c49ee5，worker0406274199b6，原Host/Runtime和受管安装根；Kimi-K3/max，on-request，network=false
+    actual_result: 新增1条模型消息完成，唯一工具为读取日常安装目录的M03；0平台业务/元数据请求。普通新草稿无专家，原5轮会话可读；新专家绑定和回答重开恢复。原内容FAIL不改判，AC-007已移除，外观SKIPPED。
+  representative_failure:
+    status: PASS
+    command_or_steps: 原生工作空间外合成写入正常拒绝；当前绑定移除后尝试资源移除由引用守卫拒绝
+    environment: 阶段9/11真实Native拒绝与引用保护；日常接入未修改该执行/审批实现，复用对应证据，不声称本次重跑；无故障注入、权限破坏或强杀
+    actual_result: 阶段11原生拒绝、无落盘或重试、引用守卫及Shopify恢复均保留PASS。阶段12另验证日常/feature-off同库互斥、SQL33→35历史保留和Host兼容reader；两次正常重开无重复发送，未知分支沿用正常journal回归。
+  focused_checks:
+    - repository: yijie-desktop
+      command: cargo test --manifest-path src-tauri/Cargo.toml --lib expert_store_
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: cargo test --manifest-path src-tauri/Cargo.toml --lib
+        chat::migrations::tests::feat158_expert_expand_preserves_history_and_default_writer -- --exact
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: cargo fmt --manifest-path src-tauri/Cargo.toml --check
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
+      status: PASS
+      exit_code: 0
+    - repository: yijie-agent-host
+      command: go build ./...
+      status: PASS
+      exit_code: 0
+  artifacts:
+    - 08-real-model-audit.md
+    - evidence/phase5-real-model-ledger.json
+    - evidence/phase5-run5-eval-review.json
+    - evidence/phase5-run6-source-snapshot.json
+    - 07-implementation-progress.md
+    - evidence/runtime-no-turn.json
+    - evidence/runtime-local-responses.json
+    - evidence/runtime-reference.json
+    - evidence/runtime-reopen.json
+    - evidence/phase2-local-checks.json
+    - evidence/implementation-source-snapshot.json
+    - evidence/non-screen-audit-baseline.json
+    - evidence/non-screen-audit-checks.json
+    - evidence/installed-reference-preflight.json
+    - evidence/runtime-installed-ask.json
+    - evidence/runtime-installed-auto.json
+    - evidence/runtime-installed-full.json
+    - evidence/phase5-run7-eval-review.json
+    - evidence/phase5-run7-lifecycle-review.json
+    - evidence/phase5-run7-lifecycle-artifact-map.json
+    - evidence/phase5-run7-resource-history-guard.json
+    - evidence/phase5-run7-source-stability.json
+    - evidence/phase5-final-contract-checks.json
+    - evidence/phase5-visual-skip.json
+    - 09-content-repair-and-acceptance.md
+    - evidence/phase6-baseline.json
+    - evidence/phase6-real-model-ledger.json
+    - evidence/phase6-run8-ui-observations.json
+    - evidence/phase6-run8-eval-review.json
+    - evidence/phase6-v012-build-receipt.json
+    - evidence/phase6-shopify-handshake-source-review.json
+    - evidence/phase6-content-v013-checks.json
+    - evidence/phase6-host-v013-checks.json
+    - evidence/phase6-desktop-v013-checks.json
+    - evidence/phase6-prefill-logic-check.json
+    - evidence/phase6-meta-logic-checks.json
+    - evidence/phase6-final-logic-source-state.json
+    - 10-targeted-root-cause-audit.md
+    - evidence/phase7-baseline.json
+    - evidence/phase7-targeted-ledger.json
+    - evidence/phase7-shopify-checks.json
+    - evidence/phase7-prefill-checks.json
+    - evidence/phase7-final-source-review.json
+    - evidence/phase7-meta-checks.json
+    - 11-shopify-availability-fix.md
+    - evidence/phase8-shopify-checks.json
+    - 12-remaining-acceptance.md
+    - evidence/phase9-baseline.json
+    - evidence/phase9-real-model-ledger.json
+    - evidence/phase9-run9-ui-observations.json
+    - evidence/phase9-run9-observations.json
+    - evidence/phase9-run9-eval-review.json
+    - evidence/phase9-run9-lifecycle-review.json
+    - evidence/phase9-same-build-reopen.json
+    - evidence/phase9-resource-reference-guard.json
+    - evidence/phase9-provider-chunked-failure.jsonl
+    - evidence/phase9-shopify-observed-body.log
+    - evidence/phase9-provider-postfix-success.jsonl
+    - evidence/phase9-final-checks.json
+    - 13-scope-adjustment.md
+    - evidence/phase10-scope-baseline.json
+    - evidence/phase10-scope-checks.json
+    - 14-final-engineering-acceptance.md
+    - evidence/phase11-provenance-audit.json
+    - evidence/phase11-final-ui-checks.json
+    - evidence/phase11-call-and-recovery-audit.json
+    - evidence/phase11-engineering-verdict.json
+    - evidence/phase11-final-checks.json
+    - evidence/phase11-final-workspace.json
+    - 16-final-audit-and-git-delivery.md
+    - evidence/phase13-final-startup.json
+    - evidence/phase13-final-build-receipt.json
+    - evidence/phase13-product-pushes.json
+    - evidence/phase13-historical-evidence-check.json
+    - evidence/phase13-git-baseline.json
+    - evidence/phase13-precommit-source-comparison.json
+    - evidence/phase13-source-and-publication-audit.json
+    - evidence/phase13-committed-source-repin.json
+    - evidence/phase13-compatibility-finding.json
+    - 15-daily-client-integration.md
+    - evidence/phase12-baseline.json
+    - evidence/phase12-data-preservation-baseline.json
+    - evidence/phase12-sql-before.json
+    - evidence/phase12-host-before.json
+    - evidence/phase12-sql-after-upgrade.json
+    - evidence/phase12-host-after-upgrade.json
+    - evidence/phase12-upgrade-comparison.json
+    - evidence/phase12-host-session-diff.json
+    - evidence/phase12-original-row-preservation.json
+    - evidence/phase12-host-final-session-diff.json
+    - evidence/phase12-implementation-review.json
+    - evidence/phase12-daily-build-receipt.json
+    - evidence/phase12-model-ledger.json
+    - evidence/phase12-daily-runtime-smoke.json
+    - evidence/phase12-final-acceptance.json
+    - evidence/phase12-meta-checks.json
+    - evidence/phase12-final-workspace.json
+  diff_review:
+    status: PASS
+    summary: 阶段13最终审计和Git交付见16。来源固定到实际提交，39项归档与原安装身份不变；修复Native仅接受working-tree导致git-commit包不可用的明确遗漏，保留全部精确摘要校验。
+      实际包回归先失败后通过，最终日常构建原会话和资源就绪可读，无新模型或平台调用。阶段12数据逐行保留与reader证据不变，外观仍跳过。
+  known_limitations:
+    - AC-007于2026-10-13按用户指令移出范围；其0.1.3 c01 FAIL和其余11题NOT RUN均为历史评测结果，不再阻塞D4，也不宣称内容质量通过。
+    - AC-010与local D4已按调整后范围通过；外观仍SKIPPED，不计PASS，未做亮暗主题、最小窗口或缩放外观验收。
+    - 阶段12仅1条合成模型消息，累计29；本阶段元数据与业务调用0。阶段11的3个和阶段9的17个元数据请求及原失败记录保留。
+    - Shopify有效资格绑定当前Host和Native授权，历史启用意图不等于当前可选；正常重连后可能需要显式启用。阶段11恢复实际命中分块null并成功，阶段9定长成功与原失败证据不改写。
+    - 未知投递分支以正常journal检查及旧原ID只读证据覆盖，未强行制造未知或声称所有状态均有真实UI覆盖。旧profile未默换与历史可读沿用前轮实际证据和不变的兼容逻辑。
+    - 保留既有权限组合/模型/资源逻辑回归，未追加扩大权限的实操或重跑已完成普通B模型问答。
+    - 用户已授权日常启用，原SQL35/Host10数据保持。关闭专家须使用新版兼容reader，不能降级库或用旧writer覆盖；隔离profile仍保留。本轮公开源码/知识正文推送已获用户明确授权，见16；未创建正式发行、签名公证或生产部署，未做官方政策全网核验。
+    - 未运行含用户禁止行为的历史全量套件；不把局部检查与真实单轮结果说成全库无bug或模型质量稳定保证。
+    - worker全目标cargo fmt检查因既有qualification模块缺失和生成文件格式差异失败；阶段9变更文件和相关编译检查通过，阶段12未改worker或修无关路径，不伪报全库通过。
+public_readiness:
+  required: false
+  status: N/A
+  checks: []
+  external_smoke:
+    status: NOT RUN
+    command_or_steps: 不适用，本期local
+    actual_result: 未公开
+documents:
+  brief: 00-feature-brief.md
+  delivery_log: 01-delivery-log.md
+  verification: 02-verification.md

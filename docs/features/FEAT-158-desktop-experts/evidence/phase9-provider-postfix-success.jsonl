@@ -1,0 +1,15 @@
+{"event":"started","httpStatus":null,"safeFailure":null,"schemaVersion":1,"stage":"metadata_initialize","unixMs":1791822962951}
+{"event":"request","httpStatus":null,"safeFailure":null,"schemaVersion":1,"stage":"metadata_http_send","unixMs":1791822962957}
+{"event":"response","httpStatus":200,"safeFailure":null,"schemaVersion":1,"stage":"metadata_http_response","unixMs":1791822964869}
+{"event":"response","httpStatus":200,"safeFailure":null,"schemaVersion":1,"shape":{"ackCandidate":false,"contentLength":null,"contentLengthCount":0,"contentTypeCount":1,"eventStream":false,"json":true,"method":"initialize","transferEncoding":true},"stage":"shopify_metadata_http_shape","unixMs":1791822964869}
+{"event":"request","httpStatus":null,"safeFailure":null,"schemaVersion":1,"stage":"metadata_http_send","unixMs":1791822964870}
+{"event":"response","httpStatus":200,"safeFailure":null,"schemaVersion":1,"stage":"metadata_http_response","unixMs":1791822965729}
+{"event":"response","httpStatus":200,"safeFailure":null,"schemaVersion":1,"shape":{"ackCandidate":true,"contentLength":4,"contentLengthCount":1,"contentTypeCount":1,"eventStream":false,"json":true,"method":"initialized","transferEncoding":false},"stage":"shopify_metadata_http_shape","unixMs":1791822965729}
+{"event":"succeeded","httpStatus":204,"safeFailure":null,"schemaVersion":1,"stage":"shopify_initialized_ack","unixMs":1791822965729}
+{"event":"succeeded","httpStatus":null,"safeFailure":null,"schemaVersion":1,"stage":"metadata_initialize","unixMs":1791822965729}
+{"event":"started","httpStatus":null,"safeFailure":null,"schemaVersion":1,"stage":"metadata_tools_list","unixMs":1791822965729}
+{"event":"request","httpStatus":null,"safeFailure":null,"schemaVersion":1,"stage":"metadata_http_send","unixMs":1791822965730}
+{"event":"response","httpStatus":200,"safeFailure":null,"schemaVersion":1,"stage":"metadata_http_response","unixMs":1791822967683}
+{"event":"response","httpStatus":200,"safeFailure":null,"schemaVersion":1,"shape":{"ackCandidate":false,"contentLength":36880,"contentLengthCount":1,"contentTypeCount":1,"eventStream":false,"json":true,"method":"tools_list","transferEncoding":false},"stage":"shopify_metadata_http_shape","unixMs":1791822967683}
+{"event":"succeeded","httpStatus":null,"safeFailure":null,"schemaVersion":1,"stage":"metadata_tools_list","unixMs":1791822967880}
+{"event":"succeeded","httpStatus":null,"safeFailure":null,"schemaVersion":1,"stage":"metadata_artifact","unixMs":1791822967893}

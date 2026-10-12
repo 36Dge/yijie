@@ -1,0 +1,61 @@
+{
+  "at": "2026-10-11T11:10:36.514840+00:00",
+  "candidate_directory": "dist/skills-experts-candidate-v011",
+  "source_definition": {
+    "path": "plugins/yijie-desktop-skills/experts/bundle-source.json",
+    "sha256": "6689829185fad8a9aa82210fefbb8297436bdf0f7d210102dbd8ac4ccb3b9889"
+  },
+  "bundle_version": "0.4.1",
+  "expert_version": "0.1.1",
+  "source": {
+    "repository": "https://github.com/36Dge/yijie-skills.git",
+    "revision_kind": "working-tree",
+    "revision": "488714a8d96f40806a257aae097683815b1dd458",
+    "tree_sha256": "6c2fecfa23999718c605af0d298c486cf45287b91b4330fbaaa6140c5cb6253e"
+  },
+  "release": false,
+  "manifest_sha256": "31e7f42193263356c1e4939600ebd95961e6eb682c96f53429b47417dc3d1b6d",
+  "authority_sha256": "c23a7085504b78bf2a880c2804d6ed4d7c78ff82ed13a01473619cd9269e28aa",
+  "archive": {
+    "path": "packages/yijie.experts.jd-ops-expert-0.1.1.zip",
+    "sha256": "5ca70d7417c30951f67ef8da32be37563afaaadf0756ff60f96d84471d9cd594",
+    "compressed_size_bytes": 94596,
+    "uncompressed_size_bytes": 91434,
+    "file_count": 26
+  },
+  "role_resource": {
+    "path": "ROLE.md",
+    "sha256": "cd30368006f57ab8c400182600a53019b960bb23e49395972ec782e5e37e43da",
+    "bytes": 2156
+  },
+  "knowledge_manifest_sha256": "767249e42b0d94f802b863875588ba78b30345f57f0a18eac075838e2e364b89",
+  "content_review": {
+    "path": "docs/provenance/source-audits/FEAT-158-jd-ops-content-audit-v0.1.1.json",
+    "sha256": "64e4c44b8686762e012ac6db9ec5867872ed0ceecbc97e56c86b928886d71a37"
+  },
+  "local_use_authorization": {
+    "status": "local-use-authorized",
+    "evidence_reference": "docs/provenance/FEAT-158-local-use-authorization-v0.1.1.md",
+    "evidence_sha256": "01c8c4f12dd3d0fa9a89a4ddfb0ff91def72a17573935d04254e1eb2492fc34f"
+  },
+  "contracts_candidate": {
+    "path": "contracts/experts.candidate.json",
+    "sha256": "cb8f6aa3445f15bf2274c4966cfa70239c2aaf445df3473f13638e1f3ac5ffdd"
+  },
+  "unchanged_ordinary_archive_count": 38,
+  "old_bundle_files_unchanged": 41,
+  "old_source_audit_and_authorization_unchanged": true,
+  "checks": {
+    "make_lint": "PASS",
+    "make_test": "11/11 normal tests PASS;16 synthetic Eval-format cases; not model quality",
+    "contracts_sync_check": "PASS100definitions10Nativecommands",
+    "canonical_package": "PASS39entries",
+    "real_model_eval_v011": "NOT RUN"
+  },
+  "commands": [
+    "make lint",
+    "make test",
+    "node ../yijie-contracts/scripts/sync-experts.mjs --consumer=skills --check",
+    "node scripts/package-desktop-skills.mjs --source plugins/yijie-desktop-skills/experts/bundle-source.json --output dist/skills-experts-candidate-v011"
+  ]
+}

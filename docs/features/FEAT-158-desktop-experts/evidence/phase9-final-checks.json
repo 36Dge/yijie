@@ -1,0 +1,60 @@
+{
+  "recorded_at": "2026-10-12T16:53:07.738140+00:00",
+  "ui_tests": 57,
+  "native_expert_tests": 31,
+  "native_instance_test": 1,
+  "host_scoped_packages": 3,
+  "content_structure_tests": 5,
+  "worker_shopify_tests": 3,
+  "worker_shared_diagnostic_test": 1,
+  "checks": [
+    "Desktop cargo fmt and changed worker files rustfmt --check",
+    "all-targets Desktop clippy -Dwarnings",
+    "worker clippy -Dwarnings",
+    "targeted ESLint",
+    "canonical build source gates",
+    "docs build",
+    "same-build reopen",
+    "git diff --check"
+  ],
+  "models": 4,
+  "metadata_http_requests": 17,
+  "business_tools_call": 0,
+  "schema_changes": false,
+  "public_wire_changes": false,
+  "runtime_source_changed": false,
+  "source_sha256": {
+    "yijie-desktop/scripts/expert-local-profile.mjs": "b8ea17d34352308d24b2df9b0611ad48fb7d1cb6b12ad58828554975e36e93e0",
+    "yijie-desktop/scripts/run-local-demo-fast.sh": "2df52dd00b360a7a0f9cd1c5e89c1009e00c2afcd7cc8e6ee8056986f192f488",
+    "yijie-desktop/src-tauri/experts-local-profiles.json": "05b3ea4c9fde7734692889ff3aa2ff21064f957a0b1b9f65455aafca9b560b4b",
+    "yijie-desktop/src-tauri/tauri.experts-content-v013.conf.json": "abdf093b2d5b44285769ac2d6fae2a5e547ee9337f64eb74dd3a358042e9ddf1",
+    "yijie-desktop/src-tauri/src/single_instance.rs": "841ffe81f9ebc4a87453f41cf60a565c20930060fd6eb29b067aa0b9d427238a",
+    "yijie-connectors/worker/src/tushare_oauth.rs": "40268925cb05eec227cbde192c4724d8812a75d30037f5d43375895540a8a9ff",
+    "yijie-connectors/worker/src/shopify_ack_tests.rs": "5003ac77d9b358d34881e5df3a041176743b7c1707423c23e5c9e75bc7cdfb63",
+    "yijie-connectors/bin/market-worker/current.json": "23308cb49d5e9f00692d62c30624d4535249671030cc59a6e2e1576196a198ee"
+  },
+  "skipped": [
+    "appearance",
+    "remaining11 content cases on known failing version",
+    "unsafe unfiltered historical suites",
+    "platform business calls/writes",
+    "release/commit/push"
+  ],
+  "worker_manifest": {
+    "schemaVersion": 2,
+    "candidateOnly": true,
+    "binary": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/bin/market-worker/0406274199b635b96649394ff636bc8d68b8465b98660f949ec476503a906710/yijie-mcp-worker",
+    "sha256": "0406274199b635b96649394ff636bc8d68b8465b98660f949ec476503a906710",
+    "sizeBytes": 84356752,
+    "codexSource": "7fd463bcef07f37b0211acd9f62b9f93ea0a4b12",
+    "externalCallsEnabled": true,
+    "qualificationOnly": false,
+    "providerProfile": "generic-mcp-v1"
+  },
+  "worker_full_cargo_fmt": {
+    "status": "FAIL existing unrelated paths",
+    "exit_code": 1,
+    "reason": "qualification module ../src/presentation.rs missing; existing generated broker/provider files have formatter differences; not changed to bypass pinned generation",
+    "changed_files_rustfmt": "PASS"
+  }
+}

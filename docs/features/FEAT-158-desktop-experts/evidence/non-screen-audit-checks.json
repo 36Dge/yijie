@@ -1,0 +1,190 @@
+{
+  "feature": "FEAT-158",
+  "recorded_at": "2026-10-11T09:33:08.404738+00:00",
+  "mode": "local_worktree_candidate",
+  "release": false,
+  "scope": "Continue remaining implementation after read-only cross-audit, excluding work requiring screen unlock",
+  "provider_calls": 0,
+  "external_business_actions": 0,
+  "commits_or_pushes": 0,
+  "synthetic_runtime": {
+    "turn_start_calls": 21,
+    "loopback_requests": 27,
+    "successful_profiles": [
+      "ask",
+      "auto",
+      "full"
+    ],
+    "normal_eof_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "initial_failures": "Three initial runs returned correct native file output but ASCII-escaped JSON comparison missed the Chinese heading. Original failed reports preserved; UTF-8-aware comparison fixed and all modes rerun.",
+    "qualification_limit": "Same pinned Runtime, one exact actual installed M03 reference, real native exec_command and same-thread composition routing. No real model quality, actual approval decisions or full product E2E."
+  },
+  "implemented": [
+    "Source-owned explicit binding recovery preserving original payload, ID, revision and Host receipt identity",
+    "Explicit resource recovery through existing Skills journal; no repeat installation/removal",
+    "Current Native read authorization rechecked after awaited queries",
+    "Route/context/disposal invalidates pending expert confirmations",
+    "Original terminal resource receipt clears obsolete messages and cannot be rolled back by a late catalog read",
+    "Canonical expert resource packaging source path corrected",
+    "Ordinary attachment uses existing materializer and expert wrapper across normal database reopen"
+  ],
+  "checks": [
+    {
+      "repository": "yijie-contracts",
+      "command": "make experts-test",
+      "result": "PASS",
+      "detail": "12 Node, 5 Go, 3 Rust tests; Go vet and Rust clippy"
+    },
+    {
+      "repository": "yijie-contracts",
+      "command": "node scripts/sync-experts.mjs --consumer=<desktop|agent-host|skills> --check",
+      "result": "PASS",
+      "detail": "all three canonical consumer projections"
+    },
+    {
+      "repository": "yijie-contracts",
+      "command": "node scripts/check-jsonschema-breaking.mjs <baseline>",
+      "result": "PASS",
+      "baselines": [
+        "35e0949c95d7a59ca5480715c225766dcc822056",
+        "f16a497e1377f45747f8ff9292b4b60cf2027f88",
+        "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+        "811f38d6b104fa18477107e7ac91a85e19c445d1"
+      ],
+      "limit": "JSON Schema structural check; new private-family semantic review separately performed"
+    },
+    {
+      "repository": "yijie-skills",
+      "command": "node --test tests/desktop-expert-bundle.test.mjs tests/jd-expert-content.test.mjs",
+      "result": "PASS",
+      "detail": "5 normal package/content tests"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast node scripts/sync-desktop-expert-resources.mjs --package; then --check",
+      "result": "PASS",
+      "detail": "canonical 39 archives, 38 ordinary bytes unchanged; initial wrong source path failed before packaging, corrected path verified"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --lib chat::experts::",
+      "result": "PASS",
+      "detail": "29 tests: 12 store, 10 resource, 7 command"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --lib feat158",
+      "result": "PASS",
+      "detail": "14 tests, includes 3 reservation interlocks and ordinary attachment materialization/reopen"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --lib native_market_",
+      "result": "PASS",
+      "detail": "9 ordinary regression tests"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo fmt --manifest-path src-tauri/Cargo.toml --check",
+      "result": "PASS"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "pnpm exec vitest run <8 expert API/store/component/gate test files> --maxWorkers=4 --exclude <historical local/source copies>",
+      "result": "PASS",
+      "detail": "50 tests in 8 files on final UI source"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "pnpm lint; pnpm build",
+      "result": "PASS",
+      "detail": "Full ESLint and Vue type check; Vite production web build (no App launch). Existing >500 kB chunk warning remains."
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings",
+      "result": "PASS",
+      "detail": "Native agent final full-target static check, no broad test execution"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "command": "YIJIE_EXPERT_TEST_BUNDLE=<reviewed actual candidate> go test -race ./internal/session ./internal/skills ./internal/app -run '^TestFEAT158(Explicit|BindingRecovery|CoreReserved|UnstartedRejection)' -count=1",
+      "result": "PASS",
+      "detail": "6 top-level, 14 leaf tests; normal original journal/reopen/reserved-owner sequences"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "command": "go vet ./internal/session ./internal/skills ./internal/app; go build ./...",
+      "result": "PASS"
+    },
+    {
+      "repository": "yijie",
+      "command": "check-feature-package.sh --strict; validate-feature-package.mjs --gate D0; --audit-claims; pnpm lint",
+      "result": "PASS",
+      "detail": "Feature package only; D4 remains NOT RUN"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "command": "YIJIE_EXPERT_TEST_BUNDLE=<actual candidate> YIJIE_EXPERT_TEST_MANIFEST_SHA256=156fa3da100f82985087637ea3e94138d1f6ff813fedc8a4275b0dcad591e355 go test ./internal/session ./internal/skills ./internal/app ./internal/codex -run '^TestFEAT158' -count=1",
+      "result": "PASS",
+      "detail": "24 top-level normal tests on final source, no skipped candidate tests; 2 ordinary market regressions also passed"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "canonical explicit expert local environment: node scripts/chat-model-build-candidate.mjs --freeze; verifyLocalPermissionCandidate with YIJIE_FEAT155_SCHEDULED_DAILY=true",
+      "result": "PASS",
+      "detail": "Final reviewed Host source snapshot including atomic reserved-operation settlement. All expert and existing family pins verified; no original FEAT-156 pin replacement."
+    }
+  ],
+  "test_harness_corrections": [
+    "New attachment test initially assumed UI field names in the Host payload; corrected assertions to the existing generated Host attachment_id/name/context_chunks. Actual materializer remained unchanged.",
+    "One extra expert_binding_reservation filter selected 0 tests; not counted as verification. The 3 exact reservation tests passed under feat158.",
+    "First direct full permission-chain invocation omitted the canonical FEAT-155 daily selector, so the checker correctly rejected dirty Host against old FEAT-152 immutable sources. Final invocation uses the launcher selector and newly reviewed FEAT-158 source freeze, without relaxing any checker."
+  ],
+  "skipped": [
+    {
+      "item": "Screen-driven product acceptance, system file picker and final normal App Quit",
+      "reason": "User explicitly requested skipping work requiring screen unlock",
+      "impact": "No fresh-run UI evidence for this updated source; earlier run 1/2/3 evidence remains historical."
+    },
+    {
+      "item": "Real Provider/model turn and knowledge Eval",
+      "reason": "No explicit response to the existing bounded model-budget request; current allowance 0",
+      "impact": "Role quality and actual model attachment consumption remain NOT RUN."
+    },
+    {
+      "item": "Prohibited force kill, executable spoofing, permission breakage and attack fixtures, including broad legacy suites that contain them",
+      "reason": "User hard safety rules",
+      "impact": "Normal state, storage, runtime protocol qualification and static checks only; no fault/attack coverage claimed."
+    },
+    {
+      "item": "Published provenance and redistribution",
+      "reason": "Local candidate only; no release instruction or redistribution authorization",
+      "impact": "release=false; no commits, push, tags, production or public release."
+    }
+  ],
+  "source_pins": {
+    "yijie-contracts/compatibility/experts/source.lock.json": "a5056217e4d54310d451ba53c64504ef010e2c616108cf75b606b0de0e4d9033",
+    "yijie-desktop/contracts/experts.candidate.json": "a919d62bc5e0de7cace97ca214003b40d57a341bc8e9983d634d9a999ed9e8c1",
+    "yijie-agent-host/api/experts.candidate.json": "47544938772a89f8047b58e407b98507fe8c313ecd4cf0f8d5f1608e44272306",
+    "yijie-skills/contracts/experts.candidate.json": "cb8f6aa3445f15bf2274c4966cfa70239c2aaf445df3473f13638e1f3ac5ffdd",
+    "yijie-desktop/contracts/experts-assets.candidate.json": "c89ce617d972cb29393c94ae4c958372d10496ddc0a884ea589ad313e05b0a9a",
+    "yijie-desktop/contracts/experts-host-build.candidate.json": "a0ef469133e05f2b53323a42b87787f42dfb155bd750a56349223fad7fbd2909",
+    "yijie-skills/dist/skills-experts-candidate/authority.json": "0391d6be6b93c345272db3115f4e0aff9abb2f96c6b96a458d2f1002232c8ba7",
+    "yijie-skills/dist/skills-experts-candidate/bundle-manifest.json": "156fa3da100f82985087637ea3e94138d1f6ff813fedc8a4275b0dcad591e355"
+  },
+  "final_boundaries": {
+    "feature_status": "active",
+    "D4": "NOT RUN",
+    "latest_source_packaged_app_fresh_run": "SKIPPED: requires unlocked screen",
+    "real_model_budget": 0,
+    "source_review": "Cross-agent and primary review passed for changed local candidate; not release approval"
+  }
+}

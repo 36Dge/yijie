@@ -1,0 +1,65 @@
+{
+  "scope": "Documentation checks only; D4 remains FAIL",
+  "results": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "strict",
+        "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-158-desktop-experts",
+        "chunk_id": "f56392",
+        "wall_time_seconds": 0.000006208,
+        "exit_code": 0,
+        "original_token_count": 57,
+        "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，所有模板变量和未完成标记已处理。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "claims",
+        "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-158-desktop-experts",
+        "chunk_id": "0590ad",
+        "wall_time_seconds": 0.000006083,
+        "exit_code": 0,
+        "original_token_count": 13,
+        "output": "PASS: feature.yaml schema v3 semantics are valid.\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "lint",
+        "command": "pnpm lint",
+        "chunk_id": "c60c0a",
+        "wall_time_seconds": 0.336560292,
+        "exit_code": 0,
+        "original_token_count": 50,
+        "output": "$ node scripts/repo-manifest.mjs validate && node scripts/check-contract-governance.mjs\nValidated 11 repository entries.\nValidated central Contract First governance and 11 sibling AGENTS.md files.\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "tests",
+        "command": "pnpm test",
+        "chunk_id": "6154b1",
+        "wall_time_seconds": 1.001995792,
+        "original_token_count": 8,
+        "output": "50 governance tests passed,0failed; completion session83466.",
+        "exit_code": 0
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "shell",
+        "command": "bash -n scripts/*.sh",
+        "chunk_id": "1808d5",
+        "wall_time_seconds": 0.00000575,
+        "exit_code": 0,
+        "original_token_count": 0,
+        "output": ""
+      }
+    }
+  ]
+}

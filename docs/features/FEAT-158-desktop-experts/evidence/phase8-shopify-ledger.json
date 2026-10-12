@@ -1,0 +1,48 @@
+{
+  "scope": "Repair currently running Shopify enable failure; initialize/tools-list only, no business query or model",
+  "started_at": "2026-10-12T15:43:30.387053+00:00",
+  "original_worker": "f77ba40baf0c3ae7090bd61f076ade4c62298f138351563c7835556924f88bb3",
+  "model_messages": 0,
+  "business_tools_call": 0,
+  "metadata_actions": [
+    {
+      "kind": "actual Reqwest transport observation",
+      "max_http_requests": 2,
+      "status": "completed",
+      "http_requests": 2,
+      "result": "direct actual Reqwest sees null and header guard shape; need SDK path classification"
+    },
+    {
+      "kind": "actual SDK + production HttpClient path diagnosis",
+      "recorded_at": "2026-10-12T15:45:34.142674+00:00",
+      "scope": "initialize only; SDK intrinsic bounded retries; no tools/list or tools/call",
+      "status": "completed",
+      "http_requests": 2,
+      "result": "current SDK production HTTP client initialize succeeds (notification internally204)"
+    },
+    {
+      "kind": "native UI enable existing running worker",
+      "recorded_at": "2026-10-12T15:46:19.580312+00:00",
+      "scope": "initialize + tools/list only",
+      "status": "metadata_succeeded_snapshot_inactive",
+      "http_requests": 3,
+      "operation_id": "88fc848a-11e9-450b-a5e6-c6dbb4d97237"
+    },
+    {
+      "kind": "native UI enable rebuilt normal daily app",
+      "recorded_at": "2026-10-12T15:57:51.679707+00:00",
+      "scope": "one initialize + tools/list flow, no tools/call or model",
+      "status": "succeeded",
+      "http_requests": 3,
+      "operation_id": "9f1cb9b4-1f7b-425b-898e-144dd5971ae8",
+      "result": "initialize/tools-list/artifact succeeded; actual UI enabled and selected"
+    }
+  ],
+  "total_metadata_http_requests": 10,
+  "ui_result": {
+    "enabled": true,
+    "selected_in_empty_chat": true,
+    "task_sent": false,
+    "other_installed_connectors_left_unchanged": true
+  }
+}

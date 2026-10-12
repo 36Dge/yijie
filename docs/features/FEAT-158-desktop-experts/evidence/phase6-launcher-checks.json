@@ -1,0 +1,160 @@
+{
+  "feature": "FEAT-158",
+  "phase": "phase6-desktop-candidate-integration",
+  "recorded_at": "2026-10-11T13:46:46.144546+00:00",
+  "contract_impact": "semantic deployment configuration and local QA provenance; no wire/DB/permission changes",
+  "release": false,
+  "evidence_kind": "Retrospective record of tool-observed commands and exit codes; no replayed tests while writing this JSON",
+  "source_modified_while_recording": false,
+  "head": "46d0035a2054effe3bfddbd13861e81d46ecd85d",
+  "baseline": "feat158-phase6-launcher-baseline.json",
+  "checks": [
+    {
+      "command": "pnpm exec vitest run scripts/run-local-demo-fast.test.mjs scripts/expert-packaged-receipt.test.mjs --maxWorkers=2 --exclude '**/.local/**' --exclude '**/.contracts-source/**' --exclude '**/.agent-host-source/**' --exclude '**/.skills-source/**'",
+      "exit_code": 0,
+      "files": 2,
+      "tests": 36,
+      "scope": "Final normal profile/argument/receipt-record comparisons; no executable fixture or App launch"
+    },
+    {
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --lib single_instance::tests::feat158_isolated_lock_requires_both_local_gate_and_compiled_identity -- --exact --test-threads=1",
+      "exit_code": 0,
+      "tests": 1,
+      "filtered_out": 609,
+      "scope": "Normal locks and profile identities only"
+    },
+    {
+      "command": "cargo fmt --manifest-path src-tauri/Cargo.toml --check",
+      "exit_code": 0
+    },
+    {
+      "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings",
+      "exit_code": 0,
+      "scope": "All-target static check, no broad test execution"
+    },
+    {
+      "command": "pnpm exec eslint scripts/expert-local-profile.mjs scripts/expert-packaged-receipt.mjs scripts/expert-packaged-receipt.test.mjs scripts/run-local-demo-fast.test.mjs scripts/sync-desktop-expert-resources.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "pnpm docs:build",
+      "exit_code": 0,
+      "note": "Existing >500 kB chunk warning retained"
+    },
+    {
+      "command": "bash -n scripts/run-local-demo-fast.sh",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    },
+    {
+      "command": "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast node scripts/sync-desktop-expert-resources.mjs",
+      "exit_code": 0,
+      "result": "38 unchanged ordinary Skills + 1 expert, content 0.1.2"
+    },
+    {
+      "command": "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast node scripts/sync-desktop-expert-resources.mjs --check",
+      "exit_code": 0,
+      "result": "same 38 + 1 canonical resources"
+    },
+    {
+      "command": "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast YIJIE_CHAT_MODELS_ENABLED=true YIJIE_MARKET_CONNECTORS_ENABLED=true YIJIE_RUNTIME_PERMISSIONS_ENABLED=true VITE_YIJIE_RUNTIME_PERMISSIONS_ENABLED=true YIJIE_FEAT155_SCHEDULED_DAILY=true YIJIE_FEAT155_SCHEDULED_CANDIDATE=false YIJIE_EXPERTS_ENABLED=true node scripts/chat-model-build-candidate.mjs --freeze",
+      "exit_code": 0,
+      "result": "FEAT-158",
+      "release": false
+    },
+    {
+      "command": "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast YIJIE_CHAT_MODELS_ENABLED=true YIJIE_MARKET_CONNECTORS_ENABLED=true YIJIE_RUNTIME_PERMISSIONS_ENABLED=true VITE_YIJIE_RUNTIME_PERMISSIONS_ENABLED=true YIJIE_FEAT155_SCHEDULED_DAILY=true YIJIE_FEAT155_SCHEDULED_CANDIDATE=false YIJIE_EXPERTS_ENABLED=true node scripts/sync-desktop-skill-resources.mjs --channel local-development --check --skip-package",
+      "exit_code": 0,
+      "result": "Full source/permission chain and 38 ordinary Skills, categories 5/9/7/9/8"
+    },
+    {
+      "command": "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast YIJIE_CHAT_MODELS_ENABLED=true YIJIE_MARKET_CONNECTORS_ENABLED=true YIJIE_RUNTIME_PERMISSIONS_ENABLED=true VITE_YIJIE_RUNTIME_PERMISSIONS_ENABLED=true YIJIE_FEAT155_SCHEDULED_DAILY=true YIJIE_FEAT155_SCHEDULED_CANDIDATE=false YIJIE_EXPERTS_ENABLED=false node scripts/chat-model-build-candidate.mjs --freeze",
+      "exit_code": 0,
+      "result": "FEAT-156",
+      "release": false
+    },
+    {
+      "command": "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast YIJIE_CHAT_MODELS_ENABLED=true YIJIE_MARKET_CONNECTORS_ENABLED=true YIJIE_RUNTIME_PERMISSIONS_ENABLED=true VITE_YIJIE_RUNTIME_PERMISSIONS_ENABLED=true YIJIE_FEAT155_SCHEDULED_DAILY=true YIJIE_FEAT155_SCHEDULED_CANDIDATE=false YIJIE_EXPERTS_ENABLED=false node scripts/sync-desktop-skill-resources.mjs --channel local-development --check --skip-package",
+      "exit_code": 0,
+      "result": "Full source/permission chain and 38 ordinary Skills, categories 5/9/7/9/8"
+    }
+  ],
+  "intermediate_records": [
+    {
+      "command": "cargo fmt --manifest-path src-tauri/Cargo.toml --check",
+      "status": "Initially reported one formatting diff in single_instance.rs; formatted that file normally, final standalone check exit 0",
+      "note": "Initial combined shell continued to subsequent reads and returned aggregate exit 0; no initial fmt PASS claimed"
+    }
+  ],
+  "build_pins": {
+    "experts_old": "2b9e99be469aa171067600f38d4f9813cfb4feeb9de4dd05619805923a1ce0b8",
+    "default_old": "28de1f4f62c8388bccec27fe9d3d0c160bb7779747409f69a5e44136e53be8b4"
+  },
+  "source_sha256": {
+    "scripts/run-local-demo-fast.sh": "68191139442626ae5f51bb0b680590c33f136cb41b4f166b143dabc9cc7f26bf",
+    "scripts/run-local-demo-fast.test.mjs": "34e0a55c50532a3c74eabcbf5c108e427b763cb51ffef88ede0e0814a1085f1b",
+    "scripts/expert-local-profile.mjs": "c8091bbf44c8ab225674fc18a978d9e0d15ea53ff4153940053d01cfc9983590",
+    "scripts/expert-packaged-receipt.mjs": "6676739a47819bfc743d2f2c6d02bc324b5e98639255deef9f283da64d4247c1",
+    "scripts/expert-packaged-receipt.test.mjs": "7781841926335ad70bdf805eaaec5e6b3ffc225c15c5a69af8c1be28ad27f684",
+    "scripts/sync-desktop-expert-resources.mjs": "289af116297ee30d94ffba756bf4e6b9b4c85c540c18cba9a6056f14055c45aa",
+    "src-tauri/experts-local-profiles.json": "90f1c6716da82d0d9c1388a4b5684663242705e23e8d6c4fad17d3b82e528ce5",
+    "src-tauri/tauri.experts-content-v012.conf.json": "6750196357edfb4b45d156200561c3164bfab2fd42132577d1f5155712595f5a",
+    "src-tauri/src/single_instance.rs": "91235f2a2e3d1b6c59f042715a1d93d5ae1496914e9ae7f131adfdc2504ff9d5",
+    "docs/local-development.md": "a26d02949bdec6fcbd5dcad2dd709061c766f42ced5f2c54e488a5ab8a04ede9",
+    "contracts/experts-assets.candidate.json": "d7632f8b752a78adeb047148b53f1195e658c64546f4a47783648a0412cc99ad",
+    "contracts/experts-host-build.candidate.json": "25cc8bdeb7607fc418fd0e568da4f75c2fdcbda531f02b2f86cefde96762cd2e",
+    "contracts/chat-model-host-build.candidate.json": "0262ea17a2f11f4d1cceeb0fa736a08ac60881c9acfedb153b02a3edf2556fb9"
+  },
+  "worker": {
+    "manifest_sha256": "8f17f6ec022cbdd1c3a801504791204b0699616abc3d406d4ffc38755487674e",
+    "binary_sha256": "78bfbe1874d4d6d47fd4754d1cd7c67180e029cd90170d11c5f5e2970ebdcd66",
+    "build_owner": "runtime_reuse; this agent did not rebuild worker"
+  },
+  "receipt_scope": {
+    "profiles": [
+      "default",
+      "content-v011",
+      "content-v012"
+    ],
+    "single_asset_authority": true,
+    "source_inputs": [
+      "Desktop build source/config/lock/assets/.env fingerprints",
+      "Worker subtree + catalog JSON includes + canonical build/check scripts + Cargo/source locks/config"
+    ],
+    "artifact_inputs": [
+      "Full App bundle inventory and compiled plist identifier",
+      "Packaged resources compared to both checked generated slots",
+      "Profile Host binary",
+      "Fixed Runtime and manifest",
+      "Canonical content-addressed worker and current manifest"
+    ],
+    "reopen": "Existing full check-only gates plus exact local receipt comparisons, then same managed exec env; no build/copy/receipt mutation",
+    "receipt_is_not_release_attestation": true
+  },
+  "activity": {
+    "app_launches": 0,
+    "ui_operations": 0,
+    "real_model_calls": 0,
+    "external_business_calls": 0,
+    "daily_database_access": 0,
+    "old_installation_or_history_mutations": 0,
+    "fake_executable_or_attack_fixtures": 0
+  },
+  "not_run": [
+    {
+      "item": "Actual packaged App build/start and normal Quit/reopen",
+      "reason": "Root owns actual acceptance; implementation and static/focused checks do not claim this product result"
+    },
+    {
+      "item": "Full historical Rust/Host suites",
+      "reason": "User prohibits suites including permission damage, executable spoofing or attack fixtures; only reviewed normal tests and static all-target checks"
+    },
+    {
+      "item": "Appearance acceptance",
+      "reason": "User explicitly skipped"
+    }
+  ]
+}

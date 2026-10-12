@@ -1,0 +1,58 @@
+{
+  "recorded_at": "2026-10-12T17:37:10.689690+00:00",
+  "contract_impact": "semantic; Desktop-owned default/deployment selection over previously qualified storage and execution mechanisms",
+  "changed_files": {
+    "scripts/run-local-demo-fast.sh": "1904eb271677d6cf765d0c3236291b37c914f67754607599a8c8151c4d64a7f2",
+    "scripts/expert-local-profile.mjs": "ee315e2990beb740434f3e8307a8dd6034eca82c4b8e680b361e3d89de936f9d",
+    "scripts/expert-packaged-receipt.mjs": "4c53f4ae50a972dc876d7b3b973da39cb35456392cb8078e6d0d3b6398ba652d",
+    "scripts/run-local-demo-fast.test.mjs": "290fcd78f6c070b7b4b03a5fdbd724edfc4c309b79e9632299a9e7aa1220a43d",
+    "scripts/expert-packaged-receipt.test.mjs": "7b7cfae1cc7a6550ceebfe56132c5ce7ab95dfa6da813b579681fd0e12a8a34f",
+    "src-tauri/experts-local-profiles.json": "26e9d52c7bbe308e31df68e1fe9c8919e8e78550da4c995ff142dbe7e13cdb42",
+    "src-tauri/tauri.experts-daily.conf.json": "f8eae07accf0dc8999d614cb066eba040871559444ad7cbd34df239e73a46b99",
+    "src-tauri/src/chat/experts/mod.rs": "1a0d550d43c8d1ebd3771f7355862ada6964ab956683a4e0ba6dd086e65114b2",
+    "src-tauri/src/chat/migrations.rs": "5c164275e84a3c63f463ba61221873bbfccba249ad86618ef45dda114a61eea1",
+    "src-tauri/src/single_instance.rs": "786cd2f203a182d2a9604a3ca1fb8b0b18327ff7e935af895e6872ac6ec93866"
+  },
+  "review": {
+    "authority": "existing Desktop profile table and canonical launcher; Host/wire/Runtime unchanged",
+    "daily_identity": "com.yijie.ai; default AppData and protected key retained",
+    "daily_host_binary": "../yijie-agent-host/.local/bin/yijie-agent-host",
+    "daily_host_runtime_home": ".local/demo-fast/{host-home,codex-home}",
+    "instance_lock": "exact existing daily lock for both expert=true and expert=false; isolated compiled identities remain separate",
+    "data_upgrade": "existing SQL33→35 and Host8→10; no migration SQL edited, no user rows backfilled or manually updated",
+    "rollback": "explicit false with rebuilt compatible Native/Host readers; no database downgrade; expert contexts cannot silently run as ordinary",
+    "sources": "expert and ordinary Host pins retained; ordinary source-candidate check passed, expert source revalidated by canonical build",
+    "execution": "flags do not grant turns,connector calls or approvals; old outbox cannot be replayed as expert",
+    "scope": "no UI styling or content changes, no new test categories"
+  },
+  "checks": {
+    "desktop_targeted_vitest": {
+      "status": "PASS",
+      "files": 4,
+      "passed": 52,
+      "skipped": 1,
+      "skip_reason": "explicit live source-candidate check not enabled in unit-test environment; canonical check runs separately"
+    },
+    "initial_vitest_selection": {
+      "status": "FAIL",
+      "reason": "filename filtering also matched2 historical .local checkout copies with stale assertions; narrowed selection with --exclude **/.local/**; historical files unchanged"
+    },
+    "native_sql33_to35": {
+      "status": "PASS",
+      "tests": 1
+    },
+    "native_instance_lock": {
+      "status": "PASS",
+      "tests": 1
+    },
+    "host_reader_reopen_compatibility": {
+      "status": "PASS",
+      "tests": 3
+    },
+    "format_and_targeted_eslint": "PASS",
+    "desktop_all_targets_clippy": "PASS",
+    "desktop_docs_build": "PASS"
+  },
+  "model_calls": 0,
+  "appearance": "SKIPPED"
+}

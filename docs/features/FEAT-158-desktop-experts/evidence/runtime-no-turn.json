@@ -1,0 +1,34 @@
+{
+  "feature": "FEAT-158",
+  "kind": "fixed-runtime-no-turn-lifecycle",
+  "runtime_sha256": "aad49041bd7d34c853fb55c274711e3cc810725720d2c097469822d310fb02f9",
+  "runtime_manifest_sha256": "8b86a1a661f50beda1e0a0c96f81ddbdf959a9a07c2e756cc4b9b0eabc053b27",
+  "root": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat158-native-no-turn-sf0zo9ko",
+  "paid_calls": 0,
+  "turn_start_calls": 0,
+  "http_requests": [],
+  "steps": [
+    {
+      "step": "ordinary_start",
+      "thread_id": "01a129cb-4fe0-79f1-aa98-7e9c0f78e628",
+      "approval_policy": "never",
+      "sandbox": {
+        "type": "readOnly",
+        "networkAccess": false
+      }
+    },
+    {
+      "step": "expert_apply_before",
+      "status": {
+        "type": "idle"
+      }
+    }
+  ],
+  "passed": false,
+  "role_effectiveness": "NOT RUN: no Provider request or real model evaluation",
+  "resource_readability": "NOT RUN: no tool execution",
+  "pid": 60274,
+  "failure": "thread/resume: {\"code\": -32600, \"message\": \"no rollout found for thread id 01a129cb-4fe0-79f1-aa98-7e9c0f78e628\"}",
+  "normal_eof_exit": 0,
+  "synthetic_session_metadata": []
+}

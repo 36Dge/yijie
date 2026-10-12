@@ -1,0 +1,251 @@
+{
+  "feature": "FEAT-158",
+  "version": "0.1.2",
+  "bundle_version": "0.4.2",
+  "completed_at": "2026-10-11T13:36:13.614380+00:00",
+  "contract_impact": "semantic, versioned expert behavior only; no wire/permission/format changes",
+  "checks": [
+    {
+      "command": "make lint",
+      "exit_code": 0,
+      "scope": "3Skill files;2Plugin manifests;38ordinary Skills;258reviewed files;exactv2lock"
+    },
+    {
+      "command": "make test",
+      "exit_code": 0,
+      "tests_passed": 11,
+      "synthetic_dataset_records_validated": 16,
+      "safe_scope": "All four test files read before execution; only normal deterministic packaging/content/source tests, no prohibited fixtures."
+    },
+    {
+      "command": "node ../yijie-contracts/scripts/sync-experts.mjs --consumer=skills --check",
+      "exit_code": 0,
+      "scope": "100definitions/10Native commands;existing canonical candidate unchanged"
+    },
+    {
+      "command": "node scripts/package-desktop-skills.mjs --source plugins/yijie-desktop-skills/experts/bundle-source.json --output dist/skills-experts-candidate-v012",
+      "exit_code": 0,
+      "catalog_entries": 39
+    },
+    {
+      "command": "skill-creator/scripts/quick_validate.py via system and bundledPython",
+      "exit_code": 1,
+      "reason": "Both Python runtimes lackPyYAML; no dependency installation; not reportedPASS. Script inspected and existing two-scalar frontmatter name/description/length/placeholder rules manually checked."
+    },
+    {
+      "command": "normal read-only source/archive preservation comparison",
+      "exit_code": 0,
+      "old_bundle_files_preserved": 41,
+      "source_snapshot_files_verified": 37,
+      "ordinary_archives_and_metadata_unchanged": 38,
+      "expert_archive_matches_source_files": 26,
+      "stable_eval_case_ids_and_inputs": 12,
+      "input_change": "Only available content version0.1.1→0.1.2 in historical-version case; questions and other input facts unchanged.",
+      "scene_index_unchanged_except_version": true,
+      "rubric_threshold_unchanged": true
+    },
+    {
+      "command": "git diff --check after documentation finalization",
+      "exit_code": 0
+    }
+  ],
+  "source": {
+    "repository": "https://github.com/36Dge/yijie-skills.git",
+    "revision_kind": "working-tree",
+    "revision": "488714a8d96f40806a257aae097683815b1dd458",
+    "tree_sha256": "357ca50ee8c9b602eccb0393a56c103491d1474d0fd56012cddd88378d19c4ab"
+  },
+  "source_definition": {
+    "path": "plugins/yijie-desktop-skills/experts/bundle-source.json",
+    "sha256": "d9aa94e28e14dc6f86ace2f72b60c1884eb2f2604ec5b2ac6f3d080edabaa166"
+  },
+  "manifest_sha256": "a176bfba892afbc4de8622ebde955a72aef240ab51a9256d7bfb6c5ec40c0936",
+  "authority_sha256": "9c6f384b6f95eb6579c9f26177e229d8646986db44a10220aa119a6f0dc015b8",
+  "expert": {
+    "installation_id": "yijie.experts.jd-ops-expert",
+    "expert_id": "jd-ops-expert",
+    "source_id": "yijie-local",
+    "version": "0.1.2",
+    "archive": {
+      "path": "packages/yijie.experts.jd-ops-expert-0.1.2.zip",
+      "sha256": "8fea62005795175ef9b649d0320ab9049ba2165b734ebd887a911536dc4b9cc7",
+      "compressed_size_bytes": 100661,
+      "uncompressed_size_bytes": 97499,
+      "file_count": 26
+    },
+    "role_resource": {
+      "path": "ROLE.md",
+      "sha256": "fcf23ad407cfe0df4f43c6167855d30edcdee9d8194b37d30df2c59136fa8838",
+      "bytes": 2928
+    },
+    "knowledge_manifest_sha256": "424896b2c8366fa2f658b66c4b8eeb8f01e69399b34c01824cc5c558ac3db8c4",
+    "knowledge_resources": [
+      {
+        "id": "index",
+        "title": "模块与场景索引",
+        "path": "references/index.md",
+        "content_version": "0.1.2",
+        "content_status": "reviewed-reference",
+        "sha256": "00845bdfb1e64ccd0869bfd9eede24fdeeca307d2fe24b85698a253e7e10ec48",
+        "bytes": 3582
+      },
+      {
+        "id": "source-notes",
+        "title": "来源、状态与引用",
+        "path": "references/source-notes.md",
+        "content_version": "0.1.2",
+        "content_status": "reviewed-reference",
+        "sha256": "d050e5ebf01f027386cdc05e88cccf2ae86adbbb7fb763822eda3fbb6e49e103",
+        "bytes": 3110
+      },
+      {
+        "id": "m01",
+        "title": "核心认知与新店准备",
+        "path": "references/m01-foundations.md",
+        "content_version": "0.1.2",
+        "content_status": "incomplete",
+        "sha256": "a12c7ff89a0ca4aac98d7f77fe7d33b5eacc0b9f1e071743cbb0a1b82f063631",
+        "bytes": 3355
+      },
+      {
+        "id": "m02",
+        "title": "开店入驻准备",
+        "path": "references/m02-entry.md",
+        "content_version": "0.1.2",
+        "content_status": "conflicted",
+        "sha256": "91c35b241ea6d62fa5c648de399b7d64b29b63c7fda02039d679ddaa762f9419",
+        "bytes": 3103
+      },
+      {
+        "id": "m03",
+        "title": "上架 SOP",
+        "path": "references/m03-listing.md",
+        "content_version": "0.1.2",
+        "content_status": "reviewed-reference",
+        "sha256": "9e095ffc0705efc3ade54e61b6b49a7db14108604892a91bc8e4018ff3e9d99e",
+        "bytes": 3430
+      },
+      {
+        "id": "m04",
+        "title": "图片、详情与视频素材",
+        "path": "references/m04-media.md",
+        "content_version": "0.1.2",
+        "content_status": "conflicted",
+        "sha256": "563866c764163732488f66ff29fb0fc5ab6419912a55559031a178ada85a96eb",
+        "bytes": 2954
+      },
+      {
+        "id": "m05",
+        "title": "定价与优惠核算",
+        "path": "references/m05-pricing.md",
+        "content_version": "0.1.2",
+        "content_status": "conflicted",
+        "sha256": "8a0593944c86cc790d9eb0d3fd0faaacc10e7c8d69f6dcacff526d621cd2ecc9",
+        "bytes": 3148
+      },
+      {
+        "id": "m06",
+        "title": "新店与新品冷启动",
+        "path": "references/m06-launch.md",
+        "content_version": "0.1.2",
+        "content_status": "conflicted",
+        "sha256": "791677a412cd1a9445661f96695cbf53bcbd155bf513a2d65894f5f1f569c23e",
+        "bytes": 3043
+      },
+      {
+        "id": "m07",
+        "title": "活动准备与复盘",
+        "path": "references/m07-campaigns.md",
+        "content_version": "0.1.2",
+        "content_status": "reviewed-reference",
+        "sha256": "3523614a4ac6627f1f350fdb25f83c4cf034ec34eea9fccc6c8c1712e81cf31c",
+        "bytes": 2994
+      },
+      {
+        "id": "m08",
+        "title": "推广投放诊断",
+        "path": "references/m08-advertising.md",
+        "content_version": "0.1.2",
+        "content_status": "conflicted",
+        "sha256": "e0479ad28dbdc9cae9770f4d0d6cd067e50d4d84f03e248b6f0e8ea7d0830208",
+        "bytes": 3147
+      },
+      {
+        "id": "m09",
+        "title": "店铺服务质量与复购",
+        "path": "references/m09-health.md",
+        "content_version": "0.1.2",
+        "content_status": "reviewed-reference",
+        "sha256": "c41964f5b9bfd7119a7649cbeb849cfc23091beb87f17127bd25da02cab703a2",
+        "bytes": 2927
+      },
+      {
+        "id": "m10",
+        "title": "客服与售后",
+        "path": "references/m10-service.md",
+        "content_version": "0.1.2",
+        "content_status": "conflicted",
+        "sha256": "4190af4a50cd4e77245327511c82c339fc5ae2719bb401e72998a6396854b5c3",
+        "bytes": 2928
+      },
+      {
+        "id": "m11",
+        "title": "发货与履约",
+        "path": "references/m11-fulfillment.md",
+        "content_version": "0.1.2",
+        "content_status": "conflicted",
+        "sha256": "b707db5e911f79ada422b4abcb1344a53e895b0c54db2752d0dd66330bc8977e",
+        "bytes": 2928
+      },
+      {
+        "id": "m12",
+        "title": "商品与经营信息核对",
+        "path": "references/m12-compliance.md",
+        "content_version": "0.1.2",
+        "content_status": "conflicted",
+        "sha256": "a44122d51d7c1246b0e7465de60d681676b65907e3d50c4cb13b68e4077d15e3",
+        "bytes": 3190
+      },
+      {
+        "id": "m13",
+        "title": "经营复盘与诊断",
+        "path": "references/m13-review.md",
+        "content_version": "0.1.2",
+        "content_status": "reviewed-reference",
+        "sha256": "c855a5d3a957554303f35ef0412c77190622c33e8312085ed6f5cb49da2e391f",
+        "bytes": 3402
+      },
+      {
+        "id": "m14",
+        "title": "达人合作与 CPS",
+        "path": "references/m14-creators.md",
+        "content_version": "0.1.2",
+        "content_status": "incomplete",
+        "sha256": "4f2eccef9e6280816305d312e8802a77a1d4f975e1fc238f0ba22b77347f34ce",
+        "bytes": 2950
+      }
+    ],
+    "local_use_authorization": {
+      "status": "local-use-authorized",
+      "evidence_reference": "docs/provenance/FEAT-158-local-use-authorization-v0.1.2.md",
+      "evidence_sha256": "8a2a681930e60ea29d817e041142d51bf50541107f77b785b08cd9ade8125955"
+    },
+    "content_review": {
+      "path": "docs/provenance/source-audits/FEAT-158-jd-ops-content-audit-v0.1.2.json",
+      "sha256": "aab73fda3807004efc8ad413bf73e9694f059e8ede1163b59aa4ebf98e5fdf8e"
+    }
+  },
+  "contracts_candidate": {
+    "path": "contracts/experts.candidate.json",
+    "sha256": "cb8f6aa3445f15bf2274c4966cfa70239c2aaf445df3473f13638e1f3ac5ffdd"
+  },
+  "preservation_record": {
+    "path": "dist/feat158-v011-run7-preservation.json",
+    "sha256": "0e8ac9a4a0a3eda6f7c5791fc8f3e60dd3d05c03c07368bc0ed723681b59ef2d"
+  },
+  "model_calls": 0,
+  "ui_calls": 0,
+  "policy_network_verification": "NOT RUN",
+  "model_eval": "NOT RUN for0.1.2",
+  "release": false
+}

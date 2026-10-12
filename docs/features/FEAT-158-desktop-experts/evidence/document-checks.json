@@ -1,0 +1,150 @@
+{
+  "date": "2026-10-11",
+  "timezone": "Asia/Shanghai",
+  "scope": "Requirements and design documents only. Not product qualification or acceptance.",
+  "checks": [
+    {
+      "key": "meta_lint",
+      "command": "pnpm lint",
+      "exit_code": 0,
+      "result": "PASS",
+      "output": "$ node scripts/repo-manifest.mjs validate && node scripts/check-contract-governance.mjs\nValidated 11 repository entries.\nValidated central Contract First governance and 11 sibling AGENTS.md files.\n"
+    },
+    {
+      "key": "meta_tests",
+      "command": "pnpm test",
+      "exit_code": 0,
+      "result": "PASS",
+      "output": "$ node --test tests/*.test.mjs\n",
+      "summary": "50 tests; 50 pass; 0 fail; 0 cancelled; 0 skipped. Final write_stdin completed normally."
+    },
+    {
+      "key": "meta_shell_syntax",
+      "command": "bash -n scripts/*.sh",
+      "exit_code": 0,
+      "result": "PASS",
+      "output": ""
+    },
+    {
+      "key": "package_structure",
+      "command": "./docs/dev/codex-feature-delivery/scripts/check-feature-package.sh docs/features/FEAT-158-desktop-experts",
+      "exit_code": 0,
+      "result": "PASS",
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，模板变量已替换。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+    },
+    {
+      "key": "claim_audit",
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-158-desktop-experts",
+      "exit_code": 0,
+      "result": "PASS",
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\n"
+    }
+  ],
+  "additional_checks": [
+    {
+      "command": "./docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-158-desktop-experts",
+      "exit_code": 0,
+      "result": "PASS",
+      "scope": "Structure and placeholders; does not imply D0 approval."
+    },
+    {
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --gate D0 docs/features/FEAT-158-desktop-experts",
+      "exit_code": 1,
+      "result": "NOT_APPROVED",
+      "output": "ERROR: product_ux.status must be PASS for D0",
+      "interpretation": "Expected: product_ux remains pending; no Owner confirmation invented."
+    }
+  ],
+  "product": {
+    "implementation": "NOT RUN",
+    "runtime_qualification": "NOT RUN",
+    "must_acceptance": "NOT RUN",
+    "D0": "pending_owner_review",
+    "D4": "NOT RUN",
+    "DP": "N/A",
+    "model_calls": 0,
+    "external_calls": 0
+  },
+  "review": {
+    "mode": "Independent agent read-only review and primary agent reconciliation, not human approval",
+    "resolved": [
+      "Shared bundle schema authority is Contracts",
+      "Binding intent persists before normal same-thread apply; effective revision commits after success",
+      "Archive entrypoint is root SKILL.md",
+      "Citations locate the reviewed package content; original lines remain lineage",
+      "Read capability and expert readiness do not impersonate model-only Skills",
+      "No new cross-restart text draft persistence promise",
+      "Existing Skills page has no search or secondary marketplace tabs",
+      "Knowledge has 2291 physical lines; final table is present"
+    ]
+  },
+  "notes": [
+    "All product tests remain NOT RUN.",
+    "User source files were read only; hashes rechecked unchanged.",
+    "No business repositories were edited, no git commit/push, and no processes were started or stopped.",
+    "Initial custom whitespace audit misread git --no-index exit 1 (differences) as failure; corrected interpretation, removed one Markdown hard-break trailing space, and reran. Final diagnostics empty."
+  ],
+  "final_integrity": {
+    "markdown_links_checked": 48,
+    "missing_links": [],
+    "untracked_file_whitespace_issues": [],
+    "sources": [
+      {
+        "name": "专家接入.pdf",
+        "unchanged": true
+      },
+      {
+        "name": "jd_kb_京东运营知识库完整版.md",
+        "unchanged": true
+      },
+      {
+        "name": "专家配置-资深电商运营操盘手.md",
+        "unchanged": true
+      }
+    ],
+    "final_repositories": [
+      {
+        "repository": "yijie",
+        "head_unchanged": true,
+        "status": [
+          "?? docs/features/FEAT-158-desktop-experts/"
+        ]
+      },
+      {
+        "repository": "yijie-desktop",
+        "head_unchanged": true,
+        "status": []
+      },
+      {
+        "repository": "yijie-agent-host",
+        "head_unchanged": true,
+        "status": []
+      },
+      {
+        "repository": "yijie-codex",
+        "head_unchanged": true,
+        "status": []
+      },
+      {
+        "repository": "yijie-skills",
+        "head_unchanged": true,
+        "status": []
+      },
+      {
+        "repository": "yijie-contracts",
+        "head_unchanged": true,
+        "status": []
+      },
+      {
+        "repository": "yijie-knowledge",
+        "head_unchanged": true,
+        "status": []
+      },
+      {
+        "repository": "yijie-connectors",
+        "head_unchanged": true,
+        "status": []
+      }
+    ]
+  }
+}

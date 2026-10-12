@@ -1,0 +1,145 @@
+{
+  "feature": "FEAT-158",
+  "recorded_at": "2026-10-11T14:50:44.804888+00:00",
+  "scope": "One reachable quick-prompt confirmation cancellation mechanism under ordinary same-scope permission renewal",
+  "contract_impact": "none: Renderer feedback only; no protocol, capability, Native/Host, grant, persistence or replay changes",
+  "release": false,
+  "original_observation": {
+    "status": "NOT UNIQUELY EXPLAINED",
+    "reason": "Original WebView click/renewal timestamps are unavailable; source-based normal renewal reproduction proves this mechanism, not that it caused the one observed run8 instance",
+    "real_webview_retest": "NOT RUN",
+    "ac_002_003_whole_result": "PENDING"
+  },
+  "proven_sequence": [
+    "First quick prompt keep returns to chat and retains original text/expert",
+    "Reopen selected expert through its capsule and choose second prompt",
+    "Normal permission timer runs at 210 s: actual store TTL reply240s, lead30s; same tenant/revision and new expiry/capabilities",
+    "Actual App chat-permission lifecycle disposes old context and binds new context; both expert binding composables execute",
+    "Original confirmation is cancelled and old callback cannot navigate, prepare, bind, submit or change draft",
+    "Before fix details has no cancellation feedback (red)",
+    "After fix details shows why nothing happened; a fresh explicit prompt/replace captures current context and succeeds (green)"
+  ],
+  "fix": [
+    "Keep destination/scope/context generation guards unchanged",
+    "For a still-pending confirmation on same route and scope, explain a changed context as cancellation; never rebase or automatically replay confirmation",
+    "Show existing summonError alert inside the expert detail as well as catalog",
+    "Clear confirmation identity on user close/Escape/mask dismissal and after leave, without clearing a newer dialog",
+    "A fresh permitted explicit summon clears old feedback"
+  ],
+  "test_boundaries": {
+    "real": [
+      "App.vue",
+      "permission.store expiry timer",
+      "chat permission lifecycle",
+      "useExpertsBinding",
+      "useChatExpertsBinding",
+      "expert stores",
+      "memory router",
+      "ExtensionsPage",
+      "ExpertMarketPanel",
+      "Naive dialog/modal actions"
+    ],
+    "substituted": [
+      "Normal Native capabilities and chat context replies",
+      "Native expert catalog reply",
+      "Unrelated shell/subscriptions",
+      "CSS theme resolution (CSS app entrypoint is absent in DOM test)",
+      "Animation only uses standard Vue test transition stub"
+    ],
+    "no_injected_failure": true,
+    "synthetic_input_only": true
+  },
+  "checks": [
+    {
+      "command": "pnpm exec vitest run --dir src src/pages/plugins/ExtensionsPage.permission-refresh.test.ts --maxWorkers=1",
+      "stage": "before production fix",
+      "exit_code": 1,
+      "tests": 1,
+      "passed": 0,
+      "result": "Expected product red: no visible cancellation feedback after ordinary same-scope renewal",
+      "log": ".local/feat158-phase7-prefill-red.log"
+    },
+    {
+      "command": "pnpm exec vitest run --dir src src/pages/plugins/ExtensionsPage.permission-refresh.test.ts src/pages/plugins/ExtensionsPage.prefill.test.ts src/composables/useExpertSummon.test.ts src/composables/useExpertSummon.dialog.test.ts --maxWorkers=1",
+      "stage": "final source",
+      "exit_code": 0,
+      "test_files": 4,
+      "tests": 15,
+      "passed": 15,
+      "log": ".local/feat158-phase7-prefill-green.log"
+    },
+    {
+      "command": "pnpm exec eslint src/composables/useExpertSummon.ts src/components/experts/ExpertMarketPanel.vue src/pages/plugins/ExtensionsPage.permission-refresh.test.ts --max-warnings 0",
+      "exit_code": 0
+    },
+    {
+      "command": "pnpm exec vue-tsc --noEmit",
+      "exit_code": 0
+    },
+    {
+      "command": "pnpm exec vite build",
+      "exit_code": 0,
+      "warning": "Existing chunks above 500 kB warning, build succeeds",
+      "log": ".local/feat158-phase7-prefill-build.log"
+    },
+    {
+      "command": "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast YIJIE_CHAT_MODELS_ENABLED=true YIJIE_MARKET_CONNECTORS_ENABLED=true YIJIE_RUNTIME_PERMISSIONS_ENABLED=true VITE_YIJIE_RUNTIME_PERMISSIONS_ENABLED=true YIJIE_FEAT155_SCHEDULED_DAILY=true YIJIE_FEAT155_SCHEDULED_CANDIDATE=false YIJIE_EXPERTS_ENABLED=true node scripts/sync-desktop-skill-resources.mjs --channel local-development --check --skip-package",
+      "exit_code": 0,
+      "result": "Existing full source/permission chain and 38 ordinary Skills verified, category counts 5/9/7/9/8",
+      "log": ".local/feat158-phase7-source-check.log"
+    },
+    {
+      "command": "python3 scripts/check-worker-source.py",
+      "cwd": "../yijie-connectors",
+      "exit_code": 0,
+      "result": "Fixed Codex source and explicitly pinned worker/schema validation dependencies verified; local candidate only"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "source_sha256": {
+    "src/composables/useExpertSummon.ts": "8a500f670741230d643121d1c2d5c28bacf5174f1362ff6634c31d0779f9d9f5",
+    "src/components/experts/ExpertMarketPanel.vue": "59244d312fe055bfb29cc81424fdcfb113650686aaeb2bf7cd11a44113641795",
+    "src/pages/plugins/ExtensionsPage.permission-refresh.test.ts": "7ae30013e4b7ebcdd676e2f81ae395a6c194ecdd08666320dafe5c805714d4cb"
+  },
+  "evidence_sha256": {
+    ".local/feat158-phase7-prefill-red.log": "510d1335d392d189bbb6f3f60dbbcddc9f863a1901b8e6fca2ed7a0020a3fea6",
+    ".local/feat158-phase7-prefill-green.log": "41b651d9271956ca5ddbf569db622ed2e6142e723ddcf7f5ac224c1a699866be",
+    ".local/feat158-phase7-prefill-build.log": "18276b4278f09d55ce325c52900ad6805dc761831f338e6dd63ead4303da649f",
+    ".local/feat158-phase7-source-check.log": "f5cc81b06ce37ebe587cca8e05de22b3e37526c85d42b8341b5ae7c7ae00ad00"
+  },
+  "canonical_worker_read_only_check": {
+    "schemaVersion": 2,
+    "candidateOnly": true,
+    "manifest_sha256": "fee571b36f8db598d50189371455d32568c1393853adea2d61ad55986556cd74",
+    "binary_sha256": "f77ba40baf0c3ae7090bd61f076ade4c62298f138351563c7835556924f88bb3",
+    "checked": [
+      "canonical manifest path and content-addressed regular binary path",
+      "manifest exact SHA",
+      "binary exact SHA and size"
+    ],
+    "result": "PASS, no binary execution; canonical producer source/build validation is separate Connectors evidence"
+  },
+  "activity": {
+    "app_launches": 0,
+    "ui_operations": 0,
+    "network_calls": 0,
+    "model_calls": 0,
+    "source_pin_writes": 0,
+    "database_writes": 0,
+    "binary_replacements": 0,
+    "prohibited_fixture_runs": 0
+  },
+  "not_run": [
+    "Real WebView/App replacement retest or visual acceptance",
+    "Whole UI/Rust/Host suites",
+    "Model evaluation or live connector invocation"
+  ],
+  "notes": [
+    "Only necessary local regression/static source checks executed; previous run8 is not repaired-version acceptance",
+    "Existing Node localStorage experimental warning occurred during normal Vitest runs",
+    "App packaged QA receipts were not refreshed: changed current sources must pass canonical rebuild/check before later startup"
+  ]
+}

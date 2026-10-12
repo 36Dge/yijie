@@ -1,0 +1,242 @@
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+
+feature:
+  id: FEAT-158
+  slug: desktop-experts
+  title: 扩展入口与会话专家接入
+  status: active
+  created_at: '2026-10-11'
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+
+# 初次设计为none；用户已授权分阶段实现，以下为当前跨仓候选实际影响。
+scope:
+  risk_level: high
+  data_classification: internal
+  contract_impact: breaking
+  database_change: expand
+  persistence_change: durable
+  runtime_change: platform
+  auth_permission_change: none
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: prompt
+
+repositories:
+  - yijie
+  - yijie-contracts
+  - yijie-skills
+  - yijie-agent-host
+  - yijie-desktop
+
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+
+product_ux:
+  status: PASS
+  primary_user: 需要京东运营操作建议的易界卖家
+  problem: 重复描述专家角色和知识背景，缺少可持续选用的专业会话入口
+  user_outcome: 在扩展中召唤京东专家，同一对话持续咨询，引用可追溯，并能移除恢复普通模式
+  in_scope:
+    - 扩展入口和技能专家双Tab，原技能功能保留
+    - 首个资深电商运营操盘手，明确京东专向
+    - 详情快捷问题、召唤、单专家会话绑定与胶囊移除
+    - 复用受管Skills资产、原生会话切换和SQLCipher outbox
+    - 最低内容审校、按需知识读取、来源定位和良性评测
+  out_of_scope:
+    - 任意第三方插件导入、多专家团队、自动经营和自动转交
+    - 独立专家执行器、第二安装器、新RAG或私有知识摄取
+    - 自动连接器授权、自动继承到定时计划、云同步和公开发布
+  main_flow:
+    - canonical本地入口免登录进入扩展，默认技能，切到专家
+    - 详情或卡片召唤，受管资源就绪后回正确对话草稿，不自动发送
+    - 用户发送，原有事务冻结专家版本与绑定revision，经Host与固定Runtime执行
+    - 会话持续使用专家，移除后下一轮恢复普通指令，历史保留
+  visual_direction: 复用技能页和易界主题组件，胶囊放店铺授权右侧，保持当前连接器菜单和行内前缀
+  ui_states:
+    idle: 浏览搜索和详情不产生模型调用
+    loading: 准备中保留原界面，操作互斥，不提前宣告加载成功
+    success: 正确草稿出现专家胶囊，正文附件模型保持，输入框获得焦点
+    empty: 无条目或搜索零结果明确显示并可清除搜索
+    error: 显示原因和重试返回入口，保留草稿和旧有效绑定
+    retry: 先查询原操作；绑定与资源提供明确的原操作恢复入口，消息仍沿原快照且不自动重发
+    cancel: 取消待选意图或关闭详情，已安全准备资源可留缓存但不自动选用
+
+must_acceptance:
+  - id: AC-001
+    statement: 扩展入口双Tab和默认技能正确，原技能功能保留，首期一名专家
+    verification: 02-verification.md T01
+    status: pending
+  - id: AC-002
+    statement: 卡片详情快捷问题一致，京东能力边界和真实元数据准确
+    verification: 02-verification.md T02
+    status: pending
+  - id: AC-003
+    statement: 召唤幂等准备资源并返回正确草稿，不丢内容或自动发送
+    verification: 02-verification.md T03
+    status: pending
+  - id: AC-004
+    statement: 单会话单专家持续生效，其他会话隔离，活跃或未知投递时阻止切换
+    verification: 02-verification.md T04
+    status: pending
+  - id: AC-005
+    statement: 胶囊位置和移除操作正确，普通模式真实恢复，历史保持
+    verification: 02-verification.md T05
+    status: pending
+  - id: AC-006
+    statement: 复用同一原生执行和审批链，专家不扩权或污染全局技能，不隐式选连接器
+    verification: 02-verification.md T06
+    status: pending
+  - id: AC-007
+    statement: 知识按需读取、引用可定位、内容问题如实表达且通过固定良性评测
+    verification: 02-verification.md T07 与 05的内容准入和Eval
+    status: pending
+  - id: AC-008
+    statement: 绑定快照回执重开可恢复，版本不自动升级，未知结果不重复发送，旧历史可读
+    verification: 02-verification.md T08
+    status: pending
+  - id: AC-009
+    statement: 所有关键界面状态可恢复，权限不足不扩权，正常重试和资源移除不丢草稿
+    verification: 02-verification.md T09
+    status: pending
+  - id: AC-010
+    statement: 主题布局和键盘可用，一次真实fresh run通过全部Must和正常失败恢复
+    verification: 02-verification.md T10
+    status: pending
+
+contract:
+  impact: breaking
+  authority: 易界跨仓wire归yijie-contracts；共享包schema归yijie-contracts，内容和打包实现归yijie-skills；Runtime归固定canonical
+    schema；私有存储归各仓migration
+  source_first_plan: 先定义版本化包与跨仓契约，生成和定向兼容校验，再Host provider与Native reader，最后Desktop writer和UI；详见04
+  status: NOT RUN
+  checks:
+    - repository: yijie-contracts
+      command: node scripts/generate-experts.mjs --check
+      status: PASS
+      exit_code: 0
+    - repository: yijie-contracts
+      command: node scripts/sync-experts.mjs --consumer=desktop --check
+      status: PASS
+      exit_code: 0
+    - repository: yijie-contracts
+      command: node scripts/sync-experts.mjs --consumer=agent-host --check
+      status: PASS
+      exit_code: 0
+    - repository: yijie-contracts
+      command: node scripts/sync-experts.mjs --consumer=skills --check
+      status: PASS
+      exit_code: 0
+
+external_authorizations:
+  paid_calls:
+    allowed: true
+    max_actions: 18
+    approved_by: 段成威
+    # 本会话收到授权后的首次证据记录时间；不宣称用户消息的精确发送时刻。
+    approved_at: '2026-10-11T10:29:42.866563+00:00'
+  destructive_operations: { allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A }
+  production_writes: { allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A }
+
+implementation:
+  status: active
+  real_entrypoint: yijie-desktop 显式 YIJIE_EXPERTS_ENABLED=true pnpm
+    tauri:demo-fast:app；独立 com.yijie.ai.feat158-local App已实际构建启动
+  mock_only: false
+
+verification:
+  status: NOT RUN
+  verified_at: NOT RUN
+  startup:
+    status: NOT RUN
+    command_or_steps: YIJIE_EXPERTS_ENABLED=true pnpm tauri:demo-fast:app
+    environment: 阶段5用户已解锁并授权真实模型；独立com.yijie.ai.feat158-local候选
+    actual_result: run4配置失败及run5两处真实Eval失败均保留，已针对性修复；run6以0.1.1内容和独立canonical入口正在构建，未将失败run标为通过
+  real_smoke:
+    status: NOT RUN
+    command_or_steps: 02-verification.md T01-T10及固定知识Eval
+    environment: 实施完成后固定同一构建和Provider的fresh run
+    actual_result: 源契约、Host与Native/UI执行链和实际资源准备已验证；亮暗1180x760、键盘保留/移除已观察，尚无真实模型对话与完整fresh
+      run证据
+  representative_failure:
+    status: NOT RUN
+    command_or_steps: 用户正常取消准备或缺资料回答，然后正常重试恢复；不做故障注入
+    environment: 与真实happy path同一fresh run
+    actual_result: 正常journal序列、关闭重开、原操作显式恢复与异步晚回包规则已验证；run4未知原提交保留、不重发，run5继续真实产品验收
+  focused_checks:
+    - repository: yijie-desktop
+      command: cargo test --manifest-path src-tauri/Cargo.toml --lib expert_store_
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: cargo test --manifest-path src-tauri/Cargo.toml --lib
+        chat::migrations::tests::feat158_expert_expand_preserves_history_and_default_writer
+        -- --exact
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: cargo fmt --manifest-path src-tauri/Cargo.toml --check
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D
+        warnings
+      status: PASS
+      exit_code: 0
+    - repository: yijie-agent-host
+      command: go build ./...
+      status: PASS
+      exit_code: 0
+  artifacts:
+    - 08-real-model-audit.md
+    - evidence/phase5-real-model-ledger.json
+    - evidence/phase5-run5-eval-review.json
+    - evidence/phase5-run6-source-snapshot.json
+    - 07-implementation-progress.md
+    - evidence/runtime-no-turn.json
+    - evidence/runtime-local-responses.json
+    - evidence/runtime-reference.json
+    - evidence/runtime-reopen.json
+    - evidence/phase2-local-checks.json
+    - evidence/implementation-source-snapshot.json
+    - evidence/non-screen-audit-baseline.json
+    - evidence/non-screen-audit-checks.json
+    - evidence/installed-reference-preflight.json
+    - evidence/runtime-installed-ask.json
+    - evidence/runtime-installed-auto.json
+    - evidence/runtime-installed-full.json
+  diff_review:
+    status: PASS
+    summary: 对当前改动进行Host、Native、UI交叉审计；修复原操作恢复、授权回包、旧确认目的地与终态回退，并复查无屏幕正常验证。属于本地代码审查，不是Owner发布审批或D4；详见07阶段4。
+  known_limitations:
+    - 用户已解锁屏幕并授权继续真实产品和模型验收；Feature保持active，D4仍NOT RUN，实际执行见phase5-real-model-ledger
+    - 固定Runtime已验证实际安装的同一M03资料在ask/auto/full模式下可原生只读；不代表真实Provider、全部资料质量或审批决策验收
+    - 10条Native与11条private命令已接通，绑定和资源提供原ID显式恢复；不支持以新ID重发未知消息或清空数据库解锁
+    - run5已完成真实合成附件、同会话多轮及实际知识读取；c01未知品牌事实与c03内置搜索两项失败已修复，run6完整fresh run尚待执行
+    - 合成文本附件已由真实Kimi读取并识别材质与数量错误；最新0.1.1仍须重新验证，不将旧内容结果当新版本通过
+    - 当前最多18条用户发起测试消息已获授权；实际计数和原提交结果以phase5-real-model-ledger为准；政策官方核验与真实内容Eval未完成
+    - 仅本地工作树候选，默认关闭；未提交发布，不具备不可变发布来源与公开再分发授权
+    - 含用户禁止行为的既有全量测试仍未执行；本轮仅正常focused、并发检测、标准构建及静态检查
+
+public_readiness:
+  required: false
+  status: N/A
+  checks: []
+  external_smoke:
+    status: NOT RUN
+    command_or_steps: 不适用，本期local
+    actual_result: 未公开
+
+documents:
+  brief: 00-feature-brief.md
+  delivery_log: 01-delivery-log.md
+  verification: 02-verification.md

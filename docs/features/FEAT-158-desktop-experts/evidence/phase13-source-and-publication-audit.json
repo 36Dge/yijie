@@ -1,0 +1,44 @@
+{
+  "recorded_at": "2026-10-12T18:06:34.895018+00:00",
+  "checks": [
+    {
+      "repository": "yijie-contracts",
+      "commit": "e35ae9a0711014e4774a1347413e9a343ce7ab2c",
+      "git_object_hashes_verified": 30
+    },
+    {
+      "repository": "yijie-agent-host",
+      "candidate": "experts-host-build.candidate.json",
+      "commit": "9acae49ee2bf1fb33ae1da8ef02fd0bd07538d63",
+      "git_object_hashes_verified": 351
+    },
+    {
+      "repository": "yijie-agent-host",
+      "candidate": "chat-model-host-build.candidate.json",
+      "commit": "9acae49ee2bf1fb33ae1da8ef02fd0bd07538d63",
+      "git_object_hashes_verified": 351
+    }
+  ],
+  "new_model_calls": 0,
+  "appearance": "SKIPPED",
+  "public_git_authorization": "用户明确回复：包含知识正文与脱敏评测记录，允许公开推送",
+  "credential_scan": {
+    "files_by_repository": {
+      "yijie": 162,
+      "yijie-contracts": 30,
+      "yijie-skills": 47,
+      "yijie-agent-host": 45,
+      "yijie-desktop": 103,
+      "yijie-connectors": 3
+    },
+    "total_files": 390,
+    "review_candidates": [],
+    "existing_synthetic_worker_tokens_excluded": true
+  },
+  "excluded": [
+    "yijie-connectors/.local/",
+    "all ignored build outputs and caches",
+    "protected credentials, databases and raw personal sessions",
+    "original user-provided PDF/Markdown attachments (only reviewed derivative content and fingerprints included)"
+  ]
+}

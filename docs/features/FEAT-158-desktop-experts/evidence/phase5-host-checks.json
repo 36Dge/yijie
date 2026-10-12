@@ -1,0 +1,355 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-158",
+  "phase": "5",
+  "record_date": "2026-10-11",
+  "record_kind": "summary_of_previously_executed_tool_results",
+  "scope": "desktop_reuse Host and default-entry work only; excludes root-owned real Provider, visual, product acceptance and model-budget results",
+  "release": false,
+  "source_modified_while_recording": false,
+  "tests_rerun_while_recording": false,
+  "safeguards": {
+    "daily_app_started": false,
+    "daily_database_accessed": false,
+    "existing_candidate_database_modified": false,
+    "forced_process_termination": false,
+    "permission_faults": false,
+    "executable_replacement": false,
+    "attack_fixtures": false
+  },
+  "runtime_authority": {
+    "YIJIE_CODEX_INTEGRATION_BINARY": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/chat-models-stream-args/aarch64-apple-darwin/codex",
+    "YIJIE_CODEX_INTEGRATION_MANIFEST": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/chat-models-stream-args/aarch64-apple-darwin/runtime-manifest.json",
+    "manifest_sha256": "8b86a1a661f50beda1e0a0c96f81ddbdf959a9a07c2e756cc4b9b0eabc053b27",
+    "binary_sha256": "aad49041bd7d34c853fb55c274711e3cc810725720d2c097469822d310fb02f9",
+    "binary_size_bytes": 356210616,
+    "reported_version": "codex-cli 0.144.6",
+    "target": "aarch64-apple-darwin",
+    "verification": "Manager integration verifies canonical binary/manifest. Manifest metadata re-read only while preparing this report; no new qualification run."
+  },
+  "transport_fix": {
+    "problem": "Disabled fresh yijie_market entry omitted required command/url transport. Run 4 original expert submission remained uncertain before thread binding.",
+    "change": "Preserve inherited MCP transport while setting enabled=false; a fresh managed disabled entry uses the current owned loopback gateway without capability path or credential.",
+    "contract_impact": "semantic existing Runtime configuration mapping; no new wire, schema, permission or Runtime source",
+    "files": [
+      "internal/codex/market_turns.go",
+      "internal/codex/market_disabled_test.go",
+      "internal/codex/market_disabled_integration_test.go"
+    ],
+    "original_product_attempt": {
+      "native_session_id": "01a12a86-ed94-7300-b8d7-25ccc39d6bc6",
+      "submission_operation_id": "b1ee5cc7-029f-43c9-9e72-95ec5026d1fd",
+      "turn_operation_id": "01a12a86-ed94-7300-b8d7-25f160f9d086",
+      "host_agent_session_id": "69355a45-df5c-4c24-bde2-82990a9c50d6",
+      "native_dispatch_state": "uncertain",
+      "host_mapping_state": "reserved",
+      "host_thread_id_absent": true,
+      "original_attempt_resent": false,
+      "diagnostic": "Read-only candidate SQLCipher metadata and existing authenticated read-only Host endpoints; key/token never printed."
+    },
+    "checks": [
+      {
+        "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+        "command": "go test ./internal/codex -run '^TestFEAT158(DisabledMarketConfigurationKeepsValidTransports|ExpertInstructions)' -count=1",
+        "exit_code": 0,
+        "status": "PASS",
+        "top_level_tests": 3,
+        "skipped": 0
+      },
+      {
+        "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+        "environment": {
+          "YIJIE_CODEX_INTEGRATION_BINARY": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/chat-models-stream-args/aarch64-apple-darwin/codex",
+          "YIJIE_CODEX_INTEGRATION_MANIFEST": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/chat-models-stream-args/aarch64-apple-darwin/runtime-manifest.json"
+        },
+        "command": "go test ./internal/codex -run '^TestFEAT158PinnedRuntimeStartsExpertWithDisabledMarket$' -count=1 -v",
+        "exit_code": 0,
+        "status": "PASS",
+        "top_level_tests": 1,
+        "skipped": 0,
+        "real_fixed_runtime_thread_starts": 4,
+        "turns": 0,
+        "http_requests": 0,
+        "real_provider_calls": 0,
+        "mcp_calls": 0,
+        "normal_shutdown": true,
+        "matrix": [
+          "Kimi / fresh disabled MCP",
+          "Kimi / inherited ordinary disabled MCP",
+          "MiniMax / fresh disabled MCP",
+          "MiniMax / inherited ordinary disabled MCP"
+        ]
+      },
+      {
+        "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+        "command": "git diff --check; go vet ./internal/codex",
+        "shell_exit_code": 0,
+        "status": "PASS",
+        "output": "No output; no individual diff exit code separately captured in this combined invocation."
+      }
+    ]
+  },
+  "web_search_fix": {
+    "problem": "Root reported Run 5 native web_search_call despite the user's explicit no-network request. This was not reclassified as a pass.",
+    "change": "Nonempty verified expert context adds web_search=disabled at final thread/start and thread/resume configuration composition. Ordinary and explicit-none contexts retain ordinary overrides; existing unsubscribe/resume reloads ordinary cwd layers.",
+    "contract_impact": "semantic existing Runtime configuration mapping; no new wire, schema, grant or Runtime source",
+    "limitation": "Disables built-in hosted/standalone web search only. Does not assert all native tool networking is disabled or expand existing permissions.",
+    "source_files": [
+      "internal/codex/expert_instructions.go",
+      "internal/codex/session_protocol.go",
+      "internal/codex/expert_instructions_test.go",
+      "internal/codex/expert_web_search_integration_test.go"
+    ],
+    "upstream_evidence": [
+      "codex-rs/config/src/config_toml.rs:431",
+      "codex-rs/core/src/tools/hosted_spec.rs:19",
+      "codex-rs/core/src/tools/spec_plan.rs:998",
+      "codex-rs/core/src/config/mod.rs:2813",
+      "codex-rs/app-server/src/request_processors/thread_processor.rs:2804"
+    ],
+    "checks": [
+      {
+        "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+        "command": "go test ./internal/codex -run '^TestFEAT158(Expert|DisabledMarket)' -count=1",
+        "exit_code": 0,
+        "status": "PASS",
+        "top_level_tests": 4,
+        "skipped": 0
+      },
+      {
+        "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+        "environment": {
+          "YIJIE_CODEX_INTEGRATION_BINARY": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/chat-models-stream-args/aarch64-apple-darwin/codex",
+          "YIJIE_CODEX_INTEGRATION_MANIFEST": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/chat-models-stream-args/aarch64-apple-darwin/runtime-manifest.json"
+        },
+        "command": "go test ./internal/codex -run '^TestFEAT158PinnedRuntimeExpertWebSearchLifecycle$' -count=1 -v",
+        "exit_code": 0,
+        "status": "PASS",
+        "top_level_tests": 1,
+        "skipped": 0,
+        "normal_synthetic_turns": 6,
+        "loopback_http_requests": 6,
+        "real_provider_calls": 0,
+        "tool_calls": 0,
+        "runtime_instances": 2,
+        "normal_shutdown": true,
+        "expert_thread_identity_preserved_across_switch_reopen_remove": true,
+        "actual_provider_request_observations": [
+          {
+            "turn": 1,
+            "step": "ordinary baseline",
+            "model": "kimi-k3",
+            "permission": "ask",
+            "tools_sha256": "95e702e856f072726f13a4da6e87198011c77f5462864ac714d69b6c4a4bc831",
+            "search_tools": [
+              {
+                "type": "web_search",
+                "external_web_access": false
+              }
+            ]
+          },
+          {
+            "turn": 2,
+            "step": "fresh expert thread",
+            "model": "kimi-k3",
+            "permission": "ask",
+            "tools_sha256": "84e2a93842f2cdb6df9c2cca0e76e5f5b940cb0c356feae1dc1b1a95891bb53a",
+            "search_tools": []
+          },
+          {
+            "turn": 3,
+            "step": "same expert thread model and permission switch",
+            "model": "MiniMax-M3",
+            "permission": "auto",
+            "tools_sha256": "84e2a93842f2cdb6df9c2cca0e76e5f5b940cb0c356feae1dc1b1a95891bb53a",
+            "search_tools": []
+          },
+          {
+            "turn": 4,
+            "step": "same expert thread model and permission switch",
+            "model": "kimi-k3",
+            "permission": "full",
+            "tools_sha256": "84e2a93842f2cdb6df9c2cca0e76e5f5b940cb0c356feae1dc1b1a95891bb53a",
+            "search_tools": []
+          },
+          {
+            "turn": 5,
+            "step": "normal Runtime shutdown and reopen of same expert thread",
+            "model": "kimi-k3",
+            "permission": "ask",
+            "tools_sha256": "84e2a93842f2cdb6df9c2cca0e76e5f5b940cb0c356feae1dc1b1a95891bb53a",
+            "search_tools": []
+          },
+          {
+            "turn": 6,
+            "step": "explicit expert removal on same thread",
+            "model": "kimi-k3",
+            "permission": "ask",
+            "tools_sha256": "95e702e856f072726f13a4da6e87198011c77f5462864ac714d69b6c4a4bc831",
+            "search_tools": [
+              {
+                "type": "web_search",
+                "external_web_access": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+        "command": "go vet ./internal/codex; git diff --check",
+        "shell_exit_code": 0,
+        "status": "PASS",
+        "output": "No output; the subsequent standalone git diff --check also returned 0."
+      }
+    ]
+  },
+  "content_pin": {
+    "expert": "jd-ops-expert",
+    "content_version": "0.1.1",
+    "producer_output": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills/dist/skills-experts-candidate-v011",
+    "old_manifest_sha256": "156fa3da100f82985087637ea3e94138d1f6ff813fedc8a4275b0dcad591e355",
+    "current_manifest_sha256": "31e7f42193263356c1e4939600ebd95961e6eb682c96f53429b47417dc3d1b6d",
+    "current_authority_sha256": "c23a7085504b78bf2a880c2804d6ed4d7c78ff82ed13a01473619cd9269e28aa",
+    "compiled_authority": "internal/skills/experts_candidate.go:ReviewedExpertCatalogDigest",
+    "single_current_pin": true,
+    "old_actual_database_and_installations_unchanged": true,
+    "synthetic_v010_fixtures_unchanged": true,
+    "manifest_and_authority_shasum_command": {
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills",
+      "command": "shasum -a 256 dist/skills-experts-candidate-v011/bundle-manifest.json dist/skills-experts-candidate-v011/authority.json",
+      "exit_code": 0,
+      "matched_authorized_values": true
+    },
+    "checks": [
+      {
+        "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+        "environment": {
+          "YIJIE_EXPERT_TEST_BUNDLE": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills/dist/skills-experts-candidate-v011",
+          "YIJIE_EXPERT_TEST_MANIFEST_SHA256": "31e7f42193263356c1e4939600ebd95961e6eb682c96f53429b47417dc3d1b6d"
+        },
+        "command": "go test ./internal/skills ./internal/session ./internal/app -run '^TestFEAT158(ActualCandidateManagedResources|ActualResourceLifecycleReusesCoreJournalAndProtectsReferences|ExplicitResourceRecoveryRejectsOnlyUnstartedOriginals|ExpertLaunch)' -count=1 -v",
+        "exit_code": 0,
+        "status": "PASS",
+        "top_level_tests": 5,
+        "leaf_cases": 10,
+        "skipped": 0,
+        "actual_role_bytes": 2156,
+        "actual_short_index_bytes": 4420,
+        "global_skill_projection": false,
+        "tests": [
+          "TestFEAT158ActualCandidateManagedResources",
+          "TestFEAT158ActualResourceLifecycleReusesCoreJournalAndProtectsReferences",
+          "TestFEAT158ExplicitResourceRecoveryRejectsOnlyUnstartedOriginals",
+          "TestFEAT158ExpertLaunchIsExplicitAndRequiresExistingNativeProfile",
+          "TestFEAT158ExpertLaunchConsumesOnlyReviewedCandidateManifest"
+        ],
+        "recovery_subcases": [
+          "not_received/prepare",
+          "not_received/remove",
+          "host_pending/prepare",
+          "host_pending/remove",
+          "core_completed/prepare",
+          "core_completed/remove"
+        ]
+      },
+      {
+        "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+        "command": "go vet ./internal/skills ./internal/session ./internal/app",
+        "exit_code": 0,
+        "status": "PASS"
+      },
+      {
+        "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+        "command": "git diff --check",
+        "exit_code": 0,
+        "status": "PASS"
+      }
+    ]
+  },
+  "default_entry_pin": {
+    "path": "contracts/chat-model-host-build.candidate.json",
+    "feature": "FEAT-156",
+    "release": false,
+    "old_sha256": "53bee84ba27e3a39840fa87dcc7804e96bd65a2e124428ed39c886c782778b0e",
+    "new_sha256": "28de1f4f62c8388bccec27fe9d3d0c160bb7779747409f69a5e44136e53be8b4",
+    "compiled_into_run6": false,
+    "referenced_by_expert_build_snapshot": false,
+    "modification": "Authorized canonical refresh of mutable local source snapshot only; strict drift checks, expert=false, historical committed release/permission/Skill pins and the ordinary 38-item resources remain unchanged.",
+    "checks": [
+      {
+        "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+        "environment": {
+          "YIJIE_ENV": "local",
+          "YIJIE_LOCAL_PROFILE": "demo_fast",
+          "YIJIE_CHAT_MODELS_ENABLED": "true",
+          "YIJIE_MARKET_CONNECTORS_ENABLED": "true",
+          "YIJIE_RUNTIME_PERMISSIONS_ENABLED": "true",
+          "VITE_YIJIE_RUNTIME_PERMISSIONS_ENABLED": "true",
+          "YIJIE_FEAT155_SCHEDULED_DAILY": "true",
+          "YIJIE_FEAT155_SCHEDULED_CANDIDATE": "false",
+          "YIJIE_EXPERTS_ENABLED": "false"
+        },
+        "command": "node scripts/chat-model-build-candidate.mjs --freeze",
+        "exit_code": 0,
+        "status": "PASS",
+        "output": "FEAT-156 local source candidate verified; release=false."
+      },
+      {
+        "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+        "environment": {
+          "YIJIE_ENV": "local",
+          "YIJIE_LOCAL_PROFILE": "demo_fast",
+          "YIJIE_CHAT_MODELS_ENABLED": "true",
+          "YIJIE_MARKET_CONNECTORS_ENABLED": "true",
+          "YIJIE_RUNTIME_PERMISSIONS_ENABLED": "true",
+          "VITE_YIJIE_RUNTIME_PERMISSIONS_ENABLED": "true",
+          "YIJIE_FEAT155_SCHEDULED_DAILY": "true",
+          "YIJIE_FEAT155_SCHEDULED_CANDIDATE": "false",
+          "YIJIE_EXPERTS_ENABLED": "false"
+        },
+        "command": "node scripts/sync-desktop-skill-resources.mjs --channel local-development --check --skip-package",
+        "exit_code": 0,
+        "status": "PASS",
+        "output": "Verified local-development: 38 installable Skills, categories 5/9/7/9/8.",
+        "ordinary_skills": 38,
+        "category_counts": [
+          5,
+          9,
+          7,
+          9,
+          8
+        ],
+        "includes_default_source_and_committed_permission_chain": true
+      },
+      {
+        "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+        "command": "go test ./internal/session ./internal/app -run '^TestFEAT158(FeatureOffReaderPreservesExpertHistoryAndOrdinarySessions|ExpertLaunchIsExplicitAndRequiresExistingNativeProfile)$|^TestFEAT157Market(NewTurnAcceptedReplayContinuationAndModelClear|ExplicitAdoptionAndReadAfterRevocation)$' -count=1 -v",
+        "exit_code": 0,
+        "status": "PASS",
+        "top_level_tests": 4,
+        "skipped": 0,
+        "tests": [
+          "TestFEAT158FeatureOffReaderPreservesExpertHistoryAndOrdinarySessions",
+          "TestFEAT157MarketNewTurnAcceptedReplayContinuationAndModelClear",
+          "TestFEAT157MarketExplicitAdoptionAndReadAfterRevocation",
+          "TestFEAT158ExpertLaunchIsExplicitAndRequiresExistingNativeProfile"
+        ]
+      },
+      {
+        "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+        "command": "git diff --check -- contracts/chat-model-host-build.candidate.json",
+        "exit_code": 0,
+        "status": "PASS"
+      }
+    ],
+    "reused_ordinary_runtime_evidence": "The six-turn web-search lifecycle above observed identical ordinary baseline/removal tools SHA-256. No additional turn was sent for this snapshot refresh."
+  },
+  "excluded_claims": [
+    "No full historical test suite was run because it contains user-prohibited fault/attack fixtures.",
+    "No real Provider/model quality, visual acceptance, complete Must/D4 or release acceptance is claimed by this report.",
+    "The original Run 4 uncertain operation was not replayed or altered.",
+    "Root's Run 5 observed web_search failure is retained; later local qualification does not erase it."
+  ],
+  "supporting_document": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/docs/experts-host-candidate.md"
+}

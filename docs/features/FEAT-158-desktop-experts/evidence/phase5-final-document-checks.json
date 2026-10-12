@@ -1,0 +1,42 @@
+{
+  "feature": "FEAT-158",
+  "checks": [
+    {
+      "command": "check-feature-package.sh --strict / validate-feature-package.mjs --gate D0 / --audit-claims",
+      "exit_code": 0,
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "1f5b52",
+          "wall_time_seconds": 0.16701225,
+          "exit_code": 0,
+          "original_token_count": 82,
+          "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，所有模板变量和未完成标记已处理。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\nPASS: feature.yaml schema v3 semantics are valid.\nPASS: feature.yaml schema v3 semantics are valid.\n"
+        }
+      }
+    },
+    {
+      "command": "pnpm lint",
+      "exit_code": 0,
+      "result": "11 repository manifest and central Contract First governance validated"
+    },
+    {
+      "command": "pnpm test",
+      "exit_code": 0,
+      "tests": 50,
+      "passed": 50,
+      "failed": 0,
+      "log": "yijie/.local/feat158-phase5-final-meta-tests.log"
+    },
+    {
+      "command": "bash -n scripts/*.sh",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check in 7 scoped repositories",
+      "exit_code": 0,
+      "evidence": "phase5-final-workspace-status.json"
+    }
+  ],
+  "not_claimed": "These document/static checks do not override content Eval failure or constitute D4 pass."
+}

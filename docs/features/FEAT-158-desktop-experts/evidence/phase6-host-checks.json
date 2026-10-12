@@ -1,0 +1,55 @@
+{
+  "recordedAt": "2026-10-11T13:42:49.982Z",
+  "version": "0.1.2",
+  "bundleVersion": "0.4.2",
+  "manifestSha256": "a176bfba892afbc4de8622ebde955a72aef240ab51a9256d7bfb6c5ec40c0936",
+  "authoritySha256": "9c6f384b6f95eb6579c9f26177e229d8646986db44a10220aa119a6f0dc015b8",
+  "sourceSha256": {
+    "internal/skills/experts_candidate.go": "c35518796aa852bb52e38e788394106b06823c4acb96e05d55e92c137bee11ca",
+    "internal/skills/experts_test.go": "83645d0fe6565049274241c119006abb67052cc14208d13798cfdf28f8dde5fb",
+    "internal/session/expert_resources_test.go": "35d7a303a386c9b4190f329938332f0aea0e87819e8eb71b0a28f65332eb1bd1",
+    "internal/session/experts_recovery_test.go": "0deeab1c578cb5f1b20e83ef2b9d6555e3fb52743f50b15270b16090829ab351",
+    "docs/experts-host-candidate.md": "71a6f78310dec3435b92da8c38a802be1b48e63666d217148e6a98aafef93336"
+  },
+  "checks": [
+    {
+      "command": "YIJIE_EXPERT_TEST_BUNDLE=/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills/dist/skills-experts-candidate-v012 YIJIE_EXPERT_TEST_MANIFEST_SHA256=a176bfba892afbc4de8622ebde955a72aef240ab51a9256d7bfb6c5ec40c0936 GOTOOLCHAIN=local GOPROXY=off GOSUMDB=off /Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go test ./internal/skills ./internal/session ./internal/app -run '^TestFEAT158(ActualCandidateManagedResources|ActualResourceLifecycleReusesCoreJournalAndProtectsReferences|ExplicitResourceRecoveryRejectsOnlyUnstartedOriginals|ExpertLaunch)' -count=1 -v",
+      "result": "PASS",
+      "topLevelTests": 5,
+      "nestedNormalStateCases": 6,
+      "actualRoleBytes": 2928,
+      "indexBytes": 4420
+    },
+    {
+      "command": "GOTOOLCHAIN=local GOPROXY=off GOSUMDB=off /Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go test ./internal/session -run '^TestFEAT157Market(NewTurnAcceptedReplayContinuationAndModelClear|ExplicitAdoptionAndReadAfterRevocation)$' -count=1 -v",
+      "result": "PASS",
+      "tests": 2
+    },
+    {
+      "command": "GOTOOLCHAIN=local GOPROXY=off GOSUMDB=off /Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go build ./...",
+      "result": "PASS"
+    },
+    {
+      "command": "GOTOOLCHAIN=local GOPROXY=off GOSUMDB=off /Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go vet ./internal/skills ./internal/session ./internal/app ./internal/codex ./cmd/desktop-host",
+      "result": "PASS"
+    },
+    {
+      "command": "git diff --check and gofmt -d on four changed Go files",
+      "result": "PASS",
+      "formatDiffEmpty": true
+    }
+  ],
+  "attempts": [
+    {
+      "result": "NOT RUN",
+      "detail": "System Go 1.26.4 with GOSUMDB=off refused automatic Go 1.26.5 module verification before tests. Used existing cached Go 1.26.5 binary explicitly with GOTOOLCHAIN=local; no toolchain downloaded."
+    }
+  ],
+  "limits": [
+    "No model/UI/network/service invocation; no Runtime or generated schema edits.",
+    "Installation tests use fresh t.TempDir; old installed versions and user DBs unchanged.",
+    "Normal adapter/journal evidence does not claim a live forced unknown or complete T06/T08/T09 product acceptance.",
+    "Full historical unsafe test suites were not run."
+  ],
+  "evidenceNote": "Command outcomes observed in tool output; retrospective summary, not a preserved full log."
+}

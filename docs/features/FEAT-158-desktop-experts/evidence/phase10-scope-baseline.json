@@ -1,0 +1,746 @@
+{
+  "recorded_at": "2026-10-12T17:03:14.370Z",
+  "scope": "Pre-adjustment snapshot; historical results, not current acceptance gates",
+  "owner_instruction": "调整：AC-007 内容质量的验收，从 158 需求中移除。然后给出剩余未完成的 158 需求项。",
+  "feature_yaml_sha256": "4c279565cb2df891a9e211fea6e6bb9601864bf020aeb9c24912783c05eb7541",
+  "previous_must_acceptance": [
+    {
+      "id": "AC-001",
+      "statement": "扩展入口双Tab和默认技能正确，原技能功能保留，首期一名专家",
+      "verification": "02-verification.md T01",
+      "status": "pass"
+    },
+    {
+      "id": "AC-002",
+      "statement": "卡片详情快捷问题一致，京东能力边界和真实元数据准确",
+      "verification": "02-verification.md T02",
+      "status": "pass"
+    },
+    {
+      "id": "AC-003",
+      "statement": "召唤幂等准备资源并返回正确草稿，不丢内容或自动发送",
+      "verification": "02-verification.md T03",
+      "status": "pass"
+    },
+    {
+      "id": "AC-004",
+      "statement": "单会话单专家持续生效，其他会话隔离，活跃或未知投递时阻止切换",
+      "verification": "02-verification.md T04",
+      "status": "pass"
+    },
+    {
+      "id": "AC-005",
+      "statement": "胶囊位置和移除操作正确，普通模式真实恢复，历史保持",
+      "verification": "02-verification.md T05",
+      "status": "pass"
+    },
+    {
+      "id": "AC-006",
+      "statement": "复用同一原生执行和审批链，专家不扩权或污染全局技能，不隐式选连接器",
+      "verification": "02-verification.md T06",
+      "status": "pass"
+    },
+    {
+      "id": "AC-007",
+      "statement": "知识按需读取、引用可定位、内容问题如实表达且通过固定良性评测",
+      "verification": "02-verification.md T07 与 05的内容准入和Eval",
+      "status": "fail"
+    },
+    {
+      "id": "AC-008",
+      "statement": "绑定快照回执重开可恢复，版本不自动升级，未知结果不重复发送，旧历史可读",
+      "verification": "02-verification.md T08",
+      "status": "pass"
+    },
+    {
+      "id": "AC-009",
+      "statement": "所有关键界面状态可恢复，权限不足不扩权，正常重试和资源移除不丢草稿",
+      "verification": "02-verification.md T09",
+      "status": "pass"
+    },
+    {
+      "id": "AC-010",
+      "statement": "键盘交互可用，一次真实fresh run通过活动Must和正常失败恢复；外观验收依用户明确指令跳过，不计PASS",
+      "verification": "02-verification.md T10",
+      "status": "pending"
+    }
+  ],
+  "previous_verification": {
+    "status": "FAIL",
+    "verified_at": "2026-10-12T16:55:16.162Z",
+    "startup": {
+      "status": "PASS",
+      "command_or_steps": "YIJIE_EXPERTS_ENABLED=true ./scripts/run-local-demo-fast.sh --packaged --experts-content-v013；正常Quit后同命令追加--reopen",
+      "environment": "固定0.1.3候选，Native35/Host10；最终构建修复Shopify分块null兼容；同制品重开来源检查通过",
+      "actual_result": "免登录启动；4条合成消息均自然完成，原会话恢复MiniMax与0.1.3绑定。App和构建回执SHA在--reopen前后完全一致，Quit正常退出并释放18161。"
+    },
+    "real_smoke": {
+      "status": "FAIL",
+      "command_or_steps": "run9先验证固定c01，再仅补原生审批拒绝、解绑普通模式、重绑/模型切换/同构建重开；共4条模型消息",
+      "environment": "内容0.1.3；Kimi-K3/max前三轮，MiniMax-M3/high末轮；无平台业务调用",
+      "actual_result": "工程流程完成；c01仍将未提供销量资料写成已确认的无销量记录，判FAIL。正确读取/引用不能抵消边界问题；剩余11题停止批量执行并保留NOT RUN。AC007和D4未通过。"
+    },
+    "representative_failure": {
+      "status": "PASS",
+      "command_or_steps": "原生工作空间外合成写入正常拒绝；当前绑定移除后尝试资源移除由引用守卫拒绝",
+      "environment": "真实Native/Host/Runtime及UI；无故障注入、权限破坏或强杀",
+      "actual_result": "审批卡片点击拒绝后Native回执rejected by user；目标文件未创建且模型未重试。资源引用保护明确提示暂不可移除，27份安装文件字节不变；安全journal状态回归补充未知分支。"
+    },
+    "focused_checks": [
+      {
+        "repository": "yijie-desktop",
+        "command": "cargo test --manifest-path src-tauri/Cargo.toml --lib expert_store_",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "repository": "yijie-desktop",
+        "command": "cargo test --manifest-path src-tauri/Cargo.toml --lib chat::migrations::tests::feat158_expert_expand_preserves_history_and_default_writer -- --exact",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "repository": "yijie-desktop",
+        "command": "cargo fmt --manifest-path src-tauri/Cargo.toml --check",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "repository": "yijie-desktop",
+        "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings",
+        "status": "PASS",
+        "exit_code": 0
+      },
+      {
+        "repository": "yijie-agent-host",
+        "command": "go build ./...",
+        "status": "PASS",
+        "exit_code": 0
+      }
+    ],
+    "artifacts": [
+      "08-real-model-audit.md",
+      "evidence/phase5-real-model-ledger.json",
+      "evidence/phase5-run5-eval-review.json",
+      "evidence/phase5-run6-source-snapshot.json",
+      "07-implementation-progress.md",
+      "evidence/runtime-no-turn.json",
+      "evidence/runtime-local-responses.json",
+      "evidence/runtime-reference.json",
+      "evidence/runtime-reopen.json",
+      "evidence/phase2-local-checks.json",
+      "evidence/implementation-source-snapshot.json",
+      "evidence/non-screen-audit-baseline.json",
+      "evidence/non-screen-audit-checks.json",
+      "evidence/installed-reference-preflight.json",
+      "evidence/runtime-installed-ask.json",
+      "evidence/runtime-installed-auto.json",
+      "evidence/runtime-installed-full.json",
+      "evidence/phase5-run7-eval-review.json",
+      "evidence/phase5-run7-lifecycle-review.json",
+      "evidence/phase5-run7-lifecycle-artifact-map.json",
+      "evidence/phase5-run7-resource-history-guard.json",
+      "evidence/phase5-run7-source-stability.json",
+      "evidence/phase5-final-contract-checks.json",
+      "evidence/phase5-visual-skip.json",
+      "09-content-repair-and-acceptance.md",
+      "evidence/phase6-baseline.json",
+      "evidence/phase6-real-model-ledger.json",
+      "evidence/phase6-run8-ui-observations.json",
+      "evidence/phase6-run8-eval-review.json",
+      "evidence/phase6-v012-build-receipt.json",
+      "evidence/phase6-shopify-handshake-source-review.json",
+      "evidence/phase6-content-v013-checks.json",
+      "evidence/phase6-host-v013-checks.json",
+      "evidence/phase6-desktop-v013-checks.json",
+      "evidence/phase6-prefill-logic-check.json",
+      "evidence/phase6-meta-logic-checks.json",
+      "evidence/phase6-final-logic-source-state.json",
+      "10-targeted-root-cause-audit.md",
+      "evidence/phase7-baseline.json",
+      "evidence/phase7-targeted-ledger.json",
+      "evidence/phase7-shopify-checks.json",
+      "evidence/phase7-prefill-checks.json",
+      "evidence/phase7-final-source-review.json",
+      "evidence/phase7-meta-checks.json",
+      "11-shopify-availability-fix.md",
+      "evidence/phase8-shopify-checks.json",
+      "12-remaining-acceptance.md",
+      "evidence/phase9-baseline.json",
+      "evidence/phase9-real-model-ledger.json",
+      "evidence/phase9-run9-ui-observations.json",
+      "evidence/phase9-run9-observations.json",
+      "evidence/phase9-run9-eval-review.json",
+      "evidence/phase9-run9-lifecycle-review.json",
+      "evidence/phase9-same-build-reopen.json",
+      "evidence/phase9-resource-reference-guard.json",
+      "evidence/phase9-provider-chunked-failure.jsonl",
+      "evidence/phase9-shopify-observed-body.log",
+      "evidence/phase9-provider-postfix-success.jsonl",
+      "evidence/phase9-final-checks.json"
+    ],
+    "diff_review": {
+      "status": "PASS",
+      "summary": "本轮仅增加既有闭集content-v013配置与回归；真实诊断确认Shopify完成通知也采用无长度头的chunked null，沿原边界兼容精确4字节EOF并补安全诊断。未改Runtime、公共wire、权限或业务许可；内容失败不作猜测性Native修复。详见12。"
+    },
+    "known_limitations": [
+      "AC007仍FAIL：0.1.3 c01把资料可用性与历史事实混写。剩余11题NOT RUN；未降低阈值或用生命周期答案代替固定内容评分。",
+      "AC010仍pending，全部Must尚未通过，D4未通过；外观按用户指令SKIPPED，不计PASS。",
+      "本轮模型4条，之前24条不清零，累计28；公开元数据HTTP17个，平台业务tools/call0。没有重复抽样只保留成功答案。",
+      "修后真实Shopify启用成功时完成通知为Content-Length4；分块null依据真实失败/正文观察与本地SDK回归，不谎称修后产品已遇到分块响应。",
+      "未知投递分支以正常journal检查及旧原ID只读证据覆盖，未强行制造未知或声称所有状态均有真实UI覆盖。旧profile未默换与历史可读沿用前轮实际证据和不变的兼容逻辑。",
+      "保留既有权限组合/模型/资源逻辑回归，未追加扩大权限的实操或重跑已完成普通B模型问答。",
+      "本地专家仍为显式候选，未迁入日常库；旧profile和用户历史保留。未提交发布、签名公证、官方政策全网核验或公开再分发。",
+      "未运行含用户禁止行为的历史全量套件；不把局部检查与真实单轮结果说成全库无bug或模型质量稳定保证。",
+      "worker全目标cargo fmt检查因既有qualification模块缺失和生成文件格式差异失败；本轮两个变更文件格式与相关编译/Clippy通过，未修无关路径或伪报全库通过。"
+    ]
+  },
+  "historical_evidence_count": 136,
+  "historical_evidence_sha256": "e31d21c75580f92d2b9521791ffaed97c7e5c7d9c3a3ff15165e41413199d39d",
+  "historical_evidence": [
+    {
+      "path": "evidence/document-checks.json",
+      "sha256": "e56b496dc6b5bfa15d202c2ac7550e4b55769fc2f38b8a4db64944db73fffb74"
+    },
+    {
+      "path": "evidence/implementation-baseline.json",
+      "sha256": "7e8847214c8fd9b1617a113021a0982f9f6b726bb13b4b9b929de5866cd25d57"
+    },
+    {
+      "path": "evidence/implementation-source-snapshot-phase3.json",
+      "sha256": "472dec5f2abe6bf5a75156cb846a2946fff6300b0e86c079910f3a0d8f3fc4e5"
+    },
+    {
+      "path": "evidence/implementation-source-snapshot.json",
+      "sha256": "872c4bca3edd143c4bf7b2b61cbfe84d255dca0bcab6681951af09f81428a95f"
+    },
+    {
+      "path": "evidence/installed-reference-preflight.json",
+      "sha256": "68d247e6bd59068a2f142faf61b3b456ec48f45efd60f02eb6edbaff094babcb"
+    },
+    {
+      "path": "evidence/non-screen-audit-baseline.json",
+      "sha256": "95ab892b24918545bec00c4f596ffc93583524ec71a4539225ce246e56800939"
+    },
+    {
+      "path": "evidence/non-screen-audit-checks.json",
+      "sha256": "1770547b949c67abbef23a8ac646bcf8e17bd280c2deff0eb702247570c70c8d"
+    },
+    {
+      "path": "evidence/phase2-local-checks.json",
+      "sha256": "88c3a8beb52f190c9d95ae5c577737d1dfde94de92cff28b2cd4268f69d67759"
+    },
+    {
+      "path": "evidence/phase5-baseline.json",
+      "sha256": "c12cdb3cc0b314ee7eb0fb0502b1f7ab8841962d7900bd6d7cc2bb7e3a5c8ac7"
+    },
+    {
+      "path": "evidence/phase5-before-visual-skip-feature.yaml",
+      "sha256": "679e5fa88082ec7f344dded3aed76539fef8c9c39d987e2a439871d8769794e9"
+    },
+    {
+      "path": "evidence/phase5-content-v011-checks.json",
+      "sha256": "2e50c1e10d0c25329348c625af0e898f51500dee6fdfb2332daaa8f9fa71a6ee"
+    },
+    {
+      "path": "evidence/phase5-content-v011-profile-checks.json",
+      "sha256": "c3edad16ee74bebfefe2e70a0047f5484879de4015298c1cdbbd28a7e1183d0b"
+    },
+    {
+      "path": "evidence/phase5-final-contract-checks.json",
+      "sha256": "f1e81400c4c75525731a3a87974171a1e46183b7e79fe2938e30dfdc0371d45d"
+    },
+    {
+      "path": "evidence/phase5-final-document-checks.json",
+      "sha256": "44dcca9dc7212ec399945eb9eb4e85d46dbe440b2864b42dd36e5d462dd56b08"
+    },
+    {
+      "path": "evidence/phase5-final-workspace-status.json",
+      "sha256": "20c7171f1f72e00819d75ee1f9fb1604dcfc96a0d0144ab5616ed443ffd720d7"
+    },
+    {
+      "path": "evidence/phase5-focus-checks.json",
+      "sha256": "f10c8a93c233bc63ebe6396a7e650a76f125be1e782904167ad9026cb839a15d"
+    },
+    {
+      "path": "evidence/phase5-host-checks.json",
+      "sha256": "b9bf09e33dae3b685e62b529a02d09a2d6eb54bdf165254f1e9b82ea681c172c"
+    },
+    {
+      "path": "evidence/phase5-native-checks.json",
+      "sha256": "a8845ecf046dd875ab5cd4671b905e6223b49124e06f91b3f39e8249a9dfb08d"
+    },
+    {
+      "path": "evidence/phase5-real-model-ledger.json",
+      "sha256": "9be3437da0de6d06d188157bc803216b02347e4a2fef3f5f855c6961e69235b0"
+    },
+    {
+      "path": "evidence/phase5-run5-assets-candidate.json",
+      "sha256": "c89ce617d972cb29393c94ae4c958372d10496ddc0a884ea589ad313e05b0a9a"
+    },
+    {
+      "path": "evidence/phase5-run5-eval-review.json",
+      "sha256": "139322a63091dc26bdf0a266accdb3046f79dd9cadafab86f0c61d9f4bdab69e"
+    },
+    {
+      "path": "evidence/phase5-run5-source-snapshot.json",
+      "sha256": "9dddc63ca03424acdd0a441f8f3d7ad13e37243d661ea12e02835bf43d3f5cf7"
+    },
+    {
+      "path": "evidence/phase5-run6-eval-review.json",
+      "sha256": "8b38f1095e8f7e7d14c38dbb836553c817d235eb033dfe62bc969d25d79ffb55"
+    },
+    {
+      "path": "evidence/phase5-run6-plan.json",
+      "sha256": "49e21d72bf9d29a376a8ce78b8442934b8ad8c1b48f24c8c03319790d4e4e999"
+    },
+    {
+      "path": "evidence/phase5-run6-source-snapshot.json",
+      "sha256": "21b90c23ab5e1c2061295c20aeadaadf07efc6a3dbea353b705b38cdb6e08434"
+    },
+    {
+      "path": "evidence/phase5-run7-a-removed-database.jsonl",
+      "sha256": "2ee4ccaf404577ded5fb548013caf94b381e05114f61d5eb9ad97d792abf87dd"
+    },
+    {
+      "path": "evidence/phase5-run7-after-reopen-database.jsonl",
+      "sha256": "86760d98072691f91a0247cc302397acda9f80b13ac09c97a471b22ed393a103"
+    },
+    {
+      "path": "evidence/phase5-run7-b-database.jsonl",
+      "sha256": "98a92f77e7275ce17f3ed4a80351e333cc91a0357f8d606beec755a8fd62e090"
+    },
+    {
+      "path": "evidence/phase5-run7-eval-review.json",
+      "sha256": "4e7c9816667945f23eb55059839fbd0b5eed0f5df55be11d82c8418cedf5d0ea"
+    },
+    {
+      "path": "evidence/phase5-run7-final-database.jsonl",
+      "sha256": "b25bd483b5af2ec3e211c3fa0450f6f15858cc8aa71e5bcc49b9de0cd8c051c9"
+    },
+    {
+      "path": "evidence/phase5-run7-history-only-after-remove.jsonl",
+      "sha256": "c6e922b17ef8768d5a88e735e147c4e0e30896e43c4777cac26274ad916742c7"
+    },
+    {
+      "path": "evidence/phase5-run7-history-only-before-remove.jsonl",
+      "sha256": "525c4069f994697c8da2f5d978ba55feb92ff872af70c704ee775469e710c91f"
+    },
+    {
+      "path": "evidence/phase5-run7-lifecycle-artifact-map.json",
+      "sha256": "f0c3d8dd9702f8fa7e8d420c448b62cfd9e7108ed235bf5341170b5791eaa623"
+    },
+    {
+      "path": "evidence/phase5-run7-lifecycle-review.json",
+      "sha256": "27a9f0c5a3c4c2f8880c61145a871830d1fcb172e75a53d40eb2f6e1d7cd1b83"
+    },
+    {
+      "path": "evidence/phase5-run7-plan.json",
+      "sha256": "55a8216518f0661a606b233e3b1b246d295ea36f7c5f78fbfdb1bd20171c3766"
+    },
+    {
+      "path": "evidence/phase5-run7-rebind-model-before-reopen.jsonl",
+      "sha256": "dc57618dadfc90390dd421c480bd3d0336906a740c2a9983cc112fee351d2676"
+    },
+    {
+      "path": "evidence/phase5-run7-resource-history-guard.json",
+      "sha256": "88b421d30dfebdcb4c4dc987e1bca6cc776fd266aeafefa403925eecdd92ecc6"
+    },
+    {
+      "path": "evidence/phase5-run7-source-snapshot.json",
+      "sha256": "7b40f273c7047a75813ed8c9576d80cfe041c6298af468de08042e215200e579"
+    },
+    {
+      "path": "evidence/phase5-run7-source-stability.json",
+      "sha256": "4af0c6e4467a481f5b7199c40d2ea2bb925fc1885c30f218aa452b8cb7fb274b"
+    },
+    {
+      "path": "evidence/phase5-visual-skip.json",
+      "sha256": "63036e8806b7cef3ee9907e507f1c0a6f738f239943dbbc807cf6d056c03ad30"
+    },
+    {
+      "path": "evidence/phase6-baseline.json",
+      "sha256": "a78f7a546fa6223cb11a7c17830478c3f61150b61350ca12aacbd382070d93f3"
+    },
+    {
+      "path": "evidence/phase6-before-feature.yaml",
+      "sha256": "10c982aa50a865393baae83a87360c73e16301fec72b8cfc9da4b7c29cf57e89"
+    },
+    {
+      "path": "evidence/phase6-content-v011-preservation.json",
+      "sha256": "0e8ac9a4a0a3eda6f7c5791fc8f3e60dd3d05c03c07368bc0ed723681b59ef2d"
+    },
+    {
+      "path": "evidence/phase6-content-v012-checks.json",
+      "sha256": "d30d6e493599223d33283f7c5135b95c9082e5b2a07caa8be23b773a6d3c74b9"
+    },
+    {
+      "path": "evidence/phase6-content-v012-preservation.json",
+      "sha256": "5154fcabc1c5422618ee7e1bc13ca8f0b026cecebfc91f5586805d2558a63f7e"
+    },
+    {
+      "path": "evidence/phase6-content-v013-checks.json",
+      "sha256": "9160768023b9d7f29fad3b8855a21b3b1549a2a58a2d5786121e4283a0e2113f"
+    },
+    {
+      "path": "evidence/phase6-content-v013-eval-version-only-diff.json",
+      "sha256": "d7cc5af8ecbb2c4d9045310d7d8195e60052407feeff1449382933769e27eb4b"
+    },
+    {
+      "path": "evidence/phase6-default-build-receipt.json",
+      "sha256": "0feaa39db908ec8fd18ebe29828f889031a71f41fe07623f8ac28eaac5d95da3"
+    },
+    {
+      "path": "evidence/phase6-desktop-v013-checks.json",
+      "sha256": "a2487e3d0971d21bb663a0c39b68b39d1343be385ea28902c62758031ffa4edd"
+    },
+    {
+      "path": "evidence/phase6-final-logic-source-state.json",
+      "sha256": "22d7ea17a3e313dc095b3cc04838ed399224e0ab914a1bb4b549787fd6f38dd9"
+    },
+    {
+      "path": "evidence/phase6-host-checks.json",
+      "sha256": "7186d1ae00223c73d8358e2631ea7595e4e1aa10ca3da8108e91a690531681bc"
+    },
+    {
+      "path": "evidence/phase6-host-v013-checks.json",
+      "sha256": "a1b8d8c78d4413f7e33ee2d85204b901a20c55da13693bfa665dd157b2e9d617"
+    },
+    {
+      "path": "evidence/phase6-launcher-checks.json",
+      "sha256": "d56487fc8298dd97aee717a6a122acaed0a7d1a0478f75a61a5f8c8336f0db65"
+    },
+    {
+      "path": "evidence/phase6-meta-logic-checks.json",
+      "sha256": "401734823c452b870a036b62b82adc8ff889c95cdfbc732118cc9825248e2f0c"
+    },
+    {
+      "path": "evidence/phase6-old-installed-after.json",
+      "sha256": "3828e0cb51f5c78eb85d749515ac24a75fea3735b2ecb5fc591ab8c6aaacb6ac"
+    },
+    {
+      "path": "evidence/phase6-old-installed-before.json",
+      "sha256": "fb89b59e3adca4df721587558d4ad11c4d78d6e67959cb8f62e07bdef0109e97"
+    },
+    {
+      "path": "evidence/phase6-prefill-logic-check.json",
+      "sha256": "9452438a150d85512ad684614cd32cb0f8ae6959eaa8d25ad71e0ad3f44287ae"
+    },
+    {
+      "path": "evidence/phase6-real-model-ledger.json",
+      "sha256": "f57808d3cc007f0a0f4dea2b6827d06fda9ab2b26b2d0feab0036bd1b078b81e"
+    },
+    {
+      "path": "evidence/phase6-run8-approval-scope.json",
+      "sha256": "fad2d122692d2ddc178948ecc1c84fe949229794a984e4b69f44d07d5183365a"
+    },
+    {
+      "path": "evidence/phase6-run8-eval-review.json",
+      "sha256": "80273ff34067a2433665c18a0a276706a4de9da2db97ed3725ba9866dc9b7dc7"
+    },
+    {
+      "path": "evidence/phase6-run8-plan.json",
+      "sha256": "a3e62676db80660267493f40389606678b0a657bc94f8491f03c2d7e4b9aff6c"
+    },
+    {
+      "path": "evidence/phase6-run8-source-snapshot.json",
+      "sha256": "855e01d70bb742311ebb31be34be002275760c7cebe1bd5f7995612ce337b6c7"
+    },
+    {
+      "path": "evidence/phase6-run8-ui-observations.json",
+      "sha256": "5e301173d5be3735af53f0405740b0c759da6d090c0f3065e09c7b2249da1444"
+    },
+    {
+      "path": "evidence/phase6-shopify-checks.json",
+      "sha256": "e7bcd4130324b8d4c0920de064173f5d93940578e0f8d82700a20bd9d5533ffd"
+    },
+    {
+      "path": "evidence/phase6-shopify-diagnostic-observation.json",
+      "sha256": "4fd12c65ad96aa06bf26bed8b2d8354dc1efd0d74ed9ada377210a1e4bc95773"
+    },
+    {
+      "path": "evidence/phase6-shopify-handshake-source-review.json",
+      "sha256": "d8d271935e2ebb3eb5de30a27d96aa8d42346a75ff513d451aba90943973262a"
+    },
+    {
+      "path": "evidence/phase6-v011-build-receipt.json",
+      "sha256": "336aac77a3dc2fa1a3017bc475fbc1ac5d35a928ab41869204863da5cf28fad2"
+    },
+    {
+      "path": "evidence/phase6-v012-build-receipt.json",
+      "sha256": "a60806e0eed00cff875ed14b116911a370bd940633ff43d8e7510741297051d8"
+    },
+    {
+      "path": "evidence/phase7-baseline.json",
+      "sha256": "5dd57fa0bcd323872daad649753c83cb5422ee6d9befa2e3d7c06eccee440f86"
+    },
+    {
+      "path": "evidence/phase7-final-source-review.json",
+      "sha256": "b496c83780f06b29dd1d8fd3328200226b6492e7e0ffc8f114d63244b4e22745"
+    },
+    {
+      "path": "evidence/phase7-meta-checks.json",
+      "sha256": "16b47396ec4693bfa5912012af6f9c41abb621b57863c0cf9f1c4578cfa19bb1"
+    },
+    {
+      "path": "evidence/phase7-prefill-checks.json",
+      "sha256": "2f5409810cafe1b7b987eadc83c99ee6acdafbe979dbfdc7c05e7a8e240565fb"
+    },
+    {
+      "path": "evidence/phase7-prefill-green.log",
+      "sha256": "41b651d9271956ca5ddbf569db622ed2e6142e723ddcf7f5ac224c1a699866be"
+    },
+    {
+      "path": "evidence/phase7-prefill-red.log",
+      "sha256": "510d1335d392d189bbb6f3f60dbbcddc9f863a1901b8e6fca2ed7a0020a3fea6"
+    },
+    {
+      "path": "evidence/phase7-shopify-checks.json",
+      "sha256": "0ff982c866de9e072345afd12402a85c70383e7be3819ff71419120c58c5546d"
+    },
+    {
+      "path": "evidence/phase7-targeted-ledger.json",
+      "sha256": "16c50ad80793a7c97c0e22a9b1dedeace05e5258af200bc5f5ff24c0212a351f"
+    },
+    {
+      "path": "evidence/phase8-clippy-final.log",
+      "sha256": "94e5bf0ccceaa8661091a34a702ce3e4f784ac7b9fb84cc7df5488b118512760"
+    },
+    {
+      "path": "evidence/phase8-docs-build.log",
+      "sha256": "12f46fb45f87616751d88ef32190c7c340b92505a77355ad69b733bed0b664a9"
+    },
+    {
+      "path": "evidence/phase8-http-shape.log",
+      "sha256": "081ac3ddc481c4c5934955a0d8bc80c7de204cbc6fb4084475cc0f016d3b0d43"
+    },
+    {
+      "path": "evidence/phase8-meta-checks.json",
+      "sha256": "b2a74c68d7df9b48d871aefee812698da0928e64a100799d47c0a98f2cc8b2c6"
+    },
+    {
+      "path": "evidence/phase8-native-tests-final.log",
+      "sha256": "d46ead229952e7e7999c2834fc69573fbcb599d22c0924a1b99aaeaed7357546"
+    },
+    {
+      "path": "evidence/phase8-native-tests.log",
+      "sha256": "db7f65b12c048f51b3c5f9aa6185a879b1396793399756dfebbccfc3828fea4d"
+    },
+    {
+      "path": "evidence/phase8-provider-162aba56-3874-463b-b1f8-fc6c54cfe73d.jsonl",
+      "sha256": "908074a3d725442e8be752f31b123908b77b73badfb89661b3d8dfdf94e481fc"
+    },
+    {
+      "path": "evidence/phase8-provider-2db1692e-b408-4b7a-99bd-c41013559ae5.jsonl",
+      "sha256": "6b7798add66c7f4089a073b153ff43dda333ef26b16c613486fb26b1bfeceb2d"
+    },
+    {
+      "path": "evidence/phase8-provider-88fc848a-11e9-450b-a5e6-c6dbb4d97237.jsonl",
+      "sha256": "07a5cad13dd49fe470c686ec1366c273158669a08aec93ca09fddb7bba281f05"
+    },
+    {
+      "path": "evidence/phase8-provider-9f1cb9b4-1f7b-425b-898e-144dd5971ae8.jsonl",
+      "sha256": "2a6e8d3095f7e9af043bad0c04b63b84a8d0187c1fb9e0c7273be58c8f34806a"
+    },
+    {
+      "path": "evidence/phase8-provider-c1291a16-79a0-4b86-a574-df2b829ab663.jsonl",
+      "sha256": "977ba42ce693869f578f9b10096a7946f50bc674f6c577d2b0e2f0c3a0dc714f"
+    },
+    {
+      "path": "evidence/phase8-sdk-path.log",
+      "sha256": "c2ea0eb587459297878a45e713ed54ef692f0776f3464d03d5b7d365cfb78600"
+    },
+    {
+      "path": "evidence/phase8-shopify-before.json",
+      "sha256": "11a1a6a43f23e345e746391ef28f05f3c94b57c350571f5f3767112c13ef9c48"
+    },
+    {
+      "path": "evidence/phase8-shopify-checks.json",
+      "sha256": "b5531b9aad4af853dd8499b1910e79906614618c76703f2e739077bc063e0f17"
+    },
+    {
+      "path": "evidence/phase8-shopify-ledger.json",
+      "sha256": "b5a20c33fdfc25373ea143b0477c2b1c864898caae45a55126807c98afbdaabf"
+    },
+    {
+      "path": "evidence/phase8-shopify-ui-observation.json",
+      "sha256": "451f2c42e0f40c0bc7f006dfad2426d1655f7363b7001e10832acca2170adc11"
+    },
+    {
+      "path": "evidence/phase9-ack-diagnostic-clippy.log",
+      "sha256": "ec38343a7b4f0f90fd72d8c38c92af92e3e4122c16fd2fed04cde069f67fe54a"
+    },
+    {
+      "path": "evidence/phase9-ack-diagnostic-tests-final.log",
+      "sha256": "753e7bac2b209fd40c86236ec43315f8c14ec12f5709b751e36ffade53b743cf"
+    },
+    {
+      "path": "evidence/phase9-baseline.json",
+      "sha256": "df268383f8b3488e3e958db3ed990c986e1033e08d1f372277adc7b6e6e2005e"
+    },
+    {
+      "path": "evidence/phase9-chunked-clippy.log",
+      "sha256": "093017d23654bc9a7789547c0859d803aeb638e3085f72f10bc983ae2fd4e743"
+    },
+    {
+      "path": "evidence/phase9-chunked-tests.log",
+      "sha256": "1a59a270684d600633838cc003c7019c448bd443bdcbe84f3347f661efd77278"
+    },
+    {
+      "path": "evidence/phase9-clippy.log",
+      "sha256": "12cbe731886dd1ec612abe67d24c49cfc9e64e015a0d4bf8c50aae7338b5f283"
+    },
+    {
+      "path": "evidence/phase9-content-tests.log",
+      "sha256": "0aa37a194e581fbc69f30916b39397520fce731c52b35a545fc0d71a566527ec"
+    },
+    {
+      "path": "evidence/phase9-docs.log",
+      "sha256": "dd8004847d9fdc6ae44e9705a254bb2f2ea1fda84b2df49fb76b40d325c7f3fe"
+    },
+    {
+      "path": "evidence/phase9-eslint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/phase9-final-checks.json",
+      "sha256": "5dcaa044f41d0ce85b0772e329c796fbf0c0e3bac51fa5ee7c21ee0c407a178f"
+    },
+    {
+      "path": "evidence/phase9-final-workspace.json",
+      "sha256": "76c394b010ae3c3f8efa0772eacb3dfa565b1f71dcee8233f15158133bd1ace0"
+    },
+    {
+      "path": "evidence/phase9-focused-ui.log",
+      "sha256": "00e2916ade4324ca8fbdd05e684ec457c002b08907f984842f6741c347d6b30c"
+    },
+    {
+      "path": "evidence/phase9-host-logic-tests.log",
+      "sha256": "52683db74e155be38fb44f3b565e2d76c94ddff30e3dd088db33150e450dc2e5"
+    },
+    {
+      "path": "evidence/phase9-installed-v013-before.json",
+      "sha256": "b2b8a228a135e3be31f40815759afd08456d77dc8bad1518ca6d2414a359f404"
+    },
+    {
+      "path": "evidence/phase9-meta-checks.json",
+      "sha256": "2e66f977516db3fdd1430c6bfb9f40bb8dcd1901ffe1a8cd17f7e34371ee2fa1"
+    },
+    {
+      "path": "evidence/phase9-native.log",
+      "sha256": "b02c3420815a4d881ac58b1d21eceaf4f3bf402f3df0731cde3e3b3cb92f0b2a"
+    },
+    {
+      "path": "evidence/phase9-provider-chunked-failure.jsonl",
+      "sha256": "3c7c1735eca1e284c60e2fd866be75aa1039e58237394b5f43a43621ba46749c"
+    },
+    {
+      "path": "evidence/phase9-provider-first-failure.jsonl",
+      "sha256": "769102fea94ceb4c381999b211b47f35b5278e69388b7e02d835cb0915662012"
+    },
+    {
+      "path": "evidence/phase9-provider-postfix-success.jsonl",
+      "sha256": "e27c910a82b8bafe4deb3261dfe63277ba27df2d26189d3ad89e00bd804c8adc"
+    },
+    {
+      "path": "evidence/phase9-real-model-ledger.json",
+      "sha256": "ac7780257bcddd9393b874a2765652f6f44f0c38dc880b74fdce25473b034ad3"
+    },
+    {
+      "path": "evidence/phase9-resource-reference-guard.json",
+      "sha256": "e1790332f402353e1bd730b5f02597627c18be8e63c523d78758dbb2a44fd036"
+    },
+    {
+      "path": "evidence/phase9-run9-eval-review.json",
+      "sha256": "4a6cec1ca862e2d00ff9b72d66e17b6b33023e02f6c259a331d5add887a276d0"
+    },
+    {
+      "path": "evidence/phase9-run9-lifecycle-review.json",
+      "sha256": "612764e47317e58e0c3b6d6b08179135b7d30795c20d0fd08fcffd139fae96eb"
+    },
+    {
+      "path": "evidence/phase9-run9-observations.json",
+      "sha256": "b75f0bee874cae827cfae382dd14eca37c10887ed999a110eaa4461cde469552"
+    },
+    {
+      "path": "evidence/phase9-run9-plan.json",
+      "sha256": "ef39177b3b2b8abbccc1c4e3941b8da2dd8d5439e5952da12ca44d66ff62dbc9"
+    },
+    {
+      "path": "evidence/phase9-run9-ui-observations.json",
+      "sha256": "9b1fcf697f6c987b41bde14d98f463a6806cc1cb14495b72ffc3c2198339ce1c"
+    },
+    {
+      "path": "evidence/phase9-same-build-reopen.json",
+      "sha256": "902112cf03663de5879af9a580c0f16c447920c9e145d0c85d2223f4368dbf0a"
+    },
+    {
+      "path": "evidence/phase9-same-build-reopen.log",
+      "sha256": "b082972da7ce5228e47435535beede90c25248b8d0b36db76e2cb813c7c76b44"
+    },
+    {
+      "path": "evidence/phase9-shared-diagnostic-test.log",
+      "sha256": "8cccda861edee517dae3c7d0e5a82d23b6b28b77d4a1fa041286683958b6d896"
+    },
+    {
+      "path": "evidence/phase9-shopify-observed-body.log",
+      "sha256": "5057c618585126027b6cba8acd275dc493727bd44ce6dce8c41c8aa14465a365"
+    },
+    {
+      "path": "evidence/phase9-v013-build-receipt.json",
+      "sha256": "772fb543339bb0c977843dce5fa64c08f630d385d5c25e9c9caa16fa2c00f013"
+    },
+    {
+      "path": "evidence/phase9-v013-diagnostic-build-receipt.json",
+      "sha256": "030f333835a02ecb7a7fc46455ee92a08edbe9049822c2ed8ccba248674fd2eb"
+    },
+    {
+      "path": "evidence/phase9-v013-final-build-receipt.json",
+      "sha256": "9a2836ff801763e7941fc2f44e47ae18f4fb8fb2598083f3c3b9138073c9d839"
+    },
+    {
+      "path": "evidence/repository-baseline.json",
+      "sha256": "46b3981f6ae1ab3cf8e90419ff2ba8f78abffed2ac53c73038abc632c566cebb"
+    },
+    {
+      "path": "evidence/runtime-installed-ask-attempt1.json",
+      "sha256": "9257f53216fcf048bed2a281dc6e0546b20062cb8c7bfc56f6169732d158b9b7"
+    },
+    {
+      "path": "evidence/runtime-installed-ask.json",
+      "sha256": "8b3d64dcad8d57645cfb578b469b97f2c15af0185154ade6b42de927b8f9f585"
+    },
+    {
+      "path": "evidence/runtime-installed-auto-attempt1.json",
+      "sha256": "a19bfd421cff8c903c07504e40179ecbb8f71a43c93174ec0d7a9490931fbcde"
+    },
+    {
+      "path": "evidence/runtime-installed-auto.json",
+      "sha256": "dda83a1577607a047b1e25daef468de41336c42787b2ef556da474ae52906ac5"
+    },
+    {
+      "path": "evidence/runtime-installed-full-attempt1.json",
+      "sha256": "5a419d7c647babb42731d744c87751679e3331f23601dc3c8caf529262753da6"
+    },
+    {
+      "path": "evidence/runtime-installed-full.json",
+      "sha256": "bad502cfe1e01b917da9e92cc741f0a48603c78a43634a5f7c8168a2722fda48"
+    },
+    {
+      "path": "evidence/runtime-local-responses.json",
+      "sha256": "bfd5361f18868d1fe3b13a6cd0d7892acebaa23a1042398d3c797ef29abb9db5"
+    },
+    {
+      "path": "evidence/runtime-no-turn.json",
+      "sha256": "4894b6625f63f2fee940b4ecb25d3dc224c6ad863f7e62a65a96cba4bbe36b6c"
+    },
+    {
+      "path": "evidence/runtime-reference.json",
+      "sha256": "90695a4300504944f84711660de92fdd9812303bea93ca4898cc21bc09707d3e"
+    },
+    {
+      "path": "evidence/runtime-reopen.json",
+      "sha256": "b694c30ca679b341f44d601120e6f5453e57165a89ec7c3ed43d7c768c494499"
+    }
+  ]
+}

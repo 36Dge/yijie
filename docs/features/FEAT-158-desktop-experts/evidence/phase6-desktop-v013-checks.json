@@ -1,0 +1,101 @@
+{
+  "feature": "FEAT-158",
+  "recorded_at": "2026-10-11T14:27:02.662757+00:00",
+  "scope": "User narrowed task to necessary logical implementation checks, current0.1.3 pin integration and canonical source gates; no further fresh run",
+  "release": false,
+  "evidence_kind": "Observed tool command/results summarized after completion; source unchanged while writing evidence",
+  "content": {
+    "version": "0.1.3",
+    "bundle_version": "0.4.3",
+    "producer_output": "dist/skills-experts-candidate-v013",
+    "manifest_sha256": "46e3e5b9e101c252a4dcb0bc9d27c1da024ea6457be43e5be5736ccf047c6b58",
+    "authority_sha256": "351327f5b93b60323fbe7833454c6e53f96f0bacef7da500c9db9c24a6311b53",
+    "source_tree_sha256": "e7521eabbef58a18cfeddaa04caba3acd1d3068b52f2d06beec804f3b05e8b6f",
+    "single_current_pin": true
+  },
+  "checks": [
+    {
+      "command": "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast node scripts/sync-desktop-expert-resources.mjs",
+      "exit_code": 0,
+      "result": "Canonical current cache copied; 38 unchanged ordinary Skills + 1 expert0.1.3"
+    },
+    {
+      "command": "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast node scripts/sync-desktop-expert-resources.mjs --check",
+      "exit_code": 0,
+      "result": "Exact current manifest/authority/source and archive bytes validated"
+    },
+    {
+      "command": "pnpm exec eslint src/pages/plugins/ExtensionsPage.prefill.test.ts scripts/sync-desktop-expert-resources.mjs scripts/run-local-demo-fast.test.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    },
+    {
+      "command": "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast YIJIE_CHAT_MODELS_ENABLED=true YIJIE_MARKET_CONNECTORS_ENABLED=true YIJIE_RUNTIME_PERMISSIONS_ENABLED=true VITE_YIJIE_RUNTIME_PERMISSIONS_ENABLED=true YIJIE_FEAT155_SCHEDULED_DAILY=true YIJIE_FEAT155_SCHEDULED_CANDIDATE=false YIJIE_EXPERTS_ENABLED=true node scripts/chat-model-build-candidate.mjs --freeze",
+      "exit_code": 0,
+      "result": "FEAT-158 local source candidate verified; release=false"
+    },
+    {
+      "command": "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast YIJIE_CHAT_MODELS_ENABLED=true YIJIE_MARKET_CONNECTORS_ENABLED=true YIJIE_RUNTIME_PERMISSIONS_ENABLED=true VITE_YIJIE_RUNTIME_PERMISSIONS_ENABLED=true YIJIE_FEAT155_SCHEDULED_DAILY=true YIJIE_FEAT155_SCHEDULED_CANDIDATE=false YIJIE_EXPERTS_ENABLED=true node scripts/sync-desktop-skill-resources.mjs --channel local-development --check --skip-package",
+      "exit_code": 0,
+      "result": "Existing full source and permission chain verified; 38 Skills, category5/9/7/9/8"
+    },
+    {
+      "command": "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast YIJIE_CHAT_MODELS_ENABLED=true YIJIE_MARKET_CONNECTORS_ENABLED=true YIJIE_RUNTIME_PERMISSIONS_ENABLED=true VITE_YIJIE_RUNTIME_PERMISSIONS_ENABLED=true YIJIE_FEAT155_SCHEDULED_DAILY=true YIJIE_FEAT155_SCHEDULED_CANDIDATE=false YIJIE_EXPERTS_ENABLED=false node scripts/chat-model-build-candidate.mjs --freeze",
+      "exit_code": 0,
+      "result": "FEAT-156 local source candidate verified; release=false"
+    },
+    {
+      "command": "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast YIJIE_CHAT_MODELS_ENABLED=true YIJIE_MARKET_CONNECTORS_ENABLED=true YIJIE_RUNTIME_PERMISSIONS_ENABLED=true VITE_YIJIE_RUNTIME_PERMISSIONS_ENABLED=true YIJIE_FEAT155_SCHEDULED_DAILY=true YIJIE_FEAT155_SCHEDULED_CANDIDATE=false YIJIE_EXPERTS_ENABLED=false node scripts/sync-desktop-skill-resources.mjs --channel local-development --check --skip-package",
+      "exit_code": 0,
+      "result": "Existing full source and permission chain verified; 38 Skills, category5/9/7/9/8"
+    }
+  ],
+  "quick_prompt_check": {
+    "evidence": "feat158-phase6-prefill-logic-check.json",
+    "sha256": "9452438a150d85512ad684614cd32cb0f8ae6959eaa8d25ad71e0ad3f44287ae",
+    "result": "Normal memory-router and real dialog regression PASS (1 test); original WebView observation NOT REPRODUCED, no established root cause",
+    "production_fix": "None; no speculative patch and no weakened destination/scope/busy guards",
+    "ac_002_003_whole_result": "PENDING; local logical regression does not assert overall real product acceptance"
+  },
+  "source_sha256": {
+    "contracts/experts-assets.candidate.json": "4f15afdae685bb1ad50be814899f1684330a1081b57cac8b7dc00e24149e3e72",
+    "contracts/experts-host-build.candidate.json": "5062176b0b77edbd65e20fc2b0b1110dcd95c629a90d253899e7f7e5929837fc",
+    "contracts/chat-model-host-build.candidate.json": "c0ea31a4104da2a1bb35846d9de5239e4d0b5240e344b6f9885c84d64e2e7397",
+    "scripts/sync-desktop-expert-resources.mjs": "d63058a2356ef033616dfa7d6f22ea5c7c82e5f05b6f7dac2f48147004e81d88",
+    "scripts/run-local-demo-fast.test.mjs": "1d975d75476c4a7ced391ad57b17e773566a2ba1f6d97c4a1bdbf11184f392d9",
+    "src/pages/plugins/ExtensionsPage.prefill.test.ts": "892adb9df3b2892c2754ca1bad25550ef32622ed09ea81acdbe0135f2f5799a6"
+  },
+  "retained_profiles": [
+    "default",
+    "content-v011",
+    "content-v012"
+  ],
+  "new_profiles": 0,
+  "activity": {
+    "app_launches": 0,
+    "ui_operations": 0,
+    "model_calls": 0,
+    "metadata_or_business_network_calls": 0,
+    "old_database_or_installed_resource_writes": 0,
+    "full_rust_or_host_suite_runs": 0,
+    "all_target_clippy_reruns": 0,
+    "attack_or_fault_fixtures": 0
+  },
+  "not_run": [
+    {
+      "item": "0.1.3 real model/content Eval, complete fresh run and real quick-prompt retest",
+      "reason": "User explicitly narrowed to logical checks; old run8 results are not reused as repaired-version acceptance"
+    },
+    {
+      "item": "Broader Rust/Host/UI suite or all-target clippy",
+      "reason": "No new production Rust change in this closing batch; not needed for source/pin and one-test change, and historical forbidden fixtures excluded"
+    },
+    {
+      "item": "App build/start/reopen or new metadata flow",
+      "reason": "No further product runs authorized in this narrowed task"
+    }
+  ]
+}

@@ -1,0 +1,416 @@
+{
+  "recorded_at": "2026-10-11T08:38:13.543288+00:00",
+  "feature": "FEAT-158",
+  "mode": "local_worktree_candidate",
+  "release": false,
+  "purpose": "Phase 2/3 local integration; not D4 or real model acceptance",
+  "provider_turns": 0,
+  "external_business_actions": 0,
+  "git_commits_or_pushes": 0,
+  "source_pins": {
+    "contracts_source": {
+      "path": "yijie-contracts/compatibility/experts/source.lock.json",
+      "sha256": "762fa86dedad71afef0c2a0e37d7945202ca961cdddb6e7c188aaa6c7d657259"
+    },
+    "desktop_experts": {
+      "path": "yijie-desktop/contracts/experts.candidate.json",
+      "sha256": "5bb2bca0ffcb07d0d24bb9f930ce8006fb443e51282179c32e8a9d4200984ee9"
+    },
+    "desktop_assets": {
+      "path": "yijie-desktop/contracts/experts-assets.candidate.json",
+      "sha256": "3c0ce0e0f45deffd0669e78fc76d2f7c3359ae15aabfb78719c562878c174fcc"
+    },
+    "host_build": {
+      "path": "yijie-desktop/contracts/experts-host-build.candidate.json",
+      "sha256": "4b121a5fe13e2b584760e2f578b72ace5a19d427977782f2492561fff0473832"
+    },
+    "skills_authority": {
+      "path": "yijie-skills/dist/skills-experts-candidate/authority.json",
+      "sha256": "8cefd1e0fc0c80739018b37293e44550dd2b0c6a0fdb96f7ea08b28e7e356d3b"
+    },
+    "skills_manifest": {
+      "path": "yijie-skills/dist/skills-experts-candidate/bundle-manifest.json",
+      "sha256": "156fa3da100f82985087637ea3e94138d1f6ff813fedc8a4275b0dcad591e355"
+    }
+  },
+  "repositories": {
+    "yijie": {
+      "head": "af54ef0a2a44cc9f1d0d6280f061c48f0923e61d",
+      "status": [
+        "?? docs/features/FEAT-158-desktop-experts/"
+      ]
+    },
+    "yijie-contracts": {
+      "head": "35e0949c95d7a59ca5480715c225766dcc822056",
+      "status": [
+        " M Makefile",
+        " M README.md",
+        " M docs/supported-baselines.md",
+        "?? compatibility/experts/",
+        "?? docs/experts-v1.md",
+        "?? fixtures/experts/",
+        "?? jsonschema/skills/skill-bundle-manifest-v3.schema.json",
+        "?? scripts/experts-source.mjs",
+        "?? scripts/generate-experts.mjs",
+        "?? scripts/sync-experts.mjs",
+        "?? sdks/go/experts/",
+        "?? sdks/javascript/",
+        "?? sdks/jsonschema/experts-native.schema.json",
+        "?? sdks/jsonschema/experts.schema.json",
+        "?? sdks/rust/experts/",
+        "?? sdks/typescript/src/api/generated/experts-validator.gen.d.ts",
+        "?? sdks/typescript/src/api/generated/experts-validator.gen.js",
+        "?? sdks/typescript/src/domain/experts.generated.ts",
+        "?? tests/experts.test.mjs",
+        "?? tests/rust-experts/"
+      ]
+    },
+    "yijie-skills": {
+      "head": "488714a8d96f40806a257aae097683815b1dd458",
+      "status": [
+        " M README.md",
+        " M scripts/package-desktop-skills.mjs",
+        "?? contracts/experts-canonical.gen.mjs",
+        "?? contracts/experts.candidate.json",
+        "?? contracts/skill-bundle-manifest-v3.schema.json",
+        "?? docs/provenance/FEAT-158-jd-ops-content-review.md",
+        "?? docs/provenance/FEAT-158-local-use-authorization.md",
+        "?? docs/provenance/source-audits/FEAT-158-jd-ops-content-audit.json",
+        "?? plugins/yijie-desktop-skills/experts/",
+        "?? tests/desktop-expert-bundle.test.mjs",
+        "?? tests/jd-expert-content.test.mjs"
+      ]
+    },
+    "yijie-agent-host": {
+      "head": "dce7a3c4e51e08c74e009a0ce3eeee256d929b3e",
+      "status": [
+        " M cmd/desktop-host/main.go",
+        " M internal/app/app.go",
+        " M internal/app/market_control.go",
+        " M internal/codex/session_protocol.go",
+        " M internal/session/chat_models.go",
+        " M internal/session/market_authority.go",
+        " M internal/session/market_ledger.go",
+        " M internal/session/market_storage.go",
+        " M internal/session/market_submit.go",
+        " M internal/session/scheduled_draft.go",
+        " M internal/session/service.go",
+        " M internal/session/store.go",
+        " M internal/skills/domain.go",
+        " M internal/skills/manifest.go",
+        " M internal/skills/service.go",
+        "?? api/experts.candidate.json",
+        "?? api/experts.schema.json",
+        "?? api/experts.transport.json",
+        "?? api/jsonschema/skill-bundle-manifest-v3.schema.json",
+        "?? docs/experts-host-candidate.md",
+        "?? internal/app/experts_config.go",
+        "?? internal/app/experts_config_test.go",
+        "?? internal/app/experts_control.go",
+        "?? internal/app/experts_control_test.go",
+        "?? internal/codex/expert_instructions.go",
+        "?? internal/codex/expert_instructions_test.go",
+        "?? internal/contracts/experts/",
+        "?? internal/session/expert_resources.go",
+        "?? internal/session/expert_resources_storage.go",
+        "?? internal/session/expert_resources_test.go",
+        "?? internal/session/experts.go",
+        "?? internal/session/experts_storage.go",
+        "?? internal/session/experts_test.go",
+        "?? internal/skills/expert_resources.go",
+        "?? internal/skills/experts.go",
+        "?? internal/skills/experts_candidate.go",
+        "?? internal/skills/experts_test.go",
+        "?? scripts/verify-expert-runtime-no-turn.py"
+      ]
+    },
+    "yijie-desktop": {
+      "head": "46d0035a2054effe3bfddbd13861e81d46ecd85d",
+      "status": [
+        " M eslint.config.js",
+        " M scripts/chat-model-build-candidate.mjs",
+        " M scripts/run-local-demo-fast.sh",
+        " M scripts/run-local-demo-fast.test.mjs",
+        " M scripts/run-tauri-build.mjs",
+        " M scripts/sync-desktop-skill-resources.mjs",
+        " M src-tauri/src/chat/application.rs",
+        " M src-tauri/src/chat/authorization.rs",
+        " M src-tauri/src/chat/connectors/control.rs",
+        " M src-tauri/src/chat/connectors/dispatch.rs",
+        " M src-tauri/src/chat/connectors/selection.rs",
+        " M src-tauri/src/chat/database.rs",
+        " M src-tauri/src/chat/ipc.rs",
+        " M src-tauri/src/chat/migrations.rs",
+        " M src-tauri/src/chat/mod.rs",
+        " M src-tauri/src/chat/models.rs",
+        " M src-tauri/src/chat/schedules/execution_guard.rs",
+        " M src-tauri/src/chat/sidecar.rs",
+        " M src-tauri/src/lib.rs",
+        " M src-tauri/src/single_instance.rs",
+        " M src-tauri/src/skills/catalog.rs",
+        " M src-tauri/src/skills/host.rs",
+        " M src-tauri/src/skills/mod.rs",
+        " M src-tauri/src/skills/resources.rs",
+        " M src/components/chat/ChatAddControl.test.ts",
+        " M src/components/chat/ChatAddControl.vue",
+        " M src/components/chat/ChatComposer.vue",
+        " M src/domain/chat-composer.ts",
+        " M src/navigation/app-nav.ts",
+        " M src/pages/chat/ChatPage.test.ts",
+        " M src/pages/chat/ChatPage.vue",
+        " M src/pages/plugins/SkillMarketplacePage.vue",
+        " M src/router/index.ts",
+        " M src/stores/chat-composer-drafts.store.ts",
+        " M src/stores/chat.store.test.ts",
+        " M src/stores/chat.store.ts",
+        "?? contracts/experts-assets.candidate.json",
+        "?? contracts/experts-host-build.candidate.json",
+        "?? contracts/experts-native.schema.json",
+        "?? contracts/experts.candidate.json",
+        "?? contracts/experts.native-ipc.json",
+        "?? contracts/experts.schema.json",
+        "?? docs/experts-ui-candidate.md",
+        "?? scripts/chat-model-build-candidate.test.mjs",
+        "?? scripts/sync-desktop-expert-resources.mjs",
+        "?? src-tauri/migrations/chat/0034_conversation_experts.sql",
+        "?? src-tauri/migrations/chat/0035_expert_resource_operations.sql",
+        "?? src-tauri/src/chat/connectors/selection_expert_tests.rs",
+        "?? src-tauri/src/chat/experts/",
+        "?? src-tauri/src/chat/schedules/execution_guard_expert_tests.rs",
+        "?? src-tauri/src/skills/experts.rs",
+        "?? src-tauri/tauri.experts-local.conf.json",
+        "?? src/api/expert-native-client.test.ts",
+        "?? src/api/expert-native-client.ts",
+        "?? src/api/generated/experts-validator.gen.d.ts",
+        "?? src/api/generated/experts-validator.gen.js",
+        "?? src/authorization/experts-ui-config.test.ts",
+        "?? src/authorization/experts-ui-config.ts",
+        "?? src/components/experts/",
+        "?? src/composables/useChatExpertsBinding.ts",
+        "?? src/composables/useExpertSummon.test.ts",
+        "?? src/composables/useExpertSummon.ts",
+        "?? src/composables/useExpertsBinding.ts",
+        "?? src/domain/expert-ui.ts",
+        "?? src/domain/experts.generated.ts",
+        "?? src/pages/plugins/ExtensionsPage.vue",
+        "?? src/stores/chat-experts.store.test.ts",
+        "?? src/stores/chat-experts.store.ts",
+        "?? src/stores/experts.store.test.ts",
+        "?? src/stores/experts.store.ts",
+        "?? src/test/expert-fixture.ts"
+      ]
+    },
+    "yijie-codex": {
+      "head": "7fd463bcef07f37b0211acd9f62b9f93ea0a4b12",
+      "status": []
+    },
+    "yijie-connectors": {
+      "head": "8a8b078f657da708a0db8c1c43831eefd34247af",
+      "status": []
+    }
+  },
+  "startup": {
+    "state": "built_and_started_resource_action_failed_before_native",
+    "command": "YIJIE_EXPERTS_ENABLED=true pnpm tauri:demo-fast:app",
+    "identifier": "com.yijie.ai.feat158-local",
+    "port": 18158,
+    "app_data_absent_before_first_launch": true,
+    "host_runtime_root_absent_before_first_launch": true,
+    "build": "PASS; canonical debug unsigned .app",
+    "ui": [
+      "Local direct entry without login",
+      "Extensions default Skills; original 38 catalog entries",
+      "Experts tab one JD expert",
+      "Details show scope/version and three prefill buttons"
+    ],
+    "resource_prepare": "FAIL: display object extra fields rejected by strict UI request validator before Native invoke",
+    "local_skill_operations": 0,
+    "provider_turns": 0,
+    "exit": "Native app menu Quit; launcher exit 0; no candidate app/Host process remained",
+    "cua_quit_observation": "AX read after Quit timed out because target exited; lifecycle independently verified via exit 0 and process names",
+    "fix_status": "UI selection projection and real-validator regression in progress",
+    "observed_at": "2026-10-11T08:43:59.832286+00:00"
+  },
+  "checks": [
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --lib expert_store_",
+      "result": "PASS",
+      "exit_code": 0,
+      "tests": 12,
+      "scope": "normal focused/static; not full product acceptance"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --lib expert_resources_",
+      "result": "PASS",
+      "exit_code": 0,
+      "tests": 8,
+      "scope": "normal focused/static; not full product acceptance"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --lib feat158_isolated_lock",
+      "result": "PASS",
+      "exit_code": 0,
+      "tests": 1,
+      "scope": "normal focused/static; not full product acceptance"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "pnpm exec vitest run scripts/run-local-demo-fast.test.mjs --exclude '**/.local/**' --exclude '**/.contracts-source/**' --exclude '**/.agent-host-source/**' --exclude '**/.skills-source/**' --maxWorkers=2",
+      "result": "PASS",
+      "exit_code": 0,
+      "tests": 20,
+      "scope": "normal focused/static; not full product acceptance"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "pnpm lint && pnpm build && pnpm docs:build",
+      "result": "PASS",
+      "exit_code": 0,
+      "tests": null,
+      "scope": "normal focused/static; not full product acceptance"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo fmt --manifest-path src-tauri/Cargo.toml --check",
+      "result": "PASS",
+      "exit_code": 0,
+      "tests": null,
+      "scope": "normal focused/static; not full product acceptance"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings",
+      "result": "PASS",
+      "exit_code": 0,
+      "tests": null,
+      "scope": "normal focused/static; not full product acceptance"
+    },
+    {
+      "repository": "yijie-skills",
+      "command": "node --test tests/desktop-expert-bundle.test.mjs tests/jd-expert-content.test.mjs",
+      "result": "PASS",
+      "exit_code": 0,
+      "tests": 5,
+      "scope": "normal focused/static; not full product acceptance"
+    },
+    {
+      "repository": "yijie-contracts",
+      "command": "node scripts/generate-experts.mjs --check && node scripts/sync-experts.mjs --consumer=desktop --check && node scripts/sync-experts.mjs --consumer=agent-host --check && node scripts/sync-experts.mjs --consumer=skills --check",
+      "result": "PASS",
+      "exit_code": 0,
+      "tests": null,
+      "scope": "normal focused/static; not full product acceptance"
+    },
+    {
+      "repository": "yijie",
+      "command": "./docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-158-desktop-experts && node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --gate D0 docs/features/FEAT-158-desktop-experts && node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-158-desktop-experts && pnpm lint",
+      "result": "PASS",
+      "exit_code": 0,
+      "tests": null,
+      "scope": "normal focused/static; not full product acceptance"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --lib execution_guard::expert_tests",
+      "result": "PASS",
+      "exit_code": 0,
+      "tests": 3,
+      "scope": "normal bidirectional schedule/binding reservation; no expert table legacy case"
+    },
+    {
+      "repository": "yijie-desktop",
+      "scope": "Resource projection repair + generated validator through real client and store",
+      "tests": 27,
+      "result": "PASS",
+      "exit_code": 0,
+      "companion_checks": "vue-tsc; 7-file ESLint; git diff --check; no validator weakening"
+    },
+    {
+      "repository": "yijie-desktop",
+      "scope": "Final button appearance and safe default confirmation focus; real Naive Dialog components",
+      "tests": 11,
+      "result": "PASS",
+      "exit_code": 0,
+      "companion_checks": "vue-tsc; 3-file ESLint; diff check; actual WebView Return subsequently verified"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": "pnpm lint && pnpm docs:build && git diff --check",
+      "result": "PASS",
+      "exit_code": 0,
+      "scope": "Final source/style/focus corrections; documentation build; existing chunk size warning retained"
+    },
+    {
+      "repository": "yijie",
+      "command": "check-feature-package.sh --strict; validate-feature-package --gate D0; --audit-claims; pnpm lint; git diff --check",
+      "result": "PASS",
+      "exit_code": 0,
+      "scope": "Current truthful partial verification state, not D4"
+    }
+  ],
+  "limits": [
+    "No prohibited process/filesystem/executable/attack fault fixtures executed.",
+    "Full repository test suites are not claimed passed.",
+    "Host tests and late UI fixes have independent agent reports; not summed with overlapping suites.",
+    "Initial real UI build started normally; resource action failed before Native. Not D4; no real provider test.",
+    "Default daily app was never closed or migrated by these candidate runs; no Git commit/push/release performed."
+  ],
+  "ui_runs": [
+    {
+      "run": 2,
+      "command": "YIJIE_EXPERTS_ENABLED=true pnpm tauri:demo-fast:app",
+      "build": "PASS",
+      "resource_prepare": "PASS: one canonical install operation completed",
+      "installed_role_sha256": "7173636f07506ce525c15af7b6fc29b564536c3be41798ac614714a26b4c70f0",
+      "runtime_visible": false,
+      "observations": [
+        "Explicit summon returned to /chat?focus=composer",
+        "Synthetic existing draft retained unchanged",
+        "Kimi-K3 selection unchanged; no turn sent",
+        "Composer focus and expert chip right of store confirmed",
+        "1180x760 logical window (2360x1520 capture) no overlap",
+        "Keyboard shortcut opens draft confirmation; explicit keep retained draft"
+      ],
+      "findings": [
+        "Native button appearance not reset on expert chip; fix pending final rebuild",
+        "Naive focus trap initially focuses replacement instead of keep; fix pending final rebuild"
+      ],
+      "dark_preview": "Web Inspector local color scheme override triggered data-theme=dark; closing inspector resets override, so no complete dark visual acceptance claimed",
+      "provider_turns": 0,
+      "exit_code": 0,
+      "exit": "App menu Quit; candidate app/Host processes absent",
+      "app_sha256": "632e64f443107dbcb6935e4a52f658035f9848825a79ad6407ede6c211483a1d",
+      "recorded_at": "2026-10-11T08:53:10.771904+00:00"
+    },
+    {
+      "run": 3,
+      "command": "YIJIE_EXPERTS_ENABLED=true pnpm tauri:demo-fast:app",
+      "build": "PASS",
+      "resource_reopen": "PASS; ready after normal previous Quit and same installed resources",
+      "observations": [
+        "Default Skills tab; experts catalog returns one entry",
+        "Default draft-confirmation focus is Keep; real Return preserved synthetic draft and did not submit",
+        "Expert chip flat theme styling verified in light and dark",
+        "1180x760 logical window verified for expert details and chat composer in both themes",
+        "Dark preview via detached Web Inspector color-scheme override; no OS theme change",
+        "Search empty state and clear recovery verified",
+        "Keyboard Tab reaches Remove expert; Return removes chip and preserves draft",
+        "No chat records or user sends created during these checks"
+      ],
+      "attachments": "NOT COMPLETED: ordinary self-created text selected through local picker; Mac locked before selection finished, no acceptance claimed",
+      "provider_turns": 0,
+      "app_sha256": "74bcdf316111808be77f36646fac9c42d078ee5b26b0aa8df94a0911639d9c24",
+      "host_sha256": "1b426553a8a7d98f14e670a2af1225e79ea54e1dfd4d9a71c70d7d6336165c26",
+      "lifecycle": "App still running in isolated candidate; Mac locked during file picker. No force-stop attempted.",
+      "recorded_at": "2026-10-11T09:01:54.355731+00:00"
+    }
+  ],
+  "pending": [
+    "Explicit authorization for at most 18 real-provider user messages requested asynchronously; no response yet, allowed=0 until explicit answer.",
+    "Manual Mac unlock requested; no response yet, remaining attachment/lifecycle UI checks pending.",
+    "Complete product Must/real model content evaluation, current installed reference read under all permission modes, and final D4 still not passed."
+  ]
+}

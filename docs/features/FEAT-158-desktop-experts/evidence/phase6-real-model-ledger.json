@@ -1,0 +1,196 @@
+{
+  "feature": "FEAT-158",
+  "phase": 6,
+  "authorization_quote": "继续认真修订内容，修复评测中发现的问题，再完成158剩余验收。允许追加真实模型调用额度，外观验收仍跳过，未通过的项目不要标记完成。",
+  "authorization_recorded_at": "2026-10-11T13:28:44.168088+00:00",
+  "scope": "Additional real model calls for FEAT-158 repair and remaining acceptance; existing Kimi/MiniMax, synthetic data, no platform business calls/writes, normal safety constraints",
+  "prior_ledger": "phase5-real-model-ledger.json",
+  "prior_messages_started": 18,
+  "planned_additional_message_limit": 24,
+  "limit_origin": "Agent initial bounded execution budget under user additional-call authorization; user did not specify a numerical amount",
+  "messages_started": 6,
+  "runs": [
+    {
+      "run": "run8",
+      "profile": "content-v012",
+      "content_version": "0.1.2",
+      "native_A": "01a12b48-174d-7cf0-9f43-8b52f12615ca",
+      "model_initial": "Kimi-K3",
+      "permission": "ask",
+      "status": "ended_scope_reduced",
+      "host_agent": "d7688420-3fe5-425f-9b5f-ff882d9a6afc",
+      "runtime_thread": "01a12b48-178f-7852-ac44-f807d38d72a7",
+      "rollout": "yijie-desktop/.local/feat158-content-v012-candidate/codex-home/sessions/2026/10/11/rollout-2026-10-11T22-05-07-01a12b48-178f-7852-ac44-f807d38d72a7.jsonl",
+      "steps_sent": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "steps_not_run": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "normal_quit_requested": true,
+      "normal_quit": {
+        "launcher_exit": 0,
+        "port18160_free": true,
+        "method": "native Cmd+Q after six turns already complete"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "step": 1,
+      "cases": [
+        "c01"
+      ],
+      "prompt": "这是京东POP合成新店，自有现货。请先列上架前的新店设置，再把附件商品事实整理成上架字段。列出事项、所需数据、负责人和完成证据，未知项待填；按相关本地场景给出文件和内容版本依据。只咨询，不联网、不操作店铺。",
+      "run": 8,
+      "phase_ordinal": 1,
+      "cumulative_ordinal": 19,
+      "state": "recorded before explicit UI send",
+      "recorded_at": "2026-10-11T14:05:01.414805+00:00"
+    },
+    {
+      "step": 2,
+      "cases": [
+        "c02"
+      ],
+      "prompt": "请按本地M03-03核对合成标题“棉质收纳袋20件装”。已知商品是聚酯纤维衣物收纳袋、10件装，品牌资料未提供。指出不一致处并给修正版，引用本轮实际读取的场景、文件和版本；不发布。",
+      "run": 8,
+      "phase_ordinal": 2,
+      "cumulative_ordinal": 20,
+      "state": "recorded before explicit UI send",
+      "recorded_at": "2026-10-11T14:07:44.805357+00:00"
+    },
+    {
+      "step": 3,
+      "cases": [
+        "c03"
+      ],
+      "prompt": "本地资料里的MCN入驻条件是什么？目前没有提供官方申请说明，请说明资料能支持什么、还缺哪些信息；不联网。",
+      "run": 8,
+      "phase_ordinal": 3,
+      "cumulative_ordinal": 21,
+      "state": "recorded before explicit UI send",
+      "recorded_at": "2026-10-11T14:08:54.499524+00:00"
+    },
+    {
+      "step": 4,
+      "cases": [
+        "c04"
+      ],
+      "prompt": "京东快车和全站推广有两种不同说法，应该按哪一个？目前没有店型、产品版本或后台提示，请按本地资料分析，列继续判断所需的信息；不调整广告。",
+      "run": 8,
+      "phase_ordinal": 4,
+      "cumulative_ordinal": 22,
+      "state": "recorded before explicit UI send",
+      "recorded_at": "2026-10-11T14:10:00.231935+00:00"
+    },
+    {
+      "step": 5,
+      "cases": [
+        "c05"
+      ],
+      "prompt": "请核对100×(1−5%−15%)与原稿95是否一致，给计算过程、可确定结论和待核实项；也说明这是否足以确认真实结算规则。引用本轮实际读取的本地依据，不联网。",
+      "run": 8,
+      "phase_ordinal": 5,
+      "cumulative_ordinal": 23,
+      "state": "recorded before explicit UI send",
+      "recorded_at": "2026-10-11T14:12:06.608468+00:00"
+    },
+    {
+      "step": 6,
+      "cases": [
+        "c06"
+      ],
+      "prompt": "请同时诊断我的京东和淘宝广告效果。目前没有经营数据，请说明适用范围、可做的判断和最小数据需求，不推荐不存在的专家。只可读取相关本地参考，不联网，也不要调用本轮选择的连接器。",
+      "run": 8,
+      "phase_ordinal": 6,
+      "cumulative_ordinal": 24,
+      "state": "recorded before explicit UI send",
+      "recorded_at": "2026-10-11T14:13:25.096055+00:00"
+    }
+  ],
+  "appearance": "OWNER_SKIPPED; not PASS",
+  "completed": false,
+  "metadata_preparation": {
+    "service": "shopify",
+    "scope": "fixed public Global Catalog MCP initialize/tools/list only; no credentials/accounts; no tools/call",
+    "max_logical_flows": 2,
+    "started": 1,
+    "flows": [
+      {
+        "ordinal": 1,
+        "started_at": "2026-10-11T14:03:10.123954+00:00",
+        "trigger": "Native UI Install Shopify MCP; public initialize/tools/list only",
+        "status": "failed",
+        "business_tools_call": 0,
+        "failure": "metadata_initialize unavailable; HTTP200 is not valid MCP handshake",
+        "transport_requests_observed": 6,
+        "tools_list_observed": 0
+      }
+    ],
+    "authorization_basis": "Necessary read-only preparation under user request to complete remaining FEAT-158 acceptance; no business calls or writes"
+  },
+  "compatibility_checks": [
+    {
+      "profile": "default",
+      "content_catalog": "0.1.2",
+      "frozen_history_version": "0.1.0",
+      "at": "2026-10-11T13:51:16.366585+00:00",
+      "canonical_log": "yijie-desktop/.local/feat158-phase6-old-default.log",
+      "ui_observations": [
+        "run4 exact Native URL observed; original submission uncertain, send/remove/model disabled",
+        "one explicit read-original-submit action; no resend",
+        "run5 exact Native URL observed; old answers still show0.1.0",
+        "selected-version details route has expertVersion=0.1.0; explicitly unavailable, not replaced by current"
+      ],
+      "native_peer_evidence": "feat158-phase6-default-after-read.jsonl",
+      "normal_quit": {
+        "launcher_exit": 0,
+        "port18158_free": true
+      },
+      "new_model_messages": 0
+    },
+    {
+      "profile": "content-v011",
+      "catalog_version": "0.1.2",
+      "old_binding_version": "0.1.1",
+      "at": "2026-10-11T13:56:27.525383+00:00",
+      "canonical_log": "yijie-desktop/.local/feat158-phase6-old-v011.log",
+      "ui_observations": [
+        "old A exact Native URL retains0.1.1 andMiniMax; resource unavailable andSend disabled",
+        "old details expertVersion=0.1.1 explicitly unavailable without replacement",
+        "current directory explicit card displays0.1.2; resource incompatible and summon disabled"
+      ],
+      "native_peer_evidence": "feat158-phase6-v011-after-read.jsonl",
+      "normal_quit": {
+        "launcher_exit": 0,
+        "port18159_free": true
+      },
+      "new_model_messages": 0
+    }
+  ],
+  "scope_revision": {
+    "at": "2026-10-11T14:16:36.299715+00:00",
+    "user_quote": "只做逻辑实现检测（逻辑没有bug），不要过多的实测调用。 不要盲目扩大测试验收范围。",
+    "action": "Stop additional real calls and remaining live acceptance; only targeted logic review/fixes and necessary normal local checks",
+    "messages_started_at_revision": 6
+  },
+  "remaining_live_acceptance": "OWNER_DEFERRED_NOT_PASS",
+  "active_additional_message_limit": 0,
+  "additional_calls_enabled": false
+}

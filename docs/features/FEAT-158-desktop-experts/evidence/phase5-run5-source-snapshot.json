@@ -1,0 +1,617 @@
+{
+  "feature": "FEAT-158",
+  "run": 5,
+  "mode": "local_worktree_candidate",
+  "release": false,
+  "recorded_at": "2026-10-11T10:51:19.544301+00:00",
+  "repositories": {
+    "yijie-contracts": {
+      "head": "35e0949c95d7a59ca5480715c225766dcc822056",
+      "files": {
+        "Makefile": {
+          "sha256": "5d398e10d79b68953b2f721b5e77a8aa56b92b820f9e3fe64d57015a4882920d"
+        },
+        "README.md": {
+          "sha256": "4ef632fae3fdb30409c10dd8204fbabe6185389faf87540bca28d1fe6d35d2db"
+        },
+        "compatibility/experts/native-ipc.json": {
+          "sha256": "e7922b6304ddbabca8c4055e4d05d07868b3642a18c5368850388c5a66f6dae1"
+        },
+        "compatibility/experts/source.lock.json": {
+          "sha256": "a5056217e4d54310d451ba53c64504ef010e2c616108cf75b606b0de0e4d9033"
+        },
+        "compatibility/experts/transport.json": {
+          "sha256": "659eeb00f68f7bcea0293c7d919f66bf31a6747ac46135699578cd8f6109c7cb"
+        },
+        "compatibility/experts/wire.schema.json": {
+          "sha256": "e6003536e353d0bb289fb485d305f20f82c0eda1e273523ebc009105d4c0def8"
+        },
+        "docs/experts-v1.md": {
+          "sha256": "5bef7b01f19ced25b510d759cf49479e662fd183f2028e8b5a888814fea5a490"
+        },
+        "docs/supported-baselines.md": {
+          "sha256": "869151bf07527197bfa2f38499830c5402644dfdb86f5cfaaf392e754b7ffcc8"
+        },
+        "fixtures/experts/bundle-v3-local.json": {
+          "sha256": "4adb7b73a59878c440942ac2d5017368dcff366d72e4e00cb7e8e99f4ded024d"
+        },
+        "fixtures/experts/digest-vectors.json": {
+          "sha256": "3f2c0df58f7c95d1a15158baac1ce0af0066e10162263b153d9dc182dbda3e3a"
+        },
+        "fixtures/experts/knowledge-digest-vectors.json": {
+          "sha256": "eeb1da21976fb472be85e95dce71e62d5a07f55ac078b2e19601025a468e284c"
+        },
+        "fixtures/experts/normal-wire.json": {
+          "sha256": "eda4121284df6be5a7d65150420782e9ccd21d8cf94033321cd8e638b43ba933"
+        },
+        "jsonschema/skills/skill-bundle-manifest-v3.schema.json": {
+          "sha256": "4d1af5f41d66fe38faa18eb9c0630fa06845b3871f65f1619785ae06d3011b65"
+        },
+        "scripts/experts-source.mjs": {
+          "sha256": "1a81abc7329e79c4acbe8fc05a65837efbeb4fea2926bca4f1d15fbbd59706bd"
+        },
+        "scripts/generate-experts.mjs": {
+          "sha256": "654633135aef4a527ee8fc5a8d1e8b5ccf235037100024af0d59c261d042b217"
+        },
+        "scripts/sync-experts.mjs": {
+          "sha256": "70eaec4d67ca7deb03228066f5db481489e738267a4212875f913d0413a00ff0"
+        },
+        "sdks/go/experts/bundle_schemas.gen.go": {
+          "sha256": "cd219c0cb851702147850dfb7a1f276c37ed785688d601fb3ed328a9311c258c"
+        },
+        "sdks/go/experts/types.gen.go": {
+          "sha256": "c7f0903c92d309c81d314defd73e91572788b8108dfc1d97de56ee1118e84884"
+        },
+        "sdks/go/experts/types_test.go": {
+          "sha256": "7ce78651edab0f2c9a8df8a94408d7095659269b00f325ea0bf794a1ca6c4d9e"
+        },
+        "sdks/javascript/experts/canonical.gen.mjs": {
+          "sha256": "a7ee6c00cd33741143e6733a934c8d596e9bb6a620911dd70894abccb84be0d8"
+        },
+        "sdks/jsonschema/experts-native.schema.json": {
+          "sha256": "cb8337e865fdcd7b4d7ccf5569e696107ec7c908b98dd7282653610686ad8f6b"
+        },
+        "sdks/jsonschema/experts.schema.json": {
+          "sha256": "f632e6bd98e05282885393a5f3ae3998d8b1fa40ffc92070d8f4372b95d9065e"
+        },
+        "sdks/rust/experts/types.gen.rs": {
+          "sha256": "8246e64dbebbf4a7564ae5e8776152bedf5f8b600e3a655976e78c87576b9df5"
+        },
+        "sdks/typescript/src/api/generated/experts-validator.gen.d.ts": {
+          "sha256": "a576483d56c62b61edcc4c05b3685c01e170b80079da68de53ceb0c5fe6c1f69"
+        },
+        "sdks/typescript/src/api/generated/experts-validator.gen.js": {
+          "sha256": "3620d399f83bbb0e39738da63f126940f84c099dd796aaa6cbca24886d491fb4"
+        },
+        "sdks/typescript/src/domain/experts.generated.ts": {
+          "sha256": "38bcd9fd3477c0274b6e464ad46be2c731963838e8a2c4d92b52c0de2447bb5a"
+        },
+        "tests/experts.test.mjs": {
+          "sha256": "ba0803720deeb32bcdb8893dbe9acdef2293fb5163bb49ec4190f442625558d5"
+        },
+        "tests/rust-experts/Cargo.lock": {
+          "sha256": "4312d617cae41be0d1c439dc4118b4be06a5eeeba7f5a95776f1e7333db8434b"
+        },
+        "tests/rust-experts/Cargo.toml": {
+          "sha256": "d1d1db3f97c93d2781a36e3f402369435bb2d1175cfeba5973bed2d0e425934c"
+        },
+        "tests/rust-experts/src/lib.rs": {
+          "sha256": "4ddbe2986cb9956a8dbb46db9b254c540865867bf9378ab2bec2f044b0563df5"
+        }
+      }
+    },
+    "yijie-skills": {
+      "head": "488714a8d96f40806a257aae097683815b1dd458",
+      "files": {
+        "README.md": {
+          "sha256": "12d1b9ded4b447e5e2e6ab083672544d7ab4b876998bb545a1162abfb15b6a9a"
+        },
+        "contracts/experts-canonical.gen.mjs": {
+          "sha256": "a7ee6c00cd33741143e6733a934c8d596e9bb6a620911dd70894abccb84be0d8"
+        },
+        "contracts/experts.candidate.json": {
+          "sha256": "cb8f6aa3445f15bf2274c4966cfa70239c2aaf445df3473f13638e1f3ac5ffdd"
+        },
+        "contracts/skill-bundle-manifest-v3.schema.json": {
+          "sha256": "4d1af5f41d66fe38faa18eb9c0630fa06845b3871f65f1619785ae06d3011b65"
+        },
+        "docs/provenance/FEAT-158-jd-ops-content-review.md": {
+          "sha256": "02d987dc10f7ff9b4b5b97b152fe9ea56d9035cfd0cab2b837f3b7e66bc660e4"
+        },
+        "docs/provenance/FEAT-158-local-use-authorization.md": {
+          "sha256": "36e27d998b37ae3dfff090387059b8ffee3591f4da910f1e1f82cc229f6b1454"
+        },
+        "docs/provenance/source-audits/FEAT-158-jd-ops-content-audit.json": {
+          "sha256": "3701239c1ea1868eeea5bfcb607500d9da79fb9ba0ef4de42c1811c1dd70d675"
+        },
+        "plugins/yijie-desktop-skills/experts/bundle-source.json": {
+          "sha256": "8555248acf9c2d07d04afbebb32dac9a79d9508a29d7c422fdb64f6fd11ac465"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/NOTICE.md": {
+          "sha256": "488b6ee42bc4f04f62b72b23201b1447066b56992386c8d9ddddb9b605b1788a"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/ROLE.md": {
+          "sha256": "7173636f07506ce525c15af7b6fc29b564536c3be41798ac614714a26b4c70f0"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/SKILL.md": {
+          "sha256": "fb5161779e62a7acf174fb3b2e05ebf53824f7a841ee1e702d411a2faebf0133"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/checklists/quality-checklist.md": {
+          "sha256": "57ad34c3cb23f0447e18be333a081a5c0049a6b16f05756f1b66b14524e2af58"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/evals/dataset.jsonl": {
+          "sha256": "1a8214930c29574b4f13b0c0ff68343426c4438b4fef34bfba16984c0782602d"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/evals/rubric.md": {
+          "sha256": "01014193a7256b91b7cdcfded121e161b0dbb178da77018f0bc779feb5d8a90a"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/examples/input-001.json": {
+          "sha256": "d58e7da9ee1b2a3d59f0379323f808073b280d08e2b1b9d0a827fad692c307a8"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/examples/output-001.md": {
+          "sha256": "2da02453b014b9d1d39b9101567f70b9f14d045064738f476b928eed6456c210"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/index.md": {
+          "sha256": "0d3a5bd635ac3719c96533c3b00b5277bb599a55518e84c7748148850c66155c"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m01-foundations.md": {
+          "sha256": "5f14c15f69de7ec23020e9d61605b364a698eccd200f2785b1362b3bc4d33ff0"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m02-entry.md": {
+          "sha256": "b5c237723936ced5396dce881239ad3c69f70b8d5f29caff86768fefb6f07b08"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m03-listing.md": {
+          "sha256": "5e82ce5ed4207e531c3ff1e40327f2b77ad69e14f7f379a0406964cd3b502dbd"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m04-media.md": {
+          "sha256": "8d05853d5bca4b81247c40f0c3f850276211bf491b6de5bf75fa0d73380695e2"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m05-pricing.md": {
+          "sha256": "a65ea3b41a64e73eb6a11ec66684e8919859c656da547d3644138aa5791abb2f"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m06-launch.md": {
+          "sha256": "fd945f47520f7643594e1c65c9669640624a3ffa1c225c7ac96c65c912e9acba"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m07-campaigns.md": {
+          "sha256": "247acb7cec88b33d52c254dcafdbee646dc00ae26418114e4c0e811f06062b3f"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m08-advertising.md": {
+          "sha256": "ccb170508505d6c0560ae5df2bcd97d4dafe7ed6ba79a10efe91a4514614b233"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m09-health.md": {
+          "sha256": "f98eed5fdf30d83b196cda52cb2095f9275a7552ddf78a2e103d28dc83ae16e4"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m10-service.md": {
+          "sha256": "f5e5bd1c38883ebf728de56e3645a8f71cccd8fedf72d2eb86f3df7135b49dd4"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m11-fulfillment.md": {
+          "sha256": "c0a844c2ffb8eda97dbc016166690b177497ae7e8ea11ce11457d746bd427694"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m12-compliance.md": {
+          "sha256": "d809aebd7b95b98a444cb68674c4deca60101ad451bf86055f37b0c34a01451d"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m13-review.md": {
+          "sha256": "6fd5c743611f0ea508cc329b45df5ac2dcb175e680b5af134b447962bf2f2f40"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m14-creators.md": {
+          "sha256": "38cfca5c192f25250935837c9e9aacc3ec6824e0f7514bf89a8dfcacbea5ce0f"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/scene-index.json": {
+          "sha256": "87a12bdf1775b518763af464fc07c5ac898e5d3f18c147f1291e83fd498dd0e7"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/source-notes.md": {
+          "sha256": "7c501231cac63c4e82c233502e105094e8bec0461b0b2bb1b20b0ddb8369115a"
+        },
+        "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/tests/README.md": {
+          "sha256": "a85810e4843882c3b1b801e6c00dfa1368ad928b58ebcb3ca546959cfdc22b54"
+        },
+        "scripts/package-desktop-skills.mjs": {
+          "sha256": "02a53ea6849fdec356e6d1dffb7f30b4e4f0e72200c72a52e92e0b8a9dfac797"
+        },
+        "tests/desktop-expert-bundle.test.mjs": {
+          "sha256": "35cc1ce5e61387c0e9b7ff7cbfd364e77fe87fff1d9d09539844699b0335b33a"
+        },
+        "tests/jd-expert-content.test.mjs": {
+          "sha256": "9b32d781ac372db6f9455a2fb1c9f975f9bdb844d468d83e2c6f0e60fa7c1f6d"
+        }
+      }
+    },
+    "yijie-agent-host": {
+      "head": "dce7a3c4e51e08c74e009a0ce3eeee256d929b3e",
+      "files": {
+        "api/experts.candidate.json": {
+          "sha256": "47544938772a89f8047b58e407b98507fe8c313ecd4cf0f8d5f1608e44272306"
+        },
+        "api/experts.schema.json": {
+          "sha256": "f632e6bd98e05282885393a5f3ae3998d8b1fa40ffc92070d8f4372b95d9065e"
+        },
+        "api/experts.transport.json": {
+          "sha256": "659eeb00f68f7bcea0293c7d919f66bf31a6747ac46135699578cd8f6109c7cb"
+        },
+        "api/jsonschema/skill-bundle-manifest-v3.schema.json": {
+          "sha256": "4d1af5f41d66fe38faa18eb9c0630fa06845b3871f65f1619785ae06d3011b65"
+        },
+        "cmd/desktop-host/main.go": {
+          "sha256": "75833ab9f4a73fe4ce5bcbae881d146ef3737a672ba0c7cf5b65ee4bb2541e33"
+        },
+        "docs/experts-host-candidate.md": {
+          "sha256": "85550f80a78e25b519b5fe008f36cfbd81fc2be5eaf93dae7b89890bc1d46740"
+        },
+        "internal/app/app.go": {
+          "sha256": "494f3a3c866a3d40fc132e9e9b72073988ca712c68ccbc89bdd8c1d88b9146de"
+        },
+        "internal/app/experts_config.go": {
+          "sha256": "f0a99c8075adf1c171e0173dc602630201471589102a4549ba118ab51bc410a9"
+        },
+        "internal/app/experts_config_test.go": {
+          "sha256": "d6ef3dc040cb17a6ab4b3b34e65581cfa98d7b9388f79d4cfa15cf4556545cd7"
+        },
+        "internal/app/experts_control.go": {
+          "sha256": "6714b31f8483f8dac2ca0a45a3ca776a6c1dc28f186f3251452c993b4549d873"
+        },
+        "internal/app/experts_control_test.go": {
+          "sha256": "a4727c37fd4405511df29e9c10f834f685e20012baa58b0be21305f586ecaa03"
+        },
+        "internal/app/market_control.go": {
+          "sha256": "3fa7d73543b48e3c61a8cc8943a2e97f8ad9a8dec2b215ad984680307462ed29"
+        },
+        "internal/codex/expert_instructions.go": {
+          "sha256": "7ed27eeb2b889df3a26b943ac7a431b7ab9b360ac2b259b228b27f4d9e445eb5"
+        },
+        "internal/codex/expert_instructions_test.go": {
+          "sha256": "8c1a4892d4f81f58771304bf6e11b103521d576a88653b5a2c3590f5e58c58af"
+        },
+        "internal/codex/market_disabled_integration_test.go": {
+          "sha256": "565f15480b86ca4c07ce4141969265690e680fc9d0245bbd92c4f9a2c3bb39be"
+        },
+        "internal/codex/market_disabled_test.go": {
+          "sha256": "03a04a905f32a943d7f1c9038461da47ce44f34afdfb66e4571dcc74aeefbb00"
+        },
+        "internal/codex/market_turns.go": {
+          "sha256": "b385e549f7396aea29946c5900ebd96e60779a3a4199aee6c6a9e7bfc6943a4c"
+        },
+        "internal/codex/session_protocol.go": {
+          "sha256": "1c3c4cf387345e2db4807112476fabdb4858dfc71b0a064c886a6f6b7cbf3d48"
+        },
+        "internal/contracts/experts/bundle_schemas.gen.go": {
+          "sha256": "cd219c0cb851702147850dfb7a1f276c37ed785688d601fb3ed328a9311c258c"
+        },
+        "internal/contracts/experts/types.gen.go": {
+          "sha256": "b292618ce07864912b0a361f3c17f1c114d8d1192a4a9d213f993b1bdc2416af"
+        },
+        "internal/session/chat_models.go": {
+          "sha256": "d978161c67cd8b391460bbce536f1d3aea72fbdb5e8d633044461313c0873eb7"
+        },
+        "internal/session/expert_resources.go": {
+          "sha256": "202b6c82f47508727b141ea675002c7de204dcc51924098fedc14db4406b89c4"
+        },
+        "internal/session/expert_resources_storage.go": {
+          "sha256": "f03c6eceaa98a655ddec1d8a347a1b6016312e1ff42aca73243e422d131d582a"
+        },
+        "internal/session/expert_resources_test.go": {
+          "sha256": "bfbd15d8bbf3d20d27fe4aeb673c94d1149664a9b803b7e2f5a97326c56b1997"
+        },
+        "internal/session/experts.go": {
+          "sha256": "a9a068a7a6d29cee7879af69b03e73e08453b68eef7c081cdec263e0dbcc04de"
+        },
+        "internal/session/experts_recovery_test.go": {
+          "sha256": "f27be2b37f725230387e07171a46766def7b81a18af9cc4ec6ff91e7c8dfd2a1"
+        },
+        "internal/session/experts_storage.go": {
+          "sha256": "5518d1ede996d3b4826d7584d08f5b5cdcd40fb2f43794c3625a7924afaf38f0"
+        },
+        "internal/session/experts_test.go": {
+          "sha256": "2caad014ee725ff810e84bb9af2d3fe65880a136ae57f794a35275435620a402"
+        },
+        "internal/session/market_authority.go": {
+          "sha256": "2b24fc847d820f2d9e4c1978fb0c80e48526f723020bbd44e44eb94c648b8fae"
+        },
+        "internal/session/market_ledger.go": {
+          "sha256": "a1c71612cb5a35331964f6220a9a1a960001dd78f09255cca4ef64d15ca22a60"
+        },
+        "internal/session/market_storage.go": {
+          "sha256": "cc4ebd44fa265b8fab1267e4a97b2b050ace74dddb7ab50cdbee934a9800f0fa"
+        },
+        "internal/session/market_submit.go": {
+          "sha256": "3a25e77d33af30ec7cf64a863d1d8cc6dd6ad1dd9a1c3eb4f505499fc57ee4e2"
+        },
+        "internal/session/scheduled_draft.go": {
+          "sha256": "67bf6f379c9b4b665f72064fe9e4e0707405a2483aab477d531efd6470ea415e"
+        },
+        "internal/session/service.go": {
+          "sha256": "4db886db401db53066fad22698cd3cdc751822605afe909fbc4113d57b314c72"
+        },
+        "internal/session/store.go": {
+          "sha256": "9d749b3c15fef35806bc8a0c2acf688c2ec1cefe21c3b58d2b42e511bf18a16f"
+        },
+        "internal/skills/domain.go": {
+          "sha256": "1dfea1edfab4d0a129d4274c1800290f99110585a9159fea5b22ff47fb922ae5"
+        },
+        "internal/skills/expert_resources.go": {
+          "sha256": "10acf941524a22deaa9ddace038a73d8b9dbd52335c7069e5ec56ea933af85c2"
+        },
+        "internal/skills/experts.go": {
+          "sha256": "44edb83b883faed7f948bcf43370673e0a6ab1c69b0dcbad9152ace1a1f09184"
+        },
+        "internal/skills/experts_candidate.go": {
+          "sha256": "24e0edd6b3d749b7c5ea07a7dffd6920dd4d6b03a5eec3ef6c4bf64d61fc995b"
+        },
+        "internal/skills/experts_test.go": {
+          "sha256": "79d985a3624d6e8f82b3663b508e74efbc3bf61b601955efd1083f16e32dc1c7"
+        },
+        "internal/skills/manifest.go": {
+          "sha256": "d08fb477ae0552fe2a0d424a39ff06ae7690f3eb7c592501161ccef12b314329"
+        },
+        "internal/skills/service.go": {
+          "sha256": "13a193a491ffe51b5e1cd6ae991421386b0feec6f4f2cacc6bf7671cbd2d8699"
+        },
+        "internal/skills/store.go": {
+          "sha256": "227aba67028c9cc93d1ff849b4117ade44a3a373f8f69c1aa7795e5de02eb85b"
+        },
+        "scripts/verify-expert-runtime-no-turn.py": {
+          "sha256": "1ef8b2b3e917622bd48d337d690c54201be80ce7416afe680116a3c09274db37"
+        }
+      }
+    },
+    "yijie-desktop": {
+      "head": "46d0035a2054effe3bfddbd13861e81d46ecd85d",
+      "files": {
+        "contracts/experts-assets.candidate.json": {
+          "sha256": "c89ce617d972cb29393c94ae4c958372d10496ddc0a884ea589ad313e05b0a9a"
+        },
+        "contracts/experts-host-build.candidate.json": {
+          "sha256": "c5d603f5b2cc45d9671764f5628d46fe90656d8ce1af15cc3fb72d116ce5d625"
+        },
+        "contracts/experts-native.schema.json": {
+          "sha256": "cb8337e865fdcd7b4d7ccf5569e696107ec7c908b98dd7282653610686ad8f6b"
+        },
+        "contracts/experts.candidate.json": {
+          "sha256": "a919d62bc5e0de7cace97ca214003b40d57a341bc8e9983d634d9a999ed9e8c1"
+        },
+        "contracts/experts.native-ipc.json": {
+          "sha256": "e7922b6304ddbabca8c4055e4d05d07868b3642a18c5368850388c5a66f6dae1"
+        },
+        "contracts/experts.schema.json": {
+          "sha256": "f632e6bd98e05282885393a5f3ae3998d8b1fa40ffc92070d8f4372b95d9065e"
+        },
+        "docs/experts-ui-candidate.md": {
+          "sha256": "272c7c1964f9851b1bd06214c02db824a6283e184496f71d219f7186d2d31e8a"
+        },
+        "eslint.config.js": {
+          "sha256": "3ab3cd847a7e61353e8bf7386511db13eef9cd60c3a1fbc822793e0237d3341b"
+        },
+        "scripts/chat-model-build-candidate.mjs": {
+          "sha256": "1aa5fa6e9de7264ffe9bc80a64f2774448a6bf4ef17834da9d68596e220238ee"
+        },
+        "scripts/chat-model-build-candidate.test.mjs": {
+          "sha256": "58c513f4b77a19eb70f459d71b8687b4a95d2b3c15a36ad258e8ba54a0b98841"
+        },
+        "scripts/run-local-demo-fast.sh": {
+          "sha256": "795a21f470eac8896d045673fb5885d86166ff127e1362c6d9ab2bc89276c0a7"
+        },
+        "scripts/run-local-demo-fast.test.mjs": {
+          "sha256": "961a9416fac31df1aa1a1f3aed77c297373a7196cd65d8c3c501594a81b0b95a"
+        },
+        "scripts/run-tauri-build.mjs": {
+          "sha256": "c65053cc738f891cfd11763e644dae2ce1fca45d7099f0529f52fa7e08cab62b"
+        },
+        "scripts/sync-desktop-expert-resources.mjs": {
+          "sha256": "f0e3cfe0b5c71617ee0733b9f9040d5a9b313f8069209965572cf45e778f529b"
+        },
+        "scripts/sync-desktop-skill-resources.mjs": {
+          "sha256": "5f4563481905424a47bf55779f03375268293d125dea1571772df9d8c53e4709"
+        },
+        "src-tauri/migrations/chat/0034_conversation_experts.sql": {
+          "sha256": "65c8db3398e213ed8c1dd280e5a83d7940215e4e6c0ba0588629b981e9031f59"
+        },
+        "src-tauri/migrations/chat/0035_expert_resource_operations.sql": {
+          "sha256": "641d1eaa74b108d898b5f96d0e487bea909cc3a4d9e06610f5d01cca6cab9642"
+        },
+        "src-tauri/src/chat/application.rs": {
+          "sha256": "d84205b39226c3ff5dbe1b98b697d2df6803b3c405419c8eeb2fd4782d46456b"
+        },
+        "src-tauri/src/chat/authorization.rs": {
+          "sha256": "8227284d26af75773b1580b335d2ec1b3fbcb91d4119b14aa2452e7064125a91"
+        },
+        "src-tauri/src/chat/connectors/control.rs": {
+          "sha256": "ddd483cedac6c5735920a769f546ac270b5eb3f87daf7fdc92db5a2c78d82600"
+        },
+        "src-tauri/src/chat/connectors/dispatch.rs": {
+          "sha256": "fe7c3a44f2852cd0d7664e661fff99902bd261ccb48a1d13e5f1b205a02b0d2a"
+        },
+        "src-tauri/src/chat/connectors/selection.rs": {
+          "sha256": "06b2d442b770b484913e99753e5da9291450d1b3aa924f03511053bd7cd95144"
+        },
+        "src-tauri/src/chat/connectors/selection_expert_tests.rs": {
+          "sha256": "7afc79c56f104f3214a2cc77b631f92e0f464be895150e756ea07e585ecd6e53"
+        },
+        "src-tauri/src/chat/database.rs": {
+          "sha256": "6cd2f13ce4cfdbb160173b0a1c2b2b5919b6fcb490dbd9d39126842e1dae2118"
+        },
+        "src-tauri/src/chat/experts/commands.rs": {
+          "sha256": "cc60280bef9411686733d2740634ae5d40562f69c4a75a34f62c0eb807b188b4"
+        },
+        "src-tauri/src/chat/experts/commands_tests.rs": {
+          "sha256": "bf622d9cc2e3e51e5c133eb2bab67a17df172d48d401c83bb6dd3ee5d84f9f53"
+        },
+        "src-tauri/src/chat/experts/generated.rs": {
+          "sha256": "8246e64dbebbf4a7564ae5e8776152bedf5f8b600e3a655976e78c87576b9df5"
+        },
+        "src-tauri/src/chat/experts/mod.rs": {
+          "sha256": "1bc9b1074cb135c48751c97b09c70adc8204e774a9d85cdc18b31208ff2bfc8f"
+        },
+        "src-tauri/src/chat/experts/resources.rs": {
+          "sha256": "11f9edb10182fa46d11448557c118fd14da6a30890dc8ffb58719dba68cf7ba6"
+        },
+        "src-tauri/src/chat/experts/resources_tests.rs": {
+          "sha256": "c0a96712370c0e6a897f9f8db7606a5904cfa6ab26d39eaf1ac80718ff5d67ec"
+        },
+        "src-tauri/src/chat/experts/store.rs": {
+          "sha256": "36f4537390f5fccde2438ad94b57aa97548a5b6f4e82bf5119a8e37d692294c5"
+        },
+        "src-tauri/src/chat/experts/store_tests.rs": {
+          "sha256": "cdafe56c20b0518fbeae5a490724e78b77a5ae8c57f3277b2234f7f770d87cef"
+        },
+        "src-tauri/src/chat/ipc.rs": {
+          "sha256": "dbaafc1eac7786b2f839e005259379a3901cd7c0badba6011c17872e41a97ae5"
+        },
+        "src-tauri/src/chat/migrations.rs": {
+          "sha256": "874d5a98f9bebab183a3d0fe3c4019d51beacad9eed30cbf15c021e02c4d8863"
+        },
+        "src-tauri/src/chat/mod.rs": {
+          "sha256": "6ffe1fe5d033d624c4930edf5739d74afcf4c662fd2b3e86252e4b495b987532"
+        },
+        "src-tauri/src/chat/models.rs": {
+          "sha256": "6d93db23d0cdd57e1948f1b7adf193b7704cb96ca2449b37d774e87f4259aeca"
+        },
+        "src-tauri/src/chat/schedules/execution_guard.rs": {
+          "sha256": "485f395d7c078d1ca0db6182b01d1f7a044134ba58b6a4475aae50d1b69b4ade"
+        },
+        "src-tauri/src/chat/schedules/execution_guard_expert_tests.rs": {
+          "sha256": "f15ff6e78c0c03075860c58435015f97ec6f8f698adfe76808c17d9239e6c3b4"
+        },
+        "src-tauri/src/chat/sidecar.rs": {
+          "sha256": "0f45117f9c519cbbf74dd224de37eefb549ae72b29f68246b79c91ca33acb0a6"
+        },
+        "src-tauri/src/lib.rs": {
+          "sha256": "c8eee63c8b3e79a2b9a2968c154506d4f20f02a2ac97c351bd3fde15c02b2711"
+        },
+        "src-tauri/src/single_instance.rs": {
+          "sha256": "4a3ad6b6c6ddfca6b39abc2be30d8186a77f883ed20fa1c3693653e403e4958a"
+        },
+        "src-tauri/src/skills/catalog.rs": {
+          "sha256": "4d53fe45f5dc928dcf5e6b42217718c249e0aac0796f908ca4d5291ca28a2b17"
+        },
+        "src-tauri/src/skills/experts.rs": {
+          "sha256": "01d7a5ccb304b682446c94c8027c57acc6ae5033349af84f606621c7d45bb393"
+        },
+        "src-tauri/src/skills/host.rs": {
+          "sha256": "d09dff5820ac075b888d8f23aff06a9b98dcdf771e4dee55c49682d3df22d83f"
+        },
+        "src-tauri/src/skills/mod.rs": {
+          "sha256": "7f98e64a1af02a35b4cae7919bfaf94246621f8d64ec3747b1d584d8f7a51a76"
+        },
+        "src-tauri/src/skills/resources.rs": {
+          "sha256": "67f83a16bec7d19727182e927a03504a5499b9baa0c9530000914e83a8afba10"
+        },
+        "src-tauri/tauri.experts-local.conf.json": {
+          "sha256": "d45c3e19efc4ad68d3c47b98ddc0b5b60bb8fab887ac740c06a4fb89692502a1"
+        },
+        "src/api/expert-native-client.test.ts": {
+          "sha256": "1c19da5bc6dc5005d818b0d31296a4587f066a811dd6ea31fef3ccc311f43ef5"
+        },
+        "src/api/expert-native-client.ts": {
+          "sha256": "117fcdd8ae0dd6338d024e706dee9b721f61856c3cb7cb761f6a537cf51d8d00"
+        },
+        "src/api/generated/experts-validator.gen.d.ts": {
+          "sha256": "a576483d56c62b61edcc4c05b3685c01e170b80079da68de53ceb0c5fe6c1f69"
+        },
+        "src/api/generated/experts-validator.gen.js": {
+          "sha256": "3620d399f83bbb0e39738da63f126940f84c099dd796aaa6cbca24886d491fb4"
+        },
+        "src/authorization/experts-ui-config.test.ts": {
+          "sha256": "2f5c9c6ae0e9aeee1d0c9a68e772a56d96ab69eed686ab7ec24744a32bf6afdc"
+        },
+        "src/authorization/experts-ui-config.ts": {
+          "sha256": "717cb3c7cd057f5a540829b9e4ed63d436c1d5f07d2f3f5e76e96e81c785780d"
+        },
+        "src/components/chat/ChatAddControl.test.ts": {
+          "sha256": "2cf707f1c7d3e6814b9fa2be22829f7ca2f4c84eed9511f6205ff93bf1f94dec"
+        },
+        "src/components/chat/ChatAddControl.vue": {
+          "sha256": "23093a8159c32a0716fe33b499fa4e229e6484b02ac6225878a57df2f7f4174f"
+        },
+        "src/components/chat/ChatComposer.vue": {
+          "sha256": "8cb787730b5ad7d81b2ca07590d3f37f503c1eb0c3709d4b856aa6fe4eeacb12"
+        },
+        "src/components/chat/ChatTurnGroup.test.ts": {
+          "sha256": "b7fe2231f5d93752e3c841087432513f7400ed606294e134939ffd9806ee6eac"
+        },
+        "src/components/chat/ChatTurnGroup.vue": {
+          "sha256": "b174f2f3b5f9a183fef15eb095b0690754582326c489e998242d2eaa4fe26a86"
+        },
+        "src/components/experts/ChatExpertChip.test.ts": {
+          "sha256": "ccab4c094615a9b8b5a933841a771fbb6fd943f9dba1313a886ac314af7aef34"
+        },
+        "src/components/experts/ChatExpertChip.vue": {
+          "sha256": "a13f5d1e8a0b69ac2501734871fe44f78cbe12c3b454de38a3f43531c0610e04"
+        },
+        "src/components/experts/ExpertMarketPanel.test.ts": {
+          "sha256": "bd1689d31d99e279586cd618beaa0d7ecb47bdea10bd1b526746c6b6d81e5c0d"
+        },
+        "src/components/experts/ExpertMarketPanel.vue": {
+          "sha256": "ace40a875738f7812c7a2ba56ed3eb05d56d3d8a8deff5ae8b4c6952ef680b8f"
+        },
+        "src/composables/useChatExpertsBinding.ts": {
+          "sha256": "9d43cc27c6494d8d570baed8e209e89b49df0968c3362c755148fff0d0d38711"
+        },
+        "src/composables/useExpertSummon.dialog.test.ts": {
+          "sha256": "de996cd6c6d7d4f6e5368acdd917618272f58554be4855aa8d74d8ce255cd6a0"
+        },
+        "src/composables/useExpertSummon.test.ts": {
+          "sha256": "5d5acae02464d06bfd03d753e3b5d1db9a86c9e1e54165b617a69777dd94b9b8"
+        },
+        "src/composables/useExpertSummon.ts": {
+          "sha256": "05ea83e67555a921b2ccacf0ab580e85a8488b8ddc730f7941daf93439eec9b7"
+        },
+        "src/composables/useExpertsBinding.ts": {
+          "sha256": "f98579463e1be42c61f2cc8d52bb9257ee4a2f75f9420dd3d326b6eac6b8510c"
+        },
+        "src/domain/chat-composer.ts": {
+          "sha256": "d412e3122eb2eb83e2b1b4507b8db7f006d7d041ce420b6e89561d44dba84926"
+        },
+        "src/domain/expert-ui.ts": {
+          "sha256": "8bee12c4ce6b1e3ec4dfcc4942d8a72fa7c97cb19fb58d791f7b4221c4205a7a"
+        },
+        "src/domain/experts.generated.ts": {
+          "sha256": "38bcd9fd3477c0274b6e464ad46be2c731963838e8a2c4d92b52c0de2447bb5a"
+        },
+        "src/navigation/app-nav.ts": {
+          "sha256": "f2217b7b79903cb400c9fa3bd59b6498ffb74c32b0d17e5f807d0e42d071fd3b"
+        },
+        "src/pages/chat/ChatPage.test.ts": {
+          "sha256": "d9d8cffb0b9664e428153c2756e26665fd0f0763f61d1d4307686f70ebd145bd"
+        },
+        "src/pages/chat/ChatPage.vue": {
+          "sha256": "4dacd3bea3e9eb2a09c1c31d239d35648ad3586a36eb26c98ff51835666b2c1b"
+        },
+        "src/pages/plugins/ExtensionsPage.test.ts": {
+          "sha256": "51b94d454cb8eeaa9b96a03b490e701362c7c2a8379f0ed8aacb8c59450214eb"
+        },
+        "src/pages/plugins/ExtensionsPage.vue": {
+          "sha256": "7e72589bd1524e22f5c90e266579c151063e9ce83e1856a4aa9f9b490a540441"
+        },
+        "src/pages/plugins/SkillMarketplacePage.vue": {
+          "sha256": "b98ae5d0f2ee658a94c255b7a7835b567430a30557ed63dd6dc4358759a412f2"
+        },
+        "src/router/index.ts": {
+          "sha256": "126b07b4f150b2e31fadaa6fe2abe85f52676bd3a48babf1cae6385a813dc9b6"
+        },
+        "src/stores/chat-composer-drafts.store.ts": {
+          "sha256": "3ae4d4c8d4ed89977ba0a3ef00585a40cab2b664e4edbd88152fd72309924757"
+        },
+        "src/stores/chat-experts.store.test.ts": {
+          "sha256": "8e9af25e3dc2407df941906fb7ccfd53869e6615d01e147c8e70e3d32c19e3d3"
+        },
+        "src/stores/chat-experts.store.ts": {
+          "sha256": "215c8c0e6d1485a3cde834eb2d43bdac0003d928f6ecc8b1092ca27c5f43e526"
+        },
+        "src/stores/chat.store.test.ts": {
+          "sha256": "557e631f3980659aa8edcddc810fb1fd354a8d0a49eacc81fcd269d51ae9674d"
+        },
+        "src/stores/chat.store.ts": {
+          "sha256": "6c1a192b124a4812d5aeef9fdd06ba936ceeb2a924a1fcf9e976d3a8904172b2"
+        },
+        "src/stores/experts.store.test.ts": {
+          "sha256": "0479b258cecb605e3d2e0c583729d1cba54a06980cdf44b2ea2934df9e2a50a6"
+        },
+        "src/stores/experts.store.ts": {
+          "sha256": "1553b45c6f4194074d55f11afac7eeba7c0ee634d3d95564578a416e7cbc8096"
+        },
+        "src/test/expert-fixture.ts": {
+          "sha256": "1f5c28bd6291afd3af394cfffd0e359acda627f5636dcd5f2da70cfdd64daa38"
+        }
+      }
+    }
+  }
+}

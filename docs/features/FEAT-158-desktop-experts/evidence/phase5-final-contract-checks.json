@@ -1,0 +1,60 @@
+{
+  "feature": "FEAT-158",
+  "candidate": true,
+  "release": false,
+  "checks": [
+    {
+      "command": "node scripts/generate-experts.mjs --check",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "af5f6f",
+          "wall_time_seconds": 0.226174958,
+          "exit_code": 0,
+          "original_token_count": 27,
+          "output": "Experts checked: 100 definitions; 10 safe UI commands; existing owned private pipe; no legacy generation.\n"
+        }
+      }
+    },
+    {
+      "command": "node scripts/sync-experts.mjs --consumer=desktop --check",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "a82ef4",
+          "wall_time_seconds": 0.289168708,
+          "exit_code": 0,
+          "original_token_count": 43,
+          "output": "Experts checked: 100 definitions; 10 safe UI commands; existing owned private pipe; no legacy generation.\nExperts desktop checked; local candidate, not release provenance.\n"
+        }
+      }
+    },
+    {
+      "command": "node scripts/sync-experts.mjs --consumer=agent-host --check",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "6b5996",
+          "wall_time_seconds": 0.308262541,
+          "exit_code": 0,
+          "original_token_count": 44,
+          "output": "Experts checked: 100 definitions; 10 safe UI commands; existing owned private pipe; no legacy generation.\nExperts agent-host checked; local candidate, not release provenance.\n"
+        }
+      }
+    },
+    {
+      "command": "node scripts/sync-experts.mjs --consumer=skills --check",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "7edc74",
+          "wall_time_seconds": 0.294432583,
+          "exit_code": 0,
+          "original_token_count": 43,
+          "output": "Experts checked: 100 definitions; 10 safe UI commands; existing owned private pipe; no legacy generation.\nExperts skills checked; local candidate, not release provenance.\n"
+        }
+      }
+    }
+  ]
+}
+

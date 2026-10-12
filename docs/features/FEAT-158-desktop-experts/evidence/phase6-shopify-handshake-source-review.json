@@ -1,0 +1,97 @@
+{
+  "formatVersion": 1,
+  "observedAt": "2026-10-11T14:15:21.845120+00:00",
+  "mode": "Read-only frozen-source audit; no network, UI, model, production edit or retry",
+  "status": "MCP initialization FAILED; HTTP 200 does not count as successful qualification",
+  "observations": {
+    "httpResponses": 6,
+    "allHttpStatus200": true,
+    "noToolsListStarted": true,
+    "metadataInitializeFailure": "unavailable",
+    "gapsAfterResponseBeforeNextRequestMs": [
+      5,
+      254,
+      1,
+      1003,
+      0
+    ]
+  },
+  "evidence": [
+    {
+      "source": "yijie-connectors/catalog/provider-registry.v1.json:468",
+      "fact": "Shopify is exactly authMode none, transport http, fixed official catalog resource."
+    },
+    {
+      "source": "yijie-connectors/worker/src/tushare_oauth.rs:246",
+      "fact": "Keyless exception matches exact fixed Shopify registry resource; method/target and tools-call permit checks remain."
+    },
+    {
+      "source": "yijie-connectors/worker/src/tushare_oauth.rs:813",
+      "fact": "Status is emitted immediately after response headers, before stream parsing or MCP handshake acknowledgement."
+    },
+    {
+      "source": "yijie-codex/codex-rs/rmcp-client/src/http_client_adapter.rs:98",
+      "fact": "POST supplies Accept text/event-stream, application/json, Content-Type application/json and propagates custom headers/session header; worker does not remove them."
+    },
+    {
+      "source": "yijie-codex/codex-rs/rmcp-client/src/http_client_adapter.rs:211",
+      "fact": "HTTP 200 still requires supported Content-Type and valid complete ServerJsonRpcMessage or parsed SSE. Missing/wrong Content-Type, JSON decode failure or stream failure still fails."
+    },
+    {
+      "source": "cargo registry rmcp-1.8.0/src/transport/streamable_http_client.rs:184",
+      "fact": "Initialized-notification accepts Accepted or valid JSON; an SSE response is rejected even with HTTP 200."
+    },
+    {
+      "source": "cargo registry rmcp-1.8.0/src/transport/streamable_http_client.rs:508",
+      "fact": "Negotiated MCP-Protocol-Version is inserted in notification and later request headers. Session ID is propagated when supplied; default allows stateless operation."
+    },
+    {
+      "source": "cargo registry rmcp-1.8.0/src/model.rs:142",
+      "fact": "InitializeRequestParams::new sends the SDK default protocol 2025-11-25. No source evidence alone establishes provider incompatibility."
+    },
+    {
+      "source": "yijie-codex/codex-rs/rmcp-client/src/streamable_http_retry.rs:23",
+      "fact": "Initialize has up to three attempts with 250 ms and 1000 ms backoff; notification TransportChannelClosed is retryable."
+    },
+    {
+      "source": "yijie-connectors/worker/src/tushare_oauth.rs:897",
+      "fact": "The caller erases all initialize typed errors to Failure::Unavailable after normal client shutdown."
+    },
+    {
+      "source": "yijie-connectors/worker/src/shopify.rs:25",
+      "fact": "UCP profile constraint is part of reviewed tool arguments after tools discovery, not an initialization header. No evidence justifies inventing an initialize profile header."
+    }
+  ],
+  "inference": {
+    "mostLikelyBoundary": "Second handshake request / initialized-notification response adaptation",
+    "confidence": "hypothesis only",
+    "basis": "Six responses form three consecutive pairs with 254 ms and 1003 ms between pairs, matching fixed SDK retry schedule. Current logs omit request method and response media class, so they cannot establish exact response type or failure."
+  },
+  "minimumNextChangeRecommendation": {
+    "scope": "Worker local bounded diagnostics after current run ends; retain existing fixed Runtime library and no broad protocol relaxation",
+    "fields": "Allowlisted HTTP/MCP method enum; response Content-Type class json/sse/other/missing; session-header presence boolean; typed ClientInitializeError variant and allowlisted stage; no raw body, arbitrary headers, exception string, session value or credentials.",
+    "semanticFix": "Do not change protocol version, add undocumented UCP headers or accept arbitrary HTTP 200 blindly. First establish whether exact Shopify notifications/initialized response is valid JSON/SSE/empty or body stream failure; then use an evidence-backed narrowly scoped adapter change and ordinary local protocol fixture tests.",
+    "remainingAcceptance": "Only a successful real initialize plus tools/list and existing exact tool qualification may enable legal nonempty selection; this activation remains failed."
+  },
+  "limits": [
+    "No raw provider response body or header values were available/read/exported.",
+    "Only source and existing bounded numeric/enum logs were read. No new request or test was run.",
+    "Actual server response formatting and protocol negotiation result remain unobserved."
+  ],
+  "finalScopeDecision": {
+    "at": "2026-10-11T14:16:45.276355+00:00",
+    "status": "NO ADDITIONAL LOGIC DEFECT CONFIRMED",
+    "sourceStillMatchesSixFocusedTestEvidence": {
+      "worker/src/tushare_oauth.rs": true,
+      "docs/feat158-shopify-keyless-admission.md": true
+    },
+    "sourceChanges": 0,
+    "additionalTests": 0,
+    "additionalExternalRequests": 0,
+    "additionalModelMessages": 0,
+    "additionalUiOperations": 0,
+    "conclusion": "Existing exact-Shopify keyless admission correction retains endpoint/method/one-shot call authorization checks and authenticated-service requirements. No observed response format establishes a protocol adaptation defect. Preserve failed live metadata result; do not guess a protocol fix, add diagnostics, expand providers or retry.",
+    "priorDiagnosticSuggestion": "Deferred; not authorized or implemented in this narrowed scope.",
+    "liveEvidence": "One explicit UI metadata activation produced six HTTP 200 header observations within existing internal initialization retry behavior, terminal initialization unavailable, no tools/list stage and no business HTTP stages in bounded diagnostic. Not a qualified connector."
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "recorded_at": "2026-10-12T17:16:20.054105+00:00",
+  "source": "real final native app, cua_repl AX interaction; not appearance acceptance",
+  "app_pid": 30569,
+  "app_sha256": "3f37a9ab850a36e3f5197dae8e352e43143a658c696155fc30ab87585dabe776",
+  "receipt_sha256": "9a2836ff801763e7941fc2f44e47ae18f4fb8fb2598083f3c3b9138073c9d839",
+  "checks": [
+    {
+      "id": "AC-001",
+      "result": "PASS",
+      "observations": [
+        "Extension route opens default Skills tab and original 38-item directory; one expert on expert tab",
+        "Left selects Skills, Right selects Experts; explicit refreshed AX state after each key"
+      ]
+    },
+    {
+      "id": "AC-002",
+      "result": "PASS",
+      "observations": [
+        "Detail shows jd expert 0.1.3, JD scope,14 modules/42 scenes,3 quick prompts,local-only notice",
+        "Escape closes detail and returns focus to its detail button"
+      ]
+    },
+    {
+      "id": "AC-003",
+      "result": "PASS",
+      "observations": [
+        "Ordinary new draft initially empty, no expert, default Kimi and no workspace",
+        "Added synthetic text and existing187B feat158-product.txt; selected existing feat158-phase9-workspace",
+        "First quick prompt: Return on default keep draft retains exact text,attachment,model,workspace and returns composer focus",
+        "Selected-expert chip: second prompt replacement changes text exactly, preserves187B attachment,Kimi,workspace,ask permission,0.1.3 identity",
+        "Existing-session chip: third prompt returns exact01a130e5-e734-7b62-9b95-f8a25b7c8a4a with MiniMax and0.1.3; no send"
+      ]
+    },
+    {
+      "id": "AC-004/005",
+      "result": "PASS",
+      "observations": [
+        "Original4-turn session and0.1.3 binding remained readable and MiniMax selected",
+        "Removing expert from unsent test draft preserves text and attachment; no model action",
+        "Original completed approval rejection and ordinary third-turn answer retained"
+      ]
+    },
+    {
+      "id": "AC-009",
+      "result": "PASS",
+      "observations": [
+        "Normal unmatched search shows empty result; clearing restores one expert",
+        "Synthetic draft and attachment selection cleared through UI; new draft restored to empty,no expert,no workspace,default Kimi",
+        "Existing-session inserted prompt cleared; original history/binding retained"
+      ]
+    }
+  ],
+  "model_calls": 0,
+  "appearance": "SKIPPED by user",
+  "cleanup": "Only newly created unsent synthetic draft text,attachment selection and workspace selection cleared through UI; no source files,installed resources or history deleted",
+  "final_ui": "Connectors market, Shopify enabled, no active operation"
+}

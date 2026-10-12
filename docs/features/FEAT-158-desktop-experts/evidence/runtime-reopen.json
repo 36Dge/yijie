@@ -1,0 +1,112 @@
+{
+  "feature": "FEAT-158",
+  "kind": "fixed-runtime-local-responses",
+  "runtime_sha256": "aad49041bd7d34c853fb55c274711e3cc810725720d2c097469822d310fb02f9",
+  "runtime_manifest_sha256": "8b86a1a661f50beda1e0a0c96f81ddbdf959a9a07c2e756cc4b9b0eabc053b27",
+  "root": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat158-native-no-turn-9h2mnzgm",
+  "paid_calls": 0,
+  "turn_start_calls": 5,
+  "http_requests": [
+    {
+      "method": "POST",
+      "path": "/v1/responses",
+      "model": "feat158-no-turn",
+      "instructions": "FEAT158_ORDINARY_BASE: follow the current task and native permission policy.",
+      "system_input": []
+    },
+    {
+      "method": "POST",
+      "path": "/v1/responses",
+      "model": "feat158-no-turn",
+      "instructions": "FEAT158_ORDINARY_BASE: follow the current task and native permission policy.\nFEAT158_SELECTED_ROLE: organize benign reference notes.",
+      "system_input": []
+    },
+    {
+      "method": "POST",
+      "path": "/v1/responses",
+      "model": "feat158-no-turn",
+      "instructions": "FEAT158_ORDINARY_BASE: follow the current task and native permission policy.\nFEAT158_SELECTED_ROLE: organize benign reference notes.",
+      "system_input": []
+    },
+    {
+      "method": "POST",
+      "path": "/v1/responses",
+      "model": "feat158-no-turn",
+      "instructions": "FEAT158_ORDINARY_BASE: follow the current task and native permission policy.\nFEAT158_SELECTED_ROLE: organize benign reference notes.",
+      "system_input": []
+    },
+    {
+      "method": "POST",
+      "path": "/v1/responses",
+      "model": "feat158-no-turn",
+      "instructions": "FEAT158_ORDINARY_BASE: follow the current task and native permission policy.\nFEAT158_SELECTED_ROLE: organize benign reference notes.",
+      "system_input": []
+    },
+    {
+      "method": "POST",
+      "path": "/v1/responses",
+      "model": "feat158-no-turn",
+      "instructions": "FEAT158_ORDINARY_BASE: follow the current task and native permission policy.",
+      "system_input": []
+    }
+  ],
+  "steps": [
+    {
+      "step": "ordinary_start",
+      "thread_id": "01a129cf-4fba-77f3-aca4-7b8105cbc71a",
+      "approval_policy": "never",
+      "sandbox": {
+        "type": "readOnly",
+        "networkAccess": false
+      }
+    },
+    {
+      "step": "expert_apply_before",
+      "status": {
+        "type": "idle"
+      }
+    },
+    {
+      "step": "expert_apply",
+      "same_thread": true,
+      "base_instruction_sent_sha256": "d22893123160b856cd205b1a5c79619a2b840fe114c90b2cdaae0a881703b802",
+      "instruction_effective_receipt": "unavailable in native response",
+      "loopback_base_matches": true
+    },
+    {
+      "step": "normal_eof_reopen_expert",
+      "same_thread": true,
+      "loopback_base_matches": true
+    },
+    {
+      "step": "expert_remove_before",
+      "status": {
+        "type": "idle"
+      }
+    },
+    {
+      "step": "expert_remove",
+      "same_thread": true,
+      "base_instruction_sent_sha256": "8f545c3297edfa9c584b1687ff6b825068e65faeeb498da8d7b50152653c4714",
+      "instruction_effective_receipt": "unavailable in native response",
+      "loopback_base_matches": true
+    }
+  ],
+  "passed": true,
+  "role_effectiveness": "NOT RUN: no real Provider or model evaluation",
+  "resource_readability": "PASS: own ordinary reference outside workspace, existing native tool, read-only sandbox; actual installed package NOT RUN",
+  "pid": 60910,
+  "reference_command_tool": "exec_command",
+  "reference_function_output_contains_marker": true,
+  "first_normal_eof_exit": 0,
+  "first_pid": 60908,
+  "normal_eof_exit": 0,
+  "synthetic_session_metadata": [
+    {
+      "path": "sessions/2026/10/11/rollout-2026-10-11T15-13-34-01a129cf-4fba-77f3-aca4-7b8105cbc71a.jsonl",
+      "base_instructions": {
+        "text": "FEAT158_ORDINARY_BASE: follow the current task and native permission policy."
+      }
+    }
+  ]
+}

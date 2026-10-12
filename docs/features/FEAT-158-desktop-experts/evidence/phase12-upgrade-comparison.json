@@ -1,0 +1,68 @@
+{
+  "recorded_at": "2026-10-12T17:38:36.178773+00:00",
+  "native_schema": [
+    33,
+    35
+  ],
+  "old_table_count": 63,
+  "changed_old_tables": {
+    "chat_schema_migrations": {
+      "before_count": 33,
+      "after_count": 35
+    }
+  },
+  "new_tables": {
+    "chat_expert_binding_operations": 0,
+    "chat_expert_bindings": 0,
+    "chat_expert_resource_operations": 0,
+    "chat_expert_submissions": 0
+  },
+  "host_schema": [
+    "8",
+    "10"
+  ],
+  "changed_old_host_buckets": {
+    "metadata": {
+      "before": {
+        "count": 1,
+        "sha256": "0f35835bde4436aaa535fe4644e78fdf7eda079473dc29a06f171ff5b7d24e4d"
+      },
+      "after": {
+        "count": 1,
+        "sha256": "93caef44ac229f4c74d3913a1062dbf569e3085f7eff5f399391664f398b3f97"
+      }
+    },
+    "schema_bytes": {
+      "before": "38",
+      "after": "3130"
+    },
+    "sessions": {
+      "before": {
+        "count": 8,
+        "sha256": "f335ca9aec28b98c1a0025ae207cbba100f7cada2f79a7f18ab694018c07d404"
+      },
+      "after": {
+        "count": 8,
+        "sha256": "c5f3880b817a3ba1cafd709bad94be68a6c67742ba16f5e5282896f02a278ca6"
+      }
+    }
+  },
+  "new_host_buckets": {
+    "expert_bindings_v1": {
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "expert_operations_v1": {
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "expert_resource_operations_v1": {
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "runtime_history_changed": [],
+  "installed_skill_files_changed": [],
+  "normal_quit_exit_code": 0,
+  "port18081_released": true
+}

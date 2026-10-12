@@ -1,0 +1,40 @@
+{
+  "recorded_at": "2026-10-12T18:14:21.392077+00:00",
+  "feature": "FEAT-158",
+  "phase": 13,
+  "result": "PASS",
+  "checks": [
+    {
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict --gate D4 docs/features/FEAT-158-desktop-experts",
+      "exit_code": 0,
+      "result": "PASS"
+    },
+    {
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-158-desktop-experts",
+      "exit_code": 0,
+      "result": "PASS"
+    },
+    {
+      "command": "pnpm lint",
+      "exit_code": 0,
+      "result": "PASS"
+    }
+  ],
+  "public_evidence_scan": {
+    "files": 198,
+    "credential_pattern_hits": [],
+    "original_attachment_copies": 0,
+    "hidden_reasoning_export": false
+  },
+  "appearance": "SKIPPED",
+  "models_added": 0,
+  "historical_results_unchanged": true,
+  "scope_limit": "No new full suite, visual check or model eval. Existing broad evidence remains phase11/12.",
+  "staged_whitespace": {
+    "full_exit_code": 2,
+    "full_result": "NOT CLEAN: one historical JSON has a new blank line at EOF",
+    "excluded_historical_evidence": "docs/features/FEAT-158-desktop-experts/evidence/phase5-final-contract-checks.json",
+    "reason": "Preserve the original evidence bytes and recorded SHA-256; no code/behavior issue",
+    "all_other_staged_paths_exit_code": 0
+  }
+}

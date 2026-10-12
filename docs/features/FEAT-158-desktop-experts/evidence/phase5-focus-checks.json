@@ -1,0 +1,45 @@
+{
+  "recordedAt": "2026-10-11T11:31:04.889Z",
+  "scope": "FEAT-158 Run 6 confirmed keyboard focus fixes; read-only UI/model boundary respected",
+  "contractImpact": "none: renderer focus lifecycle only; no wire, Native, Host, permission, or persistence changes",
+  "checks": [
+    {
+      "command": "pnpm exec vitest run --dir src src/pages/plugins/ExtensionsPage.navigation.test.ts src/pages/plugins/ExtensionsPage.test.ts src/components/experts/ExpertMarketPanel.test.ts src/router/index.test.ts src/router/workflow-navigation.test.ts --maxWorkers=2",
+      "result": "PASS",
+      "files": 5,
+      "tests": 45
+    },
+    {
+      "command": "pnpm exec eslint src/router/index.ts src/pages/plugins/ExtensionsPage.navigation.test.ts src/components/experts/ExpertMarketPanel.vue src/components/experts/ExpertMarketPanel.test.ts",
+      "result": "PASS"
+    },
+    {
+      "command": "pnpm build",
+      "result": "PASS",
+      "note": "vue-tsc --noEmit and Vite; existing chunk-size warning"
+    },
+    {
+      "command": "git diff --check -- src/router/index.ts src/pages/plugins/ExtensionsPage.navigation.test.ts src/components/experts/ExpertMarketPanel.vue src/components/experts/ExpertMarketPanel.test.ts docs/experts-ui-candidate.md",
+      "result": "PASS"
+    },
+    {
+      "command": "pnpm docs:build",
+      "result": "PASS",
+      "note": "16 brand SVGs, reference TypeScript and VitePress; existing chunk-size warning"
+    }
+  ],
+  "sourceSha256": {
+    "src/router/index.ts": "f553d76f5e29e69e2b14842c92dee6cffd6b0f23157ff047cd1de00de047bd53",
+    "src/components/experts/ExpertMarketPanel.vue": "b310f1ef353019432ee8fa58079f014d369bb962c4288317fd0819a4888b7f1f",
+    "src/pages/plugins/ExtensionsPage.navigation.test.ts": "6ca323653ae71bb31165381490d8c52a52247d9ce748f48aa640497ee71b6dc9",
+    "src/components/experts/ExpertMarketPanel.test.ts": "10afd62e53c67e3472134bda052a3afdc4b2b6813a78ca438a6c1804ccef2566",
+    "docs/experts-ui-candidate.md": "292d09d9eb9814c77e8c14477b9564da77a237a8f702088f49fc8600b4a33681"
+  },
+  "initialTestResult": "New Escape test initially failed because its KeyboardEvent omitted code, which installed vueuc FocusTrap checks. Added code=Escape to normal test event; product Escape implementation unchanged. Final full focused 45 tests pass.",
+  "notRun": [
+    "Real WebView focus recheck: user requested skipping further appearance acceptance; parent owns later actual App acceptance.",
+    "No screen interaction, App/service lifecycle operations, real models, external MCP or unsafe fixtures in this task.",
+    "No full repository test-suite claim."
+  ],
+  "evidenceNote": "Retrospective command results from observed tool outputs; this JSON is not a preserved full command log."
+}

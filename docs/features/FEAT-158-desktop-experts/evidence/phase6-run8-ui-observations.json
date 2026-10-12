@@ -1,0 +1,51 @@
+{
+  "run": "run8",
+  "app_id": "com.yijie.ai.feat158-content-v012",
+  "observations": [
+    {
+      "at": "2026-10-11T14:03:36.034691+00:00",
+      "stage": "initial",
+      "facts": [
+        "fresh profile no prior tasks",
+        "ordinary Skill default tab category counts 5+9+7+9+8=38",
+        "Right arrow from Skill activates Expert tab",
+        "search absent phrase gives empty state; clearing restores one Expert",
+        "details content version0.1.2; local-policy boundary shown",
+        "Escape closes detail; Tab focus ring visibly on Prepare resources",
+        "normal Prepare resources completes; no model message sent"
+      ]
+    },
+    {
+      "at": "2026-10-11T14:05:32.657476+00:00",
+      "stage": "composer",
+      "facts": [
+        "attached existing187Bsyntheticfile through native Open panel",
+        "selected expert preserves prompt/file/Kimi/ask; no autosend/no tasks created",
+        "removed pending expert then selected again; same draft/file/model preserved",
+        "send1 creates exact Native A; generation state disables remove/model/permissions"
+      ]
+    },
+    {
+      "at": "2026-10-11T14:12:26.447769+00:00",
+      "stage": "quick-question",
+      "facts": [
+        "new unsent draft synthetic text; actual first quick question prompts Keep/Replace",
+        "Keep preserves text and selects expert, returns composer with no autosend",
+        "from selected capsule actual second quick question then Replace closes dialog but stays Expert directory; Return chat still original text",
+        "no model send or task creation from quick questions; cleaned synthetic draft and removed pending expert afterwards"
+      ],
+      "result": "FAIL: selected-expert quick question Replace did not prefill; source review pending"
+    },
+    {
+      "at": "2026-10-11T14:18:39.605357+00:00",
+      "stage": "scope-reduction-and-exit",
+      "facts": [
+        "all six sent turns visibly completed before cleanup",
+        "no step7–17 send",
+        "normal Cmd+Q; canonical launcher exit0; TCP18160 no listener"
+      ],
+      "reason": "user narrowed to logic checks, no more live acceptance expansion"
+    }
+  ],
+  "appearance": "OWNER_SKIPPED"
+}

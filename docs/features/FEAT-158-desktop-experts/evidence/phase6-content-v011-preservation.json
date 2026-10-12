@@ -1,0 +1,606 @@
+{
+  "feature": "FEAT-158",
+  "purpose": "Preserve0.1.1 input bytes and unchanged candidate before0.1.2 content revision; no installed/history/runtime paths touched",
+  "created_at": "2026-10-11T13:25:11.339509+00:00",
+  "git_head": "488714a8d96f40806a257aae097683815b1dd458",
+  "existing_git_status": " M README.md\n M scripts/package-desktop-skills.mjs\n?? contracts/experts-canonical.gen.mjs\n?? contracts/experts.candidate.json\n?? contracts/skill-bundle-manifest-v3.schema.json\n?? docs/provenance/FEAT-158-jd-ops-content-review.md\n?? docs/provenance/FEAT-158-jd-ops-v0.1.1-content-review.md\n?? docs/provenance/FEAT-158-local-use-authorization-v0.1.1.md\n?? docs/provenance/FEAT-158-local-use-authorization.md\n?? docs/provenance/source-audits/FEAT-158-jd-ops-content-audit-v0.1.1.json\n?? docs/provenance/source-audits/FEAT-158-jd-ops-content-audit.json\n?? plugins/yijie-desktop-skills/experts/\n?? tests/desktop-expert-bundle.test.mjs\n?? tests/jd-expert-content.test.mjs\n",
+  "source_snapshot_directory": "dist/feat158-v011-run7-source",
+  "source_files": [
+    {
+      "path": "README.md",
+      "bytes": 3268,
+      "sha256": "f40cc941ec50d07f894a307379bcef2303ab7f6c5a097c2d7edecb5c49fd19cb"
+    },
+    {
+      "path": "docs/provenance/FEAT-158-jd-ops-content-review.md",
+      "bytes": 13574,
+      "sha256": "02d987dc10f7ff9b4b5b97b152fe9ea56d9035cfd0cab2b837f3b7e66bc660e4"
+    },
+    {
+      "path": "docs/provenance/FEAT-158-jd-ops-v0.1.1-content-review.md",
+      "bytes": 3943,
+      "sha256": "6b90f7aabbae002b03b3b41f14621c4d9d5a7d12ac31f0d75013966778089238"
+    },
+    {
+      "path": "docs/provenance/FEAT-158-local-use-authorization-v0.1.1.md",
+      "bytes": 1501,
+      "sha256": "01c8c4f12dd3d0fa9a89a4ddfb0ff91def72a17573935d04254e1eb2492fc34f"
+    },
+    {
+      "path": "docs/provenance/FEAT-158-local-use-authorization.md",
+      "bytes": 1278,
+      "sha256": "36e27d998b37ae3dfff090387059b8ffee3591f4da910f1e1f82cc229f6b1454"
+    },
+    {
+      "path": "docs/provenance/source-audits/FEAT-158-jd-ops-content-audit-v0.1.1.json",
+      "bytes": 5548,
+      "sha256": "64e4c44b8686762e012ac6db9ec5867872ed0ceecbc97e56c86b928886d71a37"
+    },
+    {
+      "path": "docs/provenance/source-audits/FEAT-158-jd-ops-content-audit.json",
+      "bytes": 4924,
+      "sha256": "3701239c1ea1868eeea5bfcb607500d9da79fb9ba0ef4de42c1811c1dd70d675"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/bundle-source.json",
+      "bytes": 8159,
+      "sha256": "6689829185fad8a9aa82210fefbb8297436bdf0f7d210102dbd8ac4ccb3b9889"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/NOTICE.md",
+      "bytes": 761,
+      "sha256": "06358f298e10ca9a696260c156d1f99b1cc7d1b1c5e052ac82083f6fb188d08f"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/ROLE.md",
+      "bytes": 2156,
+      "sha256": "cd30368006f57ab8c400182600a53019b960bb23e49395972ec782e5e37e43da"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/SKILL.md",
+      "bytes": 4434,
+      "sha256": "8f6c1a10227f9dc5f6b22d34cb03182811e95822114d3ebfc59c219681597aeb"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/checklists/quality-checklist.md",
+      "bytes": 1108,
+      "sha256": "2e5f2447f20ee1d6a1c460fbb07a8c12a12f6a76cef551771b20f70617521f50"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/evals/dataset.jsonl",
+      "bytes": 4138,
+      "sha256": "ef5284d50e691dad033bf41c0158a10a308f90716284f27d1dedf5555c363f4c"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/evals/rubric.md",
+      "bytes": 2048,
+      "sha256": "f5cb3b50599f1fbaa3f19a86b80621f10fae01ccbc3c3c5d8e385d712b7f69b0"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/examples/input-001.json",
+      "bytes": 354,
+      "sha256": "d58e7da9ee1b2a3d59f0379323f808073b280d08e2b1b9d0a827fad692c307a8"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/examples/output-001.md",
+      "bytes": 1206,
+      "sha256": "dcce3292f9c0949f9960f7fd63f5fddd074b4b413a2ce0106c0b84b14009c825"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/index.md",
+      "bytes": 3274,
+      "sha256": "28fbc4106c148fddf6abe9334fe527bc3c78dd8233edb2226c45a273e5e6b1e5"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m01-foundations.md",
+      "bytes": 3355,
+      "sha256": "de680c014cf969dbb46ec95ce05f2ba7adb3d0ab5118c8052aeeaf405e325273"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m02-entry.md",
+      "bytes": 3103,
+      "sha256": "8cc839ec39c7e43bc3da206bf17a1f915de6dfc6720491bf43da5715c4e94e23"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m03-listing.md",
+      "bytes": 3096,
+      "sha256": "3f63d884cbb26c798f47a9e9795359a5f609aa2ccbbfbd45eb6e958f75b7fa12"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m04-media.md",
+      "bytes": 2954,
+      "sha256": "2f082a77d0ee38fafacd314d1150b623af56aee0f73a16c0e512f2661bc17fc3"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m05-pricing.md",
+      "bytes": 2947,
+      "sha256": "f05b0b7e6c948d9f684f7401a9f84fdc254ccbf4a070cac1ddd90d2f8863b50d"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m06-launch.md",
+      "bytes": 3043,
+      "sha256": "637fc36c83edfdee7040da06c54a027afd92929a66bdb6aeb96049398df8fe9f"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m07-campaigns.md",
+      "bytes": 2994,
+      "sha256": "cb57236620eeb5fdd139ce6e7a26ad639aef125582692ed1d42864bbc1b1b3ef"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m08-advertising.md",
+      "bytes": 3147,
+      "sha256": "2ef9a04f3e0cd09153416d815bfba22a727c8dc509df5128dbd2255a63fef21d"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m09-health.md",
+      "bytes": 2927,
+      "sha256": "bc536fa5d76f106588ce14b755a4daec4c7bd46c930bb2fd67489673722b9f66"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m10-service.md",
+      "bytes": 2928,
+      "sha256": "46f5e5c8040be061fa462d2d7fd31e1cab2e0d398f906030df9b30be2e09a31e"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m11-fulfillment.md",
+      "bytes": 2928,
+      "sha256": "507f3a13aeae8c7c7d246aeb258c067659bb317cdfcffb660dce62d8ad534eb5"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m12-compliance.md",
+      "bytes": 3190,
+      "sha256": "63ffddcd935d7c19905b1ba12f265e5ad026b4a45cabbc95e71eb90cd0e64f34"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m13-review.md",
+      "bytes": 2981,
+      "sha256": "8e168ce2b460342ffb8cef6263e8a8f76ffae18a607e92c6d8a26f9d230ef727"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/m14-creators.md",
+      "bytes": 2950,
+      "sha256": "150fc7d8545f919f25238d512481a85ad8e372f0ea2c142995f8e43cfa36d9f7"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/scene-index.json",
+      "bytes": 26180,
+      "sha256": "34efd019135da5db6985c314bb369ab9061b91d9a241c4dc67d9ca41eac39f1c"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/references/source-notes.md",
+      "bytes": 2670,
+      "sha256": "cc8d98b403f726973e6c89e8446ff6eeafc55062c23e16dd3ee71e164ce7191e"
+    },
+    {
+      "path": "plugins/yijie-desktop-skills/experts/jd-ops-expert/skills/jd-ops-kb/tests/README.md",
+      "bytes": 562,
+      "sha256": "a85810e4843882c3b1b801e6c00dfa1368ad928b58ebcb3ca546959cfdc22b54"
+    },
+    {
+      "path": "scripts/package-desktop-skills.mjs",
+      "bytes": 15128,
+      "sha256": "02a53ea6849fdec356e6d1dffb7f30b4e4f0e72200c72a52e92e0b8a9dfac797"
+    },
+    {
+      "path": "tests/desktop-expert-bundle.test.mjs",
+      "bytes": 5173,
+      "sha256": "35cc1ce5e61387c0e9b7ff7cbfd364e77fe87fff1d9d09539844699b0335b33a"
+    },
+    {
+      "path": "tests/jd-expert-content.test.mjs",
+      "bytes": 5171,
+      "sha256": "2ea1abda9a5e543994d7c44ff0982cf100499e661786c127b5c035dcf852a6c3"
+    }
+  ],
+  "bundle_files": [
+    {
+      "path": "dist/skills-experts-candidate-v011/authority.json",
+      "bytes": 7497,
+      "sha256": "c23a7085504b78bf2a880c2804d6ed4d7c78ff82ed13a01473619cd9269e28aa"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/bundle-manifest.json",
+      "bytes": 96065,
+      "sha256": "31e7f42193263356c1e4939600ebd95961e6eb682c96f53429b47417dc3d1b6d"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.content-marketing.content-breakdown-0.0.94.zip",
+      "bytes": 415068,
+      "sha256": "ec868241d93bb67b85f5c7e0b462051a8208208dc08085a20f08b7cbba76ee1a"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.content-marketing.content-strategy-0.0.94.zip",
+      "bytes": 12518,
+      "sha256": "bc47472e7d9c6fae25aec2f7006d4bd13f43c7a61d1b9d5d828369c46e729bd9"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.content-marketing.copywriting-0.1.0.zip",
+      "bytes": 7351,
+      "sha256": "efb7abe5460c5b66def57575cacac1486887e9faf6139d8466f086caf661333b"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.content-marketing.product-marketing-context-0.0.94.zip",
+      "bytes": 8122,
+      "sha256": "2f59566878841802db7109e21900bf47e2d1108ca6368d83780336083a1f40d8"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.content-marketing.social-media-content-creator-0.0.94.zip",
+      "bytes": 7226,
+      "sha256": "c5050fb4eb30bfe66af3b78a8887e2cf815d5d4254ed13dbe94f73651cfe3614"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.content-marketing.vibe-marketing-0.0.94.zip",
+      "bytes": 5679,
+      "sha256": "051c85a7e02cd73d7965a7df2c2526daf25020765e0793b019e6a98c0446fc18"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.content-marketing.xiaohongshu-content-creator-0.0.94.zip",
+      "bytes": 5289,
+      "sha256": "5f6de568302cb3ccdfb21cc02570ae94358ea16b75369050cf131ffe524ba364"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.experts.jd-ops-expert-0.1.1.zip",
+      "bytes": 94596,
+      "sha256": "5ca70d7417c30951f67ef8da32be37563afaaadf0756ff60f96d84471d9cd594"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.market-research.alibaba-amazon-market-intel-0.0.94.zip",
+      "bytes": 374775,
+      "sha256": "8801948dac35b5dd25c152d6cbd9904e9dc0113007c4f42f2fb3472ff8ef8585"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.market-research.competitor-deep-analysis-0.0.94.zip",
+      "bytes": 7102,
+      "sha256": "351dc0d1689c68f73d8c7de86fa8e591410afe0f7da758aea8f6d1f4330089c5"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.market-research.cross-border-selection-0.0.94.zip",
+      "bytes": 25360,
+      "sha256": "b62aae351b8792706055bb1374823bc09685c4ba335beb08b83ca54da58b837b"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.market-research.jungle-scout-deep-dive-analyzer-0.0.94.zip",
+      "bytes": 169478,
+      "sha256": "aa7c3a6c1aa60379017cd79845f8c0e1a82a34943af2ecea879ff9db5c57eb49"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.market-research.market-insight-product-selection-0.0.94.zip",
+      "bytes": 25675,
+      "sha256": "dd5b7fdb1e4d03a8ee3eb1c893a27b42ef708024ef9f063676d0939ce609974a"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.market-research.product-attribute-analyzer-0.0.94.zip",
+      "bytes": 22020,
+      "sha256": "0094818797317f9d565e4fcbbcd6295094578b77c5529f2a5a064e041f9f548d"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.market-research.product-selection-0.0.94.zip",
+      "bytes": 33006,
+      "sha256": "4516c195d878c37aba1f21d64634e017974cc610fbd9163fdae85f2beb4b16a3"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.market-research.review-analyst-agent-0.0.94.zip",
+      "bytes": 21581,
+      "sha256": "87bddc99457a57994b83875236e4905dcba1671c2f802e92f1508b00b6cfe446"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.market-research.scenario-driven-product-scout-0.0.94.zip",
+      "bytes": 105655,
+      "sha256": "3ea08f91d59dc8eadaf125105daaf51da3f66d601edfd5d164145512bdbecc12"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.sourcing-selection.aliexpress-supplier-evaluator-0.0.94.zip",
+      "bytes": 4560,
+      "sha256": "48ce468839d310a739c21b0cafb1655a5b70f85fa8627a49bc4ef7c4e973d60b"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.sourcing-selection.dropshipping-supplier-integrator-0.0.94.zip",
+      "bytes": 8381,
+      "sha256": "778e049034c74ded4886fd1715ad2aafeee6e87e8f0c763a786f72c6cc2ac45c"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.sourcing-selection.product-supplier-sourcing-0.0.94.zip",
+      "bytes": 5029,
+      "sha256": "a3bd14080790b34fcd854a187f229c49e31f36c2953d3d6e8df43ecc9d5b4448"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.sourcing-selection.sales-negotiator-0.0.94.zip",
+      "bytes": 76090,
+      "sha256": "24bfab224c665c46dcad8c2cf687e4fc1cb126eb363f148a270b283056045a6d"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.sourcing-selection.supplier-performance-manager-0.0.94.zip",
+      "bytes": 6778,
+      "sha256": "63551f0cb966533de869e730e7e7789cb79032ca51ce578532e9c98ec1a90b17"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.store-operations.amazon-brand-protection-0.0.94.zip",
+      "bytes": 8903,
+      "sha256": "75e50c2e15a6d2156e5b7683c0bfd007582ce031f032d50ee7a69d294454c582"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.store-operations.buy-now-pay-later-setup-0.0.94.zip",
+      "bytes": 6495,
+      "sha256": "a2add0cf673dd7cab2222d61e231fee400a8dbdfe037665eb7f7e03c6fcb631e"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.store-operations.ecommerce-gdpr-compliance-0.0.94.zip",
+      "bytes": 7268,
+      "sha256": "bde430ada27effe2dc146125a1b5086d1300b74c0dee13a0fc3c64d83f33b2c4"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.store-operations.invoice-generator-0.0.94.zip",
+      "bytes": 8714,
+      "sha256": "a29d777d2b8a589eb3f58d63d8063d0f42c74fed2b0c2afff1866e3df18644d8"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.store-operations.multichannel-inventory-sync-0.0.94.zip",
+      "bytes": 9301,
+      "sha256": "8c65e7d4d9880c97937d7e61fd5ff979b50a765a6a1b22180c8e71021b976337"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.store-operations.payment-fraud-detector-0.0.94.zip",
+      "bytes": 7982,
+      "sha256": "87f306b6d42cfdaa497ea3ec3c2e51d098a21e75d091c0ef10e45b8dcf31a5ef"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.store-operations.tiktok-shop-setup-0.0.94.zip",
+      "bytes": 6946,
+      "sha256": "b90e9f63ec69fcd92cef14cdde376429a6e9f71280b1a579a1e4d93dc6961076"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.store-operations.warehouse-fulfillment-workflow-0.0.94.zip",
+      "bytes": 8068,
+      "sha256": "bcf1bb79821c5c33bd3bb4e26db9d2431950df2e73a234eaa26f1901c6cd8ff2"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.traffic-advertising.amazon-listing-expert-0.0.94.zip",
+      "bytes": 9111,
+      "sha256": "bb53246ea7ce499d3f90800289cf7afc49e5e130897f230f57633df3c2608d60"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.traffic-advertising.amazon-ppc-campaign-manager-0.0.94.zip",
+      "bytes": 7256,
+      "sha256": "2ceef91b28f60020228946eac141640ca618b7154bda299e80f83adef874e0b3"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.traffic-advertising.amz-hot-keywords-0.0.94.zip",
+      "bytes": 14722,
+      "sha256": "651de7bb315970729640663441207f504609849c1341a35584bf73562a44ef63"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.traffic-advertising.amz-product-optimizer-0.0.94.zip",
+      "bytes": 34674,
+      "sha256": "33ce2676f54f2c8f236362c41685e75b69a7c25a7404b6dfd56d63c1cf12d66f"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.traffic-advertising.ecommerce-seo-optimizer-0.0.94.zip",
+      "bytes": 6829,
+      "sha256": "6922f6c86de17a45e25201c5f7c92befc6e39a8499182e02a4a4b868486949ae"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.traffic-advertising.etsy-seo-optimizer-0.0.94.zip",
+      "bytes": 32623,
+      "sha256": "8d66b6431620f0bf1eecd7509e6b286aa8fb952149b65231878c21bf4fd0ed5b"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.traffic-advertising.product-description-generator-0.0.94.zip",
+      "bytes": 23053,
+      "sha256": "bb6e0f3c26ebf35a9c637c571bd6366ec90d3303e94e1470b1056bef8b9b7bf9"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.traffic-advertising.seo-keyword-research-0.0.94.zip",
+      "bytes": 5531,
+      "sha256": "a192ea17a05e8644a3e7044377e2bda5ffdd4f4f0b3444c912b3b31f1d23d64a"
+    },
+    {
+      "path": "dist/skills-experts-candidate-v011/packages/yijie.traffic-advertising.tiktok-ads-strategy-0.0.94.zip",
+      "bytes": 6449,
+      "sha256": "49905b7f97d1107c7ab4d02989c921f3234d1817d9bea1fb874f5c86c0776092"
+    }
+  ],
+  "old_authority": {
+    "schema_version": 1,
+    "feature": "FEAT-158",
+    "release": false,
+    "distribution_channel": "local-development",
+    "bundle_id": "yijie.desktop.skill-packages",
+    "bundle_version": "0.4.1",
+    "manifest_path": "bundle-manifest.json",
+    "manifest_sha256": "31e7f42193263356c1e4939600ebd95961e6eb682c96f53429b47417dc3d1b6d",
+    "source": {
+      "repository": "https://github.com/36Dge/yijie-skills.git",
+      "revision_kind": "working-tree",
+      "revision": "488714a8d96f40806a257aae097683815b1dd458",
+      "tree_sha256": "6c2fecfa23999718c605af0d298c486cf45287b91b4330fbaaa6140c5cb6253e"
+    },
+    "source_definition": {
+      "path": "plugins/yijie-desktop-skills/experts/bundle-source.json",
+      "sha256": "6689829185fad8a9aa82210fefbb8297436bdf0f7d210102dbd8ac4ccb3b9889"
+    },
+    "contracts_candidate": {
+      "path": "contracts/experts.candidate.json",
+      "sha256": "cb8f6aa3445f15bf2274c4966cfa70239c2aaf445df3473f13638e1f3ac5ffdd"
+    },
+    "experts": [
+      {
+        "installation_id": "yijie.experts.jd-ops-expert",
+        "expert_id": "jd-ops-expert",
+        "source_id": "yijie-local",
+        "version": "0.1.1",
+        "archive": {
+          "path": "packages/yijie.experts.jd-ops-expert-0.1.1.zip",
+          "sha256": "5ca70d7417c30951f67ef8da32be37563afaaadf0756ff60f96d84471d9cd594",
+          "compressed_size_bytes": 94596,
+          "uncompressed_size_bytes": 91434,
+          "file_count": 26
+        },
+        "role_resource": {
+          "path": "ROLE.md",
+          "sha256": "cd30368006f57ab8c400182600a53019b960bb23e49395972ec782e5e37e43da",
+          "bytes": 2156
+        },
+        "knowledge_manifest_sha256": "767249e42b0d94f802b863875588ba78b30345f57f0a18eac075838e2e364b89",
+        "knowledge_resources": [
+          {
+            "id": "index",
+            "title": "模块与场景索引",
+            "path": "references/index.md",
+            "content_version": "0.1.1",
+            "content_status": "reviewed-reference",
+            "sha256": "28fbc4106c148fddf6abe9334fe527bc3c78dd8233edb2226c45a273e5e6b1e5",
+            "bytes": 3274
+          },
+          {
+            "id": "source-notes",
+            "title": "来源、状态与引用",
+            "path": "references/source-notes.md",
+            "content_version": "0.1.1",
+            "content_status": "reviewed-reference",
+            "sha256": "cc8d98b403f726973e6c89e8446ff6eeafc55062c23e16dd3ee71e164ce7191e",
+            "bytes": 2670
+          },
+          {
+            "id": "m01",
+            "title": "核心认知与新店准备",
+            "path": "references/m01-foundations.md",
+            "content_version": "0.1.1",
+            "content_status": "incomplete",
+            "sha256": "de680c014cf969dbb46ec95ce05f2ba7adb3d0ab5118c8052aeeaf405e325273",
+            "bytes": 3355
+          },
+          {
+            "id": "m02",
+            "title": "开店入驻准备",
+            "path": "references/m02-entry.md",
+            "content_version": "0.1.1",
+            "content_status": "conflicted",
+            "sha256": "8cc839ec39c7e43bc3da206bf17a1f915de6dfc6720491bf43da5715c4e94e23",
+            "bytes": 3103
+          },
+          {
+            "id": "m03",
+            "title": "上架 SOP",
+            "path": "references/m03-listing.md",
+            "content_version": "0.1.1",
+            "content_status": "reviewed-reference",
+            "sha256": "3f63d884cbb26c798f47a9e9795359a5f609aa2ccbbfbd45eb6e958f75b7fa12",
+            "bytes": 3096
+          },
+          {
+            "id": "m04",
+            "title": "图片、详情与视频素材",
+            "path": "references/m04-media.md",
+            "content_version": "0.1.1",
+            "content_status": "conflicted",
+            "sha256": "2f082a77d0ee38fafacd314d1150b623af56aee0f73a16c0e512f2661bc17fc3",
+            "bytes": 2954
+          },
+          {
+            "id": "m05",
+            "title": "定价与优惠核算",
+            "path": "references/m05-pricing.md",
+            "content_version": "0.1.1",
+            "content_status": "conflicted",
+            "sha256": "f05b0b7e6c948d9f684f7401a9f84fdc254ccbf4a070cac1ddd90d2f8863b50d",
+            "bytes": 2947
+          },
+          {
+            "id": "m06",
+            "title": "新店与新品冷启动",
+            "path": "references/m06-launch.md",
+            "content_version": "0.1.1",
+            "content_status": "conflicted",
+            "sha256": "637fc36c83edfdee7040da06c54a027afd92929a66bdb6aeb96049398df8fe9f",
+            "bytes": 3043
+          },
+          {
+            "id": "m07",
+            "title": "活动准备与复盘",
+            "path": "references/m07-campaigns.md",
+            "content_version": "0.1.1",
+            "content_status": "reviewed-reference",
+            "sha256": "cb57236620eeb5fdd139ce6e7a26ad639aef125582692ed1d42864bbc1b1b3ef",
+            "bytes": 2994
+          },
+          {
+            "id": "m08",
+            "title": "推广投放诊断",
+            "path": "references/m08-advertising.md",
+            "content_version": "0.1.1",
+            "content_status": "conflicted",
+            "sha256": "2ef9a04f3e0cd09153416d815bfba22a727c8dc509df5128dbd2255a63fef21d",
+            "bytes": 3147
+          },
+          {
+            "id": "m09",
+            "title": "店铺服务质量与复购",
+            "path": "references/m09-health.md",
+            "content_version": "0.1.1",
+            "content_status": "reviewed-reference",
+            "sha256": "bc536fa5d76f106588ce14b755a4daec4c7bd46c930bb2fd67489673722b9f66",
+            "bytes": 2927
+          },
+          {
+            "id": "m10",
+            "title": "客服与售后",
+            "path": "references/m10-service.md",
+            "content_version": "0.1.1",
+            "content_status": "conflicted",
+            "sha256": "46f5e5c8040be061fa462d2d7fd31e1cab2e0d398f906030df9b30be2e09a31e",
+            "bytes": 2928
+          },
+          {
+            "id": "m11",
+            "title": "发货与履约",
+            "path": "references/m11-fulfillment.md",
+            "content_version": "0.1.1",
+            "content_status": "conflicted",
+            "sha256": "507f3a13aeae8c7c7d246aeb258c067659bb317cdfcffb660dce62d8ad534eb5",
+            "bytes": 2928
+          },
+          {
+            "id": "m12",
+            "title": "商品与经营信息核对",
+            "path": "references/m12-compliance.md",
+            "content_version": "0.1.1",
+            "content_status": "conflicted",
+            "sha256": "63ffddcd935d7c19905b1ba12f265e5ad026b4a45cabbc95e71eb90cd0e64f34",
+            "bytes": 3190
+          },
+          {
+            "id": "m13",
+            "title": "经营复盘与诊断",
+            "path": "references/m13-review.md",
+            "content_version": "0.1.1",
+            "content_status": "reviewed-reference",
+            "sha256": "8e168ce2b460342ffb8cef6263e8a8f76ffae18a607e92c6d8a26f9d230ef727",
+            "bytes": 2981
+          },
+          {
+            "id": "m14",
+            "title": "达人合作与 CPS",
+            "path": "references/m14-creators.md",
+            "content_version": "0.1.1",
+            "content_status": "incomplete",
+            "sha256": "150fc7d8545f919f25238d512481a85ad8e372f0ea2c142995f8e43cfa36d9f7",
+            "bytes": 2950
+          }
+        ],
+        "local_use_authorization": {
+          "status": "local-use-authorized",
+          "evidence_reference": "docs/provenance/FEAT-158-local-use-authorization-v0.1.1.md",
+          "evidence_sha256": "01c8c4f12dd3d0fa9a89a4ddfb0ff91def72a17573935d04254e1eb2492fc34f"
+        },
+        "content_review": {
+          "path": "docs/provenance/source-audits/FEAT-158-jd-ops-content-audit-v0.1.1.json",
+          "sha256": "64e4c44b8686762e012ac6db9ec5867872ed0ceecbc97e56c86b928886d71a37"
+        }
+      }
+    ]
+  },
+  "notes": [
+    "Existing0.1.0 evidence and0.1.1 audit/auth documents are not edited.",
+    "Only local candidate generation authorized; releasefalse."
+  ]
+}

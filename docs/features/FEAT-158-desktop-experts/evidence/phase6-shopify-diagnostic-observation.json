@@ -1,0 +1,144 @@
+{
+  "observedAt": "2026-10-11T14:07:32.511Z",
+  "scope": "Existing bounded provider diagnostic events from the new v012 isolated candidate; no requests issued",
+  "logs": [
+    {
+      "path": ".local/feat158-content-v012-candidate/host-home/market-worker/library-home/diagnostics/provider/e48a212a-fe95-4efb-919a-6cadaef83aaf.jsonl",
+      "sha256": "d2e2d8361df7925a1885f4dd539e43d6a3c59ddbf94310c72519dd3cef892455",
+      "events": [
+        {
+          "event": "started",
+          "httpStatus": null,
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "metadata_initialize",
+          "unixMs": 1791727401121
+        },
+        {
+          "event": "request",
+          "httpStatus": null,
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "metadata_http_send",
+          "unixMs": 1791727401135
+        },
+        {
+          "event": "response",
+          "httpStatus": 200,
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "metadata_http_response",
+          "unixMs": 1791727405105
+        },
+        {
+          "event": "request",
+          "httpStatus": null,
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "metadata_http_send",
+          "unixMs": 1791727405110
+        },
+        {
+          "event": "response",
+          "httpStatus": 200,
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "metadata_http_response",
+          "unixMs": 1791727406241
+        },
+        {
+          "event": "request",
+          "httpStatus": null,
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "metadata_http_send",
+          "unixMs": 1791727406495
+        },
+        {
+          "event": "response",
+          "httpStatus": 200,
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "metadata_http_response",
+          "unixMs": 1791727407418
+        },
+        {
+          "event": "request",
+          "httpStatus": null,
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "metadata_http_send",
+          "unixMs": 1791727407419
+        },
+        {
+          "event": "response",
+          "httpStatus": 200,
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "metadata_http_response",
+          "unixMs": 1791727408530
+        },
+        {
+          "event": "request",
+          "httpStatus": null,
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "metadata_http_send",
+          "unixMs": 1791727409533
+        },
+        {
+          "event": "response",
+          "httpStatus": 200,
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "metadata_http_response",
+          "unixMs": 1791727410385
+        },
+        {
+          "event": "request",
+          "httpStatus": null,
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "metadata_http_send",
+          "unixMs": 1791727410385
+        },
+        {
+          "event": "response",
+          "httpStatus": 200,
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "metadata_http_response",
+          "unixMs": 1791727412027
+        },
+        {
+          "event": "failed",
+          "httpStatus": null,
+          "safeFailure": "unavailable",
+          "schemaVersion": 1,
+          "stage": "metadata_initialize",
+          "unixMs": 1791727412028
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "metadataHttpSends": 6,
+    "metadataHttpResponses": 6,
+    "initializeTerminal": [
+      {
+        "event": "failed",
+        "httpStatus": null,
+        "safeFailure": "unavailable",
+        "schemaVersion": 1,
+        "stage": "metadata_initialize",
+        "unixMs": 1791727412028
+      }
+    ],
+    "toolsListObserved": false,
+    "businessHttpStagesObserved": false
+  },
+  "limits": [
+    "No response body is present in the bounded diagnostic; HTTP 200 alone does not prove valid MCP initialization.",
+    "This observer did not retry or initiate any metadata/HTTP/tool request."
+  ]
+}

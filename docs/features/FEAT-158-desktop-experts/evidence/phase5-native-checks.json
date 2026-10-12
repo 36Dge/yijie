@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-158",
+  "phase": "phase5-native-and-ui-audit-fixes",
+  "recorded_at_utc": "2026-10-11T10:52:11.364671+00:00",
+  "repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+  "head": "46d0035a2054effe3bfddbd13861e81d46ecd85d",
+  "source_status": "uncommitted local working-tree candidate; release=false; this report is not a source freeze or release approval",
+  "contract_impact": "semantic: reuse existing schema1 control event and existing private ErrorCode; no wire/generated/schema migration changes in this batch",
+  "evidence_basis": "Commands and results below were observed through this agent tool outputs. This JSON is a retrospective structured record, not an archived raw stdout log. Hashes are collected now after the final successful checks; other agents share this working tree.",
+  "fixes": [
+    {
+      "id": "native-binding-last-dispatch-authority",
+      "priority": "P2",
+      "files": [
+        "src-tauri/src/chat/experts/commands.rs",
+        "src-tauri/src/chat/experts/commands_tests.rs"
+      ],
+      "detail": "After the database journal await, validate the original context and frozen Native scope before expert_apply_binding. A definitively unsent invalidated request is rejected under its original ID. Explicit recovery builds its fresh outer scope only after asynchronous checks and retains the original unresolved request when this new recovery cannot start."
+    },
+    {
+      "id": "native-expert-submission-diagnostic",
+      "priority": "P2",
+      "files": [
+        "src-tauri/src/chat/connectors/dispatch.rs"
+      ],
+      "detail": "Preserve source-defined typed rejection code in the existing issue_code. Read-only uncertain observation does not erase that diagnostic. The submission stays uncertain: no proof of never-started is inferred and no turn is resent."
+    },
+    {
+      "id": "ordinary-subscription-result-notification",
+      "priority": "P2",
+      "files": [
+        "src-tauri/src/chat/ipc.rs",
+        "src/stores/chat.store.test.ts"
+      ],
+      "detail": "Ordinary packaged entry uses schema1. Include that already-supported control-event version in turn resync subscription planning, so the current page receives the same authoritative submission-status reread as v4/v5/v6."
+    },
+    {
+      "id": "uncertain-submission-product-copy-and-read",
+      "priority": "P2",
+      "files": [
+        "src/components/chat/ChatTurnGroup.vue",
+        "src/components/chat/ChatTurnGroup.test.ts",
+        "src/pages/chat/ChatPage.vue",
+        "src/pages/chat/ChatPage.test.ts"
+      ],
+      "detail": "Unknown original submission displays a pending-confirmation explanation instead of waiting-to-execute copy, with an explicit resyncSelected read action. It neither changes the operation nor triggers a new submit."
+    }
+  ],
+  "checks": [
+    {
+      "id": "native-binding-commands",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --lib chat::experts::commands::tests::expert_commands_ -- --test-threads=1",
+      "exit_code": 0,
+      "passed": 9,
+      "failed": 0,
+      "filtered_out": 599,
+      "summary": "Original seven command tests plus two normal context-renewal tests; no App, Host, Runtime or model is started."
+    },
+    {
+      "id": "native-expert-dispatch",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --lib chat::connectors::dispatch::tests::feat158_ -- --test-threads=1",
+      "exit_code": 0,
+      "passed": 5,
+      "failed": 0,
+      "filtered_out": 604,
+      "summary": "Includes retained source error code across original-operation observation, uncertain local projection, immutable expert snapshot, existing attachment materialization and legacy-claim exclusion."
+    },
+    {
+      "id": "native-schema1-control",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --lib chat::ipc::tests::feat158_ordinary_subscription_receives_uncertain_submission_resync -- --exact --test-threads=1",
+      "exit_code": 0,
+      "passed": 1,
+      "failed": 0,
+      "filtered_out": 609,
+      "summary": "Existing schema1 resync_required envelope is emitted for an ordinary current subscription and blocks repeated notifications pending resync."
+    },
+    {
+      "id": "native-control-scope-regression",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --lib chat::ipc::tests::turn_submission_resync_plan_filters_scope_and_invalidates_denied -- --exact --test-threads=1",
+      "exit_code": 0,
+      "passed": 1,
+      "failed": 0,
+      "filtered_out": 609,
+      "summary": "Existing subscription-plan regression updated to include schema1; other sessions, blocked and terminal records stay filtered; denied readers receive invalidation."
+    },
+    {
+      "id": "ui-final-focused",
+      "command": "pnpm exec vitest run --dir src src/components/chat/ChatTurnGroup.test.ts src/pages/chat/ChatPage.test.ts src/stores/chat.store.test.ts --testNamePattern FEAT158 --maxWorkers=2",
+      "exit_code": 0,
+      "files_passed": 3,
+      "passed": 11,
+      "failed": 0,
+      "skipped_non_target": 228,
+      "summary": "Unknown submission wording, explicit read-only action, schema1 control refresh, existing expert submission and draft/receipt behavior. Experimental localStorage warning retained."
+    },
+    {
+      "id": "vue-types",
+      "command": "pnpm exec vue-tsc --noEmit",
+      "exit_code": 0,
+      "summary": "No diagnostics."
+    },
+    {
+      "id": "ui-changed-files-eslint",
+      "command": "pnpm exec eslint src/pages/chat/ChatPage.vue src/pages/chat/ChatPage.test.ts src/components/chat/ChatTurnGroup.vue src/components/chat/ChatTurnGroup.test.ts src/stores/chat.store.test.ts",
+      "exit_code": 0,
+      "summary": "No diagnostics."
+    },
+    {
+      "id": "rust-format",
+      "command": "cargo fmt --manifest-path src-tauri/Cargo.toml --check",
+      "exit_code": 0,
+      "summary": "No diagnostics."
+    },
+    {
+      "id": "rust-all-target-clippy",
+      "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings",
+      "exit_code": 0,
+      "summary": "Final all-target static check passed; reported dev-profile completion 19.06s. No full Rust test suite executed."
+    }
+  ],
+  "distinct_focused_totals": {
+    "native_passed": 16,
+    "ui_passed": 11,
+    "note": "Counts include existing targeted regressions; intermediate reruns are not added again."
+  },
+  "intermediate_test_record": [
+    {
+      "command": "pnpm exec vitest run --dir src src/components/chat/ChatTurnGroup.test.ts src/pages/chat/ChatPage.test.ts --testNamePattern FEAT158 --maxWorkers=2",
+      "exit_code": 1,
+      "passed": 4,
+      "failed": 2,
+      "skipped_non_target": 80,
+      "reason": "Two newly added test fixtures passed a ConversationView to composeConversationView, which expects a ConversationSnapshot. Fixed the fixture input only; product validation was not weakened."
+    },
+    {
+      "command": "pnpm exec vitest run --dir src src/components/chat/ChatTurnGroup.test.ts src/pages/chat/ChatPage.test.ts --testNamePattern FEAT158 --maxWorkers=2",
+      "exit_code": 0,
+      "passed": 6,
+      "failed": 0,
+      "skipped_non_target": 80,
+      "reason": "Corrected fixture rerun; superseded by final three-file 11-test run."
+    }
+  ],
+  "source_file_sha256": [
+    {
+      "path": "src-tauri/src/chat/experts/commands.rs",
+      "sha256": "cc60280bef9411686733d2740634ae5d40562f69c4a75a34f62c0eb807b188b4",
+      "bytes": 29084
+    },
+    {
+      "path": "src-tauri/src/chat/experts/commands_tests.rs",
+      "sha256": "bf622d9cc2e3e51e5c133eb2bab67a17df172d48d401c83bb6dd3ee5d84f9f53",
+      "bytes": 18732
+    },
+    {
+      "path": "src-tauri/src/chat/connectors/dispatch.rs",
+      "sha256": "fe7c3a44f2852cd0d7664e661fff99902bd261ccb48a1d13e5f1b205a02b0d2a",
+      "bytes": 51913
+    },
+    {
+      "path": "src-tauri/src/chat/ipc.rs",
+      "sha256": "dbaafc1eac7786b2f839e005259379a3901cd7c0badba6011c17872e41a97ae5",
+      "bytes": 370489
+    },
+    {
+      "path": "src/components/chat/ChatTurnGroup.vue",
+      "sha256": "b174f2f3b5f9a183fef15eb095b0690754582326c489e998242d2eaa4fe26a86",
+      "bytes": 27675
+    },
+    {
+      "path": "src/components/chat/ChatTurnGroup.test.ts",
+      "sha256": "b7fe2231f5d93752e3c841087432513f7400ed606294e134939ffd9806ee6eac",
+      "bytes": 38673
+    },
+    {
+      "path": "src/pages/chat/ChatPage.vue",
+      "sha256": "4dacd3bea3e9eb2a09c1c31d239d35648ad3586a36eb26c98ff51835666b2c1b",
+      "bytes": 87526
+    },
+    {
+      "path": "src/pages/chat/ChatPage.test.ts",
+      "sha256": "d9d8cffb0b9664e428153c2756e26665fd0f0763f61d1d4307686f70ebd145bd",
+      "bytes": 82369
+    },
+    {
+      "path": "src/stores/chat.store.test.ts",
+      "sha256": "557e631f3980659aa8edcddc810fb1fd354a8d0a49eacc81fcd269d51ae9674d",
+      "bytes": 281527
+    }
+  ],
+  "read_only_context_file_sha256": [
+    {
+      "path": "scripts/run-local-demo-fast.sh",
+      "sha256": "795a21f470eac8896d045673fb5885d86166ff127e1362c6d9ab2bc89276c0a7",
+      "bytes": 20206
+    },
+    {
+      "path": "src/stores/chat.store.ts",
+      "sha256": "6c1a192b124a4812d5aeef9fdd06ba936ceeb2a924a1fcf9e976d3a8904172b2",
+      "bytes": 181232
+    },
+    {
+      "path": "src/domain/chat-ipc.ts",
+      "sha256": "20be5db70322b7bc684a0b9463ef8be82d5973f0d626cdc1a6800399b7fdce9f",
+      "bytes": 129519
+    },
+    {
+      "path": "contracts/experts.candidate.json",
+      "sha256": "a919d62bc5e0de7cace97ca214003b40d57a341bc8e9983d634d9a999ed9e8c1",
+      "bytes": 6429
+    },
+    {
+      "path": "contracts/experts-assets.candidate.json",
+      "sha256": "c89ce617d972cb29393c94ae4c958372d10496ddc0a884ea589ad313e05b0a9a",
+      "bytes": 646
+    },
+    {
+      "path": "contracts/experts-host-build.candidate.json",
+      "sha256": "c5d603f5b2cc45d9671764f5628d46fe90656d8ce1af15cc3fb72d116ce5d625",
+      "bytes": 43940
+    }
+  ],
+  "read_only_compatibility_review": [
+    {
+      "result": "PASS_BY_SOURCE_REVIEW",
+      "detail": "Ordinary --packaged launcher does not enable the stable-only v4/v5 UI flags and clears those inherited flags; subscribeAuthority falls back to existing schema1 subscription."
+    },
+    {
+      "result": "PASS_BY_SOURCE_REVIEW",
+      "detail": "parseChatProjectionEvent already accepts schema1 resync_required/context_invalidated. Native reuses event_envelope; no new field, reason, event name or permission is introduced."
+    },
+    {
+      "result": "PASS_BY_SOURCE_REVIEW_AND_FOCUSED_TEST",
+      "detail": "Result notification still checks exact session/current task.read, and skips blocked/terminal subscriptions; UI resync rereads persisted local_submissions. No polling timer or automatic submit was added."
+    }
+  ],
+  "activity_by_this_agent": {
+    "real_model_requests": 0,
+    "external_business_requests": 0,
+    "app_or_service_starts": 0,
+    "candidate_database_reads": 0,
+    "daily_database_reads": 0,
+    "generated_file_edits": 0,
+    "source_freeze_edits": 0,
+    "dangerous_fixture_or_fault_injection": 0
+  },
+  "not_run": [
+    {
+      "item": "Full historical Rust/Host test suites",
+      "reason": "User safety rules exclude suites containing fake executable/permission fault or attack fixtures; only reviewed normal focused tests and all-target static compilation were used."
+    },
+    {
+      "item": "App fresh run and real Provider content Eval by this agent",
+      "reason": "Parent agent owns run4/run5 App, screen and actual model acceptance. This report does not assert those results."
+    },
+    {
+      "item": "Historical unknown resubmission or direct database repair",
+      "reason": "No original attempt is automatically resent or rewritten. Retained uncertain operations remain query-only."
+    }
+  ]
+}

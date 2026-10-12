@@ -1,0 +1,31 @@
+{
+  "content_version": "0.1.3",
+  "run": 9,
+  "model": "kimi-k3",
+  "effort": "max",
+  "overall": "FAIL",
+  "cases": {
+    "c01": {
+      "status": "FAIL",
+      "turn_id": "01a130e5-e7c8-78e2-a795-d6863c3f2344",
+      "answer_line": 23,
+      "findings": [
+        {
+          "severity": "fact_boundary",
+          "input": "无品牌/销量/认证资料",
+          "output": "已确认值：无销量记录",
+          "reason": "Evidence availability and product-history state must be distinct; absence of provided material does not establish absence of records."
+        }
+      ],
+      "positive_evidence": [
+        "store-level settings and product fields both covered",
+        "three relevant local files read, no unrelated full-library read",
+        "version0.1.3 references match actual local reads",
+        "no external or business tool call"
+      ],
+      "scope_note": "No evidence of wrong resource version or lost role. Existing ROLE and M03 already require unknown preservation; do not guess a Native/Host fix."
+    }
+  },
+  "other_cases": "NOT RUN current phase after first-case failure",
+  "thresholds_changed": false
+}

@@ -1,0 +1,150 @@
+{
+  "recorded_at": "2026-10-12T17:14:33.485319+00:00",
+  "models_added": 0,
+  "runtime_rollout_sha256": "f29ae56bd1d879eff3430d6564f31552df8450c4092842c485a23d95d6f68dbc",
+  "unchanged_from_phase9": true,
+  "session_files": [
+    "sessions/2026/10/13/rollout-2026-10-13T00-15-35-01a130e5-e792-76b1-b691-e673783cf425.jsonl"
+  ],
+  "connector_recovery": [
+    {
+      "operation_id": "6ad70df2-1a13-406a-93f5-20d2c37a19aa",
+      "http_requests": 3,
+      "stages": [
+        {
+          "event": "started",
+          "stage": "metadata_initialize",
+          "status": null,
+          "at": 1791825235654,
+          "shape": null
+        },
+        {
+          "event": "request",
+          "stage": "metadata_http_send",
+          "status": null,
+          "at": 1791825235658,
+          "shape": null
+        },
+        {
+          "event": "response",
+          "stage": "metadata_http_response",
+          "status": 200,
+          "at": 1791825238507,
+          "shape": null
+        },
+        {
+          "event": "response",
+          "stage": "shopify_metadata_http_shape",
+          "status": 200,
+          "at": 1791825238507,
+          "shape": {
+            "ackCandidate": false,
+            "contentLength": 249,
+            "contentLengthCount": 1,
+            "contentTypeCount": 1,
+            "eventStream": false,
+            "json": true,
+            "method": "initialize",
+            "transferEncoding": false
+          }
+        },
+        {
+          "event": "request",
+          "stage": "metadata_http_send",
+          "status": null,
+          "at": 1791825238508,
+          "shape": null
+        },
+        {
+          "event": "response",
+          "stage": "metadata_http_response",
+          "status": 200,
+          "at": 1791825240087,
+          "shape": null
+        },
+        {
+          "event": "response",
+          "stage": "shopify_metadata_http_shape",
+          "status": 200,
+          "at": 1791825240087,
+          "shape": {
+            "ackCandidate": true,
+            "contentLength": null,
+            "contentLengthCount": 0,
+            "contentTypeCount": 1,
+            "eventStream": false,
+            "json": true,
+            "method": "initialized",
+            "transferEncoding": true
+          }
+        },
+        {
+          "event": "succeeded",
+          "stage": "shopify_initialized_ack",
+          "status": 204,
+          "at": 1791825240087,
+          "shape": null
+        },
+        {
+          "event": "succeeded",
+          "stage": "metadata_initialize",
+          "status": null,
+          "at": 1791825240087,
+          "shape": null
+        },
+        {
+          "event": "started",
+          "stage": "metadata_tools_list",
+          "status": null,
+          "at": 1791825240087,
+          "shape": null
+        },
+        {
+          "event": "request",
+          "stage": "metadata_http_send",
+          "status": null,
+          "at": 1791825240087,
+          "shape": null
+        },
+        {
+          "event": "response",
+          "stage": "metadata_http_response",
+          "status": 200,
+          "at": 1791825241108,
+          "shape": null
+        },
+        {
+          "event": "response",
+          "stage": "shopify_metadata_http_shape",
+          "status": 200,
+          "at": 1791825241108,
+          "shape": {
+            "ackCandidate": false,
+            "contentLength": null,
+            "contentLengthCount": 0,
+            "contentTypeCount": 1,
+            "eventStream": false,
+            "json": true,
+            "method": "tools_list",
+            "transferEncoding": true
+          }
+        },
+        {
+          "event": "succeeded",
+          "stage": "metadata_tools_list",
+          "status": null,
+          "at": 1791825241245,
+          "shape": null
+        },
+        {
+          "event": "succeeded",
+          "stage": "metadata_artifact",
+          "status": null,
+          "at": 1791825241257,
+          "shape": null
+        }
+      ]
+    }
+  ],
+  "tools_call": 0
+}
