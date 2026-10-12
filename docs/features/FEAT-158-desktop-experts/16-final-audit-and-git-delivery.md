@@ -50,3 +50,5 @@ Desktop 包含主功能提交 `c0b4e7b8164bdd228acf3cdafafc5d656aa010db` 和明�
 仅显式暂存审计过的路径。Runtime 仓保持原提交且无改动；Connectors `.local` 的3份原始诊断文件保留本机。原始附件不复制进 Git；知识正文为已审 derivative，评测仅脱敏结果/合成输入/公开回答/状态摘要，不包含隐藏推理、凭据、数据库、个人会话原文或本机缓存。源码推送不改变服务 exposure=local，也不自动创建 release/tag 或部署。
 
 元仓全暂存 `git diff --check` 返回2：仅历史 `evidence/phase5-final-contract-checks.json:60` 的末尾多余空行。该文件属于已冻结136份证据，不为消除格式提示改写其字节；保留此非代码告警，不能标作全暂存检查通过。排除这一份历史证据后，其余全部暂存路径检查通过。严格 D4 文档、claims 审计与元仓 lint 均通过，详见 [最终检查](evidence/phase13-final-checks.json)。
+
+提交树完整性复核另发现仓库全局 `*.log` 忽略了29份本需求已审脱敏测试/工程证据日志。已逐个限定本 feature evidence 路径显式补入；不纳入 `.local` 或 App 原始运行日志。原日志中的格式空白按原样保留，检查实际结果记录于最终检查文件；所有历史摘要继续保持。

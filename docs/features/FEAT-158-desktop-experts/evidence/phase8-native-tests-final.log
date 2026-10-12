@@ -1,0 +1,20 @@
+   Compiling yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 13.55s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/yijie_desktop_lib-6d0ab7e7a0bde530)
+
+running 12 tests
+test chat::connectors::provider::tests::browser_recovery_requires_a_live_auth_page_and_current_credential_permission ... ok
+test chat::connectors::provider::tests::typed_control_rejection_is_not_reported_as_transport_unknown ... ok
+test chat::connectors::provider::tests::google_client_setup_and_registered_oauth_use_separate_owned_browser_steps ... ok
+test chat::connectors::provider::tests::existing_pending_without_observation_is_not_fresh_dispatch ... ok
+test chat::connectors::provider::tests::ordinary_user_cancel_has_terminal_receipt_without_reopening_authorization ... ok
+test chat::connectors::provider::tests::known_rejection_can_finish_new_intent_but_never_erase_unknown_original ... ok
+test chat::connectors::provider::tests::disable_fences_pending_auth_before_forget_receipt_and_late_auth_stays_stale ... ok
+test chat::connectors::provider::tests::authorized_metadata_never_enables_unqualified_business ... ok
+test chat::connectors::provider::tests::explicit_enable_persists_only_intent_and_original_binding ... ok
+test chat::connectors::provider::tests::disable_revision_supersedes_original_enable_locator ... ok
+test chat::connectors::provider::tests::current_enable_poll_projects_readiness_and_normal_close_removes_it ... ok
+test chat::connectors::provider::tests::snapshot_keeps_current_shopify_when_another_installation_has_an_old_host ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 599 filtered out; finished in 1.32s
+

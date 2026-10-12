@@ -1,0 +1,12 @@
+Diff in /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/src/skills/catalog.rs:736:
+             .collect();
+         assert_eq!(experts.len(), 1);
+         assert_eq!(experts[0].version, "0.1.3");
+-        assert_eq!(experts[0].expert.as_ref().unwrap().expert_id, "jd-ops-expert");
++        assert_eq!(
++            experts[0].expert.as_ref().unwrap().expert_id,
++            "jd-ops-expert"
++        );
+         assert_eq!(experts[0].catalog_status, "installable");
+     }
+ 

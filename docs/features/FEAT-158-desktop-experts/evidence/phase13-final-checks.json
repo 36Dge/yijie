@@ -36,5 +36,43 @@
     "excluded_historical_evidence": "docs/features/FEAT-158-desktop-experts/evidence/phase5-final-contract-checks.json",
     "reason": "Preserve the original evidence bytes and recorded SHA-256; no code/behavior issue",
     "all_other_staged_paths_exit_code": 0
+  },
+  "evidence_git_completeness": {
+    "initial_missing_due_to_ignore_pattern": 29,
+    "cause": "Repository-wide *.log ignore omitted already reviewed FEAT-158 evidence logs",
+    "action": "Explicitly stage only these 29 reviewed, bounded, credential-free feature evidence logs; no .local or application runtime logs",
+    "paths": [
+      "docs/features/FEAT-158-desktop-experts/evidence/phase9-host-logic-tests.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase9-clippy.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase8-docs-build.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase9-shared-diagnostic-test.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase8-clippy-final.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase8-native-tests-final.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase8-sdk-path.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase13-focused-tests.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase9-shopify-observed-body.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase9-eslint.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase13-fmt-final.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase9-ack-diagnostic-clippy.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase13-host-checks.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase9-focused-ui.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase13-fmt.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase7-prefill-red.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase9-docs.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase9-ack-diagnostic-tests-final.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase8-native-tests.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase7-prefill-green.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase9-chunked-tests.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase8-http-shape.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase9-native.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase13-native-pin-green.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase9-chunked-clippy.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase13-native-pin-red.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase9-same-build-reopen.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase9-content-tests.log",
+      "docs/features/FEAT-158-desktop-experts/evidence/phase13-clippy.log"
+    ],
+    "log_whitespace_check_exit_code": 2,
+    "log_whitespace_warnings": "docs/features/FEAT-158-desktop-experts/evidence/phase13-fmt.log:12: trailing whitespace.\n+ \ndocs/features/FEAT-158-desktop-experts/evidence/phase13-fmt.log:12: new blank line at EOF.\ndocs/features/FEAT-158-desktop-experts/evidence/phase13-focused-tests.log:9: new blank line at EOF.\ndocs/features/FEAT-158-desktop-experts/evidence/phase13-native-pin-green.log:9: new blank line at EOF.\ndocs/features/FEAT-158-desktop-experts/evidence/phase7-prefill-green.log:15: new blank line at EOF.\ndocs/features/FEAT-158-desktop-experts/evidence/phase8-native-tests-final.log:20: new blank line at EOF.\ndocs/features/FEAT-158-desktop-experts/evidence/phase9-ack-diagnostic-tests-final.log:11: new blank line at EOF.\ndocs/features/FEAT-158-desktop-experts/evidence/phase9-chunked-tests.log:11: new blank line at EOF.\ndocs/features/FEAT-158-desktop-experts/evidence/phase9-focused-ui.log:17: new blank line at EOF.\ndocs/features/FEAT-158-desktop-experts/evidence/phase9-native.log:75: new blank line at EOF.\ndocs/features/FEAT-158-desktop-experts/evidence/phase9-shared-diagnostic-test.log:8: new blank line at EOF.\n"
   }
 }

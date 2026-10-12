@@ -1,0 +1,75 @@
+   Compiling objc2-exception-helper v0.1.1
+   Compiling ring v0.17.14
+   Compiling libsqlite3-sys v0.38.1
+   Compiling objc2 v0.6.4
+   Compiling rustls v0.23.43
+   Compiling rustls-webpki v0.103.13
+   Compiling block2 v0.6.2
+   Compiling objc2-core-foundation v0.3.2
+   Compiling dispatch2 v0.3.1
+   Compiling rusqlite v0.40.1
+   Compiling objc2-foundation v0.3.2
+   Compiling rusqlite_migration v2.6.0
+   Compiling tokio-rustls v0.26.4
+   Compiling hyper-rustls v0.27.9
+   Compiling reqwest v0.12.28
+   Compiling objc2-app-kit v0.3.2
+   Compiling oauth2 v5.0.0
+   Compiling openidconnect v4.0.1
+   Compiling objc2-web-kit v0.3.2
+   Compiling tao v0.35.3
+   Compiling muda v0.19.3
+   Compiling window-vibrancy v0.6.0
+   Compiling webbrowser v1.2.2
+   Compiling rfd v0.16.0
+   Compiling wry v0.55.1
+   Compiling tauri-runtime v2.11.3
+   Compiling tauri-runtime-wry v2.11.4
+   Compiling tauri v2.11.5
+   Compiling yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 19.40s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/yijie_desktop_lib-6d0ab7e7a0bde530)
+
+running 31 tests
+test chat::experts::resources_tests::expert_resources_remove_checks_existing_binding_references_before_recording ... ok
+test chat::experts::resources_tests::expert_resources_intent_commits_atomically_and_preserves_original_private_request ... ok
+test chat::experts::resources_tests::expert_resources_explicit_recovery_keeps_original_intent_with_renewed_authority ... ok
+test chat::experts::resources_tests::expert_resources_confirmed_unstarted_rejection_closes_only_original_journal ... ok
+test chat::experts::resources_tests::expert_resources_completed_history_blocks_new_version_prepare_before_journal ... ok
+test chat::experts::resources_tests::expert_resources_migration_keeps_ordinary_history_and_upgrades_only_expert_receipt ... ok
+test chat::experts::resources_tests::expert_resources_scoped_reads_and_cross_scope_pending_exclusion ... ok
+test chat::experts::resources_tests::expert_resources_terminal_receipt_is_immutable_and_settlement_is_atomic ... ok
+test chat::experts::resources_tests::expert_resources_same_operation_different_intent_conflicts ... ok
+test chat::experts::store_tests::expert_store_finish_is_atomic_and_success_increments_only_once ... ok
+test chat::experts::store_tests::expert_store_begin_and_attempt_journal_follow_the_same_transaction ... ok
+test chat::experts::resources_tests::expert_resources_unknown_survives_empty_status_and_only_positive_receipt_settles ... ok
+test chat::experts::store_tests::expert_store_local_unknown_keeps_prior_reference_and_resolves_only_original_receipt ... ok
+test chat::experts::store_tests::expert_store_local_rejection_keeps_managed_none_and_original_terminal_receipt ... ok
+test chat::experts::store_tests::expert_store_pending_switch_preserves_old_effective_reference_and_revision ... ok
+test chat::experts::store_tests::expert_store_rejected_initial_selection_stays_ordinary_and_history_is_untouched ... ok
+test chat::experts::store_tests::expert_store_receipt_requires_the_journaled_owned_host_attempt ... ok
+test chat::experts::store_tests::expert_store_rejection_keeps_revision_and_removal_is_a_new_successful_revision ... ok
+test chat::experts::commands::tests::expert_commands_recovery_keeps_original_intent_under_a_renewed_context ... ok
+test chat::experts::commands::tests::expert_commands_plan_waits_for_a_normal_active_turn_before_journaling ... ok
+test chat::experts::commands::tests::expert_commands_plan_preserves_the_existing_market_snapshot ... ok
+test chat::experts::commands::tests::expert_commands_recovery_rechecks_current_plugin_read_permission ... ok
+test chat::experts::commands::tests::expert_commands_recheck_current_reader_before_returning_saved_observation ... ok
+test chat::experts::commands::tests::expert_commands_plan_combines_real_ordinary_session_model_permission_and_turn ... ok
+test chat::experts::commands::tests::expert_commands_recovery_rechecks_sender_after_composition_guard_without_ending_original ... ok
+test chat::experts::commands::tests::expert_commands_completed_recovery_replays_before_live_composition_checks ... ok
+test chat::experts::store_tests::expert_store_same_operation_and_intent_replays_but_changed_intent_conflicts ... ok
+test chat::experts::store_tests::expert_store_same_operation_on_another_owned_session_conflicts_without_partial_binding ... ok
+test chat::experts::store_tests::expert_store_unknown_blocks_new_changes_and_keeps_confirmed_state_until_resolved ... ok
+test chat::experts::store_tests::expert_store_scope_ownership_applies_to_reads_and_binding_intents ... ok
+test chat::experts::commands::tests::expert_commands_apply_rechecks_sender_after_journal_and_settles_without_dispatch ... ok
+
+test result: ok. 31 passed; 0 failed; 0 ignored; 0 measured; 580 filtered out; finished in 25.23s
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.35s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/yijie_desktop_lib-6d0ab7e7a0bde530)
+
+running 1 test
+test single_instance::tests::feat158_isolated_lock_requires_both_local_gate_and_compiled_identity ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 610 filtered out; finished in 0.00s
+

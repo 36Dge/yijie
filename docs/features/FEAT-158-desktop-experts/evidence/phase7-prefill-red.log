@@ -1,0 +1,12 @@
+Captured from the actual tool output for the pre-fix run (not a rerun and not a direct stdout file).
+Command: pnpm exec vitest run --dir src src/pages/plugins/ExtensionsPage.permission-refresh.test.ts --maxWorkers=1
+Exit code: 1
+Start at: 22:44:22 (local)
+Test Files  1 failed (1)
+Tests       1 failed (1)
+AssertionError: expected '普通合成专家本地参考 · 0.1.0用于正常页面验证运营知识范围普通合成资…' to contain '授权状态已更新，本次操作未执行'
+Expected: "授权状态已更新，本次操作未执行"
+Received: "普通合成专家本地参考 · 0.1.0用于正常页面验证运营知识范围普通合成资料可以这样提问整理上架前准备事项核对本周复盘资料当前版本仅获本地开发使用授权。资料可能涉及需要复核的平台规则，不能作为平台政策已核验的证明。参考问题只填入输入框；由你确认内容后发送。移除资源已选用"
+Location: src/pages/plugins/ExtensionsPage.permission-refresh.test.ts:133:65
+Preceding assertions passed: capabilities read twice; chat rebound twice; changed context; same tenant scope and authorization revision; old dialog closed; old callback left draft and route unchanged.
+Earlier 3 test-environment-only failures (missing theme tokens, then two animation visibility assertions) did not reach this product assertion and are not product-defect evidence.
