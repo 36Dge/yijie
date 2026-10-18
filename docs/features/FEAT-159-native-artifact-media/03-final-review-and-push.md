@@ -45,4 +45,12 @@ Contracts候选仍是release=false，原生成base/digest证据按其真实含�
 - 实际App原普通聊天的三类ready卡片恢复；HTML独立内置预览按钮0→1、关闭正常；SVG显示原中文图形、100%→125%缩放正常；MP4显示原瑜伽画面，音量1且未静音、播放控件正常。本次未把控件状态冒充新的人工听音确认；音频依据此前用户明确确认，音视频路径未改。
 - 只读Host API核对原UI聊天仍为同一session/thread、Host idle且active为空；原生仍恰好3轮（旧interrupted及两条completed验收），没有新增请求或自动补发。JSON证据 `.local/feat159-160-committed-history.json`。导航时工具提示用户正在操作App，已停止进一步导航、重新读取当前状态，未强制抢占操作。
 - Contracts、Skills、Host、Desktop四仓普通push均exit0，随后`git ls-remote --heads origin <branch>`逐一核对等于上表完整commit，四仓工作区干净。元仓记录随后作为独立提交推送。
-- 本地检查和远端同步是不同结论：当前chore分支不触发既有push CI；Skills develop触发的CI run 39114497051正在运行，未声称远端CI全部通过。
+- 本地检查和远端同步是不同结论：当前chore分支不触发既有push CI；Skills develop触发的CI run 39114497051最终为144通过/1失败，未声称远端CI全部通过；原因与父提交既有失败一致，详见下文。
+
+## 远端CI的既有环境缺口
+
+Skills新提交[CI run 39114497051](https://github.com/36Dge/yijie-skills/actions/runs/39114497051)为144/145通过，唯一失败为`tests/thirteen-fourth-sale.test.mjs`读取`../yijie-connectors/worker/fixtures/linkfox-sale-request.json`时ENOENT；既有workflow只checkout Skills，不含所需兄弟仓库。已只读取得父提交`25df87ea261a922881e6b74c640909fcfab0b6a3`的[CI run 39092233163](https://github.com/36Dge/yijie-skills/actions/runs/39092233163)，同样144通过/1失败且路径及错误一致。本次Skills仅改Contracts来源pin，未改该测试、fixture或workflow。
+
+该缺口不作为本次预览/恢复功能回归，不关闭检查、复制fixture或改CI授权来伪造绿色。五仓源码普通push已完成并核对远端；元仓初次记录提交为ae0e477ef40a9095d92bfb05303e53ed0d6334b1，本补充证据作为后续文档提交保存。
+
+同一失败测试在当前本地完整兄弟仓库环境中按精确名称定向执行PASS（1/1），未修改任何测试或fixture。其余仓库的chore分支按既有workflow规则不触发push CI；本地已执行的focused checks和真实验收不等同于远端CI通过。
