@@ -54,3 +54,7 @@ Skills新提交[CI run 39114497051](https://github.com/36Dge/yijie-skills/action
 该缺口不作为本次预览/恢复功能回归，不关闭检查、复制fixture或改CI授权来伪造绿色。五仓源码普通push已完成并核对远端；元仓初次记录提交为ae0e477ef40a9095d92bfb05303e53ed0d6334b1，本补充证据作为后续文档提交保存。
 
 同一失败测试在当前本地完整兄弟仓库环境中按精确名称定向执行PASS（1/1），未修改任何测试或fixture。其余仓库的chore分支按既有workflow规则不触发push CI；本地已执行的focused checks和真实验收不等同于远端CI通过。
+
+## 后续修复记录（2026-10-18）
+
+用户单独授权的[FEAT-161验证](../FEAT-161-skills-ci-fixture-source/02-verification.md)已修复上述CI来源缺口：复用固定Connectors commit的稀疏检出，没有复制fixture或改断言；并更新完整检查新暴露的既有开发依赖安全版本。Skills提交`4247a4f2967ecf60fcf92ed0e86b9dd62496ea6e`的[真实CI run39115501106](https://github.com/36Dge/yijie-skills/actions/runs/39115501106)全部success，145/145测试、0 skipped、audit无已知漏洞。上文历史失败记录保留。

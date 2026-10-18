@@ -1,0 +1,83 @@
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+feature:
+  id: FEAT-161
+  slug: skills-ci-fixture-source
+  title: Skills CI canonical fixture检出
+  status: usable
+  created_at: 2026-10-18
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+scope:
+  risk_level: low
+  data_classification: internal
+  contract_impact: none
+  database_change: none
+  persistence_change: none
+  runtime_change: none
+  auth_permission_change: none
+  user_workflow_change: internal
+  ui_change: none
+  ai_behavior_change: none
+repositories: [yijie, yijie-skills]
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+product_ux:
+  status: PASS
+  primary_user: Skills维护者
+  problem: CI未检出测试已经依赖的Connectors单一fixture来源
+  user_outcome: 真实CI完整检查通过且fixture保持唯一维护来源
+  in_scope: [CI目录布局, 固定commit的稀疏检出, 已有校验依赖安全更新, 完整检查与真实Actions验证, 文档及提交推送]
+  out_of_scope: [复制fixture, 跳过断言, 新凭据或权限, 修改业务资源, Codex内核, 部署发布]
+  main_flow: [检出Skills, 同级检出固定Connectors fixture, 安装锁定依赖, 原lint/test/audit, 查看真实CI结果]
+  visual_direction: 无产品UI变化，沿原CI日志
+  ui_states: { idle: 等待CI, loading: 原工作流运行, success: 全部原检查通过, empty: 缺来源必须失败, error: 保留真实错误, retry: 修复后新的正常CI运行, cancel: 原有CI取消机制 }
+must_acceptance:
+  - { id: AC-001, statement: 只从固定Connectors commit检出原fixture，不复制维护副本, verification: 02-verification.md, status: PASS }
+  - { id: AC-002, statement: 干净检出目录下原lint/test/audit真实通过, verification: 02-verification.md, status: PASS }
+  - { id: AC-003, statement: 远端原CI完整通过且没有skip或弱化检查, verification: 02-verification.md, status: PASS }
+  - { id: AC-004, statement: 提交推送并核对远端与本地一致，其他仓库保持原状, verification: 02-verification.md, status: PASS }
+contract:
+  impact: none
+  authority: yijie-connectors/worker/fixtures/linkfox-sale-request.json
+  source_first_plan: 仅修复CI依赖检出并更新已有开发校验依赖；不改fixture字节、测试语义、公共wire、Runtime或数据格式
+  status: N/A
+  checks: []
+external_authorizations:
+  paid_calls: { allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A }
+  destructive_operations: { allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A }
+  production_writes: { allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A }
+implementation:
+  status: complete
+  real_entrypoint: yijie-skills .github/workflows/ci.yml
+  mock_only: false
+verification:
+  status: PASS
+  verified_at: "2026-10-18T09:30:56.685965+00:00"
+  startup: { status: PASS, command_or_steps: 真实Git干净检出Skills及固定Connectors稀疏来源, environment: 本地临时目录及GitHub Actions, actual_result: 唯一fixture字节与固定来源一致；远端checkout成功 }
+  real_smoke: { status: PASS, command_or_steps: pnpm install --frozen-lockfile / make lint / make test / pnpm audit --audit-level high, environment: GitHub Actions ubuntu-latest Node24.21.0 pnpm11.7.0, actual_result: run39115501106全部成功；145/145测试与249条合成case通过；审计无已知漏洞 }
+  representative_failure: { status: PASS, command_or_steps: 对照原失败run39114497051和39092233163以及原依赖审计，正常修复后完整重跑, environment: 既有Actions日志及临时干净检出, actual_result: 保留ENOENT与旧依赖失败证据；不造故障、不跳过断言；修复后全部通过 }
+  focused_checks:
+    - { repository: yijie-skills, command: 干净检出原install/lint/test/audit，pnpm11.7.0, status: PASS, exit_code: 0 }
+    - { repository: yijie-skills, command: gh run view 39115501106及完整日志核对, status: PASS, exit_code: 0 }
+    - { repository: yijie, command: pnpm lint / pnpm test / bash -n scripts/*.sh, status: PASS, exit_code: 0 }
+  artifacts: [00-feature-brief.md, 01-delivery-log.md, 02-verification.md]
+  diff_review: { status: PASS, summary: Skills仅5个配置说明文件；无fixture副本、测试改动、门禁弱化、新secret或权限；相关其他源码仓干净 }
+  known_limitations: [只验证合成数据和CI流程，不调用模型或商家服务, 不执行攻击样例或故障注入，安全结论限于依赖审计和正常回归, 元仓既有chore分支不触发push CI，使用本地文档门禁]
+public_readiness:
+  required: false
+  status: N/A
+  checks: []
+  external_smoke: { status: NOT RUN, command_or_steps: N/A, actual_result: 没有公开产品服务或发布 }
+documents:
+  brief: 00-feature-brief.md
+  delivery_log: 01-delivery-log.md
+  verification: 02-verification.md
