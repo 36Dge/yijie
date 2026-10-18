@@ -1,0 +1,25 @@
+{
+  "scope": "Independent arithmetic only; original expert scripts not executed. Static counterexamples are not runtime regression passes.",
+  "advertising": {
+    "assumptions": {
+      "grossMargin": "0.4",
+      "roi": "2",
+      "adCost": "1"
+    },
+    "breakevenROI": "2.5",
+    "upstreamPerUnitLoss": "0.5",
+    "correctContributionLoss": "0.2",
+    "correctContributionLossEquivalent": "0.20"
+  },
+  "dcf": {
+    "assumptions": {
+      "preTaxDebtCost": "0.05",
+      "tax": "0.25",
+      "costOfEquity": "0.1",
+      "debtWeight": "0.5",
+      "equityWeight": "0.5"
+    },
+    "upstreamDoubleTaxWACC": "0.0640625",
+    "singleTaxWACC": "0.06875"
+  }
+}

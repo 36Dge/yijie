@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-17",
+  "kind": "derived-audit-correction",
+  "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/thirteen-sixth-group-20261017/actual-runtime-evidence.json",
+  "source_sha256": "d77583cc3f06ea14b5efc4499b8aee6761f77b29a47b4f36f295e5de3dabfb8d",
+  "source_unchanged": true,
+  "previous_text_match_count": 9,
+  "actual_entry_execution_count": 8,
+  "operation_counts": {
+    "freeze": 2,
+    "deliver": 2,
+    "verify": 4
+  },
+  "rule": "Count Python command entry executions, not path mentions within generated Markdown. A normal stale verification is an execution, not a successful verification. No commands are executed by this audit.",
+  "calls": [
+    {
+      "call_id": "exec_command_12_befa6153",
+      "operation": "freeze",
+      "command_sha256": "b64f14eda08b4b9a98437360cd446ff71e02a3248b059b6d23def92fedcc5cd4"
+    },
+    {
+      "call_id": "exec_command_13_88ded480",
+      "operation": "deliver",
+      "command_sha256": "0878669be43af9c6d63d3d966f2a3ddc9aa3daaff48ff9946e59f98ecd825a5e"
+    },
+    {
+      "call_id": "exec_command_14_a3bb17c2",
+      "operation": "verify",
+      "command_sha256": "ee0175e492a8553b287f9c3f5e4065af328fe13711715d478e2d00a921e3c277"
+    },
+    {
+      "call_id": "exec_command_27_b06de91c",
+      "operation": "verify",
+      "command_sha256": "241aad8ca2ba5dba89fe0f5b38e491df954858849730a60ef5bbb2ab06819d27"
+    },
+    {
+      "call_id": "exec_command_28_c765ab00",
+      "operation": "freeze",
+      "command_sha256": "3ce86d087a9e0827c0a14db46ac43c46f8a463eef81bf766dff103e11387277f"
+    },
+    {
+      "call_id": "exec_command_29_2cb9df66",
+      "operation": "deliver",
+      "command_sha256": "b59182c00c1802b13c386b34db03f185c1cac8fed0905bb317b14ae445ba578d"
+    },
+    {
+      "call_id": "exec_command_30_75605bec",
+      "operation": "verify",
+      "command_sha256": "cf7cf338d9691f5beedd83746aa181c15ace24023d741bb895a48fe611b9c0a5"
+    },
+    {
+      "call_id": "exec_command_33_1d9b2498",
+      "operation": "verify",
+      "command_sha256": "414dce66218392e61c3c5ab2cb11e5d96b765f68076d970c4d6897d47a1a79b4"
+    }
+  ],
+  "excluded": [
+    {
+      "call_id": "exec_command_22_fd5d368d",
+      "reason": "Writes a model-notes Markdown file; the executable path occurs in heredoc content, not as an executed Python entry."
+    }
+  ]
+}

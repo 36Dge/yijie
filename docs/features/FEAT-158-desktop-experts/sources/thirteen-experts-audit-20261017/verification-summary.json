@@ -1,0 +1,111 @@
+{
+  "date": "2026-10-17",
+  "scope": "documentation-only audit; no product build or new expert runtime validation",
+  "checks": {
+    "metaLint": {
+      "command": "pnpm lint",
+      "exitCode": 0
+    },
+    "metaTests": {
+      "command": "pnpm test",
+      "passed": 50,
+      "failed": 0,
+      "skipped": 0
+    },
+    "shellSyntax": {
+      "command": "bash -n scripts/*.sh (each file separately)",
+      "files": 7,
+      "failed": 0
+    },
+    "sevenRepositoryDiffCheck": {
+      "command": "git diff --check",
+      "repositories": 7,
+      "failed": 0
+    },
+    "mainReportLocalLinks": {
+      "missing": 0
+    },
+    "sourceIntegrity": {
+      "regularOriginals": 865,
+      "sourceLinks": 2,
+      "exportedFiles": 1274,
+      "mismatches": 0
+    }
+  },
+  "preservationScope": "All pre-existing regular non-ignored files below 16MiB recorded at start, excluding .local; git heads/branches and diff checks also recorded. No runtime database inspection performed.",
+  "repositories": {
+    "yijie": {
+      "head": "2c42db6cddddfa6eb44bfab8438f0818b3bb4ba9",
+      "branch": "chore/retirement-baseline-20260905",
+      "headUnchanged": true,
+      "branchUnchanged": true,
+      "existingSnapshotFiles": 3174,
+      "changedExistingFiles": [],
+      "deletedExistingFiles": []
+    },
+    "yijie-desktop": {
+      "head": "e2c201c3c154d636c87ff08bdab845cb94966cc7",
+      "branch": "chore/retirement-baseline-20260905",
+      "headUnchanged": true,
+      "branchUnchanged": true,
+      "existingSnapshotFiles": 1186,
+      "changedExistingFiles": [],
+      "deletedExistingFiles": []
+    },
+    "yijie-agent-host": {
+      "head": "9acae49ee2bf1fb33ae1da8ef02fd0bd07538d63",
+      "branch": "chore/retirement-baseline-20260905",
+      "headUnchanged": true,
+      "branchUnchanged": true,
+      "existingSnapshotFiles": 412,
+      "changedExistingFiles": [],
+      "deletedExistingFiles": []
+    },
+    "yijie-skills": {
+      "head": "d7a850c9d5c5f8e52b8ab8f631800f671acc60dc",
+      "branch": "develop",
+      "headUnchanged": true,
+      "branchUnchanged": true,
+      "existingSnapshotFiles": 606,
+      "changedExistingFiles": [],
+      "deletedExistingFiles": []
+    },
+    "yijie-contracts": {
+      "head": "e35ae9a0711014e4774a1347413e9a343ce7ab2c",
+      "branch": "chore/retirement-baseline-20260905",
+      "headUnchanged": true,
+      "branchUnchanged": true,
+      "existingSnapshotFiles": 531,
+      "changedExistingFiles": [],
+      "deletedExistingFiles": []
+    },
+    "yijie-connectors": {
+      "head": "23c31e8f3cd467916956e1bbdef428a334de0ca3",
+      "branch": "develop",
+      "headUnchanged": true,
+      "branchUnchanged": true,
+      "existingSnapshotFiles": 142,
+      "changedExistingFiles": [],
+      "deletedExistingFiles": []
+    },
+    "yijie-codex": {
+      "head": "7fd463bcef07f37b0211acd9f62b9f93ea0a4b12",
+      "branch": "chore/retirement-baseline-20260905",
+      "headUnchanged": true,
+      "branchUnchanged": true,
+      "existingSnapshotFiles": 5575,
+      "changedExistingFiles": [],
+      "deletedExistingFiles": []
+    }
+  },
+  "notRun": [
+    "new expert installation",
+    "model business validation",
+    "online accounts and billing",
+    "Remotion rendering",
+    "Office conversion",
+    "product full lint rerun",
+    "App build/update"
+  ],
+  "localLogsDirectory": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/thirteen-experts-audit-20261017"
+}
