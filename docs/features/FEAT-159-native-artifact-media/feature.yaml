@@ -1,0 +1,128 @@
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+feature:
+  id: FEAT-159
+  slug: native-artifact-media
+  title: 原生产物 HTML、SVG 与有声 MP4
+  status: usable
+  created_at: 2026-10-18
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+scope:
+  risk_level: high
+  data_classification: internal
+  contract_impact: breaking
+  database_change: expand
+  persistence_change: durable
+  runtime_change: platform
+  auth_permission_change: permission
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: tool
+repositories: [yijie, yijie-contracts, yijie-agent-host, yijie-desktop]
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+product_ux:
+  status: PASS
+  primary_user: 使用普通聊天和已绑定专家聊天的易界用户
+  problem: 工作区生成文件未进入原生产物接收链，旧媒体白名单和 MP4 单轨限制阻断预览
+  user_outcome: 在聊天卡片中预览 HTML、SVG 和有声 MP4，保存原件并在重启后恢复
+  in_scope: [原生 MCP 登记, 旧线程受管 resume, HTML 自包含交互, SVG 图片预览, MP4 音视频, 保存, 正常重启恢复]
+  out_of_scope: [Codex 内核修改, 自研播放器或 Agent 编排, HTML 外部网络和任意本地资源, 云端发布]
+  main_flow: [生成工作区文件, 原生 MCP 登记, Host 加密暂存, Native 持久化后 ACK, 聊天卡片预览与保存]
+  visual_direction: 复用既有 Artifact 卡片、图片预览、原生保存和系统视频控件
+  ui_states:
+    idle: 显示文件名、类型和可用操作
+    loading: 复用产物接收和预览加载状态
+    success: 持久化成功才显示 ready
+    empty: 没有产物不展示空卡片
+    error: 预览错误保留独立保存入口
+    retry: 沿现有授权重新申请预览
+    cancel: 原生保存取消不算失败，关闭或切换聊天释放预览
+must_acceptance:
+  - id: AC-001
+    statement: 新普通聊天和已有专家聊天均能经真实 MCP 登记产物
+    verification: 02-verification.md
+    status: PASS
+  - id: AC-002
+    statement: HTML 中文布局及内联交互、SVG 缩放在 App 内可用
+    verification: 02-verification.md
+    status: PASS
+  - id: AC-003
+    statement: 用户 testmp4.mp4 有画面和声音，进度及关闭停止播放正常
+    verification: 02-verification.md
+    status: PASS
+  - id: AC-004
+    statement: 三类文件原生保存摘要一致，正常重启恢复并再次预览
+    verification: 02-verification.md
+    status: PASS
+  - id: AC-005
+    statement: 产物顺序、幂等和早到引用正确，旧协议及原生执行状态保持兼容
+    verification: Contracts、Host race 与 Desktop 定向测试
+    status: PASS
+contract:
+  impact: breaking
+  authority: yijie-contracts/jsonschema/artifact/media-v1.schema.json
+  source_first_plan: Contracts 生成 schema 9 与 DTO，Host/Native 精确摘要消费；持久化 migration 36 阻止旧 reader 写入
+  status: PASS
+  checks:
+    - { repository: yijie-contracts, command: node scripts/validate-json-schemas.mjs, status: PASS, exit_code: 0 }
+    - { repository: yijie-contracts, command: node --test tests/artifact-media.test.mjs, status: PASS, exit_code: 0 }
+    - { repository: yijie-contracts, command: node scripts/generate-artifact-media.mjs --check --consumer=host, status: PASS, exit_code: 0 }
+    - { repository: yijie-contracts, command: node scripts/generate-artifact-media.mjs --check --consumer=desktop, status: PASS, exit_code: 0 }
+external_authorizations:
+  paid_calls: { allowed: true, max_actions: 4, approved_by: 用户本轮明确答复, approved_at: 2026-10-18T06:18:47.232Z }
+  destructive_operations: { allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A }
+  production_writes: { allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A }
+implementation:
+  status: complete
+  real_entrypoint: yijie-desktop pnpm tauri:demo-fast:app
+  mock_only: false
+verification:
+  status: PASS
+  verified_at: 2026-10-18T07:22:35Z
+  startup:
+    status: PASS
+    command_or_steps: pnpm tauri:demo-fast:app，正常 Cmd+Q
+    environment: local/demo_fast，原日常数据和固定 Runtime
+    actual_result: 最终canonical构建与同构建reopen通过；播放中Cmd+Q exit0并清理Host、adapter、18081监听
+  real_smoke:
+    status: PASS
+    command_or_steps: 新聊天、已有专家聊天各登记三类产物，预览保存并正常重启
+    environment: local/demo_fast
+    actual_result: 3次提交（1次既有状态阻挡），2个真实模型轮次登记6份产物；最终构建复验两类聊天的HTML交互、SVG缩放、原视频画面，用户确认有声；正常退出恢复、三类原生再次保存字节一致
+  representative_failure:
+    status: PASS
+    command_or_steps: 普通原生保存取消
+    environment: local/demo_fast
+    actual_result: 最终构建取消保存返回已取消保存，未覆盖已有文件；禁止攻击或故障注入
+  focused_checks:
+    - { repository: yijie-agent-host, command: "YIJIE_TEST_MEDIA_FILE=/Users/jack/Desktop/testmp4.mp4 go test -race ./internal/session -run '^TestArtifactMediaNormal' -count=1", status: PASS, exit_code: 0 }
+    - { repository: yijie-desktop, command: "YIJIE_TEST_MEDIA_FILE=/Users/jack/Desktop/testmp4.mp4 cargo test --manifest-path src-tauri/Cargo.toml --lib media_normal_", status: PASS, exit_code: 0 }
+    - { repository: yijie-desktop, command: cargo clippy --manifest-path src-tauri/Cargo.toml --lib -- -D warnings, status: PASS, exit_code: 0 }
+    - { repository: yijie-desktop, command: pnpm exec vue-tsc --noEmit, status: PASS, exit_code: 0 }
+  artifacts: [00-feature-brief.md, 01-delivery-log.md, 02-verification.md]
+  diff_review: { status: PASS, summary: 复用稳定 MCP 与原生 Artifact 链，Codex 源码和二进制未改；补齐 HTML 授权失效关闭、多producer排序、视频有界读取等待；Quit复用既有ExitOwner }
+  known_limitations:
+    - 仅本地candidate；源码已获授权提交推送，未发布安装包
+    - HTML 限自包含资源；系统支持的 MP4 解码能力由 WebKit 提供
+    - 首次视频灰屏与Cmd+Q退出崩溃均已定位修复并复验，详见02-verification；不将首次失败计为通过
+    - 原UI设计师旧状态异常已由后续FEAT160修复并真实验收；原FEAT159失败事实保留
+    - 按用户要求跳过历史攻击、强杀和权限破坏测试，不声明这些覆盖通过
+public_readiness:
+  required: false
+  status: N/A
+  checks: []
+  external_smoke: { status: NOT RUN, command_or_steps: N/A, actual_result: 本任务未授权公开发布 }
+documents:
+  brief: 00-feature-brief.md
+  delivery_log: 01-delivery-log.md
+  verification: 02-verification.md

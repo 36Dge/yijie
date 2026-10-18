@@ -1,0 +1,102 @@
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+feature:
+  id: FEAT-160
+  slug: expert-history-recovery
+  title: 原专家聊天历史状态恢复
+  status: usable
+  created_at: 2026-10-18
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+scope:
+  risk_level: high
+  data_classification: internal
+  contract_impact: semantic
+  database_change: none
+  persistence_change: durable
+  runtime_change: none
+  auth_permission_change: none
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: none
+repositories: [yijie, yijie-contracts, yijie-agent-host, yijie-desktop, yijie-skills]
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+product_ux:
+  status: PASS
+  primary_user: 原 UI 设计师聊天用户
+  problem: 已中断原生轮次与 Host active 索引不一致，明确 busy 的旧提交长期未知
+  user_outcome: 同一专家和原生线程可继续聊天，旧消息不自动重发，恢复结果重启保留
+  in_scope: [原生终态只读核对, Store.Resume, 原回执优先, 确认 busy 准入拒绝, 正常重启]
+  out_of_scope: [Codex 内核, 直接修改数据库, 自动补发, 新恢复引擎, 新协议端点, 公开发布]
+  main_flow: [原回执查询, 确认旧准入拒绝, 用户明确提交新消息, 同线程原生状态核对, 既有 resume 和提交]
+  visual_direction: 复用现有消息状态和输入区
+  ui_states:
+    idle: 原聊天可继续输入
+    loading: 原 Coordinator 等待回执
+    success: 实际原生接受后绑定轮次
+    empty: 不创建替代聊天
+    error: 明确准入拒绝沿既有 failed 状态保留原消息
+    retry: 结果未知只读原操作，不自动重发
+    cancel: 复用正常停止和退出
+must_acceptance:
+  - { id: AC-001, statement: 同一原聊天线程专家保留并继续真实发送, verification: 02-verification.md, status: PASS }
+  - { id: AC-002, statement: 原消息不自动补发且真实新消息只执行一次, verification: 02-verification.md, status: PASS }
+  - { id: AC-003, statement: 正常退出重开保留恢复结果并能再次发送, verification: 02-verification.md, status: PASS }
+  - { id: AC-004, statement: 未确认终态或未知提交保持保护且新通知胜过旧读取, verification: 定向正常样本测试, status: PASS }
+  - { id: AC-005, statement: 不改 Codex 内核、不直接改数据库、不执行破坏性测试, verification: 摘要与差异审核, status: PASS }
+contract:
+  impact: semantic
+  authority: yijie-contracts/compatibility/experts/transport.json
+  source_first_plan: 源语义后生成精确摘要并同步 Host、Desktop 和 Skills；无 wire/schema/migration 变化，仅 local candidate
+  status: PASS
+  checks:
+    - { repository: yijie-contracts, command: node scripts/generate-experts.mjs --check, status: PASS, exit_code: 0 }
+    - { repository: yijie-contracts, command: sync-experts three consumer checks, status: PASS, exit_code: 0 }
+    - { repository: yijie-contracts, command: five normal experts contract checks, status: PASS, exit_code: 0 }
+external_authorizations:
+  paid_calls: { allowed: true, max_actions: 3, approved_by: 用户本任务明确答复, approved_at: 2026-10-18T08:52:30.665993+00:00 }
+  destructive_operations: { allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A }
+  production_writes: { allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A }
+implementation:
+  status: complete
+  real_entrypoint: yijie-desktop pnpm tauri:demo-fast:app
+  mock_only: false
+verification:
+  status: PASS
+  verified_at: 2026-10-18T08:56:22.206001+00:00
+  startup: { status: PASS, command_or_steps: pnpm tauri:demo-fast:app, environment: local/demo_fast, actual_result: 最终canonical构建、同构建reopen和真实App观察通过；正常Cmd+Q exit0且清理Host与18081 }
+  real_smoke: { status: PASS, command_or_steps: 原 UI 设计师聊天正常发送及同构建正常退出重开再发送, environment: local/demo_fast, actual_result: 2次获批短文本均真实completed；同一原线程和专家，每次恰好新增1轮，无工具；Host idle且active为空，旧interrupted与本地failed保留 }
+  representative_failure: { status: PASS, command_or_steps: 原有 busy 历史准入拒绝的安全收敛, environment: local/demo_fast, actual_result: 旧unknown沿原回执查询转failed且不重发；最终构建与正常重启后均保留原消息和正确失败说明，不再显示queued }
+  focused_checks:
+    - { repository: yijie-agent-host, command: "go test -race ./internal/session -run '^TestFEAT160' -count=1", status: PASS, exit_code: 0 }
+    - { repository: yijie-agent-host, command: go vet ./internal/session, status: PASS, exit_code: 0 }
+    - { repository: yijie-desktop, command: cargo test --lib feat160_, status: PASS, exit_code: 0 }
+    - { repository: yijie-desktop, command: cargo clippy --lib -- -D warnings, status: PASS, exit_code: 0 }
+    - { repository: yijie-desktop, command: ChatTurnGroup FEAT158 and FEAT160 focused tests, status: PASS, exit_code: 0 }
+    - { repository: yijie-desktop, command: pnpm exec vue-tsc --noEmit, status: PASS, exit_code: 0 }
+  artifacts: [00-feature-brief.md, 01-delivery-log.md, 02-verification.md]
+  diff_review: { status: PASS, summary: 复用原生只读查询和既有状态写入；同源摘要刷新且75份资源不变；Codex干净且摘要一致，无手工数据库操作 }
+  known_limitations:
+    - 仅本地candidate；源码已获授权提交推送，未发布安装包
+    - 按用户要求不执行故障及攻击注入，未宣称该类动态覆盖通过
+    - 原生历史部分信息提示及旧中断事实保留，不补造缺失历史
+    - 本任务模型请求2/3，未使用第三次或其他付费工具
+    - 原生终态不确定或历史达到1024条投影上限时仍拒绝收敛，不自动补发
+public_readiness:
+  required: false
+  status: N/A
+  checks: []
+  external_smoke: { status: NOT RUN, command_or_steps: N/A, actual_result: 未授权公开发布 }
+documents:
+  brief: 00-feature-brief.md
+  delivery_log: 01-delivery-log.md
+  verification: 02-verification.md
