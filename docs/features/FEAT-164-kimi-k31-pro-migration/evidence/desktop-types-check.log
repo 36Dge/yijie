@@ -1,0 +1,21 @@
+src/components/chat/ChatModelControl.vue(22,7): error TS2741: Property '"kimi-k3-1-pro-max-v1"' is missing in type '{ "kimi-k3-max-v1": { label: string; icon: "modelKimi"; }; "minimax-m3-high-v1": { label: string; icon: "modelMiniMax"; }; }' but required in type 'Record<ProfileId, { label: string; icon: "user" | "file" | "image" | "assistant" | "video" | "pending" | "warning" | "message" | "refresh" | "workspace" | "search" | "loading" | ... 111 more ... | "zoomOut"; }>'.
+src/components/schedules/ScheduledPlanForm.vue(59,16): error TS2345: Argument of type '{ name: string; content: string; rule: TimeRule; target: { conversation_id?: string | undefined; mode: TargetMode; }; model_profile?: ProfileId | undefined; }' is not assignable to parameter of type 'PlanDefinition'.
+  Types of property 'model_profile' are incompatible.
+    Type 'ProfileId | undefined' is not assignable to type 'PlanDefinitionModelProfile | undefined'.
+      Type '"kimi-k3-1-pro-max-v1"' is not assignable to type 'PlanDefinitionModelProfile | undefined'. Did you mean '"kimi-k3-max-v1"'?
+src/pages/schedules/use-scheduled-draft.ts(129,5): error TS2322: Type 'Readonly<{ kind: "submit"; id: `${string}-${string}-${string}-${string}-${string}`; scope: string; payload: { conversation_id?: string | undefined; model_intent?: { profile_id: ProfileId; expected_revision: number; } | undefined; text: string; }; }>' is not assignable to type 'Pending | null'.
+  Type 'Readonly<{ kind: "submit"; id: `${string}-${string}-${string}-${string}-${string}`; scope: string; payload: { conversation_id?: string | undefined; model_intent?: { profile_id: ProfileId; expected_revision: number; } | undefined; text: string; }; }>' is not assignable to type 'Readonly<{ id: string; scope: string; } & { kind: "submit"; payload: DraftSubmit; }>'.
+    The types of 'payload.model_intent' are incompatible between these types.
+      Type '{ profile_id: ProfileId; expected_revision: number; } | undefined' is not assignable to type 'DraftModelIntent | undefined'.
+        Type '{ profile_id: ProfileId; expected_revision: number; }' is not assignable to type 'DraftModelIntent'.
+          Types of property 'profile_id' are incompatible.
+            Type 'ProfileId' is not assignable to type 'DraftModelIntentProfileId'.
+              Type '"kimi-k3-1-pro-max-v1"' is not assignable to type 'DraftModelIntentProfileId'. Did you mean '"kimi-k3-max-v1"'?
+src/stores/chat.store.ts(3720,119): error TS2322: Type 'import("/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src/api/chat-model-client").ModelIntent' is not assignable to type 'import("/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src/domain/experts.generated").ModelIntent'.
+  Types of property 'profileId' are incompatible.
+    Type 'import("/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src/api/chat-model-client").ProfileId' is not assignable to type 'import("/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src/domain/experts.generated").ProfileId'.
+      Type '"kimi-k3-1-pro-max-v1"' is not assignable to type 'ProfileId'. Did you mean '"kimi-k3-max-v1"'?
+src/stores/chat.store.ts(3732,105): error TS2322: Type 'import("/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src/api/chat-model-client").ModelIntent' is not assignable to type 'import("/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src/domain/market-selection.generated").ModelIntent'.
+  Types of property 'profileId' are incompatible.
+    Type 'import("/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src/api/chat-model-client").ProfileId' is not assignable to type 'import("/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src/domain/market-selection.generated").ProfileId'.
+      Type '"kimi-k3-1-pro-max-v1"' is not assignable to type 'ProfileId'. Did you mean '"kimi-k3-max-v1"'?

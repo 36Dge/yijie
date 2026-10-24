@@ -1,0 +1,2470 @@
+--- /dev/null
++++ b/api/chat-models-v2.candidate.json
+@@ -0,0 +1,112 @@
++{
++  "schema_version": 1,
++  "feature": "FEAT-164",
++  "release": false,
++  "mode": "immutable_local_candidate",
++  "source_commit": "b0060c8bc4fb924cec14d98b193c32c69482b7b7",
++  "source_lock_path": "compatibility/chat-models-v2/source.lock.json",
++  "source_lock_sha256": "0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70",
++  "authority": {
++    "schema_version": 1,
++    "contract_version": "0.2.0",
++    "mode": "local_worktree_candidate",
++    "release": false,
++    "base_commit": "bedf4159b0fa22e24efe6c295f8b0d4845df56b7",
++    "sources": [
++      {
++        "path": "jsonschema/chat/model-selection-v1.schema.json",
++        "sha256": "15586a03e7873bc7c913ea89162cc60d8354effb8c475045920ce609f949169b"
++      },
++      {
++        "path": "jsonschema/chat/model-selection-v2.schema.json",
++        "sha256": "fa0ae10205dd9d0d2fead4366b67a03d21beda874f1fdb401e871390f72813af"
++      },
++      {
++        "path": "jsonschema/scheduled-tasks/draft-execution-v1.schema.json",
++        "sha256": "071a15a9db131148ca1d82896da1fb198696fd340a210df802e65d7694335ba8"
++      },
++      {
++        "path": "openapi/agent-host/agent-host.yaml",
++        "sha256": "8716d11ebae140d7c2cec72f6528bbd39ac5976c898c28e0044bec71fb004083"
++      },
++      {
++        "path": "openapi/chat-models-v2/chat-models-v2.yaml",
++        "sha256": "0593962a54386693c7ce1f86d108ac34d015f707569641b39c869b51db10e72f"
++      },
++      {
++        "path": "openapi/runtime-permissions/runtime-permissions.yaml",
++        "sha256": "0cd99d5ee3f7035bf43c0996648dc855f71a447595dcb61d903232d81b602a99"
++      },
++      {
++        "path": "scripts/generate-chat-models-v2.mjs",
++        "sha256": "46806979daed97b68afc6706df13dbd58a54e6c0b6e81c593c23bca357aa7880"
++      }
++    ],
++    "generated": [
++      {
++        "path": "sdks/go/openapi/chat-models-v2/types.gen.go",
++        "sha256": "be923ec69e9d4e70374b83ab2afa9d1c364bc57d0e052abd0e892d0fdce5b909"
++      },
++      {
++        "path": "sdks/rust/chat-models-v2/types.gen.rs",
++        "sha256": "310b7ebbe8331c584768b83b741b22817a6063dfa4ac8957ef261a9b1126e84d"
++      },
++      {
++        "path": "sdks/typescript/src/jsonschema/chat-models-v2.gen.ts",
++        "sha256": "ce0a620662864253170b702199d9854875ac411572c71c5585e140c73d406818"
++      },
++      {
++        "path": "sdks/jsonschema/chat-models-v2.schema.json",
++        "sha256": "fa0ae10205dd9d0d2fead4366b67a03d21beda874f1fdb401e871390f72813af"
++      },
++      {
++        "path": "sdks/openapi/chat-models-v2.bundle.json",
++        "sha256": "a398021462157c3836404a5337f5d64ee68509eea56e9fcc5098e5795819f20a"
++      }
++    ]
++  },
++  "copies": [
++    {
++      "repository": "yijie-agent-host",
++      "source": "sdks/go/openapi/chat-models-v2/types.gen.go",
++      "destination": "internal/contracts/chatmodelsv2/types.gen.go",
++      "sha256": "be923ec69e9d4e70374b83ab2afa9d1c364bc57d0e052abd0e892d0fdce5b909"
++    },
++    {
++      "repository": "yijie-agent-host",
++      "source": "sdks/jsonschema/chat-models-v2.schema.json",
++      "destination": "internal/contracts/chatmodelsv2/schema.json",
++      "sha256": "fa0ae10205dd9d0d2fead4366b67a03d21beda874f1fdb401e871390f72813af"
++    },
++    {
++      "repository": "yijie-agent-host",
++      "source": "jsonschema/chat/model-selection-v1.schema.json",
++      "destination": "internal/contracts/chatmodelsv2/legacy.schema.json",
++      "sha256": "15586a03e7873bc7c913ea89162cc60d8354effb8c475045920ce609f949169b"
++    },
++    {
++      "repository": "yijie-desktop",
++      "source": "sdks/rust/chat-models-v2/types.gen.rs",
++      "destination": "src-tauri/src/chat/models_v2_generated.rs",
++      "sha256": "310b7ebbe8331c584768b83b741b22817a6063dfa4ac8957ef261a9b1126e84d"
++    },
++    {
++      "repository": "yijie-desktop",
++      "source": "sdks/typescript/src/jsonschema/chat-models-v2.gen.ts",
++      "destination": "src/domain/chat-models-v2.generated.ts",
++      "sha256": "ce0a620662864253170b702199d9854875ac411572c71c5585e140c73d406818"
++    },
++    {
++      "repository": "yijie-desktop",
++      "source": "sdks/jsonschema/chat-models-v2.schema.json",
++      "destination": "contracts/chat-models-v2.schema.json",
++      "sha256": "fa0ae10205dd9d0d2fead4366b67a03d21beda874f1fdb401e871390f72813af"
++    },
++    {
++      "repository": "yijie-desktop",
++      "source": "jsonschema/chat/model-selection-v1.schema.json",
++      "destination": "contracts/chat-models-v1-history.schema.json",
++      "sha256": "15586a03e7873bc7c913ea89162cc60d8354effb8c475045920ce609f949169b"
++    }
++  ]
++}
+--- /dev/null
++++ b/api/runtime-kimi-k31-pro.candidate.json
+@@ -0,0 +1,146 @@
++{
++  "schema_version": 1,
++  "feature": "FEAT-164",
++  "release": false,
++  "mode": "immutable_local_candidate",
++  "source_commit": "b0060c8bc4fb924cec14d98b193c32c69482b7b7",
++  "source_lock_path": "compatibility/runtime-kimi-k31-pro/source.lock.json",
++  "source_lock_sha256": "e5e2250c27a93118ae1acbe68e7117bebd67ffae564d0956a27a82973f79e5ee",
++  "authority": {
++    "schema_version": 1,
++    "feature": "FEAT-164",
++    "mode": "local_worktree_candidate",
++    "release": false,
++    "authority": "yijie-codex canonical FEAT-164 candidate; new Kimi source predicate and retired-model request guard; app-server wire unchanged from retained web-sources artifact",
++    "runtime_source": {
++      "repository": "https://github.com/36Dge/yijie-codex.git",
++      "base_commit": "57753db451b29a49315ddcb6449ca146171c4de7"
++    },
++    "upstream": {
++      "commit": "5d1fbf26c43abc65a203928b2e31561cb039e06d",
++      "tag": "rust-v0.144.6",
++      "url": "https://github.com/openai/codex.git"
++    },
++    "methods": [
++      "thread/inputOnlyPolicy/read"
++    ],
++    "experimental_api": false,
++    "wire_authority": {
++      "path": "compatibility/runtime-input-only/source.lock.json",
++      "sha256": "1fa0510593ad1944838d34fc4ee490414766a16ec15faf26a08f3c262f3cbc4e"
++    },
++    "runtime_artifact": {
++      "binary": "codex",
++      "reportedVersion": "codex-cli 0.144.6",
++      "sha256": "bfb116b7bd79d11ffd593a0bf1b4be681f3081d6705a018a4a69665984e1ebc8",
++      "sizeBytes": 355892488,
++      "target": "aarch64-apple-darwin",
++      "version": "0.144.6"
++    },
++    "runtime_manifest_sha256": "27049195d89e4d283c09c8106197a4916457f41410ce5919bddd26aaf8c5ed7e",
++    "runtime_schema": {
++      "experimentalApi": false,
++      "schemaFileCount": 269,
++      "schemaTreeSha256": "d8c3265d8923ef4437203c0a2ded954549b4abc0c5079ecd6bcdf7c6da72f11e",
++      "transport": "stdio"
++    },
++    "native_sources": [
++      {
++        "path": ".yijie/patches/0001-feat-126-filter-persistent-diagnostics.patch",
++        "sha256": "6b337a02caf064c6819fab5c7367a485004c85cce0d42acb06fa6d5003e599a0"
++      },
++      {
++        "path": ".yijie/patches/0002-feat-136-unified-exec-pre-emitter-command-lifecycle.patch",
++        "sha256": "43de168e1443f4b9ca60d7f61e3de2daf20e1cfea14d2e196d28ba417bf3e06d"
++      },
++      {
++        "path": ".yijie/patches/input-only/0003-input-only-execution.patch",
++        "sha256": "c340b6fc17419bcdc1ff45eebe3da40e5fde740c029102eb7a188f6b14eb41d8"
++      },
++      {
++        "path": ".yijie/patches/chat-models/0004-feat-156-upstream-tool-choice.patch",
++        "sha256": "828f913fead29da08c015d73ef6c7102a8adf9afd3811ab5469891ec5efc2abf"
++      },
++      {
++        "path": ".yijie/patches/chat-models/0005-feat-156-terminal-tool-arguments.patch",
++        "sha256": "f1d6689f44056c252530ad940bb253e8a0ace60e810b88857440699ba908917e"
++      },
++      {
++        "path": ".yijie/patches/chat-models/0006-native-web-search-sources.patch",
++        "sha256": "8fdb9d2f7d7708a603a8d08906a4d3cd6ce098ca9165471f95cb0816ed6718ee"
++      },
++      {
++        "path": ".yijie/patches/chat-models/0007-feat-164-kimi-k31-pro.patch",
++        "sha256": "c666c066ec1235d016e7479805242d049def542b9f8c684970ac8e5b4cee8ae6"
++      },
++      {
++        "path": ".yijie/upstream.env",
++        "sha256": "33caf5655c94738bbdac3f4691d227b210ba7c470e78243a3a75ce87805bbe04"
++      },
++      {
++        "path": "scripts/build-kimi-k31-pro.sh",
++        "sha256": "8b26dd8a13765d4fc5e272f8ea1e17d57d69d66fbfff6987eb749604fe828f30"
++      },
++      {
++        "path": "scripts/write-kimi-k31-pro-runtime-manifest.py",
++        "sha256": "c4d336c53d9d504bd954a1f474bc888031b71409c4303b73124cb8c4ec9831c8"
++      },
++      {
++        "path": "scripts/write-chat-model-stream-runtime-manifest.py",
++        "sha256": "37386848d94a071311c8c9a7889b4ba1accc2450fa4f6f520126586b28aa2b7c"
++      },
++      {
++        "path": "scripts/write-web-search-sources-runtime-manifest.py",
++        "sha256": "f608a75680efe32ee638d7756c4479e5a4c890bb66fc1f522c82627b30c270f2"
++      },
++      {
++        "path": "scripts/verify-web-search-sources-schema.py",
++        "sha256": "dc8bc8e01beaeba5cbbd923b316420ea375cb23a7d4ad68e992ca77d0a8103cd"
++      },
++      {
++        "path": "scripts/write-runtime-manifest.py",
++        "sha256": "1d453ce35466468d26db5f7eda2bfd8df31e81e36c67ba79407a96664378126e"
++      },
++      {
++        "path": "scripts/runtime-env.sh",
++        "sha256": "5f646e8e011a3b7f7dedfecc0c502d855106fedd09f07b76186b969dc8f7b359"
++      },
++      {
++        "path": "scripts/runtime_manifest.py",
++        "sha256": "1f4d32eb03440288f4bd3d386a3c6a3b363ec6b976fe32dcf13b6e81a1a7aea0"
++      },
++      {
++        "path": "scripts/canonicalize-json.py",
++        "sha256": "731735e5bbfd985264874272083e2f397de7dc172e5ef6beecefe0532a362970"
++      },
++      {
++        "path": "scripts/verify-release-lock-drift.py",
++        "sha256": "56b7e3351d0cb7ea1fe2cde08076777074b8e6038e26338153d59c1603d94a2c"
++      },
++      {
++        "path": ".yijie/build/kimi-k31-pro-r1/aarch64-apple-darwin/runtime-manifest.json",
++        "sha256": "27049195d89e4d283c09c8106197a4916457f41410ce5919bddd26aaf8c5ed7e"
++      }
++    ],
++    "generators": [
++      {
++        "path": "scripts/generate-runtime-kimi-k31-pro.mjs",
++        "sha256": "e5df456683767fcc7170b07dc58cd1646df5cc2598fe250c5de3a07257f8e396"
++      }
++    ],
++    "generated": [
++      {
++        "path": "sdks/go/openapi/runtime-kimi-k31-pro/artifact.gen.go",
++        "sha256": "024970500801a63e2065e4a41bb15c918b20da4bc342e2d290ccd0e9ebc9a40a"
++      }
++    ]
++  },
++  "copies": [
++    {
++      "repository": "yijie-agent-host",
++      "source": "sdks/go/openapi/runtime-kimi-k31-pro/artifact.gen.go",
++      "destination": "internal/contracts/runtimekimik31pro/artifact.gen.go",
++      "sha256": "024970500801a63e2065e4a41bb15c918b20da4bc342e2d290ccd0e9ebc9a40a"
++    }
++  ]
++}
+--- a/internal/app/app.go
++++ b/internal/app/app.go
+@@ -272,6 +272,12 @@
+ 	} else if os.Getenv("YIJIE_KIMI_API_KEY") != "" || os.Getenv("YIJIE_KIMI_API_KEY_FILE") != "" {
+ 		return Config{}, errors.New("Kimi credentials require explicit chat model configuration")
+ 	}
++	if value := os.Getenv("YIJIE_KIMI_K31_PRO_CANDIDATE"); value != "" && value != "false" {
++		if value != "true" || !runtimeConfig.ChatModelsEnabled {
++			return Config{}, errors.New("Kimi K3.1 candidate requires explicit local model profile")
++		}
++		runtimeConfig.KimiK31Candidate = true
++	}
+ 	// Retired credentials are scrubbed, never copied into Host or Runtime state.
+ 	_ = os.Unsetenv(codex.SorftimeSecretEnv)
+ 	_ = os.Unsetenv(codex.SorftimeEnabledEnv)
+@@ -901,7 +907,11 @@
+ 		}
+ 	}
+ 	if config.Environment == "local" && config.Runtime.RuntimePermissionsEnabled {
+-		registerChatModels(mux, &sessionHandler{service: sessions, apiToken: apiToken}, config.Runtime.ChatModelsEnabled)
++		if config.Runtime.KimiK31Candidate {
++			registerChatModelsV2(mux, &sessionHandler{service: sessions, apiToken: apiToken})
++		} else {
++			registerChatModels(mux, &sessionHandler{service: sessions, apiToken: apiToken}, config.Runtime.ChatModelsEnabled)
++		}
+ 	}
+ 	if config.Runtime.Market.Manifest != "" {
+ 		registerMarketRoutes(mux, sessions, apiToken, config.InstanceNonce)
+--- /dev/null
++++ b/internal/app/chat_models_v2.go
+@@ -0,0 +1,122 @@
++package app
++
++import (
++	"errors"
++	"net/http"
++	"strings"
++
++	"github.com/36Dge/yijie-agent-host/internal/codex"
++	wire "github.com/36Dge/yijie-agent-host/internal/contracts/chatmodelsv2"
++	"github.com/36Dge/yijie-agent-host/internal/security"
++	"github.com/36Dge/yijie-agent-host/internal/session"
++)
++
++type chatModelV2Service interface {
++	ChatModelsV2Enabled() bool
++	ChatModelCatalogV2() wire.Catalog
++	ReadChatModelV2(string) (wire.Selection, error)
++}
++
++func modelReplyV2(w http.ResponseWriter, name string, value any, err error) {
++	w.Header().Set("Cache-Control", "no-store")
++	if err == nil && wire.Validate(name, value) == nil {
++		writeJSON(w, 200, value)
++		return
++	}
++	status, code := 503, wire.ErrorCodeRuntimeUnavailable
++	switch {
++	case errors.Is(err, session.ErrInvalidArgument):
++		status, code = 400, wire.ErrorCodeInvalidRequest
++	case errors.Is(err, session.ErrNotFound):
++		status, code = 404, wire.ErrorCodeNotFound
++	case errors.Is(err, session.ErrTurnActive):
++		status, code = 409, wire.ErrorCodeBusy
++	case errors.Is(err, session.ErrModelRevision):
++		status, code = 409, wire.ErrorCodeRevisionConflict
++	case errors.Is(err, session.ErrModelUnavailable):
++		code = wire.ErrorCodeModelUnavailable
++	case errors.Is(err, session.ErrModelUnknown):
++		status, code = 409, wire.ErrorCodeSelectionUnknown
++	}
++	writeJSON(w, status, wire.Error{SchemaVersion: 2, Code: code})
++}
++func registerChatModelsV2(mux *http.ServeMux, h *sessionHandler) {
++	s, ok := h.service.(chatModelV2Service)
++	if !ok {
++		return
++	}
++	register := func(path string, fn http.HandlerFunc) { mux.Handle(path, h.authorize(fn)) }
++	registerModel := func(path string, fn http.HandlerFunc) {
++		mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
++			if !security.TokenMatches(h.apiToken, r.Header.Get("Authorization")) {
++				w.Header().Set("Cache-Control", "no-store")
++				writeJSON(w, 401, wire.Error{SchemaVersion: 2, Code: wire.ErrorCodeUnauthorized})
++				return
++			}
++			fn(w, r)
++		})
++	}
++	registerModel("GET /v2/model-chat/catalog", func(w http.ResponseWriter, r *http.Request) {
++		if !validRecoveryRequest(r) {
++			modelReplyV2(w, "Catalog", nil, session.ErrInvalidArgument)
++			return
++		}
++		if !s.ChatModelsV2Enabled() {
++			modelReplyV2(w, "Catalog", nil, session.ErrModelUnavailable)
++			return
++		}
++		modelReplyV2(w, "Catalog", s.ChatModelCatalogV2(), nil)
++	})
++	registerModel("GET /v2/model-chat/agent-sessions/{agent_session_id}/model", func(w http.ResponseWriter, r *http.Request) {
++		id := r.PathValue("agent_session_id")
++		if !validRecoveryRequest(r, id) {
++			modelReplyV2(w, "Selection", nil, session.ErrInvalidArgument)
++			return
++		}
++		v, err := s.ReadChatModelV2(id)
++		modelReplyV2(w, "Selection", v, err)
++	})
++	// The walking skeleton exposes ordinary fresh-session routes only. Model
++	// mutation/recovery and draft routes remain unavailable until their slices.
++	for _, route := range []struct{ method, path, legacy string }{
++		{"POST", "/v2/model-chat/tasks/{task_id}/agent-sessions", "/v1/tasks/{task_id}/agent-sessions"},
++		{"GET", "/v2/model-chat/agent-sessions/{agent_session_id}", "/v1/agent-sessions/{agent_session_id}"},
++		{"POST", "/v2/model-chat/agent-sessions/{agent_session_id}/resume", "/v1/agent-sessions/{agent_session_id}/resume"},
++		{"POST", "/v2/model-chat/agent-sessions/{agent_session_id}/turns", "/v2/agent-sessions/{agent_session_id}/turns"},
++		{"POST", "/v2/model-chat/agent-sessions/{agent_session_id}/permission-turns", "/v1/agent-sessions/{agent_session_id}/permission-turns"},
++	} {
++		register(route.method+" "+route.path, func(w http.ResponseWriter, r *http.Request) {
++			if r.URL.RawQuery != "" {
++				modelReplyV2(w, "Error", nil, session.ErrInvalidArgument)
++				return
++			}
++			id := r.Header.Get("X-Yijie-Model-Profile")
++			if route.method == "POST" {
++				if !s.ChatModelsV2Enabled() {
++					modelReplyV2(w, "Error", nil, session.ErrModelUnavailable)
++					return
++				}
++				if len(r.Header.Values("X-Yijie-Model-Profile")) != 1 {
++					modelReplyV2(w, "Error", nil, session.ErrInvalidArgument)
++					return
++				}
++				if id == "kimi-k3-max-v1" {
++					w.Header().Set("Cache-Control", "no-store")
++					writeJSON(w, 409, wire.Error{SchemaVersion: 2, Code: wire.ErrorCodeModelRetired})
++					return
++				}
++				if wire.Validate("ActiveProfileId", id) != nil {
++					modelReplyV2(w, "Error", nil, session.ErrInvalidArgument)
++					return
++				}
++			}
++			clone := r.Clone(codex.WithModelProfile(r.Context(), id))
++			target := route.legacy
++			for _, key := range []string{"task_id", "agent_session_id"} {
++				target = strings.ReplaceAll(target, "{"+key+"}", r.PathValue(key))
++			}
++			clone.URL.Path, clone.URL.RawPath = target, ""
++			mux.ServeHTTP(w, clone)
++		})
++	}
++}
+--- /dev/null
++++ b/internal/app/chat_models_v2_test.go
+@@ -0,0 +1,76 @@
++package app
++
++import (
++	"net/http"
++	"net/http/httptest"
++	"strings"
++	"testing"
++
++	"github.com/36Dge/yijie-agent-host/internal/codex"
++	wire "github.com/36Dge/yijie-agent-host/internal/contracts/chatmodelsv2"
++)
++
++type modelV2RouteService struct{ SessionService }
++
++func (*modelV2RouteService) ChatModelsV2Enabled() bool { return true }
++func (*modelV2RouteService) ChatModelCatalogV2() wire.Catalog {
++	rows := []wire.ModelAvailability{}
++	for _, p := range wire.Definitions() {
++		rows = append(rows, wire.ModelAvailability{Profile: p, Available: true, Reason: wire.ModelAvailabilityReasonReady})
++	}
++	return wire.Catalog{SchemaVersion: 2, DefaultProfile: wire.ActiveProfileIdKimiK31ProMaxV1, Models: rows}
++}
++func (*modelV2RouteService) ReadChatModelV2(id string) (wire.Selection, error) {
++	old := wire.ProfileIdKimiK3MaxV1
++	return wire.Selection{SchemaVersion: 2, AgentSessionId: id, Revision: 3, State: wire.SelectionStateReady, ProfileId: &old, Availability: wire.SelectionAvailabilityRetired}, nil
++}
++func TestFEAT164ModelRoutesPreserveAuthAndRetiredRead(t *testing.T) {
++	mux := http.NewServeMux()
++	const token = "ordinary-local-token"
++	calls := 0
++	mux.HandleFunc("POST /v1/tasks/{task_id}/agent-sessions", func(w http.ResponseWriter, r *http.Request) {
++		calls++
++		if codex.ModelProfileID(r.Context()) != codex.KimiK31ProfileID {
++			t.Error("profile context lost")
++		}
++		w.WriteHeader(201)
++	})
++	registerChatModelsV2(mux, &sessionHandler{service: &modelV2RouteService{}, apiToken: token})
++	const id = "00000000-0000-4000-8000-000000000164"
++	do := func(method, path, profile string, auth bool) *httptest.ResponseRecorder {
++		r := httptest.NewRequest(method, path, nil)
++		if auth {
++			r.Header.Set("Authorization", "Bearer "+token)
++		}
++		if profile != "" {
++			r.Header.Set("X-Yijie-Model-Profile", profile)
++		}
++		w := httptest.NewRecorder()
++		mux.ServeHTTP(w, r)
++		return w
++	}
++	if w := do("GET", "/v2/model-chat/catalog", "", false); w.Code != 401 || !strings.Contains(w.Body.String(), `"schema_version":2`) {
++		t.Fatal("missing auth admitted")
++	}
++	if w := do("GET", "/v2/model-chat/catalog", "", true); w.Code != 200 || !strings.Contains(w.Body.String(), "kimi-k3.1-pro") {
++		t.Fatal("catalog", w.Code)
++	}
++	if w := do("GET", "/v2/model-chat/agent-sessions/"+id+"/model", "", true); w.Code != 200 || !strings.Contains(w.Body.String(), "retired") {
++		t.Fatal("historical read blocked")
++	}
++	path := "/v2/model-chat/tasks/" + id + "/agent-sessions"
++	for _, tc := range []struct {
++		profile string
++		status  int
++	}{{"kimi-k3-max-v1", 409}, {"future", 400}, {"", 400}, {codex.KimiK31ProfileID, 201}} {
++		if w := do("POST", path, tc.profile, true); w.Code != tc.status {
++			t.Fatalf("profile admission: %s %d", tc.profile, w.Code)
++		}
++	}
++	if calls != 1 {
++		t.Fatal("invalid profile reached producer")
++	}
++	if w := do("POST", path+"?unexpected=true", codex.KimiK31ProfileID, true); w.Code != 400 || calls != 1 {
++		t.Fatal("query reached producer")
++	}
++}
+--- a/internal/codex/baseline.go
++++ b/internal/codex/baseline.go
+@@ -16,6 +16,7 @@
+ 
+ 	chatmodels "github.com/36Dge/yijie-agent-host/internal/contracts/runtimechatmodels"
+ 	inputonly "github.com/36Dge/yijie-agent-host/internal/contracts/runtimeinputonly"
++	kimik31 "github.com/36Dge/yijie-agent-host/internal/contracts/runtimekimik31pro"
+ )
+ 
+ const (
+@@ -165,12 +166,23 @@
+ 			patches: patches, schemaFileCount: chatmodels.RuntimeSchemaFileCount,
+ 		}
+ 	}
++	if digest == kimik31.RuntimeManifestSHA256 {
++		var patches []ManifestPatch
++		if err := json.Unmarshal([]byte(kimik31.RuntimePatchManifest), &patches); err != nil {
++			return ArtifactInfo{}, errors.New("Kimi candidate artifact authority unavailable")
++		}
++		policy = artifactPolicy{runtimeSHA256: kimik31.RuntimeBinarySHA256, runtimeSize: kimik31.RuntimeBinarySize, manifestSHA256: kimik31.RuntimeManifestSHA256, schemaTreeSHA256: kimik31.RuntimeSchemaTreeSHA256, patches: patches, schemaFileCount: kimik31.RuntimeSchemaFileCount}
++	}
+ 	return verifyArtifactWithPolicy(ctx, binaryPath, manifestPath, timeout, policy)
+ }
+ 
+-// SupportsInputOnly accepts only the two exact reviewed artifact pairs.
++func (a ArtifactInfo) SupportsKimiK31() bool {
++	return a.BinarySHA256 == kimik31.RuntimeBinarySHA256 && a.ManifestSHA256 == kimik31.RuntimeManifestSHA256
++}
++
++// SupportsInputOnly accepts only exact reviewed artifact pairs.
+ func (a ArtifactInfo) SupportsInputOnly() bool {
+-	return (a.BinarySHA256 == inputonly.RuntimeBinarySHA256 && a.ManifestSHA256 == inputonly.RuntimeManifestSHA256) ||
++	return a.SupportsKimiK31() || (a.BinarySHA256 == inputonly.RuntimeBinarySHA256 && a.ManifestSHA256 == inputonly.RuntimeManifestSHA256) ||
+ 		(a.BinarySHA256 == chatmodels.RuntimeBinarySHA256 && a.ManifestSHA256 == chatmodels.RuntimeManifestSHA256)
+ }
+ 
+--- a/internal/codex/chat_models.go
++++ b/internal/codex/chat_models.go
+@@ -24,6 +24,9 @@
+ 	return v
+ }
+ func ModelProfile(id string) (models.ModelDefinition, bool) {
++	if profile, ok := kimiK31Profile(id); ok {
++		return profile, true
++	}
+ 	for _, p := range models.Definitions() {
+ 		if string(p.ProfileId) == id {
+ 			return p, true
+@@ -34,7 +37,7 @@
+ func (m *Manager) ChatModelsEnabled() bool { return m.config.ChatModelsEnabled }
+ func (m *Manager) ModelAvailable(id string) bool {
+ 	p, ok := ModelProfile(id)
+-	if !ok || !m.config.ChatModelsEnabled {
++	if !ok || !m.config.ChatModelsEnabled || (id == KimiK31ProfileID && !m.config.KimiK31Candidate) || (id == "kimi-k3-max-v1" && m.config.KimiK31Candidate) {
+ 		return false
+ 	}
+ 	if p.Provider == "kimi" {
+--- /dev/null
++++ b/internal/codex/kimi_k31_candidate.go
+@@ -0,0 +1,94 @@
++package codex
++
++import (
++	"encoding/json"
++	"errors"
++	"os"
++	"path/filepath"
++	"strings"
++
++	legacy "github.com/36Dge/yijie-agent-host/internal/contracts/chatmodels"
++	models "github.com/36Dge/yijie-agent-host/internal/contracts/chatmodelsv2"
++)
++
++const KimiK31ProfileID = "kimi-k3-1-pro-max-v1"
++const kimiK31CatalogName = "yijie-chat-models-v2.json"
++const kimiK31ConfigName = "yijie-chat-models-v2.toml"
++
++func kimiK31Profile(id string) (legacy.ModelDefinition, bool) {
++	for _, p := range models.Definitions() {
++		if string(p.ProfileId) == id && id == KimiK31ProfileID {
++			// Private Runtime configuration adapter; never emitted on the v1 wire.
++			return legacy.ModelDefinition{ProfileId: legacy.ProfileId(p.ProfileId), Label: p.Label, Provider: p.Provider, Model: p.Model, Effort: p.Effort, ContextWindow: p.ContextWindow}, true
++		}
++	}
++	return legacy.ModelDefinition{}, false
++}
++func (m *Manager) ChatModelsV2Enabled() bool {
++	return m.config.ChatModelsEnabled && m.config.KimiK31Candidate
++}
++func (m *Manager) ChatModelsV2Ready() bool { return m.ChatModelsV2Enabled() && m.Snapshot().Ready }
++
++func kimiK31Catalog() ([]byte, error) {
++	raw, err := chatModelCatalog()
++	if err != nil {
++		return nil, err
++	}
++	var catalog map[string]any
++	if err = json.Unmarshal(raw, &catalog); err != nil {
++		return nil, err
++	}
++	entries := catalog["models"].([]any)
++	for i, p := range models.Definitions() {
++		entry := entries[i].(map[string]any)
++		entry["slug"], entry["display_name"], entry["description"] = p.Model, p.Label, p.Label+" managed Responses profile"
++		entry["default_reasoning_level"], entry["context_window"], entry["max_context_window"] = p.Effort, p.ContextWindow, p.ContextWindow
++	}
++	return json.MarshalIndent(catalog, "", "  ")
++}
++func kimiK31Config(home string) []byte {
++	config := strings.Replace(string(chatModelConfig(home)), "model = \"kimi-k3\"", "model = \"kimi-k3.1-pro\"", 1)
++	config = strings.Replace(config, chatModelsCatalogName, kimiK31CatalogName, 1)
++	return []byte(config)
++}
++func prepareKimiK31Layer(a *managedCodexHomeAuthority) ([]string, error) {
++	// Walking skeleton is fresh-home only. A daily managed home needs the later
++	// reviewed predecessor/retirement transaction, never an implicit migration.
++	for _, name := range []string{chatModelsCatalogName, chatModelsConfigName} {
++		if _, err := os.Lstat(filepath.Join(a.path, name)); err == nil || !os.IsNotExist(err) {
++			return nil, errors.New("Kimi candidate requires a fresh managed home")
++		}
++	}
++	catalog, err := kimiK31Catalog()
++	if err != nil {
++		return nil, err
++	}
++	config := kimiK31Config(a.path)
++	cp, err := a.preflightManagedFile(kimiK31CatalogName, catalog, catalog)
++	if err != nil {
++		return nil, err
++	}
++	fp, err := a.preflightManagedFile(kimiK31ConfigName, config, config)
++	if err != nil {
++		return nil, err
++	}
++	for _, plan := range []managedFilePlan{cp, fp} {
++		if err = a.applyManagedFile(plan); err != nil {
++			return nil, err
++		}
++	}
++	return nativeConfigArguments(config)
++}
++func (m *Manager) validateSelectedChatModelLayer(a *managedCodexHomeAuthority) error {
++	if !m.config.KimiK31Candidate {
++		return validateChatModelLayer(a)
++	}
++	catalog, err := kimiK31Catalog()
++	if err != nil {
++		return err
++	}
++	if err = a.validateManagedFileExact(kimiK31CatalogName, catalog); err != nil {
++		return err
++	}
++	return a.validateManagedFileExact(kimiK31ConfigName, kimiK31Config(a.path))
++}
+--- /dev/null
++++ b/internal/codex/kimi_k31_candidate_test.go
+@@ -0,0 +1,69 @@
++package codex
++
++import (
++	"encoding/json"
++	"os"
++	"path/filepath"
++	"testing"
++)
++
++func TestFEAT164CandidateAdmissionAndFreshConfiguration(t *testing.T) {
++	c := DefaultConfig()
++	c.ChatModelsEnabled = true
++	c.KimiAPIKey = "ordinary-local-fixture"
++	c.MiniMax.Enabled = true
++	old := NewManager(c, nil)
++	if old.ModelAvailable(KimiK31ProfileID) || !old.ModelAvailable("kimi-k3-max-v1") {
++		t.Fatal("default model admission changed")
++	}
++	c.KimiK31Candidate = true
++	current := NewManager(c, nil)
++	if !current.ModelAvailable(KimiK31ProfileID) || current.ModelAvailable("kimi-k3-max-v1") || !current.ModelAvailable("minimax-m3-high-v1") {
++		t.Fatal("candidate admission mismatch")
++	}
++	home := canonicalOwnedTempDir(t)
++	authority := acquireTestCodexHomeAuthority(t, home)
++	if _, err := prepareKimiK31Layer(authority); err != nil {
++		t.Fatal(err)
++	}
++	if err := current.validateSelectedChatModelLayer(authority); err != nil {
++		t.Fatal(err)
++	}
++	if _, err := prepareKimiK31Layer(authority); err != nil {
++		t.Fatal("normal reopen", err)
++	}
++	raw, err := os.ReadFile(filepath.Join(home, kimiK31CatalogName))
++	if err != nil {
++		t.Fatal(err)
++	}
++	var catalog struct {
++		Models []struct {
++			Slug string `json:"slug"`
++		}
++	}
++	if json.Unmarshal(raw, &catalog) != nil || len(catalog.Models) != 2 || catalog.Models[0].Slug != "kimi-k3.1-pro" || catalog.Models[1].Slug != "MiniMax-M3" {
++		t.Fatal("candidate catalog mismatch")
++	}
++}
++
++func TestFEAT164ExistingOwnedHomeIsNotImplicitlyMigrated(t *testing.T) {
++	home := canonicalOwnedTempDir(t)
++	authority := acquireTestCodexHomeAuthority(t, home)
++	if _, err := prepareChatModelLayer(authority); err != nil {
++		t.Fatal(err)
++	}
++	before, err := os.ReadFile(filepath.Join(home, chatModelsConfigName))
++	if err != nil {
++		t.Fatal(err)
++	}
++	if _, err := prepareKimiK31Layer(authority); err == nil {
++		t.Fatal("existing home accepted without migration qualification")
++	}
++	after, _ := os.ReadFile(filepath.Join(home, chatModelsConfigName))
++	if string(before) != string(after) {
++		t.Fatal("old configuration changed")
++	}
++	if _, err := os.Stat(filepath.Join(home, kimiK31ConfigName)); !os.IsNotExist(err) {
++		t.Fatal("candidate config written")
++	}
++}
+--- /dev/null
++++ b/internal/codex/kimi_k31_integration_test.go
+@@ -0,0 +1,134 @@
++package codex
++
++import (
++	"context"
++	"encoding/json"
++	"fmt"
++	"net"
++	"net/http"
++	"os"
++	"path/filepath"
++	"sync/atomic"
++	"testing"
++	"time"
++)
++
++// Actual pinned Runtime, ordinary loopback Responses, no credentials or paid
++// mode. No executable substitute, fault injection, forced stop or user data.
++func TestFEAT164NativeCandidateLifecycle(t *testing.T) {
++	binary, manifest := integrationArtifactPaths(t)
++	listener, err := net.Listen("tcp", "127.0.0.1:0")
++	if err != nil {
++		t.Fatal(err)
++	}
++	var requests atomic.Int64
++	server := &http.Server{ReadHeaderTimeout: 5 * time.Second, Handler: http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
++		var body map[string]any
++		if r.Method != "POST" || r.URL.Path != "/v1/responses" || json.NewDecoder(r.Body).Decode(&body) != nil {
++			t.Error("unexpected local request")
++			w.WriteHeader(400)
++			return
++		}
++		n := requests.Add(1)
++		if n > 3 {
++			t.Error("extra model request")
++			w.WriteHeader(429)
++			return
++		}
++		model, effort := "kimi-k3.1-pro", "max"
++		if n == 2 {
++			model, effort = "MiniMax-M3", "high"
++		}
++		reasoning, _ := body["reasoning"].(map[string]any)
++		if body["model"] != model || reasoning["effort"] != effort || body["tool_choice"] != "auto" {
++			t.Error("wire identity or tool choice differs")
++		}
++		id := fmt.Sprintf("feat164_%d", n)
++		item := map[string]any{"id": "message_" + id, "type": "message", "role": "assistant", "phase": "final_answer", "status": "completed", "content": []any{map[string]any{"type": "output_text", "text": "ordinary marker 164", "annotations": []any{}}}}
++		w.Header().Set("Content-Type", "text/event-stream")
++		for _, event := range []any{map[string]any{"type": "response.created", "response": map[string]any{"id": id, "status": "in_progress", "output": []any{}}}, map[string]any{"type": "response.output_item.added", "output_index": 0, "item": item}, map[string]any{"type": "response.output_item.done", "output_index": 0, "item": item}, map[string]any{"type": "response.completed", "response": map[string]any{"id": id, "status": "completed", "output": []any{item}, "usage": map[string]any{"input_tokens": 1, "output_tokens": 1, "total_tokens": 2}}}} {
++			raw, _ := json.Marshal(event)
++			fmt.Fprintf(w, "data: %s\n\n", raw)
++			w.(http.Flusher).Flush()
++		}
++	})}
++	go func() { _ = server.Serve(listener) }()
++	defer func() {
++		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
++		defer cancel()
++		if err := server.Shutdown(ctx); err != nil {
++			t.Error("normal local server shutdown", err)
++		}
++	}()
++	root, err := os.MkdirTemp("", "yijie-feat164-runtime-")
++	if err != nil {
++		t.Fatal(err)
++	}
++	root, err = filepath.EvalSymlinks(root)
++	if err != nil {
++		t.Fatal(err)
++	}
++	home, cwd := filepath.Join(root, "runtime"), filepath.Join(root, "workspace")
++	for _, dir := range []string{home, cwd} {
++		if err = os.Mkdir(dir, 0700); err != nil {
++			t.Fatal(err)
++		}
++	}
++	config := integrationConfig(binary, manifest, home, "ordinary-minimax-fixture")
++	config.ChatModelsEnabled, config.KimiK31Candidate, config.RuntimePermissionsEnabled = true, true, true
++	config.KimiAPIKey = "ordinary-kimi-fixture"
++	config.PermissionVerificationBaseURL = "http://" + listener.Addr().String() + "/v1"
++	manager := NewManager(config, nil)
++	notifications := newIntegrationNotifications()
++	if err = manager.SetNotificationHandler(notifications.handle); err != nil {
++		t.Fatal(err)
++	}
++	defer func() {
++		ctx, cancel := context.WithTimeout(context.Background(), 25*time.Second)
++		defer cancel()
++		if err := manager.Shutdown(ctx); err != nil {
++			t.Error("normal Runtime cleanup pending; files retained", err)
++		} else {
++			_ = os.RemoveAll(root)
++		}
++	}()
++	if err = manager.Start(context.Background()); err != nil {
++		t.Fatal("candidate start", err)
++	}
++	var thread string
++	for i, profile := range []string{KimiK31ProfileID, "minimax-m3-high-v1", KimiK31ProfileID} {
++		ctx := WithPermissionMode(WithModelProfile(context.Background(), profile), PermissionAsk)
++		var info ThreadInfo
++		if i == 0 {
++			info, err = manager.StartThread(ctx, cwd)
++		} else {
++			info, err = manager.SwitchThread(ctx, thread)
++		}
++		if err != nil {
++			t.Fatal("ordinary thread lifecycle", err)
++		}
++		expected, _ := ModelProfile(profile)
++		if info.Model != expected.Model || info.ModelProvider != expected.Provider || info.ReasoningEffort != expected.Effort || (i > 0 && info.ID != thread) {
++			t.Fatal("effective native identity differs")
++		}
++		thread = info.ID
++		input, _ := TextUserInput("Return one ordinary test marker; do not call tools.")
++		turn, err := manager.StartTurnV2(ctx, thread, []UserInput{input}, expected.Effort)
++		if err != nil {
++			t.Fatal(err)
++		}
++		state, _, err := notifications.waitForTurn(turn.ID, 30*time.Second)
++		if err != nil || state != "completed" {
++			t.Fatalf("normal turn did not complete: %s %v", state, err)
++		}
++	}
++	old := WithModelProfile(context.Background(), "kimi-k3-max-v1")
++	input, _ := TextUserInput("ordinary local text")
++	if _, err = manager.StartTurnV2(old, thread, []UserInput{input}, "max"); err == nil {
++		t.Fatal("retired turn accepted")
++	}
++	if requests.Load() != 3 {
++		t.Fatal("unexpected outbound count")
++	}
++	t.Log("3 loopback Responses; new Kimi/MiniMax/new Kimi; same thread; retired admission denied")
++}
+--- a/internal/codex/runtime.go
++++ b/internal/codex/runtime.go
+@@ -46,6 +46,7 @@
+ type Config struct {
+ 	Market                        MarketConfig
+ 	ChatModelsEnabled             bool
++	KimiK31Candidate              bool
+ 	KimiAPIKey                    string
+ 	BinaryPath                    string
+ 	ManifestPath                  string
+@@ -100,6 +101,9 @@
+ 	if err := c.Market.validate(); err != nil {
+ 		return err
+ 	}
++	if c.KimiK31Candidate && (!c.ChatModelsEnabled || c.Market.enabled() || c.DynamicToolsEnabled) {
++		return errors.New("Kimi K3.1 candidate requires ordinary model chat; market and dynamic tools await qualification")
++	}
+ 	if c.Market.enabled() && !c.ChatModelsEnabled {
+ 		return errors.New("market connectors require the managed chat model profile")
+ 	}
+@@ -333,6 +337,10 @@
+ 		m.fail("artifact_verification_failed")
+ 		return err
+ 	}
++	if m.config.KimiK31Candidate != artifact.SupportsKimiK31() {
++		m.fail("artifact_verification_failed")
++		return errors.New("Kimi candidate and Runtime artifact must match exactly")
++	}
+ 	m.setArtifact(artifact)
+ 	if err := m.startupBoundaryError(startupCtx); err != nil {
+ 		m.fail("startup_cancelled")
+@@ -403,11 +411,18 @@
+ 	}
+ 	if providerErr == nil && m.config.ChatModelsEnabled {
+ 		var extra []string
+-		extra, providerErr = prepareChatModelLayer(authority)
++		if m.config.KimiK31Candidate {
++			extra, providerErr = prepareKimiK31Layer(authority)
++		} else {
++			extra, providerErr = prepareChatModelLayer(authority)
++		}
+ 		if providerErr == nil {
+ 			m.nativeConfigArgs = append(m.nativeConfigArgs, extra...)
+ 			m.status.ModelProvider = "kimi"
+ 			m.status.Model = "kimi-k3"
++			if m.config.KimiK31Candidate {
++				m.status.Model = "kimi-k3.1-pro"
++			}
+ 		}
+ 	}
+ 	if providerErr == nil && m.config.FakeResponses.Enabled {
+@@ -538,7 +553,7 @@
+ 
+ func (m *Manager) validateManagedProviderAuthority(authority *managedCodexHomeAuthority) error {
+ 	if m.config.ChatModelsEnabled {
+-		if err := validateChatModelLayer(authority); err != nil {
++		if err := m.validateSelectedChatModelLayer(authority); err != nil {
+ 			return err
+ 		}
+ 	}
+--- a/internal/codex/session_protocol.go
++++ b/internal/codex/session_protocol.go
+@@ -773,6 +773,10 @@
+ 	m.threadOperation.Lock()
+ 	defer m.threadOperation.Unlock()
+ 
++	if id := ModelProfileID(ctx); id != "" && !m.ModelAvailable(id) {
++		return TurnInfo{}, errors.New("selected model is unavailable")
++	}
++
+ 	if threadID == "" {
+ 		return TurnInfo{}, errors.New("Codex thread id is required")
+ 	}
+@@ -782,7 +786,7 @@
+ 	if reasoningEffort == "" {
+ 		reasoningEffort = "none"
+ 	}
+-	if reasoningEffort != "none" && reasoningEffort != "high" && !(reasoningEffort == "max" && m.config.ChatModelsEnabled && ModelProfileID(ctx) == "kimi-k3-max-v1") {
++	if reasoningEffort != "none" && reasoningEffort != "high" && !(reasoningEffort == "max" && m.config.ChatModelsEnabled && (ModelProfileID(ctx) == "kimi-k3-max-v1" || ModelProfileID(ctx) == KimiK31ProfileID)) {
+ 		return TurnInfo{}, errors.New("reasoning effort must be none or high")
+ 	}
+ 	wireInputs := make([]any, 0, len(inputs))
+--- /dev/null
++++ b/internal/contracts/chatmodelsv2/legacy.schema.json
+@@ -0,0 +1,214 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "$id": "https://schemas.yijie.ai/chat/model-selection/v1",
++  "title": "FEAT-156 local model selection",
++  "x-model-profiles": [
++    {
++      "profile_id": "kimi-k3-max-v1",
++      "label": "Kimi K3",
++      "provider": "kimi",
++      "model": "kimi-k3",
++      "effort": "max",
++      "context_window": 1048576
++    },
++    {
++      "profile_id": "minimax-m3-high-v1",
++      "label": "MiniMax M3",
++      "provider": "minimax",
++      "model": "MiniMax-M3",
++      "effort": "high",
++      "context_window": 1000000
++    }
++  ],
++  "$defs": {
++    "ProfileId": {
++      "type": "string",
++      "enum": [
++        "kimi-k3-max-v1",
++        "minimax-m3-high-v1"
++      ]
++    },
++    "CanonicalId": {
++      "type": "string",
++      "format": "uuid",
++      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
++    },
++    "Revision": {
++      "type": "integer",
++      "minimum": 0,
++      "maximum": 9007199254740991
++    },
++    "SelectionState": {
++      "type": "string",
++      "enum": [
++        "ready",
++        "switching",
++        "unknown"
++      ]
++    },
++    "ModelDefinition": {
++      "type": "object",
++      "additionalProperties": false,
++      "required": [
++        "profile_id",
++        "label",
++        "provider",
++        "model",
++        "effort",
++        "context_window"
++      ],
++      "properties": {
++        "profile_id": {
++          "$ref": "#/$defs/ProfileId"
++        },
++        "label": {
++          "type": "string"
++        },
++        "provider": {
++          "type": "string"
++        },
++        "model": {
++          "type": "string"
++        },
++        "effort": {
++          "type": "string"
++        },
++        "context_window": {
++          "type": "integer",
++          "minimum": 1
++        }
++      }
++    },
++    "ModelAvailability": {
++      "type": "object",
++      "additionalProperties": false,
++      "required": [
++        "profile",
++        "available",
++        "reason"
++      ],
++      "properties": {
++        "profile": {
++          "$ref": "#/$defs/ModelDefinition"
++        },
++        "available": {
++          "type": "boolean"
++        },
++        "reason": {
++          "type": "string",
++          "enum": [
++            "ready",
++            "not_configured",
++            "runtime_unavailable"
++          ]
++        }
++      }
++    },
++    "Catalog": {
++      "type": "object",
++      "additionalProperties": false,
++      "required": [
++        "schema_version",
++        "default_profile",
++        "models"
++      ],
++      "properties": {
++        "schema_version": {
++          "const": 1
++        },
++        "default_profile": {
++          "$ref": "#/$defs/ProfileId"
++        },
++        "models": {
++          "type": "array",
++          "minItems": 2,
++          "maxItems": 2,
++          "items": {
++            "$ref": "#/$defs/ModelAvailability"
++          }
++        }
++      }
++    },
++    "Selection": {
++      "type": "object",
++      "additionalProperties": false,
++      "required": [
++        "schema_version",
++        "agent_session_id",
++        "state",
++        "revision"
++      ],
++      "properties": {
++        "schema_version": {
++          "const": 1
++        },
++        "agent_session_id": {
++          "$ref": "#/$defs/CanonicalId"
++        },
++        "state": {
++          "$ref": "#/$defs/SelectionState"
++        },
++        "revision": {
++          "$ref": "#/$defs/Revision"
++        },
++        "profile_id": {
++          "$ref": "#/$defs/ProfileId"
++        },
++        "operation_id": {
++          "$ref": "#/$defs/CanonicalId"
++        }
++      }
++    },
++    "SelectRequest": {
++      "type": "object",
++      "additionalProperties": false,
++      "required": [
++        "schema_version",
++        "operation_id",
++        "expected_revision",
++        "profile_id"
++      ],
++      "properties": {
++        "schema_version": {
++          "const": 1
++        },
++        "operation_id": {
++          "$ref": "#/$defs/CanonicalId"
++        },
++        "expected_revision": {
++          "$ref": "#/$defs/Revision"
++        },
++        "profile_id": {
++          "$ref": "#/$defs/ProfileId"
++        }
++      }
++    },
++    "Error": {
++      "type": "object",
++      "additionalProperties": false,
++      "required": [
++        "schema_version",
++        "code"
++      ],
++      "properties": {
++        "schema_version": {
++          "const": 1
++        },
++        "code": {
++          "type": "string",
++          "enum": [
++            "invalid_request",
++            "unauthorized",
++            "not_found",
++            "busy",
++            "revision_conflict",
++            "request_conflict",
++            "model_unavailable",
++            "selection_unknown",
++            "runtime_unavailable"
++          ]
++        }
++      }
++    }
++  }
++}
+--- /dev/null
++++ b/internal/contracts/chatmodelsv2/schema.json
+@@ -0,0 +1,696 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "$id": "https://schemas.yijie.ai/chat/model-selection/v2",
++  "title": "FEAT-164 versioned model selection",
++  "x-model-profiles": [
++    {
++      "profile_id": "kimi-k3-1-pro-max-v1",
++      "label": "Kimi K3.1 Pro",
++      "provider": "kimi",
++      "model": "kimi-k3.1-pro",
++      "effort": "max",
++      "context_window": 1048576
++    },
++    {
++      "profile_id": "minimax-m3-high-v1",
++      "label": "MiniMax M3",
++      "provider": "minimax",
++      "model": "MiniMax-M3",
++      "effort": "high",
++      "context_window": 1000000
++    }
++  ],
++  "$defs": {
++    "ProfileId": {
++      "type": "string",
++      "enum": [
++        "kimi-k3-max-v1",
++        "kimi-k3-1-pro-max-v1",
++        "minimax-m3-high-v1"
++      ],
++      "description": "Known persisted identity. Recognition grants no execution authority; the K3 identity is retired."
++    },
++    "CanonicalId": {
++      "type": "string",
++      "format": "uuid",
++      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
++    },
++    "Revision": {
++      "type": "integer",
++      "minimum": 0,
++      "maximum": 9007199254740991
++    },
++    "SelectionState": {
++      "type": "string",
++      "enum": [
++        "ready",
++        "switching",
++        "unknown"
++      ]
++    },
++    "ModelDefinition": {
++      "type": "object",
++      "additionalProperties": false,
++      "required": [
++        "profile_id",
++        "label",
++        "provider",
++        "model",
++        "effort",
++        "context_window"
++      ],
++      "properties": {
++        "profile_id": {
++          "$ref": "#/$defs/ActiveProfileId"
++        },
++        "label": {
++          "type": "string"
++        },
++        "provider": {
++          "type": "string"
++        },
++        "model": {
++          "type": "string"
++        },
++        "effort": {
++          "type": "string"
++        },
++        "context_window": {
++          "type": "integer",
++          "minimum": 1
++        }
++      },
++      "oneOf": [
++        {
++          "properties": {
++            "profile_id": {
++              "const": "kimi-k3-1-pro-max-v1"
++            },
++            "label": {
++              "const": "Kimi K3.1 Pro"
++            },
++            "provider": {
++              "const": "kimi"
++            },
++            "model": {
++              "const": "kimi-k3.1-pro"
++            },
++            "effort": {
++              "const": "max"
++            },
++            "context_window": {
++              "const": 1048576
++            }
++          },
++          "required": [
++            "profile_id",
++            "label",
++            "provider",
++            "model",
++            "effort",
++            "context_window"
++          ]
++        },
++        {
++          "properties": {
++            "profile_id": {
++              "const": "minimax-m3-high-v1"
++            },
++            "label": {
++              "const": "MiniMax M3"
++            },
++            "provider": {
++              "const": "minimax"
++            },
++            "model": {
++              "const": "MiniMax-M3"
++            },
++            "effort": {
++              "const": "high"
++            },
++            "context_window": {
++              "const": 1000000
++            }
++          },
++          "required": [
++            "profile_id",
++            "label",
++            "provider",
++            "model",
++            "effort",
++            "context_window"
++          ]
++        }
++      ]
++    },
++    "ModelAvailability": {
++      "type": "object",
++      "additionalProperties": false,
++      "required": [
++        "profile",
++        "available",
++        "reason"
++      ],
++      "properties": {
++        "profile": {
++          "$ref": "#/$defs/ModelDefinition"
++        },
++        "available": {
++          "type": "boolean"
++        },
++        "reason": {
++          "type": "string",
++          "enum": [
++            "ready",
++            "not_configured",
++            "runtime_unavailable",
++            "activation_required"
++          ]
++        }
++      },
++      "allOf": [
++        {
++          "if": {
++            "properties": {
++              "reason": {
++                "const": "ready"
++              }
++            },
++            "required": [
++              "reason"
++            ]
++          },
++          "then": {
++            "properties": {
++              "available": {
++                "const": true
++              }
++            }
++          },
++          "else": {
++            "properties": {
++              "available": {
++                "const": false
++              }
++            }
++          }
++        }
++      ]
++    },
++    "Catalog": {
++      "type": "object",
++      "additionalProperties": false,
++      "required": [
++        "schema_version",
++        "default_profile",
++        "models"
++      ],
++      "properties": {
++        "schema_version": {
++          "const": 2
++        },
++        "default_profile": {
++          "$ref": "#/$defs/ActiveProfileId",
++          "const": "kimi-k3-1-pro-max-v1"
++        },
++        "models": {
++          "type": "array",
++          "minItems": 2,
++          "maxItems": 2,
++          "items": {
++            "$ref": "#/$defs/ModelAvailability"
++          },
++          "allOf": [
++            {
++              "contains": {
++                "properties": {
++                  "profile": {
++                    "properties": {
++                      "profile_id": {
++                        "const": "kimi-k3-1-pro-max-v1"
++                      }
++                    },
++                    "required": [
++                      "profile_id"
++                    ],
++                    "type": "object"
++                  }
++                },
++                "required": [
++                  "profile"
++                ],
++                "type": "object"
++              },
++              "minContains": 1,
++              "maxContains": 1
++            },
++            {
++              "contains": {
++                "properties": {
++                  "profile": {
++                    "properties": {
++                      "profile_id": {
++                        "const": "minimax-m3-high-v1"
++                      }
++                    },
++                    "required": [
++                      "profile_id"
++                    ],
++                    "type": "object"
++                  }
++                },
++                "required": [
++                  "profile"
++                ],
++                "type": "object"
++              },
++              "minContains": 1,
++              "maxContains": 1
++            }
++          ]
++        }
++      }
++    },
++    "Selection": {
++      "type": "object",
++      "additionalProperties": false,
++      "required": [
++        "schema_version",
++        "agent_session_id",
++        "state",
++        "revision",
++        "availability"
++      ],
++      "properties": {
++        "schema_version": {
++          "const": 2
++        },
++        "agent_session_id": {
++          "$ref": "#/$defs/CanonicalId"
++        },
++        "state": {
++          "$ref": "#/$defs/SelectionState"
++        },
++        "revision": {
++          "$ref": "#/$defs/Revision"
++        },
++        "profile_id": {
++          "$ref": "#/$defs/ProfileId"
++        },
++        "operation_id": {
++          "$ref": "#/$defs/CanonicalId"
++        },
++        "availability": {
++          "$ref": "#/$defs/SelectionAvailability"
++        }
++      },
++      "allOf": [
++        {
++          "if": {
++            "properties": {
++              "profile_id": {
++                "const": "kimi-k3-max-v1"
++              }
++            },
++            "required": [
++              "profile_id"
++            ]
++          },
++          "then": {
++            "properties": {
++              "availability": {
++                "const": "retired"
++              }
++            }
++          }
++        },
++        {
++          "if": {
++            "properties": {
++              "availability": {
++                "const": "ready"
++              }
++            },
++            "required": [
++              "availability"
++            ]
++          },
++          "then": {
++            "required": [
++              "profile_id"
++            ],
++            "properties": {
++              "profile_id": {
++                "$ref": "#/$defs/ActiveProfileId"
++              },
++              "state": {
++                "const": "ready"
++              }
++            }
++          }
++        },
++        {
++          "if": {
++            "properties": {
++              "availability": {
++                "const": "retired"
++              }
++            },
++            "required": [
++              "availability"
++            ]
++          },
++          "then": {
++            "required": [
++              "profile_id"
++            ],
++            "properties": {
++              "profile_id": {
++                "const": "kimi-k3-max-v1"
++              }
++            }
++          }
++        }
++      ]
++    },
++    "SelectRequest": {
++      "type": "object",
++      "additionalProperties": false,
++      "required": [
++        "schema_version",
++        "operation_id",
++        "expected_revision",
++        "profile_id"
++      ],
++      "properties": {
++        "schema_version": {
++          "const": 2
++        },
++        "operation_id": {
++          "$ref": "#/$defs/CanonicalId"
++        },
++        "expected_revision": {
++          "$ref": "#/$defs/Revision"
++        },
++        "profile_id": {
++          "$ref": "#/$defs/ActiveProfileId"
++        }
++      }
++    },
++    "Error": {
++      "type": "object",
++      "additionalProperties": false,
++      "required": [
++        "schema_version",
++        "code"
++      ],
++      "properties": {
++        "schema_version": {
++          "const": 2
++        },
++        "code": {
++          "type": "string",
++          "enum": [
++            "invalid_request",
++            "unauthorized",
++            "not_found",
++            "busy",
++            "revision_conflict",
++            "request_conflict",
++            "model_unavailable",
++            "selection_unknown",
++            "runtime_unavailable",
++            "model_retired",
++            "activation_required"
++          ]
++        }
++      }
++    },
++    "ActiveProfileId": {
++      "type": "string",
++      "enum": [
++        "kimi-k3-1-pro-max-v1",
++        "minimax-m3-high-v1"
++      ],
++      "description": "Only these identities may be used for a new execution or selection target."
++    },
++    "SelectionAvailability": {
++      "type": "string",
++      "enum": [
++        "ready",
++        "retired",
++        "not_configured",
++        "runtime_unavailable",
++        "activation_required",
++        "selection_unknown"
++      ],
++      "description": "Execution eligibility, independent of ready/switching/unknown application state. Retired is a known history identity."
++    },
++    "OperationRequestSnapshot": {
++      "type": "object",
++      "additionalProperties": false,
++      "required": [
++        "schema_version",
++        "operation_id",
++        "expected_revision",
++        "profile_id"
++      ],
++      "properties": {
++        "schema_version": {
++          "type": "integer",
++          "enum": [
++            1,
++            2
++          ]
++        },
++        "operation_id": {
++          "$ref": "#/$defs/CanonicalId"
++        },
++        "expected_revision": {
++          "$ref": "#/$defs/Revision"
++        },
++        "profile_id": {
++          "$ref": "#/$defs/ProfileId"
++        }
++      },
++      "allOf": [
++        {
++          "oneOf": [
++            {
++              "$ref": "https://schemas.yijie.ai/chat/model-selection/v1#/$defs/SelectRequest"
++            },
++            {
++              "$ref": "#/$defs/SelectRequest"
++            }
++          ]
++        }
++      ]
++    },
++    "ModelOperationState": {
++      "type": "string",
++      "enum": [
++        "prepared",
++        "applying",
++        "unknown",
++        "committed",
++        "cancelled"
++      ]
++    },
++    "ModelOperationReceipt": {
++      "type": "object",
++      "additionalProperties": false,
++      "required": [
++        "schema_version",
++        "agent_session_id",
++        "operation_id",
++        "state",
++        "request"
++      ],
++      "properties": {
++        "schema_version": {
++          "const": 2
++        },
++        "agent_session_id": {
++          "$ref": "#/$defs/CanonicalId"
++        },
++        "operation_id": {
++          "$ref": "#/$defs/CanonicalId"
++        },
++        "state": {
++          "$ref": "#/$defs/ModelOperationState"
++        },
++        "request": {
++          "$ref": "#/$defs/OperationRequestSnapshot"
++        },
++        "result": {
++          "$ref": "#/$defs/SelectionResultSnapshot"
++        }
++      },
++      "allOf": [
++        {
++          "if": {
++            "properties": {
++              "state": {
++                "const": "committed"
++              }
++            },
++            "required": [
++              "state"
++            ]
++          },
++          "then": {
++            "required": [
++              "result"
++            ],
++            "properties": {
++              "result": {
++                "$ref": "#/$defs/SelectionResultSnapshot"
++              }
++            }
++          }
++        },
++        {
++          "if": {
++            "properties": {
++              "request": {
++                "type": "object",
++                "properties": {
++                  "schema_version": {
++                    "const": 1
++                  }
++                },
++                "required": [
++                  "schema_version"
++                ]
++              }
++            },
++            "required": [
++              "request"
++            ]
++          },
++          "then": {
++            "properties": {
++              "result": {
++                "type": "object",
++                "properties": {
++                  "schema_version": {
++                    "const": 1
++                  }
++                }
++              }
++            }
++          }
++        },
++        {
++          "if": {
++            "properties": {
++              "request": {
++                "type": "object",
++                "properties": {
++                  "schema_version": {
++                    "const": 2
++                  }
++                },
++                "required": [
++                  "schema_version"
++                ]
++              }
++            },
++            "required": [
++              "request"
++            ]
++          },
++          "then": {
++            "properties": {
++              "result": {
++                "type": "object",
++                "properties": {
++                  "schema_version": {
++                    "const": 2
++                  }
++                }
++              }
++            }
++          }
++        }
++      ],
++      "description": "Read-only operation facts. A committed receipt never reapplies configuration; callers separately read the current selection. Receipt IDs and request IDs must match at the service boundary."
++    },
++    "RecoverRequest": {
++      "type": "object",
++      "additionalProperties": false,
++      "required": [
++        "schema_version",
++        "operation_id",
++        "expected_revision",
++        "profile_id"
++      ],
++      "properties": {
++        "schema_version": {
++          "const": 2
++        },
++        "operation_id": {
++          "$ref": "#/$defs/CanonicalId"
++        },
++        "expected_revision": {
++          "$ref": "#/$defs/Revision"
++        },
++        "profile_id": {
++          "$ref": "#/$defs/ActiveProfileId"
++        }
++      },
++      "description": "Explicitly reapply the exact previously recorded active target. Not a read-only query. Match operation/session/thread/revision and all unrelated pending-work gates; committed operations only return their original receipt."
++    },
++    "SelectionResultSnapshot": {
++      "type": "object",
++      "additionalProperties": false,
++      "required": [
++        "schema_version",
++        "agent_session_id",
++        "state",
++        "revision"
++      ],
++      "properties": {
++        "schema_version": {
++          "type": "integer",
++          "enum": [
++            1,
++            2
++          ]
++        },
++        "agent_session_id": {
++          "$ref": "#/$defs/CanonicalId"
++        },
++        "state": {
++          "$ref": "#/$defs/SelectionState"
++        },
++        "revision": {
++          "$ref": "#/$defs/Revision"
++        },
++        "profile_id": {
++          "$ref": "#/$defs/ProfileId"
++        },
++        "operation_id": {
++          "$ref": "#/$defs/CanonicalId"
++        },
++        "availability": {
++          "$ref": "#/$defs/SelectionAvailability"
++        }
++      },
++      "allOf": [
++        {
++          "oneOf": [
++            {
++              "$ref": "https://schemas.yijie.ai/chat/model-selection/v1#/$defs/Selection"
++            },
++            {
++              "$ref": "#/$defs/Selection"
++            }
++          ]
++        }
++      ],
++      "description": "Original committed result, preserving its schema version and fields. A legacy result is not upgraded or decorated with current availability. Read current Selection separately."
++    }
++  },
++  "x-family-version": "0.2.0"
++}
+--- /dev/null
++++ b/internal/contracts/chatmodelsv2/types.gen.go
+@@ -0,0 +1,146 @@
++// Code generated from model-selection-v2.schema.json; DO NOT EDIT.
++package chatmodelsv2
++
++type ProfileId string
++
++const (
++	ProfileIdKimiK3MaxV1     ProfileId = "kimi-k3-max-v1"
++	ProfileIdKimiK31ProMaxV1 ProfileId = "kimi-k3-1-pro-max-v1"
++	ProfileIdMinimaxM3HighV1 ProfileId = "minimax-m3-high-v1"
++)
++
++type CanonicalId = string
++type Revision = int64
++type SelectionState string
++
++const (
++	SelectionStateReady     SelectionState = "ready"
++	SelectionStateSwitching SelectionState = "switching"
++	SelectionStateUnknown   SelectionState = "unknown"
++)
++
++type ModelDefinition struct {
++	ProfileId     ActiveProfileId `json:"profile_id"`
++	Label         string          `json:"label"`
++	Provider      string          `json:"provider"`
++	Model         string          `json:"model"`
++	Effort        string          `json:"effort"`
++	ContextWindow int64           `json:"context_window"`
++}
++type ModelAvailability struct {
++	Profile   ModelDefinition         `json:"profile"`
++	Available bool                    `json:"available"`
++	Reason    ModelAvailabilityReason `json:"reason"`
++}
++type Catalog struct {
++	SchemaVersion  int64               `json:"schema_version"`
++	DefaultProfile ActiveProfileId     `json:"default_profile"`
++	Models         []ModelAvailability `json:"models"`
++}
++type Selection struct {
++	SchemaVersion  int64                 `json:"schema_version"`
++	AgentSessionId CanonicalId           `json:"agent_session_id"`
++	State          SelectionState        `json:"state"`
++	Revision       Revision              `json:"revision"`
++	ProfileId      *ProfileId            `json:"profile_id,omitempty"`
++	OperationId    *CanonicalId          `json:"operation_id,omitempty"`
++	Availability   SelectionAvailability `json:"availability"`
++}
++type SelectRequest struct {
++	SchemaVersion    int64           `json:"schema_version"`
++	OperationId      CanonicalId     `json:"operation_id"`
++	ExpectedRevision Revision        `json:"expected_revision"`
++	ProfileId        ActiveProfileId `json:"profile_id"`
++}
++type Error struct {
++	SchemaVersion int64     `json:"schema_version"`
++	Code          ErrorCode `json:"code"`
++}
++type ActiveProfileId string
++
++const (
++	ActiveProfileIdKimiK31ProMaxV1 ActiveProfileId = "kimi-k3-1-pro-max-v1"
++	ActiveProfileIdMinimaxM3HighV1 ActiveProfileId = "minimax-m3-high-v1"
++)
++
++type SelectionAvailability string
++
++const (
++	SelectionAvailabilityReady              SelectionAvailability = "ready"
++	SelectionAvailabilityRetired            SelectionAvailability = "retired"
++	SelectionAvailabilityNotConfigured      SelectionAvailability = "not_configured"
++	SelectionAvailabilityRuntimeUnavailable SelectionAvailability = "runtime_unavailable"
++	SelectionAvailabilityActivationRequired SelectionAvailability = "activation_required"
++	SelectionAvailabilitySelectionUnknown   SelectionAvailability = "selection_unknown"
++)
++
++type OperationRequestSnapshot struct {
++	SchemaVersion    int64       `json:"schema_version"`
++	OperationId      CanonicalId `json:"operation_id"`
++	ExpectedRevision Revision    `json:"expected_revision"`
++	ProfileId        ProfileId   `json:"profile_id"`
++}
++type ModelOperationState string
++
++const (
++	ModelOperationStatePrepared  ModelOperationState = "prepared"
++	ModelOperationStateApplying  ModelOperationState = "applying"
++	ModelOperationStateUnknown   ModelOperationState = "unknown"
++	ModelOperationStateCommitted ModelOperationState = "committed"
++	ModelOperationStateCancelled ModelOperationState = "cancelled"
++)
++
++type ModelOperationReceipt struct {
++	SchemaVersion  int64                    `json:"schema_version"`
++	AgentSessionId CanonicalId              `json:"agent_session_id"`
++	OperationId    CanonicalId              `json:"operation_id"`
++	State          ModelOperationState      `json:"state"`
++	Request        OperationRequestSnapshot `json:"request"`
++	Result         *SelectionResultSnapshot `json:"result,omitempty"`
++}
++type RecoverRequest struct {
++	SchemaVersion    int64           `json:"schema_version"`
++	OperationId      CanonicalId     `json:"operation_id"`
++	ExpectedRevision Revision        `json:"expected_revision"`
++	ProfileId        ActiveProfileId `json:"profile_id"`
++}
++type SelectionResultSnapshot struct {
++	SchemaVersion  int64                  `json:"schema_version"`
++	AgentSessionId CanonicalId            `json:"agent_session_id"`
++	State          SelectionState         `json:"state"`
++	Revision       Revision               `json:"revision"`
++	ProfileId      *ProfileId             `json:"profile_id,omitempty"`
++	OperationId    *CanonicalId           `json:"operation_id,omitempty"`
++	Availability   *SelectionAvailability `json:"availability,omitempty"`
++}
++type ModelAvailabilityReason string
++
++const (
++	ModelAvailabilityReasonReady              ModelAvailabilityReason = "ready"
++	ModelAvailabilityReasonNotConfigured      ModelAvailabilityReason = "not_configured"
++	ModelAvailabilityReasonRuntimeUnavailable ModelAvailabilityReason = "runtime_unavailable"
++	ModelAvailabilityReasonActivationRequired ModelAvailabilityReason = "activation_required"
++)
++
++type ErrorCode string
++
++const (
++	ErrorCodeInvalidRequest     ErrorCode = "invalid_request"
++	ErrorCodeUnauthorized       ErrorCode = "unauthorized"
++	ErrorCodeNotFound           ErrorCode = "not_found"
++	ErrorCodeBusy               ErrorCode = "busy"
++	ErrorCodeRevisionConflict   ErrorCode = "revision_conflict"
++	ErrorCodeRequestConflict    ErrorCode = "request_conflict"
++	ErrorCodeModelUnavailable   ErrorCode = "model_unavailable"
++	ErrorCodeSelectionUnknown   ErrorCode = "selection_unknown"
++	ErrorCodeRuntimeUnavailable ErrorCode = "runtime_unavailable"
++	ErrorCodeModelRetired       ErrorCode = "model_retired"
++	ErrorCodeActivationRequired ErrorCode = "activation_required"
++)
++
++func Definitions() []ModelDefinition {
++	return []ModelDefinition{
++		{ProfileId: "kimi-k3-1-pro-max-v1", Label: "Kimi K3.1 Pro", Provider: "kimi", Model: "kimi-k3.1-pro", Effort: "max", ContextWindow: 1048576},
++		{ProfileId: "minimax-m3-high-v1", Label: "MiniMax M3", Provider: "minimax", Model: "MiniMax-M3", Effort: "high", ContextWindow: 1000000},
++	}
++}
+--- /dev/null
++++ b/internal/contracts/chatmodelsv2/validate.go
+@@ -0,0 +1,73 @@
++package chatmodelsv2
++
++import (
++	"bytes"
++	_ "embed"
++	"encoding/json"
++	"errors"
++	"sync"
++
++	"github.com/santhosh-tekuri/jsonschema/v6"
++)
++
++//go:embed schema.json
++var schemaBytes []byte
++
++//go:embed legacy.schema.json
++var legacySchemaBytes []byte
++
++var once sync.Once
++var schemas map[string]*jsonschema.Schema
++var schemaError error
++
++func initialize() {
++	schemas = make(map[string]*jsonschema.Schema)
++	var doc map[string]any
++	if schemaError = json.Unmarshal(schemaBytes, &doc); schemaError != nil {
++		return
++	}
++	c := jsonschema.NewCompiler()
++	c.AssertFormat()
++	var legacy map[string]any
++	if schemaError = json.Unmarshal(legacySchemaBytes, &legacy); schemaError != nil {
++		return
++	}
++	if schemaError = c.AddResource(legacy["$id"].(string), legacy); schemaError != nil {
++		return
++	}
++	id := doc["$id"].(string)
++	if schemaError = c.AddResource(id, doc); schemaError != nil {
++		return
++	}
++	for name := range doc["$defs"].(map[string]any) {
++		var s *jsonschema.Schema
++		s, schemaError = c.Compile(id + "#/$defs/" + name)
++		if schemaError != nil {
++			return
++		}
++		schemas[name] = s
++	}
++}
++func Decode(name string, data []byte, target any) error {
++	once.Do(initialize)
++	if schemaError != nil {
++		return errors.New("model schema unavailable")
++	}
++	s, ok := schemas[name]
++	if !ok {
++		return errors.New("unknown model schema")
++	}
++	v, e := jsonschema.UnmarshalJSON(bytes.NewReader(data))
++	if e != nil || s.Validate(v) != nil {
++		return errors.New("invalid model value")
++	}
++	return json.Unmarshal(data, target)
++}
++func Validate(name string, v any) error {
++	b, e := json.Marshal(v)
++	if e != nil {
++		return e
++	}
++	var out any
++	return Decode(name, b, &out)
++}
+--- /dev/null
++++ b/internal/contracts/chatmodelsv2/validate_test.go
+@@ -0,0 +1,27 @@
++package chatmodelsv2
++
++import "testing"
++
++func TestFEAT164HistoryAndExecutionConformance(t *testing.T) {
++	const id = "00000000-0000-4000-8000-000000000164"
++	original := `{"schema_version":2,"agent_session_id":"` + id + `","operation_id":"` + id + `","state":"committed","request":{"schema_version":1,"operation_id":"` + id + `","expected_revision":1,"profile_id":"kimi-k3-max-v1"},"result":{"schema_version":1,"agent_session_id":"` + id + `","state":"ready","revision":2,"profile_id":"kimi-k3-max-v1"}}`
++	var receipt ModelOperationReceipt
++	if err := Decode("ModelOperationReceipt", []byte(original), &receipt); err != nil {
++		t.Fatal(err)
++	}
++	if receipt.Result.SchemaVersion != 1 || receipt.Result.Availability != nil {
++		t.Fatal("historical result changed")
++	}
++	if Validate("ActiveProfileId", "kimi-k3-max-v1") == nil {
++		t.Fatal("retired identity admitted")
++	}
++	if Validate("ActiveProfileId", "kimi-k3-1-pro-max-v1") != nil {
++		t.Fatal("new identity rejected")
++	}
++	for _, data := range []string{`{"schema_version":2,"operation_id":"` + id + `","expected_revision":1,"profile_id":"kimi-k3-max-v1"}`, `{"schema_version":2,"operation_id":"` + id + `","expected_revision":1,"profile_id":"future"}`, `{"schema_version":2,"operation_id":"` + id + `","expected_revision":1,"profile_id":"kimi-k3-1-pro-max-v1","extra":true}`} {
++		var value SelectRequest
++		if Decode("SelectRequest", []byte(data), &value) == nil {
++			t.Fatal("invalid execution request accepted")
++		}
++	}
++}
+--- /dev/null
++++ b/internal/contracts/runtimekimik31pro/artifact.gen.go
+@@ -0,0 +1,9 @@
++// Code generated from the FEAT-164 inactive candidate manifest. DO NOT EDIT.
++package runtimekimik31pro
++
++const RuntimeBinarySHA256 = "bfb116b7bd79d11ffd593a0bf1b4be681f3081d6705a018a4a69665984e1ebc8"
++const RuntimeManifestSHA256 = "27049195d89e4d283c09c8106197a4916457f41410ce5919bddd26aaf8c5ed7e"
++const RuntimeBinarySize int64 = 355892488
++const RuntimeSchemaFileCount = 269
++const RuntimeSchemaTreeSHA256 = "d8c3265d8923ef4437203c0a2ded954549b4abc0c5079ecd6bcdf7c6da72f11e"
++const RuntimePatchManifest = "[{\"path\":\".yijie/patches/0001-feat-126-filter-persistent-diagnostics.patch\",\"sha256\":\"6b337a02caf064c6819fab5c7367a485004c85cce0d42acb06fa6d5003e599a0\"},{\"path\":\".yijie/patches/0002-feat-136-unified-exec-pre-emitter-command-lifecycle.patch\",\"sha256\":\"43de168e1443f4b9ca60d7f61e3de2daf20e1cfea14d2e196d28ba417bf3e06d\"},{\"path\":\".yijie/patches/input-only/0003-input-only-execution.patch\",\"sha256\":\"c340b6fc17419bcdc1ff45eebe3da40e5fde740c029102eb7a188f6b14eb41d8\"},{\"path\":\".yijie/patches/chat-models/0004-feat-156-upstream-tool-choice.patch\",\"sha256\":\"828f913fead29da08c015d73ef6c7102a8adf9afd3811ab5469891ec5efc2abf\"},{\"path\":\".yijie/patches/chat-models/0005-feat-156-terminal-tool-arguments.patch\",\"sha256\":\"f1d6689f44056c252530ad940bb253e8a0ace60e810b88857440699ba908917e\"},{\"path\":\".yijie/patches/chat-models/0006-native-web-search-sources.patch\",\"sha256\":\"8fdb9d2f7d7708a603a8d08906a4d3cd6ce098ca9165471f95cb0816ed6718ee\"},{\"path\":\".yijie/patches/chat-models/0007-feat-164-kimi-k31-pro.patch\",\"sha256\":\"c666c066ec1235d016e7479805242d049def542b9f8c684970ac8e5b4cee8ae6\"}]"
+--- a/internal/session/chat_models.go
++++ b/internal/session/chat_models.go
+@@ -106,6 +106,9 @@
+ func (s *Service) checkModelRequest(ctx context.Context, r Record) error {
+ 	id := codex.ModelProfileID(ctx)
+ 	if id == "" {
++		if s.ChatModelsV2Enabled() {
++			return ErrModelUnavailable
++		}
+ 		if r.ModelProfile != "" || r.ModelSelectionState != "" {
+ 			return ErrModelUnavailable
+ 		}
+--- /dev/null
++++ b/internal/session/chat_models_v2.go
+@@ -0,0 +1,73 @@
++package session
++
++import (
++	"github.com/36Dge/yijie-agent-host/internal/codex"
++	wire "github.com/36Dge/yijie-agent-host/internal/contracts/chatmodelsv2"
++)
++
++func (s *Service) ChatModelsV2Enabled() bool {
++	r, ok := s.runtime.(interface{ ChatModelsV2Enabled() bool })
++	return ok && r.ChatModelsV2Enabled() && s.ChatModelsEnabled()
++}
++func (s *Service) chatModelsV2Ready() bool {
++	r, ok := s.runtime.(interface{ ChatModelsV2Ready() bool })
++	return ok && r.ChatModelsV2Ready()
++}
++func (s *Service) ChatModelCatalogV2() wire.Catalog {
++	entries := make([]wire.ModelAvailability, 0, 2)
++	rt, ok := s.runtime.(modelRuntime)
++	for _, p := range wire.Definitions() {
++		configured := ok && s.ChatModelsV2Enabled() && rt.ModelAvailable(string(p.ProfileId))
++		available := configured && s.chatModelsV2Ready()
++		reason := wire.ModelAvailabilityReasonNotConfigured
++		if available {
++			reason = wire.ModelAvailabilityReasonReady
++		} else if configured {
++			reason = wire.ModelAvailabilityReasonRuntimeUnavailable
++		}
++		entries = append(entries, wire.ModelAvailability{Profile: p, Available: available, Reason: reason})
++	}
++	return wire.Catalog{SchemaVersion: 2, DefaultProfile: codex.KimiK31ProfileID, Models: entries}
++}
++func (s *Service) ReadChatModelV2(id string) (wire.Selection, error) {
++	if !s.ChatModelsV2Enabled() {
++		return wire.Selection{}, ErrModelUnavailable
++	}
++	if !isCanonicalNonZeroUUID(id) {
++		return wire.Selection{}, ErrInvalidArgument
++	}
++	r, err := s.store.Get(id)
++	if err != nil {
++		return wire.Selection{}, err
++	}
++	state := wire.SelectionState(r.ModelSelectionState)
++	if state == "" {
++		state = wire.SelectionStateReady
++	}
++	out := wire.Selection{SchemaVersion: 2, AgentSessionId: id, State: state, Revision: r.ModelRevision, Availability: wire.SelectionAvailabilitySelectionUnknown}
++	profile := recordProfile(r)
++	if profile != "" {
++		p := wire.ProfileId(profile)
++		out.ProfileId = &p
++	} else {
++		out.State = wire.SelectionStateUnknown
++	}
++	if r.ModelSelectionOperation != "" {
++		out.OperationId = &r.ModelSelectionOperation
++	}
++	if profile == "kimi-k3-max-v1" {
++		out.Availability = wire.SelectionAvailabilityRetired
++	} else if out.State == wire.SelectionStateReady && profile != "" {
++		out.Availability = wire.SelectionAvailabilityNotConfigured
++		if s.runtime.(modelRuntime).ModelAvailable(profile) {
++			out.Availability = wire.SelectionAvailabilityReady
++			if !s.chatModelsV2Ready() {
++				out.Availability = wire.SelectionAvailabilityRuntimeUnavailable
++			}
++		}
++	}
++	if wire.Validate("Selection", out) != nil {
++		return wire.Selection{}, ErrModelUnknown
++	}
++	return out, nil
++}
+--- /dev/null
++++ b/internal/session/chat_models_v2_test.go
+@@ -0,0 +1,68 @@
++package session
++
++import (
++	"context"
++	"errors"
++	"testing"
++
++	"github.com/36Dge/yijie-agent-host/internal/codex"
++	wire "github.com/36Dge/yijie-agent-host/internal/contracts/chatmodelsv2"
++)
++
++type modelV2TestRuntime struct {
++	modelTestRuntime
++	ready bool
++}
++
++func (*modelV2TestRuntime) ChatModelsV2Enabled() bool { return true }
++func (r *modelV2TestRuntime) ChatModelsV2Ready() bool { return r.ready }
++func (*modelV2TestRuntime) ModelAvailable(id string) bool {
++	return id == codex.KimiK31ProfileID || id == "minimax-m3-high-v1"
++}
++func TestFEAT164RetiredReadPreservesApplicationFacts(t *testing.T) {
++	s, _ := modelService(t)
++	s.runtime = &modelV2TestRuntime{ready: true}
++	if _, err := s.store.update(testSessionID, func(r *Record) error {
++		r.ModelProfile = "kimi-k3-max-v1"
++		r.ModelSelectionState = "ready"
++		r.ModelRevision = 3
++		return nil
++	}); err != nil {
++		t.Fatal(err)
++	}
++	value, err := s.ReadChatModelV2(testSessionID)
++	if err != nil || value.Availability != wire.SelectionAvailabilityRetired || value.State != wire.SelectionStateReady || value.Revision != 3 {
++		t.Fatal(value, err)
++	}
++	before, _ := s.store.Get(testSessionID)
++	if err = s.checkModelRequest(codex.WithModelProfile(context.Background(), "kimi-k3-max-v1"), before); !errors.Is(err, ErrModelUnavailable) {
++		t.Fatal("retired execution was admitted", err)
++	}
++	if err = s.checkModelRequest(context.Background(), Record{}); !errors.Is(err, ErrModelUnavailable) {
++		t.Fatal("legacy headerless start bypassed candidate admission")
++	}
++	after, _ := s.store.Get(testSessionID)
++	if before != after {
++		t.Fatal("read changed durable model facts")
++	}
++	if wire.Validate("Catalog", s.ChatModelCatalogV2()) != nil {
++		t.Fatal("catalog not conformant")
++	}
++}
++
++func TestFEAT164ModelCatalogDoesNotMistakeConfiguredForRuntimeReady(t *testing.T) {
++	s, _ := modelService(t)
++	rt := &modelV2TestRuntime{}
++	s.runtime = rt
++	for _, entry := range s.ChatModelCatalogV2().Models {
++		if entry.Available || entry.Reason != wire.ModelAvailabilityReasonRuntimeUnavailable {
++			t.Fatal("unready Runtime advertised as ready")
++		}
++	}
++	rt.ready = true
++	for _, entry := range s.ChatModelCatalogV2().Models {
++		if !entry.Available || entry.Reason != wire.ModelAvailabilityReasonReady {
++			t.Fatal("ready Runtime not available")
++		}
++	}
++}
+--- /dev/null
++++ b/scripts/feat164-local-responses.py
+@@ -0,0 +1,94 @@
++#!/usr/bin/env python3
++"""Ordinary FEAT-164 loopback fixture. Never connects to an external provider.
++
++For local assembly checks only; these results cannot satisfy real-model G2V.
++The executable under test is always the canonical compiled Runtime/App.
++"""
++import argparse
++import http.server
++import json
++import threading
++from pathlib import Path
++
++parser = argparse.ArgumentParser()
++parser.add_argument("--ledger", type=Path, required=True)
++parser.add_argument("--port", type=int, default=18083)
++args = parser.parse_args()
++lock = threading.Lock()
++ledger = {"scope": "ordinary_loopback_fixture_not_g2v", "external_requests": 0, "requests": [], "state": "starting"}
++profiles = {"kimi-k3.1-pro": ("feat164-local-kimi", "max"), "MiniMax-M3": ("feat164-local-minimax", "high")}
++
++
++def save():
++    args.ledger.parent.mkdir(parents=True, exist_ok=True)
++    args.ledger.write_text(json.dumps(ledger, indent=2) + "\n")
++
++
++class Handler(http.server.BaseHTTPRequestHandler):
++    def log_message(self, *_):
++        pass
++
++    def do_GET(self):
++        if self.path != "/health":
++            self.send_error(404)
++            return
++        data = json.dumps({"fixture": "FEAT-164-loopback-only", "requests": len(ledger["requests"])}).encode()
++        self.send_response(200)
++        self.send_header("Content-Type", "application/json")
++        self.send_header("Content-Length", str(len(data)))
++        self.end_headers()
++        self.wfile.write(data)
++
++    def do_POST(self):
++        if self.path == "/shutdown":
++            self.send_response(204)
++            self.end_headers()
++            threading.Thread(target=self.server.shutdown).start()
++            return
++        if self.path != "/v1/responses":
++            self.send_error(404)
++            return
++        try:
++            length = int(self.headers.get("Content-Length", "0"))
++            if not 0 < length <= 1024 * 1024:
++                raise ValueError()
++            body = json.loads(self.rfile.read(length))
++            profile = profiles.get(body.get("model"))
++            if profile is None or self.headers.get("Authorization") != "Bearer " + profile[0] or (body.get("reasoning") or {}).get("effort") != profile[1]:
++                raise ValueError()
++        except (ValueError, AttributeError, TypeError):
++            self.send_error(400, "Ordinary local fixture profile mismatch")
++            return
++        with lock:
++            if len(ledger["requests"]) >= 6:
++                self.send_error(429, "Local fixture limit reached")
++                return
++            number = len(ledger["requests"]) + 1
++            ledger["requests"].append({"ordinal": number, "model": body["model"], "effort": profile[1], "tool_choice": body.get("tool_choice"), "builtin_search_offered": any(t.get("type") == "web_search" for t in body.get("tools", []) if isinstance(t, dict))})
++            save()
++        identity = f"feat164_local_{number}"
++        item = {"id": "message_" + identity, "type": "message", "role": "assistant", "phase": "final_answer", "status": "completed", "content": [{"type": "output_text", "text": "FEAT164 本地联调完成。这是合成响应，未访问真实模型。", "annotations": []}]}
++        events = [
++            {"type": "response.created", "response": {"id": identity, "status": "in_progress", "output": []}},
++            {"type": "response.output_item.added", "output_index": 0, "item": item},
++            {"type": "response.output_item.done", "output_index": 0, "item": item},
++            {"type": "response.completed", "response": {"id": identity, "status": "completed", "output": [item], "usage": {"input_tokens": 1, "output_tokens": 1, "total_tokens": 2}}},
++        ]
++        self.send_response(200)
++        self.send_header("Content-Type", "text/event-stream")
++        self.end_headers()
++        for event in events:
++            self.wfile.write(("data: " + json.dumps(event) + "\n\n").encode())
++            self.wfile.flush()
++
++
++server = http.server.ThreadingHTTPServer(("127.0.0.1", args.port), Handler)
++ledger["state"] = "running"
++save()
++print("FEAT-164 loopback fixture ready; no external provider connection", flush=True)
++try:
++    server.serve_forever()
++finally:
++    server.server_close()
++    ledger["state"] = "stopped_normally"
++    save()
+--- /dev/null
++++ b/scripts/sync-kimi-k31-pro-contracts.py
+@@ -0,0 +1,87 @@
++#!/usr/bin/env python3
++"""Sync FEAT-164 inactive projections from one immutable Contracts commit.
++
++Reads Git objects only. Does not generate old families, activate a service,
++modify existing v1 projections, or include unrelated sibling working changes.
++"""
++import argparse
++import hashlib
++import json
++import subprocess
++from pathlib import Path
++
++HOST = Path(__file__).resolve().parents[1]
++CONTRACTS = HOST.parent / "yijie-contracts"
++DESKTOP = HOST.parent / "yijie-desktop"
++
++
++def digest(value):
++    return hashlib.sha256(value).hexdigest()
++
++
++def main():
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--commit", required=True)
++    parser.add_argument("--check", action="store_true")
++    args = parser.parse_args()
++    if len(args.commit) != 40 or any(c not in "0123456789abcdef" for c in args.commit):
++        raise SystemExit("A full immutable Contracts SHA is required")
++
++    def git(*parts):
++        return subprocess.check_output(["git", "-C", str(CONTRACTS), *parts])
++
++    if git("rev-parse", "--verify", args.commit + "^{commit}").decode().strip() != args.commit:
++        raise SystemExit("Contracts commit did not resolve exactly")
++
++    def read(name):
++        if name.startswith("/") or any(p in ("", ".", "..") for p in name.split("/")):
++            raise SystemExit("Source must be a repository-relative path")
++        return git("show", args.commit + ":" + name)
++
++    locks = {}
++    for family in ("chat-models-v2", "runtime-kimi-k31-pro"):
++        name = f"compatibility/{family}/source.lock.json"
++        raw = read(name)
++        lock = json.loads(raw)
++        for row in lock.get("sources", []) + lock.get("generators", []) + lock["generated"]:
++            if digest(read(row["path"])) != row["sha256"]:
++                raise SystemExit("Committed source digest mismatch: " + row["path"])
++        locks[family] = {
++            "schema_version": 1, "feature": "FEAT-164", "release": False,
++            "mode": "immutable_local_candidate", "source_commit": args.commit,
++            "source_lock_path": name, "source_lock_sha256": digest(raw),
++            "authority": lock,
++        }
++
++    copies = [
++        (HOST, "sdks/go/openapi/chat-models-v2/types.gen.go", "internal/contracts/chatmodelsv2/types.gen.go"),
++        (HOST, "sdks/jsonschema/chat-models-v2.schema.json", "internal/contracts/chatmodelsv2/schema.json"),
++        (HOST, "jsonschema/chat/model-selection-v1.schema.json", "internal/contracts/chatmodelsv2/legacy.schema.json"),
++        (HOST, "sdks/go/openapi/runtime-kimi-k31-pro/artifact.gen.go", "internal/contracts/runtimekimik31pro/artifact.gen.go"),
++        (DESKTOP, "sdks/rust/chat-models-v2/types.gen.rs", "src-tauri/src/chat/models_v2_generated.rs"),
++        (DESKTOP, "sdks/typescript/src/jsonschema/chat-models-v2.gen.ts", "src/domain/chat-models-v2.generated.ts"),
++        (DESKTOP, "sdks/jsonschema/chat-models-v2.schema.json", "contracts/chat-models-v2.schema.json"),
++        (DESKTOP, "jsonschema/chat/model-selection-v1.schema.json", "contracts/chat-models-v1-history.schema.json"),
++    ]
++    outputs = [(repo / dest, read(source)) for repo, source, dest in copies]
++    for family, lock in locks.items():
++        lock["copies"] = [
++            {"repository": repo.name, "source": source, "destination": dest, "sha256": digest(data)}
++            for (repo, source, dest), (_, data) in zip(copies, outputs)
++            if (family == "runtime-kimi-k31-pro") == ("runtime-kimi-k31-pro" in source)
++        ]
++        value = (json.dumps(lock, indent=2, ensure_ascii=False) + "\n").encode()
++        outputs.extend([(HOST / "api" / (family + ".candidate.json"), value),
++                        (DESKTOP / "contracts" / (family + ".candidate.json"), value)])
++    for file, data in outputs:
++        if args.check:
++            if not file.is_file() or file.read_bytes() != data:
++                raise SystemExit("Consumer projection drift: " + str(file))
++        else:
++            file.parent.mkdir(parents=True, exist_ok=True)
++            file.write_bytes(data)
++    print(f"FEAT-164 projections {'verified' if args.check else 'synced'} from {args.commit}; inactive.")
++
++
++if __name__ == "__main__":
++    main()

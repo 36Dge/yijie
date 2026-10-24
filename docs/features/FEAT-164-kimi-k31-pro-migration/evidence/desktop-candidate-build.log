@@ -1,0 +1,17 @@
+Native input-only projection verified
+Input-only Host projection verified
+[eval]:1
+const v=JSON.parse(require("fs").readFileSync(process.argv[1]));process.stdout.write((v.authority ?? v).runtime_artifact.sha256)
+                                                                                                                         ^
+
+TypeError: Cannot read properties of undefined (reading 'sha256')
+    at [eval]:1:122
+    at runScriptInThisContext (node:internal/vm:219:10)
+    at node:internal/process/execution:483:12
+    at [eval]-wrapper:6:24
+    at runScriptInContext (node:internal/process/execution:481:60)
+    at evalFunction (node:internal/process/execution:315:30)
+    at evalTypeScript (node:internal/process/execution:327:3)
+    at node:internal/main/eval_string:71:3
+
+Node.js v26.0.0

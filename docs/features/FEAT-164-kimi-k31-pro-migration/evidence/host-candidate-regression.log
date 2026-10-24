@@ -1,0 +1,27 @@
+=== RUN   TestFEAT164HistoryAndExecutionConformance
+--- PASS: TestFEAT164HistoryAndExecutionConformance (0.00s)
+PASS
+ok  	github.com/36Dge/yijie-agent-host/internal/contracts/chatmodelsv2	1.881s
+=== RUN   TestChatModelProgressUpgradePreservesOwnedCatalogCompatibility
+--- PASS: TestChatModelProgressUpgradePreservesOwnedCatalogCompatibility (0.05s)
+=== RUN   TestFEAT164CandidateAdmissionAndFreshConfiguration
+--- PASS: TestFEAT164CandidateAdmissionAndFreshConfiguration (0.02s)
+=== RUN   TestFEAT164ExistingOwnedHomeIsNotImplicitlyMigrated
+--- PASS: TestFEAT164ExistingOwnedHomeIsNotImplicitlyMigrated (0.02s)
+=== RUN   TestFEAT164NativeCandidateLifecycle
+    kimi_k31_integration_test.go:19: set YIJIE_CODEX_INTEGRATION_BINARY and YIJIE_CODEX_INTEGRATION_MANIFEST
+--- SKIP: TestFEAT164NativeCandidateLifecycle (0.00s)
+PASS
+ok  	github.com/36Dge/yijie-agent-host/internal/codex	2.634s
+=== RUN   TestChatModelSelectionRevisionReplayAndLegacyProtection
+--- PASS: TestChatModelSelectionRevisionReplayAndLegacyProtection (0.05s)
+=== RUN   TestChatModelAcceptedTurnKeepsOriginalSnapshotAfterSelectionChange
+--- PASS: TestChatModelAcceptedTurnKeepsOriginalSnapshotAfterSelectionChange (0.07s)
+=== RUN   TestFEAT164RetiredReadPreservesApplicationFacts
+--- PASS: TestFEAT164RetiredReadPreservesApplicationFacts (0.04s)
+PASS
+ok  	github.com/36Dge/yijie-agent-host/internal/session	3.321s
+=== RUN   TestFEAT164ModelRoutesPreserveAuthAndRetiredRead
+--- PASS: TestFEAT164ModelRoutesPreserveAuthAndRetiredRead (0.00s)
+PASS
+ok  	github.com/36Dge/yijie-agent-host/internal/app	2.752s

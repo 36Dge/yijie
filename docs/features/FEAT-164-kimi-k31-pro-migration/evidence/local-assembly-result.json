@@ -1,0 +1,47 @@
+{
+  "recorded_at": "2026-10-24T16:45:06.896685+00:00",
+  "scope": "ordinary_local_assembly_only_not_G2V",
+  "external_model_requests": 0,
+  "loopback_requests": [
+    {
+      "ordinal": 1,
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "tool_choice": "auto",
+      "builtin_search_offered": true
+    },
+    {
+      "ordinal": 2,
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "tool_choice": "auto",
+      "builtin_search_offered": true
+    }
+  ],
+  "same_session_on_reopen": true,
+  "new_model_label_observed": true,
+  "persisted_answer_observed_after_reopen": true,
+  "resumed_second_turn_completed": true,
+  "normal_app_exit_codes": [
+    0,
+    0
+  ],
+  "normal_fixture_shutdown": "stopped_normally",
+  "loopback_ports_released": {
+    "18083": true,
+    "18086": true
+  },
+  "artifact_sha256_after_reopen": {
+    "app": "9e5a6a4079bd11fa79066a0af62527dd7973d470515868947fed8e356a5cd23b",
+    "host": "9a713733bae43148608bfb8d65ae943e7d0083a204ae68bc7f3b47afa83b6f1f",
+    "runtime": "bfb116b7bd79d11ffd593a0bf1b4be681f3081d6705a018a4a69665984e1ebc8"
+  },
+  "binary_unchanged_across_reopen": {
+    "app": false,
+    "host": true,
+    "runtime": true
+  },
+  "launch_observation_correction": "UI selection initially auto-launched bundle before canonical bootstrap completed. Normally quit that instance, then wait for canonical Host readiness before selecting App. Initial trial had zero Responses requests.",
+  "g2v_status": "NOT RUN",
+  "paid_model_budget": 0
+}

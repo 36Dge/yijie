@@ -1,0 +1,57 @@
+The following is a diff from the previous accessibility tree for Window: "易界 AI" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 22-36
+~		2 HTML content Description: 任务对话 · 易界 AI, URL: tauri://localhost/chat/01a16ecb-8621-7b00-bef0-63ab7540941c
+~									19 button (collapsed) FEAT164 普通本地联调，请回复合成验证结果。, Secondary Actions: Expand
++			47 container FEAT164 普通本地联调，请回复合成验证结果。
++				48 container
++					49 heading FEAT164 普通本地联调，请回复合成验证结果。, Value: 1
++						50 text FEAT164 普通本地联调，请回复合成验证结果。
++					51 text 已完成
++				52 container 任务对话记录
++					53 container 对话内容
++						54 container
++							55 container 对话 1
++								56 container 对话 1
++									57 container 本轮对话内容
++										58 container 用户消息
++											59 text FEAT164 普通本地联调，请回复合成验证结果。
++											60 container 用户消息操作
++												61 container 2026/10/25 00:43:14
++													62 text 00:43
++												63 button 复制文本
++										64 container 本轮耗时
++											65 container 本轮耗时
++												66 text 已完成 0s
++										67 container 模型回答
++											68 container 模型回答
++												69 text FEAT164 本地联调完成。这是合成响应，未访问真实模型。
++												70 container 模型回答操作
++													71 button 复制文本
++							72 container 对话 2
++								73 container 对话 2
++									74 container 本轮对话内容
++										75 container 用户消息
++											76 text FEAT164 重开后的普通合成续聊验证。
++											77 container 用户消息操作
++												78 container 2026/10/25 00:44:43
++													79 text 00:44
++												80 button 复制文本
++										81 container 本轮耗时
++											82 container 本轮耗时
++												83 text 已完成 0s
++										84 container 模型回答
++											85 container 模型回答
++												86 text FEAT164 本地联调完成。这是合成响应，未访问真实模型。
++												87 container 模型回答操作
++													88 button 复制文本
++				89 container 任务输入区
++					90 text 输入你的任务需求
++					91 text entry area (settable) 输入你的任务需求, Value: [text entry area], Placeholder: 继续输入任务需求…
++						92 text 继续输入任务需求…
++					93 pop up button 可添加文件、技能、连接器
++					94 pop up button 权限审批：请求批准, Help: 更改当前任务的权限审批模式
++					95 pop up button 关联店铺, Help: 关联店铺（交互演示）
++					96 pop up button 选择对话模型，当前 Kimi K3.1 Pro, Help: Kimi K3.1 Pro
++					97 button (disabled) 发送任务
++				98 text 已完成
+The focused UI element is 49 heading FEAT164 普通本地联调，请回复合成验证结果。, Value: 1

@@ -1,0 +1,35 @@
+[
+  {
+    "repository": "yijie-agent-host",
+    "scope": "HEAD plus FEAT-164-only patch, temporary index/source; original workspace/index unchanged",
+    "command": [
+      "go",
+      "test",
+      "./internal/codex",
+      "./internal/session",
+      "./internal/app",
+      "./internal/contracts/chatmodelsv2",
+      "-run",
+      "^TestFEAT164",
+      "-count=1",
+      "-v"
+    ],
+    "exit_code": 0,
+    "log": "yijie-agent-host-isolated-source-check.log"
+  },
+  {
+    "repository": "yijie-desktop",
+    "scope": "HEAD plus FEAT-164-only patch, temporary index/source; original workspace/index unchanged",
+    "command": [
+      "cargo",
+      "check",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "--locked"
+    ],
+    "exit_code": 0,
+    "log": "yijie-desktop-isolated-source-check.log"
+  }
+]

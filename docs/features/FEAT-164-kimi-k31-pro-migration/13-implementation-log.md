@@ -1,5 +1,7 @@
 # FEAT-164 实施记录
 
+> 2026-10-25 当前进度：原隔离清单三仓已本地提交，G2A PASS；Host/Desktop 最小候选及普通本机联调完成，G2V、S1—S4/final 仍 pending。当前证据和续办边界以 [16 下游候选审计](16-downstream-candidate-audit.md) 与 feature.yaml 为准；以下早期阶段记录保留其历史含义。
+
 Owner当前消息明确确认方案并要求实施、保留工作树、遵守安全条款及完成后审计验证。记录时间以evidence/implementation-baseline.json为准；不伪造独立Reviewer或发布批准。
 
 ## 当前阶段

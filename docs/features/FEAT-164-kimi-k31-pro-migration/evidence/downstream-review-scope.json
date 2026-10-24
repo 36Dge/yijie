@@ -1,0 +1,300 @@
+{
+  "recorded_at": "2026-10-24T16:50:29.468755+00:00",
+  "status": "reviewable_candidate_not_committed",
+  "repositories": [
+    {
+      "repository": "yijie-agent-host",
+      "base_commit": "283dcbd7d79ca7bd7a56dba0cb915024fff8eb72",
+      "files": [
+        {
+          "path": "api/chat-models-v2.candidate.json",
+          "sha256": "8d146e3679c1aa83d4f5973e8b04b3363fa1e75f84545f1ec0029987ba1fb317",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "api/runtime-kimi-k31-pro.candidate.json",
+          "sha256": "7fd36eaa3b06c15801e70a02e751252c1a12b0cf18fb52a4073ee11fbca5abe6",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "internal/app/app.go",
+          "sha256": "a45f940d21f1edbd532f9827b5c694f698917c1b85d5b2fcded2961b1ac66724",
+          "scope": "partial_hunks_only_preserve_existing"
+        },
+        {
+          "path": "internal/app/chat_models_v2.go",
+          "sha256": "94f29708195c65da1bd9445d3b55c198ded274d52267378ae5d83564fd7ebd9b",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "internal/app/chat_models_v2_test.go",
+          "sha256": "a9c32ed1ae444868cbda4ea62760e1064888ea2b4d47f21411676fb43c599391",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "internal/codex/baseline.go",
+          "sha256": "5cc8d4302146ed56a4c37638971180cebf99f402d008e6afeaca6ec08fc24950",
+          "scope": "whole_previously_clean_file"
+        },
+        {
+          "path": "internal/codex/chat_models.go",
+          "sha256": "2b805b621d5d182600fffb540e743b4e1ca7f6f11546003f735877f10941aa10",
+          "scope": "partial_hunks_only_preserve_existing"
+        },
+        {
+          "path": "internal/codex/kimi_k31_candidate.go",
+          "sha256": "ea616f0d94433855538d6c1351eeefb9f0f298439445265b1f5e221a4abb2b60",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "internal/codex/kimi_k31_candidate_test.go",
+          "sha256": "e8f4a6f5537095b22afdf387233f339d8b8ddab07ecef217cb77fc93bda16ca2",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "internal/codex/kimi_k31_integration_test.go",
+          "sha256": "295d846685fd173786da01b69fed730a0c2385d25db0f2bc03dd9ac651f82fde",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "internal/codex/runtime.go",
+          "sha256": "25410d58b533434d7d318c2ccd628dce30c205e948644d6db9349d5c32488636",
+          "scope": "whole_previously_clean_file"
+        },
+        {
+          "path": "internal/codex/session_protocol.go",
+          "sha256": "6a1a3ed51abb4fc66004e9f99060b362a41cd632df880e480e63ac339773c65b",
+          "scope": "partial_hunks_only_preserve_existing"
+        },
+        {
+          "path": "internal/contracts/chatmodelsv2/legacy.schema.json",
+          "sha256": "15586a03e7873bc7c913ea89162cc60d8354effb8c475045920ce609f949169b",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "internal/contracts/chatmodelsv2/schema.json",
+          "sha256": "fa0ae10205dd9d0d2fead4366b67a03d21beda874f1fdb401e871390f72813af",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "internal/contracts/chatmodelsv2/types.gen.go",
+          "sha256": "be923ec69e9d4e70374b83ab2afa9d1c364bc57d0e052abd0e892d0fdce5b909",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "internal/contracts/chatmodelsv2/validate.go",
+          "sha256": "d923d3a22e6a5e776570c0cfda215baf25337cda6ab966826d4e87790adaca7d",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "internal/contracts/chatmodelsv2/validate_test.go",
+          "sha256": "b82901c5aef3abc08f7dd535929d6c9558c3cdb7c5c0336ac894dbb408732383",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "internal/contracts/runtimekimik31pro/artifact.gen.go",
+          "sha256": "024970500801a63e2065e4a41bb15c918b20da4bc342e2d290ccd0e9ebc9a40a",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "internal/session/chat_models.go",
+          "sha256": "3e4e5cce609d9c5ac831fec6e904ee15e332b3aab2b9a3dd95f80a5af2023833",
+          "scope": "whole_previously_clean_file"
+        },
+        {
+          "path": "internal/session/chat_models_v2.go",
+          "sha256": "eb7a534e2d44e68a0a0ac03c63c8c6421b62f4c74778abdfd41e254a0682c2d8",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "internal/session/chat_models_v2_test.go",
+          "sha256": "8dddaaf58ec380ce56e24fba06f22ecca6a0c1b3a72f234b0162e4a86212608b",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "scripts/feat164-local-responses.py",
+          "scope": "new_feat164_file",
+          "sha256": "18d72028743911f1aa52647a53c0f01f838150689e00a92ba4d378f0855af1e7"
+        },
+        {
+          "path": "scripts/sync-kimi-k31-pro-contracts.py",
+          "sha256": "987a6eb07cc5ac33c082a6dc82e3b01d648271301409a677b812ffc78d3edb7a",
+          "scope": "new_feat164_file"
+        }
+      ]
+    },
+    {
+      "repository": "yijie-desktop",
+      "base_commit": "6080a568332dbf18ff119501607bc7e7afa92f94",
+      "files": [
+        {
+          "path": "contracts/chat-models-v1-history.schema.json",
+          "sha256": "15586a03e7873bc7c913ea89162cc60d8354effb8c475045920ce609f949169b",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "contracts/chat-models-v2.candidate.json",
+          "sha256": "8d146e3679c1aa83d4f5973e8b04b3363fa1e75f84545f1ec0029987ba1fb317",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "contracts/chat-models-v2.schema.json",
+          "sha256": "fa0ae10205dd9d0d2fead4366b67a03d21beda874f1fdb401e871390f72813af",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "contracts/kimi-k31-host-build.candidate.json",
+          "sha256": "cad803287515eb494b95362bed14efced54500f916140082a49076a3b82637d4",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "contracts/runtime-kimi-k31-pro.candidate.json",
+          "sha256": "7fd36eaa3b06c15801e70a02e751252c1a12b0cf18fb52a4073ee11fbca5abe6",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "scripts/chat-model-build-candidate.mjs",
+          "sha256": "fdc7513782f76aedc6a21960c403d6ffbdcf516a13c4e1d0b4fe057a12ba58b8",
+          "scope": "partial_hunks_only_preserve_existing"
+        },
+        {
+          "path": "scripts/feat164-verdict.mjs",
+          "sha256": "aa9889106f7d12a8868bf461f1728f8ab951342afec0464c01da2fdf3ef0e512",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "scripts/feat164-verdict.test.mjs",
+          "sha256": "f82512ee5bd9cbaf12a376f7195d45265395e977e55638df02c927156caa055e",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "scripts/kimi-k31-build-candidate.mjs",
+          "sha256": "b98d7408093ad4e9f307e765b289f55bc9e08f7dc10a642df8efb4d7ca56e199",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "scripts/kimi-k31-packaged-receipt.mjs",
+          "scope": "new_feat164_file",
+          "sha256": "610d371722a0e86a7bda5eb371361d91d5f5a6a028bb75e45aaf3c796a3d6654"
+        },
+        {
+          "path": "scripts/run-local-demo-fast.sh",
+          "sha256": "2f034c4ce2a6ee8af7eae3a38731febfb766bbed21da88a8109b66a1e7f57382",
+          "scope": "whole_previously_clean_file"
+        },
+        {
+          "path": "src-tauri/Cargo.toml",
+          "sha256": "03c8a684dc89917d6af34854ddb7faee864ffc09af554c328804c6beeda5e47d",
+          "scope": "whole_previously_clean_file"
+        },
+        {
+          "path": "src-tauri/migrations/chat/0038_kimi_k31_models.sql",
+          "sha256": "7ac9e6aaa9333b4262485c0600bf028771f326506aeee57679aaaf036bde61f2",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "src-tauri/src/chat/application.rs",
+          "sha256": "a58dead152aa1cae43248da8d3bb4db5debd3304dc33e3030fe4f07029974231",
+          "scope": "partial_hunks_only_preserve_existing"
+        },
+        {
+          "path": "src-tauri/src/chat/database.rs",
+          "sha256": "d1f0ecd68b44bf3aefa0c92cab2fb1c6353cf746bf872fbc8e2df0d6a191cb1a",
+          "scope": "partial_hunks_only_preserve_existing"
+        },
+        {
+          "path": "src-tauri/src/chat/host_bridge.rs",
+          "sha256": "b173f4adb5939fb6e2e362418044732a289385bcb628ceb1973ce2e62cb1b2f4",
+          "scope": "partial_hunks_only_preserve_existing"
+        },
+        {
+          "path": "src-tauri/src/chat/host_bridge/models.rs",
+          "sha256": "40e6f72bd71f818372585d914f4e58add336427e6e038371286fb65e73b1d377",
+          "scope": "whole_previously_clean_file"
+        },
+        {
+          "path": "src-tauri/src/chat/kimi_k31_tests.rs",
+          "sha256": "1e4a1ce83ee5e05dc9f2e6524430cb432a0575c6a80f6c12671959a7e2b60fda",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "src-tauri/src/chat/migrations.rs",
+          "sha256": "8b0dd61c86a226929f717aa9d079ce91a132a16d68a42e2f39d3bb57a72be9ac",
+          "scope": "whole_previously_clean_file"
+        },
+        {
+          "path": "src-tauri/src/chat/mod.rs",
+          "sha256": "506eb6217954d3fa99db673aad66026c4f9bc3dc866c26228766d46cfad78a67",
+          "scope": "partial_hunks_only_preserve_existing"
+        },
+        {
+          "path": "src-tauri/src/chat/models.rs",
+          "sha256": "113dc1f3e054a935f4e93dee033e9a0ee87c65274e56fac1253bf5b230ec0b68",
+          "scope": "whole_previously_clean_file"
+        },
+        {
+          "path": "src-tauri/src/chat/models_v2_generated.rs",
+          "sha256": "310b7ebbe8331c584768b83b741b22817a6063dfa4ac8957ef261a9b1126e84d",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "src-tauri/src/chat/schedules/execution/preparation/tests.rs",
+          "sha256": "5d6f669a948cefbb328928dad5d1e538c93bf5cb8d824848fda5d24bb5b69d5d",
+          "scope": "whole_previously_clean_file"
+        },
+        {
+          "path": "src-tauri/src/chat/sidecar.rs",
+          "sha256": "ccf5cab0e59f0085a698d9273b0a882f999a0e3ea397becba3ec206179de4e67",
+          "scope": "whole_previously_clean_file"
+        },
+        {
+          "path": "src-tauri/tauri.feat164-kimi-k31.conf.json",
+          "sha256": "3ccbecd72144be0fac94a9a5f5d9793cf30f32db40b6306bc084731f3982ff46",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "src/api/chat-model-client.ts",
+          "sha256": "a16828499ab38fb45236e68ba730a2d87d2a903b12a46b4583b5b2e73f6c6c9e",
+          "scope": "whole_previously_clean_file"
+        },
+        {
+          "path": "src/api/chat-model-v2-client.test.ts",
+          "sha256": "d22e1a77ceed13d43506f72b50e1be6ac6a1356abfdeba155c24750059b3d90a",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "src/components/chat/ChatModelControl.vue",
+          "sha256": "0f4558cbcac088366d5d8c7e2d0c7d93bb6e49180e5e143227cc76330b479ff1",
+          "scope": "whole_previously_clean_file"
+        },
+        {
+          "path": "src/components/schedules/ScheduledPlanForm.vue",
+          "sha256": "40e646d84bcd55baf57d43c058d8e1215ffcb78dad1b89a02f4a9a50ca6882fc",
+          "scope": "whole_previously_clean_file"
+        },
+        {
+          "path": "src/domain/chat-models-v2.generated.ts",
+          "sha256": "ce0a620662864253170b702199d9854875ac411572c71c5585e140c73d406818",
+          "scope": "new_feat164_file"
+        },
+        {
+          "path": "src/pages/schedules/use-scheduled-draft.ts",
+          "sha256": "984ae2071092905b83c81faa47ea91f88e37f12a0af27eaa87d0f6b8eea47544",
+          "scope": "whole_previously_clean_file"
+        },
+        {
+          "path": "src/stores/chat-composer-drafts.store.ts",
+          "sha256": "4c24222e74bb62860418add3026b52083287e8db9aad9d2a870de0bc2187d805",
+          "scope": "whole_previously_clean_file"
+        },
+        {
+          "path": "src/stores/chat.store.ts",
+          "sha256": "ebab73858019e7e66877929f1bac6cbe5ad698fb09cea63e775b3747737182e2",
+          "scope": "partial_hunks_only_preserve_existing"
+        }
+      ]
+    }
+  ],
+  "excluded": "All unchanged pre-existing work; partial files require FEAT-164-only hunks, never git add -A; no push/branch/tag/release.",
+  "source_status": "App/Host draft build includes retained workspace sources; G2V still requires immutable implementation/harness qualification and a separately approved real-model budget."
+}

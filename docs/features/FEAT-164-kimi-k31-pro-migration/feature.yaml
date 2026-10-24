@@ -68,7 +68,7 @@ gates:
 gate_reasons:
   G2A: Owner当前明确接受实际候选/离线比较；Runtime 57753db451b29a49315ddcb6449ca146171c4de7 → Contracts
     b0060c8bc4fb924cec14d98b193c32c69482b7b7；两consumer独立pin已从Git对象同步校验。只允许最小G2V候选，非完整S1—S4或激活。
-  G2V: 实际Runtime源候选已构建；尚无完整最小App/Host纵向候选和安全harness资格，真实模型预算为0
+  G2V: 用户明确恢复，沿用20元和搜索/图片授权；新不可变候选、预算计量及安全Harness资格准备中；真实G2V尚未执行，不提前放行S1—S4。
 temporal_contract_matrix:
   required: true
   applicability_reason: 模型意图、配置回执、Host提交、Native通知、历史重放、计划资格和正常退出跨进程且跨版本
@@ -366,8 +366,8 @@ slices:
         digest: NOT RUN
       platform: NOT RUN
       production_bootstrap: true
-      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
-        implementation reference changes
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation
+        reference changes
     status: pending
     status_reason: 待适用G2A/Harness/G2V完成；尚未实施此下游slice
   - id: S2
@@ -430,8 +430,8 @@ slices:
         digest: NOT RUN
       platform: NOT RUN
       production_bootstrap: true
-      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
-        implementation reference changes
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation
+        reference changes
     status: pending
     status_reason: 待适用G2A/Harness/G2V完成；尚未实施此下游slice
   - id: S3
@@ -494,8 +494,8 @@ slices:
         digest: NOT RUN
       platform: NOT RUN
       production_bootstrap: true
-      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
-        implementation reference changes
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation
+        reference changes
     status: pending
     status_reason: 待适用G2A/Harness/G2V完成；尚未实施此下游slice
   - id: S4
@@ -558,8 +558,8 @@ slices:
         digest: NOT RUN
       platform: NOT RUN
       production_bootstrap: true
-      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
-        implementation reference changes
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation
+        reference changes
     status: pending
     status_reason: 待适用G2A/Harness/G2V完成；尚未实施此下游slice
 final_e2e:
@@ -631,8 +631,8 @@ final_e2e:
       reason: N/A
 failure_circuit_breaker:
   same_failure_threshold: 3
-  policy: third equivalent failure blocks retries and local patches until a root-cause audit produces
-    discriminating evidence and an authorized next action
+  policy: third equivalent failure blocks retries and local patches until a root-cause audit produces discriminating
+    evidence and an authorized next action
   incidents:
     - id: F164-GATE-BASELINE-REF
       slice_id: SOURCE-CANDIDATE
@@ -715,10 +715,10 @@ documents:
   local_freeze: 15-local-source-freeze.md
 external_authorizations:
   paid_calls:
-    allowed: false
-    max_actions: 0
-    approved_by: N/A
-    approved_at: N/A
+    allowed: true
+    max_actions: 8
+    approved_by: 段成威（当前用户明确沿用20元预算及搜索、图片授权；最小G2V自限8 HTTP）
+    approved_at: 2026-10-25
   destructive_operations:
     allowed: false
     max_actions: 0
@@ -731,20 +731,20 @@ external_authorizations:
     approved_at: N/A
 current_authorization:
   phase: implementation_with_governance
-  source: Owner当前明确接受源候选和离线比较，并授权隔离本地提交及继续实施。
+  source: Owner恢复FEAT-164，沿用20元与搜索/图片授权，继续实施、安全验证及FEAT-164本地提交；不推送。
   documentation_write_allowed: true
   product_source_edit_allowed: true
   product_generate_build_test_allowed: true
   database_migration_allowed: false
-  service_lifecycle_allowed: false
-  model_or_tool_business_calls_allowed: false
+  service_lifecycle_allowed: true
+  model_or_tool_business_calls_allowed: true
   git_commit_push_branch_release_allowed: false
-  note: 继续实施与安全验证已获准；G2A后仅先最小G2V候选。真实付费/日常库迁移和App激活仍无本Feature许可。
+  note: 先完成不可变候选/Harness/预算计量；最小G2V输出限8192并暂省略原生搜索，详细边界见18；不激活或迁移日常库。
   git_local_commit_allowed: true
-  git_scope: 按已批准隔离清单，仅FEAT-164本地Runtime→Contracts→治理提交；无push/branch/tag/release，不混入既有任务。
+  git_scope: 仅FEAT-164本地提交，包括必要后续实现/验证/治理；不混入已有其它需求，无push/branch/tag/release。
 implementation:
   status: active
-  real_entrypoint: 未激活chat-models-v2与kimi-k31-pro-r1源候选；下游Host/Desktop保持原入口，G2A尚未通过
+  real_entrypoint: bash scripts/run-local-demo-fast.sh --packaged --kimi-k31-pro；同canonical组合的显式独立候选，日常入口未切换
   mock_only: false
 product_verification:
   status: NOT RUN

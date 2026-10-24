@@ -1,12 +1,14 @@
 # 易界项目 Codex 长期协作记忆
 
-## FEAT-164 源候选本地固化，继续最小纵向实施（2026-10-24）
+## FEAT-164 已恢复，准备受限真实 G2V（2026-10-25）
 
-Owner已接受实际源候选及离线比较，并授权隔离本地提交、继续实施、安全验证和审计。Runtime 57753db451b29a49315ddcb6449ca146171c4de7 → Contracts b0060c8bc4fb924cec14d98b193c32c69482b7b7已按清单本地固化，无push/tag/分支/发布。两consumer已从Git对象同步独立pin；既有FEAT-162/163改动保持。G0/G1/G2通过，G2A条件已核验并进入机器检查；G2V与S1—S4仍pending，整体产品未完成。
+用户明确恢复 FEAT-164，沿用人民币 20 元累计费用上限及搜索、图片授权；继续实施、审计和安全验证，仅本地提交、不推送。先读 [18 恢复实施](../features/FEAT-164-kimi-k31-pro-migration/18-resumed-g2v.md)；[17](../features/FEAT-164-kimi-k31-pro-migration/17-paused-state.md) 是已撤销暂停后的历史快照。G0/G1/G2/G2A PASS，G2V、S1—S4/final 尚未通过。
 
-先读[15源固化](../features/FEAT-164-kimi-k31-pro-migration/15-local-source-freeze.md)、[14审计](../features/FEAT-164-kimi-k31-pro-migration/14-source-candidate-review.md)和[08验证](../features/FEAT-164-kimi-k31-pro-migration/08-verification-report.md)。当前只继续最小G2V候选/安全Harness；真实模型预算、日常库迁移和App激活尚未授权。不得再次索取已经给出的候选/本地清单提交许可，不扩大为其它任务或发布。
+Host ff7d05dae4b3a48285e9bed63ba7253081da234c、Desktop 3dc2205fba79a0a1d7fdea8a4b767d35f2c286b1 的批准隔离提交已完成。Desktop 追加 0cbb950817ce05bdd79d969bce88c33c066d834c 固定 Git Host build pin，8aaa8be1764030f58b0445ada8dfbabb4e7a4ecc 增加独立预算 meter/6项普通状态测试。Runtime 57753db451b29a49315ddcb6449ca146171c4de7、Contracts b0060c8bc4fb924cec14d98b193c32c69482b7b7 保持。没有混入 FEAT-162/163。原工作区保留，使用 CrossBSD/.local/feat164-qualification-20261025 的 detached 源构建，详情见18。
 
-继续保留：历史v1回执原样读取；已知退役与选择unknown分离；旧线程先新选择operation；worker claim/send前准入；计划领域事务暂停撤授权；所有实际启用辅助调用纳入截止点。当前底层guard保护Responses请求和复用该构造器的compact，不代表未启用memories/realtime路径已获资格，也不能代替Host/Native准入。FEAT-162/163许可、预算及未完成结论保持独立。
+当前最小 G2V 自限4用户回合/8模型HTTP/1含图请求并计入同一20元账本，真实调用尚未开始。输出cap8192、暂省略原生web_search声明、保留tool_choice和响应SSE；每次按完整输入窗口预占14.188544元，usage未知保留预占并停止。该预算验证不能冒充默认参数/原生搜索/完整工具资格。搜索授权保留，但原生Responses搜索计费上界尚未核实，不套用旧Chat Completions价格。
+
+下一步完成当前不可变候选的普通本机正控、安全Harness资格，再做真实App→新模型→保存/同产物重开/正常退出；G2V通过才进入S1—S4。不得重复索取已给出的本地FEAT164提交或20元授权。旧选择/recover、未发送取消、计划退役、辅助调用截止及最终组合仍未完成。长期禁止强杀、权限破坏、可执行替身和攻击fixture；所有未执行保持真实记录。
 
 2026-10-08 Sorftime 最新状态：Owner已填密钥，但两条19:19/19:20元数据初始化仍unavailable。审计发现通用HTTP迁移漏带旧链路已验证有效的User-Agent；已补真实yijie-mcp-worker/0.1.0及受限HTTP阶段/状态码诊断，未伪装旧客户端、未改固定Codex。63本地测试/lint/标准App构建通过，说明已左对齐。新worker da3c31537e6be46bb826a2ec44b0541456cbbf2810772aabbba5df1023400f81。尚未真实复验，已申请仅1次连接/发现、0模型/0业务；因先前失败不自动重发，等待用户答复。Keyring已有用户保存密钥，不要再要求重填/卸载或读取密钥。详见FEAT-157/21及sorftime-user-agent-20261008证据。
 

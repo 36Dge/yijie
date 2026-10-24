@@ -1,5 +1,9 @@
 # FEAT-164 阶段交付
 
+> 2026-10-25 用户已明确恢复，沿用 20 元及搜索/图片授权。当前进度与预算边界见 [18 恢复实施记录](18-resumed-g2v.md)；17 保留暂停时历史状态。G2V 尚未通过。
+
+> 2026-10-25 当前进度：原隔离清单三仓已本地提交，G2A PASS；Host/Desktop 最小候选及普通本机联调完成，G2V、S1—S4/final 仍 pending。当前证据和续办边界以 [16 下游候选审计](16-downstream-candidate-audit.md) 与 feature.yaml 为准；以下早期阶段记录保留其历史含义。
+
 Owner确认后的第一阶段已实现：独立模型v2契约/生成SDK、历史v1请求与结果snapshot读取、新执行活动身份约束、显式恢复/只读回执路由；独立Runtime 0007补丁及未激活kimi-k31-pro-r1候选；对应Contracts来源投影和安全验证。实际审计与验证见08/13/14。
 
 本阶段修复了历史成功回执不能改为v2、OpenAPI模型准入错误未完整声明、目录可用性与原因矛盾、生成枚举重复和离线canonical引用问题。旧v1源、旧Runtime补丁/制品、现有Host/Desktop/Connectors工作树保持；没有应用切换、用户库操作、真实模型/业务调用或Git动作。
