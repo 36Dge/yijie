@@ -1,0 +1,149 @@
+{
+  "recorded_at": "2026-10-24T15:50:13.209426+00:00",
+  "status": "review_only_no_git_mutation",
+  "required_order": [
+    "yijie-codex",
+    "yijie-contracts",
+    "yijie"
+  ],
+  "repositories": [
+    {
+      "repository": "yijie-codex",
+      "base_head": "9154f27d0cdb526a5f5ba0913fe3e2448014b4a1",
+      "files": [
+        {
+          "path": "CHANGELOG.yijie.md",
+          "sha256": "c1712696000dfde7769aa5a2d26cc1e7175a705286e515b0d559a205fac5548d"
+        },
+        {
+          "path": "UPSTREAM.md",
+          "sha256": "671fe4b435bdc4bffc70e888837f52379defd0ec7ebe572b14de224e8081dc6d"
+        },
+        {
+          "path": ".yijie/patches/chat-models/0007-feat-164-kimi-k31-pro.patch",
+          "sha256": "c666c066ec1235d016e7479805242d049def542b9f8c684970ac8e5b4cee8ae6"
+        },
+        {
+          "path": "docs/kimi-k31-pro-candidate.md",
+          "sha256": "f06648ab182f11b5e056d8a5401ecc3b36594329b98abb3769ae83539f9e0e26"
+        },
+        {
+          "path": "scripts/build-kimi-k31-pro.sh",
+          "sha256": "8b26dd8a13765d4fc5e272f8ea1e17d57d69d66fbfff6987eb749604fe828f30"
+        },
+        {
+          "path": "scripts/write-kimi-k31-pro-runtime-manifest.py",
+          "sha256": "c4d336c53d9d504bd954a1f474bc888031b71409c4303b73124cb8c4ec9831c8"
+        }
+      ],
+      "partial_files": []
+    },
+    {
+      "repository": "yijie-contracts",
+      "base_head": "bedf4159b0fa22e24efe6c295f8b0d4845df56b7",
+      "files": [
+        {
+          "path": "jsonschema/chat/model-selection-v2.schema.json",
+          "sha256": "fa0ae10205dd9d0d2fead4366b67a03d21beda874f1fdb401e871390f72813af"
+        },
+        {
+          "path": "openapi/chat-models-v2/chat-models-v2.yaml",
+          "sha256": "0593962a54386693c7ce1f86d108ac34d015f707569641b39c869b51db10e72f"
+        },
+        {
+          "path": "scripts/generate-chat-models-v2.mjs",
+          "sha256": "46806979daed97b68afc6706df13dbd58a54e6c0b6e81c593c23bca357aa7880"
+        },
+        {
+          "path": "scripts/generate-runtime-kimi-k31-pro.mjs",
+          "sha256": "e5df456683767fcc7170b07dc58cd1646df5cc2598fe250c5de3a07257f8e396"
+        },
+        {
+          "path": "scripts/check-feat164-breaking.mjs",
+          "sha256": "50b71ec0ee3b548a6a359663f2f629c013aec5d5be361f80f059cd98e1457f3b"
+        },
+        {
+          "path": "compatibility/chat-models-v2/source.lock.json",
+          "sha256": "0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70"
+        },
+        {
+          "path": "compatibility/runtime-kimi-k31-pro/source.lock.json",
+          "sha256": "84cad8763b3af90a304b8076c0e5b4f133b3f4b7822e1d5c23cf86d28245bf1b"
+        },
+        {
+          "path": "sdks/go/openapi/chat-models-v2/types.gen.go",
+          "sha256": "be923ec69e9d4e70374b83ab2afa9d1c364bc57d0e052abd0e892d0fdce5b909"
+        },
+        {
+          "path": "sdks/go/openapi/runtime-kimi-k31-pro/artifact.gen.go",
+          "sha256": "024970500801a63e2065e4a41bb15c918b20da4bc342e2d290ccd0e9ebc9a40a"
+        },
+        {
+          "path": "sdks/rust/chat-models-v2/types.gen.rs",
+          "sha256": "310b7ebbe8331c584768b83b741b22817a6063dfa4ac8957ef261a9b1126e84d"
+        },
+        {
+          "path": "sdks/typescript/src/jsonschema/chat-models-v2.gen.ts",
+          "sha256": "ce0a620662864253170b702199d9854875ac411572c71c5585e140c73d406818"
+        },
+        {
+          "path": "sdks/jsonschema/chat-models-v2.schema.json",
+          "sha256": "fa0ae10205dd9d0d2fead4366b67a03d21beda874f1fdb401e871390f72813af"
+        },
+        {
+          "path": "sdks/openapi/chat-models-v2.bundle.json",
+          "sha256": "a398021462157c3836404a5337f5d64ee68509eea56e9fcc5098e5795819f20a"
+        },
+        {
+          "path": "tests/chat-models-v2.test.mjs",
+          "sha256": "bd9b3ffc85acfa3d35e9e61b42aea594e0e1ae7fa0fabd55bdaf8f74136c340e"
+        },
+        {
+          "path": "tests/rust-chat-models-v2/Cargo.toml",
+          "sha256": "eb5bd7a894dab6115934c1ee595268a1c204dd1d9826bb3134b4d72f71222fe2"
+        },
+        {
+          "path": "tests/rust-chat-models-v2/Cargo.lock",
+          "sha256": "4f0fc7c9a75885b2c078780c8b999ecbeac67bbe1323b9584706b26ed572aa26"
+        },
+        {
+          "path": "tests/rust-chat-models-v2/src/lib.rs",
+          "sha256": "f8e7f6f2ef47536c05d51f6ca26d76ab8dc5397213d7ede76b984a2dc0f330a4"
+        },
+        {
+          "path": "tests/rust-chat-models-v2/.gitignore",
+          "sha256": "306fd52e74fca6746e12acc750f232de15e71da917756a1270d74c91f5eb7368"
+        },
+        {
+          "path": "docs/chat-models-v2.md",
+          "sha256": "b173daec2e97fa597f6b8283fca53964ee59f87a4ace1dafb4419d4edfb60a07"
+        }
+      ],
+      "partial_files": [
+        {
+          "path": "Makefile",
+          "scope": "Only newly added chat-models-v2 and runtime-kimi-k31-pro targets; retain FEAT-162 hunks unstaged."
+        },
+        {
+          "path": "docs/supported-baselines.md",
+          "scope": "Only newly added FEAT-164 heading/paragraph; retain FEAT-162 hunks unstaged."
+        }
+      ]
+    },
+    {
+      "repository": "yijie",
+      "scope": [
+        "docs/features/FEAT-164-kimi-k31-pro-migration/**",
+        "docs/dev/kimi-k3-1-pro-migration-audit-20261024.md"
+      ],
+      "partial_files": [
+        {
+          "path": "docs/dev/codex-project-memory.md",
+          "scope": "Only FEAT-164 section; keep all earlier uncommitted FEAT-162/163 memory changes outside commit."
+        }
+      ]
+    }
+  ],
+  "excluded": "All FEAT-162/163 pre-existing work; all caches/binaries/build outputs; no branch/push/tag/release.",
+  "freeze_note": "After an explicitly authorized Runtime commit, regenerate only the new Runtime projection to bind the real full SHA, validate, then commit Contracts. Current base_commit is not a new implementation commit."
+}

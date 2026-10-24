@@ -1,5 +1,13 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 源候选本地固化，继续最小纵向实施（2026-10-24）
+
+Owner已接受实际源候选及离线比较，并授权隔离本地提交、继续实施、安全验证和审计。Runtime 57753db451b29a49315ddcb6449ca146171c4de7 → Contracts b0060c8bc4fb924cec14d98b193c32c69482b7b7已按清单本地固化，无push/tag/分支/发布。两consumer已从Git对象同步独立pin；既有FEAT-162/163改动保持。G0/G1/G2通过，G2A条件已核验并进入机器检查；G2V与S1—S4仍pending，整体产品未完成。
+
+先读[15源固化](../features/FEAT-164-kimi-k31-pro-migration/15-local-source-freeze.md)、[14审计](../features/FEAT-164-kimi-k31-pro-migration/14-source-candidate-review.md)和[08验证](../features/FEAT-164-kimi-k31-pro-migration/08-verification-report.md)。当前只继续最小G2V候选/安全Harness；真实模型预算、日常库迁移和App激活尚未授权。不得再次索取已经给出的候选/本地清单提交许可，不扩大为其它任务或发布。
+
+继续保留：历史v1回执原样读取；已知退役与选择unknown分离；旧线程先新选择operation；worker claim/send前准入；计划领域事务暂停撤授权；所有实际启用辅助调用纳入截止点。当前底层guard保护Responses请求和复用该构造器的compact，不代表未启用memories/realtime路径已获资格，也不能代替Host/Native准入。FEAT-162/163许可、预算及未完成结论保持独立。
+
 2026-10-08 Sorftime 最新状态：Owner已填密钥，但两条19:19/19:20元数据初始化仍unavailable。审计发现通用HTTP迁移漏带旧链路已验证有效的User-Agent；已补真实yijie-mcp-worker/0.1.0及受限HTTP阶段/状态码诊断，未伪装旧客户端、未改固定Codex。63本地测试/lint/标准App构建通过，说明已左对齐。新worker da3c31537e6be46bb826a2ec44b0541456cbbf2810772aabbba5df1023400f81。尚未真实复验，已申请仅1次连接/发现、0模型/0业务；因先前失败不自动重发，等待用户答复。Keyring已有用户保存密钥，不要再要求重填/卸载或读取密钥。详见FEAT-157/21及sorftime-user-agent-20261008证据。
 
 2026-10-08 19:19 Sorftime 最新续办：Owner 要求明确本机钥匙串/不传易界云端文案并重启重填。已更新文案、62测试/lint通过，标准App重启；以产品正常卸载/重装清理旧连接配置，新安全页已打开，等待Owner本人填写Account-SK并保存。不要读取密钥。此前Owner操作留下两次metadata_initialize unavailable、HTTP状态缺失，未判定原因。此轮agent模型/外部发现/业务调用仍0；Owner明确授权本次重新填写后的单次尝试，失败不自动重发。状态以FEAT-157/evidence/sorftime-market-live-20261008/ledger.json为准。

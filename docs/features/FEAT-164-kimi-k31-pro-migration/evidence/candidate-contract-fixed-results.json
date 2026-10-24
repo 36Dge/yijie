@@ -1,0 +1,61 @@
+[
+  {
+    "command": [
+      "make",
+      "chat-models-v2-test"
+    ],
+    "started_at": "2026-10-24T15:38:18.646170+00:00",
+    "finished_at": "2026-10-24T15:38:20.019174+00:00",
+    "exit_code": 0,
+    "log": "candidate-contract-fixed-01.log"
+  },
+  {
+    "command": [
+      "pnpm",
+      "exec",
+      "redocly",
+      "lint",
+      "sdks/openapi/chat-models-v2.bundle.json"
+    ],
+    "started_at": "2026-10-24T15:38:20.019273+00:00",
+    "finished_at": "2026-10-24T15:38:20.422575+00:00",
+    "exit_code": 0,
+    "log": "candidate-contract-fixed-02.log"
+  },
+  {
+    "command": [
+      "pnpm",
+      "lint"
+    ],
+    "started_at": "2026-10-24T15:38:20.422660+00:00",
+    "finished_at": "2026-10-24T15:38:22.325149+00:00",
+    "exit_code": 0,
+    "log": "candidate-contract-fixed-03.log"
+  },
+  {
+    "command": [
+      "go",
+      "test",
+      "./sdks/go/openapi/chat-models-v2",
+      "./sdks/go/openapi/runtime-kimi-k31-pro"
+    ],
+    "started_at": "2026-10-24T15:38:22.325247+00:00",
+    "finished_at": "2026-10-24T15:38:22.364220+00:00",
+    "exit_code": 0,
+    "log": "candidate-contract-fixed-04.log"
+  },
+  {
+    "command": [
+      "pnpm",
+      "exec",
+      "tsc",
+      "--noEmit",
+      "--skipLibCheck",
+      "sdks/typescript/src/jsonschema/chat-models-v2.gen.ts"
+    ],
+    "started_at": "2026-10-24T15:38:22.364323+00:00",
+    "finished_at": "2026-10-24T15:38:22.684122+00:00",
+    "exit_code": 0,
+    "log": "candidate-contract-fixed-05.log"
+  }
+]

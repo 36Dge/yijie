@@ -1,0 +1,105 @@
+node scripts/generate-chat-models-v2.mjs --check
+Chat models v2 source generation verified; unreleased local candidate.
+node --test tests/chat-models-v2.test.mjs tests/chat-models.test.mjs
+✔ v2 compiles every definition under strict schema validation (11.613292ms)
+✔ known historic identities do not grant fresh execution authority (0.416666ms)
+✔ catalog is exactly the new Kimi and retained MiniMax with exact model metadata (1.151333ms)
+✔ retired is readable and is not mislabeled as an unknown application result (0.264833ms)
+✔ completed legacy operation receipts retain the original requested identity and result (0.701166ms)
+✔ v2 operation snapshots preserve an original v2 result with matching version (0.130459ms)
+✔ v2 routes isolate writes from v1 and use an active-profile source reference (88.659375ms)
+✔ legacy schema and default catalog retain their original versioned meaning (0.165459ms)
+✔ offline API projection retains resolvable source discriminators and has no network references (0.9ms)
+✔ two fixed profiles retain exact model/provider/effort identities (1.993791ms)
+✔ selection request needs original operation, revision and known profile (0.823666ms)
+✔ forwarded routes resolve original payload authority and require explicit model header (95.967209ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 209.149875
+cargo test --offline --manifest-path tests/rust-chat-models-v2/Cargo.toml
+   Compiling yijie-chat-models-v2-contract-conformance v0.2.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts/tests/rust-chat-models-v2)
+error[E0428]: the name `ActivationRequired` is defined multiple times
+   --> src/../../../sdks/rust/chat-models-v2/types.gen.rs:161:5
+    |
+159 |     ActivationRequired,
+    |     ------------------ previous definition of the type `ActivationRequired` here
+160 |     #[serde(rename = "activation_required")]
+161 |     ActivationRequired,
+    |     ^^^^^^^^^^^^^^^^^^ `ActivationRequired` redefined here
+    |
+    = note: `ActivationRequired` must be defined only once in the type namespace of this enum
+
+error[E0004]: non-exhaustive patterns: `&ModelAvailabilityReason::ActivationRequired` not covered
+   --> src/../../../sdks/rust/chat-models-v2/types.gen.rs:150:10
+    |
+150 | #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+    |          ^^^^^ pattern `&ModelAvailabilityReason::ActivationRequired` not covered
+    |
+note: `ModelAvailabilityReason` defined here
+   --> src/../../../sdks/rust/chat-models-v2/types.gen.rs:151:10
+    |
+151 | pub enum ModelAvailabilityReason {
+    |          ^^^^^^^^^^^^^^^^^^^^^^^
+...
+161 |     ActivationRequired,
+    |     ------------------ not covered
+    = note: the matched value is of type `&ModelAvailabilityReason`
+
+warning: unreachable pattern
+   --> src/../../../sdks/rust/chat-models-v2/types.gen.rs:151:10
+    |
+151 |    pub enum ModelAvailabilityReason {
+    |   __________^
+    |  |__________|
+152 | ||     #[serde(rename = "ready")]
+153 | ||     Ready,
+154 | ||     #[serde(rename = "not_configured")]
+...   ||
+158 | ||     #[serde(rename = "activation_required")]
+159 | ||     ActivationRequired,
+    | ||______________________- matches all the relevant values
+160 | |      #[serde(rename = "activation_required")]
+161 | |      ActivationRequired,
+    | |_______________________^ no value can reach this
+    |
+    = note: `#[warn(unreachable_patterns)]` (part of `#[warn(unused)]`) on by default
+
+error[E0004]: non-exhaustive patterns: `ModelAvailabilityReason::ActivationRequired` not covered
+   --> src/../../../sdks/rust/chat-models-v2/types.gen.rs:150:45
+    |
+150 | #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+    |                                             ^^^^^^^^^ pattern `ModelAvailabilityReason::ActivationRequired` not covered
+    |
+note: `ModelAvailabilityReason` defined here
+   --> src/../../../sdks/rust/chat-models-v2/types.gen.rs:151:10
+    |
+151 | pub enum ModelAvailabilityReason {
+    |          ^^^^^^^^^^^^^^^^^^^^^^^
+...
+161 |     ActivationRequired,
+    |     ------------------ not covered
+    = note: the matched value is of type `ModelAvailabilityReason`
+    = note: this error originates in the derive macro `Serialize` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unreachable pattern
+   --> src/../../../sdks/rust/chat-models-v2/types.gen.rs:160:22
+    |
+158 |     #[serde(rename = "activation_required")]
+    |                      --------------------- matches all the relevant values
+159 |     ActivationRequired,
+160 |     #[serde(rename = "activation_required")]
+    |                      ^^^^^^^^^^^^^^^^^^^^^ no value can reach this
+
+Some errors have detailed explanations: E0004, E0428.
+For more information about an error, try `rustc --explain E0004`.
+warning: `yijie-chat-models-v2-contract-conformance` (lib) generated 2 warnings (2 duplicates)
+error: could not compile `yijie-chat-models-v2-contract-conformance` (lib) due to 3 previous errors; 2 warnings emitted
+warning: build failed, waiting for other jobs to finish...
+warning: `yijie-chat-models-v2-contract-conformance` (lib test) generated 2 warnings
+error: could not compile `yijie-chat-models-v2-contract-conformance` (lib test) due to 3 previous errors; 2 warnings emitted
+make: *** [chat-models-v2-test] Error 101

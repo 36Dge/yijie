@@ -1,0 +1,6 @@
+{
+  "command": "for task_script in scripts/*.sh; do bash -n \"$task_script\" || exit; done",
+  "exit_code": 0,
+  "verified_at": "2026-10-24T23:11:17.707463+08:00",
+  "scope": "documentation and repository governance only; no product qualification"
+}

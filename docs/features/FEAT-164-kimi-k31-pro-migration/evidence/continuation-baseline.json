@@ -1,0 +1,3433 @@
+{
+  "recorded_at": "2026-10-24T15:54:04.092360+00:00",
+  "authorization": "Owner accepts source candidate/offline comparison and permits isolated FEAT-164 local commits, no push; continue implementation safely.",
+  "repositories": [
+    {
+      "repository": "yijie",
+      "head": "91b2b76e7afc7cb5373a381ce352f7d1eee4a134",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": [
+        " M docs/dev/codex-project-memory.md",
+        "?? docs/dev/chat-deletion-recovery-20261023.md",
+        "?? docs/dev/kimi-k3-1-pro-migration-audit-20261024.md",
+        "?? docs/dev/process-feed-rework-20261023.md",
+        "?? docs/features/FEAT-162-kimi-web-retrieval/",
+        "?? docs/features/FEAT-163-codex-process-parity/",
+        "?? docs/features/FEAT-164-kimi-k31-pro-migration/"
+      ],
+      "cached_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files": [
+        {
+          "path": "docs/dev/chat-deletion-recovery-20261023.md",
+          "sha256": "417f8a50d9cabc51121237ba7963ad3e389aed794377100a6224690d062dce95",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/dev/codex-project-memory.md",
+          "sha256": "4b5705bab7ddd567ef7fe8167816fdf08930b74ce053f80f3c92217ece2bcab9",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/dev/kimi-k3-1-pro-migration-audit-20261024.md",
+          "sha256": "9c1866aad2cfc027110793d51bc7580712b3499c082eb30d2ad2286e5fd481a0",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/dev/process-feed-rework-20261023.md",
+          "sha256": "53f0a6b04637eba3b9d146d0bf84bbe9347d67d9dd5134a17797824a06aa95d8",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/00-feature-brief.md",
+          "sha256": "7794ba95d3626fabe9fa3ba30ad3e677e62b444138f0b5ad1a0ac7675f9a99e6",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/01-delivery-log.md",
+          "sha256": "2f0a6e11cdeffa160644831bfd066cea63f713646e9e3f32e92e7ef7c28f2feb",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/02-verification.md",
+          "sha256": "3e4e3c797331142adade973c0ac2fa06952a3218d8fba3ac52544e16bae0dbc8",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/04-resume.md",
+          "sha256": "dd92e0163ca3440aa108fe33829cb56dfcf1366ef7563ddf9816771c8e068a3f",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/05-model-key-reuse-plan.md",
+          "sha256": "ef0cc09cfd0955969f17f0d0163d15edbf573ed4f3f051269f91292224e9ef88",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/06-model-key-reuse-verification.md",
+          "sha256": "2de57588363869258612580e7534f443f6482ec9ceafa1d66aeb5713071c60fa",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/07-direct-use-audit.md",
+          "sha256": "cc80cc23d6e99e2d184ef69d6c6a15e6e9e92f3a43156da5bcafa8515804713c",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/08-direct-use-implementation-plan.md",
+          "sha256": "118ab37229d7f955135eafb0b4bc9aff9100d789c47a6dcd38722661bea3aec5",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/09-direct-use-verification.md",
+          "sha256": "59b644ee952d423aee725b6ee7db62cf87cd2dd8fba3dfdf089739b3b800b1ca",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/10-live-minimal-acceptance-plan.md",
+          "sha256": "5fd2d5d86460c7212adcf66f28a3bd1de5867c13da02b357281cf10453bb34ae",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/11-live-minimal-result.md",
+          "sha256": "0ccc5f4ecf5d25e4523af94902c6a86ebef5f5c71cb03605efe9576d53368bcb",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/12-toolchain-preflight-result.md",
+          "sha256": "f4c72d11ae697f439f072ba03feb06604e3ed0b271061d0be9a7dab04ee733bc",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/13-search-fetch-live-verification.md",
+          "sha256": "b96d9788f263ae1bc81c1de763b8648098ad8ac1c169a4fec70f176c9ef9bd5f",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/14-client-e2e-acceptance-plan.md",
+          "sha256": "fb2ab482af9c1babd054c4ca39de5f104a3ffe9ed918a665cc34886717fc216b",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/app-build-ui.json",
+          "sha256": "e007fa3ad12829398b79a6b6b35445d8ff149634368680e7184a9f507100f85e",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/app-resume-ui.json",
+          "sha256": "e69620618e6e08cebbcc024ed8b7c7540be5fc250665b99b989a7d5640b827d8",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/contracts-breaking-results.json",
+          "sha256": "d2016f203fc0e5e850c45bf55c1b9c9b1f251944987fed6264fcdee934b4f0dd",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/contracts-transitive-qualification-summary.json",
+          "sha256": "72ea7524162c885639e7e1f647677ede1e8cd3a703079422a8996a91c0de3fa3",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/contracts-verification-summary.json",
+          "sha256": "6b5e00903c0a7ad8ef4425b6d2822637ac12bf8e61567a40737133292db7749c",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/desktop-focused-checks.json",
+          "sha256": "fd2d029c042f6e3cec5e196fb21a75778ed2568dd562537d85f7f87ed25b8243",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/direct-use-audit-before.json",
+          "sha256": "022730a216b13392174cc97b2bd63d33125aab775a886276a075da4d8c4570d6",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/direct-use-checks.json",
+          "sha256": "fc962bb232cb281a792ee510a69548add016890844751c137ca269062fda41f7",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/direct-use-diag-before.json",
+          "sha256": "1db8f9528dfb0c9080b9dd91ff432b34eec83ff8a800c2fe4afe57a0d90088ce",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/direct-use-diagnostics.json",
+          "sha256": "0384624886a29408b7a3cf312f013d47f0d48b4f24a36f3a855ef69192838c9e",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/direct-use-final-detail.ax.txt",
+          "sha256": "d2234a426d98b21723d8c822c8a968e0a18450574ae590d50c0f321ebc6bd363",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/direct-use-final-detail.jpg",
+          "sha256": "a464df61c4eae367d775448464a6fa4a141cf073b4cc4e9b32e5d86ab5c1fefb",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/direct-use-final-minimum.jpg",
+          "sha256": "b32f60a83147c2988b18b45b293d16a56487ef48c8fafb9dce08dd4aba5b7329",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/direct-use-first-preparation-diagnostics.json",
+          "sha256": "60e76c4395ab9b0a6be65690172fd53a1aa31c04615596af732b88b61e5c83b4",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/direct-use-minimum-initial.jpg",
+          "sha256": "c61aca475368334e5b99bce92bd13a6604e042faf12fb19f0fa7bac52743ff84",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/direct-use-packaged-receipt.json",
+          "sha256": "b749914b8bbec6341fffb87592c9eecb24ec4e64d597b51cb3df737391a217b1",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/direct-use-paused-state.json",
+          "sha256": "a7ce2a2dd4d51a7ed51a0f5d4c0fb50fd42f733c40de75bc5d186f7b5a4eed40",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/direct-use-picker.ax.txt",
+          "sha256": "46cc27a637a0589c7ac5f5cefcf9844dd752d2e4d6efc3c6545d8a80f01324ae",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/direct-use-picker.jpg",
+          "sha256": "49e327cf23d8db4b3e50c5c50d4ff24f21a70a04f1f17ab4250b3a0fffe75393",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/direct-use-ready.ax.txt",
+          "sha256": "3d4bdfeada51c438859930017eceff764e0c9349b45d40a8a67170cbd41e06ff",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/direct-use-ready.jpg",
+          "sha256": "70ca1e05a24a28156b1966653cbf22d26e1b0da15fc759566eb8e686c47549f9",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/direct-use-reopened-detail.ax.txt",
+          "sha256": "d2234a426d98b21723d8c822c8a968e0a18450574ae590d50c0f321ebc6bd363",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/direct-use-reopened-detail.jpg",
+          "sha256": "3596e1b116b9df620f54ac485641e5ad114eadaaa5292fe75ab93dde0d2a0cd7",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/direct-use-reopened-market.ax.txt",
+          "sha256": "725f2eef8c45f8e9e5215efdefdd5ee0d57b51a2f375b3ec086f50214efe3e8b",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/direct-use-ui.json",
+          "sha256": "ee9ded58801feb9fce35440e2ae4449e638824acb598759c2ea8497f2e825db8",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/direct-use-workspace-final.json",
+          "sha256": "e4c882188ff3d39ea1c3d7548c08d7f25788fd3f6be23e64e79918b865665608",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/expert-provenance-refresh.json",
+          "sha256": "536c0309d0b78b2978628262657bd990463f06eccde536b2ff02fffd3320fd85",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/host-expert-authority-sync.json",
+          "sha256": "3795796e993894412fc6adb6ebf4f56c1a69996ed02c8c57f58819251d562d59",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/host-focused-checks.json",
+          "sha256": "4dd27717e5d7b34024b0ff29bb3fa7366bcc0fb31f53533e937747758fb72c33",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/independent-code-review.json",
+          "sha256": "0bc2a642f2c90d9472f6a80951fb270db8feef3a94899479f5285ce91f0c04fb",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/kimi-ui-no-provider-call.json",
+          "sha256": "7873df6a906c053b85d8ca427dbba97457c29b6df693ad11927c4344425689e8",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/live-minimal-authorization.json",
+          "sha256": "d0e2ecf0a624d9d993a7957c7a06d9c4bcda73a0cc8e84e8ac4291f5ac57f481",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/live-minimal-driver-review.json",
+          "sha256": "9b6d4b3e1545b4e59d987d1a49bbfbf49175a9dbf5e6cfac7e27508e4b02fd53",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/live-minimal-result.json",
+          "sha256": "9a230023a69836338f7523ee5fb3514c46af99be9ee666fc4f5650664ee64bec",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/live-minimal-round2-preflight-location.json",
+          "sha256": "2079e6c1a6758e67edfb6e734711fb34924f47bcd7ebf995ef055ef697d76fd5",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/live-minimal-round2-preflight-result.json",
+          "sha256": "42e8c10c21e72d948f44a92764174e5641fb750299e9bbe315768569f1025227",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/live-minimal-round2-result.json",
+          "sha256": "cfddb45ff9b9ae8f7de5b9d4d3952578ffb851512adb3fc5153c6cb93ff54bea",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/live-minimal-round2-source.json",
+          "sha256": "dc9e3bc65f2cb7ca6ccdc3c885af2cf4c789744091f7e9fa019e409fc6cdd47c",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/live-minimal-round3-authorization.json",
+          "sha256": "350166f3617c115e17c1e25d0269d80d2dcb0c619bd1740e348888e68add18ba",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/live-minimal-round3-fix-summary.json",
+          "sha256": "561957162fa64ccdc641e140a8469a80e6ae4dbfefa4cd1ab9298d35e836de0c",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/live-minimal-round3-preflight-02-location.json",
+          "sha256": "41a5dadc884ac5e64954d8d6c9efff4049e0aef86761a5d90b71361740c44dc7",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/live-minimal-round3-preflight-first-result.json",
+          "sha256": "243b8b3e6e48f0c8e45a60d44d420648105193ab54932e593426f7da5248fdb7",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/live-minimal-round3-preflight-location.json",
+          "sha256": "42d38119e3aaa61a220b50ee7fddeb8b1d834d8c56461efc9705cd29593386f1",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/live-minimal-round3-preflight-result.json",
+          "sha256": "f95224b8578a2201775c1059d869688f073831b70007278f85f268c4dbca92d2",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/live-minimal-round3-result.json",
+          "sha256": "64ef9d7fb040561c0891b4dd345263f5f7a06f080a5463610da1936f267f5292",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/live-minimal-round3-workspace.json",
+          "sha256": "a7688bc541a721988c33f922260f1a0f6376718214b922e77554825fa985a3aa",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/live-minimal-run-location.json",
+          "sha256": "ea31d19e304cc159a84ffc061b6022841bbd28ab86a8ec7de7a1cc3068aec4eb",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/local-workflow-recovery.json",
+          "sha256": "b1c01787c21154f7fb093d59d731586c6f77212a4781aadb9074605ac0bc6051",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/meta-checks.json",
+          "sha256": "9886bf483388e6eb8e2ecedcc60e521bc4ba8907371633e347d33aad0d5af7f8",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/model-key-reuse-before.jpg",
+          "sha256": "4c93ba7b2b04898d68a1cebb7577ff9fec0d8f0901e7f16e77f3e9d633366bc3",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/model-key-reuse-before.json",
+          "sha256": "51acf1b7eb197539421cbe1f7579a8468a86757119844f439514d73aaa345423",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/model-key-reuse-checks.json",
+          "sha256": "34d1bda60732adbf58509e91896dd17f4f4ed791851e8270802f35482d06b325",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/model-key-reuse-diagnostics.json",
+          "sha256": "080ef8bcfe3085dce3d0a856d2ede2657e56af50a04054d302c95578d89f858c",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/model-key-reuse-final-source-reopened.ax.txt",
+          "sha256": "823a7b098e00c9648673e49909b1a4e160579d3d0c8240ee1afcbb1a4ebb139d",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/model-key-reuse-final-source-reopened.jpg",
+          "sha256": "af05f20b11b122cd12fa173997c72c2d3a1928c4d89227d1e01b71529164bba3",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/model-key-reuse-final.ax.txt",
+          "sha256": "823a7b098e00c9648673e49909b1a4e160579d3d0c8240ee1afcbb1a4ebb139d",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/model-key-reuse-final.jpg",
+          "sha256": "af05f20b11b122cd12fa173997c72c2d3a1928c4d89227d1e01b71529164bba3",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/model-key-reuse-first-binding.ax.txt",
+          "sha256": "ba3eb20c537983b90aca0b4766de01ab28c04268f7147b5d22dc5d7d84f99a5c",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/model-key-reuse-first-binding.jpg",
+          "sha256": "0e48101e6f57604a60de905c6c617fb1c87ad5bbc987b019b416362e18da8492",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/model-key-reuse-minimum.jpg",
+          "sha256": "c2b3683edec07c2afbd9c7e04e61748edd6bd5c114e9bbd20ccdd28e34a50d74",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/model-key-reuse-packaged-receipt.json",
+          "sha256": "796a510907014b0e3dcf394fe75387b23892cf5d96ba3b2362d50968dc312102",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/model-key-reuse-picker-disabled.ax.txt",
+          "sha256": "d665efa20a4733b6234cb8f512aac4ada913b9928150883c76536fb436d15ef3",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/model-key-reuse-picker-disabled.jpg",
+          "sha256": "be6d4006bd1b025759f9be1170bf8601047507dfa488dda9637d46c7d85611b5",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/model-key-reuse-pre-module-fix-receipt.json",
+          "sha256": "e3588793f38873cf9ddbe5dec299d68b760fba7684399934e5be5e61b726e0a0",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/model-key-reuse-pre-module-fix-ui.json",
+          "sha256": "216337e75db3dafefac852384991da64a80b1ed98060e08c736a75d2b76e0a46",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/model-key-reuse-reopened.ax.txt",
+          "sha256": "823a7b098e00c9648673e49909b1a4e160579d3d0c8240ee1afcbb1a4ebb139d",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/model-key-reuse-reopened.jpg",
+          "sha256": "af05f20b11b122cd12fa173997c72c2d3a1928c4d89227d1e01b71529164bba3",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/model-key-reuse-ui.json",
+          "sha256": "6b25eeebba503900d13618494a39ed4b1215a003ef066034a95d211c6ec5dd1c",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/model-key-reuse-workspace.json",
+          "sha256": "b5f1fcf5c665162493966c4694925808e1ee0bb8c3a0a3bedb4e55057c9a3f18",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/official-source-review.json",
+          "sha256": "3779c700a947282b1aae3f469ae2a7a5fc926b72a17774a3e2fa2aca8620b3e3",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/plan-before-implementation.json",
+          "sha256": "7b536fcb021c7f13f0b7744f2ecafcc7c85d104a0568f45e06de90586a963886",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/pre-direct-use-experts-assets-pin.json",
+          "sha256": "6d1f9ee32e28a11c2f2b134fd9ef224cbbefffffdf41523f209935b7101cfc57",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/pre-direct-use-experts-source-lock.json",
+          "sha256": "81d65b50147f1cef6842aabcf08f46ecd56a36c5dbe52ba631ec248b90e0ec08",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/pre-direct-use-skills-experts-candidate.json",
+          "sha256": "843069be24edc238f7bffbfff004215edd37cef6bd8d970b029069b7696636dd",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/pre-key-reuse-experts-assets-pin.json",
+          "sha256": "bf848ae586de8e076346d2281ed60cebdfa98a05206fb98a09ac845590c28c09",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/pre-key-reuse-experts-authority.json",
+          "sha256": "9b25667e00e227393247b6367d35ed4ce656cecbed945ede0206d909ca3b8885",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/pre-key-reuse-experts-bundle-manifest.json",
+          "sha256": "64721b4bfea466e5faa5160f8e142623b9544a70033c3cc93794edde5261e5da",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/pre-key-reuse-experts-source-lock.json",
+          "sha256": "106c8de6da40da433b4115bc71d068597551aee66b32aafcdf5dffb3453e95d4",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/pre-key-reuse-skills-experts-candidate.json",
+          "sha256": "71ec9e1717b2c8293beac979225bba7369cf17be84d5e352f2ec181b6d4d19c3",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/resume-workspace.json",
+          "sha256": "143938ffeaa7545fe6c235566d5189ac8310e11a5aeac13a6db151f9be88c924",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/ui-kimi-cancelled-light.jpg",
+          "sha256": "3d7d781b6e057a15fddcc6b3b4de8278bc53716366fc3294b7838eb283f804b6",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/ui-kimi-config-cancelled.jpg",
+          "sha256": "27d705f9640b415b7026443c1cae21cbcc9afb366dde2aea0feb3083c56baaf5",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/ui-kimi-config-empty.jpg",
+          "sha256": "2e543a6fabbc58ec21adcf3d815a53707b0085cf19bc1a9fb3bd7bc67ea6931a",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/ui-kimi-disabled-picker.jpg",
+          "sha256": "0b2af90bf0892c896c067f04662ea1a6bf0f432f1290c2d4f26ef93256a1cf4a",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/ui-kimi-disabled-picker.txt",
+          "sha256": "9103d31701c0cf2d13a59318727ac563ba532c012803f7ccf36deda80eb39068",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/ui-kimi-install-light.jpg",
+          "sha256": "14133fe0dbeaf82dcc5e8518efd78101989503595b9c4ab98b6bd0700ef82e2a",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/ui-kimi-reopen-1180x760.jpg",
+          "sha256": "4dbcef51ce41da0143920704ada3158811b98b7b3b708591095dffd15f7d4163",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/ui-kimi-reopened.jpg",
+          "sha256": "5713bb47b659c1614951405c5e35a69f774cef09348ebfc0ea77a69e4ad65b6c",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/ui-kimi-reopened.txt",
+          "sha256": "1b126d8990773e8a55b12bc7ba6dbc4598a320b94541118fc3f7b50940903ea2",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/worker-build-and-owner.json",
+          "sha256": "23472130c2b9d8ec7b3f2e693b11aa9e5d1360aae3897bc7070e09848a52797b",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/workspace-before.json",
+          "sha256": "babc598b3d1ca42088264466e1bde9752597f62fdc955935843b46537fcc8778",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/feature.yaml",
+          "sha256": "4ff728cdba1a7959d6c37404ecb31addfeed4574f2620b1a1431d7a85415ed4b",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/00-feature-brief.md",
+          "sha256": "5078064edb4dadac25ec19bcaa18dfe43cb98c74a9a522e182159f8548c6f2b3",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/01-delivery-log.md",
+          "sha256": "fe427078af83d7db20c214e8b136ac461bb22aa30c9f8a17e87f9939d4f19ee6",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/02-verification.md",
+          "sha256": "a6e8126acdd58f4c92afe8c6c5b652318d45ea56b919f9df76f7f5b7cb1b541d",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/03-audit-and-decisions.md",
+          "sha256": "0e899c63c7cc49471854ad2f67ba0ada7c9873b4091dcceda15eed2b551bfca1",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/04-resume.md",
+          "sha256": "4bd7d466cb179806c21dfc0aceab7d58c9640b422123140f7ebb093fe6aec8bc",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/05-tool-activity-reference.md",
+          "sha256": "5675d06e22e9ff8be2abbd9432766fcb27f2ea2b68c7bd1343a7b3f266102601",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/07-implementation-reaudit.md",
+          "sha256": "c9b14198e1495a57432af4a63dce02d7491f8a3ca649f9915d0c71156c4029f5",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/activity-launch-receipt.json",
+          "sha256": "c1f948bfd7eabbbb18a52622dae97f3acc79522b9b1f2d7c6d3c1ebe617f71ef",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/activity-startup-before.ax.txt",
+          "sha256": "69f948533669b7cbec164bee76a66242cc1a6afb2fb4882f59d24ab000862cbe",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/baseline-complete.ax.txt",
+          "sha256": "51c8c706867b5468b8d6388fb0a01a8a4a4a5f7b35154c294afea3e7d774aca7",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/baseline-complete.png",
+          "sha256": "9c821854c2aacbe2444b7ded0816d1f5af37f15d592e9a6eafe15666cab7baf0",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/baseline-diagnosis.json",
+          "sha256": "2ccf3d7c0357d1327b8963252a9da6b5e21046d9dec9d61fe5ff78a58e167b76",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/baseline-file-changes.json",
+          "sha256": "c94183728c098cc424fac3e59d2cabe8659187e06c4b347ba30f428481aed044",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/baseline-launch-receipt.json",
+          "sha256": "ce888cd6067c6a3c365aa22c6633fd2302815532197b0182bc3703a6ee6fcbd1",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/baseline-runtime-summary.json",
+          "sha256": "f12b4e4290f7b5ebba8f9a03495597ec1beb79d9a8564494d2354bb4eec00c7d",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/budget-summary.json",
+          "sha256": "ff65d6098d2089d9f17be7b5f019e2cae8e98e816dce7195a39f4e8ca27c546a",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/daily-config-restoration.json",
+          "sha256": "eee4a1f4df6f3276e331f998867118b0cc453c09317bb0bb30b58e7b99579d97",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/daily-final-launch-receipt.json",
+          "sha256": "e21792e1ea260de6b0cbbada7d99ca2f2a4a526eb2abfa8852aa3b68e3f36455",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/daily-final-ready.ax.txt",
+          "sha256": "cc165e464bf7ea914f1d5820a22414dd92df44448b8b70fb51def455df50b087",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/document-checks.json",
+          "sha256": "935d984e779fd563079ba526069f705ee7e6916914deb8da0a233da725899147",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/fifth-short.ax.txt",
+          "sha256": "5a72a6cf2831659e2caf756f5ce5796c60be4fd27d7750aa67254cc411f7a7fe",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/final-dark-activity.ax.txt",
+          "sha256": "562e1eaf6da0a7f9c9213310fe090ee53fa09a5a17401079e9d17c9d229fb0a5",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/final-dark-activity.png",
+          "sha256": "46f6c95189370805b3e98fe84da07007ee2841a8dd740fdb1f0dac6f78d7d4d6",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/final-launch-receipt.json",
+          "sha256": "1607f2c05a463845cc479c1d42c1a7510d15097c6060f2ccf8f9f88bbb2d2688",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/final-light-activity.ax.txt",
+          "sha256": "1022ce2fd43e415319196d698f48c74fe8f314a2f3ef09468992e0931e1c14dc",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/final-light-activity.png",
+          "sha256": "d054a475d721e9027584603535324f25fd16017357e46b69e22fb2d4bc8215af",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/final-light-minimum.png",
+          "sha256": "d7f5f37cca99d958388736e6f87aef7577a85212781b7fd84e63ee852f398502",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/final-patch-launch-receipt.json",
+          "sha256": "8db2d3b312979e1099b95951b3f177928d21db49ee7f1a7511763b6196df9e2c",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/final-reopened-project.ax.txt",
+          "sha256": "c6febf6c68c3f8443244d71100fd1fbe56ad02ecb8d97e1ebcb4423b4f39462b",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/final-workspace-state.json",
+          "sha256": "432faf6515967cef7ed578c1584966bac92e4f8f49025d704656161166033272",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/fourth-artifact-check.json",
+          "sha256": "379440ba06671d6bd6af528b0e6212ba76338b05bd585c8201ee4c8e675faca6",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/fourth-complete-diagnosis.json",
+          "sha256": "523002cf771fcc141a31f868d013c7e34f32e4be2abca2232a3b5f02cbadc3f0",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/fourth-complete.ax.txt",
+          "sha256": "0dc608e8ab35dca59e677695eb30b40a0e7349d757e1e0ad3195a8fa0486f3c3",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/fourth-complete.png",
+          "sha256": "2fdee23b6990dbf6981e504f753fddf579ed3eb5e779cf70a13e86072bd3e23b",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/fourth-live.ax.txt",
+          "sha256": "6dbb1641c1895b5aa965002928793bd15fde67738df172e7cee3dc779029f486",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/fourth-patch-live.ax.txt",
+          "sha256": "aaa3d392e831ab9343563292ee4ee6f590dead7d5c549852874b4d11cc36b86b",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/fourth-patch-live.png",
+          "sha256": "a83c5541545fb208a330ee0bf21727397222d1035deee55ff3680124423df16f",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/fourth-start.ax.txt",
+          "sha256": "da06780ee4740588f055ab00045c7ef24c281274aef87ae02c07b4748592836b",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/implementation-baseline.json",
+          "sha256": "7b8bb7993aad3f54f386011b8dba0ac7705f80a9a8614fbdd0d766ac5e14c192",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/implementation-checkpoint.json",
+          "sha256": "0eee507b63ec91b7b145a29ce1ef318b90c18738c15494ddf6df09bee241e6a9",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/native-source-compatibility.json",
+          "sha256": "e50714ba136a6d91981d039edf6ce7f8541c70c1e5ff6ebe7cc7dbb40485a0cf",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/paid-call-ledger.json",
+          "sha256": "6b431befbecc7b94992043fd0b3c743d499554f74c0bcf0b7bbfdc2aa9645f48",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/planning-baseline.json",
+          "sha256": "efaa5e652d0a06ddfa32e2af6a112e06a4dbf7aca5d54f4143277a054bc11f4a",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-baseline.json",
+          "sha256": "8fdf4c1c057e346b46bd79c87e65dfa8270d28ec45d018e336437826ecf0c178",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-current-checkpoint.json",
+          "sha256": "bbd665352ca91407f5467253edd013b66a96826507f062fc863e030da0d70436",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-daily-final-launch-receipt.json",
+          "sha256": "8e4b61fdb72436ee4f5d543b9c6ed5051e583c6720e383187f4b3ca17a36274e",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-daily-ninth-reopen.ax.txt",
+          "sha256": "4b4ed63093828168770cb4d423b2098879d3aa1dd8756fc7a01726ccc8df0f49",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-daily-ninth-reopen.jpg",
+          "sha256": "3976ded9026192689c858af8fb1e93a9ff0898a8b82e89726b8d2b8b2a566aed",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-daily-restoration-reopen.json",
+          "sha256": "ac895ef892734c4d13261310bb86b18e0b70c666984cf21fedda585b328fb914",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-daily-tenth-reopen-details.ax.txt",
+          "sha256": "1dbe6280830436bd1e7f827ffdb3726e439d5e6f13b30289e3b81f1cce5bc1fd",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-daily-tenth-reopen.ax.txt",
+          "sha256": "216cd0fbc332a0adaff85449dcf0de56e83b30352fdd0ebd3bfb261b585d5fc3",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-daily-tenth-reopen.jpg",
+          "sha256": "0a5d750850ff13e119a6e0dc4add4b420ea7b63ea82f544e10cf2cb8db93eb4a",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-diff-review-current.json",
+          "sha256": "5118bdeb85d2f1f9371fdbb71f238081801f34e418bac1d991402c5e10639511",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-diff-review-in-progress.json",
+          "sha256": "08fcabe020827300d456a712d043f2cce3907402d044f6b05261964447420883",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-eighth-before-reopen.ax.txt",
+          "sha256": "10bd7c3a1454a92433b0f988cbf8b6b884fd70729a384e4d2f1f57a5866c41cb",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-eighth-before-reopen.jpg",
+          "sha256": "ee885c042d986f1a4c4e5e3191844669eb41183b3c50c047a41eddfe15f40dc1",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-eighth-diagnosis.json",
+          "sha256": "ad89b0b32540ce3b279234f3d990b9e00b43c15e2c8a080c0c8c3cf455ef0bb3",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-eighth-input-provenance.json",
+          "sha256": "4f74335a5f3d3a03a4a574a9cd61a5fa5904dce911a7b12db403972ed6e2182d",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-eighth-live.ax.txt",
+          "sha256": "6425fd74d1ea549dd9e96f36d4ec24cb7e9911058033459ebd93dd241487d3e4",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-eighth-live.jpg",
+          "sha256": "0f62a8c14d5f66a4bbdde9e12cc28c08053f9006f07512aff0a901bb3c91fd45",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-eighth-next.ax.txt",
+          "sha256": "4d946c58666c9427621accaf047cadb7598eb2b270a076808c0b7d446a2464b7",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-eighth-next.jpg",
+          "sha256": "ec263027f5933fdd80d3536b4f15d9ded22b3bb9393e7658e9976356ac876e8a",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-eighth-progress.ax.txt",
+          "sha256": "dad39cb31488868989fbb61ea09668ca278579ad7708eba4a36c6449e9dd38cc",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-eighth-progress.jpg",
+          "sha256": "8afa070362e88e61166844bd67ace415c183cab36fae95befc8e8941e5e5337f",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-eighth-reopen-check.json",
+          "sha256": "5ee954b11d266056b2fd411b7ed0aab1775fb84cedc31232a758a0c213e0a097",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-eighth-reopened-details.ax.txt",
+          "sha256": "a3ea43e1e99031abe2fca78de4dd1bdc2fadc2d12aab3e6c7eee61826b44791f",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-eighth-reopened-details.jpg",
+          "sha256": "ab8624fc1a764ed0fe778ed086fcca220c6899c14c1b411b526c860401adb555",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-eighth-reopened.ax.txt",
+          "sha256": "d8c85f72ce66f831b3e03ed5bf1c6d3ae6ecb74da17d3b2700c0e881f599eec3",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-eighth-reopened.jpg",
+          "sha256": "3b399ee7a7ee34fa8c2f81d0a8b691e5dfc2a0dec89cfd50f8add90ea6a893d8",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-eighth-start.ax.txt",
+          "sha256": "c77165ec0825ee990287bb2d8ab0760556ff3bd4b1f031cb7380b1aa78fbfe39",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-eighth-terminal.ax.txt",
+          "sha256": "50541866aa14b4064a803cf4fbd82884b9d9c63dff406cdf3ca1435f61fd9f3d",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-eighth-terminal.jpg",
+          "sha256": "4f9197abb5c47108e0adcd611fc77944ee0c21131b1f758bdab0d9834ed3c031",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-final-diagnostic-launch-receipt.json",
+          "sha256": "52ac2bd28f3784a2df9822027f583f2507a49ff2c84b00b73bbc34f5301a4f9b",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-ninth-live.ax.txt",
+          "sha256": "0ef8bd38a8af23596ff1857b0c8d65505f3154cd70edb72aaae39a69646ac28d",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-ninth-live.jpg",
+          "sha256": "4408148da9d1172e5a588693225c4c751074c100f4dc8468e34320905aef24d1",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-ninth-start.ax.txt",
+          "sha256": "5198b24e2c4b2de1b0129a48a51eedc8874d2d3b7d3c55805a507db9487a9c45",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-ninth-start.jpg",
+          "sha256": "8ea7823177730c6ade9ee2b1a1c01efc9ffbaf9040856060219c36df2f219b61",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-ninth-terminal.ax.txt",
+          "sha256": "c174096ab8e19cb8c91edde188f84e3aad8e797f025e5b771236db9229efea9e",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-ninth-terminal.jpg",
+          "sha256": "92a90719c9636625958ad3d59b93f1ce48bcdf31b256352463ee01d1c9ee5e2f",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-ninth-wait.ax.txt",
+          "sha256": "fd0147ee08c485fbb604472f08c246b2a4752e92f37235c63800057a02c178e3",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-ninth-wait.jpg",
+          "sha256": "ee958a38418181974db28bd4f1e26f0657428923e3d5201c311875cb35749a72",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-tenth-expanded.ax.txt",
+          "sha256": "750461cd820080a12da22e56a8d1c8d38b3c77ffb4a0c10caaac5294d7827e3e",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-tenth-expanded.jpg",
+          "sha256": "0d361d15e698149b08dd5572c9f6352f665b3c6aa1a9f8c1576fb4ab75142274",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-tenth-instruction-provenance.json",
+          "sha256": "9bdc3d12735ceebe89a19fd560b41f80259582bdadffa350f43c9d1e1603defa",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-tenth-live.ax.txt",
+          "sha256": "85d9cc4e879241cf944ca442d7812387543765da2cbd2567445b6b1a2a684de9",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-tenth-live.jpg",
+          "sha256": "31473bd68e9c4c902b0b37855cee785ffb1bcaa9ef65fd94e4a20b0daa487dee",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-tenth-start.ax.txt",
+          "sha256": "1bd8e4b141632ce9e8f4b1d4ed814615e5b6d2f30f51037ee77c26a6bdc6eeb7",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-tenth-start.jpg",
+          "sha256": "affff029108e57ec92e31e8a9a7eb40afd95b5a86bf5777ae1eef6e5065b3f62",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-tenth-terminal.ax.txt",
+          "sha256": "b2f3e1eff663c4e8fffe75c0cfe6a4eacfbf85d31d85693329b4859585aa21f8",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-tenth-terminal.jpg",
+          "sha256": "914ec7a40643ddb9639a688531f672a75b3ae39e928f6559c37fe4117d651ca9",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-turn-10-diagnosis.json",
+          "sha256": "0b36b7dd19506edd6182a52d64846691cc1ad09285ead0c5ce9cf7ae110cf300",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reaudit-turn-9-diagnosis.json",
+          "sha256": "a586197cfc5a42060498c4948d1e0c295afb68875d01056edd1259f4ebbc133c",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reference-codex-tool-groups.png",
+          "sha256": "199b899094da8964557b3339075cbeb974e4fca6b1126b509d9dc989367c3434",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reference-codex.png",
+          "sha256": "575be00a348d5ef4641116f1f4a9bf1e168c2c669b894c76b2742f3521fa563e",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reference-yijie-activity-list.png",
+          "sha256": "93d1fb50ebb41cb36e747de371439d372c4de8df65e6073a89a99d6c685bc460",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reference-yijie-repeated-summary.png",
+          "sha256": "e20a2bb9c4ccda0aed2d15586229de383ad838ec98a1dd6c97c702acb30a990f",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/reopen-check.json",
+          "sha256": "7bfc24eba785474b511c2ff4451b17b3b2f21f172ebcc9214d288c8799f14356",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/second-complete-diagnosis.json",
+          "sha256": "0d8f8ce773db5acd887a774361e1b2d66b8ad9645a21ee4cfa2a035710ea24e0",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/second-complete.ax.txt",
+          "sha256": "521aa374a61957723cdd56fc1874b759c05046b2243678a82d5067caec208fe1",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/second-complete.png",
+          "sha256": "87e116261d229e787d6587f8175703c55e3734a8831f34110a591be100f195cb",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/second-expanded.ax.txt",
+          "sha256": "c74752ee8a292a5c47eeb2962f2fc34bbd5958630cbc73b2944234bb13f7861d",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/second-expanded.png",
+          "sha256": "27daa51c4dd0eb657bed028dc75a900716ed31b7b5d089b7a162dd75b50216ca",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/second-live-diagnosis.json",
+          "sha256": "e6b5a4d191b19377edf46bad208e23bc6cee8f533e27c8f4b8695855a3a016a7",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/second-live.ax.txt",
+          "sha256": "462a0c26ba85ddff7449858915d5853bd3808af1e7de3569fc8583e1fa8d499a",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/second-live.png",
+          "sha256": "508806eb9deb55f87b2e4f9e7999fc0f1d35567b4c055284fa60bb2d9b513017",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/second-progress.ax.txt",
+          "sha256": "37f6335f03a6661ba159a17fdb71905fce7533ea83de6c68c55865b2df6840d4",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/second-progress.png",
+          "sha256": "8cfa0588e1ece1f4013a9097448eb796bc1c6d3ea74960667ed11b9f8414a5bd",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/second-start.ax.txt",
+          "sha256": "922e2f7b6bd04896bf9b5358c9b55add95e43bea70f95b776205861b6edf8031",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/seventh-complete-diagnosis.json",
+          "sha256": "dff3948f167f180662492c19a92fe4ca81848d54dfc8ca67f0f192d9fd30eb0d",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/seventh-complete.ax.txt",
+          "sha256": "4035c9ad50be9a9ccc11a4a0a536f09b86ad78898c89170c4b399d57df3379ae",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/seventh-start.ax.txt",
+          "sha256": "85adf43df8e770d9015f4d2373cc141af31df1a11f9973a1f3064e2ecd2aea99",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/sixth-before-stop.ax.txt",
+          "sha256": "4a1ea38401a9260535720c4b64510ec004d4d80e067dba7837e2df9093443ed0",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/sixth-before-stop.png",
+          "sha256": "d4a46b2370b0df643a775d537153158a902236ddc97cd1d4d4e44e3d108aca62",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/sixth-stop-request.ax.txt",
+          "sha256": "b5d8fc285eeb43272a0e547caf6ca7c175b39d7b121720767e59aa63111f4625",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/sixth-stopped.ax.txt",
+          "sha256": "e73f3dc929cdf278eaef704ffe764c526beb00fa9a6523599b41a1c5c9cc662e",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/third-artifact-check.json",
+          "sha256": "eb7b7a82e4421a2dd15875637849fa528d85a7835b39e4bc78369cb053d57db9",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/third-complete-diagnosis.json",
+          "sha256": "9f9a00eb90c5acf8783957b81da84df19a0ea9b1a45b7a845e23f3fd37b54416",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/third-complete.ax.txt",
+          "sha256": "be6a1db33763971815a6151fb7b14e9d155740acd3700729a8558a907d2d2294",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/third-complete.png",
+          "sha256": "6d80cc1a85c0ee4902c9a10f89342c3eb37f44c3306682ff68b5c5e7d1fb4e73",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/third-expanded.ax.txt",
+          "sha256": "c48f0a87a89b03a8eaf57e59d5d5a1e16a3a8bdcf2558bf8e68a2dced5602e2a",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/third-expanded.png",
+          "sha256": "ef03562a3dfbb6d4f42212e17463afb7b7f1fcdbe68d7e629391b2d5594c1773",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/third-live.ax.txt",
+          "sha256": "d911323761564a809cbc7034ea7beb5f775a378b1887249ed3b7295a063db76b",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/third-start.ax.txt",
+          "sha256": "87d813081a4688d2f3cb8636e643f804cdbe83a8c33eb2b44e4d3112b2824264",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/tool-group-document-checks.json",
+          "sha256": "4c254b0ee849ce43089798f7461899a660390b64fa3def0978df246a1b7ac1bd",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/tool-group-reference-20261024.json",
+          "sha256": "79b3ad57f8025b669fcd9fb3563f7ba4080ecc624345c351060da73ccea0d648",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/user-turn-ledger.json",
+          "sha256": "f0335e417e8302e87d6b99ea615d92537a02a66cee2a087bf1aa6f9adf3bc9d1",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/evidence/visual-check.json",
+          "sha256": "208778d98ef2eea20f10ae441cfbe707de353ac978e83a6348219c85ad622ad8",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-163-codex-process-parity/feature.yaml",
+          "sha256": "caa7d5ce057ba6cfb226ef1422121aa503c0be28fc8beaf650d674988fe3f239",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/00-feature-brief.md",
+          "sha256": "684130c9046f3079448c17d83e401da51d44976251936c6b26e97ac2e9c67149",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/01-requirements.md",
+          "sha256": "6be6833976c4a9f17ea7ee2adc98ba05a604349aae7dad7aa261bf61177b8ee8",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/02-impact-assessment.md",
+          "sha256": "6696b47dc465a92951aff44d10abfaf065a81492530114122cc2ac566dd86abd",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/03-decisions-and-risks.md",
+          "sha256": "cd2b9bbf352c49b9f97c20db2a398e73104230f05538ab260e011283626dd4da",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/04-contract-change-plan.md",
+          "sha256": "44eefb3bc7664620045916878b5931b76ede0636808bff794cfaaf1d02310c50",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/04A-temporal-contract-matrix.md",
+          "sha256": "69a7271cb4cd1ccb3ccecb76806f4e0e5650a76deaf3d2e03d2f1f461648b24c",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/05-technical-design.md",
+          "sha256": "321c6f92378465b71a33ce10f3e01aa81a37af57a87b3d7109c7ceb9a198fcc6",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/06-test-plan.md",
+          "sha256": "88b55305667aa5c2881df77ec9654accdf59e8c09b0ea5186a9f6f55acf03a6d",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/07-implementation-plan.md",
+          "sha256": "0e34917a22659a24474169bdeca37bd7eab3c8efd95d419db31dc2130b239cf2",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/08-verification-report.md",
+          "sha256": "82a901227aaa2b7bd21a8ab94a85f0f7d376503044dd323c138c2f7e23105cdb",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/09-release-and-rollback.md",
+          "sha256": "43eadae369849b61fdb930ac888b8e58d7295bf0c72f10fca9b1673307ae8759",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/10-delivery-summary.md",
+          "sha256": "44614002d39ac19ac0c3dd6fc2b928cbf90a80e12ebaf0513dd86fadd11ffa41",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/11-second-audit.md",
+          "sha256": "5552e620be7d2557b4b3bc5d5b7fdee9834f7da8552f3cc050ced27197e58110",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/12-resume.md",
+          "sha256": "15288a7eab41d52692ecd0d5b1966e27ac51291b42ba957ffd9e37a96f6ff024",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/13-implementation-log.md",
+          "sha256": "8b7fdcf4a0c189147ef0067b6d9f77ce77b963fdc47af744a4062cce0d200bd0",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/14-source-candidate-review.md",
+          "sha256": "089be0c13c03244797f23dad620a192f6a0bfdc538c6e5deda949230596ee086",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/.gitignore",
+          "sha256": "997bb9874d6fa3c365bd2a85b46a011c10f3c5af12a2c19aab26f0c7f37c6010",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/candidate-contract-check-01.log",
+          "sha256": "3050e4495fd98ebac301e28f93e533bfff607f84f2f6ecf8ae604275fbf60eec",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/candidate-contract-check-02.log",
+          "sha256": "e23b334a404da2f6687aa98879dde98d4e26f987723551f982561bb7ca759c3c",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/candidate-contract-check-03.log",
+          "sha256": "2cd6b772d4c9771d2760622067378e287220eab7559f2f9cc80ba20458bd1a6f",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/candidate-contract-check-04.log",
+          "sha256": "adec19d0d4c075a5392e8996fb092c11a259abda6779e014b23610ba9297cbc0",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/candidate-contract-check-05.log",
+          "sha256": "ee2ffe814162b0fbda623de56bd087652d6f0e4391911a34b93fbaf99c077f47",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/candidate-contract-check-06.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/candidate-contract-checks.json",
+          "sha256": "cb729e1d9cd0c348dceb12ef55c9c7551a322d4b0a190848f13ad9b4f8c2fe97",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/candidate-contract-fixed-01.log",
+          "sha256": "8e66e76c5fe85a5954326abc29565680fd6a9b97983c64ac17a4432ea6fb619a",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/candidate-contract-fixed-02.log",
+          "sha256": "55e4f28d3b12cdb79dbd573379e115b8b737cdb1da24af80a324c22475a20e74",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/candidate-contract-fixed-03.log",
+          "sha256": "546672797f11070fae64088a1f69aff3db4de703a2fbc6acf0f90a0d266df477",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/candidate-contract-fixed-04.log",
+          "sha256": "67dc74289d9d23cde298c08b5f5b788e5443cb35d316f99084eadf053a37753d",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/candidate-contract-fixed-05.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/candidate-contract-fixed-results.json",
+          "sha256": "b7b9c04f6be739198d75a6ff755b087121a6ffad11b8dbd12725237015620079",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/commit-scope.json",
+          "sha256": "be9b3fdd78c450c98afa4536c8a59b04b254a842dce1a9006f045a427167454f",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/contracts-breaking-35e0949c.log",
+          "sha256": "a8479c6b604ad5a9e889e00294dc223ffae4cc4a0d645492f1cbc6819a0c6045",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/contracts-breaking-54be9314.log",
+          "sha256": "7c194e1eea4aec568e3eb88a767a89aee5a9dcbbe95bbb87fbf3fee06c76f4d3",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/contracts-breaking-6f632f15.log",
+          "sha256": "a4ff6b26d8cfcc650e5b05ff900c0dc2688a807b8102f3b1789e041ebdc058f0",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/contracts-breaking-811f38d6.log",
+          "sha256": "8e5cd19181ccf67b5c7b5975d0cf79376c9796f12899b46e0dada5dbf24b71db",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/contracts-breaking-bedf4159.log",
+          "sha256": "16b0e4fc172d21692009f4f26cbeb040ad1422a88af70c030b728d8a42ca3156",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/contracts-breaking-db4458fe.log",
+          "sha256": "a5e1b9e74f6b8f8c79943589dddc7776571b1f9404d9467a5eca1ce3c921fce1",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/contracts-breaking-f16a497e.log",
+          "sha256": "9b3fab22fc89a33cf7f4e9d08072e43f29c2999ed2af63b6e8417b2ce9d534b4",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/contracts-breaking-offline-35e0949c.log",
+          "sha256": "3adab94516e8859d56aa45ada6dafa0f94338e94a8102a2335407142097e150e",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/contracts-breaking-offline-54be9314.log",
+          "sha256": "70980cbcc7900bef806c36d95fd480b2ad3af5fb6a7a59194e5c864e5248b9cb",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/contracts-breaking-offline-6f632f15.log",
+          "sha256": "4ef94435f327dccb081af78a44d74838a9af50e4dece6e7c142d7163f1ab9a74",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/contracts-breaking-offline-811f38d6.log",
+          "sha256": "daf5e01ad4cbcbf9f68a518ce40d3489e33467f53c0a97ae9405018f6fc1ae2a",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/contracts-breaking-offline-bedf4159.log",
+          "sha256": "0055ebcfeb041d9079db6a8529b34fceeb9d037fc20476004a303d4650d7c664",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/contracts-breaking-offline-db4458fe.log",
+          "sha256": "f3a530ee0cecf337f5da1b5040e4f4e4d97fc18bbeffce763ce36b04d3e0518b",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/contracts-breaking-offline-f16a497e.log",
+          "sha256": "da64e5272d007211f01b02422a0a4c97d6fdd9720b964f28ceeb5120682a6e75",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/contracts-breaking-offline-results.json",
+          "sha256": "a3793b8fa84b222b37e7be73ea8689d0b4312691657eb96c9d65a49d3f74db74",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/contracts-breaking-results.json",
+          "sha256": "d6cb8c3850aaadfc2812776f24b23c7022528f23f80b7601f58ce492851dcb41",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/contracts-lint.log",
+          "sha256": "643e96b06040620cf38af411b0db8f0d7abef9228c30219d24e077384c9974b3",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/document-integrity.json",
+          "sha256": "e7b4a06c0c26ab1000528f151d4171f7302fc66a0ec9ad8a787cd213d74f1003",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/document-review.md",
+          "sha256": "ddd3b0af3d44b55ac2952c0df0dc1645716897a7f3680f66f9ada81abd4bf8fd",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/feature-claims.json",
+          "sha256": "bb7fe636cdc059bddadebc118c7fc588bcdd69003efd150b90f734f665774a57",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/feature-claims.log",
+          "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/feature-strict.json",
+          "sha256": "2c80312a68bb800c9133e2f328cf4da82480d48ed5dbcb4b5e5ac2b7c8ae8b67",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/feature-strict.log",
+          "sha256": "0f6377b2cf2e6dba2d18bcba312d28530dafd7d4a1f423d7affcf223fed72bce",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/final-document-check.json",
+          "sha256": "41fbd577cab6df3a7ee4e91656db17860d9bf99e1fd9e746b3e0e666756d7352",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/governance-tests.json",
+          "sha256": "9db556c335263ba3b148eebeb8eec7e7847234a81a8126e7ae284c6618904624",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/governance-tests.log",
+          "sha256": "2ef276ae053d52f96e4acdb4d9e0a6344f6c52285d843b9a1bf6a60b97e5a2b1",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/implementation-baseline.json",
+          "sha256": "ea6c1a162f1f979b98e3a15ef4556dfd9bd01cb75f57a909a94b540127711b32",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/implementation-final-review.json",
+          "sha256": "d638ea69ea00e99ca03bb6efa71e48103e0fa920fd4ec15cf6064540540c8b28",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/implementation-governance-01.log",
+          "sha256": "fe2692b80a5ee375e06fd02229375e8fc5fbd8ad2c249e5371dd114d8d2b5eff",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/implementation-governance-02.log",
+          "sha256": "fe2692b80a5ee375e06fd02229375e8fc5fbd8ad2c249e5371dd114d8d2b5eff",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/implementation-governance-03.log",
+          "sha256": "fe2692b80a5ee375e06fd02229375e8fc5fbd8ad2c249e5371dd114d8d2b5eff",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/implementation-governance-fixed-01.log",
+          "sha256": "0f6377b2cf2e6dba2d18bcba312d28530dafd7d4a1f423d7affcf223fed72bce",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/implementation-governance-fixed-02.log",
+          "sha256": "dd6bc914a7ee627c5bed3705fecd479460a4d132b9044f43b64a5794a71a1b41",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/implementation-governance-fixed-03.log",
+          "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/implementation-governance-fixed-results.json",
+          "sha256": "9d8566b84eec99bcdf1ad899340dd760318a5b9ff32266c48d0a6024772040d6",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/implementation-governance-results.json",
+          "sha256": "d86bfb38c907857f3cb7aa58b22e41d5cffb923f2e79ba05c565969c66baaaf8",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/implementation-workspace-review.json",
+          "sha256": "f5b8d030b293dc01add65feaa302a8c7034e5e85e40ba5b7682b2d953d8c24b9",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/metadata-lint.json",
+          "sha256": "e9979e8567f8d0895bd3705e779a5943b1e60b4855a0cf35b74ac2f7667b65ed",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/metadata-lint.log",
+          "sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/planning-state-check.json",
+          "sha256": "b548bf9e01ae3a7b7f6292d6fd7a5fa0357cabb3f6088dc98bcdd21fdaae3ab9",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/preserved-source-anchors.json",
+          "sha256": "bb6ae2c49b2b22963c04e8fbafef6b20169988125a77252ad79f99b123eadf8a",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/reviewed-sources.json",
+          "sha256": "b06e1eb6f6ed1aea4b2f50521a55d23db36b2d65b959570f9a76f5d2204db561",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/runtime-candidate-build.log",
+          "sha256": "3df92493c3d456d31a4af81e402b9c373e57ea3aef8ba8420189992eeacfc31e",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/runtime-focused-01.log",
+          "sha256": "57dc451b621962622ffc44c463a289416b39ab464cbcfcb1b6a4bd3e41a35b36",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/runtime-focused-02.log",
+          "sha256": "a270aae0edd4f8353d2fbb19e117d1f421536c585c3457f9c1f6d8598bf20f29",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/runtime-focused-03.log",
+          "sha256": "a1fdae65fc8e9b3aa1e95553c3adb49a2809276c933e7f1918efde964c800248",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/runtime-focused-04.log",
+          "sha256": "e29a1c2dfcbf4cfcf2e4babb10cec6e2c3cbb2636944b1d96b10a3ac8a78860b",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/runtime-focused-results.json",
+          "sha256": "a89045800d408fffcdf03ec400074af14409ee3732853d4ae84af0278ee7dfda",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/runtime-fork-tests.log",
+          "sha256": "2834a0208fa4e90a6acfdee2f6e7df1e1d017e2ff8bb26487a8cd674c57ad34d",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/runtime-preservation.json",
+          "sha256": "47856b6975015a7053e4addd008819115e1c75de8d17e33b0e0b8bb0d71e0836",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/runtime-upstream-check.log",
+          "sha256": "99759ffee1da87749e30580f1689355cb1231f2e4002836dee88e3b6aedc83cc",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/shell-syntax.json",
+          "sha256": "bf417dedd43e94e285b2102290a3920734f5d986e122cdcd938d20c7005aa9fa",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/shell-syntax.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/workspace-baseline.json",
+          "sha256": "84e9013cec6f079d809bb22ebef1741888e6d3b49a1889c5fd57facae08e7168",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/features/FEAT-164-kimi-k31-pro-migration/feature.yaml",
+          "sha256": "d262128d5856b3be0a451b822724cc9c3dea68c867edebb40ed034c03b0b8c22",
+          "mode": "0o644"
+        }
+      ]
+    },
+    {
+      "repository": "yijie-admin-web",
+      "head": "d009cafccb112c098114c075d60f67ee5e0296d8",
+      "branch": "develop",
+      "status": [],
+      "cached_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files": []
+    },
+    {
+      "repository": "yijie-agent-host",
+      "head": "283dcbd7d79ca7bd7a56dba0cb915024fff8eb72",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": [
+        " M api/experts.candidate.json",
+        " M api/market-broker-control.candidate.json",
+        " M api/market-connectors.candidate.json",
+        " M api/market-connectors.schema.json",
+        " M api/market-host.candidate.json",
+        " M api/market-host.schema.json",
+        " M api/market-provider.candidate.json",
+        " M api/market-provider.schema.json",
+        " M api/native-process.candidate.json",
+        " M api/runtime-chat-models.candidate.json",
+        " M internal/app/app.go",
+        " M internal/app/native_conversation.go",
+        " M internal/app/native_conversation_test.go",
+        " M internal/codex/chat_models.go",
+        " M internal/codex/chat_models_test.go",
+        " M internal/codex/market_runtime.go",
+        " M internal/codex/runtime_permissions.go",
+        " M internal/codex/scheduled_draft_integration_test.go",
+        " M internal/codex/session_protocol.go",
+        " M internal/contracts/marketbrokercontrol/types.gen.go",
+        " M internal/contracts/marketconnectors/types.gen.go",
+        " M internal/contracts/markethost/types.gen.go",
+        " M internal/contracts/marketprovider/types.gen.go",
+        " M internal/marketbroker/artifact.go",
+        " M internal/marketbroker/owner.go",
+        " M internal/session/events.go",
+        " M internal/session/multimodal_test.go",
+        " M internal/session/native_conversation.go",
+        " M internal/session/native_conversation_test.go",
+        " M internal/session/native_mcp.go",
+        " M internal/session/native_mcp_test.go",
+        " M internal/session/native_process.go",
+        " M internal/session/native_process_test.go",
+        " M internal/session/service.go",
+        " M internal/session/store.go",
+        " M internal/skills/experts_candidate.go",
+        " M scripts/chat-model-smoke-meter.py",
+        " M scripts/responses_stream_observer.py",
+        " M scripts/test_responses_stream_observer.py",
+        "?? api/openapi/native-conversation-v5.yaml",
+        "?? internal/app/kimi_web_live_test.go",
+        "?? internal/codex/process_parity_audit_test.go",
+        "?? internal/codex/process_parity_integration_test.go",
+        "?? internal/contracts/nativeconversationv5/",
+        "?? internal/integration/cleanup_runtime_test.go",
+        "?? internal/marketbroker/model_credential.go",
+        "?? internal/marketbroker/model_credential_test.go",
+        "?? internal/session/cleanup_recovery.go",
+        "?? internal/session/cleanup_recovery_test.go",
+        "?? internal/session/native_activity.go",
+        "?? internal/session/native_activity_test.go",
+        "?? internal/skills/experts_assets.gen.go",
+        "?? scripts/__pycache__/",
+        "?? scripts/run-kimi-web-minimal-acceptance.sh"
+      ],
+      "cached_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files": [
+        {
+          "path": "api/experts.candidate.json",
+          "sha256": "8bec59b1e2c3227c76a4722d098c90752f9ab9f90c4c3dfb126e61ab9fd80c2a",
+          "mode": "0o644"
+        },
+        {
+          "path": "api/market-broker-control.candidate.json",
+          "sha256": "4a2938f663ebbedb60625f21c65dc78559270635abe6f184cd0c11be65022831",
+          "mode": "0o644"
+        },
+        {
+          "path": "api/market-connectors.candidate.json",
+          "sha256": "d2ca1bbc68d3698da3264187817fa8792dbe81fa04cd907d486dab8a7eb21037",
+          "mode": "0o644"
+        },
+        {
+          "path": "api/market-connectors.schema.json",
+          "sha256": "2468f2499576750b42a88a5d0e061206d52ddd4526c0189826e1411297a42ecd",
+          "mode": "0o644"
+        },
+        {
+          "path": "api/market-host.candidate.json",
+          "sha256": "e63b5c67782e272b861e28a80c415b58719433384fa777a85810e5403d83c61b",
+          "mode": "0o644"
+        },
+        {
+          "path": "api/market-host.schema.json",
+          "sha256": "8c97409d2df646d1ccabb3d0270ffcf8f2106b4358fd9f1b6ab1be562fb4e410",
+          "mode": "0o644"
+        },
+        {
+          "path": "api/market-provider.candidate.json",
+          "sha256": "04ce1832938d09635fe045d7e97322de498919c402723b9ca98765c9ab0b1127",
+          "mode": "0o644"
+        },
+        {
+          "path": "api/market-provider.schema.json",
+          "sha256": "968a6f9d90fb6d4b741ac7560af0ba24f4e08998a344192e2ef65fcadd03bc05",
+          "mode": "0o644"
+        },
+        {
+          "path": "api/native-process.candidate.json",
+          "sha256": "55b73c2f253f07f5fd1447cbeb3dbf153fbd74503983cf53c834612f9074b0b3",
+          "mode": "0o644"
+        },
+        {
+          "path": "api/openapi/native-conversation-v5.yaml",
+          "sha256": "fa5eb2d015974132c543091eef3faeb73ceb39050eb57441fcaa953df4ac675a",
+          "mode": "0o644"
+        },
+        {
+          "path": "api/runtime-chat-models.candidate.json",
+          "sha256": "04b04eef3281737547ada9ee0b109d0b1c5896f3f4f7b848a9dbdc94c4e5093f",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/app/app.go",
+          "sha256": "350edffc0f4575a228fbf29a7d7b550ebb8e476f23f9955f9ce2196211e32330",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/app/kimi_web_live_test.go",
+          "sha256": "b76862e3d724351215e4fcafd113a053e2e0adec04cf343245fe6ba29aad63ea",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/app/native_conversation.go",
+          "sha256": "980b03c853d9e0db9423af1d3cba7ed05567b8f4b284f1386909214b6492677a",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/app/native_conversation_test.go",
+          "sha256": "cdae2a3689fde6bb671865ca66299cfcdc2de1e6f40e987d974e905fdde4a850",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/codex/chat_models.go",
+          "sha256": "d5606ef6c8d9206ebf2063ae00dbd72fd2d01725e738e2c3dd25b0e895f27eb7",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/codex/chat_models_test.go",
+          "sha256": "d0eabe73fab0695bfd0db5bb30aefb999a8ec0108b3966fbb1b6a8db81b1501b",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/codex/market_runtime.go",
+          "sha256": "55f27856c66fff3df14c5aef58f4856d247caa387310b23fde8d3a041aac8ce7",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/codex/process_parity_audit_test.go",
+          "sha256": "c7dd5f6d0bbc79bd13f258a298b664813169b33a1fa9325c66d606c20209f68e",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/codex/process_parity_integration_test.go",
+          "sha256": "f8dedfe86ac5e4aac3cc8fd247fc7ba3d229133688640370c533731fdd58fd92",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/codex/runtime_permissions.go",
+          "sha256": "a78b4d9332c40d0e9af261fb434921a3aa547d9747550635fa5ab47a1f3dfd99",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/codex/scheduled_draft_integration_test.go",
+          "sha256": "2afc534dceeb4d777d3f7fc9c2ce1ec3bf50b28255988933f33bd126e0aacce9",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/codex/session_protocol.go",
+          "sha256": "a7840791d76f036eb084c647c96112f31641def711ee3d30e641a36c45ec356a",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/contracts/marketbrokercontrol/types.gen.go",
+          "sha256": "0de8dcba1966c5c5d6a208d4157908d711f3ab750b02c6308dd8740258b0a8e7",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/contracts/marketconnectors/types.gen.go",
+          "sha256": "c2f43ed31b186cd4ad4effd9b4cc6dde9907031ee2fa2cc660b8854f454ff9bf",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/contracts/markethost/types.gen.go",
+          "sha256": "d3ba1d46f6f5f92d119dc33b907493f08626c4216e1b559e8b47005ee6f31912",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/contracts/marketprovider/types.gen.go",
+          "sha256": "efefffe8cea4c79304531069c606d09fdd5af9aa1ba4bb23d78cb3899b604fcd",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/contracts/nativeconversationv5/types.gen.go",
+          "sha256": "96d1210b93a84ca0ee6ee4b6773373d8d3d6647b90c40705f07fd4ed8eeb3830",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/integration/cleanup_runtime_test.go",
+          "sha256": "7367e8448a075caf99b94883d9dc05b358c576398eebe7ed7b3615480b97aa9f",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/marketbroker/artifact.go",
+          "sha256": "7b0467f93599e98d8575da4511d3c291a7a190e8b9de6f066b147d9cc98579ea",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/marketbroker/model_credential.go",
+          "sha256": "0f447f71f2e16a5153ca2e0d153f665270707f1240a7f0e8ac54acf0554ea695",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/marketbroker/model_credential_test.go",
+          "sha256": "c10ca5fa7e67b196299c215652da29298c2f0830abcf5f1ba72cb9b3925c1e36",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/marketbroker/owner.go",
+          "sha256": "fed88b1b1c6487dc2035047915cc9f1219efb550c21308bc68c5ffff6a1a00b4",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/session/cleanup_recovery.go",
+          "sha256": "1f4fb10ac616982ce86dd1149b3a07fc16129c324638b9a394570340aa692441",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/session/cleanup_recovery_test.go",
+          "sha256": "de3c826a1839cc4790fb264d8a08910d87a7d4b8c01504d50a8190579faa28d0",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/session/events.go",
+          "sha256": "c7f796049bfa3d10ce5a29b53c2fc56f028f2aac07832bf503796927306679ba",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/session/multimodal_test.go",
+          "sha256": "71dff96da987a9c88107d40a47f7f05ab1fe6647d8f127946ec3f0a38bdf71c0",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/session/native_activity.go",
+          "sha256": "144568ff9adcaf035f9a5c1f447892633507a3d920ff1521e5adbdf98558d775",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/session/native_activity_test.go",
+          "sha256": "b5449f5e783d60dcaecd370d2f15c22d3111458368c9de686f9a0881a3cd0ac5",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/session/native_conversation.go",
+          "sha256": "bbc8a42e9cbd7f5dc453bd253e41f9c584423e98d49b590579c05a5c9392e868",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/session/native_conversation_test.go",
+          "sha256": "69c180f8aba0857561788990db447d4145df8b55a386bcb50f8f634c9e86587d",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/session/native_mcp.go",
+          "sha256": "ed76f0da8729238525aaad36138d228ea871dd59ff40a9a0411e92cbaf5f9ecf",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/session/native_mcp_test.go",
+          "sha256": "acb3023df79011a2b10b1856e4676b28f38fb9ffb410c1ed497f9cb05cac061a",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/session/native_process.go",
+          "sha256": "69a6bc8fc1a1a52368fdf6618c26a2e829732800fbb0b5586c4fbfa5507dde23",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/session/native_process_test.go",
+          "sha256": "040800e189706b520c6f62c5f62b6c3b7b74ab2a964c77d9dc816a47705b7f0d",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/session/service.go",
+          "sha256": "64738aa55959f8b68db87b58001ca1f6c4e6288042c489189fcde6ac9dca1a63",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/session/store.go",
+          "sha256": "8531fd742398842b6d751e48e41b131474d2bc26a6fdb52375d7b96624cd4672",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/skills/experts_assets.gen.go",
+          "sha256": "cfe825bcb5d780d661d980baef1ed0178f3a3a6583ce57feb0616e84a773acd2",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/skills/experts_candidate.go",
+          "sha256": "90e55dddc857dacb0b8f95d3da7c7a5adb3ab3a6f27efdde623010329deebfc1",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/__pycache__/responses_stream_observer.cpython-314.pyc",
+          "sha256": "10ab15417d409db5da8ac2fda69e3b752f40f6fdaf447b3ee284cbeaca343828",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/__pycache__/test_responses_stream_observer.cpython-314.pyc",
+          "sha256": "518ec0ce989d7185fa1f4ad0f9f03a71c1b4b57f43362c912365b8288eaeadef",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/chat-model-smoke-meter.py",
+          "sha256": "aae85d14370e24d7effcbd930a8a0c0c74564a4355d611147d9ef15ac8e4a5ec",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/responses_stream_observer.py",
+          "sha256": "fc8d275e52b3324b2b95a333b3386e57f6135215f42b60265988b892e1146d4d",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/run-kimi-web-minimal-acceptance.sh",
+          "sha256": "1725ed64a041b75edbbc78f90d34bda787c4fb5117b31fcb71c37974f5dd4e4f",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/test_responses_stream_observer.py",
+          "sha256": "786b0d7fbb2bd0303077038216f37e3677b71579471ae6d6010260aa853853f5",
+          "mode": "0o644"
+        }
+      ]
+    },
+    {
+      "repository": "yijie-api",
+      "head": "041f40c69919e81ec72ccee4ea6dbb3ea012142d",
+      "branch": "feat/feat-126-foundation-closure",
+      "status": [],
+      "cached_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files": []
+    },
+    {
+      "repository": "yijie-codex",
+      "head": "9154f27d0cdb526a5f5ba0913fe3e2448014b4a1",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": [
+        " M CHANGELOG.yijie.md",
+        " M UPSTREAM.md",
+        "?? .yijie/patches/chat-models/0007-feat-164-kimi-k31-pro.patch",
+        "?? docs/kimi-k31-pro-candidate.md",
+        "?? scripts/build-kimi-k31-pro.sh",
+        "?? scripts/write-kimi-k31-pro-runtime-manifest.py"
+      ],
+      "cached_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files": [
+        {
+          "path": ".yijie/patches/chat-models/0007-feat-164-kimi-k31-pro.patch",
+          "sha256": "c666c066ec1235d016e7479805242d049def542b9f8c684970ac8e5b4cee8ae6",
+          "mode": "0o644"
+        },
+        {
+          "path": "CHANGELOG.yijie.md",
+          "sha256": "c1712696000dfde7769aa5a2d26cc1e7175a705286e515b0d559a205fac5548d",
+          "mode": "0o644"
+        },
+        {
+          "path": "UPSTREAM.md",
+          "sha256": "671fe4b435bdc4bffc70e888837f52379defd0ec7ebe572b14de224e8081dc6d",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/kimi-k31-pro-candidate.md",
+          "sha256": "f06648ab182f11b5e056d8a5401ecc3b36594329b98abb3769ae83539f9e0e26",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/build-kimi-k31-pro.sh",
+          "sha256": "8b26dd8a13765d4fc5e272f8ea1e17d57d69d66fbfff6987eb749604fe828f30",
+          "mode": "0o755"
+        },
+        {
+          "path": "scripts/write-kimi-k31-pro-runtime-manifest.py",
+          "sha256": "c4d336c53d9d504bd954a1f474bc888031b71409c4303b73124cb8c4ec9831c8",
+          "mode": "0o755"
+        }
+      ]
+    },
+    {
+      "repository": "yijie-connectors",
+      "head": "251a0e8854b646a2565a01317a95b037579d9b8e",
+      "branch": "develop",
+      "status": [
+        " M Makefile",
+        " M api/market-broker-control.candidate.json",
+        " M api/market-connectors.candidate.json",
+        " M api/market-connectors.schema.json",
+        " M api/market-provider.candidate.json",
+        " M api/market-provider.schema.json",
+        " M catalog/catalog.go",
+        " M catalog/catalog_test.go",
+        " M catalog/market-catalog.v1.json",
+        " M catalog/provider-registry.v1.json",
+        " M catalog/source-provenance.json",
+        " M internal/contracts/marketconnectors/types.gen.go",
+        " M scripts/build-market-worker.sh",
+        " M worker/Cargo.lock",
+        " M worker/Cargo.toml",
+        " M worker/qualification/broker.rs",
+        " M worker/source.lock.json",
+        " M worker/src/broker.rs",
+        " M worker/src/broker_generated.rs",
+        " M worker/src/credentials.rs",
+        " M worker/src/daily.rs",
+        " M worker/src/gateway.rs",
+        " M worker/src/generated.rs",
+        " M worker/src/main.rs",
+        " M worker/src/provider_generated.rs",
+        " M worker/src/provider_registry.rs",
+        " M worker/src/providers.rs",
+        " M worker/src/tushare_oauth.rs",
+        "?? api/web-retrieval.candidate.json",
+        "?? api/web-retrieval.schema.json",
+        "?? api/web-retrieval.tools.json",
+        "?? docs/kimi-web-retrieval.md",
+        "?? docs/startup-source-review-20261023.md",
+        "?? worker/src/kimi_web.rs",
+        "?? worker/src/kimi_web_tests.rs",
+        "?? worker/src/model_credentials.rs",
+        "?? worker/src/web_retrieval_generated.rs"
+      ],
+      "cached_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files": [
+        {
+          "path": "Makefile",
+          "sha256": "e4651dd75e1927f1edf916ba0ada9b0c611227863bc37cbe1f448754a7523d75",
+          "mode": "0o644"
+        },
+        {
+          "path": "api/market-broker-control.candidate.json",
+          "sha256": "aabb53b94fbfa5659a1cb0447f5967953451c87a598092026730cb167f3b2eaf",
+          "mode": "0o644"
+        },
+        {
+          "path": "api/market-connectors.candidate.json",
+          "sha256": "d2ca1bbc68d3698da3264187817fa8792dbe81fa04cd907d486dab8a7eb21037",
+          "mode": "0o644"
+        },
+        {
+          "path": "api/market-connectors.schema.json",
+          "sha256": "2468f2499576750b42a88a5d0e061206d52ddd4526c0189826e1411297a42ecd",
+          "mode": "0o644"
+        },
+        {
+          "path": "api/market-provider.candidate.json",
+          "sha256": "c658110c329a753fb1cf37a90a43af74b975647df1b197a61817a37674c9f437",
+          "mode": "0o644"
+        },
+        {
+          "path": "api/market-provider.schema.json",
+          "sha256": "968a6f9d90fb6d4b741ac7560af0ba24f4e08998a344192e2ef65fcadd03bc05",
+          "mode": "0o644"
+        },
+        {
+          "path": "api/web-retrieval.candidate.json",
+          "sha256": "85f619feeb8d21a53628d345ff3a0b5cfb3699e7e7ff816da3cbf46ec64bb040",
+          "mode": "0o644"
+        },
+        {
+          "path": "api/web-retrieval.schema.json",
+          "sha256": "7579b106655791e3610f574da52adb9694fca6dd26aa823a04a3b8f6c25f3668",
+          "mode": "0o644"
+        },
+        {
+          "path": "api/web-retrieval.tools.json",
+          "sha256": "46c33cd7a089efb7aa8024abf5e75417440ad74571a8723c4ffdb0ecc0a0de72",
+          "mode": "0o644"
+        },
+        {
+          "path": "catalog/catalog.go",
+          "sha256": "987a28cb3a2e8d8219597aa242b268533c8c78bfdc1d14ee1b682b8a60d0846c",
+          "mode": "0o644"
+        },
+        {
+          "path": "catalog/catalog_test.go",
+          "sha256": "4a1550eb9a61e0b950600ead7847d467ba13f72cbf99d8bd5465daecd1e1fd9b",
+          "mode": "0o644"
+        },
+        {
+          "path": "catalog/market-catalog.v1.json",
+          "sha256": "55ec42e1965a7ecdfd17771af299afea786bc74a175ab4f021afdf8d538ab70d",
+          "mode": "0o644"
+        },
+        {
+          "path": "catalog/provider-registry.v1.json",
+          "sha256": "9ec4818c21d1c70f72a02ab1fd3056724e3ffe69ea7d79dac4d959eda0785bd0",
+          "mode": "0o644"
+        },
+        {
+          "path": "catalog/source-provenance.json",
+          "sha256": "48987c4d776c2b6cc76b545bd33238d8a5b2a26d896d4962cc106b66cbdea190",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/kimi-web-retrieval.md",
+          "sha256": "fd89c480be2ef26d34e6b7e8b98c0a0a7c3cda21bdf7243af0a34f8d865b6f82",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/startup-source-review-20261023.md",
+          "sha256": "545734f05d7861da1ec1179db7740dc255ed6d10b2518bcb2d91a248a3aa98b6",
+          "mode": "0o644"
+        },
+        {
+          "path": "internal/contracts/marketconnectors/types.gen.go",
+          "sha256": "c2f43ed31b186cd4ad4effd9b4cc6dde9907031ee2fa2cc660b8854f454ff9bf",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/build-market-worker.sh",
+          "sha256": "425f93e71f9d744279aa25c473af478eda623ed1cafcd4c21d269a0df1743d4a",
+          "mode": "0o644"
+        },
+        {
+          "path": "worker/Cargo.lock",
+          "sha256": "e7829c7e4b03ea1eb6c0f209863bc2bb19584ecbd88deebb5bf0091a360c766b",
+          "mode": "0o644"
+        },
+        {
+          "path": "worker/Cargo.toml",
+          "sha256": "0c3b3ced79aae62fe6dd383a9d0ed206659b47ecce1b7c64d541bae0518d903c",
+          "mode": "0o644"
+        },
+        {
+          "path": "worker/qualification/broker.rs",
+          "sha256": "2f6b0fd311410ea3ece77f3ab435142697961e35323547fc5a1abe647e664ec1",
+          "mode": "0o644"
+        },
+        {
+          "path": "worker/source.lock.json",
+          "sha256": "ccaddd7729087c68eb59b2bde7e25b5dd46636cf6c05e69f6769c3d36394244c",
+          "mode": "0o644"
+        },
+        {
+          "path": "worker/src/broker.rs",
+          "sha256": "28a5a15200eaec1edb04a2ea3289ad4f369443569829f87ecc70a394d4273e25",
+          "mode": "0o644"
+        },
+        {
+          "path": "worker/src/broker_generated.rs",
+          "sha256": "e3e36254a8b4fac2ea215ae453d41683f99f39c7872ff08b87987544f0be8dc2",
+          "mode": "0o644"
+        },
+        {
+          "path": "worker/src/credentials.rs",
+          "sha256": "361d0c3ff7b64f289ca2e74377a2ad84fd70f7742f8705f8ab99b448383d6506",
+          "mode": "0o644"
+        },
+        {
+          "path": "worker/src/daily.rs",
+          "sha256": "aa70e785f125a80469e219ceec290321024559f44a87b9d017e3cc91e90267b4",
+          "mode": "0o644"
+        },
+        {
+          "path": "worker/src/gateway.rs",
+          "sha256": "fb0ffc9b2a824ffe1bb72cf9404cbe04fef9822f091ec5b057f197d32427e697",
+          "mode": "0o644"
+        },
+        {
+          "path": "worker/src/generated.rs",
+          "sha256": "3f7bb5213dc4f442a8444a9f0141ecb6bd33134fa75000416e7263997cce188d",
+          "mode": "0o644"
+        },
+        {
+          "path": "worker/src/kimi_web.rs",
+          "sha256": "6cc043077d96bac5fa3c6f94fe001b6edc889ee926a2d4f6d96f9f4a7c531444",
+          "mode": "0o644"
+        },
+        {
+          "path": "worker/src/kimi_web_tests.rs",
+          "sha256": "4d121fa355226dedab4b9ba149f395d7b9a74ce60c485832747e3f823973e778",
+          "mode": "0o644"
+        },
+        {
+          "path": "worker/src/main.rs",
+          "sha256": "f483b26aadeab5fbc8bcd1d313bc320b30ba98df5ec09eb4beca36f9a523b9bf",
+          "mode": "0o644"
+        },
+        {
+          "path": "worker/src/model_credentials.rs",
+          "sha256": "45423db38a66e9897e05acb55360ce17c113ced2c879d517bf0ad4a4b13a66ba",
+          "mode": "0o644"
+        },
+        {
+          "path": "worker/src/provider_generated.rs",
+          "sha256": "980719c8d8793b20055bbb21495d70922cf8a6a1f20773db66a5594c018dcddc",
+          "mode": "0o644"
+        },
+        {
+          "path": "worker/src/provider_registry.rs",
+          "sha256": "316013849b2f906c88601b76302a1497da9a53a9d53dde4ea720bdac467bb7db",
+          "mode": "0o644"
+        },
+        {
+          "path": "worker/src/providers.rs",
+          "sha256": "2bf07bd9f0ff88a101b044d65ed463d2d86f89410eea5e121bce2e0810242577",
+          "mode": "0o644"
+        },
+        {
+          "path": "worker/src/tushare_oauth.rs",
+          "sha256": "e322ab2d762aec9ab38ca945c2e0d24df2db8d5286ae22e6e6fee6c3630c413b",
+          "mode": "0o644"
+        },
+        {
+          "path": "worker/src/web_retrieval_generated.rs",
+          "sha256": "d499b12ea58ba5d4b73039f0e668a08aecb7f050900212d5431f40e4a784a38d",
+          "mode": "0o644"
+        }
+      ]
+    },
+    {
+      "repository": "yijie-contracts",
+      "head": "bedf4159b0fa22e24efe6c295f8b0d4845df56b7",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": [
+        " M Makefile",
+        " M compatibility/experts/source.lock.json",
+        " M compatibility/market-broker-control/control.json",
+        " M compatibility/market-broker-control/source.lock.json",
+        " M compatibility/market-connectors/source.lock.json",
+        " M compatibility/market-host/source.lock.json",
+        " M compatibility/market-provider/source.lock.json",
+        " M compatibility/market-provider/transport.json",
+        " M compatibility/market-provider/wire.schema.json",
+        " M compatibility/market-selection/source.lock.json",
+        " M compatibility/runtime-chat-models/source.lock.json",
+        " M docs/market-connectors-v1.md",
+        " M docs/market-provider-v1.md",
+        " M docs/supported-baselines.md",
+        " M openapi/market-connectors/market-connectors.yaml",
+        " M scripts/generate-market-broker.mjs",
+        " M scripts/generate-market-connectors.mjs",
+        " M scripts/generate-market-host.mjs",
+        " M scripts/generate-native-process.mjs",
+        " M scripts/market-broker-source.mjs",
+        " M scripts/market-host-source.mjs",
+        " M scripts/sync-market-host.mjs",
+        " M scripts/sync-native-process.mjs",
+        " M scripts/validate-json-schemas.mjs",
+        " M sdks/go/market-broker-control/types.gen.go",
+        " M sdks/go/market-connectors/types.gen.go",
+        " M sdks/go/market-connectors/types_test.go",
+        " M sdks/go/market-host/types.gen.go",
+        " M sdks/go/market-provider/types.gen.go",
+        " M sdks/jsonschema/market-connectors.schema.json",
+        " M sdks/jsonschema/market-host-native.schema.json",
+        " M sdks/jsonschema/market-host.schema.json",
+        " M sdks/jsonschema/market-provider.schema.json",
+        " M sdks/rust/market-broker-control/types.gen.rs",
+        " M sdks/rust/market-connectors/types.gen.rs",
+        " M sdks/rust/market-host/types.gen.rs",
+        " M sdks/rust/market-provider/types.gen.rs",
+        " M sdks/typescript/src/api/generated/market-connectors-validator.gen.js",
+        " M sdks/typescript/src/api/generated/market-host-native-validator.gen.js",
+        " M sdks/typescript/src/domain/market-connectors.generated.ts",
+        " M sdks/typescript/src/domain/market-host-native.generated.ts",
+        " M tests/market-broker.test.mjs",
+        " M tests/market-connectors.test.mjs",
+        " M tests/rust-market-connectors/src/lib.rs",
+        "?? compatibility/chat-models-v2/",
+        "?? compatibility/runtime-kimi-k31-pro/",
+        "?? compatibility/web-retrieval/",
+        "?? docs/agent-session-cleanup-recovery.md",
+        "?? docs/chat-models-v2.md",
+        "?? docs/native-activity-v5.md",
+        "?? docs/web-retrieval-v1.md",
+        "?? jsonschema/chat/model-selection-v2.schema.json",
+        "?? openapi/chat-models-v2/",
+        "?? openapi/native-conversation-v5/",
+        "?? scripts/check-feat164-breaking.mjs",
+        "?? scripts/format-source-file.mjs",
+        "?? scripts/generate-chat-models-v2.mjs",
+        "?? scripts/generate-runtime-kimi-k31-pro.mjs",
+        "?? scripts/generate-web-retrieval.mjs",
+        "?? scripts/sync-web-retrieval.mjs",
+        "?? scripts/web-retrieval-source.mjs",
+        "?? sdks/go/openapi/chat-models-v2/",
+        "?? sdks/go/openapi/native-conversation-v5/",
+        "?? sdks/go/openapi/runtime-kimi-k31-pro/",
+        "?? sdks/jsonschema/chat-models-v2.schema.json",
+        "?? sdks/jsonschema/web-retrieval.schema.json",
+        "?? sdks/jsonschema/web-retrieval.tools.json",
+        "?? sdks/openapi/chat-models-v2.bundle.json",
+        "?? sdks/rust/chat-models-v2/",
+        "?? sdks/rust/web-retrieval/",
+        "?? sdks/typescript/src/jsonschema/chat-models-v2.gen.ts",
+        "?? sdks/typescript/src/openapi/native-conversation-v5.gen.ts",
+        "?? tests/chat-models-v2.test.mjs",
+        "?? tests/native-activity-v5.test.mjs",
+        "?? tests/rust-chat-models-v2/",
+        "?? tests/rust-web-retrieval/",
+        "?? tests/web-retrieval.test.mjs"
+      ],
+      "cached_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files": [
+        {
+          "path": "Makefile",
+          "sha256": "137dc131342de704429c233f911bd13344c43f4ce7ad013f335abd9987b00e76",
+          "mode": "0o644"
+        },
+        {
+          "path": "compatibility/chat-models-v2/source.lock.json",
+          "sha256": "0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70",
+          "mode": "0o644"
+        },
+        {
+          "path": "compatibility/experts/source.lock.json",
+          "sha256": "9f75afd7d6a1061445763c3ff541060ec8947e5fae48d064ad98c2a28b1fe038",
+          "mode": "0o644"
+        },
+        {
+          "path": "compatibility/market-broker-control/control.json",
+          "sha256": "cf34c9cd7d8c2702c3afd9a44b465d8a487be9de2acde55128733cebb7352ef1",
+          "mode": "0o644"
+        },
+        {
+          "path": "compatibility/market-broker-control/source.lock.json",
+          "sha256": "de081dbd8d304e4a2f671a3b27d062d25fae8e79c81011e2989488a26dd2fb24",
+          "mode": "0o644"
+        },
+        {
+          "path": "compatibility/market-connectors/source.lock.json",
+          "sha256": "d2ca1bbc68d3698da3264187817fa8792dbe81fa04cd907d486dab8a7eb21037",
+          "mode": "0o644"
+        },
+        {
+          "path": "compatibility/market-host/source.lock.json",
+          "sha256": "69661a278aa452e477abc7c23f416c2e915fad533150b0886fbe09ebae16c638",
+          "mode": "0o644"
+        },
+        {
+          "path": "compatibility/market-provider/source.lock.json",
+          "sha256": "c5549ccf995037047c3f20050341551b91a22024e397f48785c4a77dff9f4115",
+          "mode": "0o644"
+        },
+        {
+          "path": "compatibility/market-provider/transport.json",
+          "sha256": "c65b9f5a95d73fa433b0aca2fbf2292edf39a18d372256ecafa9d20afc95bd68",
+          "mode": "0o644"
+        },
+        {
+          "path": "compatibility/market-provider/wire.schema.json",
+          "sha256": "a677189764e431d331c974b690ec93eb9c323116c609548d4962173aef3249da",
+          "mode": "0o644"
+        },
+        {
+          "path": "compatibility/market-selection/source.lock.json",
+          "sha256": "4529572b8ae0568d886df41bd3bd2440ef6c318c3422d69ad043c5a48bef32c3",
+          "mode": "0o644"
+        },
+        {
+          "path": "compatibility/runtime-chat-models/source.lock.json",
+          "sha256": "92c112ea0887d44d1f2afb2ce1d20a35151d7fda3b34e5a729af9ce13cdbd813",
+          "mode": "0o644"
+        },
+        {
+          "path": "compatibility/runtime-kimi-k31-pro/source.lock.json",
+          "sha256": "84cad8763b3af90a304b8076c0e5b4f133b3f4b7822e1d5c23cf86d28245bf1b",
+          "mode": "0o644"
+        },
+        {
+          "path": "compatibility/web-retrieval/source.lock.json",
+          "sha256": "032a468fc23ff0f0f994e590bed362ec7dab8e76b95e9649447a6c3e75ec80b5",
+          "mode": "0o644"
+        },
+        {
+          "path": "compatibility/web-retrieval/tools.json",
+          "sha256": "8cb126edb4da03e7efee094630dc5ac928a62b09fb71e69120a19c9754248d7f",
+          "mode": "0o644"
+        },
+        {
+          "path": "compatibility/web-retrieval/wire.schema.json",
+          "sha256": "7579b106655791e3610f574da52adb9694fca6dd26aa823a04a3b8f6c25f3668",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/agent-session-cleanup-recovery.md",
+          "sha256": "4a3287713f592d38b0efe82782a094879a222e56fa31bf8933042c23312e9824",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/chat-models-v2.md",
+          "sha256": "b173daec2e97fa597f6b8283fca53964ee59f87a4ace1dafb4419d4edfb60a07",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/market-connectors-v1.md",
+          "sha256": "42a4c5916dc3f9cc946a7da326664e4d7dc950a2e3871e6d9394eac09705b120",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/market-provider-v1.md",
+          "sha256": "f063c4eaee8ba85d904b753584d96ca0ecf0cf40f20cfed2ee05a9ec9fff62ed",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/native-activity-v5.md",
+          "sha256": "201f4495053bc9e8c1203fec55b8e78c87235fedb3391f474be97fe57f6e5af1",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/supported-baselines.md",
+          "sha256": "2be9faaddec8bb91a1bd0a5640520a67697f9bbe562aba614e8ae522ae82d7c0",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/web-retrieval-v1.md",
+          "sha256": "f51d0356f215e77e7f83cc6ee213dab54ee75be0afaef5ed759c7f2d96677a24",
+          "mode": "0o644"
+        },
+        {
+          "path": "jsonschema/chat/model-selection-v2.schema.json",
+          "sha256": "fa0ae10205dd9d0d2fead4366b67a03d21beda874f1fdb401e871390f72813af",
+          "mode": "0o644"
+        },
+        {
+          "path": "openapi/chat-models-v2/chat-models-v2.yaml",
+          "sha256": "0593962a54386693c7ce1f86d108ac34d015f707569641b39c869b51db10e72f",
+          "mode": "0o644"
+        },
+        {
+          "path": "openapi/market-connectors/market-connectors.yaml",
+          "sha256": "f7e375ec4bfa2f51a71f98b6ba0c4cf325049f1718d4997e84bd2879923ebe20",
+          "mode": "0o644"
+        },
+        {
+          "path": "openapi/native-conversation-v5/native-conversation-v5.yaml",
+          "sha256": "fa5eb2d015974132c543091eef3faeb73ceb39050eb57441fcaa953df4ac675a",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/check-feat164-breaking.mjs",
+          "sha256": "50b71ec0ee3b548a6a359663f2f629c013aec5d5be361f80f059cd98e1457f3b",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/format-source-file.mjs",
+          "sha256": "566cd886cc84172208cc66438472739404d39a88ace31a587f2a25abdc43de46",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/generate-chat-models-v2.mjs",
+          "sha256": "46806979daed97b68afc6706df13dbd58a54e6c0b6e81c593c23bca357aa7880",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/generate-market-broker.mjs",
+          "sha256": "9e2b7acdfa4b585200d71b149031929703cfe320c60f95dc99cb71793129469a",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/generate-market-connectors.mjs",
+          "sha256": "432dd1b63e0b9c2ccf5c3f98c10d23b16c09015355ffe1073eed3698e9fde31e",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/generate-market-host.mjs",
+          "sha256": "9f98d32149f94e2fb585f09f2751b64579e08d280748fbd28c9ed19c2a96c9aa",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/generate-native-process.mjs",
+          "sha256": "397432bbd4f32e6a207d0ee6a9fc6e6f448ed9bd2dc1100bd08db41c22fee44f",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/generate-runtime-kimi-k31-pro.mjs",
+          "sha256": "e5df456683767fcc7170b07dc58cd1646df5cc2598fe250c5de3a07257f8e396",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/generate-web-retrieval.mjs",
+          "sha256": "7de78a2c8a34b435aada4f41597105646873b0db4f729d33bf125c2514d19e7c",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/market-broker-source.mjs",
+          "sha256": "d6b36a12a41310594d72b702d6a90034622708c82495b477c60a16822cd64d9d",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/market-host-source.mjs",
+          "sha256": "a3b1314d318475429517fb7228c836be6faacc9fbbc140301014d613882a0561",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/sync-market-host.mjs",
+          "sha256": "68d7f8c5c93283fa525211c56eef26409e5ac97823f67046c20d9d8098e97b96",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/sync-native-process.mjs",
+          "sha256": "bc96b38c2a7435eec62337f137bae9e58533edc9c364eb8fb8061e23868a1226",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/sync-web-retrieval.mjs",
+          "sha256": "9068b38291960e1f2ad39529874fe772b0a80c6c78fc40a42e47719e697bef47",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/validate-json-schemas.mjs",
+          "sha256": "8c28261b5734b59fce2f94aeab4cadf87d02f4d0d729265cf40f34a9253da274",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/web-retrieval-source.mjs",
+          "sha256": "6c5e40e87ceffa061a61948a9fee2cb422612dd6a53831f5984aa561627e751a",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/go/market-broker-control/types.gen.go",
+          "sha256": "d40b2dd018db6a2468dc70ba5c1b8b99bcb37de3cc9961940f2874d4b267253a",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/go/market-connectors/types.gen.go",
+          "sha256": "c2f43ed31b186cd4ad4effd9b4cc6dde9907031ee2fa2cc660b8854f454ff9bf",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/go/market-connectors/types_test.go",
+          "sha256": "7bfa9bd86127ce58d8fb3352b7fb5324b98bcd9c235260282a3064ce5c917569",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/go/market-host/types.gen.go",
+          "sha256": "c7f7bc81a9b8b0bdaad74c6ea19436f8b8bad69d2f9fda81549a17027aa25e0c",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/go/market-provider/types.gen.go",
+          "sha256": "cefb3d25029576f201434563c3b05a5615b92982e2ac522413ce4464c55ed4aa",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/go/openapi/chat-models-v2/types.gen.go",
+          "sha256": "be923ec69e9d4e70374b83ab2afa9d1c364bc57d0e052abd0e892d0fdce5b909",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/go/openapi/native-conversation-v5/client.gen.go",
+          "sha256": "96d1210b93a84ca0ee6ee4b6773373d8d3d6647b90c40705f07fd4ed8eeb3830",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/go/openapi/runtime-kimi-k31-pro/artifact.gen.go",
+          "sha256": "024970500801a63e2065e4a41bb15c918b20da4bc342e2d290ccd0e9ebc9a40a",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/jsonschema/chat-models-v2.schema.json",
+          "sha256": "fa0ae10205dd9d0d2fead4366b67a03d21beda874f1fdb401e871390f72813af",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/jsonschema/market-connectors.schema.json",
+          "sha256": "2468f2499576750b42a88a5d0e061206d52ddd4526c0189826e1411297a42ecd",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/jsonschema/market-host-native.schema.json",
+          "sha256": "3749cff176bc8c482397bbe96c6d2ebf8658bac18014fda439c4fbb59a1afb9a",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/jsonschema/market-host.schema.json",
+          "sha256": "8c97409d2df646d1ccabb3d0270ffcf8f2106b4358fd9f1b6ab1be562fb4e410",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/jsonschema/market-provider.schema.json",
+          "sha256": "968a6f9d90fb6d4b741ac7560af0ba24f4e08998a344192e2ef65fcadd03bc05",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/jsonschema/web-retrieval.schema.json",
+          "sha256": "7579b106655791e3610f574da52adb9694fca6dd26aa823a04a3b8f6c25f3668",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/jsonschema/web-retrieval.tools.json",
+          "sha256": "46c33cd7a089efb7aa8024abf5e75417440ad74571a8723c4ffdb0ecc0a0de72",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/openapi/chat-models-v2.bundle.json",
+          "sha256": "a398021462157c3836404a5337f5d64ee68509eea56e9fcc5098e5795819f20a",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/rust/chat-models-v2/types.gen.rs",
+          "sha256": "310b7ebbe8331c584768b83b741b22817a6063dfa4ac8957ef261a9b1126e84d",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/rust/market-broker-control/types.gen.rs",
+          "sha256": "e3e36254a8b4fac2ea215ae453d41683f99f39c7872ff08b87987544f0be8dc2",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/rust/market-connectors/types.gen.rs",
+          "sha256": "3f7bb5213dc4f442a8444a9f0141ecb6bd33134fa75000416e7263997cce188d",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/rust/market-host/types.gen.rs",
+          "sha256": "0d8f9f8979e82972543205e58349689a4f8148512082783d033f08b01c78d5db",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/rust/market-provider/types.gen.rs",
+          "sha256": "980719c8d8793b20055bbb21495d70922cf8a6a1f20773db66a5594c018dcddc",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/rust/web-retrieval/types.gen.rs",
+          "sha256": "d499b12ea58ba5d4b73039f0e668a08aecb7f050900212d5431f40e4a784a38d",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/typescript/src/api/generated/market-connectors-validator.gen.js",
+          "sha256": "97386e51d096b021fd3d2637d6bf906f33ace635c5ecac1c1f7ad7eaf29b7670",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/typescript/src/api/generated/market-host-native-validator.gen.js",
+          "sha256": "5c8df713817f35300c4752778f351a1be5b3f25dd0ba18d5c95b9327fe920137",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/typescript/src/domain/market-connectors.generated.ts",
+          "sha256": "b3ec48e94e1810c6a6a89bfb4175c34600d335fe24477565efb559e0d767e254",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/typescript/src/domain/market-host-native.generated.ts",
+          "sha256": "61bb799a83b4d3f2979a79e4d4e278c590c0589bc8fe2e5486c7984d4d36bcca",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/typescript/src/jsonschema/chat-models-v2.gen.ts",
+          "sha256": "ce0a620662864253170b702199d9854875ac411572c71c5585e140c73d406818",
+          "mode": "0o644"
+        },
+        {
+          "path": "sdks/typescript/src/openapi/native-conversation-v5.gen.ts",
+          "sha256": "1ee4a970c739a2a1554d57d6058520dec44158574756192f6b798b8e9c1a0c6d",
+          "mode": "0o644"
+        },
+        {
+          "path": "tests/chat-models-v2.test.mjs",
+          "sha256": "bd9b3ffc85acfa3d35e9e61b42aea594e0e1ae7fa0fabd55bdaf8f74136c340e",
+          "mode": "0o644"
+        },
+        {
+          "path": "tests/market-broker.test.mjs",
+          "sha256": "db33707e2e2aa48a0fa8a36b4ef9257189544b6840a525aa3b7a8c50f04369d3",
+          "mode": "0o644"
+        },
+        {
+          "path": "tests/market-connectors.test.mjs",
+          "sha256": "8a33e8eb6ef89c4732f1b7fe235e15408190e4b3e1855e338a35d1396c6a1e94",
+          "mode": "0o644"
+        },
+        {
+          "path": "tests/native-activity-v5.test.mjs",
+          "sha256": "559cda4e5a68cdf2168f392efd6be797cd6490e9c7c02d34f2a264d32e51d529",
+          "mode": "0o644"
+        },
+        {
+          "path": "tests/rust-chat-models-v2/.gitignore",
+          "sha256": "306fd52e74fca6746e12acc750f232de15e71da917756a1270d74c91f5eb7368",
+          "mode": "0o644"
+        },
+        {
+          "path": "tests/rust-chat-models-v2/Cargo.lock",
+          "sha256": "4f0fc7c9a75885b2c078780c8b999ecbeac67bbe1323b9584706b26ed572aa26",
+          "mode": "0o644"
+        },
+        {
+          "path": "tests/rust-chat-models-v2/Cargo.toml",
+          "sha256": "eb5bd7a894dab6115934c1ee595268a1c204dd1d9826bb3134b4d72f71222fe2",
+          "mode": "0o644"
+        },
+        {
+          "path": "tests/rust-chat-models-v2/src/lib.rs",
+          "sha256": "f8e7f6f2ef47536c05d51f6ca26d76ab8dc5397213d7ede76b984a2dc0f330a4",
+          "mode": "0o644"
+        },
+        {
+          "path": "tests/rust-market-connectors/src/lib.rs",
+          "sha256": "4ed7b473cf16769e2dbb844c0799f178faea92548fe4400cb430bdc9bec9e2bd",
+          "mode": "0o644"
+        },
+        {
+          "path": "tests/rust-web-retrieval/Cargo.lock",
+          "sha256": "e85aa20df5cade5c75f26e1f1bb3e7970d24d3a74545114b1020f6fda2589882",
+          "mode": "0o644"
+        },
+        {
+          "path": "tests/rust-web-retrieval/Cargo.toml",
+          "sha256": "e0ab12007431e492173394338dce577f017948957067da13779ba1bb14415032",
+          "mode": "0o644"
+        },
+        {
+          "path": "tests/rust-web-retrieval/src/lib.rs",
+          "sha256": "0a01ff6892e8a7a43ac55267dc4ce7c7adec511a4ca99f8a2324e62848e8eb70",
+          "mode": "0o644"
+        },
+        {
+          "path": "tests/web-retrieval.test.mjs",
+          "sha256": "40bde5f784236c791eb864210d0475dad4b95180b873e7e57c35c27fcb2ef027",
+          "mode": "0o644"
+        }
+      ]
+    },
+    {
+      "repository": "yijie-coze",
+      "head": "7bdcd0474e904cd3e8f8f68c903c0b8985baf52f",
+      "branch": "main",
+      "status": [],
+      "cached_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files": []
+    },
+    {
+      "repository": "yijie-desktop",
+      "head": "6080a568332dbf18ff119501607bc7e7afa92f94",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": [
+        " M contracts/artifact-media-host-build.candidate.json",
+        " M contracts/experts-assets.candidate.json",
+        " M contracts/experts.candidate.json",
+        " M contracts/market-catalog.candidate.json",
+        " M contracts/market-catalog.json",
+        " M contracts/market-connectors.candidate.json",
+        " M contracts/market-connectors.schema.json",
+        " M contracts/market-host-native.schema.json",
+        " M contracts/market-host.candidate.json",
+        " M contracts/market-host.schema.json",
+        " M contracts/market-provider.candidate.json",
+        " M contracts/market-provider.schema.json",
+        " M contracts/market-selection.candidate.json",
+        " M contracts/native-process.candidate.json",
+        " M contracts/runtime-chat-models.candidate.json",
+        " M docs/design/docs/design/02-tokens/06-motion-zindex-opacity-tokens.md",
+        " M docs/design/docs/design/03-ui-system/02-iconography.md",
+        " M docs/design/docs/design/05-patterns/02-chat-workspace.md",
+        " M scripts/chat-model-build-candidate.mjs",
+        " M scripts/generate-native-conversation.mjs",
+        " M scripts/native-conversation-bundle.test.mjs",
+        " M scripts/sync-desktop-expert-resources.mjs",
+        " M scripts/sync-market-catalog.mjs",
+        " M src-tauri/schemas/chat-native-conversation-resolved.schema.json",
+        " M src-tauri/src/chat/application.rs",
+        " M src-tauri/src/chat/connectors/broker_generated.rs",
+        " M src-tauri/src/chat/connectors/generated.rs",
+        " M src-tauri/src/chat/connectors/host_generated.rs",
+        " M src-tauri/src/chat/connectors/mod.rs",
+        " M src-tauri/src/chat/connectors/provider.rs",
+        " M src-tauri/src/chat/connectors/provider_generated.rs",
+        " M src-tauri/src/chat/connectors/store.rs",
+        " M src-tauri/src/chat/connectors/tests.rs",
+        " M src-tauri/src/chat/database.rs",
+        " M src-tauri/src/chat/deletion_recovery.rs",
+        " M src-tauri/src/chat/host_bridge.rs",
+        " M src-tauri/src/chat/host_domain.rs",
+        " M src-tauri/src/chat/ipc.rs",
+        " M src-tauri/src/chat/mod.rs",
+        " M src-tauri/src/chat/native_conversation.rs",
+        " M src-tauri/src/chat/native_conversation_generated.rs",
+        " M src-tauri/src/chat/native_conversation_storage.rs",
+        " M src-tauri/src/lib.rs",
+        " M src/api/chat-client.test.ts",
+        " M src/api/chat-client.ts",
+        " M src/api/generated/market-connectors-validator.gen.js",
+        " M src/api/generated/market-host-native-validator.gen.js",
+        " M src/api/generated/native-conversation-history.gen.ts",
+        " M src/api/generated/native-conversation-private.gen.ts",
+        " M src/api/generated/native-conversation-validator.gen.js",
+        " M src/api/market-connectors-client.test.ts",
+        " M src/components/chat/ChatCommandItem.vue",
+        " M src/components/chat/ChatExecutionProgress.vue",
+        " M src/components/chat/ChatNativeStreaming.test.ts",
+        " M src/components/chat/ChatNativeToolItem.vue",
+        " M src/components/chat/ChatProcessPresentation.test.ts",
+        " M src/components/chat/ChatSafeContent.vue",
+        " M src/components/chat/ChatSidebarSessionRow.vue",
+        " M src/components/chat/ChatStreamText.test.ts",
+        " M src/components/chat/ChatStreamText.vue",
+        " M src/components/chat/ChatTimelineItemShell.vue",
+        " M src/components/chat/ChatTurnGroup.vue",
+        " M src/components/chat/MarketChatActivity.test.ts",
+        " M src/components/chat/MarketChatActivity.vue",
+        " M src/components/connectors/ConnectorDetailsDialog.vue",
+        " M src/components/connectors/ConnectorMarketView.test.ts",
+        " M src/composables/useChatScroll.test.ts",
+        " M src/composables/useChatScroll.ts",
+        " M src/domain/chat-ui.test.ts",
+        " M src/domain/chat-ui.ts",
+        " M src/domain/connector-ui.ts",
+        " M src/domain/conversation-native-view.test.ts",
+        " M src/domain/conversation-process.ts",
+        " M src/domain/conversation-view.ts",
+        " M src/domain/market-connectors-ui.test.ts",
+        " M src/domain/market-connectors-ui.ts",
+        " M src/domain/market-connectors.generated.ts",
+        " M src/domain/market-host-native.generated.ts",
+        " M src/icons/connector-icons.ts",
+        " M src/icons/custom/brands/README.md",
+        " M src/pages/chat/ChatPage.test.ts",
+        " M src/pages/chat/ChatPage.vue",
+        " M src/stores/chat.store.test.ts",
+        " M src/stores/chat.store.ts",
+        " M src/stores/market-connectors.store.test.ts",
+        " M src/stores/market-connectors.store.ts",
+        "?? docs/chat-stream-presentation.md",
+        "?? scripts/expert-provenance-refresh.test.mjs",
+        "?? src-tauri/contracts/native-conversation-v5.json",
+        "?? src-tauri/schemas/chat-native-conversation-v5.schema.json",
+        "?? src-tauri/src/chat/connectors/store_builtin.rs",
+        "?? src-tauri/src/chat/native_conversation_v4_generated.rs",
+        "?? src/api/generated/native-conversation-v5.gen.ts",
+        "?? src/components/chat/ChatFileChangeItem.vue",
+        "?? src/components/chat/ChatProcessParityAudit.test.ts",
+        "?? src/composables/useChatDisclosureChoice.ts",
+        "?? src/composables/useChatStreamPresentation.test.ts",
+        "?? src/composables/useChatStreamPresentation.ts",
+        "?? tsconfig.node.tsbuildinfo",
+        "?? tsconfig.tsbuildinfo"
+      ],
+      "cached_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files": [
+        {
+          "path": "contracts/artifact-media-host-build.candidate.json",
+          "sha256": "59e8dc516ad975d54ebfca319178e6211a04159c441f73f1953de3e76a77c68b",
+          "mode": "0o644"
+        },
+        {
+          "path": "contracts/experts-assets.candidate.json",
+          "sha256": "7f3e39b5281fc7506611015f59db80f9f0040846e09432083ffb92505804426a",
+          "mode": "0o644"
+        },
+        {
+          "path": "contracts/experts.candidate.json",
+          "sha256": "341644f00bb49a1daf418e018f82507e720e46f8d6d6804500c21e02569e0f12",
+          "mode": "0o644"
+        },
+        {
+          "path": "contracts/market-catalog.candidate.json",
+          "sha256": "a043a26f0e08edad13cd18dfb5c5e7c2bfea05042cdbc43874ff8a98b887db5f",
+          "mode": "0o644"
+        },
+        {
+          "path": "contracts/market-catalog.json",
+          "sha256": "55ec42e1965a7ecdfd17771af299afea786bc74a175ab4f021afdf8d538ab70d",
+          "mode": "0o644"
+        },
+        {
+          "path": "contracts/market-connectors.candidate.json",
+          "sha256": "d2ca1bbc68d3698da3264187817fa8792dbe81fa04cd907d486dab8a7eb21037",
+          "mode": "0o644"
+        },
+        {
+          "path": "contracts/market-connectors.schema.json",
+          "sha256": "2468f2499576750b42a88a5d0e061206d52ddd4526c0189826e1411297a42ecd",
+          "mode": "0o644"
+        },
+        {
+          "path": "contracts/market-host-native.schema.json",
+          "sha256": "3749cff176bc8c482397bbe96c6d2ebf8658bac18014fda439c4fbb59a1afb9a",
+          "mode": "0o644"
+        },
+        {
+          "path": "contracts/market-host.candidate.json",
+          "sha256": "32c1081b866bac0ca15496f9b104bed250c4b61bd806624d6c8017c8b294c699",
+          "mode": "0o644"
+        },
+        {
+          "path": "contracts/market-host.schema.json",
+          "sha256": "8c97409d2df646d1ccabb3d0270ffcf8f2106b4358fd9f1b6ab1be562fb4e410",
+          "mode": "0o644"
+        },
+        {
+          "path": "contracts/market-provider.candidate.json",
+          "sha256": "494ffc85e45044b92713b98010f1094d5943eab6226ab4c6cc03218ed79632a0",
+          "mode": "0o644"
+        },
+        {
+          "path": "contracts/market-provider.schema.json",
+          "sha256": "968a6f9d90fb6d4b741ac7560af0ba24f4e08998a344192e2ef65fcadd03bc05",
+          "mode": "0o644"
+        },
+        {
+          "path": "contracts/market-selection.candidate.json",
+          "sha256": "4529572b8ae0568d886df41bd3bd2440ef6c318c3422d69ad043c5a48bef32c3",
+          "mode": "0o644"
+        },
+        {
+          "path": "contracts/native-process.candidate.json",
+          "sha256": "55b73c2f253f07f5fd1447cbeb3dbf153fbd74503983cf53c834612f9074b0b3",
+          "mode": "0o644"
+        },
+        {
+          "path": "contracts/runtime-chat-models.candidate.json",
+          "sha256": "04b04eef3281737547ada9ee0b109d0b1c5896f3f4f7b848a9dbdc94c4e5093f",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/chat-stream-presentation.md",
+          "sha256": "45d5a8038b24aaf22f574d62672272321d2e4bf8d602950d511e95a455bd534e",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/design/docs/design/02-tokens/06-motion-zindex-opacity-tokens.md",
+          "sha256": "160562dc2703950c21df92abca381b0e3a2da1f54f8944e679aec6e386917114",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/design/docs/design/03-ui-system/02-iconography.md",
+          "sha256": "b999984828983604c9e6cea0daeaa7365d966cc8e99745edf3f7e1fe36c87ed0",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/design/docs/design/05-patterns/02-chat-workspace.md",
+          "sha256": "954afc363f709e6dbd3c98378384cb84d987c3d56531711918b3aaf70893ce88",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/chat-model-build-candidate.mjs",
+          "sha256": "df2257ce19f8220e5241c4c0d618ef22a18f9bd7be1213f2b9c22dd7bdd3d53c",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/expert-provenance-refresh.test.mjs",
+          "sha256": "e4b8b5ade5c95e1b9eec6118b3c8fdbd04c174b0fbc01a9f7781662bfb869e89",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/generate-native-conversation.mjs",
+          "sha256": "8819ee614b7414e71a216dfca012f0b6e733af5edb4e5c488f4ca41d0bfaed63",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/native-conversation-bundle.test.mjs",
+          "sha256": "2359d6a626424c8c31d7a12e20a07dea4fdfe5c4d3a4cca22d02397af35491d3",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/sync-desktop-expert-resources.mjs",
+          "sha256": "294f3ba34703afde81bfff2fd6c8a8075ba86c624cdcf2e122249e451bf00f1b",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/sync-market-catalog.mjs",
+          "sha256": "f163ef788b1173eb3f7305761701b5eaca79374cdbe15bcfed019febe6d86e63",
+          "mode": "0o644"
+        },
+        {
+          "path": "src-tauri/contracts/native-conversation-v5.json",
+          "sha256": "fa5eb2d015974132c543091eef3faeb73ceb39050eb57441fcaa953df4ac675a",
+          "mode": "0o644"
+        },
+        {
+          "path": "src-tauri/schemas/chat-native-conversation-resolved.schema.json",
+          "sha256": "25760e9d5c4469edf3ce68433791cb444782f5f94d4c1eb8078233e2f21167bc",
+          "mode": "0o644"
+        },
+        {
+          "path": "src-tauri/schemas/chat-native-conversation-v5.schema.json",
+          "sha256": "41ce4d1426c85cf5b297dcb9e05f0056714bf32eab05badf390103aa468f2a7b",
+          "mode": "0o644"
+        },
+        {
+          "path": "src-tauri/src/chat/application.rs",
+          "sha256": "2e19a3a9379ad8cbc0e57fd528d45cad6d15d1dabf1e0c395fce531c7f28b6a3",
+          "mode": "0o644"
+        },
+        {
+          "path": "src-tauri/src/chat/connectors/broker_generated.rs",
+          "sha256": "2cb5ff4c703f2eab4294752d0dae2c73d01d6ea116a5fad4092ad3295289aa11",
+          "mode": "0o644"
+        },
+        {
+          "path": "src-tauri/src/chat/connectors/generated.rs",
+          "sha256": "3f7bb5213dc4f442a8444a9f0141ecb6bd33134fa75000416e7263997cce188d",
+          "mode": "0o644"
+        },
+        {
+          "path": "src-tauri/src/chat/connectors/host_generated.rs",
+          "sha256": "0d8f9f8979e82972543205e58349689a4f8148512082783d033f08b01c78d5db",
+          "mode": "0o644"
+        },
+        {
+          "path": "src-tauri/src/chat/connectors/mod.rs",
+          "sha256": "41497f3825c0b60768e91882c2a319ab7768ec1da40e3c11d992ef1490cd3f02",
+          "mode": "0o644"
+        },
+        {
+          "path": "src-tauri/src/chat/connectors/provider.rs",
+          "sha256": "1fd7a413569818d8b6e5bba085b801912a1f06a368623424a27c2b8c008b26c0",
+          "mode": "0o644"
+        },
+        {
+          "path": "src-tauri/src/chat/connectors/provider_generated.rs",
+          "sha256": "00ee9cf2edf874eec9bcaaf738c6b85998fbc8853d337e995982f23726477b16",
+          "mode": "0o644"
+        },
+        {
+          "path": "src-tauri/src/chat/connectors/store.rs",
+          "sha256": "76d994c9f16ac01fc5e878527619e072962c0f13abfd08a178f5be790cc7aa72",
+          "mode": "0o644"
+        },
+        {
+          "path": "src-tauri/src/chat/connectors/store_builtin.rs",
+          "sha256": "627c19bbc0f8f0fcce1cc90dfa5819c47471fc34de2d69d893d2514e352b6212",
+          "mode": "0o644"
+        },
+        {
+          "path": "src-tauri/src/chat/connectors/tests.rs",
+          "sha256": "d01b4fee5dd18deaabfbad4f641dd8fc53e34d1be638a438aa32691c7b78df50",
+          "mode": "0o644"
+        },
+        {
+          "path": "src-tauri/src/chat/database.rs",
+          "sha256": "61621226725ab9aad6d86a8c41fdb9dc4d25495511778225ba8ff455a4b895a0",
+          "mode": "0o644"
+        },
+        {
+          "path": "src-tauri/src/chat/deletion_recovery.rs",
+          "sha256": "08a0105be66b0b03855d0b41077b5fbc2efb99beeeac9bd738ee383419cbf127",
+          "mode": "0o644"
+        },
+        {
+          "path": "src-tauri/src/chat/host_bridge.rs",
+          "sha256": "8477fbcca412c37d77eb75032e7c0ba6183285d669dc07890f20e20f63bd3c9e",
+          "mode": "0o644"
+        },
+        {
+          "path": "src-tauri/src/chat/host_domain.rs",
+          "sha256": "544d95807952d3a7a7ac8c0b30968f8d1cb73713172bdce9c3e347c74c36acf2",
+          "mode": "0o644"
+        },
+        {
+          "path": "src-tauri/src/chat/ipc.rs",
+          "sha256": "e9665ff0a855f7068be8fbc46da27c0c2a56cf937c46bcaa1aabdbe8a6d8164b",
+          "mode": "0o644"
+        },
+        {
+          "path": "src-tauri/src/chat/mod.rs",
+          "sha256": "facc9aa403a9a66bd0e7284b14535fc58b9edf07ffb533f674fd258f573023e2",
+          "mode": "0o644"
+        },
+        {
+          "path": "src-tauri/src/chat/native_conversation.rs",
+          "sha256": "4e831d6d5a9408f03cbedb9a0c819b9297b2b50039c9f1d19106af80f056568a",
+          "mode": "0o644"
+        },
+        {
+          "path": "src-tauri/src/chat/native_conversation_generated.rs",
+          "sha256": "89c30cb2898eff34814bcccbec73bdf03c9b47c4ab251d1e40a4c1eba4be99f4",
+          "mode": "0o644"
+        },
+        {
+          "path": "src-tauri/src/chat/native_conversation_storage.rs",
+          "sha256": "5b3c1090e5c061b46269e85c1d4374389656f6d8409848b7b26641070a22c0f1",
+          "mode": "0o644"
+        },
+        {
+          "path": "src-tauri/src/chat/native_conversation_v4_generated.rs",
+          "sha256": "4eb5ea8e7e2b53ba20ec5575832c5d75be606c71a5aef6264fc661da6f5bb427",
+          "mode": "0o644"
+        },
+        {
+          "path": "src-tauri/src/lib.rs",
+          "sha256": "4529243f783c4dcf788682f7b8977599c85f637ea929b54e39fa000e5a5b2d31",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/api/chat-client.test.ts",
+          "sha256": "5c8edc42668e16146409103fa1e55e201bc9cfa62b6aa30a571ccc2f9746d918",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/api/chat-client.ts",
+          "sha256": "7120e9128ed4290be6c8286580f9fd6ae7e25403018c963f4414c2e9788447c4",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/api/generated/market-connectors-validator.gen.js",
+          "sha256": "97386e51d096b021fd3d2637d6bf906f33ace635c5ecac1c1f7ad7eaf29b7670",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/api/generated/market-host-native-validator.gen.js",
+          "sha256": "5c8df713817f35300c4752778f351a1be5b3f25dd0ba18d5c95b9327fe920137",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/api/generated/native-conversation-history.gen.ts",
+          "sha256": "081f5449fc2969b919c0478ff0030d031d05fa2ae3e667b1a17dce18a4215fd3",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/api/generated/native-conversation-private.gen.ts",
+          "sha256": "ca26a533a8046dc260dc1179970b027bce226d45643bf122acaf37c9a556a650",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/api/generated/native-conversation-v5.gen.ts",
+          "sha256": "1ee4a970c739a2a1554d57d6058520dec44158574756192f6b798b8e9c1a0c6d",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/api/generated/native-conversation-validator.gen.js",
+          "sha256": "55b85fdb6e7240878e9d375a15ae68cf8153ac7a122159637004fb8fa7b29dbb",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/api/market-connectors-client.test.ts",
+          "sha256": "34d038cbaa11210940a23e75be7efe59563aad355cc188c3efbc5391863e3be0",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/components/chat/ChatCommandItem.vue",
+          "sha256": "67fea00a51616d632ca034576cb01e4ca6bc2e71e3d53e5e667e04995497592c",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/components/chat/ChatExecutionProgress.vue",
+          "sha256": "f5ddfaea22da4a10e95a4dda641a14d814a76e68e485ba03aea6ecadbfd24a52",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/components/chat/ChatFileChangeItem.vue",
+          "sha256": "872f73bec4b138eedefd69fb4b74a5bc75205ffa911f97cd1079f97899840f39",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/components/chat/ChatNativeStreaming.test.ts",
+          "sha256": "d162e0dbdaa94f3d1d3c8d863e62e945f8f55abb7311bab901b3d830c2e3077a",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/components/chat/ChatNativeToolItem.vue",
+          "sha256": "31c8abbd39ed95723646f15aab0b41d1dc984ae32ad2d26e8b7dc7f14074a532",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/components/chat/ChatProcessParityAudit.test.ts",
+          "sha256": "9d7e27103aa523d9c5bdb55f2ec0bb6dd94031f370efba680c2a4470fe205bd6",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/components/chat/ChatProcessPresentation.test.ts",
+          "sha256": "4096e6c2e3a0924a359369a80819afc1c71be8be5114fda08f403216b4f1f1e4",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/components/chat/ChatSafeContent.vue",
+          "sha256": "d3a5a17a32bf302767c8480b1a99aead2120b1ce7775b74ad5b5d3439dabbb1e",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/components/chat/ChatSidebarSessionRow.vue",
+          "sha256": "eb5ae5134bfdaef2a88f311c4cef4bf520e6cbec700ed86f412e9bf69e73fabd",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/components/chat/ChatStreamText.test.ts",
+          "sha256": "9b65b43731de24667755acb82d3209433d79ea03e47ee837325da148ed2b76b2",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/components/chat/ChatStreamText.vue",
+          "sha256": "4ded1b221ae5134a58ef834ecc055258724bf2563474c9a44daba1d2005be180",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/components/chat/ChatTimelineItemShell.vue",
+          "sha256": "05f66eb6c568bbae82e58f8610136f54529bb445d6453e4e7e3daa23b1cefdfa",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/components/chat/ChatTurnGroup.vue",
+          "sha256": "aa16aadecc8ef4d3dea20d8c432d22e746f178a7d168bcbeac9ebbed04c43793",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/components/chat/MarketChatActivity.test.ts",
+          "sha256": "97ca01363dabd2b54ce7df4f25ef0e998ec6fcca7781f2b524da7521df3fca26",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/components/chat/MarketChatActivity.vue",
+          "sha256": "6390ce4f16f12581d14da81daeb91d2c2a8e7c58c913182af045bb5bee33b5b9",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/components/connectors/ConnectorDetailsDialog.vue",
+          "sha256": "024e0dd863a513e5bc68a141974c3e6290ed86af3003d29a2c372c15447b0a19",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/components/connectors/ConnectorMarketView.test.ts",
+          "sha256": "8b751c7062af571e8dc747211f1dc56836471e55b1468e094cefe876902a0274",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/composables/useChatDisclosureChoice.ts",
+          "sha256": "8dcd3a307de18475e9abb713e062117e9cfb98d2dd4b4e7919157e21620a341f",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/composables/useChatScroll.test.ts",
+          "sha256": "d4ce44fe5add510650ee929d986a54b6aec74705806b4a58c96a5a2a7e74785e",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/composables/useChatScroll.ts",
+          "sha256": "012d343ec970ca25ff412b726da088bc3b2ff0e72e4664703433c0271148c7d8",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/composables/useChatStreamPresentation.test.ts",
+          "sha256": "26fffb3ead8d77ac7787405f6ee192ed2fe2ac6b466e425074cae0e3edccdf9b",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/composables/useChatStreamPresentation.ts",
+          "sha256": "8ac1b5d1f494d754d1d1305b3ce9acc7d3a08da18d30ed2e729233ffb974ae3d",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/domain/chat-ui.test.ts",
+          "sha256": "b137b73f9b3385856a4d9c1c372204de4d0cefa2fcc51e569e801fdfddc6f846",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/domain/chat-ui.ts",
+          "sha256": "6a33f7216bcfec88a50a55c85a41ca2a5a65126546aa9b9d8eb8c46f64136465",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/domain/connector-ui.ts",
+          "sha256": "58b6cf0732a552487c9c9af841ae53ad9e199f34a3ad9caac07a314da4a93317",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/domain/conversation-native-view.test.ts",
+          "sha256": "b9f608e1bc35f7020ba936828436454b5726be8707aed6f703f1ad8c3ec4c373",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/domain/conversation-process.ts",
+          "sha256": "bd05f0a2345fadfb25a0129a52a96e281712813f5d2f684bbf3c0d1074766b9d",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/domain/conversation-view.ts",
+          "sha256": "cebebee2518ce3e727cd11a7b1cf7f8c0ecb79d8f523570a2fb290c6a525f088",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/domain/market-connectors-ui.test.ts",
+          "sha256": "6449da503d0728ca3b4b681a97367ef4428062ceccf09435dc8bee1794bfca66",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/domain/market-connectors-ui.ts",
+          "sha256": "921eb8de03841b2b8210288580def9a446a701df195d08de1f2c2a374b9aa0d6",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/domain/market-connectors.generated.ts",
+          "sha256": "b3ec48e94e1810c6a6a89bfb4175c34600d335fe24477565efb559e0d767e254",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/domain/market-host-native.generated.ts",
+          "sha256": "61bb799a83b4d3f2979a79e4d4e278c590c0589bc8fe2e5486c7984d4d36bcca",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/icons/connector-icons.ts",
+          "sha256": "3bee39cd77c667c2530e398b7ebf7e46406b4471892537673cf94842170b016f",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/icons/custom/brands/README.md",
+          "sha256": "da682663ff405a27a4c846066e7482800bc9ce7e93233d08b5ad54d57fb5cdda",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/pages/chat/ChatPage.test.ts",
+          "sha256": "005d64b89ae83b1258ecf853c684f65d3b0fa935a8054cd7cd1a1226f8efc456",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/pages/chat/ChatPage.vue",
+          "sha256": "c00d014f737dca847fbe5c6bce7453c950e4a862195fd116416a29f8a4553734",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/stores/chat.store.test.ts",
+          "sha256": "5123a1112f6a1a7e09d13dba87c5ec31544d7bf2b5fb245b5fce8b5318a1a3ea",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/stores/chat.store.ts",
+          "sha256": "ea8059f4674570c1cccee742c5e7a6b6f3e7748ffdfe6cfd9b7f16c7d6710791",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/stores/market-connectors.store.test.ts",
+          "sha256": "00f6ffd196d7d0108c6b8ce38d996c249d2af985e1739d1ed5b4aae789125a51",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/stores/market-connectors.store.ts",
+          "sha256": "e63795612ee50d2dbf30c95c7d6ac235ac819a26156b8d5bff547a8662ef3a1e",
+          "mode": "0o644"
+        },
+        {
+          "path": "tsconfig.node.tsbuildinfo",
+          "sha256": "41b7d19717a7fa92604cd99e69d70c306be927b1354785cb76b8c63aad559b04",
+          "mode": "0o644"
+        },
+        {
+          "path": "tsconfig.tsbuildinfo",
+          "sha256": "8b5fbff91a70f1d71cee068065d2a3060b1b331672201420c10576f6f4ad198d",
+          "mode": "0o644"
+        }
+      ]
+    },
+    {
+      "repository": "yijie-infra",
+      "head": "66b481552eb76d46b00875ac27794ed8e1eb504a",
+      "branch": "feat/feat-126-s10e",
+      "status": [],
+      "cached_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files": []
+    },
+    {
+      "repository": "yijie-knowledge",
+      "head": "e9091d2b673ba779ecb39271ce9148e3a41fc256",
+      "branch": "develop",
+      "status": [],
+      "cached_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files": []
+    },
+    {
+      "repository": "yijie-skills",
+      "head": "595c927ae101d3d31c234f60565041eee0864680",
+      "branch": "develop",
+      "status": [
+        " M contracts/experts.candidate.json"
+      ],
+      "cached_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "files": [
+        {
+          "path": "contracts/experts.candidate.json",
+          "sha256": "6136a49951be7375dfc6b44256fc53c2519cdeb339f443df584c60592affd9d9",
+          "mode": "0o644"
+        }
+      ]
+    }
+  ]
+}

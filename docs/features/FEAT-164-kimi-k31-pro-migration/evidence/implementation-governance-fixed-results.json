@@ -1,0 +1,39 @@
+[
+  {
+    "command": [
+      "bash",
+      "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+      "--strict",
+      "docs/features/FEAT-164-kimi-k31-pro-migration"
+    ],
+    "started_at": "2026-10-24T15:48:59.377418+00:00",
+    "finished_at": "2026-10-24T15:48:59.460601+00:00",
+    "exit_code": 0,
+    "log": "implementation-governance-fixed-01.log"
+  },
+  {
+    "command": [
+      "bash",
+      "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+      "--gate",
+      "G2",
+      "docs/features/FEAT-164-kimi-k31-pro-migration"
+    ],
+    "started_at": "2026-10-24T15:48:59.460690+00:00",
+    "finished_at": "2026-10-24T15:48:59.541563+00:00",
+    "exit_code": 0,
+    "log": "implementation-governance-fixed-02.log"
+  },
+  {
+    "command": [
+      "node",
+      "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+      "--audit-claims",
+      "docs/features/FEAT-164-kimi-k31-pro-migration"
+    ],
+    "started_at": "2026-10-24T15:48:59.541663+00:00",
+    "finished_at": "2026-10-24T15:48:59.628260+00:00",
+    "exit_code": 0,
+    "log": "implementation-governance-fixed-03.log"
+  }
+]

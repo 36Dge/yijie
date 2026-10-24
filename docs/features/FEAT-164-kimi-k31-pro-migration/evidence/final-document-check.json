@@ -1,0 +1,37 @@
+{
+  "verified_at": "2026-10-24T23:12:45.406748+08:00",
+  "scope": "Final documentation-only checks",
+  "local_links_checked": 26,
+  "errors": [],
+  "checks": [
+    {
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，所有模板变量和未完成标记已处理。\nNOTE: 此结果不证明未声明的代码、测试、安全、兼容或生产门禁已经通过。\n"
+    },
+    {
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--audit-claims",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\n"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output": ""
+    }
+  ]
+}

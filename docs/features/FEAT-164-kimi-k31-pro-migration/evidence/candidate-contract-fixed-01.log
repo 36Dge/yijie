@@ -1,0 +1,40 @@
+node scripts/generate-chat-models-v2.mjs --check
+Chat models v2 source generation verified; unreleased local candidate.
+node --test tests/chat-models-v2.test.mjs tests/chat-models.test.mjs
+✔ v2 compiles every definition under strict schema validation (12.400584ms)
+✔ known historic identities do not grant fresh execution authority (0.438625ms)
+✔ catalog is exactly the new Kimi and retained MiniMax with exact model metadata (1.103042ms)
+✔ retired is readable and is not mislabeled as an unknown application result (0.256541ms)
+✔ completed legacy operation receipts retain the original requested identity and result (0.70625ms)
+✔ v2 operation snapshots preserve an original v2 result with matching version (0.10125ms)
+✔ v2 routes isolate writes from v1 and use an active-profile source reference (92.319042ms)
+✔ legacy schema and default catalog retain their original versioned meaning (0.173208ms)
+✔ offline API projection retains resolvable source discriminators and has no network references (1.003875ms)
+✔ two fixed profiles retain exact model/provider/effort identities (2.014291ms)
+✔ selection request needs original operation, revision and known profile (0.824083ms)
+✔ forwarded routes resolve original payload authority and require explicit model header (94.015125ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 208.460333
+cargo test --offline --manifest-path tests/rust-chat-models-v2/Cargo.toml
+   Compiling yijie-chat-models-v2-contract-conformance v0.2.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts/tests/rust-chat-models-v2)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s
+     Running unittests src/lib.rs (tests/rust-chat-models-v2/target/debug/deps/yijie_chat_models_v2_contract_conformance-7ff4a4eaf4e20d58)
+
+running 2 tests
+test tests::legacy_receipt_round_trip_preserves_the_original_identity ... ok
+test tests::active_request_does_not_accept_a_retired_identity ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests yijie_chat_models_v2_contract_conformance
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

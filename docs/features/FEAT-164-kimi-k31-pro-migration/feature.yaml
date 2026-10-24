@@ -1,0 +1,799 @@
+schema_version: 3
+delivery_profile: production_hardened
+exposure: local
+feature:
+  id: FEAT-164
+  slug: kimi-k31-pro-migration
+  title: Kimi K3.1 Pro 模型替换与历史兼容
+  status: active
+  created_at: 2026-10-24
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+scope:
+  risk_level: high
+  data_classification: confidential
+  contract_impact: breaking
+  database_change: migrate
+  persistence_change: replay
+  runtime_change: runtime
+  auth_permission_change: none
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: model
+repositories:
+  - yijie
+  - yijie-contracts
+  - yijie-codex
+  - yijie-agent-host
+  - yijie-desktop
+  - yijie-connectors
+immutable_references:
+  baseline_commits:
+    - repository: yijie
+      full_sha: 91b2b76e7afc7cb5373a381ce352f7d1eee4a134
+    - repository: yijie-agent-host
+      full_sha: 283dcbd7d79ca7bd7a56dba0cb915024fff8eb72
+    - repository: yijie-codex
+      full_sha: 9154f27d0cdb526a5f5ba0913fe3e2448014b4a1
+    - repository: yijie-connectors
+      full_sha: 251a0e8854b646a2565a01317a95b037579d9b8e
+    - repository: yijie-contracts
+      full_sha: bedf4159b0fa22e24efe6c295f8b0d4845df56b7
+    - repository: yijie-desktop
+      full_sha: 6080a568332dbf18ff119501607bc7e7afa92f94
+  contracts:
+    - id: chat-models-v2
+      version: 0.2.0
+      full_commit: b0060c8bc4fb924cec14d98b193c32c69482b7b7
+      digest: 0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
+      generator: scripts/generate-chat-models-v2.mjs
+    - id: runtime-kimi-k31-pro
+      version: 0.144.6-kimi-k31-pro-r1
+      full_commit: b0060c8bc4fb924cec14d98b193c32c69482b7b7
+      digest: e5e2250c27a93118ae1acbe68e7117bebd67ffae564d0956a27a82973f79e5ee
+      generator: scripts/generate-runtime-kimi-k31-pro.mjs
+  fixtures: []
+  release_artifacts: []
+gates:
+  G0_intake: pass
+  G1_design_ready: pass
+  G2_implementation_ready: pass
+  G2A_contract_ready: pass
+  G2V_vertical_feasibility: pending
+  G4_code_complete: pending
+  G5_production_ready: pending
+  G6_delivery_complete: pending
+gate_reasons:
+  G2A: Owner当前明确接受实际候选/离线比较；Runtime 57753db451b29a49315ddcb6449ca146171c4de7 → Contracts
+    b0060c8bc4fb924cec14d98b193c32c69482b7b7；两consumer独立pin已从Git对象同步校验。只允许最小G2V候选，非完整S1—S4或激活。
+  G2V: 实际Runtime源候选已构建；尚无完整最小App/Host纵向候选和安全harness资格，真实模型预算为0
+temporal_contract_matrix:
+  required: true
+  applicability_reason: 模型意图、配置回执、Host提交、Native通知、历史重放、计划资格和正常退出跨进程且跨版本
+  exception:
+    owner: N/A
+    approved_at: N/A
+    reason: N/A
+  phases:
+    producer:
+      status: required
+      reason: 明确新目标与执行准入
+    persistence:
+      status: required
+      reason: 保存迁移意图和确认后的模型revision，保留历史快照
+    notification:
+      status: required
+      reason: 持久确认后返回回执和当前Selection
+    replay:
+      status: required
+      reason: 终态回执只读且unknown不自动重发
+    terminal:
+      status: required
+      reason: 回执与提交闭合才标成功
+    cleanup:
+      status: required
+      reason: 正常收敛全部受管工作后切换，不强杀
+  phase_exceptions: {}
+  scenarios:
+    - id: FLOW-LIVE-164
+      ordered_phases:
+        - producer
+        - persistence
+        - notification
+        - terminal
+        - cleanup
+    - id: FLOW-REPLAY-164
+      ordered_phases:
+        - persistence
+        - replay
+        - notification
+        - terminal
+        - cleanup
+    - id: FLOW-PLAN-164
+      ordered_phases:
+        - producer
+        - persistence
+        - notification
+        - terminal
+        - cleanup
+  invariants:
+    - id: TINV-164-01
+      statement: 未确认来源/活动身份不得新执行，退役slug在截止点后出站为零
+      scenario_ids:
+        - FLOW-LIVE-164
+      slice_ids:
+        - S1
+      executable_tests:
+        - TCONF-164-01
+    - id: TINV-164-02
+      statement: 原请求身份不改；unknown不推定模型，missing不证明未发
+      scenario_ids:
+        - FLOW-LIVE-164
+        - FLOW-REPLAY-164
+      slice_ids:
+        - S2
+      executable_tests:
+        - TCONF-164-02
+    - id: TINV-164-03
+      statement: claim/send前准入生效，计划领域事务撤有效授权且历史run不改
+      scenario_ids:
+        - FLOW-PLAN-164
+        - FLOW-REPLAY-164
+      slice_ids:
+        - S3
+      executable_tests:
+        - TCONF-164-03
+    - id: TINV-164-04
+      statement: 实际调用面/辅助模型/重开不复活退役身份，三项final判定独立
+      scenario_ids:
+        - FLOW-LIVE-164
+        - FLOW-REPLAY-164
+        - FLOW-PLAN-164
+      slice_ids:
+        - S4
+      executable_tests:
+        - TCONF-164-04
+  executable_tests:
+    - id: TCONF-164-01
+      required: true
+      repository: yijie-agent-host
+      command: go test ./internal/codex -run '^TestFEAT164ActivationAndRetiredAdmission$' -count=1
+      slice_id: S1
+      status: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      commits: []
+      evidence_ref: NOT RUN
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+      implementation_status: planned_not_created
+      command_note: 计划中的目标；执行前核实真实文件/模块限定名与非零测试命中数。当前NOT RUN。
+    - id: TCONF-164-02
+      required: true
+      repository: yijie-agent-host
+      command: go test ./internal/session -run '^TestFEAT164MigrationReceiptAndRecovery$' -count=1
+      slice_id: S2
+      status: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      commits: []
+      evidence_ref: NOT RUN
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+      implementation_status: planned_not_created
+      command_note: 计划中的目标；执行前核实真实文件/模块限定名与非零测试命中数。当前NOT RUN。
+    - id: TCONF-164-03
+      required: true
+      repository: yijie-desktop
+      command: cargo test --manifest-path src-tauri/Cargo.toml feat164_plan_retirement_before_dispatch -- --exact
+      slice_id: S3
+      status: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      commits: []
+      evidence_ref: NOT RUN
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+      implementation_status: planned_not_created
+      command_note: 计划中的目标；执行前核实真实文件/模块限定名与非零测试命中数。当前NOT RUN。
+    - id: TCONF-164-04
+      required: true
+      repository: yijie-desktop
+      command: node --test scripts/tests/feat164-candidate-closure.test.mjs
+      slice_id: S4
+      status: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      commits: []
+      evidence_ref: NOT RUN
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+      implementation_status: planned_not_created
+      command_note: 计划中的目标；执行前核实真实文件/模块限定名与非零测试命中数。当前NOT RUN。
+vertical_feasibility:
+  required: true
+  applicability_reason: 跨仓模型/Runtime身份和重要持久数据迁移，必须真实纵向资格
+  exception:
+    owner: N/A
+    approved_at: N/A
+    reason: N/A
+  harness_id: H-F164-LOCAL
+  participating_repositories:
+    - yijie-contracts
+    - yijie-codex
+    - yijie-agent-host
+    - yijie-desktop
+  platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
+  production_bootstrap: true
+  representative_data: 仅普通合成文本/图片/旧模型选择及计划状态，无私人数据库正文
+  critical_path: canonical App → Native → Host → Runtime → 获准新模型响应 → 原生事件 → 保存/重开
+  evidence:
+    commits: []
+    command: NOT RUN
+    environment: NOT RUN
+    exit_code: null
+    status: NOT RUN
+    verified_at: NOT RUN
+    harness:
+      id: H-F164-LOCAL
+      commit: NOT RUN
+      digest: NOT RUN
+    platform: NOT RUN
+    production_bootstrap: true
+    contract_refs: []
+    fixture_refs: []
+    refs: []
+runtime_harnesses:
+  - id: H-F164-LOCAL
+    purpose: 最小模型替换纵向候选及三项最终验证；安全普通状态分类
+    commit: NOT RUN
+    digest: NOT RUN
+    default_enabled: false
+    real_platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
+    production_bootstrap: true
+    representative_data: 仅普通合成文本/图片/旧模型选择及计划状态，无私人数据库正文
+    failure_classes:
+      - product_failure
+      - harness_failure
+      - platform_failure
+      - gate_failure
+    qualification:
+      status: NOT RUN
+      verified_at: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      positive_control:
+        status: NOT RUN
+        evidence_ref: NOT RUN
+      negative_controls:
+        product_failure:
+          status: NOT RUN
+          observed_class: NOT RUN
+          evidence_ref: NOT RUN
+        harness_failure:
+          status: NOT RUN
+          observed_class: NOT RUN
+          evidence_ref: NOT RUN
+        platform_failure:
+          status: NOT RUN
+          observed_class: NOT RUN
+          evidence_ref: NOT RUN
+        gate_failure:
+          status: NOT RUN
+          observed_class: NOT RUN
+          evidence_ref: NOT RUN
+      timeout_control:
+        status: NOT RUN
+        evidence_ref: NOT RUN
+      cleanup_control:
+        status: NOT RUN
+        evidence_ref: NOT RUN
+      content_free_verdict:
+        status: NOT RUN
+        evidence_ref: NOT RUN
+    safety_policy: 只用普通状态/返回值/正常取消；禁止强杀、权限破坏、攻击fixture或可执行替身，无法安全验证的控制保持NOT RUN
+slices:
+  - id: S1
+    intent: 活动身份、配置前身与独立候选激活
+    required: true
+    prerequisites:
+      - G2
+      - G2A
+      - G2V
+    commits: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+    local_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 本slice需独立正常验证，不继承其它slice或旧Feature通过
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    boundary_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 本slice需独立正常验证，不继承其它slice或旧Feature通过
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    vertical_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 本slice需独立正常验证，不继承其它slice或旧Feature通过
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    freshness:
+      verified_at: NOT RUN
+      commits: []
+      contract_refs: []
+      fixture_refs: []
+      harness:
+        id: H-F164-LOCAL
+        commit: NOT RUN
+        digest: NOT RUN
+      platform: NOT RUN
+      production_bootstrap: true
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
+        implementation reference changes
+    status: pending
+    status_reason: 待适用G2A/Harness/G2V完成；尚未实施此下游slice
+  - id: S2
+    intent: 兼容存储、模型选择恢复与未发送取消
+    required: true
+    prerequisites:
+      - S1
+    commits: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+    local_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 本slice需独立正常验证，不继承其它slice或旧Feature通过
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    boundary_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 本slice需独立正常验证，不继承其它slice或旧Feature通过
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    vertical_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 本slice需独立正常验证，不继承其它slice或旧Feature通过
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    freshness:
+      verified_at: NOT RUN
+      commits: []
+      contract_refs: []
+      fixture_refs: []
+      harness:
+        id: H-F164-LOCAL
+        commit: NOT RUN
+        digest: NOT RUN
+      platform: NOT RUN
+      production_bootstrap: true
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
+        implementation reference changes
+    status: pending
+    status_reason: 待适用G2A/Harness/G2V完成；尚未实施此下游slice
+  - id: S3
+    intent: worker接管前退役保护及计划领域授权迁移
+    required: true
+    prerequisites:
+      - S2
+    commits: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+    local_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 本slice需独立正常验证，不继承其它slice或旧Feature通过
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    boundary_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 本slice需独立正常验证，不继承其它slice或旧Feature通过
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    vertical_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 本slice需独立正常验证，不继承其它slice或旧Feature通过
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    freshness:
+      verified_at: NOT RUN
+      commits: []
+      contract_refs: []
+      fixture_refs: []
+      harness:
+        id: H-F164-LOCAL
+        commit: NOT RUN
+        digest: NOT RUN
+      platform: NOT RUN
+      production_bootstrap: true
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
+        implementation reference changes
+    status: pending
+    status_reason: 待适用G2A/Harness/G2V完成；尚未实施此下游slice
+  - id: S4
+    intent: 全启用调用面、同源UI与正常退出兼容回退
+    required: true
+    prerequisites:
+      - S3
+    commits: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+    local_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 本slice需独立正常验证，不继承其它slice或旧Feature通过
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    boundary_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 本slice需独立正常验证，不继承其它slice或旧Feature通过
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    vertical_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 本slice需独立正常验证，不继承其它slice或旧Feature通过
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    freshness:
+      verified_at: NOT RUN
+      commits: []
+      contract_refs: []
+      fixture_refs: []
+      harness:
+        id: H-F164-LOCAL
+        commit: NOT RUN
+        digest: NOT RUN
+      platform: NOT RUN
+      production_bootstrap: true
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
+        implementation reference changes
+    status: pending
+    status_reason: 待适用G2A/Harness/G2V完成；尚未实施此下游slice
+final_e2e:
+  core_vertical:
+    required: true
+    reason: 新模型全有效执行链、历史/计划和准入
+    status: NOT RUN
+    command: NOT RUN
+    environment: NOT RUN
+    exit_code: null
+    verified_at: NOT RUN
+    commits: []
+    contract_refs: []
+    fixture_refs: []
+    harness:
+      id: H-F164-LOCAL
+      commit: NOT RUN
+      digest: NOT RUN
+    platform: NOT RUN
+    production_bootstrap: true
+    evidence_refs: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+  accessibility_visual:
+    required: true
+    reason: 选择器/状态/焦点/亮暗/最小窗口
+    status: NOT RUN
+    command: NOT RUN
+    environment: NOT RUN
+    exit_code: null
+    verified_at: NOT RUN
+    commits: []
+    contract_refs: []
+    fixture_refs: []
+    harness:
+      id: H-F164-LOCAL
+      commit: NOT RUN
+      digest: NOT RUN
+    platform: NOT RUN
+    production_bootstrap: true
+    evidence_refs: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+  teardown:
+    required: true
+    reason: 正常退出/重开无重复派发及兼容回退
+    status: NOT RUN
+    command: NOT RUN
+    environment: NOT RUN
+    exit_code: null
+    verified_at: NOT RUN
+    commits: []
+    contract_refs: []
+    fixture_refs: []
+    harness:
+      id: H-F164-LOCAL
+      commit: NOT RUN
+      digest: NOT RUN
+    platform: NOT RUN
+    production_bootstrap: true
+    evidence_refs: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+failure_circuit_breaker:
+  same_failure_threshold: 3
+  policy: third equivalent failure blocks retries and local patches until a root-cause audit produces
+    discriminating evidence and an authorized next action
+  incidents:
+    - id: F164-GATE-BASELINE-REF
+      slice_id: SOURCE-CANDIDATE
+      gate_id: G2A
+      evidence_id: E164-BASELINE
+      failure_class: gate_failure
+      failure_code: CANONICAL_REF_NETWORK_RESOLUTION
+      checkpoint: scheduled-plan-draft-baseline-resolution
+      fingerprint: SOURCE-CANDIDATE|G2A|E164-BASELINE|gate_failure|CANONICAL_REF_NETWORK_RESOLUTION|scheduled-plan-draft-baseline-resolution
+      attempts:
+        - run_id: raw-baseline-35e0949c95d7a59ca5480715c225766dcc822056
+          occurred_at: 2026-10-24T15:37:42.513045+00:00
+          result: FAIL
+          failure_class: gate_failure
+          failure_code: CANONICAL_REF_NETWORK_RESOLUTION
+          checkpoint: scheduled-plan-draft-baseline-resolution
+          evidence_ref: 08-verification-report.md#E164-RAW-BASELINE-1
+        - run_id: raw-baseline-54be9314dce5319b049dc0a236800fd1a1fdd7a1
+          occurred_at: 2026-10-24T15:37:44.172197+00:00
+          result: FAIL
+          failure_class: gate_failure
+          failure_code: CANONICAL_REF_NETWORK_RESOLUTION
+          checkpoint: scheduled-plan-draft-baseline-resolution
+          evidence_ref: 08-verification-report.md#E164-RAW-BASELINE-2
+        - run_id: raw-baseline-bedf4159b0fa22e24efe6c295f8b0d4845df56b7
+          occurred_at: 2026-10-24T15:37:45.649259+00:00
+          result: FAIL
+          failure_class: gate_failure
+          failure_code: CANONICAL_REF_NETWORK_RESOLUTION
+          checkpoint: scheduled-plan-draft-baseline-resolution
+          evidence_ref: 08-verification-report.md#E164-RAW-BASELINE-3
+      rca_cycles:
+        - id: RCA-F164-BASELINE-01
+          audit:
+            status: complete
+            expanded_scope:
+              - 源基线OpenAPI/jsonschema与canonical ID
+              - 比较器archive及网络解析
+              - 相同来源树离线比较和新candidate源码
+            candidates:
+              - 有效契约删除/不兼容
+              - 基线源缺失
+              - canonical标识符误作网络地址
+            discriminating_evidence_refs:
+              - 08-verification-report.md#E164-OFFLINE-RCA
+            approved_next_action: 接受离线同源比较RCA，单次复核bedf4159完整基线并校验不可变源和consumer pin
+            approved_by: 段成威（当前用户明确接受本轮候选及离线比较结论）
+            approved_at: 2026-10-24T15:54:04.092360+00:00
+          authorization:
+            max_attempts: 1
+            action: 接受离线同源比较RCA，单次复核bedf4159完整基线并校验不可变源和consumer pin
+            approved_by: 段成威（当前用户指令）
+            approved_at: 2026-10-24T15:54:04.092360+00:00
+          attempt:
+            run_id: accepted-offline-baseline-recheck
+            occurred_at: 2026-10-24T15:58:15.552Z
+            result: PASS
+            evidence_ref: 08-verification-report.md#E164-OFFLINE-RCA
+      state: resolved
+      engineering_audit_ref: 14-source-candidate-review.md
+      alternative_check_evidence: evidence/contracts-breaking-offline-results.json
+      note: 三次原入口失败保留。Owner接受RCA后单次离线同源复核通过，没有再次请求原网络地址。
+documents:
+  brief: 00-feature-brief.md
+  requirements: 01-requirements.md
+  impact: 02-impact-assessment.md
+  decisions_and_risks: 03-decisions-and-risks.md
+  contract_plan: 04-contract-change-plan.md
+  temporal_contract: 04A-temporal-contract-matrix.md
+  technical_design: 05-technical-design.md
+  test_plan: 06-test-plan.md
+  implementation_plan: 07-implementation-plan.md
+  verification: 08-verification-report.md
+  release_and_rollback: 09-release-and-rollback.md
+  delivery_summary: 10-delivery-summary.md
+  second_audit: 11-second-audit.md
+  resume: 12-resume.md
+  implementation_log: 13-implementation-log.md
+  source_candidate_review: 14-source-candidate-review.md
+  local_freeze: 15-local-source-freeze.md
+external_authorizations:
+  paid_calls:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  destructive_operations:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  production_writes:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+current_authorization:
+  phase: implementation_with_governance
+  source: Owner当前明确接受源候选和离线比较，并授权隔离本地提交及继续实施。
+  documentation_write_allowed: true
+  product_source_edit_allowed: true
+  product_generate_build_test_allowed: true
+  database_migration_allowed: false
+  service_lifecycle_allowed: false
+  model_or_tool_business_calls_allowed: false
+  git_commit_push_branch_release_allowed: false
+  note: 继续实施与安全验证已获准；G2A后仅先最小G2V候选。真实付费/日常库迁移和App激活仍无本Feature许可。
+  git_local_commit_allowed: true
+  git_scope: 按已批准隔离清单，仅FEAT-164本地Runtime→Contracts→治理提交；无push/branch/tag/release，不混入既有任务。
+implementation:
+  status: active
+  real_entrypoint: 未激活chat-models-v2与kimi-k31-pro-r1源候选；下游Host/Desktop保持原入口，G2A尚未通过
+  mock_only: false
+product_verification:
+  status: NOT RUN
+  reason: 限定源契约/Runtime候选检查通过；完整产品链、迁移、真实模型和final E2E未执行
+profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
+owner_approvals:
+  requirements: approved_by_owner_current_user_message
+  technical_design: approved_by_owner_current_user_message
+  consumer_reviews: approved_by_owner_current_user_message_for_source_candidate_14
+  implementation: authorized_subject_to_gates
+  release: not_authorized
+must_acceptance:
+  - id: AC-001
+    status: pending
+    definition: 01-requirements.md
+    verification_plan: 06-test-plan.md
+  - id: AC-002
+    status: pending
+    definition: 01-requirements.md
+    verification_plan: 06-test-plan.md
+  - id: AC-003
+    status: pending
+    definition: 01-requirements.md
+    verification_plan: 06-test-plan.md
+  - id: AC-004
+    status: pending
+    definition: 01-requirements.md
+    verification_plan: 06-test-plan.md
+  - id: AC-005
+    status: pending
+    definition: 01-requirements.md
+    verification_plan: 06-test-plan.md
+  - id: AC-006
+    status: pending
+    definition: 01-requirements.md
+    verification_plan: 06-test-plan.md
+  - id: AC-007
+    status: pending
+    definition: 01-requirements.md
+    verification_plan: 06-test-plan.md
+  - id: AC-008
+    status: pending
+    definition: 01-requirements.md
+    verification_plan: 06-test-plan.md
+  - id: AC-009
+    status: pending
+    definition: 01-requirements.md
+    verification_plan: 06-test-plan.md
+  - id: AC-010
+    status: pending
+    definition: 01-requirements.md
+    verification_plan: 06-test-plan.md
