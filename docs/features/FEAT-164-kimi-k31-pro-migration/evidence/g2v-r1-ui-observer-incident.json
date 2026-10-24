@@ -1,0 +1,32 @@
+{
+  "recorded_at": "2026-10-25T07:51:08.220156+08:00",
+  "harness_id": "H-F164-LOCAL",
+  "status": "DIAGNOSIS_REQUIRED",
+  "failure_class": null,
+  "failure_code": "UI_OBSERVER_TIMEOUT",
+  "checkpoint": "native_App_window_observation",
+  "discovery_history": {
+    "observed_running_bundle_id": "com.yijie.ai.feat164-kimi-k31-r1",
+    "initial_id_lookup": "Invalid app",
+    "hidden_path_and_display_name_lookup": "Resolved previous non-r1 identity; running application not found",
+    "registration_refresh_and_session_reset": "Did not resolve discovery",
+    "hidden_bundle_spotlight_identifier": null,
+    "new_visible_preview_spotlight_identifier": "com.yijie.ai.feat164-kimi-k31-r1",
+    "preview_bytes_match_canonical_build": true
+  },
+  "current_attempts": [
+    {
+      "method": "getApp by verified r1 bundle ID",
+      "result": "Computer Use server timeoutReached -10005"
+    },
+    {
+      "method": "getApp by verified visible preview path",
+      "result": "Computer Use server timeoutReached -10005"
+    }
+  ],
+  "discriminating_evidence": "Discovery lookup now resolves the correct indexed bundle; window observation times out. Only one canonical App process exists. Host /readyz is 200 and loopback Responses remain 0. This does not establish whether AX/controller or App UI responsiveness is responsible.",
+  "next_action": "User normal Cmd+Q/application Quit requested because no App control handle is available; do not force-stop. Reopen same canonical receipt only after normal exit is verified.",
+  "real_model_requests": 0,
+  "fee_cny": 0,
+  "safety": "No process signals, executable changes or fault injection. Narrow registry/index refresh and byte-identical project artifact preview copy only."
+}

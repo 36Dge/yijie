@@ -1,0 +1,10 @@
+{
+  "recorded_at": "2026-10-25T07:45:36.906511+08:00",
+  "class": "platform_failure",
+  "code": "stale_app_registration",
+  "evidence": "CUA inventory reports r1 running; bundle Info.plist says r1; CUA path/name resolver returns previous non-r1 identity. No business/provider request attempted.",
+  "action": "Refresh only this canonical locally-built bundle registration using system lsregister -f; no global registration reset",
+  "bundle_identifier": "com.yijie.ai.feat164-kimi-k31-r1",
+  "exit_code": 0,
+  "output": ""
+}

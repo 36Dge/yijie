@@ -46,3 +46,13 @@ r1 canonical 构建和同产物重开检查通过；原生启动后 `/readyz` �
 尝试读取 r1 App 窗口时，CUA 明确返回 Mac 已锁屏且自动解锁失败。已请用户手动解锁，不索取密码、不绕过锁屏。**当前停止依赖 UI 的验收，G2V 与完整 Harness 正控仍 NOT RUN，不得据后台 ready 宣称通过。** 本轮没有启动真实计量器或真实模型请求，费用仍为 0；20 元授权保留。
 
 当前保留就绪的 r1 候选和普通本机 fixture 等待解锁：exec App 会话 `44670`，fixture 会话 `49478`；端口分别 18086/18083。fixture 只给出明确标注的合成答复，无外部转发。解锁后先完成本机正控、正常退出和同产物重开，记录完整 Harness 资格，再按同一预算进行真实 G2V。若需结束，必须通过 App 正常退出与 fixture `/shutdown`，不强杀。已结束的旧候选/fixture 会话 `61687`/`29400` 不再使用。
+
+## 解锁后的 UI 观察阻塞
+
+用户已明确“已解锁，继续验收”。当前 App/Host/fixture 仍在原 canonical 会话中，后台 ready、Responses 0。CUA 库存能发现 r1 正在运行，但最初按 ID/隐藏构建路径/显示名称无法绑定；只刷新该 App 注册和重置 CUA 会话后仍未解决。只读核对发现隐藏隔离路径的 Spotlight bundle ID 为 null。
+
+已将同一 canonical `.app` 用系统 `ditto` 复制到项目普通开发输出的全新 `易界 AI FEAT-164 R1.app` 路径，并核对全部 42 个文件摘要完全一致；未覆盖旧 App、修改可执行字节或替换运行进程。该副本仅供系统发现，实际运行进程仍是独立 worktree 的 canonical binary。可见副本的系统索引已正确识别 r1，见 `evidence/g2v-r1-preview-registration.json`。
+
+识别问题解决后，按正确 ID 和可见路径读取窗口各出现一次 `timeoutReached -10005`，没有获得 App 控制句柄。当前不能区分 Accessibility/controller 故障与 App UI 无响应，保持 **DIAGNOSIS_REQUIRED**，不猜测产品错误，也不放行 Harness/G2V。已停止继续尝试该观察点，详见 `evidence/g2v-r1-ui-observer-incident.json`。
+
+已请用户通过应用菜单/⌘Q正常退出当前“易界 AI FEAT-164”；如用户也无法正常退出，必须停止相关步骤并报告，不强杀。确认正常退出后才从同一 canonical receipt 重开。没有发生真实模型请求或费用，20元授权保留。
