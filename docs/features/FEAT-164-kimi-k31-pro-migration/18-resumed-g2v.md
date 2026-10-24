@@ -32,3 +32,17 @@
 继续使用已提交的 `scripts/feat164-verdict.mjs` 与测试：closed、content-free 布尔观测，四类失败与歧义区分，协作取消与恰好一次 cleanup。资格验证须包含当前不可变候选的 canonical App 普通本机正控和可回查的实际 UI/保存/重开/退出观测，再结合普通状态负控；不能只把布尔正例单测称为完整资格。
 
 [预算控制日志](evidence/g2v-budget-controls.log)为 6 项 PASS，无 Provider 连接。完整 Harness 资格和真实 G2V 此刻仍未执行，不提前填写 PASS；真实费用仍为 0。完成相应步骤后在本文件追加真实结果。
+
+## 07:34 实际进展与待解锁项
+
+本轮进一步本地提交：`f0c04552c7a9344e935ffdfe622e0369bbd6a89c` 要求终态 usage 才释放费用预占，并仅摘要实际成功转发的响应字节；`9d35ba1` 增加每进程最多一次的候选启动阶段/现有错误码诊断，无正文、路径或凭据；`ba3ed160fc2c0bab04ccbe80c45457b30af233bd` 将不可变候选身份固定为 `com.yijie.ai.feat164-kimi-k31-r1`。元仓已以 `a0f2933` 固化此前批准的下游审计及恢复预算记录，未混入项目记忆中的 FEAT-163 段。
+
+独立源码装配过程中，编译缓存软链接曾被 regular-file 来源检查拒绝。移除了本轮创建的链接，保持检查不变，改用独立普通 Cargo 输出目录；随后 canonical 构建通过。Contracts 的任务自建依赖链接也已改为按原 lock 离线安装的普通目录。三个隔离 worktree 均干净，App/Host 产物与精确来源见 [当前快照](evidence/g2v-r1-current-state.json)。
+
+首次使用旧工作树候选的 App 数据目录时，本地服务未就绪；通过 UI 正常重试仍未发出模型请求，然后 App 正常退出（exit 0），fixture 正常 shutdown（exit 0）。只读核对发现旧候选的 Kimi managed catalog 指令字节与独立 Host 提交不同：旧目录继承了 FEAT-163 工作区指令，本 skeleton 的 fresh-only exact-file 准入不能接受它。见 [目录审计](evidence/g2v-candidate-home-audit.json)。没有覆盖配置、篡改数据或放宽准入；新 r1 身份建立独立数据目录，保留旧候选及日常目录。
+
+r1 canonical 构建和同产物重开检查通过；原生启动后 `/readyz` 实际 HTTP 200，返回 `runtime_state=ready,status=ready`。普通 fixture `/health` 实际 HTTP 200，Responses 数为 0。当前 Runtime 握手已就绪，源检查、Clippy `-D warnings`、4 项状态控制及 6 项预算控制通过；共享文件反向核验保留原内容，见 [保留证据](evidence/g2v-diagnostic-preservation.json)。
+
+尝试读取 r1 App 窗口时，CUA 明确返回 Mac 已锁屏且自动解锁失败。已请用户手动解锁，不索取密码、不绕过锁屏。**当前停止依赖 UI 的验收，G2V 与完整 Harness 正控仍 NOT RUN，不得据后台 ready 宣称通过。** 本轮没有启动真实计量器或真实模型请求，费用仍为 0；20 元授权保留。
+
+当前保留就绪的 r1 候选和普通本机 fixture 等待解锁：exec App 会话 `44670`，fixture 会话 `49478`；端口分别 18086/18083。fixture 只给出明确标注的合成答复，无外部转发。解锁后先完成本机正控、正常退出和同产物重开，记录完整 Harness 资格，再按同一预算进行真实 G2V。若需结束，必须通过 App 正常退出与 fixture `/shutdown`，不强杀。已结束的旧候选/fixture 会话 `61687`/`29400` 不再使用。

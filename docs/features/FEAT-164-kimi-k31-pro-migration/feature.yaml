@@ -68,7 +68,7 @@ gates:
 gate_reasons:
   G2A: Owner当前明确接受实际候选/离线比较；Runtime 57753db451b29a49315ddcb6449ca146171c4de7 → Contracts
     b0060c8bc4fb924cec14d98b193c32c69482b7b7；两consumer独立pin已从Git对象同步校验。只允许最小G2V候选，非完整S1—S4或激活。
-  G2V: 用户明确恢复，沿用20元和搜索/图片授权；新不可变候选、预算计量及安全Harness资格准备中；真实G2V尚未执行，不提前放行S1—S4。
+  G2V: r1不可变候选canonical构建、Runtime ready和安全状态/预算控制通过；Mac锁屏阻断真实窗口正控，等待用户手动解锁。完整Harness/G2V保持NOT RUN，真实调用0，20元授权未消耗。
 temporal_contract_matrix:
   required: true
   applicability_reason: 模型意图、配置回执、Host提交、Native通知、历史重放、计划资格和正常退出跨进程且跨版本
@@ -748,7 +748,7 @@ implementation:
   mock_only: false
 product_verification:
   status: NOT RUN
-  reason: 限定源契约/Runtime候选检查通过；完整产品链、迁移、真实模型和final E2E未执行
+  reason: 不可变r1后台ready及本地控制检查通过；锁屏阻断当前UI正控，真实模型/迁移/final未执行。
 profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
 owner_approvals:
   requirements: approved_by_owner_current_user_message

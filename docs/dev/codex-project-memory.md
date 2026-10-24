@@ -1,6 +1,6 @@
 # 易界项目 Codex 长期协作记忆
 
-## FEAT-164 已恢复，准备受限真实 G2V（2026-10-25）
+## FEAT-164 已恢复，r1就绪等待手动解锁（2026-10-25）
 
 用户明确恢复 FEAT-164，沿用人民币 20 元累计费用上限及搜索、图片授权；继续实施、审计和安全验证，仅本地提交、不推送。先读 [18 恢复实施](../features/FEAT-164-kimi-k31-pro-migration/18-resumed-g2v.md)；[17](../features/FEAT-164-kimi-k31-pro-migration/17-paused-state.md) 是已撤销暂停后的历史快照。G0/G1/G2/G2A PASS，G2V、S1—S4/final 尚未通过。
 
@@ -9,6 +9,10 @@ Host ff7d05dae4b3a48285e9bed63ba7253081da234c、Desktop 3dc2205fba79a0a1d7fdea8a
 当前最小 G2V 自限4用户回合/8模型HTTP/1含图请求并计入同一20元账本，真实调用尚未开始。输出cap8192、暂省略原生web_search声明、保留tool_choice和响应SSE；每次按完整输入窗口预占14.188544元，usage未知保留预占并停止。该预算验证不能冒充默认参数/原生搜索/完整工具资格。搜索授权保留，但原生Responses搜索计费上界尚未核实，不套用旧Chat Completions价格。
 
 下一步完成当前不可变候选的普通本机正控、安全Harness资格，再做真实App→新模型→保存/同产物重开/正常退出；G2V通过才进入S1—S4。不得重复索取已给出的本地FEAT164提交或20元授权。旧选择/recover、未发送取消、计划退役、辅助调用截止及最终组合仍未完成。长期禁止强杀、权限破坏、可执行替身和攻击fixture；所有未执行保持真实记录。
+
+当前最新：Desktop ba3ed160fc2c0bab04ccbe80c45457b30af233bd，Host ff7d05dae4b3a48285e9bed63ba7253081da234c，Contracts b0060c8bc4fb924cec14d98b193c32c69482b7b7 的独立 clean worktree canonical 构建通过。r1 bundle ID com.yijie.ai.feat164-kimi-k31-r1，避免旧工作树候选 Home 的 FEAT-163 指令字节冲突；旧数据和 exact-file 准入保持。Clippy、4状态控制和6预算控制通过；/readyz实际200且runtime=ready，fixture请求0。
+
+Mac锁屏使CUA无法读取/操作窗口，已请用户手动解锁。不得绕过锁屏或以后台ready冒充UI/Harness/G2V通过；真实调用0、费用0，20元授权仍有效。候选App exec44670及普通fixture exec49478保留等待解锁，端口18086/18083；fixture没有外网转发。解锁后继续本机正控→正常退出/同产物重开→完整Harness资格→预算内真实G2V。当前只是等待必要平台操作，不是用户再次暂停，也不是需求完成。见18末节和evidence/g2v-r1-current-state.json。
 
 2026-10-08 Sorftime 最新状态：Owner已填密钥，但两条19:19/19:20元数据初始化仍unavailable。审计发现通用HTTP迁移漏带旧链路已验证有效的User-Agent；已补真实yijie-mcp-worker/0.1.0及受限HTTP阶段/状态码诊断，未伪装旧客户端、未改固定Codex。63本地测试/lint/标准App构建通过，说明已左对齐。新worker da3c31537e6be46bb826a2ec44b0541456cbbf2810772aabbba5df1023400f81。尚未真实复验，已申请仅1次连接/发现、0模型/0业务；因先前失败不自动重发，等待用户答复。Keyring已有用户保存密钥，不要再要求重填/卸载或读取密钥。详见FEAT-157/21及sorftime-user-agent-20261008证据。
 

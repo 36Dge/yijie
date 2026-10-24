@@ -1,0 +1,50 @@
+{
+  "recorded_at": "2026-10-25T07:33:44.837822+08:00",
+  "commits": {
+    "yijie-desktop": "ba3ed160fc2c0bab04ccbe80c45457b30af233bd",
+    "yijie-agent-host": "ff7d05dae4b3a48285e9bed63ba7253081da234c",
+    "yijie-contracts": "b0060c8bc4fb924cec14d98b193c32c69482b7b7"
+  },
+  "harness": {
+    "harness_id": "H-F164-LOCAL",
+    "full_commit": "ba3ed160fc2c0bab04ccbe80c45457b30af233bd",
+    "sources": {
+      "scripts/feat164-verdict.mjs": "aa9889106f7d12a8868bf461f1728f8ab951342afec0464c01da2fdf3ef0e512",
+      "scripts/feat164-verdict.test.mjs": "f82512ee5bd9cbaf12a376f7195d45265395e977e55638df02c927156caa055e",
+      "scripts/feat164-budget-meter.py": "4a6d1e8d7112447f25f77764bac2333f6f875f99412b6a90dedb11540aa04a53",
+      "scripts/feat164_budget_meter_test.py": "c2b22d5e192ccc4251395fc6267bfab6a78761e6b01cd82701ec4df490195cd7"
+    },
+    "digest": "ab2ad0d9cb05477c5e78b5755a56abff4ebc9f627847d534e71929699ea70f67",
+    "platform": "macOS aarch64; canonical Tauri App/Native/Host/Runtime",
+    "default_enabled": false,
+    "qualification_status": "pending_actual_UI_positive_control_Mac_locked",
+    "safe_state_controls": "g2v-harness-state-controls.log",
+    "budget_controls": "g2v-budget-controls-audited.log",
+    "scope": "ordinary synthetic local golden run then budget-restricted real text/image; no native-search/default-output qualification"
+  },
+  "bundle_identifier": "com.yijie.ai.feat164-kimi-k31-r1",
+  "receipt_sha256": "1ffe8de6e7e2723f35c81b8a023a0642961d7d424e92702205ed009d2ce11ffe",
+  "app_sha256": "36b3a6af397e9d970a22df11aa4e129b46ec6c0ee4fdcce45185e5815a9ef281",
+  "host_sha256": "d93a0c8ca157860c82aba31a349a024983ae50eed9315dc839748f2d6011d2f3",
+  "runtime_sha256": "bfb116b7bd79d11ffd593a0bf1b4be681f3081d6705a018a4a69665984e1ebc8",
+  "state": "platform_attention_required",
+  "reason": "macOS screen locked; user requested to unlock before UI acceptance",
+  "real_model_requests": 0,
+  "model_spend_cny": 0,
+  "candidate_runtime_state": "Host listening on 18086; ordinary fixture listening on 18083; no Responses requests",
+  "harness_qualification": "NOT RUN",
+  "g2v": "NOT RUN",
+  "readiness_http_observation": {
+    "host_readyz_http": 200,
+    "host_body": {
+      "runtime_state": "ready",
+      "status": "ready"
+    },
+    "fixture_health_http": 200,
+    "fixture_responses": 0
+  },
+  "active_exec_sessions": {
+    "app": 44670,
+    "loopback_fixture": 49478
+  }
+}
