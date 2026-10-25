@@ -1,18 +1,14 @@
 # 易界项目 Codex 长期协作记忆
 
-## FEAT-164 方案A原生终态已修复，整体验收仍未完成（2026-10-25）
+## FEAT-164 普通App与计划子集已通过，完整验收未完成（2026-10-25）
 
-当前权威[31](../features/FEAT-164-kimi-k31-pro-migration/31-s4-native-terminal-repair.md)、feature.yaml及s4e-verdict。Owner已明确批准最小Runtime核心/补丁、Contract First和下游验证，不再申请同一范围。真实HTTP新增0、仅本地提交不推送；最终Runtime r4 a28130abb13d0f99a00107cd513a653bae878b77，Contracts1b357cce0575c492f3715b316ee5f254051acf80，Hostb9155a3936c6ff5c6aedd52778d975de52b95d06，Desktop2fb898942cb4c3b81e34feb5169bd861340a4040。Connectors1f157260d6dd339172712e1c649258902db45050与专家Skills595c927ae101d3d31c234f60565041eee0864680不变，普通技能仍10c45bec29603b002e861e1499d5b4e684251af5。
+当前权威[32](../features/FEAT-164-kimi-k31-pro-migration/32-s4-r4-app-plan-acceptance.md)、feature.yaml及s4f证据。Owner授权继续审计实施、安全离线验证和仅FEAT-164本地提交；不推送，真实模型新增0。Runtime a28130abb13d0f99a00107cd513a653bae878b77 r4与Contracts1b357cce0575c492f3715b316ee5f254051acf80保持；Host7927ee7b385cb5536c3647632d1bac0cb7c56fea补三条既有v2草案route；Desktop277f59eeef538d159e43bb1570767ca4f2f5f72a明确按原生格式2/3/4读草案，源于既有权威版本，不改旧事实或未知拒绝。两处本轮semantic，总需求breaking不变。Connectors/Skills无新提交。
 
-0009保留原生Errored至同轮完成，下一TurnStarted重置；ErrorEvent持久副本只存固定文本/原类型码，旧无错误证据历史不重写。0010补齐脱敏后逐回合字节计量，保留初步r3源/产物。最终10项核心/Clippy、269 schema与r2零差异及正常EOF握手通过。旧writer不能保证保留新失败事实，本轮最终breaking；Host受管config加入writer标记，只升级精确旧r2字节、原生参数不变，旧r2候选校验拒绝新标记。回退只用匹配r4 reader并暂停执行，不运行旧Runtime写新历史。
+实际App发现route404、修复后又发现format4被旧reader拒绝，两checkpoint先RED后修复；原失败和扩大测试选错暂停环境的日志全部保留。Host路由6条/原handler3项、Native4项独立检查、Clippy/fmt和canonical普通App构建通过。最终277读取已completed草案恢复候选且新增HTTP0，保存计划为关闭、手动单次执行成功、取消编辑保留原配置，同构建重开计划/运行/答复保持。全轮App模型协议loopback3，真实0；正常⌘Q与fixture自身shutdown退出，无所属进程/自动开启计划。
 
-原失败场景已闭合：Host371c86a的7项原生Go测试全部PASS，子代理首次/同子follow-up等待errored、失败历史冷读failed，同一loaded子线程通过stable turn/start显式新model后completed。原生resume不会修改loaded模型，首轮扩展误用已记录，Host保护未放宽。Go分块导致汇总器漏计，b9155a3只读复核相同原始日志/产品与Go测试源，23本机请求6ledger，追加HTTP0。原armed台账仅2次产品同指纹失败保留，不伪造第三次或RCA cycle；新remediation证据另记。
+原attempted创建失败草案的failed/attempted/无Host绑定元数据保持，未根据404补发；新completed草案原6条事实hash保持。七仓496原改动、908旧证据、154资源、7日常DB、旧两套App161文件及本轮开始前候选数据5583项副本保留。原失败草案此前显示等待提交，该提示/安全处置未专项完善，不能宣称全部恢复已通过。
 
-额外辅助3项/9请求、调用面4项/6请求通过，全轮含首轮扩展12请求共50次合成本机HTTP，11旧producer均cutoff前，真实0。独立Renderer终态3+timing4、Native终态/历史各1、Host writer等3通过；原同名前端测试存在用户改动，不混入本提交，旧基线fixture失败与临时诊断结果分别保留。新App仅canonical普通profile构建，不启动、不宣称UI验收。原r2 App、日常库及旧资源/账本保持。
-
-30元旧账本2/2HTTP耗尽，14.188544元unknown预占+0.139590元保守费用=14.328134元上界不变。下一步补r4同源App/UI、计划/显式恢复取消、其它平台及freshness；完整TCONF-164-04、当前G2V、S1—S4 G3/final仍未通过。不得由剩余费用推导新HTTP许可。禁止强杀、替换程序、攻击/故障注入、权限破坏；正常清理失败保留现场并停止。
-
-保留性：原7仓496项已有改动、822旧证据、154资源、7日常DB和119文件旧App逐字核验。旧资格Runtime入口是既有共享symlink，随已授权Runtime提交前进；旧074417e5 Git对象/r2产物保留，其余5个旧资格入口HEAD未变，不冒称6个独立冻结树均不变。
+下一步先补原attempted/mapping missing草案的明确状态及安全处置设计/验证，保持unknown不得重发；随后旧模型计划退役/重新选择授权、完整恢复取消、当前源专家媒体App及其它平台。当前G2V、S1—S4完整G3/freshness/最终E2E仍缺；保留31的原生终态专项资格，不能把旧批次移植为当前全部验收。旧30元/2次HTTP已用，14.188544元unknown预占+0.139590元=14.328134元上界不动，余额不授权调用。禁止强杀、故障/攻击注入、权限破坏、程序替换；正常清理失败必须停止。
 
 2026-10-08 Sorftime 最新状态：Owner已填密钥，但两条19:19/19:20元数据初始化仍unavailable。审计发现通用HTTP迁移漏带旧链路已验证有效的User-Agent；已补真实yijie-mcp-worker/0.1.0及受限HTTP阶段/状态码诊断，未伪装旧客户端、未改固定Codex。63本地测试/lint/标准App构建通过，说明已左对齐。新worker da3c31537e6be46bb826a2ec44b0541456cbbf2810772aabbba5df1023400f81。尚未真实复验，已申请仅1次连接/发现、0模型/0业务；因先前失败不自动重发，等待用户答复。Keyring已有用户保存密钥，不要再要求重填/卸载或读取密钥。详见FEAT-157/21及sorftime-user-agent-20261008证据。
 

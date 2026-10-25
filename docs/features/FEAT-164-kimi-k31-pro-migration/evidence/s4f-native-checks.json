@@ -1,0 +1,83 @@
+[
+  {
+    "name": "writer-preview",
+    "command": [
+      "cargo",
+      "test",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--lib",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "feat164_current_native_writer_can_preview_completed_draft_without_rewriting",
+      "--",
+      "--nocapture"
+    ],
+    "environment_overrides": {},
+    "exit_code": 0,
+    "qualified": true,
+    "sha256": "4c33f8906d72208ee85017b91c39a4b78c60e68e4e5c0f27c78d038bb09b2100"
+  },
+  {
+    "name": "version-reader",
+    "command": [
+      "cargo",
+      "test",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--lib",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "feat164_draft_fact_versions_are_explicit_and_read_only",
+      "--",
+      "--nocapture"
+    ],
+    "environment_overrides": {},
+    "exit_code": 0,
+    "qualified": true,
+    "sha256": "a69842981b34e6ef23c0c84ab66d004ef010a3eb89a26f868e2f0d2591e70539"
+  },
+  {
+    "name": "paused-authority",
+    "command": [
+      "cargo",
+      "test",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--lib",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "feat164_s3_paused_candidate_preserves_authority",
+      "--",
+      "--nocapture"
+    ],
+    "environment_overrides": {
+      "YIJIE_KIMI_K31_EXECUTION_PAUSED": "true"
+    },
+    "exit_code": 0,
+    "qualified": true,
+    "sha256": "276aaca59ca0aa44edcff6f1478b6ec73c7781dc5741e9ca71a7eb39ff05c327"
+  },
+  {
+    "name": "draft-semantic-controls",
+    "command": [
+      "cargo",
+      "test",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--lib",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "feat155_4b_unclassified_draft_requires_unique_complete_schema_and_success",
+      "--",
+      "--nocapture"
+    ],
+    "environment_overrides": {
+      "YIJIE_CHAT_MODELS_ENABLED": "false",
+      "YIJIE_KIMI_K31_PRO_CANDIDATE": "false"
+    },
+    "exit_code": 0,
+    "qualified": true,
+    "sha256": "c78d9f4a2168c04dff23d86bf20b7ed59a9f59a4ede43c64524e97738f580f83"
+  }
+]

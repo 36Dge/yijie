@@ -1,5 +1,7 @@
 # FEAT-164 实际验证记录
 
+> 当前（2026-10-25，S4f普通App与计划）：Host7927ee7补齐已有v2草案三路由，Desktop277f59e兼容读取原生事实2/3/4；Runtimea28130a r4与Contracts1b357cc保持。同源App验证旧历史、input-only草案、只读恢复零补发、关闭保存、单次执行、取消编辑和正常重开；App模型协议loopback共3次，真实新增0。旧失败请求/事实/账本保留；完整恢复取消、旧模型计划、专家媒体当前组合、平台/G2V/G3/final仍未通过。权威见[32](32-s4-r4-app-plan-acceptance.md)。以下记录保持原来源与时间语义。
+
 > 当前（2026-10-25，方案A原生终态修复）：Runtime r4 a28130a → Contracts1b357cc → Hostb9155a3 → Desktop2fb8989已本地固化。原子代理错误被completed覆盖及冷历史丢失失败已修复；10项核心、269 schema零差异、7项原生/23次本机HTTP证据复核、3辅助/9次与4调用面/6次均通过。新增受管writer标记阻止旧r2候选写入新历史；不改旧历史。全轮50次合成本机HTTP、真实新增0，旧账本/预占保留。App本批仅构建，完整UI/计划/恢复取消/平台/G2V/G3/final仍未通过。最新权威见[31](31-s4-native-terminal-repair.md)及feature.yaml；以下旧阶段保持历史含义。
 
 > 当前（2026-10-25，S4旧线程/子代理/自动压缩）：Host验证提交df06a3c仅新增测试、driver和说明，产品组合仍为Desktopa0a4743/Hostcac2d4d/Runtime074417e5。干净来源独立子集6项PASS、14次loopback，覆盖旧父子loaded后正常停机/显式切换、当前及迁移后自动压缩、previous_model两分支零旧出站。但旧模型子代理被guard拒绝后，wait_agent和thread/read仍报告completed，实际缺陷保持FAIL；S4 blocked，完整TCONF/G2V/G3/final不放行。全轮71次合成本机HTTP、真实新增0；旧账本/预占保留。最新权威见[30](30-s4-loaded-legacy-compaction.md)及feature.yaml；下方各批次保留原来源。
@@ -286,3 +288,21 @@ r4源a28130abb13d0f99a00107cd513a653bae878b77，[10项focused/Clippy](evidence/s
 <!-- evidence: E164-S4E-CONSUMER -->
 
 Native终态1、兼容历史1、fmt，Host writer/fresh/old-home3及vet，独立Renderer终态3+timing4与eslint通过。旧前端基线fixture版本错及其已有用户工作区改动保持；临时15项诊断绿色不冒充最终提交验证。普通App只通过canonical prepare-only构建，不启动App，不算UI/G2V；具体结果见31和s4e-app-build-result。所有旧账本、真实预算及未知预占不更改。
+
+## E164-S4F-ROUTES
+
+<!-- evidence: E164-S4F-ROUTES -->
+
+[32](32-s4-r4-app-plan-acceptance.md)记录实际App草案等待及Host映射404；[只读元数据](evidence/s4f-draft-pending-metadata.json)证明create已attempted、turn未attempted。原router[定向RED](evidence/s4f-host-draft-routes-red.log)精确复现404。Host7927ee7按已有Contract1b357cc增加三条delegation，当前模型/认证/退役/关闭保护与原handler保持；[6条v2检查+3原handler检查及vet通过](evidence/s4f-host-checks.json)。原请求保持，不重发。
+
+## E164-S4F-FACTS
+
+<!-- evidence: E164-S4F-FACTS -->
+
+route修复后草案实际完成、tools空，但preview unavailable。[真实候选事实元数据](evidence/s4f-current-draft-facts-metadata.json)是format4，旧reader仅2；[当前writer回归RED](evidence/s4f-draft-preview-red.log)证明原因。Desktop277f59e按2/3/4对应生成类型只读解析，保持未知拒绝、唯一完整成功事实及schema/身份验证。[4项独立Native检查](evidence/s4f-native-checks.json)、Clippy/fmt通过；扩大选择器33PASS/1暂停环境不匹配和初始Clippy提示均保留，不冒称全suite通过。
+
+## E164-S4F-APP
+
+<!-- evidence: E164-S4F-APP -->
+
+当前源Host7927ee7/Desktop277f59e普通profile的[canonical构建](evidence/s4f-app-build-result.json)和收据通过。此前2fb8989普通正控1请求、新Host阶段草案1请求；最终277f59e只读同一completed草案即恢复候选、增量0，保存关闭、单次计划运行1请求，取消编辑与正常重开保持，详见[UI结果](evidence/s4f-plan-ui-results.json)、[原历史及失败元数据保持](evidence/s4f-final-data-audit.json)、[最终清理](evidence/s4f-final-cleanup.json)。3次均合成本机Kimi/max，无真实模型调用；原candidate数据事前完整备份，日常库与旧账本不动。完整S4/G3/final仍pending；不把取消编辑/恢复确认当作已接受outbox的取消。

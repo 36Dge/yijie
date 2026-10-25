@@ -1,0 +1,47 @@
+{
+  "at": "2026-10-25T21:20:15.863915+08:00",
+  "changes": [
+    {
+      "repository": "yijie-agent-host",
+      "base": "b9155a3936c6ff5c6aedd52778d975de52b95d06",
+      "head": "7927ee7b385cb5536c3647632d1bac0cb7c56fea",
+      "files": [
+        "docs/feat164-cutover-verification.md",
+        "internal/app/chat_models_v2.go",
+        "internal/app/feat164_draft_routes_test.go"
+      ]
+    },
+    {
+      "repository": "yijie-desktop",
+      "base": "2fb898942cb4c3b81e34feb5169bd861340a4040",
+      "head": "277f59eeef538d159e43bb1570767ca4f2f5f72a",
+      "files": [
+        "contracts/kimi-k31-host-build.candidate.json",
+        "src-tauri/src/chat/schedules/drafts.rs",
+        "src-tauri/src/chat/schedules/ipc/tests.rs",
+        "src-tauri/src/chat/schedules/ipc/tests/feat164_draft_fact_tests.rs"
+      ]
+    }
+  ],
+  "contract_impact": "semantic implementation repair; overall FEAT164 breaking retained",
+  "existing_contract_routes": [
+    "/v2/model-chat/scheduled-plan-draft-sessions",
+    "/v2/model-chat/scheduled-plan-draft-sessions/{agent_session_id}/resume",
+    "/v2/model-chat/scheduled-plan-draft-sessions/{agent_session_id}/turns"
+  ],
+  "contract_source_unchanged": true,
+  "runtime_source_and_artifact_unchanged": true,
+  "route_only_intermediate_bundle_retained": true,
+  "model_loopback_http": 3,
+  "real_model_http_added": 0,
+  "ports_released": [
+    18083,
+    18086
+  ],
+  "normal_shutdown_only": true,
+  "whole_frontend_or_native_suite_pass_claimed": false,
+  "old_attempted_request_not_resent": true,
+  "unknown_or_attempted_state_not_reset": true,
+  "full_S4_G3_final": false,
+  "push": false
+}

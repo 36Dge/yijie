@@ -1,0 +1,37 @@
+{
+  "verified_at": "2026-10-25T21:12:08.862858+08:00",
+  "desktop": "277f59eeef538d159e43bb1570767ca4f2f5f72a",
+  "plan_id": "01a1732e-d1d4-7d82-ad09-0274ee75feb0",
+  "draft_conversation": "01a17323-8807-7680-b4bc-672d4283a226",
+  "plan_conversation": "01a1732e-f1ad-7ea3-aa00-1a41bb512e10",
+  "draft_completed": true,
+  "draft_tools_empty": true,
+  "candidate_restored_after_normal_restart_without_http": true,
+  "saved_paused": true,
+  "manual_single_run_completed": true,
+  "edit_cancel_preserved_definition": true,
+  "final_plan_enabled": false,
+  "loopback_requests": [
+    {
+      "ordinal": 1,
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "case": "DRAFT",
+      "response_kind": "draft_candidate",
+      "request_sha256": "7fc66ac7ca13c53bc3e0ed4a047e1a55cbaa4a760974b93962bfc09483bcf153",
+      "tool_count": 0,
+      "input_only": true
+    },
+    {
+      "ordinal": 2,
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "case": "PLAN_RUN",
+      "response_kind": "text",
+      "request_sha256": "3c13b5fd9878a33411c741ba83279617cbb63e69e41b7a114b3f2c4854cf382e",
+      "tool_count": 10,
+      "input_only": false
+    }
+  ],
+  "real_model_http_added": 0
+}

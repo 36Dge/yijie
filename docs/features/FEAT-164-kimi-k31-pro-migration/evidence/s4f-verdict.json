@@ -1,0 +1,33 @@
+{
+  "verified_at": "2026-10-25T21:21:43.858193+08:00",
+  "status": "PASS_APP_PLAN_SUBSET",
+  "full_feat164_pass": false,
+  "sources": {
+    "runtime": "a28130abb13d0f99a00107cd513a653bae878b77",
+    "contracts": "1b357cce0575c492f3715b316ee5f254051acf80",
+    "host": "7927ee7b385cb5536c3647632d1bac0cb7c56fea",
+    "desktop": "277f59eeef538d159e43bb1570767ca4f2f5f72a"
+  },
+  "app_binary_sha256": "5dd07db6ba91fa6faffb02cf993a7234b4973f14483b9e47674d3d78755c2878",
+  "host_binary_sha256": "e0e0435a4216bdb54ef61dd66bb05af7400f96a0c75a6dcbad3e78a82ea3d36f",
+  "app_model_loopback_http": 3,
+  "real_model_http_added": 0,
+  "plan_left_paused": true,
+  "normal_shutdown_complete": true,
+  "preserved_original_failed_request": true,
+  "old_completed_draft_facts_preserved": 6,
+  "qualified_checks": {
+    "host_route_pass_records": 6,
+    "host_original_handler_tests": 3,
+    "native_separately_configured_tests": 4,
+    "meta_tests": 53
+  },
+  "limits": [
+    "whole S4/TCONF/G2V/G3/final not qualified",
+    "original attempted draft failure UI and safe resolution still incomplete",
+    "cancelled recovery prompt and editor are not never-sent outbox cancel or active turn interrupt",
+    "expert/media current-source App composition not qualified",
+    "no automatic timed firing or other platform qualification"
+  ],
+  "push": false
+}

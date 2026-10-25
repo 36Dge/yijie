@@ -1,0 +1,84 @@
+Window: "易界 AI", App: 易界 AI FEAT-164.
+0 standard window 易界 AI, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: 任务对话 · 易界 AI, URL: tauri://localhost/chat/01a17315-c3f9-7e93-a6f8-56a7b7876520
+			3 text 界面缩放 100%
+			4 button (expanded) 收起侧栏, Secondary Actions: Collapse
+			5 container 主导航
+				6 image 易界
+				7 container 应用导航
+					8 content list
+						9 link 新建任务, Value: tauri://localhost/chat
+						10 link 我的店铺, Value: tauri://localhost/store
+						11 link 工作流, Value: tauri://localhost/workflows
+						12 link 技能, Value: tauri://localhost/plugins
+						13 link 定时任务, Value: tauri://localhost/scheduled-tasks
+						14 container
+							15 heading 任务, Value: 2
+								16 text 任务
+							17 container 任务：项目与对话
+								18 content list
+									19 container
+										20 pop up button 折叠项目 s4c-ui-workspace
+										21 pop up button 项目 s4c-ui-workspace 的操作菜单
+										22 content list
+											23 button FEAT164_S4C_MEDIA：最终构建验证。只将当前隔离工作空间已有的 r
+											24 button FEAT164_S4C_KIMI：这是本机界面验收，请回复合成验证结果，不调用工
+											25 button FEAT164_S4C_MEDIA：只将当前隔离工作空间已有的 report.h
+									26 container
+										27 pop up button 折叠项目 任务目录
+										28 pop up button 项目 任务目录 的操作菜单
+										29 content list
+											30 pop up button FEAT164_S4F_DRAFT：创建一个安全离线验收计划，名称 FEAT16
+									31 button FEAT164_S4F_KIMI：r4 同源 App 本机正控，请回复合成验证结
+									32 button FEAT164 S1 本机新模型正控，请回复合成验证结果。
+									33 button FEAT164 单次真实续验：请计算 17 + 25，只用一行回答结果，不使用工
+									34 button FEAT164 30元续验本机正控，请回复合成验证结果。
+									35 button FEAT164 r2 本机正控，请回复合成验证结果。
+									36 button FEAT164 本机请求字段核对，请回复合成验证结果。
+									37 button FEAT164 真实文本验收：请计算 17 + 25，只回复“FEAT164 实
+									38 button FEAT164 本机正控，请回复合成验证结果。
+					39 content list
+						40 link 设置, Value: tauri://localhost/settings
+			41 container FEAT164_S4F_DRAFT：创建一个安全离线验收计划，名称 FEAT16
+				42 container
+					43 heading FEAT164_S4F_DRAFT：创建一个安全离线验收计划，名称 FEAT16, Value: 1
+						44 text FEAT164_S4F_DRAFT：创建一个安全离线验收计划，名称 FEAT16
+					45 text 定时任务草案 · 仅输入文本 状态已更新
+				46 container 任务对话记录
+					47 container 对话内容
+						48 container 对话 1
+							49 container 对话 1
+								50 text 等待提交
+								51 container 本轮对话内容
+									52 container 用户消息
+										53 text FEAT164_S4F_DRAFT：创建一个安全离线验收计划，名称 FEAT164 S4F 安全离线计划，每天北京时间 23:59 在独立会话回复 FEAT164_S4F_PLAN_RUN 本机计划验证完成，不调用工具。先生成草案，不授权自动执行。
+										54 container 用户消息操作
+											55 container 2026/10/25 20:42:48
+												56 text 20:42
+											57 button 复制文本
+								58 text 本轮正在等待处理
+				59 container
+					60 container 定时任务草案
+						61 text 尚无可确认的草案结果。当前执行状态见原对话；刷新不会重新发送。
+						62 button 检查并继续原请求
+						63 button loading 刷新草案状态
+					64 container 任务输入区
+						65 text 输入你的任务需求
+						66 text entry area (settable) 输入你的任务需求, Value: [text entry area], Placeholder: 描述计划内容、时间、时区和运行方式…
+							67 text 描述计划内容、时间、时区和运行方式…
+						68 pop up button (disabled) 选择对话模型，当前 Kimi K3.1 Pro, Help: 当前任务结束后可切换模型
+						69 button (disabled) 发送任务
+				70 text 状态已更新
+	71 close button
+	72 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	73 minimize button
+74 menu bar
+	75 易界 AI FEAT-164
+	76 File
+	77 Edit
+	78 View
+	79 Window
+	80 Help
+
+The focused UI element is 62 button 检查并继续原请求

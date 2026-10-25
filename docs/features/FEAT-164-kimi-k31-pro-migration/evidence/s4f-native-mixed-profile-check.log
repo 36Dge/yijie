@@ -1,0 +1,57 @@
+   Compiling yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4f-qualification-20261025/yijie-desktop/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 10.84s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/yijie_desktop_lib-1b53ef458e0aa835)
+
+running 34 tests
+test chat::host_bridge::tests::feat164_model_recovery_wire_reads_original_then_current_and_guards_writes ... ok
+test chat::kimi_k31_tests::feat164_candidate_decoder_separates_readable_and_executable_identity ... ok
+test chat::delivery::tests::feat164_delivery_migration_does_not_backfill_legacy_pending ... ok
+test chat::kimi_k31_tests::feat164_migration_expands_without_rewriting_model_facts ... ok
+test chat::kimi_k31_tests::feat164_native_recovery_schema_preserves_legacy_pending_without_backfill ... ok
+test chat::delivery::tests::feat164_delivery_legacy_without_proof_remains_unclassified_and_unmodified ... ok
+test chat::delivery::tests::feat164_delivery_new_acceptance_replay_preserves_proof_and_input_identity ... ok
+test chat::delivery::tests::feat164_delivery_cancel_releases_lane_and_allows_explicit_model_selection ... ok
+test chat::delivery::tests::feat164_delivery_permission_turn_checks_nested_source_operation ... ok
+test chat::schedules::drafts::feat164_fact_reader_tests::feat164_draft_fact_versions_are_explicit_and_read_only ... ok
+test chat::delivery::tests::feat164_delivery_ordinary_final_send_binds_operation_profile_path_and_is_single_use ... ok
+test chat::delivery::tests::feat164_delivery_new_chat_binding_is_observed_before_first_turn_send ... ok
+test chat::delivery::tests::feat164_delivery_pause_blocks_claim_but_preserves_explicit_unsent_cancel ... ok
+test chat::connectors::selection::expert_tests::feat164_surfaces_expert_normal_reopen ... ok
+test chat::schedules::model_retirement_tests::feat164_s3_paused_candidate_preserves_authority ... FAILED
+test chat::connectors::selection::tests::feat164_surfaces_market_normal_reopen ... ok
+test chat::delivery::tests::feat164_delivery_cancel_after_claim_survives_reopen_without_rewriting_or_reviving ... ok
+test chat::sidecar::tests::feat164_pause_is_explicit_and_reaches_only_candidate_child ... ok
+test chat::sidecar::tests::feat164_surfaces_config_is_explicit_and_paired ... ok
+test chat::tests::feat164_paused_terminal_history_does_not_require_model_resume ... ok
+test chat::delivery::tests::feat164_delivery_market_and_expert_have_independent_proof_and_no_ordinary_claim ... ok
+test chat::model_recovery::tests::feat164_native_old_pending_is_readable_but_not_a_v2_intent ... ok
+test chat::schedules::ipc::tests::draft_tests::feat164_surfaces_draft_claim_and_recovery ... ok
+test chat::schedules::ipc::tests::feat164_draft_fact_tests::feat164_current_native_writer_can_preview_completed_draft_without_rewriting ... ok
+test chat::host_bridge::tests::feat164_delivery_http_admission_blocks_cancelled_and_sends_live_once ... ok
+test chat::delivery::tests::feat164_delivery_public_or_create_attempt_prevents_cancel_even_after_legacy_retry_reset has been running for over 60 seconds
+test chat::kimi_k31_tests::feat164_canonical_migration_paths_and_repeat_are_valid has been running for over 60 seconds
+test chat::model_recovery::tests::feat164_native_intent_survives_normal_reopen_and_404_never_proves_unsent ... ok
+test chat::schedules::model_retirement_tests::feat164_s3_explicit_save_reauthorize_and_bound_target ... ok
+test chat::schedules::model_retirement_tests::feat164_s3_schema_upgrade_and_replay ... ok
+test chat::schedules::model_retirement_tests::feat164_s3_worker_starts_after_retirement ... ok
+test chat::delivery::tests::feat164_delivery_public_or_create_attempt_prevents_cancel_even_after_legacy_retry_reset ... ok
+test chat::kimi_k31_tests::feat164_canonical_migration_paths_and_repeat_are_valid ... ok
+test chat::schedules::model_retirement_tests::feat164_plan_retirement_before_dispatch ... ok
+test chat::kimi_k31_tests::feat164_populated_migrations_preserve_history_and_delivery_facts ... ok
+test chat::model_recovery::tests::feat164_native_recovery_rechecks_binding_work_and_receipt ... ok
+
+failures:
+
+---- chat::schedules::model_retirement_tests::feat164_s3_paused_candidate_preserves_authority stdout ----
+
+thread 'chat::schedules::model_retirement_tests::feat164_s3_paused_candidate_preserves_authority' (2390166) panicked at src/chat/schedules/model_retirement_tests.rs:493:5:
+assertion failed: !crate::chat::models::dispatch_profile_available("kimi-k3-1-pro-max-v1")
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    chat::schedules::model_retirement_tests::feat164_s3_paused_candidate_preserves_authority
+
+test result: FAILED. 33 passed; 1 failed; 0 ignored; 0 measured; 624 filtered out; finished in 84.01s
+
+error: test failed, to rerun pass `--lib`

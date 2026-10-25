@@ -1,0 +1,29 @@
+{
+  "checks": {
+    "s4f-host-draft-routes-green.log": {
+      "passed": [
+        "TestFEAT164V2OperationRoutesValidateBeforeService",
+        "TestFEAT164ModelRoutesPreserveAuthAndRetiredRead",
+        "TestFEAT164DraftV2RoutesFollowContract/create",
+        "TestFEAT164DraftV2RoutesFollowContract/resume",
+        "TestFEAT164DraftV2RoutesFollowContract/turn",
+        "TestFEAT164DraftV2RoutesFollowContract"
+      ],
+      "failed": 0,
+      "skipped": 0,
+      "sha256": "672d29e551a24f921f0fc49f9f9910b00c82a9d0cba0ad42f2e21456f2942627"
+    },
+    "s4f-host-draft-legacy-handlers.log": {
+      "passed": [
+        "TestFEAT155DraftHTTPRealServiceProducerConformance",
+        "TestFEAT155DraftHTTPUnavailableHasNoRuntimeOrStoreMigration",
+        "TestFEAT155DraftMappingReadWithoutRuntimeOrDirectory"
+      ],
+      "failed": 0,
+      "skipped": 0,
+      "sha256": "7759565f92a9826de111a5ef8accb5feec947c90b7bb50f3485651b130619762"
+    }
+  },
+  "vet_exit": 0,
+  "real_model_http_added": 0
+}

@@ -1,0 +1,30 @@
+{
+  "scope": "FEAT-164 S4F synthetic App acceptance, not real model qualification",
+  "external_requests": 0,
+  "attempts": 2,
+  "requests": [
+    {
+      "ordinal": 1,
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "case": "DRAFT",
+      "response_kind": "draft_candidate",
+      "request_sha256": "7fc66ac7ca13c53bc3e0ed4a047e1a55cbaa4a760974b93962bfc09483bcf153",
+      "tool_count": 0,
+      "input_only": true
+    },
+    {
+      "ordinal": 2,
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "case": "PLAN_RUN",
+      "response_kind": "text",
+      "request_sha256": "3c13b5fd9878a33411c741ba83279617cbb63e69e41b7a114b3f2c4854cf382e",
+      "tool_count": 10,
+      "input_only": false
+    }
+  ],
+  "rejected": [],
+  "state": "stopped_normally",
+  "limit": 16
+}
