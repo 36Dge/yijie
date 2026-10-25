@@ -1,0 +1,50 @@
+[
+  {
+    "name": "s1",
+    "command": [
+      "go",
+      "test",
+      "-race",
+      "-json",
+      "./internal/codex",
+      "-run",
+      "^TestFEAT164ActivationAndRetiredAdmission$",
+      "-count=1"
+    ],
+    "exit_code": 0,
+    "verified_at": "2026-10-26T00:20:08.570900+08:00",
+    "log_sha256": "a3a5c4f1b4288b458f3e4f510fedf9c3798575b15ee48a98ef01f0ab3523d303"
+  },
+  {
+    "name": "renderer",
+    "command": [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "src/composables/useChatModelsV2.test.ts",
+      "src/api/chat-model-v2-client.test.ts",
+      "src/composables/useChatDelivery.test.ts",
+      "src/api/chat-delivery-client.test.ts",
+      "src/components/chat/ChatDeliveryControl.test.ts",
+      "src/components/chat/ChatModelActivation.test.ts",
+      "src/composables/useScheduledPlanModel.s3.test.ts",
+      "--reporter=json"
+    ],
+    "exit_code": 0,
+    "verified_at": "2026-10-26T00:20:10.282692+08:00",
+    "log_sha256": "716259a400704a610ee817170e1b732877dd03c78b7c70bb7fb836ac89f1a7e6"
+  },
+  {
+    "name": "verdict",
+    "command": [
+      "node",
+      "--test",
+      "scripts/feat164-verdict.test.mjs",
+      "scripts/feat164-g2v-verdict.test.mjs"
+    ],
+    "exit_code": 0,
+    "verified_at": "2026-10-26T00:20:10.405212+08:00",
+    "log_sha256": "6e2620b26470fb90eb8834a2922c217e9e01838ded90169a0bbfa4f2e490188e"
+  }
+]

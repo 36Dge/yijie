@@ -1,6 +1,6 @@
 # FEAT-164 时序契约矩阵
 
-本文件与feature.yaml保持同一Scenario/Invariant/Test/Slice ID。TCONF-164-01已在Host S1实现并通过普通状态conformance；TCONF-164-02时序/存储与headless Native-Host-Runtime组合已通过；S2平台与S3—S4仍未通过。当前结果与范围见24/25，不把本机检查记为真实模型验证。
+本文件与feature.yaml保持同一Scenario/Invariant/Test/Slice ID。2026-10-26当前S1、S2（57项）、S3（5项）已在固定r4组合通过；S4三组实际driver及App证据按范围分别记录，完整G2V/G3/final未通过。最新覆盖与具体缺口见[36](36-current-offline-qualification-and-next-gate.md)，不把本机检查记为真实模型验证。
 
 ## 六阶段
 
@@ -30,26 +30,26 @@
 | TINV-164-03 | FLOW-PLAN-164、FLOW-REPLAY-164 | S3 / TCONF-164-03 | worker claim/send之前准入生效；计划领域事务撤有效授权并处理future slots，历史run和额度事实不改 |
 | TINV-164-04 | FLOW-LIVE-164、FLOW-REPLAY-164、FLOW-PLAN-164 | S4 / TCONF-164-04 | 真实启用调用面/流式/辅助模型/正常重开不恢复退役执行；来源、预算、退出和三项final verdict独立 |
 
-## 拟实现的精确测试入口
+## 已实现的精确测试入口
 
-| Test | Repository | 拟用命令 | 当前状态 |
+| Test | Repository | 命令 | 当前状态 |
 |---|---|---|---|
 | TCONF-164-01 | yijie-agent-host | go test ./internal/codex -run '^TestFEAT164ActivationAndRetiredAdmission$' -count=1 | PASS；真实存在、已执行10个普通子例，证据s1-tconf-164-01.log |
 | TCONF-164-02 | yijie-desktop（组合Host） | 下方完整driver命令，保留Host精确子入口 | PASS；五组零skip、源工作树干净，见25/evidence/s2-conformance-final/result.json；平台不在此PASS内 |
 | TCONF-164-03 | yijie-desktop | node scripts/feat164-s3-conformance.mjs /tmp/feat164-s3-native-final | PASS；5项模块限定exact入口各1通过/0ignored，见26/evidence/s3-native-final |
-| TCONF-164-04 | yijie-desktop | node --test scripts/tests/feat164-candidate-closure.test.mjs | PLANNED，NOT RUN；不代替真实E2E |
+| TCONF-164-04 | Desktop/Host | feat164-s4-conformance.py、feat164-s4b-conformance.py、Host feat164-s4e-conformance.py；完整参数见s4j-qualified-driver-results.json与S4I | 三组safe subset均有实际证据；完整资格仍NOT RUN，不代替App/真实E2E |
 
-TCONF-164-01已存在并执行，02已建立精确入口与跨端driver；03已实现5项独立driver，04名字仍为计划，不声称文件/用例已存在。运行前必须读取测试代码、核实selector实际命中、正确模块全名及执行数非0；最终exact命令在首次产品执行前写入本文件/YAML，禁止空跑PASS。每个test同时有本slice的local/boundary/vertical证据，不借其它slice旧通过。
+TCONF-164-01、02、03均已实现并有本轮当前来源结果，精确命令在feature.yaml和s4j证据中。04的closure单测及三个driver也已真实存在，不再称“待创建”；其各自覆盖边界保持，不能只运行closure五项就宣称完整TCONF。所有driver必须非零命中且零skip，失败保留。S2当前native组精确17项并使用原candidate环境；修前3个IPC门禁失败、修后57项通过见36。
 
 ## 安全恢复案例
 
 普通状态机输入表示：意图已存未调用、Runtime回执已获未提交、Host已提交Desktop未收、已完成重复查询、unknown、已确认never-sent、计划due但退役。用纯逻辑/普通本机协议正常返回验证，不强杀、不破坏文件权限、不伪装Runtime。原生只读状态只能帮助判断idle/运行，不用于证明模型。
 
-完整实际调用路径的harness为H-F164-LOCAL，未来使用canonical受控本机bootstrap、合成数据和获授权的真实小规模调用。harness分类product/harness/platform/gate，qualification/timeout/normal cleanup均NOT RUN；禁止行为不能成为negative control。
+完整实际调用路径的harness为H-F164-LOCAL，历史资格与真实r2结果见20；当前来源仍需新资格和真实G2V。分类器7项普通状态/协作取消检查已通过，不表示完整当前harness qualified。禁止行为不能成为negative control。
 
 任何source/pin/runtime/schema/migration/role/参数/准入顺序/测试driver/平台变化均使相应证据STALE，按transitive依赖重验。当前范围沿用已批准设计及本轮S1实施许可；不伪造独立人工审查或发布批准。
 
-## S2 本轮实际配套入口
+## 历史S2配套入口（当前命令见feature.yaml）
 
 `python3 scripts/feat164-s2-conformance.py --host-source ../yijie-agent-host --runtime-binary /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r2/aarch64-apple-darwin/codex --runtime-manifest /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r2/aarch64-apple-darwin/runtime-manifest.json --output /tmp/feat164-s2-conformance-final` 从Desktop资格工作树执行。输出目录必须新建，失败保留，不覆盖旧run。Host入口保持原精确名字；driver组合Host25个状态/迁移子例、Native派发/恢复/迁移与实际边界。边界中的Rust忽略测试只由独立Go Host test传入新建临时根/端口启动，默认不运行，不接受当前App作为验收目标。
 

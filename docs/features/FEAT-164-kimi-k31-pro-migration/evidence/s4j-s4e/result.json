@@ -1,0 +1,57 @@
+{
+  "scope": "S4e repaired native terminal subset; not complete TCONF or App acceptance",
+  "full_tconf_pass": false,
+  "started_at": "2026-10-26T00:17:30.997083+08:00",
+  "command": [
+    "/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go",
+    "test",
+    "-race",
+    "-json",
+    "./internal/codex",
+    "-run",
+    "^TestFEAT164(LoadedLegacyGraphCutover|LoadedRetiredAgentGuard|AutomaticCompaction|PreviousModelCompactionGuard|MigratedAutomaticCompaction)$",
+    "-count=1",
+    "-failfast",
+    "-timeout=0"
+  ],
+  "toolchain": "go version go1.26.5 darwin/arm64",
+  "head": "090c2dbeeeceb0fc87e576d8e13f5c339bf106f0",
+  "source_status": [],
+  "inputs": {
+    "runtime_binary": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r4/aarch64-apple-darwin/codex",
+      "sha256": "3821bb6063825bdb0e30e367757117f7b3bc9bca84f0275cbdef9e9c660e1e5f"
+    },
+    "runtime_manifest": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r4/aarch64-apple-darwin/runtime-manifest.json",
+      "sha256": "cf72b3b130c0682676603e75d40e8f4e9afaa6f5ed1a67d6be233726ff94a95f"
+    },
+    "legacy_binary": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/chat-models-web-sources/aarch64-apple-darwin/codex",
+      "sha256": "9766d7e10d25327f0595964a19ad67e1e1c1db0c22e5a65f9af66b547ab316c6"
+    },
+    "legacy_manifest": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/chat-models-web-sources/aarch64-apple-darwin/runtime-manifest.json",
+      "sha256": "91f1e4ef729410931fa13a304097b482cdb33d0d73baeb1235dc881c6875d6ba"
+    }
+  },
+  "test_source_sha256": "4e11fc8f4acf711b50145f6c0ff655897bfeb71e8754b7053aa8a31dbaf69a6f",
+  "real_model_http_added": 0,
+  "exit_code": 0,
+  "passed": [
+    "TestFEAT164LoadedLegacyGraphCutover",
+    "TestFEAT164LoadedRetiredAgentGuard",
+    "TestFEAT164AutomaticCompaction",
+    "TestFEAT164PreviousModelCompactionGuard/comp_hash",
+    "TestFEAT164PreviousModelCompactionGuard/window_downshift",
+    "TestFEAT164PreviousModelCompactionGuard",
+    "TestFEAT164MigratedAutomaticCompaction"
+  ],
+  "failed": [],
+  "skipped": [],
+  "loopback_requests": 23,
+  "completed_fixture_ledgers": 6,
+  "status": "PASS_FOR_NATIVE_TERMINAL_SUBSET",
+  "verified_at": "2026-10-26T00:17:36.584771+08:00",
+  "log_sha256": "7f592d97d87d932ed5429658ed8f7211f6a9d3425c4a12ec544074d5ffc71599"
+}

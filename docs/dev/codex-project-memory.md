@@ -1,14 +1,14 @@
 # 易界项目 Codex 长期协作记忆
 
-## FEAT-164 当前r4专家/媒体已配对验证，整项尚未完成（2026-10-25）
+## FEAT-164 当前离线资格已收敛，真实及日常切换仍待完成（2026-10-26）
 
-权威[35](../features/FEAT-164-kimi-k31-pro-migration/35-s4-current-media-and-completion-audit.md)、feature.yaml和s4i证据。整项目标是所有活动Kimi调用换为kimi-k3.1-pro/max/1M并安全保留旧身份、历史、计划和授权，最终切换日常入口；不能把局部PASS当需求完成。当前Desktop399bb19d4c2066675f3f73b61ee6b8f59ee489c6、Host090c2dbeeeceb0fc87e576d8e13f5c339bf106f0、Connectors7ea3df41818fd69f4736722d01f0686d584d1a71，Runtimea28130a r4、Contracts1b357cc、Skills595c927保持。
+权威[36](../features/FEAT-164-kimi-k31-pro-migration/36-current-offline-qualification-and-next-gate.md)、feature.yaml及s4j证据。整项目标仍是所有活动Kimi使用kimi-k3.1-pro/max/1M，保留旧身份/历史/计划/授权并最终切换日常入口。当前Desktopbad75a2d3c4a97be903b57e8bb3a3a72915edd18；Host090c2db、Runtimea28130a、Contracts1b357cc、Connectors7ea3df4、Skills595c927保持。Desktop本轮只修S2验证脚本期望10→17及native组candidate环境，产品源不变。首次环境FAIL保留，一次修正复验57项通过；S1当前10子例+父项、S3五项、S4b四组合/37资源/专家媒体/辅助、S4e7原生cutover及自动压缩、renderer18、verdict7通过。36次loopback、真实0。
 
-本轮真实发现并修复Worker r4兼容名单缺失、media共享草案退出回到旧profile、Native与Host两个专家/市场配置排除器。Host先撤旧lease/关闭继承MCP再配置原thread，不授业务新权。19来源、相关定向测试及canonical构建通过；safe conformance前三组7/4/4通过后调用PATH缺pnpm停止，只补后两组4/5通过，原记录保留，不称完整TCONF一次通过。一次构建gofmt输入等待经正常SIGINT停止，独立检查和一次重试通过，根因未确定，不强杀。
+S4I媒体/正常中断/图片/亮暗最小窗口、配对专家Kimi→paused显式MiniMax→重开Kimi、旧unknown保护与正常退出仍按399bb19原App来源成立。当前HEAD仅验证脚本不同，但canonical receipt覆盖脚本，后续新来源须新构建/资格，不用旧receipt伪装。当前候选metadata有14 K3.1 ready、1 K3.1 unknown、1 MiniMax ready、1 K3.1计划，旧K3会话/计划均0。旧K3 App升级未实测，不改库造场景；旧unknown f38666dc-d2d8-4101-b498-eccf3045b6dd仍不可据404恢复/换ID/重发。
 
-App媒体预览导出字节一致、正常停止/后续/PNG输入、亮暗1180×760完成；配对后独立专家Kimi/max→paused显式MiniMax/high→同源重开/Kimi配置通过。App8次、独立Runtime6次本机HTTP，真实0。旧媒体线程01a1739c-aaca-77a0-9ff5-e17edc67b8ae有原operation f38666dc-d2d8-4101-b498-eccf3045b6dd/unknown，Host无回执，不清除、不换ID、不重发；历史可读、发送禁用。新专家线程01a173c3-2435-7e10-b778-52dcacdea4e8最终Kimi/ready/revision3，两操作committed。旧计划/grant/run/failed草案/6facts保持，496原dirty、1118旧证据、7日常库、旧bundle及备份不变。App/fixture正常退出，浅色恢复。
+下一步不要重复当前离线子集：按36准备新canonical/harness资格和新的有限真实G2V授权，再独立final及明确批准的日常cutover。36提出新增1次普通文本HTTP、累计仍30元，是待批准提案，许可仍0；旧meter/verdict只接受历史schema2授权，不能重用旧ID或余额放行第3次。当前2/2已用、14.188544元unknown预占+0.139590元=14.328134元保守上界保留，旧账本SHA2dbd19be...不变。完整TCONF04/G2V/G3/final仍未通过，不虚构旧K3 App资格或Owner例外。非Mac ARM为当前范围外，不扩移植。
 
-继续按35末节整项剩余单：当前来源的完整TCONF覆盖与适用迁移/取消、自然可达旧K3 App路径、最终真实G2V及独立final/freshness，然后明确批准的日常cutover。非Mac ARM目标当前N/A，不扩展移植任务。当前G2V/G3/final仍未通过，未改日常入口。Owner授权持续安全离线实施与FEAT164专属本地提交、不推送。30元、2/2真实HTTP已用；14.188544元unknown预占+0.139590元=14.328134元保守上界保留，新增真实HTTP0。禁止强杀、攻击/故障注入、权限破坏和程序替换。
+496原dirty、1294旧证据、154资源、7日常库、406旧bundle文件及5525候选数据文件保持。App本轮未启动，测试子进程正常退出，无新真实HTTP/推送/发布/日常迁移。已授权持续安全离线实施和FEAT164专属本地提交；禁止强杀、攻击/故障注入、权限破坏、程序替换。FEAT163进度/空工具面板问题仍独立未关闭。
 
 2026-10-08 Sorftime 最新状态：Owner已填密钥，但两条19:19/19:20元数据初始化仍unavailable。审计发现通用HTTP迁移漏带旧链路已验证有效的User-Agent；已补真实yijie-mcp-worker/0.1.0及受限HTTP阶段/状态码诊断，未伪装旧客户端、未改固定Codex。63本地测试/lint/标准App构建通过，说明已左对齐。新worker da3c31537e6be46bb826a2ec44b0541456cbbf2810772aabbba5df1023400f81。尚未真实复验，已申请仅1次连接/发现、0模型/0业务；因先前失败不自动重发，等待用户答复。Keyring已有用户保存密钥，不要再要求重填/卸载或读取密钥。详见FEAT-157/21及sorftime-user-agent-20261008证据。
 

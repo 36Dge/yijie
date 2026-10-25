@@ -1,0 +1,143 @@
+{
+  "test_id": "TCONF-164-02",
+  "status": "PASS",
+  "real_model_http_added": 0,
+  "platform_ui": "NOT RUN",
+  "runtime_binary_sha256": "3821bb6063825bdb0e30e367757117f7b3bc9bca84f0275cbdef9e9c660e1e5f",
+  "runtime_manifest_sha256": "cf72b3b130c0682676603e75d40e8f4e9afaa6f5ed1a67d6be233726ff94a95f",
+  "sources": {
+    "desktop": {
+      "head": "bad75a2d3c4a97be903b57e8bb3a3a72915edd18",
+      "status": []
+    },
+    "host": {
+      "head": "090c2dbeeeceb0fc87e576d8e13f5c339bf106f0",
+      "status": []
+    }
+  },
+  "checks": [
+    {
+      "name": "host-temporal",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-json",
+        "./internal/session",
+        "-run",
+        "^TestFEAT164MigrationReceiptAndRecovery$",
+        "-count=1"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4i-qualification-20261025/yijie-agent-host",
+      "started_at": "2026-10-26T00:15:38.672767+08:00",
+      "verified_at": "2026-10-26T00:15:42.042039+08:00",
+      "exit_code": 0,
+      "passed_cases": 25,
+      "skipped": 0,
+      "log": "host-temporal.log",
+      "sha256": "34693f223c3b20d88f0f414c6bdeeb9213d9db0a9443a31e13fc337364e923bf",
+      "result": "PASS"
+    },
+    {
+      "name": "host-routes",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-json",
+        "./internal/app",
+        "-run",
+        "^TestFEAT164(V2OperationRoutesValidateBeforeService|ModelRoutesPreserveAuthAndRetiredRead)$",
+        "-count=1"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4i-qualification-20261025/yijie-agent-host",
+      "started_at": "2026-10-26T00:15:42.042569+08:00",
+      "verified_at": "2026-10-26T00:15:43.726710+08:00",
+      "exit_code": 0,
+      "passed_cases": 2,
+      "skipped": 0,
+      "log": "host-routes.log",
+      "sha256": "cd002630b68c2c1d879153a3d9d5326631ea2cbc3ee613a247cbba32a6b630ca",
+      "result": "PASS"
+    },
+    {
+      "name": "native-delivery",
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "--lib",
+        "feat164_delivery",
+        "--",
+        "--test-threads=1"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4i-qualification-20261025/yijie-desktop",
+      "started_at": "2026-10-26T00:15:43.727365+08:00",
+      "verified_at": "2026-10-26T00:15:54.574533+08:00",
+      "exit_code": 0,
+      "passed_cases": 12,
+      "skipped": 0,
+      "log": "native-delivery.log",
+      "sha256": "5e0f7ecde0b02c2aaf71437b06fdcc321bcfa80db023f4c1b60c32da6156db2b",
+      "result": "PASS"
+    },
+    {
+      "name": "native-recovery-migration",
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "--lib",
+        "feat164",
+        "--",
+        "--skip",
+        "feat164_surfaces",
+        "--skip",
+        "feat164_delivery",
+        "--skip",
+        "feat164_native_host_boundary",
+        "--skip",
+        "chat::schedules::model_retirement_tests::",
+        "--test-threads=1"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4i-qualification-20261025/yijie-desktop",
+      "started_at": "2026-10-26T00:15:54.575055+08:00",
+      "verified_at": "2026-10-26T00:16:10.921037+08:00",
+      "exit_code": 0,
+      "passed_cases": 17,
+      "skipped": 0,
+      "log": "native-recovery-migration.log",
+      "sha256": "96cfec7ce2ff81000bbd7d24a75852b4b3ad7deab9182a8d4ffb53731c20e77b",
+      "result": "PASS"
+    },
+    {
+      "name": "native-host-boundary",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-json",
+        "./internal/app",
+        "-run",
+        "^TestFEAT164NativeHostBoundary$",
+        "-count=1"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4i-qualification-20261025/yijie-agent-host",
+      "started_at": "2026-10-26T00:16:10.921354+08:00",
+      "verified_at": "2026-10-26T00:16:14.996401+08:00",
+      "exit_code": 0,
+      "passed_cases": 1,
+      "skipped": 0,
+      "log": "native-host-boundary.log",
+      "sha256": "463b7ffdd94c9c22b0adc19f987cf1a10acd36d2d7db567dbad49aeb6deca1eb",
+      "result": "PASS"
+    }
+  ],
+  "limitation": "Headless temporal/storage/boundary conformance; no canonical App/UI, daily migration, supplier qualification, S2 G3 or release claim."
+}

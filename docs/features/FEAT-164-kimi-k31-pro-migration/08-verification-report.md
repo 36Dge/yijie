@@ -352,3 +352,9 @@ s4h-generation-driver.log及s4h-generation-attempt.json记录来源预检FAIL。
 实施与逐AC剩余账见[35](35-s4-current-media-and-completion-audit.md)。Worker来源缺口与草案退出旧profile分别经实际canonical/App复现，最小修复和本地固定来源；原失败证据不改。19生成检查、6配置测试、1候选/1旧入口草案回归及8相关前端、ESLint、docs和canonical media构建通过。完整来源、App/退出、保护和限制按s4i证据记录；真实模型HTTP新增0，不宣称完整TCONF/G2V/G3/final或日常激活通过。
 
 S4I续验：Host090c2db/Desktop399bb19配对后，实际专家线程Kimi→paused显式MiniMax→重开Kimi往返通过，配置/重开0模型HTTP；原unknown仍阻断且旧媒体四轮可读。App8次本机HTTP，独立safe conformance6次，真实0。原脚本前三组7/4/4通过后因调用PATH遗漏pnpm中止；只补剩余4/5通过，未写成整套TCONF一次PASS。原计划/grant/run/失败草案/6facts与未知操作保留；496原dirty、1118旧证据、7日常库、287旧bundle文件不变。App和fixture正常退出，来源/清理/预算与逐AC限制见35和s4i-data-audit、s4i-cleanup、s4i-preservation-audit。
+
+## E164-S4J-OFFLINE 当前离线资格收敛
+
+<!-- evidence: E164-S4J-OFFLINE -->
+
+[36](36-current-offline-qualification-and-next-gate.md)记录当前来源、精确命令、首次环境FAIL与修正后复验。S1共11含父项；S2五组57、S3五项、S4b四组合及1/3/4/1、S4e7项、renderer18、verdict7通过且0skip。36次本机模型HTTP，真实0。当前候选metadata旧K3会话/计划均0，旧K3 App场景仍未实测，不改库制造。产品源未变，旧bundle/旧数据/预算保留；完整TCONF04、G2V/G3/final仍未通过。下一步为新的canonical资格、需独立授权的真实文本G2V及剩余App/final/日常cutover，不以重复这些子集代替。

@@ -73,3 +73,7 @@ Owner要求继续后续方案并牢记整项FEAT164目标。执行35及s4i-plan�
 ### S4I 配对修复与整项复核
 
 Native54556bf之后真实App仍失败，定位Host purposeOrdinary旧准入；原operation保留unknown，不按404重发。Host090c2db补settled market/expert配置及原lease/MCP清理，Desktop399bb19固定来源。12Host/5Native及12取消回归、当前19生成、safe conformance24分组通过。canonical首次gofmt stdin等待经一次正常中断、独立检查和一次重试完成；日志保留。最终App新专家Kimi/显式MiniMax/重开Kimi通过，8次App及6次独立本机HTTP，真实0。旧账本/数据/496原dirty核验通过；整项仍IN_PROGRESS，具体未完成项与边界见35。
+
+### S4J 当前离线资格与验证脚本修正（2026-10-26）
+
+Desktop716a3e4将S2当前selector精确期望10→17；首次3个草案IPC因旧driver未传candidate环境失败，bad75a2仅复用已有candidate环境。一次修正后S2五组57通过，S1/S3、当前S4b/e、renderer18和verdict7通过；36本机HTTP、真实0。旧证据/数据与原unknown保持。完整覆盖、原失败、自然旧K3 App不可达的实际metadata和待批准真实G2V方案见36。不降低整项Gate、不迁移日常库、不推送。

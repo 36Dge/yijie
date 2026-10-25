@@ -109,7 +109,7 @@ gate_reasons:
     S4新增三组模型承载v2源于eddc64f，安全leaf/check、4同源schema测试和9登记基线比较通过，Host9ffcb6f/Desktop
     e408047精确消费；仅本地来源，不等于发布或专家资源资格。
     S4b复用同一公共契约；Hostcac2d4d/Desktop56f5284/Connectors1f15726固定Skills595c927同内容资源和原库树，四组合source通过，旧来源的证据不覆盖App资格。
-  G2V: 当前来源未执行新真实模型G2V；本轮仅1次App MiniMax/high本机合成请求，旧账本与预占保持，新增真实HTTP许可0。源码生成和App计划子集不能替代G2V。
+  G2V: 当前来源未执行新真实模型G2V。S4J本轮36次安全loopback、真实0，旧schema2账本2/2已耗尽且halted。新增1次普通文本是36中的待批准提案，不是执行许可；离线/App历史不替代真实G2V。
 temporal_contract_matrix:
   required: true
   applicability_reason: 模型意图、配置回执、Host提交、Native通知、历史重放、计划资格和正常退出跨进程且跨版本
@@ -200,92 +200,81 @@ temporal_contract_matrix:
     - id: TCONF-164-01
       required: true
       repository: yijie-agent-host
-      command: go test ./internal/codex -run '^TestFEAT164ActivationAndRetiredAdmission$' -count=1 -v
+      command: go test -race -json ./internal/codex -run '^TestFEAT164ActivationAndRetiredAdmission$' -count=1
       slice_id: S1
       status: PASS
       exit_code: 0
-      verified_at: 2026-10-25T03:52:13.501Z
+      verified_at: 2026-10-26T00:20:08.570900+08:00
       commits:
         - repository: yijie-codex
-          full_sha: 074417e5e2f5f55704ea5e1777e7a22d514076b4
+          full_sha: a28130abb13d0f99a00107cd513a653bae878b77
         - repository: yijie-contracts
-          full_sha: f2819c66a2368aaff37216a46c48d5cd81df1747
+          full_sha: 1b357cce0575c492f3715b316ee5f254051acf80
         - repository: yijie-agent-host
-          full_sha: e8ae83f9c53fb41cc80139e0d0f70d7c8268b4ab
+          full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
         - repository: yijie-desktop
-          full_sha: 174fbaf661e4fdf48828ff8bbabbe5d55c157bed
-      evidence_ref: 08-verification-report.md#E164-S1-TCONF
+          full_sha: bad75a2d3c4a97be903b57e8bb3a3a72915edd18
+        - repository: yijie-connectors
+          full_sha: 7ea3df41818fd69f4736722d01f0686d584d1a71
+      evidence_ref: 08-verification-report.md#E164-S4J-OFFLINE
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
       implementation_status: implemented
-      command_note: 真实存在并命中10个普通子例；不执行攻击/权限破坏/强杀，也不调用真实模型。
+      command_note: 当前10子例+父项通过、0skip；普通配置与准入，无真实模型请求。
     - id: TCONF-164-02
       required: true
       repository: yijie-desktop
-      command: python3 scripts/feat164-s2-conformance.py --host-source ../yijie-agent-host --runtime-binary
-        /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r2/aarch64-apple-darwin/codex
-        --runtime-manifest
-        /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r2/aarch64-apple-darwin/runtime-manifest.json
-        --output /tmp/feat164-s2-conformance-final
+      command: python3 scripts/feat164-s2-conformance.py --host-source ../yijie-agent-host --runtime-binary <pinned-r4-codex> --runtime-manifest <pinned-r4-manifest> --output <new-output>
       slice_id: S2
       status: PASS
       exit_code: 0
-      verified_at: 2026-10-25T14:18:20.593851+08:00
+      verified_at: 2026-10-26T00:16:14.996401+08:00
       commits:
         - repository: yijie-codex
-          full_sha: 074417e5e2f5f55704ea5e1777e7a22d514076b4
+          full_sha: a28130abb13d0f99a00107cd513a653bae878b77
         - repository: yijie-contracts
-          full_sha: f2819c66a2368aaff37216a46c48d5cd81df1747
+          full_sha: 1b357cce0575c492f3715b316ee5f254051acf80
         - repository: yijie-agent-host
-          full_sha: 57c29ea03e3de39161a7c28080f9388f00cd1735
+          full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
         - repository: yijie-desktop
-          full_sha: ddc840f7ed642216bca4b42ab6327d388aa73084
-        - repository: yijie-agent-host
-          full_sha: e8ae83f9c53fb41cc80139e0d0f70d7c8268b4ab
-        - repository: yijie-desktop
-          full_sha: 174fbaf661e4fdf48828ff8bbabbe5d55c157bed
-      evidence_ref: 08-verification-report.md#E164-S2-TCONF
+          full_sha: bad75a2d3c4a97be903b57e8bb3a3a72915edd18
+        - repository: yijie-connectors
+          full_sha: 7ea3df41818fd69f4736722d01f0686d584d1a71
+      evidence_ref: 08-verification-report.md#E164-S4J-OFFLINE
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
       implementation_status: implemented
-      command_note: 组合driver要求五组精确命中且零skip；Host原精确入口保留，配套Native带数据SQL40迁移/取消及真实Host-Runtime正常重开。仅时序与headless边界PASS，不等于完整S2
-        G3/App平台。
+      command_note: 当前五组25/2/12/17/1全部通过、0skip；包含真实Native-Host-Runtime边界。修前env失败保留，不等于App或G3。
     - id: TCONF-164-03
       required: true
       repository: yijie-desktop
-      command: node scripts/feat164-s3-conformance.mjs /tmp/feat164-s3-native-final
+      command: node scripts/feat164-s3-conformance.mjs <new-output>
       slice_id: S3
       status: PASS
       exit_code: 0
-      verified_at: 2026-10-25T07:43:31.405Z
+      verified_at: 2026-10-26T00:16:20.793092+08:00
       commits:
-        - repository: yijie-contracts
-          full_sha: 2dd214d6a702064edae78510c035442854bf9789
-        - repository: yijie-desktop
-          full_sha: 4d04597cbf40e1aea2c67607c9d441f888223d96
         - repository: yijie-codex
-          full_sha: 074417e5e2f5f55704ea5e1777e7a22d514076b4
+          full_sha: a28130abb13d0f99a00107cd513a653bae878b77
         - repository: yijie-contracts
-          full_sha: f2819c66a2368aaff37216a46c48d5cd81df1747
+          full_sha: 1b357cce0575c492f3715b316ee5f254051acf80
         - repository: yijie-agent-host
-          full_sha: e8ae83f9c53fb41cc80139e0d0f70d7c8268b4ab
+          full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
         - repository: yijie-desktop
-          full_sha: 174fbaf661e4fdf48828ff8bbabbe5d55c157bed
-        - repository: yijie-agent-host
-          full_sha: 57c29ea03e3de39161a7c28080f9388f00cd1735
-        - repository: yijie-desktop
-          full_sha: ddc840f7ed642216bca4b42ab6327d388aa73084
-      evidence_ref: 08-verification-report.md#E164-S3-TCONF
+          full_sha: bad75a2d3c4a97be903b57e8bb3a3a72915edd18
+        - repository: yijie-connectors
+          full_sha: 7ea3df41818fd69f4736722d01f0686d584d1a71
+      evidence_ref: 08-verification-report.md#E164-S4J-OFFLINE
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
       implementation_status: implemented
-      command_note: 独立driver强制5个模块限定exact入口各1通过且0ignored；正常历史fixture/SQLCipher与真实DatabaseWorker，不含真实模型HTTP，不等于S3 G3。
+      command_note: 当前5个模块限定exact入口通过；SQL41/计划/授权/旧历史保护；不等于App或G3。
     - id: TCONF-164-04
       required: true
       repository: yijie-desktop
@@ -707,7 +696,7 @@ slices:
       - repository: yijie-agent-host
         full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
       - repository: yijie-desktop
-        full_sha: 399bb19d4c2066675f3f73b61ee6b8f59ee489c6
+        full_sha: bad75a2d3c4a97be903b57e8bb3a3a72915edd18
       - repository: yijie-connectors
         full_sha: 7ea3df41818fd69f4736722d01f0686d584d1a71
     exception:
@@ -734,6 +723,7 @@ slices:
         - 08-verification-report.md#E164-S4G-APP
         - 08-verification-report.md#E164-S4H-PLAN
         - 08-verification-report.md#E164-S4I-MEDIA
+        - 08-verification-report.md#E164-S4J-OFFLINE
       reason: 四组合source及1/3/4/1行为检查PASS、0skip；13次loopback覆盖专家/媒体/子代理/Guardian/显式压缩。当前源S4 7/4/4/4/5、S2
         25/2/12/10/1及S3五项复验通过；37专家版本安装/解析/重开、Native完整资源读取通过。不代表完整TCONF-164-04、App/平台或G3。
         上述批次保持原56f5284来源；当前a0a4743另经canonical构建、暂停历史回归及App/UI子集复验，见S4C锚点，不把旧全套结果改写为新源运行。
@@ -760,6 +750,7 @@ slices:
         - 08-verification-report.md#E164-S4G-APP
         - 08-verification-report.md#E164-S4H-PLAN
         - 08-verification-report.md#E164-S4I-MEDIA
+        - 08-verification-report.md#E164-S4J-OFFLINE
       reason: 历次r4原生终态/冷读/自动压缩/辅助调用按原来源保留；S4I当前配对专家切模型、media/中断/图片及重开清理已实机通过，旧unknown保持阻断。
         计划App证据见S4F/H。完整旧K3/恢复取消适用边界、当前G2V与整项freshness尚缺，不能把这些分批子集标为完整边界/纵向PASS；非Mac ARM目标N/A。
       exception:
@@ -782,6 +773,7 @@ slices:
         - 08-verification-report.md#E164-S4G-APP
         - 08-verification-report.md#E164-S4H-PLAN
         - 08-verification-report.md#E164-S4I-MEDIA
+        - 08-verification-report.md#E164-S4J-OFFLINE
       reason: 历次r4原生终态/冷读/自动压缩/辅助调用按原来源保留；S4I当前配对专家切模型、media/中断/图片及重开清理已实机通过，旧unknown保持阻断。
         计划App证据见S4F/H。完整旧K3/恢复取消适用边界、当前G2V与整项freshness尚缺，不能把这些分批子集标为完整边界/纵向PASS；非Mac ARM目标N/A。
       exception:
@@ -802,7 +794,7 @@ slices:
       invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
         implementation reference changes
     status: pending
-    status_reason: S4I当前r4媒体与配对专家App、19来源及24安全调用面分组通过，修复Worker pin、草案旧默认值和Native/Host模型配置门禁。正常退出/重开与旧数据保留通过；原unknown仍阻断。完整TCONF、适用旧K3迁移/恢复取消、当前G2V/G3/freshness/final及日常cutover仍未完成，见35。
+    status_reason: S4J当前迁移/取消57项、计划5项、专家媒体四组合、辅助及旧loaded/终态/自动压缩通过，产品代码不变。安全离线覆盖已收敛；当前候选无旧K3会话/计划可供自然App升级。完整TCONF、当前G2V/freshness/final及日常cutover仍未完成，见36；不要重复同批离线测试代替这些缺口。
 final_e2e:
   core_vertical:
     required: true
@@ -1218,6 +1210,14 @@ implementation:
       unused_attempts: 2
       stopped_after_pass: true
       does_not_authorize_real_model_calls: true
+  current_offline_qualification:
+    status: PASS_SCOPED
+    desktop_commit: bad75a2d3c4a97be903b57e8bb3a3a72915edd18
+    host_commit: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
+    evidence_ref: 08-verification-report.md#E164-S4J-OFFLINE
+    real_model_http_added: 0
+    loopback_http: 36
+    note: S1当前11含父项、S2五组57、S3五项、S4b四组合和9行为、S4e7项、renderer18及verdict7通过；当前候选旧K3会话/计划均0。产品未改，完整G2V/final另判。
   current_media_qualification:
     status: PASS_SCOPED
     desktop_commit: 399bb19d4c2066675f3f73b61ee6b8f59ee489c6
@@ -1232,7 +1232,7 @@ implementation:
     note: Worker来源、草案默认值、Native/Host专家配置门禁已修复；实际媒体/正常中断/图片及配对专家paused往返、重开和清理通过。旧unknown未结清，整项Gate另判。
 product_verification:
   status: IN_PROGRESS
-  reason: 当前r4配对专家及媒体App子集、19来源检查和24项安全调用面分组已通过；旧unknown/账本/预占保留。完整TCONF、当前G2V/G3/freshness/final及日常激活仍缺，详见35整项AC与执行单。非Mac目标不在当前支持范围，记N/A而非PASS。
+  reason: S4J当前安全离线覆盖收敛，修复旧S2验证driver的命中计数与candidate环境。产品源与S4I相同，旧App证据保持原来源；新receipt仍待资格。缺真实G2V/完整TCONF/final、旧K3自然App场景与日常cutover，具体执行及授权边界见36。
 profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
 owner_approvals:
   requirements: approved_by_owner_current_user_message

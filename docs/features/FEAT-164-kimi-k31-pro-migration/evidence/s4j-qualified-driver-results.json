@@ -1,0 +1,79 @@
+[
+  {
+    "name": "s2-qualified",
+    "command": [
+      "python3",
+      "scripts/feat164-s2-conformance.py",
+      "--host-source",
+      "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4i-qualification-20261025/yijie-agent-host",
+      "--runtime-binary",
+      "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r4/aarch64-apple-darwin/codex",
+      "--runtime-manifest",
+      "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r4/aarch64-apple-darwin/runtime-manifest.json",
+      "--output",
+      "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-164-kimi-k31-pro-migration/evidence/s4j-s2-qualified"
+    ],
+    "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4i-qualification-20261025/yijie-desktop",
+    "exit_code": 0,
+    "finished_at": "2026-10-26T00:16:15.003526+08:00",
+    "log_sha256": "975fc61f27d7e565a2484322ecc2a2af7000588e6d995774ee117495801d7a22"
+  },
+  {
+    "name": "s3",
+    "command": [
+      "node",
+      "scripts/feat164-s3-conformance.mjs",
+      "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-164-kimi-k31-pro-migration/evidence/s4j-s3"
+    ],
+    "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4i-qualification-20261025/yijie-desktop",
+    "exit_code": 0,
+    "finished_at": "2026-10-26T00:16:20.793092+08:00",
+    "log_sha256": "10a52a5afccb1f85ddfdd20c8423dbba1a1d2a48364908bfe6ddb5c29998e13b"
+  },
+  {
+    "name": "s4b",
+    "command": [
+      "python3",
+      "scripts/feat164-s4b-conformance.py",
+      "--output",
+      "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-164-kimi-k31-pro-migration/evidence/s4j-s4b",
+      "--runtime-binary",
+      "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r4/aarch64-apple-darwin/codex",
+      "--runtime-manifest",
+      "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r4/aarch64-apple-darwin/runtime-manifest.json",
+      "--worker-manifest",
+      "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4i-qualification-20261025/yijie-connectors/bin/market-worker/current.json",
+      "--expert-bundle",
+      "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4i-qualification-20261025/yijie-desktop/.local/feat164-kimi-k31/skill-packages-experts",
+      "--artifact-adapter",
+      "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4i-qualification-20261025/yijie-desktop/.local/feat164-kimi-k31/bin/yijie-artifact-mcp"
+    ],
+    "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4i-qualification-20261025/yijie-desktop",
+    "exit_code": 0,
+    "finished_at": "2026-10-26T00:17:30.959650+08:00",
+    "log_sha256": "fe8d32a8f18efe8c15fb3cbef95979dfcb900e5cd6f34c9b631a3976722d7ca6"
+  },
+  {
+    "name": "s4e",
+    "command": [
+      "python3",
+      "scripts/feat164-s4e-conformance.py",
+      "--output",
+      "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-164-kimi-k31-pro-migration/evidence/s4j-s4e",
+      "--go-binary",
+      "/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go",
+      "--runtime-binary",
+      "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r4/aarch64-apple-darwin/codex",
+      "--runtime-manifest",
+      "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r4/aarch64-apple-darwin/runtime-manifest.json",
+      "--legacy-binary",
+      "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/chat-models-web-sources/aarch64-apple-darwin/codex",
+      "--legacy-manifest",
+      "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/chat-models-web-sources/aarch64-apple-darwin/runtime-manifest.json"
+    ],
+    "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4i-qualification-20261025/yijie-agent-host",
+    "exit_code": 0,
+    "finished_at": "2026-10-26T00:17:36.594884+08:00",
+    "log_sha256": "09612fbd3ffc32234fbadcd26882a1a2367f755015df58bde74abeee5dadbab8"
+  }
+]

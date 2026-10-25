@@ -1,0 +1,174 @@
+[
+  {
+    "id": "TCONF-164-01",
+    "required": true,
+    "repository": "yijie-agent-host",
+    "command": "go test ./internal/codex -run '^TestFEAT164ActivationAndRetiredAdmission$' -count=1 -v",
+    "slice_id": "S1",
+    "status": "PASS",
+    "exit_code": 0,
+    "verified_at": "2026-10-25T03:52:13.501Z",
+    "commits": [
+      {
+        "repository": "yijie-codex",
+        "full_sha": "074417e5e2f5f55704ea5e1777e7a22d514076b4"
+      },
+      {
+        "repository": "yijie-contracts",
+        "full_sha": "f2819c66a2368aaff37216a46c48d5cd81df1747"
+      },
+      {
+        "repository": "yijie-agent-host",
+        "full_sha": "e8ae83f9c53fb41cc80139e0d0f70d7c8268b4ab"
+      },
+      {
+        "repository": "yijie-desktop",
+        "full_sha": "174fbaf661e4fdf48828ff8bbabbe5d55c157bed"
+      }
+    ],
+    "evidence_ref": "08-verification-report.md#E164-S1-TCONF",
+    "exception": {
+      "owner": "N/A",
+      "approved_at": "N/A",
+      "reason": "N/A"
+    },
+    "implementation_status": "implemented",
+    "command_note": "真实存在并命中10个普通子例；不执行攻击/权限破坏/强杀，也不调用真实模型。"
+  },
+  {
+    "id": "TCONF-164-02",
+    "required": true,
+    "repository": "yijie-desktop",
+    "command": "python3 scripts/feat164-s2-conformance.py --host-source ../yijie-agent-host --runtime-binary /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r2/aarch64-apple-darwin/codex --runtime-manifest /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r2/aarch64-apple-darwin/runtime-manifest.json --output /tmp/feat164-s2-conformance-final",
+    "slice_id": "S2",
+    "status": "PASS",
+    "exit_code": 0,
+    "verified_at": "2026-10-25T14:18:20.593851+08:00",
+    "commits": [
+      {
+        "repository": "yijie-codex",
+        "full_sha": "074417e5e2f5f55704ea5e1777e7a22d514076b4"
+      },
+      {
+        "repository": "yijie-contracts",
+        "full_sha": "f2819c66a2368aaff37216a46c48d5cd81df1747"
+      },
+      {
+        "repository": "yijie-agent-host",
+        "full_sha": "57c29ea03e3de39161a7c28080f9388f00cd1735"
+      },
+      {
+        "repository": "yijie-desktop",
+        "full_sha": "ddc840f7ed642216bca4b42ab6327d388aa73084"
+      },
+      {
+        "repository": "yijie-agent-host",
+        "full_sha": "e8ae83f9c53fb41cc80139e0d0f70d7c8268b4ab"
+      },
+      {
+        "repository": "yijie-desktop",
+        "full_sha": "174fbaf661e4fdf48828ff8bbabbe5d55c157bed"
+      }
+    ],
+    "evidence_ref": "08-verification-report.md#E164-S2-TCONF",
+    "exception": {
+      "owner": "N/A",
+      "approved_at": "N/A",
+      "reason": "N/A"
+    },
+    "implementation_status": "implemented",
+    "command_note": "组合driver要求五组精确命中且零skip；Host原精确入口保留，配套Native带数据SQL40迁移/取消及真实Host-Runtime正常重开。仅时序与headless边界PASS，不等于完整S2 G3/App平台。"
+  },
+  {
+    "id": "TCONF-164-03",
+    "required": true,
+    "repository": "yijie-desktop",
+    "command": "node scripts/feat164-s3-conformance.mjs /tmp/feat164-s3-native-final",
+    "slice_id": "S3",
+    "status": "PASS",
+    "exit_code": 0,
+    "verified_at": "2026-10-25T07:43:31.405Z",
+    "commits": [
+      {
+        "repository": "yijie-contracts",
+        "full_sha": "2dd214d6a702064edae78510c035442854bf9789"
+      },
+      {
+        "repository": "yijie-desktop",
+        "full_sha": "4d04597cbf40e1aea2c67607c9d441f888223d96"
+      },
+      {
+        "repository": "yijie-codex",
+        "full_sha": "074417e5e2f5f55704ea5e1777e7a22d514076b4"
+      },
+      {
+        "repository": "yijie-contracts",
+        "full_sha": "f2819c66a2368aaff37216a46c48d5cd81df1747"
+      },
+      {
+        "repository": "yijie-agent-host",
+        "full_sha": "e8ae83f9c53fb41cc80139e0d0f70d7c8268b4ab"
+      },
+      {
+        "repository": "yijie-desktop",
+        "full_sha": "174fbaf661e4fdf48828ff8bbabbe5d55c157bed"
+      },
+      {
+        "repository": "yijie-agent-host",
+        "full_sha": "57c29ea03e3de39161a7c28080f9388f00cd1735"
+      },
+      {
+        "repository": "yijie-desktop",
+        "full_sha": "ddc840f7ed642216bca4b42ab6327d388aa73084"
+      }
+    ],
+    "evidence_ref": "08-verification-report.md#E164-S3-TCONF",
+    "exception": {
+      "owner": "N/A",
+      "approved_at": "N/A",
+      "reason": "N/A"
+    },
+    "implementation_status": "implemented",
+    "command_note": "独立driver强制5个模块限定exact入口各1通过且0ignored；正常历史fixture/SQLCipher与真实DatabaseWorker，不含真实模型HTTP，不等于S3 G3。"
+  },
+  {
+    "id": "TCONF-164-04",
+    "required": true,
+    "repository": "yijie-desktop",
+    "command": "python3 scripts/feat164-s4-conformance.py --output <new-output> --runtime-binary <pinned-r4-codex> --runtime-manifest <pinned-r4-manifest>",
+    "slice_id": "S4",
+    "status": "NOT RUN",
+    "exit_code": null,
+    "verified_at": "NOT RUN",
+    "commits": [
+      {
+        "repository": "yijie-codex",
+        "full_sha": "a28130abb13d0f99a00107cd513a653bae878b77"
+      },
+      {
+        "repository": "yijie-contracts",
+        "full_sha": "1b357cce0575c492f3715b316ee5f254051acf80"
+      },
+      {
+        "repository": "yijie-agent-host",
+        "full_sha": "090c2dbeeeceb0fc87e576d8e13f5c339bf106f0"
+      },
+      {
+        "repository": "yijie-desktop",
+        "full_sha": "399bb19d4c2066675f3f73b61ee6b8f59ee489c6"
+      },
+      {
+        "repository": "yijie-connectors",
+        "full_sha": "7ea3df41818fd69f4736722d01f0686d584d1a71"
+      }
+    ],
+    "evidence_ref": "08-verification-report.md#E164-S4I-MEDIA",
+    "exception": {
+      "owner": "N/A",
+      "approved_at": "N/A",
+      "reason": "N/A"
+    },
+    "implementation_status": "implemented_partial",
+    "command_note": "S4I当前来源安全子集24项分两次执行通过，原入口因调用PATH遗漏pnpm停止；专家模型往返与media App另有证据，仍未完成完整TCONF-164-04。"
+  }
+]
