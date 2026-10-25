@@ -1,0 +1,31 @@
+{
+  "repository": "yijie-desktop",
+  "base": "189019ec5d9f1d7d419b2edf35e6ce53a40be12b",
+  "paths": [
+    "src-tauri/migrations/chat/0039_model_recovery.sql",
+    "src-tauri/src/chat/model_recovery.rs",
+    "src-tauri/src/chat/application.rs",
+    "src-tauri/src/chat/database.rs",
+    "src-tauri/src/chat/host_bridge.rs",
+    "src-tauri/src/chat/host_bridge/models.rs",
+    "src-tauri/src/chat/ipc.rs",
+    "src-tauri/src/chat/kimi_k31_tests.rs",
+    "src-tauri/src/chat/migrations.rs",
+    "src-tauri/src/chat/mod.rs",
+    "src-tauri/src/chat/models.rs",
+    "src-tauri/src/lib.rs",
+    "src/api/chat-model-client.ts",
+    "src/api/chat-model-v2-client.test.ts",
+    "src/components/chat/ChatModelActivation.test.ts",
+    "src/components/chat/ChatModelControl.vue",
+    "src/composables/useChatModels.test.ts",
+    "src/composables/useChatModels.ts",
+    "src/composables/useChatModelsV2.test.ts",
+    "src/pages/chat/ChatPage.vue"
+  ],
+  "patch_sha256": "e10618acd701495f8d60ac1b74465676880294efb753d2d66d485607409f135c",
+  "staged_tree": "0c6c922208e4c1154d6f51ed4d4acfbd4b6de531",
+  "preservation": "reverse owned patch in temporary copy restores all original touched bytes exactly",
+  "verified": true,
+  "commit": "f341636e5935852ebbbd7d86c6b615e0dc8fad7a"
+}

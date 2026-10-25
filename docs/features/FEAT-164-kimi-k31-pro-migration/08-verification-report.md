@@ -1,5 +1,7 @@
 # FEAT-164 实际验证记录
 
+> 当前（2026-10-25，Native恢复接线）：Desktop f341636已完成SQL39新意图、只读查询和显式恢复，定向检查通过；旧pending不回填，已发/未知且404不重发。App未重建，平台UI继续延期。完整S2还缺never-sent证明与取消，G3/final未通过。最新见[23](23-native-model-recovery.md)和feature.yaml，较早记录按原来源保留。
+
 > 当前（2026-10-25，UI延期/S2基础）：Owner允许锁屏所需步骤延期并先推进离线实施，UI仍NOT RUN。Host Store11、v2原回执/显式恢复及带数据SQL升级验证已本地固化；Native恢复接线/never-sent取消、S3/S4与完整G3/final尚未完成。真实模型新增0。最新权威见[22](22-ui-deferral-and-s2-foundation.md)和feature.yaml；下方旧阶段记录仅按其原来源和时间解释。
 
 > 当前S1（2026-10-25）：源实现、local/boundary及canonical构建已完成；本机新Kimi正控通过，暂停/MiniMax/重开及最终清理因Mac锁屏未完成，S1 G3不放行。新增真实模型HTTP为0，旧账本逐字保持。最新来源、未执行项和续办见[21](21-s1-implementation.md)。下方20及更早阶段结论按原来源和时间保留。
@@ -172,3 +174,8 @@ S1当前不可变来源的安全定向验证通过：[最终六组检查及退�
 2026-10-25，Host3c52898/Desktop189019e，Contracts f2819c6/Runtime074417e r2不变。evidence/s2-host-verification.json、s2-desktop-verification.json记录正常定向检查均退出0；真实Runtime联调仅本机合成。v1结果字节语义、v2四恢复阶段、同ID不自动重配、完整身份回执、其他待处理工作门禁、普通关闭重开、7/8/9/10→Store11和旧reader拒绝、SQL15/29/37/38带数据迁移均有测试。失败迭代和修正见s2-iteration-history.json。
 
 这是已通过的工程子集；Native恢复/取消未接通，S2 local/boundary整体与required平台vertical保持NOT RUN，不标TCONF-164-02/G3 PASS。Owner允许延期锁屏相关验收并先推进离线实现，未执行项仍为事实NOT RUN。无新增真实模型HTTP，旧账本预占不变。
+
+<a id="E164-S2-NATIVE"></a>
+<!-- evidence: E164-S2-NATIVE -->
+
+Desktop f341636的Native模型恢复工程子集通过：SQL39原数据保持、旧pending无回填、原绑定及未决工作检查、显式恢复/404规则、终态回执后读取当前Selection、正常私有存储重开与迟到结果保护。候选10项/default5项/前端15项与相关lint/build/source checks见[s2-native-rust-verification](evidence/s2-native-rust-verification.json)、[s2-native-ui-verification](evidence/s2-native-ui-verification.json)，审计范围与缺口见[23](23-native-model-recovery.md)。本机HTTP测试不是App平台验收，无真实模型调用；完整S2仍因业务never-sent取消及平台项未通过。

@@ -1,18 +1,22 @@
 # 易界项目 Codex 长期协作记忆
 
-## FEAT-164 S1 UI延期，S2离线基础已本地固化（2026-10-25）
+## FEAT-164 Native选择恢复已本地固化，取消与平台项待完成（2026-10-25）
 
-Owner确认从S1继续、不新增真实模型调用；最新因本人不在电脑旁，允许需解锁步骤延期并推进离线工作。延期不是验收PASS：S1 required UI/Harness/最终清理仍NOT RUN，S1 G3不通过；当前权威为[22](../features/FEAT-164-kimi-k31-pro-migration/22-ui-deferral-and-s2-foundation.md)、feature.yaml和s2-*证据。21/S1和20预算受限G2V保留各自原来源，不覆盖历史。
+Owner要求审计已完成/剩余项并开始下一步，延续锁屏相关UI延期、真实模型新增0、保留工作区/旧账本/预占、只本地提交不推送。当前权威为[23 Native恢复](../features/FEAT-164-kimi-k31-pro-migration/23-native-model-recovery.md)、feature.yaml及s2-native-*证据。UI延期不是验收PASS，S1 required vertical/Harness/最终清理、完整S2 G3和final均未通过。
 
-本轮Host `3f6b609bc9755f9125636317209f4de07a867590`（14文件）实现候选Store11/base7/8/9/10、v2原操作回执和显式同operation恢复；旧v1结果不改schema/字段，旧未完成意图缺派发/thread证明不重配，新v2同ID select也不自动重试，完整thread/model/provider/effort回执与全部其它未决工作重验。标题与候选模型切换串行。Desktop `83f467b568f6dad03ccb31efe6ff3ddf3673a6d1`（2文件）固定Host并增加带数据SQL15/29/37/38→38验证；Native begin_model_selection仍保持候选禁止，未激活新Native恢复/取消。Contracts f2819c66a2368aaff37216a46c48d5cd81df1747、Runtime074417e5e2f5f55704ea5e1777e7a22d514076b4 r2不变。 复审追加Host `3c5289854d88ca6ed69b17bd806fca2efc0bbbcd`（终态重放使用只读事务并验证写计数不变）和Desktop `189019ec5d9f1d7d419b2edf35e6ce53a40be12b`（更新精确pin）；这两个是最新源码HEAD。
+Desktop最新本地提交 `f341636e5935852ebbbd7d86c6b615e0dc8fad7a`（20文件）消费固定Host `3c5289854d88ca6ed69b17bd806fca2efc0bbbcd`、Contracts `f2819c66a2368aaff37216a46c48d5cd81df1747` 和Runtime `074417e5e2f5f55704ea5e1777e7a22d514076b4` r2。Host/Contracts/Runtime本轮未改；前轮基础见22，qualification工作树沿原路径复用且最新源码干净。
 
-Host定向race/lint/source pin、Desktop候选5项/default4项/fmt/产品lib-bins Clippy通过。实际Runtime普通合成MiniMax回合→同thread新Kimi选择→正常Runtime/Store关闭重开→终态只读重放→MiniMax新选择通过。该新集成测试本轮执行3次，各1次本机loopback，外部0。原全targets Clippy、独立旧Skill Host pin问题未混入修复；全量攻击/权限故障fixture不执行。初次测试编译/格式/oracle错误及修正保留于s2-iteration-history.json。
+Native SQL39新增v2选择intent，固定session/Host/thread/旧profile/revision/目标与prepared/dispatched/unknown/committed和原终态回执；不回填旧pending，不修改旧migration。候选仅接受0/38/39；旧MAX38 reader拒绝39，新默认v1兼容reader不派发39模型工作。新选择/恢复分开命令，沿原scope/SubmitTurn和生命周期permit/epoch；所有未决工作及自身绑定重验。普通刷新只有GET；prepared+Host无记录才允许首次发送原意图，dispatched/unknown+404不重发。原回执后另取当前Selection，不回退更高revision或同revision替换身份。旧pending可读但不会冒充v2重配。
 
-当前运行App仍是S1来源Hoste8ae83f/Desktop174fbaf的canonical产物，暂停Kimi设置已启动，之后锁屏。App会话78901/port18086、普通本机fixture会话72636/port18083；不请求用户现在解锁，不强杀，不覆盖其bundle/二进制、不修改receipt绕过freshness。新来源未重建App；用户回来后先正常退出旧App，再canonical新构建并补延期UI/历史/最终清理及新S2验收。活动产物逐文件摘要与已有工作区保留审计见s2-start-baseline/s2-preservation-audit。原有共享改动均保留，所有提交仅FEAT-164且只本地，无推送。
+模型选择器显示旧K3“已退役”；“刷新状态”与“恢复原切换”分开，后者提示未完成时可能重新应用目标。正常重开保留原请求，导航/scope变化丢弃迟到结果。候选10项Native/default5项/前端15项、fmt、前端lint/候选build、candidate/default产品lib-bins Clippy与来源校验通过。SQLCipher正常关库重开、普通localhost Host wire通过；本轮没有执行新App或真实Host+Native+App平台全链。原全targets Clippy与独立旧Skill pin问题未扩散修复；禁止的fixture仍不执行。初次404解析/lifecycle漏接、测试私有字段、range/default转换问题已修复并记录。
 
-下一步：Native先增加原v1/new v2可区分的持久选择intent，再接operation只读查询/显式recover，读取当前Selection后才放新turn。普通重试可重置attempt_count=0，queued+0不能证明never-sent；需增加独立派发阶段/尝试事实，再实现普通/市场/专家取消领域事务，保留旧payload/profile/digest与未知占用，不删chat。旧隔离库迁移入口、S3计划退役/worker准入及S4全调用面/final仍待完成；完整TCONF-164-02与S2 G3未通过。
+本轮源改动在干净资格树完成，仅专属patch应用到原工作区和索引；临时逆补丁逐字验证原有共享改动，staged tree一致。见s2-native-isolation及preservation-audit。原有各仓dirty内容、真实账本和42个活动App文件保留；不推送、不改远端/分支、不发布。
 
-真实账本及旧快照逐字不变：累计2 HTTP，旧400未知预占14.188544元＋上轮保守0.139590元＝14.328134元累计上界；30元授权不增加已用尽的请求次数。halted/stopped_normally，新增真实HTTP许可0，不启动meter、不继承FEAT-162/163额度。日常库迁移、push/tag/release仍未授权；严格保留长期禁止强杀、可执行替身、权限破坏和攻击fixture条款。
+当前App仍是S1 Hoste8ae83f/Desktop174fbaf的canonical构建，暂停Kimi设置重开后锁屏。会话78901/18086；普通本机fixture72636/18083。用户不在电脑旁，不请求现在解锁、不强杀、不覆盖bundle/运行二进制或改receipt绕过freshness。用户回来先正常退出旧App，再按新源码canonical构建并补暂停/MiniMax/历史/主题/最小窗口/最终清理及新Native恢复平台验收。新SQL39尚未迁移到当前运行库或日常库。
+
+下一步先为普通/市场/专家业务请求补持久派发阶段和尝试事实，再做never-sent取消事务；旧attempt_count可重置，queued+0/404/无记录不够。模型配置intent不能充当业务请求未发证明。旧payload/profile/digest和未知占用保持，不删chat。随后推进旧隔离库激活、S3计划退役/授权迁移/claim-send、S4全调用面与final。完整TCONF-164-02仍未通过。
+
+真实账本及旧快照逐字不变：累计2 HTTP（旧400/unknown预占14.188544元＋上轮200保守0.139590元＝14.328134元上界），30元预算不增加已用尽的请求次数。halted/stopped_normally，新增真实HTTP许可0，不启动meter、不继承FEAT-162/163额度。旧预算文本G2V PASS保留原Host5022435/Desktop40908c7来源。日常库迁移与push/tag/release仍未授权。长期禁止强杀、可执行替身、权限破坏和攻击fixture持续适用。
 
 2026-10-08 Sorftime 最新状态：Owner已填密钥，但两条19:19/19:20元数据初始化仍unavailable。审计发现通用HTTP迁移漏带旧链路已验证有效的User-Agent；已补真实yijie-mcp-worker/0.1.0及受限HTTP阶段/状态码诊断，未伪装旧客户端、未改固定Codex。63本地测试/lint/标准App构建通过，说明已左对齐。新worker da3c31537e6be46bb826a2ec44b0541456cbbf2810772aabbba5df1023400f81。尚未真实复验，已申请仅1次连接/发现、0模型/0业务；因先前失败不自动重发，等待用户答复。Keyring已有用户保存密钥，不要再要求重填/卸载或读取密钥。详见FEAT-157/21及sorftime-user-agent-20261008证据。
 

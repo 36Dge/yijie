@@ -1,0 +1,53 @@
+{
+  "verified_at": "2026-10-25T13:13:11.483533+08:00",
+  "contract_impact": "semantic; private SQL39/IPC; public source unchanged",
+  "desktop_commit": "f341636e5935852ebbbd7d86c6b615e0dc8fad7a",
+  "host_commit": "3c5289854d88ca6ed69b17bd806fca2efc0bbbcd",
+  "contracts_commit": "f2819c66a2368aaff37216a46c48d5cd81df1747",
+  "corrected_findings": [
+    {
+      "finding": "shared recovery_get expected scheduled recovery error, rejecting the source-defined v2 model not_found",
+      "resolution": "exact model-operation GET path decodes generated v2 Error; caller still needs prepared Native proof for first send"
+    },
+    {
+      "finding": "new recover POST initially absent from lifecycle execution predicate",
+      "resolution": "same permit/epoch validation as model configuration writes; normal Stopping fixture rejects before network"
+    },
+    {
+      "finding": "test used private error field",
+      "resolution": "public kind() accessor; initial compiler log retained"
+    },
+    {
+      "finding": "manual integer range check",
+      "resolution": "Range::contains; no lint suppression"
+    },
+    {
+      "finding": "pre-existing model adapter conversion was redundant in default v1 build",
+      "resolution": "cfg-specific expected profile; both candidate/default product Clippy pass"
+    }
+  ],
+  "boundaries": [
+    "scope/SubmitTurn authorize before and after awaits; no new external destination, key store or filesystem capability",
+    "source-generated request/receipt validation; model recovery never submits a business turn",
+    "legacy pending remains readable, non-recoverable by v2, no SQL backfill",
+    "dispatched/unknown plus Host 404 never permits resend",
+    "original committed receipt then separate current Selection; reject unproved or equal-revision identity changes",
+    "default compatible reader does not dispatch SQL39 model work"
+  ],
+  "not_run": [
+    "canonical App rebuild/relaunch over active S1 bundle",
+    "locked UI/theme/minimum-window/platform recovery acceptance",
+    "daily database migration",
+    "new real model calls",
+    "full unsafe historical fixtures",
+    "full-target Clippy with previously recorded unrelated source_reader_tests placement issue"
+  ],
+  "remaining": [
+    "ordinary/market/expert never-sent dispatch proof and domain cancellation",
+    "old isolated database activation after worker guards",
+    "S3 plan retirement/grant migration and S4 call-surface coverage",
+    "fresh per-slice G3 and final E2E"
+  ],
+  "real_model_http_added": 0,
+  "app_bundle_rebuilt": false
+}

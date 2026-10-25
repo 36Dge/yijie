@@ -29,3 +29,7 @@ G2A需要真实不可变candidate提交/consumer pin和已生成diff评审；当
 ## 2026-10-25 UI延期后S2基础
 
 Owner明确允许需要解锁的步骤延期并继续离线推进。已实施/本地固化Host3f6b609（14文件）与Desktop83f467b（2文件），仅当前需求专属patch；正常测试与Runtime loopback通过。详情及未完成Native/取消/UI项见22。锁屏项NOT RUN，未提高Gate状态，未新增真实调用/推送。
+
+## 2026-10-25 Native模型恢复
+
+按Owner“审计后开始下一步”实现Desktop f341636（20文件）；Host/Contracts/Runtime不变。只本地提交，真实模型0，现App及日常库不触碰。工程子集检查与缺口见23，完整S2/G3仍未通过。

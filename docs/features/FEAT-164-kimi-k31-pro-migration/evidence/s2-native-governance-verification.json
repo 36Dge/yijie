@@ -1,0 +1,69 @@
+{
+  "results": [
+    {
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "started_at": "2026-10-25T13:14:52.338151+08:00",
+      "verified_at": "2026-10-25T13:14:52.631282+08:00",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "s2-native-meta-lint.log"
+    },
+    {
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "started_at": "2026-10-25T13:14:52.631388+08:00",
+      "verified_at": "2026-10-25T13:15:00.588906+08:00",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "s2-native-meta-tests.log"
+    },
+    {
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "started_at": "2026-10-25T13:15:00.588988+08:00",
+      "verified_at": "2026-10-25T13:15:00.671861+08:00",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "s2-native-package-strict.log"
+    },
+    {
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "docs/features/FEAT-164-kimi-k31-pro-migration",
+        "--audit-claims"
+      ],
+      "started_at": "2026-10-25T13:15:00.671946+08:00",
+      "verified_at": "2026-10-25T13:15:00.769036+08:00",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "s2-native-package-claims.log"
+    },
+    {
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "docs/features/FEAT-164-kimi-k31-pro-migration",
+        "--gate",
+        "G3",
+        "--slice",
+        "S2"
+      ],
+      "started_at": "2026-10-25T13:15:00.769127+08:00",
+      "verified_at": "2026-10-25T13:15:00.835203+08:00",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "log": "s2-native-g3-incomplete.log"
+    }
+  ],
+  "g3": "NOT PASSED; incomplete cancellation/platform scope retained"
+}

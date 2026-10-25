@@ -468,7 +468,7 @@ slices:
       - repository: yijie-agent-host
         full_sha: 3c5289854d88ca6ed69b17bd806fca2efc0bbbcd
       - repository: yijie-desktop
-        full_sha: 189019ec5d9f1d7d419b2edf35e6ce53a40be12b
+        full_sha: f341636e5935852ebbbd7d86c6b615e0dc8fad7a
     exception:
       owner: 段成威
       approved_at: 2026-10-25
@@ -482,7 +482,8 @@ slices:
       verified_at: NOT RUN
       refs:
         - 08-verification-report.md#E164-S2-FOUNDATION
-      reason: 22及08#E164-S2-FOUNDATION记录本批Host/存储子集已通过；完整S2尚缺Native恢复与never-sent取消，不把子集转换为全slice PASS。
+        - 08-verification-report.md#E164-S2-NATIVE
+      reason: Host基础和23 Native恢复子集通过；完整S2还缺普通/市场/专家never-sent证明与取消，不把子集转换为全slice PASS。
       exception:
         owner: N/A
         approved_at: N/A
@@ -496,7 +497,8 @@ slices:
       verified_at: NOT RUN
       refs:
         - 08-verification-report.md#E164-S2-FOUNDATION
-      reason: 22及08#E164-S2-FOUNDATION记录本批Host/存储子集已通过；完整S2尚缺Native恢复与never-sent取消，不把子集转换为全slice PASS。
+        - 08-verification-report.md#E164-S2-NATIVE
+      reason: Host基础和23 Native恢复子集通过；完整S2还缺普通/市场/专家never-sent证明与取消，不把子集转换为全slice PASS。
       exception:
         owner: N/A
         approved_at: N/A
@@ -528,8 +530,7 @@ slices:
       invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
         implementation reference changes
     status: pending
-    status_reason: S2基础已本地固化：Host
-      Store11、v2原回执/显式恢复、实际Runtime普通loopback、带数据SQL升级检查通过。Native选择/恢复接线、never-sent持久派发证明及取消、产品纵向仍未完成，整个slice未通过。
+    status_reason: Host基础及Native SQL39/显式恢复已本地固化并通过对应工程子集检查；业务never-sent持久派发证明/取消、旧隔离库激活与平台UI仍未完成，整个slice未通过。
   - id: S3
     intent: worker接管前退役保护及计划领域授权迁移
     required: true
@@ -814,6 +815,7 @@ documents:
   budget_resume_and_g2v: 20-budget-resume-and-g2v.md
   s1_implementation: 21-s1-implementation.md
   s2_foundation: 22-ui-deferral-and-s2-foundation.md
+  native_model_recovery: 23-native-model-recovery.md
 external_authorizations:
   paid_calls:
     allowed: false
@@ -832,7 +834,7 @@ external_authorizations:
     approved_at: N/A
 current_authorization:
   phase: implementation_with_governance
-  source: Owner确认从S1继续且不新增真实模型调用；2026-10-25追加允许需要解锁的步骤延期并先推进后续离线实施。保留已有工作区、旧账本与预占，仅本地提交、不推送。
+  source: Owner要求审计已完成及剩余步骤并开始下一步，延续锁屏相关验收延期；不新增真实模型调用，保留已有工作区、旧账本与预占，仅FEAT-164本地提交、不推送。
   documentation_write_allowed: true
   product_source_edit_allowed: true
   product_generate_build_test_allowed: true
@@ -850,7 +852,7 @@ implementation:
   mock_only: false
 product_verification:
   status: IN_PROGRESS
-  reason: 旧预算受限文本G2V PASS保留原来源；S1锁屏UI延期，S2离线基础已有本地实现/验证，完整S1/S2 G3与S3/S4/final尚未通过。
+  reason: S2 Host基础和Native选择/恢复工程子集已通过；S1延期UI、S2业务never-sent取消与平台验证、S3/S4/final尚未完成；旧G2V仅按原来源保留。
 profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
 owner_approvals:
   requirements: approved_by_owner_current_user_message

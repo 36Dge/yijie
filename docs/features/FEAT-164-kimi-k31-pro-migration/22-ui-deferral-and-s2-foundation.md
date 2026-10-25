@@ -41,3 +41,7 @@ Owner延期只改变工作推进顺序。S1 required vertical/Harness、S2全sli
 Host `3c5289854d88ca6ed69b17bd806fca2efc0bbbcd` 进一步把已完成操作重放移入真正只读事务，回归检查bbolt写计数不变；Desktop `189019ec5d9f1d7d419b2edf35e6ce53a40be12b` 随即固定该来源。最终race组（含实际Runtime正常关闭/重开）、lint与固定来源校验再次通过。本轮合计Host两笔、Desktop两笔本地提交。Native产品接线仍未放行，现运行S1 App产物未重建。
 
 保留性审计覆盖620个起始已有文件：618逐字未动，Host共享store.go专属补丁逆向复核及memory仅FEAT164段逆向复核均精确恢复起始字节。42个活动App文件哈希全同；旧账本及快照哈希全同，候选/fixture仍为正常ready/health200。元仓lint/test、strict和claims校验通过；S2 G3按真实未完成项拒绝，未修改全局门禁。见evidence/s2-preservation-audit.json、s2-governance-verification.json。
+
+## 后续进展
+
+Native模型选择/显式恢复已在23实现并本地固化，原“Native未接通”是本记录当时状态。普通/市场/专家never-sent证明与取消、平台UI及S3/S4仍未完成；本记录的来源、测试和Gate历史不改写。

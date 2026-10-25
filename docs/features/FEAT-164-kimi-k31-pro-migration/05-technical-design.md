@@ -1,6 +1,6 @@
 # FEAT-164 技术设计候选
 
-当前S1活动身份、候选受管配置和执行准入已实现并本地固化，详见21。S2的Host持久操作/显式恢复已实现（22），Native恢复接线、未发送取消、计划及全调用面仍待完成，不称完整产品可用。
+当前S1活动身份、候选受管配置和执行准入已实现并本地固化，详见21。S2的Host持久操作/显式恢复已实现（22），Native恢复接线已在23实现；未发送取消、计划及全调用面仍待完成，不称完整产品可用。
 
 > 2026-10-25 候选修正：实际 r1 出站包含官方 include 枚举未列出的 `reasoning.encrypted_content`；r2 将只对新 Kimi 省略该 opt-in，保留 max、搜索 sources、响应和历史处理。原预算适配器还须在去掉搜索时同步去掉依赖的 include。此修正仍按 Runtime 权威源先行和不可变下游 pin 执行；不是默认输出参数变更，也不证明首次 HTTP 400 的唯一原因。事实与限制见 [19](19-responses-400-audit.md)。
 
@@ -69,3 +69,11 @@ Host bbolt恢复字段和reader格式按本仓source/version审查。新库写�
 - reasoning.encrypted_content和其它额外字段接受情况为Unknown。沿实际Responses结构验证，不套Chat参数；保留tool_choice=auto、SSE终态工具参数恢复和原工具审批。
 - 输出上限不能借升级改变：Runtime当前无max_output_tokens请求字段，旧8192是诊断meter覆盖。原始请求与预算覆盖请求分开记录；不能以截断场景成功/失败推断日常默认行为。
 - Kimi网页Search/Fetch固定工具endpoint，不带主模型model字段；共享Key/FD/审批不改。独立产图服务不纳入模型ID替换。
+
+## S2 Native已实施增量（23）
+
+SQL39新增私有chat_model_operations_v2，保存v2原session/Host/thread/旧profile/目标/expected revision及prepared/dispatched/unknown/committed和原终态回执；不改0038或回填旧pending。兼容reader支持39，旧MAX38构建拒绝；默认v1兼容构建不派发39模型工作。候选入口仅允许0/38/39，不扩大到日常15/29/37库。
+
+Native先持久化prepared，最后POST前重验scope/会话绑定/未决工作并保存dispatched；沿原SubmitTurn及生命周期permit/epoch，新增本地chat_recover_model_v2明确动作，不扩大权限或外部端点。普通refresh只有GET；仅prepared且Host无记录可首次提交原意图，dispatched/unknown且404不证明未发。新select不能自动reapply已存在未决操作。原回执经过source-generated校验保存，再读取current Selection，迟到回执不能回退revision或在同revision替换profile。旧无v2证明pending只读阻断。
+
+该表只证明模型配置意图，不代替普通聊天、market、expert或计划的业务派发证据；其取消仍待下一步。
