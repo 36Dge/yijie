@@ -324,3 +324,23 @@ Desktop181885b；s4g-checks.json中Native2+原writer1、fmt/Clippy PASS；s4g-fr
 <!-- evidence: E164-S4G-APP -->
 
 同源ordinary候选source181885b，旧失败草案“提交结果未决（原生uncertain）”、发送禁用，刷新/取消确认/一次明确查证均0模型HTTP，原已完成草案正常且计划paused。实际亮暗1180×760检查、浅色恢复、App/fixture正常退出。s4g-ui-results.json、s4g-data-audit.json、s4g-cleanup.json及截图见33。完整FEAT164/S4/G2V/G3/final未通过。
+
+## E164-S4H-GENERATION
+
+<!-- evidence: E164-S4H-GENERATION -->
+
+34及Desktop生成入口说明记录RCA续办与单次验证边界。旧三次失败保留；首次新入口在来源预检停止，leaf执行0；结果见evidence/s4h-generation-attempt.json，保留FAIL。
+
+修正依赖目录后经Owner明确授权，[完整19项](evidence/s4h-generation-qualified/result.json)首次通过，新增6项配置测试也通过；最多3次授权仅使用1次完整检查。原preflight与通用FAIL原样保留，未修改旧默认入口/锁。source generation通过不表示App/G2V/G3或发布。
+
+## E164-S4H-PREFLIGHT
+
+<!-- evidence: E164-S4H-PREFLIGHT -->
+
+s4h-generation-driver.log及s4h-generation-attempt.json记录来源预检FAIL。node_modules目录规则已核对并修正，仅修改新资格目录；六个source clean，未运行任何生成leaf。随后Owner明确批准修正后单次检查并补充最多3次；修正后首次19项PASS，余2次未使用。独立S3领域与既有canonical App流程另列，不代替该门禁。
+
+## E164-S4H-PLAN
+
+<!-- evidence: E164-S4H-PLAN -->
+
+[s4h-generation-qualified](evidence/s4h-generation-qualified/result.json)19项、6项新入口普通结构化测试、[S3五项](evidence/s4h-s3-final/result.json)、18前端与canonical普通App构建通过。App先在关联聊天切换MiniMax，旧计划执行被正常拒绝且模型0HTTP；取消审阅不保存，重新审阅保存paused后独立单次运行MiniMax/high成功。恢复Kimi和正常重开后仍关闭，原新运行历史保留。1次loopback、真实0。数据与清理见s4h-data-audit.json、s4h-cleanup.json；旧K3仅Native历史fixture资格，不宣称旧K3 App迁移或完整恢复取消/媒体/G3。

@@ -1,0 +1,57 @@
+{
+  "old_grant_and_run_records_unchanged": 2,
+  "new_records": [
+    {
+      "kind": "grant",
+      "id": "01a17375-dbe6-79f0-b6f8-607abddb7412"
+    },
+    {
+      "kind": "run",
+      "id": "01a17375-dbf1-7bc1-b121-88e9474c3bb4"
+    }
+  ],
+  "old_plan_revision": 1,
+  "final_plan_revision": 3,
+  "all_other_plan_fields_restored": true,
+  "final_plan_state": "paused",
+  "final_model": "kimi-k3-1-pro-max-v1",
+  "final_authorization_ref": null,
+  "cached_next_at_unchanged": 1792943940,
+  "final_chat_selection": [
+    "kimi-k3-1-pro-max-v1",
+    "ready"
+  ],
+  "new_single_grant_max_runs": 1,
+  "new_single_grant_occupied_runs": 1,
+  "new_run_outcome": "completed",
+  "new_run_snapshot": {
+    "plan_id": "01a1732e-d1d4-7d82-ad09-0274ee75feb0",
+    "revision": 2,
+    "schedule_epoch": 1,
+    "definition": {
+      "name": "FEAT164 S4F 安全离线计划",
+      "content": "FEAT164_S4F_PLAN_RUN 请回复本机计划验证完成，不调用工具。",
+      "rule": {
+        "frequency": "daily",
+        "time_zone": "Asia/Shanghai",
+        "local_time": "23:59"
+      },
+      "target": {
+        "mode": "dedicated_chat"
+      },
+      "model_profile": "minimax-m3-high-v1"
+    },
+    "state": "paused",
+    "target_state": "unbound",
+    "effective_from": 1792933810,
+    "next_at": 1792943940,
+    "rule_version": 1,
+    "tzdb_version": "2025b"
+  },
+  "old_failed_draft_metadata_unchanged": true,
+  "old_completed_draft_facts_unchanged": 6,
+  "read_only_audit": true,
+  "real_model_http_added": 0,
+  "model_loopback_http": 1,
+  "audit_correction": "initial audit incorrectly assumed paused plans have next_at=NULL; actual prior and final cached next_at identical, state paused and authorization_ref/expires NULL; no product mutation to satisfy the assertion"
+}

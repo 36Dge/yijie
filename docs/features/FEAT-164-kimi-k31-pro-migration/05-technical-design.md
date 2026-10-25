@@ -95,3 +95,7 @@ Native先持久化prepared，最后POST前重验scope/会话绑定/未决工作�
 ## S4g 旧草案状态续办（2026-10-25）
 
 私有历史读取对既有attempted+failed且无Host/Runtime绑定的草案投影已有uncertain；只读，不更改持久行、attempt或发送权限。精确条件、兼容与scope隔离见33及Desktop源说明。
+
+## S4h 生成入口与计划验收（2026-10-25）
+
+新增显式FEAT164只读生成入口，保留旧通用行为，校验真实sibling位置/精确来源并覆盖旧reader及新writer。只改验证编排，contract-impact=none，详见34。

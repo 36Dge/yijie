@@ -61,3 +61,7 @@ Host 57c29ea03e3de39161a7c28080f9388f00cd1735（2个测试文件）与Desktop dd
 ## S4g 旧草案状态续办（2026-10-25）
 
 继续审计后实施只读uncertain投影及说明/防重复提交，Desktop181885b（10文件）。2 Native+1 writer+32前端、canonical App限定验收通过；0模型请求，正常清理。通用generate三次失败/RCA及首次UI绑定时机问题均保留。见33。
+
+## S4h 生成入口与计划验收（2026-10-25）
+
+S4h固定1b5adcf验证入口；首次预检发现dependency symlink未被ignore，修正后Owner明确授权并允许至多3次，首次完整19项PASS后停止。5项S3、18前端及计划App链验证完成，1次本机模型请求；数据原事实和旧账本保持。

@@ -1,0 +1,142 @@
+diff --git a/docs/feat164-generation-check.md b/docs/feat164-generation-check.md
+new file mode 100644
+index 0000000..548fd5f
+--- /dev/null
++++ b/docs/feat164-generation-check.md
+@@ -0,0 +1,15 @@
++# FEAT-164 只读生成检查入口
++
++2026-10-25。contract-impact=none：仅增加本地验证编排，不改变Desktop/Host/Runtime的产品接口、默认启动、数据/重放、授权或部署配置。整个FEAT-164仍breaking；无需新的公共schema/tag。本轮用户“执行后续方案”授权继续RCA后的离线验证和本地提交，真实模型HTTP仍0。
++
++通用`pnpm generate:check`保留原行为和旧锁，原三次FAIL保留，不因本入口通过改写历史。新增显式`pnpm generate:check:feat164 /absolute/new-output-directory`：必须从已提交干净资格树运行，预检所有来源、版本和真实目录，再顺序执行已审计只读leaf。失败即停，无自动重试、fetch、安装、构建、App/Runtime启动或模型请求；只新增诊断目录。
++
++与通用检查一一对应：public API、Host v2/v3/Skills/v4、Native timing/purpose/conversation、scheduled IPC v1、market connectors/selection/provider/host原reader均保留。唯一替换是目录provenance：通用`sync-market-catalog`的旧e279 working-tree锁改由既有`feat164-market-catalog --check`检查精确1f15726锁；同一catalog源数据仍必须等于commit，结构和60项限制不变。额外检查Kimi r4/runtime、chat-models-v2、scheduled IPC v2和既有kimi build candidate（含计划v2与market/host/experts v2的双consumer）补足本Feature写端。检查器不能据此声明专家/媒体资源、App、G2V或发布资格。
++
++来源：Contracts1b357cce0575c492f3715b316ee5f254051acf80、Host7927ee7b385cb5536c3647632d1bac0cb7c56fea、Connectors1f157260d6dd339172712e1c649258902db45050、Runtime a28130abb13d0f99a00107cd513a653bae878b77、Skills595c927ae101d3d31c234f60565041eee0864680。历史Host1b7bfd1/96b1fa1和Skills10c45be还须有既有resolver认可的固定checkout。本入口不改变任何lock或在失败时重生成快照。
++
++新增发现：Node从符号链接脚本取得真实路径，部分generator按脚本所在仓库推导sibling consumer。若Contracts链接到上一批资格树，可能验证上一批Desktop。为避免错误资格，本入口要求Desktop/Contracts/Host/Connectors位于同一个真实父目录且各自不是指向别的资格树的仓库链接；Runtime/Skills只读producer可引用已核实干净精确来源。旧批次没有相关生成物变化，但不能据此继续放任错误指向。
++
++实施/验证顺序：配置与执行计划的普通结构化单元检查 → 本地固定脚本源 → 一次完整新入口验证并保留每项日志/精确源 → S3原5项领域/重开回归及计划UI重新选择/单独授权。当前App数据中自然保留的计划为K3.1，不伪造其曾是K3；旧K3迁移只按安全Native测试的实际范围判定，未自然存在的旧K3 App路径继续单列未验。
++
++回退只移除新增alias/检查文件，产品及旧检查行为不变；新检查PASS不替代通用默认入口、不替代剩余S4/完整G3。不得通过此入口执行历史攻击/故障fixture，相关完整测试仍单独报告未运行。
+diff --git a/package.json b/package.json
+index f4db999..3fda004 100644
+--- a/package.json
++++ b/package.json
+@@ -19,6 +19,7 @@
+     "test:production-hardened": "pnpm generate:check && vitest run --maxWorkers=4 --exclude '**/.contracts-source/**' --exclude '**/.agent-host-source/**' --exclude '**/.skills-source/**' --exclude '**/.local/**'",
+     "generate": "node scripts/generate-public-api.mjs && node scripts/check-agent-host-contract.mjs && node scripts/check-agent-host-v3-contract.mjs && node scripts/check-agent-host-skills-contract.mjs && node scripts/check-agent-host-v4-contract.mjs && pnpm generate:native",
+     "generate:check": "node scripts/generate-public-api.mjs --check && node scripts/check-agent-host-contract.mjs --check && node scripts/check-agent-host-v3-contract.mjs && node scripts/check-agent-host-skills-contract.mjs && node scripts/check-agent-host-v4-contract.mjs && pnpm check:native",
++    "generate:check:feat164": "node scripts/check-feat164-generation.mjs",
+     "skills:sync:local": "node scripts/sync-desktop-skill-resources.mjs --channel local-development",
+     "skills:sync:release": "node scripts/sync-desktop-skill-resources.mjs --channel desktop-release",
+     "skills:sync:all": "node scripts/sync-desktop-skill-resources.mjs --all-channels",
+diff --git a/scripts/check-feat164-generation.mjs b/scripts/check-feat164-generation.mjs
+new file mode 100644
+index 0000000..3725bd1
+--- /dev/null
++++ b/scripts/check-feat164-generation.mjs
+@@ -0,0 +1,87 @@
++// Explicit, read-only FEAT-164 generation qualification; never a product launcher.
++import assert from 'node:assert/strict';
++import {spawnSync, execFileSync} from 'node:child_process';
++import {existsSync, mkdirSync, openSync, closeSync, readFileSync, realpathSync, writeFileSync} from 'node:fs';
++import {createHash} from 'node:crypto';
++import path from 'node:path';
++import {fileURLToPath} from 'node:url';
++
++export const sourcePins = Object.freeze({
++  'yijie-contracts':'1b357cce0575c492f3715b316ee5f254051acf80',
++  'yijie-agent-host':'7927ee7b385cb5536c3647632d1bac0cb7c56fea',
++  'yijie-connectors':'1f157260d6dd339172712e1c649258902db45050',
++  'yijie-codex':'a28130abb13d0f99a00107cd513a653bae878b77',
++  'yijie-skills':'595c927ae101d3d31c234f60565041eee0864680',
++});
++const desktopStep=(id,file,args=[])=>({id,repository:'yijie-desktop',args:[`scripts/${file}.mjs`,...args]});
++const contractsStep=(id,file,args=[])=>({id,repository:'yijie-contracts',args:[`scripts/${file}.mjs`,...args]});
++export function generationPlan() {
++  return [
++    desktopStep('public-api','generate-public-api',['--check']),
++    desktopStep('host-v2','check-agent-host-contract',['--check']),
++    desktopStep('host-v3','check-agent-host-v3-contract'),
++    desktopStep('host-skills','check-agent-host-skills-contract'),
++    desktopStep('host-v4','check-agent-host-v4-contract'),
++    desktopStep('native-timing','generate-chat-turn-timing',['--check']),
++    desktopStep('session-purpose','generate-chat-session-purpose',['--check']),
++    desktopStep('native-conversation','generate-native-conversation',['--check']),
++    desktopStep('native-source','check-native-conversation',['--require-committed']),
++    desktopStep('scheduled-ipc-v1','generate-scheduled-ipc',['--check']),
++    contractsStep('market-connectors','sync-market-connectors',['--consumer=desktop','--check']),
++    desktopStep('feat164-catalog','feat164-market-catalog',['--check']),
++    contractsStep('market-selection-v1','sync-market-selection',['--consumer=desktop','--check']),
++    contractsStep('market-provider','sync-market-provider',['--consumer=desktop','--check']),
++    contractsStep('market-host-v1','sync-market-host',['--consumer=desktop','--check']),
++    contractsStep('runtime-k31','generate-runtime-kimi-k31-pro',['--check']),
++    contractsStep('models-v2','generate-chat-models-v2',['--check']),
++    desktopStep('scheduled-ipc-v2','generate-scheduled-ipc-v2',['--check']),
++    desktopStep('v2-source-closure','kimi-k31-build-candidate'),
++  ];
++}
++export function checkSourceFacts(facts) {
++  const root=facts['yijie-desktop'];
++  assert(root && !root.dirty && /^[a-f0-9]{40}$/.test(root.head),'Desktop must be a committed clean checkout');
++  const parent=path.dirname(root.realPath);
++  for(const [name,pin] of Object.entries(sourcePins)) {
++    const fact=facts[name];assert(fact && fact.head===pin && !fact.dirty,`Clean pinned source required: ${name}`);
++    if(['yijie-contracts','yijie-agent-host','yijie-connectors'].includes(name)) {
++      assert.equal(fact.realPath,path.join(parent,name),`Generator sibling path must target this qualification tree: ${name}`);
++    }
++  }
++}
++export function checkEnvironment(env) {
++  const child=Object.fromEntries(['PATH','HOME','TMPDIR','CARGO_HOME','RUSTUP_HOME','SDKROOT','DEVELOPER_DIR','PKG_CONFIG_PATH'].filter(k=>env[k]!==undefined).map(k=>[k,env[k]]));
++  return {...child,CARGO_NET_OFFLINE:'true',GOPROXY:'off',GOSUMDB:'off',GOTOOLCHAIN:'local',npm_config_offline:'true',YIJIE_ENV:'local',YIJIE_LOCAL_PROFILE:'demo_fast',YIJIE_CHAT_MODELS_ENABLED:'true',YIJIE_KIMI_K31_PRO_CANDIDATE:'true',YIJIE_KIMI_K31_CALL_SURFACES:'ordinary',YIJIE_MARKET_CONNECTORS_ENABLED:'false',YIJIE_EXPERTS_ENABLED:'false',YIJIE_ARTIFACT_MEDIA_ENABLED:'false',YIJIE_RUNTIME_PERMISSIONS_ENABLED:'true'};
++}
++export function executePlan(plan, run, record) {
++  for(const step of plan) {const result=run(step);record(step,result);if(result!==0)return false;}
++  return true;
++}
++function main(args) {
++  assert(args.length===1 && path.isAbsolute(args[0]),'Pass one fresh absolute evidence directory');
++  const output=args[0];assert(!existsSync(output),'Never overwrite prior qualification evidence');
++  const desktop=realpathSync(path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..')),workspace=path.dirname(desktop);
++  const roots=Object.fromEntries(['yijie-desktop',...Object.keys(sourcePins)].map(name=>[name,realpathSync(path.join(workspace,name))]));
++  const env=checkEnvironment(process.env),facts={};
++  for(const [name,root] of Object.entries(roots)) {
++    const git=(...argv)=>execFileSync('git',['-C',root,...argv],{env,encoding:'utf8',maxBuffer:8*1024*1024}).trim();
++    facts[name]={head:git('rev-parse','HEAD'),dirty:!!git('status','--porcelain'),realPath:root};
++  }
++  checkSourceFacts(facts);
++  const plan=generationPlan();for(const s of plan)assert(existsSync(path.join(roots[s.repository],s.args[0])),s.id);
++  mkdirSync(output,{recursive:false});
++  const report={feature:'FEAT-164',scope:'source generation only; legacy default check unchanged; not App/G2V/G3/release',sources:facts,real_model_http:0,checks:[],status:'RUNNING'};
++  const save=()=>writeFileSync(path.join(output,'result.json'),JSON.stringify(report,null,2)+'\n');save();
++  const pass=executePlan(plan,step=>{
++    const fd=openSync(path.join(output,step.id+'.log'),'wx');
++    try {const run=spawnSync(process.execPath,step.args,{cwd:roots[step.repository],env,stdio:['ignore',fd,fd]});return run.status??-1;}
++    finally {closeSync(fd);}
++  },(step,status)=>{
++    report.checks.push({id:step.id,repository:step.repository,command:['node',...step.args],exit_code:status,sha256:createHash('sha256').update(readFileSync(path.join(output,step.id+'.log'))).digest('hex')});
++    report.status=status===0?'RUNNING':'FAIL';save();process.stdout.write(`${step.id}: ${status===0?'PASS':'FAIL'}\n`);
++  });
++  report.status=pass?'PASS':'FAIL';save();if(!pass)process.exitCode=1;
++}
++if(process.argv[1]===fileURLToPath(import.meta.url)) {
++  try {main(process.argv.slice(2));}catch(error){process.stderr.write(`${error.message}\n`);process.exitCode=1;}
++}
+diff --git a/scripts/tests/feat164-generation.test.mjs b/scripts/tests/feat164-generation.test.mjs
+new file mode 100644
+index 0000000..47b1b48
+--- /dev/null
++++ b/scripts/tests/feat164-generation.test.mjs
+@@ -0,0 +1,10 @@
++import {test} from 'node:test';
++import assert from 'node:assert/strict';
++import {generationPlan,sourcePins,checkSourceFacts,checkEnvironment,executePlan} from '../check-feat164-generation.mjs';
++function facts(){return Object.fromEntries([['yijie-desktop','a'.repeat(40)],...Object.entries(sourcePins)].map(([name,head])=>[name,{head,dirty:false,realPath:'/qualification/'+name}]))}
++test('accepts a clean same-parent source set without changing product flags',()=>{assert.doesNotThrow(()=>checkSourceFacts(facts()));});
++test('rejects a different qualification tree before any generator can resolve its consumer',()=>{const f=facts();f['yijie-contracts'].realPath='/previous/yijie-contracts';assert.throws(()=>checkSourceFacts(f),/sibling path/);});
++test('rejects changed source or dirty inputs without preparing or overwriting them',()=>{for(const name of Object.keys(facts())){const f=facts();f[name].dirty=true;assert.throws(()=>checkSourceFacts(f));}const f=facts();f['yijie-connectors'].head='b'.repeat(40);assert.throws(()=>checkSourceFacts(f));});
++test('retains every old-reader family and selects only the existing FEAT164 catalog provenance',()=>{const p=generationPlan();assert.equal(p.length,19);assert.equal(new Set(p.map(s=>s.id)).size,p.length);for(const id of ['public-api','host-v2','host-v3','host-skills','host-v4','native-timing','session-purpose','native-conversation','native-source','scheduled-ipc-v1','market-connectors','market-selection-v1','market-provider','market-host-v1','runtime-k31','models-v2','scheduled-ipc-v2','v2-source-closure'])assert(p.some(s=>s.id===id));assert(p.find(s=>s.id==='feat164-catalog').args.includes('--check'));assert(!p.some(s=>s.args.some(a=>a.includes('sync-market-catalog'))));for(const s of p.filter(s=>s.args[0].includes('/generate-')||s.args[0].includes('/sync-')))assert(s.args.includes('--check'));});
++test('credential and redirect settings do not enter source checks',()=>{const e=checkEnvironment({PATH:'/tools',HOME:'/home',KIMI_API_KEY:'synthetic',NODE_OPTIONS:'synthetic',YIJIE_DESKTOP_CONTRACTS_DIR:'/previous',YIJIE_KIMI_K31_CALL_SURFACES:'media'});assert.equal(e.PATH,'/tools');assert.equal(e.YIJIE_KIMI_K31_CALL_SURFACES,'ordinary');for(const k of ['KIMI_API_KEY','NODE_OPTIONS','YIJIE_DESKTOP_CONTRACTS_DIR'])assert.equal(e[k],undefined);});
++test('a failed child status is recorded once and stops the plan',()=>{const seen=[],record=[];assert.equal(executePlan(generationPlan(),s=>{seen.push(s.id);return s.id==='host-v2'?1:0;},(s,r)=>record.push([s.id,r])),false);assert.deepEqual(seen,['public-api','host-v2']);assert.deepEqual(record,[['public-api',0],['host-v2',1]]);});

@@ -53,3 +53,7 @@ G4前三项final verdict独立；换source/runtime/harness后相关结果STALE�
 ## S4g 旧草案状态续办（2026-10-25）
 
 本轮仅Desktop181885b本地修复，无push/发布。旧库无写迁移；277 reader仍可读，但会恢复误导queued提示。保持旧App/账本/原失败草案，回退不能放行重发。
+
+## S4h 生成入口与计划验收（2026-10-25）
+
+本轮只有Desktop验证入口提交1b5adcf，默认检查/产品wire及所有旧锁保持；App沿同canonical新构建验收，原合成计划最终恢复Kimi且关闭。回退验证入口不降级用户数据或恢复旧执行授权。

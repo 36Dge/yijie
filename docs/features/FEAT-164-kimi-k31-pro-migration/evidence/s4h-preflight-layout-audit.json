@@ -1,0 +1,8 @@
+{
+  "finding": "Contracts .gitignore ignores node_modules/ directory, not a symlink named node_modules; preflight correctly rejected untracked symlink",
+  "fix": "new owned checkout now uses ignored real dependency directory with links to already installed packages; no source/gitignore/lock changes",
+  "git_status_clean_repositories": 6,
+  "leaf_checks_started": 0,
+  "model_http": 0,
+  "old_sources_unchanged": true
+}

@@ -1,0 +1,65 @@
+Window: "易界 AI", App: 易界 AI FEAT-164.
+0 standard window 易界 AI, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: 定时任务 · 易界 AI, URL: tauri://localhost/scheduled-tasks
+			3 text 界面缩放 100%
+			4 button (expanded) 收起侧栏, Secondary Actions: Collapse
+			5 container 主导航
+				6 image 易界
+				7 container 应用导航
+					8 content list
+						9 link 新建任务, Value: tauri://localhost/chat
+						10 link 我的店铺, Value: tauri://localhost/store
+						11 link 工作流, Value: tauri://localhost/workflows
+						12 link 技能, Value: tauri://localhost/plugins
+						13 link 定时任务, Value: tauri://localhost/scheduled-tasks
+						14 container
+							15 heading 任务, Value: 2
+								16 text 任务
+							17 container 任务：项目与对话
+								18 text 暂无任务记录
+					19 content list
+						20 link 设置, Value: tauri://localhost/settings
+			21 container
+				22 container 定时任务
+					23 heading 定时任务, Value: 1
+						24 text 定时任务
+					25 text 按设定时间自动执行任务，随时开启或关闭。
+					26 button 通过对话创建
+					27 button 新建定时任务
+				28 tab group (selectable) 定时任务页面
+					29 tab (selected) 定时任务
+					30 tab (selected) 执行记录
+				31 text field (settable) 搜索任务名称或内容, Placeholder: 搜索计划名称或内容
+				32 text 搜索计划名称或内容
+				33 container 计划状态筛选
+					34 container
+						35 text 全部状态
+						36 image loading
+				37 container 创建时间排序
+					38 container
+						39 text 最新优先
+						40 image loading
+				41 container 定时任务
+					42 container FEAT164 S4F 安全离线计划
+						43 heading 编辑 FEAT164 S4F 安全离线计划, Value: 2
+							44 button 编辑 FEAT164 S4F 安全离线计划
+						45 switch (settable, boolean) 开启 FEAT164 S4F 安全离线计划, Value: off
+						46 text FEAT164_S4F_PLAN_RUN 请回复本机计划验证完成，不调用工具。
+						47 text 执行模型：Kimi K3.1 Pro · max
+						48 container 每天 23:59 · Asia/Shanghai
+							49 text 每天 23:59
+						50 text 已关闭
+						51 button 查看历史记录
+						52 button 立即执行
+						53 button 删除任务
+	54 close button
+	55 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	56 minimize button
+57 menu bar
+	58 易界 AI FEAT-164
+	59 File
+	60 Edit
+	61 View
+	62 Window
+	63 Help

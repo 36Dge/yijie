@@ -76,3 +76,7 @@ H-F164-LOCAL默认禁用；production_bootstrap表示产品canonical启动链，
 ## S4g 旧草案状态续办（2026-10-25）
 
 本轮限定验证2项Native状态、1项原writer回归、32前端、lint/fmt/lib Clippy/build/docs及当前App亮暗1180×760。完整通用generate失败/RCA保留，未跑攻击/故障注入和真实模型。见33与s4g证据。
+
+## S4h 生成入口与计划验收（2026-10-25）
+
+本轮19项生成、6项配置测试、S3五项、18前端、当前ordinary App计划审阅/单次授权/重开通过；1次模型loopback，真实0。旧K3产品UI与完整恢复取消/媒体仍单列未验，详见34。

@@ -79,3 +79,7 @@ Runtime → Contracts runtime projection → Host runtime constants/candidate �
 ## S4g 旧草案状态续办（2026-10-25）
 
 下一步的旧失败草稿状态修复已本地固化181885b，真实历史UI及只读保留通过；完整恢复取消/旧计划重授权、专家媒体组合及G3仍pending。通用生成入口先读s4g RCA，不机械重试。
+
+## S4h 生成入口与计划验收（2026-10-25）
+
+生成入口RCA修正后的首次19项通过，旧FAIL保留。当前计划模型变更后旧配置拒绝、重新审阅保存paused和独立单次授权已在App验证；后续转当前专家/媒体组合及完整恢复取消，见34。

@@ -1,0 +1,85 @@
+The following is a diff from the previous accessibility tree for Window: "易界 AI" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 45-74
+~			44 text 界面缩放 100%
++			45 button (expanded) 收起侧栏, Secondary Actions: Collapse
++			46 container 主导航
++				47 image 易界
++				48 container 应用导航
++					49 content list
++						50 link 新建任务, Value: tauri://localhost/chat
++						51 link 我的店铺, Value: tauri://localhost/store
++						52 link 工作流, Value: tauri://localhost/workflows
++						53 link 技能, Value: tauri://localhost/plugins
++						54 link 定时任务, Value: tauri://localhost/scheduled-tasks
++						55 container
++							56 heading 任务, Value: 2
++								57 text 任务
++							58 container 任务：项目与对话
++								59 content list
++									60 container
++										61 pop up button 折叠项目 s4c-ui-workspace
++										62 pop up button 项目 s4c-ui-workspace 的操作菜单
++										63 content list
++											64 button FEAT164_S4C_MEDIA：最终构建验证。只将当前隔离工作空间已有的 r
++											65 button FEAT164_S4C_KIMI：这是本机界面验收，请回复合成验证结果，不调用工
++											66 button FEAT164_S4C_MEDIA：只将当前隔离工作空间已有的 report.h
++									67 container
++										68 pop up button 折叠项目 任务目录
++										69 pop up button 项目 任务目录 的操作菜单
++										70 content list
++											71 button FEAT164_S4F_PLAN_RUN 请回复本机计划验证完成，不调用工具。
++									72 container
++										73 pop up button 折叠项目 任务目录
++										74 pop up button 项目 任务目录 的操作菜单
++										75 content list
++											76 button FEAT164_S4F_DRAFT：修复后新提交。生成 FEAT164 S4F
++									77 container
++										78 pop up button 折叠项目 任务目录
++										79 pop up button 项目 任务目录 的操作菜单
++										80 content list
++											81 button FEAT164_S4F_DRAFT：创建一个安全离线验收计划，名称 FEAT16
++									82 button FEAT164_S4F_KIMI：r4 同源 App 本机正控，请回复合成验证结
++									83 button FEAT164 S1 本机新模型正控，请回复合成验证结果。
++									84 button FEAT164 单次真实续验：请计算 17 + 25，只用一行回答结果，不使用工
++									85 button FEAT164 30元续验本机正控，请回复合成验证结果。
++									86 button FEAT164 r2 本机正控，请回复合成验证结果。
++									87 button FEAT164 本机请求字段核对，请回复合成验证结果。
++									88 button FEAT164 真实文本验收：请计算 17 + 25，只回复“FEAT164 实
++									89 button FEAT164 本机正控，请回复合成验证结果。
++					90 content list
++						91 link 设置, Value: tauri://localhost/settings
++			92 container
++				93 container 定时任务
++					94 heading 定时任务, Value: 1
++						95 text 定时任务
++					96 text 按设定时间自动执行任务，随时开启或关闭。
++					97 button 通过对话创建
++					98 button 新建定时任务
++				99 tab group (selectable) 定时任务页面
++					100 tab (selected) 定时任务
++					101 tab (selected) 执行记录
++				102 text field (settable) 搜索任务名称或内容, Placeholder: 搜索计划名称或内容
++				103 text 搜索计划名称或内容
++				104 container 计划状态筛选
++					105 container
++						106 text 全部状态
++						107 image loading
++				108 container 创建时间排序
++					109 container
++						110 text 最新优先
++						111 image loading
++				112 container 定时任务
++					113 container FEAT164 S4F 安全离线计划
++						114 heading 编辑 FEAT164 S4F 安全离线计划, Value: 2
++							115 button 编辑 FEAT164 S4F 安全离线计划
++						116 switch (settable, boolean) 开启 FEAT164 S4F 安全离线计划, Value: off
++						117 text FEAT164_S4F_PLAN_RUN 请回复本机计划验证完成，不调用工具。
++						118 text 执行模型：MiniMax M3
++						119 container 每天 23:59 · Asia/Shanghai
++							120 text 每天 23:59
++						121 text 已关闭
++						122 button 查看历史记录
++						123 button 立即执行
++						124 button 删除任务
++			125 text 定时任务已保存
+The focused UI element is 115 button 编辑 FEAT164 S4F 安全离线计划

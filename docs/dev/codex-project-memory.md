@@ -1,12 +1,12 @@
 # 易界项目 Codex 长期协作记忆
 
-## FEAT-164 旧失败草案状态已补齐，完整验收未完成（2026-10-25）
+## FEAT-164 生成入口与计划App子集通过，完整验收未完成（2026-10-25）
 
-当前权威[33](../features/FEAT-164-kimi-k31-pro-migration/33-s4-draft-uncertainty.md)、feature.yaml及s4g证据。Desktop181885b1bfe825bb0e713757e95282e36267aa11将原attempted+failed且未绑定的草案只读投影为既有uncertain；原SQL/attempt/回执和历史保持，不改变发送权限。Native2+前轮writer1、32前端、lint/fmt/lib Clippy/build/docs通过；同源ordinary App实际旧历史、刷新/取消确认/一次查证、已完成正控及亮暗1180×760通过，0模型请求，已恢复浅色并正常退出。Runtime a28130a、Contracts1b357cc、Host7927ee7保持。
+当前权威[34](../features/FEAT-164-kimi-k31-pro-migration/34-s4-generation-and-plan-continuation.md)、feature.yaml及s4h证据。Desktop1b5adcfc1b6b3195df5b3495de3f1c4b22599d51只新增显式read-only生成入口及测试/说明，产品源/默认命令/旧锁保持。六仓源精确清洁、同真实父目录防止generator错验旧consumer。初次因node_modules symlink未被忽略而预检失败，已修正新目录；Owner明确授权重验并允许最多3次，修正后首次完整19项PASS，余2次未用。旧三次FAIL和首次预检FAIL保持，真实RCA追加resolved；不等于旧默认generate绿色或全G3。
 
-通用generate三次FAIL已停止并完成RCA：新树缺历史固定checkout及通用市场入口误读其它需求dirty源/旧锁；保留FAIL和open breaker，未执行第四次，不改无关锁。canonical专用构建独立通过不替代通用门禁。首次getApp早于canonical就绪曾自动打开不完整导航；正常退出，等实际canonical进程就绪后再绑定，避免重现。旧失败草案应保留可读/待确认，不重置、不认作never-sent、不补发。
+S3五项及18前端通过；当前ordinary App显式关联聊天改MiniMax后旧计划拒绝0HTTP，取消模型审阅保留旧配置，重新审阅保存paused后独立手动执行1次MiniMax/high本机合成成功。再恢复聊天/计划Kimi、保持关闭，正常退出/重开后2条历史保持。旧grant/run逐字段不变，只新增1个单次grant/run；原failed草案与6条旧facts保持。paused可保留缓存next_at，不能凭此判自动授权；最终authorization_ref/expires为空。App/fixture均正常退出，真实模型0。
 
-下一步先读RCA明确通用与Feature验证边界，再推进旧模型计划退役/重新选择与授权、完整恢复取消、专家媒体当前组合及其它平台。完整S4/TCONF/G2V/G3/freshness/final仍缺。Owner授权持续安全离线实施及仅FEAT164本地提交、不推送；30元/2次真实HTTP已耗尽，14.188544元unknown预占+0.139590元=14.328134元累计上界保留，新增真实HTTP0。禁止强杀、故障/攻击注入、权限破坏、程序替换。
+下一步当前r4专家/媒体同源App组合和完整恢复/取消UI；旧K3真实App迁移、其它平台、完整TCONF、G2V/G3/freshness/final仍缺。模型不匹配错误提示较泛、切模型后旧conversation_warning未隐藏；不以合成质量判供应商能力。Runtime a28130a、Contracts1b357cc、Host7927ee7保持。Owner授权持续安全离线实施及仅FEAT164本地提交、不推送；30元/2次真实HTTP已耗尽，14.188544元unknown预占+0.139590元=14.328134元累计上界保持，新增真实HTTP0。禁止强杀、攻击/故障注入、权限破坏和程序替换。
 
 2026-10-08 Sorftime 最新状态：Owner已填密钥，但两条19:19/19:20元数据初始化仍unavailable。审计发现通用HTTP迁移漏带旧链路已验证有效的User-Agent；已补真实yijie-mcp-worker/0.1.0及受限HTTP阶段/状态码诊断，未伪装旧客户端、未改固定Codex。63本地测试/lint/标准App构建通过，说明已左对齐。新worker da3c31537e6be46bb826a2ec44b0541456cbbf2810772aabbba5df1023400f81。尚未真实复验，已申请仅1次连接/发现、0模型/0业务；因先前失败不自动重发，等待用户答复。Keyring已有用户保存密钥，不要再要求重填/卸载或读取密钥。详见FEAT-157/21及sorftime-user-agent-20261008证据。
 

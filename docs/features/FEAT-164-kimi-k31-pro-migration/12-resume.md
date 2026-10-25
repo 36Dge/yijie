@@ -1,5 +1,7 @@
 # FEAT-164 续办入口
 
+> 当前S4h：先读[34](34-s4-generation-and-plan-continuation.md)。Desktop1b5adcf新增显式源生成检查，修正后第1次19项全部通过；Owner允许最多3次，余2次未用。计划App新旧配置隔离/审阅/独立手动授权/恢复Kimi关闭及正常重开通过，1次本机模型请求、真实0。下阶段专家媒体组合、完整恢复取消与旧K3 App/平台/G2V/G3仍缺。
+
 > 当前（S4g）：先读[33](33-s4-draft-uncertainty.md)。Desktop181885b已只读修复旧failed草案显示uncertain，App亮暗最小窗口与0模型请求安全保留通过；通用生成检查三次FAIL已停止/RCA，未执行第四次，完整G3仍阻断。后续不重置原attempted请求；预算/旧预占及其它工作区保持。
 
 > 当前（2026-10-25，S4f普通App与计划）：Host7927ee7补齐已有v2草案三路由，Desktop277f59e兼容读取原生事实2/3/4；Runtimea28130a r4与Contracts1b357cc保持。同源App验证旧历史、input-only草案、只读恢复零补发、关闭保存、单次执行、取消编辑和正常重开；App模型协议loopback共3次，真实新增0。旧失败请求/事实/账本保留；完整恢复取消、旧模型计划、专家媒体当前组合、平台/G2V/G3/final仍未通过。权威见[32](32-s4-r4-app-plan-acceptance.md)。以下记录保持原来源与时间语义。

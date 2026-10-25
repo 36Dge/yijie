@@ -1,0 +1,64 @@
+The following is a diff from the previous accessibility tree for Window: "易界 AI" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 92-102, 104-107, 112-137
+~		2 HTML content Description: 任务对话 · 易界 AI, URL: tauri://localhost/chat/01a1732e-f1ad-7ea3-aa00-1a41bb512e10?turn=01a17375-dbf2-7e80-811a-594d778d4ba4
+~											71 button (collapsed) FEAT164_S4F_PLAN_RUN 请回复本机计划验证完成，不调用工具。, Secondary Actions: Expand
++			143 container FEAT164_S4F_PLAN_RUN 请回复本机计划验证完成，不调用工具。
++				144 container
++					145 heading FEAT164_S4F_PLAN_RUN 请回复本机计划验证完成，不调用工具。, Value: 1
++						146 text FEAT164_S4F_PLAN_RUN 请回复本机计划验证完成，不调用工具。
++					147 text 本地项目 已完成
++				148 container 任务对话记录
++					149 container
++						150 text 已定位本次运行对应的轮次。 
++						151 button 定位本次轮次
++					152 container 对话内容
++						153 container 对话通知
++							154 container 会话存在未分类提示，已保留可用内容。 conversation_warning
++								155 container
++									156 text 会话存在未分类提示，已保留可用内容。 conversation_warning
++						157 container
++							158 container 对话 1
++								159 container 对话 1
++									160 container 本轮对话内容
++										161 container 用户消息
++											162 text FEAT164_S4F_PLAN_RUN 请回复本机计划验证完成，不调用工具。
++											163 container 用户消息操作
++												164 container 2026/10/25 21:10:18
++													165 text 21:10
++												166 button 复制文本
++										167 container 本轮耗时
++											168 container 本轮耗时
++												169 text 已完成 0s
++										170 container 模型回答
++											171 container 模型回答
++												172 text FEAT164 S4F 本机验收完成。这是合成响应，未访问真实模型。
++												173 container 模型回答操作
++													174 button 复制文本
++							175 container 对话 2
++								176 container 对话 2
++									177 container 本轮对话内容
++										178 container 用户消息
++											179 text FEAT164_S4F_PLAN_RUN 请回复本机计划验证完成，不调用工具。
++											180 container 用户消息操作
++												181 container 2026/10/25 22:27:46
++													182 text 22:27
++												183 button 复制文本
++										184 container 本轮耗时
++											185 container 本轮耗时
++												186 text 已完成 0s
++										187 container 模型回答
++											188 container 模型回答
++												189 text FEAT164 S4F 本机验收完成。这是合成响应，未访问真实模型。
++												190 container 模型回答操作
++													191 button 复制文本
++				192 container 任务输入区
++					193 text 输入你的任务需求
++					194 text entry area (settable) 输入你的任务需求, Value: [text entry area], Placeholder: 继续输入任务需求…
++						195 text 继续输入任务需求…
++					196 pop up button 可添加文件、技能、连接器
++					197 pop up button 权限审批：请求批准, Help: 更改当前任务的权限审批模式
++					198 pop up button 关联店铺, Help: 关联店铺（交互演示）
++					199 pop up button 选择对话模型，当前 MiniMax-M3, Help: MiniMax-M3
++					200 button (disabled) 发送任务
++				201 text 已完成
+The focused UI element is 175 container 对话 2
