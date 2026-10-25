@@ -1,6 +1,6 @@
 # FEAT-164 技术设计候选
 
-本设计没有落地到产品。新增恢复/准入/激活能力均是待实现工作，不称现成能力。
+当前S1活动身份、候选受管配置和执行准入已实现并本地固化，详见21。恢复/迁移/计划及全调用面仍待后续切片，不称完整产品可用。
 
 > 2026-10-25 候选修正：实际 r1 出站包含官方 include 枚举未列出的 `reasoning.encrypted_content`；r2 将只对新 Kimi 省略该 opt-in，保留 max、搜索 sources、响应和历史处理。原预算适配器还须在去掉搜索时同步去掉依赖的 include。此修正仍按 Runtime 权威源先行和不可变下游 pin 执行；不是默认输出参数变更，也不证明首次 HTTP 400 的唯一原因。事实与限制见 [19](19-responses-400-audit.md)。
 
@@ -12,7 +12,7 @@ Contracts源 → Go/Rust/TS → Desktop/Native → Host模型路由与session �
 
 ## 启动与截止点
 
-拟增加同一管理边界内的activation资格与独立Kimi执行准入，不新增旁路服务。兼容构建须默认不领取尚未分类的旧模型工作，同时保持历史查询和MiniMax能力。当前总模型开关会关闭读取路由，不可拿它冒充所需能力。
+S1已在候选同一管理边界增加受管前身资格与独立Kimi执行暂停，不新增旁路服务。兼容构建须默认不领取尚未分类的旧模型工作，同时保持历史查询和MiniMax能力。当前总模型开关会关闭读取路由，不可拿它冒充所需能力。
 
 顺序：核验来源与兼容reader → 在任何coordinator/market/scheduled worker启动前禁止派发 → 前向schema迁移及旧身份分类 → 安装claim/send双重退役准入 → 查询/正常恢复 → 正常收敛或明确取消所有受管模型工作 → 验证无旧进程/工作在途 → 固定cutover → 允许新profile新请求。
 
@@ -22,7 +22,7 @@ title outbox只有session ID，不能仅凭没有旧profile字段就放行。未
 
 ## 受管配置和候选
 
-冻结真实已知旧catalog/TOML前身，不再用新Definitions重建旧字节。分别执行原authority preflight/原子替换，保留trust和原Home。两个文件更新不是整体原子事务：必须明确允许的旧旧、新catalog+旧TOML、新新等实际可达过渡组合；只有精确受管来源可恢复到新新，任一未知漂移拒绝，Runtime启动在组合完成后。
+S1冻结Host5022435真实已知旧catalog/TOML字节；v1原文件保持不改，沿既有独立v2候选文件名写入。显式前身许可才接受完整旧v1对；v2只接受空空、新catalog+空、新新这三种可达组合。原authority preflight/原子写入与最终重验保持；未知漂移、半个v1对或只有v2 TOML均拒绝，完整双文件完成后才启动Runtime。trust和原Home保留；这不是数据库迁移许可。
 
 Runtime修改canonical补丁及构建脚本，0006对新slug请求sources，0004/0005保留。新修订独立输出目录，不删除旧artifact腾位置。固定上游rust-v0.144.6/5d1fbf26c43abc65a203928b2e31561cb039e06d与Rust1.95.0。仅模型条件变化预期schema字节相同；若补其它协议字段必须重新判定。
 

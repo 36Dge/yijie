@@ -1,0 +1,82 @@
+{
+  "recorded_at": "2026-10-25T03:55:29.161918+00:00",
+  "results": [
+    {
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "docs/features/FEAT-164-kimi-k31-pro-migration",
+        "--audit-claims"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "s1-governance-claims.log"
+    },
+    {
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "s1-governance-strict.log"
+    },
+    {
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--gate",
+        "G2V",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "s1-governance-historical-g2v.log"
+    },
+    {
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "docs/features/FEAT-164-kimi-k31-pro-migration",
+        "--gate",
+        "G3",
+        "--slice",
+        "S1"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "log": "s1-governance-s1-g3-expected-block.log"
+    },
+    {
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "s1-governance-meta-lint.log"
+    },
+    {
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "s1-governance-meta-tests.log"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "bash -n scripts/*.sh"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "s1-governance-shell-syntax.log"
+    }
+  ],
+  "note": "G3/S1 expected rejection is preserved; no temporary PASS and no relaxed threshold."
+}

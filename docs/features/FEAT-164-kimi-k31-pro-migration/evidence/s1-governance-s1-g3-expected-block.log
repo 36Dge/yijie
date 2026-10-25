@@ -1,0 +1,20 @@
+ERROR: slice S1.status must be pass
+ERROR: slice S1.vertical_evidence.status must be PASS when required
+ERROR: slice S1.vertical_evidence.command is required when required
+ERROR: slice S1.vertical_evidence.environment is required when required
+ERROR: slice S1.vertical_evidence.exit_code must equal 0 when required
+ERROR: slice S1.vertical_evidence.verified_at must be an ISO-8601 instant when required
+ERROR: slice S1.vertical_evidence.refs must not be empty
+ERROR: slice S1.freshness.verified_at must be an ISO-8601 instant
+ERROR: slice S1.freshness.commits must not be empty
+ERROR: slice S1.freshness.commits must exactly match the current immutable reference set
+ERROR: slice S1.freshness.contract_refs must exactly match the current immutable reference set
+ERROR: slice S1.freshness.fixture_refs must exactly match the current immutable reference set
+ERROR: runtime_harnesses.H-F164-S1-LOCAL.qualification.status must be PASS
+ERROR: runtime_harnesses.H-F164-S1-LOCAL.qualification.verified_at must be an ISO-8601 instant
+ERROR: runtime_harnesses.H-F164-S1-LOCAL.qualification.exit_code must equal 0
+ERROR: runtime_harnesses.H-F164-S1-LOCAL.qualification.positive_control.status must be PASS
+ERROR: runtime_harnesses.H-F164-S1-LOCAL.qualification.positive_control.evidence_ref must use 08-verification-report.md#EVIDENCE-ID
+ERROR: runtime_harnesses.H-F164-S1-LOCAL.qualification.content_free_verdict.status must be PASS
+ERROR: runtime_harnesses.H-F164-S1-LOCAL.qualification.content_free_verdict.evidence_ref must use 08-verification-report.md#EVIDENCE-ID
+ERROR: slice S1.freshness.platform must match the qualified harness real platform

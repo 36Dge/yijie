@@ -1,0 +1,45 @@
+{
+  "recorded_at": "2026-10-25T03:54:35.179346+00:00",
+  "feature": "FEAT-164",
+  "slice": "S1",
+  "status": "NOT RUN",
+  "failure_class": "platform_failure",
+  "code": "MAC_LOCKED",
+  "observation": "CUA reports that the Mac is locked and requires manual user unlock. No automatic retry or alternate UI input mechanism used.",
+  "completed": [
+    "canonical build",
+    "current-source focused tests",
+    "unpaused Kimi ordinary local App turn",
+    "first App normal exit 0",
+    "same-build paused-profile reopen readyz 200"
+  ],
+  "pending": [
+    "paused Kimi UI state",
+    "MiniMax local App turn",
+    "history reopen under pause",
+    "dark/minimum-size UI",
+    "final normal App and fixture cleanup"
+  ],
+  "active_exec_sessions": {
+    "paused_app": 78901,
+    "ordinary_fixture": 72636
+  },
+  "health": {
+    "18083": {
+      "status": 200,
+      "body": {
+        "fixture": "FEAT-164-loopback-only",
+        "requests": 1
+      }
+    },
+    "18086": {
+      "status": 200,
+      "body": {
+        "runtime_state": "ready",
+        "status": "ready"
+      }
+    }
+  },
+  "real_model_http_added": 0,
+  "next_action": "Wait for user manual unlock; continue existing canonical candidate and ordinary fixture, never real meter; use normal App Quit and fixture shutdown."
+}

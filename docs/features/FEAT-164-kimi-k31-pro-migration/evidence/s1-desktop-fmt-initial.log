@@ -1,0 +1,65 @@
+Diff in /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop/src-tauri/src/chat/sidecar.rs:182:
+         let chat_models_enabled = super::models::enabled();
+         let kimi_k31_execution_paused = kimi_k31_pause_setting(
+             super::models::v2_enabled() && chat_models_enabled,
+-            std::env::var("YIJIE_KIMI_K31_EXECUTION_PAUSED").ok().as_deref(),
++            std::env::var("YIJIE_KIMI_K31_EXECUTION_PAUSED")
++                .ok()
++                .as_deref(),
+         )?;
+         if super::models::v2_enabled()
+             && (super::connectors::enabled()
+Diff in /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop/src-tauri/src/chat/sidecar.rs:408:
+             values.push(("YIJIE_CHAT_MODELS_ENABLED", "true".to_owned()));
+             if cfg!(feature = "kimi-k31-pro-candidate") {
+                 values.push(("YIJIE_KIMI_K31_PRO_CANDIDATE", "true".to_owned()));
+-                values.extend(kimi_k31_activation_environment(self.kimi_k31_execution_paused));
++                values.extend(kimi_k31_activation_environment(
++                    self.kimi_k31_execution_paused,
++                ));
+             }
+             if let Some(file) = &self.kimi_api_key_file {
+                 values.push((
+Diff in /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop/src-tauri/src/chat/sidecar.rs:491:
+     }
+ }
+ fn kimi_k31_activation_environment(paused: bool) -> Vec<(&'static str, String)> {
+-    if paused { vec![("YIJIE_KIMI_K31_EXECUTION_PAUSED", "true".to_owned())] } else { Vec::new() }
++    if paused {
++        vec![("YIJIE_KIMI_K31_EXECUTION_PAUSED", "true".to_owned())]
++    } else {
++        Vec::new()
++    }
+ }
+ 
+ fn read_exact_boolean_environment(name: &str) -> Result<bool, ChatError> {
+Diff in /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop/src-tauri/src/chat/sidecar.rs:2064:
+             for value in [None, Some(""), Some("false")] {
+                 assert_eq!(kimi_k31_pause_setting(candidate, value), Ok(false));
+             }
+-            assert_eq!(kimi_k31_pause_setting(candidate, Some("true")).is_ok(), candidate);
++            assert_eq!(
++                kimi_k31_pause_setting(candidate, Some("true")).is_ok(),
++                candidate
++            );
+             assert!(kimi_k31_pause_setting(candidate, Some("yes")).is_err());
+         }
+         assert!(kimi_k31_activation_environment(false).is_empty());
+Diff in /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop/src-tauri/src/chat/sidecar.rs:2071:
+-        assert_eq!(kimi_k31_activation_environment(true), vec![("YIJIE_KIMI_K31_EXECUTION_PAUSED", "true".into())]);
++        assert_eq!(
++            kimi_k31_activation_environment(true),
++            vec![("YIJIE_KIMI_K31_EXECUTION_PAUSED", "true".into())]
++        );
+     }
+ 
+     #[test]
+Diff in /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop/src-tauri/src/chat/sidecar.rs:2846:
+                 minimax_api_key_file: None,
+                 chat_models_enabled: false,
+                 kimi_api_key_file: None,
+-            kimi_k31_execution_paused: false,
++                kimi_k31_execution_paused: false,
+             };
+             let supervisor = SidecarSupervisor {
+                 market_provider_only: false,

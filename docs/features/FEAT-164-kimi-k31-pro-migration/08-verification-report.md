@@ -1,5 +1,7 @@
 # FEAT-164 实际验证记录
 
+> 当前S1（2026-10-25）：源实现、local/boundary及canonical构建已完成；本机新Kimi正控通过，暂停/MiniMax/重开及最终清理因Mac锁屏未完成，S1 G3不放行。新增真实模型HTTP为0，旧账本逐字保持。最新来源、未执行项和续办见[21](21-s1-implementation.md)。下方20及更早阶段结论按原来源和时间保留。
+
 ## 当前有效状态（2026-10-25，30元单次续验）
 
 | 项目 | 当前结论 |
@@ -133,3 +135,30 @@ Owner当前已明确接受候选与离线比较结论；按此授权单次运行
 
 
 最终strict/G2V、claims和独立Harness校验均PASS，见[检查回执](evidence/g2v-30-final-checks.json)；[结构化复审](evidence/g2v-30-final-review.json)确认旧行/预占、来源及其它需求保留。原r1 Gate证据字段另以[历史快照](evidence/g2v-r1-vertical-evidence-snapshot.json)保留，不被当前PASS覆盖。
+
+
+<a id="E164-S1-TCONF"></a>
+<!-- evidence: E164-S1-TCONF -->
+
+S1 TCONF-164-01已实现，精确命令实际命中10个普通子例PASS：[独立日志](evidence/s1-tconf-164-01.log)。覆盖冻结前身、双文件组合、trust/旧字节保持、重开、未知内容拒绝、显式活动身份、同代回执和精确effort。普通本机状态，不代表真实模型或全部S1 G3通过。源组合见[当前固定来源](evidence/s1-provenance.json)，S1过程见[21](21-s1-implementation.md)。
+
+
+<a id="E164-S1-LOCAL"></a>
+<!-- evidence: E164-S1-LOCAL -->
+
+S1当前不可变来源的安全定向验证通过：[最终六组检查及退出码](evidence/s1-final-tests.json)、[工作区保留审计](evidence/s1-preservation-audit.json)。Host race/准入/标题/API、Frontend 11项、Native暂停及产品Clippy通过，canonical构建通过。完整make lint/全targets Clippy的原有阻塞保留于21，未关闭检查器或更改无关源码。
+
+<a id="E164-S1-BOUNDARY"></a>
+<!-- evidence: E164-S1-BOUNDARY -->
+
+当前固定Runtime及Host的普通loopback组通过，最终一组共4个本机Responses；没有外部请求。[最终日志](evidence/s1-final-host.log)包含新Kimi→MiniMax→新Kimi、已知配置前身与暂停Kimi后MiniMax、退役/缺失身份零发送、历史读取和正常关闭；模型目录及Selection使用既有权威v2 validator。此处为真实Runtime本机边界证据，不写成真实模型答复。
+
+<a id="E164-S1-CONTROLS"></a>
+<!-- evidence: E164-S1-CONTROLS -->
+
+当前固定Desktop中的4项分类、正常超时/cleanup控制PASS，见[日志](evidence/s1-harness-controls.log)。不代表App当前剩余清理已完成。
+
+<a id="E164-S1-PLATFORM-BLOCK"></a>
+<!-- evidence: E164-S1-PLATFORM-BLOCK -->
+
+新Kimi本机App正控[实际AX](evidence/s1-app-kimi-positive.ax.txt)已完成并正常退出0；以同产物暂停配置重开后Mac锁屏，CUA明确要求用户手动解锁。当前剩余验收和清理NOT RUN，见[平台阻塞及活动会话](evidence/s1-ui-platform-block.json)。不强杀、不猜测UI已通过，等待解锁后继续同候选，无真实模型调用。

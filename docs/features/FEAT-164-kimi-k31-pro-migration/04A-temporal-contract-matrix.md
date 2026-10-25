@@ -1,6 +1,6 @@
 # FEAT-164 时序契约矩阵
 
-本文件与feature.yaml保持同一Scenario/Invariant/Test/Slice ID；全部产品conformance NOT RUN。以下是未来可执行断言设计，不是已经存在的测试或已通过时序。
+本文件与feature.yaml保持同一Scenario/Invariant/Test/Slice ID。TCONF-164-01已在Host S1实现并通过普通状态conformance；S2—S4仍为计划目标。当前结果与范围见21，不把本机检查记为真实模型验证。
 
 ## 六阶段
 
@@ -34,12 +34,12 @@
 
 | Test | Repository | 拟用命令 | 当前状态 |
 |---|---|---|---|
-| TCONF-164-01 | yijie-agent-host | go test ./internal/codex -run '^TestFEAT164ActivationAndRetiredAdmission$' -count=1 | PLANNED，测试尚未实现，NOT RUN |
+| TCONF-164-01 | yijie-agent-host | go test ./internal/codex -run '^TestFEAT164ActivationAndRetiredAdmission$' -count=1 | PASS；真实存在、已执行10个普通子例，证据s1-tconf-164-01.log |
 | TCONF-164-02 | yijie-agent-host | go test ./internal/session -run '^TestFEAT164MigrationReceiptAndRecovery$' -count=1 | PLANNED，NOT RUN；并需Desktop私有迁移/取消跨端配套 |
 | TCONF-164-03 | yijie-desktop | cargo test --manifest-path src-tauri/Cargo.toml feat164_plan_retirement_before_dispatch -- --exact | PLANNED；最终模块限定名在实现后固定，NOT RUN |
 | TCONF-164-04 | yijie-desktop | node --test scripts/tests/feat164-candidate-closure.test.mjs | PLANNED，NOT RUN；不代替真实E2E |
 
-上述名字仅为计划，不声称文件/用例已存在。运行前必须读取测试代码、核实selector实际命中、正确模块全名及执行数非0；最终exact命令在首次产品执行前写入本文件/YAML，禁止空跑PASS。每个test同时有本slice的local/boundary/vertical证据，不借其它slice旧通过。
+TCONF-164-01已存在并执行；其余名字仍为计划，不声称文件/用例已存在。运行前必须读取测试代码、核实selector实际命中、正确模块全名及执行数非0；最终exact命令在首次产品执行前写入本文件/YAML，禁止空跑PASS。每个test同时有本slice的local/boundary/vertical证据，不借其它slice旧通过。
 
 ## 安全恢复案例
 
@@ -47,4 +47,4 @@
 
 完整实际调用路径的harness为H-F164-LOCAL，未来使用canonical受控本机bootstrap、合成数据和获授权的真实小规模调用。harness分类product/harness/platform/gate，qualification/timeout/normal cleanup均NOT RUN；禁止行为不能成为negative control。
 
-任何source/pin/runtime/schema/migration/role/参数/准入顺序/测试driver/平台变化均使相应证据STALE，按transitive依赖重验。Owner/producer/consumer评审全部未批准，不填批准日期。
+任何source/pin/runtime/schema/migration/role/参数/准入顺序/测试driver/平台变化均使相应证据STALE，按transitive依赖重验。当前范围沿用已批准设计及本轮S1实施许可；不伪造独立人工审查或发布批准。

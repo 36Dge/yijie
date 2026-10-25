@@ -1,0 +1,4 @@
+src/components/chat/ChatModelActivation.test.ts(8,194): error TS2322: Type '{ profile: ModelDefinition; available: boolean; reason: string; }[]' is not assignable to type 'ModelAvailability[]'.
+  Type '{ profile: ModelDefinition; available: boolean; reason: string; }' is not assignable to type 'ModelAvailability'.
+    Types of property 'reason' are incompatible.
+      Type 'string' is not assignable to type 'ModelAvailabilityReason'.

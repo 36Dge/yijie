@@ -1,0 +1,42 @@
+=== RUN   TestFEAT164ActivationAndRetiredAdmission
+=== RUN   TestFEAT164ActivationAndRetiredAdmission/frozen_predecessors_are_the_pinned_legacy_bytes
+=== RUN   TestFEAT164ActivationAndRetiredAdmission/current_predecessor
+=== RUN   TestFEAT164ActivationAndRetiredAdmission/early_predecessor
+=== RUN   TestFEAT164ActivationAndRetiredAdmission/reachable_pair_finishes_before_runtime
+=== RUN   TestFEAT164ActivationAndRetiredAdmission/legacy_catalog_only
+=== RUN   TestFEAT164ActivationAndRetiredAdmission/legacy_config_only
+=== RUN   TestFEAT164ActivationAndRetiredAdmission/unknown_legacy
+=== RUN   TestFEAT164ActivationAndRetiredAdmission/candidate_config_only
+=== RUN   TestFEAT164ActivationAndRetiredAdmission/unknown_candidate
+=== RUN   TestFEAT164ActivationAndRetiredAdmission/active_identity_and_same_generation_receipt
+--- PASS: TestFEAT164ActivationAndRetiredAdmission (0.08s)
+    --- PASS: TestFEAT164ActivationAndRetiredAdmission/frozen_predecessors_are_the_pinned_legacy_bytes (0.00s)
+    --- PASS: TestFEAT164ActivationAndRetiredAdmission/current_predecessor (0.04s)
+    --- PASS: TestFEAT164ActivationAndRetiredAdmission/early_predecessor (0.02s)
+    --- PASS: TestFEAT164ActivationAndRetiredAdmission/reachable_pair_finishes_before_runtime (0.01s)
+    --- PASS: TestFEAT164ActivationAndRetiredAdmission/legacy_catalog_only (0.00s)
+    --- PASS: TestFEAT164ActivationAndRetiredAdmission/legacy_config_only (0.00s)
+    --- PASS: TestFEAT164ActivationAndRetiredAdmission/unknown_legacy (0.00s)
+    --- PASS: TestFEAT164ActivationAndRetiredAdmission/candidate_config_only (0.00s)
+    --- PASS: TestFEAT164ActivationAndRetiredAdmission/unknown_candidate (0.00s)
+    --- PASS: TestFEAT164ActivationAndRetiredAdmission/active_identity_and_same_generation_receipt (0.00s)
+=== RUN   TestFEAT164CandidateAdmissionAndFreshConfiguration
+--- PASS: TestFEAT164CandidateAdmissionAndFreshConfiguration (0.02s)
+=== RUN   TestFEAT164ExistingOwnedHomeIsNotImplicitlyMigrated
+--- PASS: TestFEAT164ExistingOwnedHomeIsNotImplicitlyMigrated (0.02s)
+PASS
+ok  	github.com/36Dge/yijie-agent-host/internal/codex	2.926s
+=== RUN   TestFEAT164RetiredReadPreservesApplicationFacts
+--- PASS: TestFEAT164RetiredReadPreservesApplicationFacts (0.07s)
+=== RUN   TestFEAT164ModelCatalogDoesNotMistakeConfiguredForRuntimeReady
+--- PASS: TestFEAT164ModelCatalogDoesNotMistakeConfiguredForRuntimeReady (0.04s)
+=== RUN   TestFEAT164PausedKimiPreservesHistoryAndMiniMax
+--- PASS: TestFEAT164PausedKimiPreservesHistoryAndMiniMax (0.06s)
+PASS
+ok  	github.com/36Dge/yijie-agent-host/internal/session	3.429s
+=== RUN   TestFEAT164ModelRoutesPreserveAuthAndRetiredRead
+--- PASS: TestFEAT164ModelRoutesPreserveAuthAndRetiredRead (0.01s)
+=== RUN   TestFEAT164ActivationSettingsAreExplicit
+--- PASS: TestFEAT164ActivationSettingsAreExplicit (0.00s)
+PASS
+ok  	github.com/36Dge/yijie-agent-host/internal/app	3.778s

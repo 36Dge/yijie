@@ -1,0 +1,103 @@
+{
+  "results": [
+    {
+      "repository": "yijie-agent-host",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "./internal/codex",
+        "./internal/session",
+        "./internal/app",
+        "-run",
+        "^TestFEAT164(ActivationAndRetiredAdmission|ActivationSettingsAreExplicit|CandidateAdmissionAndFreshConfiguration|ExistingOwnedHomeIsNotImplicitlyMigrated|RetiredReadPreservesApplicationFacts|ModelCatalogDoesNotMistakeConfiguredForRuntimeReady|PausedKimiPreservesHistoryAndMiniMax|ModelRoutesPreserveAuthAndRetiredRead|TitleRequiresConfirmedActiveSelection|NativeCandidateLifecycle|NativePredecessorAndPausedKimi)$",
+        "-count=1",
+        "-v"
+      ],
+      "started_at": "2026-10-25T03:51:04.358445+00:00",
+      "verified_at": "2026-10-25T03:51:07.507935+00:00",
+      "exit_code": 0,
+      "log": "s1-final-host.log"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "command": [
+        "make",
+        "lint"
+      ],
+      "started_at": "2026-10-25T03:51:07.508010+00:00",
+      "verified_at": "2026-10-25T03:51:07.794456+00:00",
+      "exit_code": 0,
+      "log": "s1-final-host-lint.log"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "src/composables/useChatModels.test.ts",
+        "src/composables/useChatModelsV2.test.ts",
+        "src/components/chat/ChatModelActivation.test.ts",
+        "src/api/chat-model-client.test.ts",
+        "src/api/chat-model-v2-client.test.ts"
+      ],
+      "started_at": "2026-10-25T03:51:07.794486+00:00",
+      "verified_at": "2026-10-25T03:51:09.129583+00:00",
+      "exit_code": 0,
+      "log": "s1-final-ui.log"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "started_at": "2026-10-25T03:51:09.129620+00:00",
+      "verified_at": "2026-10-25T03:51:17.950088+00:00",
+      "exit_code": 0,
+      "log": "s1-final-desktop-lint.log"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "feat164_pause_is_explicit_and_reaches_only_candidate_child",
+        "--",
+        "--nocapture"
+      ],
+      "started_at": "2026-10-25T03:51:17.950128+00:00",
+      "verified_at": "2026-10-25T03:51:34.604757+00:00",
+      "exit_code": 0,
+      "log": "s1-final-native.log"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": [
+        "cargo",
+        "clippy",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--lib",
+        "--bins",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "started_at": "2026-10-25T03:51:34.604806+00:00",
+      "verified_at": "2026-10-25T03:51:46.469004+00:00",
+      "exit_code": 0,
+      "log": "s1-final-product-clippy.log"
+    }
+  ],
+  "external_model_http": 0,
+  "qualification": "current immutable source, ordinary inputs, normal shutdown"
+}

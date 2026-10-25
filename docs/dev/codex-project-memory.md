@@ -1,18 +1,16 @@
 # 易界项目 Codex 长期协作记忆
 
-## FEAT-164 预算恢复与单次文本G2V通过（2026-10-25）
+## FEAT-164 S1已本地固化，UI验收等待解锁（2026-10-25）
 
-用户明确确认：累计30元，只新增1次真实模型HTTP，失败即停；保留旧账本与预占，FEAT-164仅本地提交、不推送，已有工作区和长期安全条款保持。本轮权威为[20续验记录](../features/FEAT-164-kimi-k31-pro-migration/20-budget-resume-and-g2v.md)、08当前证据锚点、feature.yaml和真实账本。17为暂停历史，18—19为过程，不据旧20元/8HTTP状态恢复。
+用户确认上轮结果，从S1继续；本轮明确不新增真实模型调用，保留原工作区、旧账本与预占，只本地提交、不推送。当前权威为[21 S1记录](../features/FEAT-164-kimi-k31-pro-migration/21-s1-implementation.md)、feature.yaml及s1-ui-platform-block.json；20及更早G2V证据保留原来源历史，不当当前S1通过。
 
-固定来源：Runtime074417e5e2f5f55704ea5e1777e7a22d514076b4 → Contractsf2819c66a2368aaff37216a46c48d5cd81df1747 → Host5022435a6272263e66e46a41b7ed7c3f9fb6caf9 → Desktop40908c75af14a9cbd65d1b0cee96ba510d6afa8f。后者只增改四个验收脚本，公共产品wire不变；三个clean detached工作树位于CrossBSD/feat164-qualification-20261025。其它需求文件逐字保留，共享launcher本轮未改。
+本轮Host `9cf7d4812f8266ae5df5e4b73e78aaab44855ab2`（冻结前身/配置过渡/独立暂停/本代模型回执与effort准入）和 `e8ae83f9c53fb41cc80139e0d0f70d7c8268b4ab`（未分类、退役、暂停标题拒绝，完成回执只读）；Desktop `174fbaf661e4fdf48828ff8bbabbe5d55c157bed`（精确Host pin、暂停child环境、新模型默认与reset、正确状态提示）。Runtime074417e5e2f5f55704ea5e1777e7a22d514076b4及Contractsf2819c66a2368aaff37216a46c48d5cd81df1747未改。三个干净资格工作树仍在CrossBSD/feat164-qualification-20261025。
 
-新增显式有锁、绑定旧账本SHA的幂等30元恢复，保留旧unknown行和14.188544元预占；总HTTP上限2。完成/失败/在途重启/重复授权都不补额。真实oracle要求HTTP200、精确model/max、唯一completed/statuscompleted、完整流/有效usage、可见正确答复、持久重开/无补发/正常清理。15预算+7判定控制，元仓lint/53测试、标准canonical构建及当前本机Harness通过。全仓make lint仍因既有Contracts dirty被拦住，未称全仓通过；禁止的旧攻击fixture suite未运行。
+S1 local/boundary通过，TCONF-164-01真实存在并命中10子例；最终固定来源Go race/Host lint、Frontend11项、Rust暂停、前端lint和产品lib/bins Clippy通过，canonical构建通过。全targets Clippy受旧source_reader_tests位置问题拦住；make lint受独立旧Skill Host pin拦住，未改无关内容/关闭检查；禁止的全量攻击及权限故障fixture未执行。原495个已有文件/差异保持，Host共享文件用临时副本逆补丁逐字核验。
 
-唯一新增真实请求于11:00:34发起：HTTP200，kimi-k3.1-pro/max，input10450/output55，实际答复42；正常保存、同产物重开保持且无补发。App两次及meter均正常退出0，18083/18086释放，没有活动服务需复用。组合oracle PASS；G2V仅覆盖output8192/移除原生搜索的预算受限文本链，不证明默认请求/图片/工具/搜索。
+11:48:35当前App已完成新Kimi本机合成正控（kimi-k3.1-pro/max），随后正常退出0；同构建以YIJIE_KIMI_K31_EXECUTION_PAUSED=true重开readyz200后Mac锁屏。CUA要求用户手动解锁，已用异步问题请求，无密码要求、无强杀或替代输入。待完成：暂停Kimi状态、MiniMax本机回合、旧历史/新答复重开、亮暗/小窗口及最终正常退出清理。不得把这些写PASS。活动App exec78901、普通fixture exec72636，端口18086/18083；fixture只本机响应、当前1请求、外部0。解锁后继续同候选，勿启动真实meter或恢复旧预算。S1 Harness H-F164-S1-LOCAL与required vertical未完成，G3/S1 blocked，不进入S2。
 
-当前账本累计2HTTP（旧400＋新200），旧14.188544元未知预占保留＋本次0.139590元保守上界＝14.328134元，非供应商实际账单。schema2、halted=true、stopped_normally；新增HTTP余额0，同授权重复应用返回剩0且账本字节不变。禁止用剩余金额、搜索/图片旧许可或重新启动再次调用。旧r1原账本逐字快照及行摘要保留；400唯一根因仍未证明，不伪造usage或清零。
-
-FEAT-164仍active，S1—S4/TCONF-164-01—04/三个final未完成；候选仅fresh-home/SQL0或38，日常入口/旧库迁移未激活。下一阶段按既有实施授权先做S1活动身份/配置与退休准入及普通离线测试，逐片Contract First与freshness；新来源需要的真实复验须另有次数许可，不能借本次G2V直接宣称G3或整体完成。日常库迁移、push/tag/release未授权。禁止强杀、权限破坏、程序替身及攻击fixture。
+真实账本及旧快照逐字未改：累计2HTTP（旧400＋上轮200），旧unknown预占14.188544元＋上轮保守0.139590元＝14.328134元；halted/stopped_normally，新增许可0。本轮真实调用0，不因金额剩余或旧搜索/图片许可续发。旧预算受限文本G2V PASS按Host5022435/Desktop40908c7保留；S1新来源没有新增真实模型证明。日常数据库迁移、push/tag/release均未授权；S2/S3历史与计划迁移和S4全调用面/final仍未实现。长期禁止强杀、权限破坏、可执行替身和攻击fixture。
 
 2026-10-08 Sorftime 最新状态：Owner已填密钥，但两条19:19/19:20元数据初始化仍unavailable。审计发现通用HTTP迁移漏带旧链路已验证有效的User-Agent；已补真实yijie-mcp-worker/0.1.0及受限HTTP阶段/状态码诊断，未伪装旧客户端、未改固定Codex。63本地测试/lint/标准App构建通过，说明已左对齐。新worker da3c31537e6be46bb826a2ec44b0541456cbbf2810772aabbba5df1023400f81。尚未真实复验，已申请仅1次连接/发现、0模型/0业务；因先前失败不自动重发，等待用户答复。Keyring已有用户保存密钥，不要再要求重填/卸载或读取密钥。详见FEAT-157/21及sorftime-user-agent-20261008证据。
 
