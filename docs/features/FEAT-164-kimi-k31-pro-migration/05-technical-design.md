@@ -2,6 +2,8 @@
 
 本设计没有落地到产品。新增恢复/准入/激活能力均是待实现工作，不称现成能力。
 
+> 2026-10-25 候选修正：实际 r1 出站包含官方 include 枚举未列出的 `reasoning.encrypted_content`；r2 将只对新 Kimi 省略该 opt-in，保留 max、搜索 sources、响应和历史处理。原预算适配器还须在去掉搜索时同步去掉依赖的 include。此修正仍按 Runtime 权威源先行和不可变下游 pin 执行；不是默认输出参数变更，也不证明首次 HTTP 400 的唯一原因。事实与限制见 [19](19-responses-400-audit.md)。
+
 ## 主链与身份
 
 Contracts源 → Go/Rust/TS → Desktop/Native → Host模型路由与session → Runtime start/resume/turn → Moonshot Responses → 原生SSE/工具执行及结果回灌 → Host投影 → Native单一buffer/SQLCipher。

@@ -1,0 +1,87 @@
+Window: "易界 AI", App: 易界 AI FEAT-164.
+0 standard window 易界 AI, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: 任务对话 · 易界 AI, URL: tauri://localhost/chat/01a170b5-58b0-7e43-8c91-7614c5ce12bd
+			3 text 界面缩放 100%
+			4 button (expanded) 收起侧栏, Secondary Actions: Collapse
+			5 container 主导航
+				6 image 易界
+				7 container 应用导航
+					8 content list
+						9 link 新建任务, Value: tauri://localhost/chat
+						10 link 我的店铺, Value: tauri://localhost/store
+						11 link 工作流, Value: tauri://localhost/workflows
+						12 link 技能, Value: tauri://localhost/plugins
+						13 link 定时任务, Value: tauri://localhost/scheduled-tasks
+						14 container
+							15 heading 任务, Value: 2
+								16 text 任务
+							17 container 任务：项目与对话
+								18 content list
+									19 button (collapsed) FEAT164 本机正控，请回复合成验证结果。, Secondary Actions: Expand
+					20 content list
+						21 link 设置, Value: tauri://localhost/settings
+			22 container FEAT164 本机正控，请回复合成验证结果。
+				23 container
+					24 heading FEAT164 本机正控，请回复合成验证结果。, Value: 1
+						25 text FEAT164 本机正控，请回复合成验证结果。
+					26 text 已完成
+				27 container 任务对话记录
+					28 container 对话内容
+						29 container
+							30 container 对话 1
+								31 container 对话 1
+									32 container 本轮对话内容
+										33 container 用户消息
+											34 text FEAT164 本机正控，请回复合成验证结果。
+											35 container 用户消息操作
+												36 container 2026/10/25 09:38:15
+													37 text 09:38
+												38 button 复制文本
+										39 container 本轮耗时
+											40 container 本轮耗时
+												41 text 已完成 0s
+										42 container 模型回答
+											43 container 模型回答
+												44 text FEAT164 本地联调完成。这是合成响应，未访问真实模型。
+												45 container 模型回答操作
+													46 button 复制文本
+							47 container 对话 2
+								48 container 对话 2
+									49 container 本轮对话内容
+										50 container 用户消息
+											51 text FEAT164 当前构建本机正控，请回复合成验证结果。
+											52 container 用户消息操作
+												53 container 2026/10/25 09:56:13
+													54 text 09:56
+												55 button 复制文本
+										56 container 本轮耗时
+											57 container 本轮耗时
+												58 text 已完成 0s
+										59 container 模型回答
+											60 container 模型回答
+												61 text FEAT164 本地联调完成。这是合成响应，未访问真实模型。
+												62 container 模型回答操作
+													63 button 复制文本
+				64 container 任务输入区
+					65 text 输入你的任务需求
+					66 text entry area (settable) 输入你的任务需求, Value: [text entry area], Placeholder: 继续输入任务需求…
+						67 text 继续输入任务需求…
+					68 pop up button 可添加文件、技能、连接器
+					69 pop up button 权限审批：请求批准, Help: 更改当前任务的权限审批模式
+					70 pop up button 关联店铺, Help: 关联店铺（交互演示）
+					71 pop up button 选择对话模型，当前 Kimi K3.1 Pro, Help: Kimi K3.1 Pro
+					72 button (disabled) 发送任务
+				73 text 已完成
+	74 close button
+	75 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	76 minimize button
+77 menu bar
+	78 易界 AI FEAT-164
+	79 File
+	80 Edit
+	81 View
+	82 Window
+	83 Help
+
+The focused UI element is 24 heading FEAT164 本机正控，请回复合成验证结果。, Value: 1

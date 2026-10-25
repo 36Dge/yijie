@@ -2,6 +2,8 @@
 
 用户已明确恢复，继续按治理实施，沿用人民币 20 元总费用上限及搜索、图片授权；只本地提交，不推送，保留所有其它需求改动。17 是暂停时的历史快照，当前进度以本文件、feature.yaml 和实际证据为准。
 
+> 当前最新：r2来源链、本机Harness、七基线与正常退出验证通过并已仅本地提交。唯一真实请求仍为r1的HTTP400/无usage，G2V未通过；14.188544元预占保留，真实meter停止，App/fixture也已正常退出。详细审计、精确来源与后续约束以[19](19-responses-400-audit.md)为准。
+
 ## 来源与范围
 
 恢复检查：Host `ff7d05dae4b3a48285e9bed63ba7253081da234c`、Desktop `3dc2205fba79a0a1d7fdea8a4b767d35f2c286b1` 与暂停时一致，进入暂停前记录的工作文件摘要未改变，index 为空。
@@ -56,3 +58,22 @@ r1 canonical 构建和同产物重开检查通过；原生启动后 `/readyz` �
 识别问题解决后，按正确 ID 和可见路径读取窗口各出现一次 `timeoutReached -10005`，没有获得 App 控制句柄。当前不能区分 Accessibility/controller 故障与 App UI 无响应，保持 **DIAGNOSIS_REQUIRED**，不猜测产品错误，也不放行 Harness/G2V。已停止继续尝试该观察点，详见 `evidence/g2v-r1-ui-observer-incident.json`。
 
 已请用户通过应用菜单/⌘Q正常退出当前“易界 AI FEAT-164”；如用户也无法正常退出，必须停止相关步骤并报告，不强杀。确认正常退出后才从同一 canonical receipt 重开。没有发生真实模型请求或费用，20元授权保留。
+
+## 普通目录构建与 Harness 资格（09:58）
+
+用户正常退出后，同产物重开仍发生第三次相同窗口观察超时。停止该观察点的机械重试，通过用户手动正控区分：Owner 实际发送并看到合成答复，本机 ledger 精确记录 `kimi-k3.1-pro / max` 的 1 次请求。Owner 再次正常退出，App 和 fixture 均 exit 0，见 `evidence/g2v-owner-positive-control.json`。这证明 App 业务响应可用，但当时尚不证明自动 UI 观察或完整 Harness 资格。
+
+在已有实施、标准构建和正常生命周期授权内，通过 `git worktree move` 将本需求自建的三个 detached worktree 移到普通可索引目录；原工作区及数据不动，源码提交不变。首次标准重建遇到 Cargo 缓存中的旧绝对路径，保留失败日志后，仅对该独立目录执行标准 `cargo clean` 并重新 canonical 构建。未修改可执行字节、权限或安全准入。新构建来源和摘要见 `evidence/g2v-visible-build-provenance.json`，历史位置证据见 `evidence/g2v-r1-canonical-location.json`。
+
+实际运行路径的 Spotlight bundle ID 正确后，CUA 成功绑定新构建，观察到 Owner 上一轮历史完整保留；随后通过 UI 发送新的普通合成回合，记录“已完成”和明确的合成答复。按 ⌘Q 正常退出 exit 0；用同一 receipt 重开后，两轮历史及模型标识完整保留，无额外请求。再次正常退出 exit 0，fixture 以自身 `/shutdown` 退出 0，18083/18086 释放。证据为 `g2v-visible-local-positive.ax.txt/.png`、`g2v-visible-local-history-reopen.ax.txt`、`g2v-visible-harness-positive.json` 和对应 loopback ledger。
+
+本轮 4 项普通状态/归因/协作超时/恰好一次清理检查与 6 项费用控制检查通过；当前真实 App 正控结合这些控制使 H-F164-LOCAL 资格 PASS，content-free 判定见 `g2v-visible-harness-verdict.json`。窗口观察阻塞在普通目录新构建上解除，但不宣称已经单独证明底层 AX 超时的唯一系统原因；历史失败记录保留。
+
+本机请求全部为合成响应、外部费用 0。现在启用独立 `g2v-real-budget-ledger.json` 进入已授权的最小真实文本验证；仅其真实结果才可支持 G2V。预算变换和原生搜索限制仍按上文执行。
+
+
+## r2 收尾（当前）
+
+HTTP400后的独立分析、规范修正、来源固化和验证见19。当前clean资格工作区采用Runtime 074417e5e2f5f55704ea5e1777e7a22d514076b4、Contracts f2819c66a2368aaff37216a46c48d5cd81df1747、Host 5022435a6272263e66e46a41b7ed7c3f9fb6caf9、Desktop 74f2f74d866483463df7236f891aae62b00539ba。r2 App标准构建、实际本机答复与正常重开、当前Harness资格通过；所有本轮服务已正常退出。本文前述exec会话均已结束，不可据历史端口说明重用。
+
+真实账本g2v-real-budget-ledger.json只含首次HTTP400，无新真实重试。其预占和halted状态保持；S1—S4/final仍未放行，未发布、未迁移日常数据。

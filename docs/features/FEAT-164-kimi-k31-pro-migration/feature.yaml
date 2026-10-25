@@ -46,13 +46,13 @@ immutable_references:
   contracts:
     - id: chat-models-v2
       version: 0.2.0
-      full_commit: b0060c8bc4fb924cec14d98b193c32c69482b7b7
+      full_commit: f2819c66a2368aaff37216a46c48d5cd81df1747
       digest: 0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
       generator: scripts/generate-chat-models-v2.mjs
     - id: runtime-kimi-k31-pro
-      version: 0.144.6-kimi-k31-pro-r1
-      full_commit: b0060c8bc4fb924cec14d98b193c32c69482b7b7
-      digest: e5e2250c27a93118ae1acbe68e7117bebd67ffae564d0956a27a82973f79e5ee
+      version: 0.144.6-kimi-k31-pro-r2
+      full_commit: f2819c66a2368aaff37216a46c48d5cd81df1747
+      digest: 3d204e1cf11a7a108d636f37d112d8cc9e8ad46212b9cb867097714de6a4b89c
       generator: scripts/generate-runtime-kimi-k31-pro.mjs
   fixtures: []
   release_artifacts: []
@@ -61,14 +61,18 @@ gates:
   G1_design_ready: pass
   G2_implementation_ready: pass
   G2A_contract_ready: pass
-  G2V_vertical_feasibility: pending
+  G2V_vertical_feasibility: fail
   G4_code_complete: pending
   G5_production_ready: pending
   G6_delivery_complete: pending
 gate_reasons:
-  G2A: Owner当前明确接受实际候选/离线比较；Runtime 57753db451b29a49315ddcb6449ca146171c4de7 → Contracts
-    b0060c8bc4fb924cec14d98b193c32c69482b7b7；两consumer独立pin已从Git对象同步校验。只允许最小G2V候选，非完整S1—S4或激活。
-  G2V: 用户已解锁；r1系统应用索引已修复，正确ID/路径的UI观察仍超时，当前DIAGNOSIS_REQUIRED。已请求用户正常退出候选，确认退出后同产物重开；无强杀，真实请求0，20元预算未消耗。
+  G2A: r2 Runtime 074417e5e2f5f55704ea5e1777e7a22d514076b4 → Contracts
+    f2819c66a2368aaff37216a46c48d5cd81df1747 → Host
+    5022435a6272263e66e46a41b7ed7c3f9fb6caf9 → Desktop
+    74f2f74d866483463df7236f891aae62b00539ba。269
+    schema与r1相同，七支持基线、精确producer/consumer pin、原生Runtime
+    conformance及canonical构建通过；沿用已授权范围内修复，不代表发布或独立人工复审。
+  G2V: r1唯一真实请求HTTP400/无usage，FAIL记录保留；r2已修正实际include规范差异并通过当前本机Harness。真实账本累计1HTTP，14.188544元保守预占、halted=true，已正常退出；r2真实复验未执行，不能宣称400唯一根因或G2V通过，S1—S4不放行。
 temporal_contract_matrix:
   required: true
   applicability_reason: 模型意图、配置回执、Host提交、Native通知、历史重放、计划资格和正常退出跨进程且跨版本
@@ -159,7 +163,8 @@ temporal_contract_matrix:
     - id: TCONF-164-01
       required: true
       repository: yijie-agent-host
-      command: go test ./internal/codex -run '^TestFEAT164ActivationAndRetiredAdmission$' -count=1
+      command: go test ./internal/codex -run
+        '^TestFEAT164ActivationAndRetiredAdmission$' -count=1
       slice_id: S1
       status: NOT RUN
       exit_code: null
@@ -175,7 +180,8 @@ temporal_contract_matrix:
     - id: TCONF-164-02
       required: true
       repository: yijie-agent-host
-      command: go test ./internal/session -run '^TestFEAT164MigrationReceiptAndRecovery$' -count=1
+      command: go test ./internal/session -run
+        '^TestFEAT164MigrationReceiptAndRecovery$' -count=1
       slice_id: S2
       status: NOT RUN
       exit_code: null
@@ -191,7 +197,8 @@ temporal_contract_matrix:
     - id: TCONF-164-03
       required: true
       repository: yijie-desktop
-      command: cargo test --manifest-path src-tauri/Cargo.toml feat164_plan_retirement_before_dispatch -- --exact
+      command: cargo test --manifest-path src-tauri/Cargo.toml
+        feat164_plan_retirement_before_dispatch -- --exact
       slice_id: S3
       status: NOT RUN
       exit_code: null
@@ -238,26 +245,40 @@ vertical_feasibility:
   representative_data: 仅普通合成文本/图片/旧模型选择及计划状态，无私人数据库正文
   critical_path: canonical App → Native → Host → Runtime → 获准新模型响应 → 原生事件 → 保存/重开
   evidence:
-    commits: []
-    command: NOT RUN
-    environment: NOT RUN
-    exit_code: null
-    status: NOT RUN
-    verified_at: NOT RUN
+    commits:
+      - repository: yijie-codex
+        full_sha: 57753db451b29a49315ddcb6449ca146171c4de7
+      - repository: yijie-contracts
+        full_sha: b0060c8bc4fb924cec14d98b193c32c69482b7b7
+      - repository: yijie-agent-host
+        full_sha: ff7d05dae4b3a48285e9bed63ba7253081da234c
+      - repository: yijie-desktop
+        full_sha: ba3ed160fc2c0bab04ccbe80c45457b30af233bd
+    command: node content-free verdict over g2v-real-budget-ledger.json; canonical
+      App + CUA observations
+    environment: macOS aarch64; r1 immutable candidate; approved budgeted
+      output8192/no-native-search adapter
+    exit_code: 1
+    status: FAIL
+    verified_at: 2026-10-25T02:10:56.855Z
     harness:
       id: H-F164-LOCAL
-      commit: NOT RUN
-      digest: NOT RUN
-    platform: NOT RUN
+      commit: ba3ed160fc2c0bab04ccbe80c45457b30af233bd
+      digest: ab2ad0d9cb05477c5e78b5755a56abff4ebc9f627847d534e71929699ea70f67
+    platform: macOS aarch64
     production_bootstrap: true
     contract_refs: []
     fixture_refs: []
-    refs: []
+    refs:
+      - evidence/g2v-real-attempt-01.json
+      - evidence/g2v-real-attempt-01-verdict.log
+      - evidence/g2v-real-budget-ledger.json
+      - 19-responses-400-audit.md
 runtime_harnesses:
   - id: H-F164-LOCAL
     purpose: 最小模型替换纵向候选及三项最终验证；安全普通状态分类
-    commit: NOT RUN
-    digest: NOT RUN
+    commit: 74f2f74d866483463df7236f891aae62b00539ba
+    digest: ad7b7bd86613502932d7d607eff589f0128b279af098a6da2197354761c20367
     default_enabled: false
     real_platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
     production_bootstrap: true
@@ -268,40 +289,42 @@ runtime_harnesses:
       - platform_failure
       - gate_failure
     qualification:
-      status: NOT RUN
-      verified_at: NOT RUN
-      command: NOT RUN
-      environment: NOT RUN
-      exit_code: null
+      status: PASS
+      verified_at: 2026-10-25T10:24:49.480076+08:00
+      command: canonical --reopen + CUA ordinary task/history/Cmd-Q; node --test
+        scripts/feat164-verdict.test.mjs
+      environment: macOS aarch64; r2 immutable canonical App/Host/Runtime;
+        metadata-only loopback fixture
+      exit_code: 0
       positive_control:
-        status: NOT RUN
-        evidence_ref: NOT RUN
+        status: PASS
+        evidence_ref: evidence/g2v-r2-harness-positive.json
       negative_controls:
         product_failure:
-          status: NOT RUN
-          observed_class: NOT RUN
-          evidence_ref: NOT RUN
+          status: PASS
+          observed_class: product_failure
+          evidence_ref: evidence/g2v-r2-harness-controls.log
         harness_failure:
-          status: NOT RUN
-          observed_class: NOT RUN
-          evidence_ref: NOT RUN
+          status: PASS
+          observed_class: harness_failure
+          evidence_ref: evidence/g2v-r2-harness-controls.log
         platform_failure:
-          status: NOT RUN
-          observed_class: NOT RUN
-          evidence_ref: NOT RUN
+          status: PASS
+          observed_class: platform_failure
+          evidence_ref: evidence/g2v-r2-harness-controls.log
         gate_failure:
-          status: NOT RUN
-          observed_class: NOT RUN
-          evidence_ref: NOT RUN
+          status: PASS
+          observed_class: gate_failure
+          evidence_ref: evidence/g2v-r2-harness-controls.log
       timeout_control:
-        status: NOT RUN
-        evidence_ref: NOT RUN
+        status: PASS
+        evidence_ref: evidence/g2v-r2-harness-controls.log
       cleanup_control:
-        status: NOT RUN
-        evidence_ref: NOT RUN
+        status: PASS
+        evidence_ref: evidence/g2v-r2-harness-controls.log
       content_free_verdict:
-        status: NOT RUN
-        evidence_ref: NOT RUN
+        status: PASS
+        evidence_ref: evidence/g2v-r2-harness-verdict.json
     safety_policy: 只用普通状态/返回值/正常取消；禁止强杀、权限破坏、攻击fixture或可执行替身，无法安全验证的控制保持NOT RUN
 slices:
   - id: S1
@@ -366,8 +389,8 @@ slices:
         digest: NOT RUN
       platform: NOT RUN
       production_bootstrap: true
-      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation
-        reference changes
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime,
+        platform, harness, bootstrap, or implementation reference changes
     status: pending
     status_reason: 待适用G2A/Harness/G2V完成；尚未实施此下游slice
   - id: S2
@@ -430,8 +453,8 @@ slices:
         digest: NOT RUN
       platform: NOT RUN
       production_bootstrap: true
-      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation
-        reference changes
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime,
+        platform, harness, bootstrap, or implementation reference changes
     status: pending
     status_reason: 待适用G2A/Harness/G2V完成；尚未实施此下游slice
   - id: S3
@@ -494,8 +517,8 @@ slices:
         digest: NOT RUN
       platform: NOT RUN
       production_bootstrap: true
-      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation
-        reference changes
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime,
+        platform, harness, bootstrap, or implementation reference changes
     status: pending
     status_reason: 待适用G2A/Harness/G2V完成；尚未实施此下游slice
   - id: S4
@@ -558,8 +581,8 @@ slices:
         digest: NOT RUN
       platform: NOT RUN
       production_bootstrap: true
-      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation
-        reference changes
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime,
+        platform, harness, bootstrap, or implementation reference changes
     status: pending
     status_reason: 待适用G2A/Harness/G2V完成；尚未实施此下游slice
 final_e2e:
@@ -631,8 +654,9 @@ final_e2e:
       reason: N/A
 failure_circuit_breaker:
   same_failure_threshold: 3
-  policy: third equivalent failure blocks retries and local patches until a root-cause audit produces discriminating
-    evidence and an authorized next action
+  policy: third equivalent failure blocks retries and local patches until a
+    root-cause audit produces discriminating evidence and an authorized next
+    action
   incidents:
     - id: F164-GATE-BASELINE-REF
       slice_id: SOURCE-CANDIDATE
@@ -713,6 +737,8 @@ documents:
   implementation_log: 13-implementation-log.md
   source_candidate_review: 14-source-candidate-review.md
   local_freeze: 15-local-source-freeze.md
+  resumed_g2v: 18-resumed-g2v.md
+  responses_400_audit: 19-responses-400-audit.md
 external_authorizations:
   paid_calls:
     allowed: true
@@ -739,16 +765,17 @@ current_authorization:
   service_lifecycle_allowed: true
   model_or_tool_business_calls_allowed: true
   git_commit_push_branch_release_allowed: false
-  note: 先完成不可变候选/Harness/预算计量；最小G2V输出限8192并暂省略原生搜索，详细边界见18；不激活或迁移日常库。
+  note: 20元和搜索/图片授权持续有效；真实账本已因HTTP400无usage保留14.188544元预占并停止；r2本机验证通过，不能清账绕过停止。只本地FEAT164提交，不激活/迁移日常库。
   git_local_commit_allowed: true
   git_scope: 仅FEAT-164本地提交，包括必要后续实现/验证/治理；不混入已有其它需求，无push/branch/tag/release。
 implementation:
   status: active
-  real_entrypoint: bash scripts/run-local-demo-fast.sh --packaged --kimi-k31-pro；同canonical组合的显式独立候选，日常入口未切换
+  real_entrypoint: bash scripts/run-local-demo-fast.sh --packaged
+    --kimi-k31-pro；同canonical组合的显式独立候选，日常入口未切换
   mock_only: false
 product_verification:
-  status: NOT RUN
-  reason: r1后台ready和本地控制通过；UI观察超时阻断当前正控，完整Harness/G2V/真实模型/final尚未执行。
+  status: FAIL
+  reason: 首个真实G2V请求HTTP400，无模型答复；正常失败保存/重开已观测，S1—S4/final未执行。
 profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
 owner_approvals:
   requirements: approved_by_owner_current_user_message

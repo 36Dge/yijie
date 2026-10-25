@@ -1,0 +1,326 @@
+Verified release lock normalization for 132 local workspace packages.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+   Compiling codex-utils-absolute-path v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/absolute-path)
+   Compiling codex-utils-rustls-provider v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/rustls-provider)
+   Compiling codex-utils-cache v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/cache)
+   Compiling codex-utils-string v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/string)
+   Compiling codex-async-utils v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/async-utils)
+   Compiling codex-http-client v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/http-client)
+   Compiling codex-utils-image v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/image)
+   Compiling codex-utils-home-dir v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/home-dir)
+   Compiling codex-extension-items v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/ext/items)
+   Compiling codex-execpolicy v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/execpolicy)
+   Compiling codex-utils-path-uri v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/path-uri)
+   Compiling codex-network-proxy v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/network-proxy)
+   Compiling codex-client v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/codex-client)
+   Compiling codex-websocket-client v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/websocket-client)
+   Compiling codex-protocol v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/protocol)
+   Compiling codex-api v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/codex-api)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 17.88s
+     Running unittests src/lib.rs (codex-rs/target/debug/deps/codex_api-5e9e960b3b5dba65)
+
+running 4 tests
+test sse::responses::tests::feat156_incomplete_stream_does_not_dispatch_empty_function ... ok
+test sse::responses::tests::feat156_nonempty_item_keeps_original_streaming_path ... ok
+test sse::responses::tests::feat156_terminal_arguments_restore_empty_item_and_preserve_following_order ... ok
+test sse::responses::tests::feat156_terminal_recovery_requires_matching_identity_and_arguments ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 121 filtered out; finished in 0.01s
+
+     Running tests/clients.rs (codex-rs/target/debug/deps/clients-1bc624e17f5a2f92)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 7 filtered out; finished in 0.00s
+
+     Running tests/models_integration.rs (codex-rs/target/debug/deps/models_integration-7167dfc098072121)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.00s
+
+     Running tests/realtime_websocket_e2e.rs (codex-rs/target/debug/deps/realtime_websocket_e2e-2c99e8019e06b223)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 6 filtered out; finished in 0.00s
+
+     Running tests/sse_end_to_end.rs (codex-rs/target/debug/deps/sse_end_to_end-580e57659846da9c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.00s
+
+    Checking codex-utils-absolute-path v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/absolute-path)
+    Checking codex-utils-rustls-provider v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/rustls-provider)
+    Checking codex-utils-cache v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/cache)
+    Checking codex-utils-string v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/string)
+    Checking codex-async-utils v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/async-utils)
+    Checking codex-http-client v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/http-client)
+    Checking codex-utils-image v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/image)
+    Checking codex-utils-home-dir v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/home-dir)
+    Checking codex-utils-path-uri v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/path-uri)
+    Checking codex-execpolicy v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/execpolicy)
+    Checking codex-extension-items v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/ext/items)
+    Checking codex-network-proxy v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/network-proxy)
+    Checking codex-client v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/codex-client)
+    Checking codex-websocket-client v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/websocket-client)
+    Checking codex-protocol v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/protocol)
+    Checking codex-api v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/codex-api)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 11.12s
+   Compiling codex-utils-absolute-path v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/absolute-path)
+   Compiling codex-utils-rustls-provider v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/rustls-provider)
+   Compiling codex-utils-string v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/string)
+   Compiling codex-utils-image v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/image)
+   Compiling codex-experimental-api-macros v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/codex-experimental-api-macros)
+   Compiling codex-utils-cargo-bin v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/cargo-bin)
+   Compiling codex-utils-home-dir v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/home-dir)
+   Compiling codex-utils-path-uri v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/path-uri)
+   Compiling codex-extension-items v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/ext/items)
+   Compiling codex-execpolicy v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/execpolicy)
+   Compiling codex-network-proxy v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/network-proxy)
+   Compiling codex-protocol v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/protocol)
+   Compiling codex-shell-command v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/shell-command)
+   Compiling codex-app-server-protocol v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/app-server-protocol)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 25.65s
+     Running unittests src/lib.rs (codex-rs/target/debug/deps/codex_app_server_protocol-32c3e75708b62ded)
+
+running 1 test
+test protocol::v2::item::source_web_sources_tests::source_web_sources_survive_existing_action_projection ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 255 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (codex-rs/target/debug/deps/codex_protocol-380931f9368645cb)
+
+running 1 test
+test models::source_web_sources_tests::source_web_sources_round_trip_and_legacy_absence ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 245 filtered out; finished in 0.00s
+
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+   Compiling codex-utils-absolute-path v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/absolute-path)
+   Compiling codex-utils-rustls-provider v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/rustls-provider)
+   Compiling codex-utils-cache v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/cache)
+   Compiling codex-async-utils v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/async-utils)
+   Compiling codex-windows-sandbox v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/windows-sandbox-rs)
+   Compiling codex-utils-pty v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/pty)
+   Compiling codex-keyring-store v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/keyring-store)
+   Compiling codex-utils-template v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/template)
+   Compiling codex-terminal-detection v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/terminal-detection)
+   Compiling codex-collaboration-mode-templates v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/collaboration-mode-templates)
+   Compiling codex-aws-auth v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/aws-auth)
+   Compiling codex-skills v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/skills)
+   Compiling codex-file-search v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/file-search)
+   Compiling codex-linux-sandbox v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/linux-sandbox)
+   Compiling codex-utils-stream-parser v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/stream-parser)
+   Compiling codex-utils-home-dir v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/home-dir)
+   Compiling codex-utils-path-uri v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/path-uri)
+   Compiling codex-extension-items v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/ext/items)
+   Compiling codex-execpolicy v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/execpolicy)
+   Compiling codex-utils-path v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/path-utils)
+   Compiling codex-http-client v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/http-client)
+   Compiling codex-utils-image v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/image)
+   Compiling codex-network-proxy v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/network-proxy)
+   Compiling codex-install-context v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/install-context)
+   Compiling codex-utils-cargo-bin v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/cargo-bin)
+   Compiling codex-websocket-client v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/websocket-client)
+   Compiling codex-client v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/codex-client)
+   Compiling codex-protocol v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/protocol)
+   Compiling codex-api v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/codex-api)
+   Compiling codex-file-system v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/file-system)
+   Compiling codex-shell-command v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/shell-command)
+   Compiling codex-utils-output-truncation v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/output-truncation)
+   Compiling codex-agent-identity v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/agent-identity)
+   Compiling codex-state v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/state)
+   Compiling codex-code-mode-protocol v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/code-mode-protocol)
+   Compiling codex-context-fragments v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/context-fragments)
+   Compiling codex-shell-escalation v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/shell-escalation)
+   Compiling codex-git-utils v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/git-utils)
+   Compiling codex-exec-server-protocol v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/exec-server-protocol)
+   Compiling codex-app-server-protocol v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/app-server-protocol)
+   Compiling codex-memories-read v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/memories/read)
+   Compiling codex-code-mode v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/code-mode)
+   Compiling codex-agent-graph-store v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/agent-graph-store)
+   Compiling codex-secrets v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/secrets)
+   Compiling codex-prompts v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/prompts)
+   Compiling codex-otel v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/otel)
+   Compiling codex-model-provider-info v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/model-provider-info)
+   Compiling codex-response-debug-context v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/response-debug-context)
+   Compiling codex-rollout-trace v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/rollout-trace)
+   Compiling codex-features v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/features)
+   Compiling codex-rollout v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/rollout)
+   Compiling codex-sandboxing v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/sandboxing)
+   Compiling codex-config v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/config)
+   Compiling codex-exec-server v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/exec-server)
+   Compiling codex-thread-store v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/thread-store)
+   Compiling codex-utils-plugins v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/plugins)
+   Compiling codex-apply-patch v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/apply-patch)
+   Compiling codex-login v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/login)
+   Compiling codex-rmcp-client v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/rmcp-client)
+   Compiling codex-plugin v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/plugin)
+   Compiling codex-arg0 v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/arg0)
+   Compiling codex-connectors v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/connectors)
+   Compiling codex-hooks v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/hooks)
+   Compiling codex-test-binary-support v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/test-binary-support)
+   Compiling codex-tools v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/tools)
+   Compiling codex-feedback v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/feedback)
+   Compiling codex-models-manager v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/models-manager)
+   Compiling codex-extension-api v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/ext/extension-api)
+   Compiling codex-model-provider v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/model-provider)
+   Compiling codex-home v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/codex-home)
+   Compiling codex-mcp v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/codex-mcp)
+   Compiling codex-analytics v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/analytics)
+   Compiling codex-core-skills v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/core-skills)
+   Compiling codex-core-plugins v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/core-plugins)
+   Compiling codex-core v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/core)
+   Compiling codex-web-search-extension v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/ext/web-search)
+   Compiling core_test_support v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/core/tests/common)
+   Compiling codex-image-generation-extension v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/ext/image-generation)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 19s
+     Running unittests src/lib.rs (codex-rs/target/debug/deps/codex_core-2add7adb264f88f4)
+
+running 4 tests
+test client::tests::feat164_include_matches_kimi_documented_enum_without_changing_other_models ... ok
+test client::tests::feat164_new_model_search_preserves_sources_reasoning_and_historical_text ... ok
+test client::tests::feat164_retired_request_is_rejected_before_transport ... ok
+test client::tests::feat164_sources_are_not_added_to_no_search_or_other_models ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 2021 filtered out; finished in 0.01s
+
+   Compiling codex-utils-absolute-path v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/absolute-path)
+   Compiling codex-utils-rustls-provider v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/rustls-provider)
+   Compiling codex-utils-cache v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/cache)
+   Compiling codex-utils-string v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/string)
+   Compiling codex-async-utils v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/async-utils)
+   Compiling codex-windows-sandbox v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/windows-sandbox-rs)
+   Compiling codex-utils-pty v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/pty)
+   Compiling codex-keyring-store v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/keyring-store)
+   Compiling codex-utils-template v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/template)
+   Compiling codex-terminal-detection v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/terminal-detection)
+   Compiling codex-http-client v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/http-client)
+   Compiling codex-collaboration-mode-templates v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/collaboration-mode-templates)
+   Compiling codex-aws-auth v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/aws-auth)
+   Compiling codex-experimental-api-macros v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/codex-experimental-api-macros)
+   Compiling codex-skills v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/skills)
+   Compiling codex-file-search v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/file-search)
+   Compiling codex-utils-image v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/image)
+   Compiling codex-utils-stream-parser v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/stream-parser)
+   Compiling codex-backend-openapi-models v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/codex-backend-openapi-models)
+   Compiling codex-utils-home-dir v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/home-dir)
+   Compiling codex-execpolicy v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/execpolicy)
+   Compiling codex-extension-items v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/ext/items)
+   Compiling codex-network-proxy v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/network-proxy)
+   Compiling codex-utils-path-uri v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/path-uri)
+   Compiling codex-utils-path v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/path-utils)
+   Compiling codex-install-context v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/install-context)
+   Compiling codex-linux-sandbox v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/linux-sandbox)
+   Compiling codex-uds v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/uds)
+   Compiling codex-utils-json-to-toml v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/json-to-toml)
+   Compiling codex-file-watcher v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/file-watcher)
+   Compiling codex-ansi-escape v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/ansi-escape)
+   Compiling codex-utils-sleep-inhibitor v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/sleep-inhibitor)
+   Compiling codex-utils-fuzzy-match v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/fuzzy-match)
+   Compiling codex-websocket-client v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/websocket-client)
+   Compiling codex-client v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/codex-client)
+   Compiling codex-utils-elapsed v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/elapsed)
+   Compiling codex-process-hardening v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/process-hardening)
+   Compiling codex-cli v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/cli)
+   Compiling codex-responses-api-proxy v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/responses-api-proxy)
+   Compiling codex-stdio-to-uds v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/stdio-to-uds)
+   Compiling codex-protocol v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/protocol)
+   Compiling codex-api v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/codex-api)
+   Compiling codex-file-system v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/file-system)
+   Compiling codex-shell-command v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/shell-command)
+   Compiling codex-utils-output-truncation v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/output-truncation)
+   Compiling codex-agent-identity v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/agent-identity)
+   Compiling codex-code-mode-protocol v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/code-mode-protocol)
+   Compiling codex-state v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/state)
+   Compiling codex-context-fragments v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/context-fragments)
+   Compiling codex-shell-escalation v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/shell-escalation)
+   Compiling codex-utils-approval-presets v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/approval-presets)
+   Compiling codex-external-agent-sessions v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/external-agent-sessions)
+   Compiling codex-git-utils v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/git-utils)
+   Compiling codex-exec-server-protocol v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/exec-server-protocol)
+   Compiling codex-app-server-protocol v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/app-server-protocol)
+   Compiling codex-memories-read v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/memories/read)
+   Compiling codex-utils-cli v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/cli)
+   Compiling codex-secrets v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/secrets)
+   Compiling codex-code-mode v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/code-mode)
+   Compiling codex-prompts v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/prompts)
+   Compiling codex-agent-graph-store v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/agent-graph-store)
+   Compiling codex-otel v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/otel)
+   Compiling codex-model-provider-info v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/model-provider-info)
+   Compiling codex-response-debug-context v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/response-debug-context)
+   Compiling codex-rollout-trace v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/rollout-trace)
+   Compiling codex-features v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/features)
+   Compiling codex-rollout v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/rollout)
+   Compiling codex-sandboxing v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/sandboxing)
+   Compiling codex-config v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/config)
+   Compiling codex-exec-server v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/exec-server)
+   Compiling codex-thread-store v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/thread-store)
+   Compiling codex-utils-plugins v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/plugins)
+   Compiling codex-apply-patch v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/apply-patch)
+   Compiling codex-arg0 v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/arg0)
+   Compiling codex-plugin v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/plugin)
+   Compiling codex-login v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/login)
+   Compiling codex-connectors v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/connectors)
+   Compiling codex-rmcp-client v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/rmcp-client)
+   Compiling codex-hooks v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/hooks)
+   Compiling codex-message-history v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/message-history)
+   Compiling codex-tools v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/tools)
+   Compiling codex-models-manager v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/models-manager)
+   Compiling codex-feedback v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/feedback)
+   Compiling codex-model-provider v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/model-provider)
+   Compiling codex-extension-api v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/ext/extension-api)
+   Compiling codex-external-agent-migration v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/external-agent-migration)
+   Compiling codex-home v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/codex-home)
+   Compiling codex-mcp v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/codex-mcp)
+   Compiling codex-backend-client v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/backend-client)
+   Compiling codex-cloud-tasks-client v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/cloud-tasks-client)
+   Compiling codex-cloud-tasks-mock-client v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/cloud-tasks-mock-client)
+   Compiling codex-analytics v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/analytics)
+   Compiling codex-core-skills v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/core-skills)
+   Compiling codex-core-plugins v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/core-plugins)
+   Compiling codex-skills-extension v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/ext/skills)
+   Compiling codex-core v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/core)
+   Compiling codex-connectors-extension v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/ext/connectors)
+   Compiling codex-app-server-transport v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/app-server-transport)
+   Compiling codex-image-generation-extension v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/ext/image-generation)
+   Compiling codex-cloud-config v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/cloud-config)
+   Compiling codex-web-search-extension v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/ext/web-search)
+   Compiling codex-guardian v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/ext/guardian)
+   Compiling codex-goal-extension v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/ext/goal)
+   Compiling codex-chatgpt v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/chatgpt)
+   Compiling codex-memories-write v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/memories/write)
+   Compiling codex-memories-extension v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/ext/memories)
+   Compiling codex-mcp-extension v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/ext/mcp)
+   Compiling codex-ollama v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/ollama)
+   Compiling codex-lmstudio v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/lmstudio)
+   Compiling codex-utils-sandbox-summary v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/sandbox-summary)
+   Compiling codex-utils-oss v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/utils/oss)
+   Compiling codex-mcp-server v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/mcp-server)
+   Compiling codex-app-server-test-client v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/app-server-test-client)
+   Compiling codex-app-server-daemon v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/app-server-daemon)
+   Compiling codex-app-server v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/app-server)
+warning: variable does not need to be mutable
+    --> app-server/src/lib.rs:1332:5
+     |
+1332 |     mut loader_overrides: LoaderOverrides,
+     |     ----^^^^^^^^^^^^^^^^
+     |     |
+     |     help: remove this `mut`
+     |
+     = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+   Compiling codex-app-server-client v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/app-server-client)
+   Compiling codex-tui v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/tui)
+   Compiling codex-exec v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/exec)
+   Compiling codex-cloud-tasks v0.144.6 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/codex-rs/cloud-tasks)
+warning: `codex-app-server` (lib) generated 1 warning (run `cargo fix --lib -p codex-app-server` to apply 1 suggestion)
+    Finished `release` profile [optimized + debuginfo] target(s) in 7m 09s
+Canonicalized 269 JSON files under /var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-chat-model-stream-build.cmXlHk/schema.
+Wrote runtime manifest: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r2/aarch64-apple-darwin/runtime-manifest.json
+Canonical optional search sources only: 21 changed files; 0 new type files
+Verified app-server stdio initialize/initialized handshake with codex-cli 0.144.6.
+FEAT-164 Kimi K3.1 Pro candidate built with shared codex-rs/target cache: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r2/aarch64-apple-darwin

@@ -1,0 +1,48 @@
+{
+  "recorded_at": "2026-10-25T10:22:19.910845+08:00",
+  "commits": {
+    "yijie-desktop": "74f2f74d866483463df7236f891aae62b00539ba",
+    "yijie-agent-host": "5022435a6272263e66e46a41b7ed7c3f9fb6caf9",
+    "yijie-contracts": "f2819c66a2368aaff37216a46c48d5cd81df1747",
+    "yijie-codex": "074417e5e2f5f55704ea5e1777e7a22d514076b4"
+  },
+  "source_worktrees_clean": true,
+  "qualification_root": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025",
+  "harness": {
+    "id": "H-F164-LOCAL",
+    "commit": "74f2f74d866483463df7236f891aae62b00539ba",
+    "sources": {
+      "scripts/feat164-verdict.mjs": "aa9889106f7d12a8868bf461f1728f8ab951342afec0464c01da2fdf3ef0e512",
+      "scripts/feat164-verdict.test.mjs": "f82512ee5bd9cbaf12a376f7195d45265395e977e55638df02c927156caa055e",
+      "scripts/feat164-budget-meter.py": "4f8f7e83ab8da15bdc6ec1fd43f678d63d0bcdc391be83c2ab4aca1fa5647938",
+      "scripts/feat164_budget_meter_test.py": "d7b039f3741664610ccd2113ef25a455c0cd3bc644c57edb050d5eaddb2d0e5c"
+    },
+    "digest": "ad7b7bd86613502932d7d607eff589f0128b279af098a6da2197354761c20367"
+  },
+  "receipt_sha256": "8e4ae59a81b750885295c7d94668403cad15613fa03fa1dda1405a7107fcacda",
+  "artifacts": {
+    "host": {
+      "sha256": "8d7c7ee32f98b618132b696bb5cea8394f7bddb6e0cfc6a2ff53e24c72d25e56",
+      "bytes": 17904210,
+      "mode": 493
+    },
+    "runtime": {
+      "sha256": "6419b16c37a838a6a2543838d1ffc1a3a9afc070f26435f760dd8eb9e3b508a8",
+      "bytes": 355910024,
+      "mode": 493
+    },
+    "runtimeManifest": {
+      "sha256": "87ffbdc2b3ab60570f2bee7b741ed18766ef516e0adef73671c6c433fd1e2fc2",
+      "bytes": 2544,
+      "mode": 420
+    }
+  },
+  "app": {
+    "sha256": "16f9887c47ace3684e985c898b7769f9839071aac73cddd41376c95a3d181827",
+    "bytes": 185976704,
+    "mode": 493
+  },
+  "fixture_sha256": "d345d62dfa9ba7021138c3330a6c619222cf108cf423b5b051fc9699cda90372",
+  "real_requests_total": 1,
+  "real_budget_state": "halted; 14188544 micro-CNY remains reserved"
+}

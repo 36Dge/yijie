@@ -1,0 +1,50 @@
+{
+  "recorded_at": "2026-10-25T10:29:17.799082+08:00",
+  "separate_review": "reviewed final r2 patch, budget validation/error hints, immutable pins, source preservation and live local observations after implementation",
+  "g2a": "PASS",
+  "current_r2_harness": "PASS",
+  "last_real_g2v": "FAIL_HTTP_400",
+  "r2_real_g2v": "NOT RUN",
+  "slices_S1_to_S4": "NOT RUN",
+  "final_e2e": "NOT RUN",
+  "real_http_requests": 1,
+  "actual_cost_cny": null,
+  "reserved_micro_cny": 14188544,
+  "meter_halted": true,
+  "all_task_services_exited_normally": true,
+  "review_checks": {
+    "runtime_model_specific_include_preserves_other_models": true,
+    "budget_adapter_rejects_unsupported_includes_before_provider": true,
+    "budget_error_diagnostics_are_closed_no_prose": true,
+    "usage_unknown_never_released_or_counted_zero": true,
+    "all_supported_contract_baselines_passed": 7,
+    "runtime_canonical_schema_files_unchanged": 269,
+    "candidate_actual_ui_history_reopen_and_cleanup": true,
+    "preexisting_workspace_changes_preserved": true
+  },
+  "meta_validation": {
+    "pnpm_lint_exit_code": 0,
+    "pnpm_test_exit_code": 0,
+    "pnpm_test_count": 50,
+    "shell_syntax_exit_code": 0,
+    "claims_exit_code": 0,
+    "G2A_exit_code": 0
+  },
+  "limitations": [
+    "HTTP400 root cause not uniquely proven because original error prose was not retained",
+    "No verified usage available to release the first request reservation",
+    "No native-search/default-output/image/full feature qualification",
+    "Full legacy attack-fixture suites intentionally not executed; ordinary focused controls used"
+  ],
+  "no_push": true,
+  "owned_service_processes_remaining": [],
+  "raw_evidence_whitespace_check": {
+    "exit_code": 2,
+    "reason": "3 existing Vite reporter trailing spaces and 1 Cargo trailing blank line in raw captured logs retained unchanged; product source/document checks pass",
+    "ref": "g2v-r2-raw-evidence-whitespace-check.log"
+  },
+  "credential_pattern_review": {
+    "status": "PASS",
+    "note": "Initial loose sk- match was a scheduled-task asset filename; bounded token-pattern review of staged text found no matches"
+  }
+}

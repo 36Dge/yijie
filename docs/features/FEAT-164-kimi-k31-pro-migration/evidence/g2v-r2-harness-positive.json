@@ -1,0 +1,31 @@
+{
+  "recorded_at": "2026-10-25T10:24:49.480076+08:00",
+  "scope": "r2 canonical ordinary loopback harness qualification, not real G2V",
+  "observation": {
+    "sourcePinned": true,
+    "controllerHealthy": true,
+    "platformReady": true,
+    "productionObserved": true,
+    "modelMatched": true,
+    "persisted": true,
+    "reopened": true,
+    "normalCleanup": true
+  },
+  "provenance": "g2v-r2-provenance.json",
+  "ui_refs": [
+    "g2v-r2-local-positive.ax.txt",
+    "g2v-r2-history-reopen.ax.txt"
+  ],
+  "request_ref": "g2v-r2-qualified-loopback-ledger.json",
+  "app_exit_codes": [
+    0,
+    0
+  ],
+  "fixture_exit_code": 0,
+  "released_ports": {
+    "18083": true,
+    "18086": true
+  },
+  "real_model_requests_total": 1,
+  "no_new_real_requests": true
+}
