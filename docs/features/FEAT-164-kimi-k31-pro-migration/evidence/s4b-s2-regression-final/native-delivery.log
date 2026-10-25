@@ -1,0 +1,19 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.15s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/yijie_desktop_lib-1b53ef458e0aa835)
+
+running 12 tests
+test chat::delivery::tests::feat164_delivery_cancel_after_claim_survives_reopen_without_rewriting_or_reviving ... ok
+test chat::delivery::tests::feat164_delivery_cancel_releases_lane_and_allows_explicit_model_selection ... ok
+test chat::delivery::tests::feat164_delivery_legacy_without_proof_remains_unclassified_and_unmodified ... ok
+test chat::delivery::tests::feat164_delivery_market_and_expert_have_independent_proof_and_no_ordinary_claim ... ok
+test chat::delivery::tests::feat164_delivery_migration_does_not_backfill_legacy_pending ... ok
+test chat::delivery::tests::feat164_delivery_new_acceptance_replay_preserves_proof_and_input_identity ... ok
+test chat::delivery::tests::feat164_delivery_new_chat_binding_is_observed_before_first_turn_send ... ok
+test chat::delivery::tests::feat164_delivery_ordinary_final_send_binds_operation_profile_path_and_is_single_use ... ok
+test chat::delivery::tests::feat164_delivery_pause_blocks_claim_but_preserves_explicit_unsent_cancel ... ok
+test chat::delivery::tests::feat164_delivery_permission_turn_checks_nested_source_operation ... ok
+test chat::delivery::tests::feat164_delivery_public_or_create_attempt_prevents_cancel_even_after_legacy_retry_reset ... ok
+test chat::host_bridge::tests::feat164_delivery_http_admission_blocks_cancelled_and_sends_live_once ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 643 filtered out; finished in 10.20s
+

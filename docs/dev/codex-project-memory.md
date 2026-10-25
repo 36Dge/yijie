@@ -1,14 +1,14 @@
 # 易界项目 Codex 长期协作记忆
 
-## FEAT-164 S4接线与安全离线子集已固化，完整验收仍未通过（2026-10-25）
+## FEAT-164 S4专家资源、媒体与辅助离线扩展已固化，完整验收未完成（2026-10-25）
 
-当前权威[27](../features/FEAT-164-kimi-k31-pro-migration/27-s4-call-surface-wiring.md)、feature.yaml及evidence/s4-conformance-final。Owner授权S4、零新增真实模型HTTP、保留工作区/旧账本/预占、仅本地提交不推送。Contracts eddc64f95d81c26ca1678cc648d177c081f7904d先固化市场选择/Host/专家v2；Host9ffcb6f55bb6b2db3aacdee61693063767139ba7接线并修复标题误拒userMessage；Desktop704cfdb915b682c4aa3bf3cc62bb33da18f698f2、e4080474e8bd691622cf269e400f8ae4bbcbd041完成v2消费者、草案/计划表单、新模型实际提交、显式候选组合和独立catalog来源。旧v1/摘要域/权限与默认入口保留。
+当前权威[28](../features/FEAT-164-kimi-k31-pro-migration/28-s4-expert-media-auxiliary.md)、feature.yaml及evidence/s4b-qualified-final。Owner授权继续S4、先解决专家pin，再做专家/媒体/辅助安全离线验证；新增真实HTTP为0，保留工作区/旧账本/预占，仅本地提交不推送。最终Hostcac2d4d7e1df02868a370e204959e1842c3362c3、Desktop56f52843b543a4276eb6221abf3d589582b8c480、Connectors1f157260d6dd339172712e1c649258902db45050；Contractseddc64f、Runtime074417e5 r2不变。
 
-干净来源S4安全子集7/4/4/4/5、0skip，固定真实r2 Runtime6次loopback涵盖图片文本/标题/input-only草案及resume/专家/普通文件工具续调。S2 25/2/12/10/1、S3五项复验、202前端及lint/type/fmt/Clippy lib/默认Rust check/go vet/Vite通过。完整TCONF-164-04仍NOT RUN：普通multi_agent_v1实际可用，辅助代理/审批/压缩仅源审计与配置观察，未动态执行；不能称全部辅助能力关闭。
+专家差异仅来源信息：干净Skills595c927ae101d3d31c234f60565041eee0864680 canonical打包77文件两次一致，75归档/公开条目与原资源相同。独立pin manifest3facbb1a/authority7f3eb942，旧pin和资源slot未动。资格树yijie-skills指向skills-s4-source；新资源在dist/skills-experts-feat164-s4和Desktop.local/feat164-kimi-k31/skill-packages-experts。原sync-desktop-expert-resources已有其它需求改动，逐字保留；候选独立sync-feat164-expert-resources。Worker固定7fd463b库树，仅兼容同树的明确Runtime074417e5 wrapper，实际源码/依赖校验保持。
 
-ordinary/market source PASS；experts/media仍受既有expert manifest64721b4…/Native pin033689b…不一致阻断。保留原资源，禁止刷新digest假通过。资格树connectors-s4-source为detached251a0e8，yijie-connectors链接指向它；原仓已有改动保留。FEAT-164独立catalog pin/checker保留旧catalog及原工作区新摘要，未混入其它需求。下一步先核对资源所属来源并补专家/媒体实际链与辅助动态资格，再补App/平台；完整S4/G2V/G3/final继续pending。
+四组合source全部PASS；最终新增资源1/专家媒体3/辅助4/Native资源1、0skip，37专家版本真实安装/解析/重开。固定真实Runtime13次loopback覆盖专家、媒体真实adapter、原生子代理completed、Guardian普通复制与显式压缩；两条provider进程配置都走受限本机meter、0retry。S4 7/4/4/4/5、S2 25/2/12/10/1、S3五项在最终源复验PASS，静态检查PASS。完整TCONF-164-04仍NOT RUN：App/WebView、当前源旧隔离历史/暂停回退/正常重开、跨平台、旧模型子代理与自动压缩cutover未通过；本机合成不代表真实供应商能力。S4/G2V/G3/final继续pending。
 
-活动App仍S1 Hoste8ae83f/Desktop174fbaf，session78901/readyz18086；fixture72636/18083保持原1请求，bundle42项未覆盖。用户回来先正常退出再canonical新构建；不强杀、不替换程序、不跑危险fixture，不迁移日常库。旧30元账本2/2HTTP已耗尽，14.188544元未知预占+0.139590元保守费用=14.328134元上界，两份账本逐字保留。预算余额不产生新HTTP许可。工作区保护和提交见s4-preservation-audit/isolation；旧S1—S3平台延期与既有基线失败仍有效。禁止全量未经审查的generate/test入口。
+活动App仍S1 Hoste8ae83f/Desktop174fbaf，session78901/readyz18086；fixture72636/18083保持原1请求，bundle42项未覆盖。用户回来先正常退出再canonical新构建；不强杀、不替换程序、不跑危险fixture、不迁移日常库。旧30元账本2/2HTTP已耗尽，14.188544元未知预占+0.139590元保守费用=14.328134元上界，两份账本逐字保留。7仓496既有变更文件、154原资源文件保留证明见s4b-preservation-audit/isolation；旧S1—S3平台延期和无关基线失败仍有效。预算余额不产生新HTTP许可。
 
 2026-10-08 Sorftime 最新状态：Owner已填密钥，但两条19:19/19:20元数据初始化仍unavailable。审计发现通用HTTP迁移漏带旧链路已验证有效的User-Agent；已补真实yijie-mcp-worker/0.1.0及受限HTTP阶段/状态码诊断，未伪装旧客户端、未改固定Codex。63本地测试/lint/标准App构建通过，说明已左对齐。新worker da3c31537e6be46bb826a2ec44b0541456cbbf2810772aabbba5df1023400f81。尚未真实复验，已申请仅1次连接/发现、0模型/0业务；因先前失败不自动重发，等待用户答复。Keyring已有用户保存密钥，不要再要求重填/卸载或读取密钥。详见FEAT-157/21及sorftime-user-agent-20261008证据。
 

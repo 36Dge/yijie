@@ -1,0 +1,183 @@
+{
+  "test_id": "TCONF-164-04",
+  "scope": "S4b safe offline expert/media/auxiliary extension; App/platform NOT RUN",
+  "started_at": "2026-10-25T18:29:57.554713+08:00",
+  "real_model_http_added": 0,
+  "expected_loopback_http": 13,
+  "sources": {
+    "desktop": {
+      "head": "cba29c4e6c125817c0bd109ba966b58d0e05926f",
+      "status": []
+    },
+    "host": {
+      "head": "03d26a374fd5ea0dfd238276b735d445e93d4f2e",
+      "status": []
+    },
+    "connectors": {
+      "head": "1f157260d6dd339172712e1c649258902db45050",
+      "status": []
+    },
+    "skills": {
+      "head": "595c927ae101d3d31c234f60565041eee0864680",
+      "status": []
+    },
+    "runtime": {
+      "head": "074417e5e2f5f55704ea5e1777e7a22d514076b4",
+      "status": []
+    }
+  },
+  "inputs": {
+    "runtime_binary": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r2/aarch64-apple-darwin/codex",
+      "sha256": "6419b16c37a838a6a2543838d1ffc1a3a9afc070f26435f760dd8eb9e3b508a8"
+    },
+    "runtime_manifest": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r2/aarch64-apple-darwin/runtime-manifest.json",
+      "sha256": "87ffbdc2b3ab60570f2bee7b741ed18766ef516e0adef73671c6c433fd1e2fc2"
+    },
+    "worker_manifest": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/connectors-s4-source/bin/market-worker/current.json",
+      "sha256": "fd94090e515150c6746f0d75e598b2569cb534bd0ad865e8b8926c54e11e940a"
+    },
+    "expert_bundle": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop/.local/feat164-kimi-k31/skill-packages-experts",
+      "sha256": "3facbb1a63f15f6e9c089b61955c2edc34f341d89dd659175131d246909f76ed"
+    },
+    "artifact_adapter": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-agent-host/.local/feat164-s4b/bin/yijie-artifact-mcp",
+      "sha256": "178fbe7157f23f964f97566ab7648c448050a012e3007d42fa5378da2b9d5521"
+    },
+    "worker_binary": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/connectors-s4-source/bin/market-worker/ea7bb14be6725c56db826b06cb306494694ce7c08c417baadf908e8ae1d30156/yijie-mcp-worker",
+      "sha256": "ea7bb14be6725c56db826b06cb306494694ce7c08c417baadf908e8ae1d30156"
+    }
+  },
+  "checks": [
+    {
+      "name": "source-ordinary",
+      "command": [
+        "node",
+        "scripts/kimi-k31-build-candidate.mjs"
+      ],
+      "exit_code": 0,
+      "passed_cases": null,
+      "skipped": 0,
+      "sha256": "38098477ef6ccad735b1eef553bc6075f43b35a95752cacd5f77ad6253c1f85b",
+      "result": "PASS"
+    },
+    {
+      "name": "source-market",
+      "command": [
+        "node",
+        "scripts/kimi-k31-build-candidate.mjs"
+      ],
+      "exit_code": 0,
+      "passed_cases": null,
+      "skipped": 0,
+      "sha256": "38098477ef6ccad735b1eef553bc6075f43b35a95752cacd5f77ad6253c1f85b",
+      "result": "PASS"
+    },
+    {
+      "name": "source-experts",
+      "command": [
+        "node",
+        "scripts/kimi-k31-build-candidate.mjs"
+      ],
+      "exit_code": 0,
+      "passed_cases": null,
+      "skipped": 0,
+      "sha256": "38098477ef6ccad735b1eef553bc6075f43b35a95752cacd5f77ad6253c1f85b",
+      "result": "PASS"
+    },
+    {
+      "name": "source-media",
+      "command": [
+        "node",
+        "scripts/kimi-k31-build-candidate.mjs"
+      ],
+      "exit_code": 0,
+      "passed_cases": null,
+      "skipped": 0,
+      "sha256": "38098477ef6ccad735b1eef553bc6075f43b35a95752cacd5f77ad6253c1f85b",
+      "result": "PASS"
+    },
+    {
+      "name": "expert-resources",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-json",
+        "./internal/skills",
+        "-run",
+        "^TestFEAT164ImmutableExpertResources$",
+        "-count=1"
+      ],
+      "exit_code": 0,
+      "passed_cases": 1,
+      "skipped": 0,
+      "sha256": "8537ec90f7bf2c698aaa72c2188c428d0a37c33c89bf26a27bd6f9e9fac62184",
+      "result": "PASS"
+    },
+    {
+      "name": "expert-media",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-json",
+        "./internal/app",
+        "-run",
+        "^TestFEAT164ExpertMediaCanonicalRuntime$",
+        "-count=1"
+      ],
+      "exit_code": 0,
+      "passed_cases": 3,
+      "skipped": 0,
+      "sha256": "3691468232ebef8f2e0a42d3f7f38ecdab93d60635406be2576efb6a120a2fef",
+      "result": "PASS"
+    },
+    {
+      "name": "native-auxiliary",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-json",
+        "./internal/codex",
+        "-run",
+        "^TestFEAT164(NativeAuxiliaryAgent|NativeAuxiliaryCompaction|NativeGuardianModel|AuxiliaryMeterLayer)$",
+        "-count=1"
+      ],
+      "exit_code": 0,
+      "passed_cases": 4,
+      "skipped": 0,
+      "sha256": "0f597d37535429b63925cfb997196e1ee0b80730f480a96cdbeedb33b9727df2",
+      "result": "PASS"
+    },
+    {
+      "name": "native-expert-resources",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "--lib",
+        "skills::catalog::tests::exact_reviewed_expert_bundle_loads_when_the_integration_root_is_supplied",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 0,
+      "passed_cases": 1,
+      "skipped": 0,
+      "sha256": "436314e916b9f42c4ee687beab7e8db89549c387e6d91960e2a2d968a2a6e0f3",
+      "result": "PASS"
+    }
+  ],
+  "status": "PASS",
+  "verified_at": "2026-10-25T18:31:15.718277+08:00"
+}

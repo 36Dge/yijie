@@ -1,0 +1,110 @@
+{
+  "test_id": "TCONF-164-04",
+  "scope": "S4 safe offline subset; auxiliary agent/review not invoked; App/platform NOT RUN",
+  "started_at": "2026-10-25T18:36:59.034992+08:00",
+  "real_model_http_added": 0,
+  "expected_loopback_http": 6,
+  "sources": {
+    "desktop": {
+      "head": "56f52843b543a4276eb6221abf3d589582b8c480",
+      "status": []
+    },
+    "host": {
+      "head": "cac2d4d7e1df02868a370e204959e1842c3362c3",
+      "status": []
+    }
+  },
+  "checks": [
+    {
+      "name": "host-service",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-json",
+        "./internal/session",
+        "-run",
+        "^TestFEAT164MarketExpertModelWiring$",
+        "-count=1"
+      ],
+      "exit_code": 0,
+      "passed_cases": 7,
+      "skipped": 0,
+      "sha256": "ebf33a5a352dbe2556f75a7d481c3f1ab59bad7d372d0d42a7bb7e0c8785e17c",
+      "result": "PASS"
+    },
+    {
+      "name": "real-runtime",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-json",
+        "./internal/codex",
+        "-run",
+        "^TestFEAT164(CallSurfacesRuntime|DraftLoopbackAdmission|TitleCollectorNativeInputLifecycle|MarketCandidateAssembly)$",
+        "-count=1"
+      ],
+      "exit_code": 0,
+      "passed_cases": 4,
+      "skipped": 0,
+      "sha256": "66efa417a2a5bff643c8faefa97ebbad951f6b4afde029cd9b6209d41e6ce228",
+      "result": "PASS"
+    },
+    {
+      "name": "native-storage",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "--lib",
+        "feat164_surfaces",
+        "--",
+        "--test-threads=1"
+      ],
+      "exit_code": 0,
+      "passed_cases": 4,
+      "skipped": 0,
+      "sha256": "fa608a63b554d7c0302458adcc041f64f5abc3dd9765d9a8a9bdc35de0fa96d9",
+      "result": "PASS"
+    },
+    {
+      "name": "renderer",
+      "command": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "src/api/call-surfaces.feat164.test.ts",
+        "src/components/schedules/ScheduledPlanForm.feat164.test.ts",
+        "--reporter=json"
+      ],
+      "exit_code": 0,
+      "passed_cases": 4,
+      "skipped": 0,
+      "sha256": "609b51fcae26c845b4a02ff871043362f52bf231ab365baa719b9e171f4e7db1",
+      "result": "PASS"
+    },
+    {
+      "name": "candidate-profile",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "scripts/tests/feat164-candidate-closure.test.mjs"
+      ],
+      "exit_code": 0,
+      "passed_cases": 5,
+      "skipped": 0,
+      "sha256": "70c5816c5b5475d50e10adb2876cc09b869c519a2f94014a005ba0e735579443",
+      "result": "PASS"
+    }
+  ],
+  "status": "PASS",
+  "verified_at": "2026-10-25T18:37:07.649440+08:00"
+}

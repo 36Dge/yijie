@@ -97,6 +97,7 @@ gate_reasons:
     Desktop验收脚本现固化40908c75af14a9cbd65d1b0cee96ba510d6afa8f，产品契约来源不变。
     S4新增三组模型承载v2源于eddc64f，安全leaf/check、4同源schema测试和9登记基线比较通过，Host9ffcb6f/Desktop
     e408047精确消费；仅本地来源，不等于发布或专家资源资格。
+    S4b复用同一公共契约；Hostcac2d4d/Desktop56f5284/Connectors1f15726固定Skills595c927同内容资源和原库树，四组合source通过，旧来源的证据不覆盖App资格。
   G2V: S3计划v2/SQL41及S4市场/专家v2均不在旧r2
     G2V覆盖来源内；当前pending，旧PASS对象s3-prior-vertical-feasibility.json与旧账本逐字保留。真实调用新增许可0；预算余额不授权新HTTP。
 temporal_contract_matrix:
@@ -288,16 +289,19 @@ temporal_contract_matrix:
         - repository: yijie-contracts
           full_sha: eddc64f95d81c26ca1678cc648d177c081f7904d
         - repository: yijie-agent-host
-          full_sha: 9ffcb6f55bb6b2db3aacdee61693063767139ba7
+          full_sha: cac2d4d7e1df02868a370e204959e1842c3362c3
         - repository: yijie-desktop
-          full_sha: e4080474e8bd691622cf269e400f8ae4bbcbd041
-      evidence_ref: 27-s4-call-surface-wiring.md
+          full_sha: 56f52843b543a4276eb6221abf3d589582b8c480
+        - repository: yijie-connectors
+          full_sha: 1f157260d6dd339172712e1c649258902db45050
+      evidence_ref: 28-s4-expert-media-auxiliary.md
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
       implementation_status: implemented_partial
-      command_note: 已执行安全子集7/4/4/4/5 PASS、0skip；辅助原生代理/审批动态调用、完整同源App重开尚未执行，TINV-164-04整体仍NOT RUN，不能将driver子集PASS晋升完整TCONF。
+      command_note: 安全子集7/4/4/4/5及新增feat164-s4b-conformance.py的四组合source、1/3/4/1行为检查PASS，0skip；37专家版本、真实Worker/媒体adapter、原生子代理/Guardian/显式压缩已安全离线验证。完整同源App/UI重开、旧模型cutover和平台未执行，TINV-164-04整体仍NOT
+        RUN，不能晋升完整TCONF。
 vertical_feasibility:
   required: true
   applicability_reason: 跨仓模型/Runtime身份和重要持久数据迁移，必须真实纵向资格
@@ -687,26 +691,29 @@ slices:
       - repository: yijie-contracts
         full_sha: eddc64f95d81c26ca1678cc648d177c081f7904d
       - repository: yijie-agent-host
-        full_sha: 9ffcb6f55bb6b2db3aacdee61693063767139ba7
+        full_sha: cac2d4d7e1df02868a370e204959e1842c3362c3
       - repository: yijie-desktop
-        full_sha: e4080474e8bd691622cf269e400f8ae4bbcbd041
+        full_sha: 56f52843b543a4276eb6221abf3d589582b8c480
+      - repository: yijie-connectors
+        full_sha: 1f157260d6dd339172712e1c649258902db45050
     exception:
       owner: 段成威
       approved_at: 2026-10-25
-      reason: 用户明确要求S4全调用面接线和安全离线验证，并沿用锁屏相关验收延期；只授权推进离线实现，不豁免G2V/G3或最终验收。
+      reason: 用户明确要求先核对专家资源pin并继续专家、媒体组合及辅助调用的安全离线验证；沿用UI延期，新增真实HTTP为0，不豁免G2V/G3或最终验收。
     local_evidence:
       required: true
       status: PASS
-      command: python3 scripts/feat164-s4-conformance.py --output <new-output> --runtime-binary <pinned-r2-codex>
-        --runtime-manifest <pinned-r2-manifest>
-      environment: macOS aarch64; clean Desktop e408047 / Host9ffcb6f / Contractseddc64f; real pinned r2 Runtime;
-        loopback only
+      command: python3 scripts/feat164-s4b-conformance.py --output <new-output> --runtime-binary <pinned-r2-codex>
+        --runtime-manifest <pinned-r2-manifest> --worker-manifest <canonical-worker-manifest> --expert-bundle
+        <immutable-expert-bundle> --artifact-adapter <canonical-artifact-adapter>
+      environment: macOS aarch64; clean Desktop 56f5284 / Hostcac2d4d / Connectors1f15726 / Skills595c927 /
+        Contractseddc64f; real pinned r2 Runtime; loopback only
       exit_code: 0
-      verified_at: 2026-10-25T16:35:05.387342+08:00
+      verified_at: 2026-10-25T18:36:58.996897+08:00
       refs:
-        - 08-verification-report.md#E164-S4-OFFLINE
-      reason: 安全子集7/4/4/4/5非零命中、0skip；S2
-        25/2/12/10/1及S3五项复验通过。202前端回归、lint/type/fmt/Clippy/前端build通过；不代表完整TCONF-164-04或G3。
+        - 08-verification-report.md#E164-S4B-OFFLINE
+      reason: 四组合source及1/3/4/1行为检查PASS、0skip；13次loopback覆盖专家/媒体/子代理/Guardian/显式压缩。当前源S4 7/4/4/4/5、S2
+        25/2/12/10/1及S3五项复验通过；37专家版本安装/解析/重开、Native完整资源读取通过。不代表完整TCONF-164-04、App/平台或G3。
       exception:
         owner: N/A
         approved_at: N/A
@@ -719,8 +726,8 @@ slices:
       exit_code: null
       verified_at: NOT RUN
       refs: []
-      reason: 已验证Host真实域服务、Native存储和固定Runtime本机六请求；完整canonical
-        App/市场Worker/专家资源/媒体及辅助代理/审批动态调用、正常重开、平台仍未执行。专家manifest与Native pin既有不一致仍阻断；不得当完整边界/纵向PASS。
+      reason: 专家pin不一致已按不可变同内容资源解决；真实Host域服务、canonical Worker/媒体adapter、固定Runtime辅助调用已安全离线验证。仍缺同源canonical
+        App/WebView、旧隔离历史完整重开/暂停回退、旧模型cutover/自动大上下文与平台资格，不当完整边界/纵向PASS。
       exception:
         owner: N/A
         approved_at: N/A
@@ -733,8 +740,8 @@ slices:
       exit_code: null
       verified_at: NOT RUN
       refs: []
-      reason: 已验证Host真实域服务、Native存储和固定Runtime本机六请求；完整canonical
-        App/市场Worker/专家资源/媒体及辅助代理/审批动态调用、正常重开、平台仍未执行。专家manifest与Native pin既有不一致仍阻断；不得当完整边界/纵向PASS。
+      reason: 专家pin不一致已按不可变同内容资源解决；真实Host域服务、canonical Worker/媒体adapter、固定Runtime辅助调用已安全离线验证。仍缺同源canonical
+        App/WebView、旧隔离历史完整重开/暂停回退、旧模型cutover/自动大上下文与平台资格，不当完整边界/纵向PASS。
       exception:
         owner: N/A
         approved_at: N/A
@@ -753,7 +760,8 @@ slices:
       invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
         implementation reference changes
     status: pending
-    status_reason: 源接线、安全离线子集和S2/S3回归已本地固化。完整TCONF-164-04、专家/媒体资源组合、辅助动态调用、App/WebView/旧隔离历史/跨平台与freshness未完成，S4 G3仍pending。
+    status_reason: 源接线、专家资源pin及媒体/辅助安全离线扩展、S2/S3/S4当前源回归已本地固化。完整TCONF-164-04、App/WebView/旧隔离历史/跨平台与freshness未完成，S4
+      G3仍pending。
 final_e2e:
   core_vertical:
     required: true
@@ -932,7 +940,7 @@ external_authorizations:
     approved_at: N/A
 current_authorization:
   phase: implementation_with_governance
-  source: Owner要求审计已完成及剩余步骤并开始下一步，延续锁屏相关验收延期；不新增真实模型调用，保留已有工作区、旧账本与预占，仅FEAT-164本地提交、不推送。
+  source: Owner要求继续S4，先解决专家资源pin不一致，再推进专家、媒体组合和辅助调用的安全离线验证；严格保留已有工作区、旧账本与预占，新增真实模型HTTP为0，仅FEAT-164本地提交、不推送。
   documentation_write_allowed: true
   product_source_edit_allowed: true
   product_generate_build_test_allowed: true
@@ -950,7 +958,7 @@ implementation:
   mock_only: false
 product_verification:
   status: IN_PROGRESS
-  reason: S1—S4源实现持续推进；S4安全子集与S2/S3当前源回归已通过，完整TCONF-164-04、App/平台/G3/final仍缺；未新增真实模型调用，旧账本/预占保留。
+  reason: S4专家资源pin与安全离线扩展已完成，S2/S3/S4当前源回归通过；完整TCONF-164-04、App/平台/G3/final仍缺。旧账本/预占保留，新增真实模型HTTP为0。
 profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
 owner_approvals:
   requirements: approved_by_owner_current_user_message

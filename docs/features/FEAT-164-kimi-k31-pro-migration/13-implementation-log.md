@@ -45,3 +45,7 @@ Host 57c29ea03e3de39161a7c28080f9388f00cd1735（2个测试文件）与Desktop dd
 ## 2026-10-25 S3 计划退役与授权保护
 
 按Owner明确授权完成source-first、本机领域保护及隔离本地提交：Contracts2dd214d→Desktop4d04597。S3五项精确时序与当前S2五组复验通过，真实模型HTTP0；默认自动回归原基线失败和旧生成器误用如实保留。App/平台/G3不晋升。完整实施、验证、未执行与保留审计见26。
+
+## 2026-10-25 S4 专家资源与辅助调用续办
+
+按Owner明确授权完成专家pin审计与同内容不可变来源、候选专家/媒体接线及原生辅助安全离线验证。最新Host cac2d4d、Desktop56f5284、Connectors1f15726，Skills595c927/Contractseddc64f/Runtime074417e5不改。专属pin和slot保留原资源，原dirty同步脚本不混入提交；process provider meter覆盖原生子代理/Guardian/压缩。具体提交、复现、精确矩阵、边界及下一步见[28](28-s4-expert-media-auxiliary.md)。新增真实模型HTTP为0，完整G2V/G3/final仍不放行；旧账本、预占、活动S1 App与原改动保留。

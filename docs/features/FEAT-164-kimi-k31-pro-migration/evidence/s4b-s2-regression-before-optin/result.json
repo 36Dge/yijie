@@ -1,0 +1,143 @@
+{
+  "test_id": "TCONF-164-02",
+  "status": "PASS",
+  "real_model_http_added": 0,
+  "platform_ui": "NOT RUN",
+  "runtime_binary_sha256": "6419b16c37a838a6a2543838d1ffc1a3a9afc070f26435f760dd8eb9e3b508a8",
+  "runtime_manifest_sha256": "87ffbdc2b3ab60570f2bee7b741ed18766ef516e0adef73671c6c433fd1e2fc2",
+  "sources": {
+    "desktop": {
+      "head": "c88461a9a309d4459125ddf187f67ad0ceadd21c",
+      "status": []
+    },
+    "host": {
+      "head": "8a02f982b77dc59ddbd0b2f8376682083ae89087",
+      "status": []
+    }
+  },
+  "checks": [
+    {
+      "name": "host-temporal",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-json",
+        "./internal/session",
+        "-run",
+        "^TestFEAT164MigrationReceiptAndRecovery$",
+        "-count=1"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-agent-host",
+      "started_at": "2026-10-25T18:32:34.102109+08:00",
+      "verified_at": "2026-10-25T18:32:37.219551+08:00",
+      "exit_code": 0,
+      "passed_cases": 25,
+      "skipped": 0,
+      "log": "host-temporal.log",
+      "sha256": "942caf3ac4cc2c8cd29886cfd4f4cb920e161251227e4a8d4c18e2ddf11244cc",
+      "result": "PASS"
+    },
+    {
+      "name": "host-routes",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-json",
+        "./internal/app",
+        "-run",
+        "^TestFEAT164(V2OperationRoutesValidateBeforeService|ModelRoutesPreserveAuthAndRetiredRead)$",
+        "-count=1"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-agent-host",
+      "started_at": "2026-10-25T18:32:37.219850+08:00",
+      "verified_at": "2026-10-25T18:32:38.943588+08:00",
+      "exit_code": 0,
+      "passed_cases": 2,
+      "skipped": 0,
+      "log": "host-routes.log",
+      "sha256": "6b6e2c8895f595327b7f45c71843d1f221390b1b857c99b0edac5de5a2be0912",
+      "result": "PASS"
+    },
+    {
+      "name": "native-delivery",
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "--lib",
+        "feat164_delivery",
+        "--",
+        "--test-threads=1"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop",
+      "started_at": "2026-10-25T18:32:38.943953+08:00",
+      "verified_at": "2026-10-25T18:32:49.591106+08:00",
+      "exit_code": 0,
+      "passed_cases": 12,
+      "skipped": 0,
+      "log": "native-delivery.log",
+      "sha256": "af2d7fcaf233202a31951c4a40ac8cc932aa4044558174767b9924e69218249f",
+      "result": "PASS"
+    },
+    {
+      "name": "native-recovery-migration",
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "--lib",
+        "feat164",
+        "--",
+        "--skip",
+        "feat164_surfaces",
+        "--skip",
+        "feat164_delivery",
+        "--skip",
+        "feat164_native_host_boundary",
+        "--skip",
+        "chat::schedules::model_retirement_tests::",
+        "--test-threads=1"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop",
+      "started_at": "2026-10-25T18:32:49.591365+08:00",
+      "verified_at": "2026-10-25T18:32:58.543177+08:00",
+      "exit_code": 0,
+      "passed_cases": 10,
+      "skipped": 0,
+      "log": "native-recovery-migration.log",
+      "sha256": "bddaf3b7ca1c9335d8ec062254a589d9abb18f770d0f04c96f2e7bba1ba71403",
+      "result": "PASS"
+    },
+    {
+      "name": "native-host-boundary",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-json",
+        "./internal/app",
+        "-run",
+        "^TestFEAT164NativeHostBoundary$",
+        "-count=1"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-agent-host",
+      "started_at": "2026-10-25T18:32:58.543466+08:00",
+      "verified_at": "2026-10-25T18:33:02.667084+08:00",
+      "exit_code": 0,
+      "passed_cases": 1,
+      "skipped": 0,
+      "log": "native-host-boundary.log",
+      "sha256": "c3fecc38f0b091c6e6f2959dd4d8155545f54e0dc2872fa84099d150af139ecb",
+      "result": "PASS"
+    }
+  ],
+  "limitation": "Headless temporal/storage/boundary conformance; no canonical App/UI, daily migration, supplier qualification, S2 G3 or release claim."
+}

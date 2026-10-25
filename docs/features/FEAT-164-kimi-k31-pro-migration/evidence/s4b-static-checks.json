@@ -1,0 +1,63 @@
+{
+  "verified_at": "2026-10-25T18:37:16.927024+08:00",
+  "checks": [
+    {
+      "check": "final-go-vet",
+      "command": [
+        "go",
+        "vet",
+        "./internal/skills",
+        "./internal/codex",
+        "./internal/app",
+        "./cmd/desktop-host"
+      ],
+      "exit_code": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "check": "final-eslint",
+      "command": [
+        "pnpm",
+        "exec",
+        "eslint",
+        "scripts/feat164-market-catalog.mjs",
+        "scripts/kimi-k31-build-candidate.mjs",
+        "scripts/kimi-k31-packaged-receipt.mjs",
+        "scripts/sync-feat164-expert-resources.mjs"
+      ],
+      "exit_code": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "check": "final-shell",
+      "command": [
+        "bash",
+        "-n",
+        "scripts/run-local-demo-fast.sh"
+      ],
+      "exit_code": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "check": "final-fmt",
+      "command": "cargo fmt --manifest-path src-tauri/Cargo.toml -- --check",
+      "exit_code": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "note": "Ran before only opt-in test entry adjustment and Host test-source lock refresh; Rust product inputs unchanged."
+    },
+    {
+      "check": "final-clippy",
+      "command": "cargo clippy --offline --locked --manifest-path src-tauri/Cargo.toml --features kimi-k31-pro-candidate --lib -- -D warnings",
+      "exit_code": 0,
+      "sha256": "48a607ca074cd5e7dd45a516f987808ce7b4615fac3a3df20f15e6645e7ab3f9",
+      "note": "Ran before only opt-in test entry adjustment and Host test-source lock refresh; Rust product inputs unchanged."
+    },
+    {
+      "check": "final-default-check",
+      "command": "cargo check --offline --locked --manifest-path src-tauri/Cargo.toml --lib",
+      "exit_code": 0,
+      "sha256": "47294872696cee75fa290432c5afa1db4eb3311cb10db50382f4bc9d1736baf9",
+      "note": "Ran before only opt-in test entry adjustment and Host test-source lock refresh; Rust product inputs unchanged."
+    }
+  ]
+}

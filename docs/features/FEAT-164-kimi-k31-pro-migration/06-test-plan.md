@@ -1,5 +1,7 @@
 # FEAT-164 测试与证据计划
 
+> 当前（2026-10-25，S4专家/媒体/辅助续办）：专家pin已按Skills595c927不可变同内容来源修复；Hostcac2d4d、Desktop56f5284、Connectors1f15726已仅本地固化。四组合source、37专家版本安装/解析/重开及专家/媒体/原生辅助调用安全离线验证通过；S2/S3/S4当前源回归通过。完整TCONF-164-04、App/平台/G2V/G3/final仍未完成，真实模型新增0，旧账本/预占保留。最新见[28](28-s4-expert-media-auxiliary.md)及feature.yaml；下方段落保留各阶段历史范围。
+
 > 当前（2026-10-25，S4）：Contracts eddc64f → Host9ffcb6f → Desktop704cfdb/e408047已仅本地固化全调用面接线；安全子集7/4/4/4/5、S2和S3当前源回归通过。完整TCONF-164-04、专家资源/媒体、辅助动态调用、App/平台/G3/final仍未完成；真实模型新增0，旧账本/预占保留。最新见[27](27-s4-call-surface-wiring.md)及feature.yaml。
 
 > 当前（2026-10-25，S3）：Contracts2dd214d / Desktop4d04597已本地固化计划退役、SQL41和授权保护；TCONF-164-03五项、70前端及当前源S2复验通过。App/UI/平台与完整G3仍NOT RUN，真实模型新增0，旧账本/预占保留。最新见[26](26-s3-plan-retirement.md)及feature.yaml；下面旧阶段结论按原来源保留。

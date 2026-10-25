@@ -1,0 +1,42 @@
+Fixed Codex source and explicitly pinned worker/schema validation dependencies verified; local candidate only
+Market connectors generation verified: 56 definitions, 10 IPC commands; local candidate only.
+Market connectors connectors checked; development hashes only, no immutable/release provenance claim.
+Market Broker checked: 55 definitions / 8 private actions; external network capability is distinct from tool qualification.
+Market Broker connectors checked; private local candidate only.
+Market provider checked: 26 definitions; no secret fields.
+Market provider connectors checked; local candidate.
+   Compiling codex-utils-absolute-path v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/utils/absolute-path)
+   Compiling codex-utils-rustls-provider v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/utils/rustls-provider)
+   Compiling codex-utils-cache v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/utils/cache)
+   Compiling codex-async-utils v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/async-utils)
+   Compiling codex-utils-string v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/utils/string)
+   Compiling codex-windows-sandbox v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/windows-sandbox-rs)
+   Compiling codex-utils-pty v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/utils/pty)
+   Compiling codex-keyring-store v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/keyring-store)
+   Compiling codex-http-client v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/http-client)
+   Compiling codex-utils-image v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/utils/image)
+   Compiling codex-utils-home-dir v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/utils/home-dir)
+   Compiling codex-extension-items v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/ext/items)
+   Compiling codex-execpolicy v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/execpolicy)
+   Compiling codex-utils-path-uri v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/utils/path-uri)
+   Compiling codex-utils-path v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/utils/path-utils)
+   Compiling codex-network-proxy v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/network-proxy)
+   Compiling codex-websocket-client v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/websocket-client)
+   Compiling codex-client v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/codex-client)
+   Compiling codex-protocol v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/protocol)
+   Compiling codex-api v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/codex-api)
+   Compiling codex-file-system v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/file-system)
+   Compiling codex-shell-command v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/shell-command)
+   Compiling codex-git-utils v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/git-utils)
+   Compiling codex-exec-server-protocol v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/exec-server-protocol)
+   Compiling codex-secrets v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/secrets)
+   Compiling codex-otel v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/otel)
+   Compiling codex-model-provider-info v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/model-provider-info)
+   Compiling codex-features v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/features)
+   Compiling codex-sandboxing v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/sandboxing)
+   Compiling codex-config v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/config)
+   Compiling codex-exec-server v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/exec-server)
+   Compiling codex-rmcp-client v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-codex/codex-rs/rmcp-client)
+   Compiling yijie-mcp-worker v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/connectors-s4-source/worker)
+    Finished `dev` profile [unoptimized] target(s) in 23.59s
+Built local status/Broker worker: /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/connectors-s4-source/bin/market-worker/ea7bb14be6725c56db826b06cb306494694ce7c08c417baadf908e8ae1d30156/yijie-mcp-worker

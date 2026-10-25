@@ -1,5 +1,7 @@
 # FEAT-164 技术设计候选
 
+> 当前（2026-10-25，S4专家/媒体/辅助续办）：专家pin已按Skills595c927不可变同内容来源修复；Hostcac2d4d、Desktop56f5284、Connectors1f15726已仅本地固化。四组合source、37专家版本安装/解析/重开及专家/媒体/原生辅助调用安全离线验证通过；S2/S3/S4当前源回归通过。完整TCONF-164-04、App/平台/G2V/G3/final仍未完成，真实模型新增0，旧账本/预占保留。最新见[28](28-s4-expert-media-auxiliary.md)及feature.yaml；下方段落保留各阶段历史范围。
+
 当前S1活动身份、候选受管配置和执行准入已实现并本地固化，详见21。S2的Host持久操作/显式恢复已实现（22），Native恢复接线已在23实现；未发送取消、计划及全调用面仍待完成，不称完整产品可用。
 
 > 2026-10-25 候选修正：实际 r1 出站包含官方 include 枚举未列出的 `reasoning.encrypted_content`；r2 将只对新 Kimi 省略该 opt-in，保留 max、搜索 sources、响应和历史处理。原预算适配器还须在去掉搜索时同步去掉依赖的 include。此修正仍按 Runtime 权威源先行和不可变下游 pin 执行；不是默认输出参数变更，也不证明首次 HTTP 400 的唯一原因。事实与限制见 [19](19-responses-400-audit.md)。

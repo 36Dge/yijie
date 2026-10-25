@@ -1,0 +1,44 @@
+{
+  "worker": {
+    "schemaVersion": 2,
+    "candidateOnly": true,
+    "binary": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/connectors-s4-source/bin/market-worker/ea7bb14be6725c56db826b06cb306494694ce7c08c417baadf908e8ae1d30156/yijie-mcp-worker",
+    "sha256": "ea7bb14be6725c56db826b06cb306494694ce7c08c417baadf908e8ae1d30156",
+    "sizeBytes": 84476832,
+    "codexSource": "7fd463bcef07f37b0211acd9f62b9f93ea0a4b12",
+    "externalCallsEnabled": true,
+    "qualificationOnly": false,
+    "providerProfile": "generic-mcp-v1"
+  },
+  "adapter": {
+    "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-agent-host/.local/feat164-s4b/bin/yijie-artifact-mcp",
+    "sha256": "178fbe7157f23f964f97566ab7648c448050a012e3007d42fa5378da2b9d5521",
+    "inputs_equal_between_commits": [
+      "9ffcb6f55bb6b2db3aacdee61693063767139ba7",
+      "cac2d4d7e1df02868a370e204959e1842c3362c3"
+    ],
+    "source_paths": [
+      "artifact-mcp/Cargo.toml",
+      "artifact-mcp/Cargo.lock",
+      "artifact-mcp/src",
+      "scripts/build-artifact-adapter.sh"
+    ]
+  },
+  "sources": {
+    "yijie-desktop": "56f52843b543a4276eb6221abf3d589582b8c480",
+    "yijie-agent-host": "cac2d4d7e1df02868a370e204959e1842c3362c3",
+    "yijie-connectors": "1f157260d6dd339172712e1c649258902db45050",
+    "yijie-skills": "595c927ae101d3d31c234f60565041eee0864680",
+    "yijie-codex": "074417e5e2f5f55704ea5e1777e7a22d514076b4",
+    "yijie-contracts": "eddc64f95d81c26ca1678cc648d177c081f7904d"
+  },
+  "library_codex_rs_tree": "755f32c45a4c30e805e3c7fe1db89dcb4dcc6e41",
+  "canonical_commands": [
+    "node scripts/package-desktop-skills.mjs --source plugins/yijie-desktop-skills/experts/bundle-source.json --output dist/skills-experts-feat164-s4",
+    "YIJIE_WORKER_TARGET_DIR=<separate-target> bash scripts/build-market-worker.sh",
+    "CARGO_NET_OFFLINE=true bash scripts/build-artifact-adapter.sh .local/feat164-s4b/bin"
+  ],
+  "app_bundle_rebuilt": false,
+  "sources_recording_purpose": "Final verification heads; artifact build inputs are independently checked. Adapter source is unchanged across Host commits.",
+  "real_provider_or_external_business_requests": 0
+}

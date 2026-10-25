@@ -1,0 +1,116 @@
+{
+  "feature": "FEAT-164",
+  "slice": "S3",
+  "source_commit": "c88461a9a309d4459125ddf187f67ad0ceadd21c",
+  "dirty": false,
+  "real_model_http": 0,
+  "app_platform": "NOT RUN",
+  "results": [
+    {
+      "test": "feat164_plan_retirement_before_dispatch",
+      "paused": false,
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--lib",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "chat::schedules::model_retirement_tests::feat164_plan_retirement_before_dispatch",
+        "--",
+        "--exact",
+        "--nocapture"
+      ],
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "test": "feat164_s3_explicit_save_reauthorize_and_bound_target",
+      "paused": false,
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--lib",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "chat::schedules::model_retirement_tests::feat164_s3_explicit_save_reauthorize_and_bound_target",
+        "--",
+        "--exact",
+        "--nocapture"
+      ],
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "test": "feat164_s3_paused_candidate_preserves_authority",
+      "paused": true,
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--lib",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "chat::schedules::model_retirement_tests::feat164_s3_paused_candidate_preserves_authority",
+        "--",
+        "--exact",
+        "--nocapture"
+      ],
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "test": "feat164_s3_schema_upgrade_and_replay",
+      "paused": false,
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--lib",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "chat::schedules::model_retirement_tests::feat164_s3_schema_upgrade_and_replay",
+        "--",
+        "--exact",
+        "--nocapture"
+      ],
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "test": "feat164_s3_worker_starts_after_retirement",
+      "paused": false,
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--lib",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "chat::schedules::model_retirement_tests::feat164_s3_worker_starts_after_retirement",
+        "--",
+        "--exact",
+        "--nocapture"
+      ],
+      "exit_code": 0,
+      "passed": true
+    }
+  ],
+  "passed": true
+}
