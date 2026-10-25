@@ -1,0 +1,83 @@
+Native input-only projection verified
+Input-only Host projection verified
+FEAT-164 projections verified from 1b357cce0575c492f3715b316ee5f254051acf80; inactive.
+FEAT-164 inactive Runtime artifact projection verified
+Chat models v2 source generation verified; unreleased local candidate.
+Market connectors generation verified: 56 definitions, 10 IPC commands; local candidate only.
+Market connectors generation verified: 56 definitions, 10 IPC commands; local candidate only.
+Market connectors desktop checked; development hashes only, no immutable/release provenance claim.
+60-entry non-secret Connectors catalog verified; no provider activation.
+FEAT-164 v2 call surfaces desktop verified from immutable source.
+Market provider checked: 26 definitions; no secret fields.
+Market provider desktop checked; local candidate.
+Fixed Codex source and explicitly pinned worker/schema validation dependencies verified; local candidate only
+Market connectors generation verified: 56 definitions, 10 IPC commands; local candidate only.
+Market connectors connectors checked; development hashes only, no immutable/release provenance claim.
+Market Broker checked: 55 definitions / 8 private actions; external network capability is distinct from tool qualification.
+Market Broker connectors checked; private local candidate only.
+Market provider checked: 26 definitions; no secret fields.
+Market provider connectors checked; local candidate.
+    Finished `dev` profile [unoptimized] target(s) in 0.94s
+Built local status/Broker worker: /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4i-qualification-20261025/yijie-connectors/bin/market-worker/49fa7695ea22364663106f9755f4e3f9e22bce21b0fcc6ea40bf9732ff3d4c1d/yijie-mcp-worker
+FEAT-164 v2 call surfaces desktop verified from immutable source.
+Expert local candidate synced: 38 unchanged Skills + 37 expert; not release provenance.
+Native conversation verified: 811f38d6b104fa18477107e7ac91a85e19c445d1; published=false
+FEAT-132 native sources, generated consumer snapshots and retired-engine boundary verified.
+Native MCP verified: 811f38d6b104fa18477107e7ac91a85e19c445d1
+FEAT-144 native sources and single display adapter checked; candidate checks do not authorize activation.
+✨ openapi-typescript 7.13.0
+ ⚠  Component: "NativeEvent" is never used. at #/components/schemas/NativeEvent
+ ⚠  Component: "NativeThreadStatusSnapshot" is never used. at #/components/schemas/NativeThreadStatusSnapshot
+🚀 openapi/native-conversation-v3/native-conversation-v3.yaml → /var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-native-process-codegen-QLybZE/types.ts [42.3ms]
+✨ openapi-typescript 7.13.0
+ ⚠  Component: "NativeEvent" is never used. at #/components/schemas/NativeEvent
+ ⚠  Component: "NativeThreadStatusSnapshot" is never used. at #/components/schemas/NativeThreadStatusSnapshot
+🚀 openapi/native-conversation-v4/native-conversation-v4.yaml → /var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-native-process-codegen-QLybZE/types.ts [43.3ms]
+Native process verified: local candidate, not a release pin
+Native process authority checked (local candidate, release=false).
+Command failed: /opt/homebrew/Cellar/node/26.0.0/bin/node scripts/sync-market-connectors.mjs --consumer=connectors --check
+node:internal/errors:998
+  const err = new Error(message);
+              ^
+
+Error: Command failed: gofmt
+    at genericNodeError (node:internal/errors:998:15)
+    at wrappedFn (node:internal/errors:543:14)
+    at checkExecSyncError (node:child_process:925:11)
+    at execFileSync (node:child_process:961:15)
+    at file:///Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4i-qualification-20261025/yijie-contracts/scripts/generate-market-connectors.mjs:136:44
+    at ModuleJob.run (node:internal/modules/esm/module_job:437:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:642:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  status: null,
+  signal: 'SIGINT',
+  output: [ null, Buffer(0) [Uint8Array] [], Buffer(0) [Uint8Array] [] ],
+  pid: 65793,
+  stdout: Buffer(0) [Uint8Array] [],
+  stderr: Buffer(0) [Uint8Array] []
+}
+
+Node.js v26.0.0
+node:internal/errors:998
+  const err = new Error(message);
+              ^
+
+Error: Command failed: /opt/homebrew/Cellar/node/26.0.0/bin/node scripts/generate-market-connectors.mjs --check
+    at genericNodeError (node:internal/errors:998:15)
+    at wrappedFn (node:internal/errors:543:14)
+    at checkExecSyncError (node:child_process:925:11)
+    at execFileSync (node:child_process:961:15)
+    at file:///Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4i-qualification-20261025/yijie-contracts/scripts/sync-market-connectors.mjs:13:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:437:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:642:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  status: 1,
+  signal: null,
+  output: [ null, null, null ],
+  pid: 65742,
+  stdout: null,
+  stderr: null
+}
+
+Node.js v26.0.0
+

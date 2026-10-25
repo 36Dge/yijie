@@ -1,0 +1,78 @@
+{
+  "test_id": "TCONF-164-04",
+  "scope": "S4 safe offline subset; auxiliary agent/review not invoked; App/platform NOT RUN",
+  "started_at": "2026-10-25T23:50:56.363463+08:00",
+  "real_model_http_added": 0,
+  "expected_loopback_http": 6,
+  "sources": {
+    "desktop": {
+      "head": "399bb19d4c2066675f3f73b61ee6b8f59ee489c6",
+      "status": []
+    },
+    "host": {
+      "head": "090c2dbeeeceb0fc87e576d8e13f5c339bf106f0",
+      "status": []
+    }
+  },
+  "checks": [
+    {
+      "name": "host-service",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-json",
+        "./internal/session",
+        "-run",
+        "^TestFEAT164MarketExpertModelWiring$",
+        "-count=1"
+      ],
+      "exit_code": 0,
+      "passed_cases": 7,
+      "skipped": 0,
+      "sha256": "81cd06d72f55c35314565c6db7d9556609fa6b4b39417ad191caf41a88e2771a",
+      "result": "PASS"
+    },
+    {
+      "name": "real-runtime",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-json",
+        "./internal/codex",
+        "-run",
+        "^TestFEAT164(CallSurfacesRuntime|DraftLoopbackAdmission|TitleCollectorNativeInputLifecycle|MarketCandidateAssembly)$",
+        "-count=1"
+      ],
+      "exit_code": 0,
+      "passed_cases": 4,
+      "skipped": 0,
+      "sha256": "1a0e3bcc5370324d9cd5c7e2ace7ddf4614adf1c3daa66c3c94aeb11936aafc2",
+      "result": "PASS"
+    },
+    {
+      "name": "native-storage",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "--lib",
+        "feat164_surfaces",
+        "--",
+        "--test-threads=1"
+      ],
+      "exit_code": 0,
+      "passed_cases": 4,
+      "skipped": 0,
+      "sha256": "4e8e07ee50a965f6d00bff00e39a0f94dcbcfaf048c0fde74bbbc57371b532e3",
+      "result": "PASS"
+    }
+  ],
+  "status": "IN_PROGRESS"
+}

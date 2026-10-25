@@ -1,0 +1,14 @@
+[
+  {
+    "name": "claims",
+    "command": [
+      "node",
+      "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+      "--audit-claims",
+      "docs/features/FEAT-164-kimi-k31-pro-migration"
+    ],
+    "exit_code": 1,
+    "expected_exit": 0,
+    "sha256": "58fecf03d745f611c47574f3ec4a44c05f92a95c9680b87a91dc7d080370e4a3"
+  }
+]

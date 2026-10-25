@@ -1,0 +1,61 @@
+{
+  "at": "2026-10-25T23:56:33.719567+08:00",
+  "all_original_plan_grant_run_and_selection_records_unchanged": 6,
+  "original_attempted_draft_metadata_unchanged": true,
+  "old_completed_draft_facts_unchanged": 6,
+  "old_unknown_operation_unchanged": [
+    {
+      "operation_id": "f38666dc-d2d8-4101-b498-eccf3045b6dd",
+      "host_session_id": "3b59a718-9e12-4431-bf3c-afe35b53d4e9",
+      "runtime_thread_id": "01a1739c-ab35-77a2-adfd-f8b2a704f1c1",
+      "target_profile_id": "minimax-m3-high-v1",
+      "phase": "unknown",
+      "expected_revision": 1
+    }
+  ],
+  "old_expert_selection_and_submission_counts_unchanged": [
+    {
+      "profile": "kimi-k3-1-pro-max-v1",
+      "state": "unknown",
+      "revision": 1,
+      "model_operations": 1,
+      "market_submissions": 4,
+      "unsettled_market": 0,
+      "expert_state": "ready"
+    }
+  ],
+  "new_expert_selection": [
+    {
+      "profile": "kimi-k3-1-pro-max-v1",
+      "state": "ready",
+      "revision": 3,
+      "model_operations": 2,
+      "market_submissions": 2,
+      "unsettled_market": 0,
+      "expert_state": "ready"
+    }
+  ],
+  "new_expert_committed_model_operations": [
+    {
+      "operation_id": "6e5ada50-0c3a-41c7-b4a5-5f16a880d873",
+      "host_session_id": "1b106818-b456-4491-855f-5ec9021097a4",
+      "runtime_thread_id": "01a173c3-249e-7943-920f-85371a4439d3",
+      "target_profile_id": "minimax-m3-high-v1",
+      "phase": "committed",
+      "expected_revision": 1
+    },
+    {
+      "operation_id": "a5a2d61e-ab0f-4a6a-a407-35bd8770bf5c",
+      "host_session_id": "1b106818-b456-4491-855f-5ec9021097a4",
+      "runtime_thread_id": "01a173c3-249e-7943-920f-85371a4439d3",
+      "target_profile_id": "kimi-k3-1-pro-max-v1",
+      "phase": "committed",
+      "expected_revision": 2
+    }
+  ],
+  "app_loopback_http": 8,
+  "separate_s4_conformance_loopback_http": 6,
+  "real_model_http_added": 0,
+  "read_only_audit": true,
+  "database_sha256": "03b5d3d20b12b331972b81ffae0a1d948c5e36f8cc6e8fde2b443dbddc283448"
+}

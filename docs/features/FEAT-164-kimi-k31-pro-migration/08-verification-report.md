@@ -344,3 +344,11 @@ s4h-generation-driver.log及s4h-generation-attempt.json记录来源预检FAIL。
 <!-- evidence: E164-S4H-PLAN -->
 
 [s4h-generation-qualified](evidence/s4h-generation-qualified/result.json)19项、6项新入口普通结构化测试、[S3五项](evidence/s4h-s3-final/result.json)、18前端与canonical普通App构建通过。App先在关联聊天切换MiniMax，旧计划执行被正常拒绝且模型0HTTP；取消审阅不保存，重新审阅保存paused后独立单次运行MiniMax/high成功。恢复Kimi和正常重开后仍关闭，原新运行历史保留。1次loopback、真实0。数据与清理见s4h-data-audit.json、s4h-cleanup.json；旧K3仅Native历史fixture资格，不宣称旧K3 App迁移或完整恢复取消/媒体/G3。
+
+## E164-S4I-MEDIA 当前r4 media与整项目标复审
+
+<!-- evidence: E164-S4I-MEDIA -->
+
+实施与逐AC剩余账见[35](35-s4-current-media-and-completion-audit.md)。Worker来源缺口与草案退出旧profile分别经实际canonical/App复现，最小修复和本地固定来源；原失败证据不改。19生成检查、6配置测试、1候选/1旧入口草案回归及8相关前端、ESLint、docs和canonical media构建通过。完整来源、App/退出、保护和限制按s4i证据记录；真实模型HTTP新增0，不宣称完整TCONF/G2V/G3/final或日常激活通过。
+
+S4I续验：Host090c2db/Desktop399bb19配对后，实际专家线程Kimi→paused显式MiniMax→重开Kimi往返通过，配置/重开0模型HTTP；原unknown仍阻断且旧媒体四轮可读。App8次本机HTTP，独立safe conformance6次，真实0。原脚本前三组7/4/4通过后因调用PATH遗漏pnpm中止；只补剩余4/5通过，未写成整套TCONF一次PASS。原计划/grant/run/失败草案/6facts与未知操作保留；496原dirty、1118旧证据、7日常库、287旧bundle文件不变。App和fixture正常退出，来源/清理/预算与逐AC限制见35和s4i-data-audit、s4i-cleanup、s4i-preservation-audit。

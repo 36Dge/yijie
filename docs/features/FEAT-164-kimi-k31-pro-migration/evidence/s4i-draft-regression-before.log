@@ -1,0 +1,111 @@
+
+ RUN  v4.1.10 /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4i-qualification-20261025/yijie-desktop
+
+(node:44776) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+stderr | src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > FEAT164 resets discarded shared plan draft to the current model without changing chat intent
+[Vue Router warn]: No active route record was found when calling `onBeforeRouteLeave()`. Make sure you call this function inside a component child of <router-view>. Maybe you called it inside of App.vue?
+[Vue Router warn]: No active route record was found when calling `onBeforeRouteUpdate()`. Make sure you call this function inside a component child of <router-view>. Maybe you called it inside of App.vue?
+
+ ↓ src/pages/chat/ChatPage.test.ts > locates the exact requested local turn without sending or substituting the latest turn
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > shows the decorative mascot only on the new-task homepage and keeps it out of a conversation
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > replays the opening after leaving a session but not on duplicate new-task navigation
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > announces Host identity binding without presenting a missing-resource failure
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > keeps the last committed conversation visible while metadata resyncs
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > blocks the model selector and stale selection events for history-only or denied tasks
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > resets the model when leaving a discarded new scheduled draft
+ × src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > FEAT164 resets discarded shared plan draft to the current model without changing chat intent 39ms
+   → expected 'kimi-k3-max-v1' to be 'kimi-k3-1-pro-max-v1' // Object.is equality
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > shows stale terminal tasks as local read-only history without a protocol error
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > routes history-only read failures to local history resync before draft recovery
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > retries a failed history activation before readiness or draft recovery
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > uses the FEAT-132 Timeline exclusively when the projection is complete
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > projects approval lifecycle, keeps the exact gate closed, and wires only typed decisions
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > publishes a streaming burst and follows new content at most once per frame
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > replaces a queued presentation frame when the selected session changes
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > injects exact fenced-code copy without giving Timeline clipboard authority
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > does not switch the renderer when metadata-only reasoning enters the projection
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > does not enter the legacy renderer when the default selector has no Thread
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > does not treat an active empty reasoning Item as historical authority loss
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > presents deterministic Chat permission denial without hiding confirmed history
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > renders an empty-text assistant turn with trusted Artifact identity and all typed clients
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > creates exactly one session from the real composer and routes only after success
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > creates a projectless task from the real composer when no local project is selected
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > does not reuse a removed history project's hidden ID when returning to a new task
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > uses the same-route recovery action to clear a deleted task and re-enable the new composer
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > opens the workspace menu before using the native project selection entry
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > keeps shop association as UI-only state without changing the submitted message
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > automatically selects a newly created workspace for the next submission
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > clears an unavailable chosen directory without silently selecting another saved project
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > keeps input and displays stable recovery copy when create fails
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > routes the stable retry action to failed draft recovery before reopening the composer
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > routes a bind-stage storage retry through the authority lifecycle
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > keeps old records readable in the single timeline
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > selects through the unified plus entry and permits an attachment-only task
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > loads history skill labels through the read-only catalog without a scan
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > opens the skills tab from Manage Skills in the composer (reply=false)
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > opens the skills tab from Manage Skills in the composer (reply=true)
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > submits selected skills as explicit Runtime mentions (reply=false)
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > submits selected skills as explicit Runtime mentions (reply=true)
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > preserves selected skills on failed sends and blocks stale selections after revalidation
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > projects native attachment progress into the real composer
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > keeps attachment rejection guidance local to the composer
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > disables the plus entry and ignores dropped paths when sending becomes unavailable
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > keeps the plus entry and native drop path disabled during a local submission
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > keeps a reply draft when the store does not locally accept it
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > isolates text drafts while switching between session targets
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > keeps a draft through the first context bind and clears it across authority changes
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > does not clear another target when a late accepted submit resolves after navigation
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > coalesces duplicate submit events while the first intent is pending
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > restores the textarea focus and clamps selection after local durable acceptance
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > keeps one accepted user identity and never restores its drafts after failed
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > keeps one accepted user identity and never restores its drafts after interrupted
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > keeps text and attachments after a current operation mismatch
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > restores focus and the original selection after a non-accepted submit
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > does not steal focus when the user moves to another control during submit
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > preserves an active conversation selection when submit settles
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > accepts native drops only inside the composer logical bounds
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > holds the attachment entry closed without the relevant create permission
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > opens the read-only permission policy without exposing writable approval
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > opens the native permission menu in local Demo (existing task: false)
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > opens the native permission menu in local Demo (existing task: true)
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > keeps permission failures on the new control and recovers through retry
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > projects cleanup pending instead of removing the session optimistically
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > retries an already confirmed deletion after its automatic retry budget is exhausted
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT-155 confirms leaving an unsent chat draft and defaults to staying
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT158 composer keeps the expert after the shop and requires explicit user content
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT158 chip details carry the exact selected expert version
+ ↓ src/pages/chat/ChatPage.test.ts > inline expert picker applies the new selection without navigation or sending
+ ↓ src/pages/chat/ChatPage.test.ts > inline expert picker applies the existing selection without navigation or sending
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT158 retained binding uses its Native checked version when the market only lists a newer card
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT158 retained binding still blocks when Native reports unavailable resource
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT158 retained binding still blocks when Native reports unavailable execution
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT158 an unbound draft cannot borrow readiness from another expert version
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT158 removes a session expert only on the Native receipt and uses explicit null afterwards
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT158 binding recovery is an explicit original-operation command without sending content
+ ↓ src/pages/chat/ChatPage.test.ts > FEAT158 uncertain accepted submission offers only an original-status read
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > FEAT164 resets discarded shared plan draft to the current model without changing chat intent
+AssertionError: expected 'kimi-k3-max-v1' to be 'kimi-k3-1-pro-max-v1' // Object.is equality
+
+Expected: "kimi-k3-1-pro-max-v1"
+Received: "kimi-k3-max-v1"
+
+ ❯ src/pages/chat/ChatPage.test.ts:470:32
+    468|     expect(drafts.planProfile).toBe("minimax-m3-high-v1");
+    469|     await router.push("/chat"); await flushPromises();
+    470|     expect(drafts.planProfile).toBe("kimi-k3-1-pro-max-v1");
+       |                                ^
+    471|     expect(drafts.newProfile).toBe("minimax-m3-high-v1");
+    472|     await router.push("/chat?create=schedule"); await flushPromises();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 75 skipped (76)
+   Start at  23:05:02
+   Duration  1.99s (transform 1.15s, setup 0ms, import 1.72s, tests 40ms, environment 152ms)
+

@@ -1,0 +1,56 @@
+Analysis of sampling gofmt (pid 65793) every 1 millisecond
+Process:         gofmt [65793]
+Path:            /Users/USER/*/gofmt
+Load Address:    0x104040000
+Identifier:      gofmt
+Version:         ???
+Code Type:       ARM64
+Platform:        macOS
+Parent Process:  node [65742]
+Target Type:     live task
+
+Date/Time:       2026-10-25 23:46:49.384 +0800
+Launch Time:     2026-10-25 23:41:59.622 +0800
+OS Version:      macOS 26.5 (25F71)
+Report Version:  7
+Analysis Tool:   /usr/bin/sample
+
+Physical footprint:         3281K
+Physical footprint (peak):  3281K
+Idle exit:                  untracked
+----
+
+Call graph:
+    870 Thread_3399156   DispatchQueue_1: com.apple.main-thread  (serial)
+    + 870 runtime.asmcgocall.abi0  (in gofmt) + 124  [0x1040bb7fc]
+    +   870 runtime.syscallN_trampoline.abi0  (in gofmt) + 248  [0x1040bcb48]
+    +     870 read  (in libsystem_kernel.dylib) + 8  [0x1832f691c]
+    870 Thread_3399162
+    + 870 runtime.asmcgocall.abi0  (in gofmt) + 212  [0x1040bb854]
+    +   870 runtime.pthread_cond_timedwait_relative_np_trampoline.abi0  (in gofmt) + 28  [0x1040bc8fc]
+    +     870 _pthread_cond_wait  (in libsystem_pthread.dylib) + 1024  [0x18333a154]
+    +       870 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x1832f950c]
+    870 Thread_3399163
+    + 870 ???  (in <unknown binary>)  [0xd65f03c0]
+    +   870 runtime.asmcgocall.abi0  (in gofmt) + 212  [0x1040bb854]
+    +     870 runtime.pthread_cond_wait_trampoline.abi0  (in gofmt) + 24  [0x1040bc8c8]
+    +       870 _pthread_cond_wait  (in libsystem_pthread.dylib) + 980  [0x18333a128]
+    +         870 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x1832f950c]
+    870 Thread_3399164
+    + 870 ???  (in <unknown binary>)  [0xd65f03c0]
+    +   870 runtime.asmcgocall.abi0  (in gofmt) + 212  [0x1040bb854]
+    +     870 runtime.pthread_cond_wait_trampoline.abi0  (in gofmt) + 24  [0x1040bc8c8]
+    +       870 _pthread_cond_wait  (in libsystem_pthread.dylib) + 980  [0x18333a128]
+    +         870 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x1832f950c]
+    870 Thread_3399165
+      870 ???  (in <unknown binary>)  [0xd65f03c0]
+        870 runtime.asmcgocall.abi0  (in gofmt) + 212  [0x1040bb854]
+          870 runtime.pthread_cond_wait_trampoline.abi0  (in gofmt) + 24  [0x1040bc8c8]
+            870 _pthread_cond_wait  (in libsystem_pthread.dylib) + 980  [0x18333a128]
+              870 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x1832f950c]
+
+Total number in stack (recursive counted multiple, when >=5):
+
+Sort by top of stack, same collapsed (when >= 5):
+        __psynch_cvwait  (in libsystem_kernel.dylib)        3480
+        read  (in libsystem_kernel.dylib)        870

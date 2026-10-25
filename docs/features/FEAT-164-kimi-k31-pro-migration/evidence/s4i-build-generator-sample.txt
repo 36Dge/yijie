@@ -1,0 +1,121 @@
+Analysis of sampling node (pid 65742) every 1 millisecond
+Process:         node [65742]
+Path:            /opt/homebrew/*/node
+Load Address:    0x100230000
+Identifier:      node
+Version:         0
+Code Type:       ARM64
+Platform:        macOS
+Parent Process:  node [65716]
+Target Type:     live task
+
+Date/Time:       2026-10-25 23:47:22.380 +0800
+Launch Time:     2026-10-25 23:41:59.524 +0800
+OS Version:      macOS 26.5 (25F71)
+Report Version:  7
+Analysis Tool:   /usr/bin/sample
+
+Physical footprint:         37.4M
+Physical footprint (peak):  37.4M
+Idle exit:                  untracked
+----
+
+Call graph:
+    870 Thread_3399089   DispatchQueue_1: com.apple.main-thread  (serial)
+    + 870 start  (in dyld) + 6992  [0x182f7be00]
+    +   870 node::Start(int, char**)  (in libnode.147.dylib) + 676  [0x104c712d0]
+    +     870 node::NodeMainInstance::Run()  (in libnode.147.dylib) + 140  [0x104ccd6a8]
+    +       870 node::NodeMainInstance::Run(node::ExitCode*, node::Environment*)  (in libnode.147.dylib) + 92  [0x104ccd918]
+    +         870 node::LoadEnvironment(node::Environment*, std::function<v8::MaybeLocal<v8::Value> (node::StartExecutionCallbackInfoWithModule const&)>, std::function<void (node::Environment*, v8::Local<v8::Value>, v8::Local<v8::Value>)>)  (in libnode.147.dylib) + 204  [0x104c01158]
+    +           870 node::StartExecution(node::Environment*, std::function<v8::MaybeLocal<v8::Value> (node::StartExecutionCallbackInfoWithModule const&)>)  (in libnode.147.dylib) + 456  [0x104c6e434]
+    +             870 node::InternalCallbackScope::~InternalCallbackScope()  (in libnode.147.dylib) + 20  [0x104bfbe18]
+    +               870 node::InternalCallbackScope::Close()  (in libnode.147.dylib) + 328  [0x104bfbf90]
+    +                 870 v8::internal::MicrotaskQueue::PerformCheckpointInternal(v8::Isolate*)  (in libnode.147.dylib) + 92  [0x1050ffcd4]
+    +                   870 v8::internal::MicrotaskQueue::RunMicrotasks(v8::internal::Isolate*)  (in libnode.147.dylib) + 352  [0x1050ffeb8]
+    +                     870 v8::internal::Execution::TryRunMicrotasks(v8::internal::Isolate*, v8::internal::MicrotaskQueue*)  (in libnode.147.dylib) + 56  [0x1050ddf28]
+    +                       870 v8::internal::(anonymous namespace)::InvokeWithTryCatch(v8::internal::Isolate*, v8::internal::(anonymous namespace)::InvokeParams const&)  (in libnode.147.dylib) + 92  [0x1050dde38]
+    +                         870 v8::internal::(anonymous namespace)::Invoke(v8::internal::Isolate*, v8::internal::(anonymous namespace)::InvokeParams const&)  (in libnode.147.dylib) + 1412  [0x1050dd780]
+    +                           870 Builtins_JSRunMicrotasksEntry  (in libnode.147.dylib) + 152  [0x104a12678]
+    +                             870 Builtins_RunMicrotasks  (in libnode.147.dylib) + 516  [0x104a42904]
+    +                               870 Builtins_PromiseFulfillReactionJob  (in libnode.147.dylib) + 56  [0x104b314f8]
+    +                                 870 Builtins_AsyncFunctionAwaitResolveClosure  (in libnode.147.dylib) + 68  [0x104a53764]
+    +                                   870 Builtins_InterpreterEntryTrampoline  (in libnode.147.dylib) + 292  [0x104a15424]
+    +                                     870 Builtins_CallApiCallbackGeneric  (in libnode.147.dylib) + 108  [0x104a1720c]
+    +                                       870 node::loader::ModuleWrap::Evaluate(v8::FunctionCallbackInfo<v8::Value> const&)  (in libnode.147.dylib) + 504  [0x105ce89bc]
+    +                                         870 v8::Module::Evaluate(v8::Local<v8::Context>)  (in libnode.147.dylib) + 152  [0x105da220c]
+    +                                           870 v8::internal::Module::Evaluate(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Module>)  (in libnode.147.dylib) + 208  [0x10537e524]
+    +                                             870 v8::internal::SourceTextModule::Evaluate(v8::internal::Isolate*, v8::internal::Handle<v8::internal::SourceTextModule>)  (in libnode.147.dylib) + 184  [0x1053b22d8]
+    +                                               870 v8::internal::SourceTextModule::InnerModuleEvaluation(v8::internal::Isolate*, v8::internal::Handle<v8::internal::SourceTextModule>, v8::internal::ZoneForwardList<v8::internal::Handle<v8::internal::SourceTextModule>>*, unsigned int*)  (in libnode.147.dylib) + 1220  [0x1053b28a8]
+    +                                                 870 v8::internal::SourceTextModule::ExecuteModule(v8::internal::Isolate*, v8::internal::DirectHandle<v8::internal::SourceTextModule>, v8::internal::MaybeDirectHandle<v8::internal::Object>*)  (in libnode.147.dylib) + 156  [0x1053b2ec4]
+    +                                                   870 v8::internal::Execution::TryCall(v8::internal::Isolate*, v8::internal::DirectHandle<v8::internal::Object>, v8::internal::DirectHandle<v8::internal::Object>, v8::base::Vector<v8::internal::DirectHandle<v8::internal::Object> const>, v8::internal::Execution::MessageHandling, v8::internal::MaybeDirectHandle<v8::internal::Object>*)  (in libnode.147.dylib) + 100  [0x1050dded8]
+    +                                                     870 v8::internal::(anonymous namespace)::InvokeWithTryCatch(v8::internal::Isolate*, v8::internal::(anonymous namespace)::InvokeParams const&)  (in libnode.147.dylib) + 92  [0x1050dde38]
+    +                                                       870 v8::internal::(anonymous namespace)::Invoke(v8::internal::Isolate*, v8::internal::(anonymous namespace)::InvokeParams const&)  (in libnode.147.dylib) + 1460  [0x1050dd7b0]
+    +                                                         870 Builtins_JSEntry  (in libnode.147.dylib) + 152  [0x104a12478]
+    +                                                           870 Builtins_JSEntryTrampoline  (in libnode.147.dylib) + 168  [0x104a12788]
+    +                                                             870 Builtins_GeneratorPrototypeNext  (in libnode.147.dylib) + 140  [0x104a5622c]
+    +                                                               870 ???  (in <unknown binary>)  [0x116d2f55c]
+    +                                                                 870 Builtins_InterpreterEntryTrampoline  (in libnode.147.dylib) + 292  [0x104a15424]
+    +                                                                   870 Builtins_InterpreterEntryTrampoline  (in libnode.147.dylib) + 292  [0x104a15424]
+    +                                                                     870 Builtins_InterpreterEntryTrampoline  (in libnode.147.dylib) + 292  [0x104a15424]
+    +                                                                       870 Builtins_CallApiCallbackGeneric  (in libnode.147.dylib) + 108  [0x104a1720c]
+    +                                                                         870 node::SyncProcessRunner::Spawn(v8::FunctionCallbackInfo<v8::Value> const&)  (in libnode.147.dylib) + 624  [0x105d558a8]
+    +                                                                           870 node::SyncProcessRunner::Run(v8::Local<v8::Value>)  (in libnode.147.dylib) + 68  [0x104d678fc]
+    +                                                                             870 node::SyncProcessRunner::Run(v8::Local<v8::Value>) (.cold.2)  (in libnode.147.dylib) + 32  [0x105d56424]
+    +                                                                               870 node::SyncProcessRunner::TryInitializeAndRunLoop(v8::Local<v8::Value>)  (in libnode.147.dylib) + 324  [0x104d67bb8]
+    +                                                                                 870 uv_run  (in libuv.1.0.0.dylib) + 276  [0x1002aeb64]
+    +                                                                                   870 uv__io_poll  (in libuv.1.0.0.dylib) + 712  [0x1002bcf94]
+    +                                                                                     870 kevent  (in libsystem_kernel.dylib) + 8  [0x1832fbfc4]
+    870 Thread_3399101: DelayedTaskSchedulerWorker
+    + 870 thread_start  (in libsystem_pthread.dylib) + 8  [0x183334c1c]
+    +   870 _pthread_start  (in libsystem_pthread.dylib) + 136  [0x183339c58]
+    +     870 node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Run()  (in libnode.147.dylib) + 272  [0x104cf0cc4]
+    +       870 uv_run  (in libuv.1.0.0.dylib) + 276  [0x1002aeb64]
+    +         870 uv__io_poll  (in libuv.1.0.0.dylib) + 712  [0x1002bcf94]
+    +           870 kevent  (in libsystem_kernel.dylib) + 8  [0x1832fbfc4]
+    870 Thread_3399102: node-V8Worker
+    + 870 thread_start  (in libsystem_pthread.dylib) + 8  [0x183334c1c]
+    +   870 _pthread_start  (in libsystem_pthread.dylib) + 136  [0x183339c58]
+    +     870 node::(anonymous namespace)::PlatformWorkerThread(void*)  (in libnode.147.dylib) + 564  [0x104ceec80]
+    +       870 node::TaskQueue<node::TaskQueueEntry>::Locked::BlockingPop()  (in libnode.147.dylib) + 68  [0x104cf0f04]
+    +         870 uv_cond_wait  (in libuv.1.0.0.dylib) + 40  [0x1002ba424]
+    +           870 _pthread_cond_wait  (in libsystem_pthread.dylib) + 980  [0x18333a128]
+    +             870 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x1832f950c]
+    870 Thread_3399103: node-V8Worker
+    + 870 thread_start  (in libsystem_pthread.dylib) + 8  [0x183334c1c]
+    +   870 _pthread_start  (in libsystem_pthread.dylib) + 136  [0x183339c58]
+    +     870 node::(anonymous namespace)::PlatformWorkerThread(void*)  (in libnode.147.dylib) + 564  [0x104ceec80]
+    +       870 node::TaskQueue<node::TaskQueueEntry>::Locked::BlockingPop()  (in libnode.147.dylib) + 68  [0x104cf0f04]
+    +         870 uv_cond_wait  (in libuv.1.0.0.dylib) + 40  [0x1002ba424]
+    +           870 _pthread_cond_wait  (in libsystem_pthread.dylib) + 980  [0x18333a128]
+    +             870 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x1832f950c]
+    870 Thread_3399104: node-V8Worker
+    + 870 thread_start  (in libsystem_pthread.dylib) + 8  [0x183334c1c]
+    +   870 _pthread_start  (in libsystem_pthread.dylib) + 136  [0x183339c58]
+    +     870 node::(anonymous namespace)::PlatformWorkerThread(void*)  (in libnode.147.dylib) + 564  [0x104ceec80]
+    +       870 node::TaskQueue<node::TaskQueueEntry>::Locked::BlockingPop()  (in libnode.147.dylib) + 68  [0x104cf0f04]
+    +         870 uv_cond_wait  (in libuv.1.0.0.dylib) + 40  [0x1002ba424]
+    +           870 _pthread_cond_wait  (in libsystem_pthread.dylib) + 980  [0x18333a128]
+    +             870 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x1832f950c]
+    870 Thread_3399105: node-V8Worker
+    + 870 thread_start  (in libsystem_pthread.dylib) + 8  [0x183334c1c]
+    +   870 _pthread_start  (in libsystem_pthread.dylib) + 136  [0x183339c58]
+    +     870 node::(anonymous namespace)::PlatformWorkerThread(void*)  (in libnode.147.dylib) + 564  [0x104ceec80]
+    +       870 node::TaskQueue<node::TaskQueueEntry>::Locked::BlockingPop()  (in libnode.147.dylib) + 68  [0x104cf0f04]
+    +         870 uv_cond_wait  (in libuv.1.0.0.dylib) + 40  [0x1002ba424]
+    +           870 _pthread_cond_wait  (in libsystem_pthread.dylib) + 980  [0x18333a128]
+    +             870 __psynch_cvwait  (in libsystem_kernel.dylib) + 8  [0x1832f950c]
+    870 Thread_3399107: SignalInspector
+      870 thread_start  (in libsystem_pthread.dylib) + 8  [0x183334c1c]
+        870 _pthread_start  (in libsystem_pthread.dylib) + 136  [0x183339c58]
+          870 node::inspector::(anonymous namespace)::StartIoThreadMain(void*)  (in libnode.147.dylib) + 40  [0x104d91428]
+            870 uv_sem_wait  (in libuv.1.0.0.dylib) + 24  [0x1002ba2a0]
+              870 semaphore_wait_trap  (in libsystem_kernel.dylib) + 8  [0x1832f5bb0]
+
+Total number in stack (recursive counted multiple, when >=5):
+        6       _pthread_start  (in libsystem_pthread.dylib) + 136  [0x183339c58]
+        6       thread_start  (in libsystem_pthread.dylib) + 8  [0x183334c1c]
+
+Sort by top of stack, same collapsed (when >= 5):
+        __psynch_cvwait  (in libsystem_kernel.dylib)        3480
+        kevent  (in libsystem_kernel.dylib)        1740
+        semaphore_wait_trap  (in libsystem_kernel.dylib)        870

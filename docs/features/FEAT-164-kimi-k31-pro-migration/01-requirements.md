@@ -1,6 +1,6 @@
 # FEAT-164 需求、交互与验收
 
-未来实现目标，不构成本轮执行许可。所有 AC 产品状态 NOT RUN，manifest 使用 pending。
+本需求已获Owner授权实施；本文件仍是整项验收目标。所有AC整体状态以feature.yaml为准，当前pending；阶段证据和真实剩余项集中见[35整项完成审计](35-s4-current-media-and-completion-audit.md)，不能把局部PASS等同迁移完成。
 
 ## 业务规则
 

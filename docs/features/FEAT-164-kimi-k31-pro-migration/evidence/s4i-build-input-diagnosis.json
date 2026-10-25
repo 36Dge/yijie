@@ -1,0 +1,9 @@
+{
+  "at": "2026-10-25T23:48:28.211830+08:00",
+  "observation": "gofmt blocked reading stdin; Node synchronous child runner waiting in uv loop; no compilation failure",
+  "normal_interrupt": "single SIGINT to verified owned gofmt; entire canonical wrapper exited 1; no App started",
+  "focused_check": "same Go 1.26.5 and Node 26 generator --check completed normally, unchanged sources",
+  "root_cause": "unresolved transient input-pipe wait; not evidence of product error or deterministic toolchain bug",
+  "next": "one canonical build retry with fresh log; stop on recurrence",
+  "real_model_http_added": 0
+}

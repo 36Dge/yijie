@@ -1,0 +1,36 @@
+{
+  "yijie-desktop": {
+    "head": "4398ddf1d5fc2cb16291764c2ca7595ec188ad15",
+    "status": []
+  },
+  "yijie-agent-host": {
+    "head": "7927ee7b385cb5536c3647632d1bac0cb7c56fea",
+    "status": []
+  },
+  "yijie-contracts": {
+    "head": "1b357cce0575c492f3715b316ee5f254051acf80",
+    "status": []
+  },
+  "yijie-connectors": {
+    "head": "7ea3df41818fd69f4736722d01f0686d584d1a71",
+    "status": []
+  },
+  "yijie-codex": {
+    "head": "a28130abb13d0f99a00107cd513a653bae878b77",
+    "status": []
+  },
+  "yijie-skills": {
+    "head": "595c927ae101d3d31c234f60565041eee0864680",
+    "status": []
+  },
+  "supported_platform": {
+    "target": "aarch64-apple-darwin",
+    "scope": "macOS Desktop local candidate",
+    "evidence": [
+      "yijie-desktop/AGENTS.md repository responsibilities",
+      "yijie-agent-host/AGENTS.md Runtime Baseline supported targets",
+      "feature.yaml vertical_feasibility platform"
+    ],
+    "other_platforms": "N/A; not current supported scope, not PASS"
+  }
+}

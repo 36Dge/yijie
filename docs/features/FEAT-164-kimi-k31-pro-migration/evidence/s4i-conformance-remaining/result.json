@@ -1,0 +1,40 @@
+{
+  "scope": "remaining two exact S4 safe subset checks; first three not rerun; no full TCONF/App/Gate claim",
+  "reason": "caller supplied truncated PATH omitted installed pnpm; source script unchanged; first three PASS retained",
+  "checks": [
+    {
+      "name": "renderer",
+      "command": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "src/api/call-surfaces.feat164.test.ts",
+        "src/components/schedules/ScheduledPlanForm.feat164.test.ts",
+        "--reporter=json"
+      ],
+      "exit_code": 0,
+      "passed": 4,
+      "skipped": 0,
+      "log_sha256": "e8e6f74470317723b54c60e7e7e13cac2c5c571282027b461da4fbf6eb3dc9fe",
+      "result": "PASS"
+    },
+    {
+      "name": "candidate-profile",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "scripts/tests/feat164-candidate-closure.test.mjs"
+      ],
+      "exit_code": 0,
+      "passed": 5,
+      "skipped": 0,
+      "log_sha256": "4e36326959c79de4bf8e06dad160995e34ba06c3c0d9cda6005bb0da3231437a",
+      "result": "PASS"
+    }
+  ],
+  "real_model_http_added": 0,
+  "status": "PASS_REMAINING_SUBSET",
+  "verified_at": "2026-10-25T23:52:53.688013+08:00"
+}

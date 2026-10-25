@@ -99,3 +99,7 @@ Native先持久化prepared，最后POST前重验scope/会话绑定/未决工作�
 ## S4h 生成入口与计划验收（2026-10-25）
 
 新增显式FEAT164只读生成入口，保留旧通用行为，校验真实sibling位置/精确来源并覆盖旧reader及新writer。只改验证编排，contract-impact=none，详见34。
+
+## S4I 专家配置准入补齐
+
+见[35](35-s4-current-media-and-completion-audit.md)。同一Models v2操作允许已结清market/expert thread配置，Native替换仅本路径的legacy排除器为已接受/严格never-sent取消证明守卫，intent与dispatch均检查。Host须识别purposeMarket并检查既有scope/local-session/原能力，复用ClearMarketConfiguration撤旧lease、关闭继承MCP后才SwitchThread；不新授业务执行权。原unknown且Host缺记录仍不可恢复或重发。原wire/schema与授权机制不变，semantic实现按已批准S4范围配对固化。

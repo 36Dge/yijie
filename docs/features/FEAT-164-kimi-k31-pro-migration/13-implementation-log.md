@@ -65,3 +65,11 @@ Host 57c29ea03e3de39161a7c28080f9388f00cd1735（2个测试文件）与Desktop dd
 ## S4h 生成入口与计划验收（2026-10-25）
 
 S4h固定1b5adcf验证入口；首次预检发现dependency symlink未被ignore，修正后Owner明确授权并允许至多3次，首次完整19项PASS后停止。5项S3、18前端及计划App链验证完成，1次本机模型请求；数据原事实和旧账本保持。
+
+## S4I 整项目标导向续办
+
+Owner要求继续后续方案并牢记整项FEAT164目标。执行35及s4i-plan：当前media预检暴露r4 wrapper未登记，逐树核对后Connectors7ea3df4 / Desktop4398ddf同步精确来源；actual App发现共享草案重进旧profile，Desktop7599c86最小修复。无真实模型调用、无push；全部历史与用户改动保留。当前组合App验证与整项验收缺口在35集中记录，不再以泛称“其它平台”扩展Mac需求范围。
+
+### S4I 配对修复与整项复核
+
+Native54556bf之后真实App仍失败，定位Host purposeOrdinary旧准入；原operation保留unknown，不按404重发。Host090c2db补settled market/expert配置及原lease/MCP清理，Desktop399bb19固定来源。12Host/5Native及12取消回归、当前19生成、safe conformance24分组通过。canonical首次gofmt stdin等待经一次正常中断、独立检查和一次重试完成；日志保留。最终App新专家Kimi/显式MiniMax/重开Kimi通过，8次App及6次独立本机HTTP，真实0。旧账本/数据/496原dirty核验通过；整项仍IN_PROGRESS，具体未完成项与边界见35。

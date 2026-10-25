@@ -1,0 +1,99 @@
+{
+  "scope": "FEAT-164 S4I synthetic App acceptance, not real model qualification",
+  "external_requests": 0,
+  "attempts": 8,
+  "requests": [
+    {
+      "ordinal": 1,
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "case": "MEDIA",
+      "response_kind": "publish_html",
+      "request_sha256": "855e979da027254ce238d127dfd6385bb9bd748d12d20b5ac7fc2d77fc4a14ba",
+      "tool_count": 12,
+      "input_only": false,
+      "image_inputs": 0
+    },
+    {
+      "ordinal": 2,
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "case": "MEDIA",
+      "response_kind": "publish_svg",
+      "request_sha256": "f9ccc63d2d62da18bd66031bece9a305ab1876df7b031273f7c9247d8bcdbf01",
+      "tool_count": 12,
+      "input_only": false,
+      "image_inputs": 0
+    },
+    {
+      "ordinal": 3,
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "case": "MEDIA",
+      "response_kind": "text",
+      "request_sha256": "ab1ab70913a2f6bff2251ec529b9cad606dbb059c58d2dd37a707d43eb287bda",
+      "tool_count": 12,
+      "input_only": false,
+      "image_inputs": 0
+    },
+    {
+      "ordinal": 4,
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "case": "STREAM",
+      "response_kind": "text",
+      "request_sha256": "8b875731aaa264b2b2b384161b99cbca84c5542d087b0b65f4bb1f821748c4dc",
+      "tool_count": 12,
+      "input_only": false,
+      "image_inputs": 0,
+      "stream_outcome": "client_closed_stream"
+    },
+    {
+      "ordinal": 5,
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "case": "CONTINUE",
+      "response_kind": "text",
+      "request_sha256": "66c1172671029250f1e97bd3e2a5c448fae9b0579715a9b589348aa805727efc",
+      "tool_count": 12,
+      "input_only": false,
+      "image_inputs": 0
+    },
+    {
+      "ordinal": 6,
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "case": "KIMI",
+      "response_kind": "text",
+      "request_sha256": "033854a0d600b6c37015ea1cd0802daa3f947c37dae1a8fdf4ce634b7be85279",
+      "tool_count": 12,
+      "input_only": false,
+      "image_inputs": 1
+    },
+    {
+      "ordinal": 7,
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "case": "EXPERT",
+      "response_kind": "text",
+      "request_sha256": "68074d7f8730b8f9119db31270297196701051ba80188d08f38aed256ce1c404",
+      "tool_count": 12,
+      "input_only": false,
+      "image_inputs": 0
+    },
+    {
+      "ordinal": 8,
+      "model": "MiniMax-M3",
+      "effort": "high",
+      "case": "PAUSED",
+      "response_kind": "text",
+      "request_sha256": "3b2da6784c3996324034c2e06528104ffd43e7c6dd6e54dc8c31aa1bb711bb71",
+      "tool_count": 12,
+      "input_only": false,
+      "image_inputs": 0
+    }
+  ],
+  "rejected": [],
+  "state": "stopped_normally",
+  "limit": 32
+}

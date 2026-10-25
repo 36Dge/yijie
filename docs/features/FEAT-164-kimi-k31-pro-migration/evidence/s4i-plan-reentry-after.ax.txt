@@ -1,0 +1,75 @@
+Window: "易界 AI", App: 易界 AI FEAT-164.
+0 standard window 易界 AI, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: 新建任务 · 易界 AI, URL: tauri://localhost/chat?create=schedule
+			3 text 界面缩放 100%
+			4 button (expanded) 收起侧栏, Secondary Actions: Collapse
+			5 container 主导航
+				6 image 易界
+				7 container 应用导航
+					8 content list
+						9 link 新建任务, Value: tauri://localhost/chat
+						10 link 我的店铺, Value: tauri://localhost/store
+						11 link 工作流, Value: tauri://localhost/workflows
+						12 link 扩展, Value: tauri://localhost/plugins
+						13 link 连接器, Value: tauri://localhost/connectors
+						14 link 定时任务, Value: tauri://localhost/scheduled-tasks
+						15 container
+							16 heading 任务, Value: 2
+								17 text 任务
+							18 container 任务：项目与对话
+								19 content list
+									20 container
+										21 pop up button 折叠项目 s4c-ui-workspace
+										22 pop up button 项目 s4c-ui-workspace 的操作菜单
+										23 content list
+											24 button FEAT164_S4C_MEDIA：最终构建验证。只将当前隔离工作空间已有的 r
+											25 button FEAT164_S4C_KIMI：这是本机界面验收，请回复合成验证结果，不调用工
+											26 button FEAT164_S4C_MEDIA：只将当前隔离工作空间已有的 report.h
+									27 container
+										28 pop up button 折叠项目 任务目录
+										29 pop up button 项目 任务目录 的操作菜单
+										30 content list
+											31 button FEAT164_S4F_PLAN_RUN 请回复本机计划验证完成，不调用工具。
+									32 container
+										33 pop up button 折叠项目 任务目录
+										34 pop up button 项目 任务目录 的操作菜单
+										35 content list
+											36 button FEAT164_S4F_DRAFT：修复后新提交。生成 FEAT164 S4F
+									37 container
+										38 pop up button 折叠项目 任务目录
+										39 pop up button 项目 任务目录 的操作菜单
+										40 content list
+											41 button FEAT164_S4F_DRAFT：创建一个安全离线验收计划，名称 FEAT16
+									42 button FEAT164_S4F_KIMI：r4 同源 App 本机正控，请回复合成验证结
+									43 button FEAT164 S1 本机新模型正控，请回复合成验证结果。
+									44 button FEAT164 单次真实续验：请计算 17 + 25，只用一行回答结果，不使用工
+									45 button FEAT164 30元续验本机正控，请回复合成验证结果。
+									46 button FEAT164 r2 本机正控，请回复合成验证结果。
+									47 button FEAT164 本机请求字段核对，请回复合成验证结果。
+									48 button FEAT164 真实文本验收：请计算 17 + 25，只回复“FEAT164 实
+									49 button FEAT164 本机正控，请回复合成验证结果。
+					50 content list
+						51 link 设置, Value: tauri://localhost/settings
+			52 container 易界AI
+				53 heading 易界AI, Value: 1
+					54 text 易界AI
+				55 text 让跨境经营更高效，让全球生意更进一步。
+				56 container 任务输入区
+					57 text 输入你的任务需求
+					58 text entry area (settable) 输入你的任务需求, Value: [text entry area], Placeholder: 描述计划内容、时间、时区和运行方式…
+						59 text (settable) 请帮我创建一个定时任务，每【时间间隔】在【时间/时区】执行【具体跨境电商任务】。
+					60 pop up button 选择对话模型，当前 Kimi K3.1 Pro, Help: Kimi K3.1 Pro
+					61 button 发送任务
+	62 close button
+	63 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	64 minimize button
+65 menu bar
+	66 易界 AI FEAT-164
+	67 File
+	68 Edit
+	69 View
+	70 Window
+	71 Help
+
+The focused UI element is 53 heading 易界AI, Value: 1

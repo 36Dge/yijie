@@ -1,0 +1,55 @@
+[
+  {
+    "name": "switch-native-final",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "--lib",
+      "chat::model_recovery::tests::",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "expected_passed": 5,
+    "qualified": true
+  },
+  {
+    "name": "switch-clippy-final",
+    "command": [
+      "cargo",
+      "clippy",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "--lib",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit_code": 0,
+    "expected_passed": null,
+    "qualified": true
+  },
+  {
+    "name": "switch-fmt",
+    "command": [
+      "cargo",
+      "fmt",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--check"
+    ],
+    "exit_code": 0,
+    "expected_passed": null,
+    "qualified": true
+  }
+]

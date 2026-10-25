@@ -1,0 +1,199 @@
+Window: "易界 AI", App: 易界 AI FEAT-164.
+0 standard window 易界 AI, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: 任务对话 · 易界 AI, URL: tauri://localhost/chat/01a1739c-aaca-77a0-9ff5-e17edc67b8ae
+			3 text 界面缩放 100%
+			4 button (expanded) 收起侧栏, Secondary Actions: Collapse
+			5 container 主导航
+				6 image 易界
+				7 container 应用导航
+					8 content list
+						9 link 新建任务, Value: tauri://localhost/chat
+						10 link 我的店铺, Value: tauri://localhost/store
+						11 link 工作流, Value: tauri://localhost/workflows
+						12 link 扩展, Value: tauri://localhost/plugins
+						13 link 连接器, Value: tauri://localhost/connectors
+						14 link 定时任务, Value: tauri://localhost/scheduled-tasks
+						15 container
+							16 heading 任务, Value: 2
+								17 text 任务
+							18 container 任务：项目与对话
+								19 content list
+									20 container
+										21 pop up button 折叠项目 feat164-s4i-ui-workspace
+										22 pop up button 项目 feat164-s4i-ui-workspace 的操作菜单
+										23 content list
+											24 button FEAT164_S4I_EXPERT：配对修复后的独立本机专家验收，只回复合成验
+											25 button (collapsed) FEAT164_S4I_MEDIA：本机安全联调。请通过已有 publish_a, Secondary Actions: Expand
+									26 container
+										27 pop up button 折叠项目 s4c-ui-workspace
+										28 pop up button 项目 s4c-ui-workspace 的操作菜单
+										29 content list
+											30 button FEAT164_S4C_MEDIA：最终构建验证。只将当前隔离工作空间已有的 r
+											31 button FEAT164_S4C_KIMI：这是本机界面验收，请回复合成验证结果，不调用工
+											32 button FEAT164_S4C_MEDIA：只将当前隔离工作空间已有的 report.h
+									33 container
+										34 pop up button 折叠项目 任务目录
+										35 pop up button 项目 任务目录 的操作菜单
+										36 content list
+											37 button FEAT164_S4F_PLAN_RUN 请回复本机计划验证完成，不调用工具。
+									38 container
+										39 pop up button 折叠项目 任务目录
+										40 pop up button 项目 任务目录 的操作菜单
+										41 content list
+											42 button FEAT164_S4F_DRAFT：修复后新提交。生成 FEAT164 S4F
+									43 container
+										44 pop up button 折叠项目 任务目录
+										45 pop up button 项目 任务目录 的操作菜单
+										46 content list
+											47 button FEAT164_S4F_DRAFT：创建一个安全离线验收计划，名称 FEAT16
+									48 button FEAT164_S4F_KIMI：r4 同源 App 本机正控，请回复合成验证结
+									49 button FEAT164 S1 本机新模型正控，请回复合成验证结果。
+									50 button FEAT164 单次真实续验：请计算 17 + 25，只用一行回答结果，不使用工
+									51 button FEAT164 30元续验本机正控，请回复合成验证结果。
+									52 button FEAT164 r2 本机正控，请回复合成验证结果。
+									53 button FEAT164 本机请求字段核对，请回复合成验证结果。
+									54 button FEAT164 真实文本验收：请计算 17 + 25，只回复“FEAT164 实
+									55 button FEAT164 本机正控，请回复合成验证结果。
+					56 content list
+						57 link 设置, Value: tauri://localhost/settings
+			58 container FEAT164_S4I_MEDIA：本机安全联调。请通过已有 publish_a
+				59 container
+					60 heading FEAT164_S4I_MEDIA：本机安全联调。请通过已有 publish_a, Value: 1
+						61 text FEAT164_S4I_MEDIA：本机安全联调。请通过已有 publish_a
+					62 text feat164-s4i-ui-workspace 已完成
+				63 container 任务对话记录
+					64 container 对话内容
+						65 container
+							66 container 对话 1
+								67 container 对话 1
+									68 container 本轮对话内容
+										69 container 用户消息
+											70 text FEAT164_S4I_MEDIA：本机安全联调。请通过已有 publish_artifact 工具发布当前隔离工作空间中的 report.html 与 drawing.svg；不修改文件，不联网，不调用其他工具。
+											71 container 用户消息操作
+												72 container 2026/10/25 23:10:09
+													73 text 23:10
+												74 button 复制文本
+										75 button (collapsed) 已完成 0s，展开本轮处理过程, Secondary Actions: Expand
+										76 container 模型回答
+											77 container 模型回答
+												78 text FEAT164 S4I 本机验收完成。这是合成响应，未访问真实模型。
+												79 container 模型回答操作
+													80 button 复制文本
+										81 container 生成内容
+											82 container 生成内容
+												83 container
+													84 text 生成内容 已完成
+													85 container 生成内容操作
+												86 container 生成内容
+													87 container report.html
+														88 container
+															89 text report.html 文件 工具生成
+														90 container 文件预览与保存
+															91 text 支持自包含 HTML；外链资源不会加载。
+															92 button 预览 HTML
+															93 button 保存文件
+														94 text 已就绪
+										95 container 生成内容
+											96 container 生成内容
+												97 container
+													98 text 生成内容 已完成
+													99 container 生成内容操作
+												100 container 生成内容
+													101 container drawing.svg
+														102 container
+															103 text drawing.svg 图片 工具生成
+														104 container 图片预览与保存
+															105 button 预览图片：drawing.svg, Help: 预览图片
+															106 button 保存图片
+														107 text 已就绪
+							108 container 对话 2
+								109 container 对话 2
+									110 text 已中断
+									111 text 本轮已中断，已确认的内容仍可阅读。
+									112 container 本轮对话内容
+										113 container 用户消息
+											114 text FEAT164_S4I_STREAM：本机正常持续输出验证，请只连续输出普通合成文字，不调用任何工具。我将通过应用停止按钮结束这一轮。
+											115 container 用户消息操作
+												116 container 2026/10/25 23:11:42
+													117 text 23:11
+												118 button 复制文本
+										119 container 本轮耗时
+											120 container 本轮耗时
+												121 text 用时 8秒
+										122 container 模型回答
+											123 container 模型回答
+												124 text 本轮已结束，未观察到该项结束记录
+												125 text 本机正常流式输出 1。 本机正常流式输出 2。 本机正常流式输出 3。 本机正常流式输出 4。 本机正常流式输出 5。 本机正常流式输出 6。 本机正常流式输出 7。 本机正常流式输出 8。 本机正常流式输出 9。 本机正常流式输出 10。 本机正常流式输出 11。 本机正常流式输出 12。 本机正常流式输出 13。 本机正常流式输出 14。 本机正常流式输出 15。 本机正常流式输出 16。 本机正常流式输出 17。 本机正常流式输出 18。 
+							126 container 对话 3
+								127 container 对话 3
+									128 container 本轮对话内容
+										129 container 用户消息
+											130 text FEAT164_S4I_CONTINUE：这是停止后的独立下一轮，只回复普通合成验证结果，不调用工具。
+											131 container 用户消息操作
+												132 container 2026/10/25 23:11:58
+													133 text 23:11
+												134 button 复制文本
+										135 container 本轮耗时
+											136 container 本轮耗时
+												137 text 已完成 0s
+										138 container 模型回答
+											139 container 模型回答
+												140 text FEAT164 S4I 本机验收完成。这是合成响应，未访问真实模型。
+												141 container 模型回答操作
+													142 button 复制文本
+							143 container 对话 4
+								144 container 对话 4
+									145 container 本轮对话内容
+										146 container 用户消息
+											147 container
+												148 container 32x32.png
+													149 text 32x32.png
+												150 text 图片 · 723 B
+											151 container 用户消息操作
+										152 container 用户消息
+											153 text FEAT164_S4I_KIMI：本机图片输入链路验证，附件是项目公开图标。仅回复合成验证结果，不调用工具。
+											154 container 用户消息操作
+												155 button 复制文本
+										156 container 本轮耗时
+											157 container 本轮耗时
+												158 text 已完成 0s
+										159 container 模型回答
+											160 container 模型回答
+												161 text FEAT164 S4I 本机验收完成。这是合成响应，未访问真实模型。
+												162 container 模型回答操作
+													163 button 复制文本
+					164 container 连接器调用
+						165 container
+							166 text 工具调用记录
+							167 pop up button 查看连接器调用轮次, Value: 最新轮次
+				168 button 滚动到对话底部
+				169 container
+					170 text 切换结果待核实。恢复将核对原操作，未完成时可能重新应用原目标模型；刷新仅查询状态。
+					171 container 任务输入区
+						172 text 输入你的任务需求
+						173 text entry area (settable) 输入你的任务需求, Value: [text entry area], Placeholder: 继续输入任务需求…
+							174 text 继续输入任务需求…
+						175 pop up button 可添加文件、技能、连接器，或选择专家
+						176 pop up button 权限审批：请求批准, Help: 更改当前任务的权限审批模式
+						177 pop up button 关联店铺, Help: 关联店铺（交互演示）
+						178 container
+							179 button 移除专家, Help: 移除专家，已有聊天保留
+							180 button 查看已选专家 资深电商运营操盘手, Help: 资深电商运营操盘手
+						181 pop up button 选择对话模型，当前 Kimi K3.1 Pro, Help: Kimi K3.1 Pro
+						182 button 恢复原切换, Help: 切换结果待核实。恢复将核对原操作，未完成时可能重新应用原目标模型；刷新仅查询状态。
+						183 text 切换结果待核实。恢复将核对原操作，未完成时可能重新应用原目标模型；刷新仅查询状态。
+						184 button (disabled) 发送任务
+				185 text 已完成
+	186 close button
+	187 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	188 minimize button
+189 menu bar
+	190 易界 AI FEAT-164
+	191 File
+	192 Edit
+	193 View
+	194 Window
+	195 Help
+
+The focused UI element is 60 heading FEAT164_S4I_MEDIA：本机安全联调。请通过已有 publish_a, Value: 1

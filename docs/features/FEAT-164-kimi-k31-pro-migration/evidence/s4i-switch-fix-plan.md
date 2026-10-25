@@ -1,0 +1,7 @@
+# S4I 专家/市场模型切换接线修复
+
+实际App在paused重开后的已完成专家对话切MiniMax失败，刷新只读仍Kimi/ready；本机HTTP保持6。Native begin_model_recovery_intent的idle仍调用require_legacy_session，直接拒绝任何market/expert历史，早于意图持久化；这属于S2时期围栏未随S4版本化消费接线迁移的遗漏。不是账本/网络失败，不重置旧请求。
+
+contract-impact=semantic：修正既有v2选择/恢复私有实现，公共Model v2与market/expert v2源已批准并固定，无新schema、权限、存储或DTO。只允许已settled的version1市场投递及专家绑定进入原模型选择事务；pending/inflight/uncertain/blocked或缺投递记录仍拒绝，只有已有持久never-sent取消证明的blocked例外。原scope、活动turn/outbox、删除、草案、专家未决、原operation/thread/revision、最终POST前重验全部保留。legacy业务派发排除器原样不改。
+
+先普通SQLCipher资格用例复现，再最小实现并覆盖accepted、未决/缺记录、取消证明、expert状态及begin到dispatch再验证；正常quit后才能重建，当前真实App数据不直接写。最终同一专家thread实际切换/回退和正常重开验证，模型仅本机fixture。

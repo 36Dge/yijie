@@ -1,0 +1,7 @@
+# S4I Host 配对接线与旧未决保护
+
+前一Native修复确实越过了本地历史围栏，但实机第二次失败进入不同阶段：Native原op f38666dc-d2d8-4101-b498-eccf3045b6dd 已dispatched后unknown，Host无该op。Host源码applyChatModelV2仍只接受purposeOrdinary，真实market_submit建立purposeMarket。此前把“正常聊天用途”等同Host ordinary是错误假设；普通模型测试没有覆盖该原生分类。旧原op保持unknown，不因404、缺记录或静态推断重发。两个App失败及一个Native前置回归的根因/阶段分别记录，不伪造同一runtime三次失败或已完成RCA门禁。
+
+继续既有已批准S4实现，contract-impact=semantic：Models v2与market/expert v2公共身份/请求/回执不变，Host最小接入同版本的市场会话。复用原expert binding ClearMarketConfiguration，先撤旧市场lease并以既有Config关闭继承MCP，再SwitchThread；不复制旧grant、不做provider discovery、不增权限或Runtime核心补丁。后续业务仍要Native新snapshot/grant。requireModelIdle/noPendingExpertOrMarket、schema/资源、原thread/revision及终态重放保护均保持，draft/未知purpose继续拒绝。
+
+普通域测试覆盖market/expert两类的活动拒绝、正常终态、paused到MiniMax、clear→switch顺序、0业务turn增长、原快照不变和终态回执只读重放。source-first固定Host后通过canonical freeze更新Desktop，当前未决线程只读；实际App用新合成线程正常创建/结束后验证明确模型切换，不重置旧库或重放旧业务。

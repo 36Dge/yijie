@@ -289,8 +289,8 @@ temporal_contract_matrix:
     - id: TCONF-164-04
       required: true
       repository: yijie-desktop
-      command: python3 scripts/feat164-s4-conformance.py --output <new-output> --runtime-binary <pinned-r2-codex>
-        --runtime-manifest <pinned-r2-manifest>
+      command: python3 scripts/feat164-s4-conformance.py --output <new-output> --runtime-binary <pinned-r4-codex>
+        --runtime-manifest <pinned-r4-manifest>
       slice_id: S4
       status: NOT RUN
       exit_code: null
@@ -301,18 +301,18 @@ temporal_contract_matrix:
         - repository: yijie-contracts
           full_sha: 1b357cce0575c492f3715b316ee5f254051acf80
         - repository: yijie-agent-host
-          full_sha: 7927ee7b385cb5536c3647632d1bac0cb7c56fea
+          full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
         - repository: yijie-desktop
-          full_sha: 1b5adcfc1b6b3195df5b3495de3f1c4b22599d51
+          full_sha: 399bb19d4c2066675f3f73b61ee6b8f59ee489c6
         - repository: yijie-connectors
-          full_sha: 1f157260d6dd339172712e1c649258902db45050
-      evidence_ref: 08-verification-report.md#E164-S4H-PLAN
+          full_sha: 7ea3df41818fd69f4736722d01f0686d584d1a71
+      evidence_ref: 08-verification-report.md#E164-S4I-MEDIA
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
       implementation_status: implemented_partial
-      command_note: S4h source-generation与current-plan App子集独立完成；未执行完整TCONF-164-04。
+      command_note: S4I当前来源安全子集24项分两次执行通过，原入口因调用PATH遗漏pnpm停止；专家模型往返与media App另有证据，仍未完成完整TCONF-164-04。
 vertical_feasibility:
   required: true
   applicability_reason: 跨仓模型/Runtime身份和重要持久数据迁移，必须真实纵向资格
@@ -705,11 +705,11 @@ slices:
       - repository: yijie-contracts
         full_sha: 1b357cce0575c492f3715b316ee5f254051acf80
       - repository: yijie-agent-host
-        full_sha: 7927ee7b385cb5536c3647632d1bac0cb7c56fea
+        full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
       - repository: yijie-desktop
-        full_sha: 1b5adcfc1b6b3195df5b3495de3f1c4b22599d51
+        full_sha: 399bb19d4c2066675f3f73b61ee6b8f59ee489c6
       - repository: yijie-connectors
-        full_sha: 1f157260d6dd339172712e1c649258902db45050
+        full_sha: 7ea3df41818fd69f4736722d01f0686d584d1a71
     exception:
       owner: 段成威
       approved_at: 2026-10-25
@@ -717,8 +717,8 @@ slices:
     local_evidence:
       required: true
       status: PASS
-      command: python3 scripts/feat164-s4b-conformance.py --output <new-output> --runtime-binary <pinned-r2-codex>
-        --runtime-manifest <pinned-r2-manifest> --worker-manifest <canonical-worker-manifest> --expert-bundle
+      command: python3 scripts/feat164-s4b-conformance.py --output <new-output> --runtime-binary <pinned-r4-codex>
+        --runtime-manifest <pinned-r4-manifest> --worker-manifest <canonical-worker-manifest> --expert-bundle
         <immutable-expert-bundle> --artifact-adapter <canonical-artifact-adapter>
       environment: macOS aarch64; clean Desktop 56f5284 / Hostcac2d4d / Connectors1f15726 / Skills595c927 /
         Contractseddc64f; real pinned r2 Runtime; loopback only
@@ -733,6 +733,7 @@ slices:
         - 08-verification-report.md#E164-S4F-APP
         - 08-verification-report.md#E164-S4G-APP
         - 08-verification-report.md#E164-S4H-PLAN
+        - 08-verification-report.md#E164-S4I-MEDIA
       reason: 四组合source及1/3/4/1行为检查PASS、0skip；13次loopback覆盖专家/媒体/子代理/Guardian/显式压缩。当前源S4 7/4/4/4/5、S2
         25/2/12/10/1及S3五项复验通过；37专家版本安装/解析/重开、Native完整资源读取通过。不代表完整TCONF-164-04、App/平台或G3。
         上述批次保持原56f5284来源；当前a0a4743另经canonical构建、暂停历史回归及App/UI子集复验，见S4C锚点，不把旧全套结果改写为新源运行。
@@ -758,9 +759,9 @@ slices:
         - 08-verification-report.md#E164-S4F-APP
         - 08-verification-report.md#E164-S4G-APP
         - 08-verification-report.md#E164-S4H-PLAN
-      reason: 原S4c
-        App及本批r4原生终态/冷读/自动压缩/辅助调用证据分别保留。旧S4d终态缺陷已修复；本批普通App仅构建不启动，完整UI、计划/恢复取消、跨平台和当前G2V/freshness未完成，整体边界/纵向不能标PASS。
-        S4f当前App/计划子集通过，3次App模型协议loopback、真实0；本字段旧批次状态不替代完整门禁。
+        - 08-verification-report.md#E164-S4I-MEDIA
+      reason: 历次r4原生终态/冷读/自动压缩/辅助调用按原来源保留；S4I当前配对专家切模型、media/中断/图片及重开清理已实机通过，旧unknown保持阻断。
+        计划App证据见S4F/H。完整旧K3/恢复取消适用边界、当前G2V与整项freshness尚缺，不能把这些分批子集标为完整边界/纵向PASS；非Mac ARM目标N/A。
       exception:
         owner: N/A
         approved_at: N/A
@@ -780,9 +781,9 @@ slices:
         - 08-verification-report.md#E164-S4F-APP
         - 08-verification-report.md#E164-S4G-APP
         - 08-verification-report.md#E164-S4H-PLAN
-      reason: 原S4c
-        App及本批r4原生终态/冷读/自动压缩/辅助调用证据分别保留。旧S4d终态缺陷已修复；本批普通App仅构建不启动，完整UI、计划/恢复取消、跨平台和当前G2V/freshness未完成，整体边界/纵向不能标PASS。
-        S4f当前App/计划子集通过，3次App模型协议loopback、真实0；本字段旧批次状态不替代完整门禁。
+        - 08-verification-report.md#E164-S4I-MEDIA
+      reason: 历次r4原生终态/冷读/自动压缩/辅助调用按原来源保留；S4I当前配对专家切模型、media/中断/图片及重开清理已实机通过，旧unknown保持阻断。
+        计划App证据见S4F/H。完整旧K3/恢复取消适用边界、当前G2V与整项freshness尚缺，不能把这些分批子集标为完整边界/纵向PASS；非Mac ARM目标N/A。
       exception:
         owner: N/A
         approved_at: N/A
@@ -801,8 +802,7 @@ slices:
       invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
         implementation reference changes
     status: pending
-    status_reason: S4h显式read-only生成入口19项通过，六仓源与真实sibling目录核验；原S3五项当前源复验通过，App关联聊天模型切换使旧计划拒绝0HTTP，重新审阅保存paused后独立手动MiniMax/high一次loopback成功。原计划/聊天恢复Kimi且关闭，正常重开与历史保持。完整恢复取消、旧K3
-      App迁移、专家媒体当前组合、平台/G2V/G3仍未完成。见34。
+    status_reason: S4I当前r4媒体与配对专家App、19来源及24安全调用面分组通过，修复Worker pin、草案旧默认值和Native/Host模型配置门禁。正常退出/重开与旧数据保留通过；原unknown仍阻断。完整TCONF、适用旧K3迁移/恢复取消、当前G2V/G3/freshness/final及日常cutover仍未完成，见35。
 final_e2e:
   core_vertical:
     required: true
@@ -1218,10 +1218,21 @@ implementation:
       unused_attempts: 2
       stopped_after_pass: true
       does_not_authorize_real_model_calls: true
+  current_media_qualification:
+    status: PASS_SCOPED
+    desktop_commit: 399bb19d4c2066675f3f73b61ee6b8f59ee489c6
+    host_commit: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
+    connectors_commit: 7ea3df41818fd69f4736722d01f0686d584d1a71
+    runtime_commit: a28130abb13d0f99a00107cd513a653bae878b77
+    contract_impact: semantic
+    evidence_ref: 08-verification-report.md#E164-S4I-MEDIA
+    real_model_http_added: 0
+    app_loopback_http: 8
+    conformance_loopback_http: 6
+    note: Worker来源、草案默认值、Native/Host专家配置门禁已修复；实际媒体/正常中断/图片及配对专家paused往返、重开和清理通过。旧unknown未结清，整项Gate另判。
 product_verification:
   status: IN_PROGRESS
-  reason: 当前普通计划App模型变更、取消未保存审阅、旧配置拒绝、新审阅保存paused及独立单次执行、恢复Kimi和正常重开通过；原旧grant/run、失败草案和6事实保持。修正后FEAT164
-    source-generation19项通过，旧通用FAIL保留；其余完整恢复取消/旧K3 App迁移/专家媒体、平台/G2V/G3/final仍未完成。
+  reason: 当前r4配对专家及媒体App子集、19来源检查和24项安全调用面分组已通过；旧unknown/账本/预占保留。完整TCONF、当前G2V/G3/freshness/final及日常激活仍缺，详见35整项AC与执行单。非Mac目标不在当前支持范围，记N/A而非PASS。
 profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
 owner_approvals:
   requirements: approved_by_owner_current_user_message

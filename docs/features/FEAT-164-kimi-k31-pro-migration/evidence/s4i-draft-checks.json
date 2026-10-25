@@ -1,0 +1,51 @@
+[
+  {
+    "name": "draft-regression-after",
+    "command": [
+      "node",
+      "node_modules/vitest/vitest.mjs",
+      "run",
+      "src/pages/chat/ChatPage.test.ts",
+      "-t",
+      "FEAT164 resets discarded shared plan draft",
+      "--reporter=verbose"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "draft-legacy",
+    "command": [
+      "node",
+      "node_modules/vitest/vitest.mjs",
+      "run",
+      "src/pages/chat/ChatPage.test.ts",
+      "-t",
+      "resets the model when leaving a discarded new scheduled draft",
+      "--reporter=verbose"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "source-eslint",
+    "command": [
+      "node",
+      "node_modules/eslint/bin/eslint.js",
+      "src/pages/chat/ChatPage.vue",
+      "src/pages/chat/ChatPage.test.ts"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "model-frontend",
+    "command": [
+      "node",
+      "node_modules/vitest/vitest.mjs",
+      "run",
+      "src/composables/useChatModelsV2.test.ts",
+      "src/api/call-surfaces.feat164.test.ts",
+      "src/components/schedules/ScheduledPlanForm.feat164.test.ts",
+      "--reporter=verbose"
+    ],
+    "exit_code": 0
+  }
+]

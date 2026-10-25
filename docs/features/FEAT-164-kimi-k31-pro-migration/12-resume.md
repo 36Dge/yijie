@@ -1,5 +1,9 @@
 # FEAT-164 续办入口
 
+> 最新续办与整项目标以[35 当前组合与完成差距](35-s4-current-media-and-completion-audit.md)、feature.yaml及S4I证据为准。旧阶段记录保留其原来源和时间；当前仍未切换日常入口，不新增真实模型HTTP。
+
+> S4I结果：Desktop399bb19/Host090c2db配对专家切换、r4媒体/正常中断/图片、同源重开及清理通过；旧unknown仍保留阻断。当前安全子集分组通过不等于完整TCONF/G2V/G3/final。后续按35末节整项执行单推进。
+
 > 当前S4h：先读[34](34-s4-generation-and-plan-continuation.md)。Desktop1b5adcf新增显式源生成检查，修正后第1次19项全部通过；Owner允许最多3次，余2次未用。计划App新旧配置隔离/审阅/独立手动授权/恢复Kimi关闭及正常重开通过，1次本机模型请求、真实0。下阶段专家媒体组合、完整恢复取消与旧K3 App/平台/G2V/G3仍缺。
 
 > 当前（S4g）：先读[33](33-s4-draft-uncertainty.md)。Desktop181885b已只读修复旧failed草案显示uncertain，App亮暗最小窗口与0模型请求安全保留通过；通用生成检查三次FAIL已停止/RCA，未执行第四次，完整G3仍阻断。后续不重置原attempted请求；预算/旧预占及其它工作区保持。
