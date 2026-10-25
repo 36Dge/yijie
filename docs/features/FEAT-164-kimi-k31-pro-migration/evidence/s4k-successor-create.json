@@ -1,0 +1,20 @@
+{
+  "command": [
+    "python3",
+    "scripts/feat164-budget-meter.py",
+    "--ledger",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-164-kimi-k31-pro-migration/evidence/g2v-real-budget-ledger-r3.json",
+    "--create-successor-from",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-164-kimi-k31-pro-migration/evidence/g2v-real-budget-ledger.json",
+    "--successor-authorization",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-164-kimi-k31-pro-migration/evidence/s4k-successor-authorization.json"
+  ],
+  "result": {
+    "authorization_id": "FEAT-164-20261026-30CNY-THREE-HTTP",
+    "already_applied": false,
+    "remaining_http_requests": 3
+  },
+  "old_ledger_unchanged": true,
+  "old_sha256": "2dbd19be2a8bda267437bcf0330fff1af122778388d6e3df965291ec840b7dcf",
+  "real_http_added": 0
+}

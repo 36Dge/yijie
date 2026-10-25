@@ -1,0 +1,25 @@
+EE
+======================================================================
+ERROR: scripts/feat164_budget_meter_test (unittest.loader._FailedTest.scripts/feat164_budget_meter_test)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: scripts/feat164_budget_meter_test
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/unittest/loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+ModuleNotFoundError: No module named 'scripts/feat164_budget_meter_test'
+
+
+======================================================================
+ERROR: scripts/feat164_successor_meter_test (unittest.loader._FailedTest.scripts/feat164_successor_meter_test)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: scripts/feat164_successor_meter_test
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/unittest/loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+ModuleNotFoundError: No module named 'scripts/feat164_successor_meter_test'
+
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+FAILED (errors=2)

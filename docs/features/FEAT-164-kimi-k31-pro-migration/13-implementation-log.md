@@ -77,3 +77,7 @@ Native54556bf之后真实App仍失败，定位Host purposeOrdinary旧准入；�
 ### S4J 当前离线资格与验证脚本修正（2026-10-26）
 
 Desktop716a3e4将S2当前selector精确期望10→17；首次3个草案IPC因旧driver未传candidate环境失败，bad75a2仅复用已有candidate环境。一次修正后S2五组57通过，S1/S3、当前S4b/e、renderer18和verdict7通过；36本机HTTP、真实0。旧证据/数据与原unknown保持。完整覆盖、原失败、自然旧K3 App不可达的实际metadata和待批准真实G2V方案见36。不降低整项Gate、不迁移日常库、不推送。
+
+### S4K 后继预算与当前候选资格（2026-10-26）
+
+Owner确认36的一次续验并额外新增2次，已回告本轮最多3/累计5/30元、失败即停。Desktop ea9b1e4本地提交5个私有验收工具文件；旧schema2不改，新schema3在同目录独立账本绑定全部旧JSON与请求。23预算+10判定器/互操作、ESLint/docs及canonical新bundle通过。本机App1次正控、保存重开0补发/正常清理通过。真实meter启动后未发生新HTTP；两次人工UI操作交锁阻断发送，已正常停止meter、保留App供Owner查看，等待交接。新增0/3，旧unknown/预占保持，不推送、不迁移日常库。详见37。

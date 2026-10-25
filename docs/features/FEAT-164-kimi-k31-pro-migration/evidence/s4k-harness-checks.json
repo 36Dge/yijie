@@ -1,0 +1,24 @@
+[
+  {
+    "name": "meter-qualified-final",
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "scripts/feat164_budget_meter_test.py",
+      "scripts/feat164_successor_meter_test.py"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "verdict-qualified",
+    "command": [
+      "node",
+      "--test",
+      "scripts/feat164-verdict.test.mjs",
+      "scripts/feat164-g2v-verdict.test.mjs",
+      "scripts/feat164-successor-verdict.test.mjs"
+    ],
+    "exit_code": 0
+  }
+]

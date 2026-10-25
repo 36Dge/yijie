@@ -358,3 +358,15 @@ S4I续验：Host090c2db/Desktop399bb19配对后，实际专家线程Kimi→pause
 <!-- evidence: E164-S4J-OFFLINE -->
 
 [36](36-current-offline-qualification-and-next-gate.md)记录当前来源、精确命令、首次环境FAIL与修正后复验。S1共11含父项；S2五组57、S3五项、S4b四组合及1/3/4/1、S4e7项、renderer18、verdict7通过且0skip。36次本机模型HTTP，真实0。当前候选metadata旧K3会话/计划均0，旧K3 App场景仍未实测，不改库制造。产品源未变，旧bundle/旧数据/预算保留；完整TCONF04、G2V/G3/final仍未通过。下一步为新的canonical资格、需独立授权的真实文本G2V及剩余App/final/日常cutover，不以重复这些子集代替。
+
+## E164-S4K-HARNESS 当前后继预算与候选资格
+
+<!-- evidence: E164-S4K-HARNESS -->
+
+[37](37-current-g2v-successor.md)记录Owner本轮1+2新增授权、私有schema3/source-first实现和预算解释。23预算控制、10判定器及跨语言普通状态检查、ESLint/docs通过；canonical新目录构建、真实App本机K3.1/max正控1次、保存/重开0补发和正常退出通过。价格复核和两次编排目录错误保留，不把仅7旧Node项误记10项。详见s4k-harness-qualification.json、s4k-app-build-receipt.json与s4k-offline证据。此为受限文本harness资格，不代表完整G3或真实Provider结果。
+
+## E164-S4K-REAL 本轮真实验收待窗口交接
+
+<!-- evidence: E164-S4K-REAL -->
+
+新后继ledger原2行/旧文件均保留，本轮新增0。真实meter曾就绪，同构建App打开的是昨天旧42历史，明确未计入新通过。连续两次人工UI变动保护拦截后停止界面动作并请求交接；meter经control/stop正常退出，额度未使用、未退款或撤销。当前App由Owner查看，尚未完成真实G2V及本次最终teardown；见s4k-ui-coordination.json及s4k-meter-coordination-stop.json。

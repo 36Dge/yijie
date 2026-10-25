@@ -1,0 +1,192 @@
+{
+  "vertical": {
+    "required": true,
+    "applicability_reason": "跨仓模型/Runtime身份和重要持久数据迁移，必须真实纵向资格",
+    "exception": {
+      "owner": "N/A",
+      "approved_at": "N/A",
+      "reason": "N/A"
+    },
+    "harness_id": "H-F164-LOCAL",
+    "participating_repositories": [
+      "yijie-contracts",
+      "yijie-codex",
+      "yijie-agent-host",
+      "yijie-desktop"
+    ],
+    "platform": "macOS aarch64 / 既有受控local产品入口 / 新候选Runtime",
+    "production_bootstrap": true,
+    "representative_data": "本轮普通合成计算题；未测试图片、工具、搜索、旧选择迁移或计划状态",
+    "critical_path": "canonical App → Native → Host → Runtime → 获准新模型响应 → 原生事件 → 保存/重开",
+    "evidence": {
+      "commits": [
+        {
+          "repository": "yijie-desktop",
+          "full_sha": "40908c75af14a9cbd65d1b0cee96ba510d6afa8f"
+        },
+        {
+          "repository": "yijie-agent-host",
+          "full_sha": "5022435a6272263e66e46a41b7ed7c3f9fb6caf9"
+        },
+        {
+          "repository": "yijie-contracts",
+          "full_sha": "f2819c66a2368aaff37216a46c48d5cd81df1747"
+        },
+        {
+          "repository": "yijie-codex",
+          "full_sha": "074417e5e2f5f55704ea5e1777e7a22d514076b4"
+        }
+      ],
+      "command": "node scripts/feat164-g2v-verdict.mjs /Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-164-kimi-k31-pro-migration/evidence/g2v-real-budget-ledger.json /Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-164-kimi-k31-pro-migration/evidence/g2v-30-real-observation.json",
+      "environment": "macOS aarch64; current canonical App; one additional HTTP under 30 CNY cumulative cap; output8192/no-native-search",
+      "exit_code": null,
+      "status": "NOT RUN",
+      "verified_at": "NOT RUN",
+      "harness": {
+        "id": "H-F164-LOCAL",
+        "commit": "40908c75af14a9cbd65d1b0cee96ba510d6afa8f",
+        "digest": "d4361025ed5b7da56dc8c587d5cf6e76860f4b749dba349b3fe5722d19929cce"
+      },
+      "platform": "macOS aarch64 / 既有受控local产品入口 / 新候选Runtime",
+      "production_bootstrap": true,
+      "contract_refs": [
+        "contract:chat-models-v2@0.2.0@f2819c66a2368aaff37216a46c48d5cd81df1747#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70",
+        "contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r2@f2819c66a2368aaff37216a46c48d5cd81df1747#3d204e1cf11a7a108d636f37d112d8cc9e8ad46212b9cb867097714de6a4b89c"
+      ],
+      "fixture_refs": [
+        "fixture:feat164-request-shape-loopback#d345d62dfa9ba7021138c3330a6c619222cf108cf423b5b051fc9699cda90372"
+      ],
+      "refs": [
+        "08-verification-report.md#E164-30-REAL-G2V"
+      ],
+      "working_directory": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop",
+      "reason": "当前新增计划v2来源尚未重新资格；其余字段为原G2V定位信息，原始PASS对象完整保留在s3-prior-vertical-feasibility.json，不是本轮失败或扣费变化。"
+    }
+  },
+  "harnesses": [
+    {
+      "id": "H-F164-LOCAL",
+      "purpose": "最小模型替换纵向候选及三项最终验证；安全普通状态分类",
+      "commit": "40908c75af14a9cbd65d1b0cee96ba510d6afa8f",
+      "digest": "d4361025ed5b7da56dc8c587d5cf6e76860f4b749dba349b3fe5722d19929cce",
+      "default_enabled": false,
+      "real_platform": "macOS aarch64 / 既有受控local产品入口 / 新候选Runtime",
+      "production_bootstrap": true,
+      "representative_data": "本轮普通合成计算题；未测试图片、工具、搜索、旧选择迁移或计划状态",
+      "failure_classes": [
+        "product_failure",
+        "harness_failure",
+        "platform_failure",
+        "gate_failure"
+      ],
+      "qualification": {
+        "status": "PASS",
+        "verified_at": "2026-10-25T02:59:00.992496+00:00",
+        "command": "canonical --reopen + CUA ordinary task/history/Cmd-Q; node --test scripts/feat164-verdict.test.mjs scripts/feat164-g2v-verdict.test.mjs; python3 -m unittest discover -s scripts -p feat164_budget_meter_test.py",
+        "environment": "macOS aarch64; Desktop 40908c7 canonical App + unchanged Runtime r2; ordinary metadata-only loopback",
+        "exit_code": 0,
+        "positive_control": {
+          "status": "PASS",
+          "evidence_ref": "08-verification-report.md#E164-30-HARNESS-POSITIVE"
+        },
+        "negative_controls": {
+          "product_failure": {
+            "status": "PASS",
+            "observed_class": "product_failure",
+            "evidence_ref": "08-verification-report.md#E164-30-HARNESS-CONTROLS"
+          },
+          "harness_failure": {
+            "status": "PASS",
+            "observed_class": "harness_failure",
+            "evidence_ref": "08-verification-report.md#E164-30-HARNESS-CONTROLS"
+          },
+          "platform_failure": {
+            "status": "PASS",
+            "observed_class": "platform_failure",
+            "evidence_ref": "08-verification-report.md#E164-30-HARNESS-CONTROLS"
+          },
+          "gate_failure": {
+            "status": "PASS",
+            "observed_class": "gate_failure",
+            "evidence_ref": "08-verification-report.md#E164-30-HARNESS-CONTROLS"
+          }
+        },
+        "timeout_control": {
+          "status": "PASS",
+          "evidence_ref": "08-verification-report.md#E164-30-HARNESS-CONTROLS"
+        },
+        "cleanup_control": {
+          "status": "PASS",
+          "evidence_ref": "08-verification-report.md#E164-30-HARNESS-CONTROLS"
+        },
+        "content_free_verdict": {
+          "status": "PASS",
+          "evidence_ref": "08-verification-report.md#E164-30-HARNESS-VERDICT"
+        }
+      },
+      "safety_policy": "只用普通状态/返回值/正常取消；禁止强杀、权限破坏、攻击fixture或可执行替身，无法安全验证的控制保持NOT RUN"
+    },
+    {
+      "id": "H-F164-S1-LOCAL",
+      "purpose": "S1当前固定来源的本机活动身份/暂停/历史与正常清理，不代表真实供应商资格",
+      "commit": "174fbaf661e4fdf48828ff8bbabbe5d55c157bed",
+      "digest": "d4361025ed5b7da56dc8c587d5cf6e76860f4b749dba349b3fe5722d19929cce",
+      "default_enabled": false,
+      "real_platform": "macOS aarch64 / 既有受控local产品入口 / 新候选Runtime",
+      "production_bootstrap": true,
+      "representative_data": "普通合成文本；新Kimi与暂停模式MiniMax；保留当前候选历史",
+      "failure_classes": [
+        "product_failure",
+        "harness_failure",
+        "platform_failure",
+        "gate_failure"
+      ],
+      "qualification": {
+        "status": "NOT RUN",
+        "verified_at": "NOT RUN",
+        "command": "canonical --reopen with ordinary loopback; CUA observations; node --test scripts/feat164-verdict.test.mjs",
+        "environment": "macOS aarch64; current 174fbaf/e8ae83f candidate; MAC_LOCKED blocks remaining UI observations",
+        "exit_code": null,
+        "positive_control": {
+          "status": "NOT RUN",
+          "evidence_ref": "NOT RUN"
+        },
+        "negative_controls": {
+          "product_failure": {
+            "status": "PASS",
+            "observed_class": "product_failure",
+            "evidence_ref": "08-verification-report.md#E164-S1-CONTROLS"
+          },
+          "harness_failure": {
+            "status": "PASS",
+            "observed_class": "harness_failure",
+            "evidence_ref": "08-verification-report.md#E164-S1-CONTROLS"
+          },
+          "platform_failure": {
+            "status": "PASS",
+            "observed_class": "platform_failure",
+            "evidence_ref": "08-verification-report.md#E164-S1-CONTROLS"
+          },
+          "gate_failure": {
+            "status": "PASS",
+            "observed_class": "gate_failure",
+            "evidence_ref": "08-verification-report.md#E164-S1-CONTROLS"
+          }
+        },
+        "timeout_control": {
+          "status": "PASS",
+          "evidence_ref": "08-verification-report.md#E164-S1-CONTROLS"
+        },
+        "cleanup_control": {
+          "status": "PASS",
+          "evidence_ref": "08-verification-report.md#E164-S1-CONTROLS"
+        },
+        "content_free_verdict": {
+          "status": "NOT RUN",
+          "evidence_ref": "NOT RUN"
+        }
+      },
+      "safety_policy": "只用普通状态/返回值/正常取消；禁止强杀、权限破坏、攻击fixture或可执行替身，无法安全验证的控制保持NOT RUN"
+    }
+  ]
+}

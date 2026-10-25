@@ -1,5 +1,7 @@
 # FEAT-164 — Kimi K3.1 Pro 模型替换与历史兼容
 
+> 最新按[37 当前G2V后继验收](37-current-g2v-successor.md)：Owner已批准本轮1+2共3次真实HTTP（累计5次/30元）；工具和新canonical本机正控/重开已通过，真实新增0。等待Owner交回候选窗口，meter已正常停止；额度保留，不重批预算、不重置旧账本。
+
 > 2026-10-26最新续办以[36 当前离线资格与下一步](36-current-offline-qualification-and-next-gate.md)为准：当前S1/S2/S3及S4专家/媒体/辅助/旧线程安全检查通过，产品代码未改；候选无旧K3会话/计划可自然升级。完整G2V/TCONF/final与日常cutover仍缺，新真实HTTP许可0；后续避免反复运行已通过子集。
 
 > 最新续办与整项目标以[35 当前组合与完成差距](35-s4-current-media-and-completion-audit.md)、feature.yaml及S4I证据为准。旧阶段记录保留其原来源和时间；当前仍未切换日常入口，不新增真实模型HTTP。
