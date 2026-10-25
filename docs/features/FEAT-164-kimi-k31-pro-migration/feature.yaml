@@ -205,7 +205,7 @@ temporal_contract_matrix:
       slice_id: S1
       status: PASS
       exit_code: 0
-      verified_at: 2026-10-26T00:20:08.570900+08:00
+      verified_at: 2026-10-26T02:34:06.618661+08:00
       commits:
         - repository: yijie-codex
           full_sha: a28130abb13d0f99a00107cd513a653bae878b77
@@ -214,24 +214,24 @@ temporal_contract_matrix:
         - repository: yijie-agent-host
           full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
         - repository: yijie-desktop
-          full_sha: bad75a2d3c4a97be903b57e8bb3a3a72915edd18
+          full_sha: ea9b1e499d86bb92eea360a62707027485790e22
         - repository: yijie-connectors
           full_sha: 7ea3df41818fd69f4736722d01f0686d584d1a71
-      evidence_ref: 08-verification-report.md#E164-S4J-OFFLINE
+      evidence_ref: 08-verification-report.md#E164-S4L-S1
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
       implementation_status: implemented
-      command_note: 当前10子例+父项通过、0skip；普通配置与准入，无真实模型请求。
+      command_note: 当前来源实际执行，精确计数见s4l-evidence-binding.json；不等同该slice完整App/G3。
     - id: TCONF-164-02
       required: true
       repository: yijie-desktop
-      command: python3 scripts/feat164-s2-conformance.py --host-source ../yijie-agent-host --runtime-binary <pinned-r4-codex> --runtime-manifest <pinned-r4-manifest> --output <new-output>
+      command: python3 scripts/feat164-s2-conformance.py --host-source <current-qualified-host> --runtime-binary <pinned-r4> --runtime-manifest <pinned-r4-manifest> --output evidence/s4l-s2
       slice_id: S2
       status: PASS
       exit_code: 0
-      verified_at: 2026-10-26T00:16:14.996401+08:00
+      verified_at: 2026-10-26T02:34:06.618661+08:00
       commits:
         - repository: yijie-codex
           full_sha: a28130abb13d0f99a00107cd513a653bae878b77
@@ -240,24 +240,24 @@ temporal_contract_matrix:
         - repository: yijie-agent-host
           full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
         - repository: yijie-desktop
-          full_sha: bad75a2d3c4a97be903b57e8bb3a3a72915edd18
+          full_sha: ea9b1e499d86bb92eea360a62707027485790e22
         - repository: yijie-connectors
           full_sha: 7ea3df41818fd69f4736722d01f0686d584d1a71
-      evidence_ref: 08-verification-report.md#E164-S4J-OFFLINE
+      evidence_ref: 08-verification-report.md#E164-S4L-S2
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
       implementation_status: implemented
-      command_note: 当前五组25/2/12/17/1全部通过、0skip；包含真实Native-Host-Runtime边界。修前env失败保留，不等于App或G3。
+      command_note: 当前来源实际执行，精确计数见s4l-evidence-binding.json；不等同该slice完整App/G3。
     - id: TCONF-164-03
       required: true
       repository: yijie-desktop
-      command: node scripts/feat164-s3-conformance.mjs <new-output>
+      command: node scripts/feat164-s3-conformance.mjs <evidence/s4l-s3>
       slice_id: S3
       status: PASS
       exit_code: 0
-      verified_at: 2026-10-26T00:16:20.793092+08:00
+      verified_at: 2026-10-26T02:34:06.618661+08:00
       commits:
         - repository: yijie-codex
           full_sha: a28130abb13d0f99a00107cd513a653bae878b77
@@ -266,21 +266,20 @@ temporal_contract_matrix:
         - repository: yijie-agent-host
           full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
         - repository: yijie-desktop
-          full_sha: bad75a2d3c4a97be903b57e8bb3a3a72915edd18
+          full_sha: ea9b1e499d86bb92eea360a62707027485790e22
         - repository: yijie-connectors
           full_sha: 7ea3df41818fd69f4736722d01f0686d584d1a71
-      evidence_ref: 08-verification-report.md#E164-S4J-OFFLINE
+      evidence_ref: 08-verification-report.md#E164-S4L-S3
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
       implementation_status: implemented
-      command_note: 当前5个模块限定exact入口通过；SQL41/计划/授权/旧历史保护；不等于App或G3。
+      command_note: 当前来源实际执行，精确计数见s4l-evidence-binding.json；不等同该slice完整App/G3。
     - id: TCONF-164-04
       required: true
       repository: yijie-desktop
-      command: python3 scripts/feat164-s4-conformance.py --output <new-output> --runtime-binary <pinned-r4-codex>
-        --runtime-manifest <pinned-r4-manifest>
+      command: python3 scripts/feat164-s4-conformance.py --output <new-output> --runtime-binary <pinned-r4-codex> --runtime-manifest <pinned-r4-manifest>
       slice_id: S4
       status: NOT RUN
       exit_code: null
@@ -293,16 +292,16 @@ temporal_contract_matrix:
         - repository: yijie-agent-host
           full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
         - repository: yijie-desktop
-          full_sha: 399bb19d4c2066675f3f73b61ee6b8f59ee489c6
+          full_sha: ea9b1e499d86bb92eea360a62707027485790e22
         - repository: yijie-connectors
           full_sha: 7ea3df41818fd69f4736722d01f0686d584d1a71
-      evidence_ref: 08-verification-report.md#E164-S4I-MEDIA
+      evidence_ref: 08-verification-report.md#E164-S4L-S4
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
       implementation_status: implemented_partial
-      command_note: S4I当前来源安全子集24项分两次执行通过，原入口因调用PATH遗漏pnpm停止；专家模型往返与media App另有证据，仍未完成完整TCONF-164-04。
+      command_note: 当前S4/S4b/S4e的24+9+7项和四source组合已执行通过，完整TCONF04仍缺core/teardown与自然旧K3 App，不放宽判定。
 vertical_feasibility:
   required: true
   applicability_reason: 跨仓模型/Runtime身份和重要持久数据迁移，必须真实纵向资格
@@ -470,13 +469,15 @@ slices:
       - G2V
     commits:
       - repository: yijie-codex
-        full_sha: 074417e5e2f5f55704ea5e1777e7a22d514076b4
+        full_sha: a28130abb13d0f99a00107cd513a653bae878b77
       - repository: yijie-contracts
-        full_sha: f2819c66a2368aaff37216a46c48d5cd81df1747
+        full_sha: 1b357cce0575c492f3715b316ee5f254051acf80
       - repository: yijie-agent-host
-        full_sha: e8ae83f9c53fb41cc80139e0d0f70d7c8268b4ab
+        full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
       - repository: yijie-desktop
-        full_sha: 174fbaf661e4fdf48828ff8bbabbe5d55c157bed
+        full_sha: ea9b1e499d86bb92eea360a62707027485790e22
+      - repository: yijie-connectors
+        full_sha: 7ea3df41818fd69f4736722d01f0686d584d1a71
     exception:
       owner: N/A
       approved_at: N/A
@@ -484,14 +485,13 @@ slices:
     local_evidence:
       required: true
       status: PASS
-      command: Current pinned-source focused Go race, Vue model tests, Rust pause test, Host lint, Desktop lint and
-        product clippy; see s1-final-tests.json
-      environment: macOS aarch64; clean qualification worktrees; ordinary input only
+      command: go test -race -json ./internal/codex -run '^TestFEAT164ActivationAndRetiredAdmission$' -count=1
+      environment: macOS aarch64; immutable ea9b1e4/090c2db/1b357cc/a28130a/7ea3df4 combination; canonical media candidate; dummy-key loopback only; no paid requests
       exit_code: 0
-      verified_at: 2026-10-25T03:51:46.469004+00:00
+      verified_at: 2026-10-26T02:34:06.618661+08:00
       refs:
-        - 08-verification-report.md#E164-S1-LOCAL
-      reason: 本slice需独立正常验证，不继承其它slice或旧Feature通过
+        - 08-verification-report.md#E164-S4L-S1
+      reason: 当前来源11项且0skip，见s4l-s1-driver.log与绑定摘要；原证据归档保留。
       exception:
         owner: N/A
         approved_at: N/A
@@ -499,47 +499,65 @@ slices:
     boundary_evidence:
       required: true
       status: PASS
-      command: TestFEAT164NativeCandidateLifecycle / TestFEAT164NativePredecessorAndPausedKimi; current closed
-        catalog/selection/API controls
-      environment: Real fixed Runtime r2 + current Host; ordinary loopback Responses only, no external provider
+      command: python3 scripts/feat164-s2-conformance.py (native-host-boundary group) + canonical --reopen/CUA current model and paused mode
+      environment: macOS aarch64; immutable ea9b1e4/090c2db/1b357cc/a28130a/7ea3df4 combination; canonical media candidate; dummy-key loopback only; no paid requests
       exit_code: 0
-      verified_at: 2026-10-25T03:51:46.469004+00:00
+      verified_at: 2026-10-26T02:34:06.618661+08:00
       refs:
-        - 08-verification-report.md#E164-S1-BOUNDARY
-      reason: 本slice需独立正常验证，不继承其它slice或旧Feature通过
+        - 08-verification-report.md#E164-S4L-S1
+        - 08-verification-report.md#E164-S4L-APP
+      reason: 当前真实Native/Host/r4及canonical App验证活动身份、暂停与显式MiniMax，模型身份从实际本机请求观察。
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
     vertical_evidence:
       required: true
-      status: NOT RUN
-      command: NOT RUN
-      environment: NOT RUN
-      exit_code: null
-      verified_at: NOT RUN
+      status: PASS
+      command: canonical --reopen active/paused/reopen with dummy credentials and unchanged loopback fixture; CUA task, stop, history and Cmd-Q
+      environment: macOS aarch64; immutable ea9b1e4/090c2db/1b357cc/a28130a/7ea3df4 combination; canonical media candidate; dummy-key loopback only; no paid requests
+      exit_code: 0
+      verified_at: 2026-10-26T02:34:06.618661+08:00
       refs:
-        - 08-verification-report.md#E164-S4C-APP
-      reason: 原S1的锁屏UI缺口已在后继S4c来源补Kimi正控、暂停后MiniMax、历史与正常清理；不冒充原174fbaf重新验收。完整平台、前置来源资格及G3/freshness仍未闭合。
+        - 08-verification-report.md#E164-S4L-S1
+        - 08-verification-report.md#E164-S4L-APP
+        - 08-verification-report.md#E164-S4K-REAL
+      reason: 当前App身份/暂停/显式MiniMax/保存重开完成；同源最小真实文本G2V继续有效，新增真实HTTP0。S1正常资源退出不替代整项Runtime checkpoint结论。
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
     freshness:
-      verified_at: NOT RUN
-      commits: []
-      contract_refs: []
-      fixture_refs: []
+      verified_at: 2026-10-26T02:34:06.618661+08:00
+      commits:
+        - repository: yijie-codex
+          full_sha: a28130abb13d0f99a00107cd513a653bae878b77
+        - repository: yijie-contracts
+          full_sha: 1b357cce0575c492f3715b316ee5f254051acf80
+        - repository: yijie-agent-host
+          full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
+        - repository: yijie-desktop
+          full_sha: ea9b1e499d86bb92eea360a62707027485790e22
+        - repository: yijie-connectors
+          full_sha: 7ea3df41818fd69f4736722d01f0686d584d1a71
+      contract_refs:
+        - contract:chat-models-v2@0.2.0@1b357cce0575c492f3715b316ee5f254051acf80#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
+        - contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r4@1b357cce0575c492f3715b316ee5f254051acf80#bec02925813e13a92342e6dcab8eb0f04b4732983e00c2f9e6e314827c8d3522
+        - contract:scheduled-plan-v2@0.2.0@2dd214d6a702064edae78510c035442854bf9789#75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
+        - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
+        - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
+        - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+      fixture_refs:
+        - fixture:feat164-request-shape-loopback#d345d62dfa9ba7021138c3330a6c619222cf108cf423b5b051fc9699cda90372
       harness:
-        id: H-F164-S1-LOCAL
-        commit: 174fbaf661e4fdf48828ff8bbabbe5d55c157bed
-        digest: d4361025ed5b7da56dc8c587d5cf6e76860f4b749dba349b3fe5722d19929cce
-      platform: NOT RUN
+        id: H-F164-LOCAL
+        commit: ea9b1e499d86bb92eea360a62707027485790e22
+        digest: 7c4dbb20c4676f82af4855664c13a115adbf1d7369ab045aaf4af75a8759342b
+      platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
       production_bootstrap: true
-      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
-        implementation reference changes
-    status: blocked
-    status_reason: S1原源local/boundary通过；后继a0a4743补锁屏相关macOS UI及清理。完整平台/G3/freshness仍缺；Owner授权先推进后继切片的顺序例外继续保留，不等于最终PASS。
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation reference changes
+    status: pass
+    status_reason: 当前来源local/boundary/canonical App与freshness已收口，改绑既有qualified H-F164-LOCAL；旧S1锁屏harness按历史保留，不冒充原构建重验。整项final另判。 当前验收使用media组合，Connectors worker是实际canonical启动依赖，完整来源一并绑定。
   - id: S2
     intent: 兼容存储、模型选择恢复与未发送取消
     required: true
@@ -547,45 +565,37 @@ slices:
       - S1
     commits:
       - repository: yijie-agent-host
-        full_sha: 57c29ea03e3de39161a7c28080f9388f00cd1735
+        full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
       - repository: yijie-desktop
-        full_sha: ddc840f7ed642216bca4b42ab6327d388aa73084
+        full_sha: ea9b1e499d86bb92eea360a62707027485790e22
     exception:
       owner: 段成威
       approved_at: 2026-10-25
       reason: Owner当前消息允许锁屏相关步骤延期并继续离线实施；仅变更推进顺序，不豁免S1/S2实际验收或G3。见22-ui-deferral-and-s2-foundation.md。
     local_evidence:
       required: true
-      status: NOT RUN
-      command: NOT RUN
-      environment: NOT RUN
-      exit_code: null
-      verified_at: NOT RUN
+      status: PASS
+      command: python3 scripts/feat164-s2-conformance.py --host-source <current-qualified-host> --runtime-binary <pinned-r4> --runtime-manifest <pinned-r4-manifest> --output evidence/s4l-s2
+      environment: macOS aarch64; immutable ea9b1e4/090c2db/1b357cc/a28130a/7ea3df4 combination; canonical media candidate; dummy-key loopback only; no paid requests
+      exit_code: 0
+      verified_at: 2026-10-26T02:34:06.618661+08:00
       refs:
-        - 08-verification-report.md#E164-S2-FOUNDATION
-        - 08-verification-report.md#E164-S2-NATIVE
-        - 08-verification-report.md#E164-S2-DELIVERY
-        - 08-verification-report.md#E164-S2-TCONF
-      reason: S2工程子集、TCONF-164-02及真实Native/Host/Runtime本机边界通过；canonical
-        App/旧隔离历史/平台及完整freshness尚缺，保留24扩大回归的原基线失败，不转换为全slice PASS。
+        - 08-verification-report.md#E164-S4L-S2
+      reason: 实际五组25/2/12/17/1，共57项、0skip；完整命令见s4l-driver-results.json。
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
     boundary_evidence:
       required: true
-      status: NOT RUN
-      command: NOT RUN
-      environment: NOT RUN
-      exit_code: null
-      verified_at: NOT RUN
+      status: PASS
+      command: current s4l-s2 native-host-boundary + temporal storage/recovery/delivery groups
+      environment: macOS aarch64; immutable ea9b1e4/090c2db/1b357cc/a28130a/7ea3df4 combination; canonical media candidate; dummy-key loopback only; no paid requests
+      exit_code: 0
+      verified_at: 2026-10-26T02:34:06.618661+08:00
       refs:
-        - 08-verification-report.md#E164-S2-FOUNDATION
-        - 08-verification-report.md#E164-S2-NATIVE
-        - 08-verification-report.md#E164-S2-DELIVERY
-        - 08-verification-report.md#E164-S2-TCONF
-      reason: S2工程子集、TCONF-164-02及真实Native/Host/Runtime本机边界通过；canonical
-        App/旧隔离历史/平台及完整freshness尚缺，保留24扩大回归的原基线失败，不转换为全slice PASS。
+        - 08-verification-report.md#E164-S4L-S2
+      reason: 真实Native/Host/r4与正常临时存储边界通过；不把该范围描述为旧K3自然App升级已完成。
       exception:
         owner: N/A
         approved_at: N/A
@@ -593,31 +603,49 @@ slices:
     vertical_evidence:
       required: true
       status: NOT RUN
-      command: NOT RUN
-      environment: NOT RUN
+      command: CUA read existing unknown history without recovery/resend; complete natural old-K3 App flow unavailable
+      environment: macOS aarch64; immutable ea9b1e4/090c2db/1b357cc/a28130a/7ea3df4 combination; canonical media candidate; dummy-key loopback only; no paid requests
       exit_code: null
-      verified_at: NOT RUN
-      refs: []
-      reason: 本slice需独立正常验证，不继承其它slice或旧Feature通过
+      verified_at: 2026-10-26T02:34:06.618661+08:00
+      refs:
+        - 08-verification-report.md#E164-S4L-S2
+        - 08-verification-report.md#E164-S4L-APP
+      reason: unknown旧历史与发送保护只读核验，原operation保持；候选没有旧K3自然会话，完整旧K3 App迁移/恢复/never-sent取消仍缺，禁止改库制造。
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
     freshness:
-      verified_at: NOT RUN
-      commits: []
-      contract_refs: []
-      fixture_refs: []
+      verified_at: 2026-10-26T02:34:06.618661+08:00
+      commits:
+        - repository: yijie-codex
+          full_sha: a28130abb13d0f99a00107cd513a653bae878b77
+        - repository: yijie-contracts
+          full_sha: 1b357cce0575c492f3715b316ee5f254051acf80
+        - repository: yijie-agent-host
+          full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
+        - repository: yijie-desktop
+          full_sha: ea9b1e499d86bb92eea360a62707027485790e22
+        - repository: yijie-connectors
+          full_sha: 7ea3df41818fd69f4736722d01f0686d584d1a71
+      contract_refs:
+        - contract:chat-models-v2@0.2.0@1b357cce0575c492f3715b316ee5f254051acf80#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
+        - contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r4@1b357cce0575c492f3715b316ee5f254051acf80#bec02925813e13a92342e6dcab8eb0f04b4732983e00c2f9e6e314827c8d3522
+        - contract:scheduled-plan-v2@0.2.0@2dd214d6a702064edae78510c035442854bf9789#75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
+        - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
+        - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
+        - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+      fixture_refs:
+        - fixture:feat164-request-shape-loopback#d345d62dfa9ba7021138c3330a6c619222cf108cf423b5b051fc9699cda90372
       harness:
         id: H-F164-LOCAL
-        commit: NOT RUN
-        digest: NOT RUN
-      platform: NOT RUN
+        commit: ea9b1e499d86bb92eea360a62707027485790e22
+        digest: 7c4dbb20c4676f82af4855664c13a115adbf1d7369ab045aaf4af75a8759342b
+      platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
       production_bootstrap: true
-      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
-        implementation reference changes
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation reference changes
     status: pending
-    status_reason: SQL39/40、派发证明/未发送取消及TCONF-164-02已有按原来源的工程证据；本轮补旧隔离K3.1历史与正常重开。旧K3模型迁移、显式恢复/取消的完整App交互、跨平台/freshness仍未完成，整个slice未通过。
+    status_reason: 当前local/boundary与所有来源已绑定；仅剩完整自然旧K3 App纵向缺项，不借本机普通正控判全slice PASS。
   - id: S3
     intent: worker接管前退役保护及计划领域授权迁移
     required: true
@@ -625,9 +653,9 @@ slices:
       - S2
     commits:
       - repository: yijie-contracts
-        full_sha: 2dd214d6a702064edae78510c035442854bf9789
+        full_sha: 1b357cce0575c492f3715b316ee5f254051acf80
       - repository: yijie-desktop
-        full_sha: 4d04597cbf40e1aea2c67607c9d441f888223d96
+        full_sha: ea9b1e499d86bb92eea360a62707027485790e22
     exception:
       owner: 段成威
       approved_at: 2026-10-25
@@ -635,27 +663,28 @@ slices:
     local_evidence:
       required: true
       status: PASS
-      command: node scripts/feat164-s3-conformance.mjs /tmp/feat164-s3-native-final
-      environment: macOS aarch64; clean Desktop 4d04597/Contracts2dd214d; five exact offline Native tests; local
-        SQLCipher only
+      command: node scripts/feat164-s3-conformance.mjs <evidence/s4l-s3>
+      environment: macOS aarch64; immutable ea9b1e4/090c2db/1b357cc/a28130a/7ea3df4 combination; canonical media candidate; dummy-key loopback only; no paid requests
       exit_code: 0
-      verified_at: 2026-10-25T07:43:31.405Z
+      verified_at: 2026-10-26T02:34:06.618661+08:00
       refs:
-        - 08-verification-report.md#E164-S3-LOCAL
-      reason: 五项精确非零/零ignored；另有70前端、3默认路径、lint/Clippy/前端build与来源检查。既有扩大回归失败另记，不声称全量通过。
+        - 08-verification-report.md#E164-S4L-S3
+      reason: 当前5个exact Native用例均通过，0skip。
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
     boundary_evidence:
       required: true
-      status: NOT RUN
-      command: NOT RUN
-      environment: NOT RUN
-      exit_code: null
-      verified_at: NOT RUN
-      refs: []
-      reason: 已完成versioned源/validator和Native worker启动边界；canonical App/WebView/计划实际执行及平台仍未验收，不能借S2普通聊天loopback证明计划全链路。
+      status: PASS
+      command: current S3 exact Native worker/storage/authorization tests; CUA plan view and editor cancel; SQLCipher read-only comparison
+      environment: macOS aarch64; immutable ea9b1e4/090c2db/1b357cc/a28130a/7ea3df4 combination; canonical media candidate; dummy-key loopback only; no paid requests
+      exit_code: 0
+      verified_at: 2026-10-26T02:34:06.618661+08:00
+      refs:
+        - 08-verification-report.md#E164-S4L-S3
+        - 08-verification-report.md#E164-S4L-DATA
+      reason: 退役/claim-send授权/重放/worker顺序边界通过；既有计划、grant/run、模型及取消编辑后记录不变。不冒称旧K3自然计划重新授权已实测。
       exception:
         owner: N/A
         approved_at: N/A
@@ -663,32 +692,49 @@ slices:
     vertical_evidence:
       required: true
       status: NOT RUN
-      command: NOT RUN
-      environment: NOT RUN
+      command: CUA current paused-plan view/edit-cancel only; natural old-K3 plan migration/reauthorization not executed
+      environment: macOS aarch64; immutable ea9b1e4/090c2db/1b357cc/a28130a/7ea3df4 combination; canonical media candidate; dummy-key loopback only; no paid requests
       exit_code: null
-      verified_at: NOT RUN
-      refs: []
-      reason: 已完成versioned源/validator和Native worker启动边界；canonical App/WebView/计划实际执行及平台仍未验收，不能借S2普通聊天loopback证明计划全链路。
+      verified_at: 2026-10-26T02:34:06.618661+08:00
+      refs:
+        - 08-verification-report.md#E164-S4L-S3
+        - 08-verification-report.md#E164-S4L-APP
+      reason: 当前计划只读/取消编辑通过，但没有自然旧K3计划可完成迁移和重新授权纵向；没有新增运行授权。
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
     freshness:
-      verified_at: NOT RUN
-      commits: []
-      contract_refs: []
-      fixture_refs: []
+      verified_at: 2026-10-26T02:34:06.618661+08:00
+      commits:
+        - repository: yijie-codex
+          full_sha: a28130abb13d0f99a00107cd513a653bae878b77
+        - repository: yijie-contracts
+          full_sha: 1b357cce0575c492f3715b316ee5f254051acf80
+        - repository: yijie-agent-host
+          full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
+        - repository: yijie-desktop
+          full_sha: ea9b1e499d86bb92eea360a62707027485790e22
+        - repository: yijie-connectors
+          full_sha: 7ea3df41818fd69f4736722d01f0686d584d1a71
+      contract_refs:
+        - contract:chat-models-v2@0.2.0@1b357cce0575c492f3715b316ee5f254051acf80#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
+        - contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r4@1b357cce0575c492f3715b316ee5f254051acf80#bec02925813e13a92342e6dcab8eb0f04b4732983e00c2f9e6e314827c8d3522
+        - contract:scheduled-plan-v2@0.2.0@2dd214d6a702064edae78510c035442854bf9789#75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
+        - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
+        - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
+        - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+      fixture_refs:
+        - fixture:feat164-request-shape-loopback#d345d62dfa9ba7021138c3330a6c619222cf108cf423b5b051fc9699cda90372
       harness:
         id: H-F164-LOCAL
-        commit: NOT RUN
-        digest: NOT RUN
-      platform: NOT RUN
+        commit: ea9b1e499d86bb92eea360a62707027485790e22
+        digest: 7c4dbb20c4676f82af4855664c13a115adbf1d7369ab045aaf4af75a8759342b
+      platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
       production_bootstrap: true
-      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
-        implementation reference changes
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation reference changes
     status: pending
-    status_reason: S3源实现与TCONF-164-03五项、SQL41/真实Native
-      worker、前端/来源检查已完成并仅本地提交；App/WebView/完整边界与纵向、跨平台/freshness仍NOT RUN，完整G3不放行。
+    status_reason: 当前local/boundary和来源已收口；自然旧K3计划App纵向及前置S2仍缺。
   - id: S4
     intent: 全启用调用面、同源UI与正常退出兼容回退
     required: true
@@ -702,7 +748,7 @@ slices:
       - repository: yijie-agent-host
         full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
       - repository: yijie-desktop
-        full_sha: bad75a2d3c4a97be903b57e8bb3a3a72915edd18
+        full_sha: ea9b1e499d86bb92eea360a62707027485790e22
       - repository: yijie-connectors
         full_sha: 7ea3df41818fd69f4736722d01f0686d584d1a71
     exception:
@@ -712,30 +758,13 @@ slices:
     local_evidence:
       required: true
       status: PASS
-      command: python3 scripts/feat164-s4b-conformance.py --output <new-output> --runtime-binary <pinned-r4-codex>
-        --runtime-manifest <pinned-r4-manifest> --worker-manifest <canonical-worker-manifest> --expert-bundle
-        <immutable-expert-bundle> --artifact-adapter <canonical-artifact-adapter>
-      environment: macOS aarch64; clean Desktop 56f5284 / Hostcac2d4d / Connectors1f15726 / Skills595c927 /
-        Contractseddc64f; real pinned r2 Runtime; loopback only
+      command: python3 scripts/feat164-s4-conformance.py; python3 scripts/feat164-s4b-conformance.py; Host python3 scripts/feat164-s4e-conformance.py (exact paths in s4l-driver-results.json)
+      environment: macOS aarch64; immutable ea9b1e4/090c2db/1b357cc/a28130a/7ea3df4 combination; canonical media candidate; dummy-key loopback only; no paid requests
       exit_code: 0
-      verified_at: 2026-10-25T18:36:58.996897+08:00
+      verified_at: 2026-10-26T02:34:06.618661+08:00
       refs:
-        - 08-verification-report.md#E164-S4B-OFFLINE
-        - 08-verification-report.md#E164-S4C-APP
-        - 08-verification-report.md#E164-S4D-OFFLINE
-        - 08-verification-report.md#E164-S4D-RCA
-        - 08-verification-report.md#E164-S4E-NATIVE
-        - 08-verification-report.md#E164-S4F-APP
-        - 08-verification-report.md#E164-S4G-APP
-        - 08-verification-report.md#E164-S4H-PLAN
-        - 08-verification-report.md#E164-S4I-MEDIA
-        - 08-verification-report.md#E164-S4J-OFFLINE
-      reason: 四组合source及1/3/4/1行为检查PASS、0skip；13次loopback覆盖专家/媒体/子代理/Guardian/显式压缩。当前源S4 7/4/4/4/5、S2
-        25/2/12/10/1及S3五项复验通过；37专家版本安装/解析/重开、Native完整资源读取通过。不代表完整TCONF-164-04、App/平台或G3。
-        上述批次保持原56f5284来源；当前a0a4743另经canonical构建、暂停历史回归及App/UI子集复验，见S4C锚点，不把旧全套结果改写为新源运行。
-        S4d独立子集另在测试提交df06a3c通过；本字段PASS仅保留原S4b批次，不能覆盖S4d已知终态FAIL。
-        原S4d终态缺陷已由S4e新r4来源修复并独立验证，详见31；旧PASS字段仍仅代表原S4b批次。
-        S4f当前App/计划子集通过，3次App模型协议loopback、真实0；本字段旧批次状态不替代完整门禁。
+        - 08-verification-report.md#E164-S4L-S4
+      reason: 当前24+9+7项、4个source组合，42次本机HTTP；另renderer18与判定器10通过。三个driver原subset语义不变。
       exception:
         owner: N/A
         approved_at: N/A
@@ -743,22 +772,14 @@ slices:
     boundary_evidence:
       required: true
       status: NOT RUN
-      command: NOT RUN
-      environment: NOT RUN
+      command: three current offline conformance drivers + canonical App observations; full TCONF-164-04 aggregation remains incomplete
+      environment: macOS aarch64; immutable ea9b1e4/090c2db/1b357cc/a28130a/7ea3df4 combination; canonical media candidate; dummy-key loopback only; no paid requests
       exit_code: null
-      verified_at: NOT RUN
+      verified_at: 2026-10-26T02:34:06.618661+08:00
       refs:
-        - 08-verification-report.md#E164-S4C-APP
-        - 08-verification-report.md#E164-S4D-RCA
-        - 08-verification-report.md#E164-S4D-OFFLINE
-        - 08-verification-report.md#E164-S4E-NATIVE
-        - 08-verification-report.md#E164-S4F-APP
-        - 08-verification-report.md#E164-S4G-APP
-        - 08-verification-report.md#E164-S4H-PLAN
-        - 08-verification-report.md#E164-S4I-MEDIA
-        - 08-verification-report.md#E164-S4J-OFFLINE
-      reason: 历次r4原生终态/冷读/自动压缩/辅助调用按原来源保留；S4I当前配对专家切模型、media/中断/图片及重开清理已实机通过，旧unknown保持阻断。
-        计划App证据见S4F/H。完整旧K3/恢复取消适用边界尚缺；当前文本G2V已通过，整项freshness尚缺，不能把这些分批子集标为完整边界/纵向PASS；非Mac ARM目标N/A。
+        - 08-verification-report.md#E164-S4L-S4
+        - 08-verification-report.md#E164-S4L-APP
+      reason: 当前跨仓安全调用面已逐项验证；完整TCONF04仍缺自然旧K3 App、完整final与Runtime checkpoint结论，不把分批子集变为完整边界PASS。
       exception:
         owner: N/A
         approved_at: N/A
@@ -766,104 +787,166 @@ slices:
     vertical_evidence:
       required: true
       status: NOT RUN
-      command: NOT RUN
-      environment: NOT RUN
+      command: current canonical normal/paused/read-history/stop workflow; three independent final verdicts
+      environment: macOS aarch64; immutable ea9b1e4/090c2db/1b357cc/a28130a/7ea3df4 combination; canonical media candidate; dummy-key loopback only; no paid requests
       exit_code: null
-      verified_at: NOT RUN
+      verified_at: 2026-10-26T02:34:06.618661+08:00
       refs:
-        - 08-verification-report.md#E164-S4C-APP
-        - 08-verification-report.md#E164-S4D-RCA
-        - 08-verification-report.md#E164-S4D-OFFLINE
-        - 08-verification-report.md#E164-S4E-NATIVE
-        - 08-verification-report.md#E164-S4F-APP
-        - 08-verification-report.md#E164-S4G-APP
-        - 08-verification-report.md#E164-S4H-PLAN
-        - 08-verification-report.md#E164-S4I-MEDIA
-        - 08-verification-report.md#E164-S4J-OFFLINE
-      reason: 历次r4原生终态/冷读/自动压缩/辅助调用按原来源保留；S4I当前配对专家切模型、media/中断/图片及重开清理已实机通过，旧unknown保持阻断。
-        计划App证据见S4F/H。完整旧K3/恢复取消适用边界尚缺；当前文本G2V已通过，整项freshness尚缺，不能把这些分批子集标为完整边界/纵向PASS；非Mac ARM目标N/A。
+        - 08-verification-report.md#E164-S4L-S4
+        - 08-verification-report.md#E164-S4L-FINAL
+      reason: 当前可达App子集通过；core缺旧K3自然升级和未执行Provider范围，teardown缺Runtime checkpoint责任闭环。视觉单项PASS不能覆盖这些缺口。
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
     freshness:
-      verified_at: NOT RUN
-      commits: []
-      contract_refs: []
-      fixture_refs: []
+      verified_at: 2026-10-26T02:34:06.618661+08:00
+      commits:
+        - repository: yijie-codex
+          full_sha: a28130abb13d0f99a00107cd513a653bae878b77
+        - repository: yijie-contracts
+          full_sha: 1b357cce0575c492f3715b316ee5f254051acf80
+        - repository: yijie-agent-host
+          full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
+        - repository: yijie-desktop
+          full_sha: ea9b1e499d86bb92eea360a62707027485790e22
+        - repository: yijie-connectors
+          full_sha: 7ea3df41818fd69f4736722d01f0686d584d1a71
+      contract_refs:
+        - contract:chat-models-v2@0.2.0@1b357cce0575c492f3715b316ee5f254051acf80#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
+        - contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r4@1b357cce0575c492f3715b316ee5f254051acf80#bec02925813e13a92342e6dcab8eb0f04b4732983e00c2f9e6e314827c8d3522
+        - contract:scheduled-plan-v2@0.2.0@2dd214d6a702064edae78510c035442854bf9789#75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
+        - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
+        - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
+        - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+      fixture_refs:
+        - fixture:feat164-request-shape-loopback#d345d62dfa9ba7021138c3330a6c619222cf108cf423b5b051fc9699cda90372
       harness:
         id: H-F164-LOCAL
-        commit: NOT RUN
-        digest: NOT RUN
-      platform: NOT RUN
+        commit: ea9b1e499d86bb92eea360a62707027485790e22
+        digest: 7c4dbb20c4676f82af4855664c13a115adbf1d7369ab045aaf4af75a8759342b
+      platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
       production_bootstrap: true
-      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
-        implementation reference changes
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation reference changes
     status: pending
-    status_reason: S4J当前迁移/取消57项、计划5项、专家媒体四组合、辅助及旧loaded/终态/自动压缩通过，产品代码不变。安全离线覆盖已收敛；当前候选无旧K3会话/计划可供自然App升级。当前文本G2V已通过；完整TCONF、freshness/final及日常cutover仍未完成，见38；不要重复同批离线测试代替这些缺口。
+    status_reason: 当前工程及可达App证据已绑定；完整TCONF04、S2/S3纵向、core与teardown checkpoint仍未通过；真实调用0，日常cutover未执行。
 final_e2e:
   core_vertical:
     required: true
-    reason: 新模型全有效执行链、历史/计划和准入
+    reason: 当前可达App和同源真实文本子集通过，完整旧K3自然App/计划及未执行Provider范围仍缺。
     status: NOT RUN
-    command: NOT RUN
-    environment: NOT RUN
+    command: Current canonical --reopen/CUA workflow and read-only artifact audit; independent s4l-final-core_vertical.json
+    environment: macOS aarch64; immutable ea9b1e4/090c2db/1b357cc/a28130a/7ea3df4 combination; canonical media candidate; dummy-key loopback only; no paid requests
     exit_code: null
-    verified_at: NOT RUN
-    commits: []
-    contract_refs: []
-    fixture_refs: []
+    verified_at: 2026-10-26T02:34:06.618661+08:00
+    commits:
+      - repository: yijie-codex
+        full_sha: a28130abb13d0f99a00107cd513a653bae878b77
+      - repository: yijie-contracts
+        full_sha: 1b357cce0575c492f3715b316ee5f254051acf80
+      - repository: yijie-agent-host
+        full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
+      - repository: yijie-desktop
+        full_sha: ea9b1e499d86bb92eea360a62707027485790e22
+      - repository: yijie-connectors
+        full_sha: 7ea3df41818fd69f4736722d01f0686d584d1a71
+    contract_refs:
+      - contract:chat-models-v2@0.2.0@1b357cce0575c492f3715b316ee5f254051acf80#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
+      - contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r4@1b357cce0575c492f3715b316ee5f254051acf80#bec02925813e13a92342e6dcab8eb0f04b4732983e00c2f9e6e314827c8d3522
+      - contract:scheduled-plan-v2@0.2.0@2dd214d6a702064edae78510c035442854bf9789#75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
+      - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
+      - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
+      - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+    fixture_refs:
+      - fixture:feat164-request-shape-loopback#d345d62dfa9ba7021138c3330a6c619222cf108cf423b5b051fc9699cda90372
     harness:
       id: H-F164-LOCAL
-      commit: NOT RUN
-      digest: NOT RUN
-    platform: NOT RUN
+      commit: ea9b1e499d86bb92eea360a62707027485790e22
+      digest: 7c4dbb20c4676f82af4855664c13a115adbf1d7369ab045aaf4af75a8759342b
+    platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
     production_bootstrap: true
-    evidence_refs: []
+    evidence_refs:
+      - 08-verification-report.md#E164-S4L-FINAL
     exception:
       owner: N/A
       approved_at: N/A
       reason: N/A
   accessibility_visual:
     required: true
-    reason: 选择器/状态/焦点/亮暗/最小窗口
-    status: NOT RUN
-    command: NOT RUN
-    environment: NOT RUN
-    exit_code: null
-    verified_at: NOT RUN
-    commits: []
-    contract_refs: []
-    fixture_refs: []
+    reason: 当前可达FEAT164模型/状态、键盘焦点、1180x760亮暗与计划表单手工AX/截图通过；axe未运行，不声明完整WCAG；旧K3不可达弹窗不包含在此视觉结论。
+    status: PASS
+    command: Current canonical --reopen/CUA workflow and read-only artifact audit; independent s4l-final-accessibility_visual.json
+    environment: macOS aarch64; immutable ea9b1e4/090c2db/1b357cc/a28130a/7ea3df4 combination; canonical media candidate; dummy-key loopback only; no paid requests
+    exit_code: 0
+    verified_at: 2026-10-26T02:34:06.618661+08:00
+    commits:
+      - repository: yijie-codex
+        full_sha: a28130abb13d0f99a00107cd513a653bae878b77
+      - repository: yijie-contracts
+        full_sha: 1b357cce0575c492f3715b316ee5f254051acf80
+      - repository: yijie-agent-host
+        full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
+      - repository: yijie-desktop
+        full_sha: ea9b1e499d86bb92eea360a62707027485790e22
+      - repository: yijie-connectors
+        full_sha: 7ea3df41818fd69f4736722d01f0686d584d1a71
+    contract_refs:
+      - contract:chat-models-v2@0.2.0@1b357cce0575c492f3715b316ee5f254051acf80#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
+      - contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r4@1b357cce0575c492f3715b316ee5f254051acf80#bec02925813e13a92342e6dcab8eb0f04b4732983e00c2f9e6e314827c8d3522
+      - contract:scheduled-plan-v2@0.2.0@2dd214d6a702064edae78510c035442854bf9789#75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
+      - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
+      - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
+      - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+    fixture_refs:
+      - fixture:feat164-request-shape-loopback#d345d62dfa9ba7021138c3330a6c619222cf108cf423b5b051fc9699cda90372
     harness:
       id: H-F164-LOCAL
-      commit: NOT RUN
-      digest: NOT RUN
-    platform: NOT RUN
+      commit: ea9b1e499d86bb92eea360a62707027485790e22
+      digest: 7c4dbb20c4676f82af4855664c13a115adbf1d7369ab045aaf4af75a8759342b
+    platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
     production_bootstrap: true
-    evidence_refs: []
+    evidence_refs:
+      - 08-verification-report.md#E164-S4L-FINAL
     exception:
       owner: N/A
       approved_at: N/A
       reason: N/A
   teardown:
     required: true
-    reason: 正常退出/重开无重复派发及兼容回退
+    reason: 正常退出/监听/句柄/SQLCipher与旧记录保护通过；Runtime DB+WAL可读且完整性OK，但仍有未backfill帧，完整checkpoint责任未收口。
     status: NOT RUN
-    command: NOT RUN
-    environment: NOT RUN
+    command: Current canonical --reopen/CUA workflow and read-only artifact audit; independent s4l-final-teardown.json
+    environment: macOS aarch64; immutable ea9b1e4/090c2db/1b357cc/a28130a/7ea3df4 combination; canonical media candidate; dummy-key loopback only; no paid requests
     exit_code: null
-    verified_at: NOT RUN
-    commits: []
-    contract_refs: []
-    fixture_refs: []
+    verified_at: 2026-10-26T02:34:06.618661+08:00
+    commits:
+      - repository: yijie-codex
+        full_sha: a28130abb13d0f99a00107cd513a653bae878b77
+      - repository: yijie-contracts
+        full_sha: 1b357cce0575c492f3715b316ee5f254051acf80
+      - repository: yijie-agent-host
+        full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
+      - repository: yijie-desktop
+        full_sha: ea9b1e499d86bb92eea360a62707027485790e22
+      - repository: yijie-connectors
+        full_sha: 7ea3df41818fd69f4736722d01f0686d584d1a71
+    contract_refs:
+      - contract:chat-models-v2@0.2.0@1b357cce0575c492f3715b316ee5f254051acf80#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
+      - contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r4@1b357cce0575c492f3715b316ee5f254051acf80#bec02925813e13a92342e6dcab8eb0f04b4732983e00c2f9e6e314827c8d3522
+      - contract:scheduled-plan-v2@0.2.0@2dd214d6a702064edae78510c035442854bf9789#75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
+      - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
+      - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
+      - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+    fixture_refs:
+      - fixture:feat164-request-shape-loopback#d345d62dfa9ba7021138c3330a6c619222cf108cf423b5b051fc9699cda90372
     harness:
       id: H-F164-LOCAL
-      commit: NOT RUN
-      digest: NOT RUN
-    platform: NOT RUN
+      commit: ea9b1e499d86bb92eea360a62707027485790e22
+      digest: 7c4dbb20c4676f82af4855664c13a115adbf1d7369ab045aaf4af75a8759342b
+    platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
     production_bootstrap: true
-    evidence_refs: []
+    evidence_refs:
+      - 08-verification-report.md#E164-S4L-FINAL
     exception:
       owner: N/A
       approved_at: N/A
@@ -1187,8 +1270,7 @@ implementation:
     contract_impact: semantic
     evidence_ref: 08-verification-report.md#E164-S4F-APP
     real_model_http_added: 0
-    note: 产品HTTP
-      route与持久reader分别先复现后修复；没有篡改未知/attempted为never-sent。3次App模型协议loopback，不包括进程内测试handler请求。原armed失败台账保留。
+    note: 产品HTTP route与持久reader分别先复现后修复；没有篡改未知/attempted为never-sent。3次App模型协议loopback，不包括进程内测试handler请求。原armed失败台账保留。
   draft_uncertainty_remediation:
     status: PASS_READ_ONLY_APP_SUBSET
     desktop_commit: 181885b1bfe825bb0e713757e95282e36267aa11
@@ -1253,9 +1335,30 @@ implementation:
     app_loopback_http: 8
     conformance_loopback_http: 6
     note: Worker来源、草案默认值、Native/Host专家配置门禁已修复；实际媒体/正常中断/图片及配对专家paused往返、重开和清理通过。旧unknown未结清，整项Gate另判。
+  current_evidence_binding:
+    status: PASS_SCOPED
+    report: 39-evidence-binding-and-final-verdicts.md
+    source_ref: evidence/s4l-evidence-binding.json
+    source_commits:
+      yijie-codex: a28130abb13d0f99a00107cd513a653bae878b77
+      yijie-contracts: 1b357cce0575c492f3715b316ee5f254051acf80
+      yijie-agent-host: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
+      yijie-desktop: ea9b1e499d86bb92eea360a62707027485790e22
+      yijie-connectors: 7ea3df41818fd69f4736722d01f0686d584d1a71
+      yijie-skills: 595c927ae101d3d31c234f60565041eee0864680
+    real_model_http_added: 0
+    tests: 141
+    source_profile_checks: 4
+    app_loopback_http: 4
+    headless_s4_loopback_http: 42
+    final_verdicts:
+      core_vertical: NOT RUN
+      accessibility_visual: PASS
+      teardown: NOT RUN
+    protected_data_ref: evidence/s4l-data-audit.json
 product_verification:
   status: IN_PROGRESS
-  reason: S4K当前真实文本G2V PASS，3/3新增及累计5/5次数耗尽，累计保守14.679001元含原unknown。旧账本/数据保留，App/meter正常退出；完整TCONF/G3/final、旧K3自然App及日常cutover仍缺。下一步零调用最终验收范围收口，见38。
+  reason: S4L当前141项+4source和App子集通过，S1证据/G3收口；S2/S3纵向、完整S4/TCONF04、core与Runtime checkpoint仍缺。视觉单项PASS；两个真实账本和旧预占逐字保持，新增真实0，日常cutover未执行。见39。
 profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
 owner_approvals:
   requirements: approved_by_owner_current_user_message

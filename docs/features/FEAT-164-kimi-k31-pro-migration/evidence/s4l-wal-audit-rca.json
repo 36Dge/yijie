@@ -1,0 +1,15 @@
+{
+  "first_data_audit": "FAIL at overbroad all-WAL-empty assertion",
+  "observed": "Runtime state_5, goals_1 and logs_2 WAL are retained and have frames not backfilled; no open process/database handles",
+  "source_refs": [
+    "yijie-codex/codex-rs/state/src/runtime.rs:330",
+    "yijie-codex/codex-rs/state/src/runtime.rs:362",
+    "yijie-codex/codex-rs/state/src/runtime/logs.rs:295",
+    "yijie-codex/codex-rs/app-server/src/lib.rs:1156"
+  ],
+  "readonly_result": "complete DB+WAL+SHM snapshots integrity_check=ok for all three; source and copy DB/WAL unchanged",
+  "decision": "normal resource release and readability passed; do not declare Runtime checkpoint complete or final teardown PASS before lifecycle policy/close path is resolved",
+  "prohibited_actions_performed": false,
+  "manual_checkpoint_or_wal_delete": false,
+  "real_model_http_added": 0
+}

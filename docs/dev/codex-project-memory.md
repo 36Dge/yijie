@@ -1,18 +1,16 @@
 # 易界项目 Codex 长期协作记忆
 
-## FEAT-164 当前真实文本G2V通过，累计次数已耗尽（2026-10-26）
+## FEAT-164 S4L证据收口，真实次数耗尽，checkpoint仍待核实（2026-10-26）
 
-最新权威[38](../features/FEAT-164-kimi-k31-pro-migration/38-current-real-g2v-and-final-gaps.md)、feature.yaml及s4k-real证据。Owner交回窗口后按37已批准范围完成本轮3/3、累计5/5 HTTP，42/50/8均正确，K3.1/max、HTTP200/completed/usage齐全；两次同源重开0新增模型HTTP，保存和正常清理通过。当前文本G2V判定PASS，完整TCONF/G3、三个final及日常cutover仍未完成。
+最新权威[39](../features/FEAT-164-kimi-k31-pro-migration/39-evidence-binding-and-final-verdicts.md)、feature.yaml及s4l证据。Owner确认38并授权零真实模型收口S1—S4/三个final，锁屏可跳过；此次桌面可用未跳过。保持EA9 Desktop、090c2db Host、1b357cc Contracts、a28130a r4、7ea3df4 Connectors、595c927 Skills，同一canonical bundle，无产品/Runtime/SQL改动，contract-impact=none，整项breaking保持。
 
-来源Desktop ea9b1e499d86bb92eea360a62707027485790e22、Host090c2db、Runtimea28130a r4、Contracts1b357cc、Connectors7ea3df4、Skills595c927。当前轮未改产品/工具源码，contract-impact=none，整体breaking保持。原23+10工具资格和canonical receipt仍匹配；不要重建来源或重复同批离线测试替代未完成项。
+当前来源一次安全复验：S1 11、S2 57、S3 5、S4 24、S4b 9、S4e 7、renderer18、verdict10，共141项＋4source通过，0skip；S4 headless42本机HTTP、App4本机HTTP，真实新增0。旧r2/S1/S2/S3字段已重绑当前真实证据，旧manifest/raw logs保留。S1独立证据收口；S2/S3完整自然旧K3 App迁移/取消/重新授权及S4完整TCONF04仍缺，不因元数据完整而直接判PASS。
 
-schema3账本g2v-real-budget-ledger-r3.json现5行、halted=true、stopped_normally，无在途；本轮保守0.350867元，累计14.679001元含原14.188544元unknown。原schema2 SHA2dbd19be2a8bda267437bcf0330fff1af122778388d6e3df965291ec840b7dcf及两行逐字保留。30元金额剩余不产生次数授权，不再新增真实请求、不自动重试或创建后继补额。控制token和既有Kimi key不输出。
+App本轮Kimi会话01a17447-527f-7123-ab85-942f28a8e7ff是completed/interrupted/completed；暂停开关下Kimi明确不可用，显式MiniMax会话01a1744b-c762-70c2-b1ac-7a24fa81b5a3 completed。旧unknown只读未恢复、旧计划查看/取消未授权。三次正常退出、重开0补发，App/Host/Runtime/worker/adapter/端口/数据库句柄均释放。浅色已恢复，无UI交接待答。
 
-新会话01a17433-9720-7043-b659-5a6c27a20f4c三条completed/submitted，各8条Native事实，42/50/8已保存。App及Runtime子进程正常退出，meter已control/stop退出0、18083关闭，当前无需Owner解锁/退出或窗口交接。日常App/数据库未迁移。
+三个final分别：core NOT RUN（完整范围缺项）；当前可达模型/状态/计划表单、键盘/焦点、1180x760亮暗视觉PASS，axe未跑且不声明完整WCAG；teardown NOT RUN（资源释放通过但Runtime checkpoint未收口）。正常退出后runtime logs_2/state_5/goals_1 WAL非空、nBackfill0；完整DB/WAL/SHM副本只读integrity_check均ok，原文件未改。不要删除WAL、手工checkpoint、强杀或把可读性当checkpoint完成。下一步先零调用收敛StateRuntime/pool正常关闭责任，若需新核心/补丁范围先提出具体最小方案。
 
-只读数据审计首次发现旧paused计划next_at从10月25日23:59推进到26日23:59；当前源码确认既有时钟恢复缓存，授权仍空、revision3、旧grant/run等其余字段保持。保留差异及首次失败程序，限定修正审计断言后完整复验通过，没有改数据库。旧unknown f38666dc-d2d8-4101-b498-eccf3045b6dd保持，不按404恢复、不换ID或重发。
-
-整体目标仍全部活动Kimi替换为K3.1/max/1M并保留历史/计划/授权，最后日常cutover。下一步零调用收口最终验收范围和来源；候选无旧K3会话/计划可自然升级，该App场景未实测；真实图片/搜索/工具未验证。需新增付费或日常数据/入口写入时另行确认，不自动豁免Must AC。仅FEAT164本地提交、不推送，保留496原dirty/旧证据/预算/数据。FEAT163保持独立。
+原真实schema2 SHA2dbd19be2a8bda267437bcf0330fff1af122778388d6e3df965291ec840b7dcf和schema3均逐字保持；累计5/5已耗尽，保守14.679001元含14.188544元unknown预占。38号当前真实文本G2V仍有效，不再新增付费请求或补额。日常cutover未授权未执行。保留497原dirty、1438旧证据、日常库与旧产物；仅FEAT164本地提交、不推送，FEAT163保持独立。
 
 2026-10-08 Sorftime 最新状态：Owner已填密钥，但两条19:19/19:20元数据初始化仍unavailable。审计发现通用HTTP迁移漏带旧链路已验证有效的User-Agent；已补真实yijie-mcp-worker/0.1.0及受限HTTP阶段/状态码诊断，未伪装旧客户端、未改固定Codex。63本地测试/lint/标准App构建通过，说明已左对齐。新worker da3c31537e6be46bb826a2ec44b0541456cbbf2810772aabbba5df1023400f81。尚未真实复验，已申请仅1次连接/发现、0模型/0业务；因先前失败不自动重发，等待用户答复。Keyring已有用户保存密钥，不要再要求重填/卸载或读取密钥。详见FEAT-157/21及sorftime-user-agent-20261008证据。
 

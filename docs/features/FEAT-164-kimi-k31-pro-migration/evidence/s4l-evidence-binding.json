@@ -1,0 +1,47 @@
+{
+  "at": "2026-10-26T02:34:06.618661+08:00",
+  "contract_impact": "none",
+  "source_commits": {
+    "yijie-codex": "a28130abb13d0f99a00107cd513a653bae878b77",
+    "yijie-contracts": "1b357cce0575c492f3715b316ee5f254051acf80",
+    "yijie-agent-host": "090c2dbeeeceb0fc87e576d8e13f5c339bf106f0",
+    "yijie-desktop": "ea9b1e499d86bb92eea360a62707027485790e22",
+    "yijie-connectors": "7ea3df41818fd69f4736722d01f0686d584d1a71",
+    "yijie-skills": "595c927ae101d3d31c234f60565041eee0864680"
+  },
+  "qualified_harness": {
+    "id": "H-F164-LOCAL",
+    "commit": "ea9b1e499d86bb92eea360a62707027485790e22",
+    "digest": "7c4dbb20c4676f82af4855664c13a115adbf1d7369ab045aaf4af75a8759342b"
+  },
+  "test_counts": {
+    "s1": 11,
+    "s2": 57,
+    "s4": 24,
+    "s4b": 9,
+    "s3": 5,
+    "s4e": 7,
+    "renderer": 18,
+    "verdict": 10
+  },
+  "all_tests": 141,
+  "source_profile_checks": 4,
+  "headless_s4_loopback_http": 42,
+  "app_loopback_http": 4,
+  "real_model_http_added": 0,
+  "real_ledgers_byte_identical": true,
+  "full_tconf04": "NOT RUN",
+  "source_artifact_match_ref": "s4l-preservation-audit.json",
+  "driver_refs": [
+    "s4l-driver-results.json",
+    "s4l-final-checks.json"
+  ],
+  "evidence_reason": "Fresh execution at the existing immutable candidate; historical results were not relabelled",
+  "app_fixture": {
+    "repository": "yijie",
+    "full_commit": "7ece92a493a2246869a91e3f7dc2996552a1dab3",
+    "path": "docs/features/FEAT-164-kimi-k31-pro-migration/evidence/s4k-loopback-fixture.py",
+    "sha256": "7e4e21b1524f18645a3d577b5a72f15e52bebe4f5eca76db8806e210c2e8e417",
+    "unchanged": true
+  }
+}

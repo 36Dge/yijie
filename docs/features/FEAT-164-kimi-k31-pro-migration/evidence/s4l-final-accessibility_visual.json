@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "scope": "FEAT164 available model control and status feedback in the current macOS candidate",
+  "checks": [
+    "K3.1/explicit MiniMax menu and no active old K3",
+    "keyboard Down/Up/Enter and Escape focus return",
+    "100% scale 1180x760 logical viewport in light/dark",
+    "streaming/interrupted/completed/unknown/paused unavailable states",
+    "plan model label and edit-cancel preserves authority",
+    "light appearance restored and original 1268x780 window restored on normal reopen"
+  ],
+  "axe": "NOT RUN: native CUA has no DOM execution bridge; no full WCAG compliance claim",
+  "legacy_migration_dialog": "not naturally reachable; remains a core workflow gap, no visual claim for that dialog",
+  "evidence": [
+    "s4l-light-model-menu.ax.txt",
+    "s4l-keyboard-return-focus.ax.txt",
+    "s4l-light-minimum-empty.jpg",
+    "s4l-dark-chat.jpg",
+    "s4l-dark-model-menu.jpg",
+    "s4l-dark-unknown-bottom.jpg",
+    "s4l-paused-empty.ax.txt",
+    "s4l-plan-readonly-editor.ax.txt",
+    "s4l-appearance-restored.ax.txt"
+  ],
+  "exit_code": 0,
+  "verified_at": "2026-10-26T02:34:06.618661+08:00",
+  "real_model_http_added": 0,
+  "source_commits": {
+    "yijie-codex": "a28130abb13d0f99a00107cd513a653bae878b77",
+    "yijie-contracts": "1b357cce0575c492f3715b316ee5f254051acf80",
+    "yijie-agent-host": "090c2dbeeeceb0fc87e576d8e13f5c339bf106f0",
+    "yijie-desktop": "ea9b1e499d86bb92eea360a62707027485790e22",
+    "yijie-connectors": "7ea3df41818fd69f4736722d01f0686d584d1a71",
+    "yijie-skills": "595c927ae101d3d31c234f60565041eee0864680"
+  }
+}

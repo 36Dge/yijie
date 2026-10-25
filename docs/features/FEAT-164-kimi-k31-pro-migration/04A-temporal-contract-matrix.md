@@ -1,5 +1,7 @@
 # FEAT-164 时序契约矩阵
 
+> 2026-10-26当前绑定见[39](39-evidence-binding-and-final-verdicts.md)：TCONF01/02/03当前来源实际通过；04三个安全子集执行通过但完整04仍未通过。原scenario/invariant语义不变，旧证据不改名。
+
 本文件与feature.yaml保持同一Scenario/Invariant/Test/Slice ID。2026-10-26当前S1、S2（57项）、S3（5项）已在固定r4组合通过；S4三组实际driver及App证据按范围分别记录，完整G2V/G3/final未通过。最新覆盖与具体缺口见[36](36-current-offline-qualification-and-next-gate.md)，不把本机检查记为真实模型验证。
 
 ## 六阶段

@@ -1,0 +1,48 @@
+   Compiling objc2-exception-helper v0.1.1
+   Compiling ring v0.17.14
+   Compiling libsqlite3-sys v0.38.1
+   Compiling yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4k-qualification-20261026/yijie-desktop/src-tauri)
+   Compiling objc2 v0.6.4
+   Compiling rustls v0.23.43
+   Compiling rustls-webpki v0.103.13
+   Compiling block2 v0.6.2
+   Compiling objc2-core-foundation v0.3.2
+   Compiling rusqlite v0.40.1
+   Compiling dispatch2 v0.3.1
+   Compiling rusqlite_migration v2.6.0
+   Compiling objc2-foundation v0.3.2
+   Compiling tokio-rustls v0.26.4
+   Compiling hyper-rustls v0.27.9
+   Compiling reqwest v0.12.28
+   Compiling oauth2 v5.0.0
+   Compiling objc2-app-kit v0.3.2
+   Compiling openidconnect v4.0.1
+   Compiling objc2-web-kit v0.3.2
+   Compiling tao v0.35.3
+   Compiling window-vibrancy v0.6.0
+   Compiling muda v0.19.3
+   Compiling webbrowser v1.2.2
+   Compiling rfd v0.16.0
+   Compiling tauri-runtime v2.11.3
+   Compiling wry v0.55.1
+   Compiling tauri-runtime-wry v2.11.4
+   Compiling tauri v2.11.5
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 47.97s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/yijie_desktop_lib-1b53ef458e0aa835)
+
+running 12 tests
+test chat::delivery::tests::feat164_delivery_cancel_after_claim_survives_reopen_without_rewriting_or_reviving ... ok
+test chat::delivery::tests::feat164_delivery_cancel_releases_lane_and_allows_explicit_model_selection ... ok
+test chat::delivery::tests::feat164_delivery_legacy_without_proof_remains_unclassified_and_unmodified ... ok
+test chat::delivery::tests::feat164_delivery_market_and_expert_have_independent_proof_and_no_ordinary_claim ... ok
+test chat::delivery::tests::feat164_delivery_migration_does_not_backfill_legacy_pending ... ok
+test chat::delivery::tests::feat164_delivery_new_acceptance_replay_preserves_proof_and_input_identity ... ok
+test chat::delivery::tests::feat164_delivery_new_chat_binding_is_observed_before_first_turn_send ... ok
+test chat::delivery::tests::feat164_delivery_ordinary_final_send_binds_operation_profile_path_and_is_single_use ... ok
+test chat::delivery::tests::feat164_delivery_pause_blocks_claim_but_preserves_explicit_unsent_cancel ... ok
+test chat::delivery::tests::feat164_delivery_permission_turn_checks_nested_source_operation ... ok
+test chat::delivery::tests::feat164_delivery_public_or_create_attempt_prevents_cancel_even_after_legacy_retry_reset ... ok
+test chat::host_bridge::tests::feat164_delivery_http_admission_blocks_cancelled_and_sends_live_once ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 650 filtered out; finished in 11.08s
+

@@ -1,0 +1,94 @@
+[
+  {
+    "name": "claims",
+    "command": [
+      "node",
+      "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+      "--audit-claims",
+      "docs/features/FEAT-164-kimi-k31-pro-migration"
+    ],
+    "exit_code": 0,
+    "expected_exit": 0,
+    "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4"
+  },
+  {
+    "name": "strict",
+    "command": [
+      "bash",
+      "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+      "--strict",
+      "docs/features/FEAT-164-kimi-k31-pro-migration"
+    ],
+    "exit_code": 0,
+    "expected_exit": 0,
+    "sha256": "0f6377b2cf2e6dba2d18bcba312d28530dafd7d4a1f423d7affcf223fed72bce"
+  },
+  {
+    "name": "g3-s1",
+    "command": [
+      "bash",
+      "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+      "--gate",
+      "G3",
+      "--slice",
+      "S1",
+      "docs/features/FEAT-164-kimi-k31-pro-migration"
+    ],
+    "exit_code": 0,
+    "expected_exit": 0,
+    "sha256": "cbef7049db013bfc23c2a94ebaec5dcd9740b69b917c4435a47642362e55b85e"
+  },
+  {
+    "name": "g3-s4",
+    "command": [
+      "bash",
+      "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+      "--gate",
+      "G3",
+      "--slice",
+      "S4",
+      "docs/features/FEAT-164-kimi-k31-pro-migration"
+    ],
+    "exit_code": 1,
+    "expected_exit": 1,
+    "sha256": "af5ba23ad685849a457f2020c9eff964b0afd10e89a71ff6829933b3dcd63ba9"
+  },
+  {
+    "name": "g4",
+    "command": [
+      "bash",
+      "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+      "--gate",
+      "G4",
+      "docs/features/FEAT-164-kimi-k31-pro-migration"
+    ],
+    "exit_code": 1,
+    "expected_exit": 1,
+    "sha256": "28dcf01706798d838804fa1cfae3b13f829c40744d8987369e7f30762a374ee9"
+  },
+  {
+    "name": "meta-lint",
+    "command": [
+      "pnpm",
+      "lint"
+    ],
+    "exit_code": 0,
+    "expected_exit": 0,
+    "sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c"
+  },
+  {
+    "name": "meta-test",
+    "command": [
+      "pnpm",
+      "test"
+    ],
+    "exit_code": 0,
+    "expected_exit": 0,
+    "sha256": "0097f74d4ef8d137eff1e41e6b2fae2fed7c43aec1c10787181514d342a7137c"
+  },
+  {
+    "name": "shell-syntax",
+    "exit_code": 0,
+    "files": 7
+  }
+]

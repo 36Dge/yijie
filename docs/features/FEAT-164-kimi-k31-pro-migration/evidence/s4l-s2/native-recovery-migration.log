@@ -1,0 +1,24 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.38s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/yijie_desktop_lib-1b53ef458e0aa835)
+
+running 17 tests
+test chat::host_bridge::tests::feat164_model_recovery_wire_reads_original_then_current_and_guards_writes ... ok
+test chat::kimi_k31_tests::feat164_candidate_decoder_separates_readable_and_executable_identity ... ok
+test chat::kimi_k31_tests::feat164_canonical_migration_paths_and_repeat_are_valid ... ok
+test chat::kimi_k31_tests::feat164_migration_expands_without_rewriting_model_facts ... ok
+test chat::kimi_k31_tests::feat164_native_recovery_schema_preserves_legacy_pending_without_backfill ... ok
+test chat::kimi_k31_tests::feat164_populated_migrations_preserve_history_and_delivery_facts ... ok
+test chat::model_recovery::tests::feat164_native_intent_survives_normal_reopen_and_404_never_proves_unsent ... ok
+test chat::model_recovery::tests::feat164_native_market_model_selection_requires_settled_delivery_twice ... ok
+test chat::model_recovery::tests::feat164_native_old_pending_is_readable_but_not_a_v2_intent ... ok
+test chat::model_recovery::tests::feat164_native_recovery_rechecks_binding_work_and_receipt ... ok
+test chat::model_recovery::tests::feat164_native_settled_expert_model_selection_is_not_legacy_dispatch ... ok
+test chat::schedules::drafts::feat164_fact_reader_tests::feat164_draft_fact_versions_are_explicit_and_read_only ... ok
+test chat::schedules::ipc::tests::feat164_draft_fact_tests::feat164_current_native_writer_can_preview_completed_draft_without_rewriting ... ok
+test chat::schedules::ipc::tests::feat164_draft_status_tests::feat164_never_attempted_failed_draft_does_not_invent_uncertainty ... ok
+test chat::schedules::ipc::tests::feat164_draft_status_tests::feat164_stopped_attempted_draft_has_read_only_uncertain_projection ... ok
+test chat::sidecar::tests::feat164_pause_is_explicit_and_reaches_only_candidate_child ... ok
+test chat::tests::feat164_paused_terminal_history_does_not_require_model_resume ... ok
+
+test result: ok. 17 passed; 0 failed; 0 ignored; 0 measured; 645 filtered out; finished in 17.39s
+

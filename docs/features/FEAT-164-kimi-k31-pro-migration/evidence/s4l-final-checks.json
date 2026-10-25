@@ -1,0 +1,35 @@
+[
+  {
+    "name": "renderer",
+    "command": [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "src/composables/useChatModelsV2.test.ts",
+      "src/api/chat-model-v2-client.test.ts",
+      "src/composables/useChatDelivery.test.ts",
+      "src/api/chat-delivery-client.test.ts",
+      "src/components/chat/ChatDeliveryControl.test.ts",
+      "src/components/chat/ChatModelActivation.test.ts",
+      "src/composables/useScheduledPlanModel.s3.test.ts",
+      "--reporter=json"
+    ],
+    "exit_code": 0,
+    "verified_at": "2026-10-26T02:19:29.499493+08:00",
+    "log_sha256": "c5c820e5bf785f4f3644723527677e35d67aa5c86d8899755774bf3aa264a641"
+  },
+  {
+    "name": "verdict",
+    "command": [
+      "node",
+      "--test",
+      "scripts/feat164-verdict.test.mjs",
+      "scripts/feat164-g2v-verdict.test.mjs",
+      "scripts/feat164-successor-verdict.test.mjs"
+    ],
+    "exit_code": 0,
+    "verified_at": "2026-10-26T02:19:29.686401+08:00",
+    "log_sha256": "b5b487a57d994a01c388ea11e9bf106db5462805bc4bdb4e7fb286dc3f3a2dbb"
+  }
+]

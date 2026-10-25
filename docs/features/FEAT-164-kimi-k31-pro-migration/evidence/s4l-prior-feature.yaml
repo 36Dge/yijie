@@ -1,0 +1,1306 @@
+schema_version: 3
+delivery_profile: production_hardened
+exposure: local
+feature:
+  id: FEAT-164
+  slug: kimi-k31-pro-migration
+  title: Kimi K3.1 Pro 模型替换与历史兼容
+  status: active
+  created_at: 2026-10-24
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+scope:
+  risk_level: high
+  data_classification: confidential
+  contract_impact: breaking
+  database_change: migrate
+  persistence_change: replay
+  runtime_change: runtime
+  auth_permission_change: none
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: model
+repositories:
+  - yijie
+  - yijie-contracts
+  - yijie-codex
+  - yijie-agent-host
+  - yijie-desktop
+  - yijie-connectors
+immutable_references:
+  baseline_commits:
+    - repository: yijie
+      full_sha: 91b2b76e7afc7cb5373a381ce352f7d1eee4a134
+    - repository: yijie-agent-host
+      full_sha: 283dcbd7d79ca7bd7a56dba0cb915024fff8eb72
+    - repository: yijie-codex
+      full_sha: 9154f27d0cdb526a5f5ba0913fe3e2448014b4a1
+    - repository: yijie-connectors
+      full_sha: 251a0e8854b646a2565a01317a95b037579d9b8e
+    - repository: yijie-contracts
+      full_sha: bedf4159b0fa22e24efe6c295f8b0d4845df56b7
+    - repository: yijie-desktop
+      full_sha: 6080a568332dbf18ff119501607bc7e7afa92f94
+  contracts:
+    - id: chat-models-v2
+      version: 0.2.0
+      full_commit: 1b357cce0575c492f3715b316ee5f254051acf80
+      digest: 0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
+      generator: scripts/generate-chat-models-v2.mjs
+    - id: runtime-kimi-k31-pro
+      version: 0.144.6-kimi-k31-pro-r4
+      full_commit: 1b357cce0575c492f3715b316ee5f254051acf80
+      digest: bec02925813e13a92342e6dcab8eb0f04b4732983e00c2f9e6e314827c8d3522
+      generator: scripts/generate-runtime-kimi-k31-pro.mjs
+    - id: scheduled-plan-v2
+      version: 0.2.0
+      full_commit: 2dd214d6a702064edae78510c035442854bf9789
+      digest: 75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
+      generator: scripts/generate-scheduled-plan-v2.mjs
+    - id: market-selection-v2
+      version: 0.3.0
+      full_commit: eddc64f95d81c26ca1678cc648d177c081f7904d
+      digest: a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
+      generator: scripts/generate-market-selection-v2.mjs
+    - id: market-host-v2
+      version: 0.4.0
+      full_commit: eddc64f95d81c26ca1678cc648d177c081f7904d
+      digest: 604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
+      generator: scripts/generate-market-host-v2.mjs
+    - id: experts-v2
+      version: 0.2.0
+      full_commit: eddc64f95d81c26ca1678cc648d177c081f7904d
+      digest: 371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+      generator: scripts/generate-experts-v2.mjs
+  fixtures:
+    - id: feat164-request-shape-loopback
+      digest: d345d62dfa9ba7021138c3330a6c619222cf108cf423b5b051fc9699cda90372
+      repository: yijie
+      full_commit: 9218f052ab4ee64aa14ff5e91ec0284b6efee301
+      path: docs/features/FEAT-164-kimi-k31-pro-migration/evidence/feat164-request-shape-loopback.py
+  release_artifacts: []
+gates:
+  G0_intake: pass
+  G1_design_ready: pass
+  G2_implementation_ready: pass
+  G2A_contract_ready: pass
+  G2V_vertical_feasibility: pass
+  G4_code_complete: pending
+  G5_production_ready: pending
+  G6_delivery_complete: pending
+gate_reasons:
+  G2A: S4h
+    Desktop1b5adcfc1b6b3195df5b3495de3f1c4b22599d51仅新增显式只读验证入口与说明，contract-impact=none，产品wire/SQL/Runtime/授权不改；对应19项与既有v1-reader/v2-writer源资格通过。
+    S4g Desktop181885b1bfe825bb0e713757e95282e36267aa11仅私有历史读取semantic修复，复用既有LocalSubmissionView
+    uncertain，无新schema/wire/迁移/授权。Host7927ee7/Runtime
+    a28130a/Contracts1b357cc保持；源说明先行、Native/consumer限定验证通过；整体breaking仍保持。 当前Runtime a28130a
+    r4、Contracts1b357cc保持；Host 7927ee7b385cb5536c3647632d1bac0cb7c56fea、Desktop
+    277f59eeef538d159e43bb1570767ca4f2f5f72a 已本地固定。已有Contract源先于v2草案route修复，Native格式2/3/4
+    reader按已有版本解码，无新wire/schema/生成物。两处本轮semantic，整体breaking。定向检查、当前App正控/历史/计划通过；不代表发布。原权威及旧基线证据：当前r4 Runtime
+    a28130abb13d0f99a00107cd513a653bae878b77 → Contracts 1b357cce0575c492f3715b316ee5f254051acf80 → Host
+    b9155a3936c6ff5c6aedd52778d975de52b95d06 → Desktop 2fb898942cb4c3b81e34feb5169bd861340a4040。269 canonical
+    schema与r2逐字相同；10基线比较、源/生成/消费精确pin与原生终态复验通过。整体breaking，旧writer拒绝新配置，保持新reader暂停回退。仅本地，非发布。以下为历史来源： r2
+    Runtime 074417e5e2f5f55704ea5e1777e7a22d514076b4 → Contracts f2819c66a2368aaff37216a46c48d5cd81df1747 →
+    Host 5022435a6272263e66e46a41b7ed7c3f9fb6caf9 → Desktop 74f2f74d866483463df7236f891aae62b00539ba。269
+    schema与r1相同，七支持基线、精确producer/consumer pin、原生Runtime conformance及canonical构建通过；沿用已授权范围内修复，不代表发布或独立人工复审。
+    Desktop验收脚本现固化40908c75af14a9cbd65d1b0cee96ba510d6afa8f，产品契约来源不变。
+    S4新增三组模型承载v2源于eddc64f，安全leaf/check、4同源schema测试和9登记基线比较通过，Host9ffcb6f/Desktop
+    e408047精确消费；仅本地来源，不等于发布或专家资源资格。
+    S4b复用同一公共契约；Hostcac2d4d/Desktop56f5284/Connectors1f15726固定Skills595c927同内容资源和原库树，四组合source通过，旧来源的证据不覆盖App资格。
+  G2V: S4K当前canonical和qualified harness下3次真实文本HTTP均返回42/50/8；同源保存、两次重开零新增调用及正常清理通过，组合判定器退出0/PASS。仅最小文本纵向资格；完整TCONF/G3/final及日常cutover仍未完成。累计5/5次数耗尽，原unknown预占保留。
+
+temporal_contract_matrix:
+  required: true
+  applicability_reason: 模型意图、配置回执、Host提交、Native通知、历史重放、计划资格和正常退出跨进程且跨版本
+  exception:
+    owner: N/A
+    approved_at: N/A
+    reason: N/A
+  phases:
+    producer:
+      status: required
+      reason: 明确新目标与执行准入
+    persistence:
+      status: required
+      reason: 保存迁移意图和确认后的模型revision，保留历史快照
+    notification:
+      status: required
+      reason: 持久确认后返回回执和当前Selection
+    replay:
+      status: required
+      reason: 终态回执只读且unknown不自动重发
+    terminal:
+      status: required
+      reason: 回执与提交闭合才标成功
+    cleanup:
+      status: required
+      reason: 正常收敛全部受管工作后切换，不强杀
+  phase_exceptions: {}
+  scenarios:
+    - id: FLOW-LIVE-164
+      ordered_phases:
+        - producer
+        - persistence
+        - notification
+        - terminal
+        - cleanup
+    - id: FLOW-REPLAY-164
+      ordered_phases:
+        - persistence
+        - replay
+        - notification
+        - terminal
+        - cleanup
+    - id: FLOW-PLAN-164
+      ordered_phases:
+        - producer
+        - persistence
+        - notification
+        - terminal
+        - cleanup
+  invariants:
+    - id: TINV-164-01
+      statement: 未确认来源/活动身份不得新执行，退役slug在截止点后出站为零
+      scenario_ids:
+        - FLOW-LIVE-164
+      slice_ids:
+        - S1
+      executable_tests:
+        - TCONF-164-01
+    - id: TINV-164-02
+      statement: 原请求身份不改；unknown不推定模型，missing不证明未发
+      scenario_ids:
+        - FLOW-LIVE-164
+        - FLOW-REPLAY-164
+      slice_ids:
+        - S2
+      executable_tests:
+        - TCONF-164-02
+    - id: TINV-164-03
+      statement: claim/send前准入生效，计划领域事务撤有效授权且历史run不改
+      scenario_ids:
+        - FLOW-PLAN-164
+        - FLOW-REPLAY-164
+      slice_ids:
+        - S3
+      executable_tests:
+        - TCONF-164-03
+    - id: TINV-164-04
+      statement: 实际调用面/辅助模型/重开不复活退役身份，三项final判定独立
+      scenario_ids:
+        - FLOW-LIVE-164
+        - FLOW-REPLAY-164
+        - FLOW-PLAN-164
+      slice_ids:
+        - S4
+      executable_tests:
+        - TCONF-164-04
+  executable_tests:
+    - id: TCONF-164-01
+      required: true
+      repository: yijie-agent-host
+      command: go test -race -json ./internal/codex -run '^TestFEAT164ActivationAndRetiredAdmission$' -count=1
+      slice_id: S1
+      status: PASS
+      exit_code: 0
+      verified_at: 2026-10-26T00:20:08.570900+08:00
+      commits:
+        - repository: yijie-codex
+          full_sha: a28130abb13d0f99a00107cd513a653bae878b77
+        - repository: yijie-contracts
+          full_sha: 1b357cce0575c492f3715b316ee5f254051acf80
+        - repository: yijie-agent-host
+          full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
+        - repository: yijie-desktop
+          full_sha: bad75a2d3c4a97be903b57e8bb3a3a72915edd18
+        - repository: yijie-connectors
+          full_sha: 7ea3df41818fd69f4736722d01f0686d584d1a71
+      evidence_ref: 08-verification-report.md#E164-S4J-OFFLINE
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+      implementation_status: implemented
+      command_note: 当前10子例+父项通过、0skip；普通配置与准入，无真实模型请求。
+    - id: TCONF-164-02
+      required: true
+      repository: yijie-desktop
+      command: python3 scripts/feat164-s2-conformance.py --host-source ../yijie-agent-host --runtime-binary <pinned-r4-codex> --runtime-manifest <pinned-r4-manifest> --output <new-output>
+      slice_id: S2
+      status: PASS
+      exit_code: 0
+      verified_at: 2026-10-26T00:16:14.996401+08:00
+      commits:
+        - repository: yijie-codex
+          full_sha: a28130abb13d0f99a00107cd513a653bae878b77
+        - repository: yijie-contracts
+          full_sha: 1b357cce0575c492f3715b316ee5f254051acf80
+        - repository: yijie-agent-host
+          full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
+        - repository: yijie-desktop
+          full_sha: bad75a2d3c4a97be903b57e8bb3a3a72915edd18
+        - repository: yijie-connectors
+          full_sha: 7ea3df41818fd69f4736722d01f0686d584d1a71
+      evidence_ref: 08-verification-report.md#E164-S4J-OFFLINE
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+      implementation_status: implemented
+      command_note: 当前五组25/2/12/17/1全部通过、0skip；包含真实Native-Host-Runtime边界。修前env失败保留，不等于App或G3。
+    - id: TCONF-164-03
+      required: true
+      repository: yijie-desktop
+      command: node scripts/feat164-s3-conformance.mjs <new-output>
+      slice_id: S3
+      status: PASS
+      exit_code: 0
+      verified_at: 2026-10-26T00:16:20.793092+08:00
+      commits:
+        - repository: yijie-codex
+          full_sha: a28130abb13d0f99a00107cd513a653bae878b77
+        - repository: yijie-contracts
+          full_sha: 1b357cce0575c492f3715b316ee5f254051acf80
+        - repository: yijie-agent-host
+          full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
+        - repository: yijie-desktop
+          full_sha: bad75a2d3c4a97be903b57e8bb3a3a72915edd18
+        - repository: yijie-connectors
+          full_sha: 7ea3df41818fd69f4736722d01f0686d584d1a71
+      evidence_ref: 08-verification-report.md#E164-S4J-OFFLINE
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+      implementation_status: implemented
+      command_note: 当前5个模块限定exact入口通过；SQL41/计划/授权/旧历史保护；不等于App或G3。
+    - id: TCONF-164-04
+      required: true
+      repository: yijie-desktop
+      command: python3 scripts/feat164-s4-conformance.py --output <new-output> --runtime-binary <pinned-r4-codex>
+        --runtime-manifest <pinned-r4-manifest>
+      slice_id: S4
+      status: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      commits:
+        - repository: yijie-codex
+          full_sha: a28130abb13d0f99a00107cd513a653bae878b77
+        - repository: yijie-contracts
+          full_sha: 1b357cce0575c492f3715b316ee5f254051acf80
+        - repository: yijie-agent-host
+          full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
+        - repository: yijie-desktop
+          full_sha: 399bb19d4c2066675f3f73b61ee6b8f59ee489c6
+        - repository: yijie-connectors
+          full_sha: 7ea3df41818fd69f4736722d01f0686d584d1a71
+      evidence_ref: 08-verification-report.md#E164-S4I-MEDIA
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+      implementation_status: implemented_partial
+      command_note: S4I当前来源安全子集24项分两次执行通过，原入口因调用PATH遗漏pnpm停止；专家模型往返与media App另有证据，仍未完成完整TCONF-164-04。
+vertical_feasibility:
+  required: true
+  applicability_reason: 跨仓模型/Runtime身份和重要持久数据迁移，必须真实纵向资格
+  exception:
+    owner: N/A
+    approved_at: N/A
+    reason: N/A
+  harness_id: H-F164-LOCAL
+  participating_repositories:
+    - yijie-contracts
+    - yijie-codex
+    - yijie-agent-host
+    - yijie-desktop
+  platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
+  production_bootstrap: true
+  representative_data: 本轮普通合成计算题；未测试图片、工具、搜索、旧选择迁移或计划状态
+  critical_path: canonical App → Native → Host → Runtime → 获准新模型响应 → 原生事件 → 保存/重开
+  evidence:
+    commits:
+      - repository: yijie-desktop
+        full_sha: ea9b1e499d86bb92eea360a62707027485790e22
+      - repository: yijie-agent-host
+        full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
+      - repository: yijie-contracts
+        full_sha: 1b357cce0575c492f3715b316ee5f254051acf80
+      - repository: yijie-codex
+        full_sha: a28130abb13d0f99a00107cd513a653bae878b77
+    command: node scripts/feat164-successor-verdict.mjs
+      /Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-164-kimi-k31-pro-migration/evidence/g2v-real-budget-ledger-r3.json
+      /Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-164-kimi-k31-pro-migration/evidence/s4k-real-observation.json
+    environment: macOS aarch64; current canonical App; up to three additional HTTP under unchanged 30 CNY cumulative cap;
+      output8192/no-native-search
+    exit_code: 0
+    status: PASS
+    verified_at: 2026-10-26T02:01:37.491309+08:00
+    harness:
+      id: H-F164-LOCAL
+      commit: ea9b1e499d86bb92eea360a62707027485790e22
+      digest: 7c4dbb20c4676f82af4855664c13a115adbf1d7369ab045aaf4af75a8759342b
+    platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
+    production_bootstrap: true
+    contract_refs:
+      - contract:chat-models-v2@0.2.0@1b357cce0575c492f3715b316ee5f254051acf80#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
+      - contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r4@1b357cce0575c492f3715b316ee5f254051acf80#bec02925813e13a92342e6dcab8eb0f04b4732983e00c2f9e6e314827c8d3522
+      - contract:scheduled-plan-v2@0.2.0@2dd214d6a702064edae78510c035442854bf9789#75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
+      - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
+      - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
+      - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+    fixture_refs:
+      - fixture:feat164-request-shape-loopback#d345d62dfa9ba7021138c3330a6c619222cf108cf423b5b051fc9699cda90372
+    refs:
+      - 08-verification-report.md#E164-S4K-REAL
+    working_directory: /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4k-qualification-20261026/yijie-desktop
+    reason: 当前3次普通文本真实请求、42/50/8、保存/重开与正常清理均通过；旧账本与预占保持。输出8192、无搜索/图片；最小文本G2V不代表完整TCONF/G3/final或日常迁移。
+
+runtime_harnesses:
+  - id: H-F164-LOCAL
+    purpose: 最小模型替换纵向候选及三项最终验证；安全普通状态分类
+    commit: ea9b1e499d86bb92eea360a62707027485790e22
+    digest: 7c4dbb20c4676f82af4855664c13a115adbf1d7369ab045aaf4af75a8759342b
+    default_enabled: false
+    real_platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
+    production_bootstrap: true
+    representative_data: 本轮普通合成计算题；未测试图片、工具、搜索、旧选择迁移或计划状态
+    failure_classes:
+      - product_failure
+      - harness_failure
+      - platform_failure
+      - gate_failure
+    qualification:
+      status: PASS
+      verified_at: 2026-10-26T00:49:06.722867+08:00
+      command: canonical --reopen + CUA ordinary task/history/Cmd-Q; node --test scripts/feat164-verdict.test.mjs
+        scripts/feat164-g2v-verdict.test.mjs scripts/feat164-successor-verdict.test.mjs; python3 -m unittest
+        scripts/feat164_budget_meter_test.py scripts/feat164_successor_meter_test.py
+      environment: macOS aarch64; Desktop ea9b1e4 canonical media App + pinned Runtime r4; ordinary metadata-only loopback
+      exit_code: 0
+      positive_control:
+        status: PASS
+        evidence_ref: 08-verification-report.md#E164-S4K-HARNESS
+      negative_controls:
+        product_failure:
+          status: PASS
+          observed_class: product_failure
+          evidence_ref: 08-verification-report.md#E164-S4K-HARNESS
+        harness_failure:
+          status: PASS
+          observed_class: harness_failure
+          evidence_ref: 08-verification-report.md#E164-S4K-HARNESS
+        platform_failure:
+          status: PASS
+          observed_class: platform_failure
+          evidence_ref: 08-verification-report.md#E164-S4K-HARNESS
+        gate_failure:
+          status: PASS
+          observed_class: gate_failure
+          evidence_ref: 08-verification-report.md#E164-S4K-HARNESS
+      timeout_control:
+        status: PASS
+        evidence_ref: 08-verification-report.md#E164-S4K-HARNESS
+      cleanup_control:
+        status: PASS
+        evidence_ref: 08-verification-report.md#E164-S4K-HARNESS
+      content_free_verdict:
+        status: PASS
+        evidence_ref: 08-verification-report.md#E164-S4K-HARNESS
+    safety_policy: 只用普通状态/返回值/正常取消；禁止强杀、权限破坏、攻击fixture或可执行替身，无法安全验证的控制保持NOT RUN
+  - id: H-F164-S1-LOCAL
+    purpose: S1当前固定来源的本机活动身份/暂停/历史与正常清理，不代表真实供应商资格
+    commit: 174fbaf661e4fdf48828ff8bbabbe5d55c157bed
+    digest: d4361025ed5b7da56dc8c587d5cf6e76860f4b749dba349b3fe5722d19929cce
+    default_enabled: false
+    real_platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
+    production_bootstrap: true
+    representative_data: 普通合成文本；新Kimi与暂停模式MiniMax；保留当前候选历史
+    failure_classes:
+      - product_failure
+      - harness_failure
+      - platform_failure
+      - gate_failure
+    qualification:
+      status: NOT RUN
+      verified_at: NOT RUN
+      command: canonical --reopen with ordinary loopback; CUA observations; node --test
+        scripts/feat164-verdict.test.mjs
+      environment: macOS aarch64; current 174fbaf/e8ae83f candidate; MAC_LOCKED blocks remaining UI observations
+      exit_code: null
+      positive_control:
+        status: NOT RUN
+        evidence_ref: NOT RUN
+      negative_controls:
+        product_failure:
+          status: PASS
+          observed_class: product_failure
+          evidence_ref: 08-verification-report.md#E164-S1-CONTROLS
+        harness_failure:
+          status: PASS
+          observed_class: harness_failure
+          evidence_ref: 08-verification-report.md#E164-S1-CONTROLS
+        platform_failure:
+          status: PASS
+          observed_class: platform_failure
+          evidence_ref: 08-verification-report.md#E164-S1-CONTROLS
+        gate_failure:
+          status: PASS
+          observed_class: gate_failure
+          evidence_ref: 08-verification-report.md#E164-S1-CONTROLS
+      timeout_control:
+        status: PASS
+        evidence_ref: 08-verification-report.md#E164-S1-CONTROLS
+      cleanup_control:
+        status: PASS
+        evidence_ref: 08-verification-report.md#E164-S1-CONTROLS
+      content_free_verdict:
+        status: NOT RUN
+        evidence_ref: NOT RUN
+    safety_policy: 只用普通状态/返回值/正常取消；禁止强杀、权限破坏、攻击fixture或可执行替身，无法安全验证的控制保持NOT RUN
+slices:
+  - id: S1
+    intent: 活动身份、配置前身与独立候选激活
+    required: true
+    prerequisites:
+      - G2
+      - G2A
+      - G2V
+    commits:
+      - repository: yijie-codex
+        full_sha: 074417e5e2f5f55704ea5e1777e7a22d514076b4
+      - repository: yijie-contracts
+        full_sha: f2819c66a2368aaff37216a46c48d5cd81df1747
+      - repository: yijie-agent-host
+        full_sha: e8ae83f9c53fb41cc80139e0d0f70d7c8268b4ab
+      - repository: yijie-desktop
+        full_sha: 174fbaf661e4fdf48828ff8bbabbe5d55c157bed
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+    local_evidence:
+      required: true
+      status: PASS
+      command: Current pinned-source focused Go race, Vue model tests, Rust pause test, Host lint, Desktop lint and
+        product clippy; see s1-final-tests.json
+      environment: macOS aarch64; clean qualification worktrees; ordinary input only
+      exit_code: 0
+      verified_at: 2026-10-25T03:51:46.469004+00:00
+      refs:
+        - 08-verification-report.md#E164-S1-LOCAL
+      reason: 本slice需独立正常验证，不继承其它slice或旧Feature通过
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    boundary_evidence:
+      required: true
+      status: PASS
+      command: TestFEAT164NativeCandidateLifecycle / TestFEAT164NativePredecessorAndPausedKimi; current closed
+        catalog/selection/API controls
+      environment: Real fixed Runtime r2 + current Host; ordinary loopback Responses only, no external provider
+      exit_code: 0
+      verified_at: 2026-10-25T03:51:46.469004+00:00
+      refs:
+        - 08-verification-report.md#E164-S1-BOUNDARY
+      reason: 本slice需独立正常验证，不继承其它slice或旧Feature通过
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    vertical_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs:
+        - 08-verification-report.md#E164-S4C-APP
+      reason: 原S1的锁屏UI缺口已在后继S4c来源补Kimi正控、暂停后MiniMax、历史与正常清理；不冒充原174fbaf重新验收。完整平台、前置来源资格及G3/freshness仍未闭合。
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    freshness:
+      verified_at: NOT RUN
+      commits: []
+      contract_refs: []
+      fixture_refs: []
+      harness:
+        id: H-F164-S1-LOCAL
+        commit: 174fbaf661e4fdf48828ff8bbabbe5d55c157bed
+        digest: d4361025ed5b7da56dc8c587d5cf6e76860f4b749dba349b3fe5722d19929cce
+      platform: NOT RUN
+      production_bootstrap: true
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
+        implementation reference changes
+    status: blocked
+    status_reason: S1原源local/boundary通过；后继a0a4743补锁屏相关macOS UI及清理。完整平台/G3/freshness仍缺；Owner授权先推进后继切片的顺序例外继续保留，不等于最终PASS。
+  - id: S2
+    intent: 兼容存储、模型选择恢复与未发送取消
+    required: true
+    prerequisites:
+      - S1
+    commits:
+      - repository: yijie-agent-host
+        full_sha: 57c29ea03e3de39161a7c28080f9388f00cd1735
+      - repository: yijie-desktop
+        full_sha: ddc840f7ed642216bca4b42ab6327d388aa73084
+    exception:
+      owner: 段成威
+      approved_at: 2026-10-25
+      reason: Owner当前消息允许锁屏相关步骤延期并继续离线实施；仅变更推进顺序，不豁免S1/S2实际验收或G3。见22-ui-deferral-and-s2-foundation.md。
+    local_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs:
+        - 08-verification-report.md#E164-S2-FOUNDATION
+        - 08-verification-report.md#E164-S2-NATIVE
+        - 08-verification-report.md#E164-S2-DELIVERY
+        - 08-verification-report.md#E164-S2-TCONF
+      reason: S2工程子集、TCONF-164-02及真实Native/Host/Runtime本机边界通过；canonical
+        App/旧隔离历史/平台及完整freshness尚缺，保留24扩大回归的原基线失败，不转换为全slice PASS。
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    boundary_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs:
+        - 08-verification-report.md#E164-S2-FOUNDATION
+        - 08-verification-report.md#E164-S2-NATIVE
+        - 08-verification-report.md#E164-S2-DELIVERY
+        - 08-verification-report.md#E164-S2-TCONF
+      reason: S2工程子集、TCONF-164-02及真实Native/Host/Runtime本机边界通过；canonical
+        App/旧隔离历史/平台及完整freshness尚缺，保留24扩大回归的原基线失败，不转换为全slice PASS。
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    vertical_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 本slice需独立正常验证，不继承其它slice或旧Feature通过
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    freshness:
+      verified_at: NOT RUN
+      commits: []
+      contract_refs: []
+      fixture_refs: []
+      harness:
+        id: H-F164-LOCAL
+        commit: NOT RUN
+        digest: NOT RUN
+      platform: NOT RUN
+      production_bootstrap: true
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
+        implementation reference changes
+    status: pending
+    status_reason: SQL39/40、派发证明/未发送取消及TCONF-164-02已有按原来源的工程证据；本轮补旧隔离K3.1历史与正常重开。旧K3模型迁移、显式恢复/取消的完整App交互、跨平台/freshness仍未完成，整个slice未通过。
+  - id: S3
+    intent: worker接管前退役保护及计划领域授权迁移
+    required: true
+    prerequisites:
+      - S2
+    commits:
+      - repository: yijie-contracts
+        full_sha: 2dd214d6a702064edae78510c035442854bf9789
+      - repository: yijie-desktop
+        full_sha: 4d04597cbf40e1aea2c67607c9d441f888223d96
+    exception:
+      owner: 段成威
+      approved_at: 2026-10-25
+      reason: 用户明确要求实施S3并允许锁屏相关验收延期；仅改变推进顺序，不豁免S1/S2/S3 G3、真实验收或平台freshness。
+    local_evidence:
+      required: true
+      status: PASS
+      command: node scripts/feat164-s3-conformance.mjs /tmp/feat164-s3-native-final
+      environment: macOS aarch64; clean Desktop 4d04597/Contracts2dd214d; five exact offline Native tests; local
+        SQLCipher only
+      exit_code: 0
+      verified_at: 2026-10-25T07:43:31.405Z
+      refs:
+        - 08-verification-report.md#E164-S3-LOCAL
+      reason: 五项精确非零/零ignored；另有70前端、3默认路径、lint/Clippy/前端build与来源检查。既有扩大回归失败另记，不声称全量通过。
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    boundary_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 已完成versioned源/validator和Native worker启动边界；canonical App/WebView/计划实际执行及平台仍未验收，不能借S2普通聊天loopback证明计划全链路。
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    vertical_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 已完成versioned源/validator和Native worker启动边界；canonical App/WebView/计划实际执行及平台仍未验收，不能借S2普通聊天loopback证明计划全链路。
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    freshness:
+      verified_at: NOT RUN
+      commits: []
+      contract_refs: []
+      fixture_refs: []
+      harness:
+        id: H-F164-LOCAL
+        commit: NOT RUN
+        digest: NOT RUN
+      platform: NOT RUN
+      production_bootstrap: true
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
+        implementation reference changes
+    status: pending
+    status_reason: S3源实现与TCONF-164-03五项、SQL41/真实Native
+      worker、前端/来源检查已完成并仅本地提交；App/WebView/完整边界与纵向、跨平台/freshness仍NOT RUN，完整G3不放行。
+  - id: S4
+    intent: 全启用调用面、同源UI与正常退出兼容回退
+    required: true
+    prerequisites:
+      - S3
+    commits:
+      - repository: yijie-codex
+        full_sha: a28130abb13d0f99a00107cd513a653bae878b77
+      - repository: yijie-contracts
+        full_sha: 1b357cce0575c492f3715b316ee5f254051acf80
+      - repository: yijie-agent-host
+        full_sha: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
+      - repository: yijie-desktop
+        full_sha: bad75a2d3c4a97be903b57e8bb3a3a72915edd18
+      - repository: yijie-connectors
+        full_sha: 7ea3df41818fd69f4736722d01f0686d584d1a71
+    exception:
+      owner: 段成威
+      approved_at: 2026-10-25
+      reason: Owner明确批准方案A最小核心/补丁与投影、下游验证；新增真实HTTP0、仅本地提交。旧writer新历史不支持，以精确pin及受管文件标记保护，回退只保留新兼容reader并暂停执行；不豁免完整G3/final。
+    local_evidence:
+      required: true
+      status: PASS
+      command: python3 scripts/feat164-s4b-conformance.py --output <new-output> --runtime-binary <pinned-r4-codex>
+        --runtime-manifest <pinned-r4-manifest> --worker-manifest <canonical-worker-manifest> --expert-bundle
+        <immutable-expert-bundle> --artifact-adapter <canonical-artifact-adapter>
+      environment: macOS aarch64; clean Desktop 56f5284 / Hostcac2d4d / Connectors1f15726 / Skills595c927 /
+        Contractseddc64f; real pinned r2 Runtime; loopback only
+      exit_code: 0
+      verified_at: 2026-10-25T18:36:58.996897+08:00
+      refs:
+        - 08-verification-report.md#E164-S4B-OFFLINE
+        - 08-verification-report.md#E164-S4C-APP
+        - 08-verification-report.md#E164-S4D-OFFLINE
+        - 08-verification-report.md#E164-S4D-RCA
+        - 08-verification-report.md#E164-S4E-NATIVE
+        - 08-verification-report.md#E164-S4F-APP
+        - 08-verification-report.md#E164-S4G-APP
+        - 08-verification-report.md#E164-S4H-PLAN
+        - 08-verification-report.md#E164-S4I-MEDIA
+        - 08-verification-report.md#E164-S4J-OFFLINE
+      reason: 四组合source及1/3/4/1行为检查PASS、0skip；13次loopback覆盖专家/媒体/子代理/Guardian/显式压缩。当前源S4 7/4/4/4/5、S2
+        25/2/12/10/1及S3五项复验通过；37专家版本安装/解析/重开、Native完整资源读取通过。不代表完整TCONF-164-04、App/平台或G3。
+        上述批次保持原56f5284来源；当前a0a4743另经canonical构建、暂停历史回归及App/UI子集复验，见S4C锚点，不把旧全套结果改写为新源运行。
+        S4d独立子集另在测试提交df06a3c通过；本字段PASS仅保留原S4b批次，不能覆盖S4d已知终态FAIL。
+        原S4d终态缺陷已由S4e新r4来源修复并独立验证，详见31；旧PASS字段仍仅代表原S4b批次。
+        S4f当前App/计划子集通过，3次App模型协议loopback、真实0；本字段旧批次状态不替代完整门禁。
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    boundary_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs:
+        - 08-verification-report.md#E164-S4C-APP
+        - 08-verification-report.md#E164-S4D-RCA
+        - 08-verification-report.md#E164-S4D-OFFLINE
+        - 08-verification-report.md#E164-S4E-NATIVE
+        - 08-verification-report.md#E164-S4F-APP
+        - 08-verification-report.md#E164-S4G-APP
+        - 08-verification-report.md#E164-S4H-PLAN
+        - 08-verification-report.md#E164-S4I-MEDIA
+        - 08-verification-report.md#E164-S4J-OFFLINE
+      reason: 历次r4原生终态/冷读/自动压缩/辅助调用按原来源保留；S4I当前配对专家切模型、media/中断/图片及重开清理已实机通过，旧unknown保持阻断。
+        计划App证据见S4F/H。完整旧K3/恢复取消适用边界尚缺；当前文本G2V已通过，整项freshness尚缺，不能把这些分批子集标为完整边界/纵向PASS；非Mac ARM目标N/A。
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    vertical_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs:
+        - 08-verification-report.md#E164-S4C-APP
+        - 08-verification-report.md#E164-S4D-RCA
+        - 08-verification-report.md#E164-S4D-OFFLINE
+        - 08-verification-report.md#E164-S4E-NATIVE
+        - 08-verification-report.md#E164-S4F-APP
+        - 08-verification-report.md#E164-S4G-APP
+        - 08-verification-report.md#E164-S4H-PLAN
+        - 08-verification-report.md#E164-S4I-MEDIA
+        - 08-verification-report.md#E164-S4J-OFFLINE
+      reason: 历次r4原生终态/冷读/自动压缩/辅助调用按原来源保留；S4I当前配对专家切模型、media/中断/图片及重开清理已实机通过，旧unknown保持阻断。
+        计划App证据见S4F/H。完整旧K3/恢复取消适用边界尚缺；当前文本G2V已通过，整项freshness尚缺，不能把这些分批子集标为完整边界/纵向PASS；非Mac ARM目标N/A。
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    freshness:
+      verified_at: NOT RUN
+      commits: []
+      contract_refs: []
+      fixture_refs: []
+      harness:
+        id: H-F164-LOCAL
+        commit: NOT RUN
+        digest: NOT RUN
+      platform: NOT RUN
+      production_bootstrap: true
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
+        implementation reference changes
+    status: pending
+    status_reason: S4J当前迁移/取消57项、计划5项、专家媒体四组合、辅助及旧loaded/终态/自动压缩通过，产品代码不变。安全离线覆盖已收敛；当前候选无旧K3会话/计划可供自然App升级。当前文本G2V已通过；完整TCONF、freshness/final及日常cutover仍未完成，见38；不要重复同批离线测试代替这些缺口。
+final_e2e:
+  core_vertical:
+    required: true
+    reason: 新模型全有效执行链、历史/计划和准入
+    status: NOT RUN
+    command: NOT RUN
+    environment: NOT RUN
+    exit_code: null
+    verified_at: NOT RUN
+    commits: []
+    contract_refs: []
+    fixture_refs: []
+    harness:
+      id: H-F164-LOCAL
+      commit: NOT RUN
+      digest: NOT RUN
+    platform: NOT RUN
+    production_bootstrap: true
+    evidence_refs: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+  accessibility_visual:
+    required: true
+    reason: 选择器/状态/焦点/亮暗/最小窗口
+    status: NOT RUN
+    command: NOT RUN
+    environment: NOT RUN
+    exit_code: null
+    verified_at: NOT RUN
+    commits: []
+    contract_refs: []
+    fixture_refs: []
+    harness:
+      id: H-F164-LOCAL
+      commit: NOT RUN
+      digest: NOT RUN
+    platform: NOT RUN
+    production_bootstrap: true
+    evidence_refs: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+  teardown:
+    required: true
+    reason: 正常退出/重开无重复派发及兼容回退
+    status: NOT RUN
+    command: NOT RUN
+    environment: NOT RUN
+    exit_code: null
+    verified_at: NOT RUN
+    commits: []
+    contract_refs: []
+    fixture_refs: []
+    harness:
+      id: H-F164-LOCAL
+      commit: NOT RUN
+      digest: NOT RUN
+    platform: NOT RUN
+    production_bootstrap: true
+    evidence_refs: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+failure_circuit_breaker:
+  same_failure_threshold: 3
+  policy: third equivalent failure blocks retries and local patches until a root-cause audit produces
+    discriminating evidence and an authorized next action
+  incidents:
+    - id: F164-GATE-BASELINE-REF
+      slice_id: SOURCE-CANDIDATE
+      gate_id: G2A
+      evidence_id: E164-BASELINE
+      failure_class: gate_failure
+      failure_code: CANONICAL_REF_NETWORK_RESOLUTION
+      checkpoint: scheduled-plan-draft-baseline-resolution
+      fingerprint: SOURCE-CANDIDATE|G2A|E164-BASELINE|gate_failure|CANONICAL_REF_NETWORK_RESOLUTION|scheduled-plan-draft-baseline-resolution
+      attempts:
+        - run_id: raw-baseline-35e0949c95d7a59ca5480715c225766dcc822056
+          occurred_at: 2026-10-24T15:37:42.513045+00:00
+          result: FAIL
+          failure_class: gate_failure
+          failure_code: CANONICAL_REF_NETWORK_RESOLUTION
+          checkpoint: scheduled-plan-draft-baseline-resolution
+          evidence_ref: 08-verification-report.md#E164-RAW-BASELINE-1
+        - run_id: raw-baseline-54be9314dce5319b049dc0a236800fd1a1fdd7a1
+          occurred_at: 2026-10-24T15:37:44.172197+00:00
+          result: FAIL
+          failure_class: gate_failure
+          failure_code: CANONICAL_REF_NETWORK_RESOLUTION
+          checkpoint: scheduled-plan-draft-baseline-resolution
+          evidence_ref: 08-verification-report.md#E164-RAW-BASELINE-2
+        - run_id: raw-baseline-bedf4159b0fa22e24efe6c295f8b0d4845df56b7
+          occurred_at: 2026-10-24T15:37:45.649259+00:00
+          result: FAIL
+          failure_class: gate_failure
+          failure_code: CANONICAL_REF_NETWORK_RESOLUTION
+          checkpoint: scheduled-plan-draft-baseline-resolution
+          evidence_ref: 08-verification-report.md#E164-RAW-BASELINE-3
+      rca_cycles:
+        - id: RCA-F164-BASELINE-01
+          audit:
+            status: complete
+            expanded_scope:
+              - 源基线OpenAPI/jsonschema与canonical ID
+              - 比较器archive及网络解析
+              - 相同来源树离线比较和新candidate源码
+            candidates:
+              - 有效契约删除/不兼容
+              - 基线源缺失
+              - canonical标识符误作网络地址
+            discriminating_evidence_refs:
+              - 08-verification-report.md#E164-OFFLINE-RCA
+            approved_next_action: 接受离线同源比较RCA，单次复核bedf4159完整基线并校验不可变源和consumer pin
+            approved_by: 段成威（当前用户明确接受本轮候选及离线比较结论）
+            approved_at: 2026-10-24T15:54:04.092360+00:00
+          authorization:
+            max_attempts: 1
+            action: 接受离线同源比较RCA，单次复核bedf4159完整基线并校验不可变源和consumer pin
+            approved_by: 段成威（当前用户指令）
+            approved_at: 2026-10-24T15:54:04.092360+00:00
+          attempt:
+            run_id: accepted-offline-baseline-recheck
+            occurred_at: 2026-10-24T15:58:15.552Z
+            result: PASS
+            evidence_ref: 08-verification-report.md#E164-OFFLINE-RCA
+      state: resolved
+      engineering_audit_ref: 14-source-candidate-review.md
+      alternative_check_evidence: evidence/contracts-breaking-offline-results.json
+      note: 三次原入口失败保留。Owner接受RCA后单次离线同源复核通过，没有再次请求原网络地址。
+    - id: F164-NATIVE-CHILD-STATUS
+      slice_id: S4
+      gate_id: G3
+      evidence_id: E164-S4D-STATUS
+      failure_class: product_failure
+      failure_code: RETIRED_CHILD_COMPLETED_AFTER_GUARD
+      checkpoint: native-child-wait-and-history-after-retired-request
+      fingerprint: S4|G3|E164-S4D-STATUS|product_failure|RETIRED_CHILD_COMPLETED_AFTER_GUARD|native-child-wait-and-history-after-retired-request
+      attempts:
+        - run_id: s4d-cutover-02
+          occurred_at: 2026-10-25T19:26:05.566011+08:00
+          result: FAIL
+          failure_class: product_failure
+          failure_code: RETIRED_CHILD_COMPLETED_AFTER_GUARD
+          checkpoint: native-child-wait-and-history-after-retired-request
+          evidence_ref: 08-verification-report.md#E164-S4D-STATUS-1
+        - run_id: s4d-child-diagnostic
+          occurred_at: 2026-10-25T19:27:21.759718+08:00
+          result: FAIL
+          failure_class: product_failure
+          failure_code: RETIRED_CHILD_COMPLETED_AFTER_GUARD
+          checkpoint: native-child-wait-and-history-after-retired-request
+          evidence_ref: 08-verification-report.md#E164-S4D-STATUS-2
+      rca_cycles: []
+      state: armed
+      engineering_audit_ref: 30-s4-loaded-legacy-compaction.md
+      note: 实际同产品指纹2次；首轮catalog前置失败不计入。保守停止第三次非绿色child验收后的重试，RCA已收敛但未授权核心补丁或复验，未标resolved；不修改旧incident。
+    - id: F164-DRAFT-V2-ROUTES
+      slice_id: S4
+      gate_id: G3
+      evidence_id: E164-S4F-ROUTES
+      failure_class: product_failure
+      failure_code: DRAFT_V2_ROUTE_MISSING
+      checkpoint: scheduled-draft-create-v2
+      fingerprint: S4|G3|E164-S4F-ROUTES|product_failure|DRAFT_V2_ROUTE_MISSING|scheduled-draft-create-v2
+      attempts:
+        - run_id: s4f-draft-pending-metadata
+          occurred_at: 2026-10-25T12:48:55.870Z
+          result: FAIL
+          failure_class: product_failure
+          failure_code: DRAFT_V2_ROUTE_MISSING
+          checkpoint: scheduled-draft-create-v2
+          evidence_ref: 08-verification-report.md#E164-S4F-ROUTES
+        - run_id: s4f-host-draft-routes-red
+          occurred_at: 2026-10-25T12:51:27.347Z
+          result: FAIL
+          failure_class: product_failure
+          failure_code: DRAFT_V2_ROUTE_MISSING
+          checkpoint: scheduled-draft-create-v2
+          evidence_ref: 08-verification-report.md#E164-S4F-ROUTES
+      rca_cycles: []
+      state: armed
+      engineering_audit_ref: 32-s4-r4-app-plan-acceptance.md
+      note: App实际失败与安全定向RED分别保留；occurred_at取证据文件写入时间。未达第三次同点失败，按规范保留armed历史，不伪造RCA
+        cycle；修复后的PASS另见app_plan_remediation与32。
+    - id: F164-DRAFT-FACT-READER
+      slice_id: S4
+      gate_id: G3
+      evidence_id: E164-S4F-FACTS
+      failure_class: product_failure
+      failure_code: CURRENT_DRAFT_FACT_UNREADABLE
+      checkpoint: current-native-fact-draft-preview
+      fingerprint: S4|G3|E164-S4F-FACTS|product_failure|CURRENT_DRAFT_FACT_UNREADABLE|current-native-fact-draft-preview
+      attempts:
+        - run_id: s4f-current-draft-facts-metadata
+          occurred_at: 2026-10-25T13:02:10.684Z
+          result: FAIL
+          failure_class: product_failure
+          failure_code: CURRENT_DRAFT_FACT_UNREADABLE
+          checkpoint: current-native-fact-draft-preview
+          evidence_ref: 08-verification-report.md#E164-S4F-FACTS
+        - run_id: s4f-draft-preview-red
+          occurred_at: 2026-10-25T13:02:20.752Z
+          result: FAIL
+          failure_class: product_failure
+          failure_code: CURRENT_DRAFT_FACT_UNREADABLE
+          checkpoint: current-native-fact-draft-preview
+          evidence_ref: 08-verification-report.md#E164-S4F-FACTS
+      rca_cycles: []
+      state: armed
+      engineering_audit_ref: 32-s4-r4-app-plan-acceptance.md
+      note: App实际失败与安全定向RED分别保留；occurred_at取证据文件写入时间。未达第三次同点失败，按规范保留armed历史，不伪造RCA
+        cycle；修复后的PASS另见app_plan_remediation与32。
+    - id: F164-S4G-GENERATE
+      slice_id: S4
+      gate_id: G3
+      evidence_id: E164-S4G-GENERATE
+      failure_class: gate_failure
+      failure_code: GENERIC_GENERATION_SOURCE_PRECONDITIONS
+      checkpoint: pnpm-generate-check
+      fingerprint: S4|G3|E164-S4G-GENERATE|gate_failure|GENERIC_GENERATION_SOURCE_PRECONDITIONS|pnpm-generate-check
+      attempts:
+        - run_id: s4g-generate
+          occurred_at: 2026-10-25T13:39:28.976Z
+          result: FAIL
+          failure_class: gate_failure
+          failure_code: GENERIC_GENERATION_SOURCE_PRECONDITIONS
+          checkpoint: pnpm-generate-check
+          evidence_ref: 08-verification-report.md#E164-S4G-GENERATE
+        - run_id: s4g-generate-pinned
+          occurred_at: 2026-10-25T13:40:05.540Z
+          result: FAIL
+          failure_class: gate_failure
+          failure_code: GENERIC_GENERATION_SOURCE_PRECONDITIONS
+          checkpoint: pnpm-generate-check
+          evidence_ref: 08-verification-report.md#E164-S4G-GENERATE
+        - run_id: s4g-generate-complete
+          occurred_at: 2026-10-25T13:40:34.764Z
+          result: FAIL
+          failure_class: gate_failure
+          failure_code: GENERIC_GENERATION_SOURCE_PRECONDITIONS
+          checkpoint: pnpm-generate-check
+          evidence_ref: 08-verification-report.md#E164-S4G-GENERATE
+      rca_cycles:
+        - id: RCA-F164-GENERATION-01
+          audit:
+            status: complete
+            expanded_scope:
+              - 通用/FEAT164目录与v1/v2生成入口
+              - 历史Host/Skills固定checkout及Node符号链接真实sibling定位
+              - 当前清洁来源与全部19项只读计划
+            candidates:
+              - 产品schema或consumer生成物不兼容
+              - 资格源依赖准备不完整
+              - 通用旧锁与FEAT164专用锁混用且脚本别名指向旧consumer
+            discriminating_evidence_refs:
+              - 08-verification-report.md#E164-S4H-GENERATION
+            approved_next_action: 按已审阅RCA，从同父目录干净固定源单次执行FEAT164专用19项只读生成检查；保留旧通用入口FAIL，不修改其锁或重跑旧命令
+            approved_by: 段成威（本轮明确“执行后续方案”，沿用已批准离线及仅本地提交范围）
+            approved_at: 2026-10-25T14:18:10.004Z
+          authorization:
+            max_attempts: 1
+            action: 按已审阅RCA，从同父目录干净固定源单次执行FEAT164专用19项只读生成检查；保留旧通用入口FAIL，不修改其锁或重跑旧命令
+            approved_by: 段成威（本轮明确“执行后续方案”，沿用已批准离线及仅本地提交范围）
+            approved_at: 2026-10-25T14:18:10.004Z
+          attempt:
+            run_id: s4h-generation-preflight
+            occurred_at: 2026-10-25T14:18:10.284Z
+            result: FAIL
+            failure_code: GENERIC_GENERATION_SOURCE_PRECONDITIONS
+            checkpoint: pnpm-generate-check
+            evidence_ref: 08-verification-report.md#E164-S4H-PREFLIGHT
+        - id: RCA-F164-GENERATION-02
+          audit:
+            status: complete
+            expanded_scope:
+              - Contracts gitignore目录与symlink规则
+              - 新资格目录依赖安装形态与六仓clean证明
+              - 首次预检未执行任何生成leaf的原始日志
+            candidates:
+              - 生成物漂移
+              - 预检错误放宽源资格
+              - node_modules符号链接并非被忽略的目录
+            discriminating_evidence_refs:
+              - 08-verification-report.md#E164-S4H-PREFLIGHT
+            approved_next_action: 修正新资格目录node_modules正常目录布局后，仅再执行一次FEAT164完整19项只读检查，失败即停、真实模型HTTP0
+            approved_by: 段成威（本轮明确回复“批准修正后单次检查”）
+            approved_at: 2026-10-25T14:29:38.232Z
+          authorization:
+            max_attempts: 1
+            action: 修正新资格目录node_modules正常目录布局后，仅再执行一次FEAT164完整19项只读检查，失败即停、真实模型HTTP0
+            approved_by: 段成威（本轮明确回复“批准修正后单次检查”）
+            approved_at: 2026-10-25T14:29:38.232Z
+          attempt:
+            run_id: s4h-generation-qualified
+            occurred_at: 2026-10-25T14:29:54.574Z
+            result: PASS
+            evidence_ref: 08-verification-report.md#E164-S4H-GENERATION
+      state: resolved
+      engineering_audit_ref: evidence/s4h-preflight-rca.md
+      note: 旧三次通用命令FAIL及新入口初次preflight
+        FAIL完整保留；Owner明确批准修正后检查，并补充最多3次。修正后第1次完整19项已通过，未使用剩余次数。resolved只表示RCA后精确Feature入口资格完成，不把旧默认命令写成PASS。
+documents:
+  brief: 00-feature-brief.md
+  requirements: 01-requirements.md
+  impact: 02-impact-assessment.md
+  decisions_and_risks: 03-decisions-and-risks.md
+  contract_plan: 04-contract-change-plan.md
+  temporal_contract: 04A-temporal-contract-matrix.md
+  technical_design: 05-technical-design.md
+  test_plan: 06-test-plan.md
+  implementation_plan: 07-implementation-plan.md
+  verification: 08-verification-report.md
+  release_and_rollback: 09-release-and-rollback.md
+  delivery_summary: 10-delivery-summary.md
+  second_audit: 11-second-audit.md
+  resume: 12-resume.md
+  implementation_log: 13-implementation-log.md
+  source_candidate_review: 14-source-candidate-review.md
+  local_freeze: 15-local-source-freeze.md
+  resumed_g2v: 18-resumed-g2v.md
+  responses_400_audit: 19-responses-400-audit.md
+  budget_resume_and_g2v: 20-budget-resume-and-g2v.md
+  s1_implementation: 21-s1-implementation.md
+  s2_foundation: 22-ui-deferral-and-s2-foundation.md
+  native_model_recovery: 23-native-model-recovery.md
+  delivery_proof_and_cancel: 24-delivery-proof-and-cancel.md
+  native_boundary_conformance: 25-s2-conformance-and-native-boundary.md
+  plan_retirement: 26-s3-plan-retirement.md
+  loaded_legacy_and_compaction: 30-s4-loaded-legacy-compaction.md
+  native_terminal_repair: 31-s4-native-terminal-repair.md
+  r4_app_and_plan_acceptance: 32-s4-r4-app-plan-acceptance.md
+external_authorizations:
+  paid_calls:
+    allowed: false
+    max_actions: 0
+    approved_by: 段成威（当前明确不新增真实模型调用；旧授权和已耗用次数保留在原账本）
+    approved_at: 2026-10-25
+  destructive_operations:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  production_writes:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+current_authorization:
+  phase: implementation_with_governance
+  source: Owner要求认真审计现有实现后继续下一步；沿用已授权FEAT-164实现、canonical构建/正常生命周期与安全离线验收，仅本地提交、不推送，真实模型HTTP新增0。
+  documentation_write_allowed: true
+  product_source_edit_allowed: true
+  product_generate_build_test_allowed: true
+  database_migration_allowed: false
+  service_lifecycle_allowed: true
+  model_or_tool_business_calls_allowed: false
+  git_commit_push_branch_release_allowed: false
+  note: 本轮Host3条既有契约route及Native格式2/3/4 reader语义修复；固定Runtime/Contracts不改。旧工作区/全部账本及预占保留，正常App数据更新有事前完整副本。30元、2/2
+    HTTP和14.188544元unknown预占不变。
+  git_local_commit_allowed: true
+  git_scope: 仅FEAT-164本地提交，包括必要后续实现/验证/治理；不混入已有其它需求，无push/branch/tag/release。
+implementation:
+  status: active
+  real_entrypoint: bash scripts/run-local-demo-fast.sh --packaged --kimi-k31-pro；同canonical组合的显式独立候选，日常入口未切换
+  mock_only: false
+  native_terminal_remediation:
+    status: PASS_NATIVE_SUBSET
+    owner_authorization: 当前用户明确批准方案A
+    runtime_commit: a28130abb13d0f99a00107cd513a653bae878b77
+    contracts_commit: 1b357cce0575c492f3715b316ee5f254051acf80
+    host_commit: b9155a3936c6ff5c6aedd52778d975de52b95d06
+    desktop_commit: 2fb898942cb4c3b81e34feb5169bd861340a4040
+    evidence_ref: 08-verification-report.md#E164-S4E-NATIVE
+    prior_failure_ledger_preserved: true
+    note: 旧同指纹仅2次，原armed台账不伪造第三次或RCA cycle；原断言在新候选通过。首个r4扩展API误用及后续汇总器分块漏计有独立证据，未放宽产品断言。
+  app_plan_remediation:
+    status: PASS_APP_PLAN_SUBSET
+    host_commit: 7927ee7b385cb5536c3647632d1bac0cb7c56fea
+    desktop_commit: 277f59eeef538d159e43bb1570767ca4f2f5f72a
+    contract_impact: semantic
+    evidence_ref: 08-verification-report.md#E164-S4F-APP
+    real_model_http_added: 0
+    note: 产品HTTP
+      route与持久reader分别先复现后修复；没有篡改未知/attempted为never-sent。3次App模型协议loopback，不包括进程内测试handler请求。原armed失败台账保留。
+  draft_uncertainty_remediation:
+    status: PASS_READ_ONLY_APP_SUBSET
+    desktop_commit: 181885b1bfe825bb0e713757e95282e36267aa11
+    contract_impact: semantic
+    evidence_ref: 08-verification-report.md#E164-S4G-APP
+    real_model_http_added: 0
+    model_loopback_http: 0
+    persistent_history_unchanged: true
+    note: 原失败草案保持attempted/failed，显示uncertain；继续缺映射仍不重发。不是完整取消/恢复资格。
+  generation_and_plan_continuation:
+    status: PASS_SOURCE_AND_PLAN_SUBSET
+    desktop_commit: 1b5adcfc1b6b3195df5b3495de3f1c4b22599d51
+    contract_impact: none
+    generation_checks: 19
+    source_configuration_tests: 6
+    native_s3_tests: 5
+    frontend_tests: 18
+    model_loopback_http: 1
+    real_model_http_added: 0
+    evidence_ref: 08-verification-report.md#E164-S4H-PLAN
+    verification_retry_authorization:
+      owner: 段成威（本轮“可以授权执行2-3次”）
+      max_attempts: 3
+      corrected_full_attempts_used: 1
+      unused_attempts: 2
+      stopped_after_pass: true
+      does_not_authorize_real_model_calls: true
+  current_successor_g2v:
+    status: PASS_SCOPED
+    desktop_commit: ea9b1e499d86bb92eea360a62707027485790e22
+    authorization_ref: evidence/s4k-successor-authorization.json
+    ledger_ref: evidence/g2v-real-budget-ledger-r3.json
+    approved_new_http: 3
+    cumulative_max_http: 5
+    cumulative_limit_micro_cny: 30000000
+    new_real_http_used: 3
+    meter_state: stopped_normally
+    candidate_app_state: normally_exited
+    evidence_ref: 08-verification-report.md#E164-S4K-REAL
+    unused_authorized_http: 0
+    cumulative_upper_micro_cny: 14679001
+    verdict_ref: evidence/s4k-real-verdict.json
+    result_report: 38-current-real-g2v-and-final-gaps.md
+    reason: 真实三轮42/50/8、保存/两次重开0新增模型HTTP及正常清理通过；仅最小文本G2V。累计5/5耗尽，原账本/unknown保留，完整TCONF/G3/final与日常切换仍缺。
+  current_offline_qualification:
+    status: PASS_SCOPED
+    desktop_commit: bad75a2d3c4a97be903b57e8bb3a3a72915edd18
+    host_commit: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
+    evidence_ref: 08-verification-report.md#E164-S4J-OFFLINE
+    real_model_http_added: 0
+    loopback_http: 36
+    note: S1当前11含父项、S2五组57、S3五项、S4b四组合和9行为、S4e7项、renderer18及verdict7通过；当前候选旧K3会话/计划均0。产品未改，完整G2V/final另判。
+  current_media_qualification:
+    status: PASS_SCOPED
+    desktop_commit: 399bb19d4c2066675f3f73b61ee6b8f59ee489c6
+    host_commit: 090c2dbeeeceb0fc87e576d8e13f5c339bf106f0
+    connectors_commit: 7ea3df41818fd69f4736722d01f0686d584d1a71
+    runtime_commit: a28130abb13d0f99a00107cd513a653bae878b77
+    contract_impact: semantic
+    evidence_ref: 08-verification-report.md#E164-S4I-MEDIA
+    real_model_http_added: 0
+    app_loopback_http: 8
+    conformance_loopback_http: 6
+    note: Worker来源、草案默认值、Native/Host专家配置门禁已修复；实际媒体/正常中断/图片及配对专家paused往返、重开和清理通过。旧unknown未结清，整项Gate另判。
+product_verification:
+  status: IN_PROGRESS
+  reason: S4K当前真实文本G2V PASS，3/3新增及累计5/5次数耗尽，累计保守14.679001元含原unknown。旧账本/数据保留，App/meter正常退出；完整TCONF/G3/final、旧K3自然App及日常cutover仍缺。下一步零调用最终验收范围收口，见38。
+profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
+owner_approvals:
+  requirements: approved_by_owner_current_user_message
+  technical_design: approved_by_owner_current_user_message
+  consumer_reviews: approved_by_owner_current_user_message_for_source_candidate_14
+  implementation: authorized_subject_to_gates
+  release: not_authorized
+must_acceptance:
+  - id: AC-001
+    status: pending
+    definition: 01-requirements.md
+    verification_plan: 06-test-plan.md
+  - id: AC-002
+    status: pending
+    definition: 01-requirements.md
+    verification_plan: 06-test-plan.md
+  - id: AC-003
+    status: pending
+    definition: 01-requirements.md
+    verification_plan: 06-test-plan.md
+  - id: AC-004
+    status: pending
+    definition: 01-requirements.md
+    verification_plan: 06-test-plan.md
+  - id: AC-005
+    status: pending
+    definition: 01-requirements.md
+    verification_plan: 06-test-plan.md
+  - id: AC-006
+    status: pending
+    definition: 01-requirements.md
+    verification_plan: 06-test-plan.md
+  - id: AC-007
+    status: pending
+    definition: 01-requirements.md
+    verification_plan: 06-test-plan.md
+  - id: AC-008
+    status: pending
+    definition: 01-requirements.md
+    verification_plan: 06-test-plan.md
+  - id: AC-009
+    status: pending
+    definition: 01-requirements.md
+    verification_plan: 06-test-plan.md
+  - id: AC-010
+    status: pending
+    definition: 01-requirements.md
+    verification_plan: 06-test-plan.md

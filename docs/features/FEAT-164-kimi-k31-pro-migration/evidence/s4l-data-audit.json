@@ -1,0 +1,159 @@
+{
+  "at": "2026-10-26T02:28:21.129588+08:00",
+  "read_only": true,
+  "old_record_checks": {
+    "plans": {
+      "rows": 6,
+      "unchanged": true
+    },
+    "failed_draft": {
+      "rows": 1,
+      "unchanged": true
+    },
+    "completed_draft": {
+      "rows": 6,
+      "unchanged": true
+    },
+    "unknown": {
+      "rows": 1,
+      "unchanged": true
+    },
+    "old_expert": {
+      "rows": 1,
+      "unchanged": true
+    },
+    "paired_expert": {
+      "rows": 1,
+      "unchanged": true
+    },
+    "paired_operations": {
+      "rows": 2,
+      "unchanged": true
+    },
+    "previous_real_session": {
+      "rows": 7,
+      "unchanged": true
+    }
+  },
+  "current_sessions": [
+    {
+      "kind": "turn",
+      "session_id": "01a17447-527f-7123-ab85-942f28a8e7ff",
+      "id": "01a17447-527f-7123-ab85-944384bf9eaf",
+      "operation_id": "01a17447-527f-7123-ab85-945c2b254d28",
+      "runtime_turn_id": "01a17447-5314-74f1-bab2-956d2611f30e",
+      "status": "completed",
+      "submission_status": "submitted",
+      "profile": "kimi-k3-1-pro-max-v1",
+      "facts": 6
+    },
+    {
+      "kind": "turn",
+      "session_id": "01a17447-527f-7123-ab85-942f28a8e7ff",
+      "id": "01a17447-b118-7e12-8da1-63c9ecb98fa1",
+      "operation_id": "7ac6499f-e440-4ed1-9578-c960a1d11174",
+      "runtime_turn_id": "01a17447-b14e-76b0-be6a-7482c9e40c1e",
+      "status": "interrupted",
+      "submission_status": "submitted",
+      "profile": "kimi-k3-1-pro-max-v1",
+      "facts": 5
+    },
+    {
+      "kind": "turn",
+      "session_id": "01a17447-527f-7123-ab85-942f28a8e7ff",
+      "id": "01a17448-2060-7a73-8ca6-e227285f9575",
+      "operation_id": "7ee34040-3a76-4fa7-a3c1-0a6e30d4fecf",
+      "runtime_turn_id": "01a17448-20a8-7a42-8f01-dcb7f8cafd8d",
+      "status": "completed",
+      "submission_status": "submitted",
+      "profile": "kimi-k3-1-pro-max-v1",
+      "facts": 6
+    },
+    {
+      "kind": "turn",
+      "session_id": "01a1744b-c762-70c2-b1ac-7a24fa81b5a3",
+      "id": "01a1744b-c762-70c2-b1ac-7a43b7bea3c2",
+      "operation_id": "01a1744b-c762-70c2-b1ac-7a5ad74dcfb7",
+      "runtime_turn_id": "01a1744b-c7e7-7c63-8626-954a3cc071bf",
+      "status": "completed",
+      "submission_status": "submitted",
+      "profile": "minimax-m3-high-v1",
+      "facts": 6
+    },
+    {
+      "kind": "session",
+      "id": "01a17447-527f-7123-ab85-942f28a8e7ff",
+      "agent_session_id": "cf268f53-a5f4-423d-a913-07e407377a27",
+      "runtime_thread_id": "01a17447-52c2-7653-8af2-b4f245432d4a",
+      "profile": "kimi-k3-1-pro-max-v1",
+      "state": "ready",
+      "title_source": "fallback",
+      "title_job_status": "not_started"
+    },
+    {
+      "kind": "session",
+      "id": "01a1744b-c762-70c2-b1ac-7a24fa81b5a3",
+      "agent_session_id": "dfd3ecff-6f89-4641-9ea8-136c4d37da7b",
+      "runtime_thread_id": "01a1744b-c796-7631-b123-e49a6640f9a3",
+      "profile": "minimax-m3-high-v1",
+      "state": "ready",
+      "title_source": "fallback",
+      "title_job_status": "not_started"
+    },
+    {
+      "kind": "answer",
+      "turn_id": "01a17447-527f-7123-ab85-944384bf9eaf",
+      "text": "FEAT164 S4K 本机验收完成。这是合成响应，未访问真实模型。"
+    },
+    {
+      "kind": "answer",
+      "turn_id": "01a17448-2060-7a73-8ca6-e227285f9575",
+      "text": "FEAT164 S4K 本机验收完成。这是合成响应，未访问真实模型。"
+    },
+    {
+      "kind": "answer",
+      "turn_id": "01a1744b-c762-70c2-b1ac-7a43b7bea3c2",
+      "text": "FEAT164 S4K 本机验收完成。这是合成响应，未访问真实模型。"
+    }
+  ],
+  "app_loopback_http": 4,
+  "real_model_http_added": 0,
+  "real_ledgers_byte_identical": true,
+  "wal_shm_after_exit": [
+    {
+      "path": "runtime/logs_2.sqlite-wal",
+      "bytes": 4165352
+    },
+    {
+      "path": "runtime/logs_2.sqlite-shm",
+      "bytes": 32768
+    },
+    {
+      "path": "runtime/goals_1.sqlite-shm",
+      "bytes": 32768
+    },
+    {
+      "path": "runtime/state_5.sqlite-wal",
+      "bytes": 2669792
+    },
+    {
+      "path": "runtime/goals_1.sqlite-wal",
+      "bytes": 41232
+    },
+    {
+      "path": "runtime/state_5.sqlite-shm",
+      "bytes": 32768
+    }
+  ],
+  "runtime_checkpoint_complete": false,
+  "runtime_db_wal_retained_and_integrity_ok": true,
+  "database_handles": [],
+  "ports_released": {
+    "18083": 1,
+    "18086": 1
+  },
+  "owned_processes": [],
+  "database_sha256": "1378fff1e29d2a34b829b781e8aaccedba759397738a6218c7bc53b7cc711057",
+  "normal_app_exits": 3,
+  "force_kills": 0
+}

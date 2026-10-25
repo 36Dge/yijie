@@ -1,0 +1,24 @@
+ERROR: gate G4 must be pass
+ERROR: slice S2.status must be pass
+ERROR: slice S2.vertical_evidence.status must be PASS when required
+ERROR: slice S2.vertical_evidence.exit_code must equal 0 when required
+ERROR: slice S3.status must be pass
+ERROR: slice S3 prerequisite S2 is not pass
+ERROR: slice S3.vertical_evidence.status must be PASS when required
+ERROR: slice S3.vertical_evidence.exit_code must equal 0 when required
+ERROR: slice S4.status must be pass
+ERROR: slice S4 prerequisite S3 is not pass
+ERROR: slice S4.boundary_evidence.status must be PASS when required
+ERROR: slice S4.boundary_evidence.exit_code must equal 0 when required
+ERROR: slice S4.vertical_evidence.status must be PASS when required
+ERROR: slice S4.vertical_evidence.exit_code must equal 0 when required
+ERROR: temporal_contract_matrix.executable_tests[3].status must be PASS for G3/S4
+ERROR: temporal_contract_matrix.executable_tests[3].exit_code must equal 0 for G3/S4
+ERROR: temporal_contract_matrix.executable_tests[3].verified_at must be an ISO-8601 instant for G3/S4
+ERROR: final_e2e.core_vertical.status must be PASS
+ERROR: final_e2e.core_vertical.exit_code must equal 0
+ERROR: final_e2e.core_vertical.commits must exactly match the current immutable reference set
+ERROR: final_e2e.accessibility_visual.commits must exactly match the current immutable reference set
+ERROR: final_e2e.teardown.status must be PASS
+ERROR: final_e2e.teardown.exit_code must equal 0
+ERROR: final_e2e.teardown.commits must exactly match the current immutable reference set

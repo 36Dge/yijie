@@ -1,6 +1,6 @@
 # FEAT-164 实际验证记录
 
-> 最新按[38 当前真实G2V与最终缺项](38-current-real-g2v-and-final-gaps.md)：本轮3次真实文本HTTP全部完成，42/50/8、保存、两次同源重开零新增调用及正常清理通过；累计5/5次数已耗尽，累计保守上界14.679001元含旧unknown预占。最小文本G2V PASS；完整TCONF/G3、三个final和日常切换仍未完成。以下旧记录只按原时间与来源解释。
+> 最新按[39 证据绑定与三项最终验收](39-evidence-binding-and-final-verdicts.md)：当前来源141项＋4source和可达App验证通过，新增真实模型0；S1证据收口，S2/S3/S4保留完整纵向缺项。视觉单项PASS；core及Runtime checkpoint完整teardown未通过。两份真实账本、旧预占和日常库保持。以下旧记录按原时间与来源解释。
 
 > 当前（2026-10-25，S4f普通App与计划）：Host7927ee7补齐已有v2草案三路由，Desktop277f59e兼容读取原生事实2/3/4；Runtimea28130a r4与Contracts1b357cc保持。同源App验证旧历史、input-only草案、只读恢复零补发、关闭保存、单次执行、取消编辑和正常重开；App模型协议loopback共3次，真实新增0。旧失败请求/事实/账本保留；完整恢复取消、旧模型计划、专家媒体当前组合、平台/G2V/G3/final仍未通过。权威见[32](32-s4-r4-app-plan-acceptance.md)。以下记录保持原来源与时间语义。
 
@@ -377,3 +377,52 @@ S4I续验：Host090c2db/Desktop399bb19配对后，实际专家线程Kimi→pause
 2026-10-26 Owner已交回窗口，接续上方交接记录实际完成3次普通文本真实HTTP；当前同源会话得到42/50/8，HTTP200、K3.1/max、completed及usage完整。两次正常重开0新增模型HTTP，3条turn及24条原生事实持久化，App/子进程和meter均正常退出；组合判定器实际退出0/PASS。新增0.350867元、累计保守上界14.679001元含原unknown预占，3/3及累计5/5已耗尽。见[38](38-current-real-g2v-and-final-gaps.md)、s4k-real-observation.json/verdict.json/data-audit.json及final-reopen/stop证据。
 
 旧暂停计划只有next_at发生既有时钟恢复的缓存推进，其余字段/grant/run/选择/旧草案/unknown保留。首次审计断言失败、差异及修正依据见s4k-plan-clock-audit-rca.json；未改库凑断言。此为最小文本G2V PASS，不冒称完整TCONF/G3/final或日常cutover完成。
+
+
+## E164-S4L-S1 当前身份/配置切片
+
+<!-- evidence: E164-S4L-S1 -->
+
+11项current exact检查，真实Native/Host/r4边界及canonical Kimi正控、正常停止、暂停Kimi/显式MiniMax、历史重开和正常进程退出通过；原真实G2V仍绑定同源，不新增付费请求。旧锁屏harness保留，当前绑定H-F164-LOCAL。 详见[39](39-evidence-binding-and-final-verdicts.md)、s4l-evidence-binding.json与对应s4l日志/AX/截图/数据审计。
+
+
+## E164-S4L-S2 当前恢复与取消边界
+
+<!-- evidence: E164-S4L-S2 -->
+
+当前五组57项、0skip，source/command/time/log SHA逐项核对。local/boundary通过；原unknown只读UI保护保持。自然旧K3 App迁移/恢复/取消纵向尚缺，slice未通过。 详见[39](39-evidence-binding-and-final-verdicts.md)、s4l-evidence-binding.json与对应s4l日志/AX/截图/数据审计。
+
+
+## E164-S4L-S3 当前计划与授权边界
+
+<!-- evidence: E164-S4L-S3 -->
+
+当前5项exact Native退役/授权/重放/worker检查通过，既有计划表单查看后取消；旧plan/grant/run逐值保持。local/boundary通过，旧K3自然计划App迁移及重新授权未实测，slice未通过。 详见[39](39-evidence-binding-and-final-verdicts.md)、s4l-evidence-binding.json与对应s4l日志/AX/截图/数据审计。
+
+
+## E164-S4L-S4 当前全调用面安全子集
+
+<!-- evidence: E164-S4L-S4 -->
+
+当前S4/S4b/S4e为24/9/7项及4source组合、42次loopback；renderer18、verdict10另记。完整TCONF04仍需完整纵向/final，未将subset改为整体PASS。 详见[39](39-evidence-binding-and-final-verdicts.md)、s4l-evidence-binding.json与对应s4l日志/AX/截图/数据审计。
+
+
+## E164-S4L-APP 同源可达App验收
+
+<!-- evidence: E164-S4L-APP -->
+
+沿同一EA9 canonical media App及原S4K fixture，独立S4L账本4次合成请求：Kimi completed/interrupted/completed，暂停后显式MiniMax completed。两次重开查询新增0；未知会话只读、计划查看后取消、三个App正常退出。真实Provider0、无强杀或攻击注入。 详见[39](39-evidence-binding-and-final-verdicts.md)、s4l-evidence-binding.json与对应s4l日志/AX/截图/数据审计。
+
+
+## E164-S4L-DATA 只读保护与WAL发现
+
+<!-- evidence: E164-S4L-DATA -->
+
+旧计划六类记录、grant/run、草案、unknown、专家及上一轮真实记录逐值保持。三份Runtime WAL非空且nBackfill0；完整DB/WAL/SHM副本只读integrity_check均ok，原DB/WAL未改。资源/端口/句柄释放子集通过，checkpoint完整结论仍未收口。 详见[39](39-evidence-binding-and-final-verdicts.md)、s4l-evidence-binding.json与对应s4l日志/AX/截图/数据审计。
+
+
+## E164-S4L-FINAL 三项独立最终结果
+
+<!-- evidence: E164-S4L-FINAL -->
+
+core_vertical NOT RUN（完整范围）；accessibility_visual PASS（当前可达FEAT164界面、手工AX/键盘/1180x760亮暗，不声明不可达旧K3弹窗或完整WCAG）；teardown NOT RUN（资源退出通过，Runtime checkpoint仍需核实）。独立JSON为s4l-final-core_vertical/accessibility_visual/teardown.json，不互相替代。 详见[39](39-evidence-binding-and-final-verdicts.md)、s4l-evidence-binding.json与对应s4l日志/AX/截图/数据审计。

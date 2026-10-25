@@ -1,0 +1,30 @@
+{
+  "status": "NOT RUN",
+  "passed_subset": [
+    "three normal Cmd-Q exits",
+    "normal user stop and explicit subsequent turn",
+    "reopen no extra fixture requests",
+    "App/Runtime/worker/adapter/listeners/database handles absent",
+    "SQLCipher closed and old persistent records retained",
+    "three Runtime DB+WAL snapshots integrity OK"
+  ],
+  "unresolved": "Runtime WAL frames remain not backfilled; normal close/checkpoint lifecycle still requires a decision and verification; do not declare full checkpoint complete",
+  "evidence": [
+    "s4l-normal-stop.json",
+    "s4l-data-audit.json",
+    "s4l-wal-audit-first-findings.json",
+    "s4l-runtime-wal-readonly-integrity.json",
+    "s4l-wal-audit-rca.json"
+  ],
+  "failure_class": null,
+  "verified_at": "2026-10-26T02:34:06.618661+08:00",
+  "real_model_http_added": 0,
+  "source_commits": {
+    "yijie-codex": "a28130abb13d0f99a00107cd513a653bae878b77",
+    "yijie-contracts": "1b357cce0575c492f3715b316ee5f254051acf80",
+    "yijie-agent-host": "090c2dbeeeceb0fc87e576d8e13f5c339bf106f0",
+    "yijie-desktop": "ea9b1e499d86bb92eea360a62707027485790e22",
+    "yijie-connectors": "7ea3df41818fd69f4736722d01f0686d584d1a71",
+    "yijie-skills": "595c927ae101d3d31c234f60565041eee0864680"
+  }
+}

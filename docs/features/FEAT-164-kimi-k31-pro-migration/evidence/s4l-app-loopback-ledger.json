@@ -1,0 +1,55 @@
+{
+  "scope": "FEAT-164 S4K synthetic App acceptance, not real model qualification",
+  "external_requests": 0,
+  "attempts": 4,
+  "requests": [
+    {
+      "ordinal": 1,
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "case": "KIMI",
+      "response_kind": "text",
+      "request_sha256": "0992f2081320fd7fe923cc3de1bfda1862566cd6c894aa8a228862ea2e4eafcc",
+      "tool_count": 13,
+      "input_only": false,
+      "image_inputs": 0
+    },
+    {
+      "ordinal": 2,
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "case": "STREAM",
+      "response_kind": "text",
+      "request_sha256": "971be0b2924cd56bbbd1fee96febfc17d6fd57a6e2c73ad88e3251dba4debfc9",
+      "tool_count": 13,
+      "input_only": false,
+      "image_inputs": 0,
+      "stream_outcome": "client_closed_stream"
+    },
+    {
+      "ordinal": 3,
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "case": "CONTINUE",
+      "response_kind": "text",
+      "request_sha256": "a3c4a85d7aad415ea3323caac55a4bc32b3ecd4edfcb57b908925fcb94e81dd6",
+      "tool_count": 13,
+      "input_only": false,
+      "image_inputs": 0
+    },
+    {
+      "ordinal": 4,
+      "model": "MiniMax-M3",
+      "effort": "high",
+      "case": "MINIMAX",
+      "response_kind": "text",
+      "request_sha256": "fef7f07a7b33ee9bc2b4d0358dd56a978e0611060872d82ad22cb05093a79ae9",
+      "tool_count": 13,
+      "input_only": false,
+      "image_inputs": 0
+    }
+  ],
+  "rejected": [],
+  "state": "stopped_normally",
+  "limit": 4
+}

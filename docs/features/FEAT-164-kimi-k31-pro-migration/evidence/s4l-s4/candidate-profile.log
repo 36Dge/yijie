@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: FEAT-164 explicit ordinary profile
+ok 1 - FEAT-164 explicit ordinary profile
+  ---
+  duration_ms: 1.630125
+  type: 'test'
+  ...
+# Subtest: FEAT-164 explicit market profile
+ok 2 - FEAT-164 explicit market profile
+  ---
+  duration_ms: 0.227208
+  type: 'test'
+  ...
+# Subtest: FEAT-164 explicit experts profile
+ok 3 - FEAT-164 explicit experts profile
+  ---
+  duration_ms: 0.111875
+  type: 'test'
+  ...
+# Subtest: FEAT-164 explicit media profile
+ok 4 - FEAT-164 explicit media profile
+  ---
+  duration_ms: 0.120542
+  type: 'test'
+  ...
+# Subtest: FEAT-164 default stays ordinary and unknown profile cannot activate
+ok 5 - FEAT-164 default stays ordinary and unknown profile cannot activate
+  ---
+  duration_ms: 0.08075
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 71.099375

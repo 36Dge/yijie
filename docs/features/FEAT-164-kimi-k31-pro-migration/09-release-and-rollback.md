@@ -1,6 +1,6 @@
 # FEAT-164 激活与回滚候选Runbook
 
-> 最新按[38 当前真实G2V与最终缺项](38-current-real-g2v-and-final-gaps.md)：本轮3次真实文本HTTP全部完成，42/50/8、保存、两次同源重开零新增调用及正常清理通过；累计5/5次数已耗尽，累计保守上界14.679001元含旧unknown预占。最小文本G2V PASS；完整TCONF/G3、三个final和日常切换仍未完成。以下旧记录只按原时间与来源解释。
+> 最新按[39 证据绑定与三项最终验收](39-evidence-binding-and-final-verdicts.md)：当前来源141项＋4source和可达App验证通过，新增真实模型0；S1证据收口，S2/S3/S4保留完整纵向缺项。视觉单项PASS；core及Runtime checkpoint完整teardown未通过。两份真实账本、旧预占和日常库保持。以下旧记录按原时间与来源解释。
 
 > 2026-10-26最新续办以[36 当前离线资格与下一步](36-current-offline-qualification-and-next-gate.md)为准：当前S1/S2/S3及S4专家/媒体/辅助/旧线程安全检查通过，产品代码未改；候选无旧K3会话/计划可自然升级。完整G2V/TCONF/final与日常cutover仍缺，新真实HTTP许可0；后续避免反复运行已通过子集。
 
@@ -65,3 +65,8 @@ G4前三项final verdict独立；换source/runtime/harness后相关结果STALE�
 ## S4h 生成入口与计划验收（2026-10-25）
 
 本轮只有Desktop验证入口提交1b5adcf，默认检查/产品wire及所有旧锁保持；App沿同canonical新构建验收，原合成计划最终恢复Kimi且关闭。回退验证入口不降级用户数据或恢复旧执行授权。
+
+
+## S4L 退出与备份边界
+
+候选正常退出后Runtime SQLite仍可能保留有效且未backfill的WAL；只复制主数据库不能代表完整状态。此次完整DB/WAL/SHM审计副本可只读一致读取，未手工checkpoint或删除原文件；完整checkpoint责任仍需收敛。日常迁移/入口切换继续未授权，不能用本轮视觉PASS替代core/teardown批准。

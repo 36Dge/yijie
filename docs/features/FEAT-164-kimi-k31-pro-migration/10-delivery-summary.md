@@ -1,6 +1,6 @@
 # FEAT-164 阶段交付
 
-> 最新按[38 当前真实G2V与最终缺项](38-current-real-g2v-and-final-gaps.md)：本轮3次真实文本HTTP全部完成，42/50/8、保存、两次同源重开零新增调用及正常清理通过；累计5/5次数已耗尽，累计保守上界14.679001元含旧unknown预占。最小文本G2V PASS；完整TCONF/G3、三个final和日常切换仍未完成。以下旧记录只按原时间与来源解释。
+> 最新按[39 证据绑定与三项最终验收](39-evidence-binding-and-final-verdicts.md)：当前来源141项＋4source和可达App验证通过，新增真实模型0；S1证据收口，S2/S3/S4保留完整纵向缺项。视觉单项PASS；core及Runtime checkpoint完整teardown未通过。两份真实账本、旧预占和日常库保持。以下旧记录按原时间与来源解释。
 
 > 2026-10-26最新续办以[36 当前离线资格与下一步](36-current-offline-qualification-and-next-gate.md)为准：当前S1/S2/S3及S4专家/媒体/辅助/旧线程安全检查通过，产品代码未改；候选无旧K3会话/计划可自然升级。完整G2V/TCONF/final与日常cutover仍缺，新真实HTTP许可0；后续避免反复运行已通过子集。
 
