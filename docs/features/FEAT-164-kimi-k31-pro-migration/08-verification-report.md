@@ -1,10 +1,17 @@
 # FEAT-164 实际验证记录
 
-> 最新（2026-10-25）：唯一真实请求 HTTP400、无 usage，G2V未通过；已自行采集并修正 include 规范差异，r2源码/契约/下游已本地固化，离线检查通过。实际来源、预算预占与限制见 [19 HTTP400审计](19-responses-400-audit.md)；下方源候选结论按其原日期保留。
+## 当前有效状态（2026-10-25，30元单次续验）
 
-> 2026-10-25 用户已明确恢复，沿用 20 元及搜索/图片授权。当前进度与预算边界见 [18 恢复实施记录](18-resumed-g2v.md)；17 保留暂停时历史状态。G2V 尚未通过。
+| 项目 | 当前结论 |
+|---|---|
+| 来源与工程门禁 | Runtime r2 / Contracts / Host固定；Desktop40908c7独立固化；G2A及当前Harness PASS |
+| 真实G2V | 本次新增唯一HTTP200，正确答复42、usage/保存/重开/无补发/正常清理及组合oracle PASS；r1 FAIL保留 |
+| 预算与请求 | 累计30元；仅新增1HTTP已耗尽。旧预占14.188544元＋本次保守0.139590元＝14.328134元；不再新增请求 |
+| 已通过历史 | r2 canonical实际App本机合成答复、保存、重开、正常退出；不等于真实模型通过 |
+| 尚未完成 | S1—S4、TCONF-164-01—04及三个final；不放行日常库迁移或发布 |
+| Git | 仅FEAT-164本地提交已获授权，不推送；保留其它需求改动 |
 
-> 2026-10-25 当前进度：原隔离清单三仓已本地提交，G2A PASS；Host/Desktop 最小候选及普通本机联调完成，G2V、S1—S4/final 仍 pending。当前证据和续办边界以 [16 下游候选审计](16-downstream-candidate-audit.md) 与 feature.yaml 为准；以下早期阶段记录保留其历史含义。
+本轮权威为[20 单次续验](20-budget-resume-and-g2v.md)、feature.yaml和追加后的真实账本。13—19按各自时间与来源保留历史语义。TCONF-164-01—04仍为计划目标，执行前核实selector存在且测试命中数非零。
 
 ## 源候选阶段结论（2026-10-24 历史）
 
@@ -67,3 +74,62 @@ Owner已确认方案并授权实施。G0/G1/G2 pass，G2A及后续Gate/slices pe
 <!-- evidence: E164-OFFLINE-RCA -->
 
 Owner当前已明确接受候选与离线比较结论；按此授权单次运行bedf4159完整离线基线比较，exit0，原失败不删除。[实际复核日志](evidence/accepted-offline-baseline-recheck.log)。Runtime本地提交57753db451b29a49315ddcb6449ca146171c4de7、Contracts本地提交b0060c8bc4fb924cec14d98b193c32c69482b7b7，双consumer pin已从对应Git对象同步并校验；Go新包仅编译通过，不算行为测试。
+
+
+<a id="E164-R2-HARNESS-POSITIVE"></a>
+<!-- evidence: E164-R2-HARNESS-POSITIVE -->
+
+历史r2本机正控：[实际观测](evidence/g2v-r2-harness-positive.json)、[固定来源](evidence/g2v-r2-provenance.json)。只覆盖当时来源的本机合成路径。
+
+<a id="E164-R2-HARNESS-CONTROLS"></a>
+<!-- evidence: E164-R2-HARNESS-CONTROLS -->
+
+历史r2普通四类判定、正常超时和清理：[控制日志](evidence/g2v-r2-harness-controls.log)。未做故障注入或强杀。
+
+<a id="E164-R2-HARNESS-VERDICT"></a>
+<!-- evidence: E164-R2-HARNESS-VERDICT -->
+
+历史r2本机无正文判定：[回执](evidence/g2v-r2-harness-verdict.json)。不授予真实G2V。
+
+<a id="E164-UI-OBSERVER-RCA"></a>
+<!-- evidence: E164-UI-OBSERVER-RCA -->
+
+追加RCA：原[UI观察事件](evidence/g2v-r1-ui-observer-incident.json)共三次等价观察超时。原始登记07:51与后续10:28记录是记载时间，不能冒充每次发生时间；第三次精确时间未保留，前两次逐事件时间亦未知。原结果DIAGNOSIS_REQUIRED保持。用户正常退出后亲自完成同一候选的合成正控，证明不能仅凭控制器超时认定产品失败。此后将资格工作树置于可观察的正常路径并执行项目标准canonical重建，实际CUA绑定、发送、保存/重开和退出通过，见r2正控。当前可观察性已恢复；唯一底层OS原因未证实，不再机械重复隐藏路径尝试。禁止强杀/替换程序/权限破坏的边界保持；本轮只在标准可见canonical路径继续。
+
+<a id="E164-R1-REAL-FAIL"></a>
+<!-- evidence: E164-R1-REAL-FAIL -->
+
+历史唯一真实失败：[原观测](evidence/g2v-real-attempt-01.json)、[旧预算逐字快照](evidence/g2v-real-budget-ledger-before-30.json)、[400审计](19-responses-400-audit.md)。HTTP400/无usage，14.188544元未知预占保留，不改成成功或零费用。
+
+
+<a id="E164-30-HARNESS-POSITIVE"></a>
+<!-- evidence: E164-30-HARNESS-POSITIVE -->
+
+当前40908c7 canonical本机正控PASS：[实际观测](evidence/g2v-30-harness-positive.json)、[固定来源](evidence/g2v-30-provenance.json)。同一合成答复保存/重开保持，fixture共1请求、外部0；App两次及fixture正常退出0，18083/18086释放。
+
+<a id="E164-30-HARNESS-CONTROLS"></a>
+<!-- evidence: E164-30-HARNESS-CONTROLS -->
+
+当前固定Desktop来源的四类判定、正常超时/cleanup及真实G2V组合控制：[7项判定](evidence/g2v-30-pinned-verdict-controls.log)、[15项预算控制](evidence/g2v-30-pinned-budget-controls.log)、[命令退出码](evidence/g2v-30-pinned-tests.json)。普通状态和协作取消，不强杀或攻击注入。
+
+<a id="E164-30-HARNESS-VERDICT"></a>
+<!-- evidence: E164-30-HARNESS-VERDICT -->
+
+本机Harness判定：[无正文回执](evidence/g2v-30-harness-verdict.json)。真实模型成功还需新oracle与真实UI/账本组合。
+
+<a id="E164-30-REAL-G2V"></a>
+<!-- evidence: E164-30-REAL-G2V -->
+
+本次真实续验当前NOT RUN。批准累计30元且只新增1次模型HTTP；授权映射见[封闭授权](evidence/g2v-30-authorization.json)，原账本及预占快照保留。执行后在此追加真实结果，不覆盖原r1失败。
+
+
+### E164-30-REAL-G2V 追加实际结果
+
+2026-10-25 11:00:34（应用界面时间）发送唯一新增真实回合。HTTP200，response.model为kimi-k3.1-pro，max；唯一response.completed/status=completed，完整流，实际回答42。输入10450、输出55 tokens，无原生搜索/图片。当前计量费上界0.139590元，加旧14.188544元未知预占共14.328134元；不是供应商精确账单。额度次数已耗尽，正常退出后账本halted=true/stopped_normally，重复应用同一授权不会补额或改写账本。
+
+实际[UI/清理观测](evidence/g2v-30-real-observation.json)、[组合判定PASS](evidence/g2v-30-real-verdict.json)、[真实答复](evidence/g2v-30-real-answer.ax.txt)、[重开历史](evidence/g2v-30-real-history.ax.txt)、[截图](evidence/g2v-30-real-answer.png)、[当前账本](evidence/g2v-real-budget-ledger.json)、[授权不能补额](evidence/g2v-30-consumed-resume-check.json)。两次App及计量器均正常退出0，端口释放，没有新增补发。
+
+本次仅通过预算受限的文本纵向可行性；不证明原始默认请求、图片、工具、搜索、S1—S4或三个final。后续仍先落实S1活动身份与退休准入/配置，再依次S2历史恢复、S3计划保护、S4全调用面；按每片Contract First/freshness，不放行日常库迁移或发布。未知原HTTP400的唯一根因仍不宣称已证明。
+
+
+最终strict/G2V、claims和独立Harness校验均PASS，见[检查回执](evidence/g2v-30-final-checks.json)；[结构化复审](evidence/g2v-30-final-review.json)确认旧行/预占、来源及其它需求保留。原r1 Gate证据字段另以[历史快照](evidence/g2v-r1-vertical-evidence-snapshot.json)保留，不被当前PASS覆盖。

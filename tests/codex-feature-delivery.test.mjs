@@ -607,6 +607,30 @@ test("G2V rejects an unqualified harness", () => {
   assert.ok(result.errors.some((error) => error.includes("qualification.status must be PASS")));
 });
 
+test("Harness qualification can be checked without claiming real G2V success", () => {
+  const data = validV2();
+  data.gates.G2V_vertical_feasibility = "fail";
+  data.vertical_feasibility.evidence.status = "NOT RUN";
+  const before = structuredClone(data);
+  assert.deepEqual(validateFeatureData(data, {harnessId: "H-VERTICAL-001"}).errors, []);
+  assert.deepEqual(data, before);
+  assert.ok(validateFeatureData(data, {gate: "G2V"}).errors.length > 0);
+});
+
+test("Independent Harness check still enforces qualification and canonical evidence refs", () => {
+  const data = validV2();
+  data.runtime_harnesses[0].qualification.positive_control.evidence_ref = "evidence/ordinary.json";
+  assert.ok(validateFeatureData(data, {harnessId: "H-VERTICAL-001"}).errors.some(e => e.includes("08-verification-report.md#")));
+  data.runtime_harnesses[0].qualification.status = "NOT RUN";
+  assert.ok(validateFeatureData(data, {harnessId: "H-VERTICAL-001"}).errors.some(e => e.includes("qualification.status")));
+  assert.ok(validateFeatureData(validV2(), {harnessId: "missing"}).errors.some(e => e.includes("missing harness")));
+});
+
+test("Independent Harness check cannot change profile or combine with another gate", () => {
+  assert.ok(validateFeatureData(validDemoV3(), {harnessId: "H-VERTICAL-001"}).errors.some(e => e.includes("production_hardened")));
+  assert.ok(validateFeatureData(validV2(), {harnessId: "H-VERTICAL-001", gate: "G2V"}).errors.some(e => e.includes("cannot be combined")));
+});
+
 test("temporal contract invariants require executable conformance tests", () => {
   const data = validV2();
   data.temporal_contract_matrix.invariants[0].executable_tests = [];

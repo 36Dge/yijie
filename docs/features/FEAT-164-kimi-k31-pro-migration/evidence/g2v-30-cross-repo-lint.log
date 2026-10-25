@@ -1,0 +1,23 @@
+pnpm lint
+$ node scripts/repo-manifest.mjs validate && node scripts/check-contract-governance.mjs
+Validated 11 repository entries.
+Validated central Contract First governance and 11 sibling AGENTS.md files.
+./scripts/lint-all.sh
+Checking workspace shell syntax...
+lint: yijie-codex
+bash -n scripts/*.sh
+./scripts/lint-python.sh
+Python script syntax is valid.
+lint: yijie-desktop
+YIJIE_DESKTOP_CONTRACTS_DIR="../yijie-contracts" pnpm generate:check
+Scope: all 3 workspace projects
+✓ Lockfile passes supply-chain policies (verified 16d ago)
+Lockfile is up to date, resolution step is skipped
+Already up to date
+
+Done in 325ms using pnpm v11.25.0
+$ node scripts/generate-public-api.mjs --check && node scripts/check-agent-host-contract.mjs --check && node scripts/check-agent-host-v3-contract.mjs && node scripts/check-agent-host-skills-contract.mjs && node scripts/check-agent-host-v4-contract.mjs && pnpm check:native
+contracts checkout has tracked changes
+[ELIFECYCLE] Command failed with exit code 1.
+make[1]: *** [lint] Error 1
+make: *** [lint] Error 2

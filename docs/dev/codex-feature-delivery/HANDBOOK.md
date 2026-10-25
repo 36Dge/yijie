@@ -126,6 +126,8 @@ D4 表示“本地真实 Demo 可用”，不表示 G4、Production Ready 或 De
 
 ## B. production_hardened：完整生产生命周期
 
+可在真实G2V前独立检查已完成的Harness资格：`node scripts/validate-feature-package.mjs <FEATURE_DIR> --harness <HARNESS_ID>`（脚本位于本手册同目录的scripts/）。该入口复用G2A、失败熔断、Harness资格和08报告锚点检查，不修改Gate状态、不执行真实调用，也不授予G2V；无需把尚未执行的G2V临时改为PASS。
+
 ## 一、工作方式
 
 ### 1. AI 的正确定位

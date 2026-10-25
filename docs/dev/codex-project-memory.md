@@ -1,18 +1,18 @@
 # 易界项目 Codex 长期协作记忆
 
-## FEAT-164 r2本机资格通过，真实G2V未通过（2026-10-25）
+## FEAT-164 预算恢复与单次文本G2V通过（2026-10-25）
 
-用户已恢复实施，沿用20元累计预算及搜索、图片授权；只做FEAT-164本地提交、不推送，保留其它需求。用户要求自行分析HTTP400，不再让用户代查。当前权威为[19审计](../features/FEAT-164-kimi-k31-pro-migration/19-responses-400-audit.md)、feature.yaml和g2v-real-budget-ledger.json；17为历史暂停，18为过程记录。
+用户明确确认：累计30元，只新增1次真实模型HTTP，失败即停；保留旧账本与预占，FEAT-164仅本地提交、不推送，已有工作区和长期安全条款保持。本轮权威为[20续验记录](../features/FEAT-164-kimi-k31-pro-migration/20-budget-resume-and-g2v.md)、08当前证据锚点、feature.yaml和真实账本。17为暂停历史，18—19为过程，不据旧20元/8HTTP状态恢复。
 
-当前精确来源：Runtime074417e5e2f5f55704ea5e1777e7a22d514076b4 → Contractsf2819c66a2368aaff37216a46c48d5cd81df1747 → Host5022435a6272263e66e46a41b7ed7c3f9fb6caf9 → Desktop74f2f74d866483463df7236f891aae62b00539ba。已仅本地提交。验收目录CrossBSD/feat164-qualification-20261025，三个detached worktree干净；原工作区其它改动及共享launcher用户差异保持。
+固定来源：Runtime074417e5e2f5f55704ea5e1777e7a22d514076b4 → Contractsf2819c66a2368aaff37216a46c48d5cd81df1747 → Host5022435a6272263e66e46a41b7ed7c3f9fb6caf9 → Desktop40908c75af14a9cbd65d1b0cee96ba510d6afa8f。后者只增改四个验收脚本，公共产品wire不变；三个clean detached工作树位于CrossBSD/feat164-qualification-20261025。其它需求文件逐字保留，共享launcher本轮未改。
 
-r1唯一真实回合09:59:12返回HTTP400、无usage、无回答；失败UI和历史保留，正常退出。r2已修正本机确认的include规范差异：新Kimi不再请求reasoning.encrypted_content；预算适配器去掉搜索时同步去掉搜索include，拒绝未列值并保留封闭错误提示。原始400错误正文未保留，不能宣称唯一根因已证实；原r1产物、0001—0007和上游源码保留。
+新增显式有锁、绑定旧账本SHA的幂等30元恢复，保留旧unknown行和14.188544元预占；总HTTP上限2。完成/失败/在途重启/重复授权都不补额。真实oracle要求HTTP200、精确model/max、唯一completed/statuscompleted、完整流/有效usage、可见正确答复、持久重开/无补发/正常清理。15预算+7判定控制，元仓lint/53测试、标准canonical构建及当前本机Harness通过。全仓make lint仍因既有Contracts dirty被拦住，未称全仓通过；禁止的旧攻击fixture suite未运行。
 
-G0/G1/G2/G2A及当前r2 Harness通过：Runtime标准release/269schema与r1相同/正常stdio、4项FEAT164请求测试、coreClippy、Contracts12Node+2Rust+7基线、Host3聚焦与3次真实Runtime本机调用、Desktop标准打包、4状态控制和8预算控制；当前App实际合成答复/保存/同产物重开/正常退出通过。证据g2v-r2-provenance.json、g2v-r2-harness-positive.json和相关日志。全部App/fixture/meter正常退出，端口18083/18086释放，无活动exec服务需要重用。
+唯一新增真实请求于11:00:34发起：HTTP200，kimi-k3.1-pro/max，input10450/output55，实际答复42；正常保存、同产物重开保持且无补发。App两次及meter均正常退出0，18083/18086释放，没有活动服务需复用。组合oracle PASS；G2V仅覆盖output8192/移除原生搜索的预算受限文本链，不证明默认请求/图片/工具/搜索。
 
-G2V未通过；r2真实复验NOT RUN，S1—S4/final未执行，不得跨门禁继续大规模实现。真实账本累计1HTTP，14.188544元是保守预占而非实际扣费；halted=true、stopped_normally。剩5.811456元不足单请求14.188544元预占；无可验证usage前不清账、不当免费、不提额度、不通过降低预占绕过停止。20元与搜索/图片授权持续有效，但不取消未知usage停止条件。
+当前账本累计2HTTP（旧400＋新200），旧14.188544元未知预占保留＋本次0.139590元保守上界＝14.328134元，非供应商实际账单。schema2、halted=true、stopped_normally；新增HTTP余额0，同授权重复应用返回剩0且账本字节不变。禁止用剩余金额、搜索/图片旧许可或重新启动再次调用。旧r1原账本逐字快照及行摘要保留；400唯一根因仍未证明，不伪造usage或清零。
 
-后续先核对19和预算账本，不重复索取已给出的本地提交/20元授权；不宣称模型迁移完成。旧会话迁移/恢复、never-sent取消、计划退役、辅助调用准入和最终组合仍未完成。长期禁止强杀、权限破坏、可执行替身及攻击fixture；日常库未激活/迁移。
+FEAT-164仍active，S1—S4/TCONF-164-01—04/三个final未完成；候选仅fresh-home/SQL0或38，日常入口/旧库迁移未激活。下一阶段按既有实施授权先做S1活动身份/配置与退休准入及普通离线测试，逐片Contract First与freshness；新来源需要的真实复验须另有次数许可，不能借本次G2V直接宣称G3或整体完成。日常库迁移、push/tag/release未授权。禁止强杀、权限破坏、程序替身及攻击fixture。
 
 2026-10-08 Sorftime 最新状态：Owner已填密钥，但两条19:19/19:20元数据初始化仍unavailable。审计发现通用HTTP迁移漏带旧链路已验证有效的User-Agent；已补真实yijie-mcp-worker/0.1.0及受限HTTP阶段/状态码诊断，未伪装旧客户端、未改固定Codex。63本地测试/lint/标准App构建通过，说明已左对齐。新worker da3c31537e6be46bb826a2ec44b0541456cbbf2810772aabbba5df1023400f81。尚未真实复验，已申请仅1次连接/发现、0模型/0业务；因先前失败不自动重发，等待用户答复。Keyring已有用户保存密钥，不要再要求重填/卸载或读取密钥。详见FEAT-157/21及sorftime-user-agent-20261008证据。
 

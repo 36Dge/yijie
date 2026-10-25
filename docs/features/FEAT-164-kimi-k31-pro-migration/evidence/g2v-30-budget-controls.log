@@ -1,0 +1,20 @@
+test_adjustments_are_explicit_and_tool_choice_is_preserved (feat164_budget_meter_test.BudgetControls.test_adjustments_are_explicit_and_tool_choice_is_preserved) ... ok
+test_duplicate_terminal_and_incomplete_stream_do_not_release_reservation (feat164_budget_meter_test.BudgetControls.test_duplicate_terminal_and_incomplete_stream_do_not_release_reservation) ... ok
+test_failed_resume_keeps_both_reservations_and_cannot_refill (feat164_budget_meter_test.BudgetControls.test_failed_resume_keeps_both_reservations_and_cannot_refill) ... ok
+test_http_error_hints_are_closed_and_never_release_unknown_usage (feat164_budget_meter_test.BudgetControls.test_http_error_hints_are_closed_and_never_release_unknown_usage) ... ok
+test_missing_usage_stays_reserved_and_stops_restart (feat164_budget_meter_test.BudgetControls.test_missing_usage_stays_reserved_and_stops_restart) ... ok
+test_new_inflight_on_restart_is_closed_and_original_row_is_verified (feat164_budget_meter_test.BudgetControls.test_new_inflight_on_restart_is_closed_and_original_row_is_verified) ... ok
+test_normal_close_retains_ledger_and_image_allowance (feat164_budget_meter_test.BudgetControls.test_normal_close_retains_ledger_and_image_allowance) ... ok
+test_old_per_row_reservation_survives_global_policy_changes (feat164_budget_meter_test.BudgetControls.test_old_per_row_reservation_survives_global_policy_changes) ... ok
+test_request_and_reservation_are_bounded_before_network (feat164_budget_meter_test.BudgetControls.test_request_and_reservation_are_bounded_before_network) ... ok
+test_resume_preserves_history_and_allows_only_one_request_across_restart (feat164_budget_meter_test.BudgetControls.test_resume_preserves_history_and_allows_only_one_request_across_restart) ... ok
+test_resume_rejection_closes_admission_without_spending_or_refilling (feat164_budget_meter_test.BudgetControls.test_resume_rejection_closes_admission_without_spending_or_refilling) ... ok
+test_resume_rejects_wrong_source_scope_and_active_meter_lock (feat164_budget_meter_test.BudgetControls.test_resume_rejects_wrong_source_scope_and_active_meter_lock) ... ok
+test_search_removal_also_removes_only_documented_search_include (feat164_budget_meter_test.BudgetControls.test_search_removal_also_removes_only_documented_search_include) ... ok
+test_sse_observer_keeps_only_usage_and_public_terminal_metadata (feat164_budget_meter_test.BudgetControls.test_sse_observer_keeps_only_usage_and_public_terminal_metadata) ... ok
+test_usage_releases_only_reported_conservative_cost (feat164_budget_meter_test.BudgetControls.test_usage_releases_only_reported_conservative_cost) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.012s
+
+OK

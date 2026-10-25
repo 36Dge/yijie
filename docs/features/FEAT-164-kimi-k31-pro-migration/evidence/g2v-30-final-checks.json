@@ -1,0 +1,47 @@
+{
+  "recorded_at": "2026-10-25T03:03:51.724594+00:00",
+  "results": [
+    {
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "docs/features/FEAT-164-kimi-k31-pro-migration",
+        "--harness",
+        "H-F164-LOCAL"
+      ],
+      "exit_code": 0,
+      "log": "g2v-30-final-harness.log"
+    },
+    {
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "docs/features/FEAT-164-kimi-k31-pro-migration",
+        "--audit-claims"
+      ],
+      "exit_code": 0,
+      "log": "g2v-30-final-claims.log"
+    },
+    {
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "--gate",
+        "G2V",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "log": "g2v-30-final-G2V.log"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "g2v-30-final-diff.log"
+    }
+  ]
+}

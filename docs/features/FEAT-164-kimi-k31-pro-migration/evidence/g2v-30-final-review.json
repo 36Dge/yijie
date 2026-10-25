@@ -1,0 +1,60 @@
+{
+  "recorded_at": "2026-10-25T03:04:53.582149+00:00",
+  "repository_preservation": {
+    "yijie": {
+      "baseline_file_count": 239,
+      "changed_unrelated_files": [],
+      "head_now": "9218f052ab4ee64aa14ff5e91ec0284b6efee301",
+      "index_empty": true
+    },
+    "yijie-desktop": {
+      "baseline_file_count": 100,
+      "changed_unrelated_files": [],
+      "head_now": "40908c75af14a9cbd65d1b0cee96ba510d6afa8f",
+      "index_empty": true
+    },
+    "yijie-agent-host": {
+      "baseline_file_count": 55,
+      "changed_unrelated_files": [],
+      "head_now": "5022435a6272263e66e46a41b7ed7c3f9fb6caf9",
+      "index_empty": true
+    },
+    "yijie-contracts": {
+      "baseline_file_count": 65,
+      "changed_unrelated_files": [],
+      "head_now": "f2819c66a2368aaff37216a46c48d5cd81df1747",
+      "index_empty": true
+    },
+    "yijie-codex": {
+      "baseline_file_count": 0,
+      "changed_unrelated_files": [],
+      "head_now": "074417e5e2f5f55704ea5e1777e7a22d514076b4",
+      "index_empty": true
+    }
+  },
+  "memory_partial_review": "Reconstructed start memory matches baseline SHA; only FEAT-164 block changed, retained FEAT-163 and rest byte-identical.",
+  "budget": {
+    "old_snapshot_sha256": "83983b80a6ffd19c42cd968384f1e09a62da912e817e4332abfe4edae1f28ca4",
+    "old_request_unchanged": true,
+    "old_unknown_reserved_micro_cny": 14188544,
+    "new_http": 1,
+    "total_http": 2,
+    "cumulative_upper_micro_cny": 14328134,
+    "remaining_new_http": 0,
+    "halted": true,
+    "stopped_normally": true
+  },
+  "runtime_and_downstream_changes": "Only Desktop verification scripts changed; Runtime/Contracts/Host HEADs unchanged this round.",
+  "source_worktrees_clean": {
+    "yijie-desktop": true,
+    "yijie-agent-host": true,
+    "yijie-contracts": true
+  },
+  "released_ports": {
+    "18083": true,
+    "18086": true
+  },
+  "new_safety_prohibited_tests_executed": false,
+  "scope": "G2V budgeted text only; S1-S4/final NOT RUN; no daily migration, push, tag or release",
+  "updated_document_links_exist": true
+}

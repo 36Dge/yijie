@@ -1559,12 +1559,17 @@ function validateG4(errors, data, context) {
   validateFinalVerdicts(errors, data, context);
 }
 
-function validateProductionData(data, { gate = "", sliceId = "" }, errors) {
+function validateProductionData(data, { gate = "", sliceId = "", harnessId = "" }, errors) {
   if (DEMO_GATES.has(gate)) {
     errors.push(`${gate} is only valid for delivery_profile: demo_fast`);
     return;
   }
   const context = validateV2Base(data, errors, gate);
+  if (harnessId) {
+    validateG2A(errors, data);
+    validateNoOpenBreaker(errors, data.failure_circuit_breaker, "Harness qualification");
+    validateHarnessQualified(errors, context.harnesses.get(harnessId), `runtime_harnesses.${harnessId}`);
+  }
   if (["G0", "G1", "G2"].includes(gate)) validateDesignGateChain(errors, data, gate);
   if (gate === "G2A") validateG2A(errors, data);
   if (gate === "G2V") validateG2V(errors, data, context);
@@ -1583,15 +1588,18 @@ function validateProductionData(data, { gate = "", sliceId = "" }, errors) {
   }
 }
 
-export function validateFeatureData(data, { gate = "", sliceId = "" } = {}) {
+export function validateFeatureData(data, { gate = "", sliceId = "", harnessId = "" } = {}) {
   const errors = [];
   const warnings = [];
   const schemaVersion = data?.schema_version;
+  if (harnessId && (gate || sliceId)) {
+    return {schemaVersion, errors:["harness qualification cannot be combined with a gate or slice"], warnings};
+  }
   if (schemaVersion === 1) {
     warnings.push(
       "LEGACY_SCHEMA_V1: historical read only; result does not prove G2V, per-slice G3, temporal contracts, harness qualification, split E2E, or the three-failure fuse",
     );
-    if (DOWNSTREAM_GATES.has(gate)) {
+    if (DOWNSTREAM_GATES.has(gate) || harnessId) {
       errors.push(`schema v1 must migrate to schema v2 before claiming ${gate}`);
     }
     return { schemaVersion, errors, warnings };
@@ -1601,12 +1609,13 @@ export function validateFeatureData(data, { gate = "", sliceId = "" } = {}) {
     return { schemaVersion, errors, warnings };
   }
   if (schemaVersion === 2) {
-    validateProductionData(data, { gate, sliceId }, errors);
+    validateProductionData(data, { gate, sliceId, harnessId }, errors);
     return { schemaVersion, errors, warnings };
   }
   const profile = validateV3Envelope(errors, data);
   validateTermination(errors, data, gate);
   if (profile === "demo_fast") {
+    if (harnessId) errors.push("harness qualification is only valid for production_hardened");
     if (gate.startsWith("G")) {
       errors.push(`${gate} is only valid for delivery_profile: production_hardened`);
     } else {
@@ -1614,7 +1623,7 @@ export function validateFeatureData(data, { gate = "", sliceId = "" } = {}) {
     }
   } else if (profile === "production_hardened") {
     const productionData = { ...data, schema_version: 2 };
-    validateProductionData(productionData, { gate, sliceId }, errors);
+    validateProductionData(productionData, { gate, sliceId, harnessId }, errors);
     if (["G5", "G6"].includes(gate) && normalized(data.exposure) !== "public") {
       errors.push(`${gate} requires exposure: public`);
     }
@@ -1921,6 +1930,7 @@ function parseArgs(argv) {
   let gate = "";
   let sliceId = "";
   let auditClaims = false;
+  let harnessId = "";
   let featureDir = "";
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
@@ -1932,15 +1942,19 @@ function parseArgs(argv) {
       index += 1;
     } else if (arg === "--audit-claims") {
       auditClaims = true;
+    } else if (arg === "--harness") {
+      harnessId = argv[++index] ?? "";
+      if (!harnessId || harnessId.startsWith("-")) throw new Error("--harness requires an ID");
     } else if (arg.startsWith("-")) throw new Error(`unknown option: ${arg}`);
     else if (!featureDir) featureDir = arg;
     else throw new Error("only one FEATURE_DIR may be specified");
   }
   if (!featureDir) throw new Error("FEATURE_DIR is required");
-  if (auditClaims && (gate || sliceId)) {
-    throw new Error("--audit-claims cannot be combined with --gate or --slice");
+  if (auditClaims && (gate || sliceId || harnessId)) {
+    throw new Error("--audit-claims cannot be combined with --gate, --slice or --harness");
   }
-  return { featureDir, gate, sliceId, auditClaims };
+  if (harnessId && (gate || sliceId)) throw new Error("--harness cannot be combined with --gate or --slice");
+  return { featureDir, gate, sliceId, auditClaims, harnessId };
 }
 
 function main() {
@@ -1961,7 +1975,9 @@ function main() {
     process.exitCode = 1;
     return;
   }
-  console.log(`PASS: feature.yaml schema v${result.schemaVersion} semantics are valid.`);
+  console.log(options.harnessId
+    ? `PASS: ${options.harnessId} qualification structure and evidence links are valid; this does not grant G2V.`
+    : `PASS: feature.yaml schema v${result.schemaVersion} semantics are valid.`);
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) main();

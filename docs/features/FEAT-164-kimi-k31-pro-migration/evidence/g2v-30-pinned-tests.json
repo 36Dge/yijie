@@ -1,0 +1,30 @@
+{
+  "recorded_at": "2026-10-25T02:56:02.726956+00:00",
+  "results": [
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "feat164_budget_meter_test.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": "g2v-30-pinned-budget-controls.log"
+    },
+    {
+      "command": [
+        "node",
+        "--test",
+        "scripts/feat164-verdict.test.mjs",
+        "scripts/feat164-g2v-verdict.test.mjs"
+      ],
+      "exit_code": 0,
+      "log": "g2v-30-pinned-verdict-controls.log"
+    }
+  ]
+}

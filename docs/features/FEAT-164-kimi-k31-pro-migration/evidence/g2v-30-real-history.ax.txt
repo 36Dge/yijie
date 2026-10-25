@@ -1,0 +1,72 @@
+Window: "易界 AI", App: 易界 AI FEAT-164.
+0 standard window 易界 AI, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: 任务对话 · 易界 AI, URL: tauri://localhost/chat/01a17100-b57e-7443-b1d7-eba7d7ba6ac3
+			3 text 界面缩放 100%
+			4 button (expanded) 收起侧栏, Secondary Actions: Collapse
+			5 container 主导航
+				6 image 易界
+				7 container 应用导航
+					8 content list
+						9 link 新建任务, Value: tauri://localhost/chat
+						10 link 我的店铺, Value: tauri://localhost/store
+						11 link 工作流, Value: tauri://localhost/workflows
+						12 link 技能, Value: tauri://localhost/plugins
+						13 link 定时任务, Value: tauri://localhost/scheduled-tasks
+						14 container
+							15 heading 任务, Value: 2
+								16 text 任务
+							17 container 任务：项目与对话
+								18 content list
+									19 button (collapsed) FEAT164 单次真实续验：请计算 17 + 25，只用一行回答结果，不使用工, Secondary Actions: Expand
+									20 button FEAT164 30元续验本机正控，请回复合成验证结果。
+									21 button FEAT164 r2 本机正控，请回复合成验证结果。
+									22 button FEAT164 本机请求字段核对，请回复合成验证结果。
+									23 button FEAT164 真实文本验收：请计算 17 + 25，只回复“FEAT164 实
+									24 button FEAT164 本机正控，请回复合成验证结果。
+					25 content list
+						26 link 设置, Value: tauri://localhost/settings
+			27 container FEAT164 单次真实续验：请计算 17 + 25，只用一行回答结果，不使用工
+				28 container
+					29 heading FEAT164 单次真实续验：请计算 17 + 25，只用一行回答结果，不使用工, Value: 1
+						30 text FEAT164 单次真实续验：请计算 17 + 25，只用一行回答结果，不使用工
+					31 text 已完成
+				32 container 任务对话记录
+					33 container 对话内容
+						34 container 对话 1
+							35 container 对话 1
+								36 container 本轮对话内容
+									37 container 用户消息
+										38 text FEAT164 单次真实续验：请计算 17 + 25，只用一行回答结果，不使用工具、搜索或文件操作。
+										39 container 用户消息操作
+											40 container 2026/10/25 11:00:34
+												41 text 11:00
+											42 button 复制文本
+									43 button (collapsed) 已完成 3s，展开本轮处理过程, Secondary Actions: Expand
+									44 container 模型回答
+										45 container 模型回答
+											46 text 42
+											47 container 模型回答操作
+												48 button 复制文本
+				49 container 任务输入区
+					50 text 输入你的任务需求
+					51 text entry area (settable) 输入你的任务需求, Value: [text entry area], Placeholder: 继续输入任务需求…
+						52 text 继续输入任务需求…
+					53 pop up button 可添加文件、技能、连接器
+					54 pop up button 权限审批：请求批准, Help: 更改当前任务的权限审批模式
+					55 pop up button 关联店铺, Help: 关联店铺（交互演示）
+					56 pop up button 选择对话模型，当前 Kimi K3.1 Pro, Help: Kimi K3.1 Pro
+					57 button (disabled) 发送任务
+				58 text 已完成
+	59 close button
+	60 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	61 minimize button
+62 menu bar
+	63 易界 AI FEAT-164
+	64 File
+	65 Edit
+	66 View
+	67 Window
+	68 Help
+
+The focused UI element is 29 heading FEAT164 单次真实续验：请计算 17 + 25，只用一行回答结果，不使用工, Value: 1

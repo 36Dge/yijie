@@ -1,10 +1,17 @@
 # FEAT-164 实施计划与当前门禁
 
-> 最新（2026-10-25）：首次真实G2V返回HTTP400、无usage，14.188544元预占保留。已自行修正include规范差异并本地固化r2，离线验证进展见[19](19-responses-400-audit.md)；更早阶段的授权、预算与通过结论仅按当时范围解释。
+## 当前有效状态（2026-10-25，30元单次续验）
 
-> 2026-10-25 当前进度：原隔离清单三仓已本地提交，G2A PASS；Host/Desktop 最小候选及普通本机联调完成，G2V、S1—S4/final 仍 pending。当前证据和续办边界以 [16 下游候选审计](16-downstream-candidate-audit.md) 与 feature.yaml 为准；以下早期阶段记录保留其历史含义。
+| 项目 | 当前结论 |
+|---|---|
+| 来源与工程门禁 | Runtime r2 / Contracts / Host固定；Desktop40908c7独立固化；G2A及当前Harness PASS |
+| 真实G2V | 本次新增唯一HTTP200，正确答复42、usage/保存/重开/无补发/正常清理及组合oracle PASS；r1 FAIL保留 |
+| 预算与请求 | 累计30元；仅新增1HTTP已耗尽。旧预占14.188544元＋本次保守0.139590元＝14.328134元；不再新增请求 |
+| 已通过历史 | r2 canonical实际App本机合成答复、保存、重开、正常退出；不等于真实模型通过 |
+| 尚未完成 | S1—S4、TCONF-164-01—04及三个final；不放行日常库迁移或发布 |
+| Git | 仅FEAT-164本地提交已获授权，不推送；保留其它需求改动 |
 
-> 实施授权更新：Owner现已确认FEAT-164方案并要求开始实施和审计验证。此前“仅文档”段落是上一轮历史边界；当前状态以feature.yaml及13-implementation-log.md为准。G0/G1/G2记录本次方案确认；G2A/G2V及产品完成门禁仍未通过。无新增Git/付费/日常库激活许可。
+本轮权威为[20 单次续验](20-budget-resume-and-g2v.md)、feature.yaml和追加后的真实账本。13—19按各自时间与来源保留历史语义。TCONF-164-01—04仍为计划目标，执行前核实selector存在且测试命中数非零。
 
 ## 门禁和技术依赖
 
@@ -39,10 +46,10 @@ G2前不进行产品实施。G2/G2A之后允许的只是受限契约/垂直候�
 
 Runtime → Contracts runtime projection → Host runtime constants/candidate → Desktop实际功能组合选择的artifact-media / experts / chat-model Host build candidate → canonical打包/运行receipt。模型业务源与consumer生成先完成；最终freeze必须绑定当前所有启用契约/专家/资源来源，覆盖experts=true且artifact_media=false的独立分支。
 
-本轮没有新branch/commit/PR。后续Git动作须明确授权，依赖提交/PR逐仓可审，候选不可变版本不能从dirty sibling虚构。具体实际SHA在产出后登记，不把evidence里的HEAD当新实现身份。
+用户已授权仅本地固化FEAT-164及必要验证治理记录；按专属路径/差异逐仓提交，不混入FEAT-162/163。不新建branch、PR、推送、tag或发布；构建从固定提交的干净资格工作树产生。实际SHA产出后登记。
 
 ## 证据失效与停止
 
 每个G3单片评定，commits覆盖自身和transitive前置，contract/fixture/harness/platform/bootstrap引用精确。任一变化使相关证据STALE。三次等价失败按fingerprint累计，进入append-only RCA，收敛唯一下一动作后才可在授权下重试；禁止第四次机械尝试。
 
-设计变更回跳01/03，契约与语义回04/04A，数据/恢复回05，验证阈值回06。当前方案与实施已获Owner确认；仅已完成源候选阶段，未获后续G2A/G2V或发布批准。
+设计变更回跳01/03，契约与语义回04/04A，数据/恢复回05，验证阈值回06。当前方案与实施已获Owner确认；G2A、当前Harness及预算受限文本G2V已通过。判定与预算恢复、本次唯一真实请求及正常重开已完成；S1—S4仍须逐片实施和新鲜证据，不能借用本次通过。后续代码改变使相应来源证据过期，追加真实模型请求须另有明确额度。

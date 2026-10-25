@@ -1,0 +1,40 @@
+{
+  "commits": [
+    {
+      "repository": "yijie-codex",
+      "full_sha": "57753db451b29a49315ddcb6449ca146171c4de7"
+    },
+    {
+      "repository": "yijie-contracts",
+      "full_sha": "b0060c8bc4fb924cec14d98b193c32c69482b7b7"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "full_sha": "ff7d05dae4b3a48285e9bed63ba7253081da234c"
+    },
+    {
+      "repository": "yijie-desktop",
+      "full_sha": "ba3ed160fc2c0bab04ccbe80c45457b30af233bd"
+    }
+  ],
+  "command": "node content-free verdict over g2v-real-budget-ledger.json; canonical App + CUA observations",
+  "environment": "macOS aarch64; r1 immutable candidate; approved budgeted output8192/no-native-search adapter",
+  "exit_code": 1,
+  "status": "FAIL",
+  "verified_at": "2026-10-25T02:10:56.855Z",
+  "harness": {
+    "id": "H-F164-LOCAL",
+    "commit": "ba3ed160fc2c0bab04ccbe80c45457b30af233bd",
+    "digest": "ab2ad0d9cb05477c5e78b5755a56abff4ebc9f627847d534e71929699ea70f67"
+  },
+  "platform": "macOS aarch64",
+  "production_bootstrap": true,
+  "contract_refs": [],
+  "fixture_refs": [],
+  "refs": [
+    "evidence/g2v-real-attempt-01.json",
+    "evidence/g2v-real-attempt-01-verdict.log",
+    "evidence/g2v-real-budget-ledger.json",
+    "19-responses-400-audit.md"
+  ]
+}

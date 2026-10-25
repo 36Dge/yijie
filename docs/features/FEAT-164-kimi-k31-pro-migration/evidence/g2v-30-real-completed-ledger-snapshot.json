@@ -1,0 +1,93 @@
+{
+  "feature": "FEAT-164",
+  "limit_micro_cny": 30000000,
+  "max_http_requests": 2,
+  "scope": "budgeted_text_image_g2v_not_raw_request_or_search_qualification",
+  "charged_upper_micro_cny": 14328134,
+  "requests": [
+    {
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "original_max_output_tokens": null,
+      "max_output_tokens": 8192,
+      "image_count": 0,
+      "tool_choice_preserved": "auto",
+      "native_search_omitted": 1,
+      "request_adjustments": [
+        "bounded_max_output_tokens",
+        "omit_unpriced_native_search",
+        "json_encoding"
+      ],
+      "ordinal": 1,
+      "status": "unknown_reserved",
+      "reserved_micro_cny": 14188544,
+      "http_status": 400,
+      "forwarded_response_sha256": "c98003957181bc7c240571e681c173702816232ff201d0ff476b6233eb3a7942",
+      "forwarded_response_bytes": 211
+    },
+    {
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "original_max_output_tokens": null,
+      "max_output_tokens": 8192,
+      "image_count": 0,
+      "tool_choice_preserved": "auto",
+      "native_search_omitted": 1,
+      "native_search_include_omitted": [
+        "web_search_call.action.sources"
+      ],
+      "request_adjustments": [
+        "bounded_max_output_tokens",
+        "omit_unpriced_native_search",
+        "omit_search_include",
+        "json_encoding"
+      ],
+      "ordinal": 2,
+      "status": "settled",
+      "reserved_micro_cny": 14188544,
+      "http_status": 200,
+      "usage": {
+        "input_tokens": 10450,
+        "output_tokens": 55
+      },
+      "terminal": "response.completed",
+      "response_model": "kimi-k3.1-pro",
+      "terminal_count": 1,
+      "response_status": "completed",
+      "output_text_present": true,
+      "cache_ttl": "5m",
+      "native_search_calls": 0,
+      "forwarded_response_sha256": "83cd05b27eae1c6f063b7fe467178bc4fda772979a00a05593f2ba49fc1d4c7f",
+      "forwarded_response_bytes": 74186,
+      "stream_complete": true,
+      "charged_upper_micro_cny": 139590
+    }
+  ],
+  "halted": true,
+  "meter_state": "running",
+  "schema_version": 2,
+  "resume_receipt": {
+    "authorization": {
+      "schema_version": 1,
+      "feature": "FEAT-164",
+      "authorization_id": "FEAT-164-20261025-30CNY-ONE-HTTP",
+      "approved_by": "段成威（当前用户消息）",
+      "approved_on": "2026-10-25",
+      "approval_source": "current-user-confirmation-2026-10-25",
+      "previous_ledger_sha256": "83983b80a6ffd19c42cd968384f1e09a62da912e817e4332abfe4edae1f28ca4",
+      "limit_micro_cny": 30000000,
+      "additional_http_requests": 1,
+      "preserve_unknown_reservations": true,
+      "failure_policy": "stop",
+      "scope": "one_budgeted_text_g2v"
+    },
+    "authorization_sha256": "37e05a7c12f02c323a2ea294ff61d1f4fb7af662b71fc45267844ab1763d3baa",
+    "base_request_count": 1,
+    "base_requests_sha256": "9dfece48545046500cef20e7d02eaffabd0b36778b77219d3f1db5e09db9a3ff",
+    "acknowledged_unknown_ordinals": [
+      1
+    ],
+    "recorded_at": "2026-10-25T02:59:44.178048+00:00"
+  },
+  "stop_reason": "single_resume_request_consumed"
+}
