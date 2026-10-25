@@ -1,5 +1,7 @@
 # FEAT-164 实际验证记录
 
+> 当前（2026-10-25，UI延期/S2基础）：Owner允许锁屏所需步骤延期并先推进离线实施，UI仍NOT RUN。Host Store11、v2原回执/显式恢复及带数据SQL升级验证已本地固化；Native恢复接线/never-sent取消、S3/S4与完整G3/final尚未完成。真实模型新增0。最新权威见[22](22-ui-deferral-and-s2-foundation.md)和feature.yaml；下方旧阶段记录仅按其原来源和时间解释。
+
 > 当前S1（2026-10-25）：源实现、local/boundary及canonical构建已完成；本机新Kimi正控通过，暂停/MiniMax/重开及最终清理因Mac锁屏未完成，S1 G3不放行。新增真实模型HTTP为0，旧账本逐字保持。最新来源、未执行项和续办见[21](21-s1-implementation.md)。下方20及更早阶段结论按原来源和时间保留。
 
 ## 当前有效状态（2026-10-25，30元单次续验）
@@ -162,3 +164,11 @@ S1当前不可变来源的安全定向验证通过：[最终六组检查及退�
 <!-- evidence: E164-S1-PLATFORM-BLOCK -->
 
 新Kimi本机App正控[实际AX](evidence/s1-app-kimi-positive.ax.txt)已完成并正常退出0；以同产物暂停配置重开后Mac锁屏，CUA明确要求用户手动解锁。当前剩余验收和清理NOT RUN，见[平台阻塞及活动会话](evidence/s1-ui-platform-block.json)。不强杀、不猜测UI已通过，等待解锁后继续同候选，无真实模型调用。
+
+<a id="E164-S2-FOUNDATION"></a>
+<!-- evidence: E164-S2-FOUNDATION -->
+## E164-S2-FOUNDATION：Host恢复与兼容存储子集
+
+2026-10-25，Host3c52898/Desktop189019e，Contracts f2819c6/Runtime074417e r2不变。evidence/s2-host-verification.json、s2-desktop-verification.json记录正常定向检查均退出0；真实Runtime联调仅本机合成。v1结果字节语义、v2四恢复阶段、同ID不自动重配、完整身份回执、其他待处理工作门禁、普通关闭重开、7/8/9/10→Store11和旧reader拒绝、SQL15/29/37/38带数据迁移均有测试。失败迭代和修正见s2-iteration-history.json。
+
+这是已通过的工程子集；Native恢复/取消未接通，S2 local/boundary整体与required平台vertical保持NOT RUN，不标TCONF-164-02/G3 PASS。Owner允许延期锁屏相关验收并先推进离线实现，未执行项仍为事实NOT RUN。无新增真实模型HTTP，旧账本预占不变。

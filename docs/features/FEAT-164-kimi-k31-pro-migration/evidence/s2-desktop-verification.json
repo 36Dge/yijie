@@ -1,0 +1,102 @@
+{
+  "results": [
+    {
+      "repository": "yijie-desktop",
+      "command": [
+        "cargo",
+        "fmt",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--",
+        "--check"
+      ],
+      "started_at": "2026-10-25T12:29:11.709491+08:00",
+      "verified_at": "2026-10-25T12:29:12.465924+08:00",
+      "exit_code": 0,
+      "log": "s2-desktop-fmt.log"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "feat164_",
+        "--",
+        "--nocapture"
+      ],
+      "started_at": "2026-10-25T12:29:12.466016+08:00",
+      "verified_at": "2026-10-25T12:29:13.574881+08:00",
+      "exit_code": 0,
+      "log": "s2-desktop-candidate.log"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "feat164_",
+        "--",
+        "--nocapture"
+      ],
+      "started_at": "2026-10-25T12:29:13.574962+08:00",
+      "verified_at": "2026-10-25T12:29:25.603533+08:00",
+      "exit_code": 0,
+      "log": "s2-desktop-default.log"
+    },
+    {
+      "repository": "yijie-desktop",
+      "command": [
+        "cargo",
+        "clippy",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--lib",
+        "--bins",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "started_at": "2026-10-25T12:29:25.603628+08:00",
+      "verified_at": "2026-10-25T12:29:25.894369+08:00",
+      "exit_code": 0,
+      "log": "s2-desktop-clippy.log"
+    }
+  ],
+  "external_model_http": 0,
+  "app_bundle_rebuilt": false,
+  "source_pin_check": {
+    "command": "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast YIJIE_CHAT_MODELS_ENABLED=true YIJIE_KIMI_K31_PRO_CANDIDATE=true node scripts/kimi-k31-build-candidate.mjs",
+    "exit_code": 0,
+    "log": "s2-desktop-source-check.log",
+    "host_commit": "3f6b609bc9755f9125636317209f4de07a867590",
+    "desktop_commit": "83f467b568f6dad03ccb31efe6ff3ddf3673a6d1"
+  },
+  "final_source_pin_check": {
+    "command": "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast YIJIE_CHAT_MODELS_ENABLED=true YIJIE_KIMI_K31_PRO_CANDIDATE=true node scripts/kimi-k31-build-candidate.mjs",
+    "exit_code": 0,
+    "verified_at": "2026-10-25T12:37:44.505694+08:00",
+    "log": "s2-desktop-final-source-check.log",
+    "host_commit": "3c5289854d88ca6ed69b17bd806fca2efc0bbbcd",
+    "desktop_commit": "189019ec5d9f1d7d419b2edf35e6ce53a40be12b"
+  },
+  "log_formatting": [
+    {
+      "log": "s2-desktop-candidate.log",
+      "raw_sha256": "d07c0d4a2ad1d76337dee38815fa955c5bbc430895557564c4fb70bd23147155",
+      "normalization": "remove trailing empty lines only for Git whitespace check"
+    },
+    {
+      "log": "s2-desktop-default.log",
+      "raw_sha256": "33ba9db8840c1042d0d65eff520681f865d2f2a2495f6e382451d5342282628d",
+      "normalization": "remove trailing empty lines only for Git whitespace check"
+    }
+  ]
+}

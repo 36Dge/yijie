@@ -25,3 +25,7 @@ G2A需要真实不可变candidate提交/consumer pin和已生成diff评审；当
 - 已从实际制品生成独立runtime-kimi-k31-pro投影，未sync Host/Desktop、未改日常入口或用户库。
 - 实现后再次审计修复旧v1回执版本、availability一致性、转发错误声明和SDK枚举重复问题；最终限定检查及7基线离线比较通过。
 - 真实失败/未执行项均见08；原breaking入口与Runtime make test没有伪记PASS，Owner审阅与不可变提交仍欠缺。下一步入口14，不提前进入S1—S4。
+
+## 2026-10-25 UI延期后S2基础
+
+Owner明确允许需要解锁的步骤延期并继续离线推进。已实施/本地固化Host3f6b609（14文件）与Desktop83f467b（2文件），仅当前需求专属patch；正常测试与Runtime loopback通过。详情及未完成Native/取消/UI项见22。锁屏项NOT RUN，未提高Gate状态，未新增真实调用/推送。

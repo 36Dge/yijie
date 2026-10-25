@@ -1,0 +1,25 @@
+{
+  "repository": "yijie-agent-host",
+  "base": "e8ae83f9c53fb41cc80139e0d0f70d7c8268b4ab",
+  "paths": [
+    "cmd/desktop-host/main.go",
+    "internal/app/chat_models_v2.go",
+    "internal/app/chat_models_v2_test.go",
+    "internal/session/chat_models.go",
+    "internal/session/experts_storage.go",
+    "internal/session/market_storage.go",
+    "internal/session/scheduled_draft.go",
+    "internal/session/store.go",
+    "internal/session/title.go",
+    "docs/kimi-k31-model-recovery.md",
+    "internal/session/chat_models_v2_native_test.go",
+    "internal/session/chat_models_v2_operation.go",
+    "internal/session/chat_models_v2_operation_test.go",
+    "internal/session/chat_models_v2_storage.go"
+  ],
+  "patch_sha256": "4368599fecb7f59a454a509d27886c6152863cb4fc0c6abafaf8153463d6dbee",
+  "staged_tree": "c586de8426a3a51cd50d1dae0739d6dbc9b445a2",
+  "preservation": "reverse owned patch in temporary copy exactly reproduces all original touched bytes; unrelated index empty before staging",
+  "verified": true,
+  "commit": "3f6b609bc9755f9125636317209f4de07a867590"
+}

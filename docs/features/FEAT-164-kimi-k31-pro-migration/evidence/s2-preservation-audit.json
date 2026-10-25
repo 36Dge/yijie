@@ -1,0 +1,45 @@
+{
+  "verified_at": "2026-10-25T12:38:04.660283+08:00",
+  "unchanged_existing_files": 618,
+  "owned_diff_exceptions": [
+    {
+      "repository": "yijie",
+      "path": "docs/dev/codex-project-memory.md",
+      "proof": "restore only prior FEAT164 block matches complete start SHA256"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "path": "internal/session/store.go",
+      "proof": "owned patch reversed in temporary copy restores baseline bytes"
+    }
+  ],
+  "preserved_app_files": 42,
+  "real_ledger_sha256": {
+    "g2v-real-budget-ledger-before-30.json": "83983b80a6ffd19c42cd968384f1e09a62da912e817e4332abfe4edae1f28ca4",
+    "g2v-real-budget-ledger.json": "2dbd19be2a8bda267437bcf0330fff1af122778388d6e3df965291ec840b7dcf"
+  },
+  "real_model_http_added": 0,
+  "local_candidate_health": {
+    "18083": 200,
+    "18086": 200
+  },
+  "commits": {
+    "yijie": "a8472e032279c44bb3452cfebb41b84bfb0e9ec7",
+    "yijie-codex": "074417e5e2f5f55704ea5e1777e7a22d514076b4",
+    "yijie-contracts": "f2819c66a2368aaff37216a46c48d5cd81df1747",
+    "yijie-agent-host": "3c5289854d88ca6ed69b17bd806fca2efc0bbbcd",
+    "yijie-desktop": "189019ec5d9f1d7d419b2edf35e6ce53a40be12b",
+    "yijie-connectors": "251a0e8854b646a2565a01317a95b037579d9b8e"
+  },
+  "indexes_empty": {
+    "yijie": true,
+    "yijie-codex": true,
+    "yijie-contracts": true,
+    "yijie-agent-host": true,
+    "yijie-desktop": true,
+    "yijie-connectors": true
+  },
+  "no_push": true,
+  "candidate_app_rebuilt": false,
+  "branches_remotes_preserved": true
+}

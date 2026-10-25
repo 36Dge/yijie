@@ -1,0 +1,25 @@
+   Compiling yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 10.23s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/yijie_desktop_lib-1b53ef458e0aa835)
+
+running 5 tests
+test chat::kimi_k31_tests::feat164_candidate_decoder_separates_readable_and_executable_identity ... ok
+test chat::sidecar::tests::feat164_pause_is_explicit_and_reaches_only_candidate_child ... ok
+test chat::kimi_k31_tests::feat164_migration_expands_without_rewriting_model_facts ... ok
+
+thread 'chat::kimi_k31_tests::feat164_populated_migrations_preserve_history_and_delivery_facts' (977625) panicked at src/chat/kimi_k31_tests.rs:156:13:
+assertion `left == right` failed: 15: SELECT * FROM chat_turns ORDER BY id
+  left: [[Text("t"), Text("s"), Text("accepted"), Text("native-turn"), Text("completed"), Integer(2), Text("pending"), Null, Null, Null, Integer(0)]]
+ right: [[Text("t"), Text("s"), Text("accepted"), Text("native-turn"), Text("completed"), Integer(2), Text("pending"), Null, Null, Null]]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test chat::kimi_k31_tests::feat164_populated_migrations_preserve_history_and_delivery_facts ... FAILED
+test chat::kimi_k31_tests::feat164_canonical_migration_paths_and_repeat_are_valid ... ok
+
+failures:
+
+failures:
+    chat::kimi_k31_tests::feat164_populated_migrations_preserve_history_and_delivery_facts
+
+test result: FAILED. 4 passed; 1 failed; 0 ignored; 0 measured; 623 filtered out; finished in 0.53s
+
+error: test failed, to rerun pass `--lib`

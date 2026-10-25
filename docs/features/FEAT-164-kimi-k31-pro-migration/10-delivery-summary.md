@@ -1,5 +1,7 @@
 # FEAT-164 阶段交付
 
+> 当前（2026-10-25，UI延期/S2基础）：Owner允许锁屏所需步骤延期并先推进离线实施，UI仍NOT RUN。Host Store11、v2原回执/显式恢复及带数据SQL升级验证已本地固化；Native恢复接线/never-sent取消、S3/S4与完整G3/final尚未完成。真实模型新增0。最新权威见[22](22-ui-deferral-and-s2-foundation.md)和feature.yaml；下方旧阶段记录仅按其原来源和时间解释。
+
 > 当前S1（2026-10-25）：源实现、local/boundary及canonical构建已完成；本机新Kimi正控通过，暂停/MiniMax/重开及最终清理因Mac锁屏未完成，S1 G3不放行。新增真实模型HTTP为0，旧账本逐字保持。最新来源、未执行项和续办见[21](21-s1-implementation.md)。下方20及更早阶段结论按原来源和时间保留。
 
 > 2026-10-25本轮更新：已完成验收判定、30元/唯一新增HTTP恢复及实际文本G2V（PASS）；本地固化与最终审计见[20](20-budget-resume-and-g2v.md)。累计2 HTTP，新请求次数耗尽；旧预占保留。整体FEAT-164仍active，S1—S4及最终迁移验收未完成。以下旧阶段记录按原时点解释。

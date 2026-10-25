@@ -1,0 +1,112 @@
+{
+  "results": [
+    {
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "started_at": "2026-10-25T12:34:33.694734+08:00",
+      "verified_at": "2026-10-25T12:34:34.085659+08:00",
+      "log": "s2-meta-lint.log"
+    },
+    {
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "started_at": "2026-10-25T12:34:34.085736+08:00",
+      "verified_at": "2026-10-25T12:34:42.364260+08:00",
+      "log": "s2-meta-tests.log"
+    },
+    {
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "started_at": "2026-10-25T12:34:42.364330+08:00",
+      "verified_at": "2026-10-25T12:34:42.451884+08:00",
+      "log": "s2-package-strict.log"
+    },
+    {
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "docs/features/FEAT-164-kimi-k31-pro-migration",
+        "--audit-claims"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "started_at": "2026-10-25T12:34:42.451971+08:00",
+      "verified_at": "2026-10-25T12:34:42.553525+08:00",
+      "log": "s2-package-claims.log"
+    },
+    {
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "docs/features/FEAT-164-kimi-k31-pro-migration",
+        "--gate",
+        "G3",
+        "--slice",
+        "S2"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "started_at": "2026-10-25T12:34:42.553620+08:00",
+      "verified_at": "2026-10-25T12:34:42.623779+08:00",
+      "log": "s2-g3-expected-incomplete.log"
+    },
+    {
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "started_at": "2026-10-25T12:38:04.227359+08:00",
+      "verified_at": "2026-10-25T12:38:04.312237+08:00",
+      "log": "s2-package-strict-final.log"
+    },
+    {
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "docs/features/FEAT-164-kimi-k31-pro-migration",
+        "--audit-claims"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "started_at": "2026-10-25T12:38:04.312307+08:00",
+      "verified_at": "2026-10-25T12:38:04.412079+08:00",
+      "log": "s2-package-claims-final.log"
+    },
+    {
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "docs/features/FEAT-164-kimi-k31-pro-migration",
+        "--gate",
+        "G3",
+        "--slice",
+        "S2"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "started_at": "2026-10-25T12:38:04.412148+08:00",
+      "verified_at": "2026-10-25T12:38:04.478436+08:00",
+      "log": "s2-g3-final-incomplete.log"
+    }
+  ],
+  "g3_s2": "NOT PASSED; no fake promotion",
+  "owner_ui_deferral": "work ordering only"
+}

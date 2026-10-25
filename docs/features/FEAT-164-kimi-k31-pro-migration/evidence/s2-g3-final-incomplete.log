@@ -1,0 +1,52 @@
+ERROR: slice S1.status must be pass
+ERROR: slice S1.vertical_evidence.status must be PASS when required
+ERROR: slice S1.vertical_evidence.command is required when required
+ERROR: slice S1.vertical_evidence.environment is required when required
+ERROR: slice S1.vertical_evidence.exit_code must equal 0 when required
+ERROR: slice S1.vertical_evidence.verified_at must be an ISO-8601 instant when required
+ERROR: slice S1.vertical_evidence.refs must not be empty
+ERROR: slice S1.freshness.verified_at must be an ISO-8601 instant
+ERROR: slice S1.freshness.commits must not be empty
+ERROR: slice S1.freshness.commits must exactly match the current immutable reference set
+ERROR: slice S1.freshness.contract_refs must exactly match the current immutable reference set
+ERROR: slice S1.freshness.fixture_refs must exactly match the current immutable reference set
+ERROR: runtime_harnesses.H-F164-S1-LOCAL.qualification.status must be PASS
+ERROR: runtime_harnesses.H-F164-S1-LOCAL.qualification.verified_at must be an ISO-8601 instant
+ERROR: runtime_harnesses.H-F164-S1-LOCAL.qualification.exit_code must equal 0
+ERROR: runtime_harnesses.H-F164-S1-LOCAL.qualification.positive_control.status must be PASS
+ERROR: runtime_harnesses.H-F164-S1-LOCAL.qualification.positive_control.evidence_ref must use 08-verification-report.md#EVIDENCE-ID
+ERROR: runtime_harnesses.H-F164-S1-LOCAL.qualification.content_free_verdict.status must be PASS
+ERROR: runtime_harnesses.H-F164-S1-LOCAL.qualification.content_free_verdict.evidence_ref must use 08-verification-report.md#EVIDENCE-ID
+ERROR: slice S1.freshness.platform must match the qualified harness real platform
+ERROR: slice S2.status must be pass
+ERROR: slice S2 prerequisite S1 is not pass
+ERROR: slice S2.local_evidence.status must be PASS when required
+ERROR: slice S2.local_evidence.command is required when required
+ERROR: slice S2.local_evidence.environment is required when required
+ERROR: slice S2.local_evidence.exit_code must equal 0 when required
+ERROR: slice S2.local_evidence.verified_at must be an ISO-8601 instant when required
+ERROR: slice S2.boundary_evidence.status must be PASS when required
+ERROR: slice S2.boundary_evidence.command is required when required
+ERROR: slice S2.boundary_evidence.environment is required when required
+ERROR: slice S2.boundary_evidence.exit_code must equal 0 when required
+ERROR: slice S2.boundary_evidence.verified_at must be an ISO-8601 instant when required
+ERROR: slice S2.vertical_evidence.status must be PASS when required
+ERROR: slice S2.vertical_evidence.command is required when required
+ERROR: slice S2.vertical_evidence.environment is required when required
+ERROR: slice S2.vertical_evidence.exit_code must equal 0 when required
+ERROR: slice S2.vertical_evidence.verified_at must be an ISO-8601 instant when required
+ERROR: slice S2.vertical_evidence.refs must not be empty
+ERROR: slice S2.freshness.verified_at must be an ISO-8601 instant
+ERROR: slice S2.freshness.commits must not be empty
+ERROR: slice S2.freshness.commits must exactly match the current immutable reference set
+ERROR: slice S2.freshness.contract_refs must exactly match the current immutable reference set
+ERROR: slice S2.freshness.fixture_refs must exactly match the current immutable reference set
+ERROR: slice S2.freshness.harness.commit must match the qualified harness
+ERROR: slice S2.freshness.harness.digest must match the qualified harness
+ERROR: slice S2.freshness.platform must match the qualified harness real platform
+ERROR: temporal_contract_matrix.executable_tests[1].status must be PASS for G3/S2
+ERROR: temporal_contract_matrix.executable_tests[1].exit_code must equal 0 for G3/S2
+ERROR: temporal_contract_matrix.executable_tests[1].verified_at must be an ISO-8601 instant for G3/S2
+ERROR: temporal_contract_matrix.executable_tests[1].evidence_ref must use 08-verification-report.md#EVIDENCE-ID
+ERROR: temporal_contract_matrix.executable_tests[1].commits must not be empty
+ERROR: temporal_contract_matrix.executable_tests[1].commits must exactly match the current immutable reference set

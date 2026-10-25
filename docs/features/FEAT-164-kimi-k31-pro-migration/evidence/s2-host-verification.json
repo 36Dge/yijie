@@ -1,0 +1,82 @@
+{
+  "results": [
+    {
+      "repository": "yijie-agent-host",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "./internal/session",
+        "./internal/app",
+        "./cmd/desktop-host",
+        "-run",
+        "^TestFEAT164|^TestChatModel",
+        "-count=1",
+        "-v"
+      ],
+      "started_at": "2026-10-25T12:28:36.751008+08:00",
+      "verified_at": "2026-10-25T12:28:44.007609+08:00",
+      "exit_code": 0,
+      "log": "s2-host-final.log"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "command": [
+        "make",
+        "lint"
+      ],
+      "started_at": "2026-10-25T12:28:44.007770+08:00",
+      "verified_at": "2026-10-25T12:28:44.590466+08:00",
+      "exit_code": 0,
+      "log": "s2-host-lint.log"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "command": [
+        "python3",
+        "scripts/sync-kimi-k31-pro-contracts.py",
+        "--commit",
+        "f2819c66a2368aaff37216a46c48d5cd81df1747",
+        "--check"
+      ],
+      "started_at": "2026-10-25T12:28:44.590534+08:00",
+      "verified_at": "2026-10-25T12:28:44.785487+08:00",
+      "exit_code": 0,
+      "log": "s2-host-source-check.log"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "./internal/session",
+        "./internal/app",
+        "./cmd/desktop-host",
+        "-run",
+        "^TestFEAT164|^TestChatModel",
+        "-count=1",
+        "-v"
+      ],
+      "started_at": "2026-10-25T12:36:03.789541+08:00",
+      "verified_at": "2026-10-25T12:36:08.649410+08:00",
+      "exit_code": 0,
+      "log": "s2-host-readonly-final.log"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "command": [
+        "make",
+        "lint"
+      ],
+      "started_at": "2026-10-25T12:36:08.649582+08:00",
+      "verified_at": "2026-10-25T12:36:09.250024+08:00",
+      "exit_code": 0,
+      "log": "s2-host-readonly-lint.log"
+    }
+  ],
+  "external_model_http": 0,
+  "runtime_artifact": "074417e5e2f5f55704ea5e1777e7a22d514076b4 r2",
+  "ordinary_loopback_http_this_turn": 3,
+  "ordinary_loopback_http_final_group": 1
+}

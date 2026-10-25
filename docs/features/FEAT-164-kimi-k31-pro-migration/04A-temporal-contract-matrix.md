@@ -1,6 +1,6 @@
 # FEAT-164 时序契约矩阵
 
-本文件与feature.yaml保持同一Scenario/Invariant/Test/Slice ID。TCONF-164-01已在Host S1实现并通过普通状态conformance；S2—S4仍为计划目标。当前结果与范围见21，不把本机检查记为真实模型验证。
+本文件与feature.yaml保持同一Scenario/Invariant/Test/Slice ID。TCONF-164-01已在Host S1实现并通过普通状态conformance；S2 Host子集已实现并验证，TCONF-164-02全链及S3—S4仍为计划目标。当前结果与范围见21/22，不把本机检查记为真实模型验证。
 
 ## 六阶段
 

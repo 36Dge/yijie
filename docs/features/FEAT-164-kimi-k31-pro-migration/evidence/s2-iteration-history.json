@@ -1,0 +1,49 @@
+{
+  "corrected_findings": [
+    {
+      "kind": "test_compile",
+      "result": "FAIL",
+      "cause": "new Go test initially contained an unused import",
+      "resolution": "removed; final targeted race tests PASS"
+    },
+    {
+      "kind": "rust_format",
+      "result": "FAIL",
+      "cause": "new test needed standard rustfmt",
+      "resolution": "formatted only owned test file; final fmt PASS"
+    },
+    {
+      "kind": "migration_test_oracle",
+      "result": "FAIL",
+      "evidence": "s2-initial-native-test-failure.log",
+      "cause": "SELECT * compared newly added canonical columns with the old column count on SQL15 -> 38",
+      "resolution": "compare all prior columns by their names and separately verify ledger/new version; no migration implementation changed"
+    },
+    {
+      "kind": "strict_read_only_audit",
+      "result": "corrected",
+      "cause": "committed replay used a no-op bbolt Update transaction",
+      "resolution": "View transaction before mutation; bbolt write counter unchanged in new regression; Host 3c5289854d88ca6ed69b17bd806fca2efc0bbbcd"
+    },
+    {
+      "kind": "governance_reference",
+      "result": "corrected",
+      "cause": "new slice commit entries initially used commit instead of canonical full_sha and evidence marker was missing",
+      "resolution": "canonical keys and marker restored; no gate semantic changes"
+    },
+    {
+      "kind": "candidate_environment",
+      "result": "expected_rejection",
+      "cause": "source checker called without explicit local candidate flags",
+      "resolution": "verified with source-defined explicit flags; no guard bypass"
+    }
+  ],
+  "not_executed": [
+    "locked App UI and final normal App cleanup",
+    "new candidate App build over active bundle",
+    "real provider calls",
+    "whole-suite unsafe historical fixtures",
+    "full-target Clippy known unrelated source_reader_tests placement defect retained"
+  ],
+  "additional_real_model_http": 0
+}
