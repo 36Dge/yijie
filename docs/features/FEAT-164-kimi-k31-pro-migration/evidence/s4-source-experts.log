@@ -1,0 +1,57 @@
+node:internal/errors:998
+  const err = new Error(message);
+              ^
+
+Error: Command failed: /opt/homebrew/Cellar/node/26.0.0/bin/node scripts/sync-desktop-expert-resources.mjs --check
+Expert manifest differs from Native pin
++ actual - expected
+
++ '64721b4bfea466e5faa5160f8e142623b9544a70033c3cc93794edde5261e5da'
+- '033689b005c2659fa625a7a8e93081ec04b2ffe7cfde67f0c293f69684874741'
+
+
+    at genericNodeError (node:internal/errors:998:15)
+    at wrappedFn (node:internal/errors:543:14)
+    at checkExecSyncError (node:child_process:925:11)
+    at execFileSync (node:child_process:961:15)
+    at checkSurfaces (file:///Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop/scripts/kimi-k31-build-candidate.mjs:49:23)
+    at verifyKimiK31BuildCandidate (file:///Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop/scripts/kimi-k31-build-candidate.mjs:55:2)
+    at file:///Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop/scripts/kimi-k31-build-candidate.mjs:78:2
+    at ModuleJob.run (node:internal/modules/esm/module_job:437:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:642:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  status: 1,
+  signal: null,
+  output: [
+    null,
+    Buffer(0) [Uint8Array] [],
+    Buffer(200) [Uint8Array] [
+       69, 120, 112, 101, 114, 116,  32, 109,  97, 110, 105, 102,
+      101, 115, 116,  32, 100, 105, 102, 102, 101, 114, 115,  32,
+      102, 114, 111, 109,  32,  78,  97, 116, 105, 118, 101,  32,
+      112, 105, 110,  10,  43,  32,  97,  99, 116, 117,  97, 108,
+       32,  45,  32, 101, 120, 112, 101,  99, 116, 101, 100,  10,
+       10,  43,  32,  39,  54,  52,  55,  50,  49,  98,  52,  98,
+      102, 101,  97,  52,  54,  54, 101,  53, 102,  97,  97,  53,
+       49,  54,  48, 102,  56, 101,  49,  52,  50,  54,  50,  51,
+       98,  57,  53,  52,
+      ... 100 more items
+    ]
+  ],
+  pid: 77055,
+  stdout: Buffer(0) [Uint8Array] [],
+  stderr: Buffer(200) [Uint8Array] [
+     69, 120, 112, 101, 114, 116,  32, 109,  97, 110, 105, 102,
+    101, 115, 116,  32, 100, 105, 102, 102, 101, 114, 115,  32,
+    102, 114, 111, 109,  32,  78,  97, 116, 105, 118, 101,  32,
+    112, 105, 110,  10,  43,  32,  97,  99, 116, 117,  97, 108,
+     32,  45,  32, 101, 120, 112, 101,  99, 116, 101, 100,  10,
+     10,  43,  32,  39,  54,  52,  55,  50,  49,  98,  52,  98,
+    102, 101,  97,  52,  54,  54, 101,  53, 102,  97,  97,  53,
+     49,  54,  48, 102,  56, 101,  49,  52,  50,  54,  50,  51,
+     98,  57,  53,  52,
+    ... 100 more items
+  ]
+}
+
+Node.js v26.0.0

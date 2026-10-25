@@ -77,3 +77,7 @@ SQL39新增私有chat_model_operations_v2，保存v2原session/Host/thread/旧pr
 Native先持久化prepared，最后POST前重验scope/会话绑定/未决工作并保存dispatched；沿原SubmitTurn及生命周期permit/epoch，新增本地chat_recover_model_v2明确动作，不扩大权限或外部端点。普通refresh只有GET；仅prepared且Host无记录可首次提交原意图，dispatched/unknown且404不证明未发。新select不能自动reapply已存在未决操作。原回执经过source-generated校验保存，再读取current Selection，迟到回执不能回退revision或在同revision替换profile。旧无v2证明pending只读阻断。
 
 该表只证明模型配置意图，不代替普通聊天、market、expert或计划的业务派发证据；其取消仍待下一步。
+
+## S4实施补充（2026-10-25）
+
+见[27](27-s4-call-surface-wiring.md)：market-selection/market-host/experts独立v2只扩已知模型身份，旧源及snapshot/digest版本不变；Native私有草案IPC v2此前已引用storage-v2，无需再造schema。候选全调用面显式选择且仍经过原权限/模型准入。Host标题收集器接受固定Runtime的正常userMessage通知，不将其作为标题正文；未知项/工具项继续失败。私有草案Config仅允许127.0.0.1显式端口/v1的本机资格路由，外部env-loader仍精确锁定18083/v1，受限policy、无工具及无重试保持。无新增权限、服务端或外部目标。

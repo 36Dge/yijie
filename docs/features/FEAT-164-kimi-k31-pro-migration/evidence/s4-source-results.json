@@ -1,0 +1,38 @@
+{
+  "desktop_commit": "e4080474e8bd691622cf269e400f8ae4bbcbd041",
+  "connectors_commit": "251a0e8854b646a2565a01317a95b037579d9b8e",
+  "results": [
+    {
+      "mode": "ordinary",
+      "exit_code": 0,
+      "status": "PASS",
+      "sha256": "38098477ef6ccad735b1eef553bc6075f43b35a95752cacd5f77ad6253c1f85b",
+      "log": "s4-source-ordinary.log",
+      "reason": "Source checks only; no build"
+    },
+    {
+      "mode": "market",
+      "exit_code": 0,
+      "status": "PASS",
+      "sha256": "38098477ef6ccad735b1eef553bc6075f43b35a95752cacd5f77ad6253c1f85b",
+      "log": "s4-source-market.log",
+      "reason": "Source checks only; no build"
+    },
+    {
+      "mode": "experts",
+      "exit_code": 1,
+      "status": "BLOCKED",
+      "sha256": "7a11f0c5df148e568b70482e18fae14e5772a3c04b73d20d44829980ddbbd830",
+      "log": "s4-source-experts.log",
+      "reason": "Existing expert manifest differs from Native pin; no asset/digest rewrite"
+    },
+    {
+      "mode": "media",
+      "exit_code": 1,
+      "status": "BLOCKED",
+      "sha256": "904ba0718c45a069c803171e282ce02e089ef0117d875327645f77a020bcd86f",
+      "log": "s4-source-media.log",
+      "reason": "Existing expert manifest differs from Native pin; no asset/digest rewrite"
+    }
+  ]
+}

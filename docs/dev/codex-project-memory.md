@@ -1,16 +1,14 @@
 # 易界项目 Codex 长期协作记忆
 
-## FEAT-164 S3计划退役/授权保护已固化，App与完整G3仍延期（2026-10-25）
+## FEAT-164 S4接线与安全离线子集已固化，完整验收仍未通过（2026-10-25）
 
-当前权威[26](../features/FEAT-164-kimi-k31-pro-migration/26-s3-plan-retirement.md)、feature.yaml和evidence/s3-native-final。Owner明确要求实施S3，保留工作区/旧账本/预占、不新增真实模型HTTP，仅本地提交不推送。Contracts `2dd214d6a702064edae78510c035442854bf9789`先固化scheduled-plan-v2（旧v1不变），Desktop `4d04597cbf40e1aea2c67607c9d441f888223d96`同步后实施SQL41领域退役、授权/prepare/takeover/claim/send保护与候选私有IPC/表单。
+当前权威[27](../features/FEAT-164-kimi-k31-pro-migration/27-s4-call-surface-wiring.md)、feature.yaml及evidence/s4-conformance-final。Owner授权S4、零新增真实模型HTTP、保留工作区/旧账本/预占、仅本地提交不推送。Contracts eddc64f95d81c26ca1678cc648d177c081f7904d先固化市场选择/Host/专家v2；Host9ffcb6f55bb6b2db3aacdee61693063767139ba7接线并修复标题误拒userMessage；Desktop704cfdb915b682c4aa3bf3cc62bb33da18f698f2、e4080474e8bd691622cf269e400f8ae4bbcbd041完成v2消费者、草案/计划表单、新模型实际提交、显式候选组合和独立catalog来源。旧v1/摘要域/权限与默认入口保留。
 
-开库在DatabaseWorker之前对旧K3 enabled/paused计划只做一次pause/revision+1、撤有效grant引用、关闭future slots；profile/历史run/grant/snapshot/digest/额度保持。已删除/完成终态不改。显式选择保存后独立重新授权；绑定会话必须匹配已确认selection，不自动切换会话。MiniMax保持原有语义，历史缺省model只代表MiniMax。三条自动expiry不再隐式取消/退款退役run；未知继续保留。扫描在LIMIT前排除暂停Kimi，不让33个暂停行挡住MiniMax。日常SQL15/29/37库仍拒绝进入候选，回滚须认识SQL41的reader并暂停Kimi，不能降级删回执。
+干净来源S4安全子集7/4/4/4/5、0skip，固定真实r2 Runtime6次loopback涵盖图片文本/标题/input-only草案及resume/专家/普通文件工具续调。S2 25/2/12/10/1、S3五项复验、202前端及lint/type/fmt/Clippy lib/默认Rust check/go vet/Vite通过。完整TCONF-164-04仍NOT RUN：普通multi_agent_v1实际可用，辅助代理/审批/压缩仅源审计与配置观察，未动态执行；不能称全部辅助能力关闭。
 
-最终干净来源S3五项exact各1PASS/0ignored；S2在当前源码复验25/2/12/10/1通过，SQL矩阵扩至41，真实Native/Host/固定Runtime边界仅1个MiniMax loopback响应且正常EOF。70前端、9契约、8基线、3默认路径及lint/Clippy/fmt/前端build通过。扩大默认自动三目标在实施前ddc840f和本轮同点OrchestrationUnavailable，另记原基线问题。全量Contracts生成入口曾误调用旧Skill fixture生成器后因schema URL失败；未执行fixture消费/攻击测试，无关生成物恢复，后续只用安全leaf/离线入口。详见26偏差记录，禁止再用未经审查的全量生成/test入口。
+ordinary/market source PASS；experts/media仍受既有expert manifest64721b4…/Native pin033689b…不一致阻断。保留原资源，禁止刷新digest假通过。资格树connectors-s4-source为detached251a0e8，yijie-connectors链接指向它；原仓已有改动保留。FEAT-164独立catalog pin/checker保留旧catalog及原工作区新摘要，未混入其它需求。下一步先核对资源所属来源并补专家/媒体实际链与辅助动态资格，再补App/平台；完整S4/G2V/G3/final继续pending。
 
-新增scheduled-plan-v2使旧G2V不再覆盖当前来源；当前G2V已置pending，原PASS对象完整另存s3-prior-vertical-feasibility.json，不新增付费资格调用。S3源/local时序完成不等于S3 G3；S1—S3 canonical App/WebView、旧隔离历史、权限/亮暗/1180×760/平台与freshness仍NOT RUN。App仍原S1 Hoste8ae83f/Desktop174fbaf，session78901/readyz18086；fixture72636/18083保持原1请求，bundle/真实账本未改。旧30元账本2/2HTTP已耗尽，14.188544元未知预占+0.139590元保守费用=14.328134元上界，新增许可0。不能将预算余额视为新HTTP授权。
-
-下一步S4全调用面审计/接线与安全离线验证；不自动解锁、不伪造平台PASS。用户回来先正常退出当前S1 App，再canonical同源构建补平台/旧库和最终验收。旧全targets Clippy位置问题、ChatPage文案断言、Skill pin及原S2证据按各来源保留。已有工作区专属补丁逆向审计保持，未推送/发布。
+活动App仍S1 Hoste8ae83f/Desktop174fbaf，session78901/readyz18086；fixture72636/18083保持原1请求，bundle42项未覆盖。用户回来先正常退出再canonical新构建；不强杀、不替换程序、不跑危险fixture，不迁移日常库。旧30元账本2/2HTTP已耗尽，14.188544元未知预占+0.139590元保守费用=14.328134元上界，两份账本逐字保留。预算余额不产生新HTTP许可。工作区保护和提交见s4-preservation-audit/isolation；旧S1—S3平台延期与既有基线失败仍有效。禁止全量未经审查的generate/test入口。
 
 2026-10-08 Sorftime 最新状态：Owner已填密钥，但两条19:19/19:20元数据初始化仍unavailable。审计发现通用HTTP迁移漏带旧链路已验证有效的User-Agent；已补真实yijie-mcp-worker/0.1.0及受限HTTP阶段/状态码诊断，未伪装旧客户端、未改固定Codex。63本地测试/lint/标准App构建通过，说明已左对齐。新worker da3c31537e6be46bb826a2ec44b0541456cbbf2810772aabbba5df1023400f81。尚未真实复验，已申请仅1次连接/发现、0模型/0业务；因先前失败不自动重发，等待用户答复。Keyring已有用户保存密钥，不要再要求重填/卸载或读取密钥。详见FEAT-157/21及sorftime-user-agent-20261008证据。
 

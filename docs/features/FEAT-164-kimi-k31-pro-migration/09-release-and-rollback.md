@@ -35,3 +35,7 @@ V0：当前旧K3组合，作为只读审计基线。Vc：拟实现兼容构建�
 分开观察 model/provider/effort、旧slug新请求数（必须0）、重复operation新HTTP（必须0）、unknown未决数、计划授权/slot状态、来源锁、secret泄漏（必须0）、token用量及未知计费。只记录脱敏身份摘要/状态，不导出完整正文或Key。
 
 G4前三项final verdict独立；换source/runtime/harness后相关结果STALE。local结果不等于发布/Production Ready，G5/G6保留pending。所有实际操作步骤、命令、负责人、日期、最终artifact digest和回滚演练结果在执行获准且真实产出后填入，不虚构。
+
+## S4本地候选状态（2026-10-25）
+
+未发布、未迁移日常库、未重建活动S1 App。仅本地来源为Contracts eddc64f、Host9ffcb6f、Desktop e408047（含704cfdb）。`YIJIE_KIMI_K31_CALL_SURFACES`显式选择ordinary/market/experts/media，缺省ordinary；不能用组合选择代替安装、账号、任务或工具授权。专家/媒体受旧资源pin不一致阻断，禁止刷新digest掩盖。仍须先让活动App正常退出，再canonical新构建及同源重开，不能用旧App验证新源码。SQL41兼容reader和暂停Kimi回退要求沿S3保留。

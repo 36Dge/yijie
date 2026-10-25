@@ -1,5 +1,7 @@
 # FEAT-164 实际验证记录
 
+> 当前（2026-10-25，S4）：Contracts eddc64f → Host9ffcb6f → Desktop704cfdb/e408047已仅本地固化全调用面接线；安全子集7/4/4/4/5、S2和S3当前源回归通过。完整TCONF-164-04、专家资源/媒体、辅助动态调用、App/平台/G3/final仍未完成；真实模型新增0，旧账本/预占保留。最新见[27](27-s4-call-surface-wiring.md)及feature.yaml。
+
 > 当前（2026-10-25，S3）：Contracts2dd214d / Desktop4d04597已本地固化计划退役、SQL41和授权保护；TCONF-164-03五项、70前端及当前源S2复验通过。App/UI/平台与完整G3仍NOT RUN，真实模型新增0，旧账本/预占保留。最新见[26](26-s3-plan-retirement.md)及feature.yaml；下面旧阶段结论按原来源保留。
 
 > 当前（2026-10-25，Native恢复接线）：Desktop f341636已完成SQL39新意图、只读查询和显式恢复，定向检查通过；旧pending不回填，已发/未知且404不重发。App未重建，平台UI继续延期。完整S2还缺never-sent证明与取消，G3/final未通过。最新见[23](23-native-model-recovery.md)和feature.yaml，较早记录按原来源保留。
@@ -207,3 +209,12 @@ Contracts2dd214d、Desktop4d04597干净资格来源，计划v2/私有IPC、SQL41
 `node scripts/feat164-s3-conformance.mjs /tmp/feat164-s3-native-final`，5/5 PASS，source_commit=4d04597cbf40e1aea2c67607c9d441f888223d96、dirty=false。每个模块限定exact selector各命中1项，0 ignored；退休前claim/send屏障、领域授权撤销/未来slot、原run/grant/额度不变、重复开库、显式模型保存/独立新grant、绑定pending、暂停Kimi不阻塞MiniMax、SQL38/39/40→41、实际DatabaseWorker首任务之前退休与正常join覆盖。见[结果](evidence/s3-native-final/result.json)。App/WebView、旧隔离库、完整计划Host/Runtime执行/平台和freshness仍NOT RUN，S3整体G3不放行。
 
 当前G2V因新增scheduled-plan-v2/SQL41来源而回到pending；旧真实成功证据完整保留s3-prior-vertical-feasibility.json，不能扩写旧contract_refs冒称新来源资格。S3/source时序PASS不晋升G2V/G3/final。
+
+<a id="E164-S4-OFFLINE"></a>
+<!-- evidence: E164-S4-OFFLINE -->
+
+## E164-S4-OFFLINE
+
+2026-10-25，Desktop e408047 / Host9ffcb6f / Contractseddc64f干净来源。`evidence/s4-conformance-final/result.json`记录Host域服务7、固定Runtime4、Native4、Renderer4、候选组合5；均0skip，最终Runtime6次loopback，真实模型HTTP0。`s4-s2-regression-final`和`s4-s3-regression-final`复验通过。202前端回归、TypeScript/ESLint/fmt/Clippy lib、默认Rust check、go vet及Vite构建通过；产物仅资格树`.local/feat164-s4-web-build`，未重建活动App。
+
+`evidence/s4-source-results.json`：ordinary/market来源PASS；experts/media被既有专家manifest/Native pin不一致阻断。source检查不是完整打包资格。完整TCONF-164-04仍NOT RUN：辅助代理/自动审批/压缩动态路径及当前App/Worker/媒体/平台未跑。不得从安全子集PASS推出S4 G3或产品完成。来源、失败诊断、预算和续办见27。
