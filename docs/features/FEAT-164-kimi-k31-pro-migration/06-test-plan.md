@@ -72,3 +72,7 @@ H-F164-LOCAL默认禁用；production_bootstrap表示产品canonical启动链，
 ## 验收解释
 
 通过阈值是AC全部可判定满足、三个final verdict分别PASS且refs fresh、没有退役请求/历史错写/重复执行/秘密泄露。模型质量仅对获批任务记录结果，不能预先说升级解决FEAT-163。未启用能力不为验收启用，其禁用事实要由effective配置证明。所有相同失败累计三次进入RCA，原记录保留。
+
+## S4g 旧草案状态续办（2026-10-25）
+
+本轮限定验证2项Native状态、1项原writer回归、32前端、lint/fmt/lib Clippy/build/docs及当前App亮暗1180×760。完整通用generate失败/RCA保留，未跑攻击/故障注入和真实模型。见33与s4g证据。

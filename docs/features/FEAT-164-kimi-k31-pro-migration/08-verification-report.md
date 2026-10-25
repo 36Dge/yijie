@@ -306,3 +306,21 @@ route修复后草案实际完成、tools空，但preview unavailable。[真实�
 <!-- evidence: E164-S4F-APP -->
 
 当前源Host7927ee7/Desktop277f59e普通profile的[canonical构建](evidence/s4f-app-build-result.json)和收据通过。此前2fb8989普通正控1请求、新Host阶段草案1请求；最终277f59e只读同一completed草案即恢复候选、增量0，保存关闭、单次计划运行1请求，取消编辑与正常重开保持，详见[UI结果](evidence/s4f-plan-ui-results.json)、[原历史及失败元数据保持](evidence/s4f-final-data-audit.json)、[最终清理](evidence/s4f-final-cleanup.json)。3次均合成本机Kimi/max，无真实模型调用；原candidate数据事前完整备份，日常库与旧账本不动。完整S4/G3/final仍pending；不把取消编辑/恢复确认当作已接受outbox的取消。
+
+## E164-S4G-STATUS
+
+<!-- evidence: E164-S4G-STATUS -->
+
+Desktop181885b；s4g-checks.json中Native2+原writer1、fmt/Clippy PASS；s4g-frontend-final.log 32PASS，s4g-lint-qualified.log、s4g-frontend-build.log、s4g-docs-build.log按各实际命令。此为限定工程子集，非全套测试。
+
+## E164-S4G-GENERATE
+
+<!-- evidence: E164-S4G-GENERATE -->
+
+通用generate三次实际FAIL：s4g-generate.log、s4g-generate-pinned.log、s4g-generate-complete.log。完整根因及停止条件见evidence/s4g-generate-rca.md；无第四次/无resolved或full-green宣称。
+
+## E164-S4G-APP
+
+<!-- evidence: E164-S4G-APP -->
+
+同源ordinary候选source181885b，旧失败草案“提交结果未决（原生uncertain）”、发送禁用，刷新/取消确认/一次明确查证均0模型HTTP，原已完成草案正常且计划paused。实际亮暗1180×760检查、浅色恢复、App/fixture正常退出。s4g-ui-results.json、s4g-data-audit.json、s4g-cleanup.json及截图见33。完整FEAT164/S4/G2V/G3/final未通过。

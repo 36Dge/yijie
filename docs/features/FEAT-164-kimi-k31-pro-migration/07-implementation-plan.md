@@ -75,3 +75,7 @@ Runtime → Contracts runtime projection → Host runtime constants/candidate �
 每个G3单片评定，commits覆盖自身和transitive前置，contract/fixture/harness/platform/bootstrap引用精确。任一变化使相关证据STALE。三次等价失败按fingerprint累计，进入append-only RCA，收敛唯一下一动作后才可在授权下重试；禁止第四次机械尝试。
 
 设计变更回跳01/03，契约与语义回04/04A，数据/恢复回05，验证阈值回06。当前方案与实施已获Owner确认；G2A、当前Harness及预算受限文本G2V已通过。判定与预算恢复、本次唯一真实请求及正常重开已完成；S1—S4仍须逐片实施和新鲜证据，不能借用本次通过。后续代码改变使相应来源证据过期，追加真实模型请求须另有明确额度。
+
+## S4g 旧草案状态续办（2026-10-25）
+
+下一步的旧失败草稿状态修复已本地固化181885b，真实历史UI及只读保留通过；完整恢复取消/旧计划重授权、专家媒体组合及G3仍pending。通用生成入口先读s4g RCA，不机械重试。

@@ -1,14 +1,12 @@
 # 易界项目 Codex 长期协作记忆
 
-## FEAT-164 普通App与计划子集已通过，完整验收未完成（2026-10-25）
+## FEAT-164 旧失败草案状态已补齐，完整验收未完成（2026-10-25）
 
-当前权威[32](../features/FEAT-164-kimi-k31-pro-migration/32-s4-r4-app-plan-acceptance.md)、feature.yaml及s4f证据。Owner授权继续审计实施、安全离线验证和仅FEAT-164本地提交；不推送，真实模型新增0。Runtime a28130abb13d0f99a00107cd513a653bae878b77 r4与Contracts1b357cce0575c492f3715b316ee5f254051acf80保持；Host7927ee7b385cb5536c3647632d1bac0cb7c56fea补三条既有v2草案route；Desktop277f59eeef538d159e43bb1570767ca4f2f5f72a明确按原生格式2/3/4读草案，源于既有权威版本，不改旧事实或未知拒绝。两处本轮semantic，总需求breaking不变。Connectors/Skills无新提交。
+当前权威[33](../features/FEAT-164-kimi-k31-pro-migration/33-s4-draft-uncertainty.md)、feature.yaml及s4g证据。Desktop181885b1bfe825bb0e713757e95282e36267aa11将原attempted+failed且未绑定的草案只读投影为既有uncertain；原SQL/attempt/回执和历史保持，不改变发送权限。Native2+前轮writer1、32前端、lint/fmt/lib Clippy/build/docs通过；同源ordinary App实际旧历史、刷新/取消确认/一次查证、已完成正控及亮暗1180×760通过，0模型请求，已恢复浅色并正常退出。Runtime a28130a、Contracts1b357cc、Host7927ee7保持。
 
-实际App发现route404、修复后又发现format4被旧reader拒绝，两checkpoint先RED后修复；原失败和扩大测试选错暂停环境的日志全部保留。Host路由6条/原handler3项、Native4项独立检查、Clippy/fmt和canonical普通App构建通过。最终277读取已completed草案恢复候选且新增HTTP0，保存计划为关闭、手动单次执行成功、取消编辑保留原配置，同构建重开计划/运行/答复保持。全轮App模型协议loopback3，真实0；正常⌘Q与fixture自身shutdown退出，无所属进程/自动开启计划。
+通用generate三次FAIL已停止并完成RCA：新树缺历史固定checkout及通用市场入口误读其它需求dirty源/旧锁；保留FAIL和open breaker，未执行第四次，不改无关锁。canonical专用构建独立通过不替代通用门禁。首次getApp早于canonical就绪曾自动打开不完整导航；正常退出，等实际canonical进程就绪后再绑定，避免重现。旧失败草案应保留可读/待确认，不重置、不认作never-sent、不补发。
 
-原attempted创建失败草案的failed/attempted/无Host绑定元数据保持，未根据404补发；新completed草案原6条事实hash保持。七仓496原改动、908旧证据、154资源、7日常DB、旧两套App161文件及本轮开始前候选数据5583项副本保留。原失败草案此前显示等待提交，该提示/安全处置未专项完善，不能宣称全部恢复已通过。
-
-下一步先补原attempted/mapping missing草案的明确状态及安全处置设计/验证，保持unknown不得重发；随后旧模型计划退役/重新选择授权、完整恢复取消、当前源专家媒体App及其它平台。当前G2V、S1—S4完整G3/freshness/最终E2E仍缺；保留31的原生终态专项资格，不能把旧批次移植为当前全部验收。旧30元/2次HTTP已用，14.188544元unknown预占+0.139590元=14.328134元上界不动，余额不授权调用。禁止强杀、故障/攻击注入、权限破坏、程序替换；正常清理失败必须停止。
+下一步先读RCA明确通用与Feature验证边界，再推进旧模型计划退役/重新选择与授权、完整恢复取消、专家媒体当前组合及其它平台。完整S4/TCONF/G2V/G3/freshness/final仍缺。Owner授权持续安全离线实施及仅FEAT164本地提交、不推送；30元/2次真实HTTP已耗尽，14.188544元unknown预占+0.139590元=14.328134元累计上界保留，新增真实HTTP0。禁止强杀、故障/攻击注入、权限破坏、程序替换。
 
 2026-10-08 Sorftime 最新状态：Owner已填密钥，但两条19:19/19:20元数据初始化仍unavailable。审计发现通用HTTP迁移漏带旧链路已验证有效的User-Agent；已补真实yijie-mcp-worker/0.1.0及受限HTTP阶段/状态码诊断，未伪装旧客户端、未改固定Codex。63本地测试/lint/标准App构建通过，说明已左对齐。新worker da3c31537e6be46bb826a2ec44b0541456cbbf2810772aabbba5df1023400f81。尚未真实复验，已申请仅1次连接/发现、0模型/0业务；因先前失败不自动重发，等待用户答复。Keyring已有用户保存密钥，不要再要求重填/卸载或读取密钥。详见FEAT-157/21及sorftime-user-agent-20261008证据。
 

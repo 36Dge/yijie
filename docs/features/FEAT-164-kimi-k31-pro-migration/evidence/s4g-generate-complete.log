@@ -1,0 +1,39 @@
+$ node scripts/generate-public-api.mjs --check && node scripts/check-agent-host-contract.mjs --check && node scripts/check-agent-host-v3-contract.mjs && node scripts/check-agent-host-skills-contract.mjs && node scripts/check-agent-host-v4-contract.mjs && pnpm check:native
+Public API types verified at 164b14f609537d727a52326832da04430aecc4ab with openapi-typescript 7.13.0/TypeScript 5.9.3.
+Agent Host v2 turn contract verified at 164b14f609537d727a52326832da04430aecc4ab; hand-written-rust-adapter is covered by EXC-127-002.
+Agent Host v3 Artifact contract and 10 Desktop implementation pins verified at 164b14f609537d727a52326832da04430aecc4ab; adapter is implemented.
+Agent Host Skills v1 API, Manifest v2, Runtime projection and exact providers verified at 164b14f609537d727a52326832da04430aecc4ab; native consumer pins are complete.
+FEAT-134 v4 immutable objects verified at Contracts 87f94c9aa6d4848cb67aa8a1265bd21474edb0bb and Agent Host 96b1fa19783694aef583b614c492fd2b6b5c15cc; activation is exact local/demo_fast/stable only.
+$ node scripts/generate-chat-turn-timing.mjs --check && node scripts/generate-chat-session-purpose.mjs --check && node scripts/generate-native-conversation.mjs --check && node scripts/check-native-conversation.mjs && pnpm check:scheduled-ipc && pnpm check:market-connectors && pnpm check:market-selection && pnpm check:market-provider && pnpm check:market-host
+Private session purpose source generation verified.
+Native conversation verified: 811f38d6b104fa18477107e7ac91a85e19c445d1; published=false
+FEAT-132 native sources, generated consumer snapshots and retired-engine boundary verified.
+$ node scripts/generate-scheduled-ipc.mjs --check
+Scheduled private IPC source, pinned shared types and strict generation verified.
+$ node ../yijie-contracts/scripts/sync-market-connectors.mjs --consumer=desktop --check && node scripts/sync-market-catalog.mjs --check
+Market connectors generation verified: 56 definitions, 10 IPC commands; local candidate only.
+Market connectors desktop checked; development hashes only, no immutable/release provenance claim.
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+11 !== 9
+
+    at file:///Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4g-qualification-20261025/yijie-desktop/scripts/sync-market-catalog.mjs:13:8
+    at ModuleJob.run (node:internal/modules/esm/module_job:437:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:642:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 11,
+  expected: 9,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.0.0
+[ELIFECYCLE] Command failed with exit code 1.
+[ELIFECYCLE] Command failed with exit code 1.
+[ELIFECYCLE] Command failed with exit code 1.

@@ -1,0 +1,72 @@
+[
+  {
+    "name": "native-final",
+    "command": [
+      "cargo",
+      "test",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--lib",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "feat164_draft_status_tests",
+      "--",
+      "--nocapture"
+    ],
+    "exit_code": 0,
+    "log_sha256": "8a69da8a50fd9abb5fe751707ff7b72a2b1bc8e6ea85b68ebbb1fa6953c0c8cc"
+  },
+  {
+    "name": "draft-writer",
+    "command": [
+      "cargo",
+      "test",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--lib",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "feat164_current_native_writer_can_preview_completed_draft_without_rewriting"
+    ],
+    "exit_code": 0,
+    "log_sha256": "d65bf29f13e1daa463e302d181347ddeec7191db9334ea6406e2fa271da6c026"
+  },
+  {
+    "name": "fmt",
+    "command": [
+      "cargo",
+      "fmt",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--check"
+    ],
+    "exit_code": 0,
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "clippy",
+    "command": [
+      "cargo",
+      "clippy",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--lib",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit_code": 0,
+    "log_sha256": "55c43c25472a5bc0105495c5ae6949768b9242a8dda10deb1eaea985fe5a4766"
+  },
+  {
+    "name": "generate",
+    "command": [
+      "pnpm",
+      "generate:check"
+    ],
+    "exit_code": 1,
+    "log_sha256": "c5e7bfe3ee3ec9de695845c0a773b05ecbffae12b2e836c08772524e710462a3"
+  }
+]

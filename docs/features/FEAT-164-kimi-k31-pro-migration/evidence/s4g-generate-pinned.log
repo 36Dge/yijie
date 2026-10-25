@@ -1,0 +1,6 @@
+$ node scripts/generate-public-api.mjs --check && node scripts/check-agent-host-contract.mjs --check && node scripts/check-agent-host-v3-contract.mjs && node scripts/check-agent-host-skills-contract.mjs && node scripts/check-agent-host-v4-contract.mjs && pnpm check:native
+Public API types verified at 164b14f609537d727a52326832da04430aecc4ab with openapi-typescript 7.13.0/TypeScript 5.9.3.
+Agent Host v2 turn contract verified at 164b14f609537d727a52326832da04430aecc4ab; hand-written-rust-adapter is covered by EXC-127-002.
+Agent Host v3 Artifact contract and 10 Desktop implementation pins verified at 164b14f609537d727a52326832da04430aecc4ab; adapter is implemented.
+Skills requires pinned commit 10c45bec29603b002e861e1499d5b4e684251af5; sibling HEAD is 595c927ae101d3d31c234f60565041eee0864680. Prepare a clean checkout of that commit at /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4g-qualification-20261025/yijie-desktop/.local/skills-pinned-10c45be, or set YIJIE_DESKTOP_SKILLS_DIR to one. The lock and existing checkouts have not been changed.
+[ELIFECYCLE] Command failed with exit code 1.

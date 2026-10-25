@@ -49,3 +49,7 @@ G4前三项final verdict独立；换source/runtime/harness后相关结果STALE�
 ## S4本地候选状态（2026-10-25）
 
 未发布、未迁移日常库、未重建活动S1 App。仅本地来源为Contracts eddc64f、Host9ffcb6f、Desktop e408047（含704cfdb）。`YIJIE_KIMI_K31_CALL_SURFACES`显式选择ordinary/market/experts/media，缺省ordinary；不能用组合选择代替安装、账号、任务或工具授权。专家/媒体受旧资源pin不一致阻断，禁止刷新digest掩盖。仍须先让活动App正常退出，再canonical新构建及同源重开，不能用旧App验证新源码。SQL41兼容reader和暂停Kimi回退要求沿S3保留。
+
+## S4g 旧草案状态续办（2026-10-25）
+
+本轮仅Desktop181885b本地修复，无push/发布。旧库无写迁移；277 reader仍可读，但会恢复误导queued提示。保持旧App/账本/原失败草案，回退不能放行重发。

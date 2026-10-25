@@ -91,7 +91,10 @@ gates:
   G5_production_ready: pending
   G6_delivery_complete: pending
 gate_reasons:
-  G2A: 当前Runtime a28130a r4、Contracts1b357cc保持；Host 7927ee7b385cb5536c3647632d1bac0cb7c56fea、Desktop
+  G2A: S4g Desktop181885b1bfe825bb0e713757e95282e36267aa11仅私有历史读取semantic修复，复用既有LocalSubmissionView
+    uncertain，无新schema/wire/迁移/授权。Host7927ee7/Runtime
+    a28130a/Contracts1b357cc保持；源说明先行、Native/consumer限定验证通过；整体breaking仍保持。 当前Runtime a28130a
+    r4、Contracts1b357cc保持；Host 7927ee7b385cb5536c3647632d1bac0cb7c56fea、Desktop
     277f59eeef538d159e43bb1570767ca4f2f5f72a 已本地固定。已有Contract源先于v2草案route修复，Native格式2/3/4
     reader按已有版本解码，无新wire/schema/生成物。两处本轮semantic，整体breaking。定向检查、当前App正控/历史/计划通过；不代表发布。原权威及旧基线证据：当前r4 Runtime
     a28130abb13d0f99a00107cd513a653bae878b77 → Contracts 1b357cce0575c492f3715b316ee5f254051acf80 → Host
@@ -104,7 +107,7 @@ gate_reasons:
     S4新增三组模型承载v2源于eddc64f，安全leaf/check、4同源schema测试和9登记基线比较通过，Host9ffcb6f/Desktop
     e408047精确消费；仅本地来源，不等于发布或专家资源资格。
     S4b复用同一公共契约；Hostcac2d4d/Desktop56f5284/Connectors1f15726固定Skills595c927同内容资源和原库树，四组合source通过，旧来源的证据不覆盖App资格。
-  G2V: 当前Host7927ee7/Desktop277f59e未执行真实模型G2V；本轮3次仅App模型协议loopback，无外部模型请求。旧真实账本逐字保留，0新增HTTP授权，不以预算余额扩大调用。
+  G2V: 当前来源未执行新真实模型G2V，本轮model HTTP为0；旧账本/预占原样，原2次HTTP已用。通用generate检查RCA开放，不能以候选App子集替代G2V。
 temporal_contract_matrix:
   required: true
   applicability_reason: 模型意图、配置回执、Host提交、Native通知、历史重放、计划资格和正常退出跨进程且跨版本
@@ -298,16 +301,16 @@ temporal_contract_matrix:
         - repository: yijie-agent-host
           full_sha: 7927ee7b385cb5536c3647632d1bac0cb7c56fea
         - repository: yijie-desktop
-          full_sha: 277f59eeef538d159e43bb1570767ca4f2f5f72a
+          full_sha: 181885b1bfe825bb0e713757e95282e36267aa11
         - repository: yijie-connectors
           full_sha: 1f157260d6dd339172712e1c649258902db45050
-      evidence_ref: 08-verification-report.md#E164-S4F-APP
+      evidence_ref: 08-verification-report.md#E164-S4G-APP
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
       implementation_status: implemented_partial
-      command_note: S4e原生子集与S4f当前同源App/计划子集分别记录，未执行完整TCONF。Host route和Native持久reader两处实际缺口已回归/实机修复；不借子集宣布全通过。
+      command_note: S4g仅旧草案只读状态与安全保留子集，通过不代表完整TCONF；通用generate FAIL/RCA仍开放。
 vertical_feasibility:
   required: true
   applicability_reason: 跨仓模型/Runtime身份和重要持久数据迁移，必须真实纵向资格
@@ -702,7 +705,7 @@ slices:
       - repository: yijie-agent-host
         full_sha: 7927ee7b385cb5536c3647632d1bac0cb7c56fea
       - repository: yijie-desktop
-        full_sha: 277f59eeef538d159e43bb1570767ca4f2f5f72a
+        full_sha: 181885b1bfe825bb0e713757e95282e36267aa11
       - repository: yijie-connectors
         full_sha: 1f157260d6dd339172712e1c649258902db45050
     exception:
@@ -726,6 +729,7 @@ slices:
         - 08-verification-report.md#E164-S4D-RCA
         - 08-verification-report.md#E164-S4E-NATIVE
         - 08-verification-report.md#E164-S4F-APP
+        - 08-verification-report.md#E164-S4G-APP
       reason: 四组合source及1/3/4/1行为检查PASS、0skip；13次loopback覆盖专家/媒体/子代理/Guardian/显式压缩。当前源S4 7/4/4/4/5、S2
         25/2/12/10/1及S3五项复验通过；37专家版本安装/解析/重开、Native完整资源读取通过。不代表完整TCONF-164-04、App/平台或G3。
         上述批次保持原56f5284来源；当前a0a4743另经canonical构建、暂停历史回归及App/UI子集复验，见S4C锚点，不把旧全套结果改写为新源运行。
@@ -749,6 +753,7 @@ slices:
         - 08-verification-report.md#E164-S4D-OFFLINE
         - 08-verification-report.md#E164-S4E-NATIVE
         - 08-verification-report.md#E164-S4F-APP
+        - 08-verification-report.md#E164-S4G-APP
       reason: 原S4c
         App及本批r4原生终态/冷读/自动压缩/辅助调用证据分别保留。旧S4d终态缺陷已修复；本批普通App仅构建不启动，完整UI、计划/恢复取消、跨平台和当前G2V/freshness未完成，整体边界/纵向不能标PASS。
         S4f当前App/计划子集通过，3次App模型协议loopback、真实0；本字段旧批次状态不替代完整门禁。
@@ -769,6 +774,7 @@ slices:
         - 08-verification-report.md#E164-S4D-OFFLINE
         - 08-verification-report.md#E164-S4E-NATIVE
         - 08-verification-report.md#E164-S4F-APP
+        - 08-verification-report.md#E164-S4G-APP
       reason: 原S4c
         App及本批r4原生终态/冷读/自动压缩/辅助调用证据分别保留。旧S4d终态缺陷已修复；本批普通App仅构建不启动，完整UI、计划/恢复取消、跨平台和当前G2V/freshness未完成，整体边界/纵向不能标PASS。
         S4f当前App/计划子集通过，3次App模型协议loopback、真实0；本字段旧批次状态不替代完整门禁。
@@ -790,7 +796,8 @@ slices:
       invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
         implementation reference changes
     status: pending
-    status_reason: S4f修复Host遗漏的3条v2草案route、Desktop只读解析format2/3/4；当前同源App已验证旧历史、input-only草案、关闭保存、单次执行、取消编辑与正常重开零补发。原attempted失败草案保留，旧失败状态提示/完整恢复取消、专家媒体当前组合、平台/G2V/freshness及完整G3仍未完成。见32。
+    status_reason: S4g Desktop181885b只读修复原failed/attempted草案显示uncertain；Native2+writer1、32前端和当前ordinary
+      App旧记录/安全查证/亮暗1180×760子集通过，0模型请求。原数据和预算保持。通用generate三次FAIL已RCA且停止，完整恢复取消、旧计划重授权、专家媒体、平台/G2V/G3仍未完成。见33。
 final_e2e:
   core_vertical:
     required: true
@@ -1007,6 +1014,40 @@ failure_circuit_breaker:
       engineering_audit_ref: 32-s4-r4-app-plan-acceptance.md
       note: App实际失败与安全定向RED分别保留；occurred_at取证据文件写入时间。未达第三次同点失败，按规范保留armed历史，不伪造RCA
         cycle；修复后的PASS另见app_plan_remediation与32。
+    - id: F164-S4G-GENERATE
+      slice_id: S4
+      gate_id: G3
+      evidence_id: E164-S4G-GENERATE
+      failure_class: gate_failure
+      failure_code: GENERIC_GENERATION_SOURCE_PRECONDITIONS
+      checkpoint: pnpm-generate-check
+      fingerprint: S4|G3|E164-S4G-GENERATE|gate_failure|GENERIC_GENERATION_SOURCE_PRECONDITIONS|pnpm-generate-check
+      attempts:
+        - run_id: s4g-generate
+          occurred_at: 2026-10-25T13:39:28.976Z
+          result: FAIL
+          failure_class: gate_failure
+          failure_code: GENERIC_GENERATION_SOURCE_PRECONDITIONS
+          checkpoint: pnpm-generate-check
+          evidence_ref: 08-verification-report.md#E164-S4G-GENERATE
+        - run_id: s4g-generate-pinned
+          occurred_at: 2026-10-25T13:40:05.540Z
+          result: FAIL
+          failure_class: gate_failure
+          failure_code: GENERIC_GENERATION_SOURCE_PRECONDITIONS
+          checkpoint: pnpm-generate-check
+          evidence_ref: 08-verification-report.md#E164-S4G-GENERATE
+        - run_id: s4g-generate-complete
+          occurred_at: 2026-10-25T13:40:34.764Z
+          result: FAIL
+          failure_class: gate_failure
+          failure_code: GENERIC_GENERATION_SOURCE_PRECONDITIONS
+          checkpoint: pnpm-generate-check
+          evidence_ref: 08-verification-report.md#E164-S4G-GENERATE
+      rca_cycles: []
+      state: rca_required
+      engineering_audit_ref: evidence/s4g-generate-rca.md
+      note: 同一命令三次失败即停止，具体根因各不相同仍不绕过熔断。RCA已完成；无新Owner单次重试批准，不伪造cycle/resolved。独立既有canonical普通App验证不替代此通用检查。
 documents:
   brief: 00-feature-brief.md
   requirements: 01-requirements.md
@@ -1090,10 +1131,18 @@ implementation:
     real_model_http_added: 0
     note: 产品HTTP
       route与持久reader分别先复现后修复；没有篡改未知/attempted为never-sent。3次App模型协议loopback，不包括进程内测试handler请求。原armed失败台账保留。
+  draft_uncertainty_remediation:
+    status: PASS_READ_ONLY_APP_SUBSET
+    desktop_commit: 181885b1bfe825bb0e713757e95282e36267aa11
+    contract_impact: semantic
+    evidence_ref: 08-verification-report.md#E164-S4G-APP
+    real_model_http_added: 0
+    model_loopback_http: 0
+    persistent_history_unchanged: true
+    note: 原失败草案保持attempted/failed，显示uncertain；继续缺映射仍不重发。不是完整取消/恢复资格。
 product_verification:
   status: IN_PROGRESS
-  reason: 当前普通App/计划安全子集通过；Host v2 draft routes及Native format4
-    preview缺口已修复。原失败草案attempted/failed元数据和completed草案原6条事实保持，无自动重发；计划最终关闭、所有App/fixture正常退出。完整旧模型计划/授权与恢复取消UI、专家媒体当前组合、平台/G2V/G3/final仍未完成。
+  reason: S4g旧失败草稿状态/安全保留、已完成正控及亮暗最小窗口通过；原数据/账本/预占保持，0模型请求，正常清理。通用generate三次FAIL已RCA，未第四次重试，不能宣称全套检查通过。完整恢复取消、旧计划重授权、当前专家媒体组合、平台/G2V/G3/final仍未完成。
 profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
 owner_approvals:
   requirements: approved_by_owner_current_user_message

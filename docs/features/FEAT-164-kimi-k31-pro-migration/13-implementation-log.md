@@ -57,3 +57,7 @@ Host 57c29ea03e3de39161a7c28080f9388f00cd1735（2个测试文件）与Desktop dd
 ## 2026-10-25 S4 专家资源与辅助调用续办
 
 按Owner明确授权完成专家pin审计与同内容不可变来源、候选专家/媒体接线及原生辅助安全离线验证。最新Host cac2d4d、Desktop56f5284、Connectors1f15726，Skills595c927/Contractseddc64f/Runtime074417e5不改。专属pin和slot保留原资源，原dirty同步脚本不混入提交；process provider meter覆盖原生子代理/Guardian/压缩。具体提交、复现、精确矩阵、边界及下一步见[28](28-s4-expert-media-auxiliary.md)。新增真实模型HTTP为0，完整G2V/G3/final仍不放行；旧账本、预占、活动S1 App与原改动保留。
+
+## S4g 旧草案状态续办（2026-10-25）
+
+继续审计后实施只读uncertain投影及说明/防重复提交，Desktop181885b（10文件）。2 Native+1 writer+32前端、canonical App限定验收通过；0模型请求，正常清理。通用generate三次失败/RCA及首次UI绑定时机问题均保留。见33。

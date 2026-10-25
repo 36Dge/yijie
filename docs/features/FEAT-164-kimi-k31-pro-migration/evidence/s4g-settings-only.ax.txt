@@ -1,0 +1,37 @@
+Window: "易界 AI", App: 易界 AI FEAT-164.
+0 standard window 易界 AI, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: 设置 · 易界 AI, URL: tauri://localhost/settings
+			3 text 界面缩放 100%
+			4 button (expanded) 收起侧栏, Secondary Actions: Collapse
+			5 container 主导航
+				6 image 易界
+				7 container 应用导航
+					8 content list
+						9 link 设置, Value: tauri://localhost/settings
+			10 container 设置
+				11 heading 设置, Value: 1
+					12 text 设置
+				13 heading 账户与权限, Value: 0
+					14 heading 账户与权限, Value: 0
+						15 text 账户与权限
+				16 container
+					17 heading 本地快速验证模式, Value: 2
+						18 text 本地快速验证模式
+					19 text 当前进程已自动绑定本地 Demo 身份与工作空间，无需登录、账号或密码。
+				20 heading Sidecar, Value: 0
+					21 heading Sidecar, Value: 0
+						22 text Sidecar
+				23 text Desktop 自动管理 Codex Runtime 与 yijie-agent-host sidecar，无需用户登录。
+	24 close button
+	25 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	26 minimize button
+27 menu bar
+	28 易界 AI FEAT-164
+	29 File
+	30 Edit
+	31 View
+	32 Window
+	33 Help
+
+The focused UI element is 0 standard window 易界 AI, Secondary Actions: Raise

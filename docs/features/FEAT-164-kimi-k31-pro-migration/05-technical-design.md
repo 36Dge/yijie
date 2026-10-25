@@ -91,3 +91,7 @@ Native先持久化prepared，最后POST前重验scope/会话绑定/未决工作�
 ## S4实施补充（2026-10-25）
 
 见[27](27-s4-call-surface-wiring.md)：market-selection/market-host/experts独立v2只扩已知模型身份，旧源及snapshot/digest版本不变；Native私有草案IPC v2此前已引用storage-v2，无需再造schema。候选全调用面显式选择且仍经过原权限/模型准入。Host标题收集器接受固定Runtime的正常userMessage通知，不将其作为标题正文；未知项/工具项继续失败。私有草案Config仅允许127.0.0.1显式端口/v1的本机资格路由，外部env-loader仍精确锁定18083/v1，受限policy、无工具及无重试保持。无新增权限、服务端或外部目标。
+
+## S4g 旧草案状态续办（2026-10-25）
+
+私有历史读取对既有attempted+failed且无Host/Runtime绑定的草案投影已有uncertain；只读，不更改持久行、attempt或发送权限。精确条件、兼容与scope隔离见33及Desktop源说明。

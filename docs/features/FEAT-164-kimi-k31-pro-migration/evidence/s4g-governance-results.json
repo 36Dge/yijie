@@ -1,0 +1,66 @@
+[
+  {
+    "name": "claims",
+    "command": [
+      "node",
+      "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+      "--audit-claims",
+      "docs/features/FEAT-164-kimi-k31-pro-migration"
+    ],
+    "exit_code": 0,
+    "expected_exit": 0,
+    "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4"
+  },
+  {
+    "name": "strict",
+    "command": [
+      "bash",
+      "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+      "--strict",
+      "docs/features/FEAT-164-kimi-k31-pro-migration"
+    ],
+    "exit_code": 0,
+    "expected_exit": 0,
+    "sha256": "0f6377b2cf2e6dba2d18bcba312d28530dafd7d4a1f423d7affcf223fed72bce"
+  },
+  {
+    "name": "g3",
+    "command": [
+      "bash",
+      "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+      "--gate",
+      "G3",
+      "--slice",
+      "S4",
+      "docs/features/FEAT-164-kimi-k31-pro-migration"
+    ],
+    "exit_code": 1,
+    "expected_exit": 1,
+    "sha256": "f8dff3b8d9265f844cecbdcdc4f88c5126bf080107bf4eac1069bcce8afc5e81"
+  },
+  {
+    "name": "meta-lint",
+    "command": [
+      "pnpm",
+      "lint"
+    ],
+    "exit_code": 0,
+    "expected_exit": 0,
+    "sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c"
+  },
+  {
+    "name": "meta-test",
+    "command": [
+      "pnpm",
+      "test"
+    ],
+    "exit_code": 0,
+    "expected_exit": 0,
+    "sha256": "0cbc4b543edb266ae0913940c113af26011013c465523336eb173119632904cd"
+  },
+  {
+    "name": "shell-syntax",
+    "exit_code": 0,
+    "files": 7
+  }
+]
