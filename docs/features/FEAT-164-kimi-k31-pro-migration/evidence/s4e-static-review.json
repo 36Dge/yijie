@@ -1,0 +1,150 @@
+{
+  "verified_at": "2026-10-25T20:30:41.210147+08:00",
+  "contract_impact": "breaking",
+  "real_model_http_added": 0,
+  "source_reviews": [
+    {
+      "repository": "yijie-codex",
+      "base": "074417e5e2f5f55704ea5e1777e7a22d514076b4",
+      "head": "a28130abb13d0f99a00107cd513a653bae878b77",
+      "files": [
+        ".yijie/patches/chat-models/0009-feat-164-native-failure-terminals.patch",
+        ".yijie/patches/chat-models/0010-feat-164-sanitized-persistence-metrics.patch",
+        "CHANGELOG.yijie.md",
+        "Makefile",
+        "README.md",
+        "UPSTREAM.md",
+        "docs/feat164-native-failure-terminals.md",
+        "docs/runtime-compatibility.md",
+        "docs/yijie-patch-policy.md",
+        "scripts/build-kimi-k31-pro-r3.sh",
+        "scripts/build-kimi-k31-pro-r4.sh",
+        "scripts/check-kimi-k31-pro-r3.sh",
+        "scripts/check-kimi-k31-pro-r4.sh",
+        "scripts/write-kimi-k31-pro-r3-runtime-manifest.py",
+        "scripts/write-kimi-k31-pro-r4-runtime-manifest.py"
+      ],
+      "diff_check": "PASS outside patch syntax; context markers separately verified",
+      "patch_context_exceptions": [
+        {
+          "file": ".yijie/patches/chat-models/0009-feat-164-native-failure-terminals.patch",
+          "line": 8,
+          "reason": "literal unified-diff blank context marker; preserve reproducible patch bytes"
+        },
+        {
+          "file": ".yijie/patches/chat-models/0009-feat-164-native-failure-terminals.patch",
+          "line": 168,
+          "reason": "literal unified-diff blank context marker; preserve reproducible patch bytes"
+        },
+        {
+          "file": ".yijie/patches/chat-models/0009-feat-164-native-failure-terminals.patch",
+          "line": 176,
+          "reason": "literal unified-diff blank context marker; preserve reproducible patch bytes"
+        },
+        {
+          "file": ".yijie/patches/chat-models/0009-feat-164-native-failure-terminals.patch",
+          "line": 199,
+          "reason": "literal unified-diff blank context marker; preserve reproducible patch bytes"
+        },
+        {
+          "file": ".yijie/patches/chat-models/0009-feat-164-native-failure-terminals.patch",
+          "line": 202,
+          "reason": "literal unified-diff blank context marker; preserve reproducible patch bytes"
+        },
+        {
+          "file": ".yijie/patches/chat-models/0009-feat-164-native-failure-terminals.patch",
+          "line": 234,
+          "reason": "literal unified-diff blank context marker; preserve reproducible patch bytes"
+        },
+        {
+          "file": ".yijie/patches/chat-models/0009-feat-164-native-failure-terminals.patch",
+          "line": 255,
+          "reason": "literal unified-diff blank context marker; preserve reproducible patch bytes"
+        },
+        {
+          "file": ".yijie/patches/chat-models/0010-feat-164-sanitized-persistence-metrics.patch",
+          "line": 11,
+          "reason": "literal unified-diff blank context marker; preserve reproducible patch bytes"
+        },
+        {
+          "file": ".yijie/patches/chat-models/0010-feat-164-sanitized-persistence-metrics.patch",
+          "line": 39,
+          "reason": "literal unified-diff blank context marker; preserve reproducible patch bytes"
+        },
+        {
+          "file": ".yijie/patches/chat-models/0010-feat-164-sanitized-persistence-metrics.patch",
+          "line": 48,
+          "reason": "literal unified-diff blank context marker; preserve reproducible patch bytes"
+        }
+      ],
+      "index_empty": true
+    },
+    {
+      "repository": "yijie-contracts",
+      "base": "eddc64f95d81c26ca1678cc648d177c081f7904d",
+      "head": "1b357cce0575c492f3715b316ee5f254051acf80",
+      "files": [
+        "compatibility/runtime-kimi-k31-pro/source.lock.json",
+        "docs/feat164-native-terminal-r4.md",
+        "scripts/generate-runtime-kimi-k31-pro.mjs",
+        "sdks/go/openapi/runtime-kimi-k31-pro/artifact.gen.go"
+      ],
+      "diff_check": "PASS",
+      "patch_context_exceptions": [],
+      "index_empty": true
+    },
+    {
+      "repository": "yijie-agent-host",
+      "base": "df06a3cda72dee14f5db1d7b46e83fd196d2b070",
+      "head": "b9155a3936c6ff5c6aedd52778d975de52b95d06",
+      "files": [
+        "api/chat-models-v2.candidate.json",
+        "api/runtime-kimi-k31-pro.candidate.json",
+        "docs/feat164-cutover-verification.md",
+        "internal/codex/feat164_cutover_integration_test.go",
+        "internal/codex/feat164_history_writer_test.go",
+        "internal/codex/kimi_k31_candidate.go",
+        "internal/contracts/runtimekimik31pro/artifact.gen.go",
+        "scripts/feat164-s4e-conformance.py"
+      ],
+      "diff_check": "PASS",
+      "patch_context_exceptions": [],
+      "index_empty": true
+    },
+    {
+      "repository": "yijie-desktop",
+      "base": "a0a474333ba03186b36f30fa3ab86287abfc5c15",
+      "head": "2fb898942cb4c3b81e34feb5169bd861340a4040",
+      "files": [
+        "contracts/chat-models-v2.candidate.json",
+        "contracts/kimi-k31-host-build.candidate.json",
+        "contracts/runtime-kimi-k31-pro.candidate.json",
+        "scripts/kimi-k31-build-candidate.mjs",
+        "scripts/run-local-demo-fast.sh",
+        "src/domain/conversation-native-terminal.feat164.test.ts"
+      ],
+      "diff_check": "PASS",
+      "patch_context_exceptions": [],
+      "index_empty": true
+    }
+  ],
+  "final_harness_syntax": "PASS",
+  "native_log_recheck_bytes_identical": true,
+  "observation_delta": [
+    "docs/feat164-cutover-verification.md",
+    "scripts/feat164-s4e-conformance.py"
+  ],
+  "desktop_original_user_test_excluded": true,
+  "final_renderer_qualification": "owned 7 only; temporary diagnostic 15 excluded",
+  "app_build_scope": "ordinary canonical prepare-only, no launch or UI qualification",
+  "safe_execution": "normal protocol/Shutdown only; synthetic loopback; no attack/fault injection, force kill, permission sabotage or executable replacement",
+  "limitations": [
+    "full frontend suite not claimed; original fixture mismatch remains outside owned test",
+    "r2 reader parse support is not old-writer roundtrip compatibility",
+    "native loaded thread/resume does not accept model replacement; turn/start explicitly selects model",
+    "Host writer fence covers retained managed Kimi candidate path, not arbitrary manual old binary invocation",
+    "new ErrorEvent durable copy is sanitized; not a universal rewrite of prior tool text",
+    "same-source App UI/expert-media assembly/current G2V/G3/final still incomplete"
+  ],
+  "push": false
+}

@@ -1,0 +1,47 @@
+{
+  "verified_at": "2026-10-25T20:25:12.688999+08:00",
+  "native_terminal": "PASS",
+  "full_tconf_pass": false,
+  "raw_observations": [
+    {
+      "log": "s4e-native-terminal-qualified/checks.log",
+      "sha256": "d024e88e4ba2d42011b58534c7f63f76e26f509f7caeaa40d23eb38bdf0a8d43",
+      "loopback_http": 12,
+      "old_k3_before_cutoff": 4
+    },
+    {
+      "log": "s4e-native-terminal-final/checks.log",
+      "sha256": "4f9478b6a907e909f2085ed7b8a0e538070cb45889cc8ce46e070513647098d3",
+      "loopback_http": 23,
+      "old_k3_before_cutoff": 7
+    },
+    {
+      "result": "s4e-native-auxiliary-result.json",
+      "loopback_http": 9,
+      "old_k3_before_cutoff": 0
+    },
+    {
+      "result": "s4e-runtime-call-surfaces-result.json",
+      "loopback_http": 6,
+      "old_k3_before_cutoff": 0
+    }
+  ],
+  "loopback_http_total": 50,
+  "old_k3_pre_cutoff_total": 11,
+  "recheck_additional_http": 0,
+  "real_model_http_added": 0,
+  "native_observation_commit": "371c86a330de7e482755de15bf90573b7f9c8505",
+  "verdict_harness_commit": "b9155a3936c6ff5c6aedd52778d975de52b95d06",
+  "go_test_sources_identical_across_recheck": true,
+  "original_failure_records_preserved": true,
+  "old_same_fingerprint_product_failures": 2,
+  "new_product_failures_at_original_checkpoint": 0,
+  "full_feat164_complete": false,
+  "notes": [
+    "original native wait/history assertions passed in both r4 observations",
+    "first r4 extension incorrectly used loaded thread/resume; corrected to public turn/start model field",
+    "second native run all 7 Go cases passed; summary parser corrected by exact raw-log recheck, no Runtime rerun",
+    "rechecked copy log is not counted twice",
+    "App/UI/G2V/G3/final scope remains separate"
+  ]
+}

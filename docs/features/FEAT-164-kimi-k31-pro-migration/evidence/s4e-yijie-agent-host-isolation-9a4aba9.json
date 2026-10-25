@@ -1,0 +1,19 @@
+{
+  "repository": "yijie-agent-host",
+  "base": "df06a3cda72dee14f5db1d7b46e83fd196d2b070",
+  "commit": "9a4aba9f0c03bcbd11d833e639ba6181814f7d54",
+  "files": [
+    "api/chat-models-v2.candidate.json",
+    "api/runtime-kimi-k31-pro.candidate.json",
+    "docs/feat164-cutover-verification.md",
+    "internal/codex/feat164_cutover_integration_test.go",
+    "internal/codex/feat164_history_writer_test.go",
+    "internal/codex/kimi_k31_candidate.go",
+    "internal/contracts/runtimekimik31pro/artifact.gen.go",
+    "scripts/feat164-s4e-conformance.py"
+  ],
+  "patch_sha256": "236e7ce876b55cb52e4a169a2a861f7d9b40d1ed1cc70bf0e79763b7a2cf918d",
+  "reverse_patch_preserved_preexisting_bytes": true,
+  "push": false,
+  "note": "First commit inverse proof succeeded in the tool result; helper later overwrote its latest-summary path. This per-commit record is reconstructed from the identical immutable diff and observed original result; failed test logs remain unchanged."
+}

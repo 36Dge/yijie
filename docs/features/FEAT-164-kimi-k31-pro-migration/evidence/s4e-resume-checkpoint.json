@@ -1,0 +1,37 @@
+{
+  "recorded_at": "2026-10-25T20:05:14.572015+08:00",
+  "authorization": "Plan A explicitly approved; zero real HTTP, preserve all previous work/evidence, local commits only",
+  "runtime_final_source": "a28130abb13d0f99a00107cd513a653bae878b77",
+  "runtime_initial_source": "0b92fcb0a270d0da89ea0d90f07f20e53d9d17ba",
+  "active_build_session": 89972,
+  "active_build_log": "s4e-runtime-r4-build.log",
+  "source_checks": "10 focused PASS and scoped Clippy PASS, runtime lint, unchanged upstream; 0010 corrects byte counters",
+  "r3": "Built and preserved; not consumed; hashes in s4e-r3-intermediate-result.json",
+  "qualification_root": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4e-qualification-20261025",
+  "pending": [
+    "finish canonical r4 build/schema/normal-EOF smoke",
+    "generate exact Contracts r4 leaf/check and local isolated commit",
+    "sync Host/Desktop from new Contracts commit",
+    "Host local isolated commit then exact S4e 7-test/23-loopback native qualification; additional ordinary agent/guardian/explicit compaction checks as scoped",
+    "Desktop pins/launcher r4 and Host freeze; local isolated commit; canonical prepare-only ordinary App build in new tree",
+    "final feature governance, preservation, isolated meta local commit and postcommit audit"
+  ],
+  "already_passed": [
+    "10 offline supported baseline comparisons",
+    "15 Contracts safe tests",
+    "15 final Renderer tests (initial stale v3 fixture corrected to existing v4; original failed log retained)",
+    "Native terminal1/history1/fmt",
+    "Host writer fence/fresh config/old home protection3; vet with fence PASS"
+  ],
+  "known_non_product_failures": [
+    "initial Renderer fixture v3 versus existing v4",
+    "Host draft ResumeThread extra cwd argument twice; corrected, subsequent standalone vet PASS"
+  ],
+  "real_model_http_added": 0,
+  "product_host_desktop_contracts_not_yet_committed": true,
+  "helpers": [
+    "/tmp/feat164-s4e-isolate.py",
+    "/tmp/feat164-s4e-preserve.py"
+  ],
+  "notes": "Do not rerun old r2 failure or run old binary on new history. Core upstream remains pristine; actual changes in canonical patches. Incidence old 2 failures preserved armed; no fake third attempt/RCA approval. Final classification breaking; managed config writer fence rejects retained r2 Kimi Host. All new only-safe fixtures."
+}

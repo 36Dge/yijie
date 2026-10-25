@@ -1,0 +1,44 @@
+{
+  "real_model_http_added": 0,
+  "checks": [
+    {
+      "name": "native-terminal",
+      "passed": 1,
+      "exit_code": 0,
+      "sha256": "d78ed66d8d9d0f0e1eba6e3f7a5791a39a6b37b00f660201524fa00130ba70c8"
+    },
+    {
+      "name": "native-history",
+      "passed": 1,
+      "exit_code": 0,
+      "sha256": "4dbf6fd8af2b49e3121ba8e15c2c4299a7cb7bb8520eb046edcc95105b15477d"
+    },
+    {
+      "name": "contracts-safe-tests",
+      "passed": 15,
+      "exit_code": 0,
+      "sha256": "f5a82a9d704b5718c2713e773ad9f508b003457244e07b40ab129a6478dc3382"
+    },
+    {
+      "name": "profile-tests",
+      "passed": 5,
+      "exit_code": 0,
+      "sha256": "bdef4f20659c52928c9542e2e174310a519530b79493bc1faa29e1b8dbc31580"
+    },
+    {
+      "name": "renderer-temporary-diagnostic",
+      "passed": 15,
+      "exit_code": 0,
+      "sha256": "362e878d8260a07cfdd2d0dfcf84189d806e7cec169f08dcc8219f94b276d130",
+      "qualification": "NOT_FINAL_SOURCE; temporary old fixture edit excluded to preserve existing user changes"
+    },
+    {
+      "name": "renderer-owned-final",
+      "passed": 7,
+      "exit_code": 0,
+      "sha256": "0facba2cb3df0a24614acf5e28c06e630648d254ecb2e4b8eca16406a61e8fae",
+      "qualification": "final Desktop 2fb8989: independent FEAT164 terminal3 plus existing timing4"
+    }
+  ],
+  "preserved_initial_renderer_failure": "Old clean source used schemaVersion3 against existing v4 validator. Temporary fixture fix reverted in clean qualification; original workspace user edits never changed or staged. Baseline full-suite claim not made."
+}

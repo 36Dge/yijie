@@ -1,5 +1,7 @@
 # FEAT-164 实际验证记录
 
+> 当前（2026-10-25，方案A原生终态修复）：Runtime r4 a28130a → Contracts1b357cc → Hostb9155a3 → Desktop2fb8989已本地固化。原子代理错误被completed覆盖及冷历史丢失失败已修复；10项核心、269 schema零差异、7项原生/23次本机HTTP证据复核、3辅助/9次与4调用面/6次均通过。新增受管writer标记阻止旧r2候选写入新历史；不改旧历史。全轮50次合成本机HTTP、真实新增0，旧账本/预占保留。App本批仅构建，完整UI/计划/恢复取消/平台/G2V/G3/final仍未通过。最新权威见[31](31-s4-native-terminal-repair.md)及feature.yaml；以下旧阶段保持历史含义。
+
 > 当前（2026-10-25，S4旧线程/子代理/自动压缩）：Host验证提交df06a3c仅新增测试、driver和说明，产品组合仍为Desktopa0a4743/Hostcac2d4d/Runtime074417e5。干净来源独立子集6项PASS、14次loopback，覆盖旧父子loaded后正常停机/显式切换、当前及迁移后自动压缩、previous_model两分支零旧出站。但旧模型子代理被guard拒绝后，wait_agent和thread/read仍报告completed，实际缺陷保持FAIL；S4 blocked，完整TCONF/G2V/G3/final不放行。全轮71次合成本机HTTP、真实新增0；旧账本/预占保留。最新权威见[30](30-s4-loaded-legacy-compaction.md)及feature.yaml；下方各批次保留原来源。
 
 > 当前（2026-10-25，S4同源App/UI）：Desktopa0a4743在固定Hostcac2d4d/Runtime074417e5及专家资源上完成本机App验收子集；修复Worker物理路径、最小窗口裁切和暂停Kimi历史阻断启动。普通/专家媒体、历史重开、暂停与MiniMax、亮暗最小窗口及正常清理已验证。10次loopback、真实模型新增0；系统浅色已恢复，旧账本/预占和原工作区保留。完整旧K3 cutover、计划/恢复UI、跨平台、当前G2V/G3/final仍pending。最新权威见[29](29-s4-canonical-app-ui.md)与feature.yaml；下方记录按原时间与来源保留。
@@ -264,3 +266,23 @@ Contracts2dd214d、Desktop4d04597干净资格来源，计划v2/私有IPC、SQL41
 <!-- evidence: E164-S4D-RCA -->
 
 [30的根因及建议](30-s4-loaded-legacy-compaction.md)：native agent状态被TurnComplete覆盖，rollout不持久化Error导致历史丢失失败；需要原生权威修复。正式机器台账记录2次实际同指纹FAIL/armed，另采用保守停止策略；没有Owner批准的核心补丁或RCA复验，不标resolved。S4 blocked，完整TCONF-164-04、G3/final未过。
+
+## E164-S4E-NATIVE
+
+<!-- evidence: E164-S4E-NATIVE -->
+
+[31](31-s4-native-terminal-repair.md)及[s4e-verdict](evidence/s4e-verdict.json)记录完整边界。最终r4原生观察在Host371c86a上7项Go PASS、0失败/跳过；原始记录为[s4e-native-terminal-final](evidence/s4e-native-terminal-final/result.json)，初版汇总因Go Output分块漏计判FAIL。汇总器b9155a3只读复核相同原始日志、artifact和Go测试源，得到[23请求/6ledger的PASS](evidence/s4e-native-terminal-rechecked/result.json)，追加HTTP0，未重跑Runtime。两个errored等待、failed冷历史、同一loaded子线程显式新模型下一轮completed及正常重开均实际断言。Host产品冷迁移/自动压缩/previous-model安全拒绝同批通过。
+
+另有[s4e-native-auxiliary](evidence/s4e-native-auxiliary-result.json)3项/9本机请求与[s4e-runtime-call-surfaces](evidence/s4e-runtime-call-surfaces-result.json)4项/6本机请求PASS。加首次扩展resume用错API产生的12次本机请求，全轮50；其中11次旧producer均cutoff前，真实0。原2次同指纹产品FAIL台账不改，当前独立remediation已记录；不伪造第3次或RCA cycle。
+
+## E164-S4E-CONTRACT
+
+<!-- evidence: E164-S4E-CONTRACT -->
+
+r4源a28130abb13d0f99a00107cd513a653bae878b77，[10项focused/Clippy](evidence/s4e-runtime-r4-focused-result.json)与[canonical构建/schema/正常EOF](evidence/s4e-runtime-r4-build-result.json)通过；269 schema与r2逐文件一致。初步r3已保留但不消费。Contracts1b357cce0575c492f3715b316ee5f254051acf80从真实产物生成，生成复核、Go vet与10个支持/增量基线离线比较通过。Hostb9155a3936c6ff5c6aedd52778d975de52b95d06和Desktop2fb898942cb4c3b81e34feb5169bd861340a4040精确消费。整体及本轮均breaking，旧writer不支持新失败事实；[writer保护](evidence/s4e-writer-fence-proof.json)证明原r2配置/校验代码未变，新受管标记在旧入口被拒绝，参数不变与用户配置保留。
+
+## E164-S4E-CONSUMER
+
+<!-- evidence: E164-S4E-CONSUMER -->
+
+Native终态1、兼容历史1、fmt，Host writer/fresh/old-home3及vet，独立Renderer终态3+timing4与eslint通过。旧前端基线fixture版本错及其已有用户工作区改动保持；临时15项诊断绿色不冒充最终提交验证。普通App只通过canonical prepare-only构建，不启动App，不算UI/G2V；具体结果见31和s4e-app-build-result。所有旧账本、真实预算及未知预占不更改。

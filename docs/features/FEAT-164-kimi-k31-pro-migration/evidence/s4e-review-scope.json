@@ -1,0 +1,22 @@
+{
+  "patch_sha256": "ae74c11488a31644e9b052f1864fd4a76ecdc05e9019206efd2e7d82f8595886",
+  "contract_impact_increment": "breaking: old reader parsing does not qualify old writer preservation; exact new producer/consumer pair and paused compatible rollback only",
+  "feature_contract_impact": "breaking",
+  "safe_checks": [
+    "core error to completion and next-turn reset",
+    "native cancel and non-turn error classification",
+    "legacy/paginated history persistence",
+    "regular and metrics-enabled sanitization",
+    "unchanged known ErrorEvent reader round-trip"
+  ],
+  "unexecuted": [
+    "real model/provider requests: prohibited by current authorization",
+    "full retired FEAT-137 fork-management suite: unrelated retired source path",
+    "historical attack/fault suites: prohibited; focused ordinary conformance used",
+    "App/UI acceptance: separate remaining S4 scope"
+  ],
+  "build_cache": "new Desktop target cloned compiler cache only; audited App bundle/executable not copied or overwritten",
+  "source_ref_verified": true,
+  "initial_runtime_commit": "0b92fcb0a270d0da89ea0d90f07f20e53d9d17ba",
+  "metrics_review": "additional 0010 distinguishes raw and persisted lengths; r3 retained without consumer promotion"
+}

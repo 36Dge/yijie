@@ -1,0 +1,19 @@
+{
+  "verified_at": "2026-10-25T20:01:48.028512+08:00",
+  "retained_host_commit": "df06a3cda72dee14f5db1d7b46e83fd196d2b070",
+  "old_configuration_recipe_exact": true,
+  "unchanged_old_guard_and_config_dependencies": {
+    "internal/codex/provider_authority.go": "83186729509663250329e2aa5d2ca862af6811d834f28376876aabbe937a5d2c",
+    "internal/codex/chat_models.go": "40305aec0575b1799ee0c67837a5c477c0ce1c914d43267a9771ba67078f66ec"
+  },
+  "ordinary_unit_passes": [
+    "TestFEAT164NativeHistoryWriterFence",
+    "TestFEAT164CandidateAdmissionAndFreshConfiguration",
+    "TestFEAT164ExistingOwnedHomeIsNotImplicitlyMigrated"
+  ],
+  "exit_code": 0,
+  "log_sha256": "1be245d087fbcbd36aea667bcf813e00f6bb6615d6914fb62ee537c442b0830c",
+  "scope": "retained r2 Kimi candidate managed-config path; old writer/new history unsupported in every other manual combination",
+  "old_executable_run_on_new_history": false,
+  "real_model_http_added": 0
+}

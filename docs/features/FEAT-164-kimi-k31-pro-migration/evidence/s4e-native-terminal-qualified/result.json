@@ -1,0 +1,53 @@
+{
+  "scope": "S4e repaired native terminal subset; not complete TCONF or App acceptance",
+  "full_tconf_pass": false,
+  "started_at": "2026-10-25T20:12:21.248800+08:00",
+  "command": [
+    "/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go",
+    "test",
+    "-race",
+    "-json",
+    "./internal/codex",
+    "-run",
+    "^TestFEAT164(LoadedLegacyGraphCutover|LoadedRetiredAgentGuard|AutomaticCompaction|PreviousModelCompactionGuard|MigratedAutomaticCompaction)$",
+    "-count=1",
+    "-failfast",
+    "-timeout=0"
+  ],
+  "toolchain": "go version go1.26.5 darwin/arm64",
+  "head": "9a4aba9f0c03bcbd11d833e639ba6181814f7d54",
+  "source_status": [],
+  "inputs": {
+    "runtime_binary": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r4/aarch64-apple-darwin/codex",
+      "sha256": "3821bb6063825bdb0e30e367757117f7b3bc9bca84f0275cbdef9e9c660e1e5f"
+    },
+    "runtime_manifest": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r4/aarch64-apple-darwin/runtime-manifest.json",
+      "sha256": "cf72b3b130c0682676603e75d40e8f4e9afaa6f5ed1a67d6be233726ff94a95f"
+    },
+    "legacy_binary": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/chat-models-web-sources/aarch64-apple-darwin/codex",
+      "sha256": "9766d7e10d25327f0595964a19ad67e1e1c1db0c22e5a65f9af66b547ab316c6"
+    },
+    "legacy_manifest": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/chat-models-web-sources/aarch64-apple-darwin/runtime-manifest.json",
+      "sha256": "91f1e4ef729410931fa13a304097b482cdb33d0d73baeb1235dc881c6875d6ba"
+    }
+  },
+  "test_source_sha256": "47e5d08137ded49a1b9cd79fa62dc4da71ee0a25f6378fc63b9662a4f7df56e3",
+  "real_model_http_added": 0,
+  "exit_code": 1,
+  "passed": [
+    "TestFEAT164LoadedLegacyGraphCutover"
+  ],
+  "failed": [
+    "TestFEAT164LoadedRetiredAgentGuard"
+  ],
+  "skipped": [],
+  "loopback_requests": 12,
+  "completed_fixture_ledgers": 2,
+  "status": "FAIL",
+  "verified_at": "2026-10-25T20:12:24.630314+08:00",
+  "log_sha256": "d024e88e4ba2d42011b58534c7f63f76e26f509f7caeaa40d23eb38bdf0a8d43"
+}

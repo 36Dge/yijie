@@ -1,0 +1,26 @@
+{
+  "started_at": "2026-10-25T20:16:58.794697+08:00",
+  "command": [
+    "/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go",
+    "test",
+    "-race",
+    "-json",
+    "./internal/codex",
+    "-run",
+    "^TestFEAT164Native(AuxiliaryAgent|AuxiliaryCompaction|GuardianModel)$",
+    "-count=1",
+    "-failfast",
+    "-timeout=0"
+  ],
+  "head": "b9155a3936c6ff5c6aedd52778d975de52b95d06",
+  "exit_code": 0,
+  "passed": [
+    "TestFEAT164NativeAuxiliaryAgent",
+    "TestFEAT164NativeAuxiliaryCompaction",
+    "TestFEAT164NativeGuardianModel"
+  ],
+  "status": "PASS",
+  "loopback_http": 9,
+  "real_model_http_added": 0,
+  "sha256": "9237fa48117a0cfd6fafaa4d8adfd681fc8cb22efe93f96601c978a414deef5c"
+}

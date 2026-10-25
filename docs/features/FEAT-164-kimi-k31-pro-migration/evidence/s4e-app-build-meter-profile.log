@@ -1,0 +1,28 @@
+Native input-only projection verified
+Input-only Host projection verified
+FEAT-164 projections verified from 1b357cce0575c492f3715b316ee5f254051acf80; inactive.
+FEAT-164 inactive Runtime artifact projection verified
+Chat models v2 source generation verified; unreleased local candidate.
+Native conversation verified: 811f38d6b104fa18477107e7ac91a85e19c445d1; published=false
+FEAT-132 native sources, generated consumer snapshots and retired-engine boundary verified.
+Native MCP verified: 811f38d6b104fa18477107e7ac91a85e19c445d1
+FEAT-144 native sources and single display adapter checked; candidate checks do not authorize activation.
+✨ openapi-typescript 7.13.0
+ ⚠  Component: "NativeEvent" is never used. at #/components/schemas/NativeEvent
+ ⚠  Component: "NativeThreadStatusSnapshot" is never used. at #/components/schemas/NativeThreadStatusSnapshot
+🚀 openapi/native-conversation-v3/native-conversation-v3.yaml → /var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-native-process-codegen-5lubWE/types.ts [35.7ms]
+✨ openapi-typescript 7.13.0
+ ⚠  Component: "NativeEvent" is never used. at #/components/schemas/NativeEvent
+ ⚠  Component: "NativeThreadStatusSnapshot" is never used. at #/components/schemas/NativeThreadStatusSnapshot
+🚀 openapi/native-conversation-v4/native-conversation-v4.yaml → /var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/yijie-native-process-codegen-5lubWE/types.ts [33.5ms]
+Native process verified: local candidate, not a release pin
+Native process authority checked (local candidate, release=false).
+FEAT-134 v4 immutable objects verified at Contracts 87f94c9aa6d4848cb67aa8a1265bd21474edb0bb and Agent Host 96b1fa19783694aef583b614c492fd2b6b5c15cc; activation is exact local/demo_fast/stable only.
+FEAT-137 permanent retirement authority verified: 4d3f967938dde1c86ca34003a0a5628717f96262; acceptance remains NOT PASSED
+$ node scripts/sync-desktop-skill-resources.mjs --channel local-development
+Synchronized local-development: 38 installable Skills, categories 5/9/7/9/8.
+$ env YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast YIJIE_RUNTIME_PERMISSIONS_ENABLED=true VITE_YIJIE_RUNTIME_PERMISSIONS_ENABLED=true pnpm skills:sync:local && env -u YIJIE_FEAT134_STREAMING_ENABLED -u VITE_YIJIE_FEAT134_STREAMING_ENABLED -u YIJIE_FEAT136_COMMAND_TOOL_ITEMS_ENABLED -u VITE_YIJIE_FEAT136_EXECUTION_ENABLED -u YIJIE_FEAT137_COMMAND_APPROVAL_ENABLED -u VITE_YIJIE_FEAT137_APPROVAL_ENABLED VITE_YIJIE_RUNTIME_PERMISSIONS_ENABLED=true VITE_YIJIE_ENV=local VITE_YIJIE_LOCAL_PROFILE=demo_fast VITE_YIJIE_CHAT_LOCAL_UI_ENABLED=true VITE_YIJIE_AUTHORITATIVE_PERMISSION_UI_ENABLED=true VITE_YIJIE_LOCAL_WHITELIST_LOGIN_ENABLED=false tauri build --debug --bundles app --no-sign --config src-tauri/tauri.demo-fast.conf.json --features kimi-k31-pro-candidate --config src-tauri/tauri.feat164-kimi-k31.conf.json
+$ node scripts/sync-desktop-skill-resources.mjs --channel local-development
+Agent Host requires pinned commit 1b7bfd1ce4323e52035b2ba1e62842c2d332d9ed; sibling HEAD is b9155a3936c6ff5c6aedd52778d975de52b95d06. Prepare a clean checkout of that commit at /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4e-qualification-20261025/yijie-desktop/.local/agent-host-pinned-1b7bfd1, or set YIJIE_DESKTOP_AGENT_HOST_DIR to one. The lock and existing checkouts have not been changed.
+[ELIFECYCLE] Command failed with exit code 1.
+[ELIFECYCLE] Command failed with exit code 1.

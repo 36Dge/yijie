@@ -1,0 +1,26 @@
+{
+  "command": [
+    "/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go",
+    "test",
+    "-race",
+    "-json",
+    "./internal/codex",
+    "-run",
+    "^TestFEAT164(CallSurfacesRuntime|DraftLoopbackAdmission|TitleCollectorNativeInputLifecycle|MarketCandidateAssembly)$",
+    "-count=1",
+    "-failfast",
+    "-timeout=0"
+  ],
+  "head": "b9155a3936c6ff5c6aedd52778d975de52b95d06",
+  "exit_code": 0,
+  "passed": [
+    "TestFEAT164CallSurfacesRuntime",
+    "TestFEAT164DraftLoopbackAdmission",
+    "TestFEAT164MarketCandidateAssembly",
+    "TestFEAT164TitleCollectorNativeInputLifecycle"
+  ],
+  "status": "PASS",
+  "loopback_http": 6,
+  "real_model_http_added": 0,
+  "log_sha256": "754778bdc38a844cd09e9e7ca7f82fe0af2b4532b720b56dc5651e3d9510cb88"
+}
