@@ -86,7 +86,7 @@ gates:
   G1_design_ready: pass
   G2_implementation_ready: pass
   G2A_contract_ready: pass
-  G2V_vertical_feasibility: pending
+  G2V_vertical_feasibility: pass
   G4_code_complete: pending
   G5_production_ready: pending
   G6_delivery_complete: pending
@@ -109,7 +109,7 @@ gate_reasons:
     S4新增三组模型承载v2源于eddc64f，安全leaf/check、4同源schema测试和9登记基线比较通过，Host9ffcb6f/Desktop
     e408047精确消费；仅本地来源，不等于发布或专家资源资格。
     S4b复用同一公共契约；Hostcac2d4d/Desktop56f5284/Connectors1f15726固定Skills595c927同内容资源和原库树，四组合source通过，旧来源的证据不覆盖App资格。
-  G2V: S4K当前canonical与预算/判定器及本机正控/重开资格通过；Owner批准本轮1+2共3次真实HTTP，累计最多5次/30元。当前新增0；UI连续人工操作交锁后等待Owner交回窗口，meter正常停止。新后继schema3保留旧schema2字节/预占，真实G2V仍NOT RUN。
+  G2V: S4K当前canonical和qualified harness下3次真实文本HTTP均返回42/50/8；同源保存、两次重开零新增调用及正常清理通过，组合判定器退出0/PASS。仅最小文本纵向资格；完整TCONF/G3/final及日常cutover仍未完成。累计5/5次数耗尽，原unknown预占保留。
 
 temporal_contract_matrix:
   required: true
@@ -335,9 +335,9 @@ vertical_feasibility:
       /Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-164-kimi-k31-pro-migration/evidence/s4k-real-observation.json
     environment: macOS aarch64; current canonical App; up to three additional HTTP under unchanged 30 CNY cumulative cap;
       output8192/no-native-search
-    exit_code: null
-    status: NOT RUN
-    verified_at: NOT RUN
+    exit_code: 0
+    status: PASS
+    verified_at: 2026-10-26T02:01:37.491309+08:00
     harness:
       id: H-F164-LOCAL
       commit: ea9b1e499d86bb92eea360a62707027485790e22
@@ -347,12 +347,16 @@ vertical_feasibility:
     contract_refs:
       - contract:chat-models-v2@0.2.0@1b357cce0575c492f3715b316ee5f254051acf80#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
       - contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r4@1b357cce0575c492f3715b316ee5f254051acf80#bec02925813e13a92342e6dcab8eb0f04b4732983e00c2f9e6e314827c8d3522
+      - contract:scheduled-plan-v2@0.2.0@2dd214d6a702064edae78510c035442854bf9789#75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
+      - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
+      - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
+      - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
     fixture_refs:
       - fixture:feat164-request-shape-loopback#d345d62dfa9ba7021138c3330a6c619222cf108cf423b5b051fc9699cda90372
     refs:
       - 08-verification-report.md#E164-S4K-REAL
     working_directory: /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4k-qualification-20261026/yijie-desktop
-    reason: S4K新工具/本机App资格已通过，新增最多3次真实HTTP已获批准；当前新增0，因Owner正在操作候选窗口等待交接。计量器已正常停止，授权仍保留，不是模型失败或预算退款。
+    reason: 当前3次普通文本真实请求、42/50/8、保存/重开与正常清理均通过；旧账本与预占保持。输出8192、无搜索/图片；最小文本G2V不代表完整TCONF/G3/final或日常迁移。
 
 runtime_harnesses:
   - id: H-F164-LOCAL
@@ -754,7 +758,7 @@ slices:
         - 08-verification-report.md#E164-S4I-MEDIA
         - 08-verification-report.md#E164-S4J-OFFLINE
       reason: 历次r4原生终态/冷读/自动压缩/辅助调用按原来源保留；S4I当前配对专家切模型、media/中断/图片及重开清理已实机通过，旧unknown保持阻断。
-        计划App证据见S4F/H。完整旧K3/恢复取消适用边界、当前G2V与整项freshness尚缺，不能把这些分批子集标为完整边界/纵向PASS；非Mac ARM目标N/A。
+        计划App证据见S4F/H。完整旧K3/恢复取消适用边界尚缺；当前文本G2V已通过，整项freshness尚缺，不能把这些分批子集标为完整边界/纵向PASS；非Mac ARM目标N/A。
       exception:
         owner: N/A
         approved_at: N/A
@@ -777,7 +781,7 @@ slices:
         - 08-verification-report.md#E164-S4I-MEDIA
         - 08-verification-report.md#E164-S4J-OFFLINE
       reason: 历次r4原生终态/冷读/自动压缩/辅助调用按原来源保留；S4I当前配对专家切模型、media/中断/图片及重开清理已实机通过，旧unknown保持阻断。
-        计划App证据见S4F/H。完整旧K3/恢复取消适用边界、当前G2V与整项freshness尚缺，不能把这些分批子集标为完整边界/纵向PASS；非Mac ARM目标N/A。
+        计划App证据见S4F/H。完整旧K3/恢复取消适用边界尚缺；当前文本G2V已通过，整项freshness尚缺，不能把这些分批子集标为完整边界/纵向PASS；非Mac ARM目标N/A。
       exception:
         owner: N/A
         approved_at: N/A
@@ -796,7 +800,7 @@ slices:
       invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
         implementation reference changes
     status: pending
-    status_reason: S4J当前迁移/取消57项、计划5项、专家媒体四组合、辅助及旧loaded/终态/自动压缩通过，产品代码不变。安全离线覆盖已收敛；当前候选无旧K3会话/计划可供自然App升级。完整TCONF、当前G2V/freshness/final及日常cutover仍未完成，见36；不要重复同批离线测试代替这些缺口。
+    status_reason: S4J当前迁移/取消57项、计划5项、专家媒体四组合、辅助及旧loaded/终态/自动压缩通过，产品代码不变。安全离线覆盖已收敛；当前候选无旧K3会话/计划可供自然App升级。当前文本G2V已通过；完整TCONF、freshness/final及日常cutover仍未完成，见38；不要重复同批离线测试代替这些缺口。
 final_e2e:
   core_vertical:
     required: true
@@ -1213,18 +1217,22 @@ implementation:
       stopped_after_pass: true
       does_not_authorize_real_model_calls: true
   current_successor_g2v:
-    status: WAITING_FOR_UI_CONTROL
+    status: PASS_SCOPED
     desktop_commit: ea9b1e499d86bb92eea360a62707027485790e22
     authorization_ref: evidence/s4k-successor-authorization.json
     ledger_ref: evidence/g2v-real-budget-ledger-r3.json
     approved_new_http: 3
     cumulative_max_http: 5
     cumulative_limit_micro_cny: 30000000
-    new_real_http_used: 0
+    new_real_http_used: 3
     meter_state: stopped_normally
-    candidate_app_state: active_for_owner_viewing
+    candidate_app_state: normally_exited
     evidence_ref: 08-verification-report.md#E164-S4K-REAL
-    reason: 本机正控与正常重开清理通过；两次UI工具被人工操作保护拦截，等待交接，不重新索取预算批准。
+    unused_authorized_http: 0
+    cumulative_upper_micro_cny: 14679001
+    verdict_ref: evidence/s4k-real-verdict.json
+    result_report: 38-current-real-g2v-and-final-gaps.md
+    reason: 真实三轮42/50/8、保存/两次重开0新增模型HTTP及正常清理通过；仅最小文本G2V。累计5/5耗尽，原账本/unknown保留，完整TCONF/G3/final与日常切换仍缺。
   current_offline_qualification:
     status: PASS_SCOPED
     desktop_commit: bad75a2d3c4a97be903b57e8bb3a3a72915edd18
@@ -1247,7 +1255,7 @@ implementation:
     note: Worker来源、草案默认值、Native/Host专家配置门禁已修复；实际媒体/正常中断/图片及配对专家paused往返、重开和清理通过。旧unknown未结清，整项Gate另判。
 product_verification:
   status: IN_PROGRESS
-  reason: S4K私有schema3后继预算与当前canonical工具/App资格已通过，真实新增0且已授权3次待窗口交接。旧证据/账本/预占保持；完整TCONF/G3/final与日常cutover仍缺，不以历史42或本机正控冒称新真实通过。最新见37。
+  reason: S4K当前真实文本G2V PASS，3/3新增及累计5/5次数耗尽，累计保守14.679001元含原unknown。旧账本/数据保留，App/meter正常退出；完整TCONF/G3/final、旧K3自然App及日常cutover仍缺。下一步零调用最终验收范围收口，见38。
 profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
 owner_approvals:
   requirements: approved_by_owner_current_user_message

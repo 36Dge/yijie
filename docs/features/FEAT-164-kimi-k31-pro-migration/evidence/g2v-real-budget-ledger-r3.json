@@ -3,7 +3,7 @@
   "limit_micro_cny": 30000000,
   "max_http_requests": 5,
   "scope": "bounded_text_g2v_successor",
-  "charged_upper_micro_cny": 14328134,
+  "charged_upper_micro_cny": 14679001,
   "requests": [
     {
       "model": "kimi-k3.1-pro",
@@ -61,9 +61,120 @@
       "forwarded_response_bytes": 74186,
       "stream_complete": true,
       "charged_upper_micro_cny": 139590
+    },
+    {
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "original_max_output_tokens": null,
+      "max_output_tokens": 8192,
+      "image_count": 0,
+      "tool_choice_preserved": "auto",
+      "native_search_omitted": 1,
+      "native_search_include_omitted": [
+        "web_search_call.action.sources"
+      ],
+      "request_adjustments": [
+        "bounded_max_output_tokens",
+        "omit_unpriced_native_search",
+        "omit_search_include",
+        "json_encoding"
+      ],
+      "ordinal": 3,
+      "status": "settled",
+      "reserved_micro_cny": 14188544,
+      "http_status": 200,
+      "usage": {
+        "input_tokens": 8581,
+        "output_tokens": 75
+      },
+      "terminal": "response.completed",
+      "response_model": "kimi-k3.1-pro",
+      "terminal_count": 1,
+      "response_status": "completed",
+      "output_text_present": true,
+      "cache_ttl": "5m",
+      "native_search_calls": 0,
+      "forwarded_response_sha256": "c3e0476f991b137be940b4e44d1db3dae5e1eb9a3a9a1769ba4803c6302244fe",
+      "forwarded_response_bytes": 51729,
+      "stream_complete": true,
+      "charged_upper_micro_cny": 116653
+    },
+    {
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "original_max_output_tokens": null,
+      "max_output_tokens": 8192,
+      "image_count": 0,
+      "tool_choice_preserved": "auto",
+      "native_search_omitted": 1,
+      "native_search_include_omitted": [
+        "web_search_call.action.sources"
+      ],
+      "request_adjustments": [
+        "bounded_max_output_tokens",
+        "omit_unpriced_native_search",
+        "omit_search_include",
+        "json_encoding"
+      ],
+      "ordinal": 4,
+      "status": "settled",
+      "reserved_micro_cny": 14188544,
+      "http_status": 200,
+      "usage": {
+        "input_tokens": 8696,
+        "output_tokens": 29
+      },
+      "terminal": "response.completed",
+      "response_model": "kimi-k3.1-pro",
+      "terminal_count": 1,
+      "response_status": "completed",
+      "output_text_present": true,
+      "cache_ttl": "5m",
+      "native_search_calls": 0,
+      "forwarded_response_sha256": "301a524c28204683415bd28929bc90d53f410f53b4b85daa3aa6672071208e0e",
+      "forwarded_response_bytes": 41121,
+      "stream_complete": true,
+      "charged_upper_micro_cny": 115020
+    },
+    {
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "original_max_output_tokens": null,
+      "max_output_tokens": 8192,
+      "image_count": 0,
+      "tool_choice_preserved": "auto",
+      "native_search_omitted": 1,
+      "native_search_include_omitted": [
+        "web_search_call.action.sources"
+      ],
+      "request_adjustments": [
+        "bounded_max_output_tokens",
+        "omit_unpriced_native_search",
+        "omit_search_include",
+        "json_encoding"
+      ],
+      "ordinal": 5,
+      "status": "settled",
+      "reserved_micro_cny": 14188544,
+      "http_status": 200,
+      "usage": {
+        "input_tokens": 8766,
+        "output_tokens": 77
+      },
+      "terminal": "response.completed",
+      "response_model": "kimi-k3.1-pro",
+      "terminal_count": 1,
+      "response_status": "completed",
+      "output_text_present": true,
+      "cache_ttl": "5m",
+      "native_search_calls": 0,
+      "forwarded_response_sha256": "b99300f72207aaabaf9d97fc83394421cb314bd057a5a6a8faf5de9a8eccac41",
+      "forwarded_response_bytes": 52092,
+      "stream_complete": true,
+      "charged_upper_micro_cny": 119194
     }
   ],
-  "halted": false,
+  "halted": true,
   "meter_state": "stopped_normally",
   "schema_version": 3,
   "resume_receipt": {
@@ -204,5 +315,6 @@
     "base_request_count": 2,
     "base_requests_sha256": "be519f6a29a68aefbdda1b561bad2ad6d62fc4b7acada7b53d3ff006a2ba0868",
     "recorded_at": "2026-10-25T16:46:57.713709+00:00"
-  }
+  },
+  "stop_reason": "successor_failed_or_exhausted"
 }

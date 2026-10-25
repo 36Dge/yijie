@@ -1,0 +1,44 @@
+{
+  "first_claims_exit": 1,
+  "failure": "G2V evidence contract_refs omitted four S3/S4 references already present in the actual candidate",
+  "correction": "read-only verification of immutable source-lock bytes and actual consumer commits; bind all six existing sources without changing any source, fixture, test or product",
+  "source_checks": [
+    {
+      "id": "chat-models-v2",
+      "commit": "1b357cce0575c492f3715b316ee5f254051acf80",
+      "sha256": "0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70",
+      "source_lock_matches": true
+    },
+    {
+      "id": "runtime-kimi-k31-pro",
+      "commit": "1b357cce0575c492f3715b316ee5f254051acf80",
+      "sha256": "bec02925813e13a92342e6dcab8eb0f04b4732983e00c2f9e6e314827c8d3522",
+      "source_lock_matches": true
+    },
+    {
+      "id": "scheduled-plan-v2",
+      "commit": "2dd214d6a702064edae78510c035442854bf9789",
+      "sha256": "75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66",
+      "source_lock_matches": true
+    },
+    {
+      "id": "market-selection-v2",
+      "commit": "eddc64f95d81c26ca1678cc648d177c081f7904d",
+      "sha256": "a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1",
+      "source_lock_matches": true
+    },
+    {
+      "id": "market-host-v2",
+      "commit": "eddc64f95d81c26ca1678cc648d177c081f7904d",
+      "sha256": "604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8",
+      "source_lock_matches": true
+    },
+    {
+      "id": "experts-v2",
+      "commit": "eddc64f95d81c26ca1678cc648d177c081f7904d",
+      "sha256": "371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3",
+      "source_lock_matches": true
+    }
+  ],
+  "coverage_limit": "source binding only; does not claim plan/market/expert paths were exercised by these text requests"
+}

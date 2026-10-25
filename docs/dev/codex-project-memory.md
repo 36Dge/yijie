@@ -1,16 +1,18 @@
 # 易界项目 Codex 长期协作记忆
 
-## FEAT-164 已批准本轮3次真实HTTP，当前等待窗口交接（2026-10-26）
+## FEAT-164 当前真实文本G2V通过，累计次数已耗尽（2026-10-26）
 
-最新权威[37](../features/FEAT-164-kimi-k31-pro-migration/37-current-g2v-successor.md)、feature.yaml及s4k证据。Owner先批准36新增1次，再说“可以额外新增2次”；已明确回告本轮最多新增3、累计最多5，金额仍累计30元，8192输出、失败即停、无自动重试，本次不搜索/图片。授权已有效，不重复询问。原schema2 ledger SHA2dbd19be2a8bda267437bcf0330fff1af122778388d6e3df965291ec840b7dcf、14.188544 unknown和14.328134保守上界不变。
+最新权威[38](../features/FEAT-164-kimi-k31-pro-migration/38-current-real-g2v-and-final-gaps.md)、feature.yaml及s4k-real证据。Owner交回窗口后按37已批准范围完成本轮3/3、累计5/5 HTTP，42/50/8均正确，K3.1/max、HTTP200/completed/usage齐全；两次同源重开0新增模型HTTP，保存和正常清理通过。当前文本G2V判定PASS，完整TCONF/G3、三个final及日常cutover仍未完成。
 
-Desktop ea9b1e499d86bb92eea360a62707027485790e22仅改私有验收工具/说明5文件，schema3 semantic，产品wire/SQL/权限/Runtime未改。新同目录g2v-real-budget-ledger-r3.json绑定完整旧原始JSON/两行/摘要，源目标flock、幂等不补额度、串行先预占、失败/unknown停。23预算+10判定器与Python→JS互操作、ESLint/docs通过。两次目录编排错误及仅7旧Node项保留，最终精确23/10才判通过。
+来源Desktop ea9b1e499d86bb92eea360a62707027485790e22、Host090c2db、Runtimea28130a r4、Contracts1b357cc、Connectors7ea3df4、Skills595c927。当前轮未改产品/工具源码，contract-impact=none，整体breaking保持。原23+10工具资格和canonical receipt仍匹配；不要重建来源或重复同批离线测试替代未完成项。
 
-新资格目录feat164-s4k-qualification-20261026，Host090c2db/Runtimea28130a/Contracts1b357cc/Connectors7ea3df4/Skills595c927，canonical media构建通过且旧bundle保留。本机正控1次K3.1/max，App保存/同构建重开0补发、正常退出和fixture shutdown通过。当前harness资格见s4k-harness-qualification.json，不等于真实G2V。
+schema3账本g2v-real-budget-ledger-r3.json现5行、halted=true、stopped_normally，无在途；本轮保守0.350867元，累计14.679001元含原14.188544元unknown。原schema2 SHA2dbd19be2a8bda267437bcf0330fff1af122778388d6e3df965291ec840b7dcf及两行逐字保留。30元金额剩余不产生次数授权，不再新增真实请求、不自动重试或创建后继补额。控制token和既有Kimi key不输出。
 
-真实meter曾启动后当前新增HTTP0；App首次显示的是昨天旧42，不能当新结果。随后两次UI工具均检测到Owner正在操作，已请求“可以继续操作”交接，尚未收到。meter已正常control/stop并退出0，schema3 stopped_normally/2行，剩余3；App PID68433/exec54804仍留供Owner查看，不能声明最终teardown完成。控制token在feat164-s4k-audit-20261026/private/meter-control，勿输出；既有Kimi key沿yijie-agent-host/.local/secrets/kimi-api-key，勿输出。继续先核对实际PID/来源/ledger，正常重开同一meter、不创建/重置新账本；可复用当前App，无需重批预算。不要在UI交接前发送。
+新会话01a17433-9720-7043-b659-5a6c27a20f4c三条completed/submitted，各8条Native事实，42/50/8已保存。App及Runtime子进程正常退出，meter已control/stop退出0、18083关闭，当前无需Owner解锁/退出或窗口交接。日常App/数据库未迁移。
 
-整体目标仍全部活动Kimi替换为K3.1/max/1M并保留历史/计划/授权，最后日常cutover。S4J安全子集已收敛，不重复；当前候选没有旧K3会话/计划可自然升级，旧K3 App仍未实测。旧unknown f38666dc-d2d8-4101-b498-eccf3045b6dd不得按404恢复、换ID或重发。完整TCONF/G3/final与日常迁移尚未完成。仅FEAT164本地提交，不推送；保留496原dirty、旧证据/预算/数据。禁止强杀、攻击/故障注入、权限破坏和程序替换。FEAT163保持独立。
+只读数据审计首次发现旧paused计划next_at从10月25日23:59推进到26日23:59；当前源码确认既有时钟恢复缓存，授权仍空、revision3、旧grant/run等其余字段保持。保留差异及首次失败程序，限定修正审计断言后完整复验通过，没有改数据库。旧unknown f38666dc-d2d8-4101-b498-eccf3045b6dd保持，不按404恢复、不换ID或重发。
+
+整体目标仍全部活动Kimi替换为K3.1/max/1M并保留历史/计划/授权，最后日常cutover。下一步零调用收口最终验收范围和来源；候选无旧K3会话/计划可自然升级，该App场景未实测；真实图片/搜索/工具未验证。需新增付费或日常数据/入口写入时另行确认，不自动豁免Must AC。仅FEAT164本地提交、不推送，保留496原dirty/旧证据/预算/数据。FEAT163保持独立。
 
 2026-10-08 Sorftime 最新状态：Owner已填密钥，但两条19:19/19:20元数据初始化仍unavailable。审计发现通用HTTP迁移漏带旧链路已验证有效的User-Agent；已补真实yijie-mcp-worker/0.1.0及受限HTTP阶段/状态码诊断，未伪装旧客户端、未改固定Codex。63本地测试/lint/标准App构建通过，说明已左对齐。新worker da3c31537e6be46bb826a2ec44b0541456cbbf2810772aabbba5df1023400f81。尚未真实复验，已申请仅1次连接/发现、0模型/0业务；因先前失败不自动重发，等待用户答复。Keyring已有用户保存密钥，不要再要求重填/卸载或读取密钥。详见FEAT-157/21及sorftime-user-agent-20261008证据。
 

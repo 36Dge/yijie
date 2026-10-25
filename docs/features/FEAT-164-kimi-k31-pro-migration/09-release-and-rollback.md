@@ -1,6 +1,6 @@
 # FEAT-164 激活与回滚候选Runbook
 
-> 最新按[37 当前G2V后继验收](37-current-g2v-successor.md)：Owner已批准本轮1+2共3次真实HTTP（累计5次/30元）；工具和新canonical本机正控/重开已通过，真实新增0。等待Owner交回候选窗口，meter已正常停止；额度保留，不重批预算、不重置旧账本。
+> 最新按[38 当前真实G2V与最终缺项](38-current-real-g2v-and-final-gaps.md)：本轮3次真实文本HTTP全部完成，42/50/8、保存、两次同源重开零新增调用及正常清理通过；累计5/5次数已耗尽，累计保守上界14.679001元含旧unknown预占。最小文本G2V PASS；完整TCONF/G3、三个final和日常切换仍未完成。以下旧记录只按原时间与来源解释。
 
 > 2026-10-26最新续办以[36 当前离线资格与下一步](36-current-offline-qualification-and-next-gate.md)为准：当前S1/S2/S3及S4专家/媒体/辅助/旧线程安全检查通过，产品代码未改；候选无旧K3会话/计划可自然升级。完整G2V/TCONF/final与日常cutover仍缺，新真实HTTP许可0；后续避免反复运行已通过子集。
 

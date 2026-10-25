@@ -1,0 +1,13 @@
+{
+  "first_audit_result": "FAIL",
+  "cause": "audit assumed paused-plan next_at cache was immutable across clock recovery",
+  "observed_difference_ref": "s4k-plan-audit-difference.json",
+  "source_refs": [
+    "yijie-desktop/src-tauri/src/chat/schedules/execution/triggers.rs:622",
+    "yijie-desktop/src-tauri/src/chat/schedules/store.rs:453"
+  ],
+  "before_local": "2026-10-25T23:59:00+08:00",
+  "after_local": "2026-10-26T23:59:00+08:00",
+  "correction": "permit this exact cache-only difference only after verifying paused/null authorization and exact preservation of every other field; no database modification",
+  "real_model_http_added_by_audit": 0
+}

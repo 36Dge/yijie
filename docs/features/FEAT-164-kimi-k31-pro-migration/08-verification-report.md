@@ -1,5 +1,7 @@
 # FEAT-164 实际验证记录
 
+> 最新按[38 当前真实G2V与最终缺项](38-current-real-g2v-and-final-gaps.md)：本轮3次真实文本HTTP全部完成，42/50/8、保存、两次同源重开零新增调用及正常清理通过；累计5/5次数已耗尽，累计保守上界14.679001元含旧unknown预占。最小文本G2V PASS；完整TCONF/G3、三个final和日常切换仍未完成。以下旧记录只按原时间与来源解释。
+
 > 当前（2026-10-25，S4f普通App与计划）：Host7927ee7补齐已有v2草案三路由，Desktop277f59e兼容读取原生事实2/3/4；Runtimea28130a r4与Contracts1b357cc保持。同源App验证旧历史、input-only草案、只读恢复零补发、关闭保存、单次执行、取消编辑和正常重开；App模型协议loopback共3次，真实新增0。旧失败请求/事实/账本保留；完整恢复取消、旧模型计划、专家媒体当前组合、平台/G2V/G3/final仍未通过。权威见[32](32-s4-r4-app-plan-acceptance.md)。以下记录保持原来源与时间语义。
 
 > 当前（2026-10-25，方案A原生终态修复）：Runtime r4 a28130a → Contracts1b357cc → Hostb9155a3 → Desktop2fb8989已本地固化。原子代理错误被completed覆盖及冷历史丢失失败已修复；10项核心、269 schema零差异、7项原生/23次本机HTTP证据复核、3辅助/9次与4调用面/6次均通过。新增受管writer标记阻止旧r2候选写入新历史；不改旧历史。全轮50次合成本机HTTP、真实新增0，旧账本/预占保留。App本批仅构建，完整UI/计划/恢复取消/平台/G2V/G3/final仍未通过。最新权威见[31](31-s4-native-terminal-repair.md)及feature.yaml；以下旧阶段保持历史含义。
@@ -365,8 +367,13 @@ S4I续验：Host090c2db/Desktop399bb19配对后，实际专家线程Kimi→pause
 
 [37](37-current-g2v-successor.md)记录Owner本轮1+2新增授权、私有schema3/source-first实现和预算解释。23预算控制、10判定器及跨语言普通状态检查、ESLint/docs通过；canonical新目录构建、真实App本机K3.1/max正控1次、保存/重开0补发和正常退出通过。价格复核和两次编排目录错误保留，不把仅7旧Node项误记10项。详见s4k-harness-qualification.json、s4k-app-build-receipt.json与s4k-offline证据。此为受限文本harness资格，不代表完整G3或真实Provider结果。
 
-## E164-S4K-REAL 本轮真实验收待窗口交接
+## E164-S4K-REAL 当前真实文本G2V通过
 
 <!-- evidence: E164-S4K-REAL -->
 
 新后继ledger原2行/旧文件均保留，本轮新增0。真实meter曾就绪，同构建App打开的是昨天旧42历史，明确未计入新通过。连续两次人工UI变动保护拦截后停止界面动作并请求交接；meter经control/stop正常退出，额度未使用、未退款或撤销。当前App由Owner查看，尚未完成真实G2V及本次最终teardown；见s4k-ui-coordination.json及s4k-meter-coordination-stop.json。
+
+
+2026-10-26 Owner已交回窗口，接续上方交接记录实际完成3次普通文本真实HTTP；当前同源会话得到42/50/8，HTTP200、K3.1/max、completed及usage完整。两次正常重开0新增模型HTTP，3条turn及24条原生事实持久化，App/子进程和meter均正常退出；组合判定器实际退出0/PASS。新增0.350867元、累计保守上界14.679001元含原unknown预占，3/3及累计5/5已耗尽。见[38](38-current-real-g2v-and-final-gaps.md)、s4k-real-observation.json/verdict.json/data-audit.json及final-reopen/stop证据。
+
+旧暂停计划只有next_at发生既有时钟恢复的缓存推进，其余字段/grant/run/选择/旧草案/unknown保留。首次审计断言失败、差异及修正依据见s4k-plan-clock-audit-rca.json；未改库凑断言。此为最小文本G2V PASS，不冒称完整TCONF/G3/final或日常cutover完成。
