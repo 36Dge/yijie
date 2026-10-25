@@ -1,22 +1,20 @@
 # 易界项目 Codex 长期协作记忆
 
-## FEAT-164 Native选择恢复已本地固化，取消与平台项待完成（2026-10-25）
+## FEAT-164 派发证明与未发送取消已本地固化，完整S2/平台仍待完成（2026-10-25）
 
-Owner要求审计已完成/剩余项并开始下一步，延续锁屏相关UI延期、真实模型新增0、保留工作区/旧账本/预占、只本地提交不推送。当前权威为[23 Native恢复](../features/FEAT-164-kimi-k31-pro-migration/23-native-model-recovery.md)、feature.yaml及s2-native-*证据。UI延期不是验收PASS，S1 required vertical/Harness/最终清理、完整S2 G3和final均未通过。
+Owner要求审计现有完成/剩余步骤后执行下一步。延续锁屏UI延期、真实模型新增0、保留工作区/旧账本/预占、仅本地提交不推送。当前权威为[24 派发证明/取消](../features/FEAT-164-kimi-k31-pro-migration/24-delivery-proof-and-cancel.md)、feature.yaml及s2-delivery证据；23保留上一阶段Native选择恢复。UI延期不是通过或发布豁免。
 
-Desktop最新本地提交 `f341636e5935852ebbbd7d86c6b615e0dc8fad7a`（20文件）消费固定Host `3c5289854d88ca6ed69b17bd806fca2efc0bbbcd`、Contracts `f2819c66a2368aaff37216a46c48d5cd81df1747` 和Runtime `074417e5e2f5f55704ea5e1777e7a22d514076b4` r2。Host/Contracts/Runtime本轮未改；前轮基础见22，qualification工作树沿原路径复用且最新源码干净。
+Desktop最新本地提交 `2a746c1b39bf1f55f6b317ab570bf93af81ad5dc`（23文件）；Host3c528985、Contractsf2819c66、Runtime074417e5 r2不变。SQL40新增普通/市场/专家私有派发证明、原内容/身份/Host-thread绑定、独立claim/public/create/turn尝试和不可变取消回执；候选entry仅0/38/39/40。旧记录不回填、不重写原payload/profile/digest。旧reader拒绝高版本，新兼容reader保留只读和正常interrupt；scheduled/draft保持原专属证明。市场/专家pending派发与已尝试回执观察分开。任一尝试都阻止取消，404/queued/旧attempt_count=0不是未发证据。
 
-Native SQL39新增v2选择intent，固定session/Host/thread/旧profile/revision/目标与prepared/dispatched/unknown/committed和原终态回执；不回填旧pending，不修改旧migration。候选仅接受0/38/39；旧MAX38 reader拒绝39，新默认v1兼容reader不派发39模型工作。新选择/恢复分开命令，沿原scope/SubmitTurn和生命周期permit/epoch；所有未决工作及自身绑定重验。普通刷新只有GET；prepared+Host无记录才允许首次发送原意图，dispatched/unknown+404不重发。原回执后另取当前Selection，不回退更高revision或同revision替换身份。旧pending可读但不会冒充v2重配。
+显式取消沿ReadSessions/InterruptTurn scope和原admission锁，取消保留消息/聊天，不伪造Runtime终态；prepared/claimed且无任何发送或原生事实才可取消。迟到重试不能恢复派发，正常创建回执绑定首轮Host/thread。UI刷新只读、取消需点击，未知/无权限/迟到导航均阻断。已有会话可继续新的显式操作；新任务尚无远端绑定时只保留取消历史，不自动新建。
 
-模型选择器显示旧K3“已退役”；“刷新状态”与“恢复原切换”分开，后者提示未完成时可能重新应用目标。正常重开保留原请求，导航/scope变化丢弃迟到结果。候选10项Native/default5项/前端15项、fmt、前端lint/候选build、candidate/default产品lib-bins Clippy与来源校验通过。SQLCipher正常关库重开、普通localhost Host wire通过；本轮没有执行新App或真实Host+Native+App平台全链。原全targets Clippy与独立旧Skill pin问题未扩散修复；禁止的fixture仍不执行。初次404解析/lifecycle漏接、测试私有字段、range/default转换问题已修复并记录。
+新增Rust12项+暂停专项1项、既有candidate10/default5、前端22项、fmt/lint/前端build/产品Clippy/source checks通过。实际HostBridge loopback取消POST0、正控POST1。扩大ChatPage回归94通过/1失败/2skip；空reasoning期待“正在思考”的断言在未改f341636复现相同输出，未混入修复。首次基线pnpm自动依赖检查受ignored-build策略停止，未绕过；完整基线使用现有测试运行器复现。原全targets Clippy位置问题/旧Skill pin仍保留，未执行禁止fixture。完整TCONF-164-02、S2 G3及final仍未通过。
 
-本轮源改动在干净资格树完成，仅专属patch应用到原工作区和索引；临时逆补丁逐字验证原有共享改动，staged tree一致。见s2-native-isolation及preservation-audit。原有各仓dirty内容、真实账本和42个活动App文件保留；不推送、不改远端/分支、不发布。
+只应用FEAT164专属patch到原工作区和索引，tree与资格树一致，临时逆patch逐字恢复原文件；见s2-delivery-isolation/preservation-audit。当前App仍是S1 Hoste8ae83f/Desktop174fbaf构建、暂停Kimi且锁屏，会话78901/18086，fixture72636/18083。42个App文件未覆盖，不触碰当前/日常库；新SQL40只用于临时测试库。用户回来先正常退出旧App，再canonical构建并补UI/历史/主题/最小窗口/清理及完整平台链，不修改receipt绕过freshness。
 
-当前App仍是S1 Hoste8ae83f/Desktop174fbaf的canonical构建，暂停Kimi设置重开后锁屏。会话78901/18086；普通本机fixture72636/18083。用户不在电脑旁，不请求现在解锁、不强杀、不覆盖bundle/运行二进制或改receipt绕过freshness。用户回来先正常退出旧App，再按新源码canonical构建并补暂停/MiniMax/历史/主题/最小窗口/最终清理及新Native恢复平台验收。新SQL39尚未迁移到当前运行库或日常库。
+下一步可离线补齐S2完整TCONF矩阵与原回执Host+Native联调，再推进S3计划退役/授权迁移/claim-send及S4全调用面。原SQL39模型选择/显式恢复行为沿23：旧pending不回填，已发/未知且404不重发，原回执后再取当前Selection，不退回更高revision。
 
-下一步先为普通/市场/专家业务请求补持久派发阶段和尝试事实，再做never-sent取消事务；旧attempt_count可重置，queued+0/404/无记录不够。模型配置intent不能充当业务请求未发证明。旧payload/profile/digest和未知占用保持，不删chat。随后推进旧隔离库激活、S3计划退役/授权迁移/claim-send、S4全调用面与final。完整TCONF-164-02仍未通过。
-
-真实账本及旧快照逐字不变：累计2 HTTP（旧400/unknown预占14.188544元＋上轮200保守0.139590元＝14.328134元上界），30元预算不增加已用尽的请求次数。halted/stopped_normally，新增真实HTTP许可0，不启动meter、不继承FEAT-162/163额度。旧预算文本G2V PASS保留原Host5022435/Desktop40908c7来源。日常库迁移与push/tag/release仍未授权。长期禁止强杀、可执行替身、权限破坏和攻击fixture持续适用。
+真实账本及旧快照不变：累计2 HTTP，旧400未知预占14.188544元＋已确认文本回合保守0.139590元＝14.328134元上界；30元不补回已耗尽的HTTP次数。halted/stopped_normally，当前新增许可0，不启动meter、不继承FEAT162/163额度。旧G2V只按Host5022435/Desktop40908c7原来源保留。日常库迁移与push/tag/release未授权。长期禁止强杀、可执行替身、权限破坏及攻击fixture持续有效。
 
 2026-10-08 Sorftime 最新状态：Owner已填密钥，但两条19:19/19:20元数据初始化仍unavailable。审计发现通用HTTP迁移漏带旧链路已验证有效的User-Agent；已补真实yijie-mcp-worker/0.1.0及受限HTTP阶段/状态码诊断，未伪装旧客户端、未改固定Codex。63本地测试/lint/标准App构建通过，说明已左对齐。新worker da3c31537e6be46bb826a2ec44b0541456cbbf2810772aabbba5df1023400f81。尚未真实复验，已申请仅1次连接/发现、0模型/0业务；因先前失败不自动重发，等待用户答复。Keyring已有用户保存密钥，不要再要求重填/卸载或读取密钥。详见FEAT-157/21及sorftime-user-agent-20261008证据。
 

@@ -1,0 +1,35 @@
+   Compiling yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 21.10s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/yijie_desktop_lib-1b53ef458e0aa835)
+
+running 8 tests
+test chat::delivery::tests::feat164_delivery_cancel_after_claim_survives_reopen_without_rewriting_or_reviving ... FAILED
+test chat::delivery::tests::feat164_delivery_cancel_releases_lane_and_allows_explicit_model_selection ... ok
+test chat::delivery::tests::feat164_delivery_market_and_expert_have_independent_proof_and_no_ordinary_claim ... FAILED
+test chat::delivery::tests::feat164_delivery_migration_does_not_backfill_legacy_pending ... ok
+test chat::delivery::tests::feat164_delivery_new_acceptance_replay_preserves_proof_and_input_identity ... ok
+test chat::delivery::tests::feat164_delivery_new_chat_binding_is_observed_before_first_turn_send ... ok
+test chat::delivery::tests::feat164_delivery_ordinary_final_send_binds_operation_profile_path_and_is_single_use ... ok
+test chat::delivery::tests::feat164_delivery_public_or_create_attempt_prevents_cancel_even_after_legacy_retry_reset ... ok
+
+failures:
+
+---- chat::delivery::tests::feat164_delivery_cancel_after_claim_survives_reopen_without_rewriting_or_reviving stdout ----
+
+thread 'chat::delivery::tests::feat164_delivery_cancel_after_claim_survives_reopen_without_rewriting_or_reviving' (1061975) panicked at src/chat/delivery/tests.rs:137:10:
+called `Result::unwrap()` on an `Err` value: DatabaseUnavailable
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- chat::delivery::tests::feat164_delivery_market_and_expert_have_independent_proof_and_no_ordinary_claim stdout ----
+
+thread 'chat::delivery::tests::feat164_delivery_market_and_expert_have_independent_proof_and_no_ordinary_claim' (1061984) panicked at src/chat/delivery/tests.rs:435:61:
+called `Result::unwrap()` on an `Err` value: DatabaseUnavailable
+
+
+failures:
+    chat::delivery::tests::feat164_delivery_cancel_after_claim_survives_reopen_without_rewriting_or_reviving
+    chat::delivery::tests::feat164_delivery_market_and_expert_have_independent_proof_and_no_ordinary_claim
+
+test result: FAILED. 6 passed; 2 failed; 0 ignored; 0 measured; 633 filtered out; finished in 6.00s
+
+error: test failed, to rerun pass `--lib`

@@ -1,0 +1,35 @@
+
+ RUN  v4.1.10 /private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat164-delivery-ui-baseline-b8ioe_ha
+
+(node:98328) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+stderr | src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > does not treat an active empty reasoning Item as historical authority loss
+[Vue Router warn]: No active route record was found when calling `onBeforeRouteLeave()`. Make sure you call this function inside a component child of <router-view>. Maybe you called it inside of App.vue?
+[Vue Router warn]: No active route record was found when calling `onBeforeRouteUpdate()`. Make sure you call this function inside a component child of <router-view>. Maybe you called it inside of App.vue?
+
+ ❯ src/pages/chat/ChatPage.test.ts (75 tests | 1 failed | 74 skipped) 51ms
+     × does not treat an active empty reasoning Item as historical authority loss 50ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > does not treat an active empty reasoning Item as historical authority loss
+AssertionError: expected '本地合成任务Synthetic Workspace处理过程 查看详细过程（…' to contain '正在思考'
+
+Expected: "正在思考"
+Received: "本地合成任务Synthetic Workspace处理过程 查看详细过程（1 条记录） 执行进度已收到本轮处理记录，正在等待模型的后续输出。输入你的任务需求权限审批只读 · 禁止写入关联店铺模型正在生成回答"
+
+ ❯ src/pages/chat/ChatPage.test.ts:839:28
+    837|     expect(wrapper.find(".chat-turn").exists()).toBe(false);
+    838|     expect(wrapper.text()).toContain("处理过程");
+    839|     expect(wrapper.text()).toContain("正在思考");
+       |                            ^
+    840|     expect(wrapper.text()).not.toContain("当前进度待确认");
+    841|     expect(wrapper.text()).not.toContain("仅包含状态元数据");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 74 skipped (75)
+   Start at  13:51:51
+   Duration  1.66s (transform 964ms, setup 0ms, import 1.45s, tests 51ms, environment 82ms)

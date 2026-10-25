@@ -1,0 +1,25 @@
+   Compiling yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop/src-tauri)
+error[E0425]: cannot find type `ChatError` in this scope
+    --> src/chat/host_bridge.rs:2635:70
+     |
+2635 |             fn load_or_create(&self, _: bool) -> Result<DatabaseKey, ChatError> {
+     |                                                                      ^^^^^^^^^ not found in this scope
+     |
+help: consider importing this enum through its public re-export
+     |
+2381 +     use crate::chat::ChatError;
+     |
+
+error[E0425]: cannot find type `ChatError` in this scope
+    --> src/chat/host_bridge.rs:2640:69
+     |
+2640 |             fn load_or_create(&self, _: bool) -> Result<ReceiptKey, ChatError> {
+     |                                                                     ^^^^^^^^^ not found in this scope
+     |
+help: consider importing this enum through its public re-export
+     |
+2381 +     use crate::chat::ChatError;
+     |
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `yijie-desktop` (lib test) due to 2 previous errors

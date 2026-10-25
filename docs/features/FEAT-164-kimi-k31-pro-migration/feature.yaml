@@ -468,7 +468,7 @@ slices:
       - repository: yijie-agent-host
         full_sha: 3c5289854d88ca6ed69b17bd806fca2efc0bbbcd
       - repository: yijie-desktop
-        full_sha: f341636e5935852ebbbd7d86c6b615e0dc8fad7a
+        full_sha: 2a746c1b39bf1f55f6b317ab570bf93af81ad5dc
     exception:
       owner: 段成威
       approved_at: 2026-10-25
@@ -483,7 +483,8 @@ slices:
       refs:
         - 08-verification-report.md#E164-S2-FOUNDATION
         - 08-verification-report.md#E164-S2-NATIVE
-      reason: Host基础和23 Native恢复子集通过；完整S2还缺普通/市场/专家never-sent证明与取消，不把子集转换为全slice PASS。
+        - 08-verification-report.md#E164-S2-DELIVERY
+      reason: Host基础、23 Native恢复及24派发证明/取消工程子集已完成；完整TCONF/真实Host+Native+App链及平台项尚缺，扩大回归另有已复现基线失败，不把子集转换为全slice PASS。
       exception:
         owner: N/A
         approved_at: N/A
@@ -498,7 +499,8 @@ slices:
       refs:
         - 08-verification-report.md#E164-S2-FOUNDATION
         - 08-verification-report.md#E164-S2-NATIVE
-      reason: Host基础和23 Native恢复子集通过；完整S2还缺普通/市场/专家never-sent证明与取消，不把子集转换为全slice PASS。
+        - 08-verification-report.md#E164-S2-DELIVERY
+      reason: Host基础、23 Native恢复及24派发证明/取消工程子集已完成；完整TCONF/真实Host+Native+App链及平台项尚缺，扩大回归另有已复现基线失败，不把子集转换为全slice PASS。
       exception:
         owner: N/A
         approved_at: N/A
@@ -816,6 +818,7 @@ documents:
   s1_implementation: 21-s1-implementation.md
   s2_foundation: 22-ui-deferral-and-s2-foundation.md
   native_model_recovery: 23-native-model-recovery.md
+  delivery_proof_and_cancel: 24-delivery-proof-and-cancel.md
 external_authorizations:
   paid_calls:
     allowed: false
@@ -852,7 +855,7 @@ implementation:
   mock_only: false
 product_verification:
   status: IN_PROGRESS
-  reason: S2 Host基础和Native选择/恢复工程子集已通过；S1延期UI、S2业务never-sent取消与平台验证、S3/S4/final尚未完成；旧G2V仅按原来源保留。
+  reason: S2 Host基础、Native选择/恢复和派发证明/取消工程子集已完成；S1延期UI、S2完整资格与平台验证、S3/S4/final尚未完成；扩大回归有已复现基线失败，旧G2V仅按原来源保留。
 profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
 owner_approvals:
   requirements: approved_by_owner_current_user_message

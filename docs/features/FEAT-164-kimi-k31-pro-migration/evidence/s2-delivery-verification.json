@@ -1,0 +1,199 @@
+{
+  "recorded_at": "2026-10-25T13:55:04.136301+08:00",
+  "desktop": "2a746c1b39bf1f55f6b317ab570bf93af81ad5dc",
+  "host": "3c5289854d88ca6ed69b17bd806fca2efc0bbbcd",
+  "contracts": "f2819c66a2368aaff37216a46c48d5cd81df1747",
+  "runtime": "074417e5e2f5f55704ea5e1777e7a22d514076b4",
+  "results": [
+    {
+      "check": "new delivery tests incl loopback",
+      "command": "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast YIJIE_CHAT_MODELS_ENABLED=true YIJIE_KIMI_K31_PRO_CANDIDATE=true cargo test --manifest-path src-tauri/Cargo.toml --features kimi-k31-pro-candidate --lib feat164_delivery -- --test-threads=1",
+      "result": "PASS",
+      "passed": 12,
+      "log": "s2-delivery-final-tests.log"
+    },
+    {
+      "check": "Kimi pause no-claim/cancel",
+      "command": "same test environment + YIJIE_KIMI_K31_EXECUTION_PAUSED=true; cargo test --manifest-path src-tauri/Cargo.toml --features kimi-k31-pro-candidate --lib feat164_delivery_pause -- --test-threads=1",
+      "result": "PASS",
+      "passed": 1,
+      "log": "s2-delivery-paused-tests.log"
+    },
+    {
+      "check": "previous candidate FEAT-164 regressions",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --features kimi-k31-pro-candidate --lib feat164 -- --skip feat164_delivery --test-threads=1",
+      "result": "PASS",
+      "passed": 10,
+      "log": "s2-delivery-regression.log"
+    },
+    {
+      "check": "default compatible-reader regressions",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --lib feat164 -- --test-threads=1",
+      "result": "PASS",
+      "passed": 5,
+      "log": "s2-delivery-default-tests.log"
+    },
+    {
+      "check": "candidate/default product Clippy",
+      "command": "cargo clippy --manifest-path src-tauri/Cargo.toml [--features kimi-k31-pro-candidate] --lib --bins -- -D warnings",
+      "result": "PASS",
+      "logs": [
+        "s2-delivery-final-clippy.log",
+        "s2-delivery-final-default-clippy.log"
+      ]
+    },
+    {
+      "check": "fmt",
+      "command": "cargo fmt --manifest-path src-tauri/Cargo.toml --check",
+      "result": "PASS",
+      "log": "s2-delivery-final-fmt.log"
+    },
+    {
+      "check": "frontend lint and candidate frontend build",
+      "command": "pnpm lint; VITE_YIJIE_KIMI_K31_PRO_CANDIDATE=true VITE_YIJIE_CHAT_MODELS_ENABLED=true pnpm build",
+      "result": "PASS",
+      "logs": [
+        "s2-delivery-final-lint.log",
+        "s2-delivery-final-build.log"
+      ],
+      "limit": "frontend dist only, no App packaging; existing >500kB chunk warning"
+    },
+    {
+      "check": "model + delivery frontend focused",
+      "command": "pnpm exec vitest run src/api/chat-delivery-client.test.ts src/composables/useChatDelivery.test.ts src/components/chat/ChatDeliveryControl.test.ts src/api/chat-model-client.test.ts src/api/chat-model-v2-client.test.ts src/composables/useChatModels.test.ts src/composables/useChatModelsV2.test.ts src/components/chat/ChatModelActivation.test.ts --maxWorkers=2",
+      "result": "PASS",
+      "passed": 22,
+      "log": "s2-delivery-final-ui.log"
+    },
+    {
+      "check": "expanded ChatPage regression",
+      "result": "FAIL",
+      "passed": 94,
+      "failed": 1,
+      "skipped": 2,
+      "log": "s2-delivery-ui-regression.log",
+      "baseline": "same assertion and exact output reproduced on unmodified f341636, see s2-delivery-ui-baseline-complete.log; no unrelated fix or disabled test"
+    },
+    {
+      "check": "pinned source check",
+      "command": "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast YIJIE_CHAT_MODELS_ENABLED=true YIJIE_KIMI_K31_PRO_CANDIDATE=true node scripts/kimi-k31-build-candidate.mjs",
+      "result": "PASS",
+      "log": "s2-delivery-source-check.log"
+    }
+  ],
+  "real_model_http_added": 0,
+  "normal_loopback_only": true,
+  "full_s2_g3": "NOT PASSED",
+  "platform_ui": "NOT RUN; owner deferred lock-dependent checks",
+  "untested": [
+    "canonical new App build/run; active S1 bundle preserved",
+    "old isolated/daily database activation",
+    "full TCONF-164-02 and real Host+Native+App chain",
+    "all-targets Clippy existing source_reader_tests ordering issue",
+    "historical prohibited fixtures; no force kill, executable replacement, permission sabotage or attack fixtures"
+  ],
+  "iteration_findings": [
+    "cancel transaction corrected to retain a closed legacy public-task diagnostic code required by SQL5",
+    "permission-turn payload has nested turn.operation_id; final guard corrected and focused test added",
+    "test-only missing ChatError import fixed",
+    "baseline diagnostic first package-manager attempt auto-checked dependencies and stopped on ignored-build policy; no override; then missing archived contracts fixed and existing runner reproduced baseline assertion"
+  ],
+  "log_formatting": "only trailing whitespace/empty EOF normalized; raw SHA retained below",
+  "logs": [
+    {
+      "file": "s2-delivery-tests.log",
+      "raw_sha256": "c19940962a71159ea05dee246fea82ea542c2676609dfcf28bb3ded4b4d80fce",
+      "saved_sha256": "c19940962a71159ea05dee246fea82ea542c2676609dfcf28bb3ded4b4d80fce"
+    },
+    {
+      "file": "s2-delivery-tests2.log",
+      "raw_sha256": "b70d34b8330b21259101f065e6597f2862c5db3e9ed64fb85885b9dfde5ff17e",
+      "saved_sha256": "bc4f07d0bf2b4d29e36a86be5d95c5d34cd35a21e9c260830de083c367e3d629"
+    },
+    {
+      "file": "s2-delivery-tests3.log",
+      "raw_sha256": "7fea5c6cf440fdd5817d5ba57328c7b60f3e3d6325ff7d2a9d903274af45535c",
+      "saved_sha256": "7fea5c6cf440fdd5817d5ba57328c7b60f3e3d6325ff7d2a9d903274af45535c"
+    },
+    {
+      "file": "s2-delivery-tests4.log",
+      "raw_sha256": "94cbb85ad3c0b6071a089437b41e120bd6565a0e8da9b257d472a8d78e86eac0",
+      "saved_sha256": "e2e233619259af68cbce4b2b4e84a5b80e7f7fadd96ab038646007574c2a97a0"
+    },
+    {
+      "file": "s2-delivery-final-tests.log",
+      "raw_sha256": "c101b115edfb88edd1701b48e8f800293ded75163424f706b335c1ca77ee252d",
+      "saved_sha256": "22e31278f9fb61b463c8bb567ab4f1ee891d68aa6b97015c8937c9a2dd270506"
+    },
+    {
+      "file": "s2-delivery-paused-tests.log",
+      "raw_sha256": "707129b02446901709602ffe500834ee39e5dd2536925d7a7f609fe6779dd78d",
+      "saved_sha256": "1cd2bffdb87c315f71e454b11b81af79a63a3e6a4e0a780c1b19343bd1654c50"
+    },
+    {
+      "file": "s2-delivery-regression.log",
+      "raw_sha256": "f8d986a0598881a63a8f211b5bed5dfeaf0f76ee352e6fdaf40b51193b456295",
+      "saved_sha256": "dc8a7e9affeff44cc6d9ab1500fea0b7af076bca696f992fc9f0d0ad6e8cc3e5"
+    },
+    {
+      "file": "s2-delivery-default-tests.log",
+      "raw_sha256": "0e6c4a83c561c22ce2a7cb8332df4857bd6a02455be69e2be6d0b24288416f21",
+      "saved_sha256": "7104e5b95cbe0fa43de9ff8a62028f8752df0e5939f84476d58238348368a397"
+    },
+    {
+      "file": "s2-delivery-final-clippy.log",
+      "raw_sha256": "480119012e2f29f089dfd0aa89462a0816ffc7ed46d2290b6ce48f9d4af85387",
+      "saved_sha256": "480119012e2f29f089dfd0aa89462a0816ffc7ed46d2290b6ce48f9d4af85387"
+    },
+    {
+      "file": "s2-delivery-final-default-clippy.log",
+      "raw_sha256": "4c8c9ed9405087e063d7996ceebc83d9c3d21b01a9092743a33973deab295285",
+      "saved_sha256": "4c8c9ed9405087e063d7996ceebc83d9c3d21b01a9092743a33973deab295285"
+    },
+    {
+      "file": "s2-delivery-final-fmt.log",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "saved_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "s2-delivery-final-lint.log",
+      "raw_sha256": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6",
+      "saved_sha256": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6"
+    },
+    {
+      "file": "s2-delivery-final-build.log",
+      "raw_sha256": "b17fe7dd7f871764bf7d1cf0a611a4c69d4fc443d0053228281ad8b6cf61aded",
+      "saved_sha256": "2d63397d75327c20448673350c15903e672e46cd6486530b4ec06ece399df687"
+    },
+    {
+      "file": "s2-delivery-final-ui.log",
+      "raw_sha256": "2c185aee3819253ffe5295dd389c556d3c5ca2f8bdd610300aa7d3820a871c37",
+      "saved_sha256": "c01ee83ee7b7f2d9d3d73d0ad14e3da32e6f679abf2b50e4c7cb811d250c78b1"
+    },
+    {
+      "file": "s2-delivery-ui-regression.log",
+      "raw_sha256": "8b877f25876566f556419c9fd21af612610e9edd76b1404e1ad11f934fad2fd7",
+      "saved_sha256": "9d42c392a542efb440a57c0e3a376b1ac452861dd373c85599315a7b2597dd51"
+    },
+    {
+      "file": "s2-delivery-ui-baseline.log",
+      "raw_sha256": "b68d41c19b87a8931945500aab8d1a69ad451f73a77bca90612751f2d1ed032f",
+      "saved_sha256": "b68d41c19b87a8931945500aab8d1a69ad451f73a77bca90612751f2d1ed032f"
+    },
+    {
+      "file": "s2-delivery-ui-baseline-direct.log",
+      "raw_sha256": "cc452110a7831ba1bb02c354b15d63fcadfb20dc9629f58f6ef4ba1c10544519",
+      "saved_sha256": "97ed0c8c96cf5afe4d2c4e61270d56cbfacf624864c60b73d4cc2f763b10d3ee"
+    },
+    {
+      "file": "s2-delivery-ui-baseline-complete.log",
+      "raw_sha256": "f558e08e70c760f60fa743d887c738874ed43d0c302ad088fc09ac64d972f5b5",
+      "saved_sha256": "fddf7279d8fb590dd2429a34a34bca342b2484840b66985ce76b8e8ff1241e07"
+    },
+    {
+      "file": "s2-delivery-source-check.log",
+      "raw_sha256": "38098477ef6ccad735b1eef553bc6075f43b35a95752cacd5f77ad6253c1f85b",
+      "saved_sha256": "38098477ef6ccad735b1eef553bc6075f43b35a95752cacd5f77ad6253c1f85b"
+    }
+  ]
+}

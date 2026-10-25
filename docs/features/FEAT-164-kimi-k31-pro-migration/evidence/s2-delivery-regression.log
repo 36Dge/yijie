@@ -1,0 +1,16 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.16s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/yijie_desktop_lib-1b53ef458e0aa835)
+
+running 10 tests
+test chat::host_bridge::tests::feat164_model_recovery_wire_reads_original_then_current_and_guards_writes ... ok
+test chat::kimi_k31_tests::feat164_candidate_decoder_separates_readable_and_executable_identity ... ok
+test chat::kimi_k31_tests::feat164_canonical_migration_paths_and_repeat_are_valid ... ok
+test chat::kimi_k31_tests::feat164_migration_expands_without_rewriting_model_facts ... ok
+test chat::kimi_k31_tests::feat164_native_recovery_schema_preserves_legacy_pending_without_backfill ... ok
+test chat::kimi_k31_tests::feat164_populated_migrations_preserve_history_and_delivery_facts ... ok
+test chat::model_recovery::tests::feat164_native_intent_survives_normal_reopen_and_404_never_proves_unsent ... ok
+test chat::model_recovery::tests::feat164_native_old_pending_is_readable_but_not_a_v2_intent ... ok
+test chat::model_recovery::tests::feat164_native_recovery_rechecks_binding_work_and_receipt ... ok
+test chat::sidecar::tests::feat164_pause_is_explicit_and_reaches_only_candidate_child ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 633 filtered out; finished in 8.05s

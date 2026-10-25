@@ -1,0 +1,35 @@
+
+ RUN  v4.1.10 /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop
+
+(node:94404) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+stderr | src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > does not treat an active empty reasoning Item as historical authority loss
+[Vue Router warn]: No active route record was found when calling `onBeforeRouteLeave()`. Make sure you call this function inside a component child of <router-view>. Maybe you called it inside of App.vue?
+[Vue Router warn]: No active route record was found when calling `onBeforeRouteUpdate()`. Make sure you call this function inside a component child of <router-view>. Maybe you called it inside of App.vue?
+
+ ❯ src/pages/chat/ChatPage.test.ts (75 tests | 1 failed | 2 skipped) 1201ms
+     × does not treat an active empty reasoning Item as historical authority loss 12ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/pages/chat/ChatPage.test.ts > FEAT-126 ChatPage > does not treat an active empty reasoning Item as historical authority loss
+AssertionError: expected '本地合成任务Synthetic Workspace处理过程 查看详细过程（…' to contain '正在思考'
+
+Expected: "正在思考"
+Received: "本地合成任务Synthetic Workspace处理过程 查看详细过程（1 条记录） 执行进度已收到本轮处理记录，正在等待模型的后续输出。输入你的任务需求权限审批只读 · 禁止写入关联店铺模型正在生成回答"
+
+ ❯ src/pages/chat/ChatPage.test.ts:839:28
+    837|     expect(wrapper.find(".chat-turn").exists()).toBe(false);
+    838|     expect(wrapper.text()).toContain("处理过程");
+    839|     expect(wrapper.text()).toContain("正在思考");
+       |                            ^
+    840|     expect(wrapper.text()).not.toContain("当前进度待确认");
+    841|     expect(wrapper.text()).not.toContain("仅包含状态元数据");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 8 passed (9)
+      Tests  1 failed | 94 passed | 2 skipped (97)
+   Start at  13:48:25
+   Duration  3.36s (transform 1.18s, setup 0ms, import 3.10s, tests 1.30s, environment 566ms)

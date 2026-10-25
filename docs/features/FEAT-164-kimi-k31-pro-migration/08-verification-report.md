@@ -179,3 +179,9 @@ S1当前不可变来源的安全定向验证通过：[最终六组检查及退�
 <!-- evidence: E164-S2-NATIVE -->
 
 Desktop f341636的Native模型恢复工程子集通过：SQL39原数据保持、旧pending无回填、原绑定及未决工作检查、显式恢复/404规则、终态回执后读取当前Selection、正常私有存储重开与迟到结果保护。候选10项/default5项/前端15项与相关lint/build/source checks见[s2-native-rust-verification](evidence/s2-native-rust-verification.json)、[s2-native-ui-verification](evidence/s2-native-ui-verification.json)，审计范围与缺口见[23](23-native-model-recovery.md)。本机HTTP测试不是App平台验收，无真实模型调用；完整S2仍因业务never-sent取消及平台项未通过。
+
+
+<a id="E164-S2-DELIVERY"></a>
+<!-- evidence: E164-S2-DELIVERY -->
+
+Desktop `2a746c1b39bf1f55f6b317ab570bf93af81ad5dc`的派发证明/显式未发送取消工程子集已完成。新增Rust12项+暂停专项1项、前序candidate10/default5、前端22项、fmt/lint/build/产品Clippy及来源检查通过，见[验证记录](evidence/s2-delivery-verification.json)。扩大ChatPage回归94 PASS/1 FAIL/2 skip，唯一失败在f341636基线复现，不声明全套通过。仅普通临时存储及loopback，新增真实模型HTTP0。原消息/profile/payload、账本预占、活动App及原工作区保留；[隔离](evidence/s2-delivery-isolation.json)、[保留审计](evidence/s2-delivery-preservation-audit.json)。完整S2/G3/TCONF-164-02与平台资格仍未通过，下一步及未执行项见[24](24-delivery-proof-and-cancel.md)。

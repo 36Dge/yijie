@@ -1,0 +1,52 @@
+{
+  "recorded_at": "2026-10-25T13:57:21.490480+08:00",
+  "start_file_count": 620,
+  "unchanged_file_count": 612,
+  "only_owned_delta_reverse_verified": [
+    "yijie/docs/dev/codex-project-memory.md",
+    "yijie-desktop/src-tauri/src/chat/application.rs",
+    "yijie-desktop/src-tauri/src/chat/database.rs",
+    "yijie-desktop/src-tauri/src/chat/host_bridge.rs",
+    "yijie-desktop/src-tauri/src/chat/ipc.rs",
+    "yijie-desktop/src-tauri/src/chat/mod.rs",
+    "yijie-desktop/src-tauri/src/lib.rs",
+    "yijie-desktop/src/pages/chat/ChatPage.vue"
+  ],
+  "original_other_feature_deltas_preserved": true,
+  "active_app_file_count": 42,
+  "active_app_hashes_unchanged": true,
+  "real_ledgers": {
+    "g2v-real-budget-ledger-before-30.json": "83983b80a6ffd19c42cd968384f1e09a62da912e817e4332abfe4edae1f28ca4",
+    "g2v-real-budget-ledger.json": "2dbd19be2a8bda267437bcf0330fff1af122778388d6e3df965291ec840b7dcf"
+  },
+  "real_model_http_added": 0,
+  "heads": {
+    "yijie": "608101ef9815def3385a8512f65aab90c2b54f48",
+    "yijie-codex": "074417e5e2f5f55704ea5e1777e7a22d514076b4",
+    "yijie-contracts": "f2819c66a2368aaff37216a46c48d5cd81df1747",
+    "yijie-agent-host": "3c5289854d88ca6ed69b17bd806fca2efc0bbbcd",
+    "yijie-desktop": "2a746c1b39bf1f55f6b317ab570bf93af81ad5dc",
+    "yijie-connectors": "251a0e8854b646a2565a01317a95b037579d9b8e"
+  },
+  "branches_remotes_unchanged": true,
+  "all_original_indexes_empty_before_meta_stage": true,
+  "health": {
+    "active_app": {
+      "status": 200,
+      "body_sha256": "0763d9a5b8de2c60417ef54abbb0e4430727c7d84ece284d813bf09f1575439f"
+    },
+    "loopback_fixture": {
+      "url": "http://127.0.0.1:18083/health",
+      "status": 200,
+      "body": {
+        "fixture": "FEAT-164-loopback-only",
+        "requests": 1
+      }
+    }
+  },
+  "scope": "tracked and previously untracked source/evidence files, active App outputs and ledgers; ignored dependency caches not covered",
+  "initial_fixture_probe": {
+    "url": "http://127.0.0.1:18083/healthz",
+    "result": "HTTPError; wrong route, correct fixture endpoint is /health"
+  }
+}
