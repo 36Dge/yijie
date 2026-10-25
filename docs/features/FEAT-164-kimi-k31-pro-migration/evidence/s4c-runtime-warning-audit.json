@@ -1,0 +1,11 @@
+{
+  "inspected_latest_native_rollouts": 5,
+  "warnings": [],
+  "scope": "Only synthetic/current candidate rollouts; no whole-message dump",
+  "observation": "Explicit Kimi-to-MiniMax switch displayed generic conversation_warning while both turns completed.",
+  "source_facts": [
+    "Pinned Runtime session/mod.rs warns on resume when previous_turn_settings.model differs from selected model.",
+    "Host native_conversation.go maps all warning notifications to runtime_notice without raw message."
+  ],
+  "conclusion": "Consistent with the fixed Runtime model-resume warning; exact raw notification was not retained, so underlying message is inferred, not proven. UI generic notice remains visible; no hidden suppression or extra model call."
+}

@@ -1,0 +1,27 @@
+The following is a diff from the previous accessibility tree for Window: "易界 AI" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 57-58, 60-77, 87
+~		2 HTML content Description: 任务对话 · 易界 AI, URL: tauri://localhost/chat/01a17100-b57e-7443-b1d7-eba7d7ba6ac3
+~									20 button FEAT164 S1 本机新模型正控，请回复合成验证结果。
+~									21 button (collapsed) FEAT164 单次真实续验：请计算 17 + 25，只用一行回答结果，不使用工, Secondary Actions: Expand
+~			54 container FEAT164 单次真实续验：请计算 17 + 25，只用一行回答结果，不使用工
+~					56 heading FEAT164 单次真实续验：请计算 17 + 25，只用一行回答结果，不使用工, Value: 1
++						87 text FEAT164 单次真实续验：请计算 17 + 25，只用一行回答结果，不使用工
++					88 text 已完成
++					89 container 对话内容
++						90 container 对话 1
++							91 container 对话 1
++								92 container 本轮对话内容
++									93 container 用户消息
++										94 text FEAT164 单次真实续验：请计算 17 + 25，只用一行回答结果，不使用工具、搜索或文件操作。
++										95 container 用户消息操作
++											96 container 2026/10/25 11:00:34
++												97 text 11:00
++											98 button 复制文本
++									99 button (collapsed) 已完成 3s，展开本轮处理过程, Secondary Actions: Expand
++									100 container 模型回答
++										101 container 模型回答
++											102 text 42
++											103 container 模型回答操作
++												104 button 复制文本
++				105 text 已完成
+The focused UI element is 56 heading FEAT164 单次真实续验：请计算 17 + 25，只用一行回答结果，不使用工, Value: 1

@@ -1,0 +1,72 @@
+{
+  "regression_before_fix": {
+    "command": "cargo test --offline --locked --manifest-path src-tauri/Cargo.toml --features kimi-k31-pro-candidate --lib chat::tests::feat164_paused_terminal_history_does_not_require_model_resume -- --exact --nocapture",
+    "exit_code": 101,
+    "passed": 0,
+    "failed": 1,
+    "ignored": 0,
+    "reason": "terminal activation_required catalog not accepted by existing history retention predicate"
+  },
+  "fix": {
+    "repository": "yijie-desktop",
+    "commit": "a0a474333ba03186b36f30fa3ab86287abfc5c15",
+    "contract_impact": "semantic",
+    "authority": "existing v2 activation_required and original history/read-only acceptance",
+    "scope": "terminal Kimi history only; no active/unknown recovery bypass or execution grant"
+  },
+  "checks": [
+    {
+      "name": "paused-history-green",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "--lib",
+        "chat::tests::feat164_paused_terminal_history_does_not_require_model_resume",
+        "--",
+        "--exact",
+        "--nocapture"
+      ],
+      "exit_code": 0,
+      "sha256": "2570ebdeae0f44dc684d858bc6fe65cb3c540f8a6ab5d9315d25ffb5e18dd2dd"
+    },
+    {
+      "name": "native-fmt",
+      "command": [
+        "cargo",
+        "fmt",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--check"
+      ],
+      "exit_code": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "native-clippy",
+      "command": [
+        "cargo",
+        "clippy",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "--lib",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "exit_code": 0,
+      "sha256": "6693938649679ddb5a1358bc9b6c04f6cd6a33556bfd9a93292099b7b3ca50dd"
+    }
+  ],
+  "app_confirmation": "PASS: history read with zero HTTP, Kimi nonempty input disabled, explicit MiniMax continuation completed, normal cleanup exit0",
+  "real_model_http_added": 0
+}

@@ -1,0 +1,139 @@
+Window: "易界 AI", App: 易界 AI FEAT-164.
+0 standard window 易界 AI, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: 任务对话 · 易界 AI, URL: tauri://localhost/chat/01a172b2-2f98-70d1-abf0-412090ebaf48
+			3 text 界面缩放 100%
+			4 button (expanded) 收起侧栏, Secondary Actions: Collapse
+			5 container 主导航
+				6 image 易界
+				7 container 应用导航
+					8 content list
+						9 link 新建任务, Value: tauri://localhost/chat
+						10 link 我的店铺, Value: tauri://localhost/store
+						11 link 工作流, Value: tauri://localhost/workflows
+						12 link 扩展, Value: tauri://localhost/plugins
+						13 link 连接器, Value: tauri://localhost/connectors
+						14 link 定时任务, Value: tauri://localhost/scheduled-tasks
+						15 container
+							16 heading 任务, Value: 2
+								17 text 任务
+							18 container 任务：项目与对话
+								19 content list
+									20 container
+										21 pop up button 折叠项目 s4c-ui-workspace
+										22 pop up button 项目 s4c-ui-workspace 的操作菜单
+										23 content list
+											24 button (collapsed) FEAT164_S4C_KIMI：这是本机界面验收，请回复合成验证结果，不调用工, Secondary Actions: Expand
+											25 button FEAT164_S4C_MEDIA：只将当前隔离工作空间已有的 report.h
+									26 button FEAT164 S1 本机新模型正控，请回复合成验证结果。
+									27 button FEAT164 单次真实续验：请计算 17 + 25，只用一行回答结果，不使用工
+									28 button FEAT164 30元续验本机正控，请回复合成验证结果。
+									29 button FEAT164 r2 本机正控，请回复合成验证结果。
+									30 button FEAT164 本机请求字段核对，请回复合成验证结果。
+									31 button FEAT164 真实文本验收：请计算 17 + 25，只回复“FEAT164 实
+									32 button FEAT164 本机正控，请回复合成验证结果。
+					33 content list
+						34 link 设置, Value: tauri://localhost/settings
+			35 container FEAT164_S4C_KIMI：这是本机界面验收，请回复合成验证结果，不调用工
+				36 container
+					37 heading FEAT164_S4C_KIMI：这是本机界面验收，请回复合成验证结果，不调用工, Value: 1
+						38 text FEAT164_S4C_KIMI：这是本机界面验收，请回复合成验证结果，不调用工
+					39 text s4c-ui-workspace 已完成
+				40 container 任务对话记录
+					41 container 对话内容
+						42 container 对话通知
+							43 container 会话存在未分类提示，已保留可用内容。 conversation_warning
+								44 container
+									45 text 会话存在未分类提示，已保留可用内容。 conversation_warning
+						46 container
+							47 container 对话 1
+								48 container 对话 1
+									49 container 本轮对话内容
+										50 container 用户消息
+											51 text FEAT164_S4C_KIMI：这是本机界面验收，请回复合成验证结果，不调用工具。
+											52 container 用户消息操作
+												53 container 2026/10/25 18:54:02
+													54 text 18:54
+												55 button 复制文本
+										56 container 本轮耗时
+											57 container 本轮耗时
+												58 text 已完成 0s
+										59 container 模型回答
+											60 container 模型回答
+												61 text FEAT164 S4C 本机验收完成。这是合成响应，未访问真实模型。
+												62 container 模型回答操作
+													63 button 复制文本
+							64 container 对话 2
+								65 container 对话 2
+									66 container 本轮对话内容
+										67 container 用户消息
+											68 text FEAT164_S4C_MINIMAX：请通过本机合成通道验证切换后的继续对话，不调用工具。
+											69 container 用户消息操作
+												70 container 2026/10/25 18:54:26
+													71 text 18:54
+												72 button 复制文本
+										73 container 本轮耗时
+											74 container 本轮耗时
+												75 text 已完成 0s
+										76 container 模型回答
+											77 container 模型回答
+												78 text FEAT164 S4C 本机验收完成。这是合成响应，未访问真实模型。
+												79 container 模型回答操作
+													80 button 复制文本
+							81 container 对话 3
+								82 container 对话 3
+									83 container 本轮对话内容
+										84 container 用户消息
+											85 text FEAT164_S4C_REOPEN：同一构建正常重开后，继续本机会话并返回合成结果。不调用工具。
+											86 container 用户消息操作
+												87 container 2026/10/25 19:04:22
+													88 text 19:04
+												89 button 复制文本
+										90 container 本轮耗时
+											91 container 本轮耗时
+												92 text 已完成 0s
+										93 container 模型回答
+											94 container 模型回答
+												95 text FEAT164 S4C 本机验收完成。这是合成响应，未访问真实模型。
+												96 container 模型回答操作
+													97 button 复制文本
+							98 container 对话 4
+								99 container 对话 4
+									100 container 本轮对话内容
+										101 container 用户消息
+											102 text FEAT164_S4C_PAUSED：仅在明确选择可用 MiniMax 后验证本机继续对话，不调用工具。
+											103 container 用户消息操作
+												104 container 2026/10/25 19:12:03
+													105 text 19:12
+												106 button 复制文本
+										107 container 本轮耗时
+											108 container 本轮耗时
+												109 text 已完成 0s
+										110 container 模型回答
+											111 container 模型回答
+												112 text FEAT164 S4C 本机验收完成。这是合成响应，未访问真实模型。
+												113 container 模型回答操作
+													114 button 复制文本
+				115 button 滚动到对话底部
+				116 container 任务输入区
+					117 text 输入你的任务需求
+					118 text entry area (settable) 输入你的任务需求, Value: [text entry area], Placeholder: 继续输入任务需求…
+						119 text 继续输入任务需求…
+					120 pop up button 可添加文件、技能、连接器，或选择专家
+					121 pop up button 权限审批：请求批准, Help: 更改当前任务的权限审批模式
+					122 pop up button 关联店铺, Help: 关联店铺（交互演示）
+					123 pop up button 选择对话模型，当前 MiniMax-M3, Help: MiniMax-M3
+					124 button (disabled) 发送任务
+				125 text 已完成
+	126 close button
+	127 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	128 minimize button
+129 menu bar
+	130 易界 AI FEAT-164
+	131 File
+	132 Edit
+	133 View
+	134 Window
+	135 Help
+
+The focused UI element is 37 heading FEAT164_S4C_KIMI：这是本机界面验收，请回复合成验证结果，不调用工, Value: 1

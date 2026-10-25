@@ -1,5 +1,7 @@
 # FEAT-164 实际验证记录
 
+> 当前（2026-10-25，S4同源App/UI）：Desktopa0a4743在固定Hostcac2d4d/Runtime074417e5及专家资源上完成本机App验收子集；修复Worker物理路径、最小窗口裁切和暂停Kimi历史阻断启动。普通/专家媒体、历史重开、暂停与MiniMax、亮暗最小窗口及正常清理已验证。10次loopback、真实模型新增0；系统浅色已恢复，旧账本/预占和原工作区保留。完整旧K3 cutover、计划/恢复UI、跨平台、当前G2V/G3/final仍pending。最新权威见[29](29-s4-canonical-app-ui.md)与feature.yaml；下方记录按原时间与来源保留。
+
 > 当前（2026-10-25，S4专家/媒体/辅助续办）：专家pin已按Skills595c927不可变同内容来源修复；Hostcac2d4d、Desktop56f5284、Connectors1f15726已仅本地固化。四组合source、37专家版本安装/解析/重开及专家/媒体/原生辅助调用安全离线验证通过；S2/S3/S4当前源回归通过。完整TCONF-164-04、App/平台/G2V/G3/final仍未完成，真实模型新增0，旧账本/预占保留。最新见[28](28-s4-expert-media-auxiliary.md)及feature.yaml；下方段落保留各阶段历史范围。
 
 > 当前（2026-10-25，S4）：Contracts eddc64f → Host9ffcb6f → Desktop704cfdb/e408047已仅本地固化全调用面接线；安全子集7/4/4/4/5、S2和S3当前源回归通过。完整TCONF-164-04、专家资源/媒体、辅助动态调用、App/平台/G3/final仍未完成；真实模型新增0，旧账本/预占保留。最新见[27](27-s4-call-surface-wiring.md)及feature.yaml。
@@ -228,3 +230,11 @@ Contracts2dd214d、Desktop4d04597干净资格来源，计划v2/私有IPC、SQL41
 2026-10-25最终干净来源Desktop56f5284/Hostcac2d4d/Connectors1f15726/Skills595c927，固定真实r2 Runtime：[S4b最终矩阵](evidence/s4b-qualified-final/result.json)四组合source、资源1、专家/媒体3、辅助4、Native资源1均PASS且0skip；37专家版本安装/解析/重开，13次loopback。原生子代理精确completed、Guardian正常批准复制、显式压缩完成。只计安全离线扩展，不授予完整TCONF-164-04/App/平台资格。
 
 同源[S4回归](evidence/s4b-s4-regression-final/result.json)7/4/4/4/5、[S2回归](evidence/s4b-s2-regression-final/result.json)25/2/12/10/1、[S3回归](evidence/s4b-s3-regression-final/result.json)五项通过。资源[两次复现](evidence/s4b-expert-reproduction.json)、[canonical制品来源](evidence/s4b-build-provenance.json)、[保护审计](evidence/s4b-preservation-audit.json)与[完整说明及未执行项](28-s4-expert-media-auxiliary.md)。首次矩阵s4b-conformance-final属于补强child状态断言前来源，最终权威为s4b-qualified-final，不互相冒充。
+
+
+<a id="E164-S4C-APP"></a>
+<!-- evidence: E164-S4C-APP -->
+
+2026-10-25 S4c：详见[29完整审计](29-s4-canonical-app-ui.md)和[子集判定](evidence/s4c-app-verdict.json)。最终Desktopa0a4743、Hostcac2d4d、Contractseddc64f、Runtime074417e5；专家595c927/Connectors1f15726，所有实际App均由canonical来源校验和构建。3个隔离Desktop修复、42项前端/1项暂停回归、fmt/Clippy/构建PASS。暂停历史零HTTP、明确MiniMax正控、正常重开零补发、专家HTML/SVG、亮暗1180×760与清理通过；10次loopback、真实0。失败构建预检、初次错误测试配置、暂停启动失败与红灯回归日志原样保留；最终不伪造无失败历史。
+
+系统外观和窗口尺寸已恢复，App/fixture均正常退出。完整旧K3 cutover、计划/恢复UI、跨平台、当前G2V/G3/final不放行；[治理门禁](evidence/s4c-governance-results.json)和[工作区保留](evidence/s4c-preservation-audit.json)分别验证文档与不覆盖既有改动，不能代替产品全量资格。

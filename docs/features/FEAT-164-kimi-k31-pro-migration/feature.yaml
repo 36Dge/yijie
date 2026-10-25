@@ -291,17 +291,17 @@ temporal_contract_matrix:
         - repository: yijie-agent-host
           full_sha: cac2d4d7e1df02868a370e204959e1842c3362c3
         - repository: yijie-desktop
-          full_sha: 56f52843b543a4276eb6221abf3d589582b8c480
+          full_sha: a0a474333ba03186b36f30fa3ab86287abfc5c15
         - repository: yijie-connectors
           full_sha: 1f157260d6dd339172712e1c649258902db45050
-      evidence_ref: 28-s4-expert-media-auxiliary.md
+      evidence_ref: 08-verification-report.md#E164-S4C-APP
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
       implementation_status: implemented_partial
-      command_note: 安全子集7/4/4/4/5及新增feat164-s4b-conformance.py的四组合source、1/3/4/1行为检查PASS，0skip；37专家版本、真实Worker/媒体adapter、原生子代理/Guardian/显式压缩已安全离线验证。完整同源App/UI重开、旧模型cutover和平台未执行，TINV-164-04整体仍NOT
-        RUN，不能晋升完整TCONF。
+      command_note: 此前S4b四组合、37专家版本及固定Runtime辅助离线检查按原来源保留。S4c同源App已补普通/专家媒体、历史重开、暂停Kimi/MiniMax与正常清理；亮暗最小窗口通过。仍缺旧模型已加载子代理与自动大上下文cutover、完整计划/UI及跨平台，TINV-164-04整体仍NOT
+        RUN。
 vertical_feasibility:
   required: true
   applicability_reason: 跨仓模型/Runtime身份和重要持久数据迁移，必须真实纵向资格
@@ -512,8 +512,9 @@ slices:
       environment: NOT RUN
       exit_code: null
       verified_at: NOT RUN
-      refs: []
-      reason: 当前只完成unpaused新Kimi本机正控；剩余实际UI与清理因Mac锁屏NOT RUN。无新增真实模型许可，旧G2V只保留原来源历史。
+      refs:
+        - 08-verification-report.md#E164-S4C-APP
+      reason: 原S1的锁屏UI缺口已在后继S4c来源补Kimi正控、暂停后MiniMax、历史与正常清理；不冒充原174fbaf重新验收。完整平台、前置来源资格及G3/freshness仍未闭合。
       exception:
         owner: N/A
         approved_at: N/A
@@ -532,7 +533,7 @@ slices:
       invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
         implementation reference changes
     status: blocked
-    status_reason: S1源实现与local/boundary通过，锁屏所需UI/最终清理仍NOT RUN，G3未通过。Owner于2026-10-25批准延期这些项并先推进S2离线基础；不是验收PASS或发布豁免。
+    status_reason: S1原源local/boundary通过；后继a0a4743补锁屏相关macOS UI及清理。完整平台/G3/freshness仍缺；Owner授权先推进后继切片的顺序例外继续保留，不等于最终PASS。
   - id: S2
     intent: 兼容存储、模型选择恢复与未发送取消
     required: true
@@ -610,7 +611,7 @@ slices:
       invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
         implementation reference changes
     status: pending
-    status_reason: Host基础及Native SQL39/显式恢复已本地固化并通过对应工程子集检查；业务never-sent持久派发证明/取消、旧隔离库激活与平台UI仍未完成，整个slice未通过。
+    status_reason: SQL39/40、派发证明/未发送取消及TCONF-164-02已有按原来源的工程证据；本轮补旧隔离K3.1历史与正常重开。旧K3模型迁移、显式恢复/取消的完整App交互、跨平台/freshness仍未完成，整个slice未通过。
   - id: S3
     intent: worker接管前退役保护及计划领域授权迁移
     required: true
@@ -693,13 +694,13 @@ slices:
       - repository: yijie-agent-host
         full_sha: cac2d4d7e1df02868a370e204959e1842c3362c3
       - repository: yijie-desktop
-        full_sha: 56f52843b543a4276eb6221abf3d589582b8c480
+        full_sha: a0a474333ba03186b36f30fa3ab86287abfc5c15
       - repository: yijie-connectors
         full_sha: 1f157260d6dd339172712e1c649258902db45050
     exception:
       owner: 段成威
       approved_at: 2026-10-25
-      reason: 用户明确要求先核对专家资源pin并继续专家、媒体组合及辅助调用的安全离线验证；沿用UI延期，新增真实HTTP为0，不豁免G2V/G3或最终验收。
+      reason: Owner明确要求先正常退出S1再推进同源构建及App/UI；另明确批准临时亮暗切换并恢复。只本地提交，真实HTTP新增0；不豁免未验收平台、前置slice、G2V/G3或final。
     local_evidence:
       required: true
       status: PASS
@@ -712,8 +713,10 @@ slices:
       verified_at: 2026-10-25T18:36:58.996897+08:00
       refs:
         - 08-verification-report.md#E164-S4B-OFFLINE
+        - 08-verification-report.md#E164-S4C-APP
       reason: 四组合source及1/3/4/1行为检查PASS、0skip；13次loopback覆盖专家/媒体/子代理/Guardian/显式压缩。当前源S4 7/4/4/4/5、S2
         25/2/12/10/1及S3五项复验通过；37专家版本安装/解析/重开、Native完整资源读取通过。不代表完整TCONF-164-04、App/平台或G3。
+        上述批次保持原56f5284来源；当前a0a4743另经canonical构建、暂停历史回归及App/UI子集复验，见S4C锚点，不把旧全套结果改写为新源运行。
       exception:
         owner: N/A
         approved_at: N/A
@@ -725,9 +728,10 @@ slices:
       environment: NOT RUN
       exit_code: null
       verified_at: NOT RUN
-      refs: []
-      reason: 专家pin不一致已按不可变同内容资源解决；真实Host域服务、canonical Worker/媒体adapter、固定Runtime辅助调用已安全离线验证。仍缺同源canonical
-        App/WebView、旧隔离历史完整重开/暂停回退、旧模型cutover/自动大上下文与平台资格，不当完整边界/纵向PASS。
+      refs:
+        - 08-verification-report.md#E164-S4C-APP
+      reason: 同源macOS
+        App/WebView、旧隔离K3.1历史、专家媒体预览/导出、暂停Kimi后的历史/MiniMax及正常重开清理已通过本机合成子集。旧K3已加载子代理/自动压缩cutover、计划完整UI/实际链、跨平台与当前G2V/freshness仍缺，整体边界/纵向不记PASS。
       exception:
         owner: N/A
         approved_at: N/A
@@ -739,9 +743,10 @@ slices:
       environment: NOT RUN
       exit_code: null
       verified_at: NOT RUN
-      refs: []
-      reason: 专家pin不一致已按不可变同内容资源解决；真实Host域服务、canonical Worker/媒体adapter、固定Runtime辅助调用已安全离线验证。仍缺同源canonical
-        App/WebView、旧隔离历史完整重开/暂停回退、旧模型cutover/自动大上下文与平台资格，不当完整边界/纵向PASS。
+      refs:
+        - 08-verification-report.md#E164-S4C-APP
+      reason: 同源macOS
+        App/WebView、旧隔离K3.1历史、专家媒体预览/导出、暂停Kimi后的历史/MiniMax及正常重开清理已通过本机合成子集。旧K3已加载子代理/自动压缩cutover、计划完整UI/实际链、跨平台与当前G2V/freshness仍缺，整体边界/纵向不记PASS。
       exception:
         owner: N/A
         approved_at: N/A
@@ -760,8 +765,8 @@ slices:
       invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
         implementation reference changes
     status: pending
-    status_reason: 源接线、专家资源pin及媒体/辅助安全离线扩展、S2/S3/S4当前源回归已本地固化。完整TCONF-164-04、App/WebView/旧隔离历史/跨平台与freshness未完成，S4
-      G3仍pending。
+    status_reason: S4接线、专家pin与安全离线扩展已有原来源证据；当前Desktopa0a4743完成canonical
+      App本机子集，修复Worker物理路径、最小窗口及暂停历史启动缺陷。完整TCONF-164-04/跨平台/当前G2V/freshness未完成，S4 G3 pending。
 final_e2e:
   core_vertical:
     required: true
@@ -940,7 +945,7 @@ external_authorizations:
     approved_at: N/A
 current_authorization:
   phase: implementation_with_governance
-  source: Owner要求继续S4，先解决专家资源pin不一致，再推进专家、媒体组合和辅助调用的安全离线验证；严格保留已有工作区、旧账本与预占，新增真实模型HTTP为0，仅FEAT-164本地提交、不推送。
+  source: Owner要求正常退出活动S1并继续S4同源构建及App/UI验收；另批准临时切换系统外观并恢复。保留工作区/旧账本/预占，真实模型新增HTTP为0，仅FEAT-164本地提交、不推送。
   documentation_write_allowed: true
   product_source_edit_allowed: true
   product_generate_build_test_allowed: true
@@ -948,8 +953,8 @@ current_authorization:
   service_lifecycle_allowed: true
   model_or_tool_business_calls_allowed: false
   git_commit_push_branch_release_allowed: false
-  note: 真实模型HTTP新增0；只普通本机loopback与临时测试存储。旧账本2 HTTP、14.188544元unknown预占及14.328134元累计上界不变。延期UI保持NOT
-    RUN；不覆盖运行中的App，不迁移日常库，不发布。
+  note: 真实模型HTTP新增0；本轮仅受限loopback与隔离候选存储。旧账本2
+    HTTP、14.188544元unknown预占及14.328134元累计上界不变。S1与所有本轮App/fixture均正常退出，系统浅色已恢复；日常库未迁移，原资源与S1审计副本保留，不发布。
   git_local_commit_allowed: true
   git_scope: 仅FEAT-164本地提交，包括必要后续实现/验证/治理；不混入已有其它需求，无push/branch/tag/release。
 implementation:
@@ -958,7 +963,7 @@ implementation:
   mock_only: false
 product_verification:
   status: IN_PROGRESS
-  reason: S4专家资源pin与安全离线扩展已完成，S2/S3/S4当前源回归通过；完整TCONF-164-04、App/平台/G3/final仍缺。旧账本/预占保留，新增真实模型HTTP为0。
+  reason: S4c同源App本机子集完成，Desktop三项必要修复、42前端/1暂停历史回归、canonical构建及正常清理通过；完整旧模型cutover、计划/UI、跨平台、当前G2V/G3/final仍未完成。新增真实模型HTTP为0，旧账本/预占保留。
 profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
 owner_approvals:
   requirements: approved_by_owner_current_user_message

@@ -1,0 +1,72 @@
+{
+  "status": "PASS_FOR_RECORDED_LOCAL_SUBSET",
+  "verified_at": "2026-10-25T19:14:57.138135+08:00",
+  "current_desktop_commit": "a0a474333ba03186b36f30fa3ab86287abfc5c15",
+  "canonical_receipt": "s4c-current-packaged-receipt.json",
+  "current_source_cases": {
+    "paused_bootstrap_and_history": "PASS",
+    "paused_nonempty_kimi_disabled": "PASS",
+    "explicit_minimax_high_continuation": "PASS; ordinal 7",
+    "normal_reopen_without_http": "PASS; requests remained 7",
+    "fresh_kimi_max_expert_media": "PASS; ordinals 8-10, actual adapter and ready HTML/SVG",
+    "html_svg_preview": "PASS",
+    "light_dark_minimum_window": "PASS",
+    "system_appearance_restored": "PASS; light",
+    "window_size_restored": "PASS;1268x780",
+    "normal_app_and_fixture_cleanup": "PASS;exit0;ports18083/18086released"
+  },
+  "earlier_source_cases": {
+    "f4db8ea": "old S1 and real 42 history read, model menu, ordinary Kimi/MiniMax, expert installation/media previews and byte-identical export; ordinals1-5",
+    "554d0e2": "layout repair, normal history/media reopen and ordinary Kimi continuation ordinal6; paused bootstrap failed and was repaired in a0a4743"
+  },
+  "synthetic_http_count": 10,
+  "external_model_http_added": 0,
+  "provider_quality_qualified": false,
+  "final_gates_passed": false,
+  "remaining": [
+    "old K3 loaded subagent and automatic large-context compression cutover",
+    "full plan and explicit model-recovery/cancel App flows",
+    "other supported platforms and freshness",
+    "current-source G2V and complete per-slice G3/final E2E"
+  ],
+  "visual_evidence": {
+    "s4c-current-min-light.jpg": {
+      "pixel_dimensions": [
+        2360,
+        1520
+      ],
+      "logical_dimensions": [
+        1180,
+        760
+      ],
+      "sha256": "868330e80b4ddb75d4a159b632c8d5abb8eec147140e75e9ecf456944377d2f6"
+    },
+    "s4c-current-min-dark.jpg": {
+      "pixel_dimensions": [
+        2360,
+        1520
+      ],
+      "logical_dimensions": [
+        1180,
+        760
+      ],
+      "sha256": "4b3df09a941683263c44ea300978b1da084676b95470919f04a12a33a92cb622"
+    },
+    "s4c-current-window-restored.jpg": {
+      "pixel_dimensions": [
+        2536,
+        1560
+      ],
+      "logical_dimensions": [
+        1268,
+        780
+      ],
+      "sha256": "d3556499f079a11e52958166ca68c9864d9dcb8f4e40d3e435ccd160af058349"
+    }
+  },
+  "notes": [
+    "Model-switch conversation_warning remained visible; raw Runtime warning not retained; code-source explanation is inference only.",
+    "Automatic title call was not observed in this App run; earlier safe headless title check retains its own source scope.",
+    "No forbidden destructive or attack fixture executed."
+  ]
+}

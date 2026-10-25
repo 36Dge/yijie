@@ -1,0 +1,115 @@
+Window: "易界 AI", App: 易界 AI FEAT-164.
+0 standard window 易界 AI, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: 任务对话 · 易界 AI, URL: tauri://localhost/chat/01a172c4-2ef0-7ce0-aa3e-f194fc0b32a9
+			3 text 界面缩放 100%
+			4 button (expanded) 收起侧栏, Secondary Actions: Collapse
+			5 container 主导航
+				6 image 易界
+				7 container 应用导航
+					8 content list
+						9 link 新建任务, Value: tauri://localhost/chat
+						10 link 我的店铺, Value: tauri://localhost/store
+						11 link 工作流, Value: tauri://localhost/workflows
+						12 link 扩展, Value: tauri://localhost/plugins
+						13 link 连接器, Value: tauri://localhost/connectors
+						14 link 定时任务, Value: tauri://localhost/scheduled-tasks
+						15 container
+							16 heading 任务, Value: 2
+								17 text 任务
+							18 container 任务：项目与对话
+								19 content list
+									20 container
+										21 pop up button 折叠项目 s4c-ui-workspace
+										22 pop up button 项目 s4c-ui-workspace 的操作菜单
+										23 content list
+											24 pop up button FEAT164_S4C_MEDIA：最终构建验证。只将当前隔离工作空间已有的 r
+											25 button FEAT164_S4C_KIMI：这是本机界面验收，请回复合成验证结果，不调用工
+											26 button FEAT164_S4C_MEDIA：只将当前隔离工作空间已有的 report.h
+									27 button FEAT164 S1 本机新模型正控，请回复合成验证结果。
+									28 button FEAT164 单次真实续验：请计算 17 + 25，只用一行回答结果，不使用工
+									29 button FEAT164 30元续验本机正控，请回复合成验证结果。
+									30 button FEAT164 r2 本机正控，请回复合成验证结果。
+									31 button FEAT164 本机请求字段核对，请回复合成验证结果。
+									32 button FEAT164 真实文本验收：请计算 17 + 25，只回复“FEAT164 实
+									33 button FEAT164 本机正控，请回复合成验证结果。
+					34 content list
+						35 link 设置, Value: tauri://localhost/settings
+			36 container FEAT164_S4C_MEDIA：最终构建验证。只将当前隔离工作空间已有的 r
+				37 container
+					38 heading FEAT164_S4C_MEDIA：最终构建验证。只将当前隔离工作空间已有的 r, Value: 1
+						39 text FEAT164_S4C_MEDIA：最终构建验证。只将当前隔离工作空间已有的 r
+					40 text s4c-ui-workspace 已完成
+				41 container 任务对话记录
+					42 container 对话内容
+						43 container 对话 1
+							44 container 对话 1
+								45 container 本轮对话内容
+									46 container 用户消息
+										47 text FEAT164_S4C_MEDIA：最终构建验证。只将当前隔离工作空间已有的 report.html 和 drawing.svg 登记为本机产物，返回合成结果。不联网，不修改文件。
+										48 container 用户消息操作
+											49 container 2026/10/25 19:13:42
+												50 text 19:13
+											51 button 复制文本
+									52 button (collapsed) 已完成 0s，展开本轮处理过程, Secondary Actions: Expand
+									53 container 模型回答
+										54 container 模型回答
+											55 text FEAT164 S4C 本机验收完成。这是合成响应，未访问真实模型。
+											56 container 模型回答操作
+												57 button 复制文本
+									58 container 生成内容
+										59 container 生成内容
+											60 container
+												61 text 生成内容 已完成
+												62 container 生成内容操作
+											63 container 生成内容
+												64 container report.html
+													65 container
+														66 text report.html 文件 工具生成
+													67 container 文件预览与保存
+														68 text 支持自包含 HTML；外链资源不会加载。
+														69 button 预览 HTML
+														70 button 保存文件
+													71 text 已就绪
+									72 container 生成内容
+										73 container 生成内容
+											74 container
+												75 text 生成内容 已完成
+												76 container 生成内容操作
+											77 container 生成内容
+												78 container drawing.svg
+													79 container
+														80 text drawing.svg 图片 工具生成
+													81 container 图片预览与保存
+														82 button 预览图片：drawing.svg, Help: 预览图片
+														83 button 保存图片
+													84 text 已就绪
+					85 container 连接器调用
+						86 container
+							87 text 工具调用记录
+							88 pop up button 查看连接器调用轮次, Value: 最新轮次
+				89 container 任务输入区
+					90 text 输入你的任务需求
+					91 text entry area (settable) 输入你的任务需求, Value: [text entry area], Placeholder: 继续输入任务需求…
+						92 text 继续输入任务需求…
+					93 pop up button 可添加文件、技能、连接器，或选择专家
+					94 pop up button 权限审批：请求批准, Help: 更改当前任务的权限审批模式
+					95 pop up button 关联店铺, Help: 关联店铺（交互演示）
+					96 container
+						97 button 移除专家, Help: 移除专家，已有聊天保留
+						98 button 查看已选专家 资深电商运营操盘手, Help: 资深电商运营操盘手
+					99 pop up button 选择对话模型，当前 Kimi K3.1 Pro, Help: Kimi K3.1 Pro
+					100 button (disabled) 发送任务
+				101 text 已完成
+	102 close button
+	103 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	104 minimize button
+105 menu bar
+	106 易界 AI FEAT-164
+	107 File
+	108 Edit
+	109 View
+	110 Window
+	111 Help
+
+The focused UI element is 82 button 预览图片：drawing.svg, Help: 预览图片

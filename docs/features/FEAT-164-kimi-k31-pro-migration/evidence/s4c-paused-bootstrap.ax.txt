@@ -1,0 +1,56 @@
+Window: "易界 AI", App: 易界 AI FEAT-164.
+0 standard window 易界 AI, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: 新建任务 · 易界 AI, URL: tauri://localhost/chat
+			3 text 界面缩放 100%
+			4 button (expanded) 收起侧栏, Secondary Actions: Collapse
+			5 container 主导航
+				6 image 易界
+				7 container 应用导航
+					8 content list
+						9 link 新建任务, Value: tauri://localhost/chat
+						10 link 我的店铺, Value: tauri://localhost/store
+						11 link 工作流, Value: tauri://localhost/workflows
+						12 link 扩展, Value: tauri://localhost/plugins
+						13 link 连接器, Value: tauri://localhost/connectors
+						14 link 定时任务, Value: tauri://localhost/scheduled-tasks
+						15 container
+							16 heading 任务, Value: 2
+								17 text 任务
+							18 container 任务：项目与对话
+								19 text 任务记录暂不可用，请稍后重试
+					20 content list
+						21 link 设置, Value: tauri://localhost/settings
+			22 container
+				23 container 易界AI
+					24 heading 易界AI, Value: 1
+						25 text 易界AI
+					26 text 让跨境经营更高效，让全球生意更进一步。
+					27 container
+						28 text 本地服务尚未就绪 请等待服务启动完成后再试。
+						29 button 重试启动
+					30 container 任务输入区
+						31 text 输入你的任务需求
+						32 text entry area (settable) 输入你的任务需求, Value: [text entry area], Placeholder: 描述你想完成的事，或添加相关文件…
+							33 text 描述你想完成的事，或添加相关文件…
+						34 pop up button 可添加文件、技能、连接器，或选择专家
+						35 pop up button 关联店铺, Help: 关联店铺（交互演示）
+						36 pop up button (disabled) 选择对话模型，当前 Kimi K3.1 Pro, Help: 当前聊天仅可查看或操作权限尚未就绪，无法切换模型
+						37 button (disabled) 发送任务
+						38 container 工作空间与权限
+							39 pop up button (disabled) 选择工作空间
+							40 pop up button (disabled) 权限审批：读取中, Help: 任务运行、等待审批或同步期间不能切换权限
+						41 container
+							42 text 正在检查本地运行环境 完成安全检查后即可发送任务。
+	43 close button
+	44 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	45 minimize button
+46 menu bar
+	47 易界 AI FEAT-164
+	48 File
+	49 Edit
+	50 View
+	51 Window
+	52 Help
+
+The focused UI element is 22 container
