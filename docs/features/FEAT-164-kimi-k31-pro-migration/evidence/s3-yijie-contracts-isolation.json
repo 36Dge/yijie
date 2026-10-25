@@ -1,0 +1,20 @@
+{
+  "repository": "yijie-contracts",
+  "base": "f2819c66a2368aaff37216a46c48d5cd81df1747",
+  "commit": "2dd214d6a702064edae78510c035442854bf9789",
+  "files": [
+    "compatibility/scheduled-plan-v2/source.lock.json",
+    "docs/scheduled-plan-v2.md",
+    "jsonschema/scheduled-tasks/plan-storage-v2.schema.json",
+    "scripts/check-scheduled-plan-v2.mjs",
+    "scripts/generate-scheduled-plan-v2.mjs",
+    "scripts/sync-scheduled-plan-v2.mjs",
+    "sdks/jsonschema/scheduled-plan-v2.schema.json",
+    "sdks/rust/scheduled-plan-v2/types.gen.rs",
+    "sdks/typescript/src/jsonschema/scheduled-plan-v2.gen.ts",
+    "tests/scheduled-plan-v2.test.mjs"
+  ],
+  "patch_sha256": "51812086ffcb1dfc2011d794878025cb31fd0bcf441913fe2b3cc6d2fda805a2",
+  "reverse_patch_preserved_preexisting_bytes": true,
+  "push": false
+}

@@ -54,6 +54,11 @@ immutable_references:
       full_commit: f2819c66a2368aaff37216a46c48d5cd81df1747
       digest: 3d204e1cf11a7a108d636f37d112d8cc9e8ad46212b9cb867097714de6a4b89c
       generator: scripts/generate-runtime-kimi-k31-pro.mjs
+    - id: scheduled-plan-v2
+      version: 0.2.0
+      full_commit: 2dd214d6a702064edae78510c035442854bf9789
+      digest: 75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
+      generator: scripts/generate-scheduled-plan-v2.mjs
   fixtures:
     - id: feat164-request-shape-loopback
       digest: d345d62dfa9ba7021138c3330a6c619222cf108cf423b5b051fc9699cda90372
@@ -66,18 +71,20 @@ gates:
   G1_design_ready: pass
   G2_implementation_ready: pass
   G2A_contract_ready: pass
-  G2V_vertical_feasibility: pass
+  G2V_vertical_feasibility: pending
   G4_code_complete: pending
   G5_production_ready: pending
   G6_delivery_complete: pending
 gate_reasons:
-  G2A: r2 Runtime 074417e5e2f5f55704ea5e1777e7a22d514076b4 → Contracts f2819c66a2368aaff37216a46c48d5cd81df1747
-    → Host 5022435a6272263e66e46a41b7ed7c3f9fb6caf9 → Desktop 74f2f74d866483463df7236f891aae62b00539ba。269
-    schema与r1相同，七支持基线、精确producer/consumer pin、原生Runtime conformance及canonical构建通过；沿用已授权范围内修复，不代表发布或独立人工复审。
+  G2A: r2 Runtime 074417e5e2f5f55704ea5e1777e7a22d514076b4 → Contracts
+    f2819c66a2368aaff37216a46c48d5cd81df1747 → Host
+    5022435a6272263e66e46a41b7ed7c3f9fb6caf9 → Desktop
+    74f2f74d866483463df7236f891aae62b00539ba。269
+    schema与r1相同，七支持基线、精确producer/consumer pin、原生Runtime
+    conformance及canonical构建通过；沿用已授权范围内修复，不代表发布或独立人工复审。
     Desktop验收脚本现固化40908c75af14a9cbd65d1b0cee96ba510d6afa8f，产品契约来源不变。
-  G2V: 当前Runtime r2/Contracts
-    f2819c6/Host5022435/Desktop40908c7，canonical真实App新增唯一1次HTTP200，精确kimi-k3.1-pro/max、唯一completed、usage及可见正确答复、保存/同产物重开无补发/正常清理，组合oracle
-    PASS。仅预算受限文本链，输出8192、无原生搜索；旧r1 FAIL及14.188544元预占保留，总上界14.328134元，新增HTTP余额0。不是S1—S4或final通过。
+  G2V: S3新增scheduled-plan-v2/SQL41后，旧r2 canonical
+    G2V仅对原来源成立，不覆盖新计划契约；当前G2V回到pending，不扩写旧contract_refs伪造freshness。原PASS完整记录保留evidence/s3-prior-vertical-feasibility.json及20/25；本轮没有新增真实模型HTTP许可。需按当前来源补完整App/边界与适用资格，不能自动消耗预算余额。
 temporal_contract_matrix:
   required: true
   applicability_reason: 模型意图、配置回执、Host提交、Native通知、历史重放、计划资格和正常退出跨进程且跨版本
@@ -168,7 +175,8 @@ temporal_contract_matrix:
     - id: TCONF-164-01
       required: true
       repository: yijie-agent-host
-      command: go test ./internal/codex -run '^TestFEAT164ActivationAndRetiredAdmission$' -count=1 -v
+      command: go test ./internal/codex -run
+        '^TestFEAT164ActivationAndRetiredAdmission$' -count=1 -v
       slice_id: S1
       status: PASS
       exit_code: 0
@@ -192,7 +200,12 @@ temporal_contract_matrix:
     - id: TCONF-164-02
       required: true
       repository: yijie-desktop
-      command: python3 scripts/feat164-s2-conformance.py --host-source ../yijie-agent-host --runtime-binary /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r2/aarch64-apple-darwin/codex --runtime-manifest /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r2/aarch64-apple-darwin/runtime-manifest.json --output /tmp/feat164-s2-conformance-final
+      command: python3 scripts/feat164-s2-conformance.py --host-source
+        ../yijie-agent-host --runtime-binary
+        /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r2/aarch64-apple-darwin/codex
+        --runtime-manifest
+        /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r2/aarch64-apple-darwin/runtime-manifest.json
+        --output /tmp/feat164-s2-conformance-final
       slice_id: S2
       status: PASS
       exit_code: 0
@@ -216,23 +229,41 @@ temporal_contract_matrix:
         approved_at: N/A
         reason: N/A
       implementation_status: implemented
-      command_note: 组合driver要求五组精确命中且零skip；Host原精确入口保留，配套Native带数据SQL40迁移/取消及真实Host-Runtime正常重开。仅时序与headless边界PASS，不等于完整S2 G3/App平台。
+      command_note: 组合driver要求五组精确命中且零skip；Host原精确入口保留，配套Native带数据SQL40迁移/取消及真实Host-Runtime正常重开。仅时序与headless边界PASS，不等于完整S2
+        G3/App平台。
     - id: TCONF-164-03
       required: true
       repository: yijie-desktop
-      command: cargo test --manifest-path src-tauri/Cargo.toml feat164_plan_retirement_before_dispatch -- --exact
+      command: node scripts/feat164-s3-conformance.mjs /tmp/feat164-s3-native-final
       slice_id: S3
-      status: NOT RUN
-      exit_code: null
-      verified_at: NOT RUN
-      commits: []
-      evidence_ref: NOT RUN
+      status: PASS
+      exit_code: 0
+      verified_at: 2026-10-25T07:43:31.405Z
+      commits:
+        - repository: yijie-contracts
+          full_sha: 2dd214d6a702064edae78510c035442854bf9789
+        - repository: yijie-desktop
+          full_sha: 4d04597cbf40e1aea2c67607c9d441f888223d96
+        - repository: yijie-codex
+          full_sha: 074417e5e2f5f55704ea5e1777e7a22d514076b4
+        - repository: yijie-contracts
+          full_sha: f2819c66a2368aaff37216a46c48d5cd81df1747
+        - repository: yijie-agent-host
+          full_sha: e8ae83f9c53fb41cc80139e0d0f70d7c8268b4ab
+        - repository: yijie-desktop
+          full_sha: 174fbaf661e4fdf48828ff8bbabbe5d55c157bed
+        - repository: yijie-agent-host
+          full_sha: 57c29ea03e3de39161a7c28080f9388f00cd1735
+        - repository: yijie-desktop
+          full_sha: ddc840f7ed642216bca4b42ab6327d388aa73084
+      evidence_ref: 08-verification-report.md#E164-S3-TCONF
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
-      implementation_status: planned_not_created
-      command_note: 计划中的目标；执行前核实真实文件/模块限定名与非零测试命中数。当前NOT RUN。
+      implementation_status: implemented
+      command_note: 独立driver强制5个模块限定exact入口各1通过且0ignored；正常历史fixture/SQLCipher与真实DatabaseWorker，不含真实模型HTTP，不等于S3
+        G3。
     - id: TCONF-164-04
       required: true
       repository: yijie-desktop
@@ -279,11 +310,11 @@ vertical_feasibility:
     command: node scripts/feat164-g2v-verdict.mjs
       /Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-164-kimi-k31-pro-migration/evidence/g2v-real-budget-ledger.json
       /Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-164-kimi-k31-pro-migration/evidence/g2v-30-real-observation.json
-    environment: macOS aarch64; current canonical App; one additional HTTP under 30 CNY cumulative cap;
-      output8192/no-native-search
-    exit_code: 0
-    status: PASS
-    verified_at: 2026-10-25T03:01:59.331300+00:00
+    environment: macOS aarch64; current canonical App; one additional HTTP under 30
+      CNY cumulative cap; output8192/no-native-search
+    exit_code: null
+    status: NOT RUN
+    verified_at: NOT RUN
     harness:
       id: H-F164-LOCAL
       commit: 40908c75af14a9cbd65d1b0cee96ba510d6afa8f
@@ -298,6 +329,7 @@ vertical_feasibility:
     refs:
       - 08-verification-report.md#E164-30-REAL-G2V
     working_directory: /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop
+    reason: 当前新增计划v2来源尚未重新资格；其余字段为原G2V定位信息，原始PASS对象完整保留在s3-prior-vertical-feasibility.json，不是本轮失败或扣费变化。
 runtime_harnesses:
   - id: H-F164-LOCAL
     purpose: 最小模型替换纵向候选及三项最终验证；安全普通状态分类
@@ -315,10 +347,11 @@ runtime_harnesses:
     qualification:
       status: PASS
       verified_at: 2026-10-25T02:59:00.992496+00:00
-      command: canonical --reopen + CUA ordinary task/history/Cmd-Q; node --test scripts/feat164-verdict.test.mjs
-        scripts/feat164-g2v-verdict.test.mjs; python3 -m unittest discover -s scripts -p
-        feat164_budget_meter_test.py
-      environment: macOS aarch64; Desktop 40908c7 canonical App + unchanged Runtime r2; ordinary metadata-only loopback
+      command: canonical --reopen + CUA ordinary task/history/Cmd-Q; node --test
+        scripts/feat164-verdict.test.mjs scripts/feat164-g2v-verdict.test.mjs;
+        python3 -m unittest discover -s scripts -p feat164_budget_meter_test.py
+      environment: macOS aarch64; Desktop 40908c7 canonical App + unchanged Runtime
+        r2; ordinary metadata-only loopback
       exit_code: 0
       positive_control:
         status: PASS
@@ -366,9 +399,10 @@ runtime_harnesses:
     qualification:
       status: NOT RUN
       verified_at: NOT RUN
-      command: canonical --reopen with ordinary loopback; CUA observations; node --test
-        scripts/feat164-verdict.test.mjs
-      environment: macOS aarch64; current 174fbaf/e8ae83f candidate; MAC_LOCKED blocks remaining UI observations
+      command: canonical --reopen with ordinary loopback; CUA observations; node
+        --test scripts/feat164-verdict.test.mjs
+      environment: macOS aarch64; current 174fbaf/e8ae83f candidate; MAC_LOCKED blocks
+        remaining UI observations
       exit_code: null
       positive_control:
         status: NOT RUN
@@ -416,8 +450,9 @@ slices:
     local_evidence:
       required: true
       status: PASS
-      command: Current pinned-source focused Go race, Vue model tests, Rust pause test, Host lint, Desktop lint and
-        product clippy; see s1-final-tests.json
+      command: Current pinned-source focused Go race, Vue model tests, Rust pause
+        test, Host lint, Desktop lint and product clippy; see
+        s1-final-tests.json
       environment: macOS aarch64; clean qualification worktrees; ordinary input only
       exit_code: 0
       verified_at: 2026-10-25T03:51:46.469004+00:00
@@ -431,9 +466,11 @@ slices:
     boundary_evidence:
       required: true
       status: PASS
-      command: TestFEAT164NativeCandidateLifecycle / TestFEAT164NativePredecessorAndPausedKimi; current closed
+      command: TestFEAT164NativeCandidateLifecycle /
+        TestFEAT164NativePredecessorAndPausedKimi; current closed
         catalog/selection/API controls
-      environment: Real fixed Runtime r2 + current Host; ordinary loopback Responses only, no external provider
+      environment: Real fixed Runtime r2 + current Host; ordinary loopback Responses
+        only, no external provider
       exit_code: 0
       verified_at: 2026-10-25T03:51:46.469004+00:00
       refs:
@@ -467,10 +504,11 @@ slices:
         digest: d4361025ed5b7da56dc8c587d5cf6e76860f4b749dba349b3fe5722d19929cce
       platform: NOT RUN
       production_bootstrap: true
-      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
-        implementation reference changes
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime,
+        platform, harness, bootstrap, or implementation reference changes
     status: blocked
-    status_reason: S1源实现与local/boundary通过，锁屏所需UI/最终清理仍NOT RUN，G3未通过。Owner于2026-10-25批准延期这些项并先推进S2离线基础；不是验收PASS或发布豁免。
+    status_reason: S1源实现与local/boundary通过，锁屏所需UI/最终清理仍NOT
+      RUN，G3未通过。Owner于2026-10-25批准延期这些项并先推进S2离线基础；不是验收PASS或发布豁免。
   - id: S2
     intent: 兼容存储、模型选择恢复与未发送取消
     required: true
@@ -497,7 +535,8 @@ slices:
         - 08-verification-report.md#E164-S2-NATIVE
         - 08-verification-report.md#E164-S2-DELIVERY
         - 08-verification-report.md#E164-S2-TCONF
-      reason: S2工程子集、TCONF-164-02及真实Native/Host/Runtime本机边界通过；canonical App/旧隔离历史/平台及完整freshness尚缺，保留24扩大回归的原基线失败，不转换为全slice PASS。
+      reason: S2工程子集、TCONF-164-02及真实Native/Host/Runtime本机边界通过；canonical
+        App/旧隔离历史/平台及完整freshness尚缺，保留24扩大回归的原基线失败，不转换为全slice PASS。
       exception:
         owner: N/A
         approved_at: N/A
@@ -514,7 +553,8 @@ slices:
         - 08-verification-report.md#E164-S2-NATIVE
         - 08-verification-report.md#E164-S2-DELIVERY
         - 08-verification-report.md#E164-S2-TCONF
-      reason: S2工程子集、TCONF-164-02及真实Native/Host/Runtime本机边界通过；canonical App/旧隔离历史/平台及完整freshness尚缺，保留24扩大回归的原基线失败，不转换为全slice PASS。
+      reason: S2工程子集、TCONF-164-02及真实Native/Host/Runtime本机边界通过；canonical
+        App/旧隔离历史/平台及完整freshness尚缺，保留24扩大回归的原基线失败，不转换为全slice PASS。
       exception:
         owner: N/A
         approved_at: N/A
@@ -543,29 +583,36 @@ slices:
         digest: NOT RUN
       platform: NOT RUN
       production_bootstrap: true
-      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
-        implementation reference changes
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime,
+        platform, harness, bootstrap, or implementation reference changes
     status: pending
-    status_reason: Host基础及Native SQL39/显式恢复已本地固化并通过对应工程子集检查；业务never-sent持久派发证明/取消、旧隔离库激活与平台UI仍未完成，整个slice未通过。
+    status_reason: Host基础及Native
+      SQL39/显式恢复已本地固化并通过对应工程子集检查；业务never-sent持久派发证明/取消、旧隔离库激活与平台UI仍未完成，整个slice未通过。
   - id: S3
     intent: worker接管前退役保护及计划领域授权迁移
     required: true
     prerequisites:
       - S2
-    commits: []
+    commits:
+      - repository: yijie-contracts
+        full_sha: 2dd214d6a702064edae78510c035442854bf9789
+      - repository: yijie-desktop
+        full_sha: 4d04597cbf40e1aea2c67607c9d441f888223d96
     exception:
-      owner: N/A
-      approved_at: N/A
-      reason: N/A
+      owner: 段成威
+      approved_at: 2026-10-25
+      reason: 用户明确要求实施S3并允许锁屏相关验收延期；仅改变推进顺序，不豁免S1/S2/S3 G3、真实验收或平台freshness。
     local_evidence:
       required: true
-      status: NOT RUN
-      command: NOT RUN
-      environment: NOT RUN
-      exit_code: null
-      verified_at: NOT RUN
-      refs: []
-      reason: 本slice需独立正常验证，不继承其它slice或旧Feature通过
+      status: PASS
+      command: node scripts/feat164-s3-conformance.mjs /tmp/feat164-s3-native-final
+      environment: macOS aarch64; clean Desktop 4d04597/Contracts2dd214d; five exact
+        offline Native tests; local SQLCipher only
+      exit_code: 0
+      verified_at: 2026-10-25T07:43:31.405Z
+      refs:
+        - 08-verification-report.md#E164-S3-LOCAL
+      reason: 五项精确非零/零ignored；另有70前端、3默认路径、lint/Clippy/前端build与来源检查。既有扩大回归失败另记，不声称全量通过。
       exception:
         owner: N/A
         approved_at: N/A
@@ -578,7 +625,8 @@ slices:
       exit_code: null
       verified_at: NOT RUN
       refs: []
-      reason: 本slice需独立正常验证，不继承其它slice或旧Feature通过
+      reason: 已完成versioned源/validator和Native worker启动边界；canonical
+        App/WebView/计划实际执行及平台仍未验收，不能借S2普通聊天loopback证明计划全链路。
       exception:
         owner: N/A
         approved_at: N/A
@@ -591,7 +639,8 @@ slices:
       exit_code: null
       verified_at: NOT RUN
       refs: []
-      reason: 本slice需独立正常验证，不继承其它slice或旧Feature通过
+      reason: 已完成versioned源/validator和Native worker启动边界；canonical
+        App/WebView/计划实际执行及平台仍未验收，不能借S2普通聊天loopback证明计划全链路。
       exception:
         owner: N/A
         approved_at: N/A
@@ -607,10 +656,11 @@ slices:
         digest: NOT RUN
       platform: NOT RUN
       production_bootstrap: true
-      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
-        implementation reference changes
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime,
+        platform, harness, bootstrap, or implementation reference changes
     status: pending
-    status_reason: 待适用G2A/Harness/G2V完成；尚未实施此下游slice
+    status_reason: S3源实现与TCONF-164-03五项、SQL41/真实Native
+      worker、前端/来源检查已完成并仅本地提交；App/WebView/完整边界与纵向、跨平台/freshness仍NOT RUN，完整G3不放行。
   - id: S4
     intent: 全启用调用面、同源UI与正常退出兼容回退
     required: true
@@ -671,8 +721,8 @@ slices:
         digest: NOT RUN
       platform: NOT RUN
       production_bootstrap: true
-      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
-        implementation reference changes
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime,
+        platform, harness, bootstrap, or implementation reference changes
     status: pending
     status_reason: 待适用G2A/Harness/G2V完成；尚未实施此下游slice
 final_e2e:
@@ -744,8 +794,9 @@ final_e2e:
       reason: N/A
 failure_circuit_breaker:
   same_failure_threshold: 3
-  policy: third equivalent failure blocks retries and local patches until a root-cause audit produces
-    discriminating evidence and an authorized next action
+  policy: third equivalent failure blocks retries and local patches until a
+    root-cause audit produces discriminating evidence and an authorized next
+    action
   incidents:
     - id: F164-GATE-BASELINE-REF
       slice_id: SOURCE-CANDIDATE
@@ -834,6 +885,7 @@ documents:
   native_model_recovery: 23-native-model-recovery.md
   delivery_proof_and_cancel: 24-delivery-proof-and-cancel.md
   native_boundary_conformance: 25-s2-conformance-and-native-boundary.md
+  plan_retirement: 26-s3-plan-retirement.md
 external_authorizations:
   paid_calls:
     allowed: false
@@ -860,17 +912,19 @@ current_authorization:
   service_lifecycle_allowed: true
   model_or_tool_business_calls_allowed: false
   git_commit_push_branch_release_allowed: false
-  note: 真实模型HTTP新增0；只普通本机loopback与临时测试存储。旧账本2 HTTP、14.188544元unknown预占及14.328134元累计上界不变。延期UI保持NOT
+  note: 真实模型HTTP新增0；只普通本机loopback与临时测试存储。旧账本2
+    HTTP、14.188544元unknown预占及14.328134元累计上界不变。延期UI保持NOT
     RUN；不覆盖运行中的App，不迁移日常库，不发布。
   git_local_commit_allowed: true
   git_scope: 仅FEAT-164本地提交，包括必要后续实现/验证/治理；不混入已有其它需求，无push/branch/tag/release。
 implementation:
   status: active
-  real_entrypoint: bash scripts/run-local-demo-fast.sh --packaged --kimi-k31-pro；同canonical组合的显式独立候选，日常入口未切换
+  real_entrypoint: bash scripts/run-local-demo-fast.sh --packaged
+    --kimi-k31-pro；同canonical组合的显式独立候选，日常入口未切换
   mock_only: false
 product_verification:
   status: IN_PROGRESS
-  reason: S2工程子集与TCONF-164-02、真实Native/Host/Runtime本机边界已通过；S1/S2延期平台及完整G3、S3/S4/final尚未完成；24已复现的原基线失败保留，旧G2V仅按原来源保留。
+  reason: S1/S2/S3源实现与TCONF-164-01/02/03有对应证据；S3五项时序通过，S2当前源复验通过；App/平台/完整G3、S4与final仍缺，旧失败和账本保留，不新增真实调用。
 profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
 owner_approvals:
   requirements: approved_by_owner_current_user_message

@@ -1,0 +1,22 @@
+   Compiling yijie-desktop v0.1.0 (/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat164-s3-default-baseline-e4t0x5vp/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 27.37s
+     Running unittests src/lib.rs (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop/src-tauri/target/debug/deps/yijie_desktop_lib-1b080f637da8dfe5)
+
+running 1 test
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_4c2_current_automatic_three_targets_no_manual_permit_and_last_debit ... FAILED
+
+failures:
+
+---- chat::application::scheduled_dispatch_tests::trigger_tests::feat155_4c2_current_automatic_three_targets_no_manual_permit_and_last_debit stdout ----
+
+thread 'chat::application::scheduled_dispatch_tests::trigger_tests::feat155_4c2_current_automatic_three_targets_no_manual_permit_and_last_debit' (1188174) panicked at src/chat/schedules/dispatch_tests.rs:463:49:
+called `Result::unwrap()` on an `Err` value: OrchestrationUnavailable
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    chat::application::scheduled_dispatch_tests::trigger_tests::feat155_4c2_current_automatic_three_targets_no_manual_permit_and_last_debit
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 627 filtered out; finished in 0.63s
+
+error: test failed, to rerun pass `--lib`

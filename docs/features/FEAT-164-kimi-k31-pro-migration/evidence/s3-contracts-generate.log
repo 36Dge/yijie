@@ -1,0 +1,67 @@
+node scripts/generate-market-selection.mjs
+Market selection generated; 18 source definitions, one disabled Native submit candidate; no Host route or execution authority.
+node scripts/generate-market-broker.mjs
+Market Broker generated: 55 definitions / 8 private actions; external network capability is distinct from tool qualification.
+node scripts/generate-market-provider.mjs
+Market provider generated: 26 definitions; no secret fields.
+node scripts/generate-market-host.mjs
+Market Host generated: 72 definitions; existing v2 content and private Native authority.
+pnpm generate
+$ node scripts/generate.mjs
+Generated deterministic Skill bundle fixtures in tests/fixtures/skills/bundle-v1, Catalog First fixtures in tests/fixtures/skills/bundle-v2, and Host projection fixtures in tests/fixtures/agent/host-skills-v1.
+✨ openapi-typescript 7.13.0
+🚀 openapi/public/public.yaml → sdks/typescript/src/openapi/public.gen.ts [41ms]
+✨ openapi-typescript 7.13.0
+🚀 openapi/admin/admin.yaml → sdks/typescript/src/openapi/admin.gen.ts [32.1ms]
+✨ openapi-typescript 7.13.0
+🚀 openapi/internal/internal.yaml → sdks/typescript/src/openapi/internal.gen.ts [32.5ms]
+✨ openapi-typescript 7.13.0
+🚀 openapi/agent-host/agent-host.yaml → sdks/typescript/src/openapi/agent-host.gen.ts [64.7ms]
+✨ openapi-typescript 7.13.0
+🚀 openapi/runtime-permissions/runtime-permissions.yaml → sdks/typescript/src/openapi/runtime-permissions.gen.ts [42.6ms]
+bundling openapi/runtime-permissions/runtime-permissions.yaml...
+📦 Created a bundle for openapi/runtime-permissions/runtime-permissions.yaml at sdks/go/openapi/runtime-permissions/source.bundle.yaml 9ms.
+✨ openapi-typescript 7.13.0
+🚀 openapi/native-conversation/native-conversation.yaml → sdks/typescript/src/openapi/native-conversation.gen.ts [36.1ms]
+ ⚠  Component: "NativeEvent" is never used. at #/components/schemas/NativeEvent
+✨ openapi-typescript 7.13.0
+🚀 openapi/native-conversation-v2/native-conversation-v2.yaml → sdks/typescript/src/openapi/native-conversation-v2.gen.ts [37.7ms]
+ ⚠  Component: "NativeEvent" is never used. at #/components/schemas/NativeEvent
+✨ openapi-typescript 7.13.0
+🚀 openapi/runtime-permissions-v2/runtime-permissions-v2.yaml → sdks/typescript/src/openapi/runtime-permissions-v2.gen.ts [32.6ms]
+(node:18329) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:18341) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:18328) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:18331) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:18320) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:18340) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:18332) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:18343) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+bundling asyncapi/events.yaml using configuration for api 'events@v1'...
+📦 Created a bundle for asyncapi/events.yaml at sdks/asyncapi/events.bundle.json 25ms.
+/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-contracts/node_modules/.pnpm/@apidevtools+json-schema-ref-parser@11.9.3/node_modules/@apidevtools/json-schema-ref-parser/dist/lib/resolvers/http.js:123
+        throw new errors_js_1.ResolverError((0, ono_1.ono)(err, `Error downloading ${u.href}`), u.href);
+              ^
+
+ResolverError: Error downloading https://schemas.yijie.ai/chat/model-selection/v1
+fetch failed
+    at download (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-contracts/node_modules/.pnpm/@apidevtools+json-schema-ref-parser@11.9.3/node_modules/@apidevtools/json-schema-ref-parser/dist/lib/resolvers/http.js:123:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  code: 'ERESOLVER',
+  source: 'https://schemas.yijie.ai/chat/model-selection/v1',
+  path: null,
+  toJSON: [Function: toJSON],
+  Symbol(nodejs.util.inspect.custom): [Function: inspect]
+}
+
+Node.js v26.0.0
+[ELIFECYCLE] Command failed with exit code 1.
+make: *** [generate] Error 1

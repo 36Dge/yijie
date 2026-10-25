@@ -1,18 +1,16 @@
 # 易界项目 Codex 长期协作记忆
 
-## FEAT-164 S2时序与Native/Host本机边界已验证，完整G3/平台延期（2026-10-25）
+## FEAT-164 S3计划退役/授权保护已固化，App与完整G3仍延期（2026-10-25）
 
-Owner要求审计当前进度/未完成项并执行下一步；本轮完成TCONF-164-02及真实Native/Host/Runtime本机联调。当前权威为[25](../features/FEAT-164-kimi-k31-pro-migration/25-s2-conformance-and-native-boundary.md)、feature.yaml与s2-conformance-final；24派发证明/取消、23模型恢复作为前序实现保留。锁屏UI只是延期，不标PASS；真实模型新增0、仅本地提交、不推送，原账本预占与已有工作区保持。
+当前权威[26](../features/FEAT-164-kimi-k31-pro-migration/26-s3-plan-retirement.md)、feature.yaml和evidence/s3-native-final。Owner明确要求实施S3，保留工作区/旧账本/预占、不新增真实模型HTTP，仅本地提交不推送。Contracts `2dd214d6a702064edae78510c035442854bf9789`先固化scheduled-plan-v2（旧v1不变），Desktop `4d04597cbf40e1aea2c67607c9d441f888223d96`同步后实施SQL41领域退役、授权/prepare/takeover/claim/send保护与候选私有IPC/表单。
 
-Host `57c29ea03e3de39161a7c28080f9388f00cd1735`只新增2个验证文件；Desktop `ddc840f7ed642216bca4b42ab6327d388aa73084`共5个测试/来源文件，含TCONF组合driver、Native实际边界、15/29/37/38/39/40带数据升级到SQL40及精确Host锁刷新。Contracts f2819c66、Runtime074417e5 r2及产品行为/wire不变。最终资格树干净，五组25/2/12/10/1个test/subtest事件通过且零skip；Host lint、Native默认5项/产品Clippy/fmt/来源检查通过。包含普通/市场/专家取消领域验证，实际边界只走普通聊天，不为测试启用禁用业务能力。
+开库在DatabaseWorker之前对旧K3 enabled/paused计划只做一次pause/revision+1、撤有效grant引用、关闭future slots；profile/历史run/grant/snapshot/digest/额度保持。已删除/完成终态不改。显式选择保存后独立重新授权；绑定会话必须匹配已确认selection，不自动切换会话。MiniMax保持原有语义，历史缺省model只代表MiniMax。三条自动expiry不再隐式取消/退款退役run；未知继续保留。扫描在LIMIT前排除暂停Kimi，不让33个暂停行挡住MiniMax。日常SQL15/29/37库仍拒绝进入候选，回滚须认识SQL41的reader并暂停Kimi，不能降级删回执。
 
-Native→真实Host HTTP→固定Runtime仅1个loopback合成响应；Host选择已提交/Native未应用回执的持久阶段通过正常关闭形成分段，Host/Runtime/SQLCipher重开后读取原回执，再明确新选择。原回执revision2与当前revision3各自保留，thread/fingerprint不变；取消新queued提交后Host无新增turn POST。Runtime均正常EOF退出，没有强杀/权限破坏/可执行替身/攻击fixture。三次本轮本机组合各1响应，最终新鲜组1；真实Provider请求0。
+最终干净来源S3五项exact各1PASS/0ignored；S2在当前源码复验25/2/12/10/1通过，SQL矩阵扩至41，真实Native/Host/固定Runtime边界仅1个MiniMax loopback响应且正常EOF。70前端、9契约、8基线、3默认路径及lint/Clippy/fmt/前端build通过。扩大默认自动三目标在实施前ddc840f和本轮同点OrchestrationUnavailable，另记原基线问题。全量Contracts生成入口曾误调用旧Skill fixture生成器后因schema URL失败；未执行fixture消费/攻击测试，无关生成物恢复，后续只用安全leaf/离线入口。详见26偏差记录，禁止再用未经审查的全量生成/test入口。
 
-TCONF-164-02 PASS不等于完整S2 G3：当前源码canonical App/旧隔离历史迁移、实际权限UI、亮暗/最小窗口、S1暂停/MiniMax/最终清理与freshness仍未完成。24扩大回归的原ChatPage“正在思考”断言失败、全targets Clippy原位置问题及旧Skill pin不扩散修复。日常库未迁移，当前App仍S1 Hoste8ae83f/Desktop174fbaf，会话78901/18086，fixture72636/18083；本轮未使用它们做联调，不覆盖bundle。用户回来先正常退出旧App，再canonical构建补验收。
+新增scheduled-plan-v2使旧G2V不再覆盖当前来源；当前G2V已置pending，原PASS对象完整另存s3-prior-vertical-feasibility.json，不新增付费资格调用。S3源/local时序完成不等于S3 G3；S1—S3 canonical App/WebView、旧隔离历史、权限/亮暗/1180×760/平台与freshness仍NOT RUN。App仍原S1 Hoste8ae83f/Desktop174fbaf，session78901/readyz18086；fixture72636/18083保持原1请求，bundle/真实账本未改。旧30元账本2/2HTTP已耗尽，14.188544元未知预占+0.139590元保守费用=14.328134元上界，新增许可0。不能将预算余额视为新HTTP授权。
 
-下一可离线步骤S3：审计计划/worker接管、claim/send与有效grant/future slots，按领域事务暂停退役计划、撤有效授权并保留历史run/额度事实；显式迁移保存后重新授权。然后S4全调用面与三个final，仍按门禁和真实证据，不借旧G2V通过。S2原实现继续保持旧pending无证明不取消/不回填，查询不自动重发，原payload/profile/digest不改。
-
-源改动仅专属patch，原共享mod.rs及memory用逆向/段落保留核验；未混FEAT162/163，原branch/remote/index状态保持。旧账本累计2 HTTP，旧400未知预占14.188544元＋已完成回合保守0.139590元＝14.328134元上界；30元不补回请求次数。halted/stopped_normally，当前新增许可0，不开meter、不继承其他Feature额度。日常迁移和push/tag/release未授权，长期安全条款持续适用。
+下一步S4全调用面审计/接线与安全离线验证；不自动解锁、不伪造平台PASS。用户回来先正常退出当前S1 App，再canonical同源构建补平台/旧库和最终验收。旧全targets Clippy位置问题、ChatPage文案断言、Skill pin及原S2证据按各来源保留。已有工作区专属补丁逆向审计保持，未推送/发布。
 
 2026-10-08 Sorftime 最新状态：Owner已填密钥，但两条19:19/19:20元数据初始化仍unavailable。审计发现通用HTTP迁移漏带旧链路已验证有效的User-Agent；已补真实yijie-mcp-worker/0.1.0及受限HTTP阶段/状态码诊断，未伪装旧客户端、未改固定Codex。63本地测试/lint/标准App构建通过，说明已左对齐。新worker da3c31537e6be46bb826a2ec44b0541456cbbf2810772aabbba5df1023400f81。尚未真实复验，已申请仅1次连接/发现、0模型/0业务；因先前失败不自动重发，等待用户答复。Keyring已有用户保存密钥，不要再要求重填/卸载或读取密钥。详见FEAT-157/21及sorftime-user-agent-20261008证据。
 

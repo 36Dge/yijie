@@ -1,0 +1,63 @@
+{
+  "required": true,
+  "applicability_reason": "跨仓模型/Runtime身份和重要持久数据迁移，必须真实纵向资格",
+  "exception": {
+    "owner": "N/A",
+    "approved_at": "N/A",
+    "reason": "N/A"
+  },
+  "harness_id": "H-F164-LOCAL",
+  "participating_repositories": [
+    "yijie-contracts",
+    "yijie-codex",
+    "yijie-agent-host",
+    "yijie-desktop"
+  ],
+  "platform": "macOS aarch64 / 既有受控local产品入口 / 新候选Runtime",
+  "production_bootstrap": true,
+  "representative_data": "本轮普通合成计算题；未测试图片、工具、搜索、旧选择迁移或计划状态",
+  "critical_path": "canonical App → Native → Host → Runtime → 获准新模型响应 → 原生事件 → 保存/重开",
+  "evidence": {
+    "commits": [
+      {
+        "repository": "yijie-desktop",
+        "full_sha": "40908c75af14a9cbd65d1b0cee96ba510d6afa8f"
+      },
+      {
+        "repository": "yijie-agent-host",
+        "full_sha": "5022435a6272263e66e46a41b7ed7c3f9fb6caf9"
+      },
+      {
+        "repository": "yijie-contracts",
+        "full_sha": "f2819c66a2368aaff37216a46c48d5cd81df1747"
+      },
+      {
+        "repository": "yijie-codex",
+        "full_sha": "074417e5e2f5f55704ea5e1777e7a22d514076b4"
+      }
+    ],
+    "command": "node scripts/feat164-g2v-verdict.mjs /Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-164-kimi-k31-pro-migration/evidence/g2v-real-budget-ledger.json /Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-164-kimi-k31-pro-migration/evidence/g2v-30-real-observation.json",
+    "environment": "macOS aarch64; current canonical App; one additional HTTP under 30 CNY cumulative cap; output8192/no-native-search",
+    "exit_code": 0,
+    "status": "PASS",
+    "verified_at": "2026-10-25T03:01:59.331300+00:00",
+    "harness": {
+      "id": "H-F164-LOCAL",
+      "commit": "40908c75af14a9cbd65d1b0cee96ba510d6afa8f",
+      "digest": "d4361025ed5b7da56dc8c587d5cf6e76860f4b749dba349b3fe5722d19929cce"
+    },
+    "platform": "macOS aarch64 / 既有受控local产品入口 / 新候选Runtime",
+    "production_bootstrap": true,
+    "contract_refs": [
+      "contract:chat-models-v2@0.2.0@f2819c66a2368aaff37216a46c48d5cd81df1747#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70",
+      "contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r2@f2819c66a2368aaff37216a46c48d5cd81df1747#3d204e1cf11a7a108d636f37d112d8cc9e8ad46212b9cb867097714de6a4b89c"
+    ],
+    "fixture_refs": [
+      "fixture:feat164-request-shape-loopback#d345d62dfa9ba7021138c3330a6c619222cf108cf423b5b051fc9699cda90372"
+    ],
+    "refs": [
+      "08-verification-report.md#E164-30-REAL-G2V"
+    ],
+    "working_directory": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop"
+  }
+}

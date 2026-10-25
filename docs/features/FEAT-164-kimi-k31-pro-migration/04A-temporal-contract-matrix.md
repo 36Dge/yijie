@@ -36,10 +36,10 @@
 |---|---|---|---|
 | TCONF-164-01 | yijie-agent-host | go test ./internal/codex -run '^TestFEAT164ActivationAndRetiredAdmission$' -count=1 | PASS；真实存在、已执行10个普通子例，证据s1-tconf-164-01.log |
 | TCONF-164-02 | yijie-desktop（组合Host） | 下方完整driver命令，保留Host精确子入口 | PASS；五组零skip、源工作树干净，见25/evidence/s2-conformance-final/result.json；平台不在此PASS内 |
-| TCONF-164-03 | yijie-desktop | cargo test --manifest-path src-tauri/Cargo.toml feat164_plan_retirement_before_dispatch -- --exact | PLANNED；最终模块限定名在实现后固定，NOT RUN |
+| TCONF-164-03 | yijie-desktop | node scripts/feat164-s3-conformance.mjs /tmp/feat164-s3-native-final | PASS；5项模块限定exact入口各1通过/0ignored，见26/evidence/s3-native-final |
 | TCONF-164-04 | yijie-desktop | node --test scripts/tests/feat164-candidate-closure.test.mjs | PLANNED，NOT RUN；不代替真实E2E |
 
-TCONF-164-01已存在并执行，02已建立精确入口与跨端driver；03/04名字仍为计划，不声称文件/用例已存在。运行前必须读取测试代码、核实selector实际命中、正确模块全名及执行数非0；最终exact命令在首次产品执行前写入本文件/YAML，禁止空跑PASS。每个test同时有本slice的local/boundary/vertical证据，不借其它slice旧通过。
+TCONF-164-01已存在并执行，02已建立精确入口与跨端driver；03已实现5项独立driver，04名字仍为计划，不声称文件/用例已存在。运行前必须读取测试代码、核实selector实际命中、正确模块全名及执行数非0；最终exact命令在首次产品执行前写入本文件/YAML，禁止空跑PASS。每个test同时有本slice的local/boundary/vertical证据，不借其它slice旧通过。
 
 ## 安全恢复案例
 
@@ -54,3 +54,5 @@ TCONF-164-01已存在并执行，02已建立精确入口与跨端driver；03/04�
 `python3 scripts/feat164-s2-conformance.py --host-source ../yijie-agent-host --runtime-binary /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r2/aarch64-apple-darwin/codex --runtime-manifest /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r2/aarch64-apple-darwin/runtime-manifest.json --output /tmp/feat164-s2-conformance-final` 从Desktop资格工作树执行。输出目录必须新建，失败保留，不覆盖旧run。Host入口保持原精确名字；driver组合Host25个状态/迁移子例、Native派发/恢复/迁移与实际边界。边界中的Rust忽略测试只由独立Go Host test传入新建临时根/端口启动，默认不运行，不接受当前App作为验收目标。
 
 Host实际handler/service/Store及固定Runtime在测试bootstrap中运行，正常EOF停止后重开；Native正常SQLCipher重开。与canonical App/GUI、公开部署或供应商资格明确分开。结果与剩余门禁按25及实际run追加。
+
+S3实际入口为Desktop `scripts/feat164-s3-conformance.mjs`，核心模块全名`chat::schedules::model_retirement_tests::feat164_plan_retirement_before_dispatch`。当前S3 source/local时序PASS，App/跨端/平台完整门禁延期；清理/退款保护也覆盖三条expiry路径。完整五项与S2当期来源复验见26；不把原占位命令空跑当PASS。

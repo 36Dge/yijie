@@ -1,5 +1,7 @@
 # FEAT-164 实际验证记录
 
+> 当前（2026-10-25，S3）：Contracts2dd214d / Desktop4d04597已本地固化计划退役、SQL41和授权保护；TCONF-164-03五项、70前端及当前源S2复验通过。App/UI/平台与完整G3仍NOT RUN，真实模型新增0，旧账本/预占保留。最新见[26](26-s3-plan-retirement.md)及feature.yaml；下面旧阶段结论按原来源保留。
+
 > 当前（2026-10-25，Native恢复接线）：Desktop f341636已完成SQL39新意图、只读查询和显式恢复，定向检查通过；旧pending不回填，已发/未知且404不重发。App未重建，平台UI继续延期。完整S2还缺never-sent证明与取消，G3/final未通过。最新见[23](23-native-model-recovery.md)和feature.yaml，较早记录按原来源保留。
 
 > 当前（2026-10-25，UI延期/S2基础）：Owner允许锁屏所需步骤延期并先推进离线实施，UI仍NOT RUN。Host Store11、v2原回执/显式恢复及带数据SQL升级验证已本地固化；Native恢复接线/never-sent取消、S3/S4与完整G3/final尚未完成。真实模型新增0。最新权威见[22](22-ui-deferral-and-s2-foundation.md)和feature.yaml；下方旧阶段记录仅按其原来源和时间解释。
@@ -191,3 +193,17 @@ Desktop `2a746c1b39bf1f55f6b317ab570bf93af81ad5dc`的派发证明/显式未发�
 <!-- evidence: E164-S2-TCONF -->
 
 TCONF-164-02组合验证PASS：Host `57c29ea03e3de39161a7c28080f9388f00cd1735`、Desktop `ddc840f7ed642216bca4b42ab6327d388aa73084`、Contracts f2819c66、Runtime074417e5 r2。最终两源工作树干净，五组25/2/12/10/1个test/subtest事件均退出0且零skip；[完整命令与结果](evidence/s2-conformance-final/result.json)、[真实Native-Host-Runtime日志](evidence/s2-conformance-final/native-host-boundary.log)、[25范围与剩余项](25-s2-conformance-and-native-boundary.md)。正常Host/Native重开、原回执revision2与当前3分离、取消零POST、最终本机模型HTTP1/外部0。该PASS仅时序/存储/headless边界，不等于App平台、完整S2 G3或final。
+
+<a id="E164-S3-LOCAL"></a>
+<!-- evidence: E164-S3-LOCAL -->
+## S3 本地实现验证
+
+Contracts2dd214d、Desktop4d04597干净资格来源，计划v2/私有IPC、SQL41领域事务与授权保护完成。5项原生精确测试、70前端、9Contracts、8基线比较、3默认原生路径、lint/Clippy/fmt/前端build和两代源生成核验通过。当前S2五组25/2/12/10/1复验PASS，仅1本机合成响应，真实HTTP0。扩大自动计划回归在ddc840f也同点失败，旧全量生成入口偏差及恢复如实记录于26，不能称全量验收通过。证据见[26](26-s3-plan-retirement.md)、[日志哈希](evidence/s3-log-manifest.json)。
+
+<a id="E164-S3-TCONF"></a>
+<!-- evidence: E164-S3-TCONF -->
+## TCONF-164-03
+
+`node scripts/feat164-s3-conformance.mjs /tmp/feat164-s3-native-final`，5/5 PASS，source_commit=4d04597cbf40e1aea2c67607c9d441f888223d96、dirty=false。每个模块限定exact selector各命中1项，0 ignored；退休前claim/send屏障、领域授权撤销/未来slot、原run/grant/额度不变、重复开库、显式模型保存/独立新grant、绑定pending、暂停Kimi不阻塞MiniMax、SQL38/39/40→41、实际DatabaseWorker首任务之前退休与正常join覆盖。见[结果](evidence/s3-native-final/result.json)。App/WebView、旧隔离库、完整计划Host/Runtime执行/平台和freshness仍NOT RUN，S3整体G3不放行。
+
+当前G2V因新增scheduled-plan-v2/SQL41来源而回到pending；旧真实成功证据完整保留s3-prior-vertical-feasibility.json，不能扩写旧contract_refs冒称新来源资格。S3/source时序PASS不晋升G2V/G3/final。

@@ -1,5 +1,7 @@
 # FEAT-164 续办入口
 
+> 当前（2026-10-25，S3）：Contracts2dd214d / Desktop4d04597已本地固化计划退役、SQL41和授权保护；TCONF-164-03五项、70前端及当前源S2复验通过。App/UI/平台与完整G3仍NOT RUN，真实模型新增0，旧账本/预占保留。最新见[26](26-s3-plan-retirement.md)及feature.yaml；下面旧阶段结论按原来源保留。
+
 > 当前（2026-10-25，S2时序与真实本机边界）：TCONF-164-02五组组合已在Host 57c29ea/Desktop ddc840f干净来源通过；正常Host/Native重开与取消零POST验证完成。平台/UI仍延期、完整S2 G3未过，下一步可离线推进S3。真实模型新增0；详见[25](25-s2-conformance-and-native-boundary.md)及feature.yaml，下面保留阶段历史。
 
 > 当前（2026-10-25，派发证明与未发送取消）：Desktop 2a746c1新增SQL40与普通/市场/专家派发尝试证明、显式取消回执和UI，工程子集验证完成。完整S2/TCONF/平台链仍未通过，扩大回归有已复现的原ChatPage断言失败。真实模型新增0、旧账本/预占及当前S1 App保持。最新权威见[24](24-delivery-proof-and-cancel.md)、feature.yaml及s2-delivery证据；下面是阶段历史。
@@ -35,3 +37,7 @@
 9. 新源候选检查与真实端到端资格分开；尚未创建的TCONF不得空跑标PASS。所有真实模型验收须本Feature预算和证据。
 
 阻断BL-01—07见03。证据与文档检查见08/evidence；本任务无服务需要启动或停止。
+
+## S3 后续执行入口
+
+先读26及feature.yaml；当前Contracts2dd214d、Desktop4d04597，Host57c29ea/Runtime074417e5 r2不变。S4尚未实施；计划领域S3 source/TCONF完成，当前G2V因计划新契约需重新资格而pending，旧真实PASS保留原来源。所有新真实HTTP仍禁止，30元旧账本/预占不清零。继续只本地提交，不推送。当前S1 App保留；需UI时先等待用户正常退出再canonical重建，不强杀、不覆盖活动bundle。

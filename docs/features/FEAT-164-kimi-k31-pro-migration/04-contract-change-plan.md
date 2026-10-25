@@ -56,3 +56,7 @@
 5. 不可变候选和consumer评审就绪→兼容reader/准入→停派发与迁移→新producer激活。发布tag/签名/生产不在本轮。
 
 G2A证据要求：version/full commit/digest/generator、全部适用baseline检查、普通fixture conformance及每个受影响consumer Owner评审。源生成、限定conformance、lint及基线检查已有真实结果；不可变commit和Consumer Owner审查仍未取得。文档baseline或dirty hash不冒充这些证据。
+
+## S3 实际source-first（2026-10-25）
+
+新增scheduled-plan-v2 0.2.0源与生成物，完整commit `2dd214d6a702064edae78510c035442854bf9789`，先固化后由Desktop `4d04597cbf40e1aea2c67607c9d441f888223d96`固定消费；旧v1源/生成字节不变。Native私有IPC v2和SQL41仍归Desktop权威。整体breaking，只有同一候选paired consumer可发新值；默认入口保留v1、不读SQL41。8基线离线比较通过，无发布tag/生产激活。Owner当前S3实施与本地提交授权覆盖本批；完整平台/G3仍延期，细节与偏差见26。

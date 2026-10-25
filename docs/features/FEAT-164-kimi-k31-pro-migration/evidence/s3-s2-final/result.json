@@ -1,0 +1,141 @@
+{
+  "test_id": "TCONF-164-02",
+  "status": "PASS",
+  "real_model_http_added": 0,
+  "platform_ui": "NOT RUN",
+  "runtime_binary_sha256": "6419b16c37a838a6a2543838d1ffc1a3a9afc070f26435f760dd8eb9e3b508a8",
+  "runtime_manifest_sha256": "87ffbdc2b3ab60570f2bee7b741ed18766ef516e0adef73671c6c433fd1e2fc2",
+  "sources": {
+    "desktop": {
+      "head": "4d04597cbf40e1aea2c67607c9d441f888223d96",
+      "status": []
+    },
+    "host": {
+      "head": "57c29ea03e3de39161a7c28080f9388f00cd1735",
+      "status": []
+    }
+  },
+  "checks": [
+    {
+      "name": "host-temporal",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-json",
+        "./internal/session",
+        "-run",
+        "^TestFEAT164MigrationReceiptAndRecovery$",
+        "-count=1"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-agent-host",
+      "started_at": "2026-10-25T15:39:50.956586+08:00",
+      "verified_at": "2026-10-25T15:39:54.802868+08:00",
+      "exit_code": 0,
+      "passed_cases": 25,
+      "skipped": 0,
+      "log": "host-temporal.log",
+      "sha256": "e6ff7502a0c02fc1513874b73b6ab1eeab9a80fbd4025069d7e9c2f09e4281df",
+      "result": "PASS"
+    },
+    {
+      "name": "host-routes",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-json",
+        "./internal/app",
+        "-run",
+        "^TestFEAT164(V2OperationRoutesValidateBeforeService|ModelRoutesPreserveAuthAndRetiredRead)$",
+        "-count=1"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-agent-host",
+      "started_at": "2026-10-25T15:39:54.803385+08:00",
+      "verified_at": "2026-10-25T15:39:56.785122+08:00",
+      "exit_code": 0,
+      "passed_cases": 2,
+      "skipped": 0,
+      "log": "host-routes.log",
+      "sha256": "ebe4d28f5a5b670a5984d17fc0bbcbb1e35f6bcd681b32392d0686871c07e37f",
+      "result": "PASS"
+    },
+    {
+      "name": "native-delivery",
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "--lib",
+        "feat164_delivery",
+        "--",
+        "--test-threads=1"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop",
+      "started_at": "2026-10-25T15:39:56.785653+08:00",
+      "verified_at": "2026-10-25T15:40:06.855450+08:00",
+      "exit_code": 0,
+      "passed_cases": 12,
+      "skipped": 0,
+      "log": "native-delivery.log",
+      "sha256": "98d36737a0af0f151d2cf731d9bb0895a1453d386e7f3131986bf8f63ebe0775",
+      "result": "PASS"
+    },
+    {
+      "name": "native-recovery-migration",
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "--lib",
+        "feat164",
+        "--",
+        "--skip",
+        "feat164_delivery",
+        "--skip",
+        "feat164_native_host_boundary",
+        "--skip",
+        "chat::schedules::model_retirement_tests::",
+        "--test-threads=1"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop",
+      "started_at": "2026-10-25T15:40:06.855668+08:00",
+      "verified_at": "2026-10-25T15:40:15.371704+08:00",
+      "exit_code": 0,
+      "passed_cases": 10,
+      "skipped": 0,
+      "log": "native-recovery-migration.log",
+      "sha256": "4ab6a5b92c827d5d2e7f48149661026062bf60dae1b8e4ffadb3057fe3ffa35a",
+      "result": "PASS"
+    },
+    {
+      "name": "native-host-boundary",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-json",
+        "./internal/app",
+        "-run",
+        "^TestFEAT164NativeHostBoundary$",
+        "-count=1"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-agent-host",
+      "started_at": "2026-10-25T15:40:15.371952+08:00",
+      "verified_at": "2026-10-25T15:40:19.376759+08:00",
+      "exit_code": 0,
+      "passed_cases": 1,
+      "skipped": 0,
+      "log": "native-host-boundary.log",
+      "sha256": "324bc4c93dc9d0dd2bd164fa9355661df6d1152d73e6367bd79eaffed38ceac5",
+      "result": "PASS"
+    }
+  ],
+  "limitation": "Headless temporal/storage/boundary conformance; no canonical App/UI, daily migration, supplier qualification, S2 G3 or release claim."
+}

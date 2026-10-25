@@ -1,0 +1,17 @@
+   Compiling yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop/src-tauri)
+error: this file contains an unclosed delimiter
+   --> src/chat/schedules/execution/triggers.rs:927:3
+    |
+622 | impl ChatRepository {
+    |                     - unclosed delimiter
+...
+634 |         if let Some(recovery) = lifecycle.clock_recovery() {
+    |                                                            - this delimiter might not be properly closed...
+...
+681 |     }
+    |     - ...as it matches this but it has different indentation
+...
+927 | }
+    |  ^
+
+error: could not compile `yijie-desktop` (lib test) due to 1 previous error
