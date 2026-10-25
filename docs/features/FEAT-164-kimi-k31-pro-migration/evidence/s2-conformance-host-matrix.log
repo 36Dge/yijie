@@ -1,0 +1,55 @@
+testing: warning: no tests to run
+PASS
+ok  	github.com/36Dge/yijie-agent-host/internal/app	1.640s [no tests to run]
+=== RUN   TestFEAT164MigrationReceiptAndRecovery
+=== RUN   TestFEAT164MigrationReceiptAndRecovery/terminal_receipt_and_higher_current_revision
+=== RUN   TestFEAT164MigrationReceiptAndRecovery/incomplete_receipt_explicit_recovery
+=== RUN   TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work
+=== RUN   TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/prepared
+=== RUN   TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/apply_dispatched
+=== RUN   TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/uncertain
+=== RUN   TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/receipt_validated
+=== RUN   TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/active
+=== RUN   TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/thread
+=== RUN   TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/profile
+=== RUN   TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/revision
+=== RUN   TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/operation
+=== RUN   TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/pending_turn
+=== RUN   TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/other_model
+=== RUN   TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/pending_title
+=== RUN   TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/paused
+=== RUN   TestFEAT164MigrationReceiptAndRecovery/legacy_bytes_and_unfinished_v1
+=== RUN   TestFEAT164MigrationReceiptAndRecovery/legacy_bytes_and_unfinished_v1/pending
+=== RUN   TestFEAT164MigrationReceiptAndRecovery/legacy_bytes_and_unfinished_v1/terminal
+=== RUN   TestFEAT164MigrationReceiptAndRecovery/store_7_8_9_10_to_11
+=== RUN   TestFEAT164MigrationReceiptAndRecovery/store_7_8_9_10_to_11/7
+=== RUN   TestFEAT164MigrationReceiptAndRecovery/store_7_8_9_10_to_11/8
+=== RUN   TestFEAT164MigrationReceiptAndRecovery/store_7_8_9_10_to_11/9
+=== RUN   TestFEAT164MigrationReceiptAndRecovery/store_7_8_9_10_to_11/10
+--- PASS: TestFEAT164MigrationReceiptAndRecovery (1.23s)
+    --- PASS: TestFEAT164MigrationReceiptAndRecovery/terminal_receipt_and_higher_current_revision (0.12s)
+    --- PASS: TestFEAT164MigrationReceiptAndRecovery/incomplete_receipt_explicit_recovery (0.09s)
+    --- PASS: TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work (0.75s)
+        --- PASS: TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/prepared (0.08s)
+        --- PASS: TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/apply_dispatched (0.08s)
+        --- PASS: TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/uncertain (0.07s)
+        --- PASS: TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/receipt_validated (0.08s)
+        --- PASS: TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/active (0.05s)
+        --- PASS: TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/thread (0.05s)
+        --- PASS: TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/profile (0.05s)
+        --- PASS: TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/revision (0.05s)
+        --- PASS: TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/operation (0.05s)
+        --- PASS: TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/pending_turn (0.05s)
+        --- PASS: TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/other_model (0.05s)
+        --- PASS: TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/pending_title (0.05s)
+        --- PASS: TestFEAT164MigrationReceiptAndRecovery/durable_windows_and_unrelated_work/paused (0.05s)
+    --- PASS: TestFEAT164MigrationReceiptAndRecovery/legacy_bytes_and_unfinished_v1 (0.09s)
+        --- PASS: TestFEAT164MigrationReceiptAndRecovery/legacy_bytes_and_unfinished_v1/pending (0.04s)
+        --- PASS: TestFEAT164MigrationReceiptAndRecovery/legacy_bytes_and_unfinished_v1/terminal (0.05s)
+    --- PASS: TestFEAT164MigrationReceiptAndRecovery/store_7_8_9_10_to_11 (0.19s)
+        --- PASS: TestFEAT164MigrationReceiptAndRecovery/store_7_8_9_10_to_11/7 (0.05s)
+        --- PASS: TestFEAT164MigrationReceiptAndRecovery/store_7_8_9_10_to_11/8 (0.05s)
+        --- PASS: TestFEAT164MigrationReceiptAndRecovery/store_7_8_9_10_to_11/9 (0.05s)
+        --- PASS: TestFEAT164MigrationReceiptAndRecovery/store_7_8_9_10_to_11/10 (0.04s)
+PASS
+ok  	github.com/36Dge/yijie-agent-host/internal/session	2.139s

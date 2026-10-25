@@ -1,20 +1,18 @@
 # 易界项目 Codex 长期协作记忆
 
-## FEAT-164 派发证明与未发送取消已本地固化，完整S2/平台仍待完成（2026-10-25）
+## FEAT-164 S2时序与Native/Host本机边界已验证，完整G3/平台延期（2026-10-25）
 
-Owner要求审计现有完成/剩余步骤后执行下一步。延续锁屏UI延期、真实模型新增0、保留工作区/旧账本/预占、仅本地提交不推送。当前权威为[24 派发证明/取消](../features/FEAT-164-kimi-k31-pro-migration/24-delivery-proof-and-cancel.md)、feature.yaml及s2-delivery证据；23保留上一阶段Native选择恢复。UI延期不是通过或发布豁免。
+Owner要求审计当前进度/未完成项并执行下一步；本轮完成TCONF-164-02及真实Native/Host/Runtime本机联调。当前权威为[25](../features/FEAT-164-kimi-k31-pro-migration/25-s2-conformance-and-native-boundary.md)、feature.yaml与s2-conformance-final；24派发证明/取消、23模型恢复作为前序实现保留。锁屏UI只是延期，不标PASS；真实模型新增0、仅本地提交、不推送，原账本预占与已有工作区保持。
 
-Desktop最新本地提交 `2a746c1b39bf1f55f6b317ab570bf93af81ad5dc`（23文件）；Host3c528985、Contractsf2819c66、Runtime074417e5 r2不变。SQL40新增普通/市场/专家私有派发证明、原内容/身份/Host-thread绑定、独立claim/public/create/turn尝试和不可变取消回执；候选entry仅0/38/39/40。旧记录不回填、不重写原payload/profile/digest。旧reader拒绝高版本，新兼容reader保留只读和正常interrupt；scheduled/draft保持原专属证明。市场/专家pending派发与已尝试回执观察分开。任一尝试都阻止取消，404/queued/旧attempt_count=0不是未发证据。
+Host `57c29ea03e3de39161a7c28080f9388f00cd1735`只新增2个验证文件；Desktop `ddc840f7ed642216bca4b42ab6327d388aa73084`共5个测试/来源文件，含TCONF组合driver、Native实际边界、15/29/37/38/39/40带数据升级到SQL40及精确Host锁刷新。Contracts f2819c66、Runtime074417e5 r2及产品行为/wire不变。最终资格树干净，五组25/2/12/10/1个test/subtest事件通过且零skip；Host lint、Native默认5项/产品Clippy/fmt/来源检查通过。包含普通/市场/专家取消领域验证，实际边界只走普通聊天，不为测试启用禁用业务能力。
 
-显式取消沿ReadSessions/InterruptTurn scope和原admission锁，取消保留消息/聊天，不伪造Runtime终态；prepared/claimed且无任何发送或原生事实才可取消。迟到重试不能恢复派发，正常创建回执绑定首轮Host/thread。UI刷新只读、取消需点击，未知/无权限/迟到导航均阻断。已有会话可继续新的显式操作；新任务尚无远端绑定时只保留取消历史，不自动新建。
+Native→真实Host HTTP→固定Runtime仅1个loopback合成响应；Host选择已提交/Native未应用回执的持久阶段通过正常关闭形成分段，Host/Runtime/SQLCipher重开后读取原回执，再明确新选择。原回执revision2与当前revision3各自保留，thread/fingerprint不变；取消新queued提交后Host无新增turn POST。Runtime均正常EOF退出，没有强杀/权限破坏/可执行替身/攻击fixture。三次本轮本机组合各1响应，最终新鲜组1；真实Provider请求0。
 
-新增Rust12项+暂停专项1项、既有candidate10/default5、前端22项、fmt/lint/前端build/产品Clippy/source checks通过。实际HostBridge loopback取消POST0、正控POST1。扩大ChatPage回归94通过/1失败/2skip；空reasoning期待“正在思考”的断言在未改f341636复现相同输出，未混入修复。首次基线pnpm自动依赖检查受ignored-build策略停止，未绕过；完整基线使用现有测试运行器复现。原全targets Clippy位置问题/旧Skill pin仍保留，未执行禁止fixture。完整TCONF-164-02、S2 G3及final仍未通过。
+TCONF-164-02 PASS不等于完整S2 G3：当前源码canonical App/旧隔离历史迁移、实际权限UI、亮暗/最小窗口、S1暂停/MiniMax/最终清理与freshness仍未完成。24扩大回归的原ChatPage“正在思考”断言失败、全targets Clippy原位置问题及旧Skill pin不扩散修复。日常库未迁移，当前App仍S1 Hoste8ae83f/Desktop174fbaf，会话78901/18086，fixture72636/18083；本轮未使用它们做联调，不覆盖bundle。用户回来先正常退出旧App，再canonical构建补验收。
 
-只应用FEAT164专属patch到原工作区和索引，tree与资格树一致，临时逆patch逐字恢复原文件；见s2-delivery-isolation/preservation-audit。当前App仍是S1 Hoste8ae83f/Desktop174fbaf构建、暂停Kimi且锁屏，会话78901/18086，fixture72636/18083。42个App文件未覆盖，不触碰当前/日常库；新SQL40只用于临时测试库。用户回来先正常退出旧App，再canonical构建并补UI/历史/主题/最小窗口/清理及完整平台链，不修改receipt绕过freshness。
+下一可离线步骤S3：审计计划/worker接管、claim/send与有效grant/future slots，按领域事务暂停退役计划、撤有效授权并保留历史run/额度事实；显式迁移保存后重新授权。然后S4全调用面与三个final，仍按门禁和真实证据，不借旧G2V通过。S2原实现继续保持旧pending无证明不取消/不回填，查询不自动重发，原payload/profile/digest不改。
 
-下一步可离线补齐S2完整TCONF矩阵与原回执Host+Native联调，再推进S3计划退役/授权迁移/claim-send及S4全调用面。原SQL39模型选择/显式恢复行为沿23：旧pending不回填，已发/未知且404不重发，原回执后再取当前Selection，不退回更高revision。
-
-真实账本及旧快照不变：累计2 HTTP，旧400未知预占14.188544元＋已确认文本回合保守0.139590元＝14.328134元上界；30元不补回已耗尽的HTTP次数。halted/stopped_normally，当前新增许可0，不启动meter、不继承FEAT162/163额度。旧G2V只按Host5022435/Desktop40908c7原来源保留。日常库迁移与push/tag/release未授权。长期禁止强杀、可执行替身、权限破坏及攻击fixture持续有效。
+源改动仅专属patch，原共享mod.rs及memory用逆向/段落保留核验；未混FEAT162/163，原branch/remote/index状态保持。旧账本累计2 HTTP，旧400未知预占14.188544元＋已完成回合保守0.139590元＝14.328134元上界；30元不补回请求次数。halted/stopped_normally，当前新增许可0，不开meter、不继承其他Feature额度。日常迁移和push/tag/release未授权，长期安全条款持续适用。
 
 2026-10-08 Sorftime 最新状态：Owner已填密钥，但两条19:19/19:20元数据初始化仍unavailable。审计发现通用HTTP迁移漏带旧链路已验证有效的User-Agent；已补真实yijie-mcp-worker/0.1.0及受限HTTP阶段/状态码诊断，未伪装旧客户端、未改固定Codex。63本地测试/lint/标准App构建通过，说明已左对齐。新worker da3c31537e6be46bb826a2ec44b0541456cbbf2810772aabbba5df1023400f81。尚未真实复验，已申请仅1次连接/发现、0模型/0业务；因先前失败不自动重发，等待用户答复。Keyring已有用户保存密钥，不要再要求重填/卸载或读取密钥。详见FEAT-157/21及sorftime-user-agent-20261008证据。
 

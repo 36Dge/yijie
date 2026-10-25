@@ -1,0 +1,125 @@
+{
+  "test_id": "TCONF-164-02",
+  "status": "PASS",
+  "real_model_http_added": 0,
+  "platform_ui": "NOT RUN",
+  "runtime_binary_sha256": "6419b16c37a838a6a2543838d1ffc1a3a9afc070f26435f760dd8eb9e3b508a8",
+  "runtime_manifest_sha256": "87ffbdc2b3ab60570f2bee7b741ed18766ef516e0adef73671c6c433fd1e2fc2",
+  "sources": {
+    "desktop": {
+      "head": "2a746c1b39bf1f55f6b317ab570bf93af81ad5dc",
+      "status": [
+        " M src-tauri/src/chat/mod.rs",
+        "?? scripts/__pycache__/",
+        "?? scripts/feat164-s2-conformance.py",
+        "?? src-tauri/src/chat/feat164_boundary_tests.rs"
+      ]
+    },
+    "host": {
+      "head": "3c5289854d88ca6ed69b17bd806fca2efc0bbbcd",
+      "status": [
+        "?? internal/app/feat164_native_boundary_test.go",
+        "?? internal/session/feat164_migration_conformance_test.go"
+      ]
+    }
+  },
+  "checks": [
+    {
+      "name": "host-temporal",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-json",
+        "./internal/session",
+        "-run",
+        "^TestFEAT164MigrationReceiptAndRecovery$",
+        "-count=1"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-agent-host",
+      "started_at": "2026-10-25T14:11:41.351248+08:00",
+      "verified_at": "2026-10-25T14:11:46.371732+08:00",
+      "exit_code": 0,
+      "passed_cases": 25,
+      "skipped": 0,
+      "log": "host-temporal.log",
+      "sha256": "0ca1be66484037750d45749981768bebc2b4b46d1e9d45dd3761b1a767c5d0e6",
+      "result": "PASS"
+    },
+    {
+      "name": "native-delivery",
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "--lib",
+        "feat164_delivery",
+        "--",
+        "--test-threads=1"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop",
+      "started_at": "2026-10-25T14:11:46.372210+08:00",
+      "verified_at": "2026-10-25T14:11:57.424425+08:00",
+      "exit_code": 0,
+      "passed_cases": 12,
+      "skipped": 0,
+      "log": "native-delivery.log",
+      "sha256": "9220da11f9383a8b23a97938c1a233d67da1208191b0bec7a6fb9704a2c5141d",
+      "result": "PASS"
+    },
+    {
+      "name": "native-recovery-migration",
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "--lib",
+        "feat164",
+        "--",
+        "--skip",
+        "feat164_delivery",
+        "--skip",
+        "feat164_native_host_boundary",
+        "--test-threads=1"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop",
+      "started_at": "2026-10-25T14:11:57.424645+08:00",
+      "verified_at": "2026-10-25T14:12:05.318080+08:00",
+      "exit_code": 0,
+      "passed_cases": 10,
+      "skipped": 0,
+      "log": "native-recovery-migration.log",
+      "sha256": "5a43979467969bf385e30bb63e3e6cd72383749e107aa1a77920d26190850597",
+      "result": "PASS"
+    },
+    {
+      "name": "native-host-boundary",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-json",
+        "./internal/app",
+        "-run",
+        "^TestFEAT164NativeHostBoundary$",
+        "-count=1"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-agent-host",
+      "started_at": "2026-10-25T14:12:05.318356+08:00",
+      "verified_at": "2026-10-25T14:12:10.177431+08:00",
+      "exit_code": 0,
+      "passed_cases": 1,
+      "skipped": 0,
+      "log": "native-host-boundary.log",
+      "sha256": "2ab5654ca5ffb67a8c2701504a56ed8bb659f0127426c2391e755c3b96424374",
+      "result": "PASS"
+    }
+  ],
+  "limitation": "Headless temporal/storage/boundary conformance; no canonical App/UI, daily migration, supplier qualification, S2 G3 or release claim."
+}

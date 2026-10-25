@@ -1,0 +1,121 @@
+[
+  {
+    "check": "claims",
+    "command": [
+      "node",
+      "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+      "docs/features/FEAT-164-kimi-k31-pro-migration",
+      "--audit-claims"
+    ],
+    "started_at": "2026-10-25T14:22:33.639696+08:00",
+    "verified_at": "2026-10-25T14:22:33.745762+08:00",
+    "exit_code": 0,
+    "expected_exit": 0,
+    "log": "s2-conformance-governance-claims.log",
+    "raw_sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4"
+  },
+  {
+    "check": "strict",
+    "command": [
+      "bash",
+      "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+      "--strict",
+      "docs/features/FEAT-164-kimi-k31-pro-migration"
+    ],
+    "started_at": "2026-10-25T14:22:33.745834+08:00",
+    "verified_at": "2026-10-25T14:22:33.834575+08:00",
+    "exit_code": 0,
+    "expected_exit": 0,
+    "log": "s2-conformance-governance-strict.log",
+    "raw_sha256": "0f6377b2cf2e6dba2d18bcba312d28530dafd7d4a1f423d7affcf223fed72bce"
+  },
+  {
+    "check": "s2-g3",
+    "command": [
+      "node",
+      "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+      "docs/features/FEAT-164-kimi-k31-pro-migration",
+      "--gate",
+      "G3",
+      "--slice",
+      "S2"
+    ],
+    "started_at": "2026-10-25T14:22:33.834624+08:00",
+    "verified_at": "2026-10-25T14:22:33.902965+08:00",
+    "exit_code": 1,
+    "expected_exit": 1,
+    "log": "s2-conformance-governance-s2-g3.log",
+    "raw_sha256": "6c8831ebc41aa2dfc48b0e877d2436cd5b20c944d6473d223c43de6b1041bb75"
+  },
+  {
+    "check": "meta-lint",
+    "command": [
+      "pnpm",
+      "lint"
+    ],
+    "started_at": "2026-10-25T14:22:33.903012+08:00",
+    "verified_at": "2026-10-25T14:22:34.198832+08:00",
+    "exit_code": 0,
+    "expected_exit": 0,
+    "log": "s2-conformance-governance-meta-lint.log",
+    "raw_sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c"
+  },
+  {
+    "check": "meta-test",
+    "command": [
+      "pnpm",
+      "test"
+    ],
+    "started_at": "2026-10-25T14:22:34.198883+08:00",
+    "verified_at": "2026-10-25T14:22:42.041816+08:00",
+    "exit_code": 0,
+    "expected_exit": 0,
+    "log": "s2-conformance-governance-meta-test.log",
+    "raw_sha256": "a90f9fe86ba6621dcd1ac047aefdde24367967cc08fee04486c7cdc5f19fc739"
+  },
+  {
+    "check": "claims-final",
+    "command": [
+      "node",
+      "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+      "docs/features/FEAT-164-kimi-k31-pro-migration",
+      "--audit-claims"
+    ],
+    "started_at": "2026-10-25T14:24:46.610521+08:00",
+    "exit_code": 0,
+    "expected_exit": 0,
+    "log": "s2-conformance-governance-claims-final.log",
+    "raw_sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4"
+  },
+  {
+    "check": "strict-final",
+    "command": [
+      "bash",
+      "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+      "--strict",
+      "docs/features/FEAT-164-kimi-k31-pro-migration"
+    ],
+    "started_at": "2026-10-25T14:24:46.713554+08:00",
+    "exit_code": 0,
+    "expected_exit": 0,
+    "log": "s2-conformance-governance-strict-final.log",
+    "raw_sha256": "0f6377b2cf2e6dba2d18bcba312d28530dafd7d4a1f423d7affcf223fed72bce"
+  },
+  {
+    "check": "s2-g3-final",
+    "command": [
+      "node",
+      "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+      "docs/features/FEAT-164-kimi-k31-pro-migration",
+      "--gate",
+      "G3",
+      "--slice",
+      "S2"
+    ],
+    "started_at": "2026-10-25T14:24:46.800093+08:00",
+    "exit_code": 1,
+    "expected_exit": 1,
+    "log": "s2-conformance-governance-s2-g3-final.log",
+    "raw_sha256": "c400781ead433b6f2414f8f9001be3e95c7153e51ac9a0c290cdf9d16fe8f09d"
+  }
+]

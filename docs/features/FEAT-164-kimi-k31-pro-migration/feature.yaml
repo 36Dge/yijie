@@ -191,20 +191,32 @@ temporal_contract_matrix:
       command_note: 真实存在并命中10个普通子例；不执行攻击/权限破坏/强杀，也不调用真实模型。
     - id: TCONF-164-02
       required: true
-      repository: yijie-agent-host
-      command: go test ./internal/session -run '^TestFEAT164MigrationReceiptAndRecovery$' -count=1
+      repository: yijie-desktop
+      command: python3 scripts/feat164-s2-conformance.py --host-source ../yijie-agent-host --runtime-binary /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r2/aarch64-apple-darwin/codex --runtime-manifest /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r2/aarch64-apple-darwin/runtime-manifest.json --output /tmp/feat164-s2-conformance-final
       slice_id: S2
-      status: NOT RUN
-      exit_code: null
-      verified_at: NOT RUN
-      commits: []
-      evidence_ref: NOT RUN
+      status: PASS
+      exit_code: 0
+      verified_at: '2026-10-25T14:18:20.593851+08:00'
+      commits:
+        - repository: yijie-codex
+          full_sha: 074417e5e2f5f55704ea5e1777e7a22d514076b4
+        - repository: yijie-contracts
+          full_sha: f2819c66a2368aaff37216a46c48d5cd81df1747
+        - repository: yijie-agent-host
+          full_sha: 57c29ea03e3de39161a7c28080f9388f00cd1735
+        - repository: yijie-desktop
+          full_sha: ddc840f7ed642216bca4b42ab6327d388aa73084
+        - repository: yijie-agent-host
+          full_sha: e8ae83f9c53fb41cc80139e0d0f70d7c8268b4ab
+        - repository: yijie-desktop
+          full_sha: 174fbaf661e4fdf48828ff8bbabbe5d55c157bed
+      evidence_ref: 08-verification-report.md#E164-S2-TCONF
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
-      implementation_status: planned_not_created
-      command_note: 计划中的目标；执行前核实真实文件/模块限定名与非零测试命中数。当前NOT RUN。
+      implementation_status: implemented
+      command_note: 组合driver要求五组精确命中且零skip；Host原精确入口保留，配套Native带数据SQL40迁移/取消及真实Host-Runtime正常重开。仅时序与headless边界PASS，不等于完整S2 G3/App平台。
     - id: TCONF-164-03
       required: true
       repository: yijie-desktop
@@ -466,9 +478,9 @@ slices:
       - S1
     commits:
       - repository: yijie-agent-host
-        full_sha: 3c5289854d88ca6ed69b17bd806fca2efc0bbbcd
+        full_sha: 57c29ea03e3de39161a7c28080f9388f00cd1735
       - repository: yijie-desktop
-        full_sha: 2a746c1b39bf1f55f6b317ab570bf93af81ad5dc
+        full_sha: ddc840f7ed642216bca4b42ab6327d388aa73084
     exception:
       owner: 段成威
       approved_at: 2026-10-25
@@ -484,7 +496,8 @@ slices:
         - 08-verification-report.md#E164-S2-FOUNDATION
         - 08-verification-report.md#E164-S2-NATIVE
         - 08-verification-report.md#E164-S2-DELIVERY
-      reason: Host基础、23 Native恢复及24派发证明/取消工程子集已完成；完整TCONF/真实Host+Native+App链及平台项尚缺，扩大回归另有已复现基线失败，不把子集转换为全slice PASS。
+        - 08-verification-report.md#E164-S2-TCONF
+      reason: S2工程子集、TCONF-164-02及真实Native/Host/Runtime本机边界通过；canonical App/旧隔离历史/平台及完整freshness尚缺，保留24扩大回归的原基线失败，不转换为全slice PASS。
       exception:
         owner: N/A
         approved_at: N/A
@@ -500,7 +513,8 @@ slices:
         - 08-verification-report.md#E164-S2-FOUNDATION
         - 08-verification-report.md#E164-S2-NATIVE
         - 08-verification-report.md#E164-S2-DELIVERY
-      reason: Host基础、23 Native恢复及24派发证明/取消工程子集已完成；完整TCONF/真实Host+Native+App链及平台项尚缺，扩大回归另有已复现基线失败，不把子集转换为全slice PASS。
+        - 08-verification-report.md#E164-S2-TCONF
+      reason: S2工程子集、TCONF-164-02及真实Native/Host/Runtime本机边界通过；canonical App/旧隔离历史/平台及完整freshness尚缺，保留24扩大回归的原基线失败，不转换为全slice PASS。
       exception:
         owner: N/A
         approved_at: N/A
@@ -819,6 +833,7 @@ documents:
   s2_foundation: 22-ui-deferral-and-s2-foundation.md
   native_model_recovery: 23-native-model-recovery.md
   delivery_proof_and_cancel: 24-delivery-proof-and-cancel.md
+  native_boundary_conformance: 25-s2-conformance-and-native-boundary.md
 external_authorizations:
   paid_calls:
     allowed: false
@@ -855,7 +870,7 @@ implementation:
   mock_only: false
 product_verification:
   status: IN_PROGRESS
-  reason: S2 Host基础、Native选择/恢复和派发证明/取消工程子集已完成；S1延期UI、S2完整资格与平台验证、S3/S4/final尚未完成；扩大回归有已复现基线失败，旧G2V仅按原来源保留。
+  reason: S2工程子集与TCONF-164-02、真实Native/Host/Runtime本机边界已通过；S1/S2延期平台及完整G3、S3/S4/final尚未完成；24已复现的原基线失败保留，旧G2V仅按原来源保留。
 profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
 owner_approvals:
   requirements: approved_by_owner_current_user_message

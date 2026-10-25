@@ -1,5 +1,7 @@
 # FEAT-164 测试与证据计划
 
+> 当前（2026-10-25，S2时序与真实本机边界）：TCONF-164-02五组组合已在Host 57c29ea/Desktop ddc840f干净来源通过；正常Host/Native重开与取消零POST验证完成。平台/UI仍延期、完整S2 G3未过，下一步可离线推进S3。真实模型新增0；详见[25](25-s2-conformance-and-native-boundary.md)及feature.yaml，下面保留阶段历史。
+
 > 当前（2026-10-25，Native恢复接线）：Desktop f341636已完成SQL39新意图、只读查询和显式恢复，定向检查通过；旧pending不回填，已发/未知且404不重发。App未重建，平台UI继续延期。完整S2还缺never-sent证明与取消，G3/final未通过。最新见[23](23-native-model-recovery.md)和feature.yaml，较早记录按原来源保留。
 
 > 当前（2026-10-25，UI延期/S2基础）：Owner允许锁屏所需步骤延期并先推进离线实施，UI仍NOT RUN。Host Store11、v2原回执/显式恢复及带数据SQL升级验证已本地固化；Native恢复接线/never-sent取消、S3/S4与完整G3/final尚未完成。真实模型新增0。最新权威见[22](22-ui-deferral-and-s2-foundation.md)和feature.yaml；下方旧阶段记录仅按其原来源和时间解释。

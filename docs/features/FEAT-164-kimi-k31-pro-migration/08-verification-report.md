@@ -185,3 +185,9 @@ Desktop f341636的Native模型恢复工程子集通过：SQL39原数据保持、
 <!-- evidence: E164-S2-DELIVERY -->
 
 Desktop `2a746c1b39bf1f55f6b317ab570bf93af81ad5dc`的派发证明/显式未发送取消工程子集已完成。新增Rust12项+暂停专项1项、前序candidate10/default5、前端22项、fmt/lint/build/产品Clippy及来源检查通过，见[验证记录](evidence/s2-delivery-verification.json)。扩大ChatPage回归94 PASS/1 FAIL/2 skip，唯一失败在f341636基线复现，不声明全套通过。仅普通临时存储及loopback，新增真实模型HTTP0。原消息/profile/payload、账本预占、活动App及原工作区保留；[隔离](evidence/s2-delivery-isolation.json)、[保留审计](evidence/s2-delivery-preservation-audit.json)。完整S2/G3/TCONF-164-02与平台资格仍未通过，下一步及未执行项见[24](24-delivery-proof-and-cancel.md)。
+
+
+<a id="E164-S2-TCONF"></a>
+<!-- evidence: E164-S2-TCONF -->
+
+TCONF-164-02组合验证PASS：Host `57c29ea03e3de39161a7c28080f9388f00cd1735`、Desktop `ddc840f7ed642216bca4b42ab6327d388aa73084`、Contracts f2819c66、Runtime074417e5 r2。最终两源工作树干净，五组25/2/12/10/1个test/subtest事件均退出0且零skip；[完整命令与结果](evidence/s2-conformance-final/result.json)、[真实Native-Host-Runtime日志](evidence/s2-conformance-final/native-host-boundary.log)、[25范围与剩余项](25-s2-conformance-and-native-boundary.md)。正常Host/Native重开、原回执revision2与当前3分离、取消零POST、最终本机模型HTTP1/外部0。该PASS仅时序/存储/headless边界，不等于App平台、完整S2 G3或final。
