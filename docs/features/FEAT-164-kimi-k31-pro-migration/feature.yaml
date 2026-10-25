@@ -294,14 +294,14 @@ temporal_contract_matrix:
           full_sha: a0a474333ba03186b36f30fa3ab86287abfc5c15
         - repository: yijie-connectors
           full_sha: 1f157260d6dd339172712e1c649258902db45050
-      evidence_ref: 08-verification-report.md#E164-S4C-APP
+      evidence_ref: 08-verification-report.md#E164-S4D-RCA
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
       implementation_status: implemented_partial
-      command_note: 此前S4b四组合、37专家版本及固定Runtime辅助离线检查按原来源保留。S4c同源App已补普通/专家媒体、历史重开、暂停Kimi/MiniMax与正常清理；亮暗最小窗口通过。仍缺旧模型已加载子代理与自动大上下文cutover、完整计划/UI及跨平台，TINV-164-04整体仍NOT
-        RUN。
+      command_note: S4b/S4c旧批次按原来源保留。S4d旧父子loaded显式迁移、自动压缩独立子集6PASS；旧子模型被拒绝后wait_agent/thread/read仍completed，已知FAIL保留。完整TCONF-164-04未完整运行仍NOT
+        RUN，不用独立子集覆盖失败；见30及s4d-verdict。
 vertical_feasibility:
   required: true
   applicability_reason: 跨仓模型/Runtime身份和重要持久数据迁移，必须真实纵向资格
@@ -700,7 +700,7 @@ slices:
     exception:
       owner: 段成威
       approved_at: 2026-10-25
-      reason: Owner明确要求先正常退出S1再推进同源构建及App/UI；另明确批准临时亮暗切换并恢复。只本地提交，真实HTTP新增0；不豁免未验收平台、前置slice、G2V/G3或final。
+      reason: Owner明确要求继续S4并优先补旧K3已加载线程/子代理/自动压缩安全离线验证；仅本地提交，真实新增0，不豁免已知失败、前置slice、平台/G2V/G3/final；Runtime核心/新增patch另按该仓规范确认。
     local_evidence:
       required: true
       status: PASS
@@ -714,9 +714,12 @@ slices:
       refs:
         - 08-verification-report.md#E164-S4B-OFFLINE
         - 08-verification-report.md#E164-S4C-APP
+        - 08-verification-report.md#E164-S4D-OFFLINE
+        - 08-verification-report.md#E164-S4D-RCA
       reason: 四组合source及1/3/4/1行为检查PASS、0skip；13次loopback覆盖专家/媒体/子代理/Guardian/显式压缩。当前源S4 7/4/4/4/5、S2
         25/2/12/10/1及S3五项复验通过；37专家版本安装/解析/重开、Native完整资源读取通过。不代表完整TCONF-164-04、App/平台或G3。
         上述批次保持原56f5284来源；当前a0a4743另经canonical构建、暂停历史回归及App/UI子集复验，见S4C锚点，不把旧全套结果改写为新源运行。
+        S4d独立子集另在测试提交df06a3c通过；本字段PASS仅保留原S4b批次，不能覆盖S4d已知终态FAIL。
       exception:
         owner: N/A
         approved_at: N/A
@@ -730,8 +733,10 @@ slices:
       verified_at: NOT RUN
       refs:
         - 08-verification-report.md#E164-S4C-APP
-      reason: 同源macOS
-        App/WebView、旧隔离K3.1历史、专家媒体预览/导出、暂停Kimi后的历史/MiniMax及正常重开清理已通过本机合成子集。旧K3已加载子代理/自动压缩cutover、计划完整UI/实际链、跨平台与当前G2V/freshness仍缺，整体边界/纵向不记PASS。
+        - 08-verification-report.md#E164-S4D-RCA
+        - 08-verification-report.md#E164-S4D-OFFLINE
+      reason: S4c
+        App子集按原来源保留；S4d补旧父子loaded后正常切换、当前/迁移后自动压缩和previous_model安全拒绝。已知原生子代理wait与thread/read错误completed保持FAIL；整批边界/纵向仍未完整执行，不能标PASS。缺计划/恢复取消App、跨平台/当前G2V/freshness。
       exception:
         owner: N/A
         approved_at: N/A
@@ -745,8 +750,10 @@ slices:
       verified_at: NOT RUN
       refs:
         - 08-verification-report.md#E164-S4C-APP
-      reason: 同源macOS
-        App/WebView、旧隔离K3.1历史、专家媒体预览/导出、暂停Kimi后的历史/MiniMax及正常重开清理已通过本机合成子集。旧K3已加载子代理/自动压缩cutover、计划完整UI/实际链、跨平台与当前G2V/freshness仍缺，整体边界/纵向不记PASS。
+        - 08-verification-report.md#E164-S4D-RCA
+        - 08-verification-report.md#E164-S4D-OFFLINE
+      reason: S4c
+        App子集按原来源保留；S4d补旧父子loaded后正常切换、当前/迁移后自动压缩和previous_model安全拒绝。已知原生子代理wait与thread/read错误completed保持FAIL；整批边界/纵向仍未完整执行，不能标PASS。缺计划/恢复取消App、跨平台/当前G2V/freshness。
       exception:
         owner: N/A
         approved_at: N/A
@@ -764,9 +771,9 @@ slices:
       production_bootstrap: true
       invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
         implementation reference changes
-    status: pending
-    status_reason: S4接线、专家pin与安全离线扩展已有原来源证据；当前Desktopa0a4743完成canonical
-      App本机子集，修复Worker物理路径、最小窗口及暂停历史启动缺陷。完整TCONF-164-04/跨平台/当前G2V/freshness未完成，S4 G3 pending。
+    status: blocked
+    status_reason: S4d旧父子loaded后显式迁移、当前/迁移后自动压缩和previous_model安全拒绝已验证。原生旧模型子代理错误被完成覆盖、历史丢失失败，known
+      FAIL；需最小原生修复后复验，完整TCONF/G3/final不放行。见30，Host测试提交df06a3c不替换原App product pin。
 final_e2e:
   core_vertical:
     required: true
@@ -900,6 +907,33 @@ failure_circuit_breaker:
       engineering_audit_ref: 14-source-candidate-review.md
       alternative_check_evidence: evidence/contracts-breaking-offline-results.json
       note: 三次原入口失败保留。Owner接受RCA后单次离线同源复核通过，没有再次请求原网络地址。
+    - id: F164-NATIVE-CHILD-STATUS
+      slice_id: S4
+      gate_id: G3
+      evidence_id: E164-S4D-STATUS
+      failure_class: product_failure
+      failure_code: RETIRED_CHILD_COMPLETED_AFTER_GUARD
+      checkpoint: native-child-wait-and-history-after-retired-request
+      fingerprint: S4|G3|E164-S4D-STATUS|product_failure|RETIRED_CHILD_COMPLETED_AFTER_GUARD|native-child-wait-and-history-after-retired-request
+      attempts:
+        - run_id: s4d-cutover-02
+          occurred_at: 2026-10-25T19:26:05.566011+08:00
+          result: FAIL
+          failure_class: product_failure
+          failure_code: RETIRED_CHILD_COMPLETED_AFTER_GUARD
+          checkpoint: native-child-wait-and-history-after-retired-request
+          evidence_ref: 08-verification-report.md#E164-S4D-STATUS-1
+        - run_id: s4d-child-diagnostic
+          occurred_at: 2026-10-25T19:27:21.759718+08:00
+          result: FAIL
+          failure_class: product_failure
+          failure_code: RETIRED_CHILD_COMPLETED_AFTER_GUARD
+          checkpoint: native-child-wait-and-history-after-retired-request
+          evidence_ref: 08-verification-report.md#E164-S4D-STATUS-2
+      rca_cycles: []
+      state: armed
+      engineering_audit_ref: 30-s4-loaded-legacy-compaction.md
+      note: 实际同产品指纹2次；首轮catalog前置失败不计入。保守停止第三次非绿色child验收后的重试，RCA已收敛但未授权核心补丁或复验，未标resolved；不修改旧incident。
 documents:
   brief: 00-feature-brief.md
   requirements: 01-requirements.md
@@ -927,6 +961,7 @@ documents:
   delivery_proof_and_cancel: 24-delivery-proof-and-cancel.md
   native_boundary_conformance: 25-s2-conformance-and-native-boundary.md
   plan_retirement: 26-s3-plan-retirement.md
+  loaded_legacy_and_compaction: 30-s4-loaded-legacy-compaction.md
 external_authorizations:
   paid_calls:
     allowed: false
@@ -945,7 +980,7 @@ external_authorizations:
     approved_at: N/A
 current_authorization:
   phase: implementation_with_governance
-  source: Owner要求正常退出活动S1并继续S4同源构建及App/UI验收；另批准临时切换系统外观并恢复。保留工作区/旧账本/预占，真实模型新增HTTP为0，仅FEAT-164本地提交、不推送。
+  source: Owner要求审计并优先补齐S4旧K3已加载线程、子代理及自动压缩安全离线验证；保留原工作区/旧账本/预占，真实模型新增HTTP为0，仅FEAT-164本地提交、不推送。
   documentation_write_allowed: true
   product_source_edit_allowed: true
   product_generate_build_test_allowed: true
@@ -953,8 +988,8 @@ current_authorization:
   service_lifecycle_allowed: true
   model_or_tool_business_calls_allowed: false
   git_commit_push_branch_release_allowed: false
-  note: 真实模型HTTP新增0；本轮仅受限loopback与隔离候选存储。旧账本2
-    HTTP、14.188544元unknown预占及14.328134元累计上界不变。S1与所有本轮App/fixture均正常退出，系统浅色已恢复；日常库未迁移，原资源与S1审计副本保留，不发布。
+  note: 本轮仅测试/driver/文档，未改Runtime核心/patch或新建产品产物；发现原生子代理终态/重放缺陷后停止该场景，建议最小原生修复须按Runtime
+    AGENTS另确认。旧30元账本2/2HTTP、14.188544元unknown预占、14.328134元累计上界保留，所有本机测试正常退出。
   git_local_commit_allowed: true
   git_scope: 仅FEAT-164本地提交，包括必要后续实现/验证/治理；不混入已有其它需求，无push/branch/tag/release。
 implementation:
@@ -962,8 +997,10 @@ implementation:
   real_entrypoint: bash scripts/run-local-demo-fast.sh --packaged --kimi-k31-pro；同canonical组合的显式独立候选，日常入口未切换
   mock_only: false
 product_verification:
-  status: IN_PROGRESS
-  reason: S4c同源App本机子集完成，Desktop三项必要修复、42前端/1暂停历史回归、canonical构建及正常清理通过；完整旧模型cutover、计划/UI、跨平台、当前G2V/G3/final仍未完成。新增真实模型HTTP为0，旧账本/预占保留。
+  status: FAIL
+  reason: S4d独立安全子集6个Go
+    PASS/14loopback，Host验证df06a3c仅3个测试/driver/说明文件。真实缺陷：旧子模型guard拒绝后wait_agent和thread/read仍completed，终态FAIL，S4
+    blocked。完整TCONF/计划恢复UI/平台/当前G2V/G3/final未通过；真实新增0。
 profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
 owner_approvals:
   requirements: approved_by_owner_current_user_message

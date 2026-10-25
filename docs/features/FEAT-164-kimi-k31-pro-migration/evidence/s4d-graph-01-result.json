@@ -1,0 +1,21 @@
+{
+  "command": [
+    "go",
+    "test",
+    "-race",
+    "-json",
+    "./internal/codex",
+    "-run",
+    "^TestFEAT164LoadedLegacyGraphCutover$",
+    "-count=1",
+    "-timeout=0"
+  ],
+  "started_at": "2026-10-25T19:23:43.585578+08:00",
+  "ended_at": "2026-10-25T19:23:43.594100+08:00",
+  "exit_code": 1,
+  "passed": [],
+  "failed": [],
+  "skipped": [],
+  "sha256": "b6ee99a4d7f5b00d9fa31c92cafe3df336f4332a2b7c39ef6f4157f9955c01fb",
+  "real_model_http_added": 0
+}

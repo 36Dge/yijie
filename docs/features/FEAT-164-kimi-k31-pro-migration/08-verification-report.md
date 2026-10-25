@@ -1,5 +1,7 @@
 # FEAT-164 实际验证记录
 
+> 当前（2026-10-25，S4旧线程/子代理/自动压缩）：Host验证提交df06a3c仅新增测试、driver和说明，产品组合仍为Desktopa0a4743/Hostcac2d4d/Runtime074417e5。干净来源独立子集6项PASS、14次loopback，覆盖旧父子loaded后正常停机/显式切换、当前及迁移后自动压缩、previous_model两分支零旧出站。但旧模型子代理被guard拒绝后，wait_agent和thread/read仍报告completed，实际缺陷保持FAIL；S4 blocked，完整TCONF/G2V/G3/final不放行。全轮71次合成本机HTTP、真实新增0；旧账本/预占保留。最新权威见[30](30-s4-loaded-legacy-compaction.md)及feature.yaml；下方各批次保留原来源。
+
 > 当前（2026-10-25，S4同源App/UI）：Desktopa0a4743在固定Hostcac2d4d/Runtime074417e5及专家资源上完成本机App验收子集；修复Worker物理路径、最小窗口裁切和暂停Kimi历史阻断启动。普通/专家媒体、历史重开、暂停与MiniMax、亮暗最小窗口及正常清理已验证。10次loopback、真实模型新增0；系统浅色已恢复，旧账本/预占和原工作区保留。完整旧K3 cutover、计划/恢复UI、跨平台、当前G2V/G3/final仍pending。最新权威见[29](29-s4-canonical-app-ui.md)与feature.yaml；下方记录按原时间与来源保留。
 
 > 当前（2026-10-25，S4专家/媒体/辅助续办）：专家pin已按Skills595c927不可变同内容来源修复；Hostcac2d4d、Desktop56f5284、Connectors1f15726已仅本地固化。四组合source、37专家版本安装/解析/重开及专家/媒体/原生辅助调用安全离线验证通过；S2/S3/S4当前源回归通过。完整TCONF-164-04、App/平台/G2V/G3/final仍未完成，真实模型新增0，旧账本/预占保留。最新见[28](28-s4-expert-media-auxiliary.md)及feature.yaml；下方段落保留各阶段历史范围。
@@ -238,3 +240,27 @@ Contracts2dd214d、Desktop4d04597干净资格来源，计划v2/私有IPC、SQL41
 2026-10-25 S4c：详见[29完整审计](29-s4-canonical-app-ui.md)和[子集判定](evidence/s4c-app-verdict.json)。最终Desktopa0a4743、Hostcac2d4d、Contractseddc64f、Runtime074417e5；专家595c927/Connectors1f15726，所有实际App均由canonical来源校验和构建。3个隔离Desktop修复、42项前端/1项暂停回归、fmt/Clippy/构建PASS。暂停历史零HTTP、明确MiniMax正控、正常重开零补发、专家HTML/SVG、亮暗1180×760与清理通过；10次loopback、真实0。失败构建预检、初次错误测试配置、暂停启动失败与红灯回归日志原样保留；最终不伪造无失败历史。
 
 系统外观和窗口尺寸已恢复，App/fixture均正常退出。完整旧K3 cutover、计划/恢复UI、跨平台、当前G2V/G3/final不放行；[治理门禁](evidence/s4c-governance-results.json)和[工作区保留](evidence/s4c-preservation-audit.json)分别验证文档与不覆盖既有改动，不能代替产品全量资格。
+
+## E164-S4D-OFFLINE
+
+<!-- evidence: E164-S4D-OFFLINE -->
+
+见[30](30-s4-loaded-legacy-compaction.md)、[固定来源结果](evidence/s4d-qualified-independent/result.json)和[总判定](evidence/s4d-verdict.json)。Host验证df06a3c，产品Hostcac2d4d/Runtime074417e5不变；独立子集6个Go PASS、14本机HTTP、0skip。全轮71本机合成HTTP，0真实。仅此子集PASS，已知子代理终态失败不被排除结果覆盖。
+
+## E164-S4D-STATUS-1
+
+<!-- evidence: E164-S4D-STATUS-1 -->
+
+[s4d-cutover-02](evidence/s4d-cutover-02-result.json)实际失败：退役旧子模型被拒绝、零旧HTTP，但原生等待返回completed:null。第一轮catalog前置失败另留`s4d-cutover-01`，不算本指纹。
+
+## E164-S4D-STATUS-2
+
+<!-- evidence: E164-S4D-STATUS-2 -->
+
+[s4d-child-diagnostic](evidence/s4d-child-diagnostic-result.json)同指纹失败；[原始日志](evidence/s4d-child-diagnostic.log)记录3次guard错误、同子send_input后的wait结果与thread/read仅userMessage/completed。此后不再重试该失败场景。
+
+## E164-S4D-RCA
+
+<!-- evidence: E164-S4D-RCA -->
+
+[30的根因及建议](30-s4-loaded-legacy-compaction.md)：native agent状态被TurnComplete覆盖，rollout不持久化Error导致历史丢失失败；需要原生权威修复。正式机器台账记录2次实际同指纹FAIL/armed，另采用保守停止策略；没有Owner批准的核心补丁或RCA复验，不标resolved。S4 blocked，完整TCONF-164-04、G3/final未过。

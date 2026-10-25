@@ -1,0 +1,21 @@
+{
+  "verified_at": "2026-10-25T19:35:38.456018+08:00",
+  "gofmt": "PASS",
+  "python_ast": "PASS",
+  "go_vet": "PASS",
+  "go_vet_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "diff_check": 0,
+  "test_driver": "explicit opt-in, environment whitelist, exact installed offline toolchain, known failure not retried",
+  "native_fixture": "exact canonical artifacts verified; config/read both providers loopback, retries zero; ordinary synthetic input and usage; no user history edit",
+  "cleanup": "normal Manager/server shutdown; preserve on failure; no signal kill",
+  "product_diff_paths": [
+    "docs/feat164-cutover-verification.md",
+    "internal/codex/feat164_cutover_integration_test.go",
+    "scripts/feat164-s4d-conformance.py"
+  ],
+  "product_source_changed": false,
+  "failure_assertion_preserved": true,
+  "staged_non_log_whitespace": "PASS",
+  "raw_log_whitespace_exception": "s4d-meta-test-initial.log lines 70,78,111 contain original trailing spaces; preserved exact command output",
+  "secret_pattern_check": "No private-key blocks or long sk- token patterns found in staged files; reviewed fixture credentials are dummy"
+}

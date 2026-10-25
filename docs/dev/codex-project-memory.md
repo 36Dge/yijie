@@ -1,16 +1,16 @@
 # 易界项目 Codex 长期协作记忆
 
-## FEAT-164 S4同源App/UI子集已固化，完整验收未完成（2026-10-25）
+## FEAT-164 S4旧线程/自动压缩验证已固化，子代理终态缺陷阻塞（2026-10-25）
 
-当前权威[29](../features/FEAT-164-kimi-k31-pro-migration/29-s4-canonical-app-ui.md)、feature.yaml及evidence/s4c-app-verdict。Owner授权先正常退出S1再canonical构建及App/UI；另允许临时亮暗切换并恢复。新增真实HTTP为0，仅本地提交、不推送。最终Desktopa0a474333ba03186b36f30fa3ab86287abfc5c15，Hostcac2d4d7e1df02868a370e204959e1842c3362c3，Contractseddc64f95d81c26ca1678cc648d177c081f7904d，Runtime074417e5e2f5f55704ea5e1777e7a22d514076b4 r2，Connectors1f157260d6dd339172712e1c649258902db45050，专家Skills595c927ae101d3d31c234f60565041eee0864680。
+当前权威[30](../features/FEAT-164-kimi-k31-pro-migration/30-s4-loaded-legacy-compaction.md)、feature.yaml和s4d-verdict。Owner授权S4旧K3已加载线程/子代理/自动压缩安全离线验证，真实新增HTTP为0，仅本地提交、不推送。Host验证提交df06a3cda72dee14f5db1d7b46e83fd196d2b070仅3个测试/driver/说明新文件；产品Host仍cac2d4d7e1df02868a370e204959e1842c3362c3，Desktopa0a474333ba03186b36f30fa3ab86287abfc5c15，Contractseddc64f95d81c26ca1678cc648d177c081f7904d，Runtime074417e5e2f5f55704ea5e1777e7a22d514076b4 r2，Connectors1f157260d6dd339172712e1c649258902db45050，专家Skills595c927ae101d3d31c234f60565041eee0864680。
 
-Desktop本轮三独立修复：f4db8ea正规化Worker物理路径并保留摘要校验；554d0e2修复1180×760输入裁切；a0a4743仅保留paused Kimi终态历史可读，活动/未知仍按原恢复检查。原暂停App全局启动失败已由精确回归红→绿和实际App复验确认修复。当前canonical119文件回执e3695d26；42前端、1暂停回归、fmt/Clippy/构建通过，53元仓治理测试通过。
+干净来源独立子集6个Go PASS、14次loopback、0skip：旧父/子均loaded后正常Shutdown与显式新profile恢复、当前/迁移后自动压缩、previous_model comp_hash及缩窗两分支安全拒绝。全轮71次本机合成HTTP中30旧producer均cutoff前；真实0。正常清理，无App启动/重构建。S4c119文件App、原资格树及旧证据/账本保留，不能把独立子集排除失败后的绿色当完整TCONF。
 
-本轮10次loopback/0外部模型：普通Kimi/MiniMax、专家HTML/SVG及预览/旧阶段导出；最终同构建暂停Kimi有输入禁发、历史零请求、MiniMax显式继续完成；正常重开旧第4轮保持零补发，最终新专家媒体3请求完成。最终亮暗1180×760通过，系统恢复浅色、窗口1268×780。模型切换通用conversation_warning保留；不宣称已定位唯一原始warning或App自动标题已验收。旧S4b四组合/37专家/13次辅助loopback按原来源保留。
+真实缺陷：旧native loaded父/子及同子正常后续输入被退役guard拦截，零旧HTTP；但wait_agent两次completed:null，thread/read两轮仅userMessage却completed。core agent状态被TurnComplete覆盖，rollout Error不持久化导致重放丢失败；live failed通知不足以修复。保留失败测试；3次非绿色child验收中首轮为catalog前置，实际相同产品指纹只有2次，台账armed不伪造第3次。诊断后停止重试，未改Runtime核心/patch。
 
-原S1及所有本轮App/fixture均正常退出0，18083/18086释放，无所属子进程。S1 bundle/Host/隔离数据5593项归档于qualification/s4c-before-build-20261025，只用于审计，禁止启动旧reader降库。普通Skills10c45be与专家595c927分别固定，原154资源不改。7仓496既有改动、7日常DB文件、两份真实账本逐字保留；旧S1合成账本仅正常shutdown更新state，原1请求不改。
+下一步推荐Owner明确确认最小Runtime原生终态与持久失败修复后，再canonical重放/构建/schema、Contracts投影/Host/Desktop精确pin及受限离线复验；不在Host/UI按空答案猜failed，不重写旧历史。依据Runtime AGENTS核心/协议/新增补丁必须确认。其次补计划/恢复取消App、平台与freshness；S4 blocked，完整TCONF-164-04、当前G2V、S1—S4 G3与final未过。
 
-30元旧账本2/2HTTP耗尽，14.188544元unknown预占+0.139590元保守费用=14.328134元上界保留；预算余额不产生HTTP许可。下一步补旧K3已加载线程/子代理与自动大上下文cutover的安全离线验证，再补计划/显式恢复取消App、其它平台与freshness。完整TCONF-164-04、当前G2V、S1—S4 G3与final均未通过；严禁强杀/替换程序/故障注入/权限破坏，不迁移日常库、不推送发布。
+30元旧账本2/2HTTP耗尽；14.188544元unknown预占+0.139590元保守费用=14.328134元上界保持，余额不产生新调用许可。原7仓496改动、789旧证据、154资源、7日常DB与S4c119文件App做逐字保留检查。严禁强杀/替换程序/攻击与故障注入/权限破坏，不迁移日常库、不push/tag/发布；正常shutdown失败则保留现场并停止。
 
 2026-10-08 Sorftime 最新状态：Owner已填密钥，但两条19:19/19:20元数据初始化仍unavailable。审计发现通用HTTP迁移漏带旧链路已验证有效的User-Agent；已补真实yijie-mcp-worker/0.1.0及受限HTTP阶段/状态码诊断，未伪装旧客户端、未改固定Codex。63本地测试/lint/标准App构建通过，说明已左对齐。新worker da3c31537e6be46bb826a2ec44b0541456cbbf2810772aabbba5df1023400f81。尚未真实复验，已申请仅1次连接/发现、0模型/0业务；因先前失败不自动重发，等待用户答复。Keyring已有用户保存密钥，不要再要求重填/卸载或读取密钥。详见FEAT-157/21及sorftime-user-agent-20261008证据。
 

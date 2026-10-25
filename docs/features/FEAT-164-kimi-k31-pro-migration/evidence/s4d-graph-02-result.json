@@ -1,0 +1,23 @@
+{
+  "command": [
+    "/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go",
+    "test",
+    "-race",
+    "-json",
+    "./internal/codex",
+    "-run",
+    "^TestFEAT164LoadedLegacyGraphCutover$",
+    "-count=1",
+    "-timeout=0"
+  ],
+  "started_at": "2026-10-25T19:23:54.183715+08:00",
+  "ended_at": "2026-10-25T19:23:58.748420+08:00",
+  "exit_code": 0,
+  "passed": [
+    "TestFEAT164LoadedLegacyGraphCutover"
+  ],
+  "failed": [],
+  "skipped": [],
+  "sha256": "14f461c4a09540ad55e837d5e837c710150c8d2271f0d6a552c2def624c529a9",
+  "real_model_http_added": 0
+}

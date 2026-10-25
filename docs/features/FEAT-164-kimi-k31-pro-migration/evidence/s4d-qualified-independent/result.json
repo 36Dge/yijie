@@ -1,0 +1,55 @@
+{
+  "scope": "independent S4d offline subset; known loaded-child status projection FAIL is excluded and remains open",
+  "full_tconf_pass": false,
+  "started_at": "2026-10-25T19:30:54.816643+08:00",
+  "command": [
+    "/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go",
+    "test",
+    "-race",
+    "-json",
+    "./internal/codex",
+    "-run",
+    "^TestFEAT164(LoadedLegacyGraphCutover|AutomaticCompaction|PreviousModelCompactionGuard|MigratedAutomaticCompaction)$",
+    "-count=1",
+    "-timeout=0"
+  ],
+  "toolchain": "go version go1.26.5 darwin/arm64",
+  "head": "df06a3cda72dee14f5db1d7b46e83fd196d2b070",
+  "source_status": [],
+  "inputs": {
+    "runtime_binary": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r2/aarch64-apple-darwin/codex",
+      "sha256": "6419b16c37a838a6a2543838d1ffc1a3a9afc070f26435f760dd8eb9e3b508a8"
+    },
+    "runtime_manifest": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r2/aarch64-apple-darwin/runtime-manifest.json",
+      "sha256": "87ffbdc2b3ab60570f2bee7b741ed18766ef516e0adef73671c6c433fd1e2fc2"
+    },
+    "legacy_binary": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/chat-models-web-sources/aarch64-apple-darwin/codex",
+      "sha256": "9766d7e10d25327f0595964a19ad67e1e1c1db0c22e5a65f9af66b547ab316c6"
+    },
+    "legacy_manifest": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/chat-models-web-sources/aarch64-apple-darwin/runtime-manifest.json",
+      "sha256": "91f1e4ef729410931fa13a304097b482cdb33d0d73baeb1235dc881c6875d6ba"
+    }
+  },
+  "test_source_sha256": "95def045a4bf944583d3121a9fca034fea2db5ab92485c78177c6f921ebc06dc",
+  "real_model_http_added": 0,
+  "exit_code": 0,
+  "passed": [
+    "TestFEAT164LoadedLegacyGraphCutover",
+    "TestFEAT164AutomaticCompaction",
+    "TestFEAT164PreviousModelCompactionGuard/comp_hash",
+    "TestFEAT164PreviousModelCompactionGuard/window_downshift",
+    "TestFEAT164PreviousModelCompactionGuard",
+    "TestFEAT164MigratedAutomaticCompaction"
+  ],
+  "failed": [],
+  "skipped": [],
+  "loopback_requests": 14,
+  "completed_fixture_ledgers": 5,
+  "status": "PASS_FOR_INDEPENDENT_SUBSET",
+  "verified_at": "2026-10-25T19:31:00.893339+08:00",
+  "log_sha256": "c87576f14d7bfd76da09d7106b32470b2553aae9915df0f9333fc6c5e3949e8c"
+}

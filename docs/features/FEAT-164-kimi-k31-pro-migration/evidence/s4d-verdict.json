@@ -1,0 +1,68 @@
+{
+  "verified_at": "2026-10-25T19:31:55.729920+08:00",
+  "overall": "BLOCKED_BY_NATIVE_CHILD_STATUS_PROJECTION",
+  "independent_subset": "PASS",
+  "independent_go_cases": 6,
+  "qualified_loopback_http": 14,
+  "all_runs": [
+    {
+      "log": "s4d-child-diagnostic.log",
+      "fixture_count": 1,
+      "loopback_http": 6,
+      "legacy_pre_cutoff": 0,
+      "new_model": 6,
+      "sha256": "96b957935ae9ecf7eb086aee265a85d8992d167cd8e38d299c41ba97d77f18af"
+    },
+    {
+      "log": "s4d-cutover-01.log",
+      "fixture_count": 5,
+      "loopback_http": 14,
+      "legacy_pre_cutoff": 6,
+      "new_model": 8,
+      "sha256": "5928c55e008faf3b2b0fa66f4bce8056212a0e85f43c9361b7e317bf919ef209"
+    },
+    {
+      "log": "s4d-cutover-02.log",
+      "fixture_count": 5,
+      "loopback_http": 17,
+      "legacy_pre_cutoff": 6,
+      "new_model": 11,
+      "sha256": "ee029d4573fad05491b5e9d03147470f6eec10c6a01dfe79b52b5e3288e0f7a9"
+    },
+    {
+      "log": "s4d-graph-02.log",
+      "fixture_count": 1,
+      "loopback_http": 6,
+      "legacy_pre_cutoff": 4,
+      "new_model": 2,
+      "sha256": "14f461c4a09540ad55e837d5e837c710150c8d2271f0d6a552c2def624c529a9"
+    },
+    {
+      "log": "s4d-independent-final.log",
+      "fixture_count": 5,
+      "loopback_http": 14,
+      "legacy_pre_cutoff": 7,
+      "new_model": 7,
+      "sha256": "b122709fe5e2d9be414038c92d097b1c7aa8062e4392967d38d217b91b2783cd"
+    },
+    {
+      "log": "s4d-qualified-independent/checks.log",
+      "fixture_count": 5,
+      "loopback_http": 14,
+      "legacy_pre_cutoff": 7,
+      "new_model": 7,
+      "sha256": "c87576f14d7bfd76da09d7106b32470b2553aae9915df0f9333fc6c5e3949e8c"
+    }
+  ],
+  "all_loopback_http": 71,
+  "all_legacy_pre_cutoff": 30,
+  "real_model_http_added": 0,
+  "loaded_child_outbound_guard": "PASS: three native retirement errors and zero old HTTP; includes loaded child follow-up",
+  "loaded_child_terminal_projection": "FAIL: wait_agent completed:null; child thread/read completed with userMessage only",
+  "harness_commit": "df06a3cda72dee14f5db1d7b46e83fd196d2b070",
+  "product_host_commit": "cac2d4d7e1df02868a370e204959e1842c3362c3",
+  "runtime_product_changed": false,
+  "app_rebuilt": false,
+  "full_tconf_pass": false,
+  "known_failure_retried_after_diagnostic": false
+}
