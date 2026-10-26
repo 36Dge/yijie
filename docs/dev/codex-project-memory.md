@@ -1,5 +1,15 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 S4O：六文件r5实现与限定关闭资格（2026-10-26）
+
+Owner已在必要性复审后批准41号；新增范围是两个既有文件，非新Runtime产品模块。已按六文件0011补丁实现，canonical上游codex-rs逐字未改。Runtime11fd450→Contracts5b5dad9→Host894671b/Connectorscc56cda→Desktopc76558e，Skills595c927保持；本地提交无推送。当前权威[42](../features/FEAT-164-kimi-k31-pro-migration/42-r5-shutdown-implementation-and-qualification.md)。
+
+r5 SHA283d12e16b124942302fcdc8281c729a8a7f676498f06df1d2646292905f579e；9关闭/listener/log+6RPC、Clippy、源验证通过；一次保留home的零turn loaded-thread/start/read/EOF正常exit0，四库WAL字节0，完整副本只读integrity均ok。无手工checkpoint/WAL清理/强杀。完整make test仍阻在既有100644 build-input-only.sh执行位，不修改旧权限。269schema与r4相等；19generation第三次PASS，两个前序来源配置错误已分析并保留；4组合来源、media App canonical构建及只读同构建回执PASS。
+
+实际App本轮未锁屏：无凭据canonical启动后本地服务未就绪，任务记录不可用，根因UNKNOWN；不能因窗口打开/编译通过判App可用。无重试/消息；CUA正常⌘Q、exit0，5528候选文件保持，未证明Host/Runtime激活。下一步零模型先审Native启动配置/装配及标准本机fixture，再补r5 Host/App纵向；不因未就绪直接扩Runtime。没有活动App/检查/待答交接。
+
+原497dirty及7643保护文件保持；Connectors混合source.lock仅新增本次wrapper，旧未提交sourceCommit仍完整保留且未混入提交。两旧账本、5/5、保守14.679001元含14.188544元unknown预占、30元cap不变；真实新增0。r4 G2V/视觉按原来源保留不继承r5。S2/S3自然旧K3、S4/TCONF04、完整core/teardown及日常cutover仍缺。当前App/Runtime/worker新输出保留在feat164-s4o-qualification-20261026及Runtime独立r5；原始失败/成功日志在feat164-s4o-audit-20261026，不能重建覆盖。
+
 ## FEAT-164 S4N深入复审待扩范围（2026-10-26）
 
 Owner已明确批准40号四文件Runtime最小修复、独立r5、必要Contract First下游和零真实模型验证。后又要求深入分析失败、再次审计方案后执行。当前权威[41](../features/FEAT-164-kimi-k31-pro-migration/41-shutdown-plan-deep-review.md)：三次Clippy失败已熔断/RCA，一次fresh重资格6新unit＋6RPC及Clippy通过；但新审计发现listener直接spawn无join/跟踪，clear仅发cancel，及前置RPC无限等待的顺序风险。不能因此构建或晋升四文件候选。

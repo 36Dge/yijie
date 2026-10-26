@@ -1,0 +1,61 @@
+{
+  "at": "2026-10-26T11:13:33.932043+08:00",
+  "owner_authorization": "Latest user conditionally approved report41 after necessity review; six existing implementation files only",
+  "necessity": "Four original files cannot join listener registrations/spawns owned by thread_state/thread_lifecycle; no new product module",
+  "sources": {
+    "yijie-codex": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+    "yijie-contracts": "5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2",
+    "yijie-agent-host": "894671b7288b34ca0493064cded3e461c924cd32",
+    "yijie-connectors": "cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9",
+    "yijie-desktop": "c76558e8d4531f4f5c2309055da72f35d2ce4158",
+    "yijie-skills": "595c927ae101d3d31c234f60565041eee0864680"
+  },
+  "contract_impact_increment": "semantic candidate; full FEAT164 breaking unchanged",
+  "review_findings": {
+    "source_scope": "six existing implementation files; canonical upstream codex-rs unchanged",
+    "in_process_owner": "owned stdio only; external shared StateRuntime not closed",
+    "forced_shutdown_counterexample": "ruled out for stdio: graceful_signal_restart_enabled = install_handler && !single_client_mode; no forced path was executed",
+    "rpc_order": "existing connection cleanup precedes final RPC drain",
+    "listener_registration": "admission lock and registration tracker precede cancellation snapshot; no lock across await",
+    "listener_completion": "join owner observes worker results; idempotent close waits active registrations/workers",
+    "log_completion": "shared typed completion; accepted logs/flush drain before pool close",
+    "database_policy": "no schema/migration/WAL pragma/delete/truncate/manual checkpoint"
+  },
+  "validation": {
+    "source_focused_units": 9,
+    "rpc_units": 6,
+    "runtime_scoped_clippy": "PASS",
+    "runtime_lint": "PASS",
+    "runtime_compatibility_units": 11,
+    "runtime_smoke_safety_units": 3,
+    "runtime_manifest_units": 2,
+    "contracts_units": 12,
+    "host_focused_tests": 13,
+    "host_vet": "PASS",
+    "desktop_source_tests": 11,
+    "generation_checks": 19,
+    "profile_source_checks": 4,
+    "native_loaded_thread_eof": "PASS_SCOPED",
+    "app_build": "PASS",
+    "same_build_readonly_check": "PASS",
+    "app_readiness": "FAIL_APP_READINESS_FIRST_OBSERVATION",
+    "app_normal_quit": "PASS_PROCESS_EXIT0_ONLY"
+  },
+  "limitations": [
+    "full Runtime make test blocked by preexisting 100644 build-input-only.sh",
+    "no new real model HTTP or r5 G2V",
+    "headless EOF proof is input-only zero-turn loaded-thread scope",
+    "full S2/S3 natural old-K3 vertical, S4/TCONF04 and final core remain incomplete",
+    "no daily cutover or release",
+    "r5 App readiness failed on first credential-free observation; no Host/Runtime was activated, no App teardown PASS"
+  ],
+  "budget": {
+    "real_model_http_added": 0,
+    "authorized_http_used": 5,
+    "authorized_http_limit": 5,
+    "conservative_upper_micro_cny": 14679001,
+    "unknown_reserved_micro_cny": 14188544,
+    "cap_micro_cny": 30000000,
+    "old_ledgers_preserved": true
+  }
+}

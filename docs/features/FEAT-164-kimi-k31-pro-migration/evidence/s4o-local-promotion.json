@@ -1,0 +1,30 @@
+[
+  {
+    "repository": "yijie-contracts",
+    "before": "1b357cce0575c492f3715b316ee5f254051acf80",
+    "after": "5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2",
+    "files": [
+      "compatibility/runtime-kimi-k31-pro/source.lock.json",
+      "docs/feat164-r5-provenance.md",
+      "scripts/generate-runtime-kimi-k31-pro.mjs",
+      "sdks/go/openapi/runtime-kimi-k31-pro/artifact.gen.go"
+    ],
+    "existing_dirty_preserved": 65,
+    "operation": "local fast-forward only; no new branch/push/remote action",
+    "output": "Updating 1b357cc..5b5dad9\nFast-forward\n .../runtime-kimi-k31-pro/source.lock.json          | 38 +++++++++++++++++-----\n docs/feat164-r5-provenance.md                      |  9 +++++\n scripts/generate-runtime-kimi-k31-pro.mjs          |  9 +++--\n .../openapi/runtime-kimi-k31-pro/artifact.gen.go   |  8 ++---\n 4 files changed, 48 insertions(+), 16 deletions(-)\n create mode 100644 docs/feat164-r5-provenance.md\n"
+  },
+  {
+    "repository": "yijie-agent-host",
+    "before": "090c2dbeeeceb0fc87e576d8e13f5c339bf106f0",
+    "after": "894671b7288b34ca0493064cded3e461c924cd32",
+    "files": [
+      "api/chat-models-v2.candidate.json",
+      "api/runtime-kimi-k31-pro.candidate.json",
+      "docs/feat164-r5-consumer.md",
+      "internal/contracts/runtimekimik31pro/artifact.gen.go"
+    ],
+    "existing_dirty_preserved": 55,
+    "operation": "local fast-forward only; no new branch/push/remote action",
+    "output": "Updating 090c2db..894671b\nFast-forward\n api/chat-models-v2.candidate.json                  |  2 +-\n api/runtime-kimi-k31-pro.candidate.json            | 44 ++++++++++++++++------\n docs/feat164-r5-consumer.md                        |  9 +++++\n .../contracts/runtimekimik31pro/artifact.gen.go    |  8 ++--\n 4 files changed, 46 insertions(+), 17 deletions(-)\n create mode 100644 docs/feat164-r5-consumer.md\n"
+  }
+]

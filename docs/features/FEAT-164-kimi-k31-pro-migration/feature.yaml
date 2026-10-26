@@ -1237,7 +1237,7 @@ external_authorizations:
     approved_at: N/A
 current_authorization:
   phase: implementation_with_governance
-  source: Owner要求认真审计现有实现后继续下一步；沿用已授权FEAT-164实现、canonical构建/正常生命周期与安全离线验收，仅本地提交、不推送，真实模型HTTP新增0。
+  source: Owner在必要性复审后批准41号六既有文件最小范围、独立r5与必要Contract First下游；只本地提交、不推送，真实模型HTTP新增0。
   documentation_write_allowed: true
   product_source_edit_allowed: true
   product_generate_build_test_allowed: true
@@ -1245,8 +1245,7 @@ current_authorization:
   service_lifecycle_allowed: true
   model_or_tool_business_calls_allowed: false
   git_commit_push_branch_release_allowed: false
-  note: 本轮Host3条既有契约route及Native格式2/3/4 reader语义修复；固定Runtime/Contracts不改。旧工作区/全部账本及预占保留，正常App数据更新有事前完整副本。30元、2/2
-    HTTP和14.188544元unknown预占不变。
+  note: 六文件r5已实现并限定资格；Host/Desktop只更新必要来源，原工作区/账本/预占保留。真实次数5/5耗尽，累计保守14.679001元含14.188544元unknown预占，上限30元。
   git_local_commit_allowed: true
   git_scope: 仅FEAT-164本地提交，包括必要后续实现/验证/治理；不混入已有其它需求，无push/branch/tag/release。
 implementation:
@@ -1366,9 +1365,9 @@ implementation:
     normal_eof_runs: 1
     readonly_integrity_databases: 4
     runtime_patch_modified: false
-    note: 无凭据零回合EOF复现；Owner已批准40号四文件方案，41号新增两文件范围待批准。
+    note: 历史r4无凭据零回合EOF复现；40号批准后，Owner已在必要性复审后批准41号六既有文件范围，实施结果见42。
   runtime_shutdown_deep_review:
-    status: BLOCKED_PENDING_SCOPE_APPROVAL
+    status: APPROVED_AND_IMPLEMENTED_SEE_R5_QUALIFICATION
     report: 41-shutdown-plan-deep-review.md
     evidence_ref: evidence/s4n-deep-review-evidence.json
     patch_committed: false
@@ -1377,10 +1376,40 @@ implementation:
     clippy_after_rca: PASS
     listener_lifecycle_qualified: false
     real_model_http_added: 0
-    note: 四文件源资格通过不等于关闭验收；新增thread_state和thread_lifecycle两文件须确认。
+    note: 此处保留41号审计时的四文件历史字段；Owner随后明确批准两个既有文件的必要修改，当前六文件/r5证据见runtime_shutdown_r5及42号。
+  runtime_shutdown_r5:
+    status: PASS_NATIVE_SUBSET_APP_READINESS_PENDING
+    report: 42-r5-shutdown-implementation-and-qualification.md
+    evidence_ref: evidence/s4o-implementation-review.json
+    source_commits:
+      yijie-codex: 11fd4504c28afd0f65c6f5f62a6b5328dd437f5a
+      yijie-contracts: 5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2
+      yijie-agent-host: 894671b7288b34ca0493064cded3e461c924cd32
+      yijie-connectors: cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9
+      yijie-desktop: c76558e8d4531f4f5c2309055da72f35d2ce4158
+      yijie-skills: 595c927ae101d3d31c234f60565041eee0864680
+    existing_implementation_files: 6
+    new_product_modules: 0
+    canonical_upstream_unchanged: true
+    patch_committed: true
+    binary_built: true
+    native_loaded_thread_eof: PASS_SCOPED
+    database_wal_bytes_after_exit: [0, 0, 0, 0]
+    focused_source_units: 9
+    rpc_gate_units: 6
+    source_generation_checks: 19
+    source_profile_checks: 4
+    app_build: PASS
+    app_readiness: FAIL_APP_READINESS_FIRST_OBSERVATION
+    app_normal_quit: PASS_PROCESS_ONLY
+    app_candidate_files_unchanged: 5528
+    full_runtime_make_test: BLOCKED_PREEXISTING_SCRIPT_EXECUTE_BIT
+    real_model_http_added: 0
+    r4_evidence_inherited_as_r5: false
+    note: 两处是既有文件修改而非新模块。App无凭据启动停在本地服务未就绪，未证明根因或激活Host/Runtime，正常退出且数据未变；先排Native启动配置，不扩Runtime。整项G2V/G3/final不因限定原生EOF及构建通过而晋升。
 product_verification:
   status: IN_PROGRESS
-  reason: S4L当前141项+4source和App子集通过，S1证据/G3收口；S2/S3纵向、完整S4/TCONF04、core与Runtime checkpoint仍缺。视觉单项PASS；两个真实账本和旧预占逐字保持，新增真实0，日常cutover未执行。见39。
+  reason: S4O六文件r5实现、限定原生loaded-thread EOF/四库正常关闭及同源构建通过；r5 App首次无凭据启动未就绪，完整Host/App teardown、S2/S3纵向、S4/TCONF04/core仍缺。r4证据按原来源保留不继承，预算/预占保持，真实新增0，日常cutover未执行。见42。
 profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
 owner_approvals:
   requirements: approved_by_owner_current_user_message

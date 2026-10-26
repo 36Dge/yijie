@@ -1,0 +1,42 @@
+[
+  {
+    "name": "contracts-generate",
+    "command": [
+      "node",
+      "scripts/generate-runtime-kimi-k31-pro.mjs"
+    ],
+    "exit_code": 0,
+    "sha256": "67b3c98b72afcc350f61b4ba5f15d521765ec1fc726b8eeea6037a0243af3f6d"
+  },
+  {
+    "name": "contracts-generated-check",
+    "command": [
+      "node",
+      "scripts/generate-runtime-kimi-k31-pro.mjs",
+      "--check"
+    ],
+    "exit_code": 0,
+    "sha256": "e23b334a404da2f6687aa98879dde98d4e26f987723551f982561bb7ca759c3c"
+  },
+  {
+    "name": "contracts-focused-tests",
+    "command": [
+      "node",
+      "--test",
+      "tests/runtime-input-only.test.mjs",
+      "tests/chat-models-v2.test.mjs"
+    ],
+    "exit_code": 0,
+    "sha256": "020ad317421555b91a9b17f4e10d7bbfcb5cd8f841a84335efcd2b6721a89c36"
+  },
+  {
+    "name": "contracts-artifact-go-test",
+    "command": [
+      "go",
+      "test",
+      "./sdks/go/openapi/runtime-kimi-k31-pro"
+    ],
+    "exit_code": 0,
+    "sha256": "aed54bed24a97696f947cea89028152d9665b707e2ff2a0be1b7c5aed7d03ff9"
+  }
+]

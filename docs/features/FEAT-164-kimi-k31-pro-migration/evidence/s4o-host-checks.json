@@ -1,0 +1,39 @@
+[
+  {
+    "name": "host-projection",
+    "command": [
+      "python3",
+      "scripts/sync-kimi-k31-pro-contracts.py",
+      "--commit",
+      "5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2",
+      "--check"
+    ],
+    "exit_code": 0,
+    "sha256": "6ee19a891cd0019980afc7dd345b5f09c7a8bbbd540ce8c0beb176c9150bdbbd"
+  },
+  {
+    "name": "host-admission",
+    "command": [
+      "/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go",
+      "test",
+      "-race",
+      "-json",
+      "./internal/codex",
+      "-run",
+      "^TestFEAT164(ActivationAndRetiredAdmission|CandidateAdmissionAndFreshConfiguration|ExistingOwnedHomeIsNotImplicitlyMigrated)$",
+      "-count=1"
+    ],
+    "exit_code": 0,
+    "sha256": "b094c7579e8854c991439e35d9605db08ba9db01fc966819c4c6708799aa2960"
+  },
+  {
+    "name": "host-consumer-vet",
+    "command": [
+      "/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go",
+      "vet",
+      "./internal/codex"
+    ],
+    "exit_code": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

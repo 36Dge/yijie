@@ -95,3 +95,7 @@ Runtime → Contracts runtime projection → Host runtime constants/candidate �
 ## S4h 生成入口与计划验收（2026-10-25）
 
 生成入口RCA修正后的首次19项通过，旧FAIL保留。当前计划模型变更后旧配置拒绝、重新审阅保存paused和独立单次授权已在App验证；后续转当前专家/媒体组合及完整恢复取消，见34。
+
+## S4O 实施状态（2026-10-26）
+
+Owner已在必要性复核后批准41号六既有文件范围，0011/r5及必要下游来源已本地固化；限定loaded-thread正常EOF与四池关闭通过。19项来源检查、四组合来源和canonical App构建通过；App首次无凭据启动未就绪，正常退出且原数据保持。下一步先零模型排查Native启动配置，随后补r5 Host/App纵向；不扩大核心、不要重跑旧141项替代新证据。详见[42](42-r5-shutdown-implementation-and-qualification.md)，整项未完成。

@@ -1,0 +1,20 @@
+{
+  "commit": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+  "files": [
+    "Makefile",
+    "README.md",
+    "UPSTREAM.md",
+    "CHANGELOG.yijie.md",
+    "docs/yijie-patch-policy.md",
+    "docs/feat164-graceful-state-close.md",
+    ".yijie/patches/chat-models/0011-feat-164-graceful-state-close.patch",
+    "scripts/build-kimi-k31-pro-r5.sh",
+    "scripts/check-kimi-k31-pro-r5.sh",
+    "scripts/write-kimi-k31-pro-r5-runtime-manifest.py",
+    "scripts/check-feat164-state-close.py"
+  ],
+  "local_only": true,
+  "canonical_source_changes": false,
+  "full_make_test": "preexisting script mode block retained",
+  "diff_whitespace": "all source/scripts/docs pass; serialized patch context spaces retained, source rustfmt and exact replay passed; no attributes or gate changed"
+}

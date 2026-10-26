@@ -430,3 +430,9 @@ S4I续验：Host090c2db/Desktop399bb19配对后，实际专家线程Kimi→pause
 <!-- evidence: E164-S4L-FINAL -->
 
 core_vertical NOT RUN（完整范围）；accessibility_visual PASS（当前可达FEAT164界面、手工AX/键盘/1180x760亮暗，不声明不可达旧K3弹窗或完整WCAG）；teardown NOT RUN（资源退出通过，Runtime checkpoint仍需核实）。独立JSON为s4l-final-core_vertical/accessibility_visual/teardown.json，不互相替代。 详见[39](39-evidence-binding-and-final-verdicts.md)、s4l-evidence-binding.json与对应s4l日志/AX/截图/数据审计。
+
+## E164-S4O-R5
+
+第41号最小六文件方案已实现。当前Runtime11fd→Contracts5b5dad→Host894671b/Connectorscc56cda→Desktopc76558e；固定上游源码未改，269份schema与r4一致。源码9+6、Clippy、Contracts12、Host13/race/vet、Desktop11、19generation及4组合来源通过，独立r5和完整media App标准构建/同构建回执通过。真实r5零turn loaded-thread/start/read/EOF退出0，四库退出后WAL均0、副本integrity均ok；未手工checkpoint或清WAL。
+
+实际App无凭据启动显示本地服务未就绪，记FAIL_APP_READINESS_FIRST_OBSERVATION，根因UNKNOWN；没有重试/发消息，⌘Q正常exit0，5528候选文件逐字保持。不能判App teardown、完整core或r5 G2V通过。完整Runtime make test被既有执行位检查阻断；真实新增0、累计5/5、旧预占和账本保持。证据/完整边界/下步见[42](42-r5-shutdown-implementation-and-qualification.md)、s4o-implementation-review、s4o-native-state-close、s4o-generation-result、s4o-app-observation及s4o-raw-log-index。此前r4证据保留原来源，不冒充r5复验。

@@ -1,0 +1,83 @@
+{
+  "started_at": "2026-10-26T10:50:31.347585+08:00",
+  "binary_sha256": "283d12e16b124942302fcdc8281c729a8a7f676498f06df1d2646292905f579e",
+  "manifest_sha256": "935dae6cf1427a8338b2817c4bfd39e9ae837e51a7f9cefd9117ecfed28b4cee",
+  "real_model_http_added": 0,
+  "turn_start_requests": 0,
+  "signals_sent": [],
+  "manual_checkpoint": false,
+  "files_deleted": false,
+  "methods": [
+    "initialize",
+    "initialized",
+    "thread/start",
+    "thread/read"
+  ],
+  "scope": "credential-free input-only loaded thread, no turns; native listener lifecycle",
+  "pid": 25926,
+  "thread_id": "01a1761d-dee6-70f0-9db0-6b0983ddd02e",
+  "loaded_thread_read": true,
+  "exit_code": 0,
+  "normal_exit_trace": [
+    "2026-10-26T02:50:31.549527Z DEBUG codex_app_server_transport::transport::stdio: stdin reader finished (EOF)",
+    "2026-10-26T02:50:31.551944Z  INFO codex_app_server: processor task exited exit_reason=\"last_connection_closed\" remaining_connection_count=0 shutdown_forced=false",
+    "2026-10-26T02:50:31.552054Z  INFO codex_app_server: outbound router task exited (channel closed)"
+  ],
+  "databases": [
+    {
+      "name": "state_5.sqlite",
+      "before": {
+        "state_5.sqlite": "bea16b24936b4b4b9ec5a678056214c25e2386ff54766f0f0597dd14c452c911"
+      },
+      "wal_bytes_after_exit": 0,
+      "integrity": [
+        [
+          "ok"
+        ]
+      ],
+      "source_files_unchanged_by_inspection": true
+    },
+    {
+      "name": "logs_2.sqlite",
+      "before": {
+        "logs_2.sqlite": "725585278eefe06aecb478404e325af7f188746673d5485c282ff03a5c8d000b"
+      },
+      "wal_bytes_after_exit": 0,
+      "integrity": [
+        [
+          "ok"
+        ]
+      ],
+      "source_files_unchanged_by_inspection": true
+    },
+    {
+      "name": "goals_1.sqlite",
+      "before": {
+        "goals_1.sqlite": "9e39f0164ec6528e1cc958e1630091cc63d6584c55ca2d65dbffb62d8d521352"
+      },
+      "wal_bytes_after_exit": 0,
+      "integrity": [
+        [
+          "ok"
+        ]
+      ],
+      "source_files_unchanged_by_inspection": true
+    },
+    {
+      "name": "memories_1.sqlite",
+      "before": {
+        "memories_1.sqlite": "8679ada6e4fb301c75db06f2ea00f6d7d6902550920c51fa9f7d8fb1a5527de0"
+      },
+      "wal_bytes_after_exit": 0,
+      "integrity": [
+        [
+          "ok"
+        ]
+      ],
+      "source_files_unchanged_by_inspection": true
+    }
+  ],
+  "failure": null,
+  "status": "PASS_SCOPED",
+  "finished_at": "2026-10-26T10:50:31.587637+08:00"
+}

@@ -1,0 +1,17 @@
+{
+  "before": "ea9b1e499d86bb92eea360a62707027485790e22",
+  "after": "c76558e8d4531f4f5c2309055da72f35d2ce4158",
+  "files": [
+    "contracts/chat-models-v2.candidate.json",
+    "contracts/kimi-k31-host-build.candidate.json",
+    "contracts/market-catalog-feat164.candidate.json",
+    "contracts/runtime-kimi-k31-pro.candidate.json",
+    "scripts/check-feat164-generation.mjs",
+    "scripts/feat164-market-catalog.mjs",
+    "scripts/kimi-k31-build-candidate.mjs",
+    "scripts/run-local-demo-fast.sh"
+  ],
+  "original_dirty_preserved": 100,
+  "operation": "local fast-forward; no push",
+  "output": "Updating ea9b1e4..c76558e\nFast-forward\n contracts/chat-models-v2.candidate.json         |  2 +-\n contracts/kimi-k31-host-build.candidate.json    | 14 ++++----\n contracts/market-catalog-feat164.candidate.json |  4 +--\n contracts/runtime-kimi-k31-pro.candidate.json   | 44 ++++++++++++++++++-------\n scripts/check-feat164-generation.mjs            |  8 ++---\n scripts/feat164-market-catalog.mjs              |  2 +-\n scripts/kimi-k31-build-candidate.mjs            |  2 +-\n scripts/run-local-demo-fast.sh                  |  4 +--\n 8 files changed, 50 insertions(+), 30 deletions(-)\n"
+}

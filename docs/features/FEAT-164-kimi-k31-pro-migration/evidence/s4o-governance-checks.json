@@ -1,0 +1,59 @@
+[
+  {
+    "name": "claims",
+    "command": [
+      "node",
+      "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+      "--audit-claims",
+      "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-164-kimi-k31-pro-migration"
+    ],
+    "exit_code": 0,
+    "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4o-audit-20261026/governance-claims.log",
+    "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4"
+  },
+  {
+    "name": "strict",
+    "command": [
+      "bash",
+      "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+      "--strict",
+      "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-164-kimi-k31-pro-migration"
+    ],
+    "exit_code": 0,
+    "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4o-audit-20261026/governance-strict.log",
+    "sha256": "0f6377b2cf2e6dba2d18bcba312d28530dafd7d4a1f423d7affcf223fed72bce"
+  },
+  {
+    "name": "manifest",
+    "command": [
+      "node",
+      "scripts/repo-manifest.mjs",
+      "validate"
+    ],
+    "exit_code": 0,
+    "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4o-audit-20261026/governance-manifest.log",
+    "sha256": "9ef98442e627d19f485faf1400ef28016fae2dc3bf6edbf456e28768bb8aadb9"
+  },
+  {
+    "name": "contract-governance",
+    "command": [
+      "node",
+      "scripts/check-contract-governance.mjs"
+    ],
+    "exit_code": 0,
+    "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4o-audit-20261026/governance-contract-governance.log",
+    "sha256": "2887ebe89bd27be98dfa2707579645d9950793107c26e78341eaf4e7063393fe"
+  },
+  {
+    "name": "meta-tests",
+    "command": [
+      "node",
+      "--test",
+      "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/tests/codex-feature-delivery.test.mjs",
+      "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/tests/repo-manifest.test.mjs"
+    ],
+    "exit_code": 0,
+    "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4o-audit-20261026/governance-meta-tests.log",
+    "sha256": "7fe716ce2b5c68be82de8683eb09f741564b68d0de2d53430391544fc7fb784d"
+  }
+]

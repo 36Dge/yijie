@@ -1,0 +1,19 @@
+{
+  "patch_sha256": "b5054bce23e12f5638cddbf54f4936a8116d62f6ba62208efa58132580c95e83",
+  "six_existing_paths": [
+    "app-server/src/lib.rs",
+    "app-server/src/message_processor.rs",
+    "app-server/src/request_processors/thread_processor.rs",
+    "state/src/log_db.rs",
+    "app-server/src/thread_state.rs",
+    "app-server/src/request_processors/thread_lifecycle.rs"
+  ],
+  "focused_units": 9,
+  "rpc_units": 6,
+  "clippy": "PASS",
+  "canonical_upstream_unchanged": true,
+  "real_model_http_added": 0,
+  "runtime_fork_test": "BLOCKED_PREEXISTING_100644_BUILD_INPUT_ONLY",
+  "artifact_status": "NOT_BUILT",
+  "source_gate_scope": "candidate source only, not final release/gate approval"
+}
