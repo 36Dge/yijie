@@ -1,5 +1,13 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 S4M正常关闭审计与待确认方案（2026-10-26）
+
+最新权威[40](../features/FEAT-164-kimi-k31-pro-migration/40-runtime-shutdown-audit-and-minimal-plan.md)。Owner授权先审计，核心/补丁必须先确认。本轮未修改产品、Runtime、补丁或binary；19固定源码/10现有patch/6依赖核对，独立空home一次initialize/initialized/正常EOF，真实模型0。退出exit0、非强制；state/goals/memories留有nBackfill0 WAL，logs此次无WAL；四库完整副本mode=ro integrity_check均ok，原候选/日常库/旧账本逐字保持。
+
+候选根因是stdio进程未调用StateRuntime.close，日志inserter无显式shutdown/join且全局sender保留；线程排空超时亦不能视为写入者退出。推荐仅独占stdio所有者等待生产者、关闭日志准入并排空/join、await已有四池close；不主动checkpoint、不删/截断WAL、不改schema。具体四文件面、独立r5及必要Contract First下游更新见40，**待Owner明确批准，尚未实施**。若需更广core/shared/in-process改动停止另报。
+
+r4与当前S1/G2V/视觉子集历史结论保持；S2/S3自然旧K3纵向、S4/TCONF04/core与teardown仍未完成。r5若获准会使相关r4证据过期，不自动继承真实G2V；5/5请求额度耗尽，保守14.679001元含unknown预占14.188544元不变。无活跃审计Runtime，无UI操作/待答交接；锁屏项目可跳过，日常切换和推送未授权。不要反复跑原141项代替新假设验证。
+
 ## FEAT-164 S4L证据收口，真实次数耗尽，checkpoint仍待核实（2026-10-26）
 
 最新权威[39](../features/FEAT-164-kimi-k31-pro-migration/39-evidence-binding-and-final-verdicts.md)、feature.yaml及s4l证据。Owner确认38并授权零真实模型收口S1—S4/三个final，锁屏可跳过；此次桌面可用未跳过。保持EA9 Desktop、090c2db Host、1b357cc Contracts、a28130a r4、7ea3df4 Connectors、595c927 Skills，同一canonical bundle，无产品/Runtime/SQL改动，contract-impact=none，整项breaking保持。

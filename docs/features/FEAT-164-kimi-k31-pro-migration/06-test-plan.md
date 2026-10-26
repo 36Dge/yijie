@@ -90,3 +90,7 @@ H-F164-LOCAL默认禁用；production_bootstrap表示产品canonical启动链，
 ## S4h 生成入口与计划验收（2026-10-25）
 
 本轮19项生成、6项配置测试、S3五项、18前端、当前ordinary App计划审阅/单次授权/重开通过；1次模型loopback，真实0。旧K3产品UI与完整恢复取消/媒体仍单列未验，详见34。
+
+## S4M正常关闭候选验证（待实施）
+
+40号追加四池、日志clone/queue排空、正常stdio等待及same-source重开验证；本轮仅未修改r4的一次零回合EOF和4个只读integrity_check。不得把S4M审计完成改成teardown PASS；真实HTTP授权仍0。

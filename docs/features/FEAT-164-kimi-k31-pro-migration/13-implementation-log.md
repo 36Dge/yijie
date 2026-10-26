@@ -93,3 +93,7 @@ Owner交回窗口后按同一批准追加3次HTTP（累计5），三个目的为
 ## 2026-10-26 S4L 证据与最终验收
 
 用户确认38后要求零真实模型收口；同源安全141项与4source检查、当前可达App/视觉/正常退出完成。未改产品代码，未发生锁屏跳过。Runtime三份WAL保留且未backfill，已做完整副本只读完整性检查，未手工checkpoint或删除；完整teardown保留未通过。S1绑定当前证据，其余slice保留明确纵向缺项；见39，预算5/5耗尽保持。
+
+## S4M：正常关闭审计与方案落盘
+
+用户要求核心或补丁修改先确认。本轮实际单次r4 initialize/initialized/EOF exit0，state/goals/memories仍有未backfill WAL，logs无WAL，四个完整副本integrity_check均ok。19固定源码、10patch、6依赖来源核对；产品/patch/binary零改动，无App/UI，真实HTTP0。40号所有者有序关闭方案待批准，四文件范围与Contract First依赖明确；原账本/预占/原候选/日常库保留，仅本地固化治理。

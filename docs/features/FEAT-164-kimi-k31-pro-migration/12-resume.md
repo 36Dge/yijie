@@ -1,5 +1,7 @@
 # FEAT-164 续办入口
 
+> 最新续办见[40 Runtime正常关闭审计与最小方案](40-runtime-shutdown-audit-and-minimal-plan.md)：单次零回合EOF复现未回填WAL，4库只读完整性ok；已收敛所有者排空日志并await四池关闭的候选。**核心/patch尚未修改，待Owner确认**；teardown/core及整项状态不变，真实新增0。
+
 > 最新按[39 证据绑定与三项最终验收](39-evidence-binding-and-final-verdicts.md)：当前来源141项＋4source和可达App验证通过，新增真实模型0；S1证据收口，S2/S3/S4保留完整纵向缺项。视觉单项PASS；core及Runtime checkpoint完整teardown未通过。两份真实账本、旧预占和日常库保持。以下旧记录按原时间与来源解释。
 
 本轮三个候选App和本机fixture均已正常退出，系统浅色已恢复，无解锁/窗口交接/退出请求待答复。真实次数5/5和两份账本保持。本轮141项及来源绑定已完成，不再重复同批测试；下一步优先零调用审计Runtime正常关闭/checkpoint责任。core旧K3自然App/计划及未执行Provider范围仍缺，日常切换须另确认；详见39。

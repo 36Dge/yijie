@@ -1,0 +1,472 @@
+{
+  "at": "2026-10-26T09:17:42.332768+08:00",
+  "classification": "readonly source audit, not implementation or test pass",
+  "sources": [
+    {
+      "repo": "yijie-codex",
+      "commit": "a28130abb13d0f99a00107cd513a653bae878b77",
+      "path": "codex-rs/app-server/src/lib.rs",
+      "sha256": "b0aa1014e8092b9b5998f500fdb9ea806f05c37ba242b9cb9a12204f0478e0b8",
+      "excerpts": [
+        {
+          "start": 566,
+          "end": 576,
+          "text": "    let state_db_init = match init_sqlite_state_db_with_fresh_start_on_corruption(&config).await {\n        Ok(state_db_init) => state_db_init,\n        Err(err) => {\n            return Err(std::io::Error::other(format!(\n                \"failed to initialize sqlite state runtime under {}: {err}\",\n                config.sqlite_home.display()\n            )));\n        }\n    };\n    let state_db = state_db_init.state_db;\n    if let Some(recovery_notice) = state_db_init.recovery_notice {"
+        },
+        {
+          "start": 672,
+          "end": 684,
+          "text": "    let log_db = state_db.clone().map(log_db::start);\n    let log_db_layer = log_db\n        .clone()\n        .map(|layer| layer.with_filter(log_db::default_filter()));\n    let otel_logger_layer = otel.as_ref().and_then(|o| o.logger_layer());\n    let otel_tracing_layer = otel.as_ref().and_then(|o| o.tracing_layer());\n    let _ = tracing_subscriber::registry()\n        .with(stderr_fmt)\n        .with(feedback_layer)\n        .with(feedback_metadata_layer)\n        .with(log_db_layer)\n        .with(otel_logger_layer)\n        .with(otel_tracing_layer)"
+        },
+        {
+          "start": 890,
+          "end": 902,
+          "text": "        let outbound_control_tx = outbound_control_tx;\n        let processor = Arc::new(MessageProcessor::new(MessageProcessorArgs {\n            outgoing: outgoing_message_sender,\n            analytics_events_client,\n            arg0_paths,\n            config: Arc::new(config),\n            config_manager,\n            environment_manager,\n            feedback: feedback.clone(),\n            log_db,\n            state_db: state_db.clone(),\n            config_warnings,\n            session_source,"
+        },
+        {
+          "start": 1003,
+          "end": 1017,
+          "text": "                                    .await\n                                    .is_ok();\n                                let processor = Arc::clone(&processor);\n                                connection_cleanup_tasks.spawn(async move {\n                                    processor\n                                        .connection_closed(connection_id, &connection_state.session)\n                                        .await;\n                                });\n                                if !outbound_closed {\n                                    break \"outbound_router_closed\";\n                                }\n                                if shutdown_when_no_connections && connections.is_empty() {\n                                    break \"last_connection_closed\";\n                                }\n                            }"
+        },
+        {
+          "start": 1156,
+          "end": 1193,
+          "text": "            if !shutdown_state.forced() {\n                futures::future::join_all(\n                    connections\n                        .values()\n                        .map(|connection_state| connection_state.session.rpc_gate.shutdown()),\n                )\n                .await;\n                connection_cleanup_tasks.drain().await;\n                processor.drain_background_tasks().await;\n                processor.shutdown_threads().await;\n            } else {\n                connection_cleanup_tasks.abort();\n            }\n            info!(\n                exit_reason,\n                remaining_connection_count = connections.len(),\n                shutdown_forced = shutdown_state.forced(),\n                \"processor task exited\"\n            );\n        }\n    });\n\n    drop(transport_event_tx);\n\n    let _ = processor_handle.await;\n    let _ = outbound_handle.await;\n\n    transport_shutdown_token.cancel();\n    for handle in transport_accept_handles {\n        let _ = handle.await;\n    }\n\n    if let Some(otel) = otel {\n        otel.shutdown();\n    }\n\n    Ok(())\n}"
+        }
+      ]
+    },
+    {
+      "repo": "yijie-codex",
+      "commit": "a28130abb13d0f99a00107cd513a653bae878b77",
+      "path": "codex-rs/state/src/log_db.rs",
+      "sha256": "032f03bea801779a121c5a634a7445d431d55b6471db9522b521097478ebfd60",
+      "excerpts": [
+        {
+          "start": 104,
+          "end": 149,
+          "text": "pub struct LogDbLayer {\n    sender: mpsc::Sender<LogDbCommand>,\n    process_uuid: String,\n}\n\npub fn start(state_db: std::sync::Arc<StateRuntime>) -> LogDbLayer {\n    LogDbLayer::start(state_db)\n}\n\nimpl Clone for LogDbLayer {\n    fn clone(&self) -> Self {\n        Self {\n            sender: self.sender.clone(),\n            process_uuid: self.process_uuid.clone(),\n        }\n    }\n}\n\nimpl LogDbLayer {\n    pub fn start(state_db: std::sync::Arc<StateRuntime>) -> Self {\n        Self::start_with_config(state_db, LogSinkQueueConfig::default())\n    }\n\n    pub fn start_with_config(\n        state_db: std::sync::Arc<StateRuntime>,\n        config: LogSinkQueueConfig,\n    ) -> Self {\n        let config = config.normalized();\n        let (sender, receiver) = mpsc::channel(config.queue_capacity);\n        tokio::spawn(run_inserter(state_db, receiver, config));\n        Self {\n            sender,\n            process_uuid: current_process_log_uuid().to_string(),\n        }\n    }\n\n    pub async fn flush(&self) {\n        let (tx, rx) = oneshot::channel();\n        if self.sender.send(LogDbCommand::Flush(tx)).await.is_ok() {\n            let _ = rx.await;\n        }\n    }\n\n    fn try_send(&self, entry: LogEntry) {\n        let _ = self.sender.try_send(LogDbCommand::Entry(Box::new(entry)));\n    }"
+        },
+        {
+          "start": 257,
+          "end": 261,
+          "text": "\nenum LogDbCommand {\n    Entry(Box<LogEntry>),\n    Flush(oneshot::Sender<()>),\n}"
+        },
+        {
+          "start": 402,
+          "end": 452,
+          "text": "            maybe_command = receiver.recv() => {\n                match maybe_command {\n                    Some(LogDbCommand::Entry(entry)) => {\n                        buffer.push(*entry);\n                        if buffer.len() >= config.batch_size {\n                            flush(&state_db, &mut buffer).await;\n                        }\n                    }\n                    Some(LogDbCommand::Flush(reply)) => {\n                        flush(&state_db, &mut buffer).await;\n                        let _ = reply.send(());\n                    }\n                    None => {\n                        flush(&state_db, &mut buffer).await;\n                        break;\n                    }\n                }\n            }\n            _ = ticker.tick() => {\n                flush(&state_db, &mut buffer).await;\n            }\n        }\n    }\n}\n\nasync fn flush(state_db: &StateRuntime, buffer: &mut Vec<LogEntry>) {\n    if buffer.is_empty() {\n        return;\n    }\n    let entries = buffer.split_off(0);\n    let _ = state_db.insert_logs(entries.as_slice()).await;\n}\n\n#[derive(Default)]\nstruct MessageVisitor {\n    message: Option<String>,\n    thread_id: Option<String>,\n}\n\nimpl MessageVisitor {\n    fn record_field(&mut self, field: &Field, value: String) {\n        if field.name() == \"message\" && self.message.is_none() {\n            self.message = Some(value.clone());\n        }\n        if field.name() == \"thread_id\" && self.thread_id.is_none() {\n            self.thread_id = Some(value);\n        }\n    }\n}\n\nimpl Visit for MessageVisitor {"
+        }
+      ]
+    },
+    {
+      "repo": "yijie-codex",
+      "commit": "a28130abb13d0f99a00107cd513a653bae878b77",
+      "path": "codex-rs/state/src/runtime.rs",
+      "sha256": "903c5c34111c419b25b29fcb534934373bbabfd16a5a4e7c588e8fa10015648f",
+      "excerpts": [
+        {
+          "start": 153,
+          "end": 166,
+          "text": "}\n\n#[derive(Clone)]\npub struct StateRuntime {\n    codex_home: PathBuf,\n    default_provider: String,\n    pool: Arc<sqlx::SqlitePool>,\n    logs_pool: Arc<sqlx::SqlitePool>,\n    thread_goals: GoalStore,\n    memories: MemoryStore,\n    thread_updated_at_millis: Arc<AtomicI64>,\n    thread_recency_at_millis: Arc<AtomicI64>,\n}\n"
+        },
+        {
+          "start": 329,
+          "end": 335,
+          "text": "    /// Close all SQLite pools and wait for outstanding pool workers to exit.\n    pub async fn close(&self) {\n        self.memories.close().await;\n        self.thread_goals.close().await;\n        self.logs_pool.close().await;\n        self.pool.close().await;\n    }"
+        },
+        {
+          "start": 362,
+          "end": 369,
+          "text": "fn base_sqlite_options(path: &Path) -> SqliteConnectOptions {\n    SqliteConnectOptions::new()\n        .filename(path)\n        .create_if_missing(true)\n        .journal_mode(SqliteJournalMode::Wal)\n        .synchronous(SqliteSynchronous::Normal)\n        .busy_timeout(Duration::from_secs(5))\n        .log_statements(LevelFilter::Off)"
+        }
+      ]
+    },
+    {
+      "repo": "yijie-codex",
+      "commit": "a28130abb13d0f99a00107cd513a653bae878b77",
+      "path": "codex-rs/state/src/runtime/logs.rs",
+      "sha256": "9a173aa17248dddf827f6b30030a6cdff19903806f999ed367c8426a40d1289b",
+      "excerpts": [
+        {
+          "start": 295,
+          "end": 310,
+          "text": "\n    pub(crate) async fn run_logs_startup_maintenance(&self) -> anyhow::Result<()> {\n        let Some(cutoff) =\n            Utc::now().checked_sub_signed(chrono::Duration::days(LOG_RETENTION_DAYS))\n        else {\n            return Ok(());\n        };\n        self.delete_logs_before(cutoff.timestamp()).await?;\n        // Startup cleanup should not wait behind or block foreground work.\n        // PASSIVE checkpoints copy whatever is immediately available and skip\n        // frames that would require waiting on active readers or writers.\n        sqlx::query(\"PRAGMA wal_checkpoint(PASSIVE)\")\n            .execute(self.logs_pool.as_ref())\n            .await?;\n        Ok(())\n    }"
+        }
+      ]
+    },
+    {
+      "repo": "yijie-codex",
+      "commit": "a28130abb13d0f99a00107cd513a653bae878b77",
+      "path": "codex-rs/state/src/runtime/memories.rs",
+      "sha256": "7bb53a3ecba2931c5630279b264649131dde3a30063c08952960a2576ca255b0",
+      "excerpts": [
+        {
+          "start": 28,
+          "end": 41,
+          "text": "pub struct MemoryStore {\n    pool: Arc<SqlitePool>,\n    state_pool: Arc<SqlitePool>,\n}\n\nimpl MemoryStore {\n    pub(crate) fn new(pool: Arc<SqlitePool>, state_pool: Arc<SqlitePool>) -> Self {\n        Self { pool, state_pool }\n    }\n\n    pub(crate) async fn close(&self) {\n        self.pool.close().await;\n    }\n"
+        }
+      ]
+    },
+    {
+      "repo": "yijie-codex",
+      "commit": "a28130abb13d0f99a00107cd513a653bae878b77",
+      "path": "codex-rs/state/src/runtime/goals.rs",
+      "sha256": "ecc51d64a01c6fc407ec48b35f570cac9e8ecfce687323c6ecac75c66449c107",
+      "excerpts": [
+        {
+          "start": 1,
+          "end": 19,
+          "text": "use super::*;\nuse crate::model::ThreadGoalRow;\nuse uuid::Uuid;\n\n#[derive(Clone)]\npub struct GoalStore {\n    pool: Arc<SqlitePool>,\n}\n\nimpl GoalStore {\n    pub(crate) fn new(pool: Arc<SqlitePool>) -> Self {\n        Self { pool }\n    }\n\n    pub(crate) async fn close(&self) {\n        self.pool.close().await;\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "repo": "yijie-codex",
+      "commit": "a28130abb13d0f99a00107cd513a653bae878b77",
+      "path": "codex-rs/rollout/src/state_db.rs",
+      "sha256": "b79ee5e421c647aa321f637ab496b84fc1ffeb23afdf4abbc4fe7e49bbee5bfa",
+      "excerpts": [
+        {
+          "start": 27,
+          "end": 27,
+          "text": "pub type StateDbHandle = Arc<codex_state::StateRuntime>;"
+        },
+        {
+          "start": 127,
+          "end": 146,
+          "text": "    codex_state::record_backfill_gate(\n        /*telemetry*/ None,\n        backfill_gate_started.elapsed(),\n        &backfill_gate_result,\n    );\n    if let Err(err) = backfill_gate_result {\n        runtime.close().await;\n        return Err(err);\n    }\n    Ok(runtime)\n}\n\nasync fn wait_for_backfill_gate(\n    runtime: &codex_state::StateRuntime,\n    codex_home: &Path,\n    default_model_provider_id: &str,\n    backfill_lease_seconds: Option<i64>,\n) -> anyhow::Result<()> {\n    let wait_started = Instant::now();\n    let mut reported_wait = false;"
+        }
+      ]
+    },
+    {
+      "repo": "yijie-codex",
+      "commit": "a28130abb13d0f99a00107cd513a653bae878b77",
+      "path": "codex-rs/app-server/src/message_processor.rs",
+      "sha256": "2607559ee2d298d2fc7a46dced4cd205c4ef9475ca6b829aaaeac18368ec1df1",
+      "excerpts": [
+        {
+          "start": 678,
+          "end": 693,
+          "text": "    pub(crate) async fn drain_background_tasks(&self) {\n        self.models_refresh_worker.shutdown();\n        self.thread_processor.drain_background_tasks().await;\n    }\n\n    pub(crate) async fn cancel_active_login(&self) {\n        self.account_processor.cancel_active_login().await;\n    }\n\n    pub(crate) async fn clear_all_thread_listeners(&self) {\n        self.thread_processor.clear_all_thread_listeners().await;\n    }\n\n    pub(crate) async fn shutdown_threads(&self) {\n        self.thread_processor.shutdown_threads().await;\n    }"
+        }
+      ]
+    },
+    {
+      "repo": "yijie-codex",
+      "commit": "a28130abb13d0f99a00107cd513a653bae878b77",
+      "path": "codex-rs/app-server/src/request_processors/thread_processor.rs",
+      "sha256": "9efe2ce97cffec5d014da4a0a79a0be34ca643d714d9128d2f1a1e311d494e8e",
+      "excerpts": [
+        {
+          "start": 1037,
+          "end": 1064,
+          "text": "    pub(crate) async fn drain_background_tasks(&self) {\n        self.background_tasks.close();\n        if tokio::time::timeout(Duration::from_secs(10), self.background_tasks.wait())\n            .await\n            .is_err()\n        {\n            warn!(\"timed out waiting for background tasks to shut down; proceeding\");\n        }\n    }\n\n    pub(crate) async fn clear_all_thread_listeners(&self) {\n        self.thread_state_manager.clear_all_listeners().await;\n    }\n\n    pub(crate) async fn shutdown_threads(&self) {\n        let report = self\n            .thread_manager\n            .shutdown_all_threads_bounded(Duration::from_secs(10))\n            .await;\n        for thread_id in report.submit_failed {\n            warn!(\"failed to submit Shutdown to thread {thread_id}\");\n        }\n        for thread_id in report.timed_out {\n            warn!(\"timed out waiting for thread {thread_id} to shut down\");\n        }\n    }\n\n    async fn request_trace_context("
+        }
+      ]
+    },
+    {
+      "repo": "yijie-codex",
+      "commit": "a28130abb13d0f99a00107cd513a653bae878b77",
+      "path": "codex-rs/core/src/thread_manager.rs",
+      "sha256": "e59eb7cabbbe15e3fecb95edb63401316ef17ba2a078a812feda15374c59ef9f",
+      "excerpts": [
+        {
+          "start": 899,
+          "end": 949,
+          "text": "    /// Threads that complete shutdown are removed from the manager; incomplete shutdowns\n    /// remain tracked so callers can retry or inspect them later.\n    pub async fn shutdown_all_threads_bounded(&self, timeout: Duration) -> ThreadShutdownReport {\n        let threads = {\n            let threads = self.state.threads.read().await;\n            threads\n                .iter()\n                .map(|(thread_id, thread)| (*thread_id, Arc::clone(thread)))\n                .collect::<Vec<_>>()\n        };\n\n        let mut shutdowns = threads\n            .into_iter()\n            .map(|(thread_id, thread)| async move {\n                let outcome = match tokio::time::timeout(timeout, thread.shutdown_and_wait()).await\n                {\n                    Ok(Ok(())) => ShutdownOutcome::Complete,\n                    Ok(Err(_)) => ShutdownOutcome::SubmitFailed,\n                    Err(_) => ShutdownOutcome::TimedOut,\n                };\n                (thread_id, outcome)\n            })\n            .collect::<FuturesUnordered<_>>();\n        let mut report = ThreadShutdownReport::default();\n\n        while let Some((thread_id, outcome)) = shutdowns.next().await {\n            match outcome {\n                ShutdownOutcome::Complete => report.completed.push(thread_id),\n                ShutdownOutcome::SubmitFailed => report.submit_failed.push(thread_id),\n                ShutdownOutcome::TimedOut => report.timed_out.push(thread_id),\n            }\n        }\n\n        let mut tracked_threads = self.state.threads.write().await;\n        for thread_id in &report.completed {\n            tracked_threads.remove(thread_id);\n        }\n\n        report\n            .completed\n            .sort_by_key(std::string::ToString::to_string);\n        report\n            .submit_failed\n            .sort_by_key(std::string::ToString::to_string);\n        report\n            .timed_out\n            .sort_by_key(std::string::ToString::to_string);\n        report\n    }\n\n    /// Fork an existing thread by snapshotting rollout history according to"
+        }
+      ]
+    },
+    {
+      "repo": "yijie-codex",
+      "commit": "a28130abb13d0f99a00107cd513a653bae878b77",
+      "path": "codex-rs/core/src/session/handlers.rs",
+      "sha256": "74a3f9641650f73d139fa25ca32e1fa2a4a265e3d7ca788bafb70576384381b8",
+      "excerpts": [
+        {
+          "start": 628,
+          "end": 677,
+          "text": "    }\n}\n\npub async fn shutdown(sess: &Arc<Session>, sub_id: String) -> bool {\n    shutdown_session_runtime(sess).await;\n    info!(\"Shutting down Codex instance\");\n    let history = sess.clone_history().await;\n    let turn_count = history\n        .raw_items()\n        .iter()\n        .filter(|item| is_user_turn_boundary(item))\n        .count();\n    sess.services.session_telemetry.counter(\n        \"codex.conversation.turn.count\",\n        i64::try_from(turn_count).unwrap_or(0),\n        &[],\n    );\n\n    emit_thread_stop_lifecycle(sess.as_ref()).await;\n\n    // Gracefully flush and shutdown thread persistence on session end so tests\n    // that inspect durable state do not race with the background writer.\n    if let Some(live_thread) = sess.live_thread()\n        && let Err(e) = live_thread.shutdown().await\n    {\n        warn!(\"failed to shutdown thread persistence: {e}\");\n        let event = Event {\n            id: sub_id.clone(),\n            msg: EventMsg::Error(ErrorEvent {\n                message: \"Failed to shutdown thread persistence\".to_string(),\n                codex_error_info: Some(CodexErrorInfo::Other),\n            }),\n        };\n        sess.send_event_raw(event).await;\n    }\n\n    let event = Event {\n        id: sub_id,\n        msg: EventMsg::ShutdownComplete,\n    };\n    sess.services\n        .rollout_thread_trace\n        .record_protocol_event(&event.msg);\n    sess.deliver_event_raw(event).await;\n    sess.services\n        .rollout_thread_trace\n        .record_ended(codex_rollout_trace::RolloutStatus::Completed);\n    true\n}\n"
+        }
+      ]
+    },
+    {
+      "repo": "yijie-codex",
+      "commit": "a28130abb13d0f99a00107cd513a653bae878b77",
+      "path": "codex-rs/core/src/session/mod.rs",
+      "sha256": "0a1045a7c54655df6743f2bab9275001e772c5b3e695dc8e07d63d1fd9d39a14",
+      "excerpts": [
+        {
+          "start": 807,
+          "end": 816,
+          "text": "    pub async fn shutdown_and_wait(&self) -> CodexResult<()> {\n        let session_loop_termination = self.session_loop_termination.clone();\n        match self.submit(Op::Shutdown).await {\n            Ok(_) => {}\n            Err(CodexErr::InternalAgentDied) => {}\n            Err(err) => return Err(err),\n        }\n        session_loop_termination.await;\n        Ok(())\n    }"
+        }
+      ]
+    },
+    {
+      "repo": "yijie-codex",
+      "commit": "a28130abb13d0f99a00107cd513a653bae878b77",
+      "path": "codex-rs/app-server-transport/src/transport/stdio.rs",
+      "sha256": "ffb372ec8a369b307ad3c0fb3d7af19982098360df12ed4158fe5180beb0a91b",
+      "excerpts": [
+        {
+          "start": 69,
+          "end": 80,
+          "text": "                Err(err) => {\n                    error!(\"Failed reading stdin: {err}\");\n                    break;\n                }\n            }\n        }\n\n        let _ = transport_event_tx_for_reader\n            .send(TransportEvent::ConnectionClosed { connection_id })\n            .await;\n        debug!(\"stdin reader finished (EOF)\");\n    }));"
+        }
+      ]
+    },
+    {
+      "repo": "yijie-codex",
+      "commit": "a28130abb13d0f99a00107cd513a653bae878b77",
+      "path": "codex-rs/app-server/src/in_process.rs",
+      "sha256": "68376fcb25badfaee70aedd3c76f4dbf52ed876e525c97877bae3d43dc0a1d65",
+      "excerpts": [
+        {
+          "start": 134,
+          "end": 140,
+          "text": "    /// Feedback sink used by app-server/core telemetry and logs.\n    pub feedback: CodexFeedback,\n    /// SQLite tracing layer used to flush recently emitted logs before feedback upload.\n    pub log_db: Option<LogDbLayer>,\n    /// Process-wide SQLite state handle shared with embedded app-server consumers.\n    pub state_db: Option<StateDbHandle>,\n    /// Environment manager used by core execution and filesystem operations."
+        }
+      ]
+    },
+    {
+      "repo": "yijie-codex",
+      "commit": "a28130abb13d0f99a00107cd513a653bae878b77",
+      "path": "codex-rs/arg0/src/lib.rs",
+      "sha256": "63556587faa41204580dc0dd6ab6e82bd1c5bd9cec93c2ad49592bce5e5770ad",
+      "excerpts": [
+        {
+          "start": 219,
+          "end": 236,
+          "text": "    // Regular invocation. Run the async entry point on a thread with the same\n    // stack budget as Tokio workers; `Runtime::block_on` otherwise runs the\n    // top-level future on the caller's OS stack.\n    let handle = std::thread::Builder::new()\n        .name(\"codex-main\".to_string())\n        .stack_size(TOKIO_WORKER_STACK_SIZE_BYTES)\n        .spawn(move || {\n            let runtime = build_runtime()?;\n            runtime.block_on(run_main_with_arg0_guard(\n                path_entry_guard,\n                current_exe,\n                main_fn,\n            ))\n        })?;\n    match handle.join() {\n        Ok(result) => result,\n        Err(payload) => std::panic::resume_unwind(payload),\n    }"
+        }
+      ]
+    },
+    {
+      "repo": "yijie-desktop",
+      "commit": "ea9b1e499d86bb92eea360a62707027485790e22",
+      "path": "src-tauri/src/lib.rs",
+      "sha256": "c7d73d0d6cf709f7a9c4d0373178e18fde3c3f3878c5bf8989df1b635625446c",
+      "excerpts": [
+        {
+          "start": 569,
+          "end": 595,
+          "text": "    builder\n        .build(context)\n        .expect(\"error while building tauri application\")\n        .run(|app, event| {\n            if let tauri::RunEvent::WindowEvent {\n                label,\n                event: tauri::WindowEvent::CloseRequested { api, .. },\n                ..\n            } = &event\n            {\n                if label == \"main\" && !app.state::<chat::exit_owner::ExitOwner>().ready() {\n                    api.prevent_close();\n                    app.state::<chat::exit_owner::ExitOwner>()\n                        .request(app.clone());\n                }\n            }\n            if let tauri::RunEvent::ExitRequested { api, .. } = event {\n                let owner = app.state::<chat::exit_owner::ExitOwner>();\n                if !owner.ready() {\n                    api.prevent_exit();\n                    owner.request(app.clone());\n                }\n            }\n        });\n}"
+        }
+      ]
+    },
+    {
+      "repo": "yijie-desktop",
+      "commit": "ea9b1e499d86bb92eea360a62707027485790e22",
+      "path": "src-tauri/src/chat/exit_owner.rs",
+      "sha256": "ec68a6ca08c758ca473386592675e8ba25ad7bc19360021e8a0f944216e01c24",
+      "excerpts": [
+        {
+          "start": 63,
+          "end": 139,
+          "text": "                let stopped = tokio::time::timeout(\n                    std::time::Duration::from_secs(3),\n                    app.state::<ChatIpcRuntime>().stop_coordinator(),\n                )\n                .await;\n                if matches!(stopped, Ok(Ok(()))) {\n                    break;\n                }\n                app.state::<ChatRuntime>()\n                    .lifecycle\n                    .transition(Phase::StopPending);\n                if !reported {\n                    eprintln!(\"FEAT-155 STOP_PENDING: waiting for normal coordinator stop\");\n                    reported = true;\n                }\n                tokio::time::sleep(std::time::Duration::from_secs(1)).await;\n            }\n            app.state::<crate::workflows::WorkflowRuntime>()\n                .shutdown_for_app_exit()\n                .await;\n            loop {\n                if app\n                    .state::<ChatRuntime>()\n                    .shutdown_for_app_exit()\n                    .await\n                    .is_ok()\n                {\n                    break;\n                }\n                app.state::<ChatRuntime>()\n                    .lifecycle\n                    .transition(Phase::StopPending);\n                if !reported {\n                    eprintln!(\"FEAT-155 STOP_PENDING: managed process or database still owned\");\n                    reported = true;\n                }\n                tokio::time::sleep(std::time::Duration::from_secs(1)).await;\n            }\n            let (tx, rx) = tokio::sync::oneshot::channel();\n            if app\n                .run_on_main_thread(move || {\n                    super::platform_lifecycle::uninstall();\n                    let _ = tx.send(());\n                })\n                .is_err()\n                || rx.await.is_err()\n            {\n                return;\n            }\n            app.state::<ChatRuntime>()\n                .lifecycle\n                .transition(Phase::Stopped);\n            app.state::<ExitOwner>().ready.store(true, Ordering::SeqCst);\n            app.exit(0);\n        });\n        if let Ok(mut owner) = self.task.lock() {\n            *owner = Some(task);\n        }\n    }\n}"
+        }
+      ]
+    },
+    {
+      "repo": "yijie-agent-host",
+      "commit": "090c2dbeeeceb0fc87e576d8e13f5c339bf106f0",
+      "path": "cmd/desktop-host/main.go",
+      "sha256": "286201d4a9f6d8f3698be146577fd7cddaecbe0383f5ab1191c8b5e52fc364ff",
+      "excerpts": [
+        {
+          "start": 319,
+          "end": 359,
+          "text": "}\n\n// shutdownHost first closes HTTP ingress, then asks Runtime to stop through its\n// normal stdin lifecycle. The bounded calls control responsiveness only. If a\n// deadline expires, Host stays alive and repeats the same graceful wait without\n// a deadline so the Runtime lease cannot be released by Host process exit while\n// the child is still running.\nfunc shutdownHost(\n\tserver httpShutdowner,\n\truntime runtimeShutdowner,\n\tcancelRuntime context.CancelFunc,\n\ttimeout time.Duration,\n) error {\n\tvar shutdownErrors []error\n\n\thttpCtx, cancelHTTP := context.WithTimeout(context.Background(), timeout)\n\thttpErr := server.Shutdown(httpCtx)\n\tcancelHTTP()\n\tif httpErr != nil && !isShutdownDeadline(httpErr) {\n\t\tshutdownErrors = append(shutdownErrors, fmt.Errorf(\"shutdown HTTP server: %w\", httpErr))\n\t}\n\n\tcancelRuntime()\n\truntimeCtx, cancelBoundedRuntime := context.WithTimeout(context.Background(), timeout)\n\truntimeErr := runtime.Shutdown(runtimeCtx)\n\tcancelBoundedRuntime()\n\tif isShutdownDeadline(runtimeErr) {\n\t\truntimeErr = runtime.Shutdown(context.Background())\n\t}\n\tif runtimeErr != nil {\n\t\tshutdownErrors = append(shutdownErrors, fmt.Errorf(\"shutdown Codex Runtime: %w\", runtimeErr))\n\t}\n\n\tif httpErr != nil {\n\t\tif err := server.Shutdown(context.Background()); err != nil {\n\t\t\tshutdownErrors = append(shutdownErrors, fmt.Errorf(\"finish HTTP server shutdown: %w\", err))\n\t\t}\n\t}\n\treturn errors.Join(shutdownErrors...)\n}\n"
+        }
+      ]
+    },
+    {
+      "repo": "yijie-agent-host",
+      "commit": "090c2dbeeeceb0fc87e576d8e13f5c339bf106f0",
+      "path": "internal/codex/runtime.go",
+      "sha256": "297750aca79f49fd9a30ce5f28fd4143c883ca97ee622a6a890ddefbd87e4c74",
+      "excerpts": [
+        {
+          "start": 643,
+          "end": 740,
+          "text": "func (m *Manager) Shutdown(ctx context.Context) (returnErr error) {\n\tm.mu.Lock()\n\tm.shutdownRequested = true\n\tstartDone := m.startDone\n\tstartupCancel := m.startupCancel\n\tstarted := m.started\n\tif !started {\n\t\tm.status.State = StateStopped\n\t\tm.status.Ready = false\n\t\tm.status.FailureCode = \"\"\n\t}\n\tm.mu.Unlock()\n\tif startupCancel != nil {\n\t\tstartupCancel()\n\t}\n\t// Broker admission closes before Runtime EOF. STOP_PENDING is mapped to\n\t// the existing bounded graceful-wait contract; ownership is retained.\n\tif err := m.closeMarketBroker(ctx); err != nil {\n\t\tif errors.Is(err, marketbroker.ErrStopPending) {\n\t\t\treturn context.DeadlineExceeded\n\t\t}\n\t\t// A reaped worker's unsuccessful exit does not excuse leaving the\n\t\t// still-owned Runtime alive. Finish its normal EOF lifecycle as well.\n\t\tdefer func() { returnErr = errors.Join(returnErr, err) }()\n\t}\n\tif started && startDone != nil {\n\t\tselect {\n\t\tcase <-startDone:\n\t\tcase <-ctx.Done():\n\t\t\treturn ctx.Err()\n\t\t}\n\t}\n\n\tm.mu.Lock()\n\tstate := m.status.State\n\tif state == StateNotConfigured {\n\t\tm.mu.Unlock()\n\t\treturn nil\n\t}\n\tif state == StateStopped {\n\t\tcleanupErr := m.authorityCleanupError\n\t\tm.mu.Unlock()\n\t\treturn cleanupErr\n\t}\n\tclient := m.client\n\tprocess := m.cmd\n\texitDone := m.exitDone\n\talreadyExited := false\n\tif exitDone != nil {\n\t\tselect {\n\t\tcase <-exitDone:\n\t\t\talreadyExited = true\n\t\tdefault:\n\t\t}\n\t}\n\tif alreadyExited {\n\t\tcleanupErr := m.authorityCleanupError\n\t\tif cleanupErr == nil {\n\t\t\tm.status.State = StateStopped\n\t\t\tm.status.Ready = false\n\t\t\tm.status.FailureCode = \"\"\n\t\t}\n\t\tm.mu.Unlock()\n\t\treturn cleanupErr\n\t}\n\tm.status.State = StateStopping\n\tm.status.Ready = false\n\tm.mu.Unlock()\n\n\tif client != nil {\n\t\t_ = client.CloseInput()\n\t}\n\tif process == nil || exitDone == nil {\n\t\tcleanupErr := m.releaseManagedCodexHomeAuthority(true)\n\t\tif cleanupErr != nil {\n\t\t\tm.fail(\"provider_config_failed\")\n\t\t\treturn cleanupErr\n\t\t}\n\t\tm.mu.Lock()\n\t\tm.status.State = StateStopped\n\t\tm.status.Ready = false\n\t\tm.status.FailureCode = \"\"\n\t\tm.mu.Unlock()\n\t\treturn m.managedCodexHomeCleanupError()\n\t}\n\n\tselect {\n\tcase <-exitDone:\n\t\treturn m.managedCodexHomeCleanupError()\n\tcase <-ctx.Done():\n\t\t// Keep the lease and exact Runtime rule until waitForExit observes a\n\t\t// real process exit. A timeout must not strong-kill Runtime or expose a\n\t\t// gate-off Host to a still-running session reloader.\n\t\treturn ctx.Err()\n\t}\n}\n\nfunc (m *Manager) startProcess() (io.WriteCloser, io.ReadCloser, *exec.Cmd, *tailBuffer, error) {"
+        }
+      ]
+    }
+  ],
+  "patches": [
+    {
+      "path": ".yijie/patches/0001-feat-126-filter-persistent-diagnostics.patch",
+      "sha256": "6b337a02caf064c6819fab5c7367a485004c85cce0d42acb06fa6d5003e599a0",
+      "changed_paths": [
+        "state/src/log_db.rs",
+        "state/src/log_db_filter_tests.rs"
+      ]
+    },
+    {
+      "path": ".yijie/patches/0002-feat-136-unified-exec-pre-emitter-command-lifecycle.patch",
+      "sha256": "43de168e1443f4b9ca60d7f61e3de2daf20e1cfea14d2e196d28ba417bf3e06d",
+      "changed_paths": [
+        "app-server-protocol/src/protocol/event_mapping.rs",
+        "core/src/tools/events.rs",
+        "core/src/unified_exec/process_manager.rs",
+        "core/src/unified_exec/process_manager_tests.rs",
+        "core/tests/suite/unified_exec_process_events.rs"
+      ]
+    },
+    {
+      "path": ".yijie/patches/input-only/0003-input-only-execution.patch",
+      "sha256": "c340b6fc17419bcdc1ff45eebe3da40e5fde740c029102eb7a188f6b14eb41d8",
+      "changed_paths": [
+        "app-server/src/message_processor.rs",
+        "app-server/src/request_processors/thread_processor.rs",
+        "app-server-protocol/src/protocol/common.rs",
+        "app-server-protocol/src/protocol/v2/thread.rs",
+        "config/src/config_toml.rs",
+        "core/config.schema.json",
+        "core/src/agents_md_manager.rs",
+        "core/src/client.rs",
+        "core/src/config/config_tests.rs",
+        "core/src/config/mod.rs",
+        "core/src/mcp.rs",
+        "core/src/session/mod.rs",
+        "core/src/session/session.rs",
+        "core/src/session/turn.rs",
+        "core/src/session_startup_prewarm.rs",
+        "core/src/skills.rs",
+        "core/src/thread_manager.rs",
+        "core/src/tools/spec_plan.rs",
+        "core/src/tools/spec_plan_tests.rs",
+        "core-skills/src/service.rs"
+      ]
+    },
+    {
+      "path": ".yijie/patches/chat-models/0004-feat-156-upstream-tool-choice.patch",
+      "sha256": "828f913fead29da08c015d73ef6c7102a8adf9afd3811ab5469891ec5efc2abf",
+      "changed_paths": [
+        "core/src/client.rs"
+      ]
+    },
+    {
+      "path": ".yijie/patches/chat-models/0005-feat-156-terminal-tool-arguments.patch",
+      "sha256": "f1d6689f44056c252530ad940bb253e8a0ace60e810b88857440699ba908917e",
+      "changed_paths": []
+    },
+    {
+      "path": ".yijie/patches/chat-models/0006-native-web-search-sources.patch",
+      "sha256": "8fdb9d2f7d7708a603a8d08906a4d3cd6ce098ca9165471f95cb0816ed6718ee",
+      "changed_paths": [
+        "analytics/src/reducer.rs",
+        "app-server/tests/suite/v2/web_search.rs",
+        "app-server-protocol/src/protocol/thread_history.rs",
+        "app-server-protocol/src/protocol/v2/item.rs",
+        "app-server-protocol/src/protocol/v2/tests.rs",
+        "core/src/client.rs",
+        "core/src/event_mapping_tests.rs",
+        "core/src/web_search.rs",
+        "core/tests/suite/client.rs",
+        "core/tests/suite/items.rs",
+        "exec/tests/event_processor_with_json_output.rs",
+        "ext/items/src/tests.rs",
+        "ext/items/src/web_search.rs",
+        "ext/web-search/src/tool.rs",
+        "protocol/src/models.rs",
+        "protocol/src/protocol.rs",
+        "tui/src/history_cell/search.rs",
+        "tui/src/history_cell/tests.rs"
+      ]
+    },
+    {
+      "path": ".yijie/patches/chat-models/0007-feat-164-kimi-k31-pro.patch",
+      "sha256": "c666c066ec1235d016e7479805242d049def542b9f8c684970ac8e5b4cee8ae6",
+      "changed_paths": [
+        "core/src/client.rs",
+        "core/src/client_tests.rs"
+      ]
+    },
+    {
+      "path": ".yijie/patches/chat-models/0008-feat-164-kimi-responses-include.patch",
+      "sha256": "c3dc2b58e6ae9d1a2335bc4937defbbaf9da99848575d1e554fc579ef9aec475",
+      "changed_paths": [
+        "core/src/client.rs",
+        "core/src/client_tests.rs"
+      ]
+    },
+    {
+      "path": ".yijie/patches/chat-models/0009-feat-164-native-failure-terminals.patch",
+      "sha256": "ae74c11488a31644e9b052f1864fd4a76ecdc05e9019206efd2e7d82f8595886",
+      "changed_paths": [
+        "app-server-protocol/src/protocol/thread_history.rs",
+        "core/src/agent/mod.rs",
+        "core/src/agent/status.rs",
+        "core/src/session/mod.rs",
+        "rollout/src/persistence_metrics.rs",
+        "rollout/src/policy.rs"
+      ]
+    },
+    {
+      "path": ".yijie/patches/chat-models/0010-feat-164-sanitized-persistence-metrics.patch",
+      "sha256": "bcffb5337101c7d2032acaa0dc633cd92f2d12110eff0be10a79884f38eb85a7",
+      "changed_paths": [
+        "rollout/src/persistence_metrics.rs"
+      ]
+    }
+  ],
+  "dependency_sources": [
+    {
+      "path": "sqlx-core-0.9.0/src/pool/inner.rs",
+      "sha256": "cba56628f259270dccb2f4a0d7a351dcff34d9239f6e6e1aee187ebe0e39c539",
+      "start": 96,
+      "end": 118,
+      "text": "    pub(super) fn close(self: &Arc<Self>) -> impl Future<Output = ()> + '_ {\n        self.mark_closed();\n\n        async move {\n            // For child pools, we need to acquire permits we actually have rather than\n            // max_connections\n            let permits_to_acquire = if self.options.parent_pool.is_some() {\n                // Child pools start with 0 permits, so we acquire based on current size\n                self.size()\n            } else {\n                // Parent pools can acquire all max_connections permits\n                self.options.max_connections\n            };\n\n            let _permits = self.semaphore.acquire(permits_to_acquire).await;\n\n            while let Some(idle) = self.idle_conns.pop() {\n                let _ = idle.live.raw.close().await;\n            }\n\n            self.num_idle.store(0, Ordering::Release);\n            self.size.store(0, Ordering::Release);\n        }"
+    },
+    {
+      "path": "sqlx-core-0.9.0/src/pool/mod.rs",
+      "sha256": "ff4b2a9c91c80e7bcf5228883c7d4aec5f423520a790cefe1332a6b35d1ebcdb",
+      "start": 422,
+      "end": 446,
+      "text": "    /// Upon calling this method, any currently waiting or subsequent calls to [`Pool::acquire`] and\n    /// the like will immediately return [`Error::PoolClosed`] and no new connections will be opened.\n    /// Checked-out connections are unaffected, but will be gracefully closed on-drop\n    /// rather than being returned to the pool.\n    ///\n    /// Returns a `Future` which can be `.await`ed to ensure all connections are\n    /// gracefully closed. It will first close any idle connections currently waiting in the pool,\n    /// then wait for all checked-out connections to be returned or closed.\n    ///\n    /// Waiting for connections to be gracefully closed is optional, but will allow the database\n    /// server to clean up the resources sooner rather than later. This is especially important\n    /// for tests that create a new pool every time, otherwise you may see errors about connection\n    /// limits being exhausted even when running tests in a single thread.\n    ///\n    /// If the returned `Future` is not run to completion, any remaining connections will be dropped\n    /// when the last handle for the given pool instance is dropped, which could happen in a task\n    /// spawned by `Pool` internally and so may be unpredictable otherwise.\n    ///\n    /// `.close()` may be safely called and `.await`ed on multiple handles concurrently.\n    pub fn close(&self) -> impl Future<Output = ()> + '_ {\n        self.0.close()\n    }\n\n    /// Returns `true` if [`.close()`][Pool::close] has been called on the pool, `false` otherwise.\n    pub fn is_closed(&self) -> bool {"
+    },
+    {
+      "path": "sqlx-sqlite-0.9.0/src/connection/mod.rs",
+      "sha256": "a20c2e51a1505e298fd897b378f9032c89b82850838aa6e5d9409f612fb1e7fd",
+      "start": 220,
+      "end": 235,
+      "text": "    async fn close(mut self) -> Result<(), Error> {\n        if let OptimizeOnClose::Enabled { analysis_limit } = self.optimize_on_close {\n            let mut pragma_string = String::new();\n            if let Some(limit) = analysis_limit {\n                write!(pragma_string, \"PRAGMA analysis_limit = {limit}; \").ok();\n            }\n            pragma_string.push_str(\"PRAGMA optimize;\");\n            self.execute(AssertSqlSafe(pragma_string)).await?;\n        }\n        let shutdown = self.worker.shutdown();\n        // Drop the statement worker, which should\n        // cover all references to the connection handle outside of the worker thread\n        drop(self);\n        // Ensure the worker thread has terminated\n        shutdown.await\n    }"
+    },
+    {
+      "path": "sqlx-sqlite-0.9.0/src/connection/worker.rs",
+      "sha256": "b66aafc56f0e287eac3b09111c5d4997d350ab61294c5cc576ce359bc18cebe4",
+      "start": 335,
+      "end": 343,
+      "text": "                        Command::Shutdown { tx } => {\n                            // drop the connection references before sending confirmation\n                            // and ending the command loop\n                            drop(conn);\n                            drop(shared);\n                            let _ = tx.send(());\n                            return;\n                        }\n                    }"
+    },
+    {
+      "path": "sqlx-sqlite-0.9.0/src/connection/handle.rs",
+      "sha256": "63d9b11374ebd453f3f7d0be95a728030f05997d5ccdc756fd8057ee0d31dc6f",
+      "start": 138,
+      "end": 154,
+      "text": "\nimpl Drop for ConnectionHandle {\n    fn drop(&mut self) {\n        unsafe {\n            // https://sqlite.org/c3ref/close.html\n            let status = sqlite3_close(self.0.as_ptr());\n            if status != SQLITE_OK {\n                // this should *only* happen due to an internal bug in SQLite where we left\n                // SQLite handles open\n                panic!(\"{}\", SqliteError::new(self.0.as_ptr()));\n            }\n        }\n    }\n}"
+    },
+    {
+      "path": "libsqlite3-sys-0.38.1/sqlite3/sqlite3.c",
+      "sha256": "0a409f1633283fa31a9126b11fbfd64a1991c5d30defad07e5745d4667f5e23d",
+      "start": 69942,
+      "end": 70004,
+      "text": "*/\nSQLITE_PRIVATE int sqlite3WalClose(\n  Wal *pWal,                      /* Wal to close */\n  sqlite3 *db,                    /* For interrupt flag */\n  int sync_flags,                 /* Flags to pass to OsSync() (or 0) */\n  int nBuf,\n  u8 *zBuf                        /* Buffer of at least nBuf bytes */\n){\n  int rc = SQLITE_OK;\n  if( pWal ){\n    int isDelete = 0;             /* True to unlink wal and wal-index files */\n\n    assert( walAssertLockmask(pWal) );\n\n    /* If an EXCLUSIVE lock can be obtained on the database file (using the\n    ** ordinary, rollback-mode locking methods, this guarantees that the\n    ** connection associated with this log file is the only connection to\n    ** the database. In this case checkpoint the database and unlink both\n    ** the wal and wal-index files.\n    **\n    ** The EXCLUSIVE lock is not released before returning.\n    */\n    if( zBuf!=0\n     && SQLITE_OK==(rc = sqlite3OsLock(pWal->pDbFd, SQLITE_LOCK_EXCLUSIVE))\n    ){\n      if( pWal->exclusiveMode==WAL_NORMAL_MODE ){\n        pWal->exclusiveMode = WAL_EXCLUSIVE_MODE;\n      }\n      rc = sqlite3WalCheckpoint(pWal, db,\n          SQLITE_CHECKPOINT_PASSIVE, 0, 0, sync_flags, nBuf, zBuf, 0, 0\n      );\n      if( rc==SQLITE_OK ){\n        int bPersist = -1;\n        sqlite3OsFileControlHint(\n            pWal->pDbFd, SQLITE_FCNTL_PERSIST_WAL, &bPersist\n        );\n        if( bPersist!=1 ){\n          /* Try to delete the WAL file if the checkpoint completed and\n          ** fsynced (rc==SQLITE_OK) and if we are not in persistent-wal\n          ** mode (!bPersist) */\n          isDelete = 1;\n        }else if( pWal->mxWalSize>=0 ){\n          /* Try to truncate the WAL file to zero bytes if the checkpoint\n          ** completed and fsynced (rc==SQLITE_OK) and we are in persistent\n          ** WAL mode (bPersist) and if the PRAGMA journal_size_limit is a\n          ** non-negative value (pWal->mxWalSize>=0).  Note that we truncate\n          ** to zero bytes as truncating to the journal_size_limit might\n          ** leave a corrupt WAL file on disk. */\n          walLimitSize(pWal, 0);\n        }\n      }\n    }\n\n    walIndexClose(pWal, isDelete);\n    sqlite3OsClose(pWal->pWalFd);\n    if( isDelete ){\n      sqlite3BeginBenignMalloc();\n      sqlite3OsDelete(pWal->pVfs, pWal->zWalName, 0);\n      sqlite3EndBenignMalloc();\n    }\n    WALTRACE((\"WAL%p: closed\\n\", pWal));\n    sqlite3_free((void *)pWal->apWiData);\n    sqlite3_free(pWal);"
+    }
+  ],
+  "notes": [
+    "Current ten-patch manifest verified; retired FEAT-137 patches 0003/0004 are not in r4 chain.",
+    "Relevant log_db overlay 0001 changes privacy filter, not queue lifetime or close. Other shutdown/state lifecycle excerpts remain upstream.",
+    "StateRuntime owns four pools, not only three previously reported WAL files.",
+    "Pool close waits for connections but SQLx drops individual close errors; a void return is not a checkpoint success receipt.",
+    "In-process handle is caller-owned/shared; no automatic close there is proposed."
+  ],
+  "public_references": [
+    "https://sqlite.org/wal.html",
+    "https://sqlite.org/c3ref/close.html",
+    "https://docs.rs/sqlx/0.9.0/sqlx/struct.Pool.html#method.close"
+  ]
+}

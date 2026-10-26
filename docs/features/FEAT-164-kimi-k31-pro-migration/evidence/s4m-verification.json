@@ -1,0 +1,140 @@
+{
+  "at": "2026-10-26T09:24:35.677016+08:00",
+  "checks": [
+    {
+      "name": "claims",
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--audit-claims",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "log_sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4"
+    },
+    {
+      "name": "strict",
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "log_sha256": "0f6377b2cf2e6dba2d18bcba312d28530dafd7d4a1f423d7affcf223fed72bce"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exit_code": 0,
+      "log_sha256": "9a1a92614b4c74efdfa6d5d7d6ec9d1d2e70680bc3386237ba244fd67b68ad57"
+    },
+    {
+      "name": "meta-test",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exit_code": 0,
+      "log_sha256": "2a07796e25067de792c403474fb7e5b1f0ec3a6838ee257f2003973948160409"
+    },
+    {
+      "name": "shell-syntax",
+      "path": "scripts/bootstrap.sh",
+      "exit_code": 0
+    },
+    {
+      "name": "shell-syntax",
+      "path": "scripts/checkout-all.sh",
+      "exit_code": 0
+    },
+    {
+      "name": "shell-syntax",
+      "path": "scripts/dev-down.sh",
+      "exit_code": 0
+    },
+    {
+      "name": "shell-syntax",
+      "path": "scripts/dev-up.sh",
+      "exit_code": 0
+    },
+    {
+      "name": "shell-syntax",
+      "path": "scripts/generate-all.sh",
+      "exit_code": 0
+    },
+    {
+      "name": "shell-syntax",
+      "path": "scripts/lint-all.sh",
+      "exit_code": 0
+    },
+    {
+      "name": "shell-syntax",
+      "path": "scripts/test-all.sh",
+      "exit_code": 0
+    }
+  ],
+  "preservation": {
+    "protected_files": 7643,
+    "existing_dirty_files": 497,
+    "repos": [
+      {
+        "name": "yijie",
+        "head": "071c2c23cee160d17d376afe1e2abf3e4a820c30",
+        "existing_dirty_preserved": true,
+        "index_empty": true
+      },
+      {
+        "name": "yijie-codex",
+        "head": "a28130abb13d0f99a00107cd513a653bae878b77",
+        "existing_dirty_preserved": true,
+        "index_empty": true
+      },
+      {
+        "name": "yijie-agent-host",
+        "head": "090c2dbeeeceb0fc87e576d8e13f5c339bf106f0",
+        "existing_dirty_preserved": true,
+        "index_empty": true
+      },
+      {
+        "name": "yijie-desktop",
+        "head": "ea9b1e499d86bb92eea360a62707027485790e22",
+        "existing_dirty_preserved": true,
+        "index_empty": true
+      },
+      {
+        "name": "yijie-contracts",
+        "head": "1b357cce0575c492f3715b316ee5f254051acf80",
+        "existing_dirty_preserved": true,
+        "index_empty": true
+      },
+      {
+        "name": "yijie-connectors",
+        "head": "7ea3df41818fd69f4736722d01f0686d584d1a71",
+        "existing_dirty_preserved": true,
+        "index_empty": true
+      },
+      {
+        "name": "yijie-skills",
+        "head": "595c927ae101d3d31c234f60565041eee0864680",
+        "existing_dirty_preserved": true,
+        "index_empty": true
+      }
+    ],
+    "real_model_http_added": 0,
+    "manual_checkpoint": false,
+    "wal_delete": false,
+    "push": false,
+    "app_started": false,
+    "runtime_audit_process": "normal EOF exit0",
+    "all_gate_final_approval_freshness_and_budget_fields_unchanged": true,
+    "audit_process_gone": true,
+    "ledger_sha256": {
+      "g2v-real-budget-ledger.json": "2dbd19be2a8bda267437bcf0330fff1af122778388d6e3df965291ec840b7dcf",
+      "g2v-real-budget-ledger-r3.json": "b58101ee9cb0755c721e828864a7fcc39580010b5b482ac7ea83af9a5f28f4ea"
+    }
+  }
+}

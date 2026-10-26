@@ -1,5 +1,7 @@
 # FEAT-164 实际验证记录
 
+> 最新续办见[40 Runtime正常关闭审计与最小方案](40-runtime-shutdown-audit-and-minimal-plan.md)：单次零回合EOF复现未回填WAL，4库只读完整性ok；已收敛所有者排空日志并await四池关闭的候选。**核心/patch尚未修改，待Owner确认**；teardown/core及整项状态不变，真实新增0。
+
 > 最新按[39 证据绑定与三项最终验收](39-evidence-binding-and-final-verdicts.md)：当前来源141项＋4source和可达App验证通过，新增真实模型0；S1证据收口，S2/S3/S4保留完整纵向缺项。视觉单项PASS；core及Runtime checkpoint完整teardown未通过。两份真实账本、旧预占和日常库保持。以下旧记录按原时间与来源解释。
 
 > 当前（2026-10-25，S4f普通App与计划）：Host7927ee7补齐已有v2草案三路由，Desktop277f59e兼容读取原生事实2/3/4；Runtimea28130a r4与Contracts1b357cc保持。同源App验证旧历史、input-only草案、只读恢复零补发、关闭保存、单次执行、取消编辑和正常重开；App模型协议loopback共3次，真实新增0。旧失败请求/事实/账本保留；完整恢复取消、旧模型计划、专家媒体当前组合、平台/G2V/G3/final仍未通过。权威见[32](32-s4-r4-app-plan-acceptance.md)。以下记录保持原来源与时间语义。

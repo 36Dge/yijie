@@ -1,0 +1,23 @@
+model = "kimi-k3.1-pro"
+model_provider = "audit_loopback"
+cli_auth_credentials_store = "file"
+approval_policy = "never"
+sandbox_mode = "read-only"
+[analytics]
+enabled = false
+[feedback]
+enabled = false
+[features]
+hooks = false
+plugins = false
+apps = false
+tool_suggest = false
+shell_snapshot = false
+[model_providers.audit_loopback]
+name = "FEAT164 zero-turn lifecycle audit"
+base_url = "http://127.0.0.1:9/v1"
+wire_api = "responses"
+requires_openai_auth = false
+supports_websockets = false
+request_max_retries = 0
+stream_max_retries = 0

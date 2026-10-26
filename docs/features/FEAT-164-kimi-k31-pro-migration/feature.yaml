@@ -1356,6 +1356,17 @@ implementation:
       accessibility_visual: PASS
       teardown: NOT RUN
     protected_data_ref: evidence/s4l-data-audit.json
+  runtime_shutdown_audit:
+    status: AUDIT_COMPLETE_PLAN_PENDING_OWNER
+    report: 40-runtime-shutdown-audit-and-minimal-plan.md
+    source_ref: evidence/s4m-source-audit.json
+    normal_eof_ref: evidence/s4m-normal-eof-result.json
+    runtime_commit: a28130abb13d0f99a00107cd513a653bae878b77
+    real_model_http_added: 0
+    normal_eof_runs: 1
+    readonly_integrity_databases: 4
+    runtime_patch_modified: false
+    note: 无凭据零回合EOF复现；最小所有者关闭方案待独立确认，不改变现有final/Gate。
 product_verification:
   status: IN_PROGRESS
   reason: S4L当前141项+4source和App子集通过，S1证据/G3收口；S2/S3纵向、完整S4/TCONF04、core与Runtime checkpoint仍缺。视觉单项PASS；两个真实账本和旧预占逐字保持，新增真实0，日常cutover未执行。见39。

@@ -1,0 +1,29 @@
+{
+  "reviewer": "Codex structured self-review; not independent Owner approval",
+  "scope": "audit, evidence and plan only",
+  "checks": {
+    "problem_explains_normal_standalone_eof": true,
+    "eof_probe_is_not_fix_pass": true,
+    "four_pools_covered": true,
+    "global_sender_and_detached_log_task_accounted": true,
+    "thread_timeout_not_equated_to_drain": true,
+    "in_process_shared_ownership_excluded": true,
+    "pool_close_unit_not_checkpoint_receipt": true,
+    "runtime_core_patch_not_modified": true,
+    "planned_write_scope_requires_owner_approval": true,
+    "r5_requalification_and_old_g2v_boundary_explicit": true,
+    "no_new_model_http": true,
+    "old_ledger_and_unknown_reservation_preserved": true,
+    "no_manual_checkpoint_or_wal_removal": true,
+    "existing_497_dirty_files_preserved": true,
+    "all_7643_protected_files_preserved": true,
+    "gates_and_owner_approvals_not_changed": true
+  },
+  "unresolved": [
+    "repair not implemented or verified",
+    "normal stdio pending/early-error ownership must be implemented within explicit scope",
+    "r5 source/schema/downstream/candidate/real G2V not qualified",
+    "core/S2/S3/S4 full acceptance and daily cutover remain incomplete"
+  ],
+  "report": "40-runtime-shutdown-audit-and-minimal-plan.md"
+}
