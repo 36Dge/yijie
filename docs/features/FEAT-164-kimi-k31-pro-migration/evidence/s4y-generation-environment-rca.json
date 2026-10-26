@@ -1,0 +1,10 @@
+{
+  "failure": "public-api generator dependencies absent in new worktree",
+  "cause": "setup copied root node_modules but omitted per-tool pinned generator dependencies",
+  "correction": [
+    "yijie-desktop/tools/public-api-generator/node_modules",
+    "yijie-desktop/docs/design/node_modules"
+  ],
+  "product_or_lock_changes": false,
+  "next": "single fresh full check after dependency directories prepared"
+}

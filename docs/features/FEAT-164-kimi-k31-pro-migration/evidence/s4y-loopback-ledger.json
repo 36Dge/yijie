@@ -1,0 +1,54 @@
+{
+  "scope": "FEAT-164 S4Y synthetic App acceptance, not real model qualification",
+  "external_requests": 0,
+  "attempts": 4,
+  "requests": [
+    {
+      "ordinal": 1,
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "case": "MEDIA",
+      "response_kind": "publish_html",
+      "request_sha256": "937e10d421bdf499e45415f6ec1b8e0f102ad2bfa5b75af62bbfee13713961fd",
+      "tool_count": 13,
+      "input_only": false,
+      "image_inputs": 1
+    },
+    {
+      "ordinal": 2,
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "case": "MEDIA",
+      "response_kind": "publish_svg",
+      "request_sha256": "b91e794bc6a87fc0394a2a71c9eb06e2353d719d737930c46d266c2cc3251422",
+      "tool_count": 13,
+      "input_only": false,
+      "image_inputs": 1
+    },
+    {
+      "ordinal": 3,
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "case": "MEDIA",
+      "response_kind": "text",
+      "request_sha256": "e8a0313e2b112f9b57ef7578542864ba57a3d5e4b58900e5e96c4c7c4766eec5",
+      "tool_count": 13,
+      "input_only": false,
+      "image_inputs": 1
+    },
+    {
+      "ordinal": 4,
+      "model": "MiniMax-M3",
+      "effort": "high",
+      "case": "MINIMAX",
+      "response_kind": "text",
+      "request_sha256": "6960092ac9974ee9ff2e70dd9f195f4af36b9d49167e69bd4fc67f37ebd948c6",
+      "tool_count": 13,
+      "input_only": false,
+      "image_inputs": 0
+    }
+  ],
+  "rejected": [],
+  "state": "stopped_normally",
+  "limit": 8
+}

@@ -1,0 +1,51 @@
+{
+  "feature": "FEAT-164",
+  "scope": "source generation only; legacy default check unchanged; not App/G2V/G3/release",
+  "sources": {
+    "yijie-desktop": {
+      "head": "54e961842cb7abe7234e3d643142e99f266ec833",
+      "dirty": false,
+      "realPath": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4y-qualification-20261026/yijie-desktop"
+    },
+    "yijie-contracts": {
+      "head": "ca06d0999c9a08afe80ab3f34a537d492b830ac7",
+      "dirty": false,
+      "realPath": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4y-qualification-20261026/yijie-contracts"
+    },
+    "yijie-agent-host": {
+      "head": "8cd6bccbdc1ac3906aea53d95441299f7cfefcce",
+      "dirty": false,
+      "realPath": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4y-qualification-20261026/yijie-agent-host"
+    },
+    "yijie-connectors": {
+      "head": "cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9",
+      "dirty": false,
+      "realPath": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4y-qualification-20261026/yijie-connectors"
+    },
+    "yijie-codex": {
+      "head": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+      "dirty": false,
+      "realPath": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex"
+    },
+    "yijie-skills": {
+      "head": "595c927ae101d3d31c234f60565041eee0864680",
+      "dirty": false,
+      "realPath": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/skills-s4-source"
+    }
+  },
+  "real_model_http": 0,
+  "checks": [
+    {
+      "id": "public-api",
+      "repository": "yijie-desktop",
+      "command": [
+        "node",
+        "scripts/generate-public-api.mjs",
+        "--check"
+      ],
+      "exit_code": 1,
+      "sha256": "69f13dd76e6fa8d9017e66b09101e6808540d3ad92186097585892d341c75d12"
+    }
+  ],
+  "status": "FAIL"
+}

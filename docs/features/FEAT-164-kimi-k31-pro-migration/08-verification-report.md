@@ -525,3 +525,10 @@ Host7bf43fe仅测试生命周期/新入口，产品与8cd6bcc逐字相同。当�
 <!-- evidence: E164-S4X-DAILY -->
 
 第51号：Owner批准8文件后，Desktop ec1ab631d76d2f6ba2c74e25eaac1ea60339dfb4在新目录完成日常选择/维护入口及安全离线验证。SQL29/37四组合、原S2/S3、19source、canonical daily prepare-only及同源receipt通过；119包内文件，未启动App或打开真实日常库。产品Clippy通过，扩展全测试Clippy的基线失败单列保留。旧G2V/G3结论不自动继承新日常identity，状态OFFLINE_PREPARED_NOT_ACTIVATED。原账本/预占/dirty保持，0真实调用，无Runtime核心/补丁变化。证据s4x-audit-index.json。
+
+
+## E164-S4Y-APP
+
+<!-- evidence: E164-S4Y-APP -->
+
+52号记录新源码独立隔离App、图片/两媒体工具/MiniMax两任务及首次正常退出通过：4本机请求、0真实HTTP，71表旧行保持、四Runtime库WAL0/integrity ok。已修测试模块Clippy位置和计量器非文本限制（38独立测试）。App同构建再开后遇用户操作，等待窗口交接；meter已正常停止，schema5仍0/4新请求，App保留打开。真实非文本及重开历史详情未执行，不晋升S4/final或日常激活。

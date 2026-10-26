@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "name": "claims",
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--audit-claims",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "strict",
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "tests",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "shell": [
+    {
+      "path": "scripts/bootstrap.sh",
+      "exit_code": 0
+    },
+    {
+      "path": "scripts/checkout-all.sh",
+      "exit_code": 0
+    },
+    {
+      "path": "scripts/dev-down.sh",
+      "exit_code": 0
+    },
+    {
+      "path": "scripts/dev-up.sh",
+      "exit_code": 0
+    },
+    {
+      "path": "scripts/generate-all.sh",
+      "exit_code": 0
+    },
+    {
+      "path": "scripts/lint-all.sh",
+      "exit_code": 0
+    },
+    {
+      "path": "scripts/test-all.sh",
+      "exit_code": 0
+    }
+  ]
+}

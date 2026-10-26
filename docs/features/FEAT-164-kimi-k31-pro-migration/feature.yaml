@@ -1155,6 +1155,7 @@ documents:
   loaded_legacy_and_compaction: 30-s4-loaded-legacy-compaction.md
   native_terminal_repair: 31-s4-native-terminal-repair.md
   r4_app_and_plan_acceptance: 32-s4-r4-app-plan-acceptance.md
+  current_isolated_handoff: 52-isolated-app-functional-qualification-and-handoff.md
   current_daily_preparation: 51-daily-candidate-implementation-and-offline-verification.md
   current_slice_and_daily_plan: 50-slice-evidence-closure-and-daily-deployment-plan.md
   current_r5_qualification: 49-r5-real-qualification-and-daily-cutover-boundary.md
@@ -1196,6 +1197,24 @@ current_authorization:
   git_local_commit_allowed: true
   git_scope: 仅FEAT-164必要独立来源/实现/验证/治理本地提交，不混入其它需求；无push/branch/tag/release。
 implementation:
+  isolated_app_s4y:
+    status: OFFLINE_SUBSET_PASS_REAL_NOT_RUN_WINDOW_HANDOFF
+    report: 52-isolated-app-functional-qualification-and-handoff.md
+    desktop_commit: 54e961842cb7abe7234e3d643142e99f266ec833
+    tool_commit: a35e619e297c793ebb6cfb08730ab558f2924356
+    source_checks: 19
+    functional_meter_tests: 38
+    test_clippy: PASS_LIB_BINS_TESTS
+    actual_daily_database_open: false
+    real_http_added: 0
+    synthetic_http_added: 4
+    old_sql_tables_preserved: 71
+    first_normal_exit: PASS
+    app_currently_open: true
+    meter_state: stopped_normally
+    window_handoff: PENDING_OWNER_REPLY
+    evidence_ref: 08-verification-report.md#E164-S4Y-APP
+    evidence_index: evidence/s4y-audit-index.json
   daily_candidate_s4x:
     status: OFFLINE_PREPARED_NOT_ACTIVATED
     report: 51-daily-candidate-implementation-and-offline-verification.md

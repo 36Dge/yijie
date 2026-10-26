@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-164",
+  "authorization_id": "FEAT-164-R5-FUNCTIONAL-FOUR-HTTP",
+  "approval_source": "owner-necessary-functional-calls-search-images",
+  "approved_by": "段成威（既有必要功能调用、搜索及图片授权；4次为本轮自行收紧的执行上限）",
+  "approved_on": "2026-10-26",
+  "previous_ledger_sha256": "dc7acd578b049f8e261a5fde0320ee64acdf3fb7028958747c31b61cb1f5a0f1",
+  "app_sha256": "879568b9ff61530806d63aaa6068053e98f1d68b1fc6506a48adecc4035c6b8a",
+  "runtime_sha256": "283d12e16b124942302fcdc8281c729a8a7f676498f06df1d2646292905f579e",
+  "additional_http_requests": 4,
+  "limit_micro_cny": 30000000,
+  "scope": "image_function_roundtrip_then_search",
+  "successor_ledger_name": "g2v-real-budget-ledger-functional.json",
+  "preserve_unknown_reservations": true,
+  "failure_policy": "stop"
+}

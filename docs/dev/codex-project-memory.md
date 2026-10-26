@@ -1,5 +1,15 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 S4Y：隔离App复验通过子集，等待窗口交接（2026-10-27）
+
+最新[52](../features/FEAT-164-kimi-k31-pro-migration/52-isolated-app-functional-qualification-and-handoff.md)，续办先读feat164-s4y-audit-20261026/handoff.json。Desktop 54e961842cb7abe7234e3d643142e99f266ec833在ec1ab63上只将已有cfg(test)模块移到末尾，生产文字和断言逐字一致；Clippy lib/bins/tests -D warnings/原reader测试/19source/canonical均通过。App SHA879568b9ff61530806d63aaa6068053e98f1d68b1fc6506a48adecc4035c6b8a，119文件；日常ec1候选保持未激活。
+
+新隔离App图片＋HTML/SVG工具回灌/预览、MiniMax两任务completed，4次本机HTTP、真实0；首次正常⌘Q exit0、71表旧行保持、四库WAL0/integrity。第二次同构建已重开，但用户在模型菜单操作，异步窗口交接问题待回复；不要继续抢操作或把历史详情未检写成PASS。App session70340有意留开，Host/Runtime受管；不是全部停止。fixture及真实meter都已正常停止。
+
+工具a35e619e297c793ebb6cfb08730ab558f2924356单独checkout feat164-s4y-tools-20261026/Desktop，38独立测试/docs通过；schema5保留图片/搜索/函数回灌，原schema1-4不改。g2v-real-budget-ledger-functional.json绑定旧r5完整前6行、当前App/r5及30元，0/4新增，stopped_normally未耗槽。4次是本轮自行收紧的执行上限，来源仍Owner必要功能调用/搜索图片授权，不需再索预算。原三账本/14.188544预占逐字保持。搜索一旦发生完整新预占保留并停止，不伪精确账单。
+
+用户交回窗口后先核对当前同一App和ledger6行，启动同一meter及控制文件（路径在handoff，不打印内容），先核验旧合成任务重开，再按图片1/函数回灌约2/搜索最后的序列至多4HTTP、失败即停。不要重建/补额、移除搜索、重复42或恢复外观专项。真实日常库仍不允许打开/迁移，Runtime core/patch仍先方案。整项S4/final未完成，仅本地提交无推送。6554保护文件/497原dirty及混合memory保持，缺依赖环境修正和初次失败保留。
+
 ## FEAT-164 S4X：日常候选离线准备完成（2026-10-26）
 
 最新[51](../features/FEAT-164-kimi-k31-pro-migration/51-daily-candidate-implementation-and-offline-verification.md)。Owner批准50的8实现文件及测试文档、明确“不迁移日常库”。新目录feat164-s4x-daily-candidate-20261026/Desktop ec1ab631d76d2f6ba2c74e25eaac1ea60339dfb4共12文件；显式daily prepare-only/维护、精确compiled identity与flags、完整workflow/market/expert/media、独立回执实现。原主树fd0c575/100dirty未覆盖，Runtime/core/patch零改。
