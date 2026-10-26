@@ -1,0 +1,41 @@
+{
+  "command": [
+    "/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go",
+    "test",
+    "-race",
+    "-json",
+    "./internal/codex",
+    "-run",
+    "^TestFEAT164LoadedLegacyMigrationResumeCancel$",
+    "-count=1",
+    "-failfast",
+    "-timeout=0"
+  ],
+  "started_at": "2026-10-26T13:42:57.960042+08:00",
+  "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4q-qualification-20261026/yijie-agent-host",
+  "inputs": {
+    "YIJIE_CODEX_INTEGRATION_BINARY": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r5/aarch64-apple-darwin/codex",
+      "sha256": "283d12e16b124942302fcdc8281c729a8a7f676498f06df1d2646292905f579e"
+    },
+    "YIJIE_CODEX_INTEGRATION_MANIFEST": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/kimi-k31-pro-r5/aarch64-apple-darwin/runtime-manifest.json",
+      "sha256": "935dae6cf1427a8338b2817c4bfd39e9ae837e51a7f9cefd9117ecfed28b4cee"
+    },
+    "YIJIE_FEAT164_LEGACY_BINARY": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/chat-models-web-sources/aarch64-apple-darwin/codex",
+      "sha256": "9766d7e10d25327f0595964a19ad67e1e1c1db0c22e5a65f9af66b547ab316c6"
+    },
+    "YIJIE_FEAT164_LEGACY_MANIFEST": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/chat-models-web-sources/aarch64-apple-darwin/runtime-manifest.json",
+      "sha256": "91f1e4ef729410931fa13a304097b482cdb33d0d73baeb1235dc881c6875d6ba"
+    }
+  },
+  "exit_code": 1,
+  "passed": [],
+  "failed": [
+    "TestFEAT164LoadedLegacyMigrationResumeCancel"
+  ],
+  "skipped": [],
+  "finished_at": "2026-10-26T13:43:17.027189+08:00"
+}

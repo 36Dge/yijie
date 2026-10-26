@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-26T14:10:23.089007+08:00",
+  "test_commits": {
+    "yijie-agent-host": {
+      "head": "d49c005f8e533e1251179bb2319f6e3e2ec2db08",
+      "files": {
+        "internal/codex/feat164_cutover_integration_test.go": "82ecc5ff9497afea3ccb8e77e99f1965058f7ef10d4fe50583c565c13b9abd2c",
+        "internal/codex/feat164_loaded_migration_test.go": "d25f4814e821e8cc8eeaa39b7c4f3eb22329b0f9e27b611ef17b337aa0f4ffcf"
+      },
+      "original_fast_forwarded": true,
+      "push": false
+    },
+    "yijie-desktop": {
+      "head": "fd0c575e4465dea6bb72ec9681248f664000551b",
+      "files": {
+        "src-tauri/src/chat/schedules/mod.rs": "b6915ff7673f3c8d3db77bdffa58fe90bd06ba3e5fe64993219b644a0310bc03",
+        "src-tauri/src/chat/schedules/feat164_natural_plan_tests.rs": "138eb08d7ef0d21baa7d5d9af42c1c3bdb7c69ddcf2bb35d45f1a3469f8794f1",
+        "scripts/feat164-natural-plans.py": "9c9ed039b8f082a206cdbe84cd8ae49f8b471d7b5e7a00a36e534be4a2ed36ed"
+      },
+      "original_fast_forwarded": true,
+      "push": false
+    }
+  },
+  "production_sources": {
+    "runtime": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+    "contracts": "5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2",
+    "host": "894671b7288b34ca0493064cded3e461c924cd32",
+    "desktop": "b6f0ad7c5181e7ea488c019a1eccd76396eab16e"
+  },
+  "validation_binding": "Exact tested file bytes subsequently committed; raw runs record their pre-commit HEAD/status honestly. No claim of post-commit rerun or App rebuild."
+}

@@ -1,0 +1,61 @@
+{
+  "at": "2026-10-26T14:15:00.503830+08:00",
+  "result": "PASS_SCOPED_WITH_EXPLICIT_APP_ADMISSION_GAP",
+  "S2": "Host Manager and canonical r5 loaded legacy switch/normal cancel/history/reopen subset PASS; initial finite-fixture cleanup FAIL retained",
+  "S3": "five-phase natural plans PASS_DOMAIN_ONLY; SQL<38 candidate open remains blocked, no App migration claim",
+  "governance": {
+    "claims": {
+      "name": "claims",
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--audit-claims",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "at": "2026-10-26T14:12:47.390674+08:00"
+    },
+    "strict": {
+      "name": "strict",
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "at": "2026-10-26T14:12:47.340812+08:00"
+    },
+    "manifest": {
+      "name": "manifest",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exit_code": 0,
+      "at": "2026-10-26T14:12:47.736372+08:00"
+    },
+    "meta-tests": {
+      "name": "meta-tests",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exit_code": 0,
+      "at": "2026-10-26T14:12:55.676334+08:00"
+    }
+  },
+  "rust_final_fmt_exit": 0,
+  "strict_test_clippy": "FAIL preexisting native_conversation_storage.rs items_after_test_module only; no suppression",
+  "product_lib_clippy": "PASS",
+  "real_http_added": 0,
+  "loopback_http_added": 8,
+  "preservation": {
+    "original_dirty": 497,
+    "protected_files": 7838,
+    "unexpected_changes": 0
+  },
+  "runtime_patch_changed": false,
+  "all_FEAT164_complete": false,
+  "next": "Design and review explicit old isolated-store admission, then actual App S2/S3 vertical; no daily migration/real HTTP without applicable authorization"
+}

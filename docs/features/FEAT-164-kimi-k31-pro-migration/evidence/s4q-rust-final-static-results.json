@@ -1,0 +1,41 @@
+[
+  {
+    "name": "rust-clippy-tests-corrected",
+    "command": [
+      "cargo",
+      "clippy",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--lib",
+      "--tests",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit_code": 101,
+    "at": "2026-10-26T13:56:30.889327+08:00"
+  },
+  {
+    "name": "rust-clippy-product",
+    "command": [
+      "cargo",
+      "clippy",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--lib",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit_code": 0,
+    "at": "2026-10-26T13:56:31.070265+08:00"
+  }
+]

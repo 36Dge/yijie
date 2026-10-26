@@ -1,5 +1,7 @@
 # FEAT-164 测试与证据计划
 
+> 当前权威见[44 自然旧K3与计划离线验收](44-natural-legacy-migration-and-plan-qualification.md)：r5已加载旧身份经实际Host切换、正常取消/恢复子集通过；自然SQL29计划经显式正式迁移后的退役/重审/新授权/取消及重开通过。旧库App入口仍明确拒绝SQL<38，完整S2/S3纵向未通过。产品/Runtime未改，真实模型0，本机合成8，旧账本与预占保持。以下旧记录按原来源解释。
+
 > 最新按[39 证据绑定与三项最终验收](39-evidence-binding-and-final-verdicts.md)：当前来源141项＋4source和可达App验证通过，新增真实模型0；S1证据收口，S2/S3/S4保留完整纵向缺项。视觉单项PASS；core及Runtime checkpoint完整teardown未通过。两份真实账本、旧预占和日常库保持。以下旧记录按原时间与来源解释。
 
 > 2026-10-26最新续办以[36 当前离线资格与下一步](36-current-offline-qualification-and-next-gate.md)为准：当前S1/S2/S3及S4专家/媒体/辅助/旧线程安全检查通过，产品代码未改；候选无旧K3会话/计划可自然升级。完整G2V/TCONF/final与日常cutover仍缺，新真实HTTP许可0；后续避免反复运行已通过子集。

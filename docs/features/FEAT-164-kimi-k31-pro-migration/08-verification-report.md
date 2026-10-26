@@ -1,5 +1,7 @@
 # FEAT-164 实际验证记录
 
+> 当前权威见[44 自然旧K3与计划离线验收](44-natural-legacy-migration-and-plan-qualification.md)：r5已加载旧身份经实际Host切换、正常取消/恢复子集通过；自然SQL29计划经显式正式迁移后的退役/重审/新授权/取消及重开通过。旧库App入口仍明确拒绝SQL<38，完整S2/S3纵向未通过。产品/Runtime未改，真实模型0，本机合成8，旧账本与预占保持。以下旧记录按原来源解释。
+
 > 最新深入复审见[41 关闭方案再审](41-shutdown-plan-deep-review.md)：RCA后6项新unit＋6项RPC及Clippy通过，但listener无退出回执、RPC屏障顺序待修正。四文件候选未晋升；建议仅扩展thread_state/thread_lifecycle两文件，**待新增范围批准**。r5未构建，真实新增0。
 
 > 最新续办见[40 Runtime正常关闭审计与最小方案](40-runtime-shutdown-audit-and-minimal-plan.md)：单次零回合EOF复现未回填WAL，4库只读完整性ok；已收敛所有者排空日志并await四池关闭的候选。**核心/patch尚未修改，待Owner确认**；teardown/core及整项状态不变，真实新增0。
@@ -440,3 +442,11 @@ core_vertical NOT RUN（完整范围）；accessibility_visual PASS（当前可�
 ## E164-S4P-APP
 
 Desktop b6f0ad7、原r5/Host二进制不变。实际无效配置启动前拒绝；19来源、canonical media构建、正确配置两次ready/历史只读/正常退出通过，四库WAL0及副本integrity ok。模型HTTP真实/本机均0。SQLCipher全部原行保持仅加2正常停止行；Host全115键保留，仅14 updated_at更新。原Host bytewise检查FAIL保留，字段级审计另记PASS_SCOPED。完整G2V/G3/final不据此晋升。详见[43](43-app-readiness-root-cause-and-minimal-fix.md)及s4p-final-review证据。
+
+## E164-S4Q-S2
+
+实际Host Manager/r5已加载旧K3显式切换、正常interrupt、同ID正常重开/恢复子集PASS；首次fixture正常关闭超时FAIL保留，修正有限响应后race通过。累计8次loopback、真实0，四库WAL0/integrity ok；原生历史保留旧K3及新K3.1上下文。无App/SQL/Store全链晋升。来源与日志见s4q-source-binding、s4q-s2-first-result、s4q-s2-corrected-result、s4q-s2-retained-state-audit及[44](44-natural-legacy-migration-and-plan-qualification.md)。
+
+## E164-S4Q-S3
+
+真实默认API自然产生SQL29旧计划。首次candidate open在既有旧库门禁拒绝，源文件保持；此项不是PASS。独立正式migration测试与候选领域open完成五阶段PASS_DOMAIN_ONLY，0模型请求；旧授权/占用/原29条migration ledger保持，显式新模型保存仍暂停且须新grant，never-sent取消幂等，重开不恢复旧授权。见s4q-s3-old-store-gate-rca、s4q-s3-qualified-result、s4q-s3-sql-preservation及44。产品lib Clippy PASS，strict test Clippy仍因既有native_conversation_storage.rs排布错误失败。App旧库准入/界面纵向与全slice继续NOT RUN。

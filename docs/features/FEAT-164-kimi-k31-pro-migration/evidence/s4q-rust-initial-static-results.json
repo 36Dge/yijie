@@ -1,0 +1,34 @@
+[
+  {
+    "name": "rust-fmt",
+    "command": [
+      "cargo",
+      "fmt",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--check"
+    ],
+    "exit_code": 0,
+    "at": "2026-10-26T13:54:42.389722+08:00"
+  },
+  {
+    "name": "rust-clippy",
+    "command": [
+      "cargo",
+      "clippy",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--lib",
+      "--tests",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit_code": 101,
+    "at": "2026-10-26T13:55:11.371821+08:00"
+  }
+]

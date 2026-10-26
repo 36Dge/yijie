@@ -1,0 +1,27 @@
+{
+  "command": [
+    "cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "--manifest-path",
+    "src-tauri/Cargo.toml",
+    "--lib",
+    "--features",
+    "kimi-k31-pro-candidate",
+    "chat::schedules::feat164_natural_plan_tests::feat164_natural_plan_upgrade",
+    "--",
+    "--exact",
+    "--ignored",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4q-qualification-20261026/yijie-desktop",
+  "phase": "upgrade",
+  "started_at": "2026-10-26T13:47:44.542230+08:00",
+  "root": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4q-audit-20261026/feat164-natural-plans-20261026",
+  "exit_code": 101,
+  "finished_at": "2026-10-26T13:48:14.288387+08:00",
+  "passed": false,
+  "log_sha256": "5df0e869f82868a4ea11734d31818c0029d95489a1bb69a1734c7dd7ee238628"
+}

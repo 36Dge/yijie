@@ -1,5 +1,15 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 S4Q：自然旧K3与计划离线资格（2026-10-26）
+
+最新权威[44](../features/FEAT-164-kimi-k31-pro-migration/44-natural-legacy-migration-and-plan-qualification.md)。S2真实旧Runtime正常生成历史，当前r5 loaded旧身份经实际Host SwitchThread迁移，同thread K3.1/max、普通流式interrupt、正常重启/恢复通过；首次fixture等待断连超过其正常Shutdown期限FAIL保留，有限响应修正后PASS。两次共8 loopback，真实0；四库WAL0/只读完整性ok，原历史上下文保持。
+
+S3默认API自然产生两份SQL29计划/授权/占用。首次candidate正常open被既有SQL<38 guard拒绝、原文件保持；这是22号保留的产品准入门禁，不能再把缺项只归为App无旧记录。没有移除guard。独立test通过既有migration函数显式29→38后，candidate open38→41、退役、显式新模型保存paused、新grant、never-sent取消和重开通过；5阶段0skip/0模型，原29条migration ledger、旧grant/run/outbox等保留，旧occupied=1不退款。领域PASS不等于App旧库准入/完整S2/S3通过。
+
+仅测试提交Host d49c005f8e533e1251179bb2319f6e3e2ec2db08、Desktop fd0c575e4465dea6bb72ec9681248f664000551b；产品来源仍894671b/b6f0ad7，Runtime11fd/r5和Contracts5b5dad不变，S4P原App119文件保持，无需改核心/patch。Go race/vet、Rust fmt、产品lib Clippy通过；strict test Clippy仍被既有native_conversation_storage.rs:46排布错误阻断，未压制warning。所有失败与后续修正分别留存。
+
+本轮未开App、未修改候选或日常数据；497原dirty、旧账本/14.188544预占保持，5/5、30元cap和14.679001保守累计不变，仅本地无推送。下一步优先具体审定旧隔离库的显式准入/正常静止/兼容reader/回退边界，再补同源App的旧线程与旧计划纵向；不可把测试expand接到所有启动或删除白名单。S4/TCONF04/全部final/日常切换未完成，Runtime新范围仍先报确认。证据与保留数据在feat164-s4q-audit-20261026；无活动服务/模型调用/用户待答。
+
 ## FEAT-164 S4P：App未就绪已定位并最小修复（2026-10-26）
 
 最新权威[43](../features/FEAT-164-kimi-k31-pro-migration/43-app-readiness-root-cause-and-minimal-fix.md)。S4O无凭据media环境自动进入provider-only，Native剥离模型/计划配置，实际App候选Host schema11/base10缺v2 reader资格而正常拒绝；不能依据空资格host-home推断Host未启动（Native会改指App数据目录）。只读IPC健康ok/auth signed_in、前端context阶段chat_host_not_ready、实际副本ErrModelUnavailable已证明；不是继续修改Runtime的理由。

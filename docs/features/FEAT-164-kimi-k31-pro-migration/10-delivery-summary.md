@@ -1,5 +1,7 @@
 # FEAT-164 阶段交付
 
+> 当前权威见[44 自然旧K3与计划离线验收](44-natural-legacy-migration-and-plan-qualification.md)：r5已加载旧身份经实际Host切换、正常取消/恢复子集通过；自然SQL29计划经显式正式迁移后的退役/重审/新授权/取消及重开通过。旧库App入口仍明确拒绝SQL<38，完整S2/S3纵向未通过。产品/Runtime未改，真实模型0，本机合成8，旧账本与预占保持。以下旧记录按原来源解释。
+
 > 最新深入复审见[41 关闭方案再审](41-shutdown-plan-deep-review.md)：RCA后6项新unit＋6项RPC及Clippy通过，但listener无退出回执、RPC屏障顺序待修正。四文件候选未晋升；建议仅扩展thread_state/thread_lifecycle两文件，**待新增范围批准**。r5未构建，真实新增0。
 
 > 最新续办见[40 Runtime正常关闭审计与最小方案](40-runtime-shutdown-audit-and-minimal-plan.md)：单次零回合EOF复现未回填WAL，4库只读完整性ok；已收敛所有者排空日志并await四池关闭的候选。**核心/patch尚未修改，待Owner确认**；teardown/core及整项状态不变，真实新增0。

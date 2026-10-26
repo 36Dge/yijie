@@ -1,0 +1,137 @@
+{
+  "scope": "Natural SQL29 producer, explicit canonical expand, SQL41 retirement/review/grants/reopen; App old-store admission remains blocked",
+  "contract_impact": "none",
+  "real_model_http": 0,
+  "loopback_model_http": 0,
+  "source_head": "b6f0ad7c5181e7ea488c019a1eccd76396eab16e",
+  "source_status": [
+    " M src-tauri/src/chat/schedules/mod.rs",
+    "?? scripts/feat164-natural-plans.py",
+    "?? src-tauri/src/chat/schedules/feat164_natural_plan_tests.rs"
+  ],
+  "phases": [
+    {
+      "phase": "produce",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--lib",
+        "chat::schedules::feat164_natural_plan_tests::feat164_natural_plan_upgrade",
+        "--",
+        "--exact",
+        "--ignored",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "started_at": "2026-10-26T13:57:14.872795+08:00",
+      "finished_at": "2026-10-26T13:57:25.341578+08:00",
+      "exit_code": 0,
+      "pass": true,
+      "log_sha256": "1e9ca5d4d884b149697eb25ce5ed2b61dcd44e3012d03935fedfec68071fb5f9"
+    },
+    {
+      "phase": "admission",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--lib",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "chat::schedules::feat164_natural_plan_tests::feat164_natural_plan_upgrade",
+        "--",
+        "--exact",
+        "--ignored",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "started_at": "2026-10-26T13:57:25.343383+08:00",
+      "finished_at": "2026-10-26T13:57:35.425537+08:00",
+      "exit_code": 0,
+      "pass": true,
+      "log_sha256": "c24fe3447a975d8eebdec8a0faca856ffe647297b036595c90c549d5443a196a"
+    },
+    {
+      "phase": "expand",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--lib",
+        "chat::schedules::feat164_natural_plan_tests::feat164_natural_plan_upgrade",
+        "--",
+        "--exact",
+        "--ignored",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "started_at": "2026-10-26T13:57:35.425963+08:00",
+      "finished_at": "2026-10-26T13:57:36.581113+08:00",
+      "exit_code": 0,
+      "pass": true,
+      "log_sha256": "a87781232201062f8371cdbf91f6cfd7deb4f8cf89c78bb2feae8d125cf7b20d"
+    },
+    {
+      "phase": "upgrade",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--lib",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "chat::schedules::feat164_natural_plan_tests::feat164_natural_plan_upgrade",
+        "--",
+        "--exact",
+        "--ignored",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "started_at": "2026-10-26T13:57:36.581373+08:00",
+      "finished_at": "2026-10-26T13:57:37.562019+08:00",
+      "exit_code": 0,
+      "pass": true,
+      "log_sha256": "ef6ad099e195c815825895defcea41fecb9d78e59163d8d673368a74b6de73bd"
+    },
+    {
+      "phase": "reopen",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--lib",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "chat::schedules::feat164_natural_plan_tests::feat164_natural_plan_upgrade",
+        "--",
+        "--exact",
+        "--ignored",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "started_at": "2026-10-26T13:57:37.564378+08:00",
+      "finished_at": "2026-10-26T13:57:38.433545+08:00",
+      "exit_code": 0,
+      "pass": true,
+      "log_sha256": "84adf1bada53c2d938e3596915a0cbccd523b685df0ebb6f64c6251b39610b7a"
+    }
+  ],
+  "status": "PASS_DOMAIN_ONLY",
+  "app_old_store_admission": "BLOCKED_BY_EXISTING_PRODUCT_GUARD"
+}

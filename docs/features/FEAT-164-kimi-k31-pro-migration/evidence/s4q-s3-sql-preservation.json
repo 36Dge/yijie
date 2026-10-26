@@ -1,0 +1,37 @@
+{
+  "read_only": true,
+  "databases": 4,
+  "integrity": "ok",
+  "source_unchanged_by_inspection": true,
+  "audit_library_sha256": "555cce3be011978081b2e1d20781fe18d253bcf43afaca86d53e7e3b25fccf4d",
+  "cases": {
+    "review": {
+      "old_schema_ledger_rows_preserved": 29,
+      "current_schema_ledger_rows": 41,
+      "old_fact_rows_preserved": 6,
+      "new_retirement_receipts": 2,
+      "grants_before_after": [
+        3,
+        4
+      ],
+      "runs_before_after": [
+        0,
+        1
+      ]
+    },
+    "held": {
+      "old_schema_ledger_rows_preserved": 29,
+      "current_schema_ledger_rows": 41,
+      "old_fact_rows_preserved": 14,
+      "new_retirement_receipts": 2,
+      "grants_before_after": [
+        3,
+        3
+      ],
+      "runs_before_after": [
+        1,
+        1
+      ]
+    }
+  }
+}

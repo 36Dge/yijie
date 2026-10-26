@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-26T13:44:04.538033+08:00",
+  "failure": "first S2 run native sequence reached expected identities and terminals, but fixture HTTP Shutdown timed out at15s",
+  "facts": [
+    "4 loopback requests only; 1 legacy and 3 current",
+    "Runtime normal Shutdown returned for each generation",
+    "fixture handler waited context cancellation or30s, while cleanup deadline15s",
+    "no evidence that native interrupt promises remote HTTP disconnect"
+  ],
+  "invalid_assumption": "Native interrupted automatically closes server-visible request context before server cleanup",
+  "minimal_correction": "finite ordinary stream completes at1s, independently wait for handler completion; verify interrupted history after normal finite provider response; keep original native assertions and failed observation",
+  "product_change": false,
+  "runtime_change": false,
+  "retry_limit": "one corrected run, no automatic further retries"
+}

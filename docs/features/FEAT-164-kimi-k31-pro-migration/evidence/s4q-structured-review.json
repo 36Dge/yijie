@@ -1,0 +1,24 @@
+{
+  "product_sources_changed": false,
+  "runtime_core_or_patch_changed": false,
+  "existing_app_artifacts_verified": 119,
+  "existing_app_mismatches": [],
+  "source_files": {
+    "yijie-agent-host": {
+      "internal/codex/feat164_cutover_integration_test.go": "82ecc5ff9497afea3ccb8e77e99f1965058f7ef10d4fe50583c565c13b9abd2c",
+      "internal/codex/feat164_loaded_migration_test.go": "d25f4814e821e8cc8eeaa39b7c4f3eb22329b0f9e27b611ef17b337aa0f4ffcf"
+    },
+    "yijie-desktop": {
+      "src-tauri/src/chat/schedules/mod.rs": "b6915ff7673f3c8d3db77bdffa58fe90bd06ba3e5fe64993219b644a0310bc03",
+      "src-tauri/src/chat/schedules/feat164_natural_plan_tests.rs": "138eb08d7ef0d21baa7d5d9af42c1c3bdb7c69ddcf2bb35d45f1a3469f8794f1",
+      "scripts/feat164-natural-plans.py": "9c9ed039b8f082a206cdbe84cd8ae49f8b471d7b5e7a00a36e534be4a2ed36ed"
+    }
+  },
+  "scope_notes": [
+    "Host changes are in *_test.go only",
+    "Desktop mod.rs change is cfg(test) module registration only",
+    "Desktop added opt-in test and offline runner; no private/public IPC, SQL migration, permission or producer change",
+    "Existing SQL<38 candidate open guard preserved; explicit test expansion is not production admission"
+  ],
+  "static_limit": "strict clippy --tests still blocked by preexisting items_after_test_module at native_conversation_storage.rs:46; product clippy passes; no warning suppressions"
+}

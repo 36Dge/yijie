@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-26T13:50:30.590606+08:00",
+  "first_upgrade": "FAIL at real open guard, before migrations",
+  "legacy_schema": 29,
+  "changed_files_after_refused_open": [],
+  "authority": "22-ui-deferral-and-s2-foundation.md: current App old-store entrance deliberately not opened",
+  "decision": "Keep product guard. Add distinct explicit expand phase in opt-in test, default compatible reader calling existing migrations::migrate_to_target(38) on ONLY this generated fixture. Then candidate actual open executes38->41 and retirement. This qualifies canonical migration/domain semantics, NOT App old-store admission.",
+  "runtime_or_product_change": false,
+  "forbidden": [
+    "no PRAGMA user_version fabrication",
+    "no direct SQL identity updates",
+    "no daily data migration",
+    "no relaxed startup guard"
+  ]
+}

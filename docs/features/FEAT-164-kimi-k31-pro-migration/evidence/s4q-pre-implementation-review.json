@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-26T13:41:37.179199+08:00",
+  "incremental_contract_impact": "none",
+  "reason": "Opt-in test harness and evidence only. No product/public wire/durable semantics changes. Whole FEAT-164 remains breaking.",
+  "S2": [
+    "Canonical legacy Runtime creates K3 history normally in new retained root; assert loaded and successful.",
+    "Normal EOF; current r5 reads same history and loads old identity using stable read/resume without model HTTP.",
+    "Actual Host SwitchThread unload/resume to K3.1 on same ID; successful loopback turn, active-turn normal interrupt, normal restart/history and explicit resume; all post-cutoff HTTP K3.1/max.",
+    "If loaded migration fails, retain failure; inspect minimal Host lifecycle remedy before edits; Runtime patch requires separate approval."
+  ],
+  "S3": [
+    "Default non-candidate Desktop product APIs save and authorize old K3 plan in new SQLCipher root, plus retained prepared run and MiniMax control. No SQL UPDATE to manufacture old identity.",
+    "Current candidate opens same root; actual retirement before worker; old facts retained, old grant denied, no automatic dispatch.",
+    "Explicit replacement save stays paused and old authority stale; independent fresh grant binds current definition; normal cancel of never-sent new run is idempotent; normal reopen keeps historical receipts."
+  ],
+  "UI_limit": "Existing App has no naturally old K3 records. Do not rewrite its DB or use daily data. Native test proof does not equal App UI proof.",
+  "safety": [
+    "zero real HTTP",
+    "synthetic credentials and loopback only",
+    "no forcekill/manual checkpoint/WAL deletion",
+    "no runtime/core/patch changes",
+    "preserve ledgers, reserve, dirty files",
+    "local commits only"
+  ]
+}

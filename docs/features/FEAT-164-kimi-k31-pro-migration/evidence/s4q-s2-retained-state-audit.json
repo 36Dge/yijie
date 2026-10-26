@@ -1,0 +1,206 @@
+{
+  "runs": [
+    {
+      "name": "s2-loaded-migration",
+      "proof": {
+        "interrupted_turn_id": "01a176bb-cd27-7001-9969-94c2ce6ce2a2",
+        "loopback_requests": 4,
+        "real_model_http": 0,
+        "retained_root": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat164-cutover-2541872278",
+        "thread_id": "01a176bb-cba5-7612-aa6e-bcdb2f3135a6"
+      },
+      "ledger": [
+        {
+          "Model": "kimi-k3",
+          "Effort": "max",
+          "Kind": "ordinary",
+          "Digest": "45980c96b91b2d39791902f3b539856114f5f522f4b018fe0a7c44971b7d64ea",
+          "InputBytes": 20759
+        },
+        {
+          "Model": "kimi-k3.1-pro",
+          "Effort": "max",
+          "Kind": "ordinary",
+          "Digest": "bd37b98065844c121b091153e6e068da71303840dad40e1842f82403498abe83",
+          "InputBytes": 29109
+        },
+        {
+          "Model": "kimi-k3.1-pro",
+          "Effort": "max",
+          "Kind": "ordinary",
+          "Digest": "2882ad6725df96bd2b866f5ba44f6b42074dcc6a531cb4f2100b43f4583ac3b9",
+          "InputBytes": 29372
+        },
+        {
+          "Model": "kimi-k3.1-pro",
+          "Effort": "max",
+          "Kind": "ordinary",
+          "Digest": "f55281ac0721a3cc67298598c5cc3fa3d6f7863f04f0988d509458050f910465",
+          "InputBytes": 29820
+        }
+      ],
+      "dbs": [
+        {
+          "name": "logs_2.sqlite",
+          "integrity": [
+            "ok"
+          ],
+          "source_wal_bytes": 0
+        },
+        {
+          "name": "memories_1.sqlite",
+          "integrity": [
+            "ok"
+          ],
+          "source_wal_bytes": 0
+        },
+        {
+          "name": "state_5.sqlite",
+          "integrity": [
+            "ok"
+          ],
+          "source_wal_bytes": 0
+        },
+        {
+          "name": "goals_1.sqlite",
+          "integrity": [
+            "ok"
+          ],
+          "source_wal_bytes": 0
+        }
+      ],
+      "rollouts": [
+        {
+          "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4q-audit-20261026/s2-loaded-migration-retained/runtime/sessions/2026/10/26/rollout-2026-10-26T13-43-01-01a176bb-cba5-7612-aa6e-bcdb2f3135a6.jsonl",
+          "sha256": "244aff5c1bcec98cb82a3e65583377b1f17ccbfce5cacb77172935f38b9ff1b3",
+          "turn_context_models": [
+            "kimi-k3",
+            "kimi-k3.1-pro",
+            "kimi-k3.1-pro",
+            "kimi-k3.1-pro"
+          ],
+          "assistant_messages": [
+            {
+              "sha256": "e747d9f94b0738ad547133d0f417a45d56fb463d232ec0561bd4d67e751e0991",
+              "old_marker": true,
+              "current_marker": false
+            },
+            {
+              "sha256": "fc5028a7fa97f0a8d7a7b0e3f4d4c2b5035c93eac3689ba572851d4cec4ce7ba",
+              "old_marker": false,
+              "current_marker": true
+            },
+            {
+              "sha256": "716c43ad6078df0b53ee20cf8ba23ad9781c00bf05fb06283177bfc2cedfff2a",
+              "old_marker": false,
+              "current_marker": true
+            }
+          ]
+        }
+      ],
+      "retained_copy": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4q-audit-20261026/s2-loaded-migration-retained"
+    },
+    {
+      "name": "s2-loaded-migration-corrected",
+      "proof": {
+        "interrupted_turn_id": "01a176be-2f42-7750-9b4f-e02d3a8b9d86",
+        "loopback_requests": 4,
+        "real_model_http": 0,
+        "retained_root": "/private/var/folders/cz/cznlfndj1m1909kfnny__x780000gn/T/feat164-cutover-682678984",
+        "thread_id": "01a176be-2d90-7252-85fc-57483e4dfac0"
+      },
+      "ledger": [
+        {
+          "Model": "kimi-k3",
+          "Effort": "max",
+          "Kind": "ordinary",
+          "Digest": "2d9083db1a079647fd86cf6ac4185fa5d3efad1a8d07b26e1c28ef44d1a50abd",
+          "InputBytes": 20747
+        },
+        {
+          "Model": "kimi-k3.1-pro",
+          "Effort": "max",
+          "Kind": "ordinary",
+          "Digest": "a9f3fb1bff9845939b5d54a1af534c4da551d025edcb11fe8bcb41ac7f2b061e",
+          "InputBytes": 29096
+        },
+        {
+          "Model": "kimi-k3.1-pro",
+          "Effort": "max",
+          "Kind": "ordinary",
+          "Digest": "b202c6b659d32d095c39109d52348fb3ed0a7ea3094240f913cc4adeeaaad846",
+          "InputBytes": 29359
+        },
+        {
+          "Model": "kimi-k3.1-pro",
+          "Effort": "max",
+          "Kind": "ordinary",
+          "Digest": "21d53fc655b9ae33fe04b800fcf737573826594a12f281484dfece286dc64c61",
+          "InputBytes": 29807
+        }
+      ],
+      "dbs": [
+        {
+          "name": "logs_2.sqlite",
+          "integrity": [
+            "ok"
+          ],
+          "source_wal_bytes": 0
+        },
+        {
+          "name": "memories_1.sqlite",
+          "integrity": [
+            "ok"
+          ],
+          "source_wal_bytes": 0
+        },
+        {
+          "name": "state_5.sqlite",
+          "integrity": [
+            "ok"
+          ],
+          "source_wal_bytes": 0
+        },
+        {
+          "name": "goals_1.sqlite",
+          "integrity": [
+            "ok"
+          ],
+          "source_wal_bytes": 0
+        }
+      ],
+      "rollouts": [
+        {
+          "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4q-audit-20261026/s2-loaded-migration-corrected-retained/runtime/sessions/2026/10/26/rollout-2026-10-26T13-45-37-01a176be-2d90-7252-85fc-57483e4dfac0.jsonl",
+          "sha256": "a7ce5aaae70d4a4b405cde1ca9ff3e3dd7187cc20109c5fe5b65e31659a744a8",
+          "turn_context_models": [
+            "kimi-k3",
+            "kimi-k3.1-pro",
+            "kimi-k3.1-pro",
+            "kimi-k3.1-pro"
+          ],
+          "assistant_messages": [
+            {
+              "sha256": "ee7393d3e5feb7a39ab64f0034ad17c26a86cf4420fd7f0166bc6826b78015ba",
+              "old_marker": true,
+              "current_marker": false
+            },
+            {
+              "sha256": "1c5d85584f489366ae1cfa13de8283044c108ba373337b5a522cf4f5914ce269",
+              "old_marker": false,
+              "current_marker": true
+            },
+            {
+              "sha256": "448d9409be898b421200a968a662f51f2fb92fafd7e1f3d4c4f729a295762647",
+              "old_marker": false,
+              "current_marker": true
+            }
+          ]
+        }
+      ],
+      "retained_copy": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4q-audit-20261026/s2-loaded-migration-corrected-retained"
+    }
+  ],
+  "real_model_http_added": 0,
+  "loopback_model_http": 8
+}

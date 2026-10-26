@@ -645,7 +645,7 @@ slices:
       production_bootstrap: true
       invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation reference changes
     status: pending
-    status_reason: 当前local/boundary与所有来源已绑定；仅剩完整自然旧K3 App纵向缺项，不借本机普通正控判全slice PASS。
+    status_reason: S4Q补齐当前r5已加载旧K3经实际Host切换及正常取消恢复子集；旧库App准入仍拒绝SQL<38，SQL/Store/UI完整纵向缺项未关闭，旧local/boundary保留原r4来源。见44。
   - id: S3
     intent: worker接管前退役保护及计划领域授权迁移
     required: true
@@ -734,7 +734,7 @@ slices:
       production_bootstrap: true
       invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation reference changes
     status: pending
-    status_reason: 当前local/boundary和来源已收口；自然旧K3计划App纵向及前置S2仍缺。
+    status_reason: S4Q自然SQL29计划经显式正式migration后的领域退役重审授权取消重开通过；App旧库准入及前置S2完整纵向仍缺，旧证据保留原来源。见44。
   - id: S4
     intent: 全启用调用面、同源UI与正常退出兼容回退
     required: true
@@ -1411,9 +1411,28 @@ implementation:
     real_model_http_added: 0
     r4_evidence_inherited_as_r5: false
     note: S4O无凭据启动误入provider-only，schema11库正常拒绝无v2 reader；S4P仅launcher5行预检并恢复标准本机fixture装配。Runtime/Host实现不改，两次ready/历史只读/正常退出四库WAL0。SQL原行保持，仅追加2停止记录；Host仅14更新时间变化。完整G2V/G3/final不据此晋升。
+  natural_legacy_s4q:
+    status: PASS_NATIVE_AND_PLAN_DOMAIN_SUBSETS
+    report: 44-natural-legacy-migration-and-plan-qualification.md
+    source_binding: evidence/s4q-source-binding.json
+    host_test_commit: d49c005f8e533e1251179bb2319f6e3e2ec2db08
+    desktop_test_commit: fd0c575e4465dea6bb72ec9681248f664000551b
+    runtime_commit: 11fd4504c28afd0f65c6f5f62a6b5328dd437f5a
+    product_implementation_changed: false
+    runtime_core_or_patch_changed: false
+    native_loaded_migration_cancel_resume: PASS_SCOPED
+    natural_plan_domain_phases_passed: 5
+    app_old_store_admission: BLOCKED_BY_EXISTING_SQL_BELOW_38_GUARD
+    old_ledger_rows_preserved_per_fixture: 29
+    loopback_model_http_added: 8
+    real_model_http_added: 0
+    product_lib_clippy: PASS
+    strict_test_clippy: BLOCKED_PREEXISTING_ITEMS_AFTER_TEST_MODULE
+    app_ui: NOT RUN
+    note: 首次S2 fixture关闭超时、首次S3旧库正常open拒绝、首次Clippy结果均保留；修正/显式领域资格不覆盖这些历史失败，也不开放日常库或把测试expand当产品切换入口。
 product_verification:
   status: IN_PROGRESS
-  reason: S4P已定位并修复错误的provider-only聊天装配，r5 App两次ready/只读历史/正常退出及四库WAL0通过；S2/S3纵向、完整S4/TCONF04/core及全部final仍缺。旧真实G2V不继承r5，预算/预占保持，模型HTTP新增0，日常cutover未执行。见43。
+  reason: S4Q当前r5已加载旧K3迁移取消恢复、自然旧计划显式migration及重新审阅授权领域子集通过；关键未完成项是旧隔离库产品准入仍拒绝SQL<38，完整S2/S3 App纵向、S4/TCONF04及全部final仍缺。产品/Runtime未改，真实新增0，旧账本预占和日常库保持。见44。
 profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
 owner_approvals:
   requirements: approved_by_owner_current_user_message
