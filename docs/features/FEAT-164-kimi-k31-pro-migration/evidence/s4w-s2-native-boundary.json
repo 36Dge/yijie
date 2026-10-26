@@ -1,0 +1,23 @@
+{
+  "command": [
+    "/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go",
+    "test",
+    "-race",
+    "-json",
+    "./internal/app",
+    "-run",
+    "^TestFEAT164NativeHostBoundary$",
+    "-count=1",
+    "-failfast",
+    "-timeout=0"
+  ],
+  "started_at": "2026-10-26T22:11:20.226199+08:00",
+  "finished_at": "2026-10-26T22:11:27.391956+08:00",
+  "exit_code": 0,
+  "passed": 1,
+  "skipped": 0,
+  "exact_marker": true,
+  "retained_roots": [
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4w-audit-20261026/retained-s2/feat164-native-boundary-2240432962"
+  ]
+}

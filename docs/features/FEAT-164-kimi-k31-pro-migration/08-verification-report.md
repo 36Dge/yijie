@@ -490,3 +490,31 @@ Host7bf43fe仅测试生命周期/新入口，产品与8cd6bcc逐字相同。当�
 <!-- evidence: E164-S4V-FINAL -->
 
 独立判定：teardown PASS，绑定本轮同源真实退出/重开与46—48正常取消/媒体/Runtime来源；core及剩余业务状态完整范围NOT RUN，明确缺供应商非文本样例与unknown/never-sent完整App安全自然观察。外观专项已移除，不算缺项。没有将子集或合成模型结果写成整项完成。
+
+
+## E164-S4W-S1
+
+<!-- evidence: E164-S4W-S1 -->
+
+当前Host11项及同源暂停App通过：Kimi禁用/MiniMax可选/历史42可读/发送禁用，0模型尝试；绑定49当前真实G2V。 来源和归并口径见50及s4w索引；未重建App、未改Runtime核心，不把分批证据声称为一次fresh完整运行。
+
+
+## E164-S4W-S2
+
+<!-- evidence: E164-S4W-S2 -->
+
+当前Host27＋Native32＋实际Native/Host/r5边界1，共60项通过；原操作/当前selection、正常重启/never-sent取消0POST，1次MiniMax合成。46旧App迁移/正常取消按源码逐字证据绑定，完整unknown GUI不作已观察。 来源和归并口径见50及s4w索引；未重建App、未改Runtime核心，不把分批证据声称为一次fresh完整运行。
+
+
+## E164-S4W-S3
+
+<!-- evidence: E164-S4W-S3 -->
+
+当前5项exact Native计划测试通过；46自然旧计划重审/保持关闭/新单次grant/旧授权保持/正常重开绑定当前来源。 来源和归并口径见50及s4w索引；未重建App、未改Runtime核心，不把分批证据声称为一次fresh完整运行。
+
+
+## E164-S4W-S4
+
+<!-- evidence: E164-S4W-S4 -->
+
+48的当前Runtime/辅助/四组合、47媒体、49真实文本及本轮source audit保持；317项旧证据hash匹配。完整TCONF04及core/业务状态final仍NOT RUN，teardown保持通过。 来源和归并口径见50及s4w索引；未重建App、未改Runtime核心，不把分批证据声称为一次fresh完整运行。

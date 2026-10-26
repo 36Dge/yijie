@@ -1,0 +1,111 @@
+{
+  "indices": [
+    {
+      "index": "s4s-audit-index.json",
+      "files": 196,
+      "mismatches": []
+    },
+    {
+      "index": "s4t-audit-index.json",
+      "files": 55,
+      "mismatches": []
+    },
+    {
+      "index": "s4u-audit-index.json",
+      "files": 40,
+      "mismatches": []
+    },
+    {
+      "index": "s4v-audit-index.json",
+      "files": 26,
+      "mismatches": []
+    }
+  ],
+  "sources": {
+    "yijie-desktop": {
+      "head": "9f5814fec6cd071d39f0c12f8f48097ce661cb6a",
+      "status": []
+    },
+    "yijie-agent-host": {
+      "head": "8cd6bccbdc1ac3906aea53d95441299f7cfefcce",
+      "status": []
+    },
+    "yijie-codex": {
+      "head": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+      "status": []
+    },
+    "yijie-contracts": {
+      "head": "ca06d0999c9a08afe80ab3f34a537d492b830ac7",
+      "status": []
+    },
+    "yijie-connectors": {
+      "head": "cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9",
+      "status": []
+    },
+    "yijie-skills": {
+      "head": "595c927ae101d3d31c234f60565041eee0864680",
+      "status": []
+    }
+  },
+  "s4s_actual_compiled_migration": "54921df1af7645042c8cbaca39a2202fbdb0b087",
+  "s4s_current_product": "9f5814fec6cd071d39f0c12f8f48097ce661cb6a",
+  "unchanged_migration_authority_files": {
+    "src-tauri/src/chat/isolated_model_migration.rs": "79c57cc43bc7c700455bcdd4d03bd9791ca564d18f3b6b80a836efa8c3cf6814",
+    "src-tauri/src/chat/database.rs": "02881ee6c8a91585912406b0d48830e5e6f679f7e4bc435aa63e82ae95e263e7",
+    "src-tauri/src/chat/migrations.rs": "63879176861d7fffa3dcdd79ccbf24b650e187a58dac0524ceb2c88db9eb0e3d",
+    "src-tauri/src/chat/schedules/model_retirement.rs": "a1b8c0ba5f552067221709eb8f0672bddcbd044f4274e49b886e48f90b08626e",
+    "src-tauri/tauri.feat164-qualification.conf.json": "2bbdf6e005bc0816aecce51a294b886948b88a9add1995d93a81c5a6ddd38cf0"
+  },
+  "transitive_changed_files_from_s4l": {
+    "yijie-desktop": [
+      "SECURITY.md",
+      "contracts/chat-models-v2.candidate.json",
+      "contracts/feat164-legacy-host-build.candidate.json",
+      "contracts/kimi-k31-host-build.candidate.json",
+      "contracts/market-catalog-feat164.candidate.json",
+      "contracts/runtime-chat-models.candidate.json",
+      "contracts/runtime-kimi-k31-pro.candidate.json",
+      "docs/feat164-isolated-model-migration.md",
+      "docs/feat164-qualification-profile.md",
+      "scripts/chat-model-build-candidate.mjs",
+      "scripts/chat-model-build-candidate.test.mjs",
+      "scripts/check-feat164-generation.mjs",
+      "scripts/feat164-market-catalog.mjs",
+      "scripts/feat164-natural-plans.py",
+      "scripts/kimi-k31-build-candidate.mjs",
+      "scripts/kimi-k31-packaged-receipt.mjs",
+      "scripts/run-local-demo-fast.sh",
+      "src-tauri/src/chat/database.rs",
+      "src-tauri/src/chat/isolated_model_migration.rs",
+      "src-tauri/src/chat/mod.rs",
+      "src-tauri/src/chat/schedules/feat164_natural_plan_tests.rs",
+      "src-tauri/src/chat/schedules/mod.rs",
+      "src-tauri/src/chat/sidecar.rs",
+      "src-tauri/src/feat164_qualification.rs",
+      "src-tauri/src/lib.rs",
+      "src-tauri/tauri.feat164-qualification.conf.json"
+    ],
+    "yijie-agent-host": [
+      "api/chat-models-v2.candidate.json",
+      "api/runtime-chat-models.candidate.json",
+      "api/runtime-kimi-k31-pro.candidate.json",
+      "docs/feat164-legacy-qualification-provenance.md",
+      "docs/feat164-r5-consumer.md",
+      "internal/contracts/runtimekimik31pro/artifact.gen.go"
+    ]
+  },
+  "daily_integration": {
+    "feat164_committed_paths_after_original_head": 18,
+    "dirty_overlapping_paths": [
+      "contracts/runtime-chat-models.candidate.json",
+      "scripts/chat-model-build-candidate.mjs",
+      "src-tauri/src/chat/database.rs",
+      "src-tauri/src/chat/mod.rs",
+      "src-tauri/src/lib.rs"
+    ],
+    "original_dirty_files": 100,
+    "main_tree_modified": false
+  },
+  "real_http_added": 0,
+  "result": "PASS"
+}

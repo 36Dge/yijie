@@ -1,0 +1,11 @@
+{
+  "scope": "read-only integration preflight, not an applied patch",
+  "conflict_file": "contracts/runtime-chat-models.candidate.json",
+  "base": "7fd463bcef07f37b0211acd9f62b9f93ea0a4b12",
+  "existing_user_change": "9154f27d0cdb526a5f5ba0913fe3e2448014b4a1",
+  "feat164_qualified_source": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+  "only_changed_field": "runtime_source.base_commit",
+  "artifacts_patch_schema_other_fields_equal": true,
+  "resolution": "保留原主树9154f27字段；新集成候选由已验证Contracts ca06/legacy generator提供11fd源，不手改生成物或把9154覆盖后声称未改。实际合并前按独立来源和用户改动记录评审。",
+  "applied": false
+}

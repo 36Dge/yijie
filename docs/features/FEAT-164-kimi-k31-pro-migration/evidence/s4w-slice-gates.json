@@ -1,0 +1,22 @@
+[
+  {
+    "slice": "S1",
+    "exit_code": 0,
+    "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，且 G3/S1 范围与语义门禁通过。\nNOTE: 此结果不证明未声明的代码、测试、安全、兼容或生产门禁已经通过。\n"
+  },
+  {
+    "slice": "S2",
+    "exit_code": 0,
+    "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，且 G3/S2 范围与语义门禁通过。\nNOTE: 此结果不证明未声明的代码、测试、安全、兼容或生产门禁已经通过。\n"
+  },
+  {
+    "slice": "S3",
+    "exit_code": 0,
+    "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，且 G3/S3 范围与语义门禁通过。\nNOTE: 此结果不证明未声明的代码、测试、安全、兼容或生产门禁已经通过。\n"
+  },
+  {
+    "slice": "S4",
+    "exit_code": 1,
+    "output": "ERROR: slice S4.status must be pass\nERROR: slice S4.vertical_evidence.status must be PASS when required\nERROR: slice S4.vertical_evidence.exit_code must equal 0 when required\nERROR: temporal_contract_matrix.executable_tests[3].status must be PASS for G3/S4\nERROR: temporal_contract_matrix.executable_tests[3].exit_code must equal 0 for G3/S4\n"
+  }
+]

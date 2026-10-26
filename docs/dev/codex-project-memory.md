@@ -1,5 +1,13 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 S4W：S1—S3收口、日常候选实现已批准（2026-10-26）
+
+最新[50](../features/FEAT-164-kimi-k31-pro-migration/50-slice-evidence-closure-and-daily-deployment-plan.md)。76项定向检查通过（S1 11/S2 60/S3 5），当前同源暂停App Kimi禁用、MiniMax可选、历史42可读，0模型尝试；正常退出/71表旧行/4库WAL0。S2真实Native→Host→r5边界1次MiniMax合成，正常重启/取消零POST，完整home保留。Host f97d2216001e78df02e93c972a6aec2e1d772f58仅一个测试保留逻辑，299非测试产品文件仍等于8cd，App/Runtime不改。317项旧证据hash核对通过。
+
+S1/S2/S3 G3实际PASS；S4仍缺完整TCONF04/供应商非文本/完整unknown GUI，不能把每个UI未决形态写成已观察。代表性旧App迁移/取消/计划纵向来源46已与当前源码逐字绑定；不是新binary重跑迁移或一次fresh全部场景。49真实r5资格与正常teardown保持；真实HTTP新增0、旧三账本/预占保持，必要功能调用授权不撤销。
+
+日常集成18文件只读预检发现runtime-chat-models.candidate.json来源锁与原dirty9154冲突，仅metadata base_commit；不手改生成物或覆盖原工作区。Owner已明确“批准实现及离线验证，不迁移日常库”，批准50列明8个Desktop实现文件及测试文档在新隔离目录实施，无Runtime核心/补丁修改。日常实际开库/迁移/启动仍需后续具体产物/备份/预检批准。外观三专项仍移除。
+
 ## FEAT-164 S4V：r5真实资格通过与日常切换边界（2026-10-26）
 
 最新[49](../features/FEAT-164-kimi-k31-pro-migration/49-r5-real-qualification-and-daily-cutover-boundary.md)。Owner明确“需要调用就直接调用，无需精确计算”，必要真实功能验证已授权，不再以精确查价或旧5次耗尽重复询问。先最小1次：实际K3.1/max HTTP200答42/完成，保存、同构建重开0补发，两次正常退出；4Runtime库WAL0/integrity、71表旧行全部保持。App仍9f media42a23cf，Host8cd/Runtime11fd-r5不变。

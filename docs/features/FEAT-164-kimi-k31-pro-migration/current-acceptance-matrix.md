@@ -1,5 +1,7 @@
 # FEAT-164 当前验收与来源矩阵
 
+> 当前按[50 前三切片收口与日常部署方案](50-slice-evidence-closure-and-daily-deployment-plan.md)：S1—S3的G3已通过，S4完整验收仍缺；Owner已批准8文件日常候选实现及离线验证，明确不迁移真实日常库。此前状态按原阶段解释。
+
 > 当前以[49 r5真实功能与日常边界](49-r5-real-qualification-and-daily-cutover-boundary.md)为准：Owner已明确授权必要真实功能调用且不要求精确查价；本轮1次r5真实42、保存/重开零补发和正常退出通过。旧账本/预占保持，日常迁移未执行；完整core/剩余业务状态仍按明确缺口判定。已移除外观专项不再作为门槛。
 
 2026-10-26。整项目标是活动Kimi全面替换为kimi-k3.1-pro，同时保留历史、原操作与授权事实、MiniMax能力；完成标准仍为01的十项Must AC。独立验收身份只是取得缺失证据的手段。当前整项IN_PROGRESS，十项AC整体pending，不以局部PASS或本地提交代替完成。

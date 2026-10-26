@@ -1,0 +1,60 @@
+[
+  {
+    "name": "s2-native-delivery",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "--lib",
+      "feat164_delivery",
+      "--",
+      "--test-threads=1"
+    ],
+    "started_at": "2026-10-26T22:03:56.838884+08:00",
+    "finished_at": "2026-10-26T22:04:07.271891+08:00",
+    "exit_code": 0,
+    "passed": 12,
+    "ignored": 0,
+    "expected": 12
+  },
+  {
+    "name": "s2-native-recovery",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "--lib",
+      "feat164",
+      "--",
+      "--skip",
+      "feat164_surfaces",
+      "--skip",
+      "feat164_delivery",
+      "--skip",
+      "feat164_native_host_boundary",
+      "--skip",
+      "chat::schedules::model_retirement_tests::",
+      "--skip",
+      "chat::database::isolated_model_migration::",
+      "--skip",
+      "chat::schedules::feat164_natural_plan_tests::",
+      "--test-threads=1"
+    ],
+    "started_at": "2026-10-26T22:04:07.272031+08:00",
+    "finished_at": "2026-10-26T22:04:23.881224+08:00",
+    "exit_code": 0,
+    "passed": 20,
+    "ignored": 0,
+    "expected": 20
+  }
+]

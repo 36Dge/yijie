@@ -1,0 +1,65 @@
+[
+  {
+    "name": "s1-activation",
+    "command": [
+      "/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go",
+      "test",
+      "-race",
+      "-json",
+      "./internal/codex",
+      "-run",
+      "^TestFEAT164ActivationAndRetiredAdmission$",
+      "-count=1",
+      "-failfast",
+      "-timeout=0"
+    ],
+    "started_at": "2026-10-26T22:00:59.440131+08:00",
+    "finished_at": "2026-10-26T22:01:02.594656+08:00",
+    "exit_code": 0,
+    "passed": 11,
+    "skipped": 0,
+    "expected": 11
+  },
+  {
+    "name": "s2-host-temporal",
+    "command": [
+      "/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go",
+      "test",
+      "-race",
+      "-json",
+      "./internal/session",
+      "-run",
+      "^TestFEAT164MigrationReceiptAndRecovery$",
+      "-count=1",
+      "-failfast",
+      "-timeout=0"
+    ],
+    "started_at": "2026-10-26T22:01:02.594793+08:00",
+    "finished_at": "2026-10-26T22:01:06.815031+08:00",
+    "exit_code": 0,
+    "passed": 25,
+    "skipped": 0,
+    "expected": 25
+  },
+  {
+    "name": "s2-host-routes",
+    "command": [
+      "/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go",
+      "test",
+      "-race",
+      "-json",
+      "./internal/app",
+      "-run",
+      "^TestFEAT164(V2OperationRoutesValidateBeforeService|ModelRoutesPreserveAuthAndRetiredRead)$",
+      "-count=1",
+      "-failfast",
+      "-timeout=0"
+    ],
+    "started_at": "2026-10-26T22:01:06.815188+08:00",
+    "finished_at": "2026-10-26T22:01:10.193397+08:00",
+    "exit_code": 0,
+    "passed": 2,
+    "skipped": 0,
+    "expected": 2
+  }
+]
