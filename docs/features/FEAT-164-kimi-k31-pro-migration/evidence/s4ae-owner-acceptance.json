@@ -1,0 +1,30 @@
+{
+  "feature": "FEAT-164",
+  "decision_id": "F164-S4AE-OWNER-SAFE-SUBSTITUTION",
+  "recorded_at": "2026-10-27T03:03:33.014072+08:00",
+  "owner": "段成威",
+  "authority": "本轮用户直接指令",
+  "exact_scope_quote": "确认接受 never-sent 的安全分层替代证据，保留完整 App 正向取消未执行的事实，继续收口 FEAT-164 的 S4 与最终验收。",
+  "accepted_evidence": [
+    "57-natural-unknown-and-safe-delivery-verification.md",
+    "evidence/s4ad-retained-delivery-result.json",
+    "evidence/s4ad-retained-delivery-test.log",
+    "evidence/s4ad-retained-consumer.log"
+  ],
+  "test_source_commit": "4e1f1f980d148a6b46e21e68eb508caa4da5dae4",
+  "original_app_positive_execution_status": "NOT RUN",
+  "acceptance_status": "ACCEPTED_SAFE_LAYERED_SUBSTITUTE",
+  "does_not_authorize": [
+    "real model HTTP",
+    "daily database open or migration",
+    "production activation or publishing",
+    "clearing unknown or budget reservations",
+    "Runtime core or patch modifications without prior plan"
+  ],
+  "not_claimed": [
+    "full App positive cancellation executed",
+    "natural unknown restored to ready",
+    "new independent human reviewer",
+    "whole-repository CI passed"
+  ]
+}

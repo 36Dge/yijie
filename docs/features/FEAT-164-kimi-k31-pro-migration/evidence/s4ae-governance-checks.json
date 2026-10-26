@@ -1,0 +1,196 @@
+[
+  {
+    "name": "audit-claims",
+    "command": [
+      "node",
+      "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+      "--audit-claims",
+      "docs/features/FEAT-164-kimi-k31-pro-migration"
+    ],
+    "started_at": "2026-10-27T03:16:22.419440+08:00",
+    "finished_at": "2026-10-27T03:16:22.637584+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "strict",
+    "command": [
+      "bash",
+      "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+      "--strict",
+      "docs/features/FEAT-164-kimi-k31-pro-migration"
+    ],
+    "started_at": "2026-10-27T03:16:22.637839+08:00",
+    "finished_at": "2026-10-27T03:16:22.741609+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "g3-s1",
+    "command": [
+      "node",
+      "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+      "--gate",
+      "G3",
+      "--slice",
+      "S1",
+      "docs/features/FEAT-164-kimi-k31-pro-migration"
+    ],
+    "started_at": "2026-10-27T03:16:22.741862+08:00",
+    "finished_at": "2026-10-27T03:16:22.818175+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "g3-s2",
+    "command": [
+      "node",
+      "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+      "--gate",
+      "G3",
+      "--slice",
+      "S2",
+      "docs/features/FEAT-164-kimi-k31-pro-migration"
+    ],
+    "started_at": "2026-10-27T03:16:22.818437+08:00",
+    "finished_at": "2026-10-27T03:16:22.894048+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "g3-s3",
+    "command": [
+      "node",
+      "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+      "--gate",
+      "G3",
+      "--slice",
+      "S3",
+      "docs/features/FEAT-164-kimi-k31-pro-migration"
+    ],
+    "started_at": "2026-10-27T03:16:22.894339+08:00",
+    "finished_at": "2026-10-27T03:16:22.969691+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "g3-s4",
+    "command": [
+      "node",
+      "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+      "--gate",
+      "G3",
+      "--slice",
+      "S4",
+      "docs/features/FEAT-164-kimi-k31-pro-migration"
+    ],
+    "started_at": "2026-10-27T03:16:22.969961+08:00",
+    "finished_at": "2026-10-27T03:16:23.046464+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "g4",
+    "command": [
+      "bash",
+      "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+      "--gate",
+      "G4",
+      "docs/features/FEAT-164-kimi-k31-pro-migration"
+    ],
+    "started_at": "2026-10-27T03:16:23.046756+08:00",
+    "finished_at": "2026-10-27T03:16:23.143723+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "meta-lint",
+    "command": [
+      "pnpm",
+      "lint"
+    ],
+    "started_at": "2026-10-27T03:16:23.143987+08:00",
+    "finished_at": "2026-10-27T03:16:23.446207+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "meta-test",
+    "command": [
+      "pnpm",
+      "test"
+    ],
+    "started_at": "2026-10-27T03:16:23.446486+08:00",
+    "finished_at": "2026-10-27T03:16:32.259795+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "shell-bootstrap",
+    "command": [
+      "bash",
+      "-n",
+      "scripts/bootstrap.sh"
+    ],
+    "started_at": "2026-10-27T03:16:32.260093+08:00",
+    "finished_at": "2026-10-27T03:16:32.263114+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "shell-checkout-all",
+    "command": [
+      "bash",
+      "-n",
+      "scripts/checkout-all.sh"
+    ],
+    "started_at": "2026-10-27T03:16:32.263399+08:00",
+    "finished_at": "2026-10-27T03:16:32.265840+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "shell-dev-down",
+    "command": [
+      "bash",
+      "-n",
+      "scripts/dev-down.sh"
+    ],
+    "started_at": "2026-10-27T03:16:32.266040+08:00",
+    "finished_at": "2026-10-27T03:16:32.268451+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "shell-dev-up",
+    "command": [
+      "bash",
+      "-n",
+      "scripts/dev-up.sh"
+    ],
+    "started_at": "2026-10-27T03:16:32.268612+08:00",
+    "finished_at": "2026-10-27T03:16:32.270768+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "shell-generate-all",
+    "command": [
+      "bash",
+      "-n",
+      "scripts/generate-all.sh"
+    ],
+    "started_at": "2026-10-27T03:16:32.270973+08:00",
+    "finished_at": "2026-10-27T03:16:32.273195+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "shell-lint-all",
+    "command": [
+      "bash",
+      "-n",
+      "scripts/lint-all.sh"
+    ],
+    "started_at": "2026-10-27T03:16:32.273408+08:00",
+    "finished_at": "2026-10-27T03:16:32.275462+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "shell-test-all",
+    "command": [
+      "bash",
+      "-n",
+      "scripts/test-all.sh"
+    ],
+    "started_at": "2026-10-27T03:16:32.275630+08:00",
+    "finished_at": "2026-10-27T03:16:32.277910+08:00",
+    "exit_code": 0
+  }
+]

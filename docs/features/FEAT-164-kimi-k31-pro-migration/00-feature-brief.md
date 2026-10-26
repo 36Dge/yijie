@@ -1,16 +1,10 @@
 # FEAT-164 — Kimi K3.1 Pro 模型替换与历史兼容
 
-> 当前按[50 前三切片收口与日常部署方案](50-slice-evidence-closure-and-daily-deployment-plan.md)：S1—S3的G3已通过，S4完整验收仍缺；Owner已批准8文件日常候选实现及离线验证，明确不迁移真实日常库。此前状态按原阶段解释。
+## 当前结论（2026-10-27，S4AE）
 
-> 当前以[49 r5真实功能与日常边界](49-r5-real-qualification-and-daily-cutover-boundary.md)为准：Owner已明确授权必要真实功能调用且不要求精确查价；本轮1次r5真实42、保存/重开零补发和正常退出通过。旧账本/预占保持，日常迁移未执行；完整core/剩余业务状态仍按明确缺口判定。已移除外观专项不再作为门槛。
+以[58 安全替代接受与最终收口](58-owner-accepted-substitute-and-final-closure.md)、feature.yaml和[当前矩阵](current-acceptance-matrix.md)为准。Owner明确接受57号never-sent正常Native API与生产消费链的安全分层替代；S4/TCONF04及三项适用最终验收按该方式收口，G4为本地代码完成。**完整App正向never-sent取消的原始执行状态仍为NOT RUN**，没有改写为已执行。原自然unknown缺Host回执，安全拒绝重发通过，原记录仍未恢复ready。
 
-2026-10-26 当前状态：**IN_PROGRESS，尚未切换日常入口。** Owner已批准继续实施及必要真实功能验证、FEAT-164专属本地提交；本轮新增真实模型HTTP1，r5最小文本G2V和正常退出通过，日常迁移、推送和发布保持关闭。r5六文件关闭修复已经批准、构建并取得限定资格，不能再按40/41号历史待批准状态解释。
-
-Owner已从本需求移除App亮暗、键盘/焦点和最小窗口专项验收，不再作为完成门槛。
-
-当前来源、AC差距和下一步统一见[49 r5真实功能及日常切换边界](49-r5-real-qualification-and-daily-cutover-boundary.md)、[48 保留状态验证与范围调整](48-retained-runtime-qualification-and-scope-update.md)、[47 同源媒体App资格](47-current-media-app-and-retained-state-qualification.md)、[46 独立旧数据App资格](46-independent-legacy-app-qualification.md)与[当前验收矩阵](current-acceptance-matrix.md)。Runtime11fd/r5保持；S4S独立部署代码及旧模式来源整理已实施。r4真实G2V/视觉PASS保留原来源；r5完整S2/S3/S4和三项final不能继承。原unknown、已消耗计划额度与费用预占均保留。
-
-2026-10-24创建 · schema v3 · production_hardened · exposure: local · active。早期审批、故障、预算与通过结论见12—45号历史报告，按各自时间和来源解释，不作为本页当前授权。
+本轮仅只读审计和治理更新，真实/本机模型HTTP新增均0；产品、Runtime核心/补丁、来源锁不变。不启动或迁移日常库，日常候选保持prepare-only，G5/G6及正式交付仍pending。搜索答案正确性、亮暗/键盘/最小窗口专项保持OWNER_EXCLUDED，不恢复为待办。以下早期阶段记录按原时间和来源解释；本节覆盖其中过期的推进顺序、预算授权和“当前未通过”描述。
 
 ## 用户结果
 

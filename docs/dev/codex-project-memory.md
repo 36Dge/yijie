@@ -1,5 +1,15 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 S4AE：Owner接受安全替代，本地代码与验收收口（2026-10-27）
+
+当前权威[58](../features/FEAT-164-kimi-k31-pro-migration/58-owner-accepted-substitute-and-final-closure.md)。Owner明确接受57号never-sent正常Native持久取消/重开及生产消费链的安全分层替代；完整App正向取消原执行仍NOT RUN，不再安排该项补试。原unknown缺Host回执，保留未决/禁发/明确恢复安全拒绝为正确结果，不重复点击、不清空或换operation。
+
+587个历史证据引用、12私有事实、六干净来源及三套119文件App只读核验一致。S1—S4 G3、TCONF04、三项适用final与G4通过；旧来源/时间及raw失败保持，非新一次全范围E2E。Desktop ea/Host4f/Contractsc5/Runtime11fd-r5/Connectorscc56/Skills595不变；测试4e1仅3测试/说明文件。本轮产品/Runtime/patch零修改，0真实/0本机模型HTTP。
+
+累计真实13、45元cap、29.740299保守累计和两份14.188544预占全部保留。12441保护文件、500既有dirty和7账本核验；混合memory仅此段。无项目服务/交接待答，仅本地治理提交、不推送。搜索质量与亮暗/键盘/最小窗口仍OWNER_EXCLUDED。
+
+feature保持active、implementation为accepted local code complete；日常候选只prepare-only，日常库未打开/迁移，G5/G6及发布pending。下一步若需日常切换，先明确目标identity、完整备份/正常停止/只读预检/显式维护/启动和回退范围并获授权；当前禁止执行。新Runtime核心/补丁仍先方案确认。不能把局部替代接受写成完整App执行或整体已部署。
+
 ## FEAT-164 S4AD：自然unknown安全拒绝与保留取消正例（2026-10-27）
 
 最新[57](../features/FEAT-164-kimi-k31-pro-migration/57-natural-unknown-and-safe-delivery-verification.md)。当前ea/Host4f/Runtime11fd-r5新原R1 identity App4b0ec55/119文件，正常构建重开/退出。自然f38666dc是Native有v2 unknown、Host无回执，源于35号旧Host purposeOrdinary拒绝（缺陷已修），不能当缺Native意图或never-sent；实际App读历史禁发/一次明确恢复拒绝/重读保持通过。不要再次恢复同一缺回执操作、换ID或清空。另一queued是旧input-only草案，无普通delivery proof；刷新不重发。

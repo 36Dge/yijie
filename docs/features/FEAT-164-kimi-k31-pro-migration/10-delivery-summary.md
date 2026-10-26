@@ -1,75 +1,13 @@
-# FEAT-164 阶段交付
+# FEAT-164 当前交付状态
 
-> 当前见[55 测试修复与Owner范围调整](55-v3-test-and-search-grounding-root-cause.md)：旧v3测试已修复，28前端＋2client＋1原生reader＋19来源及lint通过；搜索答案正确性已明确从FEAT164需求/验收门槛移除，记OWNER_EXCLUDED，不计PASS、不再补试。三次真实调用保留，累计13、45元上限，旧账本/两份预占不变；全部服务正常停止，无待答交接。以下旧“质量未决/继续复验”仅为历史，不再作为本需求待办。
+2026-10-27。**本地代码完成及适用验收收口，日常切换与发布尚未执行。** 当前权威为[58号报告](58-owner-accepted-substitute-and-final-closure.md)、[验收矩阵](current-acceptance-matrix.md)和feature.yaml；编号报告保留各阶段真实结论，不把历史许可继续当作新调用授权。
 
-> 当前权威为[54 来源修复与离线验收](54-search-source-component-fix-and-offline-verification.md)及[53 真实功能结果](53-real-functional-results-and-search-source-fix-plan.md)：Host组件筛选已修复，20原始→18显示、partial保留；新隔离App/重开/正常退出通过，1本机、0新增真实HTTP。此前真实图片/工具回灌已通过，搜索传输通过但答案正确性未决。累计10、旧账本/预占保留，所有服务已停止，无待答交接；日常库仍未授权。下方较早阶段均为历史，不能按旧“余4次”或待批范围重复执行。
+S1—S4 G3、TCONF01—04与三项适用final均PASS，G4为已接受本地范围的Code Complete。Owner明确接受never-sent正常Native持久取消/重开与生产消费链的安全分层替代；完整App正向取消仍NOT RUN，原自然unknown仍安全拒绝重发并保持未决。搜索答案质量与亮暗/键盘/最小窗口为OWNER_EXCLUDED。
 
-> 当前按[50 前三切片收口与日常部署方案](50-slice-evidence-closure-and-daily-deployment-plan.md)：S1—S3的G3已通过，S4完整验收仍缺；Owner已批准8文件日常候选实现及离线验证，明确不迁移真实日常库。此前状态按原阶段解释。
+产品来源Desktop ea8763dfc40466e9b808a1b39afad71dbff1ac56、Host4f966e8ea810d5b094d0b797d291955d6c774844、Contractsc5d138374c102f1a8a11e328a869ec8f91724efd、Runtime11fd4504c28afd0f65c6f5f62a6b5328dd437f5a/r5、Connectorscc56cdaa616c9d9eff8efa1f9e1307d084f3dff9与Skills595c927ae101d3d31c234f60565041eee0864680。测试4e1f1f9仅3个测试/说明文件；本轮无产品、核心、补丁或锁变化。
 
-> 当前以[49 r5真实功能与日常边界](49-r5-real-qualification-and-daily-cutover-boundary.md)为准：Owner已明确授权必要真实功能调用且不要求精确查价；本轮1次r5真实42、保存/重开零补发和正常退出通过。旧账本/预占保持，日常迁移未执行；完整core/剩余业务状态仍按明确缺口判定。已移除外观专项不再作为门槛。
+第56号日常候选119文件及prepare-only回执仍合格，实际日常App未启动、日常库未打开/迁移。feature保持active，G5/G6 pending；没有生产发布、签名发布、push、tag或合并。不能宣称日常已完成从K3切换。
 
-> 2026-10-26 Owner明确移除本需求的App亮暗、键盘/焦点和最小窗口专项验收；不执行、不延期、不计PASS、不作为完成门槛。模型选择、退役/恢复/取消、计划授权等业务状态行为与核心/数据/正常退出要求保持。当前实施和剩余项以[48](48-retained-runtime-qualification-and-scope-update.md)为准；下方旧阶段记录保留原时间含义。
+本轮零真实/本机模型HTTP；累计13、45元cap、29.740299保守累计和两份14.188544未知预占完整保留。已有dirty、旧制品、历史账本及所有测试数据保留，项目服务停止。元仓提交仅含FEAT-164治理与memory专属段落，未推送。
 
-> 最新以[45 旧隔离库受控迁移入口](45-controlled-isolated-migration-entry.md)为准：显式维护入口已实施，SQL29/37正常旧数据的拒绝/迁移/备份/重开离线资格通过；普通旧库门禁和日常拒绝保留。当前SQL41候选因1条未就绪选择与2份占用正常拒绝维护，原5522文件保持。实现仅在Desktop隔离commit bc3b097，主工作区未应用；真实/本机模型新增均0，完整App/G3/final仍缺。
-
-> 当前权威见[44 自然旧K3与计划离线验收](44-natural-legacy-migration-and-plan-qualification.md)：r5已加载旧身份经实际Host切换、正常取消/恢复子集通过；自然SQL29计划经显式正式迁移后的退役/重审/新授权/取消及重开通过。旧库App入口仍明确拒绝SQL<38，完整S2/S3纵向未通过。产品/Runtime未改，真实模型0，本机合成8，旧账本与预占保持。以下旧记录按原来源解释。
-
-> 最新深入复审见[41 关闭方案再审](41-shutdown-plan-deep-review.md)：RCA后6项新unit＋6项RPC及Clippy通过，但listener无退出回执、RPC屏障顺序待修正。四文件候选未晋升；建议仅扩展thread_state/thread_lifecycle两文件，**待新增范围批准**。r5未构建，真实新增0。
-
-> 最新续办见[40 Runtime正常关闭审计与最小方案](40-runtime-shutdown-audit-and-minimal-plan.md)：单次零回合EOF复现未回填WAL，4库只读完整性ok；已收敛所有者排空日志并await四池关闭的候选。**核心/patch尚未修改，待Owner确认**；teardown/core及整项状态不变，真实新增0。
-
-> 最新按[39 证据绑定与三项最终验收](39-evidence-binding-and-final-verdicts.md)：当前来源141项＋4source和可达App验证通过，新增真实模型0；S1证据收口，S2/S3/S4保留完整纵向缺项。视觉单项PASS；core及Runtime checkpoint完整teardown未通过。两份真实账本、旧预占和日常库保持。以下旧记录按原时间与来源解释。
-
-> 2026-10-26最新续办以[36 当前离线资格与下一步](36-current-offline-qualification-and-next-gate.md)为准：当前S1/S2/S3及S4专家/媒体/辅助/旧线程安全检查通过，产品代码未改；候选无旧K3会话/计划可自然升级。完整G2V/TCONF/final与日常cutover仍缺，新真实HTTP许可0；后续避免反复运行已通过子集。
-
-> 最新续办与整项目标以[35 当前组合与完成差距](35-s4-current-media-and-completion-audit.md)、feature.yaml及S4I证据为准。旧阶段记录保留其原来源和时间；当前仍未切换日常入口，不新增真实模型HTTP。
-
-> S4I结果：Desktop399bb19/Host090c2db配对专家切换、r4媒体/正常中断/图片、同源重开及清理通过；旧unknown仍保留阻断。当前安全子集分组通过不等于完整TCONF/G2V/G3/final。后续按35末节整项执行单推进。
-
-> 当前（2026-10-25，S4f普通App与计划）：Host7927ee7补齐已有v2草案三路由，Desktop277f59e兼容读取原生事实2/3/4；Runtimea28130a r4与Contracts1b357cc保持。同源App验证旧历史、input-only草案、只读恢复零补发、关闭保存、单次执行、取消编辑和正常重开；App模型协议loopback共3次，真实新增0。旧失败请求/事实/账本保留；完整恢复取消、旧模型计划、专家媒体当前组合、平台/G2V/G3/final仍未通过。权威见[32](32-s4-r4-app-plan-acceptance.md)。以下记录保持原来源与时间语义。
-
-> 当前（2026-10-25，方案A原生终态修复）：Runtime r4 a28130a → Contracts1b357cc → Hostb9155a3 → Desktop2fb8989已本地固化。原子代理错误被completed覆盖及冷历史丢失失败已修复；10项核心、269 schema零差异、7项原生/23次本机HTTP证据复核、3辅助/9次与4调用面/6次均通过。新增受管writer标记阻止旧r2候选写入新历史；不改旧历史。全轮50次合成本机HTTP、真实新增0，旧账本/预占保留。App本批仅构建，完整UI/计划/恢复取消/平台/G2V/G3/final仍未通过。最新权威见[31](31-s4-native-terminal-repair.md)及feature.yaml；以下旧阶段保持历史含义。
-
-> 当前（2026-10-25，S4旧线程/子代理/自动压缩）：Host验证提交df06a3c仅新增测试、driver和说明，产品组合仍为Desktopa0a4743/Hostcac2d4d/Runtime074417e5。干净来源独立子集6项PASS、14次loopback，覆盖旧父子loaded后正常停机/显式切换、当前及迁移后自动压缩、previous_model两分支零旧出站。但旧模型子代理被guard拒绝后，wait_agent和thread/read仍报告completed，实际缺陷保持FAIL；S4 blocked，完整TCONF/G2V/G3/final不放行。全轮71次合成本机HTTP、真实新增0；旧账本/预占保留。最新权威见[30](30-s4-loaded-legacy-compaction.md)及feature.yaml；下方各批次保留原来源。
-
-> 当前（2026-10-25，S4同源App/UI）：Desktopa0a4743在固定Hostcac2d4d/Runtime074417e5及专家资源上完成本机App验收子集；修复Worker物理路径、最小窗口裁切和暂停Kimi历史阻断启动。普通/专家媒体、历史重开、暂停与MiniMax、亮暗最小窗口及正常清理已验证。10次loopback、真实模型新增0；系统浅色已恢复，旧账本/预占和原工作区保留。完整旧K3 cutover、计划/恢复UI、跨平台、当前G2V/G3/final仍pending。最新权威见[29](29-s4-canonical-app-ui.md)与feature.yaml；下方记录按原时间与来源保留。
-
-> 当前（2026-10-25，S3）：Contracts2dd214d / Desktop4d04597已本地固化计划退役、SQL41和授权保护；TCONF-164-03五项、70前端及当前源S2复验通过。App/UI/平台与完整G3仍NOT RUN，真实模型新增0，旧账本/预占保留。最新见[26](26-s3-plan-retirement.md)及feature.yaml；下面旧阶段结论按原来源保留。
-
-> 当前（2026-10-25，Native恢复接线）：Desktop f341636已完成SQL39新意图、只读查询和显式恢复，定向检查通过；旧pending不回填，已发/未知且404不重发。App未重建，平台UI继续延期。完整S2还缺never-sent证明与取消，G3/final未通过。最新见[23](23-native-model-recovery.md)和feature.yaml，较早记录按原来源保留。
-
-> 当前（2026-10-25，UI延期/S2基础）：Owner允许锁屏所需步骤延期并先推进离线实施，UI仍NOT RUN。Host Store11、v2原回执/显式恢复及带数据SQL升级验证已本地固化；Native恢复接线/never-sent取消、S3/S4与完整G3/final尚未完成。真实模型新增0。最新权威见[22](22-ui-deferral-and-s2-foundation.md)和feature.yaml；下方旧阶段记录仅按其原来源和时间解释。
-
-> 当前S1（2026-10-25）：源实现、local/boundary及canonical构建已完成；本机新Kimi正控通过，暂停/MiniMax/重开及最终清理因Mac锁屏未完成，S1 G3不放行。新增真实模型HTTP为0，旧账本逐字保持。最新来源、未执行项和续办见[21](21-s1-implementation.md)。下方20及更早阶段结论按原来源和时间保留。
-
-> 2026-10-25本轮更新：已完成验收判定、30元/唯一新增HTTP恢复及实际文本G2V（PASS）；本地固化与最终审计见[20](20-budget-resume-and-g2v.md)。累计2 HTTP，新请求次数耗尽；旧预占保留。整体FEAT-164仍active，S1—S4及最终迁移验收未完成。以下旧阶段记录按原时点解释。
-
-> 最新（2026-10-25）：首次真实G2V返回HTTP400、无usage，14.188544元预占保留。已自行修正include规范差异并本地固化r2，离线验证进展见[19](19-responses-400-audit.md)；更早阶段的授权、预算与通过结论仅按当时范围解释。
-
-> 2026-10-25 用户已明确恢复，沿用 20 元及搜索/图片授权。当前进度与预算边界见 [18 恢复实施记录](18-resumed-g2v.md)；17 保留暂停时历史状态。G2V 尚未通过。
-
-> 2026-10-25 当前进度：原隔离清单三仓已本地提交，G2A PASS；Host/Desktop 最小候选及普通本机联调完成，G2V、S1—S4/final 仍 pending。当前证据和续办边界以 [16 下游候选审计](16-downstream-candidate-audit.md) 与 feature.yaml 为准；以下早期阶段记录保留其历史含义。
-
-Owner确认后的第一阶段已实现：独立模型v2契约/生成SDK、历史v1请求与结果snapshot读取、新执行活动身份约束、显式恢复/只读回执路由；独立Runtime 0007补丁及未激活kimi-k31-pro-r1候选；对应Contracts来源投影和安全验证。实际审计与验证见08/13/14。
-
-本阶段修复了历史成功回执不能改为v2、OpenAPI模型准入错误未完整声明、目录可用性与原因矛盾、生成枚举重复和离线canonical引用问题。旧v1源、旧Runtime补丁/制品、现有Host/Desktop/Connectors工作树保持；没有应用切换、用户库操作、真实模型/业务调用或Git动作。
-
-整体仍未完成：G0/G1/G2 pass；G2A/G2V及S1—S4、G4—G6 pending。源检查通过不能替代Consumer Owner批准、不可变来源、迁移与真实端到端资格。
-
-下一步是审阅14与隔离变更清单，批准仅FEAT-164的本地Runtime→Contracts→治理材料提交，形成G2A所需不可变引用；不包含推送、不混入FEAT-162/163既有改动。之后继续最小纵向候选和后续切片，真实付费/日常库激活仍按本Feature范围确认。
-
-## S4g 旧草案状态续办（2026-10-25）
-
-当前限定子集：旧attempted失败草案显示uncertain、禁新增提交、刷新/取消确认/一次明确查证0模型请求；已完成草案与暂停计划保持。源181885b，见33。完整FEAT164未交付，通用generate FAIL已RCA，G3未通过。
-
-## S4h 生成入口与计划验收（2026-10-25）
-
-S4h生成入口19项及计划App子集通过；只本地提交1b5adcf，旧grant/run和原失败草案保持，1次本机MiniMax/high，真实0。完整FEAT164/G3仍未完成，详见34。
-
-## S4O 本地交付更新（2026-10-26）
-
-41号已获批，六既有文件r5最小修复及Contract First下游固定提交完成。限定原生正常EOF/四池关闭通过，App标准构建通过；实际App首次无凭据启动未就绪，正常退出、候选数据未变。整项IN_PROGRESS，真实调用0，不迁移日常库、不推送/发布；原未知预占保留。最新结果、来源与下一步见[42](42-r5-shutdown-implementation-and-qualification.md)。
-
-## S4P App就绪收口（2026-10-26）
-
-App未就绪根因为无凭据验收装配误入provider-only，正常拒绝已有schema11库；已仅Desktop入口最小修复并本地提交b6f0ad7。r5正确本机配置两次正常生命周期/历史保护/四库WAL0子集通过，真实与本机模型请求均0；无Runtime新增修改/日常切换/推送。整项仍IN_PROGRESS。详见[43](43-app-readiness-root-cause-and-minimal-fix.md)及s4p-final-review证据。
+下一步仅在用户需要实际日常切换时，明确备份、正常停止、只读预检、显式维护、启动与回退的数据权限后继续；现有指令禁止日常迁移，因此不执行这些动作。不重复已接受替代的正向App补试，不恢复Owner移除的验收项。

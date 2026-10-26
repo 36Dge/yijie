@@ -1,0 +1,102 @@
+{
+  "feature": "FEAT-164",
+  "at": "2026-10-27T03:12:28.638972+08:00",
+  "reviewer": "Codex，实施阶段之后的独立结构化审查阶段",
+  "human_reviewer": "段成威",
+  "independent_human_review_claimed": false,
+  "incremental_contract_impact": "none",
+  "rationale": "本轮仅验收决策、证据绑定和治理状态；产品wire、持久化、重放、Runtime、权限和来源锁不变。",
+  "review_items": [
+    {
+      "area": "unknown恢复",
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/model_recovery.rs",
+      "sha256": "0b85bd95842dd3ac41454137caa09e59f68a6d1bb72a956b9ec30669c8220ddc",
+      "finding": "本地unknown且Host缺回执拒绝新发送；只有prepared且Host无记录允许FirstSend。报告57实际App安全拒绝与原ID保持。",
+      "verdict": "PASS_SCOPED"
+    },
+    {
+      "area": "never-sent事务",
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/delivery.rs",
+      "sha256": "9f95bebe33a4c4f44b5e7c9d37cd78560c0d319ade463b6c66d7f77d7b64cdfb",
+      "finding": "完整持久证明和三类零attempt才可取消；事务保存cancelled回执，消息不删，重放相同回执；测试4e1正常API正例。",
+      "verdict": "PASS_SCOPED"
+    },
+    {
+      "area": "生产消费链",
+      "repository": "yijie-desktop",
+      "path": "src/composables/useChatDelivery.ts",
+      "sha256": "083c77b4e2bb494396f525e6723f0e3f4c3d36ed5dd596ca66582fc8a5e2f224",
+      "finding": "刷新只读，权限及当前proof控制取消；导航epoch防旧请求覆盖；结果来自实际Native输出的IPC replay，明确非WebView。",
+      "verdict": "PASS_SCOPED"
+    },
+    {
+      "area": "回执输入校验",
+      "repository": "yijie-desktop",
+      "path": "src/api/chat-delivery-client.ts",
+      "sha256": "4beafd1707eae1516273918c0ce91772b95b3618e6dce0a91291e89124e11614",
+      "finding": "session/operation/turn与outcome等字段验证；前端显示不替代Native权威。",
+      "verdict": "PASS_SCOPED"
+    },
+    {
+      "area": "计划授权保护",
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/schedules/model_retirement.rs",
+      "sha256": "a1b8c0ba5f552067221709eb8f0672bddcbd044f4274e49b886e48f90b08626e",
+      "finding": "worker前领域事务退役暂停旧计划，保存新模型后须新授权；不改历史grant/run。",
+      "verdict": "PASS_SCOPED"
+    },
+    {
+      "area": "正常计划时钟",
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/schedules/store.rs",
+      "sha256": "2cdb046295498660533d1a292412e9c24272bcbf0e39c646c73e3ea00b41c8ac",
+      "finding": "正常next_at/cursor_at和paused slot推进不代表模型执行或授权重建；57全行差异及字段审计同时保留。",
+      "verdict": "PASS_SCOPED"
+    },
+    {
+      "area": "Host原回执",
+      "repository": "yijie-agent-host",
+      "path": "internal/session/chat_models_v2_operation.go",
+      "sha256": "f2c255b3633cf24c6b5a0e0625894fe7beddce84d76192a7c0ffc35c26bc2c83",
+      "finding": "原操作按绑定读取/明确恢复，缺回执不能推定从未派发；成功回执不回退新revision。",
+      "verdict": "PASS_SCOPED"
+    },
+    {
+      "area": "Host持久化边界",
+      "repository": "yijie-agent-host",
+      "path": "internal/session/chat_models_v2_storage.go",
+      "sha256": "4e1558e267b658dd653a2b8a155be3385f83b61dbf47d7771dde2b4fe232df83",
+      "finding": "版本、thread、request、receipt、revision绑定校验；不生成替代原操作的凭据。",
+      "verdict": "PASS_SCOPED"
+    },
+    {
+      "area": "Runtime正常关闭",
+      "repository": "yijie-codex",
+      "path": ".yijie/patches/chat-models/0011-feat-164-graceful-state-close.patch",
+      "sha256": "b5054bce23e12f5638cddbf54f4936a8116d62f6ba62208efa58132580c95e83",
+      "finding": "已批准r5等待RPC/线程/listener、日志排空join并关闭池；来源未变，57实际自然退出WAL0；本轮不改核心或补丁。",
+      "verdict": "PASS_SCOPED"
+    }
+  ],
+  "open_P0_P1_in_accepted_local_scope": 0,
+  "raw_execution_exception": {
+    "full_app_positive_never_sent": "NOT RUN",
+    "owner_decision": "F164-S4AE-OWNER-SAFE-SUBSTITUTION",
+    "impact": "不证明WebView到Tauri的完整正向按钮路径；以正常Native持久取消与生产消费链实际结果重放作为已接受替代。"
+  },
+  "retained_limits": [
+    "原自然unknown仍不ready，不清空、不重复恢复",
+    "全仓CI、公开/生产资格及正式发布未声明通过",
+    "真实日常库未打开/迁移，日常候选仅prepare-only",
+    "主工作区原dirty保留；部署来源为干净隔离提交",
+    "历史两次失败armed事件原样保留；后续修复证据31/32/33/48/56已覆盖，无开放三次失败熔断",
+    "搜索答案质量与亮暗/键盘/最小窗口均OWNER_EXCLUDED"
+  ],
+  "rollback_review": "保持兼容新reader并暂停Kimi，保留MiniMax及历史；不降库、不覆盖数据库、不启用旧K3 writer。",
+  "product_fixes_needed": false,
+  "runtime_core_or_patch_changed": false,
+  "model_http_added": 0,
+  "daily_open_or_migration": false
+}

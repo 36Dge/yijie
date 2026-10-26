@@ -1,6 +1,6 @@
 # FEAT-164 需求、交互与验收
 
-本需求已获Owner授权实施；本文件仍是整项验收目标。所有AC整体状态以feature.yaml为准，当前pending；阶段证据和真实剩余项集中见[当前验收矩阵](current-acceptance-matrix.md)，不能把局部PASS等同迁移完成。
+本需求已获Owner授权实施；本文件仍是整项验收目标。全部AC在已接受的本地实现与验收范围内PASS，逐项证据见[当前验收矩阵](current-acceptance-matrix.md)和58；日常迁移/启用与发布未执行，不能把代码完成等同日常切换完成。
 
 ## 业务规则
 
@@ -36,6 +36,10 @@
 ## Owner明确移出的验收项（2026-10-27）
 
 搜索答案正确性（含本轮指定官方文档命中、是否给出确定答案的质量判定）从FEAT-164移除，记OWNER_EXCLUDED；不是延期，也不计为PASS，不再作为AC、S4/G3或最终交付门槛。原始搜索/模型结果与账本保留，不为此补试、增加检索工具或修改Runtime。原AC-008/009保留实际sources按契约传递、原生事实如实呈现、Key/审批/预算保护；不把质量排除解释为删除搜索接线或放宽安全边界。确认与结果见55及evidence/s4ab-owner-scope-exclusion.json。
+
+## Owner接受的安全替代（2026-10-27）
+
+Owner本轮明确接受57号never-sent分层证据：正常Repository API入队/领取且不启动sender，真实持久取消、正常重开和同一回执重放；再以实际Native输出经过生产parser/composable/control验证按钮和消息保持。原完整App/WebView正向取消仍NOT RUN，不删除该事实、不伪造样本。AC-005/010及S4/final使用这项已接受替代；取消证明、原operation、授权、数据保留和unknown不重发的不变量不变。确切授权见evidence/s4ae-owner-acceptance.json；其余完整App主路径仍使用真实既有证据，不由组件替代。
 
 ## Must AC追踪
 

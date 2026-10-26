@@ -1,0 +1,174 @@
+{
+  "feature": "FEAT-164",
+  "at": "2026-10-27T03:10:41.258981+08:00",
+  "status": "PASS",
+  "failures": [],
+  "prior_evidence_indices": [
+    {
+      "phase": "s4s",
+      "index_sha256": "cb1ec5ea239a04051dea9fcc1ee1ad094976719c08d0bca95ad24ca29f448257",
+      "indexed_files": 196,
+      "additional_private_facts": 0,
+      "mismatches": 0
+    },
+    {
+      "phase": "s4t",
+      "index_sha256": "97b2ca76cb3fc30c5d75389646a2057dbf4e10ec565a715fc756a2826d9427b1",
+      "indexed_files": 55,
+      "additional_private_facts": 0,
+      "mismatches": 0
+    },
+    {
+      "phase": "s4u",
+      "index_sha256": "8284dddcc3640b024827ccfa74f582ce103d25e390843d6b26868d45ab6ff0c5",
+      "indexed_files": 40,
+      "additional_private_facts": 0,
+      "mismatches": 0
+    },
+    {
+      "phase": "s4v",
+      "index_sha256": "d7e25350970854d7c28c4a81786a591982ec856b151155425f4b53d72a21a6f7",
+      "indexed_files": 26,
+      "additional_private_facts": 0,
+      "mismatches": 0
+    },
+    {
+      "phase": "s4w",
+      "index_sha256": "f4c84b6a4d5fb0e128ae0089339f8a0b0e5a844163f8d1e1b3b92ddb0f67891e",
+      "indexed_files": 24,
+      "additional_private_facts": 0,
+      "mismatches": 0
+    },
+    {
+      "phase": "s4x",
+      "index_sha256": "5c36e4e66daa5fa76fafb0f4b91ccc7e85f88b6cd918f5a6d3a01438d3bccd3d",
+      "indexed_files": 41,
+      "additional_private_facts": 0,
+      "mismatches": 0
+    },
+    {
+      "phase": "s4y",
+      "index_sha256": "5ea51177697f909b500a73126b70fbd2fc114f11bd291bea5160b6b36a56646c",
+      "indexed_files": 27,
+      "additional_private_facts": 0,
+      "mismatches": 0
+    },
+    {
+      "phase": "s4z",
+      "index_sha256": "b9449a1323be8940f48d35ea576f43e4ad1f71f863b2b0acc6b595a92b351b5e",
+      "indexed_files": 9,
+      "additional_private_facts": 0,
+      "mismatches": 0
+    },
+    {
+      "phase": "s4aa",
+      "index_sha256": "1a17208bed3d76b1000e168c2917e86dc401718b2c2a49b9627d4c25b4b3b6b3",
+      "indexed_files": 35,
+      "additional_private_facts": 0,
+      "mismatches": 0
+    },
+    {
+      "phase": "s4ab",
+      "index_sha256": "69bada849ade0a673e682db5fcde0f92b0253aa1efdc16abae83e7f12b55fa72",
+      "indexed_files": 48,
+      "additional_private_facts": 0,
+      "mismatches": 0
+    },
+    {
+      "phase": "s4ac",
+      "index_sha256": "391302beb9a1578332d623987999ce6e02c66f87478eb3b858dd48d3f2753af2",
+      "indexed_files": 45,
+      "additional_private_facts": 0,
+      "mismatches": 0
+    },
+    {
+      "phase": "s4ad",
+      "index_sha256": "3bd213a79160f8a0eb5aeaa1db81fd8666b33b1463f618c3721fa5605acb3b7d",
+      "indexed_files": 41,
+      "additional_private_facts": 12,
+      "mismatches": 0
+    }
+  ],
+  "indexed_file_references": 587,
+  "additional_private_facts": 12,
+  "sources": {
+    "yijie-desktop": {
+      "head": "ea8763dfc40466e9b808a1b39afad71dbff1ac56",
+      "status": ""
+    },
+    "yijie-agent-host": {
+      "head": "4f966e8ea810d5b094d0b797d291955d6c774844",
+      "status": ""
+    },
+    "yijie-contracts": {
+      "head": "c5d138374c102f1a8a11e328a869ec8f91724efd",
+      "status": ""
+    },
+    "yijie-connectors": {
+      "head": "cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9",
+      "status": ""
+    },
+    "yijie-codex": {
+      "head": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+      "status": ""
+    },
+    "yijie-skills": {
+      "head": "595c927ae101d3d31c234f60565041eee0864680",
+      "status": ""
+    }
+  },
+  "test_commit": "4e1f1f980d148a6b46e21e68eb508caa4da5dae4",
+  "test_only_paths": [
+    "docs/feat164-retained-delivery-verification.md",
+    "src-tauri/src/chat/delivery/tests.rs",
+    "src/components/chat/ChatDeliveryControl.retained.test.ts"
+  ],
+  "bundles": [
+    {
+      "workspace": "feat164-s4ad-qualification-20261027",
+      "identity": "com.yijie.ai.feat164-kimi-k31-r1",
+      "source": "ea8763dfc40466e9b808a1b39afad71dbff1ac56",
+      "receipt_sha256": "bbb09fd92d66f808180ee4d07331596b93650299be642159d4285b9d342fa744",
+      "app_sha256": "4b0ec55e6903bc6aad790a4715d485456ebf0241d10ff6c99e51d67c6aa65e39",
+      "bundle_files": 119,
+      "source_files": 1206,
+      "worker_source_files": 54,
+      "mismatches": 0,
+      "launched_this_audit": false,
+      "daily_prepare_only": false
+    },
+    {
+      "workspace": "feat164-s4aa-qualification-20261027",
+      "identity": "com.yijie.ai.feat164-qualification-v1",
+      "source": "c98eddfafb789520b4939bdca95bf8b27f28b7b6",
+      "receipt_sha256": "716ad8a4a623bbe5a1701995e60691f4a1aebce7f493861c2ba100f39a6dcac9",
+      "app_sha256": "179dbd187220694d4666af5822466572f3b245a911501991cb0194f4308db195",
+      "bundle_files": 119,
+      "source_files": 1206,
+      "worker_source_files": 54,
+      "mismatches": 0,
+      "launched_this_audit": false,
+      "daily_prepare_only": false
+    },
+    {
+      "workspace": "feat164-s4ac-daily-candidate-20261027",
+      "identity": "com.yijie.ai",
+      "source": "ea8763dfc40466e9b808a1b39afad71dbff1ac56",
+      "receipt_sha256": "ee4c53922b9642ffa81c3d6356827df6e8dbdcf6c0ec582e108bc954d768add7",
+      "app_sha256": "c29f7e07942038d4c3849ef3a711ed4b501d17daab1478329ba5de6b6321a4d0",
+      "bundle_files": 119,
+      "source_files": 1206,
+      "worker_source_files": 54,
+      "mismatches": 0,
+      "launched_this_audit": false,
+      "daily_prepare_only": true
+    }
+  ],
+  "native_receipt_and_replay_match": true,
+  "owner_acceptance_sha256": "e32f45d21156c03e5a8eecd257eb657ed3fd78cbfccbc408c1884d8867916004",
+  "full_app_never_sent_positive_execution": "NOT RUN",
+  "model_http_added": 0,
+  "loopback_model_http_added": 0,
+  "daily_open_or_migration": false,
+  "scope_note": "Fresh read-only binding audit, not new App/E2E execution. Original source/time, raw failures and accepted substitution remain explicit. Environment hashes retained in prior canonical receipts; no claim of a new canonical environment check."
+}

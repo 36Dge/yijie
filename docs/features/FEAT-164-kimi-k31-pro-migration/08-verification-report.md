@@ -1,5 +1,11 @@
 # FEAT-164 实际验证记录
 
+## 当前结论（2026-10-27，S4AE）
+
+以[58 安全替代接受与最终收口](58-owner-accepted-substitute-and-final-closure.md)、feature.yaml和[当前矩阵](current-acceptance-matrix.md)为准。Owner明确接受57号never-sent正常Native API与生产消费链的安全分层替代；S4/TCONF04及三项适用最终验收按该方式收口，G4为本地代码完成。**完整App正向never-sent取消的原始执行状态仍为NOT RUN**，没有改写为已执行。原自然unknown缺Host回执，安全拒绝重发通过，原记录仍未恢复ready。
+
+本轮仅只读审计和治理更新，真实/本机模型HTTP新增均0；产品、Runtime核心/补丁、来源锁不变。不启动或迁移日常库，日常候选保持prepare-only，G5/G6及正式交付仍pending。搜索答案正确性、亮暗/键盘/最小窗口专项保持OWNER_EXCLUDED，不恢复为待办。以下早期阶段记录按原时间和来源解释；本节覆盖其中过期的推进顺序、预算授权和“当前未通过”描述。
+
 > 最新以[45 旧隔离库受控迁移入口](45-controlled-isolated-migration-entry.md)为准：显式维护入口已实施，SQL29/37正常旧数据的拒绝/迁移/备份/重开离线资格通过；普通旧库门禁和日常拒绝保留。当前SQL41候选因1条未就绪选择与2份占用正常拒绝维护，原5522文件保持。实现仅在Desktop隔离commit bc3b097，主工作区未应用；真实/本机模型新增均0，完整App/G3/final仍缺。
 
 > 当前权威见[44 自然旧K3与计划离线验收](44-natural-legacy-migration-and-plan-qualification.md)：r5已加载旧身份经实际Host切换、正常取消/恢复子集通过；自然SQL29计划经显式正式迁移后的退役/重审/新授权/取消及重开通过。旧库App入口仍明确拒绝SQL<38，完整S2/S3纵向未通过。产品/Runtime未改，真实模型0，本机合成8，旧账本与预占保持。以下旧记录按原来源解释。
@@ -576,3 +582,23 @@ PASS安全分层正例：测试提交4e1f1f980d148a6b46e21e68eb508caa4da5dae4仅
 <!-- evidence: E164-S4AD-FINAL -->
 
 当前原隔离App正常⌘Q exit0、fixture正常停止、四Runtime库WAL0/完整副本只读integrity ok，teardown PASS。原Native意图/选择/proof/grant/run及Host非session桶保持；Host14条仅updated_at；Native69表旧行保持、计划只推进next/cursor和skipped_paused时间槽、追加未来槽/停止代际。原始全行hash不等判断保留，未伪称全库字节不变。6790保护文件/500既有dirty/7账本不变，日常未打开。core和业务状态full仍NOT RUN，剩余完整App never-sent正向边界待明确；自然unknown缺口已转为有效安全拒绝。搜索质量与外观专项继续OWNER_EXCLUDED。
+
+## E164-S4AE-ACCEPTANCE — Owner接受安全替代
+
+<!-- evidence: E164-S4AE-ACCEPTANCE -->
+
+Owner本轮直接指令及录入时间见evidence/s4ae-owner-acceptance.json。正常Native取消/重开及生产消费链实际结果重放已被接受。完整App正向取消原执行仍NOT RUN，不称已执行，不豁免取消证明/原operation/授权/数据保护。
+
+## E164-S4AE-FINAL — 适用S4与三项final收口
+
+<!-- evidence: E164-S4AE-FINAL -->
+
+本轮只读audit-closure.py exit0，587个历史证据引用与12份私有事实一致；当前六源干净，三套App各119文件、源码输入、sidecar与receipt均相符。完整结果见evidence/s4ae-closure-binding.json。S1—S3原源与S4现源的8项并集同时绑定，原执行时间保持；非新一次全范围E2E。
+
+S4/TCONF04、core_vertical、业务状态accessibility_visual及teardown按已接受范围PASS。依据46—57实际App主路径/历史/计划/媒体/辅助调用、自然unknown安全拒绝、57真实Native与生产消费链正例；唯一完整App正向取消未执行事实在ACCEPTANCE和58单列。teardown保留57正常生命周期字段变化及WAL0，不伪造全库字节不变。
+
+## E164-S4AE-REVIEW — 结构化复审与保护
+
+<!-- evidence: E164-S4AE-REVIEW -->
+
+与实现阶段分离的Codex复审及逐文件SHA见evidence/s4ae-structured-review.json，未发现已接受本地范围内开放P0/P1，不冒称独立人工批准。产品/Runtime不改，0新增模型调用，不打开/迁移日常库。来源绑定、Owner范围与原数据保护结果分别记录；工作区原dirty保留，非全仓干净声明。G4实际机器核验及元仓检查见evidence/s4ae-governance-checks.json；G5/G6未放行。
