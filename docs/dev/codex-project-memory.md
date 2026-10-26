@@ -1,5 +1,13 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 S4AC：当前证据与日常prepare-only（2026-10-27）
+
+最新[56](../features/FEAT-164-kimi-k31-pro-migration/56-current-evidence-business-state-and-daily-prepare.md)。产品/Core/Patch零改；当前Desktop ea8763d/Host4f966e8/Contractsc5d1383/Runtime11fd-r5/Connectorscc56/Skills595。501旧证据hash和310业务文件绑定，22前端＋38Host＋33Native＋5计划＋3日常入口＋19来源通过。实际S4AA c98 App产品与ea相同：重开菜单、旧迁移/中断/继续历史、关闭计划、真实图片/工具、18来源partial通过，未发送/授权；0真实/0本机HTTP。正常退出，71表旧行/四库WAL0，全部服务停止。
+
+新日常候选feat164-s4ac-daily-candidate-20261027：canonical prepare-only和只读receipt通过，119文件/App c29f7e07942038d4c3849ef3a711ed4b501d17daab1478329ba5de6b6321a4d0；未启动、不打开/迁移日常库。旧候选不覆盖，6673保护文件/500原dirty/7账本保持。真实累计13、cap45、29.740299估算及两份14.188544预占不动。
+
+S4绑定已补，完整S4/TCONF04/core和业务状态final仍NOT RUN具体unknown/never-sent完整App链；安全组件/Native通过不冒称App自然观察。teardown PASS。下一步优先复审原隔离库自然unknown的当前兼容只读入口，不清空/制造never-sent；日常切换需具体数据动作授权。搜索答案正确性和外观专项继续OWNER_EXCLUDED，禁止再安排；不新增真实模型调用，Runtime核心/补丁先方案。审计reader误用副本文件名已纠正，只有记录脚本小错误，无产品失败/开放熔断。仅本地无推送，无交接待答。
+
 ## FEAT-164 S4AB：v3测试已修复，搜索答案质量已由Owner移出（2026-10-27）
 
 最新[55](../features/FEAT-164-kimi-k31-pro-migration/55-v3-test-and-search-grounding-root-cause.md)。Owner最终明确“搜索答案尚未通过”不作为FEAT164需求、从需求移除：搜索答案正确性/本轮官方页面命中与能否确认的质量判定记OWNER_EXCLUDED，不延期、不计PASS、不再补试/增加检索工具/为此改Runtime。原模型身份、sources传递、协议事实、Key/审批/预算、历史/清理保留。不要再把该质量问题列为S4/final阻塞或拿旧待办继续真实搜索。

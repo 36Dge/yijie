@@ -1,0 +1,173 @@
+[
+  {
+    "name": "renderer-business",
+    "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ab-qualification-20261027/yijie-desktop",
+    "command": [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "--maxWorkers=2",
+      "--reporter=json",
+      "src/api/call-surfaces.feat164.test.ts",
+      "src/api/chat-delivery-client.test.ts",
+      "src/api/chat-model-v2-client.test.ts",
+      "src/composables/useChatDelivery.test.ts",
+      "src/composables/useChatModelsV2.test.ts",
+      "src/composables/useScheduledPlanModel.s3.test.ts",
+      "src/components/schedules/ScheduledPlanForm.feat164.test.ts",
+      "src/components/chat/ChatDeliveryControl.test.ts",
+      "src/components/chat/ChatModelActivation.test.ts"
+    ],
+    "started_at": "2026-10-27T01:57:56.356677+08:00",
+    "finished_at": "2026-10-27T01:57:59.143842+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "daily-profile",
+    "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ab-qualification-20261027/yijie-desktop",
+    "command": [
+      "node",
+      "--test",
+      "scripts/tests/feat164-daily-profile.test.mjs"
+    ],
+    "started_at": "2026-10-27T01:57:59.144105+08:00",
+    "finished_at": "2026-10-27T01:57:59.296058+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "generation",
+    "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ab-qualification-20261027/yijie-desktop",
+    "command": [
+      "node",
+      "scripts/check-feat164-generation.mjs",
+      "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ac-audit-20261027/generation"
+    ],
+    "started_at": "2026-10-27T01:57:59.296305+08:00",
+    "finished_at": "2026-10-27T01:58:13.971912+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "s1-activation",
+    "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ab-qualification-20261027/yijie-agent-host",
+    "command": [
+      "/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go",
+      "test",
+      "-race",
+      "-json",
+      "./internal/codex",
+      "-run",
+      "^TestFEAT164ActivationAndRetiredAdmission$",
+      "-count=1",
+      "-failfast",
+      "-timeout=0"
+    ],
+    "started_at": "2026-10-27T01:58:13.972187+08:00",
+    "finished_at": "2026-10-27T01:58:17.845909+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "s2-host-temporal",
+    "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ab-qualification-20261027/yijie-agent-host",
+    "command": [
+      "/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go",
+      "test",
+      "-race",
+      "-json",
+      "./internal/session",
+      "-run",
+      "^TestFEAT164MigrationReceiptAndRecovery$",
+      "-count=1",
+      "-failfast",
+      "-timeout=0"
+    ],
+    "started_at": "2026-10-27T01:58:17.846210+08:00",
+    "finished_at": "2026-10-27T01:58:24.055910+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "s2-host-routes",
+    "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ab-qualification-20261027/yijie-agent-host",
+    "command": [
+      "/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go",
+      "test",
+      "-race",
+      "-json",
+      "./internal/app",
+      "-run",
+      "^TestFEAT164(V2OperationRoutesValidateBeforeService|ModelRoutesPreserveAuthAndRetiredRead)$",
+      "-count=1",
+      "-failfast",
+      "-timeout=0"
+    ],
+    "started_at": "2026-10-27T01:58:24.056251+08:00",
+    "finished_at": "2026-10-27T01:58:27.514590+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "s2-native-delivery",
+    "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ab-qualification-20261027/yijie-desktop",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "--lib",
+      "feat164_delivery",
+      "--",
+      "--test-threads=1"
+    ],
+    "started_at": "2026-10-27T01:58:27.514928+08:00",
+    "finished_at": "2026-10-27T01:58:46.273396+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "s2-native-recovery",
+    "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ab-qualification-20261027/yijie-desktop",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "--lib",
+      "feat164",
+      "--",
+      "--skip",
+      "feat164_surfaces",
+      "--skip",
+      "feat164_delivery",
+      "--skip",
+      "feat164_native_host_boundary",
+      "--skip",
+      "chat::schedules::model_retirement_tests::",
+      "--skip",
+      "chat::database::isolated_model_migration::",
+      "--skip",
+      "chat::schedules::feat164_natural_plan_tests::",
+      "--test-threads=1"
+    ],
+    "started_at": "2026-10-27T01:58:46.273694+08:00",
+    "finished_at": "2026-10-27T01:59:04.072193+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "s3-native",
+    "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ab-qualification-20261027/yijie-desktop",
+    "command": [
+      "node",
+      "scripts/feat164-s3-conformance.mjs",
+      "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ac-audit-20261027/s3-controls"
+    ],
+    "started_at": "2026-10-27T01:59:04.072519+08:00",
+    "finished_at": "2026-10-27T01:59:10.552110+08:00",
+    "exit_code": 0
+  }
+]

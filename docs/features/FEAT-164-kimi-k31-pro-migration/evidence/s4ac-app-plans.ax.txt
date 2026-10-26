@@ -1,0 +1,77 @@
+The following is a diff from the previous accessibility tree for Window: "易界 AI" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 19-46, 74-165
+~		2 HTML content Description: 定时任务 · 易界 AI, URL: tauri://localhost/scheduled-tasks
++								74 content list
++									75 container
++										76 pop up button 折叠项目 media-assets
++										77 pop up button 项目 media-assets 的操作菜单
++										78 content list
++											79 button FEAT164 搜索功能验证：请使用一次联网搜索查找 Kimi 官方 Respo
++											80 button FEAT164 工具回灌验证：必须调用一次终端工具，执行 cat verific
++											81 button FEAT164_S4Y_MINIMAX 本机共存验收，仅回复合成结果，不调用工具
++											82 button FEAT164_S4Y_MEDIA 本机合成验收：请将当前工作空间已有的 rep
++									83 container
++										84 pop up button 折叠项目 media-assets
++										85 pop up button 项目 media-assets 的操作菜单
++										86 content list
++											87 button FEAT164_S4T_MINIMAX 共存验收，请仅回复本机合成结果，不调用工
++											88 button FEAT164_S4T_KIMI 本机图片输入验收。请回复合成结果；不调用工具或
++											89 button FEAT164_S4T_MEDIA 请将当前工作空间中已有的 report.ht
++									90 container
++										91 pop up button 折叠项目 任务目录
++										92 pop up button 项目 任务目录 的操作菜单
++										93 content list
++											94 button FEAT164_S4S_KIMI 本机合成计划验收，仅回复合成结果，不调用工具。
++									95 button FEAT164 站内搜索复验：请联网搜索 site:platform.kimi.
++									96 button FEAT164 站内搜索复验：请联网搜索 site:platform.kimi.
++									97 button FEAT164 指定来源搜索复验：请使用一次原生联网搜索查阅当前官方 Respo
++									98 button FEAT164_S4AA 来源离线验收，请返回本机普通公开来源和合成答复。
++									99 button FEAT164 图片功能验证：请直接观察附件，只回答图中主要颜色和形状，不推断文
++									100 button FEAT164 r5 资格验证：计算17+25，仅回复结果42，不调用工具。
++									101 button FEAT164_S4S_KIMI 旧 K3 自然会话验收。请回复本机合成验证结果
++			102 container
++				103 container 定时任务
++					104 heading 定时任务, Value: 1
++						105 text 定时任务
++					106 text 按设定时间自动执行任务，随时开启或关闭。
++					107 button 通过对话创建
++					108 button 新建定时任务
++				109 tab group (selectable) 定时任务页面
++					110 tab (selected) 定时任务
++					111 tab (selectable) 执行记录
++				112 text field (settable) 搜索任务名称或内容, Placeholder: 搜索计划名称或内容
++				113 text 搜索计划名称或内容
++				114 container 计划状态筛选
++					115 container
++						116 text 全部状态
++						117 image loading
++				118 container 创建时间排序
++					119 container
++						120 text 最新优先
++						121 image loading
++				122 container 定时任务
++					123 container FEAT164 MiniMax 保持对照
++						124 heading 编辑 FEAT164 MiniMax 保持对照, Value: 2
++							125 button 编辑 FEAT164 MiniMax 保持对照
++						126 switch (settable, boolean) 开启 FEAT164 MiniMax 保持对照, Value: off
++						127 text FEAT164_S4S_MINIMAX 本机合成对照，仅回复结果，不调用工具。
++						128 text 执行模型：MiniMax M3
++						129 container 每天 09:00 · Asia/Shanghai
++							130 text 每天 09:00
++						131 text 已关闭
++						132 button 查看历史记录
++						133 button 立即执行
++						134 button 删除任务
++					135 container FEAT164 旧 K3 升级审阅
++						136 heading 编辑 FEAT164 旧 K3 升级审阅, Value: 2
++							137 button 编辑 FEAT164 旧 K3 升级审阅
++						138 switch (settable, boolean) 开启 FEAT164 旧 K3 升级审阅, Value: off
++						139 text FEAT164_S4S_KIMI 本机合成计划验收，仅回复合成结果，不调用工具。
++						140 text 执行模型：Kimi K3.1 Pro · max
++						141 container 每天 09:00 · Asia/Shanghai
++							142 text 每天 09:00
++						143 text 已关闭
++						144 button 查看历史记录
++						145 button 立即执行
++						146 button 删除任务
+The focused UI element is 104 heading 定时任务, Value: 1

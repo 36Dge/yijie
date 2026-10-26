@@ -546,3 +546,18 @@ Owner批准53号最小范围后，Contracts→Host→Desktop本地固定。7 Hos
 <!-- evidence: E164-S4AB-SCOPE -->
 
 55号：旧v3测试与当前v4 IPC边界已修复，28前端、2client（其余23未选）、1Rust历史reader、19来源及lint通过；产品/生成物不改。Owner先批准45元后允许3次真实，累计13；三次HTTP200/completed、无搜索，前两无最终文本、第三无法确认。质量不判PASS；Owner随后明确移出该需求验收，OWNER_EXCLUDED记录见s4ab-owner-scope-exclusion。保留真实结果、source/状态、安全与历史要求。三次正常退出/四库WAL0，71表旧行保持，meter正常停止。无日常库/Runtime核心/推送；完整非质量Gate仍按实际缺口收口。
+
+
+## S4AC 当前证据绑定与业务状态（2026-10-27）
+
+<!-- evidence: E164-S4AC-BINDING -->
+
+PASS限定来源绑定：46—55共501文件SHA一致，310业务实现文件相同；不同的日常维护/identity/URL过滤按51/54专属证据与当前检查连接，不刷新旧执行时间。当前ea/4f/c5/11fd-r5/cc56/595，实际隔离App c98产品与ea相同。22前端、38Host（含子测试）、33Native、5计划、3daily profile、19来源全部通过。精确命令与非零数量见evidence/s4ac-current-checks.json、s4ac-check-counts.json和s4ac-source-evidence-binding.json。不是全仓测试，不是日常激活。
+
+<!-- evidence: E164-S4AC-FINAL -->
+
+实际canonical同构建App重开：K31/MiniMax菜单、自然旧线程迁移/中断/继续历史、计划关闭、既有图片/工具结果、18来源partial可读；0本机/0真实模型HTTP。正常⌘Q exit0、无项目进程/句柄、完整副本四库WAL0/integrity ok、71表旧行保持，teardown PASS。core_vertical和业务状态full均NOT RUN：安全组件/Native已通过，但unknown/never-sent完整App链不在当前资格库自然可达，不造故障或伪造通过。53图片/工具/搜索传输已具备证据，不再列缺。搜索答案正确性和外观专项OWNER_EXCLUDED。见56及evidence/s4ac-app-business-verdict.json、s4ac-preservation.json。
+
+<!-- evidence: E164-S4AC-DAILY -->
+
+PASS_PREPARE_ONLY：从当前干净ea/4f/c5/11fd/cc56/595新独立构建119文件，daily identity com.yijie.ai；canonical --kimi-k31-daily --prepare-only及独立只读receipt --check exit0。App SHA c29f7e07942038d4c3849ef3a711ed4b501d17daab1478329ba5de6b6321a4d0，receipt ee4c53922b9642ffa81c3d6356827df6e8dbdcf6c0ec582e108bc954d768add7。未启动daily App、未打开或迁移daily DB，不代表发布；旧制品保留。见evidence/s4ac-daily-build-audit.json。

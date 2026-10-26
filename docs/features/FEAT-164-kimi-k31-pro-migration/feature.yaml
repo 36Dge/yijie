@@ -261,19 +261,35 @@ temporal_contract_matrix:
     - id: TCONF-164-04
       required: true
       repository: yijie-desktop
-      command: Retained S4U driver and S4W source-evidence-binding audit
+      command: python3 feat164-s4ac-audit-20261027/run-checks.py + audit-bindings.py + canonical same-build App observed subset
       slice_id: S4
       status: NOT RUN
       exit_code: null
-      verified_at: 2026-10-26T14:23:43.174Z
-      commits: *a1
-      evidence_ref: 08-verification-report.md#E164-S4W-S4
+      verified_at: 2026-10-27T02:02:41.458811+08:00
+      commits:
+        - repository: yijie-codex
+          full_sha: 11fd4504c28afd0f65c6f5f62a6b5328dd437f5a
+        - repository: yijie-contracts
+          full_sha: ca06d0999c9a08afe80ab3f34a537d492b830ac7
+        - repository: yijie-agent-host
+          full_sha: 8cd6bccbdc1ac3906aea53d95441299f7cfefcce
+        - repository: yijie-desktop
+          full_sha: 9f5814fec6cd071d39f0c12f8f48097ce661cb6a
+        - repository: yijie-connectors
+          full_sha: cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9
+        - repository: yijie-desktop
+          full_sha: ea8763dfc40466e9b808a1b39afad71dbff1ac56
+        - repository: yijie-agent-host
+          full_sha: 4f966e8ea810d5b094d0b797d291955d6c774844
+        - repository: yijie-contracts
+          full_sha: c5d138374c102f1a8a11e328a869ec8f91724efd
+      evidence_ref: 08-verification-report.md#E164-S4AC-BINDING
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
       implementation_status: implemented_partial
-      command_note: 完整TCONF04仍缺final/供应商非文本样例；已通过子集按48/49/50保留，不造整项PASS。
+      command_note: 当前来源与安全状态/实际App子集PASS；完整unknown/never-sent App链仍NOT RUN，保留完整TCONF04 pending；搜索答案质量OWNER_EXCLUDED。
 
 vertical_feasibility:
   required: true
@@ -497,11 +513,14 @@ slices:
     commits: &a1
       - repository: yijie-codex
         full_sha: 11fd4504c28afd0f65c6f5f62a6b5328dd437f5a
-      - repository: yijie-contracts
+      - &a6
+        repository: yijie-contracts
         full_sha: ca06d0999c9a08afe80ab3f34a537d492b830ac7
-      - repository: yijie-agent-host
+      - &a7
+        repository: yijie-agent-host
         full_sha: 8cd6bccbdc1ac3906aea53d95441299f7cfefcce
-      - repository: yijie-desktop
+      - &a8
+        repository: yijie-desktop
         full_sha: 9f5814fec6cd071d39f0c12f8f48097ce661cb6a
       - repository: yijie-connectors
         full_sha: cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9
@@ -728,7 +747,22 @@ slices:
     required: true
     prerequisites:
       - S3
-    commits: *a1
+    commits:
+      - &a10
+        repository: yijie-desktop
+        full_sha: ea8763dfc40466e9b808a1b39afad71dbff1ac56
+      - &a11
+        repository: yijie-agent-host
+        full_sha: 4f966e8ea810d5b094d0b797d291955d6c774844
+      - &a12
+        repository: yijie-contracts
+        full_sha: c5d138374c102f1a8a11e328a869ec8f91724efd
+      - &a5
+        repository: yijie-codex
+        full_sha: 11fd4504c28afd0f65c6f5f62a6b5328dd437f5a
+      - &a9
+        repository: yijie-connectors
+        full_sha: cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9
     exception:
       owner: 段成威
       approved_at: 2026-10-25
@@ -736,14 +770,15 @@ slices:
     local_evidence:
       required: true
       status: PASS
-      command: Retained S4U driver and S4W source-evidence-binding audit
-      environment: macOS aarch64; Desktop9f5814f / Host8cd6bcc product / Contracts ca06 / Runtime11fd-r5 / Connectors cc56;
-        actual test sources and retained data bound separately; no new real model HTTP
+      command: python3 feat164-s4ac-audit-20261027/run-checks.py
+      environment: macOS aarch64; ea8763d product equals actual c98 App179dbd; Host4f966e8 / Contracts c5d1383 /
+        Runtime11fd-r5 / Connectorscc56 / Skills595; historical runs retain original source and time
       exit_code: 0
-      verified_at: 2026-10-26T14:23:43.174Z
+      verified_at: 2026-10-27T02:02:41.458811+08:00
       refs:
-        - 08-verification-report.md#E164-S4W-S4
-      reason: 48当前12 Runtime检查/38 loopback、10home/40库，4来源＋10Host＋22renderer＋5配置；49真实文本，及本轮前三切片回归。317项既有证据hash无差异。
+        - 08-verification-report.md#E164-S4AC-BINDING
+        - 08-verification-report.md#E164-S4AC-FINAL
+      reason: 当前22前端、38Host（含子测试）、33Native、5计划、3daily profile、19来源全部通过；48 retained Runtime证据逐hash保留，未重跑旧38次loopback。
       exception:
         owner: N/A
         approved_at: N/A
@@ -751,15 +786,15 @@ slices:
     boundary_evidence:
       required: true
       status: PASS
-      command: Read-only source/receipt/protocol evidence reconciliation;
-        /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4w-audit-20261026/audit-bindings.py
-      environment: macOS aarch64; Desktop9f5814f / Host8cd6bcc product / Contracts ca06 / Runtime11fd-r5 / Connectors cc56;
-        actual test sources and retained data bound separately; no new real model HTTP
+      command: python3 feat164-s4ac-audit-20261027/audit-bindings.py
+      environment: macOS aarch64; ea8763d product equals actual c98 App179dbd; Host4f966e8 / Contracts c5d1383 /
+        Runtime11fd-r5 / Connectorscc56 / Skills595; historical runs retain original source and time
       exit_code: 0
-      verified_at: 2026-10-26T14:23:43.174Z
+      verified_at: 2026-10-27T02:02:41.458811+08:00
       refs:
-        - 08-verification-report.md#E164-S4W-S4
-      reason: 当前普通/市场/专家/媒体来源、辅助/子代理/自动压缩、旧父子与原生失败历史、46旧App/计划和47媒体子集各按实际来源绑定。不是全套供应商或final通过。
+        - 08-verification-report.md#E164-S4AC-BINDING
+        - 08-verification-report.md#E164-S4AC-FINAL
+      reason: 501项旧证据SHA一致、310业务文件相同；51日常维护/identity由其专属四矩阵及当前回归支持，54 Host URL筛选由专属来源证据支持；53真实图片/工具/搜索传输及本轮当前App历史重开绑定，来源差异未隐去。
       exception:
         owner: N/A
         approved_at: N/A
@@ -767,21 +802,32 @@ slices:
     vertical_evidence:
       required: true
       status: NOT RUN
-      command: Canonical App observed workflows and retained SQL/Runtime evidence; source-bound report46/47/49 + S4W paused App
-      environment: macOS aarch64; Desktop9f5814f / Host8cd6bcc product / Contracts ca06 / Runtime11fd-r5 / Connectors cc56;
-        actual test sources and retained data bound separately; no new real model HTTP
+      command: Canonical S4AA same-build reopen via launch.py + CUA business-state observation + normal Cmd-Q + stopped-copy
+        read-only audit
+      environment: macOS aarch64; ea8763d product equals actual c98 App179dbd; Host4f966e8 / Contracts c5d1383 /
+        Runtime11fd-r5 / Connectorscc56 / Skills595; historical runs retain original source and time
       exit_code: null
-      verified_at: 2026-10-26T14:23:43.174Z
+      verified_at: 2026-10-27T02:02:41.458811+08:00
       refs:
-        - 08-verification-report.md#E164-S4W-S4
-      reason: NOT RUN完整TCONF04/final：供应商图片/搜索/工具样例和unknown/never-sent完整GUI观察仍未覆盖；正常teardown已PASS，旧自然App及checkpoint不再是假缺口。
+        - 08-verification-report.md#E164-S4AC-BINDING
+        - 08-verification-report.md#E164-S4AC-FINAL
+      reason: 当前App菜单/旧线程中断继续/关闭计划/图片工具/18来源partial及正常退出通过；完整unknown/never-sent App操作链仍未在当前资格库自然观察。仅此完整范围NOT
+        RUN，不再列供应商非文本缺口；不造故障，不将组件状态测试冒充完整App。
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
     freshness:
-      verified_at: 2026-10-26T14:23:43.174Z
-      commits: *a1
+      verified_at: 2026-10-27T02:02:41.458811+08:00
+      commits:
+        - *a5
+        - *a6
+        - *a7
+        - *a8
+        - *a9
+        - *a10
+        - *a11
+        - *a12
       contract_refs: *a2
       fixture_refs: *a3
       harness: *a4
@@ -790,25 +836,27 @@ slices:
       invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation
         reference changes
     status: pending
-    status_reason: 前三切片与实际调用面已绑定当前r5；完整TCONF04及core/业务状态final仍缺，日常切换未执行。
+    status_reason: 来源绑定、安全状态和当前App可达子集已收口；完整TCONF04/core/业务状态还缺安全可达的unknown/never-sent App链，S4仍pending。日常prepare-only已通过，不等于日常激活。
 
 final_e2e:
   core_vertical:
     required: true
-    reason: 当前真实文本及46—48各层源绑定已成立；完整core仍缺供应商图片/搜索/工具结果，以及unknown/never-sent完整App安全可达证据。不得靠故障注入或旧结果推定完成。
+    reason: 当前源与当前App安全可达业务子集通过，完整unknown/never-sent
+      App操作链仍未自然观察；53真实图片/工具/搜索传输与54来源显示已绑定，不再是缺口。搜索答案质量与亮暗/键盘/最小窗口排除，不计PASS、不延期。
     status: NOT RUN
-    command: Canonical same-build App normal quit/reopen, read-only native facts and complete snapshots; s4v-final
-      independent verdict
-    environment: macOS aarch64; App9f/media42a23cf, Host8cd, Runtime11fd/r5; tool92cbe3d; one real text request
+    command: Canonical same-build App reopen/CUA + normal Cmd-Q exit0 + snapshot-stopped.py + read_sqlcipher.py
+      retained-copy audit
+    environment: macOS aarch64; ea8763d product equals actual c98 App179dbd; Host4f966e8 / Contracts c5d1383 /
+      Runtime11fd-r5 / Connectorscc56 / Skills595; historical runs retain original source and time
     exit_code: null
-    verified_at: 2026-10-26T13:31:39.676Z
+    verified_at: 2026-10-27T02:02:41.458811+08:00
     commits: &a1
       - repository: yijie-desktop
-        full_sha: 9f5814fec6cd071d39f0c12f8f48097ce661cb6a
+        full_sha: ea8763dfc40466e9b808a1b39afad71dbff1ac56
       - repository: yijie-agent-host
-        full_sha: 8cd6bccbdc1ac3906aea53d95441299f7cfefcce
+        full_sha: 4f966e8ea810d5b094d0b797d291955d6c774844
       - repository: yijie-contracts
-        full_sha: ca06d0999c9a08afe80ab3f34a537d492b830ac7
+        full_sha: c5d138374c102f1a8a11e328a869ec8f91724efd
       - repository: yijie-codex
         full_sha: 11fd4504c28afd0f65c6f5f62a6b5328dd437f5a
       - repository: yijie-connectors
@@ -829,12 +877,12 @@ final_e2e:
     platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
     production_bootstrap: true
     evidence_refs:
-      - 08-verification-report.md#E164-S4V-FINAL
+      - 08-verification-report.md#E164-S4AC-FINAL
     exception:
       owner: N/A
       approved_at: N/A
       reason: N/A
-    historical_binding_note: 原S4L字段保留于S4T历史快照及S4V原manifest；本字段现指当前r5实际判定。
+    historical_binding_note: 此前原S4V判定与真实请求来源保留；本条为当前S4AC零模型历史重开/状态/正常退出审计，不把旧运行改称本轮。
   accessibility_visual:
     required: true
     current_scope: 模型选择、退役/暂停、错误与恢复业务状态显示；不含外观专项
@@ -844,13 +892,15 @@ final_e2e:
       - minimum_window_1180x760
     exclusion_status: REMOVED_BY_OWNER_NOT_DEFERRED
     exclusion_source: 2026-10-26 Owner明确要求从FEAT-164移除上述验收
-    reason: 亮暗/键盘/最小窗口已从范围移除，不阻塞；当前活动列表/完成/重开显示及既有退役/授权子集成立。完整剩余业务状态尚缺unknown/never-sent App观测，未伪造。
+    reason: 当前源与当前App安全可达业务子集通过，完整unknown/never-sent
+      App操作链仍未自然观察；53真实图片/工具/搜索传输与54来源显示已绑定，不再是缺口。搜索答案质量与亮暗/键盘/最小窗口排除，不计PASS、不延期。
     status: NOT RUN
-    command: Canonical same-build App normal quit/reopen, read-only native facts and complete snapshots; s4v-final
-      independent verdict
-    environment: macOS aarch64; App9f/media42a23cf, Host8cd, Runtime11fd/r5; tool92cbe3d; one real text request
+    command: Canonical same-build App reopen/CUA + normal Cmd-Q exit0 + snapshot-stopped.py + read_sqlcipher.py
+      retained-copy audit
+    environment: macOS aarch64; ea8763d product equals actual c98 App179dbd; Host4f966e8 / Contracts c5d1383 /
+      Runtime11fd-r5 / Connectorscc56 / Skills595; historical runs retain original source and time
     exit_code: null
-    verified_at: 2026-10-26T13:31:39.676Z
+    verified_at: 2026-10-27T02:02:41.458811+08:00
     commits: *a1
     contract_refs: *a2
     fixture_refs: *a3
@@ -858,21 +908,22 @@ final_e2e:
     platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
     production_bootstrap: true
     evidence_refs:
-      - 08-verification-report.md#E164-S4V-FINAL
+      - 08-verification-report.md#E164-S4AC-FINAL
     exception:
       owner: N/A
       approved_at: N/A
       reason: N/A
-    historical_binding_note: 原S4L字段保留于S4T历史快照及S4V原manifest；本字段现指当前r5实际判定。
+    historical_binding_note: 此前原S4V判定与真实请求来源保留；本条为当前S4AC零模型历史重开/状态/正常退出审计，不把旧运行改称本轮。
   teardown:
     required: true
-    reason: 当前r5同源真实任务两次正常退出/重开零补发，进程/端口/句柄清理、四库WAL0和只读integrity；46正常取消/旧计划停止、47媒体和48十home关闭共同绑定同一源码。未取消或清除旧unknown，保留其事实。
+    reason: 当前实际c98/Host4f/r5 App正常退出exit0、无进程/句柄和补发，四Runtime库WAL0/integrity、71表旧行保持；原unknown不清除，日常App未启动。
     status: PASS
-    command: Canonical same-build App normal quit/reopen, read-only native facts and complete snapshots; s4v-final
-      independent verdict
-    environment: macOS aarch64; App9f/media42a23cf, Host8cd, Runtime11fd/r5; tool92cbe3d; one real text request
+    command: Canonical same-build App reopen/CUA + normal Cmd-Q exit0 + snapshot-stopped.py + read_sqlcipher.py
+      retained-copy audit
+    environment: macOS aarch64; ea8763d product equals actual c98 App179dbd; Host4f966e8 / Contracts c5d1383 /
+      Runtime11fd-r5 / Connectorscc56 / Skills595; historical runs retain original source and time
     exit_code: 0
-    verified_at: 2026-10-26T13:31:39.676Z
+    verified_at: 2026-10-27T02:02:41.458811+08:00
     commits: *a1
     contract_refs: *a2
     fixture_refs: *a3
@@ -880,12 +931,12 @@ final_e2e:
     platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
     production_bootstrap: true
     evidence_refs:
-      - 08-verification-report.md#E164-S4V-FINAL
+      - 08-verification-report.md#E164-S4AC-FINAL
     exception:
       owner: N/A
       approved_at: N/A
       reason: N/A
-    historical_binding_note: 原S4L字段保留于S4T历史快照及S4V原manifest；本字段现指当前r5实际判定。
+    historical_binding_note: 此前原S4V判定与真实请求来源保留；本条为当前S4AC零模型历史重开/状态/正常退出审计，不把旧运行改称本轮。
 
 failure_circuit_breaker:
   same_failure_threshold: 3

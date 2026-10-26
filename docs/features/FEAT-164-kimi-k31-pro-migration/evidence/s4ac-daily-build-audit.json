@@ -1,0 +1,80 @@
+{
+  "at": "2026-10-27T02:02:06.272171+08:00",
+  "command": [
+    "node",
+    "scripts/kimi-k31-packaged-receipt.mjs",
+    "--check",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ac-daily-candidate-20261027/yijie-codex/.yijie/build/kimi-k31-pro-r5/aarch64-apple-darwin/codex",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ac-daily-candidate-20261027/yijie-codex/.yijie/build/kimi-k31-pro-r5/aarch64-apple-darwin/runtime-manifest.json"
+  ],
+  "exit_code": 0,
+  "result": "PASS_PREPARE_ONLY",
+  "sources": {
+    "yijie-desktop": {
+      "head": "ea8763dfc40466e9b808a1b39afad71dbff1ac56",
+      "status": ""
+    },
+    "yijie-agent-host": {
+      "head": "4f966e8ea810d5b094d0b797d291955d6c774844",
+      "status": ""
+    },
+    "yijie-contracts": {
+      "head": "c5d138374c102f1a8a11e328a869ec8f91724efd",
+      "status": ""
+    },
+    "yijie-connectors": {
+      "head": "cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9",
+      "status": ""
+    },
+    "yijie-codex": {
+      "head": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+      "status": ""
+    },
+    "yijie-skills": {
+      "head": "595c927ae101d3d31c234f60565041eee0864680",
+      "status": ""
+    }
+  },
+  "bundle": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ac-daily-candidate-20261027/yijie-desktop/src-tauri/target/debug/bundle/macos/\u6613\u754c AI.app",
+  "bundle_files": 119,
+  "app_sha256": "c29f7e07942038d4c3849ef3a711ed4b501d17daab1478329ba5de6b6321a4d0",
+  "receipt_sha256": "ee4c53922b9642ffa81c3d6356827df6e8dbdcf6c0ec582e108bc954d768add7",
+  "identifier": "com.yijie.ai",
+  "artifacts": {
+    "host": {
+      "sha256": "9c2f57c5b4468b1e8252339c61d29c46627ead77180ee16f5c51be58c353ed48",
+      "bytes": 18011138,
+      "mode": 493
+    },
+    "runtime": {
+      "sha256": "283d12e16b124942302fcdc8281c729a8a7f676498f06df1d2646292905f579e",
+      "bytes": 356655704,
+      "mode": 493
+    },
+    "runtimeManifest": {
+      "sha256": "935dae6cf1427a8338b2817c4bfd39e9ae837e51a7f9cefd9117ecfed28b4cee",
+      "bytes": 3100,
+      "mode": 420
+    },
+    "worker": {
+      "sha256": "d2e379c733801ee364319226312b833f89b9fdb3af156711a946d075cde40d82",
+      "bytes": 84468640,
+      "mode": 493
+    },
+    "workerManifest": {
+      "sha256": "24f1440e85c01592dcad5eddf42952376536aee4cbee3a48167cedd8a0a6598c",
+      "bytes": 532,
+      "mode": 420
+    },
+    "adapter": {
+      "sha256": "9838d7e6f51258f330083827af4cc8b3e6d294c335124e4de378f09feeb6359f",
+      "bytes": 19818576,
+      "mode": 493
+    }
+  },
+  "app_launch": false,
+  "actual_daily_database_open": false,
+  "actual_daily_migration": false,
+  "real_model_http": 0,
+  "release": false
+}

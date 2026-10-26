@@ -1,0 +1,97 @@
+The following is a diff from the previous accessibility tree for Window: "易界 AI" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 49-63, 76-78
+~		2 HTML content Description: 任务对话 · 易界 AI, URL: tauri://localhost/chat/01a1777d-9e4c-7293-91c6-cb3efc3d9c29
+~									46 button (collapsed) FEAT164_S4S_KIMI 旧 K3 自然会话验收。请回复本机合成验证结果, Secondary Actions: Expand
+~			74 container FEAT164_S4S_KIMI 旧 K3 自然会话验收。请回复本机合成验证结果
+~				75 container
++					76 heading FEAT164_S4S_KIMI 旧 K3 自然会话验收。请回复本机合成验证结果, Value: 1
++						77 text FEAT164_S4S_KIMI 旧 K3 自然会话验收。请回复本机合成验证结果
++					78 text 已完成
++				79 container 任务对话记录
++					80 container 对话内容
++						81 container 对话通知
++							82 container 会话存在未分类提示，已保留可用内容。 conversation_warning
++								83 container
++									84 text 会话存在未分类提示，已保留可用内容。 conversation_warning
++						85 container
++							86 container 对话 1
++								87 container 对话 1
++									88 container 本轮对话内容
++										89 container 用户消息
++											90 text FEAT164_S4S_KIMI 旧 K3 自然会话验收。请回复本机合成验证结果。
++											91 container 用户消息操作
++												92 container 2026/10/26 17:14:43
++													93 text 17:14
++												94 button 复制文本
++										95 container 本轮耗时
++											96 container 本轮耗时
++												97 text 已完成 0s
++										98 container 模型回答
++											99 container 模型回答
++												100 text FEAT164 S4S 本机验收完成。这是合成响应，未访问真实模型。
++												101 container 模型回答操作
++													102 button 复制文本
++							103 container 对话 2
++								104 container 对话 2
++									105 container 本轮对话内容
++										106 container 用户消息
++											107 text FEAT164_S4S_CONTINUE 旧线程已明确切换新模型，请返回本机合成验证结果。
++											108 container 用户消息操作
++												109 container 2026/10/26 17:43:30
++													110 text 17:43
++												111 button 复制文本
++										112 container 本轮耗时
++											113 container 本轮耗时
++												114 text 已完成 0s
++										115 container 模型回答
++											116 container 模型回答
++												117 text FEAT164 S4S 本机验收完成。这是合成响应，未访问真实模型。
++												118 container 模型回答操作
++													119 button 复制文本
++							120 container 对话 3
++								121 container 对话 3
++									122 text 已中断
++									123 text 本轮已中断，已确认的内容仍可阅读。
++									124 container 本轮对话内容
++										125 container 用户消息
++											126 text FEAT164_S4S_STREAM 请正常流式输出，用于用户停止验收。
++											127 container 用户消息操作
++												128 container 2026/10/26 17:44:00
++													129 text 17:44
++												130 button 复制文本
++										131 container 本轮耗时
++											132 container 本轮耗时
++												133 text 用时 7秒
++										134 container 模型回答
++											135 container 模型回答
++												136 text 本轮已结束，未观察到该项结束记录
++												137 text 本机正常流式输出 1。 本机正常流式输出 2。 本机正常流式输出 3。 本机正常流式输出 4。 本机正常流式输出 5。 本机正常流式输出 6。 本机正常流式输出 7。 本机正常流式输出 8。 本机正常流式输出 9。 本机正常流式输出 10。 本机正常流式输出 11。 本机正常流式输出 12。 本机正常流式输出 13。 本机正常流式输出 14。 本机正常流式输出 15。 本机正常流式输出 16。 本机正常流式输出 17。 本机正常流式输出 18。 本机正常流式输出 19。 本机正常流式输出 20。 本机正常流式输出 21。 本机正常流式输出 22。 本机正常流式输出 23。 本机正常流式输出 24。 本机正常流式输出 25。 本机正常流式输出 26。 本机正常流式输出 27。 本机正常流式输出 28。 本机正常流式输出 29。 
++							138 container 对话 4
++								139 container 对话 4
++									140 container 本轮对话内容
++										141 container 用户消息
++											142 text FEAT164_S4S_CONTINUE 停止后继续同一线程，请回复合成结果。
++											143 container 用户消息操作
++												144 container 2026/10/26 17:44:27
++													145 text 17:44
++												146 button 复制文本
++										147 container 本轮耗时
++											148 container 本轮耗时
++												149 text 已完成 0s
++										150 container 模型回答
++											151 container 模型回答
++												152 text FEAT164 S4S 本机验收完成。这是合成响应，未访问真实模型。
++												153 container 模型回答操作
++													154 button 复制文本
++				155 button 滚动到对话底部
++				156 container 任务输入区
++					157 text 输入你的任务需求
++					158 text entry area (settable) 输入你的任务需求, Value: [text entry area], Placeholder: 继续输入任务需求…
++						159 text 继续输入任务需求…
++					160 pop up button 可添加文件、技能、连接器，或选择专家
++					161 pop up button 权限审批：请求批准, Help: 更改当前任务的权限审批模式
++					162 pop up button 关联店铺, Help: 关联店铺（交互演示）
++					163 pop up button 选择对话模型，当前 Kimi K3.1 Pro, Help: Kimi K3.1 Pro
++					164 button (disabled) 发送任务
++				165 text 已完成
+The focused UI element is 76 heading FEAT164_S4S_KIMI 旧 K3 自然会话验收。请回复本机合成验证结果, Value: 1

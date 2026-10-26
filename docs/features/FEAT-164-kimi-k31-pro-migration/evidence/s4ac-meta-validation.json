@@ -1,0 +1,112 @@
+{
+  "at": "2026-10-27T02:09:27.280156+08:00",
+  "checks": [
+    {
+      "name": "feature-claims",
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--audit-claims",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "expectation_met": true
+    },
+    {
+      "name": "feature-strict",
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "expectation_met": true
+    },
+    {
+      "name": "g3-s1",
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--gate",
+        "G3",
+        "--slice",
+        "S1",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "expectation_met": true
+    },
+    {
+      "name": "g3-s2",
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--gate",
+        "G3",
+        "--slice",
+        "S2",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "expectation_met": true
+    },
+    {
+      "name": "g3-s3",
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--gate",
+        "G3",
+        "--slice",
+        "S3",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "expectation_met": true
+    },
+    {
+      "name": "g3-s4-not-run",
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--gate",
+        "G3",
+        "--slice",
+        "S4",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 1,
+      "expected_exit": 1,
+      "expectation_met": true
+    },
+    {
+      "name": "meta-lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "expectation_met": true
+    },
+    {
+      "name": "meta-tests",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "expectation_met": true
+    }
+  ],
+  "shell_count": 7,
+  "shell_pass": true,
+  "full_feature_gate_pass_claimed": false
+}
