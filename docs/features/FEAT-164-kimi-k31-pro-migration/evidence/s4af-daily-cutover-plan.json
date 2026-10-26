@@ -1,0 +1,105 @@
+{
+  "feature": "FEAT-164",
+  "plan_id": "F164-S4AF-DAILY-CUTOVER",
+  "created_at": "2026-10-27T07:07:13.533389+08:00",
+  "status": "PROPOSED_NOT_EXECUTED",
+  "incremental_contract_impact": "none",
+  "current_scope": "source/evidence review and documentation only",
+  "daily_activation_readiness": "NO_GO",
+  "authorization": {
+    "current_plan_and_local_commit": true,
+    "product_code_change": false,
+    "daily_inventory_or_backup": false,
+    "daily_readonly_database_preflight": false,
+    "daily_native_migration": false,
+    "daily_app_start": false,
+    "workflow_lifecycle_or_migration": false,
+    "model_http": false,
+    "runtime_core_or_patch_change": false,
+    "push_or_release": false
+  },
+  "stages": [
+    {
+      "id": "D0",
+      "action": "只读源码复审与计划落盘",
+      "status": "COMPLETE",
+      "data_access": false
+    },
+    {
+      "id": "D1",
+      "action": "部署Home绑定与既有workflow只读ready门禁最小修正；合成数据/prepare-only资格",
+      "status": "PROPOSED_REQUIRES_APPROVAL",
+      "data_access": false
+    },
+    {
+      "id": "D2",
+      "action": "正常停止并持同一锁，完整受保护冷备份，第二份副本只读预检，形成精确路径/文件摘要与NO-GO清单",
+      "status": "NOT_AUTHORIZED",
+      "data_access": true,
+      "original_business_data_write": false,
+      "new_private_backup_and_manifest_write": true
+    },
+    {
+      "id": "D3",
+      "action": "依据D2实际结果批准一次Native受控维护；成功后停止，保留内部快照和后态副本核对",
+      "status": "NOT_AUTHORIZED",
+      "data_access": true,
+      "native_migration_write": true,
+      "host_runtime_start": false
+    },
+    {
+      "id": "D4",
+      "action": "独立批准首次受限App启动，原Host/Runtime写迁移、Kimi暂停、全模型无自动可派发任务、既有workflow只读ready核对，历史检查与正常退出",
+      "status": "NOT_AUTHORIZED",
+      "data_access": true,
+      "host_runtime_write": true,
+      "model_http": 0
+    },
+    {
+      "id": "D5",
+      "action": "依据D4结果单独确认日常入口启用/解除Kimi暂停；不覆盖已签名App、不生成计划授权、不发送验收消息",
+      "status": "NOT_AUTHORIZED",
+      "model_http": 0
+    }
+  ],
+  "proposed_code_scope": {
+    "repository": "yijie-desktop",
+    "incremental_contract_impact": "semantic",
+    "existing_implementation": [
+      "scripts/run-local-demo-fast.sh",
+      "scripts/kimi-k31-packaged-receipt.mjs"
+    ],
+    "new_support_script": [
+      "scripts/feat164-daily-deployment.py"
+    ],
+    "tests": [
+      "scripts/run-local-demo-fast.test.mjs"
+    ],
+    "docs": [
+      "docs/feat164-daily-deployment.md",
+      "SECURITY.md"
+    ],
+    "runtime_core_or_patch": false,
+    "infra_source_edit": false,
+    "native_db_or_command_edit": false
+  },
+  "backup_scope": "Full original com.yijie.ai application-data tree plus authoritative daily Host Home and Runtime Home, their complete DB/WAL/SHM, rollout/config/catalog/marker/mapping/spool, required external referenced assets and exact local secret files; encrypted DB bytes retained, private local key copies. Source remains unchanged. Exact paths are facts to be established under D2, not inferred from candidate paths.",
+  "preflight_note": "No standalone read-only migration CLI exists. Never invoke migrate-daily-k3 for read-only inspection; use sealed backup plus second inspection copy, read-only SQLCipher/bbolt/SQLite with no production open/migration function.",
+  "risk_findings": [
+    "CUTOVER-01",
+    "CUTOVER-02",
+    "CUTOVER-03",
+    "CUTOVER-04",
+    "CUTOVER-05"
+  ],
+  "rollback": "Before data write: stop only, retain backups. After first data write: retain compatible new reader and pause Kimi or leave App stopped; no old writer, schema downgrade, manual checkpoint/WAL deletion or automatic backup overwrite.",
+  "accepted_substitution_retained": {
+    "decision_id": "F164-S4AE-OWNER-SAFE-SUBSTITUTION",
+    "full_app_positive_never_sent_execution": "NOT RUN",
+    "accepted": true
+  },
+  "history_gate": "Report58 accepted local G4 PASS remains historical evidence; current G4 reopened pending deployment Home correctness fix/requalification, not a failed rerun.",
+  "daily_facts_known": false,
+  "actual_daily_operations": 0,
+  "model_http_added": 0
+}

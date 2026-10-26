@@ -1,6 +1,12 @@
 # FEAT-164 当前验收与来源矩阵
 
-2026-10-27，当前权威为[58](58-owner-accepted-substitute-and-final-closure.md)。目标仍是所有活动调用面使用kimi-k3.1-pro，原历史/operation/授权与MiniMax保持。本地代码和适用验收已收口；日常迁移/启用及发布未执行，feature保持active。
+## 当前日常切换边界（2026-10-27，S4AF）
+
+以[59 日常切换方案](59-daily-cutover-minimal-plan-and-authorization.md)为当前部署权威。源码复审发现daily launcher将Host/Runtime Home改至候选新目录、与原Native日常库缺连续性；正常启动还可能隐式workflow迁移及恢复自动计划。日常activation为NO_GO，当前G4重新pending，先提限定部署入口修正及离线资格，尚未获准实施。58的已接受本地S1—S4/final证据与never-sent替代保持，完整App正向取消原执行仍NOT RUN；不是重新跑失败或取消Owner接受。
+
+本轮仅方案和治理，无产品/Runtime改动，无日常数据访问/备份/预检/迁移/启动，无模型调用。阶段顺序为D1入口修正→D2完整冷备份与副本只读预检→D3一次Native维护→D4首次受限启动及退出核对→D5确认日常启用；D1—D5均未自动授权，具体边界见59。以下早期状态按各自时点解释。
+
+2026-10-27，当前权威为[58](58-owner-accepted-substitute-and-final-closure.md)。目标仍是所有活动调用面使用kimi-k3.1-pro，原历史/operation/授权与MiniMax保持。58已接受本地适用验收保持；59新发现日常Home连续性缺口，当前G4重新pending、日常NO_GO，feature保持active。
 
 ## 当前源码和制品
 
@@ -40,7 +46,8 @@
 | core_vertical | PASS | 46—57实际App主路径与跨组件结果；never-sent单项采用Owner接受的替代 |
 | accessibility_visual | PASS | 现存业务状态范围；完整App正向取消NOT RUN另列；外观专项已排除 |
 | teardown | PASS | 57正常退出/数据库业务事实保护，本轮零启动且文件未改 |
-| S1/S2/S3/S4 G3及G4 | PASS | 来源并集8项绑定、结构化审查与治理实检 |
+| S1/S2/S3/S4 G3 | PASS（58本地范围） | 来源并集8项及已接受替代保持 |
+| 当前G4 | pending | 59发现CUTOVER-01日常Home连续性P1；须修正入口并重资格，58原PASS作为历史保留 |
 | G5/G6 | pending | local exposure，无生产/发布资格或授权 |
 | 日常候选 | prepare-only PASS | ea制品c29f7e0未启动；日常库未打开/迁移 |
 
@@ -50,4 +57,4 @@
 
 本轮587个历史证据引用、12份私有事实、六来源及三套119文件制品核验一致。全部12441保护文件、500份既有dirty和7账本/快照核对，混合memory仅本轮增量。真实HTTP累计13，本轮0；45元cap、29.740299保守累计、两份14.188544预占保持。服务停止，无交接待答。
 
-不再补试已接受项或重复模型回合。后续若要实际日常切换，必须明确数据备份/预检/维护/启动范围并获授权；本轮明确不迁移。当前无需要扩大Runtime核心/补丁范围的发现。仅本地提交、不推送。
+不再补试已接受项或重复模型回合。下一步先按59批准D1部署绑定/ready-only最小修正及离线验证，之后再逐阶段批准D2完整备份/预检、D3维护、D4启动、D5日常启用。日常候选prepare-only不代表可直接启动；无Runtime核心/补丁新增范围。仅本地提交、不推送。

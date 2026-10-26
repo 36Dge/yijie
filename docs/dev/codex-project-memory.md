@@ -1,5 +1,17 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 S4AF：日常切换方案已收敛，执行尚未授权（2026-10-27）
+
+当前权威[59](../features/FEAT-164-kimi-k31-pro-migration/59-daily-cutover-minimal-plan-and-authorization.md)。本轮仅源码/58证据/制品审计和方案落盘，不访问、枚举、hash、备份、预检、迁移或启动日常数据/App；0真实/本机模型HTTP，无Runtime核心/补丁或产品修改。
+
+新发现CUTOVER-01 P1：daily K31 launcher把Host/Runtime Home改为候选.local/feat164-daily，而Native仍读com.yijie.ai/demo-fast-v1；Native仅isolated分支重写Home。不能直接启动当前c29f7e0日常候选。维护命令合并backup/preflight/写迁移，其内部5文件不是完整多存储备份。正常launcher的workflow-up在停止态会迁Coze/API；workflow-status也写state且false ready不保证非零exit。K31暂停不阻止MiniMax自动计划，首次App启动还有Host/Runtime写迁移。
+
+当前G4重新pending、implementation active、日常NO_GO；58本地S1—S4/final及Owner never-sent替代保持历史已接受范围，完整App正向取消仍NOT RUN，不反复补试。搜索质量和外观专项OWNER_EXCLUDED。日常现场schema/Home/占用/计划/workflow状态未知，不拿原R1隔离库事实代入。
+
+推荐下一步仅D1：批准Desktop launcher/receipt两文件＋新增daily-deployment.py、既有入口测试及两文档的部署绑定/既有workflow只读ready修正，合成验证和新prepare-only。不改Native command/schema、Infra或Runtime。D1当前只是方案，未批准实施。其后独立D2完整冷备份/副本只读预检→D3一次Native维护→D4首次受限启动/正常退出→D5确认日常启用；真实模型请求全部仍0，后续数据动作不从方案确认自动继承。
+
+原500dirty＋混合memory、7账本/快照保持。累计真实13、45元cap、29.740299保守累计和两份14.188544预占不变。本轮只本地治理提交、不推送；不复位unknown/grant、不覆盖旧或已签名App、不降库/删WAL/强杀。
+
 ## FEAT-164 S4AE：Owner接受安全替代，本地代码与验收收口（2026-10-27）
 
 当前权威[58](../features/FEAT-164-kimi-k31-pro-migration/58-owner-accepted-substitute-and-final-closure.md)。Owner明确接受57号never-sent正常Native持久取消/重开及生产消费链的安全分层替代；完整App正向取消原执行仍NOT RUN，不再安排该项补试。原unknown缺Host回执，保留未决/禁发/明确恢复安全拒绝为正确结果，不重复点击、不清空或换operation。

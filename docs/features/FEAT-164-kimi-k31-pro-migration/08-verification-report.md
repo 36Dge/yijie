@@ -1,6 +1,12 @@
 # FEAT-164 实际验证记录
 
-## 当前结论（2026-10-27，S4AE）
+## 当前日常切换边界（2026-10-27，S4AF）
+
+以[59 日常切换方案](59-daily-cutover-minimal-plan-and-authorization.md)为当前部署权威。源码复审发现daily launcher将Host/Runtime Home改至候选新目录、与原Native日常库缺连续性；正常启动还可能隐式workflow迁移及恢复自动计划。日常activation为NO_GO，当前G4重新pending，先提限定部署入口修正及离线资格，尚未获准实施。58的已接受本地S1—S4/final证据与never-sent替代保持，完整App正向取消原执行仍NOT RUN；不是重新跑失败或取消Owner接受。
+
+本轮仅方案和治理，无产品/Runtime改动，无日常数据访问/备份/预检/迁移/启动，无模型调用。阶段顺序为D1入口修正→D2完整冷备份与副本只读预检→D3一次Native维护→D4首次受限启动及退出核对→D5确认日常启用；D1—D5均未自动授权，具体边界见59。以下早期状态按各自时点解释。
+
+## 58号历史已接受范围（2026-10-27，S4AE）
 
 以[58 安全替代接受与最终收口](58-owner-accepted-substitute-and-final-closure.md)、feature.yaml和[当前矩阵](current-acceptance-matrix.md)为准。Owner明确接受57号never-sent正常Native API与生产消费链的安全分层替代；S4/TCONF04及三项适用最终验收按该方式收口，G4为本地代码完成。**完整App正向never-sent取消的原始执行状态仍为NOT RUN**，没有改写为已执行。原自然unknown缺Host回执，安全拒绝重发通过，原记录仍未恢复ready。
 
@@ -602,3 +608,11 @@ S4/TCONF04、core_vertical、业务状态accessibility_visual及teardown按已�
 <!-- evidence: E164-S4AE-REVIEW -->
 
 与实现阶段分离的Codex复审及逐文件SHA见evidence/s4ae-structured-review.json，未发现已接受本地范围内开放P0/P1，不冒称独立人工批准。产品/Runtime不改，0新增模型调用，不打开/迁移日常库。来源绑定、Owner范围与原数据保护结果分别记录；工作区原dirty保留，非全仓干净声明。G4实际机器核验及元仓检查见evidence/s4ae-governance-checks.json；G5/G6未放行。
+
+## S4AF 日常部署方案审计
+
+<!-- evidence: E164-S4AF-PLAN -->
+
+PASS_SOURCE_FACTS_CONFIRMED：58索引28证据、当前6来源、daily App119文件及1206源码输入相符。静态源审计确认CUTOVER-01日常Native与Host/Runtime Home路径断点，以及维护合并预检/写入、内部备份范围、workflow-up迁移/状态写入、全模型自动计划和首次Host/Runtime写入边界。完整事实/源码SHA见evidence/s4af-source-review.json，最小修正及D0—D5授权矩阵见59和s4af-daily-cutover-plan.json。
+
+当前日常NO_GO、G4 pending，58历史隔离PASS不改写；S4和三final的原accepted local范围保留，完整App正向never-sent仍NOT RUN。没有进行日常数据现场调查、备份、只读开库、维护或启动，没有新模型HTTP或Runtime代码修改。只读审计不是新E2E，不以待定日常事实填造PASS。

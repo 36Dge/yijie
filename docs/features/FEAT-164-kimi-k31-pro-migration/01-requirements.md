@@ -2,6 +2,8 @@
 
 本需求已获Owner授权实施；本文件仍是整项验收目标。全部AC在已接受的本地实现与验收范围内PASS，逐项证据见[当前验收矩阵](current-acceptance-matrix.md)和58；日常迁移/启用与发布未执行，不能把代码完成等同日常切换完成。
 
+当前日常部署状态另按[59](59-daily-cutover-minimal-plan-and-authorization.md)：发现原Native与候选Host/Runtime Home连续性缺口，须先修正入口，G4 pending、日常NO_GO。58本地AC与替代证据保留，不能据此宣称日常切换可直接执行。
+
 ## 业务规则
 
 - BR-01：活动 Kimi 请求精确为 kimi-k3.1-pro；新 profile 不重用旧身份，不自动回退 K3 或 MiniMax。

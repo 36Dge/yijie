@@ -1,0 +1,154 @@
+{
+  "feature": "FEAT-164",
+  "at": "2026-10-27T07:05:02.258267+08:00",
+  "audit_result": "PASS_SOURCE_FACTS_CONFIRMED",
+  "daily_activation_readiness": "NO_GO",
+  "prior_58_index_files_verified": 28,
+  "sources": {
+    "yijie-desktop": {
+      "head": "ea8763dfc40466e9b808a1b39afad71dbff1ac56",
+      "status": ""
+    },
+    "yijie-agent-host": {
+      "head": "4f966e8ea810d5b094d0b797d291955d6c774844",
+      "status": ""
+    },
+    "yijie-contracts": {
+      "head": "c5d138374c102f1a8a11e328a869ec8f91724efd",
+      "status": ""
+    },
+    "yijie-connectors": {
+      "head": "cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9",
+      "status": ""
+    },
+    "yijie-codex": {
+      "head": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+      "status": ""
+    },
+    "yijie-skills": {
+      "head": "595c927ae101d3d31c234f60565041eee0864680",
+      "status": ""
+    }
+  },
+  "infra_source": {
+    "head": "66b481552eb76d46b00875ac27794ed8e1eb504a",
+    "status": ""
+  },
+  "daily_bundle_files": 119,
+  "daily_app_sha256": "c29f7e07942038d4c3849ef3a711ed4b501d17daab1478329ba5de6b6321a4d0",
+  "daily_receipt_sha256": "ee4c53922b9642ffa81c3d6356827df6e8dbdcf6c0ec582e108bc954d768add7",
+  "daily_source_inputs_verified": 1206,
+  "missing_candidate_siblings": [
+    "yijie-infra",
+    "yijie-coze"
+  ],
+  "reviewed_files": {
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ac-daily-candidate-20261027/yijie-desktop/scripts/run-local-demo-fast.sh": {
+      "sha256": "3360f3dcfa0988b6ebccc41384a5c2a8a0fff97e598d817052e7da8ece20af80",
+      "lines": 641
+    },
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ac-daily-candidate-20261027/yijie-desktop/src-tauri/src/chat/sidecar.rs": {
+      "sha256": "84ecd1d2d2e150ff2f1faa0fe63ef104aa4d83752d428aba75b833285250b502",
+      "lines": 3654
+    },
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ac-daily-candidate-20261027/yijie-desktop/src-tauri/src/chat/isolated_model_migration.rs": {
+      "sha256": "762b2d3ae41dab15c9d92a217fd5bdb31a3cd4cc5b74cb2faa414a6dc8cf1e58",
+      "lines": 554
+    },
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ac-daily-candidate-20261027/yijie-desktop/src-tauri/src/lib.rs": {
+      "sha256": "9007b76f2600030c6dc02dd73c063f2f79d222b2419a6399307762d46198c680",
+      "lines": 622
+    },
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ac-daily-candidate-20261027/yijie-desktop/src-tauri/src/chat/schedules/automatic.rs": {
+      "sha256": "03596c713079969a9c9e293607ebdafc00948535fdb54b8c2f4e1218bac0ee4c",
+      "lines": 157
+    },
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ac-daily-candidate-20261027/yijie-desktop/src-tauri/src/chat/ipc.rs": {
+      "sha256": "b45eb29a41d14448c2e1b27527479994351e6e7abcdbaf21445fc6686cffbccc",
+      "lines": 10308
+    },
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ac-daily-candidate-20261027/yijie-desktop/src-tauri/src/chat/database.rs": {
+      "sha256": "02881ee6c8a91585912406b0d48830e5e6f679f7e4bc435aa63e82ae95e263e7",
+      "lines": 11641
+    },
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ac-daily-candidate-20261027/yijie-desktop/src-tauri/src/feat164_qualification.rs": {
+      "sha256": "5803a9a146b47fc7313172403502e46bf72873248804053912978e41a5bfae02",
+      "lines": 104
+    },
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ac-daily-candidate-20261027/yijie-agent-host/internal/session/store.go": {
+      "sha256": "3e76728403240f2fa303edbd5b8f319b39fff9211bd033d65d5470a06d47066f",
+      "lines": 1322
+    },
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ac-daily-candidate-20261027/yijie-agent-host/internal/codex/kimi_k31_activation.go": {
+      "sha256": "62ab986d46fe81381bca7f7c1b1ac6704baa1503d9f245897c6f325d5f0c9c19",
+      "lines": 79
+    },
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra/scripts/workflow-local.py": {
+      "sha256": "7fd0450319467d5ad97eb56f2bb713ac411ea19c8708ab2529ffcf6d350194ea",
+      "lines": 622
+    },
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ac-daily-candidate-20261027/yijie-desktop/scripts/kimi-k31-packaged-receipt.mjs": {
+      "sha256": "b522106cc2777503783fe69739d8725aa868fc6f69421b980ecef4c79f3332c7",
+      "lines": 80
+    },
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ac-daily-candidate-20261027/yijie-desktop/src-tauri/src/single_instance.rs": {
+      "sha256": "786cd2f203a182d2a9604a3ca1fb8b0b18327ff7e935af895e6872ac6ec93866",
+      "lines": 283
+    },
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ac-daily-candidate-20261027/yijie-desktop/src-tauri/src/chat/mod.rs": {
+      "sha256": "13e7ba0a734eea6b644ecd708c561a0dca7236310153875f369ba0ca1d6e8fdd",
+      "lines": 2030
+    },
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ac-daily-candidate-20261027/yijie-desktop/src-tauri/src/chat/schedules/candidate.rs": {
+      "sha256": "f5174e257b6e827b7c8c1824876309cfbd52fed05d54eb4278968c766a1a3383",
+      "lines": 139
+    },
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ac-daily-candidate-20261027/yijie-desktop/src-tauri/src/chat/schedules/model_retirement.rs": {
+      "sha256": "a1b8c0ba5f552067221709eb8f0672bddcbd044f4274e49b886e48f90b08626e",
+      "lines": 178
+    }
+  },
+  "findings": [
+    {
+      "id": "CUTOVER-01",
+      "classification": "P1 deployment correctness, actual daily not executed",
+      "fact": "Daily K31 launcher assigns candidate-local Host and Runtime Homes while retaining original daily Native identity. Native rewrites Homes only for isolated profiles.",
+      "impact": "Existing Native-to-Host-to-Runtime mapping continuity is not established; do not activate current daily candidate.",
+      "status": "OPEN_DESIGN_FIX_REQUIRED"
+    },
+    {
+      "id": "CUTOVER-02",
+      "classification": "authorization boundary",
+      "fact": "Migration CLI combines backup, copy preflight and actual write; internal snapshot covers conversations.db plus WAL/SHM and two secrets only.",
+      "impact": "Separate full cold backup and read-only copy preflight authorization must precede migration authorization; no existing standalone preflight flag.",
+      "status": "PLAN_REQUIRED"
+    },
+    {
+      "id": "CUTOVER-03",
+      "classification": "authorization boundary and deployment prerequisite",
+      "fact": "Daily normal launcher calls workflow-up; stopped-stack branch mutates lifecycle/credentials and runs Coze/API migrations. workflow-status also writes state and CLI does not propagate false readiness into nonzero exit. Candidate workspace lacks Infra/Coze.",
+      "impact": "Need fail-closed existing-ready-only startup; no implicit workflow init/build/up/migration or silent profile disable.",
+      "status": "OPEN_DESIGN_FIX_REQUIRED"
+    },
+    {
+      "id": "CUTOVER-04",
+      "classification": "zero-model-call boundary",
+      "fact": "App native setup can resume automatic scheduled work. K31 execution pause excludes K31 only; enabled MiniMax work may remain eligible.",
+      "impact": "No-send first-start gate requires no eligible future/pending work across all models, not only no currently in-flight operation.",
+      "status": "PRESTART_INVENTORY_REQUIRED"
+    },
+    {
+      "id": "CUTOVER-05",
+      "classification": "write authorization boundary",
+      "fact": "Native maintenance does not start Host/Runtime. First normal startup can upgrade Host Store and managed Runtime config/catalog, start scheduling and advance local lifecycle facts.",
+      "impact": "Authorize Native migration and first-start Host/Runtime writes separately; first start is not read-only.",
+      "status": "PLAN_REQUIRED"
+    }
+  ],
+  "daily_data_accessed": false,
+  "daily_data_snapshot_or_preflight_performed": false,
+  "app_launch": false,
+  "workflow_commands_run": false,
+  "runtime_core_or_patch_changed": false,
+  "model_http_added": 0
+}

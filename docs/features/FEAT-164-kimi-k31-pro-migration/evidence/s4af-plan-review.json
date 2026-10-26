@@ -1,0 +1,55 @@
+{
+  "feature": "FEAT-164",
+  "at": "2026-10-27T07:14:45.968607+08:00",
+  "review_kind": "Codex structured second review of plan, separate from source discovery",
+  "human_approval_fabricated": false,
+  "checks": [
+    {
+      "area": "scope",
+      "result": "PASS",
+      "reason": "D0 alone authorized. D1 code proposal and D2-D5 actual data/services remain unapproved. No daily data or credentials read."
+    },
+    {
+      "area": "source/authority",
+      "result": "PASS",
+      "reason": "Current candidate sha and 1206 inputs bound; daily Home bug proven from assignments and Native isolated-only override; actual old Home remains unknown."
+    },
+    {
+      "area": "backup/preflight",
+      "result": "PASS_PLAN",
+      "reason": "Full three-store cold backup with original secrets/attachments and sealed/inspection separation; no maintenance CLI or production writer used as read-only inspection."
+    },
+    {
+      "area": "side effects",
+      "result": "PASS_PLAN",
+      "reason": "Native and first-start writes separately authorized; workflow-up migration forbidden under proposed daily launcher; status false-exit hazard recorded; all-model automatic work blocks first launch."
+    },
+    {
+      "area": "rollback",
+      "result": "PASS_PLAN",
+      "reason": "No automatic restore, no old writer after mutation, no WAL deletion/checkpoint or force kill. Safe stopped state is an allowed outcome."
+    },
+    {
+      "area": "gates",
+      "result": "PASS_RECORDING",
+      "reason": "Report58 raw accepted evidence retained; current G4 pending due newly discovered deployment P1, S4 local G3 valid; expected G4 block distinguished from product test failure."
+    }
+  ],
+  "open_product_findings": [
+    {
+      "id": "CUTOVER-01",
+      "severity": "P1",
+      "scope": "daily deployment Home continuity",
+      "status": "NOT_FIXED_PLAN_ONLY"
+    }
+  ],
+  "execution_risks": [
+    "Missing Infra/Coze dependency and live state require later authorized read-only inventory; do not add symlinks/start services now",
+    "Read-only backup helper must be reviewed and source-pinned before any real data use; old R1 script is not directly reusable",
+    "Stored default Home path is only a candidate; require actual binding before migration or startup",
+    "Complete backup retains encrypted DB bytes and restricted key copies; not claimed independently encrypted archive"
+  ],
+  "runtime_core_or_patch_plan_needed": false,
+  "real_model_http_added": 0,
+  "daily_data_accessed": false
+}

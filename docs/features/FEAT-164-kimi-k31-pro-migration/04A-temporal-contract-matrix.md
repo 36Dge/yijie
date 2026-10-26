@@ -1,5 +1,7 @@
 # FEAT-164 时序契约矩阵
 
+当前部署推进以[59](59-daily-cutover-minimal-plan-and-authorization.md)为准：G4因daily Home连续性问题重新pending。原时序不变量、S1—S4及三项final的已接受本地证据保持；本轮不改时序契约、不运行日常数据。下方58判定按其本地历史范围解释。
+
 ## 当前结论（2026-10-27，S4AE）
 
 以[58 安全替代接受与最终收口](58-owner-accepted-substitute-and-final-closure.md)、feature.yaml和[当前矩阵](current-acceptance-matrix.md)为准。Owner明确接受57号never-sent正常Native API与生产消费链的安全分层替代；S4/TCONF04及三项适用最终验收按该方式收口，G4为本地代码完成。**完整App正向never-sent取消的原始执行状态仍为NOT RUN**，没有改写为已执行。原自然unknown缺Host回执，安全拒绝重发通过，原记录仍未恢复ready。
