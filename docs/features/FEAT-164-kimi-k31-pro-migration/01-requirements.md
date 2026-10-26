@@ -33,6 +33,10 @@
 
 统一 ChatModelControl、useChatModels、composer草稿、ChatPage退出草案、计划表单及详情的业务状态文案。Owner于2026-10-26明确移除亮暗、键盘/焦点及最小窗口专项验收，这些项目不再属于本需求验收标准或完成门槛；不修改全局UI框架。
 
+## Owner明确移出的验收项（2026-10-27）
+
+搜索答案正确性（含本轮指定官方文档命中、是否给出确定答案的质量判定）从FEAT-164移除，记OWNER_EXCLUDED；不是延期，也不计为PASS，不再作为AC、S4/G3或最终交付门槛。原始搜索/模型结果与账本保留，不为此补试、增加检索工具或修改Runtime。原AC-008/009保留实际sources按契约传递、原生事实如实呈现、Key/审批/预算保护；不把质量排除解释为删除搜索接线或放宽安全边界。确认与结果见55及evidence/s4ab-owner-scope-exclusion.json。
+
 ## Must AC追踪
 
 | AC | 可判定行为 | 对应验证 |

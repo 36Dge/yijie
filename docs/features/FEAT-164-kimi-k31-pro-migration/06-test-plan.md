@@ -1,5 +1,7 @@
 # FEAT-164 测试与证据计划
 
+> 当前见[55 测试修复与Owner范围调整](55-v3-test-and-search-grounding-root-cause.md)：旧v3测试已修复，28前端＋2client＋1原生reader＋19来源及lint通过；搜索答案正确性已明确从FEAT164需求/验收门槛移除，记OWNER_EXCLUDED，不计PASS、不再补试。三次真实调用保留，累计13、45元上限，旧账本/两份预占不变；全部服务正常停止，无待答交接。以下旧“质量未决/继续复验”仅为历史，不再作为本需求待办。
+
 > 当前按[50 前三切片收口与日常部署方案](50-slice-evidence-closure-and-daily-deployment-plan.md)：S1—S3的G3已通过，S4完整验收仍缺；Owner已批准8文件日常候选实现及离线验证，明确不迁移真实日常库。此前状态按原阶段解释。
 
 > 当前以[49 r5真实功能与日常边界](49-r5-real-qualification-and-daily-cutover-boundary.md)为准：Owner已明确授权必要真实功能调用且不要求精确查价；本轮1次r5真实42、保存/重开零补发和正常退出通过。旧账本/预占保持，日常迁移未执行；完整core/剩余业务状态仍按明确缺口判定。已移除外观专项不再作为门槛。

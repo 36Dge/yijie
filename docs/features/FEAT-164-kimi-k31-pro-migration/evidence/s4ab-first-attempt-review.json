@@ -1,0 +1,16 @@
+{
+  "status": "FIRST_ATTEMPT_FAILED_NO_SEARCH_NO_FINAL_ANSWER",
+  "provider_terminal": "response.completed",
+  "runtime_response_item_types": [
+    "message",
+    "message",
+    "message",
+    "reasoning"
+  ],
+  "raw_rollout_sha256": "302afa7df4c3367278f6615f446053e7c28386910171004877b130bcbd5b88bf",
+  "no_native_search": true,
+  "no_assistant_message": true,
+  "hypothesis": "URL-centric query or provider routing may fail to engage server search; internal cause unknown; next request changes only user query wording to explicit site search",
+  "request_profile_unchanged": "same source App/provider/effort/search-only tool projection/8192 cap",
+  "second_prompt": "FEAT164 站内搜索复验：请联网搜索 site:platform.kimi.com/docs/api/responses Responses API 图片 input_image，核实 Kimi Responses API 是否接受图片输入，并给出实际找到的官方来源。不要从其他接口或模型能力推断。请最终给出简短中文答复；若没有搜到明确依据，也请说明无法确认。仅使用原生联网搜索，不使用终端、文件工具或子代理。"
+}

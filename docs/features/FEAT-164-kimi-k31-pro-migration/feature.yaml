@@ -1155,6 +1155,7 @@ documents:
   loaded_legacy_and_compaction: 30-s4-loaded-legacy-compaction.md
   native_terminal_repair: 31-s4-native-terminal-repair.md
   r4_app_and_plan_acceptance: 32-s4-r4-app-plan-acceptance.md
+  current_test_and_scope_update: 55-v3-test-and-search-grounding-root-cause.md
   current_search_fix: 54-search-source-component-fix-and-offline-verification.md
   current_real_functional: 53-real-functional-results-and-search-source-fix-plan.md
   current_isolated_handoff: 52-isolated-app-functional-qualification-and-handoff.md
@@ -1164,13 +1165,13 @@ documents:
 external_authorizations:
   paid_calls:
     allowed: true
-    max_actions: 1
+    max_actions: 3
     approved_by: 段成威
-    approved_at: 2026-10-26
-    scope: 历史49号自限1次及53号4次功能批次已完成，累计10；Owner必要功能调用授权不因旧次数重复索批。当前54号最小修复明确0新增真实调用，保留全部预占。
-    cumulative_amount_limit_cny: 30
+    approved_at: 2026-10-27
+    scope: Owner累计上限提高45元、当轮允许最多3次，实际3次已用，累计13；随后将搜索答案正确性从FEAT164移除，不再为质量补试或复用未用金额追加调用。
+    cumulative_amount_limit_cny: 45
     old_ledger_and_reservations_preserved: true
-    evidence_ref: 08-verification-report.md#E164-S4V-REAL
+    evidence_ref: 08-verification-report.md#E164-S4AB-SCOPE
   destructive_operations:
     allowed: false
     max_actions: 0
@@ -1185,7 +1186,7 @@ current_authorization:
   paused_by_owner: false
   pause_reason: 历史：2026-10-26 18:01因关闭电脑暂停，现已由Owner明确恢复；原paused-handoff保留。
   phase: implementation_with_governance
-  source: Owner最新明确批准53号Host来源URL最小修复及安全离线验证；本阶段0新增真实调用、不访问日常库、不改Runtime核心/补丁，仅本地提交。此前必要功能调用授权按原历史范围保留。
+  source: Owner要求修复旧v3测试及搜索调查，批准累计45元并先后允许1/2/3次；3次已完成，最新明确将搜索答案正确性从FEAT164移除。仅本地提交，日常库及新Runtime核心范围未开放。
   documentation_write_allowed: true
   product_source_edit_allowed: true
   product_generate_build_test_allowed: true
@@ -1195,10 +1196,32 @@ current_authorization:
   service_lifecycle_allowed: true
   model_or_tool_business_calls_allowed: true
   git_commit_push_branch_release_allowed: false
-  note: 54号已完成1次本机/0新增真实；累计真实10、四账本与旧预占保持。53号原生搜索独立费用未结，保留完整新预占；29.343192元为历史估算加预占，非精确账单。日常数据切换和Runtime新核心范围仍须按具体清单确认。
+  note: 55号测试修复通过；真实新增3/累计13，最新估算加预占29.740299元，旧四账本及两份14.188544元unknown保留。质量项OWNER_EXCLUDED而非PASS，停止该项补试；原生sources/状态、预算、历史保护仍保留，全部服务正常停止。
   git_local_commit_allowed: true
   git_scope: 仅FEAT-164必要独立来源/实现/验证/治理本地提交，不混入其它需求；无push/branch/tag/release。
 implementation:
+  v3_test_and_search_scope_s4ab:
+    report: 55-v3-test-and-search-grounding-root-cause.md
+    test_fix: PASS
+    desktop_test_commit: ea8763dfc40466e9b808a1b39afad71dbff1ac56
+    product_implementation_changed: false
+    frontend_tests: 28
+    client_boundary_tests: 2
+    native_reader_tests: 1
+    source_checks: 19
+    search_answer_quality: OWNER_EXCLUDED
+    owner_exclusion_ref: evidence/s4ab-owner-scope-exclusion.json
+    excluded_quality_is_pass: false
+    native_source_and_security_requirements_preserved: true
+    real_http_added: 3
+    cumulative_real_http: 13
+    old_ledgers_and_reserves_preserved: true
+    all_71_tables_old_rows_preserved: true
+    all_services_stopped_normally: true
+    actual_daily_database_open: false
+    runtime_core_or_patch_changed: false
+    evidence_ref: 08-verification-report.md#E164-S4AB-SCOPE
+    evidence_index: evidence/s4ab-audit-index.json
   search_source_fix_s4aa:
     status: PASS_APPROVED_OFFLINE_SCOPE
     report: 54-search-source-component-fix-and-offline-verification.md
@@ -1561,7 +1584,7 @@ implementation:
     note: 同一App维护参数在auth/worker/sidecar/UI之前退出；两种旧库自然离线样本成功，现有SQL41候选拒绝后未迁移/清理/退款。两个前置环境失败及后置归因修正保留，不冒充完整G3/final。
 product_verification:
   status: IN_PROGRESS
-  reason: 第53号真实图片/工具回灌通过、搜索传输通过但答案正确性未决；第54号Host来源误删按批准修复，新同源隔离App与正常重开通过，1本机/0新增真实HTTP。S1—S3原绑定保持，S4完整core/业务状态及日常切换仍待收口；不自动把旧真实资格授予新Host，不开放日常库。
+  reason: 第55号旧v3测试已修复并定向通过；搜索答案正确性按Owner明确移除，不再作为S4/final阻塞，不计PASS。原S1—S3与53/54来源事实保留；剩余范围为模型/历史/授权/来源绑定及非质量核心业务状态、日常prepare-only和切换边界。新增真实3、累计13、旧账本预占保留，日常库未开放。
 profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
 owner_approvals:
   requirements: approved_by_owner_current_user_message

@@ -1,0 +1,34 @@
+{
+  "feature": "FEAT-164",
+  "status": "AUTHORIZED_CAP45_MAX_TWO_HTTP_ONE_AT_A_TIME",
+  "app_sha256": "179dbd187220694d4666af5822466572f3b245a911501991cb0194f4308db195",
+  "runtime_sha256": "283d12e16b124942302fcdc8281c729a8a7f676498f06df1d2646292905f579e",
+  "previous_ledger_sha256": "ef1ab17f07ffece0e1ecd073c8750633da6c07319e0007a15a38a82a56a1c0a1",
+  "previous_requests": 10,
+  "additional_http_limit": 2,
+  "existing_limit_micro_cny": 30000000,
+  "proposed_limit_micro_cny": 45000000,
+  "preserve_all_old_ledgers_and_reserves": true,
+  "new_reservation_estimate_micro_cny": 14188544,
+  "projected_reservations_micro_cny": 43531736,
+  "maximum_output_tokens": 8192,
+  "no_retry": true,
+  "prompt": "FEAT164 指定来源搜索复验：请使用一次原生联网搜索查阅当前官方 Responses API 文档 https://platform.kimi.com/docs/api/responses ，核实该接口是否接受图片输入，并给出官方依据。仅根据实际取回的内容回答；若未找到对应说明，明确说明无法确认，不从其他接口或模型能力推断。不要使用终端、文件工具或子代理，简短回答。",
+  "success_requires": [
+    "HTTP200 and one complete response.completed for kimi-k3.1-pro",
+    "actual native web_search_call and source metadata preserved end to end",
+    "retrieved source includes current Responses official page or an official page explicitly documenting Responses image input",
+    "answer correctly resolves the same image-support question with matching official source",
+    "normal save/reopen adds no HTTP and normal shutdown preserves history"
+  ],
+  "failure_policy": "stop and preserve result; no repeat-until-green; do not upgrade source retrieval/answer quality on HTTP200 alone",
+  "not_authorized": [
+    "daily database access",
+    "Runtime core/patch modifications",
+    "new REST search/fetch adapters",
+    "push/release"
+  ],
+  "approval": "Owner approved45, subsequently allowed2 attempts; second only after review and cap check",
+  "final_state": "EXECUTED_THREE_BY_LATER_ADDENDUM_THEN_OWNER_EXCLUDED_QUALITY",
+  "no_further_quality_calls": true
+}

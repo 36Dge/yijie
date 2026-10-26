@@ -1,0 +1,69 @@
+{
+  "test_fix": "PASS_28_FRONTEND_2_CLIENT_1_NATIVE_19_SOURCE_LINT",
+  "test_commit": "ea8763dfc40466e9b808a1b39afad71dbff1ac56",
+  "product_code_changed": false,
+  "search_answer_quality": "OWNER_EXCLUDED_NOT_PASS",
+  "owner_instruction": "“搜索答案尚未通过”明确这个不做为feat-164需求，从该需求移除",
+  "exclusion_does_not_remove": [
+    "model identity",
+    "native source propagation and truthful metadata",
+    "key/approval/budget protection",
+    "persistence and normal cleanup"
+  ],
+  "real_http_added": 3,
+  "cumulative_model_http": 13,
+  "limit_cny": 45,
+  "estimated_and_reserved_micro_cny": 29740299,
+  "new_three_estimate_micro_cny": 397107,
+  "old_four_ledgers_unchanged": true,
+  "all_12_predecessor_rows_equal": true,
+  "unknown_reservations_preserved_ordinals": [
+    1,
+    10
+  ],
+  "app_normal_exits": 3,
+  "runtime_four_databases_each_cycle_wal_zero": true,
+  "runtime_integrity": "ok_on_full_stopped_copies",
+  "all_71_tables_old_rows_preserved": true,
+  "native_views": [
+    {
+      "session_id": "01a17933-3770-7ee3-b259-b90bcf1675f5",
+      "status": "completed",
+      "format": "4",
+      "types": [
+        "userMessage",
+        "reasoning"
+      ],
+      "nonempty_assistant_texts": 0
+    },
+    {
+      "session_id": "01a17938-9f75-7020-bc6f-0a92ed0f1a18",
+      "status": "completed",
+      "format": "4",
+      "types": [
+        "userMessage",
+        "reasoning"
+      ],
+      "nonempty_assistant_texts": 0
+    },
+    {
+      "session_id": "01a17940-9876-7470-bf4a-ea0ebb6773c6",
+      "status": "completed",
+      "format": "4",
+      "types": [
+        "userMessage",
+        "reasoning",
+        "agentMessage"
+      ],
+      "nonempty_assistant_texts": 1
+    }
+  ],
+  "same_app_reopen_after_third": "NOT RUN_AFTER_OWNER_SCOPE_REMOVAL; no success claim; actual persisted views checked read-only",
+  "meter_stopped_normally": true,
+  "protected_outside_active_qualification": 6498,
+  "original_dirty_preserved": 497,
+  "old_bundle_files_preserved": 119,
+  "daily_access": false,
+  "Runtime_core_patch_changed": false,
+  "push": false
+}

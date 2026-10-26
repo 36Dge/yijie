@@ -1,5 +1,17 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 S4AB：v3测试已修复，搜索答案质量已由Owner移出（2026-10-27）
+
+最新[55](../features/FEAT-164-kimi-k31-pro-migration/55-v3-test-and-search-grounding-root-cause.md)。Owner最终明确“搜索答案尚未通过”不作为FEAT164需求、从需求移除：搜索答案正确性/本轮官方页面命中与能否确认的质量判定记OWNER_EXCLUDED，不延期、不计PASS、不再补试/增加检索工具/为此改Runtime。原模型身份、sources传递、协议事实、Key/审批/预算、历史/清理保留。不要再把该质量问题列为S4/final阻塞或拿旧待办继续真实搜索。
+
+Desktop ea8763dfc40466e9b808a1b39afad71dbff1ac56在feat164-s4ab-qualification-20261027，只修1测试文件：typed v4 IPC正例、拒绝v3/v5、unsupported持久示例5，实际v3/v4由Rust reader独立通过。28前端+2client（23未选）+1Native/19来源/lint通过；产品/生成/依赖未改，statusSource可选不是旧失败原因。实际App仍S4AA c98eddf/Host4f966e8/Runtime11fd-r5，SHA179dbd187220694d4666af5822466572f3b245a911501991cb0194f4308db195/119文件不动。
+
+本轮授权45元，Owner先1→2→3次，实际3/3已用、累计13；前两仅搜索工具声明、无搜索/最终文本，第三恢复原工具声明有无法确认答复、仍无搜索。三次HTTP200/completed不作质量PASS。官方完整Responses定义证实自动服务端检索、tool_choice仅auto、external_web_access被忽略；内部未触发原因未知，不归咎Runtime字段丢失。三轮结果和原始失败保留。
+
+计量工具d4050044d2c6a77ab3ba00907b650126dc5db0f8/schema6，第三工具92ef0411a6e98f36886f2b7a2017e40fe2d21340/schema7，45/49离线项通过。新search及search-third独立账本，旧四账本逐字保持、前12行完整继承，旧第1/10笔14.188544各自预占不释放。最新估算加预占29.740299元，非精确账单；schema7 halted/stopped_normally，授权次数用完，不以余款再调用质量任务。3次App正常⌘Q exit0，四库各WAL0/integrity，71表旧行保持；最新一轮后额外UI重开未执行，不假称PASS。App/meter已停止，无待答交接。
+
+497原dirty、6498活动库外保护文件、旧App119文件保持；FEAT163混合memory独立未提交。原工具新增__pycache__为本轮导入缓存，保留未提交，tracked源码未改。审计目录feat164-s4ab-audit-20261027。下一步只收口仍在范围的来源/核心业务状态与日常prepare-only/具体切换清单；日常数据操作及新Runtime core/patch仍须对应授权。仅本地提交、不推送，不恢复已移除外观/键盘/最小窗口或搜索答案质量。
+
 ## FEAT-164 S4AA：来源误删修复与离线验收完成（2026-10-27）
 
 最新[54](../features/FEAT-164-kimi-k31-pro-migration/54-search-source-component-fix-and-offline-verification.md)，前序真实结果见[53](../features/FEAT-164-kimi-k31-pro-migration/53-real-functional-results-and-search-source-fix-plan.md)。Owner已批准53最小安全范围；Contracts c5d138374c102f1a8a11e328a869ec8f91724efd→Host 4f966e8ea810d5b094d0b797d291955d6c774844→Desktop c98eddfafb789520b4939bdca95bf8b27f28b7b6在feat164-s4aa-qualification-20261027，仅本地提交。只把来源URL opaque检测限定URI组件，先分原始结构再解码；全局脱敏、其它拒绝规则、Runtime/core/patch/schema不改。

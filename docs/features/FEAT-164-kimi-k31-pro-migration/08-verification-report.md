@@ -539,3 +539,10 @@ Host7bf43fe仅测试生命周期/新入口，产品与8cd6bcc逐字相同。当�
 <!-- evidence: E164-S4AA-SOURCES -->
 
 Owner批准53号最小范围后，Contracts→Host→Desktop本地固定。7 Host顶层/25同源URL子例、5 Contracts、6生成入口、19来源及额外native-process检查通过；搜索组件20项通过。额外旧FEAT132 v3样例1项失败已证明基线未变，不能声称全套测试通过。实际新App 20原始来源→18显示/partial，completed、保存/重开零补发，两次正常退出/四库WAL0/integrity；71表旧行保持。1本机HTTP、0新增真实，Runtime/core/日常库未改；详细证据见54及s4aa-index。53真实4HTTP已完成但搜索内容正确性未决，不据此晋升S4/final。
+
+
+## E164-S4AB-SCOPE
+
+<!-- evidence: E164-S4AB-SCOPE -->
+
+55号：旧v3测试与当前v4 IPC边界已修复，28前端、2client（其余23未选）、1Rust历史reader、19来源及lint通过；产品/生成物不改。Owner先批准45元后允许3次真实，累计13；三次HTTP200/completed、无搜索，前两无最终文本、第三无法确认。质量不判PASS；Owner随后明确移出该需求验收，OWNER_EXCLUDED记录见s4ab-owner-scope-exclusion。保留真实结果、source/状态、安全与历史要求。三次正常退出/四库WAL0，71表旧行保持，meter正常停止。无日常库/Runtime核心/推送；完整非质量Gate仍按实际缺口收口。

@@ -1,0 +1,17 @@
+{
+  "command": [
+    "cargo",
+    "test",
+    "--manifest-path",
+    "src-tauri/Cargo.toml",
+    "--lib",
+    "--features",
+    "kimi-k31-pro-candidate",
+    "native_sources_read_v3_and_v4_without_rewriting_history",
+    "--",
+    "--nocapture"
+  ],
+  "exit_code": 0,
+  "real_http": 0,
+  "database_access": false
+}

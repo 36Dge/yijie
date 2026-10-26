@@ -1,0 +1,87 @@
+Window: "易界 AI", App: 易界 AI FEAT-164 验收.
+0 standard window 易界 AI, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: 任务对话 · 易界 AI, URL: tauri://localhost/chat/01a17933-3770-7ee3-b259-b90bcf1675f5
+			3 text 界面缩放 100%
+			4 button (expanded) 收起侧栏, Secondary Actions: Collapse
+			5 container 主导航
+				6 image 易界
+				7 container 应用导航
+					8 content list
+						9 link 新建任务, Value: tauri://localhost/chat
+						10 link 我的店铺, Value: tauri://localhost/store
+						11 link 工作流, Value: tauri://localhost/workflows
+						12 link 扩展, Value: tauri://localhost/plugins
+						13 link 连接器, Value: tauri://localhost/connectors
+						14 link 定时任务, Value: tauri://localhost/scheduled-tasks
+						15 container
+							16 heading 任务, Value: 2
+								17 text 任务
+							18 container 任务：项目与对话
+								19 content list
+									20 container
+										21 pop up button 折叠项目 media-assets
+										22 pop up button 项目 media-assets 的操作菜单
+										23 content list
+											24 button FEAT164 搜索功能验证：请使用一次联网搜索查找 Kimi 官方 Respo
+											25 button FEAT164 工具回灌验证：必须调用一次终端工具，执行 cat verific
+											26 button FEAT164_S4Y_MINIMAX 本机共存验收，仅回复合成结果，不调用工具
+											27 button FEAT164_S4Y_MEDIA 本机合成验收：请将当前工作空间已有的 rep
+									28 container
+										29 pop up button 折叠项目 media-assets
+										30 pop up button 项目 media-assets 的操作菜单
+										31 content list
+											32 button FEAT164_S4T_MINIMAX 共存验收，请仅回复本机合成结果，不调用工
+											33 button FEAT164_S4T_KIMI 本机图片输入验收。请回复合成结果；不调用工具或
+											34 button FEAT164_S4T_MEDIA 请将当前工作空间中已有的 report.ht
+									35 container
+										36 pop up button 折叠项目 任务目录
+										37 pop up button 项目 任务目录 的操作菜单
+										38 content list
+											39 button FEAT164_S4S_KIMI 本机合成计划验收，仅回复合成结果，不调用工具。
+									40 pop up button FEAT164 指定来源搜索复验：请使用一次原生联网搜索查阅当前官方 Respo
+									41 button FEAT164_S4AA 来源离线验收，请返回本机普通公开来源和合成答复。
+									42 button FEAT164 图片功能验证：请直接观察附件，只回答图中主要颜色和形状，不推断文
+									43 button FEAT164 r5 资格验证：计算17+25，仅回复结果42，不调用工具。
+									44 button FEAT164_S4S_KIMI 旧 K3 自然会话验收。请回复本机合成验证结果
+					45 content list
+						46 link 设置, Value: tauri://localhost/settings
+			47 container FEAT164 指定来源搜索复验：请使用一次原生联网搜索查阅当前官方 Respo
+				48 container
+					49 heading FEAT164 指定来源搜索复验：请使用一次原生联网搜索查阅当前官方 Respo, Value: 1
+						50 text FEAT164 指定来源搜索复验：请使用一次原生联网搜索查阅当前官方 Respo
+					51 text 已完成
+				52 container 任务对话记录
+					53 container 对话内容
+						54 container 对话 1
+							55 container 对话 1
+								56 container 本轮对话内容
+									57 container 用户消息
+										58 text FEAT164 指定来源搜索复验：请使用一次原生联网搜索查阅当前官方 Responses API 文档 https://platform.kimi.com/docs/api/responses ，核实该接口是否接受图片输入，并给出官方依据。仅根据实际取回的内容回答；若未找到对应说明，明确说明无法确认，不从其他接口或模型能力推断。不要使用终端、文件工具或子代理，简短回答。
+										59 container 用户消息操作
+											60 container 2026/10/27 01:12:42
+												61 text 01:12
+											62 button 复制文本
+									63 button (collapsed) 已完成 22s，展开本轮处理过程, Secondary Actions: Expand
+				64 container 任务输入区
+					65 text 输入你的任务需求
+					66 text entry area (settable) 输入你的任务需求, Value: [text entry area], Placeholder: 继续输入任务需求…
+						67 text 继续输入任务需求…
+					68 pop up button 可添加文件、技能、连接器，或选择专家
+					69 pop up button 权限审批：请求批准, Help: 更改当前任务的权限审批模式
+					70 pop up button 关联店铺, Help: 关联店铺（交互演示）
+					71 pop up button 选择对话模型，当前 Kimi K3.1 Pro, Help: Kimi K3.1 Pro
+					72 button (disabled) 发送任务
+				73 text 已完成
+	74 close button
+	75 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	76 minimize button
+77 menu bar
+	78 易界 AI FEAT-164 验收
+	79 File
+	80 Edit
+	81 View
+	82 Window
+	83 Help
+
+The focused UI element is 2 HTML content Description: 任务对话 · 易界 AI, URL: tauri://localhost/chat/01a17933-3770-7ee3-b259-b90bcf1675f5

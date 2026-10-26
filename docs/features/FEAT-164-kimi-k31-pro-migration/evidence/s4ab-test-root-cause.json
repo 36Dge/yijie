@@ -1,0 +1,12 @@
+{
+  "contract_impact": "none",
+  "reason": "test fixture and assertions only; runtime IPC/storage contracts, product behavior and generated validators unchanged",
+  "version_root_cause": "test hand-wrote a v3 envelope without generated type, while current validator upgraded to v4; it also called stored format3 unsupported though separate reader still supports3",
+  "status_source": "optional in current schema; absence was not the failing cause, correcting S4AA RCA wording",
+  "fix": "typed satisfies NativeConversationViewEvent with v4, explicit rejects3/5, unsupported stored example uses5; actual v3/v4 reader checked separately",
+  "product_source_changed": false,
+  "base": "c98eddfafb789520b4939bdca95bf8b27f28b7b6",
+  "files": [
+    "src/domain/conversation-native-view.test.ts"
+  ]
+}
