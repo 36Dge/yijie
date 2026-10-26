@@ -470,3 +470,10 @@ Desktop隔离bc3b097实现同一canonical App的一次性维护参数，在现�
 <!-- evidence: E164-S4T-MEDIA -->
 
 相同Desktop9f5814f/Host8cd/Runtime11fd-r5在独立canonical media构建中，实际App完成专家绑定与HTML/SVG成果、PNG输入、MiniMax共存、两次正常退出及同构建重开。5loopback、真实0；reopen0新增，两成果字节相同，71表全部旧行保持，原计划/grant保持，四Runtime库自然WAL0/integrity ok。限定PASS不替代完整TCONF/final。资格资源日志正常追加1安装记录，旧7条重建字节匹配原SHA，其余42097保护文件保持；首轮严格差异及预检误匹配均留证。详见47、s4t-audit-index与s4t-media-verdict。
+
+
+## E164-S4U-RETAINED
+
+<!-- evidence: E164-S4U-RETAINED -->
+
+Host7bf43fe仅测试生命周期/新入口，产品与8cd6bcc逐字相同。当前r5 12项通过、38loopback、真实0；10home/40库正常关闭后WAL0、完整副本只读integrity ok。四source＋10Host领域＋22前端业务状态＋5配置通过，0skip。Owner中途移除亮暗/键盘/最小窗口专项，未执行；已启动候选正常退出、0请求，原SQL行保持。详见48与s4u索引；完整G2V/TCONF/final未冒称通过。

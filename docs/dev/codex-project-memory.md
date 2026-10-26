@@ -1,5 +1,13 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 S4U：保留状态验证完成，Owner移除外观专项（2026-10-26）
+
+最新[48](../features/FEAT-164-kimi-k31-pro-migration/48-retained-runtime-qualification-and-scope-update.md)。Host测试提交7bf43fe0b18188e71442611b781ed87811911cde仅3测试cleanup/目录放置＋新保留入口/说明，其余492tracked保持，产品pin仍8cd6bcc，Desktop9f5814f/Runtime11fd-r5及原App不改。12Runtime检查/38loopback、10完整home/40库WAL0/integrity ok，另4来源＋10Host领域＋22前端业务状态＋5配置通过；真实0。数据在feat164-s4u-audit-20261026/retained-run-1，禁止清除。不要再重复同组38请求或改Runtime核心来消除已关闭缺口。
+
+Owner明确从FEAT164移除App亮暗、键盘/焦点和最小窗口专项验收，非延期、非PASS、不得再作门槛。收到指令时仅只读看到原浅色，未切外观/未验键盘窗口；候选正常⌘Q exit0、fixture正常停、0请求，SQL旧71表行保留/仅正常停止行新增，四库WAL0。业务模型状态/恢复/取消仍属功能要求；feature保留治理槽并明确排除项，不伪造ui_change=none。
+
+整项IN_PROGRESS；下一步收敛剩余时序/源绑定及适用final，r5真实G2V与日常cutover无授权，不新增付费调用。5/5、30元cap、14.679001含14.188544预占及旧账本保持。全部项目服务已停止，仅本地提交不推送；旧工作区保留，主Host未快进。
+
 ## FEAT-164 S4T：当前media App限定验收完成（2026-10-26）
 
 最新[47](../features/FEAT-164-kimi-k31-pro-migration/47-current-media-app-and-retained-state-qualification.md)。S4S治理e137722本地固化；本轮产品/Runtime/补丁零修改，Desktop9f5814f/Host8cd/Contracts ca06/Runtime11fd-r5/Connectors cc56/Skills595保持，独立s4t-media canonical App42a23cf…、119文件及同构建回执通过。

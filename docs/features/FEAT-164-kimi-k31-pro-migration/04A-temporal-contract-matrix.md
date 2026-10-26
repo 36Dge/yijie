@@ -1,8 +1,6 @@
 # FEAT-164 时序契约矩阵
 
-> 2026-10-26当前绑定见[39](39-evidence-binding-and-final-verdicts.md)：TCONF01/02/03当前来源实际通过；04三个安全子集执行通过但完整04仍未通过。原scenario/invariant语义不变，旧证据不改名。
-
-本文件与feature.yaml保持同一Scenario/Invariant/Test/Slice ID。2026-10-26当前S1、S2（57项）、S3（5项）已在固定r4组合通过；S4三组实际driver及App证据按范围分别记录，完整G2V/G3/final未通过。最新覆盖与具体缺口见[36](36-current-offline-qualification-and-next-gate.md)，不把本机检查记为真实模型验证。
+2026-10-26当前权威为[48](48-retained-runtime-qualification-and-scope-update.md)。原Scenario/Invariant语义不变，旧r4证据保留其来源；46补自然旧App/计划纵向，47补当前media App，48补当前r5调用面/辅助/子代理终态/冷历史/自动压缩与保留状态。TCONF04完整判定仍未放行。Owner已移除亮暗、键盘/焦点和最小窗口专项，不能继续作为本需求缺项。
 
 ## 六阶段
 
@@ -30,7 +28,7 @@
 | TINV-164-01 | FLOW-LIVE-164 | S1 / TCONF-164-01 | 未确认来源及活动身份不产生新执行；catalog/TOML任一未知组合不放宽校验；切换截止点后零K3 |
 | TINV-164-02 | FLOW-LIVE-164、FLOW-REPLAY-164 | S2 / TCONF-164-02 | 原operation/payload/profile/digest保留；Runtime回执与Host提交窗口区分；unknown不推定模型；无证明不取消 |
 | TINV-164-03 | FLOW-PLAN-164、FLOW-REPLAY-164 | S3 / TCONF-164-03 | worker claim/send之前准入生效；计划领域事务撤有效授权并处理future slots，历史run和额度事实不改 |
-| TINV-164-04 | FLOW-LIVE-164、FLOW-REPLAY-164、FLOW-PLAN-164 | S4 / TCONF-164-04 | 真实启用调用面/流式/辅助模型/正常重开不恢复退役执行；来源、预算、退出和三项final verdict独立 |
+| TINV-164-04 | FLOW-LIVE-164、FLOW-REPLAY-164、FLOW-PLAN-164 | S4 / TCONF-164-04 | 真实启用调用面/流式/辅助模型/正常重开不恢复退役执行；来源、预算、退出和剩余适用final verdict独立（排除Owner已移除的外观专项） |
 
 ## 已实现的精确测试入口
 

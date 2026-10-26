@@ -1,0 +1,254 @@
+{
+  "host_test_commit": "7bf43fe0b18188e71442611b781ed87811911cde",
+  "host_product_commit": "8cd6bccbdc1ac3906aea53d95441299f7cfefcce",
+  "status": "PASS_SCOPED",
+  "checks": [
+    {
+      "name": "surfaces",
+      "passed": [
+        "TestFEAT164CallSurfacesRuntime"
+      ],
+      "failed": [],
+      "skipped": [],
+      "retained_homes": 1,
+      "loopback_http": 6,
+      "database_count": 4,
+      "log_sha256": "6a2e32f4eca31a83ec801c88314c74416b299c7f00a629f6a84c3f04905ea506"
+    },
+    {
+      "name": "auxiliary",
+      "passed": [
+        "TestFEAT164NativeAuxiliaryAgent",
+        "TestFEAT164NativeAuxiliaryCompaction",
+        "TestFEAT164NativeGuardianModel",
+        "TestFEAT164AuxiliaryMeterLayer"
+      ],
+      "failed": [],
+      "skipped": [],
+      "retained_homes": 3,
+      "loopback_http": 9,
+      "database_count": 12,
+      "log_sha256": "68d219172c41c6ea3371828ebc501a7cfdf88d218735f9b4957c844c98a76ebc"
+    },
+    {
+      "name": "cutover",
+      "passed": [
+        "TestFEAT164LoadedLegacyGraphCutover",
+        "TestFEAT164LoadedRetiredAgentGuard",
+        "TestFEAT164AutomaticCompaction",
+        "TestFEAT164PreviousModelCompactionGuard/comp_hash",
+        "TestFEAT164PreviousModelCompactionGuard/window_downshift",
+        "TestFEAT164PreviousModelCompactionGuard",
+        "TestFEAT164MigratedAutomaticCompaction"
+      ],
+      "failed": [],
+      "skipped": [],
+      "retained_homes": 6,
+      "loopback_http": 23,
+      "database_count": 24,
+      "log_sha256": "f16d9403833493bd2e55a079c71b82321552ca7ebdb31bb3b85d8066a98ceb16"
+    }
+  ],
+  "safe_completion_checks": [
+    {
+      "name": "source-ordinary",
+      "command": [
+        "node",
+        "scripts/kimi-k31-build-candidate.mjs"
+      ],
+      "exit_code": 0,
+      "passed": 0,
+      "skipped": 0,
+      "status": "PASS",
+      "log_sha256": "38098477ef6ccad735b1eef553bc6075f43b35a95752cacd5f77ad6253c1f85b"
+    },
+    {
+      "name": "source-market",
+      "command": [
+        "node",
+        "scripts/kimi-k31-build-candidate.mjs"
+      ],
+      "exit_code": 0,
+      "passed": 0,
+      "skipped": 0,
+      "status": "PASS",
+      "log_sha256": "38098477ef6ccad735b1eef553bc6075f43b35a95752cacd5f77ad6253c1f85b"
+    },
+    {
+      "name": "source-experts",
+      "command": [
+        "node",
+        "scripts/kimi-k31-build-candidate.mjs"
+      ],
+      "exit_code": 0,
+      "passed": 0,
+      "skipped": 0,
+      "status": "PASS",
+      "log_sha256": "38098477ef6ccad735b1eef553bc6075f43b35a95752cacd5f77ad6253c1f85b"
+    },
+    {
+      "name": "source-media",
+      "command": [
+        "node",
+        "scripts/kimi-k31-build-candidate.mjs"
+      ],
+      "exit_code": 0,
+      "passed": 0,
+      "skipped": 0,
+      "status": "PASS",
+      "log_sha256": "38098477ef6ccad735b1eef553bc6075f43b35a95752cacd5f77ad6253c1f85b"
+    },
+    {
+      "name": "host-domain",
+      "command": [
+        "/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go",
+        "test",
+        "-race",
+        "-json",
+        "./internal/session",
+        "-run",
+        "^TestFEAT164(MarketExpertModelWiring|SettledMarketExpertModelSelection)$",
+        "-count=1",
+        "-failfast",
+        "-timeout=0"
+      ],
+      "exit_code": 0,
+      "passed": 10,
+      "skipped": 0,
+      "status": "PASS",
+      "log_sha256": "f1b0f8b86551145ffb0ac1488c58a9c11d57479afe6884882e5699fb117a7fa3"
+    },
+    {
+      "name": "renderer-business-state",
+      "command": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "src/api/chat-delivery-client.test.ts",
+        "src/api/chat-model-v2-client.test.ts",
+        "src/composables/useChatDelivery.test.ts",
+        "src/composables/useChatModelsV2.test.ts",
+        "src/composables/useScheduledPlanModel.s3.test.ts",
+        "src/components/chat/ChatDeliveryControl.test.ts",
+        "src/components/chat/ChatModelActivation.test.ts",
+        "src/api/call-surfaces.feat164.test.ts",
+        "src/components/schedules/ScheduledPlanForm.feat164.test.ts",
+        "--reporter=json"
+      ],
+      "exit_code": 0,
+      "passed": 22,
+      "skipped": 0,
+      "status": "PASS",
+      "log_sha256": "818155fc98cfb185553acf49157bf734b316e2d00d7ecf10703353a6694d2b12"
+    },
+    {
+      "name": "candidate-profiles",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "scripts/tests/feat164-candidate-closure.test.mjs"
+      ],
+      "exit_code": 0,
+      "passed": 5,
+      "skipped": 0,
+      "status": "PASS",
+      "log_sha256": "662d8325a1d52bb02653a0c3a2918473ac5aa3de30eb3cd4b57c7930fc367f36"
+    }
+  ],
+  "scope_removal": {
+    "owner_instruction": "当前 App 亮暗、键盘和最小窗口验收明确不做，从FEAT-164需求移除",
+    "status": "CANCELLED_BY_SCOPE_CHANGE_NOT_PASS",
+    "appearance_changed": false,
+    "keyboard_and_minimum_window_checks_executed": false,
+    "app_normal_exit": 0,
+    "model_endpoint_health": {
+      "fixture": "FEAT164_S4U_LOOPBACK_ONLY",
+      "requests": 0,
+      "attempts": 0,
+      "rejected": 0,
+      "external_requests": 0
+    },
+    "remaining_work": "continue other previously authorized offline verification, code audit and local-only commits"
+  },
+  "cancel_cleanup": {
+    "app_exit": 0,
+    "fixture_stopped_normally": true,
+    "model_attempts": 0,
+    "old_sql_rows_preserved_all_71_tables": true,
+    "changed_tables": [
+      "chat_scheduled_stopped_generations"
+    ],
+    "runtime_databases": {
+      "logs_2.sqlite": {
+        "wal_bytes": 0,
+        "integrity": "ok"
+      },
+      "memories_1.sqlite": {
+        "wal_bytes": 0,
+        "integrity": "ok"
+      },
+      "state_5.sqlite": {
+        "wal_bytes": 0,
+        "integrity": "ok"
+      },
+      "goals_1.sqlite": {
+        "wal_bytes": 0,
+        "integrity": "ok"
+      }
+    },
+    "no_data_handles": true,
+    "ports_closed": [
+      18083,
+      18086
+    ],
+    "visual_acceptance": "not executed, removed by Owner"
+  },
+  "real_http_added": 0,
+  "runtime_core_changes": 0,
+  "whole_feature_complete": false,
+  "preservation": {
+    "original_dirty_files_checked": 497,
+    "dirty_mismatches": [],
+    "protected_files_outside_active_qualification": 58828,
+    "protected_mismatches": [],
+    "old_qualification_skills_files_unchanged": 56,
+    "model_requests": {
+      "kimi-k3": 7,
+      "kimi-k3.1-pro": 31
+    },
+    "real_model_http_added": 0,
+    "active_services": [],
+    "app_sources": {
+      "yijie-desktop": {
+        "head": "9f5814fec6cd071d39f0c12f8f48097ce661cb6a",
+        "status": []
+      },
+      "yijie-agent-host": {
+        "head": "8cd6bccbdc1ac3906aea53d95441299f7cfefcce",
+        "status": []
+      },
+      "yijie-contracts": {
+        "head": "ca06d0999c9a08afe80ab3f34a537d492b830ac7",
+        "status": []
+      },
+      "yijie-connectors": {
+        "head": "cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9",
+        "status": []
+      },
+      "yijie-codex": {
+        "head": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+        "status": []
+      },
+      "yijie-skills": {
+        "head": "595c927ae101d3d31c234f60565041eee0864680",
+        "status": []
+      }
+    },
+    "app_data_normal_lifecycle_delta": "cancelled-app-cleanup.json",
+    "new_runtime_homes_retained": 10,
+    "runtime_core_changed": false,
+    "test_commit": "7bf43fe0b18188e71442611b781ed87811911cde"
+  }
+}

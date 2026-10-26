@@ -1,5 +1,7 @@
 # FEAT-164 测试与证据计划
 
+> 2026-10-26 Owner明确移除本需求的App亮暗、键盘/焦点和最小窗口专项验收；不执行、不延期、不计PASS、不作为完成门槛。模型选择、退役/恢复/取消、计划授权等业务状态行为与核心/数据/正常退出要求保持。当前实施和剩余项以[48](48-retained-runtime-qualification-and-scope-update.md)为准；下方旧阶段记录保留原时间含义。
+
 > 最新以[45 旧隔离库受控迁移入口](45-controlled-isolated-migration-entry.md)为准：显式维护入口已实施，SQL29/37正常旧数据的拒绝/迁移/备份/重开离线资格通过；普通旧库门禁和日常拒绝保留。当前SQL41候选因1条未就绪选择与2份占用正常拒绝维护，原5522文件保持。实现仅在Desktop隔离commit bc3b097，主工作区未应用；真实/本机模型新增均0，完整App/G3/final仍缺。
 
 > 当前权威见[44 自然旧K3与计划离线验收](44-natural-legacy-migration-and-plan-qualification.md)：r5已加载旧身份经实际Host切换、正常取消/恢复子集通过；自然SQL29计划经显式正式迁移后的退役/重审/新授权/取消及重开通过。旧库App入口仍明确拒绝SQL<38，完整S2/S3纵向未通过。产品/Runtime未改，真实模型0，本机合成8，旧账本与预占保持。以下旧记录按原来源解释。
@@ -57,7 +59,7 @@
 | 实际Runtime本机协议 | 新候选start/resume/turn、SSE/function/web sources/图片、previous_model压缩、启用子代理/Guardian路由 | canonical binary和普通本机HTTP server；真实请求解析，明确非供应商资格 |
 | G2V | 最小真实App→Host→Runtime→新模型→返回→保存/重开链 | qualified H-F164-LOCAL、精确refs/平台及批准的合成数据真实调用 |
 | final core | AC001—009；主聊/标题/专家/草案/计划/工具/图片/搜索/旧历史 | 同一source组合；完整request-call-result关联及正常恢复 |
-| final visual | AC010；长名称/焦点/键盘/亮暗/最小窗口/错误与重试 | 独立可访问性/视觉结果，不借API PASS |
+| 业务状态显示 | AC010；模型选择、退役/暂停、错误与恢复的行为判定 | 不包含Owner已移除的亮暗、键盘/焦点和最小窗口专项，不以未执行这些专项阻塞完成 |
 | final teardown | AC004/005/010；正常取消、退出/重开、无在途/重复派发 | 正常EOF/应用退出/实际状态；不能以强杀获得结果 |
 
 ## 正常状态案例

@@ -829,11 +829,11 @@ slices:
       production_bootstrap: true
       invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation reference changes
     status: pending
-    status_reason: S4P已修复provider-only验收装配，r5两次正常App生命周期/checkpoint子集通过；完整TCONF04、S2/S3纵向与全部final仍缺，真实调用0，日常cutover未执行。
+    status_reason: S4S自然旧App/S4T媒体App及S4U当前r5保留状态验证已补齐限定纵向；当前供应商G2V、完整时序与适用final结论仍缺，日常cutover未执行；外观三专项已由Owner移除。
 final_e2e:
   core_vertical:
     required: true
-    reason: S4S自然旧App迁移/同thread/计划重审子集通过；完整S4/未决取消/Provider范围仍缺。
+    reason: S4S/S4T/S4U已补自然旧App、媒体、辅助与当前r5保留状态；完整证据结论、未决取消App限定范围及当前Provider资格仍需收口。
     status: NOT RUN
     command: Current canonical --reopen/CUA workflow and read-only artifact audit; independent s4l-final-core_vertical.json
     environment: macOS aarch64; immutable ea9b1e4/090c2db/1b357cc/a28130a/7ea3df4 combination; canonical media candidate; dummy-key loopback only; no paid requests
@@ -874,7 +874,14 @@ final_e2e:
     historical_binding_note: 下列命令/来源/时间属于保留的S4L记录；当前final未执行，不当作r5通过。S4T historical-final-records.json保留原独立判定。
   accessibility_visual:
     required: true
-    reason: 旧S4L视觉PASS保留其r4来源；当前r5普通候选仅有S4S可达页面观察，不继承完整亮暗/最小窗口final。
+    current_scope: 模型选择、退役/暂停、错误与恢复业务状态显示；不含外观专项
+    owner_excluded_checks:
+      - light_dark_appearance
+      - keyboard_and_focus_specialist_acceptance
+      - minimum_window_1180x760
+    exclusion_status: REMOVED_BY_OWNER_NOT_DEFERRED
+    exclusion_source: 2026-10-26 Owner明确要求从FEAT-164移除上述验收
+    reason: Owner已明确移除亮暗、键盘/焦点和最小窗口专项，不再作为完成门槛。此结构槽仅记录模型/退役/恢复等剩余业务状态结论；不继承旧r4 PASS。
     status: NOT RUN
     command: Current canonical --reopen/CUA workflow and read-only artifact audit; independent s4l-final-accessibility_visual.json
     environment: macOS aarch64; immutable ea9b1e4/090c2db/1b357cc/a28130a/7ea3df4 combination; canonical media candidate; dummy-key loopback only; no paid requests
@@ -915,7 +922,7 @@ final_e2e:
     historical_binding_note: 下列命令/来源/时间属于保留的S4L记录；当前final未执行，不当作r5通过。S4T historical-final-records.json保留原独立判定。
   teardown:
     required: true
-    reason: S4S当前ordinary两次正常退出/重开0调用、四库WAL0和完整性ok；完整全调用面final仍未执行。
+    reason: S4S ordinary、S4T media及S4U十home/40库正常退出均通过，完整teardown还需最终适用范围绑定；不再沿用旧checkpoint未知根因。
     status: NOT RUN
     command: Current canonical --reopen/CUA workflow and read-only artifact audit; independent s4l-final-teardown.json
     environment: macOS aarch64; immutable ea9b1e4/090c2db/1b357cc/a28130a/7ea3df4 combination; canonical media candidate; dummy-key loopback only; no paid requests
@@ -1256,6 +1263,25 @@ current_authorization:
   git_local_commit_allowed: true
   git_scope: 仅FEAT-164必要独立来源/实现/验证/治理本地提交，不混入其它需求；无push/branch/tag/release。
 implementation:
+  retained_runtime_s4u:
+    status: PASS_SCOPED_NOT_FULL_FINAL
+    report: 48-retained-runtime-qualification-and-scope-update.md
+    host_test_commit: 7bf43fe0b18188e71442611b781ed87811911cde
+    unchanged_host_product_commit: 8cd6bccbdc1ac3906aea53d95441299f7cfefcce
+    runtime_commit: 11fd4504c28afd0f65c6f5f62a6b5328dd437f5a
+    runtime_checks: 12
+    runtime_homes_retained: 10
+    runtime_database_integrity_checks: 40
+    runtime_wal_bytes_after_normal_shutdown: 0
+    real_http_added: 0
+    loopback_http_added: 38
+    source_modes_passed: 4
+    host_domain_checks: 10
+    renderer_business_state_checks: 22
+    candidate_profile_checks: 5
+    evidence_ref: 08-verification-report.md#E164-S4U-RETAINED
+    evidence_index: evidence/s4u-audit-index.json
+    owner_scope_change: 亮暗、键盘/焦点、最小窗口专项从需求及完成门槛移除；不计PASS。
   current_media_app_s4t:
     status: PASS_SCOPED_NOT_FULL_FINAL
     report: 47-current-media-app-and-retained-state-qualification.md
