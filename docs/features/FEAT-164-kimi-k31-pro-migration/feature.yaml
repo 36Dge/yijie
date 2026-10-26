@@ -833,7 +833,7 @@ slices:
 final_e2e:
   core_vertical:
     required: true
-    reason: 当前可达App和同源真实文本子集通过，完整旧K3自然App/计划及未执行Provider范围仍缺。
+    reason: S4S自然旧App迁移/同thread/计划重审子集通过；完整S4/未决取消/Provider范围仍缺。
     status: NOT RUN
     command: Current canonical --reopen/CUA workflow and read-only artifact audit; independent s4l-final-core_vertical.json
     environment: macOS aarch64; immutable ea9b1e4/090c2db/1b357cc/a28130a/7ea3df4 combination; canonical media candidate; dummy-key loopback only; no paid requests
@@ -871,13 +871,14 @@ final_e2e:
       owner: N/A
       approved_at: N/A
       reason: N/A
+    historical_binding_note: 下列命令/来源/时间属于保留的S4L记录；当前final未执行，不当作r5通过。S4T historical-final-records.json保留原独立判定。
   accessibility_visual:
     required: true
-    reason: 当前可达FEAT164模型/状态、键盘焦点、1180x760亮暗与计划表单手工AX/截图通过；axe未运行，不声明完整WCAG；旧K3不可达弹窗不包含在此视觉结论。
-    status: PASS
+    reason: 旧S4L视觉PASS保留其r4来源；当前r5普通候选仅有S4S可达页面观察，不继承完整亮暗/最小窗口final。
+    status: NOT RUN
     command: Current canonical --reopen/CUA workflow and read-only artifact audit; independent s4l-final-accessibility_visual.json
     environment: macOS aarch64; immutable ea9b1e4/090c2db/1b357cc/a28130a/7ea3df4 combination; canonical media candidate; dummy-key loopback only; no paid requests
-    exit_code: 0
+    exit_code: null
     verified_at: 2026-10-26T02:34:06.618661+08:00
     commits:
       - repository: yijie-codex
@@ -911,9 +912,10 @@ final_e2e:
       owner: N/A
       approved_at: N/A
       reason: N/A
+    historical_binding_note: 下列命令/来源/时间属于保留的S4L记录；当前final未执行，不当作r5通过。S4T historical-final-records.json保留原独立判定。
   teardown:
     required: true
-    reason: 此处保留S4L/r4完整final未通过记录；S4P/r5正常启动和两次只读历史/正常退出的四库WAL为0已通过，详见43。完整final尚未按当前来源覆盖活动turn与全部场景，不把旧记录改为新r5全量PASS。
+    reason: S4S当前ordinary两次正常退出/重开0调用、四库WAL0和完整性ok；完整全调用面final仍未执行。
     status: NOT RUN
     command: Current canonical --reopen/CUA workflow and read-only artifact audit; independent s4l-final-teardown.json
     environment: macOS aarch64; immutable ea9b1e4/090c2db/1b357cc/a28130a/7ea3df4 combination; canonical media candidate; dummy-key loopback only; no paid requests
@@ -951,6 +953,7 @@ final_e2e:
       owner: N/A
       approved_at: N/A
       reason: N/A
+    historical_binding_note: 下列命令/来源/时间属于保留的S4L记录；当前final未执行，不当作r5通过。S4T historical-final-records.json保留原独立判定。
 failure_circuit_breaker:
   same_failure_threshold: 3
   policy: third equivalent failure blocks retries and local patches until a root-cause audit produces
@@ -1236,19 +1239,42 @@ external_authorizations:
     approved_by: N/A
     approved_at: N/A
 current_authorization:
+  paused_by_owner: false
+  pause_reason: 历史：2026-10-26 18:01因关闭电脑暂停，现已由Owner明确恢复；原paused-handoff保留。
   phase: implementation_with_governance
-  source: Owner授权审计42并定位App未就绪，复审最小方案后执行；本轮仅Desktop启动预检修复，Runtime核心/补丁无新增修改，只本地提交不推送，真实模型HTTP新增0。
+  source: Owner明确开始继续执行；先收口S4S审计/证据/治理与隔离提交，再推进剩余S4安全离线验收。仍零新增真实模型调用，日常迁移/推送/新Runtime核心范围不开放。
   documentation_write_allowed: true
   product_source_edit_allowed: true
   product_generate_build_test_allowed: true
   database_migration_allowed: false
+  isolated_qualification_migration_allowed: true
+  migration_scope: 仅新固定com.yijie.ai.feat164-qualification-v1身份自然生成数据，经已审受控入口；日常库、原SQL41候选不迁移或清理。
   service_lifecycle_allowed: true
   model_or_tool_business_calls_allowed: false
   git_commit_push_branch_release_allowed: false
-  note: 六文件r5已实现并限定资格；Host/Desktop只更新必要来源，原工作区/账本/预占保留。真实次数5/5耗尽，累计保守14.679001元含14.188544元unknown预占，上限30元。
+  note: Runtime11fd/r5及旧制品/核心/补丁不改；新范围仍先报。5/5真实次数耗尽，30元cap，14.679001保守累计含14.188544元unknown预占保留。
   git_local_commit_allowed: true
-  git_scope: 仅FEAT-164本地提交，包括必要后续实现/验证/治理；不混入已有其它需求，无push/branch/tag/release。
+  git_scope: 仅FEAT-164必要独立来源/实现/验证/治理本地提交，不混入其它需求；无push/branch/tag/release。
 implementation:
+  independent_legacy_app_s4s:
+    status: PASS_SCOPED_NOT_FULL_FINAL
+    desktop_commit: 9f5814fec6cd071d39f0c12f8f48097ce661cb6a
+    legacy_producer_and_compiled_migration_commit: 54921df1af7645042c8cbaca39a2202fbdb0b087
+    contracts_commit: ca06d0999c9a08afe80ab3f34a537d492b830ac7
+    host_commit: 8cd6bccbdc1ac3906aea53d95441299f7cfefcce
+    runtime_commit: 11fd4504c28afd0f65c6f5f62a6b5328dd437f5a
+    runtime_contract_source: 5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2
+    app_sha256: 0173715c292dbea39262fcfcd70730e18c329dfc2a2ce782a353d241d3787c0c
+    fixed_identity: com.yijie.ai.feat164-qualification-v1
+    source_worktree: /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-candidate-20261026/yijie-desktop
+    original_desktop_head_unchanged: fd0c575e4465dea6bb72ec9681248f664000551b
+    real_http_added: 0
+    loopback_http_added: 5
+    scope: 正常旧App自然29数据→实际compiled41维护；未变迁移权威源码绑定最终App；同thread选择rev2/中断/继续，旧计划重审/新单次grant/正常重开；非最终binary fresh29迁移。
+    preservation: 497原dirty和8482保护文件恢复后复核一致；旧授权/操作/账本/预占保留；四Runtime库自然WAL0，数据只读副本完整性ok。
+    evidence_ref: 08-verification-report.md#E164-S4S-APP
+    evidence_index: evidence/s4s-audit-index.json
+    remaining: S4/TCONF04完整组合、未知/never-sent App和三个final；日常切换/新付费调用未授权。
   status: active
   real_entrypoint: bash scripts/run-local-demo-fast.sh --packaged --kimi-k31-pro；同canonical组合的显式独立候选，日常入口未切换
   mock_only: false

@@ -1,6 +1,6 @@
 # FEAT-164 候选决策、风险及阻断
 
-> 实施授权更新：Owner现已确认FEAT-164方案并要求开始实施和审计验证。此前“仅文档”段落是上一轮历史边界；当前状态以feature.yaml及13-implementation-log.md为准。G0/G1/G2记录本次方案确认；G2A/G2V及产品完成门禁仍未通过。无新增Git/付费/日常库激活许可。
+当前权威见[46](46-independent-legacy-app-qualification.md)及[当前验收矩阵](current-acceptance-matrix.md)。方案实施已批准；只本地、0新增真实模型调用，日常库迁移和新Runtime核心/补丁范围仍需单独确认。G2A与r4最小真实G2V已有历史资格，完整产品完成门禁仍pending。
 
 下列方案已由Owner当前实施指令确认；实际源diff的Consumer审查与后续Gate另行记录。需求/技术/Reviewer/发布Owner均为段成威。
 
@@ -17,14 +17,19 @@
 
 沿既有权威边界，不新建身份/权限/调度主状态；若后续选择新Runtime协议或跨仓职责变动，回G2及适用ADR评审。
 
-## 事实与未知
+## 当前事实与未知
 
-Fact：旧身份在目录/SQL/HTTP/runtime/worker中存在硬约束；worker会自动领取；thread/read无model/effort；源候选已实施，产品切换未执行。
-Assumption：原Key、max/1M可以沿用为配置默认，不代表账户/质量/所有参数已通过。
-Unknown：账户资格、完整真实部署配置前身、effective roles/overrides/已加载子代理图、未知操作数、预算及下游候选digest；本轮不读取Key或私密会话解决。
-Conflict：初版压缩/普通取消/unknown恢复/兼容激活描述过于乐观，11和05已给出修正。官方搜索能力与生产建议分开保留。
+Fact：模型替换、显式迁移/恢复/never-sent取消、计划退役和全调用面接线已实现；r5关闭修复与43号就绪修复已落地。44/45号有自然旧数据的领域/入口证明，尚不等于完整App升级流程。S4S新增固定独立验收身份，原SQL41候选无需再次结构迁移。
 
-## 阻断台账
+只读事实：1条unknown是原K3.1→MiniMax模型选择；2份occupied授权对应terminal/completed且native_terminal释放的运行，无reservation。它们不是全局执行占用，不能为了通过维护门禁而清理/退款/重发。原14.188544元unknown费用预占是独立账务事实。
+
+Unknown：最终来源的全部AC与三项final、日常切换前的完整现场状态及真实供应商扩展场景资格。r4已验证账户最小文本主路径；不能继续笼统称账户完全未验证，也不能据此声称r5真实资格通过。
+
+Assumption：固定离线身份可用正常旧App自然生成所缺数据；只有实际UI、受控迁移和重开证据才可转为Fact。锁屏/来源失败保持NOT RUN或FAIL。
+
+## 初始设计阶段阻断台账（历史）
+
+以下保留立项时问题分类，当前解除情况以46号和当前验收矩阵为准；其中“未实现/未构建”不再描述当前产品。
 
 | ID | 尚缺事项 | 解除要求 |
 |---|---|---|

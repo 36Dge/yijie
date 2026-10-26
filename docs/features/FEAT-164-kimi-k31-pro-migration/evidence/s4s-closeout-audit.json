@@ -1,0 +1,90 @@
+{
+  "phase": "S4S governance closure after explicit resume",
+  "status": "PASS_SCOPED",
+  "product_sources_unchanged_on_resume": true,
+  "real_model_http_added": 0,
+  "loopback_model_http_added": 0,
+  "s4s_original_preservation": {
+    "protected_count": 8482,
+    "protected_mismatches": [],
+    "dirty_count": 497,
+    "dirty_mismatches_excluding_own_pause_insertion": []
+  },
+  "checks": [
+    {
+      "name": "claims",
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--audit-claims",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "strict",
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "manifest",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "tests",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4t-audit-20261026/resume-baseline.json",
+      "sha256": "5a1603c2958b0e4762c55354e7d302107674533b4934c0cabbd2f0dc516f899b"
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4t-audit-20261026/s4s-final-review.json",
+      "sha256": "5b54b6b00a7d4fa2de86c984474e1742a00f2f8b878b7d2c6ee4a19e41865a21"
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4t-audit-20261026/historical-final-records.json",
+      "sha256": "d653b8f2f375021fdb968df52143feb5c9014bfa24079053b11df64a050c3cd0"
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4t-audit-20261026/s4s-closeout-governance.json",
+      "sha256": "613498d4a341ecfea94551965d3a042bc6cd71c0c45384f92ca1123b3dbbdd25"
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4t-audit-20261026/s4s-closeout-shell-syntax.json",
+      "sha256": "8363b6b11fb47638a18674b21518b4f3ea2f08c5e4e456b0c733cac8878e999a"
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4t-audit-20261026/s4s-closeout-claims.log",
+      "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4"
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4t-audit-20261026/s4s-closeout-strict.log",
+      "sha256": "0f6377b2cf2e6dba2d18bcba312d28530dafd7d4a1f423d7affcf223fed72bce"
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4t-audit-20261026/s4s-closeout-manifest.log",
+      "sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c"
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4t-audit-20261026/s4s-closeout-tests.log",
+      "sha256": "eb948bcb715698e75263353be3c6bfc8031c3a61282edfa65196258c9fe4d29e"
+    }
+  ],
+  "full_feature_status": "IN_PROGRESS; full final verdicts NOT RUN; r4 visual remains historical only"
+}

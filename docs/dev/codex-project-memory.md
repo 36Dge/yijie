@@ -1,5 +1,14 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 S4S结果已收口，S4T恢复执行（2026-10-26）
+
+Owner18:01暂停后明确恢复。先读[46](../features/FEAT-164-kimi-k31-pro-migration/46-independent-legacy-app-qualification.md)及当前验收矩阵；原paused-handoff保留历史含义。最终Desktop9f5814f在s4s-candidate工作树，旧producer54921df在s4s-qualification；Contracts ca06d09/Host8cd6bcc仅旧来源元数据，Runtime11fd/r5及Host产品binary不变。主仓未快进，原dirty保留。
+
+自然旧App→compiled29/41维护→最终App原thread切换/继续/正常停止/继续、旧计划审阅新模型保存paused/新单次grant/完成及同构建重开取得限定证据。5次loopback（旧K3一、新K31四），真实0；两次最终正常退出四库WAL0/integrity ok。新一轮恢复审计新增模型0。原unknown/消耗grant与5/5、30元cap、14.679001含14.188544预占保持。
+
+恢复已核验497原dirty（排除本任务记忆插入）、8482保护文件、六干净来源和42bundle文件。46/08/feature.yaml/索引收口按实际验证记载；不能把源绑定迁移说成最终binary fresh29迁移或完整final通过。当前继续S4/TCONF04与三个final，未决/never-sent App缺项仍列出；日常迁移/新真实调用关闭，Runtime核心/patch先报方案。保留全部失败日志、旧构建与暂停记录，不重复已通过S2/S3模型回合。
+
+
 ## FEAT-164 S4R：受控旧隔离库入口已实现（2026-10-26）
 
 最新权威[45](../features/FEAT-164-kimi-k31-pro-migration/45-controlled-isolated-migration-entry.md)。增量semantic，仅Desktop私有维护入口：同一canonical App明确参数、既有单实例锁、固定FEAT164 identity/根、lsof无句柄、正常静止和原始加密快照，再调用既有migration到38及正常Repository open到41/退役，随后退出；auth/worker/Host/Runtime/UI均不启动。普通旧库guard、日常拒绝、原权限/授权保持。只准入自然资格已完成的SQL29/37，不接受任意数据路径，不清理unknown/占用、不退款、不重发、不手工checkpoint/WAL操作。

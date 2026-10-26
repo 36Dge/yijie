@@ -1,0 +1,988 @@
+{
+  "feature": "FEAT-164",
+  "phase": "S4S natural legacy App qualification; indexed on resume",
+  "private_data_not_committed": true,
+  "root": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026",
+  "files": [
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/attribution.py",
+      "sha256": "61a8fdd74a67ff9c62b960f37b6ad1c37c67bc858f68532cb0f7e768bb05b464",
+      "bytes": 3921
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/baseline.json",
+      "sha256": "bf6a6b416499409ce9468bd5e9f69261307caafe2d60f2d799a8d070facde81a",
+      "bytes": 2268124
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/build-binding.json",
+      "sha256": "de39a011b4ea6520c511efa037a7273cebaa93049df6189def351ae6c3aaad11",
+      "bytes": 1206
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/candidate-build-final-result.json",
+      "sha256": "899e1a345cdb45ad6ed1939af0cd871ca036a05bae92fabb943d826edc4e8d74",
+      "bytes": 183
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/candidate-build-final.log",
+      "sha256": "0207cdb95486ca4ce90c0491d8d192d7919af3ec061953bbf9a600f81d8b0c8d",
+      "bytes": 27386
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/candidate-build-history-result.json",
+      "sha256": "899e1a345cdb45ad6ed1939af0cd871ca036a05bae92fabb943d826edc4e8d74",
+      "bytes": 183
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/candidate-build-history.log",
+      "sha256": "8b018fc5488296c33ae7e341a6526258ebe14a4cb35aac9d5f85a7f309a2eb9f",
+      "bytes": 27922
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/candidate-build-predecessor-result.json",
+      "sha256": "899e1a345cdb45ad6ed1939af0cd871ca036a05bae92fabb943d826edc4e8d74",
+      "bytes": 183
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/candidate-build-predecessor.log",
+      "sha256": "3515fbbb932ca0566b4839d905b6addb06f8c8851741d392d8a3583979178072",
+      "bytes": 27922
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/candidate-build-receipt.json",
+      "sha256": "d4d6a50e1787911c7cc86058a21bb58bb7216b0bba1488e4082ed4ca7da91ba8",
+      "bytes": 244827
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/candidate-build-result.json",
+      "sha256": "899e1a345cdb45ad6ed1939af0cd871ca036a05bae92fabb943d826edc4e8d74",
+      "bytes": 183
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/candidate-build.log",
+      "sha256": "3bed95d4c3a7e689543f9cb3f805ac4d2b3c4f8ff2ddc2631ce2b865a8ef8b80",
+      "bytes": 28778
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/candidate-environment.json",
+      "sha256": "3376e5fcf2d300893615539745e3726280dbf076fdfdd5ba9418dd9110c096dd",
+      "bytes": 1816
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/candidate-exit-history.json",
+      "sha256": "81868a6e94ffc0178bf833deb1c9013d9fab4ee95ddb876a5e8ec4f1d26376d2",
+      "bytes": 21
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/candidate-exit-predecessor.json",
+      "sha256": "81868a6e94ffc0178bf833deb1c9013d9fab4ee95ddb876a5e8ec4f1d26376d2",
+      "bytes": 21
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/candidate-exit.json",
+      "sha256": "81868a6e94ffc0178bf833deb1c9013d9fab4ee95ddb876a5e8ec4f1d26376d2",
+      "bytes": 21
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/candidate-final-reopen-exit.json",
+      "sha256": "81868a6e94ffc0178bf833deb1c9013d9fab4ee95ddb876a5e8ec4f1d26376d2",
+      "bytes": 21
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/candidate-final-reopen.log",
+      "sha256": "6d1638d53941e944a641cabf6aa181e88ec0caed42813db39c16110a29c33888",
+      "bytes": 2006
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/candidate-launch-history.log",
+      "sha256": "814941b113662001483e15252804ee450d389f6daf7f0bc4ac082bd98672b944",
+      "bytes": 2006
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/candidate-launch-predecessor.log",
+      "sha256": "8fc09be66961cc611396c7576a20609a7e3f7aa45d2f800e25dc14fd54a937ae",
+      "bytes": 2069
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/candidate-launch.log",
+      "sha256": "816fea2c06d4307382f149c48958f2ad9d74dace50f05391e4230d9a4dd156c7",
+      "bytes": 2062
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/candidate-readiness-plan-review.json",
+      "sha256": "87c76ca45d1317a46246d189a3b25e2bf3ef0a948ebacc80f2fc493964a87e5b",
+      "bytes": 1143
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/candidate-source-freeze.log",
+      "sha256": "4cd721efdb869ac012256a5cebea25f95c6b264cc6ea2ae2bf4035126f72482a",
+      "bytes": 87
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/child-projection-rca.json",
+      "sha256": "c98f0352303883ea593ebb73ded873f3e3eed97424e485190842c535a65a45a1",
+      "bytes": 538
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/current-state-attribution.json",
+      "sha256": "14782c522f23956670c07eea09c0de368b07b42c93d41846493bb0706acc9d99",
+      "bytes": 2552
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/desktop-source-commit.json",
+      "sha256": "c35f56ea6d62b6ae788d775642da04cbc1a2949f609dcd7e7bf8cf072d4a3499",
+      "bytes": 709
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/docs.log",
+      "sha256": "225d8084c9242a7cc3246865063dd88d34fce00e76f4016dcb06cf8d2f9119d1",
+      "bytes": 760
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/final-app-receipt.json",
+      "sha256": "f3b5d204bbf8ddf34b4f5ec18a8f3d056fd5bcf8bec109ad178aa587a70f0fe0",
+      "bytes": 244827
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/final-build-verification.json",
+      "sha256": "c36a3d1287a3d9c347c04ec5a642d753a173a65c8490c61df3f95d4c43fc6691",
+      "bytes": 503
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/final-identities.json",
+      "sha256": "eb168fb645c76a2e267fcbb5effbe13b9b11ff5d4864268e5cda480a81e1ca7a",
+      "bytes": 3916
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/final-reopen-verdict.json",
+      "sha256": "284e9b853aff5b8b8a016bb0c9fd1154e9f31cf77f4c26ca081cd6bcaf1ecf7c",
+      "bytes": 682
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/final-source-commit.json",
+      "sha256": "afbf2acaa9e702183f990115fa5f8ce2b45bec9c5c78d6ab190bae97f697b5a7",
+      "bytes": 67
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/final-sql.json",
+      "sha256": "ac9c6ba34a7c653b8d9d1a849a28080f028998a4a0b5f1cf8e269f6ca5d600d6",
+      "bytes": 35215
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/fixture-review.json",
+      "sha256": "bd409e27eacfd47dd187c5108f1f0e4c1a2ef91d478548aab122be613b20f7f9",
+      "bytes": 487
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/fmt.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/focused-checks.json",
+      "sha256": "8c498a71b37d609c0c357944301eb8fb7c4587f0aaaea32105f81f799ecef31b",
+      "bytes": 494
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation/feat164-catalog.log",
+      "sha256": "f0ac6a92992217b6a1446ababa9c403d1dda4b41f5c0981d40b62ddc4e638fba",
+      "bytes": 73
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation/host-skills.log",
+      "sha256": "309317cf12059ddf0abce0044bee6f4fa4402fb3da51c3fadaa96dcc50c87938",
+      "bytes": 167
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation/host-v2.log",
+      "sha256": "1ad011f590275fc04524dcb4301927e66f649cdad66d5d2810aeb7a378c0fac2",
+      "bytes": 135
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation/host-v3.log",
+      "sha256": "148e75003ef63b6f9635335ed0a8ea6ecd6bc0ed8dee40dd921bc3ddfeb2b8b5",
+      "bytes": 145
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation/host-v4.log",
+      "sha256": "66d13f0e964edbd4192f6dbe0f0aa8ce63a490b24eb2367598586f75cc68b12d",
+      "bytes": 199
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation/market-connectors.log",
+      "sha256": "62a3e8e73b6cd58b6cbc7b0a90bc3b4b8542b45ab42d6154b9f0ada39560ea18",
+      "bytes": 193
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation/market-host-v1.log",
+      "sha256": "f35719c48acfbc1a363c3ab390212b8b5ca95b884e8f9f65e66312a67ef6f76e",
+      "bytes": 133
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation/market-provider.log",
+      "sha256": "665dcb9cf05bb92eaf63299d24e9c8afe23f52fe7de4f820b8246b631fc2933a",
+      "bytes": 109
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation/market-selection-v1.log",
+      "sha256": "3663e59e701e5f5290dbf821f28e2726084a3173a2684eef64c78fcd0b3c79a5",
+      "bytes": 360
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation/models-v2.log",
+      "sha256": "c320056d8ed70f3c52cebba35f8e906b70e97afa545603dbd1ac3c8643ab3b94",
+      "bytes": 71
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation/native-conversation.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation/native-source.log",
+      "sha256": "bad24c2447ffec2ca1e8efc157824a6bc6774c432fe05b2713786e5fd51c436d",
+      "bytes": 180
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation/native-timing.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation/public-api.log",
+      "sha256": "9e2e358af466aadd0928096d838fea786c2100a23040354d635dd00efebc98b2",
+      "bytes": 119
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation/result.json",
+      "sha256": "d0aa86f5c46545aaa395bfec39176ea3748e671f29761f4a27d5e3c21a90eb8e",
+      "bytes": 7186
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation/runtime-k31.log",
+      "sha256": "e23b334a404da2f6687aa98879dde98d4e26f987723551f982561bb7ca759c3c",
+      "bytes": 55
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation/scheduled-ipc-v1.log",
+      "sha256": "fe2215f14359323d0eaaa8dc0b25f139f1ab9dec0602af5d8c6a932aad791c17",
+      "bytes": 82
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation/scheduled-ipc-v2.log",
+      "sha256": "fe2215f14359323d0eaaa8dc0b25f139f1ab9dec0602af5d8c6a932aad791c17",
+      "bytes": 82
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation/session-purpose.log",
+      "sha256": "39dfa8930fdb2e835c50713a74409ec230a17528b59ee8d6b24f143c9ecdcc45",
+      "bytes": 52
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation/v2-source-closure.log",
+      "sha256": "38098477ef6ccad735b1eef553bc6075f43b35a95752cacd5f77ad6253c1f85b",
+      "bytes": 82
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-final/feat164-catalog.log",
+      "sha256": "f0ac6a92992217b6a1446ababa9c403d1dda4b41f5c0981d40b62ddc4e638fba",
+      "bytes": 73
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-final/host-skills.log",
+      "sha256": "309317cf12059ddf0abce0044bee6f4fa4402fb3da51c3fadaa96dcc50c87938",
+      "bytes": 167
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-final/host-v2.log",
+      "sha256": "1ad011f590275fc04524dcb4301927e66f649cdad66d5d2810aeb7a378c0fac2",
+      "bytes": 135
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-final/host-v3.log",
+      "sha256": "148e75003ef63b6f9635335ed0a8ea6ecd6bc0ed8dee40dd921bc3ddfeb2b8b5",
+      "bytes": 145
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-final/host-v4.log",
+      "sha256": "66d13f0e964edbd4192f6dbe0f0aa8ce63a490b24eb2367598586f75cc68b12d",
+      "bytes": 199
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-final/market-connectors.log",
+      "sha256": "62a3e8e73b6cd58b6cbc7b0a90bc3b4b8542b45ab42d6154b9f0ada39560ea18",
+      "bytes": 193
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-final/market-host-v1.log",
+      "sha256": "f35719c48acfbc1a363c3ab390212b8b5ca95b884e8f9f65e66312a67ef6f76e",
+      "bytes": 133
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-final/market-provider.log",
+      "sha256": "665dcb9cf05bb92eaf63299d24e9c8afe23f52fe7de4f820b8246b631fc2933a",
+      "bytes": 109
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-final/market-selection-v1.log",
+      "sha256": "3663e59e701e5f5290dbf821f28e2726084a3173a2684eef64c78fcd0b3c79a5",
+      "bytes": 360
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-final/models-v2.log",
+      "sha256": "c320056d8ed70f3c52cebba35f8e906b70e97afa545603dbd1ac3c8643ab3b94",
+      "bytes": 71
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-final/native-conversation.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-final/native-source.log",
+      "sha256": "bad24c2447ffec2ca1e8efc157824a6bc6774c432fe05b2713786e5fd51c436d",
+      "bytes": 180
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-final/native-timing.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-final/public-api.log",
+      "sha256": "9e2e358af466aadd0928096d838fea786c2100a23040354d635dd00efebc98b2",
+      "bytes": 119
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-final/result.json",
+      "sha256": "b0616c69ca4ab848febd3406ad76960f761cae37cf78811f93283ca3d2703fca",
+      "bytes": 7186
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-final/runtime-k31.log",
+      "sha256": "e23b334a404da2f6687aa98879dde98d4e26f987723551f982561bb7ca759c3c",
+      "bytes": 55
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-final/scheduled-ipc-v1.log",
+      "sha256": "fe2215f14359323d0eaaa8dc0b25f139f1ab9dec0602af5d8c6a932aad791c17",
+      "bytes": 82
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-final/scheduled-ipc-v2.log",
+      "sha256": "fe2215f14359323d0eaaa8dc0b25f139f1ab9dec0602af5d8c6a932aad791c17",
+      "bytes": 82
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-final/session-purpose.log",
+      "sha256": "39dfa8930fdb2e835c50713a74409ec230a17528b59ee8d6b24f143c9ecdcc45",
+      "bytes": 52
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-final/v2-source-closure.log",
+      "sha256": "38098477ef6ccad735b1eef553bc6075f43b35a95752cacd5f77ad6253c1f85b",
+      "bytes": 82
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-final.log",
+      "sha256": "5ee06afe3b65bade45712a566db14b48cab8fd4c5d1fb6b85841eff7052b3b9c",
+      "bytes": 384
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-history/feat164-catalog.log",
+      "sha256": "f0ac6a92992217b6a1446ababa9c403d1dda4b41f5c0981d40b62ddc4e638fba",
+      "bytes": 73
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-history/host-skills.log",
+      "sha256": "309317cf12059ddf0abce0044bee6f4fa4402fb3da51c3fadaa96dcc50c87938",
+      "bytes": 167
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-history/host-v2.log",
+      "sha256": "1ad011f590275fc04524dcb4301927e66f649cdad66d5d2810aeb7a378c0fac2",
+      "bytes": 135
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-history/host-v3.log",
+      "sha256": "148e75003ef63b6f9635335ed0a8ea6ecd6bc0ed8dee40dd921bc3ddfeb2b8b5",
+      "bytes": 145
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-history/host-v4.log",
+      "sha256": "66d13f0e964edbd4192f6dbe0f0aa8ce63a490b24eb2367598586f75cc68b12d",
+      "bytes": 199
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-history/market-connectors.log",
+      "sha256": "62a3e8e73b6cd58b6cbc7b0a90bc3b4b8542b45ab42d6154b9f0ada39560ea18",
+      "bytes": 193
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-history/market-host-v1.log",
+      "sha256": "f35719c48acfbc1a363c3ab390212b8b5ca95b884e8f9f65e66312a67ef6f76e",
+      "bytes": 133
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-history/market-provider.log",
+      "sha256": "665dcb9cf05bb92eaf63299d24e9c8afe23f52fe7de4f820b8246b631fc2933a",
+      "bytes": 109
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-history/market-selection-v1.log",
+      "sha256": "3663e59e701e5f5290dbf821f28e2726084a3173a2684eef64c78fcd0b3c79a5",
+      "bytes": 360
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-history/models-v2.log",
+      "sha256": "c320056d8ed70f3c52cebba35f8e906b70e97afa545603dbd1ac3c8643ab3b94",
+      "bytes": 71
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-history/native-conversation.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-history/native-source.log",
+      "sha256": "bad24c2447ffec2ca1e8efc157824a6bc6774c432fe05b2713786e5fd51c436d",
+      "bytes": 180
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-history/native-timing.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-history/public-api.log",
+      "sha256": "9e2e358af466aadd0928096d838fea786c2100a23040354d635dd00efebc98b2",
+      "bytes": 119
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-history/result.json",
+      "sha256": "e8feaf606401d133659db1a396c95940071e0ccb4bf842e9f77a1bc177cb2a0b",
+      "bytes": 7170
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-history/runtime-k31.log",
+      "sha256": "e23b334a404da2f6687aa98879dde98d4e26f987723551f982561bb7ca759c3c",
+      "bytes": 55
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-history/scheduled-ipc-v1.log",
+      "sha256": "fe2215f14359323d0eaaa8dc0b25f139f1ab9dec0602af5d8c6a932aad791c17",
+      "bytes": 82
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-history/scheduled-ipc-v2.log",
+      "sha256": "fe2215f14359323d0eaaa8dc0b25f139f1ab9dec0602af5d8c6a932aad791c17",
+      "bytes": 82
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-history/session-purpose.log",
+      "sha256": "39dfa8930fdb2e835c50713a74409ec230a17528b59ee8d6b24f143c9ecdcc45",
+      "bytes": 52
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-history/v2-source-closure.log",
+      "sha256": "38098477ef6ccad735b1eef553bc6075f43b35a95752cacd5f77ad6253c1f85b",
+      "bytes": 82
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-history.log",
+      "sha256": "5ee06afe3b65bade45712a566db14b48cab8fd4c5d1fb6b85841eff7052b3b9c",
+      "bytes": 384
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-predecessor/feat164-catalog.log",
+      "sha256": "f0ac6a92992217b6a1446ababa9c403d1dda4b41f5c0981d40b62ddc4e638fba",
+      "bytes": 73
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-predecessor/host-skills.log",
+      "sha256": "309317cf12059ddf0abce0044bee6f4fa4402fb3da51c3fadaa96dcc50c87938",
+      "bytes": 167
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-predecessor/host-v2.log",
+      "sha256": "1ad011f590275fc04524dcb4301927e66f649cdad66d5d2810aeb7a378c0fac2",
+      "bytes": 135
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-predecessor/host-v3.log",
+      "sha256": "148e75003ef63b6f9635335ed0a8ea6ecd6bc0ed8dee40dd921bc3ddfeb2b8b5",
+      "bytes": 145
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-predecessor/host-v4.log",
+      "sha256": "66d13f0e964edbd4192f6dbe0f0aa8ce63a490b24eb2367598586f75cc68b12d",
+      "bytes": 199
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-predecessor/market-connectors.log",
+      "sha256": "62a3e8e73b6cd58b6cbc7b0a90bc3b4b8542b45ab42d6154b9f0ada39560ea18",
+      "bytes": 193
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-predecessor/market-host-v1.log",
+      "sha256": "f35719c48acfbc1a363c3ab390212b8b5ca95b884e8f9f65e66312a67ef6f76e",
+      "bytes": 133
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-predecessor/market-provider.log",
+      "sha256": "665dcb9cf05bb92eaf63299d24e9c8afe23f52fe7de4f820b8246b631fc2933a",
+      "bytes": 109
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-predecessor/market-selection-v1.log",
+      "sha256": "3663e59e701e5f5290dbf821f28e2726084a3173a2684eef64c78fcd0b3c79a5",
+      "bytes": 360
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-predecessor/models-v2.log",
+      "sha256": "c320056d8ed70f3c52cebba35f8e906b70e97afa545603dbd1ac3c8643ab3b94",
+      "bytes": 71
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-predecessor/native-conversation.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-predecessor/native-source.log",
+      "sha256": "bad24c2447ffec2ca1e8efc157824a6bc6774c432fe05b2713786e5fd51c436d",
+      "bytes": 180
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-predecessor/native-timing.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-predecessor/public-api.log",
+      "sha256": "9e2e358af466aadd0928096d838fea786c2100a23040354d635dd00efebc98b2",
+      "bytes": 119
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-predecessor/result.json",
+      "sha256": "747d3832d0261c03ab85add3cf229c0690f1bb800a829b627455f5d7263ce5cf",
+      "bytes": 7170
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-predecessor/runtime-k31.log",
+      "sha256": "e23b334a404da2f6687aa98879dde98d4e26f987723551f982561bb7ca759c3c",
+      "bytes": 55
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-predecessor/scheduled-ipc-v1.log",
+      "sha256": "fe2215f14359323d0eaaa8dc0b25f139f1ab9dec0602af5d8c6a932aad791c17",
+      "bytes": 82
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-predecessor/scheduled-ipc-v2.log",
+      "sha256": "fe2215f14359323d0eaaa8dc0b25f139f1ab9dec0602af5d8c6a932aad791c17",
+      "bytes": 82
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-predecessor/session-purpose.log",
+      "sha256": "39dfa8930fdb2e835c50713a74409ec230a17528b59ee8d6b24f143c9ecdcc45",
+      "bytes": 52
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-predecessor/v2-source-closure.log",
+      "sha256": "38098477ef6ccad735b1eef553bc6075f43b35a95752cacd5f77ad6253c1f85b",
+      "bytes": 82
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation-predecessor.log",
+      "sha256": "5ee06afe3b65bade45712a566db14b48cab8fd4c5d1fb6b85841eff7052b3b9c",
+      "bytes": 384
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/generation.log",
+      "sha256": "5ee06afe3b65bade45712a566db14b48cab8fd4c5d1fb6b85841eff7052b3b9c",
+      "bytes": 384
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/history-clippy.log",
+      "sha256": "2413b0b40588006d71abef2427e0789b232c2832f54f2ea43184137278aeb9d5",
+      "bytes": 1108
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/history-docs.log",
+      "sha256": "22abde4423df1714e974cea161c0e76c599478c4b04ce494cb19738be4ae632d",
+      "bytes": 760
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/history-fmt.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/history-focused-checks.json",
+      "sha256": "6d198eb7b34c9d03d2649dff5056535718395f80856622e0a70481f327f007dc",
+      "bytes": 200
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/history-source-commit.json",
+      "sha256": "e4069a5c595af03d796a5567f998d3cf37cf5f0bd1b4ee2d6c8bcf59d11fc5b6",
+      "bytes": 59
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/history-terminal.log",
+      "sha256": "4cbe58bdf48f4ffc486dcc9a57bf935c57725729f22f9f9b493f13f7b96261fe",
+      "bytes": 1611
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/host-health-after-predecessor.json",
+      "sha256": "5de437d86156eb65fdec78567029aadba04ec991bc3a2e7f79a0f3f42d92cb14",
+      "bytes": 781
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/implement.py",
+      "sha256": "c79c73407b5ee26f38f0327849f0ea0cc579e55444d4bb57fe5f3505939765d1",
+      "bytes": 12922
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/intermediate-preservation.json",
+      "sha256": "c538657458b732cacd5e46078818889c818aff4ae5810eb0c9f3879c8652e886",
+      "bytes": 69
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/legacy-build-final-result.json",
+      "sha256": "723d4fae4320f8a237c4d4a7e9c1d4868a35374783c2e1344dffcb5ed001b4a2",
+      "bytes": 161
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/legacy-build-final.log",
+      "sha256": "fcab920e256b9af5da7e01b0527658fd683755c70b7fff1dd7e1a4ad93accb7a",
+      "bytes": 27653
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/legacy-build-receipt.json",
+      "sha256": "996815f58ccd6bd1bcc1cc53504c62b3cad2fcbd71d5c25fcc0eaa28cad5884c",
+      "bytes": 244827
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/legacy-build-result.json",
+      "sha256": "723d4fae4320f8a237c4d4a7e9c1d4868a35374783c2e1344dffcb5ed001b4a2",
+      "bytes": 161
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/legacy-build.log",
+      "sha256": "097a71d101ff820adc3e65aa354d7e9f04791fc77246457c76dd8a789a9673cc",
+      "bytes": 27993
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/legacy-environment.json",
+      "sha256": "913f63834b76890f214759acfe4317f00f92500bf28aa4abd24335de01e34522",
+      "bytes": 1770
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/legacy-exit-corrected.json",
+      "sha256": "81868a6e94ffc0178bf833deb1c9013d9fab4ee95ddb876a5e8ec4f1d26376d2",
+      "bytes": 21
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/legacy-exit.json",
+      "sha256": "81868a6e94ffc0178bf833deb1c9013d9fab4ee95ddb876a5e8ec4f1d26376d2",
+      "bytes": 21
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/legacy-launch-corrected.log",
+      "sha256": "f6d964b9e47c14d8af9959f1220889c6e0e788dda811c5f33ae59ef4e5d8630f",
+      "bytes": 2087
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/legacy-launch.log",
+      "sha256": "1f0b5f4a791bf45fde9d466eb9e4f561a0def9fadd7081fe6a687f4e4ef642df",
+      "bytes": 2091
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/legacy-projection-check.log",
+      "sha256": "3c607a6d23ce448b846e1c4aa61087487b66b660eaba3751d41a1faca9cc67c3",
+      "bytes": 46
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/legacy-projection-generate.log",
+      "sha256": "0c9c3b5c4a73e279cf7349e86fe16a0c065fb6a5470a4a91ba8c22724fbca2bb",
+      "bytes": 47
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/legacy-projection-sync.log",
+      "sha256": "ce94cf58a8ab013fbe893c524780c792b2f999063888ebd183cc4963fc8cf54a",
+      "bytes": 40
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/legacy-provenance-plan-review.json",
+      "sha256": "5044be81c1b2fe6e49663d729268d57e1b37e2b4181bae461eca46693ff6a027",
+      "bytes": 1076
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/legacy-source-freeze-corrected.json",
+      "sha256": "56296949d3a02e635b050fd6b4762f0f0b52c23d05b925203095f7daf8e19027",
+      "bytes": 21
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/legacy-source-freeze-corrected.log",
+      "sha256": "a2021127583692f26cf79140203e9c393a3234f58c86d87f9b42f7803c4e3e69",
+      "bytes": 10492
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/legacy-source-freeze-final.json",
+      "sha256": "702c95687b19af67ce063d049238d5ad1f7553ae5e755c8fedab87747e2ddbe1",
+      "bytes": 148
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/legacy-source-freeze-final.log",
+      "sha256": "c58382e588195456a234ee9922c5e0e275c4a729ccf8438c166c301a62bbebc4",
+      "bytes": 57
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/legacy-source-freeze.json",
+      "sha256": "13c648a305d0cc778626bfd86194719d579d6337919e41ab7df1faad24c906c7",
+      "bytes": 117
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/legacy-source-freeze.log",
+      "sha256": "ac8ee8252c57418777e9a6522b015e8703d727697604be0ba0c98b9cfca18b20",
+      "bytes": 9830
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/legacy-source-rca.json",
+      "sha256": "075aee8487073019fd3891ae62bf776d71b3b6189a07ff74c3ad038f5b5f78c8",
+      "bytes": 509
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/legacy-startup-rca.json",
+      "sha256": "d03832bc649ba5fe6ff1b2b24ba3376ceaf95abda2a2633b63b26f63dc72807a",
+      "bytes": 469
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/legacy-ui-proof.json",
+      "sha256": "6edd9864025bcae8c65ae99456c0e2f205e5faa98759fbfc313297ba15f06aec",
+      "bytes": 725
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/loopback-ledger.json",
+      "sha256": "44a3751c9c0caa876422591528d4dcc0da66528634aa821a34d345ac5647728b",
+      "bytes": 1804
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/migration-source-binding.json",
+      "sha256": "1e1c13a41f9cc5676a64e173f342586d0495da28e63078bb307e97a3060d4abb",
+      "bytes": 888
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/native-clippy-candidate.log",
+      "sha256": "9ff8729831fb4a0908d9483bba3ac9b70df3aab6da1664ac858180014c46b592",
+      "bytes": 1112
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/native-qualification-candidate.log",
+      "sha256": "61e49f44cec12182b568156802967db2b3d32ae30437578b4ce5703d9e8b9e88",
+      "bytes": 528
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/native-qualification-default.log",
+      "sha256": "2bb9960d444d88641ecc863728890ed46dce8ad93d87c1e6d13a35188386c936",
+      "bytes": 1427
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/natural-app-data-verdict.json",
+      "sha256": "34f5a960952de74b99935e94f6b699787caa0cf238a84c5904f645a058767f0c",
+      "bytes": 1114
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/natural-app-migration-result.json",
+      "sha256": "c94f710680a19362ba27571d9d8e4f922963fd65c2ad161890db4759bfe8054e",
+      "bytes": 206
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/natural-app-migration.log",
+      "sha256": "6dfb258f776bb962c661fabaee30ff23df4aaf788aa0a72f3f39c1875c93b0cc",
+      "bytes": 2303
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/natural-final-before-reopen-identities.json",
+      "sha256": "eb168fb645c76a2e267fcbb5effbe13b9b11ff5d4864268e5cda480a81e1ca7a",
+      "bytes": 3916
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/natural-final-before-reopen-sql.json",
+      "sha256": "7b9ba38ec25519969d18f2d3f6a694873e03fe90b0abe6a9b729d8b4fd06da6c",
+      "bytes": 35139
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/natural-legacy-before-hashes.json",
+      "sha256": "b63c7b8345b0037ceac06b89931ac8d4b181fe8423b320941802f632bc85027c",
+      "bytes": 919503
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/natural-legacy-before-identities.json",
+      "sha256": "9915bb7abee9d1035e3d1167330056580047f111612d139713475ab6a1712fd3",
+      "bytes": 2086
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/natural-legacy-before-sql.json",
+      "sha256": "37974ee2f1eec44e230f97763356fa256d77486a67407d5c0347ece420e88e0a",
+      "bytes": 23245
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/natural-migrated-before-ui-identities.json",
+      "sha256": "389a962de15385606e90542e58b736f12d5678c85154b6fa4d310195644920d5",
+      "bytes": 2033
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/natural-migrated-before-ui-sql.json",
+      "sha256": "c9c297ec3eae5a2bc422e690f4c13c1edfe239f2007bb24ee2160b0f34d5984c",
+      "bytes": 29161
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/natural-migration-preservation.json",
+      "sha256": "abcf578db2b78bd0b4dd232a39509fefb0ffec0c26307c08616eb9c23ca63add",
+      "bytes": 795
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/pause-memory-block.txt",
+      "sha256": "a6ad010c1f071bfdd4ba73ae9ceefa51974d8431a9f65bc3d1f80a2ff2baa036",
+      "bytes": 1393
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/paused-handoff.json",
+      "sha256": "2a44b67f6c7ff552da9c14fa93cd2d0bb75b17555e059af36aee7a9ad1a9d100",
+      "bytes": 4384
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/pre-implementation-review.json",
+      "sha256": "45a5e66b812d30a38f92de1206bc08c4063e29e93009c7e9b1e66aa6a42e3e6a",
+      "bytes": 1500
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/predecessor-admission.log",
+      "sha256": "28d0bba5d1807a0d475c78ea2e9e5ec8e64270566adcc809df853e67b31153d0",
+      "bytes": 705
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/predecessor-child.log",
+      "sha256": "bb41c0e3e6f21edb517e82a3eb5a91344bbc11741f17e8ff8b83e5c6af7d7ffa",
+      "bytes": 1583
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/predecessor-corrected-checks.json",
+      "sha256": "e2768a6564d2041bcb4b64c253caec9fb698826311e490dbafeb892f38294469",
+      "bytes": 306
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/predecessor-corrected-child.log",
+      "sha256": "ae066eddedf72ed61a613dc5483d72b2c6cdb4038c8b2359a358ce431eff1f9c",
+      "bytes": 523
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/predecessor-corrected-clippy.log",
+      "sha256": "7a46e650e50730bc575f7bf260b783bfde5988e8bacc7cd76326c4e974198d36",
+      "bytes": 1108
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/predecessor-corrected-default-child.log",
+      "sha256": "217a9462a18e0172b1b78b57dc65c6b73e3c50791d0c5b46b25543d9e9510fbd",
+      "bytes": 524
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/predecessor-corrected-docs.log",
+      "sha256": "6a91c6bfcc5d4fc70d6a5f7c5d64ed79aacc48a4f80dab6cfcd008d8e1bd4f54",
+      "bytes": 958
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/predecessor-corrected-fmt.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/predecessor-corrected-identity.log",
+      "sha256": "cb0bff223b161e5bdba8ce033ef18c4007e353ddb4fdd17525ea51c8732fd060",
+      "bytes": 387
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/predecessor-focused-checks.json",
+      "sha256": "e6147ccd8b2e9e54a652bd291fd6ebe0608a1103cd7049914c7e6b2e5436d149",
+      "bytes": 107
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/predecessor-native-tests.log",
+      "sha256": "28a627f89ccedb85b614396a026220b24ababd68c9be684171b65f59f3795b7f",
+      "bytes": 15515
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/predecessor-source-commit.json",
+      "sha256": "e7006edf586ea3c29209ec51860aaf14748b1661dced5c5f889ced5e292e0dec",
+      "bytes": 59
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/prelaunch.json",
+      "sha256": "bab3235858a9b813bf3dd931174da3d3ce2260eac359d249d5f5aff59d5529a3",
+      "bytes": 180
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/preparation-stop.json",
+      "sha256": "f01a4f5461c0b8a357437bcf900d27acb48b35fc001c53cdcf08d677744febde",
+      "bytes": 388
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/provenance-source-commits.json",
+      "sha256": "eaf01c3deda786acded501d0ee684562990aee49f0f41129f86575d4fa5a4b31",
+      "bytes": 116
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/read-and-switch-zero-http.json",
+      "sha256": "10f65a82473817fd2f14b7872f3a37aa655acf05b184a31018b96012186585d3",
+      "bytes": 290
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/read_identities.py",
+      "sha256": "6c95148bfa2f9d81a2baa6566c1aec2c76846a96475afb257cccd2b9b93012d3",
+      "bytes": 3209
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/read_sqlcipher.py",
+      "sha256": "05688144550d98895e36e6f2928a4fc136dc41e1e3bc1332cc9a70c7a381bd3d",
+      "bytes": 3251
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/retired-history-plan-review.json",
+      "sha256": "6cfc590ec80189ced382e2be59d99cf34b6631901681ae10db885b60b882141b",
+      "bytes": 1013
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/runtime-warning-audit.json",
+      "sha256": "8795b037ed8f3343ce3fb9ec1b180dbfc5652f5093d3cf4e9c720eb0cea27bb9",
+      "bytes": 1745
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/runtime-warning-details.json",
+      "sha256": "3176840c40a0ca0fcde851635bdb00d6d7bcc9d0cd8201eaa4c449d7c1518039",
+      "bytes": 3126
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/s4s-loopback-fixture.py",
+      "sha256": "49bcb517a74c916f9a56efb7bc6116b42ff37622ceabdf8768cb16a54ed37ee3",
+      "bytes": 8341
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/source-tests.log",
+      "sha256": "d1619021ca15479f6666d28e5ea4bb660cb41c4bbe72d3dcc3519ed4c4b69436",
+      "bytes": 286
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/test-selection-rca.json",
+      "sha256": "5267c7c24dcc54fa5d80ec8cbc763e7a86e7c45172c4412bfc414667b0b846f6",
+      "bytes": 645
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4s-audit-20261026/update_governance.py",
+      "sha256": "a337d49c01b44bce8bd9cde3e66173c77dd6eb91bf4984301c73facb563fff4a",
+      "bytes": 6884
+    }
+  ]
+}

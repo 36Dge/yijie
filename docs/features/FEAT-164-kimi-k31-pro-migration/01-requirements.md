@@ -1,6 +1,6 @@
 # FEAT-164 需求、交互与验收
 
-本需求已获Owner授权实施；本文件仍是整项验收目标。所有AC整体状态以feature.yaml为准，当前pending；阶段证据和真实剩余项集中见[39当前证据绑定与最终缺项](39-evidence-binding-and-final-verdicts.md)，不能把局部PASS等同迁移完成。
+本需求已获Owner授权实施；本文件仍是整项验收目标。所有AC整体状态以feature.yaml为准，当前pending；阶段证据和真实剩余项集中见[当前验收矩阵](current-acceptance-matrix.md)，不能把局部PASS等同迁移完成。
 
 ## 业务规则
 

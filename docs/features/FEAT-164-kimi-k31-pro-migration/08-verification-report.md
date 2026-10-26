@@ -456,3 +456,10 @@ Desktop b6f0ad7、原r5/Host二进制不变。实际无效配置启动前拒绝�
 ## E164-S4R-ISOLATED-MIGRATION
 
 Desktop隔离bc3b097实现同一canonical App的一次性维护参数，在现有单实例锁、固定隔离身份/根、正常静止、完整原始快照与单独检查副本之后调用既有migration/Repository open；普通open旧库guard保留，未修改Runtime。SQL29/37自然producer和受控正反例、原事实/模型身份/ledger、重复与重开通过。最终19来源、canonical ordinary构建及42bundle文件通过；产品lib/bins Clippy/fmt和docs通过。实际compiled禁用/daily配置拒绝，缺模型Key的canonical维护入口抵达SQL41原库预检，并因1个非ready选择（另有2个占用grant）拒绝；5522原文件保持，仅新增私有快照/停止记录。真实和本机模型HTTP均0。不把维护拒绝写成迁移成功，也不据此晋升完整S2/S3 App或final。详见[45](45-controlled-isolated-migration-entry.md)、s4r-migration-matrix、s4r-canonical-entry-result、s4r-current-refusal-audit和s4r-final-build-binding。
+
+
+## E164-S4S-APP
+
+<!-- evidence: E164-S4S-APP -->
+
+自然旧App54921df产生K3会话及K3/MiniMax计划；同compiled维护29→41、原快照/ledger/身份/授权事实保持。最终Desktop9f5814f在原Runtime11fd/r5和Host产品字节不变的前提下，修复受审前身许可与退役终态历史恢复，完成同thread显式K3.1切换、正常interrupt/继续、计划重审保存paused/新max_runs1许可执行及正常重开。5次loopback（旧1、新4），真实0；重开0HTTP，四库自然WAL0/integrity ok。原失败、范围限制和source-bound而非单一fresh迁移来源见46及s4s-audit-index；完整TCONF/final未放行。

@@ -1,28 +1,10 @@
 # FEAT-164 — Kimi K3.1 Pro 模型替换与历史兼容
 
-> 最新深入复审见[41 关闭方案再审](41-shutdown-plan-deep-review.md)：RCA后6项新unit＋6项RPC及Clippy通过，但listener无退出回执、RPC屏障顺序待修正。四文件候选未晋升；建议仅扩展thread_state/thread_lifecycle两文件，**待新增范围批准**。r5未构建，真实新增0。
+2026-10-26 当前状态：**IN_PROGRESS，尚未切换日常入口。** Owner已批准继续实施、安全离线验收及FEAT-164专属本地提交；新增真实模型HTTP为0，日常迁移、推送和发布保持关闭。r5六文件关闭修复已经批准、构建并取得限定资格，不能再按40/41号历史待批准状态解释。
 
-> 最新续办见[40 Runtime正常关闭审计与最小方案](40-runtime-shutdown-audit-and-minimal-plan.md)：单次零回合EOF复现未回填WAL，4库只读完整性ok；已收敛所有者排空日志并await四池关闭的候选。**核心/patch尚未修改，待Owner确认**；teardown/core及整项状态不变，真实新增0。
+当前来源、AC差距和下一步统一见[46 独立旧数据App资格](46-independent-legacy-app-qualification.md)与[当前验收矩阵](current-acceptance-matrix.md)。Runtime11fd/r5保持；S4S独立部署代码及旧模式来源整理已实施。r4真实G2V/视觉PASS保留原来源；r5完整S2/S3/S4和三项final不能继承。原unknown、已消耗计划额度与费用预占均保留。
 
-> 最新按[39 证据绑定与三项最终验收](39-evidence-binding-and-final-verdicts.md)：当前来源141项＋4source和可达App验证通过，新增真实模型0；S1证据收口，S2/S3/S4保留完整纵向缺项。视觉单项PASS；core及Runtime checkpoint完整teardown未通过。两份真实账本、旧预占和日常库保持。以下旧记录按原时间与来源解释。
-
-> 2026-10-26最新续办以[36 当前离线资格与下一步](36-current-offline-qualification-and-next-gate.md)为准：当前S1/S2/S3及S4专家/媒体/辅助/旧线程安全检查通过，产品代码未改；候选无旧K3会话/计划可自然升级。完整G2V/TCONF/final与日常cutover仍缺，新真实HTTP许可0；后续避免反复运行已通过子集。
-
-> 最新续办与整项目标以[35 当前组合与完成差距](35-s4-current-media-and-completion-audit.md)、feature.yaml及S4I证据为准。旧阶段记录保留其原来源和时间；当前仍未切换日常入口，不新增真实模型HTTP。
-
-> S4I结果：Desktop399bb19/Host090c2db配对专家切换、r4媒体/正常中断/图片、同源重开及清理通过；旧unknown仍保留阻断。当前安全子集分组通过不等于完整TCONF/G2V/G3/final。后续按35末节整项执行单推进。
-
-> 最新（2026-10-25）：首次真实G2V返回HTTP400、无usage，14.188544元预占保留。已自行修正include规范差异并本地固化r2，离线验证进展见[19](19-responses-400-audit.md)；更早阶段的授权、预算与通过结论仅按当时范围解释。
-
-> 2026-10-25 用户已明确恢复，沿用 20 元及搜索/图片授权。当前进度与预算边界见 [18 恢复实施记录](18-resumed-g2v.md)；17 保留暂停时历史状态。G2V 尚未通过。
-
-> 2026-10-25 当前进度：原隔离清单三仓已本地提交，G2A PASS；Host/Desktop 最小候选及普通本机联调完成，G2V、S1—S4/final 仍 pending。当前证据和续办边界以 [16 下游候选审计](16-downstream-candidate-audit.md) 与 feature.yaml 为准；以下早期阶段记录保留其历史含义。
-
-> 实施授权更新：Owner现已确认FEAT-164方案并要求开始实施和审计验证。此前“仅文档”段落是上一轮历史边界；当前状态以feature.yaml及13-implementation-log.md为准。G0/G1/G2记录本次方案确认；G2A/G2V及产品完成门禁仍未通过。无新增Git/付费/日常库激活许可。
-
-2026-10-24（Asia/Shanghai） · schema v3 · production_hardened · exposure: local · active。
-
-**Owner 已确认方案并授权实施、安全验证和审计。当前已完成未激活的源契约/Runtime候选；G0/G1/G2通过，G2A及后续门禁pending。** Host/Desktop迁移、日常激活和真实模型验证尚未执行，整体功能未完成。实际结果与Git批准边界见08/13/14。
+2026-10-24创建 · schema v3 · production_hardened · exposure: local · active。早期审批、故障、预算与通过结论见12—45号历史报告，按各自时间和来源解释，不作为本页当前授权。
 
 ## 用户结果
 
