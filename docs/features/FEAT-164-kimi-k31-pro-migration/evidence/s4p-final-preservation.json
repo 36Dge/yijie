@@ -1,0 +1,44 @@
+{
+  "at": "2026-10-26T12:22:21.292887+08:00",
+  "original_dirty_files_preserved": 497,
+  "protected_baseline_files": 7785,
+  "protected_current_exact": 7773,
+  "candidate_changed_existing_files": [
+    "host/sessions.db",
+    "chat/conversations.db",
+    "runtime/logs_2.sqlite-wal",
+    "runtime/logs_2.sqlite-shm",
+    "runtime/logs_2.sqlite",
+    "runtime/memories_1.sqlite",
+    "runtime/state_5.sqlite",
+    "runtime/goals_1.sqlite-shm",
+    "runtime/state_5.sqlite-wal",
+    "runtime/goals_1.sqlite-wal",
+    "runtime/goals_1.sqlite",
+    "runtime/state_5.sqlite-shm"
+  ],
+  "all_changed_originals_retained_exact_in_before_snapshot": true,
+  "candidate_normal_change_evidence": [
+    "s4p-candidate-file-delta.json",
+    "s4p-sqlcipher-final-comparison.json",
+    "s4p-host-store-semantic-audit.json",
+    "s4p-final-normal-exit-audit.json"
+  ],
+  "unexpected_changes": [],
+  "old_ledgers_sha256": {
+    "g2v-real-budget-ledger.json": "2dbd19be2a8bda267437bcf0330fff1af122778388d6e3df965291ec840b7dcf",
+    "g2v-real-budget-ledger-r3.json": "b58101ee9cb0755c721e828864a7fcc39580010b5b482ac7ea83af9a5f28f4ea"
+  },
+  "fixture_state": "stopped_normally",
+  "model_real_http": 0,
+  "model_loopback_http": 0,
+  "active_candidate_processes": [],
+  "released_ports": [
+    18083,
+    18086
+  ],
+  "candidate_open_handles": 0,
+  "push": false,
+  "manual_checkpoint": false,
+  "manual_wal_deletion_or_truncation": false
+}

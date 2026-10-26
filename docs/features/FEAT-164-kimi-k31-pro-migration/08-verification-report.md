@@ -436,3 +436,7 @@ core_vertical NOT RUN（完整范围）；accessibility_visual PASS（当前可�
 第41号最小六文件方案已实现。当前Runtime11fd→Contracts5b5dad→Host894671b/Connectorscc56cda→Desktopc76558e；固定上游源码未改，269份schema与r4一致。源码9+6、Clippy、Contracts12、Host13/race/vet、Desktop11、19generation及4组合来源通过，独立r5和完整media App标准构建/同构建回执通过。真实r5零turn loaded-thread/start/read/EOF退出0，四库退出后WAL均0、副本integrity均ok；未手工checkpoint或清WAL。
 
 实际App无凭据启动显示本地服务未就绪，记FAIL_APP_READINESS_FIRST_OBSERVATION，根因UNKNOWN；没有重试/发消息，⌘Q正常exit0，5528候选文件逐字保持。不能判App teardown、完整core或r5 G2V通过。完整Runtime make test被既有执行位检查阻断；真实新增0、累计5/5、旧预占和账本保持。证据/完整边界/下步见[42](42-r5-shutdown-implementation-and-qualification.md)、s4o-implementation-review、s4o-native-state-close、s4o-generation-result、s4o-app-observation及s4o-raw-log-index。此前r4证据保留原来源，不冒充r5复验。
+
+## E164-S4P-APP
+
+Desktop b6f0ad7、原r5/Host二进制不变。实际无效配置启动前拒绝；19来源、canonical media构建、正确配置两次ready/历史只读/正常退出通过，四库WAL0及副本integrity ok。模型HTTP真实/本机均0。SQLCipher全部原行保持仅加2正常停止行；Host全115键保留，仅14 updated_at更新。原Host bytewise检查FAIL保留，字段级审计另记PASS_SCOPED。完整G2V/G3/final不据此晋升。详见[43](43-app-readiness-root-cause-and-minimal-fix.md)及s4p-final-review证据。

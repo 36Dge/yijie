@@ -1,5 +1,15 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 S4P：App未就绪已定位并最小修复（2026-10-26）
+
+最新权威[43](../features/FEAT-164-kimi-k31-pro-migration/43-app-readiness-root-cause-and-minimal-fix.md)。S4O无凭据media环境自动进入provider-only，Native剥离模型/计划配置，实际App候选Host schema11/base10缺v2 reader资格而正常拒绝；不能依据空资格host-home推断Host未启动（Native会改指App数据目录）。只读IPC健康ok/auth signed_in、前端context阶段chat_host_not_ready、实际副本ErrModelUnavailable已证明；不是继续修改Runtime的理由。
+
+已复审后仅Desktop launcher加5行拒绝错误候选启动，prepare-only仍可无凭据构建，提交b6f0ad7c5181e7ea488c019a1eccd76396eab16e。Runtime11fd/r5 SHA283d12e…、Host894671b binary1d880cb…及其实现不变；Contracts5b5dad、Connectorscc56cda、Skills595c927保持。新独立构建在feat164-s4p-qualification-20261026。19generation、无效启动预检与canonical media构建通过；首个generation缺嵌套工具依赖已修配置并保留失败日志。
+
+现有本机fixture正确装配后，两次实际App ready、原42/50/8历史和关闭计划可读，旧不确定草案保持禁发/勿重发。两次⌘Q exit0，App/Host/Runtime/worker/adapter、监听/句柄释放；四库自然WAL0、完整副本integrity ok。真实/本机模型HTTP均0，fixture已正常停，无活动进程或待答。SQL71表70相同，仅加2正常停止行，全部旧行保持；Host115键全保留，14 updated_at正常resume更新，其它字段/操作不变，原bytewise FAIL不改写，字段审计单列。
+
+原工作区497dirty、旧证据/制品/日常数据保护；候选完整before/after留存，DB正常元数据与WAL处理如实记录不冒称全文件不变。两旧账本、5/5、保守14.679001元含14.188544元unknown预占、30元上限保持。没有新增Runtime/patch修改、日常迁移、push/tag/release。整项IN_PROGRESS，后续推进当前r5的自然旧K3已加载线程迁移/恢复取消、旧计划重新审阅授权、S4/TCONF04/core/全部final；r5真实G2V未授权未执行，不继承r4 PASS。不要重复已收口的错误启动配置或旧141项替代剩余场景。
+
 ## FEAT-164 S4O：六文件r5实现与限定关闭资格（2026-10-26）
 
 Owner已在必要性复审后批准41号；新增范围是两个既有文件，非新Runtime产品模块。已按六文件0011补丁实现，canonical上游codex-rs逐字未改。Runtime11fd450→Contracts5b5dad9→Host894671b/Connectorscc56cda→Desktopc76558e，Skills595c927保持；本地提交无推送。当前权威[42](../features/FEAT-164-kimi-k31-pro-migration/42-r5-shutdown-implementation-and-qualification.md)。

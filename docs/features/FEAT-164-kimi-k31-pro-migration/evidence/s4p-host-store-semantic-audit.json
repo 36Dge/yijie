@@ -1,0 +1,11 @@
+{
+  "original_bytewise_assertion": "FAIL retained; Host resume updates normal operational timestamp",
+  "subsequent_field_audit": "PASS_SCOPED",
+  "source_reason": "Service.resumeSession calls Store.Resume then Store.update sets UpdatedAt=time.Now.UTC; no implementation change this turn",
+  "source_commit": "894671b7288b34ca0493064cded3e461c924cd32",
+  "host_entries": 115,
+  "all_keys_preserved": true,
+  "new_keys": 0,
+  "session_updated_at_changes": 14,
+  "all_other_fields_and_non_session_values_identical": true
+}

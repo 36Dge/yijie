@@ -1,0 +1,41 @@
+{
+  "at": "2026-10-26T12:04:22.203185+08:00",
+  "app_pid": 92848,
+  "executable": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4p-qualification-20261026/yijie-desktop/src-tauri/target/debug/bundle/macos/\u6613\u754c AI FEAT-164.app/Contents/MacOS/yijie-desktop",
+  "probes": {
+    "healthz": {
+      "status": 200,
+      "body": {
+        "service": "yijie-agent-host",
+        "status": "ok"
+      }
+    },
+    "readyz": {
+      "status": 200,
+      "body": {
+        "runtime_state": "ready",
+        "status": "ready"
+      }
+    },
+    "v1/status": {
+      "status": 200,
+      "body": {
+        "environment": "local",
+        "runtime": {
+          "experimental_api": false,
+          "model": "kimi-k3.1-pro",
+          "model_provider": "kimi",
+          "ready": true,
+          "runtime_version": "0.144.6",
+          "state": "ready",
+          "transport": "stdio",
+          "upstream_commit": "5d1fbf26c43abc65a203928b2e31561cb039e06d",
+          "upstream_tag": "rust-v0.144.6"
+        },
+        "runtime_mode": "managed-stdio",
+        "service": "yijie-agent-host",
+        "status": "ok"
+      }
+    }
+  }
+}

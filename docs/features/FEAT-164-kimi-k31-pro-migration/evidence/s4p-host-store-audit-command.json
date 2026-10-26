@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go",
+    "test",
+    "-race",
+    "-json",
+    "-overlay",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4p-audit-20261026/host-store-overlay.json",
+    "./internal/session",
+    "-run",
+    "^TestFEAT164S4PHostStorePreservation$",
+    "-count=1"
+  ],
+  "exit_code": 1,
+  "overlay_sha256": "3c0aa3954aa3964f102bc7fdbdc3d6831b13b615130555f60223fc81fe58d265",
+  "real_model_http_added": 0
+}

@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go",
+    "test",
+    "-race",
+    "-json",
+    "-overlay",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4p-audit-20261026/store-reader-overlay.json",
+    "./internal/session",
+    "-run",
+    "^TestFEAT164S4PProviderOnlyExistingStore$",
+    "-count=1"
+  ],
+  "exit_code": 0,
+  "test_overlay_only": true,
+  "product_source_unchanged": true,
+  "original_database_unchanged": true,
+  "original_sha256": "fd453c47e222fad0c67cb6df269a11b59aacb4914a18543aa118b68451eeedf2",
+  "overlay_sha256": "653260574c606afd2a7dca7818c0c0a172f51573a79eaf9c7b1b988c0094bdaf",
+  "real_model_http": 0
+}

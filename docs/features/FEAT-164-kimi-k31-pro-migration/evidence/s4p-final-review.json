@@ -1,0 +1,48 @@
+{
+  "at": "2026-10-26T12:17:49.551734+08:00",
+  "increment_contract_impact": "semantic deployment preflight; full feature breaking",
+  "modified_product_files": [
+    "yijie-desktop/scripts/run-local-demo-fast.sh"
+  ],
+  "added_product_lines": 5,
+  "runtime_patch_changes": 0,
+  "runtime_binary_sha256": "283d12e16b124942302fcdc8281c729a8a7f676498f06df1d2646292905f579e",
+  "host_binary_sha256": "1d880cb0f6b990940583abf875fc9b7c551e1135174d675f3caae43ed6f0118c",
+  "desktop_commit": "b6f0ad7c5181e7ea488c019a1eccd76396eab16e",
+  "validation": {
+    "shell_syntax": "PASS",
+    "actual_invalid_launch_guard": "PASS",
+    "schema11_provider_only_rejection_copy_test": "PASS",
+    "generation_checks": 19,
+    "canonical_media_build": "PASS",
+    "actual_app_start_and_same_build_reopen": "PASS_SCOPED",
+    "two_normal_exits": "PASS",
+    "runtime_databases_per_exit": 4,
+    "runtime_wal_bytes_per_exit": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "sqlcipher_original_rows": "preserved, 2 normal stop generation rows appended",
+    "host_bytewise_check": "FAIL_RETAINED",
+    "host_field_review": "only 14 updated_at changes, all 115 keys and other fields preserved"
+  },
+  "budget": {
+    "real_http_added": 0,
+    "loopback_model_http": 0,
+    "http_used": 5,
+    "http_limit": 5,
+    "conservative_upper_micro_cny": 14679001,
+    "unknown_reserve_micro_cny": 14188544,
+    "cap_micro_cny": 30000000
+  },
+  "remaining": [
+    "natural old-K3 loaded-thread migration/resume/cancel vertical",
+    "old-plan re-review/authorization vertical",
+    "full S4/TCONF04/core and applicable final aggregation",
+    "r5 real G2V not authorized/performed",
+    "daily cutover/push/release not authorized/performed"
+  ],
+  "no_tests_relabelled": true
+}

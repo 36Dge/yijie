@@ -99,3 +99,7 @@ Runtime → Contracts runtime projection → Host runtime constants/candidate �
 ## S4O 实施状态（2026-10-26）
 
 Owner已在必要性复核后批准41号六既有文件范围，0011/r5及必要下游来源已本地固化；限定loaded-thread正常EOF与四池关闭通过。19项来源检查、四组合来源和canonical App构建通过；App首次无凭据启动未就绪，正常退出且原数据保持。下一步先零模型排查Native启动配置，随后补r5 Host/App纵向；不扩大核心、不要重跑旧141项替代新证据。详见[42](42-r5-shutdown-implementation-and-qualification.md)，整项未完成。
+
+## S4P App就绪收口（2026-10-26）
+
+S4P已定位provider-only装配与schema11 reader不匹配，仅Desktop启动预检5行修复；Runtime/Host实现保持。正确本机配置的App两次ready/只读历史/正常退出及四库WAL0通过。下一步推进当前r5的S2/S3纵向和S4余项，不再扩Runtime解决已收口的启动问题。详见[43](43-app-readiness-root-cause-and-minimal-fix.md)及s4p-final-review证据。

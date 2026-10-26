@@ -829,7 +829,7 @@ slices:
       production_bootstrap: true
       invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation reference changes
     status: pending
-    status_reason: 当前工程及可达App证据已绑定；完整TCONF04、S2/S3纵向、core与teardown checkpoint仍未通过；真实调用0，日常cutover未执行。
+    status_reason: S4P已修复provider-only验收装配，r5两次正常App生命周期/checkpoint子集通过；完整TCONF04、S2/S3纵向与全部final仍缺，真实调用0，日常cutover未执行。
 final_e2e:
   core_vertical:
     required: true
@@ -913,7 +913,7 @@ final_e2e:
       reason: N/A
   teardown:
     required: true
-    reason: 正常退出/监听/句柄/SQLCipher与旧记录保护通过；Runtime DB+WAL可读且完整性OK，但仍有未backfill帧，完整checkpoint责任未收口。
+    reason: 此处保留S4L/r4完整final未通过记录；S4P/r5正常启动和两次只读历史/正常退出的四库WAL为0已通过，详见43。完整final尚未按当前来源覆盖活动turn与全部场景，不把旧记录改为新r5全量PASS。
     status: NOT RUN
     command: Current canonical --reopen/CUA workflow and read-only artifact audit; independent s4l-final-teardown.json
     environment: macOS aarch64; immutable ea9b1e4/090c2db/1b357cc/a28130a/7ea3df4 combination; canonical media candidate; dummy-key loopback only; no paid requests
@@ -1237,7 +1237,7 @@ external_authorizations:
     approved_at: N/A
 current_authorization:
   phase: implementation_with_governance
-  source: Owner在必要性复审后批准41号六既有文件最小范围、独立r5与必要Contract First下游；只本地提交、不推送，真实模型HTTP新增0。
+  source: Owner授权审计42并定位App未就绪，复审最小方案后执行；本轮仅Desktop启动预检修复，Runtime核心/补丁无新增修改，只本地提交不推送，真实模型HTTP新增0。
   documentation_write_allowed: true
   product_source_edit_allowed: true
   product_generate_build_test_allowed: true
@@ -1378,15 +1378,16 @@ implementation:
     real_model_http_added: 0
     note: 此处保留41号审计时的四文件历史字段；Owner随后明确批准两个既有文件的必要修改，当前六文件/r5证据见runtime_shutdown_r5及42号。
   runtime_shutdown_r5:
-    status: PASS_NATIVE_SUBSET_APP_READINESS_PENDING
-    report: 42-r5-shutdown-implementation-and-qualification.md
-    evidence_ref: evidence/s4o-implementation-review.json
+    status: PASS_NATIVE_AND_APP_READONLY_SUBSET
+    report: 43-app-readiness-root-cause-and-minimal-fix.md
+    evidence_ref: evidence/s4p-final-review.json
+    prior_scope_ref: evidence/s4o-implementation-review.json
     source_commits:
       yijie-codex: 11fd4504c28afd0f65c6f5f62a6b5328dd437f5a
       yijie-contracts: 5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2
       yijie-agent-host: 894671b7288b34ca0493064cded3e461c924cd32
       yijie-connectors: cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9
-      yijie-desktop: c76558e8d4531f4f5c2309055da72f35d2ce4158
+      yijie-desktop: b6f0ad7c5181e7ea488c019a1eccd76396eab16e
       yijie-skills: 595c927ae101d3d31c234f60565041eee0864680
     existing_implementation_files: 6
     new_product_modules: 0
@@ -1400,16 +1401,19 @@ implementation:
     source_generation_checks: 19
     source_profile_checks: 4
     app_build: PASS
-    app_readiness: FAIL_APP_READINESS_FIRST_OBSERVATION
-    app_normal_quit: PASS_PROCESS_ONLY
-    app_candidate_files_unchanged: 5528
+    app_readiness: PASS_SCOPED
+    app_normal_quit: PASS_TWO_NORMAL_READONLY_CYCLES
+    app_candidate_preservation_ref: evidence/s4p-sqlcipher-final-comparison.json
+    host_preservation_ref: evidence/s4p-host-store-semantic-audit.json
+    loopback_model_http_added: 0
+    launcher_guard_commit: b6f0ad7c5181e7ea488c019a1eccd76396eab16e
     full_runtime_make_test: BLOCKED_PREEXISTING_SCRIPT_EXECUTE_BIT
     real_model_http_added: 0
     r4_evidence_inherited_as_r5: false
-    note: 两处是既有文件修改而非新模块。App无凭据启动停在本地服务未就绪，未证明根因或激活Host/Runtime，正常退出且数据未变；先排Native启动配置，不扩Runtime。整项G2V/G3/final不因限定原生EOF及构建通过而晋升。
+    note: S4O无凭据启动误入provider-only，schema11库正常拒绝无v2 reader；S4P仅launcher5行预检并恢复标准本机fixture装配。Runtime/Host实现不改，两次ready/历史只读/正常退出四库WAL0。SQL原行保持，仅追加2停止记录；Host仅14更新时间变化。完整G2V/G3/final不据此晋升。
 product_verification:
   status: IN_PROGRESS
-  reason: S4O六文件r5实现、限定原生loaded-thread EOF/四库正常关闭及同源构建通过；r5 App首次无凭据启动未就绪，完整Host/App teardown、S2/S3纵向、S4/TCONF04/core仍缺。r4证据按原来源保留不继承，预算/预占保持，真实新增0，日常cutover未执行。见42。
+  reason: S4P已定位并修复错误的provider-only聊天装配，r5 App两次ready/只读历史/正常退出及四库WAL0通过；S2/S3纵向、完整S4/TCONF04/core及全部final仍缺。旧真实G2V不继承r5，预算/预占保持，模型HTTP新增0，日常cutover未执行。见43。
 profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
 owner_approvals:
   requirements: approved_by_owner_current_user_message

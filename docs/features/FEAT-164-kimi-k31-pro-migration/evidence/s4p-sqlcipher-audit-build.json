@@ -1,0 +1,16 @@
+{
+  "command": [
+    "clang",
+    "-dynamiclib",
+    "-Wl,-force_load,/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4p-qualification-20261026/yijie-desktop/src-tauri/target/debug/build/libsqlite3-sys-2412ad7dfb44f321/out/libsqlcipher.a",
+    "-framework",
+    "Security",
+    "-framework",
+    "CoreFoundation",
+    "-o",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4p-audit-20261026/libsqlcipher-audit.dylib"
+  ],
+  "archive_sha256": "54455f92a76c7f30710d012386be4c68f91a7270556feb25db92ffb63276fa7d",
+  "dylib_sha256": "555cce3be011978081b2e1d20781fe18d253bcf43afaca86d53e7e3b25fccf4d",
+  "purpose": "read-only audit of complete candidate database copies; no product executable substitution"
+}

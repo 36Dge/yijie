@@ -1,0 +1,50 @@
+{
+  "at": "2026-10-26T12:05:30.796691+08:00",
+  "app_exit": {
+    "pid": 92848,
+    "exit_code": 0,
+    "at": "2026-10-26T12:05:07.893728+08:00",
+    "signals_sent": []
+  },
+  "owned_processes": [],
+  "port18086_listeners": 0,
+  "candidate_open_handles": 0,
+  "runtime_databases": [
+    {
+      "name": "state_5.sqlite",
+      "wal_bytes_after_normal_exit": 0,
+      "copy_integrity": "ok",
+      "source_unchanged_by_inspection": true
+    },
+    {
+      "name": "logs_2.sqlite",
+      "wal_bytes_after_normal_exit": 0,
+      "copy_integrity": "ok",
+      "source_unchanged_by_inspection": true
+    },
+    {
+      "name": "goals_1.sqlite",
+      "wal_bytes_after_normal_exit": 0,
+      "copy_integrity": "ok",
+      "source_unchanged_by_inspection": true
+    },
+    {
+      "name": "memories_1.sqlite",
+      "wal_bytes_after_normal_exit": 0,
+      "copy_integrity": "ok",
+      "source_unchanged_by_inspection": true
+    }
+  ],
+  "real_model_http_added": 0,
+  "manual_checkpoint": false,
+  "deleted_wal_files": false,
+  "fixture": {
+    "scope": "FEAT-164 S4K synthetic App acceptance, not real model qualification",
+    "external_requests": 0,
+    "attempts": 0,
+    "requests": [],
+    "rejected": [],
+    "state": "running",
+    "limit": 4
+  }
+}
