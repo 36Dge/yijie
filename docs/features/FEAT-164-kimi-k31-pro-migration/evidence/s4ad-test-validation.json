@@ -1,0 +1,71 @@
+[
+  {
+    "name": "retained-consumer",
+    "command": [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "--maxWorkers=2",
+      "src/components/chat/ChatDeliveryControl.retained.test.ts"
+    ],
+    "started_at": "2026-10-27T02:24:31.345299+08:00",
+    "finished_at": "2026-10-27T02:24:32.978055+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "native-fmt",
+    "command": [
+      "cargo",
+      "fmt",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--check"
+    ],
+    "started_at": "2026-10-27T02:24:32.978345+08:00",
+    "finished_at": "2026-10-27T02:24:33.752714+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "native-clippy",
+    "command": [
+      "cargo",
+      "clippy",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "--lib",
+      "--bins",
+      "--tests",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "started_at": "2026-10-27T02:24:33.752997+08:00",
+    "finished_at": "2026-10-27T02:25:17.138362+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "desktop-lint",
+    "command": [
+      "pnpm",
+      "lint"
+    ],
+    "started_at": "2026-10-27T02:25:17.138615+08:00",
+    "finished_at": "2026-10-27T02:25:27.340117+08:00",
+    "exit_code": 0
+  },
+  {
+    "name": "desktop-docs",
+    "command": [
+      "pnpm",
+      "docs:build"
+    ],
+    "started_at": "2026-10-27T02:25:27.340492+08:00",
+    "finished_at": "2026-10-27T02:25:33.374770+08:00",
+    "exit_code": 0
+  }
+]

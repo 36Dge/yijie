@@ -1,0 +1,51 @@
+{
+  "at": "2026-10-27T02:31:25.812524+08:00",
+  "contract_impact": "none; only tests/docs added",
+  "source_binding": "source-binding.json",
+  "natural_unknown": {
+    "status": "PASS_SAFE_REFUSAL",
+    "operation_id": "f38666dc-d2d8-4101-b498-eccf3045b6dd",
+    "native_v2_intent_exists": true,
+    "native_phase": "unknown",
+    "Host_operation_present": false,
+    "original_cause": "report35: old Host purposeOrdinary guard rejected settled market/expert switch before persisting its operation; fixed in090c2dbe. Retained intent must not be retrospectively reclassified as never sent.",
+    "App_observed": [
+      "readable four historical turns and artifacts",
+      "send disabled",
+      "explicit recovery returned original-switch-not-restored notice",
+      "navigate away/back restored unknown notice without new operation"
+    ],
+    "cleared_or_recovered_to_ready": false,
+    "original_sql_operation_inventory_equal": true
+  },
+  "legacy_queued": {
+    "status": "PASS_NOT_MISCLASSIFIED",
+    "session_id": "01a17315-c3f9-7e93-a6f8-56a7b7876520",
+    "kind": "scheduled input-only draft",
+    "delivery_proof_exists": false,
+    "ordinary_never_sent_candidate": false,
+    "refresh_only": true,
+    "auto_resubmit": false
+  },
+  "never_sent_positive": {
+    "Native": "PASS_NORMAL_API_QUEUE_CLAIM_CANCEL_REOPEN",
+    "consumer": "PASS_PRODUCTION_PARSER_COMPOSABLE_CONTROL_WITH_IPC_REPLAY",
+    "retained_result": "feat164-retained-delivery-run1/result.json",
+    "full_App_positive": "NOT_RUN_NO_NATURAL_ORDINARY_NEVER_SENT_RECORD",
+    "fake_or_fault_generated_records": false
+  },
+  "model_http": {
+    "real": 0,
+    "loopback": 0
+  },
+  "normal_exit": 0,
+  "daily_data_opened": false,
+  "Runtime_changed": false,
+  "scope_exclusions": [
+    "search_answer_quality",
+    "light_dark",
+    "keyboard_focus",
+    "minimum_window"
+  ],
+  "current_remaining": "No repeat recovery of same missing Host receipt. Full App positive never-sent remains unexecuted; layered safe proof provided for explicit acceptance boundary."
+}

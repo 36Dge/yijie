@@ -1,0 +1,23 @@
+{
+  "command": [
+    "cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "--manifest-path",
+    "src-tauri/Cargo.toml",
+    "--features",
+    "kimi-k31-pro-candidate",
+    "--lib",
+    "chat::delivery::tests::feat164_delivery_retained_normal_queue_cancel",
+    "--",
+    "--exact",
+    "--ignored",
+    "--nocapture"
+  ],
+  "started_at": "2026-10-27T02:20:21.507608+08:00",
+  "finished_at": "2026-10-27T02:21:40.014557+08:00",
+  "exit_code": 0,
+  "exact_test": "feat164_delivery_retained_normal_queue_cancel",
+  "model_http": 0
+}

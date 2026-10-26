@@ -1,0 +1,36 @@
+The following is a diff from the previous accessibility tree for Window: "易界 AI" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 91-215
+~		2 HTML content Description: 任务对话 · 易界 AI, URL: tauri://localhost/chat/01a17315-c3f9-7e93-a6f8-56a7b7876520
+~											25 button FEAT164_S4I_MEDIA：本机安全联调。请通过已有 publish_a
+~											47 button (collapsed) FEAT164_S4F_DRAFT：创建一个安全离线验收计划，名称 FEAT16, Secondary Actions: Expand
+~			87 container FEAT164_S4F_DRAFT：创建一个安全离线验收计划，名称 FEAT16
+~				88 container
+~					89 heading FEAT164_S4F_DRAFT：创建一个安全离线验收计划，名称 FEAT16, Value: 1
+~						90 text FEAT164_S4F_DRAFT：创建一个安全离线验收计划，名称 FEAT16
++					91 text 定时任务草案 · 仅输入文本 状态已更新
++				92 container 任务对话记录
++					93 container 对话内容
++						94 container 对话 1
++							95 container 对话 1
++								96 text 提交结果待确认
++								97 container 本轮对话内容
++									98 container 用户消息
++										99 text FEAT164_S4F_DRAFT：创建一个安全离线验收计划，名称 FEAT164 S4F 安全离线计划，每天北京时间 23:59 在独立会话回复 FEAT164_S4F_PLAN_RUN 本机计划验证完成，不调用工具。先生成草案，不授权自动执行。
++										100 container 用户消息操作
++											101 container 2026/10/25 20:42:48
++												102 text 20:42
++											103 button 复制文本
++								104 text 原提交结果尚未确认，请先核对原操作，勿重复发送。
++				105 container
++					106 container 定时任务草案
++						107 text 原草案已尝试提交，结果尚未确认。请先核对原请求，勿重复提交或另建相同计划。查证无结果时会保留原记录，不会重新发送。
++						108 button 检查并继续原请求
++						109 button 刷新草案状态
++					110 container 任务输入区
++						111 text 输入你的任务需求
++						112 text entry area (settable) 输入你的任务需求, Value: [text entry area], Placeholder: 描述计划内容、时间、时区和运行方式…
++							113 text 描述计划内容、时间、时区和运行方式…
++						114 pop up button (disabled) 选择对话模型，当前 Kimi K3.1 Pro, Help: 当前任务结束后可切换模型
++						115 button (disabled) 发送任务
++				116 text 状态已更新
+The focused UI element is 89 heading FEAT164_S4F_DRAFT：创建一个安全离线验收计划，名称 FEAT16, Value: 1

@@ -261,11 +261,11 @@ temporal_contract_matrix:
     - id: TCONF-164-04
       required: true
       repository: yijie-desktop
-      command: python3 feat164-s4ac-audit-20261027/run-checks.py + audit-bindings.py + canonical same-build App observed subset
+      command: S4AD natural App unknown safety + retained normal Native/consumer cancellation; full App positive not run
       slice_id: S4
       status: NOT RUN
       exit_code: null
-      verified_at: 2026-10-27T02:02:41.458811+08:00
+      verified_at: 2026-10-27T02:31:25.812524+08:00
       commits:
         - repository: yijie-codex
           full_sha: 11fd4504c28afd0f65c6f5f62a6b5328dd437f5a
@@ -283,13 +283,13 @@ temporal_contract_matrix:
           full_sha: 4f966e8ea810d5b094d0b797d291955d6c774844
         - repository: yijie-contracts
           full_sha: c5d138374c102f1a8a11e328a869ec8f91724efd
-      evidence_ref: 08-verification-report.md#E164-S4AC-BINDING
+      evidence_ref: 08-verification-report.md#E164-S4AD-CANCEL
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
       implementation_status: implemented_partial
-      command_note: 当前来源与安全状态/实际App子集PASS；完整unknown/never-sent App链仍NOT RUN，保留完整TCONF04 pending；搜索答案质量OWNER_EXCLUDED。
+      command_note: 自然unknown安全拒绝实际App PASS；正常队列取消Native/消费链PASS；完整App never-sent正向仍NOT RUN。
 
 vertical_feasibility:
   required: true
@@ -770,31 +770,44 @@ slices:
     local_evidence:
       required: true
       status: PASS
-      command: python3 feat164-s4ac-audit-20261027/run-checks.py
-      environment: macOS aarch64; ea8763d product equals actual c98 App179dbd; Host4f966e8 / Contracts c5d1383 /
-        Runtime11fd-r5 / Connectorscc56 / Skills595; historical runs retain original source and time
+      command: Exact retained Native delivery test + actual-output consumer Vitest; fmt/strict Clippy/lint/build/docs;
+        s4ad-test-validation.json
+      environment: macOS aarch64; current ea8763d R1 App4b0ec55 (119 files), Host4f966e8/Contractsc5d1383/Runtime11fd-r5;
+        normal original isolated data, zero model HTTP; test-only4e1f1f9 product equal to ea
       exit_code: 0
-      verified_at: 2026-10-27T02:02:41.458811+08:00
+      verified_at: 2026-10-27T02:31:25.812524+08:00
       refs:
-        - 08-verification-report.md#E164-S4AC-BINDING
-        - 08-verification-report.md#E164-S4AC-FINAL
-      reason: 当前22前端、38Host（含子测试）、33Native、5计划、3daily profile、19来源全部通过；48 retained Runtime证据逐hash保留，未重跑旧38次loopback。
+        - 08-verification-report.md#E164-S4AD-NATURAL
+        - 08-verification-report.md#E164-S4AD-CANCEL
+        - 08-verification-report.md#E164-S4AD-FINAL
+      reason: 新保留Native正常入队/领取/取消/重开1PASS，真实输出经生产parser/composable/control1PASS；未启动sender、不制造故障。原S4AC22前端/38Host/33Native/5计划/19来源及501旧证据绑定按原范围保留。
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
+      test_source:
+        repository: yijie-desktop
+        full_sha: 4e1f1f980d148a6b46e21e68eb508caa4da5dae4
+        product_equivalent_to: ea8763dfc40466e9b808a1b39afad71dbff1ac56
+        changed_paths:
+          - docs/feat164-retained-delivery-verification.md
+          - src-tauri/src/chat/delivery/tests.rs
+          - src/components/chat/ChatDeliveryControl.retained.test.ts
     boundary_evidence:
       required: true
       status: PASS
-      command: python3 feat164-s4ac-audit-20261027/audit-bindings.py
-      environment: macOS aarch64; ea8763d product equals actual c98 App179dbd; Host4f966e8 / Contracts c5d1383 /
-        Runtime11fd-r5 / Connectorscc56 / Skills595; historical runs retain original source and time
+      command: Current canonical R1 App normal read/recovery refusal; complete stopped Native and Host copies; retained normal
+        acceptance/cancel/receipt consumer
+      environment: macOS aarch64; current ea8763d R1 App4b0ec55 (119 files), Host4f966e8/Contractsc5d1383/Runtime11fd-r5;
+        normal original isolated data, zero model HTTP; test-only4e1f1f9 product equal to ea
       exit_code: 0
-      verified_at: 2026-10-27T02:02:41.458811+08:00
+      verified_at: 2026-10-27T02:31:25.812524+08:00
       refs:
-        - 08-verification-report.md#E164-S4AC-BINDING
-        - 08-verification-report.md#E164-S4AC-FINAL
-      reason: 501项旧证据SHA一致、310业务文件相同；51日常维护/identity由其专属四矩阵及当前回归支持，54 Host URL筛选由专属来源证据支持；53真实图片/工具/搜索传输及本轮当前App历史重开绑定，来源差异未隐去。
+        - 08-verification-report.md#E164-S4AD-NATURAL
+        - 08-verification-report.md#E164-S4AD-CANCEL
+        - 08-verification-report.md#E164-S4AD-FINAL
+      reason: 自然unknown有Native
+        v2意图但Host无回执，App明确恢复拒绝且原operation保持；旧queued是草案，无普通proof。never-sent正向有安全Native+生产消费链，完整数据保留，非完整WebView。
       exception:
         owner: N/A
         approved_at: N/A
@@ -802,23 +815,23 @@ slices:
     vertical_evidence:
       required: true
       status: NOT RUN
-      command: Canonical S4AA same-build reopen via launch.py + CUA business-state observation + normal Cmd-Q + stopped-copy
-        read-only audit
-      environment: macOS aarch64; ea8763d product equals actual c98 App179dbd; Host4f966e8 / Contracts c5d1383 /
-        Runtime11fd-r5 / Connectorscc56 / Skills595; historical runs retain original source and time
+      command: Canonical current same-build App original unknown read, one explicit recovery, draft refresh, normal Cmd-Q;
+        separate retained Native/consumer positive
+      environment: macOS aarch64; current ea8763d R1 App4b0ec55 (119 files), Host4f966e8/Contractsc5d1383/Runtime11fd-r5;
+        normal original isolated data, zero model HTTP; test-only4e1f1f9 product equal to ea
       exit_code: null
-      verified_at: 2026-10-27T02:02:41.458811+08:00
+      verified_at: 2026-10-27T02:31:25.812524+08:00
       refs:
-        - 08-verification-report.md#E164-S4AC-BINDING
-        - 08-verification-report.md#E164-S4AC-FINAL
-      reason: 当前App菜单/旧线程中断继续/关闭计划/图片工具/18来源partial及正常退出通过；完整unknown/never-sent App操作链仍未在当前资格库自然观察。仅此完整范围NOT
-        RUN，不再列供应商非文本缺口；不造故障，不将组件状态测试冒充完整App。
+        - 08-verification-report.md#E164-S4AD-NATURAL
+        - 08-verification-report.md#E164-S4AD-CANCEL
+        - 08-verification-report.md#E164-S4AD-FINAL
+      reason: 原unknown实际App安全拒绝、原草案刷新不重发及正常退出已验证；Host缺回执的原记录不应恢复ready。完整App正向never-sent仍无自然样本，安全分层替代证据已提供，full仍NOT RUN。
       exception:
         owner: N/A
         approved_at: N/A
         reason: N/A
     freshness:
-      verified_at: 2026-10-27T02:02:41.458811+08:00
+      verified_at: 2026-10-27T02:31:25.812524+08:00
       commits:
         - *a5
         - *a6
@@ -836,20 +849,20 @@ slices:
       invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation
         reference changes
     status: pending
-    status_reason: 来源绑定、安全状态和当前App可达子集已收口；完整TCONF04/core/业务状态还缺安全可达的unknown/never-sent App链，S4仍pending。日常prepare-only已通过，不等于日常激活。
+    status_reason: 自然unknown App安全保护已补；保留never-sent Native/consumer正向PASS。完整App never-sent正向未执行，待明确安全替代接受边界，S4
+      pending；不再重复缺Host回执的原恢复。
 
 final_e2e:
   core_vertical:
     required: true
-    reason: 当前源与当前App安全可达业务子集通过，完整unknown/never-sent
-      App操作链仍未自然观察；53真实图片/工具/搜索传输与54来源显示已绑定，不再是缺口。搜索答案质量与亮暗/键盘/最小窗口排除，不计PASS、不延期。
+    reason: 自然unknown的实际App读历史/禁发/一次明确恢复拒绝已验证，旧草案刷新不重发；安全Native+生产消费链取消正例通过。完整App never-sent正向仍未执行，full保持NOT RUN；搜索质量与外观专项排除。
     status: NOT RUN
-    command: Canonical same-build App reopen/CUA + normal Cmd-Q exit0 + snapshot-stopped.py + read_sqlcipher.py
-      retained-copy audit
-    environment: macOS aarch64; ea8763d product equals actual c98 App179dbd; Host4f966e8 / Contracts c5d1383 /
-      Runtime11fd-r5 / Connectorscc56 / Skills595; historical runs retain original source and time
+    command: Current canonical R1 App --reopen/CUA explicit recovery refusal and draft refresh; normal quit; complete-copy
+      Native/Host field audit
+    environment: macOS aarch64; current ea8763d R1 App4b0ec55 (119 files), Host4f966e8/Contractsc5d1383/Runtime11fd-r5;
+      normal original isolated data, zero model HTTP; test-only4e1f1f9 product equal to ea
     exit_code: null
-    verified_at: 2026-10-27T02:02:41.458811+08:00
+    verified_at: 2026-10-27T02:31:25.812524+08:00
     commits: &a1
       - repository: yijie-desktop
         full_sha: ea8763dfc40466e9b808a1b39afad71dbff1ac56
@@ -877,12 +890,12 @@ final_e2e:
     platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
     production_bootstrap: true
     evidence_refs:
-      - 08-verification-report.md#E164-S4AC-FINAL
+      - 08-verification-report.md#E164-S4AD-FINAL
     exception:
       owner: N/A
       approved_at: N/A
       reason: N/A
-    historical_binding_note: 此前原S4V判定与真实请求来源保留；本条为当前S4AC零模型历史重开/状态/正常退出审计，不把旧运行改称本轮。
+    historical_binding_note: S4AC与更早证据保持原来源时间；本条为S4AD原隔离R1当前ea App。自然unknown安全拒绝不等于成功恢复ready；原始全行不等及正常字段变化均保留。
   accessibility_visual:
     required: true
     current_scope: 模型选择、退役/暂停、错误与恢复业务状态显示；不含外观专项
@@ -892,15 +905,14 @@ final_e2e:
       - minimum_window_1180x760
     exclusion_status: REMOVED_BY_OWNER_NOT_DEFERRED
     exclusion_source: 2026-10-26 Owner明确要求从FEAT-164移除上述验收
-    reason: 当前源与当前App安全可达业务子集通过，完整unknown/never-sent
-      App操作链仍未自然观察；53真实图片/工具/搜索传输与54来源显示已绑定，不再是缺口。搜索答案质量与亮暗/键盘/最小窗口排除，不计PASS、不延期。
+    reason: 自然unknown的实际App读历史/禁发/一次明确恢复拒绝已验证，旧草案刷新不重发；安全Native+生产消费链取消正例通过。完整App never-sent正向仍未执行，full保持NOT RUN；搜索质量与外观专项排除。
     status: NOT RUN
-    command: Canonical same-build App reopen/CUA + normal Cmd-Q exit0 + snapshot-stopped.py + read_sqlcipher.py
-      retained-copy audit
-    environment: macOS aarch64; ea8763d product equals actual c98 App179dbd; Host4f966e8 / Contracts c5d1383 /
-      Runtime11fd-r5 / Connectorscc56 / Skills595; historical runs retain original source and time
+    command: Current canonical R1 App --reopen/CUA explicit recovery refusal and draft refresh; normal quit; complete-copy
+      Native/Host field audit
+    environment: macOS aarch64; current ea8763d R1 App4b0ec55 (119 files), Host4f966e8/Contractsc5d1383/Runtime11fd-r5;
+      normal original isolated data, zero model HTTP; test-only4e1f1f9 product equal to ea
     exit_code: null
-    verified_at: 2026-10-27T02:02:41.458811+08:00
+    verified_at: 2026-10-27T02:31:25.812524+08:00
     commits: *a1
     contract_refs: *a2
     fixture_refs: *a3
@@ -908,22 +920,22 @@ final_e2e:
     platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
     production_bootstrap: true
     evidence_refs:
-      - 08-verification-report.md#E164-S4AC-FINAL
+      - 08-verification-report.md#E164-S4AD-FINAL
     exception:
       owner: N/A
       approved_at: N/A
       reason: N/A
-    historical_binding_note: 此前原S4V判定与真实请求来源保留；本条为当前S4AC零模型历史重开/状态/正常退出审计，不把旧运行改称本轮。
+    historical_binding_note: S4AC与更早证据保持原来源时间；本条为S4AD原隔离R1当前ea App。自然unknown安全拒绝不等于成功恢复ready；原始全行不等及正常字段变化均保留。
   teardown:
     required: true
-    reason: 当前实际c98/Host4f/r5 App正常退出exit0、无进程/句柄和补发，四Runtime库WAL0/integrity、71表旧行保持；原unknown不清除，日常App未启动。
+    reason: 当前App正常退出exit0、0模型补发、四Runtime库WAL0/integrity；原意图/grant/run/proof保持。69表旧行保持，计划游标/paused时间槽正常处理；Host14条仅updated_at；无删库/WAL或日常访问。
     status: PASS
-    command: Canonical same-build App reopen/CUA + normal Cmd-Q exit0 + snapshot-stopped.py + read_sqlcipher.py
-      retained-copy audit
-    environment: macOS aarch64; ea8763d product equals actual c98 App179dbd; Host4f966e8 / Contracts c5d1383 /
-      Runtime11fd-r5 / Connectorscc56 / Skills595; historical runs retain original source and time
+    command: Current canonical R1 App --reopen/CUA explicit recovery refusal and draft refresh; normal quit; complete-copy
+      Native/Host field audit
+    environment: macOS aarch64; current ea8763d R1 App4b0ec55 (119 files), Host4f966e8/Contractsc5d1383/Runtime11fd-r5;
+      normal original isolated data, zero model HTTP; test-only4e1f1f9 product equal to ea
     exit_code: 0
-    verified_at: 2026-10-27T02:02:41.458811+08:00
+    verified_at: 2026-10-27T02:31:25.812524+08:00
     commits: *a1
     contract_refs: *a2
     fixture_refs: *a3
@@ -931,12 +943,12 @@ final_e2e:
     platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
     production_bootstrap: true
     evidence_refs:
-      - 08-verification-report.md#E164-S4AC-FINAL
+      - 08-verification-report.md#E164-S4AD-FINAL
     exception:
       owner: N/A
       approved_at: N/A
       reason: N/A
-    historical_binding_note: 此前原S4V判定与真实请求来源保留；本条为当前S4AC零模型历史重开/状态/正常退出审计，不把旧运行改称本轮。
+    historical_binding_note: S4AC与更早证据保持原来源时间；本条为S4AD原隔离R1当前ea App。自然unknown安全拒绝不等于成功恢复ready；原始全行不等及正常字段变化均保留。
 
 failure_circuit_breaker:
   same_failure_threshold: 3

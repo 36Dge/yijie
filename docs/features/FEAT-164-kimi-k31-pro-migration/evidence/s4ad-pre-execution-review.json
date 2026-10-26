@@ -1,0 +1,28 @@
+{
+  "natural_unknown": {
+    "session_id": "01a1739c-aaca-77a0-9ff5-e17edc67b8ae",
+    "profile_id": "kimi-k3-1-pro-max-v1",
+    "revision": "1",
+    "state": "unknown",
+    "operation_id": "f38666dc-d2d8-4101-b498-eccf3045b6dd",
+    "requested_profile_id": "minimax-m3-high-v1",
+    "expected_revision": "1"
+  },
+  "native_v2_intent": {
+    "operation_id": "f38666dc-d2d8-4101-b498-eccf3045b6dd",
+    "session_id": "01a1739c-aaca-77a0-9ff5-e17edc67b8ae",
+    "previous_profile_id": "kimi-k3-1-pro-max-v1",
+    "target_profile_id": "minimax-m3-high-v1",
+    "expected_revision": "1",
+    "phase": "unknown",
+    "format_version": "2"
+  },
+  "host_operation_present": false,
+  "root_cause": "Native phase unknown and v2 intent exist; Host persisted operation absent. Missing Host record after Native dispatch is not safe first-send proof; recovery_action rejects it. Initial old-v1 guess corrected by fresh read-only evidence.",
+  "never_sent_candidates": 0,
+  "queued_without_proof": 1,
+  "expected_app": "unknown remains blocked; refresh read only; explicit recovery safely refuses if receipt missing; no cancellation without proof",
+  "contract_impact": "none; product not modified",
+  "runtime_patch_changes": false,
+  "real_http_authorized": 0
+}

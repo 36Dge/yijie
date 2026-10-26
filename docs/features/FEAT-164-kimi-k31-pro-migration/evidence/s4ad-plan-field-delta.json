@@ -1,0 +1,95 @@
+{
+  "chat_scheduled_plans": [
+    {
+      "key_sha256": [
+        "3c9974f289eacdacf101b465a868d0d214c4cb4b1f10d059e5b075e8dc260abe"
+      ],
+      "changed": {
+        "next_at": {
+          "before": {
+            "sha256": "6dc58d1e58a6eb11bce6343529fd6c930a64a39521a9c6538b9dc3da11b3e4da",
+            "value": "1793030340"
+          },
+          "after": {
+            "sha256": "bf6909bca65fcc8370c9bbaeda852933fdb859e2f19f760bd2166ceec43038a6",
+            "value": "1793116740"
+          }
+        },
+        "cursor_at": {
+          "before": {
+            "sha256": "72903203b880d47da64dd292146f7876f369c7bdc74b50b30f1ca221ae16c4b0",
+            "value": "1792946837"
+          },
+          "after": {
+            "sha256": "d6540dddd1f19eb672b9fee6123f797751ef5851350c5f0bcb1f57cb2ea9840e",
+            "value": "1793038785"
+          }
+        }
+      }
+    }
+  ],
+  "chat_scheduled_occurrences": [
+    {
+      "key_sha256": [
+        "3c9974f289eacdacf101b465a868d0d214c4cb4b1f10d059e5b075e8dc260abe",
+        "f16ba6fa61da3398815be2a6c0f7cb1351982dbcc6c64bbeb9b65f672a8b102a",
+        "3a1e0afec8ece2bf8064bf2e12f79e18375c87268a0c9dcdb32e78499a7a3c9a"
+      ],
+      "changed": {
+        "disposition": {
+          "before": {
+            "sha256": "b539da7721f95553052d4822fed8823d32b03a19db0955d792df3ea65ac81c4f",
+            "value": "planned"
+          },
+          "after": {
+            "sha256": "d03ab709f73dfcd7bd622d1b3fc003581bed56bf50234d70a88f62039d6baf4a",
+            "value": "skipped_paused"
+          }
+        },
+        "missed_through": {
+          "before": {
+            "sha256": "e77b9a9ae9e30b0dbdb6f510a264ef9de781501d7b6b92ae89eb059c5ab743db"
+          },
+          "after": {
+            "sha256": "d6540dddd1f19eb672b9fee6123f797751ef5851350c5f0bcb1f57cb2ea9840e"
+          }
+        }
+      }
+    },
+    {
+      "added": {
+        "owner_user_id": {
+          "sha256": "f08d9005e320a3aae35f47083be2e18f9dc2a9d9f7d3ca0a4b144c717d6b27f8"
+        },
+        "tenant_id": {
+          "sha256": "ea58085d52807429ad022c22578589a024d811d5d0feaa4b28e5a9fb5212efc7"
+        },
+        "plan_id": {
+          "sha256": "3c9974f289eacdacf101b465a868d0d214c4cb4b1f10d059e5b075e8dc260abe",
+          "value": "01a1732e-d1d4-7d82-ad09-0274ee75feb0"
+        },
+        "schedule_epoch": {
+          "sha256": "f16ba6fa61da3398815be2a6c0f7cb1351982dbcc6c64bbeb9b65f672a8b102a",
+          "value": "1"
+        },
+        "logical_slot": {
+          "sha256": "c27113c4d5025415379a85573300fb4c849de33618f43628b28b7a99614200c0"
+        },
+        "scheduled_at": {
+          "sha256": "bf6909bca65fcc8370c9bbaeda852933fdb859e2f19f760bd2166ceec43038a6",
+          "value": "1793116740"
+        },
+        "disposition": {
+          "sha256": "b539da7721f95553052d4822fed8823d32b03a19db0955d792df3ea65ac81c4f",
+          "value": "planned"
+        },
+        "missed_through": {
+          "sha256": "e77b9a9ae9e30b0dbdb6f510a264ef9de781501d7b6b92ae89eb059c5ab743db"
+        },
+        "run_id": {
+          "sha256": "e77b9a9ae9e30b0dbdb6f510a264ef9de781501d7b6b92ae89eb059c5ab743db"
+        }
+      }
+    }
+  ]
+}

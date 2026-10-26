@@ -561,3 +561,18 @@ PASS限定来源绑定：46—55共501文件SHA一致，310业务实现文件相
 <!-- evidence: E164-S4AC-DAILY -->
 
 PASS_PREPARE_ONLY：从当前干净ea/4f/c5/11fd/cc56/595新独立构建119文件，daily identity com.yijie.ai；canonical --kimi-k31-daily --prepare-only及独立只读receipt --check exit0。App SHA c29f7e07942038d4c3849ef3a711ed4b501d17daab1478329ba5de6b6321a4d0，receipt ee4c53922b9642ffa81c3d6356827df6e8dbdcf6c0ec582e108bc954d768add7。未启动daily App、未打开或迁移daily DB，不代表发布；旧制品保留。见evidence/s4ac-daily-build-audit.json。
+
+
+## S4AD 自然unknown与安全取消链（2026-10-27）
+
+<!-- evidence: E164-S4AD-NATURAL -->
+
+PASS_SAFE_REFUSAL：原R1隔离SQL41的f38666dc原操作有Native v2 unknown意图，Host不存在回执，与35号旧Host purposeOrdinary拒绝的历史原因一致。当前ea/4f/r5 canonical App4b0ec55/119文件实际显示unknown/禁发；一次显式恢复安全拒绝，原意图/模型/revision保持，导航重读不重发。自然queued是input-only旧草案且缺proof，刷新仍保留/禁发，不算普通never-sent样本。不是原unknown成功恢复ready。0真实/0本机模型HTTP。证据见57与s4ad-business-verdict.json、App AX和完整停止副本归因hash。
+
+<!-- evidence: E164-S4AD-CANCEL -->
+
+PASS安全分层正例：测试提交4e1f1f980d148a6b46e21e68eb508caa4da5dae4仅3测试/说明文件，产品与ea相同。正常Repository接受/领取但未启动sender/取消/重开同回执，1PASS/0ignored；实际Native输出经生产IPC parser、composable和ChatDeliveryControl挂载点击，1PASS/0skip，仅传输重放。完整数据保留、原fingerprint/消息/操作保持、发送尝试0，无fault injection。fmt/strict Clippy/lib bins tests、lint/build/docs通过。完整App正向never-sent仍NOT RUN，不能把分层测试冒称WebView演练。
+
+<!-- evidence: E164-S4AD-FINAL -->
+
+当前原隔离App正常⌘Q exit0、fixture正常停止、四Runtime库WAL0/完整副本只读integrity ok，teardown PASS。原Native意图/选择/proof/grant/run及Host非session桶保持；Host14条仅updated_at；Native69表旧行保持、计划只推进next/cursor和skipped_paused时间槽、追加未来槽/停止代际。原始全行hash不等判断保留，未伪称全库字节不变。6790保护文件/500既有dirty/7账本不变，日常未打开。core和业务状态full仍NOT RUN，剩余完整App never-sent正向边界待明确；自然unknown缺口已转为有效安全拒绝。搜索质量与外观专项继续OWNER_EXCLUDED。

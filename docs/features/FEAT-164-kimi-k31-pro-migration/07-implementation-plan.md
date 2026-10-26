@@ -1,5 +1,7 @@
 # FEAT-164 实施计划与当前门禁
 
+> 最新见[57](57-natural-unknown-and-safe-delivery-verification.md)：原隔离自然unknown的实际App安全拒绝已验证；正常Native入队/领取/取消/重开及真实输出消费链通过，完整App never-sent正向仍未执行。无真实模型调用、无日常迁移，旧账本/预占保持；不再对缺Host回执的原操作重复恢复。
+
 > 当前结论见[56](56-current-evidence-business-state-and-daily-prepare.md)和[当前矩阵](current-acceptance-matrix.md)：当前来源/安全状态/实际历史重开及日常prepare-only已验证，0新增模型HTTP、不迁移日常库；完整unknown/never-sent App链仍NOT RUN，搜索答案正确性与外观专项已移除。下方编号阶段均保留历史含义。
 
 > 当前按[50 前三切片收口与日常部署方案](50-slice-evidence-closure-and-daily-deployment-plan.md)：S1—S3的G3已通过，S4完整验收仍缺；Owner已批准8文件日常候选实现及离线验证，明确不迁移真实日常库。此前状态按原阶段解释。

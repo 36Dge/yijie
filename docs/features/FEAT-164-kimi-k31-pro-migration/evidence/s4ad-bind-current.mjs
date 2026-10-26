@@ -1,0 +1,19 @@
+import fs from 'node:fs';import {createRequire} from 'node:module';
+const b='/Users/jack/Downloads/Personal_Info/CrossBSD',a=b+'/feat164-s4ad-audit-20261027',file=b+'/yijie/docs/features/FEAT-164-kimi-k31-pro-migration/feature.yaml';
+const YAML=createRequire(b+'/yijie/package.json')('yaml');let source=fs.readFileSync(file,'utf8'),d=YAML.parse(source);
+const binding=JSON.parse(fs.readFileSync(a+'/source-binding.json')),preserve=JSON.parse(fs.readFileSync(a+'/preservation.json'));
+if(preserve.semantic_preservation!=='PASS_WITH_NORMAL_LIFECYCLE_METADATA')throw Error('Missing preservation proof');
+const now=preserve.at,env='macOS aarch64; current ea8763d R1 App4b0ec55 (119 files), Host4f966e8/Contractsc5d1383/Runtime11fd-r5; normal original isolated data, zero model HTTP; test-only4e1f1f9 product equal to ea';
+const s=d.slices.find(x=>x.id==='S4');
+s.local_evidence.command='Exact retained Native delivery test + actual-output consumer Vitest; fmt/strict Clippy/lint/build/docs; s4ad-test-validation.json';s.local_evidence.reason='新保留Native正常入队/领取/取消/重开1PASS，真实输出经生产parser/composable/control1PASS；未启动sender、不制造故障。原S4AC22前端/38Host/33Native/5计划/19来源及501旧证据绑定按原范围保留。';s.local_evidence.test_source={repository:'yijie-desktop',full_sha:binding.test_commit,product_equivalent_to:binding.app_source,changed_paths:binding.test_only_paths};
+s.boundary_evidence.command='Current canonical R1 App normal read/recovery refusal; complete stopped Native and Host copies; retained normal acceptance/cancel/receipt consumer';s.boundary_evidence.reason='自然unknown有Native v2意图但Host无回执，App明确恢复拒绝且原operation保持；旧queued是草案，无普通proof。never-sent正向有安全Native+生产消费链，完整数据保留，非完整WebView。';
+s.vertical_evidence.command='Canonical current same-build App original unknown read, one explicit recovery, draft refresh, normal Cmd-Q; separate retained Native/consumer positive';s.vertical_evidence.reason='原unknown实际App安全拒绝、原草案刷新不重发及正常退出已验证；Host缺回执的原记录不应恢复ready。完整App正向never-sent仍无自然样本，安全分层替代证据已提供，full仍NOT RUN。';
+for(const field of ['local_evidence','boundary_evidence','vertical_evidence']){s[field].environment=env;s[field].verified_at=now;s[field].refs=['08-verification-report.md#E164-S4AD-NATURAL','08-verification-report.md#E164-S4AD-CANCEL','08-verification-report.md#E164-S4AD-FINAL'];}
+s.freshness.verified_at=now;s.status_reason='自然unknown App安全保护已补；保留never-sent Native/consumer正向PASS。完整App never-sent正向未执行，待明确安全替代接受边界，S4 pending；不再重复缺Host回执的原恢复。';
+const t=d.temporal_contract_matrix.executable_tests.find(x=>x.slice_id==='S4');t.verified_at=now;t.command='S4AD natural App unknown safety + retained normal Native/consumer cancellation; full App positive not run';t.evidence_ref='08-verification-report.md#E164-S4AD-CANCEL';t.command_note='自然unknown安全拒绝实际App PASS；正常队列取消Native/消费链PASS；完整App never-sent正向仍NOT RUN。';
+for(const [key,v] of Object.entries(d.final_e2e)){
+ v.command='Current canonical R1 App --reopen/CUA explicit recovery refusal and draft refresh; normal quit; complete-copy Native/Host field audit';v.environment=env;v.verified_at=now;v.evidence_refs=['08-verification-report.md#E164-S4AD-FINAL'];v.historical_binding_note='S4AC与更早证据保持原来源时间；本条为S4AD原隔离R1当前ea App。自然unknown安全拒绝不等于成功恢复ready；原始全行不等及正常字段变化均保留。';
+ v.reason=key==='teardown'?'当前App正常退出exit0、0模型补发、四Runtime库WAL0/integrity；原意图/grant/run/proof保持。69表旧行保持，计划游标/paused时间槽正常处理；Host14条仅updated_at；无删库/WAL或日常访问。':'自然unknown的实际App读历史/禁发/一次明确恢复拒绝已验证，旧草案刷新不重发；安全Native+生产消费链取消正例通过。完整App never-sent正向仍未执行，full保持NOT RUN；搜索质量与外观专项排除。';
+}
+for(const key of ['slices','temporal_contract_matrix','final_e2e']){const re=new RegExp(`^${key}:\\n[\\s\\S]*?(?=^[A-Za-z_][A-Za-z0-9_]*:|$(?![\\s\\S]))`,'m');source=source.replace(re,()=>YAML.stringify({[key]:d[key]},{lineWidth:120})+'\n');}
+YAML.parse(source);fs.writeFileSync(file,source);console.log('Natural unknown observed; full positive App cancellation remains explicit NOT RUN.');

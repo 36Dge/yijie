@@ -1,5 +1,13 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 S4AD：自然unknown安全拒绝与保留取消正例（2026-10-27）
+
+最新[57](../features/FEAT-164-kimi-k31-pro-migration/57-natural-unknown-and-safe-delivery-verification.md)。当前ea/Host4f/Runtime11fd-r5新原R1 identity App4b0ec55/119文件，正常构建重开/退出。自然f38666dc是Native有v2 unknown、Host无回执，源于35号旧Host purposeOrdinary拒绝（缺陷已修），不能当缺Native意图或never-sent；实际App读历史禁发/一次明确恢复拒绝/重读保持通过。不要再次恢复同一缺回执操作、换ID或清空。另一queued是旧input-only草案，无普通delivery proof；刷新不重发。
+
+测试工作树feat164-s4ad-tests-20261027/Desktop4e1f1f980d148a6b46e21e68eb508caa4da5dae4仅3测试/说明文件。正常Native入队→claim未发送→cancel→重开同回执1PASS/0ignored，实际输出消费到生产parser/composable/control1PASS；完整DB保留。fmt/strict Clippy/lint/build/docs通过，产品/Core/Patch零改。完整App never-sent正向仍NOT RUN，下一步审阅安全分层替代证据的明确接受边界，不造故障/改库获得样本；自然unknown安全拒绝已观察，不再笼统列未验。
+
+0真实/0本机HTTP，累计13、45元cap、29.740299及两份14.188544预占/7账本保持。原库69表旧行保持，计划2表仅正常paused时间槽/next/cursor变化，旧正文/授权/grant/run/意图不变；Host14条仅updated_at，四库自然WAL0。6790活动数据外文件/500原dirty保护；raw全行不等与字段复核均保留。全部服务停止，无交接待答。56日常prepare-only候选仍未启动/迁移。搜索答案质量/外观专项已排除，Runtime核心/补丁先方案，仅本地无推送。
+
 ## FEAT-164 S4AC：当前证据与日常prepare-only（2026-10-27）
 
 最新[56](../features/FEAT-164-kimi-k31-pro-migration/56-current-evidence-business-state-and-daily-prepare.md)。产品/Core/Patch零改；当前Desktop ea8763d/Host4f966e8/Contractsc5d1383/Runtime11fd-r5/Connectorscc56/Skills595。501旧证据hash和310业务文件绑定，22前端＋38Host＋33Native＋5计划＋3日常入口＋19来源通过。实际S4AA c98 App产品与ea相同：重开菜单、旧迁移/中断/继续历史、关闭计划、真实图片/工具、18来源partial通过，未发送/授权；0真实/0本机HTTP。正常退出，71表旧行/四库WAL0，全部服务停止。
