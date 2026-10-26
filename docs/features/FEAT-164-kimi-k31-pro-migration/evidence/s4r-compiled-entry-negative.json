@@ -1,0 +1,16 @@
+[
+  {
+    "name": "disabled",
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "FEAT-164 isolated migration rejected: chat_invalid_configuration\n",
+    "expected": "chat_invalid_configuration, no database access"
+  },
+  {
+    "name": "daily",
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "FEAT-164 isolated migration rejected: chat_invalid_configuration\n",
+    "expected": "chat_invalid_configuration, no database access"
+  }
+]

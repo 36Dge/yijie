@@ -1,5 +1,7 @@
 # FEAT-164 实际验证记录
 
+> 最新以[45 旧隔离库受控迁移入口](45-controlled-isolated-migration-entry.md)为准：显式维护入口已实施，SQL29/37正常旧数据的拒绝/迁移/备份/重开离线资格通过；普通旧库门禁和日常拒绝保留。当前SQL41候选因1条未就绪选择与2份占用正常拒绝维护，原5522文件保持。实现仅在Desktop隔离commit bc3b097，主工作区未应用；真实/本机模型新增均0，完整App/G3/final仍缺。
+
 > 当前权威见[44 自然旧K3与计划离线验收](44-natural-legacy-migration-and-plan-qualification.md)：r5已加载旧身份经实际Host切换、正常取消/恢复子集通过；自然SQL29计划经显式正式迁移后的退役/重审/新授权/取消及重开通过。旧库App入口仍明确拒绝SQL<38，完整S2/S3纵向未通过。产品/Runtime未改，真实模型0，本机合成8，旧账本与预占保持。以下旧记录按原来源解释。
 
 > 最新深入复审见[41 关闭方案再审](41-shutdown-plan-deep-review.md)：RCA后6项新unit＋6项RPC及Clippy通过，但listener无退出回执、RPC屏障顺序待修正。四文件候选未晋升；建议仅扩展thread_state/thread_lifecycle两文件，**待新增范围批准**。r5未构建，真实新增0。
@@ -450,3 +452,7 @@ Desktop b6f0ad7、原r5/Host二进制不变。实际无效配置启动前拒绝�
 ## E164-S4Q-S3
 
 真实默认API自然产生SQL29旧计划。首次candidate open在既有旧库门禁拒绝，源文件保持；此项不是PASS。独立正式migration测试与候选领域open完成五阶段PASS_DOMAIN_ONLY，0模型请求；旧授权/占用/原29条migration ledger保持，显式新模型保存仍暂停且须新grant，never-sent取消幂等，重开不恢复旧授权。见s4q-s3-old-store-gate-rca、s4q-s3-qualified-result、s4q-s3-sql-preservation及44。产品lib Clippy PASS，strict test Clippy仍因既有native_conversation_storage.rs排布错误失败。App旧库准入/界面纵向与全slice继续NOT RUN。
+
+## E164-S4R-ISOLATED-MIGRATION
+
+Desktop隔离bc3b097实现同一canonical App的一次性维护参数，在现有单实例锁、固定隔离身份/根、正常静止、完整原始快照与单独检查副本之后调用既有migration/Repository open；普通open旧库guard保留，未修改Runtime。SQL29/37自然producer和受控正反例、原事实/模型身份/ledger、重复与重开通过。最终19来源、canonical ordinary构建及42bundle文件通过；产品lib/bins Clippy/fmt和docs通过。实际compiled禁用/daily配置拒绝，缺模型Key的canonical维护入口抵达SQL41原库预检，并因1个非ready选择（另有2个占用grant）拒绝；5522原文件保持，仅新增私有快照/停止记录。真实和本机模型HTTP均0。不把维护拒绝写成迁移成功，也不据此晋升完整S2/S3 App或final。详见[45](45-controlled-isolated-migration-entry.md)、s4r-migration-matrix、s4r-canonical-entry-result、s4r-current-refusal-audit和s4r-final-build-binding。

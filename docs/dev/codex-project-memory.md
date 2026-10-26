@@ -1,5 +1,17 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 S4R：受控旧隔离库入口已实现（2026-10-26）
+
+最新权威[45](../features/FEAT-164-kimi-k31-pro-migration/45-controlled-isolated-migration-entry.md)。增量semantic，仅Desktop私有维护入口：同一canonical App明确参数、既有单实例锁、固定FEAT164 identity/根、lsof无句柄、正常静止和原始加密快照，再调用既有migration到38及正常Repository open到41/退役，随后退出；auth/worker/Host/Runtime/UI均不启动。普通旧库guard、日常拒绝、原权限/授权保持。只准入自然资格已完成的SQL29/37，不接受任意数据路径，不清理unknown/占用、不退款、不重发、不手工checkpoint/WAL操作。
+
+当前实现保留在feat164-s4r-qualification-20261026/yijie-desktop：8dcf7a678f02c9bfa74dbf8cea4dff4e7bd2ae00 + bc3b097edf56779a1cfd273063df6d8f4a9c6019。主工作区三处源码已有其它需求dirty，因此未快进/应用补丁，主Desktop HEAD仍fd0c575；后续必须读取隔离候选而非误称主库已有新入口。Runtime11fd/r5、Contracts5b5dad、Host产品894671b和旧S4P App不变。
+
+SQL29/37自然API产生样本：held拒绝原字节保持，review实际29/37→41、原备份一致、旧ledger及9事实表/3模型身份行保持、重复/正常重开通过；feature-off、路径/日常identity、正常锁争用拒绝通过。fmt、产品lib/bins Clippy、docs及最终19来源通过，ordinary canonical构建42文件/同源回执通过。不是完整App/G3/final。
+
+实际compiled禁用/daily配置早期拒绝；无模型Key的canonical维护入口正常抵达原SQL41库，因1条非ready模型选择拒绝（另有2份occupied grant；pending outbox=0）。5522原文件保持，新增私有快照/停止记录8文件，UUID01a17722-6db5-7173-9409-6d053287c982。该库无需再次结构迁移，不为了通过门禁清空记录。首次依赖配置/普通prepare Key预检失败及后置归因误假设均保留；只修新维护模式Key预检，无自动真实重试。
+
+真实模型与loopback模型新增均0；5/5、30元cap、14.679001保守累计和14.188544预占保持。497原dirty与旧证据/制品/日常数据保护，仅本地无推送；原始日志/新构建回执/私有副本在feat164-s4r-audit-20261026。无活动服务或待答。下一步沿原请求只读厘清1个选择/2份占用，再安排独立旧数据的同源App S2/S3纵向；不擅自扩大日常迁移、核心/patch或付费调用。
+
 ## FEAT-164 S4Q：自然旧K3与计划离线资格（2026-10-26）
 
 最新权威[44](../features/FEAT-164-kimi-k31-pro-migration/44-natural-legacy-migration-and-plan-qualification.md)。S2真实旧Runtime正常生成历史，当前r5 loaded旧身份经实际Host SwitchThread迁移，同thread K3.1/max、普通流式interrupt、正常重启/恢复通过；首次fixture等待断连超过其正常Shutdown期限FAIL保留，有限响应修正后PASS。两次共8 loopback，真实0；四库WAL0/只读完整性ok，原历史上下文保持。

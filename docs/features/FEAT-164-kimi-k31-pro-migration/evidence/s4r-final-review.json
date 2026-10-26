@@ -1,0 +1,39 @@
+{
+  "at": "2026-10-26T15:51:57.902040+08:00",
+  "result": "PASS_SAFE_OFFLINE_ENTRY_SCOPED",
+  "product_candidate_commit": "bc3b097edf56779a1cfd273063df6d8f4a9c6019",
+  "candidate_checkout": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4r-qualification-20261026/yijie-desktop",
+  "original_desktop_head_unchanged": "fd0c575e4465dea6bb72ec9681248f664000551b",
+  "runtime_core_patch_change": false,
+  "shared_wire_schema_change": false,
+  "daily_migration_enabled": false,
+  "normal_startup_guard_preserved": true,
+  "predecessor_schema_matrix": [
+    29,
+    37
+  ],
+  "current_candidate_actual_result": "EXPECTED_REFUSAL chat_conversation_conflict; nonready selection1, occupied grants2, pending outbox0; no retry",
+  "source_generation_checks": 19,
+  "canonical_bundle_files_verified": 42,
+  "original_candidate_prior_files_unchanged": 5522,
+  "new_private_snapshot_files": 8,
+  "original_dirty_preserved": 497,
+  "protected_files_preserved": 8128,
+  "old_s4p_bundle_files_preserved": 119,
+  "real_model_http_added": 0,
+  "loopback_model_http_added": 0,
+  "governance": {
+    "claims": 0,
+    "strict": 0,
+    "manifest": 0,
+    "tests": 0
+  },
+  "full_app_ui": "NOT RUN",
+  "whole_feature": "IN_PROGRESS",
+  "remaining": [
+    "Read-only original-operation audit for nonready selection and occupied plan grants, preserving identity/ledger/reserve",
+    "Independent natural legacy App S2/S3 vertical without replacing retained candidate data",
+    "S4/TCONF04/full final; daily cutover and any new real HTTP remain separately unauthorized"
+  ],
+  "no_active_services_or_user_question": true
+}

@@ -1,0 +1,32 @@
+{
+  "at": "2026-10-26T15:19:59.146122+08:00",
+  "contract_impact": "semantic",
+  "runtime_core_patch_changed": false,
+  "public_wire_schema_changed": false,
+  "ordinary_old_guard_unchanged": true,
+  "migration_before_auth_worker_sidecar_ui": true,
+  "same_instance_lock_and_no_open_handles": true,
+  "backup_inspection_copies_separate": true,
+  "both_existing_keys_validated_before_source_write": true,
+  "qualified_predecessors": [
+    29,
+    37
+  ],
+  "narrowing_reason": "35/36 excluded from initial entrance; qualify other normal predecessor producers separately before admission",
+  "authorized_scope": "Owner current isolated entrance request; daily excluded",
+  "local_worktree_only": true,
+  "original_dirty_overlap": [
+    "src-tauri/src/chat/database.rs",
+    "src-tauri/src/chat/mod.rs",
+    "src-tauri/src/lib.rs"
+  ],
+  "files": {
+    "SECURITY.md": "efeb4349943911904b0c4d0e3eaac2256ca0bd3e0d3d1c663e323a7bbe2b8ce2",
+    "docs/feat164-isolated-model-migration.md": "a044bda847b00e7cbc9d1b5d78f31c9bf7b0c340f9b7bb251fd2a6fbeba30272",
+    "scripts/run-local-demo-fast.sh": "e495e8522788c4acbfc9b0b687735e72b1d39651cb1310af669e40f72a39f77d",
+    "src-tauri/src/chat/database.rs": "02881ee6c8a91585912406b0d48830e5e6f679f7e4bc435aa63e82ae95e263e7",
+    "src-tauri/src/chat/mod.rs": "d933af083dc0a6091914d6d7b261c6c527045a9719f231f2e64a81a170eea396",
+    "src-tauri/src/chat/isolated_model_migration.rs": "761196a80f6545a400650b936e568c46ca5c3668e608858bde8aed9108d85c20",
+    "src-tauri/src/lib.rs": "4975e80ff46a7db2a6642767038b3a2be4be0b09aef85dae447b64b372b0ad9d"
+  }
+}

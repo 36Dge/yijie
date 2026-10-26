@@ -1,0 +1,30 @@
+{
+  "command": [
+    "bash",
+    "scripts/run-local-demo-fast.sh",
+    "--packaged",
+    "--kimi-k31-pro",
+    "--migrate-isolated-k3",
+    "--reopen"
+  ],
+  "started_at": "2026-10-26T15:34:30.403601+08:00",
+  "finished_at": "2026-10-26T15:35:08.286317+08:00",
+  "exit_code": 1,
+  "app_binary_sha256": "b8c33a21ed08bfb51c699482c1966af7a3a082ea9e2a356892d652905cf5c321",
+  "model_key_files_exist": false,
+  "prior_files_checked": 5522,
+  "changed_prior_files": [],
+  "added_files": [
+    "/Users/jack/Library/Application Support/com.yijie.ai.feat164-kimi-k31-r1/demo-fast-model-candidate-v1/kimi-k31-migration-backups/01a17722-6db5-7173-9409-6d053287c982/result.json",
+    "/Users/jack/Library/Application Support/com.yijie.ai.feat164-kimi-k31-r1/demo-fast-model-candidate-v1/kimi-k31-migration-backups/01a17722-6db5-7173-9409-6d053287c982/source-files.json",
+    "/Users/jack/Library/Application Support/com.yijie.ai.feat164-kimi-k31-r1/demo-fast-model-candidate-v1/kimi-k31-migration-backups/01a17722-6db5-7173-9409-6d053287c982/chat/conversations.db",
+    "/Users/jack/Library/Application Support/com.yijie.ai.feat164-kimi-k31-r1/demo-fast-model-candidate-v1/kimi-k31-migration-backups/01a17722-6db5-7173-9409-6d053287c982/secrets/chat-sqlcipher-v1.secret",
+    "/Users/jack/Library/Application Support/com.yijie.ai.feat164-kimi-k31-r1/demo-fast-model-candidate-v1/kimi-k31-migration-backups/01a17722-6db5-7173-9409-6d053287c982/secrets/receipt-hmac-v1.secret",
+    "/Users/jack/Library/Application Support/com.yijie.ai.feat164-kimi-k31-r1/demo-fast-model-candidate-v1/kimi-k31-migration-backups/01a17722-6db5-7173-9409-6d053287c982/inspection/conversations.db",
+    "/Users/jack/Library/Application Support/com.yijie.ai.feat164-kimi-k31-r1/demo-fast-model-candidate-v1/kimi-k31-migration-backups/01a17722-6db5-7173-9409-6d053287c982/inspection/conversations.db-shm",
+    "/Users/jack/Library/Application Support/com.yijie.ai.feat164-kimi-k31-r1/demo-fast-model-candidate-v1/kimi-k31-migration-backups/01a17722-6db5-7173-9409-6d053287c982/inspection/conversations.db-wal"
+  ],
+  "real_model_http": 0,
+  "loopback_model_http": 0,
+  "mode": "maintenance only, normal UI bootstrap not entered"
+}

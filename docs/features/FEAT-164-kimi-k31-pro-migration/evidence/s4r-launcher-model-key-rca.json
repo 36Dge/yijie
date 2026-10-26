@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-26T15:30:43.917665+08:00",
+  "failure": "ordinary prepare-only initial environment reached existing MiniMax file precondition; no build or App execution started",
+  "review_finding": "explicit migration also passed through this old provider-file check despite no model execution",
+  "minimal_fix": "exclude only migrate_isolated_k3=true from provider-file existence preflight; normal startup unaffected",
+  "build_only_environment": "fresh synthetic local dummy files and loopback URL; credential-free migration mode separately checked with missing provider file",
+  "model_http": 0
+}

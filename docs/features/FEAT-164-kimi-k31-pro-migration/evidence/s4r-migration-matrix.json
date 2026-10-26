@@ -1,0 +1,69 @@
+[
+  {
+    "name": "produce37",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--lib",
+      "chat::schedules::feat164_natural_plan_tests::feat164_natural_plan_upgrade",
+      "--",
+      "--exact",
+      "--ignored",
+      "--nocapture",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "passed": true,
+    "at": "2026-10-26T15:15:37.357724+08:00"
+  },
+  {
+    "name": "migrate29",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--lib",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "chat::database::isolated_model_migration::tests::feat164_controlled_isolated_migration",
+      "--",
+      "--exact",
+      "--ignored",
+      "--nocapture",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "passed": true,
+    "at": "2026-10-26T15:15:55.504316+08:00"
+  },
+  {
+    "name": "migrate37",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--lib",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "chat::database::isolated_model_migration::tests::feat164_controlled_isolated_migration",
+      "--",
+      "--exact",
+      "--ignored",
+      "--nocapture",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "passed": true,
+    "at": "2026-10-26T15:15:58.315307+08:00"
+  }
+]

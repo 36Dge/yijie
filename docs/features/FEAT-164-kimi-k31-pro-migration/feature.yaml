@@ -645,7 +645,7 @@ slices:
       production_bootstrap: true
       invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation reference changes
     status: pending
-    status_reason: S4Q补齐当前r5已加载旧K3经实际Host切换及正常取消恢复子集；旧库App准入仍拒绝SQL<38，SQL/Store/UI完整纵向缺项未关闭，旧local/boundary保留原r4来源。见44。
+    status_reason: S4R显式隔离迁移入口对SQL29/37通过安全离线资格，普通启动旧guard保持；当前SQL41原选择/占用受保护。S4Q原生迁移恢复取消证据保留，完整SQL/Store/UI纵向未关闭。实现只在隔离bc3b097，见45。
   - id: S3
     intent: worker接管前退役保护及计划领域授权迁移
     required: true
@@ -734,7 +734,7 @@ slices:
       production_bootstrap: true
       invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation reference changes
     status: pending
-    status_reason: S4Q自然SQL29计划经显式正式migration后的领域退役重审授权取消重开通过；App旧库准入及前置S2完整纵向仍缺，旧证据保留原来源。见44。
+    status_reason: S4R受控入口自然SQL29/37迁移退役/旧事实/重复重开通过，原非ready选择及占用拒绝保留；S4Q重审授权领域证据保持，完整S2/S3 App纵向仍缺，见45。
   - id: S4
     intent: 全启用调用面、同源UI与正常退出兼容回退
     required: true
@@ -1430,9 +1430,35 @@ implementation:
     strict_test_clippy: BLOCKED_PREEXISTING_ITEMS_AFTER_TEST_MODULE
     app_ui: NOT RUN
     note: 首次S2 fixture关闭超时、首次S3旧库正常open拒绝、首次Clippy结果均保留；修正/显式领域资格不覆盖这些历史失败，也不开放日常库或把测试expand当产品切换入口。
+  controlled_isolated_migration_s4r:
+    status: PASS_SAFE_OFFLINE_ENTRY_SCOPED
+    report: 45-controlled-isolated-migration-entry.md
+    evidence_ref: evidence/s4r-final-build-binding.json
+    desktop_candidate_commit: bc3b097edf56779a1cfd273063df6d8f4a9c6019
+    desktop_implementation_commit: 8dcf7a678f02c9bfa74dbf8cea4dff4e7bd2ae00
+    desktop_original_checkout_commit: fd0c575e4465dea6bb72ec9681248f664000551b
+    candidate_only_not_applied_to_original_dirty_workspace: true
+    incremental_contract_impact: semantic
+    runtime_core_or_patch_changed: false
+    public_wire_or_schema_changed: false
+    qualified_predecessor_schemas: [29, 37]
+    implicit_old_store_guard_retained: true
+    daily_migration_enabled: false
+    source_generation_checks: 19
+    canonical_build: PASS
+    bundle_files_verified: 42
+    compiled_disabled_and_daily_guards: PASS
+    current_candidate_preflight: EXPECTED_REFUSAL_NONREADY_SELECTION_AND_OCCUPIED_GRANTS
+    current_candidate_schema: 41
+    current_candidate_prior_files_unchanged: 5522
+    current_candidate_new_private_backup_files: 8
+    real_model_http_added: 0
+    loopback_model_http_added: 0
+    full_app_ui: NOT RUN
+    note: 同一App维护参数在auth/worker/sidecar/UI之前退出；两种旧库自然离线样本成功，现有SQL41候选拒绝后未迁移/清理/退款。两个前置环境失败及后置归因修正保留，不冒充完整G3/final。
 product_verification:
   status: IN_PROGRESS
-  reason: S4Q当前r5已加载旧K3迁移取消恢复、自然旧计划显式migration及重新审阅授权领域子集通过；关键未完成项是旧隔离库产品准入仍拒绝SQL<38，完整S2/S3 App纵向、S4/TCONF04及全部final仍缺。产品/Runtime未改，真实新增0，旧账本预占和日常库保持。见44。
+  reason: S4R旧隔离库显式受控迁移入口及SQL29/37安全离线资格完成，普通旧guard和日常拒绝保持；当前SQL41候选因1条非ready选择和2份占用正常拒绝，原文件保持。实现位于Desktop隔离bc3b097，主工作区保留原样。完整S2/S3 App、S4/TCONF04及全部final仍缺，真实/本机模型新增0。见45。
 profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
 owner_approvals:
   requirements: approved_by_owner_current_user_message

@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-26T15:37:56.205527+08:00",
+  "integrity": "ok",
+  "counts": {
+    "schema": 41,
+    "pending_or_inflight_outbox": 0,
+    "nonready_model_selections": 1,
+    "reservations": 0,
+    "occupied_grants": 2,
+    "uncertain_or_active_turns": 0
+  },
+  "first_rejecting_predicate": "nonready_model_selections",
+  "additional_blocker": "two occupied grants",
+  "result_code": "chat_conversation_conflict",
+  "original_prior_files_unchanged": 5522,
+  "old_budget_reserve_unchanged": true,
+  "new_private_backup_id": "01a17722-6db5-7173-9409-6d053287c982",
+  "snapshot_source_hashes_match": true,
+  "no_retry_or_refund": true,
+  "initial_summary_assertion_failed": "Assumed pending outbox was first predicate. Actual snapshot counts show0 pending outbox,1 nonready selection,2 occupied grants. Corrected summary only; no source/data/migration rerun."
+}

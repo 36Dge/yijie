@@ -1,0 +1,22 @@
+{
+  "command": [
+    "cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "--manifest-path",
+    "src-tauri/Cargo.toml",
+    "--lib",
+    "--features",
+    "kimi-k31-pro-candidate",
+    "chat::database::isolated_model_migration::tests::feat164_controlled_isolated_migration",
+    "--",
+    "--exact",
+    "--ignored",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "exit_code": 0,
+  "at": "2026-10-26T15:05:15.055015+08:00",
+  "real_model_http": 0
+}
