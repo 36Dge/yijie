@@ -1,0 +1,105 @@
+{
+  "status": "PASS_FOR_MEDIA_EXPERT_IMAGE_MINIMAX_AND_NORMAL_REOPEN_SUBSET",
+  "whole_feature_complete": false,
+  "sources": {
+    "yijie-desktop": {
+      "head": "9f5814fec6cd071d39f0c12f8f48097ce661cb6a",
+      "status": []
+    },
+    "yijie-contracts": {
+      "head": "ca06d0999c9a08afe80ab3f34a537d492b830ac7",
+      "status": []
+    },
+    "yijie-agent-host": {
+      "head": "8cd6bccbdc1ac3906aea53d95441299f7cfefcce",
+      "status": []
+    },
+    "yijie-connectors": {
+      "head": "cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9",
+      "status": []
+    },
+    "yijie-codex": {
+      "head": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+      "status": []
+    },
+    "yijie-skills": {
+      "head": "595c927ae101d3d31c234f60565041eee0864680",
+      "status": []
+    }
+  },
+  "protected_files_outside_active_qualification": 42098,
+  "protected_mismatches": [],
+  "expected_qualification_installation_journal_append": {
+    "first_strict_protection_check": "FAIL for one qualification-owned installation journal changed during explicit expert selection",
+    "scope_correction": "exact one operations.json outside candidate suffix but under same isolated qualification App identity",
+    "before_sha256": "a414cf7f49a3fe4d784dcf3a57deb9b4e11b32039d21366059a19dcd3a35d261",
+    "after_sha256": "c53bb937869587f723c7cec1b27bbf368a32e2bc70f3496257196dd157ad1927",
+    "old_operation_count": 7,
+    "old_prefix_byte_exact_reconstruction": true,
+    "new_operation": {
+      "id": "f1e3a3eb-2abc-4a82-90be-35954a370dfb",
+      "kind": "install",
+      "skill_id": "yijie.experts.report-viz-expert-v011",
+      "status": "complete",
+      "completed_at": "2026-10-26T12:05:17.762969Z"
+    },
+    "daily_data_affected": false,
+    "source_or_safety_change": false
+  },
+  "original_dirty_files_checked": 494,
+  "dirty_mismatches": [],
+  "mixed_memory_reconstruction_matches_resume": true,
+  "original_sql_rows_retained_all_71_tables": true,
+  "reopen_changed_tables": [
+    "chat_scheduled_stopped_generations"
+  ],
+  "old_model_binding_plan_and_grant_facts_retained": true,
+  "new_completed_turns": [
+    {
+      "id": "01a1781a-e244-7b91-b380-af9bd605f459",
+      "session_id": "01a1781a-e244-7b91-b380-af7348799b8e",
+      "runtime_turn_id": "01a1781a-e2e4-78d2-98fb-ffe9b85efeee",
+      "status": "completed",
+      "terminal_code": null,
+      "submission_status": "submitted"
+    },
+    {
+      "id": "01a1781c-0b42-7900-bb2d-c615a47f5590",
+      "session_id": "01a1781c-0b42-7900-bb2d-c5f27fcbfd45",
+      "runtime_turn_id": "01a1781c-0bca-74f3-b5c2-9bcc6b02ab01",
+      "status": "completed",
+      "terminal_code": null,
+      "submission_status": "submitted"
+    },
+    {
+      "id": "01a1781c-70ca-7542-a42a-05444e75c2c6",
+      "session_id": "01a1781c-70ca-7542-a42a-052bc13a788f",
+      "runtime_turn_id": "01a1781c-7150-76f1-9a0d-e2d87093c380",
+      "status": "completed",
+      "terminal_code": null,
+      "submission_status": "submitted"
+    }
+  ],
+  "artifacts_byte_exact": true,
+  "real_model_http_added": 0,
+  "loopback_model_http_added": 5,
+  "reopen_model_http_added": 0,
+  "fixture_stopped_normally": true,
+  "normal_app_exits": [
+    0,
+    0
+  ],
+  "runtime_four_databases_wal_zero_and_integrity_ok": true,
+  "ports_closed": {
+    "18083": true,
+    "18086": true
+  },
+  "not_qualified": [
+    "complete TCONF04",
+    "all four configuration modes fresh App matrix",
+    "auxiliary/child/compaction current r5 retained-state test suite",
+    "final core and full visual/teardown",
+    "r5 provider G2V",
+    "daily cutover"
+  ]
+}

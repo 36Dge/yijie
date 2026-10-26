@@ -1,5 +1,13 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 S4T：当前media App限定验收完成（2026-10-26）
+
+最新[47](../features/FEAT-164-kimi-k31-pro-migration/47-current-media-app-and-retained-state-qualification.md)。S4S治理e137722本地固化；本轮产品/Runtime/补丁零修改，Desktop9f5814f/Host8cd/Contracts ca06/Runtime11fd-r5/Connectors cc56/Skills595保持，独立s4t-media canonical App42a23cf…、119文件及同构建回执通过。
+
+实际App专家可视化资源正常安装/绑定、HTML与SVG发布预览、PNG输入、MiniMax共存和正常重开通过；3任务5loopback，真实0。两次⌘Q exit0，进程/端口/句柄释放，四Runtime库WAL0/integrity ok；重开0补发。71表全部旧行及原计划/grant保持。资格skills日志正常追加1安装，旧7条重建字节匹配原SHA；其余42097保护文件和494非自有dirty保持，混合memory原内容匹配；严格保护首次FAIL单列RCA，不假称日志全字节不变。
+
+旧5/5、30元cap、14.679001含14.188544预占及日常库/原SQL41候选保持。全部服务正常停止，无待答UI。整项IN_PROGRESS、三个final NOT RUN。下一步优先审并实现仅测试生命周期的Runtime home保留入口，再复验当前r5辅助/子代理/压缩和完整TCONF；现有成功RemoveAll runner本轮未跑。若需Runtime核心/patch先报最小方案；无新真实调用/日常切换/推送。私有证据在feat164-s4t-audit-20261026，不重复已通过S2/S3和本轮任务。
+
 ## FEAT-164 S4S结果已收口，S4T恢复执行（2026-10-26）
 
 Owner18:01暂停后明确恢复。先读[46](../features/FEAT-164-kimi-k31-pro-migration/46-independent-legacy-app-qualification.md)及当前验收矩阵；原paused-handoff保留历史含义。最终Desktop9f5814f在s4s-candidate工作树，旧producer54921df在s4s-qualification；Contracts ca06d09/Host8cd6bcc仅旧来源元数据，Runtime11fd/r5及Host产品binary不变。主仓未快进，原dirty保留。

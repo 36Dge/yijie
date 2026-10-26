@@ -463,3 +463,10 @@ Desktop隔离bc3b097实现同一canonical App的一次性维护参数，在现�
 <!-- evidence: E164-S4S-APP -->
 
 自然旧App54921df产生K3会话及K3/MiniMax计划；同compiled维护29→41、原快照/ledger/身份/授权事实保持。最终Desktop9f5814f在原Runtime11fd/r5和Host产品字节不变的前提下，修复受审前身许可与退役终态历史恢复，完成同thread显式K3.1切换、正常interrupt/继续、计划重审保存paused/新max_runs1许可执行及正常重开。5次loopback（旧1、新4），真实0；重开0HTTP，四库自然WAL0/integrity ok。原失败、范围限制和source-bound而非单一fresh迁移来源见46及s4s-audit-index；完整TCONF/final未放行。
+
+
+## E164-S4T-MEDIA
+
+<!-- evidence: E164-S4T-MEDIA -->
+
+相同Desktop9f5814f/Host8cd/Runtime11fd-r5在独立canonical media构建中，实际App完成专家绑定与HTML/SVG成果、PNG输入、MiniMax共存、两次正常退出及同构建重开。5loopback、真实0；reopen0新增，两成果字节相同，71表全部旧行保持，原计划/grant保持，四Runtime库自然WAL0/integrity ok。限定PASS不替代完整TCONF/final。资格资源日志正常追加1安装记录，旧7条重建字节匹配原SHA，其余42097保护文件保持；首轮严格差异及预检误匹配均留证。详见47、s4t-audit-index与s4t-media-verdict。

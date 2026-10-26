@@ -1256,6 +1256,24 @@ current_authorization:
   git_local_commit_allowed: true
   git_scope: 仅FEAT-164必要独立来源/实现/验证/治理本地提交，不混入其它需求；无push/branch/tag/release。
 implementation:
+  current_media_app_s4t:
+    status: PASS_SCOPED_NOT_FULL_FINAL
+    report: 47-current-media-app-and-retained-state-qualification.md
+    desktop_commit: 9f5814fec6cd071d39f0c12f8f48097ce661cb6a
+    host_commit: 8cd6bccbdc1ac3906aea53d95441299f7cfefcce
+    runtime_commit: 11fd4504c28afd0f65c6f5f62a6b5328dd437f5a
+    app_sha256: 42a23cfbc11cc047b005b8d80dafa2aff243fcc469dd1510d04d88196e85f6a9
+    bundle_file_count: 119
+    real_http_added: 0
+    loopback_http_added: 5
+    reopen_http_added: 0
+    normal_exit_count: 2
+    old_sql_rows_preserved: true
+    old_plans_and_grants_preserved: true
+    runtime_wal_bytes_after_quit: 0
+    evidence_ref: 08-verification-report.md#E164-S4T-MEDIA
+    evidence_index: evidence/s4t-audit-index.json
+    remaining: 完整S4/TCONF04及三个final；r5真实G2V与日常切换未授权。
   independent_legacy_app_s4s:
     status: PASS_SCOPED_NOT_FULL_FINAL
     desktop_commit: 9f5814fec6cd071d39f0c12f8f48097ce661cb6a

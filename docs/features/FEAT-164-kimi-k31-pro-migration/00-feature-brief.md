@@ -2,7 +2,7 @@
 
 2026-10-26 当前状态：**IN_PROGRESS，尚未切换日常入口。** Owner已批准继续实施、安全离线验收及FEAT-164专属本地提交；新增真实模型HTTP为0，日常迁移、推送和发布保持关闭。r5六文件关闭修复已经批准、构建并取得限定资格，不能再按40/41号历史待批准状态解释。
 
-当前来源、AC差距和下一步统一见[46 独立旧数据App资格](46-independent-legacy-app-qualification.md)与[当前验收矩阵](current-acceptance-matrix.md)。Runtime11fd/r5保持；S4S独立部署代码及旧模式来源整理已实施。r4真实G2V/视觉PASS保留原来源；r5完整S2/S3/S4和三项final不能继承。原unknown、已消耗计划额度与费用预占均保留。
+当前来源、AC差距和下一步统一见[47 同源媒体App资格](47-current-media-app-and-retained-state-qualification.md)、[46 独立旧数据App资格](46-independent-legacy-app-qualification.md)与[当前验收矩阵](current-acceptance-matrix.md)。Runtime11fd/r5保持；S4S独立部署代码及旧模式来源整理已实施。r4真实G2V/视觉PASS保留原来源；r5完整S2/S3/S4和三项final不能继承。原unknown、已消耗计划额度与费用预占均保留。
 
 2026-10-24创建 · schema v3 · production_hardened · exposure: local · active。早期审批、故障、预算与通过结论见12—45号历史报告，按各自时间和来源解释，不作为本页当前授权。
 
