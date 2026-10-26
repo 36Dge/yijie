@@ -1,5 +1,15 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 S4AA：来源误删修复与离线验收完成（2026-10-27）
+
+最新[54](../features/FEAT-164-kimi-k31-pro-migration/54-search-source-component-fix-and-offline-verification.md)，前序真实结果见[53](../features/FEAT-164-kimi-k31-pro-migration/53-real-functional-results-and-search-source-fix-plan.md)。Owner已批准53最小安全范围；Contracts c5d138374c102f1a8a11e328a869ec8f91724efd→Host 4f966e8ea810d5b094d0b797d291955d6c774844→Desktop c98eddfafb789520b4939bdca95bf8b27f28b7b6在feat164-s4aa-qualification-20261027，仅本地提交。只把来源URL opaque检测限定URI组件，先分原始结构再解码；全局脱敏、其它拒绝规则、Runtime/core/patch/schema不改。
+
+7顶层Host/25URL样例、5契约、6入口、19来源及native-process不可变检查通过；renderer20通过。额外FEAT132旧样例v3接受/v4拒绝与当前权威不符，基线未变；保留27/28结果，未扩范围改旧测试或放宽validator。新canonical App SHA179dbd187220694d4666af5822466572f3b245a911501991cb0194f4308db195，119文件，20Runtime→18Host/SQL/UI、2保守隐藏/partial；任务01a17910-bf4e-7142-af4a-04791d73cae1 completed。同构建重开0补发，两次正常⌘Q exit0，四库WAL0/integrity，71表旧行全保留。fixture正常shutdown204/exit0，无活动App/meter/待答交接。修复期1本机/0真实；审计目录feat164-s4aa-audit-20261027。
+
+此前S4Z已用4真实HTTP、累计10：图片1正确/函数及回灌2通过/搜索1传输completed20sources但内容正确性INCONCLUSIVE；真实App同构建重开0请求，已正常停止。不要再按52/handoff旧余4次续发。四账本相对S4AA开始逐字不变；旧14.188544预占和新search同额预占保持，29.343192是保守估算，非精确账单。当前修复授权0新增真实，不因泛模型授权重发搜索。497dirty及6498保护文件保持，FEAT163不混入提交。
+
+整项目标仍活动K3全面换K31、保留原历史/授权/MiniMax；S1—S3绑定原有效证据，S4及完整final未完成。下一步收口S4/最终业务状态，最小修正旧v3测试样例并在新Host上做日常候选prepare-only资格，再具体审阅真实日常切换清单。日常库打开/迁移/激活仍未授权，不改旧daily包；新增Runtime core/patch仍先确认方案。外观/键盘/最小窗口已永久移除，不能恢复。所有旧来源失败/备份/账本保留，不强杀/删WAL/手工checkpoint。
+
 ## FEAT-164 S4Y：隔离App复验通过子集，等待窗口交接（2026-10-27）
 
 最新[52](../features/FEAT-164-kimi-k31-pro-migration/52-isolated-app-functional-qualification-and-handoff.md)，续办先读feat164-s4y-audit-20261026/handoff.json。Desktop 54e961842cb7abe7234e3d643142e99f266ec833在ec1ab63上只将已有cfg(test)模块移到末尾，生产文字和断言逐字一致；Clippy lib/bins/tests -D warnings/原reader测试/19source/canonical均通过。App SHA879568b9ff61530806d63aaa6068053e98f1d68b1fc6506a48adecc4035c6b8a，119文件；日常ec1候选保持未激活。

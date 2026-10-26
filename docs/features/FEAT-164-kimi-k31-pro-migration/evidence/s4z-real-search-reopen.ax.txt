@@ -1,0 +1,29 @@
+The following is a diff from the previous accessibility tree for Window: "易界 AI" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 105, 107-123
+~		2 HTML content Description: 任务对话 · 易界 AI, URL: tauri://localhost/chat/01a178fa-e800-7ab3-a292-e0c87f8020ec
+~											24 button (collapsed) FEAT164 搜索功能验证：请使用一次联网搜索查找 Kimi 官方 Respo, Secondary Actions: Expand
+~											25 button FEAT164 工具回灌验证：必须调用一次终端工具，执行 cat verific
+~			70 container FEAT164 搜索功能验证：请使用一次联网搜索查找 Kimi 官方 Respo
+~					72 heading FEAT164 搜索功能验证：请使用一次联网搜索查找 Kimi 官方 Respo, Value: 1
++						107 text FEAT164 搜索功能验证：请使用一次联网搜索查找 Kimi 官方 Respo
++					108 container 对话内容
++						109 container 对话 1
++							110 container 对话 1
++								111 container 本轮对话内容
++									112 container 用户消息
++										113 text FEAT164 搜索功能验证：请使用一次联网搜索查找 Kimi 官方 Responses API 文档，确认它是否支持图片输入，并给出官方来源链接。只做这一次搜索，不使用终端、文件工具或子代理，简短回答。
++										114 container 用户消息操作
++											115 container 2026/10/27 00:11:11
++												116 text 00:11
++											117 button 复制文本
++									118 button (collapsed) 已完成 26s，展开本轮处理过程, Secondary Actions: Expand
++									119 container 模型回答
++										120 container 模型回答
++											121 container
++												122 text 尚不能确认 Responses API 端点本身支持图片输入。 本次搜索命中的官方文档明确说明 Kimi 视觉模型支持图片输入（Base64 或文件 ID，不支持图片 URL），但未直接说明该能力适用于 Responses API，不能据此直接推断。
++											123 container
++												124 text 官方来源： Kimi 视觉模型配置文档 （https://platform.kimi.ai/docs/guide/use-kimi-vision-model） 
++											125 container 模型回答操作
++												126 button 复制文本
++				127 text 已完成
+The focused UI element is 72 heading FEAT164 搜索功能验证：请使用一次联网搜索查找 Kimi 官方 Respo, Value: 1

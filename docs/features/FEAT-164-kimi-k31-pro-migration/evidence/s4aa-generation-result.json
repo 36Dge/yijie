@@ -1,0 +1,249 @@
+{
+  "feature": "FEAT-164",
+  "scope": "source generation only; legacy default check unchanged; not App/G2V/G3/release",
+  "sources": {
+    "yijie-desktop": {
+      "head": "c98eddfafb789520b4939bdca95bf8b27f28b7b6",
+      "dirty": false,
+      "realPath": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4aa-qualification-20261027/yijie-desktop"
+    },
+    "yijie-contracts": {
+      "head": "c5d138374c102f1a8a11e328a869ec8f91724efd",
+      "dirty": false,
+      "realPath": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4aa-qualification-20261027/yijie-contracts"
+    },
+    "yijie-agent-host": {
+      "head": "4f966e8ea810d5b094d0b797d291955d6c774844",
+      "dirty": false,
+      "realPath": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4aa-qualification-20261027/yijie-agent-host"
+    },
+    "yijie-connectors": {
+      "head": "cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9",
+      "dirty": false,
+      "realPath": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4aa-qualification-20261027/yijie-connectors"
+    },
+    "yijie-codex": {
+      "head": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+      "dirty": false,
+      "realPath": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex"
+    },
+    "yijie-skills": {
+      "head": "595c927ae101d3d31c234f60565041eee0864680",
+      "dirty": false,
+      "realPath": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/skills-s4-source"
+    }
+  },
+  "real_model_http": 0,
+  "checks": [
+    {
+      "id": "public-api",
+      "repository": "yijie-desktop",
+      "command": [
+        "node",
+        "scripts/generate-public-api.mjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "sha256": "9e2e358af466aadd0928096d838fea786c2100a23040354d635dd00efebc98b2"
+    },
+    {
+      "id": "host-v2",
+      "repository": "yijie-desktop",
+      "command": [
+        "node",
+        "scripts/check-agent-host-contract.mjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "sha256": "1ad011f590275fc04524dcb4301927e66f649cdad66d5d2810aeb7a378c0fac2"
+    },
+    {
+      "id": "host-v3",
+      "repository": "yijie-desktop",
+      "command": [
+        "node",
+        "scripts/check-agent-host-v3-contract.mjs"
+      ],
+      "exit_code": 0,
+      "sha256": "148e75003ef63b6f9635335ed0a8ea6ecd6bc0ed8dee40dd921bc3ddfeb2b8b5"
+    },
+    {
+      "id": "host-skills",
+      "repository": "yijie-desktop",
+      "command": [
+        "node",
+        "scripts/check-agent-host-skills-contract.mjs"
+      ],
+      "exit_code": 0,
+      "sha256": "309317cf12059ddf0abce0044bee6f4fa4402fb3da51c3fadaa96dcc50c87938"
+    },
+    {
+      "id": "host-v4",
+      "repository": "yijie-desktop",
+      "command": [
+        "node",
+        "scripts/check-agent-host-v4-contract.mjs"
+      ],
+      "exit_code": 0,
+      "sha256": "66d13f0e964edbd4192f6dbe0f0aa8ce63a490b24eb2367598586f75cc68b12d"
+    },
+    {
+      "id": "native-timing",
+      "repository": "yijie-desktop",
+      "command": [
+        "node",
+        "scripts/generate-chat-turn-timing.mjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "session-purpose",
+      "repository": "yijie-desktop",
+      "command": [
+        "node",
+        "scripts/generate-chat-session-purpose.mjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "sha256": "39dfa8930fdb2e835c50713a74409ec230a17528b59ee8d6b24f143c9ecdcc45"
+    },
+    {
+      "id": "native-conversation",
+      "repository": "yijie-desktop",
+      "command": [
+        "node",
+        "scripts/generate-native-conversation.mjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "native-source",
+      "repository": "yijie-desktop",
+      "command": [
+        "node",
+        "scripts/check-native-conversation.mjs",
+        "--require-committed"
+      ],
+      "exit_code": 0,
+      "sha256": "bad24c2447ffec2ca1e8efc157824a6bc6774c432fe05b2713786e5fd51c436d"
+    },
+    {
+      "id": "scheduled-ipc-v1",
+      "repository": "yijie-desktop",
+      "command": [
+        "node",
+        "scripts/generate-scheduled-ipc.mjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "sha256": "fe2215f14359323d0eaaa8dc0b25f139f1ab9dec0602af5d8c6a932aad791c17"
+    },
+    {
+      "id": "market-connectors",
+      "repository": "yijie-contracts",
+      "command": [
+        "node",
+        "scripts/sync-market-connectors.mjs",
+        "--consumer=desktop",
+        "--check"
+      ],
+      "exit_code": 0,
+      "sha256": "62a3e8e73b6cd58b6cbc7b0a90bc3b4b8542b45ab42d6154b9f0ada39560ea18"
+    },
+    {
+      "id": "feat164-catalog",
+      "repository": "yijie-desktop",
+      "command": [
+        "node",
+        "scripts/feat164-market-catalog.mjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "sha256": "f0ac6a92992217b6a1446ababa9c403d1dda4b41f5c0981d40b62ddc4e638fba"
+    },
+    {
+      "id": "market-selection-v1",
+      "repository": "yijie-contracts",
+      "command": [
+        "node",
+        "scripts/sync-market-selection.mjs",
+        "--consumer=desktop",
+        "--check"
+      ],
+      "exit_code": 0,
+      "sha256": "3663e59e701e5f5290dbf821f28e2726084a3173a2684eef64c78fcd0b3c79a5"
+    },
+    {
+      "id": "market-provider",
+      "repository": "yijie-contracts",
+      "command": [
+        "node",
+        "scripts/sync-market-provider.mjs",
+        "--consumer=desktop",
+        "--check"
+      ],
+      "exit_code": 0,
+      "sha256": "665dcb9cf05bb92eaf63299d24e9c8afe23f52fe7de4f820b8246b631fc2933a"
+    },
+    {
+      "id": "market-host-v1",
+      "repository": "yijie-contracts",
+      "command": [
+        "node",
+        "scripts/sync-market-host.mjs",
+        "--consumer=desktop",
+        "--check"
+      ],
+      "exit_code": 0,
+      "sha256": "f35719c48acfbc1a363c3ab390212b8b5ca95b884e8f9f65e66312a67ef6f76e"
+    },
+    {
+      "id": "runtime-k31",
+      "repository": "yijie-contracts",
+      "command": [
+        "node",
+        "scripts/generate-runtime-kimi-k31-pro.mjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "sha256": "e23b334a404da2f6687aa98879dde98d4e26f987723551f982561bb7ca759c3c"
+    },
+    {
+      "id": "models-v2",
+      "repository": "yijie-contracts",
+      "command": [
+        "node",
+        "scripts/generate-chat-models-v2.mjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "sha256": "c320056d8ed70f3c52cebba35f8e906b70e97afa545603dbd1ac3c8643ab3b94"
+    },
+    {
+      "id": "scheduled-ipc-v2",
+      "repository": "yijie-desktop",
+      "command": [
+        "node",
+        "scripts/generate-scheduled-ipc-v2.mjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "sha256": "fe2215f14359323d0eaaa8dc0b25f139f1ab9dec0602af5d8c6a932aad791c17"
+    },
+    {
+      "id": "v2-source-closure",
+      "repository": "yijie-desktop",
+      "command": [
+        "node",
+        "scripts/kimi-k31-build-candidate.mjs"
+      ],
+      "exit_code": 0,
+      "sha256": "38098477ef6ccad735b1eef553bc6075f43b35a95752cacd5f77ad6253c1f85b"
+    }
+  ],
+  "status": "PASS"
+}

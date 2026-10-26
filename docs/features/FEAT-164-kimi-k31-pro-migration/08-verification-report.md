@@ -532,3 +532,10 @@ Host7bf43fe仅测试生命周期/新入口，产品与8cd6bcc逐字相同。当�
 <!-- evidence: E164-S4Y-APP -->
 
 52号记录新源码独立隔离App、图片/两媒体工具/MiniMax两任务及首次正常退出通过：4本机请求、0真实HTTP，71表旧行保持、四Runtime库WAL0/integrity ok。已修测试模块Clippy位置和计量器非文本限制（38独立测试）。App同构建再开后遇用户操作，等待窗口交接；meter已正常停止，schema5仍0/4新请求，App保留打开。真实非文本及重开历史详情未执行，不晋升S4/final或日常激活。
+
+
+## E164-S4AA-SOURCES
+
+<!-- evidence: E164-S4AA-SOURCES -->
+
+Owner批准53号最小范围后，Contracts→Host→Desktop本地固定。7 Host顶层/25同源URL子例、5 Contracts、6生成入口、19来源及额外native-process检查通过；搜索组件20项通过。额外旧FEAT132 v3样例1项失败已证明基线未变，不能声称全套测试通过。实际新App 20原始来源→18显示/partial，completed、保存/重开零补发，两次正常退出/四库WAL0/integrity；71表旧行保持。1本机HTTP、0新增真实，Runtime/core/日常库未改；详细证据见54及s4aa-index。53真实4HTTP已完成但搜索内容正确性未决，不据此晋升S4/final。

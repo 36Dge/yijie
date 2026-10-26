@@ -1155,6 +1155,8 @@ documents:
   loaded_legacy_and_compaction: 30-s4-loaded-legacy-compaction.md
   native_terminal_repair: 31-s4-native-terminal-repair.md
   r4_app_and_plan_acceptance: 32-s4-r4-app-plan-acceptance.md
+  current_search_fix: 54-search-source-component-fix-and-offline-verification.md
+  current_real_functional: 53-real-functional-results-and-search-source-fix-plan.md
   current_isolated_handoff: 52-isolated-app-functional-qualification-and-handoff.md
   current_daily_preparation: 51-daily-candidate-implementation-and-offline-verification.md
   current_slice_and_daily_plan: 50-slice-evidence-closure-and-daily-deployment-plan.md
@@ -1165,7 +1167,7 @@ external_authorizations:
     max_actions: 1
     approved_by: 段成威
     approved_at: 2026-10-26
-    scope: Owner允许必要真实功能调用且无需精确查价；max_actions=1是本轮自限执行批次，已完成，不是撤销后续必要调用授权。
+    scope: 历史49号自限1次及53号4次功能批次已完成，累计10；Owner必要功能调用授权不因旧次数重复索批。当前54号最小修复明确0新增真实调用，保留全部预占。
     cumulative_amount_limit_cny: 30
     old_ledger_and_reservations_preserved: true
     evidence_ref: 08-verification-report.md#E164-S4V-REAL
@@ -1183,7 +1185,7 @@ current_authorization:
   paused_by_owner: false
   pause_reason: 历史：2026-10-26 18:01因关闭电脑暂停，现已由Owner明确恢复；原paused-handoff保留。
   phase: implementation_with_governance
-  source: Owner要求继续收口，并明确需要调用就直接调用、无需精确计算，目标是功能验证通过/逻辑无误；必要真实功能调用允许，日常迁移/推送/新Runtime核心范围仍未开放。
+  source: Owner最新明确批准53号Host来源URL最小修复及安全离线验证；本阶段0新增真实调用、不访问日常库、不改Runtime核心/补丁，仅本地提交。此前必要功能调用授权按原历史范围保留。
   documentation_write_allowed: true
   product_source_edit_allowed: true
   product_generate_build_test_allowed: true
@@ -1193,10 +1195,41 @@ current_authorization:
   service_lifecycle_allowed: true
   model_or_tool_business_calls_allowed: true
   git_commit_push_branch_release_allowed: false
-  note: 本轮限定1次已完成；30元约束、两旧账本、旧14.188544unknown预占保留。新ledger历史估算14.795856元，不冒称精确账单；后续必要调用最小追加记录，不因旧次数或精确查价重复索批。Runtime核心/补丁仍先方案。
+  note: 54号已完成1次本机/0新增真实；累计真实10、四账本与旧预占保持。53号原生搜索独立费用未结，保留完整新预占；29.343192元为历史估算加预占，非精确账单。日常数据切换和Runtime新核心范围仍须按具体清单确认。
   git_local_commit_allowed: true
   git_scope: 仅FEAT-164必要独立来源/实现/验证/治理本地提交，不混入其它需求；无push/branch/tag/release。
 implementation:
+  search_source_fix_s4aa:
+    status: PASS_APPROVED_OFFLINE_SCOPE
+    report: 54-search-source-component-fix-and-offline-verification.md
+    contracts_commit: c5d138374c102f1a8a11e328a869ec8f91724efd
+    host_commit: 4f966e8ea810d5b094d0b797d291955d6c774844
+    desktop_commit: c98eddfafb789520b4939bdca95bf8b27f28b7b6
+    contract_impact: semantic
+    source_checks: 19
+    source_samples: 25
+    runtime_source_count: 20
+    visible_source_count: 18
+    partial_retained: true
+    same_build_reopen: PASS_ZERO_NEW_HTTP
+    real_http_added: 0
+    synthetic_http_added: 1
+    old_sql_tables_preserved: 71
+    runtime_core_or_patch_changed: false
+    actual_daily_database_open: false
+    all_services_stopped_normally: true
+    full_test_suite: NOT_PASS_UNCHANGED_V3_TEST_BASELINE
+    evidence_ref: 08-verification-report.md#E164-S4AA-SOURCES
+    evidence_index: evidence/s4aa-audit-index.json
+  real_functional_s4z:
+    status: IMAGE_TOOL_PASS_SEARCH_TRANSPORT_PASS_ANSWER_INCONCLUSIVE
+    report: 53-real-functional-results-and-search-source-fix-plan.md
+    real_http_added: 4
+    cumulative_http: 10
+    source_app_commit: 54e961842cb7abe7234e3d643142e99f266ec833
+    same_build_reopen: PASS_ZERO_NEW_HTTP
+    all_services_stopped_normally: true
+    evidence_index: evidence/s4z-audit-index.json
   isolated_app_s4y:
     status: OFFLINE_SUBSET_PASS_REAL_NOT_RUN_WINDOW_HANDOFF
     report: 52-isolated-app-functional-qualification-and-handoff.md
@@ -1210,9 +1243,9 @@ implementation:
     synthetic_http_added: 4
     old_sql_tables_preserved: 71
     first_normal_exit: PASS
-    app_currently_open: true
+    app_currently_open: false
     meter_state: stopped_normally
-    window_handoff: PENDING_OWNER_REPLY
+    window_handoff: COMPLETED_SEE_S4Z
     evidence_ref: 08-verification-report.md#E164-S4Y-APP
     evidence_index: evidence/s4y-audit-index.json
   daily_candidate_s4x:
@@ -1528,7 +1561,7 @@ implementation:
     note: 同一App维护参数在auth/worker/sidecar/UI之前退出；两种旧库自然离线样本成功，现有SQL41候选拒绝后未迁移/清理/退款。两个前置环境失败及后置归因修正保留，不冒充完整G3/final。
 product_verification:
   status: IN_PROGRESS
-  reason: S4R旧隔离库显式受控迁移入口及SQL29/37安全离线资格完成，普通旧guard和日常拒绝保持；当前SQL41候选因1条非ready选择和2份占用正常拒绝，原文件保持。实现位于Desktop隔离bc3b097，主工作区保留原样。完整S2/S3 App、S4/TCONF04及全部final仍缺，真实/本机模型新增0。见45。
+  reason: 第53号真实图片/工具回灌通过、搜索传输通过但答案正确性未决；第54号Host来源误删按批准修复，新同源隔离App与正常重开通过，1本机/0新增真实HTTP。S1—S3原绑定保持，S4完整core/业务状态及日常切换仍待收口；不自动把旧真实资格授予新Host，不开放日常库。
 profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
 owner_approvals:
   requirements: approved_by_owner_current_user_message

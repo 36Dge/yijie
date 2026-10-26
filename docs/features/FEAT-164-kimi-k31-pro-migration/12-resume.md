@@ -1,5 +1,7 @@
 # FEAT-164 续办入口
 
+> 当前权威为[54 来源修复与离线验收](54-search-source-component-fix-and-offline-verification.md)及[53 真实功能结果](53-real-functional-results-and-search-source-fix-plan.md)：Host组件筛选已修复，20原始→18显示、partial保留；新隔离App/重开/正常退出通过，1本机、0新增真实HTTP。此前真实图片/工具回灌已通过，搜索传输通过但答案正确性未决。累计10、旧账本/预占保留，所有服务已停止，无待答交接；日常库仍未授权。下方较早阶段均为历史，不能按旧“余4次”或待批范围重复执行。
+
 > 最新深入复审见[41 关闭方案再审](41-shutdown-plan-deep-review.md)：RCA后6项新unit＋6项RPC及Clippy通过，但listener无退出回执、RPC屏障顺序待修正。四文件候选未晋升；建议仅扩展thread_state/thread_lifecycle两文件，**待新增范围批准**。r5未构建，真实新增0。
 
 > 最新续办见[40 Runtime正常关闭审计与最小方案](40-runtime-shutdown-audit-and-minimal-plan.md)：单次零回合EOF复现未回填WAL，4库只读完整性ok；已收敛所有者排空日志并await四池关闭的候选。**核心/patch尚未修改，待Owner确认**；teardown/core及整项状态不变，真实新增0。

@@ -1,0 +1,12 @@
+{
+  "failed_test": "FEAT-132 readonly native view / validates generated private boundary",
+  "reason": "fixture expects schemaVersion 3 acceptance / 4 rejection against current v4 generated validator; old native fixture also omits current statusSource",
+  "unchanged_from_base": {
+    "src/domain/conversation-native-view.test.ts": true,
+    "src/domain/conversation-view.ts": true,
+    "src/api/generated/native-conversation-validator.gen.js": true,
+    "src/api/generated/native-conversation-private.gen.ts": true
+  },
+  "result": "27 pass / 1 baseline fail; ChatProcessPresentation all 20 pass",
+  "repair_scope": "not change unrelated historical test or relax validator; qualify exact current contract and actual normal App separately"
+}

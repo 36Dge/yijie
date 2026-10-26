@@ -1,0 +1,100 @@
+{
+  "status": "PASS_APPROVED_SEARCH_SOURCE_FIX_OFFLINE_SCOPE",
+  "sources": {
+    "yijie-contracts": "c5d138374c102f1a8a11e328a869ec8f91724efd",
+    "yijie-agent-host": "4f966e8ea810d5b094d0b797d291955d6c774844",
+    "yijie-desktop": "c98eddfafb789520b4939bdca95bf8b27f28b7b6",
+    "yijie-connectors": "cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9",
+    "yijie-codex": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+    "yijie-skills": "595c927ae101d3d31c234f60565041eee0864680"
+  },
+  "app_sha256": "179dbd187220694d4666af5822466572f3b245a911501991cb0194f4308db195",
+  "bundle_files": 119,
+  "runtime_raw_source_count": 20,
+  "host_native_ui_source_count": 18,
+  "conservatively_filtered": 2,
+  "availability": "partial",
+  "new_task": "01a17910-bf4e-7142-af4a-04791d73cae1",
+  "new_task_status": "completed",
+  "old_real_search_saved_sources": 6,
+  "all_71_tables_old_rows_preserved": true,
+  "only_added_rows": {
+    "chat_delivery_proofs": 1,
+    "chat_message_content_blocks": 1,
+    "chat_messages": 2,
+    "chat_model_selections": 1,
+    "chat_native_bindings": 1,
+    "chat_native_facts": 8,
+    "chat_native_views": 1,
+    "chat_operation_models": 2,
+    "chat_outbox": 2,
+    "chat_projects": 1,
+    "chat_public_task_bindings": 1,
+    "chat_scheduled_stopped_generations": 2,
+    "chat_sessions": 1,
+    "chat_task_permissions": 1,
+    "chat_turns": 1
+  },
+  "same_build_reopen_added_http": 0,
+  "synthetic_http_added": 1,
+  "real_model_http_added": 0,
+  "ledger_sha256": {
+    "g2v-real-budget-ledger.json": "2dbd19be2a8bda267437bcf0330fff1af122778388d6e3df965291ec840b7dcf",
+    "g2v-real-budget-ledger-r3.json": "b58101ee9cb0755c721e828864a7fcc39580010b5b482ac7ea83af9a5f28f4ea",
+    "g2v-real-budget-ledger-r5.json": "dc7acd578b049f8e261a5fde0320ee64acdf3fb7028958747c31b61cb1f5a0f1",
+    "g2v-real-budget-ledger-functional.json": "ef1ab17f07ffece0e1ecd073c8750633da6c07319e0007a15a38a82a56a1c0a1"
+  },
+  "normal_shutdown": {
+    "after": {
+      "goals_1.sqlite": {
+        "wal_bytes": 0,
+        "integrity": "ok",
+        "source_sha256": "a209e03413bcd67fce96a362dc548615a12f3fd156eb109a7adedc3e4e2f69bc"
+      },
+      "logs_2.sqlite": {
+        "wal_bytes": 0,
+        "integrity": "ok",
+        "source_sha256": "67f14b093c66ad7e7e9ea2ca7c0bbabbde98d655fc41f819e07c4eee15da70f2"
+      },
+      "memories_1.sqlite": {
+        "wal_bytes": 0,
+        "integrity": "ok",
+        "source_sha256": "3a024e89a5a332532fae51a056397ad732db31eccd3f4160705ea1cb5a94d047"
+      },
+      "state_5.sqlite": {
+        "wal_bytes": 0,
+        "integrity": "ok",
+        "source_sha256": "f57b9a242af996e7b0b2eed3df1d5a9e7df1cc241355ef392e56c893d5a48854"
+      }
+    },
+    "after-reopen": {
+      "goals_1.sqlite": {
+        "wal_bytes": 0,
+        "integrity": "ok",
+        "source_sha256": "b799e885257e0287aa2c131dd7e8d9d595591b369b8080a29a5c947e0aa85e25"
+      },
+      "logs_2.sqlite": {
+        "wal_bytes": 0,
+        "integrity": "ok",
+        "source_sha256": "e00390ed16e9583246534baa8b5de9d35277e3d258c107bf9512e81b2e3384b4"
+      },
+      "memories_1.sqlite": {
+        "wal_bytes": 0,
+        "integrity": "ok",
+        "source_sha256": "5e2295598596628b44c57e959d4e4e987d52d6873e20ecb1db81be57c39f388d"
+      },
+      "state_5.sqlite": {
+        "wal_bytes": 0,
+        "integrity": "ok",
+        "source_sha256": "f6245caa9d92f12223ad93606cbdfaf6a818037a35a496a531707a8d809ff292"
+      }
+    }
+  },
+  "protected_outside_active_qualification": 6498,
+  "original_dirty_files_preserved": 497,
+  "full_suite_status": "NOT PASS: unrelated unchanged FEAT132 v3 fixture baseline failure retained",
+  "daily_access": false,
+  "runtime_core_or_patch_changed": false,
+  "push": false,
+  "next": "S4 remaining evidence/final verdicts and current Host daily prepare-only; actual daily cutover remains not authorized"
+}

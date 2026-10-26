@@ -1,0 +1,85 @@
+{
+  "rows": [
+    {
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "original_max_output_tokens": null,
+      "max_output_tokens": 8192,
+      "image_count": 0,
+      "tool_choice_preserved": "auto",
+      "native_search_omitted": 0,
+      "native_search_include_omitted": [],
+      "request_adjustments": [
+        "bounded_max_output_tokens",
+        "json_encoding"
+      ],
+      "function_output_inputs": 0,
+      "native_search_offered": 1,
+      "ordinal": 8,
+      "status": "settled",
+      "reserved_micro_cny": 14188544,
+      "http_status": 200,
+      "usage": {
+        "input_tokens": 8148,
+        "output_tokens": 185
+      },
+      "function_calls": 1,
+      "function_arguments_sha256": [
+        "daa032c9a936a132ae0019479eb3c3c6885acf4f85f83f811b4add1692112144"
+      ],
+      "native_search_sources_count": 0,
+      "native_search_sources_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "terminal": "response.completed",
+      "response_model": "kimi-k3.1-pro",
+      "terminal_count": 1,
+      "response_status": "completed",
+      "output_text_present": false,
+      "cache_ttl": "5m",
+      "native_search_calls": 0,
+      "forwarded_response_sha256": "80b5ac787da3acb9a674adcb687139d71c62e8fdd2a1b3b13cc122764aaf8d72",
+      "forwarded_response_bytes": 58722,
+      "stream_complete": true,
+      "charged_upper_micro_cny": 118504
+    },
+    {
+      "model": "kimi-k3.1-pro",
+      "effort": "max",
+      "original_max_output_tokens": null,
+      "max_output_tokens": 8192,
+      "image_count": 0,
+      "tool_choice_preserved": "auto",
+      "native_search_omitted": 0,
+      "native_search_include_omitted": [],
+      "request_adjustments": [
+        "bounded_max_output_tokens",
+        "json_encoding"
+      ],
+      "function_output_inputs": 1,
+      "native_search_offered": 1,
+      "ordinal": 9,
+      "status": "settled",
+      "reserved_micro_cny": 14188544,
+      "http_status": 200,
+      "usage": {
+        "input_tokens": 8407,
+        "output_tokens": 34
+      },
+      "function_calls": 0,
+      "function_arguments_sha256": [],
+      "native_search_sources_count": 0,
+      "native_search_sources_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "terminal": "response.completed",
+      "response_model": "kimi-k3.1-pro",
+      "terminal_count": 1,
+      "response_status": "completed",
+      "output_text_present": true,
+      "cache_ttl": "5m",
+      "native_search_calls": 0,
+      "forwarded_response_sha256": "96fe55785bacb925aa27c42607bbcdbd2eee29266d889962a266de961e5abeec",
+      "forwarded_response_bytes": 42180,
+      "stream_complete": true,
+      "charged_upper_micro_cny": 111603
+    }
+  ],
+  "next_reservation_fits": true
+}

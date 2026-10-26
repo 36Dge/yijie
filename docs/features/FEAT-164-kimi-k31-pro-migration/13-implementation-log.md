@@ -111,3 +111,8 @@ Owner明确批准第50号8文件及测试/文档，禁止日常迁移。Desktop 
 ## 2026-10-26/27 S4Y新源码隔离复验
 
 Desktop 54e961842cb7abe7234e3d643142e99f266ec833仅移动已有测试模块，严格Clippy lib/bins/tests及原读取测试通过；独立canonical App119文件、19来源、图片媒体与MiniMax两任务4本机请求/正常退出通过。工具a35e619e297c793ebb6cfb08730ab558f2924356增加schema5非文本闭环与38独立验证，旧三账本/预占保留。窗口被用户接管后请求交接，真实0/4；meter正常停止、App留开，剩余步骤见52及handoff。无日常数据迁移、Runtime核心/补丁或push。
+
+
+## 2026-10-27 S4Z真实结果与S4AA来源修复
+
+53记录真实图片/工具回灌及搜索传输、正常重开，新增4/累计10，搜索答案未决与费用预占保留。Owner随后批准最小来源URL组件修复；54记录Contracts c5d138374c102f1a8a11e328a869ec8f91724efd → Host 4f966e8ea810d5b094d0b797d291955d6c774844 → Desktop c98eddfafb789520b4939bdca95bf8b27f28b7b6，普通样例/来源及实际新App20→18/partial、保存重开和两次正常退出通过，新增真实0/本机1。全局脱敏/Runtime/日常库不改，旧V3测试基线FAIL保留；仅本地固化，完整FEAT164未完成。
