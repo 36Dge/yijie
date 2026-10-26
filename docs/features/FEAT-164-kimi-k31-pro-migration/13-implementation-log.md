@@ -97,3 +97,7 @@ Owner交回窗口后按同一批准追加3次HTTP（累计5），三个目的为
 ## S4M：正常关闭审计与方案落盘
 
 用户要求核心或补丁修改先确认。本轮实际单次r4 initialize/initialized/EOF exit0，state/goals/memories仍有未backfill WAL，logs无WAL，四个完整副本integrity_check均ok。19固定源码、10patch、6依赖来源核对；产品/patch/binary零改动，无App/UI，真实HTTP0。40号所有者有序关闭方案待批准，四文件范围与Contract First依赖明确；原账本/预占/原候选/日常库保留，仅本地固化治理。
+
+## S4N：四文件实施、lint RCA及深入再审
+
+Owner批准40号后在canonical临时源码形成0011四文件候选，原源码/binary不变。经历测试构造器类型修正和三次Clippy失败后按规则停止/RCA；一次fresh资格6新unit＋6RPC及Clippy通过。随后按Owner再次审计要求，发现listener未跟踪完成和RPC等待顺序风险；41号给出最小六文件方案，新增两文件尚未批准。未构建r5、未提交Runtime、未更新下游，原真实账本和数据保持，新增真实0。

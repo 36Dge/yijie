@@ -1,0 +1,18 @@
+    Checking codex-features v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4n-audit-20261026/runtime-source/features)
+    Checking codex-windows-sandbox v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4n-audit-20261026/runtime-source/windows-sandbox-rs)
+    Checking codex-state v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4n-audit-20261026/runtime-source/state)
+    Checking codex-rollout-trace v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4n-audit-20261026/runtime-source/rollout-trace)
+    Checking codex-sandboxing v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4n-audit-20261026/runtime-source/sandboxing)
+    Checking codex-config v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4n-audit-20261026/runtime-source/config)
+    Checking codex-exec-server v0.144.6 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4n-audit-20261026/runtime-source/exec-server)
+error: redundant closure
+   --> state/src/log_db.rs:206:23
+    |
+206 |             .wait_for(|result| result.is_some())
+    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^ help: replace the closure with the method itself: `std::option::Option::is_some`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.95.0/index.html#redundant_closure_for_method_calls
+    = note: requested on the command line with `-D clippy::redundant-closure-for-method-calls`
+
+error: could not compile `codex-state` (lib) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...

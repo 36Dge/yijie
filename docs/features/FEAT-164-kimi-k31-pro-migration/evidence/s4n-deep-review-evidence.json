@@ -1,0 +1,63 @@
+{
+  "at": "2026-10-26T09:53:06.651142+08:00",
+  "four_file_patch_sha256": "693224645fd1450ec74cad01c393e0f28989dc07f92a51f9198ad9aea0cc7cdb",
+  "current_qualification": {
+    "new_unit_pass": 6,
+    "rpc_gate_unit_pass": 6,
+    "clippy_exit": 0,
+    "fresh_canonical_replay": true,
+    "binary_built": false,
+    "loaded_thread_listener_join_qualified": false
+  },
+  "sources": [
+    {
+      "path": "codex-rs/app-server/src/connection_rpc_gate.rs",
+      "commit": "a28130abb13d0f99a00107cd513a653bae878b77",
+      "sha256": "63d1df8c0e33190933d64d2144de78c8cf7735b3bde501075943d48c174d8c19",
+      "start": 16,
+      "end": 52,
+      "excerpt": "impl ConnectionRpcGate {\n    pub(crate) fn new() -> Self {\n        let accepting = true;\n        Self {\n            accepting: Mutex::new(accepting),\n            tasks: TaskTracker::new(),\n        }\n    }\n\n    pub(crate) async fn run<F>(&self, future: F)\n    where\n        F: Future<Output = ()>,\n    {\n        let token = {\n            let accepting = self.accepting.lock().await;\n            if !*accepting {\n                return;\n            }\n            self.tasks.token()\n        };\n\n        future.await;\n        drop(token);\n    }\n\n    pub(crate) async fn close(&self) {\n        let mut accepting = self.accepting.lock().await;\n        *accepting = false;\n        self.tasks.close();\n    }\n\n    pub(crate) async fn shutdown(&self) {\n        self.close().await;\n        self.tasks.wait().await;\n    }\n\n    #[cfg(test)]"
+    },
+    {
+      "path": "codex-rs/app-server/src/message_processor.rs",
+      "commit": "a28130abb13d0f99a00107cd513a653bae878b77",
+      "sha256": "2607559ee2d298d2fc7a46dced4cd205c4ef9475ca6b829aaaeac18368ec1df1",
+      "start": 696,
+      "end": 727,
+      "excerpt": "        &self,\n        connection_id: ConnectionId,\n        session_state: &ConnectionSessionState,\n    ) {\n        if timeout(\n            CONNECTION_RPC_DRAIN_TIMEOUT,\n            session_state.rpc_gate.shutdown(),\n        )\n        .await\n        .is_err()\n        {\n            tracing::warn!(\n                ?connection_id,\n                timeout_seconds = CONNECTION_RPC_DRAIN_TIMEOUT.as_secs(),\n                \"timed out waiting for connection RPCs to drain\"\n            );\n        }\n        self.outgoing.connection_closed(connection_id).await;\n        self.fs_processor.connection_closed(connection_id).await;\n        self.command_exec_processor\n            .connection_closed(connection_id)\n            .await;\n        self.process_exec_processor\n            .connection_closed(connection_id)\n            .await;\n        self.thread_processor.connection_closed(connection_id).await;\n    }\n\n    pub(crate) fn subscribe_running_assistant_turn_count(&self) -> watch::Receiver<usize> {\n        self.thread_processor\n            .subscribe_running_assistant_turn_count()\n    }"
+    },
+    {
+      "path": "codex-rs/app-server/src/thread_state.rs",
+      "commit": "a28130abb13d0f99a00107cd513a653bae878b77",
+      "sha256": "4d78101755b83eaa800ccaa211093ffcd1ff7a52686de7cb221eb119e230e63b",
+      "start": 101,
+      "end": 127,
+      "excerpt": "    pub(crate) fn set_listener(\n        &mut self,\n        cancel_tx: oneshot::Sender<()>,\n        conversation: &Arc<CodexThread>,\n        watch_registration: WatchRegistration,\n        thread_settings_baseline: ThreadSettings,\n    ) -> (mpsc::UnboundedReceiver<ThreadListenerCommand>, u64) {\n        if let Some(previous) = self.cancel_tx.replace(cancel_tx) {\n            let _ = previous.send(());\n        }\n        self.listener_generation = self.listener_generation.wrapping_add(1);\n        self.last_thread_settings = Some(thread_settings_baseline);\n        let (listener_command_tx, listener_command_rx) = mpsc::unbounded_channel();\n        self.listener_command_tx = Some(listener_command_tx);\n        self.listener_thread = Some(Arc::downgrade(conversation));\n        self.watch_registration = watch_registration;\n        (listener_command_rx, self.listener_generation)\n    }\n\n    pub(crate) fn clear_listener(&mut self) {\n        if let Some(cancel_tx) = self.cancel_tx.take() {\n            let _ = cancel_tx.send(());\n        }\n        self.listener_command_tx = None;\n        self.current_turn_history.reset();\n        self.listener_thread = None;\n        self.watch_registration = WatchRegistration::default();"
+    },
+    {
+      "path": "codex-rs/app-server/src/thread_state.rs",
+      "commit": "a28130abb13d0f99a00107cd513a653bae878b77",
+      "sha256": "4d78101755b83eaa800ccaa211093ffcd1ff7a52686de7cb221eb119e230e63b",
+      "start": 424,
+      "end": 445,
+      "excerpt": "    pub(crate) async fn clear_all_listeners(&self) {\n        let thread_states = {\n            let state = self.state.lock().await;\n            state\n                .threads\n                .iter()\n                .map(|(thread_id, thread_entry)| (*thread_id, thread_entry.state.clone()))\n                .collect::<Vec<_>>()\n        };\n\n        for (thread_id, thread_state) in thread_states {\n            self.unregister_listener_command_tx(thread_id);\n            let mut thread_state = thread_state.lock().await;\n            tracing::debug!(\n                thread_id = %thread_id,\n                listener_generation = thread_state.listener_generation,\n                had_listener = thread_state.cancel_tx.is_some(),\n                had_active_turn = thread_state.active_turn_snapshot().is_some(),\n                \"clearing thread listener during app-server shutdown\"\n            );\n            thread_state.clear_listener();\n        }"
+    },
+    {
+      "path": "codex-rs/app-server/src/request_processors/thread_lifecycle.rs",
+      "commit": "a28130abb13d0f99a00107cd513a653bae878b77",
+      "sha256": "967be0a484c8c24353515e18263b72d75c2a6680e90b151b14555df71b6fa0e7",
+      "start": 265,
+      "end": 386,
+      "excerpt": "    let ListenerTaskContext {\n        outgoing,\n        thread_manager,\n        thread_state_manager,\n        pending_thread_unloads,\n        thread_watch_manager,\n        thread_list_state_permit,\n        fallback_model_provider,\n        codex_home,\n        ..\n    } = listener_task_context;\n    let outgoing_for_task = Arc::clone(&outgoing);\n    tokio::spawn(async move {\n        loop {\n            tokio::select! {\n                biased;\n                _ = &mut cancel_rx => {\n                    // Listener was superseded or the thread is being torn down.\n                    break;\n                }\n                listener_command = listener_command_rx.recv() => {\n                    let Some(listener_command) = listener_command else {\n                        break;\n                    };\n                    handle_thread_listener_command(\n                        conversation_id,\n                        &conversation,\n                        codex_home.as_path(),\n                        &thread_state_manager,\n                        &thread_state,\n                        &thread_watch_manager,\n                        &outgoing_for_task,\n                        &pending_thread_unloads,\n                        listener_command,\n                    )\n                    .await;\n                }\n                event = conversation.next_event() => {\n                    let event = match event {\n                        Ok(event) => event,\n                        Err(err) => {\n                            tracing::warn!(\"thread.next_event() failed with: {err}\");\n                            break;\n                        }\n                    };\n\n                    // Track the event before emitting any typed translations\n                    // so thread-local state such as raw event opt-in stays\n                    // synchronized with the conversation.\n                    let raw_events_enabled = {\n                        let mut thread_state = thread_state.lock().await;\n                        thread_state.track_current_turn_event(&event.id, &event.msg);\n                        thread_state.experimental_raw_events\n                    };\n                    if matches!(&event.msg, EventMsg::RawResponseItem(_)) && !raw_events_enabled {\n                        continue;\n                    }\n                    let subscribed_connection_ids = thread_state_manager\n                        .subscribed_connection_ids(conversation_id)\n                        .await;\n                    let thread_outgoing = ThreadScopedOutgoingMessageSender::new(\n                        outgoing_for_task.clone(),\n                        subscribed_connection_ids,\n                        conversation_id,\n                    );\n\n                    apply_bespoke_event_handling(\n                        event.clone(),\n                        conversation_id,\n                        conversation.clone(),\n                        thread_manager.clone(),\n                        thread_outgoing,\n                        thread_state.clone(),\n                        thread_watch_manager.clone(),\n                        thread_list_state_permit.clone(),\n                        fallback_model_provider.clone(),\n                    )\n                    .await;\n                }\n                unloading_watchers_open = unloading_state.wait_for_unloading_trigger() => {\n                    if !unloading_watchers_open {\n                        break;\n                    }\n                    if !unloading_state.should_unload_now() {\n                        continue;\n                    }\n                    if matches!(conversation.agent_status().await, AgentStatus::Running) {\n                        unloading_state.note_thread_activity_observed();\n                        continue;\n                    }\n                    {\n                        let mut pending_thread_unloads = pending_thread_unloads.lock().await;\n                        if pending_thread_unloads.contains(&conversation_id) {\n                            continue;\n                        }\n                        if !unloading_state.should_unload_now() {\n                            continue;\n                        }\n                        pending_thread_unloads.insert(conversation_id);\n                    }\n                    unload_thread_without_subscribers(\n                        thread_manager.clone(),\n                        outgoing_for_task.clone(),\n                        pending_thread_unloads.clone(),\n                        thread_state_manager.clone(),\n                        thread_watch_manager.clone(),\n                        conversation_id,\n                        conversation.clone(),\n                    )\n                    .await;\n                    break;\n                }\n            }\n        }\n\n        let mut thread_state = thread_state.lock().await;\n        if thread_state.listener_generation == listener_generation {\n            thread_state_manager.unregister_listener_command_tx(conversation_id);\n            thread_state.clear_listener();\n        }\n    });\n    Ok(())"
+    },
+    {
+      "path": "codex-rs/app-server/src/request_processors/thread_lifecycle.rs",
+      "commit": "a28130abb13d0f99a00107cd513a653bae878b77",
+      "sha256": "967be0a484c8c24353515e18263b72d75c2a6680e90b151b14555df71b6fa0e7",
+      "start": 681,
+      "end": 698,
+      "excerpt": "    if pending.emit_thread_goal_update {\n        if let Some(state_db) = pending.thread_goal_state_db {\n            send_thread_goal_snapshot_notification(outgoing, conversation_id, &state_db).await;\n        } else {\n            tracing::warn!(\n                thread_id = %conversation_id,\n                \"state db unavailable when reading thread goal for running thread resume\"\n            );\n        }\n    }\n    outgoing\n        .replay_requests_to_connection_for_thread(connection_id, conversation_id)\n        .await;\n    // App-server owns resume response and snapshot ordering, so wait until\n    // replay completes before letting extensions react to the idle thread.\n    if pending.emit_thread_goal_update {\n        conversation.emit_thread_idle_lifecycle_if_idle().await;\n    }"
+    }
+  ],
+  "real_model_http_added": 0
+}

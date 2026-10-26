@@ -1,5 +1,13 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 S4N深入复审待扩范围（2026-10-26）
+
+Owner已明确批准40号四文件Runtime最小修复、独立r5、必要Contract First下游和零真实模型验证。后又要求深入分析失败、再次审计方案后执行。当前权威[41](../features/FEAT-164-kimi-k31-pro-migration/41-shutdown-plan-deep-review.md)：三次Clippy失败已熔断/RCA，一次fresh重资格6新unit＋6RPC及Clippy通过；但新审计发现listener直接spawn无join/跟踪，clear仅发cancel，及前置RPC无限等待的顺序风险。不能因此构建或晋升四文件候选。
+
+推荐六文件范围：原app-server/lib、message_processor、thread_processor、state/log_db加app-server/thread_state和request_processors/thread_lifecycle。仅新增listener每实例注册/任务跟踪与正常等待；保留in-process共享所有权。**新增两文件未批准，尚未修改**；需要明确范围确认，不继承泛授权静默扩张。Runtime现有Makefile/0011/r5脚本为本轮未提交候选，临时源码在feat164-s4n-audit-20261026/runtime-source；四文件patch快照已保留。r5未构建，Contracts/Host/Desktop未改，旧r4及当前App保持，真实新增0。新r5 EOF验证必须保留完整home，不能用自动删TemporaryDirectory的历史smoke。
+
+6+6静态资格不是真实loaded listener/checkpoint/完整teardown PASS。S2/S3/S4/core/日常cutover缺项及两份账本、5/5、14.679001元保守账与14.188544元预占不变。无运行中的检查/Runtime或UI交接。收到新增范围批准后先完成41号安全单元及fresh源码资格，再独立r5/原生零turn loaded-thread EOF，失败即停；不得机械重跑/强杀/清WAL。
+
 ## FEAT-164 S4M正常关闭审计与待确认方案（2026-10-26）
 
 最新权威[40](../features/FEAT-164-kimi-k31-pro-migration/40-runtime-shutdown-audit-and-minimal-plan.md)。Owner授权先审计，核心/补丁必须先确认。本轮未修改产品、Runtime、补丁或binary；19固定源码/10现有patch/6依赖核对，独立空home一次initialize/initialized/正常EOF，真实模型0。退出exit0、非强制；state/goals/memories留有nBackfill0 WAL，logs此次无WAL；四库完整副本mode=ro integrity_check均ok，原候选/日常库/旧账本逐字保持。

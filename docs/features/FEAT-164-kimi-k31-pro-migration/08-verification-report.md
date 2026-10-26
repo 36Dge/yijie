@@ -1,5 +1,7 @@
 # FEAT-164 实际验证记录
 
+> 最新深入复审见[41 关闭方案再审](41-shutdown-plan-deep-review.md)：RCA后6项新unit＋6项RPC及Clippy通过，但listener无退出回执、RPC屏障顺序待修正。四文件候选未晋升；建议仅扩展thread_state/thread_lifecycle两文件，**待新增范围批准**。r5未构建，真实新增0。
+
 > 最新续办见[40 Runtime正常关闭审计与最小方案](40-runtime-shutdown-audit-and-minimal-plan.md)：单次零回合EOF复现未回填WAL，4库只读完整性ok；已收敛所有者排空日志并await四池关闭的候选。**核心/patch尚未修改，待Owner确认**；teardown/core及整项状态不变，真实新增0。
 
 > 最新按[39 证据绑定与三项最终验收](39-evidence-binding-and-final-verdicts.md)：当前来源141项＋4source和可达App验证通过，新增真实模型0；S1证据收口，S2/S3/S4保留完整纵向缺项。视觉单项PASS；core及Runtime checkpoint完整teardown未通过。两份真实账本、旧预占和日常库保持。以下旧记录按原时间与来源解释。

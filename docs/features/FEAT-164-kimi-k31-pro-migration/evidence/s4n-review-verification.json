@@ -1,0 +1,59 @@
+{
+  "at": "2026-10-26T09:54:12.727992+08:00",
+  "checks": [
+    {
+      "name": "claims",
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--audit-claims",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4"
+    },
+    {
+      "name": "strict",
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "sha256": "0f6377b2cf2e6dba2d18bcba312d28530dafd7d4a1f423d7affcf223fed72bce"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exit_code": 0,
+      "sha256": "9a1a92614b4c74efdfa6d5d7d6ec9d1d2e70680bc3386237ba244fd67b68ad57"
+    },
+    {
+      "name": "meta-test",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exit_code": 0,
+      "sha256": "cd2c956f41c441a71a90e10f0be23b0a84bef45ea81c6c997a696ad4fcb347e5"
+    }
+  ],
+  "preservation": {
+    "dirty_files": 497,
+    "protected_files": 7643,
+    "product_heads_unchanged": true,
+    "canonical_runtime_unchanged": true,
+    "new_two_file_scope_not_implemented": true,
+    "r5_not_built": true,
+    "runtime_patch_not_committed": true,
+    "real_model_http_added": 0,
+    "ledger_sha256": {
+      "g2v-real-budget-ledger.json": "2dbd19be2a8bda267437bcf0330fff1af122778388d6e3df965291ec840b7dcf",
+      "g2v-real-budget-ledger-r3.json": "b58101ee9cb0755c721e828864a7fcc39580010b5b482ac7ea83af9a5f28f4ea"
+    }
+  }
+}
