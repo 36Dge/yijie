@@ -1,0 +1,43 @@
+{
+  "at": "2026-10-26T23:13:40.370107+08:00",
+  "result": "PASS_PREPARE_ONLY",
+  "command": [
+    "node",
+    "scripts/kimi-k31-packaged-receipt.mjs",
+    "--check",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4x-daily-candidate-20261026/yijie-codex/.yijie/build/kimi-k31-pro-r5/aarch64-apple-darwin/codex",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4x-daily-candidate-20261026/yijie-codex/.yijie/build/kimi-k31-pro-r5/aarch64-apple-darwin/runtime-manifest.json"
+  ],
+  "exit_code": 0,
+  "app_commit": "ec1ab631d76d2f6ba2c74e25eaac1ea60339dfb4",
+  "bundle": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4x-daily-candidate-20261026/yijie-desktop/src-tauri/target/debug/bundle/macos/\u6613\u754c AI.app",
+  "identifier": "com.yijie.ai",
+  "bundle_files": 119,
+  "app_sha256": "edf9a13820819aaeb260d216cddeb7e5291214be7cc17b76c6f67764a5f227d4",
+  "receipt_sha256": "c4401b7ebf04f997bdd4a704dca3070a5c1d14d5b94616704aeb96a270f4d657",
+  "runtime": {
+    "sha256": "283d12e16b124942302fcdc8281c729a8a7f676498f06df1d2646292905f579e",
+    "bytes": 356655704,
+    "mode": 493
+  },
+  "host": {
+    "sha256": "1d880cb0f6b990940583abf875fc9b7c551e1135174d675f3caae43ed6f0118c",
+    "bytes": 18011138,
+    "mode": 493
+  },
+  "worker": {
+    "sha256": "8fda415d596caa24c13dab8a3f3ce5765013e0a94f0ae36739b9e43f2f6660f8",
+    "bytes": 84426528,
+    "mode": 493
+  },
+  "adapter": {
+    "sha256": "dff26bf712e993f7b828bc96186ecedd3ca53f5ab5b9ec0c4f64e3ddc8c56bc9",
+    "bytes": 19818576,
+    "mode": 493
+  },
+  "workflow_build_flag": true,
+  "workflow_config": "src-tauri/tauri.workflow-local.conf.json",
+  "app_launch": false,
+  "real_http": 0,
+  "daily_database_connection": false
+}

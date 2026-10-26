@@ -1,0 +1,30 @@
+{
+  "first_result": "FAIL host-skills: missing legacy pinned source checkout in new directory",
+  "second_result": "setup parent .local missing; shell continued to unchanged check; same failure, no generated source edits",
+  "product_change": false,
+  "lock_change": false,
+  "correction": [
+    {
+      "name": "agent-host-pinned-1b7bfd1",
+      "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/agent-host-pinned-1b7bfd1",
+      "commit": "1b7bfd1ce4323e52035b2ba1e62842c2d332d9ed",
+      "dirty": false,
+      "usage": "existing pinned source reused read-only"
+    },
+    {
+      "name": "agent-host-pinned-96b1fa1",
+      "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/agent-host-pinned-96b1fa1",
+      "commit": "96b1fa19783694aef583b614c492fd2b6b5c15cc",
+      "dirty": false,
+      "usage": "existing pinned source reused read-only"
+    },
+    {
+      "name": "skills-pinned-10c45be",
+      "source": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4f-qualification-20261025/yijie-desktop/.local/skills-pinned-10c45be",
+      "commit": "10c45bec29603b002e861e1499d5b4e684251af5",
+      "dirty": false,
+      "usage": "existing pinned source reused read-only"
+    }
+  ],
+  "next": "single full check only after checked parent/link creation"
+}

@@ -1,0 +1,75 @@
+[
+  {
+    "name": "final-shell",
+    "command": [
+      "bash",
+      "-n",
+      "scripts/run-local-demo-fast.sh"
+    ],
+    "exit_code": 0,
+    "at": "2026-10-26T23:06:50.171953+08:00"
+  },
+  {
+    "name": "final-node",
+    "command": [
+      "node",
+      "--test",
+      "scripts/tests/feat164-candidate-closure.test.mjs",
+      "scripts/tests/feat164-daily-profile.test.mjs"
+    ],
+    "exit_code": 0,
+    "at": "2026-10-26T23:06:50.330064+08:00"
+  },
+  {
+    "name": "final-fmt",
+    "command": [
+      "cargo",
+      "fmt",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--check"
+    ],
+    "exit_code": 0,
+    "at": "2026-10-26T23:06:51.117570+08:00"
+  },
+  {
+    "name": "compiled-identity",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "--lib",
+      "feat164_qualification::tests::",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "at": "2026-10-26T23:06:58.923547+08:00"
+  },
+  {
+    "name": "final-clippy",
+    "command": [
+      "cargo",
+      "clippy",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--lib",
+      "--bins",
+      "--tests",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit_code": 101,
+    "at": "2026-10-26T23:07:20.678947+08:00"
+  }
+]

@@ -1,0 +1,16 @@
+    Checking yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4x-daily-candidate-20261026/yijie-desktop/src-tauri)
+error: items after a test module
+  --> src/chat/native_conversation_storage.rs:46:1
+   |
+46 | mod source_reader_tests {
+   | ^^^^^^^^^^^^^^^^^^^^^^^
+...
+87 | impl ChatRepository {
+   | ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.95.0/index.html#items_after_test_module
+   = note: `-D clippy::items-after-test-module` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::items_after_test_module)]`
+   = help: move the items to before the test module was defined
+
+error: could not compile `yijie-desktop` (lib test) due to 1 previous error

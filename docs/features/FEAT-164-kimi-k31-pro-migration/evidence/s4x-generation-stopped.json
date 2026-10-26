@@ -1,0 +1,82 @@
+{
+  "feature": "FEAT-164",
+  "scope": "source generation only; legacy default check unchanged; not App/G2V/G3/release",
+  "sources": {
+    "yijie-desktop": {
+      "head": "ec1ab631d76d2f6ba2c74e25eaac1ea60339dfb4",
+      "dirty": false,
+      "realPath": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4x-daily-candidate-20261026/yijie-desktop"
+    },
+    "yijie-contracts": {
+      "head": "ca06d0999c9a08afe80ab3f34a537d492b830ac7",
+      "dirty": false,
+      "realPath": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4x-daily-candidate-20261026/yijie-contracts"
+    },
+    "yijie-agent-host": {
+      "head": "8cd6bccbdc1ac3906aea53d95441299f7cfefcce",
+      "dirty": false,
+      "realPath": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4x-daily-candidate-20261026/yijie-agent-host"
+    },
+    "yijie-connectors": {
+      "head": "cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9",
+      "dirty": false,
+      "realPath": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4x-daily-candidate-20261026/yijie-connectors"
+    },
+    "yijie-codex": {
+      "head": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+      "dirty": false,
+      "realPath": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex"
+    },
+    "yijie-skills": {
+      "head": "595c927ae101d3d31c234f60565041eee0864680",
+      "dirty": false,
+      "realPath": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/skills-s4-source"
+    }
+  },
+  "real_model_http": 0,
+  "checks": [
+    {
+      "id": "public-api",
+      "repository": "yijie-desktop",
+      "command": [
+        "node",
+        "scripts/generate-public-api.mjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "sha256": "9e2e358af466aadd0928096d838fea786c2100a23040354d635dd00efebc98b2"
+    },
+    {
+      "id": "host-v2",
+      "repository": "yijie-desktop",
+      "command": [
+        "node",
+        "scripts/check-agent-host-contract.mjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "sha256": "1ad011f590275fc04524dcb4301927e66f649cdad66d5d2810aeb7a378c0fac2"
+    },
+    {
+      "id": "host-v3",
+      "repository": "yijie-desktop",
+      "command": [
+        "node",
+        "scripts/check-agent-host-v3-contract.mjs"
+      ],
+      "exit_code": 0,
+      "sha256": "148e75003ef63b6f9635335ed0a8ea6ecd6bc0ed8dee40dd921bc3ddfeb2b8b5"
+    },
+    {
+      "id": "host-skills",
+      "repository": "yijie-desktop",
+      "command": [
+        "node",
+        "scripts/check-agent-host-skills-contract.mjs"
+      ],
+      "exit_code": 1,
+      "sha256": "23d19559c3c143565018263c30f2a2976bbb52232319edfe77fb2dbad6cfca89"
+    }
+  ],
+  "status": "FAIL"
+}

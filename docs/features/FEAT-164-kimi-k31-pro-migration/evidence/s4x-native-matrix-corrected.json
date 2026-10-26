@@ -1,0 +1,81 @@
+[
+  {
+    "name": "produce37-corrected",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--lib",
+      "chat::schedules::feat164_natural_plan_tests::feat164_natural_plan_upgrade",
+      "--",
+      "--exact",
+      "--nocapture",
+      "--test-threads=1",
+      "--ignored"
+    ],
+    "started_at": "2026-10-26T22:56:27.066137+08:00",
+    "finished_at": "2026-10-26T22:56:28.437157+08:00",
+    "exit_code": 0,
+    "passed": true,
+    "source_head": "9f5814fec6cd071d39f0c12f8f48097ce661cb6a",
+    "source_state": "8 implementation files and tests reviewed dirty candidate",
+    "real_model_http": 0
+  },
+  {
+    "name": "isolated-migrate37",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--lib",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "chat::database::isolated_model_migration::tests::feat164_controlled_isolated_migration",
+      "--",
+      "--exact",
+      "--nocapture",
+      "--test-threads=1",
+      "--ignored"
+    ],
+    "started_at": "2026-10-26T22:56:28.437447+08:00",
+    "finished_at": "2026-10-26T22:56:30.994467+08:00",
+    "exit_code": 0,
+    "passed": true,
+    "source_head": "9f5814fec6cd071d39f0c12f8f48097ce661cb6a",
+    "source_state": "8 implementation files and tests reviewed dirty candidate",
+    "real_model_http": 0
+  },
+  {
+    "name": "daily-migrate37",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--lib",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "chat::database::isolated_model_migration::tests::feat164_controlled_daily_migration",
+      "--",
+      "--exact",
+      "--nocapture",
+      "--test-threads=1",
+      "--ignored"
+    ],
+    "started_at": "2026-10-26T22:56:30.994647+08:00",
+    "finished_at": "2026-10-26T22:56:33.473987+08:00",
+    "exit_code": 0,
+    "passed": true,
+    "source_head": "9f5814fec6cd071d39f0c12f8f48097ce661cb6a",
+    "source_state": "8 implementation files and tests reviewed dirty candidate",
+    "real_model_http": 0
+  }
+]

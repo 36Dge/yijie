@@ -1,0 +1,18 @@
+{
+  "command": [
+    "cargo",
+    "clippy",
+    "--offline",
+    "--locked",
+    "--manifest-path",
+    "src-tauri/Cargo.toml",
+    "--lib",
+    "--bins",
+    "--features",
+    "kimi-k31-pro-candidate",
+    "--",
+    "-D",
+    "warnings"
+  ],
+  "exit_code": 0
+}

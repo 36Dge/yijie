@@ -1,0 +1,11 @@
+{
+  "failure_stage": "offline matrix producer postcondition",
+  "expected_schema": 37,
+  "observed_schema": 36,
+  "root_cause": "driver enabled artifact-media only; current constants are ARTIFACT_MEDIA=36 and CONNECTOR_SUSPEND=37",
+  "product_migration_ran_for_wrong_source": false,
+  "preserved_wrong_version_fixture": true,
+  "fix": "new retained source directory with normal legacy market-connectors profile enabled; verify37 before either migration",
+  "no_product_change_for_fix": true,
+  "no_real_or_loopback_model_http": true
+}

@@ -1,0 +1,36 @@
+[
+  {
+    "name": "feature-strict",
+    "command": [
+      "bash",
+      "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+      "--strict",
+      "docs/features/FEAT-164-kimi-k31-pro-migration"
+    ],
+    "exit_code": 0,
+    "at": "2026-10-26T23:18:11.375971+08:00"
+  },
+  {
+    "name": "meta-lint",
+    "command": [
+      "pnpm",
+      "lint"
+    ],
+    "exit_code": 0,
+    "at": "2026-10-26T23:18:11.686345+08:00"
+  },
+  {
+    "name": "meta-tests",
+    "command": [
+      "pnpm",
+      "test"
+    ],
+    "exit_code": 0,
+    "at": "2026-10-26T23:18:20.527346+08:00"
+  },
+  {
+    "name": "meta-shell-syntax",
+    "scripts": 7,
+    "exit_code": 0
+  }
+]

@@ -1,5 +1,13 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 S4X：日常候选离线准备完成（2026-10-26）
+
+最新[51](../features/FEAT-164-kimi-k31-pro-migration/51-daily-candidate-implementation-and-offline-verification.md)。Owner批准50的8实现文件及测试文档、明确“不迁移日常库”。新目录feat164-s4x-daily-candidate-20261026/Desktop ec1ab631d76d2f6ba2c74e25eaac1ea60339dfb4共12文件；显式daily prepare-only/维护、精确compiled identity与flags、完整workflow/market/expert/media、独立回执实现。原主树fd0c575/100dirty未覆盖，Runtime/core/patch零改。
+
+SQL29/37隔离与daily四组合、S2 32/S3 5、Node8/identity2/feature-off1、19来源、产品Clippy、lint/docs及canonical日常prepare-only通过；119文件App edf9a13820819aaeb260d216cddeb7e5291214be7cc17b76c6f67764a5f227d4，同源receipt c4401b7ebf04f997bdd4a704dca3070a5c1d14d5b94616704aeb96a270f4d657。SQL37配置和缺旧checkout的失败/RCA保留；扩展全测试Clippy仍FAIL_BASELINE native_conversation_storage.rs items_after_test_module，不假称全量CI通过。
+
+新App未启动，真实日常库未连接/解密/迁移，模型0；11953原文件/498原dirty核对保持、六来源干净、无活动项目服务。旧三账本/14.188544预占/30元保持。S1-S3/G2V/teardown仍绑定旧9f隔离App42a23cf，不自动继承daily候选；本轮OFFLINE_PREPARED_NOT_ACTIVATED，完整S4/final未完。下一步优先以新源码固定隔离identity补适用业务资格，再具体呈报真实日常备份/只读预检/维护授权；禁止直接启动daily App试错、放宽occupied guard或回写旧库。外观三专项仍移除，必要模型功能授权不需重复索批，但本阶段仅离线。仅本地提交，不推送。
+
 ## FEAT-164 S4W：S1—S3收口、日常候选实现已批准（2026-10-26）
 
 最新[50](../features/FEAT-164-kimi-k31-pro-migration/50-slice-evidence-closure-and-daily-deployment-plan.md)。76项定向检查通过（S1 11/S2 60/S3 5），当前同源暂停App Kimi禁用、MiniMax可选、历史42可读，0模型尝试；正常退出/71表旧行/4库WAL0。S2真实Native→Host→r5边界1次MiniMax合成，正常重启/取消零POST，完整home保留。Host f97d2216001e78df02e93c972a6aec2e1d772f58仅一个测试保留逻辑，299非测试产品文件仍等于8cd，App/Runtime不改。317项旧证据hash核对通过。

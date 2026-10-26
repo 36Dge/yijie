@@ -1155,6 +1155,7 @@ documents:
   loaded_legacy_and_compaction: 30-s4-loaded-legacy-compaction.md
   native_terminal_repair: 31-s4-native-terminal-repair.md
   r4_app_and_plan_acceptance: 32-s4-r4-app-plan-acceptance.md
+  current_daily_preparation: 51-daily-candidate-implementation-and-offline-verification.md
   current_slice_and_daily_plan: 50-slice-evidence-closure-and-daily-deployment-plan.md
   current_r5_qualification: 49-r5-real-qualification-and-daily-cutover-boundary.md
 external_authorizations:
@@ -1195,6 +1196,25 @@ current_authorization:
   git_local_commit_allowed: true
   git_scope: 仅FEAT-164必要独立来源/实现/验证/治理本地提交，不混入其它需求；无push/branch/tag/release。
 implementation:
+  daily_candidate_s4x:
+    status: OFFLINE_PREPARED_NOT_ACTIVATED
+    report: 51-daily-candidate-implementation-and-offline-verification.md
+    desktop_commit: ec1ab631d76d2f6ba2c74e25eaac1ea60339dfb4
+    implementation_files: 8
+    total_changed_files: 12
+    contract_impact: semantic
+    source_checks: 19
+    daily_build: PASS_PREPARE_ONLY
+    same_build_receipt: PASS
+    product_clippy: PASS
+    test_clippy: FAIL_BASELINE_ITEMS_AFTER_TEST_MODULE
+    actual_daily_database_open: false
+    actual_daily_migration_or_launch: NOT_AUTHORIZED_NOT_EXECUTED
+    runtime_core_or_patch_modified: false
+    real_http_added: 0
+    evidence_ref: 08-verification-report.md#E164-S4X-DAILY
+    evidence_index: evidence/s4x-audit-index.json
+    prior_qualification_scope: S1-S3/G2V/teardown remain bound to old Desktop9f isolation App; no automatic inheritance to daily candidate.
   slice_closure_s4w:
     status: PASS_S1_S2_S3
     report: 50-slice-evidence-closure-and-daily-deployment-plan.md

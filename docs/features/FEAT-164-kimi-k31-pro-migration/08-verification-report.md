@@ -518,3 +518,10 @@ Host7bf43fe仅测试生命周期/新入口，产品与8cd6bcc逐字相同。当�
 <!-- evidence: E164-S4W-S4 -->
 
 48的当前Runtime/辅助/四组合、47媒体、49真实文本及本轮source audit保持；317项旧证据hash匹配。完整TCONF04及core/业务状态final仍NOT RUN，teardown保持通过。 来源和归并口径见50及s4w索引；未重建App、未改Runtime核心，不把分批证据声称为一次fresh完整运行。
+
+
+## E164-S4X-DAILY
+
+<!-- evidence: E164-S4X-DAILY -->
+
+第51号：Owner批准8文件后，Desktop ec1ab631d76d2f6ba2c74e25eaac1ea60339dfb4在新目录完成日常选择/维护入口及安全离线验证。SQL29/37四组合、原S2/S3、19source、canonical daily prepare-only及同源receipt通过；119包内文件，未启动App或打开真实日常库。产品Clippy通过，扩展全测试Clippy的基线失败单列保留。旧G2V/G3结论不自动继承新日常identity，状态OFFLINE_PREPARED_NOT_ACTIVATED。原账本/预占/dirty保持，0真实调用，无Runtime核心/补丁变化。证据s4x-audit-index.json。
