@@ -477,3 +477,16 @@ Desktop隔离bc3b097实现同一canonical App的一次性维护参数，在现�
 <!-- evidence: E164-S4U-RETAINED -->
 
 Host7bf43fe仅测试生命周期/新入口，产品与8cd6bcc逐字相同。当前r5 12项通过、38loopback、真实0；10home/40库正常关闭后WAL0、完整副本只读integrity ok。四source＋10Host领域＋22前端业务状态＋5配置通过，0skip。Owner中途移除亮暗/键盘/最小窗口专项，未执行；已启动候选正常退出、0请求，原SQL行保持。详见48与s4u索引；完整G2V/TCONF/final未冒称通过。
+
+
+## E164-S4V-REAL
+
+<!-- evidence: E164-S4V-REAL -->
+
+当前Desktop9f/Host8cd/Contracts ca06/Runtime11fd-r5在原media App42a23cf…上实际1次真实Kimi请求，答案42且唯一completed；保存、重开零补发、两次正常退出、四库WAL0、71表全部旧行保持。判定器实际退出0/PASS。34项计量/oracle＋10项分类/正常协作取消控制，独立工具commit92cbe3d；产品未改，真实图片/搜索/工具及日常cutover不在本次PASS中。详见49和s4v索引，原计量、数据观察失败及RCA保持。
+
+## E164-S4V-FINAL
+
+<!-- evidence: E164-S4V-FINAL -->
+
+独立判定：teardown PASS，绑定本轮同源真实退出/重开与46—48正常取消/媒体/Runtime来源；core及剩余业务状态完整范围NOT RUN，明确缺供应商非文本样例与unknown/never-sent完整App安全自然观察。外观专项已移除，不算缺项。没有将子集或合成模型结果写成整项完成。

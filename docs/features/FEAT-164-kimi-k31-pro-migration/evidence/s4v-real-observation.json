@@ -1,0 +1,23 @@
+{
+  "source_verified": true,
+  "harness_qualified": true,
+  "platform_ready": true,
+  "app_request_observed": true,
+  "answer_is_42": true,
+  "persisted": true,
+  "reopened": true,
+  "no_resend": true,
+  "normal_cleanup": true,
+  "runtime_sha256": "283d12e16b124942302fcdc8281c729a8a7f676498f06df1d2646292905f579e",
+  "app_sha256": "42a23cfbc11cc047b005b8d80dafa2aff243fcc469dd1510d04d88196e85f6a9",
+  "session_id": "01a17863-e581-7211-b735-3c160677762c",
+  "evidence": {
+    "source": "real-preflight.json + real-app-first/reopen.log",
+    "harness": "tooling-qualified.json + classifier-controls.json",
+    "observed": "real-answer.ax.txt/png",
+    "persisted": "data-verification.json",
+    "reopened": "real-reopened.ax.txt/png",
+    "no_resend": "meter-normal-stop.json",
+    "cleanup": "real-after-reopen-audit.json + preservation-before-governance.json"
+  }
+}

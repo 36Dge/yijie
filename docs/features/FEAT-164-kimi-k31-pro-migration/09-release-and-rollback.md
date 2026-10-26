@@ -1,5 +1,7 @@
 # FEAT-164 激活与回滚候选Runbook
 
+> 当前以[49 r5真实功能与日常边界](49-r5-real-qualification-and-daily-cutover-boundary.md)为准：Owner已明确授权必要真实功能调用且不要求精确查价；本轮1次r5真实42、保存/重开零补发和正常退出通过。旧账本/预占保持，日常迁移未执行；完整core/剩余业务状态仍按明确缺口判定。已移除外观专项不再作为门槛。
+
 2026-10-26当前：只实施本地独立资格，未发布、未迁日常库。r5已构建，限定正常关闭已通过；当前来源与剩余门禁见[46](46-independent-legacy-app-qualification.md)和[当前验收矩阵](current-acceptance-matrix.md)。历史阶段按其原报告解释。公网、签名、tag、推送、生产环境及G5/G6无授权。
 
 ## 兼容组合及前置

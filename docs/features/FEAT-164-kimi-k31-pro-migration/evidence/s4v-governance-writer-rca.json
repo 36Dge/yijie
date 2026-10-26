@@ -1,0 +1,7 @@
+{
+  "stage": "governance record preparation",
+  "error": "JavaScript string replacement interpreted $ apostrophe inside preserved command regex and produced invalid in-memory YAML",
+  "effect": "parse-before-write prevented file modification",
+  "fix": "use replacement callback and verify parsed semantic equality; preserve unrelated formatting",
+  "corrected_result": "claims/strict/G2V PASS; no product or model retry"
+}

@@ -1,0 +1,10 @@
+{
+  "initial_assertion": "assistant text from legacy chat_messages",
+  "observed": "empty pending compatibility placeholder; App reopened42 and native completed",
+  "root_cause": "observer used legacy storage instead of authoritative native facts/views",
+  "source": "src-tauri/src/chat/native_conversation_storage.rs::store_native_* and schedules/drafts.rs native fact reader",
+  "fix": "read completed agentMessage item and native view; old snapshot retained",
+  "corrected_readonly_result": "PASS",
+  "product_changes": 0,
+  "new_http_for_fix": 0
+}

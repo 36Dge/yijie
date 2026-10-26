@@ -1,5 +1,13 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 S4V：r5真实资格通过与日常切换边界（2026-10-26）
+
+最新[49](../features/FEAT-164-kimi-k31-pro-migration/49-r5-real-qualification-and-daily-cutover-boundary.md)。Owner明确“需要调用就直接调用，无需精确计算”，必要真实功能验证已授权，不再以精确查价或旧5次耗尽重复询问。先最小1次：实际K3.1/max HTTP200答42/完成，保存、同构建重开0补发，两次正常退出；4Runtime库WAL0/integrity、71表旧行全部保持。App仍9f media42a23cf，Host8cd/Runtime11fd-r5不变。
+
+工具92cbe3d78fef499f9f1904727b1a5a48be632218仅4计量/oracle文件，34Python＋10分类控制通过；独立r5账本保留原5行/两旧账本和14.188544预占。累计6次，历史估算14.795856元，不是当前精确价格；30元约束保持。schema4单slot用完正常停止；不把停止误读为Owner撤销后续必要功能验证授权。首次SQL观察读错旧chat_messages占位，改读原生agentMessage/views后只读通过，无产品改动或补发。
+
+G2V改绑r5真实结果，旧r4/S1 PASS不自动继承；teardown正常适用范围PASS，完整core/业务状态仍按49具体缺项。日常库未开放/迁移，不能用环境开关绕过两个隔离identity、predecessor或workflow边界；下步先日常部署兼容具体diff/评审，再明确日常备份和受控维护授权。新Runtime核心/补丁仍先确认。亮暗/键盘/最小窗口已移除，禁止重新安排。原497dirty及71457保护文件保持，项目服务全部正常停止，仅本地提交不推送。
+
 ## FEAT-164 S4U：保留状态验证完成，Owner移除外观专项（2026-10-26）
 
 最新[48](../features/FEAT-164-kimi-k31-pro-migration/48-retained-runtime-qualification-and-scope-update.md)。Host测试提交7bf43fe0b18188e71442611b781ed87811911cde仅3测试cleanup/目录放置＋新保留入口/说明，其余492tracked保持，产品pin仍8cd6bcc，Desktop9f5814f/Runtime11fd-r5及原App不改。12Runtime检查/38loopback、10完整home/40库WAL0/integrity ok，另4来源＋10Host领域＋22前端业务状态＋5配置通过；真实0。数据在feat164-s4u-audit-20261026/retained-run-1，禁止清除。不要再重复同组38请求或改Runtime核心来消除已关闭缺口。
