@@ -1,12 +1,12 @@
 # FEAT-164 当前验收与来源矩阵
 
-2026-10-27。当前审计与剩余方案以[61](61-current-implementation-audit-and-completion-plan.md)为准，D1实际实现证据见[60](60-d1-daily-binding-and-offline-qualification.md)。59的CUTOVER-01/03已经离线修复；58已接受的本地S1—S4和最终证据保持。日常D2—D5尚未授权/执行，G4/G5/G6 pending。D1仍需正向load_binding组合补证，D5长期入口语义及local交付门禁冲突待收口；不新增Runtime修改或模型调用。
+2026-10-27。当前执行权威为[62](62-d2-cold-backup-readonly-results-and-blockers.md)。D1正向组合7项通过；D2已获批准并完成完整冷备份、第二副本预检和workflow只读失败归因。8条三存储映射完整，原数据/封存层保持；日常SQL37/Host10。下一阶段NO_GO：6条历史已消费grant被维护谓词误拦、旧catalog前身不匹配、Docker socket拒绝连接。D3—D5未授权/执行，G4/G5/G6 pending；61的长期入口及local治理冲突保留。没有新模型调用或Runtime修改。
 
 ## 当前源码和制品
 
 | 对象 | 固定来源与作用 |
 |---|---|
-| 当前Desktop | b789d5c8147fde9890d49b67c6ecb191473793db；D1独立干净来源，基于ea |
+| 当前App的Desktop来源 | b789d5c8147fde9890d49b67c6ecb191473793db；D1独立干净来源，基于ea |
 | Host / Contracts | 4f966e8ea810d5b094d0b797d291955d6c774844 / c5d138374c102f1a8a11e328a869ec8f91724efd |
 | Runtime | 11fd4504c28afd0f65c6f5f62a6b5328dd437f5a；r5 SHA283d12e16b124942302fcdc8281c729a8a7f676498f06df1d2646292905f579e |
 | Connectors / Skills | cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9 / 595c927ae101d3d31c234f60565041eee0864680 |
@@ -18,6 +18,8 @@
 
 61只读核验60的58证据、六源、119包内文件及1207源码输入一致，没有刷新历史执行时间。D1只改六个部署/测试/说明文件；原Native/renderer/Host/Runtime业务依据60源比较保持。不声称新daily实际已启动，也不使用原dirty工作树作为部署来源。
 
+本轮测试/工具独立来源`b54ea001ac5a5530246d30320f024ffb8df94227`（基于b789，9文件），不是新App来源；未改原b789构建输入。原Runtime WAL非零完整保留，D2不手工checkpoint。
+
 ## AC判定与交付边界
 
 以下PASS限已接受的本地实现与验证，不能推导为日常部署已经执行。
@@ -25,7 +27,7 @@
 | AC | 判定 | 有效证据及边界 |
 |---|---|---|
 | 001 活动目录/参数 | PASS | S1/49/56/57，K31/MiniMax与有效身份精确；日常未启用 |
-| 002 受管配置 | PASS | S1/51/56，已知前身准入、未知拒绝；日常现场未预检 |
+| 002 受管配置 | PASS | S1/51/56，已知前身准入、未知拒绝；日常D2已预检，已知catalog前身缺口见62 |
 | 003 SQL兼容 | PASS | 46/51/56自然SQL29/37×隔离/daily四组合；真实日常未打开/迁移 |
 | 004 原thread/恢复 | PASS | 46同thread迁移/停止/继续，56边界回归，57自然unknown实际App安全拒绝；原unknown仍不ready |
 | 005 退役/取消 | PASS，含已接受替代 | 56准入/未知状态，57正常Native入队/领取/取消/重开及真实结果消费；完整App正向原执行NOT RUN，58 Owner接受 |
@@ -51,6 +53,6 @@
 
 ## 保护与下一步
 
-本轮只审计与方案，不访问日常数据/凭据或运行服务。原500份dirty另含混合memory、7份账本/快照保留。真实HTTP累计13、本轮0；45元cap、29.740299保守累计及两份14.188544预占保持。
+D2已执行，不再列为未授权。真实workflow就绪未通过：陈旧state=ready不等于Docker实际可用。备份17,389文件/476,337,115字节，schema/映射/历史完整；原库、WAL、授权和旧数据保持。真实HTTP累计13、本轮0，旧账本和两份预占不变。
 
-推荐下一步：先离线补D1真实绑定加载组合证据、准备限定inspection根的D2 reader、明确长期D5入口与local G5/G6口径，再单独批准D2完整冷备份及第二副本预检（含明确获准的workflow只读依赖资格）。D3维护、D4首次写入及退出核对、D5启用均依据前一步实际结果。实际数据与服务状态UNKNOWN；不重复模型/已接受替代/已排除验收。完整边界见61；仅本地提交、不推送。
+下一步先审阅62号三项阻塞的最小处理范围；不清零消费次数、不手改catalog、不混入FEAT-163 dirty、不自动启动Docker/workflow。修改后需必要离线资格和新来源绑定，再依据具体结果批准D3/D4；长期D5及local治理仍需完成。已接受替代与Owner排除项目保持，仅本地提交、不推送。

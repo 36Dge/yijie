@@ -1,0 +1,27 @@
+test_complete_cold_copy_two_layers_and_preservation (__main__.Tools.test_complete_cold_copy_two_layers_and_preservation) ... ok
+test_old_natural_sql29_and_sql37_readonly (__main__.Tools.test_old_natural_sql29_and_sql37_readonly) ... ERROR
+test_runtime_readonly_and_rollout_binding (__main__.Tools.test_runtime_readonly_and_rollout_binding) ... ok
+test_workflow_normal_states_no_live_module (__main__.Tools.test_workflow_normal_states_no_live_module) ... ok
+
+======================================================================
+ERROR: test_old_natural_sql29_and_sql37_readonly (__main__.Tools.test_old_natural_sql29_and_sql37_readonly)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d2-tools-20261027/yijie-desktop/scripts/tests/feat164-d2-tools-test.py", line 69, in test_old_natural_sql29_and_sql37_readonly
+    db = reader.CipherReader(inspection, inspection / "native/chat/conversations.db", inspection / "native/secrets/chat-sqlcipher-v1.secret", library)
+  File "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d2-tools-20261027/yijie-desktop/scripts/feat164-d2-reader.py", line 43, in __init__
+    inside(root, key)
+    ~~~~~~^^^^^^^^^^^
+  File "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d2-tools-20261027/yijie-desktop/scripts/feat164-d2-reader.py", line 35, in inside
+    require(path.resolve(strict=True).is_relative_to(root) and not path.is_symlink(), "copy path required")
+            ~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 938, in resolve
+    return self.with_segments(os.path.realpath(self, strict=strict))
+                              ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen posixpath>", line 457, in realpath
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d2-audit-20261027/synthetic/d2-normal-2ri2o2h0/29/inspection/native/secrets'
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.027s
+
+FAILED (errors=1)

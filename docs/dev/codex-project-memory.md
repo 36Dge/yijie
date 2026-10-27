@@ -1,5 +1,15 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 D2已完成：完整备份与三项准入阻塞（2026-10-27）
+
+最新权威[62](../features/FEAT-164-kimi-k31-pro-migration/62-d2-cold-backup-readonly-results-and-blockers.md)。Owner已明确批准61的D1正向组合、D2工具及整个D2。独立Desktop工具提交b54ea001ac5a5530246d30320f024ffb8df94227（9测试/工具/说明文件）；D1组合7、D2 Python4、Go1、lint/docs通过。原b789 daily App/receipt保持，未重建或启动。
+
+D2已执行：同一正常App锁、无项目进程/句柄，完整App树/原Host/Runtime/两provider key冷备份17,389文件476,337,115字节，再复制inspection；原文件/封存保持。真实Native SQL37、Host10、四Runtime库integrity与8条映射/rollout完整。原WAL均非零但完整保留，不手工checkpoint。私有完整数据在feat164-d2-audit-20261027/cold-backup-01，不进Git。
+
+下一阶段NO_GO：B01 6个occupied=1 grant均已terminal/completed且release、无reservation，是历史已消费额度被维护谓词误拦，不能清零；B02旧catalog仅Kimi base_instructions与冻结current不符，匹配原dirty FEAT163指令，不能改原文件或混入整需求；B03 workflow state仍ready但Docker无进程/socket ECONNREFUSED，真实ready未验证，不自动up。下一步先明确这些最小修正/依赖范围，D3—D5仍未授权。长期D5和local G5/G6冲突未改，已接受替代/排除保持。
+
+本轮0模型HTTP、无原库数据库API open/迁移、无服务启动或Runtime修改。原dirty、账本/两份预占保留，仅本地提交不推送。D2调查完成不等于迁移准入通过，不重复已失败workflow探测或改数据造绿。
+
 ## FEAT-164 全目标复审与下一步方案（2026-10-27）
 
 当前审计权威[61](../features/FEAT-164-kimi-k31-pro-migration/61-current-implementation-audit-and-completion-plan.md)，D1实际结果仍60。当前Desktop b789d5c、daily App944b6b2/receipt490e35d仅prepare-only；58已接受S1—S4与final、安全替代及完整App正向取消NOT RUN保持，不重跑已排除项。当前矩阵已统一来源，旧59/60按原时点解释。

@@ -639,3 +639,14 @@ G4仍pending，不用离线准备自动升级新daily bootstrap最终验收。58
 61号本轮仅只读审计及文档。60的58证据、六干净来源、当前b789日常App119文件及1207源码输入保持，结果PASS_READONLY_BINDING；不是本轮重新运行App/模型/产品测试。三项并行Codex工程复核未发现已证实的新Runtime修复需求，记录D1真实load_binding正向组合证据缺口、D5长期语义、local G5/G6机器规则冲突与D2 reader/依赖预检准备。修正当前矩阵旧ea/c29来源及需求摘要，历史报告保留。见final-plan-current-binding.json与final-plan-findings.json。
 
 D1 PASS_OFFLINE、58原accepted local及Owner安全替代保持，完整App正向never-sent仍NOT RUN；G4/G5/G6 pending，D2—D5未授权/执行。0真实/本机模型HTTP，无日常数据/凭据访问、无服务探测或启停、无产品/Runtime修改；仅本地治理。方案不扩张授权，也不恢复已移除验收项。
+
+
+## D1正向组合与D2完整备份/预检
+
+<!-- evidence: E164-D2-READONLY -->
+
+62号：Owner明确批准整个D2。D1真实load_binding组合7/7、D2 Python4/4（含自然SQL29/37）、Go bbolt1/1、lint/docs及语法通过。独立工具提交b54ea001ac5a5530246d30320f024ffb8df94227，原b789 App不重建。正常App同一锁内无项目进程/句柄，17,389文件/476,337,115字节完整冷备份和第二inspection；原/封存前后相同。Native SQL37/68表、Host10/8sessions、四Runtime库integrity与8条Native→Host→Runtime/rollout绑定通过。0真实/本机模型HTTP，无原库API open、迁移或服务启动。
+
+D2调查完成但下一阶段NO_GO：6个历史已消费grant均terminal/completed、已native_terminal release且无reservation，现有维护occupied>0谓词仍拒绝；旧catalog仅Kimi基础指令与冻结current前身不同，匹配原dirty FEAT163常量；workflow state ready但Docker无进程、socket ECONNREFUSED，鉴权GET未到达。首次工具错误、两次workflow失败及完整归因保留，不把失败写PASS。工具资格与真实环境结论分列，见d2-results-summary.json、d2-tool-preflight-rca.md。
+
+D3—D5未授权/执行；保留原授权/占额、WAL、秘密及账本，不清零/退款、不放宽白名单、不启动依赖。58原已接受证据和Owner排除/替代保持，G4/G5/G6不晋升。

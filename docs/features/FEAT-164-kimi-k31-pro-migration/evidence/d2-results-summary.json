@@ -1,0 +1,96 @@
+{
+  "feature": "FEAT-164",
+  "phase": "D2",
+  "status": "D2_COMPLETE_WITH_BLOCKERS",
+  "at": "2026-10-27T11:16:37.314199+08:00",
+  "tools_commit": "b54ea001ac5a5530246d30320f024ffb8df94227",
+  "current_app_source": "b789d5c8147fde9890d49b67c6ecb191473793db",
+  "contract_impact": "none",
+  "D1_positive_composition": {
+    "passed": 7,
+    "failed": 0
+  },
+  "D2_python_tests": {
+    "passed": 4,
+    "failed": 0,
+    "retained_natural_schemas": [
+      29,
+      37
+    ]
+  },
+  "D2_host_test": {
+    "passed": 1,
+    "failed": 0
+  },
+  "desktop_lint": "PASS",
+  "desktop_docs_build": "PASS_WITH_EXISTING_CHUNK_WARNING",
+  "backup": {
+    "files": 17389,
+    "bytes": 476337115,
+    "source_manifest_sha256": "fd007b8bb8857ff1f903c703124328b1a6b65dcb15444a7280db36dc129b3449",
+    "sealed_backup_verified": true,
+    "source_unchanged": true,
+    "same_global_lock_held": true,
+    "no_open_handles": true
+  },
+  "native": {
+    "read_only": true,
+    "query_errors": [],
+    "checks": {
+      "outbox_pending_inflight": 0,
+      "selection_nonready": 0,
+      "reservations": 0,
+      "occupied_grants": 6,
+      "turn_uncertain_or_active": 0,
+      "native_view_nonterminal_or_unreadable": 0,
+      "all_model_enabled_future": 0,
+      "all_model_pending_recovery": 0,
+      "chat_sessions_foreign_scope": 0,
+      "chat_projects_foreign_scope": 0,
+      "chat_scheduled_plans_foreign_scope": 0,
+      "chat_scheduled_grants_foreign_scope": 0
+    },
+    "schema": 37,
+    "schema_qualified": true,
+    "integrity_ok": true,
+    "foreign_key_failures": 0,
+    "migration_preflight_clear": false,
+    "zero_dispatch_upper_bound_clear": true
+  },
+  "runtime_integrity_ok": true,
+  "cross_store": {
+    "native_sessions": 8,
+    "native_host_runtime_linked": 8,
+    "host_sessions": 8,
+    "runtime_threads": 8,
+    "link_errors": [],
+    "host_thread_missing": 0,
+    "all_runtime_rollouts_present": true,
+    "host_schema": "10",
+    "managed_k3_catalog_matches": [],
+    "managed_k3_config_matches_original_home": true,
+    "trusted_project_count": 2
+  },
+  "blockers": {
+    "D2-B01": "six consumed grants with terminal completed runs, native_terminal release and no reservation; existing migration predicate rejects occupied_runs>0",
+    "D2-B02": "catalog differs from frozen current predecessor only in Kimi base_instructions; matches original dirty FEAT163 permissionInstructions; no allowlist change",
+    "D2-B03": {
+      "docker_socket_exists": true,
+      "docker_socket_path_is_symlink": false,
+      "docker_process_count": 0,
+      "readiness": "UNVERIFIED",
+      "reason": "DOCKER_DAEMON_SOCKET_REFUSED",
+      "no_service_start": true,
+      "no_retry": true,
+      "socket_connect_errno": 61,
+      "socket_connect_reason": "ECONNREFUSED"
+    }
+  },
+  "D3_authorized": false,
+  "D3_readiness": "NO_GO",
+  "models_added": 0,
+  "app_or_service_started": false,
+  "original_database_opened_by_database_API": false,
+  "runtime_core_or_patch_changed": false,
+  "private_evidence_directory": "feat164-d2-audit-20261027"
+}
