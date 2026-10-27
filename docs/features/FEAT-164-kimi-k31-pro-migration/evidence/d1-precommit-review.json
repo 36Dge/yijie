@@ -1,0 +1,43 @@
+{
+  "at": "2026-10-27T10:09:27.425139+08:00",
+  "contract_impact": "semantic",
+  "authority": "Desktop private deployment policy, Owner-approved report59 D1",
+  "files": [
+    "SECURITY.md",
+    "docs/feat164-daily-deployment.md",
+    "scripts/feat164-daily-deployment.py",
+    "scripts/kimi-k31-packaged-receipt.mjs",
+    "scripts/run-local-demo-fast.sh",
+    "scripts/run-local-demo-fast.test.mjs"
+  ],
+  "file_sha256": {
+    "SECURITY.md": "c6e23cbbaacdd86633f966e98e46f65690737fe1dc6c79e6879b32b3369d9d92",
+    "docs/feat164-daily-deployment.md": "a6021206424b6b3d015ef49cd063f98fb63eb6c72c3bd2ac6cc9f329bb9e0e2a",
+    "scripts/feat164-daily-deployment.py": "175a8bee5f7a8f7268b8ddc21482032fb37056aea756057f34ddb00b13389ec5",
+    "scripts/kimi-k31-packaged-receipt.mjs": "c5cb25818fb7103fe0ab4ff8ac80cbb7d48634f94b158f1d6974e9c5f8db2563",
+    "scripts/run-local-demo-fast.sh": "728db28566fdcd202b53ec08ec81165d9ba19a97fe0abb09ac72ba16a3dfc935",
+    "scripts/run-local-demo-fast.test.mjs": "d7c7f78cd90a5b3316d184b643bd616248d5eb5be769194a85b9d4e6e6a52e34"
+  },
+  "review": [
+    "prepare-only path skips binding/credential/live-readiness and creates artifacts only",
+    "stage/hash/receipt/policy/helper binding before data-Home metadata or any external process",
+    "Native root fixed; original daily Home paths retained, no create/chmod/clone",
+    "workflow real pinned source invokes only read-state/container inspection/ownership/observed-ready; no record/up/status or verify_editor",
+    "normal launcher checks receipt before live readiness; maintenance strips credentials and skips readiness",
+    "existing non-daily entry regression cases retained; first failure baseline fixture variables/message corrected only in approved test file",
+    "no new shared wire/Native/SQL/Runtime/Infra changes"
+  ],
+  "focused_tests": {
+    "vitest": 61,
+    "vitest_failed": 0,
+    "vitest_skipped": 0,
+    "node_daily_profile": 3
+  },
+  "lint": "PASS",
+  "docs_build": "PASS",
+  "syntax": "PASS",
+  "independent_human_review_claimed": false,
+  "daily_data_accessed": false,
+  "real_model_http_added": 0,
+  "remaining": "Canonical source generation and prepare-only qualification follow this immutable local commit; no actual App qualification claimed."
+}

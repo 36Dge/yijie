@@ -1,0 +1,17 @@
+{
+  "first_run": {
+    "passed": 43,
+    "failed": 18,
+    "execution_attempts": 1
+  },
+  "root_causes": [
+    "11 legacy sliced-shell tests omitted workflow_requested initialized outside the selected fragment",
+    "5 legacy expert-root fragments omitted kimi_k31_candidate initialized outside that fragment",
+    "2 legacy expectations retained an older error message"
+  ],
+  "baseline_source_confirmed": true,
+  "correction": "Initialize two fixture variables and match the existing exact rejection message; no product admission relaxed.",
+  "scope": "same approved test file; raw initial failures retained",
+  "real_model_http": 0,
+  "daily_data_access": false
+}

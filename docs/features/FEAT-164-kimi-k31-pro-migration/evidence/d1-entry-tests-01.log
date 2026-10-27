@@ -1,0 +1,1934 @@
+Scope: all 3 workspace projects
+✓ Lockfile passes supply-chain policies (verified 18d ago)
+Lockfile is up to date, resolution step is skipped
+Already up to date
+
+Done in 516ms using pnpm v11.25.0
+
+ RUN  v4.1.10 /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d1-candidate-20261027/yijie-desktop
+
+ ❯ scripts/run-local-demo-fast.test.mjs (61 tests | 18 failed) 911ms
+     × selects only explicit content isolation for default 3ms
+     × selects only explicit content isolation for expert daily packaged 2ms
+     × selects only explicit content isolation for isolated original candidate 1ms
+     × selects only explicit content isolation for content development 2ms
+     × selects only explicit content isolation for content packaged 2ms
+     × selects only explicit content isolation for new content packaged 1ms
+     × selects only explicit content isolation for repaired content packaged 2ms
+     × selects only explicit content isolation for repaired content reopen 1ms
+     × selects only explicit content isolation for same build reopen 1ms
+     × selects only explicit content isolation for daily expert reopen 2ms
+     × selects only explicit content isolation for daily default reopen 2ms
+     × requires both explicit expert and packaged selection for reopen (true) 13ms
+     × requires both explicit expert and packaged selection for reopen (false) 8ms
+     × uses reviewed roots with profile=daily and keeps current resource authority 60ms
+     × uses reviewed roots with profile=default and keeps current resource authority 46ms
+     × uses reviewed roots with profile=content-v011 and keeps current resource authority 46ms
+     × uses reviewed roots with profile=content-v012 and keeps current resource authority 48ms
+     × uses reviewed roots with profile=content-v013 and keeps current resource authority 48ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 18 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  scripts/run-local-demo-fast.test.mjs > local demo launcher profiles > selects only explicit content isolation for default
+Error: Command failed: /bin/bash -c 
+      set -euo pipefail
+      fail() { exit 1; }
+      experts_requested="$1"; shift
+      image_generation_enabled="true"
+stable_api_only="false"
+packaged_app="false"
+expert_profile="daily"
+reopen_app="false"
+feat134_environment=()
+kimi_k31_daily="false"
+daily_workflow_requested="$workflow_requested"
+# The ordinary packaged entry keeps the existing stable-only branch intact.
+if [[ "$#" -ge 1 && "$1" == "--packaged" ]]; then
+  packaged_app="true"
+  shift
+fi
+# Daily K31 is explicit. Preparation builds only; data maintenance is a separate action.
+if [[ "$#" -ge 1 && "$1" == "--kimi-k31-daily" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "daily Kimi requires --packaged"
+  [[ "${YIJIE_FEAT164_QUALIFICATION:-false}" == "false" ]] || fail "daily and qualification profiles cannot be mixed"
+  kimi_k31_daily="true"
+  export YIJIE_FEAT164_DAILY=true
+  [[ "${YIJIE_KIMI_K31_CALL_SURFACES:-media}" == "media" ]] || fail "daily Kimi preserves the full media profile"
+  export YIJIE_KIMI_K31_CALL_SURFACES=media
+  shift
+  set -- --kimi-k31-pro "$@"
+elif [[ "${YIJIE_FEAT164_DAILY:-false}" != "false" ]]; then
+  fail "daily Kimi requires its explicit canonical selector"
+fi
+# Fixed offline qualification identity; legacy and candidate share only this root.
+feat164_qualification="false"
+if [[ "$#" -ge 1 && "$1" == "--feat164-qualification" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "qualification requires --packaged"
+  [[ -z "${TAURI_CONFIG:-}" ]] || fail "qualification rejects ambient Tauri config"
+  [[ "${YIJIE_PERMISSION_VERIFICATION_BASE_URL:-}" == "http://127.0.0.1:18083/v1" ]] || fail "qualification requires the fixed loopback provider"
+  feat164_qualification="true"
+  export YIJIE_FEAT164_QUALIFICATION=true
+  export YIJIE_FEAT155_SCHEDULED_CANDIDATE=true YIJIE_FEAT155_SCHEDULED_DAILY=false
+  export YIJIE_CHAT_MODELS_ENABLED=true YIJIE_MARKET_CONNECTORS_ENABLED=false YIJIE_ARTIFACT_MEDIA_ENABLED=false
+  workflow_requested="false"
+  experts_requested="false"
+  host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18086}"
+  shift
+elif [[ "${YIJIE_FEAT164_QUALIFICATION:-false}" != "false" ]]; then
+  fail "qualification requires its explicit canonical selector"
+fi
+# FEAT-164 uses the same canonical bootstrap with a separate app identity and
+# data/binary roots. Prepare-only builds the reviewable candidate without launch.
+kimi_k31_candidate="false"
+prepare_only="false"
+migrate_isolated_k3="false"
+migrate_daily_k3="false"
+if [[ "$#" -ge 1 && "$1" == "--kimi-k31-pro" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "Kimi candidate requires --packaged"
+  kimi_k31_candidate="true"
+  export YIJIE_KIMI_K31_PRO_CANDIDATE=true VITE_YIJIE_KIMI_K31_PRO_CANDIDATE=true
+  export YIJIE_FEAT155_SCHEDULED_CANDIDATE=true YIJIE_FEAT155_SCHEDULED_DAILY=false
+  export YIJIE_MARKET_CONNECTORS_ENABLED=false YIJIE_ARTIFACT_MEDIA_ENABLED=false
+  workflow_requested="false"
+  case "${YIJIE_KIMI_K31_CALL_SURFACES:-ordinary}" in
+    ordinary) experts_requested="false" ;;
+    market) export YIJIE_MARKET_CONNECTORS_ENABLED=true; experts_requested="false" ;;
+    experts) export YIJIE_MARKET_CONNECTORS_ENABLED=true; experts_requested="true" ;;
+    media) export YIJIE_MARKET_CONNECTORS_ENABLED=true YIJIE_ARTIFACT_MEDIA_ENABLED=true; experts_requested="true" ;;
+    *) fail "invalid FEAT-164 call surface profile" ;;
+  esac
+  export YIJIE_KIMI_K31_CALL_SURFACES="${YIJIE_KIMI_K31_CALL_SURFACES:-ordinary}"
+  if [[ "$experts_requested" == "true" ]]; then expert_profile="default"; fi
+  if [[ "$kimi_k31_daily" == "true" ]]; then
+    export YIJIE_FEAT155_SCHEDULED_CANDIDATE=false YIJIE_FEAT155_SCHEDULED_DAILY=true
+    workflow_requested="${daily_workflow_requested:-true}"
+    expert_profile="daily"
+    export YIJIE_KIMI_K31_ALLOW_MANAGED_PREDECESSOR="${YIJIE_KIMI_K31_ALLOW_MANAGED_PREDECESSOR:-true}"
+  fi
+  host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18086}"
+  if [[ "$kimi_k31_daily" == "true" ]]; then host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18081}"; fi
+  shift
+  if [[ "$#" -ge 1 && "$1" == "--prepare-only" ]]; then prepare_only="true"; shift; fi
+  if [[ "$#" -ge 1 && "$1" == "--migrate-isolated-k3" ]]; then
+    [[ "$kimi_k31_daily" == "false" ]] || fail "daily profile requires its daily maintenance action"
+    [[ "$prepare_only" == "false" ]] || fail "migration cannot be combined with prepare-only"
+    migrate_isolated_k3="true"
+    shift
+  fi
+  if [[ "$#" -ge 1 && "$1" == "--migrate-daily-k3" ]]; then
+    [[ "$kimi_k31_daily" == "true" && "$prepare_only" == "false" ]] || fail "daily maintenance requires the daily profile without prepare-only"
+    migrate_daily_k3="true"
+    shift
+  fi
+elif [[ "${YIJIE_KIMI_K31_PRO_CANDIDATE:-false}" != "false" ]]; then
+  fail "Kimi candidate flag requires its explicit canonical entry"
+fi
+if [[ "$feat164_qualification" == "true" && "$kimi_k31_candidate" == "false" ]]; then
+  export YIJIE_KIMI_K31_PRO_CANDIDATE=false VITE_YIJIE_KIMI_K31_PRO_CANDIDATE=false
+  unset YIJIE_KIMI_K31_CALL_SURFACES
+  if [[ "$#" -ge 1 && "$1" == "--prepare-only" ]]; then prepare_only="true"; shift; fi
+fi
+# A fixed acceptance profile isolates new content from retained conversations.
+# It changes deployment identity/roots only; all source and install gates remain.
+if [[ "$#" -ge 1 && "$1" == "--experts-local" ]]; then
+  [[ "$experts_requested" == "true" ]] || fail "expert isolation requires explicit YIJIE_EXPERTS_ENABLED=true"
+  expert_profile="default"
+  shift
+elif [[ "$#" -ge 1 && ( "$1" == "--experts-content-v011" || "$1" == "--experts-content-v012" || "$1" == "--experts-content-v013" ) ]]; then
+  [[ "$experts_requested" == "true" ]] || fail "content isolation requires explicit YIJIE_EXPERTS_ENABLED=true"
+  expert_profile="${1#--experts-}"
+  shift
+fi
+if [[ "$#" == "1" && "$1" == "--reopen" ]]; then
+  [[ "$packaged_app" == "true" && ( "$experts_requested" != "false" || "$kimi_k31_candidate" == "true" || "$feat164_qualification" == "true" ) ]] || fail "--reopen requires an enabled packaged profile"
+  reopen_app="true"
+  shift
+fi
+case "$#" in
+  0) ;;
+  1)
+    [[ "$1" == "--stable-api-only" ]] || fail "unsupported arguments; expected no arguments or --stable-api-only"
+    image_generation_enabled="false"
+    stable_api_only="true"
+    runtime_root="$desktop_root/.local/feat131-stable"
+    host_home="$runtime_root/host-home"
+    codex_home="$runtime_root/codex-home"
+    feat134_environment=(
+      YIJIE_FEAT134_STREAMING_ENABLED=true
+      VITE_YIJIE_FEAT134_STREAMING_ENABLED=true
+      YIJIE_FEAT136_COMMAND_TOOL_ITEMS_ENABLED=true
+      VITE_YIJIE_FEAT136_EXECUTION_ENABLED=true
+    )
+    ;;
+  *) fail "unsupported arguments; expected no arguments or --stable-api-only" ;;
+esac
+
+
+# FEAT-164 D1: preparation has no data authority; use one qualified artifact for D3-D5.
+# Resolve before credentials/builds/services. No default empty Host/Runtime Home.
+if [[ "$kimi_k31_daily" == "true" && "$prepare_only" != "true" ]]; then
+  [[ "$reopen_app" == "true" ]] || fail "daily execution requires its prepared artifact and --reopen"
+  daily_stage="${YIJIE_FEAT164_DAILY_STAGE:-}"
+  if [[ "$migrate_daily_k3" == "true" ]]; then
+    [[ "$daily_stage" == "D3" ]] || fail "daily maintenance requires explicit D3 approval"
+  else
+    [[ "$daily_stage" == "D4" || "$daily_stage" == "D5" ]] || fail "daily launch requires explicit D4 or D5 approval"
+  fi
+  daily_binding_data="$(python3 -B "$desktop_root/scripts/feat164-daily-deployment.py" resolve --stage "$daily_stage" --desktop-root "$desktop_root")" || fail "daily deployment binding is not ready"
+  IFS=$'\t' read -r daily_bound_host_home daily_bound_codex_home provider_key_file daily_kimi_key_file workflow_credential_file daily_binding_sha <<< "$daily_binding_data"
+  export YIJIE_KIMI_API_KEY_FILE="$daily_kimi_key_file"
+fi
+
+
+      printf '%s:%s:%s:%s' "$packaged_app" "$expert_profile" "$reopen_app" "$stable_api_only"
+     expert-arguments false
+expert-arguments: line 11: workflow_requested: unbound variable
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/18]⎯
+
+ FAIL  scripts/run-local-demo-fast.test.mjs > local demo launcher profiles > selects only explicit content isolation for expert daily packaged
+Error: Command failed: /bin/bash -c 
+      set -euo pipefail
+      fail() { exit 1; }
+      experts_requested="$1"; shift
+      image_generation_enabled="true"
+stable_api_only="false"
+packaged_app="false"
+expert_profile="daily"
+reopen_app="false"
+feat134_environment=()
+kimi_k31_daily="false"
+daily_workflow_requested="$workflow_requested"
+# The ordinary packaged entry keeps the existing stable-only branch intact.
+if [[ "$#" -ge 1 && "$1" == "--packaged" ]]; then
+  packaged_app="true"
+  shift
+fi
+# Daily K31 is explicit. Preparation builds only; data maintenance is a separate action.
+if [[ "$#" -ge 1 && "$1" == "--kimi-k31-daily" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "daily Kimi requires --packaged"
+  [[ "${YIJIE_FEAT164_QUALIFICATION:-false}" == "false" ]] || fail "daily and qualification profiles cannot be mixed"
+  kimi_k31_daily="true"
+  export YIJIE_FEAT164_DAILY=true
+  [[ "${YIJIE_KIMI_K31_CALL_SURFACES:-media}" == "media" ]] || fail "daily Kimi preserves the full media profile"
+  export YIJIE_KIMI_K31_CALL_SURFACES=media
+  shift
+  set -- --kimi-k31-pro "$@"
+elif [[ "${YIJIE_FEAT164_DAILY:-false}" != "false" ]]; then
+  fail "daily Kimi requires its explicit canonical selector"
+fi
+# Fixed offline qualification identity; legacy and candidate share only this root.
+feat164_qualification="false"
+if [[ "$#" -ge 1 && "$1" == "--feat164-qualification" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "qualification requires --packaged"
+  [[ -z "${TAURI_CONFIG:-}" ]] || fail "qualification rejects ambient Tauri config"
+  [[ "${YIJIE_PERMISSION_VERIFICATION_BASE_URL:-}" == "http://127.0.0.1:18083/v1" ]] || fail "qualification requires the fixed loopback provider"
+  feat164_qualification="true"
+  export YIJIE_FEAT164_QUALIFICATION=true
+  export YIJIE_FEAT155_SCHEDULED_CANDIDATE=true YIJIE_FEAT155_SCHEDULED_DAILY=false
+  export YIJIE_CHAT_MODELS_ENABLED=true YIJIE_MARKET_CONNECTORS_ENABLED=false YIJIE_ARTIFACT_MEDIA_ENABLED=false
+  workflow_requested="false"
+  experts_requested="false"
+  host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18086}"
+  shift
+elif [[ "${YIJIE_FEAT164_QUALIFICATION:-false}" != "false" ]]; then
+  fail "qualification requires its explicit canonical selector"
+fi
+# FEAT-164 uses the same canonical bootstrap with a separate app identity and
+# data/binary roots. Prepare-only builds the reviewable candidate without launch.
+kimi_k31_candidate="false"
+prepare_only="false"
+migrate_isolated_k3="false"
+migrate_daily_k3="false"
+if [[ "$#" -ge 1 && "$1" == "--kimi-k31-pro" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "Kimi candidate requires --packaged"
+  kimi_k31_candidate="true"
+  export YIJIE_KIMI_K31_PRO_CANDIDATE=true VITE_YIJIE_KIMI_K31_PRO_CANDIDATE=true
+  export YIJIE_FEAT155_SCHEDULED_CANDIDATE=true YIJIE_FEAT155_SCHEDULED_DAILY=false
+  export YIJIE_MARKET_CONNECTORS_ENABLED=false YIJIE_ARTIFACT_MEDIA_ENABLED=false
+  workflow_requested="false"
+  case "${YIJIE_KIMI_K31_CALL_SURFACES:-ordinary}" in
+    ordinary) experts_requested="false" ;;
+    market) export YIJIE_MARKET_CONNECTORS_ENABLED=true; experts_requested="false" ;;
+    experts) export YIJIE_MARKET_CONNECTORS_ENABLED=true; experts_requested="true" ;;
+    media) export YIJIE_MARKET_CONNECTORS_ENABLED=true YIJIE_ARTIFACT_MEDIA_ENABLED=true; experts_requested="true" ;;
+    *) fail "invalid FEAT-164 call surface profile" ;;
+  esac
+  export YIJIE_KIMI_K31_CALL_SURFACES="${YIJIE_KIMI_K31_CALL_SURFACES:-ordinary}"
+  if [[ "$experts_requested" == "true" ]]; then expert_profile="default"; fi
+  if [[ "$kimi_k31_daily" == "true" ]]; then
+    export YIJIE_FEAT155_SCHEDULED_CANDIDATE=false YIJIE_FEAT155_SCHEDULED_DAILY=true
+    workflow_requested="${daily_workflow_requested:-true}"
+    expert_profile="daily"
+    export YIJIE_KIMI_K31_ALLOW_MANAGED_PREDECESSOR="${YIJIE_KIMI_K31_ALLOW_MANAGED_PREDECESSOR:-true}"
+  fi
+  host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18086}"
+  if [[ "$kimi_k31_daily" == "true" ]]; then host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18081}"; fi
+  shift
+  if [[ "$#" -ge 1 && "$1" == "--prepare-only" ]]; then prepare_only="true"; shift; fi
+  if [[ "$#" -ge 1 && "$1" == "--migrate-isolated-k3" ]]; then
+    [[ "$kimi_k31_daily" == "false" ]] || fail "daily profile requires its daily maintenance action"
+    [[ "$prepare_only" == "false" ]] || fail "migration cannot be combined with prepare-only"
+    migrate_isolated_k3="true"
+    shift
+  fi
+  if [[ "$#" -ge 1 && "$1" == "--migrate-daily-k3" ]]; then
+    [[ "$kimi_k31_daily" == "true" && "$prepare_only" == "false" ]] || fail "daily maintenance requires the daily profile without prepare-only"
+    migrate_daily_k3="true"
+    shift
+  fi
+elif [[ "${YIJIE_KIMI_K31_PRO_CANDIDATE:-false}" != "false" ]]; then
+  fail "Kimi candidate flag requires its explicit canonical entry"
+fi
+if [[ "$feat164_qualification" == "true" && "$kimi_k31_candidate" == "false" ]]; then
+  export YIJIE_KIMI_K31_PRO_CANDIDATE=false VITE_YIJIE_KIMI_K31_PRO_CANDIDATE=false
+  unset YIJIE_KIMI_K31_CALL_SURFACES
+  if [[ "$#" -ge 1 && "$1" == "--prepare-only" ]]; then prepare_only="true"; shift; fi
+fi
+# A fixed acceptance profile isolates new content from retained conversations.
+# It changes deployment identity/roots only; all source and install gates remain.
+if [[ "$#" -ge 1 && "$1" == "--experts-local" ]]; then
+  [[ "$experts_requested" == "true" ]] || fail "expert isolation requires explicit YIJIE_EXPERTS_ENABLED=true"
+  expert_profile="default"
+  shift
+elif [[ "$#" -ge 1 && ( "$1" == "--experts-content-v011" || "$1" == "--experts-content-v012" || "$1" == "--experts-content-v013" ) ]]; then
+  [[ "$experts_requested" == "true" ]] || fail "content isolation requires explicit YIJIE_EXPERTS_ENABLED=true"
+  expert_profile="${1#--experts-}"
+  shift
+fi
+if [[ "$#" == "1" && "$1" == "--reopen" ]]; then
+  [[ "$packaged_app" == "true" && ( "$experts_requested" != "false" || "$kimi_k31_candidate" == "true" || "$feat164_qualification" == "true" ) ]] || fail "--reopen requires an enabled packaged profile"
+  reopen_app="true"
+  shift
+fi
+case "$#" in
+  0) ;;
+  1)
+    [[ "$1" == "--stable-api-only" ]] || fail "unsupported arguments; expected no arguments or --stable-api-only"
+    image_generation_enabled="false"
+    stable_api_only="true"
+    runtime_root="$desktop_root/.local/feat131-stable"
+    host_home="$runtime_root/host-home"
+    codex_home="$runtime_root/codex-home"
+    feat134_environment=(
+      YIJIE_FEAT134_STREAMING_ENABLED=true
+      VITE_YIJIE_FEAT134_STREAMING_ENABLED=true
+      YIJIE_FEAT136_COMMAND_TOOL_ITEMS_ENABLED=true
+      VITE_YIJIE_FEAT136_EXECUTION_ENABLED=true
+    )
+    ;;
+  *) fail "unsupported arguments; expected no arguments or --stable-api-only" ;;
+esac
+
+
+# FEAT-164 D1: preparation has no data authority; use one qualified artifact for D3-D5.
+# Resolve before credentials/builds/services. No default empty Host/Runtime Home.
+if [[ "$kimi_k31_daily" == "true" && "$prepare_only" != "true" ]]; then
+  [[ "$reopen_app" == "true" ]] || fail "daily execution requires its prepared artifact and --reopen"
+  daily_stage="${YIJIE_FEAT164_DAILY_STAGE:-}"
+  if [[ "$migrate_daily_k3" == "true" ]]; then
+    [[ "$daily_stage" == "D3" ]] || fail "daily maintenance requires explicit D3 approval"
+  else
+    [[ "$daily_stage" == "D4" || "$daily_stage" == "D5" ]] || fail "daily launch requires explicit D4 or D5 approval"
+  fi
+  daily_binding_data="$(python3 -B "$desktop_root/scripts/feat164-daily-deployment.py" resolve --stage "$daily_stage" --desktop-root "$desktop_root")" || fail "daily deployment binding is not ready"
+  IFS=$'\t' read -r daily_bound_host_home daily_bound_codex_home provider_key_file daily_kimi_key_file workflow_credential_file daily_binding_sha <<< "$daily_binding_data"
+  export YIJIE_KIMI_API_KEY_FILE="$daily_kimi_key_file"
+fi
+
+
+      printf '%s:%s:%s:%s' "$packaged_app" "$expert_profile" "$reopen_app" "$stable_api_only"
+     expert-arguments true --packaged
+expert-arguments: line 11: workflow_requested: unbound variable
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/18]⎯
+
+ FAIL  scripts/run-local-demo-fast.test.mjs > local demo launcher profiles > selects only explicit content isolation for isolated original candidate
+Error: Command failed: /bin/bash -c 
+      set -euo pipefail
+      fail() { exit 1; }
+      experts_requested="$1"; shift
+      image_generation_enabled="true"
+stable_api_only="false"
+packaged_app="false"
+expert_profile="daily"
+reopen_app="false"
+feat134_environment=()
+kimi_k31_daily="false"
+daily_workflow_requested="$workflow_requested"
+# The ordinary packaged entry keeps the existing stable-only branch intact.
+if [[ "$#" -ge 1 && "$1" == "--packaged" ]]; then
+  packaged_app="true"
+  shift
+fi
+# Daily K31 is explicit. Preparation builds only; data maintenance is a separate action.
+if [[ "$#" -ge 1 && "$1" == "--kimi-k31-daily" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "daily Kimi requires --packaged"
+  [[ "${YIJIE_FEAT164_QUALIFICATION:-false}" == "false" ]] || fail "daily and qualification profiles cannot be mixed"
+  kimi_k31_daily="true"
+  export YIJIE_FEAT164_DAILY=true
+  [[ "${YIJIE_KIMI_K31_CALL_SURFACES:-media}" == "media" ]] || fail "daily Kimi preserves the full media profile"
+  export YIJIE_KIMI_K31_CALL_SURFACES=media
+  shift
+  set -- --kimi-k31-pro "$@"
+elif [[ "${YIJIE_FEAT164_DAILY:-false}" != "false" ]]; then
+  fail "daily Kimi requires its explicit canonical selector"
+fi
+# Fixed offline qualification identity; legacy and candidate share only this root.
+feat164_qualification="false"
+if [[ "$#" -ge 1 && "$1" == "--feat164-qualification" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "qualification requires --packaged"
+  [[ -z "${TAURI_CONFIG:-}" ]] || fail "qualification rejects ambient Tauri config"
+  [[ "${YIJIE_PERMISSION_VERIFICATION_BASE_URL:-}" == "http://127.0.0.1:18083/v1" ]] || fail "qualification requires the fixed loopback provider"
+  feat164_qualification="true"
+  export YIJIE_FEAT164_QUALIFICATION=true
+  export YIJIE_FEAT155_SCHEDULED_CANDIDATE=true YIJIE_FEAT155_SCHEDULED_DAILY=false
+  export YIJIE_CHAT_MODELS_ENABLED=true YIJIE_MARKET_CONNECTORS_ENABLED=false YIJIE_ARTIFACT_MEDIA_ENABLED=false
+  workflow_requested="false"
+  experts_requested="false"
+  host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18086}"
+  shift
+elif [[ "${YIJIE_FEAT164_QUALIFICATION:-false}" != "false" ]]; then
+  fail "qualification requires its explicit canonical selector"
+fi
+# FEAT-164 uses the same canonical bootstrap with a separate app identity and
+# data/binary roots. Prepare-only builds the reviewable candidate without launch.
+kimi_k31_candidate="false"
+prepare_only="false"
+migrate_isolated_k3="false"
+migrate_daily_k3="false"
+if [[ "$#" -ge 1 && "$1" == "--kimi-k31-pro" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "Kimi candidate requires --packaged"
+  kimi_k31_candidate="true"
+  export YIJIE_KIMI_K31_PRO_CANDIDATE=true VITE_YIJIE_KIMI_K31_PRO_CANDIDATE=true
+  export YIJIE_FEAT155_SCHEDULED_CANDIDATE=true YIJIE_FEAT155_SCHEDULED_DAILY=false
+  export YIJIE_MARKET_CONNECTORS_ENABLED=false YIJIE_ARTIFACT_MEDIA_ENABLED=false
+  workflow_requested="false"
+  case "${YIJIE_KIMI_K31_CALL_SURFACES:-ordinary}" in
+    ordinary) experts_requested="false" ;;
+    market) export YIJIE_MARKET_CONNECTORS_ENABLED=true; experts_requested="false" ;;
+    experts) export YIJIE_MARKET_CONNECTORS_ENABLED=true; experts_requested="true" ;;
+    media) export YIJIE_MARKET_CONNECTORS_ENABLED=true YIJIE_ARTIFACT_MEDIA_ENABLED=true; experts_requested="true" ;;
+    *) fail "invalid FEAT-164 call surface profile" ;;
+  esac
+  export YIJIE_KIMI_K31_CALL_SURFACES="${YIJIE_KIMI_K31_CALL_SURFACES:-ordinary}"
+  if [[ "$experts_requested" == "true" ]]; then expert_profile="default"; fi
+  if [[ "$kimi_k31_daily" == "true" ]]; then
+    export YIJIE_FEAT155_SCHEDULED_CANDIDATE=false YIJIE_FEAT155_SCHEDULED_DAILY=true
+    workflow_requested="${daily_workflow_requested:-true}"
+    expert_profile="daily"
+    export YIJIE_KIMI_K31_ALLOW_MANAGED_PREDECESSOR="${YIJIE_KIMI_K31_ALLOW_MANAGED_PREDECESSOR:-true}"
+  fi
+  host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18086}"
+  if [[ "$kimi_k31_daily" == "true" ]]; then host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18081}"; fi
+  shift
+  if [[ "$#" -ge 1 && "$1" == "--prepare-only" ]]; then prepare_only="true"; shift; fi
+  if [[ "$#" -ge 1 && "$1" == "--migrate-isolated-k3" ]]; then
+    [[ "$kimi_k31_daily" == "false" ]] || fail "daily profile requires its daily maintenance action"
+    [[ "$prepare_only" == "false" ]] || fail "migration cannot be combined with prepare-only"
+    migrate_isolated_k3="true"
+    shift
+  fi
+  if [[ "$#" -ge 1 && "$1" == "--migrate-daily-k3" ]]; then
+    [[ "$kimi_k31_daily" == "true" && "$prepare_only" == "false" ]] || fail "daily maintenance requires the daily profile without prepare-only"
+    migrate_daily_k3="true"
+    shift
+  fi
+elif [[ "${YIJIE_KIMI_K31_PRO_CANDIDATE:-false}" != "false" ]]; then
+  fail "Kimi candidate flag requires its explicit canonical entry"
+fi
+if [[ "$feat164_qualification" == "true" && "$kimi_k31_candidate" == "false" ]]; then
+  export YIJIE_KIMI_K31_PRO_CANDIDATE=false VITE_YIJIE_KIMI_K31_PRO_CANDIDATE=false
+  unset YIJIE_KIMI_K31_CALL_SURFACES
+  if [[ "$#" -ge 1 && "$1" == "--prepare-only" ]]; then prepare_only="true"; shift; fi
+fi
+# A fixed acceptance profile isolates new content from retained conversations.
+# It changes deployment identity/roots only; all source and install gates remain.
+if [[ "$#" -ge 1 && "$1" == "--experts-local" ]]; then
+  [[ "$experts_requested" == "true" ]] || fail "expert isolation requires explicit YIJIE_EXPERTS_ENABLED=true"
+  expert_profile="default"
+  shift
+elif [[ "$#" -ge 1 && ( "$1" == "--experts-content-v011" || "$1" == "--experts-content-v012" || "$1" == "--experts-content-v013" ) ]]; then
+  [[ "$experts_requested" == "true" ]] || fail "content isolation requires explicit YIJIE_EXPERTS_ENABLED=true"
+  expert_profile="${1#--experts-}"
+  shift
+fi
+if [[ "$#" == "1" && "$1" == "--reopen" ]]; then
+  [[ "$packaged_app" == "true" && ( "$experts_requested" != "false" || "$kimi_k31_candidate" == "true" || "$feat164_qualification" == "true" ) ]] || fail "--reopen requires an enabled packaged profile"
+  reopen_app="true"
+  shift
+fi
+case "$#" in
+  0) ;;
+  1)
+    [[ "$1" == "--stable-api-only" ]] || fail "unsupported arguments; expected no arguments or --stable-api-only"
+    image_generation_enabled="false"
+    stable_api_only="true"
+    runtime_root="$desktop_root/.local/feat131-stable"
+    host_home="$runtime_root/host-home"
+    codex_home="$runtime_root/codex-home"
+    feat134_environment=(
+      YIJIE_FEAT134_STREAMING_ENABLED=true
+      VITE_YIJIE_FEAT134_STREAMING_ENABLED=true
+      YIJIE_FEAT136_COMMAND_TOOL_ITEMS_ENABLED=true
+      VITE_YIJIE_FEAT136_EXECUTION_ENABLED=true
+    )
+    ;;
+  *) fail "unsupported arguments; expected no arguments or --stable-api-only" ;;
+esac
+
+
+# FEAT-164 D1: preparation has no data authority; use one qualified artifact for D3-D5.
+# Resolve before credentials/builds/services. No default empty Host/Runtime Home.
+if [[ "$kimi_k31_daily" == "true" && "$prepare_only" != "true" ]]; then
+  [[ "$reopen_app" == "true" ]] || fail "daily execution requires its prepared artifact and --reopen"
+  daily_stage="${YIJIE_FEAT164_DAILY_STAGE:-}"
+  if [[ "$migrate_daily_k3" == "true" ]]; then
+    [[ "$daily_stage" == "D3" ]] || fail "daily maintenance requires explicit D3 approval"
+  else
+    [[ "$daily_stage" == "D4" || "$daily_stage" == "D5" ]] || fail "daily launch requires explicit D4 or D5 approval"
+  fi
+  daily_binding_data="$(python3 -B "$desktop_root/scripts/feat164-daily-deployment.py" resolve --stage "$daily_stage" --desktop-root "$desktop_root")" || fail "daily deployment binding is not ready"
+  IFS=$'\t' read -r daily_bound_host_home daily_bound_codex_home provider_key_file daily_kimi_key_file workflow_credential_file daily_binding_sha <<< "$daily_binding_data"
+  export YIJIE_KIMI_API_KEY_FILE="$daily_kimi_key_file"
+fi
+
+
+      printf '%s:%s:%s:%s' "$packaged_app" "$expert_profile" "$reopen_app" "$stable_api_only"
+     expert-arguments true --packaged --experts-local
+expert-arguments: line 11: workflow_requested: unbound variable
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/18]⎯
+
+ FAIL  scripts/run-local-demo-fast.test.mjs > local demo launcher profiles > selects only explicit content isolation for content development
+Error: Command failed: /bin/bash -c 
+      set -euo pipefail
+      fail() { exit 1; }
+      experts_requested="$1"; shift
+      image_generation_enabled="true"
+stable_api_only="false"
+packaged_app="false"
+expert_profile="daily"
+reopen_app="false"
+feat134_environment=()
+kimi_k31_daily="false"
+daily_workflow_requested="$workflow_requested"
+# The ordinary packaged entry keeps the existing stable-only branch intact.
+if [[ "$#" -ge 1 && "$1" == "--packaged" ]]; then
+  packaged_app="true"
+  shift
+fi
+# Daily K31 is explicit. Preparation builds only; data maintenance is a separate action.
+if [[ "$#" -ge 1 && "$1" == "--kimi-k31-daily" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "daily Kimi requires --packaged"
+  [[ "${YIJIE_FEAT164_QUALIFICATION:-false}" == "false" ]] || fail "daily and qualification profiles cannot be mixed"
+  kimi_k31_daily="true"
+  export YIJIE_FEAT164_DAILY=true
+  [[ "${YIJIE_KIMI_K31_CALL_SURFACES:-media}" == "media" ]] || fail "daily Kimi preserves the full media profile"
+  export YIJIE_KIMI_K31_CALL_SURFACES=media
+  shift
+  set -- --kimi-k31-pro "$@"
+elif [[ "${YIJIE_FEAT164_DAILY:-false}" != "false" ]]; then
+  fail "daily Kimi requires its explicit canonical selector"
+fi
+# Fixed offline qualification identity; legacy and candidate share only this root.
+feat164_qualification="false"
+if [[ "$#" -ge 1 && "$1" == "--feat164-qualification" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "qualification requires --packaged"
+  [[ -z "${TAURI_CONFIG:-}" ]] || fail "qualification rejects ambient Tauri config"
+  [[ "${YIJIE_PERMISSION_VERIFICATION_BASE_URL:-}" == "http://127.0.0.1:18083/v1" ]] || fail "qualification requires the fixed loopback provider"
+  feat164_qualification="true"
+  export YIJIE_FEAT164_QUALIFICATION=true
+  export YIJIE_FEAT155_SCHEDULED_CANDIDATE=true YIJIE_FEAT155_SCHEDULED_DAILY=false
+  export YIJIE_CHAT_MODELS_ENABLED=true YIJIE_MARKET_CONNECTORS_ENABLED=false YIJIE_ARTIFACT_MEDIA_ENABLED=false
+  workflow_requested="false"
+  experts_requested="false"
+  host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18086}"
+  shift
+elif [[ "${YIJIE_FEAT164_QUALIFICATION:-false}" != "false" ]]; then
+  fail "qualification requires its explicit canonical selector"
+fi
+# FEAT-164 uses the same canonical bootstrap with a separate app identity and
+# data/binary roots. Prepare-only builds the reviewable candidate without launch.
+kimi_k31_candidate="false"
+prepare_only="false"
+migrate_isolated_k3="false"
+migrate_daily_k3="false"
+if [[ "$#" -ge 1 && "$1" == "--kimi-k31-pro" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "Kimi candidate requires --packaged"
+  kimi_k31_candidate="true"
+  export YIJIE_KIMI_K31_PRO_CANDIDATE=true VITE_YIJIE_KIMI_K31_PRO_CANDIDATE=true
+  export YIJIE_FEAT155_SCHEDULED_CANDIDATE=true YIJIE_FEAT155_SCHEDULED_DAILY=false
+  export YIJIE_MARKET_CONNECTORS_ENABLED=false YIJIE_ARTIFACT_MEDIA_ENABLED=false
+  workflow_requested="false"
+  case "${YIJIE_KIMI_K31_CALL_SURFACES:-ordinary}" in
+    ordinary) experts_requested="false" ;;
+    market) export YIJIE_MARKET_CONNECTORS_ENABLED=true; experts_requested="false" ;;
+    experts) export YIJIE_MARKET_CONNECTORS_ENABLED=true; experts_requested="true" ;;
+    media) export YIJIE_MARKET_CONNECTORS_ENABLED=true YIJIE_ARTIFACT_MEDIA_ENABLED=true; experts_requested="true" ;;
+    *) fail "invalid FEAT-164 call surface profile" ;;
+  esac
+  export YIJIE_KIMI_K31_CALL_SURFACES="${YIJIE_KIMI_K31_CALL_SURFACES:-ordinary}"
+  if [[ "$experts_requested" == "true" ]]; then expert_profile="default"; fi
+  if [[ "$kimi_k31_daily" == "true" ]]; then
+    export YIJIE_FEAT155_SCHEDULED_CANDIDATE=false YIJIE_FEAT155_SCHEDULED_DAILY=true
+    workflow_requested="${daily_workflow_requested:-true}"
+    expert_profile="daily"
+    export YIJIE_KIMI_K31_ALLOW_MANAGED_PREDECESSOR="${YIJIE_KIMI_K31_ALLOW_MANAGED_PREDECESSOR:-true}"
+  fi
+  host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18086}"
+  if [[ "$kimi_k31_daily" == "true" ]]; then host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18081}"; fi
+  shift
+  if [[ "$#" -ge 1 && "$1" == "--prepare-only" ]]; then prepare_only="true"; shift; fi
+  if [[ "$#" -ge 1 && "$1" == "--migrate-isolated-k3" ]]; then
+    [[ "$kimi_k31_daily" == "false" ]] || fail "daily profile requires its daily maintenance action"
+    [[ "$prepare_only" == "false" ]] || fail "migration cannot be combined with prepare-only"
+    migrate_isolated_k3="true"
+    shift
+  fi
+  if [[ "$#" -ge 1 && "$1" == "--migrate-daily-k3" ]]; then
+    [[ "$kimi_k31_daily" == "true" && "$prepare_only" == "false" ]] || fail "daily maintenance requires the daily profile without prepare-only"
+    migrate_daily_k3="true"
+    shift
+  fi
+elif [[ "${YIJIE_KIMI_K31_PRO_CANDIDATE:-false}" != "false" ]]; then
+  fail "Kimi candidate flag requires its explicit canonical entry"
+fi
+if [[ "$feat164_qualification" == "true" && "$kimi_k31_candidate" == "false" ]]; then
+  export YIJIE_KIMI_K31_PRO_CANDIDATE=false VITE_YIJIE_KIMI_K31_PRO_CANDIDATE=false
+  unset YIJIE_KIMI_K31_CALL_SURFACES
+  if [[ "$#" -ge 1 && "$1" == "--prepare-only" ]]; then prepare_only="true"; shift; fi
+fi
+# A fixed acceptance profile isolates new content from retained conversations.
+# It changes deployment identity/roots only; all source and install gates remain.
+if [[ "$#" -ge 1 && "$1" == "--experts-local" ]]; then
+  [[ "$experts_requested" == "true" ]] || fail "expert isolation requires explicit YIJIE_EXPERTS_ENABLED=true"
+  expert_profile="default"
+  shift
+elif [[ "$#" -ge 1 && ( "$1" == "--experts-content-v011" || "$1" == "--experts-content-v012" || "$1" == "--experts-content-v013" ) ]]; then
+  [[ "$experts_requested" == "true" ]] || fail "content isolation requires explicit YIJIE_EXPERTS_ENABLED=true"
+  expert_profile="${1#--experts-}"
+  shift
+fi
+if [[ "$#" == "1" && "$1" == "--reopen" ]]; then
+  [[ "$packaged_app" == "true" && ( "$experts_requested" != "false" || "$kimi_k31_candidate" == "true" || "$feat164_qualification" == "true" ) ]] || fail "--reopen requires an enabled packaged profile"
+  reopen_app="true"
+  shift
+fi
+case "$#" in
+  0) ;;
+  1)
+    [[ "$1" == "--stable-api-only" ]] || fail "unsupported arguments; expected no arguments or --stable-api-only"
+    image_generation_enabled="false"
+    stable_api_only="true"
+    runtime_root="$desktop_root/.local/feat131-stable"
+    host_home="$runtime_root/host-home"
+    codex_home="$runtime_root/codex-home"
+    feat134_environment=(
+      YIJIE_FEAT134_STREAMING_ENABLED=true
+      VITE_YIJIE_FEAT134_STREAMING_ENABLED=true
+      YIJIE_FEAT136_COMMAND_TOOL_ITEMS_ENABLED=true
+      VITE_YIJIE_FEAT136_EXECUTION_ENABLED=true
+    )
+    ;;
+  *) fail "unsupported arguments; expected no arguments or --stable-api-only" ;;
+esac
+
+
+# FEAT-164 D1: preparation has no data authority; use one qualified artifact for D3-D5.
+# Resolve before credentials/builds/services. No default empty Host/Runtime Home.
+if [[ "$kimi_k31_daily" == "true" && "$prepare_only" != "true" ]]; then
+  [[ "$reopen_app" == "true" ]] || fail "daily execution requires its prepared artifact and --reopen"
+  daily_stage="${YIJIE_FEAT164_DAILY_STAGE:-}"
+  if [[ "$migrate_daily_k3" == "true" ]]; then
+    [[ "$daily_stage" == "D3" ]] || fail "daily maintenance requires explicit D3 approval"
+  else
+    [[ "$daily_stage" == "D4" || "$daily_stage" == "D5" ]] || fail "daily launch requires explicit D4 or D5 approval"
+  fi
+  daily_binding_data="$(python3 -B "$desktop_root/scripts/feat164-daily-deployment.py" resolve --stage "$daily_stage" --desktop-root "$desktop_root")" || fail "daily deployment binding is not ready"
+  IFS=$'\t' read -r daily_bound_host_home daily_bound_codex_home provider_key_file daily_kimi_key_file workflow_credential_file daily_binding_sha <<< "$daily_binding_data"
+  export YIJIE_KIMI_API_KEY_FILE="$daily_kimi_key_file"
+fi
+
+
+      printf '%s:%s:%s:%s' "$packaged_app" "$expert_profile" "$reopen_app" "$stable_api_only"
+     expert-arguments true --experts-content-v011
+expert-arguments: line 11: workflow_requested: unbound variable
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/18]⎯
+
+ FAIL  scripts/run-local-demo-fast.test.mjs > local demo launcher profiles > selects only explicit content isolation for content packaged
+Error: Command failed: /bin/bash -c 
+      set -euo pipefail
+      fail() { exit 1; }
+      experts_requested="$1"; shift
+      image_generation_enabled="true"
+stable_api_only="false"
+packaged_app="false"
+expert_profile="daily"
+reopen_app="false"
+feat134_environment=()
+kimi_k31_daily="false"
+daily_workflow_requested="$workflow_requested"
+# The ordinary packaged entry keeps the existing stable-only branch intact.
+if [[ "$#" -ge 1 && "$1" == "--packaged" ]]; then
+  packaged_app="true"
+  shift
+fi
+# Daily K31 is explicit. Preparation builds only; data maintenance is a separate action.
+if [[ "$#" -ge 1 && "$1" == "--kimi-k31-daily" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "daily Kimi requires --packaged"
+  [[ "${YIJIE_FEAT164_QUALIFICATION:-false}" == "false" ]] || fail "daily and qualification profiles cannot be mixed"
+  kimi_k31_daily="true"
+  export YIJIE_FEAT164_DAILY=true
+  [[ "${YIJIE_KIMI_K31_CALL_SURFACES:-media}" == "media" ]] || fail "daily Kimi preserves the full media profile"
+  export YIJIE_KIMI_K31_CALL_SURFACES=media
+  shift
+  set -- --kimi-k31-pro "$@"
+elif [[ "${YIJIE_FEAT164_DAILY:-false}" != "false" ]]; then
+  fail "daily Kimi requires its explicit canonical selector"
+fi
+# Fixed offline qualification identity; legacy and candidate share only this root.
+feat164_qualification="false"
+if [[ "$#" -ge 1 && "$1" == "--feat164-qualification" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "qualification requires --packaged"
+  [[ -z "${TAURI_CONFIG:-}" ]] || fail "qualification rejects ambient Tauri config"
+  [[ "${YIJIE_PERMISSION_VERIFICATION_BASE_URL:-}" == "http://127.0.0.1:18083/v1" ]] || fail "qualification requires the fixed loopback provider"
+  feat164_qualification="true"
+  export YIJIE_FEAT164_QUALIFICATION=true
+  export YIJIE_FEAT155_SCHEDULED_CANDIDATE=true YIJIE_FEAT155_SCHEDULED_DAILY=false
+  export YIJIE_CHAT_MODELS_ENABLED=true YIJIE_MARKET_CONNECTORS_ENABLED=false YIJIE_ARTIFACT_MEDIA_ENABLED=false
+  workflow_requested="false"
+  experts_requested="false"
+  host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18086}"
+  shift
+elif [[ "${YIJIE_FEAT164_QUALIFICATION:-false}" != "false" ]]; then
+  fail "qualification requires its explicit canonical selector"
+fi
+# FEAT-164 uses the same canonical bootstrap with a separate app identity and
+# data/binary roots. Prepare-only builds the reviewable candidate without launch.
+kimi_k31_candidate="false"
+prepare_only="false"
+migrate_isolated_k3="false"
+migrate_daily_k3="false"
+if [[ "$#" -ge 1 && "$1" == "--kimi-k31-pro" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "Kimi candidate requires --packaged"
+  kimi_k31_candidate="true"
+  export YIJIE_KIMI_K31_PRO_CANDIDATE=true VITE_YIJIE_KIMI_K31_PRO_CANDIDATE=true
+  export YIJIE_FEAT155_SCHEDULED_CANDIDATE=true YIJIE_FEAT155_SCHEDULED_DAILY=false
+  export YIJIE_MARKET_CONNECTORS_ENABLED=false YIJIE_ARTIFACT_MEDIA_ENABLED=false
+  workflow_requested="false"
+  case "${YIJIE_KIMI_K31_CALL_SURFACES:-ordinary}" in
+    ordinary) experts_requested="false" ;;
+    market) export YIJIE_MARKET_CONNECTORS_ENABLED=true; experts_requested="false" ;;
+    experts) export YIJIE_MARKET_CONNECTORS_ENABLED=true; experts_requested="true" ;;
+    media) export YIJIE_MARKET_CONNECTORS_ENABLED=true YIJIE_ARTIFACT_MEDIA_ENABLED=true; experts_requested="true" ;;
+    *) fail "invalid FEAT-164 call surface profile" ;;
+  esac
+  export YIJIE_KIMI_K31_CALL_SURFACES="${YIJIE_KIMI_K31_CALL_SURFACES:-ordinary}"
+  if [[ "$experts_requested" == "true" ]]; then expert_profile="default"; fi
+  if [[ "$kimi_k31_daily" == "true" ]]; then
+    export YIJIE_FEAT155_SCHEDULED_CANDIDATE=false YIJIE_FEAT155_SCHEDULED_DAILY=true
+    workflow_requested="${daily_workflow_requested:-true}"
+    expert_profile="daily"
+    export YIJIE_KIMI_K31_ALLOW_MANAGED_PREDECESSOR="${YIJIE_KIMI_K31_ALLOW_MANAGED_PREDECESSOR:-true}"
+  fi
+  host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18086}"
+  if [[ "$kimi_k31_daily" == "true" ]]; then host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18081}"; fi
+  shift
+  if [[ "$#" -ge 1 && "$1" == "--prepare-only" ]]; then prepare_only="true"; shift; fi
+  if [[ "$#" -ge 1 && "$1" == "--migrate-isolated-k3" ]]; then
+    [[ "$kimi_k31_daily" == "false" ]] || fail "daily profile requires its daily maintenance action"
+    [[ "$prepare_only" == "false" ]] || fail "migration cannot be combined with prepare-only"
+    migrate_isolated_k3="true"
+    shift
+  fi
+  if [[ "$#" -ge 1 && "$1" == "--migrate-daily-k3" ]]; then
+    [[ "$kimi_k31_daily" == "true" && "$prepare_only" == "false" ]] || fail "daily maintenance requires the daily profile without prepare-only"
+    migrate_daily_k3="true"
+    shift
+  fi
+elif [[ "${YIJIE_KIMI_K31_PRO_CANDIDATE:-false}" != "false" ]]; then
+  fail "Kimi candidate flag requires its explicit canonical entry"
+fi
+if [[ "$feat164_qualification" == "true" && "$kimi_k31_candidate" == "false" ]]; then
+  export YIJIE_KIMI_K31_PRO_CANDIDATE=false VITE_YIJIE_KIMI_K31_PRO_CANDIDATE=false
+  unset YIJIE_KIMI_K31_CALL_SURFACES
+  if [[ "$#" -ge 1 && "$1" == "--prepare-only" ]]; then prepare_only="true"; shift; fi
+fi
+# A fixed acceptance profile isolates new content from retained conversations.
+# It changes deployment identity/roots only; all source and install gates remain.
+if [[ "$#" -ge 1 && "$1" == "--experts-local" ]]; then
+  [[ "$experts_requested" == "true" ]] || fail "expert isolation requires explicit YIJIE_EXPERTS_ENABLED=true"
+  expert_profile="default"
+  shift
+elif [[ "$#" -ge 1 && ( "$1" == "--experts-content-v011" || "$1" == "--experts-content-v012" || "$1" == "--experts-content-v013" ) ]]; then
+  [[ "$experts_requested" == "true" ]] || fail "content isolation requires explicit YIJIE_EXPERTS_ENABLED=true"
+  expert_profile="${1#--experts-}"
+  shift
+fi
+if [[ "$#" == "1" && "$1" == "--reopen" ]]; then
+  [[ "$packaged_app" == "true" && ( "$experts_requested" != "false" || "$kimi_k31_candidate" == "true" || "$feat164_qualification" == "true" ) ]] || fail "--reopen requires an enabled packaged profile"
+  reopen_app="true"
+  shift
+fi
+case "$#" in
+  0) ;;
+  1)
+    [[ "$1" == "--stable-api-only" ]] || fail "unsupported arguments; expected no arguments or --stable-api-only"
+    image_generation_enabled="false"
+    stable_api_only="true"
+    runtime_root="$desktop_root/.local/feat131-stable"
+    host_home="$runtime_root/host-home"
+    codex_home="$runtime_root/codex-home"
+    feat134_environment=(
+      YIJIE_FEAT134_STREAMING_ENABLED=true
+      VITE_YIJIE_FEAT134_STREAMING_ENABLED=true
+      YIJIE_FEAT136_COMMAND_TOOL_ITEMS_ENABLED=true
+      VITE_YIJIE_FEAT136_EXECUTION_ENABLED=true
+    )
+    ;;
+  *) fail "unsupported arguments; expected no arguments or --stable-api-only" ;;
+esac
+
+
+# FEAT-164 D1: preparation has no data authority; use one qualified artifact for D3-D5.
+# Resolve before credentials/builds/services. No default empty Host/Runtime Home.
+if [[ "$kimi_k31_daily" == "true" && "$prepare_only" != "true" ]]; then
+  [[ "$reopen_app" == "true" ]] || fail "daily execution requires its prepared artifact and --reopen"
+  daily_stage="${YIJIE_FEAT164_DAILY_STAGE:-}"
+  if [[ "$migrate_daily_k3" == "true" ]]; then
+    [[ "$daily_stage" == "D3" ]] || fail "daily maintenance requires explicit D3 approval"
+  else
+    [[ "$daily_stage" == "D4" || "$daily_stage" == "D5" ]] || fail "daily launch requires explicit D4 or D5 approval"
+  fi
+  daily_binding_data="$(python3 -B "$desktop_root/scripts/feat164-daily-deployment.py" resolve --stage "$daily_stage" --desktop-root "$desktop_root")" || fail "daily deployment binding is not ready"
+  IFS=$'\t' read -r daily_bound_host_home daily_bound_codex_home provider_key_file daily_kimi_key_file workflow_credential_file daily_binding_sha <<< "$daily_binding_data"
+  export YIJIE_KIMI_API_KEY_FILE="$daily_kimi_key_file"
+fi
+
+
+      printf '%s:%s:%s:%s' "$packaged_app" "$expert_profile" "$reopen_app" "$stable_api_only"
+     expert-arguments true --packaged --experts-content-v011
+expert-arguments: line 11: workflow_requested: unbound variable
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/18]⎯
+
+ FAIL  scripts/run-local-demo-fast.test.mjs > local demo launcher profiles > selects only explicit content isolation for new content packaged
+Error: Command failed: /bin/bash -c 
+      set -euo pipefail
+      fail() { exit 1; }
+      experts_requested="$1"; shift
+      image_generation_enabled="true"
+stable_api_only="false"
+packaged_app="false"
+expert_profile="daily"
+reopen_app="false"
+feat134_environment=()
+kimi_k31_daily="false"
+daily_workflow_requested="$workflow_requested"
+# The ordinary packaged entry keeps the existing stable-only branch intact.
+if [[ "$#" -ge 1 && "$1" == "--packaged" ]]; then
+  packaged_app="true"
+  shift
+fi
+# Daily K31 is explicit. Preparation builds only; data maintenance is a separate action.
+if [[ "$#" -ge 1 && "$1" == "--kimi-k31-daily" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "daily Kimi requires --packaged"
+  [[ "${YIJIE_FEAT164_QUALIFICATION:-false}" == "false" ]] || fail "daily and qualification profiles cannot be mixed"
+  kimi_k31_daily="true"
+  export YIJIE_FEAT164_DAILY=true
+  [[ "${YIJIE_KIMI_K31_CALL_SURFACES:-media}" == "media" ]] || fail "daily Kimi preserves the full media profile"
+  export YIJIE_KIMI_K31_CALL_SURFACES=media
+  shift
+  set -- --kimi-k31-pro "$@"
+elif [[ "${YIJIE_FEAT164_DAILY:-false}" != "false" ]]; then
+  fail "daily Kimi requires its explicit canonical selector"
+fi
+# Fixed offline qualification identity; legacy and candidate share only this root.
+feat164_qualification="false"
+if [[ "$#" -ge 1 && "$1" == "--feat164-qualification" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "qualification requires --packaged"
+  [[ -z "${TAURI_CONFIG:-}" ]] || fail "qualification rejects ambient Tauri config"
+  [[ "${YIJIE_PERMISSION_VERIFICATION_BASE_URL:-}" == "http://127.0.0.1:18083/v1" ]] || fail "qualification requires the fixed loopback provider"
+  feat164_qualification="true"
+  export YIJIE_FEAT164_QUALIFICATION=true
+  export YIJIE_FEAT155_SCHEDULED_CANDIDATE=true YIJIE_FEAT155_SCHEDULED_DAILY=false
+  export YIJIE_CHAT_MODELS_ENABLED=true YIJIE_MARKET_CONNECTORS_ENABLED=false YIJIE_ARTIFACT_MEDIA_ENABLED=false
+  workflow_requested="false"
+  experts_requested="false"
+  host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18086}"
+  shift
+elif [[ "${YIJIE_FEAT164_QUALIFICATION:-false}" != "false" ]]; then
+  fail "qualification requires its explicit canonical selector"
+fi
+# FEAT-164 uses the same canonical bootstrap with a separate app identity and
+# data/binary roots. Prepare-only builds the reviewable candidate without launch.
+kimi_k31_candidate="false"
+prepare_only="false"
+migrate_isolated_k3="false"
+migrate_daily_k3="false"
+if [[ "$#" -ge 1 && "$1" == "--kimi-k31-pro" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "Kimi candidate requires --packaged"
+  kimi_k31_candidate="true"
+  export YIJIE_KIMI_K31_PRO_CANDIDATE=true VITE_YIJIE_KIMI_K31_PRO_CANDIDATE=true
+  export YIJIE_FEAT155_SCHEDULED_CANDIDATE=true YIJIE_FEAT155_SCHEDULED_DAILY=false
+  export YIJIE_MARKET_CONNECTORS_ENABLED=false YIJIE_ARTIFACT_MEDIA_ENABLED=false
+  workflow_requested="false"
+  case "${YIJIE_KIMI_K31_CALL_SURFACES:-ordinary}" in
+    ordinary) experts_requested="false" ;;
+    market) export YIJIE_MARKET_CONNECTORS_ENABLED=true; experts_requested="false" ;;
+    experts) export YIJIE_MARKET_CONNECTORS_ENABLED=true; experts_requested="true" ;;
+    media) export YIJIE_MARKET_CONNECTORS_ENABLED=true YIJIE_ARTIFACT_MEDIA_ENABLED=true; experts_requested="true" ;;
+    *) fail "invalid FEAT-164 call surface profile" ;;
+  esac
+  export YIJIE_KIMI_K31_CALL_SURFACES="${YIJIE_KIMI_K31_CALL_SURFACES:-ordinary}"
+  if [[ "$experts_requested" == "true" ]]; then expert_profile="default"; fi
+  if [[ "$kimi_k31_daily" == "true" ]]; then
+    export YIJIE_FEAT155_SCHEDULED_CANDIDATE=false YIJIE_FEAT155_SCHEDULED_DAILY=true
+    workflow_requested="${daily_workflow_requested:-true}"
+    expert_profile="daily"
+    export YIJIE_KIMI_K31_ALLOW_MANAGED_PREDECESSOR="${YIJIE_KIMI_K31_ALLOW_MANAGED_PREDECESSOR:-true}"
+  fi
+  host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18086}"
+  if [[ "$kimi_k31_daily" == "true" ]]; then host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18081}"; fi
+  shift
+  if [[ "$#" -ge 1 && "$1" == "--prepare-only" ]]; then prepare_only="true"; shift; fi
+  if [[ "$#" -ge 1 && "$1" == "--migrate-isolated-k3" ]]; then
+    [[ "$kimi_k31_daily" == "false" ]] || fail "daily profile requires its daily maintenance action"
+    [[ "$prepare_only" == "false" ]] || fail "migration cannot be combined with prepare-only"
+    migrate_isolated_k3="true"
+    shift
+  fi
+  if [[ "$#" -ge 1 && "$1" == "--migrate-daily-k3" ]]; then
+    [[ "$kimi_k31_daily" == "true" && "$prepare_only" == "false" ]] || fail "daily maintenance requires the daily profile without prepare-only"
+    migrate_daily_k3="true"
+    shift
+  fi
+elif [[ "${YIJIE_KIMI_K31_PRO_CANDIDATE:-false}" != "false" ]]; then
+  fail "Kimi candidate flag requires its explicit canonical entry"
+fi
+if [[ "$feat164_qualification" == "true" && "$kimi_k31_candidate" == "false" ]]; then
+  export YIJIE_KIMI_K31_PRO_CANDIDATE=false VITE_YIJIE_KIMI_K31_PRO_CANDIDATE=false
+  unset YIJIE_KIMI_K31_CALL_SURFACES
+  if [[ "$#" -ge 1 && "$1" == "--prepare-only" ]]; then prepare_only="true"; shift; fi
+fi
+# A fixed acceptance profile isolates new content from retained conversations.
+# It changes deployment identity/roots only; all source and install gates remain.
+if [[ "$#" -ge 1 && "$1" == "--experts-local" ]]; then
+  [[ "$experts_requested" == "true" ]] || fail "expert isolation requires explicit YIJIE_EXPERTS_ENABLED=true"
+  expert_profile="default"
+  shift
+elif [[ "$#" -ge 1 && ( "$1" == "--experts-content-v011" || "$1" == "--experts-content-v012" || "$1" == "--experts-content-v013" ) ]]; then
+  [[ "$experts_requested" == "true" ]] || fail "content isolation requires explicit YIJIE_EXPERTS_ENABLED=true"
+  expert_profile="${1#--experts-}"
+  shift
+fi
+if [[ "$#" == "1" && "$1" == "--reopen" ]]; then
+  [[ "$packaged_app" == "true" && ( "$experts_requested" != "false" || "$kimi_k31_candidate" == "true" || "$feat164_qualification" == "true" ) ]] || fail "--reopen requires an enabled packaged profile"
+  reopen_app="true"
+  shift
+fi
+case "$#" in
+  0) ;;
+  1)
+    [[ "$1" == "--stable-api-only" ]] || fail "unsupported arguments; expected no arguments or --stable-api-only"
+    image_generation_enabled="false"
+    stable_api_only="true"
+    runtime_root="$desktop_root/.local/feat131-stable"
+    host_home="$runtime_root/host-home"
+    codex_home="$runtime_root/codex-home"
+    feat134_environment=(
+      YIJIE_FEAT134_STREAMING_ENABLED=true
+      VITE_YIJIE_FEAT134_STREAMING_ENABLED=true
+      YIJIE_FEAT136_COMMAND_TOOL_ITEMS_ENABLED=true
+      VITE_YIJIE_FEAT136_EXECUTION_ENABLED=true
+    )
+    ;;
+  *) fail "unsupported arguments; expected no arguments or --stable-api-only" ;;
+esac
+
+
+# FEAT-164 D1: preparation has no data authority; use one qualified artifact for D3-D5.
+# Resolve before credentials/builds/services. No default empty Host/Runtime Home.
+if [[ "$kimi_k31_daily" == "true" && "$prepare_only" != "true" ]]; then
+  [[ "$reopen_app" == "true" ]] || fail "daily execution requires its prepared artifact and --reopen"
+  daily_stage="${YIJIE_FEAT164_DAILY_STAGE:-}"
+  if [[ "$migrate_daily_k3" == "true" ]]; then
+    [[ "$daily_stage" == "D3" ]] || fail "daily maintenance requires explicit D3 approval"
+  else
+    [[ "$daily_stage" == "D4" || "$daily_stage" == "D5" ]] || fail "daily launch requires explicit D4 or D5 approval"
+  fi
+  daily_binding_data="$(python3 -B "$desktop_root/scripts/feat164-daily-deployment.py" resolve --stage "$daily_stage" --desktop-root "$desktop_root")" || fail "daily deployment binding is not ready"
+  IFS=$'\t' read -r daily_bound_host_home daily_bound_codex_home provider_key_file daily_kimi_key_file workflow_credential_file daily_binding_sha <<< "$daily_binding_data"
+  export YIJIE_KIMI_API_KEY_FILE="$daily_kimi_key_file"
+fi
+
+
+      printf '%s:%s:%s:%s' "$packaged_app" "$expert_profile" "$reopen_app" "$stable_api_only"
+     expert-arguments true --packaged --experts-content-v012
+expert-arguments: line 11: workflow_requested: unbound variable
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/18]⎯
+
+ FAIL  scripts/run-local-demo-fast.test.mjs > local demo launcher profiles > selects only explicit content isolation for repaired content packaged
+Error: Command failed: /bin/bash -c 
+      set -euo pipefail
+      fail() { exit 1; }
+      experts_requested="$1"; shift
+      image_generation_enabled="true"
+stable_api_only="false"
+packaged_app="false"
+expert_profile="daily"
+reopen_app="false"
+feat134_environment=()
+kimi_k31_daily="false"
+daily_workflow_requested="$workflow_requested"
+# The ordinary packaged entry keeps the existing stable-only branch intact.
+if [[ "$#" -ge 1 && "$1" == "--packaged" ]]; then
+  packaged_app="true"
+  shift
+fi
+# Daily K31 is explicit. Preparation builds only; data maintenance is a separate action.
+if [[ "$#" -ge 1 && "$1" == "--kimi-k31-daily" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "daily Kimi requires --packaged"
+  [[ "${YIJIE_FEAT164_QUALIFICATION:-false}" == "false" ]] || fail "daily and qualification profiles cannot be mixed"
+  kimi_k31_daily="true"
+  export YIJIE_FEAT164_DAILY=true
+  [[ "${YIJIE_KIMI_K31_CALL_SURFACES:-media}" == "media" ]] || fail "daily Kimi preserves the full media profile"
+  export YIJIE_KIMI_K31_CALL_SURFACES=media
+  shift
+  set -- --kimi-k31-pro "$@"
+elif [[ "${YIJIE_FEAT164_DAILY:-false}" != "false" ]]; then
+  fail "daily Kimi requires its explicit canonical selector"
+fi
+# Fixed offline qualification identity; legacy and candidate share only this root.
+feat164_qualification="false"
+if [[ "$#" -ge 1 && "$1" == "--feat164-qualification" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "qualification requires --packaged"
+  [[ -z "${TAURI_CONFIG:-}" ]] || fail "qualification rejects ambient Tauri config"
+  [[ "${YIJIE_PERMISSION_VERIFICATION_BASE_URL:-}" == "http://127.0.0.1:18083/v1" ]] || fail "qualification requires the fixed loopback provider"
+  feat164_qualification="true"
+  export YIJIE_FEAT164_QUALIFICATION=true
+  export YIJIE_FEAT155_SCHEDULED_CANDIDATE=true YIJIE_FEAT155_SCHEDULED_DAILY=false
+  export YIJIE_CHAT_MODELS_ENABLED=true YIJIE_MARKET_CONNECTORS_ENABLED=false YIJIE_ARTIFACT_MEDIA_ENABLED=false
+  workflow_requested="false"
+  experts_requested="false"
+  host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18086}"
+  shift
+elif [[ "${YIJIE_FEAT164_QUALIFICATION:-false}" != "false" ]]; then
+  fail "qualification requires its explicit canonical selector"
+fi
+# FEAT-164 uses the same canonical bootstrap with a separate app identity and
+# data/binary roots. Prepare-only builds the reviewable candidate without launch.
+kimi_k31_candidate="false"
+prepare_only="false"
+migrate_isolated_k3="false"
+migrate_daily_k3="false"
+if [[ "$#" -ge 1 && "$1" == "--kimi-k31-pro" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "Kimi candidate requires --packaged"
+  kimi_k31_candidate="true"
+  export YIJIE_KIMI_K31_PRO_CANDIDATE=true VITE_YIJIE_KIMI_K31_PRO_CANDIDATE=true
+  export YIJIE_FEAT155_SCHEDULED_CANDIDATE=true YIJIE_FEAT155_SCHEDULED_DAILY=false
+  export YIJIE_MARKET_CONNECTORS_ENABLED=false YIJIE_ARTIFACT_MEDIA_ENABLED=false
+  workflow_requested="false"
+  case "${YIJIE_KIMI_K31_CALL_SURFACES:-ordinary}" in
+    ordinary) experts_requested="false" ;;
+    market) export YIJIE_MARKET_CONNECTORS_ENABLED=true; experts_requested="false" ;;
+    experts) export YIJIE_MARKET_CONNECTORS_ENABLED=true; experts_requested="true" ;;
+    media) export YIJIE_MARKET_CONNECTORS_ENABLED=true YIJIE_ARTIFACT_MEDIA_ENABLED=true; experts_requested="true" ;;
+    *) fail "invalid FEAT-164 call surface profile" ;;
+  esac
+  export YIJIE_KIMI_K31_CALL_SURFACES="${YIJIE_KIMI_K31_CALL_SURFACES:-ordinary}"
+  if [[ "$experts_requested" == "true" ]]; then expert_profile="default"; fi
+  if [[ "$kimi_k31_daily" == "true" ]]; then
+    export YIJIE_FEAT155_SCHEDULED_CANDIDATE=false YIJIE_FEAT155_SCHEDULED_DAILY=true
+    workflow_requested="${daily_workflow_requested:-true}"
+    expert_profile="daily"
+    export YIJIE_KIMI_K31_ALLOW_MANAGED_PREDECESSOR="${YIJIE_KIMI_K31_ALLOW_MANAGED_PREDECESSOR:-true}"
+  fi
+  host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18086}"
+  if [[ "$kimi_k31_daily" == "true" ]]; then host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18081}"; fi
+  shift
+  if [[ "$#" -ge 1 && "$1" == "--prepare-only" ]]; then prepare_only="true"; shift; fi
+  if [[ "$#" -ge 1 && "$1" == "--migrate-isolated-k3" ]]; then
+    [[ "$kimi_k31_daily" == "false" ]] || fail "daily profile requires its daily maintenance action"
+    [[ "$prepare_only" == "false" ]] || fail "migration cannot be combined with prepare-only"
+    migrate_isolated_k3="true"
+    shift
+  fi
+  if [[ "$#" -ge 1 && "$1" == "--migrate-daily-k3" ]]; then
+    [[ "$kimi_k31_daily" == "true" && "$prepare_only" == "false" ]] || fail "daily maintenance requires the daily profile without prepare-only"
+    migrate_daily_k3="true"
+    shift
+  fi
+elif [[ "${YIJIE_KIMI_K31_PRO_CANDIDATE:-false}" != "false" ]]; then
+  fail "Kimi candidate flag requires its explicit canonical entry"
+fi
+if [[ "$feat164_qualification" == "true" && "$kimi_k31_candidate" == "false" ]]; then
+  export YIJIE_KIMI_K31_PRO_CANDIDATE=false VITE_YIJIE_KIMI_K31_PRO_CANDIDATE=false
+  unset YIJIE_KIMI_K31_CALL_SURFACES
+  if [[ "$#" -ge 1 && "$1" == "--prepare-only" ]]; then prepare_only="true"; shift; fi
+fi
+# A fixed acceptance profile isolates new content from retained conversations.
+# It changes deployment identity/roots only; all source and install gates remain.
+if [[ "$#" -ge 1 && "$1" == "--experts-local" ]]; then
+  [[ "$experts_requested" == "true" ]] || fail "expert isolation requires explicit YIJIE_EXPERTS_ENABLED=true"
+  expert_profile="default"
+  shift
+elif [[ "$#" -ge 1 && ( "$1" == "--experts-content-v011" || "$1" == "--experts-content-v012" || "$1" == "--experts-content-v013" ) ]]; then
+  [[ "$experts_requested" == "true" ]] || fail "content isolation requires explicit YIJIE_EXPERTS_ENABLED=true"
+  expert_profile="${1#--experts-}"
+  shift
+fi
+if [[ "$#" == "1" && "$1" == "--reopen" ]]; then
+  [[ "$packaged_app" == "true" && ( "$experts_requested" != "false" || "$kimi_k31_candidate" == "true" || "$feat164_qualification" == "true" ) ]] || fail "--reopen requires an enabled packaged profile"
+  reopen_app="true"
+  shift
+fi
+case "$#" in
+  0) ;;
+  1)
+    [[ "$1" == "--stable-api-only" ]] || fail "unsupported arguments; expected no arguments or --stable-api-only"
+    image_generation_enabled="false"
+    stable_api_only="true"
+    runtime_root="$desktop_root/.local/feat131-stable"
+    host_home="$runtime_root/host-home"
+    codex_home="$runtime_root/codex-home"
+    feat134_environment=(
+      YIJIE_FEAT134_STREAMING_ENABLED=true
+      VITE_YIJIE_FEAT134_STREAMING_ENABLED=true
+      YIJIE_FEAT136_COMMAND_TOOL_ITEMS_ENABLED=true
+      VITE_YIJIE_FEAT136_EXECUTION_ENABLED=true
+    )
+    ;;
+  *) fail "unsupported arguments; expected no arguments or --stable-api-only" ;;
+esac
+
+
+# FEAT-164 D1: preparation has no data authority; use one qualified artifact for D3-D5.
+# Resolve before credentials/builds/services. No default empty Host/Runtime Home.
+if [[ "$kimi_k31_daily" == "true" && "$prepare_only" != "true" ]]; then
+  [[ "$reopen_app" == "true" ]] || fail "daily execution requires its prepared artifact and --reopen"
+  daily_stage="${YIJIE_FEAT164_DAILY_STAGE:-}"
+  if [[ "$migrate_daily_k3" == "true" ]]; then
+    [[ "$daily_stage" == "D3" ]] || fail "daily maintenance requires explicit D3 approval"
+  else
+    [[ "$daily_stage" == "D4" || "$daily_stage" == "D5" ]] || fail "daily launch requires explicit D4 or D5 approval"
+  fi
+  daily_binding_data="$(python3 -B "$desktop_root/scripts/feat164-daily-deployment.py" resolve --stage "$daily_stage" --desktop-root "$desktop_root")" || fail "daily deployment binding is not ready"
+  IFS=$'\t' read -r daily_bound_host_home daily_bound_codex_home provider_key_file daily_kimi_key_file workflow_credential_file daily_binding_sha <<< "$daily_binding_data"
+  export YIJIE_KIMI_API_KEY_FILE="$daily_kimi_key_file"
+fi
+
+
+      printf '%s:%s:%s:%s' "$packaged_app" "$expert_profile" "$reopen_app" "$stable_api_only"
+     expert-arguments true --packaged --experts-content-v013
+expert-arguments: line 11: workflow_requested: unbound variable
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/18]⎯
+
+ FAIL  scripts/run-local-demo-fast.test.mjs > local demo launcher profiles > selects only explicit content isolation for repaired content reopen
+Error: Command failed: /bin/bash -c 
+      set -euo pipefail
+      fail() { exit 1; }
+      experts_requested="$1"; shift
+      image_generation_enabled="true"
+stable_api_only="false"
+packaged_app="false"
+expert_profile="daily"
+reopen_app="false"
+feat134_environment=()
+kimi_k31_daily="false"
+daily_workflow_requested="$workflow_requested"
+# The ordinary packaged entry keeps the existing stable-only branch intact.
+if [[ "$#" -ge 1 && "$1" == "--packaged" ]]; then
+  packaged_app="true"
+  shift
+fi
+# Daily K31 is explicit. Preparation builds only; data maintenance is a separate action.
+if [[ "$#" -ge 1 && "$1" == "--kimi-k31-daily" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "daily Kimi requires --packaged"
+  [[ "${YIJIE_FEAT164_QUALIFICATION:-false}" == "false" ]] || fail "daily and qualification profiles cannot be mixed"
+  kimi_k31_daily="true"
+  export YIJIE_FEAT164_DAILY=true
+  [[ "${YIJIE_KIMI_K31_CALL_SURFACES:-media}" == "media" ]] || fail "daily Kimi preserves the full media profile"
+  export YIJIE_KIMI_K31_CALL_SURFACES=media
+  shift
+  set -- --kimi-k31-pro "$@"
+elif [[ "${YIJIE_FEAT164_DAILY:-false}" != "false" ]]; then
+  fail "daily Kimi requires its explicit canonical selector"
+fi
+# Fixed offline qualification identity; legacy and candidate share only this root.
+feat164_qualification="false"
+if [[ "$#" -ge 1 && "$1" == "--feat164-qualification" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "qualification requires --packaged"
+  [[ -z "${TAURI_CONFIG:-}" ]] || fail "qualification rejects ambient Tauri config"
+  [[ "${YIJIE_PERMISSION_VERIFICATION_BASE_URL:-}" == "http://127.0.0.1:18083/v1" ]] || fail "qualification requires the fixed loopback provider"
+  feat164_qualification="true"
+  export YIJIE_FEAT164_QUALIFICATION=true
+  export YIJIE_FEAT155_SCHEDULED_CANDIDATE=true YIJIE_FEAT155_SCHEDULED_DAILY=false
+  export YIJIE_CHAT_MODELS_ENABLED=true YIJIE_MARKET_CONNECTORS_ENABLED=false YIJIE_ARTIFACT_MEDIA_ENABLED=false
+  workflow_requested="false"
+  experts_requested="false"
+  host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18086}"
+  shift
+elif [[ "${YIJIE_FEAT164_QUALIFICATION:-false}" != "false" ]]; then
+  fail "qualification requires its explicit canonical selector"
+fi
+# FEAT-164 uses the same canonical bootstrap with a separate app identity and
+# data/binary roots. Prepare-only builds the reviewable candidate without launch.
+kimi_k31_candidate="false"
+prepare_only="false"
+migrate_isolated_k3="false"
+migrate_daily_k3="false"
+if [[ "$#" -ge 1 && "$1" == "--kimi-k31-pro" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "Kimi candidate requires --packaged"
+  kimi_k31_candidate="true"
+  export YIJIE_KIMI_K31_PRO_CANDIDATE=true VITE_YIJIE_KIMI_K31_PRO_CANDIDATE=true
+  export YIJIE_FEAT155_SCHEDULED_CANDIDATE=true YIJIE_FEAT155_SCHEDULED_DAILY=false
+  export YIJIE_MARKET_CONNECTORS_ENABLED=false YIJIE_ARTIFACT_MEDIA_ENABLED=false
+  workflow_requested="false"
+  case "${YIJIE_KIMI_K31_CALL_SURFACES:-ordinary}" in
+    ordinary) experts_requested="false" ;;
+    market) export YIJIE_MARKET_CONNECTORS_ENABLED=true; experts_requested="false" ;;
+    experts) export YIJIE_MARKET_CONNECTORS_ENABLED=true; experts_requested="true" ;;
+    media) export YIJIE_MARKET_CONNECTORS_ENABLED=true YIJIE_ARTIFACT_MEDIA_ENABLED=true; experts_requested="true" ;;
+    *) fail "invalid FEAT-164 call surface profile" ;;
+  esac
+  export YIJIE_KIMI_K31_CALL_SURFACES="${YIJIE_KIMI_K31_CALL_SURFACES:-ordinary}"
+  if [[ "$experts_requested" == "true" ]]; then expert_profile="default"; fi
+  if [[ "$kimi_k31_daily" == "true" ]]; then
+    export YIJIE_FEAT155_SCHEDULED_CANDIDATE=false YIJIE_FEAT155_SCHEDULED_DAILY=true
+    workflow_requested="${daily_workflow_requested:-true}"
+    expert_profile="daily"
+    export YIJIE_KIMI_K31_ALLOW_MANAGED_PREDECESSOR="${YIJIE_KIMI_K31_ALLOW_MANAGED_PREDECESSOR:-true}"
+  fi
+  host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18086}"
+  if [[ "$kimi_k31_daily" == "true" ]]; then host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18081}"; fi
+  shift
+  if [[ "$#" -ge 1 && "$1" == "--prepare-only" ]]; then prepare_only="true"; shift; fi
+  if [[ "$#" -ge 1 && "$1" == "--migrate-isolated-k3" ]]; then
+    [[ "$kimi_k31_daily" == "false" ]] || fail "daily profile requires its daily maintenance action"
+    [[ "$prepare_only" == "false" ]] || fail "migration cannot be combined with prepare-only"
+    migrate_isolated_k3="true"
+    shift
+  fi
+  if [[ "$#" -ge 1 && "$1" == "--migrate-daily-k3" ]]; then
+    [[ "$kimi_k31_daily" == "true" && "$prepare_only" == "false" ]] || fail "daily maintenance requires the daily profile without prepare-only"
+    migrate_daily_k3="true"
+    shift
+  fi
+elif [[ "${YIJIE_KIMI_K31_PRO_CANDIDATE:-false}" != "false" ]]; then
+  fail "Kimi candidate flag requires its explicit canonical entry"
+fi
+if [[ "$feat164_qualification" == "true" && "$kimi_k31_candidate" == "false" ]]; then
+  export YIJIE_KIMI_K31_PRO_CANDIDATE=false VITE_YIJIE_KIMI_K31_PRO_CANDIDATE=false
+  unset YIJIE_KIMI_K31_CALL_SURFACES
+  if [[ "$#" -ge 1 && "$1" == "--prepare-only" ]]; then prepare_only="true"; shift; fi
+fi
+# A fixed acceptance profile isolates new content from retained conversations.
+# It changes deployment identity/roots only; all source and install gates remain.
+if [[ "$#" -ge 1 && "$1" == "--experts-local" ]]; then
+  [[ "$experts_requested" == "true" ]] || fail "expert isolation requires explicit YIJIE_EXPERTS_ENABLED=true"
+  expert_profile="default"
+  shift
+elif [[ "$#" -ge 1 && ( "$1" == "--experts-content-v011" || "$1" == "--experts-content-v012" || "$1" == "--experts-content-v013" ) ]]; then
+  [[ "$experts_requested" == "true" ]] || fail "content isolation requires explicit YIJIE_EXPERTS_ENABLED=true"
+  expert_profile="${1#--experts-}"
+  shift
+fi
+if [[ "$#" == "1" && "$1" == "--reopen" ]]; then
+  [[ "$packaged_app" == "true" && ( "$experts_requested" != "false" || "$kimi_k31_candidate" == "true" || "$feat164_qualification" == "true" ) ]] || fail "--reopen requires an enabled packaged profile"
+  reopen_app="true"
+  shift
+fi
+case "$#" in
+  0) ;;
+  1)
+    [[ "$1" == "--stable-api-only" ]] || fail "unsupported arguments; expected no arguments or --stable-api-only"
+    image_generation_enabled="false"
+    stable_api_only="true"
+    runtime_root="$desktop_root/.local/feat131-stable"
+    host_home="$runtime_root/host-home"
+    codex_home="$runtime_root/codex-home"
+    feat134_environment=(
+      YIJIE_FEAT134_STREAMING_ENABLED=true
+      VITE_YIJIE_FEAT134_STREAMING_ENABLED=true
+      YIJIE_FEAT136_COMMAND_TOOL_ITEMS_ENABLED=true
+      VITE_YIJIE_FEAT136_EXECUTION_ENABLED=true
+    )
+    ;;
+  *) fail "unsupported arguments; expected no arguments or --stable-api-only" ;;
+esac
+
+
+# FEAT-164 D1: preparation has no data authority; use one qualified artifact for D3-D5.
+# Resolve before credentials/builds/services. No default empty Host/Runtime Home.
+if [[ "$kimi_k31_daily" == "true" && "$prepare_only" != "true" ]]; then
+  [[ "$reopen_app" == "true" ]] || fail "daily execution requires its prepared artifact and --reopen"
+  daily_stage="${YIJIE_FEAT164_DAILY_STAGE:-}"
+  if [[ "$migrate_daily_k3" == "true" ]]; then
+    [[ "$daily_stage" == "D3" ]] || fail "daily maintenance requires explicit D3 approval"
+  else
+    [[ "$daily_stage" == "D4" || "$daily_stage" == "D5" ]] || fail "daily launch requires explicit D4 or D5 approval"
+  fi
+  daily_binding_data="$(python3 -B "$desktop_root/scripts/feat164-daily-deployment.py" resolve --stage "$daily_stage" --desktop-root "$desktop_root")" || fail "daily deployment binding is not ready"
+  IFS=$'\t' read -r daily_bound_host_home daily_bound_codex_home provider_key_file daily_kimi_key_file workflow_credential_file daily_binding_sha <<< "$daily_binding_data"
+  export YIJIE_KIMI_API_KEY_FILE="$daily_kimi_key_file"
+fi
+
+
+      printf '%s:%s:%s:%s' "$packaged_app" "$expert_profile" "$reopen_app" "$stable_api_only"
+     expert-arguments true --packaged --experts-content-v013 --reopen
+expert-arguments: line 11: workflow_requested: unbound variable
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/18]⎯
+
+ FAIL  scripts/run-local-demo-fast.test.mjs > local demo launcher profiles > selects only explicit content isolation for same build reopen
+Error: Command failed: /bin/bash -c 
+      set -euo pipefail
+      fail() { exit 1; }
+      experts_requested="$1"; shift
+      image_generation_enabled="true"
+stable_api_only="false"
+packaged_app="false"
+expert_profile="daily"
+reopen_app="false"
+feat134_environment=()
+kimi_k31_daily="false"
+daily_workflow_requested="$workflow_requested"
+# The ordinary packaged entry keeps the existing stable-only branch intact.
+if [[ "$#" -ge 1 && "$1" == "--packaged" ]]; then
+  packaged_app="true"
+  shift
+fi
+# Daily K31 is explicit. Preparation builds only; data maintenance is a separate action.
+if [[ "$#" -ge 1 && "$1" == "--kimi-k31-daily" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "daily Kimi requires --packaged"
+  [[ "${YIJIE_FEAT164_QUALIFICATION:-false}" == "false" ]] || fail "daily and qualification profiles cannot be mixed"
+  kimi_k31_daily="true"
+  export YIJIE_FEAT164_DAILY=true
+  [[ "${YIJIE_KIMI_K31_CALL_SURFACES:-media}" == "media" ]] || fail "daily Kimi preserves the full media profile"
+  export YIJIE_KIMI_K31_CALL_SURFACES=media
+  shift
+  set -- --kimi-k31-pro "$@"
+elif [[ "${YIJIE_FEAT164_DAILY:-false}" != "false" ]]; then
+  fail "daily Kimi requires its explicit canonical selector"
+fi
+# Fixed offline qualification identity; legacy and candidate share only this root.
+feat164_qualification="false"
+if [[ "$#" -ge 1 && "$1" == "--feat164-qualification" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "qualification requires --packaged"
+  [[ -z "${TAURI_CONFIG:-}" ]] || fail "qualification rejects ambient Tauri config"
+  [[ "${YIJIE_PERMISSION_VERIFICATION_BASE_URL:-}" == "http://127.0.0.1:18083/v1" ]] || fail "qualification requires the fixed loopback provider"
+  feat164_qualification="true"
+  export YIJIE_FEAT164_QUALIFICATION=true
+  export YIJIE_FEAT155_SCHEDULED_CANDIDATE=true YIJIE_FEAT155_SCHEDULED_DAILY=false
+  export YIJIE_CHAT_MODELS_ENABLED=true YIJIE_MARKET_CONNECTORS_ENABLED=false YIJIE_ARTIFACT_MEDIA_ENABLED=false
+  workflow_requested="false"
+  experts_requested="false"
+  host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18086}"
+  shift
+elif [[ "${YIJIE_FEAT164_QUALIFICATION:-false}" != "false" ]]; then
+  fail "qualification requires its explicit canonical selector"
+fi
+# FEAT-164 uses the same canonical bootstrap with a separate app identity and
+# data/binary roots. Prepare-only builds the reviewable candidate without launch.
+kimi_k31_candidate="false"
+prepare_only="false"
+migrate_isolated_k3="false"
+migrate_daily_k3="false"
+if [[ "$#" -ge 1 && "$1" == "--kimi-k31-pro" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "Kimi candidate requires --packaged"
+  kimi_k31_candidate="true"
+  export YIJIE_KIMI_K31_PRO_CANDIDATE=true VITE_YIJIE_KIMI_K31_PRO_CANDIDATE=true
+  export YIJIE_FEAT155_SCHEDULED_CANDIDATE=true YIJIE_FEAT155_SCHEDULED_DAILY=false
+  export YIJIE_MARKET_CONNECTORS_ENABLED=false YIJIE_ARTIFACT_MEDIA_ENABLED=false
+  workflow_requested="false"
+  case "${YIJIE_KIMI_K31_CALL_SURFACES:-ordinary}" in
+    ordinary) experts_requested="false" ;;
+    market) export YIJIE_MARKET_CONNECTORS_ENABLED=true; experts_requested="false" ;;
+    experts) export YIJIE_MARKET_CONNECTORS_ENABLED=true; experts_requested="true" ;;
+    media) export YIJIE_MARKET_CONNECTORS_ENABLED=true YIJIE_ARTIFACT_MEDIA_ENABLED=true; experts_requested="true" ;;
+    *) fail "invalid FEAT-164 call surface profile" ;;
+  esac
+  export YIJIE_KIMI_K31_CALL_SURFACES="${YIJIE_KIMI_K31_CALL_SURFACES:-ordinary}"
+  if [[ "$experts_requested" == "true" ]]; then expert_profile="default"; fi
+  if [[ "$kimi_k31_daily" == "true" ]]; then
+    export YIJIE_FEAT155_SCHEDULED_CANDIDATE=false YIJIE_FEAT155_SCHEDULED_DAILY=true
+    workflow_requested="${daily_workflow_requested:-true}"
+    expert_profile="daily"
+    export YIJIE_KIMI_K31_ALLOW_MANAGED_PREDECESSOR="${YIJIE_KIMI_K31_ALLOW_MANAGED_PREDECESSOR:-true}"
+  fi
+  host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18086}"
+  if [[ "$kimi_k31_daily" == "true" ]]; then host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18081}"; fi
+  shift
+  if [[ "$#" -ge 1 && "$1" == "--prepare-only" ]]; then prepare_only="true"; shift; fi
+  if [[ "$#" -ge 1 && "$1" == "--migrate-isolated-k3" ]]; then
+    [[ "$kimi_k31_daily" == "false" ]] || fail "daily profile requires its daily maintenance action"
+    [[ "$prepare_only" == "false" ]] || fail "migration cannot be combined with prepare-only"
+    migrate_isolated_k3="true"
+    shift
+  fi
+  if [[ "$#" -ge 1 && "$1" == "--migrate-daily-k3" ]]; then
+    [[ "$kimi_k31_daily" == "true" && "$prepare_only" == "false" ]] || fail "daily maintenance requires the daily profile without prepare-only"
+    migrate_daily_k3="true"
+    shift
+  fi
+elif [[ "${YIJIE_KIMI_K31_PRO_CANDIDATE:-false}" != "false" ]]; then
+  fail "Kimi candidate flag requires its explicit canonical entry"
+fi
+if [[ "$feat164_qualification" == "true" && "$kimi_k31_candidate" == "false" ]]; then
+  export YIJIE_KIMI_K31_PRO_CANDIDATE=false VITE_YIJIE_KIMI_K31_PRO_CANDIDATE=false
+  unset YIJIE_KIMI_K31_CALL_SURFACES
+  if [[ "$#" -ge 1 && "$1" == "--prepare-only" ]]; then prepare_only="true"; shift; fi
+fi
+# A fixed acceptance profile isolates new content from retained conversations.
+# It changes deployment identity/roots only; all source and install gates remain.
+if [[ "$#" -ge 1 && "$1" == "--experts-local" ]]; then
+  [[ "$experts_requested" == "true" ]] || fail "expert isolation requires explicit YIJIE_EXPERTS_ENABLED=true"
+  expert_profile="default"
+  shift
+elif [[ "$#" -ge 1 && ( "$1" == "--experts-content-v011" || "$1" == "--experts-content-v012" || "$1" == "--experts-content-v013" ) ]]; then
+  [[ "$experts_requested" == "true" ]] || fail "content isolation requires explicit YIJIE_EXPERTS_ENABLED=true"
+  expert_profile="${1#--experts-}"
+  shift
+fi
+if [[ "$#" == "1" && "$1" == "--reopen" ]]; then
+  [[ "$packaged_app" == "true" && ( "$experts_requested" != "false" || "$kimi_k31_candidate" == "true" || "$feat164_qualification" == "true" ) ]] || fail "--reopen requires an enabled packaged profile"
+  reopen_app="true"
+  shift
+fi
+case "$#" in
+  0) ;;
+  1)
+    [[ "$1" == "--stable-api-only" ]] || fail "unsupported arguments; expected no arguments or --stable-api-only"
+    image_generation_enabled="false"
+    stable_api_only="true"
+    runtime_root="$desktop_root/.local/feat131-stable"
+    host_home="$runtime_root/host-home"
+    codex_home="$runtime_root/codex-home"
+    feat134_environment=(
+      YIJIE_FEAT134_STREAMING_ENABLED=true
+      VITE_YIJIE_FEAT134_STREAMING_ENABLED=true
+      YIJIE_FEAT136_COMMAND_TOOL_ITEMS_ENABLED=true
+      VITE_YIJIE_FEAT136_EXECUTION_ENABLED=true
+    )
+    ;;
+  *) fail "unsupported arguments; expected no arguments or --stable-api-only" ;;
+esac
+
+
+# FEAT-164 D1: preparation has no data authority; use one qualified artifact for D3-D5.
+# Resolve before credentials/builds/services. No default empty Host/Runtime Home.
+if [[ "$kimi_k31_daily" == "true" && "$prepare_only" != "true" ]]; then
+  [[ "$reopen_app" == "true" ]] || fail "daily execution requires its prepared artifact and --reopen"
+  daily_stage="${YIJIE_FEAT164_DAILY_STAGE:-}"
+  if [[ "$migrate_daily_k3" == "true" ]]; then
+    [[ "$daily_stage" == "D3" ]] || fail "daily maintenance requires explicit D3 approval"
+  else
+    [[ "$daily_stage" == "D4" || "$daily_stage" == "D5" ]] || fail "daily launch requires explicit D4 or D5 approval"
+  fi
+  daily_binding_data="$(python3 -B "$desktop_root/scripts/feat164-daily-deployment.py" resolve --stage "$daily_stage" --desktop-root "$desktop_root")" || fail "daily deployment binding is not ready"
+  IFS=$'\t' read -r daily_bound_host_home daily_bound_codex_home provider_key_file daily_kimi_key_file workflow_credential_file daily_binding_sha <<< "$daily_binding_data"
+  export YIJIE_KIMI_API_KEY_FILE="$daily_kimi_key_file"
+fi
+
+
+      printf '%s:%s:%s:%s' "$packaged_app" "$expert_profile" "$reopen_app" "$stable_api_only"
+     expert-arguments true --packaged --experts-content-v012 --reopen
+expert-arguments: line 11: workflow_requested: unbound variable
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/18]⎯
+
+ FAIL  scripts/run-local-demo-fast.test.mjs > local demo launcher profiles > selects only explicit content isolation for daily expert reopen
+Error: Command failed: /bin/bash -c 
+      set -euo pipefail
+      fail() { exit 1; }
+      experts_requested="$1"; shift
+      image_generation_enabled="true"
+stable_api_only="false"
+packaged_app="false"
+expert_profile="daily"
+reopen_app="false"
+feat134_environment=()
+kimi_k31_daily="false"
+daily_workflow_requested="$workflow_requested"
+# The ordinary packaged entry keeps the existing stable-only branch intact.
+if [[ "$#" -ge 1 && "$1" == "--packaged" ]]; then
+  packaged_app="true"
+  shift
+fi
+# Daily K31 is explicit. Preparation builds only; data maintenance is a separate action.
+if [[ "$#" -ge 1 && "$1" == "--kimi-k31-daily" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "daily Kimi requires --packaged"
+  [[ "${YIJIE_FEAT164_QUALIFICATION:-false}" == "false" ]] || fail "daily and qualification profiles cannot be mixed"
+  kimi_k31_daily="true"
+  export YIJIE_FEAT164_DAILY=true
+  [[ "${YIJIE_KIMI_K31_CALL_SURFACES:-media}" == "media" ]] || fail "daily Kimi preserves the full media profile"
+  export YIJIE_KIMI_K31_CALL_SURFACES=media
+  shift
+  set -- --kimi-k31-pro "$@"
+elif [[ "${YIJIE_FEAT164_DAILY:-false}" != "false" ]]; then
+  fail "daily Kimi requires its explicit canonical selector"
+fi
+# Fixed offline qualification identity; legacy and candidate share only this root.
+feat164_qualification="false"
+if [[ "$#" -ge 1 && "$1" == "--feat164-qualification" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "qualification requires --packaged"
+  [[ -z "${TAURI_CONFIG:-}" ]] || fail "qualification rejects ambient Tauri config"
+  [[ "${YIJIE_PERMISSION_VERIFICATION_BASE_URL:-}" == "http://127.0.0.1:18083/v1" ]] || fail "qualification requires the fixed loopback provider"
+  feat164_qualification="true"
+  export YIJIE_FEAT164_QUALIFICATION=true
+  export YIJIE_FEAT155_SCHEDULED_CANDIDATE=true YIJIE_FEAT155_SCHEDULED_DAILY=false
+  export YIJIE_CHAT_MODELS_ENABLED=true YIJIE_MARKET_CONNECTORS_ENABLED=false YIJIE_ARTIFACT_MEDIA_ENABLED=false
+  workflow_requested="false"
+  experts_requested="false"
+  host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18086}"
+  shift
+elif [[ "${YIJIE_FEAT164_QUALIFICATION:-false}" != "false" ]]; then
+  fail "qualification requires its explicit canonical selector"
+fi
+# FEAT-164 uses the same canonical bootstrap with a separate app identity and
+# data/binary roots. Prepare-only builds the reviewable candidate without launch.
+kimi_k31_candidate="false"
+prepare_only="false"
+migrate_isolated_k3="false"
+migrate_daily_k3="false"
+if [[ "$#" -ge 1 && "$1" == "--kimi-k31-pro" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "Kimi candidate requires --packaged"
+  kimi_k31_candidate="true"
+  export YIJIE_KIMI_K31_PRO_CANDIDATE=true VITE_YIJIE_KIMI_K31_PRO_CANDIDATE=true
+  export YIJIE_FEAT155_SCHEDULED_CANDIDATE=true YIJIE_FEAT155_SCHEDULED_DAILY=false
+  export YIJIE_MARKET_CONNECTORS_ENABLED=false YIJIE_ARTIFACT_MEDIA_ENABLED=false
+  workflow_requested="false"
+  case "${YIJIE_KIMI_K31_CALL_SURFACES:-ordinary}" in
+    ordinary) experts_requested="false" ;;
+    market) export YIJIE_MARKET_CONNECTORS_ENABLED=true; experts_requested="false" ;;
+    experts) export YIJIE_MARKET_CONNECTORS_ENABLED=true; experts_requested="true" ;;
+    media) export YIJIE_MARKET_CONNECTORS_ENABLED=true YIJIE_ARTIFACT_MEDIA_ENABLED=true; experts_requested="true" ;;
+    *) fail "invalid FEAT-164 call surface profile" ;;
+  esac
+  export YIJIE_KIMI_K31_CALL_SURFACES="${YIJIE_KIMI_K31_CALL_SURFACES:-ordinary}"
+  if [[ "$experts_requested" == "true" ]]; then expert_profile="default"; fi
+  if [[ "$kimi_k31_daily" == "true" ]]; then
+    export YIJIE_FEAT155_SCHEDULED_CANDIDATE=false YIJIE_FEAT155_SCHEDULED_DAILY=true
+    workflow_requested="${daily_workflow_requested:-true}"
+    expert_profile="daily"
+    export YIJIE_KIMI_K31_ALLOW_MANAGED_PREDECESSOR="${YIJIE_KIMI_K31_ALLOW_MANAGED_PREDECESSOR:-true}"
+  fi
+  host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18086}"
+  if [[ "$kimi_k31_daily" == "true" ]]; then host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18081}"; fi
+  shift
+  if [[ "$#" -ge 1 && "$1" == "--prepare-only" ]]; then prepare_only="true"; shift; fi
+  if [[ "$#" -ge 1 && "$1" == "--migrate-isolated-k3" ]]; then
+    [[ "$kimi_k31_daily" == "false" ]] || fail "daily profile requires its daily maintenance action"
+    [[ "$prepare_only" == "false" ]] || fail "migration cannot be combined with prepare-only"
+    migrate_isolated_k3="true"
+    shift
+  fi
+  if [[ "$#" -ge 1 && "$1" == "--migrate-daily-k3" ]]; then
+    [[ "$kimi_k31_daily" == "true" && "$prepare_only" == "false" ]] || fail "daily maintenance requires the daily profile without prepare-only"
+    migrate_daily_k3="true"
+    shift
+  fi
+elif [[ "${YIJIE_KIMI_K31_PRO_CANDIDATE:-false}" != "false" ]]; then
+  fail "Kimi candidate flag requires its explicit canonical entry"
+fi
+if [[ "$feat164_qualification" == "true" && "$kimi_k31_candidate" == "false" ]]; then
+  export YIJIE_KIMI_K31_PRO_CANDIDATE=false VITE_YIJIE_KIMI_K31_PRO_CANDIDATE=false
+  unset YIJIE_KIMI_K31_CALL_SURFACES
+  if [[ "$#" -ge 1 && "$1" == "--prepare-only" ]]; then prepare_only="true"; shift; fi
+fi
+# A fixed acceptance profile isolates new content from retained conversations.
+# It changes deployment identity/roots only; all source and install gates remain.
+if [[ "$#" -ge 1 && "$1" == "--experts-local" ]]; then
+  [[ "$experts_requested" == "true" ]] || fail "expert isolation requires explicit YIJIE_EXPERTS_ENABLED=true"
+  expert_profile="default"
+  shift
+elif [[ "$#" -ge 1 && ( "$1" == "--experts-content-v011" || "$1" == "--experts-content-v012" || "$1" == "--experts-content-v013" ) ]]; then
+  [[ "$experts_requested" == "true" ]] || fail "content isolation requires explicit YIJIE_EXPERTS_ENABLED=true"
+  expert_profile="${1#--experts-}"
+  shift
+fi
+if [[ "$#" == "1" && "$1" == "--reopen" ]]; then
+  [[ "$packaged_app" == "true" && ( "$experts_requested" != "false" || "$kimi_k31_candidate" == "true" || "$feat164_qualification" == "true" ) ]] || fail "--reopen requires an enabled packaged profile"
+  reopen_app="true"
+  shift
+fi
+case "$#" in
+  0) ;;
+  1)
+    [[ "$1" == "--stable-api-only" ]] || fail "unsupported arguments; expected no arguments or --stable-api-only"
+    image_generation_enabled="false"
+    stable_api_only="true"
+    runtime_root="$desktop_root/.local/feat131-stable"
+    host_home="$runtime_root/host-home"
+    codex_home="$runtime_root/codex-home"
+    feat134_environment=(
+      YIJIE_FEAT134_STREAMING_ENABLED=true
+      VITE_YIJIE_FEAT134_STREAMING_ENABLED=true
+      YIJIE_FEAT136_COMMAND_TOOL_ITEMS_ENABLED=true
+      VITE_YIJIE_FEAT136_EXECUTION_ENABLED=true
+    )
+    ;;
+  *) fail "unsupported arguments; expected no arguments or --stable-api-only" ;;
+esac
+
+
+# FEAT-164 D1: preparation has no data authority; use one qualified artifact for D3-D5.
+# Resolve before credentials/builds/services. No default empty Host/Runtime Home.
+if [[ "$kimi_k31_daily" == "true" && "$prepare_only" != "true" ]]; then
+  [[ "$reopen_app" == "true" ]] || fail "daily execution requires its prepared artifact and --reopen"
+  daily_stage="${YIJIE_FEAT164_DAILY_STAGE:-}"
+  if [[ "$migrate_daily_k3" == "true" ]]; then
+    [[ "$daily_stage" == "D3" ]] || fail "daily maintenance requires explicit D3 approval"
+  else
+    [[ "$daily_stage" == "D4" || "$daily_stage" == "D5" ]] || fail "daily launch requires explicit D4 or D5 approval"
+  fi
+  daily_binding_data="$(python3 -B "$desktop_root/scripts/feat164-daily-deployment.py" resolve --stage "$daily_stage" --desktop-root "$desktop_root")" || fail "daily deployment binding is not ready"
+  IFS=$'\t' read -r daily_bound_host_home daily_bound_codex_home provider_key_file daily_kimi_key_file workflow_credential_file daily_binding_sha <<< "$daily_binding_data"
+  export YIJIE_KIMI_API_KEY_FILE="$daily_kimi_key_file"
+fi
+
+
+      printf '%s:%s:%s:%s' "$packaged_app" "$expert_profile" "$reopen_app" "$stable_api_only"
+     expert-arguments true --packaged --reopen
+expert-arguments: line 11: workflow_requested: unbound variable
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/18]⎯
+
+ FAIL  scripts/run-local-demo-fast.test.mjs > local demo launcher profiles > selects only explicit content isolation for daily default reopen
+Error: Command failed: /bin/bash -c 
+      set -euo pipefail
+      fail() { exit 1; }
+      experts_requested="$1"; shift
+      image_generation_enabled="true"
+stable_api_only="false"
+packaged_app="false"
+expert_profile="daily"
+reopen_app="false"
+feat134_environment=()
+kimi_k31_daily="false"
+daily_workflow_requested="$workflow_requested"
+# The ordinary packaged entry keeps the existing stable-only branch intact.
+if [[ "$#" -ge 1 && "$1" == "--packaged" ]]; then
+  packaged_app="true"
+  shift
+fi
+# Daily K31 is explicit. Preparation builds only; data maintenance is a separate action.
+if [[ "$#" -ge 1 && "$1" == "--kimi-k31-daily" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "daily Kimi requires --packaged"
+  [[ "${YIJIE_FEAT164_QUALIFICATION:-false}" == "false" ]] || fail "daily and qualification profiles cannot be mixed"
+  kimi_k31_daily="true"
+  export YIJIE_FEAT164_DAILY=true
+  [[ "${YIJIE_KIMI_K31_CALL_SURFACES:-media}" == "media" ]] || fail "daily Kimi preserves the full media profile"
+  export YIJIE_KIMI_K31_CALL_SURFACES=media
+  shift
+  set -- --kimi-k31-pro "$@"
+elif [[ "${YIJIE_FEAT164_DAILY:-false}" != "false" ]]; then
+  fail "daily Kimi requires its explicit canonical selector"
+fi
+# Fixed offline qualification identity; legacy and candidate share only this root.
+feat164_qualification="false"
+if [[ "$#" -ge 1 && "$1" == "--feat164-qualification" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "qualification requires --packaged"
+  [[ -z "${TAURI_CONFIG:-}" ]] || fail "qualification rejects ambient Tauri config"
+  [[ "${YIJIE_PERMISSION_VERIFICATION_BASE_URL:-}" == "http://127.0.0.1:18083/v1" ]] || fail "qualification requires the fixed loopback provider"
+  feat164_qualification="true"
+  export YIJIE_FEAT164_QUALIFICATION=true
+  export YIJIE_FEAT155_SCHEDULED_CANDIDATE=true YIJIE_FEAT155_SCHEDULED_DAILY=false
+  export YIJIE_CHAT_MODELS_ENABLED=true YIJIE_MARKET_CONNECTORS_ENABLED=false YIJIE_ARTIFACT_MEDIA_ENABLED=false
+  workflow_requested="false"
+  experts_requested="false"
+  host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18086}"
+  shift
+elif [[ "${YIJIE_FEAT164_QUALIFICATION:-false}" != "false" ]]; then
+  fail "qualification requires its explicit canonical selector"
+fi
+# FEAT-164 uses the same canonical bootstrap with a separate app identity and
+# data/binary roots. Prepare-only builds the reviewable candidate without launch.
+kimi_k31_candidate="false"
+prepare_only="false"
+migrate_isolated_k3="false"
+migrate_daily_k3="false"
+if [[ "$#" -ge 1 && "$1" == "--kimi-k31-pro" ]]; then
+  [[ "$packaged_app" == "true" ]] || fail "Kimi candidate requires --packaged"
+  kimi_k31_candidate="true"
+  export YIJIE_KIMI_K31_PRO_CANDIDATE=true VITE_YIJIE_KIMI_K31_PRO_CANDIDATE=true
+  export YIJIE_FEAT155_SCHEDULED_CANDIDATE=true YIJIE_FEAT155_SCHEDULED_DAILY=false
+  export YIJIE_MARKET_CONNECTORS_ENABLED=false YIJIE_ARTIFACT_MEDIA_ENABLED=false
+  workflow_requested="false"
+  case "${YIJIE_KIMI_K31_CALL_SURFACES:-ordinary}" in
+    ordinary) experts_requested="false" ;;
+    market) export YIJIE_MARKET_CONNECTORS_ENABLED=true; experts_requested="false" ;;
+    experts) export YIJIE_MARKET_CONNECTORS_ENABLED=true; experts_requested="true" ;;
+    media) export YIJIE_MARKET_CONNECTORS_ENABLED=true YIJIE_ARTIFACT_MEDIA_ENABLED=true; experts_requested="true" ;;
+    *) fail "invalid FEAT-164 call surface profile" ;;
+  esac
+  export YIJIE_KIMI_K31_CALL_SURFACES="${YIJIE_KIMI_K31_CALL_SURFACES:-ordinary}"
+  if [[ "$experts_requested" == "true" ]]; then expert_profile="default"; fi
+  if [[ "$kimi_k31_daily" == "true" ]]; then
+    export YIJIE_FEAT155_SCHEDULED_CANDIDATE=false YIJIE_FEAT155_SCHEDULED_DAILY=true
+    workflow_requested="${daily_workflow_requested:-true}"
+    expert_profile="daily"
+    export YIJIE_KIMI_K31_ALLOW_MANAGED_PREDECESSOR="${YIJIE_KIMI_K31_ALLOW_MANAGED_PREDECESSOR:-true}"
+  fi
+  host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18086}"
+  if [[ "$kimi_k31_daily" == "true" ]]; then host_port="${YIJIE_DEMO_FAST_HOST_PORT:-18081}"; fi
+  shift
+  if [[ "$#" -ge 1 && "$1" == "--prepare-only" ]]; then prepare_only="true"; shift; fi
+  if [[ "$#" -ge 1 && "$1" == "--migrate-isolated-k3" ]]; then
+    [[ "$kimi_k31_daily" == "false" ]] || fail "daily profile requires its daily maintenance action"
+    [[ "$prepare_only" == "false" ]] || fail "migration cannot be combined with prepare-only"
+    migrate_isolated_k3="true"
+    shift
+  fi
+  if [[ "$#" -ge 1 && "$1" == "--migrate-daily-k3" ]]; then
+    [[ "$kimi_k31_daily" == "true" && "$prepare_only" == "false" ]] || fail "daily maintenance requires the daily profile without prepare-only"
+    migrate_daily_k3="true"
+    shift
+  fi
+elif [[ "${YIJIE_KIMI_K31_PRO_CANDIDATE:-false}" != "false" ]]; then
+  fail "Kimi candidate flag requires its explicit canonical entry"
+fi
+if [[ "$feat164_qualification" == "true" && "$kimi_k31_candidate" == "false" ]]; then
+  export YIJIE_KIMI_K31_PRO_CANDIDATE=false VITE_YIJIE_KIMI_K31_PRO_CANDIDATE=false
+  unset YIJIE_KIMI_K31_CALL_SURFACES
+  if [[ "$#" -ge 1 && "$1" == "--prepare-only" ]]; then prepare_only="true"; shift; fi
+fi
+# A fixed acceptance profile isolates new content from retained conversations.
+# It changes deployment identity/roots only; all source and install gates remain.
+if [[ "$#" -ge 1 && "$1" == "--experts-local" ]]; then
+  [[ "$experts_requested" == "true" ]] || fail "expert isolation requires explicit YIJIE_EXPERTS_ENABLED=true"
+  expert_profile="default"
+  shift
+elif [[ "$#" -ge 1 && ( "$1" == "--experts-content-v011" || "$1" == "--experts-content-v012" || "$1" == "--experts-content-v013" ) ]]; then
+  [[ "$experts_requested" == "true" ]] || fail "content isolation requires explicit YIJIE_EXPERTS_ENABLED=true"
+  expert_profile="${1#--experts-}"
+  shift
+fi
+if [[ "$#" == "1" && "$1" == "--reopen" ]]; then
+  [[ "$packaged_app" == "true" && ( "$experts_requested" != "false" || "$kimi_k31_candidate" == "true" || "$feat164_qualification" == "true" ) ]] || fail "--reopen requires an enabled packaged profile"
+  reopen_app="true"
+  shift
+fi
+case "$#" in
+  0) ;;
+  1)
+    [[ "$1" == "--stable-api-only" ]] || fail "unsupported arguments; expected no arguments or --stable-api-only"
+    image_generation_enabled="false"
+    stable_api_only="true"
+    runtime_root="$desktop_root/.local/feat131-stable"
+    host_home="$runtime_root/host-home"
+    codex_home="$runtime_root/codex-home"
+    feat134_environment=(
+      YIJIE_FEAT134_STREAMING_ENABLED=true
+      VITE_YIJIE_FEAT134_STREAMING_ENABLED=true
+      YIJIE_FEAT136_COMMAND_TOOL_ITEMS_ENABLED=true
+      VITE_YIJIE_FEAT136_EXECUTION_ENABLED=true
+    )
+    ;;
+  *) fail "unsupported arguments; expected no arguments or --stable-api-only" ;;
+esac
+
+
+# FEAT-164 D1: preparation has no data authority; use one qualified artifact for D3-D5.
+# Resolve before credentials/builds/services. No default empty Host/Runtime Home.
+if [[ "$kimi_k31_daily" == "true" && "$prepare_only" != "true" ]]; then
+  [[ "$reopen_app" == "true" ]] || fail "daily execution requires its prepared artifact and --reopen"
+  daily_stage="${YIJIE_FEAT164_DAILY_STAGE:-}"
+  if [[ "$migrate_daily_k3" == "true" ]]; then
+    [[ "$daily_stage" == "D3" ]] || fail "daily maintenance requires explicit D3 approval"
+  else
+    [[ "$daily_stage" == "D4" || "$daily_stage" == "D5" ]] || fail "daily launch requires explicit D4 or D5 approval"
+  fi
+  daily_binding_data="$(python3 -B "$desktop_root/scripts/feat164-daily-deployment.py" resolve --stage "$daily_stage" --desktop-root "$desktop_root")" || fail "daily deployment binding is not ready"
+  IFS=$'\t' read -r daily_bound_host_home daily_bound_codex_home provider_key_file daily_kimi_key_file workflow_credential_file daily_binding_sha <<< "$daily_binding_data"
+  export YIJIE_KIMI_API_KEY_FILE="$daily_kimi_key_file"
+fi
+
+
+      printf '%s:%s:%s:%s' "$packaged_app" "$expert_profile" "$reopen_app" "$stable_api_only"
+     expert-arguments  --packaged --reopen
+expert-arguments: line 11: workflow_requested: unbound variable
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/18]⎯
+
+ FAIL  scripts/run-local-demo-fast.test.mjs > local demo launcher profiles > requires both explicit expert and packaged selection for reopen (true)
+ FAIL  scripts/run-local-demo-fast.test.mjs > local demo launcher profiles > requires both explicit expert and packaged selection for reopen (false)
+AssertionError: expected Error: Command failed: /Users/jack/Downlo… { …(6) } to match object { stderr: StringContaining{…} }
+(5 matching properties omitted from actual)
+
+- Expected
++ Received
+
+- {
+-   "stderr": StringContaining "--reopen requires an enabled packaged expert profile",
++ Error {
++   "stderr": "local demo startup failed: --reopen requires an enabled packaged profile
++ ",
+  }
+
+ ❯ scripts/run-local-demo-fast.test.mjs:327:8
+    325|       cwd: repositoryRoot,
+    326|       env: { ...process.env, YIJIE_EXPERTS_ENABLED: enabled },
+    327|     })).rejects.toMatchObject({ stderr: expect.stringContaining("--reo…
+       |        ^
+    328|   });
+    329|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/18]⎯
+
+ FAIL  scripts/run-local-demo-fast.test.mjs > local demo launcher profiles > uses reviewed roots with profile=daily and keeps current resource authority
+Error: Command failed: /bin/bash -c 
+      set -euo pipefail
+      desktop_root="$1"
+      expert_profile="$2"
+      fail() { exit 1; }
+      unset YIJIE_DEMO_FAST_HOST_PORT
+        expert_profile_data="$(node "$desktop_root/scripts/expert-local-profile.mjs" "$expert_profile")" || fail "expert profile is invalid"
+  IFS=$'\t' read -r expert_overlay expert_runtime_directory expert_host_port expert_product_name expert_identifier expert_host_binary <<< "$expert_profile_data"
+  if [[ "$kimi_k31_candidate" != "true" ]]; then
+  [[ -z "${YIJIE_DEMO_FAST_HOST_PORT:-}" || "$YIJIE_DEMO_FAST_HOST_PORT" == "$expert_host_port" ]] || fail "expert candidates require their fixed profile port"
+  experts_tauri_config=(--config "$expert_overlay")
+  runtime_root="$desktop_root/.local/$expert_runtime_directory"
+  host_port="$expert_host_port"
+  host_home="$runtime_root/host-home"
+  codex_home="$runtime_root/codex-home"
+  host_binary="$expert_host_binary"
+  else
+    # Only resources come from the expert overlay; FEAT-164 keeps its identity,
+    # port and isolated roots. Its own receipt covers the worker and resources.
+    experts_tauri_config=(--config src-tauri/tauri.feat164-experts.conf.json)
+  fi
+      printf '%s
+' "$runtime_root" "$host_home" "$codex_home" "$host_binary" "$host_port" "${experts_tauri_config[*]}"
+     expert-roots /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d1-candidate-20261027/yijie-desktop daily
+expert-roots: line 8: kimi_k31_candidate: unbound variable
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/18]⎯
+
+ FAIL  scripts/run-local-demo-fast.test.mjs > local demo launcher profiles > uses reviewed roots with profile=default and keeps current resource authority
+Error: Command failed: /bin/bash -c 
+      set -euo pipefail
+      desktop_root="$1"
+      expert_profile="$2"
+      fail() { exit 1; }
+      unset YIJIE_DEMO_FAST_HOST_PORT
+        expert_profile_data="$(node "$desktop_root/scripts/expert-local-profile.mjs" "$expert_profile")" || fail "expert profile is invalid"
+  IFS=$'\t' read -r expert_overlay expert_runtime_directory expert_host_port expert_product_name expert_identifier expert_host_binary <<< "$expert_profile_data"
+  if [[ "$kimi_k31_candidate" != "true" ]]; then
+  [[ -z "${YIJIE_DEMO_FAST_HOST_PORT:-}" || "$YIJIE_DEMO_FAST_HOST_PORT" == "$expert_host_port" ]] || fail "expert candidates require their fixed profile port"
+  experts_tauri_config=(--config "$expert_overlay")
+  runtime_root="$desktop_root/.local/$expert_runtime_directory"
+  host_port="$expert_host_port"
+  host_home="$runtime_root/host-home"
+  codex_home="$runtime_root/codex-home"
+  host_binary="$expert_host_binary"
+  else
+    # Only resources come from the expert overlay; FEAT-164 keeps its identity,
+    # port and isolated roots. Its own receipt covers the worker and resources.
+    experts_tauri_config=(--config src-tauri/tauri.feat164-experts.conf.json)
+  fi
+      printf '%s
+' "$runtime_root" "$host_home" "$codex_home" "$host_binary" "$host_port" "${experts_tauri_config[*]}"
+     expert-roots /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d1-candidate-20261027/yijie-desktop default
+expert-roots: line 8: kimi_k31_candidate: unbound variable
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/18]⎯
+
+ FAIL  scripts/run-local-demo-fast.test.mjs > local demo launcher profiles > uses reviewed roots with profile=content-v011 and keeps current resource authority
+Error: Command failed: /bin/bash -c 
+      set -euo pipefail
+      desktop_root="$1"
+      expert_profile="$2"
+      fail() { exit 1; }
+      unset YIJIE_DEMO_FAST_HOST_PORT
+        expert_profile_data="$(node "$desktop_root/scripts/expert-local-profile.mjs" "$expert_profile")" || fail "expert profile is invalid"
+  IFS=$'\t' read -r expert_overlay expert_runtime_directory expert_host_port expert_product_name expert_identifier expert_host_binary <<< "$expert_profile_data"
+  if [[ "$kimi_k31_candidate" != "true" ]]; then
+  [[ -z "${YIJIE_DEMO_FAST_HOST_PORT:-}" || "$YIJIE_DEMO_FAST_HOST_PORT" == "$expert_host_port" ]] || fail "expert candidates require their fixed profile port"
+  experts_tauri_config=(--config "$expert_overlay")
+  runtime_root="$desktop_root/.local/$expert_runtime_directory"
+  host_port="$expert_host_port"
+  host_home="$runtime_root/host-home"
+  codex_home="$runtime_root/codex-home"
+  host_binary="$expert_host_binary"
+  else
+    # Only resources come from the expert overlay; FEAT-164 keeps its identity,
+    # port and isolated roots. Its own receipt covers the worker and resources.
+    experts_tauri_config=(--config src-tauri/tauri.feat164-experts.conf.json)
+  fi
+      printf '%s
+' "$runtime_root" "$host_home" "$codex_home" "$host_binary" "$host_port" "${experts_tauri_config[*]}"
+     expert-roots /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d1-candidate-20261027/yijie-desktop content-v011
+expert-roots: line 8: kimi_k31_candidate: unbound variable
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/18]⎯
+
+ FAIL  scripts/run-local-demo-fast.test.mjs > local demo launcher profiles > uses reviewed roots with profile=content-v012 and keeps current resource authority
+Error: Command failed: /bin/bash -c 
+      set -euo pipefail
+      desktop_root="$1"
+      expert_profile="$2"
+      fail() { exit 1; }
+      unset YIJIE_DEMO_FAST_HOST_PORT
+        expert_profile_data="$(node "$desktop_root/scripts/expert-local-profile.mjs" "$expert_profile")" || fail "expert profile is invalid"
+  IFS=$'\t' read -r expert_overlay expert_runtime_directory expert_host_port expert_product_name expert_identifier expert_host_binary <<< "$expert_profile_data"
+  if [[ "$kimi_k31_candidate" != "true" ]]; then
+  [[ -z "${YIJIE_DEMO_FAST_HOST_PORT:-}" || "$YIJIE_DEMO_FAST_HOST_PORT" == "$expert_host_port" ]] || fail "expert candidates require their fixed profile port"
+  experts_tauri_config=(--config "$expert_overlay")
+  runtime_root="$desktop_root/.local/$expert_runtime_directory"
+  host_port="$expert_host_port"
+  host_home="$runtime_root/host-home"
+  codex_home="$runtime_root/codex-home"
+  host_binary="$expert_host_binary"
+  else
+    # Only resources come from the expert overlay; FEAT-164 keeps its identity,
+    # port and isolated roots. Its own receipt covers the worker and resources.
+    experts_tauri_config=(--config src-tauri/tauri.feat164-experts.conf.json)
+  fi
+      printf '%s
+' "$runtime_root" "$host_home" "$codex_home" "$host_binary" "$host_port" "${experts_tauri_config[*]}"
+     expert-roots /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d1-candidate-20261027/yijie-desktop content-v012
+expert-roots: line 8: kimi_k31_candidate: unbound variable
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/18]⎯
+
+ FAIL  scripts/run-local-demo-fast.test.mjs > local demo launcher profiles > uses reviewed roots with profile=content-v013 and keeps current resource authority
+Error: Command failed: /bin/bash -c 
+      set -euo pipefail
+      desktop_root="$1"
+      expert_profile="$2"
+      fail() { exit 1; }
+      unset YIJIE_DEMO_FAST_HOST_PORT
+        expert_profile_data="$(node "$desktop_root/scripts/expert-local-profile.mjs" "$expert_profile")" || fail "expert profile is invalid"
+  IFS=$'\t' read -r expert_overlay expert_runtime_directory expert_host_port expert_product_name expert_identifier expert_host_binary <<< "$expert_profile_data"
+  if [[ "$kimi_k31_candidate" != "true" ]]; then
+  [[ -z "${YIJIE_DEMO_FAST_HOST_PORT:-}" || "$YIJIE_DEMO_FAST_HOST_PORT" == "$expert_host_port" ]] || fail "expert candidates require their fixed profile port"
+  experts_tauri_config=(--config "$expert_overlay")
+  runtime_root="$desktop_root/.local/$expert_runtime_directory"
+  host_port="$expert_host_port"
+  host_home="$runtime_root/host-home"
+  codex_home="$runtime_root/codex-home"
+  host_binary="$expert_host_binary"
+  else
+    # Only resources come from the expert overlay; FEAT-164 keeps its identity,
+    # port and isolated roots. Its own receipt covers the worker and resources.
+    experts_tauri_config=(--config src-tauri/tauri.feat164-experts.conf.json)
+  fi
+      printf '%s
+' "$runtime_root" "$host_home" "$codex_home" "$host_binary" "$host_port" "${experts_tauri_config[*]}"
+     expert-roots /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d1-candidate-20261027/yijie-desktop content-v013
+expert-roots: line 8: kimi_k31_candidate: unbound variable
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/18]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  18 failed | 43 passed (61)
+   Start at  10:00:51
+   Duration  1.02s (transform 14ms, setup 0ms, import 22ms, tests 911ms, environment 0ms)
+

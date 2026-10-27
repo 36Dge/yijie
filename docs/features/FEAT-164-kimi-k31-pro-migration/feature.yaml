@@ -110,8 +110,8 @@ gate_reasons:
     e408047精确消费；仅本地来源，不等于发布或专家资源资格。
     S4b复用同一公共契约；Hostcac2d4d/Desktop56f5284/Connectors1f15726固定Skills595c927同内容资源和原库树，四组合source通过，旧来源的证据不覆盖App资格。
   G2V: S4V当前r5唯一真实请求HTTP200/42完成、保存/同构建重开零补发及正常退出通过；按Owner无需精确查价的功能验证授权执行。旧r4结果和两账本保留，不替代完整core/业务状态或日常cutover。
-  G4: 58号已接受本地范围G4 PASS保留为历史。本轮59源码审计发现daily Host/Runtime Home与原Native根缺少连续性（CUTOVER-01
-    P1）；日常入口须最小修正并重资格，当前G4重新pending。S1—S4/final原accepted local证据及never-sent替代不改写；未执行日常数据或新模型调用。
+  G4: 60号D1已完成六文件部署修正及安全离线/prepare-only资格，CUTOVER-01/03离线关闭。新daily
+    bootstrap尚无D2现场预检、D3维护或D4实际启动事实，不从prepare-only自动晋升G4；58原accepted local/final及Owner替代按原来源保留。
 
 temporal_contract_matrix:
   required: true
@@ -1350,18 +1350,18 @@ external_authorizations:
 current_authorization:
   paused_by_owner: false
   pause_reason: 历史：2026-10-26 18:01因关闭电脑暂停，现已由Owner明确恢复；原paused-handoff保留。
-  phase: daily_cutover_plan_only
-  source: 本轮用户要求审计58、收敛完整备份/只读预检/受控迁移/启动与回退方案，暂不执行日常库操作。
+  phase: D1_completed_offline
+  source: Owner本轮明确批准59号仅D1：Desktop Home绑定/workflow只读ready、安全离线及prepare-only；不执行D2—D5、不访问日常库、不新增真实模型调用。
   documentation_write_allowed: true
-  product_source_edit_allowed: false
-  product_generate_build_test_allowed: false
+  product_source_edit_allowed: true
+  product_generate_build_test_allowed: true
   database_migration_allowed: false
   isolated_qualification_migration_allowed: false
   migration_scope: 本轮不打开或迁移日常库，也不新增隔离迁移；全部既有状态保留。
   service_lifecycle_allowed: false
   model_or_tool_business_calls_allowed: false
   git_commit_push_branch_release_allowed: false
-  note: 59仅方案/源码/证据审计与治理本地提交；无日常数据访问、backup/preflight/migration/App或workflow启动，无真实/本机模型HTTP。D1产品修正及D2—D5数据动作均须按具体范围后续批准；旧账本/两份预占保持。
+  note: D1六文件已本地提交并验证；授权不延伸D2—D5或新核心范围。0真实/本机模型HTTP，无日常数据或服务操作。旧账本/预占完整保留，不推送。
   git_local_commit_allowed: true
   git_scope: 仅FEAT-164必要独立来源/实现/验证/治理本地提交，不混入其它需求；无push/branch/tag/release。
 implementation:
@@ -1750,7 +1750,7 @@ implementation:
     loopback_model_http_added: 0
     full_app_ui: NOT RUN
     note: 同一App维护参数在auth/worker/sidecar/UI之前退出；两种旧库自然离线样本成功，现有SQL41候选拒绝后未迁移/清理/退款。两个前置环境失败及后置归因修正保留，不冒充完整G3/final。
-  completion_scope: 58 accepted local evidence retained; daily deployment continuity fix and requalification outstanding
+  completion_scope: D1 implementation and offline qualification complete; real daily data stages D2-D5 not authorized
   owner_acceptance_s4ae:
     report: 58-owner-accepted-substitute-and-final-closure.md
     incremental_contract_impact: none
@@ -1760,10 +1760,22 @@ implementation:
     structured_review_ref: evidence/s4ae-structured-review.json
     real_model_http_added: 0
     daily_migration: false
+  daily_binding_d1:
+    status: PASS_OFFLINE
+    report: 60-d1-daily-binding-and-offline-qualification.md
+    desktop_commit: b789d5c8147fde9890d49b67c6ecb191473793db
+    evidence_ref: 08-verification-report.md#E164-D1-OFFLINE
+    contract_impact: semantic
+    app_sha256: 944b6b238b7f7b0f36cfab2be358d83b9be044587cc37a3ea5a161fc68b40015
+    receipt_sha256: 490e35d8e5214d1dddd84def050edf093cdd9f2f7aa9edd5fb83076ebb3c9fc3
+    bundle_files: 119
+    actual_daily_data_access: false
+    real_model_http_added: 0
+    runtime_core_or_patch_changed: false
 product_verification:
-  status: PASS_ACCEPTED_LOCAL_SCOPE_DEPLOYMENT_BLOCKED
-  reason: 58原本地适用范围与Owner替代继续有效；59发现部署Home连续性缺口，日常NO_GO、当前G4 pending。完整App正向never-sent仍NOT RUN，无日常或模型新操作。
-  report: 59-daily-cutover-minimal-plan-and-authorization.md
+  status: PASS_D1_OFFLINE_DAILY_NOT_AUTHORIZED
+  reason: 60 D1已完成；原本地模型/业务状态证据和Owner替代保持，实际日常操作/启动未执行，G4不自动晋升。
+  report: 60-d1-daily-binding-and-offline-qualification.md
 profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
 owner_approvals:
   requirements: approved_by_owner_current_user_message
@@ -1844,21 +1856,21 @@ accepted_substitutions:
     acceptance_status: ACCEPTED_SAFE_LAYERED_SUBSTITUTE
 daily_cutover:
   plan_id: F164-S4AF-DAILY-CUTOVER
-  status: PROPOSED_NOT_EXECUTED
+  status: D1_COMPLETE_OFFLINE
   report: 59-daily-cutover-minimal-plan-and-authorization.md
   evidence_ref: 08-verification-report.md#E164-S4AF-PLAN
-  activation_readiness: NO_GO
-  open_deployment_issue: CUTOVER-01 P1 Home continuity
+  activation_readiness: NOT_AUTHORIZED_D2_D5
+  open_deployment_issue: CUTOVER-01/03 fixed and offline verified; actual data binding/activation not yet qualified
   historical_local_G4:
     status: PASS
     report: 58-owner-accepted-substitute-and-final-closure.md
     meta_commit: cab1e565d2e96d0a71def5ac6d6383741fa759c7
     not_retroactively_changed: true
   proposed_incremental_contract_impact: semantic
-  current_incremental_contract_impact: none
+  current_incremental_contract_impact: semantic
   authorizations:
     current_plan_and_local_commit: true
-    product_code_change: false
+    product_code_change: true
     daily_inventory_or_backup: false
     daily_readonly_database_preflight: false
     daily_native_migration: false
@@ -1867,6 +1879,7 @@ daily_cutover:
     model_http: false
     runtime_core_or_patch_change: false
     push_or_release: false
+    product_code_change_scope: Only report59 D1 six Desktop files; completed, no extension to D2-D5
   phases:
     - id: D0
       action: 只读源码复审与计划落盘
@@ -1874,8 +1887,9 @@ daily_cutover:
       data_access: false
     - id: D1
       action: 部署Home绑定与既有workflow只读ready门禁最小修正；合成数据/prepare-only资格
-      status: PROPOSED_REQUIRES_APPROVAL
+      status: PASS_OFFLINE
       data_access: false
+      evidence_ref: 08-verification-report.md#E164-D1-OFFLINE
     - id: D2
       action: 正常停止并持同一锁，完整受保护冷备份，第二份副本只读预检，形成精确路径/文件摘要与NO-GO清单
       status: NOT_AUTHORIZED
@@ -1901,3 +1915,4 @@ daily_cutover:
   actual_daily_data_operations: 0
   real_model_http_added: 0
   runtime_core_or_patch_changed: false
+  current_report: 60-d1-daily-binding-and-offline-qualification.md

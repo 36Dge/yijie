@@ -1,5 +1,11 @@
 # FEAT-164 当前验收与来源矩阵
 
+## 当前D1实施结果（2026-10-27）
+
+当前权威为[60 D1完成与离线资格](60-d1-daily-binding-and-offline-qualification.md)。59号D1已获批并完成六文件Desktop修正、安全测试和新canonical prepare-only/同回执复核；Host/Runtime采用已批准原Home绑定，daily不再隐式workflow-up。真实日常绑定未生成、D2—D5未执行、模型HTTP新增0、Runtime核心/补丁未改。原CUTOVER-01/03已离线修复，日常现场/启动资格仍无授权，G4不自动晋升。58接受的never-sent替代保留，完整App正向取消仍NOT RUN。
+
+下方59及更早“尚未实施D1/原入口缺陷”按当时来源解释，不再作为当前D1未完成项。下一步仅在批准D2后进行完整冷备份和副本只读预检，不顺带迁移或启动。
+
 ## 当前日常切换边界（2026-10-27，S4AF）
 
 以[59 日常切换方案](59-daily-cutover-minimal-plan-and-authorization.md)为当前部署权威。源码复审发现daily launcher将Host/Runtime Home改至候选新目录、与原Native日常库缺连续性；正常启动还可能隐式workflow迁移及恢复自动计划。日常activation为NO_GO，当前G4重新pending，先提限定部署入口修正及离线资格，尚未获准实施。58的已接受本地S1—S4/final证据与never-sent替代保持，完整App正向取消原执行仍NOT RUN；不是重新跑失败或取消Owner接受。
@@ -47,7 +53,7 @@
 | accessibility_visual | PASS | 现存业务状态范围；完整App正向取消NOT RUN另列；外观专项已排除 |
 | teardown | PASS | 57正常退出/数据库业务事实保护，本轮零启动且文件未改 |
 | S1/S2/S3/S4 G3 | PASS（58本地范围） | 来源并集8项及已接受替代保持 |
-| 当前G4 | pending | 59发现CUTOVER-01日常Home连续性P1；须修正入口并重资格，58原PASS作为历史保留 |
+| 当前G4 | pending | 60已离线修复CUTOVER-01/03；新daily bootstrap尚未实际启动，不从prepare-only自动晋升 |
 | G5/G6 | pending | local exposure，无生产/发布资格或授权 |
 | 日常候选 | prepare-only PASS | ea制品c29f7e0未启动；日常库未打开/迁移 |
 
@@ -57,4 +63,4 @@
 
 本轮587个历史证据引用、12份私有事实、六来源及三套119文件制品核验一致。全部12441保护文件、500份既有dirty和7账本/快照核对，混合memory仅本轮增量。真实HTTP累计13，本轮0；45元cap、29.740299保守累计、两份14.188544预占保持。服务停止，无交接待答。
 
-不再补试已接受项或重复模型回合。下一步先按59批准D1部署绑定/ready-only最小修正及离线验证，之后再逐阶段批准D2完整备份/预检、D3维护、D4启动、D5日常启用。日常候选prepare-only不代表可直接启动；无Runtime核心/补丁新增范围。仅本地提交、不推送。
+不再补试已接受项或重复模型回合。60已完成D1部署绑定/ready-only修正及离线资格；下一步仅在获批后进入D2完整备份/预检，D3维护、D4启动、D5日常启用仍分阶段批准。日常候选prepare-only不代表可直接启动；无Runtime核心/补丁新增范围。仅本地提交、不推送。

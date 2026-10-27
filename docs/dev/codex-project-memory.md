@@ -1,5 +1,15 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 D1完成：日常部署绑定及只读ready离线合格（2026-10-27）
+
+当前权威[60](../features/FEAT-164-kimi-k31-pro-migration/60-d1-daily-binding-and-offline-qualification.md)。Owner已批准59仅D1，Desktop独立提交b789d5c8147fde9890d49b67c6ecb191473793db，恰好6文件。制品目录不再生成Host/Runtime数据Home，D3/D4/D5执行必须使用原Home部署绑定和exact receipt；daily只核验既有workflow ready，不再workflow-up/状态写入。无Runtime/Native/SQL/Infra修改。
+
+61入口＋3profile、19来源、lint/docs与新canonical prepare-only、prepare-only --reopen均通过。原18个入口测试失败是截取脚本漏fixture初值/旧文案，已仅同文件修正，原日志保留。新daily App119文件SHA944b6b238b7f7b0f36cfab2be358d83b9be044587cc37a3ea5a161fc68b40015；receipt490e35d8e5214d1dddd84def050edf093cdd9f2f7aa9edd5fb83076ebb3c9fc3，目录feat164-d1-candidate-20261027。prepare-only未读绑定/真实凭据，未创建数据Home、未启动App/workflow。
+
+D1 PASS_OFFLINE、CUTOVER-01/03离线修复；D2—D5仍未授权，实际日常状态/首次启动未知，G4不从prepare-only自动晋升。58原accepted local/final与never-sent安全替代保留，完整App正向取消仍NOT RUN；搜索质量及外观专项OWNER_EXCLUDED。下一步必须先获D2完整冷备份/第二副本只读预检授权，不直接维护或启动，不重跑模型回合。
+
+本轮0真实/0本机模型HTTP，无日常库访问。旧500dirty＋混合memory、7账本/快照、360旧App/receipt保持；累计真实13、45元cap/29.740299保守累计、两份14.188544预占保留。仅本地提交、不推送，Runtime核心/补丁仍先方案。
+
 ## FEAT-164 S4AF：日常切换方案已收敛，执行尚未授权（2026-10-27）
 
 当前权威[59](../features/FEAT-164-kimi-k31-pro-migration/59-daily-cutover-minimal-plan-and-authorization.md)。本轮仅源码/58证据/制品审计和方案落盘，不访问、枚举、hash、备份、预检、迁移或启动日常数据/App；0真实/本机模型HTTP，无Runtime核心/补丁或产品修改。

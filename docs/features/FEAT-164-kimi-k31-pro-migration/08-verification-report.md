@@ -1,5 +1,11 @@
 # FEAT-164 实际验证记录
 
+## 当前D1实施结果（2026-10-27）
+
+当前权威为[60 D1完成与离线资格](60-d1-daily-binding-and-offline-qualification.md)。59号D1已获批并完成六文件Desktop修正、安全测试和新canonical prepare-only/同回执复核；Host/Runtime采用已批准原Home绑定，daily不再隐式workflow-up。真实日常绑定未生成、D2—D5未执行、模型HTTP新增0、Runtime核心/补丁未改。原CUTOVER-01/03已离线修复，日常现场/启动资格仍无授权，G4不自动晋升。58接受的never-sent替代保留，完整App正向取消仍NOT RUN。
+
+下方59及更早“尚未实施D1/原入口缺陷”按当时来源解释，不再作为当前D1未完成项。下一步仅在批准D2后进行完整冷备份和副本只读预检，不顺带迁移或启动。
+
 ## 当前日常切换边界（2026-10-27，S4AF）
 
 以[59 日常切换方案](59-daily-cutover-minimal-plan-and-authorization.md)为当前部署权威。源码复审发现daily launcher将Host/Runtime Home改至候选新目录、与原Native日常库缺连续性；正常启动还可能隐式workflow迁移及恢复自动计划。日常activation为NO_GO，当前G4重新pending，先提限定部署入口修正及离线资格，尚未获准实施。58的已接受本地S1—S4/final证据与never-sent替代保持，完整App正向取消原执行仍NOT RUN；不是重新跑失败或取消Owner接受。
@@ -616,3 +622,11 @@ S4/TCONF04、core_vertical、业务状态accessibility_visual及teardown按已�
 PASS_SOURCE_FACTS_CONFIRMED：58索引28证据、当前6来源、daily App119文件及1206源码输入相符。静态源审计确认CUTOVER-01日常Native与Host/Runtime Home路径断点，以及维护合并预检/写入、内部备份范围、workflow-up迁移/状态写入、全模型自动计划和首次Host/Runtime写入边界。完整事实/源码SHA见evidence/s4af-source-review.json，最小修正及D0—D5授权矩阵见59和s4af-daily-cutover-plan.json。
 
 当前日常NO_GO、G4 pending，58历史隔离PASS不改写；S4和三final的原accepted local范围保留，完整App正向never-sent仍NOT RUN。没有进行日常数据现场调查、备份、只读开库、维护或启动，没有新模型HTTP或Runtime代码修改。只读审计不是新E2E，不以待定日常事实填造PASS。
+
+## D1日常部署离线资格
+
+<!-- evidence: E164-D1-OFFLINE -->
+
+PASS_OFFLINE：Owner批准59 D1六文件范围，Desktop b789d5c已本地固定。入口61项、daily profile3项、lint/docs、语法、19项同源检查及canonical prepare-only/prepare-only reopen均通过。正常合成两Home记录保持、无绑定早拒绝、workflow纯状态false拒绝；无真实workflow状态查询、无日常数据访问/绑定/迁移/启动、0模型HTTP。完整命令/源码/制品见60及d1-source-binding.json、d1-daily-build-binding.json。旧18个基线测试错误与RCA完整保留；不声称全仓CI或实际daily通过。
+
+G4仍pending，不用离线准备自动升级新daily bootstrap最终验收。58已接受本地证据和never-sent安全替代不变；完整App正向取消仍NOT RUN。D2—D5和新Runtime范围未授权。

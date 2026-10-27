@@ -1,13 +1,11 @@
 # FEAT-164 当前交付状态
 
-2026-10-27。当前部署权威为[59号最小方案](59-daily-cutover-minimal-plan-and-authorization.md)、[验收矩阵](current-acceptance-matrix.md)和feature.yaml。
+2026-10-27。当前权威[60 D1实施与离线资格](60-d1-daily-binding-and-offline-qualification.md)。Owner批准的D1已经完成：Desktop六文件提交b789d5c；原Home绑定、阶段/回执准入和existing-ready-only workflow门禁落地，正常/旧隔离入口保持。61入口测试、3日常profile、19来源检查、lint/docs及canonical prepare-only与同回执检查通过。
 
-58号S1—S4 G3、三项适用final与Owner接受的never-sent安全替代保持原范围；完整App正向取消仍NOT RUN，原自然unknown仍保留安全拒绝。搜索质量和外观专项继续OWNER_EXCLUDED。
+新App119文件，SHA944b6b238b7f7b0f36cfab2be358d83b9be044587cc37a3ea5a161fc68b40015，receipt490e35d8e5214d1dddd84def050edf093cdd9f2f7aa9edd5fb83076ebb3c9fc3。没有创建候选数据Home、生成真实部署绑定、启动App/workflow或访问日常库。没有Runtime核心/补丁、Native/SQL或Infra修改。
 
-59源码复审发现日常Native原库与候选Host/Runtime新Home路径不连续；现有维护合并预检/写入，启动还可能隐式workflow迁移和恢复自动计划。**日常activation NO_GO、当前G4 pending、implementation active。** 58本地G4 PASS保留为历史，不能覆盖新日常部署问题；既有prepare-only制品未被判成损坏，也没有实际启动失败。
+CUTOVER-01/03已离线修复；D2完整备份/预检、D3维护、D4首次实际启动与D5日常启用尚未授权。G4保持pending，不能把新daily prepare-only当成实际启动资格；58原S1—S4/final与Owner安全替代保留其来源，完整App正向取消仍NOT RUN。搜索质量与外观专项保持OWNER_EXCLUDED，G5/G6及正式交付pending。
 
-推荐先批准D1：Desktop限定部署Home绑定和既有workflow只读ready门禁修正，合成状态验证及新prepare-only；不改Runtime核心/补丁或Infra实现。之后分别批准D2完整冷备份/副本只读预检、D3一次Native维护、D4首次受限启动、D5确认日常启用。详细文件范围、数据边界、停止条件和兼容reader回退见59，当前只有方案落盘授权。
+本轮真实/本机模型HTTP新增0。500份旧dirty、混合memory无关块、7份账本/历史快照及360份旧App/receipt记录保持；累计13次、45元cap、29.740299保守累计与两份14.188544预占不动。仅本地提交，不推送。
 
-本轮未访问/枚举/hash/备份/预检/迁移真实日常数据，未启动App或workflow，未新增真实/本机模型请求，未实施新产品代码。500份既有dirty（另混合memory）、7份账本/历史快照保持；累计真实13、45元cap、29.740299保守累计和两份14.188544预占不动。
-
-全部仅FEAT-164治理本地提交、无推送。feature保持active，G5/G6及正式发布pending；当前不宣称日常已从K3切换完成。
+下一步只在明确批准D2后，按59执行正常停止、完整冷备份与第二副本只读预检，形成实际数据和部署绑定结论后再批准后续写入。不重复已接受的模型/取消/外观验收，不越过日常数据边界。
