@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "completed_at": "2026-10-27T04:34:32.934991+00:00",
+  "candidate_receipt_sha256": "0e6fe8191ffc027d4f1efedf14f7e8562ee1d876068aafa7386410202a2878a7",
+  "D2_complete_backup_sha256": "fd007b8bb8857ff1f903c703124328b1a6b65dcb15444a7280db36dc129b3449",
+  "files": 17389,
+  "bytes": 476337115,
+  "original_and_sealed_unchanged": true,
+  "global_app_lock_verified": true,
+  "no_project_processes_or_handles": true,
+  "schema": 37,
+  "table_count": 68,
+  "checks": {
+    "outbox_pending_inflight": 0,
+    "selection_nonready": 0,
+    "reservations": 0,
+    "occupied_grants": 6,
+    "turn_uncertain_or_active": 0,
+    "native_view_nonterminal_or_unreadable": 0,
+    "all_model_enabled_future": 0,
+    "all_model_pending_recovery": 0,
+    "chat_sessions_foreign_scope": 0,
+    "chat_projects_foreign_scope": 0,
+    "chat_scheduled_plans_foreign_scope": 0,
+    "chat_scheduled_grants_foreign_scope": 0,
+    "unsettled_grant_history": 0
+  },
+  "migration_preflight_clear": true,
+  "zero_dispatch_upper_bound_clear": true,
+  "native_before_sha256": "8fa920c3d0f97e78cd310415bf323a1052579ab92e037cdaee6466a6c27ee4a3",
+  "original_database_api_open": false,
+  "model_http_added": 0
+}

@@ -1,5 +1,13 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 D3一次维护完成，停止于D4之前（2026-10-27）
+
+当前权威[64](../features/FEAT-164-kimi-k31-pro-migration/64-d3-controlled-migration-and-post-state-audit.md)。Owner批准63后一次D3；先核候选841/a3、119文件1216输入、完整D2原17,389文件及同一App锁/无句柄，真实副本SQL37预检全清。canonical维护恰好一次退出0，原日常Native SQL37→41。没有GUI/Host/Runtime/worker启动、没有模型HTTP或Runtime核心/补丁修改，D4明确未授权/执行。
+
+后态17,397文件完整sealed与inspection；SQL41/71表integrity/FK正常，67旧业务表全部旧行一致，迁移记录37原行保留+4，3新表为空。8会话映射、25grant/6消费、7run、6deleted计划及原退款/回执保持；原Host/Runtime/Provider Key与四份WAL逐文件不变。D2 sealed及Native内部备份均核验，未手工checkpoint、删/截WAL或恢复旧库。私有审计feat164-d3-migration-audit-20261027，内部backup01a17ba4-baff-78a0-8e36-6dc3aa81d14c。
+
+一次D3许可已消费，不能重跑或启动D4；下一步独立批准D4后重验后态/实例锁/零派发/workflow ready并保持Kimi暂停。旧SQL37构建不可直接开当前SQL41，回退需另行明确完整数据组与范围，不自动覆盖DB。D5长期入口及local G5/G6未收口；58接受/排除范围保持。旧dirty、混合memory、7账本/两预占保留，累计13次、本轮0，仅本地提交不推送。
+
 ## FEAT-164 D3前阻塞已解除，新候选准备完成（2026-10-27）
 
 当前权威[63](../features/FEAT-164-kimi-k31-pro-migration/63-pre-d3-blockers-fixed-and-ready.md)。Owner要求执行解决所有D3前阻塞，Host a3d8767精确旧catalog前身，Desktop实现3219113/来源冻结841f7c7共用结清SQL修复误拦。原已消费次数/授权/旧v1/trust保持，Runtime r5/核心/补丁未改。新daily App4f7adca/receipt0e6fe81（119文件1216源码），canonical prepare-only及同回执通过，目录feat164-d3-ready-candidate-20261027；未创建数据Home或启动App。

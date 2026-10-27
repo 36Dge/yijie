@@ -661,3 +661,14 @@ D3—D5未授权/执行；保留原授权/占额、WAL、秘密及账本，不�
 D2日常源/封存17,389文件仍一致，SQL37真实副本occupied_grants=6保持而unsettled_grant_history=0。正常删除目标的原run/recovery用于已结清证明，原计数/操作/授权不改。workflow原退出255已归档，四停止态volume备份→原容器恢复/业务事实核对→正常停止→canonical up；最终六healthy及鉴权/editor READY，业务事实保持，仅两次正常principal审计追加。Docker/workflow保持运行；不混淆其生命周期变化与日常数据保护。
 
 D3_PRECONDITIONS_READY，不代表实际日常迁移/启动或G4/G5/G6通过。旧模型账本/预占/dirty保持，本轮0真实/本机模型HTTP。证据d3-ready-summary/source-binding/workflow-summary及私有绑定索引，完整报告63。
+
+
+## D3一次日常维护及后态审计
+
+<!-- evidence: E164-D3-MIGRATION -->
+
+64号：Owner明确批准一次D3并要求结束后停止。六源及当前841/a3候选119文件/1216输入保持，canonical prepare-only --reopen通过；同一全局锁、无活动进程/句柄，原17,389文件与D2 sealed再次一致。新的inspection SQL37/68表通过integrity/FK/结清与全模型零派发预检，真实D3批准绑定精确receipt和本轮preflight SHA。
+
+canonical维护恰好一次退出0，SQL37→41；无GUI/auth/worker/Host/Runtime，0模型HTTP。后态完整sealed/inspection为17,397文件，SQL41/71表；67张旧业务表原行全部相同，原37条迁移记录保留并追加4条，3新表为空；8会话映射、25grant/6消费、7run、6deleted计划及旧模型历史不改。原Host/Runtime/Key逐文件保持，内部备份与D2迁移前一致；无手工checkpoint或WAL清理。
+
+D3_COMPLETE_STOPPED；一次许可已消费，D4未授权/执行，G4/G5/G6不晋升。完整证据见64、d3-migration-preflight/post-state/row-preservation/source-binding及private-evidence-index；不是新全范围App E2E。58 Owner替代、完整App正向取消NOT RUN和永久排除项保持。

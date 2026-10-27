@@ -1,8 +1,8 @@
 # FEAT-164 需求、交互与验收
 
-本需求已获Owner授权实施；本文件仍是整项验收目标。全部AC在已接受的本地实现与验收范围内PASS，逐项证据见[当前验收矩阵](current-acceptance-matrix.md)和58；日常迁移/启用与发布未执行，不能把代码完成等同日常切换完成。
+本需求已获Owner授权实施；本文件仍是整项验收目标。全部AC在已接受的本地实现与验收范围内PASS，逐项证据见[当前验收矩阵](current-acceptance-matrix.md)和58；日常D3存储维护已完成，App启用与发布未执行，不能把代码完成或存储维护等同日常切换完成。
 
-当前日常部署以[63](63-pre-d3-blockers-fixed-and-ready.md)为准：D1/D2保持，三项D3前技术阻塞已修复并验证，当前D3_PRECONDITIONS_READY。原日常仍SQL37，尚未执行D3迁移/D4启动；长期D5与local交付门禁口径仍待收口。58本地AC与替代证据保留，prepare-only不等于日常启用。
+当前日常部署以[64](64-d3-controlled-migration-and-post-state-audit.md)为准：D1/D2及63前置修复保持，一次D3成功后停止，原日常Native已为SQL41，后态完整备份及旧业务行保持核对通过。D4尚未授权/启动，长期D5与local交付门禁口径仍待收口。58本地AC与替代证据保留，存储维护不等于日常启用。
 
 ## 业务规则
 

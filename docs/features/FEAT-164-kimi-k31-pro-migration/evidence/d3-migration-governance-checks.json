@@ -1,0 +1,150 @@
+{
+  "at": "2026-10-27T12:42:11.452115+08:00",
+  "checks": [
+    {
+      "name": "audit-claims",
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--audit-claims",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "log": "audit-claims.log"
+    },
+    {
+      "name": "strict",
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "log": "strict.log"
+    },
+    {
+      "name": "g3-s4",
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--gate",
+        "G3",
+        "--slice",
+        "S4",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "log": "g3-s4.log"
+    },
+    {
+      "name": "meta-lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exit_code": 0,
+      "log": "meta-lint.log"
+    },
+    {
+      "name": "meta-test",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exit_code": 0,
+      "log": "meta-test.log"
+    },
+    {
+      "name": "shell-bootstrap",
+      "command": [
+        "bash",
+        "-n",
+        "scripts/bootstrap.sh"
+      ],
+      "exit_code": 0,
+      "log": "shell-bootstrap.log"
+    },
+    {
+      "name": "shell-checkout-all",
+      "command": [
+        "bash",
+        "-n",
+        "scripts/checkout-all.sh"
+      ],
+      "exit_code": 0,
+      "log": "shell-checkout-all.log"
+    },
+    {
+      "name": "shell-dev-down",
+      "command": [
+        "bash",
+        "-n",
+        "scripts/dev-down.sh"
+      ],
+      "exit_code": 0,
+      "log": "shell-dev-down.log"
+    },
+    {
+      "name": "shell-dev-up",
+      "command": [
+        "bash",
+        "-n",
+        "scripts/dev-up.sh"
+      ],
+      "exit_code": 0,
+      "log": "shell-dev-up.log"
+    },
+    {
+      "name": "shell-generate-all",
+      "command": [
+        "bash",
+        "-n",
+        "scripts/generate-all.sh"
+      ],
+      "exit_code": 0,
+      "log": "shell-generate-all.log"
+    },
+    {
+      "name": "shell-lint-all",
+      "command": [
+        "bash",
+        "-n",
+        "scripts/lint-all.sh"
+      ],
+      "exit_code": 0,
+      "log": "shell-lint-all.log"
+    },
+    {
+      "name": "shell-test-all",
+      "command": [
+        "bash",
+        "-n",
+        "scripts/test-all.sh"
+      ],
+      "exit_code": 0,
+      "log": "shell-test-all.log"
+    }
+  ],
+  "all_pass": true,
+  "business_or_app_E2E_rerun": false,
+  "test_count": 53,
+  "shell_scripts": 7,
+  "checked_feature": "FEAT-164",
+  "G4_G5_G6_promoted": false,
+  "diff_check": "PASS_after_removing_one_new_EOF_blank_line",
+  "log_sha256": {
+    "audit-claims.log": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4",
+    "strict.log": "0f6377b2cf2e6dba2d18bcba312d28530dafd7d4a1f423d7affcf223fed72bce",
+    "g3-s4.log": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4",
+    "meta-lint.log": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c",
+    "meta-test.log": "efa43e6f4b8ca1e99d19ac8a30d6493d403f027e3b45436c9cec96844e79afb9",
+    "shell-bootstrap.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "shell-checkout-all.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "shell-dev-down.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "shell-dev-up.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "shell-generate-all.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "shell-lint-all.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "shell-test-all.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

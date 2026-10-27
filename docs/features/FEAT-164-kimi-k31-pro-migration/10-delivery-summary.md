@@ -1,11 +1,9 @@
 # FEAT-164 当前交付状态
 
-2026-10-27。当前权威[60 D1实施与离线资格](60-d1-daily-binding-and-offline-qualification.md)。Owner批准的D1已经完成：Desktop六文件提交b789d5c；原Home绑定、阶段/回执准入和existing-ready-only workflow门禁落地，正常/旧隔离入口保持。61入口测试、3日常profile、19来源检查、lint/docs及canonical prepare-only与同回执检查通过。
+## 当前D3实施结果（2026-10-27）
 
-新App119文件，SHA944b6b238b7f7b0f36cfab2be358d83b9be044587cc37a3ea5a161fc68b40015，receipt490e35d8e5214d1dddd84def050edf093cdd9f2f7aa9edd5fb83076ebb3c9fc3。没有创建候选数据Home、生成真实部署绑定、启动App/workflow或访问日常库。没有Runtime核心/补丁、Native/SQL或Infra修改。
+当前权威为[64 D3一次维护与后态审计](64-d3-controlled-migration-and-post-state-audit.md)。Owner批准的一次维护已完成，日常Native由SQL37升级到41后正常退出；候选、完整D2备份、实例锁/句柄及数据一致性先行核验，后态完整备份与只读复核通过。67张既有业务表全部旧行不变，仅新增4条迁移记录和3张空表；原Host/Runtime、密钥、账本/预占保持。
 
-CUTOVER-01/03已离线修复；D2完整备份/预检、D3维护、D4首次实际启动与D5日常启用尚未授权。G4保持pending，不能把新daily prepare-only当成实际启动资格；58原S1—S4/final与Owner安全替代保留其来源，完整App正向取消仍NOT RUN。搜索质量与外观专项保持OWNER_EXCLUDED，G5/G6及正式交付pending。
+当前D3_COMPLETE_STOPPED，不进入D4。无GUI、Host、Runtime启动或新模型调用，无Runtime核心/补丁修改。下一步仍须单独批准D4并重验后态/锁/全模型无派发工作/既有workflow ready；D5长期入口、local G5/G6口径继续待收口。旧SQL37构建不可直接重开SQL41，未执行回退。58接受范围与Owner排除项保持。下列旧阶段按原时点解释。
 
-本轮真实/本机模型HTTP新增0。500份旧dirty、混合memory无关块、7份账本/历史快照及360份旧App/receipt记录保持；累计13次、45元cap、29.740299保守累计与两份14.188544预占不动。仅本地提交，不推送。
-
-下一步只在明确批准D2后，按59执行正常停止、完整冷备份与第二副本只读预检，形成实际数据和部署绑定结论后再批准后续写入。不重复已接受的模型/取消/外观验收，不越过日常数据边界。
+当前候选仍Desktop841f7c7/Hosta3d8767，App SHA4f7adcadc59db4a6e4cf23e700ebab5858b6ae9d953cd7401780d5778cab0f42、receipt0e6fe8191ffc027d4f1efedf14f7e8562ee1d876068aafa7386410202a2878a7；119包内文件/1216源码输入不变。本轮未改产品代码或重建制品；原工作区、全部账本及两份14.188544元预占保持，累计13次、45元cap及29.740299元保守累计不变。只做本地治理提交，不推送。

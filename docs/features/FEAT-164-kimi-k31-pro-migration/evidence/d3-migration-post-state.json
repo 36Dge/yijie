@@ -1,0 +1,59 @@
+{
+  "status": "PASS_D3_COMPLETE_STOPPED",
+  "completed_at": "2026-10-27T04:36:45.340186+00:00",
+  "checks": {
+    "native_command_once_success": true,
+    "schema41_integrity_and_fk": true,
+    "settled_history_and_zero_dispatch": true,
+    "old_business_rows_preserved": true,
+    "new_tables_expected_and_empty": true,
+    "original_session_bindings_preserved": true,
+    "host_runtime_provider_bytes_and_metadata_unchanged": true,
+    "native_only_expected_files_changed": true,
+    "internal_backup_matches_complete_cold_backup": true,
+    "old_complete_backup_unchanged": true,
+    "post_state_sealed_backup_verified": true,
+    "no_activity_or_handles": true,
+    "candidate_unchanged": true,
+    "ledgers_unchanged": true
+  },
+  "attempt_count": 1,
+  "schema_before": 37,
+  "schema_after": 41,
+  "table_count_before": 68,
+  "table_count_after": 71,
+  "native_checks": {
+    "outbox_pending_inflight": 0,
+    "selection_nonready": 0,
+    "reservations": 0,
+    "occupied_grants": 6,
+    "turn_uncertain_or_active": 0,
+    "native_view_nonterminal_or_unreadable": 0,
+    "all_model_enabled_future": 0,
+    "all_model_pending_recovery": 0,
+    "chat_sessions_foreign_scope": 0,
+    "chat_projects_foreign_scope": 0,
+    "chat_scheduled_plans_foreign_scope": 0,
+    "chat_scheduled_grants_foreign_scope": 0,
+    "unsettled_grant_history": 0
+  },
+  "data_measures": {
+    "old_k3_ready_selections": 8,
+    "old_k3_plan_models": 3,
+    "deleted_plans": 6,
+    "occupied_runs_total": 6
+  },
+  "existing_native_file_changes": [
+    "demo-fast-v1/chat/conversations.db"
+  ],
+  "removed_native_files": [],
+  "post_backup_files": 17397,
+  "post_backup_bytes": 530142694,
+  "post_source_manifest_sha256": "5c96a86c504cbc47a1526d25ad3c135c78d784875e43f9fd72eea49f92156c1f",
+  "internal_backup_id": "01a17ba4-baff-78a0-8e36-6dc3aa81d14c",
+  "model_http_added": 0,
+  "D4_started": false,
+  "runtime_core_patch_modified": false,
+  "manual_checkpoint_wal_edit_or_force_kill": false,
+  "automatic_retry_or_restore": false
+}
