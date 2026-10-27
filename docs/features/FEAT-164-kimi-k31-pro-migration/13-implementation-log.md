@@ -1,5 +1,7 @@
 # FEAT-164 实施记录
 
+> 当前权威[65](65-d4-preflight-and-workflow-restart-boundary.md)：D4已获批但停止在workflow预检；Docker后台未运行/socket不存在，App尚未启动。下方64及更早阶段按原时点解释。
+
 > 当前权威[64](64-d3-controlled-migration-and-post-state-audit.md)：一次D3 SQL37→41维护完成，后态审计通过并停止，未进入D4。以下早期“当前”记录按原时点解释。
 
 > 最新按[39 证据绑定与三项最终验收](39-evidence-binding-and-final-verdicts.md)：当前来源141项＋4source和可达App验证通过，新增真实模型0；S1证据收口，S2/S3/S4保留完整纵向缺项。视觉单项PASS；core及Runtime checkpoint完整teardown未通过。两份真实账本、旧预占和日常库保持。以下旧记录按原时间与来源解释。

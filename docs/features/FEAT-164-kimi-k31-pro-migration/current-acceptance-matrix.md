@@ -1,5 +1,9 @@
 # FEAT-164 当前验收与来源矩阵
 
+## 当前D4启动前状态（2026-10-27）
+
+当前权威[65](65-d4-preflight-and-workflow-restart-boundary.md)：Owner已批准D4首次受限启动，但预检在workflow读取容器时停止。原Docker Desktop/backend未运行、固定socket不存在，实时ready未获确认。候选、完整D2/D3备份、日常SQL41/三存储映射、实例锁与全模型零派发检查通过；App启动次数0、D4绑定未生成，0模型调用，不进入D5。新增依赖恢复范围已具体列入65，尚未获得本轮批准；既有D4授权不丢失，不改数据绕过ready。以下64及更早描述按各自时点解释。
+
 2026-10-27。当前权威[64](64-d3-controlled-migration-and-post-state-audit.md)：获批的一次D3已完成，日常Native SQL37→41后正常退出，D3_COMPLETE_STOPPED。完整备份/候选/锁先验、后态完整副本审计通过，67张旧业务表全部行保持；Host/Runtime及旧账本不变。未进入D4，没有新模型调用；G4/G5/G6仍pending。长期D5及local治理口径仍为后续项。
 
 ## 当前源码和制品

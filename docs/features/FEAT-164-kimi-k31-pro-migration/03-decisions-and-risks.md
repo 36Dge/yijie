@@ -1,5 +1,9 @@
 # FEAT-164 候选决策、风险及阻断
 
+## 当前D4启动前状态（2026-10-27）
+
+当前权威[65](65-d4-preflight-and-workflow-restart-boundary.md)：Owner已批准D4首次受限启动，但预检在workflow读取容器时停止。原Docker Desktop/backend未运行、固定socket不存在，实时ready未获确认。候选、完整D2/D3备份、日常SQL41/三存储映射、实例锁与全模型零派发检查通过；App启动次数0、D4绑定未生成，0模型调用，不进入D5。新增依赖恢复范围已具体列入65，尚未获得本轮批准；既有D4授权不丢失，不改数据绕过ready。以下64及更早描述按各自时点解释。
+
 ## 当前D3状态（2026-10-27）
 
 以[64](64-d3-controlled-migration-and-post-state-audit.md)和[当前矩阵](current-acceptance-matrix.md)为准：一次D3已完成，原日常Native SQL37→41，后态完整备份/67旧业务表保持审计通过，D3_COMPLETE_STOPPED。没有GUI/Host/Runtime或模型调用；D4未授权/执行，D5和local G5/G6待收口。旧阶段授权及未执行描述仅代表当时状态，不许可重复迁移或自动回退。

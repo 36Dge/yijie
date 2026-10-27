@@ -672,3 +672,12 @@ D3_PRECONDITIONS_READY，不代表实际日常迁移/启动或G4/G5/G6通过。�
 canonical维护恰好一次退出0，SQL37→41；无GUI/auth/worker/Host/Runtime，0模型HTTP。后态完整sealed/inspection为17,397文件，SQL41/71表；67张旧业务表原行全部相同，原37条迁移记录保留并追加4条，3新表为空；8会话映射、25grant/6消费、7run、6deleted计划及旧模型历史不改。原Host/Runtime/Key逐文件保持，内部备份与D2迁移前一致；无手工checkpoint或WAL清理。
 
 D3_COMPLETE_STOPPED；一次许可已消费，D4未授权/执行，G4/G5/G6不晋升。完整证据见64、d3-migration-preflight/post-state/row-preservation/source-binding及private-evidence-index；不是新全范围App E2E。58 Owner替代、完整App正向取消NOT RUN和永久排除项保持。
+
+
+## D4启动前预检与依赖阻塞
+
+<!-- evidence: E164-D4-PRESTART -->
+
+65号：当前六源/119包内文件/1216源码及同receipt prepare-only reopen通过；同一App锁和无句柄，日常17,397文件/D3完整sealed及D2旧sealed一致。新inspection Native SQL41/71表、Host10/8会话、四Runtime库完整性及8三存储映射通过，全模型future/pending工作0，原历史消费保留。
+
+workflow实际只读检查FAIL于all_containers：原Docker Desktop/backend未运行、固定socket不存在；state的旧ready不当作现在ready，容器现场UNKNOWN。D4尚未启动，启动次数0，没有D4绑定或历史UI/退出后态验收；不把此失败重命名PASS。原数据、state/凭据、账本和工作区保持，模型HTTP0。具体恢复范围见65，须额外批准；不执行workflow-up/recover、不绕过就绪门禁、不进入D5。G4/G5/G6及58原接受范围保持。

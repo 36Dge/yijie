@@ -1,0 +1,25 @@
+{
+  "status": "PRESTART_BLOCKED_SCOPE_REVIEWED",
+  "reviewer": "Codex; no independent human review claimed",
+  "source_facts": {
+    "workflow_exact_source_sha256": "7fd0450319467d5ad97eb56f2bb713ac411ea19c8708ab2529ffcf6d350194ea",
+    "recovery_source_sha256": "9e8f02487962f8d28a1f259362efc04dcc9c8c53a17ffe5d2f35182c5d9c4589",
+    "compose_source_sha256": "f7877f395b59e72fa4abd114816cc62c2292348d6121e1f0919b39969cb40086",
+    "desktop_binding_helper_sha256": "175a8bee5f7a8f7268b8ddc21482032fb37056aea756057f34ddb00b13389ec5"
+  },
+  "actual_blocker": "Docker Desktop/backend absent; canonical socket absent; no container/live authenticated readiness observation possible",
+  "no_new_product_defect_proven": true,
+  "allowed_D4_preserved": true,
+  "extra_workflow_recovery_not_authorized_or_executed": true,
+  "plan_guards": [
+    "same existing dataset, six primary services and exact recorded images/volumes",
+    "fresh stopped-volume complete copies before recovery starts",
+    "unknown/partial/identity or source drift stops",
+    "canonical up explicitly includes same-schema idempotent migrations and credential epoch rotation",
+    "fresh daily data/lock/no-dispatch checks after dependency recovery",
+    "Kimi paused; no model or merchant calls; no D5"
+  ],
+  "D4_history_and_normal_exit_post_audit": "NOT_RUN_NO_APP_START",
+  "safety": "No force kill, permission sabotage, binary substitution, manual checkpoint or WAL clearing",
+  "original_failure_not_rewritten": true
+}

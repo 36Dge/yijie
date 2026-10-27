@@ -1,5 +1,11 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 D4已获批，启动前停于workflow依赖（2026-10-27）
+
+当前权威[65](../features/FEAT-164-kimi-k31-pro-migration/65-d4-preflight-and-workflow-restart-boundary.md)。Owner批准64后D4受限启动/历史检查/正常退出，Kimi暂停、0模型调用、不进D5。已核六源/119文件1216输入/同回执、D2与D3完整sealed及原17,397文件、SQL41/Host10/四Runtime库/8映射/全模型零派发/同一锁；原数据保持。App启动0、D4绑定未生成，历史UI/退出后态NOT RUN。
+
+workflow失败在all_containers；原Docker Desktop/backend未运行，固定socket不存在，只有privileged网络helper。旧state ready不代表当前ready，容器现场UNKNOWN，未认定exit255或服务故障。未打开Docker、未workflow-up/recover、0模型/商家调用，无Runtime修改。65列明最小依赖恢复：正常开原Docker→只读核原服务身份；若全部停止且匹配，新的recovery计划/四volume完整copy/原依赖和业务审计/正常停止，再同源canonical up（既有幂等迁移、epoch/凭据轮换），ready后继续已批D4。新增范围已询问待答，不复用63旧恢复ID或旧备份，不绕过ready，不进D5。旧dirty/账本/预占保留，仅本地提交。
+
 ## FEAT-164 D3一次维护完成，停止于D4之前（2026-10-27）
 
 当前权威[64](../features/FEAT-164-kimi-k31-pro-migration/64-d3-controlled-migration-and-post-state-audit.md)。Owner批准63后一次D3；先核候选841/a3、119文件1216输入、完整D2原17,389文件及同一App锁/无句柄，真实副本SQL37预检全清。canonical维护恰好一次退出0，原日常Native SQL37→41。没有GUI/Host/Runtime/worker启动、没有模型HTTP或Runtime核心/补丁修改，D4明确未授权/执行。

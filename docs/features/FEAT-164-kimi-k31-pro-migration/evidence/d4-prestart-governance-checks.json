@@ -1,0 +1,153 @@
+{
+  "at": "2026-10-27T13:43:50.204433+08:00",
+  "checks": [
+    {
+      "name": "audit-claims-final",
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--audit-claims",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "log": "audit-claims-final.log"
+    },
+    {
+      "name": "strict-corrected",
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "log": "strict-corrected.log"
+    },
+    {
+      "name": "g3-s4-final",
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--gate",
+        "G3",
+        "--slice",
+        "S4",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "log": "g3-s4-final.log"
+    },
+    {
+      "name": "meta-test-corrected",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exit_code": 0,
+      "log": "meta-test-corrected.log"
+    },
+    {
+      "name": "shell-bootstrap",
+      "command": [
+        "bash",
+        "-n",
+        "scripts/bootstrap.sh"
+      ],
+      "exit_code": 0,
+      "log": "shell-bootstrap.log"
+    },
+    {
+      "name": "shell-checkout-all",
+      "command": [
+        "bash",
+        "-n",
+        "scripts/checkout-all.sh"
+      ],
+      "exit_code": 0,
+      "log": "shell-checkout-all.log"
+    },
+    {
+      "name": "shell-dev-down",
+      "command": [
+        "bash",
+        "-n",
+        "scripts/dev-down.sh"
+      ],
+      "exit_code": 0,
+      "log": "shell-dev-down.log"
+    },
+    {
+      "name": "shell-dev-up",
+      "command": [
+        "bash",
+        "-n",
+        "scripts/dev-up.sh"
+      ],
+      "exit_code": 0,
+      "log": "shell-dev-up.log"
+    },
+    {
+      "name": "shell-generate-all",
+      "command": [
+        "bash",
+        "-n",
+        "scripts/generate-all.sh"
+      ],
+      "exit_code": 0,
+      "log": "shell-generate-all.log"
+    },
+    {
+      "name": "shell-lint-all",
+      "command": [
+        "bash",
+        "-n",
+        "scripts/lint-all.sh"
+      ],
+      "exit_code": 0,
+      "log": "shell-lint-all.log"
+    },
+    {
+      "name": "shell-test-all",
+      "command": [
+        "bash",
+        "-n",
+        "scripts/test-all.sh"
+      ],
+      "exit_code": 0,
+      "log": "shell-test-all.log"
+    }
+  ],
+  "all_pass": true,
+  "original_failures_retained": true,
+  "workflow_actual_failure_retained": true,
+  "D4_still_blocked": true,
+  "meta_lint": "PASS",
+  "meta_lint_log_sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c",
+  "test_count": 53,
+  "shell_checks": 7,
+  "strict_initial": {
+    "exit_code": 1,
+    "log_sha256": "5b348e2468dc7729e3f404f1837573f60e795ae744e3cbcb390929b0ea4961b7"
+  },
+  "meta_test_initial": {
+    "passed": 52,
+    "failed": 1,
+    "log_sha256": "1dce4bb9942c2e06376e65abc4843e923bc3fae2bdfe9972c35a5067e8996e81"
+  },
+  "wording_rca_sha256": "ec7ce7553b521c79ec3a78af1d7b882b5aa5dcd98b7e6cfbc53bf2f5bc60a76a",
+  "D4_outcome": "PRESTART_BLOCKED_WORKFLOW_DAEMON_UNAVAILABLE",
+  "G4_G5_G6_promoted": false,
+  "log_sha256": {
+    "audit-claims-final.log": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4",
+    "strict-corrected.log": "0f6377b2cf2e6dba2d18bcba312d28530dafd7d4a1f423d7affcf223fed72bce",
+    "g3-s4-final.log": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4",
+    "meta-test-corrected.log": "1f05eb858f7bb5771a833e1ea2337563f8d5564a4ce499afb0e7f8e1b57e273f",
+    "shell-bootstrap.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "shell-checkout-all.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "shell-dev-down.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "shell-dev-up.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "shell-generate-all.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "shell-lint-all.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "shell-test-all.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}
