@@ -60,3 +60,8 @@ G2A证据要求：version/full commit/digest/generator、全部适用baseline检
 ## S3 实际source-first（2026-10-25）
 
 新增scheduled-plan-v2 0.2.0源与生成物，完整commit `2dd214d6a702064edae78510c035442854bf9789`，先固化后由Desktop `4d04597cbf40e1aea2c67607c9d441f888223d96`固定消费；旧v1源/生成字节不变。Native私有IPC v2和SQL41仍归Desktop权威。整体breaking，只有同一候选paired consumer可发新值；默认入口保留v1、不读SQL41。8基线离线比较通过，无发布tag/生产激活。Owner当前S3实施与本地提交授权覆盖本批；完整平台/G3仍延期，细节与偏差见26。
+
+
+## 第66号 D4 兼容读取增量
+
+本轮semantic只读历史/预检修复；archive输入词汇additive，Contracts d5792d6先于Desktop71e39c4固定，9个既有display类型精确摘要生成。Host公共wire、Runtime协议和Native event v4/writer4不变；私有history可选companion由同一App原子更新，未来版本拒绝、旧JSON不改写。原公共基线字节不变及fallback离线breaking检查留证；未发布SDK/tag。具体Owner范围、方向性验证、回退与fresh D4见[66](66-d4-blockers-fixed-and-restricted-start-passed.md)。

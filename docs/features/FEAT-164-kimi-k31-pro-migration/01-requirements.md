@@ -1,8 +1,8 @@
 # FEAT-164 需求、交互与验收
 
-## 当前D4启动前状态（2026-10-27）
+## 当前D4通过状态（2026-10-27）
 
-当前权威[65](65-d4-preflight-and-workflow-restart-boundary.md)：Owner已批准D4首次受限启动，但预检在workflow读取容器时停止。原Docker Desktop/backend未运行、固定socket不存在，实时ready未获确认。候选、完整D2/D3备份、日常SQL41/三存储映射、实例锁与全模型零派发检查通过；App启动次数0、D4绑定未生成，0模型调用，不进入D5。新增依赖恢复范围已具体列入65，尚未获得本轮批准；既有D4授权不丢失，不改数据绕过ready。以下64及更早描述按各自时点解释。
+当前权威[66](66-d4-blockers-fixed-and-restricted-start-passed.md)：D4阻塞已修复，新候选71e39c4在一次fresh受限启动中完成8会话/11回合历史、附件及旧计划授权保护，正常退出和完整后态审计通过。先按65恢复原workflow并留完整停止态备份，再修复format5 reader/预检和submitted误排队；首轮失败保留。Kimi保持暂停，0模型调用，原历史/账本/预占及工作区保留。D4 PASS，D5未进入；下一次推进长期日常入口与授权及local G5/G6边界。以下65及更早记录按各自时点解释。
 
 本需求已获Owner授权实施；本文件仍是整项验收目标。全部AC在已接受的本地实现与验收范围内PASS，逐项证据见[当前验收矩阵](current-acceptance-matrix.md)和58；日常D3存储维护已完成，App启用与发布未执行，不能把代码完成或存储维护等同日常切换完成。
 

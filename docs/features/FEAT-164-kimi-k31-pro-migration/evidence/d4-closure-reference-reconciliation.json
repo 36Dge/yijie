@@ -1,0 +1,36 @@
+{
+  "at": "2026-10-27T07:18:42.412739+00:00",
+  "status": "PASS_SCOPED_REFERENCE_RECONCILIATION",
+  "not_new_G2V_or_whole_slice_execution": true,
+  "retained_G2V_ledger_sha256": "dc7acd578b049f8e261a5fde0320ee64acdf3fb7028958747c31b61cb1f5a0f1",
+  "retained_G2V_observation_sha256": "6ec753f1d4933c56b16cf606e47ffcc00c7a1c93d9c1f74566c39af85f681db8",
+  "retained_r5_oracle_command": [
+    "python3",
+    "-B",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4v-qualification-20261026/yijie-desktop/scripts/feat164_r5_verdict.py",
+    "--ledger",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-164-kimi-k31-pro-migration/evidence/g2v-real-budget-ledger-r5.json",
+    "--observation",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4v-audit-20261026/real-observation.json"
+  ],
+  "retained_r5_oracle_exit_code": 0,
+  "retained_r5_oracle_sha256": "391d9c1bd9f3a6821b6426af73620853267fc9ecb83ae4c8d7ece30f97ca0c4d",
+  "current_archive_contract": "d5792d6aad18352ce8d1c5d510d345004cab3bd6",
+  "new_consumer": "71e39c4e9fc38940c03b49f9b945fd4c5f6d987c",
+  "old_model_wire_contracts_unchanged": true,
+  "Runtime_r5_unchanged": true,
+  "Host_source_unchanged_from_D3_qualified": true,
+  "application_request_paths_byte_identical_after_removing_only_3_history_collection_lines": true,
+  "original_execution_source_time_command_and_results_not_rewritten": true,
+  "coverage": {
+    "G2V": "Old r5 real call remains its original App/time; archive input is absent from model HTTP and Runtime. Current archive authority qualification is the separate D4 record, not retroactively part of that call.",
+    "S1": "catalog and model-profile behavior unchanged, fresh paused App catalog/old send guard observed",
+    "S2": "existing request/delivery model path unchanged; newly changed saved history/recovery paths covered by strict Native reader/repository/worker, future guard, actual copy and all8 UI histories",
+    "S3": "plan domain unchanged; candidate form checks plus original daily plan/grant rows and disabled historical rerun inspected",
+    "S4": "read-only archive display exact identity/terminal binding covered by generated schema +88 UI/domain checks +fresh D4; Host/media/Runtime request surfaces unchanged"
+  },
+  "fresh_archive_evidence": "08-verification-report.md#E164-D4-CLOSURE",
+  "historical_scope_kept": "Old accepted safe never-sent substitute; full App positive remains NOT RUN; current D4 is a separate restricted daily qualification",
+  "model_http_added": 0,
+  "G4_G5_G6_promoted": false
+}

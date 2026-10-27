@@ -681,3 +681,21 @@ D3_COMPLETE_STOPPED；一次许可已消费，D4未授权/执行，G4/G5/G6不�
 65号：当前六源/119包内文件/1216源码及同receipt prepare-only reopen通过；同一App锁和无句柄，日常17,397文件/D3完整sealed及D2旧sealed一致。新inspection Native SQL41/71表、Host10/8会话、四Runtime库完整性及8三存储映射通过，全模型future/pending工作0，原历史消费保留。
 
 workflow实际只读检查FAIL于all_containers：原Docker Desktop/backend未运行、固定socket不存在；state的旧ready不当作现在ready，容器现场UNKNOWN。D4尚未启动，启动次数0，没有D4绑定或历史UI/退出后态验收；不把此失败重命名PASS。原数据、state/凭据、账本和工作区保持，模型HTTP0。具体恢复范围见65，须额外批准；不执行workflow-up/recover、不绕过就绪门禁、不进入D5。G4/G5/G6及58原接受范围保持。
+
+
+## D4 阻塞修复与受限启动通过
+
+<!-- evidence: E164-D4-CLOSURE -->
+
+66号：Owner批准65依赖恢复并明确修复本轮全部D4阻塞。4份停止态volume备份及canonical恢复/up完成，6healthy与鉴权ready。首轮正常启动暴露9条format5超出reader4及submitted误排队，正常退出后Contract First冻结archive词汇；Desktop71e39c4/Contractsd5792d6，只读兼容，Host/Runtime与writer4不改。88前端、4D2工具、6来源入口、实际Rust副本1项及Native定向、lint/Clippy/fmt/docs、19同源检查和新canonical构建通过。所有原失败/RCA保留。
+
+第二轮fresh D4：119包内文件/1226输入，App b8d68436/receipt3437292d；8会话11回合原状态及答案可读，文件变更/命令详情、2附件及删除计划历史可见，K3退役发送禁用、K31暂停、已删除计划重跑禁用。15:05:39正常退出0，锁/句柄/项目进程释放；活动DB WAL/SHM不存在，历史备份WAL完整保留。新完整后态17,394文件/522,147,353字节；67Native表不变、Host全部值不变、Runtime三业务库不变，日志追加501，正常connector probe/stopped generation变化可解释。
+
+D4 PASS_SCOPED，0新增模型HTTP；两次App共6次既有Shopify metadata HTTP，无商家业务执行，不冒称零外网。7账本、45元cap、13累计调用及旧预占保持。D5未进入，F61-02/03仍独立；G4/G5/G6不因D4自动晋升。见evidence/d4-closure-summary/source-binding/checks/structured-review及private-evidence-index，完整UI/真实数据仅私有留证。Owner排除项及完整App正向取消NOT RUN事实保持。
+
+
+## D4新增读取权威与历史证据关联
+
+<!-- evidence: E164-D4-REFERENCE-BINDING -->
+
+新增archive词汇进入当前immutable清单后，首次治理审计拒绝旧G2V/S1—S4的contract_refs集合不完整。没有删掉新权威或改validator，也没有将旧真实执行时间、App、命令或结果改成新候选。现明确保留historical_execution_contract_refs，current_reference_binding指向本轮独立范围复审：旧r5只读oracle重新判定PASS（0调用），模型wire/Runtime/Host来源保持，application请求路径除3行history companion收集外逐字一致；新增持久读取/renderer变化由本轮Native实际副本、repository/worker/88项及fresh D4覆盖。见d4-closure-reference-reconciliation.json。当前引用关联不等于新G2V或整切片重跑；D4与旧已接受范围分别记录，G4/G5/G6仍pending。

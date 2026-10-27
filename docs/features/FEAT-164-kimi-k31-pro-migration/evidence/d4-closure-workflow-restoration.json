@@ -1,0 +1,49 @@
+{
+  "status": "READY_AND_BUSINESS_FACTS_PRESERVED",
+  "at": "2026-10-27T06:06:23.956894+00:00",
+  "recovery_id": "f73c939b-fad9-4b95-8268-55224083465b",
+  "recovery_stage": "complete",
+  "protected_volume_copies": {
+    "workflow-postgres": {
+      "files": 1324,
+      "bytes": 65799591,
+      "inventory_sha256": "b39674908d2f496d906c450473f9c12640794044a1436b953085bc4bc3d12e51"
+    },
+    "coze-workflow-mysql": {
+      "files": 317,
+      "bytes": 228242037,
+      "inventory_sha256": "b5b16e9029371d0be90ea6428d464c38c633d4e3825f10ee6bc9568e67a1b2b0"
+    },
+    "coze-workflow-redis": {
+      "files": 5,
+      "bytes": 53387,
+      "inventory_sha256": "d04605ae4209224ebbf470c2d207925f86c37dc15612a8deca86dae696c931ed"
+    },
+    "coze-workflow-minio": {
+      "files": 46,
+      "bytes": 23480,
+      "inventory_sha256": "cc190e54707c9a95c000b1aeb375b96840d9bc071b796a18b445b96519d6226f"
+    }
+  },
+  "original_failure_snapshot_sha256": "7fbaf2c657abd3f7811883aca7a49df10100da5b5681ce256221f9887137a955",
+  "coze_business_facts_unchanged": true,
+  "api_business_facts_unchanged_except_normal_audits": true,
+  "old_api_audit_prefix_preserved": true,
+  "normal_principal_audits_appended": 2,
+  "original_normal_stop_completed": true,
+  "canonical_up_exit": 0,
+  "fresh_ready": {
+    "status": "READY",
+    "lifecycle_calls": 0,
+    "model_http": 0,
+    "phase": "ready",
+    "containers": 8,
+    "running": 6,
+    "healthy": 6,
+    "private_state_and_credentials_unchanged": true,
+    "source_sha256": "7fd0450319467d5ad97eb56f2bb713ac411ea19c8708ab2529ffcf6d350194ea"
+  },
+  "new_model_http": 0,
+  "daily_App_started": false,
+  "source_code_changed": false
+}

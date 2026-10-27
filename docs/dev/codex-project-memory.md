@@ -1,5 +1,13 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 D4阻塞已修复并通过（2026-10-27）
+
+当前权威[66](../features/FEAT-164-kimi-k31-pro-migration/66-d4-blockers-fixed-and-restricted-start-passed.md)。Owner批准65恢复依赖，并要求本轮修复全部D4阻塞。原Docker/四停止态volume备份/canonical recover-up完成、6healthy。首轮App正常退出后定位format5超过reader4及submitted误排队；Contracts d5792d6→Desktop71e39c4只读archive修复，Hosta3d8767/Runtime11fd450-r5未改。新App b8d68436、receipt3437292d，119文件1226输入；88前端/Native真实副本/19生成/Clippy等通过。
+
+第二轮fresh D4已通过8会话11回合/原答案终态/文件差异命令/2附件/删除计划历史与禁重跑，K31暂停、K3退役禁发；正常退出0、锁句柄释放、活动WAL/SHM不存在，历史备份WAL不动。完整后态17,394文件，67Native表及Host所有业务值保持、Runtime业务库不变日志正常追加。两次App各3次Shopify metadata请求，模型0、无业务工具；累计13/45元cap/29.740299保守累计/两预占和7账本保持。
+
+D4 PASS、D5未授权/未执行；下一步以71e39c4候选收口D5长期入口/解除Kimi暂停与workflow责任的具体授权，以及F61-03 local G5/G6，不能把短期D4绑定当长期许可。原dirty及已签名App不覆盖；不重跑D3、不降级SQL41、不用reader4开format5。58接受/Owner排除范围保持，完整App正向never-sent仍NOT RUN。仅本地提交，不推送。
+
 ## FEAT-164 D4已获批，启动前停于workflow依赖（2026-10-27）
 
 当前权威[65](../features/FEAT-164-kimi-k31-pro-migration/65-d4-preflight-and-workflow-restart-boundary.md)。Owner批准64后D4受限启动/历史检查/正常退出，Kimi暂停、0模型调用、不进D5。已核六源/119文件1216输入/同回执、D2与D3完整sealed及原17,397文件、SQL41/Host10/四Runtime库/8映射/全模型零派发/同一锁；原数据保持。App启动0、D4绑定未生成，历史UI/退出后态NOT RUN。

@@ -74,6 +74,11 @@ immutable_references:
       full_commit: eddc64f95d81c26ca1678cc648d177c081f7904d
       digest: 371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
       generator: scripts/generate-experts-v2.mjs
+    - id: native-display-archive-v5
+      version: 0.1.0
+      full_commit: d5792d6aad18352ce8d1c5d510d345004cab3bd6
+      digest: bbe1f2129e41b58e3d0cea08b798ded2a7a131a76d8712317f1741f4f1ef7b55
+      generator: Desktop scripts/native-display-archive-source.mjs + scripts/generate-native-conversation.mjs
   fixtures:
     - id: feat164-request-shape-loopback
       digest: d345d62dfa9ba7021138c3330a6c619222cf108cf423b5b051fc9699cda90372
@@ -110,8 +115,8 @@ gate_reasons:
     e408047精确消费；仅本地来源，不等于发布或专家资源资格。
     S4b复用同一公共契约；Hostcac2d4d/Desktop56f5284/Connectors1f15726固定Skills595c927同内容资源和原库树，四组合source通过，旧来源的证据不覆盖App资格。
   G2V: S4V当前r5唯一真实请求HTTP200/42完成、保存/同构建重开零补发及正常退出通过；按Owner无需精确查价的功能验证授权执行。旧r4结果和两账本保留，不替代完整core/业务状态或日常cutover。
-  G4: 64号D3成功及旧业务行保持；65号D4已获批，候选/备份/数据/锁前检通过，但Docker后台未运行/socket不存在，workflow实时ready未通过。
-    D4 App尚未启动，不晋升G4；新增workflow恢复尚未获本轮批准，58原accepted local/final及Owner替代按原来源保留。
+  G4: 66号D4受限日常启动/旧历史/附件/计划保护及正常退出后态通过，原失败保留；D5长期入口/日常启用和F61-03 local
+    G5/G6口径仍独立未收口，不因D4自动晋升整项G4。58已接受本地S1—S4/final及安全替代按原来源保持。
 
 temporal_contract_matrix:
   required: true
@@ -359,12 +364,25 @@ vertical_feasibility:
       - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
       - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
       - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+      - contract:native-display-archive-v5@0.1.0@d5792d6aad18352ce8d1c5d510d345004cab3bd6#bbe1f2129e41b58e3d0cea08b798ded2a7a131a76d8712317f1741f4f1ef7b55
     fixture_refs:
       - fixture:feat164-request-shape-loopback#d345d62dfa9ba7021138c3330a6c619222cf108cf423b5b051fc9699cda90372
     refs:
       - 08-verification-report.md#E164-S4V-REAL
     working_directory: /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4v-qualification-20261026/yijie-desktop
     reason: 仅当前r5最小真实文本资格；1次HTTP与实际答案、原生保存、重开零补发和正常清理绑定。工具源码92c与App产品9f分别记录。
+    historical_execution_contract_refs:
+      - contract:chat-models-v2@0.2.0@1b357cce0575c492f3715b316ee5f254051acf80#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
+      - contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r5@5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2#75867f5e0bae1b67d4a28f78c77b65164ecee9f9331cd21c681caf67a4563361
+      - contract:scheduled-plan-v2@0.2.0@2dd214d6a702064edae78510c035442854bf9789#75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
+      - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
+      - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
+      - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+    current_reference_binding:
+      evidence_ref: 08-verification-report.md#E164-D4-REFERENCE-BINDING
+      record: evidence/d4-closure-reference-reconciliation.json
+      scope: Current reference context only. Original execution sources/times and results retained; archive vocabulary covered
+        by separate fresh D4 tests, not by a new model call.
 
 runtime_harnesses:
   - id: H-F164-LOCAL
@@ -549,8 +567,8 @@ slices:
       status: PASS
       command: /Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go test -race -json
         ./internal/codex -run ^TestFEAT164ActivationAndRetiredAdmission$ -count=1 -failfast -timeout=0
-      environment: macOS aarch64; Desktop9f5814f / Host8cd6bcc product / Contracts ca06 / Runtime11fd-r5 /
-        Connectors cc56; actual test sources and retained data bound separately; no new real model HTTP
+      environment: macOS aarch64; Desktop9f5814f / Host8cd6bcc product / Contracts ca06 / Runtime11fd-r5 / Connectors cc56;
+        actual test sources and retained data bound separately; no new real model HTTP
       exit_code: 0
       verified_at: 2026-10-26T14:23:43.174Z
       refs:
@@ -565,8 +583,8 @@ slices:
       status: PASS
       command: Read-only source/receipt/protocol evidence reconciliation;
         /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4w-audit-20261026/audit-bindings.py
-      environment: macOS aarch64; Desktop9f5814f / Host8cd6bcc product / Contracts ca06 / Runtime11fd-r5 /
-        Connectors cc56; actual test sources and retained data bound separately; no new real model HTTP
+      environment: macOS aarch64; Desktop9f5814f / Host8cd6bcc product / Contracts ca06 / Runtime11fd-r5 / Connectors cc56;
+        actual test sources and retained data bound separately; no new real model HTTP
       exit_code: 0
       verified_at: 2026-10-26T14:23:43.174Z
       refs:
@@ -579,10 +597,9 @@ slices:
     vertical_evidence:
       required: true
       status: PASS
-      command: Canonical App observed workflows and retained SQL/Runtime evidence; source-bound report46/47/49 + S4W
-        paused App
-      environment: macOS aarch64; Desktop9f5814f / Host8cd6bcc product / Contracts ca06 / Runtime11fd-r5 /
-        Connectors cc56; actual test sources and retained data bound separately; no new real model HTTP
+      command: Canonical App observed workflows and retained SQL/Runtime evidence; source-bound report46/47/49 + S4W paused App
+      environment: macOS aarch64; Desktop9f5814f / Host8cd6bcc product / Contracts ca06 / Runtime11fd-r5 / Connectors cc56;
+        actual test sources and retained data bound separately; no new real model HTTP
       exit_code: 0
       verified_at: 2026-10-26T14:23:43.174Z
       refs:
@@ -595,13 +612,14 @@ slices:
     freshness:
       verified_at: 2026-10-26T14:23:43.174Z
       commits: *a1
-      contract_refs: &a2
+      contract_refs:
         - contract:chat-models-v2@0.2.0@1b357cce0575c492f3715b316ee5f254051acf80#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
         - contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r5@5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2#75867f5e0bae1b67d4a28f78c77b65164ecee9f9331cd21c681caf67a4563361
         - contract:scheduled-plan-v2@0.2.0@2dd214d6a702064edae78510c035442854bf9789#75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
         - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
         - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
         - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+        - contract:native-display-archive-v5@0.1.0@d5792d6aad18352ce8d1c5d510d345004cab3bd6#bbe1f2129e41b58e3d0cea08b798ded2a7a131a76d8712317f1741f4f1ef7b55
       fixture_refs: &a3
         - fixture:feat164-request-shape-loopback#d345d62dfa9ba7021138c3330a6c619222cf108cf423b5b051fc9699cda90372
       harness: &a4
@@ -610,8 +628,20 @@ slices:
         digest: deb300947da2d876998863557ae757396c664c6dd3389847a8059d8605c51001
       platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
       production_bootstrap: true
-      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
-        implementation reference changes
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation
+        reference changes
+      historical_execution_contract_refs:
+        - contract:chat-models-v2@0.2.0@1b357cce0575c492f3715b316ee5f254051acf80#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
+        - contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r5@5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2#75867f5e0bae1b67d4a28f78c77b65164ecee9f9331cd21c681caf67a4563361
+        - contract:scheduled-plan-v2@0.2.0@2dd214d6a702064edae78510c035442854bf9789#75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
+        - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
+        - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
+        - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+      current_reference_binding:
+        evidence_ref: 08-verification-report.md#E164-D4-REFERENCE-BINDING
+        record: evidence/d4-closure-reference-reconciliation.json
+        scope: Current reference context only. Original execution sources/times and results retained; archive vocabulary covered
+          by separate fresh D4 tests, not by a new model call.
     status: pass
     status_reason: 当前local/boundary/代表性canonical纵向具备精确来源与结果；安全普通状态检查覆盖未决/取消，完整GUI边角仍在final明确列缺。逐片G3另经机器实检，不等于G4。
   - id: S2
@@ -627,10 +657,9 @@ slices:
     local_evidence:
       required: true
       status: PASS
-      command: Current exact Host temporal/routes and Rust delivery/recovery selectors;
-        evidence/s4w-native-controls.json
-      environment: macOS aarch64; Desktop9f5814f / Host8cd6bcc product / Contracts ca06 / Runtime11fd-r5 /
-        Connectors cc56; actual test sources and retained data bound separately; no new real model HTTP
+      command: Current exact Host temporal/routes and Rust delivery/recovery selectors; evidence/s4w-native-controls.json
+      environment: macOS aarch64; Desktop9f5814f / Host8cd6bcc product / Contracts ca06 / Runtime11fd-r5 / Connectors cc56;
+        actual test sources and retained data bound separately; no new real model HTTP
       exit_code: 0
       verified_at: 2026-10-26T14:23:43.174Z
       refs:
@@ -643,10 +672,10 @@ slices:
     boundary_evidence:
       required: true
       status: PASS
-      command: /Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go test -race -json
-        ./internal/app -run ^TestFEAT164NativeHostBoundary$ -count=1 -failfast -timeout=0
-      environment: macOS aarch64; Desktop9f5814f / Host8cd6bcc product / Contracts ca06 / Runtime11fd-r5 /
-        Connectors cc56; actual test sources and retained data bound separately; no new real model HTTP
+      command: /Users/jack/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.5.darwin-arm64/bin/go test -race -json ./internal/app
+        -run ^TestFEAT164NativeHostBoundary$ -count=1 -failfast -timeout=0
+      environment: macOS aarch64; Desktop9f5814f / Host8cd6bcc product / Contracts ca06 / Runtime11fd-r5 / Connectors cc56;
+        actual test sources and retained data bound separately; no new real model HTTP
       exit_code: 0
       verified_at: 2026-10-26T14:23:43.174Z
       refs:
@@ -666,10 +695,9 @@ slices:
     vertical_evidence:
       required: true
       status: PASS
-      command: Canonical App observed workflows and retained SQL/Runtime evidence; source-bound report46/47/49 + S4W
-        paused App
-      environment: macOS aarch64; Desktop9f5814f / Host8cd6bcc product / Contracts ca06 / Runtime11fd-r5 /
-        Connectors cc56; actual test sources and retained data bound separately; no new real model HTTP
+      command: Canonical App observed workflows and retained SQL/Runtime evidence; source-bound report46/47/49 + S4W paused App
+      environment: macOS aarch64; Desktop9f5814f / Host8cd6bcc product / Contracts ca06 / Runtime11fd-r5 / Connectors cc56;
+        actual test sources and retained data bound separately; no new real model HTTP
       exit_code: 0
       verified_at: 2026-10-26T14:23:43.174Z
       refs:
@@ -683,13 +711,32 @@ slices:
     freshness:
       verified_at: 2026-10-26T14:23:43.174Z
       commits: *a1
-      contract_refs: *a2
+      contract_refs:
+        - contract:chat-models-v2@0.2.0@1b357cce0575c492f3715b316ee5f254051acf80#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
+        - contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r5@5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2#75867f5e0bae1b67d4a28f78c77b65164ecee9f9331cd21c681caf67a4563361
+        - contract:scheduled-plan-v2@0.2.0@2dd214d6a702064edae78510c035442854bf9789#75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
+        - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
+        - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
+        - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+        - contract:native-display-archive-v5@0.1.0@d5792d6aad18352ce8d1c5d510d345004cab3bd6#bbe1f2129e41b58e3d0cea08b798ded2a7a131a76d8712317f1741f4f1ef7b55
       fixture_refs: *a3
       harness: *a4
       platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
       production_bootstrap: true
-      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
-        implementation reference changes
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation
+        reference changes
+      historical_execution_contract_refs:
+        - contract:chat-models-v2@0.2.0@1b357cce0575c492f3715b316ee5f254051acf80#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
+        - contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r5@5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2#75867f5e0bae1b67d4a28f78c77b65164ecee9f9331cd21c681caf67a4563361
+        - contract:scheduled-plan-v2@0.2.0@2dd214d6a702064edae78510c035442854bf9789#75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
+        - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
+        - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
+        - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+      current_reference_binding:
+        evidence_ref: 08-verification-report.md#E164-D4-REFERENCE-BINDING
+        record: evidence/d4-closure-reference-reconciliation.json
+        scope: Current reference context only. Original execution sources/times and results retained; archive vocabulary covered
+          by separate fresh D4 tests, not by a new model call.
     status: pass
     status_reason: 当前local/boundary/代表性canonical纵向具备精确来源与结果；安全普通状态检查覆盖未决/取消，完整GUI边角仍在final明确列缺。逐片G3另经机器实检，不等于G4。
   - id: S3
@@ -707,8 +754,8 @@ slices:
       status: PASS
       command: node scripts/feat164-s3-conformance.mjs
         /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4w-audit-20261026/s3-controls
-      environment: macOS aarch64; Desktop9f5814f / Host8cd6bcc product / Contracts ca06 / Runtime11fd-r5 /
-        Connectors cc56; actual test sources and retained data bound separately; no new real model HTTP
+      environment: macOS aarch64; Desktop9f5814f / Host8cd6bcc product / Contracts ca06 / Runtime11fd-r5 / Connectors cc56;
+        actual test sources and retained data bound separately; no new real model HTTP
       exit_code: 0
       verified_at: 2026-10-26T14:23:43.174Z
       refs:
@@ -723,8 +770,8 @@ slices:
       status: PASS
       command: Read-only source/receipt/protocol evidence reconciliation;
         /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4w-audit-20261026/audit-bindings.py
-      environment: macOS aarch64; Desktop9f5814f / Host8cd6bcc product / Contracts ca06 / Runtime11fd-r5 /
-        Connectors cc56; actual test sources and retained data bound separately; no new real model HTTP
+      environment: macOS aarch64; Desktop9f5814f / Host8cd6bcc product / Contracts ca06 / Runtime11fd-r5 / Connectors cc56;
+        actual test sources and retained data bound separately; no new real model HTTP
       exit_code: 0
       verified_at: 2026-10-26T14:23:43.174Z
       refs:
@@ -737,10 +784,9 @@ slices:
     vertical_evidence:
       required: true
       status: PASS
-      command: Canonical App observed workflows and retained SQL/Runtime evidence; source-bound report46/47/49 + S4W
-        paused App
-      environment: macOS aarch64; Desktop9f5814f / Host8cd6bcc product / Contracts ca06 / Runtime11fd-r5 /
-        Connectors cc56; actual test sources and retained data bound separately; no new real model HTTP
+      command: Canonical App observed workflows and retained SQL/Runtime evidence; source-bound report46/47/49 + S4W paused App
+      environment: macOS aarch64; Desktop9f5814f / Host8cd6bcc product / Contracts ca06 / Runtime11fd-r5 / Connectors cc56;
+        actual test sources and retained data bound separately; no new real model HTTP
       exit_code: 0
       verified_at: 2026-10-26T14:23:43.174Z
       refs:
@@ -753,13 +799,32 @@ slices:
     freshness:
       verified_at: 2026-10-26T14:23:43.174Z
       commits: *a1
-      contract_refs: *a2
+      contract_refs:
+        - contract:chat-models-v2@0.2.0@1b357cce0575c492f3715b316ee5f254051acf80#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
+        - contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r5@5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2#75867f5e0bae1b67d4a28f78c77b65164ecee9f9331cd21c681caf67a4563361
+        - contract:scheduled-plan-v2@0.2.0@2dd214d6a702064edae78510c035442854bf9789#75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
+        - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
+        - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
+        - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+        - contract:native-display-archive-v5@0.1.0@d5792d6aad18352ce8d1c5d510d345004cab3bd6#bbe1f2129e41b58e3d0cea08b798ded2a7a131a76d8712317f1741f4f1ef7b55
       fixture_refs: *a3
       harness: *a4
       platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
       production_bootstrap: true
-      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
-        implementation reference changes
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation
+        reference changes
+      historical_execution_contract_refs:
+        - contract:chat-models-v2@0.2.0@1b357cce0575c492f3715b316ee5f254051acf80#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
+        - contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r5@5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2#75867f5e0bae1b67d4a28f78c77b65164ecee9f9331cd21c681caf67a4563361
+        - contract:scheduled-plan-v2@0.2.0@2dd214d6a702064edae78510c035442854bf9789#75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
+        - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
+        - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
+        - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+      current_reference_binding:
+        evidence_ref: 08-verification-report.md#E164-D4-REFERENCE-BINDING
+        record: evidence/d4-closure-reference-reconciliation.json
+        scope: Current reference context only. Original execution sources/times and results retained; archive vocabulary covered
+          by separate fresh D4 tests, not by a new model call.
     status: pass
     status_reason: 当前local/boundary/代表性canonical纵向具备精确来源与结果；安全普通状态检查覆盖未决/取消，完整GUI边角仍在final明确列缺。逐片G3另经机器实检，不等于G4。
   - id: S4
@@ -790,11 +855,10 @@ slices:
     local_evidence:
       required: true
       status: PASS
-      command: Exact retained Native delivery test + actual-output consumer Vitest; fmt/strict
-        Clippy/lint/build/docs; s4ad-test-validation.json
-      environment: macOS aarch64; current ea8763d R1 App4b0ec55 (119 files),
-        Host4f966e8/Contractsc5d1383/Runtime11fd-r5; normal original isolated data, zero model HTTP;
-        test-only4e1f1f9 product equal to ea
+      command: Exact retained Native delivery test + actual-output consumer Vitest; fmt/strict Clippy/lint/build/docs;
+        s4ad-test-validation.json
+      environment: macOS aarch64; current ea8763d R1 App4b0ec55 (119 files), Host4f966e8/Contractsc5d1383/Runtime11fd-r5;
+        normal original isolated data, zero model HTTP; test-only4e1f1f9 product equal to ea
       exit_code: 0
       verified_at: 2026-10-27T02:31:25.812524+08:00
       refs:
@@ -817,11 +881,10 @@ slices:
     boundary_evidence:
       required: true
       status: PASS
-      command: Current canonical R1 App normal read/recovery refusal; complete stopped Native and Host copies;
-        retained normal acceptance/cancel/receipt consumer
-      environment: macOS aarch64; current ea8763d R1 App4b0ec55 (119 files),
-        Host4f966e8/Contractsc5d1383/Runtime11fd-r5; normal original isolated data, zero model HTTP;
-        test-only4e1f1f9 product equal to ea
+      command: Current canonical R1 App normal read/recovery refusal; complete stopped Native and Host copies; retained normal
+        acceptance/cancel/receipt consumer
+      environment: macOS aarch64; current ea8763d R1 App4b0ec55 (119 files), Host4f966e8/Contractsc5d1383/Runtime11fd-r5;
+        normal original isolated data, zero model HTTP; test-only4e1f1f9 product equal to ea
       exit_code: 0
       verified_at: 2026-10-27T02:31:25.812524+08:00
       refs:
@@ -837,12 +900,10 @@ slices:
     vertical_evidence:
       required: true
       status: PASS
-      command: python3 /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ae-audit-20261027/audit-closure.py;
-        read-only reconciliation of retained report46-57 execution evidence and Owner acceptance; no new App
-        run
-      environment: macOS aarch64; current ea8763d R1 App4b0ec55 (119 files),
-        Host4f966e8/Contractsc5d1383/Runtime11fd-r5; normal original isolated data, zero model HTTP;
-        test-only4e1f1f9 product equal to ea
+      command: python3 /Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4ae-audit-20261027/audit-closure.py; read-only
+        reconciliation of retained report46-57 execution evidence and Owner acceptance; no new App run
+      environment: macOS aarch64; current ea8763d R1 App4b0ec55 (119 files), Host4f966e8/Contractsc5d1383/Runtime11fd-r5;
+        normal original isolated data, zero model HTTP; test-only4e1f1f9 product equal to ea
       exit_code: 0
       verified_at: 2026-10-27T03:10:41.258981+08:00
       refs:
@@ -871,17 +932,35 @@ slices:
           full_sha: 4f966e8ea810d5b094d0b797d291955d6c774844
         - repository: yijie-contracts
           full_sha: c5d138374c102f1a8a11e328a869ec8f91724efd
-      contract_refs: *a2
+      contract_refs:
+        - contract:chat-models-v2@0.2.0@1b357cce0575c492f3715b316ee5f254051acf80#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
+        - contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r5@5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2#75867f5e0bae1b67d4a28f78c77b65164ecee9f9331cd21c681caf67a4563361
+        - contract:scheduled-plan-v2@0.2.0@2dd214d6a702064edae78510c035442854bf9789#75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
+        - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
+        - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
+        - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+        - contract:native-display-archive-v5@0.1.0@d5792d6aad18352ce8d1c5d510d345004cab3bd6#bbe1f2129e41b58e3d0cea08b798ded2a7a131a76d8712317f1741f4f1ef7b55
       fixture_refs: *a3
       harness: *a4
       platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
       production_bootstrap: true
-      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or
-        implementation reference changes
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime, platform, harness, bootstrap, or implementation
+        reference changes
       verification_kind: read_only_current_source_binding_and_owner_acceptance; original execution times retained
+      historical_execution_contract_refs:
+        - contract:chat-models-v2@0.2.0@1b357cce0575c492f3715b316ee5f254051acf80#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
+        - contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r5@5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2#75867f5e0bae1b67d4a28f78c77b65164ecee9f9331cd21c681caf67a4563361
+        - contract:scheduled-plan-v2@0.2.0@2dd214d6a702064edae78510c035442854bf9789#75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
+        - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
+        - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
+        - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+      current_reference_binding:
+        evidence_ref: 08-verification-report.md#E164-D4-REFERENCE-BINDING
+        record: evidence/d4-closure-reference-reconciliation.json
+        scope: Current reference context only. Original execution sources/times and results retained; archive vocabulary covered
+          by separate fresh D4 tests, not by a new model call.
     status: pass
-    status_reason: 本轮Owner接受安全分层替代，587份证据及当前六源/三制品复核一致；已验证真实App主路径、自然unknown安全拒绝与Native/consumer取消正例满足调整后的适用验收。原完整App取消NOT
-      RUN单列保留。
+    status_reason: 本轮Owner接受安全分层替代，587份证据及当前六源/三制品复核一致；已验证真实App主路径、自然unknown安全拒绝与Native/consumer取消正例满足调整后的适用验收。原完整App取消NOT RUN单列保留。
     acceptance_method:
       decision_id: F164-S4AE-OWNER-SAFE-SUBSTITUTION
       owner: 段成威
@@ -1327,6 +1406,7 @@ documents:
   current_daily_preparation: 51-daily-candidate-implementation-and-offline-verification.md
   current_slice_and_daily_plan: 50-slice-evidence-closure-and-daily-deployment-plan.md
   current_r5_qualification: 49-r5-real-qualification-and-daily-cutover-boundary.md
+  current_D4_closure: 66-d4-blockers-fixed-and-restricted-start-passed.md
 external_authorizations:
   paid_calls:
     allowed: true
@@ -1349,22 +1429,22 @@ external_authorizations:
     approved_at: N/A
 current_authorization:
   paused_by_owner: false
-  pause_reason: 历史暂停已恢复；当前Owner已批准D4，实际因workflow前置失败保持关闭。
-  phase: D4_authorized_prestart_blocked_workflow
-  source: Owner复审64后批准D4首次受限启动/历史检查/正常退出和后态审计，Kimi暂停、0真实模型调用、不进入D5。
+  pause_reason: D4按授权完成并正常退出，当前未进入D5。
+  phase: D4_complete_stopped_D5_not_authorized
+  source: Owner批准65依赖恢复并明确要求本轮修复全部D4阻塞，完成后停在D4。
   documentation_write_allowed: true
-  product_source_edit_allowed: false
-  product_generate_build_test_allowed: false
+  product_source_edit_allowed: true
+  product_generate_build_test_allowed: true
   database_migration_allowed: false
   isolated_qualification_migration_allowed: false
-  migration_scope: 原D3一次许可已消费，不重跑；D4原Host兼容/Runtime受管准备和正常生命周期写入已授权但必须先真实ready，当前尚未执行。workflow迁移/恢复须另批。
-  service_lifecycle_allowed: false
-  service_lifecycle_scope: D4 App正常启动/退出已批准但未ready故暂不执行；原Docker/workflow恢复范围在65单列但尚未获本轮批准，无D5授权。
+  migration_scope: D3一次许可已消费；本轮无重跑，D4正常Host10→11元数据准备完成，现有数据和旧备份保留。
+  service_lifecycle_allowed: true
+  service_lifecycle_scope: 本轮65原依赖恢复及D4两次受限启动/正常退出已完成；Docker/workflow原栈保持ready；不授权D5或未列明的新生命周期动作。
   model_or_tool_business_calls_allowed: false
   git_commit_push_branch_release_allowed: false
-  note: 65号D4_PRESTART_BLOCKED_WORKFLOW；数据仍为64后态，App启动0，保持旧账本/预占；当前service_lifecycle_allowed=false表示前置未过，不撤销Owner已有D4批准。
   git_local_commit_allowed: true
-  git_scope: 仅FEAT-164本轮预检/依赖恢复方案/治理本地提交，不混入其它需求；无push/branch/tag/release。
+  git_scope: 仅本轮FEAT-164 Contracts/Desktop隔离修复与治理记录本地提交；不推送、发布或混入其它需求。
+  note: D4 PASS，首轮读取失败原证据保留；新候选71e39c4只读format5兼容，不改Runtime核心/补丁，旧账本预占保持。
 implementation:
   v3_test_and_search_scope_s4ab:
     report: 55-v3-test-and-search-grounding-root-cause.md
@@ -1751,7 +1831,8 @@ implementation:
     loopback_model_http_added: 0
     full_app_ui: NOT RUN
     note: 同一App维护参数在auth/worker/sidecar/UI之前退出；两种旧库自然离线样本成功，现有SQL41候选拒绝后未迁移/清理/退款。两个前置环境失败及后置归因修正保留，不冒充完整G3/final。
-  completion_scope: D1-D3 retained; report65 D4 authorized but blocked before launch by unavailable Docker daemon; workflow restart permission pending; D5 not authorized
+  completion_scope: D1-D3 retained; report66 D4 restricted startup/history/attachments/plan protection/normal exit and
+    post-state PASS after isolated archive-reader repair; D5 not authorized or executed
   owner_acceptance_s4ae:
     report: 58-owner-accepted-substitute-and-final-closure.md
     incremental_contract_impact: none
@@ -1773,10 +1854,27 @@ implementation:
     actual_daily_data_access: false
     real_model_http_added: 0
     runtime_core_or_patch_changed: false
+  daily_history_read_compatibility:
+    report: 66-d4-blockers-fixed-and-restricted-start-passed.md
+    desktop_commit: 71e39c4e9fc38940c03b49f9b945fd4c5f6d987c
+    contracts_commit: d5792d6aad18352ce8d1c5d510d345004cab3bd6
+    incremental_contract_impact: semantic
+    archive_input_vocabulary_impact: additive
+    writer_format: 4
+    reader_formats:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+    stored_JSON_rewritten: false
+    Runtime_core_or_patch_changed: false
+    Host_wire_changed: false
+    evidence_ref: 08-verification-report.md#E164-D4-CLOSURE
 product_verification:
-  status: D4_PRESTART_BLOCKED_WORKFLOW
-  reason: 65号数据/候选前检通过，但Docker后台/socket不可用，workflow实时ready未通过；App尚未启动，G4不晋升。
-  report: 65-d4-preflight-and-workflow-restart-boundary.md
+  status: D4_PASS_RESTRICTED_DAILY_SCOPE
+  reason: 新候选fresh run覆盖8会话11历史回合、附件与删除计划保护，正常退出/完整后态通过；未新增模型调用，D5未执行。
+  report: 66-d4-blockers-fixed-and-restricted-start-passed.md
 profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
 owner_approvals:
   requirements: approved_by_owner_current_user_message
@@ -1857,11 +1955,11 @@ accepted_substitutions:
     acceptance_status: ACCEPTED_SAFE_LAYERED_SUBSTITUTE
 daily_cutover:
   plan_id: F164-S4AF-DAILY-CUTOVER
-  status: D4_PRESTART_BLOCKED_WORKFLOW
+  status: D4_COMPLETE_STOPPED
   report: 59-daily-cutover-minimal-plan-and-authorization.md
   evidence_ref: 08-verification-report.md#E164-S4AF-PLAN
-  activation_readiness: D4_AUTHORIZED_WORKFLOW_NOT_READY
-  open_deployment_issue: Docker backend absent and fixed socket missing; report65 conditional dependency restoration awaits authorization before D4
+  activation_readiness: D4_PASSED_D5_SCOPE_AND_APPROVAL_REQUIRED
+  open_deployment_issue: D4 blockers resolved; D5 durable daily activation and local G5/G6 boundary remain separate
   historical_local_G4:
     status: PASS
     report: 58-owner-accepted-substitute-and-final-closure.md
@@ -1877,13 +1975,17 @@ daily_cutover:
     daily_native_migration: true
     daily_native_migration_scope: One authorized D3 invocation consumed; no retry or further migration authorization
     daily_app_start: true
-    daily_app_start_scope: First restricted D4 only after fresh workflow ready, Kimi paused, no model calls; not executed
-    workflow_lifecycle_or_migration: false
-    workflow_lifecycle_scope: Report63 historical restoration completed; report65 new Docker/workflow lifecycle has not been authorized
+    daily_app_start_scope: Two D4 App launches completed with Kimi paused and zero model calls; first failed history
+      display, repaired candidate fresh run PASS, both normal exits; no D5
+    workflow_lifecycle_or_migration: true
+    workflow_lifecycle_scope: Report65 explicitly approved; original Docker/4 stopped-volume backups/canonical recovery and
+      up completed; original stack remains ready
     model_http: false
     runtime_core_or_patch_change: false
     push_or_release: false
-    product_code_change_scope: Report63 Desktop settled-history private admission and Host exact predecessor, targeted tests/docs and canonical source freeze; no Runtime or public wire change
+    product_code_change_scope: "Owner expressly authorized all D4 blocker repairs: isolated Contracts display archive
+      vocabulary then Desktop strict read-only v5 reader/preflight/UI and tests/docs; no Runtime core/patch or Host wire
+      changes"
   phases:
     - id: D0
       action: 只读源码复审与计划落盘
@@ -1911,10 +2013,12 @@ daily_cutover:
       native_migration_write: true
       host_runtime_start: false
     - id: D4
-      action: 首次受限App启动已获批；须先确认workflow实时ready，保持Kimi暂停/全模型零派发，历史检查后正常退出
-      status: AUTHORIZED_PRESTART_BLOCKED_WORKFLOW
-      launch_attempts: 0
-      evidence_ref: 08-verification-report.md#E164-D4-PRESTART
+      action: 新候选完成受限启动、8会话11回合历史/附件/删除计划保护，正常退出及完整后态；Kimi暂停、模型0
+      status: PASS_COMPLETE_STOPPED
+      launch_attempts: 2
+      repaired_candidate_launch_attempts: 1
+      first_attempt_result: FAILED_HISTORY_READER_RETAINED
+      evidence_ref: 08-verification-report.md#E164-D4-CLOSURE
       data_access: true
       host_runtime_write: true
       model_http: 0
@@ -1922,11 +2026,12 @@ daily_cutover:
       action: 依据D4结果单独确认日常入口启用/解除Kimi暂停；不覆盖已签名App、不生成计划授权、不发送验收消息
       status: NOT_AUTHORIZED
       model_http: 0
-  actual_daily_data_operations: 2
-  actual_daily_data_operations_note: D2 cold backup/inspection plus one D3 Native migration and its post-state backup/inspection; no GUI or Host/Runtime startup
+  actual_daily_data_operations: 4
+  actual_daily_data_operations_note: D2 complete cold backup, one D3 migration, first D4 normal start/exit plus
+    post-state, and repaired D4 fresh start/exit plus post-state; no D3 retry/D5
   real_model_http_added: 0
   runtime_core_or_patch_changed: false
-  current_report: 65-d4-preflight-and-workflow-restart-boundary.md
+  current_report: 66-d4-blockers-fixed-and-restricted-start-passed.md
 
 historical_completion_audit_report61:
   report: 61-current-implementation-audit-and-completion-plan.md
@@ -2029,6 +2134,37 @@ historical_completion_audit_report64:
   authorization_note: Owner-approved single D3 completed; stop and audit only. No repeat maintenance, D4 startup, model calls or automatic restore.
 
 current_completion_audit:
+  report: 66-d4-blockers-fixed-and-restricted-start-passed.md
+  status: D4_PASS_COMPLETE_STOPPED
+  evidence_ref: 08-verification-report.md#E164-D4-CLOSURE
+  contract_impact: semantic
+  contract_impact_reason: Input-only archive vocabulary first frozen in Contracts; private persisted-history
+    read/preflight and submitted UI facts corrected; no rewrite or Runtime change
+  candidate_receipt_sha256: 3437292d37e7354ef26765608a01a8195a3efcb8131ed2716ced55d4f2d36694
+  desktop_commit: 71e39c4e9fc38940c03b49f9b945fd4c5f6d987c
+  contracts_commit: d5792d6aad18352ce8d1c5d510d345004cab3bd6
+  D4_authorized: true
+  D4_launch_attempts: 2
+  D4_repaired_fresh_run: PASS
+  native_schema: 41
+  Host_schema: 11
+  complete_backups_and_post_state_verified: true
+  cross_store_mappings_verified: 8
+  all_model_dispatchable_work: 0
+  workflow_live_ready: true
+  workflow_lifecycle_authorized_this_turn: true
+  actual_daily_app_start: true
+  normal_exit_code: 0
+  model_http_added: 0
+  non_model_metadata_http_added: 6
+  product_modified: true
+  runtime_core_or_patch_modified: false
+  D5_authorized_or_executed: false
+  remaining:
+    - F61-02_D5_durable_entry_and_activation_scope
+    - F61-03_local_G5_G6
+  raw_failed_attempt_and_old_ledger_reservations_preserved: true
+historical_completion_audit_report65:
   report: 65-d4-preflight-and-workflow-restart-boundary.md
   status: D4_PRESTART_BLOCKED_WORKFLOW
   evidence_ref: 08-verification-report.md#E164-D4-PRESTART
@@ -2052,4 +2188,8 @@ current_completion_audit:
   model_http_added: 0
   product_or_runtime_modified: false
   D5_authorized_or_executed: false
-  remaining: [workflow_dependency_authorization_and_readiness, actual_D4, F61-02_D5_durable_entry, F61-03_local_G5_G6]
+  remaining:
+    - workflow_dependency_authorization_and_readiness
+    - actual_D4
+    - F61-02_D5_durable_entry
+    - F61-03_local_G5_G6

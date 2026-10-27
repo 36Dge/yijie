@@ -1,0 +1,137 @@
+{
+  "at": "2026-10-27T07:20:50.942120+00:00",
+  "checks": [
+    {
+      "name": "audit-claims-02",
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--audit-claims",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "strict",
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "g3-s4",
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--gate",
+        "G3",
+        "--slice",
+        "S4",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "tests",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "shell-bootstrap",
+      "command": [
+        "bash",
+        "-n",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/scripts/bootstrap.sh"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "shell-checkout-all",
+      "command": [
+        "bash",
+        "-n",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/scripts/checkout-all.sh"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "shell-dev-down",
+      "command": [
+        "bash",
+        "-n",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/scripts/dev-down.sh"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "shell-dev-up",
+      "command": [
+        "bash",
+        "-n",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/scripts/dev-up.sh"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "shell-generate-all",
+      "command": [
+        "bash",
+        "-n",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/scripts/generate-all.sh"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "shell-lint-all",
+      "command": [
+        "bash",
+        "-n",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/scripts/lint-all.sh"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "shell-test-all",
+      "command": [
+        "bash",
+        "-n",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/scripts/test-all.sh"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "all_pass": true,
+  "meta_tests": 53,
+  "full_G4_G5_G6_promoted": false,
+  "first_audit_failure_retained": true,
+  "current_refs_reconciled_without_new_model_call": true,
+  "log_sha256": {
+    "audit-claims-02.log": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4",
+    "audit-claims.log": "5ab87e8c6cf2970edcb8e6b2abdbba42a510603b9bedb641e3b4ec5abdc211a2",
+    "g3-s4.log": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4",
+    "lint.log": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c",
+    "shell-bootstrap.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "shell-checkout-all.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "shell-dev-down.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "shell-dev-up.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "shell-generate-all.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "shell-lint-all.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "shell-test-all.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "strict.log": "0f6377b2cf2e6dba2d18bcba312d28530dafd7d4a1f423d7affcf223fed72bce",
+    "tests.log": "b6e3ccc0e500592b72df5f188f2c51e657667a1402174e1db61e150977e3424d"
+  }
+}
