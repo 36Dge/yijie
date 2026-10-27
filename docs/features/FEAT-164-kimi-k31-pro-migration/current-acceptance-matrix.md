@@ -1,62 +1,51 @@
 # FEAT-164 当前验收与来源矩阵
 
-## 当前D4启动前状态（2026-10-27）
+2026-10-27。产品权威[67](67-d5-entry-and-activation-implementation.md)，最终治理与保存保护收口见[69](69-d5-resumed-final-closure.md)。D1—D5以及Owner明确批准的ADR-0022个人本机交付范围完成，Kimi K3.1 Pro由新日常入口默认启用；正常启动、兼容暂停回退、同入口再次启用及3次正常退出/完整后态通过。0新增模型验收调用，仅本地提交，不推送。原65启动阻塞、64未GUI、63来源均为历史，不再作为当前状态。
 
-当前权威[65](65-d4-preflight-and-workflow-restart-boundary.md)：Owner已批准D4首次受限启动，但预检在workflow读取容器时停止。原Docker Desktop/backend未运行、固定socket不存在，实时ready未获确认。候选、完整D2/D3备份、日常SQL41/三存储映射、实例锁与全模型零派发检查通过；App启动次数0、D4绑定未生成，0模型调用，不进入D5。新增依赖恢复范围已具体列入65，尚未获得本轮批准；既有D4授权不丢失，不改数据绕过ready。以下64及更早描述按各自时点解释。
+## 当前来源与入口
 
-2026-10-27。当前权威[64](64-d3-controlled-migration-and-post-state-audit.md)：获批的一次D3已完成，日常Native SQL37→41后正常退出，D3_COMPLETE_STOPPED。完整备份/候选/锁先验、后态完整副本审计通过，67张旧业务表全部行保持；Host/Runtime及旧账本不变。未进入D4，没有新模型调用；G4/G5/G6仍pending。长期D5及local治理口径仍为后续项。
-
-## 当前源码和制品
-
-| 对象 | 固定来源与作用 |
+| 对象 | 固定事实 |
 |---|---|
-| 当前App的Desktop来源 | 841f7c71ed3549fe02a70cff608cbbae713d6808；63号干净候选，基于b54/b789 |
-| Host / Contracts | a3d8767add3855a28c18adbbd51251fae3520ac0 / c5d138374c102f1a8a11e328a869ec8f91724efd |
+| Desktop | `39b0fbeb3a8c092768a7f0dfe64bd595d5e6be00`；D5仅7个部署/测试/文档文件，Native/renderer与D4逐字相同 |
+| Contracts / Host | `d5792d6aad18352ce8d1c5d510d345004cab3bd6` / `a3d8767add3855a28c18adbbd51251fae3520ac0` |
 | Runtime | 11fd4504c28afd0f65c6f5f62a6b5328dd437f5a；r5 SHA283d12e16b124942302fcdc8281c729a8a7f676498f06df1d2646292905f579e |
 | Connectors / Skills | cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9 / 595c927ae101d3d31c234f60565041eee0864680 |
-| 当前日常候选 | 841源码；SHA4f7adcadc59db4a6e4cf23e700ebab5858b6ae9d953cd7401780d5778cab0f42；119文件；D3维护已执行，GUI未启动 |
-| 当前receipt | SHA0e6fe8191ffc027d4f1efedf14f7e8562ee1d876068aafa7386410202a2878a7；1216构建源码输入；策略feat164-daily-existing-homes-v1 |
-| 历史隔离App | ea源码；SHA4b0ec55e6903bc6aad790a4715d485456ebf0241d10ff6c99e51d67c6aa65e39；原R1已接受证据，非b789实际App运行 |
-| 历史取消测试来源 | Desktop4e1f1f980d148a6b46e21e68eb508caa4da5dae4；仅3测试/说明文件，产品与ea相同 |
-| 历史日常prepare-only | ea源码；SHAc29f7e07942038d4c3849ef3a711ed4b501d17daab1478329ba5de6b6321a4d0；保留，不再称当前候选 |
+| App | SHA `e13a3aa7289dd6f4cf11875965cf078c4ebaf1c09a9818aee4967e4dddcc9e02`；119包内文件 |
+| Receipt | SHA `f5cf6b8ff4bff57785f89156c8eaa46c1d508c77394819ed1f3edc952e041c5c`；1228源码输入，独立D5 activation policy |
+| 正常入口 | `/Users/jack/Desktop/易界 AI.command`，K31启用 |
+| 兼容暂停入口 | `/Users/jack/Desktop/易界 AI（暂停 Kimi）.command`，正常退出后使用同一reader，仅暂停Kimi |
+| 原数据 | 原Native SQL41/Host11/Runtime Home保持；8会话11回合、2附件、6个已删除计划与原grant历史保留 |
 
-61只读核验60的58证据、六源、119包内文件及1207源码输入一致，没有刷新历史执行时间。D1只改六个部署/测试/说明文件；原Native/renderer/Host/Runtime业务依据60源比较保持。不声称新daily GUI实际已启动，也不使用原dirty工作树作为部署来源。
+## 验收判定
 
-62号测试/工具来源b54及60号b789制品均保留为历史资格。63号新Native私有SQL与Host前身按定向证据资格；不刷新旧完整App执行时间。原Runtime WAL非零完整保留，不手工checkpoint。
+| AC | 当前判定与来源 |
+|---|---|
+| 001 活动目录/参数 | PASS；原S1/49/56/57及67实际日常K31可用/默认、K3不在活动目录 |
+| 002 受管配置 | PASS；原S1/51/56、63精确前身、66 Host11正常准备；67保持原Home及受审来源 |
+| 003 SQL兼容 | PASS；46/51/56正常旧库组合，64日常37→41；66/67原业务行保持，不重跑迁移 |
+| 004 原thread/恢复 | PASS；原46/56/57限定结果及66的8会话完整读取、67已有答案；旧unknown状态不伪造恢复 |
+| 005 退役/取消 | PASS，含已接受替代；57安全分层与58 Owner接受；完整App正向取消仍NOT RUN |
+| 006 计划/授权 | PASS；原46/51/56及66/67旧计划不复活、已删除目标禁重跑；新日常启用不是计划grant |
+| 007 全调用面 | PASS；48辅助/子代理/压缩，52专家媒体，56/58精确绑定；66/67相关源与canonical完整media装配保持，无新增模型回合 |
+| 008 响应语义 | PASS；原49/53/54/55/56证据，66补format5只读兼容；搜索答案正确性OWNER_EXCLUDED |
+| 009 Key/审批/预算 | PASS；原共享Key/原生权限及逐次授权不改；7账本/两预占保持，67新增模型HTTP0 |
+| 010 生命周期/状态 | PASS，含既有替代；66关闭/历史、67三次正常退出/完整后态/活动WAL0 |
 
-## AC判定与交付边界
+## 最终证据与治理范围
 
-以下PASS限已接受的本地实现与验证，不能推导为日常部署已经执行。
+| 项目 | 判定及边界 |
+|---|---|
+| core_vertical | PASS；既有真实业务结果及58接受保留；66真实历史修复、67日常入口增量资格，不伪造新模型执行 |
+| accessibility_visual | PASS于现存业务状态范围；67 K31启用/暂停/恢复、旧模型保护实测；外观/键盘/最小窗口专项OWNER_EXCLUDED |
+| teardown | PASS；67三次⌘Q退出0、锁句柄释放、业务旧行保持；活动DB WAL/SHM0、历史备份WAL保留 |
+| S1/S2/S3/S4 G3 | 原已接受PASS与执行时点保留，新增来源/引用独立关联66/67事实 |
+| G4 / G5 | PASS；本次限定个人本机范围；启用前单独验证与提交7a2b7c3，不改exposure为public |
+| G6 / D5 | PASS；已批准范围实际启用、暂停回退、同入口重开和完整后态交付观察完成；不是签名/云端/公开发布 |
 
-| AC | 判定 | 有效证据及边界 |
-|---|---|---|
-| 001 活动目录/参数 | PASS | S1/49/56/57，K31/MiniMax与有效身份精确；日常未启用 |
-| 002 受管配置 | PASS | S1/51/56，已知前身准入、未知拒绝；日常D2已预检，63已补第三精确前身兼容；真实日常尚未激活 |
-| 003 SQL兼容 | PASS | 46/51/56自然SQL29/37×隔离/daily四组合；64真实日常SQL37→41完成，旧业务行保持；GUI未启动 |
-| 004 原thread/恢复 | PASS | 46同thread迁移/停止/继续，56边界回归，57自然unknown实际App安全拒绝；原unknown仍不ready |
-| 005 退役/取消 | PASS，含已接受替代 | 56准入/未知状态，57正常Native入队/领取/取消/重开及真实结果消费；完整App正向原执行NOT RUN，58 Owner接受 |
-| 006 计划/授权 | PASS | 46旧计划退役/重审/新grant，51/56定向回归与实际关闭状态；旧授权不复活 |
-| 007 全调用面 | PASS | 48辅助/子代理/压缩，52专家媒体/共存，56当前来源19项和58绑定 |
-| 008 响应语义 | PASS | 49真实文本、53图片/工具/搜索传输、54来源显示、55v4测试修复、56历史；搜索答案正确性OWNER_EXCLUDED |
-| 009 Key/审批/预算 | PASS | 既有共享Key/逐次授权，刷新/重开不调用，全部旧账本与预占保留；本轮不新增调用 |
-| 010 生命周期/状态 | PASS，含已接受替代 | 57自然unknown/草案保护、正常退出WAL0，58取消替代；正常计划/Host时间戳变化如实保留 |
+完整App正向never-sent取消仍NOT RUN；Owner接受的安全分层替代不冒充完整App。搜索答案正确性、亮暗/键盘/最小窗口永久OWNER_EXCLUDED。所有原失败日志与来源保持。
 
-## 三项最终判定与门禁
+## 数据和后续
 
-| 项目 | 当前状态 | 解释 |
-|---|---|---|
-| core_vertical | PASS | 46—57实际App主路径与跨组件结果；never-sent单项采用Owner接受的替代 |
-| accessibility_visual | PASS | 现存业务状态范围；完整App正向取消NOT RUN另列；外观专项已排除 |
-| teardown | PASS | 57原正常退出证据；64维护正常退出，Native仅预期迁移/备份变化，Host/Runtime保持 |
-| S1/S2/S3/S4 G3 | PASS（58本地范围） | 来源并集8项及已接受替代保持 |
-| 当前G4 | pending | 60已离线修复CUTOVER-01/03；新daily bootstrap尚未实际启动，不从prepare-only自动晋升 |
-| G5/G6 | pending | 本地加固交付口径与validator public限制冲突，待确认修正；不改标public造绿 |
-| 日常候选 | D3_COMPLETE_STOPPED | 当前841制品4f7adca、receipt0e6fe81完成一次维护；日常SQL41，GUI/Host/Runtime未启动 |
+最后完整后态17,397文件/522,400,556字节；67Native表、Host所有值、Runtime业务行/rollout保持，正常日志追加585、正常metadata probe回执和停止代际如实记录。模型0，非模型metadata HTTP9，无业务工具。累计13请求、45元上限、29.740299保守累计及两份14.188544预占不变。
 
-**完整App/WebView正向never-sent取消：NOT RUN。** 正常Native持久正例与生产消费链实际结果重放为ACCEPTED_SAFE_LAYERED_SUBSTITUTE，非完整App执行。原自然unknown继续安全拒绝，既有占用grant不清空。亮暗/键盘/最小窗口及搜索答案质量永久OWNER_EXCLUDED。
-
-## 保护与下一步
-
-64执行前原日常文件与D2 sealed一致；执行后仅Native正式迁移/内部备份变化，67张业务表旧行不变，Host/Runtime/Key及旧账本与两份预占保持，新增模型HTTP0。63的workflow ready保留为其时点记录，本轮未启停/重验workflow。GUI未启动。
-
-D3一次许可已消费，当前停止。下一步须单独批准D4受限启动，重新核验同一候选、后态摘要、锁/句柄、全模型零派发和既有workflow ready，Kimi暂停；D5长期入口与local G5/G6仍独立。不能直接重开旧SQL37构建，不执行自动回退。Owner替代/排除保持，0新模型调用，仅本地提交、不推送。
+恢复收口时App无活动进程，新日常入口及绑定保持；workflow的ready证据属于第67号D5观察时点，本轮未重测或启停。当前批准范围无D5阻塞或未完成项；更换候选/Home/回执需重新审阅，依赖停机走原受控恢复。任何公开、云端、组织/多人或签名发布另行批准和资格，不继承本机G6。禁止旧reader/降库/覆盖旧备份回退；按同源暂停入口或前向修复处理。

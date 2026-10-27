@@ -425,6 +425,8 @@ test("local activation cannot substitute a proposed ADR for an accepted decision
     fs.writeFileSync(decision, "# Ordinary local decision\n\n## 状态\n\nProposed\n");
     assert.ok(loadAndValidateFeaturePackage(feature, {gate: "G5"}).errors.some(e => e.includes("Accepted ADR")));
     fs.writeFileSync(decision, "# Ordinary local decision\n\n## 状态\n\nAccepted\n");
+    assert.ok(loadAndValidateFeaturePackage(feature, {gate: "G5"}).errors.some(e => e.includes("this feature's local scope")));
+    fs.appendFileSync(decision, "\n<!-- local-activation-scope: FEAT-999 single-owner-local-only -->\n");
     assert.deepEqual(loadAndValidateFeaturePackage(feature, {gate: "G5"}).errors, []);
   } finally { fs.rmSync(root, {recursive: true, force: true}); }
 });

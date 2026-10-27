@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "reason": "final report/evidence references added after full 57-test run; source logic unchanged",
+  "checks": [
+    {
+      "name": "audit-claims",
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--audit-claims",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "log": "governance-final-document-bindings/audit-claims.log",
+      "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4"
+    },
+    {
+      "name": "strict",
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "log": "governance-final-document-bindings/strict.log",
+      "sha256": "0f6377b2cf2e6dba2d18bcba312d28530dafd7d4a1f423d7affcf223fed72bce"
+    },
+    {
+      "name": "G6",
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--gate",
+        "G6",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "log": "governance-final-document-bindings/G6.log",
+      "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4"
+    },
+    {
+      "name": "diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "governance-final-document-bindings/diff-check.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

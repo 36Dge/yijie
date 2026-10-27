@@ -1,5 +1,25 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 D5恢复收口完成（2026-10-27）
+
+Owner要求恢复后，按[69最终收口](../features/FEAT-164-kimi-k31-pro-migration/69-d5-resumed-final-closure.md)完成68剩余事项：修正G5历史措辞，Accepted ADR精确Feature scope限定的最终57测试、claims/strict/G6/lint/7Shell均通过；500原dirty/混合memory原文/7账本与六源制品、两个入口、原日常文件及最终sealed一致。App无活动进程，0新增App/模型/workflow操作、无数据库API打开；workflow ready仍仅指67观察时点，不自动恢复。D5及ADR-0022个人本机范围完成，入口为桌面易界 AI.command，暂停入口须先正常退出再切换。仅本地固化本需求差异、不推送；Runtime/已签名App/旧备份不改。以下68暂停状态保留为历史，不再是当前任务状态。
+
+## FEAT-164 暂停于D5最终治理收口之前（2026-10-27）
+
+用户要求记录并暂停。以[68暂停记录](../features/FEAT-164-kimi-k31-pro-migration/68-paused-state-20261027.md)为最新恢复入口：D5三轮启用/暂停/恢复及正常退出、完整后态审计已通过，App最后已正常退出，入口保留；0新增模型HTTP，旧改动/账本/预占保持。元仓HEAD7a2b7c3、Desktop39b0fbe；当前索引为空，收口差异未提交。
+
+最后Feature scope限定修正仅完成focused检查；全量最终治理/G6、保护复核、证据索引和本地提交未执行。feature.yaml G5当前措辞尚有启用前残留待修正，G6=pass为观察结论草稿，不能声称最终命令已通过。原FEAT-163混合memory块与无关dirty不得混入提交。暂停不启停workflow、不再测试或调用模型，恢复后先读68再继续收口；不得把下一节D5完成表述理解为所有最终治理提交已完成。
+
+## FEAT-164 D5个人本机交付已完成（2026-10-27）
+
+当前权威[67](../features/FEAT-164-kimi-k31-pro-migration/67-d5-entry-and-activation-implementation.md)。Owner明确批准ADR-0022限定个人Mac固定Native身份免登录、完整权限/计划授权/G0—G6保留，随后D5完成。Desktop39b0fbe仅部署helper/receipt/installer/tests/docs；Native/renderer与D4逐字相同，Runtime11fd/r5未改。新App e13a3aa7、receipt f5cf6b8f，119文件1228输入；13激活/7短期回归/19生成及canonical构建通过。
+
+桌面`易界 AI.command`正常入口默认K31可用；`易界 AI（暂停 Kimi）.command`为同源兼容暂停入口，先正常退出再切换。schema2固定原Home/receipt/Owner/D4/预检，不再每日过期；schema1 D3/D4门禁保持。workflow继续existing-ready-only，当前6healthy；日后停机不能擅自隐式迁移/恢复。旧App、原dirty和备份不覆盖。
+
+真实启用→暂停回退→同入口恢复3轮、3次正常退出0，数据/锁/活动WAL0均通过；最终17,397文件/522,400,556字节完整副本。67Native表/Host所有值/Runtime业务行与rollout保持，仅正常日志585及3次metadata probe/停止代际增量。模型0、非模型metadata9，无业务工具。500原dirty、混合memory、7账本/两预占、累计13/45元cap/29.740299保守累计保持。
+
+G4/G5在激活前按限定本机范围通过，G6/D5依据实际观察完成；新local G5/G6必须引用实际Accepted ADR和当前Feature scope标记，不能改成public或借其它需求批准。FEAT-164当前批准的本机交付范围完成，App审计后正常退出，入口仍启用。未来public/cloud/多人/签名发布另行批准；不新增模型验收额度。58安全替代保留，完整App正向never-sent仍NOT RUN；搜索答案/外观专项排除。仅本地提交，不推送。
+
 ## FEAT-164 D4阻塞已修复并通过（2026-10-27）
 
 当前权威[66](../features/FEAT-164-kimi-k31-pro-migration/66-d4-blockers-fixed-and-restricted-start-passed.md)。Owner批准65恢复依赖，并要求本轮修复全部D4阻塞。原Docker/四停止态volume备份/canonical recover-up完成、6healthy。首轮App正常退出后定位format5超过reader4及submitted误排队；Contracts d5792d6→Desktop71e39c4只读archive修复，Hosta3d8767/Runtime11fd450-r5未改。新App b8d68436、receipt3437292d，119文件1226输入；88前端/Native真实副本/19生成/Clippy等通过。

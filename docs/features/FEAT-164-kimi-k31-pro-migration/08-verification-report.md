@@ -708,3 +708,19 @@ D4 PASS_SCOPED，0新增模型HTTP；两次App共6次既有Shopify metadata HTTP
 Owner已明确批准ADR-0022限定本机单Owner例外，完整生产链与Native权限/计划授权保留。Desktop39b0fbe仅7文件部署helper/receipt/installer/tests/docs变更，Native与renderer相对D4逐字相同；13激活、7短期绑定、9入口单元、19同源生成、lint/docs及canonical新构建通过。119包内文件1228源码输入/Runtime r5绑定，App e13a3aa7、receipt f5cf6b8f。新完整冷备份17394文件/522147353字节，原与D4后态一致；SQL41/Host11/四Runtime库、8映射、旧6消费及全模型零派发、锁/无句柄通过，workflow6healthy真实ready。
 
 治理修复包含Accepted ADR和Owner限定批准校验，不把local改为public，不裁剪原G4/G5/G6链；57项回归通过。原final的执行来源/时间/结果保留，新archive引用由66实际D4证明；当前部署改动由本轮独立检查覆盖，绝不是新增模型G2V。此处G4/G5仅已批准本机范围，当前D5仍未激活、G6pending；启动后须正常退出/同入口重开与暂停回退及完整后态才可关闭。0新增模型/业务工具调用。详细source/审批/备份见evidence/d5-readiness.json。
+
+
+## D5日常启用与交付观察
+
+<!-- evidence: E164-D5-CLOSURE -->
+
+PASS_LOCAL_DELIVERY：实际已安装正常/暂停两个canonical入口；正常K31默认可用、旧K3目录移除/历史发送禁用、旧计划未恢复；暂停时Kimi禁用而MiniMax可用，再由同一正常入口重开恢复K31。三轮均无发送/切换/授计划操作，模型HTTP0，正常退出0。完整后态17397文件/522400556字节，67Native表、Host所有值及Runtime业务行/rollout保持，正常日志追加585。活动WAL/SHM0，历史备份WAL保留；3次既有metadata probe共9非模型HTTP、3正常停止代际，原authorization generation/凭据不变。
+
+D5完成，G6只对应Owner明确批准的ADR-0022个人本机交付；不得推导公网/组织/签名发布。G4/G5先于激活留证，G6依据本节实际观察。原S1—S4、真实r5验证的执行来源/时间及Owner替代/排除保持，完整App正向never-sent仍NOT RUN，不伪造重跑。原dirty、7账本/两预占、累计13调用均保持，App当前正常退出，新入口保持日常可用。详见67与d5-closure-summary/post-state-observations/review。
+
+
+## D5暂停恢复后的最终治理验证
+
+<!-- evidence: E164-D5-FINAL -->
+
+PASS：最终限定scope校验完成后，实际运行主张审计、strict、G6、pnpm lint、57项元仓测试及7份Shell语法检查，均通过。500份原dirty/混合memory原内容/7账本、六源/制品/入口绑定保持；正常锁与无句柄下原日常文件及最终sealed与67后态一致。不打开数据库API、不重复App/模型/workflow操作。时序、scope和私有证据索引见69；正常用户日常入口继续可用，不扩展公开/签名范围。

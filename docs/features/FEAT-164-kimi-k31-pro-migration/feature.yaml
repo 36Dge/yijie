@@ -5,7 +5,7 @@ feature:
   id: FEAT-164
   slug: kimi-k31-pro-migration
   title: Kimi K3.1 Pro 模型替换与历史兼容
-  status: active
+  status: completed
   created_at: 2026-10-24
   requirement_owner: 段成威
   technical_owner: 段成威
@@ -94,7 +94,7 @@ gates:
   G2V_vertical_feasibility: pass
   G4_code_complete: pass
   G5_production_ready: pass
-  G6_delivery_complete: pending
+  G6_delivery_complete: pass
 gate_reasons:
   G2A: S4h
     Desktop1b5adcfc1b6b3195df5b3495de3f1c4b22599d51仅新增显式只读验证入口与说明，contract-impact=none，产品wire/SQL/Runtime/授权不改；对应19项与既有v1-reader/v2-writer源资格通过。
@@ -116,7 +116,8 @@ gate_reasons:
     S4b复用同一公共契约；Hostcac2d4d/Desktop56f5284/Connectors1f15726固定Skills595c927同内容资源和原库树，四组合source通过，旧来源的证据不覆盖App资格。
   G2V: S4V当前r5唯一真实请求HTTP200/42完成、保存/同构建重开零补发及正常退出通过；按Owner无需精确查价的功能验证授权执行。旧r4结果和两账本保留，不替代完整core/业务状态或日常cutover。
   G4: 67号恢复代码完成：已接受S1—S4/三类final与66fresh日常D4保持；新D5仅部署脚本，Native/renderer与D4逐字相同，13激活/7短期绑定/19生成及canonical构建通过。旧模型真实执行source/time不改，新增archive引用独立关联D4证据。
-  G5: 仅ADR-0022已批准个人本机范围：完整新冷备份/副本检查、workflow真实ready、精确制品与来源、原Home、权限/计划保护、兼容暂停回退方案及OwnerD5启用授权已审；正式激活与观察尚未执行，G6pending，不授权public/cloud/多人/签名发布。
+  G5: 仅ADR-0022已批准个人本机范围：完整新冷备份/副本检查、workflow真实ready、精确制品与来源、原Home、权限/计划保护、兼容暂停回退方案及OwnerD5启用授权均在激活前审查通过并提交7a2b7c3；后续激活与观察见67号及G6，不授权public/cloud/多人/签名发布。
+  G6: ADR-0022限定本机交付：实际正常启用→暂停回退→同入口再次启用三轮通过，3次正常退出、完整后态/旧行和权限保持、活动WAL0；桌面入口已安装可用，Owner批准范围内完成。0新增模型验收调用，不是public/cloud/多人/签名发布。
 
 temporal_contract_matrix:
   required: true
@@ -1481,8 +1482,8 @@ external_authorizations:
     approved_at: N/A
 current_authorization:
   paused_by_owner: false
-  pause_reason: D4按授权完成并正常退出，当前未进入D5。
-  phase: D5_authorized_ready_not_activated
+  pause_reason: App正常退出以完成审计；日常入口保持K31启用，不是Owner暂停任务。
+  phase: D5_complete_local_daily_entry_enabled
   source: Owner要求完成D5，后明确批准ADR-0022限定例外；个人本机启用K31、完整权限/备份/G0-G6保留，0模型验收调用
   documentation_write_allowed: true
   product_source_edit_allowed: true
@@ -1491,12 +1492,12 @@ current_authorization:
   isolated_qualification_migration_allowed: false
   migration_scope: D3一次许可已消费；本轮无重跑，D4正常Host10→11元数据准备完成，现有数据和旧备份保留。
   service_lifecycle_allowed: true
-  service_lifecycle_scope: D5同源正常启动、退出、重开与暂停回退验证；workflow继续existing-ready-only，未扩到其自动恢复
+  service_lifecycle_scope: D5三轮正常启动/退出和观察已完成，日常入口可由Owner正常使用；workflow在D5观察时ready，恢复收口未重测或自动恢复/迁移。
   model_or_tool_business_calls_allowed: false
   git_commit_push_branch_release_allowed: false
   git_local_commit_allowed: true
-  git_scope: 仅本轮FEAT-164 Contracts/Desktop隔离修复与治理记录本地提交；不推送、发布或混入其它需求。
-  note: 当前D5准备就绪，尚未激活；原D3不重跑，Runtime核心/补丁不改，G6待实际观察
+  git_scope: 仅FEAT-164本轮Desktop部署接口、已批准ADR/对应治理修正和交付证据本地提交，不推送、改原dirty工作区或发布签名App。
+  note: ADR-0022明确限定批准下D5已完成，3次正常启停/重开与后态通过；0新增模型调用，旧账本预占保持。今后正常使用按原Native用户/计划授权，不等于Agent可追加验收请求。
 implementation:
   v3_test_and_search_scope_s4ab:
     report: 55-v3-test-and-search-grounding-root-cause.md
@@ -1674,8 +1675,8 @@ implementation:
     evidence_ref: 08-verification-report.md#E164-S4S-APP
     evidence_index: evidence/s4s-audit-index.json
     remaining: S4/TCONF04完整组合、未知/never-sent App和三个final；日常切换/新付费调用未授权。
-  status: active
-  real_entrypoint: bash scripts/run-local-demo-fast.sh --packaged --kimi-k31-pro；同canonical组合的显式独立候选，日常入口未切换
+  status: complete_local_owner_approved
+  real_entrypoint: /Users/jack/Desktop/易界 AI.command
   mock_only: false
   native_terminal_remediation:
     status: PASS_NATIVE_SUBSET
@@ -1883,8 +1884,8 @@ implementation:
     loopback_model_http_added: 0
     full_app_ui: NOT RUN
     note: 同一App维护参数在auth/worker/sidecar/UI之前退出；两种旧库自然离线样本成功，现有SQL41候选拒绝后未迁移/清理/退款。两个前置环境失败及后置归因修正保留，不冒充完整G3/final。
-  completion_scope: D1-D3 retained; report66 D4 restricted startup/history/attachments/plan protection/normal exit and
-    post-state PASS after isolated archive-reader repair; D5 not authorized or executed
+  completion_scope: Accepted S1-S4 and safe substitutions retained; D1-D5 and ADR-0022 single-owner local delivery
+    complete. Public/cloud/multi-user/signed production release outside scope.
   owner_acceptance_s4ae:
     report: 58-owner-accepted-substitute-and-final-closure.md
     incremental_contract_impact: none
@@ -1923,11 +1924,20 @@ implementation:
     Runtime_core_or_patch_changed: false
     Host_wire_changed: false
     evidence_ref: 08-verification-report.md#E164-D4-CLOSURE
+  durable_daily_activation:
+    status: COMPLETE
+    report: 67-d5-entry-and-activation-implementation.md
+    desktop_commit: 39b0fbeb3a8c092768a7f0dfe64bd595d5e6be00
+    policy: feat164-daily-activated-homes-v2
+    entry_sha256: 5a9dde8495aecb20c325cd156b123f7cd0d5bb79bfe2469301942730528dd655
+    approval_adr: ADR-0022
+    model_http_added: 0
+    evidence_ref: 08-verification-report.md#E164-D5-CLOSURE
 product_verification:
-  status: D4_PASS_RESTRICTED_DAILY_SCOPE
-  reason: 新候选fresh run覆盖8会话11历史回合、附件与删除计划保护，正常退出/完整后态通过；未新增模型调用，D5未执行。
-  report: 66-d4-blockers-fixed-and-restricted-start-passed.md
-profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
+  status: PASS_OWNER_APPROVED_LOCAL_DELIVERY
+  report: 67-d5-entry-and-activation-implementation.md
+  reason: D4历史/数据合格后，新持久日常入口正常启用/暂停/恢复三轮及完整后态通过，K31可用，旧模型/计划保护保持；0新模型调用。
+profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；仅按ADR-0022批准ADR-0018的FEAT-164个人本机限定例外，不扩大公网/云端/多人/签名发布
 owner_approvals:
   requirements: approved_by_owner_current_user_message
   technical_design: approved_by_owner_current_user_message
@@ -1939,61 +1949,71 @@ must_acceptance:
     status: PASS
     definition: 01-requirements.md
     verification_plan: 06-test-plan.md
-    acceptance_scope: accepted local implementation and verification; daily deployment not performed
+    acceptance_scope: accepted local implementation/verification plus report66 D4 and report67 ADR-0022 D5 daily activation;
+      original execution/substitution limits retained
     evidence_ref: 08-verification-report.md#E164-S4AE-FINAL
   - id: AC-002
     status: PASS
     definition: 01-requirements.md
     verification_plan: 06-test-plan.md
-    acceptance_scope: accepted local implementation and verification; daily deployment not performed
+    acceptance_scope: accepted local implementation/verification plus report66 D4 and report67 ADR-0022 D5 daily activation;
+      original execution/substitution limits retained
     evidence_ref: 08-verification-report.md#E164-S4AE-FINAL
   - id: AC-003
     status: PASS
     definition: 01-requirements.md
     verification_plan: 06-test-plan.md
-    acceptance_scope: accepted local implementation and verification; daily deployment not performed
+    acceptance_scope: accepted local implementation/verification plus report66 D4 and report67 ADR-0022 D5 daily activation;
+      original execution/substitution limits retained
     evidence_ref: 08-verification-report.md#E164-S4AE-FINAL
   - id: AC-004
     status: PASS
     definition: 01-requirements.md
     verification_plan: 06-test-plan.md
-    acceptance_scope: accepted local implementation and verification; daily deployment not performed
+    acceptance_scope: accepted local implementation/verification plus report66 D4 and report67 ADR-0022 D5 daily activation;
+      original execution/substitution limits retained
     evidence_ref: 08-verification-report.md#E164-S4AE-FINAL
   - id: AC-005
     status: PASS
     definition: 01-requirements.md
     verification_plan: 06-test-plan.md
-    acceptance_scope: accepted local implementation and verification; daily deployment not performed
+    acceptance_scope: accepted local implementation/verification plus report66 D4 and report67 ADR-0022 D5 daily activation;
+      original execution/substitution limits retained
     evidence_ref: 08-verification-report.md#E164-S4AE-FINAL
   - id: AC-006
     status: PASS
     definition: 01-requirements.md
     verification_plan: 06-test-plan.md
-    acceptance_scope: accepted local implementation and verification; daily deployment not performed
+    acceptance_scope: accepted local implementation/verification plus report66 D4 and report67 ADR-0022 D5 daily activation;
+      original execution/substitution limits retained
     evidence_ref: 08-verification-report.md#E164-S4AE-FINAL
   - id: AC-007
     status: PASS
     definition: 01-requirements.md
     verification_plan: 06-test-plan.md
-    acceptance_scope: accepted local implementation and verification; daily deployment not performed
+    acceptance_scope: accepted local implementation/verification plus report66 D4 and report67 ADR-0022 D5 daily activation;
+      original execution/substitution limits retained
     evidence_ref: 08-verification-report.md#E164-S4AE-FINAL
   - id: AC-008
     status: PASS
     definition: 01-requirements.md
     verification_plan: 06-test-plan.md
-    acceptance_scope: accepted local implementation and verification; daily deployment not performed
+    acceptance_scope: accepted local implementation/verification plus report66 D4 and report67 ADR-0022 D5 daily activation;
+      original execution/substitution limits retained
     evidence_ref: 08-verification-report.md#E164-S4AE-FINAL
   - id: AC-009
     status: PASS
     definition: 01-requirements.md
     verification_plan: 06-test-plan.md
-    acceptance_scope: accepted local implementation and verification; daily deployment not performed
+    acceptance_scope: accepted local implementation/verification plus report66 D4 and report67 ADR-0022 D5 daily activation;
+      original execution/substitution limits retained
     evidence_ref: 08-verification-report.md#E164-S4AE-FINAL
   - id: AC-010
     status: PASS
     definition: 01-requirements.md
     verification_plan: 06-test-plan.md
-    acceptance_scope: accepted local implementation and verification; daily deployment not performed
+    acceptance_scope: accepted local implementation/verification plus report66 D4 and report67 ADR-0022 D5 daily activation;
+      original execution/substitution limits retained
     evidence_ref: 08-verification-report.md#E164-S4AE-FINAL
 accepted_substitutions:
   - decision_id: F164-S4AE-OWNER-SAFE-SUBSTITUTION
@@ -2007,11 +2027,12 @@ accepted_substitutions:
     acceptance_status: ACCEPTED_SAFE_LAYERED_SUBSTITUTE
 daily_cutover:
   plan_id: F164-S4AF-DAILY-CUTOVER
-  status: D5_AUTHORIZED_READY_NOT_ACTIVATED
+  status: D5_COMPLETE_LOCAL_ENABLED
   report: 59-daily-cutover-minimal-plan-and-authorization.md
   evidence_ref: 08-verification-report.md#E164-S4AF-PLAN
-  activation_readiness: LOCAL_G5_READY_ADR0022_OWNER_APPROVED
-  open_deployment_issue: No identified pre-activation blocker; activate and observe exact entry, zero model test calls
+  activation_readiness: ENABLED_OWNER_APPROVED_LOCAL_ONLY
+  open_deployment_issue: none within ADR-0022 approved single-owner local scope; future public/cloud/signed release
+    requires separate qualification
   historical_local_G4:
     status: PASS
     report: 58-owner-accepted-substitute-and-final-closure.md
@@ -2027,17 +2048,16 @@ daily_cutover:
     daily_native_migration: true
     daily_native_migration_scope: One authorized D3 invocation consumed; no retry or further migration authorization
     daily_app_start: true
-    daily_app_start_scope: Two D4 App launches completed with Kimi paused and zero model calls; first failed history
-      display, repaired candidate fresh run PASS, both normal exits; no D5
+    daily_app_start_scope: D5 durable single-owner local entry authorized by current Owner and ADR-0022; K31 enabled for
+      normal user-authorized use, independent paused rollback entry; this Agent validation adds no model request
     workflow_lifecycle_or_migration: true
     workflow_lifecycle_scope: Report65 explicitly approved; original Docker/4 stopped-volume backups/canonical recovery and
       up completed; original stack remains ready
     model_http: false
     runtime_core_or_patch_change: false
     push_or_release: false
-    product_code_change_scope: "Owner expressly authorized all D4 blocker repairs: isolated Contracts display archive
-      vocabulary then Desktop strict read-only v5 reader/preflight/UI and tests/docs; no Runtime core/patch or Host wire
-      changes"
+    product_code_change_scope: "Desktop durable activation helper/receipt/installer and focused tests/docs; exact approved
+      ADR-0022 local gate scope. Native/renderer/Host/Runtime payload or permission implementation unchanged."
   phases:
     - id: D0
       action: 只读源码复审与计划落盘
@@ -2075,13 +2095,16 @@ daily_cutover:
       host_runtime_write: true
       model_http: 0
     - id: D5
-      action: Owner限定批准下建立持久启用记录/新日常入口并启用K31；正常退出/重开与兼容暂停观察
-      status: AUTHORIZED_READY_NOT_ACTIVATED
-      evidence_ref: 08-verification-report.md#E164-D5-READINESS
+      action: 建立新日常入口及持久Owner启用记录，K31默认可用；暂停回退、同入口重开及正常退出完整后态通过
+      status: COMPLETE_ENABLED_LOCAL_SCOPE
+      evidence_ref: 08-verification-report.md#E164-D5-CLOSURE
+      launches: 3
+      normal_exits: 3
       model_http: 0
-  actual_daily_data_operations: 4
-  actual_daily_data_operations_note: D2 complete cold backup, one D3 migration, first D4 normal start/exit plus
-    post-state, and repaired D4 fresh start/exit plus post-state; no D3 retry/D5
+      old_authorizations_preserved: true
+  actual_daily_data_operations: 8
+  actual_daily_data_operations_note: D2 backup + one D3 migration + two D4 starts + one fresh D5 backup + three D5
+    starts/normal exits; each state retained and inspected
   real_model_http_added: 0
   runtime_core_or_patch_changed: false
   current_report: 67-d5-entry-and-activation-implementation.md
@@ -2187,36 +2210,39 @@ historical_completion_audit_report64:
   authorization_note: Owner-approved single D3 completed; stop and audit only. No repeat maintenance, D4 startup, model calls or automatic restore.
 
 current_completion_audit:
-  report: 66-d4-blockers-fixed-and-restricted-start-passed.md
-  status: D4_PASS_COMPLETE_STOPPED
-  evidence_ref: 08-verification-report.md#E164-D4-CLOSURE
+  report: 67-d5-entry-and-activation-implementation.md
+  final_closure_report: 69-d5-resumed-final-closure.md
+  final_governance_evidence_ref: 08-verification-report.md#E164-D5-FINAL
+  status: COMPLETE_OWNER_APPROVED_LOCAL_D5
+  evidence_ref: 08-verification-report.md#E164-D5-CLOSURE
   contract_impact: semantic
-  contract_impact_reason: Input-only archive vocabulary first frozen in Contracts; private persisted-history
-    read/preflight and submitted UI facts corrected; no rewrite or Runtime change
-  candidate_receipt_sha256: 3437292d37e7354ef26765608a01a8195a3efcb8131ed2716ced55d4f2d36694
-  desktop_commit: 71e39c4e9fc38940c03b49f9b945fd4c5f6d987c
-  contracts_commit: d5792d6aad18352ce8d1c5d510d345004cab3bd6
-  D4_authorized: true
-  D4_launch_attempts: 2
-  D4_repaired_fresh_run: PASS
-  native_schema: 41
-  Host_schema: 11
-  complete_backups_and_post_state_verified: true
-  cross_store_mappings_verified: 8
-  all_model_dispatchable_work: 0
-  workflow_live_ready: true
-  workflow_lifecycle_authorized_this_turn: true
-  actual_daily_app_start: true
-  normal_exit_code: 0
+  authority: Desktop private durable deployment + explicitly accepted ADR-0022 local release scope
+  desktop_commit: 39b0fbeb3a8c092768a7f0dfe64bd595d5e6be00
+  candidate_receipt_sha256: f5cf6b8ff4bff57785f89156c8eaa46c1d508c77394819ed1f3edc952e041c5c
+  native_renderer_Host_Runtime_implementation_changed: false
+  D3_rerun: false
+  D4_prior_qualification_preserved: true
+  D5_activated: true
+  K31_enabled: true
+  normal_entry: /Users/jack/Desktop/易界 AI.command
+  paused_rollback_entry: /Users/jack/Desktop/易界 AI（暂停 Kimi）.command
+  actual_launches: 3
+  normal_exits: 3
   model_http_added: 0
-  non_model_metadata_http_added: 6
-  product_modified: true
-  runtime_core_or_patch_modified: false
-  D5_authorized_or_executed: false
-  remaining:
-    - F61-02_D5_durable_entry_and_activation_scope
-    - F61-03_local_G5_G6
-  raw_failed_attempt_and_old_ledger_reservations_preserved: true
+  non_model_metadata_http_added: 9
+  final_complete_backup_files: 17397
+  final_complete_backup_bytes: 522400556
+  original_history_and_authorizations_preserved: true
+  old_ledger_and_reservations_preserved: true
+  workflow_remains_ready: true
+  workflow_ready_observation_scope: report67 D5 audit only; resume closure did not recheck or restart workflow
+  App_currently_stopped: true
+  open_D5_blockers: []
+  remaining_in_approved_scope: []
+  outside_scope:
+    - public/cloud/multi-user/signed release; separate approval and qualification
+  owner_exclusions_preserved: true
+  full_App_positive_never_sent: NOT RUN; accepted safe substitute preserved
 historical_completion_audit_report65:
   report: 65-d4-preflight-and-workflow-restart-boundary.md
   status: D4_PRESTART_BLOCKED_WORKFLOW
@@ -2254,3 +2280,38 @@ local_release:
   public_activation: false
   evidence_refs:
     - 08-verification-report.md#E164-D5-READINESS
+    - 08-verification-report.md#E164-D5-CLOSURE
+  delivery_status: complete
+  normal_entry: /Users/jack/Desktop/易界 AI.command
+  paused_entry: /Users/jack/Desktop/易界 AI（暂停 Kimi）.command
+historical_completion_audit_report66:
+  report: 66-d4-blockers-fixed-and-restricted-start-passed.md
+  status: D4_PASS_COMPLETE_STOPPED
+  evidence_ref: 08-verification-report.md#E164-D4-CLOSURE
+  contract_impact: semantic
+  contract_impact_reason: Input-only archive vocabulary first frozen in Contracts; private persisted-history
+    read/preflight and submitted UI facts corrected; no rewrite or Runtime change
+  candidate_receipt_sha256: 3437292d37e7354ef26765608a01a8195a3efcb8131ed2716ced55d4f2d36694
+  desktop_commit: 71e39c4e9fc38940c03b49f9b945fd4c5f6d987c
+  contracts_commit: d5792d6aad18352ce8d1c5d510d345004cab3bd6
+  D4_authorized: true
+  D4_launch_attempts: 2
+  D4_repaired_fresh_run: PASS
+  native_schema: 41
+  Host_schema: 11
+  complete_backups_and_post_state_verified: true
+  cross_store_mappings_verified: 8
+  all_model_dispatchable_work: 0
+  workflow_live_ready: true
+  workflow_lifecycle_authorized_this_turn: true
+  actual_daily_app_start: true
+  normal_exit_code: 0
+  model_http_added: 0
+  non_model_metadata_http_added: 6
+  product_modified: true
+  runtime_core_or_patch_modified: false
+  D5_authorized_or_executed: false
+  remaining:
+    - F61-02_D5_durable_entry_and_activation_scope
+    - F61-03_local_G5_G6
+  raw_failed_attempt_and_old_ledger_reservations_preserved: true

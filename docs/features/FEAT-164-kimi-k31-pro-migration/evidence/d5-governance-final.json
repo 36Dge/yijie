@@ -1,0 +1,168 @@
+{
+  "status": "PASS",
+  "scope": "final scoped governance code and current FEAT-164 package; no product runtime execution",
+  "tests_passed": 57,
+  "tests_failed": 0,
+  "shell_syntax_files": 7,
+  "checks": [
+    {
+      "name": "audit-claims",
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--audit-claims",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "started_at": "2026-10-27T11:29:50.237402+00:00",
+      "exit_code": 0,
+      "log": "governance-final/audit-claims.log",
+      "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4"
+    },
+    {
+      "name": "strict",
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "started_at": "2026-10-27T11:29:50.504136+00:00",
+      "exit_code": 0,
+      "log": "governance-final/strict.log",
+      "sha256": "0f6377b2cf2e6dba2d18bcba312d28530dafd7d4a1f423d7affcf223fed72bce"
+    },
+    {
+      "name": "G6",
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--gate",
+        "G6",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "started_at": "2026-10-27T11:29:50.611576+00:00",
+      "exit_code": 0,
+      "log": "governance-final/G6.log",
+      "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "started_at": "2026-10-27T11:29:50.693128+00:00",
+      "exit_code": 0,
+      "log": "governance-final/lint.log",
+      "sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c"
+    },
+    {
+      "name": "tests",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "started_at": "2026-10-27T11:29:51.103491+00:00",
+      "exit_code": 0,
+      "log": "governance-final/tests.log",
+      "sha256": "7df1282bd0f4b50bda3348effe1bde475c747cc057135049d940e11d1372dc2e"
+    },
+    {
+      "name": "syntax-bootstrap",
+      "command": [
+        "bash",
+        "-n",
+        "scripts/bootstrap.sh"
+      ],
+      "started_at": "2026-10-27T11:30:00.488859+00:00",
+      "exit_code": 0,
+      "log": "governance-final/syntax-bootstrap.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "syntax-checkout-all",
+      "command": [
+        "bash",
+        "-n",
+        "scripts/checkout-all.sh"
+      ],
+      "started_at": "2026-10-27T11:30:00.492324+00:00",
+      "exit_code": 0,
+      "log": "governance-final/syntax-checkout-all.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "syntax-dev-down",
+      "command": [
+        "bash",
+        "-n",
+        "scripts/dev-down.sh"
+      ],
+      "started_at": "2026-10-27T11:30:00.495376+00:00",
+      "exit_code": 0,
+      "log": "governance-final/syntax-dev-down.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "syntax-dev-up",
+      "command": [
+        "bash",
+        "-n",
+        "scripts/dev-up.sh"
+      ],
+      "started_at": "2026-10-27T11:30:00.498163+00:00",
+      "exit_code": 0,
+      "log": "governance-final/syntax-dev-up.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "syntax-generate-all",
+      "command": [
+        "bash",
+        "-n",
+        "scripts/generate-all.sh"
+      ],
+      "started_at": "2026-10-27T11:30:00.500746+00:00",
+      "exit_code": 0,
+      "log": "governance-final/syntax-generate-all.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "syntax-lint-all",
+      "command": [
+        "bash",
+        "-n",
+        "scripts/lint-all.sh"
+      ],
+      "started_at": "2026-10-27T11:30:00.503617+00:00",
+      "exit_code": 0,
+      "log": "governance-final/syntax-lint-all.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "syntax-test-all",
+      "command": [
+        "bash",
+        "-n",
+        "scripts/test-all.sh"
+      ],
+      "started_at": "2026-10-27T11:30:00.506190+00:00",
+      "exit_code": 0,
+      "log": "governance-final/syntax-test-all.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "started_at": "2026-10-27T11:30:00.508559+00:00",
+      "exit_code": 0,
+      "log": "governance-final/diff-check.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "real_model_http_added": 0
+}

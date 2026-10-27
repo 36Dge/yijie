@@ -1,0 +1,119 @@
+{
+  "runs": [
+    {
+      "status": "PASS_NORMAL_EXIT_AND_POST_STATE",
+      "label": "enabled-01",
+      "at": "2026-10-27T08:37:38.096678+00:00",
+      "native_schema": 41,
+      "native_tables": 71,
+      "native_changed_tables": [
+        "chat_connector_installations",
+        "chat_connector_operations",
+        "chat_connector_provider_operations",
+        "chat_scheduled_stopped_generations"
+      ],
+      "old_history_attachment_model_operations_plan_grant_rows_preserved": true,
+      "host_all_values_preserved": true,
+      "runtime_business_rows_and_rollouts_preserved": true,
+      "runtime_prior_logs_preserved": true,
+      "runtime_logs_added": 262,
+      "model_http_added": 0,
+      "all_model_dispatchable_work": 0,
+      "active_WAL_SHM_bytes": 0,
+      "historical_backup_WAL_SHM_preserved": true,
+      "instance_lock_and_no_handles": true,
+      "complete_backup_files": 17395,
+      "complete_backup_bytes": 522272714,
+      "manifest_sha256": "6b3f9f513745ad8c00f7405662825cef320d459d62973948d43ac95d15f00f3c"
+    },
+    {
+      "status": "PASS_NORMAL_EXIT_AND_POST_STATE",
+      "label": "paused-02",
+      "at": "2026-10-27T08:39:46.561972+00:00",
+      "native_schema": 41,
+      "native_tables": 71,
+      "native_changed_tables": [
+        "chat_connector_installations",
+        "chat_connector_operations",
+        "chat_connector_provider_operations",
+        "chat_scheduled_stopped_generations"
+      ],
+      "old_history_attachment_model_operations_plan_grant_rows_preserved": true,
+      "host_all_values_preserved": true,
+      "runtime_business_rows_and_rollouts_preserved": true,
+      "runtime_prior_logs_preserved": true,
+      "runtime_logs_added": 113,
+      "model_http_added": 0,
+      "all_model_dispatchable_work": 0,
+      "active_WAL_SHM_bytes": 0,
+      "historical_backup_WAL_SHM_preserved": true,
+      "instance_lock_and_no_handles": true,
+      "complete_backup_files": 17396,
+      "complete_backup_bytes": 522320251,
+      "manifest_sha256": "c461059d0a32c0e89a4a2057c041ed7787a0f6c000e76c355d18757e4a501733"
+    },
+    {
+      "status": "PASS_NORMAL_EXIT_AND_POST_STATE",
+      "label": "enabled-03",
+      "at": "2026-10-27T08:43:34.214224+00:00",
+      "native_schema": 41,
+      "native_tables": 71,
+      "native_changed_tables": [
+        "chat_connector_installations",
+        "chat_connector_operations",
+        "chat_connector_provider_operations",
+        "chat_scheduled_stopped_generations"
+      ],
+      "old_history_attachment_model_operations_plan_grant_rows_preserved": true,
+      "host_all_values_preserved": true,
+      "runtime_business_rows_and_rollouts_preserved": true,
+      "runtime_prior_logs_preserved": true,
+      "runtime_logs_added": 210,
+      "model_http_added": 0,
+      "all_model_dispatchable_work": 0,
+      "active_WAL_SHM_bytes": 0,
+      "historical_backup_WAL_SHM_preserved": true,
+      "instance_lock_and_no_handles": true,
+      "complete_backup_files": 17397,
+      "complete_backup_bytes": 522400556,
+      "manifest_sha256": "85297a09519c6ac256a449354edfa4ba4a0d999d48151b54f1c7bb50257e186e"
+    }
+  ],
+  "ui": {
+    "enabled-01": {
+      "K31_available": true,
+      "default_K31": true,
+      "old_K3_not_in_catalog": true,
+      "retained_completed_history_visible": true,
+      "old_K3_send_disabled": true,
+      "active_plan_list_empty": true,
+      "model_send_or_switch_or_plan_actions": 0
+    },
+    "paused-02": {
+      "K31_paused": true,
+      "MiniMax_available": true,
+      "old_K3_not_in_catalog": true,
+      "history_sidebar_retained": true,
+      "model_send_switch_or_plan_actions": 0
+    },
+    "enabled-03": {
+      "same_entry_reopened": true,
+      "K31_available_again": true,
+      "default_K31": true,
+      "MiniMax_available": true,
+      "old_K3_not_in_catalog": true,
+      "model_send_switch_or_plan_actions": 0
+    }
+  },
+  "workflow_final": {
+    "status": "READY",
+    "lifecycle_calls": 0,
+    "model_http": 0,
+    "phase": "ready",
+    "containers": 8,
+    "running": 6,
+    "healthy": 6,
+    "private_state_and_credentials_unchanged": true,
+    "source_sha256": "7fd0450319467d5ad97eb56f2bb713ac411ea19c8708ab2529ffcf6d350194ea"
+  }
+}

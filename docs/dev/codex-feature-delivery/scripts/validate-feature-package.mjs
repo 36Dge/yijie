@@ -1686,8 +1686,11 @@ function validateLinkedDocuments(featureDir, data, options, errors) {
       try {
         const directory = path.resolve(featureDir, "../../adr");
         const names = fs.readdirSync(directory).filter(name => name.startsWith(`${id}-`) && name.endsWith(".md"));
-        if (names.length !== 1 || !/^## 状态\s+Accepted(?:[。\s]|$)/m.test(fs.readFileSync(path.join(directory, names[0]), "utf8"))) {
+        const source = names.length === 1 ? fs.readFileSync(path.join(directory, names[0]), "utf8") : "";
+        if (!/^## 状态\s+Accepted(?:[。\s]|$)/m.test(source)) {
           errors.push("local_release.accepted_adr must resolve to one Accepted ADR document");
+        } else if (!source.includes(`<!-- local-activation-scope: ${data.feature?.id} single-owner-local-only -->`)) {
+          errors.push("local_release.accepted_adr must explicitly authorize this feature's local scope");
         }
       } catch {
         errors.push("local_release.accepted_adr cannot be read from the repository ADR directory");
