@@ -1,0 +1,106 @@
+{
+  "feature": "FEAT-164",
+  "date": "2026-10-28",
+  "status": "PASS_DAILY_ENTRY_CONSOLIDATION_OLD_SIX_RETAINED",
+  "scope": "post-delivery source and daily-entry consolidation, ADR-0022 single-owner-local-only",
+  "contract_impact": "none: existing product, Home and binding semantics unchanged; new location qualification and exact entry activation only",
+  "sources": {
+    "yijie-desktop": {
+      "head": "a211c2d04def6091352c7b3674a49355cdee18ed",
+      "real_path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/daily-source/20261027-01/yijie-desktop"
+    },
+    "yijie-agent-host": {
+      "head": "7309101726dcecd48b2caa02401cfcdd6126f1fb",
+      "real_path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/daily-source/20261027-01/yijie-agent-host"
+    },
+    "yijie-contracts": {
+      "head": "d5792d6aad18352ce8d1c5d510d345004cab3bd6",
+      "real_path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/daily-source/20261027-01/yijie-contracts"
+    },
+    "yijie-connectors": {
+      "head": "cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9",
+      "real_path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/daily-source/20261027-01/yijie-connectors"
+    },
+    "yijie-codex": {
+      "head": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+      "real_path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex"
+    },
+    "yijie-skills": {
+      "head": "595c927ae101d3d31c234f60565041eee0864680",
+      "real_path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/daily-source/20261027-01/yijie-skills"
+    }
+  },
+  "candidate": {
+    "receipt_sha256": "86de538f8bd6fc49c53a48d7cc3a9942c74a0c4b45d6763fc566602aa7420a8a",
+    "App_binary_sha256": "80b9514a9a389ed023286eee6f10021efc14caa242677b6af3d22ca192042f4e",
+    "source_set": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/daily-source/20261027-01",
+    "bundle_files": 119,
+    "source_inputs": 1228
+  },
+  "new_activation_binding_sha256": "57edb7a822ee0a9658c18be4efecd5c11bd74cf98689fa79c3eebb42f7aea37c",
+  "checks": {
+    "status": "PASS_DAILY_ENTRY_CONSOLIDATION_OLD_SIX_RETAINED",
+    "at": "2026-10-27T16:17:36.392247+00:00",
+    "App_launches": 3,
+    "normal_exits": 3,
+    "preflight_failed_before_App": 1,
+    "model_HTTP": 0,
+    "non_model_metadata_HTTP": 9,
+    "business_tool_calls": 0,
+    "daily_entries_switched": 2,
+    "normal_entry_K31_enabled": true,
+    "pause_entry_qualified": true,
+    "original_Homes_unchanged": true,
+    "Native_business_tables_preserved": 67,
+    "Host_all_values_preserved": true,
+    "Runtime_business_rows_and_rollouts_preserved": true,
+    "Runtime_logs_added": 386,
+    "active_WAL_SHM_bytes": 0,
+    "historical_backup_WAL_retained": true,
+    "final_complete_backup_files": 17400,
+    "final_complete_backup_bytes": 522551359,
+    "final_backup_manifest_sha256": "0cc5d222c8d8f12cae6ad329089f2a77fd388ed8f0050d687f4f90b15f46cb0f",
+    "old_entries_originals_and_copies_retained": true,
+    "original_workspaces_preserved": 12,
+    "protected_file_count": 510,
+    "protected_file_exception": "two explicitly approved Desktop entries; old originals preserved",
+    "old_six_retained": 6,
+    "old_worktrees_retained_clean": 26,
+    "new_source_symlinks_checked": 1246,
+    "new_active_symlink_or_entry_dependency_to_old_six": 0,
+    "workflow_six_primary_ready": true,
+    "workflow_business_facts_unchanged_after_App_runs": true,
+    "App_left_stopped": true,
+    "new_Runtime_core_patch_product_edits": 0,
+    "daily_D3_migrations": 0,
+    "push": false,
+    "scope": "ADR-0022 single-owner-local-only; accepted substitute and removed scopes unchanged"
+  },
+  "initial_complete_backup": {
+    "files": 17397,
+    "bytes": 522400556,
+    "manifest_sha256": "85297a09519c6ac256a449354edfa4ba4a0d999d48151b54f1c7bb50257e186e"
+  },
+  "workflow_recovery": {
+    "authorization": "Owner explicitly approved existing recovery flow in this turn",
+    "recovery_id": "70b6fda5-4c35-49c0-be96-c136c0a862b0",
+    "four_complete_volume_copies_verified": true,
+    "existing_canonical_recover_and_up": true,
+    "two_normal_principal_audit_additions": true,
+    "six_primary_ready": true,
+    "no_new_service_image_pull_or_volume_delete": true
+  },
+  "old_backup_caveat": "Immutable full archive rehash passes; restored inspection material has Finder .DS_Store and one root directory mtime difference. Fresh complete backup exactly matches current source; old material unchanged.",
+  "entry_rollback_directory": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/consolidation-audit/20261028-01/entry-rollback",
+  "private_evidence_directory": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/consolidation-audit/20261028-01",
+  "source_delivery_report": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/consolidation-audit/20261027-01/集成来源与候选交付.md",
+  "accepted_substitute": "never-sent layered safe evidence accepted; full App positive cancellation remains NOT RUN",
+  "owner_excluded": [
+    "search answer correctness",
+    "light/dark appearance",
+    "keyboard-only acceptance",
+    "minimum-window acceptance"
+  ],
+  "new_model_HTTP": 0,
+  "no_push": true
+}
