@@ -1624,8 +1624,18 @@ export function validateFeatureData(data, { gate = "", sliceId = "", harnessId =
   } else if (profile === "production_hardened") {
     const productionData = { ...data, schema_version: 2 };
     validateProductionData(productionData, { gate, sliceId, harnessId }, errors);
-    if (["G5", "G6"].includes(gate) && normalized(data.exposure) !== "public") {
-      errors.push(`${gate} requires exposure: public`);
+    // ADR-0017 makes exposure independent of the delivery profile. Local
+    // persistent-data deployments retain the same full G0–G6 chain above;
+    // only the separate demo_fast DP gate requires public exposure.
+    if (["G5", "G6"].includes(gate) && normalized(data.exposure) === "local") {
+      const release = addRequiredObject(errors, data.local_release, "local_release");
+      if (release) {
+        if (!/^ADR-\d{4}$/.test(release.accepted_adr ?? "")) errors.push("local_release.accepted_adr must name an accepted scope decision");
+        if (!meaningful(release.owner) || !isIsoInstant(release.approved_at)) errors.push("local_release requires explicit Owner approval and time");
+        if (release.scope !== "single-owner-local-only") errors.push("local_release.scope must be single-owner-local-only");
+        if (release.public_activation !== false) errors.push("local_release cannot authorize public activation");
+        validateEvidenceRefs(errors, release.evidence_refs, "local_release.evidence_refs", true);
+      }
     }
   }
   return { schemaVersion, errors, warnings };
@@ -1670,6 +1680,20 @@ function safeDocumentPath(featureDir, relativePath, expected, errors, label) {
 
 function validateLinkedDocuments(featureDir, data, options, errors) {
   const documents = asObject(data.documents) ?? {};
+  if (["G5", "G6"].includes(options.gate) && data.schema_version === 3 && data.exposure === "local") {
+    const id = data.local_release?.accepted_adr;
+    if (/^ADR-\d{4}$/.test(id ?? "")) {
+      try {
+        const directory = path.resolve(featureDir, "../../adr");
+        const names = fs.readdirSync(directory).filter(name => name.startsWith(`${id}-`) && name.endsWith(".md"));
+        if (names.length !== 1 || !/^## 状态\s+Accepted(?:[。\s]|$)/m.test(fs.readFileSync(path.join(directory, names[0]), "utf8"))) {
+          errors.push("local_release.accepted_adr must resolve to one Accepted ADR document");
+        }
+      } catch {
+        errors.push("local_release.accepted_adr cannot be read from the repository ADR directory");
+      }
+    }
+  }
   const temporalSource = safeDocumentPath(
     featureDir,
     documents.temporal_contract,

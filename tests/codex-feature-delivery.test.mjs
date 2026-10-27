@@ -369,6 +369,66 @@ function validProductionV3() {
   };
 }
 
+test("production_hardened local and public retain the same complete G5/G6 chain", () => {
+  for (const exposure of ["local", "public"]) {
+    const data = {...validProductionV3(), exposure};
+    if (exposure === "local") data.local_release = localReleaseScope();
+    data.gates.G5_production_ready = "pass";
+    data.gates.G6_delivery_complete = "pass";
+    assert.deepEqual(validateFeatureData(data, {gate: "G5"}).errors, []);
+    assert.deepEqual(validateFeatureData(data, {gate: "G6"}).errors, []);
+    const incomplete = structuredClone(data);
+    incomplete.gates.G4_code_complete = "pending";
+    assert.ok(validateFeatureData(incomplete, {gate: "G5"}).errors.some(e => e.includes("G4")));
+    incomplete.gates.G4_code_complete = "pass";
+    incomplete.gates.G5_production_ready = "pending";
+    assert.ok(validateFeatureData(incomplete, {gate: "G6"}).errors.some(e => e.includes("G5")));
+  }
+});
+
+test("local production gates do not waive failed E2E or select demo shortcuts", () => {
+  const data = {...validProductionV3(), exposure: "local"};
+  data.local_release = localReleaseScope();
+  data.gates.G5_production_ready = "pass";
+  data.gates.G6_delivery_complete = "pass";
+  data.final_e2e.teardown.status = "FAIL";
+  for (const gate of ["G5", "G6"]) assert.ok(validateFeatureData(data, {gate}).errors.some(e => e.includes("teardown")));
+  assert.ok(validateFeatureData(data, {gate: "D4"}).errors.some(e => e.includes("demo_fast")));
+});
+
+function localReleaseScope() {
+  return {accepted_adr: "ADR-0022", owner: "Owner", approved_at: "2026-10-27T12:00:00+08:00", scope: "single-owner-local-only", public_activation: false, evidence_refs: [ref("EV-E2E-TEARDOWN")]};
+}
+
+test("local production activation requires its explicit approved boundary", () => {
+  const data = {...validProductionV3(), exposure: "local"};
+  data.gates.G5_production_ready = "pass";
+  assert.ok(validateFeatureData(data, {gate: "G5"}).errors.some(e => e.includes("local_release")));
+  for (const patch of [{owner: ""}, {accepted_adr: ""}, {approved_at: ""}, {public_activation: true}, {scope: "public"}, {evidence_refs: []}]) {
+    data.local_release = {...localReleaseScope(), ...patch};
+    assert.ok(validateFeatureData(data, {gate: "G5"}).errors.some(e => e.includes("local_release")));
+  }
+});
+
+test("local activation cannot substitute a proposed ADR for an accepted decision", () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "yijie-local-activation-"));
+  const feature = path.join(root, "docs/features/FEAT-999");
+  const decisions = path.join(root, "docs/adr");
+  fs.mkdirSync(feature, {recursive: true}); fs.mkdirSync(decisions, {recursive: true});
+  try {
+    const data = {...validProductionV3(), exposure: "local", local_release: localReleaseScope()};
+    data.gates.G5_production_ready = "pass";
+    fs.writeFileSync(path.join(feature, "feature.yaml"), JSON.stringify(data));
+    fs.writeFileSync(path.join(feature, "04A-temporal-contract-matrix.md"), temporalReport);
+    fs.writeFileSync(path.join(feature, "08-verification-report.md"), verificationReport());
+    const decision = path.join(decisions, "ADR-0022-ordinary-local.md");
+    fs.writeFileSync(decision, "# Ordinary local decision\n\n## 状态\n\nProposed\n");
+    assert.ok(loadAndValidateFeaturePackage(feature, {gate: "G5"}).errors.some(e => e.includes("Accepted ADR")));
+    fs.writeFileSync(decision, "# Ordinary local decision\n\n## 状态\n\nAccepted\n");
+    assert.deepEqual(loadAndValidateFeaturePackage(feature, {gate: "G5"}).errors, []);
+  } finally { fs.rmSync(root, {recursive: true, force: true}); }
+});
+
 function validDemoV3(exposure = "local") {
   const publicRequired = exposure === "public";
   return {

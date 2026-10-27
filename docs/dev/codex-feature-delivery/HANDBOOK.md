@@ -10,6 +10,8 @@
 
 历史 schema v1/v2 保持原语义；schema v2 视为历史 `production_hardened`，不会自动降级为 Demo。
 
+`production_hardened + local` 同样执行完整 G0—G6。G5/G6 的部署、批准、回退与观察证据须对应实际本地范围；通过不构成公网、云端、多租户或签名发布授权。不能为通过校验把 local 改为 public，也不能用 Demo D4/DP 替代任一 G 门禁。公开暴露检查按实际 public 范围另行执行。2026-10-27 FEAT-164 D5 修正了校验器将 G5/G6 误限定为 public 的实现，与 ADR-0017 已接受的两维定义一致；完整生产链校验及审批要求保持不变。local G5/G6必须另有`local_release`，记录Accepted ADR、Owner/批准时点、single-owner-local-only范围、禁止公开激活及证据引用。既有免登录约束不自动放宽；FEAT-164仅按Owner已批准的ADR-0022适用限定例外。
+
 ## A. demo_fast：真实服务快速闭环
 
 ### Owner 永久终止（未完成验收）

@@ -57,3 +57,5 @@ YYYY-MM-DD
 
 - [ ] 动作 1
 ```
+
+- [ADR-0022: FEAT-164个人本机日常启用范围](ADR-0022-feat164-personal-local-activation.md) — Accepted；仅当前个人本机范围，保留完整G0—G6与Native权限，不是公开发布批准。
