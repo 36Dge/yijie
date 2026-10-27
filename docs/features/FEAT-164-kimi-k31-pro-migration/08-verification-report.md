@@ -630,3 +630,12 @@ PASS_SOURCE_FACTS_CONFIRMED：58索引28证据、当前6来源、daily App119文
 PASS_OFFLINE：Owner批准59 D1六文件范围，Desktop b789d5c已本地固定。入口61项、daily profile3项、lint/docs、语法、19项同源检查及canonical prepare-only/prepare-only reopen均通过。正常合成两Home记录保持、无绑定早拒绝、workflow纯状态false拒绝；无真实workflow状态查询、无日常数据访问/绑定/迁移/启动、0模型HTTP。完整命令/源码/制品见60及d1-source-binding.json、d1-daily-build-binding.json。旧18个基线测试错误与RCA完整保留；不声称全仓CI或实际daily通过。
 
 G4仍pending，不用离线准备自动升级新daily bootstrap最终验收。58已接受本地证据和never-sent安全替代不变；完整App正向取消仍NOT RUN。D2—D5和新Runtime范围未授权。
+
+
+## 当前实现与剩余方案复审
+
+<!-- evidence: E164-FINAL-PLAN-AUDIT -->
+
+61号本轮仅只读审计及文档。60的58证据、六干净来源、当前b789日常App119文件及1207源码输入保持，结果PASS_READONLY_BINDING；不是本轮重新运行App/模型/产品测试。三项并行Codex工程复核未发现已证实的新Runtime修复需求，记录D1真实load_binding正向组合证据缺口、D5长期语义、local G5/G6机器规则冲突与D2 reader/依赖预检准备。修正当前矩阵旧ea/c29来源及需求摘要，历史报告保留。见final-plan-current-binding.json与final-plan-findings.json。
+
+D1 PASS_OFFLINE、58原accepted local及Owner安全替代保持，完整App正向never-sent仍NOT RUN；G4/G5/G6 pending，D2—D5未授权/执行。0真实/本机模型HTTP，无日常数据/凭据访问、无服务探测或启停、无产品/Runtime修改；仅本地治理。方案不扩张授权，也不恢复已移除验收项。

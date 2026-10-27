@@ -1,5 +1,13 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 全目标复审与下一步方案（2026-10-27）
+
+当前审计权威[61](../features/FEAT-164-kimi-k31-pro-migration/61-current-implementation-audit-and-completion-plan.md)，D1实际结果仍60。当前Desktop b789d5c、daily App944b6b2/receipt490e35d仅prepare-only；58已接受S1—S4与final、安全替代及完整App正向取消NOT RUN保持，不重跑已排除项。当前矩阵已统一来源，旧59/60按原时点解释。
+
+新增明确未完项：D1真实load_binding私有文件/receipt/Home正向组合证据；D5短时24h/零派发记录尚非长期日常入口；production_hardened+local的G5/G6与validator强制public冲突；D2只读inspection reader及workflow依赖资格尚待准备。当前无已证实新Runtime核心缺陷。推荐先有限离线补证/工具准备及D5/治理具体方案，再批准D2。不能伪造D4记录借helper做D2，不自动workflow-up；Host临时spool正常退出会清理，备份不能承诺恢复临时密文。
+
+本轮只审计/文档，0模型HTTP，无日常数据或凭据/服务访问，不实施代码或D2—D5。G4/G5/G6仍pending，不改exposure造绿、不降Profile、不把受控验证等于正式启用。旧dirty、7账本及两份预占保留，仅本地提交不推送。下一步不是直接维护/启动；长期入口/全局门禁的新范围先具体确认。
+
 ## FEAT-164 D1完成：日常部署绑定及只读ready离线合格（2026-10-27）
 
 当前权威[60](../features/FEAT-164-kimi-k31-pro-migration/60-d1-daily-binding-and-offline-qualification.md)。Owner已批准59仅D1，Desktop独立提交b789d5c8147fde9890d49b67c6ecb191473793db，恰好6文件。制品目录不再生成Host/Runtime数据Home，D3/D4/D5执行必须使用原Home部署绑定和exact receipt；daily只核验既有workflow ready，不再workflow-up/状态写入。无Runtime/Native/SQL/Infra修改。

@@ -1,32 +1,22 @@
 # FEAT-164 当前验收与来源矩阵
 
-## 当前D1实施结果（2026-10-27）
-
-当前权威为[60 D1完成与离线资格](60-d1-daily-binding-and-offline-qualification.md)。59号D1已获批并完成六文件Desktop修正、安全测试和新canonical prepare-only/同回执复核；Host/Runtime采用已批准原Home绑定，daily不再隐式workflow-up。真实日常绑定未生成、D2—D5未执行、模型HTTP新增0、Runtime核心/补丁未改。原CUTOVER-01/03已离线修复，日常现场/启动资格仍无授权，G4不自动晋升。58接受的never-sent替代保留，完整App正向取消仍NOT RUN。
-
-下方59及更早“尚未实施D1/原入口缺陷”按当时来源解释，不再作为当前D1未完成项。下一步仅在批准D2后进行完整冷备份和副本只读预检，不顺带迁移或启动。
-
-## 当前日常切换边界（2026-10-27，S4AF）
-
-以[59 日常切换方案](59-daily-cutover-minimal-plan-and-authorization.md)为当前部署权威。源码复审发现daily launcher将Host/Runtime Home改至候选新目录、与原Native日常库缺连续性；正常启动还可能隐式workflow迁移及恢复自动计划。日常activation为NO_GO，当前G4重新pending，先提限定部署入口修正及离线资格，尚未获准实施。58的已接受本地S1—S4/final证据与never-sent替代保持，完整App正向取消原执行仍NOT RUN；不是重新跑失败或取消Owner接受。
-
-本轮仅方案和治理，无产品/Runtime改动，无日常数据访问/备份/预检/迁移/启动，无模型调用。阶段顺序为D1入口修正→D2完整冷备份与副本只读预检→D3一次Native维护→D4首次受限启动及退出核对→D5确认日常启用；D1—D5均未自动授权，具体边界见59。以下早期状态按各自时点解释。
-
-2026-10-27，当前权威为[58](58-owner-accepted-substitute-and-final-closure.md)。目标仍是所有活动调用面使用kimi-k3.1-pro，原历史/operation/授权与MiniMax保持。58已接受本地适用验收保持；59新发现日常Home连续性缺口，当前G4重新pending、日常NO_GO，feature保持active。
+2026-10-27。当前审计与剩余方案以[61](61-current-implementation-audit-and-completion-plan.md)为准，D1实际实现证据见[60](60-d1-daily-binding-and-offline-qualification.md)。59的CUTOVER-01/03已经离线修复；58已接受的本地S1—S4和最终证据保持。日常D2—D5尚未授权/执行，G4/G5/G6 pending。D1仍需正向load_binding组合补证，D5长期入口语义及local交付门禁冲突待收口；不新增Runtime修改或模型调用。
 
 ## 当前源码和制品
 
-| 对象 | 固定来源 |
+| 对象 | 固定来源与作用 |
 |---|---|
-| Desktop | ea8763dfc40466e9b808a1b39afad71dbff1ac56；相对c98仅测试修改 |
+| 当前Desktop | b789d5c8147fde9890d49b67c6ecb191473793db；D1独立干净来源，基于ea |
 | Host / Contracts | 4f966e8ea810d5b094d0b797d291955d6c774844 / c5d138374c102f1a8a11e328a869ec8f91724efd |
 | Runtime | 11fd4504c28afd0f65c6f5f62a6b5328dd437f5a；r5 SHA283d12e16b124942302fcdc8281c729a8a7f676498f06df1d2646292905f579e |
 | Connectors / Skills | cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9 / 595c927ae101d3d31c234f60565041eee0864680 |
-| 本轮原隔离App | ea8763dfc40466e9b808a1b39afad71dbff1ac56；SHA4b0ec55e6903bc6aad790a4715d485456ebf0241d10ff6c99e51d67c6aa65e39；119文件；原R1身份，正常退出 |
-| 新验证提交 | Desktop4e1f1f980d148a6b46e21e68eb508caa4da5dae4；仅Native/consumer测试及说明3文件，产品与ea相同 |
-| 新日常候选 | ea源码；SHAc29f7e07942038d4c3849ef3a711ed4b501d17daab1478329ba5de6b6321a4d0；119文件；prepare-only及只读回执通过，未启动 |
+| 当前日常候选 | b789源码；SHA944b6b238b7f7b0f36cfab2be358d83b9be044587cc37a3ea5a161fc68b40015；119文件；仅prepare-only |
+| 当前receipt | SHA490e35d8e5214d1dddd84def050edf093cdd9f2f7aa9edd5fb83076ebb3c9fc3；1207构建源码输入；策略feat164-daily-existing-homes-v1 |
+| 历史隔离App | ea源码；SHA4b0ec55e6903bc6aad790a4715d485456ebf0241d10ff6c99e51d67c6aa65e39；原R1已接受证据，非b789实际App运行 |
+| 历史取消测试来源 | Desktop4e1f1f980d148a6b46e21e68eb508caa4da5dae4；仅3测试/说明文件，产品与ea相同 |
+| 历史日常prepare-only | ea源码；SHAc29f7e07942038d4c3849ef3a711ed4b501d17daab1478329ba5de6b6321a4d0；保留，不再称当前候选 |
 
-56已核对501份旧证据哈希一致、310个业务实现文件与9f资格源相同。51日常维护入口新增分支不声称全文件相等，由其自然SQL四组合与本轮回归支持；54来源过滤变化由专属来源证据支持。原主工作区dirty与旧制品保留，不是部署来源。
+61只读核验60的58证据、六源、119包内文件及1207源码输入一致，没有刷新历史执行时间。D1只改六个部署/测试/说明文件；原Native/renderer/Host/Runtime业务依据60源比较保持。不声称新daily实际已启动，也不使用原dirty工作树作为部署来源。
 
 ## AC判定与交付边界
 
@@ -54,13 +44,13 @@
 | teardown | PASS | 57正常退出/数据库业务事实保护，本轮零启动且文件未改 |
 | S1/S2/S3/S4 G3 | PASS（58本地范围） | 来源并集8项及已接受替代保持 |
 | 当前G4 | pending | 60已离线修复CUTOVER-01/03；新daily bootstrap尚未实际启动，不从prepare-only自动晋升 |
-| G5/G6 | pending | local exposure，无生产/发布资格或授权 |
-| 日常候选 | prepare-only PASS | ea制品c29f7e0未启动；日常库未打开/迁移 |
+| G5/G6 | pending | 本地加固交付口径与validator public限制冲突，待确认修正；不改标public造绿 |
+| 日常候选 | prepare-only PASS | 当前b789制品944b6b2、receipt490e35d未启动；日常库未打开/迁移 |
 
 **完整App/WebView正向never-sent取消：NOT RUN。** 正常Native持久正例与生产消费链实际结果重放为ACCEPTED_SAFE_LAYERED_SUBSTITUTE，非完整App执行。原自然unknown继续安全拒绝，既有占用grant不清空。亮暗/键盘/最小窗口及搜索答案质量永久OWNER_EXCLUDED。
 
 ## 保护与下一步
 
-本轮587个历史证据引用、12份私有事实、六来源及三套119文件制品核验一致。全部12441保护文件、500份既有dirty和7账本/快照核对，混合memory仅本轮增量。真实HTTP累计13，本轮0；45元cap、29.740299保守累计、两份14.188544预占保持。服务停止，无交接待答。
+本轮只审计与方案，不访问日常数据/凭据或运行服务。原500份dirty另含混合memory、7份账本/快照保留。真实HTTP累计13、本轮0；45元cap、29.740299保守累计及两份14.188544预占保持。
 
-不再补试已接受项或重复模型回合。60已完成D1部署绑定/ready-only修正及离线资格；下一步仅在获批后进入D2完整备份/预检，D3维护、D4启动、D5日常启用仍分阶段批准。日常候选prepare-only不代表可直接启动；无Runtime核心/补丁新增范围。仅本地提交、不推送。
+推荐下一步：先离线补D1真实绑定加载组合证据、准备限定inspection根的D2 reader、明确长期D5入口与local G5/G6口径，再单独批准D2完整冷备份及第二副本预检（含明确获准的workflow只读依赖资格）。D3维护、D4首次写入及退出核对、D5启用均依据前一步实际结果。实际数据与服务状态UNKNOWN；不重复模型/已接受替代/已排除验收。完整边界见61；仅本地提交、不推送。

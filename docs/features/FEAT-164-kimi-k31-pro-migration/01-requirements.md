@@ -2,7 +2,7 @@
 
 本需求已获Owner授权实施；本文件仍是整项验收目标。全部AC在已接受的本地实现与验收范围内PASS，逐项证据见[当前验收矩阵](current-acceptance-matrix.md)和58；日常迁移/启用与发布未执行，不能把代码完成等同日常切换完成。
 
-当前日常部署状态另按[59](59-daily-cutover-minimal-plan-and-authorization.md)：发现原Native与候选Host/Runtime Home连续性缺口，须先修正入口，G4 pending、日常NO_GO。58本地AC与替代证据保留，不能据此宣称日常切换可直接执行。
+当前日常部署以[60](60-d1-daily-binding-and-offline-qualification.md)的D1离线资格及[61](61-current-implementation-audit-and-completion-plan.md)剩余方案为准：Home连续性与隐式workflow-up已修正；正向绑定加载组合补证、长期日常入口及local交付门禁口径待收口。D2—D5未授权/执行，G4 pending；58本地AC与替代证据保留，不能据此直接启动或迁移日常库。
 
 ## 业务规则
 

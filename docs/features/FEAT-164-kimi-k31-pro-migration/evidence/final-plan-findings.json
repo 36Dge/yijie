@@ -1,0 +1,56 @@
+{
+  "scope": "read-only source and retained evidence; no daily data, credentials, services or model calls",
+  "reviewers": [
+    "Codex main review",
+    "d1_independent_review",
+    "remaining_delivery_review",
+    "cutover_dependency_review"
+  ],
+  "review_is_human_approval": false,
+  "sources": {
+    "feat164-d1-candidate-20261027/yijie-desktop/scripts/feat164-daily-deployment.py": "175a8bee5f7a8f7268b8ddc21482032fb37056aea756057f34ddb00b13389ec5",
+    "feat164-d1-candidate-20261027/yijie-desktop/scripts/run-local-demo-fast.sh": "728db28566fdcd202b53ec08ec81165d9ba19a97fe0abb09ac72ba16a3dfc935",
+    "feat164-d1-candidate-20261027/yijie-desktop/scripts/run-local-demo-fast.test.mjs": "d7c7f78cd90a5b3316d184b643bd616248d5eb5be769194a85b9d4e6e6a52e34",
+    "feat164-d1-candidate-20261027/yijie-agent-host/internal/artifact/store.go": "5c58316345dd45daa051cef4edfc7cc4b8499213cf8368604a7dcb7d4dae071a",
+    "yijie-infra/scripts/workflow-local.py": "7fd0450319467d5ad97eb56f2bb713ac411ea19c8708ab2529ffcf6d350194ea",
+    "yijie/docs/dev/codex-feature-delivery/HANDBOOK.md": "559a3d1ec6fe5544550362ffc7c49c8d29f6c29c33b797257e442092dd1a4035",
+    "yijie/docs/adr/ADR-0017-dual-profile-feature-delivery.md": "c80cd441dc064213b1d5c67415c307ab7a9f90babc31d47e571f0e46588ba324",
+    "yijie/docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs": "aac4baa7af836e72221e736f0090c65458d7d555282ceb936bcd1f652665b37a"
+  },
+  "findings": [
+    {
+      "id": "F61-01",
+      "kind": "verification_gap",
+      "status": "OPEN",
+      "fact": "No positive load_binding private file -> receipt/helper SHA -> stage -> Home composition test in current suite"
+    },
+    {
+      "id": "F61-02",
+      "kind": "delivery_design_gap",
+      "status": "OPEN",
+      "fact": "D5 requires time-limited zero-dispatch approval on every start; durable normal daily entry unspecified"
+    },
+    {
+      "id": "F61-03",
+      "kind": "governance_conflict",
+      "status": "OPEN",
+      "fact": "Handbook/ADR profile and exposure independence conflicts with schema v3 G5/G6 public-only validator"
+    },
+    {
+      "id": "F61-04",
+      "kind": "execution_preparation_gap",
+      "status": "OPEN",
+      "fact": "Daily inspection reader not qualified; readonly workflow scope should precede migration; temporary spool lifecycle limits backup claim"
+    },
+    {
+      "id": "F61-05",
+      "kind": "documentation_drift",
+      "status": "CORRECTED_THIS_AUDIT",
+      "fact": "Current matrix and requirements now distinguish b789 current candidate from ea historical evidence"
+    }
+  ],
+  "daily_observed_state": "UNKNOWN_NOT_ACCESSED",
+  "product_fix_executed": false,
+  "runtime_change_required_by_current_evidence": false,
+  "plan": "61-current-implementation-audit-and-completion-plan.md"
+}
