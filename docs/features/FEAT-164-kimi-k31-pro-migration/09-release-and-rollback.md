@@ -1,8 +1,18 @@
 # FEAT-164 激活与回滚候选Runbook
 
-> 当前口径：完成状态、已接受替代、已移除及范围外项目统一见[当前验收矩阵](current-acceptance-matrix.md)。产品交付证据见[67](67-d5-entry-and-activation-implementation.md)、[69](69-d5-resumed-final-closure.md)，文档修正见[70](70-document-scope-reconciliation.md)。历史进度中的“当前”“下一步”仅指原报告时点，不覆盖当前结论或产生新的执行授权。
+> 当前口径：完成状态、已接受替代、已移除及范围外项目统一见[当前验收矩阵](current-acceptance-matrix.md)。当前来源与日常入口资格见[71](71-original-repository-daily-entry-consolidation.md)，清理及回退边界见[72](72-final-six-directory-cleanup-audit-and-plan.md)/[73](73-final-six-directory-cleanup-completed.md)，本次文档同步见[74](74-current-consolidation-document-sync.md)。67/69及更早验收保留原执行来源、日期和结果；历史段落中的“当前”“下一步”不覆盖现状或产生新授权。
 
-## 当前D5本机启用与交付完成（2026-10-27）
+## 当前清理后回退边界（2026-10-28）
+
+当前正常入口为`/Users/jack/Desktop/易界 AI.command`，暂停入口为`/Users/jack/Desktop/易界 AI（暂停 Kimi）.command`，均使用`yijie/.local/daily-source/20261027-01`中的新来源、原Home及新schema2绑定。先正常退出再切换；暂停入口仅暂停Kimi，MiniMax保持。这是当前兼容版本的暂停方式。
+
+旧六目录已依[73](73-final-six-directory-cleanup-completed.md)清理，旧.command原件仅是回退材料，不能直接拷回后启动。旧版本恢复须依[72](72-final-six-directory-cleanup-audit-and-plan.md)重新核验归档、两轮Finder补充、refs/bundle与数据兼容性，在私有空目录验证，再按依赖顺序重建精确路径/worktree和已归档制品；再生缓存未完整备份，缺依赖时停止审阅。取得新备份/实际ready及零模型受限运行资格后，才可选择旧入口。该重建运行演练尚未执行；保全仍在同盘，不是异地灾备。
+
+不覆盖当前数据库、不降schema、不重跑D3、不手工checkpoint或删/截断WAL。workflow每次启动仍须通过ready-only门禁；71号ready只代表当时观察，文档同步不探测或恢复服务。
+
+## 第67/69号D5完成记录（历史，2026-10-27）
+
+以下保留当时原文；其中旧提交、制品和“当前权威”不再代表现行来源。
 
 当前权威[67](67-d5-entry-and-activation-implementation.md)：D5已按Owner明确批准的ADR-0022个人本机范围完成。新日常入口固定Desktop39b0fbe/原Home，默认启用Kimi K3.1 Pro；真实正常启用、暂停回退和同入口再次启用均通过，3次正常退出及完整后态通过。0模型验收调用，原历史/授权/账本/预占及dirty保留，仅本地提交不推送。G4/G5本机就绪与G6实际交付观察分别留证；不授权公网/云端/多人/签名发布。以下66及更早阶段按各自时点解释。
 

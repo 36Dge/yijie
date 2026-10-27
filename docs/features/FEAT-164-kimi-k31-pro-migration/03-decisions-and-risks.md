@@ -1,8 +1,10 @@
 # FEAT-164 候选决策、风险及阻断
 
-> 当前口径：完成状态、已接受替代、已移除及范围外项目统一见[当前验收矩阵](current-acceptance-matrix.md)。产品交付证据见[67](67-d5-entry-and-activation-implementation.md)、[69](69-d5-resumed-final-closure.md)，文档修正见[70](70-document-scope-reconciliation.md)。历史进度中的“当前”“下一步”仅指原报告时点，不覆盖当前结论或产生新的执行授权。
+> 当前口径：完成状态、已接受替代、已移除及范围外项目统一见[当前验收矩阵](current-acceptance-matrix.md)。当前来源与日常入口资格见[71](71-original-repository-daily-entry-consolidation.md)，清理及回退边界见[72](72-final-six-directory-cleanup-audit-and-plan.md)/[73](73-final-six-directory-cleanup-completed.md)，本次文档同步见[74](74-current-consolidation-document-sync.md)。67/69及更早验收保留原执行来源、日期和结果；历史段落中的“当前”“下一步”不覆盖现状或产生新授权。
 
-## 当前D5本机启用与交付完成（2026-10-27）
+## 第67/69号D5完成记录（历史，2026-10-27）
+
+以下保留当时原文；其中旧提交、制品和“当前权威”不再代表现行来源。
 
 当前权威[67](67-d5-entry-and-activation-implementation.md)：D5已按Owner明确批准的ADR-0022个人本机范围完成。新日常入口固定Desktop39b0fbe/原Home，默认启用Kimi K3.1 Pro；真实正常启用、暂停回退和同入口再次启用均通过，3次正常退出及完整后态通过。0模型验收调用，原历史/授权/账本/预占及dirty保留，仅本地提交不推送。G4/G5本机就绪与G6实际交付观察分别留证；不授权公网/云端/多人/签名发布。以下66及更早阶段按各自时点解释。
 

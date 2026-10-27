@@ -1,0 +1,148 @@
+{
+  "feature": "FEAT-164",
+  "report": 74,
+  "date": "2026-10-28",
+  "status": "PASS_DOCUMENTATION_SYNC_ONLY",
+  "contract_impact": "none",
+  "scope": "current matrix, feature.yaml and 12 basic documents synchronized to reports71-73; original execution facts preserved",
+  "previous_meta_commit": "1e305d7d5f0370e9cfd5b878a45dd9829eea4c82",
+  "current_source_root": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/daily-source/20261027-01",
+  "source_authorities": [
+    "71-original-repository-daily-entry-consolidation.md",
+    "72-final-six-directory-cleanup-audit-and-plan.md",
+    "73-final-six-directory-cleanup-completed.md"
+  ],
+  "preserved_history": {
+    "full_old_matrix": "current-acceptance-matrix-history-report67-69.md",
+    "yaml_completion": "historical_completion_audit_report67_69",
+    "yaml_product_verification": "historical_product_verification_report67",
+    "yaml_durable_activation": "implementation.historical_durable_daily_activation_report67",
+    "original_Gates_G2V_slices_final_failure_authorizations_budget_unchanged": true,
+    "preexisting_report_evidence_files": 2254,
+    "basic_original_bodies_exactly_recoverable": 12
+  },
+  "checks": {
+    "meta-lint": {
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exit_code": 0,
+      "log_sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c",
+      "started": "2026-10-27T17:22:51.514966+00:00",
+      "finished": "2026-10-27T17:22:51.954342+00:00"
+    },
+    "meta-tests-final": {
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exit_code": 0,
+      "log_sha256": "ac694342230a583a4e36ca8937ff96517749f88b8d745deacdddf19c5b5f54fc",
+      "started": "2026-10-27T17:24:16.749686+00:00",
+      "finished": "2026-10-27T17:24:26.456192+00:00"
+    },
+    "feature-claims-final": {
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--audit-claims",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "log_sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4",
+      "started": "2026-10-27T17:23:23.017868+00:00",
+      "finished": "2026-10-27T17:23:23.275215+00:00"
+    },
+    "feature-strict-g6-final": {
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "--gate",
+        "G6",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "exit_code": 0,
+      "log_sha256": "71a8ffc0fa1d4b01f7a7d7aee778b36a9c0aba253eb4e1db84c4009a2e598016",
+      "started": "2026-10-27T17:23:23.017865+00:00",
+      "finished": "2026-10-27T17:23:23.133483+00:00"
+    },
+    "yaml-history-check.json": {
+      "sha256": "e313469591848bcd55459be733348637be57903752607061380f9c084efe0fb5",
+      "result": "PASS"
+    },
+    "document-history-check-final.json": {
+      "sha256": "cefc8ea25cdeb5e0022e4fa9b98a869d72a19c3607b3b4961af9922c2899e2e8",
+      "result": "PASS"
+    },
+    "shell-syntax.json": {
+      "sha256": "7aa481bba09130d22f03d3e8dbebc0d9e6237d151646d784451ebe59bb0f6c68",
+      "result": "PASS"
+    },
+    "active-and-platform.json": {
+      "sha256": "4fc9facf70af5c768b09f5863af9e0f07114a3f9f1679a7f98284be2a865f1b6",
+      "result": "PASS_STATIC_ENTRY_BINDING"
+    }
+  },
+  "tests": {
+    "final_passed": 57,
+    "failed": 0,
+    "skipped": 0,
+    "initial_passed": 55,
+    "initial_failed": 2,
+    "same_initial_batch_claims_and_G6_failed": true,
+    "RCA": "Missing explicit evidence marker in appended section; corrected without validator changes; one post-RCA suite rerun passed"
+  },
+  "history_check_RCA": [
+    "private module path corrected",
+    "verbatim old matrix placed at feature root to preserve relative links"
+  ],
+  "accepted_substitute": "never-sent safe layered evidence accepted; full App positive cancellation still NOT RUN",
+  "owner_excluded": [
+    "search answer correctness / exact target page / answer quality",
+    "light-dark / keyboard-focus / minimum-window specialized acceptance"
+  ],
+  "preservation": {
+    "original_repositories": 12,
+    "product_repositories_unchanged": 11,
+    "current_worktrees_clean": 8,
+    "protected_files": 510,
+    "original_unstaged_patch_kept": true,
+    "archives_and_bundles_unchanged": true
+  },
+  "new_model_HTTP": 0,
+  "new_App_launches": 0,
+  "database_API_opens": 0,
+  "workflow_lifecycle": 0,
+  "product_Runtime_or_validator_edits": 0,
+  "push": false,
+  "private_evidence_directory": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/consolidation-doc-sync/20261028-01",
+  "evidence_hashes": {
+    "precommit-preservation.json": "fd260fd49f03099195a763f31ed2e4e0e38eb3754319c8762fd992b1e4c29b92",
+    "yaml-history-check.json": "e313469591848bcd55459be733348637be57903752607061380f9c084efe0fb5",
+    "document-history-check-final.json": "cefc8ea25cdeb5e0022e4fa9b98a869d72a19c3607b3b4961af9922c2899e2e8",
+    "active-and-platform.json": "4fc9facf70af5c768b09f5863af9e0f07114a3f9f1679a7f98284be2a865f1b6",
+    "history-check-rca.json": "515429155ddd3072d7ffdcc38f3b5f87d507f152ef590126a485cf2f52050f5f",
+    "evidence-marker-rca.json": "b60c117cfb84a062f3d97a4a9693d87f0c0d32e29a267b17e2b2e469396bc850",
+    "marker-threshold-review.json": "5f8ebd8ab44d895f2069ad29ae0e4bf277cdba03a9ba8c871b67a18096aff397"
+  },
+  "documentation_file_sha256": {
+    "00-feature-brief.md": "82c6f1520dd94025f60f688c0a01df282acf537692783285f832525598c67232",
+    "01-requirements.md": "0bd246734e5f95e169afce06135e6eca50e61b9b065aae59fe31555f96a6135c",
+    "02-impact-assessment.md": "8198f21ef37656a6d0dbaceb0b795edfa1ee53383a5f814f7e3bd1aab58312c4",
+    "03-decisions-and-risks.md": "cd2387256796c28a415ddb7bcbfd375cc4b76724922677808168412e5ba4bf3f",
+    "04-contract-change-plan.md": "911b11555e866eed22e2b1cec52b2137b115d9479d3fc1dc6146958b47988478",
+    "04A-temporal-contract-matrix.md": "8815c4d75d1b28ed620cab2e132eba47ea019c01a7d7fe34b5f694a6ebb5718e",
+    "05-technical-design.md": "0febac92344d9daafd1e268b245bacd8d8a106d8083afa4c8a09bb08893c9b6d",
+    "06-test-plan.md": "534fb7dc598eca57b6b15b044d4fa95197b30b5cf6ce1678454687957fd6215c",
+    "07-implementation-plan.md": "f273dd6e456bff1a4d9348a8fc213fe748b2816f0d5ab51efbb844ad2244a8ed",
+    "08-verification-report.md": "985e107723644a127b1f0f2a5afc36136aaa70d73e1bd6ab51ff1f8fe69cd82d",
+    "09-release-and-rollback.md": "db40558b536ca4321a64e0fe7532da35c1e952a862402d54792b05f5af701a8a",
+    "10-delivery-summary.md": "1ec19bc762a2dad3350563e911bd287ee9635a45ae8529ddd0eb783e15dce7f7",
+    "74-current-consolidation-document-sync.md": "5cdfecd174f170a2752c10c1df38b97229ce22aebee655ebbd47a25dce7817aa",
+    "current-acceptance-matrix-history-report67-69.md": "9c87ca91d6c5b58077d54f40ddbfe4766f610c4448d802b63512298def835f95",
+    "current-acceptance-matrix.md": "633e84267e4103f5800bc1026f43bdde43e27127781bc14a31e42e4591cd0167",
+    "feature.yaml": "9b18926f7796bd12e61ee479899f3e487abe514b501c631ca44ac5beae9d3aea"
+  }
+}

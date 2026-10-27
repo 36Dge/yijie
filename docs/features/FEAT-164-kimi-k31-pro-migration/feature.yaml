@@ -1924,7 +1924,7 @@ implementation:
     Runtime_core_or_patch_changed: false
     Host_wire_changed: false
     evidence_ref: 08-verification-report.md#E164-D4-CLOSURE
-  durable_daily_activation:
+  historical_durable_daily_activation_report67:
     status: COMPLETE
     report: 67-d5-entry-and-activation-implementation.md
     desktop_commit: 39b0fbeb3a8c092768a7f0dfe64bd595d5e6be00
@@ -1933,7 +1933,29 @@ implementation:
     approval_adr: ADR-0022
     model_http_added: 0
     evidence_ref: 08-verification-report.md#E164-D5-CLOSURE
+  durable_daily_activation:
+    status: COMPLETE
+    report: 71-original-repository-daily-entry-consolidation.md
+    evidence_ref: 08-verification-report.md#E164-CONSOLIDATION-CURRENT
+    desktop_commit: a211c2d04def6091352c7b3674a49355cdee18ed
+    policy: feat164-daily-activated-homes-v2
+    entry_sha256: 0882200434a12d15a7673dfa64f57b3cc23dcae48596c6ee89147d3ca07c992c
+    paused_entry_sha256: becfcaacd93d89ceb05ca59775e22db65438b533cc0f3468b007bf14192d372b
+    binding_sha256: 57edb7a822ee0a9658c18be4efecd5c11bd74cf98689fa79c3eebb42f7aea37c
+    approval_adr: ADR-0022
+    model_http_added: 0
+    current_deployment_and_cleanup: current_completion_audit
+    observation_scope: Report71 entry activation; no new activation performed by report74 documentation update
 product_verification:
+  status: PASS_OWNER_APPROVED_LOCAL_DELIVERY
+  report: 71-original-repository-daily-entry-consolidation.md
+  evidence_ref: 08-verification-report.md#E164-CONSOLIDATION-CURRENT
+  historical_product_verification: historical_product_verification_report67
+  current_source_and_cleanup: current_completion_audit
+  reason: Original accepted product evidence remains at its execution sources/times; report71 independently qualifies
+    the new fixed source location and both entries, report73 verifies cleanup and prepare-only. No new model evaluation
+    or full App positive never-sent run is claimed by this documentation update.
+historical_product_verification_report67:
   status: PASS_OWNER_APPROVED_LOCAL_DELIVERY
   report: 67-d5-entry-and-activation-implementation.md
   reason: D4历史/数据合格后，新持久日常入口正常启用/暂停/恢复三轮及完整后态通过，K31可用，旧模型/计划保护保持；0新模型调用。
@@ -2026,6 +2048,8 @@ accepted_substitutions:
     accepted_method: normal Native API plus production parser/composable/control with recorded IPC transport
     acceptance_status: ACCEPTED_SAFE_LAYERED_SUBSTITUTE
 daily_cutover:
+  record_scope: Original report59-to-67 D1-D5 execution; counts and authorizations below are historical, not renewed authority
+  current_deployment_and_cleanup: current_completion_audit
   plan_id: F164-S4AF-DAILY-CUTOVER
   status: D5_COMPLETE_LOCAL_ENABLED
   report: 59-daily-cutover-minimal-plan-and-authorization.md
@@ -2210,6 +2234,87 @@ historical_completion_audit_report64:
   authorization_note: Owner-approved single D3 completed; stop and audit only. No repeat maintenance, D4 startup, model calls or automatic restore.
 
 current_completion_audit:
+  report: 73-final-six-directory-cleanup-completed.md
+  qualification_report: 71-original-repository-daily-entry-consolidation.md
+  cleanup_plan_report: 72-final-six-directory-cleanup-audit-and-plan.md
+  documentation_report: 74-current-consolidation-document-sync.md
+  status: COMPLETE_OWNER_APPROVED_LOCAL_D5_AND_ORIGINAL_SOURCE_CONSOLIDATION
+  evidence_ref: 08-verification-report.md#E164-CONSOLIDATION-CURRENT
+  original_functional_closure: historical_completion_audit_report67_69
+  incremental_contract_impact: none
+  contract_impact_reason: Source/entry consolidation and documentation binding preserve accepted product, protocol,
+    Runtime, Home, permission and durable deployment semantics; whole-feature breaking classification remains unchanged.
+  scope: ADR-0022 single-owner personal Mac only; original accepted substitute and Owner exclusions preserved
+  source_root: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/daily-source/20261027-01
+  integration_branch: feat/feat164-consolidation-20261027
+  current_source_worktrees: 8
+  original_primary_dirty_workspaces_preserved: true
+  integration_merged_into_primary_checkouts: false
+  desktop_commit: a211c2d04def6091352c7b3674a49355cdee18ed
+  host_commit: 7309101726dcecd48b2caa02401cfcdd6126f1fb
+  contracts_commit: d5792d6aad18352ce8d1c5d510d345004cab3bd6
+  runtime_commit: 11fd4504c28afd0f65c6f5f62a6b5328dd437f5a
+  connectors_commit: cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9
+  expert_skills_commit: 595c927ae101d3d31c234f60565041eee0864680
+  ordinary_skills_commit: 10c45bec29603b002e861e1499d5b4e684251af5
+  App_binary_sha256: 80b9514a9a389ed023286eee6f10021efc14caa242677b6af3d22ca192042f4e
+  candidate_receipt_sha256: 86de538f8bd6fc49c53a48d7cc3a9942c74a0c4b45d6763fc566602aa7420a8a
+  activation_binding_sha256: 57edb7a822ee0a9658c18be4efecd5c11bd74cf98689fa79c3eebb42f7aea37c
+  bundle_files: 119
+  source_inputs: 1228
+  normal_entry: /Users/jack/Desktop/易界 AI.command
+  normal_entry_sha256: 0882200434a12d15a7673dfa64f57b3cc23dcae48596c6ee89147d3ca07c992c
+  paused_rollback_entry: /Users/jack/Desktop/易界 AI（暂停 Kimi）.command
+  paused_entry_sha256: becfcaacd93d89ceb05ca59775e22db65438b533cc0f3468b007bf14192d372b
+  K31_enabled_by_normal_entry: true
+  paused_entry_preserves_MiniMax: true
+  original_Homes_preserved: true
+  D3_rerun: false
+  qualified_runtime_observation:
+    report: 71-original-repository-daily-entry-consolidation.md
+    evidence_ref: evidence/consolidation-daily-entry-result.json
+    actual_launches: 3
+    normal_exits: 3
+    model_http_added: 0
+    non_model_metadata_http_added: 9
+    final_complete_backup_files: 17400
+    final_complete_backup_bytes: 522551359
+    final_backup_manifest_sha256: 0cc5d222c8d8f12cae6ad329089f2a77fd388ed8f0050d687f4f90b15f46cb0f
+    workflow_six_primary_ready: true
+    App_left_stopped: true
+    observation_scope: Report71 execution time only; later cleanup/document audits do not re-probe live readiness or App state
+  post_cleanup_observation:
+    report: 73-final-six-directory-cleanup-completed.md
+    evidence_ref: evidence/final-six-cleanup-execution.json
+    exact_manifest_sha256: 0322ee3b6eaed59db30cefe8fe8f2222c3ada25c019c096f9e11c1058e19827e
+    last_batch_removed_directories: 6
+    last_batch_removed_worktrees: 26
+    both_batches_old_top_directories_absent: 74
+    canonical_prepare_only_reopen: PASS
+    actual_App_launches: 0
+    active_old_path_dependencies: 0
+    original_repositories_preserved: 12
+    original_modifications_archives_bundles_ledgers_reservations_preserved: true
+    source_worktrees_preserved: 8
+    force_or_global_prune: false
+    model_http_added: 0
+  original_G2V_slice_final_execution_sources_and_times_unchanged: true
+  full_App_positive_never_sent: NOT RUN; accepted safe layered substitute remains valid
+  owner_excluded:
+    - search answer correctness / exact-page hit / deterministic answer quality
+    - light-dark / keyboard-focus / minimum-window specialized acceptance
+  old_D5_reconstruction_runtime_rehearsal: NOT RUN
+  rollback_scope: Current paused entry remains usable; old entry alone references deleted roots. Reconstruct from archives,
+    Finder supplements and Git refs/bundles, restore dependencies, then qualify compatible zero-model startup before selection.
+    Never downgrade or overwrite daily data, repeat D3, manually checkpoint or delete/truncate WAL.
+  remaining_in_approved_scope: []
+  outside_scope:
+    - public/cloud/multi-user/signed and complete cross-platform release
+    - merging preserved dirty primary workspaces or deleting the eight current fixed-source worktrees
+  documentation_sync_new_App_model_database_workflow_operations: 0
+  push: false
+
+historical_completion_audit_report67_69:
   report: 67-d5-entry-and-activation-implementation.md
   final_closure_report: 69-d5-resumed-final-closure.md
   final_governance_evidence_ref: 08-verification-report.md#E164-D5-FINAL
@@ -2281,6 +2386,8 @@ local_release:
   evidence_refs:
     - 08-verification-report.md#E164-D5-READINESS
     - 08-verification-report.md#E164-D5-CLOSURE
+    - 08-verification-report.md#E164-CONSOLIDATION-CURRENT
+  current_deployment_and_cleanup: current_completion_audit
   delivery_status: complete
   normal_entry: /Users/jack/Desktop/易界 AI.command
   paused_entry: /Users/jack/Desktop/易界 AI（暂停 Kimi）.command

@@ -1,6 +1,6 @@
 # FEAT-164 技术设计候选
 
-> 当前口径：完成状态、已接受替代、已移除及范围外项目统一见[当前验收矩阵](current-acceptance-matrix.md)。产品交付证据见[67](67-d5-entry-and-activation-implementation.md)、[69](69-d5-resumed-final-closure.md)，文档修正见[70](70-document-scope-reconciliation.md)。历史进度中的“当前”“下一步”仅指原报告时点，不覆盖当前结论或产生新的执行授权。
+> 当前口径：完成状态、已接受替代、已移除及范围外项目统一见[当前验收矩阵](current-acceptance-matrix.md)。当前来源与日常入口资格见[71](71-original-repository-daily-entry-consolidation.md)，清理及回退边界见[72](72-final-six-directory-cleanup-audit-and-plan.md)/[73](73-final-six-directory-cleanup-completed.md)，本次文档同步见[74](74-current-consolidation-document-sync.md)。67/69及更早验收保留原执行来源、日期和结果；历史段落中的“当前”“下一步”不覆盖现状或产生新授权。
 
 ## 早期设计与实施进度（历史；业务不变量继续适用）
 

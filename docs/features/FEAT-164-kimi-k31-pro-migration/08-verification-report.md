@@ -1,6 +1,6 @@
 # FEAT-164 实际验证记录
 
-> 当前口径：完成状态、已接受替代、已移除及范围外项目统一见[当前验收矩阵](current-acceptance-matrix.md)。产品交付证据见[67](67-d5-entry-and-activation-implementation.md)、[69](69-d5-resumed-final-closure.md)，文档修正见[70](70-document-scope-reconciliation.md)。历史进度中的“当前”“下一步”仅指原报告时点，不覆盖当前结论或产生新的执行授权。
+> 当前口径：完成状态、已接受替代、已移除及范围外项目统一见[当前验收矩阵](current-acceptance-matrix.md)。当前来源与日常入口资格见[71](71-original-repository-daily-entry-consolidation.md)，清理及回退边界见[72](72-final-six-directory-cleanup-audit-and-plan.md)/[73](73-final-six-directory-cleanup-completed.md)，本次文档同步见[74](74-current-consolidation-document-sync.md)。67/69及更早验收保留原执行来源、日期和结果；历史段落中的“当前”“下一步”不覆盖现状或产生新授权。
 
 ## 第60号历史D1实施结果（2026-10-27）
 
@@ -733,3 +733,14 @@ PASS：最终限定scope校验完成后，实际运行主张审计、strict、G6
 <!-- evidence: E164-DOC-SCOPE -->
 
 PASS_DOCUMENTATION_ONLY：当前完成、Owner接受的never-sent分层替代（完整App仍NOT RUN）、已移除搜索质量/外观专项和范围外发布统一至当前矩阵；旧阶段明确标历史，被替换当前正文原句保留于70。原BR/AC/时序不变量、来源/Gate字段及历史证据不改。实际claims/strict/G6/lint、57测试、7Shell和38新增链接检查通过；私有正文检查首次空行归一化误报及修正证据保留。原500dirty/混合memory/7账本/两预占、六源制品与入口保持。本轮0模型HTTP、不启动App/服务、不访问原库、不改产品或Runtime，仅本地文档提交。见70及evidence/document-scope-checks.json、document-scope-preservation.json。
+
+
+## E164-CONSOLIDATION-CURRENT — 原仓来源与清理后当前绑定
+
+<!-- evidence: E164-CONSOLIDATION-CURRENT -->
+
+[71](71-original-repository-daily-entry-consolidation.md)及[执行证据](evidence/consolidation-daily-entry-result.json)记录Desktop a211c2d、Host7309101、Contracts d5792d6新来源的三轮实际启动/历史/正常退出、schema2绑定及两个入口切换，模型HTTP0。该轮非模型metadata HTTP9保持原事实，完整后态17,400文件/522,551,359字节。
+
+[72](72-final-six-directory-cleanup-audit-and-plan.md)冻结最终清理清单与回退边界；[73](73-final-six-directory-cleanup-completed.md)及[执行证据](evidence/final-six-cleanup-execution.json)记录获批后6目录/26 worktree正常移除，12原仓、8个当前worktree、归档/bundle、原改动/账本/预占保持，清理后prepare-only通过。原报告72的未授权/未删除只代表审计时点；73为执行后态。
+
+[74](74-current-consolidation-document-sync.md)仅修正当前文档绑定，验证见[文档同步检查](evidence/consolidation-document-sync.json)。旧67/69当前完成块转为明确历史，G2V/S1—S4/final原执行字段及Gate判定不改；完整App正向never-sent仍NOT RUN且接受安全替代，搜索正确性/外观专项仍OWNER_EXCLUDED。本次未运行App、模型、workflow、日常数据库或重建制品。
