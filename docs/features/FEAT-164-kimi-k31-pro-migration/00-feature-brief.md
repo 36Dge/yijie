@@ -1,10 +1,12 @@
 # FEAT-164 — Kimi K3.1 Pro 模型替换与历史兼容
 
+> 当前口径：完成状态、已接受替代、已移除及范围外项目统一见[当前验收矩阵](current-acceptance-matrix.md)。产品交付证据见[67](67-d5-entry-and-activation-implementation.md)、[69](69-d5-resumed-final-closure.md)，文档修正见[70](70-document-scope-reconciliation.md)。历史进度中的“当前”“下一步”仅指原报告时点，不覆盖当前结论或产生新的执行授权。
+
 ## 当前D5本机启用与交付完成（2026-10-27）
 
 当前权威[67](67-d5-entry-and-activation-implementation.md)：D5已按Owner明确批准的ADR-0022个人本机范围完成。新日常入口固定Desktop39b0fbe/原Home，默认启用Kimi K3.1 Pro；真实正常启用、暂停回退和同入口再次启用均通过，3次正常退出及完整后态通过。0模型验收调用，原历史/授权/账本/预占及dirty保留，仅本地提交不推送。G4/G5本机就绪与G6实际交付观察分别留证；不授权公网/云端/多人/签名发布。以下66及更早阶段按各自时点解释。
 
-## 当前D3实施结果（2026-10-27）
+## 第64号历史D3实施结果（2026-10-27）
 
 当前权威为[64 D3一次维护与后态审计](64-d3-controlled-migration-and-post-state-audit.md)。Owner批准的一次维护已完成，日常Native由SQL37升级到41后正常退出；候选、完整D2备份、实例锁/句柄及数据一致性先行核验，后态完整备份与只读复核通过。67张既有业务表全部旧行不变，仅新增4条迁移记录和3张空表；原Host/Runtime、密钥、账本/预占保持。
 
@@ -38,7 +40,7 @@
 
 [ADR-0017 第11条](../../adr/ADR-0017-dual-profile-feature-delivery.md)把重要持久数据纳入 production_hardened。本需求涉及 SQLCipher 会话/操作/计划授权及 Host bbolt，新身份写入后旧 reader 不兼容，因此使用加固治理。不是因付费 API 归类，也不声称 SQL 本身绝对不可逆。
 
-治理 delivery_profile 与应用 YIJIE_LOCAL_PROFILE 不同。现有模型功能精确要求 local + demo_fast，继续以既定受控本机入口作为未来验证对象；不因治理分类改环境变量或扩张 ADR-0018 免登录边界。当前无公网/生产激活，local exposure 不得宣称 G5/G6 通过。
+治理 delivery_profile 与应用 YIJIE_LOCAL_PROFILE 不同。FEAT-164保持production_hardened/local，应用沿用受控本机入口；仅按Owner已接受的[ADR-0022](../../adr/ADR-0022-feat164-personal-local-activation.md)适用ADR-0018的本需求个人Mac限定例外。完整G0—G6保留，本机G4/G5/G6已依67/69实际证据通过；这不构成公网、云端、多人、多租户或签名发布资格，也不改变其它需求的免登录边界。
 
 范围：模型契约及传递依赖、受管配置、最小 Runtime 补丁及独立候选、读写兼容/准入、旧会话和未决操作、计划授权、UI与同源验证方案。
 
@@ -46,6 +48,6 @@
 
 ## 阅读顺序
 
-[11 二次审计](11-second-audit.md) → [01 需求](01-requirements.md) / [03 决策](03-decisions-and-risks.md) → [04 契约](04-contract-change-plan.md) / [04A 时序](04A-temporal-contract-matrix.md) / [05 设计](05-technical-design.md) → [06 测试](06-test-plan.md) / [07 计划](07-implementation-plan.md) / [09 回滚](09-release-and-rollback.md)。实际状态见 [08](08-verification-report.md)、[feature.yaml](feature.yaml)、[12 续办](12-resume.md)。
+[11 二次审计](11-second-audit.md) → [01 需求](01-requirements.md) / [03 决策](03-decisions-and-risks.md) → [04 契约](04-contract-change-plan.md) / [04A 时序](04A-temporal-contract-matrix.md) / [05 设计](05-technical-design.md) → [06 测试](06-test-plan.md) / [07 计划](07-implementation-plan.md) / [09 回滚](09-release-and-rollback.md)。实际状态见[当前验收矩阵](current-acceptance-matrix.md)、[08](08-verification-report.md)、[feature.yaml](feature.yaml)及67/69；[12 续办](12-resume.md)仅保留早期续办历史。
 
 [首次审计](../../dev/kimi-k3-1-pro-migration-audit-20261024.md)保留为背景；冲突以本包二次修正为准。需求/技术/Reviewer/发布 Owner 默认段成威；Codex 复核不是独立人工批准。

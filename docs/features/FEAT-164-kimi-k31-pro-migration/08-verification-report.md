@@ -1,12 +1,14 @@
 # FEAT-164 实际验证记录
 
-## 当前D1实施结果（2026-10-27）
+> 当前口径：完成状态、已接受替代、已移除及范围外项目统一见[当前验收矩阵](current-acceptance-matrix.md)。产品交付证据见[67](67-d5-entry-and-activation-implementation.md)、[69](69-d5-resumed-final-closure.md)，文档修正见[70](70-document-scope-reconciliation.md)。历史进度中的“当前”“下一步”仅指原报告时点，不覆盖当前结论或产生新的执行授权。
+
+## 第60号历史D1实施结果（2026-10-27）
 
 当前权威为[60 D1完成与离线资格](60-d1-daily-binding-and-offline-qualification.md)。59号D1已获批并完成六文件Desktop修正、安全测试和新canonical prepare-only/同回执复核；Host/Runtime采用已批准原Home绑定，daily不再隐式workflow-up。真实日常绑定未生成、D2—D5未执行、模型HTTP新增0、Runtime核心/补丁未改。原CUTOVER-01/03已离线修复，日常现场/启动资格仍无授权，G4不自动晋升。58接受的never-sent替代保留，完整App正向取消仍NOT RUN。
 
 下方59及更早“尚未实施D1/原入口缺陷”按当时来源解释，不再作为当前D1未完成项。下一步仅在批准D2后进行完整冷备份和副本只读预检，不顺带迁移或启动。
 
-## 当前日常切换边界（2026-10-27，S4AF）
+## 第59号历史日常切换边界（2026-10-27，S4AF）
 
 以[59 日常切换方案](59-daily-cutover-minimal-plan-and-authorization.md)为当前部署权威。源码复审发现daily launcher将Host/Runtime Home改至候选新目录、与原Native日常库缺连续性；正常启动还可能隐式workflow迁移及恢复自动计划。日常activation为NO_GO，当前G4重新pending，先提限定部署入口修正及离线资格，尚未获准实施。58的已接受本地S1—S4/final证据与never-sent替代保持，完整App正向取消原执行仍NOT RUN；不是重新跑失败或取消Owner接受。
 
@@ -724,3 +726,10 @@ D5完成，G6只对应Owner明确批准的ADR-0022个人本机交付；不得推
 <!-- evidence: E164-D5-FINAL -->
 
 PASS：最终限定scope校验完成后，实际运行主张审计、strict、G6、pnpm lint、57项元仓测试及7份Shell语法检查，均通过。500份原dirty/混合memory原内容/7账本、六源/制品/入口绑定保持；正常锁与无句柄下原日常文件及最终sealed与67后态一致。不打开数据库API、不重复App/模型/workflow操作。时序、scope和私有证据索引见69；正常用户日常入口继续可用，不扩展公开/签名范围。
+
+
+## 文档当前口径与历史保留复核
+
+<!-- evidence: E164-DOC-SCOPE -->
+
+PASS_DOCUMENTATION_ONLY：当前完成、Owner接受的never-sent分层替代（完整App仍NOT RUN）、已移除搜索质量/外观专项和范围外发布统一至当前矩阵；旧阶段明确标历史，被替换当前正文原句保留于70。原BR/AC/时序不变量、来源/Gate字段及历史证据不改。实际claims/strict/G6/lint、57测试、7Shell和38新增链接检查通过；私有正文检查首次空行归一化误报及修正证据保留。原500dirty/混合memory/7账本/两预占、六源制品与入口保持。本轮0模型HTTP、不启动App/服务、不访问原库、不改产品或Runtime，仅本地文档提交。见70及evidence/document-scope-checks.json、document-scope-preservation.json。

@@ -1,10 +1,12 @@
 # FEAT-164 测试与证据计划
 
+> 当前口径：完成状态、已接受替代、已移除及范围外项目统一见[当前验收矩阵](current-acceptance-matrix.md)。产品交付证据见[67](67-d5-entry-and-activation-implementation.md)、[69](69-d5-resumed-final-closure.md)，文档修正见[70](70-document-scope-reconciliation.md)。历史进度中的“当前”“下一步”仅指原报告时点，不覆盖当前结论或产生新的执行授权。
+
 ## 当前D5本机启用与交付完成（2026-10-27）
 
 当前权威[67](67-d5-entry-and-activation-implementation.md)：D5已按Owner明确批准的ADR-0022个人本机范围完成。新日常入口固定Desktop39b0fbe/原Home，默认启用Kimi K3.1 Pro；真实正常启用、暂停回退和同入口再次启用均通过，3次正常退出及完整后态通过。0模型验收调用，原历史/授权/账本/预占及dirty保留，仅本地提交不推送。G4/G5本机就绪与G6实际交付观察分别留证；不授权公网/云端/多人/签名发布。以下66及更早阶段按各自时点解释。
 
-## 当前D3状态（2026-10-27）
+## 第64号历史D3状态（2026-10-27）
 
 以[64](64-d3-controlled-migration-and-post-state-audit.md)和[当前矩阵](current-acceptance-matrix.md)为准：一次D3已完成，原日常Native SQL37→41，后态完整备份/67旧业务表保持审计通过，D3_COMPLETE_STOPPED。没有GUI/Host/Runtime或模型调用；D4未授权/执行，D5和local G5/G6待收口。旧阶段授权及未执行描述仅代表当时状态，不许可重复迁移或自动回退。
 

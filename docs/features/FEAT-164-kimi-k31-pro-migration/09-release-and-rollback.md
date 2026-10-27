@@ -1,10 +1,12 @@
 # FEAT-164 激活与回滚候选Runbook
 
+> 当前口径：完成状态、已接受替代、已移除及范围外项目统一见[当前验收矩阵](current-acceptance-matrix.md)。产品交付证据见[67](67-d5-entry-and-activation-implementation.md)、[69](69-d5-resumed-final-closure.md)，文档修正见[70](70-document-scope-reconciliation.md)。历史进度中的“当前”“下一步”仅指原报告时点，不覆盖当前结论或产生新的执行授权。
+
 ## 当前D5本机启用与交付完成（2026-10-27）
 
 当前权威[67](67-d5-entry-and-activation-implementation.md)：D5已按Owner明确批准的ADR-0022个人本机范围完成。新日常入口固定Desktop39b0fbe/原Home，默认启用Kimi K3.1 Pro；真实正常启用、暂停回退和同入口再次启用均通过，3次正常退出及完整后态通过。0模型验收调用，原历史/授权/账本/预占及dirty保留，仅本地提交不推送。G4/G5本机就绪与G6实际交付观察分别留证；不授权公网/云端/多人/签名发布。以下66及更早阶段按各自时点解释。
 
-## 当前D3实施结果（2026-10-27）
+## 第64号历史D3实施结果（2026-10-27）
 
 当前权威为[64 D3一次维护与后态审计](64-d3-controlled-migration-and-post-state-audit.md)。Owner批准的一次维护已完成，日常Native由SQL37升级到41后正常退出；候选、完整D2备份、实例锁/句柄及数据一致性先行核验，后态完整备份与只读复核通过。67张既有业务表全部旧行不变，仅新增4条迁移记录和3张空表；原Host/Runtime、密钥、账本/预占保持。
 
@@ -58,7 +60,7 @@ V0：保留旧K3制品，仅在独立资格身份正常产生旧数据，不作�
 
 分开观察 model/provider/effort、旧slug新请求数（必须0）、重复operation新HTTP（必须0）、unknown未决数、计划授权/slot状态、来源锁、secret泄漏（必须0）、token用量及未知计费。只记录脱敏身份摘要/状态，不导出完整正文或Key。
 
-G4前三项final verdict独立；换source/runtime/harness后相关结果STALE。local结果不等于发布/Production Ready，G5/G6保留pending。所有实际操作步骤、命令、负责人、日期、最终artifact digest和回滚演练结果在执行获准且真实产出后填入，不虚构。
+G4前三项final verdict独立；换source/runtime/harness后相关结果STALE，须按变化范围重新审阅，不能自动继承。当前ADR-0022限定本机G4/G5/G6已由67/69的实际资格、启用观察和门禁证据收口；公开/云端/多人/签名发布仍在范围外，不由本机结果代替。实际步骤、来源、批准、制品摘要和同源暂停回退结果保留原执行时点，不把文档修订写成重新运行。
 
 ## 历史阶段记录
 

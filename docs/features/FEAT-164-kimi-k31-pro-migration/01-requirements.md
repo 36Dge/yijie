@@ -1,12 +1,16 @@
 # FEAT-164 需求、交互与验收
 
+> 当前口径：完成状态、已接受替代、已移除及范围外项目统一见[当前验收矩阵](current-acceptance-matrix.md)。产品交付证据见[67](67-d5-entry-and-activation-implementation.md)、[69](69-d5-resumed-final-closure.md)，文档修正见[70](70-document-scope-reconciliation.md)。历史进度中的“当前”“下一步”仅指原报告时点，不覆盖当前结论或产生新的执行授权。
+
 ## 当前D5本机启用与交付完成（2026-10-27）
 
 当前权威[67](67-d5-entry-and-activation-implementation.md)：D5已按Owner明确批准的ADR-0022个人本机范围完成。新日常入口固定Desktop39b0fbe/原Home，默认启用Kimi K3.1 Pro；真实正常启用、暂停回退和同入口再次启用均通过，3次正常退出及完整后态通过。0模型验收调用，原历史/授权/账本/预占及dirty保留，仅本地提交不推送。G4/G5本机就绪与G6实际交付观察分别留证；不授权公网/云端/多人/签名发布。以下66及更早阶段按各自时点解释。
 
 本文件仍是整项验收目标。全部AC在已接受的本地实现与验收范围内PASS，逐项证据见[当前验收矩阵](current-acceptance-matrix.md)及58、66、67；D1—D5个人本机切换现已完成。公开、云端、多人及签名发布不在本次批准范围。完整App正向never-sent仍采用Owner已接受的安全分层替代，不改写为实际执行。
 
-当前日常部署以[64](64-d3-controlled-migration-and-post-state-audit.md)为准：D1/D2及63前置修复保持，一次D3成功后停止，原日常Native已为SQL41，后态完整备份及旧业务行保持核对通过。D4尚未授权/启动，长期D5与local交付门禁口径仍待收口。58本地AC与替代证据保留，存储维护不等于日常启用。
+### 第64号时点历史（非当前部署状态）
+
+> 当前日常部署以[64](64-d3-controlled-migration-and-post-state-audit.md)为准：D1/D2及63前置修复保持，一次D3成功后停止，原日常Native已为SQL41，后态完整备份及旧业务行保持核对通过。D4尚未授权/启动，长期D5与local交付门禁口径仍待收口。58本地AC与替代证据保留，存储维护不等于日常启用。
 
 ## 业务规则
 
@@ -62,4 +66,4 @@ Owner本轮明确接受57号never-sent分层证据：正常Repository API入队/
 | AC-009 | 网页工具共享Key/审批保持；普通恢复零业务调用；模型/搜索/标题/审批分别计量不越预算 | S4；TCONF-164-04 |
 | AC-010 | 同源构建正常启停和重开；模型/退役/恢复业务状态准确；兼容回退读新旧数据、不恢复K3调用；核心、业务状态与正常退出分别给出结论（不含已移除的外观专项） | S4；TCONF-164-04；final E2E |
 
-未启用的子代理/记忆/review入口只证明保持禁用，不为验收扩权。实际启用组合未调查，不能先写N/A。普通本机provider可验证长上下文路由，但不冒称供应商能力/真实质量通过。FEAT-163的进度和空操作问题保持独立未关闭。
+实际启用组合已完成调查及验证：四组合来源见[28](28-s4-expert-media-auxiliary.md)，标题、input-only草案、专家、允许的子代理、Guardian及显式/自动压缩见[48](48-retained-runtime-qualification-and-scope-update.md)，当前来源绑定见[当前验收矩阵](current-acceptance-matrix.md)。未启用的子代理/记忆/review入口只证明保持禁用，不为验收扩权。普通本机provider可验证长上下文路由，但不冒称供应商能力或跑满1M的真实质量评测通过；FEAT-163的独立进度问题不由本需求关闭。

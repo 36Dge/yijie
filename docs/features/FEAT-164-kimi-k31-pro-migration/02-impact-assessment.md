@@ -1,5 +1,9 @@
 # FEAT-164 影响评估
 
+> 当前口径：完成状态、已接受替代、已移除及范围外项目统一见[当前验收矩阵](current-acceptance-matrix.md)。产品交付证据见[67](67-d5-entry-and-activation-implementation.md)、[69](69-d5-resumed-final-closure.md)，文档修正见[70](70-document-scope-reconciliation.md)。历史进度中的“当前”“下一步”仅指原报告时点，不覆盖当前结论或产生新的执行授权。
+
+## 初始影响评估（历史规划；现状见当前矩阵）
+
 拟实施 risk=high，contract-impact=breaking，database=migrate，persistence=replay，runtime=runtime，AI=model；UI/工作流可见。数据按confidential设计，不表示本轮读取用户私密数据。权限不扩张；grant失效/恢复仍必须显式评审。
 
 本轮文档修改 contract-impact=none，无产品行为变化；不能用文档分类替代未来实现分类。

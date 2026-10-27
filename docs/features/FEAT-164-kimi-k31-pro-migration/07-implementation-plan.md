@@ -1,10 +1,12 @@
 # FEAT-164 实施计划与当前门禁
 
+> 当前口径：完成状态、已接受替代、已移除及范围外项目统一见[当前验收矩阵](current-acceptance-matrix.md)。产品交付证据见[67](67-d5-entry-and-activation-implementation.md)、[69](69-d5-resumed-final-closure.md)，文档修正见[70](70-document-scope-reconciliation.md)。历史进度中的“当前”“下一步”仅指原报告时点，不覆盖当前结论或产生新的执行授权。
+
 ## 当前D5本机启用与交付完成（2026-10-27）
 
 当前权威[67](67-d5-entry-and-activation-implementation.md)：D5已按Owner明确批准的ADR-0022个人本机范围完成。新日常入口固定Desktop39b0fbe/原Home，默认启用Kimi K3.1 Pro；真实正常启用、暂停回退和同入口再次启用均通过，3次正常退出及完整后态通过。0模型验收调用，原历史/授权/账本/预占及dirty保留，仅本地提交不推送。G4/G5本机就绪与G6实际交付观察分别留证；不授权公网/云端/多人/签名发布。以下66及更早阶段按各自时点解释。
 
-## 当前D3状态（2026-10-27）
+## 第64号历史D3状态（2026-10-27）
 
 以[64](64-d3-controlled-migration-and-post-state-audit.md)和[当前矩阵](current-acceptance-matrix.md)为准：一次D3已完成，原日常Native SQL37→41，后态完整备份/67旧业务表保持审计通过，D3_COMPLETE_STOPPED。没有GUI/Host/Runtime或模型调用；D4未授权/执行，D5和local G5/G6待收口。旧阶段授权及未执行描述仅代表当时状态，不许可重复迁移或自动回退。
 
@@ -74,7 +76,7 @@
 
 > 当前S1（2026-10-25）：源实现、local/boundary及canonical构建已完成；本机新Kimi正控通过，暂停/MiniMax/重开及最终清理因Mac锁屏未完成，S1 G3不放行。新增真实模型HTTP为0，旧账本逐字保持。最新来源、未执行项和续办见[21](21-s1-implementation.md)。下方20及更早阶段结论按原来源和时间保留。
 
-## 当前有效状态（2026-10-25，30元单次续验）
+## 第20号历史有效状态（2026-10-25，30元单次续验）
 
 | 项目 | 当前结论 |
 |---|---|
@@ -89,7 +91,7 @@
 
 ## 门禁和技术依赖
 
-G0/G1/G2审阅 → 实际业务契约源与适用G2A → 安全Harness资格 → 最小G2V → S1 → S2 → S3 → S4 → 三项final E2E/G4。G5/G6仍受local exposure及独立发布批准约束。
+G0/G1/G2审阅 → 实际业务契约源与适用G2A → 安全Harness资格 → 最小G2V → S1 → S2 → S3 → S4 → 三项final E2E/G4 → 独立G5/G6。当前S1—S4与D1—D5在ADR-0022限定本机范围完成，G4/G5/G6的实际通过分别见67/69；公开、云端、多人及签名发布仍需另行批准与资格，不能继承本机结论。
 
 G2前不进行产品实施。G2/G2A之后允许的只是受限契约/垂直候选，不授权大规模分层实现。Runtime权威例外必须保留：最小Runtime候选先产生自己的canonical来源，Contracts随后投影；不能为满足业务Contract First伪造尚不存在的Runtime digest。该候选只用于资格验证，不能提前替换日常App。
 
@@ -102,7 +104,7 @@ G2前不进行产品实施。G2/G2A之后允许的只是受限契约/垂直候�
 | S3 | worker接管前保护、计划领域退役/重新授权及历史run；AC005/006 | Contracts/Host/Desktop | S2 | 同上，TCONF-164-03；暂停新派发、保留原run恢复 |
 | S4 | 全实际调用面、UI、同源打包、正常退出/重开/兼容回退；AC007—010及全部回归 | Runtime/Contracts/Host/Desktop；Connectors回归 | S3 | 同上，TCONF-164-04及三个final独立判定；单独关新Kimi，MiniMax/历史可用 |
 
-每片status=pending，commits为空，所有local/boundary/vertical=NOT RUN。源实现以本包职责为限，不混入FEAT-162/163补救、无关重构或旧证据批量改名。
+> 初始计划时点原文（历史，不是当前切片状态）：每片status=pending，commits为空，所有local/boundary/vertical=NOT RUN。源实现以本包职责为限，不混入FEAT-162/163补救、无关重构或旧证据批量改名。
 
 ## 具体序列
 
@@ -126,7 +128,7 @@ Runtime → Contracts runtime projection → Host runtime constants/candidate �
 
 每个G3单片评定，commits覆盖自身和transitive前置，contract/fixture/harness/platform/bootstrap引用精确。任一变化使相关证据STALE。三次等价失败按fingerprint累计，进入append-only RCA，收敛唯一下一动作后才可在授权下重试；禁止第四次机械尝试。
 
-设计变更回跳01/03，契约与语义回04/04A，数据/恢复回05，验证阈值回06。当前方案与实施已获Owner确认；G2A、当前Harness及预算受限文本G2V已通过。判定与预算恢复、本次唯一真实请求及正常重开已完成；S1—S4仍须逐片实施和新鲜证据，不能借用本次通过。后续代码改变使相应来源证据过期，追加真实模型请求须另有明确额度。
+> 第20号续验后原文（历史，后续S1—S4结果见当前矩阵）：设计变更回跳01/03，契约与语义回04/04A，数据/恢复回05，验证阈值回06。当前方案与实施已获Owner确认；G2A、当前Harness及预算受限文本G2V已通过。判定与预算恢复、本次唯一真实请求及正常重开已完成；S1—S4仍须逐片实施和新鲜证据，不能借用本次通过。后续代码改变使相应来源证据过期，追加真实模型请求须另有明确额度。
 
 ## S4g 旧草案状态续办（2026-10-25）
 

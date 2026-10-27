@@ -1,5 +1,9 @@
 # FEAT-164 契约与方向兼容计划
 
+> 当前口径：完成状态、已接受替代、已移除及范围外项目统一见[当前验收矩阵](current-acceptance-matrix.md)。产品交付证据见[67](67-d5-entry-and-activation-implementation.md)、[69](69-d5-resumed-final-closure.md)，文档修正见[70](70-document-scope-reconciliation.md)。历史进度中的“当前”“下一步”仅指原报告时点，不覆盖当前结论或产生新的执行授权。
+
+## 初始契约计划与阶段记录（历史）
+
 > 实施授权更新：Owner现已确认FEAT-164方案并要求开始实施和审计验证。此前“仅文档”段落是上一轮历史边界；当前状态以feature.yaml及13-implementation-log.md为准。G0/G1/G2记录本次方案确认；G2A/G2V及产品完成门禁仍未通过。无新增Git/付费/日常库激活许可。
 
 整体breaking。现已实现独立model-selection-v2/chat-models-v2 0.2.0候选、离线生成与Runtime独立投影；v1源和现有consumer pin保持。G2A pending，实际diff审查入口为14。
