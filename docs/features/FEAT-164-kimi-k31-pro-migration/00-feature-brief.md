@@ -1,8 +1,8 @@
 # FEAT-164 — Kimi K3.1 Pro 模型替换与历史兼容
 
-> 当前口径：完成状态、已接受替代、已移除及范围外项目统一见[当前验收矩阵](current-acceptance-matrix.md)。当前来源与日常入口资格见[71](71-original-repository-daily-entry-consolidation.md)，清理及回退边界见[72](72-final-six-directory-cleanup-audit-and-plan.md)/[73](73-final-six-directory-cleanup-completed.md)，本次文档同步见[74](74-current-consolidation-document-sync.md)。67/69及更早验收保留原执行来源、日期和结果；历史段落中的“当前”“下一步”不覆盖现状或产生新授权。
+> 当前口径：原主工作目录构建/日常入口及正常系统退出资格以[76](76-primary-workspace-execution.md)、[77](77-primary-system-quit-root-cause-and-plan.md)和[当前验收矩阵](current-acceptance-matrix.md)为准。当前源码为原`CrossBSD/yijie-desktop`，generation `20261028-02`；71—74保留为上一来源/清理历史。新来源三轮服务/模型目录/正常退出/数据后态通过，App历史界面因锁屏按Owner指示跳过，未记PASS；既有接受替代和永久移除范围保持。
 
-## 当前来源、日常入口与清理后态（2026-10-28）
+## 第71—74号时点来源与清理历史（已由76号原主目录来源取代）
 
 S1—S4、D1—D5在ADR-0022个人Mac范围完成；后续原仓来源/入口收敛C1—C5也已完成。当前Desktop为`a211c2d04def6091352c7b3674a49355cdee18ed`，Host为`7309101726dcecd48b2caa02401cfcdd6126f1fb`，固定来源在`yijie/.local/daily-source/20261027-01`；8个干净worktree连接原仓Git对象库，Runtime映射原仓。原主工作区及已有改动保留，尚未将集成分支合回主工作区；日常入口使用固定来源，8个来源仍须保留。
 

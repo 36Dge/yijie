@@ -96,7 +96,7 @@ gates:
   G5_production_ready: pass
   G6_delivery_complete: pass
 gate_reasons:
-  G2A: S4h
+  G2A: 76/77新增私有primary部署v3与系统Quit生命周期semantic，公共wire/SQL/Runtime不改，来源与兼容检查通过；以下为各时点历史累计：S4h
     Desktop1b5adcfc1b6b3195df5b3495de3f1c4b22599d51仅新增显式只读验证入口与说明，contract-impact=none，产品wire/SQL/Runtime/授权不改；对应19项与既有v1-reader/v2-writer源资格通过。
     S4g Desktop181885b1bfe825bb0e713757e95282e36267aa11仅私有历史读取semantic修复，复用既有LocalSubmissionView
     uncertain，无新schema/wire/迁移/授权。Host7927ee7/Runtime
@@ -115,9 +115,9 @@ gate_reasons:
     e408047精确消费；仅本地来源，不等于发布或专家资源资格。
     S4b复用同一公共契约；Hostcac2d4d/Desktop56f5284/Connectors1f15726固定Skills595c927同内容资源和原库树，四组合source通过，旧来源的证据不覆盖App资格。
   G2V: S4V当前r5唯一真实请求HTTP200/42完成、保存/同构建重开零补发及正常退出通过；按Owner无需精确查价的功能验证授权执行。旧r4结果和两账本保留，不替代完整core/业务状态或日常cutover。
-  G4: 67号恢复代码完成：已接受S1—S4/三类final与66fresh日常D4保持；新D5仅部署脚本，Native/renderer与D4逐字相同，13激活/7短期绑定/19生成及canonical构建通过。旧模型真实执行source/time不改，新增archive引用独立关联D4证据。
-  G5: 仅ADR-0022已批准个人本机范围：完整新冷备份/副本检查、workflow真实ready、精确制品与来源、原Home、权限/计划保护、兼容暂停回退方案及OwnerD5启用授权均在激活前审查通过并提交7a2b7c3；后续激活与观察见67号及G6，不授权public/cloud/多人/签名发布。
-  G6: ADR-0022限定本机交付：实际正常启用→暂停回退→同入口再次启用三轮通过，3次正常退出、完整后态/旧行和权限保持、活动WAL0；桌面入口已安装可用，Owner批准范围内完成。0新增模型验收调用，不是public/cloud/多人/签名发布。
+  G4: 76/77原主目录Desktop24a231f及Connectors8e62101完成，19来源/104安全聚焦测试/Clippy/fmt/canonical构建通过；Runtime不改，旧S1—S4证据保留。
+  G5: ADR-0022个人本机范围；新完整备份/副本/无派发检查、同源receipt及v3绑定、workflow实际ready通过。Owner本轮授权原主目录实施运行与阻塞修复，锁屏UI检查按既有指示跳过，不记PASS。
+  G6: 原主目录generation20261028-02三轮真实服务/目录启用与暂停、正常退出和后态完成，模型HTTP0，App最后停止。当前入口为仓内daily:open；初始generation01退出FAIL保留。原UI执行来源及接受替代/移除范围不改，不授权public/cloud/多人/签名发布。
 
 temporal_contract_matrix:
   required: true
@@ -2234,6 +2234,96 @@ historical_completion_audit_report64:
   authorization_note: Owner-approved single D3 completed; stop and audit only. No repeat maintenance, D4 startup, model calls or automatic restore.
 
 current_completion_audit:
+  report: 76-primary-workspace-execution.md
+  qualification_report: 77-primary-system-quit-root-cause-and-plan.md
+  status: COMPLETE_REQUESTED_PRIMARY_BUILD_RUN
+  evidence_ref: 08-verification-report.md#E164-PRIMARY-CURRENT
+  original_functional_closure: historical_completion_audit_report67_69
+  prior_consolidation_and_cleanup: historical_completion_audit_report71_74
+  incremental_contract_impact: semantic
+  contract_impact_reason: Explicit primary deployment schema3 and normal system Quit route; public wire, SQL,
+    model behavior and Runtime unchanged.
+  scope: ADR-0022 single-owner personal Mac; Owner requested direct primary checkout build/run and allowed
+    lock-dependent checks to be skipped
+  source_root: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop
+  integration_branch: feat/feat164-primary-20261028
+  source_selection: Reviewed FEAT164 baseline and current fixes active in original primary physical directories;
+    unreviewed WIP protected separately, not merged into this product
+  source_commits:
+    yijie-desktop:
+      root: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop
+      commit: 24a231f96f08ed077e53f9bd73a2aac93ee6cba8
+    yijie-contracts:
+      root: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts
+      commit: d5792d6aad18352ce8d1c5d510d345004cab3bd6
+    yijie-agent-host:
+      root: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host
+      commit: 7309101726dcecd48b2caa02401cfcdd6126f1fb
+    yijie-connectors:
+      root: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors
+      commit: 8e62101ff8ca94c2f9e12f4e415f20df41a7deed
+    yijie-skills:
+      root: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills
+      commit: 595c927ae101d3d31c234f60565041eee0864680
+    yijie-codex:
+      root: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex
+      commit: 11fd4504c28afd0f65c6f5f62a6b5328dd437f5a
+  desktop_commit: 24a231f96f08ed077e53f9bd73a2aac93ee6cba8
+  host_commit: 7309101726dcecd48b2caa02401cfcdd6126f1fb
+  contracts_commit: d5792d6aad18352ce8d1c5d510d345004cab3bd6
+  runtime_commit: 11fd4504c28afd0f65c6f5f62a6b5328dd437f5a
+  connectors_commit: 8e62101ff8ca94c2f9e12f4e415f20df41a7deed
+  expert_skills_commit: 595c927ae101d3d31c234f60565041eee0864680
+  ordinary_skills_commit: 10c45bec29603b002e861e1499d5b4e684251af5
+  generation: 20261028-02
+  App_path: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/builds/primary/20261028-02/target/debug/bundle/macos/易界
+    AI.app
+  App_binary_sha256: c2f5cba634bf4a8d567b534e798d86a076e5a53d98183afd5ce780f8c40a3629
+  candidate_receipt_sha256: 28141579143c6da10ac47f11a164e7394cec83ae3559aa9dd50db5057c4cd915
+  activation_binding_sha256: 169d6713703abaaf35ad84fdcdbdc0778159fec0a18cf50f1bd4a339ad80a87c
+  bundle_files: 119
+  source_inputs: 1230
+  normal_entry: pnpm daily:open --generation 20261028-02
+  paused_rollback_entry: pnpm daily:open --generation 20261028-02 --pause-kimi
+  K31_enabled_by_normal_entry: true
+  paused_entry_preserves_MiniMax: true
+  original_Homes_preserved: true
+  D3_rerun: false
+  Runtime_core_or_patch_changed: false
+  actual_launches_all: 4
+  qualified_new_generation_launches: 3
+  qualified_normal_exits: 3
+  initial_generation01_cleanup: FAIL retained; fixed by Desktop system Quit routing and a new canonical generation
+  model_http_added: 0
+  non_model_metadata_http_added: 3
+  current_App_stopped: true
+  active_WAL_SHM_bytes: 0
+  final_complete_backup_files: 17401
+  final_complete_backup_bytes: 522889712
+  UI_history: SKIPPED_MAC_LOCKED_PER_OWNER; not PASS or permanent removal
+  database_history_readability: PASS
+  original_WIP_paths_recoverable: 501
+  protected_source_WIP_paths: 254
+  protected_cache_paths: 4
+  final_bundle_standalone_restore: PASS for all refs of five affected repositories including six independent tips
+  seven_ledgers_and_two_reservations_preserved: true
+  old_fixed_source_retained: true
+  source_directory_cleanup: false
+  old_desktop_shortcuts: Absent before this operation; not recreated; current entry is original-repository pnpm command
+  old_top_level_preservation: Absent before this operation; new verified archive is not a claim of restoring missing historical archives
+  full_App_positive_never_sent: NOT RUN; accepted safe layered substitute remains valid
+  owner_excluded:
+    - search answer correctness/exact-page hit/answer quality
+    - light-dark/keyboard-focus/minimum-window special acceptance
+  remaining_in_requested_build_run_goal: []
+  deferred_per_owner_lock_policy:
+    - new primary App history UI observation
+  outside_scope:
+    - public/cloud/multi-user/signed or complete cross-platform release
+    - directory cleanup or activating preserved unrelated WIP
+  push: false
+
+historical_completion_audit_report71_74:
   report: 73-final-six-directory-cleanup-completed.md
   qualification_report: 71-original-repository-daily-entry-consolidation.md
   cleanup_plan_report: 72-final-six-directory-cleanup-audit-and-plan.md

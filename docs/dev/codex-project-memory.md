@@ -1,5 +1,12 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 原主工作目录构建运行完成（2026-10-28）
+
+当前以[76](../features/FEAT-164-kimi-k31-pro-migration/76-primary-workspace-execution.md)、[77](../features/FEAT-164-kimi-k31-pro-migration/77-primary-system-quit-root-cause-and-plan.md)及[当前矩阵](../features/FEAT-164-kimi-k31-pro-migration/current-acceptance-matrix.md)为准。原CrossBSD/yijie-desktop实际源码Desktop24a231f、Connectors8e62101，generation20261028-02，仓内`pnpm daily:open --generation 20261028-02`正常启用Kimi，追加`--pause-kimi`暂停；不转调daily-source，不重建已缺失的桌面.command。原WIP501项已恢复核验，254源码在五仓retained/primary-wip-20261028-01保护提交及bundle，4缓存独立保全；当前主目录选择已审FEAT164基线，未采纳其它需求不自动启用。旧daily-source/原仓/新归档/bundle保留，本轮无目录清理。
+
+三轮新来源真实服务/模型目录、正常退出和完整数据后态通过；修复Desktop标准Quit AppleEvent绕过ExitOwner的缺口，Runtime核心/补丁不改。活动WAL/SHM0，App最后停止，旧历史/授权、七账本/两预占保持，新增模型HTTP0、不推送。Mac锁屏使App历史界面观察按Owner指示跳过，不记PASS；既有never-sent接受替代、完整App正向取消NOT RUN与永久排除项保持。初始generation01退出失败及完整WAL副本保留，后续修复不改写原结果。下方旧入口和阶段状态均按历史时点解释。
+
+
 ## FEAT-164 D5恢复收口完成（2026-10-27）
 
 Owner要求恢复后，按[69最终收口](../features/FEAT-164-kimi-k31-pro-migration/69-d5-resumed-final-closure.md)完成68剩余事项：修正G5历史措辞，Accepted ADR精确Feature scope限定的最终57测试、claims/strict/G6/lint/7Shell均通过；500原dirty/混合memory原文/7账本与六源制品、两个入口、原日常文件及最终sealed一致。App无活动进程，0新增App/模型/workflow操作、无数据库API打开；workflow ready仍仅指67观察时点，不自动恢复。D5及ADR-0022个人本机范围完成，入口为桌面易界 AI.command，暂停入口须先正常退出再切换。仅本地固化本需求差异、不推送；Runtime/已签名App/旧备份不改。以下68暂停状态保留为历史，不再是当前任务状态。

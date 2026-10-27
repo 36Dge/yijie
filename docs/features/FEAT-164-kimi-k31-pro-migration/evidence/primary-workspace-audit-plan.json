@@ -1,0 +1,595 @@
+{
+  "feature": "FEAT-164",
+  "report": 75,
+  "at": "2026-10-27T18:05:30.807099+00:00",
+  "status": "AUDIT_AND_PROPOSED_PLAN_ONLY_NOT_IMPLEMENTED",
+  "goal": "Build from actual original yijie-desktop primary source files and run its newly qualified App",
+  "audit_contract_impact": "none",
+  "proposed_implementation_contract_impact": "semantic private deployment interface; reclassify separately if unreviewed WIP changes public wire/persistence",
+  "recommended_option": "A: recoverably preserve all WIP, then explicitly approve choosing reviewed FEAT164 active source in original primary directories; do not auto-activate writer5 or other unreviewed work",
+  "repositories": [
+    {
+      "name": "yijie",
+      "HEAD": "e23a550b08d26b308f99e774379ecd31c64043ef",
+      "branch": "chore/retirement-baseline-20260905",
+      "dirty_entries": 243
+    },
+    {
+      "name": "yijie-admin-web",
+      "HEAD": "d009cafccb112c098114c075d60f67ee5e0296d8",
+      "branch": "develop",
+      "dirty_entries": 0
+    },
+    {
+      "name": "yijie-agent-host",
+      "HEAD": "d49c005f8e533e1251179bb2319f6e3e2ec2db08",
+      "branch": "chore/retirement-baseline-20260905",
+      "dirty_entries": 55
+    },
+    {
+      "name": "yijie-api",
+      "HEAD": "041f40c69919e81ec72ccee4ea6dbb3ea012142d",
+      "branch": "feat/feat-126-foundation-closure",
+      "dirty_entries": 0
+    },
+    {
+      "name": "yijie-codex",
+      "HEAD": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+      "branch": "chore/retirement-baseline-20260905",
+      "dirty_entries": 0
+    },
+    {
+      "name": "yijie-connectors",
+      "HEAD": "cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9",
+      "branch": "develop",
+      "dirty_entries": 37
+    },
+    {
+      "name": "yijie-contracts",
+      "HEAD": "5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2",
+      "branch": "chore/retirement-baseline-20260905",
+      "dirty_entries": 65
+    },
+    {
+      "name": "yijie-desktop",
+      "HEAD": "fd0c575e4465dea6bb72ec9681248f664000551b",
+      "branch": "chore/retirement-baseline-20260905",
+      "dirty_entries": 100
+    },
+    {
+      "name": "yijie-infra",
+      "HEAD": "66b481552eb76d46b00875ac27794ed8e1eb504a",
+      "branch": "feat/feat-126-s10e",
+      "dirty_entries": 0
+    },
+    {
+      "name": "yijie-coze",
+      "HEAD": "7bdcd0474e904cd3e8f8f68c903c0b8985baf52f",
+      "branch": "main",
+      "dirty_entries": 0
+    },
+    {
+      "name": "yijie-knowledge",
+      "HEAD": "e9091d2b673ba779ecb39271ce9148e3a41fc256",
+      "branch": "develop",
+      "dirty_entries": 0
+    },
+    {
+      "name": "yijie-skills",
+      "HEAD": "595c927ae101d3d31c234f60565041eee0864680",
+      "branch": "develop",
+      "dirty_entries": 1
+    }
+  ],
+  "related_git_audit": [
+    {
+      "repository": "yijie-agent-host",
+      "HEAD": "d49c005f8e533e1251179bb2319f6e3e2ec2db08",
+      "integration_HEAD": "7309101726dcecd48b2caa02401cfcdd6126f1fb",
+      "branch": "chore/retirement-baseline-20260905",
+      "dirty_paths": 55,
+      "overlap_paths": 4,
+      "non_identical_range_overlap": 2,
+      "overlap_files": [
+        {
+          "path": "api/native-process.candidate.json",
+          "classification": "OVERLAPPING_BASE_RANGES_REQUIRES_HUNK_REVIEW",
+          "range_review": "NON_IDENTICAL_OVERLAPPING_EDIT"
+        },
+        {
+          "path": "api/runtime-chat-models.candidate.json",
+          "classification": "OVERLAPPING_BASE_RANGES_REQUIRES_HUNK_REVIEW",
+          "range_review": "NON_IDENTICAL_OVERLAPPING_EDIT"
+        },
+        {
+          "path": "internal/session/native_process.go",
+          "classification": "DISJOINT_BASE_RANGES_STILL_REQUIRES_SEMANTIC_REVIEW",
+          "range_review": "DISJOINT_RANGES_REVIEW_SEMANTIC_COMPOSITION"
+        },
+        {
+          "path": "internal/session/native_process_test.go",
+          "classification": "DISJOINT_BASE_RANGES_STILL_REQUIRES_SEMANTIC_REVIEW",
+          "range_review": "DISJOINT_RANGES_REVIEW_SEMANTIC_COMPOSITION"
+        }
+      ]
+    },
+    {
+      "repository": "yijie-contracts",
+      "HEAD": "5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2",
+      "integration_HEAD": "d5792d6aad18352ce8d1c5d510d345004cab3bd6",
+      "branch": "chore/retirement-baseline-20260905",
+      "dirty_paths": 65,
+      "overlap_paths": 2,
+      "non_identical_range_overlap": 1,
+      "overlap_files": [
+        {
+          "path": "compatibility/runtime-chat-models/source.lock.json",
+          "classification": "OVERLAPPING_BASE_RANGES_REQUIRES_HUNK_REVIEW",
+          "range_review": "NON_IDENTICAL_OVERLAPPING_EDIT"
+        },
+        {
+          "path": "scripts/sync-native-process.mjs",
+          "classification": "DISJOINT_BASE_RANGES_STILL_REQUIRES_SEMANTIC_REVIEW",
+          "range_review": "DISJOINT_RANGES_REVIEW_SEMANTIC_COMPOSITION"
+        }
+      ]
+    },
+    {
+      "repository": "yijie-desktop",
+      "HEAD": "fd0c575e4465dea6bb72ec9681248f664000551b",
+      "integration_HEAD": "a211c2d04def6091352c7b3674a49355cdee18ed",
+      "branch": "chore/retirement-baseline-20260905",
+      "dirty_paths": 100,
+      "overlap_paths": 17,
+      "non_identical_range_overlap": 8,
+      "overlap_files": [
+        {
+          "path": "contracts/native-process.candidate.json",
+          "classification": "OVERLAPPING_BASE_RANGES_REQUIRES_HUNK_REVIEW",
+          "range_review": "NON_IDENTICAL_OVERLAPPING_EDIT"
+        },
+        {
+          "path": "contracts/runtime-chat-models.candidate.json",
+          "classification": "OVERLAPPING_BASE_RANGES_REQUIRES_HUNK_REVIEW",
+          "range_review": "NON_IDENTICAL_OVERLAPPING_EDIT"
+        },
+        {
+          "path": "scripts/chat-model-build-candidate.mjs",
+          "classification": "DISJOINT_BASE_RANGES_STILL_REQUIRES_SEMANTIC_REVIEW",
+          "range_review": "DISJOINT_RANGES_REVIEW_SEMANTIC_COMPOSITION"
+        },
+        {
+          "path": "scripts/generate-native-conversation.mjs",
+          "classification": "OVERLAPPING_BASE_RANGES_REQUIRES_HUNK_REVIEW",
+          "range_review": "NON_IDENTICAL_OVERLAPPING_EDIT"
+        },
+        {
+          "path": "src-tauri/schemas/chat-native-conversation-resolved.schema.json",
+          "classification": "DISJOINT_BASE_RANGES_STILL_REQUIRES_SEMANTIC_REVIEW",
+          "range_review": "DISJOINT_RANGES_REVIEW_SEMANTIC_COMPOSITION"
+        },
+        {
+          "path": "src-tauri/src/chat/application.rs",
+          "classification": "DISJOINT_BASE_RANGES_STILL_REQUIRES_SEMANTIC_REVIEW",
+          "range_review": "DISJOINT_RANGES_REVIEW_SEMANTIC_COMPOSITION"
+        },
+        {
+          "path": "src-tauri/src/chat/database.rs",
+          "classification": "OVERLAPPING_BASE_RANGES_REQUIRES_HUNK_REVIEW",
+          "range_review": "IDENTICAL_OVERLAPPING_EDITS_WITH_OTHER_DIFFERENCES"
+        },
+        {
+          "path": "src-tauri/src/chat/mod.rs",
+          "classification": "DISJOINT_BASE_RANGES_STILL_REQUIRES_SEMANTIC_REVIEW",
+          "range_review": "DISJOINT_RANGES_REVIEW_SEMANTIC_COMPOSITION"
+        },
+        {
+          "path": "src-tauri/src/chat/native_conversation_generated.rs",
+          "classification": "DISJOINT_BASE_RANGES_STILL_REQUIRES_SEMANTIC_REVIEW",
+          "range_review": "DISJOINT_RANGES_REVIEW_SEMANTIC_COMPOSITION"
+        },
+        {
+          "path": "src-tauri/src/chat/native_conversation_storage.rs",
+          "classification": "OVERLAPPING_BASE_RANGES_REQUIRES_HUNK_REVIEW",
+          "range_review": "NON_IDENTICAL_OVERLAPPING_EDIT"
+        },
+        {
+          "path": "src-tauri/src/lib.rs",
+          "classification": "DISJOINT_BASE_RANGES_STILL_REQUIRES_SEMANTIC_REVIEW",
+          "range_review": "DISJOINT_RANGES_REVIEW_SEMANTIC_COMPOSITION"
+        },
+        {
+          "path": "src/api/generated/native-conversation-history.gen.ts",
+          "classification": "DISJOINT_BASE_RANGES_STILL_REQUIRES_SEMANTIC_REVIEW",
+          "range_review": "DISJOINT_RANGES_REVIEW_SEMANTIC_COMPOSITION"
+        },
+        {
+          "path": "src/api/generated/native-conversation-validator.gen.js",
+          "classification": "OVERLAPPING_BASE_RANGES_REQUIRES_HUNK_REVIEW",
+          "range_review": "NON_IDENTICAL_OVERLAPPING_EDIT"
+        },
+        {
+          "path": "src/components/chat/ChatTurnGroup.vue",
+          "classification": "OVERLAPPING_BASE_RANGES_REQUIRES_HUNK_REVIEW",
+          "range_review": "NON_IDENTICAL_OVERLAPPING_EDIT"
+        },
+        {
+          "path": "src/domain/conversation-native-view.test.ts",
+          "classification": "OVERLAPPING_BASE_RANGES_REQUIRES_HUNK_REVIEW",
+          "range_review": "NON_IDENTICAL_OVERLAPPING_EDIT"
+        },
+        {
+          "path": "src/domain/conversation-view.ts",
+          "classification": "OVERLAPPING_BASE_RANGES_REQUIRES_HUNK_REVIEW",
+          "range_review": "NON_IDENTICAL_OVERLAPPING_EDIT"
+        },
+        {
+          "path": "src/stores/chat.store.ts",
+          "classification": "DISJOINT_BASE_RANGES_STILL_REQUIRES_SEMANTIC_REVIEW",
+          "range_review": "DISJOINT_RANGES_REVIEW_SEMANTIC_COMPOSITION"
+        }
+      ]
+    },
+    {
+      "repository": "yijie-connectors",
+      "HEAD": "cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9",
+      "integration_HEAD": "cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9",
+      "branch": "develop",
+      "dirty_paths": 37,
+      "overlap_paths": 0,
+      "non_identical_range_overlap": 0,
+      "overlap_files": []
+    },
+    {
+      "repository": "yijie-skills",
+      "HEAD": "595c927ae101d3d31c234f60565041eee0864680",
+      "integration_HEAD": "595c927ae101d3d31c234f60565041eee0864680",
+      "branch": "develop",
+      "dirty_paths": 1,
+      "overlap_paths": 0,
+      "non_identical_range_overlap": 0,
+      "overlap_files": []
+    }
+  ],
+  "overlap_count": 23,
+  "conservative_range_overlap_files": 12,
+  "different_edit_range_overlap_files": 11,
+  "related_five_dirty_paths": 258,
+  "all_original_dirty_paths": 501,
+  "nonoverlap_dirty_in_current_input_map": 119,
+  "build_input_summaries": [
+    {
+      "repo": "yijie-agent-host",
+      "dirty_files": 55,
+      "dirty_only_files": 51,
+      "dirty_by_category": {
+        "contract_lock_schema_or_generated": 17,
+        "runtime_or_UI_source": 18,
+        "tests_or_fixtures": 15,
+        "build_validation_or_dependencies": 3,
+        "local_generated_cache": 2
+      },
+      "dirty_only_by_category": {
+        "contract_lock_schema_or_generated": 15,
+        "runtime_or_UI_source": 17,
+        "tests_or_fixtures": 14,
+        "build_validation_or_dependencies": 3,
+        "local_generated_cache": 2
+      },
+      "dirty_in_current_qualified_input_map": 36,
+      "nonoverlap_dirty_in_current_qualified_input_map": 32,
+      "untracked": 16,
+      "dirty_input_actual_bytes_differ": 36,
+      "nonoverlap_dirty_input_actual_bytes_differ": 32,
+      "new_untracked_under_source_namespace": [
+        "api/openapi/native-conversation-v5.yaml",
+        "internal/app/kimi_web_live_test.go",
+        "internal/codex/process_parity_audit_test.go",
+        "internal/codex/process_parity_integration_test.go",
+        "internal/contracts/nativeconversationv5/types.gen.go",
+        "internal/integration/cleanup_runtime_test.go",
+        "internal/marketbroker/model_credential.go",
+        "internal/marketbroker/model_credential_test.go",
+        "internal/session/cleanup_recovery.go",
+        "internal/session/cleanup_recovery_test.go",
+        "internal/session/native_activity.go",
+        "internal/session/native_activity_test.go",
+        "internal/skills/experts_assets.gen.go"
+      ]
+    },
+    {
+      "repo": "yijie-contracts",
+      "dirty_files": 65,
+      "dirty_only_files": 63,
+      "dirty_by_category": {
+        "build_validation_or_dependencies": 14,
+        "contract_lock_schema_or_generated": 34,
+        "documentation": 6,
+        "runtime_or_UI_source": 2,
+        "tests_or_fixtures": 9
+      },
+      "dirty_only_by_category": {
+        "build_validation_or_dependencies": 13,
+        "contract_lock_schema_or_generated": 33,
+        "documentation": 6,
+        "runtime_or_UI_source": 2,
+        "tests_or_fixtures": 9
+      },
+      "dirty_in_current_qualified_input_map": 0,
+      "nonoverlap_dirty_in_current_qualified_input_map": 0,
+      "untracked": 21,
+      "dirty_input_actual_bytes_differ": 0,
+      "nonoverlap_dirty_input_actual_bytes_differ": 0,
+      "new_untracked_under_source_namespace": [
+        "compatibility/web-retrieval/source.lock.json",
+        "compatibility/web-retrieval/tools.json",
+        "compatibility/web-retrieval/wire.schema.json",
+        "openapi/native-conversation-v5/native-conversation-v5.yaml",
+        "scripts/format-source-file.mjs",
+        "scripts/generate-web-retrieval.mjs",
+        "scripts/sync-web-retrieval.mjs",
+        "scripts/web-retrieval-source.mjs",
+        "sdks/go/openapi/native-conversation-v5/client.gen.go",
+        "sdks/jsonschema/web-retrieval.schema.json",
+        "sdks/jsonschema/web-retrieval.tools.json",
+        "sdks/rust/web-retrieval/types.gen.rs",
+        "sdks/typescript/src/openapi/native-conversation-v5.gen.ts"
+      ]
+    },
+    {
+      "repo": "yijie-desktop",
+      "dirty_files": 100,
+      "dirty_only_files": 83,
+      "dirty_by_category": {
+        "contract_lock_schema_or_generated": 28,
+        "documentation": 5,
+        "build_validation_or_dependencies": 4,
+        "tests_or_fixtures": 18,
+        "runtime_or_UI_source": 43,
+        "local_generated_cache": 2
+      },
+      "dirty_only_by_category": {
+        "contract_lock_schema_or_generated": 23,
+        "documentation": 5,
+        "tests_or_fixtures": 17,
+        "build_validation_or_dependencies": 2,
+        "runtime_or_UI_source": 34,
+        "local_generated_cache": 2
+      },
+      "dirty_in_current_qualified_input_map": 83,
+      "nonoverlap_dirty_in_current_qualified_input_map": 66,
+      "untracked": 14,
+      "dirty_input_actual_bytes_differ": 83,
+      "nonoverlap_dirty_input_actual_bytes_differ": 66,
+      "new_untracked_under_source_namespace": [
+        "scripts/expert-provenance-refresh.test.mjs",
+        "src-tauri/contracts/native-conversation-v5.json",
+        "src-tauri/schemas/chat-native-conversation-v5.schema.json",
+        "src-tauri/src/chat/connectors/store_builtin.rs",
+        "src-tauri/src/chat/native_conversation_v4_generated.rs",
+        "src/api/generated/native-conversation-v5.gen.ts",
+        "src/components/chat/ChatFileChangeItem.vue",
+        "src/components/chat/ChatProcessParityAudit.test.ts",
+        "src/composables/useChatDisclosureChoice.ts",
+        "src/composables/useChatStreamPresentation.test.ts",
+        "src/composables/useChatStreamPresentation.ts"
+      ]
+    },
+    {
+      "repo": "yijie-connectors",
+      "dirty_files": 37,
+      "dirty_only_files": 37,
+      "dirty_by_category": {
+        "build_validation_or_dependencies": 4,
+        "contract_lock_schema_or_generated": 12,
+        "runtime_or_UI_source": 17,
+        "tests_or_fixtures": 2,
+        "documentation": 2
+      },
+      "dirty_only_by_category": {
+        "build_validation_or_dependencies": 4,
+        "contract_lock_schema_or_generated": 12,
+        "runtime_or_UI_source": 17,
+        "tests_or_fixtures": 2,
+        "documentation": 2
+      },
+      "dirty_in_current_qualified_input_map": 21,
+      "nonoverlap_dirty_in_current_qualified_input_map": 21,
+      "untracked": 9,
+      "dirty_input_actual_bytes_differ": 21,
+      "nonoverlap_dirty_input_actual_bytes_differ": 21,
+      "new_untracked_under_source_namespace": [
+        "api/web-retrieval.candidate.json",
+        "api/web-retrieval.schema.json",
+        "api/web-retrieval.tools.json",
+        "worker/src/kimi_web.rs",
+        "worker/src/kimi_web_tests.rs",
+        "worker/src/model_credentials.rs",
+        "worker/src/web_retrieval_generated.rs"
+      ]
+    },
+    {
+      "repo": "yijie-skills",
+      "dirty_files": 1,
+      "dirty_only_files": 1,
+      "dirty_by_category": {
+        "contract_lock_schema_or_generated": 1
+      },
+      "dirty_only_by_category": {
+        "contract_lock_schema_or_generated": 1
+      },
+      "dirty_in_current_qualified_input_map": 0,
+      "nonoverlap_dirty_in_current_qualified_input_map": 0,
+      "untracked": 0,
+      "dirty_input_actual_bytes_differ": 0,
+      "nonoverlap_dirty_input_actual_bytes_differ": 0,
+      "new_untracked_under_source_namespace": []
+    }
+  ],
+  "persistence_difference": {
+    "primary_writer": 5,
+    "qualified_writer": 4,
+    "qualified_reader": 5,
+    "primary_uncommitted_contract_family": "0.5.0",
+    "qualified_contract_family": "0.4.0",
+    "not_classified_as_bug": true,
+    "not_auto_activated_by_path_move": true
+  },
+  "local_directory_summary": {
+    "repos_with_local": 5,
+    "du_GiB_approx": 41.86,
+    "Desktop_GiB": 24.33,
+    "meta_GiB": 16.853,
+    "Host_GiB": 0.655,
+    "Skills_GiB": 0.021,
+    "Connectors_KiB": 60,
+    "state_and_sources_and_evidence_mixed_not_wholesale_cache": true
+  },
+  "current_fixed_source": {
+    "at": "2026-10-27T18:01:20.246085+00:00",
+    "status": "PASS_CURRENT_FIXED_ARTIFACT_ONLY",
+    "receipt_sha256": "86de538f8bd6fc49c53a48d7cc3a9942c74a0c4b45d6763fc566602aa7420a8a",
+    "activation_binding_sha256": "57edb7a822ee0a9658c18be4efecd5c11bd74cf98689fa79c3eebb42f7aea37c",
+    "bundle_files": 119,
+    "source_inputs": 1228,
+    "issues": [],
+    "desktop_launchers_present": {
+      "/Users/jack/Desktop/易界 AI.command": false,
+      "/Users/jack/Desktop/易界 AI（暂停 Kimi）.command": false
+    },
+    "no_App_start_or_model_calls": true,
+    "not_new_primary_qualification": true
+  },
+  "missing_prior_paths": [
+    "FEAT-164-preservation-20261027",
+    "FEAT-164-consolidation-audit-20261027",
+    "/Users/jack/Desktop/易界 AI.command",
+    "/Users/jack/Desktop/易界 AI（暂停 Kimi）.command"
+  ],
+  "retention_scope": "Current daily Homes/credentials/Runtime r5, historical pin sources, existing App outputs, current fixed source and remaining .local backups remain; no cleanup implied",
+  "proposed_primary_schema": 3,
+  "proposed_output_example": "original yijie-desktop/.local/builds/primary/<approved-id>/; build outputs only, no copied source worktree",
+  "proposed_command_examples_not_implemented": [
+    "pnpm daily:prepare --generation <approved-id>",
+    "pnpm daily:open --generation <approved-id>",
+    "pnpm daily:open --generation <approved-id> --pause-kimi"
+  ],
+  "phases": [
+    {
+      "id": "P0",
+      "action": "fresh recoverable WIP/artifact/ref protection",
+      "implemented": false
+    },
+    {
+      "id": "P1",
+      "action": "review WIP disposition and explicitly select original active source",
+      "implemented": false
+    },
+    {
+      "id": "P2",
+      "action": "versioned private primary deployment and safe offline conformance",
+      "implemented": false
+    },
+    {
+      "id": "P3",
+      "action": "canonical actual-primary prepare-only and provenance",
+      "implemented": false
+    },
+    {
+      "id": "P4",
+      "action": "separately approved daily backup/copy preflight/zero-model restricted start",
+      "implemented": false
+    },
+    {
+      "id": "P5",
+      "action": "new-source D5 approval and repository-entry observation",
+      "implemented": false
+    },
+    {
+      "id": "P6",
+      "action": "optional separately approved source/cache retirement",
+      "implemented": false
+    }
+  ],
+  "verification_status": "STATIC_AUDIT_ONLY; no merge/build/App/database/model proof for new primary mode",
+  "accepted_substitute_preserved": "never-sent safety accepted through layered evidence; full App positive cancellation remains NOT RUN",
+  "owner_exclusions_preserved": [
+    "search answer quality",
+    "appearance/keyboard/minimum window specialized acceptance"
+  ],
+  "implemented_product_files": 0,
+  "Git_mutations": 0,
+  "build_or_generate_runs": 0,
+  "App_or_service_operations": 0,
+  "database_API_opens": 0,
+  "model_HTTP": 0,
+  "push": false,
+  "private_evidence_directory": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/primary-workspace-audit/20261028-01",
+  "audit_evidence_sha256": {
+    "git-overlap-audit.json": "2859645f96ae35bdb608d909cd6010041d68114e195d3b5436d613c99a2a8fa1",
+    "git-build-input-audit.json": "d52c12f5f9ce2f901ca5f502cacee0587837da9813651932c653300932916a2f",
+    "git-post-audit-preservation.json": "a122302ef29f780697053aa15045643e64f50caac0aecef9c0a036ba2e6b8191",
+    "deployment-facts.json": "e5198b2314a2cb99cffc90b998da9baf9570b7a503439c1b5afdb3377439d94a",
+    "deployment-audit-and-plan.md": "205151e3eb530d1740cbaf510454f9e3728a8f9b9d74ca8ca435db20b30de43e",
+    "local-inventory.json": "495532ecf580306b1e118bbf9d9e24416a060bad68613bfaab8591039c47fc6e",
+    "local-surviving-backup-hashes.json": "480f6b846143c9330155442b4afc6d3969d1c1df0ccc85eac9f822943101397c",
+    "local-daily-backup-index-check.json": "ddd7dd0d01ae4c7fc345c1c484a743c4754d46cc8fd262b07bcfc1746d6f69f1",
+    "current-fixed-artifact-check.json": "30c439a02937ed5ea21b05ff30f08e85da1ce3620b5bf057456222c52fb1dab8"
+  },
+  "worker_manifest_boundary": "Separate worker target alone still overwrites standard current.json; prefer controlled generation manifest with explicit Connectors build script + Desktop receipt/read-path scope, or separately approved backed-up standard-slot update.",
+  "plan_review": {
+    "git_review": "PASS",
+    "deployment_review": "PASS_WITH_TWO_CLARIFICATIONS_APPLIED",
+    "not_independent_human_approval": true
+  },
+  "governance_validation": {
+    "meta-lint": {
+      "exit_code": 0,
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "log_sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c"
+    },
+    "meta-tests": {
+      "exit_code": 0,
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "log_sha256": "6401b0e28cf61ccd1a5ec17ebb778b0151834308b2a3632bf7dddb550951489a"
+    },
+    "feature-claims": {
+      "exit_code": 0,
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--audit-claims",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "log_sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4"
+    },
+    "feature-strict-g6": {
+      "exit_code": 0,
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "--gate",
+        "G6",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "log_sha256": "71a8ffc0fa1d4b01f7a7d7aee778b36a9c0aba253eb4e1db84c4009a2e598016"
+    }
+  },
+  "governance_test_count": 57,
+  "preservation_check": {
+    "status": "PASS_AUDIT_ONLY",
+    "original_repositories_unchanged": 12,
+    "original_WIP_file_records_preserved": 501,
+    "HEAD_branch_remote_refs_index_worktrees_unchanged": true,
+    "Git_commit_or_stage": false,
+    "new_primary_build_or_runtime_qualification": "NOT_RUN"
+  },
+  "review_resolution": "Tool-assisted reviews only; worker manifest protection and accepted-substitute wording clarified; no human implementation approval implied"
+}

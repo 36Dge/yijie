@@ -1,6 +1,6 @@
 # FEAT-164 实际验证记录
 
-> 当前口径：完成状态、已接受替代、已移除及范围外项目统一见[当前验收矩阵](current-acceptance-matrix.md)。当前来源与日常入口资格见[71](71-original-repository-daily-entry-consolidation.md)，清理及回退边界见[72](72-final-six-directory-cleanup-audit-and-plan.md)/[73](73-final-six-directory-cleanup-completed.md)，本次文档同步见[74](74-current-consolidation-document-sync.md)。67/69及更早验收保留原执行来源、日期和结果；历史段落中的“当前”“下一步”不覆盖现状或产生新授权。
+> 当前口径：原主工作目录构建/日常入口及正常系统退出资格以[76](76-primary-workspace-execution.md)、[77](77-primary-system-quit-root-cause-and-plan.md)和[当前验收矩阵](current-acceptance-matrix.md)为准。当前源码为原`CrossBSD/yijie-desktop`，generation `20261028-02`；71—74保留为上一来源/清理历史。新来源三轮服务/模型目录/正常退出/数据后态通过，App历史界面因锁屏按Owner指示跳过，未记PASS；既有接受替代和永久移除范围保持。
 
 ## 第60号历史D1实施结果（2026-10-27）
 
@@ -744,3 +744,11 @@ PASS_DOCUMENTATION_ONLY：当前完成、Owner接受的never-sent分层替代（
 [72](72-final-six-directory-cleanup-audit-and-plan.md)冻结最终清理清单与回退边界；[73](73-final-six-directory-cleanup-completed.md)及[执行证据](evidence/final-six-cleanup-execution.json)记录获批后6目录/26 worktree正常移除，12原仓、8个当前worktree、归档/bundle、原改动/账本/预占保持，清理后prepare-only通过。原报告72的未授权/未删除只代表审计时点；73为执行后态。
 
 [74](74-current-consolidation-document-sync.md)仅修正当前文档绑定，验证见[文档同步检查](evidence/consolidation-document-sync.json)。旧67/69当前完成块转为明确历史，G2V/S1—S4/final原执行字段及Gate判定不改；完整App正向never-sent仍NOT RUN且接受安全替代，搜索正确性/外观专项仍OWNER_EXCLUDED。本次未运行App、模型、workflow、日常数据库或重建制品。
+
+
+<a id="E164-PRIMARY-CURRENT"></a>
+## E164-PRIMARY-CURRENT：原主目录来源与退出资格
+
+<!-- evidence: E164-PRIMARY-CURRENT -->
+
+见[76](76-primary-workspace-execution.md)、[77](77-primary-system-quit-root-cause-and-plan.md)及[机器证据](evidence/primary-workspace-execution-result.json)。Desktop24a231f / 原主目录generation20261028-02三轮实际ready、Kimi启用/暂停只读目录及正常退出后态通过；0新增真实模型HTTP。UI历史因锁屏跳过，未记PASS；原接受替代/永久移除保持。初始01清理FAIL保留，后续修复不改写该结果。最终17401文件完整后态、旧行/授权/Runtime业务保持、活动WAL/SHM0；所有源码/预算保全及bundle已核验，未清理目录、不推送。

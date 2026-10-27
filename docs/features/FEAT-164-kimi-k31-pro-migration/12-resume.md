@@ -1,5 +1,8 @@
 # FEAT-164 续办入口
 
+> 当前口径：原主工作目录构建/日常入口及正常系统退出资格以[76](76-primary-workspace-execution.md)、[77](77-primary-system-quit-root-cause-and-plan.md)和[当前验收矩阵](current-acceptance-matrix.md)为准。当前源码为原`CrossBSD/yijie-desktop`，generation `20261028-02`；71—74保留为上一来源/清理历史。新来源三轮服务/模型目录/正常退出/数据后态通过，App历史界面因锁屏按Owner指示跳过，未记PASS；既有接受替代和永久移除范围保持。
+
+
 > 当前见[55 测试修复与Owner范围调整](55-v3-test-and-search-grounding-root-cause.md)：旧v3测试已修复，28前端＋2client＋1原生reader＋19来源及lint通过；搜索答案正确性已明确从FEAT164需求/验收门槛移除，记OWNER_EXCLUDED，不计PASS、不再补试。三次真实调用保留，累计13、45元上限，旧账本/两份预占不变；全部服务正常停止，无待答交接。以下旧“质量未决/继续复验”仅为历史，不再作为本需求待办。
 
 > 当前权威为[54 来源修复与离线验收](54-search-source-component-fix-and-offline-verification.md)及[53 真实功能结果](53-real-functional-results-and-search-source-fix-plan.md)：Host组件筛选已修复，20原始→18显示、partial保留；新隔离App/重开/正常退出通过，1本机、0新增真实HTTP。此前真实图片/工具回灌已通过，搜索传输通过但答案正确性未决。累计10、旧账本/预占保留，所有服务已停止，无待答交接；日常库仍未授权。下方较早阶段均为历史，不能按旧“余4次”或待批范围重复执行。

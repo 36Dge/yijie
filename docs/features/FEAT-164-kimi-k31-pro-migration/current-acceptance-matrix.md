@@ -1,38 +1,48 @@
 # FEAT-164 当前验收与来源矩阵
 
-2026-10-28。S1—S4及D1—D5在ADR-0022个人Mac范围完成，当前来源/日常入口资格见[71](71-original-repository-daily-entry-consolidation.md)，旧目录清理及保护后态见[73](73-final-six-directory-cleanup-completed.md)。本矩阵同步实际来源与已接受范围，不新增运行或发布资格；原67/69及切片执行记录保持历史含义。
+2026-10-28。原S1—S4/D1—D5完成范围保持；本轮已实现**直接从原`CrossBSD/yijie-desktop`实际源码构建运行**，不转调`.local/daily-source`。当前以[76](76-primary-workspace-execution.md)、[77](77-primary-system-quit-root-cause-and-plan.md)及[机器证据](evidence/primary-workspace-execution-result.json)为准。第71—74号完整矩阵保存在[历史快照](current-acceptance-matrix-history-report71-74.md)，原执行时间、失败、接受替代和Owner排除不改写。
 
-## 完成状态与验收范围
+## 当前完成及验收边界
 
-| 分类 | 当前结论及严格边界 |
+| 分类 | 结论 |
 |---|---|
-| 已完成 | S1—S4及D1—D5在ADR-0022单Owner个人Mac范围完成，后续C1—C5原仓来源/入口收敛与旧目录清理完成；模型替换、配置/历史/授权保护、实际启用调用面、三类适用final与本机G4/G5/G6有对应证据。PASS按下列替代和排除后的范围解释，不表示每项都做过完整App实跑。 |
-| 已接受替代 | 仅完整App/WebView正向never-sent取消采用57/58中Owner接受的Native持久取消、重开、同回执及生产parser/composable/control分层证据；原完整App执行仍NOT RUN。适用于AC-005/010及S4/final，不替代其它主路径或权限不变量。 |
-| 已移除 | 搜索答案正确性、指定页面命中及确定回答质量；亮暗、键盘/焦点、最小窗口专项。均为OWNER_EXCLUDED，已从本需求移除，不是延期或PASS，不重新安排。 |
-| 仍保留的要求 | 搜索接线及实际返回sources的安全传递、原生事实如实呈现、模型/退役/恢复业务状态、Key/审批/计量和正常退出；未随质量或外观专项移除。 |
-| 范围外或保留事实 | public/cloud/多人/签名发布及完整跨平台资格不由本机结论覆盖；自然unknown仍按原事实阻断，旧账本和两份预占不清零。workflow需实际ready，当前8个固定来源worktree、原Home及新回执须保留；旧顶层候选已清理，不能承诺依赖永久健康。 |
+| 本轮已完成 | 501项原工作可恢复保全；已审基线在原主目录成为活动源码；primary v3及独立新输出、canonical构建、来源/回执核对；真实D4暂停/D5启用/D5暂停三轮ready、只读模型目录、正常退出与完整后态通过。 |
+| 本轮锁屏跳过 | 新来源App历史**界面观察**为SKIPPED_MAC_LOCKED_PER_OWNER，不是PASS或永久移除。数据库历史副本可读、旧行不变及真实服务检查单独通过。 |
+| 已接受替代 | 原57/58 never-sent安全分层替代保持，完整App正向never-sent取消仍NOT RUN；不扩展该接受为本轮UI已执行。 |
+| 已移除 | 搜索答案正确性/指定页面命中/确定回答质量，亮暗/键盘焦点/最小窗口专项均OWNER_EXCLUDED，不恢复为待办或PASS。 |
+| 仍保留 | 模型/退役/恢复/计划授权、搜索sources安全传递、Key与审批预算、旧unknown事实及正常退出。 |
+| 范围外 | public/cloud/多人/签名/完整跨平台发布；本轮没有目录清理。旧fixed-source、归档、bundle、12原仓和原数据保留。 |
 
-验收分类延续[70](70-document-scope-reconciliation.md)；当前来源同步见[74](74-current-consolidation-document-sync.md)。原报告及失败/未执行记录保持原日期、来源和状态；当前适用范围内无新增功能实施待办。
+## 当前来源与仓内入口
 
-## 当前来源与入口
-
-| 对象 | 当前固定事实（第71号资格、第73号清理后复核） |
+| 对象 | 当前事实 |
 |---|---|
-| 来源根 | `/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/daily-source/20261027-01`；8个干净worktree连接原仓Git对象库 |
-| 本地集成分支 | Host、Desktop、Contracts原仓的`feat/feat164-consolidation-20261027`；原脏主工作区未切换，未推送 |
-| Desktop | `a211c2d04def6091352c7b3674a49355cdee18ed`；与旧D5产品代码相同，仅冻结Host来源锁及生成资格pin更新 |
-| Contracts / Host | `d5792d6aad18352ce8d1c5d510d345004cab3bd6` / `7309101726dcecd48b2caa02401cfcdd6126f1fb`；Host保留原d49c005测试，运行实现与旧D5一致 |
-| Runtime | `11fd4504c28afd0f65c6f5f62a6b5328dd437f5a`；原仓r5 SHA `283d12e16b124942302fcdc8281c729a8a7f676498f06df1d2646292905f579e` |
-| Connectors / 专家Skills | `cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9` / `595c927ae101d3d31c234f60565041eee0864680` |
-| 必要历史来源 | 普通Skills `10c45bec29603b002e861e1499d5b4e684251af5`，Host `1b7bfd1`、`96b1fa1`独立固定来源；不混用普通与专家版本 |
-| App | SHA `80b9514a9a389ed023286eee6f10021efc14caa242677b6af3d22ca192042f4e`；119包内文件 |
-| Receipt | SHA `86de538f8bd6fc49c53a48d7cc3a9942c74a0c4b45d6763fc566602aa7420a8a`；1228源码输入 |
-| 启用绑定 | schema2；SHA `57edb7a822ee0a9658c18be4efecd5c11bd74cf98689fa79c3eebb42f7aea37c`，位于当前Desktop的`.local/feat164-daily/activation/binding.json` |
-| 正常入口 | `/Users/jack/Desktop/易界 AI.command`，当前新来源K31启用 |
-| 兼容暂停入口 | `/Users/jack/Desktop/易界 AI（暂停 Kimi）.command`，正常退出后使用同一新来源，仅暂停Kimi、保留MiniMax |
-| 原数据 | Native SQL41/Host11/原Runtime Home保持；71号历史、附件、已删除计划和grant保护通过，未重跑D3 |
+| 实际源码 | `/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop`；同父目录原Host/Contracts/Connectors/Skills/Runtime；无活动Desktop源码复制 |
+| 分支与原工作 | 五仓`feat/feat164-primary-20261028`；原分支未移动，254源码WIP路径在`retained/primary-wip-20261028-01`及bundle，4缓存单独保全，不把它们自动启用 |
+| Desktop | `24a231f96f08ed077e53f9bd73a2aac93ee6cba8` |
+| Contracts / Host | `d5792d6aad18352ce8d1c5d510d345004cab3bd6` / `7309101726dcecd48b2caa02401cfcdd6126f1fb` |
+| Connectors / 专家Skills | `8e62101ff8ca94c2f9e12f4e415f20df41a7deed` / `595c927ae101d3d31c234f60565041eee0864680` |
+| Runtime | 原仓`11fd4504c28afd0f65c6f5f62a6b5328dd437f5a`、r5；核心/补丁未改 |
+| 历史资源pin | 普通Skills10c45be与Host1b7bfd1/96b1fa1继续独立固定，不混用专家来源 |
+| generation | 原Desktop`.local/builds/primary/20261028-02`，仅制品/回执/授权 |
+| App SHA | `c2f5cba634bf4a8d567b534e798d86a076e5a53d98183afd5ce780f8c40a3629`；119包内文件 |
+| Receipt SHA | `28141579143c6da10ac47f11a164e7394cec83ae3559aa9dd50db5057c4cd915`；1230输入 |
+| v3启用绑定SHA | `169d6713703abaaf35ad84fdcdbdc0778159fec0a18cf50f1bd4a339ad80a87c` |
+| 正常入口 | 在原Desktop运行`pnpm daily:open --generation 20261028-02`；真实catalog确认Kimi K3.1 Pro/max可用、旧K3不在活动目录 |
+| 暂停入口 | 同命令追加`--pause-kimi`，先正常退出；真实catalog确认Kimi暂停、MiniMax可用 |
+| 原数据与服务 | 原Native SQL41、Host11、Home/身份/权限保持，D3未重跑；既有workflow实际ready，无up/恢复/迁移操作 |
 
-第71号独立验证新位置的完整备份、历史、正常启动/退出与两个入口；第73号在清理后验证同构建prepare-only及保护后态。以下原AC/Gate证据保留原执行时间和来源；新来源与旧D5运行代码等价，新增绑定不把旧G2V或完整App未执行项伪造成新的实跑。
+原桌面两个.command与顶层旧preservation在本轮开始前已缺失，本轮未删除/恢复它们；不能再把旧路径写成当前可用入口。新归档及五仓最终bundle已独立恢复校验。旧daily-source是保留回退来源，不参与当前构建/运行。
+
+## 新来源实际证据
+
+初始generation01系统Quit绕过自定义ExitOwner，退出资格FAIL，原记录保留。仅Desktop标准`aevt/quit` handler接入既有清理链后独立构建generation02；三轮正常退出日志/停止代120→123/活动WAL和SHM0/无进程句柄均通过。遗留WAL由新App正常打开和退出处理，未手工checkpoint或删除。Native71表仅停止代追加，Host所有持久值、Runtime业务/rollout、旧历史与授权不变。最终完整后态17401文件/522889712字节。
+
+本轮新增真实模型HTTP0；初始失败运行有既有provider只读metadata HTTP3，最终三轮0，业务工具0。七份旧账本及两预占保持，不因本轮检查补结算。当前App已正常退出，正常入口下一次可明确启用Kimi；暂停参数不是永久修改默认入口。
+
+19项同源检查、104项安全聚焦测试、Rust Clippy/fmt、脚本语法、聚焦eslint与文档构建通过。历史危险/攻击/权限破坏/强杀fixture未执行。治理检查结果见76末尾；没有将本机资格扩大为公开发布。
+
+以下AC及阶段判定保留原执行来源/时间，新的来源绑定和系统退出增量由上述本轮证据补充；不把旧UI或旧模型调用冒充本轮执行。
 
 ## 验收判定
 
@@ -62,12 +72,9 @@
 
 完整App正向never-sent取消仍NOT RUN；Owner接受的安全分层替代不冒充完整App。搜索答案正确性、亮暗/键盘/最小窗口已从本需求移除，记OWNER_EXCLUDED。所有原失败日志与来源保持。
 
-## 清理后态、数据与后续
 
-[73](73-final-six-directory-cleanup-completed.md)已正常移除最后6目录/26 worktree，两轮共74个旧顶层`feat164-*`目录不存在；活动旧路径依赖为0。12原仓、当前8个固定来源、原改动、6个独立tip、归档/bundle、账本和预占保留。Host/Contracts/Desktop的产品tip已进入原仓集成祖先；3个验收工具/测试专属tip仍保留于引用和bundle，不混入日常构建。原主工作区未合并到集成tip，后续开发应识别当前来源边界。
+## 保全与后续
 
-最新实际完整后态属于[71](71-original-repository-daily-entry-consolidation.md)：17,400文件/522,551,359字节，Native67业务表、Host全部值、Runtime业务行/rollout保持，正常日志追加386；模型HTTP0、metadata HTTP9、业务工具0。三轮实际启动/正常退出属于71，清理后prepare-only属于73；本次文档同步没有重新启动、开库或复测workflow。其ready及App停止状态仅是71号观察时点。累计13模型请求、45元上限、29.740299保守累计及两份14.188544预占保持原记录，不据文档补结算。
+此前两轮74个旧顶层目录清理结论仍是73号历史事实，本轮不删除任何目录。现存旧daily-source、12原仓、所有保护引用及新备份/bundle保留；缺失旧归档的事实不被新备份掩盖。恢复未采纳WIP须从保护提交/新bundle/归档按需求审阅，不直接整份启用；回退先正常退出、备份和验证兼容来源，不降schema、覆盖日常库、重跑D3或清空WAL。
 
-暂停使用当前新来源的暂停入口；旧.command不能直接恢复运行。旧D5恢复须按[72](72-final-six-directory-cleanup-audit-and-plan.md)/[73](73-final-six-directory-cleanup-completed.md)从归档、两轮Finder补充、refs/bundle重建精确路径和worktree，补齐再生依赖、兼容性、完整备份及新运行资格；未做删除后重建运行演练，不覆盖新数据或清空WAL。归档同盘不等于异地灾备。
-
-当前批准范围内无功能或目录清理待办；公开/云端/多人/签名及跨平台发布不在此范围。完整App正向never-sent取消仍NOT RUN且已接受替代；Owner排除项不重新安排。旧矩阵原文保存在[第67/69号历史快照](current-acceptance-matrix-history-report67-69.md)，历史报告和失败证据保持。
+原主目录构建运行目标已完成。锁屏相关App历史界面观察保持跳过；原完整App正向never-sent取消NOT RUN且已有接受替代，永久排除项不重新安排。未来开发改变主源码后应canonical新generation构建、资格及显式绑定，旧回执不能自动刷新。
