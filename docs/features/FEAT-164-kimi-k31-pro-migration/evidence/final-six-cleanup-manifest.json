@@ -1,0 +1,1522 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-164",
+  "at": "2026-10-27T16:35:21.906424+00:00",
+  "status": "FINAL_AUDITED_CANDIDATES_NOT_AUTHORIZED_NOT_DELETED",
+  "contract_impact": "none",
+  "deletion_authorized": false,
+  "cleanup_executed": false,
+  "manifest_supersedes": "Only the previous six HOLD roots, after report71 daily cutover; does not re-run old 68-root/79-worktree manifest",
+  "top_count": 6,
+  "worktree_count": 26,
+  "top_order": [
+    {
+      "order": 1,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d5-candidate-20261027",
+      "device": 16777231,
+      "inode": 60895948,
+      "worktree_orders": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "worktree_count": 4,
+      "must_remove_incoming_tops_first": [],
+      "du_allocated_KiB": 5011504,
+      "archive": "/Users/jack/Downloads/Personal_Info/CrossBSD/FEAT-164-preservation-20261027/retained-materials/feat164-d5-candidate-20261027.tar.zst",
+      "archive_sha256": "3156c29cd2cead2ebd33912c7a48e38d6db5461f52d429ed1e4f44106b1da7f8",
+      "archive_bytes": 475406358,
+      "source_manifest": "/Users/jack/Downloads/Personal_Info/CrossBSD/FEAT-164-preservation-20261027/source-manifests/feat164-d5-candidate-20261027.json",
+      "source_manifest_sha256": "78b93be7626e4ed12757157b29b418a32630eda2484719c0bbbb1e5faa0b5465",
+      "fresh_material_manifest": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/feat164-d5-candidate-20261027-current-materials.json",
+      "fresh_material_manifest_sha256": "883a1be95e91ab3c47836b89cfd955d7c3deafe1e210c4defa702e681e5a29a5",
+      "Finder_delta_archive": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/finder-metadata-delta.tar.zst",
+      "method_after_registered_worktrees": "Only after no registered child remains: fd-based no-follow removal of this exact archived container, raise on any error; no force, chmod, ignore_errors, or broad wildcard",
+      "rollback_recovery_order": 6
+    },
+    {
+      "order": 2,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d4-history-fix-candidate-20261027",
+      "device": 16777231,
+      "inode": 60740882,
+      "worktree_orders": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "worktree_count": 4,
+      "must_remove_incoming_tops_first": [
+        "feat164-d5-candidate-20261027"
+      ],
+      "du_allocated_KiB": 6296656,
+      "archive": "/Users/jack/Downloads/Personal_Info/CrossBSD/FEAT-164-preservation-20261027/retained-materials/feat164-d4-history-fix-candidate-20261027.tar.zst",
+      "archive_sha256": "b82ec7dc9c9c1d14e2efdeccab08f9589c6bc99d2776cb51beb4f59b10b96d22",
+      "archive_bytes": 475790964,
+      "source_manifest": "/Users/jack/Downloads/Personal_Info/CrossBSD/FEAT-164-preservation-20261027/source-manifests/feat164-d4-history-fix-candidate-20261027.json",
+      "source_manifest_sha256": "ddaacb24ea1d3ee80e31feb296607255e00f6544563e381fe85d1dc5380fd594",
+      "fresh_material_manifest": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/feat164-d4-history-fix-candidate-20261027-current-materials.json",
+      "fresh_material_manifest_sha256": "1fbccb771245a46e62f5c8d1e6f2b563699a24c6d500f0f7a5365607d8e557c4",
+      "Finder_delta_archive": null,
+      "method_after_registered_worktrees": "Only after no registered child remains: fd-based no-follow removal of this exact archived container, raise on any error; no force, chmod, ignore_errors, or broad wildcard",
+      "rollback_recovery_order": 5
+    },
+    {
+      "order": 3,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d3-ready-candidate-20261027",
+      "device": 16777231,
+      "inode": 60509172,
+      "worktree_orders": [
+        9,
+        10,
+        11,
+        12
+      ],
+      "worktree_count": 4,
+      "must_remove_incoming_tops_first": [
+        "feat164-d4-history-fix-candidate-20261027",
+        "feat164-d5-candidate-20261027"
+      ],
+      "du_allocated_KiB": 6783824,
+      "archive": "/Users/jack/Downloads/Personal_Info/CrossBSD/FEAT-164-preservation-20261027/retained-materials/feat164-d3-ready-candidate-20261027.tar.zst",
+      "archive_sha256": "086cd3bc50bb159ad6fe5456728fb474d096e432359f2007fdd26844c8da3e62",
+      "archive_bytes": 475386057,
+      "source_manifest": "/Users/jack/Downloads/Personal_Info/CrossBSD/FEAT-164-preservation-20261027/source-manifests/feat164-d3-ready-candidate-20261027.json",
+      "source_manifest_sha256": "1fbe6f94131d2424af11489c4d27d236f2c77ac5f27269986161df052708939b",
+      "fresh_material_manifest": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/feat164-d3-ready-candidate-20261027-current-materials.json",
+      "fresh_material_manifest_sha256": "658786b90dddcb857dbd49ee0e8e7dc299cf3a8dce273f2ff92ee656735e0848",
+      "Finder_delta_archive": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/finder-metadata-delta.tar.zst",
+      "method_after_registered_worktrees": "Only after no registered child remains: fd-based no-follow removal of this exact archived container, raise on any error; no force, chmod, ignore_errors, or broad wildcard",
+      "rollback_recovery_order": 4
+    },
+    {
+      "order": 4,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4f-qualification-20261025",
+      "device": 16777231,
+      "inode": 58342208,
+      "worktree_orders": [
+        13,
+        14,
+        15,
+        16
+      ],
+      "worktree_count": 4,
+      "must_remove_incoming_tops_first": [
+        "feat164-d3-ready-candidate-20261027",
+        "feat164-d4-history-fix-candidate-20261027",
+        "feat164-d5-candidate-20261027"
+      ],
+      "du_allocated_KiB": 23134444,
+      "archive": "/Users/jack/Downloads/Personal_Info/CrossBSD/FEAT-164-preservation-20261027/retained-materials/feat164-s4f-qualification-20261025.tar.zst",
+      "archive_sha256": "6f3208e58456fe21c6a62935d9f33bea88187055e0640459f4aa8bd22087b45c",
+      "archive_bytes": 427106784,
+      "source_manifest": "/Users/jack/Downloads/Personal_Info/CrossBSD/FEAT-164-preservation-20261027/source-manifests/feat164-s4f-qualification-20261025.json",
+      "source_manifest_sha256": "911c644aa929e942a04a3c47b860627d95fa9ba8a7113e13e1203ab3e553de57",
+      "fresh_material_manifest": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/feat164-s4f-qualification-20261025-current-materials.json",
+      "fresh_material_manifest_sha256": "f473f66b870a30f15fe98096eb4df84cef5bc0d4a75a006652b3a2e20c47359c",
+      "Finder_delta_archive": null,
+      "method_after_registered_worktrees": "Only after no registered child remains: fd-based no-follow removal of this exact archived container, raise on any error; no force, chmod, ignore_errors, or broad wildcard",
+      "rollback_recovery_order": 3
+    },
+    {
+      "order": 5,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4e-qualification-20261025",
+      "device": 16777231,
+      "inode": 57998613,
+      "worktree_orders": [
+        17,
+        18,
+        19,
+        20
+      ],
+      "worktree_count": 4,
+      "must_remove_incoming_tops_first": [
+        "feat164-s4f-qualification-20261025"
+      ],
+      "du_allocated_KiB": 21641452,
+      "archive": "/Users/jack/Downloads/Personal_Info/CrossBSD/FEAT-164-preservation-20261027/retained-materials/feat164-s4e-qualification-20261025.tar.zst",
+      "archive_sha256": "b9c2e802278c1325e3476276328ae07c13059e13d45ca48901786e5d72173852",
+      "archive_bytes": 427050520,
+      "source_manifest": "/Users/jack/Downloads/Personal_Info/CrossBSD/FEAT-164-preservation-20261027/source-manifests/feat164-s4e-qualification-20261025.json",
+      "source_manifest_sha256": "cd2e927ccddfa1484a07154800b2e4f77149739ee04b2585d34b5c2bac1ca214",
+      "fresh_material_manifest": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/feat164-s4e-qualification-20261025-current-materials.json",
+      "fresh_material_manifest_sha256": "4f5f12321acaaa8881c5bd1ab8236ee3d357facdd2182b7505f9c129054d99d2",
+      "Finder_delta_archive": null,
+      "method_after_registered_worktrees": "Only after no registered child remains: fd-based no-follow removal of this exact archived container, raise on any error; no force, chmod, ignore_errors, or broad wildcard",
+      "rollback_recovery_order": 2
+    },
+    {
+      "order": 6,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025",
+      "device": 16777231,
+      "inode": 57581485,
+      "worktree_orders": [
+        21,
+        22,
+        23,
+        24,
+        25,
+        26
+      ],
+      "worktree_count": 6,
+      "must_remove_incoming_tops_first": [
+        "feat164-d3-ready-candidate-20261027",
+        "feat164-d4-history-fix-candidate-20261027",
+        "feat164-d5-candidate-20261027",
+        "feat164-s4e-qualification-20261025"
+      ],
+      "du_allocated_KiB": 14258680,
+      "archive": "/Users/jack/Downloads/Personal_Info/CrossBSD/FEAT-164-preservation-20261027/retained-materials/feat164-qualification-20261025.tar.zst",
+      "archive_sha256": "3dd7d1f520b95f8384b726062dc6baecb4fc133168dcdbdb79db454254dbedf7",
+      "archive_bytes": 766153743,
+      "source_manifest": "/Users/jack/Downloads/Personal_Info/CrossBSD/FEAT-164-preservation-20261027/source-manifests/feat164-qualification-20261025.json",
+      "source_manifest_sha256": "4d6c8311ee528c601a79e2febbf131b03ea6df54b84e0c77323b32409ef967e6",
+      "fresh_material_manifest": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/feat164-qualification-20261025-current-materials.json",
+      "fresh_material_manifest_sha256": "652374508929879588c1f1986aee8a638dbbb088512ef6b04bd7c7cd6f1891b6",
+      "Finder_delta_archive": null,
+      "method_after_registered_worktrees": "Only after no registered child remains: fd-based no-follow removal of this exact archived container, raise on any error; no force, chmod, ignore_errors, or broad wildcard",
+      "rollback_recovery_order": 1
+    }
+  ],
+  "worktrees": [
+    {
+      "order": 1,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d5-candidate-20261027/yijie-agent-host",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+      "expected_HEAD": "a3d8767add3855a28c18adbbd51251fae3520ac0",
+      "expected_status": "",
+      "expected_index_sha256": "f6d728b19a66a47b9254791d1a9bf81a933fc2383ced96c1cced5d2b801ab10b",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.git/worktrees/yijie-agent-host25",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.git",
+      "device": 16777231,
+      "inode": 60898427,
+      "named_refs_containing_HEAD": [
+        "refs/heads/feat/feat164-consolidation-20261027 7309101726dcecd48b2caa02401cfcdd6126f1fb",
+        "refs/heads/retained/feat164-20261027/daily-host a3d8767add3855a28c18adbbd51251fae3520ac0"
+      ],
+      "nested_worktrees_to_remove_first": [],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d5-candidate-20261027/yijie-agent-host"
+      ],
+      "ignored_state_evidence": "!! .DS_Store\n!! artifact-mcp/target/\n",
+      "archive_root": "feat164-d5-candidate-20261027"
+    },
+    {
+      "order": 2,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d5-candidate-20261027/yijie-connectors",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors",
+      "expected_HEAD": "cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9",
+      "expected_status": "",
+      "expected_index_sha256": "d3389ce42a0c8ec0ce2710acfd7eb7f8f8cc6a95228d5a150bb8cd0a09d005b0",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/.git/worktrees/yijie-connectors19",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/.git",
+      "device": 16777231,
+      "inode": 60899028,
+      "named_refs_containing_HEAD": [
+        "refs/heads/develop cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9"
+      ],
+      "nested_worktrees_to_remove_first": [],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d5-candidate-20261027/yijie-connectors"
+      ],
+      "ignored_state_evidence": "!! .DS_Store\n!! bin/\n",
+      "archive_root": "feat164-d5-candidate-20261027"
+    },
+    {
+      "order": 3,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d5-candidate-20261027/yijie-contracts",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+      "expected_HEAD": "d5792d6aad18352ce8d1c5d510d345004cab3bd6",
+      "expected_status": "",
+      "expected_index_sha256": "7181b2cc33bd018a24fbf3faf06d175d2f08ead5f7392e164a0edfc8d67cd870",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts/.git/worktrees/yijie-contracts22",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts/.git",
+      "device": 16777231,
+      "inode": 60897557,
+      "named_refs_containing_HEAD": [
+        "refs/heads/feat/feat164-consolidation-20261027 d5792d6aad18352ce8d1c5d510d345004cab3bd6",
+        "refs/heads/retained/feat164-20261027/archive-v5-contract d5792d6aad18352ce8d1c5d510d345004cab3bd6"
+      ],
+      "nested_worktrees_to_remove_first": [],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d5-candidate-20261027/yijie-contracts"
+      ],
+      "ignored_state_evidence": "!! .DS_Store\n!! node_modules/\n",
+      "archive_root": "feat164-d5-candidate-20261027"
+    },
+    {
+      "order": 4,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d5-candidate-20261027/yijie-desktop",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+      "expected_HEAD": "39b0fbeb3a8c092768a7f0dfe64bd595d5e6be00",
+      "expected_status": "",
+      "expected_index_sha256": "f8b2f1d45b21fedb821b77481f83c8ae3385b062a9d45e87d85ea23841020b72",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.git/worktrees/yijie-desktop30",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.git",
+      "device": 16777231,
+      "inode": 60895951,
+      "named_refs_containing_HEAD": [
+        "refs/heads/feat/feat164-consolidation-20261027 a211c2d04def6091352c7b3674a49355cdee18ed",
+        "refs/heads/retained/feat164-20261027/daily-desktop 39b0fbeb3a8c092768a7f0dfe64bd595d5e6be00"
+      ],
+      "nested_worktrees_to_remove_first": [],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d5-candidate-20261027/yijie-desktop"
+      ],
+      "ignored_state_evidence": "!! .DS_Store\n!! .local/\n!! dist/\n!! docs/design/docs/.vitepress/dist/\n!! docs/design/node_modules/\n!! node_modules/\n!! src-tauri/gen/\n!! src-tauri/target/\n!! tools/public-api-generator/node_modules/\n",
+      "archive_root": "feat164-d5-candidate-20261027"
+    },
+    {
+      "order": 5,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d4-history-fix-candidate-20261027/yijie-agent-host",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+      "expected_HEAD": "a3d8767add3855a28c18adbbd51251fae3520ac0",
+      "expected_status": "",
+      "expected_index_sha256": "cce16752ebd1e46fc33c731a4bf051a66f7de10bebf289bae545d5a6e7e9a2eb",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.git/worktrees/yijie-agent-host24",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.git",
+      "device": 16777231,
+      "inode": 60763488,
+      "named_refs_containing_HEAD": [
+        "refs/heads/feat/feat164-consolidation-20261027 7309101726dcecd48b2caa02401cfcdd6126f1fb",
+        "refs/heads/retained/feat164-20261027/daily-host a3d8767add3855a28c18adbbd51251fae3520ac0"
+      ],
+      "nested_worktrees_to_remove_first": [],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d4-history-fix-candidate-20261027/yijie-agent-host"
+      ],
+      "ignored_state_evidence": "!! artifact-mcp/target/\n",
+      "archive_root": "feat164-d4-history-fix-candidate-20261027"
+    },
+    {
+      "order": 6,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d4-history-fix-candidate-20261027/yijie-connectors",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors",
+      "expected_HEAD": "cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9",
+      "expected_status": "",
+      "expected_index_sha256": "49c6c6db81fd63fe88fb276237c8065f0c9136d142a0a21f00e7c3d8da85d179",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/.git/worktrees/yijie-connectors18",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/.git",
+      "device": 16777231,
+      "inode": 60764092,
+      "named_refs_containing_HEAD": [
+        "refs/heads/develop cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9"
+      ],
+      "nested_worktrees_to_remove_first": [],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d4-history-fix-candidate-20261027/yijie-connectors"
+      ],
+      "ignored_state_evidence": "!! bin/\n",
+      "archive_root": "feat164-d4-history-fix-candidate-20261027"
+    },
+    {
+      "order": 7,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d4-history-fix-candidate-20261027/yijie-contracts",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+      "expected_HEAD": "d5792d6aad18352ce8d1c5d510d345004cab3bd6",
+      "expected_status": "",
+      "expected_index_sha256": "892b218894f3fc159aad55dd16ada5ce3ca2ba31bca87a1f2104341dd2f8034f",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts/.git/worktrees/yijie-contracts21",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts/.git",
+      "device": 16777231,
+      "inode": 60742480,
+      "named_refs_containing_HEAD": [
+        "refs/heads/feat/feat164-consolidation-20261027 d5792d6aad18352ce8d1c5d510d345004cab3bd6",
+        "refs/heads/retained/feat164-20261027/archive-v5-contract d5792d6aad18352ce8d1c5d510d345004cab3bd6"
+      ],
+      "nested_worktrees_to_remove_first": [],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d4-history-fix-candidate-20261027/yijie-contracts"
+      ],
+      "ignored_state_evidence": "!! node_modules/\n",
+      "archive_root": "feat164-d4-history-fix-candidate-20261027"
+    },
+    {
+      "order": 8,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d4-history-fix-candidate-20261027/yijie-desktop",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+      "expected_HEAD": "71e39c4e9fc38940c03b49f9b945fd4c5f6d987c",
+      "expected_status": "",
+      "expected_index_sha256": "d66758ac31ea92e3252141d7d6d48885355e451cfb273760853333315b86c12c",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.git/worktrees/yijie-desktop29",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.git",
+      "device": 16777231,
+      "inode": 60740885,
+      "named_refs_containing_HEAD": [
+        "refs/heads/feat/feat164-consolidation-20261027 a211c2d04def6091352c7b3674a49355cdee18ed",
+        "refs/heads/retained/feat164-20261027/daily-desktop 39b0fbeb3a8c092768a7f0dfe64bd595d5e6be00"
+      ],
+      "nested_worktrees_to_remove_first": [],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d4-history-fix-candidate-20261027/yijie-desktop"
+      ],
+      "ignored_state_evidence": "!! .local/\n!! dist/\n!! docs/design/docs/.vitepress/dist/\n!! docs/design/node_modules/\n!! node_modules/\n!! src-tauri/gen/\n!! src-tauri/target/\n!! tools/public-api-generator/node_modules/\n",
+      "archive_root": "feat164-d4-history-fix-candidate-20261027"
+    },
+    {
+      "order": 9,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d3-ready-candidate-20261027/yijie-agent-host",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+      "expected_HEAD": "a3d8767add3855a28c18adbbd51251fae3520ac0",
+      "expected_status": "",
+      "expected_index_sha256": "bb73ed203a7209e24bbae3b7f938389c4212a27ff76bd785dcac9093b4886dfc",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.git/worktrees/yijie-agent-host23",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.git",
+      "device": 16777231,
+      "inode": 60510769,
+      "named_refs_containing_HEAD": [
+        "refs/heads/feat/feat164-consolidation-20261027 7309101726dcecd48b2caa02401cfcdd6126f1fb",
+        "refs/heads/retained/feat164-20261027/daily-host a3d8767add3855a28c18adbbd51251fae3520ac0"
+      ],
+      "nested_worktrees_to_remove_first": [],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d3-ready-candidate-20261027/yijie-agent-host"
+      ],
+      "ignored_state_evidence": "!! .DS_Store\n!! artifact-mcp/target/\n",
+      "archive_root": "feat164-d3-ready-candidate-20261027"
+    },
+    {
+      "order": 10,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d3-ready-candidate-20261027/yijie-connectors",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors",
+      "expected_HEAD": "cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9",
+      "expected_status": "",
+      "expected_index_sha256": "f5c8332977d76bf22f012d04c469d67fe29606c477212a6f89c97da51949b4bd",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/.git/worktrees/yijie-connectors17",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/.git",
+      "device": 16777231,
+      "inode": 60512234,
+      "named_refs_containing_HEAD": [
+        "refs/heads/develop cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9"
+      ],
+      "nested_worktrees_to_remove_first": [],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d3-ready-candidate-20261027/yijie-connectors"
+      ],
+      "ignored_state_evidence": "!! .DS_Store\n!! bin/\n",
+      "archive_root": "feat164-d3-ready-candidate-20261027"
+    },
+    {
+      "order": 11,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d3-ready-candidate-20261027/yijie-contracts",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+      "expected_HEAD": "c5d138374c102f1a8a11e328a869ec8f91724efd",
+      "expected_status": "",
+      "expected_index_sha256": "e3ee0acde30c709679b036fdbde431d7f92c0ed94ed6c3a0760a9fcb91169678",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts/.git/worktrees/yijie-contracts20",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts/.git",
+      "device": 16777231,
+      "inode": 60511368,
+      "named_refs_containing_HEAD": [
+        "refs/heads/feat/feat164-consolidation-20261027 d5792d6aad18352ce8d1c5d510d345004cab3bd6",
+        "refs/heads/retained/feat164-20261027/archive-v5-contract d5792d6aad18352ce8d1c5d510d345004cab3bd6"
+      ],
+      "nested_worktrees_to_remove_first": [],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d3-ready-candidate-20261027/yijie-contracts"
+      ],
+      "ignored_state_evidence": "!! .DS_Store\n!! node_modules/\n",
+      "archive_root": "feat164-d3-ready-candidate-20261027"
+    },
+    {
+      "order": 12,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d3-ready-candidate-20261027/yijie-desktop",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+      "expected_HEAD": "841f7c71ed3549fe02a70cff608cbbae713d6808",
+      "expected_status": "",
+      "expected_index_sha256": "4ea38f9f92db704ce5756cd05583e13e33642a18e6c2e2480192981c877d4d42",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.git/worktrees/yijie-desktop28",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.git",
+      "device": 16777231,
+      "inode": 60509176,
+      "named_refs_containing_HEAD": [
+        "refs/heads/feat/feat164-consolidation-20261027 a211c2d04def6091352c7b3674a49355cdee18ed",
+        "refs/heads/retained/feat164-20261027/daily-desktop 39b0fbeb3a8c092768a7f0dfe64bd595d5e6be00"
+      ],
+      "nested_worktrees_to_remove_first": [],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d3-ready-candidate-20261027/yijie-desktop"
+      ],
+      "ignored_state_evidence": "!! .DS_Store\n!! .local/\n!! dist/\n!! docs/design/docs/.vitepress/dist/\n!! docs/design/node_modules/\n!! node_modules/\n!! src-tauri/gen/\n!! src-tauri/target/\n!! tools/public-api-generator/node_modules/\n",
+      "archive_root": "feat164-d3-ready-candidate-20261027"
+    },
+    {
+      "order": 13,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4f-qualification-20261025/yijie-desktop/.local/skills-pinned-10c45be",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills",
+      "expected_HEAD": "10c45bec29603b002e861e1499d5b4e684251af5",
+      "expected_status": "",
+      "expected_index_sha256": "9dde471656defb5963889a92a119eec14166c3e79ce535c6e9a5acc2db567424",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills/.git/worktrees/skills-pinned-10c45be3",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills/.git",
+      "device": 16777231,
+      "inode": 58372632,
+      "named_refs_containing_HEAD": [
+        "refs/heads/develop 595c927ae101d3d31c234f60565041eee0864680",
+        "refs/remotes/origin/develop 595c927ae101d3d31c234f60565041eee0864680"
+      ],
+      "nested_worktrees_to_remove_first": [],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4f-qualification-20261025/yijie-desktop/.local/skills-pinned-10c45be"
+      ],
+      "ignored_state_evidence": "!! dist/\n!! node_modules/\n",
+      "archive_root": "feat164-s4f-qualification-20261025"
+    },
+    {
+      "order": 14,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4f-qualification-20261025/yijie-agent-host",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+      "expected_HEAD": "7927ee7b385cb5536c3647632d1bac0cb7c56fea",
+      "expected_status": "",
+      "expected_index_sha256": "fe3a382fe593dc366bb3c7a4dfb8ebf1a016dc7738419d4dc5fe913cc6e3ee94",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.git/worktrees/yijie-agent-host3",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.git",
+      "device": 16777231,
+      "inode": 58343073,
+      "named_refs_containing_HEAD": [
+        "refs/heads/chore/retirement-baseline-20260905 d49c005f8e533e1251179bb2319f6e3e2ec2db08",
+        "refs/heads/feat/feat164-consolidation-20261027 7309101726dcecd48b2caa02401cfcdd6126f1fb",
+        "refs/heads/retained/feat164-20261027/daily-host a3d8767add3855a28c18adbbd51251fae3520ac0",
+        "refs/heads/retained/feat164-20261027/retained-s2-tests f97d2216001e78df02e93c972a6aec2e1d772f58"
+      ],
+      "nested_worktrees_to_remove_first": [],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4f-qualification-20261025/yijie-agent-host"
+      ],
+      "ignored_state_evidence": "",
+      "archive_root": "feat164-s4f-qualification-20261025"
+    },
+    {
+      "order": 15,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4f-qualification-20261025/yijie-contracts",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+      "expected_HEAD": "1b357cce0575c492f3715b316ee5f254051acf80",
+      "expected_status": "",
+      "expected_index_sha256": "0c6bb2f654736f4738875f0650d2c09c3f6614c673f96da44c63e158dfdbe13c",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts/.git/worktrees/yijie-contracts3",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts/.git",
+      "device": 16777231,
+      "inode": 58342211,
+      "named_refs_containing_HEAD": [
+        "refs/heads/chore/retirement-baseline-20260905 5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2",
+        "refs/heads/feat/feat164-consolidation-20261027 d5792d6aad18352ce8d1c5d510d345004cab3bd6",
+        "refs/heads/retained/feat164-20261027/archive-v5-contract d5792d6aad18352ce8d1c5d510d345004cab3bd6"
+      ],
+      "nested_worktrees_to_remove_first": [],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4f-qualification-20261025/yijie-contracts"
+      ],
+      "ignored_state_evidence": "!! node_modules/\n",
+      "archive_root": "feat164-s4f-qualification-20261025"
+    },
+    {
+      "order": 16,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4f-qualification-20261025/yijie-desktop",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+      "expected_HEAD": "277f59eeef538d159e43bb1570767ca4f2f5f72a",
+      "expected_status": "",
+      "expected_index_sha256": "b31d4873f16eb96eee2eec2106cc578b983bbb44d4b387055b02ab471edc56c7",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.git/worktrees/yijie-desktop3",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.git",
+      "device": 16777231,
+      "inode": 58343667,
+      "named_refs_containing_HEAD": [
+        "refs/heads/chore/retirement-baseline-20260905 fd0c575e4465dea6bb72ec9681248f664000551b",
+        "refs/heads/feat/feat164-consolidation-20261027 a211c2d04def6091352c7b3674a49355cdee18ed",
+        "refs/heads/retained/feat164-20261027/daily-desktop 39b0fbeb3a8c092768a7f0dfe64bd595d5e6be00",
+        "refs/heads/retained/feat164-20261027/third-search-tools 92ef0411a6e98f36886f2b7a2017e40fe2d21340",
+        "refs/heads/retained/feat164-20261027/unsent-cancel-tests 4e1f1f980d148a6b46e21e68eb508caa4da5dae4"
+      ],
+      "nested_worktrees_to_remove_first": [
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4f-qualification-20261025/yijie-desktop/.local/skills-pinned-10c45be"
+      ],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4f-qualification-20261025/yijie-desktop"
+      ],
+      "ignored_state_evidence": "!! .local/\n!! dist/\n!! docs/design/node_modules/\n!! node_modules\n!! src-tauri/gen/\n!! src-tauri/target/\n!! tools/public-api-generator/node_modules/\n",
+      "archive_root": "feat164-s4f-qualification-20261025"
+    },
+    {
+      "order": 17,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4e-qualification-20261025/yijie-desktop/.local/skills-pinned-10c45be",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills",
+      "expected_HEAD": "10c45bec29603b002e861e1499d5b4e684251af5",
+      "expected_status": "",
+      "expected_index_sha256": "5c52dc7032fc622ad5c47b56f039146cef68fb311ff8d1e82e708e6b2debde35",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills/.git/worktrees/skills-pinned-10c45be2",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills/.git",
+      "device": 16777231,
+      "inode": 58321849,
+      "named_refs_containing_HEAD": [
+        "refs/heads/develop 595c927ae101d3d31c234f60565041eee0864680",
+        "refs/remotes/origin/develop 595c927ae101d3d31c234f60565041eee0864680"
+      ],
+      "nested_worktrees_to_remove_first": [],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4e-qualification-20261025/yijie-desktop/.local/skills-pinned-10c45be"
+      ],
+      "ignored_state_evidence": "!! dist/\n!! node_modules/\n",
+      "archive_root": "feat164-s4e-qualification-20261025"
+    },
+    {
+      "order": 18,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4e-qualification-20261025/yijie-agent-host",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+      "expected_HEAD": "b9155a3936c6ff5c6aedd52778d975de52b95d06",
+      "expected_status": "",
+      "expected_index_sha256": "e366003b159e481ee89b0920659e8f05bf7a49d92e283fbe3474ec4c20961a67",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.git/worktrees/yijie-agent-host2",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.git",
+      "device": 16777231,
+      "inode": 57999477,
+      "named_refs_containing_HEAD": [
+        "refs/heads/chore/retirement-baseline-20260905 d49c005f8e533e1251179bb2319f6e3e2ec2db08",
+        "refs/heads/feat/feat164-consolidation-20261027 7309101726dcecd48b2caa02401cfcdd6126f1fb",
+        "refs/heads/retained/feat164-20261027/daily-host a3d8767add3855a28c18adbbd51251fae3520ac0",
+        "refs/heads/retained/feat164-20261027/retained-s2-tests f97d2216001e78df02e93c972a6aec2e1d772f58"
+      ],
+      "nested_worktrees_to_remove_first": [],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4e-qualification-20261025/yijie-agent-host"
+      ],
+      "ignored_state_evidence": "",
+      "archive_root": "feat164-s4e-qualification-20261025"
+    },
+    {
+      "order": 19,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4e-qualification-20261025/yijie-contracts",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+      "expected_HEAD": "1b357cce0575c492f3715b316ee5f254051acf80",
+      "expected_status": "",
+      "expected_index_sha256": "695c0774566abc6e740609c4dcb5876fdc0f0f719f28afa11d211fd2163d59ae",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts/.git/worktrees/yijie-contracts2",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts/.git",
+      "device": 16777231,
+      "inode": 57998616,
+      "named_refs_containing_HEAD": [
+        "refs/heads/chore/retirement-baseline-20260905 5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2",
+        "refs/heads/feat/feat164-consolidation-20261027 d5792d6aad18352ce8d1c5d510d345004cab3bd6",
+        "refs/heads/retained/feat164-20261027/archive-v5-contract d5792d6aad18352ce8d1c5d510d345004cab3bd6"
+      ],
+      "nested_worktrees_to_remove_first": [],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4e-qualification-20261025/yijie-contracts"
+      ],
+      "ignored_state_evidence": "!! node_modules/\n",
+      "archive_root": "feat164-s4e-qualification-20261025"
+    },
+    {
+      "order": 20,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4e-qualification-20261025/yijie-desktop",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+      "expected_HEAD": "2fb898942cb4c3b81e34feb5169bd861340a4040",
+      "expected_status": "",
+      "expected_index_sha256": "3bac5276f27338e9e091684b4b97d2e3c2b9933c17038ddf8facd414229dbd1c",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.git/worktrees/yijie-desktop2",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.git",
+      "device": 16777231,
+      "inode": 58000068,
+      "named_refs_containing_HEAD": [
+        "refs/heads/chore/retirement-baseline-20260905 fd0c575e4465dea6bb72ec9681248f664000551b",
+        "refs/heads/feat/feat164-consolidation-20261027 a211c2d04def6091352c7b3674a49355cdee18ed",
+        "refs/heads/retained/feat164-20261027/daily-desktop 39b0fbeb3a8c092768a7f0dfe64bd595d5e6be00",
+        "refs/heads/retained/feat164-20261027/third-search-tools 92ef0411a6e98f36886f2b7a2017e40fe2d21340",
+        "refs/heads/retained/feat164-20261027/unsent-cancel-tests 4e1f1f980d148a6b46e21e68eb508caa4da5dae4"
+      ],
+      "nested_worktrees_to_remove_first": [
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4e-qualification-20261025/yijie-desktop/.local/skills-pinned-10c45be"
+      ],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4e-qualification-20261025/yijie-desktop"
+      ],
+      "ignored_state_evidence": "!! .local/\n!! dist/\n!! docs/design/node_modules/\n!! node_modules\n!! src-tauri/gen/\n!! src-tauri/target/\n!! tools/public-api-generator/node_modules/\n",
+      "archive_root": "feat164-s4e-qualification-20261025"
+    },
+    {
+      "order": 21,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop/.local/skills-pinned-10c45be",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills",
+      "expected_HEAD": "10c45bec29603b002e861e1499d5b4e684251af5",
+      "expected_status": "",
+      "expected_index_sha256": "9ba652d771ecdbc609146762906b415cd0b7414afc2ca807997768792b99a2dc",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills/.git/worktrees/skills-pinned-10c45be1",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills/.git",
+      "device": 16777231,
+      "inode": 57944097,
+      "named_refs_containing_HEAD": [
+        "refs/heads/develop 595c927ae101d3d31c234f60565041eee0864680",
+        "refs/remotes/origin/develop 595c927ae101d3d31c234f60565041eee0864680"
+      ],
+      "nested_worktrees_to_remove_first": [],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop/.local/skills-pinned-10c45be"
+      ],
+      "ignored_state_evidence": "!! dist/\n!! node_modules/\n",
+      "archive_root": "feat164-qualification-20261025"
+    },
+    {
+      "order": 22,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/connectors-s4-source",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors",
+      "expected_HEAD": "1f157260d6dd339172712e1c649258902db45050",
+      "expected_status": "",
+      "expected_index_sha256": "214b8839a9ee6758934a1e44db41ad824a72eccf79def2958831c575bbf36857",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/.git/worktrees/connectors-s4-source",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/.git",
+      "device": 16777231,
+      "inode": 57835234,
+      "named_refs_containing_HEAD": [
+        "refs/heads/develop cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9"
+      ],
+      "nested_worktrees_to_remove_first": [],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/connectors-s4-source"
+      ],
+      "ignored_state_evidence": "!! bin/\n",
+      "archive_root": "feat164-qualification-20261025"
+    },
+    {
+      "order": 23,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/skills-s4-source",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills",
+      "expected_HEAD": "595c927ae101d3d31c234f60565041eee0864680",
+      "expected_status": "",
+      "expected_index_sha256": "d8a995447acacf160e4b82e4c8c786ba21f3a3e4a6ef2f4b837d7bb58c7a07b8",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills/.git/worktrees/skills-s4-source",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills/.git",
+      "device": 16777231,
+      "inode": 57843714,
+      "named_refs_containing_HEAD": [
+        "refs/heads/develop 595c927ae101d3d31c234f60565041eee0864680",
+        "refs/remotes/origin/develop 595c927ae101d3d31c234f60565041eee0864680"
+      ],
+      "nested_worktrees_to_remove_first": [],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/skills-s4-source"
+      ],
+      "ignored_state_evidence": "!! dist/\n!! node_modules/\n",
+      "archive_root": "feat164-qualification-20261025"
+    },
+    {
+      "order": 24,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-agent-host",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+      "expected_HEAD": "cac2d4d7e1df02868a370e204959e1842c3362c3",
+      "expected_status": "",
+      "expected_index_sha256": "3ff2a46049acbd40225a0ba188c522ab2381bfdd451ab28d3b36c863b43b1a06",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.git/worktrees/yijie-agent-host1",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.git",
+      "device": 16777231,
+      "inode": 57531704,
+      "named_refs_containing_HEAD": [
+        "refs/heads/chore/retirement-baseline-20260905 d49c005f8e533e1251179bb2319f6e3e2ec2db08",
+        "refs/heads/feat/feat164-consolidation-20261027 7309101726dcecd48b2caa02401cfcdd6126f1fb",
+        "refs/heads/retained/feat164-20261027/daily-host a3d8767add3855a28c18adbbd51251fae3520ac0",
+        "refs/heads/retained/feat164-20261027/retained-s2-tests f97d2216001e78df02e93c972a6aec2e1d772f58"
+      ],
+      "nested_worktrees_to_remove_first": [],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-agent-host"
+      ],
+      "ignored_state_evidence": "!! .local/\n!! artifact-mcp/target/\n",
+      "archive_root": "feat164-qualification-20261025"
+    },
+    {
+      "order": 25,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-contracts",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+      "expected_HEAD": "eddc64f95d81c26ca1678cc648d177c081f7904d",
+      "expected_status": "",
+      "expected_index_sha256": "05d0030446edd9568d8853b748c638df716fb65ede61b1f27a0cc9ee890b4161",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts/.git/worktrees/yijie-contracts1",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts/.git",
+      "device": 16777231,
+      "inode": 57532259,
+      "named_refs_containing_HEAD": [
+        "refs/heads/chore/retirement-baseline-20260905 5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2",
+        "refs/heads/feat/feat164-consolidation-20261027 d5792d6aad18352ce8d1c5d510d345004cab3bd6",
+        "refs/heads/retained/feat164-20261027/archive-v5-contract d5792d6aad18352ce8d1c5d510d345004cab3bd6"
+      ],
+      "nested_worktrees_to_remove_first": [],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-contracts"
+      ],
+      "ignored_state_evidence": "!! node_modules/\n",
+      "archive_root": "feat164-qualification-20261025"
+    },
+    {
+      "order": 26,
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop",
+      "parent_repository": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+      "expected_HEAD": "a0a474333ba03186b36f30fa3ab86287abfc5c15",
+      "expected_status": "",
+      "expected_index_sha256": "b2b9714533c1a0487ad0ab685aa08f2781844ee1818176275d1bccead149a3ed",
+      "git_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.git/worktrees/yijie-desktop1",
+      "common_dir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.git",
+      "device": 16777231,
+      "inode": 57533051,
+      "named_refs_containing_HEAD": [
+        "refs/heads/chore/retirement-baseline-20260905 fd0c575e4465dea6bb72ec9681248f664000551b",
+        "refs/heads/feat/feat164-consolidation-20261027 a211c2d04def6091352c7b3674a49355cdee18ed",
+        "refs/heads/retained/feat164-20261027/daily-desktop 39b0fbeb3a8c092768a7f0dfe64bd595d5e6be00",
+        "refs/heads/retained/feat164-20261027/third-search-tools 92ef0411a6e98f36886f2b7a2017e40fe2d21340",
+        "refs/heads/retained/feat164-20261027/unsent-cancel-tests 4e1f1f980d148a6b46e21e68eb508caa4da5dae4"
+      ],
+      "nested_worktrees_to_remove_first": [
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop/.local/skills-pinned-10c45be"
+      ],
+      "method": "normal git worktree remove, no --force",
+      "proposed_command_NOT_EXECUTED": [
+        "git",
+        "--no-optional-locks",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+        "worktree",
+        "remove",
+        "--",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop"
+      ],
+      "ignored_state_evidence": "!! .local/\n!! dist/\n!! docs/design/node_modules/\n!! node_modules\n!! src-tauri/gen/\n!! src-tauri/target/\n!! tools/public-api-generator/node_modules\n",
+      "archive_root": "feat164-qualification-20261025"
+    }
+  ],
+  "keep_paths": [
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-admin-web",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-api",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-infra",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-coze",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-knowledge",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/daily-source/20261027-01",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/consolidation-audit",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/FEAT-164-preservation-20261027",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/FEAT-164-consolidation-audit-20261027",
+    "/Users/jack/Library/Application Support/com.yijie.ai",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/demo-fast",
+    "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.local/secrets"
+  ],
+  "cache_roots": [
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d3-ready-candidate-20261027/yijie-contracts/node_modules",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-01.jsonl",
+      "sha256": "5d0a3510b9035cf014dd2b9e44211713a5635f3d205d3255e27ec94bac42cbbc",
+      "entries": 26,
+      "regular_logical_bytes": 27198
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d3-ready-candidate-20261027/yijie-agent-host/artifact-mcp/target",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-02.jsonl",
+      "sha256": "b98a4845b3b3ea158fada776e385cdcac5317c3b8f00ada05a95f8e11e43a764",
+      "entries": 1350,
+      "regular_logical_bytes": 351984237
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d3-ready-candidate-20261027/yijie-desktop/node_modules",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-03.jsonl",
+      "sha256": "a965f920828f6235973030efd90f87ec34a4fba1393ad68de2826f6ebeac43f4",
+      "entries": 47,
+      "regular_logical_bytes": 19726
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d3-ready-candidate-20261027/yijie-desktop/tools/public-api-generator/node_modules",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-04.jsonl",
+      "sha256": "c7f7b93be36b91fd9eb50a742233b2d1803fc3add4f9d9a117b8e60e6e05ca3d",
+      "entries": 7,
+      "regular_logical_bytes": 7395
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d3-ready-candidate-20261027/yijie-desktop/docs/design/node_modules",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-05.jsonl",
+      "sha256": "33d6c58c854d75fbaffdd2dcf8aa0cec2c682386caabe1efcdfde13ff7c1b22c",
+      "entries": 8,
+      "regular_logical_bytes": 7626
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d3-ready-candidate-20261027/yijie-desktop/src-tauri/target",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-06.jsonl",
+      "sha256": "2bd33ced1c896310194b32ef71d5ab72d09b523abf93f21b94188d4d4b701c5c",
+      "entries": 11171,
+      "regular_logical_bytes": 6459191674
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d4-history-fix-candidate-20261027/yijie-contracts/node_modules",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-07.jsonl",
+      "sha256": "0574f01b062650e23a0c2ab3725aa3812d8b261f2250bb8ec44d18d4d3bfa5a6",
+      "entries": 16,
+      "regular_logical_bytes": 33
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d4-history-fix-candidate-20261027/yijie-agent-host/artifact-mcp/target",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-08.jsonl",
+      "sha256": "f17b1ba7a19fb34d66bd886ac1f10f6f0abdc70f9b28dab1a4feff6991c0afd4",
+      "entries": 1350,
+      "regular_logical_bytes": 351987005
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d4-history-fix-candidate-20261027/yijie-desktop/node_modules",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-09.jsonl",
+      "sha256": "cc30016729351ec037a34a71a3cbd94dccc1ad0abf4e2ad3c564dde59bd7a72d",
+      "entries": 38,
+      "regular_logical_bytes": 1131
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d4-history-fix-candidate-20261027/yijie-desktop/tools/public-api-generator/node_modules",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-10.jsonl",
+      "sha256": "f834befa7cef708a186543e6983edb0c2445382a628b7cc37715082cc1f92b08",
+      "entries": 7,
+      "regular_logical_bytes": 7449
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d4-history-fix-candidate-20261027/yijie-desktop/docs/design/node_modules",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-11.jsonl",
+      "sha256": "c22bbd216238c45948f774c0b310f8ab1d96e86a55e49e2131e9ce205e301e65",
+      "entries": 8,
+      "regular_logical_bytes": 7572
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d4-history-fix-candidate-20261027/yijie-desktop/src-tauri/target",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-12.jsonl",
+      "sha256": "9b319c875f51558a840170e1146b060ccafacca91c7f97509c0ae836400c3b2a",
+      "entries": 10905,
+      "regular_logical_bytes": 6006438453
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d5-candidate-20261027/yijie-contracts/node_modules",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-13.jsonl",
+      "sha256": "ecf312710eb20e874f1d39bc0af41c486ee98114e442625225a45c4d7843ab10",
+      "entries": 16,
+      "regular_logical_bytes": 0
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d5-candidate-20261027/yijie-agent-host/artifact-mcp/target",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-14.jsonl",
+      "sha256": "9e567afffd73dacf87bc31b9db9f5717f2beb5a8e4ea016dae6363642c3478d3",
+      "entries": 1350,
+      "regular_logical_bytes": 351981485
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d5-candidate-20261027/yijie-desktop/node_modules",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-15.jsonl",
+      "sha256": "b9df349a676e1494be9e2b68aae2f4dc47ae782e29cbc56dd0a8d1a9cd1f3532",
+      "entries": 34,
+      "regular_logical_bytes": 0
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d5-candidate-20261027/yijie-desktop/tools/public-api-generator/node_modules",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-16.jsonl",
+      "sha256": "a06b06f94dc0cbdaa4b7bc9512cb89dc1753919c6a8f767030c3efddd78a4e71",
+      "entries": 7,
+      "regular_logical_bytes": 7341
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d5-candidate-20261027/yijie-desktop/docs/design/node_modules",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-17.jsonl",
+      "sha256": "b73fa1d0eebe9d93a6a24bb101cec25bf99da3afa99a8549350fcffe83e41a3a",
+      "entries": 5,
+      "regular_logical_bytes": 0
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-d5-candidate-20261027/yijie-desktop/src-tauri/target",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-18.jsonl",
+      "sha256": "bd64efd8c99e2f6616f1ef177fbbc8aa148483db821fb9bb131258f8be5fe9be",
+      "entries": 6447,
+      "regular_logical_bytes": 4361179075
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-contracts/node_modules",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-19.jsonl",
+      "sha256": "e53caecb2d0e1e530444c2fe4d5417d04492e76433ab57924750e6b1ca80bd65",
+      "entries": 6143,
+      "regular_logical_bytes": 225841799
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/skills-s4-source/node_modules",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-20.jsonl",
+      "sha256": "941c5b14a67764ecb9960c6b3f7cb0212eafdc979188b44b0ded7c3a54df3464",
+      "entries": 8,
+      "regular_logical_bytes": 0
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-agent-host/artifact-mcp/target",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-21.jsonl",
+      "sha256": "e88b8d4533a67c3c1a723df080a4da6f79048e576130b4545d7a02f40eba91d8",
+      "entries": 1350,
+      "regular_logical_bytes": 351981937
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop/.local/skills-pinned-10c45be/node_modules",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-22.jsonl",
+      "sha256": "c90201c29f0aa7cc3b5293dad91e1810d882ba0d1d988aaa1cbe111fb8eaa13d",
+      "entries": 8,
+      "regular_logical_bytes": 0
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop/docs/design/node_modules",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-23.jsonl",
+      "sha256": "0df05e372d8936d79b01ebfa877411e5324d84b2517d28673d3ce344d79d8c5b",
+      "entries": 7,
+      "regular_logical_bytes": 7395
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/yijie-desktop/src-tauri/target",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-24.jsonl",
+      "sha256": "b7e809ba627b91a274707159c4cfa7ae339e311e9bc1c59a693ef4cab4c1f654",
+      "entries": 24031,
+      "regular_logical_bytes": 21225182460
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4e-qualification-20261025/yijie-contracts/node_modules",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-25.jsonl",
+      "sha256": "ab8e6ebbb57bc5fb1c2f33d5f05c9100318b32dc1dee423c9ce834cdec494935",
+      "entries": 15,
+      "regular_logical_bytes": 0
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4e-qualification-20261025/yijie-desktop/tools/public-api-generator/node_modules",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-26.jsonl",
+      "sha256": "bbae959ed0a932d47cebee64a1e5a454ffa26a5671635660a75c91fd9034bcfd",
+      "entries": 7,
+      "regular_logical_bytes": 7176
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4e-qualification-20261025/yijie-desktop/.local/skills-pinned-10c45be/node_modules",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-27.jsonl",
+      "sha256": "053d9862ad7fb75f83db6fc54453dc1496c4ac6c89245eeaf93afb3fef2204cd",
+      "entries": 8,
+      "regular_logical_bytes": 0
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4e-qualification-20261025/yijie-desktop/docs/design/node_modules",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-28.jsonl",
+      "sha256": "e8d399f9765111b69ddb781176a3398ccbc0cd0c5e13f54f7ecdf3779d835bf0",
+      "entries": 7,
+      "regular_logical_bytes": 7407
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4e-qualification-20261025/yijie-desktop/src-tauri/target",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-29.jsonl",
+      "sha256": "999b52c031b9f2ed84893759b3d1273c6bb210da54fd7e44a2a85004498c83a6",
+      "entries": 24410,
+      "regular_logical_bytes": 21842763624
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4f-qualification-20261025/yijie-contracts/node_modules",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-30.jsonl",
+      "sha256": "b546276da2a3b2e80c9e0fd959737cd31a19a2c8f4738c609ce8a653eaf20b76",
+      "entries": 15,
+      "regular_logical_bytes": 0
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4f-qualification-20261025/yijie-desktop/tools/public-api-generator/node_modules",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-31.jsonl",
+      "sha256": "cab408508c971bd302b237217458d92e870ec1d72704abf79bba5bdb563872a5",
+      "entries": 4,
+      "regular_logical_bytes": 0
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4f-qualification-20261025/yijie-desktop/.local/skills-pinned-10c45be/node_modules",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-32.jsonl",
+      "sha256": "07ccf1163ab7510dfba180c82e3582e679dda3255acb5689f89c491839612088",
+      "entries": 8,
+      "regular_logical_bytes": 0
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4f-qualification-20261025/yijie-desktop/docs/design/node_modules",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-33.jsonl",
+      "sha256": "7825d5035e87033630b49cb9841cc600edc26c9439915c35cb3cf93b90f9cc57",
+      "entries": 7,
+      "regular_logical_bytes": 7407
+    },
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-s4f-qualification-20261025/yijie-desktop/src-tauri/target",
+      "snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/cleanup-audit/20261028-final-six/cache-34.jsonl",
+      "sha256": "a4894d2835fa359cd374a570dc65221c4571e0f4e16b766c39deedcbd5aa47d7",
+      "entries": 26221,
+      "regular_logical_bytes": 24064792943
+    }
+  ],
+  "cache_policy": "34 regenerable roots not fully archived; all canonical Apps and direct outputs content archived; new 12 Finder files in verified delta; never follow links into retained originals",
+  "embedded_historical_repository": {
+    "status": "PASS_ARCHIVED_SNAPSHOT_ONLY",
+    "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/s4c-before-build-20261025/isolated-app-data/demo-fast-model-candidate-v1/runtime/.tmp/plugins",
+    "count": 1,
+    "registered_worktree": false,
+    "live_original_repo": false,
+    "observations": [
+      {
+        "copy": "source",
+        "root": "/Users/jack/Downloads/Personal_Info/CrossBSD/feat164-qualification-20261025/s4c-before-build-20261025/isolated-app-data/demo-fast-model-candidate-v1/runtime/.tmp/plugins",
+        "fsck": "PASS",
+        "refs": "refs/codex/curated-sync 0722921d5542fc593105c27bd52630babd8b8c2a\nrefs/heads/main 0722921d5542fc593105c27bd52630babd8b8c2a\n",
+        "HEAD_file": "ref: refs/heads/main\n"
+      },
+      {
+        "copy": "archive-restored",
+        "root": "/Users/jack/Downloads/Personal_Info/CrossBSD/FEAT-164-preservation-20261027/verification/feat164-qualification-20261025/feat164-qualification-20261025/s4c-before-build-20261025/isolated-app-data/demo-fast-model-candidate-v1/runtime/.tmp/plugins",
+        "fsck": "PASS",
+        "refs": "refs/codex/curated-sync 0722921d5542fc593105c27bd52630babd8b8c2a\nrefs/heads/main 0722921d5542fc593105c27bd52630babd8b8c2a\n",
+        "HEAD_file": "ref: refs/heads/main\n"
+      }
+    ],
+    "safe_boundary": "inside old full historical data snapshot; .git payload already full archive and current hashes match; only eligible with entire exact top container"
+  },
+  "old_tip_protection_bundles": [
+    {
+      "repo": "yijie-agent-host",
+      "bundle": "/Users/jack/Downloads/Personal_Info/CrossBSD/FEAT-164-preservation-20261027/bundles/yijie-agent-host.bundle",
+      "sha256": "e1e6753f47c7f2ed660efc355aff17b59ad9f8da8706801f01be81765bad522c",
+      "bytes": 1227619,
+      "verify": "PASS",
+      "standalone_restored_fsck": "PASS",
+      "protected_refs": [
+        {
+          "ref": "refs/heads/retained/feat164-20261027/daily-host",
+          "head": "a3d8767add3855a28c18adbbd51251fae3520ac0"
+        },
+        {
+          "ref": "refs/heads/retained/feat164-20261027/retained-s2-tests",
+          "head": "f97d2216001e78df02e93c972a6aec2e1d772f58"
+        }
+      ],
+      "covered_candidate_heads": [
+        "7927ee7b385cb5536c3647632d1bac0cb7c56fea",
+        "a3d8767add3855a28c18adbbd51251fae3520ac0",
+        "b9155a3936c6ff5c6aedd52778d975de52b95d06",
+        "cac2d4d7e1df02868a370e204959e1842c3362c3"
+      ]
+    },
+    {
+      "repo": "yijie-contracts",
+      "bundle": "/Users/jack/Downloads/Personal_Info/CrossBSD/FEAT-164-preservation-20261027/bundles/yijie-contracts.bundle",
+      "sha256": "17d326d47063b53044f3fa2ae5f157b04585768ceae0bd1b52ae1b991b4b9aa8",
+      "bytes": 1450300,
+      "verify": "PASS",
+      "standalone_restored_fsck": "PASS",
+      "protected_refs": [
+        {
+          "ref": "refs/heads/retained/feat164-20261027/archive-v5-contract",
+          "head": "d5792d6aad18352ce8d1c5d510d345004cab3bd6"
+        }
+      ],
+      "covered_candidate_heads": [
+        "1b357cce0575c492f3715b316ee5f254051acf80",
+        "c5d138374c102f1a8a11e328a869ec8f91724efd",
+        "d5792d6aad18352ce8d1c5d510d345004cab3bd6",
+        "eddc64f95d81c26ca1678cc648d177c081f7904d"
+      ]
+    },
+    {
+      "repo": "yijie-desktop",
+      "bundle": "/Users/jack/Downloads/Personal_Info/CrossBSD/FEAT-164-preservation-20261027/bundles/yijie-desktop.bundle",
+      "sha256": "e54bdb8051301cf727b03337ff47231e3ae0b59e15c37725a1bb97c5041ada77",
+      "bytes": 120337367,
+      "verify": "PASS",
+      "standalone_restored_fsck": "PASS",
+      "protected_refs": [
+        {
+          "ref": "refs/heads/retained/feat164-20261027/daily-desktop",
+          "head": "39b0fbeb3a8c092768a7f0dfe64bd595d5e6be00"
+        },
+        {
+          "ref": "refs/heads/retained/feat164-20261027/unsent-cancel-tests",
+          "head": "4e1f1f980d148a6b46e21e68eb508caa4da5dae4"
+        },
+        {
+          "ref": "refs/heads/retained/feat164-20261027/third-search-tools",
+          "head": "92ef0411a6e98f36886f2b7a2017e40fe2d21340"
+        }
+      ],
+      "covered_candidate_heads": [
+        "277f59eeef538d159e43bb1570767ca4f2f5f72a",
+        "2fb898942cb4c3b81e34feb5169bd861340a4040",
+        "39b0fbeb3a8c092768a7f0dfe64bd595d5e6be00",
+        "71e39c4e9fc38940c03b49f9b945fd4c5f6d987c",
+        "841f7c71ed3549fe02a70cff608cbbae713d6808",
+        "a0a474333ba03186b36f30fa3ab86287abfc5c15"
+      ]
+    }
+  ],
+  "new_integration_bundles": [
+    {
+      "repo": "yijie-agent-host",
+      "bundle": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/consolidation-audit/20261027-01/integrated-bundles/yijie-agent-host.bundle",
+      "sha256": "faa5c0246b7a4ffa392a2aed6fd38ddbb148da305551cee82b38b7354a577066",
+      "bytes": 1215477,
+      "exact_ref": "refs/heads/feat/feat164-consolidation-20261027",
+      "head": "7309101726dcecd48b2caa02401cfcdd6126f1fb",
+      "verify_and_restored_fsck": "PASS"
+    },
+    {
+      "repo": "yijie-desktop",
+      "bundle": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/consolidation-audit/20261027-01/integrated-bundles/yijie-desktop.bundle",
+      "sha256": "dd381a2b93dde9002d937860f77ca3c33d6479d3315dfa343eb56b55023074c0",
+      "bytes": 120319144,
+      "exact_ref": "refs/heads/feat/feat164-consolidation-20261027",
+      "head": "a211c2d04def6091352c7b3674a49355cdee18ed",
+      "verify_and_restored_fsck": "PASS"
+    },
+    {
+      "repo": "yijie-contracts",
+      "bundle": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/consolidation-audit/20261027-01/integrated-bundles/yijie-contracts.bundle",
+      "sha256": "cae6c90b86aff86ba19fe16337055d373da544be7f9325d96e02567c3bf04a0f",
+      "bytes": 1444073,
+      "exact_ref": "refs/heads/feat/feat164-consolidation-20261027",
+      "head": "d5792d6aad18352ce8d1c5d510d345004cab3bd6",
+      "verify_and_restored_fsck": "PASS"
+    }
+  ],
+  "non_bundle_HEAD_protection": "Skills and Connectors rely on retained original develop refs and complete source/material snapshots; not falsely covered by Host/Desktop/Contracts bundles",
+  "Finder_delta": {
+    "status": "PASS_WITH_MACOS_ADDED_RESTORE_PROVENANCE",
+    "archive_sha256": "de8a8693a054d8e5abe8028c5d7bbc3bdd1d0ad1664ed802f61b6d9a9b58506b",
+    "manifest_sha256": "6e62d66e816e87c65ba8888c8145303781c99860050a2c510bdbdcd5981ac5d6",
+    "members": 28,
+    "files": 12,
+    "original_xattrs_retained_in_archive_and_restored": true,
+    "PAX_xattrs_checked": 29,
+    "restored_extra_provenance_count": 12,
+    "all_payload_mode_uid_gid_mtime_flags_ACL_match": true,
+    "original_unchanged": true,
+    "no_permission_or_xattr_setters": true
+  },
+  "rollback": {
+    "immediate": "Normal quit, use existing new-source paused-Kimi entry; it does not stop MiniMax or revert product version. Both current entries and new source stay outside cleanup.",
+    "old_D5": "Old .command alone is insufficient after deleting six roots. Validate archives/bundles; reconstruct six roots dependency-first in exact original paths under separate recovery authorization, register 26 worktrees from fixed commits without restoring stale .git pointers, restore archived non-cache payload/modes, independently recreate package dependencies from frozen locks and cache symlink inventories, check old receipt/binding and original Home compatibility, then zero-model restricted acceptance and only then select preserved old entry.",
+    "data": "Never restore old daily DB/WAL over newer data; no schema downgrade, repeated D3, manual checkpoint or WAL deletion. Incompatible schema or missing offline dependency stops recovery.",
+    "recovery_order": [
+      "feat164-qualification-20261025",
+      "feat164-s4e-qualification-20261025",
+      "feat164-s4f-qualification-20261025",
+      "feat164-d3-ready-candidate-20261027",
+      "feat164-d4-history-fix-candidate-20261027",
+      "feat164-d5-candidate-20261027"
+    ],
+    "old_entries": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/consolidation-audit/20261028-01/entry-rollback",
+    "not_claimed": "No live post-deletion old-D5 restore rehearsal, no time guarantee, no off-machine disaster recovery. Existing restore payload/fsck and new paused-entry acceptance are actual evidence."
+  },
+  "execution_preconditions": [
+    "Explicit approval of this exact manifest digest and six/26 scope",
+    "Fresh full source/cache/delta/archive/bundle/ref checks; exact inode/device/HEAD/status and no locked/prunable child",
+    "Fresh no process/open handle check and normal quit only; if unavailable stop",
+    "Current new candidate, receipt, activation and both entries still match report71; keep data and full backups",
+    "No new incoming active dependency; remove caller tops before target tops and nested worktrees before parents",
+    "Recheck each step, stop on first discrepancy or normal-remove failure; no --force or broad git prune/clean",
+    "Postcheck 12 originals, protected WIP/ledgers/reservations, new entry/bundle, archives and worktree registry; App/model start is not part of deletion unless separately approved"
+  ],
+  "deleted_roots": 0,
+  "removed_worktrees": 0,
+  "model_HTTP": 0,
+  "push": false
+}
