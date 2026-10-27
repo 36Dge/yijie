@@ -650,3 +650,14 @@ D1 PASS_OFFLINE、58原accepted local及Owner安全替代保持，完整App正�
 D2调查完成但下一阶段NO_GO：6个历史已消费grant均terminal/completed、已native_terminal release且无reservation，现有维护occupied>0谓词仍拒绝；旧catalog仅Kimi基础指令与冻结current前身不同，匹配原dirty FEAT163常量；workflow state ready但Docker无进程、socket ECONNREFUSED，鉴权GET未到达。首次工具错误、两次workflow失败及完整归因保留，不把失败写PASS。工具资格与真实环境结论分列，见d2-results-summary.json、d2-tool-preflight-rca.md。
 
 D3—D5未授权/执行；保留原授权/占额、WAL、秘密及账本，不清零/退款、不放宽白名单、不启动依赖。58原已接受证据和Owner排除/替代保持，G4/G5/G6不晋升。
+
+
+## D3前阻塞修复及新候选资格
+
+<!-- evidence: E164-D3-READY -->
+
+63号按Owner本轮执行指令完成B01/B02及B03。私有semantic，无公共wire/schema或Runtime变化。Host a3d8767精确前身、本地Desktop841f7c7（实现321+canonical来源冻结）新prepare-only；119文件/1216来源，App4f7adca/receipt0e6fe81，r5仍283d12e。6项结清纯值、真实Rust副本1项、SQL29/37×两身份4项、Host1顶层12子项、来源入口6项、D2回归4项、严格Clippy/vet/lint/docs及最终串行19来源通过。0项误选、fmt和前两来源失败、第三来源HEAD过期均保留，不作当前PASS。
+
+D2日常源/封存17,389文件仍一致，SQL37真实副本occupied_grants=6保持而unsettled_grant_history=0。正常删除目标的原run/recovery用于已结清证明，原计数/操作/授权不改。workflow原退出255已归档，四停止态volume备份→原容器恢复/业务事实核对→正常停止→canonical up；最终六healthy及鉴权/editor READY，业务事实保持，仅两次正常principal审计追加。Docker/workflow保持运行；不混淆其生命周期变化与日常数据保护。
+
+D3_PRECONDITIONS_READY，不代表实际日常迁移/启动或G4/G5/G6通过。旧模型账本/预占/dirty保持，本轮0真实/本机模型HTTP。证据d3-ready-summary/source-binding/workflow-summary及私有绑定索引，完整报告63。

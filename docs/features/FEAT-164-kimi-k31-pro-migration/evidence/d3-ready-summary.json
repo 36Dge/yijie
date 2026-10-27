@@ -1,0 +1,70 @@
+{
+  "status": "D3_PRECONDITIONS_READY",
+  "at": "2026-10-27T11:56:58.587977+08:00",
+  "report": "63-pre-d3-blockers-fixed-and-ready.md",
+  "contract_impact": "semantic",
+  "resolved": {
+    "D2-B01": "one production SQL authority; all histories reconcile without refund or rewrite; real Rust read-only preflight PASS",
+    "D2-B02": "exact reviewed predecessor admitted only with explicit existing flag; legacy/trust preserved",
+    "D2-B03": "normal original recovery and canonical up; six healthy authenticated-ready primaries; preserved business facts"
+  },
+  "candidate": {
+    "status": "PASS_PREPARE_ONLY_AND_SAME_RECEIPT",
+    "desktop_commit": "841f7c71ed3549fe02a70cff608cbbae713d6808",
+    "host_commit": "a3d8767add3855a28c18adbbd51251fae3520ac0",
+    "bundle_files": 119,
+    "source_inputs": 1216,
+    "app_sha256": "4f7adcadc59db4a6e4cf23e700ebab5858b6ae9d953cd7401780d5778cab0f42",
+    "receipt_sha256": "0e6fe8191ffc027d4f1efedf14f7e8562ee1d876068aafa7386410202a2878a7",
+    "host_binary_sha256": "3be7cb7321362eb90cc0eed929438f27b550c157731a1ab98b3a2ce2ab0d4002",
+    "runtime_sha256": "283d12e16b124942302fcdc8281c729a8a7f676498f06df1d2646292905f579e",
+    "new_data_homes_created": false,
+    "app_started": false,
+    "model_http_added": 0,
+    "command": [
+      "bash",
+      "scripts/run-local-demo-fast.sh",
+      "--packaged",
+      "--kimi-k31-daily",
+      "--prepare-only",
+      "--reopen"
+    ]
+  },
+  "checks": {
+    "settlement_value_tests": 6,
+    "native_readonly_preflight": 1,
+    "natural_legacy_matrix": 4,
+    "host_top_level": 1,
+    "host_subtests": 12,
+    "generation_entry_tests": 6,
+    "d2_tool_regression_tests": 4,
+    "source_checks": 19,
+    "native_fmt": "PASS",
+    "native_clippy_lib_bins_tests": "PASS",
+    "host_vet": "PASS",
+    "desktop_lint": "PASS",
+    "desktop_docs": "PASS"
+  },
+  "original_daily_data": {
+    "status": "PASS",
+    "original_daily_files_match_D2_backup": true,
+    "D2_sealed_backup_unchanged": true,
+    "source_manifest_sha256": "fd007b8bb8857ff1f903c703124328b1a6b65dcb15444a7280db36dc129b3449",
+    "files": 17389,
+    "native_schema_still": 37,
+    "original_database_api_open": false,
+    "manual_checkpoint_or_wal_clear": false,
+    "original_model_credentials_unchanged": true,
+    "instance_lock_and_closed_handles_verified": true,
+    "workflow_separate_lifecycle_restored": true
+  },
+  "workflow_restored_and_running": true,
+  "actual_D3_migration": false,
+  "actual_D4_app_start": false,
+  "new_real_or_loopback_model_http": 0,
+  "runtime_core_or_patch_changed": false,
+  "global_governance_changed": false,
+  "D5_design_remaining": true,
+  "local_G5_G6_conflict_remaining": true,
+  "original_gate_results_retained": true
+}

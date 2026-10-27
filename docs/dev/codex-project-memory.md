@@ -1,5 +1,15 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 D3前阻塞已解除，新候选准备完成（2026-10-27）
+
+当前权威[63](../features/FEAT-164-kimi-k31-pro-migration/63-pre-d3-blockers-fixed-and-ready.md)。Owner要求执行解决所有D3前阻塞，Host a3d8767精确旧catalog前身，Desktop实现3219113/来源冻结841f7c7共用结清SQL修复误拦。原已消费次数/授权/旧v1/trust保持，Runtime r5/核心/补丁未改。新daily App4f7adca/receipt0e6fe81（119文件1216源码），canonical prepare-only及同回执通过，目录feat164-d3-ready-candidate-20261027；未创建数据Home或启动App。
+
+6纯值＋Rust副本1＋自然SQL29/37四组合＋Host12子项＋严格静态检查及最终19来源通过。首次Native0项不算PASS；来源两次失败及第三元数据过期作废，RCA后完成提交固定六源再一次串行通过。完整日志保留，不用退出码造绿。
+
+workflow原厂Docker正常启动后发现3个旧255退出；既有recovery efeb4606-28c2-4fef-b327-04c56ad9d7a9先四volume备份，原容器恢复/存储核验/正常停止，再canonical up。六primary现健康且鉴权/editor ready，业务事实不变，两次正常principal审计追加；Docker/workflow保持运行。原失败状态、备份/凭据快照保留，没有强杀/删卷或Infra/API/Coze改源码。
+
+D3_PRECONDITIONS_READY；原17,389日常文件及D2 sealed保持，原Native仍SQL37，无实际D3/D4、无模型HTTP、无D3伪批准绑定。下一步单独明确D3一次维护，先验数据freshness/同一锁/制品；D5长期入口及local G5/G6仍独立。旧dirty、7账本/两份预占、Owner排除/替代保持；仅本地提交不推送。
+
 ## FEAT-164 D2已完成：完整备份与三项准入阻塞（2026-10-27）
 
 最新权威[62](../features/FEAT-164-kimi-k31-pro-migration/62-d2-cold-backup-readonly-results-and-blockers.md)。Owner已明确批准61的D1正向组合、D2工具及整个D2。独立Desktop工具提交b54ea001ac5a5530246d30320f024ffb8df94227（9测试/工具/说明文件）；D1组合7、D2 Python4、Go1、lint/docs通过。原b789 daily App/receipt保持，未重建或启动。

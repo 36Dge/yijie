@@ -110,8 +110,8 @@ gate_reasons:
     e408047精确消费；仅本地来源，不等于发布或专家资源资格。
     S4b复用同一公共契约；Hostcac2d4d/Desktop56f5284/Connectors1f15726固定Skills595c927同内容资源和原库树，四组合source通过，旧来源的证据不覆盖App资格。
   G2V: S4V当前r5唯一真实请求HTTP200/42完成、保存/同构建重开零补发及正常退出通过；按Owner无需精确查价的功能验证授权执行。旧r4结果和两账本保留，不替代完整core/业务状态或日常cutover。
-  G4: 62号D1组合补证及D2完整冷备份/副本预检完成，三存储连续；历史消费grant谓词、旧catalog前身和Docker不可用形成NO_GO。
-    D3维护和D4实际启动尚未授权/执行，不从备份或离线结果晋升G4；58原accepted local/final及Owner替代按原来源保留。
+  G4: 63号已解除62号三项技术阻塞，新841f7c7/a3d8767候选prepare-only及实际副本预检通过，workflow恢复ready。
+    真实日常D3维护与D4 App启动尚未执行，不从prepare-only自动晋升G4；58原accepted local/final及Owner替代按原来源保留。
 
 temporal_contract_matrix:
   required: true
@@ -1350,18 +1350,19 @@ external_authorizations:
 current_authorization:
   paused_by_owner: false
   pause_reason: 历史：2026-10-26 18:01因关闭电脑暂停，现已由Owner明确恢复；原paused-handoff保留。
-  phase: D2_completed_with_blockers
-  source: Owner本轮明确批准61号D1正向组合、D2工具及整个D2完整冷备份/副本预检与workflow既有ready检查；D3—D5和服务启动未批准。
+  phase: pre_D3_blockers_resolved
+  source: Owner本轮明确要求深入分析并执行解决D3前全部阻塞；覆盖62号B01/B02最小修复及既有workflow正常恢复。真实日常D3/D4仍未执行。
   documentation_write_allowed: true
   product_source_edit_allowed: true
   product_generate_build_test_allowed: true
   database_migration_allowed: false
   isolated_qualification_migration_allowed: false
-  migration_scope: 完整D2已执行；原日常树仅文件级冷备份/哈希，数据库API只开inspection副本。无原库迁移或业务写入。
-  service_lifecycle_allowed: false
+  migration_scope: 真实日常D3迁移仍未执行；修复后的实际Rust仅只读inspection。允许并完成既有workflow canonical恢复/up的迁移入口，无新增schema或原日常业务写入。
+  service_lifecycle_allowed: true
+  service_lifecycle_scope: Existing recorded workflow dataset and original Docker only; restoration complete, six primaries left ready
   model_or_tool_business_calls_allowed: false
   git_commit_push_branch_release_allowed: false
-  note: D1组合与D2完成，三项NO_GO已归因。工具/治理仅本地提交；保留原数据、旧账本/预占和工作区。无D3—D5、服务启动、Runtime修改或模型调用。
+  note: 63号三项前置阻塞已修复/验证，D3技术前置就绪；新candidate prepare-only。workflow恢复并运行，原daily未迁移/启动；保留旧数据/账本/预占，不改Runtime，不推送。
   git_local_commit_allowed: true
   git_scope: 仅FEAT-164必要独立来源/实现/验证/治理本地提交，不混入其它需求；无push/branch/tag/release。
 implementation:
@@ -1750,7 +1751,7 @@ implementation:
     loopback_model_http_added: 0
     full_app_ui: NOT RUN
     note: 同一App维护参数在auth/worker/sidecar/UI之前退出；两种旧库自然离线样本成功，现有SQL41候选拒绝后未迁移/清理/退款。两个前置环境失败及后置归因修正保留，不冒充完整G3/final。
-  completion_scope: D1 offline and positive composition complete; D2 cold backup and readonly inspection complete with blockers; D3-D5 not authorized
+  completion_scope: D1/D2 retained; report63 resolves pre-D3 blockers and qualifies a new candidate; actual D3-D5 not executed
   owner_acceptance_s4ae:
     report: 58-owner-accepted-substitute-and-final-closure.md
     incremental_contract_impact: none
@@ -1773,9 +1774,9 @@ implementation:
     real_model_http_added: 0
     runtime_core_or_patch_changed: false
 product_verification:
-  status: D2_COMPLETE_WITH_BLOCKERS
-  reason: 62号D2完整备份/副本预检完成，历史消费grant谓词、旧catalog前身及Docker不可用阻断下一阶段；App未启动，G4不晋升。
-  report: 62-d2-cold-backup-readonly-results-and-blockers.md
+  status: D3_PRECONDITIONS_READY_NOT_ACTIVATED
+  reason: 63号私有准入/精确前身修复、实际Rust副本预检、workflow ready和新canonical prepare-only通过；原日常未迁移/启动，G4不晋升。
+  report: 63-pre-d3-blockers-fixed-and-ready.md
 profile_reason: ADR-0017的重要持久数据条件；SQLCipher/Host历史、已接受操作和计划授权的跨版本兼容；不扩大公网/生产或ADR-0018
 owner_approvals:
   requirements: approved_by_owner_current_user_message
@@ -1856,11 +1857,11 @@ accepted_substitutions:
     acceptance_status: ACCEPTED_SAFE_LAYERED_SUBSTITUTE
 daily_cutover:
   plan_id: F164-S4AF-DAILY-CUTOVER
-  status: D2_COMPLETE_WITH_BLOCKERS
+  status: D3_PRECONDITIONS_READY
   report: 59-daily-cutover-minimal-plan-and-authorization.md
   evidence_ref: 08-verification-report.md#E164-S4AF-PLAN
-  activation_readiness: NO_GO_D3_D5
-  open_deployment_issue: D2-B01 historical consumed grant predicate; D2-B02 unmatched managed catalog predecessor; D2-B03 Docker socket refused
+  activation_readiness: D3_TECHNICALLY_READY_NOT_EXECUTED
+  open_deployment_issue: No remaining report62 pre-D3 technical blocker; actual daily migration and D4/D5 remain separate stages
   historical_local_G4:
     status: PASS
     report: 58-owner-accepted-substitute-and-final-closure.md
@@ -1875,11 +1876,12 @@ daily_cutover:
     daily_readonly_database_preflight: true
     daily_native_migration: false
     daily_app_start: false
-    workflow_lifecycle_or_migration: false
+    workflow_lifecycle_or_migration: true
+    workflow_lifecycle_scope: Existing recorded dataset restored through normal recovery and canonical up; no volume deletion
     model_http: false
     runtime_core_or_patch_change: false
     push_or_release: false
-    product_code_change_scope: D1 previously completed; current scope only D1 positive tests and D2 readonly tools/docs; no product admission or migration change
+    product_code_change_scope: Report63 Desktop settled-history private admission and Host exact predecessor, targeted tests/docs and canonical source freeze; no Runtime or public wire change
   phases:
     - id: D0
       action: 只读源码复审与计划落盘
@@ -1917,7 +1919,7 @@ daily_cutover:
   actual_daily_data_operations_note: One authorized D2 cold backup and copy inspection cycle; no original database API open or migration
   real_model_http_added: 0
   runtime_core_or_patch_changed: false
-  current_report: 62-d2-cold-backup-readonly-results-and-blockers.md
+  current_report: 63-pre-d3-blockers-fixed-and-ready.md
 
 historical_completion_audit_report61:
   report: 61-current-implementation-audit-and-completion-plan.md
@@ -1939,7 +1941,7 @@ historical_completion_audit_report61:
   proposed_next_action: Offline positive binding evidence and D2 reader preparation; concrete D5 and governance designs before their implementation approval
   authorization_note: This audit does not extend completed D1 authority to new product or global governance changes, or to D2-D5 data operations
 
-current_completion_audit:
+historical_completion_audit_report62:
   report: 62-d2-cold-backup-readonly-results-and-blockers.md
   status: D2_COMPLETE_WITH_BLOCKERS
   evidence_ref: 08-verification-report.md#E164-D2-READONLY
@@ -1964,3 +1966,23 @@ current_completion_audit:
     - F61-03 production_hardened local G5/G6 governance conflict
     - D3-D5 not authorized or executed
   authorization_note: D2 authority does not permit modifying migration admission, managed predecessor allowlists, starting Docker/workflow, or migrating/activating daily data
+
+current_completion_audit:
+  report: 63-pre-d3-blockers-fixed-and-ready.md
+  status: D3_PRECONDITIONS_READY
+  evidence_ref: 08-verification-report.md#E164-D3-READY
+  desktop_commit: 841f7c71ed3549fe02a70cff608cbbae713d6808
+  host_commit: a3d8767add3855a28c18adbbd51251fae3520ac0
+  app_sha256: 4f7adcadc59db4a6e4cf23e700ebab5858b6ae9d953cd7401780d5778cab0f42
+  receipt_sha256: 0e6fe8191ffc027d4f1efedf14f7e8562ee1d876068aafa7386410202a2878a7
+  contract_impact: semantic
+  authority: Private Desktop maintenance admission SQL and Host exact managed predecessor
+  public_wire_schema_runtime_changed: false
+  actual_daily_migration: false
+  actual_daily_app_start: false
+  source_and_sealed_backup_preserved: true
+  workflow_restored_and_left_ready: true
+  model_http_added: 0
+  resolved: [D2-B01, D2-B02, D2-B03]
+  remaining: [actual_D3, actual_D4, F61-02_D5_durable_entry, F61-03_local_G5_G6]
+  authorization_note: Current request resolves pre-D3 blockers; no fabricated D3 approval binding, no actual daily migration or activation

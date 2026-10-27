@@ -2,7 +2,7 @@
 
 本需求已获Owner授权实施；本文件仍是整项验收目标。全部AC在已接受的本地实现与验收范围内PASS，逐项证据见[当前验收矩阵](current-acceptance-matrix.md)和58；日常迁移/启用与发布未执行，不能把代码完成等同日常切换完成。
 
-当前日常部署以[62](62-d2-cold-backup-readonly-results-and-blockers.md)为准：D1组合补证及D2完整冷备份/副本预检已完成，三存储连续性通过；历史消费计数准入、旧catalog前身和Docker不可用构成下一阶段NO_GO。D3—D5未授权/执行；长期入口及local交付门禁口径仍待收口。58本地AC与替代证据保留，不能据此直接迁移或启动日常App。
+当前日常部署以[63](63-pre-d3-blockers-fixed-and-ready.md)为准：D1/D2保持，三项D3前技术阻塞已修复并验证，当前D3_PRECONDITIONS_READY。原日常仍SQL37，尚未执行D3迁移/D4启动；长期D5与local交付门禁口径仍待收口。58本地AC与替代证据保留，prepare-only不等于日常启用。
 
 ## 业务规则
 

@@ -1,0 +1,159 @@
+[
+  {
+    "name": "native-readonly-preflight-corrected",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "--lib",
+      "chat::database::isolated_model_migration::tests::feat164_settled_history_preflight_readonly_copy",
+      "--",
+      "--exact",
+      "--ignored",
+      "--nocapture",
+      "--test-threads=1"
+    ],
+    "started_at": "2026-10-27T11:37:23.643041+08:00",
+    "exit_code": 0,
+    "nonzero_exact_test": true,
+    "passed": true
+  },
+  {
+    "name": "natural-29-isolated",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "--lib",
+      "chat::database::isolated_model_migration::tests::feat164_controlled_isolated_migration",
+      "--",
+      "--exact",
+      "--ignored",
+      "--nocapture",
+      "--test-threads=1"
+    ],
+    "started_at": "2026-10-27T11:37:30.783381+08:00",
+    "exit_code": 0,
+    "nonzero_exact_test": true,
+    "passed": true
+  },
+  {
+    "name": "natural-29-daily",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "--lib",
+      "chat::database::isolated_model_migration::tests::feat164_controlled_daily_migration",
+      "--",
+      "--exact",
+      "--ignored",
+      "--nocapture",
+      "--test-threads=1"
+    ],
+    "started_at": "2026-10-27T11:37:33.703672+08:00",
+    "exit_code": 0,
+    "nonzero_exact_test": true,
+    "passed": true
+  },
+  {
+    "name": "natural-37-isolated",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "--lib",
+      "chat::database::isolated_model_migration::tests::feat164_controlled_isolated_migration",
+      "--",
+      "--exact",
+      "--ignored",
+      "--nocapture",
+      "--test-threads=1"
+    ],
+    "started_at": "2026-10-27T11:37:36.346566+08:00",
+    "exit_code": 0,
+    "nonzero_exact_test": true,
+    "passed": true
+  },
+  {
+    "name": "natural-37-daily",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "--lib",
+      "chat::database::isolated_model_migration::tests::feat164_controlled_daily_migration",
+      "--",
+      "--exact",
+      "--ignored",
+      "--nocapture",
+      "--test-threads=1"
+    ],
+    "started_at": "2026-10-27T11:37:38.983798+08:00",
+    "exit_code": 0,
+    "nonzero_exact_test": true,
+    "passed": true
+  },
+  {
+    "name": "native-fmt",
+    "command": [
+      "cargo",
+      "fmt",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--check"
+    ],
+    "started_at": "2026-10-27T11:37:41.630691+08:00",
+    "exit_code": 0,
+    "nonzero_exact_test": false,
+    "passed": true
+  },
+  {
+    "name": "native-clippy",
+    "command": [
+      "cargo",
+      "clippy",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--features",
+      "kimi-k31-pro-candidate",
+      "--lib",
+      "--bins",
+      "--tests",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "started_at": "2026-10-27T11:37:42.444227+08:00",
+    "exit_code": 0,
+    "nonzero_exact_test": false,
+    "passed": true
+  }
+]
