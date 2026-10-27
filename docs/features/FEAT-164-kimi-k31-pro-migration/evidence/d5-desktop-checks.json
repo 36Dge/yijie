@@ -1,0 +1,38 @@
+[
+  {
+    "id": "binding-regression",
+    "command": [
+      "python3",
+      "-B",
+      "scripts/tests/feat164-d1-binding-test.py",
+      "-v"
+    ],
+    "exit_code": 0
+  },
+  {
+    "id": "launcher-profile",
+    "command": [
+      "node",
+      "--test",
+      "scripts/tests/feat164-daily-profile.test.mjs",
+      "scripts/tests/feat164-generation.test.mjs"
+    ],
+    "exit_code": 0
+  },
+  {
+    "id": "lint",
+    "command": [
+      "pnpm",
+      "lint"
+    ],
+    "exit_code": 0
+  },
+  {
+    "id": "docs",
+    "command": [
+      "pnpm",
+      "docs:build"
+    ],
+    "exit_code": 0
+  }
+]

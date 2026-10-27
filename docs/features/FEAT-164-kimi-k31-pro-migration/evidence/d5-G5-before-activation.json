@@ -1,0 +1,16 @@
+{
+  "gate": "G5",
+  "scope": "ADR-0022 single-owner-local-only",
+  "command": [
+    "node",
+    "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+    "--gate",
+    "G5",
+    "docs/features/FEAT-164-kimi-k31-pro-migration"
+  ],
+  "exit_code": 0,
+  "feature_sha256": "29892e1c3c66e9dc02123fb7f79a52c4d41aba90746846bc0ddfe3e0d83f4325",
+  "validator_commit": "c0a1fdd",
+  "no_public_or_signed_release": true,
+  "D5_not_started": true
+}

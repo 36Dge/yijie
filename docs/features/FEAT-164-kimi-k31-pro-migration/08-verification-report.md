@@ -699,3 +699,12 @@ D4 PASS_SCOPED，0新增模型HTTP；两次App共6次既有Shopify metadata HTTP
 <!-- evidence: E164-D4-REFERENCE-BINDING -->
 
 新增archive词汇进入当前immutable清单后，首次治理审计拒绝旧G2V/S1—S4的contract_refs集合不完整。没有删掉新权威或改validator，也没有将旧真实执行时间、App、命令或结果改成新候选。现明确保留historical_execution_contract_refs，current_reference_binding指向本轮独立范围复审：旧r5只读oracle重新判定PASS（0调用），模型wire/Runtime/Host来源保持，application请求路径除3行history companion收集外逐字一致；新增持久读取/renderer变化由本轮Native实际副本、repository/worker/88项及fresh D4覆盖。见d4-closure-reference-reconciliation.json。当前引用关联不等于新G2V或整切片重跑；D4与旧已接受范围分别记录，G4/G5/G6仍pending。
+
+
+## D5本地启用前资格
+
+<!-- evidence: E164-D5-READINESS -->
+
+Owner已明确批准ADR-0022限定本机单Owner例外，完整生产链与Native权限/计划授权保留。Desktop39b0fbe仅7文件部署helper/receipt/installer/tests/docs变更，Native与renderer相对D4逐字相同；13激活、7短期绑定、9入口单元、19同源生成、lint/docs及canonical新构建通过。119包内文件1228源码输入/Runtime r5绑定，App e13a3aa7、receipt f5cf6b8f。新完整冷备份17394文件/522147353字节，原与D4后态一致；SQL41/Host11/四Runtime库、8映射、旧6消费及全模型零派发、锁/无句柄通过，workflow6healthy真实ready。
+
+治理修复包含Accepted ADR和Owner限定批准校验，不把local改为public，不裁剪原G4/G5/G6链；57项回归通过。原final的执行来源/时间/结果保留，新archive引用由66实际D4证明；当前部署改动由本轮独立检查覆盖，绝不是新增模型G2V。此处G4/G5仅已批准本机范围，当前D5仍未激活、G6pending；启动后须正常退出/同入口重开与暂停回退及完整后态才可关闭。0新增模型/业务工具调用。详细source/审批/备份见evidence/d5-readiness.json。

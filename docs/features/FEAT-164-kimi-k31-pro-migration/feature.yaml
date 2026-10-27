@@ -92,8 +92,8 @@ gates:
   G2_implementation_ready: pass
   G2A_contract_ready: pass
   G2V_vertical_feasibility: pass
-  G4_code_complete: pending
-  G5_production_ready: pending
+  G4_code_complete: pass
+  G5_production_ready: pass
   G6_delivery_complete: pending
 gate_reasons:
   G2A: S4h
@@ -115,8 +115,8 @@ gate_reasons:
     e408047精确消费；仅本地来源，不等于发布或专家资源资格。
     S4b复用同一公共契约；Hostcac2d4d/Desktop56f5284/Connectors1f15726固定Skills595c927同内容资源和原库树，四组合source通过，旧来源的证据不覆盖App资格。
   G2V: S4V当前r5唯一真实请求HTTP200/42完成、保存/同构建重开零补发及正常退出通过；按Owner无需精确查价的功能验证授权执行。旧r4结果和两账本保留，不替代完整core/业务状态或日常cutover。
-  G4: 66号D4受限日常启动/旧历史/附件/计划保护及正常退出后态通过，原失败保留；D5长期入口/日常启用和F61-03 local
-    G5/G6口径仍独立未收口，不因D4自动晋升整项G4。58已接受本地S1—S4/final及安全替代按原来源保持。
+  G4: 67号恢复代码完成：已接受S1—S4/三类final与66fresh日常D4保持；新D5仅部署脚本，Native/renderer与D4逐字相同，13激活/7短期绑定/19生成及canonical构建通过。旧模型真实执行source/time不改，新增archive引用独立关联D4证据。
+  G5: 仅ADR-0022已批准个人本机范围：完整新冷备份/副本检查、workflow真实ready、精确制品与来源、原Home、权限/计划保护、兼容暂停回退方案及OwnerD5启用授权已审；正式激活与观察尚未执行，G6pending，不授权public/cloud/多人/签名发布。
 
 temporal_contract_matrix:
   required: true
@@ -1001,13 +1001,14 @@ final_e2e:
         full_sha: 4f966e8ea810d5b094d0b797d291955d6c774844
       - repository: yijie-contracts
         full_sha: c5d138374c102f1a8a11e328a869ec8f91724efd
-    contract_refs: &a2
+    contract_refs:
       - contract:chat-models-v2@0.2.0@1b357cce0575c492f3715b316ee5f254051acf80#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
       - contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r5@5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2#75867f5e0bae1b67d4a28f78c77b65164ecee9f9331cd21c681caf67a4563361
       - contract:scheduled-plan-v2@0.2.0@2dd214d6a702064edae78510c035442854bf9789#75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
       - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
       - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
       - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+      - contract:native-display-archive-v5@0.1.0@d5792d6aad18352ce8d1c5d510d345004cab3bd6#bbe1f2129e41b58e3d0cea08b798ded2a7a131a76d8712317f1741f4f1ef7b55
     fixture_refs: &a3
       - fixture:feat164-request-shape-loopback#d345d62dfa9ba7021138c3330a6c619222cf108cf423b5b051fc9699cda90372
     harness: &a4
@@ -1033,6 +1034,18 @@ final_e2e:
       full_app_positive_execution: NOT RUN
       accepted_method: normal Native API plus production parser/composable/control with recorded IPC transport
       acceptance_status: ACCEPTED_SAFE_LAYERED_SUBSTITUTE
+    historical_execution_contract_refs:
+      - contract:chat-models-v2@0.2.0@1b357cce0575c492f3715b316ee5f254051acf80#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
+      - contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r5@5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2#75867f5e0bae1b67d4a28f78c77b65164ecee9f9331cd21c681caf67a4563361
+      - contract:scheduled-plan-v2@0.2.0@2dd214d6a702064edae78510c035442854bf9789#75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
+      - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
+      - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
+      - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+    current_reference_binding:
+      evidence_ref: 08-verification-report.md#E164-D5-READINESS
+      scope: Original execution sources/times unchanged; archived read compatibility covered by report66 fresh D4; D5 changes
+        deployment scripts only, Native/renderer identical to D4. New source/tests/backup qualification is distinct from
+        previous model execution.
   accessibility_visual:
     required: true
     current_scope: 模型选择、退役/暂停、错误与恢复业务状态显示；不含外观专项
@@ -1068,7 +1081,14 @@ final_e2e:
         full_sha: 4f966e8ea810d5b094d0b797d291955d6c774844
       - repository: yijie-contracts
         full_sha: c5d138374c102f1a8a11e328a869ec8f91724efd
-    contract_refs: *a2
+    contract_refs:
+      - contract:chat-models-v2@0.2.0@1b357cce0575c492f3715b316ee5f254051acf80#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
+      - contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r5@5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2#75867f5e0bae1b67d4a28f78c77b65164ecee9f9331cd21c681caf67a4563361
+      - contract:scheduled-plan-v2@0.2.0@2dd214d6a702064edae78510c035442854bf9789#75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
+      - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
+      - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
+      - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+      - contract:native-display-archive-v5@0.1.0@d5792d6aad18352ce8d1c5d510d345004cab3bd6#bbe1f2129e41b58e3d0cea08b798ded2a7a131a76d8712317f1741f4f1ef7b55
     fixture_refs: *a3
     harness: *a4
     platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
@@ -1090,6 +1110,18 @@ final_e2e:
       full_app_positive_execution: NOT RUN
       accepted_method: normal Native API plus production parser/composable/control with recorded IPC transport
       acceptance_status: ACCEPTED_SAFE_LAYERED_SUBSTITUTE
+    historical_execution_contract_refs:
+      - contract:chat-models-v2@0.2.0@1b357cce0575c492f3715b316ee5f254051acf80#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
+      - contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r5@5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2#75867f5e0bae1b67d4a28f78c77b65164ecee9f9331cd21c681caf67a4563361
+      - contract:scheduled-plan-v2@0.2.0@2dd214d6a702064edae78510c035442854bf9789#75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
+      - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
+      - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
+      - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+    current_reference_binding:
+      evidence_ref: 08-verification-report.md#E164-D5-READINESS
+      scope: Original execution sources/times unchanged; archived read compatibility covered by report66 fresh D4; D5 changes
+        deployment scripts only, Native/renderer identical to D4. New source/tests/backup qualification is distinct from
+        previous model execution.
   teardown:
     required: true
     reason: 沿57实际正常退出exit0、四Runtime库WAL0/integrity及业务数据保持，正常计划游标/Host更新时间变化原样披露；本轮未启动进程，12441保护文件另作字节核对。
@@ -1118,7 +1150,14 @@ final_e2e:
         full_sha: 4f966e8ea810d5b094d0b797d291955d6c774844
       - repository: yijie-contracts
         full_sha: c5d138374c102f1a8a11e328a869ec8f91724efd
-    contract_refs: *a2
+    contract_refs:
+      - contract:chat-models-v2@0.2.0@1b357cce0575c492f3715b316ee5f254051acf80#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
+      - contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r5@5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2#75867f5e0bae1b67d4a28f78c77b65164ecee9f9331cd21c681caf67a4563361
+      - contract:scheduled-plan-v2@0.2.0@2dd214d6a702064edae78510c035442854bf9789#75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
+      - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
+      - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
+      - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+      - contract:native-display-archive-v5@0.1.0@d5792d6aad18352ce8d1c5d510d345004cab3bd6#bbe1f2129e41b58e3d0cea08b798ded2a7a131a76d8712317f1741f4f1ef7b55
     fixture_refs: *a3
     harness: *a4
     platform: macOS aarch64 / 既有受控local产品入口 / 新候选Runtime
@@ -1130,6 +1169,18 @@ final_e2e:
       approved_at: N/A
       reason: N/A
     historical_binding_note: 本轮为只读来源/接受判定，不是新全范围E2E运行。S1—S3旧源和S4当前源共8个精确commit同时绑定；46—57原执行时间/原失败记录均保留。
+    historical_execution_contract_refs:
+      - contract:chat-models-v2@0.2.0@1b357cce0575c492f3715b316ee5f254051acf80#0ad485abaf145bb8dd23541ea4af9bade30085a20db3556f988ceb7045d10d70
+      - contract:runtime-kimi-k31-pro@0.144.6-kimi-k31-pro-r5@5b5dad9d837ba92abc7c2660d1de1a60f4ed1ba2#75867f5e0bae1b67d4a28f78c77b65164ecee9f9331cd21c681caf67a4563361
+      - contract:scheduled-plan-v2@0.2.0@2dd214d6a702064edae78510c035442854bf9789#75f790bb162f629efd9c338645816c5c959b4cd1a7843e359a42ac9cd4d79b66
+      - contract:market-selection-v2@0.3.0@eddc64f95d81c26ca1678cc648d177c081f7904d#a9904875f2831ae8d29ec6e6a48a9e1dd90bbb9dedcb2bc69a245d81f78c9fb1
+      - contract:market-host-v2@0.4.0@eddc64f95d81c26ca1678cc648d177c081f7904d#604f3230fe4058ff7b04dd509d91f75cfffd3fa40d0ce002f91177ddf9fde9a8
+      - contract:experts-v2@0.2.0@eddc64f95d81c26ca1678cc648d177c081f7904d#371a9515be8f5eab6626a1097086aa85b918dd1484aff50c335b3b704b4fc5e3
+    current_reference_binding:
+      evidence_ref: 08-verification-report.md#E164-D5-READINESS
+      scope: Original execution sources/times unchanged; archived read compatibility covered by report66 fresh D4; D5 changes
+        deployment scripts only, Native/renderer identical to D4. New source/tests/backup qualification is distinct from
+        previous model execution.
 
 failure_circuit_breaker:
   same_failure_threshold: 3
@@ -1407,6 +1458,7 @@ documents:
   current_slice_and_daily_plan: 50-slice-evidence-closure-and-daily-deployment-plan.md
   current_r5_qualification: 49-r5-real-qualification-and-daily-cutover-boundary.md
   current_D4_closure: 66-d4-blockers-fixed-and-restricted-start-passed.md
+  current_D5_activation: 67-d5-entry-and-activation-implementation.md
 external_authorizations:
   paid_calls:
     allowed: true
@@ -1430,8 +1482,8 @@ external_authorizations:
 current_authorization:
   paused_by_owner: false
   pause_reason: D4按授权完成并正常退出，当前未进入D5。
-  phase: D4_complete_stopped_D5_not_authorized
-  source: Owner批准65依赖恢复并明确要求本轮修复全部D4阻塞，完成后停在D4。
+  phase: D5_authorized_ready_not_activated
+  source: Owner要求完成D5，后明确批准ADR-0022限定例外；个人本机启用K31、完整权限/备份/G0-G6保留，0模型验收调用
   documentation_write_allowed: true
   product_source_edit_allowed: true
   product_generate_build_test_allowed: true
@@ -1439,12 +1491,12 @@ current_authorization:
   isolated_qualification_migration_allowed: false
   migration_scope: D3一次许可已消费；本轮无重跑，D4正常Host10→11元数据准备完成，现有数据和旧备份保留。
   service_lifecycle_allowed: true
-  service_lifecycle_scope: 本轮65原依赖恢复及D4两次受限启动/正常退出已完成；Docker/workflow原栈保持ready；不授权D5或未列明的新生命周期动作。
+  service_lifecycle_scope: D5同源正常启动、退出、重开与暂停回退验证；workflow继续existing-ready-only，未扩到其自动恢复
   model_or_tool_business_calls_allowed: false
   git_commit_push_branch_release_allowed: false
   git_local_commit_allowed: true
   git_scope: 仅本轮FEAT-164 Contracts/Desktop隔离修复与治理记录本地提交；不推送、发布或混入其它需求。
-  note: D4 PASS，首轮读取失败原证据保留；新候选71e39c4只读format5兼容，不改Runtime核心/补丁，旧账本预占保持。
+  note: 当前D5准备就绪，尚未激活；原D3不重跑，Runtime核心/补丁不改，G6待实际观察
 implementation:
   v3_test_and_search_scope_s4ab:
     report: 55-v3-test-and-search-grounding-root-cause.md
@@ -1881,7 +1933,7 @@ owner_approvals:
   technical_design: approved_by_owner_current_user_message
   consumer_reviews: approved_by_owner_current_user_message_for_source_candidate_14
   implementation: authorized_subject_to_gates
-  release: not_authorized
+  release: approved_by_owner_ADR0022_single_owner_local_D5_only
 must_acceptance:
   - id: AC-001
     status: PASS
@@ -1955,11 +2007,11 @@ accepted_substitutions:
     acceptance_status: ACCEPTED_SAFE_LAYERED_SUBSTITUTE
 daily_cutover:
   plan_id: F164-S4AF-DAILY-CUTOVER
-  status: D4_COMPLETE_STOPPED
+  status: D5_AUTHORIZED_READY_NOT_ACTIVATED
   report: 59-daily-cutover-minimal-plan-and-authorization.md
   evidence_ref: 08-verification-report.md#E164-S4AF-PLAN
-  activation_readiness: D4_PASSED_D5_SCOPE_AND_APPROVAL_REQUIRED
-  open_deployment_issue: D4 blockers resolved; D5 durable daily activation and local G5/G6 boundary remain separate
+  activation_readiness: LOCAL_G5_READY_ADR0022_OWNER_APPROVED
+  open_deployment_issue: No identified pre-activation blocker; activate and observe exact entry, zero model test calls
   historical_local_G4:
     status: PASS
     report: 58-owner-accepted-substitute-and-final-closure.md
@@ -2023,15 +2075,16 @@ daily_cutover:
       host_runtime_write: true
       model_http: 0
     - id: D5
-      action: 依据D4结果单独确认日常入口启用/解除Kimi暂停；不覆盖已签名App、不生成计划授权、不发送验收消息
-      status: NOT_AUTHORIZED
+      action: Owner限定批准下建立持久启用记录/新日常入口并启用K31；正常退出/重开与兼容暂停观察
+      status: AUTHORIZED_READY_NOT_ACTIVATED
+      evidence_ref: 08-verification-report.md#E164-D5-READINESS
       model_http: 0
   actual_daily_data_operations: 4
   actual_daily_data_operations_note: D2 complete cold backup, one D3 migration, first D4 normal start/exit plus
     post-state, and repaired D4 fresh start/exit plus post-state; no D3 retry/D5
   real_model_http_added: 0
   runtime_core_or_patch_changed: false
-  current_report: 66-d4-blockers-fixed-and-restricted-start-passed.md
+  current_report: 67-d5-entry-and-activation-implementation.md
 
 historical_completion_audit_report61:
   report: 61-current-implementation-audit-and-completion-plan.md
@@ -2193,3 +2246,11 @@ historical_completion_audit_report65:
     - actual_D4
     - F61-02_D5_durable_entry
     - F61-03_local_G5_G6
+local_release:
+  accepted_adr: ADR-0022
+  owner: 段成威
+  approved_at: 2026-10-27T16:23:36.126125+08:00
+  scope: single-owner-local-only
+  public_activation: false
+  evidence_refs:
+    - 08-verification-report.md#E164-D5-READINESS
