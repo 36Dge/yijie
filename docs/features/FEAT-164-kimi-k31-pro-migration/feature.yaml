@@ -117,7 +117,7 @@ gate_reasons:
   G2V: S4V当前r5唯一真实请求HTTP200/42完成、保存/同构建重开零补发及正常退出通过；按Owner无需精确查价的功能验证授权执行。旧r4结果和两账本保留，不替代完整core/业务状态或日常cutover。
   G4: 76/77原主目录Desktop24a231f及Connectors8e62101完成，19来源/104安全聚焦测试/Clippy/fmt/canonical构建通过；Runtime不改，旧S1—S4证据保留。
   G5: ADR-0022个人本机范围；新完整备份/副本/无派发检查、同源receipt及v3绑定、workflow实际ready通过。Owner本轮授权原主目录实施运行与阻塞修复，锁屏UI检查按既有指示跳过，不记PASS。
-  G6: 原主目录generation20261028-02三轮真实服务/目录启用与暂停、正常退出和后态完成，模型HTTP0，App最后停止。当前入口为仓内daily:open；初始generation01退出FAIL保留。原UI执行来源及接受替代/移除范围不改，不授权public/cloud/多人/签名发布。
+  G6: 79补齐旧目录清理后generation20261028-02一次真实启动、8会话/11轮UI历史及正常Command-Q退出；停止代123→124、原业务/授权保持、活动WAL0、模型HTTP0，App最后停止。76三轮启用/暂停/退出及初始generation01退出FAIL均保留；当前入口为仓内daily:open。接受替代/移除范围不改，不授权public/cloud/多人/签名发布。
 
 temporal_contract_matrix:
   required: true
@@ -2236,6 +2236,9 @@ historical_completion_audit_report64:
 current_completion_audit:
   report: 76-primary-workspace-execution.md
   qualification_report: 77-primary-system-quit-root-cause-and-plan.md
+  post_cleanup_acceptance_report: 79-post-cleanup-app-history-acceptance.md
+  post_cleanup_acceptance_evidence: 08-verification-report.md#E164-POSTCLEANUP-HISTORY
+  post_cleanup_acceptance_summary: evidence/post-cleanup-app-acceptance.json
   status: COMPLETE_REQUESTED_PRIMARY_BUILD_RUN
   evidence_ref: 08-verification-report.md#E164-PRIMARY-CURRENT
   original_functional_closure: historical_completion_audit_report67_69
@@ -2290,17 +2293,24 @@ current_completion_audit:
   original_Homes_preserved: true
   D3_rerun: false
   Runtime_core_or_patch_changed: false
-  actual_launches_all: 4
-  qualified_new_generation_launches: 3
-  qualified_normal_exits: 3
+  actual_launches_all: 5
+  launch_count_scope: Canonical launcher runs from report76 plus one report79 run; preliminary UI selection timeout is separately recorded, not claimed as a qualified launch
+  qualified_new_generation_launches: 4
+  qualified_normal_exits: 4
+  post_cleanup_canonical_launches: 1
   initial_generation01_cleanup: FAIL retained; fixed by Desktop system Quit routing and a new canonical generation
   model_http_added: 0
   non_model_metadata_http_added: 3
   current_App_stopped: true
   active_WAL_SHM_bytes: 0
   final_complete_backup_files: 17401
-  final_complete_backup_bytes: 522889712
-  UI_history: SKIPPED_MAC_LOCKED_PER_OWNER; not PASS or permanent removal
+  final_complete_backup_bytes: 523139568
+  UI_history: PASS_ACTUAL_APP; report79 reads all eight sessions and eleven saved turns, attachments, command details and deleted-plan history without sends
+  historical_report76_UI_history: SKIPPED_MAC_LOCKED_PER_OWNER; original result retained and supplemented by report79
+  post_cleanup_stopped_generation: 124
+  post_cleanup_model_HTTP: 0
+  post_cleanup_provider_metadata_HTTP: 0
+  post_cleanup_workflow: Existing report65-authorized same-stack recovery completed; four stopped-volume backups retained, same volumes, six healthy primaries; two ordinary principal audit additions only
   database_history_readability: PASS
   original_WIP_paths_recoverable: 501
   protected_source_WIP_paths: 254
@@ -2321,8 +2331,7 @@ current_completion_audit:
     - search answer correctness/exact-page hit/answer quality
     - light-dark/keyboard-focus/minimum-window special acceptance
   remaining_in_requested_build_run_goal: []
-  deferred_per_owner_lock_policy:
-    - new primary App history UI observation
+  deferred_per_owner_lock_policy: []
   outside_scope:
     - public/cloud/multi-user/signed or complete cross-platform release
     - further directory cleanup or activating preserved unrelated WIP

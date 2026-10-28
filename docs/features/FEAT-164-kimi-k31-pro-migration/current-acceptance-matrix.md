@@ -2,12 +2,14 @@
 
 2026-10-28。原S1—S4/D1—D5完成范围保持；已实现**直接从原`CrossBSD/yijie-desktop`实际源码构建运行**，不转调`.local/daily-source`。构建运行以[76](76-primary-workspace-execution.md)、[77](77-primary-system-quit-root-cause-and-plan.md)及[机器证据](evidence/primary-workspace-execution-result.json)为准；随后[78](78-old-daily-source-retirement.md)已按Owner授权清理旧`daily-source/20261027-01`及8个worktree，完整归档/bundle保留，清理后来源和入口只读检查通过。第71—74号完整矩阵保存在[历史快照](current-acceptance-matrix-history-report71-74.md)，原执行时间、失败、接受替代和Owner排除不改写。
 
+第79号补充：旧目录清理后，同一generation已完成一次零模型canonical启动、8会话/11轮实际UI历史、定时任务历史保护及正常⌘Q退出。该次完整后态通过，停止代123→124，活动WAL/SHM0；原锁屏跳过的历史界面项已补齐。第76—78号矩阵原文保存在[历史快照](current-acceptance-matrix-history-report76-78.md)。
+
 ## 当前完成及验收边界
 
 | 分类 | 结论 |
 |---|---|
 | 本轮已完成 | 501项原工作可恢复保全；已审基线在原主目录成为活动源码；primary v3及独立新输出、canonical构建、来源/回执核对；真实D4暂停/D5启用/D5暂停三轮ready、只读模型目录、正常退出与完整后态通过。 |
-| 本轮锁屏跳过 | 新来源App历史**界面观察**为SKIPPED_MAC_LOCKED_PER_OWNER，不是PASS或永久移除。数据库历史副本可读、旧行不变及真实服务检查单独通过。 |
+| 新来源历史界面 | PASS，见[79](79-post-cleanup-app-history-acceptance.md)：实际读取8会话/11轮、2附件、命令详情和旧计划；原76锁屏跳过仍为历史事实，未改写原结果。 |
 | 已接受替代 | 原57/58 never-sent安全分层替代保持，完整App正向never-sent取消仍NOT RUN；不扩展该接受为本轮UI已执行。 |
 | 已移除 | 搜索答案正确性/指定页面命中/确定回答质量，亮暗/键盘焦点/最小窗口专项均OWNER_EXCLUDED，不恢复为待办或PASS。 |
 | 仍保留 | 模型/退役/恢复/计划授权、搜索sources安全传递、Key与审批预算、旧unknown事实及正常退出。 |
@@ -30,11 +32,13 @@
 | v3启用绑定SHA | `169d6713703abaaf35ad84fdcdbdc0778159fec0a18cf50f1bd4a339ad80a87c` |
 | 正常入口 | 在原Desktop运行`pnpm daily:open --generation 20261028-02`；真实catalog确认Kimi K3.1 Pro/max可用、旧K3不在活动目录 |
 | 暂停入口 | 同命令追加`--pause-kimi`，先正常退出；真实catalog确认Kimi暂停、MiniMax可用 |
-| 原数据与服务 | 原Native SQL41、Host11、Home/身份/权限保持，D3未重跑；既有workflow实际ready，无up/恢复/迁移操作 |
+| 原数据与服务 | 原Native SQL41、Host11、Home/身份/权限保持，D3未重跑；79依此前65授权恢复同一workflow栈，四卷备份/原卷保留、既有幂等迁移及正常凭据轮换完成，六primary真实ready |
 
 原桌面两个.command与顶层旧preservation在76开始前已缺失，76/78未删除/恢复它们；不能再把旧路径写成当前可用入口。新归档及五仓最终bundle已独立恢复校验。旧daily-source已由78清理；旧来源仅保存在完整归档和Git引用/bundle中，需按78恢复并重新审定，不参与当前构建/运行。
 
 ## 新来源实际证据
+
+79新增一次清理后canonical启动与正常⌘Q退出，UI历史已实际通过；71张Native表仅停止代123→124，其余原业务行/授权、Host值、Runtime业务/rollout保持，Runtime日志追加608行。完整后态17,401文件/523,139,568字节；模型HTTP0、provider metadata HTTP0、业务工具0，App已停止、锁与句柄释放。workflow恢复前四份停止态卷副本保留，恢复和up仅追加两条正常principal审计，其余业务事实保持；六primary在App退出后仍健康。详细来源/时间和UI证据见[79](79-post-cleanup-app-history-acceptance.md)。下段76记录保持其当时数字。
 
 初始generation01系统Quit绕过自定义ExitOwner，退出资格FAIL，原记录保留。仅Desktop标准`aevt/quit` handler接入既有清理链后独立构建generation02；三轮正常退出日志/停止代120→123/活动WAL和SHM0/无进程句柄均通过。遗留WAL由新App正常打开和退出处理，未手工checkpoint或删除。Native71表仅停止代追加，Host所有持久值、Runtime业务/rollout、旧历史与授权不变。最终完整后态17401文件/522889712字节。
 
@@ -77,4 +81,4 @@
 
 此前两轮74个旧顶层目录清理结论仍是73号历史事实。78另按精确清单清理`daily-source/20261027-01`及8个worktree，12原仓、所有保护引用、旧账本/预占及新备份/bundle保留；缺失更早归档的事实不被新备份掩盖。旧daily-source完整归档已独立恢复75,547项，清理后19项来源和1410项输入/制品核对通过，原日常数据保持。恢复未采纳WIP或旧来源须从保护提交/bundle/归档按需求审阅，不直接整份启用；回退先正常退出、备份和验证兼容来源，不降schema、覆盖日常库、重跑D3或清空WAL。
 
-原主目录构建运行目标已完成。锁屏相关App历史界面观察保持跳过；原完整App正向never-sent取消NOT RUN且已有接受替代，永久排除项不重新安排。未来开发改变主源码后应canonical新generation构建、资格及显式绑定，旧回执不能自动刷新。
+原主目录构建运行与清理后实际历史/退出验收已完成，没有待补的新来源历史界面项。原完整App正向never-sent取消仍NOT RUN且已有接受替代，永久排除项不重新安排。未来开发改变主源码后应canonical新generation构建、资格及显式绑定，旧回执不能自动刷新。

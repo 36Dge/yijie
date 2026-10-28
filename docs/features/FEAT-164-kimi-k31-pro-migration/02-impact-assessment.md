@@ -1,6 +1,6 @@
 # FEAT-164 影响评估
 
-> 当前口径：原主工作目录构建/日常入口及正常系统退出资格以[76](76-primary-workspace-execution.md)、[77](77-primary-system-quit-root-cause-and-plan.md)和[当前验收矩阵](current-acceptance-matrix.md)为准。当前源码为原`CrossBSD/yijie-desktop`，generation `20261028-02`；71—74保留为上一来源/清理历史。新来源三轮服务/模型目录/正常退出/数据后态通过，App历史界面因锁屏按Owner指示跳过，未记PASS；既有接受替代和永久移除范围保持。
+> 当前口径：原主工作目录构建与退出修复见[76](76-primary-workspace-execution.md)/[77](77-primary-system-quit-root-cause-and-plan.md)，旧daily-source清理见[78](78-old-daily-source-retirement.md)，清理后一次真实启动、8会话/11轮历史UI与正常退出及后态验收见[79](79-post-cleanup-app-history-acceptance.md)。当前源码为原`CrossBSD/yijie-desktop`，generation `20261028-02`；模型HTTP新增0，新来源历史界面已实际通过，76原锁屏跳过记录仍保留。完整App正向never-sent取消仍NOT RUN且已有接受替代；搜索答案/外观专项永久移除。当前状态见[矩阵](current-acceptance-matrix.md)，下文旧阶段的“当前”均按各自时点解释。
 
 ## 初始影响评估（历史规划；现状见当前矩阵）
 

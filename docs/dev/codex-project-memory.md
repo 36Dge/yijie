@@ -1,5 +1,11 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 清理后实际 App 历史与退出验收完成（2026-10-28）
+
+当前以[79](../features/FEAT-164-kimi-k31-pro-migration/79-post-cleanup-app-history-acceptance.md)为最新运行验收。原yijie-desktop generation20261028-02经canonical日常入口追加`--pause-kimi`完成一次清理后启动；真实UI逐一核验8会话/11轮、2附件、命令详情、旧K3退役禁发与已删除计划历史/禁重跑。App自身⌘Q正常退出0，停止代123→124、活动WAL/SHM0、锁和进程句柄释放；71Native表仅停止代新增，其余原业务/授权、Host值、Runtime业务/rollout保持，日志追加608行。完整后态17,401文件/523,139,568字节；模型HTTP0、provider metadata HTTP0、业务工具0。76/78锁屏跳过的新来源历史界面项已由本轮实际执行补齐，原跳过历史不改写。
+
+启动前Docker未运行，沿此前已批准65同栈范围正常打开原Docker，四份停止态卷copy-out/hash后完成recover及canonical up；恢复ID6ce625bb-9650-443d-8de6-91a9a17b756b。原137退出状态保留，四卷不删、无强杀/新服务/拉镜像，既有幂等迁移与正常凭据轮换有原文件副本；仅两条正常principal审计增量，6primary实际ready并保持运行。产品/Runtime/权限/来源绑定未改，旧daily-source仍不存在，原dirty/七账本/两预占保留，仅本地提交不推送。完整App正向never-sent取消NOT RUN及已接受分层替代、搜索答案/外观专项移除范围保持。
+
 ## FEAT-164 旧 daily-source 已安全清理（2026-10-28）
 
 当前清理后态以[78](../features/FEAT-164-kimi-k31-pro-migration/78-old-daily-source-retirement.md)为准。Owner已明确授权审计、精确列清单后清除；旧`yijie/.local/daily-source/20261027-01`及8个worktree已正常移除，无force/prune。完整75,547项归档独立恢复完全一致、五仓bundle重新独立恢复/fsck通过；归档在`yijie/.local/daily-source-retirement/20261028-01/`，保留原Git引用、12原仓、原工作、账本和预占。旧来源如需回退须从归档恢复并重新注册/审定，旧.git指针不能复用，不能覆盖日常库。

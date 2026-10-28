@@ -1,0 +1,178 @@
+{
+  "status": "PASS_POST_CLEANUP_ACTUAL_APP_ACCEPTANCE",
+  "at": "2026-10-28T01:58:54.518248+00:00",
+  "source": {
+    "status": "PASS",
+    "receipt_sha256": "28141579143c6da10ac47f11a164e7394cec83ae3559aa9dd50db5057c4cd915",
+    "D5_binding_sha256": "169d6713703abaaf35ad84fdcdbdc0778159fec0a18cf50f1bd4a339ad80a87c",
+    "descriptor_sha256": "4aba6ea641803030f3a6ed9312e76a516e3ef6fe48d30551c02588c6a2ba7c6e",
+    "sources": {
+      "yijie-desktop": {
+        "root": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+        "commit": "24a231f96f08ed077e53f9bd73a2aac93ee6cba8"
+      },
+      "yijie-contracts": {
+        "root": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+        "commit": "d5792d6aad18352ce8d1c5d510d345004cab3bd6"
+      },
+      "yijie-agent-host": {
+        "root": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+        "commit": "7309101726dcecd48b2caa02401cfcdd6126f1fb"
+      },
+      "yijie-connectors": {
+        "root": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors",
+        "commit": "8e62101ff8ca94c2f9e12f4e415f20df41a7deed"
+      },
+      "yijie-skills": {
+        "root": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills",
+        "commit": "595c927ae101d3d31c234f60565041eee0864680"
+      },
+      "yijie-codex": {
+        "root": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex",
+        "commit": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a"
+      }
+    },
+    "input_artifact_records": 1410,
+    "old_source_absent": true
+  },
+  "canonical_App_starts": 1,
+  "normal_exits": 1,
+  "normal_exit_method": "App standard Command-Q through existing menu and ExitOwner",
+  "UI_history": "PASS_ACTUAL_APP",
+  "Native_sessions_read_in_UI": 8,
+  "Native_turns_preserved": 11,
+  "Native_tables": 71,
+  "Native_changed_tables": [
+    "chat_scheduled_stopped_generations"
+  ],
+  "stopped_generation_before": 123,
+  "stopped_generation_after": 124,
+  "attachments_visible": 2,
+  "deleted_plan_history_and_rerun_protection": "PASS",
+  "Host_all_values_preserved": true,
+  "Runtime_business_and_rollouts_preserved": true,
+  "Runtime_log_rows_added": 608,
+  "active_WAL_SHM_bytes": 0,
+  "App_stopped_lock_released_no_handles": true,
+  "all_model_dispatchable_work": 0,
+  "model_HTTP": 0,
+  "provider_metadata_HTTP": 0,
+  "business_tool_calls": 0,
+  "backup_files": 17401,
+  "pre_backup_bytes": 522889712,
+  "post_backup_bytes": 523139568,
+  "workflow_same_stack_recovered": true,
+  "workflow_recovery_id": "6ce625bb-9650-443d-8de6-91a9a17b756b",
+  "workflow_healthy_primaries": 6,
+  "workflow_existing_volumes_retained": 4,
+  "workflow_model_calls": 0,
+  "workflow_ready_observation": "2026-10-28T01:53:49.104016+00:00",
+  "workflow_left_running": true,
+  "product_Runtime_or_permission_changes": 0,
+  "original_twelve_repository_state_preserved": true,
+  "original_meta_dirty_paths": 243,
+  "seven_ledgers_two_reservations_unchanged": true,
+  "old_daily_source_absent": true,
+  "push": false,
+  "full_App_positive_never_sent": "NOT RUN; accepted safe layered substitute retained",
+  "owner_excluded": [
+    "search answer correctness",
+    "light-dark/keyboard/minimum-window special acceptance"
+  ],
+  "feature": "FEAT-164",
+  "report": "79-post-cleanup-app-history-acceptance.md",
+  "private_evidence_root": "yijie/.local/post-cleanup-acceptance/20261028-01",
+  "evidence_hashes": {
+    "candidate-qualified.json": "a5d726fa7d84f60394665d5c43310aa8d8dd0b6446df28241f9c87b9686ad57e",
+    "launch-admission.json": "54c69c3d2e98e32db3e7bcc3827a4f31fc3d00881f98119966f7794479ef5901",
+    "observed.json": "4f0d95223ecfc5d0ce0386603c1ce784fc88149c74c745788181440081231c91",
+    "ui-verification.json": "3ffcec0e7f74cafe11abf12efd716f89692eaee7e674ac05232c50fc2e739f1f",
+    "quit-request.json": "1f0cdcb1271fcdd28447f35117b29cbf2ba53ef32f66f6fb895e23c01bf78a9d",
+    "app-exit.json": "3addcb6ae3484577e40b6818b8d245dd3a290e586bcdbdaacf269515808a5f1d",
+    "post-app/review.json": "0da1a6562dafe9ff938ea3b62e4fcba01cde886f7e8412f447e621a5d0ea55f3",
+    "workflow-before-app.json": "c9173851b2dc86f4def8632e887fb525bb315ccf5ce0a5b29c9b66ebd208cc39",
+    "workflow-after-app.json": "c583b0d3be54bf19613f49dbc79fc3147861e442850407565cd6a7ebf9771a28",
+    "prestart-cold-backup/source-manifest.json": "429a2a3892e2872b4b4466fadae17adaae1f79c3f2ff80e6f057b29ab26c6fa9",
+    "post-app/source-manifest.json": "5d500bbf2d3b0728d645ef59f9d817df3ec238a0f0bd2992dfea8e7b37b803ea"
+  },
+  "ui_files": [
+    {
+      "path": "ui-history-attachments.png",
+      "sha256": "984ecb57b3757d8b4637c689459d209daf4eb8be5cec1d7ffabddd29e9fcd430"
+    },
+    {
+      "path": "ui-history-attachments.txt",
+      "sha256": "0b40463c1b46da2af3041e2da12af18c055c4c2fa9b91b176660555a07d9093d"
+    },
+    {
+      "path": "ui-history-city-1.txt",
+      "sha256": "ac98e132300d946598d2286645c41489098c4d0c6ca6c75c92bec545103f4b19"
+    },
+    {
+      "path": "ui-history-city-2.txt",
+      "sha256": "37e5f6fb3914c019d68c9ef55d65e5a719c5a193bd784f69edad80739f8dd0d2"
+    },
+    {
+      "path": "ui-history-city-3.txt",
+      "sha256": "0989344b3611eac2fdf4513dea14376d1774782b1886a6f00d607471a44f2629"
+    },
+    {
+      "path": "ui-history-city-4.txt",
+      "sha256": "f6ea49df81814b324e8cf16134391e67af4e4434aa597332e11591976116059e"
+    },
+    {
+      "path": "ui-history-city-5.txt",
+      "sha256": "c59d04c73c47f335f5decb4f1bdb299125bd26c1ffb6640fe329d97d3add9c0e"
+    },
+    {
+      "path": "ui-history-command-expanded.txt",
+      "sha256": "b7c49946857287c2ce92437ffdb4c276c75d51c165321b5e76a3ed842a99ffc1"
+    },
+    {
+      "path": "ui-history-project.txt",
+      "sha256": "753bf9484e255ec45dea841b23571c26d6da0b8ee108c355dcb91dabacdac471"
+    },
+    {
+      "path": "ui-history-text.png",
+      "sha256": "ebd88c5ff1d019b837c4205f961d49141baedc2f3bfaff971d5bba31bb22958f"
+    },
+    {
+      "path": "ui-history-text.txt",
+      "sha256": "6673875e39a1fed5967bbb6698369ddfdd6475eb2de408a309c16365ae1e32ee"
+    },
+    {
+      "path": "ui-plan-history-detail.png",
+      "sha256": "0d00bbb07e6a9db4dcc64bbc74c9f050f13d2b08c3a58a98d10e6cd1264ffa8f"
+    },
+    {
+      "path": "ui-plan-history-detail.txt",
+      "sha256": "280923e851c32d31337bf8a9a56a12ce17b63bea3266a6ba055c7817f9457917"
+    },
+    {
+      "path": "ui-plan-history.txt",
+      "sha256": "a9ad41991d7524e86baae4008f42d9bb98eaac0380cf14e70915c89312436837"
+    },
+    {
+      "path": "ui-plans.txt",
+      "sha256": "96d2957bb4735bf6145c5d470c0b7cf182cb07a669622da625a6a38a5028fa68"
+    },
+    {
+      "path": "ui-startup.png",
+      "sha256": "fa67865e58eab8903ae970e5643482b56af84e93c81ecd9acf6a2c5f0b97f7f2"
+    },
+    {
+      "path": "ui-startup.txt",
+      "sha256": "e4e6111629f6bb184c1fe9840a155426bf7bdeae0981fae10d354935a7c384e4"
+    },
+    {
+      "path": "ui-verification.json",
+      "sha256": "3ffcec0e7f74cafe11abf12efd716f89692eaee7e674ac05232c50fc2e739f1f"
+    }
+  ],
+  "governance": {
+    "lint": "PASS",
+    "tests": 57,
+    "claims": "PASS",
+    "strict_G6": "PASS"
+  }
+}

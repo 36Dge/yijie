@@ -1,6 +1,6 @@
 # FEAT-164 实际验证记录
 
-> 当前口径：原主工作目录构建/日常入口及正常系统退出资格以[76](76-primary-workspace-execution.md)、[77](77-primary-system-quit-root-cause-and-plan.md)和[当前验收矩阵](current-acceptance-matrix.md)为准。当前源码为原`CrossBSD/yijie-desktop`，generation `20261028-02`；71—74保留为上一来源/清理历史。新来源三轮服务/模型目录/正常退出/数据后态通过，App历史界面因锁屏按Owner指示跳过，未记PASS；既有接受替代和永久移除范围保持。
+> 当前口径：原主工作目录构建与退出修复见[76](76-primary-workspace-execution.md)/[77](77-primary-system-quit-root-cause-and-plan.md)，旧daily-source清理见[78](78-old-daily-source-retirement.md)，清理后一次真实启动、8会话/11轮历史UI与正常退出及后态验收见[79](79-post-cleanup-app-history-acceptance.md)。当前源码为原`CrossBSD/yijie-desktop`，generation `20261028-02`；模型HTTP新增0，新来源历史界面已实际通过，76原锁屏跳过记录仍保留。完整App正向never-sent取消仍NOT RUN且已有接受替代；搜索答案/外观专项永久移除。当前状态见[矩阵](current-acceptance-matrix.md)，下文旧阶段的“当前”均按各自时点解释。
 
 ## 第60号历史D1实施结果（2026-10-27）
 
@@ -752,3 +752,10 @@ PASS_DOCUMENTATION_ONLY：当前完成、Owner接受的never-sent分层替代（
 <!-- evidence: E164-PRIMARY-CURRENT -->
 
 见[76](76-primary-workspace-execution.md)、[77](77-primary-system-quit-root-cause-and-plan.md)及[机器证据](evidence/primary-workspace-execution-result.json)。Desktop24a231f / 原主目录generation20261028-02三轮实际ready、Kimi启用/暂停只读目录及正常退出后态通过；0新增真实模型HTTP。UI历史因锁屏跳过，未记PASS；原接受替代/永久移除保持。初始01清理FAIL保留，后续修复不改写该结果。最终17401文件完整后态、旧行/授权/Runtime业务保持、活动WAL/SHM0；所有源码/预算保全及bundle已核验，未清理目录、不推送。
+
+## 清理后原主目录 App 历史验收（2026-10-28）
+
+<!-- evidence: E164-POSTCLEANUP-HISTORY -->
+<a id="E164-POSTCLEANUP-HISTORY"></a>
+
+[79](79-post-cleanup-app-history-acceptance.md)及[机器证据](evidence/post-cleanup-app-acceptance.json)：同一generation20261028-02一次canonical启动，当前UI实际读取8会话/11轮历史、2附件、命令详情和已删除计划保护；App标准⌘Q正常退出，停止代123→124、活动WAL/SHM0、无进程/句柄，原业务/授权/Host值/Runtime业务及rollout保持。模型HTTP0、provider metadata HTTP0；依既有65授权恢复同一workflow栈，4停止态卷备份保留、6primary实际ready。76因锁屏跳过的历史界面项现已补齐，原NOT RUN替代及Owner移除范围保持；不新增产品/Runtime修改或发布范围。
