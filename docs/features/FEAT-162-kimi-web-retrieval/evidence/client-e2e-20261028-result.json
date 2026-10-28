@@ -1,0 +1,293 @@
+{
+  "date": "2026-10-28",
+  "feature": "FEAT-162",
+  "status": "FAIL",
+  "reason": "Kimi model response.failed before Search/Fetch; latest error code rate_limit_exceeded",
+  "approved_cumulative_model_max": 7,
+  "approved_tools_max": {
+    "search": 1,
+    "fetch": 1
+  },
+  "budget_micro_cny": 43000000,
+  "actual_supplier_http": {
+    "model": 4,
+    "search": 0,
+    "fetch": 0,
+    "other": 0
+  },
+  "model_successes": 1,
+  "model_failures": 3,
+  "model_rows": [
+    {
+      "ordinal": 1,
+      "status": "settled",
+      "http_status": 200,
+      "terminal": "response.completed",
+      "response_model": "kimi-k3.1-pro",
+      "usage": {
+        "input_tokens": 6725,
+        "output_tokens": 262
+      },
+      "reserved_micro_cny": 14195072,
+      "charged_upper_micro_cny": 105241,
+      "tool_result_count": 0,
+      "supplier_http_started": true,
+      "request_sha256": "b86e0442d498d836c7fce80c24a34fa0bcd1346e78ea19a4b24ee995819fc450",
+      "forwarded_response_sha256": "919a4d7e32769eb65c4829b821110f5771da59a06129719cf4553163f9b9c114"
+    },
+    {
+      "ordinal": 2,
+      "status": "unknown_reserved",
+      "http_status": 200,
+      "terminal": "response.failed",
+      "response_model": "kimi-k3.1-pro",
+      "reserved_micro_cny": 14195072,
+      "tool_result_count": 1,
+      "supplier_http_started": true,
+      "request_sha256": "522ae48cdd763302ca9db40999075d85b9642f4fff3b697922a3fbcce35cb75d",
+      "forwarded_response_sha256": "a96358f11d833012456723e735d92ce84020b0373752353a5012227ce2d1c0d0"
+    },
+    {
+      "ordinal": 3,
+      "status": "unknown_reserved",
+      "http_status": 200,
+      "terminal": "response.failed",
+      "response_model": "kimi-k3.1-pro",
+      "reserved_micro_cny": 14195072,
+      "tool_result_count": 0,
+      "supplier_http_started": true,
+      "request_sha256": "284c2ed8601760131769e97a982c3210714440e4483218869bd76a13b5dd97af",
+      "forwarded_response_sha256": "0ce2c0bbf3ddd1f41a62369fdc39acc206cb49dc4cc7fa7bd3b47fb9483e7ad5"
+    },
+    {
+      "ordinal": 4,
+      "status": "unknown_reserved",
+      "http_status": 200,
+      "terminal": "response.failed",
+      "response_model": "kimi-k3.1-pro",
+      "reserved_micro_cny": 14195072,
+      "tool_result_count": 0,
+      "supplier_http_started": true,
+      "provider_error_present": true,
+      "provider_error_category": "unclassified",
+      "provider_error_code": "rate_limit_exceeded",
+      "provider_error_mentions": [],
+      "provider_error_terms": [
+        "server_busy"
+      ],
+      "request_sha256": "5ecfc1ba4818b74b864841b4a1a237d74ae612d95378a3cc7b66e626e1e38d05",
+      "forwarded_response_sha256": "29702164102e6ee616aab099e115a9b83fde1f26714195762f87c1bedebaf76b"
+    }
+  ],
+  "known_usage_upper_micro_cny": 105241,
+  "unknown_reservations_micro_cny": 42585216,
+  "model_upper_micro_cny": 42690457,
+  "unspent_tool_reserve_micro_cny": 20000,
+  "total_conservative_upper_micro_cny": 42710457,
+  "available_unreserved_micro_cny": 289543,
+  "next_model_reservation_micro_cny": 14195072,
+  "billing_checked": false,
+  "further_calls_allowed": false,
+  "normal_cleanup": true,
+  "failed_history_reopen": "PASS, no additional HTTP",
+  "successful_tools_history": "NOT RUN",
+  "zero_cost_meter_tests": 19,
+  "meta_tests": 57,
+  "worker_denial_zero_http": "PASS",
+  "supplier_calls_in_offline_preflight": 0,
+  "runtime_core_changed": false,
+  "daily_generation_03_preserved": true,
+  "ledger_hashes": [
+    {
+      "name": "live-ledger.json",
+      "sha256": "a7f882c2022db672dc84ecf7d87e12e688149742ba14c3087d5b6eea5fb2b953"
+    },
+    {
+      "name": "live-ledger-continued.json",
+      "sha256": "636e7782dd0852fe51f518564321b18576ebaa2de3290465da03a8a29c9e0333"
+    },
+    {
+      "name": "live-ledger-additional4.json",
+      "sha256": "f56bdbc8380d330f70248251c52cdbbe2f190ef4cee6c0b8d8345ddc672a376b"
+    }
+  ],
+  "worker_diagnostics": [
+    {
+      "event": "started",
+      "httpStatus": null,
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "model_preparation",
+      "unixMs": 1793171096098
+    },
+    {
+      "event": "succeeded",
+      "httpStatus": null,
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "model_preparation",
+      "unixMs": 1793171096098
+    },
+    {
+      "event": "started",
+      "httpStatus": null,
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "model_preparation",
+      "unixMs": 1793169077519
+    },
+    {
+      "event": "succeeded",
+      "httpStatus": null,
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "model_preparation",
+      "unixMs": 1793169077520
+    },
+    {
+      "event": "started",
+      "httpStatus": null,
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "model_preparation",
+      "unixMs": 1793168358428
+    },
+    {
+      "event": "succeeded",
+      "httpStatus": null,
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "model_preparation",
+      "unixMs": 1793168358428
+    },
+    {
+      "event": "started",
+      "httpStatus": null,
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "model_preparation",
+      "unixMs": 1793171302255
+    },
+    {
+      "event": "succeeded",
+      "httpStatus": null,
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "model_preparation",
+      "unixMs": 1793171302255
+    },
+    {
+      "event": "started",
+      "httpStatus": null,
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "call_approval",
+      "unixMs": 1793169266440
+    },
+    {
+      "event": "policy_rejected",
+      "httpStatus": null,
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "call_admission",
+      "unixMs": 1793169316003
+    },
+    {
+      "event": "started",
+      "httpStatus": null,
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "model_preparation",
+      "unixMs": 1793170369271
+    },
+    {
+      "event": "succeeded",
+      "httpStatus": null,
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "model_preparation",
+      "unixMs": 1793170369272
+    },
+    {
+      "event": "started",
+      "httpStatus": null,
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "model_preparation",
+      "unixMs": 1793168854774
+    },
+    {
+      "event": "succeeded",
+      "httpStatus": null,
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "model_preparation",
+      "unixMs": 1793168854775
+    }
+  ],
+  "build_receipt_sha256": "840c9b0837959788152910e8414b4e3cb0388ba8e8b4a0ed42f747134d5a5d8f",
+  "artifact_digests": {
+    "host": {
+      "sha256": "0df0ea2e30aed754aa6b99ba142b0f2336b3e0990b9647dc428c6bda9b732ee8",
+      "bytes": 18028322,
+      "mode": 493
+    },
+    "runtime": {
+      "sha256": "283d12e16b124942302fcdc8281c729a8a7f676498f06df1d2646292905f579e",
+      "bytes": 356655704,
+      "mode": 493
+    },
+    "runtimeManifest": {
+      "sha256": "935dae6cf1427a8338b2817c4bfd39e9ae837e51a7f9cefd9117ecfed28b4cee",
+      "bytes": 3100,
+      "mode": 420
+    },
+    "worker": {
+      "sha256": "129b2535bb83c92badb2a2654263cc71ada1d25f0651e9cf69e8d11fd7274f40",
+      "bytes": 84685744,
+      "mode": 493
+    },
+    "workerManifest": {
+      "sha256": "105a535a7b7189bb67c1c4b122ee383117b147c9599bc24b4eeb67e406bd9702",
+      "bytes": 494,
+      "mode": 420
+    },
+    "adapter": {
+      "sha256": "82f6d2ee3e3769897412b8ebcf432327816ce7bfecbb03a51ac671dc04914249",
+      "bytes": 19818576,
+      "mode": 493
+    },
+    "app": {
+      "sha256": "e93eb81726f42bb86d219a6c05860dd325cf846c3fbd1a8432e9c40017c48b26",
+      "bytes": 188146432,
+      "mode": 493
+    }
+  },
+  "repos": {
+    "yijie-contracts": {
+      "commit": "2adfa2bef43d38a932f6249dbb0a229c173ff103",
+      "status": ""
+    },
+    "yijie-connectors": {
+      "commit": "d88b8d0b8e95978ef3494c90bb5e0e619aa3a27d",
+      "status": ""
+    },
+    "yijie-skills": {
+      "commit": "704d2cc85a85d0759e6103e3f539552f3d63b1e9",
+      "status": ""
+    },
+    "yijie-agent-host": {
+      "commit": "20539889259587a66a574201e521c2ea9469c54d",
+      "status": ""
+    },
+    "yijie-desktop": {
+      "commit": "0247b7cfbe3a4a2020a29417d96b8a5718b3923d",
+      "status": ""
+    },
+    "yijie-codex": {
+      "commit": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+      "status": ""
+    }
+  },
+  "private_evidence_directory": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-client-e2e-20261028"
+}

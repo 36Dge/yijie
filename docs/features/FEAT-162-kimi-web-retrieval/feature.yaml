@@ -1,5 +1,5 @@
-# 2026-10-28: K3.1整合与新构建完成，当前结果见18-k31-build-and-zero-cost-results.md。
-# 下列09/13的App与收费PASS是2026-10-24历史证据；新构建尚未启动或收费验收，D4不变。
+# 2026-10-28: 当前真实客户端结果见20-client-e2e-results.md；模型4次、Search/Fetch0，FAIL并停止。
+# 09/13的App与直接工具PASS是2026-10-24历史证据，不能换算为当前K3.1客户端D4。
 schema_version: 3
 delivery_profile: demo_fast
 exposure: local
@@ -156,24 +156,23 @@ external_authorizations:
   production_writes: { allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A }
 implementation:
   status: complete
-  real_entrypoint: 当前K3.1正常入口pnpm daily:open要求匹配来源的激活记录；本轮仅daily:prepare生成20261028-03，复用现有market worker和Kimi Responses Runtime，未激活新构建
+  real_entrypoint: K3.1同源canonical --packaged --feat164-qualification --kimi-k31-pro入口；独立FEAT162计量和原Key；日常generation20261028-03保留未新激活
   mock_only: false
 verification:
-  status: NOT RUN
-  verified_at: NOT RUN
+  status: FAIL
+  verified_at: "2026-10-28"
   startup:
     status: PASS
-    command_or_steps: YIJIE_FEAT156_LOCAL_CANDIDATE=true pnpm
-      tauri:demo-fast:app；正常Cmd-Q后同入口--reopen
-    environment: local demo_fast canonical packaged App
-    actual_result: Host专家来源核对及本地依赖恢复通过；已有模型凭据自动复用，Kimi无需配置启用即显示可使用；任务开关、1180x760及同构建重开通过；真实Kimi调用0
-    evidence: evidence/direct-use-ui.json
+    command_or_steps: bash scripts/run-local-demo-fast.sh --packaged --feat164-qualification --kimi-k31-pro --reopen
+    environment: local demo_fast K3.1 qualification packaged App
+    actual_result: 标准新构建及来源检查通过，已有模型凭据自动复用；本机合成正控及正常重开通过；真实失败历史重开0新增请求；不等于Search或Fetch真实结果通过
+    evidence: evidence/client-e2e-20261028-result.json
   real_smoke:
     {
-      status: PASS,
-      command_or_steps: 用户已授权的固定无模型工具验收，先拒绝零请求后Search和Fetch各一次,
-      environment: 当前构建和用户配置凭据,
-      actual_result: 本地测试客户端SSE和progressToken兼容修复后，正常拒绝0请求，Search1和Fetch1均HTTP200且结果通过，模型0；按单价核算0.02元，未查账单，详见13报告
+      status: FAIL,
+      command_or_steps: 17/19号原授权及两次追加授权的真实Native对话验收；保留未知预占且新失败停止,
+      environment: 2026-10-28 K3.1同源构建与客户端已有Key,
+      actual_result: 模型实际4次，首次成功后Search审批过期零发送，旧meter漏拦续轮已离线修复；其余三次response.failed且usage未知，最新rate_limit_exceeded；Search0 Fetch0；保守上界42.710457元非实际账单；正常停止且无法继续完整预占。2026-10-24直接工具PASS仍见13号
     }
   representative_failure:
     {
@@ -183,6 +182,12 @@ verification:
       actual_result: 真实产品Gateway正常拒绝已验证零供应商请求；真实模型或Native界面审批拒绝未运行
     }
   focused_checks:
+    - name: 2026-10-28真实K3.1客户端端到端
+      status: FAIL
+      evidence: evidence/client-e2e-20261028-result.json
+    - name: 独立计量19项普通离线检查及实际worker拒绝零HTTP
+      status: PASS
+      evidence: evidence/client-e2e-20261028-result.json
     - name: 真实产品worker的Search与Fetch各一次及拒绝零HTTP
       status: PASS
       evidence: evidence/live-minimal-round3-result.json
@@ -226,6 +231,9 @@ verification:
       status: PASS
       evidence: evidence/app-resume-ui.json
   artifacts:
+    - 20-client-e2e-results.md
+    - 19-approved-client-e2e-execution.md
+    - evidence/client-e2e-20261028-result.json
     - 13-search-fetch-live-verification.md
     - evidence/live-minimal-round3-authorization.json
     - evidence/live-minimal-round3-result.json
@@ -281,7 +289,8 @@ verification:
     status: PASS
     summary: 独立审查P1与preflight顺序问题已关闭，相关仓库diff检查通过，Runtime工作区干净且HEAD不变；保留用户已有修改
   known_limitations:
-    - Search1和Fetch1真实工具验收已通过，批准额度已用完；真实模型驱动MCP、Native界面审批及结果历史D4仍NOT RUN；不追加收费请求
+    - 当前K3.1真实客户端验收FAIL；模型4次且3份未知用量保留，最新供应商rate_limit_exceeded，Search0 Fetch0；预算不足下一次完整预占，全部台账关闭，不使用剩余次数自动重试
+    - 2026-10-24的Search1和Fetch1直接工具PASS仍保留；当前真实成功工具结果、答案及其重开未验证，D4未通过
     - Kimi准备不联网，已移除models检查；可使用仅表示本地适配器就绪，真实账号权限余额仍未验证
     - 暗色实机验收NOT RUN：现有设置无切换入口，未更改系统外观；亮色1268x780与1180x760通过
     - 完整breaking四个基线因既有远程引用EOF未通过，专家补充一项旧基线失败
