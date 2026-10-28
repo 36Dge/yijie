@@ -1,0 +1,186 @@
+{
+  "recorded_at": "2026-10-28T04:17:28.699350+00:00",
+  "status": "implementation_in_progress_waiting_for_explicit_local_commit_authorization",
+  "real_calls": {
+    "model": 0,
+    "search": 0,
+    "fetch": 0,
+    "other_provider_account_api": 0
+  },
+  "cost_cny": "0.00",
+  "real_key_value_read": false,
+  "new_app_built": false,
+  "app_started": false,
+  "user_database_opened": false,
+  "commits_made": 0,
+  "repositories": {
+    "yijie": {
+      "head": "0b6c1062c57f7eaf6189b51bc60bac3ba8eadcf4",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": "M docs/features/FEAT-162-kimi-web-retrieval/04-resume.md\n M docs/features/FEAT-162-kimi-web-retrieval/14-client-e2e-acceptance-plan.md\n?? docs/features/FEAT-162-kimi-web-retrieval/15-k31-current-audit-and-completion-plan.md\n?? docs/features/FEAT-162-kimi-web-retrieval/16-k31-integration-reaudit-and-execution.md\n?? docs/features/FEAT-162-kimi-web-retrieval/17-k31-client-e2e-proposal.md\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/k31-current-source-audit-20261028.json",
+      "diff_check": "PASS"
+    },
+    "yijie-contracts": {
+      "head": "d5792d6aad18352ce8d1c5d510d345004cab3bd6",
+      "branch": "feat/feat164-primary-20261028",
+      "status": "M Makefile\n M compatibility/experts-v2/source.lock.json\n M compatibility/experts/source.lock.json\n M compatibility/market-broker-control/control.json\n M compatibility/market-broker-control/source.lock.json\n M compatibility/market-connectors/source.lock.json\n M compatibility/market-host-v2/source.lock.json\n M compatibility/market-host-v2/transport.json\n M compatibility/market-host/source.lock.json\n M compatibility/market-provider/source.lock.json\n M compatibility/market-provider/transport.json\n M compatibility/market-provider/wire.schema.json\n M compatibility/market-selection-v2/source.lock.json\n M compatibility/market-selection/source.lock.json\n M docs/market-connectors-v1.md\n M docs/market-provider-v1.md\n M docs/model-call-surfaces-v2.md\n M docs/supported-baselines.md\n M openapi/market-connectors/market-connectors.yaml\n M scripts/generate-market-broker.mjs\n M scripts/generate-market-connectors.mjs\n M scripts/generate-market-host-v2.mjs\n M scripts/generate-market-host.mjs\n M scripts/market-broker-source.mjs\n M scripts/market-host-source.mjs\n M scripts/market-host-v2-source.mjs\n M scripts/sync-market-host.mjs\n M scripts/validate-json-schemas.mjs\n M sdks/go/market-broker-control/types.gen.go\n M sdks/go/market-connectors/types.gen.go\n M sdks/go/market-host-v2/types.gen.go\n M sdks/go/market-host/types.gen.go\n M sdks/go/market-provider/types.gen.go\n M sdks/jsonschema/market-connectors.schema.json\n M sdks/jsonschema/market-host-native.schema.json\n M sdks/jsonschema/market-host-v2-native.schema.json\n M sdks/jsonschema/market-host-v2.schema.json\n M sdks/jsonschema/market-host.schema.json\n M sdks/jsonschema/market-provider.schema.json\n M sdks/rust/market-broker-control/types.gen.rs\n M sdks/rust/market-connectors/types.gen.rs\n M sdks/rust/market-host-v2/types.gen.rs\n M sdks/rust/market-host/types.gen.rs\n M sdks/rust/market-provider/types.gen.rs\n M sdks/typescript/src/api/generated/market-connectors-validator.gen.js\n M sdks/typescript/src/api/generated/market-host-native-validator.gen.js\n M sdks/typescript/src/api/generated/market-host-v2-native-validator.gen.js\n M sdks/typescript/src/domain/market-connectors.generated.ts\n M sdks/typescript/src/domain/market-host-native.generated.ts\n M sdks/typescript/src/domain/market-host-v2-native.generated.ts\n M tests/market-broker.test.mjs\n M tests/market-connectors.test.mjs\n M tests/model-call-surfaces-v2.test.mjs\n M tests/rust-market-connectors/src/lib.rs\n?? compatibility/web-retrieval/\n?? docs/web-retrieval-v1.md\n?? scripts/format-source-file.mjs\n?? scripts/generate-web-retrieval.mjs\n?? scripts/sync-web-retrieval.mjs\n?? scripts/web-retrieval-source.mjs\n?? sdks/jsonschema/web-retrieval.schema.json\n?? sdks/jsonschema/web-retrieval.tools.json\n?? sdks/rust/web-retrieval/\n?? tests/rust-web-retrieval/\n?? tests/web-retrieval.test.mjs",
+      "diff_check": "PASS"
+    },
+    "yijie-agent-host": {
+      "head": "7309101726dcecd48b2caa02401cfcdd6126f1fb",
+      "branch": "feat/feat164-primary-20261028",
+      "status": "M api/experts.candidate.json\n M api/market-broker-control.candidate.json\n M api/market-connectors.candidate.json\n M api/market-connectors.schema.json\n M api/market-host.candidate.json\n M api/market-host.schema.json\n M api/market-provider.candidate.json\n M api/market-provider.schema.json\n M internal/codex/market_runtime.go\n M internal/contracts/marketbrokercontrol/types.gen.go\n M internal/contracts/marketconnectors/types.gen.go\n M internal/contracts/markethost/types.gen.go\n M internal/contracts/marketprovider/types.gen.go\n M internal/marketbroker/owner.go\n?? internal/app/kimi_web_live_test.go\n?? internal/codex/kimi_web_integration_test.go\n?? internal/marketbroker/model_credential.go\n?? internal/marketbroker/model_credential_test.go\n?? scripts/run-kimi-web-minimal-acceptance.sh",
+      "diff_check": "PASS"
+    },
+    "yijie-connectors": {
+      "head": "8e62101ff8ca94c2f9e12f4e415f20df41a7deed",
+      "branch": "feat/feat164-primary-20261028",
+      "status": "M Makefile\n M api/market-broker-control.candidate.json\n M api/market-connectors.candidate.json\n M api/market-connectors.schema.json\n M api/market-provider.candidate.json\n M api/market-provider.schema.json\n M catalog/catalog.go\n M catalog/catalog_test.go\n M catalog/market-catalog.v1.json\n M catalog/provider-registry.v1.json\n M catalog/source-provenance.json\n M internal/contracts/marketconnectors/types.gen.go\n M scripts/build-market-worker.sh\n M worker/Cargo.lock\n M worker/Cargo.toml\n M worker/qualification/broker.rs\n M worker/src/broker.rs\n M worker/src/broker_generated.rs\n M worker/src/credentials.rs\n M worker/src/daily.rs\n M worker/src/gateway.rs\n M worker/src/generated.rs\n M worker/src/main.rs\n M worker/src/provider_generated.rs\n M worker/src/provider_registry.rs\n M worker/src/providers.rs\n M worker/src/tushare_oauth.rs\n?? .local/feat162-k31-worker-20261028/\n?? api/web-retrieval.candidate.json\n?? api/web-retrieval.schema.json\n?? api/web-retrieval.tools.json\n?? docs/kimi-web-retrieval.md\n?? worker/src/kimi_web.rs\n?? worker/src/kimi_web_tests.rs\n?? worker/src/model_credentials.rs\n?? worker/src/web_retrieval_generated.rs",
+      "diff_check": "PASS"
+    },
+    "yijie-desktop": {
+      "head": "24a231f96f08ed077e53f9bd73a2aac93ee6cba8",
+      "branch": "feat/feat164-primary-20261028",
+      "status": "M contracts/experts.candidate.json\n M contracts/market-catalog.candidate.json\n M contracts/market-catalog.json\n M contracts/market-connectors.candidate.json\n M contracts/market-connectors.schema.json\n M contracts/market-host-native.schema.json\n M contracts/market-host.candidate.json\n M contracts/market-host.schema.json\n M contracts/market-provider.candidate.json\n M contracts/market-provider.schema.json\n M contracts/market-selection.candidate.json\n M scripts/sync-market-catalog.mjs\n M src-tauri/src/chat/connectors/broker_generated.rs\n M src-tauri/src/chat/connectors/generated.rs\n M src-tauri/src/chat/connectors/host_generated.rs\n M src-tauri/src/chat/connectors/mod.rs\n M src-tauri/src/chat/connectors/provider.rs\n M src-tauri/src/chat/connectors/provider_generated.rs\n M src-tauri/src/chat/connectors/store.rs\n M src-tauri/src/chat/connectors/tests.rs\n M src/api/generated/market-connectors-validator.gen.js\n M src/api/generated/market-host-native-validator.gen.js\n M src/api/market-connectors-client.test.ts\n M src/api/market-host-native-client.test.ts\n M src/api/market-host-native-client.ts\n M src/components/connectors/ConnectorDetailsDialog.vue\n M src/components/connectors/ConnectorMarketView.test.ts\n M src/domain/connector-ui.ts\n M src/domain/market-connectors-ui.test.ts\n M src/domain/market-connectors-ui.ts\n M src/domain/market-connectors.generated.ts\n M src/domain/market-host-native.generated.ts\n M src/icons/connector-icons.ts\n M src/stores/market-connectors.store.test.ts\n M src/stores/market-connectors.store.ts\n?? src-tauri/src/chat/connectors/store_builtin.rs",
+      "diff_check": "PASS"
+    },
+    "yijie-skills": {
+      "head": "595c927ae101d3d31c234f60565041eee0864680",
+      "branch": "feat/feat164-primary-20261028",
+      "status": "M contracts/experts.candidate.json",
+      "diff_check": "PASS"
+    },
+    "yijie-codex": {
+      "head": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": "",
+      "diff_check": "PASS"
+    }
+  },
+  "worker_build": {
+    "schemaVersion": 2,
+    "candidateOnly": true,
+    "binary": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/.local/feat162-k31-worker-20261028/129b2535bb83c92badb2a2654263cc71ada1d25f0651e9cf69e8d11fd7274f40/yijie-mcp-worker",
+    "sha256": "129b2535bb83c92badb2a2654263cc71ada1d25f0651e9cf69e8d11fd7274f40",
+    "sizeBytes": 84685744,
+    "codexSource": "7fd463bcef07f37b0211acd9f62b9f93ea0a4b12",
+    "externalCallsEnabled": true,
+    "qualificationOnly": false,
+    "providerProfile": "generic-mcp-v1"
+  },
+  "checks": [
+    {
+      "log": ".local/feat162-k31-integration-20261028/contracts-complete-focused.log",
+      "sha256": "922abe4663b35bac975c1bb8d556c1c47ac8dbbd55177d70d100f6803a0d0c21",
+      "result": "PASS",
+      "passed_tests": 46
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/contracts-rust-web.log",
+      "sha256": "ffd71fead0cd68856b59fd563c8a0b540a3db38f6a4b8a394f22a156ee5f79b7",
+      "result": "PASS"
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/contracts-v2-lint.log",
+      "sha256": "d44c9cdeeda5862bcca3d022bdafdd2409c95f644c18bb36e86c383fafe377d9",
+      "result": "PASS"
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/worker-kimi-tests.log",
+      "sha256": "4ff504124b58a896c0166c46acb40df2f658b921f4b98fc3c40d887917cf4c5c",
+      "result": "PASS",
+      "passed_tests": 14
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/worker-lint.log",
+      "sha256": "0483a0eb6d4e1c94ac98d4d97c5464eedb61f6f37c02e05c475f4890a2c891c9",
+      "result": "PASS"
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/worker-build.log",
+      "sha256": "037d51e0e25fba5cb3fda2c02ffe2efdfbbb39297661f72fd43d932af3a89d3e",
+      "result": "PASS"
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/native-connectors.log",
+      "sha256": "20f029bed0182db54897317ca3e7c5c409858f8a17d950e466f429dbf1ab0d2c",
+      "result": "PASS-default-feature-only",
+      "passed_tests": 58
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/desktop-connectors-fixed.log",
+      "sha256": "6aaae1b401cf148504414926b8ac892b678be28f8829530114badcf5aa89dbc3",
+      "result": "PASS",
+      "passed_tests": 63
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/desktop-shared-credential-error-active.log",
+      "sha256": "457f6811b88b85171d8212d5278911a0e18bda8f54c25dc247daa78c389b952b",
+      "result": "PASS-default-validator-only",
+      "passed_tests": 5
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/desktop-shared-credential-error-eslint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": "PASS"
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/host-product-worker-local-fixed.log",
+      "sha256": "61a4a939e10d01f82f7a1e4eaaa4a20f184ff97f44c3042adfae956956a9b6c1",
+      "result": "PASS"
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/preflight-01/result.json",
+      "sha256": "ca93209a49558b6c3443c983322e4c5b4e8f1781962846ca2b83ee22b6087fbb",
+      "result": "PASS",
+      "passed_tests": 1
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/skills-lint.log",
+      "sha256": "dae8d60dd1b1d79c01410c003564bdab9c4de8e19d5d61823b0f1d1bf713e4d3",
+      "result": "PASS"
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/skills-retained-bundle.log",
+      "sha256": "435e90c56bc52dcbbb3103c2f05390c37a720f8c12f684b51aaf91b5fb3b7753",
+      "result": "PASS",
+      "passed_tests": 2
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/meta-lint.log",
+      "sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c",
+      "result": "PASS"
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/meta-test.log",
+      "sha256": "f5d688aa404269889a53452496aa9003877aeb3a60fb62b6302ee4446c952e42",
+      "result": "PASS"
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/desktop-typecheck.log",
+      "sha256": "71563d4bbe063b674b30a001d0782c6d03b9a180b999761d0ab2c4a6788d3021",
+      "result": "FAIL-awaiting-immutable-v2-consumer-sync"
+    }
+  ],
+  "preservation": {
+    "old_generation": "20261028-02",
+    "old_receipt_sha256": "28141579143c6da10ac47f11a164e7394cec83ae3559aa9dd50db5057c4cd915",
+    "old_bundle_files_verified": 119,
+    "old_host_worker_adapter_and_runtime_match_receipt": true,
+    "runtime_sha256": "283d12e16b124942302fcdc8281c729a8a7f676498f06df1d2646292905f579e",
+    "skills_content_test": "75 resources; 38 ordinary and 73 historical entries preserved"
+  },
+  "pending": [
+    "Contracts local immutable commit and v2 canonical consumer sync",
+    "K3.1 feature consumer checks and full frontend typecheck",
+    "actual source/catalog/expert/Host pins and required local commits",
+    "new canonical daily:prepare generation and artifact inspection",
+    "new client UI/e2e acceptance; paid proposal requires separate confirmation"
+  ],
+  "not_executed_for_safety": [
+    "force-kill/fault-injection",
+    "permission sabotage",
+    "executable spoofing or replacement",
+    "attack fixtures"
+  ]
+}

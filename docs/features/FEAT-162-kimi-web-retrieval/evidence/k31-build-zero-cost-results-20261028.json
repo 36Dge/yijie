@@ -1,0 +1,244 @@
+{
+  "recorded_at": "2026-10-28T04:38:36.677791+00:00",
+  "scope": "FEAT-162 K3.1 integration; zero paid calls; canonical development build only",
+  "status": "PASS_FOR_AUTHORIZED_BUILD_SCOPE",
+  "source_commits": {
+    "yijie-desktop": "446a5ac71b9a6767f2c8944178692c654e90df5c",
+    "yijie-contracts": "2adfa2bef43d38a932f6249dbb0a229c173ff103",
+    "yijie-agent-host": "20539889259587a66a574201e521c2ea9469c54d",
+    "yijie-connectors": "d88b8d0b8e95978ef3494c90bb5e0e619aa3a27d",
+    "yijie-skills": "704d2cc85a85d0759e6103e3f539552f3d63b1e9",
+    "yijie-codex": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a"
+  },
+  "generation": "20261028-03",
+  "app": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/builds/primary/20261028-03/target/debug/bundle/macos/易界 AI.app",
+  "receipt": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/builds/primary/20261028-03/packaged-launch-receipt.json",
+  "receipt_sha256": "fea236b9a0067e4ce6b1c47af6c4c0f65bec83efec2c073974ee0666a8588d9c",
+  "artifacts": {
+    "host": {
+      "sha256": "0df0ea2e30aed754aa6b99ba142b0f2336b3e0990b9647dc428c6bda9b732ee8",
+      "bytes": 18028322,
+      "mode": 493
+    },
+    "runtime": {
+      "sha256": "283d12e16b124942302fcdc8281c729a8a7f676498f06df1d2646292905f579e",
+      "bytes": 356655704,
+      "mode": 493
+    },
+    "runtimeManifest": {
+      "sha256": "935dae6cf1427a8338b2817c4bfd39e9ae837e51a7f9cefd9117ecfed28b4cee",
+      "bytes": 3100,
+      "mode": 420
+    },
+    "worker": {
+      "sha256": "f0e5059386fe244bad93c911608b6b2d431951759fb44988ecec1bb90a448065",
+      "bytes": 84685744,
+      "mode": 493
+    },
+    "workerManifest": {
+      "sha256": "a1a3ed2056c411b7d509bb4af550a88400bcda924e6e5268b4ae69511b984747",
+      "bytes": 514,
+      "mode": 420
+    },
+    "adapter": {
+      "sha256": "82f6d2ee3e3769897412b8ebcf432327816ce7bfecbb03a51ac671dc04914249",
+      "bytes": 19818576,
+      "mode": 493
+    }
+  },
+  "app_binary": {
+    "sha256": "9c7ebfea56398a0b7a20ba9dbe714f86715fabdfbcf8a5e7e92c74f1e466c9f6",
+    "bytes": 188173632,
+    "mode": 493
+  },
+  "source_files_verified": 1231,
+  "new_bundle_files_verified": 119,
+  "old_bundle_files_verified": 119,
+  "old_receipt_sha256": "28141579143c6da10ac47f11a164e7394cec83ae3559aa9dd50db5057c4cd915",
+  "catalog": {
+    "revision": 11,
+    "entries": 61,
+    "kimi_web_present": true
+  },
+  "real_api_calls": {
+    "model": 0,
+    "search": 0,
+    "fetch": 0,
+    "other_account_api": 0
+  },
+  "cost_cny": "0.00",
+  "real_key_value_read": false,
+  "app_launched": false,
+  "existing_data_homes_opened": false,
+  "activation_binding_created": false,
+  "preflight": {
+    "status": "PASS",
+    "worker_sha256": "f0e5059386fe244bad93c911608b6b2d431951759fb44988ecec1bb90a448065",
+    "denial_zero_http": "PASS",
+    "supplier_http_sends": 0,
+    "model_calls": 0,
+    "normal_eof_confirmed": true
+  },
+  "checks": [
+    {
+      "log": ".local/feat162-k31-integration-20261028/contracts-complete-focused.log",
+      "sha256": "922abe4663b35bac975c1bb8d556c1c47ac8dbbd55177d70d100f6803a0d0c21",
+      "result": "PASS",
+      "passed_tests": 46
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/contracts-rust-web.log",
+      "sha256": "ffd71fead0cd68856b59fd563c8a0b540a3db38f6a4b8a394f22a156ee5f79b7",
+      "result": "PASS"
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/contracts-v2-lint.log",
+      "sha256": "d44c9cdeeda5862bcca3d022bdafdd2409c95f644c18bb36e86c383fafe377d9",
+      "result": "PASS"
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/worker-kimi-tests.log",
+      "sha256": "4ff504124b58a896c0166c46acb40df2f658b921f4b98fc3c40d887917cf4c5c",
+      "result": "PASS",
+      "passed_tests": 14
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/worker-lint.log",
+      "sha256": "0483a0eb6d4e1c94ac98d4d97c5464eedb61f6f37c02e05c475f4890a2c891c9",
+      "result": "PASS"
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/connectors-catalog-go.log",
+      "sha256": "c19b21b635809aacb6fd663be1b6c544176b043333ad08e51c6665a6f18909c5",
+      "result": "PASS",
+      "passed_tests": 1
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/connectors-go-lint.log",
+      "sha256": "685d158f951e3eb11749d2e519a64eba4f57dcc93cd562eaee2cc9457f72846e",
+      "result": "PASS"
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/host-k31-v2-shared-key.log",
+      "sha256": "97dda528adb06cb54f943e31f7900abacba87c4288b06ee754d23c6976d02acf",
+      "result": "PASS"
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/host-k31-experts-canonical-path.log",
+      "sha256": "df46fda2b372a7c79450bb4df1c93c7b9e100cddc328c170042fe193eaa3466e",
+      "result": "PASS",
+      "passed_tests": 1
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/host-k31-lint.log",
+      "sha256": "6a5a121c7b6144534aa8a06ced3518159dd2b323d81d87e8a89520a67146a75b",
+      "result": "PASS"
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/desktop-k31-connectors.log",
+      "sha256": "49528ee4adbfe1fe635177dd8ba0799ed3e802f786e64414f534f3b4f5be2fc3",
+      "result": "PASS",
+      "passed_tests": 68
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/renderer-k31-routing.log",
+      "sha256": "39d24edc6ed767e746853f1c628409a2bf98b5845716e05c2cc3b815b415e0e1",
+      "result": "PASS",
+      "passed_tests": 2
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/desktop-lint-full.log",
+      "sha256": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6",
+      "result": "PASS"
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/native-connectors.log",
+      "sha256": "20f029bed0182db54897317ca3e7c5c409858f8a17d950e466f429dbf1ab0d2c",
+      "result": "PASS",
+      "passed_tests": 58
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/native-k31-surfaces-canonical-env.log",
+      "sha256": "9809798aaea8c0deba4417c794e2528db43ac56bc78c1f949eba07aab36570d5",
+      "result": "PASS",
+      "passed_tests": 4
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/native-k31-kimi-reopen.log",
+      "sha256": "4745260ad01c3448caa3bc2351f53538cb551353706b1a1960a7cc602f8967a4",
+      "result": "PASS",
+      "passed_tests": 1
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/native-format.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": "PASS"
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/native-k31-clippy.log",
+      "sha256": "36653e80ec28b570c3b497e2921e4232275b490a369a38b404e7500622c8f50a",
+      "result": "PASS"
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/skills-lint.log",
+      "sha256": "dae8d60dd1b1d79c01410c003564bdab9c4de8e19d5d61823b0f1d1bf713e4d3",
+      "result": "PASS"
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/skills-retained-bundle.log",
+      "sha256": "435e90c56bc52dcbbb3103c2f05390c37a720f8c12f684b51aaf91b5fb3b7753",
+      "result": "PASS",
+      "passed_tests": 2
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/desktop-source-check-tests.log",
+      "sha256": "35e74cdf5c505bfd8e7a15a55096c10493c7a7023b3670cbf42b905707f1c433",
+      "result": "PASS",
+      "passed_tests": 14
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/primary-build-20261028-03.log",
+      "sha256": "0654a133cb60f5be42b60827db2688a1eae9c6d2624ac9706db872759847854d",
+      "result": "PASS"
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/preflight-final-worker-01.log",
+      "sha256": "a44065b011ddbb0775b60527a284d5e3af5b7e14ab4841ba6fbf63b571d2b688",
+      "result": "PASS",
+      "passed_tests": 1
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/source-closure-ordinary.log",
+      "sha256": "38098477ef6ccad735b1eef553bc6075f43b35a95752cacd5f77ad6253c1f85b",
+      "result": "PASS"
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/source-closure-market.log",
+      "sha256": "38098477ef6ccad735b1eef553bc6075f43b35a95752cacd5f77ad6253c1f85b",
+      "result": "PASS"
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/source-closure-experts.log",
+      "sha256": "38098477ef6ccad735b1eef553bc6075f43b35a95752cacd5f77ad6253c1f85b",
+      "result": "PASS"
+    },
+    {
+      "log": ".local/feat162-k31-integration-20261028/source-closure-media.log",
+      "sha256": "38098477ef6ccad735b1eef553bc6075f43b35a95752cacd5f77ad6253c1f85b",
+      "result": "PASS"
+    }
+  ],
+  "generation_source_check": {
+    "result": "PASS",
+    "steps": 19,
+    "result_sha256": "15850c016d3a5f7257e59d210d1444069249fb9410633638a1ca8e73e7ab51bf"
+  },
+  "limitations": [
+    "Not a paid Search/Fetch or real model-driven client E2E acceptance",
+    "New App not activated or launched; user database not reopened",
+    "No production signing/notarization/release",
+    "Broad candidate Native run retained as FAIL (44 pass,16 fail); canonical selected K3.1 tests pass",
+    "Prohibited fault-injection/attack suites not executed"
+  ],
+  "paid_plan": "17-k31-client-e2e-proposal.md remains unapproved"
+}

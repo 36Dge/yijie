@@ -1,0 +1,167 @@
+{
+  "audit_date": "2026-10-28",
+  "timezone": "Asia/Shanghai",
+  "scope": "read_only_source_and_existing_evidence_audit_plus_plan_documents",
+  "repositories": {
+    "yijie": {
+      "head": "0b6c1062c57f7eaf6189b51bc60bac3ba8eadcf4",
+      "branch": "chore/retirement-baseline-20260905",
+      "status_before_report": "",
+      "remote": "https://github.com/36Dge/yijie.git"
+    },
+    "yijie-contracts": {
+      "head": "d5792d6aad18352ce8d1c5d510d345004cab3bd6",
+      "branch": "feat/feat164-primary-20261028",
+      "status_before_report": "",
+      "remote": "https://github.com/36Dge/yijie-contracts.git",
+      "retained_ref": "retained/primary-wip-20261028-01",
+      "retained_commit": "b28c9636d1a3a94cb549d5a09f291c6af9066785"
+    },
+    "yijie-agent-host": {
+      "head": "7309101726dcecd48b2caa02401cfcdd6126f1fb",
+      "branch": "feat/feat164-primary-20261028",
+      "status_before_report": "",
+      "remote": "https://github.com/36Dge/yijie-agent-host.git",
+      "retained_ref": "retained/primary-wip-20261028-01",
+      "retained_commit": "fab200984bc9fa70870859a5e3a4f855a2cb1c94"
+    },
+    "yijie-connectors": {
+      "head": "8e62101ff8ca94c2f9e12f4e415f20df41a7deed",
+      "branch": "feat/feat164-primary-20261028",
+      "status_before_report": "",
+      "remote": "https://github.com/36Dge/yijie-connectors.git",
+      "retained_ref": "retained/primary-wip-20261028-01",
+      "retained_commit": "d2d65c8e78e5d1c5d23c27d4de10181ef03a54b9"
+    },
+    "yijie-desktop": {
+      "head": "24a231f96f08ed077e53f9bd73a2aac93ee6cba8",
+      "branch": "feat/feat164-primary-20261028",
+      "status_before_report": "",
+      "remote": "https://github.com/36Dge/yijie-desktop.git",
+      "retained_ref": "retained/primary-wip-20261028-01",
+      "retained_commit": "a0172399993e66555414b188e18c8d76b5e7a78a"
+    },
+    "yijie-codex": {
+      "head": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+      "branch": "chore/retirement-baseline-20260905",
+      "status_before_report": "",
+      "remote": "https://github.com/36Dge/yijie-codex.git"
+    },
+    "yijie-skills": {
+      "head": "595c927ae101d3d31c234f60565041eee0864680",
+      "branch": "feat/feat164-primary-20261028",
+      "status_before_report": "",
+      "remote": "https://github.com/36Dge/yijie-skills.git",
+      "retained_ref": "retained/primary-wip-20261028-01",
+      "retained_commit": "78bbfd119f261e735c55127332f446800bf34fb7"
+    }
+  },
+  "retained_components": [
+    {
+      "repo": "yijie-contracts",
+      "path": "compatibility/web-retrieval/tools.json",
+      "in_active_tree": false,
+      "in_retained_tree": true,
+      "retained_text_sha256": "99c0c94111b1464e4dd625f4360d49ec5b107863372a362f27ef46ea76d8c8a6"
+    },
+    {
+      "repo": "yijie-contracts",
+      "path": "compatibility/web-retrieval/wire.schema.json",
+      "in_active_tree": false,
+      "in_retained_tree": true,
+      "retained_text_sha256": "9af7707c29b48bab928cf8279fa4878c6d3bc684f2a98c9981c01983b784ca9f"
+    },
+    {
+      "repo": "yijie-agent-host",
+      "path": "internal/marketbroker/model_credential.go",
+      "in_active_tree": false,
+      "in_retained_tree": true,
+      "retained_text_sha256": "47a7e7a427f39a3a839ef33e88952aa21f426e41c4fcdcaca777a06bfa947c7c"
+    },
+    {
+      "repo": "yijie-agent-host",
+      "path": "internal/app/kimi_web_live_test.go",
+      "in_active_tree": false,
+      "in_retained_tree": true,
+      "retained_text_sha256": "db071ca9fc741d94bdedb7955aca2d663c17535ec1bac6234426107caf53f69a"
+    },
+    {
+      "repo": "yijie-agent-host",
+      "path": "scripts/run-kimi-web-minimal-acceptance.sh",
+      "in_active_tree": false,
+      "in_retained_tree": true,
+      "retained_text_sha256": "40b627dda2d4a7306f2e8876da878fe8876ac95974f47914315b1b6512e30280"
+    },
+    {
+      "repo": "yijie-connectors",
+      "path": "worker/src/kimi_web.rs",
+      "in_active_tree": false,
+      "in_retained_tree": true,
+      "retained_text_sha256": "79ad8ad1d94e783f317d25d31a9b0131af272b1d20ce68f6000ec4971e50240d"
+    },
+    {
+      "repo": "yijie-connectors",
+      "path": "worker/src/model_credentials.rs",
+      "in_active_tree": false,
+      "in_retained_tree": true,
+      "retained_text_sha256": "2b9e5a5842d8bdc0f6399e2a12488069ac9d6b952cfff3bd66c60ffea420d6a7"
+    },
+    {
+      "repo": "yijie-connectors",
+      "path": "worker/src/web_retrieval_generated.rs",
+      "in_active_tree": false,
+      "in_retained_tree": true,
+      "retained_text_sha256": "4c5ff84557a97c212da466bddbfc6424af2e3f11018795e37188102895be0414"
+    },
+    {
+      "repo": "yijie-desktop",
+      "path": "src-tauri/src/chat/connectors/store_builtin.rs",
+      "in_active_tree": false,
+      "in_retained_tree": true,
+      "retained_text_sha256": "b48cafa82fe907c82b6e5af5a65d6c117ce05baf399535c7abb6f20fb9f3c1ff"
+    }
+  ],
+  "catalog": {
+    "active": {
+      "revision": 9,
+      "count": 60,
+      "has_kimi_web": false
+    },
+    "retained": {
+      "revision": 11,
+      "count": 61,
+      "has_kimi_web": true
+    },
+    "active_sha256": "8a61be2367d48889ba5f0740db9146372b93d8dfff9f73d31aaaca84142112af",
+    "matches_daily_receipt": true
+  },
+  "daily_receipt": {
+    "path": "yijie-desktop/.local/builds/primary/20261028-02/packaged-launch-receipt.json",
+    "sha256": "28141579143c6da10ac47f11a164e7394cec83ae3559aa9dd50db5057c4cd915",
+    "generation": "20261028-02",
+    "runtime_sha256": "283d12e16b124942302fcdc8281c729a8a7f676498f06df1d2646292905f579e",
+    "worker_sha256": "f5b82dde9208384b6bbc065e00b930b213e7325000b122c0538abe9f97fb45ee"
+  },
+  "historical_tool_verification": {
+    "status": "PASS",
+    "supplier_http_sends": 2,
+    "model_calls": 0,
+    "real_native_or_model_turn": false,
+    "retry_count": 0,
+    "calculated_cost_cny": "0.02",
+    "account_billing_checked": false,
+    "worker_sha256": "ebf7c834c95f4614365981aa7b99d04dcff37eb4d709cf4f84d0b04a8e073404"
+  },
+  "historical_evidence_sha256": "64ef9d7fb040561c0891b4dd345263f5f7a06f080a5463610da1936f267f5292",
+  "this_audit": {
+    "model_http": 0,
+    "search_http": 0,
+    "fetch_http": 0,
+    "credential_values_read": false,
+    "app_started": false,
+    "runtime_changed": false,
+    "product_source_changed": false,
+    "business_databases_opened": false
+  },
+  "conclusion": "Historical implementation and paid tool-only smoke passed; FEAT-162 is retained, not integrated in current FEAT-164 daily source/bundle. New-model native-dialogue E2E remains unverified."
+}

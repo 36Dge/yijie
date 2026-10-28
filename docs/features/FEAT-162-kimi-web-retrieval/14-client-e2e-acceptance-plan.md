@@ -1,5 +1,7 @@
 # FEAT-162 客户端真实对话最小端到端验收方案
 
+> 2026-10-28复审：本方案未执行，保留为历史提案；kimi-k3、旧启动/来源及meter不能直接用于当前K3.1基线。当前实施状态和继续顺序见[15号](15-k31-current-audit-and-completion-plan.md)，5元仍不是已获批准或已实现的预算保证。
+
 2026-10-24，Asia/Shanghai。状态：PROPOSED / WAITING_OWNER_CONFIRMATION。本轮只制定方案；新增模型、Search、Fetch请求均为0。13报告的工具直验额度已经关闭，不能复用；本方案也不使用FEAT-163的剩余HTTP额度。
 
 ## 目标与范围

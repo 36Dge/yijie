@@ -1,0 +1,88 @@
+{
+  "account_billing_checked": false,
+  "budget_cny": "0.00",
+  "calculated_cost_cny": "0.00",
+  "cleanup": "normal EOF exit confirmed",
+  "denial_zero_http": "PASS",
+  "diagnostics": [
+    {
+      "event": "started",
+      "httpStatus": null,
+      "operation_id": "e414bfa7-db97-4fa2-9ec4-0e8801eefbad",
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "call_approval",
+      "unixMs": 1793162037015
+    },
+    {
+      "event": "rejected",
+      "httpStatus": null,
+      "operation_id": "e414bfa7-db97-4fa2-9ec4-0e8801eefbad",
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "call_admission",
+      "unixMs": 1793162037016
+    },
+    {
+      "event": "started",
+      "httpStatus": null,
+      "operation_id": "f9a2d641-7722-4f42-a417-3525638d3ed0",
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "model_preparation",
+      "unixMs": 1793162036990
+    },
+    {
+      "event": "succeeded",
+      "httpStatus": null,
+      "operation_id": "f9a2d641-7722-4f42-a417-3525638d3ed0",
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "model_preparation",
+      "unixMs": 1793162036991
+    }
+  ],
+  "fetch_allowances_consumed": 0,
+  "finished_at": "2026-10-28T04:33:57.017698Z",
+  "local_preflight": true,
+  "model_calls": 0,
+  "normal_eof_confirmed": true,
+  "real_native_or_model_turn": false,
+  "retry_count": 0,
+  "search_allowances_consumed": 0,
+  "stage": "local_preflight_complete",
+  "started_at": "2026-10-28T04:33:56.047164Z",
+  "status": "PASS",
+  "steps": [
+    {
+      "call_ref": "e414bfa7-db97-4fa2-9ec4-0e8801eefbad",
+      "diagnostics": [
+        {
+          "event": "started",
+          "httpStatus": null,
+          "operation_id": "e414bfa7-db97-4fa2-9ec4-0e8801eefbad",
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "call_approval",
+          "unixMs": 1793162037015
+        },
+        {
+          "event": "rejected",
+          "httpStatus": null,
+          "operation_id": "e414bfa7-db97-4fa2-9ec4-0e8801eefbad",
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "call_admission",
+          "unixMs": 1793162037016
+        }
+      ],
+      "elapsed_ms": 7,
+      "http_sends": 0,
+      "name": "deny_fetch",
+      "status": "PASS",
+      "tool": "kimi_web_fetch"
+    }
+  ],
+  "supplier_http_sends": 0,
+  "worker_sha256": "f0e5059386fe244bad93c911608b6b2d431951759fb44988ecec1bb90a448065"
+}

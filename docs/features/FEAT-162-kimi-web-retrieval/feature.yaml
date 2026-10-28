@@ -1,3 +1,5 @@
+# 2026-10-28: K3.1整合与新构建完成，当前结果见18-k31-build-and-zero-cost-results.md。
+# 下列09/13的App与收费PASS是2026-10-24历史证据；新构建尚未启动或收费验收，D4不变。
 schema_version: 3
 delivery_profile: demo_fast
 exposure: local
@@ -154,7 +156,7 @@ external_authorizations:
   production_writes: { allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A }
 implementation:
   status: complete
-  real_entrypoint: 标准pnpm tauri:demo-fast:app，复用现有market worker和Kimi Responses Runtime
+  real_entrypoint: 当前K3.1正常入口pnpm daily:open要求匹配来源的激活记录；本轮仅daily:prepare生成20261028-03，复用现有market worker和Kimi Responses Runtime，未激活新构建
   mock_only: false
 verification:
   status: NOT RUN
