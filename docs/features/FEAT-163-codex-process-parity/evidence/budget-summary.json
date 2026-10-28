@@ -1,0 +1,41 @@
+{
+  "at": "2026-10-24T12:36:06.038715+08:00",
+  "user_turns": 10,
+  "http_requests": 23,
+  "native_search_calls": 8,
+  "shell_http_attempts": 4,
+  "known_usage": {
+    "input_tokens": 299186,
+    "output_tokens": 38854,
+    "total_tokens": 338040
+  },
+  "requests_with_usage": 22,
+  "unknown_usage_requests": [
+    16
+  ],
+  "cost": "not available; no cost inferred",
+  "statuses": {
+    "completed": 22,
+    "transport_ended": 1
+  },
+  "request_cap": 8192,
+  "limits": {
+    "user_turns": 10,
+    "http_requests": 40,
+    "retrieval_actions": 20
+  },
+  "max_output_tokens_was_diagnostic_injection": true,
+  "provider_reported_above_request_bound": [
+    {
+      "request": 20,
+      "sent_limit": 8192,
+      "reported_output_tokens": 8195
+    },
+    {
+      "request": 21,
+      "sent_limit": 8192,
+      "reported_output_tokens": 8195
+    }
+  ],
+  "in_flight": 0
+}

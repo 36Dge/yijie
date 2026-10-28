@@ -1,0 +1,60 @@
+{
+  "desktop_session": "01a16bb4-12b0-7352-ba0a-49423d7540b2",
+  "runtime_thread": "01a16bb4-12e7-7c61-be87-994b2624aeeb",
+  "completed": {
+    "type": "task_complete",
+    "turn_id": "01a16bc3-d49a-7b11-b99d-cab42d02bb8e",
+    "completed_at": 1792809395,
+    "duration_ms": 36821,
+    "time_to_first_token_ms": 2403
+  },
+  "http_requests": [
+    11,
+    12,
+    13
+  ],
+  "public_messages": [
+    {
+      "at": "2026-10-24T02:36:12.917Z",
+      "phase": null,
+      "sha256": "5a43b6afec82caeb668dfb3105a8ecaa11fe140609d5e95e779f2f5fea026c0b"
+    },
+    {
+      "at": "2026-10-24T02:36:25.136Z",
+      "phase": null,
+      "sha256": "c93a1953c2fc43bee9b09137b7bf550b5909053d985f9f2c9f86cae07dbabd17"
+    },
+    {
+      "at": "2026-10-24T02:36:35.327Z",
+      "phase": null,
+      "sha256": "412e6154753b44f15c448717bf84c452818b3b235d103caccc07ff3081d39741"
+    }
+  ],
+  "provider_runtime_message_hashes_match": true,
+  "feedback": [
+    {
+      "call_id_sha256": "25983315b2f41bbaa03a49c92d6836e0814fb3261f21f8a38d02ca337ee9465a",
+      "output_sha256": "0e9f4fbbe3ad90408e08ed0f8a0ebe6186386fac712deec8841e8b509dbbdb6e",
+      "matching_requests": [
+        12,
+        13
+      ]
+    },
+    {
+      "call_id_sha256": "d659f2092f462c4687e03c82064cb369c94b784b95fcb82b14c6dbac923b39de",
+      "output_sha256": "d1005703e0ff6bb5e198dedee9c7a38ba1b01c118201406c68214e408949d488",
+      "matching_requests": [
+        13
+      ]
+    },
+    {
+      "call_id_sha256": "3b402d7b430a0253c5f2290e9a53de46173794e9853c00e796ef4d474608ada1",
+      "output_sha256": "82549d2f49e228e5fe8ddb664057122279e8eafe61aa343927ff7f26ea8b6568",
+      "matching_requests": [
+        13
+      ]
+    }
+  ],
+  "native_file_change": "Observed real UI edit/add/diff from native interception; see fourth-patch-live.ax.txt",
+  "limitation": "Original Host parser missed valid headerless update hunk counts. Fixed with regression; this old saved projection may retain unknown stats."
+}

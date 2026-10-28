@@ -1,0 +1,100 @@
+{
+  "runtime_thread": "01a16bac-9c17-77c1-9149-6af60749607e",
+  "desktop_session": "01a16bac-9bef-77f0-aee7-ef5b3e488354",
+  "http_requests": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "public_messages": [
+    {
+      "at": "2026-10-24T02:10:46.351Z",
+      "phase": null,
+      "bytes": 172,
+      "sha256": "189fef1bdda641c2a15bce75e01b3dff943150a5f4e415332392f5629bfcb1df"
+    },
+    {
+      "at": "2026-10-24T02:12:15.156Z",
+      "phase": null,
+      "bytes": 112,
+      "sha256": "ae84fc71b7d6cecb94dcba84479d0206d16935efe1244fc58216b2c5490341d5"
+    },
+    {
+      "at": "2026-10-24T02:13:35.723Z",
+      "phase": null,
+      "bytes": 5782,
+      "sha256": "8d4e020befde35512030edaf6a5caf6780947784a9e76b1fb8c7ed32d74f0481"
+    }
+  ],
+  "completed": {
+    "at": "2026-10-24T02:13:35.730Z",
+    "turn_id": "01a16bac-9c65-7a23-9e98-60ed9c4c0936",
+    "duration_ms": 178951,
+    "answer_present": true
+  },
+  "provider_runtime_message_hashes_match": true,
+  "old_optional_instruction_present": false,
+  "commands": [
+    {
+      "call_id_sha256": "114d0aa0a33f796b4ac32d3c1204652d7bd588a5e66e156ba413eadf72fe72c3",
+      "name": "exec_command",
+      "command_sha256": "1e0871131492593110f648df45fbceea6002a21b5a2471af4a1f26ef1f6acfa5",
+      "command_preview": "curl -s \"https://cntianhe.org.cn/ninfo_3543.html\" -m 20 | head -c 3000",
+      "body_sha256": "2aff1f7c83bb679509511a7fa1d9ac8df2d1985fc716a39d28d04f0f933530e0",
+      "body_bytes": 102,
+      "stdout_bytes": 0,
+      "exit_code": 0,
+      "matching_requests": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "call_id_sha256": "02af98aff9c276fc9019ef57ce1982df67ccc3a350d57ec694b2efe27dd4bd62",
+      "name": "exec_command",
+      "command_sha256": "71a6d46ad3f8308f7c5faaff74d297a9e388d7831ef2906e2255938e7599527a",
+      "command_preview": "curl -s \"https://xueqiu.com/7318086163/373274099\" -m 20 -H \"User-Agent: Mozilla/5.0\" | head -c 2000",
+      "body_sha256": "2047efa5be411330fe73a8f2c05cd8be7a38e7dda8355601df883c453fe37e50",
+      "body_bytes": 102,
+      "stdout_bytes": 0,
+      "exit_code": 0,
+      "matching_requests": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "call_id_sha256": "eb568d1ee12b7d8e3fa5f691f22eab5fc03a378cfc0a6b9b19a879da33a4f1c6",
+      "name": "exec_command",
+      "command_sha256": "7f1eeee87d01d60d2c9ea293e11e7b3a3b383979991abfed9c2f02f81415a439",
+      "command_preview": "curl -sL \"https://zh.wikipedia.org/wiki/苏州市\" -m 20 -H \"User-Agent: Mozilla/5.0\" | python3 -c \"import sys,html,re; t=sys.stdin.read(); t=re.sub('<[^>]+>',' ',t); t=html.unescape(t); t=re.sub(r'\\s+',' ',t); print(t[:1500])\"",
+      "body_sha256": "950b781bca75cdbf3092383fb6aadb0e72d1e463bc06fb2146400483829b80e1",
+      "body_bytes": 103,
+      "stdout_bytes": 0,
+      "exit_code": 0,
+      "matching_requests": [
+        4,
+        5
+      ]
+    },
+    {
+      "call_id_sha256": "f69faf7e1dfae6e656262a5cf7d88158f45466af5e30a7c5ec2ef5778e6e996b",
+      "name": "exec_command",
+      "command_sha256": "204eed8c3903af97f1466184a2ddf0b922692f7344a2a8a0f0f1fbfd81fa1ca7",
+      "command_preview": "curl -s \"https://cn.bing.com/search?q=%E8%8B%8F%E5%B7%9E+2025%E5%B9%B4+GDP+%E5%85%A8%E5%B9%B4+%E4%BA%BF%E5%85%83\" -m 20 -H \"User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36\" | python3 -c \"import sys,html,re; t=sys.stdin.read(); t=re.sub('<[^>]+>',' ',t); t=html.unescape(t); t=re.sub(r'\\s+',' ',t); print(t[:2500])\"",
+      "body_sha256": "c9d6a238bbce3b0e6e7aeaa17d5ce652d6f395c76518ae2e25997cd8103e7d27",
+      "body_bytes": 103,
+      "stdout_bytes": 0,
+      "exit_code": 0,
+      "matching_requests": [
+        5
+      ]
+    }
+  ],
+  "duplicate_argument_count": 0,
+  "limitation": "All four HTTP shell attempts returned empty output with exit0; no repeated command identity/arguments but useful-body retrieval not proven. Historical rollout has no matching provider capture. Real UI manual group expansion was lost at completion; keep AC007 pending.",
+  "output_parser": "Output: delimiter; stripped bytes (empty or newline only = 0)"
+}

@@ -294,6 +294,14 @@ App本轮Kimi会话01a17447-527f-7123-ab85-942f28a8e7ff是completed/interrupted/
 
 原真实schema2 SHA2dbd19be2a8bda267437bcf0330fff1af122778388d6e3df965291ec840b7dcf和schema3均逐字保持；累计5/5已耗尽，保守14.679001元含14.188544元unknown预占。38号当前真实文本G2V仍有效，不再新增付费请求或补额。日常cutover未授权未执行。保留497原dirty、1438旧证据、日常库与旧产物；仅FEAT164本地提交、不推送，FEAT163保持独立。
 
+## FEAT-163 复审结束但功能未通过（2026-10-24）
+
+目标不变：每次对话的处理机制和答案前体验对齐Codex，必须复用Runtime。已修复Start/Resume图像指令、文件交付误判、草案重复、冷历史分组和空工具面板等；Runtime源码/二进制零改动，无新循环/进度模型/表。最新本地检查和canonical App构建通过，整体FAIL/in_progress，不准沿旧原题PASS宣称完成。
+
+真实第8/9专家任务在授权8192输出上限内失败；第9无公开进度、apply_patch参数截断，未执行/交付。第10普通原题有真实进度与答案，但sleep1空操作失败；Provider确实收到禁止dummy规则及完整反馈，不是跨层消息丢失。正常已保存历史重开保持，只有Runtime legacy冷历史仍缺工具。
+
+已用10/10用户回合、23/40模型HTTP、12/20联网，0在途，第11回合无授权。meter正常退出；日常无代理App exec83289/PID98651就绪保留打开，Host/Runtime/worker同源。无Git提交/推送/发布。最新逐项结论和可执行续办必须先读[04](../features/FEAT-163-codex-process-parity/04-resume.md)、[02第10节](../features/FEAT-163-codex-process-parity/02-verification.md)、[07末节](../features/FEAT-163-codex-process-parity/07-implementation-reaudit.md)。复用现有模型配置/Runtime工具/消息链继续定位，不能隐藏空操作或自动续问。共享FEAT-162变更和额度不混用。
+
 2026-10-08 Sorftime 最新状态：Owner已填密钥，但两条19:19/19:20元数据初始化仍unavailable。审计发现通用HTTP迁移漏带旧链路已验证有效的User-Agent；已补真实yijie-mcp-worker/0.1.0及受限HTTP阶段/状态码诊断，未伪装旧客户端、未改固定Codex。63本地测试/lint/标准App构建通过，说明已左对齐。新worker da3c31537e6be46bb826a2ec44b0541456cbbf2810772aabbba5df1023400f81。尚未真实复验，已申请仅1次连接/发现、0模型/0业务；因先前失败不自动重发，等待用户答复。Keyring已有用户保存密钥，不要再要求重填/卸载或读取密钥。详见FEAT-157/21及sorftime-user-agent-20261008证据。
 
 2026-10-08 19:19 Sorftime 最新续办：Owner 要求明确本机钥匙串/不传易界云端文案并重启重填。已更新文案、62测试/lint通过，标准App重启；以产品正常卸载/重装清理旧连接配置，新安全页已打开，等待Owner本人填写Account-SK并保存。不要读取密钥。此前Owner操作留下两次metadata_initialize unavailable、HTTP状态缺失，未判定原因。此轮agent模型/外部发现/业务调用仍0；Owner明确授权本次重新填写后的单次尝试，失败不自动重发。状态以FEAT-157/evidence/sorftime-market-live-20261008/ledger.json为准。

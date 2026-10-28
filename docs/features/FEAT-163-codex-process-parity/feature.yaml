@@ -1,0 +1,105 @@
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+feature:
+  id: FEAT-163
+  slug: codex-process-parity
+  title: Codex原生处理过程与前端体验对齐
+  status: active
+  created_at: 2026-10-24
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+scope:
+  risk_level: medium
+  data_classification: internal
+  contract_impact: breaking
+  database_change: none
+  persistence_change: replay
+  runtime_change: runtime
+  auth_permission_change: none
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: prompt
+# scope含新增截图已确认的原生字段安全投影及持久reader版本化，按breaking/replay审查。
+# 原生字段已存在，不因此要求Runtime补丁；runtime_change保留消息缺失条件性修复范围。
+# 用户2026-10-24已授权按更新方案实施；local候选保持非发布来源。
+repositories: [yijie, yijie-codex, yijie-contracts, yijie-agent-host, yijie-desktop]
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+product_ux:
+  status: PASS
+  primary_user: 易界每次对话的用户
+  problem: 正式答案前缺少连贯公开进度且主线堆执行日志，样本存在重复无效执行和空答结束
+  user_outcome: 复用Codex原生机制产生并及时显示任务相关过程，交付正式结果并可完整回看
+  in_scope: [原生公开消息, 工具结果闭环与收敛, 跨层消息保真及时序, 分段工具摘要与展开明细, 原生文件动作和App上下文安全投影, 入口与历史兼容]
+  out_of_scope: [新进度模型或引擎, Host自建推理循环, 默认Runtime升级, 历史补造, 独立检索系统重做, 公开发布]
+  main_flow: [既有入口开始Turn, 原生公开说明与有效工具活动, 真实中途推进说明, 正式结果独立呈现, 正常重开回看]
+  visual_direction: 自然语言过程穿插淡色可展开的分段工具摘要，本段操作及单项详情可查，推理与协议诊断另置
+  ui_states:
+    idle: 等待输入而不虚构进度
+    loading: 真实活跃观察驱动单一等待位，公开正文到达即显示
+    success: 正式结果可读，过程默认收起且用户选择优先
+    empty: 普通问答未收到结果时准确说明，不把推理或commentary当final
+    error: 现有失败和可用性状态如实保留，需行动事项可见
+    retry: 复用已有明确用户操作及幂等回执，不新增自动追问
+    cancel: 原生interrupt正常停止，保留部分内容并停止动画
+must_acceptance:
+  - { id: AC-001, statement: 每次对话及现有入口沿统一原生机制与呈现规则, verification: 02-verification.md场景与入口矩阵, status: pending }
+  - { id: AC-002, statement: 真实长任务在正式答案前产生任务相关公开说明和中途推进, verification: 真实Kimi消息及UI时间线, status: fail }
+  - { id: AC-003, statement: 消息身份阶段内容顺序保真且过程及时显示, verification: 跨层摘要和到达时间证据, status: pass }
+  - { id: AC-004, statement: 工具结果完整回灌且无无收益重复和dummy播报, verification: call-output-next-request关联及真实原题收敛, status: fail }
+  - { id: AC-005, statement: 问答交付正式结果且无答失败中断与合法无文本任务准确处理, verification: 真实问答与普通生命周期样例, status: pass }
+  - { id: AC-006, statement: 公开文字与淡色分段工具摘要交错且本段文件命令App变更明细可展开, verification: 正式组件与正式App及05的TG验收, status: pending }
+  - { id: AC-007, statement: phase未知即时显示且折叠末条保护及用户选择正确, verification: 原兼容路径专项与UI检查, status: pass }
+  - { id: AC-008, statement: 正常重开与会话隔离保留事实不补造或重复执行, verification: Native存储订阅专项及正式重开, status: pass }
+  - { id: AC-009, statement: 流式滚动选区与亮暗最小窗口可读, verification: 原组件和正式App视觉检查, status: pending }
+  - { id: AC-010, statement: 原生复用契约来源安全与真实证据完整, verification: 差异审阅和授权验证台账, status: pass }
+contract:
+  impact: breaking
+  authority: Codex固定canonical的CommandActions/FileChange/AppContext及Contracts现有native conversation家族与后继安全投影源
+  source_first_plan: 已有Runtime字段先Contracts版本化安全投影及生成再Host和Desktop兼容reader；保留v4/v11旧投影并在reader就绪后激活；仅实际Runtime缺陷才需原生补丁候选；新持久格式不回填旧unknown
+  status: PASS
+  checks:
+    - { repository: yijie-contracts, command: "node scripts/generate-native-process.mjs --check; v5 lint/conformance; old source compatibility", status: PASS, exit_code: 0 }
+external_authorizations:
+  paid_calls: { allowed: true, max_actions: 40, approved_by: 段成威, approved_at: "2026-10-24T09:41:32.256502+08:00" }
+  destructive_operations: { allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A }
+  production_writes: { allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A }
+implementation:
+  status: in_progress
+  real_entrypoint: yijie-desktop的pnpm tauri:demo-fast:app；用户已授权实施验证
+  mock_only: false
+verification:
+  status: FAIL
+  verified_at: 2026-10-24T12:38:14.234044+08:00
+  startup: { status: PASS, command_or_steps: "canonical App build-5；解锁后CUA实机", environment: local/demo_fast, actual_result: 当前源码来源回执通过且App就绪；第8正常历史重开无新增请求，诊断App正常退出 }
+  real_smoke: { status: FAIL, command_or_steps: "复审第8至10回合", environment: 正式App及Kimi-K3受限诊断, actual_result: 专家第8和第9达到输出上限未交付，第9无公开进度；第10有进度和答案但执行sleep空操作，整体未通过 }
+  representative_failure: { status: PASS, command_or_steps: 应用停止按钮和普通错误/无答组件样例, environment: 真实Runtime与生产组件, actual_result: 第6回合正常interrupt收敛并保留部分内容；没有强杀或故障注入 }
+  focused_checks:
+    - { repository: yijie-desktop, command: "8文件前端186PASS及增量2文件57PASS；lint；docs build；Native fmt/clippy/check与普通buffer/storage/cross-repo检查", status: PASS, exit_code: 0 }
+    - { repository: yijie-agent-host, command: "observer 6；原生投影/路由、目录迁移、入口及hunk普通测试", status: PASS, exit_code: 0 }
+    - { repository: yijie-contracts, command: "native v3/4/5生成check、v5 lint/conformance及旧族源比较", status: PASS, exit_code: 0 }
+  artifacts: [07-implementation-reaudit.md, evidence/reaudit-turn-9-diagnosis.json, evidence/reaudit-turn-10-diagnosis.json, evidence/reaudit-daily-restoration-reopen.json, 02-verification.md, 04-resume.md, evidence/budget-summary.json, evidence/fourth-complete-diagnosis.json, evidence/seventh-complete-diagnosis.json, evidence/reopen-check.json, evidence/visual-check.json, evidence/daily-config-restoration.json, evidence/daily-final-launch-receipt.json]
+  diff_review: { status: PASS, summary: 复用既有原生链及阅读分组；无Runtime修改/新执行循环/新表；保留旧版本严格投影与旧reader，原有dirty改动按baseline保留 }
+  known_limitations:
+    - 旧截图Provider事件不可追溯；不伪造历史或声称证明唯一旧根因
+    - 第2回合4个不同curl空输出保留；复审第10回合sleep1空执行已证实，AC004失败
+    - 诊断meter注入8192上限，第8及第9因输出上限失败；第16正常中断用量未知；10用户回合已耗尽
+    - 专家技能附件第8及续聊第9真实失败；连接器与产图无真实调用，未声称业务资格全覆盖
+    - 禁止测试未执行；无提交推送、签名公证或生产发布
+public_readiness:
+  required: false
+  status: N/A
+  checks: []
+  external_smoke: { status: NOT RUN, command_or_steps: N/A, actual_result: 未授权公开发布 }
+documents:
+  brief: 00-feature-brief.md
+  delivery_log: 01-delivery-log.md
+  verification: 02-verification.md

@@ -1,0 +1,103 @@
+{
+  "at": "2026-10-24T12:12:57.161320+08:00",
+  "notes": "Read-only re-audit snapshot; shared FEAT-162 source changes are preserved and not claimed as this task edits.",
+  "repositories": {
+    "yijie": {
+      "head": "91b2b76e7afc7cb5373a381ce352f7d1eee4a134",
+      "head_unchanged": true,
+      "status": " M docs/dev/codex-project-memory.md\n?? docs/dev/chat-deletion-recovery-20261023.md\n?? docs/dev/process-feed-rework-20261023.md\n?? docs/features/FEAT-162-kimi-web-retrieval/\n?? docs/features/FEAT-163-codex-process-parity/\n",
+      "baseline_files_changed": [
+        "docs/features/FEAT-163-codex-process-parity/04-resume.md",
+        "docs/features/FEAT-163-codex-process-parity/evidence/user-turn-ledger.json",
+        "docs/features/FEAT-163-codex-process-parity/00-feature-brief.md",
+        "docs/features/FEAT-163-codex-process-parity/01-delivery-log.md",
+        "docs/features/FEAT-163-codex-process-parity/02-verification.md",
+        "docs/features/FEAT-163-codex-process-parity/evidence/paid-call-ledger.json",
+        "docs/features/FEAT-163-codex-process-parity/evidence/budget-summary.json",
+        "docs/features/FEAT-163-codex-process-parity/feature.yaml"
+      ],
+      "baseline_files_missing": []
+    },
+    "yijie-agent-host": {
+      "head": "283dcbd7d79ca7bd7a56dba0cb915024fff8eb72",
+      "head_unchanged": true,
+      "status": " M api/experts.candidate.json\n M api/market-broker-control.candidate.json\n M api/market-connectors.candidate.json\n M api/market-connectors.schema.json\n M api/market-host.candidate.json\n M api/market-host.schema.json\n M api/market-provider.candidate.json\n M api/market-provider.schema.json\n M api/native-process.candidate.json\n M api/runtime-chat-models.candidate.json\n M internal/app/app.go\n M internal/app/native_conversation.go\n M internal/app/native_conversation_test.go\n M internal/codex/chat_models.go\n M internal/codex/chat_models_test.go\n M internal/codex/market_runtime.go\n M internal/codex/runtime_permissions.go\n M internal/codex/scheduled_draft_integration_test.go\n M internal/codex/session_protocol.go\n M internal/contracts/marketbrokercontrol/types.gen.go\n M internal/contracts/marketconnectors/types.gen.go\n M internal/contracts/markethost/types.gen.go\n M internal/contracts/marketprovider/types.gen.go\n M internal/marketbroker/artifact.go\n M internal/marketbroker/owner.go\n M internal/session/events.go\n M internal/session/multimodal_test.go\n M internal/session/native_conversation.go\n M internal/session/native_conversation_test.go\n M internal/session/native_mcp.go\n M internal/session/native_mcp_test.go\n M internal/session/native_process.go\n M internal/session/native_process_test.go\n M internal/session/service.go\n M internal/session/store.go\n M internal/skills/experts_candidate.go\n M scripts/chat-model-smoke-meter.py\n M scripts/responses_stream_observer.py\n M scripts/test_responses_stream_observer.py\n?? api/openapi/native-conversation-v5.yaml\n?? internal/codex/process_parity_audit_test.go\n?? internal/codex/process_parity_integration_test.go\n?? internal/contracts/nativeconversationv5/\n?? internal/integration/cleanup_runtime_test.go\n?? internal/marketbroker/model_credential.go\n?? internal/marketbroker/model_credential_test.go\n?? internal/session/cleanup_recovery.go\n?? internal/session/cleanup_recovery_test.go\n?? internal/session/native_activity.go\n?? internal/session/native_activity_test.go\n?? internal/skills/experts_assets.gen.go\n?? scripts/__pycache__/\n",
+      "baseline_files_changed": [
+        "api/market-broker-control.candidate.json",
+        "internal/codex/market_runtime.go",
+        "internal/codex/session_protocol.go",
+        "api/experts.candidate.json",
+        "internal/session/multimodal_test.go",
+        "api/market-provider.candidate.json",
+        "api/market-host.candidate.json",
+        "internal/skills/experts_assets.gen.go",
+        "internal/contracts/marketbrokercontrol/types.gen.go",
+        "internal/codex/chat_models.go",
+        "internal/codex/runtime_permissions.go",
+        "internal/contracts/markethost/types.gen.go",
+        "internal/marketbroker/owner.go",
+        "api/market-provider.schema.json",
+        "internal/codex/scheduled_draft_integration_test.go",
+        "internal/contracts/marketprovider/types.gen.go",
+        "api/market-host.schema.json"
+      ],
+      "baseline_files_missing": []
+    },
+    "yijie-contracts": {
+      "head": "bedf4159b0fa22e24efe6c295f8b0d4845df56b7",
+      "head_unchanged": true,
+      "status": " M Makefile\n M compatibility/experts/source.lock.json\n M compatibility/market-broker-control/control.json\n M compatibility/market-broker-control/source.lock.json\n M compatibility/market-connectors/source.lock.json\n M compatibility/market-host/source.lock.json\n M compatibility/market-provider/source.lock.json\n M compatibility/market-provider/transport.json\n M compatibility/market-provider/wire.schema.json\n M compatibility/market-selection/source.lock.json\n M compatibility/runtime-chat-models/source.lock.json\n M docs/market-connectors-v1.md\n M docs/market-provider-v1.md\n M docs/supported-baselines.md\n M openapi/market-connectors/market-connectors.yaml\n M scripts/generate-market-broker.mjs\n M scripts/generate-market-connectors.mjs\n M scripts/generate-market-host.mjs\n M scripts/generate-native-process.mjs\n M scripts/market-broker-source.mjs\n M scripts/market-host-source.mjs\n M scripts/sync-market-host.mjs\n M scripts/sync-native-process.mjs\n M scripts/validate-json-schemas.mjs\n M sdks/go/market-broker-control/types.gen.go\n M sdks/go/market-connectors/types.gen.go\n M sdks/go/market-connectors/types_test.go\n M sdks/go/market-host/types.gen.go\n M sdks/go/market-provider/types.gen.go\n M sdks/jsonschema/market-connectors.schema.json\n M sdks/jsonschema/market-host-native.schema.json\n M sdks/jsonschema/market-host.schema.json\n M sdks/jsonschema/market-provider.schema.json\n M sdks/rust/market-broker-control/types.gen.rs\n M sdks/rust/market-connectors/types.gen.rs\n M sdks/rust/market-host/types.gen.rs\n M sdks/rust/market-provider/types.gen.rs\n M sdks/typescript/src/api/generated/market-connectors-validator.gen.js\n M sdks/typescript/src/api/generated/market-host-native-validator.gen.js\n M sdks/typescript/src/domain/market-host-native.generated.ts\n M tests/market-broker.test.mjs\n M tests/market-connectors.test.mjs\n M tests/rust-market-connectors/src/lib.rs\n?? compatibility/web-retrieval/\n?? docs/agent-session-cleanup-recovery.md\n?? docs/native-activity-v5.md\n?? docs/web-retrieval-v1.md\n?? openapi/native-conversation-v5/\n?? scripts/format-source-file.mjs\n?? scripts/generate-web-retrieval.mjs\n?? scripts/sync-web-retrieval.mjs\n?? scripts/web-retrieval-source.mjs\n?? sdks/go/openapi/native-conversation-v5/\n?? sdks/jsonschema/web-retrieval.schema.json\n?? sdks/jsonschema/web-retrieval.tools.json\n?? sdks/rust/web-retrieval/\n?? sdks/typescript/src/openapi/native-conversation-v5.gen.ts\n?? tests/native-activity-v5.test.mjs\n?? tests/rust-web-retrieval/\n?? tests/web-retrieval.test.mjs\n",
+      "baseline_files_changed": [
+        "scripts/market-host-source.mjs",
+        "scripts/market-broker-source.mjs",
+        "scripts/generate-market-broker.mjs"
+      ],
+      "baseline_files_missing": []
+    },
+    "yijie-desktop": {
+      "head": "6080a568332dbf18ff119501607bc7e7afa92f94",
+      "head_unchanged": true,
+      "status": " M contracts/artifact-media-host-build.candidate.json\n M contracts/experts-assets.candidate.json\n M contracts/experts.candidate.json\n M contracts/market-catalog.candidate.json\n M contracts/market-catalog.json\n M contracts/market-connectors.candidate.json\n M contracts/market-connectors.schema.json\n M contracts/market-host-native.schema.json\n M contracts/market-host.candidate.json\n M contracts/market-host.schema.json\n M contracts/market-provider.candidate.json\n M contracts/market-provider.schema.json\n M contracts/market-selection.candidate.json\n M contracts/native-process.candidate.json\n M contracts/runtime-chat-models.candidate.json\n M docs/design/docs/design/02-tokens/06-motion-zindex-opacity-tokens.md\n M docs/design/docs/design/03-ui-system/02-iconography.md\n M docs/design/docs/design/05-patterns/02-chat-workspace.md\n M scripts/chat-model-build-candidate.mjs\n M scripts/generate-native-conversation.mjs\n M scripts/native-conversation-bundle.test.mjs\n M scripts/sync-desktop-expert-resources.mjs\n M scripts/sync-market-catalog.mjs\n M src-tauri/schemas/chat-native-conversation-resolved.schema.json\n M src-tauri/src/chat/application.rs\n M src-tauri/src/chat/connectors/broker_generated.rs\n M src-tauri/src/chat/connectors/generated.rs\n M src-tauri/src/chat/connectors/host_generated.rs\n M src-tauri/src/chat/connectors/mod.rs\n M src-tauri/src/chat/connectors/provider.rs\n M src-tauri/src/chat/connectors/provider_generated.rs\n M src-tauri/src/chat/connectors/store.rs\n M src-tauri/src/chat/connectors/tests.rs\n M src-tauri/src/chat/database.rs\n M src-tauri/src/chat/deletion_recovery.rs\n M src-tauri/src/chat/host_bridge.rs\n M src-tauri/src/chat/host_domain.rs\n M src-tauri/src/chat/ipc.rs\n M src-tauri/src/chat/mod.rs\n M src-tauri/src/chat/native_conversation.rs\n M src-tauri/src/chat/native_conversation_generated.rs\n M src-tauri/src/chat/native_conversation_storage.rs\n M src-tauri/src/lib.rs\n M src/api/chat-client.test.ts\n M src/api/chat-client.ts\n M src/api/generated/market-connectors-validator.gen.js\n M src/api/generated/market-host-native-validator.gen.js\n M src/api/generated/native-conversation-history.gen.ts\n M src/api/generated/native-conversation-private.gen.ts\n M src/api/generated/native-conversation-validator.gen.js\n M src/api/market-connectors-client.test.ts\n M src/components/chat/ChatCommandItem.vue\n M src/components/chat/ChatExecutionProgress.vue\n M src/components/chat/ChatNativeStreaming.test.ts\n M src/components/chat/ChatNativeToolItem.vue\n M src/components/chat/ChatProcessPresentation.test.ts\n M src/components/chat/ChatSafeContent.vue\n M src/components/chat/ChatSidebarSessionRow.vue\n M src/components/chat/ChatStreamText.test.ts\n M src/components/chat/ChatStreamText.vue\n M src/components/chat/ChatTimelineItemShell.vue\n M src/components/chat/ChatTurnGroup.vue\n M src/components/chat/MarketChatActivity.test.ts\n M src/components/chat/MarketChatActivity.vue\n M src/components/connectors/ConnectorDetailsDialog.vue\n M src/components/connectors/ConnectorMarketView.test.ts\n M src/composables/useChatScroll.test.ts\n M src/composables/useChatScroll.ts\n M src/domain/chat-ui.test.ts\n M src/domain/chat-ui.ts\n M src/domain/connector-ui.ts\n M src/domain/conversation-native-view.test.ts\n M src/domain/conversation-process.ts\n M src/domain/conversation-view.ts\n M src/domain/market-connectors-ui.test.ts\n M src/domain/market-connectors-ui.ts\n M src/domain/market-host-native.generated.ts\n M src/icons/connector-icons.ts\n M src/icons/custom/brands/README.md\n M src/pages/chat/ChatPage.test.ts\n M src/pages/chat/ChatPage.vue\n M src/stores/chat.store.test.ts\n M src/stores/chat.store.ts\n?? docs/chat-stream-presentation.md\n?? scripts/expert-provenance-refresh.test.mjs\n?? src-tauri/contracts/native-conversation-v5.json\n?? src-tauri/schemas/chat-native-conversation-v5.schema.json\n?? src-tauri/src/chat/native_conversation_v4_generated.rs\n?? src/api/generated/native-conversation-v5.gen.ts\n?? src/components/chat/ChatFileChangeItem.vue\n?? src/components/chat/ChatProcessParityAudit.test.ts\n?? src/composables/useChatDisclosureChoice.ts\n?? src/composables/useChatStreamPresentation.test.ts\n?? src/composables/useChatStreamPresentation.ts\n?? tsconfig.node.tsbuildinfo\n?? tsconfig.tsbuildinfo\n",
+      "baseline_files_changed": [
+        "scripts/expert-provenance-refresh.test.mjs",
+        "src/domain/conversation-process.ts",
+        "src/components/connectors/ConnectorDetailsDialog.vue",
+        "src/components/chat/MarketChatActivity.test.ts",
+        "contracts/artifact-media-host-build.candidate.json",
+        "contracts/experts.candidate.json",
+        "docs/design/docs/design/05-patterns/02-chat-workspace.md",
+        "contracts/market-provider.schema.json",
+        "src/domain/market-host-native.generated.ts",
+        "src/components/chat/MarketChatActivity.vue",
+        "src-tauri/src/chat/connectors/provider_generated.rs",
+        "src-tauri/src/chat/connectors/tests.rs",
+        "src-tauri/src/chat/connectors/host_generated.rs",
+        "src-tauri/src/chat/connectors/mod.rs",
+        "src-tauri/src/chat/connectors/store.rs",
+        "src/domain/market-connectors-ui.test.ts",
+        "contracts/market-host.candidate.json",
+        "src/components/chat/ChatTurnGroup.vue",
+        "src/domain/market-connectors-ui.ts",
+        "contracts/experts-assets.candidate.json",
+        "src-tauri/src/chat/connectors/provider.rs",
+        "src-tauri/src/chat/connectors/broker_generated.rs",
+        "contracts/market-host-native.schema.json",
+        "contracts/market-provider.candidate.json",
+        "src/components/chat/ChatProcessPresentation.test.ts",
+        "src/domain/connector-ui.ts",
+        "scripts/sync-desktop-expert-resources.mjs",
+        "src/components/connectors/ConnectorMarketView.test.ts",
+        "src/api/generated/market-host-native-validator.gen.js",
+        "contracts/market-host.schema.json"
+      ],
+      "baseline_files_missing": []
+    },
+    "yijie-codex": {
+      "head": "9154f27d0cdb526a5f5ba0913fe3e2448014b4a1",
+      "head_unchanged": true,
+      "status": "",
+      "baseline_files_changed": [],
+      "baseline_files_missing": []
+    }
+  }
+}

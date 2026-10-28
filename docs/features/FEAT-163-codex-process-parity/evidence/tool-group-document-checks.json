@@ -1,0 +1,50 @@
+{
+  "checked_at": "2026-10-24T09:34:13.827216+08:00",
+  "scope": "tool-group reference addendum documentation only",
+  "checks": [
+    {
+      "name": "strict feature package schema and structure",
+      "result": "PASS",
+      "exit_code": 0
+    },
+    {
+      "name": "meta pnpm lint",
+      "result": "PASS",
+      "exit_code": 0
+    },
+    {
+      "name": "meta pnpm test",
+      "result": "PASS",
+      "exit_code": 0,
+      "passed": 50,
+      "failed": 0
+    },
+    {
+      "name": "local links and document whitespace",
+      "result": "PASS",
+      "missing_links": 0
+    },
+    {
+      "name": "new user reference SHA-256",
+      "result": "PASS",
+      "changed": false
+    },
+    {
+      "name": "seven specifically audited source-file hashes",
+      "result": "PASS",
+      "drift": []
+    }
+  ],
+  "review": {
+    "frontend": "reviewed; no blocking contradiction",
+    "native_projection": "reviewed; added best-effort observation and patchUpdated/completed distinction",
+    "human_implementation_approval": false
+  },
+  "product_implementation": "NOT STARTED",
+  "product_acceptance": "NOT RUN",
+  "product_tg_cases": "NOT RUN",
+  "paid_calls": 0,
+  "in_flight_calls": 0,
+  "git_commit_push_release": "NOT PERFORMED",
+  "note": "Existing document-checks.json and planning-baseline.json preserved; results do not establish product behavior or all workspace immutability"
+}

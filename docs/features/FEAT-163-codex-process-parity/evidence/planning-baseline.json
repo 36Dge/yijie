@@ -1,0 +1,122 @@
+{
+  "captured_at": "2026-10-24T00:42:29.909736+08:00",
+  "purpose": "planning baseline only; not runtime qualification or implementation approval",
+  "repositories": [
+    {
+      "name": "yijie",
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "91b2b76e7afc7cb5373a381ce352f7d1eee4a134",
+      "remote": "https://github.com/36Dge/yijie.git",
+      "status": "?? docs/dev/chat-deletion-recovery-20261023.md\n?? docs/dev/process-feed-rework-20261023.md\n?? docs/features/FEAT-162-kimi-web-retrieval/",
+      "existing_dirty_file_sha256": {
+        "docs/dev/chat-deletion-recovery-20261023.md": "417f8a50d9cabc51121237ba7963ad3e389aed794377100a6224690d062dce95",
+        "docs/dev/process-feed-rework-20261023.md": "53f0a6b04637eba3b9d146d0bf84bbe9347d67d9dd5134a17797824a06aa95d8",
+        "docs/features/FEAT-162-kimi-web-retrieval/evidence/official-source-review.json": "3779c700a947282b1aae3f469ae2a7a5fc926b72a17774a3e2fa2aca8620b3e3",
+        "docs/features/FEAT-162-kimi-web-retrieval/evidence/workspace-before.json": "babc598b3d1ca42088264466e1bde9752597f62fdc955935843b46537fcc8778"
+      }
+    },
+    {
+      "name": "yijie-codex",
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "9154f27d0cdb526a5f5ba0913fe3e2448014b4a1",
+      "remote": "https://github.com/36Dge/yijie-codex.git",
+      "status": "",
+      "existing_dirty_file_sha256": {}
+    },
+    {
+      "name": "yijie-contracts",
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "bedf4159b0fa22e24efe6c295f8b0d4845df56b7",
+      "remote": "https://github.com/36Dge/yijie-contracts.git",
+      "status": "M compatibility/runtime-chat-models/source.lock.json\n?? docs/agent-session-cleanup-recovery.md",
+      "existing_dirty_file_sha256": {
+        "docs/agent-session-cleanup-recovery.md": "4a3287713f592d38b0efe82782a094879a222e56fa31bf8933042c23312e9824",
+        "compatibility/runtime-chat-models/source.lock.json": "92c112ea0887d44d1f2afb2ce1d20a35151d7fda3b34e5a729af9ce13cdbd813"
+      }
+    },
+    {
+      "name": "yijie-agent-host",
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "283dcbd7d79ca7bd7a56dba0cb915024fff8eb72",
+      "remote": "https://github.com/36Dge/yijie-agent-host.git",
+      "status": "M api/runtime-chat-models.candidate.json\n M internal/marketbroker/artifact.go\n M internal/session/service.go\n M internal/session/store.go\n?? internal/integration/cleanup_runtime_test.go\n?? internal/session/cleanup_recovery.go\n?? internal/session/cleanup_recovery_test.go",
+      "existing_dirty_file_sha256": {
+        "internal/integration/cleanup_runtime_test.go": "7367e8448a075caf99b94883d9dc05b358c576398eebe7ed7b3615480b97aa9f",
+        "internal/session/cleanup_recovery.go": "1f4fb10ac616982ce86dd1149b3a07fc16129c324638b9a394570340aa692441",
+        "internal/session/cleanup_recovery_test.go": "de3c826a1839cc4790fb264d8a08910d87a7d4b8c01504d50a8190579faa28d0",
+        "api/runtime-chat-models.candidate.json": "04b04eef3281737547ada9ee0b109d0b1c5896f3f4f7b848a9dbdc94c4e5093f",
+        "internal/marketbroker/artifact.go": "7b0467f93599e98d8575da4511d3c291a7a190e8b9de6f066b147d9cc98579ea",
+        "internal/session/service.go": "77abd40a29d4e55d633a30fc94d2c3fb3aee14fa78ec49d2b6cbc2439814b7c6",
+        "internal/session/store.go": "8531fd742398842b6d751e48e41b131474d2bc26a6fdb52375d7b96624cd4672"
+      }
+    },
+    {
+      "name": "yijie-desktop",
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "6080a568332dbf18ff119501607bc7e7afa92f94",
+      "remote": "https://github.com/36Dge/yijie-desktop.git",
+      "status": "M contracts/artifact-media-host-build.candidate.json\n M contracts/market-catalog.candidate.json\n M contracts/runtime-chat-models.candidate.json\n M docs/design/docs/design/02-tokens/06-motion-zindex-opacity-tokens.md\n M docs/design/docs/design/03-ui-system/02-iconography.md\n M docs/design/docs/design/05-patterns/02-chat-workspace.md\n M src-tauri/src/chat/application.rs\n M src-tauri/src/chat/database.rs\n M src-tauri/src/chat/deletion_recovery.rs\n M src-tauri/src/chat/native_conversation_storage.rs\n M src/components/chat/ChatProcessPresentation.test.ts\n M src/components/chat/ChatSafeContent.vue\n M src/components/chat/ChatSidebarSessionRow.vue\n M src/components/chat/ChatStreamText.test.ts\n M src/components/chat/ChatStreamText.vue\n M src/components/chat/ChatTurnGroup.vue\n M src/composables/useChatScroll.test.ts\n M src/composables/useChatScroll.ts\n M src/domain/chat-ui.test.ts\n M src/domain/chat-ui.ts\n M src/domain/conversation-process.ts\n M src/pages/chat/ChatPage.vue\n M src/stores/chat.store.test.ts\n M src/stores/chat.store.ts\n?? docs/chat-stream-presentation.md\n?? src/composables/useChatStreamPresentation.test.ts\n?? src/composables/useChatStreamPresentation.ts",
+      "existing_dirty_file_sha256": {
+        "docs/chat-stream-presentation.md": "f5cbc3d4c2b24cb8765b8fd0b76bea13226258f62f452cdab73c1fe3faa1e042",
+        "src/composables/useChatStreamPresentation.test.ts": "26fffb3ead8d77ac7787405f6ee192ed2fe2ac6b466e425074cae0e3edccdf9b",
+        "src/composables/useChatStreamPresentation.ts": "8ac1b5d1f494d754d1d1305b3ce9acc7d3a08da18d30ed2e729233ffb974ae3d",
+        "contracts/artifact-media-host-build.candidate.json": "34896e444d87542205d017763a3e23b5aee0f5cd5b616669387c80a842f11bca",
+        "contracts/market-catalog.candidate.json": "6754ed77af3a9d124be43725bfc5c91293cede76dc63e02c405fea56b083d518",
+        "contracts/runtime-chat-models.candidate.json": "04b04eef3281737547ada9ee0b109d0b1c5896f3f4f7b848a9dbdc94c4e5093f",
+        "docs/design/docs/design/02-tokens/06-motion-zindex-opacity-tokens.md": "160562dc2703950c21df92abca381b0e3a2da1f54f8944e679aec6e386917114",
+        "docs/design/docs/design/03-ui-system/02-iconography.md": "b999984828983604c9e6cea0daeaa7365d966cc8e99745edf3f7e1fe36c87ed0",
+        "docs/design/docs/design/05-patterns/02-chat-workspace.md": "e4a46f3452610061e5fda2e6a3e5885d3d8ef9d29ee9ebc41c3495a3a9ca2a58",
+        "src-tauri/src/chat/application.rs": "2e19a3a9379ad8cbc0e57fd528d45cad6d15d1dabf1e0c395fce531c7f28b6a3",
+        "src-tauri/src/chat/database.rs": "4d0651bbcfe5b0c28377457dc9c0d16b12c1d923d35d1e6c70faa08c2e5849eb",
+        "src-tauri/src/chat/deletion_recovery.rs": "08a0105be66b0b03855d0b41077b5fbc2efb99beeeac9bd738ee383419cbf127",
+        "src-tauri/src/chat/native_conversation_storage.rs": "dced945f02880be92ec2e66762ec6e7f5761a2fae397c4a42ce8411930136fdd",
+        "src/components/chat/ChatProcessPresentation.test.ts": "14f3ddc16e64672f7129a971e1b3846950b652db521584730a2336abae2b3508",
+        "src/components/chat/ChatSafeContent.vue": "d3a5a17a32bf302767c8480b1a99aead2120b1ce7775b74ad5b5d3439dabbb1e",
+        "src/components/chat/ChatSidebarSessionRow.vue": "eb5ae5134bfdaef2a88f311c4cef4bf520e6cbec700ed86f412e9bf69e73fabd",
+        "src/components/chat/ChatStreamText.test.ts": "9b65b43731de24667755acb82d3209433d79ea03e47ee837325da148ed2b76b2",
+        "src/components/chat/ChatStreamText.vue": "4ded1b221ae5134a58ef834ecc055258724bf2563474c9a44daba1d2005be180",
+        "src/components/chat/ChatTurnGroup.vue": "019e2e54a28a92943efd57068648dbe268dc6400e0d0e81e7893d456e92747b1",
+        "src/composables/useChatScroll.test.ts": "d4ce44fe5add510650ee929d986a54b6aec74705806b4a58c96a5a2a7e74785e",
+        "src/composables/useChatScroll.ts": "012d343ec970ca25ff412b726da088bc3b2ff0e72e4664703433c0271148c7d8",
+        "src/domain/chat-ui.test.ts": "b137b73f9b3385856a4d9c1c372204de4d0cefa2fcc51e569e801fdfddc6f846",
+        "src/domain/chat-ui.ts": "6a33f7216bcfec88a50a55c85a41ca2a5a65126546aa9b9d8eb8c46f64136465",
+        "src/domain/conversation-process.ts": "abc1d3dbf53432cb69dab10b7e972ed4956b25ee096ae0ecadbd450459ddf863",
+        "src/pages/chat/ChatPage.vue": "f3032ff386fd36e65b8c8c41da96546eaafdb6b0ff7a22f7f0c6ac74512ad867",
+        "src/stores/chat.store.test.ts": "93a212d0df2e9a26464eb0f4bbfad3aa6cbba3a4a77e358b2e7f7e12bc8cba68",
+        "src/stores/chat.store.ts": "ea8059f4674570c1cccee742c5e7a6b6f3e7748ffdfe6cfd9b7f16c7d6710791"
+      }
+    }
+  ],
+  "references": [
+    {
+      "file": "evidence/reference-codex.png",
+      "source": "user supplied screenshot, copied without modification",
+      "sha256": "575be00a348d5ef4641116f1f4a9bf1e168c2c669b894c76b2742f3521fa563e"
+    },
+    {
+      "file": "evidence/reference-yijie-activity-list.png",
+      "source": "user supplied screenshot, copied without modification",
+      "sha256": "93d1fb50ebb41cb36e747de371439d372c4de8df65e6073a89a99d6c685bc460"
+    },
+    {
+      "file": "evidence/reference-yijie-repeated-summary.png",
+      "source": "user supplied screenshot, copied without modification",
+      "sha256": "e20a2bb9c4ccda0aed2d15586229de383ad838ec98a1dd6c97c702acb30a990f"
+    }
+  ],
+  "problem_sample": {
+    "runtime_thread": "01a16978-11b8-7683-9878-8f4effb0fb71",
+    "runtime_turn": "01a16978-1202-7fa2-98f5-ee441cd2fe13",
+    "local_rollout_path": "yijie-desktop/.local/demo-fast/codex-home/sessions/2026/10/23/rollout-2026-10-23T23-53-58-01a16978-11b8-7683-9878-8f4effb0fb71.jsonl",
+    "raw_rollout_copied": false,
+    "sha256": "bafc538dec7da1978b58e7d61b0dcfb3904ac9f0e4f893100cfe7dc060f94005",
+    "observed_in_prior_read_only_audit": {
+      "search_items": 13,
+      "command_calls": 23,
+      "reasoning_items": 10,
+      "assistant_messages": 0,
+      "duration_ms": 274207,
+      "last_agent_message": null
+    }
+  }
+}

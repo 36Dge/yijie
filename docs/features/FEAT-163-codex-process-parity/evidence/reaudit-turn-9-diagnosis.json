@@ -1,0 +1,63 @@
+{
+  "user_turn": 9,
+  "runtime_file": "../yijie-desktop/.local/demo-fast/codex-home/sessions/2026/10/24/rollout-2026-10-24T11-29-41-01a16bf5-0388-7602-b6c0-0047149f8ed8.jsonl",
+  "runtime_turn_id": "01a16c2b-f96e-7ca2-983e-d69f84fe12d3",
+  "requests": [
+    21
+  ],
+  "public_messages": [],
+  "provider_public_hashes": [],
+  "public_hashes_equal": true,
+  "function_calls": [
+    {
+      "name": "exec_command",
+      "call_id_sha256": "bd5ac677ff4b5d323c12c4e337ccfc5a768279e561b7a07891f486916a90b893",
+      "arguments_sha256": "67499e92e547f9804771fd083017e054d460921edffbace6180d4a1a755001de",
+      "at": "2026-10-24T04:32:00.840Z"
+    }
+  ],
+  "tool_outputs": [
+    {
+      "call_id_sha256": "bd5ac677ff4b5d323c12c4e337ccfc5a768279e561b7a07891f486916a90b893",
+      "body_sha256": "0a78e12c1055eb159c13789d2feaa9963b00893d4f6f0cbad9e832d008f262e0",
+      "bytes": 84,
+      "next_requests": [],
+      "stdout_empty": false
+    }
+  ],
+  "all_outputs_forwarded": false,
+  "duplicate_argument_counts": {},
+  "native_patches": [],
+  "commands": [],
+  "terminal": {
+    "type": "task_complete",
+    "turn_id": "01a16c2b-f96e-7ca2-983e-d69f84fe12d3",
+    "completed_at": 1792816320,
+    "duration_ms": 137262,
+    "time_to_first_token_ms": 3592,
+    "has_last_agent_message": false
+  },
+  "provider_terminals": [
+    {
+      "request": 21,
+      "event": "response.incomplete",
+      "at_unix_ns": 1792816320843940000,
+      "status": "incomplete",
+      "usage": {
+        "input_tokens": 25023,
+        "output_tokens": 8195,
+        "total_tokens": 33218
+      },
+      "response_sha256": "4ed296778be469696a4b97f9814c937931a74cc98a8212f92b1bb1a5f9674518",
+      "incomplete_reason": "max_output_tokens"
+    }
+  ],
+  "native_web_search_calls": 0,
+  "qualification": "FAIL: no progress, no deliverable; provider output limit truncated function JSON before native dispatch",
+  "actual_command_executions": 0,
+  "feedback_note": "Runtime parse failure is recorded. Provider already terminated incomplete; no next request exists. Do not classify as an omitted tool result in an otherwise continuing loop.",
+  "deliverable_files_exist": {
+    "reaudit-report.html": false,
+    "reaudit-invoice.md": false
+  }
+}

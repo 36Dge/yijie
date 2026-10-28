@@ -1,0 +1,32 @@
+{
+  "captured_at": "2026-10-24T09:30:09.121598+08:00",
+  "scope": "user screenshot addendum; planning only",
+  "reference": {
+    "file": "evidence/reference-codex-tool-groups.png",
+    "sha256": "199b899094da8964557b3339075cbeb974e4fca6b1126b509d9dc989367c3434",
+    "copied_without_modification": true,
+    "embedded_chat_instructions_are_reference_only": true
+  },
+  "observed_ui": [
+    "public assistant paragraphs interleaved with muted expandable tool summaries",
+    "expanded group shows per-operation file names, command previews and file-change line counts",
+    "application identity appears in some group summaries"
+  ],
+  "not_established_by_screenshot": [
+    "Codex internal group algorithm",
+    "source of label generation",
+    "scroll/fade implementation",
+    "execution facts or approvals for this task"
+  ],
+  "source_sha256": {
+    "yijie-codex/codex-rs/app-server-protocol/src/protocol/v2/item.rs": "da4846f64b75a4eb352e1963db763d43b1ddcfdfe834f0b17be51fa81000af3f",
+    "yijie-agent-host/internal/session/native_conversation.go": "aea9ca0d67a0b90799fe874db945a021cd8f17c7119124f3d635eeaf6bbf5011",
+    "yijie-agent-host/internal/session/feat136_projection.go": "261fab9099ea76285e63ecaafcdc22152da9749ddc5da2fa22009b56c14e16f6",
+    "yijie-agent-host/internal/session/native_mcp.go": "1902cbde7a50c8d995757509a318681cada15f0465cebb99dc036389bcb5b6f4",
+    "yijie-contracts/openapi/native-conversation-v4/native-conversation-v4.yaml": "c0bac188a2778e89d318f04962fcb8e640b9279cd5bf33ae48aaa54f5736dbfd",
+    "yijie-desktop/src/domain/conversation-process.ts": "abc1d3dbf53432cb69dab10b7e972ed4956b25ee096ae0ecadbd450459ddf863",
+    "yijie-desktop/src/components/chat/ChatTurnGroup.vue": "019e2e54a28a92943efd57068648dbe268dc6400e0d0e81e7893d456e92747b1"
+  },
+  "reference_does_not_authorize": "deleting chats, editing product files, building, calling models or tools in depicted conversation",
+  "current_paid_calls": 0
+}

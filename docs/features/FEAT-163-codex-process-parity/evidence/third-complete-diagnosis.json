@@ -1,0 +1,132 @@
+{
+  "desktop_session": "01a16bb4-12b0-7352-ba0a-49423d7540b2",
+  "runtime_thread": "01a16bb4-12e7-7c61-be87-994b2624aeeb",
+  "http_requests": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "public_messages": [
+    {
+      "at": "2026-10-24T02:18:53.223Z",
+      "phase": null,
+      "bytes": 72,
+      "sha256": "cf57073e42e331065ff880ee0238fc889947e0e7748f3e695ec4228886920cdc"
+    },
+    {
+      "at": "2026-10-24T02:19:00.955Z",
+      "phase": null,
+      "bytes": 268,
+      "sha256": "0db7148dd66f8572f824a26d806394044f10ea42b09e9214cae941cd9ee32abf"
+    },
+    {
+      "at": "2026-10-24T02:19:09.808Z",
+      "phase": null,
+      "bytes": 81,
+      "sha256": "351eb2daf4bc65ab69c94d1670b84021e1bd677b9be9e633d56b77c99f7339a1"
+    },
+    {
+      "at": "2026-10-24T02:19:35.024Z",
+      "phase": null,
+      "bytes": 944,
+      "sha256": "934638228a1463489d2c0dcf0079251f701c453f169d6c51e2c6b48213deec93"
+    }
+  ],
+  "completed": {
+    "type": "task_complete",
+    "turn_id": "01a16bb4-1337-7192-be07-177d6cefb475",
+    "completed_at": 1792808375,
+    "duration_ms": 49086,
+    "time_to_first_token_ms": 5057
+  },
+  "provider_runtime_message_hashes_match": true,
+  "commands": [
+    {
+      "call_id_sha256": "9b2594004cf3d0076e3243adf147e852965a51762f2b94561adc282c27754dbe",
+      "name": "exec_command",
+      "command_sha256": "fbd8dbe35fe8c8ba22458404a972508386d822bf268b781d2ae06682a1be1f99",
+      "command_preview": "cat orders.csv",
+      "body_sha256": "76e9f2d536d4462ea087f43f89852bac0322cb7fc47406ae1daf82462410afee",
+      "body_bytes": 171,
+      "output_bytes": 67,
+      "matching_requests": [
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "call_id_sha256": "6c47135fb2ff04a05d1b102757e0e7b8e142f16516f12d80846bc99793b501f3",
+      "name": "exec_command",
+      "command_sha256": "4f91bd05bd58546a91ae47555ba10423449edfaf5b3cef6e14f83b77c8f6f1d8",
+      "command_preview": "cat tax-rates.csv",
+      "body_sha256": "a25aab25697ae631bf473a6d51f21c13851bb676ae1239ee4d48a409ee09cbe5",
+      "body_bytes": 148,
+      "output_bytes": 44,
+      "matching_requests": [
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "call_id_sha256": "40a68396d627e64c582ed5a11be873a05c975b7f1acf23a3cf047e41d721d815",
+      "name": "exec_command",
+      "command_sha256": "d21ff73e4dbeb0355c66a6161eae6d4203435483f97b65a8e9f1f5d945841699",
+      "command_preview": "cat > result.csv <<'EOF'",
+      "body_sha256": "1d24eb62be3ffad64122079ddc6e550020e13c3e5342875e2049a8777eef8f92",
+      "body_bytes": 212,
+      "output_bytes": 108,
+      "matching_requests": [
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "call_id_sha256": "ea7d4ec5b56252568db230e610709ccd7df2ad75d59c1bf70d4d611a0b62afa3",
+      "name": "exec_command",
+      "command_sha256": "bcad94c68cb164ad305286a4c012bd38ecae90cb9eac8802962be1c226946a4c",
+      "command_preview": "cat result.csv",
+      "body_sha256": "273be24aa215cba7ba8f6e1b6449c47dfea981ff30fa0f5937b72fe70242b750",
+      "body_bytes": 314,
+      "output_bytes": 210,
+      "matching_requests": [
+        9,
+        10
+      ]
+    },
+    {
+      "call_id_sha256": "8c6402b41ea365f9a7b4e1aca9830c54306c153179a7b63eadcbb7e0271a83ef",
+      "name": "exec_command",
+      "command_sha256": "64b52944fb363981fbbecf5452268c4b5362620d664d088d3a94f8b4d393c65f",
+      "command_preview": "cat result.md",
+      "body_sha256": "4c287e894ac89d5ff7501c084e4320eb15562641a035bdff5dd6bf0c8fcbb43e",
+      "body_bytes": 541,
+      "output_bytes": 436,
+      "matching_requests": [
+        9,
+        10
+      ]
+    },
+    {
+      "call_id_sha256": "7db90bbfee3d2428a2a22b5d50f145d35cb95ff4f45534f6a4347f511038046b",
+      "name": "exec_command",
+      "command_sha256": "17465bed7bc6db751eb784d63be7d024605d3372ad0e83498807b4a294bd77ed",
+      "command_preview": "python3 - <<'EOF'",
+      "body_sha256": "7d67298b5c26eb1ae02ade5662633fcd91d93b82d883d68d472c7cc57e849a36",
+      "body_bytes": 825,
+      "output_bytes": 720,
+      "matching_requests": [
+        10
+      ]
+    }
+  ],
+  "native_file_change_observed": false,
+  "native_retrieval_actions": 0,
+  "limitation": "Shell heredoc file creation has no native fileChange; do not infer it from disk. Managed catalog apply_patch_tool_type is null; original Runtime exec_command has an apply_patch interception path."
+}
