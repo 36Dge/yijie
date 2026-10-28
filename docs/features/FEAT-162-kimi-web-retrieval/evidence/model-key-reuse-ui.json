@@ -1,0 +1,45 @@
+{
+  "verified_at": "2026-10-24T12:09:32.875986+08:00",
+  "status": "PASS",
+  "scope": "FEAT-162 existing Kimi model-key reuse and local-only configuration UI",
+  "app_sha256": "0d79ee061c1a284db20e274c66a3aaa8b5f23f194a8cfabf24ffbb5085cb0cc5",
+  "host_sha256": "be5a7c27407520bec1975c66ccc4cb0ccb95c36a90c828f17baa8371b97603d8",
+  "worker_sha256": "7d7842ad9cae62f2913e381e7f4a115e8039e88180656b6c0c788350518a36f8",
+  "runtime_sha256": "9766d7e10d25327f0595964a19ad67e1e1c1db0c22e5a65f9af66b547ab316c6",
+  "packaged_receipt_sha256": "796a510907014b0e3dcf394fe75387b23892cf5d96ba3b2362d50968dc312102",
+  "same_build_receipt_unchanged_after_reopen": true,
+  "steps": [
+    "Initial existing installed/cancelled Kimi item opened; no secret field was shown.",
+    "Clicked Use existing Kimi key once; local binding succeeded, no browser page.",
+    "First UI showed stale catalog not_configured text; corrected with regression coverage, canonical App rebuilt.",
+    "Final detail shows existing model key reused, connection unverified, connector disabled.",
+    "1180x760 layout passed; restored1268x780; keyboard focus and close passed.",
+    "Current-conversation picker Kimi switch remains disabled/off.",
+    "Normal Cmd-Q and same-build --reopen passed; installation and configured/disabled state retained.",
+    "Final normal Cmd-Q completed; no owned App/Host/worker processes remain."
+  ],
+  "real_kimi_requests": {
+    "models": 0,
+    "search": 0,
+    "fetch": 0,
+    "model_turns": 0
+  },
+  "diagnostic_evidence": "model-key-reuse-diagnostics.json",
+  "screenshots": [
+    "model-key-reuse-before.jpg",
+    "model-key-reuse-first-binding.jpg",
+    "model-key-reuse-final.jpg",
+    "model-key-reuse-minimum.jpg",
+    "model-key-reuse-picker-disabled.jpg",
+    "model-key-reuse-reopened.jpg",
+    "model-key-reuse-final-source-reopened.jpg"
+  ],
+  "remaining_owned_processes": [],
+  "not_run": [
+    "Dark native appearance (no existing app switch; no OS appearance change)",
+    "Real provider entitlement/balance/retrieval",
+    "D4/model-driven MCP"
+  ],
+  "other_task_boundary": "FEAT-163 edits and ongoing verification preserved; its model/network allowance and result are not consumed or claimed.",
+  "final_source_rebuild": "After the explicit presentation-module path correction, canonical product build, final-worker local binding integration, same-build --reopen, real detail state and normal Cmd-Q all PASS."
+}

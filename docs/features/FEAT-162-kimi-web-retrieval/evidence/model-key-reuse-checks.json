@@ -1,0 +1,81 @@
+{
+  "captured_at": "2026-10-24T11:55:19.508438+08:00",
+  "scope": "Kimi model-key reuse; local configuration only",
+  "checks": {
+    "contracts_focused_js": {
+      "passed": 22
+    },
+    "contracts_go_packages": {
+      "passed": 3
+    },
+    "worker_kimi_tests": {
+      "passed": 14
+    },
+    "worker_model_source_test": {
+      "passed": 1
+    },
+    "worker_clippy": "PASS",
+    "canonical_worker_local_binding": "PASS with ordinary in-memory key and missing source; no provider HTTP; normal EOF",
+    "host_owner_lifecycle": "4 existing canonical lifecycle tests PASS",
+    "host_model_environment_approval": "3 focused tests PASS",
+    "frontend": {
+      "passed": 84,
+      "files": 8
+    },
+    "desktop_native_catalog_tests": {
+      "passed": 11
+    },
+    "desktop_native_shared_source_projection": {
+      "passed": 1
+    },
+    "desktop_scoped_eslint": "PASS",
+    "desktop_rust_fmt": "PASS",
+    "desktop_clippy_lib": "PASS",
+    "desktop_pnpm_build": "PASS",
+    "provenance_refresh_tests": {
+      "passed": 5
+    },
+    "host_actual_expert_manifest": "PASS",
+    "dedicated_qualification_build": "cargo check PASS after making the shared presentation module path explicit; capture_startup_source remains absent from qualification main",
+    "meta_test": {
+      "passed": 50
+    }
+  },
+  "expert_resource_refresh": {
+    "metadata_unchanged": true,
+    "archive_count": 75,
+    "all_archive_hashes_verified": true,
+    "pin": {
+      "schema_version": 1,
+      "feature": "FEAT-158",
+      "release": false,
+      "bundle_version": "0.25.0",
+      "manifest_sha256": "64721b4bfea466e5faa5160f8e142623b9544a70033c3cc93794edde5261e5da",
+      "source": {
+        "repository": "https://github.com/36Dge/yijie-skills.git",
+        "revision_kind": "working-tree",
+        "revision": "595c927ae101d3d31c234f60565041eee0864680",
+        "tree_sha256": "1306280eb61b66771cb3d539972053dca30000626c71149524aa861405930b70"
+      },
+      "authority_sha256": "43ad877d1e30e53d26b95b896f98fea997cd3e7b1b866b2988628c457e460534",
+      "contracts_source_lock_sha256": "81d65b50147f1cef6842aabcf08f46ecd56a36c5dbe52ba631ec248b90e0ec08"
+    }
+  },
+  "not_run": [
+    "Real /models",
+    "Real Kimi Search",
+    "Real Kimi Fetch",
+    "Model turns",
+    "D4",
+    "Forbidden destructive/fault-injection/attack tests"
+  ],
+  "resolved_check_failures": [
+    "Earlier UI assertions expected the former manual credential form; updated to new requirements, final PASS.",
+    "Earlier contract assertions expected superseded qualification prose; now assert local binding, explicit enable and unchanged budgets; final PASS.",
+    "vue-tsc -b --noEmit is incompatible with current referenced project config; standard pnpm build (vue-tsc --noEmit) PASS.",
+    "Expert check without explicit local/demo_fast failed as intended; explicit canonical check PASS.",
+    "Freeze rejected stale expert derived provenance; canonical generation, verified previous candidate refresh, Host authority sync and final freeze PASS.",
+    "Mistyped Go SDK paths had no tests; corrected canonical package paths PASS.",
+    "Final dedicated broker-qualification check found prior implicit presentation module path missing under alternate crate root. Explicit path fixed; qualification compile and 14 Kimi tests PASS. Canonical App source receipt rebuilt afterward."
+  ]
+}

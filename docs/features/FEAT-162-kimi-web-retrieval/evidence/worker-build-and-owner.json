@@ -1,0 +1,26 @@
+{
+  "build_command": "make worker-build",
+  "exit_code": 0,
+  "manifest": {
+    "schemaVersion": 2,
+    "candidateOnly": true,
+    "binary": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/bin/market-worker/1f35e4ab2d392dab59383f2951c495117f001ededfa97150b6f78c5bf0a10745/yijie-mcp-worker",
+    "sha256": "1f35e4ab2d392dab59383f2951c495117f001ededfa97150b6f78c5bf0a10745",
+    "sizeBytes": 84680688,
+    "codexSource": "9154f27d0cdb526a5f5ba0913fe3e2448014b4a1",
+    "externalCallsEnabled": true,
+    "qualificationOnly": false,
+    "providerProfile": "generic-mcp-v1"
+  },
+  "binary_hash_verified": true,
+  "owner_tests": {
+    "command": "YIJIE_MARKET_BROKER_TEST_MANIFEST=<canonical current.json> go test -race ./internal/marketbroker -run ^TestMarketOwnerCanonical(ControlLifecycle|NonemptyUnqualifiedAndEOF|NewThreadPreparation|ProviderStartupReusesOneChild)$ -count=1 -v",
+    "passed": 4,
+    "exit_code": 0,
+    "normal_exit": "all 4 canonical worker children completed normal Close/EOF; no force-kill"
+  },
+  "app_shutdown_before_build": "Cmd-Q followed by ps: Desktop/Host/worker/artifact processes absent",
+  "supplier_calls": 0,
+  "model_calls": 0,
+  "release": false
+}

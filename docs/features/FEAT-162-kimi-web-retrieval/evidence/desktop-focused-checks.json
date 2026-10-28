@@ -1,0 +1,9 @@
+{
+  "scope": "FEAT-162 desktop source checks; reported by executing desktop subagent, no App/provider calls",
+  "frontend": {"files": 5, "passed": 47, "failed": 0},
+  "native_connectors": {"passed": 11, "failed": 0},
+  "checks_passed": ["market-connectors/selection/provider/host source checks", "catalog sync --check", "ESLint on modified source", "vue-tsc", "Rust fmt on modified source", "cargo clippy --lib -- -D warnings", "pnpm build", "pnpm docs:build", "git diff --check"],
+  "retained_failures": ["Initial Vitest invocation matched .local historical copies; rerun used canonical excludes.", "New Kimi icon assertion encountered asset inlining; reused existing model icon no-inline policy.", "Initial Native run 10/11: historical OAuth count 48 differed from current actual 50; corrected count, rerun 11/11."],
+  "warnings": ["Existing frontend chunk size above 500 kB."],
+  "not_run": ["native App visual verification", "real Keyring configuration", "supplier search/fetch", "model calls"]
+}

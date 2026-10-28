@@ -1,0 +1,42 @@
+{
+  "verified_at": "2026-10-24T21:24:11.827712+08:00",
+  "status": "PASS",
+  "scope": "Automatically reuse existing Kimi model credentials; no connector Configure/Enable step",
+  "release": false,
+  "packaged_receipt_sha256": "b749914b8bbec6341fffb87592c9eecb24ec4e64d597b51cb3df737391a217b1",
+  "app_sha256": "a6046baf63260743245d566dfa0df4a12afb7fc3772f72c81fa8152823b621ef",
+  "host_sha256": "7b093b9a0ce5569f4b78157ae6c2d43193f146f5d19e0628f0627167e2d8a338",
+  "worker_sha256": "ebf7c834c95f4614365981aa7b99d04dcff37eb4d709cf4f84d0b04a8e073404",
+  "runtime_sha256": "9766d7e10d25327f0595964a19ad67e1e1c1db0c22e5a65f9af66b547ab316c6",
+  "same_build_receipt_unchanged_after_reopen": true,
+  "steps": [
+    "Canonical App startup healthy; existing Kimi installation automatically prepared and shown available without user configuration/enablement",
+    "Current-task picker Kimi switch enabled; selected then unselected without submitting a task",
+    "Initial generic enable/authorization copy found and corrected; final build verified",
+    "Final light layout 1268x780 and minimum1180x760; keyboard focus/Escape and window restoration verified",
+    "Normal Cmd-Q exit0; same-build canonical --reopen verified; Kimi automatically available with unchanged source receipt",
+    "Final Cmd-Q exit0; no App/Host/worker processes remain"
+  ],
+  "real_kimi_requests": {
+    "models": 0,
+    "search": 0,
+    "fetch": 0,
+    "model_turns": 0
+  },
+  "diagnostic_evidence": "direct-use-diagnostics.json",
+  "screenshots": [
+    "direct-use-final-detail.jpg",
+    "direct-use-final-minimum.jpg",
+    "direct-use-picker.jpg",
+    "direct-use-reopened-detail.jpg"
+  ],
+  "not_run": [
+    "Dark native appearance: existing App has no switch; OS appearance unchanged",
+    "Clean-machine signed distribution installation",
+    "Supplier entitlement/balance/Search/Fetch/model-driven MCP and D4"
+  ],
+  "new_install_coverage": "Native in-memory database default-install tests, not a clean-machine distribution claim",
+  "disable_uninstall_coverage": "Native/store tests; no need to remove or alter the real user installation",
+  "remaining_owned_processes": [],
+  "other_task_boundary": "FEAT-163 edits/results/budget remain separate; no commits/push/release"
+}

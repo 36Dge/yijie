@@ -1,0 +1,31 @@
+{
+  "d0": {
+    "status": "PASS",
+    "exit_code": 0
+  },
+  "lint": {
+    "status": "PASS",
+    "exit_code": 0
+  },
+  "tests": {
+    "status": "PASS",
+    "pass": 50,
+    "fail": 0,
+    "exit_code": 0,
+    "command": "pnpm test",
+    "reason_for_rerun": "Unrelated FEAT-163 package now has feature.yaml; no changes made to that feature."
+  },
+  "initial_command_error": {
+    "command": "pnpm lint in CrossBSD parent",
+    "exit_code": 1,
+    "cause": "No package manifest; corrected working directory to yijie."
+  },
+  "tests_history": [
+    {
+      "status": "FAIL",
+      "pass": 48,
+      "fail": 2,
+      "cause": "Repository-wide feature audit encountered unrelated in-progress FEAT-163-codex-process-parity directory without feature.yaml. No change made to that package."
+    }
+  ]
+}

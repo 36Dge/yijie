@@ -1,0 +1,23 @@
+{
+  "scope": "Fresh Kimi installation configure followed by empty-form cancellation",
+  "diagnostic_sha256": "b19f4ceb80cfa517be7c5410d9e9390b5335bd357c811110ea2671c92b88a9c8",
+  "events": [
+    {
+      "event": "started",
+      "httpStatus": null,
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "keyring_preflight",
+      "unixMs": 1792804842533
+    },
+    {
+      "event": "succeeded",
+      "httpStatus": null,
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "keyring_preflight",
+      "unixMs": 1792804842535
+    }
+  ],
+  "assessment": "Only dedicated Keyring readiness events. UI reached loopback AwaitingUser; no key input/save, no models probe or web_http_send. No supplier/model API call was performed by this task."
+}

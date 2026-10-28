@@ -1,0 +1,28 @@
+{
+  "review_scope": "Kimi REST Backend, Broker/Gateway/provider integration, schemas, credential/cancellation/result limits",
+  "method": "Independent read-only source review by host_integration subagent; root verified fixed client and reqwest source",
+  "findings": [
+    {
+      "priority": "P1",
+      "title": "Underlying default HTTP protocol retries bypass one-shot permit",
+      "status": "CLOSED",
+      "evidence": [
+        "codex-rs/exec-server/src/client/reqwest_http_client.rs build_client",
+        "reqwest 0.12.28 retry.rs ProtocolNacks default max_retries_per_request=2"
+      ],
+      "planned_fix": "Connectors-local pinned reqwest client with retry::never; no Runtime change",
+      "resolution": "Production Backend::load -> StreamingHttp uses pinned reqwest retry::never, redirect none, one send; final independent static re-review found no new blockers. 876 external dependency records unchanged."
+    }
+  ],
+  "other_reviewed_boundaries": [
+    "exact selection/thread/turn/approval binding",
+    "serial execution and post-response cancellation",
+    "Connectors-only Keyring credential",
+    "fixed API origin and no redirect",
+    "1 MiB raw response and 64 KiB serialized MCP result",
+    "text/structuredContent equality",
+    "explicit truncation",
+    "empty results and safe error semantics"
+  ],
+  "tests": "Final Connectors focused 13/13 and Clippy PASS; no fault injection or supplier/model calls."
+}

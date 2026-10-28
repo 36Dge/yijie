@@ -1,0 +1,77 @@
+Window: "易界 AI", App: 易界 AI.
+0 standard window 易界 AI, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: 新建任务 · 易界 AI, URL: tauri://localhost/chat
+			3 text 界面缩放 100%
+			4 button (expanded) 收起侧栏, Secondary Actions: Collapse
+			5 container 主导航
+				6 image 易界
+				7 container 应用导航
+					8 content list
+						9 link 新建任务, Value: tauri://localhost/chat
+						10 link 我的店铺, Value: tauri://localhost/store
+						11 link 工作流, Value: tauri://localhost/workflows
+						12 link 扩展, Value: tauri://localhost/plugins
+						13 link 连接器, Value: tauri://localhost/connectors
+						14 link 定时任务, Value: tauri://localhost/scheduled-tasks
+						15 container
+							16 heading 任务, Value: 2
+								17 text 任务
+							18 container 任务：项目与对话
+								19 content list
+									20 button 全面对比苏州与杭州两个城市？
+					21 content list
+						22 link 设置, Value: tauri://localhost/settings
+			23 container 易界AI
+				24 heading 易界AI, Value: 1
+					25 text 易界AI
+				26 text 让跨境经营更高效，让全球生意更进一步。
+				27 container 任务输入区
+					28 text 输入你的任务需求
+					29 text entry area (settable) 输入你的任务需求, Value: [text entry area], Placeholder: 描述你想完成的事，或添加相关文件…
+						30 text 描述你想完成的事，或添加相关文件…
+					31 pop up button 可添加文件、技能、连接器，或选择专家
+					32 pop up button 关联店铺, Help: 关联店铺（交互演示）
+					33 pop up button 选择对话模型，当前 Kimi-K3, Help: Kimi-K3
+					34 button (disabled) 发送任务
+					35 container 工作空间与权限
+						36 pop up button 选择工作空间
+						37 pop up button 权限审批：请求批准, Help: 更改当前任务的权限审批模式
+			38 container 添加到对话
+				39 menu 添加到对话, Secondary Actions: Cancel
+					40 添加文件
+					41 (collapsed) 技能, Secondary Actions: Expand
+					42 (expanded) 连接器, Secondary Actions: Collapse
+					43 (collapsed) 选择专家, Secondary Actions: Expand
+				44 container 连接器
+					45 container 连接器
+						46 container
+							47 text field (settable) 搜索已安装的连接器, Placeholder: 搜索连接器
+							48 text 搜索连接器
+						49 text 开关仅控制当前对话选用
+						50 container 选择当前对话使用的连接器
+							51 container
+								52 button 选用 Shopify MCP，已启用
+								53 switch (settable, boolean) 选用 Shopify MCP，仅当前对话, Value: off
+							54 container
+								55 button 管理 Sorftime，待配置
+								56 switch (disabled, settable, boolean) 选用 Sorftime，仅当前对话, Value: off
+							57 container
+								58 button 管理 Tushare·金融数据，待授权
+								59 switch (disabled, settable, boolean) 选用 Tushare·金融数据，仅当前对话, Value: off
+							60 container
+								61 button 管理 Kimi 网页检索，连接未完成
+								62 switch (disabled, settable, boolean) 选用 Kimi 网页检索，仅当前对话, Value: off
+						63 button 管理连接器
+	64 close button
+	65 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	66 minimize button
+67 menu bar
+	68 易界 AI
+	69 File
+	70 Edit
+	71 View
+	72 Window
+	73 Help
+
+The focused UI element is 44 container 连接器

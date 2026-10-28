@@ -1,0 +1,27 @@
+{
+  "scope": "normal in-process market selection/approval/lifecycle and result projection; no provider/model calls",
+  "test": {
+    "session": 22707,
+    "exit_code": 0,
+    "output": "ok  \tgithub.com/36Dge/yijie-agent-host/internal/marketbroker\t1.516s\nok  \tgithub.com/36Dge/yijie-agent-host/internal/session\t2.288s\nok  \tgithub.com/36Dge/yijie-agent-host/internal/codex\t2.008s\nok  \tgithub.com/36Dge/yijie-agent-host/internal/app\t1.585s\n"
+  },
+  "vet": {
+    "packages": [
+      "internal/marketbroker",
+      "internal/contracts/marketconnectors",
+      "internal/contracts/marketbrokercontrol",
+      "internal/contracts/marketprovider",
+      "internal/contracts/markethost"
+    ],
+    "exit_code": 0
+  },
+  "diff_check": {
+    "exit_code": 0
+  },
+  "not_run": [
+    "unfiltered full suite",
+    "real supplier requests",
+    "model turns",
+    "fault/attack injection"
+  ]
+}

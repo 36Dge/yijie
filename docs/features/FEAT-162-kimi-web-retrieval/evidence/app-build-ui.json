@@ -1,0 +1,69 @@
+{
+  "recorded_at": "2026-10-23T17:25:14.006276+00:00",
+  "status": "PASS_BUILD_LOCAL_SERVICE_NOT_READY_PAUSED",
+  "command": "YIJIE_FEAT156_LOCAL_CANDIDATE=true pnpm tauri:demo-fast:app",
+  "receipt": {
+    "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/demo-fast/packaged-launch-receipt.json",
+    "sha256": "5569f56de59cde96626319ab7b53a4f9ce51473f4abf9b90eb25145d75e62a08",
+    "kind": "canonical_local_qa_build",
+    "release": false
+  },
+  "host": {
+    "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.local/bin/yijie-agent-host",
+    "bytes": 17867122,
+    "mode": 493,
+    "sha256": "14a1f0304dd05bd7377480583db0f91712283e076806fdefcdd96298e0a67b45"
+  },
+  "runtime": {
+    "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/chat-models-web-sources/aarch64-apple-darwin/codex",
+    "bytes": 355944760,
+    "mode": 493,
+    "sha256": "9766d7e10d25327f0595964a19ad67e1e1c1db0c22e5a65f9af66b547ab316c6"
+  },
+  "worker": {
+    "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/bin/market-worker/1f35e4ab2d392dab59383f2951c495117f001ededfa97150b6f78c5bf0a10745/yijie-mcp-worker",
+    "bytes": 84680688,
+    "mode": 493,
+    "sha256": "1f35e4ab2d392dab59383f2951c495117f001ededfa97150b6f78c5bf0a10745"
+  },
+  "desktop": [
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/target/debug/bundle/macos/易界 AI.app/Contents/MacOS/yijie-desktop",
+      "bytes": 185911968,
+      "mode": 493,
+      "sha256": "0480c81eac5f833975ee70d301cf5cf66d0eea74ee12d26b26493fbb0753ff2a"
+    }
+  ],
+  "bundle_file_count": 119,
+  "source_file_count": 1112,
+  "build_check": "Canonical expert packaged build recorded; local QA provenance only.",
+  "app_startup": "Window geometry diagnostic received: app_pid=64599, 1268x780, scale=2.",
+  "ui": {
+    "status": "FAIL_STARTUP_READINESS",
+    "observed": [
+      "Mac initial lock later resolved",
+      "Home local service not ready; one normal retry unchanged",
+      "Connectors service unavailable; local runtime not ready"
+    ],
+    "last_process_observation": {
+      "desktop_pid": 64599,
+      "host_observed": false,
+      "worker_observed": false
+    },
+    "not_run": [
+      "market install",
+      "credential form",
+      "same-build reopen"
+    ],
+    "paused_by_user": true
+  },
+  "real_supplier_calls": 0,
+  "model_rounds": 0,
+  "prior_attempt": {
+    "compiled_and_bundled": true,
+    "exit_code": 1,
+    "receipt": "Rejected source input change during independent review fix; no App launched from that attempt."
+  },
+  "superseded_by": "app-resume-ui.json",
+  "retained_as": "Historical failure before Host source-authority synchronization"
+}

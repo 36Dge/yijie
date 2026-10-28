@@ -1,0 +1,18 @@
+{
+  "approved_at": "2026-10-24T21:46:05.185438+08:00",
+  "source": "User explicitly confirmed this chat: reuse existing Kimi API Key, Search and Fetch each at most once, CNY0.02, zero model calls; deny first, stop on failure, no retry",
+  "plan": "10-live-minimal-acceptance-plan.md",
+  "search_max": 1,
+  "fetch_max": 1,
+  "model_max": 0,
+  "budget_cny": "0.02",
+  "retry_max": 0,
+  "decline_gate_required_first": true,
+  "status": "CLOSED_AFTER_LOCAL_LAUNCH_FAILURE",
+  "worker_sha256": "ebf7c834c95f4614365981aa7b99d04dcff37eb4d709cf4f84d0b04a8e073404",
+  "actual_search_requests": 0,
+  "actual_fetch_requests": 0,
+  "actual_model_requests": 0,
+  "retry_authorized": false,
+  "result": "live-minimal-result.json"
+}

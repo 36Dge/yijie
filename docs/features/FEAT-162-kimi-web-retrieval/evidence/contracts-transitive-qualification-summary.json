@@ -1,0 +1,59 @@
+{
+  "first_freeze": "FAILED: initial five-family dependency list omitted experts/source.lock.json dependency on market-connectors source; no initial-freeze PASS claim",
+  "remedy": "canonical generate-experts and sync-experts desktop/agent-host/skills; no hand-edited lock or hash",
+  "comparisons": {
+    "experts": {
+      "generated_files_byte_identical": 11,
+      "hashes": {
+        "sdks/rust/experts/types.gen.rs": "a36837131f96c52fd1a360a6c7aec11f099ccf223afcd4a12b7de0c4c99980f3",
+        "sdks/go/experts/types.gen.go": "c7f0903c92d309c81d314defd73e91572788b8108dfc1d97de56ee1118e84884",
+        "sdks/jsonschema/experts.schema.json": "f18f92715452182fdf80fd35d4753ca12c364e977c3b2152894108a621d37955",
+        "sdks/go/experts/bundle_schemas.gen.go": "cd219c0cb851702147850dfb7a1f276c37ed785688d601fb3ed328a9311c258c",
+        "sdks/typescript/src/domain/experts.generated.ts": "21a4bafb263e40eb174855d53ef904e0b0ac7edab399933124bbf12b5d4eb424",
+        "sdks/typescript/src/api/generated/experts-validator.gen.js": "57750357b055853a3e1d0e0da88ca596f020f3c1bcd62e2e2749bc3f7e9ce000",
+        "sdks/typescript/src/api/generated/experts-validator.gen.d.ts": "d7b303b0cea21d7ad88f4cdbb81578b929a8cb598393b5e44fc91667a4be0e3e",
+        "sdks/jsonschema/experts-native.schema.json": "053fdccc1f345f98adf5a3b2efb8e3d66da73c018a39566856ff02bdb5e0c2ff",
+        "fixtures/experts/digest-vectors.json": "3f2c0df58f7c95d1a15158baac1ce0af0066e10162263b153d9dc182dbda3e3a",
+        "fixtures/experts/knowledge-digest-vectors.json": "eeb1da21976fb472be85e95dce71e62d5a07f55ac078b2e19601025a468e284c",
+        "sdks/javascript/experts/canonical.gen.mjs": "a7ee6c00cd33741143e6733a934c8d596e9bb6a620911dd70894abccb84be0d8"
+      }
+    },
+    "market-provider": {
+      "generated_files_byte_identical": 4,
+      "hashes": {
+        "sdks/rust/market-provider/types.gen.rs": "6cc19550f3ec37df61e74fe685d0bd26a88b0282bdb57c0e254101718114ed90",
+        "sdks/go/market-provider/types.gen.go": "14091cb316e0123e531ef7fcdbab05a5939cf07f2927a7503f70034eb94e7a81",
+        "sdks/jsonschema/market-provider.schema.json": "34d0ee56bb5750be4d3957244aece7ad7ddb79102a4cdbbef53e2ae2d00809bf",
+        "sdks/jsonschema/tushare-daily-output.schema.json": "2180738d5924978eff8c302adbf5e582a37cf8022abc43f3a8de4db117260da8"
+      }
+    },
+    "market-broker-control": {
+      "generated_files_byte_identical": 5,
+      "hashes": {
+        "sdks/rust/market-selection/portable.gen.rs": "0a9cfce331d9a04c9bd4ec10263757b4e176cbe1685a3f25d97601dce268c708",
+        "sdks/go/market-selection/snapshot.gen.go": "7ee5c5329df244026316b2a91d3573f2dd324b21e6b4958e04ae6fa97bdf6b79",
+        "sdks/rust/market-broker-control/types.gen.rs": "acf231343ae182947cdee9c19d9a1eb26059eff5c5f93a8215593ad91df1722e",
+        "sdks/go/market-broker-control/types.gen.go": "36994d273e804d447b35a52aa35700d0bdd8d6cf626c5a48d899161ecf62d663",
+        "sdks/jsonschema/market-broker-control.schema.json": "e5ff3f29c34da79c65ab9c187fe5aa6e31827f84b2daeaae57ed7ff5b49b5f3d"
+      }
+    }
+  },
+  "all_compatibility_source_locks_scanned": 17,
+  "source_generated_digest_mismatches": {},
+  "protected_runtime_lock_sha256": "92c112ea0887d44d1f2afb2ce1d20a35151d7fda3b34e5a729af9ce13cdbd813",
+  "qualification": "Only existing textual semantics append reviewed kimi-web REST exception; Tushare tool_profile, wire, enum, budgets and ask unchanged",
+  "focused_test_log": "contracts-transitive-qualification-tests.log",
+  "focused_tests": {
+    "total": 35,
+    "passed": 34,
+    "failed": 1,
+    "failure": "tests/experts.test.mjs:102 historical byte-equality assertion against initial experts base; market-host/wire.schema.json already differs at pre-task HEAD",
+    "test_not_weakened": true,
+    "authority_path": "compatibility/market-host/wire.schema.json",
+    "initial_base": "35e0949c95d7a59ca5480715c225766dcc822056",
+    "initial_sha256": "5e533a9a9d42c2d8906fb930678732f472d8c527bc26acc416be97f8943cc3a8",
+    "head_sha256": "94d6482240876452d5aee37c03d12af2cf4ab53f865293d181eb62af1134c5b0",
+    "current_sha256": "94d6482240876452d5aee37c03d12af2cf4ab53f865293d181eb62af1134c5b0"
+  },
+  "missing_source_generated_files": []
+}

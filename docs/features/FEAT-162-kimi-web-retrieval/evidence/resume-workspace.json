@@ -1,0 +1,188 @@
+{
+  "at": "2026-10-24T01:12:35.555200+00:00",
+  "authorization": "Resume startup repair and connector UI only; real paid API calls forbidden",
+  "repositories": {
+    "yijie": {
+      "head": "91b2b76e7afc7cb5373a381ce352f7d1eee4a134",
+      "status": [
+        "M docs/dev/codex-project-memory.md",
+        "?? docs/dev/chat-deletion-recovery-20261023.md",
+        "?? docs/dev/process-feed-rework-20261023.md",
+        "?? docs/features/FEAT-162-kimi-web-retrieval/",
+        "?? docs/features/FEAT-163-codex-process-parity/"
+      ]
+    },
+    "yijie-contracts": {
+      "head": "bedf4159b0fa22e24efe6c295f8b0d4845df56b7",
+      "status": [
+        "M Makefile",
+        " M compatibility/experts/source.lock.json",
+        " M compatibility/market-broker-control/control.json",
+        " M compatibility/market-broker-control/source.lock.json",
+        " M compatibility/market-connectors/source.lock.json",
+        " M compatibility/market-host/source.lock.json",
+        " M compatibility/market-provider/source.lock.json",
+        " M compatibility/market-provider/transport.json",
+        " M compatibility/market-selection/source.lock.json",
+        " M compatibility/runtime-chat-models/source.lock.json",
+        " M docs/market-connectors-v1.md",
+        " M docs/market-provider-v1.md",
+        " M docs/supported-baselines.md",
+        " M openapi/market-connectors/market-connectors.yaml",
+        " M scripts/generate-market-connectors.mjs",
+        " M scripts/generate-market-host.mjs",
+        " M scripts/sync-market-host.mjs",
+        " M scripts/validate-json-schemas.mjs",
+        " M sdks/go/market-connectors/types.gen.go",
+        " M sdks/go/market-connectors/types_test.go",
+        " M sdks/jsonschema/market-connectors.schema.json",
+        " M sdks/rust/market-connectors/types.gen.rs",
+        " M sdks/typescript/src/api/generated/market-connectors-validator.gen.js",
+        " M tests/market-connectors.test.mjs",
+        " M tests/rust-market-connectors/src/lib.rs",
+        "?? compatibility/web-retrieval/",
+        "?? docs/agent-session-cleanup-recovery.md",
+        "?? docs/web-retrieval-v1.md",
+        "?? scripts/format-source-file.mjs",
+        "?? scripts/generate-web-retrieval.mjs",
+        "?? scripts/sync-web-retrieval.mjs",
+        "?? scripts/web-retrieval-source.mjs",
+        "?? sdks/jsonschema/web-retrieval.schema.json",
+        "?? sdks/jsonschema/web-retrieval.tools.json",
+        "?? sdks/rust/web-retrieval/",
+        "?? tests/rust-web-retrieval/",
+        "?? tests/web-retrieval.test.mjs"
+      ]
+    },
+    "yijie-connectors": {
+      "head": "251a0e8854b646a2565a01317a95b037579d9b8e",
+      "status": [
+        "M Makefile",
+        " M api/market-broker-control.candidate.json",
+        " M api/market-connectors.candidate.json",
+        " M api/market-connectors.schema.json",
+        " M api/market-provider.candidate.json",
+        " M catalog/catalog.go",
+        " M catalog/catalog_test.go",
+        " M catalog/market-catalog.v1.json",
+        " M catalog/provider-registry.v1.json",
+        " M catalog/source-provenance.json",
+        " M internal/contracts/marketconnectors/types.gen.go",
+        " M scripts/build-market-worker.sh",
+        " M worker/Cargo.lock",
+        " M worker/Cargo.toml",
+        " M worker/source.lock.json",
+        " M worker/src/broker.rs",
+        " M worker/src/credentials.rs",
+        " M worker/src/daily.rs",
+        " M worker/src/gateway.rs",
+        " M worker/src/generated.rs",
+        " M worker/src/main.rs",
+        " M worker/src/provider_registry.rs",
+        " M worker/src/providers.rs",
+        " M worker/src/tushare_oauth.rs",
+        "?? api/web-retrieval.candidate.json",
+        "?? api/web-retrieval.schema.json",
+        "?? api/web-retrieval.tools.json",
+        "?? docs/kimi-web-retrieval.md",
+        "?? docs/startup-source-review-20261023.md",
+        "?? worker/src/credentials/kimi.rs",
+        "?? worker/src/kimi_web.rs",
+        "?? worker/src/kimi_web_tests.rs",
+        "?? worker/src/web_retrieval_generated.rs"
+      ]
+    },
+    "yijie-agent-host": {
+      "head": "283dcbd7d79ca7bd7a56dba0cb915024fff8eb72",
+      "status": [
+        "M api/experts.candidate.json",
+        " M api/market-broker-control.candidate.json",
+        " M api/market-connectors.candidate.json",
+        " M api/market-connectors.schema.json",
+        " M api/market-host.candidate.json",
+        " M api/market-provider.candidate.json",
+        " M api/runtime-chat-models.candidate.json",
+        " M internal/contracts/marketconnectors/types.gen.go",
+        " M internal/marketbroker/artifact.go",
+        " M internal/session/service.go",
+        " M internal/session/store.go",
+        " M internal/skills/experts_candidate.go",
+        "?? internal/integration/cleanup_runtime_test.go",
+        "?? internal/session/cleanup_recovery.go",
+        "?? internal/session/cleanup_recovery_test.go",
+        "?? internal/skills/experts_assets.gen.go"
+      ]
+    },
+    "yijie-desktop": {
+      "head": "6080a568332dbf18ff119501607bc7e7afa92f94",
+      "status": [
+        "M contracts/artifact-media-host-build.candidate.json",
+        " M contracts/experts-assets.candidate.json",
+        " M contracts/experts.candidate.json",
+        " M contracts/market-catalog.candidate.json",
+        " M contracts/market-catalog.json",
+        " M contracts/market-connectors.candidate.json",
+        " M contracts/market-connectors.schema.json",
+        " M contracts/market-host.candidate.json",
+        " M contracts/market-provider.candidate.json",
+        " M contracts/market-selection.candidate.json",
+        " M contracts/runtime-chat-models.candidate.json",
+        " M docs/design/docs/design/02-tokens/06-motion-zindex-opacity-tokens.md",
+        " M docs/design/docs/design/03-ui-system/02-iconography.md",
+        " M docs/design/docs/design/05-patterns/02-chat-workspace.md",
+        " M scripts/chat-model-build-candidate.mjs",
+        " M scripts/sync-desktop-expert-resources.mjs",
+        " M scripts/sync-market-catalog.mjs",
+        " M src-tauri/src/chat/application.rs",
+        " M src-tauri/src/chat/connectors/generated.rs",
+        " M src-tauri/src/chat/connectors/mod.rs",
+        " M src-tauri/src/chat/connectors/tests.rs",
+        " M src-tauri/src/chat/database.rs",
+        " M src-tauri/src/chat/deletion_recovery.rs",
+        " M src-tauri/src/chat/native_conversation_storage.rs",
+        " M src/api/generated/market-connectors-validator.gen.js",
+        " M src/api/market-connectors-client.test.ts",
+        " M src/components/chat/ChatProcessPresentation.test.ts",
+        " M src/components/chat/ChatSafeContent.vue",
+        " M src/components/chat/ChatSidebarSessionRow.vue",
+        " M src/components/chat/ChatStreamText.test.ts",
+        " M src/components/chat/ChatStreamText.vue",
+        " M src/components/chat/ChatTurnGroup.vue",
+        " M src/components/connectors/ConnectorMarketView.test.ts",
+        " M src/composables/useChatScroll.test.ts",
+        " M src/composables/useChatScroll.ts",
+        " M src/domain/chat-ui.test.ts",
+        " M src/domain/chat-ui.ts",
+        " M src/domain/conversation-process.ts",
+        " M src/icons/connector-icons.ts",
+        " M src/icons/custom/brands/README.md",
+        " M src/pages/chat/ChatPage.vue",
+        " M src/stores/chat.store.test.ts",
+        " M src/stores/chat.store.ts",
+        "?? docs/chat-stream-presentation.md",
+        "?? scripts/expert-provenance-refresh.test.mjs",
+        "?? src/composables/useChatStreamPresentation.test.ts",
+        "?? src/composables/useChatStreamPresentation.ts"
+      ]
+    },
+    "yijie-skills": {
+      "head": "595c927ae101d3d31c234f60565041eee0864680",
+      "status": [
+        "M contracts/experts.candidate.json"
+      ]
+    },
+    "yijie-codex": {
+      "head": "9154f27d0cdb526a5f5ba0913fe3e2448014b4a1",
+      "status": []
+    }
+  },
+  "producer": {
+    "sha256": "64721b4bfea466e5faa5160f8e142623b9544a70033c3cc93794edde5261e5da"
+  },
+  "desktop_resources": {
+    "sha256": "64721b4bfea466e5faa5160f8e142623b9544a70033c3cc93794edde5261e5da"
+  },
+  "packaged_resources": {
+    "sha256": "64721b4bfea466e5faa5160f8e142623b9544a70033c3cc93794edde5261e5da"
+  }
+}

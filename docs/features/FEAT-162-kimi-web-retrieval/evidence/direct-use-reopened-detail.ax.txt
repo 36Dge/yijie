@@ -1,0 +1,29 @@
+Window: "易界 AI", App: 易界 AI.
+0 standard window 易界 AI, Secondary Actions: Raise
+	1 scroll area
+		2 HTML content Description: 连接器 · 易界 AI, URL: tauri://localhost/connectors
+			3 container Kimi 网页检索
+				4 button 关闭连接器详情, Help: 关闭
+				5 heading Kimi 网页检索, Value: 2
+					6 text Kimi 网页检索
+				7 text 自动复用客户端的 Kimi 模型凭据，搜索网页标题、链接和摘要，读取指定公开网页的 Markdown 正文。每次调用需批准，可能计费。
+				8 text 扩展对话能力
+				9 text 准备完成后，可直接在对话中选用，无需单独启用。
+				10 text 遵循当前权限设置
+				11 text 搜索或读取网页前，仍需批准本次操作。
+				12 text 随时管理连接
+				13 text 停用或卸载会保留你的选择，不会删除模型凭据。
+				14 text 自动使用客户端已有的 Kimi 模型凭据，无需单独配置。准备过程不联网；搜索和网页读取可能计费，调用前仍需批准。
+				15 button 停用连接器
+	16 close button
+	17 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	18 minimize button
+19 menu bar
+	20 易界 AI
+	21 File
+	22 Edit
+	23 View
+	24 Window
+	25 Help
+
+The focused UI element is 15 button 停用连接器

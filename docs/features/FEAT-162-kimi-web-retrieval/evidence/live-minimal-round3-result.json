@@ -1,0 +1,361 @@
+{
+  "account_billing_checked": false,
+  "budget_cny": "0.02",
+  "calculated_cost_cny": "0.02",
+  "cleanup": "normal EOF exit confirmed",
+  "denial_zero_http": "PASS",
+  "diagnostics": [
+    {
+      "event": "started",
+      "httpStatus": null,
+      "operation_id": "74409f3e-7fe4-4858-ad6a-ca4df229bac1",
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "call_approval",
+      "unixMs": 1792851420103
+    },
+    {
+      "event": "consumed",
+      "httpStatus": null,
+      "operation_id": "74409f3e-7fe4-4858-ad6a-ca4df229bac1",
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "call_admission",
+      "unixMs": 1792851420111
+    },
+    {
+      "event": "consumed",
+      "httpStatus": null,
+      "operation_id": "74409f3e-7fe4-4858-ad6a-ca4df229bac1",
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "daily_http_permit",
+      "unixMs": 1792851420112
+    },
+    {
+      "event": "request",
+      "httpStatus": null,
+      "operation_id": "74409f3e-7fe4-4858-ad6a-ca4df229bac1",
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "web_http_send",
+      "unixMs": 1792851420112
+    },
+    {
+      "event": "response",
+      "httpStatus": 200,
+      "operation_id": "74409f3e-7fe4-4858-ad6a-ca4df229bac1",
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "web_http_response",
+      "unixMs": 1792851424490
+    },
+    {
+      "event": "succeeded",
+      "httpStatus": null,
+      "operation_id": "74409f3e-7fe4-4858-ad6a-ca4df229bac1",
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "web_normalize",
+      "unixMs": 1792851424490
+    },
+    {
+      "event": "started",
+      "httpStatus": null,
+      "operation_id": "b5deb9ea-a26a-48d1-a952-002cf4f5f85c",
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "call_approval",
+      "unixMs": 1792851419546
+    },
+    {
+      "event": "consumed",
+      "httpStatus": null,
+      "operation_id": "b5deb9ea-a26a-48d1-a952-002cf4f5f85c",
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "call_admission",
+      "unixMs": 1792851419552
+    },
+    {
+      "event": "consumed",
+      "httpStatus": null,
+      "operation_id": "b5deb9ea-a26a-48d1-a952-002cf4f5f85c",
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "daily_http_permit",
+      "unixMs": 1792851419552
+    },
+    {
+      "event": "request",
+      "httpStatus": null,
+      "operation_id": "b5deb9ea-a26a-48d1-a952-002cf4f5f85c",
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "web_http_send",
+      "unixMs": 1792851419552
+    },
+    {
+      "event": "response",
+      "httpStatus": 200,
+      "operation_id": "b5deb9ea-a26a-48d1-a952-002cf4f5f85c",
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "web_http_response",
+      "unixMs": 1792851420093
+    },
+    {
+      "event": "succeeded",
+      "httpStatus": null,
+      "operation_id": "b5deb9ea-a26a-48d1-a952-002cf4f5f85c",
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "web_normalize",
+      "unixMs": 1792851420093
+    },
+    {
+      "event": "started",
+      "httpStatus": null,
+      "operation_id": "d97ccc34-aef7-49d5-a882-9960f6192e9e",
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "call_approval",
+      "unixMs": 1792851419540
+    },
+    {
+      "event": "rejected",
+      "httpStatus": null,
+      "operation_id": "d97ccc34-aef7-49d5-a882-9960f6192e9e",
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "call_admission",
+      "unixMs": 1792851419541
+    },
+    {
+      "event": "started",
+      "httpStatus": null,
+      "operation_id": "fd38c105-608a-4e56-b459-4f567cbbc25c",
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "model_preparation",
+      "unixMs": 1792851419520
+    },
+    {
+      "event": "succeeded",
+      "httpStatus": null,
+      "operation_id": "fd38c105-608a-4e56-b459-4f567cbbc25c",
+      "safeFailure": null,
+      "schemaVersion": 1,
+      "stage": "model_preparation",
+      "unixMs": 1792851419520
+    }
+  ],
+  "fetch_allowances_consumed": 1,
+  "finished_at": "2026-10-24T14:17:04.495508Z",
+  "local_preflight": false,
+  "model_calls": 0,
+  "normal_eof_confirmed": true,
+  "real_native_or_model_turn": false,
+  "retry_count": 0,
+  "search_allowances_consumed": 1,
+  "stage": "complete",
+  "started_at": "2026-10-24T14:16:59.43151Z",
+  "status": "PASS",
+  "supplier_http_sends": 2,
+  "worker_sha256": "ebf7c834c95f4614365981aa7b99d04dcff37eb4d709cf4f84d0b04a8e073404",
+  "source_result_sha256": "539a44663bcf5aa88417fa355794baf175ba810767081e8cca83dce7fc77548b",
+  "source_result_path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.local/feat162-live-6713f52e-3ebc-4873-8f93-af47f29fff19/result.json",
+  "remaining_owned_processes": [],
+  "price_source": "https://platform.kimi.com/docs/pricing/websearch",
+  "cost_basis": "Two HTTP200 nonempty results at CNY0.01 each; no account billing query",
+  "steps": [
+    {
+      "call_ref": "d97ccc34-aef7-49d5-a882-9960f6192e9e",
+      "diagnostics": [
+        {
+          "event": "started",
+          "httpStatus": null,
+          "operation_id": "d97ccc34-aef7-49d5-a882-9960f6192e9e",
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "call_approval",
+          "unixMs": 1792851419540
+        },
+        {
+          "event": "rejected",
+          "httpStatus": null,
+          "operation_id": "d97ccc34-aef7-49d5-a882-9960f6192e9e",
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "call_admission",
+          "unixMs": 1792851419541
+        }
+      ],
+      "elapsed_ms": 5,
+      "http_sends": 0,
+      "name": "deny_fetch",
+      "status": "PASS",
+      "tool": "kimi_web_fetch"
+    },
+    {
+      "call_ref": "b5deb9ea-a26a-48d1-a952-002cf4f5f85c",
+      "diagnostics": [
+        {
+          "event": "started",
+          "httpStatus": null,
+          "operation_id": "b5deb9ea-a26a-48d1-a952-002cf4f5f85c",
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "call_approval",
+          "unixMs": 1792851419546
+        },
+        {
+          "event": "consumed",
+          "httpStatus": null,
+          "operation_id": "b5deb9ea-a26a-48d1-a952-002cf4f5f85c",
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "call_admission",
+          "unixMs": 1792851419552
+        },
+        {
+          "event": "consumed",
+          "httpStatus": null,
+          "operation_id": "b5deb9ea-a26a-48d1-a952-002cf4f5f85c",
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "daily_http_permit",
+          "unixMs": 1792851419552
+        },
+        {
+          "event": "request",
+          "httpStatus": null,
+          "operation_id": "b5deb9ea-a26a-48d1-a952-002cf4f5f85c",
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "web_http_send",
+          "unixMs": 1792851419552
+        },
+        {
+          "event": "response",
+          "httpStatus": 200,
+          "operation_id": "b5deb9ea-a26a-48d1-a952-002cf4f5f85c",
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "web_http_response",
+          "unixMs": 1792851420093
+        },
+        {
+          "event": "succeeded",
+          "httpStatus": null,
+          "operation_id": "b5deb9ea-a26a-48d1-a952-002cf4f5f85c",
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "web_normalize",
+          "unixMs": 1792851420093
+        }
+      ],
+      "elapsed_ms": 553,
+      "http_sends": 1,
+      "name": "search",
+      "result_count": 3,
+      "status": "PASS",
+      "tool": "kimi_web_search",
+      "normalized_result_sha256": "ea306896d4d1a1f4b04987b4bc729951fa9677c141e12c037ff14ebf88be9c57",
+      "truncated": false,
+      "returned_items": [
+        {
+          "title": "Example Domains",
+          "url": "https://www.iana.org/help/example-domains",
+          "snippet_characters": 144
+        },
+        {
+          "title": "IANA-managed Reserved Domains",
+          "url": "https://www.iana.org/domains/reserved",
+          "snippet_characters": 130
+        },
+        {
+          "title": "Instructions and Guides",
+          "url": "https://www.iana.org/help",
+          "snippet_characters": 157
+        }
+      ]
+    },
+    {
+      "call_ref": "74409f3e-7fe4-4858-ad6a-ca4df229bac1",
+      "diagnostics": [
+        {
+          "event": "started",
+          "httpStatus": null,
+          "operation_id": "74409f3e-7fe4-4858-ad6a-ca4df229bac1",
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "call_approval",
+          "unixMs": 1792851420103
+        },
+        {
+          "event": "consumed",
+          "httpStatus": null,
+          "operation_id": "74409f3e-7fe4-4858-ad6a-ca4df229bac1",
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "call_admission",
+          "unixMs": 1792851420111
+        },
+        {
+          "event": "consumed",
+          "httpStatus": null,
+          "operation_id": "74409f3e-7fe4-4858-ad6a-ca4df229bac1",
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "daily_http_permit",
+          "unixMs": 1792851420112
+        },
+        {
+          "event": "request",
+          "httpStatus": null,
+          "operation_id": "74409f3e-7fe4-4858-ad6a-ca4df229bac1",
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "web_http_send",
+          "unixMs": 1792851420112
+        },
+        {
+          "event": "response",
+          "httpStatus": 200,
+          "operation_id": "74409f3e-7fe4-4858-ad6a-ca4df229bac1",
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "web_http_response",
+          "unixMs": 1792851424490
+        },
+        {
+          "event": "succeeded",
+          "httpStatus": null,
+          "operation_id": "74409f3e-7fe4-4858-ad6a-ca4df229bac1",
+          "safeFailure": null,
+          "schemaVersion": 1,
+          "stage": "web_normalize",
+          "unixMs": 1792851424490
+        }
+      ],
+      "elapsed_ms": 4395,
+      "http_sends": 1,
+      "markdown_characters": 751,
+      "name": "fetch",
+      "status": "PASS",
+      "tool": "kimi_web_fetch",
+      "normalized_result_sha256": "c5b64a7acd13858d3c66170c45a99f2a6b8de0dc7751dcead4053f89cf1f9f1d",
+      "truncated": false,
+      "returned_title": "Example Domains",
+      "returned_url": "https://www.iana.org/help/example-domains",
+      "content_checks": [
+        "nonempty Markdown",
+        "documentation purpose",
+        "registration/transfer restrictions",
+        "example.com referenced",
+        "matches fixed public IANA page"
+      ]
+    }
+  ]
+}

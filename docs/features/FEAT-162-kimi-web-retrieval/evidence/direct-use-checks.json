@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-24T17:55:12.058728+08:00",
+  "release": false,
+  "contract_impact": "breaking",
+  "request": "Automatically reuse existing client Kimi model credentials without connector configuration/enablement",
+  "checks": {
+    "contracts_js": {
+      "passed": 41
+    },
+    "contracts_lint": "PASS (12 existing unused-component warnings)",
+    "worker_kimi": {
+      "passed": 14
+    },
+    "worker_fmt_clippy_build": "PASS",
+    "host_canonical_worker": {
+      "passed": 4,
+      "modes": [
+        "legacy local Auth with/without ordinary in-memory source",
+        "direct local Probe with/without ordinary in-memory source"
+      ],
+      "real_supplier_requests": 0,
+      "cleanup": "normal EOF"
+    },
+    "host_credential_pipe_redaction_and_vet": "PASS",
+    "desktop_frontend": {
+      "test_files": 12,
+      "passed": 159
+    },
+    "desktop_native_default": {
+      "passed": 3
+    },
+    "desktop_native_connectors": {
+      "passed": 11
+    },
+    "desktop_eslint_fmt_clippy_build": "PASS",
+    "host_expert_actual_manifest": "PASS",
+    "expert_generated_and_archives": "Unchanged 75 resources; canonical provenance refresh, Host authority sync, check and freeze PASS",
+    "meta_lint_tests_shell": "PASS; 50 tests",
+    "seven_repository_diff": "PASS",
+    "final_detail_copy_eslint_and_component": "PASS; 4 files / 35 tests",
+    "canonical_app_final": "PASS; automatic readiness, picker, final copy, minimum window, normal exit and identical-build reopen"
+  },
+  "resolved_development_failures": [
+    "Native helper test intent initially used a typed payload instead of its JSON value; corrected and 3 tests pass.",
+    "Prior keyless-only Enable expectation updated for Kimi direct preparation.",
+    "Catalog revision expectation updated 10 to 11; 11 Native tests pass.",
+    "Legacy contract prose assertions updated to local preparation semantics; 41 tests pass.",
+    "First App UI still used generic enable/authorization copy in the Kimi detail dialog. Updated Kimi-specific guidance and inactive-state title; component tests pass; final App build, corrected UI and same-build reopen PASS."
+  ],
+  "not_run": [
+    "real Kimi /models, Search, Fetch or model turn",
+    "all prohibited destructive, attack injection, binary replacement or permission fault tests",
+    "full D4 or production release"
+  ],
+  "runtime_head": "9154f27d0cdb526a5f5ba0913fe3e2448014b4a1",
+  "runtime_worktree": "clean",
+  "real_ui_first_run": {
+    "automatic_ready": true,
+    "manual_config_or_enable_clicked": false,
+    "picker_switch_on_then_off": true,
+    "normal_cmd_q_exit_code": 0,
+    "kimi_diagnostic": "model_preparation started/succeeded only"
+  }
+}

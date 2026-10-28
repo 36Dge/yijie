@@ -1,0 +1,12 @@
+{
+  "completed_at": "2026-10-24T22:20:15.502784+08:00",
+  "contract_impact": "none",
+  "changes": "test-only SSE priming and MCP transport metadata handling; existing Go launcher checksum configuration repaired",
+  "production_worker_sha256": "ebf7c834c95f4614365981aa7b99d04dcff37eb4d709cf4f84d0b04a8e073404",
+  "source_sha256": {
+    "internal/app/kimi_web_live_test.go": "b76862e3d724351215e4fcafd113a053e2e0adec04cf343245fe6ba29aad63ea",
+    "scripts/run-kimi-web-minimal-acceptance.sh": "1725ed64a041b75edbbc78f90d34bda787c4fb5117b31fcb71c37974f5dd4e4f"
+  },
+  "formal_run": "one run, two supplier HTTP requests, no retry",
+  "paid_budget_closed": true
+}

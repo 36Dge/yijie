@@ -1,0 +1,77 @@
+{
+  "feature": "FEAT-162",
+  "date": "2026-10-24",
+  "release": false,
+  "scope": "Canonical Host expert compiled authority source synchronization; no content or authorization changes.",
+  "old_compiled_manifest_sha256": "033689b005c2659fa625a7a8e93081ec04b2ffe7cfde67f0c293f69684874741",
+  "canonical_manifest_sha256": "64721b4bfea466e5faa5160f8e142623b9544a70033c3cc93794edde5261e5da",
+  "reproduction": {
+    "command": "YIJIE_EXPERT_TEST_BUNDLE=/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/skill-packages-experts go test -run '^TestFEAT158ExpertLaunchConsumesOnlyReviewedCandidateManifest$' ./internal/app",
+    "cwd": "yijie-agent-host",
+    "before": {
+      "exit_code": 1,
+      "output": "--- FAIL: TestFEAT158ExpertLaunchConsumesOnlyReviewedCandidateManifest (0.03s)\n    experts_config_test.go:46: reviewed local candidate gate reviewed expert candidate resources are unavailable\nFAIL\nFAIL\tgithub.com/36Dge/yijie-agent-host/internal/app\t0.475s\nFAIL\n"
+    },
+    "after": {
+      "exit_code": 0,
+      "output": "ok  \tgithub.com/36Dge/yijie-agent-host/internal/app\t0.531s\n"
+    }
+  },
+  "canonical_sync": {
+    "command": "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast node scripts/sync-desktop-expert-resources.mjs --sync-host-authority",
+    "cwd": "yijie-desktop",
+    "exit_code": 0,
+    "output": "Expert local candidate synced: 38 unchanged Skills + 37 expert; not release provenance.\n",
+    "validation": "Reuses full existing producer/source-lock/schema/authority/local authorization/archive validation and installed resource byte verification before atomic generated Go source write."
+  },
+  "read_only_check": {
+    "command": "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast node scripts/sync-desktop-expert-resources.mjs --check",
+    "cwd": "yijie-desktop",
+    "exit_code": 0,
+    "output": "Expert local candidate checked: 38 unchanged Skills + 37 expert; not release provenance.\n"
+  },
+  "other_checks": [
+    {
+      "command": "node --test scripts/expert-provenance-refresh.test.mjs scripts/retained-expert-resources.test.mjs",
+      "result": "PASS 6/6"
+    },
+    {
+      "command": "pnpm exec eslint scripts/sync-desktop-expert-resources.mjs scripts/chat-model-build-candidate.mjs",
+      "result": "PASS"
+    },
+    {
+      "command": "gofmt -l internal/skills/experts_candidate.go internal/skills/experts_assets.gen.go",
+      "result": "PASS, no output"
+    },
+    {
+      "command": "git diff --check (Desktop and Host)",
+      "result": "PASS"
+    }
+  ],
+  "source_sha256": {
+    "yijie-desktop/scripts/sync-desktop-expert-resources.mjs": "8b850bd97168ebbc02f898ee56d168eab6f6be2fd294a21ed8427e7479203220",
+    "yijie-desktop/scripts/chat-model-build-candidate.mjs": "df2257ce19f8220e5241c4c0d618ef22a18f9bd7be1213f2b9c22dd7bdd3d53c",
+    "yijie-agent-host/internal/skills/experts_candidate.go": "90e55dddc857dacb0b8f95d3da7c7a5adb3ab3a6f27efdde623010329deebfc1",
+    "yijie-agent-host/internal/skills/experts_assets.gen.go": "92ef9629b57167eee09dbfa5fccde3fd9ec78725e8d067d2d78fa097b685f4da"
+  },
+  "preserved": [
+    "Strict VerifyExpertCandidate compiled authority enforcement",
+    "Full 75 resource archive/schema/authorization validation",
+    "No runtime-supplied digest",
+    "No automatic Host source mutation during check, freeze, or normal build",
+    "No Runtime changes, no business contract changes, no expert content changes"
+  ],
+  "execution_constraints": {
+    "app_launched": false,
+    "network_or_paid_calls": false,
+    "credentials_read": false,
+    "force_kill_or_fault_injection": false
+  },
+  "review": {
+    "reviewer": "runtime_audit",
+    "result": "PASS",
+    "scope": "Independent read-only source review at recorded SHA256 values. No substantive blockers. Only explicit sync writes generated Host source after full bundle/output validation and pin/source-lock CAS. Check/freeze compares projection inside actual Host root; VerifyExpertCandidate retains strict compiled-constant authority.",
+    "source_modified_by_reviewer": false,
+    "extra_tests_run_by_reviewer": false
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "recorded_at": "2026-10-24T21:54:24.188964+08:00",
+  "producer": "orchestrator_observation_of_launcher_exit",
+  "status": "STOPPED_BEFORE_TEST_ENTRY",
+  "test_entry_executed": false,
+  "launcher_exit_code": 1,
+  "reason": "GOSUMDB=off in the launch command prevented automatic Go 1.26.5 toolchain checksum verification. The go test binary was not started.",
+  "log": "live-minimal-run.log",
+  "deny_check": "NOT RUN",
+  "search": {
+    "http_requests": 0,
+    "status": "NOT RUN"
+  },
+  "fetch": {
+    "http_requests": 0,
+    "status": "NOT RUN"
+  },
+  "model_requests": 0,
+  "key_loaded_by_test": false,
+  "worker_started": false,
+  "supplier_cost_cny": "0.00",
+  "account_billing_checked": false,
+  "budget_cny": "0.02",
+  "retry_count": 0,
+  "normal_worker_cleanup": "N/A; no worker started",
+  "owned_processes_observed": [],
+  "observations": [
+    "launcher output contains only Go toolchain verification failure",
+    "run directory empty immediately after launcher failure",
+    "no owned worker, Host or live-test process remained"
+  ],
+  "authorization_closed": true,
+  "scope": "This is a local launcher failure, not evidence that Kimi Key, Search, Fetch or approval gate failed."
+}

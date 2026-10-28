@@ -1,0 +1,41 @@
+{
+  "recovery_id": "542b525c-8cb9-4bea-aaf2-e3c5cd1e840a",
+  "status": "complete",
+  "original_snapshot_sha256": "a869ce8e886426784683a36a82cb78418b730ffc70b19e43a8d4ddd40cc58445",
+  "protective_copies": {
+    "workflow-postgres": {
+      "files": 1324,
+      "bytes": 65759857,
+      "inventory_sha256": "018503b36e5f236fd6c84d09a6d64f916343dacf10da54c20e5a7992a313169a"
+    },
+    "coze-workflow-mysql": {
+      "files": 326,
+      "bytes": 228261267,
+      "inventory_sha256": "453f0fde0544debd1d57294850a30b3050dbf4ee65e421e1e83508cfda94ea3d"
+    },
+    "coze-workflow-redis": {
+      "files": 5,
+      "bytes": 53364,
+      "inventory_sha256": "f0bb085074961b4a9c2078345be6bf825a8c430fcb6aa338275713f582a20965"
+    },
+    "coze-workflow-minio": {
+      "files": 43,
+      "bytes": 23494,
+      "inventory_sha256": "525340a833873cf24f16b7365da4592d7edff059ef1e4672e8de3567ef8abea2"
+    }
+  },
+  "result": "RECOVERY_COMPLETE; original data retained, historical failure archived, normal stop verified",
+  "scope": "Existing local Docker dependency recovery; no code change, no force kill, no volume deletion, no supplier/model calls",
+  "build_attempts": [
+    {
+      "log": "app-resume-build.log",
+      "exit_code": 2,
+      "reason": "Docker Desktop unavailable"
+    },
+    {
+      "log": "app-resume-build-02.log",
+      "exit_code": 2,
+      "reason": "Original owned containers exited 255; canonical startup correctly refused until normal recovery"
+    }
+  ]
+}

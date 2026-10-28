@@ -1,0 +1,488 @@
+{
+  "schema_version": 1,
+  "feature": "FEAT-162",
+  "date": "2026-10-24",
+  "scope": "local/demo_fast development provenance cascade only",
+  "release": false,
+  "trigger": "market-connectors source-first expansion changed the experts transitive source lock and Skills candidate receipt; expert content remained unchanged",
+  "plan": "00-feature-brief.md section 11, recorded before the refresh entry implementation",
+  "canonical_command": "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast node scripts/sync-desktop-expert-resources.mjs --refresh-provenance",
+  "canonical_refresh": {
+    "exit_code": 0,
+    "output": "Expert local candidate synced: 38 unchanged Skills + 37 expert; not release provenance.",
+    "producer": "yijie-skills/scripts/package-desktop-skills.mjs",
+    "source": "plugins/yijie-desktop-skills/experts/bundle-source.json",
+    "staging": "fresh dist/.expert-provenance-* directory, cleaned after comparison and promotion"
+  },
+  "old_evidence": {
+    "pin": {
+      "schema_version": 1,
+      "feature": "FEAT-158",
+      "release": false,
+      "bundle_version": "0.25.0",
+      "manifest_sha256": "033689b005c2659fa625a7a8e93081ec04b2ffe7cfde67f0c293f69684874741",
+      "source": {
+        "repository": "https://github.com/36Dge/yijie-skills.git",
+        "revision_kind": "working-tree",
+        "revision": "4247a4f2967ecf60fcf92ed0e86b9dd62496ea6e",
+        "tree_sha256": "1306280eb61b66771cb3d539972053dca30000626c71149524aa861405930b70"
+      },
+      "authority_sha256": "5783cf61e01873a23e0e5982115791b4363a19ff64357d95419e16641b358be1",
+      "contracts_source_lock_sha256": "d9f467254f9afe41e14aa68deaafdba6ea1aa7ad7e601378fb2dbf04f6dbdca3"
+    },
+    "contracts_lock_git_object": "yijie-contracts HEAD:compatibility/experts/source.lock.json",
+    "contracts_lock_git_sha256": "d9f467254f9afe41e14aa68deaafdba6ea1aa7ad7e601378fb2dbf04f6dbdca3",
+    "skills_candidate_git_object": "yijie-skills HEAD:contracts/experts.candidate.json",
+    "skills_candidate_git_sha256": "0cfc7040299112b05c1e6729a54b574790b1ee3e446ca60dc9efce61172f7b7e"
+  },
+  "new_pin": {
+    "schema_version": 1,
+    "feature": "FEAT-158",
+    "release": false,
+    "bundle_version": "0.25.0",
+    "manifest_sha256": "64721b4bfea466e5faa5160f8e142623b9544a70033c3cc93794edde5261e5da",
+    "source": {
+      "repository": "https://github.com/36Dge/yijie-skills.git",
+      "revision_kind": "working-tree",
+      "revision": "595c927ae101d3d31c234f60565041eee0864680",
+      "tree_sha256": "1306280eb61b66771cb3d539972053dca30000626c71149524aa861405930b70"
+    },
+    "authority_sha256": "9b25667e00e227393247b6367d35ed4ce656cecbed945ede0206d909ca3b8885",
+    "contracts_source_lock_sha256": "106c8de6da40da433b4115bc71d068597551aee66b32aafcdf5dffb3453e95d4"
+  },
+  "preservation": {
+    "skills": 75,
+    "ordinary_skills": 38,
+    "expert_resource_versions": 37,
+    "bundle_version_unchanged": true,
+    "source_tree_unchanged": true,
+    "all_skill_metadata_equal": true,
+    "all_archive_bytes_equal": true,
+    "all_expert_authorization_and_review_equal": true,
+    "verification_basis": "Runtime assertions in successful refresh compare full old/new manifest metadata, authority evidence and each Buffer byte; new bundle also passes the unchanged original schema, retained-73, ordinary-38, authorization and archive verification.",
+    "archive_inventory_sha256": "4afd78b5d086672558d81251ed67ba06991533296cec9fd60f1b2128aaa309b0",
+    "archives": [
+      {
+        "path": "packages/yijie.sourcing-selection.aliexpress-supplier-evaluator-0.0.94.zip",
+        "sha256": "48ce468839d310a739c21b0cafb1655a5b70f85fa8627a49bc4ef7c4e973d60b",
+        "bytes": 4560
+      },
+      {
+        "path": "packages/yijie.sourcing-selection.dropshipping-supplier-integrator-0.0.94.zip",
+        "sha256": "778e049034c74ded4886fd1715ad2aafeee6e87e8f0c763a786f72c6cc2ac45c",
+        "bytes": 8381
+      },
+      {
+        "path": "packages/yijie.sourcing-selection.product-supplier-sourcing-0.0.94.zip",
+        "sha256": "a3bd14080790b34fcd854a187f229c49e31f36c2953d3d6e8df43ecc9d5b4448",
+        "bytes": 5029
+      },
+      {
+        "path": "packages/yijie.sourcing-selection.sales-negotiator-0.0.94.zip",
+        "sha256": "24bfab224c665c46dcad8c2cf687e4fc1cb126eb363f148a270b283056045a6d",
+        "bytes": 76090
+      },
+      {
+        "path": "packages/yijie.sourcing-selection.supplier-performance-manager-0.0.94.zip",
+        "sha256": "63551f0cb966533de869e730e7e7789cb79032ca51ce578532e9c98ec1a90b17",
+        "bytes": 6778
+      },
+      {
+        "path": "packages/yijie.market-research.alibaba-amazon-market-intel-0.0.94.zip",
+        "sha256": "8801948dac35b5dd25c152d6cbd9904e9dc0113007c4f42f2fb3472ff8ef8585",
+        "bytes": 374775
+      },
+      {
+        "path": "packages/yijie.market-research.competitor-deep-analysis-0.0.94.zip",
+        "sha256": "351dc0d1689c68f73d8c7de86fa8e591410afe0f7da758aea8f6d1f4330089c5",
+        "bytes": 7102
+      },
+      {
+        "path": "packages/yijie.market-research.cross-border-selection-0.0.94.zip",
+        "sha256": "b62aae351b8792706055bb1374823bc09685c4ba335beb08b83ca54da58b837b",
+        "bytes": 25360
+      },
+      {
+        "path": "packages/yijie.market-research.jungle-scout-deep-dive-analyzer-0.0.94.zip",
+        "sha256": "aa7c3a6c1aa60379017cd79845f8c0e1a82a34943af2ecea879ff9db5c57eb49",
+        "bytes": 169478
+      },
+      {
+        "path": "packages/yijie.market-research.market-insight-product-selection-0.0.94.zip",
+        "sha256": "dd5b7fdb1e4d03a8ee3eb1c893a27b42ef708024ef9f063676d0939ce609974a",
+        "bytes": 25675
+      },
+      {
+        "path": "packages/yijie.market-research.product-attribute-analyzer-0.0.94.zip",
+        "sha256": "0094818797317f9d565e4fcbbcd6295094578b77c5529f2a5a064e041f9f548d",
+        "bytes": 22020
+      },
+      {
+        "path": "packages/yijie.market-research.product-selection-0.0.94.zip",
+        "sha256": "4516c195d878c37aba1f21d64634e017974cc610fbd9163fdae85f2beb4b16a3",
+        "bytes": 33006
+      },
+      {
+        "path": "packages/yijie.market-research.review-analyst-agent-0.0.94.zip",
+        "sha256": "87bddc99457a57994b83875236e4905dcba1671c2f802e92f1508b00b6cfe446",
+        "bytes": 21581
+      },
+      {
+        "path": "packages/yijie.market-research.scenario-driven-product-scout-0.0.94.zip",
+        "sha256": "3ea08f91d59dc8eadaf125105daaf51da3f66d601edfd5d164145512bdbecc12",
+        "bytes": 105655
+      },
+      {
+        "path": "packages/yijie.content-marketing.content-breakdown-0.0.94.zip",
+        "sha256": "ec868241d93bb67b85f5c7e0b462051a8208208dc08085a20f08b7cbba76ee1a",
+        "bytes": 415068
+      },
+      {
+        "path": "packages/yijie.content-marketing.content-strategy-0.0.94.zip",
+        "sha256": "bc47472e7d9c6fae25aec2f7006d4bd13f43c7a61d1b9d5d828369c46e729bd9",
+        "bytes": 12518
+      },
+      {
+        "path": "packages/yijie.content-marketing.copywriting-0.1.0.zip",
+        "sha256": "efb7abe5460c5b66def57575cacac1486887e9faf6139d8466f086caf661333b",
+        "bytes": 7351
+      },
+      {
+        "path": "packages/yijie.content-marketing.product-marketing-context-0.0.94.zip",
+        "sha256": "2f59566878841802db7109e21900bf47e2d1108ca6368d83780336083a1f40d8",
+        "bytes": 8122
+      },
+      {
+        "path": "packages/yijie.content-marketing.social-media-content-creator-0.0.94.zip",
+        "sha256": "c5050fb4eb30bfe66af3b78a8887e2cf815d5d4254ed13dbe94f73651cfe3614",
+        "bytes": 7226
+      },
+      {
+        "path": "packages/yijie.content-marketing.vibe-marketing-0.0.94.zip",
+        "sha256": "051c85a7e02cd73d7965a7df2c2526daf25020765e0793b019e6a98c0446fc18",
+        "bytes": 5679
+      },
+      {
+        "path": "packages/yijie.content-marketing.xiaohongshu-content-creator-0.0.94.zip",
+        "sha256": "5f6de568302cb3ccdfb21cc02570ae94358ea16b75369050cf131ffe524ba364",
+        "bytes": 5289
+      },
+      {
+        "path": "packages/yijie.traffic-advertising.amazon-listing-expert-0.0.94.zip",
+        "sha256": "bb53246ea7ce499d3f90800289cf7afc49e5e130897f230f57633df3c2608d60",
+        "bytes": 9111
+      },
+      {
+        "path": "packages/yijie.traffic-advertising.amazon-ppc-campaign-manager-0.0.94.zip",
+        "sha256": "2ceef91b28f60020228946eac141640ca618b7154bda299e80f83adef874e0b3",
+        "bytes": 7256
+      },
+      {
+        "path": "packages/yijie.traffic-advertising.amz-hot-keywords-0.0.94.zip",
+        "sha256": "651de7bb315970729640663441207f504609849c1341a35584bf73562a44ef63",
+        "bytes": 14722
+      },
+      {
+        "path": "packages/yijie.traffic-advertising.amz-product-optimizer-0.0.94.zip",
+        "sha256": "33ce2676f54f2c8f236362c41685e75b69a7c25a7404b6dfd56d63c1cf12d66f",
+        "bytes": 34674
+      },
+      {
+        "path": "packages/yijie.traffic-advertising.ecommerce-seo-optimizer-0.0.94.zip",
+        "sha256": "6922f6c86de17a45e25201c5f7c92befc6e39a8499182e02a4a4b868486949ae",
+        "bytes": 6829
+      },
+      {
+        "path": "packages/yijie.traffic-advertising.etsy-seo-optimizer-0.0.94.zip",
+        "sha256": "8d66b6431620f0bf1eecd7509e6b286aa8fb952149b65231878c21bf4fd0ed5b",
+        "bytes": 32623
+      },
+      {
+        "path": "packages/yijie.traffic-advertising.product-description-generator-0.0.94.zip",
+        "sha256": "bb6e0f3c26ebf35a9c637c571bd6366ec90d3303e94e1470b1056bef8b9b7bf9",
+        "bytes": 23053
+      },
+      {
+        "path": "packages/yijie.traffic-advertising.seo-keyword-research-0.0.94.zip",
+        "sha256": "a192ea17a05e8644a3e7044377e2bda5ffdd4f4f0b3444c912b3b31f1d23d64a",
+        "bytes": 5531
+      },
+      {
+        "path": "packages/yijie.traffic-advertising.tiktok-ads-strategy-0.0.94.zip",
+        "sha256": "49905b7f97d1107c7ab4d02989c921f3234d1817d9bea1fb874f5c86c0776092",
+        "bytes": 6449
+      },
+      {
+        "path": "packages/yijie.store-operations.amazon-brand-protection-0.0.94.zip",
+        "sha256": "75e50c2e15a6d2156e5b7683c0bfd007582ce031f032d50ee7a69d294454c582",
+        "bytes": 8903
+      },
+      {
+        "path": "packages/yijie.store-operations.buy-now-pay-later-setup-0.0.94.zip",
+        "sha256": "a2add0cf673dd7cab2222d61e231fee400a8dbdfe037665eb7f7e03c6fcb631e",
+        "bytes": 6495
+      },
+      {
+        "path": "packages/yijie.store-operations.ecommerce-gdpr-compliance-0.0.94.zip",
+        "sha256": "bde430ada27effe2dc146125a1b5086d1300b74c0dee13a0fc3c64d83f33b2c4",
+        "bytes": 7268
+      },
+      {
+        "path": "packages/yijie.store-operations.invoice-generator-0.0.94.zip",
+        "sha256": "a29d777d2b8a589eb3f58d63d8063d0f42c74fed2b0c2afff1866e3df18644d8",
+        "bytes": 8714
+      },
+      {
+        "path": "packages/yijie.store-operations.multichannel-inventory-sync-0.0.94.zip",
+        "sha256": "8c65e7d4d9880c97937d7e61fd5ff979b50a765a6a1b22180c8e71021b976337",
+        "bytes": 9301
+      },
+      {
+        "path": "packages/yijie.store-operations.payment-fraud-detector-0.0.94.zip",
+        "sha256": "87f306b6d42cfdaa497ea3ec3c2e51d098a21e75d091c0ef10e45b8dcf31a5ef",
+        "bytes": 7982
+      },
+      {
+        "path": "packages/yijie.store-operations.tiktok-shop-setup-0.0.94.zip",
+        "sha256": "b90e9f63ec69fcd92cef14cdde376429a6e9f71280b1a579a1e4d93dc6961076",
+        "bytes": 6946
+      },
+      {
+        "path": "packages/yijie.store-operations.warehouse-fulfillment-workflow-0.0.94.zip",
+        "sha256": "bcf1bb79821c5c33bd3bb4e26db9d2431950df2e73a234eaa26f1901c6cd8ff2",
+        "bytes": 8068
+      },
+      {
+        "path": "packages/yijie.experts.jd-ops-expert-0.1.3.zip",
+        "sha256": "baa8c8550b8b82b5f1be7bcfc59693c8920ff438fa854e84450936685e3d3b80",
+        "bytes": 101203
+      },
+      {
+        "path": "packages/yijie.experts.xiaohongshu-copywriter-0.1.0.zip",
+        "sha256": "1e40bc07c0f33d60554b4ba80dcf687bb00f6953094c8df870cba546117e5a41",
+        "bytes": 15551
+      },
+      {
+        "path": "packages/yijie.experts.agentgrid-comic-storyboard-director-0.1.0.zip",
+        "sha256": "f46e10ea07ecc1310f2ebada495d03ad00bf46c48cbde312565d146fe5fa273b",
+        "bytes": 30459
+      },
+      {
+        "path": "packages/yijie.experts.cross-border-ecommerce-operations-expert-0.1.0.zip",
+        "sha256": "4376da1cc229c0e290eadf5e7cfa9ff0cddab0c3c98ccdfba9058cc981832cc0",
+        "bytes": 24963
+      },
+      {
+        "path": "packages/yijie.experts.xiaohongshu-copywriter-v011-0.1.1.zip",
+        "sha256": "15946933bb84ff398ceb0a3a95e2e7510d2e18767ab943f52aa6c73eb5e93d4b",
+        "bytes": 18227
+      },
+      {
+        "path": "packages/yijie.experts.cross-border-ecommerce-operations-expert-v011-0.1.1.zip",
+        "sha256": "a90b46f1639d0c36f1bdd85c46d656a9cdbb3c6e74eceb4045117dcde6cd149b",
+        "bytes": 27502
+      },
+      {
+        "path": "packages/yijie.experts.tradebuddy-baojia-0.1.0.zip",
+        "sha256": "0ab9bdb13d09af5528f9893932661e8e18a9859e2f7738f7e8d9185fa6f06c11",
+        "bytes": 32952
+      },
+      {
+        "path": "packages/yijie.experts.report-viz-expert-0.1.0.zip",
+        "sha256": "3cf0f4d780d3be2fe04d54b41e54175fe2a498b144a20a8803939c1ca880973a",
+        "bytes": 1161843
+      },
+      {
+        "path": "packages/yijie.experts.report-viz-expert-v011-0.1.1.zip",
+        "sha256": "ddd32208840464cae1825987ded332b251b68943233354aaf177082ca4b5afb0",
+        "bytes": 1163739
+      },
+      {
+        "path": "packages/yijie.experts.chuhaijiang-tiktok-shop-operations-expert-0.1.0.zip",
+        "sha256": "e01e847dbc6f04f1ef043c4327934d13401456b31440324befa6e4f5d7133cc6",
+        "bytes": 25761
+      },
+      {
+        "path": "packages/yijie.experts.linkfox-expert-aigc-imagegen-mannequin-to-model-0.1.0.zip",
+        "sha256": "15df6f894124a21fab1091229b6390de3c900e82d5c505d4ced2cf8825a09e50",
+        "bytes": 28259
+      },
+      {
+        "path": "packages/yijie.experts.linkfox-expert-aigc-videogen-viral-replicate-0.1.0.zip",
+        "sha256": "f6d6b4bc944c25bfd28f0c2e74fef07e96260b34ec821ddf6926e7abd20e540b",
+        "bytes": 36646
+      },
+      {
+        "path": "packages/yijie.experts.linkfox-expert-1688-sourcing-expert-0.1.0.zip",
+        "sha256": "35c0e78c81339a163b070c994acf143a2308bb5950546bff5223f169d18c9045",
+        "bytes": 56349
+      },
+      {
+        "path": "packages/yijie.experts.market-researcher-0.1.0.zip",
+        "sha256": "de5c29c9943c9b40ee58dce7ea3851494cc0b36b1a307309643b6be1b3b80f50",
+        "bytes": 61269
+      },
+      {
+        "path": "packages/yijie.experts.product-management-0.1.0.zip",
+        "sha256": "45d160b451fb51e3697a9cd249122efc5a845f0944a75a892514627ef841570d",
+        "bytes": 37318
+      },
+      {
+        "path": "packages/yijie.experts.novel-creator-0.1.0.zip",
+        "sha256": "ec0878dbd0be69943e5d9a0109ab42be1c1830b045bd5f6c5cc037f7a4793512",
+        "bytes": 28214
+      },
+      {
+        "path": "packages/yijie.experts.tb-tm-ops-expert-0.1.0.zip",
+        "sha256": "33ea7f9f5a783c33c7bb4e35688dde73c3d0c30547a43e4b3c7ac24bd9fb85bf",
+        "bytes": 3163728
+      },
+      {
+        "path": "packages/yijie.experts.pdd-ops-expert-0.1.0.zip",
+        "sha256": "b8e3a3a24a3b21d3a3111dce691ea4c04c58071e51d3d032ed0dc7c71dddf727",
+        "bytes": 1257935
+      },
+      {
+        "path": "packages/yijie.experts.tb-tm-ops-expert-v011-0.1.1.zip",
+        "sha256": "0507b2247f829198145f1637b128b75d8dda79ca71b8b5f113d4f77b615d5894",
+        "bytes": 3166865
+      },
+      {
+        "path": "packages/yijie.experts.pdd-ops-expert-v011-0.1.1.zip",
+        "sha256": "b5b1a6def381033985f9e47643c83a56a245e8e121fcbb7592ded44c1304a3dd",
+        "bytes": 1261070
+      },
+      {
+        "path": "packages/yijie.experts.data-analyst-pro-0.1.0.zip",
+        "sha256": "cbaf4533ccde0680c3a26e8b424bf23e6dd6d391b760d993a196b07e7d5c01d8",
+        "bytes": 1198080
+      },
+      {
+        "path": "packages/yijie.experts.ui-designer-0.1.0.zip",
+        "sha256": "289f5c10d19afe7f4be3c37d1ecf754f7740f8725af803095e615931946dbe59",
+        "bytes": 38490
+      },
+      {
+        "path": "packages/yijie.experts.data-analyst-pro-v011-0.1.1.zip",
+        "sha256": "8cc71d13acb7706a619a197701479b6f25d7d341209899bf560e975dc1232783",
+        "bytes": 1199131
+      },
+      {
+        "path": "packages/yijie.experts.data-analyst-pro-v012-0.1.2.zip",
+        "sha256": "2ed9da3ee3a86651adc5d0365a0e211f6253725987952250963d7c2bc03c3303",
+        "bytes": 1200208
+      },
+      {
+        "path": "packages/yijie.experts.ui-designer-v011-0.1.1.zip",
+        "sha256": "fbb30618e7af9f667a15e7e774790a5cd6550e92044c2a3ded79615674464de3",
+        "bytes": 39539
+      },
+      {
+        "path": "packages/yijie.experts.linkfox-expert-aigc-videogen-sale-0.1.0.zip",
+        "sha256": "4baccf6376ffd6806c15e2bfc389e6cf6ebbd978b827685be13cb2b350b0a877",
+        "bytes": 35906
+      },
+      {
+        "path": "packages/yijie.experts.equity-research-0.1.0.zip",
+        "sha256": "c471f1bf1170e1a53faa29fa92c8b8080e66832ad79452ccc01ff8acb364336f",
+        "bytes": 63895
+      },
+      {
+        "path": "packages/yijie.experts.strategy-backtest-expert-0.1.0.zip",
+        "sha256": "5e67da4b1ce9ccfa01d48e68e7a19d64dd49043d0c23769beb5bb30398d652d5",
+        "bytes": 57546
+      },
+      {
+        "path": "packages/yijie.experts.equity-research-v011-0.1.1.zip",
+        "sha256": "af33c9364a43965dca5bb3a1ba1c8d7aa60b8116f4af0ab40bec9d3d1fb10e0c",
+        "bytes": 67214
+      },
+      {
+        "path": "packages/yijie.experts.equity-research-v012-0.1.2.zip",
+        "sha256": "09824c1890e6433a5da23048ad1ac7c4d4e6ae1695bccfe46b1ddf723bf47b3e",
+        "bytes": 75704
+      },
+      {
+        "path": "packages/yijie.experts.strategy-backtest-expert-v011-0.1.1.zip",
+        "sha256": "eda6b16fed271afffad4cd342b9aae63eaacb8f29eee844d6d967c2d1099c527",
+        "bytes": 63818
+      },
+      {
+        "path": "packages/yijie.experts.moss-industry-research-0.1.0.zip",
+        "sha256": "797945923a6796d65a2be315e188955c8788dab349738669a8e995fdcbe5eada",
+        "bytes": 89567
+      },
+      {
+        "path": "packages/yijie.experts.moss-industry-research-v011-0.1.1.zip",
+        "sha256": "2d7fa1a7c99afd54b5df6f1cec6688893600fcce18c45715af9dd6738042ffbb",
+        "bytes": 93104
+      },
+      {
+        "path": "packages/yijie.experts.tb-tm-ops-expert-v012-0.1.2.zip",
+        "sha256": "c3c114a74a5eac1fe35e7a2b57222057ac42e404e2c44ed092f93730fa094bdc",
+        "bytes": 3168578
+      },
+      {
+        "path": "packages/yijie.experts.pdd-ops-expert-v012-0.1.2.zip",
+        "sha256": "d49a6dd29881866114e3026c57beca543950c2b83299d6e08e3f92db23271a96",
+        "bytes": 1262781
+      },
+      {
+        "path": "packages/yijie.experts.tb-tm-ops-expert-v013-0.1.3.zip",
+        "sha256": "7f7d1aa5de4b0b738a42e67692ef8dc525156f83f340663e49dbaf58a2588975",
+        "bytes": 3169080
+      },
+      {
+        "path": "packages/yijie.experts.pdd-ops-expert-v013-0.1.3.zip",
+        "sha256": "17dafd428d5e987e08a98fd06406b5e275dcf585cc399bc3de4bca9fca27a675",
+        "bytes": 1263283
+      }
+    ]
+  },
+  "final_checks": [
+    {
+      "command": "node --test scripts/expert-provenance-refresh.test.mjs scripts/retained-expert-resources.test.mjs",
+      "exit_code": 0,
+      "passed": 6,
+      "failed": 0
+    },
+    {
+      "command": "pnpm exec eslint scripts/sync-desktop-expert-resources.mjs scripts/expert-provenance-refresh.test.mjs --max-warnings 0",
+      "exit_code": 0
+    },
+    {
+      "command": "YIJIE_ENV=local YIJIE_LOCAL_PROFILE=demo_fast node scripts/sync-desktop-expert-resources.mjs --check",
+      "exit_code": 0,
+      "output": "Expert local candidate checked: 38 unchanged Skills + 37 expert; not release provenance."
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "review": {
+    "reviewer": "runtime_audit subagent",
+    "finding": "The refactor moved existing --package pin/schema preflight after producer packaging.",
+    "resolution": "Extracted verifyExpertSource and restored the complete original pin/source-lock/v2-v3 schema checks before packageProducer execution. --check remains read-only.",
+    "status": "PASS: independent static closure confirmed by runtime_audit",
+    "reviewed_source_sha256": "e087d9bffa7db53a2ee5e3a4cd30298ccfd86f439612eb093985935306c73b28",
+    "closure": "verifyExpertSource runs before the canonical package command and retains the original pin and schema preflight; no additional findings."
+  },
+  "earlier_failure": {
+    "check": "ESLint preserve-caught-error",
+    "result": "AggregateError lacked cause; corrected to preserve the original failure as cause, then lint passed"
+  },
+  "source_script_sha256": "e087d9bffa7db53a2ee5e3a4cd30298ccfd86f439612eb093985935306c73b28",
+  "not_run": [
+    "real model or supplier calls",
+    "fault or attack injection",
+    "process killing",
+    "permission corruption",
+    "Runtime rebuild",
+    "App launch by Desktop subagent"
+  ],
+  "limitations": [
+    "This receipt proves source-only resource refresh, not expert content quality or model evaluation.",
+    "The script changed during the root canonical App build; final packaging receipt/source verification must use the final script hash."
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "approved_at": "2026-10-24T22:16:45.730832+08:00",
+  "authorization": "User resumed the objective: diagnose/fix and actually verify Search/Fetch; retained previously explicit Key reuse, Search<=1, Fetch<=1, CNY0.02, zero model calls, deny first, no supplier retries. Local-only harness diagnosis performed with ordinary value and zero supplier requests.",
+  "search_max": 1,
+  "fetch_max": 1,
+  "model_max": 0,
+  "budget_cny": "0.02",
+  "supplier_retries_max": 0,
+  "run_root": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.local/feat162-live-6713f52e-3ebc-4873-8f93-af47f29fff19",
+  "status": "COMPLETE_BUDGET_CONSUMED_NO_RETRY",
+  "local_preflight": "PASS; initialize/list/normal reject and zero HTTP, normal EOF",
+  "source_sha256": {
+    "internal/app/kimi_web_live_test.go": "b76862e3d724351215e4fcafd113a053e2e0adec04cf343245fe6ba29aad63ea",
+    "scripts/run-kimi-web-minimal-acceptance.sh": "1725ed64a041b75edbbc78f90d34bda787c4fb5117b31fcb71c37974f5dd4e4f"
+  },
+  "actual_search_requests": 1,
+  "actual_fetch_requests": 1,
+  "actual_model_requests": 0,
+  "calculated_cost_cny": "0.02",
+  "account_billing_checked": false,
+  "result": "live-minimal-round3-result.json"
+}

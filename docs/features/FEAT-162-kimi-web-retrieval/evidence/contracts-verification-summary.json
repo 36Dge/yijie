@@ -1,0 +1,96 @@
+{
+  "contract_impact": "breaking",
+  "scope": "market-connectors 0.6.0 capacity62 + independent web-retrieval/1 0.1.0; no Runtime changes",
+  "checks": {
+    "focused_js": {
+      "passed": 41,
+      "log": "contracts-focused-js.log"
+    },
+    "focused_go": {
+      "passed_packages": 5,
+      "log": "contracts-focused-go.log"
+    },
+    "web_retrieval_rust": {
+      "passed": 4,
+      "clippy": "PASS"
+    },
+    "market_connectors_rust": {
+      "passed": 7,
+      "clippy": "PASS"
+    },
+    "market_host_rust": {
+      "passed": 7
+    },
+    "pnpm_lint": {
+      "status": "PASS",
+      "preexisting_redocly_warnings": 12,
+      "log": "contracts-lint.log"
+    },
+    "canonical_consumer_sync_checks": "PASS: three management readers, Desktop selection, Connectors/Host Broker, three Provider readers, Desktop/Host Host, Connectors web retrieval",
+    "git_diff_check": "PASS"
+  },
+  "protected_runtime_chat_models_lock_sha256": "92c112ea0887d44d1f2afb2ce1d20a35151d7fda3b34e5a729af9ce13cdbd813",
+  "formatter_change": {
+    "reason": "Node26 synchronous stdin pipe left rustfmt waiting for EOF; process sample confirmed stdin read block",
+    "scope": [
+      "scripts/generate-market-host.mjs",
+      "scripts/sync-market-host.mjs",
+      "scripts/format-source-file.mjs"
+    ],
+    "seven_generated_outputs_unchanged": {
+      "sdks/rust/market-host/types.gen.rs": "95621ecaba76b2dfb198bbe40f367e588ed28ea54bca9186f1cec4c04053f6cc",
+      "sdks/go/market-host/types.gen.go": "d35ddfa017dd5fee8c1b24a03a183ae10c2c71faf316e86b6e8ae6468e2955c3",
+      "sdks/jsonschema/market-host.schema.json": "a62a157205861b2727b5d4a35e4c0d6501b767ebdb9f3dfb1b0cf0d6ef05e348",
+      "sdks/typescript/src/domain/market-host-native.generated.ts": "524ce317ab588a4baa81fce4d9fc2d1636e33c035f66da0d9baff8d7a9ace3fb",
+      "sdks/typescript/src/api/generated/market-host-native-validator.gen.js": "35131dc0dc3150f191f2cb3a33cb5082376a4990a3b4815e0fb06ce069783ba9",
+      "sdks/typescript/src/api/generated/market-host-native-validator.gen.d.ts": "908f473991900ceef91860f4526a54048a3e531418991cef8ebfa3fd3fde6918",
+      "sdks/jsonschema/market-host-native.schema.json": "a76a4126c6efa3949af9c46f2f844c013acb36ea12707a9fcb47d734fba46e90"
+    },
+    "old_process_cleanup": "STOP_PENDING: old non-TTY PID10952 and parents retained without forced termination; no further action"
+  },
+  "full_breaking_results": [
+    {
+      "baseline": "bedf4159b0fa22e24efe6c295f8b0d4845df56b7",
+      "exit_code": 102,
+      "log": "contracts-breaking-bedf4159b0.log"
+    },
+    {
+      "baseline": "e35ae9a0711014e4774a1347413e9a343ce7ab2c",
+      "exit_code": 102,
+      "log": "contracts-breaking-e35ae9a071.log"
+    },
+    {
+      "baseline": "1a213ac8383e95ac6ec69363937687904fa3591c",
+      "exit_code": 102,
+      "log": "contracts-breaking-1a213ac838.log"
+    },
+    {
+      "baseline": "35e0949c95d7a59ca5480715c225766dcc822056",
+      "exit_code": 102,
+      "log": "contracts-breaking-35e0949c95.log"
+    },
+    {
+      "baseline": "f16a497e1377f45747f8ff9292b4b60cf2027f88",
+      "exit_code": 0,
+      "log": "contracts-breaking-f16a497e13.log"
+    },
+    {
+      "baseline": "6f632f155eacdaf93df0e0b00b5dab9e369c5442",
+      "exit_code": 0,
+      "log": "contracts-breaking-6f632f155e.log"
+    },
+    {
+      "baseline": "811f38d6b104fa18477107e7ac91a85e19c445d1",
+      "exit_code": 0,
+      "log": "contracts-breaking-811f38d6b1.log"
+    }
+  ],
+  "not_run": [
+    "Default all-fixture generate/test: excludes historical dangerous archive/injection fixture paths per user safety rules",
+    "Paid provider/model requests: authorization budget0",
+    "Real Kimi Search/Fetch entitlement and billing verification: pending separate authorization"
+  ],
+  "release": false,
+  "committed": false,
+  "pushed": false
+}

@@ -1,0 +1,105 @@
+{
+  "paused_at": "2026-10-24T17:58:10.175415+08:00",
+  "status": "paused_by_user",
+  "latest_requirement": "自动复用客户端已有的 Kimi 模型凭据，不再配置或启用连接器；真实收费 API 不执行",
+  "repositories": {
+    "yijie": {
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "91b2b76e7afc7cb5373a381ce352f7d1eee4a134",
+      "status": "M docs/dev/codex-project-memory.md\n?? docs/dev/chat-deletion-recovery-20261023.md\n?? docs/dev/process-feed-rework-20261023.md\n?? docs/features/FEAT-162-kimi-web-retrieval/\n?? docs/features/FEAT-163-codex-process-parity/"
+    },
+    "yijie-contracts": {
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "bedf4159b0fa22e24efe6c295f8b0d4845df56b7",
+      "status": "M Makefile\n M compatibility/experts/source.lock.json\n M compatibility/market-broker-control/control.json\n M compatibility/market-broker-control/source.lock.json\n M compatibility/market-connectors/source.lock.json\n M compatibility/market-host/source.lock.json\n M compatibility/market-provider/source.lock.json\n M compatibility/market-provider/transport.json\n M compatibility/market-provider/wire.schema.json\n M compatibility/market-selection/source.lock.json\n M compatibility/runtime-chat-models/source.lock.json\n M docs/market-connectors-v1.md\n M docs/market-provider-v1.md\n M docs/supported-baselines.md\n M openapi/market-connectors/market-connectors.yaml\n M scripts/generate-market-broker.mjs\n M scripts/generate-market-connectors.mjs\n M scripts/generate-market-host.mjs\n M scripts/generate-native-process.mjs\n M scripts/market-broker-source.mjs\n M scripts/market-host-source.mjs\n M scripts/sync-market-host.mjs\n M scripts/sync-native-process.mjs\n M scripts/validate-json-schemas.mjs\n M sdks/go/market-broker-control/types.gen.go\n M sdks/go/market-connectors/types.gen.go\n M sdks/go/market-connectors/types_test.go\n M sdks/go/market-host/types.gen.go\n M sdks/go/market-provider/types.gen.go\n M sdks/jsonschema/market-connectors.schema.json\n M sdks/jsonschema/market-host-native.schema.json\n M sdks/jsonschema/market-host.schema.json\n M sdks/jsonschema/market-provider.schema.json\n M sdks/rust/market-broker-control/types.gen.rs\n M sdks/rust/market-connectors/types.gen.rs\n M sdks/rust/market-host/types.gen.rs\n M sdks/rust/market-provider/types.gen.rs\n M sdks/typescript/src/api/generated/market-connectors-validator.gen.js\n M sdks/typescript/src/api/generated/market-host-native-validator.gen.js\n M sdks/typescript/src/domain/market-connectors.generated.ts\n M sdks/typescript/src/domain/market-host-native.generated.ts\n M tests/market-broker.test.mjs\n M tests/market-connectors.test.mjs\n M tests/rust-market-connectors/src/lib.rs\n?? compatibility/web-retrieval/\n?? docs/agent-session-cleanup-recovery.md\n?? docs/native-activity-v5.md\n?? docs/web-retrieval-v1.md\n?? openapi/native-conversation-v5/\n?? scripts/format-source-file.mjs\n?? scripts/generate-web-retrieval.mjs\n?? scripts/sync-web-retrieval.mjs\n?? scripts/web-retrieval-source.mjs\n?? sdks/go/openapi/native-conversation-v5/\n?? sdks/jsonschema/web-retrieval.schema.json\n?? sdks/jsonschema/web-retrieval.tools.json\n?? sdks/rust/web-retrieval/\n?? sdks/typescript/src/openapi/native-conversation-v5.gen.ts\n?? tests/native-activity-v5.test.mjs\n?? tests/rust-web-retrieval/\n?? tests/web-retrieval.test.mjs"
+    },
+    "yijie-connectors": {
+      "branch": "develop",
+      "head": "251a0e8854b646a2565a01317a95b037579d9b8e",
+      "status": "M Makefile\n M api/market-broker-control.candidate.json\n M api/market-connectors.candidate.json\n M api/market-connectors.schema.json\n M api/market-provider.candidate.json\n M api/market-provider.schema.json\n M catalog/catalog.go\n M catalog/catalog_test.go\n M catalog/market-catalog.v1.json\n M catalog/provider-registry.v1.json\n M catalog/source-provenance.json\n M internal/contracts/marketconnectors/types.gen.go\n M scripts/build-market-worker.sh\n M worker/Cargo.lock\n M worker/Cargo.toml\n M worker/qualification/broker.rs\n M worker/source.lock.json\n M worker/src/broker.rs\n M worker/src/broker_generated.rs\n M worker/src/credentials.rs\n M worker/src/daily.rs\n M worker/src/gateway.rs\n M worker/src/generated.rs\n M worker/src/main.rs\n M worker/src/provider_generated.rs\n M worker/src/provider_registry.rs\n M worker/src/providers.rs\n M worker/src/tushare_oauth.rs\n?? api/web-retrieval.candidate.json\n?? api/web-retrieval.schema.json\n?? api/web-retrieval.tools.json\n?? docs/kimi-web-retrieval.md\n?? docs/startup-source-review-20261023.md\n?? worker/src/kimi_web.rs\n?? worker/src/kimi_web_tests.rs\n?? worker/src/model_credentials.rs\n?? worker/src/web_retrieval_generated.rs"
+    },
+    "yijie-agent-host": {
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "283dcbd7d79ca7bd7a56dba0cb915024fff8eb72",
+      "status": "M api/experts.candidate.json\n M api/market-broker-control.candidate.json\n M api/market-connectors.candidate.json\n M api/market-connectors.schema.json\n M api/market-host.candidate.json\n M api/market-host.schema.json\n M api/market-provider.candidate.json\n M api/market-provider.schema.json\n M api/native-process.candidate.json\n M api/runtime-chat-models.candidate.json\n M internal/app/app.go\n M internal/app/native_conversation.go\n M internal/app/native_conversation_test.go\n M internal/codex/chat_models.go\n M internal/codex/chat_models_test.go\n M internal/codex/market_runtime.go\n M internal/codex/runtime_permissions.go\n M internal/codex/scheduled_draft_integration_test.go\n M internal/codex/session_protocol.go\n M internal/contracts/marketbrokercontrol/types.gen.go\n M internal/contracts/marketconnectors/types.gen.go\n M internal/contracts/markethost/types.gen.go\n M internal/contracts/marketprovider/types.gen.go\n M internal/marketbroker/artifact.go\n M internal/marketbroker/owner.go\n M internal/session/events.go\n M internal/session/multimodal_test.go\n M internal/session/native_conversation.go\n M internal/session/native_conversation_test.go\n M internal/session/native_mcp.go\n M internal/session/native_mcp_test.go\n M internal/session/native_process.go\n M internal/session/native_process_test.go\n M internal/session/service.go\n M internal/session/store.go\n M internal/skills/experts_candidate.go\n M scripts/chat-model-smoke-meter.py\n M scripts/responses_stream_observer.py\n M scripts/test_responses_stream_observer.py\n?? api/openapi/native-conversation-v5.yaml\n?? internal/codex/process_parity_audit_test.go\n?? internal/codex/process_parity_integration_test.go\n?? internal/contracts/nativeconversationv5/\n?? internal/integration/cleanup_runtime_test.go\n?? internal/marketbroker/model_credential.go\n?? internal/marketbroker/model_credential_test.go\n?? internal/session/cleanup_recovery.go\n?? internal/session/cleanup_recovery_test.go\n?? internal/session/native_activity.go\n?? internal/session/native_activity_test.go\n?? internal/skills/experts_assets.gen.go\n?? scripts/__pycache__/"
+    },
+    "yijie-desktop": {
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "6080a568332dbf18ff119501607bc7e7afa92f94",
+      "status": "M contracts/artifact-media-host-build.candidate.json\n M contracts/experts-assets.candidate.json\n M contracts/experts.candidate.json\n M contracts/market-catalog.candidate.json\n M contracts/market-catalog.json\n M contracts/market-connectors.candidate.json\n M contracts/market-connectors.schema.json\n M contracts/market-host-native.schema.json\n M contracts/market-host.candidate.json\n M contracts/market-host.schema.json\n M contracts/market-provider.candidate.json\n M contracts/market-provider.schema.json\n M contracts/market-selection.candidate.json\n M contracts/native-process.candidate.json\n M contracts/runtime-chat-models.candidate.json\n M docs/design/docs/design/02-tokens/06-motion-zindex-opacity-tokens.md\n M docs/design/docs/design/03-ui-system/02-iconography.md\n M docs/design/docs/design/05-patterns/02-chat-workspace.md\n M scripts/chat-model-build-candidate.mjs\n M scripts/generate-native-conversation.mjs\n M scripts/native-conversation-bundle.test.mjs\n M scripts/sync-desktop-expert-resources.mjs\n M scripts/sync-market-catalog.mjs\n M src-tauri/schemas/chat-native-conversation-resolved.schema.json\n M src-tauri/src/chat/application.rs\n M src-tauri/src/chat/connectors/broker_generated.rs\n M src-tauri/src/chat/connectors/generated.rs\n M src-tauri/src/chat/connectors/host_generated.rs\n M src-tauri/src/chat/connectors/mod.rs\n M src-tauri/src/chat/connectors/provider.rs\n M src-tauri/src/chat/connectors/provider_generated.rs\n M src-tauri/src/chat/connectors/store.rs\n M src-tauri/src/chat/connectors/tests.rs\n M src-tauri/src/chat/database.rs\n M src-tauri/src/chat/deletion_recovery.rs\n M src-tauri/src/chat/host_bridge.rs\n M src-tauri/src/chat/host_domain.rs\n M src-tauri/src/chat/ipc.rs\n M src-tauri/src/chat/mod.rs\n M src-tauri/src/chat/native_conversation.rs\n M src-tauri/src/chat/native_conversation_generated.rs\n M src-tauri/src/chat/native_conversation_storage.rs\n M src-tauri/src/lib.rs\n M src/api/chat-client.test.ts\n M src/api/chat-client.ts\n M src/api/generated/market-connectors-validator.gen.js\n M src/api/generated/market-host-native-validator.gen.js\n M src/api/generated/native-conversation-history.gen.ts\n M src/api/generated/native-conversation-private.gen.ts\n M src/api/generated/native-conversation-validator.gen.js\n M src/api/market-connectors-client.test.ts\n M src/components/chat/ChatCommandItem.vue\n M src/components/chat/ChatExecutionProgress.vue\n M src/components/chat/ChatNativeStreaming.test.ts\n M src/components/chat/ChatNativeToolItem.vue\n M src/components/chat/ChatProcessPresentation.test.ts\n M src/components/chat/ChatSafeContent.vue\n M src/components/chat/ChatSidebarSessionRow.vue\n M src/components/chat/ChatStreamText.test.ts\n M src/components/chat/ChatStreamText.vue\n M src/components/chat/ChatTimelineItemShell.vue\n M src/components/chat/ChatTurnGroup.vue\n M src/components/chat/MarketChatActivity.test.ts\n M src/components/chat/MarketChatActivity.vue\n M src/components/connectors/ConnectorDetailsDialog.vue\n M src/components/connectors/ConnectorMarketView.test.ts\n M src/composables/useChatScroll.test.ts\n M src/composables/useChatScroll.ts\n M src/domain/chat-ui.test.ts\n M src/domain/chat-ui.ts\n M src/domain/connector-ui.ts\n M src/domain/conversation-native-view.test.ts\n M src/domain/conversation-process.ts\n M src/domain/conversation-view.ts\n M src/domain/market-connectors-ui.test.ts\n M src/domain/market-connectors-ui.ts\n M src/domain/market-connectors.generated.ts\n M src/domain/market-host-native.generated.ts\n M src/icons/connector-icons.ts\n M src/icons/custom/brands/README.md\n M src/pages/chat/ChatPage.test.ts\n M src/pages/chat/ChatPage.vue\n M src/stores/chat.store.test.ts\n M src/stores/chat.store.ts\n M src/stores/market-connectors.store.test.ts\n M src/stores/market-connectors.store.ts\n?? docs/chat-stream-presentation.md\n?? scripts/expert-provenance-refresh.test.mjs\n?? src-tauri/contracts/native-conversation-v5.json\n?? src-tauri/schemas/chat-native-conversation-v5.schema.json\n?? src-tauri/src/chat/connectors/store_builtin.rs\n?? src-tauri/src/chat/native_conversation_v4_generated.rs\n?? src/api/generated/native-conversation-v5.gen.ts\n?? src/components/chat/ChatFileChangeItem.vue\n?? src/components/chat/ChatProcessParityAudit.test.ts\n?? src/composables/useChatDisclosureChoice.ts\n?? src/composables/useChatStreamPresentation.test.ts\n?? src/composables/useChatStreamPresentation.ts\n?? tsconfig.node.tsbuildinfo\n?? tsconfig.tsbuildinfo"
+    },
+    "yijie-skills": {
+      "branch": "develop",
+      "head": "595c927ae101d3d31c234f60565041eee0864680",
+      "status": "M contracts/experts.candidate.json"
+    },
+    "yijie-codex": {
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "9154f27d0cdb526a5f5ba0913fe3e2448014b4a1",
+      "status": ""
+    }
+  },
+  "app_host_worker_processes": [],
+  "workflow_containers": [
+    "yijie-feat153-workflow-workflow-api-1 Exited (0) 40 seconds ago",
+    "yijie-feat153-workflow-coze-workflow-1 Exited (0) 39 seconds ago",
+    "yijie-feat153-workflow-api-migrate-f014f01c Exited (0) 9 hours ago",
+    "yijie-feat153-workflow-coze-migrate-f014f01c Exited (0) 9 hours ago",
+    "yijie-feat153-workflow-coze-workflow-redis-1 Exited (0) 39 seconds ago",
+    "yijie-feat153-workflow-workflow-postgres-1 Exited (0) 39 seconds ago",
+    "yijie-feat153-workflow-coze-workflow-minio-1 Exited (0) 39 seconds ago",
+    "yijie-feat153-workflow-coze-workflow-mysql-1 Exited (0) 38 seconds ago"
+  ],
+  "worker": {
+    "schemaVersion": 2,
+    "candidateOnly": true,
+    "binary": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/bin/market-worker/ebf7c834c95f4614365981aa7b99d04dcff37eb4d709cf4f84d0b04a8e073404/yijie-mcp-worker",
+    "sha256": "ebf7c834c95f4614365981aa7b99d04dcff37eb4d709cf4f84d0b04a8e073404",
+    "sizeBytes": 84685744,
+    "codexSource": "9154f27d0cdb526a5f5ba0913fe3e2448014b4a1",
+    "externalCallsEnabled": true,
+    "qualificationOnly": false,
+    "providerProfile": "generic-mcp-v1"
+  },
+  "source_hashes": {
+    "yijie-agent-host/internal/skills/experts_assets.gen.go": "cfe825bcb5d780d661d980baef1ed0178f3a3a6583ce57feb0616e84a773acd2",
+    "yijie-desktop/contracts/experts-assets.candidate.json": "7f3e39b5281fc7506611015f59db80f9f0040846e09432083ffb92505804426a",
+    "yijie-desktop/contracts/artifact-media-host-build.candidate.json": "59e8dc516ad975d54ebfca319178e6211a04159c441f73f1953de3e76a77c68b",
+    "yijie-desktop/.local/demo-fast/packaged-launch-receipt.json": "8e4b61fdb72436ee4f5d543b9c6ed5051e583c6720e383187f4b3ca17a36274e"
+  },
+  "completed": [
+    "07 audit and 08 implementation plan saved before code changes",
+    "Contract-first automatic default installation/preparation; preserve explicit disable/uninstall",
+    "Kimi Probe is local-only; /models request path removed; existing Host model snapshot/FD3 reused",
+    "41 contract tests and lint; 159 frontend tests; 3 default-intent and 11 Native connector tests; 14 Kimi worker tests; lint/build passed",
+    "Canonical worker direct Probe and legacy Auth with/without ordinary in-memory source passed, normal EOF",
+    "75 expert resource contents unchanged; canonical provenance refresh and Host authority sync passed; real Host manifest test and freeze passed",
+    "Meta lint/50 tests/shell syntax and 7 repository diff checks passed",
+    "Docker Desktop was stopped; opened normally. Original six dependency containers had exit255; canonical recovery 7cb2c072-e21e-47d4-8489-325751756d7d completed protective copies, read-only storage checks and normal stops"
+  ],
+  "not_completed": [
+    "New App build/launch and UI acceptance: first canonical attempt stopped before build at Docker unavailable; NO second build launched before pause",
+    "Actual automatic ready UI, enabled task picker, minimum window, normal Cmd-Q and same-build reopen remain pending",
+    "Final direct-use 09 verification report and final source handoff remain pending"
+  ],
+  "next": [
+    "Read this checkpoint and 07/08; inspect current shared workspace/process state without resetting other task edits",
+    "Dependency recovery is complete with containers normally stopped. Run canonical YIJIE_FEAT156_LOCAL_CANDIDATE=true pnpm tauri:demo-fast:app from yijie-desktop; preserve failed first log and use direct-use-app-build-02.log",
+    "Verify automatic Kimi ready without Configure/Enable; no real task/model/Search/Fetch calls; normal Cmd-Q and --reopen",
+    "Record final current source receipt, diagnostics, UI and 09 verification; mark shared build window available only after completion"
+  ],
+  "real_kimi_calls": {
+    "models": 0,
+    "search": 0,
+    "fetch": 0,
+    "model_turns": 0
+  },
+  "d4": "NOT RUN",
+  "constraints": [
+    "No force kill, executable spoof/replacement, permissions sabotage or attack fixtures",
+    "No Codex core or Agent loop changes",
+    "No commits/push/release",
+    "Preserve FEAT-163 concurrent changes; do not use or claim its verification budget/results"
+  ],
+  "warning": "Existing packaged App/receipt is the preceding manual-binding build; it does not contain the current automatic preparation code."
+}

@@ -1,0 +1,20 @@
+{
+  "contract_impact": "none",
+  "reason": "Opt-in test driver only. Reuses generated private control DTO, canonical product worker, Host model-key loader, Gateway JSON-RPC and both approval decisions; no production wire or behavior change.",
+  "driver_path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/internal/app/kimi_web_live_test.go",
+  "driver_sha256": "644076c1e5f234cce15159058913f27ca64ccc744eb964e05a8c554d63631194",
+  "preflight": "Go compile/default live skip, normal JSON/SSE parsing, go vet and diff check PASS; no supplier call",
+  "scope": "Deterministic MCP client test identities; no actual Native grant or Runtime/model turn claimed",
+  "limits": {
+    "search": 1,
+    "fetch": 1,
+    "model": 0,
+    "retry": 0,
+    "cny": "0.02"
+  },
+  "one_shot": "Exclusive started.json before loading credential; reserve each allowance durably before approve_once; existing per-call consumer requires matching elicitation decision. No retry loop.",
+  "failure": "Immediate stop on failed setup, approval, HTTP or validation; EOF cleanup only, no kill",
+  "credential": "Existing canonical Host loadKimiAPIKey, existing model file source; never print or second persist",
+  "production_binary_changed": false,
+  "checked_at": "2026-10-24T21:51:20.112264+08:00"
+}

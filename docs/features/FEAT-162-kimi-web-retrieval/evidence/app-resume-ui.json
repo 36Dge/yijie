@@ -1,0 +1,101 @@
+{
+  "recorded_at": "2026-10-24T01:25:59.628794+00:00",
+  "status": "PASS_LOCAL_STARTUP_AND_CONNECTOR_UI",
+  "release": false,
+  "receipt": {
+    "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/demo-fast/packaged-launch-receipt.json",
+    "sha256": "643a3ad24ca0ee349109141606c000f77ff144a42ae7435f5ab29f6f544a0bfe"
+  },
+  "host": {
+    "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.local/bin/yijie-agent-host",
+    "bytes": 17867122,
+    "mode": 493,
+    "sha256": "566f61125caec1c2a80dc6daf7379d8b8e532dfb1bab45d46758cd15af47b14d"
+  },
+  "runtime": {
+    "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex/.yijie/build/chat-models-web-sources/aarch64-apple-darwin/codex",
+    "bytes": 355944760,
+    "mode": 493,
+    "sha256": "9766d7e10d25327f0595964a19ad67e1e1c1db0c22e5a65f9af66b547ab316c6"
+  },
+  "worker": {
+    "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/bin/market-worker/1f35e4ab2d392dab59383f2951c495117f001ededfa97150b6f78c5bf0a10745/yijie-mcp-worker",
+    "bytes": 84680688,
+    "mode": 493,
+    "sha256": "1f35e4ab2d392dab59383f2951c495117f001ededfa97150b6f78c5bf0a10745"
+  },
+  "desktop": [
+    {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/target/debug/bundle/macos/易界 AI.app/Contents/MacOS/yijie-desktop",
+      "bytes": 185911968,
+      "mode": 493,
+      "sha256": "a3c3996b4f8269ea5a146b56736ca9abbd8a7a08c43b53a0639293d9ac9d1fae"
+    }
+  ],
+  "source_file_count": 1112,
+  "canonical_build_log": "app-resume-build-03.log",
+  "same_build_reopen_log": "app-resume-reopen.log",
+  "normal_shutdown": {
+    "method": "Cmd-Q",
+    "exit_code": 0,
+    "remaining_desktop_host_worker_artifact_runtime_processes": 0
+  },
+  "ui_checks": [
+    {
+      "check": "Application readiness and retained task list",
+      "status": "PASS"
+    },
+    {
+      "check": "Market 61 entries (3+5+12+2+14+16+9), Kimi search and icon/details",
+      "status": "PASS"
+    },
+    {
+      "check": "Fresh Kimi installation: installed but disabled",
+      "status": "PASS"
+    },
+    {
+      "check": "Empty credential form with separate Keyring and billing limitations",
+      "status": "PASS"
+    },
+    {
+      "check": "Cancel without entering or saving credential; returned disabled status",
+      "status": "PASS"
+    },
+    {
+      "check": "Chat connector picker Kimi switch disabled/off, no model turn",
+      "status": "PASS"
+    },
+    {
+      "check": "Same-build normal reopen retains installation/cancellation, app ready",
+      "status": "PASS"
+    },
+    {
+      "check": "1180x760 at scale2, content and primary action visible, keyboard focus",
+      "status": "PASS"
+    },
+    {
+      "check": "Original 1268x780 window restored",
+      "status": "PASS"
+    },
+    {
+      "check": "Dark appearance",
+      "status": "NOT RUN",
+      "reason": "Existing Settings and View menu expose no appearance switch; system appearance not changed"
+    }
+  ],
+  "new_credential_saved": false,
+  "supplier_requests": 0,
+  "paid_requests": 0,
+  "model_rounds": 0,
+  "final_app_pid": 82390,
+  "final_state": "App open at Kimi detail, installed but not enabled; configuration browser tab closed",
+  "screenshots": [
+    "ui-kimi-cancelled-light.jpg",
+    "ui-kimi-config-cancelled.jpg",
+    "ui-kimi-config-empty.jpg",
+    "ui-kimi-disabled-picker.jpg",
+    "ui-kimi-install-light.jpg",
+    "ui-kimi-reopen-1180x760.jpg",
+    "ui-kimi-reopened.jpg"
+  ]
+}

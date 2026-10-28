@@ -1,0 +1,28 @@
+{
+  "recorded_at": "2026-10-24T22:08:56.766704+08:00",
+  "status": "STOPPED_AT_LOCAL_PREFLIGHT",
+  "authorization": "User requested Go launcher repair and local preflight, then a new Search1/Fetch1 acceptance with CNY0.02 and zero model calls; stop on failure, no retry",
+  "go_launcher_repair": "PASS: resolve installed official Go1.26.5 with normal checksum verification, use its exact bin/go with GOTOOLCHAIN=local and GOSUMDB=sum.golang.org; no global go env change",
+  "local_compile_parser_vet_shell_check": "PASS",
+  "local_worker_preflight": "FAIL at mcp_initialize; no rerun",
+  "real_key_loaded": false,
+  "denial_check": "NOT RUN",
+  "search_http_requests": 0,
+  "fetch_http_requests": 0,
+  "model_requests": 0,
+  "other_kimi_requests": 0,
+  "supplier_cost_cny": "0.00",
+  "normal_eof_confirmed": true,
+  "supplier_http_sends_preflight": 0,
+  "diagnostics": "model_preparation started/succeeded only",
+  "retry_count": 0,
+  "owned_processes_observed": [],
+  "paid_acceptance_started": false,
+  "authorization_closed": true,
+  "runtime_changed": false,
+  "product_worker_changed": false,
+  "evidence": [
+    "live-minimal-round2-preflight.log",
+    "live-minimal-round2-preflight-result.json"
+  ]
+}
