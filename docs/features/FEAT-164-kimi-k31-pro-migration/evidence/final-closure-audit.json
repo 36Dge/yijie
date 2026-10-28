@@ -1,0 +1,219 @@
+{
+  "feature": "FEAT-164",
+  "status": "PASS_FINAL_READ_ONLY_AUDIT",
+  "observed_at": "2026-10-28T02:52:30.203361+00:00",
+  "contract_impact": "none",
+  "candidate": {
+    "status": "PASS",
+    "receipt_sha256": "28141579143c6da10ac47f11a164e7394cec83ae3559aa9dd50db5057c4cd915",
+    "D5_binding_sha256": "169d6713703abaaf35ad84fdcdbdc0778159fec0a18cf50f1bd4a339ad80a87c",
+    "descriptor_sha256": "4aba6ea641803030f3a6ed9312e76a516e3ef6fe48d30551c02588c6a2ba7c6e",
+    "sources": {
+      "yijie-desktop": {
+        "root": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+        "commit": "24a231f96f08ed077e53f9bd73a2aac93ee6cba8"
+      },
+      "yijie-contracts": {
+        "root": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+        "commit": "d5792d6aad18352ce8d1c5d510d345004cab3bd6"
+      },
+      "yijie-agent-host": {
+        "root": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host",
+        "commit": "7309101726dcecd48b2caa02401cfcdd6126f1fb"
+      },
+      "yijie-connectors": {
+        "root": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors",
+        "commit": "8e62101ff8ca94c2f9e12f4e415f20df41a7deed"
+      },
+      "yijie-skills": {
+        "root": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills",
+        "commit": "595c927ae101d3d31c234f60565041eee0864680"
+      },
+      "yijie-codex": {
+        "root": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-codex",
+        "commit": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a"
+      }
+    },
+    "input_artifact_records": 1410,
+    "old_source_absent": true
+  },
+  "normal_and_paused_D5_binding": "PASS",
+  "current_daily_files_match_report79": true,
+  "current_daily_regular_files": 17401,
+  "report79_evidence_files_verified": 91,
+  "report79_public_summary_and_UI_hashes_match": true,
+  "archive": {
+    "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/daily-source-retirement/20261028-01/daily-source-20261027-01.tar.zst",
+    "bytes": 3701716249,
+    "sha256": "7ed1fd6afe1ac8cb7495c7dd04d37c9583a51a9955cc1bce35e539711d10ddbf",
+    "at": "2026-10-28T01:17:19.932009+00:00"
+  },
+  "bundles": {
+    "yijie-contracts": {
+      "sha256": "43746f1686ca91c631cf90f7561bb30eb5545bec1cd639c1d99dc60b43c9c929",
+      "bytes": 1513769,
+      "all_saved_refs_preserved": true,
+      "verify": "PASS"
+    },
+    "yijie-agent-host": {
+      "sha256": "04754d57b9c9a0d404d24dbbbe0f059eb62ba28549b17193261f2c9ea11eb01d",
+      "bytes": 1269819,
+      "all_saved_refs_preserved": true,
+      "verify": "PASS"
+    },
+    "yijie-connectors": {
+      "sha256": "7b5950f078f5ce9961ba100bc02eade80e6b0019a9880f786c697190225ca9d5",
+      "bytes": 365535,
+      "all_saved_refs_preserved": true,
+      "verify": "PASS"
+    },
+    "yijie-skills": {
+      "sha256": "f954cac622e9496dc4668678a277fc2e8cba8aaeb803eec02d00aaf10aa36f1e",
+      "bytes": 8005698,
+      "all_saved_refs_preserved": true,
+      "verify": "PASS"
+    },
+    "yijie-desktop": {
+      "sha256": "1a236367db16a7758875e33d0a30b5cfab917b66c91392190166efaf53a9b219",
+      "bytes": 120445092,
+      "all_saved_refs_preserved": true,
+      "verify": "PASS"
+    }
+  },
+  "old_top_level_directories": 0,
+  "old_daily_source_absent": true,
+  "old_worktree_registrations": 0,
+  "repositories_checked": 12,
+  "symlinks_checked": 14378,
+  "old_directory_link_targets": 0,
+  "active_metadata_checked": 8,
+  "active_old_source_references": 0,
+  "seven_ledger_hashes": {
+    "g2v-real-budget-ledger-search-third.json": "80e1146d8435e841f7c09640936e9a384f62de6ba218e4a93820dd60d8fd1082",
+    "g2v-real-budget-ledger-functional.json": "ef1ab17f07ffece0e1ecd073c8750633da6c07319e0007a15a38a82a56a1c0a1",
+    "g2v-real-budget-ledger-r3.json": "b58101ee9cb0755c721e828864a7fcc39580010b5b482ac7ea83af9a5f28f4ea",
+    "g2v-real-budget-ledger-r5.json": "dc7acd578b049f8e261a5fde0320ee64acdf3fb7028958747c31b61cb1f5a0f1",
+    "g2v-real-budget-ledger-search.json": "905ea958a47cf69afb1ca06056d0564cfc066354cb297a7e36871156c4fbab6c",
+    "g2v-real-budget-ledger-before-30.json": "83983b80a6ffd19c42cd968384f1e09a62da912e817e4332abfe4edae1f28ca4",
+    "g2v-real-budget-ledger.json": "2dbd19be2a8bda267437bcf0330fff1af122778388d6e3df965291ec840b7dcf"
+  },
+  "reservations_released": false,
+  "project_processes": 0,
+  "App_starts": 0,
+  "model_HTTP": 0,
+  "workflow_probe_or_lifecycle": false,
+  "database_API_open": false,
+  "product_Runtime_or_source_lock_changes": false,
+  "push": false,
+  "runtime_acceptance_evidence": "report79 historical actual run, not repeated by this audit",
+  "full_App_positive_never_sent": "NOT RUN; owner-accepted safe layered substitute",
+  "owner_excluded": [
+    "search answer correctness/exact-page hit/answer quality",
+    "light-dark/keyboard-focus/minimum-window special acceptance"
+  ],
+  "remaining_in_approved_scope": [],
+  "closure_status": "closed",
+  "closed_at": "2026-10-28T02:54:42.833989+00:00",
+  "closure_authority": "Owner current explicit request; existing scope decisions preserved",
+  "report": "80-final-audit-and-feature-closure.md",
+  "private_evidence_root": "yijie/.local/final-closure/20261028-01",
+  "private_audit_script_sha256": "442a35ad884139c51fc31f6cc2226d99768b48b4e1c8330ec5775fb70a465e71",
+  "private_audit_result_sha256": "938f1f76d376f4abef28b52752c7aef53dc06df47f4a5d8a87664d386029ef18",
+  "original_meta_dirty_paths": 243,
+  "governance_checks": [
+    {
+      "name": "meta-lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie",
+      "started_at": "2026-10-28T02:55:25.232181+00:00",
+      "completed_at": "2026-10-28T02:55:25.679650+00:00",
+      "exit_code": 0,
+      "log_sha256": "9a1a92614b4c74efdfa6d5d7d6ec9d1d2e70680bc3386237ba244fd67b68ad57"
+    },
+    {
+      "name": "meta-tests",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie",
+      "started_at": "2026-10-28T02:55:25.232276+00:00",
+      "completed_at": "2026-10-28T02:55:34.757283+00:00",
+      "exit_code": 0,
+      "log_sha256": "146020df6d8f26ab92c54404d62910a9591cd4699f3176ccf0a068bbfb1284ae"
+    },
+    {
+      "name": "shell-syntax",
+      "command": [
+        "python3",
+        "-B",
+        "-c",
+        "from pathlib import Path; import subprocess; paths=sorted(Path(\"scripts\").glob(\"*.sh\")); [subprocess.run([\"bash\",\"-n\",str(p)],check=True) for p in paths]; print(str(len(paths))+\" shell scripts PASS\")"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie",
+      "started_at": "2026-10-28T02:55:25.232259+00:00",
+      "completed_at": "2026-10-28T02:55:25.271319+00:00",
+      "exit_code": 0,
+      "log_sha256": "3e4fa51c66efbfd479199ded33cd7508a50f364ba1cd308c989ac09d4052cbd0"
+    },
+    {
+      "name": "claims",
+      "command": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--audit-claims",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie",
+      "started_at": "2026-10-28T02:55:25.232201+00:00",
+      "completed_at": "2026-10-28T02:55:25.538138+00:00",
+      "exit_code": 0,
+      "log_sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4"
+    },
+    {
+      "name": "strict-g6",
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "--gate",
+        "G6",
+        "docs/features/FEAT-164-kimi-k31-pro-migration"
+      ],
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie",
+      "started_at": "2026-10-28T02:55:25.232181+00:00",
+      "completed_at": "2026-10-28T02:55:25.364694+00:00",
+      "exit_code": 0,
+      "log_sha256": "71a8ffc0fa1d4b01f7a7d7aee778b36a9c0aba253eb4e1db84c4009a2e598016"
+    }
+  ],
+  "governance_tests": {
+    "passed": 57,
+    "failed": 0,
+    "skipped": 0
+  },
+  "tool_versions": {
+    "node": "v26.0.0",
+    "pnpm": "11.25.0",
+    "git": "git version 2.50.1 (Apple Git-155)",
+    "python3": "Python 3.14.5"
+  },
+  "separate_review": {
+    "status": "PASS_PRECOMMIT_SEPARATE_REVIEW",
+    "at": "2026-10-28T02:57:02.368098+00:00",
+    "original_dirty_files_preserved": 243,
+    "other_11_repositories_exact_state_preserved": true,
+    "historical_feature_files_unchanged": 2271,
+    "local_links_checked": 27,
+    "memory_unrelated_insertion_preserved_and_excluded_from_staging": true,
+    "accepted_substitute_NOT_RUN_preserved": true,
+    "owner_excluded_not_counted_as_PASS": true,
+    "reviewer": "Codex separate structured self-review; Owner closure authority is the explicit current user request",
+    "remaining_in_approved_scope": [],
+    "product_Runtime_changes": false,
+    "private_record_sha256": "9881e8811fdda05affb992c4128737186751075ef8b1a8b9535ca8df3171e892"
+  }
+}

@@ -1,5 +1,7 @@
 # FEAT-164 — Kimi K3.1 Pro 模型替换与历史兼容
 
+> 最终关闭（2026-10-28）：Owner已要求完成最终收口并关闭FEAT-164，结论见[80](80-final-audit-and-feature-closure.md)及[关闭审计证据](evidence/final-closure-audit.json)。S1—S4、D1—D5、原主目录构建运行、已批准旧目录清理及79清理后实际验收均完成，批准范围内无剩余事项。完整App正向never-sent取消仍NOT RUN且已接受安全替代；搜索答案正确性与亮暗/键盘/最小窗口专项为OWNER_EXCLUDED。79仍是最新实际App运行证据，80只做最终审计与文档关闭，不新增产品、Runtime或模型执行。以下历史记录保留原时点语义。
+
 > 当前口径：原主工作目录构建与退出修复见[76](76-primary-workspace-execution.md)/[77](77-primary-system-quit-root-cause-and-plan.md)，旧daily-source清理见[78](78-old-daily-source-retirement.md)，清理后一次真实启动、8会话/11轮历史UI与正常退出及后态验收见[79](79-post-cleanup-app-history-acceptance.md)。当前源码为原`CrossBSD/yijie-desktop`，generation `20261028-02`；模型HTTP新增0，新来源历史界面已实际通过，76原锁屏跳过记录仍保留。完整App正向never-sent取消仍NOT RUN且已有接受替代；搜索答案/外观专项永久移除。当前状态见[矩阵](current-acceptance-matrix.md)，下文旧阶段的“当前”均按各自时点解释。
 
 ## 第71—74号时点来源与清理历史（已由76号原主目录来源取代）

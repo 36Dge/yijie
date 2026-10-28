@@ -1,5 +1,7 @@
 # FEAT-164 实际验证记录
 
+> 最终关闭（2026-10-28）：Owner已要求完成最终收口并关闭FEAT-164，结论见[80](80-final-audit-and-feature-closure.md)及[关闭审计证据](evidence/final-closure-audit.json)。S1—S4、D1—D5、原主目录构建运行、已批准旧目录清理及79清理后实际验收均完成，批准范围内无剩余事项。完整App正向never-sent取消仍NOT RUN且已接受安全替代；搜索答案正确性与亮暗/键盘/最小窗口专项为OWNER_EXCLUDED。79仍是最新实际App运行证据，80只做最终审计与文档关闭，不新增产品、Runtime或模型执行。以下历史记录保留原时点语义。
+
 > 当前口径：原主工作目录构建与退出修复见[76](76-primary-workspace-execution.md)/[77](77-primary-system-quit-root-cause-and-plan.md)，旧daily-source清理见[78](78-old-daily-source-retirement.md)，清理后一次真实启动、8会话/11轮历史UI与正常退出及后态验收见[79](79-post-cleanup-app-history-acceptance.md)。当前源码为原`CrossBSD/yijie-desktop`，generation `20261028-02`；模型HTTP新增0，新来源历史界面已实际通过，76原锁屏跳过记录仍保留。完整App正向never-sent取消仍NOT RUN且已有接受替代；搜索答案/外观专项永久移除。当前状态见[矩阵](current-acceptance-matrix.md)，下文旧阶段的“当前”均按各自时点解释。
 
 ## 第60号历史D1实施结果（2026-10-27）
@@ -759,3 +761,11 @@ PASS_DOCUMENTATION_ONLY：当前完成、Owner接受的never-sent分层替代（
 <a id="E164-POSTCLEANUP-HISTORY"></a>
 
 [79](79-post-cleanup-app-history-acceptance.md)及[机器证据](evidence/post-cleanup-app-acceptance.json)：同一generation20261028-02一次canonical启动，当前UI实际读取8会话/11轮历史、2附件、命令详情和已删除计划保护；App标准⌘Q正常退出，停止代123→124、活动WAL/SHM0、无进程/句柄，原业务/授权/Host值/Runtime业务及rollout保持。模型HTTP0、provider metadata HTTP0；依既有65授权恢复同一workflow栈，4停止态卷备份保留、6primary实际ready。76因锁屏跳过的历史界面项现已补齐，原NOT RUN替代及Owner移除范围保持；不新增产品/Runtime修改或发布范围。
+
+
+## 最终关闭审计（2026-10-28）
+
+<!-- evidence: E164-FINAL-CLOSURE -->
+<a id="E164-FINAL-CLOSURE"></a>
+
+[80](80-final-audit-and-feature-closure.md)及[关闭审计证据](evidence/final-closure-audit.json)记录当前来源/制品1,410项、正常/暂停D5绑定、17,401个日常文件与79退出后快照、91份证据、12仓旧worktree登记、14,378个符号链接、8份活动元数据、完整归档/五仓bundle及引用/七账本的只读复核。所有检查通过，原历史与两份预占保持；本轮无App启动、数据库API、workflow或模型调用。元仓lint/test、Shell语法、claims与strict/G6实际结果随证据记录，仅本地提交治理文档。Owner要求关闭，批准范围无剩余事项；完整App正向never-sent仍NOT RUN且有接受替代，永久移除项不计PASS。

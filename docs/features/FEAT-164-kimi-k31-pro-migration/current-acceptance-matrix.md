@@ -1,5 +1,7 @@
 # FEAT-164 当前验收与来源矩阵
 
+> 最终关闭（2026-10-28）：Owner已要求完成最终收口并关闭FEAT-164，结论见[80](80-final-audit-and-feature-closure.md)及[关闭审计证据](evidence/final-closure-audit.json)。S1—S4、D1—D5、原主目录构建运行、已批准旧目录清理及79清理后实际验收均完成，批准范围内无剩余事项。完整App正向never-sent取消仍NOT RUN且已接受安全替代；搜索答案正确性与亮暗/键盘/最小窗口专项为OWNER_EXCLUDED。79仍是最新实际App运行证据，80只做最终审计与文档关闭，不新增产品、Runtime或模型执行。以下历史记录保留原时点语义。
+
 2026-10-28。原S1—S4/D1—D5完成范围保持；已实现**直接从原`CrossBSD/yijie-desktop`实际源码构建运行**，不转调`.local/daily-source`。构建运行以[76](76-primary-workspace-execution.md)、[77](77-primary-system-quit-root-cause-and-plan.md)及[机器证据](evidence/primary-workspace-execution-result.json)为准；随后[78](78-old-daily-source-retirement.md)已按Owner授权清理旧`daily-source/20261027-01`及8个worktree，完整归档/bundle保留，清理后来源和入口只读检查通过。第71—74号完整矩阵保存在[历史快照](current-acceptance-matrix-history-report71-74.md)，原执行时间、失败、接受替代和Owner排除不改写。
 
 第79号补充：旧目录清理后，同一generation已完成一次零模型canonical启动、8会话/11轮实际UI历史、定时任务历史保护及正常⌘Q退出。该次完整后态通过，停止代123→124，活动WAL/SHM0；原锁屏跳过的历史界面项已补齐。第76—78号矩阵原文保存在[历史快照](current-acceptance-matrix-history-report76-78.md)。

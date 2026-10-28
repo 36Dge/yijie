@@ -1,5 +1,11 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 最终已关闭（2026-10-28）
+
+Owner要求将最终审计落盘、本地提交并关闭需求，最新收口见[80](../features/FEAT-164-kimi-k31-pro-migration/80-final-audit-and-feature-closure.md)。S1—S4、D1—D5、原yijie-desktop实际主目录构建运行、已批准旧目录清理及79清理后8会话/11轮历史和正常退出验收完成，批准范围内无剩余步骤。feature.status保持completed，final_closure.status为closed；不是未完成验收的terminated。日常入口为原仓`pnpm daily:open --generation 20261028-02`，先正常退出后可追加`--pause-kimi`；旧daily-source无活动依赖，保全引用/归档/bundle、原工作、七账本和两预占保持。
+
+完整App正向never-sent取消仍NOT RUN，沿用Owner接受的安全分层替代；搜索答案正确性和亮暗/键盘/最小窗口专项永久移除，不补试、不冒充PASS。79是最新实际App运行证据，80仅文档与只读复核，0新增模型/产品/Runtime/workflow操作，不推送。此关闭不涵盖public/cloud/多人/签名发布、默认分支合并、其它需求或额外清理；下方历史续办状态不再是执行指令。
+
 ## FEAT-164 清理后实际 App 历史与退出验收完成（2026-10-28）
 
 当前以[79](../features/FEAT-164-kimi-k31-pro-migration/79-post-cleanup-app-history-acceptance.md)为最新运行验收。原yijie-desktop generation20261028-02经canonical日常入口追加`--pause-kimi`完成一次清理后启动；真实UI逐一核验8会话/11轮、2附件、命令详情、旧K3退役禁发与已删除计划历史/禁重跑。App自身⌘Q正常退出0，停止代123→124、活动WAL/SHM0、锁和进程句柄释放；71Native表仅停止代新增，其余原业务/授权、Host值、Runtime业务/rollout保持，日志追加608行。完整后态17,401文件/523,139,568字节；模型HTTP0、provider metadata HTTP0、业务工具0。76/78锁屏跳过的新来源历史界面项已由本轮实际执行补齐，原跳过历史不改写。
