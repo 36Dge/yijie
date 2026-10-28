@@ -1,0 +1,178 @@
+{
+  "feature": "FEAT-164",
+  "status": "PASS_OLD_SOURCE_RETIRED",
+  "date": "2026-10-28",
+  "report": "78-old-daily-source-retirement.md",
+  "target": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/daily-source/20261027-01",
+  "target_absent": true,
+  "plan_sha256": "1254c68e0fc7b06232c260449473269fe7ceb8e5fc864693183ba1acdc30eb07",
+  "full_inventory_sha256": "3b8c23385637bd4fb6fc387479e329b0d5f4efbd920209478bbb47407e7768bc",
+  "archive": {
+    "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/daily-source-retirement/20261028-01/daily-source-20261027-01.tar.zst",
+    "bytes": 3701716249,
+    "sha256": "7ed1fd6afe1ac8cb7495c7dd04d37c9583a51a9955cc1bce35e539711d10ddbf",
+    "at": "2026-10-28T01:17:19.932009+00:00"
+  },
+  "archive_entries": 75547,
+  "archive_exact_restore": "PASS",
+  "archive_metadata_differences": 0,
+  "removed_worktrees": [
+    {
+      "repository": "yijie-agent-host",
+      "relative_path": "yijie-desktop/.local/agent-host-pinned-1b7bfd1",
+      "head": "1b7bfd1ce4323e52035b2ba1e62842c2d332d9ed",
+      "containing_refs": [
+        "refs/heads/chore/retirement-baseline-20260905 d49c005f8e533e1251179bb2319f6e3e2ec2db08",
+        "refs/heads/feat/feat-129-desktop-skill-marketplace 1b7bfd1ce4323e52035b2ba1e62842c2d332d9ed",
+        "refs/heads/feat/feat-134-desktop-streaming-progress-final-response b9358f06f3a15aa17a2471cf0bb8bfd0e2b29bfe",
+        "refs/heads/feat/feat-136-desktop-command-tool-items 96b1fa19783694aef583b614c492fd2b6b5c15cc",
+        "refs/heads/feat/feat164-consolidation-20261027 7309101726dcecd48b2caa02401cfcdd6126f1fb",
+        "refs/heads/feat/feat164-primary-20261028 7309101726dcecd48b2caa02401cfcdd6126f1fb",
+        "refs/heads/retained/feat164-20261027/daily-host a3d8767add3855a28c18adbbd51251fae3520ac0",
+        "refs/heads/retained/feat164-20261027/retained-s2-tests f97d2216001e78df02e93c972a6aec2e1d772f58",
+        "refs/heads/retained/primary-wip-20261028-01 fab200984bc9fa70870859a5e3a4f855a2cb1c94",
+        "refs/remotes/origin/chore/retirement-baseline-20260905 283dcbd7d79ca7bd7a56dba0cb915024fff8eb72",
+        "refs/remotes/origin/feat/feat-129-desktop-skill-marketplace 1b7bfd1ce4323e52035b2ba1e62842c2d332d9ed",
+        "refs/remotes/origin/feat/feat-134-desktop-streaming-progress-final-response b9358f06f3a15aa17a2471cf0bb8bfd0e2b29bfe"
+      ],
+      "gitdir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.git/worktrees/agent-host-pinned-1b7bfd11",
+      "git_pointer": "gitdir: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.git/worktrees/agent-host-pinned-1b7bfd11\n"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "relative_path": "yijie-desktop/.local/agent-host-pinned-96b1fa1",
+      "head": "96b1fa19783694aef583b614c492fd2b6b5c15cc",
+      "containing_refs": [
+        "refs/heads/chore/retirement-baseline-20260905 d49c005f8e533e1251179bb2319f6e3e2ec2db08",
+        "refs/heads/feat/feat-136-desktop-command-tool-items 96b1fa19783694aef583b614c492fd2b6b5c15cc",
+        "refs/heads/feat/feat164-consolidation-20261027 7309101726dcecd48b2caa02401cfcdd6126f1fb",
+        "refs/heads/feat/feat164-primary-20261028 7309101726dcecd48b2caa02401cfcdd6126f1fb",
+        "refs/heads/retained/feat164-20261027/daily-host a3d8767add3855a28c18adbbd51251fae3520ac0",
+        "refs/heads/retained/feat164-20261027/retained-s2-tests f97d2216001e78df02e93c972a6aec2e1d772f58",
+        "refs/heads/retained/primary-wip-20261028-01 fab200984bc9fa70870859a5e3a4f855a2cb1c94",
+        "refs/remotes/origin/chore/retirement-baseline-20260905 283dcbd7d79ca7bd7a56dba0cb915024fff8eb72"
+      ],
+      "gitdir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.git/worktrees/agent-host-pinned-96b1fa11",
+      "git_pointer": "gitdir: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.git/worktrees/agent-host-pinned-96b1fa11\n"
+    },
+    {
+      "repository": "yijie-skills",
+      "relative_path": "yijie-desktop/.local/skills-pinned-10c45be",
+      "head": "10c45bec29603b002e861e1499d5b4e684251af5",
+      "containing_refs": [
+        "refs/heads/develop 595c927ae101d3d31c234f60565041eee0864680",
+        "refs/heads/feat/feat164-primary-20261028 595c927ae101d3d31c234f60565041eee0864680",
+        "refs/heads/retained/primary-wip-20261028-01 78bbfd119f261e735c55127332f446800bf34fb7",
+        "refs/remotes/origin/develop 595c927ae101d3d31c234f60565041eee0864680"
+      ],
+      "gitdir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills/.git/worktrees/skills-pinned-10c45be4",
+      "git_pointer": "gitdir: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills/.git/worktrees/skills-pinned-10c45be4\n"
+    },
+    {
+      "repository": "yijie-desktop",
+      "relative_path": "yijie-desktop",
+      "head": "a211c2d04def6091352c7b3674a49355cdee18ed",
+      "containing_refs": [
+        "refs/heads/feat/feat164-consolidation-20261027 a211c2d04def6091352c7b3674a49355cdee18ed",
+        "refs/heads/feat/feat164-primary-20261028 24a231f96f08ed077e53f9bd73a2aac93ee6cba8"
+      ],
+      "gitdir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.git/worktrees/yijie-desktop4",
+      "git_pointer": "gitdir: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.git/worktrees/yijie-desktop4\n"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "relative_path": "yijie-agent-host",
+      "head": "7309101726dcecd48b2caa02401cfcdd6126f1fb",
+      "containing_refs": [
+        "refs/heads/feat/feat164-consolidation-20261027 7309101726dcecd48b2caa02401cfcdd6126f1fb",
+        "refs/heads/feat/feat164-primary-20261028 7309101726dcecd48b2caa02401cfcdd6126f1fb"
+      ],
+      "gitdir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.git/worktrees/yijie-agent-host4",
+      "git_pointer": "gitdir: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-agent-host/.git/worktrees/yijie-agent-host4\n"
+    },
+    {
+      "repository": "yijie-contracts",
+      "relative_path": "yijie-contracts",
+      "head": "d5792d6aad18352ce8d1c5d510d345004cab3bd6",
+      "containing_refs": [
+        "refs/heads/feat/feat164-consolidation-20261027 d5792d6aad18352ce8d1c5d510d345004cab3bd6",
+        "refs/heads/feat/feat164-primary-20261028 d5792d6aad18352ce8d1c5d510d345004cab3bd6",
+        "refs/heads/retained/feat164-20261027/archive-v5-contract d5792d6aad18352ce8d1c5d510d345004cab3bd6"
+      ],
+      "gitdir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts/.git/worktrees/yijie-contracts4",
+      "git_pointer": "gitdir: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts/.git/worktrees/yijie-contracts4\n"
+    },
+    {
+      "repository": "yijie-connectors",
+      "relative_path": "yijie-connectors",
+      "head": "cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9",
+      "containing_refs": [
+        "refs/heads/develop cc56cdaa616c9d9eff8efa1f9e1307d084f3dff9",
+        "refs/heads/feat/feat164-primary-20261028 8e62101ff8ca94c2f9e12f4e415f20df41a7deed",
+        "refs/heads/retained/primary-wip-20261028-01 d2d65c8e78e5d1c5d23c27d4de10181ef03a54b9"
+      ],
+      "gitdir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/.git/worktrees/yijie-connectors",
+      "git_pointer": "gitdir: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-connectors/.git/worktrees/yijie-connectors\n"
+    },
+    {
+      "repository": "yijie-skills",
+      "relative_path": "yijie-skills",
+      "head": "595c927ae101d3d31c234f60565041eee0864680",
+      "containing_refs": [
+        "refs/heads/develop 595c927ae101d3d31c234f60565041eee0864680",
+        "refs/heads/feat/feat164-primary-20261028 595c927ae101d3d31c234f60565041eee0864680",
+        "refs/heads/retained/primary-wip-20261028-01 78bbfd119f261e735c55127332f446800bf34fb7",
+        "refs/remotes/origin/develop 595c927ae101d3d31c234f60565041eee0864680"
+      ],
+      "gitdir": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills/.git/worktrees/yijie-skills",
+      "git_pointer": "gitdir: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-skills/.git/worktrees/yijie-skills\n"
+    }
+  ],
+  "ordinary_removal_operations": 12,
+  "force": false,
+  "all_five_bundles_independently_restored": true,
+  "original_Git_refs_retained": true,
+  "current_primary_verification": {
+    "status": "PASS",
+    "at": "2026-10-28T01:24:21.030643+00:00",
+    "generation": "20261028-02",
+    "root": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+    "source_inputs": 1230,
+    "worker_inputs": 55,
+    "bundle_files": 119,
+    "other_artifacts": 6,
+    "receipt_sha256": "28141579143c6da10ac47f11a164e7394cec83ae3559aa9dd50db5057c4cd915",
+    "D5_binding_sha256": "169d6713703abaaf35ad84fdcdbdc0778159fec0a18cf50f1bd4a339ad80a87c",
+    "descriptor_sha256": "4aba6ea641803030f3a6ed9312e76a516e3ef6fe48d30551c02588c6a2ba7c6e",
+    "current_sources_clean": true,
+    "normal_and_paused_binding": "PASS",
+    "old_source_in_current_binding_or_receipt": false,
+    "daily_file_count": 5629,
+    "daily_data_unchanged": true,
+    "App_started": false,
+    "model_HTTP": 0
+  },
+  "post_cleanup_source_checks": {
+    "status": "PASS",
+    "checks": 19
+  },
+  "reverse_symlinks_checked": 15601,
+  "active_build_metadata_checked": 3163,
+  "external_dependency_hits": 0,
+  "prior_archive_preserved": true,
+  "original_twelve_repositories_retained": true,
+  "original_243_meta_dirty_paths_preserved": true,
+  "ledgers_and_reservations_preserved": true,
+  "temporary_extraction_removed": true,
+  "App_launched": false,
+  "Runtime_or_product_changed": false,
+  "model_HTTP": 0,
+  "push": false,
+  "recovery": "Restore reviewed archive and register worktrees at preserved commits; do not reuse archived .git pointers, overwrite daily databases, downgrade schema or reuse old acceptance as a fresh launch approval.",
+  "governance": {
+    "lint": "PASS",
+    "tests_passed": 57,
+    "claims": "PASS",
+    "strict_G6": "PASS"
+  }
+}

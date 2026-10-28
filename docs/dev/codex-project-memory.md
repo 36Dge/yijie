@@ -1,5 +1,11 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-164 旧 daily-source 已安全清理（2026-10-28）
+
+当前清理后态以[78](../features/FEAT-164-kimi-k31-pro-migration/78-old-daily-source-retirement.md)为准。Owner已明确授权审计、精确列清单后清除；旧`yijie/.local/daily-source/20261027-01`及8个worktree已正常移除，无force/prune。完整75,547项归档独立恢复完全一致、五仓bundle重新独立恢复/fsck通过；归档在`yijie/.local/daily-source-retirement/20261028-01/`，保留原Git引用、12原仓、原工作、账本和预占。旧来源如需回退须从归档恢复并重新注册/审定，旧.git指针不能复用，不能覆盖日常库。
+
+原主目录generation20261028-02和`pnpm daily:open --generation 20261028-02`不变；清理后19项来源、1410项输入/制品、正常/暂停D5绑定只读检查通过，三个活动日常Home的5,629个普通文件逐项保持。本轮未启动App、未探测workflow、未调用模型；锁屏UI跳过及原接受替代/移除范围不变。下方76的“旧daily-source保留”仅表示此次清理前历史状态。
+
 ## FEAT-164 原主工作目录构建运行完成（2026-10-28）
 
 当前以[76](../features/FEAT-164-kimi-k31-pro-migration/76-primary-workspace-execution.md)、[77](../features/FEAT-164-kimi-k31-pro-migration/77-primary-system-quit-root-cause-and-plan.md)及[当前矩阵](../features/FEAT-164-kimi-k31-pro-migration/current-acceptance-matrix.md)为准。原CrossBSD/yijie-desktop实际源码Desktop24a231f、Connectors8e62101，generation20261028-02，仓内`pnpm daily:open --generation 20261028-02`正常启用Kimi，追加`--pause-kimi`暂停；不转调daily-source，不重建已缺失的桌面.command。原WIP501项已恢复核验，254源码在五仓retained/primary-wip-20261028-01保护提交及bundle，4缓存独立保全；当前主目录选择已审FEAT164基线，未采纳其它需求不自动启用。旧daily-source/原仓/新归档/bundle保留，本轮无目录清理。

@@ -2307,8 +2307,13 @@ current_completion_audit:
   protected_cache_paths: 4
   final_bundle_standalone_restore: PASS for all refs of five affected repositories including six independent tips
   seven_ledgers_and_two_reservations_preserved: true
-  old_fixed_source_retained: true
-  source_directory_cleanup: false
+  old_fixed_source_retained: false
+  old_fixed_source_archive_retained: true
+  source_directory_cleanup: true
+  source_directory_cleanup_report: 78-old-daily-source-retirement.md
+  source_directory_cleanup_evidence: evidence/old-daily-source-retirement.json
+  source_directory_cleanup_worktrees: 8
+  source_directory_cleanup_scope: Only daily-source/20261027-01; full archive independently restored, all refs and bundles retained, current primary inputs and daily data unchanged
   old_desktop_shortcuts: Absent before this operation; not recreated; current entry is original-repository pnpm command
   old_top_level_preservation: Absent before this operation; new verified archive is not a claim of restoring missing historical archives
   full_App_positive_never_sent: NOT RUN; accepted safe layered substitute remains valid
@@ -2320,7 +2325,7 @@ current_completion_audit:
     - new primary App history UI observation
   outside_scope:
     - public/cloud/multi-user/signed or complete cross-platform release
-    - directory cleanup or activating preserved unrelated WIP
+    - further directory cleanup or activating preserved unrelated WIP
   push: false
 
 historical_completion_audit_report71_74:

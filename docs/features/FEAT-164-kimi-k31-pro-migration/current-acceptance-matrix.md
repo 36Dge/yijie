@@ -1,6 +1,6 @@
 # FEAT-164 当前验收与来源矩阵
 
-2026-10-28。原S1—S4/D1—D5完成范围保持；本轮已实现**直接从原`CrossBSD/yijie-desktop`实际源码构建运行**，不转调`.local/daily-source`。当前以[76](76-primary-workspace-execution.md)、[77](77-primary-system-quit-root-cause-and-plan.md)及[机器证据](evidence/primary-workspace-execution-result.json)为准。第71—74号完整矩阵保存在[历史快照](current-acceptance-matrix-history-report71-74.md)，原执行时间、失败、接受替代和Owner排除不改写。
+2026-10-28。原S1—S4/D1—D5完成范围保持；已实现**直接从原`CrossBSD/yijie-desktop`实际源码构建运行**，不转调`.local/daily-source`。构建运行以[76](76-primary-workspace-execution.md)、[77](77-primary-system-quit-root-cause-and-plan.md)及[机器证据](evidence/primary-workspace-execution-result.json)为准；随后[78](78-old-daily-source-retirement.md)已按Owner授权清理旧`daily-source/20261027-01`及8个worktree，完整归档/bundle保留，清理后来源和入口只读检查通过。第71—74号完整矩阵保存在[历史快照](current-acceptance-matrix-history-report71-74.md)，原执行时间、失败、接受替代和Owner排除不改写。
 
 ## 当前完成及验收边界
 
@@ -11,7 +11,7 @@
 | 已接受替代 | 原57/58 never-sent安全分层替代保持，完整App正向never-sent取消仍NOT RUN；不扩展该接受为本轮UI已执行。 |
 | 已移除 | 搜索答案正确性/指定页面命中/确定回答质量，亮暗/键盘焦点/最小窗口专项均OWNER_EXCLUDED，不恢复为待办或PASS。 |
 | 仍保留 | 模型/退役/恢复/计划授权、搜索sources安全传递、Key与审批预算、旧unknown事实及正常退出。 |
-| 范围外 | public/cloud/多人/签名/完整跨平台发布；本轮没有目录清理。旧fixed-source、归档、bundle、12原仓和原数据保留。 |
+| 范围外 | public/cloud/多人/签名/完整跨平台发布及进一步目录清理。78仅清理已审旧daily-source；完整归档、bundle、12原仓和原数据保留。 |
 
 ## 当前来源与仓内入口
 
@@ -32,7 +32,7 @@
 | 暂停入口 | 同命令追加`--pause-kimi`，先正常退出；真实catalog确认Kimi暂停、MiniMax可用 |
 | 原数据与服务 | 原Native SQL41、Host11、Home/身份/权限保持，D3未重跑；既有workflow实际ready，无up/恢复/迁移操作 |
 
-原桌面两个.command与顶层旧preservation在本轮开始前已缺失，本轮未删除/恢复它们；不能再把旧路径写成当前可用入口。新归档及五仓最终bundle已独立恢复校验。旧daily-source是保留回退来源，不参与当前构建/运行。
+原桌面两个.command与顶层旧preservation在76开始前已缺失，76/78未删除/恢复它们；不能再把旧路径写成当前可用入口。新归档及五仓最终bundle已独立恢复校验。旧daily-source已由78清理；旧来源仅保存在完整归档和Git引用/bundle中，需按78恢复并重新审定，不参与当前构建/运行。
 
 ## 新来源实际证据
 
@@ -75,6 +75,6 @@
 
 ## 保全与后续
 
-此前两轮74个旧顶层目录清理结论仍是73号历史事实，本轮不删除任何目录。现存旧daily-source、12原仓、所有保护引用及新备份/bundle保留；缺失旧归档的事实不被新备份掩盖。恢复未采纳WIP须从保护提交/新bundle/归档按需求审阅，不直接整份启用；回退先正常退出、备份和验证兼容来源，不降schema、覆盖日常库、重跑D3或清空WAL。
+此前两轮74个旧顶层目录清理结论仍是73号历史事实。78另按精确清单清理`daily-source/20261027-01`及8个worktree，12原仓、所有保护引用、旧账本/预占及新备份/bundle保留；缺失更早归档的事实不被新备份掩盖。旧daily-source完整归档已独立恢复75,547项，清理后19项来源和1410项输入/制品核对通过，原日常数据保持。恢复未采纳WIP或旧来源须从保护提交/bundle/归档按需求审阅，不直接整份启用；回退先正常退出、备份和验证兼容来源，不降schema、覆盖日常库、重跑D3或清空WAL。
 
 原主目录构建运行目标已完成。锁屏相关App历史界面观察保持跳过；原完整App正向never-sent取消NOT RUN且已有接受替代，永久排除项不重新安排。未来开发改变主源码后应canonical新generation构建、资格及显式绑定，旧回执不能自动刷新。
