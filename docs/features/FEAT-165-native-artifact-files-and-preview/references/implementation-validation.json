@@ -1,0 +1,916 @@
+{
+  "feature": "FEAT-165",
+  "date": "2026-10-28",
+  "status": "local_demo_usable_d4_pass",
+  "contracts_commit": "61137174a25dc368e0006f27633fd4a9ad097aa6",
+  "real_model_requests": null,
+  "daily_database_touched": false,
+  "git_pushes": 0,
+  "runtime_source_changes": false,
+  "native_user_message_type_changes": false,
+  "sources": {
+    "yijie-contracts": {
+      "head": "61137174a25dc368e0006f27633fd4a9ad097aa6",
+      "status": ""
+    },
+    "yijie-agent-host": {
+      "head": "20539889259587a66a574201e521c2ea9469c54d",
+      "status": "M api/artifact-media.candidate.json\n M api/chat-models-v2.candidate.json\n M api/contracts.lock\n M api/experts-v2.candidate.json\n M api/experts-v2.schema.json\n M api/jsonschema/agent-session-event-v6.schema.json\n M api/market-broker-control.candidate.json\n M api/market-host-v2.candidate.json\n M api/market-host-v2.schema.json\n M api/market-selection-v2.candidate.json\n M api/native-conversation.lock.json\n M api/native-mcp.lock.json\n M api/openapi/agent-host.yaml\n M api/openapi/runtime-permissions.yaml\n M api/runtime-kimi-k31-pro.candidate.json\n M api/runtime-permissions.lock.json\n M artifact-mcp/src/types.gen.rs\n M internal/app/app.go\n M internal/app/artifact_media.go\n M internal/artifact/store.go\n M internal/contracts/agenthost.gen.go\n M internal/contracts/artifactmedia/types.gen.go\n M internal/contracts/markethost/types.gen.go\n M internal/contracts/runtimepermissions/types.gen.go\n M internal/session/artifact_media.go\n M internal/session/events.go\n M internal/session/multimodal.go\n M internal/session/service.go\n M scripts/check-feat137-contracts.sh\n M scripts/sync-feat137-contracts.sh\n?? api/schemas/artifact-media-v2.schema.json\n?? internal/artifact/office.go\n?? internal/session/feat165_files_test.go"
+    },
+    "yijie-desktop": {
+      "head": "0247b7cfbe3a4a2020a29417d96b8a5718b3923d",
+      "status": "M contracts/artifact-media.candidate.json\n M contracts/chat-models-v2.candidate.json\n M contracts/experts-v2.candidate.json\n M contracts/experts-v2.schema.json\n M contracts/kimi-k31-host-build.candidate.json\n M contracts/market-host-v2.candidate.json\n M contracts/market-host-v2.schema.json\n M contracts/market-host.candidate.json\n M contracts/market-host.schema.json\n M contracts/market-selection-v2.candidate.json\n M contracts/market-selection.candidate.json\n M contracts/native-conversation.lock.json\n M contracts/native-mcp.lock.json\n M contracts/runtime-kimi-k31-pro.candidate.json\n M contracts/runtime-permissions.lock.json\n M scripts/kimi-k31-build-candidate.mjs\n M scripts/run-local-demo-fast.sh\n M scripts/sync-feat164-expert-resources.mjs\n M scripts/sync-runtime-permissions.mjs\n M src-tauri/schemas/chat-artifact-file-native-v1.schema.json\n M src-tauri/schemas/chat-artifact-native-v1.schema.json\n M src-tauri/schemas/chat-ipc-v2.schema.json\n M src-tauri/src/chat/application.rs\n M src-tauri/src/chat/artifact.rs\n M src-tauri/src/chat/artifact_file_native.rs\n M src-tauri/src/chat/artifact_media.rs\n M src-tauri/src/chat/artifact_media_generated.rs\n M src-tauri/src/chat/artifact_native.rs\n M src-tauri/src/chat/attachment.rs\n M src-tauri/src/chat/connectors/host_generated.rs\n M src-tauri/src/chat/connectors/host_v2_generated.rs\n M src-tauri/src/chat/database.rs\n M src-tauri/src/chat/host_bridge.rs\n M src-tauri/src/chat/host_domain.rs\n M src-tauri/src/chat/ipc.rs\n M src-tauri/src/chat/migrations.rs\n M src-tauri/src/chat/mod.rs\n M src-tauri/src/lib.rs\n M src/api/chat-client.ts\n M src/api/generated/artifact-media-policy.gen.ts\n M src/api/generated/runtime-permissions.gen.ts\n M src/components/chat/ChatArtifactFile.vue\n M src/components/chat/ChatArtifactShell.vue\n M src/components/chat/ChatComposer.vue\n M src/components/chat/ChatSafeContent.vue\n M src/domain/chat-artifact-file-native.ts\n M src/domain/chat-ipc.test.ts\n M src/domain/chat-ipc.ts\n M src/domain/conversation-native-view.test.ts\n M src/domain/conversation-view.ts\n M src/icons/registry.ts\n M src/pages/chat/ChatPage.vue\n M src/stores/chat.store.test.ts\n?? contracts/artifact-media-v2.schema.json\n?? scripts/feat165-normal-fixtures.py\n?? src-tauri/migrations/chat/0042_artifact_files_reader.sql\n?? src/components/chat/ChatAttachmentChip.feat165.test.ts\n?? src/components/chat/ChatAttachmentChip.vue\n?? src/composables/useChatAttachmentPresentation.ts\n?? src/domain/chat-file-presentation.feat165.test.ts\n?? src/domain/chat-file-presentation.ts"
+    },
+    "yijie-connectors": {
+      "head": "d88b8d0b8e95978ef3494c90bb5e0e619aa3a27d",
+      "status": "M api/market-broker-control.candidate.json"
+    },
+    "yijie-codex": {
+      "head": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+      "status": ""
+    }
+  },
+  "logs": {
+    "source-closure.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/source-closure.log",
+      "sha256": "38098477ef6ccad735b1eef553bc6075f43b35a95752cacd5f77ad6253c1f85b",
+      "bytes": 82
+    },
+    "canonical-build-final.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/canonical-build-final.log",
+      "sha256": "776c472c904b598c07c1d2fcc18de99655a5289cd053269cedc3ba97d8a52f70",
+      "bytes": 29531
+    },
+    "lint.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/lint.log",
+      "sha256": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6",
+      "bytes": 48
+    },
+    "ui-tests.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/ui-tests.log",
+      "sha256": "ea987092bb65a3b7dba0424cb4605ea862a8ce160851201184d32219040c5bf3",
+      "bytes": 356
+    },
+    "native-clippy.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/native-clippy.log",
+      "sha256": "800b29b5e6ad45b860e5fe36a7bfa9d17187f97f5b8f6513c0f65a412c965270",
+      "bytes": 1077
+    },
+    "host-normal.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/host-normal.log",
+      "sha256": "e527ebff9ef6233530e058999c64b57168a5370eec7a9afdf6f1a76b8638f2e5",
+      "bytes": 63
+    },
+    "native-normal.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/native-normal.log",
+      "sha256": "1f387aed3f5a1e0bf336b1daccb056af1801d5929e4996473315a19af483b08c",
+      "bytes": 1828
+    }
+  },
+  "canonical_build": {
+    "status": "PASS",
+    "command": "env YIJIE_KIMI_K31_CALL_SURFACES=media ./scripts/run-local-demo-fast.sh --packaged --kimi-k31-pro --prepare-only",
+    "receipt_path": "../yijie-desktop/.local/feat164-kimi-k31/packaged-launch-receipt.json",
+    "receipt_sha256": "22490a328ff3d98149bcaad05d5da88630b9fc6abfc31eeefcf628a01c12f4e2",
+    "app_launched": true
+  },
+  "checks": [
+    {
+      "name": "Contracts affected source closure / schemas / focused tests",
+      "status": "PASS",
+      "tests": 8,
+      "schemas": 31
+    },
+    {
+      "name": "Host ordinary 12-file registration/read/ACK and legacy isolation, race + vet",
+      "status": "PASS"
+    },
+    {
+      "name": "Native normal 12-file import / image projection / file preview and save / draft scope / reader guard",
+      "status": "PASS",
+      "tests": 4
+    },
+    {
+      "name": "Native 12-file SQLCipher commit / atomic bytes save / reopen / MP4 ranges",
+      "status": "PASS",
+      "tests": 1
+    },
+    {
+      "name": "Desktop scoped chip / composer / native independent presentation / metadata tests",
+      "status": "PASS",
+      "tests": 54
+    },
+    {
+      "name": "Private IPC source alignment",
+      "status": "PASS",
+      "tests": 2
+    },
+    {
+      "name": "Desktop lint + Native fmt/clippy",
+      "status": "PASS"
+    },
+    {
+      "name": "Meta governance lint/tests",
+      "status": "PASS",
+      "tests": 57
+    }
+  ],
+  "limitations": [
+    "Owner accepted layered history-pagination evidence; UI load-more button itself NOT RUN. Model task budget used7/cap20, no need to spend remaining13.",
+    "Historical full safe generator fails on unresolved model-selection reference; full breaking check fails on unresolved scheduled-task draft-execution reference. Focused generated-source closures pass; no full-suite/baseline PASS is claimed.",
+    "Attack/fault-injection tests and existing prohibited fixtures not executed under permanent user safety instructions.",
+    "No daily-data migration, public deployment, production qualification or downstream Git commits/pushes."
+  ],
+  "real_task_submissions": {
+    "authorized_max": 20,
+    "used": 7,
+    "authorized_by": "段成威",
+    "scope": "12 normal synthetic formats; no external MCP or image/video providers; no daily DB migration",
+    "records": [
+      {
+        "kind": "ordinary",
+        "local_session_id": "01a18293-b7a1-7de0-8226-18d641c9ba81",
+        "status": "completed",
+        "result": "UI typeText newline prematurely submitted partial text; counts as 1. Runtime created and published generated-feat165.md (11 bytes), Native did not receive due to media phase projection bug. No retry issued."
+      },
+      {
+        "kind": "expert_create",
+        "local_session_id": "01a182a7-c027-7600-b692-a7f808cc0112",
+        "status": "completed",
+        "inputs": [
+          "mp4",
+          "pdf",
+          "png",
+          "pptx",
+          "svg",
+          "txt"
+        ],
+        "requested_outputs": [
+          "csv",
+          "docx",
+          "html",
+          "jpeg",
+          "jpg",
+          "md",
+          "generated-feat165-verified.md"
+        ],
+        "result": "7 real Native-ready artifacts, including newly generated 36-byte Markdown"
+      },
+      {
+        "kind": "expert_continue",
+        "local_session_id": "01a182a7-c027-7600-b692-a7f808cc0112",
+        "status": "completed",
+        "inputs": [
+          "html"
+        ],
+        "result": "5 staged (mp4/pdf/png/svg/txt) but not Native committed; pptx registration refused without an active reader. Prior turn completed message empty is contract-valid but rejected by Native replay parser."
+      },
+      {
+        "kind": "expert_continue_after_fix",
+        "local_session_id": "01a182a7-c027-7600-b692-a7f808cc0112",
+        "status": "completed",
+        "outputs": [
+          "mp4",
+          "pdf",
+          "png",
+          "pptx",
+          "svg",
+          "txt"
+        ],
+        "result": "All six sample formats Native ready; no extra model submission. Prior failed turn retained honestly."
+      },
+      {
+        "kind": "ordinary_final_after_fix",
+        "local_session_id": "01a182d8-29b5-76f0-a737-8c1e07961385",
+        "status": "completed",
+        "inputs": [
+          "long Chinese filename DOCX normal synthetic copy"
+        ],
+        "requested_outputs": [
+          "ordinary-feat165-verified.md"
+        ],
+        "result": "Native ready 262-byte Markdown; actual text preview and system save successful; long Chinese DOCX input and separately bound original text correct."
+      },
+      {
+        "number": 6,
+        "kind": "selected_tool_set",
+        "status": "completed",
+        "recorded_at": "2026-10-29T00:30:20+08:00",
+        "inputs": [
+          "sample.svg",
+          "sample.csv"
+        ],
+        "selection": "Existing installed Kimi webpage retrieval connector, current conversation only",
+        "instruction": "FEAT165_F: read only attached CSV and SVG context; no browsing, connector/MCP/tool invocation or file generation",
+        "local_session_id": "01a18359-3f62-7a70-888b-aaaf9126c9a3",
+        "result": "Real UI completed in 9s. CSV alpha12/beta34/sum46 and SVG rectangle/circle correct. Two attachment capsules and one original-text bubble, no Host wrapper or duplicate. UI tool-call area has no call entries. No new output requested.",
+        "normal_app_reopen": "PASS final canonical same-build reopen; two turns and three attachments restored, one original-text bubble for turn1, attachment-only row for turn2, no automatic dispatch"
+      },
+      {
+        "number": 7,
+        "kind": "attachment_only_ordinary_continue",
+        "status": "completed",
+        "recorded_at": "2026-10-29T00:33:36+08:00",
+        "local_session_id": "01a18359-3f62-7a70-888b-aaaf9126c9a3",
+        "inputs": [
+          "sample.txt"
+        ],
+        "selection": "No selected connector or expert; ordinary continuation",
+        "instruction": "No composer text; only normal existing 32-byte synthetic TXT. Prior turn explicitly disallows network/tools.",
+        "result": "Actual empty-text ordinary continuation completed in 12s. Exactly one TXT attachment row before and after native answer; no empty text bubble, wrapper or duplicate. Model correctly echoed synthetic TXT contents. No tool-call entries shown.",
+        "normal_app_reopen": "PASS final canonical same-build reopen; two turns and three attachments restored, one original-text bubble for turn1, attachment-only row for turn2, no automatic dispatch"
+      }
+    ],
+    "latest_authorization": "2026-10-29 user additionally approved ten tasks after the preceding five-task extension; cumulative cap20, used7",
+    "initial_authorization_caps": {
+      "ordinary": 1,
+      "expert_create_and_continue": 2
+    },
+    "authorization_recorded_at": "2026-10-29T00:38:04+08:00"
+  },
+  "resume_review": {
+    "date": "2026-10-28",
+    "recorded_logs_and_receipt_unchanged": true,
+    "product_repo_heads_and_status_unchanged": true,
+    "candidate_process_running": false,
+    "unrelated_changes_preserved": "FEAT-162 documentation in yijie"
+  },
+  "real_app_progress": {
+    "startup": "PASS canonical same-build reopen",
+    "real_task_submissions": 5,
+    "normal_exit": "PASS Cmd-Q, owned processes exited",
+    "inputs_observed": [
+      "csv",
+      "docx",
+      "html",
+      "jpeg",
+      "jpg",
+      "md",
+      "mp4",
+      "pdf",
+      "png",
+      "pptx",
+      "svg",
+      "txt"
+    ],
+    "path_popover": "CSV current selected path observed",
+    "image_popover": "JPEG observed",
+    "visual_findings": [
+      "white capsule background token",
+      "YjIcon default color overrides type color"
+    ],
+    "visual_fix": "PASS actual UI pill background and type icon colors; draft restored, origin path unavailable after reopening as required",
+    "over_count_import": "PASS 12 selected ordinary samples rejected as whole batch; text and expert retained; subsequent 6-file import succeeded",
+    "native_user_message_display": "PASS reopened original task retains six bound attachment chips and original user text only, no Host context wrapper",
+    "output_ready": [
+      "sample.csv",
+      "sample.docx",
+      "sample.html",
+      "sample.jpeg",
+      "sample.jpg",
+      "sample.md",
+      "sample.mp4",
+      "sample.pdf",
+      "sample.png",
+      "sample.pptx",
+      "sample.svg",
+      "sample.txt",
+      "generated-feat165-verified.md",
+      "ordinary-feat165-verified.md"
+    ],
+    "csv_preview": "PASS actual native projection table alpha 12 / beta 34",
+    "save_dialog_cancel": "PASS actual system dialog cancelled; UI reported 已取消保存, artifact stayed ready",
+    "original_save_hashes": "PASS 16 saved copies:12formats,2generatedMD,PNGpreview-independent copy,renamed/different-folderMD; all bytes equal",
+    "current_blocker": null,
+    "latest_fix": "PASS image bounded concurrency, canonical latest build/reopen; all four restored images loaded",
+    "expert_restart": "PASS latest13Native-ready artifacts,3turns,0autodispatch",
+    "html_interaction": "PASS isolated HTML window button changed 点击验证 to 已点击, window closed normally",
+    "svg_zoom": "PASS actual SVG lightbox 100% to125%; toolbar feedback overflow found and fixed, new build complete",
+    "mp4": "PASS real Play/Pause/progress 0→3seconds, native progress-bar click seeks to1second (0.5), playing then switching away removes video view",
+    "mp4_audio": "PASS user confirmed hearing the 3-second test tone",
+    "image_preview_retry": "PNG/SVG temporarily failed; existing reload recovered both. Original save wrongly disabled by preview phase; UI-only dependency removed with3 normal component tests PASS. Native save auth/content validation unchanged.",
+    "ordinary_final": "PASS runtime generated 262-byte Markdown, Native ready, actual content and original save",
+    "image_save_independent": "PASS actual PNG preview error while system save of sample-preview-independent.png succeeded; original bytes equal",
+    "same_name_cancel": "PASS system Replace warning then Cancel returned to Save panel; final Cancel reported cancelled",
+    "txt_md_preview": "PASS actual sample TXT and MD plus generated Markdown text"
+  },
+  "real_model_requests_note": "5 real task submissions used; underlying Provider HTTP call count not independently metered.",
+  "latest_checkpoint_at": "2026-10-29T02:23:21+08:00",
+  "resume_checks": {
+    "native_normal_tests": 8,
+    "frontend_binding_and_chip_tests": 15,
+    "markdown_positive_test": 1,
+    "host_race_and_vet": "PASS",
+    "native_clippy": "PASS",
+    "candidate_rebuild_after_empty_terminal_fix": "NOT RUN"
+  },
+  "resume_logs": {
+    "resume-build-2.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-build-2.log",
+      "sha256": "6b86e646d8bfc613cc86cae675ae9f0ca3d1123f8981b786d06197cded78687b",
+      "bytes": 29531
+    },
+    "resume-host-tests-2.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-host-tests-2.log",
+      "sha256": "9ec59d29f49fea1e05aa53255b6fc1b0f937ae367c59a89d29a31040dc6cc48a",
+      "bytes": 63
+    },
+    "resume-native-tests-2.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-native-tests-2.log",
+      "sha256": "270a22f4deb3a44c2139419f928c4a6e28edb9aee3de1bfa09e414cc0d610c7e",
+      "bytes": 2005
+    },
+    "resume-clippy-2.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-clippy-2.log",
+      "sha256": "b469b3abd94cdfc9b61312343fee23699c7ad9009e4dfff25c245ff5dbb63328",
+      "bytes": 1077
+    },
+    "resume-view-tests.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-view-tests.log",
+      "sha256": "83db7bea838925bb1e196b3f2d9a8de7418856e4520ec85659bd64436df8e46b",
+      "bytes": 246
+    },
+    "resume-markdown-test.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-markdown-test.log",
+      "sha256": "bf95a15bf626ede82e7c72df13d02b0ce97a9be623ad18a8a9eac2b796ba2780",
+      "bytes": 251
+    },
+    "expert-v12-replay.json": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/expert-v12-replay.json",
+      "sha256": "202f0a1a69690f51f5d2c85e7279c519b1e438c2acbc5a70e7e8727c9821a99c",
+      "bytes": 207073
+    },
+    "normal-host-events.json": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/normal-host-events.json",
+      "sha256": "67f9d1303ceed6fc695ab7113ab3766da2cef75147effab3b031c6fc17a88fa1",
+      "bytes": 20608
+    },
+    "resume-source-closure-2.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-source-closure-2.log",
+      "sha256": "38098477ef6ccad735b1eef553bc6075f43b35a95752cacd5f77ad6253c1f85b",
+      "bytes": 82
+    },
+    "resume-lint-final.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-lint-final.log",
+      "sha256": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6",
+      "bytes": 48
+    },
+    "native-save-hashes.json": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/native-save-hashes.json",
+      "sha256": "d52a7b1eef7691b7c644f9e9954ffc3ae8cf6d374b17797647f7078565aa3414",
+      "bytes": 2155
+    },
+    "unlocked-final-build.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/unlocked-final-build.log",
+      "sha256": "6d96c0da9cdaddb3611594a7c57f7f01b7440fdba49632b198caede3584e1cd4",
+      "bytes": 29531
+    },
+    "image-save-independence-tests.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/image-save-independence-tests.log",
+      "sha256": "6a5760de5ee67730c421805671e718051dc40eed5ad3f0c8b8babe70fa0e1537",
+      "bytes": 256
+    },
+    "image-ui-lint.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/image-ui-lint.log",
+      "sha256": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6",
+      "bytes": 48
+    },
+    "image-ui-final-build.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/image-ui-final-build.log",
+      "sha256": "c8ae9d016e27ff9a8edae17ae4caacdfb59e39e86db9e8ca6d9b577b29d3d87e",
+      "bytes": 28632
+    }
+  },
+  "latest_sources": {
+    "yijie-contracts": {
+      "head": "61137174a25dc368e0006f27633fd4a9ad097aa6",
+      "status": ""
+    },
+    "yijie-agent-host": {
+      "head": "20539889259587a66a574201e521c2ea9469c54d",
+      "status": "M api/artifact-media.candidate.json\n M api/chat-models-v2.candidate.json\n M api/contracts.lock\n M api/experts-v2.candidate.json\n M api/experts-v2.schema.json\n M api/jsonschema/agent-session-event-v6.schema.json\n M api/market-broker-control.candidate.json\n M api/market-host-v2.candidate.json\n M api/market-host-v2.schema.json\n M api/market-selection-v2.candidate.json\n M api/native-conversation.lock.json\n M api/native-mcp.lock.json\n M api/openapi/agent-host.yaml\n M api/openapi/runtime-permissions.yaml\n M api/runtime-kimi-k31-pro.candidate.json\n M api/runtime-permissions.lock.json\n M artifact-mcp/src/types.gen.rs\n M internal/app/app.go\n M internal/app/artifact_media.go\n M internal/artifact/store.go\n M internal/contracts/agenthost.gen.go\n M internal/contracts/artifactmedia/types.gen.go\n M internal/contracts/markethost/types.gen.go\n M internal/contracts/runtimepermissions/types.gen.go\n M internal/session/artifact_media.go\n M internal/session/events.go\n M internal/session/multimodal.go\n M internal/session/service.go\n M scripts/check-feat137-contracts.sh\n M scripts/sync-feat137-contracts.sh\n?? api/schemas/artifact-media-v2.schema.json\n?? internal/artifact/office.go\n?? internal/session/feat165_files_test.go"
+    },
+    "yijie-desktop": {
+      "head": "0247b7cfbe3a4a2020a29417d96b8a5718b3923d",
+      "status": "M contracts/artifact-media.candidate.json\n M contracts/chat-models-v2.candidate.json\n M contracts/experts-v2.candidate.json\n M contracts/experts-v2.schema.json\n M contracts/kimi-k31-host-build.candidate.json\n M contracts/market-host-v2.candidate.json\n M contracts/market-host-v2.schema.json\n M contracts/market-host.candidate.json\n M contracts/market-host.schema.json\n M contracts/market-selection-v2.candidate.json\n M contracts/market-selection.candidate.json\n M contracts/native-conversation.lock.json\n M contracts/native-mcp.lock.json\n M contracts/runtime-kimi-k31-pro.candidate.json\n M contracts/runtime-permissions.lock.json\n M scripts/kimi-k31-build-candidate.mjs\n M scripts/run-local-demo-fast.sh\n M scripts/sync-feat164-expert-resources.mjs\n M scripts/sync-runtime-permissions.mjs\n M src-tauri/schemas/chat-artifact-file-native-v1.schema.json\n M src-tauri/schemas/chat-artifact-native-v1.schema.json\n M src-tauri/schemas/chat-ipc-v2.schema.json\n M src-tauri/src/chat/application.rs\n M src-tauri/src/chat/artifact.rs\n M src-tauri/src/chat/artifact_file_native.rs\n M src-tauri/src/chat/artifact_media.rs\n M src-tauri/src/chat/artifact_media_generated.rs\n M src-tauri/src/chat/artifact_native.rs\n M src-tauri/src/chat/attachment.rs\n M src-tauri/src/chat/connectors/host_generated.rs\n M src-tauri/src/chat/connectors/host_v2_generated.rs\n M src-tauri/src/chat/database.rs\n M src-tauri/src/chat/host_bridge.rs\n M src-tauri/src/chat/host_domain.rs\n M src-tauri/src/chat/ipc.rs\n M src-tauri/src/chat/migrations.rs\n M src-tauri/src/chat/mod.rs\n M src-tauri/src/lib.rs\n M src/api/chat-client.ts\n M src/api/generated/artifact-media-policy.gen.ts\n M src/api/generated/runtime-permissions.gen.ts\n M src/components/chat/ChatArtifactFile.vue\n M src/components/chat/ChatArtifactShell.vue\n M src/components/chat/ChatComposer.vue\n M src/components/chat/ChatSafeContent.vue\n M src/domain/chat-artifact-file-native.test.ts\n M src/domain/chat-artifact-file-native.ts\n M src/domain/chat-ipc.test.ts\n M src/domain/chat-ipc.ts\n M src/domain/conversation-native-view.test.ts\n M src/domain/conversation-view.ts\n M src/icons/registry.ts\n M src/pages/chat/ChatPage.vue\n M src/stores/chat.store.test.ts\n?? contracts/artifact-media-v2.schema.json\n?? scripts/feat165-normal-fixtures.py\n?? src-tauri/migrations/chat/0042_artifact_files_reader.sql\n?? src/components/chat/ChatAttachmentChip.feat165.test.ts\n?? src/components/chat/ChatAttachmentChip.vue\n?? src/composables/useChatAttachmentPresentation.ts\n?? src/domain/chat-file-presentation.feat165.test.ts\n?? src/domain/chat-file-presentation.ts"
+    },
+    "yijie-connectors": {
+      "head": "d88b8d0b8e95978ef3494c90bb5e0e619aa3a27d",
+      "status": "M api/market-broker-control.candidate.json"
+    },
+    "yijie-codex": {
+      "head": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+      "status": ""
+    },
+    "yijie-skills": {
+      "head": "704d2cc85a85d0759e6103e3f539552f3d63b1e9",
+      "status": ""
+    }
+  },
+  "active_candidate": {
+    "state": "running final canonical candidate; selected two-turn FEAT165_F history, no active task",
+    "exec_session": 17105,
+    "latest_source_fix_packaged": true,
+    "same_build_receipt_stale_due_to_latest_source_fix": false,
+    "temporary_diagnostics_present": false
+  },
+  "final_ui_checkpoint": {
+    "recorded_at": "2026-10-29T00:17:33+08:00",
+    "d4": "PASS (local demo only; Owner-accepted layered pagination)",
+    "model_task_submissions": 7,
+    "model_task_cap": 20,
+    "native_ready_expert_count": 13,
+    "native_ready_ordinary_generated_count": 1,
+    "saved_originals": [
+      {
+        "saved_path": "saved-originals/FEAT165_E 普通聊天最终复验结果.md",
+        "source": "ordinary-feat165-verified.md",
+        "size": 262,
+        "sha256": "3c0869bc4489253b4e2621afad005bb4da17c63a484be5b9519b1599ed8e820b",
+        "equal": true
+      },
+      {
+        "saved_path": "saved-originals/generated-feat165-verified.md",
+        "source": "generated-feat165-verified.md",
+        "size": 36,
+        "sha256": "7f8dc40a132fefcb6201fcfc1797083d974f60e48b37c2b96fb6bff1d5b1b2ce",
+        "equal": true
+      },
+      {
+        "saved_path": "saved-originals/sample-preview-independent.png",
+        "source": "sample.png",
+        "size": 508,
+        "sha256": "c8b1d322af1fd671afd471ee557823860238ae81b538b9ba9543ecfbddd61253",
+        "equal": true
+      },
+      {
+        "saved_path": "saved-originals/sample.csv",
+        "source": "sample.csv",
+        "size": 28,
+        "sha256": "a3bef38c9cb400ac80f8178ef7a67258bd99b88960a7cb1579418363e935dcac",
+        "equal": true
+      },
+      {
+        "saved_path": "saved-originals/sample.docx",
+        "source": "sample.docx",
+        "size": 768,
+        "sha256": "62a9cc0c4d3525a01d4a794312b1200c9640864d84a8e616f3c26962a0829606",
+        "equal": true
+      },
+      {
+        "saved_path": "saved-originals/sample.html",
+        "source": "sample.html",
+        "size": 178,
+        "sha256": "b27e305e16a9ace92c85c02acddf6e61b6e303ce4d494080e95975f2d29874ec",
+        "equal": true
+      },
+      {
+        "saved_path": "saved-originals/sample.jpeg",
+        "source": "sample.jpeg",
+        "size": 656,
+        "sha256": "975af1986d13b3865a9a85f88b8adc382a6021dfa34aae3bf8a1cdc7f2b042e4",
+        "equal": true
+      },
+      {
+        "saved_path": "saved-originals/sample.jpg",
+        "source": "sample.jpg",
+        "size": 656,
+        "sha256": "975af1986d13b3865a9a85f88b8adc382a6021dfa34aae3bf8a1cdc7f2b042e4",
+        "equal": true
+      },
+      {
+        "saved_path": "saved-originals/sample.md",
+        "source": "sample.md",
+        "size": 39,
+        "sha256": "635179203b8f8dd9ad8071ad64746641482b533e7d5dcc32fdb45db7d3eb6011",
+        "equal": true
+      },
+      {
+        "saved_path": "saved-originals/sample.mp4",
+        "source": "sample.mp4",
+        "size": 40599,
+        "sha256": "657c49bd7303d485532eedd87f8142068711ec5ec2d33ab96f9f38aba33e969d",
+        "equal": true
+      },
+      {
+        "saved_path": "saved-originals/sample.pdf",
+        "source": "sample.pdf",
+        "size": 594,
+        "sha256": "a4424589e33803b451e45d1fa9fa9156d1dba1209bbc42317bbb19594c6b711c",
+        "equal": true
+      },
+      {
+        "saved_path": "saved-originals/sample.png",
+        "source": "sample.png",
+        "size": 508,
+        "sha256": "c8b1d322af1fd671afd471ee557823860238ae81b538b9ba9543ecfbddd61253",
+        "equal": true
+      },
+      {
+        "saved_path": "saved-originals/sample.pptx",
+        "source": "sample.pptx",
+        "size": 966,
+        "sha256": "32345ee3b298d1de7d3bd5187f41bce308f3d2958706568bda75919f29fd9172",
+        "equal": true
+      },
+      {
+        "saved_path": "saved-originals/sample.svg",
+        "source": "sample.svg",
+        "size": 161,
+        "sha256": "457bce830cd242768ab9656ae488e1af5f517b5da44524b71ce5fa23789f2741",
+        "equal": true
+      },
+      {
+        "saved_path": "saved-originals/sample.txt",
+        "source": "sample.txt",
+        "size": 32,
+        "sha256": "dda1374a1ddd2fa3eec5bc2b9b69d390252fae8d02befea96e107879872d3c1d",
+        "equal": true
+      },
+      {
+        "saved_path": "saved-renamed/directory-switch-verified.md",
+        "source": "ordinary-feat165-verified.md",
+        "size": 262,
+        "sha256": "3c0869bc4489253b4e2621afad005bb4da17c63a484be5b9519b1599ed8e820b",
+        "equal": true
+      }
+    ],
+    "history_reopen": "PASS latest canonical build; 3 expert turns and ordinary latest turn preserved, no automatic task dispatch",
+    "native_user_message": "unchanged type/wire/store; view uses exact local session/turn binding only",
+    "four_image_input_focus_escape": "PASS jpg/jpeg/png/svg each actual image popover, no path tooltip",
+    "same_name_path": "PASS exact a/b paths; local removal preserved other chip and text",
+    "long_name_min_window": "PASS full extension visible at actual 1180x760 (2360x1520 retina capture)",
+    "ten_mixed_attachments": "PASS actual 10 imports ready, text retained",
+    "unsupported_file": "normal .log disabled by native picker; cancel preserved draft; no bypass or malicious file",
+    "themes": "PASS light and user-authorized temporary dark; original macOS Light selected again; original 1268x780 app size restored",
+    "image_queue": "PASS four images all loaded on history reopen; existing 2 reads /40MiB retained, bounded wait before consuming one-shot handles; native ordinary concurrency test PASS",
+    "lightbox": "PASS SVG125%, controls and cancellation feedback fit, Escape closes",
+    "save_after_preview_failure": "PASS real PNG preview error still saved identical original",
+    "save_directory_rename": "PASS actual fresh folder and new filename saved identical Markdown; earlier two missing-output attempts not counted and cause unconfirmed",
+    "content_previews": "PASS TXT/CSV/MD actual contents, HTML button interaction, SVG zoom, MP4 video/play/pause/seek/switch away",
+    "mp4_audio": "PASS human explicitly heard three-second test tone",
+    "pending": [],
+    "skipped": [
+      "malicious/fault injection suites",
+      "external MCP/providers",
+      "daily database migration",
+      "public deployment"
+    ],
+    "actual_finder_drop": "PASS user confirmed corrected build, CUA 10 capsules",
+    "source_path_followup": "PASS final clean build new CSV source path before/after foreground switch; prior unavailable observation retained as unconfirmed"
+  },
+  "final_logs": {
+    "image-queue-tests.log": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat165-validation/image-queue-tests.log",
+      "sha256": "f51d79fbf4b752ebb1c874709aad6e330fd022846dcaff03e9193c65c239582d",
+      "bytes": 1397
+    },
+    "expiry-component-checks.log": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat165-validation/expiry-component-checks.log",
+      "sha256": "c63eafc9c7119cfba9b4261c0de0b64e29c26fc25885253269da8b339593128d",
+      "bytes": 258
+    },
+    "missing-reader-checks.log": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat165-validation/missing-reader-checks.log",
+      "sha256": "3b277a73fdd9b22ad04bdb5e3eda5d8f8ee6bdc897360d7e98ef4a2969b9179a",
+      "bytes": 257
+    },
+    "image-queue-clippy.log": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat165-validation/image-queue-clippy.log",
+      "sha256": "10162d7a92e05ca8ee34d6c8926cfc53b7d21199eefcc8a671506eccd95fdd4f",
+      "bytes": 1077
+    },
+    "acceptance-lint.log": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat165-validation/acceptance-lint.log",
+      "sha256": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6",
+      "bytes": 48
+    },
+    "image-queue-final-build.log": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat165-validation/image-queue-final-build.log",
+      "sha256": "2a5ce130bcda61c6576c12afac6cca10ff1576a1432de1aa964399e5c0ec6d4f",
+      "bytes": 29531
+    },
+    "image-queue-final-app.log": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat165-validation/image-queue-final-app.log",
+      "sha256": "45da9981a3a5a46f96946e9d7367c44c95da87e5d5699c7a1c694ab9b277b4d6",
+      "bytes": 2806
+    },
+    "native-save-hashes.json": {
+      "path": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat165-validation/native-save-hashes.json",
+      "sha256": "fe9d308550d88b8a190fe91839160024cc9c237825b31f832ce480a275a7fa0f",
+      "bytes": 3382
+    },
+    "origin-diagnostic-build.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/origin-diagnostic-build.log",
+      "sha256": "3ca5cfcd144038e134a03193e3f37bebdf1d736ddd065a951c43b146ea99437f",
+      "bytes": 28632
+    },
+    "origin-diagnostic-app.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/origin-diagnostic-app.log",
+      "sha256": "d8ecec83439ec0c6e0bbfba9f07418f76c6a08899dba829b90cda29390026d6e",
+      "bytes": 3436
+    },
+    "drop-final-clean-build.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/drop-final-clean-build.log",
+      "sha256": "9a5a692247f9c595f949421e599606212b0d1de6218f4c747d23b620fec210bb",
+      "bytes": 28628
+    },
+    "drop-final-clean-app.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/drop-final-clean-app.log",
+      "sha256": "f66a05cb0f95a17ca2ef0a092f5a00e4649e5977e7b7168396e881ee398f08cc",
+      "bytes": 2806
+    },
+    "drop-final-governance-lint.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/drop-final-governance-lint.log",
+      "sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c",
+      "bytes": 197
+    },
+    "drop-final-governance-tests.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/drop-final-governance-tests.log",
+      "sha256": "3422ae8f280b5f2fbc51804d1cbe9860918851924e7bbfca84736d8495f90b11",
+      "bytes": 5071
+    },
+    "drop-final-feature-strict.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/drop-final-feature-strict.log",
+      "sha256": "b9f9c63fc02c70944a6be36145b71f7aa06a1244687cccee2b992b1282376bf8",
+      "bytes": 227
+    },
+    "drop-final-feature-claims.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/drop-final-feature-claims.log",
+      "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4",
+      "bytes": 50
+    },
+    "resume-history-binding-tests.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-history-binding-tests.log",
+      "sha256": "d1228e3317f77c9e44dec4c3b6470f65deeed90cdb70db93d1ee144e6fdd3db1",
+      "bytes": 258
+    },
+    "resume-history-binding-lint.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-history-binding-lint.log",
+      "sha256": "4606b385d102793d3c69bd32f0e260059e2fafd8f1fd68b9e190991f172bbbf0",
+      "bytes": 1074
+    },
+    "resume-history-binding-tests-final.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-history-binding-tests-final.log",
+      "sha256": "43697f15c0eba86d2d6eea5adace955d2fe79b6498467b2aa5be433ca8d2a85a",
+      "bytes": 258
+    },
+    "resume-history-binding-lint-final.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-history-binding-lint-final.log",
+      "sha256": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6",
+      "bytes": 48
+    },
+    "resume-final-build.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-final-build.log",
+      "sha256": "95521d6fbac459ac039bff25308f2d2da17c6f2de502775a2d1de15a575a3f2a",
+      "bytes": 28632
+    },
+    "resume-final-app.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-final-app.log",
+      "sha256": "9aada10659a990a2a3f98d776d11e6d0dc04d16618a4182464cff465657cff52",
+      "bytes": 2806
+    },
+    "resume-design-docs-build-final.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-design-docs-build-final.log",
+      "sha256": "e0da47d7d11f154924c76343325e8ab09f888dc359180c513351e146804e8d43",
+      "bytes": 760
+    },
+    "resume-contracts-focused.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-contracts-focused.log",
+      "sha256": "b4cbfe17153a48a630603245790003c99ed52d02253855e21e530e3166b64136",
+      "bytes": 832
+    },
+    "resume-openapi-directional.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-openapi-directional.log",
+      "sha256": "9410e2bfc2700e0ec6be03d68fe6b0c2814d6e4fa98459d54d6f0929bf399fca",
+      "bytes": 725
+    },
+    "resume-jsonschema-immediate.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-jsonschema-immediate.log",
+      "sha256": "0a84e04d076dc7013eb91b2a8d3c129ee698baff9d77973e736a3c525a64f4e4",
+      "bytes": 86
+    },
+    "resume-jsonschema-published.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-jsonschema-published.log",
+      "sha256": "1ef279e51806bb4942a2466c5e0495423130c953ee7ab6f2ccb870d716d28798",
+      "bytes": 86
+    },
+    "resume-media-source-check.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-media-source-check.log",
+      "sha256": "ba6ee532d904a63ba4ebe666af5ecfb71367ec560cdaf8151b4fd741f63330ef",
+      "bytes": 77
+    },
+    "resume-contract-schemas.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-contract-schemas.log",
+      "sha256": "8b6bd927eb8019f32cd20b6033ad6aa5b4de3e79d08be20e5997d320293e1eb0",
+      "bytes": 76
+    },
+    "resume-v9-identity.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-v9-identity.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "resume-feature-strict.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-feature-strict.log",
+      "sha256": "b9f9c63fc02c70944a6be36145b71f7aa06a1244687cccee2b992b1282376bf8",
+      "bytes": 227
+    },
+    "resume-feature-claims.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-feature-claims.log",
+      "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4",
+      "bytes": 50
+    },
+    "resume-governance-lint.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-governance-lint.log",
+      "sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c",
+      "bytes": 197
+    },
+    "resume-governance-tests.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-governance-tests.log",
+      "sha256": "6e28ed9ccd7e76608003dfb963c732aee314e4e59dc6ec3e72788edd99bd614f",
+      "bytes": 5068
+    },
+    "resume-d4-gate.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-d4-gate.log",
+      "sha256": "8a7fb8f6caf75c5613a5e4cd7a54ee8860f50151a48f4f7b5e780f0e1429aa54",
+      "bytes": 216
+    },
+    "resume-final-claims.log": {
+      "relative_workspace_path": "../yijie-desktop/.local/feat165-validation/resume-final-claims.log",
+      "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4",
+      "bytes": 50
+    }
+  },
+  "final_sources": {
+    "yijie-contracts": {
+      "head": "61137174a25dc368e0006f27633fd4a9ad097aa6",
+      "status": ""
+    },
+    "yijie-agent-host": {
+      "head": "20539889259587a66a574201e521c2ea9469c54d",
+      "status": "M api/artifact-media.candidate.json\n M api/chat-models-v2.candidate.json\n M api/contracts.lock\n M api/experts-v2.candidate.json\n M api/experts-v2.schema.json\n M api/jsonschema/agent-session-event-v6.schema.json\n M api/market-broker-control.candidate.json\n M api/market-host-v2.candidate.json\n M api/market-host-v2.schema.json\n M api/market-selection-v2.candidate.json\n M api/native-conversation.lock.json\n M api/native-mcp.lock.json\n M api/openapi/agent-host.yaml\n M api/openapi/runtime-permissions.yaml\n M api/runtime-kimi-k31-pro.candidate.json\n M api/runtime-permissions.lock.json\n M artifact-mcp/src/types.gen.rs\n M internal/app/app.go\n M internal/app/artifact_media.go\n M internal/artifact/store.go\n M internal/contracts/agenthost.gen.go\n M internal/contracts/artifactmedia/types.gen.go\n M internal/contracts/markethost/types.gen.go\n M internal/contracts/runtimepermissions/types.gen.go\n M internal/session/artifact_media.go\n M internal/session/events.go\n M internal/session/multimodal.go\n M internal/session/service.go\n M scripts/check-feat137-contracts.sh\n M scripts/sync-feat137-contracts.sh\n?? api/schemas/artifact-media-v2.schema.json\n?? internal/artifact/office.go\n?? internal/session/feat165_files_test.go"
+    },
+    "yijie-desktop": {
+      "head": "0247b7cfbe3a4a2020a29417d96b8a5718b3923d",
+      "status": "M contracts/artifact-media.candidate.json\n M contracts/chat-models-v2.candidate.json\n M contracts/experts-v2.candidate.json\n M contracts/experts-v2.schema.json\n M contracts/kimi-k31-host-build.candidate.json\n M contracts/market-host-v2.candidate.json\n M contracts/market-host-v2.schema.json\n M contracts/market-host.candidate.json\n M contracts/market-host.schema.json\n M contracts/market-selection-v2.candidate.json\n M contracts/market-selection.candidate.json\n M contracts/native-conversation.lock.json\n M contracts/native-mcp.lock.json\n M contracts/runtime-kimi-k31-pro.candidate.json\n M contracts/runtime-permissions.lock.json\n M docs/design/docs/design/05-patterns/13-feat-127-chat-attachments.md\n M docs/design/docs/design/05-patterns/14-feat-128-structured-chat-artifacts.md\n M scripts/kimi-k31-build-candidate.mjs\n M scripts/run-local-demo-fast.sh\n M scripts/sync-feat164-expert-resources.mjs\n M scripts/sync-runtime-permissions.mjs\n M src-tauri/schemas/chat-artifact-file-native-v1.schema.json\n M src-tauri/schemas/chat-artifact-native-v1.schema.json\n M src-tauri/schemas/chat-ipc-v2.schema.json\n M src-tauri/src/chat/application.rs\n M src-tauri/src/chat/artifact.rs\n M src-tauri/src/chat/artifact_file_native.rs\n M src-tauri/src/chat/artifact_media.rs\n M src-tauri/src/chat/artifact_media_generated.rs\n M src-tauri/src/chat/artifact_native.rs\n M src-tauri/src/chat/attachment.rs\n M src-tauri/src/chat/connectors/host_generated.rs\n M src-tauri/src/chat/connectors/host_v2_generated.rs\n M src-tauri/src/chat/database.rs\n M src-tauri/src/chat/host_bridge.rs\n M src-tauri/src/chat/host_domain.rs\n M src-tauri/src/chat/ipc.rs\n M src-tauri/src/chat/migrations.rs\n M src-tauri/src/chat/mod.rs\n M src-tauri/src/lib.rs\n M src/api/chat-client.ts\n M src/api/generated/artifact-media-policy.gen.ts\n M src/api/generated/runtime-permissions.gen.ts\n M src/components/chat/ChatArtifactFile.vue\n M src/components/chat/ChatArtifactImage.test.ts\n M src/components/chat/ChatArtifactImage.vue\n M src/components/chat/ChatArtifactShell.vue\n M src/components/chat/ChatComposer.vue\n M src/components/chat/ChatSafeContent.vue\n M src/domain/chat-artifact-file-native.test.ts\n M src/domain/chat-artifact-file-native.ts\n M src/domain/chat-ipc.test.ts\n M src/domain/chat-ipc.ts\n M src/domain/conversation-native-view.test.ts\n M src/domain/conversation-view.ts\n M src/icons/registry.ts\n M src/pages/chat/ChatPage.connectors.test.ts\n M src/pages/chat/ChatPage.test.ts\n M src/pages/chat/ChatPage.vue\n M src/stores/chat.store.test.ts\n?? contracts/artifact-media-v2.schema.json\n?? scripts/feat165-normal-fixtures.py\n?? src-tauri/migrations/chat/0042_artifact_files_reader.sql\n?? src/components/chat/ChatAttachmentChip.feat165.test.ts\n?? src/components/chat/ChatAttachmentChip.vue\n?? src/composables/useChatAttachmentPresentation.ts\n?? src/domain/chat-file-presentation.feat165.test.ts\n?? src/domain/chat-file-presentation.ts"
+    },
+    "yijie-connectors": {
+      "head": "d88b8d0b8e95978ef3494c90bb5e0e619aa3a27d",
+      "status": "M api/market-broker-control.candidate.json"
+    },
+    "yijie-codex": {
+      "head": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+      "status": ""
+    },
+    "yijie-skills": {
+      "head": "704d2cc85a85d0759e6103e3f539552f3d63b1e9",
+      "status": ""
+    }
+  },
+  "drag_drop_followup": {
+    "reported_at": "2026-10-28T22:53:55+08:00",
+    "observed_draft_count": 10,
+    "model_tasks_used": 5,
+    "source_findings": [
+      "Pinned Wry0.55.1 macOS uses AppKit logical points; Tauri2.11.5 passes through without scale conversion",
+      "Main window drag drop enabled by default; existing Window target listener and source geometry path inspected"
+    ],
+    "diagnosis": "CONFIRMED Webview event target vs Window-only subscription mismatch; fixed using existing Webview API",
+    "temporary_observers": [],
+    "cleanup": "PASS normal Cmd-Q exit0 cleared old and diagnostic build observers; Native logger removed",
+    "evidence": "drop-root-cause.json",
+    "final_retest": "PASS user actual Finder CSV drop + CUA tenth capsule; final clean rebuild/reopen PASS; no task submitted",
+    "checks": "3 drop target/gating +5 connector regression PASS; lint, canonical build/reopen PASS",
+    "historical_user_result": "FAIL: sample.csv drag did not add tenth capsule; no highlight or drop hint",
+    "user_result": "PASS: 出现了 CSV 胶囊",
+    "governance": "PASS strict package/claim audit, lint, 57 tests and shell syntax; this does not qualify D4"
+  },
+  "source_path_followup": {
+    "status": "final_clean_candidate_retest_pass_prior_observation_unconfirmed",
+    "observation": "Fresh CSV picker import showed source path, later popup said unavailable; subsequent ordinary import also unavailable. Native read-only presentation returned sourcePath absent; draft stayed ready with no observed context/send-state change. No task submitted.",
+    "recorded_at": "2026-10-29T00:17:33+08:00",
+    "diagnostic_native_records": [
+      "FEAT165_ORIGIN invalidate count=0",
+      "FEAT165_ORIGIN clear count=0 selected=false",
+      "FEAT165_ORIGIN clear count=0 selected=false",
+      "FEAT165_ORIGIN read count=0 selected=false matching=false expired=false",
+      "FEAT165_ORIGIN clear count=0 selected=true",
+      "FEAT165_ORIGIN remember count=1",
+      "FEAT165_ORIGIN read count=1 selected=true matching=true expired=false",
+      "FEAT165_ORIGIN read count=1 selected=true matching=true expired=false",
+      "FEAT165_ORIGIN read count=1 selected=true matching=true expired=false",
+      "FEAT165_ORIGIN read count=1 selected=true matching=true expired=false",
+      "FEAT165_ORIGIN clear count=1 selected=false"
+    ],
+    "conclusion": "Diagnostic normal imports retained matching unexpired origin and repeated popovers succeeded. Earlier unavailable/absent observation not established as cache-clearing defect. No speculative source change. Final clean build normal picker import + focus/Escape + Finder foreground return shows exact source path.",
+    "diagnostic_cleanup": "Normal Cmd-Q exit0; Native source restored byte-identically; final canonical rebuild/reopen passed",
+    "native_ipc_source_sha256": "0da2044327cb79cebada37d5a8f6d4a167713d3d049eea027164cd66ead83a1b"
+  },
+  "resume_20261029": {
+    "recorded_at": "2026-10-29T00:55:41+08:00",
+    "model_task_cap": 20,
+    "model_tasks_used": 7,
+    "ordinary_tool_set": "PASS task6 CSV/SVG input with existing Kimi webpage retrieval selection; no tool Item in native history",
+    "attachment_only": "PASS task7 empty composer TXT; local/native/final-reopen show only one attachment row",
+    "local_session_id": "01a18359-3f62-7a70-888b-aaaf9126c9a3",
+    "real_native_pagination": {
+      "method": "Existing store.loadHistoryPage(1) followed by existing chat_load_history_v3 using the real returned cursor; read-only Web Inspector, no injected UI state or DB data",
+      "first_page": {
+        "turn_id": "01a1835c-3927-7601-88f3-c8f9286cba4d",
+        "names": [
+          "sample.txt"
+        ],
+        "original_text_length": 0,
+        "has_next": true
+      },
+      "second_page": {
+        "turn_id": "01a18359-3f62-7a70-888b-aaca9a2104fe",
+        "names": [
+          "sample.svg",
+          "sample.csv"
+        ],
+        "original_text_prefix": "FEAT165_F",
+        "has_next": false
+      },
+      "pages_disjoint": true,
+      "cursor_monotonic": true,
+      "native_types_each_turn": [
+        "userMessage",
+        "reasoning",
+        "agentMessage"
+      ],
+      "native_repeat_read_equal": true,
+      "current_history_unchanged": true,
+      "ui_load_more_button": "NOT RUN; Owner explicitly accepted layered evidence, do not claim actual button use"
+    },
+    "store_pagination_regression": "PASS 1 normal integration case, 158 unrelated cases skipped; exact IDs distinguish same-name attachments, latest pure attachment, older text+file, two opens; native inputs unchanged and no submit call",
+    "observed_test_repairs": [
+      "First lint caught invalid test-only historyAvailability=complete; corrected to authoritative partial, final lint/test PASS. No production type broadened.",
+      "One Web Inspector Native-read rejection during repeated expression evaluation was not counted PASS; unique request ID reads succeeded. Error cause was not independently classified."
+    ],
+    "design_document_conflict": "Corrected obsolete SVG/path prohibition with FEAT165-scoped accepted supplements in attachment and artifact Patterns; docs build PASS",
+    "normal_exit": "PASS Cmd-Q exit0 before canonical build; diagnostic console variables cleared",
+    "d4": "PASS with explicit Owner-accepted layered pagination; actual UI load-more remains NOT RUN",
+    "owner_layered_acceptance": {
+      "recorded_at": "2026-10-29T00:58:21+08:00",
+      "answer": "接受分层验收，记录 UI 按钮未实测",
+      "scope": "AC004 real Native pagination + normal production-store regression + actual App reopen; UI load-more remains NOT RUN"
+    }
+  },
+  "local_contract_review": {
+    "scope": "FEAT165 demo_fast + local exact candidate only; no release or full production baseline claim",
+    "status": "PASS",
+    "immutable_contracts": "61137174a25dc368e0006f27633fd4a9ad097aa6",
+    "generation": "existing artifact-media --check PASS; unchanged immutable pin and prior complete affected reverse-source closure",
+    "schemas_and_focused": "31 JSON schemas and 8 focused tests PASS",
+    "baseline_checks": {
+      "immediate": "2adfa2bef43d38a932f6249dbb0a229c173ff103",
+      "published": "f16a497e1377f45747f8ff9292b4b60cf2027f88",
+      "json_schema": "existing checker PASS against both",
+      "affected_openapi": "AgentHost PASS both; runtime-permissions PASS immediate, N/A absent at published",
+      "legacy_v9": "media-v1 and v9 generated event schema byte-identical to immediate source baseline"
+    },
+    "directional_review": "SVG/MP4 file inputs only enabled in matching Host/Native candidate. Explicit v12 extended outputs; v9 untouched. Private reader v42 refuses incompatible older binary rather than downgrade-write. Native original userMessage and Runtime source unchanged. Ordinary, selected-tool and expert real entrypoints verified.",
+    "excluded_full_checks": "Full safe generator and full multi-family breaking still blocked by unrelated model-selection/scheduled-task references; remain NOT PASS, no production compatibility conclusion."
+  },
+  "final_governance": {
+    "recorded_at": "2026-10-29T00:59:44+08:00",
+    "strict_d4": "PASS",
+    "claim_audit": "PASS",
+    "meta_lint": "PASS",
+    "meta_tests": "57 PASS",
+    "shell_syntax": "PASS",
+    "desktop_lint": "PASS",
+    "design_docs_build": "PASS",
+    "focused_pagination": "1 PASS;158 unrelated tests skipped",
+    "contract_focused": "8 PASS;31 schemas PASS",
+    "diff_check": "PASS",
+    "new_git_commits": 0,
+    "git_pushes": 0,
+    "model_task_used": 7,
+    "model_task_cap": 20
+  },
+  "final_audit_20261029": {
+    "status": "PASS",
+    "record": "final-audit-20261029.json",
+    "source_heads": {
+      "yijie-contracts": "61137174a25dc368e0006f27633fd4a9ad097aa6",
+      "yijie-agent-host": "36ec8c62cca771b479b317d209da50d6acda0989",
+      "yijie-connectors": "ff436bb9bfe23297a1c5891a06fe6f6280c04e6d",
+      "yijie-desktop": "a2cc89c9cf2e36f8c5b9154e5694c38e601e140a",
+      "yijie-codex": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+      "yijie-skills": "704d2cc85a85d0759e6103e3f539552f3d63b1e9"
+    },
+    "local_commits": {
+      "yijie-contracts": "61137174a25dc368e0006f27633fd4a9ad097aa6",
+      "yijie-agent-host": "36ec8c62cca771b479b317d209da50d6acda0989",
+      "yijie-connectors": "ff436bb9bfe23297a1c5891a06fe6f6280c04e6d",
+      "yijie-desktop": "a2cc89c9cf2e36f8c5b9154e5694c38e601e140a"
+    },
+    "postcommit_app": "PASS; exact same-build canonical reopen and actual two-turn history",
+    "real_tasks_used": 7,
+    "real_tasks_limit": 20,
+    "git_pushes": 0,
+    "meta_delivery": "This Feature Package and its memory update are included in the following scoped local meta commit; no self-referential SHA is embedded."
+  }
+}

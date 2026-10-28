@@ -1,0 +1,136 @@
+{
+  "recorded_at": "2026-10-28T23:34:29+08:00",
+  "symptom": "User repeated CSV Finder drop, no highlight and no new capsule; picker works",
+  "native_events": [
+    {
+      "count": 1,
+      "kind": "enter",
+      "surface": "webview",
+      "x": 282.0,
+      "y": 201.0
+    },
+    {
+      "count": 1,
+      "kind": "drop",
+      "surface": "webview",
+      "x": 784.0,
+      "y": 524.0
+    },
+    {
+      "count": 1,
+      "kind": "enter",
+      "surface": "webview",
+      "x": 60.0,
+      "y": 146.0
+    },
+    {
+      "count": 1,
+      "kind": "drop",
+      "surface": "webview",
+      "x": 673.0,
+      "y": 533.0
+    },
+    {
+      "count": 1,
+      "kind": "enter",
+      "surface": "webview",
+      "x": 328.0,
+      "y": 318.0
+    },
+    {
+      "count": 1,
+      "kind": "drop",
+      "surface": "webview",
+      "x": 634.0,
+      "y": 537.0
+    },
+    {
+      "count": 1,
+      "kind": "enter",
+      "surface": "webview",
+      "x": 362.0,
+      "y": 316.0
+    },
+    {
+      "count": 1,
+      "kind": "drop",
+      "surface": "webview",
+      "x": 599.0,
+      "y": 535.0
+    }
+  ],
+  "frontend_any_scope_drop_positions": [
+    {
+      "x": 784,
+      "y": 524
+    },
+    {
+      "x": 673,
+      "y": 533
+    },
+    {
+      "x": 634,
+      "y": 537
+    },
+    {
+      "x": 599,
+      "y": 535
+    }
+  ],
+  "composer_bounds": {
+    "left": 374,
+    "top": 266,
+    "right": 1134,
+    "bottom": 642
+  },
+  "root_cause": "Actual native DragDrop events target Webview; ChatPage subscribed to Window, whose event target filter excludes Webview. Every observed drop is inside composer bounds. Files never reached existing import path.",
+  "fix": "Use existing getCurrentWebview().onDragDropEvent; keep same hit testing, import, authorization, validation and persistence. No additional permissions, wire or Runtime change.",
+  "regression": "Separate Window and Webview mocks. Assert no Window subscription; only Webview event drives in-bounds import. Three normal focused tests PASS, 73 unrelated tests skipped.",
+  "temporary_diagnostics": "Native metadata logger removed; all temporary JS native/DOM observers cleared by normal App Cmd-Q, exit0. No paths or file contents logged; no synthetic drop event or import IPC issued.",
+  "model_tasks_used": 5,
+  "canonical_retest": "PASS: user confirmed CSV capsule; CUA confirmed 10 draft attachments including sample.csv, no send or running task",
+  "diagnostic_log_sha256": "73937f3b004a349b6258682c8cb669761f4bcca9754bb7f7fc4deaff2bb517c6",
+  "checks": {
+    "drop_target_and_gates": "3 PASS",
+    "connector_selection_regression": "5 PASS",
+    "lint": "PASS",
+    "canonical_build": "PASS",
+    "canonical_same_build_reopen": "PASS"
+  },
+  "logs": {
+    "drop-webview-tests.log": {
+      "sha256": "b9ac6d3ca91ebd2d6164e56595613c49f517dcf45c3da03f924dbefa4aaf5ddf",
+      "bytes": 440
+    },
+    "drop-connectors-regression.log": {
+      "sha256": "ea98fe5b3cd50c1dd12dafb6314339d865a2a4f8d4de67eb44b34bf5706da9a1",
+      "bytes": 426
+    },
+    "drop-webview-lint.log": {
+      "sha256": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6",
+      "bytes": 48
+    },
+    "drop-webview-final-build.log": {
+      "sha256": "8d7d252acc3c21c79ce5e30c1d8704cf5d632199b582c263918b2ff4194b569a",
+      "bytes": 28632
+    },
+    "drop-webview-final-app.log": {
+      "sha256": "4ba605b2a519aba128dd4de407c42126dc6806f7f030947c9afb464ae15e4fcd",
+      "bytes": 2804
+    }
+  },
+  "actual_drop_confirmation": {
+    "recorded_at": "2026-10-29T00:06:44+08:00",
+    "user_feedback": "出现了 CSV 胶囊",
+    "draft_count": 10,
+    "new_task_submissions": 0
+  },
+  "final_clean_candidate": {
+    "recorded_at": "2026-10-29T00:17:33+08:00",
+    "canonical_build": "PASS",
+    "same_build_reopen": "PASS",
+    "temporary_diagnostics_present": false,
+    "source_path_followup": "See implementation-validation.json; final clean retest passed, no speculative source fix",
+    "new_task_submissions": 0
+  }
+}

@@ -1,5 +1,11 @@
 # 易界项目 Codex 长期协作记忆
 
+## FEAT-165 当前执行与恢复入口（2026-10-29）
+
+Owner已接受并授权实现原生产物12格式、附件胶囊/预览保存，当前以[04最终审计](../features/FEAT-165-native-artifact-files-and-preview/04-final-audit-and-local-delivery.md)和机器账本为恢复入口。10项Must已按记录范围通过，Owner接受分页分层证据、UI加载更多按钮仍NOT RUN，严格D4/claim门禁已通过、feature usable、implementation complete；原生userMessage类型/wire/持久化不得改，展示只用明确本地提交绑定，优先复用现有产物链和固定yijie-codex机制。拖入已由用户复验成功。
+
+2026-10-29 Owner先新增5次、再新增10次真实任务，累计上限20次；当前实际使用7/20，剩余13次不自动消耗；逐笔记在FEAT-165机器账本，不能借FEAT-164预算。仍只合成样本、不调用外部MCP/图片视频供应商、不迁移日常库。Owner现已明确授权全部FEAT-165完成验证后本地提交，不推送；Contracts6113717沿用前序提交，Host36ec8c6、Connectorsff436bb、Desktopa2cc89c已本地提交且canonical同构建复验通过；本需求包与记忆由随后仅FEAT-165的元仓提交交付，完整证据见04。当前canonical隔离候选身份com.yijie.ai.feat164-kimi-k31-r1；不能误用FEAT-164日常入口。正常退出，不强杀，禁止攻击/权限故障/二进制伪装。
+
 ## FEAT-164 最终已关闭（2026-10-28）
 
 Owner要求将最终审计落盘、本地提交并关闭需求，最新收口见[80](../features/FEAT-164-kimi-k31-pro-migration/80-final-audit-and-feature-closure.md)。S1—S4、D1—D5、原yijie-desktop实际主目录构建运行、已批准旧目录清理及79清理后8会话/11轮历史和正常退出验收完成，批准范围内无剩余步骤。feature.status保持completed，final_closure.status为closed；不是未完成验收的terminated。日常入口为原仓`pnpm daily:open --generation 20261028-02`，先正常退出后可追加`--pause-kimi`；旧daily-source无活动依赖，保全引用/归档/bundle、原工作、七账本和两预占保持。

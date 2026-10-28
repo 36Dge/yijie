@@ -1,0 +1,214 @@
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+feature:
+  id: FEAT-165
+  slug: native-artifact-files-and-preview
+  title: 原生产物12扩展名支持、附件胶囊与统一预览保存
+  status: usable
+  created_at: 2026-10-28
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+scope:
+  risk_level: high
+  data_classification: confidential
+  contract_impact: breaking
+  database_change: expand
+  persistence_change: replay
+  runtime_change: platform
+  auth_permission_change: none
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: tool
+repositories:
+  - yijie
+  - yijie-contracts
+  - yijie-agent-host
+  - yijie-desktop
+  - yijie-connectors
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+product_ux:
+  status: PASS
+  primary_user: 在本机易界聊天中输入文件并接收任务生成文件的用户
+  problem: 附件展示与目标胶囊不一致，输入SVG/MP4与输出MD/DOCX/PPTX存在缺口，路径提示和各格式保存/预览需统一
+  user_outcome: 12扩展名可导入发送、真实接收、显示类型预览卡，并按既有能力预览内容与另存生成原件
+  in_scope:
+    - 12扩展名输入与原生产物接收校验
+    - 输入胶囊/临时路径tooltip/受draft授权的图片hover
+    - 本地提交/native消息/历史三态的胶囊与正文组合
+    - 生成卡片分级预览、已有provider不重复登记
+    - 生成原件保存与已Native提交资源恢复
+    - 全部输入包装/reader兼容及现有机制复用
+  out_of_scope:
+    - 新增Office/PDF内容阅读器/模型摘要、视频理解/OCR/转码/探测器
+    - Runtime核心/patch、新MCP注册/动态工具/专家执行通道
+    - 新增执行器/存储/播放器/传输或通用协商服务
+    - 建设12类生成引擎或新付费图片/视频供应商
+    - 输入附件另存服务/路径持久字段/公开发布/日常重要数据迁移
+  main_flow:
+    - 现有canonical local入口及Native权限
+    - 原子导入/准备胶囊
+    - 临时路径或受权图片hover并发送
+    - 现有视图adapter分别展示本地附件与原生userMessage，保留两类事实
+    - 工作区文件走原publisher，已有provider保留原链/ID/provenance
+    - 同一spool/资源流到Native校验提交再ACK
+    - 分级预览卡/生成原件另存/已提交内容正常恢复
+  visual_direction: 参考5图；易界现有tokens/YjIcon，全圆角流式胶囊，生成端复用ArtifactShell分类卡片；详见brief R-02—05
+  ui_states:
+    idle: 已有输入框提示及可选文件
+    loading: 现有批次准备/真实接收阶段/按需预览，无依据不造百分比
+    success: 附件ready可发送；Native提交后产物ready，Host staged/ACK与用户保存区分
+    empty: 空消息不发送，无产物不造空卡片
+    error: 保留正文和此前成功草稿；批次错误沿原子导入处理，预览和保存失败分开
+    retry: 导入失败移除重选，传输/预览复用已有重试，不自动重跑任务
+    cancel: 正常取消保存、移除草稿、关闭租约；不删除原件或改原生终态
+must_acceptance:
+  - id: AC-001
+    statement: 12扩展逐一真实导入/识别/发送和产物接收；普通/已选工具/专家聊天输入契约一致，旧格式与既有producer保留
+    verification: 普通安全样本分批走实际入口与Runtime登记，至少一项现有工具生成任务闭环；不要求12种生成引擎或新增付费供应商；见02-verification.md
+    status: PASS
+  - id: AC-002
+    statement: 输入胶囊/icon/名称/换行、非图片真实路径tooltip及局部移除成立
+    verification: 单多件、中文长名、同名异路径、无来源路径；鼠标/键盘；路径不进模型/日志/持久消息；见02-verification.md
+    status: PASS
+  - id: AC-003
+    statement: png/jpg/jpeg/svg图片hover/focus取代tooltip；正常关闭/移除/换会话释放；MP4不自动播放
+    verification: 四图片扩展逐项普通样本和正常生命周期；见02-verification.md
+    status: PASS
+  - id: AC-004
+    statement: 单胶囊+正文、多文件、无文字在本地提交/native观察/历史分页重开均正确展示（可独立排列），原生userMessage不变、无重复；无本地绑定的冷历史不猜关联
+    verification: 真实选集/普通纯附件/native观察与App重开通过；Owner接受真实Native分页＋store组合回归的分层证据，UI加载更多按钮未实测；见02第11节
+    status: PASS
+  - id: AC-005
+    statement: 12格式预览卡片分级准确；DOCX/PPTX/PDF文件信息和保存可用，TXT/CSV/MD有界内容、HTML交互、SVG缩放、MP4音画/seek及关闭正常
+    verification: canonical App按R-01逐项；超预览源限额说明且可保存，不以卡片/metadata代替内容或音画；见02-verification.md
+    status: PASS
+  - id: AC-006
+    statement: 12扩展名原件保存字节一致、.jpeg合法命名、取消/同名确认正确；预览失败不误阻有效保存
+    verification: 原生保存与SHA-256/字节比较；正常取消，不破坏文件制造失败；见02-verification.md
+    status: PASS
+  - id: AC-007
+    statement: 已Native提交的附件/产物在保留期内正常重开，未提交/过期/缺失如实反馈，不承诺Host重启重投递或自动重生成
+    verification: 正常重开真实UI必验；过期/缺失优先自然记录，无记录则以普通纯值reader/组件状态检查验证，不改时间/权限/数据库；仍无覆盖则本AC不得PASS；见02-verification.md
+    status: PASS
+  - id: AC-008
+    statement: 混合批次、正常超限/不支持/拒绝/取消及重试可恢复，正文保留且无重复派发/伪终态
+    verification: 10件/超限普通文件、正常不支持类型、取消重选；不用攻击样本；见02-verification.md
+    status: PASS
+  - id: AC-009
+    statement: 固定Runtime、已有生产者/登记/spool/ACK/预览保存复用，完整输入包装与历史reader兼容；新值只向能消费的端发出
+    verification: source-first及同源校验，旧生产者混合/登记幂等/无重复卡；保留既有受支持模型配置，不在K31开启被禁dynamic tools；见02-verification.md
+    status: PASS
+  - id: AC-010
+    statement: 当前主题/最小窗口/键盘可完成胶囊和卡片关键动作，资源正常释放，无路径越权扩散
+    verification: focused组件+真实UI正常观察/关闭，不做攻击注入或强杀；见02-verification.md
+    status: PASS
+contract:
+  impact: breaking
+  authority: Contracts AgentHost输入、chat/message、market-selection/market-host不可变submission/HMAC、experts引用、公共artifact
+    media；Desktop私有chat-ipc-v2附件源与preview/save schema另有权威；固定Runtime canonical schema不改
+  source_first_plan: 见01第3—4节；源/引用生成与各consumer同源先行，provider先接新输入语义、兼容reader/显式版本准入先于新输出；复用现有路由不另建动态协商，实施按已接受D0范围推进
+  status: PASS
+  checks:
+    - repository: yijie-contracts
+      command: local精确候选源闭包、31 schema/8项、双基线JSON及受影响OpenAPI检查、v9字节保持PASS；全量其它族与生产资格不计通过，见02第11节
+      status: PASS
+      exit_code: 0
+external_authorizations:
+  paid_calls:
+    allowed: true
+    max_actions: 20
+    approved_by: 段成威
+    approved_at: 2026-10-29T00:27:26+08:00
+  destructive_operations:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  production_writes:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+implementation:
+  status: complete
+  real_entrypoint: canonical run-local-demo-fast.sh --packaged --kimi-k31-pro --prepare-only 已构建PASS；运行须同入口 --reopen，不迁移日常数据
+  mock_only: false
+verification:
+  status: PASS
+  verified_at: 2026-10-29T02:23:21+08:00
+  startup:
+    status: PASS
+    command_or_steps: canonical --packaged --kimi-k31-pro --reopen，经同构建来源检查启动；正常Cmd-Q退出
+    environment: local，普通非敏感样本
+    actual_result: 本地提交后canonical构建/同构建reopen及真实两轮三附件历史复验通过；正常Cmd-Q exit0；无自动派发，累计7/20真实任务
+  real_smoke:
+    status: PASS
+    command_or_steps: 真实普通与专家生成、12格式接收及正常重开；全部Must当前结论见02第11.1节及04最终审计
+    environment: canonical本机隔离候选，正常合成样本
+    actual_result: 12格式Native接收/分级预览/原件保存及拖入复验通过；第6次选集CSV/SVG、第7次纯TXT成功并正常重开。Owner接受分页分层证据，10项Must按列明范围通过
+  representative_failure:
+    status: PASS
+    command_or_steps: 普通不支持类型/正常超限/原生保存取消后恢复
+    environment: 安全非破坏样本
+    actual_result: 12件普通样本整批超限拒绝后6件重选成功；系统保存取消保留ready
+  focused_checks:
+    - repository: yijie-contracts
+      command: node --test tests/artifact-media.test.mjs tests/feat165-artifact-files.test.mjs tests/model-call-surfaces-v2.test.mjs
+      status: PASS
+      exit_code: 0
+    - repository: yijie-agent-host
+      command: go test -race ./internal/session -run normal_FEAT165_and_ArtifactMedia_selection（实际命令见02与references）
+      status: PASS
+      exit_code: 0
+    - repository: yijie-desktop
+      command: pnpm lint；4个相关前端suite；private IPC两个源对齐测试；Native normal专项与fmt/clippy；canonical prepare-only
+      status: PASS
+      exit_code: 0
+  artifacts:
+    - references/implementation-validation.json
+    - references/drop-root-cause.json
+    - 03-current-audit-and-next-steps.md
+    - 04-final-audit-and-local-delivery.md
+    - references/final-audit-20261029.json
+    - references/06-separate-message-display.png
+  diff_review:
+    status: PASS
+    summary: 最终逐项审计；修复Esc后Enter/浮层焦点和11格式图标，保留原生userMessage/既有执行链；实际亮暗最小窗口复验，补来源精确commit；Owner接受分页分层验证，无独立人工审阅声明
+  known_limitations:
+    - 全量安全生成与breaking存在其它契约族未解析引用；仅聚焦闭包通过，不声明完整生产兼容
+    - UI加载更多按钮未实测；Owner已接受真实Native分页、store回归和真实App重开的分层验收；2026-10-29 Owner先新增5次、再新增10次，累计上限20次；已用次数见实时机器账本
+    - Office/PDF文件信息卡＋保存，不新增内容阅读器；MP4描述上下文不等于视频理解
+    - database_change=expand以v42既有前向reader guard实现；无新文件表/列/路径持久化，旧v41二进制不支持该库
+    - 普通/专家/工具选集实际App与固定Runtime闭环已验；选集任务未调用外部服务
+    - Host暂存/内存流不保证重启恢复，仅已Native提交内容可正常重开；不建重投递服务
+    - 既有provider只在已支持配置保留，不在K31开启被禁dynamic tools；未调用外部provider
+public_readiness:
+  required: false
+  status: N/A
+  checks: []
+  external_smoke:
+    status: NOT RUN
+    command_or_steps: 不在本次范围
+    actual_result: 没有公开部署
+documents:
+  brief: 00-feature-brief.md
+  delivery_log: 01-delivery-log.md
+  verification: 02-verification.md
+planning_only:
+  requested: false
+  document_change_contract_impact: none
+  implementation_authorized: true
+  owner_design_confirmation: accepted
+  codex_runtime_changes_planned: false
+  scope_note: scope描述完整功能风险；expand已沿既有机制以v42前向reader guard实现，禁止因此预设新业务表/路径持久字段；auth none不扩大读盘权限；产品路径显示需求已明确但具体局部边界仍须设计核对
+  requirement_revision: owner_execution_clarification_native_user_message_unchanged
+  acceptance_record: 01-delivery-log.md#7-实施授权与d0

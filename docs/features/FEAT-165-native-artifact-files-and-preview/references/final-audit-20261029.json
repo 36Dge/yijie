@@ -1,0 +1,221 @@
+{
+  "feature": "FEAT-165",
+  "recorded_at": "2026-10-29T02:22:16+08:00",
+  "scope": "demo_fast / local isolated candidate; no production or daily migration qualification",
+  "status": "PASS",
+  "findings": [
+    "Esc closed preview could not reopen with Enter at the same focus: fixed",
+    "Focus moving into image retry closed the popover: fixed",
+    "Distinct registry keys reused identical icons for multiple required format families: fixed within existing Lucide registry",
+    "Requirement current-state and commit-authorization documents were stale: corrected with historical records retained",
+    "Post-commit exact catalog source check rejected predecessor Connectors HEAD: advanced to real new commit after confirming catalog byte identity; original checks retained"
+  ],
+  "checks": {
+    "ui_component_type_binding": {
+      "passed": 21
+    },
+    "store_history_paging_reopen": {
+      "passed": 1,
+      "unrelated_skipped": 158
+    },
+    "native_normal_and_real_replay": {
+      "passed": 9,
+      "fixture_environment_explicit": true
+    },
+    "host_normal_12_formats_race": "PASS",
+    "host_vet": "PASS",
+    "contracts_focused": {
+      "passed": 8
+    },
+    "media_and_connector_source_checks": "PASS",
+    "lint_fmt_clippy": "PASS",
+    "design_docs_build": "PASS",
+    "meta_governance": {
+      "passed": 57
+    },
+    "saved_originals": {
+      "count": 16,
+      "bytes_and_sha256_equal": true
+    },
+    "canonical_build_from_committed_host": "PASS",
+    "ui_latest_code": "PASS",
+    "postcommit_canonical_reopen": "PASS"
+  },
+  "ui": {
+    "normal_picker_imports": 10,
+    "csv_escape_enter_same_focus": "PASS",
+    "png_escape_enter_same_focus": "PASS",
+    "history": "Two existing turns, exactly SVG/CSV/TXT, one original text and no empty pure-attachment bubble",
+    "minimum_window_logical_pixels": [
+      1180,
+      760
+    ],
+    "light_dark": "PASS; original light restored",
+    "image_error_retry": "ordinary component error-state regression; no real resource fault injection",
+    "first_reopen_attempt": "Settings-only window not counted as PASS; normal exit and correctly awaited canonical process succeeded",
+    "new_model_submissions": 0,
+    "postcommit_reopen": "Canonical process and same-build receipt verified before CUA selected the exact bundle; ten draft attachments restored, then two historical turns with exactly SVG/CSV/TXT and no empty or repeated text; no new task dispatched."
+  },
+  "authorization": {
+    "local_commits_after_verification": true,
+    "push": false,
+    "real_tasks_used": 7,
+    "real_tasks_limit": 20
+  },
+  "source_heads": {
+    "yijie-contracts": "61137174a25dc368e0006f27633fd4a9ad097aa6",
+    "yijie-agent-host": "36ec8c62cca771b479b317d209da50d6acda0989",
+    "yijie-connectors": "ff436bb9bfe23297a1c5891a06fe6f6280c04e6d",
+    "yijie-desktop": "a2cc89c9cf2e36f8c5b9154e5694c38e601e140a",
+    "yijie-codex": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+    "yijie-skills": "704d2cc85a85d0759e6103e3f539552f3d63b1e9"
+  },
+  "host_source_lock_mode": "immutable_local_candidate",
+  "host_build_inputs": 434,
+  "limitations": [
+    "UI history load-more button NOT RUN; Owner accepted real Native paging + production-store regression + actual App reopen",
+    "Full unrelated-family contract generation/breaking remains not passing because of historical unresolved references",
+    "Prohibited destructive, executable-tampering, permission-damage and attack-fixture tests not run",
+    "Prior transient source-path-unavailable observation remains unconfirmed; no speculative repair",
+    "No external MCP/provider call, daily database migration, production release or remote push"
+  ],
+  "logs": {
+    "audit-chip-before.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-chip-before.log",
+      "sha256": "9dc1f657d241e69a87377b87fdb3423d9c9571affca081f8d220696384ff8934",
+      "bytes": 2095
+    },
+    "audit-ui-core-final.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-ui-core-final.log",
+      "sha256": "6fe561eac45a85c233b7b86a7e962776b6b15cf60cdbacee4431f63eaca8aab0",
+      "bytes": 246
+    },
+    "audit-history-final.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-history-final.log",
+      "sha256": "d2150d90f8e064c8602eb58a23bba3af6f27dba1a6a8a8990476ccd6cf9ff90c",
+      "bytes": 258
+    },
+    "audit-lint-final.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-lint-final.log",
+      "sha256": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6",
+      "bytes": 48
+    },
+    "audit-lint-committed-sources.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-lint-committed-sources.log",
+      "sha256": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6",
+      "bytes": 48
+    },
+    "audit-host.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-host.log",
+      "sha256": "fe4852247646fd8ac8f739fc836dc690e3098723cbe83cd245f666a91ac78361",
+      "bytes": 63
+    },
+    "audit-host-vet.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-host-vet.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "audit-contracts.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-contracts.log",
+      "sha256": "c51087ea4958b9e3a52f8ab10785865a2659851891b6beb6b6a1a83ec9f0542f",
+      "bytes": 836
+    },
+    "audit-contracts-generation.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-contracts-generation.log",
+      "sha256": "ba6ee532d904a63ba4ebe666af5ecfb71367ec560cdaf8151b4fd741f63330ef",
+      "bytes": 77
+    },
+    "audit-connectors-source.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-connectors-source.log",
+      "sha256": "4e64810a260ac3acf724a9901d8a3448d13ecd15e893d50a5723fa2033b0d387",
+      "bytes": 188
+    },
+    "audit-native.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-native.log",
+      "sha256": "aad080cb671df6d3f4fea04e4275eeb023a7b0f10a22d97926ff8001bd63a8d9",
+      "bytes": 1958
+    },
+    "audit-native-roundtrip.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-native-roundtrip.log",
+      "sha256": "411889c549a173c0a41299ab422a92f7d376da6f972bcdfb5c771bb366473a57",
+      "bytes": 433
+    },
+    "audit-native-fmt.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-native-fmt.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "audit-native-clippy.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-native-clippy.log",
+      "sha256": "79727f5c67d25043c7dc53f51132ec735528d6f3691d98706d5ff3055052ae61",
+      "bytes": 1077
+    },
+    "audit-design-docs.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-design-docs.log",
+      "sha256": "c5badd705b072d900f05f0d5fb5b7ca0d84df5765a57ab820150ff97012960df",
+      "bytes": 760
+    },
+    "audit-saved-originals.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-saved-originals.log",
+      "sha256": "68d0f938f19b2a548617b5427c1caf8e6c63fff3becb0f48208df19e2ff3d12f",
+      "bytes": 60
+    },
+    "audit-governance-lint.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-governance-lint.log",
+      "sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c",
+      "bytes": 197
+    },
+    "audit-governance-tests.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-governance-tests.log",
+      "sha256": "82648b6ac0d6bcf821b20a5faa01885d26b9e24abd2dc11d17cd132d16d829fd",
+      "bytes": 5072
+    },
+    "audit-d4-final.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-d4-final.log",
+      "sha256": "8a7fb8f6caf75c5613a5e4cd7a54ee8860f50151a48f4f7b5e780f0e1429aa54",
+      "bytes": 216
+    },
+    "audit-claims-final.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-claims-final.log",
+      "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4",
+      "bytes": 50
+    },
+    "audit-build-final.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-build-final.log",
+      "sha256": "02187cc33df11979e84e3df54c7edbafe82b8d46b742f8a03b9cdd2d954de2dd",
+      "bytes": 28632
+    },
+    "audit-committed-build.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-committed-build.log",
+      "sha256": "5bb651bbfccc3ba834728ddca5b944c1d85514f59c1fd8f98ed45f95f844ccd8",
+      "bytes": 1405
+    },
+    "audit-committed-build-final.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-committed-build-final.log",
+      "sha256": "22b5c897d892df2e1d44f876cb2975ae0b4b834f566b2f2b605024a45879e261",
+      "bytes": 28632
+    },
+    "audit-postcommit-app.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-postcommit-app.log",
+      "sha256": "235469527a70323aab4d6c41483d8d6d173beed384656d95720bab3025bc7745",
+      "bytes": 2806
+    },
+    "audit-d4-delivery.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-d4-delivery.log",
+      "sha256": "8a7fb8f6caf75c5613a5e4cd7a54ee8860f50151a48f4f7b5e780f0e1429aa54",
+      "bytes": 216
+    },
+    "audit-claims-delivery.log": {
+      "path": "../yijie-desktop/.local/feat165-validation/audit-claims-delivery.log",
+      "sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4",
+      "bytes": 50
+    }
+  },
+  "local_commits": {
+    "yijie-contracts": "61137174a25dc368e0006f27633fd4a9ad097aa6",
+    "yijie-agent-host": "36ec8c62cca771b479b317d209da50d6acda0989",
+    "yijie-connectors": "ff436bb9bfe23297a1c5891a06fe6f6280c04e6d",
+    "yijie-desktop": "a2cc89c9cf2e36f8c5b9154e5694c38e601e140a"
+  },
+  "completed_at": "2026-10-29T02:23:21+08:00"
+}
