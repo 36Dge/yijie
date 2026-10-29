@@ -1,0 +1,183 @@
+{
+  "recorded_at": "2026-10-28T08:21:01.622998+00:00",
+  "scope": "FEAT-162 Basic/Pro requirements documentation only",
+  "checks": [
+    {
+      "name": "feature-structure",
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-162-kimi-web-retrieval"
+      ],
+      "exit_code": 0,
+      "log": ".local/feat162-basic-pro-requirements-20261028/feature-structure.log"
+    },
+    {
+      "name": "feature-D0",
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "--gate",
+        "D0",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-162-kimi-web-retrieval"
+      ],
+      "exit_code": 0,
+      "log": ".local/feat162-basic-pro-requirements-20261028/feature-D0.log"
+    },
+    {
+      "name": "meta-lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exit_code": 0,
+      "log": ".local/feat162-basic-pro-requirements-20261028/meta-lint.log"
+    },
+    {
+      "name": "meta-tests",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exit_code": 0,
+      "log": ".local/feat162-basic-pro-requirements-20261028/meta-tests.log"
+    }
+  ],
+  "shell_syntax": [
+    {
+      "file": "scripts/bootstrap.sh",
+      "exit_code": 0
+    },
+    {
+      "file": "scripts/checkout-all.sh",
+      "exit_code": 0
+    },
+    {
+      "file": "scripts/dev-down.sh",
+      "exit_code": 0
+    },
+    {
+      "file": "scripts/dev-up.sh",
+      "exit_code": 0
+    },
+    {
+      "file": "scripts/generate-all.sh",
+      "exit_code": 0
+    },
+    {
+      "file": "scripts/lint-all.sh",
+      "exit_code": 0
+    },
+    {
+      "file": "scripts/test-all.sh",
+      "exit_code": 0
+    }
+  ],
+  "product_implementation_executed": false,
+  "paid_calls": 0,
+  "git_commit_executed": false,
+  "D4_passed": false,
+  "tests_passed": 57,
+  "D0_document_check": "PASS",
+  "new_acceptance_criteria": {
+    "count": 10,
+    "status": "pending",
+    "consistency": "PASS"
+  },
+  "local_links_checked": 13,
+  "original_evidence_files_unchanged": 146,
+  "original_snapshots_byte_equal": true,
+  "closed_ledgers_unchanged": 3,
+  "repositories_after": {
+    "yijie": {
+      "head": "2e21790873cb3f824e03632fcec2b8da640dd8ae",
+      "status": "M docs/features/FEAT-162-kimi-web-retrieval/00-feature-brief.md\n M docs/features/FEAT-162-kimi-web-retrieval/01-delivery-log.md\n M docs/features/FEAT-162-kimi-web-retrieval/02-verification.md\n M docs/features/FEAT-162-kimi-web-retrieval/04-resume.md\n M docs/features/FEAT-162-kimi-web-retrieval/feature.yaml\n?? docs/features/FEAT-162-kimi-web-retrieval/21-basic-pro-plan-audit.md\n?? docs/features/FEAT-162-kimi-web-retrieval/22-basic-pro-intent-routing-plan.md\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/basic-pro-requirements-before-20261028.json\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/basic-pro-requirements-checks-20261028.json\n?? docs/features/FEAT-162-kimi-web-retrieval/history/\n?? docs/features/FEAT-165-native-artifact-files-and-preview/",
+      "head_unchanged": true
+    },
+    "yijie-contracts": {
+      "head": "2adfa2bef43d38a932f6249dbb0a229c173ff103",
+      "status": "M compatibility/artifact-media/source.lock.json\n M compatibility/experts-v2/source.lock.json\n M compatibility/market-host-v2/source.lock.json\n M compatibility/market-selection-v2/source.lock.json\n M jsonschema/chat/message.schema.json\n M openapi/agent-host/agent-host.yaml\n M scripts/generate-artifact-media.mjs\n M scripts/generate.mjs\n M sdks/go/artifactmedia/types.gen.go\n M sdks/go/market-host-v2/types.gen.go\n M sdks/go/openapi/agent-host/client.gen.go\n M sdks/go/openapi/runtime-permissions/client.gen.go\n M sdks/go/openapi/runtime-permissions/source.bundle.yaml\n M sdks/jsonschema/experts-v2.schema.json\n M sdks/jsonschema/market-host-v2.schema.json\n M sdks/rust/artifactmedia/types.gen.rs\n M sdks/rust/market-host-v2/types.gen.rs\n M sdks/typescript/src/jsonschema/artifact-media-policy.gen.ts\n M sdks/typescript/src/jsonschema/artifact-media.gen.ts\n M sdks/typescript/src/jsonschema/chat-message.gen.ts\n M sdks/typescript/src/openapi/agent-host.gen.ts\n M sdks/typescript/src/openapi/runtime-permissions.gen.ts\n M tests/model-call-surfaces-v2.test.mjs\n?? docs/feat165-artifact-files.md\n?? jsonschema/artifact/media-v2.schema.json\n?? sdks/jsonschema/artifact-media-events-v12.schema.json\n?? tests/feat165-artifact-files.test.mjs",
+      "head_unchanged": true
+    },
+    "yijie-connectors": {
+      "head": "d88b8d0b8e95978ef3494c90bb5e0e619aa3a27d",
+      "status": "",
+      "head_unchanged": true
+    },
+    "yijie-agent-host": {
+      "head": "20539889259587a66a574201e521c2ea9469c54d",
+      "status": "M api/artifact-media.candidate.json\n M artifact-mcp/src/types.gen.rs\n M internal/app/app.go\n M internal/app/artifact_media.go\n M internal/artifact/store.go\n M internal/contracts/artifactmedia/types.gen.go\n M internal/session/artifact_media.go\n M internal/session/multimodal.go\n?? api/schemas/artifact-media-v2.schema.json\n?? internal/artifact/office.go",
+      "head_unchanged": true
+    },
+    "yijie-desktop": {
+      "head": "0247b7cfbe3a4a2020a29417d96b8a5718b3923d",
+      "status": "M contracts/artifact-media.candidate.json\n M src-tauri/schemas/chat-artifact-file-native-v1.schema.json\n M src-tauri/schemas/chat-ipc-v2.schema.json\n M src-tauri/src/chat/application.rs\n M src-tauri/src/chat/artifact.rs\n M src-tauri/src/chat/artifact_file_native.rs\n M src-tauri/src/chat/artifact_media_generated.rs\n M src-tauri/src/chat/artifact_native.rs\n M src-tauri/src/chat/attachment.rs\n M src-tauri/src/chat/database.rs\n M src-tauri/src/chat/host_bridge.rs\n M src-tauri/src/chat/host_domain.rs\n M src-tauri/src/chat/ipc.rs\n M src-tauri/src/chat/mod.rs\n M src-tauri/src/lib.rs\n M src/api/generated/artifact-media-policy.gen.ts\n M src/components/chat/ChatArtifactFile.vue\n M src/domain/chat-artifact-file-native.ts\n M src/domain/chat-ipc.ts\n M src/icons/registry.ts\n?? contracts/artifact-media-v2.schema.json\n?? src/domain/chat-file-presentation.ts",
+      "head_unchanged": true
+    },
+    "yijie-skills": {
+      "head": "704d2cc85a85d0759e6103e3f539552f3d63b1e9",
+      "status": "",
+      "head_unchanged": true
+    },
+    "yijie-codex": {
+      "head": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+      "status": "",
+      "head_unchanged": true
+    }
+  },
+  "concurrent_workspace_changes": {
+    "yijie-contracts": {
+      "head": "2adfa2bef43d38a932f6249dbb0a229c173ff103",
+      "status": "M compatibility/artifact-media/source.lock.json\n M compatibility/experts-v2/source.lock.json\n M compatibility/market-host-v2/source.lock.json\n M compatibility/market-selection-v2/source.lock.json\n M jsonschema/chat/message.schema.json\n M openapi/agent-host/agent-host.yaml\n M scripts/generate-artifact-media.mjs\n M scripts/generate.mjs\n M sdks/go/artifactmedia/types.gen.go\n M sdks/go/market-host-v2/types.gen.go\n M sdks/go/openapi/agent-host/client.gen.go\n M sdks/go/openapi/runtime-permissions/client.gen.go\n M sdks/go/openapi/runtime-permissions/source.bundle.yaml\n M sdks/jsonschema/experts-v2.schema.json\n M sdks/jsonschema/market-host-v2.schema.json\n M sdks/rust/artifactmedia/types.gen.rs\n M sdks/rust/market-host-v2/types.gen.rs\n M sdks/typescript/src/jsonschema/artifact-media-policy.gen.ts\n M sdks/typescript/src/jsonschema/artifact-media.gen.ts\n M sdks/typescript/src/jsonschema/chat-message.gen.ts\n M sdks/typescript/src/openapi/agent-host.gen.ts\n M sdks/typescript/src/openapi/runtime-permissions.gen.ts\n M tests/model-call-surfaces-v2.test.mjs\n?? docs/feat165-artifact-files.md\n?? jsonschema/artifact/media-v2.schema.json\n?? sdks/jsonschema/artifact-media-events-v12.schema.json\n?? tests/feat165-artifact-files.test.mjs",
+      "head_unchanged": true
+    },
+    "yijie-agent-host": {
+      "head": "20539889259587a66a574201e521c2ea9469c54d",
+      "status": "M api/artifact-media.candidate.json\n M artifact-mcp/src/types.gen.rs\n M internal/app/app.go\n M internal/app/artifact_media.go\n M internal/artifact/store.go\n M internal/contracts/artifactmedia/types.gen.go\n M internal/session/artifact_media.go\n M internal/session/multimodal.go\n?? api/schemas/artifact-media-v2.schema.json\n?? internal/artifact/office.go",
+      "head_unchanged": true
+    },
+    "yijie-desktop": {
+      "head": "0247b7cfbe3a4a2020a29417d96b8a5718b3923d",
+      "status": "M contracts/artifact-media.candidate.json\n M src-tauri/schemas/chat-artifact-file-native-v1.schema.json\n M src-tauri/schemas/chat-ipc-v2.schema.json\n M src-tauri/src/chat/application.rs\n M src-tauri/src/chat/artifact.rs\n M src-tauri/src/chat/artifact_file_native.rs\n M src-tauri/src/chat/artifact_media_generated.rs\n M src-tauri/src/chat/artifact_native.rs\n M src-tauri/src/chat/attachment.rs\n M src-tauri/src/chat/database.rs\n M src-tauri/src/chat/host_bridge.rs\n M src-tauri/src/chat/host_domain.rs\n M src-tauri/src/chat/ipc.rs\n M src-tauri/src/chat/mod.rs\n M src-tauri/src/lib.rs\n M src/api/generated/artifact-media-policy.gen.ts\n M src/components/chat/ChatArtifactFile.vue\n M src/domain/chat-artifact-file-native.ts\n M src/domain/chat-ipc.ts\n M src/icons/registry.ts\n?? contracts/artifact-media-v2.schema.json\n?? src/domain/chat-file-presentation.ts",
+      "head_unchanged": true
+    }
+  },
+  "first_protection_check": {
+    "result": "FAIL",
+    "reason": "Sibling worktree comparison detected concurrent FEAT-165-related changes; no rollback performed"
+  },
+  "final_protection_check": {
+    "result": "PASS_scoped_preservation",
+    "scope": "Original feature files except declared five edits, historical snapshots and three closed ledgers unchanged; concurrent sibling changes separately recorded, not claimed unchanged"
+  },
+  "meta_head_unchanged": true,
+  "implementation_status": "pending",
+  "prior_client_verification": "FAIL retained in 20 and current feature.yaml",
+  "review_type": "Codex structured self-review; not independent human approval",
+  "final_checks": [
+    {
+      "name": "final-D0",
+      "command": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "--gate",
+        "D0",
+        "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/docs/features/FEAT-162-kimi-web-retrieval"
+      ],
+      "exit_code": 0,
+      "log": ".local/feat162-basic-pro-requirements-20261028/final-D0.log"
+    },
+    {
+      "name": "final-diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": ".local/feat162-basic-pro-requirements-20261028/final-diff-check.log"
+    }
+  ]
+}

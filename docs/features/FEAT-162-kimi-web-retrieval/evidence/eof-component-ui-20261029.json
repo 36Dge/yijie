@@ -1,0 +1,36 @@
+{
+  "surface": "browser component preview only, not canonical App acceptance",
+  "fixture": "yijie-desktop/tests/visual/feat-162/",
+  "viewport": {
+    "width": 1180,
+    "height": 760
+  },
+  "light": {
+    "horizontal_overflow": false,
+    "axe_violations": [],
+    "summary_keyboard_enter_expanded": true,
+    "focus_outline": "solid",
+    "screenshot": "eof-ui-light-1180.jpg"
+  },
+  "dark": {
+    "horizontal_overflow": false,
+    "axe_violations": [],
+    "keyboard_tab_and_enter_reject_event": "local event only, no HTTP",
+    "focus_outline": "solid",
+    "screenshot": "eof-ui-dark-1180.jpg"
+  },
+  "limitations": [
+    "preview tabs became unavailable during further navigation; no full lower-page/empty/error visual claim",
+    "no real App, model, provider, approval transmission or history reopen"
+  ],
+  "cleanup": {
+    "browser_tabs_remaining": 0,
+    "viewport_override_reset": true,
+    "vite_pid": 23442,
+    "normal_shutdown_handler": "Vite setupSIGTERMListener -> await server.close() -> process.exit",
+    "expected_exit_code": 143,
+    "force_kill": false
+  },
+  "eof-ui-light-1180.jpg_sha256": "0c9d6749309c341fc89a21d44e564243c7b88106abf5c2936d32454f7d847c3c",
+  "eof-ui-dark-1180.jpg_sha256": "32a9b3b47df2c25f962b60a32956ed11eae6694a0acd3d866124814453bd2e4e"
+}

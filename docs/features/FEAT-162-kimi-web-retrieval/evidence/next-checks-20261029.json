@@ -1,0 +1,762 @@
+{
+  "feature": "FEAT-162",
+  "finalized_at": "2026-10-29T09:49:30.881264+00:00",
+  "before_snapshot": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/before.json",
+  "before_snapshot_sha256": "c2e3732029d0b8ee896fd171f1d433c6695f33b7bcf0e91add2a4eec0fe0e588",
+  "repositories": {
+    "yijie": {
+      "head": "12449d00e8cfce34f6560b06a55d5c2f759ca392",
+      "protected_original_files": 5814,
+      "allowed_changes": [
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/00-feature-brief.md",
+          "before_sha256": "33f7ea90323ee01d349327ba4f88425a8f71337e61ae6f58b03b953e88c3fa45",
+          "after_sha256": "96b997c7169182c40adf1cfc142973bf599a15b4c83012938b82ae31c3ff2aee"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/01-delivery-log.md",
+          "before_sha256": "0fb5cb852cab83185bbe7afc0553fa82a2617a31bbd27e536c193310fa823e4a",
+          "after_sha256": "dd689f2afa95cee81dfa0292a7f287e69a0bc31bb5291667e125882123c7cdda"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/02-verification.md",
+          "before_sha256": "d681b07f075576832538927992b3ad2e7d6234e4fbbc1ee19563e967a3660be6",
+          "after_sha256": "e255e71c3af4e36354e519e5df9f599381ed94e73e1355db7c9b13bb3558e65c"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/04-resume.md",
+          "before_sha256": "525b42d2d54807578ec132d4502a4c7af12d0c78c3e10c70fd64c61a3cf3b211",
+          "after_sha256": "e6050a524b7bf7b2eccf0b6fd6666f1d89175cd5b83b781996e1bafac3d18db0"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/22-basic-pro-intent-routing-plan.md",
+          "before_sha256": "5b52dd1e53bef81712c21a0849ccd66ceb227fdfef4e75d2be61429c4d3b6102",
+          "after_sha256": "12a743d10136ccb09a1b14f91e1568c52743b93043f545e0189dab14ad7908cf"
+        },
+        {
+          "path": "docs/features/FEAT-162-kimi-web-retrieval/feature.yaml",
+          "before_sha256": "dfceee8a41bde2bfec0c36db180ef7f14ea99e87ac6585d4c57488836174b5ba",
+          "after_sha256": "0118c12056db278de2111090e84aa37e03fd0477ec41496994cd0f7e6d403c12"
+        }
+      ],
+      "new_files": [
+        "docs/features/FEAT-162-kimi-web-retrieval/28-next-plan-reaudit.md",
+        "docs/features/FEAT-162-kimi-web-retrieval/29-next-implementation-and-verification.md",
+        "docs/features/FEAT-162-kimi-web-retrieval/30-next-implementation-reaudit.md",
+        "docs/features/FEAT-162-kimi-web-retrieval/evidence/next-authorization-20261029.json",
+        "docs/features/FEAT-162-kimi-web-retrieval/evidence/next-checks-20261029.json"
+      ],
+      "diff_check": 0,
+      "status": " M docs/features/FEAT-162-kimi-web-retrieval/00-feature-brief.md\n M docs/features/FEAT-162-kimi-web-retrieval/01-delivery-log.md\n M docs/features/FEAT-162-kimi-web-retrieval/02-verification.md\n M docs/features/FEAT-162-kimi-web-retrieval/04-resume.md\n M docs/features/FEAT-162-kimi-web-retrieval/feature.yaml\n?? docs/features/FEAT-162-kimi-web-retrieval/21-basic-pro-plan-audit.md\n?? docs/features/FEAT-162-kimi-web-retrieval/22-basic-pro-intent-routing-plan.md\n?? docs/features/FEAT-162-kimi-web-retrieval/23-requirements-gap-closure-reaudit.md\n?? docs/features/FEAT-162-kimi-web-retrieval/24-basic-pro-implementation-and-zero-cost.md\n?? docs/features/FEAT-162-kimi-web-retrieval/25-implementation-reaudit.md\n?? docs/features/FEAT-162-kimi-web-retrieval/26-offline-compatibility-and-zero-cost-followup.md\n?? docs/features/FEAT-162-kimi-web-retrieval/27-offline-compatibility-reaudit.md\n?? docs/features/FEAT-162-kimi-web-retrieval/28-next-plan-reaudit.md\n?? docs/features/FEAT-162-kimi-web-retrieval/29-next-implementation-and-verification.md\n?? docs/features/FEAT-162-kimi-web-retrieval/30-next-implementation-reaudit.md\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/basic-pro-requirements-before-20261028.json\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/basic-pro-requirements-checks-20261028.json\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/eof-before-20261029.json\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/eof-checks-20261029.json\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/eof-component-ui-20261029.json\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/eof-projections-20261029.json\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/eof-ui-dark-1180.jpg\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/eof-ui-light-1180.jpg\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/implementation-before-20261029.json\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/implementation-checks-20261029.json\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/next-authorization-20261029.json\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/next-checks-20261029.json\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/requirements-reaudit-before-20261029.json\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/requirements-reaudit-checks-20261029.json\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/requirements-reaudit-plan-20261029.json\n?? docs/features/FEAT-162-kimi-web-retrieval/history/\n"
+    },
+    "yijie-contracts": {
+      "head": "61137174a25dc368e0006f27633fd4a9ad097aa6",
+      "protected_original_files": 646,
+      "allowed_changes": [
+        {
+          "path": "compatibility/artifact-media/source.lock.json",
+          "before_sha256": "2fe1f525a3b8f6adf8fdc7a77037be2e83b5ba2ceb3b78a8cb57d1f4246b7b0f",
+          "after_sha256": "6d3ba9477e73b9e04a76e5933ba1d87e68076c62a97d28d2941b5d005c0f9864"
+        },
+        {
+          "path": "compatibility/chat-models-v2/source.lock.json",
+          "before_sha256": "f20b2ae7270543a6bb39938fa699c95b17e2c5bcbc5d8a44c41cba1c742d49e6",
+          "after_sha256": "b7456acca3efcef736808331a2638e7f4d934e7f5cf47d3752bd1ed6a453d6b1"
+        },
+        {
+          "path": "compatibility/chat-models/source.lock.json",
+          "before_sha256": "5b1794bf49a55b14a37a89706f0234f0c00d125ab0cf591d9405f7fc07054ae9",
+          "after_sha256": "c5e6f4559b5888fa40b2c0ef4ef8cc005a1c5a7add065647a5319114ee391a1b"
+        },
+        {
+          "path": "compatibility/experts-v2/source.lock.json",
+          "before_sha256": "9aef5651124e404831d4d26d22c52189835d5cce86baf054ef6a263aeb467558",
+          "after_sha256": "582d891bbce60122d9738196e13506c5d5653633eaaac1a4518f2c2bd1a77537"
+        },
+        {
+          "path": "compatibility/experts/source.lock.json",
+          "before_sha256": "901600e0a747cecc7ec82a217257d34cccdc2eb14f11f714c4a81d7a2bf244e8",
+          "after_sha256": "e711508e4469f05dea049871d05a58813785f03cce34a25e14cde7eb0c84ec05"
+        },
+        {
+          "path": "compatibility/native-turn-timing/source.lock.json",
+          "before_sha256": "0c4cfb3a7b79f50a7d708fd35c2499676ffe8abc3cfd541ab625aad4ca4a0c40",
+          "after_sha256": "47ef803289e0402d75aeeaf6ac5dbdcea404f1a61e2476ccc12670f703f5e22d"
+        },
+        {
+          "path": "compatibility/scheduled-draft/source.lock.json",
+          "before_sha256": "42ba4c094ad77e81c4a49b985c4e03a6faae3eee154fdb048b05c0ff6b72f416",
+          "after_sha256": "55d97b9438cc8731cec3f84dd6501b4edc67499970256e7784b145b08c0d66e6"
+        },
+        {
+          "path": "scripts/check-generated.mjs",
+          "before_sha256": "bcf7facf8d45a094b03b7a59baaf7181ea66455d17486088b502b24d04eaf60a",
+          "after_sha256": "25a765c1138b69ca678e907d2c50b02a6ffac78f2d4d7f4c6519793d9422c3b4"
+        },
+        {
+          "path": "scripts/check-workflow-local.mjs",
+          "before_sha256": "7c2c8fdbdb3edcb22d3a482aafec28b006b74ad7a0d3077b76066805a81573e6",
+          "after_sha256": "f535837b1ecdd08a6765d62c1bcc22b7df66c7340a683c58fc0edd764383014f"
+        },
+        {
+          "path": "scripts/generate-artifact-media.mjs",
+          "before_sha256": "2e3b43374bf91cc1cfca5665b63738c63c002066c5b737a509a03181c9009627",
+          "after_sha256": "07e6cd9f8a5cfaa1f614295198dce934e56ec6859d9b539ce491bdafd57cc232"
+        },
+        {
+          "path": "scripts/generate-chat-models-v2.mjs",
+          "before_sha256": "46806979daed97b68afc6706df13dbd58a54e6c0b6e81c593c23bca357aa7880",
+          "after_sha256": "9e8e320e11cca6411384ead93a515ddf7067657a2757cd5398dcb7339814824b"
+        },
+        {
+          "path": "scripts/generate-chat-models.mjs",
+          "before_sha256": "4ac1167e6af9a23f24787729eecea7094c3c89b976ed44eae60d531d298daab1",
+          "after_sha256": "19d08c7d06e53d7b64155605293d3f085915049b88e295558111a5779e000725"
+        },
+        {
+          "path": "scripts/generate-native-turn-timing.mjs",
+          "before_sha256": "dff4287b61427fdd9b922462c36d6294d6d616448b31661781ee2b977d72d81f",
+          "after_sha256": "54222f9b30f35a64216fe5336ac193596d6779444338248342389ef8d0b8ba41"
+        },
+        {
+          "path": "scripts/generate-scheduled-draft.mjs",
+          "before_sha256": "9ef2ea82ee8d2ddf30664bd6ee3092a2869347b49b8ab91630e5d01f3c896682",
+          "after_sha256": "d27f8ee260ea913a965dcfa8b46d3d8c1d92ac353a92b085059e389a44a38ca0"
+        },
+        {
+          "path": "scripts/generate.mjs",
+          "before_sha256": "04c87e5f156be3713e75338ed23da5d0368d3663f4d7b9389b7a4de0b77d1834",
+          "after_sha256": "404bbebb4af2dd8638a0ccab2fad0447037c1b64364d017d38b7032a7b64c444"
+        }
+      ],
+      "new_files": [
+        "docs/full-generation.md",
+        "scripts/generate-core.mjs",
+        "scripts/generation-plan.mjs",
+        "scripts/generation-workspace.mjs",
+        "scripts/sdk-exports.json",
+        "tests/feat162-owner-stop-contract.test.mjs",
+        "tests/generation-workspace.test.mjs"
+      ],
+      "diff_check": 0,
+      "status": " M .gitignore\n M compatibility/artifact-media/source.lock.json\n M compatibility/chat-models-v2/source.lock.json\n M compatibility/chat-models/source.lock.json\n M compatibility/experts-v2/source.lock.json\n M compatibility/experts/source.lock.json\n M compatibility/market-broker-control/control.json\n M compatibility/market-broker-control/source.lock.json\n M compatibility/market-broker-control/wire.schema.json\n M compatibility/market-host-v2/source.lock.json\n M compatibility/market-host-v2/transport.json\n M compatibility/market-host-v2/wire.schema.json\n M compatibility/market-host/source.lock.json\n M compatibility/market-host/transport.json\n M compatibility/market-host/wire.schema.json\n M compatibility/market-provider/source.lock.json\n M compatibility/native-turn-timing/source.lock.json\n M compatibility/scheduled-draft/source.lock.json\n M compatibility/web-retrieval/source.lock.json\n M compatibility/web-retrieval/tools.json\n M compatibility/web-retrieval/wire.schema.json\n M docs/contract-change-policy.md\n M docs/supported-baselines.md\n M scripts/check-breaking.sh\n M scripts/check-generated.mjs\n M scripts/check-workflow-local.mjs\n M scripts/generate-artifact-media.mjs\n M scripts/generate-chat-models-v2.mjs\n M scripts/generate-chat-models.mjs\n M scripts/generate-market-broker.mjs\n M scripts/generate-market-host-v2.mjs\n M scripts/generate-market-host.mjs\n M scripts/generate-native-turn-timing.mjs\n M scripts/generate-scheduled-draft.mjs\n M scripts/generate-web-retrieval.mjs\n M scripts/generate.mjs\n M scripts/market-broker-source.mjs\n M scripts/market-host-source.mjs\n M scripts/market-host-v2-source.mjs\n M scripts/web-retrieval-source.mjs\n M sdks/go/market-broker-control/types.gen.go\n M sdks/go/market-host-v2/types.gen.go\n M sdks/go/market-host/types.gen.go\n M sdks/jsonschema/market-broker-control.schema.json\n M sdks/jsonschema/market-host-native.schema.json\n M sdks/jsonschema/market-host-v2-native.schema.json\n M sdks/jsonschema/market-host-v2.schema.json\n M sdks/jsonschema/market-host.schema.json\n M sdks/jsonschema/web-retrieval.schema.json\n M sdks/jsonschema/web-retrieval.tools.json\n M sdks/rust/market-broker-control/types.gen.rs\n M sdks/rust/market-host-v2/types.gen.rs\n M sdks/rust/market-host/types.gen.rs\n M sdks/rust/web-retrieval/types.gen.rs\n M sdks/typescript/src/api/generated/market-host-native-validator.gen.js\n M sdks/typescript/src/api/generated/market-host-v2-native-validator.gen.js\n M sdks/typescript/src/domain/market-host-native.generated.ts\n M sdks/typescript/src/domain/market-host-v2-native.generated.ts\n M tests/market-broker.test.mjs\n M tests/model-call-surfaces-v2.test.mjs\n M tests/rust-web-retrieval/src/lib.rs\n M tests/web-retrieval.test.mjs\n?? compatibility/web-retrieval/legacy/\n?? docs/full-generation.md\n?? docs/offline-breaking-checks.md\n?? docs/web-retrieval-basic-pro-v03.md\n?? scripts/generate-core.mjs\n?? scripts/generation-plan.mjs\n?? scripts/generation-workspace.mjs\n?? scripts/prepare-breaking-inputs.mjs\n?? scripts/sdk-exports.json\n?? scripts/sync-feat162-local.mjs\n?? sdks/typescript/src/api/generated/web-retrieval-validator.gen.d.ts\n?? sdks/typescript/src/api/generated/web-retrieval-validator.gen.js\n?? sdks/typescript/src/domain/web-retrieval.generated.ts\n?? tests/feat162-owner-stop-contract.test.mjs\n?? tests/generation-workspace.test.mjs\n?? tests/offline-breaking-inputs.test.mjs\n"
+    },
+    "yijie-agent-host": {
+      "head": "36ec8c62cca771b479b317d209da50d6acda0989",
+      "protected_original_files": 510,
+      "allowed_changes": [],
+      "new_files": [],
+      "diff_check": 0,
+      "status": " M api/market-broker-control.candidate.json\n M api/market-broker-control.schema.json\n M api/market-host-v2.schema.json\n M internal/codex/market_approvals.go\n M internal/codex/market_approvals_test.go\n M internal/codex/market_turns.go\n M internal/contracts/marketbrokercontrol/types.gen.go\n M internal/contracts/markethost/types.gen.go\n?? api/feat162.local-candidate.json\n?? docs/feat162-basic-pro-local.md\n"
+    },
+    "yijie-connectors": {
+      "head": "ff436bb9bfe23297a1c5891a06fe6f6280c04e6d",
+      "protected_original_files": 160,
+      "allowed_changes": [],
+      "new_files": [],
+      "diff_check": 0,
+      "status": " M Makefile\n M api/market-broker-control.candidate.json\n M api/market-broker-control.schema.json\n M api/market-provider.candidate.json\n M api/web-retrieval.candidate.json\n M api/web-retrieval.schema.json\n M api/web-retrieval.tools.json\n M docs/kimi-web-retrieval.md\n M worker/src/broker.rs\n M worker/src/broker_generated.rs\n M worker/src/gateway.rs\n M worker/src/kimi_web.rs\n M worker/src/kimi_web_tests.rs\n M worker/src/web_retrieval_generated.rs\n?? worker/src/kimi_web_content.rs\n"
+    },
+    "yijie-desktop": {
+      "head": "30631ff6a483dcb194b249c2459b1510857cdafc",
+      "protected_original_files": 1483,
+      "allowed_changes": [
+        {
+          "path": "scripts/feat162-basic-pro-meter.py",
+          "before_sha256": "a03942fa7c1a4a1bd40f92bf9c69d668485ff3ff7cb52e7a64ccc6ca0450d63e",
+          "after_sha256": "d85f8794b74684d4f5fefbb421f826d225606755c2716e64447633cbe936585a"
+        },
+        {
+          "path": "scripts/feat162-client-meter.py",
+          "before_sha256": "336de324e3d84b8a7be199170d282aeab8ab018569c2b8751027c0c67d3a2172",
+          "after_sha256": "ec848f5e3549017a76d8b92611d7762f253684bd7a902f3e4392cacb424f6ed7"
+        },
+        {
+          "path": "scripts/test-feat162-basic-pro-meter.py",
+          "before_sha256": "1a857efc2a48d408b082046cd1ca5cc68b26dbd15fc2be052394898961cbad19",
+          "after_sha256": "6630f9b4fca6b24bf1bdef093a7504999c9d8013d78bbccf582aab6efcee1e85"
+        },
+        {
+          "path": "src-tauri/src/chat/sidecar.rs",
+          "before_sha256": "84ecd1d2d2e150ff2f1faa0fe63ef104aa4d83752d428aba75b833285250b502",
+          "after_sha256": "791c6c4a90e1284ef8fdcfaa0ebad190dcfc8ab651b6199ab95d69489920ab1f"
+        }
+      ],
+      "new_files": [
+        "docs/feat162-owner-stop.md",
+        "scripts/feat162_owner_stop.py",
+        "scripts/test-feat162-owner-stop.py"
+      ],
+      "diff_check": 0,
+      "status": " M contracts/market-host-v2-native.schema.json\n M contracts/market-host-v2.schema.json\n M docs/design/docs/design/05-patterns/02-chat-workspace.md\n M eslint.config.js\n M scripts/feat162-client-meter.py\n M scripts/feat164_primary.py\n M src-tauri/src/chat/connectors/broker_generated.rs\n M src-tauri/src/chat/connectors/host_v2_generated.rs\n M src-tauri/src/chat/sidecar.rs\n M src/api/generated/market-host-v2-native-validator.gen.js\n M src/components/chat/MarketChatActivity.vue\n M src/composables/useMarketChat.test.ts\n M src/composables/useMarketChat.ts\n M src/domain/market-host-v2-native.generated.ts\n?? contracts/feat162.local-candidate.json\n?? docs/feat162-owner-stop.md\n?? scripts/feat162-basic-pro-meter.py\n?? scripts/feat162_owner_stop.py\n?? scripts/test-feat162-basic-pro-meter.py\n?? scripts/test-feat162-observation-profile.py\n?? scripts/test-feat162-owner-stop.py\n?? src/api/generated/web-retrieval-validator.gen.d.ts\n?? src/api/generated/web-retrieval-validator.gen.js\n?? src/components/chat/WebRetrievalResult.test.ts\n?? src/components/chat/WebRetrievalResult.vue\n?? src/domain/web-retrieval-display.ts\n?? src/domain/web-retrieval.generated.ts\n?? tests/visual/feat-162/\n"
+    },
+    "yijie-skills": {
+      "head": "704d2cc85a85d0759e6103e3f539552f3d63b1e9",
+      "protected_original_files": 1347,
+      "allowed_changes": [],
+      "new_files": [],
+      "diff_check": 0,
+      "status": ""
+    },
+    "yijie-codex": {
+      "head": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+      "protected_original_files": 5602,
+      "allowed_changes": [],
+      "new_files": [],
+      "diff_check": 0,
+      "status": ""
+    }
+  },
+  "checks": [
+    {
+      "name": "canonical-source-preflight",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie",
+      "argv": [
+        "python3",
+        ".local/feat162-next-20261029/source-preflight.py"
+      ],
+      "started_at": "2026-10-29T09:45:22.695384+00:00",
+      "finished_at": "2026-10-29T09:45:22.780842+00:00",
+      "exit_code": 2,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/canonical-source-preflight.log",
+      "log_sha256": "28e1db88e58d4a1ebeeb2d3753d56ef989aba60c04a6ff7db4a87f0f01100dab",
+      "disposition": "EXPECTED_SOURCE_BLOCK"
+    },
+    {
+      "name": "contracts-final-lint",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+      "argv": [
+        "pnpm",
+        "lint"
+      ],
+      "started_at": "2026-10-29T09:42:57.410157+00:00",
+      "finished_at": "2026-10-29T09:43:00.545623+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/contracts-final-lint.log",
+      "log_sha256": "be58b987a3db47a00ec8b957a399056c0fc735b685a838b672709d08f51556b4",
+      "disposition": "PASS"
+    },
+    {
+      "name": "contracts-final-regression",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+      "argv": [
+        "node",
+        "--test",
+        "tests/offline-breaking-inputs.test.mjs",
+        "tests/web-retrieval.test.mjs",
+        "tests/market-broker.test.mjs",
+        "tests/market-host.test.mjs",
+        "tests/model-call-surfaces-v2.test.mjs",
+        "tests/generation-workspace.test.mjs",
+        "tests/feat162-owner-stop-contract.test.mjs"
+      ],
+      "started_at": "2026-10-29T09:42:57.410156+00:00",
+      "finished_at": "2026-10-29T09:42:59.156859+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/contracts-final-regression.log",
+      "log_sha256": "847183a6d98c9587a0521e169dc7436746699dd51ce2faddd4b3d90b39996fcc",
+      "disposition": "PASS"
+    },
+    {
+      "name": "contracts-focused-final",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+      "argv": [
+        "node",
+        "--test",
+        "tests/offline-breaking-inputs.test.mjs",
+        "tests/web-retrieval.test.mjs",
+        "tests/market-broker.test.mjs",
+        "tests/market-host.test.mjs",
+        "tests/model-call-surfaces-v2.test.mjs",
+        "tests/generation-workspace.test.mjs",
+        "tests/feat162-owner-stop-contract.test.mjs"
+      ],
+      "started_at": "2026-10-29T09:24:27.179942+00:00",
+      "finished_at": "2026-10-29T09:24:28.669424+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/contracts-focused-final.log",
+      "log_sha256": "729858daf3ba727f90283508f96ad6d0b2de4025ec99ad7cab8c6ab3437df646",
+      "disposition": "PASS"
+    },
+    {
+      "name": "contracts-lint",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+      "argv": [
+        "pnpm",
+        "lint"
+      ],
+      "started_at": "2026-10-29T09:10:00.737304+00:00",
+      "finished_at": "2026-10-29T09:10:02.830587+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/contracts-lint.log",
+      "log_sha256": "7e4a70cc2f276c32201e6a0464d3a5f6e7851264def24c93f93bcce8f1a86c99",
+      "disposition": "PASS"
+    },
+    {
+      "name": "desktop-lint-final",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+      "argv": [
+        "pnpm",
+        "lint"
+      ],
+      "started_at": "2026-10-29T09:25:40.333636+00:00",
+      "finished_at": "2026-10-29T09:25:51.092014+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/desktop-lint-final.log",
+      "log_sha256": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6",
+      "disposition": "PASS"
+    },
+    {
+      "name": "desktop-meter-budget-final",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+      "argv": [
+        "python3",
+        "scripts/test-feat162-basic-pro-meter.py"
+      ],
+      "started_at": "2026-10-29T09:34:45.391272+00:00",
+      "finished_at": "2026-10-29T09:34:45.473718+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/desktop-meter-budget-final.log",
+      "log_sha256": "670a39115e7523a8984e4842e16547cb2094b03fad392b037b4b9dc8b2656e62",
+      "disposition": "PASS"
+    },
+    {
+      "name": "desktop-meter-legacy",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+      "argv": [
+        "python3",
+        "scripts/feat162_client_meter_test.py"
+      ],
+      "started_at": "2026-10-29T09:24:27.179986+00:00",
+      "finished_at": "2026-10-29T09:24:28.280490+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/desktop-meter-legacy.log",
+      "log_sha256": "c1ba79d06f33b4c3c27d45152cc3b582a977732380ee01b76da08af907d6c07f",
+      "disposition": "PASS"
+    },
+    {
+      "name": "desktop-meter-v2",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+      "argv": [
+        "python3",
+        "scripts/test-feat162-basic-pro-meter.py"
+      ],
+      "started_at": "2026-10-29T09:24:27.179953+00:00",
+      "finished_at": "2026-10-29T09:24:27.252853+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/desktop-meter-v2.log",
+      "log_sha256": "065c7d15facfd20f14fb9182747be315f3349fa1d5e1a0e966047509f4bfa9b1",
+      "disposition": "PASS"
+    },
+    {
+      "name": "full-generated-check",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+      "argv": [
+        "pnpm",
+        "check-generated:safe"
+      ],
+      "started_at": "2026-10-29T09:09:59.576148+00:00",
+      "finished_at": "2026-10-29T09:10:16.968738+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/full-generated-check.log",
+      "log_sha256": "3295cf90a709c3a39b4522856d567a3f740070a8290891239faadbf01e30f2f5",
+      "disposition": "PASS"
+    },
+    {
+      "name": "full-generated-final-pins",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+      "argv": [
+        "node",
+        "scripts/check-generated.mjs",
+        "--skip-skill-fixture-generation"
+      ],
+      "started_at": "2026-10-29T09:34:46.677603+00:00",
+      "finished_at": "2026-10-29T09:35:07.374396+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/full-generated-final-pins.log",
+      "log_sha256": "9361a7c2f455cfac4da8a50eb4801497b85e0f2cdaed7811c13befea63a1d2a6",
+      "disposition": "PASS"
+    },
+    {
+      "name": "full-generation-preview",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+      "argv": [
+        "pnpm",
+        "check-generated:safe"
+      ],
+      "started_at": "2026-10-29T09:05:02.526276+00:00",
+      "finished_at": "2026-10-29T09:05:20.504203+00:00",
+      "exit_code": 1,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/full-generation-preview.log",
+      "log_sha256": "0238c8494a68e8f43f04059f1e0226ff21de4eae18b2ea86f37ae50653274224",
+      "disposition": "PRESERVED_INTERMEDIATE_FAILURE"
+    },
+    {
+      "name": "full-generation",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+      "argv": [
+        "pnpm",
+        "generate:safe"
+      ],
+      "started_at": "2026-10-29T09:06:33.474090+00:00",
+      "finished_at": "2026-10-29T09:06:50.759018+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/full-generation.log",
+      "log_sha256": "c9f3bf87e1283a4368d282944b40f4688922324438a6f12721b7d72022fe740e",
+      "disposition": "PASS"
+    },
+    {
+      "name": "generation-tests",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+      "argv": [
+        "node",
+        "--test",
+        "tests/generation-workspace.test.mjs"
+      ],
+      "started_at": "2026-10-29T09:08:18.035046+00:00",
+      "finished_at": "2026-10-29T09:08:18.502069+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/generation-tests.log",
+      "log_sha256": "682263ff699c4faf4979c4c237fdc3b02524348e234728e4cad47a49c22a1e37",
+      "disposition": "PASS"
+    },
+    {
+      "name": "meta-d0-final",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie",
+      "argv": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "docs/features/FEAT-162-kimi-web-retrieval",
+        "--gate",
+        "D0"
+      ],
+      "started_at": "2026-10-29T09:43:32.114420+00:00",
+      "finished_at": "2026-10-29T09:43:32.193623+00:00",
+      "exit_code": 1,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/meta-d0-final.log",
+      "log_sha256": "bf21e0f04f6973da992e912a237ecf874a6431adbee8ac1a024189b0ee4a46f2",
+      "disposition": "PRESERVED_INTERMEDIATE_FAILURE"
+    },
+    {
+      "name": "meta-d0-fixed",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie",
+      "argv": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "docs/features/FEAT-162-kimi-web-retrieval",
+        "--gate",
+        "D0"
+      ],
+      "started_at": "2026-10-29T09:44:39.933589+00:00",
+      "finished_at": "2026-10-29T09:44:40.074590+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/meta-d0-fixed.log",
+      "log_sha256": "9886c597ea9ddb213c37ce3c9114614fcfcbb8acba6ac3cd3f86c176527e38e4",
+      "disposition": "PASS"
+    },
+    {
+      "name": "meta-lint-final",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie",
+      "argv": [
+        "pnpm",
+        "lint"
+      ],
+      "started_at": "2026-10-29T09:43:32.255125+00:00",
+      "finished_at": "2026-10-29T09:43:32.575436+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/meta-lint-final.log",
+      "log_sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c",
+      "disposition": "PASS"
+    },
+    {
+      "name": "meta-shell-all",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie",
+      "argv": [
+        "python3",
+        ".local/feat162-next-20261029/shell-check.py"
+      ],
+      "started_at": "2026-10-29T09:46:54.321736+00:00",
+      "finished_at": "2026-10-29T09:46:54.370813+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/meta-shell-all.log",
+      "log_sha256": "5e6072f7ee8b54832bdf68ac820cea64739cf87af7b3f4b24e46f02e22fa1c7a",
+      "disposition": "PASS"
+    },
+    {
+      "name": "meta-shell",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie",
+      "argv": [
+        "bash",
+        "-n",
+        "scripts/bootstrap.sh",
+        "scripts/check-contract-governance.sh",
+        "scripts/check-feature-delivery.sh",
+        "scripts/checkout-all.sh",
+        "scripts/for-each-repo.sh",
+        "scripts/generate-all.sh",
+        "scripts/review-feature.sh"
+      ],
+      "started_at": "2026-10-29T09:46:29.930177+00:00",
+      "finished_at": "2026-10-29T09:46:29.933110+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/meta-shell.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "disposition": "SUPERSEDED_NARROW_CHECK"
+    },
+    {
+      "name": "meta-tests-final",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie",
+      "argv": [
+        "pnpm",
+        "test"
+      ],
+      "started_at": "2026-10-29T09:43:32.255393+00:00",
+      "finished_at": "2026-10-29T09:43:42.494965+00:00",
+      "exit_code": 1,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/meta-tests-final.log",
+      "log_sha256": "99d5a569ed7ce00d0cdd6b1ceff78cd09ffe99a2d287e721cbcb252e4b447a00",
+      "disposition": "PRESERVED_INTERMEDIATE_FAILURE"
+    },
+    {
+      "name": "meta-tests-fixed",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie",
+      "argv": [
+        "pnpm",
+        "test"
+      ],
+      "started_at": "2026-10-29T09:45:22.831309+00:00",
+      "finished_at": "2026-10-29T09:45:34.008315+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/meta-tests-fixed.log",
+      "log_sha256": "5b757420d48520d380c93ee71c2162f4a6cfc801051a401d138a125d82dde9a4",
+      "disposition": "PASS"
+    },
+    {
+      "name": "meter-default-bound-final",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+      "argv": [
+        "python3",
+        "scripts/test-feat162-basic-pro-meter.py"
+      ],
+      "started_at": "2026-10-29T09:42:57.410156+00:00",
+      "finished_at": "2026-10-29T09:42:57.508628+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/meter-default-bound-final.log",
+      "log_sha256": "637ad693971420b70a01476cd5d51065ecc3c7af270c41cfe91899ec8c2db4bd",
+      "disposition": "PASS"
+    },
+    {
+      "name": "native-observation-environment",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--lib",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "feat152_permission_policy_reaches_the_allowlisted_child_environment",
+        "--",
+        "--nocapture"
+      ],
+      "started_at": "2026-10-29T09:25:40.333644+00:00",
+      "finished_at": "2026-10-29T09:25:50.309150+00:00",
+      "exit_code": 101,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/native-observation-environment.log",
+      "log_sha256": "0e398959afd0f3773f5667de3943f4834928e58d453d3571bbf5de29d31f78e4",
+      "disposition": "PRESERVED_INTERMEDIATE_FAILURE"
+    },
+    {
+      "name": "native-observation-fixed",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--lib",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "feat152_permission_policy_reaches_the_allowlisted_child_environment",
+        "--",
+        "--nocapture"
+      ],
+      "started_at": "2026-10-29T09:34:45.520492+00:00",
+      "finished_at": "2026-10-29T09:34:58.614240+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/native-observation-fixed.log",
+      "log_sha256": "aaca993d511dd5994ebb1cf8525af006feeeb28c57129afd14f089ef643cf2eb",
+      "disposition": "PASS"
+    },
+    {
+      "name": "observation-profile",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+      "argv": [
+        "python3",
+        "scripts/test-feat162-observation-profile.py"
+      ],
+      "started_at": "2026-10-29T09:24:27.179920+00:00",
+      "finished_at": "2026-10-29T09:24:27.225421+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/observation-profile.log",
+      "log_sha256": "fb184ea57734512b1f088f9181209901b9cd46df3eb7eaa2500ea9e48dde20b5",
+      "disposition": "PASS"
+    },
+    {
+      "name": "owner-contract",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+      "argv": [
+        "node",
+        "--test",
+        "tests/feat162-owner-stop-contract.test.mjs"
+      ],
+      "started_at": "2026-10-29T09:20:46.760422+00:00",
+      "finished_at": "2026-10-29T09:20:46.943776+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/owner-contract.log",
+      "log_sha256": "78a5cbe981b1ac7d04829741c4b199079cd3e68cf44c56422418108f1a0b55c6",
+      "disposition": "PASS"
+    },
+    {
+      "name": "owner-final-regression",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+      "argv": [
+        "python3",
+        "scripts/test-feat162-owner-stop.py"
+      ],
+      "started_at": "2026-10-29T09:42:57.410156+00:00",
+      "finished_at": "2026-10-29T09:43:01.029909+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/owner-final-regression.log",
+      "log_sha256": "2dddb50b681bc4bd0ea15d67756ca6da9db0ea22ece1666d2f3368cdb3b5938c",
+      "disposition": "PASS"
+    },
+    {
+      "name": "owner-stop-final",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+      "argv": [
+        "python3",
+        "scripts/test-feat162-owner-stop.py"
+      ],
+      "started_at": "2026-10-29T09:24:27.179867+00:00",
+      "finished_at": "2026-10-29T09:24:30.791859+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/owner-stop-final.log",
+      "log_sha256": "888849d5181ec35c59610da167aff9181bb4144337262ccbed1f34c9a6c742f1",
+      "disposition": "PASS"
+    },
+    {
+      "name": "owner-stop-tests",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop",
+      "argv": [
+        "python3",
+        "scripts/test-feat162-owner-stop.py"
+      ],
+      "started_at": "2026-10-29T09:18:48.306199+00:00",
+      "finished_at": "2026-10-29T09:18:51.441148+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/owner-stop-tests.log",
+      "log_sha256": "dc3fb3443573d3647f512408451528f8053765e8d9780c0f8bba945a84e4774b",
+      "disposition": "PASS"
+    },
+    {
+      "name": "restore-pinned-dependencies-complete",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+      "argv": [
+        "env",
+        "npm_config_offline=true",
+        "npm_config_update_notifier=false",
+        "pnpm",
+        "install",
+        "--offline",
+        "--frozen-lockfile",
+        "--force"
+      ],
+      "started_at": "2026-10-29T09:30:44.269099+00:00",
+      "finished_at": "2026-10-29T09:30:44.444993+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/restore-pinned-dependencies-complete.log",
+      "log_sha256": "5a67bbfe692fea96a3fb177b33cd57947671948f48370ad88abdf500083bb438",
+      "disposition": "PASS"
+    },
+    {
+      "name": "restore-pinned-dependencies",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+      "argv": [
+        "env",
+        "npm_config_offline=true",
+        "npm_config_update_notifier=false",
+        "pnpm",
+        "install",
+        "--offline",
+        "--frozen-lockfile"
+      ],
+      "started_at": "2026-10-29T09:29:55.805240+00:00",
+      "finished_at": "2026-10-29T09:29:56.018746+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/restore-pinned-dependencies.log",
+      "log_sha256": "264eb8a0df336b240c8e04d5d85e6eb0e677e639c4efa9a17783a4779cb3549f",
+      "disposition": "PASS"
+    },
+    {
+      "name": "workflow-generated-check-final",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+      "argv": [
+        "node",
+        "scripts/check-workflow-local.mjs"
+      ],
+      "started_at": "2026-10-29T09:28:24.505419+00:00",
+      "finished_at": "2026-10-29T09:28:25.117965+00:00",
+      "exit_code": 1,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/workflow-generated-check-final.log",
+      "log_sha256": "dc840f1bc65ba37afbe0a065bf63ae23dc763ee7f0780e688771bd5efd7f2d04",
+      "disposition": "PRESERVED_INTERMEDIATE_FAILURE"
+    },
+    {
+      "name": "workflow-generated-check",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+      "argv": [
+        "node",
+        "scripts/check-workflow-local.mjs"
+      ],
+      "started_at": "2026-10-29T09:25:40.333512+00:00",
+      "finished_at": "2026-10-29T09:25:56.533368+00:00",
+      "exit_code": 1,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/workflow-generated-check.log",
+      "log_sha256": "b05a8bd8b255808da08a3be09509758531480ced31f0eff84129e207590456a6",
+      "disposition": "PRESERVED_INTERMEDIATE_FAILURE"
+    },
+    {
+      "name": "workflow-generated-fixed",
+      "cwd": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-contracts",
+      "argv": [
+        "node",
+        "scripts/check-workflow-local.mjs"
+      ],
+      "started_at": "2026-10-29T09:33:16.340216+00:00",
+      "finished_at": "2026-10-29T09:33:18.179123+00:00",
+      "exit_code": 0,
+      "log": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/workflow-generated-fixed.log",
+      "log_sha256": "4413cd340a5500edc75970bc9e40d1e9fe6d03505626254cee3eac61eda01600",
+      "disposition": "PASS"
+    }
+  ],
+  "installed_dependency_graph_equals_source_lock": true,
+  "dependency_backup": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie/.local/feat162-next-20261029/contracts-dependency-backup",
+  "dependency_restoration_log_sha256": "1e5744f4a27e4235a7ef5df5531e6567e40a613c22001036d70fb9722b33002d",
+  "paid_authorized_micro_cny": 20000000,
+  "new_paid_http": 0,
+  "new_spend_micro_cny": 0,
+  "git_commit_push": false,
+  "d4": "NOT_PASSED",
+  "remaining": [
+    "clean committed exact canonical sources/consumer qualification",
+    "proven native fee bound and 20 CNY admission",
+    "accurate App owner-stop chain and E1-E7"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "feature": "FEAT-162",
+  "generation": "20261029-06",
+  "E1": "FAIL_INCOMPLETE_STREAM_CAUSE_NOT_RETAINED",
+  "E2_E7": "NOT_RUN",
+  "model_requests": 1,
+  "REST_requests": 0,
+  "native_search_items": "unknown",
+  "actual_billing": "unknown",
+  "model_estimate_micro_cny": 1000000,
+  "REST_reserve_micro_cny": 105000,
+  "old_hold_separate_micro_cny": 42710457,
+  "ledger_sha256": "cab0552471949d7870db2648de6e43d5b1f169e0d50c77979a23b2aee249a0db",
+  "ledger_closed": true,
+  "source_receipt_sha256": "33704c665c05d2c1e220b49f412c4f538c3ccfb6586e99fc93ee34bfb39f0828",
+  "normal_App_exit": true,
+  "Native_schema": 41,
+  "pending_work": 0,
+  "legacy_occupied_grants": 6,
+  "provider_events": [
+    {
+      "stage": "call_approval",
+      "event": "started"
+    },
+    {
+      "stage": "call_admission",
+      "event": "rejected"
+    },
+    {
+      "stage": "model_preparation",
+      "event": "started"
+    },
+    {
+      "stage": "model_preparation",
+      "event": "succeeded"
+    }
+  ]
+}

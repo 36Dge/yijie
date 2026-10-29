@@ -1,0 +1,306 @@
+# 2026-10-28: 当前真实客户端结果见20-client-e2e-results.md；模型4次、Search/Fetch0，FAIL并停止。
+# 09/13的App与直接工具PASS是2026-10-24历史证据，不能换算为当前K3.1客户端D4。
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+feature:
+  id: FEAT-162
+  slug: kimi-web-retrieval
+  title: Kimi Search与Fetch连接器
+  status: active
+  created_at: "2026-10-24"
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+scope:
+  risk_level: high
+  data_classification: restricted
+  contract_impact: breaking
+  database_change: none
+  persistence_change: none
+  runtime_change: platform
+  auth_permission_change: auth
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: tool
+repositories:
+  [
+    yijie,
+    yijie-contracts,
+    yijie-connectors,
+    yijie-agent-host,
+    yijie-desktop,
+    yijie-skills
+  ]
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+product_ux:
+  status: PASS
+  primary_user: 使用易界普通对话检索公开网页的本地用户
+  problem: 原生搜索来源只有URL与标题，缺稳定摘要列表和指定URL正文工具
+  user_outcome: 显式选用Kimi网页检索后得到结构化搜索结果与网页正文，保留原生搜索
+  in_scope:
+    [
+      一个连接器两个工具,
+      目录容量62实际61,
+      自动复用现有Kimi模型Key及本地准备,
+      原有MCP选择和逐次审批,
+      Search Basic与Fetch REST适配,
+      source-first及正常验证
+    ]
+  out_of_scope:
+    [
+      无头浏览器,
+      JavaScript渲染,
+      原始HTML,
+      Search Pro,
+      Agent循环重建,
+      Codex内核修改,
+      定时工具扩权,
+      新增第二份持久密钥,
+      生产发布
+    ]
+  main_flow:
+    [
+      客户端自动准备内置Kimi工具,
+      复用已有模型凭据且准备不联网,
+      当前会话显式选用,
+      原生逐次审批,
+      一次REST请求,
+      原生MCP结果与历史,
+      正常停用重开
+    ]
+  visual_direction: 复用市场详情及聊天工具组件、现有Kimi本地图标、亮暗主题和焦点规则
+  ui_states:
+    idle: 自动准备或明确显示统一模型凭据缺失，尊重用户停用
+    loading: 原操作busy和一次提交
+    success: 真实结果及明确截断信息
+    empty: 搜索空列表与抓取无正文区分
+    error: 闭集安全错误不泄漏上游正文
+    retry: 新调用需重新批准且无自动重试
+    cancel: 正常取消撤权且不承诺发送后免计费
+must_acceptance:
+  - {
+      id: AC-001,
+      statement: 方案先于代码且原生搜索Runtime不变，一个连接器两个工具,
+      verification: 00-feature-brief.md与实际diff,
+      status: PASS
+    }
+  - {
+      id: AC-002,
+      statement: 工具契约同源且新reader接受旧60及61和62目录、拒绝63,
+      verification: focused生成与conformance,
+      status: PASS
+    }
+  - {
+      id: AC-003,
+      statement: 无需连接器配置启用且自动复用模型凭据，准备零HTTP并尊重明确停用卸载,
+      verification: 09-direct-use-verification.md及direct-use-ui.json,
+      status: PASS
+    }
+  - {
+      id: AC-004,
+      statement: 当前有效选集与ask逐次批准、拒绝零HTTP、撤权有效,
+      verification: Broker与真实拒绝流程,
+      status: pending
+    }
+  - {
+      id: AC-005,
+      statement: Search标题URL摘要及空列表正确、Fetch指定URL正文正确,
+      verification: 13-search-fetch-live-verification.md及live-minimal-round3-result.json,
+      status: PASS
+    }
+  - {
+      id: AC-006,
+      statement: 取消错误超时容量有界且无自动重试、截断明确,
+      verification: 普通纯函数和生命周期定向检查,
+      status: PASS
+    }
+  - {
+      id: AC-007,
+      statement: 新MCP与原生搜索共存且结果历史正常重开可读,
+      verification: canonical App真实会话,
+      status: pending
+    }
+  - {
+      id: AC-008,
+      statement: 标准构建来源定向检查及diff通过且已有修改保留,
+      verification: 实际日志manifest与workspace证据,
+      status: PASS
+    }
+contract:
+  impact: breaking
+  authority: Contracts独立web-retrieval与market五族；第三方REST以Kimi官方文档为权威
+  source_first_plan: 源契约容量62及两工具schema先行，生成检查后同步reader，再激活61项目录和REST backend；原Runtime不变
+  status: NOT RUN
+  checks:
+    - name: web-retrieval与market五族生成同步及60/61/62容量conformance
+      status: PASS
+      evidence: evidence/contracts-verification-summary.json
+    - name: experts传递来源及75资源内容授权同等
+      status: PASS
+      evidence: evidence/expert-provenance-refresh.json
+    - name: 完整breaking基线
+      status: NOT RUN
+      actual_result: 7个基线3通过4退出102，既有scheduled-plan-draft远程引用EOF；不宣称整体通过
+      evidence: evidence/contracts-breaking-results.json
+external_authorizations:
+  paid_calls: { allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A }
+  destructive_operations: { allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A }
+  production_writes: { allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A }
+implementation:
+  status: complete
+  real_entrypoint: K3.1同源canonical --packaged --feat164-qualification --kimi-k31-pro入口；独立FEAT162计量和原Key；日常generation20261028-03保留未新激活
+  mock_only: false
+verification:
+  status: FAIL
+  verified_at: "2026-10-28"
+  startup:
+    status: PASS
+    command_or_steps: bash scripts/run-local-demo-fast.sh --packaged --feat164-qualification --kimi-k31-pro --reopen
+    environment: local demo_fast K3.1 qualification packaged App
+    actual_result: 标准新构建及来源检查通过，已有模型凭据自动复用；本机合成正控及正常重开通过；真实失败历史重开0新增请求；不等于Search或Fetch真实结果通过
+    evidence: evidence/client-e2e-20261028-result.json
+  real_smoke:
+    {
+      status: FAIL,
+      command_or_steps: 17/19号原授权及两次追加授权的真实Native对话验收；保留未知预占且新失败停止,
+      environment: 2026-10-28 K3.1同源构建与客户端已有Key,
+      actual_result: 模型实际4次，首次成功后Search审批过期零发送，旧meter漏拦续轮已离线修复；其余三次response.failed且usage未知，最新rate_limit_exceeded；Search0 Fetch0；保守上界42.710457元非实际账单；正常停止且无法继续完整预占。2026-10-24直接工具PASS仍见13号
+    }
+  representative_failure:
+    {
+      status: NOT RUN,
+      command_or_steps: 正常拒绝一次审批并确认零业务HTTP,
+      environment: 同构建真实会话,
+      actual_result: 真实产品Gateway正常拒绝已验证零供应商请求；真实模型或Native界面审批拒绝未运行
+    }
+  focused_checks:
+    - name: 2026-10-28真实K3.1客户端端到端
+      status: FAIL
+      evidence: evidence/client-e2e-20261028-result.json
+    - name: 独立计量19项普通离线检查及实际worker拒绝零HTTP
+      status: PASS
+      evidence: evidence/client-e2e-20261028-result.json
+    - name: 真实产品worker的Search与Fetch各一次及拒绝零HTTP
+      status: PASS
+      evidence: evidence/live-minimal-round3-result.json
+    - name: 自动复用模型凭据与无需配置启用的App及同构建重开
+      status: PASS
+      evidence: evidence/direct-use-ui.json
+    - name: 自动准备跨仓检查及零供应商HTTP
+      status: PASS
+      evidence: evidence/direct-use-checks.json
+    - name: 模型Key复用真实App及同构建重开
+      status: PASS
+      evidence: evidence/model-key-reuse-ui.json
+    - name: 模型Key复用的跨仓本地绑定与无HTTP检查
+      status: PASS
+      evidence: evidence/model-key-reuse-checks.json
+    - name: Contracts生成、JS/Go/Rust及lint
+      status: PASS
+      evidence: evidence/contracts-verification-summary.json
+    - name: Connectors 13项及独立P1复审
+      status: PASS
+      evidence: evidence/independent-code-review.json
+    - name: Host四包正常allowlist及vet
+      status: PASS
+      evidence: evidence/host-focused-checks.json
+    - name: Desktop 47前端和11Native及build/lint
+      status: PASS
+      evidence: evidence/desktop-focused-checks.json
+    - name: 实际worker正常子进程四项
+      status: PASS
+      evidence: evidence/worker-build-and-owner.json
+    - name: 来源刷新6项普通检查与独立复审
+      status: PASS
+      evidence: evidence/expert-provenance-refresh.json
+    - name: 元仓50项与lint/D0
+      status: PASS
+      evidence: evidence/meta-checks.json
+    - name: 真实Host启动来源校验失败到通过及独立复审
+      status: PASS
+      evidence: evidence/host-expert-authority-sync.json
+    - name: 正常App启动与无收费连接器UI验收、同构建重开
+      status: PASS
+      evidence: evidence/app-resume-ui.json
+  artifacts:
+    - 20-client-e2e-results.md
+    - 19-approved-client-e2e-execution.md
+    - evidence/client-e2e-20261028-result.json
+    - 13-search-fetch-live-verification.md
+    - evidence/live-minimal-round3-authorization.json
+    - evidence/live-minimal-round3-result.json
+    - evidence/live-minimal-round3-preflight-result.json
+    - evidence/live-minimal-round3-workspace.json
+    - 12-toolchain-preflight-result.md
+    - evidence/live-minimal-round2-result.json
+    - evidence/live-minimal-round2-preflight-result.json
+    - evidence/live-minimal-round2-source.json
+    - 10-live-minimal-acceptance-plan.md
+    - 11-live-minimal-result.md
+    - evidence/live-minimal-authorization.json
+    - evidence/live-minimal-driver-review.json
+    - evidence/live-minimal-result.json
+    - 07-direct-use-audit.md
+    - 08-direct-use-implementation-plan.md
+    - 09-direct-use-verification.md
+    - evidence/direct-use-checks.json
+    - evidence/direct-use-ui.json
+    - evidence/direct-use-diagnostics.json
+    - evidence/direct-use-packaged-receipt.json
+    - evidence/direct-use-workspace-final.json
+    - 00-feature-brief.md
+    - 01-delivery-log.md
+    - 02-verification.md
+    - 04-resume.md
+    - 05-model-key-reuse-plan.md
+    - 06-model-key-reuse-verification.md
+    - evidence/model-key-reuse-checks.json
+    - evidence/model-key-reuse-diagnostics.json
+    - evidence/model-key-reuse-workspace.json
+    - evidence/model-key-reuse-ui.json
+    - evidence/model-key-reuse-packaged-receipt.json
+    - evidence/app-build-ui.json
+    - evidence/app-resume-ui.json
+    - evidence/contracts-breaking-results.json
+    - evidence/contracts-transitive-qualification-summary.json
+    - evidence/contracts-verification-summary.json
+    - evidence/desktop-focused-checks.json
+    - evidence/expert-provenance-refresh.json
+    - evidence/host-expert-authority-sync.json
+    - evidence/host-focused-checks.json
+    - evidence/independent-code-review.json
+    - evidence/kimi-ui-no-provider-call.json
+    - evidence/local-workflow-recovery.json
+    - evidence/meta-checks.json
+    - evidence/official-source-review.json
+    - evidence/plan-before-implementation.json
+    - evidence/resume-workspace.json
+    - evidence/worker-build-and-owner.json
+    - evidence/workspace-before.json
+  diff_review:
+    status: PASS
+    summary: 独立审查P1与preflight顺序问题已关闭，相关仓库diff检查通过，Runtime工作区干净且HEAD不变；保留用户已有修改
+  known_limitations:
+    - 当前K3.1真实客户端验收FAIL；模型4次且3份未知用量保留，最新供应商rate_limit_exceeded，Search0 Fetch0；预算不足下一次完整预占，全部台账关闭，不使用剩余次数自动重试
+    - 2026-10-24的Search1和Fetch1直接工具PASS仍保留；当前真实成功工具结果、答案及其重开未验证，D4未通过
+    - Kimi准备不联网，已移除models检查；可使用仅表示本地适配器就绪，真实账号权限余额仍未验证
+    - 暗色实机验收NOT RUN：现有设置无切换入口，未更改系统外观；亮色1268x780与1180x760通过
+    - 完整breaking四个基线因既有远程引用EOF未通过，专家补充一项旧基线失败
+    - 全新机器签名分发NOT RUN，默认首次安装由内存数据库测试覆盖；仅本地候选非发布兼容，无头浏览器和原始HTML明确排除
+public_readiness:
+  required: false
+  status: N/A
+  checks: []
+  external_smoke: { status: NOT RUN, command_or_steps: 本期不公开部署, actual_result: 未执行 }
+documents:
+  brief: 00-feature-brief.md
+  delivery_log: 01-delivery-log.md
+  verification: 02-verification.md

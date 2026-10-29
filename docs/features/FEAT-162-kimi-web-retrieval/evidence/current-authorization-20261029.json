@@ -1,0 +1,17 @@
+{
+  "schema_version": 3,
+  "feature": "FEAT-162",
+  "recorded_at": "2026-10-29T12:43:03.627884+00:00",
+  "message_timestamp_exact": false,
+  "authorization": "FEAT-162-soft-budget-v3",
+  "paid_authorized": true,
+  "owner_statement": "20元逐请求预占（非硬性）；不用明确费用硬上界，超过20也没有问题，超过20后就不再执行",
+  "local_git_statement": "允许仅本地提交 FEAT-162，不推送",
+  "soft_threshold_micro_cny": 20000000,
+  "allow_inflight_overshoot": true,
+  "hard_fee_bound_required": false,
+  "local_feature_commit_allowed": true,
+  "push_allowed": false,
+  "old_unknown_hold_micro_cny": 42710457,
+  "old_hold_separate": true
+}

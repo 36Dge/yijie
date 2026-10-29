@@ -1,5 +1,71 @@
 # FEAT-162 验证记录
 
+> 当前状态（2026-10-29）：第八代E1仍失败，累计3次模型HTTP、0REST、3元未知用量估算；Owner已暂停构建与收费验收，方案A清理完成。现已另行授权全仓Git提交/推送；完整当前状态见[34号](34-paused-state-and-cleanup.md)。下文授权与执行进度按历史时点理解。
+
+## 2026-10-29 当前：软预算、精确来源与真实App执行
+
+Owner已明确20元为软停止阈值，允许在途超出后停止，不要求费用硬上界；仅本地提交FEAT-162已批准，不推送。当前v3计量、来源提交和App/Workflow进展见[33号](33-real-app-execution.md)，授权见[evidence/current-authorization-20261029.json](evidence/current-authorization-20261029.json)。真实七例及D4仍待执行。下列历史收费、提交与准入限制按其原时点解释。
+
+
+## 2026-10-29 — 全量生成与停止适配续验
+
+完整生成/检查及Workflow检查通过，43项Contracts、8项v2计量、19项legacy计量、7项Owner适配、1项配置、1项Native环境检查通过。准确App→Host→worker撤权尚未资格化；本轮已获20元授权但实际付费0，E1—E7 NOT RUN、D4未通过。细节与修复中失败日志见29/30及evidence/next-checks-20261029.json。
+
+以下为历史记录，旧“当前/最新/未授权”按原时点理解。
+
+
+## 2026-10-29 最新：兼容阻塞修复与补充检查
+
+原5项EOF已关闭，九个完整基线PASS；Contracts38、Kimi27、Host正规worker生命周期5（含2子例）、Desktop44项通过。Contracts lint/worker lint/前端lint通过；有界组件亮暗1180×760、键盘和axe证据见[eof-component-ui](evidence/eof-component-ui-20261029.json)。整体结果见[26号](26-offline-compatibility-and-zero-cost-followup.md)及[27号复审](27-offline-compatibility-reaudit.md)。
+
+额外旧全量生成检查FAIL_BASELINE，副作用已安全恢复；不把九基线通过写成全部生成门禁通过。真实App/历史重开、native费用硬界与owner停止链、E1—E7仍NOT RUN，付费0，D4未通过。24/25的“5项EOF”是本次修复前记录，原日志保留。
+
+
+## 2026-10-29 最新实施验证
+
+本轮契约/代码与可执行零费用检查已完成；[24号](24-basic-pro-implementation-and-zero-cost.md)记录完整范围及Z组部分覆盖，[25号](25-implementation-reaudit.md)记录最终复审。命令、退出码、日志摘要及保护检查见[机器证据](evidence/implementation-checks-20261029.json)。
+
+最终Contracts Node33、Rust web5/broker6；Connectors24；Desktop focused28（此前更宽44）；Native observe4；Host两项race；新meter6/旧19/纯配置1项通过。来源/格式/静态检查、worker正规新generation、前端和设计构建通过。完整breaking8个基线中3通过、5因既有远程schema EOF未完成，不能宣称契约全绿。
+
+真实E1—E7、accurate App激活、亮暗/1180×760及新历史正常重开NOT RUN。v2 live因native硬费用界限和owner停止链未资格化固定拒绝；实际付费0。AC-021—030仍pending、D4不通过；旧20号FAIL及三份未知占用保留。以下“全部产品NOT RUN/只改文档”只描述先前轮次。
+
+
+## 2026-10-29 当前修订验证边界
+
+当前需求以00、22、23及feature.yaml为准。五项缺口及E5已补为明确设计决策；implementation=pending，新AC-021—030仍全pending，Z1—Z10与E1—E7产品验证全部NOT RUN。旧20号真实客户端FAIL与三项未知预占保持，不用文档通过覆盖。
+
+| 检查层次 | 当前含义 |
+|---|---|
+| 本轮文档检查 | 严格D0、元仓lint、57项治理测试和7脚本语法检查通过；最终一致性/保护见evidence/requirements-reaudit-checks-20261029.json，不证明代码实现 |
+| 三项并行复审 | 分别审期限/计量、契约/结果、产品/验收/预算；是Codex子代理审阅，不是独立人工批准 |
+| Z1—Z10 | 未来普通值/loopback/实际消费者的产品验证，当前NOT RUN |
+| E1—E7 | 未来同源真实工具集合下的7会话/8用户回合，当前NOT RUN；限17模型/各REST工具3次 |
+| 收费准入 | NOT RUN；无新授权，实际模型费用上界、原生搜索硬上界和等价入口尚未证明 |
+| 历史失败 | 20号模型4次/Basic0/Fetch0及42.710457元保守占用原样保留 |
+
+当前REST部分上界0.105元；完整新预算为模型上界之和+0.105+R_native，241.421224仅旧单次模型上界适用时的条件小计。未访问Key/账户、未启动服务或应用，未运行攻击/故障注入、强杀、权限破坏或二进制替换。未执行项目及影响：跨仓源生成/产品测试/构建/真实调用均因用户限定只改需求而未执行，不能证明运行正确性、时延或实际费用。
+
+以下为历史验证，2026-10-28的五用例/11模型和旧D0仅对当时版本有效。
+
+## 2026-10-28 Basic/Pro扩展当前验证状态
+
+当前需求：00、21、22及feature.yaml。产品实现pending；新AC-021至030全部pending；Pro和Basic正文真实验收NOT RUN。旧20号客户端验收FAIL保留（模型4、Basic0、Fetch0），不能被本轮文档检查覆盖。
+
+本轮已通过需求包结构、严格D0、元仓lint、57项治理测试及7个脚本语法检查，均退出0。文档链接/AC一致性与保护范围另有最终核对；实际命令、退出码与产物见evidence/basic-pro-requirements-checks-20261028.json。文档D0结果不等于产品D4或新的执行授权。
+
+| 产品验证组 | 当前结果 | 计划证据 |
+|---|---|---|
+| 源契约/方向兼容/来源同步 | NOT RUN | AC-022，旧0.2基线与新候选 |
+| Basic两模式、Pro筛选/chunks、Fetch | NOT RUN | AC-024/025，普通响应与E1—E4 |
+| 模型选择与混合任务 | NOT RUN | AC-023，E1/E2/E3/E5实际tool call |
+| 拒绝/过期/期限/错误/大小/计费 | NOT RUN | AC-026/027/028，零费用普通检查及受限实际运行 |
+| 拟交付App/UI与成功历史重开 | NOT RUN | AC-021/029，实际入口、来源回执与0重放 |
+| 新完整真实验收 | NOT RUN | AC-030，E1—E5及单独批准的预算 |
+
+未实施任何产品检查或收费测试；没有使用攻击fixture、强杀、权限故障或可执行替换。旧报告中的PASS/FAIL及截图均为对应历史来源，下面原文继续保留；不能作为新增Pro能力的证明。
+
+保护检查说明：第一次断言所有兄弟仓工作树保持不变时失败，实际是Contracts/Host/Desktop出现与FEAT-165相关的并行dirty。没有回滚这些改动。最终分别核对本轮范围、旧文件、历史快照、关闭台账和仓库HEAD，并记录外部工作区差异，不将整仓不变宣称为PASS。
+
 > 后续变更：用户已授权复用现有Kimi模型Key；此前独立Keyring配置要求已由`05-model-key-reuse-plan.md`与`06-model-key-reuse-verification.md`替代。以下保留原轮次证据。
 
 **用户恢复后，本轮启动修复和无收费调用的连接器界面验收已完成。** Host 专家资源摘要遗漏已正规同步，实际 App 启动、目录、安装、空密钥配置取消、禁用选择和同构建重开均通过。真实账户 Search/Fetch、模型驱动 MCP 与整体 D4 仍为 **NOT RUN**，遵守用户“真实收费 API 先不要执行”。当前证据见 `evidence/app-resume-ui.json`；下文保留修复前历史，恢复结果以最后一节为准。

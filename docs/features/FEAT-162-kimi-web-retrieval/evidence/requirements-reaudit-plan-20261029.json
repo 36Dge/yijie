@@ -1,0 +1,153 @@
+{
+  "scope": "planned acceptance, not execution or paid authorization",
+  "date": "2026-10-29",
+  "cases": [
+    {
+      "id": "E1",
+      "model_http_max": 2,
+      "basic_max": 1,
+      "pro_max": 0,
+      "fetch_max": 0,
+      "user_turns": 1,
+      "status": "NOT RUN"
+    },
+    {
+      "id": "E2",
+      "model_http_max": 2,
+      "basic_max": 0,
+      "pro_max": 1,
+      "fetch_max": 0,
+      "user_turns": 1,
+      "status": "NOT RUN"
+    },
+    {
+      "id": "E3",
+      "model_http_max": 2,
+      "basic_max": 0,
+      "pro_max": 0,
+      "fetch_max": 1,
+      "user_turns": 1,
+      "status": "NOT RUN"
+    },
+    {
+      "id": "E4",
+      "model_http_max": 2,
+      "basic_max": 1,
+      "pro_max": 0,
+      "fetch_max": 0,
+      "user_turns": 1,
+      "status": "NOT RUN"
+    },
+    {
+      "id": "E5",
+      "model_http_max": 4,
+      "basic_max": 1,
+      "pro_max": 0,
+      "fetch_max": 1,
+      "user_turns": 2,
+      "status": "NOT RUN"
+    },
+    {
+      "id": "E6",
+      "model_http_max": 2,
+      "basic_max": 0,
+      "pro_max": 1,
+      "fetch_max": 0,
+      "user_turns": 1,
+      "status": "NOT RUN"
+    },
+    {
+      "id": "E7",
+      "model_http_max": 3,
+      "basic_max": 0,
+      "pro_max": 1,
+      "fetch_max": 1,
+      "user_turns": 1,
+      "status": "NOT RUN"
+    }
+  ],
+  "totals": {
+    "sessions": 7,
+    "user_turns": 8,
+    "model_http_max": 17,
+    "basic_max": 3,
+    "pro_max": 3,
+    "fetch_max": 3,
+    "rest_calls_max": 9
+  },
+  "rest_unit_price_cny": {
+    "basic": "0.01",
+    "pro": "0.015",
+    "fetch": "0.01"
+  },
+  "rest_subtotal_cny": "0.105",
+  "initial_subset": {
+    "case_ids": [
+      "E1",
+      "E2",
+      "E3"
+    ],
+    "model_http_max": 6,
+    "rest_subtotal_cny": "0.035",
+    "included_in_full_plan": true
+  },
+  "conditional_model_per_request_cny": "14.195072",
+  "conditional_model_plus_rest_cny": "241.421224",
+  "full_budget_formula": "sum(proven_model_request_caps) + 0.105 + R_native",
+  "native_search_unit_price_reference_cny": "0.03",
+  "native_search_expected_count": 0,
+  "native_search_hard_count_bound": null,
+  "native_search_reserve_cny": null,
+  "full_budget_cny": null,
+  "paid_readiness": "NOT RUN: hard bound, equivalent entrypoint, actual model caps and authorization not established",
+  "paid_authorization": {
+    "allowed": false,
+    "max_actions": 0
+  },
+  "actual_calls_this_revision": 0,
+  "old_reservation_cny": "42.710457",
+  "old_unknown_requests": 3,
+  "zero_cost_product_cases": [
+    {
+      "id": "Z1",
+      "status": "NOT RUN"
+    },
+    {
+      "id": "Z2",
+      "status": "NOT RUN"
+    },
+    {
+      "id": "Z3",
+      "status": "NOT RUN"
+    },
+    {
+      "id": "Z4",
+      "status": "NOT RUN"
+    },
+    {
+      "id": "Z5",
+      "status": "NOT RUN"
+    },
+    {
+      "id": "Z6",
+      "status": "NOT RUN"
+    },
+    {
+      "id": "Z7",
+      "status": "NOT RUN"
+    },
+    {
+      "id": "Z8",
+      "status": "NOT RUN"
+    },
+    {
+      "id": "Z9",
+      "status": "NOT RUN"
+    },
+    {
+      "id": "Z10",
+      "status": "NOT RUN"
+    }
+  ],
+  "source": "22-basic-pro-intent-routing-plan.md §9"
+}

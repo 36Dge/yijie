@@ -1,0 +1,30 @@
+{
+  "feature": "FEAT-162",
+  "date": "2026-10-29",
+  "execution_state": "paused_by_owner",
+  "generation": "20261029-08",
+  "source_receipt_sha256": "f57aff68ecb4b350d1546a69f534edf30683598e77657203f7d5cd3977366f61",
+  "E1": "FAIL_NATIVE_SEARCH_ROUTE",
+  "E2_E7": "NOT_RUN",
+  "D4": "NOT_PASSED",
+  "model_requests_cumulative": 3,
+  "REST_requests_cumulative": 0,
+  "model_usage_unknown_estimate_micro_cny": 3000000,
+  "actual_billing": "unknown",
+  "historical_unknown_hold_separate_micro_cny": 42710457,
+  "ledger_sha256": "3fc6da7fb1858eb44c0678dbae2765713f988ef6a4f699dfd10693eddd7d95d5",
+  "ledger_closed_normally": true,
+  "App_exited_normally": true,
+  "post_live08_cold_backup_verified": true,
+  "post_live08_database_reader_audit": "NOT_RUN after owner pause; file integrity preservation checked separately",
+  "cleanup": {
+    "scope": "01–07 worker-target; 04–07 target/debug/deps, incremental, .fingerprint only",
+    "deleted_directories": 19,
+    "observed_available_increase_bytes": 42230243328,
+    "retained_roots_verified": 17,
+    "generation08_and_final_apps_preserved": true,
+    "backups_and_evidence_preserved": true,
+    "result_sha256": "1c5b04c84c34cf706bec176c74c51b37b3de1817932226925f8fb070fe04d1e9"
+  },
+  "latest_git_authorization": "Owner subsequently authorized auditing, committing and pushing all project repositories to their corresponding remote branches; this does not resume builds or paid acceptance"
+}

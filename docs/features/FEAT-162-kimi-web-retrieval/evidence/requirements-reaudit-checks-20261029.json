@@ -1,0 +1,165 @@
+{
+  "date": "2026-10-29",
+  "scope": "FEAT-162 requirements documentation only",
+  "checks": [
+    {
+      "name": "feature-D0",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict --gate D0 docs/features/FEAT-162-kimi-web-retrieval",
+      "exit_code": 0,
+      "log": ".local/feat162-requirements-reaudit-20261029/feature-D0.log"
+    },
+    {
+      "name": "meta-lint",
+      "command": "pnpm lint",
+      "exit_code": 0,
+      "log": ".local/feat162-requirements-reaudit-20261029/meta-lint.log"
+    },
+    {
+      "name": "meta-tests",
+      "command": "pnpm test",
+      "exit_code": 0,
+      "log": ".local/feat162-requirements-reaudit-20261029/meta-tests.log"
+    },
+    {
+      "name": "shell-syntax",
+      "command": "python3 - <<'PY'\nfrom pathlib import Path\nimport subprocess\nfor p in sorted(Path('scripts').glob('*.sh')):\n r=subprocess.run(['bash','-n',str(p)],check=True)\n print(str(p)+': PASS')\nPY",
+      "exit_code": 0,
+      "log": ".local/feat162-requirements-reaudit-20261029/shell-syntax.log"
+    }
+  ],
+  "document_check": "PASS",
+  "meta_tests": {
+    "passed": 57,
+    "failed": 0
+  },
+  "shell_scripts_checked": 7,
+  "review": {
+    "kind": "Three Codex subagent read-only reviews; not independent human approval",
+    "deadline_meter": "PASS with explicit activation/payment prerequisites",
+    "contract_results": "PASS: no new blocking design contradiction",
+    "product_cases_budget": "PASS: AC consistency and 17/3/3/3 arithmetic"
+  },
+  "implementation_status": "pending",
+  "acceptance_status": "all AC-021 through AC-030 pending; Z1-Z10/E1-E7 NOT RUN",
+  "D4_passed": false,
+  "prior_client_FAIL_retained": true,
+  "paid_authorization": {
+    "allowed": false,
+    "max_actions": 0
+  },
+  "paid_calls": 0,
+  "product_code_modified": false,
+  "product_started": false,
+  "git_commit_executed": false,
+  "helper_script_correction": {
+    "result": "Corrected",
+    "description": "Document-maintenance helper initially failed while constructing an in-memory E3 budget tuple after document headers were written. Corrected tuple and wrote the plan in a separate step; no duplicate headers or product changes.",
+    "initial_error": "ValueError: too many values to unpack (expected 6, got 7)"
+  },
+  "final_consistency_and_preservation": "PASS: scoped feature files and original snapshots",
+  "document_consistency": {
+    "status": "PASS",
+    "ac_rows_equal": 20,
+    "case_rows_equal": 7,
+    "zero_cost_product_cases": 10,
+    "local_links_checked": 13,
+    "budget_integer_microyuan_check": "PASS",
+    "product_statuses_preserved": true
+  },
+  "final_checks": [
+    {
+      "name": "final-strict-D0",
+      "exit_code": 0
+    },
+    {
+      "name": "git-diff-check",
+      "exit_code": 0
+    }
+  ],
+  "preservation": {
+    "existing_files_checked": 157,
+    "unchanged_existing_files": 150,
+    "changed_existing_files": [
+      "00-feature-brief.md",
+      "01-delivery-log.md",
+      "02-verification.md",
+      "04-resume.md",
+      "21-basic-pro-plan-audit.md",
+      "22-basic-pro-intent-routing-plan.md",
+      "feature.yaml"
+    ],
+    "original_file_backups_equal": true,
+    "history_and_old_evidence_unchanged": true,
+    "all_repo_heads_unchanged": true,
+    "scope": "Only the declared FEAT-162 documentation and new audit evidence were written; concurrent sibling status differences are recorded separately."
+  },
+  "repositories_after": {
+    "yijie": {
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "970e9d8bfeb2580c06d06490b818a50f58ba453f",
+      "remote": "origin\thttps://github.com/36Dge/yijie.git (fetch)\norigin\thttps://github.com/36Dge/yijie.git (push)",
+      "status": "M docs/features/FEAT-162-kimi-web-retrieval/00-feature-brief.md\n M docs/features/FEAT-162-kimi-web-retrieval/01-delivery-log.md\n M docs/features/FEAT-162-kimi-web-retrieval/02-verification.md\n M docs/features/FEAT-162-kimi-web-retrieval/04-resume.md\n M docs/features/FEAT-162-kimi-web-retrieval/feature.yaml\n?? docs/features/FEAT-162-kimi-web-retrieval/21-basic-pro-plan-audit.md\n?? docs/features/FEAT-162-kimi-web-retrieval/22-basic-pro-intent-routing-plan.md\n?? docs/features/FEAT-162-kimi-web-retrieval/23-requirements-gap-closure-reaudit.md\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/basic-pro-requirements-before-20261028.json\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/basic-pro-requirements-checks-20261028.json\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/requirements-reaudit-before-20261029.json\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/requirements-reaudit-checks-20261029.json\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/requirements-reaudit-plan-20261029.json\n?? docs/features/FEAT-162-kimi-web-retrieval/history/\n?? docs/features/FEAT-166-conversation-artifact-sidebar/",
+      "head_unchanged": true,
+      "status_unchanged": false
+    },
+    "yijie-contracts": {
+      "branch": "feat/feat164-primary-20261028",
+      "head": "61137174a25dc368e0006f27633fd4a9ad097aa6",
+      "remote": "origin\thttps://github.com/36Dge/yijie-contracts.git (fetch)\norigin\thttps://github.com/36Dge/yijie-contracts.git (push)",
+      "status": "",
+      "head_unchanged": true,
+      "status_unchanged": true
+    },
+    "yijie-connectors": {
+      "branch": "feat/feat164-primary-20261028",
+      "head": "ff436bb9bfe23297a1c5891a06fe6f6280c04e6d",
+      "remote": "origin\thttps://github.com/36Dge/yijie-connectors.git (fetch)\norigin\thttps://github.com/36Dge/yijie-connectors.git (push)",
+      "status": "",
+      "head_unchanged": true,
+      "status_unchanged": true
+    },
+    "yijie-agent-host": {
+      "branch": "feat/feat164-primary-20261028",
+      "head": "36ec8c62cca771b479b317d209da50d6acda0989",
+      "remote": "origin\thttps://github.com/36Dge/yijie-agent-host.git (fetch)\norigin\thttps://github.com/36Dge/yijie-agent-host.git (push)",
+      "status": "",
+      "head_unchanged": true,
+      "status_unchanged": true
+    },
+    "yijie-desktop": {
+      "branch": "feat/feat164-primary-20261028",
+      "head": "a2cc89c9cf2e36f8c5b9154e5694c38e601e140a",
+      "remote": "origin\thttps://github.com/36Dge/yijie-desktop.git (fetch)\norigin\thttps://github.com/36Dge/yijie-desktop.git (push)",
+      "status": "M docs/design/docs/design/02-tokens/04-spacing-layout-tokens.md\n M docs/design/docs/design/05-patterns/02-chat-workspace.md\n M package.json\n M src-tauri/src/chat/application.rs\n M src-tauri/src/chat/artifact_file_native.rs\n M src-tauri/src/chat/attachment.rs\n M src-tauri/src/chat/database.rs\n M src-tauri/src/chat/mod.rs\n M src-tauri/src/lib.rs\n M src/components/chat/ChatArtifactFile.vue\n M src/components/chat/ChatArtifactList.vue\n M src/components/chat/ChatArtifactShell.test.ts\n M src/components/chat/ChatArtifactShell.vue\n M src/components/chat/ChatAttachmentChip.feat165.test.ts\n M src/components/chat/ChatAttachmentChip.vue\n M src/icons/registry.ts\n M src/pages/chat/ChatPage.test.ts\n M src/pages/chat/ChatPage.vue\n M src/styles/variables.css\n?? docs/design/docs/design/05-patterns/17-feat-166-conversation-file-preview.md\n?? scripts/generate-document-preview.mjs\n?? scripts/generate-document-preview.test.mjs\n?? src-tauri/schemas/chat-document-preview-v1.schema.json\n?? src-tauri/schemas/fixtures/\n?? src-tauri/src/chat/document_preview_content.rs\n?? src-tauri/src/chat/document_preview_content_tests.rs\n?? src-tauri/src/chat/document_preview_native.rs\n?? src-tauri/src/chat/document_preview_pdf.rs\n?? src/api/chat-document-preview-client.test.ts\n?? src/api/chat-document-preview-client.ts\n?? src/components/chat/ChatDocumentWorkspace.test.ts\n?? src/components/chat/ChatDocumentWorkspace.vue\n?? src/composables/useConversationDocumentPreview.ts\n?? src/domain/conversation-file-preview.test.ts\n?? src/domain/conversation-file-preview.ts\n?? src/domain/document-preview.generated.ts",
+      "head_unchanged": true,
+      "status_unchanged": true
+    },
+    "yijie-skills": {
+      "branch": "feat/feat164-primary-20261028",
+      "head": "704d2cc85a85d0759e6103e3f539552f3d63b1e9",
+      "remote": "origin\thttps://github.com/36Dge/yijie-skills.git (fetch)\norigin\thttps://github.com/36Dge/yijie-skills.git (push)",
+      "status": "",
+      "head_unchanged": true,
+      "status_unchanged": true
+    },
+    "yijie-codex": {
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+      "remote": "origin\thttps://github.com/36Dge/yijie-codex.git (fetch)\norigin\thttps://github.com/36Dge/yijie-codex.git (push)\nupstream\thttps://github.com/openai/codex.git (fetch)\nupstream\tDISABLED (push)",
+      "status": "",
+      "head_unchanged": true,
+      "status_unchanged": true
+    }
+  },
+  "document_sha256": {
+    "00-feature-brief.md": "f7cac366400505218ea0bc20e31393a268b3950612f7284a512a09aa87722c38",
+    "01-delivery-log.md": "ebcc50f0f4064cd5cc0fd29de7470cb4786b1dec28d94d060201313fafdde0e7",
+    "02-verification.md": "7b9ff41f199bda457eaa1119100daf90365863758bc795687a68792a000eaad2",
+    "04-resume.md": "f2109be3e33a6e600e1ce0fd00925b88a09c75311cd88a6751a10087fa9556cd",
+    "21-basic-pro-plan-audit.md": "1a6a9a47678cf85a4a82be8b95df3eb366217e7b4dd43dcc4ed05d2aa7f82311",
+    "22-basic-pro-intent-routing-plan.md": "8d4c33d648efcaea0c980cb51eadd9e96ed078b9689a39a9f460f6bdfc0ee670",
+    "23-requirements-gap-closure-reaudit.md": "d0d26aa2295fddc5646064805fe0866bba9ee4cbc5dc81502bdd52985824ff98",
+    "feature.yaml": "38b9cb4a0347abf727d9f3acb342881df6465dceae0f42faea18dd6c5d8b500c"
+  },
+  "recorded_at": "2026-10-29T12:07:41.702377+08:00"
+}

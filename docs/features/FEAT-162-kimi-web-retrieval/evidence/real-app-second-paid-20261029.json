@@ -1,0 +1,23 @@
+{
+  "feature": "FEAT-162",
+  "generation": "20261029-07",
+  "E1": "FAIL_NATIVE_SEARCH_ROUTE",
+  "E2_E7": "NOT_RUN",
+  "model_requests_new": 1,
+  "model_requests_cumulative": 2,
+  "REST_requests": 0,
+  "native_search_items_observed": 1,
+  "actual_billing": "unknown",
+  "model_estimate_cumulative_micro_cny": 2000000,
+  "REST_reserve_micro_cny": 105000,
+  "old_hold_separate_micro_cny": 42710457,
+  "ledger_sha256": "6128711c66a850856c239d94bd1989fce4283d49714e8c79e296529d8a9694ef",
+  "ledger_closed": true,
+  "source_receipt_sha256": "882c94af3c08d127017c9d2a2bed69593bbb14c16047d093b315bbf28bfe67ef",
+  "normal_App_exit": true,
+  "Native_schema": 41,
+  "pending_work": 0,
+  "first_stop_reason": "native_search_already_executed",
+  "root_cause": "normal Host instructions unconditionally preferred native web search despite selected retrieval connector",
+  "previous_request_cause": "unknown; not retroactively inferred"
+}
