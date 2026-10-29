@@ -1,0 +1,179 @@
+{
+  "feature": "FEAT-166",
+  "scope": "Final normal local checks; no UI/D4, no paid calls, no attack or destructive tests",
+  "checks": [
+    {
+      "id": "desktop-lint",
+      "argv": [
+        "make",
+        "lint"
+      ],
+      "started_at": "2026-10-28T20:27:59.249115+00:00",
+      "duration_seconds": 28.468,
+      "exit_code": 0,
+      "output": "YIJIE_DESKTOP_CONTRACTS_DIR=\"../yijie-contracts\" pnpm generate:check\n$ node scripts/generate-public-api.mjs --check && node scripts/check-agent-host-contract.mjs --check && node scripts/check-agent-host-v3-contract.mjs && node scripts/check-agent-host-skills-contract.mjs && node scripts/check-agent-host-v4-contract.mjs && pnpm check:native\nPublic API types verified at 164b14f609537d727a52326832da04430aecc4ab with openapi-typescript 7.13.0/TypeScript 5.9.3.\nAgent Host v2 turn contract verified at 164b14f609537d727a52326832da04430aecc4ab; hand-written-rust-adapter is covered by EXC-127-002.\nAgent Host v3 Artifact contract and 10 Desktop implementation pins verified at 164b14f609537d727a52326832da04430aecc4ab; adapter is implemented.\nAgent Host Skills v1 API, Manifest v2, Runtime projection and exact providers verified at 164b14f609537d727a52326832da04430aecc4ab; native consumer pins are complete.\nFEAT-134 v4 immutable objects verified at Contracts 87f94c9aa6d4848cb67aa8a1265bd21474edb0bb and Agent Host 96b1fa19783694aef583b614c492fd2b6b5c15cc; activation is exact local/demo_fast/stable only.\n$ node scripts/generate-document-preview.mjs --check && node scripts/generate-chat-turn-timing.mjs --check && node scripts/generate-chat-session-purpose.mjs --check && node scripts/generate-native-conversation.mjs --check && node scripts/check-native-conversation.mjs && pnpm check:scheduled-ipc && pnpm check:market-connectors && pnpm check:market-selection && pnpm check:market-provider && pnpm check:market-host\nPrivate session purpose source generation verified.\nNative conversation verified: 61137174a25dc368e0006f27633fd4a9ad097aa6; published=false\nFEAT-132 native sources, generated consumer snapshots and retired-engine boundary verified.\n$ node scripts/generate-scheduled-ipc.mjs --check\nScheduled private IPC source, pinned shared types and strict generation verified.\n$ node ../yijie-contracts/scripts/sync-market-connectors.mjs --consumer=desktop --check && node scripts/sync-market-catalog.mjs --check\nMarket connectors generation verified: 56 definitions, 10 IPC commands; local candidate only.\nMarket connectors desktop checked; development hashes only, no immutable/release provenance claim.\n61-entry non-secret Connectors catalog verified; no provider activation.\n$ node ../yijie-contracts/scripts/sync-market-selection.mjs --consumer=desktop --check\nMarket selection checked; 18 source definitions, one disabled Native submit candidate; no Host route or execution authority.\nMarket connectors generation verified: 56 definitions, 10 IPC commands; local candidate only.\nChat models source generation verified; unreleased local candidate.\nMarket selection Desktop checked; no immutable/release provenance claim.\n$ node ../yijie-contracts/scripts/sync-market-provider.mjs --consumer=desktop --check\nMarket provider checked: 26 definitions; no secret fields.\nMarket provider desktop checked; local candidate.\n$ node ../yijie-contracts/scripts/sync-market-host.mjs --consumer=desktop --check\nMarket Host checked: 72 definitions; existing v2 content and private Native authority.\nMarket Host desktop checked; local candidate.\npnpm lint\n$ eslint . --max-warnings 0 && vue-tsc --noEmit\ncargo fmt --manifest-path src-tauri/Cargo.toml --check\ncargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings\n    Checking yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 14.24s\n",
+      "sha256": "0519b064af2a2fb38dc3a3828427f47bc757dc2ba04982858565ce42e87cca52"
+    },
+    {
+      "id": "candidate-clippy",
+      "argv": [
+        "cargo",
+        "clippy",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "--all-targets",
+        "--offline",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "started_at": "2026-10-28T20:28:27.717309+00:00",
+      "duration_seconds": 0.251,
+      "exit_code": 0,
+      "output": "    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.21s\n",
+      "sha256": "2bc683fb4e4f4f21ee9ee39e2b8ecce2efe20d3b1be57bda5316aa519ab3d30a"
+    },
+    {
+      "id": "frontend-focused",
+      "argv": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "src/domain/conversation-file-preview.test.ts",
+        "src/api/chat-document-preview-client.test.ts",
+        "src/components/chat/ChatDocumentWorkspace.test.ts",
+        "src/components/chat/ChatAttachmentChip.feat165.test.ts",
+        "scripts/generate-document-preview.test.mjs",
+        "--maxWorkers=2",
+        "--exclude",
+        "**/.local/**"
+      ],
+      "started_at": "2026-10-28T20:28:27.968343+00:00",
+      "duration_seconds": 1.321,
+      "exit_code": 0,
+      "output": "\n RUN  v4.1.10 /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop\n\n\n Test Files  5 passed (5)\n      Tests  31 passed (31)\n   Start at  04:28:28\n   Duration  878ms (transform 170ms, setup 0ms, import 772ms, tests 132ms, environment 181ms)\n\n",
+      "sha256": "d0c0a10c14d5a52c0ea4f14d1635fd838767d5236552ffbcf334d145d19a2599"
+    },
+    {
+      "id": "legacy-compatible-ui",
+      "argv": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "src/components/chat/ChatArtifactShell.test.ts",
+        "src/components/chat/ChatArtifactFile.test.ts",
+        "src/pages/chat/ChatPage.test.ts",
+        "-t",
+        "FEAT166|adds file actions|renders safe metadata|keeps PDF and XLSX|performs bounded case-sensitive|clears content and search|shows the decorative mascot|uses the FEAT-132 Timeline exclusively|keeps the last committed conversation",
+        "--maxWorkers=2",
+        "--exclude",
+        "**/.local/**",
+        "--exclude",
+        "**/.contracts-source/**",
+        "--exclude",
+        "**/.agent-host-source/**",
+        "--exclude",
+        "**/.skills-source/**"
+      ],
+      "started_at": "2026-10-28T20:28:29.289463+00:00",
+      "duration_seconds": 2.399,
+      "exit_code": 0,
+      "output": "\n RUN  v4.1.10 /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop\n\n(node:51649) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  3 passed (3)\n      Tests  9 passed | 85 skipped (94)\n   Start at  04:28:29\n   Duration  2.00s (transform 1.30s, setup 0ms, import 2.54s, tests 140ms, environment 288ms)\n\n",
+      "sha256": "c8ec389b5bf1ce8bba5b77945d0194cdbaf5bd57009540070ce43ac069acabab"
+    },
+    {
+      "id": "native-content-and-schema",
+      "argv": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "--offline",
+        "document_preview",
+        "--",
+        "--nocapture"
+      ],
+      "started_at": "2026-10-28T20:28:31.688589+00:00",
+      "duration_seconds": 1.515,
+      "exit_code": 0,
+      "output": "    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.22s\n     Running unittests src/lib.rs (src-tauri/target/debug/deps/yijie_desktop_lib-b2e5101f33b31202)\n\nrunning 7 tests\ntest chat::document_preview_content::tests::html_keeps_rendering_script_source_and_text_reuses_existing_projection ... ok\ntest chat::document_preview_native::tests::schema_normal_document_requests_round_trip_through_native_types ... ok\ntest chat::document_preview_content::tests::normal_xlsx_renders_cells_merges_shared_strings_and_cached_formulas ... ok\ntest chat::document_preview_content::tests::normal_pdf_raster_has_correct_orientation_and_real_graphical_content ... ok\ntest chat::document_preview_content::tests::normal_docx_long_body_has_bounded_continuation_and_blank_page_is_readable ... ok\ntest chat::document_preview_content::tests::normal_pptx_uses_relationship_order_instead_of_filename_sort ... ok\ntest chat::document_preview_content::tests::normal_docx_preserves_headings_lists_tables_pictures_and_entities ... ok\n\ntest result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 686 filtered out; finished in 1.26s\n\n     Running unittests src/main.rs (src-tauri/target/debug/deps/yijie_desktop-85021d11faad2ab7)\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+      "sha256": "751802385973402cb3c35535bcdee994957347742c36e4ca1fc0bf8f55888282"
+    },
+    {
+      "id": "native-bound-attachment",
+      "argv": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "--offline",
+        "feat166_normal_bound_document",
+        "--",
+        "--nocapture"
+      ],
+      "started_at": "2026-10-28T20:28:33.203563+00:00",
+      "duration_seconds": 1.198,
+      "exit_code": 0,
+      "output": "    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.12s\n     Running unittests src/lib.rs (src-tauri/target/debug/deps/yijie_desktop_lib-b2e5101f33b31202)\n\nrunning 1 test\ntest chat::database::tests::feat166_normal_bound_document_uses_existing_message_identity_and_expiry ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 692 filtered out; finished in 1.04s\n\n     Running unittests src/main.rs (src-tauri/target/debug/deps/yijie_desktop-85021d11faad2ab7)\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+      "sha256": "ccbcfb1d66dfc1d2b9bcfbdbb33a751b76042983c0489c4f6e7006e2de5cdf7a"
+    },
+    {
+      "id": "frontend-build",
+      "argv": [
+        "make",
+        "build"
+      ],
+      "started_at": "2026-10-28T20:28:34.401592+00:00",
+      "duration_seconds": 6.004,
+      "exit_code": 0,
+      "output": "pnpm build\n$ vue-tsc --noEmit && vite build\nvite v8.1.3 building client environment for production...\n\u001b[2K\ntransforming...✓ 5828 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/assets/glm-BwQcjbVI.svg                                                  0.38 kB │ gzip:   0.25 kB\ndist/index.html                                                               0.40 kB │ gzip:   0.27 kB\ndist/assets/kimi-DaF0lNFf.svg                                                 1.05 kB │ gzip:   0.57 kB\ndist/assets/minimax-DLlVq7y-.svg                                              2.17 kB │ gzip:   0.85 kB\ndist/assets/deepseek-DwHI3Kp-.svg                                             3.56 kB │ gzip:   1.70 kB\ndist/assets/agentkey-qwen-CVvqxVoh.png                                        5.46 kB\ndist/assets/smartsalary-D4VqTCrh.png                                          5.81 kB\ndist/assets/dxe-mcp-server-DMki0Qhn.svg                                       6.42 kB │ gzip:   2.06 kB\ndist/assets/yuyidata-B9yyZSez.png                                             6.62 kB\ndist/assets/caoliao-DMeryGAM.png                                              7.34 kB\ndist/assets/tushareMcp-BIVYh5aC.png                                           8.15 kB\ndist/assets/cue-fsajMnRA.png                                                  8.16 kB\ndist/assets/zerone-B5ZY-VZ2.png                                               8.20 kB\ndist/assets/yida-CwZAdV2P.png                                                 8.26 kB\ndist/assets/huida-erp-n2B1E6Wr.png                                            8.51 kB\ndist/assets/Hologrow-DcIrfTm2.png                                             9.95 kB\ndist/assets/uupt-DW66Alpp.png                                                10.24 kB\ndist/assets/fenbeitong-CWBpOJT9.png                                          11.35 kB\ndist/assets/FastMoss-C8_ukVCL.png                                            11.40 kB\ndist/assets/wavenote-g_KH5SEc.png                                            12.30 kB\ndist/assets/fanruan-growth-advisor-BKcN-JCE.png                              12.33 kB\ndist/assets/xiaoe-mcp-Bke5rYJs.png                                           12.62 kB\ndist/assets/camscanner-mcp-BKpNbSay.png                                      13.29 kB\ndist/assets/thinkingdata-R63UMnvl.jpg                                        14.20 kB\ndist/assets/investoday-BrASe_9m.png                                          14.41 kB\ndist/assets/bazhuayu-BJ2L_GHy.png                                            17.81 kB\ndist/assets/yintai-open-platform-DOJK1NZ5.png                                20.04 kB\ndist/assets/yidian-company-BNny0Y3a.png                                      23.71 kB\ndist/assets/feisentry-fzG0kbFw.png                                           26.77 kB\ndist/assets/supplier-performance-manager-CSiaoCaS.png                        28.10 kB\ndist/assets/category-store-operations-DNrn0FEz.png                           28.48 kB\ndist/assets/category-content-marketing-RtfrFLlq.png                          29.28 kB\ndist/assets/warehouse-fulfillment-workflow-QVteMnq2.png                      30.32 kB\ndist/assets/tiktok-shop-setup-CZGDfFG4.png                                   30.44 kB\ndist/assets/copywriting-CYNysUUj.png                                         30.45 kB\ndist/assets/seo-keyword-research-Cvbk4yBV.png                                30.72 kB\ndist/assets/category-traffic-advertising-BqYnhjne.png                        31.15 kB\ndist/assets/custom-workflow-D72u7xAI.png                                     31.22 kB\ndist/assets/category-market-research-DA7qO2cj.png                            31.42 kB\ndist/assets/invoice-generator-WkDbX5Pe.png                                   31.61 kB\ndist/assets/social-media-content-creator-DTuYGmuV.png                        31.95 kB\ndist/assets/xiaoliebian-MV2Umo_a.png                                         31.96 kB\ndist/assets/amz-product-optimizer-CvhLefWZ.png                               32.11 kB\ndist/assets/ad-search-term-optimization-CgihkqfI.png                         32.15 kB\ndist/assets/product-batch-image-B5BShY00.png                                 32.37 kB\ndist/assets/tiktok-ads-strategy-BB9MCrBI.png                                 32.38 kB\ndist/assets/product-selection-Obm0D5YP.png                                   32.47 kB\ndist/assets/content-strategy-C18Dksq0.png                                    32.50 kB\ndist/assets/amazon-listing-expert-ByPiBLJT.png                               32.50 kB\ndist/assets/buy-now-pay-later-setup--cz1Oco1.png                             32.75 kB\ndist/assets/xiaohongshu-content-creator-DKU39Hq8.png                         33.01 kB\ndist/assets/category-sourcing-selection-Ba7hhdtM.png                         33.20 kB\ndist/assets/douyin-acquisition-DT6NLbuu.png                                  33.34 kB\ndist/assets/product-marketing-context-COPZ8P6m.png                           33.45 kB\ndist/assets/multichannel-inventory-sync-DvULVBGh.png                         33.51 kB\ndist/assets/product-description-generator-CLo2cYjU.png                       33.56 kB\ndist/assets/payment-fraud-detector-xP49ENt0.png                              33.74 kB\ndist/assets/aliexpress-supplier-evaluator-XSviUAzW.png                       33.97 kB\ndist/assets/scenario-driven-product-scout-BTtV8Zop.png                       34.13 kB\ndist/assets/network-price-monitor-CAHxxmhR.png                               34.30 kB\ndist/assets/review-analyst-agent-Z8kMeNWC.png                                34.35 kB\ndist/assets/overseas-review-insights-ZjCxASTC.png                            34.36 kB\ndist/assets/amazon-brand-protection-Cp3VJaXG.png                             34.94 kB\ndist/assets/product-attribute-analyzer-Ct4LSBfs.png                          35.13 kB\ndist/assets/vibe-marketing-DEoXD3TC.png                                      35.15 kB\ndist/assets/ecommerce-gdpr-compliance-B8TbAiLF.png                           35.26 kB\ndist/assets/amz-hot-keywords-OIiO-hCV.png                                    35.30 kB\ndist/assets/sales-negotiator-Ccs7sKL1.png                                    35.31 kB\ndist/assets/3chat-DWQHSHVX.png                                               35.31 kB\ndist/assets/pdd-ops-expert-_TL8WaxB.png                                      35.33 kB\ndist/assets/xiaohongshu-content-C833LyE9.png                                 35.47 kB\ndist/assets/qingflow-Cy8u5Ydy.png                                            35.48 kB\ndist/assets/fba-replenishment-planning-nx5vqc-f.png                          35.51 kB\ndist/assets/competitor-deep-analysis-DIhTLwN8.png                            35.59 kB\ndist/assets/sorftime-DvaLugN1.svg                                            35.67 kB │ gzip:  11.89 kB\ndist/assets/content-breakdown-BCy-LYip.png                                   35.99 kB\ndist/assets/listing-localization-7lEXHPtx.png                                36.24 kB\ndist/assets/alibaba-amazon-market-intel-pi8aAWUC.png                         36.41 kB\ndist/assets/market-insight-product-selection-C9ffbbtU.png                    36.42 kB\ndist/assets/ecommerce-seo-optimizer-CtHVMTK9.png                             36.62 kB\ndist/assets/etsy-seo-optimizer-CZxSUPOl.png                                  36.82 kB\ndist/assets/amazon-ppc-campaign-manager-Dgo1EDYS.png                         36.96 kB\ndist/assets/dichanai-mcp-Bd5Mwtvv.svg                                        36.99 kB │ gzip:  23.98 kB\ndist/assets/tb-tm-ops-expert-BpUtVZTe.png                                    37.46 kB\ndist/assets/cross-border-selection-DR3l5o9J.png                              37.64 kB\ndist/assets/dropshipping-supplier-integrator-CTGKyJ0v.png                    37.66 kB\ndist/assets/product-supplier-sourcing-D6v6usuJ.png                           38.03 kB\ndist/assets/jungle-scout-deep-dive-analyzer-B8oA_jw-.png                     39.84 kB\ndist/assets/ysk_mcp_3f824505d1faf80bc60c052729620929-DJ9kmW0H.png            40.80 kB\ndist/assets/gildata_finance_data_qwen-CfevLLIg.png                           49.47 kB\ndist/assets/morningstar-B1A9MBCf.png                                         53.73 kB\ndist/assets/baixiao-mcp-GUFKXNXY.png                                         55.49 kB\ndist/assets/xiaoliebian-geo-DtztyvJ4.png                                     61.68 kB\ndist/assets/agentgrid-comic-storyboard-director-CVmxCLl9.jpg                 77.13 kB\ndist/assets/Yingmi-DW8Tu5ra.png                                              83.57 kB\ndist/assets/report-viz-expert-B4Q3SOTk.png                                  122.37 kB\ndist/assets/dzh-mcp-CpSU58FZ.png                                            155.21 kB\ndist/assets/X-Store-B15pBkpW.png                                            188.09 kB\ndist/assets/linkfox-expert-aigc-videogen-viral-replicate-GGgFXVBk.png       202.98 kB\ndist/assets/linkfox-expert-1688-sourcing-expert-DG0pd4No.png                217.65 kB\ndist/assets/xiaohongshu-copywriter-CYRy1fKV.png                             228.00 kB\ndist/assets/wind-DDkMV7Hr.png                                               240.98 kB\ndist/assets/eastmoney-Dc2ugQYZ.png                                          254.99 kB\ndist/assets/market-researcher-C3giaKRO.png                                  288.19 kB\ndist/assets/ui-designer-iGWOBhOR.png                                        291.07 kB\ndist/assets/product-management-Cldy1z_D.png                                 324.02 kB\ndist/assets/linkfox-expert-aigc-imagegen-mannequin-to-model-CtEXLd4-.png    336.84 kB\ndist/assets/otter-awake-BT8OR0RZ.webp                                       337.20 kB\ndist/assets/tradebuddy-baojia-DfGwcU-g.png                                  340.25 kB\ndist/assets/yunting-consumerlens-BzKUNs8t.png                               343.37 kB\ndist/assets/chuhaijiang-tiktok-shop-operations-expert-B-7ERvjY.png          368.62 kB\ndist/assets/speechclaw-C1PEAfUF.png                                         747.61 kB\ndist/assets/hover-027-BBQfCCEW.webp                                       1,027.80 kB\ndist/assets/hover-001-CURF9Iig.webp                                       1,194.53 kB\ndist/assets/hover-008-5jw12QrR.webp                                       1,197.50 kB\ndist/assets/hover-009-CWX6KOrS.webp                                       1,198.29 kB\ndist/assets/hover-012-D0IyVuGr.webp                                       1,198.79 kB\ndist/assets/hover-005-Cnwu8YhA.webp                                       1,200.44 kB\ndist/assets/hover-003-DIa_gFLs.webp                                       1,201.28 kB\ndist/assets/hover-006-HrecJisb.webp                                       1,201.95 kB\ndist/assets/hover-002-BDBuNOTh.webp                                       1,205.87 kB\ndist/assets/hover-011-4I7BT8vZ.webp                                       1,206.41 kB\ndist/assets/hover-004-BwVBwnDS.webp                                       1,207.00 kB\ndist/assets/hover-007-eiVVW6Bw.webp                                       1,208.58 kB\ndist/assets/hover-014-CHGpMn3V.webp                                       1,209.76 kB\ndist/assets/hover-010-CYE0jpVv.webp                                       1,214.61 kB\ndist/assets/hover-000-Bt4FVBES.webp                                       1,221.18 kB\ndist/assets/hover-013-8BPRZCMt.webp                                       1,232.95 kB\ndist/assets/cross-border-ecommerce-operations-expert-BKXj6Y2D.png         1,327.59 kB\ndist/assets/otter-01-BJfjWQYr.webp                                        1,342.81 kB\ndist/assets/hover-015-uedfctyG.webp                                       1,418.63 kB\ndist/assets/linkfox-expert-aigc-videogen-sale-gxpo9RHD.png                1,431.05 kB\ndist/assets/otter-13-DV1XYbYz.webp                                        1,461.94 kB\ndist/assets/otter-00-02n8MiNt.webp                                        1,479.98 kB\ndist/assets/strategy-backtest-expert-iyn0fx_I.png                         1,484.38 kB\ndist/assets/equity-research-mCBi7gps.png                                  1,488.95 kB\ndist/assets/jd-ops-expert-Ci1u69mk.png                                    1,511.10 kB\ndist/assets/otter-03-CsYMS0GV.webp                                        1,568.70 kB\ndist/assets/data-analyst-pro-CLzpOetN.png                                 1,572.11 kB\ndist/assets/otter-10-KIatZzQz.webp                                        1,585.68 kB\ndist/assets/otter-09-D99dtrIv.webp                                        1,621.35 kB\ndist/assets/otter-02-BY1Cfrn8.webp                                        1,630.25 kB\ndist/assets/otter-11-BYqJL6Ws.webp                                        1,689.98 kB\ndist/assets/otter-08-Cncji5Zz.webp                                        1,703.45 kB\ndist/assets/otter-12-BXBZ5wxE.webp                                        1,711.33 kB\ndist/assets/otter-04-DQKsKJU0.webp                                        1,727.03 kB\ndist/assets/otter-05-BcHwC_ma.webp                                        1,734.01 kB\ndist/assets/hover-025-CI7M13mh.webp                                       1,752.64 kB\ndist/assets/otter-06-Do4TydzT.webp                                        1,764.73 kB\ndist/assets/otter-07-BkA60Bfr.webp                                        1,767.00 kB\ndist/assets/hover-024-BWY0AQTE.webp                                       1,790.01 kB\ndist/assets/moss-industry-research-CpT7cT95.png                           1,804.11 kB\ndist/assets/hover-016-CJnSWEL3.webp                                       1,812.70 kB\ndist/assets/hover-026-BvzRPT6e.webp                                       1,816.36 kB\ndist/assets/hover-017-B-WXg5bV.webp                                       1,827.94 kB\ndist/assets/hover-023-JPD6c0m5.webp                                       1,839.69 kB\ndist/assets/hover-022-ypLJn5YY.webp                                       1,861.11 kB\ndist/assets/hover-020-BIG7bmNE.webp                                       1,875.48 kB\ndist/assets/hover-018-DEwuXb_W.webp                                       1,890.03 kB\ndist/assets/hover-021-BLB_TuzN.webp                                       1,899.53 kB\ndist/assets/hover-019-BXKRnZ3Z.webp                                       1,905.61 kB\ndist/assets/novel-creator-X6kzhONJ.png                                    1,955.06 kB\ndist/assets/YjIcon-BksYxGdm.css                                               0.51 kB │ gzip:   0.19 kB\ndist/assets/useExpertsBinding-CS3c9jaT.css                                    0.88 kB │ gzip:   0.31 kB\ndist/assets/YjLogo-V2YNPyyf.css                                               0.94 kB │ gzip:   0.30 kB\ndist/assets/connector-ui-Csz0pjid.css                                         1.03 kB │ gzip:   0.34 kB\ndist/assets/YjPageHeader-Oa8ut3wJ.css                                         1.05 kB │ gzip:   0.37 kB\ndist/assets/AccessDeniedPage-C549waJM.css                                     1.05 kB │ gzip:   0.39 kB\ndist/assets/YjSection-DnWoD_Vr.css                                            1.14 kB │ gzip:   0.39 kB\ndist/assets/YjEmpty-gVjCw_m1.css                                              1.16 kB │ gzip:   0.40 kB\ndist/assets/scheduled-draft-intent-DvUJQAgV.css                               2.09 kB │ gzip:   0.58 kB\ndist/assets/YjTabs-DnGiRQyR.css                                               2.59 kB │ gzip:   0.62 kB\ndist/assets/component-colors-DRoqiU6k.css                                     2.73 kB │ gzip:   0.73 kB\ndist/assets/main-BtyiQ7Ll.css                                                 3.47 kB │ gzip:   0.99 kB\ndist/assets/WorkflowEditorPage-DVc_VPmL.css                                   3.53 kB │ gzip:   0.89 kB\ndist/assets/YjChartCard-CAEZYe0m.css                                          3.73 kB │ gzip:   0.90 kB\ndist/assets/workflow-showcase-Clsm59Wx.css                                    4.07 kB │ gzip:   0.98 kB\ndist/assets/SettingsPage-BkmY93zA.css                                         4.69 kB │ gzip:   0.94 kB\ndist/assets/SkillMarketplacePage-BlFZuq26.css                                 5.72 kB │ gzip:   1.23 kB\ndist/assets/ScheduledTasksPage-CQ1Hwjgb.css                                  10.66 kB │ gzip:   1.99 kB\ndist/assets/ConnectorPage-BxgAtjm0.css                                       10.70 kB │ gzip:   1.88 kB\ndist/assets/WorkflowPage-CVOuhKTU.css                                        13.37 kB │ gzip:   2.49 kB\ndist/assets/ExtensionsPage-DP_Leo21.css                                      17.91 kB │ gzip:   2.70 kB\ndist/assets/App-CJg2zrew.css                                                 21.72 kB │ gzip:   4.50 kB\ndist/assets/StorePage-Dcwax0o5.css                                           53.41 kB │ gzip:   7.42 kB\ndist/assets/ChatPage-oan84jrH.css                                           142.18 kB │ gzip:  17.00 kB\ndist/assets/_plugin-vue_export-helper-BDNMzG2s.js                             0.08 kB │ gzip:   0.09 kB\ndist/assets/context-DMIoFCUa.js                                               0.10 kB │ gzip:   0.10 kB\ndist/assets/use-compitable-CHn0j-MA.js                                        0.16 kB │ gzip:   0.15 kB\ndist/assets/use-merged-state-Bkg53AEP.js                                      0.17 kB │ gzip:   0.15 kB\ndist/assets/composables-CQDwhk8s.js                                           0.26 kB │ gzip:   0.21 kB\ndist/assets/format-length-D2OO_crk.js                                         0.33 kB │ gzip:   0.23 kB\ndist/assets/use-message-BDuF1ZBi.js                                           0.48 kB │ gzip:   0.32 kB\ndist/assets/light-BR00kQSi.js                                                 0.62 kB │ gzip:   0.36 kB\ndist/assets/rolldown-runtime-QTnfLwEv.js                                      0.69 kB │ gzip:   0.42 kB\ndist/assets/light-CabMPrmR.js                                                 0.71 kB │ gzip:   0.37 kB\ndist/assets/AccessDeniedPage-BdDrR5VM.js                                      0.80 kB │ gzip:   0.58 kB\ndist/assets/YjEmpty-DVSYhgBh.js                                               0.84 kB │ gzip:   0.50 kB\ndist/assets/light-Cg8YWunk.js                                                 0.84 kB │ gzip:   0.40 kB\ndist/assets/YjPageHeader-sT1XmjIq.js                                          1.06 kB │ gzip:   0.55 kB\ndist/assets/YjSection-9Y8Vo1Lx.js                                             1.30 kB │ gzip:   0.67 kB\ndist/assets/YjTabs-IOiWHf5Z.js                                                1.72 kB │ gzip:   0.92 kB\ndist/assets/light-Bu7GOVgJ.js                                                 1.73 kB │ gzip:   0.62 kB\ndist/assets/Skeleton-C65hdArt.js                                              2.38 kB │ gzip:   1.15 kB\ndist/assets/event-Btm-ZAjW.js                                                 3.19 kB │ gzip:   1.25 kB\ndist/assets/index-DCXQd6rm.js                                                 5.05 kB │ gzip:   2.36 kB\ndist/assets/create-DSMw9icQ.js                                                7.18 kB │ gzip:   2.55 kB\ndist/assets/pinia-B0M2Hcb_.js                                                 7.54 kB │ gzip:   3.33 kB\ndist/assets/router--K30_bKr.js                                                8.09 kB │ gzip:   2.94 kB\ndist/assets/useExpertsBinding-DN8xA6oP.js                                     8.97 kB │ gzip:   3.68 kB\ndist/assets/Tooltip-DCQHd6oQ.js                                              10.46 kB │ gzip:   3.23 kB\ndist/assets/SkillMarketplacePage--qwxwiqL.js                                 11.93 kB │ gzip:   4.61 kB\ndist/assets/SettingsPage-CoXLCagh.js                                         12.00 kB │ gzip:   4.57 kB\ndist/assets/WorkflowEditorPage-CPpsNeeN.js                                   13.94 kB │ gzip:   5.16 kB\ndist/assets/Switch-BMF4A2vG.js                                               15.86 kB │ gzip:   4.79 kB\ndist/assets/ConnectorPage-qTAiynzq.js                                        17.42 kB │ gzip:   6.02 kB\ndist/assets/YjChartCard-Cj3dhc8E.js                                          18.14 kB │ gzip:   7.19 kB\ndist/assets/skill.store-X4_T93wM.js                                          18.38 kB │ gzip:   6.65 kB\ndist/assets/YjLogo-C9ZEaEP6.js                                               19.87 kB │ gzip:   7.10 kB\ndist/assets/Dropdown-oE2EAce7.js                                             21.87 kB │ gzip:   6.82 kB\ndist/assets/ExtensionsPage-CN47ateB.js                                       33.90 kB │ gzip:  12.64 kB\ndist/assets/WorkflowPage-DEfNLauY.js                                         34.88 kB │ gzip:  11.55 kB\ndist/assets/Popover-CAW1qWQt.js                                              36.11 kB │ gzip:  11.65 kB\ndist/assets/ScheduledTasksPage-DrziUIWS.js                                   43.38 kB │ gzip:  13.95 kB\ndist/assets/Input-DqE0qJlZ.js                                                43.54 kB │ gzip:  13.34 kB\ndist/assets/connector-ui-CwueTbuZ.js                                         55.13 kB │ gzip:  29.44 kB\ndist/assets/Card-TGHsDQQP.js                                                 74.76 kB │ gzip:  24.46 kB\ndist/assets/YjIcon-B_ikC_vY.js                                               91.41 kB │ gzip:  28.05 kB\ndist/assets/vue.runtime.esm-bundler-CjCMYym7.js                             110.42 kB │ gzip:  42.39 kB\ndist/assets/scheduled-draft-intent-BicBGJyv.js                              119.09 kB │ gzip:  36.99 kB\ndist/assets/App-BKZ5qvIg.js                                                 127.53 kB │ gzip:  33.62 kB\ndist/assets/StorePage-DckeijCx.js                                           186.63 kB │ gzip:  63.07 kB\ndist/assets/experts-ui-config-CPAzTEsu.js                                   194.77 kB │ gzip:  30.09 kB\ndist/assets/workflow-showcase-BjyQvBsh.js                                   332.74 kB │ gzip:  26.97 kB\ndist/assets/ChatPage-CAFTv0Yk.js                                            406.30 kB │ gzip: 117.20 kB\ndist/assets/echarts-theme-CdahltzI.js                                       532.12 kB │ gzip: 181.64 kB\ndist/assets/chat.store-CJuJjd_f.js                                          924.03 kB │ gzip: 117.25 kB\ndist/assets/scheduled-task-native-client-CUgCeo94.js                      1,337.82 kB │ gzip:  84.84 kB\n\n✓ built in 573ms\n[plugin builtin:vite-reporter] \n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n",
+      "sha256": "d0cb2e4000e750e6b8fdc5c014c4a053c66f63198f7a3e9ee0808eebe04f36b4"
+    },
+    {
+      "id": "design-docs-build",
+      "argv": [
+        "pnpm",
+        "docs:build"
+      ],
+      "started_at": "2026-10-28T20:28:40.405631+00:00",
+      "duration_seconds": 4.95,
+      "exit_code": 0,
+      "output": "$ pnpm --dir docs/design docs:build\n$ pnpm brand:check && pnpm typecheck:reference && vitepress build docs\n$ node scripts/sync-brand-assets.mjs --check\nVerified 16 SVG assets from one vector source.\n$ vue-tsc --noEmit --project tsconfig.json\n\n  vitepress v1.6.4\n\n- building client + server bundles...\n\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n\u001b[32m✓\u001b[0m building client + server bundles...\n- rendering pages...\n\u001b[32m✓\u001b[0m rendering pages...\nbuild complete in 2.80s.\n",
+      "sha256": "00bae515ba6a4e9a73d2a8b47f790675d25094b15143ce1651ad54bf7e5f7ce7"
+    },
+    {
+      "id": "diff-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "started_at": "2026-10-28T20:28:45.355677+00:00",
+      "duration_seconds": 0.023,
+      "exit_code": 0,
+      "output": "",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "screen_check": {
+    "status": "NOT RUN",
+    "tool": "cua.getState",
+    "result": "The Mac is locked and automatic unlock could not unlock it.",
+    "user_authorized_skip": true
+  },
+  "skipped": [
+    {
+      "check": "make test / unfiltered cargo test",
+      "reason": "Existing suites contain attack/fault fixtures, permission faults and forceful process/binary behaviors prohibited by user; only reviewed normal targeted tests ran.",
+      "impact": "No claim of complete historical suite or attack testing."
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "feature": "FEAT-166",
+  "date": "2026-10-29",
+  "timezone": "Asia/Shanghai",
+  "scope": "Requirements reaudit and corrections only",
+  "verification_time": {
+    "current_time": "2026-10-28 19:11:45 UTC"
+  },
+  "checks": [
+    {
+      "id": "strict",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-166-conversation-artifact-sidebar",
+      "chunk_id": "4d92b4",
+      "wall_time_seconds": 2.2791e-05,
+      "exit_code": 0,
+      "original_token_count": 57,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，所有模板变量和未完成标记已处理。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+    },
+    {
+      "id": "claims",
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-166-conversation-artifact-sidebar",
+      "chunk_id": "d56b5d",
+      "wall_time_seconds": 6.083e-06,
+      "exit_code": 0,
+      "original_token_count": 13,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\n"
+    },
+    {
+      "id": "lint",
+      "command": "pnpm lint",
+      "chunk_id": "61f171",
+      "wall_time_seconds": 0.326176875,
+      "exit_code": 0,
+      "original_token_count": 50,
+      "output": "$ node scripts/repo-manifest.mjs validate && node scripts/check-contract-governance.mjs\nValidated 11 repository entries.\nValidated central Contract First governance and 11 sibling AGENTS.md files.\n"
+    },
+    {
+      "id": "tests",
+      "command": "pnpm test",
+      "chunk_id": "38917f",
+      "wall_time_seconds": 9.5e-06,
+      "original_token_count": 1261,
+      "output": "$ node --test tests/*.test.mjs\n✔ production_hardened local and public retain the same complete G5/G6 chain (4.5525ms)\n✔ local production gates do not waive failed E2E or select demo shortcuts (0.375583ms)\n✔ local production activation requires its explicit approved boundary (0.55925ms)\n✔ local activation cannot substitute a proposed ADR for an accepted decision (14.552292ms)\n✔ schema v2 accepts qualified G2V, per-slice G3, and split G4 evidence (0.330708ms)\n✔ schema v2 G3 is per-slice and rejects required NOT RUN evidence (0.153375ms)\n✔ slice evidence N/A requires an explicit Owner exception and local evidence is never optional (0.139125ms)\n✔ per-slice freshness must bind the current implementation and harness (0.116667ms)\n✔ a passing slice cannot depend on a falsely passing prerequisite (0.149208ms)\n✔ cross-repository slice freshness includes every transitive prerequisite commit (0.184208ms)\n✔ serial slices in one repository can bind both immutable slice commits (0.095458ms)\n✔ G2V rejects an unqualified harness (0.053625ms)\n✔ Harness qualification can be checked without claiming real G2V success (0.279125ms)\n✔ Independent Harness check still enforces qualification and canonical evidence refs (0.093375ms)\n✔ Independent Harness check cannot change profile or combine with another gate (0.130625ms)\n✔ temporal contract invariants require executable conformance tests (0.04925ms)\n✔ a required temporal invariant cannot be backed only by an N/A conformance test (0.151375ms)\n✔ a slice cannot borrow temporal conformance assigned to another slice (0.067917ms)\n✔ temporal scenarios form one acyclic ordered contract (0.038166ms)\n✔ declared persistence/runtime scope cannot erase mandatory temporal phases (0.062ms)\n✔ G2V evidence binds every declared participating repository (0.052208ms)\n✔ G2V cannot substitute a browser mock for the qualified real platform (0.115709ms)\n✔ G2V requires positive, negative, timeout, cleanup, and content-free harness controls (0.092416ms)\n✔ G4 keeps core, accessibility/visual, and teardown verdicts independent (0.08425ms)\n✔ the third equivalent failure trips the circuit breaker (0.106042ms)\n✔ the third failure cannot be marked resolved without an approved RCA cycle (0.04375ms)\n✔ an open three-failure breaker blocks G2V and per-slice G3 (0.094709ms)\n✔ renaming evidence IDs cannot split one equivalent failure to reset the fuse (0.080292ms)\n✔ one Owner-authorized post-RCA success can resolve a tripped incident (0.129416ms)\n✔ failure ledger evolution is append-only across the CI base ref (0.280875ms)\n✔ a package absent from the CI base must start at schema v3 with an explicit profile (0.069542ms)\n✔ a legacy v1 manifest is immutable until it is migrated to schema v2 (0.046541ms)\n✔ harness taxonomy is closed to four failure owners (0.039959ms)\n✔ an evident cross-boundary trigger cannot mark G2V not applicable (0.036709ms)\n✔ closed scope enums and required slice applicability fail closed (0.087375ms)\n✔ final E2E evidence binds a qualified harness digest and canonical report reference (0.076208ms)\n✔ schema v3 demo_fast accepts one product/UX checkpoint and one real-service done checkpoint (0.291ms)\n✔ permanent termination preserves historical D0 but cannot claim acceptance (0.10775ms)\n✔ permanent termination requires explicit Owner authority and cannot be reopened (0.287916ms)\n✔ demo_fast D4 rejects mock-only, missing real smoke, and failed Must acceptance (0.068292ms)\n✔ demo_fast DP is public-only and enforces the minimum public safety floor (0.128834ms)\n✔ schema v3 production_hardened preserves the full schema v2 gate semantics (0.090791ms)\n✔ schema v1 remains readable but cannot claim any downstream gate (0.051125ms)\n✔ shell checker treats legacy packages as historical-only at G3 (80.612375ms)\n✔ feature.yaml duplicate keys fail closed (3.839459ms)\n✔ schema version comments cannot bypass the required temporal matrix file (10.712042ms)\n✔ verification evidence references must resolve to one report marker (7.3595ms)\n✔ CI claim audit rejects a v2 slice that claims PASS with missing evidence (18.939458ms)\n✔ repository audit applies the authoritative full-document shell check (86.549042ms)\n✔ repository CI audits every committed historical and profile-aware claim (437.537667ms)\n✔ the repository Feature Package audit entrypoint scans committed packages (8708.349ms)\n✔ delivery shell entrypoints remain syntactically valid (2.535292ms)\n✔ new-feature defaults to compact schema v3 demo_fast local (100.584625ms)\n✔ new-feature creates production_hardened only when explicitly selected (135.491542ms)\n✔ shell checker enforces demo_fast D0, D4, and profile separation (151.492208ms)\n✔ shell checker enforces schema v2 G2V and per-slice G3 semantics (154.090209ms)\n✔ repository manifest contains eleven owned children with the explicit Coze main branch (6.445916ms)\nℹ tests 57\nℹ suites 0\nℹ pass 57\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 10013.307667\n",
+      "exit_code": 0
+    },
+    {
+      "id": "shell",
+      "command": "for f in scripts/*.sh; do bash -n \"$f\" || exit; done",
+      "chunk_id": "fd4999",
+      "wall_time_seconds": 4.542e-06,
+      "exit_code": 0,
+      "original_token_count": 0,
+      "output": ""
+    },
+    {
+      "id": "diff",
+      "command": "git diff --check",
+      "chunk_id": "9361b0",
+      "wall_time_seconds": 5.042e-06,
+      "exit_code": 0,
+      "original_token_count": 0,
+      "output": ""
+    },
+    {
+      "id": "package_integrity",
+      "command": "Inline Python/Node read-only checks: links, new-file whitespace, width invariants, AC IDs, old evidence hashes, workspace preservation and YAML confirmation/implementation states",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS: links and whitespace; width invariants801..4000; ten AC IDs; 11 unrelated hashes preserved; Desktop/Runtime/Host clean; archived initial hashes match old evidence; OP-01/OP-02/REUSE-01 confirmed while implementation and acceptance remain pending, paid authorization zero."
+    }
+  ],
+  "functional_verification": "NOT RUN",
+  "runtime_verification": "NOT RUN; source/registry/protocol/manifest and consumer binding inspected only",
+  "d0": "pending; user clarified three scopes, no complete-package or implementation acceptance inferred",
+  "history_preservation": "Initial five documents and referenced assets archived byte-identically; prior documentation-checks left unchanged",
+  "review": "Three independent Codex review tasks; not independent human approval",
+  "documents": [
+    {
+      "path": "00-feature-brief.md",
+      "sha256": "d28e10a69d3e811e7b8e3ecb167143559567f3bd9b6028fe0dc0b844436bdd58"
+    },
+    {
+      "path": "01-delivery-log.md",
+      "sha256": "77db6bccc8929a29a025535e9a6a144af4c7835f5e9182affaf932b6ab7aa2dd"
+    },
+    {
+      "path": "02-verification.md",
+      "sha256": "f3690419a352657df83028df1aa6b08bb7a7e1a710645c51494751a97574c585"
+    },
+    {
+      "path": "03-engineering-analysis.md",
+      "sha256": "2bd8dadfd39ffa5987bda9f5314a0598d802a2fa9f3b06df08ef104542dc58d4"
+    },
+    {
+      "path": "04-reaudit-and-decisions.md",
+      "sha256": "a624ca28eb30ac65fee8ea7d75f2c89b7082d6471507a0f58887b2ba194ccd1d"
+    },
+    {
+      "path": "05-codex-reuse-audit.md",
+      "sha256": "17f58148c0dce1c93fa00edfca67a7e1a015c5ef855bd8d492735efb392405dc"
+    },
+    {
+      "path": "feature.yaml",
+      "sha256": "576876e1c0a394d7e500bf37b99696c766e0da7701498e864e7ceed41fe85976"
+    }
+  ],
+  "finalized_at": "2026-10-29T03:11:45.829806+08:00"
+}

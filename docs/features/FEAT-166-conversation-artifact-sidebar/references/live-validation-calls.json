@@ -1,0 +1,54 @@
+{
+  "feature": "FEAT-166",
+  "approved_max_actions": 2,
+  "used_actions": 2,
+  "authorization": "2026-10-29 本聊天用户明确授权最多2次；合成附件可正常发送，原NSD仅本地publish登记，不发送模型附件或正文",
+  "actions": [
+    {
+      "ordinal": 1,
+      "state": "completed",
+      "recorded_at": "2026-10-29T01:54:38.131746+00:00",
+      "session_id": "01a18359-3f62-7a70-888b-aaaf9126c9a3",
+      "prompt_marker": "FEAT166_A",
+      "input_files": [
+        "compact.docx",
+        "normal.csv",
+        "normal.json",
+        "normal.md",
+        "normal.txt",
+        "reading.pdf",
+        "reading.pptx",
+        "reading.xlsx",
+        "rendered.html"
+      ],
+      "publisher_files_count": 12,
+      "original_nsd_input": false,
+      "notes": "已核9个合成附件导入成功；仅一次发送，不自动重试；原NSD仅路径登记。",
+      "ui_duration_seconds": 80,
+      "publisher_staged_count": 12,
+      "native_ready_cards_count": 12,
+      "completed_at": "2026-10-29T02:03:11.464262+00:00"
+    },
+    {
+      "ordinal": 2,
+      "state": "completed",
+      "recorded_at": "2026-10-29T03:18:26.955044+00:00",
+      "session_id": "01a18359-3f62-7a70-888b-aaaf9126c9a3",
+      "prompt_marker": "FEAT166_B",
+      "input_files": [
+        "fresh.html",
+        "normal.webp",
+        "normal.SVG"
+      ],
+      "publisher_files_count": 3,
+      "original_nsd_input": false,
+      "notes": "最后授权调用：当前fresh运行持续输出、新产物默认关闭和补全WebP/大写SVG媒体回归；只登记普通合成文件，不修改原件。",
+      "submitted_at": "2026-10-29T03:18:56.740Z",
+      "ui_duration_seconds": 58,
+      "publisher_staged_count": 3,
+      "native_ready_cards_count": 3,
+      "completion_observed_at": "2026-10-29T03:21:50.549Z",
+      "timing_note": "UI显示总耗时58秒；绝对时间记录工具观察时点，不冒称Host终态事件时间。"
+    }
+  ]
+}

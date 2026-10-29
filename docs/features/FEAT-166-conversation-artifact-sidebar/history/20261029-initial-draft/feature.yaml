@@ -1,0 +1,170 @@
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+feature:
+  id: FEAT-166
+  slug: conversation-artifact-sidebar
+  title: 对话流右侧文件只读预览栏、可拖动分栏与多标签页
+  status: draft
+  created_at: 2026-10-29
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+scope:
+  risk_level: high
+  data_classification: confidential
+  contract_impact: semantic
+  database_change: none
+  persistence_change: none
+  runtime_change: platform
+  auth_permission_change: none
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: none
+repositories:
+  - yijie
+  - yijie-desktop
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+product_ux:
+  status: pending
+  primary_user: 在易界正式对话中查看生成产物与已发送文件的本机用户
+  problem: 当前无同页右侧文件阅读区；HTML独立窗及已发送附件缺读取入口无法形成并排阅读和多文件切换
+  user_outcome: 点击真实文件或右栏按钮展开只读预览，使用新标签页并拖动分隔线调整两侧宽度
+  in_scope:
+    - 默认关闭的右侧预览栏及双入口
+    - 生成产物与已发送附件的真实身份路由，排除图片视频SVG
+    - 新标签页创建、空页填入、真实ID去重、切换关闭及10页容量
+    - 静态HTML、既有文本投影与信息级预览
+    - 精确分栏默认值上下限、拖动键盘及窄宽处理
+    - 七态反馈、正常释放和迟到请求隔离
+  out_of_scope:
+    - 文件修改保存下载分享打印删除发布或系统打开
+    - HTML脚本执行、表单业务动作和链接导航
+    - 新Office/PDF全文阅读器、任意URL或磁盘路径访问
+    - 标签持久化跨会话恢复、拖拽排序固定和批量管理
+    - Runtime协议工具或AI行为扩展、日常数据迁移和公开发布
+  main_flow:
+    - canonical local正式对话默认关闭，按钮展开显示空状态
+    - 点击有效文件引用，激活已有标签或填入空标签或新建文件标签
+    - 在隔离只读区域显示分级内容，不打开独立窗或触发模型
+    - 加号创建空标签，切换关闭按R-03执行；只有激活页持有预览资源
+    - 拖动分栏同步改变对话与预览宽度，收起释放资源并恢复对话宽度
+    - 换会话离页重启清空临时标签并回到关闭状态
+  visual_direction: 复用易界tokens和图标；中性标签条与只读标题行，右栏目标60%并受两侧至少400px约束；详细公式见00 R-06
+  ui_states:
+    idle: 右栏默认关闭且不占位，不后台读取；新文件生成不自动开栏
+    loading: 激活标签显示名称与正在加载预览，不伪造进度，关闭切换始终可达
+    success: 显示真实分级内容及只读标识，内容区域独立滚动
+    empty: 当前没有文件展示；提示在对话完成任务生成产物并点击文件；新标签同样为空
+    error: 区分不支持超限缺失过期拒绝与临时失败，不泄漏路径，不阻断对话
+    retry: 临时失败可重新加载当前引用，最多单次等待15秒，无自动重生成或模型请求
+    cancel: 关闭标签收起或换会话撤销读取并释放资源，不改变任务终态或删除原件
+must_acceptance:
+  - id: AC-001
+    statement: 进入重启返回会话默认关闭无占位，按钮展开收起及空状态成立
+    verification: 02-verification.md T-01；真实UI和实际容器宽度
+    status: pending
+  - id: AC-002
+    statement: 生成HTML与已发送HTML真实引用在右栏显示静态页面，草稿与无绑定文本不误开
+    verification: 02-verification.md T-02；真实Native身份与UI链，无新模型请求
+    status: pending
+  - id: AC-003
+    statement: 图片视频SVG沿原媒体路径，右栏开关标签宽度均不受影响
+    verification: 02-verification.md T-03；关闭和展开两态媒体回归
+    status: pending
+  - id: AC-004
+    statement: 新建空标签、文件归属、去重、同名区分与10页容量按R-03工作
+    verification: 02-verification.md T-04；真实代表流程及全分支状态验证
+    status: pending
+  - id: AC-005
+    statement: 标签切换关闭末页空状态、同页收起保留、换会话清空及焦点正确
+    verification: 02-verification.md T-05；真实UI焦点及资源记录
+    status: pending
+  - id: AC-006
+    statement: 文件分级准确且只读，HTML业务交互禁用，无文件操作入口，原件不变
+    verification: 02-verification.md T-06；普通文件逐类内容信息核对和摘要
+    status: pending
+  - id: AC-007
+    statement: 两侧宽度默认上下限拖动键盘复位及窗口变化按R-06生效，对话与输入区同步缩窄
+    verification: 02-verification.md T-07；公式边界及实际拖动，误差不超过1 CSS px
+    status: pending
+  - id: AC-008
+    statement: 加载超限不支持缺失过期拒绝超时和重新加载可恢复，不阻断对话或自动重跑
+    verification: 02-verification.md T-08；真实普通failure与状态层证据分开记录
+    status: pending
+  - id: AC-009
+    statement: 真实身份授权、单激活资源、迟到结果隔离和正常释放，旧v1及历史wire存储语义保持
+    verification: 02-verification.md T-09；Native普通符合性和正常生命周期
+    status: pending
+  - id: AC-010
+    statement: 亮暗最小窗口长名溢出键盘可用，草稿消息锚点持续输出与媒体行为无回归
+    verification: 02-verification.md T-10；1180x760真实UI及focused回归
+    status: pending
+contract:
+  impact: semantic
+  authority: Desktop私有Native schema及其Rust实现与派生TS；现有chat-artifact-file-native-v1与chat-ipc-v2及HTML command边界；Host公共media与Runtime canonical保持
+  source_first_plan: 03工程分析定义保留旧v1和新增窄只读嵌入/已绑定附件方案；先源及方向性符合性再provider和consumer；兼容尚未验证故不假定additive，旧有效交互失效则升级breaking
+  status: NOT RUN
+  checks: []
+external_authorizations:
+  paid_calls: { allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A }
+  destructive_operations: { allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A }
+  production_writes: { allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A }
+implementation:
+  status: pending
+  real_entrypoint: 后续复核Desktop canonical run-local-demo-fast.sh并使用本需求独立local样本绑定；本轮未启动，不借FEAT-164日常激活或FEAT-165预算
+  mock_only: false
+verification:
+  status: NOT RUN
+  verified_at: NOT RUN
+  startup:
+    status: NOT RUN
+    command_or_steps: 后续按当前canonical local入口进入正式Chat；见02
+    environment: 本机非敏感普通样本，不接日常重要数据
+    actual_result: 本轮仅需求落盘，未启动易界服务
+  real_smoke:
+    status: NOT RUN
+    command_or_steps: 一次fresh run覆盖全部Must及真实HTML产物和已发送附件
+    environment: 本需求隔离样本与真实Native链
+    actual_result: 未执行，不能用WorkBuddy观察或文档检查替代
+  representative_failure:
+    status: NOT RUN
+    command_or_steps: 正常不支持或合法超预览限额样本，并验证切换文件恢复
+    environment: 非破坏普通样本
+    actual_result: 未执行；禁止攻击注入强杀权限破坏及二进制伪装
+  focused_checks: []
+  artifacts: []
+  diff_review:
+    status: NOT RUN
+    summary: 产品代码未实施；本轮文档审查单列于02和references/documentation-checks.json
+  known_limitations:
+    - D0尚无Owner接受记录；10项Must均pending，文档结构检查不等于D0或D4
+    - HTML只读静态，不执行JS；实际NSD源文件本轮未提供，不能保证动态内容与截图等同
+    - DOCX/PPTX/PDF/XLSX沿用信息级预览，不是全文阅读器
+    - WorkBuddy仅观察现场尺寸，默认60%与两侧400最小宽是易界候选设计
+    - Native新预览能力和已绑定附件读取尚未实现及验证
+public_readiness:
+  required: false
+  status: N/A
+  checks: []
+  external_smoke:
+    status: NOT RUN
+    command_or_steps: 本需求不公开部署
+    actual_result: 无外部smoke或生产可用结论
+documents:
+  brief: 00-feature-brief.md
+  delivery_log: 01-delivery-log.md
+  verification: 02-verification.md
+  engineering_analysis: 03-engineering-analysis.md
+requirement_confirmation:
+  status: pending
+  reason: 用户授权需求分析落盘并明确纳入新标签页；推荐细节尚无Owner最终接受记录
+  latest_user_revision: 新标签页创建纳入本需求
+  implementation_authorized: false

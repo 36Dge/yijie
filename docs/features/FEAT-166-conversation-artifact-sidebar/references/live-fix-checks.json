@@ -1,0 +1,52 @@
+{
+  "recorded_at": "2026-10-29T03:01:58.746961+00:00",
+  "logs": [
+    {
+      "name": "feat166-final-focused.log",
+      "sha256": "215129e318e5a7879a5bbff05f847655dd94c70e3cd587143d339583b93c9d68",
+      "output": "\n RUN  v4.1.10 /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop\n\n\n Test Files  3 passed (3)\n      Tests  24 passed (24)\n   Start at  10:10:48\n   Duration  581ms (transform 195ms, setup 0ms, import 296ms, tests 54ms, environment 181ms)\n\n"
+    },
+    {
+      "name": "feat166-final-native.log",
+      "sha256": "cf15bf7911f9fe69ceac3771f91d13421aa3be70655d080fcf81052fd04a2e93",
+      "output": "   Compiling objc2-exception-helper v0.1.1\n   Compiling ring v0.17.14\n   Compiling libsqlite3-sys v0.38.1\n   Compiling objc2 v0.6.4\n   Compiling rustls v0.23.43\n   Compiling block2 v0.6.2\n   Compiling objc2-core-foundation v0.3.2\n   Compiling rustls-webpki v0.103.13\n   Compiling dispatch2 v0.3.1\n   Compiling objc2-foundation v0.3.2\n   Compiling rusqlite v0.40.1\n   Compiling rusqlite_migration v2.6.0\n   Compiling tokio-rustls v0.26.4\n   Compiling hyper-rustls v0.27.9\n   Compiling reqwest v0.12.28\n   Compiling objc2-app-kit v0.3.2\n   Compiling oauth2 v5.0.0\n   Compiling openidconnect v4.0.1\n   Compiling objc2-web-kit v0.3.2\n   Compiling tao v0.35.3\n   Compiling window-vibrancy v0.6.0\n   Compiling muda v0.19.3\n   Compiling webbrowser v1.2.2\n   Compiling rfd v0.16.0\n   Compiling wry v0.55.1\n   Compiling tauri-runtime v2.11.3\n   Compiling tauri-runtime-wry v2.11.4\n   Compiling tauri v2.11.5\n   Compiling yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 22.37s\n     Running unittests src/lib.rs (src-tauri/target/debug/deps/yijie_desktop_lib-b2e5101f33b31202)\n\nrunning 7 tests\ntest chat::document_preview_content::tests::html_keeps_rendering_script_source_and_text_reuses_existing_projection ... ok\ntest chat::document_preview_native::tests::schema_normal_document_requests_round_trip_through_native_types ... ok\ntest chat::document_preview_content::tests::normal_xlsx_renders_cells_merges_shared_strings_and_cached_formulas ... ok\ntest chat::document_preview_content::tests::normal_pdf_raster_has_correct_orientation_and_real_graphical_content ... ok\ntest chat::document_preview_content::tests::normal_docx_long_body_has_bounded_continuation_and_blank_page_is_readable ... ok\ntest chat::document_preview_content::tests::normal_docx_preserves_headings_lists_tables_pictures_and_entities ... ok\ntest chat::document_preview_content::tests::normal_pptx_uses_relationship_order_instead_of_filename_sort ... ok\n\ntest result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 686 filtered out; finished in 1.28s\n\n     Running unittests src/main.rs (src-tauri/target/debug/deps/yijie_desktop-85021d11faad2ab7)\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n"
+    },
+    {
+      "name": "feat166-final-lint.log",
+      "sha256": "78abdaafb66d6b07854c5ef91631d74baf29d184ca56fc3312529f411f912591",
+      "output": "$ eslint . --max-warnings 0 && vue-tsc --noEmit\nsrc/components/chat/ChatDocumentWorkspace.test.ts(88,66): error TS2550: Property 'at' does not exist on type 'any[][]'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2022' or later.\n[ELIFECYCLE] Command failed with exit code 2.\n"
+    },
+    {
+      "name": "feat166-final-lint-retry.log",
+      "sha256": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6",
+      "output": "$ eslint . --max-warnings 0 && vue-tsc --noEmit\n"
+    },
+    {
+      "name": "feat166-final-clippy.log",
+      "sha256": "a1dea45bcf052d064ffd2f21402ce75dadeaaac17b8d6291fbb9b6a6300fd774",
+      "output": "    Checking objc2-exception-helper v0.1.1\n    Checking ring v0.17.14\n    Checking libsqlite3-sys v0.38.1\n    Checking objc2 v0.6.4\n    Checking rusqlite v0.40.1\n    Checking rusqlite_migration v2.6.0\n    Checking block2 v0.6.2\n    Checking objc2-core-foundation v0.3.2\n    Checking rustls-webpki v0.103.13\n    Checking dispatch2 v0.3.1\n    Checking rustls v0.23.43\n    Checking objc2-foundation v0.3.2\n    Checking tokio-rustls v0.26.4\n    Checking hyper-rustls v0.27.9\n    Checking reqwest v0.12.28\n    Checking oauth2 v5.0.0\n    Checking openidconnect v4.0.1\n    Checking objc2-app-kit v0.3.2\n    Checking objc2-web-kit v0.3.2\n    Checking tao v0.35.3\n    Checking muda v0.19.3\n    Checking window-vibrancy v0.6.0\n    Checking rfd v0.16.0\n    Checking webbrowser v1.2.2\n    Checking wry v0.55.1\n    Checking tauri-runtime v2.11.3\n    Checking tauri-runtime-wry v2.11.4\n    Checking tauri v2.11.5\n    Checking yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 15.92s\n"
+    },
+    {
+      "name": "feat166-input-diagnosis.log",
+      "sha256": "7d04ad8ac131b23ac1ec19dc324af09f1f886b0d0483b81ec9640e9f6760840b",
+      "output": "   Compiling objc2-exception-helper v0.1.1\n   Compiling ring v0.17.14\n   Compiling libsqlite3-sys v0.38.1\n   Compiling objc2 v0.6.4\n   Compiling rustls v0.23.43\n   Compiling block2 v0.6.2\n   Compiling objc2-core-foundation v0.3.2\n   Compiling rustls-webpki v0.103.13\n   Compiling dispatch2 v0.3.1\n   Compiling objc2-foundation v0.3.2\n   Compiling rusqlite v0.40.1\n   Compiling rusqlite_migration v2.6.0\n   Compiling tokio-rustls v0.26.4\n   Compiling hyper-rustls v0.27.9\n   Compiling reqwest v0.12.28\n   Compiling objc2-app-kit v0.3.2\n   Compiling oauth2 v5.0.0\n   Compiling openidconnect v4.0.1\n   Compiling objc2-web-kit v0.3.2\n   Compiling tao v0.35.3\n   Compiling window-vibrancy v0.6.0\n   Compiling muda v0.19.3\n   Compiling rfd v0.16.0\n   Compiling webbrowser v1.2.2\n   Compiling wry v0.55.1\n   Compiling tauri-runtime v2.11.3\n   Compiling tauri-runtime-wry v2.11.4\n   Compiling tauri v2.11.5\n   Compiling yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 21.64s\n     Running unittests src/lib.rs (src-tauri/target/debug/deps/yijie_desktop_lib-b2e5101f33b31202)\n\nrunning 1 test\ncompact.docx: Ok(1)\nnormal.csv: Ok(1)\nnormal.json: Ok(1)\nnormal.md: Ok(1)\nnormal.txt: Ok(1)\nreading.pdf: Err(InvalidContent)\nreading.pptx: Err(InvalidContent)\nreading.xlsx: Ok(1)\nrendered.html: Ok(1)\ntest chat::document_preview_content::tests::feat166_local_normal_inputs_diagnosis ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 693 filtered out; finished in 0.02s\n\n     Running unittests src/main.rs (src-tauri/target/debug/deps/yijie_desktop-85021d11faad2ab7)\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n"
+    },
+    {
+      "name": "feat166-input-diagnosis-revised.log",
+      "sha256": "6dc40fbceb5aecd04ea76e9f3e720740150ad8a942864c3594d86db53c8aa5f2",
+      "output": "    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.35s\n     Running unittests src/lib.rs (src-tauri/target/debug/deps/yijie_desktop_lib-b2e5101f33b31202)\n\nrunning 1 test\ncompact.docx: Ok(1)\nnormal.csv: Ok(1)\nnormal.json: Ok(1)\nnormal.md: Ok(1)\nnormal.txt: Ok(1)\nreading.pdf: Ok(1)\nreading.pptx: Ok(1)\nreading.xlsx: Ok(1)\nrendered.html: Ok(1)\ntest chat::document_preview_content::tests::feat166_local_normal_inputs_diagnosis ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 693 filtered out; finished in 0.01s\n\n     Running unittests src/main.rs (src-tauri/target/debug/deps/yijie_desktop-85021d11faad2ab7)\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n"
+    },
+    {
+      "name": "feat166-overlay-focused.log",
+      "sha256": "3e4894cd9f35d7ae8ece88a47bd440efb032df455256e1060f75e5fcb10ebfed",
+      "exit_code": 0,
+      "output": "\n RUN  v4.1.10 /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop\n\n\n Test Files  3 passed (3)\n      Tests  25 passed (25)\n   Start at  10:52:46\n   Duration  751ms (transform 222ms, setup 0ms, import 331ms, tests 174ms, environment 215ms)\n\n"
+    },
+    {
+      "name": "feat166-overlay-lint.log",
+      "sha256": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6",
+      "exit_code": 0,
+      "output": "$ eslint . --max-warnings 0 && vue-tsc --noEmit\n"
+    }
+  ]
+}

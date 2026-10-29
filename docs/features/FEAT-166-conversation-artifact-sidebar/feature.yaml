@@ -1,0 +1,278 @@
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+feature:
+  id: FEAT-166
+  slug: conversation-artifact-sidebar
+  title: 对话流右侧文件只读预览栏、可拖动分栏与多标签页
+  status: usable
+  created_at: 2026-10-29
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+scope:
+  risk_level: high
+  data_classification: confidential
+  contract_impact: semantic
+  database_change: none
+  persistence_change: none
+  runtime_change: platform
+  auth_permission_change: none
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: none
+repositories:
+  - yijie
+  - yijie-desktop
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+product_ux:
+  status: PASS
+  primary_user: 在易界正式对话中查看生成产物与已发送文件的本机用户
+  problem: 当前无同页右侧文件阅读区；HTML独立窗及已发送附件缺读取入口无法形成并排阅读和多文件切换
+  user_outcome: 点击真实文件或右栏按钮展开只读预览，使用新标签页并拖动分隔线调整两侧宽度
+  in_scope:
+    - 默认关闭的右侧预览栏及双入口
+    - 生成产物与已发送附件的真实身份路由，排除图片视频SVG
+    - 新标签页创建、空页填入、真实ID去重、切换关闭及10页容量
+    - HTML隔离渲染脚本及已有文本投影；DOCX/PPTX/XLSX/PDF真实正文或页面内容
+    - 精确分栏默认值上下限、拖动键盘及窄宽处理
+    - 七态反馈、正常释放和迟到请求隔离
+    - 先审yijie-codex原生封装并复用Runtime工具、publish、spool、Native提交ACK及授权读取，不重造工具机制
+  out_of_scope:
+    - 文件修改保存下载分享打印删除发布或系统打开
+    - 文件操作、HTML页面业务动作、链接导航与外部副作用；保留已确认的隔离渲染脚本
+    - 任意URL或磁盘访问、完整办公编辑器/OCR/全保真排版、云转换与新生成发布传输服务
+    - 标签持久化跨会话恢复、拖拽排序固定和批量管理
+    - Runtime协议工具或AI行为扩展、日常数据迁移和公开发布
+  main_flow:
+    - canonical local正式对话默认关闭，按钮展开显示空状态
+    - 点击有效文件引用，激活已有标签或填入空标签或新建文件标签
+    - 在隔离只读区域显示分级内容，不打开独立窗或触发模型
+    - 加号创建空标签，切换关闭按R-03执行；单激活展示，单在途读取与最新待发意图合并
+    - 拖动分栏同步改变对话与预览宽度，收起释放资源并恢复对话宽度
+    - 换会话离页重启清空临时标签并回到关闭状态
+  visual_direction: 复用易界tokens和图标；中性标签条与只读标题行，右栏目标60%并受两侧至少400px约束；详细公式见00 R-06
+  ui_states:
+    idle: 右栏默认关闭且不占位，不后台读取；新文件生成不自动开栏
+    loading: 激活标签显示名称与正在加载预览，不伪造进度，关闭切换始终可达
+    success: 显示真实分级内容及只读标识，内容区域独立滚动
+    empty: 当前没有文件展示；提示在对话完成任务生成产物并点击文件；新标签同样为空
+    error: 区分超限不支持缺失过期拒绝、完整性失败与资源忙；不泄漏路径、不困住对话
+    retry: 临时失败或资源忙可用户重新加载；UI等待含调度上限15秒，源TTL/完整性失败不可原地重试，无模型调用
+    cancel: 关闭收起换会话立即撤销展示并清内容，不能取消的Native工作正常有界收尾，不改任务终态或删除原件
+must_acceptance:
+  - id: AC-001
+    statement: 进入重启返回会话默认关闭无占位，按钮展开收起及空状态成立
+    verification: 02-verification.md T-01；真实UI和实际容器宽度；最终结果08-d4-acceptance.md及references/d4-live-observations.json
+    status: PASS
+  - id: AC-002
+    statement: 生成HTML及已发送HTML引用在右栏打开，原NSD在同一生产渲染器显示标题概览记录表并单列证据层级，不用同名静态样本替代
+    verification: 02-verification.md T-02A/B；真实身份链与原件内容兼容分开记录，不能用同名简化文件替代原件；最终结果08-d4-acceptance.md及references/d4-live-observations.json
+    status: PASS
+  - id: AC-003
+    statement: 图片视频SVG沿原媒体路径，右栏开关标签宽度均不受影响
+    verification: 02-verification.md T-03；关闭和展开两态媒体回归；最终结果08-d4-acceptance.md及references/d4-live-observations.json
+    status: PASS
+  - id: AC-004
+    statement: 新建空标签、文件归属、去重、同名区分与10页容量按R-03工作
+    verification: 02-verification.md T-04；真实代表流程及全分支状态验证；最终结果08-d4-acceptance.md及references/d4-live-observations.json
+    status: PASS
+  - id: AC-005
+    statement: 标签手动激活与焦点分离，切换关闭末页空状态、同页收起保留和换会话清空正确
+    verification: 02-verification.md T-05；真实UI焦点及资源记录；最终结果08-d4-acceptance.md及references/d4-live-observations.json
+    status: PASS
+  - id: AC-006
+    statement: 逐来源验证DOCX正文表格图片、PPTX真实页序、XLSX真实单元格与缓存、PDF实际页面；信息卡不算成功，阅读控件可用，业务文件操作禁用
+    verification: 02-verification.md T-06；普通文件逐类内容信息核对和摘要；最终结果08-d4-acceptance.md及references/d4-live-observations.json
+    status: PASS
+  - id: AC-007
+    statement: 默认上下限拖动键盘复位和窗口变化按R-06生效；复位清除手动偏好，正文输入区同步缩窄
+    verification: 02-verification.md T-07；公式边界及实际拖动，误差不超过1 CSS px；最终结果08-d4-acceptance.md及references/d4-live-observations.json
+    status: PASS
+  - id: AC-008
+    statement: 正常失败、完整性失败与资源忙正确区分，UI超时不冒称Native终止，无自动重跑或无界重试
+    verification: 02-verification.md T-08；真实普通failure与状态层证据分开记录；最终结果08-d4-acceptance.md及references/d4-live-observations.json
+    status: PASS
+  - id: AC-009
+    statement: 复用fork工具与原产物登记传输Native提交ACK授权链，无新造工具服务；有界调度、持续授权期限清理和正常收尾，旧v1及历史保持
+    verification: 02-verification.md T-09；Native普通符合性和正常生命周期；最终结果08-d4-acceptance.md及references/d4-live-observations.json
+    status: PASS
+  - id: AC-010
+    statement: 亮暗最小窗口长名溢出键盘可用，草稿消息锚点持续输出与媒体行为无回归
+    verification: 02-verification.md T-10；1180x760真实UI及focused回归；最终结果08-d4-acceptance.md及references/d4-live-observations.json
+    status: PASS
+contract:
+  impact: semantic
+  authority: Desktop私有schema src-tauri/schemas/chat-document-preview-v1.schema.json；既有Native产物/附件授权与源摘要为只读权威。Runtime/Host/公共contracts维持05不可变复用基线。
+  source_first_plan: Desktop私有schema先行→TypeScript派生及同源fixture→Native/UI；正常schema往返、旧组件方向回归与最终canonical主窗真实预览通过。Runtime/Host/公共contracts未改，不声称生产发布兼容。
+  status: PASS
+  checks:
+    - repository: yijie-desktop
+      command: pnpm generate:check
+      status: PASS
+      exit_code: 0
+      evidence: references/implementation-checks.json；最终canonical回执1257源摘要一致
+    - repository: yijie-desktop
+      command: pnpm exec vitest run src/domain/conversation-file-preview.test.ts src/api/chat-document-preview-client.test.ts src/components/chat/ChatDocumentWorkspace.test.ts src/components/chat/ChatAttachmentChip.feat165.test.ts scripts/generate-document-preview.test.mjs --maxWorkers=2 --exclude "**/.local/**"
+      status: PASS
+      exit_code: 0
+      evidence: references/d4-focused-checks.json（合并定向命令含这两文件）
+    - repository: yijie-desktop
+      command: cargo test --manifest-path src-tauri/Cargo.toml --features kimi-k31-pro-candidate --offline document_preview -- --nocapture
+      status: PASS
+      exit_code: 0
+      evidence: references/d4-focused-checks.json：普通内容/schema7项；真实两来源另见08
+external_authorizations:
+  paid_calls:
+    allowed: true
+    max_actions: 2
+    approved_by: 段成威
+    approved_at: 2026-10-29T01:54:38.131746+00:00
+    timestamp_basis: 用户答复只提供授权内容；采用本需求第一条授权调用登记时间，不声称为用户点击答复的精确时刻。
+  destructive_operations:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  production_writes:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+implementation:
+  status: complete
+  real_entrypoint: YIJIE_KIMI_K31_CALL_SURFACES=media ./scripts/run-local-demo-fast.sh --packaged --kimi-k31-pro；最终PID92234免登录业务首页→正式Chat→真实Native；同build可--reopen（须source guard一致）。标准构建未签名local候选。
+  mock_only: false
+verification:
+  status: PASS
+  verified_at: 2026-10-29T03:34:25.998Z
+  startup:
+    status: PASS
+    command_or_steps: YIJIE_KIMI_K31_CALL_SURFACES=media ./scripts/run-local-demo-fast.sh --packaged --kimi-k31-pro；最终PID92234免登录业务首页→正式Chat→真实Native；同build可--reopen（须source guard一致）。标准构建未签名local候选。
+    environment: 本机demo_fast/local canonical media候选；已注册普通合成样本项目；原NSD仅本地登记
+    actual_result: PID92234于2026-10-29从正式首页免登录进入；同一次fresh run完成Must，11:27:06正常Quit清理，launcher退出0。见08及d4-final-source。
+  real_smoke:
+    status: PASS
+    command_or_steps: 本轮fresh运行逐来源打开9类实际内容，原NSD、Office/PDF、10标签和拖动；第2次授权提交覆盖真实流式生成和3个新产物
+    environment: 真实App/Host/yijie-codex/publisher/Native，F和B隔离会话；不seed DB或UI
+    actual_result: 10项Must通过；原NSD8条动态记录、DOCX/PPTX/XLSX/PDF正文实际可见；新输入绑定和新产物预览均成功。08逐项区分UI与focused层级。
+  representative_failure:
+    status: PASS
+    command_or_steps: B普通旧最小PPTX缺页关系显示不支持；切换正常PDF恢复；10标签阻止第11个，200%触发窄宽提示
+    environment: 原已有合法普通文件和正常用户操作；不损坏/篡改资源
+    actual_result: 不支持文件明确提示且不提供无效重试，切换PDF恢复；容量/窄宽不困住对话。完整性/忙/拒绝/超时使用正常状态映射和源审查，未故障注入。
+  focused_checks:
+    - repository: yijie-desktop
+      command: pnpm lint
+      status: PASS
+      exit_code: 0
+      evidence: references/live-fix-checks.json：最终overlay lint退出0
+    - repository: yijie-desktop
+      command: pnpm exec vitest run src/domain/conversation-file-preview.test.ts src/api/chat-document-preview-client.test.ts src/components/chat/ChatDocumentWorkspace.test.ts src/components/chat/ChatAttachmentChip.feat165.test.ts scripts/generate-document-preview.test.mjs --maxWorkers=2 --exclude "**/.local/**"
+      status: PASS
+      exit_code: 0
+      evidence: references/d4-focused-checks.json：34项
+    - repository: yijie-desktop
+      command: pnpm exec vitest run src/components/chat/ChatArtifactShell.test.ts src/components/chat/ChatArtifactFile.test.ts src/pages/chat/ChatPage.test.ts -t "FEAT166|adds file actions|renders safe metadata|keeps PDF and XLSX|performs bounded case-sensitive|clears content and search|shows the decorative mascot|uses the FEAT-132 Timeline exclusively|keeps the last committed conversation" --maxWorkers=2 --exclude "**/.local/**" --exclude "**/.contracts-source/**" --exclude "**/.agent-host-source/**" --exclude "**/.skills-source/**"
+      status: PASS
+      exit_code: 0
+      evidence: references/d4-focused-checks.json：9项，85项未选
+    - repository: yijie-desktop
+      command: cargo test --manifest-path src-tauri/Cargo.toml --features kimi-k31-pro-candidate --offline document_preview -- --nocapture
+      status: PASS
+      exit_code: 0
+      evidence: references/d4-focused-checks.json：7项
+    - repository: yijie-desktop
+      command: cargo test --manifest-path src-tauri/Cargo.toml --features kimi-k31-pro-candidate --offline feat166_normal_bound_document -- --nocapture
+      status: PASS
+      exit_code: 0
+      evidence: references/d4-focused-checks.json：1项
+    - repository: yijie-desktop
+      command: cargo clippy --manifest-path src-tauri/Cargo.toml --features kimi-k31-pro-candidate --all-targets --offline -- -D warnings
+      status: PASS
+      exit_code: 0
+      evidence: references/live-fix-checks.json；Native源与最终回执一致
+    - repository: yijie-desktop
+      command: YIJIE_KIMI_K31_CALL_SURFACES=media ./scripts/run-local-demo-fast.sh --packaged --kimi-k31-pro
+      status: PASS
+      exit_code: 0
+      evidence: references/d4-final-source.json；canonical构建和运行正常退出0
+  artifacts:
+    - 08-d4-acceptance.md
+    - references/d4-live-observations.json
+    - references/d4-final-source.json
+    - references/d4-focused-checks.json
+    - references/d4-governance-checks.json
+    - references/live-validation-calls.json
+    - references/live-samples.json
+    - references/fresh-samples.json
+  diff_review:
+    status: PASS
+    summary: Codex自审，非独立人工评审：复用fork工具/publisher/spool/Native提交ACK/授权读取，新增最窄Desktop只读适配；无Runtime/Host/公共协议/数据库迁移/新依赖。最终1257回执源一致，11个既有FEAT162文件摘要保持；实际UI发现的5项问题修复后同一次fresh复验。见08和d4-final-source。
+  known_limitations:
+    - 仅demo_fast/local可用；标准候选未签名未发布，DP为N/A，无生产/公开可用结论。
+    - Office为有界基本正文/页面视图，复杂对象非全保真；PDF非OCR；原输入格式准入子集保持。
+    - 原NSD验证生成产物真实链，不冒称原件已发送附件链；原件未作为模型附件或正文发送。
+    - 全量历史危险测试未执行；禁止强杀、权限故障、攻击注入与二进制伪装；完整性/忙/拒绝/超时不以制造故障测试。
+    - 未单独物理演示拖动中Esc/pointercancel/resize，分支仅源审查；正常拖动、键盘、复位、窗口resize实测。未做完整VoiceOver/长期性能/生产安全专项。
+    - 已发送JPEG媒体沿通用排除分支做组件/源检查；真实已发送媒体代表为PNG/MP4/SVG/WebP，不冒称逐后缀均已发送。
+    - 模型任务2/2已用完；本地Git提交见09，未push/tag/发布，未迁移日常数据。
+public_readiness:
+  required: false
+  status: N/A
+  checks: []
+  external_smoke:
+    status: NOT RUN
+    command_or_steps: 本需求不公开部署
+    actual_result: 无外部smoke或生产可用结论
+documents:
+  brief: 00-feature-brief.md
+  delivery_log: 01-delivery-log.md
+  verification: 02-verification.md
+  engineering_analysis: 03-engineering-analysis.md
+  reaudit: 04-reaudit-and-decisions.md
+  codex_reuse_audit: 05-codex-reuse-audit.md
+  implementation: 06-implementation.md
+  live_validation: 07-live-validation.md
+  d4_acceptance: 08-d4-acceptance.md
+  local_commit: 09-local-commit.md
+requirement_confirmation:
+  status: confirmed
+  confirmed_by: 段成威
+  confirmed_on: 2026-10-29
+  reason: 用户明确接受修订后的需求包并授权按治理开始实施及真实客户端验证
+  implementation_authorized: true
+  latest_user_revision: 电脑已解锁，继续真实客户端验证并修复至D4；另授权最多2次真实任务提交，原NSD仅本地登记预览，不作为模型附件或正文发送；D4完成后用户明确授权本地Git提交
+product_decisions:
+  - id: OP-01
+    status: confirmed
+    confirmed_by: 段成威
+    confirmed_on: 2026-10-29
+    source: 本聊天异步问题答复
+    decision: 允许隔离渲染脚本，禁用文件操作和页面业务操作
+  - id: OP-02
+    status: confirmed
+    confirmed_by: 段成威
+    confirmed_on: 2026-10-29
+    source: 本聊天异步问题答复
+    decision: 本期必须支持Office/PDF正文或页面内容预览
+  - id: REUSE-01
+    status: confirmed
+    confirmed_by: 段成威
+    confirmed_on: 2026-10-29
+    source: 本聊天后续明确指令
+    decision: 必须查yijie-codex原生封装并复用既有机制，不从头发明工具
+reuse_audit:
+  document: 05-codex-reuse-audit.md
+  runtime_source: 11fd4504c28afd0f65c6f5f62a6b5328dd437f5a
+  upstream_tag: rust-v0.144.6
+  upstream_commit: 5d1fbf26c43abc65a203928b2e31561cb039e06d
+  runtime_change_planned: false
+  reads_do_not_authorize_raw_filesystem_bypass: true

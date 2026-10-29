@@ -1,0 +1,271 @@
+{
+  "feature": "FEAT-166",
+  "captured_at": "2026-10-29T03:29:50.381995+00:00",
+  "canonical_command": "YIJIE_KIMI_K31_CALL_SURFACES=media ./scripts/run-local-demo-fast.sh --packaged --kimi-k31-pro",
+  "launch_receipt_sha256": "c9877246d2e662c70cd81732b8387c9ff1f9913da05b530c61308e49fdb6e078",
+  "app_binary": {
+    "sha256": "e3dffa403dd37634dfccce88eb6112b793451b9a73a8583365a8c7cb225aa2b6",
+    "bytes": 192109888,
+    "mode": 493
+  },
+  "receipt_source_count": 1257,
+  "receipt_source_mismatches": [],
+  "source_identity": "all receipt source files match fresh UI candidate",
+  "canonical_log_sha256": "cee22c2e120652edd8be75fae3a726809f7c69b68042615e49b5d3aebfd5ee27",
+  "canonical_log_tail": "            186.63 kB │ gzip:  63.07 kB\ndist/assets/experts-ui-config-BtS-0KFy.js                                   194.79 kB │ gzip:  30.10 kB\ndist/assets/workflow-showcase-Byd0zaj3.js                                   332.74 kB │ gzip:  26.98 kB\ndist/assets/ChatPage-Whpf6azm.js                                            409.62 kB │ gzip: 118.03 kB\ndist/assets/echarts-theme-CdahltzI.js                                       532.12 kB │ gzip: 181.64 kB\ndist/assets/chat.store-BKF7GHbC.js                                          924.16 kB │ gzip: 117.41 kB\ndist/assets/scheduled-task-native-client-Rgy1LJKT.js                      1,337.82 kB │ gzip:  85.02 kB\n\n✓ built in 657ms\n[plugin builtin:vite-reporter] \n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n   Compiling yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 18.72s\n       Built application at: /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/target/debug/yijie-desktop\n    Bundling 易界 AI FEAT-164.app (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/target/debug/bundle/macos/易界 AI FEAT-164.app)\n        Warn Skipping signing due to --no-sign flag.\n    Finished 1 bundle at:\n        /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/target/debug/bundle/macos/易界 AI FEAT-164.app\n\nFEAT-164 canonical candidate build recorded; local provenance only.\nFEAT-164 normal app cleanup complete\n",
+  "normal_exit": {
+    "launcher_exit_code": 0,
+    "cleanup_message": "FEAT-164 normal app cleanup complete",
+    "cleanup_observed_at": "2026-10-29T03:27:06.231938+00:00",
+    "processes_remaining": [],
+    "no_force_kill": true
+  },
+  "repositories": [
+    {
+      "repository": "yijie",
+      "head": "970e9d8bfeb2580c06d06490b818a50f58ba453f",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": "M docs/features/FEAT-162-kimi-web-retrieval/00-feature-brief.md\n M docs/features/FEAT-162-kimi-web-retrieval/01-delivery-log.md\n M docs/features/FEAT-162-kimi-web-retrieval/02-verification.md\n M docs/features/FEAT-162-kimi-web-retrieval/04-resume.md\n M docs/features/FEAT-162-kimi-web-retrieval/feature.yaml\n?? docs/features/FEAT-162-kimi-web-retrieval/21-basic-pro-plan-audit.md\n?? docs/features/FEAT-162-kimi-web-retrieval/22-basic-pro-intent-routing-plan.md\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/basic-pro-requirements-before-20261028.json\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/basic-pro-requirements-checks-20261028.json\n?? docs/features/FEAT-162-kimi-web-retrieval/history/\n?? docs/features/FEAT-166-conversation-artifact-sidebar/"
+    },
+    {
+      "repository": "yijie-desktop",
+      "head": "a2cc89c9cf2e36f8c5b9154e5694c38e601e140a",
+      "branch": "feat/feat164-primary-20261028",
+      "status": "M docs/design/docs/design/02-tokens/04-spacing-layout-tokens.md\n M docs/design/docs/design/05-patterns/02-chat-workspace.md\n M package.json\n M src-tauri/src/chat/application.rs\n M src-tauri/src/chat/artifact_file_native.rs\n M src-tauri/src/chat/attachment.rs\n M src-tauri/src/chat/database.rs\n M src-tauri/src/chat/mod.rs\n M src-tauri/src/lib.rs\n M src/components/chat/ChatArtifactFile.vue\n M src/components/chat/ChatArtifactList.vue\n M src/components/chat/ChatArtifactShell.test.ts\n M src/components/chat/ChatArtifactShell.vue\n M src/components/chat/ChatAttachmentChip.feat165.test.ts\n M src/components/chat/ChatAttachmentChip.vue\n M src/icons/registry.ts\n M src/pages/chat/ChatPage.test.ts\n M src/pages/chat/ChatPage.vue\n M src/styles/variables.css\n?? docs/design/docs/design/05-patterns/17-feat-166-conversation-file-preview.md\n?? scripts/generate-document-preview.mjs\n?? scripts/generate-document-preview.test.mjs\n?? src-tauri/schemas/chat-document-preview-v1.schema.json\n?? src-tauri/schemas/fixtures/\n?? src-tauri/src/chat/document_preview_content.rs\n?? src-tauri/src/chat/document_preview_content_tests.rs\n?? src-tauri/src/chat/document_preview_native.rs\n?? src-tauri/src/chat/document_preview_pdf.rs\n?? src/api/chat-document-preview-client.test.ts\n?? src/api/chat-document-preview-client.ts\n?? src/components/chat/ChatDocumentWorkspace.test.ts\n?? src/components/chat/ChatDocumentWorkspace.vue\n?? src/composables/useConversationDocumentPreview.ts\n?? src/domain/conversation-file-preview.test.ts\n?? src/domain/conversation-file-preview.ts\n?? src/domain/document-preview.generated.ts"
+    },
+    {
+      "repository": "yijie-codex",
+      "head": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": ""
+    },
+    {
+      "repository": "yijie-agent-host",
+      "head": "36ec8c62cca771b479b317d209da50d6acda0989",
+      "branch": "feat/feat164-primary-20261028",
+      "status": ""
+    },
+    {
+      "repository": "yijie-contracts",
+      "head": "61137174a25dc368e0006f27633fd4a9ad097aa6",
+      "branch": "feat/feat164-primary-20261028",
+      "status": ""
+    }
+  ],
+  "desktop_changed_sources": [
+    {
+      "path": "docs/design/docs/design/02-tokens/04-spacing-layout-tokens.md",
+      "sha256": "882d8e45b4418a105dace5eae0e726e9fbba0360fb2a19e05c6ea0c3951e614e"
+    },
+    {
+      "path": "docs/design/docs/design/05-patterns/02-chat-workspace.md",
+      "sha256": "eef184020694c42629347fe2b409c5efc7caee71375e1ee41218a8763a692d56"
+    },
+    {
+      "path": "docs/design/docs/design/05-patterns/17-feat-166-conversation-file-preview.md",
+      "sha256": "a4ee2b05366507721648537cd5040b065503987cdb5378b1a332e6e3544cd032"
+    },
+    {
+      "path": "package.json",
+      "sha256": "1e2ca4fb7df68050f48082ea49e18a8dc1266a11bea30dea9623eabbc773b4df"
+    },
+    {
+      "path": "scripts/generate-document-preview.mjs",
+      "sha256": "f1e7b79c5f15cd99562fb8ebf443ab168ae9e509582a24871799da155ed3338a"
+    },
+    {
+      "path": "scripts/generate-document-preview.test.mjs",
+      "sha256": "023270aec6760c667a60288ce96c0bc10eef5a8604ff4a26d20dd54be6f69bbd"
+    },
+    {
+      "path": "src-tauri/schemas/chat-document-preview-v1.schema.json",
+      "sha256": "0f7b357120192640d26a68bb84b521d38bfab54f62017fed3587a20583325882"
+    },
+    {
+      "path": "src-tauri/schemas/fixtures/chat-document-preview-v1.json",
+      "sha256": "bcbc58543932262ac04ce8f7a65985bb1201f18d925a032a3e3e74be0d135cfd"
+    },
+    {
+      "path": "src-tauri/src/chat/application.rs",
+      "sha256": "7e108eaa2f1e067d834e3c1069e245fea9c93b945938b23410521ba85aaaffec"
+    },
+    {
+      "path": "src-tauri/src/chat/artifact_file_native.rs",
+      "sha256": "fc60260dfa0630e3a98a70b6fd27f06b39f42fd1ed6ba013458bac17565e2088"
+    },
+    {
+      "path": "src-tauri/src/chat/attachment.rs",
+      "sha256": "9171b3dc44ee0036652f8724b6c86956b0c01f4b6534309534665bbfb3667638"
+    },
+    {
+      "path": "src-tauri/src/chat/database.rs",
+      "sha256": "5d526ded27874bcd9c659dbf46f6f9e275dad86df8cab71ad439ca1c21d39654"
+    },
+    {
+      "path": "src-tauri/src/chat/document_preview_content.rs",
+      "sha256": "87a08f38ca012f53412ae3a69d6115bfa6cd5bdbf8be9c9b29f7085f45242945"
+    },
+    {
+      "path": "src-tauri/src/chat/document_preview_content_tests.rs",
+      "sha256": "e495d45d9955ef6527d7039b027dcf52e9694c5ab262dd388a23157d1c236d35"
+    },
+    {
+      "path": "src-tauri/src/chat/document_preview_native.rs",
+      "sha256": "d277fd148535361dd7bc98477c0edf62fe5eae3b2609559db4f04739b6bb6d4d"
+    },
+    {
+      "path": "src-tauri/src/chat/document_preview_pdf.rs",
+      "sha256": "4f697c8cf26588dbf3bbe5d66177d73101a7bc5cb939fe830a279911a0646ec4"
+    },
+    {
+      "path": "src-tauri/src/chat/mod.rs",
+      "sha256": "24fd17545694f246e95f85565f265edccda50dbf28111002e4ae42ff84fa66a9"
+    },
+    {
+      "path": "src-tauri/src/lib.rs",
+      "sha256": "3a562178b263e3e19c99bd26c3d0dbf8de52c00da35eb1564f9046066fcccd3d"
+    },
+    {
+      "path": "src/api/chat-document-preview-client.test.ts",
+      "sha256": "63a9a3d7cf6c51efb68dd7b0bc11aa60548bd12c4d4768e0ae95fe7f4226dd9a"
+    },
+    {
+      "path": "src/api/chat-document-preview-client.ts",
+      "sha256": "e89b5e8b8dd7a6b1b0c08660d4096ead6b7baaaf73233cda3ea2134966465693"
+    },
+    {
+      "path": "src/components/chat/ChatArtifactFile.vue",
+      "sha256": "d9f4e26a39f8b4b049922aed6908d8b36aa0265343f867c927af6b8fb4f09a67"
+    },
+    {
+      "path": "src/components/chat/ChatArtifactList.vue",
+      "sha256": "1c5f5f51cec8cb4fa6b2fded108279ef2706ff9aea20455cc49f346db597ae7a"
+    },
+    {
+      "path": "src/components/chat/ChatArtifactShell.test.ts",
+      "sha256": "b1cccf3337dbb20e0ca8118170f0066abe540e7077b45a76cf57860f0b6cf562"
+    },
+    {
+      "path": "src/components/chat/ChatArtifactShell.vue",
+      "sha256": "207e5a8e838b0820d53f2e98f9f13cb0d2db6e9ea27fe485a462dbf4c0be9ce5"
+    },
+    {
+      "path": "src/components/chat/ChatAttachmentChip.feat165.test.ts",
+      "sha256": "1c8d5e86640662d4d83542a18c6fee7a1c71814e8af9adbb1cf5f92cc5f896be"
+    },
+    {
+      "path": "src/components/chat/ChatAttachmentChip.vue",
+      "sha256": "e9f0fa02e5a3da67e5280bd703280ab4d60953637a922badf332307178c4f227"
+    },
+    {
+      "path": "src/components/chat/ChatDocumentWorkspace.test.ts",
+      "sha256": "b52ce1a4f0be08d7d736875597d7f9567cd283e944626c4e30f5dede9352d505"
+    },
+    {
+      "path": "src/components/chat/ChatDocumentWorkspace.vue",
+      "sha256": "5e5d7f86e70ddb366541e8bbc3076414c4ed81b50b2f4c1204a5c887b0bba860"
+    },
+    {
+      "path": "src/composables/useConversationDocumentPreview.ts",
+      "sha256": "4e5b4148f9b1ad31013669cd676355e42e7b8458b11ae5436ae23e5ab803f1ff"
+    },
+    {
+      "path": "src/domain/conversation-file-preview.test.ts",
+      "sha256": "e08da71baf04cf174b42a851096f4cfb062c05ef29b67c42829accf73ea2acb4"
+    },
+    {
+      "path": "src/domain/conversation-file-preview.ts",
+      "sha256": "b92f60b2eaccf202ee510e6e151c8f33a93fff6c7ba422ce08bcd4982077d480"
+    },
+    {
+      "path": "src/domain/document-preview.generated.ts",
+      "sha256": "e6b405d1987d4eff9596351c4a81484024c4be00da6ec1459cdf428edd7991c6"
+    },
+    {
+      "path": "src/icons/registry.ts",
+      "sha256": "e84bc50a11224f153876e3828a787b9d61d42930eeb3ec193b4932f8d1c9a23e"
+    },
+    {
+      "path": "src/pages/chat/ChatPage.test.ts",
+      "sha256": "c01e59c4a6b5e81283735f0c669bc2bcdea83594da6754bc01389a2d93e3e16b"
+    },
+    {
+      "path": "src/pages/chat/ChatPage.vue",
+      "sha256": "0a69d11597ca3bf1525caa8ff6055ba84266f8bff90fb3e1aa694bf095203500"
+    },
+    {
+      "path": "src/styles/variables.css",
+      "sha256": "790c29e7a39ab4a8c21726feec01fe24d586137ec29a83144ae8e4c504f9019b"
+    }
+  ],
+  "protected_files": [
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-162-kimi-web-retrieval/00-feature-brief.md",
+      "sha256": "318e7d59225a8ecca5573e3100da5add3eb485244e5bc0c53e8525f5774bc9bc",
+      "unchanged": true
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-162-kimi-web-retrieval/01-delivery-log.md",
+      "sha256": "f90fa5cf51eaeb6ba380e17b0a72bc1d0a6f2f1f919be8d7f69f6712b1f7c8bf",
+      "unchanged": true
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-162-kimi-web-retrieval/02-verification.md",
+      "sha256": "d3cc9c238a3122542793629b5194bdb31b62752b69b08ff1117a5f922f6a4484",
+      "unchanged": true
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-162-kimi-web-retrieval/04-resume.md",
+      "sha256": "9196e32a6a0d1bf7d21612a814bd98725a409480cd615e86ff2f616c8942811d",
+      "unchanged": true
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-162-kimi-web-retrieval/21-basic-pro-plan-audit.md",
+      "sha256": "48db58f589e151bc2fdad1accc2592fd1eb10b662927b73c7fddf08e84da2e6a",
+      "unchanged": true
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-162-kimi-web-retrieval/22-basic-pro-intent-routing-plan.md",
+      "sha256": "6c953c3198571df95d4ca6ebb98bfaecd5f2e5f1c4f26c023849db466c650cbc",
+      "unchanged": true
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/basic-pro-requirements-before-20261028.json",
+      "sha256": "f6b76a08dd02e68b05a966238aaab663181dfaceb9800b7f418841a46fc89f01",
+      "unchanged": true
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/basic-pro-requirements-checks-20261028.json",
+      "sha256": "bf0d979caf49d8c4e06f9745594559550494e4d5c70d9cf4cd99ff24a9183d02",
+      "unchanged": true
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-162-kimi-web-retrieval/feature.yaml",
+      "sha256": "266bfc12a295741842c08ad2d565b715519f58e529a3c47c76f91923c0f5d0dc",
+      "unchanged": true
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-162-kimi-web-retrieval/history/00-feature-brief-before-basic-pro.md",
+      "sha256": "7794ba95d3626fabe9fa3ba30ad3e677e62b444138f0b5ad1a0ac7675f9a99e6",
+      "unchanged": true
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-162-kimi-web-retrieval/history/feature-before-basic-pro.yaml",
+      "sha256": "e8286904c5fdc11fec6c0ceebc2babb5b27eb0eec144fa5be1c79daa4ac9b729",
+      "unchanged": true
+    }
+  ],
+  "public_release": false,
+  "commit_push_tag": false
+}

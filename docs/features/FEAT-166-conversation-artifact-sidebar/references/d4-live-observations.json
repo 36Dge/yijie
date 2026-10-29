@@ -1,0 +1,202 @@
+{
+  "feature": "FEAT-166",
+  "candidate_pid": 92234,
+  "fresh_run_started_at": "2026-10-29T03:02:32.884Z",
+  "normal_exit_at": "2026-10-29T03:27:06.231938Z",
+  "mode": "CUA actual native desktop UI; screenshots inspected in this conversation; summarized without original NSD personal-looking demo fields",
+  "source_reference": "d4-final-source.json",
+  "sessions": {
+    "F": "01a18359-3f62-7a70-888b-aaaf9126c9a3",
+    "B": "01a182a7-c027-7600-b692-a7f808cc0112"
+  },
+  "must_acceptance": [
+    {
+      "id": "AC-001",
+      "status": "PASS",
+      "evidence_layer": "真实UI",
+      "observed": "首页免登录；B/F历史会话初始关闭；按钮空态616；新产物到达不自动展开；换会话返回关闭"
+    },
+    {
+      "id": "AC-002",
+      "status": "PASS",
+      "evidence_layer": "真实UI与Native身份链",
+      "observed": "HTML两来源脚本record42；原NSD85749B标题概览8记录；源SHA不变，未作为模型输入"
+    },
+    {
+      "id": "AC-003",
+      "status": "PASS",
+      "evidence_layer": "真实UI+组件",
+      "observed": "生成PNG/JPEG/JPG/WebP/SVG含大写、MP4开关双态；输入PNG/WebP/SVG/MP4旧行为；JPEG输入排除分支为组件/源证据"
+    },
+    {
+      "id": "AC-004",
+      "status": "PASS",
+      "evidence_layer": "真实UI+领域",
+      "observed": "两个空标签先填激活再填剩余，同名DOCX两来源各一页，同身份去重，10页限制与已开文件激活"
+    },
+    {
+      "id": "AC-005",
+      "status": "PASS",
+      "evidence_layer": "真实UI+组件",
+      "observed": "方向键焦点不激活；Delete非激活/激活/末页；PPTX页2、PDF页2+150%、XLSX Details恢复；路由清空"
+    },
+    {
+      "id": "AC-006",
+      "status": "PASS",
+      "evidence_layer": "逐来源真实UI+Native",
+      "observed": "9格式input/artifact正文；PPTX页10/图片页，XLSX BA6/Row101/Details，扫描PDF，2.1MiBDOCX段0254"
+    },
+    {
+      "id": "AC-007",
+      "status": "PASS",
+      "evidence_layer": "真实UI+纯值+源",
+      "observed": "鼠标616→516；键盘500/564/400/627/616；W940→539,W1108→664；公式边界通过，拖动中取消仅源审查"
+    },
+    {
+      "id": "AC-008",
+      "status": "PASS",
+      "evidence_layer": "真实普通失败+状态映射",
+      "observed": "旧合法最小PPTX无关系不支持且无重试；切到PDF恢复；未注入完整性/资源忙等真实故障"
+    },
+    {
+      "id": "AC-009",
+      "status": "PASS",
+      "evidence_layer": "真实Host/Runtime/Native+focused",
+      "observed": "3次现有publisher记录+3已就绪卡片；两次提交共15登记；自然context/前后台续接保留；正常退出"
+    },
+    {
+      "id": "AC-010",
+      "status": "PASS",
+      "evidence_layer": "真实UI+组件",
+      "observed": "1180x760亮暗，1268x780恢复，200%收起草稿/焦点保留，真实58秒任务期间可拖动停止可达，新产物不改标签"
+    }
+  ],
+  "source_format_matrix": [
+    {
+      "format": "HTML",
+      "file": "rendered.html",
+      "sources": [
+        "sent_attachment",
+        "committed_artifact"
+      ],
+      "observed": "Inline Render, Rendered record, 42, disabled业务操作",
+      "status": "PASS"
+    },
+    {
+      "format": "TXT",
+      "file": "normal.txt",
+      "sources": [
+        "sent_attachment",
+        "committed_artifact"
+      ],
+      "observed": "FEAT-166 ordinary text body.",
+      "status": "PASS"
+    },
+    {
+      "format": "MD",
+      "file": "normal.md",
+      "sources": [
+        "sent_attachment",
+        "committed_artifact"
+      ],
+      "observed": "FEAT-166 Markdown / Local reading body.",
+      "status": "PASS"
+    },
+    {
+      "format": "CSV",
+      "file": "normal.csv",
+      "sources": [
+        "sent_attachment",
+        "committed_artifact"
+      ],
+      "observed": "alpha12 beta34 realtable",
+      "status": "PASS"
+    },
+    {
+      "format": "JSON",
+      "file": "normal.json",
+      "sources": [
+        "sent_attachment",
+        "committed_artifact"
+      ],
+      "observed": "FEAT-166 normal JSON / count42",
+      "status": "PASS"
+    },
+    {
+      "format": "DOCX",
+      "file": "compact.docx",
+      "sources": [
+        "sent_attachment",
+        "committed_artifact"
+      ],
+      "observed": "Normal Document,First/Second list item,North12325%,South45675%,embeddedpicture",
+      "status": "PASS"
+    },
+    {
+      "format": "PPTX",
+      "file": "reading.pptx",
+      "sources": [
+        "sent_attachment",
+        "committed_artifact"
+      ],
+      "observed": "actualslide01table;inputslide10orderandimagepage02",
+      "status": "PASS"
+    },
+    {
+      "format": "XLSX",
+      "file": "reading.xlsx",
+      "sources": [
+        "sent_attachment",
+        "committed_artifact"
+      ],
+      "observed": "Merged heading A1:C2,Shared string,123,25.00%,2026-10-29,cached3,uncached=2+2",
+      "status": "PASS"
+    },
+    {
+      "format": "PDF",
+      "file": "reading.pdf",
+      "sources": [
+        "sent_attachment",
+        "committed_artifact"
+      ],
+      "observed": "actualpage1titletexttable;inputpage2chart/zoom150",
+      "status": "PASS"
+    }
+  ],
+  "extra_content": [
+    {
+      "file": "reading.docx",
+      "source": "committed_artifact",
+      "bytes": 2182060,
+      "observed": "initialbody then Paragraph0254 nextsegment"
+    },
+    {
+      "file": "scanned.pdf",
+      "source": "committed_artifact",
+      "observed": "actualimageonlypage with threecolorchart"
+    },
+    {
+      "file": "fresh.html",
+      "sources": [
+        "sent_attachment",
+        "committed_artifact"
+      ],
+      "observed": "FEAT-166 fresh body / Normal final-run artifact",
+      "turn": 4
+    }
+  ],
+  "sample_hash_mismatches": [],
+  "observation_corrections": [
+    "Some initial probes preceded asyncNative readiness or observed backgroundpaused; later foreground actualcontent confirmed.",
+    "Initial unanchoredtabcounter included the focus-summary line twice; final anchoredcontrolrows and actualkeyboardreplay confirmcounts.",
+    "DOCX/XLSX/HTML/JSON expectedheadingtypos corrected against normalfixture andactualUI; no product source changed duringfinalrun."
+  ],
+  "not_executed": [
+    "Attack/fault injection, dangerousfixtures, permissioncorruption, forcekill orbinaryspoofing; prohibited byuser.",
+    "Full historical make test/cargo test; selectednormaltestsonly.",
+    "Physical drag-held Esc/pointercancel/resize gesture; normaldrag+key+resize actual, cancelbranchsource reviewed.",
+    "Full VoiceOver andlongtermresource/performance/productionsecurityspecialistsuites."
+  ],
+  "paid_calls_used": 2,
+  "paid_calls_max": 2
+}

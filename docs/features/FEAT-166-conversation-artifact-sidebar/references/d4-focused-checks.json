@@ -1,0 +1,96 @@
+{
+  "feature": "FEAT-166",
+  "scope": "Current final candidate normal focused checks only, no attack/fault suites",
+  "checks": [
+    {
+      "id": "frontend-focused",
+      "argv": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "src/domain/conversation-file-preview.test.ts",
+        "src/api/chat-document-preview-client.test.ts",
+        "src/components/chat/ChatDocumentWorkspace.test.ts",
+        "src/components/chat/ChatAttachmentChip.feat165.test.ts",
+        "scripts/generate-document-preview.test.mjs",
+        "--maxWorkers=2",
+        "--exclude",
+        "**/.local/**"
+      ],
+      "started_at": "2026-10-29T03:27:23.766031+00:00",
+      "duration_seconds": 1.974,
+      "exit_code": 0,
+      "output": "\n RUN  v4.1.10 /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop\n\n\n Test Files  5 passed (5)\n      Tests  34 passed (34)\n   Start at  11:27:24\n   Duration  1.26s (transform 211ms, setup 0ms, import 1.08s, tests 279ms, environment 290ms)\n\n",
+      "sha256": "bdb9cb2eb0b252c9a8d48de75c15e6fc75792a5a3edf49fac2b4438f0787cf29"
+    },
+    {
+      "id": "legacy-compatible-ui",
+      "argv": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "src/components/chat/ChatArtifactShell.test.ts",
+        "src/components/chat/ChatArtifactFile.test.ts",
+        "src/pages/chat/ChatPage.test.ts",
+        "-t",
+        "FEAT166|adds file actions|renders safe metadata|keeps PDF and XLSX|performs bounded case-sensitive|clears content and search|shows the decorative mascot|uses the FEAT-132 Timeline exclusively|keeps the last committed conversation",
+        "--maxWorkers=2",
+        "--exclude",
+        "**/.local/**",
+        "--exclude",
+        "**/.contracts-source/**",
+        "--exclude",
+        "**/.agent-host-source/**",
+        "--exclude",
+        "**/.skills-source/**"
+      ],
+      "started_at": "2026-10-29T03:27:25.740361+00:00",
+      "duration_seconds": 3.001,
+      "exit_code": 0,
+      "output": "\n RUN  v4.1.10 /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop\n\n(node:33405) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  3 passed (3)\n      Tests  9 passed | 85 skipped (94)\n   Start at  11:27:26\n   Duration  2.51s (transform 1.77s, setup 0ms, import 3.15s, tests 197ms, environment 338ms)\n\n",
+      "sha256": "b7dac92fb6caabecfffe1ebc79d7134f4a12d804de8ec9fa5d78dfdb8fc7478b"
+    },
+    {
+      "id": "native-content-and-schema",
+      "argv": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "--offline",
+        "document_preview",
+        "--",
+        "--nocapture"
+      ],
+      "started_at": "2026-10-29T03:27:28.741409+00:00",
+      "duration_seconds": 23.989,
+      "exit_code": 0,
+      "output": "   Compiling objc2-exception-helper v0.1.1\n   Compiling ring v0.17.14\n   Compiling libsqlite3-sys v0.38.1\n   Compiling objc2 v0.6.4\n   Compiling rustls v0.23.43\n   Compiling block2 v0.6.2\n   Compiling objc2-core-foundation v0.3.2\n   Compiling dispatch2 v0.3.1\n   Compiling rustls-webpki v0.103.13\n   Compiling objc2-foundation v0.3.2\n   Compiling rusqlite v0.40.1\n   Compiling rusqlite_migration v2.6.0\n   Compiling tokio-rustls v0.26.4\n   Compiling hyper-rustls v0.27.9\n   Compiling reqwest v0.12.28\n   Compiling objc2-app-kit v0.3.2\n   Compiling oauth2 v5.0.0\n   Compiling openidconnect v4.0.1\n   Compiling objc2-web-kit v0.3.2\n   Compiling tao v0.35.3\n   Compiling muda v0.19.3\n   Compiling window-vibrancy v0.6.0\n   Compiling webbrowser v1.2.2\n   Compiling rfd v0.16.0\n   Compiling wry v0.55.1\n   Compiling tauri-runtime v2.11.3\n   Compiling tauri-runtime-wry v2.11.4\n   Compiling tauri v2.11.5\n   Compiling yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 21.28s\n     Running unittests src/lib.rs (src-tauri/target/debug/deps/yijie_desktop_lib-b2e5101f33b31202)\n\nrunning 7 tests\ntest chat::document_preview_content::tests::html_keeps_rendering_script_source_and_text_reuses_existing_projection ... ok\ntest chat::document_preview_native::tests::schema_normal_document_requests_round_trip_through_native_types ... ok\ntest chat::document_preview_content::tests::normal_xlsx_renders_cells_merges_shared_strings_and_cached_formulas ... ok\ntest chat::document_preview_content::tests::normal_pdf_raster_has_correct_orientation_and_real_graphical_content ... ok\ntest chat::document_preview_content::tests::normal_docx_long_body_has_bounded_continuation_and_blank_page_is_readable ... ok\ntest chat::document_preview_content::tests::normal_docx_preserves_headings_lists_tables_pictures_and_entities ... ok\ntest chat::document_preview_content::tests::normal_pptx_uses_relationship_order_instead_of_filename_sort ... ok\n\ntest result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 686 filtered out; finished in 1.30s\n\n     Running unittests src/main.rs (src-tauri/target/debug/deps/yijie_desktop-85021d11faad2ab7)\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+      "sha256": "784356b725a5e4d428803486664332d30e82d64acc6a9b20112733ceb799ffdb"
+    },
+    {
+      "id": "native-bound-attachment",
+      "argv": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "src-tauri/Cargo.toml",
+        "--features",
+        "kimi-k31-pro-candidate",
+        "--offline",
+        "feat166_normal_bound_document",
+        "--",
+        "--nocapture"
+      ],
+      "started_at": "2026-10-29T03:27:52.730257+00:00",
+      "duration_seconds": 1.587,
+      "exit_code": 0,
+      "output": "    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.39s\n     Running unittests src/lib.rs (src-tauri/target/debug/deps/yijie_desktop_lib-b2e5101f33b31202)\n\nrunning 1 test\ntest chat::database::tests::feat166_normal_bound_document_uses_existing_message_identity_and_expiry ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 692 filtered out; finished in 1.16s\n\n     Running unittests src/main.rs (src-tauri/target/debug/deps/yijie_desktop-85021d11faad2ab7)\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+      "sha256": "e772a9db130177702678384a41a12fedf4ca85a580a141f3aca29c2099eebb0f"
+    }
+  ]
+}

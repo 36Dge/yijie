@@ -1,0 +1,479 @@
+{
+  "feature": "FEAT-166",
+  "recorded_at": "2026-10-28T20:34:03.610245+00:00",
+  "implementation": "complete local candidate; real client NOT RUN; D4 pending",
+  "contract_impact": "semantic",
+  "public_contract_changed": false,
+  "new_dependencies": false,
+  "repositories": [
+    {
+      "repository": "yijie",
+      "head": "970e9d8bfeb2580c06d06490b818a50f58ba453f",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": "M docs/features/FEAT-162-kimi-web-retrieval/00-feature-brief.md\n M docs/features/FEAT-162-kimi-web-retrieval/01-delivery-log.md\n M docs/features/FEAT-162-kimi-web-retrieval/02-verification.md\n M docs/features/FEAT-162-kimi-web-retrieval/04-resume.md\n M docs/features/FEAT-162-kimi-web-retrieval/feature.yaml\n?? docs/features/FEAT-162-kimi-web-retrieval/21-basic-pro-plan-audit.md\n?? docs/features/FEAT-162-kimi-web-retrieval/22-basic-pro-intent-routing-plan.md\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/basic-pro-requirements-before-20261028.json\n?? docs/features/FEAT-162-kimi-web-retrieval/evidence/basic-pro-requirements-checks-20261028.json\n?? docs/features/FEAT-162-kimi-web-retrieval/history/\n?? docs/features/FEAT-166-conversation-artifact-sidebar/"
+    },
+    {
+      "repository": "yijie-desktop",
+      "head": "a2cc89c9cf2e36f8c5b9154e5694c38e601e140a",
+      "branch": "feat/feat164-primary-20261028",
+      "status": "M docs/design/docs/design/02-tokens/04-spacing-layout-tokens.md\n M docs/design/docs/design/05-patterns/02-chat-workspace.md\n M package.json\n M src-tauri/src/chat/application.rs\n M src-tauri/src/chat/artifact_file_native.rs\n M src-tauri/src/chat/attachment.rs\n M src-tauri/src/chat/database.rs\n M src-tauri/src/chat/mod.rs\n M src-tauri/src/lib.rs\n M src/components/chat/ChatArtifactFile.vue\n M src/components/chat/ChatArtifactList.vue\n M src/components/chat/ChatArtifactShell.test.ts\n M src/components/chat/ChatArtifactShell.vue\n M src/components/chat/ChatAttachmentChip.feat165.test.ts\n M src/components/chat/ChatAttachmentChip.vue\n M src/icons/registry.ts\n M src/pages/chat/ChatPage.test.ts\n M src/pages/chat/ChatPage.vue\n M src/styles/variables.css\n?? docs/design/docs/design/05-patterns/17-feat-166-conversation-file-preview.md\n?? scripts/generate-document-preview.mjs\n?? scripts/generate-document-preview.test.mjs\n?? src-tauri/schemas/chat-document-preview-v1.schema.json\n?? src-tauri/schemas/fixtures/\n?? src-tauri/src/chat/document_preview_content.rs\n?? src-tauri/src/chat/document_preview_content_tests.rs\n?? src-tauri/src/chat/document_preview_native.rs\n?? src-tauri/src/chat/document_preview_pdf.rs\n?? src/api/chat-document-preview-client.test.ts\n?? src/api/chat-document-preview-client.ts\n?? src/components/chat/ChatDocumentWorkspace.test.ts\n?? src/components/chat/ChatDocumentWorkspace.vue\n?? src/composables/useConversationDocumentPreview.ts\n?? src/domain/conversation-file-preview.test.ts\n?? src/domain/conversation-file-preview.ts\n?? src/domain/document-preview.generated.ts"
+    },
+    {
+      "repository": "yijie-codex",
+      "head": "11fd4504c28afd0f65c6f5f62a6b5328dd437f5a",
+      "branch": "chore/retirement-baseline-20260905",
+      "status": ""
+    },
+    {
+      "repository": "yijie-agent-host",
+      "head": "36ec8c62cca771b479b317d209da50d6acda0989",
+      "branch": "feat/feat164-primary-20261028",
+      "status": ""
+    },
+    {
+      "repository": "yijie-contracts",
+      "head": "61137174a25dc368e0006f27633fd4a9ad097aa6",
+      "branch": "feat/feat164-primary-20261028",
+      "status": ""
+    },
+    {
+      "repository": "yijie-connectors",
+      "head": "ff436bb9bfe23297a1c5891a06fe6f6280c04e6d",
+      "branch": "feat/feat164-primary-20261028",
+      "status": ""
+    },
+    {
+      "repository": "yijie-skills",
+      "head": "704d2cc85a85d0759e6103e3f539552f3d63b1e9",
+      "branch": "feat/feat164-primary-20261028",
+      "status": ""
+    }
+  ],
+  "source_files": [
+    {
+      "repository": "yijie-desktop",
+      "path": "docs/design/docs/design/02-tokens/04-spacing-layout-tokens.md",
+      "bytes": 5477,
+      "sha256": "882d8e45b4418a105dace5eae0e726e9fbba0360fb2a19e05c6ea0c3951e614e"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "docs/design/docs/design/05-patterns/02-chat-workspace.md",
+      "bytes": 71085,
+      "sha256": "eef184020694c42629347fe2b409c5efc7caee71375e1ee41218a8763a692d56"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "docs/design/docs/design/05-patterns/17-feat-166-conversation-file-preview.md",
+      "bytes": 4013,
+      "sha256": "a4ee2b05366507721648537cd5040b065503987cdb5378b1a332e6e3544cd032"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "package.json",
+      "bytes": 8150,
+      "sha256": "1e2ca4fb7df68050f48082ea49e18a8dc1266a11bea30dea9623eabbc773b4df"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "scripts/generate-document-preview.mjs",
+      "bytes": 1608,
+      "sha256": "f1e7b79c5f15cd99562fb8ebf443ab168ae9e509582a24871799da155ed3338a"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "scripts/generate-document-preview.test.mjs",
+      "bytes": 950,
+      "sha256": "023270aec6760c667a60288ce96c0bc10eef5a8604ff4a26d20dd54be6f69bbd"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/schemas/chat-document-preview-v1.schema.json",
+      "bytes": 11274,
+      "sha256": "0f7b357120192640d26a68bb84b521d38bfab54f62017fed3587a20583325882"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/schemas/fixtures/chat-document-preview-v1.json",
+      "bytes": 3607,
+      "sha256": "bcbc58543932262ac04ce8f7a65985bb1201f18d925a032a3e3e74be0d135cfd"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/application.rs",
+      "bytes": 219799,
+      "sha256": "7e108eaa2f1e067d834e3c1069e245fea9c93b945938b23410521ba85aaaffec"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/artifact_file_native.rs",
+      "bytes": 55558,
+      "sha256": "fc60260dfa0630e3a98a70b6fd27f06b39f42fd1ed6ba013458bac17565e2088"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/attachment.rs",
+      "bytes": 82680,
+      "sha256": "9171b3dc44ee0036652f8724b6c86956b0c01f4b6534309534665bbfb3667638"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/database.rs",
+      "bytes": 466885,
+      "sha256": "5d526ded27874bcd9c659dbf46f6f9e275dad86df8cab71ad439ca1c21d39654"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/document_preview_content.rs",
+      "bytes": 34861,
+      "sha256": "f5b002594ea57c460114b673a16590c7a24b6bfb6fa49268452c19fcabc57d3c"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/document_preview_content_tests.rs",
+      "bytes": 9374,
+      "sha256": "e495d45d9955ef6527d7039b027dcf52e9694c5ab262dd388a23157d1c236d35"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/document_preview_native.rs",
+      "bytes": 27885,
+      "sha256": "c3e60ec59a9d0e1d0ef5542a0200b8fd637f2899b63252b343ea904de62ef3ec"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/document_preview_pdf.rs",
+      "bytes": 6504,
+      "sha256": "4f697c8cf26588dbf3bbe5d66177d73101a7bc5cb939fe830a279911a0646ec4"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/chat/mod.rs",
+      "bytes": 80224,
+      "sha256": "24fd17545694f246e95f85565f265edccda50dbf28111002e4ae42ff84fa66a9"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src-tauri/src/lib.rs",
+      "bytes": 29251,
+      "sha256": "3a562178b263e3e19c99bd26c3d0dbf8de52c00da35eb1564f9046066fcccd3d"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/api/chat-document-preview-client.test.ts",
+      "bytes": 1709,
+      "sha256": "63a9a3d7cf6c51efb68dd7b0bc11aa60548bd12c4d4768e0ae95fe7f4226dd9a"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/api/chat-document-preview-client.ts",
+      "bytes": 3784,
+      "sha256": "e89b5e8b8dd7a6b1b0c08660d4096ead6b7baaaf73233cda3ea2134966465693"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/chat/ChatArtifactFile.vue",
+      "bytes": 23013,
+      "sha256": "d9f4e26a39f8b4b049922aed6908d8b36aa0265343f867c927af6b8fb4f09a67"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/chat/ChatArtifactList.vue",
+      "bytes": 1606,
+      "sha256": "1c5f5f51cec8cb4fa6b2fded108279ef2706ff9aea20455cc49f346db597ae7a"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/chat/ChatArtifactShell.test.ts",
+      "bytes": 11263,
+      "sha256": "b1cccf3337dbb20e0ca8118170f0066abe540e7077b45a76cf57860f0b6cf562"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/chat/ChatArtifactShell.vue",
+      "bytes": 10301,
+      "sha256": "207e5a8e838b0820d53f2e98f9f13cb0d2db6e9ea27fe485a462dbf4c0be9ce5"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/chat/ChatAttachmentChip.feat165.test.ts",
+      "bytes": 5539,
+      "sha256": "1c8d5e86640662d4d83542a18c6fee7a1c71814e8af9adbb1cf5f92cc5f896be"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/chat/ChatAttachmentChip.vue",
+      "bytes": 7968,
+      "sha256": "e9f0fa02e5a3da67e5280bd703280ab4d60953637a922badf332307178c4f227"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/chat/ChatDocumentWorkspace.test.ts",
+      "bytes": 4913,
+      "sha256": "4ace2cfc7b0e05103c64b99ae5fa83f8d51e29e931e4a17d55ac8dd3712c8909"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/components/chat/ChatDocumentWorkspace.vue",
+      "bytes": 10598,
+      "sha256": "a3c18a89f6f6a66a14133b5dae09e3312529b99d56034bde53aa6ac1058e3a28"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/composables/useConversationDocumentPreview.ts",
+      "bytes": 15093,
+      "sha256": "574bf81fa1795f83bee873535a2cfe52892b780d857a7f819b22cbfd1831c8d1"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/domain/conversation-file-preview.test.ts",
+      "bytes": 3803,
+      "sha256": "e08da71baf04cf174b42a851096f4cfb062c05ef29b67c42829accf73ea2acb4"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/domain/conversation-file-preview.ts",
+      "bytes": 4288,
+      "sha256": "b92f60b2eaccf202ee510e6e151c8f33a93fff6c7ba422ce08bcd4982077d480"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/domain/document-preview.generated.ts",
+      "bytes": 1876,
+      "sha256": "e6b405d1987d4eff9596351c4a81484024c4be00da6ec1459cdf428edd7991c6"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/icons/registry.ts",
+      "bytes": 6422,
+      "sha256": "e84bc50a11224f153876e3828a787b9d61d42930eeb3ec193b4932f8d1c9a23e"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/pages/chat/ChatPage.test.ts",
+      "bytes": 97034,
+      "sha256": "c01e59c4a6b5e81283735f0c669bc2bcdea83594da6754bc01389a2d93e3e16b"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/pages/chat/ChatPage.vue",
+      "bytes": 100783,
+      "sha256": "d42befa7610368af387955a829355d5631e908c5024ddcccca99db5cd52310b0"
+    },
+    {
+      "repository": "yijie-desktop",
+      "path": "src/styles/variables.css",
+      "bytes": 12219,
+      "sha256": "790c29e7a39ab4a8c21726feec01fe24d586137ec29a83144ae8e4c504f9019b"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-166-conversation-artifact-sidebar/00-feature-brief.md",
+      "bytes": 32798,
+      "sha256": "1e696cf328e0bedf71132acd88bab5719c3aa6d299a10ff1187cc3f722f222d2"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-166-conversation-artifact-sidebar/01-delivery-log.md",
+      "bytes": 9144,
+      "sha256": "6e30a4bb1149009b6889f469039016cff063023def576ed0f87a71da9d4159db"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-166-conversation-artifact-sidebar/02-verification.md",
+      "bytes": 14269,
+      "sha256": "22e7da1f25af28465502cc23019ef7f37f51965755393cf065f459c474d06dae"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-166-conversation-artifact-sidebar/03-engineering-analysis.md",
+      "bytes": 19543,
+      "sha256": "2bd8dadfd39ffa5987bda9f5314a0598d802a2fa9f3b06df08ef104542dc58d4"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-166-conversation-artifact-sidebar/04-reaudit-and-decisions.md",
+      "bytes": 8202,
+      "sha256": "a624ca28eb30ac65fee8ea7d75f2c89b7082d6471507a0f58887b2ba194ccd1d"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-166-conversation-artifact-sidebar/05-codex-reuse-audit.md",
+      "bytes": 12526,
+      "sha256": "17f58148c0dce1c93fa00edfca67a7e1a015c5ef855bd8d492735efb392405dc"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-166-conversation-artifact-sidebar/06-implementation.md",
+      "bytes": 9139,
+      "sha256": "dd4b5ed4b56efd9f0b12f424d55d5dcc9266ea2c531084b2a8caf7b1de5048be"
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-166-conversation-artifact-sidebar/feature.yaml",
+      "bytes": 12580,
+      "sha256": "c7e3861d6039e4327f8a4522485110530088c59d7438c524e68b944c6b9244e7"
+    }
+  ],
+  "protected_files": [
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-162-kimi-web-retrieval/00-feature-brief.md",
+      "sha256": "318e7d59225a8ecca5573e3100da5add3eb485244e5bc0c53e8525f5774bc9bc",
+      "matches_before": true
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-162-kimi-web-retrieval/01-delivery-log.md",
+      "sha256": "f90fa5cf51eaeb6ba380e17b0a72bc1d0a6f2f1f919be8d7f69f6712b1f7c8bf",
+      "matches_before": true
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-162-kimi-web-retrieval/02-verification.md",
+      "sha256": "d3cc9c238a3122542793629b5194bdb31b62752b69b08ff1117a5f922f6a4484",
+      "matches_before": true
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-162-kimi-web-retrieval/04-resume.md",
+      "sha256": "9196e32a6a0d1bf7d21612a814bd98725a409480cd615e86ff2f616c8942811d",
+      "matches_before": true
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-162-kimi-web-retrieval/21-basic-pro-plan-audit.md",
+      "sha256": "48db58f589e151bc2fdad1accc2592fd1eb10b662927b73c7fddf08e84da2e6a",
+      "matches_before": true
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-162-kimi-web-retrieval/22-basic-pro-intent-routing-plan.md",
+      "sha256": "6c953c3198571df95d4ca6ebb98bfaecd5f2e5f1c4f26c023849db466c650cbc",
+      "matches_before": true
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/basic-pro-requirements-before-20261028.json",
+      "sha256": "f6b76a08dd02e68b05a966238aaab663181dfaceb9800b7f418841a46fc89f01",
+      "matches_before": true
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-162-kimi-web-retrieval/evidence/basic-pro-requirements-checks-20261028.json",
+      "sha256": "bf0d979caf49d8c4e06f9745594559550494e4d5c70d9cf4cd99ff24a9183d02",
+      "matches_before": true
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-162-kimi-web-retrieval/feature.yaml",
+      "sha256": "266bfc12a295741842c08ad2d565b715519f58e529a3c47c76f91923c0f5d0dc",
+      "matches_before": true
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-162-kimi-web-retrieval/history/00-feature-brief-before-basic-pro.md",
+      "sha256": "7794ba95d3626fabe9fa3ba30ad3e677e62b444138f0b5ad1a0ac7675f9a99e6",
+      "matches_before": true
+    },
+    {
+      "repository": "yijie",
+      "path": "docs/features/FEAT-162-kimi-web-retrieval/history/feature-before-basic-pro.yaml",
+      "sha256": "e8286904c5fdc11fec6c0ceebc2babb5b27eb0eec144fa5be1c79daa4ac9b729",
+      "matches_before": true
+    }
+  ],
+  "governance_checks": [
+    {
+      "id": "strict",
+      "argv": [
+        "bash",
+        "docs/dev/codex-feature-delivery/scripts/check-feature-package.sh",
+        "--strict",
+        "docs/features/FEAT-166-conversation-artifact-sidebar"
+      ],
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，所有模板变量和未完成标记已处理。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。\n"
+    },
+    {
+      "id": "claims",
+      "argv": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--audit-claims",
+        "docs/features/FEAT-166-conversation-artifact-sidebar"
+      ],
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\n"
+    },
+    {
+      "id": "D0",
+      "argv": [
+        "node",
+        "docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs",
+        "--gate",
+        "D0",
+        "docs/features/FEAT-166-conversation-artifact-sidebar"
+      ],
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\n"
+    },
+    {
+      "id": "meta-lint",
+      "argv": [
+        "pnpm",
+        "lint"
+      ],
+      "exit_code": 0,
+      "output": "$ node scripts/repo-manifest.mjs validate && node scripts/check-contract-governance.mjs\nValidated 11 repository entries.\nValidated central Contract First governance and 11 sibling AGENTS.md files.\n"
+    },
+    {
+      "id": "meta-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "id": "meta-tests",
+      "argv": [
+        "pnpm",
+        "test"
+      ],
+      "exit_code": 0,
+      "result": "57/57 tests passed",
+      "evidence": "task exec 62084 completion chunk 34f809; executed after current implementation manifest was written; normal governance fixtures only"
+    }
+  ],
+  "candidate": {
+    "bundle": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri/target/debug/bundle/macos/易界 AI FEAT-164.app",
+    "binary_sha256": "d9f35eafc38edd85fbafe19ce06b1ac3fa203fbbbee3392f05d7671d0b5752f0",
+    "receipt": "/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/.local/feat164-kimi-k31/packaged-launch-receipt.json",
+    "receipt_sha256": "6a660e524808b8a1a708d79a91899519b2c282fa2f2a0492278006ff8d638f4b",
+    "build_record": "canonical-build.json",
+    "launched": false,
+    "signed": false,
+    "released": false,
+    "receipt_keys": [
+      "schema_version",
+      "feature",
+      "mode",
+      "release",
+      "inputs",
+      "artifacts"
+    ],
+    "source_match": true
+  },
+  "screen_check": {
+    "status": "NOT RUN",
+    "attempts": 2,
+    "after_final_candidate_build": true,
+    "result": "The Mac is locked and automatic unlock could not unlock it.",
+    "user_allowed_skip": true,
+    "impact": "No actual client startup, Native child WebView, NSD dynamic records, visual/a11y/interaction/performance acceptance.",
+    "paid_calls": 0
+  }
+}
