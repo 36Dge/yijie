@@ -1,0 +1,458 @@
+{
+  "status": "PASS",
+  "audited_at": "2026-10-30T05:39:54.630879+00:00",
+  "contract_impact_this_round": "none",
+  "source_changes_this_round": false,
+  "App_builds_this_round": 0,
+  "App_launches_this_round": 0,
+  "paid_calls_this_round": 0,
+  "original_closure_unchanged": true,
+  "raw_evidence": {
+    "status": "PASS",
+    "at": "2026-10-30T05:34:48.500328+00:00",
+    "native_copy_source_unchanged": true,
+    "cases": {
+      "E1": {
+        "status": "PASS",
+        "conversation_id": "01a18b00-63c3-72e0-ae2d-d15374db3be5",
+        "native_runtime_binding": "01a18b00-6405-70f2-afbf-6a59a05d97e5",
+        "rollout_file": "yijie-desktop/.local/demo-fast/codex-home/sessions/2026/10/30/rollout-2026-10-30T12-10-21-01a18b00-6405-70f2-afbf-6a59a05d97e5.jsonl",
+        "rollout_sha256": "c35f58d0e980a68e3334ea61c95e365878699a0b51526c54dd0bf5c7a69f3b6e",
+        "turns": [
+          {
+            "turn_id": "01a18b00-6447-7003-b74e-db666c8c49af",
+            "tools": [
+              {
+                "tool": "kimi_web_search",
+                "include_content": false,
+                "success": true,
+                "event_index": 11,
+                "result_kind": "Ok",
+                "isError": false
+              },
+              {
+                "tool": "kimi_web_search",
+                "include_content": false,
+                "success": true,
+                "event_index": 17,
+                "result_kind": "Ok",
+                "isError": false
+              }
+            ],
+            "user_input_exact": true,
+            "answer_nonempty": true,
+            "input_sha256": "a04e646ecf19960b6dfc8991ff4f16b59822842d76e734a9dc7209de31660b31",
+            "answer_sha256": "24e6ef87222f212dc6dd81d8a5eb36fab903a5ddbd3955535dd637ff8b8ef7a0",
+            "answer_event_index": 25
+          }
+        ]
+      },
+      "E2": {
+        "status": "PASS",
+        "conversation_id": "01a18ade-3630-7433-8e7d-a20f64ae2663",
+        "native_runtime_binding": "01a18ade-3670-7e41-9ff3-2e51e5c9cffd",
+        "rollout_file": "yijie-desktop/.local/demo-fast/codex-home/sessions/2026/10/30/rollout-2026-10-30T11-33-01-01a18ade-3670-7e41-9ff3-2e51e5c9cffd.jsonl",
+        "rollout_sha256": "04bb4f7c4a9905a25814ebd3064b9202159a85e42f16f907e3d39a8d1819f37a",
+        "turns": [
+          {
+            "turn_id": "01a18ade-36b4-7753-8781-1b9ef293c702",
+            "tools": [
+              {
+                "tool": "kimi_web_search_pro",
+                "include_content": null,
+                "success": true,
+                "event_index": 11,
+                "result_kind": "Ok",
+                "isError": false
+              }
+            ],
+            "user_input_exact": true,
+            "answer_nonempty": true,
+            "input_sha256": "5e73a738a54eb8268bb41496db5b6d4ea46f498d5b4245a6e31eb5b576e6b90e",
+            "answer_sha256": "fcc30866498530dba107b6f4813d06dfc728de71198dc206d3c3a915bd5a937d",
+            "answer_event_index": 19
+          }
+        ]
+      },
+      "E3": {
+        "status": "PASS",
+        "conversation_id": "01a18adf-912b-70f3-8a5c-37b9b5c496e1",
+        "native_runtime_binding": "01a18adf-916b-7a83-8d61-8a2c6f94e094",
+        "rollout_file": "yijie-desktop/.local/demo-fast/codex-home/sessions/2026/10/30/rollout-2026-10-30T11-34-29-01a18adf-916b-7a83-8d61-8a2c6f94e094.jsonl",
+        "rollout_sha256": "1e65b4f96c295de99d9d566752d9c2b627159d1de806e28f05d5a88d487fcb30",
+        "turns": [
+          {
+            "turn_id": "01a18adf-9193-7cb3-bd06-762e1783ec64",
+            "tools": [
+              {
+                "tool": "kimi_web_fetch",
+                "include_content": null,
+                "success": true,
+                "event_index": 11,
+                "result_kind": "Ok",
+                "isError": false
+              }
+            ],
+            "user_input_exact": true,
+            "answer_nonempty": true,
+            "input_sha256": "b257141aaf5129b06bdd90452c327e4fbe8d75e991a5d77d68232196f73e98d6",
+            "answer_sha256": "efb1bb0acb7bb761a79c431c5694f87978a73704443ed12cc285d22a54b603d6",
+            "answer_event_index": 19
+          }
+        ]
+      },
+      "E4": {
+        "status": "PASS",
+        "conversation_id": "01a18ae0-84ab-7ad1-aec7-a02fc7fb0d5b",
+        "native_runtime_binding": "01a18ae0-84f4-7440-bd40-39cc53eb5b14",
+        "rollout_file": "yijie-desktop/.local/demo-fast/codex-home/sessions/2026/10/30/rollout-2026-10-30T11-35-32-01a18ae0-84f4-7440-bd40-39cc53eb5b14.jsonl",
+        "rollout_sha256": "be25ec55247edab255c058757b2ca39da4c68b47f72d2ae1abcfca8ad12b7384",
+        "turns": [
+          {
+            "turn_id": "01a18ae0-851c-7c92-aae2-a370fabf661f",
+            "tools": [
+              {
+                "tool": "kimi_web_search",
+                "include_content": true,
+                "success": true,
+                "event_index": 11,
+                "result_kind": "Ok",
+                "isError": false
+              }
+            ],
+            "user_input_exact": true,
+            "answer_nonempty": true,
+            "input_sha256": "406db19df1ae8cc7d70c509a2b90e8f828fd46403279861aa69a4f5435645122",
+            "answer_sha256": "28c3e423fe5eebc801ce67dab69310b670f618202ef94a97954abd07d1029dfb",
+            "answer_event_index": 19
+          }
+        ]
+      },
+      "E5": {
+        "status": "PASS",
+        "conversation_id": "01a18b02-9a69-74d1-a5f9-7e4bb0a08869",
+        "native_runtime_binding": "01a18b02-9aab-7183-97e5-e24063747c82",
+        "rollout_file": "yijie-desktop/.local/demo-fast/codex-home/sessions/2026/10/30/rollout-2026-10-30T12-12-46-01a18b02-9aab-7183-97e5-e24063747c82.jsonl",
+        "rollout_sha256": "59bc3fa83f99600aa5227891229994462404ba29184769d89b8950dd07092811",
+        "turns": [
+          {
+            "turn_id": "01a18b02-9ad4-7542-87e5-f93fe9ea99f8",
+            "tools": [
+              {
+                "tool": "kimi_web_search",
+                "include_content": false,
+                "success": true,
+                "event_index": 11,
+                "result_kind": "Ok",
+                "isError": false
+              },
+              {
+                "tool": "kimi_web_search",
+                "include_content": false,
+                "success": false,
+                "event_index": 17,
+                "result_kind": "Ok",
+                "isError": true
+              },
+              {
+                "tool": "kimi_web_search",
+                "include_content": false,
+                "success": false,
+                "event_index": 23,
+                "result_kind": "Err",
+                "isError": null
+              }
+            ],
+            "user_input_exact": true,
+            "answer_nonempty": true,
+            "input_sha256": "0f790ba343cc30fc112ce5d9163cd6f230c31cdda06ebda4c6a0b62fcc8411d4",
+            "answer_sha256": "a507ffee6aad7c1354a9a445bf2b0b6c2bef73cb9f4854d1daba303568015b7d",
+            "answer_event_index": 31
+          },
+          {
+            "turn_id": "01a18b04-8370-7603-a412-bfafc221ddb8",
+            "tools": [
+              {
+                "tool": "kimi_web_fetch",
+                "include_content": null,
+                "success": true,
+                "event_index": 40,
+                "result_kind": "Ok",
+                "isError": false
+              }
+            ],
+            "user_input_exact": true,
+            "answer_nonempty": true,
+            "input_sha256": "6546886e07d90534e42f09fe91c98f82034e44076e3ff4c5022d21a68367760d",
+            "answer_sha256": "90d0af327296b5b16030e867776eb15ead8384332faf1e12d9ac23f39f620e9c",
+            "answer_event_index": 48
+          }
+        ]
+      },
+      "E6": {
+        "status": "PASS",
+        "conversation_id": "01a18af2-630d-7171-a212-6b1afee7d686",
+        "native_runtime_binding": "01a18af2-6357-7890-b99a-77bb8efea5e4",
+        "rollout_file": "yijie-desktop/.local/demo-fast/codex-home/sessions/2026/10/30/rollout-2026-10-30T11-55-03-01a18af2-6357-7890-b99a-77bb8efea5e4.jsonl",
+        "rollout_sha256": "a477b18f46efda1846984f30d015dfd6b28d82d7d78bb5711d011b88c2cf02c5",
+        "turns": [
+          {
+            "turn_id": "01a18af2-6380-7a30-a08c-e12581ce9b36",
+            "tools": [
+              {
+                "tool": "kimi_web_search_pro",
+                "include_content": null,
+                "success": true,
+                "event_index": 11,
+                "result_kind": "Ok",
+                "isError": false
+              }
+            ],
+            "user_input_exact": true,
+            "answer_nonempty": true,
+            "input_sha256": "d526450922e92d53ea1539315a8104def7deb50c70b6f4ab28b0fcb2089de21c",
+            "answer_sha256": "b9f458eb064834906e91953403c84e1e1f53fcc27707fc4567487ba2173a37ff",
+            "answer_event_index": 19
+          }
+        ]
+      },
+      "E7": {
+        "status": "PASS",
+        "conversation_id": "01a18af1-13e9-7c03-8712-8f8b2974aa7b",
+        "native_runtime_binding": "01a18af1-1439-7952-8daa-47665bb4fce5",
+        "rollout_file": "yijie-desktop/.local/demo-fast/codex-home/sessions/2026/10/30/rollout-2026-10-30T11-53-37-01a18af1-1439-7952-8daa-47665bb4fce5.jsonl",
+        "rollout_sha256": "3d7b7f115ff887a1e3ac60c0f97a79ed23369e0bf0378e8d517aba3fd51cbae6",
+        "turns": [
+          {
+            "turn_id": "01a18af1-1478-7aa2-b94e-177ed6ea758d",
+            "tools": [
+              {
+                "tool": "kimi_web_search_pro",
+                "include_content": null,
+                "success": true,
+                "event_index": 13,
+                "result_kind": "Ok",
+                "isError": false
+              },
+              {
+                "tool": "kimi_web_fetch",
+                "include_content": null,
+                "success": true,
+                "event_index": 19,
+                "result_kind": "Ok",
+                "isError": false
+              }
+            ],
+            "user_input_exact": true,
+            "answer_nonempty": true,
+            "input_sha256": "cfe5ac5b9548cbe2e6ae26e9c232e2dcf83bbbda1cbea9930b3925fc57303d46",
+            "answer_sha256": "4f307ec44a2e3eb592718f8921a6b808ec0c34703bc594c4aa06b27e184d0b46",
+            "answer_event_index": 27
+          }
+        ]
+      }
+    },
+    "quality_sources_fees_reviewed": false
+  },
+  "artifacts_and_history": {
+    "status": "PASS",
+    "at": "2026-10-30T05:37:15.024353+00:00",
+    "builds": [
+      {
+        "generation": "20261030-01",
+        "receipt_sha256": "acba8b25721c96a49173882e15f05d6c832fb3246edd53702b0d73207078197c",
+        "bundle_files_verified": 119,
+        "worker_sha256": "965e6ea3421984533cfd4ba089daad432c40dc6b41cb2db5bed6ee938f936f95",
+        "artifact_adapter_source_matches_generation": true,
+        "cache_key": "a2b24caedb78b0ebca2ddcd631f062ef1e33bf17e699cd865a8613feae98fc2c"
+      },
+      {
+        "generation": "20261030-02",
+        "receipt_sha256": "d38351bd9023a1fa4206215b3abde91c54861dce9a206da31f74c898ce1fe702",
+        "bundle_files_verified": 119,
+        "worker_sha256": "965e6ea3421984533cfd4ba089daad432c40dc6b41cb2db5bed6ee938f936f95",
+        "artifact_adapter_source_matches_generation": true,
+        "cache_key": "a2b24caedb78b0ebca2ddcd631f062ef1e33bf17e699cd865a8613feae98fc2c"
+      },
+      {
+        "generation": "20261030-03",
+        "receipt_sha256": "04ee19e3e9eb990d89019751a8d3445e716ff574a48acda315ccd867aa6c088a",
+        "bundle_files_verified": 119,
+        "worker_sha256": "623712eace0fea8cdbfe86ddc403be0913b6eb5b7f7a0ffd10b344129fb74a91",
+        "artifact_adapter_source_matches_generation": true,
+        "cache_key": "a2b24caedb78b0ebca2ddcd631f062ef1e33bf17e699cd865a8613feae98fc2c"
+      }
+    ],
+    "current_source_inputs_verified": 1276,
+    "historical_metadata_entries": 541800,
+    "historical_changes": [],
+    "standard_sha256": "033ca05bb99784b5b13d9245bfdbce52f9f428f0363beab074379872bf7f4a56",
+    "closed_observers": [
+      {
+        "run": "initial",
+        "closed": true,
+        "predecessor_sha256": "3fc6da7fb1858eb44c0678dbae2765713f988ef6a4f699dfd10693eddd7d95d5"
+      },
+      {
+        "run": "continuation",
+        "closed": true,
+        "predecessor_sha256": "8e34115c208ff81eae9028ac1a2a3deaf5a16d07f9fd99a62d85584b402beea1"
+      },
+      {
+        "run": "routing",
+        "closed": true,
+        "predecessor_sha256": "89f964899f6a7dbe99c611209cb5427ce9b791695bf9bb4fd4834861ba476df9"
+      }
+    ],
+    "App_builds_this_audit": 0,
+    "paid_calls_this_audit": 0
+  },
+  "push_scope": {
+    "status": "PASS",
+    "repos": [
+      {
+        "repo": "yijie-contracts",
+        "new_paths_reviewed": 5,
+        "active_pre_push_hook": false,
+        "high_confidence_secret_pattern_hits": 0,
+        "workflow_files": [
+          ".github/workflows/ci.yml"
+        ]
+      },
+      {
+        "repo": "yijie-connectors",
+        "new_paths_reviewed": 5,
+        "active_pre_push_hook": false,
+        "high_confidence_secret_pattern_hits": 0,
+        "workflow_files": [
+          ".github/workflows/ci.yml"
+        ]
+      },
+      {
+        "repo": "yijie-agent-host",
+        "new_paths_reviewed": 7,
+        "active_pre_push_hook": false,
+        "high_confidence_secret_pattern_hits": 0,
+        "workflow_files": [
+          ".github/workflows/ci.yml"
+        ]
+      },
+      {
+        "repo": "yijie-desktop",
+        "new_paths_reviewed": 28,
+        "active_pre_push_hook": false,
+        "high_confidence_secret_pattern_hits": 0,
+        "workflow_files": [
+          ".github/workflows/ci.yml"
+        ]
+      },
+      {
+        "repo": "yijie",
+        "new_paths_reviewed": 25,
+        "active_pre_push_hook": false,
+        "high_confidence_secret_pattern_hits": 0,
+        "workflow_files": [
+          ".github/workflows/ci.yml"
+        ]
+      }
+    ],
+    "open_prs_on_target_heads": 0,
+    "push_branches_not_matching_app_build_workflow": true,
+    "scope": "existing FEAT-162 commits plus required observation-launch/diagnostic source closure"
+  },
+  "planned_pushes": [
+    {
+      "repo": "yijie-contracts",
+      "head": "56bed40a3f87a1c5b1a5866b76be85ec0157a82d",
+      "branch": "feat/feat164-primary-20261028",
+      "remote": "https://github.com/36Dge/yijie-contracts.git",
+      "upstream": "origin/feat/feat164-primary-20261028",
+      "remote_before": "d191ad6ed08f0e8cc89dfea1346b5ecdf010e776",
+      "ahead_behind": "1\t0",
+      "status": "",
+      "commits": [
+        "56bed40a3f87a1c5b1a5866b76be85ec0157a82d fix(feat-162): route unfiltered result lists explicitly to Basic"
+      ]
+    },
+    {
+      "repo": "yijie-connectors",
+      "head": "7990cc4f54ae5a157d75d42d3f63dae8cb324ae4",
+      "branch": "feat/feat164-primary-20261028",
+      "remote": "https://github.com/36Dge/yijie-connectors.git",
+      "upstream": "origin/feat/feat164-primary-20261028",
+      "remote_before": "ab1f8328ff50dab256b23f51d49157278421fd35",
+      "ahead_behind": "2\t0",
+      "status": "",
+      "commits": [
+        "7990cc4f54ae5a157d75d42d3f63dae8cb324ae4 fix(feat-162): consume explicit Basic list-routing descriptors",
+        "7f42cd9d775777abe59ac7cdc17d3fe15261ffc6 fix(feat-162): separate worker preflight and intermediate build cache"
+      ]
+    },
+    {
+      "repo": "yijie-agent-host",
+      "head": "68a7696ee760d25ef04feadb5fef1212953a95c6",
+      "branch": "feat/feat164-primary-20261028",
+      "remote": "https://github.com/36Dge/yijie-agent-host.git",
+      "upstream": "origin/feat/feat164-primary-20261028",
+      "remote_before": "8d2f17e2ddf54f45d73636d6a42612c913fc884e",
+      "ahead_behind": "2\t0",
+      "status": "",
+      "commits": [
+        "68a7696ee760d25ef04feadb5fef1212953a95c6 chore(feat-162): pin list-routing contract source 56bed40",
+        "ffdb3e66f292339fabccea6b1018bed6bba9c3b8 fix(feat-162): route selected Kimi retrieval and collect actual Cargo adapter"
+      ]
+    },
+    {
+      "repo": "yijie-desktop",
+      "head": "63656261492e8afd73b325f888d10e6db1d5012d",
+      "branch": "feat/feat164-primary-20261028",
+      "remote": "https://github.com/36Dge/yijie-desktop.git",
+      "upstream": "origin/feat/feat164-primary-20261028",
+      "remote_before": "121fe11357e3c290e1b3e6feee29419811befffd",
+      "ahead_behind": "5\t0",
+      "status": "",
+      "commits": [
+        "63656261492e8afd73b325f888d10e6db1d5012d chore(feat-162): freeze repaired list-routing consumer sources",
+        "b1c5a712829679781e6b1baef7ab8a06c00d1155 fix(feat-162): serialize Alpha follow-ups and preserve continuation budget",
+        "d13e49ca0603cc4883703acff00df5a5fed425e7 feat(feat-162): add seven-case Alpha observer with soft stop only",
+        "fd105a952479c33ffd55d5e71b569117171b7216 fix(feat-162): reuse bounded Cargo intermediates with fresh generation outputs",
+        "f3e083a733c6b23be842361f5c8f8f438f6ff0f2 fix(desktop): guard observation launches and restore runtime diagnostics"
+      ]
+    },
+    {
+      "repo": "yijie",
+      "head": "b45c0c3ddc827ab407739063cbbc9240b19c16e9",
+      "branch": "chore/retirement-baseline-20260905",
+      "remote": "https://github.com/36Dge/yijie.git",
+      "upstream": "origin/chore/retirement-baseline-20260905",
+      "remote_before": "3b99d3f14c83d638df08e74173b885e2e997aaff",
+      "ahead_behind": "2\t0",
+      "status": "",
+      "commits": [
+        "b45c0c3ddc827ab407739063cbbc9240b19c16e9 docs(feat-162): close seven-case Alpha with real App evidence",
+        "b3b2d8e54f2d7678a8e327fb16895610a8735954 docs(feat-162): align conditional routing and record zero-cost repair audit"
+      ]
+    }
+  ],
+  "checks": {
+    "alpha_observer_tests": 9,
+    "standard_observer_tests": 36,
+    "artifact_collection_tests": 4,
+    "web_retrieval_contract_tests": 11,
+    "source_generation_check": "PASS",
+    "connectors_host_desktop_projection_checks": "PASS",
+    "strict_D0": "PASS",
+    "claim_audit": "PASS",
+    "meta_lint": "PASS",
+    "meta_governance_tests": 57,
+    "shell_syntax_checks": 7
+  },
+  "not_rechecked": [
+    "answer quality",
+    "source relationships",
+    "fee reconciliation",
+    "standard acceptance",
+    "strict D4"
+  ],
+  "review_result": "No new blocker to the owner-approved seven-case Alpha closure or the authorized Git push"
+}
