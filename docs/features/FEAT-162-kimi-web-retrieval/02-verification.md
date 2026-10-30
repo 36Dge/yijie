@@ -1,6 +1,27 @@
 # FEAT-162 验证记录
 
+## 2026-10-30 最终：七例Alpha通过并关闭
+
+E1—E7均在真实App观察到应有工具/模式及必要步骤成功、回答可见；E5保留两回合，E7保留单回合Pro→Fetch。未核对质量、来源关系、费用记录。按[43号](43-alpha-results-and-closure.md)和[44号](44-alpha-final-reaudit.md)关闭本期FEAT-162；feature=usable、implementation=complete、acceptance.feature_verdict=PASS。标准历史FAIL与严格D4未通过不被改写。
+
+本轮修复了Alpha观察器响应衔接/续跑承接，以及Contracts纯列表意图的Basic/Pro重叠描述。三次构建均有明确目的，后两次缓存复用约1分39秒/1分41秒。保留08/09、所有旧App/备份/证据和失败记录；本地提交，无推送。App/观察器/本轮owned workflow已正常停止，volume保留；20元软停止未触发，不再自动续跑收费。
+
+以下全部为历史时点记录，旧“当前、最新、暂停、下一步”不覆盖上述已关闭状态。
+
+> 当前验收决定（2026-10-30，澄清后）：Alpha保留E1—E7七个场景，每例调用应有工具并有回答即通过，不核对回答质量、来源关系及费用记录；E4正文模式、E5两回合、E7单回合Pro→Fetch均保留。七例全部通过才可按Alpha关闭FEAT-162。规则见[39号](39-alpha-acceptance.md)，当前七例均NOT RUN，执行继续暂停。
+
+## 2026-10-30 Alpha范围纠正
+
+Owner指出此前误解：七个用例仍在，只放宽每例通过标准。现恢复七个Alpha Must及逐例结果，保留原场景/模式/必要串联，不核对质量、来源关系或费用记录。00、39及feature.yaml已一致更新；22/38标准和旧证据保持。检查见evidence/alpha-seven-case-correction-20261030.json。本轮无构建、App启动或收费，不恢复此前暂停的执行。
+
+## 2026-10-30 已废止的三项Alpha草案（误解，以下仅为历史）
+
+按Owner明确要求，当前22号逐字节保留为38号标准验收；原brief和feature.yaml保存history。新增39号Alpha，当前Must改为AC-A01—A03；对应三工具各成功+回答可见即本期通过。标准质量、来源、费用、复杂串联和通用严格D4不再是本期关闭前置，既有产品实现不改。历史E1失败不能被重写为通过，新Alpha尚未执行。文档一致性检查见evidence/alpha-criteria-change-20261030.json。
+
+以下内容保留此前实施和标准验收事实；旧“必须全部E1—E7/D4才能关闭”的表述已被本次Alpha决定替代。
+
 > 当前状态（2026-10-30）：三项修复及零费用验证完成，源码已本地提交并canonical闭合，无推送。未构建/启动App、未收费；第08/09代及历史证据核对一致。见[36号结果](36-route-cache-zero-cost-results.md)与[37号复审](37-route-cache-final-reaudit.md)。旧E1 FAIL、E2—E7 NOT RUN、D4未通过。
+
 
 ## 2026-10-30 路由、收集、缓存修复与复审
 

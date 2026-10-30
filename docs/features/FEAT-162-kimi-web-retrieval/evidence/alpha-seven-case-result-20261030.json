@@ -1,0 +1,472 @@
+{
+  "feature": "FEAT-162",
+  "track": "alpha",
+  "cases": {
+    "E1": {
+      "status": "PASS",
+      "expected_tools": [
+        "search"
+      ],
+      "tool_success": true,
+      "answer_visible": true,
+      "observed_tools": [
+        "search",
+        "search"
+      ],
+      "conversation_id": "01a18b00-63c3-72e0-ae2d-d15374db3be5",
+      "reason": "Original E1 input after canonical descriptor repair: two successful Basic summary calls and final answer; extra call allowed by Alpha; quality/source/fees not assessed",
+      "attempts": [
+        {
+          "status": "FAIL",
+          "expected_tools": [
+            "search"
+          ],
+          "tool_success": false,
+          "answer_visible": true,
+          "observed_tools": [
+            "pro"
+          ],
+          "conversation_id": "01a18ad5-4427-7443-8ebf-643ca90fa86f",
+          "reason": "Expected Basic; Pro proposal expired before external execution; visible answer only reports no returned results",
+          "generation": "20261030-01"
+        },
+        {
+          "status": "FAIL",
+          "tool_success": false,
+          "answer_visible": true,
+          "observed_tools": [
+            "pro"
+          ],
+          "conversation_id": "01a18af3-791a-7c32-8b43-5ee69de95042",
+          "generation": "20261030-02",
+          "reason": "Repeated original E1 selects Pro, approval expires with no external request; not an Alpha pass"
+        },
+        {
+          "status": "PASS",
+          "tool_success": true,
+          "answer_visible": true,
+          "observed_tools": [
+            "search",
+            "search"
+          ],
+          "include_content": false,
+          "conversation_id": "01a18b00-63c3-72e0-ae2d-d15374db3be5",
+          "generation": "20261030-03",
+          "reason": "Original E1 input after canonical descriptor repair: two successful Basic summary calls and final answer; extra call allowed by Alpha; quality/source/fees not assessed"
+        }
+      ],
+      "generation": "20261030-03",
+      "include_content": false
+    },
+    "E2": {
+      "status": "PASS",
+      "expected_tools": [
+        "pro"
+      ],
+      "tool_success": true,
+      "answer_visible": true,
+      "observed_tools": [
+        "pro"
+      ],
+      "conversation_id": "01a18ade-3630-7433-8e7d-a20f64ae2663",
+      "reason": "UI: approved once, connector tool completed, final answer visible; quality/source/fees not assessed",
+      "generation": "20261030-01"
+    },
+    "E3": {
+      "status": "PASS",
+      "expected_tools": [
+        "fetch"
+      ],
+      "tool_success": true,
+      "answer_visible": true,
+      "observed_tools": [
+        "fetch"
+      ],
+      "conversation_id": "01a18adf-912b-70f3-8a5c-37b9b5c496e1",
+      "reason": "UI: Fetch completed, final answer visible; quality/source/fees not assessed",
+      "generation": "20261030-01"
+    },
+    "E4": {
+      "status": "PASS",
+      "expected_tools": [
+        "body"
+      ],
+      "tool_success": true,
+      "answer_visible": true,
+      "observed_tools": [
+        "body"
+      ],
+      "include_content": true,
+      "conversation_id": "01a18ae0-84ab-7ad1-aec7-a02fc7fb0d5b",
+      "reason": "UI: Basic include_content=true completed; answer visible; quality/source/fees not assessed",
+      "generation": "20261030-01"
+    },
+    "E5": {
+      "status": "PASS",
+      "expected_tools": [
+        "search",
+        "fetch"
+      ],
+      "tool_success": true,
+      "answer_visible": true,
+      "conversation_id": "01a18b02-9a69-74d1-a5f9-7e4bb0a08869",
+      "steps": [
+        {
+          "turn": 1,
+          "tool": "kimi_web_search",
+          "include_content": false,
+          "tool_success": true,
+          "answer_visible": true,
+          "list_visible": true
+        },
+        {
+          "turn": 2,
+          "tool": "kimi_web_fetch",
+          "tool_success": true,
+          "answer_visible": true
+        }
+      ],
+      "observed_tools": [
+        "search",
+        "fetch"
+      ],
+      "reason": "First-turn Basic summary completed and list visible; second user turn Fetch completed and answer visible; additional failed Basic proposals do not replace the successful required steps; quality/source/fees not assessed",
+      "attempts": [
+        {
+          "status": "PASS",
+          "expected_tools": [
+            "search",
+            "fetch"
+          ],
+          "tool_success": true,
+          "answer_visible": true,
+          "conversation_id": "01a18ae1-d471-7100-93b3-088ce47d8414",
+          "steps": [
+            {
+              "turn": 1,
+              "tool": "kimi_web_search",
+              "include_content": false,
+              "tool_success": true,
+              "answer_visible": true,
+              "list_visible": true
+            },
+            {
+              "turn": 2,
+              "tool": "kimi_web_fetch",
+              "tool_success": true,
+              "answer_visible": true
+            }
+          ],
+          "observed_tools": [
+            "search",
+            "fetch"
+          ],
+          "reason": "Both UI turns completed, list and second answer visible; quality/source/fees not assessed"
+        },
+        {
+          "status": "PASS",
+          "tool_success": true,
+          "answer_visible": true,
+          "observed_tools": [
+            "search",
+            "fetch"
+          ],
+          "conversation_id": "01a18b02-9a69-74d1-a5f9-7e4bb0a08869",
+          "generation": "20261030-03",
+          "reason": "First-turn Basic summary completed and list visible; second user turn Fetch completed and answer visible; additional failed Basic proposals do not replace the successful required steps; quality/source/fees not assessed",
+          "steps": [
+            {
+              "turn": 1,
+              "tool": "kimi_web_search",
+              "include_content": false,
+              "tool_success": true,
+              "answer_visible": true,
+              "list_visible": true
+            },
+            {
+              "turn": 2,
+              "tool": "kimi_web_fetch",
+              "tool_success": true,
+              "answer_visible": true
+            }
+          ],
+          "extra_calls_note": "First Basic completed; later supplementary Basic proposals failed/expired; list answer still visible. Extra failures are not standalone Alpha failure under section 2."
+        }
+      ],
+      "needs_revalidation": false,
+      "generation": "20261030-03",
+      "extra_calls_note": "First Basic completed; later supplementary Basic proposals failed/expired; list answer still visible. Extra failures are not standalone Alpha failure under section 2."
+    },
+    "E6": {
+      "status": "PASS",
+      "expected_tools": [
+        "pro"
+      ],
+      "tool_success": true,
+      "answer_visible": true,
+      "observed_tools": [
+        "pro"
+      ],
+      "conversation_id": "01a18af2-630d-7171-a212-6b1afee7d686",
+      "reason": "Original E6 input on explicit fresh retry; Pro completed and final answer visible; quality/source/fees not assessed",
+      "attempts": [
+        {
+          "status": "FAIL",
+          "expected_tools": [
+            "pro"
+          ],
+          "tool_success": false,
+          "answer_visible": false,
+          "observed_tools": [
+            "pro"
+          ],
+          "conversation_id": "01a18ae3-c6ae-7cb3-b7cf-3f3056c97aee",
+          "reason": "Pro rejected before approval: insufficient content budget; no external tool request; UI eventually generation failed",
+          "generation": "20261030-01"
+        },
+        {
+          "status": "PASS",
+          "tool_success": true,
+          "answer_visible": true,
+          "observed_tools": [
+            "pro"
+          ],
+          "conversation_id": "01a18af2-630d-7171-a212-6b1afee7d686",
+          "generation": "20261030-02",
+          "reason": "Original E6 input on explicit fresh retry; Pro completed and final answer visible; quality/source/fees not assessed"
+        }
+      ],
+      "generation": "20261030-02"
+    },
+    "E7": {
+      "status": "PASS",
+      "expected_tools": [
+        "pro",
+        "fetch"
+      ],
+      "tool_success": true,
+      "answer_visible": true,
+      "generation": "20261030-02",
+      "conversation_id": "01a18af1-13e9-7c03-8712-8f8b2974aa7b",
+      "steps": [
+        {
+          "turn": 1,
+          "tool": "kimi_web_search_pro",
+          "tool_success": true
+        },
+        {
+          "turn": 1,
+          "tool": "kimi_web_fetch",
+          "tool_success": true
+        }
+      ],
+      "observed_tools": [
+        "pro",
+        "fetch"
+      ],
+      "reason": "One user turn: Pro completed then Fetch completed, final answer visible; quality/source/fees not assessed"
+    }
+  },
+  "quality_sources_and_fees_reviewed": false,
+  "completed_at": "2026-10-30T04:16:03.249134+00:00",
+  "feature_verdict": "PASS",
+  "closure_basis": "Owner seven-case Alpha only; not standard or strict D4",
+  "closed_at": "2026-10-30T04:25:30.011Z",
+  "latest_generation": "20261030-03",
+  "source_commits": {
+    "yijie-contracts": "56bed40a3f87a1c5b1a5866b76be85ec0157a82d",
+    "yijie-connectors": "7990cc4f54ae5a157d75d42d3f63dae8cb324ae4",
+    "yijie-agent-host": "68a7696ee760d25ef04feadb5fef1212953a95c6",
+    "yijie-desktop": "63656261492e8afd73b325f888d10e6db1d5012d"
+  },
+  "builds": [
+    {
+      "exit_code": 0,
+      "started_at": "2026-10-30T03:06:17.000641+00:00",
+      "finished_at": "2026-10-30T03:13:02.373029+00:00",
+      "log_sha256": "592a4c517f28a5547e8ecdf364bdb14390ba7c3095a6ed6bca265d688629fbbc",
+      "generation": "20261030-01",
+      "seconds": 405.372388,
+      "receipt_sha256": "acba8b25721c96a49173882e15f05d6c832fb3246edd53702b0d73207078197c",
+      "descriptor_sha256": "283f228251d77407c27fcee2b8187479982867117adba4d7195ed745f13b8d44",
+      "worker_sha256": "965e6ea3421984533cfd4ba089daad432c40dc6b41cb2db5bed6ee938f936f95"
+    },
+    {
+      "exit_code": 0,
+      "started_at": "2026-10-30T03:47:10.810531+00:00",
+      "finished_at": "2026-10-30T03:48:49.390629+00:00",
+      "generation": "20261030-02",
+      "seconds": 98.580098,
+      "receipt_sha256": "d38351bd9023a1fa4206215b3abde91c54861dce9a206da31f74c898ce1fe702",
+      "descriptor_sha256": "00982254fdb98ef95750f671d88d963b0d29f5983b977c29517917529cc2ec5f",
+      "worker_sha256": "965e6ea3421984533cfd4ba089daad432c40dc6b41cb2db5bed6ee938f936f95"
+    },
+    {
+      "exit_code": 0,
+      "started_at": "2026-10-30T04:04:38.743709+00:00",
+      "finished_at": "2026-10-30T04:06:19.491740+00:00",
+      "generation": "20261030-03",
+      "seconds": 100.748031,
+      "receipt_sha256": "04ee19e3e9eb990d89019751a8d3445e716ff574a48acda315ccd867aa6c088a",
+      "descriptor_sha256": "232f22fcd67d810209177199dce5fc8441a335ab6ab8bd54c8231840f08b9369",
+      "worker_sha256": "623712eace0fea8cdbfe86ddc403be0913b6eb5b7f7a0ffd10b344129fb74a91"
+    }
+  ],
+  "zero_cost_checks": {
+    "contract_checks": [
+      {
+        "name": "lint",
+        "command": [
+          "pnpm",
+          "lint"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "web-tests",
+        "command": [
+          "node",
+          "--test",
+          "tests/web-retrieval.test.mjs"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "breaking-bedf4159",
+        "command": [
+          "bash",
+          "scripts/check-breaking.sh",
+          "bedf4159b0fa22e24efe6c295f8b0d4845df56b7"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "breaking-e35ae9a0",
+        "command": [
+          "bash",
+          "scripts/check-breaking.sh",
+          "e35ae9a0711014e4774a1347413e9a343ce7ab2c"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "breaking-1a213ac8",
+        "command": [
+          "bash",
+          "scripts/check-breaking.sh",
+          "1a213ac8383e95ac6ec69363937687904fa3591c"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "breaking-35e0949c",
+        "command": [
+          "bash",
+          "scripts/check-breaking.sh",
+          "35e0949c95d7a59ca5480715c225766dcc822056"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "breaking-f16a497e",
+        "command": [
+          "bash",
+          "scripts/check-breaking.sh",
+          "f16a497e1377f45747f8ff9292b4b60cf2027f88"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "breaking-6f632f15",
+        "command": [
+          "bash",
+          "scripts/check-breaking.sh",
+          "6f632f155eacdaf93df0e0b00b5dab9e369c5442"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "breaking-811f38d6",
+        "command": [
+          "bash",
+          "scripts/check-breaking.sh",
+          "811f38d6b104fa18477107e7ac91a85e19c445d1"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "breaking-d5792d6a",
+        "command": [
+          "bash",
+          "scripts/check-breaking.sh",
+          "d5792d6aad18352ce8d1c5d510d345004cab3bd6"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "breaking-61137174",
+        "command": [
+          "bash",
+          "scripts/check-breaking.sh",
+          "61137174a25dc368e0006f27633fd4a9ad097aa6"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "breaking-d191ad6e",
+        "command": [
+          "bash",
+          "scripts/check-breaking.sh",
+          "d191ad6ed08f0e8cc89dfea1346b5ecdf010e776"
+        ],
+        "exit_code": 0
+      }
+    ],
+    "generate_safe_exit": 0,
+    "generated_safe_check_exit": 0,
+    "worker_kimi_tests": 27,
+    "worker_lint_exit": 0,
+    "alpha_observer_tests": 9,
+    "standard_observer_tests": 36,
+    "source_commits": {
+      "yijie-contracts": "56bed40a3f87a1c5b1a5866b76be85ec0157a82d",
+      "yijie-connectors": "7990cc4f54ae5a157d75d42d3f63dae8cb324ae4",
+      "yijie-agent-host": "68a7696ee760d25ef04feadb5fef1212953a95c6",
+      "yijie-desktop": "63656261492e8afd73b325f888d10e6db1d5012d"
+    },
+    "unexecuted": [
+      "Attack/fault-injection fixture generation and tests prohibited by Owner; used canonical safe generation and ordinary tests only"
+    ],
+    "contract_impact_this_fix": "semantic",
+    "unchanged": [
+      "tool input/output schemas",
+      "approval",
+      "deadlines",
+      "legacy descriptors",
+      "Runtime core"
+    ]
+  },
+  "standard_snapshot_sha256": "033ca05bb99784b5b13d9245bfdbce52f9f428f0363beab074379872bf7f4a56",
+  "private_run_directory": ".local/feat162-alpha-real-20261030",
+  "protected_history": {
+    "at": "2026-10-30T03:51:17.068814+00:00",
+    "entries": 541800,
+    "hashed": 382285,
+    "mismatches": [],
+    "status": "PASS"
+  },
+  "normal_stop": {
+    "App_exit_code": 0,
+    "observer_state": "stopped_normally",
+    "workflow": "STOPPED; owned containers normal exit; volumes retained"
+  },
+  "soft_stop": {
+    "observed_or_reserved_micro_cny": 8018349,
+    "threshold_micro_cny": 20000000,
+    "threshold_reached": false,
+    "not_a_bill_or_fee_acceptance": true,
+    "predecessors_preserved": true
+  },
+  "standard_verdict": "historical FAIL; unchanged",
+  "strict_d4": "NOT PASSED"
+}

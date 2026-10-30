@@ -1,0 +1,97 @@
+{
+  "feature": "FEAT-162",
+  "date": "2026-10-30",
+  "contract_impact_this_round": "none",
+  "correction": "Retain all seven E1-E7 scenarios; supersede the mistaken three-tool Alpha plan",
+  "active_track": "alpha",
+  "required_cases": [
+    "E1",
+    "E2",
+    "E3",
+    "E4",
+    "E5",
+    "E6",
+    "E7"
+  ],
+  "case_results": {
+    "E1": "NOT RUN",
+    "E2": "NOT RUN",
+    "E3": "NOT RUN",
+    "E4": "NOT RUN",
+    "E5": "NOT RUN",
+    "E6": "NOT RUN",
+    "E7": "NOT RUN"
+  },
+  "required_tools": {
+    "E1": [
+      "kimi_web_search:summary"
+    ],
+    "E2": [
+      "kimi_web_search_pro"
+    ],
+    "E3": [
+      "kimi_web_fetch"
+    ],
+    "E4": [
+      "kimi_web_search:include_content=true"
+    ],
+    "E5": [
+      "turn1:kimi_web_search:summary",
+      "turn2:kimi_web_fetch"
+    ],
+    "E6": [
+      "kimi_web_search_pro"
+    ],
+    "E7": [
+      "kimi_web_search_pro",
+      "kimi_web_fetch"
+    ]
+  },
+  "scenario_inputs_retained": true,
+  "E5_turns": 2,
+  "E7_turns": 1,
+  "pass_rule": "Each scenario uses its required tool(s)/mode/steps successfully and displays an assistant answer; all seven pass to close FEAT-162 Alpha",
+  "not_evaluated": [
+    "answer_quality",
+    "source_relationships",
+    "cost_records"
+  ],
+  "execution_paused": true,
+  "app_builds": 0,
+  "app_launches": 0,
+  "paid_calls": 0,
+  "code_changes": 0,
+  "strict_D4_claimed": false,
+  "standard_sha256": "033ca05bb99784b5b13d9245bfdbce52f9f428f0363beab074379872bf7f4a56",
+  "standard_preserved_byte_identically": true,
+  "previous_evidence_preserved": true,
+  "superseded_evidence": "evidence/alpha-criteria-change-20261030.json",
+  "superseded_draft": "history/39-alpha-three-case-superseded-20261030.md",
+  "checks": {
+    "strict_d0": "PASS",
+    "lint": "PASS",
+    "governance_tests": {
+      "passed": 57,
+      "failed": 0
+    },
+    "shell_syntax": {
+      "status": "PASS",
+      "scripts": 7
+    },
+    "seven_case_consistency": "PASS",
+    "links": "PASS",
+    "standard_and_history_preservation": "PASS",
+    "diff_review": "PASS"
+  },
+  "logs": {
+    "lint.log": {
+      "sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c"
+    },
+    "d0.log": {
+      "sha256": "ccc00513c27f044ca664925a882399ed124d51bef8632ed931606e5b1e0f01c3"
+    },
+    "tests.log": {
+      "sha256": "5d41db18fa6959e89b3211a0a1adc7361d229fe0385ed9076503eca8bcf6a417"
+    }
+  }
+}

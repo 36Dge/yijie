@@ -1,0 +1,262 @@
+# 2026-10-29 Basic/Pro本地代码及零费用定向检查完成，整体in_progress；旧FAIL与台账保留。
+# 2026-10-30授权路由/收集/缓存修复及零费用验证；不构建App、不收费，保护08/09及历史；见35号。
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+feature:
+  id: FEAT-162
+  slug: kimi-web-retrieval
+  title: Kimi Basic/Pro意图选择与Fetch连接器
+  status: active
+  created_at: 2026-10-24
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+scope:
+  risk_level: high
+  data_classification: restricted
+  contract_impact: breaking
+  database_change: none
+  persistence_change: none
+  runtime_change: platform
+  auth_permission_change: permission
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: tool
+repositories:
+  - yijie
+  - yijie-contracts
+  - yijie-connectors
+  - yijie-agent-host
+  - yijie-desktop
+  - yijie-skills
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+product_ux:
+  status: PASS
+  primary_user: 使用K3.1普通对话检索公开资料、问答、研究和读取网页的易界本地用户
+  problem: 现有Basic摘要和Fetch缺少Pro正文片段及按用户任务选择能力；旧客户端真实闭环未通过
+  user_outcome: 一个Kimi连接器自动复用模型Key，模型按结果展示/问答/正文读取意图选择Basic、Pro或Fetch并保留来源
+  in_scope:
+    - 一个连接器三工具，目录61/容量62/选集58保持
+    - Basic默认摘要及显式include_content正文模式
+    - Pro sites/time_window/chunks与来源元数据
+    - 同源工具描述引导模型选择，无额外分类模型
+    - K3.1有效选择kimi-web后Host条件禁用hosted搜索，清空选择恢复原配置
+    - 原Key自动复用、当前选集、ask逐次审批与正常撤权
+    - 旧期限兼容、新模式双截止/逐页状态/部分结果及同源等价验收
+  out_of_scope:
+    - 无头浏览器、JavaScript控制、原始HTML、登录态网页
+    - 知识库/向量库、递归爬虫与定时任务扩权
+    - 重建Agent循环或修改Codex内核
+    - 新增第二份持久Key、数据迁移、生产发布
+  main_flow:
+    - canonical实际客户端入口和既有Key本地准备
+    - 当前会话显式选用kimi-web
+    - 模型根据任务选择并形成query/筛选/URL
+    - 原审批展示三类工具与完整参数/费用，新模式显示最晚批准截止A
+    - 一次有界HTTP和真实MCP结果回灌
+    - 模型依据材料引用回答并正常重开历史
+  visual_direction: 复用连接器选择器、审批卡片及工具详情；三工具名称、Pro筛选和正文模式清楚，来源与截断可见，保留亮暗/键盘/1180x760布局
+  ui_states:
+    idle: 原Key自动准备；缺凭据、停用、未选状态明确，不做账户HTTP探测
+    loading: 区分模型、审批、执行，防重复提交并支持正常取消
+    success: 真实结果及来源可读，工具成功不等于整轮完成
+    empty: 原始空列表、逐页content_status、dropped_results及全部无效错误区分
+    error: 区分模型/工具限流、鉴权、期限、拒绝；不回显秘密或任意错误正文
+    retry: 新用户意图重新调用和批准，不自动重试或切换Basic/Pro
+    cancel: 发送前撤权零HTTP；发送后正常收尾，未知费用保持
+must_acceptance:
+  - id: AC-021
+    statement: 一个连接器三工具、无需重复Key配置；当前选集和停用规则有效；目录61/62及K3.1/Runtime/数据/专家保持；原生搜索按有效Kimi选择条件路由
+    verification: Z2/Z9/Z10、UI与准确来源前后摘要
+    status: pending
+  - id: AC-022
+    statement: 源契约先行；旧Basic/Fetch输出、归一化、期限及历史兼容；新状态和双截止仅在匹配消费者下激活
+    verification: Z1/Z3、新旧方向矩阵、生成/来源与回退读取
+    status: pending
+  - id: AC-023
+    statement: 真实工具集合下普通问答直接Pro；Basic/Pro/Fetch及两种串联按意图选择，不新增分类调用、不无理由双搜
+    verification: Z2/Z10及E1/E2/E3/E5/E6/E7实际调用、原生搜索观测
+    status: pending
+  - id: AC-024
+    statement: Basic默认旧行为保持；正文模式显式启用，逐来源可用/无正文/截断可区分并可回灌展示
+    verification: Z1/Z4/Z5及E1/E4
+    status: pending
+  - id: AC-025
+    statement: Pro正确传sites/日期且保留chunks与真实来源；无过滤不加约束，受约束读取追溯同一URL
+    verification: Z5/Z10及E2/E6/E7、score/authority与来源核对
+    status: pending
+  - id: AC-026
+    statement: 原批准/参数绑定/一次HTTP有效；拒绝零发送，失败无自动重试/换接口；模型与工具错误可区分
+    verification: Z3/Z7/Z8、实际worker拒绝与正常恢复
+    status: pending
+  - id: AC-027
+    statement: 旧Basic/Fetch保留剩余时间执行；新模式按A批准/D执行并预留35秒，已批准越A不误过期、发送前重检
+    verification: Z1/Z3、可信MCP预算及E2/E4/E6/E7正常时序
+    status: pending
+  - id: AC-028
+    statement: 原始1MiB及完整MCP包64KiB有界；逐页正文状态/丢页计数、混合有效页/全无效/空列表明确，费用取过滤前事实
+    verification: Z4/Z5/Z6/Z7、最终序列化与实际结果
+    status: pending
+  - id: AC-029
+    statement: 新模式最晚批准时间与按钮一致；逐来源正文/丢页可见，适用外观与键盘检查，成功历史重开0新增请求
+    verification: Z3/Z4/Z8/Z9、真实App和重开前后台账
+    status: pending
+  - id: AC-030
+    statement: 同源等价实际入口完成E1–E7含E5两回合；逐例/批次次数受控，20元为软停止阈值，允许在途超出后停止，旧未知预占保持
+    verification: Z2/Z7、七例实际结果、逐请求估算及观察费用；精确App未资格化则NOT RUN
+    status: pending
+contract:
+  impact: breaking
+  authority: Contracts web-retrieval/1源与生成器；Kimi官方REST为第三方权威；保守分类不把两工具断言当作全部兼容证据
+  source_first_plan: 已生成web-retrieval 0.3.0及相关market审批local候选，旧输出/归一化/期限保持；逐页状态/丢页计数和双截止已同源生成，后续匹配不可变消费者后激活；不改Runtime
+  status: NOT RUN
+  checks:
+    - name: 新源生成与local同步定向检查
+      status: PASS
+      evidence: evidence/implementation-checks-20261029.json
+    - name: 九个相关完整breaking基线
+      status: PASS
+      evidence: evidence/eof-checks-20261029.json
+    - name: 不可变消费引用已形成，准确App资格仍待完成
+      status: NOT RUN
+      evidence: 33-real-app-execution.md
+    - name: 工具选择、超时和实际消费者资格一致
+      status: NOT RUN
+      evidence: 22-basic-pro-intent-routing-plan.md §5—10
+external_authorizations:
+  paid_calls:
+    # 每fresh批次17模型HTTP+9REST；20元软停止阈值、允许在途超出，修复批次承接累计；见22/31。
+    allowed: true
+    max_actions: 26
+    approved_by: 段成威
+    # 用户批准已收到的首次前态登记时刻；对话未暴露原消息秒级时间。
+    approved_at: 2026-10-29T09:01:35.978203+00:00
+  destructive_operations:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+  production_writes:
+    allowed: false
+    max_actions: 0
+    approved_by: N/A
+    approved_at: N/A
+implementation:
+  status: in_progress
+  real_entrypoint: 新准确来源canonical日常客户端：daily:prepare生成后按匹配批准daily:open；qualification仅零费用预检，不能替代D4
+  mock_only: false
+verification:
+  status: FAIL
+  verified_at: 2026-10-30
+  startup:
+    status: PASS
+    command_or_steps: 历史05—08代canonical实际交付入口及正常重开；10-30修复源码未构建新App
+    environment: 历史demo_fast local K3.1与原数据；不能作为10-30源码启动证据
+    actual_result: 源契约/消费者已本地提交；第五至八代真实启动、历史读取与正常退出通过；第八代E1仍失败，Owner已暂停构建及收费；当前路由/收集/缓存零费用修复见36/37号，未构建新App
+  real_smoke:
+    status: FAIL
+    command_or_steps: 旧来源结果见20；第六代E1首因未知，第七/八代E1原生搜索路由失败，E2—E7 NOT RUN；零费用覆盖见24/26/29/33
+    environment: 第八代准确来源已资格化且实际运行；当前App和计量器正常退出，验收已暂停
+    actual_result: 旧模型4次及42.710457元保守占用保持。新轮累计模型3次、REST0、usage未知/估算3元；Host指令修订后第八代仍触发原生搜索，E1 FAIL；Pro/Basic正文NOT RUN，D4未完成
+  representative_failure:
+    status: NOT RUN
+    command_or_steps: 三工具正常拒绝/过期前零HTTP和失败不重试，先零费用验证
+    environment: 新source消费者及实际worker
+    actual_result: Kimi27项及Host实际worker正常生命周期5项通过；第五/六/八代实际App合成拒绝零REST及新会话恢复已执行；合成不能替代真实供应商成功，详情见33号
+  focused_checks:
+    - name: 2026-10-30条件路由、产物收集、缓存、来源闭合及08/09保护核对
+      status: PASS
+      evidence: evidence/route-cache-checks-20261030.json
+    - name: 全量生成、Owner停止适配及预算回归
+      status: PASS
+      evidence: evidence/next-checks-20261029.json
+    - name: EOF修复后九个完整基线及补充零费用定向检查（旧全量生成另记FAIL_BASELINE）
+      status: PASS
+      evidence: evidence/eof-checks-20261029.json
+    - name: 本地源生成、契约与跨仓定向零费用检查及构建（全量breaking未全通过）
+      status: PASS
+      evidence: evidence/implementation-checks-20261029.json
+    - name: 2026-10-29五项缺口及E5修订的严格D0、lint、57项治理测试及7脚本语法检查
+      status: PASS
+      evidence: evidence/requirements-reaudit-checks-20261029.json
+    - name: 2026-10-28历史需求包结构和严格D0文档检查
+      status: PASS
+      evidence: evidence/basic-pro-requirements-checks-20261028.json
+    - name: 2026-10-28历史元仓lint、57项治理测试及7个脚本语法检查
+      status: PASS
+      evidence: evidence/basic-pro-requirements-checks-20261028.json
+  artifacts:
+    - 36-route-cache-zero-cost-results.md
+    - 37-route-cache-final-reaudit.md
+    - evidence/route-cache-checks-20261030.json
+    - 35-route-cache-preimplementation-audit.md
+    - 34-paused-state-and-cleanup.md
+    - evidence/paused-and-cleanup-20261029.json
+    - evidence/real-app-first-paid-20261029.json
+    - 31-real-app-soft-budget-plan.md
+    - 32-source-closure-commit-plan.md
+    - 33-real-app-execution.md
+    - evidence/current-authorization-20261029.json
+    - 28-next-plan-reaudit.md
+    - 29-next-implementation-and-verification.md
+    - 30-next-implementation-reaudit.md
+    - evidence/next-checks-20261029.json
+    - evidence/next-authorization-20261029.json
+    - 26-offline-compatibility-and-zero-cost-followup.md
+    - 27-offline-compatibility-reaudit.md
+    - evidence/eof-before-20261029.json
+    - evidence/eof-checks-20261029.json
+    - evidence/eof-projections-20261029.json
+    - evidence/eof-component-ui-20261029.json
+    - 24-basic-pro-implementation-and-zero-cost.md
+    - 25-implementation-reaudit.md
+    - evidence/implementation-before-20261029.json
+    - evidence/implementation-checks-20261029.json
+    - 23-requirements-gap-closure-reaudit.md
+    - evidence/requirements-reaudit-before-20261029.json
+    - evidence/requirements-reaudit-plan-20261029.json
+    - evidence/requirements-reaudit-checks-20261029.json
+    - 00-feature-brief.md
+    - 21-basic-pro-plan-audit.md
+    - 22-basic-pro-intent-routing-plan.md
+    - evidence/basic-pro-requirements-before-20261028.json
+    - evidence/basic-pro-requirements-checks-20261028.json
+    - history/00-feature-brief-before-basic-pro.md
+    - history/feature-before-basic-pro.yaml
+    - 20-client-e2e-results.md
+    - evidence/client-e2e-20261028-result.json
+  diff_review:
+    status: PASS
+    summary: 35号先复审，36号实施与零费用验证，37号分离复审；条件路由/真实Cargo产物收集/分组件缓存通过定向验证；源码本地闭合无推送，08/09及历史保持；未构建新App、未收费，不是D4或独立人工批准
+  known_limitations:
+    - 新缓存只验证机制与预检，未测实际App温缓存耗时/峰值空间；64GiB和12GiB为构建前软检查，不是运行中硬保证
+    - 新adapter收集逻辑和回执已验证规则，完整新App打包/收集仍未执行；旧08/09来源不代表本轮代码
+    - 原5项兼容EOF及全量生成阻塞已关闭；仅登记家族/SDK生成通过，不代表实际App或收费资格
+    - 有界组件亮暗/1180x760/键盘已验证，仍不等于准确App与全部状态/历史重开验收
+    - 本地代码和定向检查完成，整体in_progress；新AC-021—030均pending，不代表完整D4或激活
+    - 模型限流尚未证明解除；旧4次模型和三份未知预占保留，不能复用旧关闭额度
+    - 隔离资格构建不能作为拟交付客户端的D4；当前仅零费用修复完成，App与收费暂停，后续仍需新准确来源及数据预检
+    - 新增Basic正文和Pro质量/权限/正常审批时延均未真实验证
+    - prepare保守MCP下界及meter原字节检查已实现；v3采用Native UI正常审批/停止，准确App等价与真实正常时序待验证；v2保留历史关闭规则
+    - 241.421224元为被最新授权取代的历史条件小计；不得继续作为收费准入前置
+    - 每fresh E1–E7最多17模型、Basic3/Pro3/Fetch3；20元为软阈值，按请求估算且允许在途超出，修复批次携带累计；本轮未新增收费，已发生3次模型/0REST/3元unknown估算保持
+public_readiness:
+  required: false
+  status: N/A
+  checks: []
+  external_smoke:
+    status: NOT RUN
+    command_or_steps: 本期不公开部署
+    actual_result: 未执行
+documents:
+  brief: 00-feature-brief.md
+  delivery_log: 01-delivery-log.md
+  verification: 02-verification.md

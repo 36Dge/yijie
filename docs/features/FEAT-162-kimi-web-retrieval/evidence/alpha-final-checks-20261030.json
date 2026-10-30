@@ -1,0 +1,65 @@
+{
+  "status": "PASS",
+  "completed_at": "2026-10-30T04:25:30.011Z",
+  "scope": "seven-case Alpha closure only",
+  "checks": [
+    {
+      "name": "Strict D0 document structure and semantics",
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict --gate D0 docs/features/FEAT-162-kimi-web-retrieval/",
+      "exit_code": 0
+    },
+    {
+      "name": "Claim audit: D0 only; no strict D4 claim",
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-162-kimi-web-retrieval/",
+      "exit_code": 0
+    },
+    {
+      "name": "Central governance and 11-repository manifest lint",
+      "command": "pnpm lint",
+      "exit_code": 0
+    },
+    {
+      "name": "Governance tests",
+      "command": "pnpm test",
+      "passed": 57,
+      "failed": 0
+    },
+    {
+      "name": "Root shell syntax",
+      "passed": 7,
+      "failed": 0
+    },
+    {
+      "name": "Seven results, modes, turns, preserved failures and standard byte equality",
+      "status": "PASS"
+    },
+    {
+      "name": "11 sibling worktrees clean after qualified builds",
+      "status": "PASS"
+    },
+    {
+      "name": "08/09 and historical metadata final equality",
+      "entries": 541800,
+      "status": "PASS"
+    },
+    {
+      "name": "Prior full protected file digest verification",
+      "files": 382285,
+      "status": "PASS"
+    },
+    {
+      "name": "App, observer and owned workflow normal shutdown",
+      "status": "PASS"
+    }
+  ],
+  "not_claimed": [
+    "answer quality",
+    "source relationships",
+    "fee reconciliation",
+    "standard E1-E7 PASS",
+    "strict D4 PASS",
+    "production readiness"
+  ],
+  "forbidden_test_methods_executed": false,
+  "git_push": false
+}

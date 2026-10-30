@@ -1,0 +1,68 @@
+{
+  "feature": "FEAT-162",
+  "date": "2026-10-30",
+  "change_type": "acceptance_documentation",
+  "contract_impact_this_round": "none",
+  "active_track": "alpha",
+  "closure_basis": "A1/A2/A3: corresponding Kimi tool succeeded and assistant answer visible",
+  "alpha_status": "NOT RUN",
+  "standard_status": {
+    "E1": "FAIL_HISTORICAL",
+    "E2_E7": "NOT RUN",
+    "required_for_current_feature_closure": false
+  },
+  "strict_d4_required_for_current_feature_closure": false,
+  "checks_omitted_from_alpha": [
+    "answer_quality",
+    "source_relationships",
+    "cost_record_reconciliation",
+    "full_standard_sequence",
+    "strict_D4"
+  ],
+  "standard_preservation": {
+    "source_commit": "b3b2d8e54f2d7678a8e327fb16895610a8735954",
+    "snapshot": "38-standard-acceptance.md",
+    "source": "22-basic-pro-intent-routing-plan.md",
+    "sha256": "033ca05bb99784b5b13d9245bfdbce52f9f428f0363beab074379872bf7f4a56",
+    "byte_identical": true,
+    "all_preexisting_nonactive_feature_documents_unchanged": true
+  },
+  "snapshots": {
+    "38-standard-acceptance.md": "033ca05bb99784b5b13d9245bfdbce52f9f428f0363beab074379872bf7f4a56",
+    "history/feature-before-alpha-20261030.yaml": "68a998f6725d7741e4916d7f5190eee2c9ac408100aa08e5c68f5f06f1881dab",
+    "history/00-feature-brief-before-alpha-20261030.md": "e27f10bcb3763967c512abada8e8b998a8873b604d61e9b8a432d824cdb2783e"
+  },
+  "execution": {
+    "app_builds": 0,
+    "app_launches": 0,
+    "paid_calls": 0,
+    "code_changes": 0,
+    "historical_artifacts_and_ledger_writes": 0
+  },
+  "verification": {
+    "strict_d0": "PASS",
+    "lint": "PASS",
+    "governance_tests": {
+      "status": "PASS",
+      "passed": 57
+    },
+    "shell_syntax": {
+      "status": "PASS",
+      "scripts": 7
+    },
+    "alpha_standard_consistency": "PASS",
+    "document_links": "PASS",
+    "diff_review": "PASS"
+  },
+  "logs": {
+    "lint.log": {
+      "sha256": "a3c50d3a2173897d5705b6143a6a21898092874d444c7a0ad913218e3f26d15c"
+    },
+    "d0.log": {
+      "sha256": "ccc00513c27f044ca664925a882399ed124d51bef8632ed931606e5b1e0f01c3"
+    },
+    "tests.log": {
+      "sha256": "216c66f314e8cce8aa8acf347c8a5ca015fb237ba6cdcb1f9bcffd2af6b01a62"
+    }
+  }
+}
