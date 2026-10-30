@@ -1,5 +1,5 @@
 # 2026-10-29 Basic/Pro本地代码及零费用定向检查完成，整体in_progress；旧FAIL与台账保留。
-# Owner已暂停构建/收费验收，方案A清理完成；随后授权全仓Git提交推送，未恢复验收；当前事实见34号。
+# 2026-10-30授权路由/收集/缓存修复及零费用验证；不构建App、不收费，保护08/09及历史；见35号。
 schema_version: 3
 delivery_profile: demo_fast
 exposure: local
@@ -48,6 +48,7 @@ product_ux:
     - Basic默认摘要及显式include_content正文模式
     - Pro sites/time_window/chunks与来源元数据
     - 同源工具描述引导模型选择，无额外分类模型
+    - K3.1有效选择kimi-web后Host条件禁用hosted搜索，清空选择恢复原配置
     - 原Key自动复用、当前选集、ask逐次审批与正常撤权
     - 旧期限兼容、新模式双截止/逐页状态/部分结果及同源等价验收
   out_of_scope:
@@ -73,7 +74,7 @@ product_ux:
     cancel: 发送前撤权零HTTP；发送后正常收尾，未知费用保持
 must_acceptance:
   - id: AC-021
-    statement: 一个连接器三工具、无需重复Key配置；当前选集和停用规则有效；目录61/62及原生搜索、K3.1/Runtime/数据/专家保持
+    statement: 一个连接器三工具、无需重复Key配置；当前选集和停用规则有效；目录61/62及K3.1/Runtime/数据/专家保持；原生搜索按有效Kimi选择条件路由
     verification: Z2/Z9/Z10、UI与准确来源前后摘要
     status: pending
   - id: AC-022
@@ -154,12 +155,12 @@ implementation:
   mock_only: false
 verification:
   status: FAIL
-  verified_at: 2026-10-29
+  verified_at: 2026-10-30
   startup:
     status: PASS
-    command_or_steps: 新来源canonical实际交付入口及同构建正常重开
-    environment: demo_fast local K3.1与原数据
-    actual_result: 源契约/消费者已本地提交；第五至八代真实启动、历史读取与正常退出通过；第八代E1仍失败，Owner已暂停构建及收费；当前状态见34号
+    command_or_steps: 历史05—08代canonical实际交付入口及正常重开；10-30修复源码未构建新App
+    environment: 历史demo_fast local K3.1与原数据；不能作为10-30源码启动证据
+    actual_result: 源契约/消费者已本地提交；第五至八代真实启动、历史读取与正常退出通过；第八代E1仍失败，Owner已暂停构建及收费；当前路由/收集/缓存零费用修复见36/37号，未构建新App
   real_smoke:
     status: FAIL
     command_or_steps: 旧来源结果见20；第六代E1首因未知，第七/八代E1原生搜索路由失败，E2—E7 NOT RUN；零费用覆盖见24/26/29/33
@@ -171,6 +172,9 @@ verification:
     environment: 新source消费者及实际worker
     actual_result: Kimi27项及Host实际worker正常生命周期5项通过；第五/六/八代实际App合成拒绝零REST及新会话恢复已执行；合成不能替代真实供应商成功，详情见33号
   focused_checks:
+    - name: 2026-10-30条件路由、产物收集、缓存、来源闭合及08/09保护核对
+      status: PASS
+      evidence: evidence/route-cache-checks-20261030.json
     - name: 全量生成、Owner停止适配及预算回归
       status: PASS
       evidence: evidence/next-checks-20261029.json
@@ -190,6 +194,10 @@ verification:
       status: PASS
       evidence: evidence/basic-pro-requirements-checks-20261028.json
   artifacts:
+    - 36-route-cache-zero-cost-results.md
+    - 37-route-cache-final-reaudit.md
+    - evidence/route-cache-checks-20261030.json
+    - 35-route-cache-preimplementation-audit.md
     - 34-paused-state-and-cleanup.md
     - evidence/paused-and-cleanup-20261029.json
     - evidence/real-app-first-paid-20261029.json
@@ -227,17 +235,19 @@ verification:
     - evidence/client-e2e-20261028-result.json
   diff_review:
     status: PASS
-    summary: 最新执行见31—33；全量生成与v3软阈值检查通过，20元软阈值及本地提交授权已记录；准确App与真实停止/收费E例未完成，不是D4或独立人工批准
+    summary: 35号先复审，36号实施与零费用验证，37号分离复审；条件路由/真实Cargo产物收集/分组件缓存通过定向验证；源码本地闭合无推送，08/09及历史保持；未构建新App、未收费，不是D4或独立人工批准
   known_limitations:
+    - 新缓存只验证机制与预检，未测实际App温缓存耗时/峰值空间；64GiB和12GiB为构建前软检查，不是运行中硬保证
+    - 新adapter收集逻辑和回执已验证规则，完整新App打包/收集仍未执行；旧08/09来源不代表本轮代码
     - 原5项兼容EOF及全量生成阻塞已关闭；仅登记家族/SDK生成通过，不代表实际App或收费资格
     - 有界组件亮暗/1180x760/键盘已验证，仍不等于准确App与全部状态/历史重开验收
     - 本地代码和定向检查完成，整体in_progress；新AC-021—030均pending，不代表完整D4或激活
     - 模型限流尚未证明解除；旧4次模型和三份未知预占保留，不能复用旧关闭额度
-    - 隔离资格构建不能作为拟交付客户端的D4；当前实际来源启动已获授权，需真实来源及数据预检
+    - 隔离资格构建不能作为拟交付客户端的D4；当前仅零费用修复完成，App与收费暂停，后续仍需新准确来源及数据预检
     - 新增Basic正文和Pro质量/权限/正常审批时延均未真实验证
     - prepare保守MCP下界及meter原字节检查已实现；v3采用Native UI正常审批/停止，准确App等价与真实正常时序待验证；v2保留历史关闭规则
     - 241.421224元为被最新授权取代的历史条件小计；不得继续作为收费准入前置
-    - 每fresh E1–E7最多17模型、Basic3/Pro3/Fetch3；20元为软阈值，按请求估算且允许在途超出，修复批次携带累计；新收费尚未发送
+    - 每fresh E1–E7最多17模型、Basic3/Pro3/Fetch3；20元为软阈值，按请求估算且允许在途超出，修复批次携带累计；本轮未新增收费，已发生3次模型/0REST/3元unknown估算保持
 public_readiness:
   required: false
   status: N/A
