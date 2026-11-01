@@ -29,6 +29,14 @@
   `demo_fast + local` 仅可使用 ADR-0018 固定 native scope 的免登录直达；
 - 不在未更新 ADR、架构和相关仓库文档时改变跨仓职责或依赖方向。
 
+## yijie-codex 能力强制复用
+
+这是用户明确要求的项目级长期硬性原则，适用于所有需求与功能、所有交付 Profile：`yijie-codex` 直接 fork 自 Codex 源码，易界核心 Runtime、Agent 执行链路和原生审批机制等核心能力由该仓提供。**只要 `yijie-codex` 已支持，就必须复用，不可以自行发明或重复实现。**
+
+设计和实现前必须核对当前源码、固定 Runtime 版本、canonical schema、配置与测试，并记录原生能力和接入位置。尚未接入或暴露不等于“不支持”；应通过原生接口、配置、扩展点及必要适配完成接入，不得在 Host、Desktop 等仓库另造核心执行或原生审批机制。确有原生能力缺口时，先提供证据，再按既有仓库边界、Contract First 与 Runtime 变更规则提出最小增量方案。
+
+完整规则见 [Codex 长期协作记忆](docs/dev/codex-project-memory.md) 顶部的“项目级长期硬性原则”。评审必须核查复用依据与实际调用链。
+
 ## 权威文档与目录
 
 - `repos.yaml`：兄弟仓库清单、远端、默认分支和 Owner 的唯一机器可读来源；
