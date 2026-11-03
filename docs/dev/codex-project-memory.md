@@ -2,6 +2,8 @@
 
 ## 项目级长期硬性原则：必须复用 yijie-codex（2026-11-01）
 
+2026-11-03 再次明确：这包括但不限于 `auto_compact_token_limit`、`features.token_budget`、`features.rollout_budget` 和 `goal.token_budget`。实施前必须逐项查源码、配置、作用域和测试；`rollout_budget` 已有共享会话树加权累计、提醒及预算耗尽错误，不能因尚未接入而在 Host/Desktop/新补丁里再实现一套预算。上下文阈值、上下文提醒、驻留会话树预算与显式 Goal 预算不得混称或互相替代。此次前序审计遗漏 rollout_budget 的“另建消费计数器”建议已撤回；重复计划只补原生现有补答入口的实际缺口。
+
 本原则由段成威明确要求，适用于易界多仓项目所有需求与功能的调查、设计、实现、测试和评审，不因交付 Profile、Demo、开发或测试环境而放宽。
 
 `yijie-codex` 是直接 fork 自 Codex 源码的仓库，是易界核心 Runtime、Agent 执行链路、原生审批机制等核心能力的来源。**只要 `yijie-codex` 已支持，就必须复用，不可以自行发明、重写或另建一套等价机制。**
