@@ -1,0 +1,97 @@
+{
+  "date": "2026-11-03",
+  "scope": "local implementation; not signed release",
+  "repositories": [
+    {
+      "repository": "yijie",
+      "head": "f9ff170ca6ce5a5274a2a674d5cf50d8aa8b7b05",
+      "working_tree_change_count": 2
+    },
+    {
+      "repository": "yijie-contracts",
+      "head": "dfd9012954c716d360f702d6be3bdbdef75e0633",
+      "working_tree_change_count": 0
+    },
+    {
+      "repository": "yijie-agent-host",
+      "head": "99d3f6ea192f5c17326283f08c1b86c8526bb96b",
+      "working_tree_change_count": 20
+    },
+    {
+      "repository": "yijie-desktop",
+      "head": "5fba449e30a8e75364cf08bc3e4a5d5718d424aa",
+      "working_tree_change_count": 70
+    },
+    {
+      "repository": "yijie-codex",
+      "head": "55b4e51049d6f4fc0af4b35f12832357f5e4ea06",
+      "working_tree_change_count": 0
+    }
+  ],
+  "contracts_pin": "dfd9012954c716d360f702d6be3bdbdef75e0633",
+  "checks": {
+    "contracts_breaking": {
+      "local_log": "/tmp/feat167-contract-breaking.log",
+      "sha256": "bbd372b96c965d9e206189ba59d8b66d27bfd8accc47e60d620ff2cdf9ae3f7f",
+      "size_bytes": 476
+    },
+    "contracts_lint": {
+      "local_log": "/tmp/feat167-contract-lint.log",
+      "sha256": "a22d89458ad38a59b03cf11f2079f089b6954515de3270a5f41c54dbf7820393",
+      "size_bytes": 6903
+    },
+    "native_default_final": {
+      "local_log": "/tmp/feat167-native-default-final.log",
+      "sha256": "5d6d0e41c2c079fbb27d27cbf0da1c62e6c62c4be2b4f12039ce4413a3e60b67",
+      "size_bytes": 72730
+    },
+    "native_daily_recheck": {
+      "local_log": "/tmp/feat167-native-daily-recheck.log",
+      "sha256": "145b1fd0da66d0d26d3f2a7c334f7e73c99ba94ee680df20e28add2c435a54c6",
+      "size_bytes": 925
+    },
+    "frontend_final": {
+      "local_log": "/tmp/feat167-frontend-final2.log",
+      "sha256": "16c11f4f68d2a2fc239f58ec18c66a1eee1e25644edcd3f401dec3e29c57eb9d",
+      "size_bytes": 11467
+    },
+    "frontend_scroll_recheck": {
+      "local_log": "/tmp/feat167-scroll-tests.log",
+      "sha256": "ca851fdf7babd18186b1ed07b4da53ea80fd1b04cd43eace27fa4c0e10b4bdc5",
+      "size_bytes": 244
+    },
+    "host_race": {
+      "local_log": "/tmp/feat167-host-race.log",
+      "sha256": "6c00abca66d91645dd11531235adedc8662865de8c4ada31a4d3080ae3b56387",
+      "size_bytes": 122
+    },
+    "native_cross_repo": {
+      "local_log": "/tmp/feat167-native-integration.log",
+      "sha256": "105c8d4bc63a7059c577df268cfcdb75cbfcd280e2af42f88f8eae1a4cff1bf1",
+      "size_bytes": 682
+    },
+    "delivery_lint": {
+      "local_log": "/tmp/feat167-delivery-lint.log",
+      "sha256": "5fdbedec2fbf0a86106b15d143526b85bbe8f2084ce1bc68787604d30988e3d6",
+      "size_bytes": 48
+    },
+    "native_clippy": {
+      "local_log": "/tmp/feat167-final-clippy.log",
+      "sha256": "45ebc3716fcbaf726532e85f24342eb97bdc9762857f752c66e2c4902ecaee88",
+      "size_bytes": 178
+    },
+    "generation": {
+      "local_log": "/tmp/feat167-generation.log",
+      "sha256": "e447aecc0a3789b09aafa8893a117f6e5bf534a36520f221bbbbec7da5c76c5c",
+      "size_bytes": 3177
+    },
+    "docs": {
+      "local_log": "/tmp/feat167-docs-final.log",
+      "sha256": "d71bfc0e97f0a8a27c9fe7996c3dd28c7b4c19539db56a98d736d41393e74a75",
+      "size_bytes": 760
+    }
+  },
+  "default_development_restored": true,
+  "real_user_rounds": 4,
+  "raw_reasoning_or_credentials_included": false
+}

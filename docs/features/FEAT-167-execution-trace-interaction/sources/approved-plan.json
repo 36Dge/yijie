@@ -1,0 +1,239 @@
+{
+  "date": "2026-11-03",
+  "status": "完整候选方案；未实施/未发布/未进行真实资格验证",
+  "scope_excludes": [
+    "diff",
+    "文件变更详情",
+    "新的planner/执行状态机/预算计数器",
+    "自动重放任务"
+  ],
+  "baseline": {
+    "yijie": {
+      "head": "f9ff170ca6ce5a5274a2a674d5cf50d8aa8b7b05",
+      "status": ""
+    },
+    "yijie-codex": {
+      "head": "55b4e51049d6f4fc0af4b35f12832357f5e4ea06",
+      "status": ""
+    },
+    "yijie-contracts": {
+      "head": "b51d26063f03f8fdb4109e03ede0738053740ed3",
+      "status": ""
+    },
+    "yijie-agent-host": {
+      "head": "99d3f6ea192f5c17326283f08c1b86c8526bb96b",
+      "status": ""
+    },
+    "yijie-desktop": {
+      "head": "5fba449e30a8e75364cf08bc3e4a5d5718d424aa",
+      "status": ""
+    }
+  },
+  "proposal_contract_impact": "breaking",
+  "proposed_delivery_profile": "production_hardened",
+  "exposure": "local",
+  "report_contract_impact": "none",
+  "versions": {
+    "native": "v6 candidate",
+    "sse": "13 candidate",
+    "ipc": "v6 candidate",
+    "record_format": 6,
+    "sql_migration": "0043 candidate; collision recheck required"
+  },
+  "modules": [
+    {
+      "id": "M1",
+      "name": "Runtime：复用、回归验证",
+      "repo": "yijie-codex",
+      "scope": "现有 app-server、commentary、计划、工具、取消、补答、rollout_budget；不增加 patch 或升级。确认当前 execution-progress-v1 与 canonical schema 的不可变 pin。",
+      "files": "codex-rs/core/src/session/turn.rs；protocol/src/models.rs；.yijie/patches/chat-models/0014-execution-progress.patch",
+      "done": "Runtime schema/身份无漂移；既有收敛和预算检查不回退。"
+    },
+    {
+      "id": "M2",
+      "name": "公共及 Native 契约：必要增强",
+      "repo": "yijie-contracts",
+      "scope": "新增闭合 Native v6 候选，规范安全动作、工具显示资料、willRetry、通知/快照/IPC/历史；保持旧 v4 内容和解释。",
+      "files": "openapi/native-conversation-v6/（新）；scripts/generate-native-process.mjs；scripts/sync-native-process.mjs；现有 Native private/history schema 权威源与 lock",
+      "done": "新源和生成物一致；旧消费者不收到新字段；新旧方向性组合可验证。"
+    },
+    {
+      "id": "M3",
+      "name": "Host：指令与原生投影",
+      "repo": "yijie-agent-host",
+      "scope": "统一 start/resume/model switch 的真实里程碑说明；从现有 Runtime 字段做安全新投影；并行提供旧/新版本通道。",
+      "files": "internal/codex/runtime_permissions.go、session_protocol.go、execution_progress.go；internal/session/native_conversation.go、native_process.go、native_mcp.go；internal/app/native_conversation.go",
+      "done": "不解析 shell 重建动作、不拼 legacy 合成流、不伪造 assistant；旧 endpoint 回归不变。"
+    },
+    {
+      "id": "M4",
+      "name": "Native：传输、归并与版本绑定",
+      "repo": "yijie-desktop / Rust",
+      "scope": "按每轮绑定选择 SSE11 或13；复用 sequence、ID、终态、迟到增量保护；保留新元数据及可重试观察。",
+      "files": "src-tauri/src/chat/host_bridge.rs、native_conversation.rs、application.rs、database.rs",
+      "done": "一轮一个协议；断流只走原只读恢复；不再次 turn/start。"
+    },
+    {
+      "id": "M5",
+      "name": "Native：历史与 IPC",
+      "repo": "yijie-desktop / Rust",
+      "scope": "严格 format6 reader/writer；仍读1–5；安全事实和视图原子提交后发布IPC6；UI选择不进数据库。",
+      "files": "native_conversation_storage.rs、migrations.rs、候选0043_native_display_profile.sql；ipc.rs、src-tauri/src/lib.rs；scripts/generate-native-conversation.mjs",
+      "done": "新老历史可读；读取不迁移正文；失败不留下已发布未提交状态。"
+    },
+    {
+      "id": "M6",
+      "name": "前端接入与事实视图",
+      "repo": "yijie-desktop / TS",
+      "scope": "消费单一选定Native通道，保留 context/subscription/session/revision 校验；老视图归一到同一内部只读事实模型。",
+      "files": "src/api/chat-client.ts；src/stores/chat.store.ts；src/domain/conversation-view.ts、conversation-timeline.ts；生成类型/validator",
+      "done": "不同时订阅4/6造成重复；身份、phase、可用性和生命周期保持。"
+    },
+    {
+      "id": "M7",
+      "name": "阅读投影：核心重构",
+      "repo": "yijie-desktop / TS",
+      "scope": "新增 conversation-activity-presentation.ts / conversation-activity-summary.ts；完成分区、连续组、摘要、当前状态、计划与异常摘要。",
+      "files": "src/domain/conversation-process.ts 迁移其有效规则；新增上述纯模块；保留timeline selector缓存",
+      "done": "同一事实输入确定性输出；只有阅读变化，不修改执行记录。"
+    },
+    {
+      "id": "M8",
+      "name": "轨迹与明细组件：核心重构",
+      "repo": "yijie-desktop / Vue",
+      "scope": "ChatTurnGroup改为渲染阅读节点；新增ChatActivityGroup、ChatActivityRow及轻量当前状态/计划入口；复用现有安全明细。",
+      "files": "ChatTurnGroup.vue、ChatTimeline.vue；ChatCommandItem、ChatNativeToolItem、ChatWebSearchItem、ChatTurnPlan、ChatDeepThinking、ChatSafeContent、ChatShortScrollbar",
+      "done": "主流不逐Item铺开；来源/输出/审批操作沿原入口；不出现diff。"
+    },
+    {
+      "id": "M9",
+      "name": "阅读选择、滚动与设计系统",
+      "repo": "yijie-desktop",
+      "scope": "新增仅内存 chat-trace-presentation.store.ts；适配useChatScroll展开锚点和组内滚动；同步旧设计规则及测试。",
+      "files": "src/composables/useChatScroll.ts；src/pages/chat/ChatPage.vue；src/styles/variables.css；docs/design/docs/design/05-patterns/02-chat-workspace.md",
+      "done": "用户选择、选区、阅读位置保持；不混入持久已读回执，不叠加流式节流。"
+    }
+  ],
+  "must_acceptance": [
+    {
+      "id": "AC1",
+      "name": "公开说明与原生复用",
+      "criteria": "多步真实任务能显示真实公开阶段说明及最终答案；简单回答不强插过程。无commentary时系统状态与真实活动仍可读，不能伪造模型消息；该降级不算完整模型沟通能力验收。",
+      "modules": "M1/M3/M7/M8",
+      "status": "待实施验证"
+    },
+    {
+      "id": "AC2",
+      "name": "连续活动组",
+      "criteria": "说明A→工具→reasoning→工具→说明B→工具显示为两段说明、两个工具组。32搜索+32推理+8命令无其他边界时只显示一个含40次调用的活动组，真实记录均保留。",
+      "modules": "M7/M8",
+      "status": "待实施验证"
+    },
+    {
+      "id": "AC3",
+      "name": "语义标题与计数",
+      "criteria": "安全原生命令动作能区分读取/搜索文件/列目录/运行命令；来源和工具标题有可信依据；无字段诚实兜底；调用数、动作数、来源数分开。",
+      "modules": "M2/M3/M6/M7",
+      "status": "待实施验证"
+    },
+    {
+      "id": "AC4",
+      "name": "实时与最终状态",
+      "criteria": "当前活动、等待模型、重试、待审批、最终输出、中断和失败互不冒充；未知phase可读而不改写为final；单条完成不等于整轮完成。",
+      "modules": "M3–M8",
+      "status": "待实施验证"
+    },
+    {
+      "id": "AC5",
+      "name": "展开与阅读",
+      "criteria": "整轮、组、必要的单项详情各自可控；同一轮增量不覆盖用户选择；历史默认收起普通过程，最终回答和待用户操作入口可见；键盘和焦点可用。",
+      "modules": "M7–M9",
+      "status": "待实施验证"
+    },
+    {
+      "id": "AC6",
+      "name": "错误、审批与计划",
+      "criteria": "易界保留外层异常摘要/审批入口；willRetry缺失不当false；未完成计划不自动勾选；点击任何阅读控件不执行或重放任务。",
+      "modules": "M2–M9",
+      "status": "待实施验证"
+    },
+    {
+      "id": "AC7",
+      "name": "一致性",
+      "criteria": "started/delta/completed按ID更新；完成快照后迟到增量不覆盖；版本/来源/epoch不混拼；重连及历史恢复不重复文字和动作、不重发turn。",
+      "modules": "M2–M7",
+      "status": "待实施验证"
+    },
+    {
+      "id": "AC8",
+      "name": "兼容与回滚",
+      "criteria": "规定的旧/新Host、Native、前端组合和格式1–6正常样例通过；只能回退到同时支持SQL43与format6的兼容reader；不删记录、不把6伪装为4。",
+      "modules": "M2–M6",
+      "status": "待实施验证"
+    },
+    {
+      "id": "AC9",
+      "name": "视觉与性能",
+      "criteria": "亮暗主题、1180×760、200%缩放、长标题/列表、内外滚动、选中文本、减少动态效果可操作；复用帧合并，未变化事实复用投影；同机测量无解释不了的明显回归。",
+      "modules": "M7–M9",
+      "status": "待实施验证"
+    },
+    {
+      "id": "AC10",
+      "name": "完整产品闭环",
+      "criteria": "受审版本、数据库reader、Host通道、Native提交、真实提供方、Vue与历史重开在一次fresh run串通；仅纯函数/mock通过不等于交付。没有diff设计/入口/新增数据投影；打开含archive5变更记录的正常历史样例，新UI也不显示diff入口或增删行数，但原记录可解码且数据不删。",
+      "modules": "M1–M9",
+      "status": "待实施验证"
+    }
+  ],
+  "implementation_order": [
+    {
+      "stage": "0",
+      "title": "冻结需求与当前来源",
+      "work": "把本方案、10条Must、界面状态和契约选择形成G0/G1候选；记录所有仓HEAD、runtime pin及受影响用户决定。更新旧逐条思考/第N次搜索规范，当前用户目标已覆盖这些旧展示决定。",
+      "exit": "范围和可测试用户结果明确；此步骤不构成已获批准或已交付。"
+    },
+    {
+      "stage": "1",
+      "title": "权威源与兼容先行",
+      "work": "以现有Runtime canonical字段为起点，Contracts冻结v6/SSE13/IPC6/format6；定义截断、未知、错误、顺序和源归属，生成Host/Native/TS派生物，固定新Contracts完整commit。",
+      "exit": "schema/conformance/适用方向性与breaking检查有证据；未发布候选不冒充tag。"
+    },
+    {
+      "stage": "2",
+      "title": "先准备兼容读取与回滚基线",
+      "work": "Native先支持旧1–5及新6 reader、候选SQL43，仍默认legacy-v4写入；验证旧数据不改正文、新格式正常读回及受支持Profile升级。",
+      "exit": "存在可正常启动且读新格式的回滚构建；不能只备份一个旧可执行文件。"
+    },
+    {
+      "stage": "3",
+      "title": "Host并行投影与沟通规则",
+      "work": "增加v6安全投影、SSE13，旧v4/SSE11继续；复用原生机制，更新唯一developerInstructions所有入口；新能力尚不主动切到未就绪消费者。",
+      "exit": "原生事实→两版本投影对应；源ID/phase/状态不变；安全数据最小化。"
+    },
+    {
+      "stage": "4",
+      "title": "Native全链接线",
+      "work": "新增每轮profile事务绑定、v6桥/归并/commit/IPC/历史命令，写6能力保持显式激活；完整后端可输出受审新视图。",
+      "exit": "无首次事件前的未绑定窗口；旧轮继续旧协议；commit-before-publish。"
+    },
+    {
+      "stage": "5",
+      "title": "前端阅读层与组件重构",
+      "work": "并行实现纯投影、摘要、内存展开状态、组/行组件；接入原详情、审批、来源、滚动与设计tokens；删除迁移后无效的重复主流逻辑。",
+      "exit": "安全样例和组件矩阵覆盖所有Must；前端既读6也读历史旧格式。"
+    },
+    {
+      "stage": "6",
+      "title": "集成及独立复查",
+      "work": "验证完整兼容矩阵、正常断开/恢复样例、边界截断、终态和复制；按影响运行安全focused/lint/build；独立复查事实来源、权限、回滚和设计冲突。",
+      "exit": "有对应AC的可追溯证据；禁止项明确NOT RUN及影响。"
+    },
+    {
+      "stage": "7",
+      "title": "真实入口验收与激活",
+      "work": "通过pnpm client:dev固定客户端，原生变更先正常退出再增量重启；在确认的真实调用额度下核对两个支持模型、审批/来源/停止及历史重开；最后只对新轮选择trace-v6。",
+      "exit": "完整fresh验收满足Must，分别形成core_vertical、accessibility_visual、teardown证据，再进入本地激活评审；未做模型/原生/UI项不能写通过。"
+    }
+  ]
+}

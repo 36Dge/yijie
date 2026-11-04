@@ -1,0 +1,157 @@
+$ pnpm test:demo-fast
+$ pnpm generate:check && node scripts/run-tests.mjs
+$ node scripts/generate-public-api.mjs --check && node scripts/check-agent-host-contract.mjs --check && node scripts/check-agent-host-v3-contract.mjs && node scripts/check-agent-host-skills-contract.mjs && node scripts/check-agent-host-v4-contract.mjs && pnpm check:native
+Public API types verified at 164b14f609537d727a52326832da04430aecc4ab with openapi-typescript 7.13.0/TypeScript 5.9.3.
+Agent Host v2 turn contract verified at 164b14f609537d727a52326832da04430aecc4ab; hand-written-rust-adapter is covered by EXC-127-002.
+Agent Host v3 Artifact contract and 10 Desktop implementation pins verified at 164b14f609537d727a52326832da04430aecc4ab; adapter is implemented.
+Agent Host Skills v1 API, Manifest v2, Runtime projection and exact providers verified at 164b14f609537d727a52326832da04430aecc4ab; native consumer pins are complete.
+FEAT-134 v4 immutable objects verified at Contracts 87f94c9aa6d4848cb67aa8a1265bd21474edb0bb and Agent Host 96b1fa19783694aef583b614c492fd2b6b5c15cc; activation is exact local/demo_fast/stable only.
+$ node scripts/generate-document-preview.mjs --check && node scripts/generate-web-source.mjs --check && node scripts/generate-chat-turn-timing.mjs --check && node scripts/generate-chat-turn-model.mjs --check && node scripts/generate-chat-session-purpose.mjs --check && node scripts/generate-native-conversation.mjs --check && node scripts/check-native-conversation.mjs && pnpm check:scheduled-ipc && pnpm check:market-connectors && pnpm check:market-selection && pnpm check:market-provider && pnpm check:market-host
+Private session purpose source generation verified.
+Native conversation verified: d191ad6ed08f0e8cc89dfea1346b5ecdf010e776; published=false
+FEAT-132 native sources, generated consumer snapshots and retired-engine boundary verified.
+$ node scripts/generate-scheduled-ipc.mjs --check
+Scheduled private IPC source, pinned shared types and strict generation verified.
+$ node ../yijie-contracts/scripts/sync-market-connectors.mjs --consumer=desktop --check && node scripts/sync-market-catalog.mjs --check
+Market connectors generation verified: 56 definitions, 10 IPC commands; local candidate only.
+Market connectors desktop checked; development hashes only, no immutable/release provenance claim.
+61-entry non-secret Connectors catalog verified; no provider activation.
+$ node ../yijie-contracts/scripts/sync-market-selection.mjs --consumer=desktop --check
+Market selection checked; 18 source definitions, one disabled Native submit candidate; no Host route or execution authority.
+Market connectors generation verified: 56 definitions, 10 IPC commands; local candidate only.
+Chat models source generation verified; unreleased local candidate.
+Market selection Desktop checked; no immutable/release provenance claim.
+$ node ../yijie-contracts/scripts/sync-market-provider.mjs --consumer=desktop --check
+Market provider checked: 26 definitions; no secret fields.
+Market provider desktop checked; local candidate.
+$ node ../yijie-contracts/scripts/sync-market-host.mjs --consumer=desktop --check
+Market Host checked: 72 definitions; existing v2 content and private Native authority.
+Market Host desktop checked; local candidate.
+Frontend validation: 2 safety-excluded files and 6 name filters; 8 files routed to node:test.
+
+ RUN  v4.1.10 /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop
+
+(node:53658) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:53659) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:53719) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Desktop Skill resource-channel boundary verified: release overlay contains 38 reviewed resources; no standalone production runtime is claimed.
+(node:56795) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:56798) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Agent Host Skills v1 API, Manifest v2, Runtime projection and exact providers verified at 164b14f609537d727a52326832da04430aecc4ab; native consumer pins were not checked.
+FEAT-134 v4 immutable objects verified at Contracts 87f94c9aa6d4848cb67aa8a1265bd21474edb0bb and Agent Host 96b1fa19783694aef583b614c492fd2b6b5c15cc; activation is exact local/demo_fast/stable only.
+(node:58141) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:58506) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Agent Host v3 Artifact contract and 10 Desktop implementation pins verified at 164b14f609537d727a52326832da04430aecc4ab; adapter is implemented.
+(node:59132) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59133) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59135) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59137) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59139) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59286) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59541) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59542) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59543) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+DOMException [NotSupportedError]: Failed to load module "/src/feat128/s10d-runtime-axe-frame.ts?worker_file&type=module". JavaScript file loading is disabled.
+    at HTMLScriptElement.#loadModule (file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/node_modules/.pnpm/happy-dom@20.11.1/node_modules/happy-dom/lib/nodes/html-script-element/HTMLScriptElement.js:484:31)
+    at HTMLScriptElement.[connectedToDocument] (file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/node_modules/.pnpm/happy-dom@20.11.1/node_modules/happy-dom/lib/nodes/html-script-element/HTMLScriptElement.js:312:33)
+    at HTMLScriptElement.[connectedToNode] (file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/node_modules/.pnpm/happy-dom@20.11.1/node_modules/happy-dom/lib/nodes/node/Node.js:794:53)
+    at HTMLHeadElement.[appendChild] (file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/node_modules/.pnpm/happy-dom@20.11.1/node_modules/happy-dom/lib/nodes/node/Node.js:413:45)
+    at HTMLHeadElement.[appendChild] (file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/node_modules/.pnpm/happy-dom@20.11.1/node_modules/happy-dom/lib/nodes/element/Element.js:1072:62)
+    at HTMLHeadElement.appendChild (file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/node_modules/.pnpm/happy-dom@20.11.1/node_modules/happy-dom/lib/nodes/node/Node.js:306:48)
+    at ParentNodeUtility.append (file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/node_modules/.pnpm/happy-dom@20.11.1/node_modules/happy-dom/lib/nodes/parent-node/ParentNodeUtility.js:19:28)
+    at HTMLHeadElement.append (file:///Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/node_modules/.pnpm/happy-dom@20.11.1/node_modules/happy-dom/lib/nodes/element/Element.js:502:27)
+    at Object.start (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src/feat128/s10d-runtime-controller.ts:805:21)
+    at /Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src/feat128/s10d-runtime-controller.test.ts:348:52
+(node:59549) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59552) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59564) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59571) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59577) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59578) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59584) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59605) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59622) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59632) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59635) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59674) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59677) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Development resources verified: skill-packages, 2 files, staged.
+Development resources verified: skill-packages-experts, 3 files, staged.
+Development resources verified: skill-packages, 2 files, unchanged.
+Development resources verified: skill-packages-experts, 3 files, unchanged.
+(node:59727) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59763) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59770) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  259 passed (259)
+      Tests  2101 passed | 16 skipped (2117)
+   Start at  00:10:43
+   Duration  32.31s (transform 7.66s, setup 0ms, import 54.47s, tests 35.31s, environment 14.92s)
+
+✔ real G2V requires provider success plus visible preserved answer and cleanup (1.53975ms)
+✔ saved failure and replayed history cannot qualify as a real successful answer (0.238917ms)
+✔ current source, harness and observation prerequisites cannot be bypassed (1.690833ms)
+✔ exact Python successor and Unicode receipt qualify only the new successful observation (3.133416ms)
+✔ old success cannot substitute for missing or unsuccessful new HTTP (1.415791ms)
+✔ prefix, receipt, cap, aggregate charge and extra request drift fail closed (0.435709ms)
+✔ FEAT-164 verdict controls preserve attribution and reject ambiguous evidence (1.262708ms)
+✔ FEAT-164 evidence is closed and content-free (1.344959ms)
+✔ FEAT-164 deadline uses cooperative cancellation and exactly one cleanup (12.17225ms)
+✔ FEAT-164 ordinary observer completion also cleans up exactly once (0.212042ms)
+✔ unchanged Native6 accepts rich safe labels and pre-repair saved records without migration (1.06325ms)
+✔ complete prior catalog remains valid when new resources are appended (3.080041ms)
+✔ preservation covers historical expert versions and all metadata, not only original JD or counts (4.020709ms)
+✔ FEAT-164 explicit ordinary profile (2.081125ms)
+✔ FEAT-164 explicit market profile (0.346959ms)
+✔ FEAT-164 explicit experts profile (0.222041ms)
+✔ FEAT-164 explicit media profile (0.202459ms)
+✔ FEAT-164 default stays ordinary and unknown profile cannot activate (0.106042ms)
+✔ daily K31 preserves workflow and complete market/expert/media assembly (1.533542ms)
+✔ daily storage and identity selectors cannot be mixed or implicit (0.804917ms)
+✔ canonical selector rejects invalid action pairs before any preparation (36.080542ms)
+✔ accepts a clean same-parent source set without changing product flags (0.7745ms)
+✔ rejects a different qualification tree before any generator can resolve its consumer (0.731917ms)
+✔ rejects changed source or dirty inputs without preparing or overwriting them (0.229458ms)
+✔ retains every old-reader family and selects only the existing FEAT164 catalog provenance (0.146084ms)
+✔ credential and redirect settings do not enter source checks (0.086458ms)
+✔ a failed child status is recorded once and stops the plan (0.618541ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 176.715291

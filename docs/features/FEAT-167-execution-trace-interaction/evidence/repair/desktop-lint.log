@@ -1,0 +1,36 @@
+YIJIE_DESKTOP_CONTRACTS_DIR="../yijie-contracts" pnpm generate:check
+$ node scripts/generate-public-api.mjs --check && node scripts/check-agent-host-contract.mjs --check && node scripts/check-agent-host-v3-contract.mjs && node scripts/check-agent-host-skills-contract.mjs && node scripts/check-agent-host-v4-contract.mjs && pnpm check:native
+Public API types verified at 164b14f609537d727a52326832da04430aecc4ab with openapi-typescript 7.13.0/TypeScript 5.9.3.
+Agent Host v2 turn contract verified at 164b14f609537d727a52326832da04430aecc4ab; hand-written-rust-adapter is covered by EXC-127-002.
+Agent Host v3 Artifact contract and 10 Desktop implementation pins verified at 164b14f609537d727a52326832da04430aecc4ab; adapter is implemented.
+Agent Host Skills v1 API, Manifest v2, Runtime projection and exact providers verified at 164b14f609537d727a52326832da04430aecc4ab; native consumer pins are complete.
+FEAT-134 v4 immutable objects verified at Contracts 87f94c9aa6d4848cb67aa8a1265bd21474edb0bb and Agent Host 96b1fa19783694aef583b614c492fd2b6b5c15cc; activation is exact local/demo_fast/stable only.
+$ node scripts/generate-document-preview.mjs --check && node scripts/generate-web-source.mjs --check && node scripts/generate-chat-turn-timing.mjs --check && node scripts/generate-chat-turn-model.mjs --check && node scripts/generate-chat-session-purpose.mjs --check && node scripts/generate-native-conversation.mjs --check && node scripts/check-native-conversation.mjs && pnpm check:scheduled-ipc && pnpm check:market-connectors && pnpm check:market-selection && pnpm check:market-provider && pnpm check:market-host
+Private session purpose source generation verified.
+Native conversation verified: d191ad6ed08f0e8cc89dfea1346b5ecdf010e776; published=false
+FEAT-132 native sources, generated consumer snapshots and retired-engine boundary verified.
+$ node scripts/generate-scheduled-ipc.mjs --check
+Scheduled private IPC source, pinned shared types and strict generation verified.
+$ node ../yijie-contracts/scripts/sync-market-connectors.mjs --consumer=desktop --check && node scripts/sync-market-catalog.mjs --check
+Market connectors generation verified: 56 definitions, 10 IPC commands; local candidate only.
+Market connectors desktop checked; development hashes only, no immutable/release provenance claim.
+61-entry non-secret Connectors catalog verified; no provider activation.
+$ node ../yijie-contracts/scripts/sync-market-selection.mjs --consumer=desktop --check
+Market selection checked; 18 source definitions, one disabled Native submit candidate; no Host route or execution authority.
+Market connectors generation verified: 56 definitions, 10 IPC commands; local candidate only.
+Chat models source generation verified; unreleased local candidate.
+Market selection Desktop checked; no immutable/release provenance claim.
+$ node ../yijie-contracts/scripts/sync-market-provider.mjs --consumer=desktop --check
+Market provider checked: 26 definitions; no secret fields.
+Market provider desktop checked; local candidate.
+$ node ../yijie-contracts/scripts/sync-market-host.mjs --consumer=desktop --check
+Market Host checked: 72 definitions; existing v2 content and private Native authority.
+Market Host desktop checked; local candidate.
+pnpm lint
+$ eslint . --max-warnings 0 && vue-tsc --noEmit
+cargo fmt --manifest-path src-tauri/Cargo.toml --check
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.68s
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets --features kimi-k31-pro-candidate -- -D warnings
+    Checking yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 10.52s

@@ -1,0 +1,1517 @@
+Native validation: 28 explicit safety filters; see scripts/test-safety-exclusions.json.
+   Compiling yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 13.22s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/yijie_desktop_lib-c02916f1fdf5c732)
+
+running 640 tests
+test chat::application::scheduled_dispatch_tests::feat155_3c1_never_sent_native_claim_cancels_and_refunds_once ... ok
+test chat::application::scheduled_dispatch_tests::feat155_3c1_default_reader_and_writer_cannot_dispatch ... ok
+test chat::application::scheduled_dispatch_tests::feat155_3c1_grant_change_during_readiness_is_checked_before_io ... ok
+test chat::application::scheduled_dispatch_tests::feat155_3c1_mapping_recovery_enqueues_only_original_turn_once ... ok
+test chat::application::scheduled_dispatch_tests::feat155_3c1_existing_user_bookmark_keeps_original_path_and_session ... ok
+test chat::application::scheduled_dispatch_tests::feat155_3c1_sleep_during_host_ready_prevents_attempt_and_post ... ok
+test chat::application::scheduled_dispatch_tests::feat155_3c1_pending_approval_blocks_then_same_operation_can_start ... ok
+test chat::application::scheduled_dispatch_tests::feat155_3c1_original_coordinator_reaches_native_terminal_and_stops_normally ... ok
+test chat::application::scheduled_dispatch_tests::feat155_3c1_attempted_rejection_never_reposts_or_refunds ... ok
+test chat::application::scheduled_dispatch_tests::feat155_draft_accepted_recovery_null_origin_observes_sse_without_post ... ok
+test chat::application::scheduled_dispatch_tests::feat155_draft_http_readonly_recovery_and_later_coordinator_never_post ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_clock_jump_compresses_years_and_rollback_never_rewinds ... ok
+test chat::application::scheduled_dispatch_tests::manual_composition_tests::feat155_4c1_final_post_checks_current_context_and_cancels_unsent ... ok
+test chat::application::scheduled_dispatch_tests::feat155_draft_last_post_rechecks_normal_revocation_and_suspend ... ok
+test chat::application::scheduled_dispatch_tests::manual_composition_tests::feat155_4c1_missing_mapping_releases_only_with_normal_stop_proof ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_busy_after_create_never_sends_delayed_turn ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_enable_atomic_final_revision_replay_and_no_silent_topup ... ok
+test chat::application::scheduled_dispatch_tests::manual_composition_tests::feat155_4d1_background_clock_reads_without_send_admission ... ok
+test chat::application::scheduled_dispatch_tests::feat155_3c1_three_targets_last_debit_and_dedicated_reuse ... ok
+test chat::application::scheduled_dispatch_tests::feat155_3c1_claim_rechecks_edit_ask_target_and_other_occupancy has been running for over 60 seconds
+test chat::application::scheduled_dispatch_tests::feat155_3c1_reader_reopens_20_preserving_run_and_default_15 has been running for over 60 seconds
+test chat::application::scheduled_dispatch_tests::feat155_draft_original_coordinator_typed_routes_and_policy_denial ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_long_sse_uses_same_tick_and_records_busy ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_paused_cancelled_cursors_do_not_starve_and_budget_requires_confirmation ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_original_coordinator_automatically_reaches_terminal_and_stops ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_pending_approval_is_not_unknown_and_wake_recovery_ignores_old_run ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_rerun_diff_confirmation_idempotence_and_history_unchanged ... ok
+test chat::application::scheduled_dispatch_tests::manual_composition_tests::feat155_4c1_candidate_manual_three_targets_original_coordinator ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_rerun_of_automatic_does_not_change_slot_cursor_or_original ... ok
+test chat::application::scheduled_dispatch_tests::feat155_3c1_claim_rechecks_edit_ask_target_and_other_occupancy ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_normal_reopen_cancels_never_auto_and_preserves_consumed_slot ... ok
+test chat::application::scheduled_dispatch_tests::single_composition_tests::feat155_4c3_single_and_rerun_three_targets_preserve_automatic_grant has been running for over 60 seconds
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_automatic_ready_await_pause_sleep_stop_block_first_io has been running for over 60 seconds
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_busy_late_offline_and_bounded_batches has been running for over 60 seconds
+test chat::application::tests::background_preserves_local_failure_without_inventing_runtime_completion ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_expiry_never_refunds_once_but_created_never_turn_does_not ... ok
+test chat::application::tests::feat132_coordinator_recovers_missing_cursor_from_confirmed_previous_host ... ok
+test chat::application::scheduled_dispatch_tests::feat155_3c1_reader_reopens_20_preserving_run_and_default_15 ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_automatic_ready_await_pause_sleep_stop_block_first_io ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_4c2_recovery_clocks_and_old_run_never_replay ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_4c2_pause_before_post_cancels_once ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_unknown_hold_survives_release_and_requires_new_enable_confirmation ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_busy_late_offline_and_bounded_batches ... ok
+test chat::application::tests::feat132_invalid_accepted_response_suspends_without_binding_or_replay ... ok
+test chat::application::tests::feat155_3b2_pending_stop_retains_join_until_normal_completion ... ok
+test chat::application::scheduled_dispatch_tests::single_composition_tests::feat155_4c3_single_and_rerun_three_targets_preserve_automatic_grant ... ok
+test chat::application::tests::finished_coordinator_handle_is_not_reported_as_running ... ok
+test chat::application::tests::feat132_legacy_active_row_cannot_be_promoted_or_closed_by_missing_stream ... ok
+test chat::application::tests::s10p3_real_desktop_rust_path_binds_public_task_before_host_and_retains_public_row ... ignored, S10P3 local integration: requires the explicit S10E synthetic API/identity profile
+test chat::application::tests::feat132_native_sse_commits_final_objects_without_legacy_body_reconciliation ... ok
+test chat::application::tests::deletion_recovery_only_typed_missing_host_removes_terminal_local_history ... ok
+test chat::application::tests::feat132_open_native_stream_dispatches_interrupt_before_terminal ... ok
+test chat::artifact::tests::feat136_v5_artifact_text_limits_count_chars_and_keep_v4_wire_bounds ... ok
+test chat::artifact::tests::manifest_rejects_cross_session_or_noncanonical_resources ... ok
+test chat::application::tests::feat134_direct_start_not_ready_fails_once_without_turn_post ... ok
+test chat::application::tests::feat134_first_claim_session_not_usable_suspends_without_replay ... ok
+test chat::application::tests::feat134_first_claim_turn_active_fails_without_binding_or_retry ... ok
+test chat::application::tests::feat134_reclaimed_session_not_usable_suspends_without_retry ... ok
+test chat::artifact::tests::report_adapter_accepts_all_schema_valid_cardinality_and_datetime_forms ... ok
+test chat::artifact::tests::report_adapter_accepts_unknown_optional_and_rejects_required_or_markup ... ok
+test chat::application::tests::feat134_reclaimed_v2_turn_replays_same_operation_once_without_resume ... ok
+test chat::artifact::tests::utc_commit_timestamp_is_canonical_without_a_clock_dependency ... ok
+test chat::artifact::tests::v3_wire_adapter_is_closed_scope_bound_and_never_accepts_provider_drift ... ok
+test chat::artifact_file_native::tests::exact_preview_caps_truncate_without_splitting_utf8 ... ok
+test chat::artifact_file_native::tests::feat165_normal_markdown_preview_and_office_save ... ok
+test chat::artifact_file_native::tests::json_depth_and_node_limits_fail_closed ... ok
+test chat::artifact_file_native::tests::preview_rejects_unauthorized_formats_controls_bidi_and_invalid_documents ... ok
+test chat::artifact_file_native::tests::preview_runtime_enforces_identity_concurrency_bytes_and_generation ... ok
+test chat::artifact_file_native::tests::request_decoder_is_closed_and_bounded ... ok
+test chat::artifact_file_native::tests::revision_comparison_includes_identity_media_size_digest_and_commit_revision ... ok
+test chat::artifact_file_native::tests::save_allowlist_and_extensions_are_exact ... ok
+test chat::artifact_file_native::tests::source_line_csv_shape_and_projection_caps_are_exact ... ok
+test chat::artifact_file_native::tests::text_json_and_csv_projection_is_bounded_and_inert ... ok
+test chat::artifact_media::tests::media_normal_svg_and_sample_video ... ok
+test chat::artifact_native::tests::feat165_normal_four_image_reads_queue_without_dropping_previews ... ok
+test chat::artifact_native::tests::handle_registry_is_256_bit_one_shot_scope_bound_and_bounded ... ok
+test chat::artifact_native::tests::native_errors_are_closed_and_content_free ... ok
+test chat::artifact_native::tests::native_save_cleans_only_verified_prior_process_temp_files ... ok
+test chat::artifact_native::tests::native_save_integrity_and_io_failures_are_content_free_and_cleanup_temp ... ok
+test chat::artifact_native::tests::native_save_is_atomic_overwrites_regular_file_and_keeps_authority ... ok
+test chat::artifact_native::tests::protocol_validation_is_exact_and_oracle_free ... ok
+test chat::artifact_native::tests::read_limits_enforce_two_reads_and_forty_mib_without_eviction ... ok
+test chat::artifact_native::tests::registry_rejects_duplicate_artifact_ttl_context_and_restart_replay ... ok
+test chat::artifact_native::tests::save_intent_is_single_flight_per_artifact ... ok
+test chat::artifact_native::tests::save_name_and_atomic_target_fail_closed ... ok
+test chat::application::tests::feat134_transport_after_direct_start_suspends_without_replay ... ok
+test chat::artifact_report_native::tests::projection_escapes_controls_and_truncates_at_safe_boundaries ... ok
+test chat::artifact_report_native::tests::projection_is_closed_positional_bounded_and_omits_unknown_payload ... ok
+test chat::artifact_report_native::tests::request_and_extension_are_closed ... ok
+test chat::artifact_report_native::tests::runtime_enforces_identity_concurrency_bytes_and_generation ... ok
+test chat::artifact_report_native::tests::source_depth_node_and_required_unknown_fail_closed ... ok
+test chat::artifact_video_native::tests::accepts_a_bounded_avc_sample_table ... ok
+test chat::artifact_video_native::tests::limits_two_reads_and_sixty_four_mebibytes ... ok
+test chat::artifact_video_native::tests::parses_full_closed_open_suffix_and_rejects_invalid_ranges ... ok
+test chat::artifact_video_native::tests::protocol_request_rejects_query_body_origin_and_unapproved_methods ... ok
+test chat::artifact_video_native::tests::protocol_responses_are_content_bounded_and_never_cors_enabled ... ok
+test chat::artifact_video_native::tests::registry_enforces_one_per_artifact_two_per_webview_and_restart_binding ... ok
+test chat::artifact_video_native::tests::registry_is_independent_multi_request_bounded_and_expiring ... ok
+test chat::artifact_video_native::tests::registry_supports_playback_range_volume_until_lifecycle_revocation ... ok
+test chat::artifact_video_native::tests::rejects_malformed_or_transport_only_mp4 ... ok
+test chat::artifact_video_native::tests::save_names_and_targets_are_mp4_only ... ok
+test chat::attachment::tests::every_supported_text_format_is_parsed_with_its_declared_media_type ... ok
+test chat::attachment::tests::feat165_normal_input_formats_and_hover_projection ... ok
+test chat::attachment::tests::image_decoding_is_bounded_and_rejects_truncated_magic_only_payloads ... ok
+test chat::attachment::tests::image_magic_and_extension_must_agree_at_the_exact_size_boundary ... ok
+test chat::attachment::tests::native_preparation_reports_minimal_ordered_batch_stages_and_a_terminal_failure ... ok
+test chat::attachment::tests::over_capacity_batches_are_rejected_before_any_path_is_opened ... ok
+test chat::attachment::tests::parse_and_index_are_separate_bounded_stages ... ok
+test chat::attachment::tests::pdf_text_output_stops_at_the_extracted_text_limit ... ok
+test chat::attachment::tests::pdf_with_image_and_text_is_sanitized_and_extracts_text ... ok
+test chat::attachment::tests::text_is_bounded_chunked_and_archive_extensions_are_rejected ... ok
+test chat::authorization::tests::context_is_tenant_bound_short_lived_and_capability_checked ... ok
+test chat::authorization::tests::revision_change_logout_and_process_epoch_fail_closed_without_secret_debug ... ok
+test chat::connectors::control::tests::closed_owner_does_not_write_again ... ok
+test chat::connectors::control::tests::feat158_typed_expert_error_preserves_shared_pipe_for_normal_exchange ... ok
+test chat::connectors::control::tests::ordinary_private_exchange_and_normal_eof ... ok
+test chat::artifact_report_native::tests::projection_byte_cap_truncates_whole_table_rows ... ok
+test chat::application::tests::feat134_v2_first_claim_starts_same_operation_once_without_resume ... ok
+test chat::application::tests::legacy_background_does_not_run_feat134_failed_turn_recovery ... ok
+test chat::application::tests::v2_invalid_accepted_response_keeps_original_operation_uncertain_without_repost ... ok
+test chat::application::tests::v2_turn_active_never_binds_an_unrelated_runtime_turn ... ok
+test chat::application::tests::v2_turn_operation_conflict_is_not_retried ... ok
+test chat::artifact::tests::ready_image_reader_is_scope_state_type_and_integrity_bound ... ok
+test chat::artifact::tests::ready_report_reader_is_scope_state_type_size_digest_revision_and_schema_bound ... ok
+test chat::artifact::tests::ready_video_reader_is_scope_state_type_size_digest_and_mp4_bound ... ok
+test chat::connectors::observe::tests::native_market_observe_approval_uses_actual_turn_and_original_selection ... ok
+test chat::connectors::observe::tests::native_market_observe_history_keeps_original_names_and_bounds_the_index ... ok
+test chat::connectors::observe::tests::native_market_observe_local_scope_and_unmanaged_history ... ok
+test chat::connectors::observe::tests::native_market_observe_pending_snapshot_has_no_fabricated_host_binding ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_three_automatic_targets_dedup_and_last_debit has been running for over 60 seconds
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_4c2_current_automatic_three_targets_no_manual_permit_and_last_debit has been running for over 60 seconds
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_three_automatic_targets_dedup_and_last_debit ... ok
+test chat::connectors::provider::tests::browser_recovery_requires_a_live_auth_page_and_current_credential_permission ... ok
+test chat::application::tests::feat158_native_observers_capture_overlapping_sessions ... ok
+test chat::connectors::dispatch::tests::feat158_feature_off_skips_new_expert_work_without_stalling_ordinary_conversations ... ok
+test chat::connectors::provider::tests::authorized_metadata_never_enables_unqualified_business ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_4c2_current_automatic_three_targets_no_manual_permit_and_last_debit ... ok
+test chat::connectors::provider::tests::google_client_setup_and_registered_oauth_use_separate_owned_browser_steps ... ok
+test chat::artifact::tests::media_normal_commit_save_and_reopen ... ok
+test chat::artifact::tests::sqlcipher_commit_ack_reopen_expiry_receipt_and_delete_are_atomic ... ok
+test chat::connectors::dispatch::tests::feat158_unknown_dispatch_retains_expert_and_never_enters_legacy_claim ... ok
+test chat::connectors::dispatch::tests::feat158_unknown_observation_preserves_typed_issue_and_local_submission_status ... ok
+test chat::connectors::provider::tests::disable_revision_supersedes_original_enable_locator ... ok
+test chat::connectors::provider::tests::current_enable_poll_projects_readiness_and_normal_close_removes_it ... ok
+test chat::connectors::provider::tests::existing_pending_without_observation_is_not_fresh_dispatch ... ok
+test chat::connectors::provider::tests::explicit_enable_persists_only_intent_and_original_binding ... ok
+test chat::connectors::provider::tests::typed_control_rejection_is_not_reported_as_transport_unknown ... ok
+test chat::connectors::dispatch::tests::native_market_first_turn_reuses_content_and_commits_actual_binding_atomically ... ok
+test chat::connectors::dispatch::tests::native_market_unknown_retains_original_operation_for_read_only_recovery ... ok
+test chat::connectors::dispatch::tests::feat158_dispatch_preserves_private_snapshot_through_original_receipt_binding ... ok
+test chat::connectors::provider::tests::known_rejection_can_finish_new_intent_but_never_erase_unknown_original ... ok
+test chat::connectors::dispatch::tests::feat158_expert_file_uses_existing_materializer_and_replays_after_normal_reopen ... ok
+test chat::connectors::provider::tests::ordinary_user_cancel_has_terminal_receipt_without_reopening_authorization ... ok
+test chat::connectors::provider::tests::snapshot_keeps_current_shopify_when_another_installation_has_an_old_host ... ok
+test chat::connectors::provider::tests::startup_recheck_preserves_enabled_intent_across_normal_database_reopen ... ok
+test chat::connectors::provider::tests::startup_restores_prepared_connection_once_and_respects_later_explicit_disable ... ok
+test chat::connectors::provider::tests::suspend_migration_preserves_preexisting_enablement_and_operation_receipts ... ok
+test chat::connectors::provider::tests::uninstall_fences_pending_auth_before_forget_receipt_and_late_auth_stays_stale ... ok
+test chat::connectors::provider::tests::suspend_preserves_credentials_authorization_and_reenable_after_normal_reopen ... ok
+test chat::connectors::provider::tests::kimi_local_binding_maps_missing_source_and_never_enables_or_opens_a_browser ... ok
+test chat::connectors::dispatch::tests::feat160_confirmed_busy_rejection_uses_existing_terminal_path_and_survives_reopen ... ok
+test chat::connectors::tests::feat157_authorization_adapter_availability_does_not_claim_execution_readiness ... ok
+test chat::connectors::tests::feat157_connector_permission_lease_fences_context_and_keeps_read_only_scope ... ok
+test chat::connectors::selection::tests::feat157_selection_sql31_preserves_sql30_installations_and_receipts ... ok
+test chat::connectors::store::builtin::tests::kimi_default_installs_disabled_once_and_preserves_explicit_removal ... ok
+test chat::connectors::tests::feat157_cross_border_installations_fit_snapshot_and_keyless_enable_keeps_live_gate ... ok
+test chat::connectors::tests::feat157_install_receipt_is_atomic_scoped_and_survives_replay ... ok
+test chat::connectors::selection::expert_tests::feat158_explicit_ordinary_is_a_frozen_expert_family_snapshot ... ok
+test chat::connectors::selection::tests::feat157_selection_empty_uses_chat_permission_and_nonempty_requires_connector_use ... ok
+test chat::connectors::selection::tests::feat157_selection_late_model_conflict_rolls_back_message_and_outbox ... ok
+test chat::connectors::selection::tests::feat157_selection_same_operation_binds_complete_intent_and_never_adopts_legacy ... ok
+test chat::connectors::tests::feat162_catalog_preserves_61_distinct_non_secret_services ... ok
+test chat::database::isolated_model_migration::tests::feat164_archive_readonly_preflight ... ignored, explicit actual inspection copy only; no original database access
+test chat::database::isolated_model_migration::tests::feat164_controlled_daily_migration ... ignored, requires fresh retained natural legacy fixture; never the actual daily data root
+test chat::database::isolated_model_migration::tests::feat164_controlled_isolated_migration ... ignored, requires fresh retained natural legacy fixture and isolated test output
+test chat::database::isolated_model_migration::tests::feat164_disabled_migration_is_rejected ... ignored, explicit feature-off process; no database access
+test chat::database::isolated_model_migration::tests::feat164_settled_history_preflight_readonly_copy ... ignored, explicit retained inspection copy only; no original data or migration
+test chat::connectors::selection_gate_tests::feat157_market_reader_fences_materialized_turn_resume_and_legacy_writes ... ok
+test chat::connectors::selection::tests::feat157_selection_unready_provider_does_not_enqueue_even_empty_selection ... ok
+test chat::database::tests::debug_projections_never_emit_message_title_project_or_reasoning_bodies ... ok
+test chat::connectors::tests::feat157_same_operation_different_normal_intent_conflicts ... ok
+test chat::connectors::tests::feat157_snapshot_and_mutation_follow_the_generated_wire_contract ... ok
+test chat::connectors::selection_gate_tests::feat157_market_reader_keeps_blocked_authority_state_and_uses_keyed_intent_digest ... ok
+test chat::connectors::selection_gate_tests::feat157_market_reader_leaves_create_alias_and_exhaustion_untouched ... ok
+test chat::connectors::tests::feat157_sql30_expands_sql29_preserving_existing_rows_and_ledger ... ok
+test chat::connectors::tests::feat157_unconfigured_enable_never_claims_ready ... ok
+test chat::connectors::dispatch::tests::feat160_missing_receipt_alone_keeps_unknown_and_never_resends has been running for over 60 seconds
+test chat::connectors::tests::feat157_uninstall_reinstall_fences_old_generation_without_erasing_receipts ... ok
+test chat::connectors::selection::expert_tests::feat158_expert_turn_freezes_with_existing_queue_and_replays_after_normal_reopen ... ok
+test chat::database::tests::feat132_cross_repo_host_bytes_reach_native_storage_without_identity_rewriting ... ignored, Run pnpm check:native-integration with actual Host projection output
+test chat::connectors::tests::feat157_retired_service_installation_is_hidden_without_erasing_history ... ok
+test chat::connectors::selection::tests::feat157_selection_first_turn_snapshot_is_atomic_and_survives_normal_reopen ... ok
+test chat::database::tests::attachment_checkpoint_retries_after_busy_even_when_no_rows_change ... ok
+test chat::connectors::dispatch::tests::feat160_missing_receipt_alone_keeps_unknown_and_never_resends ... ok
+test chat::database::tests::feat134_notice_history_keeps_latest_64_per_scope_in_forward_order ... ok
+test chat::database::tests::deletion_recovery_attempted_cancel_requires_confirmed_host_cleanup ... ok
+test chat::database::tests::draft_attachment_ordinals_are_target_scoped_and_append_after_removal ... ok
+test chat::connectors::selection::tests::feat157_nonempty_selection_requires_explicit_ask_but_empty_preserves_modes ... ok
+test chat::database::tests::failed_start_turn_dispatch_ignores_v1_and_keeps_the_turn_queued ... ok
+test chat::database::tests::failed_start_turn_dispatch_v2_atomically_fails_only_local_submission ... ok
+test chat::database::tests::live_database_file_protection_preserves_posix_locks ... ok
+test chat::database::tests::feat132_native_read_never_promotes_legacy_runtime_ids ... ok
+test chat::database::tests::feat132_submission_failure_stays_local_and_allows_a_new_operation ... ok
+test chat::database::tests::feat132_ui_history_read_is_readonly_and_cannot_close_a_live_stream ... ok
+test chat::database::tests::deletion_recovery_missing_host_keeps_truthful_receipt_across_reopen ... ok
+test chat::database::tests::expired_outbox_lease_recovers_after_restart_without_creating_duplicate_rows ... ok
+test chat::database::tests::draft_attachment_ordinals_preserve_same_second_import_order_across_reopen ... ok
+test chat::database::tests::failed_local_outbox_survives_normal_reopen_and_releases_next_submission ... ok
+test chat::database::tests::feat136_v5_history_loader_supports_mixed_session_and_rejects_mixed_turn ... ok
+test chat::database::tests::feat165_normal_draft_projection_is_scope_bound_and_metadata_only_for_files ... ok
+test chat::database::tests::ordinary_turn_timing_target_is_read_only_scoped_and_deleted_with_session ... ok
+test chat::database::tests::project_repository_is_scope_bound_and_remove_never_deletes_directory ... ok
+test chat::database::tests::cancelled_queue_cleanup_remains_compatible_with_base_schema ... ok
+test chat::document_preview_content::tests::html_keeps_rendering_script_source_and_text_reuses_existing_projection ... ok
+test chat::document_preview_content::tests::normal_docx_long_body_has_bounded_continuation_and_blank_page_is_readable ... ok
+test chat::document_preview_content::tests::normal_docx_preserves_headings_lists_tables_pictures_and_entities ... ok
+test chat::document_preview_content::tests::normal_pdf_raster_has_correct_orientation_and_real_graphical_content ... ok
+test chat::database::tests::public_task_host_identity_becomes_bound_only_after_normal_atomic_host_bind ... ok
+test chat::document_preview_content::tests::normal_xlsx_renders_cells_merges_shared_strings_and_cached_formulas ... ok
+test chat::document_preview_native::tests::schema_normal_document_requests_round_trip_through_native_types ... ok
+test chat::error::tests::command_errors_have_only_stable_content_free_codes ... ok
+test chat::error::tests::sqlite_storage_failures_map_to_closed_content_free_states ... ok
+test chat::database::tests::feat152_permission_storage_boundary_survives_normal_reopen ... ok
+test chat::document_preview_content::tests::normal_pptx_uses_relationship_order_instead_of_filename_sort ... ok
+test chat::database::tests::public_task_retry_budget_fails_closed_without_starting_host ... ok
+test chat::database::tests::reasoning_is_terminal_transactional_bounded_and_cascades_on_delete ... ok
+test chat::database::tests::feat167_native_format6_only_survives_normal_reopen ... ok
+test chat::database::tests::sqlcipher_file_permissions_pragmas_and_wrong_key_fail_closed ... ok
+test chat::database::tests::multimodal_blocks_bind_atomically_dispatch_v2_and_expire_content ... ok
+test chat::database::tests::feat132_native_facts_survive_normal_reopen_and_cold_history_conflict ... ok
+test chat::database::tests::startup_pending_checkpoint_truncates_wal_after_cleanup_already_committed ... ok
+test chat::database::tests::two_large_files_share_the_remaining_context_budget_fairly ... ok
+test chat::database::tests::public_task_binding_recovery_is_authority_bound_and_delete_wins_late_response ... ok
+test chat::database::tests::feat166_normal_bound_document_uses_existing_message_identity_and_expiry ... ok
+test chat::database::tests::ready_attachment_removal_is_scoped_idempotent_and_cascades_chunks ... ok
+test chat::experts::resources_tests::expert_resources_completed_history_blocks_new_version_prepare_before_journal ... ok
+test chat::experts::resources_tests::expert_resources_confirmed_unstarted_rejection_closes_only_original_journal ... ok
+test chat::experts::resources_tests::expert_resources_explicit_recovery_keeps_original_intent_with_renewed_authority ... ok
+test chat::experts::commands::tests::expert_commands_plan_combines_real_ordinary_session_model_permission_and_turn ... ok
+test chat::experts::commands::tests::expert_commands_completed_recovery_replays_before_live_composition_checks ... ok
+test chat::experts::commands::tests::expert_commands_plan_waits_for_a_normal_active_turn_before_journaling ... ok
+test chat::experts::commands::tests::expert_commands_plan_preserves_the_existing_market_snapshot ... ok
+test chat::experts::resources_tests::expert_resources_migration_keeps_ordinary_history_and_upgrades_only_expert_receipt ... ok
+test chat::experts::resources_tests::expert_resources_intent_commits_atomically_and_preserves_original_private_request ... ok
+test chat::experts::commands::tests::expert_commands_recheck_current_reader_before_returning_saved_observation ... ok
+test chat::experts::commands::tests::expert_commands_recovery_keeps_original_intent_under_a_renewed_context ... ok
+test chat::experts::commands::tests::expert_commands_recovery_rechecks_current_plugin_read_permission ... ok
+test chat::experts::resources_tests::expert_resources_remove_checks_existing_binding_references_before_recording ... ok
+test chat::experts::commands::tests::expert_commands_recovery_rechecks_sender_after_composition_guard_without_ending_original ... ok
+test chat::experts::resources_tests::expert_resources_same_operation_different_intent_conflicts ... ok
+test chat::database::tests::repository_startup_expires_attachments_across_all_scopes_and_truncates_wal ... ok
+test chat::experts::resources_tests::expert_resources_scoped_reads_and_cross_scope_pending_exclusion ... ok
+test chat::experts::store_tests::expert_store_begin_and_attempt_journal_follow_the_same_transaction ... ok
+test chat::feat137::tests::decision_failure_maps_every_ambiguous_path_to_closed_reconciliation ... ok
+test chat::feat137::tests::decision_response_is_closed_and_exactly_correlated ... ok
+test chat::feat137::tests::durable_projection_maps_runtime_turn_to_distinct_desktop_turn ... ok
+test chat::feat137::tests::durable_projection_rejects_tampered_safe_hydration_fields ... ok
+test chat::feat137::tests::pending_decision_authority_binds_every_host_and_desktop_identity ... ok
+test chat::feat137::tests::pending_snapshot_is_closed_and_live_window_bound ... ok
+test chat::host_bridge::tests::accepted_v2_turn_with_invalid_response_is_retryable_but_conflict_stays_typed ... ok
+test chat::host_bridge::tests::artifact_download_and_post_commit_ack_use_exact_owner_only_v3_resources ... ok
+test chat::host_bridge::tests::cleanup_complete_and_incomplete_are_content_free_typed_outcomes ... ok
+test chat::host_bridge::tests::exact_loopback_preflight_and_owner_token_guard_session_calls ... ok
+test chat::host_bridge::tests::feat137_ambiguous_response_is_protocol_failure_without_post_retry ... ok
+test chat::host_bridge::tests::feat137_decision_uses_one_closed_post_and_correlates_response ... ok
+test chat::host_bridge::tests::feat137_rejection_requires_exact_closed_code_status_and_message ... ok
+test chat::host_bridge::tests::feat155_3b2_generated_recovery_validates_dependent_fields_and_emits_native_values ... ok
+test chat::host_bridge::tests::feat155_3b2_missing_recovery_is_not_execution_absence ... ok
+test chat::host_bridge::tests::feat155_3b2_recovery_gets_use_health_and_owner_without_runtime_ready ... ok
+test chat::host_bridge::tests::feat155_3b2_sleep_during_readiness_blocks_permission_turn_before_io ... ok
+test chat::host_bridge::tests::host_error_messages_are_discarded_from_the_domain_error ... ok
+test chat::host_bridge::tests::lifecycle_requests_are_text_only_and_offer_no_model_or_effort_selector ... ok
+test chat::host_bridge::tests::managed_skill_accepts_closed_blocked_reason_and_degraded_runtime_visibility ... ok
+test chat::host_bridge::tests::multimodal_turn_uses_exact_v2_wire_shape_and_revalidates_image_integrity ... ok
+test chat::host_bridge::tests::resume_posts_exact_session_identity_and_requires_idle_model_ready_projection ... ok
+test chat::host_bridge::tests::skill_401_and_403_remain_distinct_content_free_rejections ... ok
+test chat::host_bridge::tests::skill_lifecycle_consumes_exact_v1_paths_and_pathless_bodies ... ok
+test chat::host_bridge::tests::start_turn_v2_adapter_serializes_canonical_contract_projection ... ok
+test chat::host_bridge::tests::turn_operation_conflict_is_typed_only_for_http_conflict ... ok
+test chat::experts::resources_tests::expert_resources_terminal_receipt_is_immutable_and_settlement_is_atomic ... ok
+test chat::host_bridge::tests::v2_stream_requires_schema_headers_cursor_and_redacts_reasoning ... ok
+test chat::host_bridge::tests::v3_stream_uses_only_exact_negotiated_route_and_returns_common_artifact_envelope ... ok
+test chat::experts::resources_tests::expert_resources_unknown_survives_empty_status_and_only_positive_receipt_settles ... ok
+test chat::host_domain::tests::canonical_reasoning_fixtures_map_to_typed_redacted_domain ... ok
+test chat::host_domain::tests::feat136_command_cwd_limit_counts_path_separators ... ok
+test chat::host_domain::tests::feat136_contract_pin_schema_and_ordinary_fixture_set_are_exact ... ok
+test chat::host_domain::tests::feat136_v5_accepts_contract_optional_empty_plan_and_warning_text ... ok
+test chat::host_domain::tests::feat136_v5_allows_only_contract_nullable_phase_and_explanation ... ok
+test chat::host_domain::tests::feat136_v5_contract_fixtures_decode_to_closed_command_tool_variants ... ok
+test chat::host_domain::tests::feat136_v5_failed_command_fixture_preserves_nonzero_terminal_fields ... ok
+test chat::host_domain::tests::feat136_v5_inherited_text_limits_count_chars_and_utf8_bytes ... ok
+test chat::host_domain::tests::feat136_v5_unbounded_problem_text_uses_event_cap_while_v4_stays_bounded ... ok
+test chat::host_domain::tests::feat136_v5_unknown_event_and_explicit_nulls_fail_closed ... ok
+test chat::host_domain::tests::feat137_v6_approval_decoder_rejects_unknown_fields_and_accepts_inherited_v5 ... ok
+test chat::host_domain::tests::feat137_v6_contract_fixtures_decode_to_closed_approval_variants ... ok
+test chat::host_domain::tests::feat165_normal_host_media_stream_reaches_all_artifacts ... ok
+test chat::host_domain::tests::feat165_normal_real_media_continuation_replay ... ok
+test chat::host_domain::tests::lifecycle_decoder_accepts_contract_authorized_empty_start_snapshots ... ok
+test chat::host_domain::tests::malformed_cursor_duplicate_sequence_and_reasoning_caps_fail_closed ... ok
+test chat::host_domain::tests::one_network_chunk_may_contain_many_individually_bounded_frames ... ok
+test chat::host_domain::tests::unknown_events_advance_only_the_delivery_cursor_and_drop_payload ... ok
+test chat::host_domain::tests::v3_decoder_allows_exact_replay_for_reducer_but_rejects_unknown_required_shapes ... ok
+test chat::host_domain::tests::v4_known_shape_and_rfc3339_failures_do_not_advance_delivery_cursor ... ok
+test chat::host_domain::tests::v4_replay_chunk_with_empty_agent_start_reaches_terminal ... ok
+test chat::ipc::projectless_payload_tests::projectless_payload_requires_explicit_null_or_existing_project_id ... ok
+test chat::ipc::tests::artifact_live_schema_and_queue_are_closed_bounded_monotonic_and_content_free ... ok
+test chat::ipc::tests::attachment_import_event_is_aggregate_and_content_free ... ok
+test chat::ipc::tests::attachment_v2_payloads_freeze_capacity_and_remove_contracts ... ok
+test chat::ipc::tests::decoded_rebind_immediately_revokes_context_subscription_and_snapshot_authority ... ok
+test chat::ipc::tests::errors_and_context_fixture_never_expose_authority_or_secret_fields ... ok
+test chat::ipc::tests::feat132_history_omits_only_empty_outbox_scaffolds ... ok
+test chat::ipc::tests::feat134_failed_turn_control_is_content_free_and_requires_authoritative_resync ... ok
+test chat::ipc::tests::feat134_history_keeps_terminal_and_session_notice_codes_content_free ... ok
+test chat::ipc::tests::feat134_history_projection_authority_preserves_legacy_and_deduplicates_v4 ... ok
+test chat::ipc::tests::feat134_live_warning_is_thread_scoped_and_provider_message_cannot_cross_ipc ... ok
+test chat::ipc::tests::feat134_reconciliation_outcome_requests_resync_without_projecting_failed_status ... ok
+test chat::ipc::tests::feat134_schema_and_native_event_fixture_are_frozen_and_content_free ... ok
+test chat::experts::store_tests::expert_store_finish_is_atomic_and_success_increments_only_once ... ok
+test chat::ipc::tests::feat134_v4_request_and_response_negotiation_is_exact ... ok
+test chat::host_bridge::tests::v2_idle_stream_does_not_inherit_feat134_recovery_timeout ... ok
+test chat::ipc::tests::feat136_failed_nonzero_command_ipc_payload_keeps_authoritative_terminal_fields ... ok
+test chat::ipc::tests::feat136_retained_v5_envelope_preserves_source_version ... ok
+test chat::ipc::tests::feat136_v5_history_and_resync_preserve_mixed_projection_authority ... ok
+test chat::ipc::tests::feat137_control_plane_dto_matches_closed_web_shapes_during_inflight_and_exhaustion ... ok
+test chat::ipc::tests::feat137_control_plane_waits_for_host_identity_before_bound ... ok
+test chat::ipc::tests::feat137_decision_failure_is_non_retryable_and_requires_resync ... ok
+test chat::ipc::tests::feat137_decision_ipc_accepts_only_local_identity_and_closed_decision ... ok
+test chat::ipc::tests::feat137_failed_turn_subscription_plan_blocks_v6_until_authoritative_resync ... ok
+test chat::ipc::tests::feat137_host_generation_discovery_waits_inside_singleflight ... ok
+test chat::ipc::tests::feat137_host_generation_resume_is_atomic_exactly_once_and_failure_safe ... ok
+test chat::ipc::tests::feat137_normal_recovery_plan_is_exactly_gated ... ok
+test chat::ipc::tests::feat137_off_control_plane_projection_is_literal_legacy_behavior ... ok
+test chat::ipc::tests::feat137_pending_private_projection_keeps_host_stream_but_redacts_host_identity ... ok
+test chat::ipc::tests::feat137_reopen_resumes_before_coordinator_and_subscribe_get_is_sse_first ... ok
+test chat::ipc::tests::feat137_resync_requires_one_closed_non_nil_subscription_continuation ... ok
+test chat::ipc::tests::feat137_subscription_cleanup_requires_exact_context_ownership ... ok
+test chat::ipc::tests::feat137_subscription_snapshot_is_exactly_bound_and_consumed_once ... ok
+test chat::ipc::tests::feat158_ordinary_subscription_receives_uncertain_submission_resync ... ok
+test chat::ipc::tests::only_the_newest_bind_generation_can_publish_a_context ... ok
+test chat::ipc::tests::private_v3_schema_is_metadata_only_and_version_negotiated ... ok
+test chat::ipc::tests::projection_is_incremental_bounded_and_uses_only_local_reasoning_ordinals ... ok
+test chat::ipc::tests::request_and_plain_text_limits_fail_closed ... ok
+test chat::ipc::tests::schema_and_golden_fixtures_freeze_closed_v1_allowlists ... ok
+test chat::ipc::tests::superseded_bind_inside_resume_cannot_publish_context_event_or_coordinator ... ok
+test chat::ipc::tests::turn_submission_resync_plan_filters_scope_and_invalidates_denied ... ok
+test chat::ipc::web_sources::tests::additive_message_action_preserves_the_original_open_and_icon_actions ... ok
+test chat::ipc::web_sources::tests::message_links_match_the_exact_model_destination_without_rewriting_history ... ok
+test chat::ipc::web_sources::tests::normal_png_is_resized_and_encoded_for_existing_csp ... ok
+test chat::ipc::web_sources::tests::normal_site_urls_and_declared_icons ... ok
+test chat::ipc::web_sources::tests::private_schema_matches_normal_native_request_and_response ... ok
+test chat::ipc::web_sources::tests::reference_website_returns_its_own_icon ... ignored, Explicit normal network check against the requested reference website
+test chat::host_bridge::tests::v4_idle_stream_returns_transport_error_without_advancing_durable_cursor ... ok
+test chat::ipc::workspaces::tests::workspace_names_accept_chinese_trim_and_normalize ... ok
+test chat::keychain::tests::ephemeral_chat_keys_are_random_separate_and_restart_stable ... ok
+test chat::ipc::tests::feat134_v4_resync_accepts_large_single_turn_final_and_reasoning_snapshot ... ok
+test chat::keychain::tests::key_debug_is_redacted_and_namespaces_are_separate ... ok
+test chat::keychain::tests::local_demo_keys_are_owner_only_separate_and_restart_stable ... ok
+test chat::keychain::tests::malformed_key_is_rejected_without_echoing_it ... ok
+test chat::ipc::tests::feat134_v4_history_byte_budget_shrinks_pages_and_keeps_the_narrowed_cursor ... ok
+test chat::kimi_k31_tests::feat164_migration_expands_without_rewriting_model_facts ... ok
+test chat::experts::store_tests::expert_store_local_rejection_keeps_managed_none_and_original_terminal_receipt ... ok
+test chat::lifecycle::tests::feat155_3b2_clock_discontinuity_and_generation_require_recovery ... ok
+test chat::lifecycle::tests::feat155_3b2_sleep_wake_invalidates_permits_and_requires_recovery ... ok
+test chat::lifecycle::tests::feat155_3b2_stop_pending_retains_barrier_across_wake_and_host_change ... ok
+test chat::lifecycle::trigger_tests::feat155_3c2_continuity_window_and_process_generation_are_not_observation_readiness ... ok
+test chat::experts::store_tests::expert_store_local_unknown_keeps_prior_reference_and_resolves_only_original_receipt ... ok
+test chat::experts::store_tests::expert_store_pending_switch_preserves_old_effective_reference_and_revision ... ok
+test chat::experts::store_tests::expert_store_receipt_requires_the_journaled_owned_host_attempt ... ok
+test chat::migrations::tests::checksum_drift_and_future_versions_fail_closed ... ok
+test chat::experts::store_tests::expert_store_rejected_initial_selection_stays_ordinary_and_history_is_untouched ... ok
+test chat::migrations::tests::feat132_populated_schema13_migrates_forward_without_native_backfill ... ok
+test chat::experts::store_tests::expert_store_rejection_keeps_revision_and_removal_is_a_new_successful_revision ... ok
+test chat::migrations::tests::feat136_v10_failed_terminal_codes_match_contract ... ok
+test chat::experts::store_tests::expert_store_same_operation_and_intent_replays_but_changed_intent_conflicts ... ok
+test chat::migrations::tests::feat136_v9_rows_remain_schema4_after_additive_v10 ... ok
+test chat::experts::store_tests::expert_store_same_operation_on_another_owned_session_conflicts_without_partial_binding ... ok
+test chat::migrations::tests::feat144_schema14_adds_format_markers_without_rewriting_native_json ... ok
+test chat::migrations::tests::feat137_v11_process_rows_are_protected_transactionally_without_touching_v5 ... ok
+test chat::experts::store_tests::expert_store_scope_ownership_applies_to_reads_and_binding_intents ... ok
+test chat::migrations::tests::populated_v1_migrates_to_current_and_repeated_startup_is_idempotent ... ok
+test chat::migrations::tests::feat155_preparation_migration_preserves_parent_and_old_chat ... ok
+test chat::migrations::tests::populated_v2_migrates_to_application_indexes_without_losing_history ... ok
+test chat::migrations::tests::populated_v3_migrates_to_recoverable_s7c_jobs_without_losing_state ... ok
+test chat::migrations::tests::populated_v4_migrates_to_terminal_content_free_control_plane_state ... ok
+test chat::migrations::tests::populated_v6_discards_unroutable_drafts_and_preserves_bound_attachment_history ... ok
+test chat::native_conversation::tests::native_display_capacity_and_projection_notice_do_not_create_execution_status ... ok
+test chat::native_conversation::tests::native_final_replaces_delta_without_prefix_reconciliation ... ok
+test chat::native_conversation::tests::native_interleaved_items_keep_indices_and_transport_deduplication ... ok
+test chat::native_conversation::tests::native_output_policy_notice_keeps_subsequent_lifecycle_authoritative ... ok
+test chat::native_conversation::tests::native_terminal_does_not_seal_items_and_gap_does_not_fail_turn ... ok
+test chat::native_conversation::tests::native_trace_retry_intent_and_notice_scope_do_not_end_the_turn ... ok
+test chat::native_conversation_storage::source_reader_tests::native_trace_v6_reads_only_current_format ... ok
+test chat::native_project::tests::security_scoped_bookmark_round_trips_without_exposing_path_in_projection ... ok
+test chat::migrations::tests::populated_v7_expands_to_empty_artifact_authority_without_backfill ... ok
+test chat::native_conversation::tests::feat144_native_tool_replacement_keeps_new_status_at_display_capacity ... ok
+test chat::migrations::tests::readonly_and_corrupt_databases_fail_closed ... ok
+test chat::runtime_permissions::tests::feat152_permission_state_matches_private_contract ... ok
+test chat::schedules::candidate::tests::feat155_daily_selection_preserves_existing_data_and_requires_exact_native_profile ... ok
+test chat::schedules::drafts::feat164_fact_reader_tests::feat164_draft_fact_versions_are_explicit_and_read_only ... ok
+test chat::experts::store_tests::expert_store_unknown_blocks_new_changes_and_keeps_confirmed_state_until_resolved ... ok
+test chat::experts::commands::tests::expert_commands_apply_rechecks_sender_after_journal_and_settles_without_dispatch ... ok
+test chat::migrations::tests::feat158_expert_expand_preserves_history_and_default_writer ... ok
+test chat::kimi_k31_tests::feat164_native_recovery_schema_preserves_legacy_pending_without_backfill ... ok
+test chat::kimi_k31_tests::feat164_old_reader_refuses_new_model_storage_without_mutation ... ok
+test chat::migrations::tests::embedded_migrations_validate_and_write_checksum_ledger ... ok
+test chat::migrations::tests::feat155_migration_default_target_and_future_reader_boundary ... ok
+test chat::models::tests::feat156_model_outbox_freezes_profile_and_rejects_changed_retry ... ok
+test chat::models::tests::turn_model_metadata_is_frozen_read_only_and_missing_for_legacy_turns ... ok
+test chat::projectless::tests::projectless_application_accepts_both_creation_routes_with_no_project ... ok
+test chat::projectless::tests::projectless_multimodal_creation_retries_and_separate_tasks_keep_distinct_workspaces ... ok
+test chat::keychain::tests::ephemeral_keys_reopen_the_same_sqlcipher_database ... ok
+test chat::schedules::execution::preparation::tests::feat155_3b1_delete_inflight_is_rejected_and_finished_dedicated_invalidates ... ok
+test chat::schedules::execution::preparation::tests::feat155_3b1_native_worker_service_prepares_once_without_enabling_run ... ok
+test chat::schedules::execution::preparation::tests::feat155_3b1_new_each_run_and_existing_managed_history_keep_distinct_targets ... ok
+test chat::schedules::execution::preparation::tests::feat155_3b1_normal_directory_resolution_failure_and_expired_grant_have_no_writes ... ok
+test chat::projectless::tests::projectless_history_and_workspace_survive_reopen_without_entering_project_picker ... ok
+test chat::ipc::workspaces::tests::named_workspace_round_trips_and_never_overwrites_existing_directory ... ok
+test chat::schedules::execution::preparation::tests::feat155_3b1_prepared_directory_then_revision_conflict_leaves_no_partial_rows ... ok
+test chat::schedules::execution::preparation::tests::feat155_3b1_replay_precedes_own_quota_expiry_and_request_conflicts ... ok
+test chat::schedules::execution::preparation::tests::feat156_bound_targets_reject_changed_model_without_consuming_grant ... ignored, requires explicit local demo_fast model writer environment
+test chat::schedules::execution::preparation::tests::feat155_3b2_cancel_never_sent_is_atomic_and_refunds_once ... ok
+test chat::schedules::execution::preparation::tests::cancelled_queue_cleanup_distinguishes_unstarted_from_attempted_turns ... ok
+test chat::schedules::execution::preparation::tests::feat155_3b2_native_read_terminal_releases_in_original_fact_transaction ... ok
+test chat::schedules::execution::preparation::tests::feat155_3b2_recovery_reads_survive_grant_expiry_and_reject_different_identity ... ok
+test chat::schedules::execution::preparation::tests::feat155_3b2_released_queued_history_is_not_cancelled_by_deletion ... ok
+test chat::schedules::execution::preparation::tests::cancelled_queue_cleanup_keeps_live_uncertain_and_bound_turns_blocked has been running for over 60 seconds
+test chat::schedules::execution::preparation::tests::feat155_daily_cancelled_uncreated_dedicated_target_gets_fresh_operation ... ok
+test chat::schedules::execution::preparation::tests::feat155_daily_failed_legacy_queue_and_exhausted_cleanup_do_not_hold_global_lane ... ok
+test chat::schedules::execution::tests::feat155_3a_deletion_pending_does_not_release_foreground_inflight ... ok
+test chat::schedules::execution::preparation::tests::cancelled_queue_cleanup_recovers_persisted_unstarted_chats_and_releases_lane has been running for over 60 seconds
+test chat::schedules::execution::preparation::tests::feat155_3b1_existing_user_directory_and_transaction_rollback_after_reservation has been running for over 60 seconds
+test chat::schedules::execution::preparation::tests::feat156_schedule_model_is_in_grant_run_and_first_turn_snapshot ... ok
+test chat::schedules::execution::preparation::tests::feat155_3b2_stopped_unknown_releases_index_without_changing_history_or_quota ... ok
+test chat::schedules::execution::tests::feat155_3a_existing_target_mode_and_scope_are_rechecked ... ok
+test chat::schedules::execution::preparation::tests::timing_tests::feat155_4d1_exact_binding_partial_conflict_and_finite_reads ... ok
+test chat::schedules::execution::preparation::tests::feat156_workspace_migration_retains_prior_grant_run_and_proofs ... ok
+test chat::schedules::execution::preparation::tests::feat155_3b1_old_grant_reopens_and_dedicated_binding_preserves_authority has been running for over 60 seconds
+test chat::schedules::execution::preparation::tests::feat155_3b2_forward_reader_keeps_old_unknown_and_default_15 has been running for over 60 seconds
+test chat::schedules::execution::tests::feat155_3a_foreground_queued_and_create_inflight_win_the_same_writer ... ok
+test chat::schedules::execution::tests::feat155_3a_grants_are_finite_scoped_idempotent_and_do_not_enable ... ok
+test chat::schedules::execution::tests::feat155_3a_native_outputs_and_closed_json_match_source ... ok
+test chat::schedules::execution::tests::feat155_3a_native_service_never_refreshes_ui_context_or_enables_execution ... ok
+test chat::schedules::execution::preparation::tests::cancelled_queue_cleanup_recovers_persisted_unstarted_chats_and_releases_lane ... ok
+test chat::schedules::execution::tests::feat155_3a_pending_approval_uncertainty_and_foreground_parity ... ok
+test chat::schedules::feat164_natural_plan_tests::feat164_natural_plan_upgrade ... ignored, explicit retained root; run legacy producer then candidate upgrade and reopen
+test chat::schedules::execution::tests::feat155_3a_reservation_atomic_rollback_duplicate_and_quota ... ok
+test chat::schedules::execution::preparation::tests::feat155_3b1_existing_user_directory_and_transaction_rollback_after_reservation ... ok
+test chat::schedules::execution::preparation::tests::feat155_3b1_old_grant_reopens_and_dedicated_binding_preserves_authority ... ok
+test chat::schedules::execution::preparation::tests::feat155_3c2_schema21_reopens_old_manual_receipts_and_chat_without_activation has been running for over 60 seconds
+test chat::schedules::execution::preparation::tests::feat155_3b2_forward_reader_keeps_old_unknown_and_default_15 ... ok
+test chat::schedules::execution::tests::feat155_3a_revalidate_revision_authority_target_and_expiry ... ok
+test chat::schedules::execution::tests::feat155_3a_shared_reservation_blocks_all_foreground_submit_paths ... ok
+test chat::schedules::execution::tests::feat155_3a_reader_holds_scheduled_outbox_unknown_and_attention ... ok
+test chat::schedules::execution::preparation::tests::timing_tests::feat155_4d1_released_terminal_reopens_and_deleted_target_cannot_accept_clock has been running for over 60 seconds
+test chat::schedules::ipc::tests::automatic_tests::feat155_4c2_native_confirmation_receipts_preview_and_pause ... ok
+test chat::schedules::execution_guard::expert_tests::feat158_old_schema_without_expert_storage_keeps_normal_reservation ... ok
+test chat::schedules::execution_guard::expert_tests::feat158_schedule_reservation_prevents_new_binding_in_same_transaction ... ok
+test chat::schedules::execution_guard::expert_tests::feat158_unsettled_binding_prevents_reservation_until_original_attempt_settles ... ok
+test chat::schedules::ipc::tests::default_activation_tests::creation_is_enabled_atomically_and_replay_never_reactivates ... ok
+test chat::schedules::ipc::tests::default_activation_tests::switch_and_edits_preserve_state_and_receipts ... ok
+test chat::schedules::execution::preparation::tests::feat155_3c2_schema21_reopens_old_manual_receipts_and_chat_without_activation ... ok
+test chat::schedules::execution::preparation::tests::cancelled_queue_cleanup_keeps_live_uncertain_and_bound_turns_blocked ... ok
+test chat::schedules::ipc::tests::draft_tests::feat156_model_draft_enters_original_claim_and_recovery_path ... ignored, requires the explicit local demo_fast model writer environment
+test chat::schedules::ipc::tests::draft_tests::feat156_projectless_chat_is_a_valid_target_and_grant_workspace ... ignored, requires the explicit local demo_fast model writer environment
+test chat::schedules::execution::preparation::tests::timing_tests::feat155_4d1_released_terminal_reopens_and_deleted_target_cannot_accept_clock ... ok
+test chat::schedules::ipc::tests::default_activation_tests::unsupported_activation_rolls_back_the_entire_creation ... ok
+test chat::schedules::ipc::tests::draft_tests::feat155_4b_ordinary_purpose_preserves_sql15_without_schedule_authority ... ok
+test chat::schedules::ipc::tests::draft_tests::confirmed_draft_is_enabled_once_without_a_second_authorization ... ok
+test chat::schedules::ipc::tests::draft_tests::feat155_4b_receipt_and_purpose_are_scoped_reads_without_host ... ok
+test chat::schedules::execution::tests::feat155_3a_reader_15_16_17_and_disabled_writer_preserve_old_chat has been running for over 60 seconds
+test chat::schedules::ipc::tests::draft_tests::feat155_draft_attempt_never_reposts_after_lease_or_reader_reopen ... ok
+test chat::schedules::ipc::tests::draft_tests::feat155_draft_clarification_followup_uses_same_restricted_conversation ... ok
+test chat::schedules::ipc::tests::feat155_3c3a_native_validator_parity_corpus ... ok
+test chat::schedules::ipc::tests::draft_tests::feat155_draft_confirmation_deadline_rolls_back_and_deletion_tombstone ... ok
+test chat::schedules::ipc::tests::feat155_3c3a_current_context_and_commit_deadline_fail_closed ... ok
+test chat::schedules::execution::tests::feat155_3a_reader_15_16_17_and_disabled_writer_preserve_old_chat ... ok
+test chat::schedules::ipc::tests::feat155_3c3a_source_validation_rejects_bounds_unknown_and_null ... ok
+test chat::schedules::ipc::tests::feat155_3c3a_deleted_link_is_tombstone_and_history_remains_scoped ... ok
+test chat::schedules::ipc::tests::feat155_4d1_strict_clock_consumer_and_private_projection ... ok
+test chat::schedules::ipc::tests::feat155_3c3a_effective_state_occurrence_truth_and_completion_priority ... ok
+test chat::schedules::ipc::tests::automatic_tests::feat155_4c2_old_confirmation_migrates_without_consent_and_reconfirms ... ok
+test chat::schedules::ipc::tests::feat155_3c3a_last_reserved_run_is_independent_of_future_budget_hold ... ok
+test chat::schedules::ipc::tests::feat155_3c3a_manual_delete_guard_links_unknown_and_trusted_release ... ok
+test chat::schedules::ipc::tests::management_tests::feat155_4a_receipt_requires_the_observed_native_plan ... ok
+test chat::schedules::ipc::tests::draft_tests::feat155_draft_submit_idempotence_reader_and_purpose_guards ... ok
+test chat::schedules::ipc::tests::draft_tests::feat155_draft_trusted_partial_final_unique_confirm_and_reopen ... ok
+test chat::schedules::ipc::tests::feat155_3c3a_native_producer_private_and_shared_conformance ... ok
+test chat::schedules::ipc::tests::feat155_3c3a_queries_page_and_bind_cursor_without_mutation ... ok
+test chat::schedules::ipc::tests::feat155_3c3a_queued_write_rechecks_rebound_context_and_native_capabilities ... ok
+test chat::schedules::ipc::tests::feat155_3c3a_save_grant_enable_and_request_replay_stay_separate ... ok
+test chat::schedules::ipc::tests::feat155_4d1_private_reader_accepts_26_without_execution_read_side_effects ... ok
+test chat::schedules::ipc::tests::feat155_final_important_updates_do_not_open_ordinary_storage ... ok
+test chat::schedules::ipc::tests::feat155_final_important_updates_are_scoped_read_only_and_bounded ... ok
+test chat::schedules::ipc::tests::management_tests::feat155_4a_cards_content_search_paging_and_scoped_receipt ... ok
+test chat::schedules::ipc::tests::management_tests::feat155_4a_record_search_keeps_snapshot_after_edit_and_delete ... ok
+test chat::schedules::ipc::tests::feat155_3c3a_default_and_compatible_reader_never_gain_writer ... ok
+test chat::schedules::ipc::tests::draft_tests::feat155_4b_unclassified_draft_requires_unique_complete_schema_and_success has been running for over 60 seconds
+test chat::schedules::ipc::tests::manual_tests::feat155_4c1_manual_only_receipts_limits_and_no_replay_permit ... ok
+test chat::schedules::ipc::tests::manual_tests::feat155_4c1_prior_grant_cannot_mint_permission_and_scope_isolated ... ok
+test chat::schedules::ipc::tests::draft_tests::feat155_draft_failed_multiple_and_incomplete_output_do_not_confirm has been running for over 60 seconds
+test chat::schedules::ipc::tests::manual_tests::feat155_4c1_ui_refresh_invalidates_claim_and_never_sent_refunds_once ... ok
+test chat::schedules::ipc::tests::recovery_tests::feat155_draft_recovery_binds_facts_only_and_explicit_continue_reuses_original ... ok
+test chat::schedules::ipc::tests::single_tests::feat155_4c3_preview_without_grant_and_purpose_receipts ... ok
+test chat::schedules::ipc::tests::single_tests::feat155_4c3_single_limits_revision_and_automatic_grant_unchanged ... ok
+test chat::schedules::ipc::tests::single_tests::feat155_4c3_unknown_purpose_blocks_dispatch_without_hiding_run_history ... ok
+test chat::schedules::tests::feat155_native_producer_schema_examples ... ok
+test chat::schedules::tests::feat155_time_calendar_dst_and_bounded_reference_queries ... ok
+test chat::schedules::tests::feat155_time_once_validation_and_continuity_are_explicit ... ok
+test chat::schedules::ipc::tests::recovery_tests::feat155_draft_reopen_pending_stays_held_and_accepted_has_unknown_origin ... ok
+test chat::sidecar::tests::child_log_capture_is_owner_only_and_bounded ... ok
+test chat::sidecar::tests::demo_fast_forwards_exact_profile_and_native_skill_roots_without_bearer ... ok
+test chat::sidecar::tests::feat128_s10_profile_is_exact_closed_and_default_off ... ok
+test chat::sidecar::tests::feat136_sidecar_child_environment_is_closed_and_dependent ... ok
+test chat::sidecar::tests::feat136_sidecar_gate_is_exact_local_and_depends_on_feat134 ... ok
+test chat::sidecar::tests::feat137_retirement_rejects_former_exact_activation ... ok
+test chat::sidecar::tests::feat152_permission_policy_reaches_the_allowlisted_child_environment ... ok
+test chat::sidecar::tests::feat164_pause_is_explicit_and_reaches_only_candidate_child ... ok
+test chat::sidecar::tests::feat164_predecessor_permission_requires_candidate_and_fixed_qualification ... ok
+test chat::sidecar::tests::feat164_surfaces_config_is_explicit_and_paired ... ok
+test chat::sidecar::tests::fixed_host_child_profile_integration ... ok
+test chat::sidecar::tests::minimax_key_file_path_is_owner_only_revalidated_and_narrowly_forwarded ... ok
+test chat::sidecar::tests::native_daily_reasoning_uses_only_the_current_provider_environment ... ok
+test chat::sidecar::tests::native_market_startup_full_model_waits_beyond_control_hello ... ok
+test chat::sidecar::tests::native_market_startup_provider_only_flag_without_authority_is_not_ready ... ok
+test chat::sidecar::tests::native_market_startup_provider_only_returns_without_model_probe ... ok
+test chat::sidecar::tests::readiness_is_bound_to_spawn_nonce_and_separate_from_liveness ... ok
+test chat::sidecar::tests::sidecar_environment_is_allowlisted_and_contains_no_provider_secret ... ok
+test chat::sidecar::tests::stale_child_evidence_is_reconciled_without_killing_unknown_processes ... ok
+test chat::sidecar::tests::test_profile_consumes_infra_nonce_and_default_nonce_stays_uuid_v7 ... ok
+test chat::tests::app_exit_shutdown_clears_host_bridge_and_is_idempotent ... ok
+test chat::tests::artifact_transfer_flag_is_exact_true_and_defaults_off ... ok
+test chat::tests::disabled_foundation_does_not_open_database_or_sidecar ... ok
+test chat::tests::disabled_runtime_projects_one_closed_non_sendable_readiness_state ... ok
+test chat::tests::feat137_missing_host_session_recovers_terminal_history_and_orphaned_active_turn ... ok
+test chat::tests::feat137_resume_projection_accepts_only_exact_durable_idle_or_active_identity ... ok
+test chat::tests::feat156_unconfigured_model_history_preserves_unfinished_recovery ... ok
+test chat::turn_timing::tests::timing_keeps_native_units_and_exact_mapping ... ok
+test chat::schedules::tests::feat155_storage_once_past_is_not_created_and_schema_denies_unknown_fields ... ok
+test feat126_secure_storage::tests::child_homes_and_project_must_match_the_derived_run_paths ... ok
+test feat126_secure_storage::tests::cleanup_is_exact_idempotent_and_retryable_after_interruption ... ok
+test feat126_secure_storage::tests::cleanup_removes_only_the_validated_run_root_after_exact_items_are_absent ... ok
+test feat126_secure_storage::tests::derives_three_closed_namespaces_without_default_or_legacy_accounts ... ok
+test feat126_secure_storage::tests::directory_roles_are_closed_and_path_free ... ok
+test feat126_secure_storage::tests::ephemeral_environment_child ... ok
+test feat126_secure_storage::tests::ephemeral_files_are_closed_versioned_private_and_restart_stable ... ok
+test feat126_secure_storage::tests::evidence_is_content_free_and_never_contains_paths_or_secrets ... ok
+test feat126_secure_storage::tests::exact_environment_profile_is_validated_in_an_isolated_subprocess ... ok
+test feat126_secure_storage::tests::manifest_mismatch_refuses_every_delete ... ok
+test feat126_secure_storage::tests::metadata_owner_nlink_and_mode_contract_is_exact ... ok
+test feat126_secure_storage::tests::partial_secret_is_fail_closed_but_exact_cleanup_is_recoverable ... ok
+test feat126_secure_storage::tests::prepare_requires_pre_inventory_absent_and_recovers_same_run ... ok
+test feat126_secure_storage::tests::secure_storage_requires_two_exact_true_gates_and_defaults_off ... ok
+test feat126_secure_storage::tests::signed_bundle_exercises_three_run_scoped_items_without_default_namespace_access ... ignored, requires an Apple Development signed bundle with Protected Data Keychain entitlement
+test feat126_secure_storage::tests::stale_same_run_pid_is_recovered_without_cross_run_mutation ... ok
+test feat126_secure_storage::tests::two_runs_have_disjoint_namespaces_and_directories ... ok
+test feat164_qualification::tests::feat164_daily_identity_and_flags_are_closed ... ok
+test feat164_qualification::tests::fixed_profile_matches_bundle_and_requires_offline_assembly ... ok
+test local_profile::tests::demo_fast_requires_the_exact_local_conjunction ... ok
+test native_auth::config::tests::enabled_configuration_is_exact_and_public_client_only ... ok
+test native_auth::config::tests::feature_is_disabled_by_default ... ok
+test native_auth::config::tests::issuer_may_use_an_exact_path_but_not_a_query ... ok
+test native_auth::config::tests::local_ca_is_rejected_outside_local_integration ... ok
+test native_auth::config::tests::local_integration_requires_exact_localhost_and_a_pinned_single_ca ... ok
+test native_auth::config::tests::rejects_api_paths_queries_and_credentials ... ok
+test native_auth::config::tests::rejects_partial_enablement_and_non_boolean_flag ... ok
+test native_auth::error::tests::command_errors_never_serialize_internal_details ... ok
+test native_auth::keychain::tests::binding_rejects_version_environment_issuer_or_client_changes ... ok
+test native_auth::keychain::tests::ephemeral_native_auth_uses_strict_envelope_without_legacy_fallback ... ok
+test native_auth::keychain::tests::keychain_namespace_is_fixed ... ok
+test native_auth::keychain::tests::persisted_envelope_is_versioned_bound_strict_and_redacted ... ok
+test native_auth::keychain::tests::protected_data_keychain_s7_round_trip ... ignored, S7 local integration: mutates and then removes an isolated synthetic Keychain item
+test native_auth::local_whitelist::tests::fingerprint_matching_is_exact_without_storing_plaintext_credentials ... ok
+test native_auth::local_whitelist::tests::local_whitelist_requires_every_local_gate ... ok
+test native_auth::local_whitelist::tests::secret_authority_requires_the_exact_feat125_inventory ... ok
+test native_auth::loopback::tests::accepts_only_a_valid_optional_keycloak_session_state ... ok
+test native_auth::loopback::tests::accepts_only_exact_path_host_state_and_code ... ok
+test native_auth::loopback::tests::binds_only_an_ephemeral_ipv4_loopback_callback ... ok
+test native_auth::loopback::tests::rejects_duplicate_unknown_or_oauth_error_parameters ... ok
+test native_auth::loopback::tests::rejects_request_bodies_and_transfer_encoding ... ok
+test native_auth::loopback::tests::rejects_wrong_host_absolute_form_and_non_get_requests ... ok
+test native_auth::oidc::tests::authorization_request_has_exact_redirect_pkce_state_nonce_and_no_secret ... ok
+test native_auth::oidc::tests::jwks_content_type_accepts_only_json_media_types ... ok
+test native_auth::oidc::tests::refresh_rotation_comparison_is_secret_safe ... ok
+test native_auth::oidc::tests::rejects_long_lived_short_lived_non_bearer_or_missing_refresh_tokens ... ok
+test native_auth::runtime::tests::browser_boundary_rejects_non_https_before_opening ... ok
+test native_auth::runtime::tests::chat_projection_time_and_capability_parsing_is_strict ... ok
+test native_auth::runtime::tests::chat_projection_window_uses_response_observation_time ... ok
+test native_auth::runtime::tests::current_rejected_access_token_is_cleared_under_the_refresh_lock ... ok
+test native_auth::runtime::tests::demo_fast_authority_requires_no_login_or_transport ... ok
+test native_auth::runtime::tests::ephemeral_secret_profile_is_rejected_for_production_auth ... ok
+test native_auth::runtime::tests::exactly_bound_record_remains_available_without_deletion ... ok
+test native_auth::runtime::tests::incompatible_or_mismatched_records_are_deleted_without_becoming_refreshable ... ok
+test native_auth::runtime::tests::invalid_refresh_cleanup_revokes_current_token_and_clears_session ... ok
+test native_auth::runtime::tests::refresh_comparison_does_not_depend_on_length_or_early_exit ... ok
+test native_auth::runtime::tests::refresh_lifecycle_accepts_only_unexpired_consistent_envelopes ... ok
+test native_auth::runtime::tests::rejected_access_token_cannot_delete_a_concurrently_refreshed_session ... ok
+test native_auth::runtime::tests::rotated_refresh_save_failure_revokes_new_token_and_clears_session ... ok
+test native_auth::secret::tests::debug_output_is_redacted ... ok
+test native_auth::synthetic_agent::tests::accepts_only_the_reviewed_keycloak_login_action ... ok
+test native_auth::synthetic_agent::tests::callback_is_bound_to_redirect_state_and_issuer ... ok
+test native_auth::synthetic_agent::tests::parses_only_the_closed_owner_secret_inventory ... ok
+test native_auth::synthetic_agent::tests::real_authorization_url_requires_actual_s256_challenge ... ok
+test native_auth::synthetic_agent::tests::synthetic_login_failures_are_closed_stage_only_classes ... ok
+test native_auth::transport::tests::operation_scope_is_fixed_to_two_get_paths ... ok
+test native_auth::transport::tests::public_task_error_matrix_and_timestamps_fail_closed ... ok
+test native_auth::transport::tests::public_task_request_is_closed_and_content_free ... ok
+test native_auth::transport::tests::response_body_rejects_token_bearing_keys_at_any_depth ... ok
+test native_auth::transport::tests::status_allowlist_matches_authoritative_contract ... ok
+test native_auth::transport::tests::tenant_header_requires_non_nil_lowercase_canonical_uuid ... ok
+test single_instance::tests::feat158_isolated_lock_requires_both_local_gate_and_compiled_identity ... ok
+test single_instance::tests::second_instance_is_rejected_until_the_first_exits ... ok
+test skills::catalog::tests::exact_reviewed_expert_bundle_loads_when_the_integration_root_is_supplied ... ok
+test skills::catalog::tests::exact_reviewed_v2_bundle_loads_when_the_integration_root_is_supplied ... ok
+test skills::catalog::tests::semantic_version_and_identifiers_are_closed ... ok
+test skills::defaults::tests::starter_progress_resumes_partial_initialization_and_preserves_removal ... ok
+test skills::experts::tests::feat158_actual_candidate_projects_separate_safe_catalog_and_exact_reference ... ok
+test skills::host::tests::automatic_upgrade_uses_semver_precedence_without_downgrading ... ok
+test skills::host::tests::errors_are_content_free_and_renderer_safe ... ok
+test skills::host::tests::installed_rollback_version_remains_usable_but_uninstalled_version_must_match_catalog ... ok
+test skills::resources::tests::feat158_expert_bundle_slot_reuses_the_existing_managed_install_root ... ok
+test skills::resources::tests::first_start_creates_one_private_app_data_layer_and_managed_roots ... ok
+test skills::resources::tests::first_start_does_not_recursively_create_a_missing_app_data_parent ... ok
+test skills::resources::tests::install_root_fingerprint_detects_real_skill_move_delete_and_content_changes ... ok
+test skills::resources::tests::install_root_fingerprint_ignores_host_state_and_transaction_mutations ... ok
+test skills::resources::tests::missing_resource_directory_and_manifest_have_stable_errors ... ok
+test skills::resources::tests::rejects_non_directory_managed_projection_and_overlapping_roots ... ok
+test skills::resources::tests::rejects_relative_base_paths_without_touching_the_filesystem ... ok
+test skills::resources::tests::resolves_bundle_and_creates_only_private_managed_directories ... ok
+test window_chrome::tests::already_compact_native_buttons_are_not_enlarged ... ok
+test window_chrome::tests::compact_drawing_preserves_center_and_native_hit_frame ... ok
+test workflows::config::tests::normally_created_owner_only_credential_file_is_readable ... ok
+test workflows::config::tests::ordinary_deployment_credential_decodes_without_exposing_token_in_debug ... ok
+test workflows::config::tests::profile_is_opt_in_and_never_needs_credentials_when_disabled ... ok
+test workflows::local_gate_tests::workflow_local_cleanup_and_window_gate_is_exact_and_opt_in ... ok
+test workflows::runtime::tests::delayed_normal_window_cleanup_preserves_a_new_context_binding ... ok
+test workflows::runtime::tests::disabled_profile_never_requires_an_editor_or_network_for_status ... ok
+test workflows::runtime::tests::normal_clock_offsets_keep_the_original_monotonic_session_cap ... ok
+test workflows::runtime::tests::normal_close_invalidates_a_queued_editor_reopen ... ok
+test workflows::runtime::tests::normal_context_change_during_open_retires_the_late_session ... ok
+test workflows::runtime::tests::normal_delete_is_idempotent_and_clears_matching_native_editor ... ok
+test workflows::runtime::tests::normal_loopback_native_consumer_preserves_resources_operations_and_expired_close ... ok
+test workflows::runtime::tests::source_validator_enforces_utf8_and_preserves_new_engine_state ... ok
+test workflows::runtime::tests::uncertain_write_keeps_the_native_operation_id_without_reissuing_it ... ok
+test workflows::window::tests::ordinary_app_routes_and_exact_editor_entry_are_the_navigation_surface ... ok
+test chat::schedules::ipc::tests::single_tests::feat155_4c3_reader_migrates_without_backfill_and_completed_plan_stays_completed ... ok
+test chat::schedules::ipc::tests::management_tests::feat155_4a_creation_migration_reopen_receipts_and_no_execution ... ok
+test chat::schedules::tests::feat155_storage_request_replay_revision_epoch_and_no_execution ... ok
+test chat::schedules::tests::feat155_4c2_background_startup_does_not_claim_foreground_work ... ok
+test chat::schedules::tests::feat155_storage_recovery_is_bounded_and_rollback_does_not_rewind ... ok
+test chat::worker::feat144_reader_tests::feat144_unknown_format_crosses_worker_and_history_without_rebuilding ... ok
+test chat::schedules::tests::feat155_4a_old_chat_migrates_22_23_and_reader_reopens ... ok
+test chat::schedules::ipc::tests::draft_tests::feat155_draft_failed_multiple_and_incomplete_output_do_not_confirm ... ok
+test chat::schedules::tests::feat155_worker_serializes_duplicate_confirmations_and_edits ... ok
+test chat::schedules::tests::feat155_storage_default_reader_forward_reopen_and_old_chat ... ok
+test chat::schedules::tests::feat155_4c3_reader25_preserves_old_chat_and_does_not_enable_ordinary_writer ... ok
+test chat::schedules::tests::feat155_storage_scoped_targets_and_compatible_deletion ... ok
+test chat::schedules::ipc::tests::draft_tests::feat155_4b_unclassified_draft_requires_unique_complete_schema_and_success ... ok
+test chat::schedules::tests::feat155_4d1_reader26_preserves_15_and_25_history_without_backfill ... ok
+
+test result: ok. 626 passed; 0 failed; 14 ignored; 0 measured; 27 filtered out; finished in 483.87s
+
+     Running unittests src/main.rs (src-tauri/target/debug/deps/yijie_desktop-37d8b16b52606f07)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests yijie_desktop_lib
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Compiling yijie-desktop v0.1.0 (/Users/jack/Downloads/Personal_Info/CrossBSD/yijie-desktop/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 13.07s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/yijie_desktop_lib-de4baa5c2cffa55c)
+
+running 677 tests
+test chat::application::scheduled_dispatch_tests::feat155_3c1_default_reader_and_writer_cannot_dispatch ... ok
+test chat::application::scheduled_dispatch_tests::feat155_3c1_never_sent_native_claim_cancels_and_refunds_once ... ok
+test chat::application::scheduled_dispatch_tests::feat155_3c1_sleep_during_host_ready_prevents_attempt_and_post ... ok
+test chat::application::scheduled_dispatch_tests::feat155_3c1_grant_change_during_readiness_is_checked_before_io ... ok
+test chat::application::scheduled_dispatch_tests::feat155_3c1_existing_user_bookmark_keeps_original_path_and_session ... ok
+test chat::application::scheduled_dispatch_tests::feat155_3c1_mapping_recovery_enqueues_only_original_turn_once ... ok
+test chat::application::scheduled_dispatch_tests::feat155_3c1_original_coordinator_reaches_native_terminal_and_stops_normally ... ok
+test chat::application::scheduled_dispatch_tests::feat155_3c1_attempted_rejection_never_reposts_or_refunds ... ok
+test chat::application::scheduled_dispatch_tests::feat155_draft_accepted_recovery_null_origin_observes_sse_without_post ... ok
+test chat::application::scheduled_dispatch_tests::feat155_3c1_pending_approval_blocks_then_same_operation_can_start ... ok
+test chat::application::scheduled_dispatch_tests::feat155_draft_http_readonly_recovery_and_later_coordinator_never_post ... ok
+test chat::application::scheduled_dispatch_tests::manual_composition_tests::feat155_4c1_missing_mapping_releases_only_with_normal_stop_proof ... ok
+test chat::application::scheduled_dispatch_tests::manual_composition_tests::feat155_4c1_final_post_checks_current_context_and_cancels_unsent ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_clock_jump_compresses_years_and_rollback_never_rewinds ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_enable_atomic_final_revision_replay_and_no_silent_topup ... ok
+test chat::application::scheduled_dispatch_tests::feat155_draft_last_post_rechecks_normal_revocation_and_suspend ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_busy_after_create_never_sends_delayed_turn ... ok
+test chat::application::scheduled_dispatch_tests::manual_composition_tests::feat155_4d1_background_clock_reads_without_send_admission ... ok
+test chat::application::scheduled_dispatch_tests::feat155_3c1_three_targets_last_debit_and_dedicated_reuse ... ok
+test chat::application::scheduled_dispatch_tests::feat155_draft_original_coordinator_typed_routes_and_policy_denial ... ok
+test chat::application::scheduled_dispatch_tests::feat155_3c1_claim_rechecks_edit_ask_target_and_other_occupancy has been running for over 60 seconds
+test chat::application::scheduled_dispatch_tests::feat155_3c1_reader_reopens_20_preserving_run_and_default_15 has been running for over 60 seconds
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_long_sse_uses_same_tick_and_records_busy ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_original_coordinator_automatically_reaches_terminal_and_stops ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_pending_approval_is_not_unknown_and_wake_recovery_ignores_old_run ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_paused_cancelled_cursors_do_not_starve_and_budget_requires_confirmation ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_rerun_diff_confirmation_idempotence_and_history_unchanged ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_rerun_of_automatic_does_not_change_slot_cursor_or_original ... ok
+test chat::application::scheduled_dispatch_tests::manual_composition_tests::feat155_4c1_candidate_manual_three_targets_original_coordinator ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_normal_reopen_cancels_never_auto_and_preserves_consumed_slot ... ok
+test chat::application::scheduled_dispatch_tests::feat155_3c1_claim_rechecks_edit_ask_target_and_other_occupancy ... ok
+test chat::application::tests::background_preserves_local_failure_without_inventing_runtime_completion ... ok
+test chat::application::scheduled_dispatch_tests::single_composition_tests::feat155_4c3_single_and_rerun_three_targets_preserve_automatic_grant has been running for over 60 seconds
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_automatic_ready_await_pause_sleep_stop_block_first_io has been running for over 60 seconds
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_busy_late_offline_and_bounded_batches has been running for over 60 seconds
+test chat::application::tests::feat132_coordinator_recovers_missing_cursor_from_confirmed_previous_host ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_expiry_never_refunds_once_but_created_never_turn_does_not ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_automatic_ready_await_pause_sleep_stop_block_first_io ... ok
+test chat::application::scheduled_dispatch_tests::feat155_3c1_reader_reopens_20_preserving_run_and_default_15 ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_4c2_recovery_clocks_and_old_run_never_replay ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_4c2_pause_before_post_cancels_once ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_unknown_hold_survives_release_and_requires_new_enable_confirmation ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_busy_late_offline_and_bounded_batches ... ok
+test chat::application::tests::feat132_legacy_active_row_cannot_be_promoted_or_closed_by_missing_stream ... ok
+test chat::application::tests::feat155_3b2_pending_stop_retains_join_until_normal_completion ... ok
+test chat::application::tests::feat132_invalid_accepted_response_suspends_without_binding_or_replay ... ok
+test chat::application::tests::finished_coordinator_handle_is_not_reported_as_running ... ok
+test chat::application::scheduled_dispatch_tests::single_composition_tests::feat155_4c3_single_and_rerun_three_targets_preserve_automatic_grant ... ok
+test chat::application::tests::s10p3_real_desktop_rust_path_binds_public_task_before_host_and_retains_public_row ... ignored, S10P3 local integration: requires the explicit S10E synthetic API/identity profile
+test chat::application::tests::feat132_native_sse_commits_final_objects_without_legacy_body_reconciliation ... ok
+test chat::application::tests::deletion_recovery_only_typed_missing_host_removes_terminal_local_history ... ok
+test chat::application::tests::feat132_open_native_stream_dispatches_interrupt_before_terminal ... ok
+test chat::artifact::tests::feat136_v5_artifact_text_limits_count_chars_and_keep_v4_wire_bounds ... ok
+test chat::artifact::tests::manifest_rejects_cross_session_or_noncanonical_resources ... ok
+test chat::application::tests::feat134_direct_start_not_ready_fails_once_without_turn_post ... ok
+test chat::application::tests::feat134_first_claim_session_not_usable_suspends_without_replay ... ok
+test chat::application::tests::feat134_first_claim_turn_active_fails_without_binding_or_retry ... ok
+test chat::application::tests::feat134_reclaimed_session_not_usable_suspends_without_retry ... ok
+test chat::artifact::tests::report_adapter_accepts_all_schema_valid_cardinality_and_datetime_forms ... ok
+test chat::artifact::tests::report_adapter_accepts_unknown_optional_and_rejects_required_or_markup ... ok
+test chat::application::tests::feat134_reclaimed_v2_turn_replays_same_operation_once_without_resume ... ok
+test chat::artifact::tests::utc_commit_timestamp_is_canonical_without_a_clock_dependency ... ok
+test chat::artifact::tests::v3_wire_adapter_is_closed_scope_bound_and_never_accepts_provider_drift ... ok
+test chat::artifact_file_native::tests::exact_preview_caps_truncate_without_splitting_utf8 ... ok
+test chat::artifact_file_native::tests::feat165_normal_markdown_preview_and_office_save ... ok
+test chat::artifact_file_native::tests::json_depth_and_node_limits_fail_closed ... ok
+test chat::artifact_file_native::tests::preview_rejects_unauthorized_formats_controls_bidi_and_invalid_documents ... ok
+test chat::artifact_file_native::tests::preview_runtime_enforces_identity_concurrency_bytes_and_generation ... ok
+test chat::artifact_file_native::tests::request_decoder_is_closed_and_bounded ... ok
+test chat::artifact_file_native::tests::revision_comparison_includes_identity_media_size_digest_and_commit_revision ... ok
+test chat::artifact_file_native::tests::save_allowlist_and_extensions_are_exact ... ok
+test chat::artifact_file_native::tests::source_line_csv_shape_and_projection_caps_are_exact ... ok
+test chat::artifact_file_native::tests::text_json_and_csv_projection_is_bounded_and_inert ... ok
+test chat::artifact_media::tests::media_normal_svg_and_sample_video ... ok
+test chat::artifact_native::tests::feat165_normal_four_image_reads_queue_without_dropping_previews ... ok
+test chat::artifact_native::tests::handle_registry_is_256_bit_one_shot_scope_bound_and_bounded ... ok
+test chat::artifact_native::tests::native_errors_are_closed_and_content_free ... ok
+test chat::artifact_native::tests::native_save_cleans_only_verified_prior_process_temp_files ... ok
+test chat::artifact_native::tests::native_save_integrity_and_io_failures_are_content_free_and_cleanup_temp ... ok
+test chat::artifact_native::tests::native_save_is_atomic_overwrites_regular_file_and_keeps_authority ... ok
+test chat::artifact_native::tests::protocol_validation_is_exact_and_oracle_free ... ok
+test chat::artifact_native::tests::read_limits_enforce_two_reads_and_forty_mib_without_eviction ... ok
+test chat::artifact_native::tests::registry_rejects_duplicate_artifact_ttl_context_and_restart_replay ... ok
+test chat::artifact_native::tests::save_intent_is_single_flight_per_artifact ... ok
+test chat::artifact_native::tests::save_name_and_atomic_target_fail_closed ... ok
+test chat::application::tests::feat134_transport_after_direct_start_suspends_without_replay ... ok
+test chat::artifact_report_native::tests::projection_escapes_controls_and_truncates_at_safe_boundaries ... ok
+test chat::artifact_report_native::tests::projection_is_closed_positional_bounded_and_omits_unknown_payload ... ok
+test chat::artifact_report_native::tests::request_and_extension_are_closed ... ok
+test chat::artifact_report_native::tests::runtime_enforces_identity_concurrency_bytes_and_generation ... ok
+test chat::artifact_report_native::tests::source_depth_node_and_required_unknown_fail_closed ... ok
+test chat::artifact_video_native::tests::accepts_a_bounded_avc_sample_table ... ok
+test chat::artifact_video_native::tests::limits_two_reads_and_sixty_four_mebibytes ... ok
+test chat::artifact_video_native::tests::parses_full_closed_open_suffix_and_rejects_invalid_ranges ... ok
+test chat::artifact_video_native::tests::protocol_request_rejects_query_body_origin_and_unapproved_methods ... ok
+test chat::artifact_video_native::tests::protocol_responses_are_content_bounded_and_never_cors_enabled ... ok
+test chat::artifact_video_native::tests::registry_enforces_one_per_artifact_two_per_webview_and_restart_binding ... ok
+test chat::artifact_video_native::tests::registry_is_independent_multi_request_bounded_and_expiring ... ok
+test chat::artifact_video_native::tests::registry_supports_playback_range_volume_until_lifecycle_revocation ... ok
+test chat::artifact_video_native::tests::rejects_malformed_or_transport_only_mp4 ... ok
+test chat::artifact_video_native::tests::save_names_and_targets_are_mp4_only ... ok
+test chat::attachment::tests::every_supported_text_format_is_parsed_with_its_declared_media_type ... ok
+test chat::attachment::tests::feat165_normal_input_formats_and_hover_projection ... ok
+test chat::attachment::tests::image_decoding_is_bounded_and_rejects_truncated_magic_only_payloads ... ok
+test chat::attachment::tests::image_magic_and_extension_must_agree_at_the_exact_size_boundary ... ok
+test chat::attachment::tests::native_preparation_reports_minimal_ordered_batch_stages_and_a_terminal_failure ... ok
+test chat::attachment::tests::over_capacity_batches_are_rejected_before_any_path_is_opened ... ok
+test chat::attachment::tests::parse_and_index_are_separate_bounded_stages ... ok
+test chat::attachment::tests::pdf_text_output_stops_at_the_extracted_text_limit ... ok
+test chat::attachment::tests::pdf_with_image_and_text_is_sanitized_and_extracts_text ... ok
+test chat::attachment::tests::text_is_bounded_chunked_and_archive_extensions_are_rejected ... ok
+test chat::authorization::tests::context_is_tenant_bound_short_lived_and_capability_checked ... ok
+test chat::authorization::tests::revision_change_logout_and_process_epoch_fail_closed_without_secret_debug ... ok
+test chat::connectors::control::tests::closed_owner_does_not_write_again ... ok
+test chat::connectors::control::tests::feat158_typed_expert_error_preserves_shared_pipe_for_normal_exchange ... ok
+test chat::connectors::control::tests::ordinary_private_exchange_and_normal_eof ... ok
+test chat::artifact_report_native::tests::projection_byte_cap_truncates_whole_table_rows ... ok
+test chat::application::tests::feat134_v2_first_claim_starts_same_operation_once_without_resume ... ok
+test chat::application::tests::legacy_background_does_not_run_feat134_failed_turn_recovery ... ok
+test chat::application::tests::v2_invalid_accepted_response_keeps_original_operation_uncertain_without_repost ... ok
+test chat::application::tests::v2_turn_active_never_binds_an_unrelated_runtime_turn ... ok
+test chat::artifact::tests::ready_image_reader_is_scope_state_type_and_integrity_bound ... ok
+test chat::application::tests::v2_turn_operation_conflict_is_not_retried ... ok
+test chat::artifact::tests::ready_report_reader_is_scope_state_type_size_digest_revision_and_schema_bound ... ok
+test chat::artifact::tests::ready_video_reader_is_scope_state_type_size_digest_and_mp4_bound ... ok
+test chat::connectors::observe::tests::native_market_observe_approval_uses_actual_turn_and_original_selection ... ok
+test chat::connectors::observe::tests::native_market_observe_history_keeps_original_names_and_bounds_the_index ... ok
+test chat::connectors::observe::tests::native_market_observe_local_scope_and_unmanaged_history ... ok
+test chat::connectors::observe::tests::native_market_observe_pending_snapshot_has_no_fabricated_host_binding ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_three_automatic_targets_dedup_and_last_debit has been running for over 60 seconds
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_4c2_current_automatic_three_targets_no_manual_permit_and_last_debit has been running for over 60 seconds
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_3c2_three_automatic_targets_dedup_and_last_debit ... ok
+test chat::connectors::provider::tests::browser_recovery_requires_a_live_auth_page_and_current_credential_permission ... ok
+test chat::application::tests::feat158_native_observers_capture_overlapping_sessions ... ok
+test chat::connectors::provider::tests::authorized_metadata_never_enables_unqualified_business ... ok
+test chat::application::scheduled_dispatch_tests::trigger_tests::feat155_4c2_current_automatic_three_targets_no_manual_permit_and_last_debit ... ok
+test chat::artifact::tests::media_normal_commit_save_and_reopen ... ok
+test chat::connectors::provider::tests::google_client_setup_and_registered_oauth_use_separate_owned_browser_steps ... ok
+test chat::connectors::dispatch::tests::feat158_feature_off_skips_new_expert_work_without_stalling_ordinary_conversations ... ok
+test chat::artifact::tests::sqlcipher_commit_ack_reopen_expiry_receipt_and_delete_are_atomic ... ok
+test chat::connectors::provider::tests::current_enable_poll_projects_readiness_and_normal_close_removes_it ... ok
+test chat::connectors::provider::tests::disable_revision_supersedes_original_enable_locator ... ok
+test chat::connectors::provider::tests::existing_pending_without_observation_is_not_fresh_dispatch ... ok
+test chat::connectors::dispatch::tests::feat158_unknown_dispatch_retains_expert_and_never_enters_legacy_claim ... ok
+test chat::connectors::dispatch::tests::feat158_unknown_observation_preserves_typed_issue_and_local_submission_status ... ok
+test chat::connectors::provider::tests::explicit_enable_persists_only_intent_and_original_binding ... ok
+test chat::connectors::provider::tests::typed_control_rejection_is_not_reported_as_transport_unknown ... ok
+test chat::connectors::provider::tests::known_rejection_can_finish_new_intent_but_never_erase_unknown_original ... ok
+test chat::connectors::provider::tests::ordinary_user_cancel_has_terminal_receipt_without_reopening_authorization ... ok
+test chat::connectors::dispatch::tests::native_market_unknown_retains_original_operation_for_read_only_recovery ... ok
+test chat::connectors::dispatch::tests::native_market_first_turn_reuses_content_and_commits_actual_binding_atomically ... ok
+test chat::connectors::dispatch::tests::feat158_dispatch_preserves_private_snapshot_through_original_receipt_binding ... ok
+test chat::connectors::dispatch::tests::feat158_expert_file_uses_existing_materializer_and_replays_after_normal_reopen ... ok
+test chat::connectors::provider::tests::snapshot_keeps_current_shopify_when_another_installation_has_an_old_host ... ok
+test chat::connectors::provider::tests::startup_restores_prepared_connection_once_and_respects_later_explicit_disable ... ok
+test chat::connectors::provider::tests::suspend_migration_preserves_preexisting_enablement_and_operation_receipts ... ok
+test chat::connectors::provider::tests::startup_recheck_preserves_enabled_intent_across_normal_database_reopen ... ok
+test chat::connectors::provider::tests::suspend_preserves_credentials_authorization_and_reenable_after_normal_reopen ... ok
+test chat::connectors::provider::tests::uninstall_fences_pending_auth_before_forget_receipt_and_late_auth_stays_stale ... ok
+test chat::connectors::provider::tests::kimi_local_binding_maps_missing_source_and_never_enables_or_opens_a_browser ... ok
+test chat::connectors::dispatch::tests::feat160_confirmed_busy_rejection_uses_existing_terminal_path_and_survives_reopen ... ok
+test chat::connectors::selection::tests::feat157_selection_sql31_preserves_sql30_installations_and_receipts ... ok
+test chat::connectors::dispatch::tests::feat160_missing_receipt_alone_keeps_unknown_and_never_resends has been running for over 60 seconds
+test chat::connectors::selection::expert_tests::feat158_explicit_ordinary_is_a_frozen_expert_family_snapshot ... ok
+test chat::connectors::selection::tests::feat157_selection_empty_uses_chat_permission_and_nonempty_requires_connector_use ... ok
+test chat::connectors::tests::feat157_authorization_adapter_availability_does_not_claim_execution_readiness ... ok
+test chat::connectors::tests::feat157_connector_permission_lease_fences_context_and_keeps_read_only_scope ... ok
+test chat::connectors::selection_gate_tests::feat157_market_reader_fences_materialized_turn_resume_and_legacy_writes ... ok
+test chat::connectors::selection::tests::feat157_selection_late_model_conflict_rolls_back_message_and_outbox ... ok
+test chat::connectors::selection::tests::feat157_selection_same_operation_binds_complete_intent_and_never_adopts_legacy ... ok
+test chat::connectors::selection::tests::feat157_selection_unready_provider_does_not_enqueue_even_empty_selection ... ok
+test chat::connectors::selection_gate_tests::feat157_market_reader_keeps_blocked_authority_state_and_uses_keyed_intent_digest ... ok
+test chat::connectors::selection_gate_tests::feat157_market_reader_leaves_create_alias_and_exhaustion_untouched ... ok
+test chat::connectors::store::builtin::tests::kimi_default_installs_disabled_once_and_preserves_explicit_removal ... ok
+test chat::connectors::tests::feat157_install_receipt_is_atomic_scoped_and_survives_replay ... ok
+test chat::connectors::tests::feat162_catalog_preserves_61_distinct_non_secret_services ... ok
+test chat::database::isolated_model_migration::tests::feat164_archive_readonly_preflight ... ignored, explicit actual inspection copy only; no original database access
+test chat::database::isolated_model_migration::tests::feat164_controlled_daily_migration ... ignored, requires fresh retained natural legacy fixture; never the actual daily data root
+test chat::database::isolated_model_migration::tests::feat164_controlled_isolated_migration ... ignored, requires fresh retained natural legacy fixture and isolated test output
+test chat::database::isolated_model_migration::tests::feat164_disabled_migration_is_rejected ... ignored, explicit feature-off process; no database access
+test chat::database::isolated_model_migration::tests::feat164_settled_history_preflight_readonly_copy ... ignored, explicit retained inspection copy only; no original data or migration
+test chat::connectors::tests::feat157_cross_border_installations_fit_snapshot_and_keyless_enable_keeps_live_gate ... ok
+test chat::connectors::selection::expert_tests::feat158_expert_turn_freezes_with_existing_queue_and_replays_after_normal_reopen ... ok
+test chat::database::tests::debug_projections_never_emit_message_title_project_or_reasoning_bodies ... ok
+test chat::connectors::tests::feat157_same_operation_different_normal_intent_conflicts ... ok
+test chat::connectors::tests::feat157_snapshot_and_mutation_follow_the_generated_wire_contract ... ok
+test chat::connectors::selection::expert_tests::feat164_surfaces_expert_normal_reopen ... ok
+test chat::connectors::tests::feat157_sql30_expands_sql29_preserving_existing_rows_and_ledger ... ok
+test chat::connectors::tests::feat157_unconfigured_enable_never_claims_ready ... ok
+test chat::connectors::selection::tests::feat157_selection_first_turn_snapshot_is_atomic_and_survives_normal_reopen ... ok
+test chat::connectors::tests::feat157_uninstall_reinstall_fences_old_generation_without_erasing_receipts ... ok
+test chat::connectors::tests::feat157_retired_service_installation_is_hidden_without_erasing_history ... ok
+test chat::database::tests::feat132_cross_repo_host_bytes_reach_native_storage_without_identity_rewriting ... ignored, Run pnpm check:native-integration with actual Host projection output
+test chat::connectors::selection::tests::feat162_k31_kimi_selection_preserves_receipt_after_normal_reopen ... ok
+test chat::connectors::selection::tests::feat164_surfaces_market_normal_reopen ... ok
+test chat::database::tests::attachment_checkpoint_retries_after_busy_even_when_no_rows_change ... ok
+test chat::connectors::selection::tests::feat157_nonempty_selection_requires_explicit_ask_but_empty_preserves_modes ... ok
+test chat::database::tests::feat134_notice_history_keeps_latest_64_per_scope_in_forward_order ... ok
+test chat::connectors::dispatch::tests::feat160_missing_receipt_alone_keeps_unknown_and_never_resends ... ok
+test chat::database::tests::deletion_recovery_attempted_cancel_requires_confirmed_host_cleanup ... ok
+test chat::database::tests::feat162_daily_media_reopens_sql41_without_file_candidate_migration ... ignored, run explicitly with the canonical local daily media environment
+test chat::database::tests::draft_attachment_ordinals_are_target_scoped_and_append_after_removal ... ok
+test chat::database::tests::failed_start_turn_dispatch_ignores_v1_and_keeps_the_turn_queued ... ok
+test chat::database::tests::failed_start_turn_dispatch_v2_atomically_fails_only_local_submission ... ok
+test chat::database::tests::live_database_file_protection_preserves_posix_locks ... ok
+test chat::database::tests::feat132_native_read_never_promotes_legacy_runtime_ids ... ok
+test chat::database::tests::feat132_submission_failure_stays_local_and_allows_a_new_operation ... ok
+test chat::database::tests::deletion_recovery_missing_host_keeps_truthful_receipt_across_reopen ... ok
+test chat::database::tests::feat132_ui_history_read_is_readonly_and_cannot_close_a_live_stream ... ok
+test chat::database::tests::feat136_v5_history_loader_supports_mixed_session_and_rejects_mixed_turn ... ok
+test chat::database::tests::draft_attachment_ordinals_preserve_same_second_import_order_across_reopen ... ok
+test chat::database::tests::feat165_normal_draft_projection_is_scope_bound_and_metadata_only_for_files ... ok
+test chat::database::tests::expired_outbox_lease_recovers_after_restart_without_creating_duplicate_rows ... ok
+test chat::database::tests::failed_local_outbox_survives_normal_reopen_and_releases_next_submission ... ok
+test chat::database::tests::ordinary_turn_timing_target_is_read_only_scoped_and_deleted_with_session ... ok
+test chat::database::tests::project_repository_is_scope_bound_and_remove_never_deletes_directory ... ok
+test chat::database::tests::cancelled_queue_cleanup_remains_compatible_with_base_schema ... ok
+
+running 1 test
+test chat::delivery::tests::feat164_delivery_cancel_after_claim_survives_reopen_without_rewriting_or_reviving ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 703 filtered out; finished in 1.12s
+
+test chat::delivery::tests::feat164_delivery_cancel_after_claim_survives_reopen_without_rewriting_or_reviving ... ok
+
+running 1 test
+test chat::delivery::tests::feat164_delivery_cancel_releases_lane_and_allows_explicit_model_selection ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 703 filtered out; finished in 0.75s
+
+test chat::delivery::tests::feat164_delivery_cancel_releases_lane_and_allows_explicit_model_selection ... ok
+test chat::database::tests::feat152_permission_storage_boundary_survives_normal_reopen ... ok
+
+running 1 test
+test chat::database::tests::public_task_host_identity_becomes_bound_only_after_normal_atomic_host_bind ... ok
+test chat::delivery::tests::feat164_delivery_market_and_expert_have_independent_proof_and_no_ordinary_claim ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 703 filtered out; finished in 1.46s
+
+test chat::delivery::tests::feat164_delivery_market_and_expert_have_independent_proof_and_no_ordinary_claim ... ok
+test chat::database::tests::public_task_retry_budget_fails_closed_without_starting_host ... ok
+
+running 1 test
+test chat::delivery::tests::feat164_delivery_new_chat_binding_is_observed_before_first_turn_send ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 703 filtered out; finished in 0.82s
+
+test chat::delivery::tests::feat164_delivery_new_chat_binding_is_observed_before_first_turn_send ... ok
+
+running 1 test
+test chat::database::tests::reasoning_is_terminal_transactional_bounded_and_cascades_on_delete ... ok
+
+running 1 test
+test chat::delivery::tests::feat164_delivery_ordinary_final_send_binds_operation_profile_path_and_is_single_use ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 703 filtered out; finished in 0.78s
+
+test chat::delivery::tests::feat164_delivery_ordinary_final_send_binds_operation_profile_path_and_is_single_use ... ok
+
+running 1 test
+test chat::delivery::tests::feat164_delivery_pause_blocks_claim_but_preserves_explicit_unsent_cancel ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 703 filtered out; finished in 0.76s
+
+test chat::delivery::tests::feat164_delivery_pause_blocks_claim_but_preserves_explicit_unsent_cancel ... ok
+
+running 1 test
+test chat::delivery::tests::feat164_delivery_permission_turn_checks_nested_source_operation ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 703 filtered out; finished in 0.76s
+
+test chat::delivery::tests::feat164_delivery_permission_turn_checks_nested_source_operation ... ok
+test chat::document_preview_content::tests::html_keeps_rendering_script_source_and_text_reuses_existing_projection ... ok
+test chat::document_preview_content::tests::normal_docx_long_body_has_bounded_continuation_and_blank_page_is_readable ... ok
+test chat::database::tests::sqlcipher_file_permissions_pragmas_and_wrong_key_fail_closed ... ok
+test chat::document_preview_content::tests::normal_pdf_raster_has_correct_orientation_and_real_graphical_content ... ok
+test chat::database::tests::feat132_native_facts_survive_normal_reopen_and_cold_history_conflict ... ok
+test chat::document_preview_content::tests::normal_xlsx_renders_cells_merges_shared_strings_and_cached_formulas ... ok
+test chat::document_preview_native::tests::schema_normal_document_requests_round_trip_through_native_types ... ok
+test chat::error::tests::command_errors_have_only_stable_content_free_codes ... ok
+test chat::error::tests::sqlite_storage_failures_map_to_closed_content_free_states ... ok
+test chat::database::tests::feat167_native_format6_only_survives_normal_reopen ... ok
+test chat::document_preview_content::tests::normal_docx_preserves_headings_lists_tables_pictures_and_entities ... ok
+test chat::delivery::tests::feat164_delivery_public_or_create_attempt_prevents_cancel_even_after_legacy_retry_reset ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 703 filtered out; finished in 2.29s
+
+test chat::delivery::tests::feat164_delivery_public_or_create_attempt_prevents_cancel_even_after_legacy_retry_reset ... ok
+test chat::document_preview_content::tests::normal_pptx_uses_relationship_order_instead_of_filename_sort ... ok
+test chat::database::tests::multimodal_blocks_bind_atomically_dispatch_v2_and_expire_content ... ok
+test chat::database::tests::startup_pending_checkpoint_truncates_wal_after_cleanup_already_committed ... ok
+test chat::database::tests::two_large_files_share_the_remaining_context_budget_fairly ... ok
+test chat::delivery::tests::feat164_delivery_migration_does_not_backfill_legacy_pending ... ok
+test chat::database::tests::public_task_binding_recovery_is_authority_bound_and_delete_wins_late_response ... ok
+test chat::database::tests::feat166_normal_bound_document_uses_existing_message_identity_and_expiry ... ok
+test chat::database::tests::ready_attachment_removal_is_scoped_idempotent_and_cascades_chunks ... ok
+test chat::experts::resources_tests::expert_resources_completed_history_blocks_new_version_prepare_before_journal ... ok
+test chat::experts::resources_tests::expert_resources_confirmed_unstarted_rejection_closes_only_original_journal ... ok
+test chat::experts::resources_tests::expert_resources_explicit_recovery_keeps_original_intent_with_renewed_authority ... ok
+test chat::delivery::tests::feat164_delivery_legacy_without_proof_remains_unclassified_and_unmodified ... ok
+test chat::experts::commands::tests::expert_commands_completed_recovery_replays_before_live_composition_checks ... ok
+test chat::experts::commands::tests::expert_commands_plan_preserves_the_existing_market_snapshot ... ok
+test chat::experts::commands::tests::expert_commands_plan_combines_real_ordinary_session_model_permission_and_turn ... ok
+test chat::experts::commands::tests::expert_commands_plan_waits_for_a_normal_active_turn_before_journaling ... ok
+test chat::delivery::tests::feat164_delivery_new_acceptance_replay_preserves_proof_and_input_identity ... ok
+test chat::experts::commands::tests::expert_commands_recheck_current_reader_before_returning_saved_observation ... ok
+test chat::database::tests::repository_startup_expires_attachments_across_all_scopes_and_truncates_wal ... ok
+test chat::experts::resources_tests::expert_resources_intent_commits_atomically_and_preserves_original_private_request ... ok
+test chat::experts::commands::tests::expert_commands_recovery_keeps_original_intent_under_a_renewed_context ... ok
+test chat::experts::resources_tests::expert_resources_migration_keeps_ordinary_history_and_upgrades_only_expert_receipt ... ok
+test chat::experts::commands::tests::expert_commands_recovery_rechecks_current_plugin_read_permission ... ok
+test chat::experts::resources_tests::expert_resources_remove_checks_existing_binding_references_before_recording ... ok
+test chat::experts::resources_tests::expert_resources_same_operation_different_intent_conflicts ... ok
+test chat::experts::resources_tests::expert_resources_scoped_reads_and_cross_scope_pending_exclusion ... ok
+test chat::experts::commands::tests::expert_commands_recovery_rechecks_sender_after_composition_guard_without_ending_original ... ok
+test chat::experts::resources_tests::expert_resources_terminal_receipt_is_immutable_and_settlement_is_atomic ... ok
+test chat::feat137::tests::decision_failure_maps_every_ambiguous_path_to_closed_reconciliation ... ok
+test chat::feat137::tests::decision_response_is_closed_and_exactly_correlated ... ok
+test chat::feat137::tests::durable_projection_maps_runtime_turn_to_distinct_desktop_turn ... ok
+test chat::feat137::tests::durable_projection_rejects_tampered_safe_hydration_fields ... ok
+test chat::feat137::tests::pending_decision_authority_binds_every_host_and_desktop_identity ... ok
+test chat::feat137::tests::pending_snapshot_is_closed_and_live_window_bound ... ok
+test chat::feat164_boundary_tests::feat164_native_host_boundary ... ignored, requires explicit isolated real Host/Runtime driver, never an App connection
+test chat::host_bridge::tests::accepted_v2_turn_with_invalid_response_is_retryable_but_conflict_stays_typed ... ok
+test chat::host_bridge::tests::artifact_download_and_post_commit_ack_use_exact_owner_only_v3_resources ... ok
+test chat::host_bridge::tests::cleanup_complete_and_incomplete_are_content_free_typed_outcomes ... ok
+test chat::host_bridge::tests::exact_loopback_preflight_and_owner_token_guard_session_calls ... ok
+test chat::host_bridge::tests::feat137_ambiguous_response_is_protocol_failure_without_post_retry ... ok
+test chat::host_bridge::tests::feat137_decision_uses_one_closed_post_and_correlates_response ... ok
+test chat::host_bridge::tests::feat137_rejection_requires_exact_closed_code_status_and_message ... ok
+test chat::host_bridge::tests::feat155_3b2_generated_recovery_validates_dependent_fields_and_emits_native_values ... ok
+test chat::host_bridge::tests::feat155_3b2_missing_recovery_is_not_execution_absence ... ok
+test chat::host_bridge::tests::feat155_3b2_recovery_gets_use_health_and_owner_without_runtime_ready ... ok
+test chat::host_bridge::tests::feat155_3b2_sleep_during_readiness_blocks_permission_turn_before_io ... ok
+
+running 1 test
+test chat::experts::resources_tests::expert_resources_unknown_survives_empty_status_and_only_positive_receipt_settles ... ok
+test chat::host_bridge::tests::feat164_model_recovery_wire_reads_original_then_current_and_guards_writes ... ok
+test chat::host_bridge::tests::host_error_messages_are_discarded_from_the_domain_error ... ok
+test chat::host_bridge::tests::lifecycle_requests_are_text_only_and_offer_no_model_or_effort_selector ... ok
+test chat::host_bridge::tests::managed_skill_accepts_closed_blocked_reason_and_degraded_runtime_visibility ... ok
+test chat::host_bridge::tests::multimodal_turn_uses_exact_v2_wire_shape_and_revalidates_image_integrity ... ok
+test chat::host_bridge::tests::resume_posts_exact_session_identity_and_requires_idle_model_ready_projection ... ok
+test chat::host_bridge::tests::skill_401_and_403_remain_distinct_content_free_rejections ... ok
+test chat::host_bridge::tests::skill_lifecycle_consumes_exact_v1_paths_and_pathless_bodies ... ok
+test chat::host_bridge::tests::start_turn_v2_adapter_serializes_canonical_contract_projection ... ok
+test chat::host_bridge::tests::turn_operation_conflict_is_typed_only_for_http_conflict ... ok
+test chat::experts::store_tests::expert_store_begin_and_attempt_journal_follow_the_same_transaction ... ok
+test chat::host_bridge::tests::v2_stream_requires_schema_headers_cursor_and_redacts_reasoning ... ok
+test chat::host_bridge::tests::v3_stream_uses_only_exact_negotiated_route_and_returns_common_artifact_envelope ... ok
+test chat::experts::store_tests::expert_store_finish_is_atomic_and_success_increments_only_once ... ok
+test chat::host_domain::tests::canonical_reasoning_fixtures_map_to_typed_redacted_domain ... ok
+test chat::host_domain::tests::feat136_command_cwd_limit_counts_path_separators ... ok
+test chat::host_domain::tests::feat136_contract_pin_schema_and_ordinary_fixture_set_are_exact ... ok
+test chat::host_domain::tests::feat136_v5_accepts_contract_optional_empty_plan_and_warning_text ... ok
+test chat::host_domain::tests::feat136_v5_allows_only_contract_nullable_phase_and_explanation ... ok
+test chat::host_domain::tests::feat136_v5_contract_fixtures_decode_to_closed_command_tool_variants ... ok
+test chat::host_domain::tests::feat136_v5_failed_command_fixture_preserves_nonzero_terminal_fields ... ok
+test chat::host_domain::tests::feat136_v5_inherited_text_limits_count_chars_and_utf8_bytes ... ok
+test chat::host_domain::tests::feat136_v5_unbounded_problem_text_uses_event_cap_while_v4_stays_bounded ... ok
+test chat::host_domain::tests::feat136_v5_unknown_event_and_explicit_nulls_fail_closed ... ok
+test chat::host_domain::tests::feat137_v6_approval_decoder_rejects_unknown_fields_and_accepts_inherited_v5 ... ok
+test chat::host_domain::tests::feat137_v6_contract_fixtures_decode_to_closed_approval_variants ... ok
+test chat::host_domain::tests::feat165_normal_host_media_stream_reaches_all_artifacts ... ok
+test chat::host_domain::tests::feat165_normal_real_media_continuation_replay ... ok
+test chat::host_domain::tests::lifecycle_decoder_accepts_contract_authorized_empty_start_snapshots ... ok
+test chat::host_domain::tests::malformed_cursor_duplicate_sequence_and_reasoning_caps_fail_closed ... ok
+test chat::host_domain::tests::one_network_chunk_may_contain_many_individually_bounded_frames ... ok
+test chat::host_domain::tests::unknown_events_advance_only_the_delivery_cursor_and_drop_payload ... ok
+test chat::host_domain::tests::v3_decoder_allows_exact_replay_for_reducer_but_rejects_unknown_required_shapes ... ok
+test chat::host_domain::tests::v4_known_shape_and_rfc3339_failures_do_not_advance_delivery_cursor ... ok
+test chat::host_domain::tests::v4_replay_chunk_with_empty_agent_start_reaches_terminal ... ok
+test chat::ipc::projectless_payload_tests::projectless_payload_requires_explicit_null_or_existing_project_id ... ok
+test chat::ipc::tests::artifact_live_schema_and_queue_are_closed_bounded_monotonic_and_content_free ... ok
+test chat::ipc::tests::attachment_import_event_is_aggregate_and_content_free ... ok
+test chat::ipc::tests::attachment_v2_payloads_freeze_capacity_and_remove_contracts ... ok
+test chat::ipc::tests::decoded_rebind_immediately_revokes_context_subscription_and_snapshot_authority ... ok
+test chat::ipc::tests::errors_and_context_fixture_never_expose_authority_or_secret_fields ... ok
+test chat::ipc::tests::feat132_history_omits_only_empty_outbox_scaffolds ... ok
+test chat::ipc::tests::feat134_failed_turn_control_is_content_free_and_requires_authoritative_resync ... ok
+test chat::ipc::tests::feat134_history_keeps_terminal_and_session_notice_codes_content_free ... ok
+test chat::ipc::tests::feat134_history_projection_authority_preserves_legacy_and_deduplicates_v4 ... ok
+test chat::ipc::tests::feat134_live_warning_is_thread_scoped_and_provider_message_cannot_cross_ipc ... ok
+test chat::ipc::tests::feat134_reconciliation_outcome_requests_resync_without_projecting_failed_status ... ok
+test chat::ipc::tests::feat134_schema_and_native_event_fixture_are_frozen_and_content_free ... ok
+test chat::host_bridge::tests::v2_idle_stream_does_not_inherit_feat134_recovery_timeout ... ok
+test chat::ipc::tests::feat134_v4_request_and_response_negotiation_is_exact ... ok
+test chat::host_bridge::tests::v4_idle_stream_returns_transport_error_without_advancing_durable_cursor ... ok
+test chat::ipc::tests::feat136_failed_nonzero_command_ipc_payload_keeps_authoritative_terminal_fields ... ok
+test chat::ipc::tests::feat136_retained_v5_envelope_preserves_source_version ... ok
+test chat::ipc::tests::feat136_v5_history_and_resync_preserve_mixed_projection_authority ... ok
+test chat::ipc::tests::feat137_control_plane_dto_matches_closed_web_shapes_during_inflight_and_exhaustion ... ok
+test chat::ipc::tests::feat137_control_plane_waits_for_host_identity_before_bound ... ok
+test chat::ipc::tests::feat137_decision_failure_is_non_retryable_and_requires_resync ... ok
+test chat::ipc::tests::feat137_decision_ipc_accepts_only_local_identity_and_closed_decision ... ok
+test chat::ipc::tests::feat137_failed_turn_subscription_plan_blocks_v6_until_authoritative_resync ... ok
+test chat::ipc::tests::feat137_host_generation_discovery_waits_inside_singleflight ... ok
+test chat::ipc::tests::feat137_host_generation_resume_is_atomic_exactly_once_and_failure_safe ... ok
+test chat::ipc::tests::feat137_normal_recovery_plan_is_exactly_gated ... ok
+test chat::ipc::tests::feat137_off_control_plane_projection_is_literal_legacy_behavior ... ok
+test chat::ipc::tests::feat137_pending_private_projection_keeps_host_stream_but_redacts_host_identity ... ok
+test chat::ipc::tests::feat137_reopen_resumes_before_coordinator_and_subscribe_get_is_sse_first ... ok
+test chat::ipc::tests::feat137_resync_requires_one_closed_non_nil_subscription_continuation ... ok
+test chat::ipc::tests::feat137_subscription_cleanup_requires_exact_context_ownership ... ok
+test chat::ipc::tests::feat137_subscription_snapshot_is_exactly_bound_and_consumed_once ... ok
+test chat::ipc::tests::feat158_ordinary_subscription_receives_uncertain_submission_resync ... ok
+test chat::ipc::tests::only_the_newest_bind_generation_can_publish_a_context ... ok
+test chat::ipc::tests::private_v3_schema_is_metadata_only_and_version_negotiated ... ok
+test chat::ipc::tests::projection_is_incremental_bounded_and_uses_only_local_reasoning_ordinals ... ok
+test chat::ipc::tests::request_and_plain_text_limits_fail_closed ... ok
+test chat::ipc::tests::schema_and_golden_fixtures_freeze_closed_v1_allowlists ... ok
+test chat::ipc::tests::superseded_bind_inside_resume_cannot_publish_context_event_or_coordinator ... ok
+test chat::ipc::tests::turn_submission_resync_plan_filters_scope_and_invalidates_denied ... ok
+test chat::ipc::web_sources::tests::additive_message_action_preserves_the_original_open_and_icon_actions ... ok
+test chat::ipc::web_sources::tests::message_links_match_the_exact_model_destination_without_rewriting_history ... ok
+test chat::ipc::web_sources::tests::normal_png_is_resized_and_encoded_for_existing_csp ... ok
+test chat::ipc::web_sources::tests::normal_site_urls_and_declared_icons ... ok
+test chat::ipc::web_sources::tests::private_schema_matches_normal_native_request_and_response ... ok
+test chat::ipc::web_sources::tests::reference_website_returns_its_own_icon ... ignored, Explicit normal network check against the requested reference website
+test chat::ipc::tests::feat134_v4_resync_accepts_large_single_turn_final_and_reasoning_snapshot ... ok
+test chat::ipc::workspaces::tests::workspace_names_accept_chinese_trim_and_normalize ... ok
+test chat::keychain::tests::ephemeral_chat_keys_are_random_separate_and_restart_stable ... ok
+test chat::ipc::tests::feat134_v4_history_byte_budget_shrinks_pages_and_keeps_the_narrowed_cursor ... ok
+test chat::keychain::tests::key_debug_is_redacted_and_namespaces_are_separate ... ok
+test chat::keychain::tests::local_demo_keys_are_owner_only_separate_and_restart_stable ... ok
+test chat::keychain::tests::malformed_key_is_rejected_without_echoing_it ... ok
+test chat::kimi_k31_tests::feat164_candidate_decoder_separates_readable_and_executable_identity ... ok
+test chat::experts::store_tests::expert_store_local_rejection_keeps_managed_none_and_original_terminal_receipt ... ok
+test chat::kimi_k31_tests::feat164_migration_expands_without_rewriting_model_facts ... ok
+test chat::host_bridge::tests::feat164_delivery_http_admission_blocks_cancelled_and_sends_live_once ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 703 filtered out; finished in 1.53s
+
+test chat::host_bridge::tests::feat164_delivery_http_admission_blocks_cancelled_and_sends_live_once ... ok
+test chat::experts::store_tests::expert_store_local_unknown_keeps_prior_reference_and_resolves_only_original_receipt ... ok
+test chat::lifecycle::tests::feat155_3b2_clock_discontinuity_and_generation_require_recovery ... ok
+test chat::lifecycle::tests::feat155_3b2_sleep_wake_invalidates_permits_and_requires_recovery ... ok
+test chat::lifecycle::tests::feat155_3b2_stop_pending_retains_barrier_across_wake_and_host_change ... ok
+test chat::lifecycle::trigger_tests::feat155_3c2_continuity_window_and_process_generation_are_not_observation_readiness ... ok
+test chat::experts::store_tests::expert_store_pending_switch_preserves_old_effective_reference_and_revision ... ok
+test chat::experts::store_tests::expert_store_receipt_requires_the_journaled_owned_host_attempt ... ok
+test chat::experts::store_tests::expert_store_rejected_initial_selection_stays_ordinary_and_history_is_untouched ... ok
+test chat::experts::store_tests::expert_store_rejection_keeps_revision_and_removal_is_a_new_successful_revision ... ok
+test chat::migrations::tests::checksum_drift_and_future_versions_fail_closed ... ok
+test chat::experts::store_tests::expert_store_same_operation_and_intent_replays_but_changed_intent_conflicts ... ok
+test chat::experts::store_tests::expert_store_same_operation_on_another_owned_session_conflicts_without_partial_binding ... ok
+test chat::migrations::tests::feat132_populated_schema13_migrates_forward_without_native_backfill ... ok
+test chat::migrations::tests::feat136_v10_failed_terminal_codes_match_contract ... ok
+test chat::migrations::tests::feat136_v9_rows_remain_schema4_after_additive_v10 ... ok
+test chat::migrations::tests::feat137_v11_process_rows_are_protected_transactionally_without_touching_v5 ... ok
+test chat::migrations::tests::feat144_schema14_adds_format_markers_without_rewriting_native_json ... ok
+test chat::experts::store_tests::expert_store_scope_ownership_applies_to_reads_and_binding_intents ... ok
+test chat::experts::store_tests::expert_store_unknown_blocks_new_changes_and_keeps_confirmed_state_until_resolved ... ok
+test chat::migrations::tests::populated_v1_migrates_to_current_and_repeated_startup_is_idempotent ... ok
+test chat::migrations::tests::populated_v2_migrates_to_application_indexes_without_losing_history ... ok
+test chat::migrations::tests::feat155_preparation_migration_preserves_parent_and_old_chat ... ok
+test chat::migrations::tests::populated_v3_migrates_to_recoverable_s7c_jobs_without_losing_state ... ok
+test chat::migrations::tests::populated_v4_migrates_to_terminal_content_free_control_plane_state ... ok
+test chat::migrations::tests::populated_v6_discards_unroutable_drafts_and_preserves_bound_attachment_history ... ok
+test chat::migrations::tests::populated_v7_expands_to_empty_artifact_authority_without_backfill ... ok
+test chat::migrations::tests::readonly_and_corrupt_databases_fail_closed ... ok
+test chat::experts::commands::tests::expert_commands_apply_rechecks_sender_after_journal_and_settles_without_dispatch ... ok
+test chat::kimi_k31_tests::feat164_native_recovery_schema_preserves_legacy_pending_without_backfill ... ok
+test chat::migrations::tests::feat158_expert_expand_preserves_history_and_default_writer ... ok
+test chat::native_conversation::tests::feat144_native_tool_replacement_keeps_new_status_at_display_capacity ... ok
+test chat::native_conversation::tests::native_display_capacity_and_projection_notice_do_not_create_execution_status ... ok
+test chat::native_conversation::tests::native_final_replaces_delta_without_prefix_reconciliation ... ok
+test chat::native_conversation::tests::native_interleaved_items_keep_indices_and_transport_deduplication ... ok
+test chat::native_conversation::tests::native_output_policy_notice_keeps_subsequent_lifecycle_authoritative ... ok
+test chat::native_conversation::tests::native_terminal_does_not_seal_items_and_gap_does_not_fail_turn ... ok
+test chat::native_conversation::tests::native_trace_retry_intent_and_notice_scope_do_not_end_the_turn ... ok
+test chat::native_conversation_storage::source_reader_tests::native_trace_v6_reads_only_current_format ... ok
+test chat::native_project::tests::security_scoped_bookmark_round_trips_without_exposing_path_in_projection ... ok
+test chat::migrations::tests::embedded_migrations_validate_and_write_checksum_ledger ... ok
+test chat::migrations::tests::feat155_migration_default_target_and_future_reader_boundary ... ok
+test chat::migrations::tests::feat165_normal_reader_guard_preserves_existing_tables ... ok
+test chat::runtime_permissions::tests::feat152_permission_state_matches_private_contract ... ok
+test chat::schedules::candidate::tests::feat155_daily_selection_preserves_existing_data_and_requires_exact_native_profile ... ok
+test chat::schedules::drafts::feat164_fact_reader_tests::feat164_draft_fact_versions_are_explicit_and_read_only ... ok
+test chat::keychain::tests::ephemeral_keys_reopen_the_same_sqlcipher_database ... ok
+test chat::projectless::tests::projectless_application_accepts_both_creation_routes_with_no_project ... ok
+test chat::model_recovery::tests::feat164_native_old_pending_is_readable_but_not_a_v2_intent ... ok
+test chat::model_recovery::tests::feat164_native_settled_expert_model_selection_is_not_legacy_dispatch ... ok
+test chat::models::tests::feat156_model_outbox_freezes_profile_and_rejects_changed_retry ... ok
+test chat::models::tests::turn_model_metadata_is_frozen_read_only_and_missing_for_legacy_turns ... ok
+test chat::projectless::tests::projectless_multimodal_creation_retries_and_separate_tasks_keep_distinct_workspaces ... ok
+test chat::ipc::workspaces::tests::named_workspace_round_trips_and_never_overwrites_existing_directory ... ok
+test chat::model_recovery::tests::feat164_native_intent_survives_normal_reopen_and_404_never_proves_unsent ... ok
+test chat::projectless::tests::projectless_history_and_workspace_survive_reopen_without_entering_project_picker ... ok
+test chat::schedules::execution::preparation::tests::feat155_3b1_delete_inflight_is_rejected_and_finished_dedicated_invalidates ... ok
+test chat::schedules::execution::preparation::tests::feat155_3b1_native_worker_service_prepares_once_without_enabling_run ... ok
+test chat::kimi_k31_tests::feat164_canonical_migration_paths_and_repeat_are_valid has been running for over 60 seconds
+test chat::schedules::execution::preparation::tests::feat155_3b1_new_each_run_and_existing_managed_history_keep_distinct_targets ... ok
+test chat::kimi_k31_tests::feat164_populated_migrations_preserve_history_and_delivery_facts has been running for over 60 seconds
+test chat::schedules::execution::preparation::tests::feat155_3b1_normal_directory_resolution_failure_and_expired_grant_have_no_writes ... ok
+test chat::schedules::execution::preparation::tests::cancelled_queue_cleanup_distinguishes_unstarted_from_attempted_turns ... ok
+test chat::model_recovery::tests::feat164_native_market_model_selection_requires_settled_delivery_twice has been running for over 60 seconds
+test chat::schedules::execution::preparation::tests::feat155_3b1_prepared_directory_then_revision_conflict_leaves_no_partial_rows ... ok
+test chat::model_recovery::tests::feat164_native_recovery_rechecks_binding_work_and_receipt has been running for over 60 seconds
+test chat::schedules::execution::preparation::tests::feat155_3b1_replay_precedes_own_quota_expiry_and_request_conflicts ... ok
+test chat::schedules::execution::preparation::tests::feat155_3b2_cancel_never_sent_is_atomic_and_refunds_once ... ok
+test chat::schedules::execution::preparation::tests::feat155_3b2_native_read_terminal_releases_in_original_fact_transaction ... ok
+test chat::schedules::execution::preparation::tests::feat155_3b2_recovery_reads_survive_grant_expiry_and_reject_different_identity ... ok
+test chat::schedules::execution::preparation::tests::feat156_bound_targets_reject_changed_model_without_consuming_grant ... ignored, requires explicit local demo_fast model writer environment
+
+running 1 test
+test chat::schedules::execution::preparation::tests::feat156_schedule_model_is_in_grant_run_and_first_turn_snapshot ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 703 filtered out; finished in 0.85s
+
+test chat::schedules::execution::preparation::tests::feat156_schedule_model_is_in_grant_run_and_first_turn_snapshot ... ok
+test chat::schedules::execution::preparation::tests::feat155_3b2_released_queued_history_is_not_cancelled_by_deletion ... ok
+test chat::schedules::execution::preparation::tests::cancelled_queue_cleanup_keeps_live_uncertain_and_bound_turns_blocked has been running for over 60 seconds
+test chat::schedules::execution::preparation::tests::feat155_daily_cancelled_uncreated_dedicated_target_gets_fresh_operation ... ok
+test chat::schedules::execution::preparation::tests::feat155_daily_failed_legacy_queue_and_exhausted_cleanup_do_not_hold_global_lane ... ok
+test chat::kimi_k31_tests::feat164_canonical_migration_paths_and_repeat_are_valid ... ok
+test chat::schedules::execution::preparation::tests::cancelled_queue_cleanup_recovers_persisted_unstarted_chats_and_releases_lane has been running for over 60 seconds
+test chat::schedules::execution::preparation::tests::feat155_3b1_existing_user_directory_and_transaction_rollback_after_reservation has been running for over 60 seconds
+test chat::kimi_k31_tests::feat164_populated_migrations_preserve_history_and_delivery_facts ... ok
+test chat::schedules::execution::preparation::tests::timing_tests::feat155_4d1_exact_binding_partial_conflict_and_finite_reads ... ok
+test chat::schedules::execution::preparation::tests::feat156_workspace_migration_retains_prior_grant_run_and_proofs ... ok
+test chat::schedules::execution::preparation::tests::feat155_3b2_stopped_unknown_releases_index_without_changing_history_or_quota ... ok
+test chat::schedules::execution::preparation::tests::feat155_3b1_old_grant_reopens_and_dedicated_binding_preserves_authority has been running for over 60 seconds
+test chat::schedules::execution::preparation::tests::feat155_3b1_old_grant_reopens_and_dedicated_binding_preserves_authority ... ok
+test chat::schedules::execution::preparation::tests::cancelled_queue_cleanup_recovers_persisted_unstarted_chats_and_releases_lane ... ok
+test chat::schedules::execution::preparation::tests::feat155_3b1_existing_user_directory_and_transaction_rollback_after_reservation ... ok
+test chat::schedules::execution::tests::feat155_3a_deletion_pending_does_not_release_foreground_inflight ... ok
+test chat::schedules::execution::tests::feat155_3a_existing_target_mode_and_scope_are_rechecked ... ok
+test chat::schedules::execution::tests::feat155_3a_grants_are_finite_scoped_idempotent_and_do_not_enable ... ok
+test chat::schedules::execution::tests::feat155_3a_foreground_queued_and_create_inflight_win_the_same_writer ... ok
+test chat::schedules::execution::preparation::tests::feat155_3b2_forward_reader_keeps_old_unknown_and_default_15 has been running for over 60 seconds
+test chat::schedules::execution::tests::feat155_3a_native_outputs_and_closed_json_match_source ... ok
+test chat::schedules::execution::tests::feat155_3a_native_service_never_refreshes_ui_context_or_enables_execution ... ok
+test chat::schedules::execution::preparation::tests::feat155_3b2_forward_reader_keeps_old_unknown_and_default_15 ... ok
+test chat::schedules::feat164_natural_plan_tests::feat164_natural_plan_upgrade ... ignored, explicit retained root; run legacy producer then candidate upgrade and reopen
+test chat::schedules::execution::tests::feat155_3a_pending_approval_uncertainty_and_foreground_parity ... ok
+test chat::schedules::execution::preparation::tests::feat155_3c2_schema21_reopens_old_manual_receipts_and_chat_without_activation has been running for over 60 seconds
+test chat::schedules::execution::tests::feat155_3a_reservation_atomic_rollback_duplicate_and_quota ... ok
+test chat::schedules::execution::tests::feat155_3a_revalidate_revision_authority_target_and_expiry ... ok
+test chat::schedules::execution::preparation::tests::cancelled_queue_cleanup_keeps_live_uncertain_and_bound_turns_blocked ... ok
+test chat::schedules::execution::tests::feat155_3a_shared_reservation_blocks_all_foreground_submit_paths ... ok
+test chat::schedules::execution::preparation::tests::feat155_3c2_schema21_reopens_old_manual_receipts_and_chat_without_activation ... ok
+test chat::schedules::execution_guard::expert_tests::feat158_old_schema_without_expert_storage_keeps_normal_reservation ... ok
+test chat::schedules::ipc::tests::automatic_tests::feat155_4c2_native_confirmation_receipts_preview_and_pause ... ok
+test chat::schedules::execution_guard::expert_tests::feat158_schedule_reservation_prevents_new_binding_in_same_transaction ... ok
+test chat::schedules::execution_guard::expert_tests::feat158_unsettled_binding_prevents_reservation_until_original_attempt_settles ... ok
+test chat::schedules::execution::tests::feat155_3a_reader_holds_scheduled_outbox_unknown_and_attention ... ok
+test chat::schedules::ipc::tests::default_activation_tests::creation_is_enabled_atomically_and_replay_never_reactivates ... ok
+test chat::schedules::ipc::tests::default_activation_tests::unsupported_activation_rolls_back_the_entire_creation ... ok
+test chat::schedules::ipc::tests::default_activation_tests::switch_and_edits_preserve_state_and_receipts ... ok
+test chat::schedules::ipc::tests::draft_tests::confirmed_draft_is_enabled_once_without_a_second_authorization ... ok
+test chat::schedules::ipc::tests::draft_tests::feat156_model_draft_enters_original_claim_and_recovery_path ... ignored, requires the explicit local demo_fast model writer environment
+test chat::schedules::ipc::tests::draft_tests::feat156_projectless_chat_is_a_valid_target_and_grant_workspace ... ignored, requires the explicit local demo_fast model writer environment
+
+running 1 test
+test chat::schedules::execution::preparation::tests::timing_tests::feat155_4d1_released_terminal_reopens_and_deleted_target_cannot_accept_clock has been running for over 60 seconds
+test chat::schedules::ipc::tests::draft_tests::feat164_surfaces_draft_claim_and_recovery ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 703 filtered out; finished in 0.76s
+
+test chat::schedules::ipc::tests::draft_tests::feat164_surfaces_draft_claim_and_recovery ... ok
+test chat::schedules::ipc::tests::draft_tests::feat155_4b_ordinary_purpose_preserves_sql15_without_schedule_authority ... ok
+test chat::schedules::execution::preparation::tests::timing_tests::feat155_4d1_released_terminal_reopens_and_deleted_target_cannot_accept_clock ... ok
+test chat::schedules::ipc::tests::draft_tests::feat155_4b_receipt_and_purpose_are_scoped_reads_without_host ... ok
+test chat::schedules::ipc::tests::draft_tests::feat155_draft_attempt_never_reposts_after_lease_or_reader_reopen ... ok
+test chat::schedules::ipc::tests::draft_tests::feat155_draft_clarification_followup_uses_same_restricted_conversation ... ok
+test chat::schedules::ipc::tests::draft_tests::feat155_draft_confirmation_deadline_rolls_back_and_deletion_tombstone ... ok
+test chat::schedules::execution::tests::feat155_3a_reader_15_16_17_and_disabled_writer_preserve_old_chat has been running for over 60 seconds
+test chat::schedules::execution::tests::feat155_3a_reader_15_16_17_and_disabled_writer_preserve_old_chat ... ok
+test chat::schedules::ipc::tests::feat155_3c3a_native_validator_parity_corpus ... ok
+test chat::schedules::ipc::tests::feat155_3c3a_current_context_and_commit_deadline_fail_closed ... ok
+test chat::schedules::ipc::tests::automatic_tests::feat155_4c2_old_confirmation_migrates_without_consent_and_reconfirms ... ok
+test chat::schedules::ipc::tests::feat155_3c3a_deleted_link_is_tombstone_and_history_remains_scoped ... ok
+test chat::schedules::ipc::tests::feat155_3c3a_source_validation_rejects_bounds_unknown_and_null ... ok
+test chat::schedules::ipc::tests::feat155_3c3a_effective_state_occurrence_truth_and_completion_priority ... ok
+test chat::schedules::ipc::tests::feat155_4d1_strict_clock_consumer_and_private_projection ... ok
+test chat::schedules::ipc::tests::feat155_3c3a_last_reserved_run_is_independent_of_future_budget_hold ... ok
+test chat::schedules::ipc::tests::feat155_3c3a_manual_delete_guard_links_unknown_and_trusted_release ... ok
+
+running 1 test
+test chat::schedules::ipc::tests::feat164_draft_fact_tests::feat164_current_native_writer_can_preview_completed_draft_without_rewriting ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 703 filtered out; finished in 0.74s
+
+test chat::schedules::ipc::tests::feat164_draft_fact_tests::feat164_current_native_writer_can_preview_completed_draft_without_rewriting ... ok
+
+running 1 test
+test chat::schedules::ipc::tests::feat164_draft_status_tests::feat164_never_attempted_failed_draft_does_not_invent_uncertainty ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 703 filtered out; finished in 0.71s
+
+test chat::schedules::ipc::tests::feat164_draft_status_tests::feat164_never_attempted_failed_draft_does_not_invent_uncertainty ... ok
+
+running 1 test
+test chat::schedules::ipc::tests::feat164_draft_status_tests::feat164_stopped_attempted_draft_has_read_only_uncertain_projection ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 703 filtered out; finished in 0.74s
+
+test chat::schedules::ipc::tests::feat164_draft_status_tests::feat164_stopped_attempted_draft_has_read_only_uncertain_projection ... ok
+test chat::schedules::ipc::tests::feat155_3c3a_native_producer_private_and_shared_conformance ... ok
+test chat::schedules::ipc::tests::draft_tests::feat155_draft_submit_idempotence_reader_and_purpose_guards ... ok
+test chat::schedules::ipc::tests::management_tests::feat155_4a_receipt_requires_the_observed_native_plan ... ok
+test chat::schedules::ipc::tests::draft_tests::feat155_draft_trusted_partial_final_unique_confirm_and_reopen ... ok
+test chat::schedules::ipc::tests::feat155_3c3a_queries_page_and_bind_cursor_without_mutation ... ok
+test chat::schedules::ipc::tests::feat155_3c3a_queued_write_rechecks_rebound_context_and_native_capabilities ... ok
+test chat::schedules::ipc::tests::feat155_3c3a_save_grant_enable_and_request_replay_stay_separate ... ok
+test chat::schedules::ipc::tests::feat155_4d1_private_reader_accepts_26_without_execution_read_side_effects ... ok
+test chat::schedules::ipc::tests::feat155_final_important_updates_do_not_open_ordinary_storage ... ok
+test chat::schedules::ipc::tests::feat155_final_important_updates_are_scoped_read_only_and_bounded ... ok
+test chat::schedules::ipc::tests::draft_tests::feat155_4b_unclassified_draft_requires_unique_complete_schema_and_success has been running for over 60 seconds
+test chat::schedules::ipc::tests::feat155_3c3a_default_and_compatible_reader_never_gain_writer ... ok
+test chat::schedules::ipc::tests::management_tests::feat155_4a_cards_content_search_paging_and_scoped_receipt ... ok
+test chat::schedules::ipc::tests::management_tests::feat155_4a_record_search_keeps_snapshot_after_edit_and_delete ... ok
+
+running 1 test
+test chat::schedules::ipc::tests::manual_tests::feat155_4c1_manual_only_receipts_limits_and_no_replay_permit ... ok
+
+running 1 test
+test chat::schedules::ipc::tests::manual_tests::feat155_4c1_prior_grant_cannot_mint_permission_and_scope_isolated ... ok
+
+running 1 test
+S3 explicit migration: paused save, stale old grant, fresh grant, frozen K3.1 profile, bound pending-selection barrier
+test chat::schedules::model_retirement_tests::feat164_s3_explicit_save_reauthorize_and_bound_target ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 703 filtered out; finished in 1.23s
+
+test chat::schedules::model_retirement_tests::feat164_s3_explicit_save_reauthorize_and_bound_target ... ok
+
+running 1 test
+SQL38->41 preserved original migration ledger and plan identity; retirement idempotent
+SQL39->41 preserved original migration ledger and plan identity; retirement idempotent
+SQL40->41 preserved original migration ledger and plan identity; retirement idempotent
+test chat::schedules::model_retirement_tests::feat164_s3_schema_upgrade_and_replay ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 703 filtered out; finished in 0.29s
+
+test chat::schedules::model_retirement_tests::feat164_s3_schema_upgrade_and_replay ... ok
+
+running 1 test
+test chat::schedules::model_retirement_tests::feat164_s3_paused_candidate_preserves_authority ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 703 filtered out; finished in 0.94s
+
+test chat::schedules::model_retirement_tests::feat164_s3_paused_candidate_preserves_authority ... ok
+S3 retirement: enabled/paused/deleted/MiniMax/implicit default; pre-claim denial; reopen idempotence; old receipt replay; unknown reservation retained
+test chat::schedules::model_retirement_tests::feat164_plan_retirement_before_dispatch ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 703 filtered out; finished in 2.11s
+
+test chat::schedules::model_retirement_tests::feat164_plan_retirement_before_dispatch ... ok
+test chat::schedules::model_retirement_tests::feat164_s3_worker_starts_after_retirement ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 703 filtered out; finished in 1.25s
+
+test chat::schedules::model_retirement_tests::feat164_s3_worker_starts_after_retirement ... ok
+test chat::schedules::ipc::tests::manual_tests::feat155_4c1_ui_refresh_invalidates_claim_and_never_sent_refunds_once ... ok
+test chat::schedules::ipc::tests::draft_tests::feat155_draft_failed_multiple_and_incomplete_output_do_not_confirm has been running for over 60 seconds
+test chat::schedules::ipc::tests::recovery_tests::feat155_draft_recovery_binds_facts_only_and_explicit_continue_reuses_original ... ok
+test chat::schedules::ipc::tests::single_tests::feat155_4c3_preview_without_grant_and_purpose_receipts ... ok
+test chat::schedules::ipc::tests::single_tests::feat155_4c3_single_limits_revision_and_automatic_grant_unchanged ... ok
+test chat::schedules::ipc::tests::single_tests::feat155_4c3_unknown_purpose_blocks_dispatch_without_hiding_run_history ... ok
+test chat::schedules::tests::feat155_native_producer_schema_examples ... ok
+test chat::schedules::ipc::tests::recovery_tests::feat155_draft_reopen_pending_stays_held_and_accepted_has_unknown_origin ... ok
+test chat::schedules::ipc::tests::single_tests::feat155_4c3_reader_migrates_without_backfill_and_completed_plan_stays_completed ... ok
+test chat::schedules::tests::feat155_time_calendar_dst_and_bounded_reference_queries ... ok
+test chat::schedules::tests::feat155_time_once_validation_and_continuity_are_explicit ... ok
+test chat::schedules::ipc::tests::management_tests::feat155_4a_creation_migration_reopen_receipts_and_no_execution ... ok
+test chat::sidecar::tests::child_log_capture_is_owner_only_and_bounded ... ok
+test chat::sidecar::tests::demo_fast_forwards_exact_profile_and_native_skill_roots_without_bearer ... ok
+test chat::sidecar::tests::feat128_s10_profile_is_exact_closed_and_default_off ... ok
+test chat::sidecar::tests::feat136_sidecar_child_environment_is_closed_and_dependent ... ok
+test chat::sidecar::tests::feat136_sidecar_gate_is_exact_local_and_depends_on_feat134 ... ok
+test chat::sidecar::tests::feat137_retirement_rejects_former_exact_activation ... ok
+test chat::sidecar::tests::feat152_permission_policy_reaches_the_allowlisted_child_environment ... ok
+test chat::sidecar::tests::feat164_pause_is_explicit_and_reaches_only_candidate_child ... ok
+test chat::sidecar::tests::feat164_predecessor_permission_requires_candidate_and_fixed_qualification ... ok
+test chat::sidecar::tests::feat164_surfaces_config_is_explicit_and_paired ... ok
+test chat::sidecar::tests::fixed_host_child_profile_integration ... ok
+test chat::sidecar::tests::minimax_key_file_path_is_owner_only_revalidated_and_narrowly_forwarded ... ok
+test chat::sidecar::tests::native_daily_reasoning_uses_only_the_current_provider_environment ... ok
+test chat::sidecar::tests::native_market_startup_full_model_waits_beyond_control_hello ... ok
+test chat::sidecar::tests::native_market_startup_provider_only_flag_without_authority_is_not_ready ... ok
+test chat::sidecar::tests::native_market_startup_provider_only_returns_without_model_probe ... ok
+test chat::sidecar::tests::readiness_is_bound_to_spawn_nonce_and_separate_from_liveness ... ok
+test chat::sidecar::tests::sidecar_environment_is_allowlisted_and_contains_no_provider_secret ... ok
+test chat::sidecar::tests::stale_child_evidence_is_reconciled_without_killing_unknown_processes ... ok
+test chat::sidecar::tests::test_profile_consumes_infra_nonce_and_default_nonce_stays_uuid_v7 ... ok
+test chat::tests::app_exit_shutdown_clears_host_bridge_and_is_idempotent ... ok
+test chat::tests::artifact_transfer_flag_is_exact_true_and_defaults_off ... ok
+test chat::tests::disabled_foundation_does_not_open_database_or_sidecar ... ok
+test chat::tests::disabled_runtime_projects_one_closed_non_sendable_readiness_state ... ok
+test chat::tests::feat137_missing_host_session_recovers_terminal_history_and_orphaned_active_turn ... ok
+test chat::tests::feat137_resume_projection_accepts_only_exact_durable_idle_or_active_identity ... ok
+test chat::tests::feat156_unconfigured_model_history_preserves_unfinished_recovery ... ok
+test chat::tests::feat164_paused_terminal_history_does_not_require_model_resume ... ok
+test chat::tests::feat164_retired_terminal_history_is_read_only_until_explicit_selection ... ok
+test chat::turn_timing::tests::timing_keeps_native_units_and_exact_mapping ... ok
+test chat::model_recovery::tests::feat164_native_market_model_selection_requires_settled_delivery_twice ... ok
+test feat126_secure_storage::tests::child_homes_and_project_must_match_the_derived_run_paths ... ok
+test feat126_secure_storage::tests::cleanup_is_exact_idempotent_and_retryable_after_interruption ... ok
+test feat126_secure_storage::tests::cleanup_removes_only_the_validated_run_root_after_exact_items_are_absent ... ok
+test feat126_secure_storage::tests::derives_three_closed_namespaces_without_default_or_legacy_accounts ... ok
+test feat126_secure_storage::tests::directory_roles_are_closed_and_path_free ... ok
+test feat126_secure_storage::tests::ephemeral_environment_child ... ok
+test feat126_secure_storage::tests::ephemeral_files_are_closed_versioned_private_and_restart_stable ... ok
+test feat126_secure_storage::tests::evidence_is_content_free_and_never_contains_paths_or_secrets ... ok
+test feat126_secure_storage::tests::exact_environment_profile_is_validated_in_an_isolated_subprocess ... ok
+test feat126_secure_storage::tests::manifest_mismatch_refuses_every_delete ... ok
+test feat126_secure_storage::tests::metadata_owner_nlink_and_mode_contract_is_exact ... ok
+test feat126_secure_storage::tests::partial_secret_is_fail_closed_but_exact_cleanup_is_recoverable ... ok
+test feat126_secure_storage::tests::prepare_requires_pre_inventory_absent_and_recovers_same_run ... ok
+test feat126_secure_storage::tests::secure_storage_requires_two_exact_true_gates_and_defaults_off ... ok
+test feat126_secure_storage::tests::signed_bundle_exercises_three_run_scoped_items_without_default_namespace_access ... ignored, requires an Apple Development signed bundle with Protected Data Keychain entitlement
+test feat126_secure_storage::tests::stale_same_run_pid_is_recovered_without_cross_run_mutation ... ok
+test feat126_secure_storage::tests::two_runs_have_disjoint_namespaces_and_directories ... ok
+test feat164_qualification::tests::feat164_daily_identity_and_flags_are_closed ... ok
+test feat164_qualification::tests::fixed_profile_matches_bundle_and_requires_offline_assembly ... ok
+test local_profile::tests::demo_fast_requires_the_exact_local_conjunction ... ok
+test native_auth::config::tests::enabled_configuration_is_exact_and_public_client_only ... ok
+test native_auth::config::tests::feature_is_disabled_by_default ... ok
+test native_auth::config::tests::issuer_may_use_an_exact_path_but_not_a_query ... ok
+test native_auth::config::tests::local_ca_is_rejected_outside_local_integration ... ok
+test native_auth::config::tests::local_integration_requires_exact_localhost_and_a_pinned_single_ca ... ok
+test native_auth::config::tests::rejects_api_paths_queries_and_credentials ... ok
+test native_auth::config::tests::rejects_partial_enablement_and_non_boolean_flag ... ok
+test native_auth::error::tests::command_errors_never_serialize_internal_details ... ok
+test native_auth::keychain::tests::binding_rejects_version_environment_issuer_or_client_changes ... ok
+test native_auth::keychain::tests::ephemeral_native_auth_uses_strict_envelope_without_legacy_fallback ... ok
+test native_auth::keychain::tests::keychain_namespace_is_fixed ... ok
+test native_auth::keychain::tests::persisted_envelope_is_versioned_bound_strict_and_redacted ... ok
+test native_auth::keychain::tests::protected_data_keychain_s7_round_trip ... ignored, S7 local integration: mutates and then removes an isolated synthetic Keychain item
+test native_auth::local_whitelist::tests::fingerprint_matching_is_exact_without_storing_plaintext_credentials ... ok
+test native_auth::local_whitelist::tests::local_whitelist_requires_every_local_gate ... ok
+test native_auth::local_whitelist::tests::secret_authority_requires_the_exact_feat125_inventory ... ok
+test native_auth::loopback::tests::accepts_only_a_valid_optional_keycloak_session_state ... ok
+test native_auth::loopback::tests::accepts_only_exact_path_host_state_and_code ... ok
+test native_auth::loopback::tests::binds_only_an_ephemeral_ipv4_loopback_callback ... ok
+test native_auth::loopback::tests::rejects_duplicate_unknown_or_oauth_error_parameters ... ok
+test native_auth::loopback::tests::rejects_request_bodies_and_transfer_encoding ... ok
+test native_auth::loopback::tests::rejects_wrong_host_absolute_form_and_non_get_requests ... ok
+test native_auth::oidc::tests::authorization_request_has_exact_redirect_pkce_state_nonce_and_no_secret ... ok
+test native_auth::oidc::tests::jwks_content_type_accepts_only_json_media_types ... ok
+test native_auth::oidc::tests::refresh_rotation_comparison_is_secret_safe ... ok
+test native_auth::oidc::tests::rejects_long_lived_short_lived_non_bearer_or_missing_refresh_tokens ... ok
+test native_auth::runtime::tests::browser_boundary_rejects_non_https_before_opening ... ok
+test native_auth::runtime::tests::chat_projection_time_and_capability_parsing_is_strict ... ok
+test native_auth::runtime::tests::chat_projection_window_uses_response_observation_time ... ok
+test native_auth::runtime::tests::current_rejected_access_token_is_cleared_under_the_refresh_lock ... ok
+test native_auth::runtime::tests::demo_fast_authority_requires_no_login_or_transport ... ok
+test native_auth::runtime::tests::ephemeral_secret_profile_is_rejected_for_production_auth ... ok
+test native_auth::runtime::tests::exactly_bound_record_remains_available_without_deletion ... ok
+test native_auth::runtime::tests::incompatible_or_mismatched_records_are_deleted_without_becoming_refreshable ... ok
+test native_auth::runtime::tests::invalid_refresh_cleanup_revokes_current_token_and_clears_session ... ok
+test native_auth::runtime::tests::refresh_comparison_does_not_depend_on_length_or_early_exit ... ok
+test native_auth::runtime::tests::refresh_lifecycle_accepts_only_unexpired_consistent_envelopes ... ok
+test native_auth::runtime::tests::rejected_access_token_cannot_delete_a_concurrently_refreshed_session ... ok
+test native_auth::runtime::tests::rotated_refresh_save_failure_revokes_new_token_and_clears_session ... ok
+test native_auth::secret::tests::debug_output_is_redacted ... ok
+test native_auth::synthetic_agent::tests::accepts_only_the_reviewed_keycloak_login_action ... ok
+test native_auth::synthetic_agent::tests::callback_is_bound_to_redirect_state_and_issuer ... ok
+test native_auth::synthetic_agent::tests::parses_only_the_closed_owner_secret_inventory ... ok
+test native_auth::synthetic_agent::tests::real_authorization_url_requires_actual_s256_challenge ... ok
+test native_auth::synthetic_agent::tests::synthetic_login_failures_are_closed_stage_only_classes ... ok
+test native_auth::transport::tests::operation_scope_is_fixed_to_two_get_paths ... ok
+test native_auth::transport::tests::public_task_error_matrix_and_timestamps_fail_closed ... ok
+test native_auth::transport::tests::public_task_request_is_closed_and_content_free ... ok
+test native_auth::transport::tests::response_body_rejects_token_bearing_keys_at_any_depth ... ok
+test native_auth::transport::tests::status_allowlist_matches_authoritative_contract ... ok
+test native_auth::transport::tests::tenant_header_requires_non_nil_lowercase_canonical_uuid ... ok
+test single_instance::tests::feat158_isolated_lock_requires_both_local_gate_and_compiled_identity ... ok
+test single_instance::tests::second_instance_is_rejected_until_the_first_exits ... ok
+test skills::catalog::tests::exact_reviewed_expert_bundle_loads_when_the_integration_root_is_supplied ... ok
+test skills::catalog::tests::exact_reviewed_v2_bundle_loads_when_the_integration_root_is_supplied ... ok
+test skills::catalog::tests::semantic_version_and_identifiers_are_closed ... ok
+test skills::defaults::tests::starter_progress_resumes_partial_initialization_and_preserves_removal ... ok
+test skills::experts::tests::feat158_actual_candidate_projects_separate_safe_catalog_and_exact_reference ... ok
+test skills::host::tests::automatic_upgrade_uses_semver_precedence_without_downgrading ... ok
+test skills::host::tests::errors_are_content_free_and_renderer_safe ... ok
+test skills::host::tests::installed_rollback_version_remains_usable_but_uninstalled_version_must_match_catalog ... ok
+test skills::resources::tests::feat158_expert_bundle_slot_reuses_the_existing_managed_install_root ... ok
+test skills::resources::tests::first_start_creates_one_private_app_data_layer_and_managed_roots ... ok
+test skills::resources::tests::first_start_does_not_recursively_create_a_missing_app_data_parent ... ok
+test skills::resources::tests::install_root_fingerprint_detects_real_skill_move_delete_and_content_changes ... ok
+test skills::resources::tests::install_root_fingerprint_ignores_host_state_and_transaction_mutations ... ok
+test skills::resources::tests::missing_resource_directory_and_manifest_have_stable_errors ... ok
+test skills::resources::tests::rejects_non_directory_managed_projection_and_overlapping_roots ... ok
+test skills::resources::tests::rejects_relative_base_paths_without_touching_the_filesystem ... ok
+test skills::resources::tests::resolves_bundle_and_creates_only_private_managed_directories ... ok
+test window_chrome::tests::already_compact_native_buttons_are_not_enlarged ... ok
+test window_chrome::tests::compact_drawing_preserves_center_and_native_hit_frame ... ok
+test workflows::config::tests::normally_created_owner_only_credential_file_is_readable ... ok
+test workflows::config::tests::ordinary_deployment_credential_decodes_without_exposing_token_in_debug ... ok
+test workflows::config::tests::profile_is_opt_in_and_never_needs_credentials_when_disabled ... ok
+test workflows::local_gate_tests::workflow_local_cleanup_and_window_gate_is_exact_and_opt_in ... ok
+test workflows::runtime::tests::delayed_normal_window_cleanup_preserves_a_new_context_binding ... ok
+test workflows::runtime::tests::disabled_profile_never_requires_an_editor_or_network_for_status ... ok
+test workflows::runtime::tests::normal_clock_offsets_keep_the_original_monotonic_session_cap ... ok
+test workflows::runtime::tests::normal_close_invalidates_a_queued_editor_reopen ... ok
+test workflows::runtime::tests::normal_context_change_during_open_retires_the_late_session ... ok
+test workflows::runtime::tests::normal_delete_is_idempotent_and_clears_matching_native_editor ... ok
+test workflows::runtime::tests::normal_loopback_native_consumer_preserves_resources_operations_and_expired_close ... ok
+test workflows::runtime::tests::source_validator_enforces_utf8_and_preserves_new_engine_state ... ok
+test workflows::runtime::tests::uncertain_write_keeps_the_native_operation_id_without_reissuing_it ... ok
+test workflows::window::tests::ordinary_app_routes_and_exact_editor_entry_are_the_navigation_surface ... ok
+test chat::schedules::tests::feat155_storage_once_past_is_not_created_and_schema_denies_unknown_fields ... ok
+test chat::schedules::tests::feat155_4c2_background_startup_does_not_claim_foreground_work ... ok
+test chat::schedules::tests::feat155_storage_request_replay_revision_epoch_and_no_execution ... ok
+test chat::schedules::ipc::tests::draft_tests::feat155_draft_failed_multiple_and_incomplete_output_do_not_confirm ... ok
+test chat::worker::feat144_reader_tests::feat144_unknown_format_crosses_worker_and_history_without_rebuilding ... ok
+test chat::schedules::tests::feat155_storage_recovery_is_bounded_and_rollback_does_not_rewind ... ok
+test chat::schedules::tests::feat155_4a_old_chat_migrates_22_23_and_reader_reopens ... ok
+test chat::schedules::tests::feat155_4c3_reader25_preserves_old_chat_and_does_not_enable_ordinary_writer ... ok
+test chat::schedules::tests::feat155_storage_default_reader_forward_reopen_and_old_chat ... ok
+test chat::schedules::tests::feat155_worker_serializes_duplicate_confirmations_and_edits ... ok
+test chat::model_recovery::tests::feat164_native_recovery_rechecks_binding_work_and_receipt ... ok
+test chat::schedules::ipc::tests::draft_tests::feat155_4b_unclassified_draft_requires_unique_complete_schema_and_success ... ok
+test chat::schedules::tests::feat155_storage_scoped_targets_and_compatible_deletion ... ok
+test chat::schedules::tests::feat155_4d1_reader26_preserves_15_and_25_history_without_backfill ... ok
+
+test result: ok. 661 passed; 0 failed; 16 ignored; 0 measured; 27 filtered out; finished in 540.82s
+
+     Running unittests src/main.rs (src-tauri/target/debug/deps/yijie_desktop-99daa37f3c284f7d)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests yijie_desktop_lib
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

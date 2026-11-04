@@ -1,0 +1,234 @@
+{
+  "date": "2026-11-03",
+  "status": "本地工程完成；验收结果与提供方限制见08",
+  "scope_excludes": [
+    "diff",
+    "文件变更详情",
+    "新的planner/执行状态机/预算计数器",
+    "自动重放任务"
+  ],
+  "baseline": {
+    "yijie": {
+      "head": "f9ff170ca6ce5a5274a2a674d5cf50d8aa8b7b05",
+      "status": ""
+    },
+    "yijie-codex": {
+      "head": "55b4e51049d6f4fc0af4b35f12832357f5e4ea06",
+      "status": ""
+    },
+    "yijie-contracts": {
+      "head": "b51d26063f03f8fdb4109e03ede0738053740ed3",
+      "status": ""
+    },
+    "yijie-agent-host": {
+      "head": "99d3f6ea192f5c17326283f08c1b86c8526bb96b",
+      "status": ""
+    },
+    "yijie-desktop": {
+      "head": "5fba449e30a8e75364cf08bc3e4a5d5718d424aa",
+      "status": ""
+    }
+  },
+  "proposal_contract_impact": "breaking",
+  "proposed_delivery_profile": "production_hardened",
+  "exposure": "local",
+  "report_contract_impact": "none",
+  "versions": {
+    "native": "v6 local",
+    "sse": 13,
+    "ipc": 6,
+    "record_format": 6,
+    "sql_migration": "none; authorized fresh stores, no legacy migration"
+  },
+  "modules": [
+    {
+      "id": "M1",
+      "name": "Runtime：复用、回归验证",
+      "repo": "yijie-codex",
+      "scope": "复用固定Runtime；未增加patch、planner、重试器或预算机制。",
+      "files": "Existing execution-progress-v1 Runtime and its manifest",
+      "done": "本地实施完成；实际验证与限制见08"
+    },
+    {
+      "id": "M2",
+      "name": "公共及 Native 契约：必要增强",
+      "repo": "yijie-contracts",
+      "scope": "固定Native6/SSE13源契约与生成物，commit dfd9012954c716d360f702d6be3bdbdef75e0633。",
+      "files": "openapi/native-conversation-v6; generate/sync-native-process",
+      "done": "本地实施完成；实际验证与限制见08"
+    },
+    {
+      "id": "M3",
+      "name": "Host：指令与原生投影",
+      "repo": "yijie-agent-host",
+      "scope": "仅当前Native路由，安全动作/元数据/retry投影及唯一developerInstructions。",
+      "files": "internal/session/native_trace.go; native_conversation.go; internal/app/native_conversation.go; internal/codex/runtime_permissions.go",
+      "done": "本地实施完成；实际验证与限制见08"
+    },
+    {
+      "id": "M4",
+      "name": "Native：传输、归并与版本绑定",
+      "repo": "yijie-desktop / Rust",
+      "scope": "HostBridge与SSE decoder只读当前协议，原生buffer按ID归并并保留状态/通知事实。",
+      "files": "host_bridge.rs; host_domain.rs; native_conversation.rs",
+      "done": "本地实施完成；实际验证与限制见08"
+    },
+    {
+      "id": "M5",
+      "name": "Native：历史与 IPC",
+      "repo": "yijie-desktop / Rust",
+      "scope": "只写读format6，保存后发布IPC6；旧IPC及archive读取退役；定时草案消费者同步到6。",
+      "files": "native_conversation_storage.rs; schedules/drafts.rs; ipc.rs; lib.rs; private schema6 and codegen",
+      "done": "本地实施完成；实际验证与限制见08"
+    },
+    {
+      "id": "M6",
+      "name": "前端接入与事实视图",
+      "repo": "yijie-desktop / TS",
+      "scope": "chat-client/store和readonly view/timeline接入6；保留原始phase与授权后的安全内容。",
+      "files": "chat-client.ts; chat.store.ts; conversation-view.ts; conversation-timeline.ts",
+      "done": "本地实施完成；实际验证与限制见08"
+    },
+    {
+      "id": "M7",
+      "name": "阅读投影：核心重构",
+      "repo": "yijie-desktop / TS",
+      "scope": "连续活动分组、语义标题、独立计数；复用已观察中间消息的只读判断。",
+      "files": "conversation-activity-presentation.ts; conversation-activity-summary.ts; existing conversation-process helpers",
+      "done": "本地实施完成；实际验证与限制见08"
+    },
+    {
+      "id": "M8",
+      "name": "轨迹与明细组件：核心重构",
+      "repo": "yijie-desktop / Vue",
+      "scope": "主流渲染分组和真实说明；原始明细复用，异常/审批保留，移除diff入口。",
+      "files": "ChatTurnGroup.vue; ChatActivityGroup.vue; ChatActivityRow.vue; ChatTraceNotices.vue; existing safe details",
+      "done": "本地实施完成；实际验证与限制见08"
+    },
+    {
+      "id": "M9",
+      "name": "阅读选择、滚动与设计系统",
+      "repo": "yijie-desktop",
+      "scope": "内存阅读选择、既有滚动和帧合并、短滚动条grid接入；设计及安全验收。",
+      "files": "chat-trace-presentation.store.ts; ChatTimeline.vue; variables.css; design docs; development/reset scripts",
+      "done": "本地实施完成；实际验证与限制见08"
+    }
+  ],
+  "must_acceptance": [
+    {
+      "id": "AC1",
+      "name": "公开说明与原生复用",
+      "criteria": "多步真实任务能显示真实公开阶段说明及最终答案；简单回答不强插过程。无commentary时系统状态与真实活动仍可读，不能伪造模型消息；该降级不算完整模型沟通能力验收。",
+      "modules": "M1/M3/M7/M8",
+      "status": "公开说明及降级阅读已验；真实原生phase未提供"
+    },
+    {
+      "id": "AC2",
+      "name": "连续活动组",
+      "criteria": "说明A→工具→reasoning→工具→说明B→工具显示为两段说明、两个工具组。32搜索+32推理+8命令无其他边界时只显示一个含40次调用的活动组，真实记录均保留。",
+      "modules": "M7/M8",
+      "status": "已完成所述本地验证，见08限定口径"
+    },
+    {
+      "id": "AC3",
+      "name": "语义标题与计数",
+      "criteria": "安全原生命令动作能区分读取/搜索文件/列目录/运行命令；来源和工具标题有可信依据；无字段诚实兜底；调用数、动作数、来源数分开。",
+      "modules": "M2/M3/M6/M7",
+      "status": "已完成所述本地验证，见08限定口径"
+    },
+    {
+      "id": "AC4",
+      "name": "实时与最终状态",
+      "criteria": "当前活动、等待模型、重试、待审批、最终输出、中断和失败互不冒充；未知phase可读而不改写为final；单条完成不等于整轮完成。",
+      "modules": "M3–M8",
+      "status": "已完成所述本地验证，见08限定口径"
+    },
+    {
+      "id": "AC5",
+      "name": "展开与阅读",
+      "criteria": "整轮、组、必要的单项详情各自可控；同一轮增量不覆盖用户选择；历史默认收起普通过程，最终回答和待用户操作入口可见；键盘和焦点可用。",
+      "modules": "M7–M9",
+      "status": "已完成所述本地验证，见08限定口径"
+    },
+    {
+      "id": "AC6",
+      "name": "错误、审批与计划",
+      "criteria": "易界保留外层异常摘要/审批入口；willRetry缺失不当false；未完成计划不自动勾选；点击任何阅读控件不执行或重放任务。",
+      "modules": "M2–M9",
+      "status": "已完成所述本地验证，见08限定口径"
+    },
+    {
+      "id": "AC7",
+      "name": "一致性",
+      "criteria": "started/delta/completed按ID更新；完成快照后迟到增量不覆盖；版本/来源/epoch不混拼；重连及历史恢复不重复文字和动作、不重发turn。",
+      "modules": "M2–M7",
+      "status": "已完成所述本地验证，见08限定口径"
+    },
+    {
+      "id": "AC8",
+      "name": "新格式与旧入口退役",
+      "criteria": "新会话仅使用Native6/SSE13/IPC6/record6；旧Native接口返回404，旧IPC不注册，旧记录格式明确拒绝；正常停止后清理旧会话数据库和Runtime历史，保留凭据/资源/工作空间文件。",
+      "modules": "M2–M6",
+      "status": "已完成所述本地验证，见08限定口径"
+    },
+    {
+      "id": "AC9",
+      "name": "视觉与性能",
+      "criteria": "亮暗主题、1180×760、200%缩放、长标题/列表、内外滚动、选中文本、减少动态效果可操作；复用帧合并，未变化事实复用投影；同机测量无解释不了的明显回归。",
+      "modules": "M7–M9",
+      "status": "已完成所述本地验证，见08限定口径"
+    },
+    {
+      "id": "AC10",
+      "name": "完整产品闭环",
+      "criteria": "受审契约、Host、Native提交、真实提供方、Vue与新格式历史重开形成fresh闭环；仅mock测试不等于真实提供方验收；没有diff设计、入口或新增投影。",
+      "modules": "M1–M9",
+      "status": "已完成所述本地验证，见08限定口径"
+    }
+  ],
+  "implementation_order": [
+    {
+      "stage": "0",
+      "title": "契约固定",
+      "work": "Native6/SSE13/IPC6/format6；生成、校验、固定完整commit。",
+      "exit": "下游锁定且生成一致",
+      "status": "completed_local; see verification limitations"
+    },
+    {
+      "stage": "1",
+      "title": "新格式读取",
+      "work": "只读6，删除archive5兼容；不增加SQL43或per-turn profile。",
+      "exit": "旧格式明确拒绝，正常6保存重开",
+      "status": "completed_local; see verification limitations"
+    },
+    {
+      "stage": "2",
+      "title": "Host",
+      "work": "仅v6/SSE13；原生命令动作、工具上下文、willRetry安全投影及developerInstructions。",
+      "exit": "路由退役、phase/状态不改写",
+      "status": "completed_local; see verification limitations"
+    },
+    {
+      "stage": "3",
+      "title": "Native",
+      "work": "SSE13→归并→事务保存6→IPC6；通知作用域保留。",
+      "exit": "commit-before-publish及跨仓联调",
+      "status": "completed_local; see verification limitations"
+    },
+    {
+      "stage": "4",
+      "title": "前端",
+      "work": "公开说明分段，连续活动组；内存展开，外层异常/审批，原详情复用。",
+      "exit": "AC1–AC7单元及组件覆盖",
+      "status": "completed_local; see verification limitations"
+    },
+    {
+      "stage": "5",
+      "title": "集成与交付",
+      "work": "安全回归、构建、正常清理旧数据、固定入口启动、UI/模型/重开验收。",
+      "exit": "真实证据逐项列出；禁止测试NOT RUN",
+      "status": "completed_local; see verification limitations"
+    }
+  ],
+  "superseding_user_decision": "用户明确允许删除旧数据、不迁移日常数据库，旧V4/SSE11直接退役。此决定覆盖原兼容读取/双通道/SQL43/profile/旧数据保护条款。"
+}

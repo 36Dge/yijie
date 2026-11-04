@@ -1,0 +1,373 @@
+schema_version: 3
+delivery_profile: production_hardened
+exposure: local
+feature:
+  id: FEAT-167
+  slug: execution-trace-interaction
+  title: 原生执行轨迹活动分组与新格式全链路
+  status: local_verified
+  created_at: 2026-11-03
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+scope:
+  risk_level: high
+  data_classification: confidential
+  contract_impact: breaking
+  database_change: contract
+  persistence_change: durable
+  runtime_change: none
+  auth_permission_change: none
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: prompt
+repositories:
+  - yijie-contracts
+  - yijie-agent-host
+  - yijie-desktop
+  - yijie
+immutable_references:
+  baseline_commits:
+    - yijie@f9ff170ca6ce5a5274a2a674d5cf50d8aa8b7b05
+    - yijie-contracts@b51d26063f03f8fdb4109e03ede0738053740ed3
+    - yijie-agent-host@99d3f6ea192f5c17326283f08c1b86c8526bb96b
+    - yijie-desktop@5fba449e30a8e75364cf08bc3e4a5d5718d424aa
+    - yijie-codex@55b4e51049d6f4fc0af4b35f12832357f5e4ea06
+  contracts:
+    - id: native-conversation-v6
+      version: 0.6.0
+      full_commit: dfd9012954c716d360f702d6be3bdbdef75e0633
+      digest: 79a8f357db6c64cd891b1fe48d5bf169ccf8c006f32d18cee695037e9b166d7a
+      generator: oapi-codegen v2.7.2 / openapi-typescript 7.13.0
+  fixtures: []
+  release_artifacts: []
+gates:
+  G0_intake: pass
+  G1_design_ready: pass
+  G2_implementation_ready: pass
+  G2A_contract_ready: pending
+  G2V_vertical_feasibility: pending
+  G4_code_complete: pending
+  G5_production_ready: pending
+  G6_delivery_complete: pending
+gate_reasons:
+  G2A: 契约已固定并完成本地检查；不冒充正式跨仓发布评审
+  G2V: 真实App四轮及保存重开已完成；独立版本化harness资格未宣称完成
+  G4: 本地实现和验收完成；下游工作树待代码评审及正式提交
+  G5: local exposure，未进行签名、公证、生产发布
+  G6: 本次是本地工程交付；不把未执行的正式发布门禁标为通过
+temporal_contract_matrix:
+  required: true
+  applicability_reason: Native13通知、事务保存format6、IPC6发布与重开涉及独立时序边界
+  exception:
+    owner: N/A
+    approved_at: N/A
+    reason: N/A
+  phases:
+    producer:
+      status: required
+      reason: Runtime/Host canonical native facts
+    persistence:
+      status: required
+      reason: SQLCipher format6 commit
+    notification:
+      status: required
+      reason: IPC6 only after commit
+    replay:
+      status: required
+      reason: readonly current-format history
+    terminal:
+      status: required
+      reason: native turn completion only
+    cleanup:
+      status: required
+      reason: normal app exit before reset/rebuild
+  phase_exceptions: {}
+  scenarios:
+    - id: FLOW-LIVE-001
+      ordered_phases:
+        - producer
+        - persistence
+        - notification
+        - terminal
+        - cleanup
+    - id: FLOW-REPLAY-001
+      ordered_phases:
+        - persistence
+        - replay
+        - cleanup
+  invariants:
+    - id: TINV-001
+      statement: 同ID更新、commit-before-publish、未知phase不改写、重开不重发turn
+      scenario_ids:
+        - FLOW-LIVE-001
+        - FLOW-REPLAY-001
+      slice_ids:
+        - S1
+      executable_tests:
+        - TCONF-001
+  executable_tests:
+    - id: TCONF-001
+      required: true
+      repository: yijie-desktop
+      command: node scripts/check-native-conversation-integration.mjs
+      slice_id: S1
+      status: PASS
+      exit_code: 0
+      verified_at: 2026-11-03T10:36:53.211Z
+      commits: []
+      evidence_ref: 08-verification-report.md#HOST-NATIVE-001
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+vertical_feasibility:
+  required: true
+  applicability_reason: 新Native协议与持久边界需要真实App闭环
+  exception:
+    owner: N/A
+    approved_at: N/A
+    reason: N/A
+  harness_id: H-VERTICAL-001
+  participating_repositories:
+    - yijie-contracts
+    - yijie-agent-host
+    - yijie-desktop
+    - yijie-codex
+  platform: macOS arm64
+  production_bootstrap: true
+  representative_data: 两个新会话、两模型各2轮简短及公开网页只读任务
+  critical_path: native Runtime → Host SSE13 → SQLCipher6 → IPC6 → Vue → normal reopen
+  evidence:
+    commits: []
+    command: NOT RUN
+    environment: NOT RUN
+    exit_code: null
+    status: NOT RUN
+    verified_at: NOT RUN
+    harness:
+      id: H-VERTICAL-001
+      commit: NOT RUN
+      digest: NOT RUN
+    platform: NOT RUN
+    production_bootstrap: true
+    contract_refs: []
+    fixture_refs: []
+    refs: []
+runtime_harnesses:
+  - id: H-VERTICAL-001
+    purpose: 记录正式harness资格的未执行项；本地真实UI验收见REAL-MODEL-001
+    commit: NOT RUN
+    digest: NOT RUN
+    default_enabled: false
+    real_platform: macOS arm64
+    production_bootstrap: true
+    representative_data: normal synthetic records and four explicitly authorized user rounds
+    failure_classes:
+      - product_failure
+      - harness_failure
+      - platform_failure
+      - gate_failure
+    qualification:
+      status: NOT RUN
+      verified_at: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      positive_control:
+        status: NOT RUN
+        evidence_ref: NOT RUN
+      negative_controls:
+        product_failure:
+          status: NOT RUN
+          observed_class: NOT RUN
+          evidence_ref: NOT RUN
+        harness_failure:
+          status: NOT RUN
+          observed_class: NOT RUN
+          evidence_ref: NOT RUN
+        platform_failure:
+          status: NOT RUN
+          observed_class: NOT RUN
+          evidence_ref: NOT RUN
+        gate_failure:
+          status: NOT RUN
+          observed_class: NOT RUN
+          evidence_ref: NOT RUN
+      timeout_control:
+        status: NOT RUN
+        evidence_ref: NOT RUN
+      cleanup_control:
+        status: NOT RUN
+        evidence_ref: NOT RUN
+      content_free_verdict:
+        status: NOT RUN
+        evidence_ref: NOT RUN
+slices:
+  - id: S1
+    intent: 完整Native执行轨迹链路与阅读分组；不含diff
+    required: true
+    prerequisites: []
+    commits: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+    local_evidence:
+      required: true
+      status: PASS
+      command: Desktop safe test runner; Host focused/race; Contracts native conformance
+      environment: macOS arm64 local working trees
+      exit_code: 0
+      verified_at: 2026-11-03T11:28:50.149Z
+      refs:
+        - 08-verification-report.md#FRONTEND-001
+        - 08-verification-report.md#HOST-NATIVE-001
+      reason: 实际本地检查通过；具体全量/定向/跳过口径见08
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    boundary_evidence:
+      required: true
+      status: PASS
+      command: node scripts/check-native-conversation-integration.mjs
+      environment: actual Host bytes; Native SQLCipher; normal reopen
+      exit_code: 0
+      verified_at: 2026-11-03T10:36:53.211Z
+      refs:
+        - 08-verification-report.md#HOST-NATIVE-001
+      reason: 跨Host/Native/IPC/durable格式，已执行的本地验证见08
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    vertical_evidence:
+      required: true
+      status: NOT RUN
+      command: NOT RUN
+      environment: NOT RUN
+      exit_code: null
+      verified_at: NOT RUN
+      refs: []
+      reason: 真实模型/UI已执行，正式harness资格单列不混淆
+      exception:
+        owner: N/A
+        approved_at: N/A
+        reason: N/A
+    freshness:
+      verified_at: NOT RUN
+      commits: []
+      contract_refs: []
+      fixture_refs: []
+      harness:
+        id: H-VERTICAL-001
+        commit: NOT RUN
+        digest: NOT RUN
+      platform: NOT RUN
+      production_bootstrap: true
+      invalidation_rule: rerun after any prerequisite, contract pin, runtime,
+        platform, harness, bootstrap, or implementation reference changes
+    status: pending
+    status_reason: 本地工程完成，正式提交/独立发布资格未冒充通过
+final_e2e:
+  core_vertical:
+    required: true
+    reason: 本地真实四轮结果记录于REAL-MODEL-001；此处保留正式发布资格状态
+    status: NOT RUN
+    command: NOT RUN
+    environment: NOT RUN
+    exit_code: null
+    verified_at: NOT RUN
+    commits: []
+    contract_refs: []
+    fixture_refs: []
+    harness:
+      id: H-VERTICAL-001
+      commit: NOT RUN
+      digest: NOT RUN
+    platform: NOT RUN
+    production_bootstrap: true
+    evidence_refs: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+  accessibility_visual:
+    required: true
+    reason: 本地亮暗/最小窗口/200%/键盘已检查；正式独立审查未声明
+    status: NOT RUN
+    command: NOT RUN
+    environment: NOT RUN
+    exit_code: null
+    verified_at: NOT RUN
+    commits: []
+    contract_refs: []
+    fixture_refs: []
+    harness:
+      id: H-VERTICAL-001
+      commit: NOT RUN
+      digest: NOT RUN
+    platform: NOT RUN
+    production_bootstrap: true
+    evidence_refs: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+  teardown:
+    required: true
+    reason: 多次正常退出和服务清理有观察；正式发布harness资格未声明
+    status: NOT RUN
+    command: NOT RUN
+    environment: NOT RUN
+    exit_code: null
+    verified_at: NOT RUN
+    commits: []
+    contract_refs: []
+    fixture_refs: []
+    harness:
+      id: H-VERTICAL-001
+      commit: NOT RUN
+      digest: NOT RUN
+    platform: NOT RUN
+    production_bootstrap: true
+    evidence_refs: []
+    exception:
+      owner: N/A
+      approved_at: N/A
+      reason: N/A
+failure_circuit_breaker:
+  same_failure_threshold: 3
+  policy: third equivalent failure blocks retries and local patches until a
+    root-cause audit produces discriminating evidence and an authorized next
+    action
+  incidents: []
+documents:
+  brief: 00-feature-brief.md
+  requirements: 01-requirements.md
+  impact: 02-impact-assessment.md
+  decisions_and_risks: 03-decisions-and-risks.md
+  contract_plan: 04-contract-change-plan.md
+  temporal_contract: 04A-temporal-contract-matrix.md
+  technical_design: 05-technical-design.md
+  test_plan: 06-test-plan.md
+  implementation_plan: 07-implementation-plan.md
+  verification: 08-verification-report.md
+  release_and_rollback: 09-release-and-rollback.md
+  delivery_summary: 10-delivery-summary.md
+local_delivery:
+  implementation: complete
+  validation: completed_with_documented_provider_limits
+  user_authorization: 本轮批准实施、清理旧会话、两模型各2轮、临时标准debug.app验收
+  real_user_rounds: 4
+  additional_retry_rounds: 0
+  release: false
+  evidence:
+    - 08-verification-report.md#CONTRACT-LOCAL-001
+    - 08-verification-report.md#HOST-NATIVE-001
+    - 08-verification-report.md#FRONTEND-001
+    - 08-verification-report.md#REAL-MODEL-001
+    - 08-verification-report.md#VISUAL-001
+    - 08-verification-report.md#RESET-REPLAY-001

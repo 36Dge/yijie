@@ -1,0 +1,68 @@
+{
+  "authorized_max_user_rounds": 4,
+  "authorized_per_model": 2,
+  "issued_user_rounds": 4,
+  "retry_rounds": 0,
+  "model_sessions": [
+    {
+      "model": "Kimi K3.1 Pro",
+      "local_session_id": "01a1a11a-76dd-7e10-bf56-9c5693b94760",
+      "durations_seconds_from_ui": [
+        12,
+        70
+      ]
+    },
+    {
+      "model": "MiniMax M3",
+      "local_session_id": "01a1a120-c821-7973-a2a1-4827beb8f879",
+      "durations_seconds_from_ui": [
+        4,
+        35
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "rollout": "rollout-2026-11-03T19-10-28-01a1a11a-773b-7b93-9304-e6d43280b919.jsonl",
+      "sha256_after_normal_exit": "fd380e1f551b337c9e6ed263e10ed2aadd054f354980df0a16d583491d830ba3",
+      "user_rounds_started": 2,
+      "user_rounds_completed": 2,
+      "assistant_phase_counts": {
+        "absent": 3
+      },
+      "response_item_type_counts": {
+        "message": 8,
+        "reasoning": 5,
+        "web_search_call": 4,
+        "function_call": 3,
+        "function_call_output": 3
+      },
+      "web_action_counts": {
+        "search": 4
+      }
+    },
+    {
+      "rollout": "rollout-2026-11-03T19-17-22-01a1a120-c856-72d3-8064-95cd6c4a4939.jsonl",
+      "sha256_after_normal_exit": "d3a2a09aed076de15f1e13915b4dd86ee1fbac4ced8f59c2b483a5bb2cdf732e",
+      "user_rounds_started": 2,
+      "user_rounds_completed": 2,
+      "assistant_phase_counts": {
+        "absent": 4
+      },
+      "response_item_type_counts": {
+        "message": 9,
+        "reasoning": 6,
+        "web_search_call": 8
+      },
+      "web_action_counts": {
+        "search": 2,
+        "open_page": 6
+      }
+    }
+  ],
+  "limitations": [
+    "Both providers omitted phase in these real samples. Original phases remain absent; intermediate-message folding uses observed subsequent activity only.",
+    "These are UI user-round counts, not a claim of four provider HTTP requests.",
+    "No claim that the models complied with prompt-only search or answer-length limits."
+  ]
+}

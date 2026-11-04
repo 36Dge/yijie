@@ -1,0 +1,158 @@
+[
+  {
+    "id": "A01",
+    "result": "通过",
+    "behavior": "公开说明分段，普通推理不占工具行。",
+    "evidence": "ChatTraceV2Acceptance.test.ts · A01/A02；真实 Kimi/MiniMax 历史"
+  },
+  {
+    "id": "A02",
+    "result": "通过",
+    "behavior": "72 条原生事实保留；40 条工具活动、1 个连续组；reasoning 行为 0。",
+    "evidence": "组件测试；浏览器实测 40 行、320px 容器"
+  },
+  {
+    "id": "A03",
+    "result": "通过",
+    "behavior": "相同查询、不同原生 ID 均保留；不按文本去重调用。",
+    "evidence": "A03；Native interleaved/deduplication"
+  },
+  {
+    "id": "A04",
+    "result": "通过",
+    "behavior": "started/delta/completed 更新同一 Item，最终快照替换草稿。",
+    "evidence": "native_final_replaces_delta_without_prefix_reconciliation；跨仓字节验证"
+  },
+  {
+    "id": "A05",
+    "result": "通过",
+    "behavior": "默认 all 保留公开说明；纯阅读层 latest 模式先分段再隐藏，不合并阶段。",
+    "evidence": "A05；当前产品默认 all"
+  },
+  {
+    "id": "A06",
+    "result": "通过（当前原生范围）",
+    "behavior": "未知阶段最后可读回答、末尾 commentary 阅读候选均外显，phase 不改。",
+    "evidence": "A06 两类边界及真实 unknown 历史；固定 fork 无 partial_answer 枚举，未新增该能力"
+  },
+  {
+    "id": "A07",
+    "result": "通过",
+    "behavior": "显式 final 后有已结束工具/网页/推理，正文仍可读。",
+    "evidence": "A07；ChatNativeStreaming"
+  },
+  {
+    "id": "A08",
+    "result": "通过",
+    "behavior": "只有最新未关闭组承担当前状态；旧组详情仍保留并发未结束状态。",
+    "evidence": "A08"
+  },
+  {
+    "id": "A09",
+    "result": "通过",
+    "behavior": "工具结束后当前组头显示思考；只有推理时显示一个系统状态。",
+    "evidence": "A09/A25"
+  },
+  {
+    "id": "A10",
+    "result": "通过",
+    "behavior": "同 key 文字立即更新；key 切换按 1 秒窗口稳定；完成摘要立即替换。",
+    "evidence": "A10 虚拟时钟；真实组件实时样例"
+  },
+  {
+    "id": "A11",
+    "result": "通过",
+    "behavior": "空推理结束不改组键；单条命令补齐一个动作不重建行；用户展开保持。",
+    "evidence": "A11 两项；组内键盘/滚动观察"
+  },
+  {
+    "id": "A12",
+    "result": "通过",
+    "behavior": "显式最终正文开始且无用户选择时折叠过程；手动展开优先。",
+    "evidence": "A12；ChatActivityGroup"
+  },
+  {
+    "id": "A13",
+    "result": "通过（已选策略）",
+    "behavior": "当前挂载会话内保留选择，切上下文/重挂载清空，不承诺跨重启。",
+    "evidence": "A13；ChatTimeline 重排与选择测试"
+  },
+  {
+    "id": "A14",
+    "result": "通过",
+    "behavior": "中断保留已有消息和工具状态；未结束 Item 与计划不被标成功。",
+    "evidence": "A14；Native terminal/plan 正常状态样例"
+  },
+  {
+    "id": "A15",
+    "result": "通过",
+    "behavior": "失败、缺少退出码、成功空输出分别呈现；不以无输出推导成功。",
+    "evidence": "A15"
+  },
+  {
+    "id": "A16",
+    "result": "通过（已接入交互）",
+    "behavior": "原生审批和决策瞬态外显；最后可读用户交互消息不被过程折叠。",
+    "evidence": "ChatTimeline/ChatTurnGroup 审批桥接与正文保持；未新增通用问卷式 requestUserInput 执行接口"
+  },
+  {
+    "id": "A17",
+    "result": "通过",
+    "behavior": "保留 retry true/false/unknown；连续等价提示仅在显示层折叠。",
+    "evidence": "A17；Host/Native retry intent 测试"
+  },
+  {
+    "id": "A18",
+    "result": "通过（已知恢复窗口）",
+    "behavior": "传输序号去重、完成快照保护、正常重开及冷历史冲突选择均核验。",
+    "evidence": "跨仓 SSE→Native→SQLCipher→重开→前端；不声称任意乱序的通用 exactly-once"
+  },
+  {
+    "id": "A19",
+    "result": "通过",
+    "behavior": "冷历史的 inProgress 不冒充实时；普通输出策略/参数隐藏不误伤活跃状态。",
+    "evidence": "P1 四项测试；A19；真实历史无活动动画"
+  },
+  {
+    "id": "A20",
+    "result": "通过",
+    "behavior": "长列表有限高、末尾无空白；组内与页面可分别滚动；最小窗口可读。",
+    "evidence": "浏览器 1180×760、360px 正文；实际 App 1180×760、100%/200%"
+  },
+  {
+    "id": "A21",
+    "result": "通过",
+    "behavior": "按钮、展开语义、焦点和键盘滚动；系统减少动态效果时扫光为 none。",
+    "evidence": "PageDown/End/Shift+Tab/Return；axe 回归；reduced-motion.json 实测"
+  },
+  {
+    "id": "A22",
+    "result": "通过",
+    "behavior": "安全预览、原生路径/查询、可信标题；缺失诚实兜底，other 网页不冒称搜索。",
+    "evidence": "Host 普通样例、未变 v6 consumer conformance、A22"
+  },
+  {
+    "id": "A23",
+    "result": "通过",
+    "behavior": "计划独立呈现最新值，结束/中断不自动勾选未完成步骤。",
+    "evidence": "A14/A23；Native plan 与现有 ChatTurnPlan 测试"
+  },
+  {
+    "id": "A24",
+    "result": "通过",
+    "behavior": "多个动作引用父 Item，一次调用；展开只查看，不执行/批准/重放。",
+    "evidence": "A24；真实历史展开；跨仓 3 调用→4 展示行"
+  },
+  {
+    "id": "A25",
+    "result": "通过",
+    "behavior": "无 commentary 仍有当前状态/真实工具组；不生成假 assistant 进度。",
+    "evidence": "A09/A25；推理事实保留但不生成零调用组"
+  },
+  {
+    "id": "A26",
+    "result": "通过（易界策略）",
+    "behavior": "失败、待审批和不完整记录保留在折叠外。",
+    "evidence": "A26；既有审批/不完整记录正常组件回归"
+  }
+]
