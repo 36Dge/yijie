@@ -1,5 +1,20 @@
 # 易界项目 Codex 长期协作记忆
 
+## 提示词与技能 P1 修复已接入（2026-11-04）
+
+Owner 明确选择“只在明确选择或点名时加载技能”：复用原生
+`skills.include_instructions=false`，不再常驻技能目录或按任务相似性自动启用；
+不删除个人技能、不修改 HOME。界面选择保存 ID/版本，Host 核验后转为原生
+`UserInput::Skill`，加载与消歧仍由 Runtime 完成。配置结构使用固定原生 schema，
+启停刷新复用 `config/batchWrite`，不能重建线程来刷新或重置预算。
+
+本轮 P1、稳定检索说明和 schema 排版收敛已从原 `~/Applications/易界.app` 接入。
+Runtime 保持 55b4e51 及原 SHA，普通/专家共用业务基线只注入一份。Native SQL
+41→43 只新增技能选择元数据；旧消息与原生日志逐项保持。回退必须保留 SQL 43
+reader，不降 user_version、不清历史。21 项既有 UI 工作仍未提交且字节不变。
+未新增付费模型请求；多代理/Goal 工具和压缩阈值不擅自裁剪。
+完整来源、验证范围与剩余 P2 见 [本轮交付](prompt-input-repair-20261104.md)。
+
 ## 项目级长期硬性原则：必须复用 yijie-codex（2026-11-01）
 
 2026-11-03 再次明确：这包括但不限于 `auto_compact_token_limit`、`features.token_budget`、`features.rollout_budget` 和 `goal.token_budget`。实施前必须逐项查源码、配置、作用域和测试；`rollout_budget` 已有共享会话树加权累计、提醒及预算耗尽错误，不能因尚未接入而在 Host/Desktop/新补丁里再实现一套预算。上下文阈值、上下文提醒、驻留会话树预算与显式 Goal 预算不得混称或互相替代。此次前序审计遗漏 rollout_budget 的“另建消费计数器”建议已撤回；重复计划只补原生现有补答入口的实际缺口。
