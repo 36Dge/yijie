@@ -1,0 +1,130 @@
+{
+  "date": "2026-11-07",
+  "scope": "FEAT-168 requirements only",
+  "inputs_sha256": {
+    "00-feature-brief.md": "b5d3c93086754e78a4ae1076da82301b802106dbc9621bb6572fe9db8e4bf17f",
+    "01-delivery-log.md": "da783ef9400bfc0c4036970462b7c66524b8aef7a10f2ff1f370534c2b3ec3aa",
+    "02-verification.md": "be170e47e0da4c4cca7f028ac37e149ab34694a4c76de5d82043303007bb4c76",
+    "feature.yaml": "a02a126ee53dc59a0f36febd3bdae2888382a3b5abb9ca19704e0687ba57b3f7"
+  },
+  "source_repositories": [
+    {
+      "repository": "yijie",
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "5415b2245a371bc5ff458e0211bdc8a1ad52edc0",
+      "origin": "https://github.com/36Dge/yijie.git",
+      "initial_status": "four untracked FEAT-168 input documents"
+    },
+    {
+      "repository": "yijie-codex",
+      "branch": "chore/retirement-baseline-20260905",
+      "head": "2b79447c363165ecd3b9d12dffe300c1adddbbb0",
+      "origin": "https://github.com/36Dge/yijie-codex.git",
+      "initial_status": "clean"
+    },
+    {
+      "repository": "yijie-contracts",
+      "branch": "feat/feat164-primary-20261028",
+      "head": "af6245ac6607bb9f0d6772c19b611b730ec67104",
+      "origin": "https://github.com/36Dge/yijie-contracts.git",
+      "initial_status": "clean"
+    },
+    {
+      "repository": "yijie-agent-host",
+      "branch": "feat/feat164-primary-20261028",
+      "head": "25117cdc0c582c816a432dd330000608e106dc54",
+      "origin": "https://github.com/36Dge/yijie-agent-host.git",
+      "initial_status": "clean"
+    },
+    {
+      "repository": "yijie-desktop",
+      "branch": "feat/feat164-primary-20261028",
+      "head": "ca98af3a879a86b253d519284bc5eba2bf0d7cbb",
+      "origin": "https://github.com/36Dge/yijie-desktop.git",
+      "initial_status": "clean"
+    },
+    {
+      "repository": "yijie-skills",
+      "branch": "feat/feat164-primary-20261028",
+      "head": "704d2cc85a85d0759e6103e3f539552f3d63b1e9",
+      "origin": "https://github.com/36Dge/yijie-skills.git",
+      "initial_status": "clean"
+    },
+    {
+      "repository": "yijie-connectors",
+      "branch": "feat/feat164-primary-20261028",
+      "head": "2cac4658472731f0ac3348fe40085be89fe703ee",
+      "origin": "https://github.com/36Dge/yijie-connectors.git",
+      "initial_status": "clean"
+    },
+    {
+      "repository": "yijie-coze",
+      "branch": "main",
+      "head": "7bdcd0474e904cd3e8f8f68c903c0b8985baf52f",
+      "origin": "https://github.com/36Dge/yijie-coze.git",
+      "initial_status": "clean"
+    }
+  ],
+  "checks": [
+    {
+      "command": "pnpm lint",
+      "exit": 0,
+      "output": "$ node scripts/repo-manifest.mjs validate && node scripts/check-contract-governance.mjs\nValidated 11 repository entries.\nValidated central Contract First governance and 11 sibling AGENTS.md files.\n"
+    },
+    {
+      "command": "pnpm test",
+      "exit": 0,
+      "output": " (2.592583ms)\n✔ new-feature defaults to compact schema v3 demo_fast local (99.887167ms)\n✔ new-feature creates production_hardened only when explicitly selected (129.600666ms)\n✔ shell checker enforces demo_fast D0, D4, and profile separation (151.073333ms)\n✔ shell checker enforces schema v2 G2V and per-slice G3 semantics (151.061834ms)\n✔ repository manifest contains eleven owned children with the explicit Coze main branch (5.846958ms)\nℹ tests 57\nℹ suites 0\nℹ pass 57\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 9991.088459\n"
+    },
+    {
+      "command": "for f in scripts/*.sh; do bash -n \"$f\" || exit 1; done; printf 'Parsed %s shell scripts\\n' \"$(printf '%s\\n' scripts/*.sh | wc -l | tr -d ' ')\"",
+      "exit": 0,
+      "output": "Parsed 7 shell scripts\n"
+    },
+    {
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-168-seedream-image-generation",
+      "exit": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，所有模板变量和未完成标记已处理。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。"
+    },
+    {
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-168-seedream-image-generation",
+      "exit": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid."
+    },
+    {
+      "command": "node --input-type=module (feature-scoped YAML/Markdown/JSON assertions)",
+      "exit": 0,
+      "output": "8 pending ACs match 8 NOT RUN rows; JSON fields, explicit cross-turn priority, governance states, 72 local Markdown links and whitespace verified."
+    },
+    {
+      "command": "git diff --check",
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate D0 docs/features/FEAT-168-seedream-image-generation",
+      "exit": 1,
+      "output": "ERROR: product_ux.status must be PASS for D0",
+      "interpretation": "D0 未通过，仅因尚无整包产品/UX 确认；保持 pending。"
+    }
+  ],
+  "product_verification": "NOT RUN",
+  "external_model_or_business_calls": 0,
+  "reviewed_documents_sha256": {
+    "00-feature-brief.md": "2e911511f26dfed367c5ab2e6505588538ee5937eac845f49dee19775c1b51a0",
+    "01-delivery-log.md": "981f794b7c71121d65a031c5abc709f98067fbfa311622ea8d41e69f90a1b2e6",
+    "02-verification.md": "7c58053f76022b44688384fd962fe5824098de616971870fcaa73012c000f69f",
+    "03-requirements-audit.md": "55090e768eee87f01491333d6dc45a1e2058ec1e079c444b4752b34fc2f75ddb",
+    "feature.yaml": "1ccf86f4203c51b6a7dfcfe5e1d70b2ef1623f5a8935f15b271eeaa09a771ff6"
+  },
+  "final_status": [
+    "?? docs/features/FEAT-168-seedream-image-generation/00-feature-brief.md",
+    "?? docs/features/FEAT-168-seedream-image-generation/01-delivery-log.md",
+    "?? docs/features/FEAT-168-seedream-image-generation/02-verification.md",
+    "?? docs/features/FEAT-168-seedream-image-generation/03-requirements-audit.md",
+    "?? docs/features/FEAT-168-seedream-image-generation/feature.yaml",
+    "?? docs/features/FEAT-168-seedream-image-generation/references/requirements-audit.json"
+  ],
+  "owner_decision": "文字点名与界面选择均为显式声明；在专家保持选中期间，其同领域工具每轮优先，直到移除或切换。",
+  "remaining": "D0 整包认可和 Runtime 补丁授权尚无记录，D4 和全部产品 AC 未执行。"
+}

@@ -1,0 +1,246 @@
+{
+  "feature": "FEAT-168",
+  "scope": "personal-mac/original-local-daily",
+  "profile": "demo_fast",
+  "exposure": "local",
+  "date": "2026-11-07T03:23:27.620419+08:00",
+  "owner_decisions": [
+    "按易界的需求治理规范，把 FEAT-168 启用到我日常使用的易界客户端，保留现有会话、历史图片和配置。",
+    "允许本地提交并继续启用"
+  ],
+  "sources": {
+    "yijie-codex": "7171b0b262c67a72725fa54f9ed39b50edd94b54",
+    "yijie-contracts": "c24d73fde83a01b5dd2a9ded8defb5bbef34e311",
+    "yijie-agent-host": "435747780feaec2b8e914a97081024dc26730e0c",
+    "yijie-connectors": "de1fcdf8dabd9b08983bbf907f079db41da437fe",
+    "yijie-desktop": "b7ce363eb9ac8a37ba0f4fb1a178d392ba106b8c"
+  },
+  "contracts_mode": "immutable_local_candidate",
+  "native_format": 6,
+  "sse_version": 13,
+  "ipc_version": 6,
+  "local_launch": {
+    "bundle_identifier": "com.yijie.ai",
+    "finder_entry": "~/Applications/易界.app",
+    "desktop_alias_same_target": true,
+    "underlying_command": "development-client.py start",
+    "readyz_http": [
+      200,
+      200
+    ],
+    "stable_executables": [
+      "launcher",
+      "host",
+      "worker",
+      "runtime"
+    ],
+    "native_dev_recompiled_on_each_open": true,
+    "first_native_sha256": "072d0ee7d09e3e193bee2faf9f4e6aa276fdb49dff962a7f7a445d133fb94a4e",
+    "final_executable_sha256": {
+      "launcher": "a70dcd6e2b6614d12bf4a8ba81b6b43011faf1b8c5a62a4e161a82a17cea48db",
+      "client": "1bc6f0e77f86030ddfc47c82f9407e3ad52e8ca6fd86ad8b27608d43e96ca735",
+      "host": "8b4ab70cf549ce786ad1bd81b63dd508cefadf98b6721fb784a32d748be9f702",
+      "worker": "623712eace0fea8cdbfe86ddc403be0913b6eb5b7f7a0ffd10b344129fb74a91",
+      "runtime": "0d2f1078b0e413e22e22a30483f53cc2b4496f682db733e182fb28462d6903b9"
+    },
+    "live_runtime_manifest_sha256": "620353f307127685158ef3312dd7465b9d976bc2055551ee3b12b3ace86db6ff",
+    "fresh_native_process_on_reopen": true,
+    "first_ready_at": "2026-11-07T03:17:37.354366+08:00",
+    "final_ready_at": "2026-11-07T03:22:44.582270+08:00",
+    "visible_main_window_twice": true,
+    "normal_exit": {
+      "method": "Finder launcher macOS Quit",
+      "native_exit_code": 0,
+      "signal": null,
+      "owned_workflow_stopped": true
+    },
+    "original_databases_observed_open_twice": [
+      "native/conversations.db",
+      "host/sessions.db",
+      "runtime/state_5.sqlite"
+    ],
+    "models_available": {
+      "kimi-k3-1-pro-max-v1": true,
+      "minimax-m3-high-v1": true
+    },
+    "daily_images_enabled": true,
+    "expert_surface_enabled": true,
+    "left_open": true
+  },
+  "retention": {
+    "backup_method": "canonical feat164-d2-backup.py functions, cold and app-locked, separate verified sealed and inspection copies",
+    "before_regular_files": 17458,
+    "before_bytes": 514120377,
+    "before_after_source_manifest_sha256": {
+      "before": "f21b4f10961cc72275e7f25d1538829e9650f8b9ccfa5eed46d872191383db27",
+      "after": "24b1c60580d87990d0849ee550cc1075b8fbab1face612e01a641e1e87fe94b6"
+    },
+    "native_schema": 45,
+    "native_table_count": 72,
+    "native_counts_before_and_after": {
+      "chat_sessions": 1,
+      "chat_messages": 2,
+      "chat_turns": 1,
+      "chat_message_content_blocks": 1,
+      "chat_native_views": 1,
+      "chat_attachments": 0,
+      "chat_output_artifacts": 0
+    },
+    "retained_native_content_hashes_equal": true,
+    "native_startup_deltas": {
+      "chat_connector_installations": {
+        "original": 1,
+        "retained": 0,
+        "added": 1,
+        "removed_or_updated": 1
+      },
+      "chat_connector_operations": {
+        "original": 48,
+        "retained": 48,
+        "added": 1,
+        "removed_or_updated": 0
+      },
+      "chat_connector_provider_operations": {
+        "original": 47,
+        "retained": 47,
+        "added": 1,
+        "removed_or_updated": 0
+      },
+      "chat_scheduled_stopped_generations": {
+        "original": 48,
+        "retained": 48,
+        "added": 1,
+        "removed_or_updated": 0
+      }
+    },
+    "host_values": {
+      "original": 52,
+      "unchanged": 51,
+      "deleted": 0,
+      "changed_buckets": {
+        "sessions": 1
+      },
+      "new_buckets": {}
+    },
+    "host_changed_session_fields": {
+      "updated_at": 1
+    },
+    "connector_installation_fields": {
+      "same_installation": true,
+      "service_is_kimi_web": true,
+      "changed_fields": [
+        "revision",
+        "updated_at"
+      ]
+    },
+    "runtime_log_rows": {
+      "original": 44892,
+      "retained": 44892,
+      "added": 480,
+      "removed_or_updated": 0
+    },
+    "runtime_nonlog_rows_unchanged": true,
+    "root_counts": {
+      "native": {
+        "original": 11784,
+        "identical": 11783,
+        "missing": 0,
+        "changed": 1,
+        "added": 0
+      },
+      "host": {
+        "original": 147,
+        "identical": 146,
+        "missing": 0,
+        "changed": 1,
+        "added": 0
+      },
+      "runtime": {
+        "original": 5501,
+        "identical": 5497,
+        "missing": 0,
+        "changed": 4,
+        "added": 0
+      },
+      "preferences": {
+        "original": 1,
+        "identical": 1,
+        "missing": 0,
+        "changed": 0,
+        "added": 0
+      },
+      "webkit": {
+        "original": 22,
+        "identical": 22,
+        "missing": 0,
+        "changed": 0,
+        "added": 0
+      },
+      "minimax-key": {
+        "original": 1,
+        "identical": 1,
+        "missing": 0,
+        "changed": 0,
+        "added": 0
+      },
+      "kimi-key": {
+        "original": 1,
+        "identical": 1,
+        "missing": 0,
+        "changed": 0,
+        "added": 0
+      },
+      "workflow-config": {
+        "original": 1,
+        "identical": 1,
+        "missing": 0,
+        "changed": 0,
+        "added": 0
+      },
+      "format-receipt": {
+        "original": 1,
+        "identical": 1,
+        "missing": 0,
+        "changed": 0,
+        "added": 0
+      }
+    },
+    "external_scheduled_or_pending_dispatches_before_and_after": 0,
+    "runtime_transcript_originals_unchanged": true,
+    "user_and_model_configuration_files_unchanged": true,
+    "encrypted_native_integrity": "ok",
+    "native_foreign_key_violations": 0,
+    "host_bbolt_integrity_errors": 0,
+    "runtime_sqlite_integrity": "ok",
+    "workflow_config_readonly_virtualization_handles": [
+      1,
+      1
+    ]
+  },
+  "image_routing": {
+    "default_model": "doubao-seedream-5-0-pro-260628",
+    "size": "1.5K",
+    "watermark": false,
+    "stream_field": "omitted",
+    "explicit_expert_with_matching_tool": "prefer while selected",
+    "daily_credential": "first-use masked system dialog; scoped account metadata absent at activation",
+    "isolated_sample_images_rehashed": 2,
+    "paid_model_calls_by_activation": 0,
+    "linkfox_online_calls": 0
+  },
+  "gates": {
+    "connectors_worktree_catalog_sha256": "55ec42e1965a7ecdfd17771af299afea786bc74a175ab4f021afdf8d538ab70d",
+    "market_entries": 61,
+    "pinned_host_build_inputs": 483,
+    "go_functional_packages": 3,
+    "desktop_profile_python_tests": 4,
+    "desktop_daily_node_tests": 3,
+    "desktop_vitest_tests": 69,
+    "market_catalog_real_receipts_test": 1,
+    "paused_mode_immutable_source_check": "passed"
+  },
+  "recovery": "正常退出原客户端，执行 python3 -B scripts/development-client.py images-pause，再打开原入口。再次启用使用 images-enable。",
+  "remote_push": false,
+  "public_release": false,
+  "data_migration": false
+}

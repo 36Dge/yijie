@@ -1,0 +1,41 @@
+{
+  "feature_id": "FEAT-168",
+  "delivery_profile": "demo_fast",
+  "exposure": "local",
+  "gate": "D0",
+  "result": "PASS",
+  "confirmed_by": "段成威",
+  "confirmed_on": "2026-11-07",
+  "timezone": "Asia/Shanghai",
+  "source": "本聊天中的用户明确指令",
+  "owner_statement": "确认 FEAT-168 整包需求，按易界的需求治理规范把 D0 确认结果落盘，先不执行开发。",
+  "scope": "复审后的整包需求、产品与交互以及 AC-001 至 AC-008 的验收定义。",
+  "implementation_authorized": false,
+  "implementation_status": "pending",
+  "functional_verification": "NOT RUN",
+  "checks": [
+    {
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --gate D0 docs/features/FEAT-168-seedream-image-generation",
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，且 D0 范围与语义门禁通过。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。"
+    },
+    {
+      "command": "bash docs/dev/codex-feature-delivery/scripts/check-feature-package.sh --strict docs/features/FEAT-168-seedream-image-generation",
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid.\nPASS: 文档结构完整，所有模板变量和未完成标记已处理。\nNOTE: demo_fast 只证明声明的真实本地/公开 Demo 检查；不等于 production_hardened。"
+    },
+    {
+      "command": "node docs/dev/codex-feature-delivery/scripts/validate-feature-package.mjs --audit-claims docs/features/FEAT-168-seedream-image-generation",
+      "exit_code": 0,
+      "output": "PASS: feature.yaml schema v3 semantics are valid."
+    }
+  ],
+  "package_sha256": {
+    "feature.yaml": "86ee4bae04d1aac87ace4dda2e23977caf702b9354c78c7b7c3758997d1f4694",
+    "00-feature-brief.md": "fbe5d764a0f09f19fb59962e8e5e6d2a70f4d7ca777b8dafb9a830e99eff94f3",
+    "01-delivery-log.md": "981f794b7c71121d65a031c5abc709f98067fbfa311622ea8d41e69f90a1b2e6",
+    "02-verification.md": "517e782928dbed211144e4ad246f56408133def695fb931861b48fc0a7da9dee",
+    "03-requirements-audit.md": "01f6bf0a2e07d4d29f59b8425b088234b3ad1f554a1577afd429508628ba867f",
+    "references/requirements-audit.json": "8c3051932d3ed4f0d00c8f8511324e0d13b3e72bf222bd76228d53b2963068ac"
+  }
+}

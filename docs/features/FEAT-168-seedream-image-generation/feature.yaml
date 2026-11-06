@@ -1,0 +1,213 @@
+schema_version: 3
+delivery_profile: demo_fast
+exposure: local
+
+feature:
+  id: FEAT-168
+  slug: seedream-image-generation
+  title: 易界内置 Seedream 生图与显式专家工具优先级
+  status: usable
+  created_at: "2026-11-07"
+  requirement_owner: 段成威
+  technical_owner: 段成威
+  reviewer: 段成威
+  release_owner: 段成威
+
+scope:
+  risk_level: high
+  data_classification: restricted # 凭据按最高等级管理；Demo 素材仅 Public 或合成
+  contract_impact: breaking
+  database_change: none
+  persistence_change: replay # 已提交操作和历史产物的恢复/禁止再派单属于需要验证的跨版本语义
+  runtime_change: runtime
+  auth_permission_change: permission # 使用原身份/审批；对受信本轮路由新增出站准入约束
+  user_workflow_change: user_visible
+  ui_change: interactive
+  ai_behavior_change: tool
+
+repositories:
+  - yijie
+  - yijie-codex
+  - yijie-contracts
+  - yijie-agent-host
+  - yijie-desktop
+  - yijie-skills
+  - yijie-connectors
+
+timebox:
+  target_hours: 12
+  hard_stop_hours: 16
+  no_progress_minutes: 30
+  same_blocker_minutes: 90
+  non_core_limit_minutes: 120
+  core_blocker_minutes: 240
+
+product_ux:
+  status: PASS
+  primary_user: 在易界普通聊天或专家会话中要求生成图片的用户
+  problem: FEAT-128 图片执行器依赖旧 MiniMax 本地实验配置，正式日常普通对话需要受支持的内置路径
+  user_outcome: 没有专家生图工具时由 Seedream 出图；文字点名或界面选择均产生可见绑定，所选专家提供的同领域工具跨轮优先直至移除或切换
+  in_scope:
+    - 复用固定 fork 原生 image-generation 扩展及调用生命周期
+    - 衔接方舟图片 API 和现有 Artifact 媒体呈现，保留参考图输入
+    - 按显式专家选择互斥路由，退役 FEAT-128 的 MiniMax image-01 执行路径
+    - 实施中确需配置方舟凭据时使用本机掩码弹窗
+  out_of_scope:
+    - 主聊模型替换、LinkFox 专家退役、Coze 新增执行节点
+    - 图片分片预览、新画布、重写旧图和自动重新计费
+    - 未经批准的日常真实 Home 激活、生产部署、重要历史数据迁移或真实人物样本验收
+  main_flow:
+    - 从现有对话提交生成请求及可选的已授权参考图
+    - 读取会话绑定，每轮优先使用所选专家提供的生图工具；未选专家或该专家确无生图能力时用内置工具
+    - 内置工具通过受管适配提交一次方舟请求，获取完整 JSON 结果并将真实图片交现有产物链
+    - 对话中显示现有图片卡片，支持预览、保存及历史重开
+  visual_direction: 沿用对话活动和图片卡片，保持原有亮暗主题、键盘操作和窗口布局
+  ui_states:
+    idle: 使用现有输入框及专家选择入口
+    loading: 现有活动区显示工具正在生成，不展示虚构百分比
+    success: 图片已通过校验并进入产物链后显示可打开的图片
+    empty: 未返回可用图片时提示此次未取得结果
+    error: 区分凭据、权限、模型可用性与结果读取失败，在当前对话显示可操作原因
+    retry: 仅在用户明确重新生图时提交新的计费请求；已提交结果未知时先提示该状态
+    cancel: 取消密钥配置零请求；生成中取消沿当前调用传递，迟到结果不得翻转终态
+
+must_acceptance:
+  - id: AC-001
+    statement: 没有专家绑定或所选专家未配置生图能力时走内置 Seedream，纯看图零生图调用
+    verification: 02-verification.md AC-001
+    status: PASS
+  - id: AC-002
+    statement: 点名与界面选择均建立可见绑定，专家工具跨轮优先直至移除或切换；核对 LinkFox 实际配置，凭据或授权不足时不跨路径补发
+    verification: 02-verification.md AC-002
+    status: PASS
+  - id: AC-003
+    statement: 内置请求使用 doubao-seedream-5-0-pro-260628、1.5K 与布尔 false 水印，省略 stream 及其他可选配置
+    verification: 02-verification.md AC-003
+    status: PASS
+  - id: AC-004
+    statement: 原生工具在两种受支持主聊模型中按既有权限调度，恢复、受限会话及实验接口边界可验证
+    verification: 02-verification.md AC-004
+    status: PASS
+  - id: AC-005
+    statement: 切换后旧 image-01 各执行入口均禁发，旧图片历史可读，MiniMax 对话与 LinkFox 专家仍可用
+    verification: 02-verification.md AC-005
+    status: PASS
+  - id: AC-006
+    statement: 文本及当轮参考图生成的真实图片只交付一次，通过原图片卡片预览、保存与重开
+    verification: 02-verification.md AC-006
+    status: PASS
+  - id: AC-007
+    statement: 需要 Ark Key 时使用受保护的掩码弹窗，取消零提交，凭据不进入消息和日志
+    verification: 02-verification.md AC-007
+    status: PASS
+  - id: AC-008
+    statement: 取消、并发、失败、重放与重开保持调用和产物唯一性，结果未知不自动付费重试
+    verification: 02-verification.md AC-008
+    status: PASS
+
+contract:
+  impact: breaking
+  authority: 固定 yijie-codex 候选的原生工具及协议、yijie-contracts 的 Runtime 兼容投影与 Artifact 事件、方舟图片 API
+  source_first_plan: 见 03-requirements-audit.md 契约矩阵。获准后先固定 Runtime 候选及易界源契约，再配对 consumer；混装未协商时拒绝新生图请求，保留历史读取与 LinkFox 原权责
+  status: PASS
+  checks:
+    - {repository: yijie-contracts, command: "node scripts/generate-runtime-host-images.mjs --check", status: PASS, exit_code: 0}
+    - {repository: yijie-contracts, command: "node scripts/sync-market-broker.mjs --consumer=agent-host --check", status: PASS, exit_code: 0}
+    - {repository: yijie-contracts, command: "node scripts/sync-market-broker.mjs --consumer=connectors --check", status: PASS, exit_code: 0}
+
+external_authorizations:
+  paid_calls:
+    allowed: true
+    max_actions: 20
+    approved_by: 段成威
+    approved_at: "2026-11-06T17:59:10+00:00"
+    environment: FEAT-168 隔离候选，公开或合成输入
+    main_chat_requests_max: 16
+    seedream_generation_requests_max: 4
+    linkfox_requests_max: 0
+    batches: [{main_chat: 10, seedream: 2}, {main_chat: 6, seedream: 2}]
+  destructive_operations: { allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A }
+  production_writes: { allowed: false, max_actions: 0, approved_by: N/A, approved_at: N/A }
+
+implementation:
+  status: complete
+  real_entrypoint: 本机日常使用原「易界.app」或等价的 pnpm client:dev，身份 com.yijie.ai。独立 D4 入口为 pnpm client:images:prepare 和 pnpm client:images:open。
+  mock_only: false
+verification:
+  status: PASS
+  verified_at: "2026-11-06T18:52:40+00:00"
+  startup:
+    status: PASS
+    command_or_steps: 正规打包、校验构建回执、从独立身份启动，正常退出后重开
+    environment: macOS 本机 demo_fast/local，独立 Native、Host、Runtime Homes
+    actual_result: 客户端免登录直达新任务，Host ready，专家和技能就绪
+  real_smoke:
+    status: PASS
+    command_or_steps: 新对话 Kimi 文生图；切换 MiniMax 并通过附件入口添加合成人物，再生成一张新图；通过现有卡片预览、保存、退出重开
+    environment: 经批准的两个真实主模型与 Seedream；分批额度见 05
+    actual_result: 两张 1536×1536 JPEG 持久提交并 ACK，保存原件哈希匹配；重开图片不产生新的外调
+  representative_failure:
+    status: PASS
+    command_or_steps: 记录方舟实际限额失败、按 Owner 确认恢复后的新提交及结果；重复请求和正常取消另有 race 验证
+    environment: 同一隔离应用与受管调用链；错误与成功分批保留
+    actual_result: 首批捕获 HTTP 429 SetLimitExceeded 且重复调用被拦下；限额调整后两次真实生成成功
+  focused_checks:
+    - {repository: yijie-agent-host, command: "go test -race ./internal/{imagegen,codex,session,app} -run '^(TestSeedream.*|TestHostImage.*|TestProviderImage.*|TestNativeDailyReasoningConfig|TestLoadConfigRejectsRetiredFEAT128ImageGeneration)$' -count=1", status: PASS, exit_code: 0}
+    - {repository: yijie-desktop, command: "pnpm exec vitest run scripts/run-local-demo-fast.test.mjs src/domain/explicit-expert.test.ts src/components/chat/ChatArtifactImage.test.ts src/components/chat/ChatArtifactShell.test.ts", status: PASS, exit_code: 0}
+    - {repository: yijie-desktop, command: "cargo test --offline --locked --manifest-path src-tauri/Cargo.toml --features kimi-k31-pro-candidate --lib media_normal_commit_save_and_reopen（传入 FEAT-128 历史原件）", status: PASS, exit_code: 0}
+  artifacts: [05-local-verification.md, references/local-acceptance.json, references/seedream-lamp.jpg, references/seedream-reference-result.jpg, references/synthetic-reference.png]
+  diff_review: { status: PASS, summary: 仅本机候选接入；固定上游子树与原 Broker wire 保留。已核源码差异、来源锁、候选构建和产品终态，历史 D0 证据单独保留。 }
+  known_limitations:
+    - Owner 已接受分层证据。LinkFox 真实账户和线上出图未执行，验证范围是本地专家绑定、工具面、审批与准入。
+    - 旧 MiniMax 图片使用 FEAT-128 已保存原件验证当前 reader；未开启退役版本或迁移日常旧库。
+    - 最后补充的不以“专家”结尾的目录全名在真实客户端与离线模型回环复核；真实两次生成回合及原件按验证版本分别记录。
+    - 未执行强杀、权限破坏、危险资源和攻击性测试；日常激活、公开部署和签名发布均不在本次批准范围。
+
+public_readiness:
+  required: false
+  status: N/A
+  checks: []
+  external_smoke: { status: NOT RUN, command_or_steps: local 范围, actual_result: 无公开部署 }
+documents:
+  brief: 00-feature-brief.md
+  delivery_log: 01-delivery-log.md
+  verification: 02-verification.md
+  requirements_audit: 03-requirements-audit.md
+  implementation_record: 04-implementation.md
+  local_acceptance: 05-local-verification.md
+  local_acceptance_evidence: references/local-acceptance.json
+  daily_activation: 06-daily-activation.md
+  daily_activation_evidence: references/daily-activation.json
+  audit_evidence: references/requirements-audit.json
+requirement_confirmation:
+  status: confirmed
+  confirmed_by: 段成威
+  confirmed_on: "2026-11-07"
+  reason: 用户明确确认复审后的 FEAT-168 整包需求，并要求仅记录 D0、先不执行开发
+  evidence: references/d0-confirmation.json
+  latest_user_revision: 文字点名和界面选择均为显式声明，胶囊有效期间无论多少轮都优先使用专家提供的同领域工具；无该领域工具时走默认，方舟图片请求省略 stream
+  implementation_authorized: true
+  implementation_started_on: "2026-11-07"
+  implementation_instruction: 用户在后续消息明确要求开始执行 FEAT-168；付费及日常启用仍须分别批准
+  review_date: "2026-11-07"
+  d0_owner_confirmation: confirmed
+  scope_of_review: D0 确认整包需求、交互及八项验收定义；后续实施授权单列，D0 回执保留原状
+
+d4_owner_acceptance:
+  confirmed_by: 段成威
+  confirmed_on: "2026-11-07"
+  decision: 接受分层证据，收口本地 D4
+  evidence: 05-local-verification.md
+  daily_activation_authorized: false # 仅记录当次 D4 决定，后续日常启用授权单列
+  release_authorized: false
+
+daily_activation:
+  owner: 段成威
+  authorized_on: "2026-11-07"
+  scope: 当前 Mac 的原日常客户端、原身份和原 Homes
+  decision: 按易界需求治理规范启用 FEAT-168，保留现有会话、历史图片和配置
+  local_git_authorization: 允许本地提交并继续启用
+  evidence: references/daily-activation.json
+  report: 06-daily-activation.md
+  remote_push: false
+  paid_verification_calls: 0
