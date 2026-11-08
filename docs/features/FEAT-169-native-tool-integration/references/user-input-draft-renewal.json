@@ -1,0 +1,122 @@
+{
+  "date": "2026-11-08",
+  "state": "complete",
+  "contract_impact": "semantic; Desktop ephemeral UI state only",
+  "sources": {
+    "yijie-desktop": {
+      "src/composables/useUserInput.ts": "41eb293f7f91f9d20396721027c9932a30a6f0ebb0faaf49650529d4555d3405",
+      "src/components/chat/ChatUserInput.vue": "828d79d3983b721157fc1d46f0058a86c9a1f4cf5cf781ab3c7d794e4bd9abb2",
+      "src/pages/chat/ChatPage.vue": "7d644acbb381bd16e96ff14b6bdecb2652c90906e5cf4cb342d9aaef30baa29f",
+      "src/domain/user-input-draft-scope.ts": "06c1dcb00f16291db1ad7dac062cb3d8fc5cbe6735c3b70ab65525d28cd376e7",
+      "src/domain/user-input-draft-scope.test.ts": "84bb24d74c5ade537733f182a858bdddba32b089f3ee5202715b820c9c47fa0f",
+      "src/composables/useUserInput.renewal.test.ts": "766c32521f8adba28bb7a6b415ea3905969f082519840cd8866393e1f4ce9775"
+    },
+    "yijie-agent-host": {
+      "internal/codex/user_input.go": "a005d1e6c753454fd4735a65e995befb924868f9fd9cb4c13dcf73bedee31cdc"
+    },
+    "yijie-codex": {
+      "codex-rs/core/src/session/mod.rs": "0a1045a7c54655df6743f2bab9275001e772c5b3e695dc8e07d63d1fd9d39a14"
+    }
+  },
+  "baseline_reproduction": "production composable and card return an empty masked draft after same-authority context replacement",
+  "scope": "Reuse native auth rebind, original question snapshot, answer and cancel; no persistence or protocol change",
+  "real_model_requests": 2,
+  "source_refresh": {
+    "reason": "previous all-repository commits advanced HEAD identities without changing the referenced Runtime/schema/catalog bytes",
+    "runtime_unchanged": "tool-search-v1/fac52ad79cc7e0a379fc597a7ecfcee573205d38a60c9d0ed3a2e96871ab0f45/aarch64-apple-darwin",
+    "connector_catalog_commit": "06e27b85437bba2b91bbcd2ce43ddb45d4ea7337",
+    "compatible_runtime_wrapper": "db3c7b56c390215803449b38fd7599ab4f5715f3",
+    "unchanged_library_tree": "755f32c45a4c30e805e3c7fe1db89dcb4dcc6e41"
+  },
+  "checks": {
+    ".local/user-input-renewal-before.log": "b98e51a45eb6f009c292491d7490c29734931554d6cc5f855e2dcfc2b5c51c8c",
+    ".local/user-input-renewal-tests.log": "90517d8c5db70e76ad658b4394c9cdadad6e55401fb187a032de0be884b853eb",
+    ".local/user-input-renewal-types.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    ".local/user-input-renewal-lint.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "frontend_cases": 60,
+  "real_acceptance": {
+    "approved_maximum": 4,
+    "allowed_model": "kimi-k3.1-pro",
+    "state": "passed",
+    "desktop_session_id": "01a1bbae-3a76-7680-b36d-1fb6d4668fc6",
+    "started_at": "2026-11-08T15:03:31.889576+00:00",
+    "minimum_unsubmitted_wait_seconds": 334.9,
+    "model_http_requests": 2,
+    "http_statuses": [
+      200,
+      200
+    ],
+    "models": [
+      "kimi-k3.1-pro"
+    ],
+    "meter_state": "stopped_normally",
+    "final_ui": "长等待草稿验收完成",
+    "drafts_preserved": true,
+    "reveal_reset_to_masked": true,
+    "no_automatic_answer": true,
+    "ledger_sha256": "d6258a15e7599218b70d046f7269be907aa3ea52bf46535726c7f4d3130f35de",
+    "observations_sha256": "f66a118dc654024b9ece19e3c637e7088c43415769ebd3dc795bddfafed409a6"
+  },
+  "changed_sources": {
+    "yijie-desktop": {
+      "contracts/context-window.candidate.json": "0b7502420d60e99f338ef4c85908e3a63f17a31c8065a59026b5d979ea237d1a",
+      "contracts/interaction-tools-build.candidate.json": "721e16a8ebe1c9d1b7f0493fbbf8e4893a3501b9bbd43010cf621e8e33e4357a",
+      "contracts/market-catalog-feat164.candidate.json": "34916ca4e1c8694639c91aa027d049112257708e1d18649457fda5c9a7ea3e55",
+      "contracts/native-tools-build.candidate.json": "f247d16ce1d74070020f6125d02801dc20394da493dddf3da1e29c280474958b",
+      "contracts/runtime-interaction-tools.candidate.json": "0d63d0869051de1a60e3fdfdf5f6e005bf19de36285e066f4b72c97cf30c38f5",
+      "contracts/runtime-native-tools.candidate.json": "828bcb659a23326f7b29062ca320a6c54dc855e6c1d0dda727be30772a0e2eec",
+      "contracts/runtime-tool-search.candidate.json": "528f70a5d76bdcaefbbba357ede97a053088163e5150215937f2ae610ad4c41a",
+      "contracts/tool-search-build.candidate.json": "7fa8eef0e0000dea518dbdd3377afe61b64af8c53ee56e98b22b6563025e5c9d",
+      "contracts/user-input.candidate.json": "ebfbfdfdce94a4ca4db2bceb551c99389da02b62bab32670c1fd66306b1acc1f",
+      "docs/design/docs/design/05-patterns/02-chat-workspace.md": "a31241777791eba1751ee36315c227809b0c732b24267a8f85bcee289fd7f9c2",
+      "docs/development-client.md": "87f50c2ed6b3c03fe69ae90f5aead54a6647d8a42d5be4f9c1d1aa688bb5d425",
+      "scripts/feat164-market-catalog.mjs": "8b0bffdb7b4fc9bb1e5a84c3db54e10e13bc9205ef92246e0c10c026d13cf662",
+      "src/components/chat/ChatUserInput.vue": "828d79d3983b721157fc1d46f0058a86c9a1f4cf5cf781ab3c7d794e4bd9abb2",
+      "src/composables/useUserInput.ts": "41eb293f7f91f9d20396721027c9932a30a6f0ebb0faaf49650529d4555d3405",
+      "src/pages/chat/ChatPage.vue": "7d644acbb381bd16e96ff14b6bdecb2652c90906e5cf4cb342d9aaef30baa29f"
+    },
+    "yijie-contracts": {
+      "compatibility/context-window/source.lock.json": "0b7502420d60e99f338ef4c85908e3a63f17a31c8065a59026b5d979ea237d1a",
+      "compatibility/runtime-interaction-tools/source.lock.json": "0d63d0869051de1a60e3fdfdf5f6e005bf19de36285e066f4b72c97cf30c38f5",
+      "compatibility/runtime-kimi-k31-pro/source.lock.json": "7890bc3e1e602b4d2d2e7009cc8e11871127732fcf02af798154cb20ac0bede2",
+      "compatibility/runtime-native-tools/source.lock.json": "828bcb659a23326f7b29062ca320a6c54dc855e6c1d0dda727be30772a0e2eec",
+      "compatibility/runtime-tool-search/source.lock.json": "528f70a5d76bdcaefbbba357ede97a053088163e5150215937f2ae610ad4c41a",
+      "compatibility/user-input/source.lock.json": "ebfbfdfdce94a4ca4db2bceb551c99389da02b62bab32670c1fd66306b1acc1f"
+    },
+    "yijie-agent-host": {
+      "api/context-window.candidate.json": "0b7502420d60e99f338ef4c85908e3a63f17a31c8065a59026b5d979ea237d1a",
+      "api/user-input.candidate.json": "ebfbfdfdce94a4ca4db2bceb551c99389da02b62bab32670c1fd66306b1acc1f"
+    },
+    "yijie-connectors": {
+      "worker/source.lock.json": "2689930419116fc06c5b98c97d224f9f8b707b69b9efc9527f85c214b3e423b1"
+    }
+  },
+  "base_commits": {
+    "yijie-desktop": "3f69334306277ae641ed373fe7191223a76aad3b",
+    "yijie-contracts": "d348fc565af341ebd8a2088efea2aa6ff7460709",
+    "yijie-agent-host": "a422878c0ffed63e0bf85d5bd590b3dde521261c",
+    "yijie-connectors": "06e27b85437bba2b91bbcd2ce43ddb45d4ea7337"
+  },
+  "daily_restore": {
+    "readyz_status": 200,
+    "native_runtime_unchanged": true,
+    "meter_route_absent": true,
+    "completed_history_observed_in_actual_app": true,
+    "old_form_not_revived": true,
+    "canonical_entry": "python3 -B scripts/development-client.py start-ui",
+    "desktop_binary_sha256": "e3b4a220f59b2a0628bbb70a88a236918054544d287a4ca76d0b79daf1eff422"
+  },
+  "git_delivery": {
+    "authorized": true,
+    "dependency_commits": {
+      "yijie-connectors": "2d2351b49bc7ca7bfe53e6dfe090c2bc0d949d65",
+      "yijie-contracts": "babc097206fb4edc772532d1d19e41597b6d6e50",
+      "yijie-agent-host": "b5a302dee53408299ff5835d51a3f3509ce4c682",
+      "yijie-desktop": "bf12d3d3226369d15ab0a96df2573bfe0ccea767"
+    },
+    "post_commit_provenance_checks": "passed: both generated question/context consumers, native-tool and interaction/tool-search build receipts, recorded ancestor identity, exact connector catalog",
+    "ui_implementation_matches_live_acceptance": true,
+    "local_data_and_caches_excluded": true
+  }
+}
